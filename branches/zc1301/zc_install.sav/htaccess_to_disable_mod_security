@@ -1,0 +1,8 @@
+# $ Id: $
+
+# the following disables mod_security in apache, which may be necessary during installation
+# This file should only be used INSIDE the zc_install folder. Using the following directive elsewhere can
+# cause security problems on your site. Talk to your webhost if you are concerned about its effects.
+
+SecFilterEngine off
+

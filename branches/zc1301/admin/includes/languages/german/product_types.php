@@ -1,0 +1,66 @@
+<?php
+//
+// +----------------------------------------------------------------------+
+// |zen-cart Open Source E-commerce                                       |
+// +----------------------------------------------------------------------+
+// | Copyright (c) 2004 The zen-cart developers                           |
+// |                                                                      |
+// | http://www.zen-cart.com/index.php                                    |
+// |                                                                      |
+// | Portions Copyright (c) 2003 osCommerce                               |
+// +----------------------------------------------------------------------+
+// | This source file is subject to version 2.0 of the GPL license,       |
+// | that is bundled with this package in the file LICENSE, and is        |
+// | available through the world-wide-web at the following url:           |
+// | http://www.zen-cart.com/license/2_0.txt.                             |
+// | If you did not receive a copy of the zen-cart license and are unable |
+// | to obtain it through the world-wide-web, please send a note to       |
+// | license@zen-cart.com so we can mail you a copy immediately.          |
+// +----------------------------------------------------------------------+
+// | Translator:           cyaneo/hugo13                                  |
+// | Date of Translation:  31.03.06                                       |
+// | Homepage:             www.zen-cart.at                                |
+// +----------------------------------------------------------------------+
+//  $Id: product_types.php 4 2006-03-31 16:38:40Z hugo13 $
+//
+
+define('HEADING_TITLE', 'Artikeltypen');
+define('HEADING_TITLE_LAYOUT', 'Layout der Infoseite f&uuml;r Artikeltypen :: ');
+
+define('TABLE_HEADING_PRODUCT_TYPES', 'Artikeltypen');
+define('TABLE_HEADING_PRODUCT_TYPES_ALLOW_ADD_TO_CART', 'in den<br />Warenkorb');
+define('TABLE_HEADING_ACTION', 'Aktion');
+define('TABLE_HEADING_CONFIGURATION_TITLE', 'Titel');
+define('TABLE_HEADING_CONFIGURATION_VALUE', 'Wert');
+
+define('TEXT_HEADING_NEW_PRODUCT_TYPE', 'Neuer Artikeltyp');
+define('TEXT_HEADING_EDIT_PRODUCT_TYPE', 'Artikeltyp bearbeiten');
+define('TEXT_HEADING_DELETE_PRODUCT_TYPE', 'Artikeltyp l&ouml;schen');
+
+define('TEXT_PRODUCT_TYPES', 'Artikeltypen:');
+define('TEXT_PRODUCT_TYPES_HANDLER', 'Beandlereite:');
+define('TEXT_PRODUCT_TYPES_ALLOW_ADD_CART', 'Dieser Artikel kann zum Warenkorb hinzugef&uuml;gt werden:');
+define('TEXT_DATE_ADDED', 'Erstelldatum:');
+define('TEXT_LAST_MODIFIED', 'Letzte Änderung:');
+define('TEXT_PRODUCTS', 'Artikel:');
+define('TEXT_PRODUCTS_IMAGE_DIR', 'zum Verzeichnis hochladen:');
+define('TEXT_IMAGE_NONEXISTENT', 'DAS BILD EXISTIERT NICHT');
+define('TEXT_MASTER_TYPE', 'This product type should be considered a sub-type of ');
+
+define('TEXT_NEW_INTRO', 'Bitte geben Sie folgende Informationen f&uuml;r den neuen Hersteller an');
+define('TEXT_EDIT_INTRO', 'Bitte f&uuml;hren Sie hier die notwendigen Änderungen durch');
+
+define('TEXT_PRODUCT_TYPES_NAME', 'Artikeltyp Name:');
+define('TEXT_PRODUCT_TYPES_IMAGE', 'Artikeltyp Bild:');
+define('TEXT_PRODUCT_TYPES_URL', 'Hersteller URL:');
+
+define('TEXT_DELETE_INTRO', 'Sind Sie sicher, dass Sie diesen Artikeltyp l&ouml;schen wollen?');
+define('TEXT_DELETE_IMAGE', 'Soll das Standardbild dieser Artikeltype wirklich gel&ouml;scht werden?');
+define('TEXT_DELETE_PRODUCTS', 'Sollen die Artikel von diesem Artikeltyp gel&ouml;scht werden? (Beinhaltet auch Artikelvorschau, Sonderangebote und Artikel Neuerscheinungen)');
+define('TEXT_DELETE_WARNING_PRODUCTS', '<b>WARNUNG:</b> Es sind immer noch %s Artikel zu diesem Artikeltyp verlinkt!');
+
+define('ERROR_DIRECTORY_NOT_WRITEABLE', 'Fehler: In das Verzeichnis kann nicht geschrieben werden. Bitte setzten Sie die entsprechenden Berechtigungen auf %s');
+define('ERROR_DIRECTORY_DOES_NOT_EXIST', 'Fehler: Das Verzeichnis %s existiert nicht');
+
+define('IMAGE_LAYOUT', 'Layouteinstellungen');
+?>
