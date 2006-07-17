@@ -3,13 +3,13 @@
  * Side Box Template
  *
  * @package templateSystem
- * @copyright Copyright 2003-2005 Zen Cart Development Team
+ * @copyright Copyright 2003-2006 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: tpl_search_header.php 2949 2006-02-03 01:09:07Z birdbrain $
+ * @version $Id: tpl_search_header.php 3361 2006-04-03 15:58:12Z drbyte $
  */
   $content = "";
-  $content .= zen_draw_form('quick_find', zen_href_link(FILENAME_ADVANCED_SEARCH_RESULT, '', 'NONSSL', false), 'get');
+  $content .= zen_draw_form('quick_find_header', zen_href_link(FILENAME_ADVANCED_SEARCH_RESULT, '', 'NONSSL', false), 'get');
   $content .= zen_draw_hidden_field('main_page',FILENAME_ADVANCED_SEARCH_RESULT);
   $content .= zen_draw_hidden_field('search_in_description', '1');
 

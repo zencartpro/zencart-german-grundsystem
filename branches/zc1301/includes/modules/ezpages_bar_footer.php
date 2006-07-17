@@ -24,6 +24,7 @@ if (EZPAGES_STATUS_FOOTER == '1' or (EZPAGES_STATUS_FOOTER == '2' and (strstr(EX
   if (isset($var_linksList)) {
     unset($var_linksList);
   }
+// r.l. language_id
   $page_query = $db->Execute("select * from " . TABLE_EZPAGES . " where status_footer = 1 and languages_id='$rl_language' and footer_sort_order > 0 order by footer_sort_order, pages_title");
   if ($page_query->RecordCount()>0) {
     $rows = 0;
@@ -31,7 +32,7 @@ if (EZPAGES_STATUS_FOOTER == '1' or (EZPAGES_STATUS_FOOTER == '2' and (strstr(EX
       $rows++;
       $page_query_list_footer[$rows]['id'] = $page_query->fields['pages_id'];
       $page_query_list_footer[$rows]['name'] = $page_query->fields['pages_title'];
-      $page_query_list_header[$rows]['altURL'] = '';
+      $page_query_list_footer[$rows]['altURL'] = '';
 
       // if altURL is specified, check to see if it starts with "http", and if so, create direct URL, otherwise use a zen href link
       switch (true) {

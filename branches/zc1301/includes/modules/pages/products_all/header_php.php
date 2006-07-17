@@ -6,7 +6,7 @@
  * @copyright Copyright 2003-2006 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: header_php.php 3232 2006-03-21 09:37:11Z drbyte $
+ * @version $Id: header_php.php 3326 2006-03-31 06:23:22Z drbyte $
  */
 
   require(DIR_WS_MODULES . zen_get_module_directory('require_languages.php'));
@@ -35,7 +35,7 @@
   $show_submit = zen_run_normal();
 
 // check whether to use multiple-add-to-cart, and whether top or bottom buttons are displayed
-  if (PRODUCT_ALL_LISTING_MULTIPLE_ADD_TO_CART > 0 and $show_submit == 'true' and $products_all_split->number_of_rows > 0) {
+  if (PRODUCT_ALL_LISTING_MULTIPLE_ADD_TO_CART > 0 and $show_submit == true and $products_all_split->number_of_rows > 0) {
 
     // check how many rows
     $check_products_all = $db->Execute($products_all_split->sql_query);
@@ -59,12 +59,12 @@
       $check_products_all->MoveNext();
     }
 
-    if ( (($how_many > 0 and $show_submit == 'true' and $products_all_split->number_of_rows > 0) and (PRODUCT_ALL_LISTING_MULTIPLE_ADD_TO_CART == 1 or  PRODUCT_ALL_LISTING_MULTIPLE_ADD_TO_CART == 3)) ) {
+    if ( (($how_many > 0 and $show_submit == true and $products_all_split->number_of_rows > 0) and (PRODUCT_ALL_LISTING_MULTIPLE_ADD_TO_CART == 1 or  PRODUCT_ALL_LISTING_MULTIPLE_ADD_TO_CART == 3)) ) {
       $show_top_submit_button = true;
     } else {
       $show_top_submit_button = false;
     }
-    if ( (($how_many > 0 and $show_submit == 'true' and $products_all_split->number_of_rows > 0) and (PRODUCT_ALL_LISTING_MULTIPLE_ADD_TO_CART >= 2)) ) {
+    if ( (($how_many > 0 and $show_submit == true and $products_all_split->number_of_rows > 0) and (PRODUCT_ALL_LISTING_MULTIPLE_ADD_TO_CART >= 2)) ) {
       $show_bottom_submit_button = true;
     } else {
       $show_bottom_submit_button = false;

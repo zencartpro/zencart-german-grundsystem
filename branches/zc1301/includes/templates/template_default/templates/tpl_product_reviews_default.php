@@ -3,23 +3,22 @@
  * Page Template
  *
  * @package templateSystem
- * @copyright Copyright 2003-2005 Zen Cart Development Team
+ * @copyright Copyright 2003-2006 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: tpl_product_reviews_default.php 2993 2006-02-08 07:14:52Z birdbrain $
+ * @version $Id: tpl_product_reviews_default.php 3409 2006-04-11 00:41:49Z drbyte $
  */
 ?>
 <div class="centerColumn" id="reviewsDefault">
-
-      <?php
-        if (zen_not_null($products_image)) {
-        	/**
-     * require the image display code
-        	 */
+<?php
+  if (zen_not_null($products_image)) {
+  /**
+   * require the image display code
+   */
 ?>
 <div id="productReviewsDefaultProductImage" class="centeredContent back"><?php require($template->get_template_dir('/tpl_modules_main_product_image.php',DIR_WS_TEMPLATE, $current_page_base,'templates'). '/tpl_modules_main_product_image.php'); ?></div>
 <?php
-        }
+  }
 ?>
 <div class="forward">
 <div class="buttonRow">
@@ -77,8 +76,6 @@
   } else {
 ?>
 <hr />
-<div class="buttonRow forward"><?php echo '<a href="' . zen_href_link(zen_get_info_page($_GET['products_id']), zen_get_all_get_params()) . '">' . zen_image_button(BUTTON_IMAGE_GOTO_PROD_DETAILS , BUTTON_GOTO_PROD_DETAILS_ALT) . '</a>'; ?></div>
-
 <div id="productReviewsDefaultNoReviews" class="content"><?php echo TEXT_NO_REVIEWS . (REVIEWS_APPROVAL == '1' ? '<br />' . TEXT_APPROVAL_REQUIRED: ''); ?></div>
 <br class="clearBoth" />
 <?php

@@ -6,7 +6,7 @@
  * @copyright Copyright 2003-2006 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: main_template_vars.php 3188 2006-03-15 17:31:52Z ajeh $
+ * @version $Id: main_template_vars.php 3327 2006-03-31 06:23:44Z drbyte $
  */
 /*
  * Extracts and constructs the data to be used in the product-type template tpl_TYPEHANDLER_info_display.php
@@ -144,12 +144,12 @@
 /**
  * Load all *.PHP files from the /includes/templates/MYTEMPLATE/PAGENAME/extra_main_template_vars
  */
-  $extras_dir = $template->get_template_dir('.php', DIR_WS_TEMPLATE, $current_page_base . 'extra_main_template_vars', $current_page_base . '/' .'extra_main_template_vars');
+  $extras_dir = $template->get_template_dir('.php', DIR_WS_TEMPLATE, $current_page_base . 'extra_main_template_vars', $current_page_base . '/' . 'extra_main_template_vars');
   if ($dir = @dir($extras_dir)) {
     while ($file = $dir->read()) {
-      if (!is_dir($extras_dir . $file)) {
+      if (!is_dir($extras_dir . '/' . $file)) {
         if (preg_match('/\.php$/', $file) > 0) {
-          $directory_array[] = $file;
+          $directory_array[] = '/' . $file;
         }
       }
     }
@@ -158,7 +158,6 @@
   if (sizeof($directory_array)) sort($directory_array);
 
   for ($i = 0, $n = sizeof($directory_array); $i < $n; $i++) {
-    $file = $directory_array[$i];
     if (file_exists($extras_dir . $directory_array[$i])) include($extras_dir . $directory_array[$i]);
   }
 

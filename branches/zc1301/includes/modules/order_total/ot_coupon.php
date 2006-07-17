@@ -4,7 +4,7 @@
  * @copyright Copyright 2003-2005 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: ot_coupon.php 3246 2006-03-23 20:33:32Z wilt $
+ * @version $Id: ot_coupon.php 3463 2006-04-18 21:48:39Z wilt $
  */
 
   class ot_coupon {
@@ -190,7 +190,7 @@ function update_credit_account($i) {
     $od_amount = array();
     if ($_SESSION['cc_id']) {
       $coupon = $db->Execute("select * from " . TABLE_COUPONS . " where coupon_id = '" . $_SESSION['cc_id'] . "'");
-      if ($coupon->RecordCount() > 0 ) {
+      if (($coupon->RecordCount() > 0 && $order_total !=0) || ($coupon->RecordCount() > 0 && $coupon->fields['coupon_type']=='S') ) {
         if ($coupon->fields['coupon_minimum_order'] <= $order_total) {
           if ($coupon->fields['coupon_type']=='S') {
             $od_amount['total'] = $order->info['shipping_cost'];
@@ -225,7 +225,8 @@ function update_credit_account($i) {
                           $tax_rate = zen_get_tax_rate($cc_result->fields['products_tax_class_id'], $tax_address['country_id'], $tax_address['zone_id']);
                           $tax_desc = zen_get_tax_description($cc_result->fields['products_tax_class_id'], $tax_address['country_id'], $tax_address['zone_id']);
                           if ($tax_rate > 0) {
-                            $od_amount[$tax_desc] += (($products[$i]['final_price'] * $products[$i]['quantity']) * $tax_rate)/100 * $ratio;
+//                            $od_amount[$tax_desc] += (($products[$i]['final_price'] * $products[$i]['quantity']) * $tax_rate)/100 * $ratio;
+                            $od_amount[$tax_desc] += round(((($products[$i]['final_price'] * $products[$i]['quantity']) * $tax_rate) + .5)/100 * $ratio, 2);
                             $od_amount['tax'] += $od_amount[$tax_desc];
                           }
                         }
@@ -254,7 +255,8 @@ function update_credit_account($i) {
                           $tax_rate = zen_get_tax_rate($cc_result->fields['products_tax_class_id'], $tax_address['country_id'], $tax_address['zone_id']);
                           $tax_desc = zen_get_tax_description($cc_result->fields['products_tax_class_id'], $tax_address['country_id'], $tax_address['zone_id']);
                           if ($tax_rate > 0) {
-                            $od_amount[$tax_desc] += (($products[$i]['final_price'] * $products[$i]['quantity']) * $tax_rate)/100 * $ratio;
+//                            $od_amount[$tax_desc] += (($products[$i]['final_price'] * $products[$i]['quantity']) * $tax_rate)/100 * $ratio;
+                            $od_amount[$tax_desc] += round(((($products[$i]['final_price'] * $products[$i]['quantity']) * $tax_rate) + .5)/100 * $ratio, 2);
                             $od_amount['tax'] += $od_amount[$tax_desc];
                           }
                         }

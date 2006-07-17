@@ -3,7 +3,7 @@
 // +----------------------------------------------------------------------+
 // |zen-cart Open Source E-commerce                                       |
 // +----------------------------------------------------------------------+
-// | Copyright (c) 2003 The zen-cart developers                           |
+// | Copyright (c) 2006 The zen-cart developers                           |
 // |                                                                      |
 // | http://www.zen-cart.com/index.php                                    |
 // |                                                                      |
@@ -17,7 +17,7 @@
 // | to obtain it through the world-wide-web, please send a note to       |
 // | license@zen-cart.com so we can mail you a copy immediately.          |
 // +----------------------------------------------------------------------+
-//  $Id: languages.php 3295 2006-03-28 07:27:49Z drbyte $
+//  $Id: languages.php 3398 2006-04-09 19:17:58Z drbyte $
 
   require('includes/application_top.php');
   $action = (isset($_GET['action']) ? $_GET['action'] : '');
@@ -44,10 +44,16 @@
 
           $insert_id = $db->Insert_ID();
 
-// create additional categories_description records
+          // set default, if selected
+          if (isset($_POST['default']) && ($_POST['default'] == 'on')) {
+            $db->Execute("update " . TABLE_CONFIGURATION . "
+                          set configuration_value = '" . zen_db_input($code) . "'
+                          where configuration_key = 'DEFAULT_LANGUAGE'");
+          }
 
+// create additional categories_description records
           $categories = $db->Execute("select c.categories_id, cd.categories_name,
-                                    categories_description
+                                      categories_description
                                       from " . TABLE_CATEGORIES . " c
                                       left join " . TABLE_CATEGORIES_DESCRIPTION . " cd
                                       on c.categories_id = cd.categories_id
@@ -151,12 +157,8 @@
 				                          '" . zen_db_input($orders_status->fields['orders_status_name']) . "')");
             $orders_status->MoveNext();
           }
-          if (isset($_POST['default']) && ($_POST['default'] == 'on')) {
-            $db->Execute("update " . TABLE_CONFIGURATION . "
-       	                set configuration_value = '" . zen_db_input($code) . "'
-			where configuration_key = 'DEFAULT_LANGUAGE'");
-          }
 
+          // create additional coupons_description records
 // create additional coupons_description records
           $coupons = $db->Execute("select c.coupon_id, cd.coupon_name, cd.coupon_description
                                     from " . TABLE_COUPONS . " c
@@ -188,7 +190,11 @@
         $directory = zen_db_prepare_input($_POST['directory']);
         $sort_order = zen_db_prepare_input($_POST['sort_order']);
         $query = "update " . TABLE_LANGUAGES . " set languages_id = '" . $lID . "', name = '" . zen_db_input($name) . "', code = '" . zen_db_input($code) . "', image = '" . zen_db_input($image) . "', directory = '" . zen_db_input($directory) . "', sort_order = '" . zen_db_input($sort_order) . "' where languages_id = '" . (int)$lID . "'";
+        // check if we're changing settings for the default language
+        $result = $db->Execute("select code from " . TABLE_LANGUAGES . " where languages_id = '" . (int)$lID . "'");
+        $default_lang_change_flag = (DEFAULT_LANGUAGE == $result->fields['code'] && DEFAULT_LANGUAGE == $code) ? false : true;
 
+        // save new language settings
         $db->Execute("update " . TABLE_LANGUAGES . "
                       set languages_id = '" . $lID . "', name = '" . zen_db_input($name) . "', code = '" . zen_db_input($code) . "', 
 					  image = '" . zen_db_input($image) . "', directory = '" . zen_db_input($directory) . "',
@@ -196,10 +202,11 @@
 					  where languages_id = '" . (int)$lIDW . "'");
         $db->Execute($query);
 
-        if ($_POST['default'] == 'on') {
+        // update default language setting
+        if ((isset($_POST['default']) && $_POST['default'] == 'on') || $default_lang_change_flag == true) {
           $db->Execute("update " . TABLE_CONFIGURATION . "
-		                set configuration_value = '" . zen_db_input($code) . "'
-						where configuration_key = 'DEFAULT_LANGUAGE'");
+                        set configuration_value = '" . zen_db_input(substr($code,0,2)) . "'
+                        where configuration_key = 'DEFAULT_LANGUAGE'");
         }
         zen_redirect(zen_href_link(FILENAME_LANGUAGES, 'page=' . $_GET['page'] . '&lID=' . $_GET['lID']));
         break;

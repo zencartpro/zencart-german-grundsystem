@@ -5,7 +5,7 @@
  * @copyright Copyright 2003-2006 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: header_php.php 3252 2006-03-24 05:55:07Z drbyte $
+ * @version $Id: header_php.php 3323 2006-03-31 06:01:42Z drbyte $
  */
 
   if (!isset($_GET['debug'])  && !zen_not_null($_POST['debug']))  define('ZC_UPG_DEBUG',false);

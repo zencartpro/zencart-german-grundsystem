@@ -4,7 +4,7 @@
  * @copyright Copyright 2003-2006 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: salemaker.php 3295 2006-03-28 07:27:49Z drbyte $
+ * @version $Id: salemaker.php 3474 2006-04-21 02:20:40Z drbyte $
  */
 //
 define('AUTOCHECK', 'False');
@@ -101,14 +101,25 @@ define('AUTOCHECK', 'False');
         if (zen_not_null($newname)) {
           $salemaker_sales = $db->Execute("select * from " . TABLE_SALEMAKER_SALES . " where sale_id = '" . zen_db_input($_GET['sID']) . "'");
           if ($salemaker_sales->RecordCount() > 0) {
-            $salemaker_sales->fields['sale_id'] = 'null';
-            $salemaker_sales->fields['sale_name'] = $newname;
-            $salemaker_sales->fields['sale_status'] = 0;
-            $salemaker_sales->fields['sale_date_added'] = 'now()';
-            $salemaker_sales->fields['sale_date_last_modified'] = '0001-01-01';
-            $salemaker_sales->fields['sale_date_status_change'] = '0001-01-01';
 
-            zen_db_perform(TABLE_SALEMAKER_SALES, $salemaker_sales, 'insert');
+          $sql_data_array = array('sale_id' => 'null',
+                                  'sale_status' => 0,
+                                  'sale_name' => $newname,
+                                  'sale_date_added' => 'now()',
+                                  'sale_date_last_modified' => '0001-01-01',
+                                  'sale_date_status_change' => '0001-01-01',
+                                  'sale_deduction_value' => (float)$salemaker_sales->fields['sale_deduction_value'],
+                                  'sale_deduction_type' => (float)$salemaker_sales->fields['sale_deduction_type'],
+                                  'sale_pricerange_from' => (float)$salemaker_sales->fields['sale_pricerange_from'],
+                                  'sale_pricerange_to' => (float)$salemaker_sales->fields['sale_pricerange_to'],
+                                  'sale_specials_condition' => (int)$salemaker_sales->fields['sale_specials_condition'],
+                                  'sale_categories_selected' => $salemaker_sales->fields['sale_categories_selected'],
+                                  'sale_categories_all' => $salemaker_sales->fields['sale_categories_all'],
+                                  'sale_date_start' => $salemaker_sales->fields['sale_date_start'],
+                                  'sale_date_end' => $salemaker_sales->fields['sale_date_end']
+                                  );
+
+            zen_db_perform(TABLE_SALEMAKER_SALES, $sql_data_array, 'insert');
 
             $sale_id = $db->Insert_ID();
             // update prices for products in sale
@@ -249,7 +260,6 @@ function SetCategories() {
   } else {
 ?>
 </head>
-<body onload="init();" marginwidth="0" marginheight="0" topmargin="0" bottommargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFFF">
 <?php
   }
 ?>

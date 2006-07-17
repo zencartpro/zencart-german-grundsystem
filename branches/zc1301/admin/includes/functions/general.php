@@ -17,7 +17,7 @@
 // | to obtain it through the world-wide-web, please send a note to       |
 // | license@zen-cart.com so we can mail you a copy immediately.          |
 // +----------------------------------------------------------------------+
-//  $Id: general.php 3118 2006-03-05 22:36:32Z ajeh $
+//  $Id: general.php 3415 2006-04-11 04:51:22Z drbyte $
 //
 
 ////
@@ -2566,7 +2566,7 @@ function zen_copy_products_attributes($products_id_from, $products_id_to) {
 // Get the status of a category
   function zen_get_categories_status($categories_id) {
     global $db;
-    $sql = "select categories_status from " . TABLE_CATEGORIES . (zen_not_null($products_id) ? " where categories_id=" . $categories_id : "");
+    $sql = "select categories_status from " . TABLE_CATEGORIES . (zen_not_null($categories_id) ? " where categories_id=" . $categories_id : "");
     $check_status = $db->Execute($sql);
     return $check_status->fields['categories_status'];
   }

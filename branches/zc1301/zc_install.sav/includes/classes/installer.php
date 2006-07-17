@@ -7,7 +7,7 @@
  * @copyright Copyright 2003-2006 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: installer.php 3148 2006-03-10 03:55:52Z drbyte $
+ * @version $Id: installer.php 3390 2006-04-07 20:33:05Z drbyte $
  */
 
 
@@ -68,14 +68,28 @@
     }
 
     function test_php_version ($zp_test, $zp_version, $zp_error_text, $zp_error_code, $zp_fatal) {
+      $string = explode('.',substr($this->php_version,0,6));
+      foreach ($string as $key=>$value) {
+        $string[$key] = str_pad($value, 2, '0', STR_PAD_LEFT);
+      }
+      $myver_string = implode('.',$string);
+
+      $string = explode('.',$zp_version);
+      foreach ($string as $key=>$value) {
+        $string[$key] = str_pad($value, 2, '0', STR_PAD_LEFT);
+      }
+      $zp_version = implode('.',$string);
+
+      $zp_error_text = $this->php_version . ' ' . $zp_error_text;
+
       switch ($zp_test) {
         case '=':
-        if ($this->php_version == $zp_version) $this->setError($zp_error_text, $zp_error_code, $zp_fatal);
+        if ($myver_string == $zp_version) $this->setError($zp_error_text, $zp_error_code, $zp_fatal);
         break;
         case '<':
-        if ($this->php_version == '4.3.11' && $zp_version == '4.3.2') return false;
-        if ($this->php_version == '4.3.10' && $zp_version == '4.3.2') return false;
-        if ($this->php_version < $zp_version) $this->setError($zp_error_text, $zp_error_code, $zp_fatal);
+        if ($myver_string == '4.3.11' && $zp_version == '4.3.2') return false;
+        if ($myver_string == '4.3.10' && $zp_version == '4.3.2') return false;
+        if ($myver_string < $zp_version) $this->setError($zp_error_text, $zp_error_code, $zp_fatal);
         break;
       }
     }

@@ -4,7 +4,7 @@
  * @copyright Copyright 2003-2006 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: init_errors.php 3001 2006-02-09 21:45:06Z wilt $
+ * @version $Id: init_errors.php 3399 2006-04-09 19:20:47Z drbyte $
  */
 if (!defined('IS_ADMIN_FLAG')) {
   die('Illegal Access');
@@ -15,7 +15,7 @@ if (!defined('IS_ADMIN_FLAG')) {
   }
 
 // check if a default language is set
-  if (!defined('DEFAULT_LANGUAGE')) {
+  if (!defined('DEFAULT_LANGUAGE') || DEFAULT_LANGUAGE=='') {
     $messageStack->add(ERROR_NO_DEFAULT_LANGUAGE_DEFINED, 'error');
   }
 

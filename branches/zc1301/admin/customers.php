@@ -17,7 +17,7 @@
 // | to obtain it through the world-wide-web, please send a note to       |
 // | license@zen-cart.com so we can mail you a copy immediately.          |
 // +----------------------------------------------------------------------+
-//  $Id: customers.php 2685 2005-12-25 22:01:18Z wilt $
+//  $Id: customers.php 3474 2006-04-21 02:20:40Z drbyte $
 //
 
   require('includes/application_top.php');
@@ -367,7 +367,7 @@ function check_form() {
     error = 1;
   }
 
-<?php if (ACCOUNT_DOB == 'true') { ?>
+<?php if (ACCOUNT_DOB == 'true' && ENTRY_DOB_MIN_LENGTH !='') { ?>
   if (customers_dob == "" || customers_dob.length < <?php echo ENTRY_DOB_MIN_LENGTH; ?>) {
     error_message = error_message + "<?php echo JS_DOB; ?>";
     error = 1;

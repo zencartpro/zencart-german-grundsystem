@@ -17,7 +17,7 @@
 // | to obtain it through the world-wide-web, please send a note to       |
 // | license@zen-cart.com so we can mail you a copy immediately.          |
 // +----------------------------------------------------------------------+
-//  $Id: english.php 3020 2006-02-13 04:24:58Z ajeh $
+//  $Id: english.php 3405 2006-04-10 16:43:55Z drbyte $
 //
 
 // added defines for header alt and text
@@ -79,6 +79,7 @@ define('CHARSET', 'iso-8859-1');
 define('HEADER_TITLE_TOP', 'Admin Home');
 define('HEADER_TITLE_SUPPORT_SITE', 'Support Site');
 define('HEADER_TITLE_ONLINE_CATALOG', 'Online Catalog');
+define('HEADER_TITLE_VERSION', 'Version');
 define('HEADER_TITLE_LOGOFF', 'Logoff');
 //define('HEADER_TITLE_ADMINISTRATION', 'Administration');
 
@@ -156,7 +157,7 @@ define('BOX_TOOLS_DEFINE_LANGUAGE', 'Define Languages');
 define('BOX_TOOLS_FILE_MANAGER', 'File Manager');
 define('BOX_TOOLS_MAIL', 'Send Email');
 define('BOX_TOOLS_NEWSLETTER_MANAGER', 'Newsletter and Product Notifications Manager');
-define('BOX_TOOLS_SERVER_INFO', 'Server Info');
+define('BOX_TOOLS_SERVER_INFO', 'Server/Version Info');
 define('BOX_TOOLS_WHOS_ONLINE', 'Who\'s Online');
 define('BOX_TOOLS_STORE_MANAGER', 'Store Manager');
 define('BOX_TOOLS_DEVELOPERS_TOOL_KIT', 'Developers Tool Kit');
@@ -666,5 +667,7 @@ define('ENTRY_NOTHING_TO_SEND','You haven\'t entered any content for your messag
   require(DIR_WS_LANGUAGES . $_SESSION['language'] . '/' . FILENAME_EMAIL_EXTRAS);
   include(zen_get_file_directory(DIR_FS_CATALOG_LANGUAGES . $_SESSION['language'] . '/', FILENAME_OTHER_IMAGES_NAMES, 'false'));
 
-
+// Additional Localisation - Languages - Phone Country Code
+define('TEXT_INFO_LANGUAGE_ID', 'Geben Sie den Telefon L&auml;ndercode OHNE 0 ein<br />(english MUSS 1 sein, deutsch MUSS 43 sein):');
+define('TEXT_INFO_LANGUAGE_CODE', 'Code:<br />(en = englisch, de = deutsch)');
 ?>

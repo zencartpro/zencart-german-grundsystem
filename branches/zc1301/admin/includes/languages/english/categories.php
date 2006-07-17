@@ -17,7 +17,7 @@
 // | to obtain it through the world-wide-web, please send a note to       |
 // | license@zen-cart.com so we can mail you a copy immediately.          |
 // +----------------------------------------------------------------------+
-//  $Id: categories.php 2847 2006-01-13 07:40:50Z drbyte $
+//  $Id: categories.php 3396 2006-04-09 00:02:03Z ajeh $
 //
 
 define('HEADING_TITLE', 'Categories / Products');
@@ -67,6 +67,7 @@ define('TEXT_INFO_HEADING_MOVE_PRODUCT', 'Move Product');
 define('TEXT_INFO_HEADING_COPY_TO', 'Copy To');
 
 define('TEXT_DELETE_CATEGORY_INTRO', 'Are you sure you want to delete this category?');
+define('TEXT_DELETE_CATEGORY_INTRO_LINKED_PRODUCTS', '<strong>Warning:</strong> Linked Products whose Master Categories ID are deleted will not price properly. You should first assure that when deleting a Category that contains Linked Products that you reset the Product(s) Master Categories ID to another Category before removing a Category');
 define('TEXT_DELETE_PRODUCT_INTRO', 'Are you sure you want to permanently delete this product?');
 
 define('TEXT_DELETE_WARNING_CHILDS', '<b>WARNING:</b> There are %s (child-)categories still linked to this category!');
@@ -219,7 +220,7 @@ define('PRODUCTS_PRICE_IS_CALL_FOR_PRICE_TEXT', 'Product is call for price');
   define('TEXT_EDIT_CATEGORIES_META_TAGS_KEYWORDS', 'Keywords:');
   define('TEXT_EDIT_CATEGORIES_META_TAGS_DESCRIPTION', 'Description:');
 
-
+define('WARNING_PRODUCTS_IN_TOP_INFO', 'WARNING: You have Products in the Top Level Category. This will cause pricing to not work properly in the Catalog. Products found: ');
 
 
 ?>

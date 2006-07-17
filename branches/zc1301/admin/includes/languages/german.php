@@ -37,7 +37,6 @@ define('PHP_DATE_TIME_FORMAT', 'd.m.Y H:i:s'); // this is used for date()
 define('DATE_TIME_FORMAT', DATE_FORMAT_SHORT . ' %H:%M:%S');
 define('DATE_FORMAT_SPIFFYCAL', 'dd.MM.yyyy'); //Use only 'dd', 'MM' and 'yyyy' here in any order
 
-
 // //
 // Return date in raw format
 // $date should be in format mm/dd/yyyy
@@ -52,11 +51,9 @@ function zen_date_raw($date, $reverse = false){
         }
     }
 
-// Global entries for the <html> tag
-define('HTML_PARAMS', 'dir="ltr" lang="de"');
-
-// charset for web pages and emails
-define('CHARSET', 'iso-8859-1');
+// removed for meta tags
+// page title
+//define('TITLE', 'Zen Cart');
 
 // include template specific meta tags defines
 if (file_exists(DIR_FS_CATALOG_LANGUAGES . $_SESSION['language'] . '/' . $template_dir . '/meta_tags.php')){
@@ -72,21 +69,19 @@ define('ICON_METATAGS_OFF', 'Meta Tags nicht definiert');
 define('TEXT_LEGEND_META_TAGS', 'Meta Tags definiert:');
 define('TEXT_INFO_META_TAGS_USAGE', '<strong>Hinweis:</strong> Site/Tagline ist Ihre Einstellung f&uuml;r Ihre Seite in der Datei meta_tags.php.');
 
-// removed for meta tags
-// page title
-// define('TITLE', 'Zen Cart');
+// Global entries for the <html> tag
+define('HTML_PARAMS', 'dir="ltr" lang="de"');
+
+// charset for web pages and emails
+define('CHARSET', 'iso-8859-1');
+
 // header text in includes/header.php
 define('HEADER_TITLE_TOP', 'Startseite');
 define('HEADER_TITLE_SUPPORT_SITE', 'Support');
 define('HEADER_TITLE_ONLINE_CATALOG', 'Webshop');
+define('HEADER_TITLE_VERSION', 'Version');
 define('HEADER_TITLE_LOGOFF', 'Abmelden');
-define('HEADER_TITLE_ADMINISTRATION', 'Administration');
-
-// added defines for header alt and text
-define('HEADER_ALT_TEXT', 'Admin Powered by Zen Cart :: The Art of E-Commerce');
-define('HEADER_LOGO_WIDTH', '200px');
-define('HEADER_LOGO_HEIGHT', '70px');
-define('HEADER_LOGO_IMAGE', 'logo.gif');
+//define('HEADER_TITLE_ADMINISTRATION', 'Administration');
 
 // Define the name of your Gift Certificate as Gift Voucher, Gift Certificate, Zen Cart Dollars, etc. here for use through out the shop
 define('TEXT_GV_NAME', 'Gutschein');
@@ -525,7 +520,6 @@ define('TEXT_VERSION_CHECK_NEW_VER', 'Eine neue Version ist verf&uuml;gbar: Zen 
  define('TEXT_VERSION_CHECK_DOWNLOAD', 'hier herunterladen');
  define('TEXT_VERSION_CHECK_CURRENT', 'Sie verwenden die aktuellste Version von Zen Cart&trade;.');
 
-
 // downloads manager
 define('TEXT_DISPLAY_NUMBER_OF_PRODUCTS_DOWNLOADS_MANAGER', 'zeige <b>%d</b> bis <b>%d</b> (von <b>%d</b> Downloads)');
 define('BOX_CATALOG_CATEGORIES_ATTRIBUTES_DOWNLOADS_MANAGER', 'Download Manager');
@@ -575,6 +569,7 @@ define('PRODUCTS_PRICE_IS_CALL_FOR_PRICE_TEXT', 'Product is Call for Price');
 define('PRODUCTS_PRICE_IS_FREE_TEXT', 'Product is Free');
 
 define('TEXT_PRODUCT_WEIGHT_UNIT','kg');  // new 1.3.0
+
 // min, max, units
 define('PRODUCTS_QUANTITY_MAX_TEXT_LISTING', 'Maximal:');
 
@@ -613,6 +608,8 @@ define('TEXT_SORT_PRODUCTS_MODEL', 'Artikelmodell');
   define('TEXT_SORT_CATEGORIES_SORT_ORDER_PRODUCTS_NAME', '!!!TRANSLATE!!!Categories Sort Order, Categories Name');
   define('TEXT_SORT_CATEGORIES_NAME', '!!!TRANSLATE!!!Categories Name');
 
+
+
 define('TABLE_HEADING_YES', 'Ja');
 define('TABLE_HEADING_NO', 'Nein');
 define('TEXT_IMAGES_OVERWRITE', 'Bestehendes Bild &uuml;berschreiben? Verwenden Sie "Nein" bei manuell eingegebenem Namen');
@@ -621,6 +618,7 @@ define('TEXT_IMAGE_OVERWRITE_WARNING', 'WARNUNG: DATEINAME wurde aktualisiert ab
 define('ERROR_DEFINE_OPTION_NAMES', 'Warnung: Es wurde kein Attributname definiert');
 define('ERROR_DEFINE_OPTION_VALUES', 'Warnung: Es wurde kein Optionswert definiert');
 define('ERROR_DEFINE_PRODUCTS', 'Warnung: Es wurden keine Artikel definiert');
+  define('ERROR_DEFINE_PRODUCTS_MASTER_CATEGORIES_ID', 'Warning: No Master Categories ID has been set for this Product');
 
 define('BUTTON_ADD_PRODUCT_TYPES_SUBCATEGORIES_ON', 'Hinzuf&uuml;gen inklusive Unterkategorien');
 define('BUTTON_ADD_PRODUCT_TYPES_SUBCATEGORIES_OFF', 'Hinzuf&uuml;gen ohne Unterkategorien');
@@ -663,7 +661,8 @@ define('TEXT_SHOW_OPTION_NAMES_VALUES_COPIER_OFF', 'Anzeigen Global Features - A
   define('RESET_ADMIN_ACTIVITY_LOG', 'Go to Store Manager to Reset the Admin Activity Log');
 
   define('CATEGORY_HAS_SUBCATEGORIES', 'NOTE: Category has SubCategories<br />Products cannot be added');
-// /////////////////////////////////////////////////////////
+
+///////////////////////////////////////////////////////////
 // include additional files:
 require(DIR_WS_LANGUAGES . $_SESSION['language'] . '/' . FILENAME_EMAIL_EXTRAS);
 include(zen_get_file_directory(DIR_FS_CATALOG_LANGUAGES . $_SESSION['language'] . '/', FILENAME_OTHER_IMAGES_NAMES, 'false'));

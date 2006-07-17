@@ -6,21 +6,21 @@
  * @copyright Copyright 2003-2006 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: information.php 3259 2006-03-25 22:07:54Z ajeh $
+ * @version $Id: information.php 3464 2006-04-19 00:07:26Z ajeh $
  */
 
   unset($information);
 
-  if (DEFINE_SHIPPINGINFO_STATUS <= '1') {
+  if (DEFINE_SHIPPINGINFO_STATUS <= 1) {
     $information[] = '<a href="' . zen_href_link(FILENAME_SHIPPING) . '">' . BOX_INFORMATION_SHIPPING . '</a>';
   }
-  if (DEFINE_PRIVACY_STATUS <= '1') {
+  if (DEFINE_PRIVACY_STATUS <= 1) {
     $information[] = '<a href="' . zen_href_link(FILENAME_PRIVACY) . '">' . BOX_INFORMATION_PRIVACY . '</a>';
   }
-  if (DEFINE_CONDITIONS_STATUS <= '1') {
+  if (DEFINE_CONDITIONS_STATUS <= 1) {
     $information[] = '<a href="' . zen_href_link(FILENAME_CONDITIONS) . '">' . BOX_INFORMATION_CONDITIONS . '</a>';
   }
-  if (DEFINE_CONTACT_US_STATUS <= '1') {
+  if (DEFINE_CONTACT_US_STATUS <= 1) {
     $information[] = '<a href="' . zen_href_link(FILENAME_CONTACT_US) . '">' . BOX_INFORMATION_CONTACT . '</a>';
   }
 
@@ -31,7 +31,7 @@
 // or: str_replace(str_replace(DIR_WS_CATALOG, '', DIR_FS_CATALOG), '', DIR_WS_PHPBB)
   }
 
-  if (DEFINE_SITE_MAP_STATUS <= '1') {
+  if (DEFINE_SITE_MAP_STATUS <= 1) {
     $information[] = '<a href="' . zen_href_link(FILENAME_SITE_MAP) . '">' . BOX_INFORMATION_SITE_MAP . '</a>';
   }
 
@@ -40,7 +40,7 @@
     $information[] = '<a href="' . zen_href_link(FILENAME_GV_FAQ) . '">' . BOX_INFORMATION_GV . '</a>';
   }
   // only show Discount Coupon FAQ when installed
-  if (DEFINE_DISCOUNT_COUPON_STATUS <= '1' && MODULE_ORDER_TOTAL_COUPON_STATUS == 'true') {
+  if (DEFINE_DISCOUNT_COUPON_STATUS <= 1 && MODULE_ORDER_TOTAL_COUPON_STATUS == 'true') {
     $information[] = '<a href="' . zen_href_link(FILENAME_DISCOUNT_COUPON) . '">' . BOX_INFORMATION_DISCOUNT_COUPONS . '</a>';
   }
 

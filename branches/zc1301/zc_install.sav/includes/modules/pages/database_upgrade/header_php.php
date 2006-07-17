@@ -5,7 +5,7 @@
  * @copyright Copyright 2003-2006 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: header_php.php 3178 2006-03-12 22:30:49Z drbyte $
+ * @version $Id: header_php.php 3389 2006-04-07 20:17:18Z drbyte $
  */
 include('includes/modules/pages/database_upgrade/language_id_change.php');
 /* 
@@ -27,7 +27,7 @@ include('includes/modules/pages/database_upgrade/language_id_change.php');
 /////////////////////////////////////////////////////////////////////
 //this is the latest database-version-level that this script knows how to inspect and upgrade to.
 //it is used to determine whether to stay on the upgrade page when done, or continue to the finished page
-$latest_version = '1.3.0'; 
+$latest_version = '1.3.0.1'; 
 
 ///////////////////////////////////
 if (!isset($_GET['debug'])  && !zen_not_null($_POST['debug']))  define('ZC_UPG_DEBUG',false);
@@ -87,6 +87,10 @@ if (!$zc_install->fatal_error) {
 
 //display options based on what was found -- THESE SHOULD BE PROCESSED IN REVERSE ORDER, NEWEST VERSION FIRST... !
 //that way only the "earliest-required" upgrade is suggested first.
+    if (!$dbinfo->version1301) {
+      $sniffer =  ' upgrade v1.3.0 to v1.3.0.1';
+      $needs_v1_3_0_1=true;
+    }
     if (!$dbinfo->version130) {
       $sniffer =  ' upgrade v1.2.7 to v1.3.0';
       $needs_v1_3_0=true;
@@ -183,6 +187,7 @@ if (ZC_UPG_DEBUG2==true) {
   echo '<br>126='.$dbinfo->version126;
   echo '<br>127='.$dbinfo->version127;
   echo '<br>130='.$dbinfo->version130;
+  echo '<br>130='.$dbinfo->version1301;
   echo '<br>';
   }
 
@@ -295,6 +300,20 @@ if (ZC_UPG_DEBUG2==true) {
           if (ZC_UPG_DEBUG2==true) echo $sniffer_file.'<br>';
           $got_v1_3_0 = true; //after processing this step, this will be the new version-level
           $db_upgraded_to_version='1.3.0';
+          break;
+       case '1.3.0':  // upgrading from v1.3.0 TO 1.3.0.1
+//          if (!$dbinfo->version130 || $dbinfo->version1301) continue;  // if prerequisite not completed, or already done, skip
+          $sniffer_file = '_upgrade_zencart_130_to_1301.sql';
+          if (ZC_UPG_DEBUG2==true) echo $sniffer_file.'<br>';
+          $got_v1_3_0_1 = true; //after processing this step, this will be the new version-level
+          $db_upgraded_to_version='1.3.0.1';
+          break;
+       case 'multilingual':  // upgrading from v1.2.6 TO v1.2.7
+//          if (!$dbinfo->version126 || $dbinfo->version127) continue;  // if prerequisite not completed, or already done, skip
+          $sniffer_file = '_multilingual_1.sql';
+          if (ZC_UPG_DEBUG2==true) echo $sniffer_file.'<br>';
+          $got_multilingual = true; //after processing this step, this will be the new version-level
+          $db_upgraded_to_version='multilingual';
           break;
        default:
        $nothing_to_process=true;

@@ -8,7 +8,7 @@
  * @copyright Copyright 2003-2006 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: class.installer_version_manager.php 3178 2006-03-12 22:30:49Z drbyte $
+ * @version $Id: class.installer_version_manager.php 3389 2006-04-07 20:17:18Z drbyte $
  */
 
 
@@ -29,7 +29,7 @@
       /**
        * The version that this edition of the installer is designed to support
        */
-      $this->latest_version = '1.3.0';
+      $this->latest_version = '1.3.0.1';
 
       /**
        * Check to see if the configuration table can be found...thus validating the installation, in part.
@@ -72,6 +72,7 @@
       $this->version126 = $this->check_version_126();
       $this->version127 = $this->check_version_127();
       $this->version130 = $this->check_version_130();
+      $this->version1301 = $this->check_version_1301();
 
 //        if ($this->version103 == true)  $retVal = '1.0.3';
 //        if ($this->version104 == true)  $retVal = '1.0.4';
@@ -89,6 +90,7 @@
         if ($this->version126 == true)  $retVal = '1.2.6';
         if ($this->version127 == true)  $retVal = '1.2.7';
         if ($this->version130 == true)  $retVal = '1.3.0';
+        if ($this->version1301 == true) $retVal = '1.3.0.1';
 
       return $retVal;
     }
@@ -516,6 +518,27 @@
       return $got_v1_3_0;
     } //end of 1.3.0 check
 
+
+    function check_version_1301() {
+      global $db_test;
+      //1st check for v1.3.0.1
+      $sql = "select configuration_group_id from " . DB_PREFIX . "configuration where configuration_key='SHOW_ACCOUNT_LINKS_ON_SITE_MAP'";
+      $result = $db_test->Execute($sql);
+      if (ZC_UPG_DEBUG==true) echo "1301-configkey_check SHOW_ACCOUNT_LINKS_ON_SITE_MAP =" . $result->fields['configuration_group_id'] . '<br>';
+      if  ($result->fields['configuration_group_id'] == '19') {
+        $got_v1_3_0_1a = true;
+      }
+
+      if (ZC_UPG_DEBUG==true) {
+        echo '1.3.0.1a='.$got_v1_3_0_1a.'<br>';
+      }
+      // evaluate all 1.3.0 checks
+      if ($got_v1_3_0_1a /*&& $got_v1_3_0_1b && $got_v1_3_0_1c && $got_v1_3_0_1d && $got_v1_3_0_1e && $got_v1_3_0_1f */ ) {
+        $got_v1_3_0_1 = true;
+        if (ZC_UPG_DEBUG==true) echo '<br>Got 1.3.0.1<br>';
+      }
+      return $got_v1_3_0_1;
+    } //end of 1.3.0.1 check
 
 
 

@@ -6,14 +6,14 @@
  * @copyright Copyright 2003-2005 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: tpl_discount_coupon_default.php 3256 2006-03-25 19:08:47Z ajeh $
+ * @version $Id: tpl_discount_coupon_default.php 3464 2006-04-19 00:07:26Z ajeh $
  */
 ?>
 <div class="centerColumn" id="discountcouponInfo">
 <h1 id="discountcouponInfoHeading"><?php echo HEADING_TITLE; ?></h1>
 
 <div id="discountcouponInfoMainContent" class="content">
-<?php if ((DEFINE_DISCOUNT_COUPON_STATUS >= '1' and DEFINE_DISCOUNT_COUPON_STATUS <= '2') && $text_coupon_help == '') {
+<?php if ((DEFINE_DISCOUNT_COUPON_STATUS >= 1 and DEFINE_DISCOUNT_COUPON_STATUS <= 2) && $text_coupon_help == '') {
   require($define_page);
  } else {
   echo $text_coupon_help;

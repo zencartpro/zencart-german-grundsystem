@@ -19,7 +19,7 @@
  * @package classes
  * @ignore
  * @author Chris Ryan
- * @version (within Zen Cart) $Id: class.smtp.php 3041 2006-02-15 21:56:45Z wilt $
+ * @version (within Zen Cart) $Id: class.smtp.php 3397 2006-04-09 01:45:32Z drbyte $
  */
 /**
  * SMTP Class
@@ -108,7 +108,7 @@ class SMTP
     }
 
     #connect to the smtp server
-    $this->smtp_conn = fsockopen($host,    # the host of the server
+    $this->smtp_conn = @fsockopen($host,    # the host of the server
     $port,    # the port to use
     $errno,   # error number if any
     $errstr,  # error message if any
@@ -129,7 +129,7 @@ class SMTP
     # so we will give it a longer timeout for the first read
     // Windows still does not have support for this timeout function
     if(substr(PHP_OS, 0, 3) != "WIN")
-    socket_set_timeout($this->smtp_conn, $tval, 0);
+      socket_set_timeout($this->smtp_conn, $tval, 0);
 
     # get any announcement stuff
     $announce = $this->get_lines();

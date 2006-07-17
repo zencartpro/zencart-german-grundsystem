@@ -4,14 +4,14 @@
  * @copyright Copyright 2003-2006 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: header.php 3009 2006-02-11 15:41:10Z wilt $
+ * @version $Id: header.php 3405 2006-04-10 16:43:55Z drbyte $
  */
 if (!defined('IS_ADMIN_FLAG')) {
   die('Illegal Access');
 }
 // $messageStack->add('REGISTERED GLOBALS ARE TURNED OFF IN .htaccess ','caution');
 
-if (isset($_GET['vcheck']) && $_GET['vcheck']!='') $version_check_requested=true;
+  $version_check_requested = (isset($_GET['vcheck']) && $_GET['vcheck']!='') ? true : false;
 
 // Show Languages Dropdown for convenience only if main filename and directory exists
 if ((basename($PHP_SELF) != FILENAME_DEFINE_LANGUAGE . '.php') and (basename($PHP_SELF) != FILENAME_PRODUCTS_OPTIONS_NAME . '.php') and empty($action)) {
@@ -102,9 +102,9 @@ if ((basename($PHP_SELF) != FILENAME_DEFINE_LANGUAGE . '.php') and (basename($PH
   $version_from_ini = '';
   $version_ini_sysinfo = '';
   $version_ini_index_sysinfo = '';
-  $version_check_sysinfo = false;
-  $version_check_index = false;
-  $version_check_requested = false;
+  if (!isset($version_check_sysinfo)) $version_check_sysinfo = false;
+  if (!isset($version_check_index))   $version_check_index = false;
+
   if (file_exists(DIR_FS_ADMIN . 'includes/local/skip_version_check.ini')) {
     $lines=@file(DIR_FS_ADMIN . 'includes/local/skip_version_check.ini');
     foreach($lines as $line) {
@@ -203,7 +203,7 @@ if ((basename($PHP_SELF) != FILENAME_DEFINE_LANGUAGE . '.php') and (basename($PH
     ?>
     </td>
     <td class="headerBarContent" align="center"><b><?php echo date("r", time()) . 'GMT'  . '&nbsp;[' .  $_SERVER['REMOTE_ADDR'] . ' ]&nbsp;'; ?></b></td>
-    <td class="headerBarContent" align="right"><?php echo '<a href="' . zen_href_link(FILENAME_DEFAULT, '', 'NONSSL') . '" class="headerLink">' . HEADER_TITLE_TOP . '</a>&nbsp;|&nbsp;<a href="' . zen_catalog_href_link() . '" class="headerLink" target="_blank">' . HEADER_TITLE_ONLINE_CATALOG . '</a>&nbsp;|&nbsp;<a href="http://www.zen-cart.com/" class="headerLink" target="_blank">' . HEADER_TITLE_SUPPORT_SITE . '</a>&nbsp;|&nbsp;<a href="' . zen_href_link(FILENAME_LOGOFF) . '" class="headerLink">' . HEADER_TITLE_LOGOFF . '</a>&nbsp;'; ?></td>
+    <td class="headerBarContent" align="right"><?php echo '<a href="' . zen_href_link(FILENAME_DEFAULT, '', 'NONSSL') . '" class="headerLink">' . HEADER_TITLE_TOP . '</a>&nbsp;|&nbsp;<a href="' . zen_catalog_href_link() . '" class="headerLink" target="_blank">' . HEADER_TITLE_ONLINE_CATALOG . '</a>&nbsp;|&nbsp;<a href="http://www.zen-cart.com/" class="headerLink" target="_blank">' . HEADER_TITLE_SUPPORT_SITE . '</a>&nbsp;|&nbsp;<a href="' . zen_href_link(FILENAME_SERVER_INFO) . '" class="headerLink">' . HEADER_TITLE_VERSION . '</a>&nbsp;|&nbsp;<a href="' . zen_href_link(FILENAME_LOGOFF) . '" class="headerLink">' . HEADER_TITLE_LOGOFF . '</a>&nbsp;'; ?></td>
   </tr>
 </table>
 <?php require(DIR_WS_INCLUDES . 'header_navigation.php'); ?>

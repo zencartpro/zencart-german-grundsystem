@@ -5,13 +5,14 @@
  * @copyright Copyright 2003-2005 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: database_upgrade.php 2342 2005-11-13 01:07:55Z drbyte $
+ * @version $Id: database_upgrade.php 3447 2006-04-17 20:10:18Z drbyte $
  */
 /**
  * defining language components for the page
  */
   define('PAGE_HEADING', 'Zen Cart&trade; Setup - Database Upgrade');
   define('UPDATE_DATABASE_NOW','Update Database Now');//this comes before TEXT_MAIN
+
   define('TEXT_MAIN', '<em>Warning: </em> This script should ONLY be used to upgrade your Zen Cart database schema through the versions listed below.  ' .
                       '<span class="emphasis"><strong>We HIGHLY RECOMMEND doing a full backup of your database prior to performing any upgrades on it!</strong></span>');
   define('TEXT_MAIN_2','<span class="emphasis">Please check the details below very carefully</span>. This information is taken from your configure.php settings.<br />' .
@@ -42,7 +43,7 @@
   define('TITLE_SECURITY','Database Security');
 
   define('UPDATE_DATABASE_WARNING_DO_NOT_INTERRUPT','<span class="emphasis">After clicking below, DO NOT INTERRUPT. Please be patient during upgrade.</span>');
-  define('SKIP_UPDATES','Skip Updates');
+  define('SKIP_UPDATES','Done with Updates');
 
 
   define('REASON_TABLE_ALREADY_EXISTS','Cannot create table %s because it already exists');
@@ -57,5 +58,7 @@
   define('REASON_INDEX_ALREADY_EXISTS','Cannot add index %s to table %s because it already exists.');
   define('REASON_PRIMARY_KEY_ALREADY_EXISTS','Cannot add primary key to table %s because a primary key already exists.');
   define('REASON_NO_PRIVILEGES','User %s@%s does not have %s privileges to database.');
+  define('REASON_CONFIGURATION_GROUP_KEY_ALREADY_EXISTS','Cannot insert configuration_group_title "%s" because it already exists');
+  define('REASON_CONFIGURATION_GROUP_ID_ALREADY_EXISTS','Cannot insert configuration_group_id "%s" because it already exists');
 
 ?>

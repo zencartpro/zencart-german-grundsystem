@@ -9,7 +9,7 @@
  * @copyright Copyright 2003-2006 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: tpl_checkout_success_default.php 3254 2006-03-25 17:34:04Z ajeh $
+ * @version $Id: tpl_checkout_success_default.php 3464 2006-04-19 00:07:26Z ajeh $
  */
 ?>
 <div class="centerColumn" id="checkoutSuccess">
@@ -29,7 +29,7 @@
 
 <h1 id="checkoutSuccessHeading"><?php echo HEADING_TITLE; ?></h1>
 
-<?php if (DEFINE_CHECKOUT_SUCCESS_STATUS >= '1' and DEFINE_CHECKOUT_SUCCESS_STATUS <= '2') { ?>
+<?php if (DEFINE_CHECKOUT_SUCCESS_STATUS >= 1 and DEFINE_CHECKOUT_SUCCESS_STATUS <= 2) { ?>
 <div id="checkoutSuccessMainContent" class="content">
 <?php
 /**

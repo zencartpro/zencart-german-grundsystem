@@ -6,7 +6,7 @@
  * @copyright Copyright 2003-2006 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: product_listing.php 3240 2006-03-22 04:10:45Z ajeh $
+ * @version $Id: product_listing.php 3326 2006-03-31 06:23:22Z drbyte $
  */
 if (!defined('IS_ADMIN_FLAG')) {
   die('Illegal Access');
@@ -16,7 +16,7 @@ $listing_split = new splitPageResults($listing_sql, MAX_DISPLAY_PRODUCTS_LISTING
 $how_many = 0;
 
 // needs a better check v1.3.1
-if (PRODUCT_LISTING_MULTIPLE_ADD_TO_CART != 0 and $show_submit == 'true' and $listing_split->number_of_rows > 0) {
+if (PRODUCT_LISTING_MULTIPLE_ADD_TO_CART != 0 and $show_submit == true and $listing_split->number_of_rows > 0) {
   // bof: multiple products
 
 //  $chk_attributes = $db->Execute($listing_sql);

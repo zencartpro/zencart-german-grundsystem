@@ -6,7 +6,7 @@
  * @copyright Copyright 2003-2006 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: header_php.php 3160 2006-03-11 01:37:18Z drbyte $
+ * @version $Id: header_php.php 3473 2006-04-21 02:15:56Z drbyte $
  */
 // This should be first line of the script:
 $zco_notifier->notify('NOTIFY_HEADER_START_ACCOUNT_EDIT');
@@ -50,7 +50,7 @@ if (isset($_POST['action']) && ($_POST['action'] == 'process')) {
 
   if (ACCOUNT_DOB == 'true') {
     if (ENTRY_DOB_MIN_LENGTH > 0 or !empty($_POST['dob'])) {
-      if (checkdate(substr(zen_date_raw($dob), 4, 2), substr(zen_date_raw($dob), 6, 2), substr(zen_date_raw($dob), 0, 4)) == false) {
+      if (substr_count($dob,'/') > 2 || checkdate(substr(zen_date_raw($dob), 4, 2), substr(zen_date_raw($dob), 6, 2), substr(zen_date_raw($dob), 0, 4)) == false) {
         $error = true;
         $messageStack->add('account_edit', ENTRY_DATE_OF_BIRTH_ERROR);
       }
@@ -98,7 +98,7 @@ if (isset($_POST['action']) && ($_POST['action'] == 'process')) {
     //update phpBB with new email address
     $old_addr_check=$db->Execute("select customers_email_address from ".TABLE_CUSTOMERS." where customers_id='".(int)$_SESSION['customer_id']."'");
     $phpBB->phpbb_change_email($old_addr_check->fields['customers_email_address'],$email_address);
-    
+
     $sql_data_array = array(array('fieldName'=>'customers_firstname', 'value'=>$firstname, 'type'=>'string'),
                             array('fieldName'=>'customers_lastname', 'value'=>$lastname, 'type'=>'string'),
                             array('fieldName'=>'customers_email_address', 'value'=>$email_address, 'type'=>'string'),
@@ -168,6 +168,9 @@ if (ACCOUNT_GENDER == 'true') {
   }
   $female = !$male;
 }
+
+// if DOB field has database default setting, show blank:
+$dob = ($dob == '0001-01-01 00:00:00') ? '' : $dob;
 
 $customers_referral = $account->fields['customers_referral'];
 

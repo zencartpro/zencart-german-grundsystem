@@ -6,7 +6,7 @@
  * @copyright Copyright 2003-2006 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: general.php 3178 2006-03-12 22:30:49Z drbyte $
+ * @version $Id: general.php 3447 2006-04-17 20:10:18Z drbyte $
  */
 
   if (!defined('TABLE_UPGRADE_EXCEPTIONS')) define('TABLE_UPGRADE_EXCEPTIONS','upgrade_exceptions');
@@ -143,6 +143,7 @@ function executeSql($sql_file, $database, $table_prefix = '', $isupgrade=false) 
             // check to see if INSERT command may be safely executed for "configuration" or "product_type_layout" tables
             if (($param[2]=='configuration'       && ($result=zen_check_config_key($line))) or 
                 ($param[2]=='product_type_layout' && ($result=zen_check_product_type_layout_key($line))) or
+                ($param[2]=='configuration_group' && ($result=zen_check_cfggroup_key($line))) or
                 (!$tbl_exists)    ) {
               zen_write_to_upgrade_exceptions_table($line, $result, $sql_file);
               $ignore_line=true;
@@ -154,7 +155,7 @@ function executeSql($sql_file, $database, $table_prefix = '', $isupgrade=false) 
           case (substr($line_upper, 0, 19) == 'INSERT IGNORE INTO '):
             //check to see if table prefix is going to match
             if (!$tbl_exists = zen_table_exists($param[3])) {
-	    $result=sprintf(REASON_TABLE_NOT_FOUND,$param[3]).' CHECK PREFIXES!';
+              $result=sprintf(REASON_TABLE_NOT_FOUND,$param[3]).' CHECK PREFIXES!';
               zen_write_to_upgrade_exceptions_table($line, $result, $sql_file);
               $ignore_line=true;
               break;
@@ -265,18 +266,18 @@ function executeSql($sql_file, $database, $table_prefix = '', $isupgrade=false) 
         } //endif found ';'
 
         if ($complete_line) {
-          if ($debug==true) echo ((!$ignore_line) ? '<br />About to execute.': 'Ignoring statement. This command WILL NOT be executed.').'<br />Debug info:<br />$ line='.$line.'<br />$ complete_line='.$complete_line.'<br>$ keep_together='.$keep_together.'<br />SQL='.$newline.'<br /><br />';
+          if ($debug==true) echo ((!$ignore_line) ? '<br /><strong>About to execute.</strong>': '<strong>Ignoring statement. This command WILL NOT be executed.</strong>').'<br />Debug info:<br />$ line='.$line.'<br />$ complete_line='.$complete_line.'<br>$ keep_together='.$keep_together.'<br />SQL='.$newline.'<br /><br />';
           if (get_magic_quotes_runtime() > 0) $newline=stripslashes($newline);
           if (trim(str_replace(';','',$newline)) != '' && !$ignore_line) $output=$db->Execute($newline);
           $results++;
           $string .= $newline.'<br />';
           $return_output[]=$output;
-          if (zen_not_null($result)) $errors[]=$result;
+          if (zen_not_null($result) && !zen_check_exceptions($result, $line) ) $errors[]=$result;
           // reset var's
           $newline = '';
           $keep_together=1;
           $complete_line = false;
-          if ($ignore_line) $ignored_count++;
+          if ($ignore_line && !zen_check_exceptions($result, $line)) $ignored_count++;
           $ignore_line=false;
 
           // show progress bar
@@ -751,6 +752,20 @@ function executeSql($sql_file, $database, $table_prefix = '', $isupgrade=false) 
     if ($result->RecordCount() >0 ) return sprintf(REASON_PRODUCT_TYPE_LAYOUT_KEY_ALREADY_EXISTS,$key);
   }
 
+  function zen_check_cfggroup_key($line) {
+    global $db;
+    $values=array();
+    $values=explode("'",$line);
+    $id = $values[1];
+    $title  =  $values[3];
+    $sql = "select configuration_group_title from " . DB_PREFIX . "configuration_group where configuration_group_title='".$title."'";
+    $result = $db->Execute($sql);
+    if ($result->RecordCount() >0 ) return sprintf(REASON_CONFIGURATION_GROUP_KEY_ALREADY_EXISTS,$title);
+    $sql = "select configuration_group_title from " . DB_PREFIX . "configuration_group where configuration_group_id='".$id."'";
+    $result = $db->Execute($sql);
+    if ($result->RecordCount() >0 ) return sprintf(REASON_CONFIGURATION_GROUP_ID_ALREADY_EXISTS,$id);
+  }
+
   function zen_write_to_upgrade_exceptions_table($line, $reason, $sql_file) {
     global $db;
     zen_create_exceptions_table();
@@ -779,6 +794,14 @@ function executeSql($sql_file, $database, $table_prefix = '', $isupgrade=false) 
           ) TYPE=MyISAM");
     return $result;
     }
+  }
+
+  function zen_check_exceptions($result, $line) {
+    // note: table-prefixes are ignored here, since they are not added if this is an exception
+    //echo '<br /><strong>RESULT_CODE: </strong>' . $result . '<br /><strong>LINE:</strong>' . $line;
+    if (strstr($result,'EZ-Pages Settings') && strstr(strtolower($line), 'insert into configuration_group')) return true;
+    if (strstr($result,'DEFINE_SITE_MAP_STATUS') && strstr(strtolower($line), 'insert into configuration')) return true;
+    //echo '<br /><strong>NO EXCEPTIONS </strong>TO IGNORE<br />';
   }
 
 ?>

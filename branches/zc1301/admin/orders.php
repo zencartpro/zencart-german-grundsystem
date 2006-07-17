@@ -17,7 +17,7 @@
 // | to obtain it through the world-wide-web, please send a note to       |
 // | license@zen-cart.com so we can mail you a copy immediately.          |
 // +----------------------------------------------------------------------+
-//  $Id: orders.php 3305 2006-03-29 07:09:03Z ajeh $
+//  $Id: orders.php 3474 2006-04-21 02:20:40Z drbyte $
 //
 
   require('includes/application_top.php');
@@ -218,6 +218,11 @@
   }
   // -->
 </script>
+<script language="javascript" type="text/javascript"><!--
+function couponpopupWindow(url) {
+  window.open(url,'popupWindow','toolbar=no,location=no,directories=no,status=no,menubar=no,scrollbars=yes,resizable=yes,copyhistory=no,width=450,height=280,screenX=150,screenY=150,top=150,left=150')
+}
+//--></script>
 </head>
 <body onload="init()">
 <!-- header //-->

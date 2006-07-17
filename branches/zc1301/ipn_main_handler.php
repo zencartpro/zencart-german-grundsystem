@@ -6,7 +6,7 @@
  * @copyright Copyright 2003-2005 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: ipn_main_handler.php 3143 2006-03-09 00:15:18Z wilt $
+ * @version $Id: ipn_main_handler.php 3475 2006-04-22 04:35:09Z ajeh $
  */
 /**
  * require general paypal functions
@@ -20,7 +20,11 @@ require('includes/modules/payment/paypal/ipn_application_top.php');
  * require language defines
  */
 if (!isset($_SESSION['language'])) $_SESSION['language'] = 'english';
-require(DIR_WS_LANGUAGES . $_SESSION['language'] . '/' . $template_dir_select . 'checkout_process.php');
+if (file_exists(DIR_WS_LANGUAGES . $_SESSION['language'] . '/' . $template_dir_select . 'checkout_process.php')) {
+  require(DIR_WS_LANGUAGES . $_SESSION['language'] . '/' . $template_dir_select . 'checkout_process.php');
+} else {
+  require(DIR_WS_LANGUAGES . $_SESSION['language'] . '/checkout_process.php');
+}
 //require('includes/languages/english/checkout_process.php');
 
 $scheme = 'http://';
@@ -121,7 +125,7 @@ switch ($txn_type) {
   }
   if ($ipnFoundSession === false) {
     ipn_debug_email('IPN NOTICE: Unique but no session - Must be a one of personal payment');
-    die(); 
+    die();
   }
   $new_order_id = $order->create($order_totals);
   $paypal_order = ipn_create_order_array($new_order_id, $txn_type);
@@ -161,21 +165,22 @@ switch ($txn_type) {
                               where txn_id = '" . $_POST['txn_id'] . "'");
   }
   if ($txn_type == 'parent') {
-    $paypal_order = ipn_create_order_array($ipn_id->fields['zen_order_id'], $txn_type);    
+    $paypal_order = ipn_create_order_array($ipn_id->fields['zen_order_id'], $txn_type);
     zen_db_perform(TABLE_PAYPAL, $paypal_order);
   } else {
    $paypal_order = ipn_create_order_update_array($txn_type);
    zen_db_perform(TABLE_PAYPAL, $paypal_order, 'update', "txn_id='" . $_POST['txn_id'] . "'");
   }
   $paypal_order_history = ipn_create_order_history_array($ipn_id->fields['paypal_ipn_id']);
-  if ($_POST['pending_reason'] == 'refund' || $_POST['payment_status'] == 'Denied') {
+//payment_status=Refunded
+  if ($_POST['payment_status'] == 'Refunded' || $_POST['payment_status'] == 'Denied') {
     $new_status = MODULE_PAYMENT_PAYPAL_REFUND_ORDER_STATUS_ID;
   } elseif ($txn_type=='echeck-cleared') {
     $new_status = MODULE_PAYMENT_PAYPAL_ORDER_STATUS_ID;
   }
   ipn_debug_email('IPN NOTICE:set new status ' . $new_status . ' for reason_code = ' . $_POST['pending_reason'] . " order id = " .  $ipn_id->fields['zen_order_id']);
-  
-  if ($_POST['pending_reason'] == 'refund' || $_POST['payment_status'] == 'Denied' || $txn_type=='echeck-cleared') {
+
+  if ($_POST['payment_status'] == 'Refunded' || $_POST['payment_status'] == 'Denied' || $txn_type=='echeck-cleared') {
     $db->Execute("update " . TABLE_ORDERS  . "
                     set orders_status = '" . $new_status . "'
                     where orders_id = '" . $ipn_id->fields['zen_order_id'] . "'");

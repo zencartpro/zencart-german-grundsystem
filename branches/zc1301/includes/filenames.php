@@ -4,10 +4,10 @@
  * Defines the filenames used in the project
  *
  * @package general
- * @copyright Copyright 2003-2005 Zen Cart Development Team
+ * @copyright Copyright 2003-2006 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: filenames.php 3232 2006-03-21 09:37:11Z drbyte $
+ * @version $Id: filenames.php 3454 2006-04-18 00:56:32Z drbyte $
  * @private
  */
 /**
@@ -102,7 +102,7 @@ define('FILENAME_ORDERS_STATUS', 'orders_status');
 define('FILENAME_OPTIONS_NAME_MANAGER', 'options_name_manager');
 define('FILENAME_OPTIONS_VALUES_MANAGER', 'options_values_manager');
 define('FILENAME_PAGE_NOT_FOUND', 'page_not_found');
-define('FILENAME_PAYPAL', 'paypal.php');
+define('FILENAME_PAYPAL', 'paypal');
 define('FILENAME_PAGE_2', 'page_2');
 define('FILENAME_PAGE_3', 'page_3');
 define('FILENAME_PAGE_4', 'page_4');
@@ -121,6 +121,7 @@ define('FILENAME_PRODUCT_INFO', 'product_info');
 define('FILENAME_PRODUCT_REVIEWS', 'product_reviews');
 define('FILENAME_PRODUCT_REVIEWS_INFO', 'product_reviews_info');
 define('FILENAME_PRODUCT_REVIEWS_WRITE', 'product_reviews_write');
+define('FILENAME_PRODUCTS_ALL', 'products_all');
 define('FILENAME_PRODUCTS_PRICE_MANAGER', 'products_price_manager');
 define('FILENAME_PRODUCTS_EXPECTED', 'products_expected');
 define('FILENAME_PRODUCTS_NEW', 'products_new');
@@ -177,7 +178,7 @@ define('FILENAME_PRODUCT_LISTING', 'product_listing.php');
 define('FILENAME_PRODUCTS_DISCOUNT_PRICES','products_discount_prices.php');
 define('FILENAME_SPECIALS_INDEX', 'specials_index.php');
 define('FILENAME_UPCOMING_PRODUCTS', 'upcoming_products.php');
-define('FILENAME_PRODUCTS_ALL', 'products_all');
+
 define('FILENAME_BB_INDEX', 'index.php'); // phpBB main index filename
 
 ?>

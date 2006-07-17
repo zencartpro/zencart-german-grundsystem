@@ -14,7 +14,7 @@
  * @copyright Copyright 2003-2006 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: tpl_header.php 3192 2006-03-15 22:37:24Z wilt $
+ * @version $Id: tpl_header.php 3392 2006-04-08 15:17:37Z birdbrain $
  */
 ?>
 
@@ -94,11 +94,7 @@ if (!isset($flag_disable_header) || !$flag_disable_header) {
 <!--eof-header logo and navigation display-->
 
 <!--bof-optional categories tabs navigation display-->
-<?php
-if (CATEGORIES_TABS_STATUS == '1') {
-  require($template->get_template_dir('tpl_modules_categories_tabs.php',DIR_WS_TEMPLATE, $current_page_base,'templates'). '/tpl_modules_categories_tabs.php');
-}
-?>
+<?php require($template->get_template_dir('tpl_modules_categories_tabs.php',DIR_WS_TEMPLATE, $current_page_base,'templates'). '/tpl_modules_categories_tabs.php'); ?>
 <!--eof-optional categories tabs navigation display-->
 
 <!--bof-header ezpage links-->

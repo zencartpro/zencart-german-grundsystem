@@ -6,7 +6,7 @@
  * @copyright Copyright 2003-2006 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: header_php.php 3232 2006-03-21 09:37:11Z drbyte $
+ * @version $Id: header_php.php 3326 2006-03-31 06:23:22Z drbyte $
  */
 require(DIR_WS_MODULES . zen_get_module_directory('require_languages.php'));
 $breadcrumb->add(NAVBAR_TITLE);
@@ -33,7 +33,7 @@ $featured_products_split = new splitPageResults($featured_products_query_raw, MA
 $show_submit = zen_run_normal();
 
 // check whether to use multiple-add-to-cart, and whether top or bottom buttons are displayed
-if (PRODUCT_FEATURED_LISTING_MULTIPLE_ADD_TO_CART > 0 and $show_submit == 'true' and $featured_products_split->number_of_rows > 0) {
+if (PRODUCT_FEATURED_LISTING_MULTIPLE_ADD_TO_CART > 0 and $show_submit == true and $featured_products_split->number_of_rows > 0) {
 
   // check how many rows
   $check_products_all = $db->Execute($featured_products_split->sql_query);

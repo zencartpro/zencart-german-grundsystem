@@ -17,7 +17,7 @@
 // | to obtain it through the world-wide-web, please send a note to       |
 // | license@zen-cart.com so we can mail you a copy immediately.          |
 // +----------------------------------------------------------------------+
-//  $Id: developers_tool_kit.php 2875 2006-01-22 16:03:38Z ajeh $
+//  $Id: developers_tool_kit.php 3405 2006-04-10 16:43:55Z drbyte $
 //
 
   require('includes/application_top.php');
@@ -156,6 +156,9 @@
   $products_filter = (isset($_GET['products_filter']) ? $_GET['products_filter'] : $products_filter);
 
   $action = (isset($_GET['action']) ? $_GET['action'] : '');
+
+  // don't do any 'action' if clicked on the Check for Updates button
+  if (isset($_GET['vcheck']) && $_GET['vcheck']=='yes') $action = '';
 
   $current_category_id = (isset($_GET['current_category_id']) ? $_GET['current_category_id'] : $current_category_id);
   $found= 'true';
@@ -441,7 +444,7 @@
     // if no matches in either databases or selected language directory give an error
     if ($found == 'false') {
       $messageStack->add(ERROR_CONFIGURATION_KEY_NOT_FOUND . ' ' . $configuration_key_lookup, 'caution');
-    } else {
+    } elseif ($action != '') {
       echo '<table width="90%" align="center"><tr><td>' . zen_draw_separator('pixel_black.gif', '100%', '2') . '</td></tr><tr><td>&nbsp;</td></tr></table>' . "\n";
     }
 

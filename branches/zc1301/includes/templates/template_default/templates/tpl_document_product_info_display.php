@@ -9,7 +9,7 @@
  * @copyright Copyright 2003-2006 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: tpl_document_product_info_display.php 3215 2006-03-20 06:05:55Z birdbrain $
+ * @version $Id: tpl_document_product_info_display.php 3435 2006-04-14 03:42:46Z ajeh $
  */
 ?>
 <div class="centerColumn" id="docProductDisplay">
@@ -113,7 +113,7 @@ if (CUSTOMERS_APPROVAL == 3 and TEXT_LOGIN_FOR_PRICE_BUTTON_REPLACE_SHOWROOM == 
 <!--eof Add to Cart Box-->
 
 <!--bof Product details list  -->
-<?php if ( (($flag_show_product_info_model == 1 and $products_model !=”) or ($flag_show_product_info_weight == 1 and $products_weight !=0) or ($flag_show_product_info_quantity == 1) or ($flag_show_product_info_manufacturer == 1 and !empty($manufacturers_name))) ) { ?>
+<?php if ( (($flag_show_product_info_model == 1 and $products_model != '') or ($flag_show_product_info_weight == 1 and $products_weight !=0) or ($flag_show_product_info_quantity == 1) or ($flag_show_product_info_manufacturer == 1 and !empty($manufacturers_name))) ) { ?>
 <ul id="productDetailsList" class="floatingBox back">
   <?php echo (($flag_show_product_info_model == 1 and $products_model !='') ? '<li>' . TEXT_PRODUCT_MODEL . $products_model . '</li>' : '') . "\n"; ?>
   <?php echo (($flag_show_product_info_weight == 1 and $products_weight !=0) ? '<li>' . TEXT_PRODUCT_WEIGHT .  $products_weight . TEXT_PRODUCT_WEIGHT_UNIT . '</li>'  : '') . "\n"; ?>
@@ -181,7 +181,7 @@ if (CUSTOMERS_APPROVAL == 3 and TEXT_LOGIN_FOR_PRICE_BUTTON_REPLACE_SHOWROOM == 
 <!--eof Tell a Friend button -->
 <!--bof Reviews button and count-->
 <?php
-  if ($flag_show_product_info_reviews == 1) { 
+  if ($flag_show_product_info_reviews == 1) {
     // if more than 0 reviews, then show reviews button; otherwise, show the "write review" button
     if ($reviews->fields['count'] > 0 ) { ?>
 <div id="productReviewLink" class="buttonRow back"><?php echo '<a href="' . zen_href_link(FILENAME_PRODUCT_REVIEWS, zen_get_all_get_params()) . '">' . zen_image_button(BUTTON_IMAGE_REVIEWS, BUTTON_REVIEWS_ALT) . '</a>'; ?></div>

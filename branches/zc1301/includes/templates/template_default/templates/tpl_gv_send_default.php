@@ -5,10 +5,10 @@
  * Template used to collect/display details of sending a GV to a friend from own GV balance. <br />
  *
  * @package templateSystem
- * @copyright Copyright 2003-2005 Zen Cart Development Team
+ * @copyright Copyright 2003-2006 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: tpl_gv_send_default.php 2869 2006-01-20 07:30:16Z birdbrain $
+ * @version $Id: tpl_gv_send_default.php 3421 2006-04-12 04:16:14Z drbyte $
  */
 ?>
 <div class="centerColumn" id="gvSendDefault">
@@ -25,10 +25,10 @@
     }
 ?>
 </div>
-<!--BOF GV sent success-->
 <?php
   if ($_GET['action'] == 'doneprocess') {
 ?>
+<!--BOF GV sent success-->
 
 <h1 id="gvSendDefaultHeadingDone"><?php echo HEADING_TITLE_COMPLETED; ?></h1>
 
@@ -36,31 +36,30 @@
 
 <div class="buttonRow forward"><a href="<?php echo zen_href_link(FILENAME_DEFAULT, '', 'SSL', false); ?>"><?php echo zen_image_button(BUTTON_IMAGE_CONTINUE, BUTTON_CONTINUE_ALT); ?></a></div>
 <!--EOF GV sent success -->
-<!--BOF GV send confirm -->
 <?php
   }
   if ($_GET['action'] == 'send' && !$error) {
-    $send_name = $gv_result->fields['customers_firstname'] . ' ' . $gv_result->fields['customers_lastname'];
 ?>
+<!--BOF GV send confirm -->
 
 <h1 id="gvSendDefaultHeadingConfirm"><?php echo HEADING_TITLE_CONFIRM_SEND; ?></h1>
 
 <form action="<?php echo zen_href_link(FILENAME_GV_SEND, 'action=process', 'SSL', false); ?>" method="post">
 
-<div id="gvSendDefaultMainMessage" class="content"><?php echo sprintf(MAIN_MESSAGE, $currencies->format($_POST['amount'], false), $_POST['to_name'], $_POST['email'], $_POST['to_name'], $currencies->format($_POST['amount'], false), $send_name); ?></div>
+<div id="gvSendDefaultMainMessage" class="content"><?php echo sprintf(MAIN_MESSAGE, $currencies->format($_POST['amount'], false), $_POST['to_name'], $_POST['email']); ?></div>
 
-<div id="gvSendDefaultMessageSecondary" class="content"><?php echo sprintf(SECONDARY_MESSAGE, $_POST['to_name'], $currencies->format($_POST['amount'], false), $_POST['to_name']); ?></div>
+<div id="gvSendDefaultMessageSecondary" class="content"><?php echo sprintf(SECONDARY_MESSAGE, $_POST['to_name'], $currencies->format($_POST['amount'], false), $send_name); ?></div>
 <?php
-      if ($_POST['message']) {
+    if ($_POST['message']) {
 ?>
 
-<div id="gvSendDefaultMessagePersonal" class="content"><?php echo sprintf(PERSONAL_MESSAGE, $gv_result->fields['customers_firstname']); ?></div>
+<div id="gvSendDefaultMessagePersonal" class="content"><?php echo sprintf(PERSONAL_MESSAGE, $send_firstname); ?></div>
 
 <div id="gvSendDefaultMessage" class="content"><?php echo stripslashes($_POST['message']); ?></div>
 <?php
-      }
+    }
 
-      echo zen_draw_hidden_field('send_name', $send_name) . zen_draw_hidden_field('to_name', stripslashes($_POST['to_name'])) . zen_draw_hidden_field('email', $_POST['email']) . zen_draw_hidden_field('amount', $gv_amount) . zen_draw_hidden_field('message', stripslashes($_POST['message']));
+    echo zen_draw_hidden_field('to_name', stripslashes($_POST['to_name'])) . zen_draw_hidden_field('email', $_POST['email']) . zen_draw_hidden_field('amount', $gv_amount) . zen_draw_hidden_field('message', stripslashes($_POST['message']));
 ?>
 
 <div class="buttonRow forward"><?php echo zen_image_submit(BUTTON_IMAGE_CONFIRM_SEND, BUTTON_CONFIRM_SEND_ALT); ?></div>
@@ -71,10 +70,10 @@
 
 <div class="advisory"><?php echo EMAIL_ADVISORY_INCLUDED_WARNING . str_replace('-----', '', EMAIL_ADVISORY); ?></div>
 <!--EOF GV send confirm -->
-<!--BOF GV send-->
 <?php
   } elseif ($_GET['action']=='' || $error) {
 ?>
+<!--BOF GV send-->
 <h1 id="gvSendDefaultHeadingSend"><?php echo HEADING_TITLE; ?></h1>
 
 <div id="gvSendDefaultMainContent" class="content"><?php echo HEADING_TEXT; ?></div>

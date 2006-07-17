@@ -17,7 +17,7 @@
 // | to obtain it through the world-wide-web, please send a note to       |
 // | license@zen-cart.com so we can mail you a copy immediately.          |
 // +----------------------------------------------------------------------+
-//  $Id: product.php 1969 2005-09-13 06:57:21Z drbyte $
+//  $Id: product.php 3367 2006-04-03 23:07:34Z drbyte $
 //
 
   require('includes/application_top.php');
@@ -39,6 +39,13 @@
         break;
 
       case 'delete_product_confirm':
+      $delete_linked = 'true';
+      if ($_POST['delete_linked'] == 'delete_linked_no') {
+        $delete_linked = 'false';
+      } else {
+        $delete_linked = 'true';
+      }
+      $product_type = zen_get_products_type($_POST['products_id']);
         if (file_exists(DIR_WS_MODULES . $zc_products->get_handler($product_type) . '/delete_product_confirm.php')) {
           require(DIR_WS_MODULES . $zc_products->get_handler($product_type) . '/delete_product_confirm.php');
          } else {

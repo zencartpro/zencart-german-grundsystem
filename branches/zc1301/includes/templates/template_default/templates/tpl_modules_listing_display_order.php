@@ -3,10 +3,10 @@
  * Module Template
  *
  * @package templateSystem
- * @copyright Copyright 2003-2005 Zen Cart Development Team
+ * @copyright Copyright 2003-2006 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: tpl_modules_listing_display_order.php 2784 2006-01-04 10:04:18Z drbyte $
+ * @version $Id: tpl_modules_listing_display_order.php 3369 2006-04-03 23:09:13Z drbyte $
  */
 ?>
 <?php
@@ -16,7 +16,7 @@
 <div id="sorter">
 <label for="disp-order-sorter"><?php echo TEXT_INFO_SORT_BY; ?></label>
 <?php
-  echo zen_draw_form('sorter', zen_href_link($_GET['main_page']), 'get');
+  echo zen_draw_form('sorter_form', zen_href_link($_GET['main_page']), 'get');
   echo zen_draw_hidden_field('main_page', $_GET['main_page']);
 //  echo zen_draw_hidden_field('disp_order', $_GET['disp_order']);
   echo zen_hide_session_id();

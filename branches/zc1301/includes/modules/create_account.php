@@ -6,7 +6,7 @@
  * @copyright Copyright 2003-2006 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: create_account.php 3105 2006-03-04 18:24:20Z wilt $
+ * @version $Id: create_account.php 3357 2006-04-03 02:10:28Z ajeh $
  */
 if (!defined('IS_ADMIN_FLAG')) {
   die('Illegal Access');
@@ -96,7 +96,7 @@ if (isset($_POST['action']) && ($_POST['action'] == 'process')) {
 
   if (ACCOUNT_DOB == 'true') {
     if (ENTRY_DOB_MIN_LENGTH > 0 or !empty($_POST['dob'])) {
-      if (checkdate(substr(zen_date_raw($dob), 4, 2), substr(zen_date_raw($dob), 6, 2), substr(zen_date_raw($dob), 0, 4)) == false) {
+      if (substr_count($dob,'/') > 2 || checkdate(substr(zen_date_raw($dob), 4, 2), substr(zen_date_raw($dob), 6, 2), substr(zen_date_raw($dob), 0, 4)) == false) {
         $error = true;
 
         $messageStack->add('create_account', ENTRY_DATE_OF_BIRTH_ERROR);

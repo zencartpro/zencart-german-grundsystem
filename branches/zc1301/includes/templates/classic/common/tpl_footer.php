@@ -17,7 +17,7 @@
 // | to obtain it through the world-wide-web, please send a note to       |
 // | license@zen-cart.com so we can mail you a copy immediately.          |
 // +----------------------------------------------------------------------+
-// $Id: tpl_footer.php 3183 2006-03-14 07:58:59Z birdbrain $
+// $Id: tpl_footer.php 3371 2006-04-04 04:59:46Z ajeh $
 //
 
   // this file can be copied to /templates/your_template_dir/pagename
@@ -37,6 +37,17 @@ if (!isset($flag_disable_footer) || $flag_disable_footer == false) {
       </tr>
     </table>
     <table border="0" width="100%" cellspacing="0" cellpadding="0" class="footer">
+
+<!--bof-EZ-Pages footer display -->
+<?php if (EZPAGES_STATUS_FOOTER == '1' or (EZPAGES_STATUS_FOOTER == '2' and (strstr(EXCLUDE_ADMIN_IP_FOR_MAINTENANCE, $_SERVER['REMOTE_ADDR'])))) { ?>
+      <tr>
+        <td class="footerbottom">
+          <?php require($template->get_template_dir('tpl_ezpages_bar_footer.php',DIR_WS_TEMPLATE, $current_page_base,'templates'). '/tpl_ezpages_bar_footer.php'); ?>
+        </td>
+      </tr>
+<?php } ?>
+<!--eof-EZ-Pages footer display -->
+
 <?php
 if (SHOW_FOOTER_IP == '1') {
 ?>

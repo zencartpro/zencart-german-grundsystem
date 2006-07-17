@@ -4,7 +4,7 @@
  * @copyright Copyright 2003-2006 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: sidebox_delete_product.php 3009 2006-02-11 15:41:10Z wilt $
+ * @version $Id: sidebox_delete_product.php 3358 2006-04-03 04:33:32Z ajeh $
  */
 if (!defined('IS_ADMIN_FLAG')) {
   die('Illegal Access');
@@ -16,15 +16,25 @@ if (!defined('IS_ADMIN_FLAG')) {
         $contents[] = array('text' => TEXT_DELETE_PRODUCT_INTRO);
         $contents[] = array('text' => '<br /><b>' . $pInfo->products_name . ' ID#' . $pInfo->products_id . '</b>');
 
+        // zen_get_category_name(zen_get_parent_category_id($pInfo->products_id), (int)$_SESSION['languages_id'])
+
         $product_categories_string = '';
         $product_categories = zen_generate_category_path($pInfo->products_id, 'product');
+
+        if (sizeof($product_categories) > 1) {
+          $contents[] = array('text' => '<br /><b><span class="alert">' . TEXT_MASTER_CATEGORIES_ID . '</span>' . '</b>');
+        }
         for ($i = 0, $n = sizeof($product_categories); $i < $n; $i++) {
           $category_path = '';
           for ($j = 0, $k = sizeof($product_categories[$i]); $j < $k; $j++) {
             $category_path .= $product_categories[$i][$j]['text'] . '&nbsp;&gt;&nbsp;';
           }
           $category_path = substr($category_path, 0, -16);
-          $product_categories_string .= zen_draw_checkbox_field('product_categories[]', $product_categories[$i][sizeof($product_categories[$i])-1]['id'], true) . '&nbsp;' . $category_path . '<br />';
+          if (sizeof($product_categories) > 1 && zen_get_parent_category_id($pInfo->products_id) == $product_categories[$i][sizeof($product_categories[$i])-1]['id']) {
+            $product_categories_string .= '<strong><span class="alert">' . zen_draw_checkbox_field('product_categories[]', $product_categories[$i][sizeof($product_categories[$i])-1]['id'], true) . '&nbsp;' . $category_path . '</strong></span><br />';
+          } else {
+            $product_categories_string .= zen_draw_checkbox_field('product_categories[]', $product_categories[$i][sizeof($product_categories[$i])-1]['id'], true) . '&nbsp;' . $category_path . '<br />';
+          }
         }
         $product_categories_string = substr($product_categories_string, 0, -4);
 

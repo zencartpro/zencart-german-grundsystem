@@ -4,7 +4,7 @@
  * @copyright Copyright 2003-2006 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: delete_product_confirm.php 3045 2006-02-16 05:48:40Z drbyte $
+ * @version $Id: delete_product_confirm.php 3345 2006-04-02 05:57:34Z drbyte $
  */
 
   if (!defined('IS_ADMIN_FLAG')) {
@@ -73,9 +73,11 @@
     // now do regular non-type-specific delete:
 
     // remove product from all its categories:
-    $db->Execute("delete from " . TABLE_PRODUCTS_TO_CATEGORIES . "
-                  where products_id = '" . (int)$product_id . "'
-                  and categories_id = '" . (int)$product_categories . "'") .'<br />';
+    for ($k=0, $m=sizeof($product_categories); $k<$m; $k++) {
+      $db->Execute("delete from " . TABLE_PRODUCTS_TO_CATEGORIES . "
+                    where products_id = '" . (int)$product_id . "'
+                    and categories_id = '" . (int)$product_categories[$k] . "'");
+    }
 
     // confirm that product is no longer linked to any categories
     $count_categories = $db->Execute("select count(categories_id) as total

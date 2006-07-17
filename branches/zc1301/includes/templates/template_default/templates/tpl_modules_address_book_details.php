@@ -5,12 +5,12 @@
  * Displays address-book details/selection
  *
  * @package templateSystem
- * @copyright Copyright 2003-2005 Zen Cart Development Team
+ * @copyright Copyright 2003-2006 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: tpl_modules_address_book_details.php 3172 2006-03-11 22:21:33Z wilt $
+ * @version $Id: tpl_modules_address_book_details.php 3360 2006-04-03 05:16:44Z drbyte $
  */
-print_r($_POST);
+
 ?>
 <fieldset>
 <legend><?php echo HEADING_TITLE; ?></legend>

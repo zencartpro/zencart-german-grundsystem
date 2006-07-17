@@ -8,7 +8,7 @@
  * @copyright Copyright 2003-2006 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: functions_email.php 3072 2006-02-27 23:11:14Z drbyte $
+ * @version $Id: functions_email.php 3335 2006-04-01 17:16:57Z drbyte $
  */
 
 /**

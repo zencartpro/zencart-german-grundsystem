@@ -6,21 +6,19 @@
  * Displays Create Account form.
  *
  * @package templateSystem
- * @copyright Copyright 2003-2005 Zen Cart Development Team
+ * @copyright Copyright 2003-2006 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: tpl_create_account_default.php 2834 2006-01-11 22:16:37Z birdbrain $
+ * @version $Id: tpl_create_account_default.php 3359 2006-04-03 05:00:37Z drbyte $
  */
 ?>
 <div class="centerColumn" id="createAcctDefault">
 
 <h1 id="createAcctDefaultHeading"><?php echo HEADING_TITLE; ?></h1>
 
-<?php echo zen_draw_form('create_account', zen_href_link(FILENAME_CREATE_ACCOUNT, '', 'SSL'), 'post', 'onsubmit="return check_form(create_account);"') . zen_draw_hidden_field('action', 'process'); ?>
-<h4 id="createAcctDefaultLoginLink"><?php echo sprintf(TEXT_ORIGIN_LOGIN, zen_href_link(FILENAME_LOGIN, zen_get_all_get_params(), 'SSL')); ?></h4>
-</form>
-
 <?php echo zen_draw_form('create_account', zen_href_link(FILENAME_CREATE_ACCOUNT, '', 'SSL'), 'post', 'onsubmit="return check_form(create_account);"') . zen_draw_hidden_field('action', 'process') . zen_draw_hidden_field('email_pref_html', 'email_format'); ?>
+<h4 id="createAcctDefaultLoginLink"><?php echo sprintf(TEXT_ORIGIN_LOGIN, zen_href_link(FILENAME_LOGIN, zen_get_all_get_params(), 'SSL')); ?></h4>
+
 <fieldset>
 <legend><?php echo CATEGORY_PERSONAL; ?></legend>
 

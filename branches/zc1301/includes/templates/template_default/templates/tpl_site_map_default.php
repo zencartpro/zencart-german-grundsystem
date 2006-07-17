@@ -9,7 +9,7 @@
  * @copyright Copyright 2003-2005 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: tpl_site_map_default.php 3259 2006-03-25 22:07:54Z ajeh $
+ * @version $Id: tpl_site_map_default.php 3464 2006-04-19 00:07:26Z ajeh $
  */
 ?>
 <div class="centerColumn" id="siteMap">
@@ -63,13 +63,13 @@
             <?php if (SHOW_NEWSLETTER_UNSUBSCRIBE_LINK == 'true') { ?>
             <li><?php echo '<a href="' . zen_href_link(FILENAME_UNSUBSCRIBE) . '">' . BOX_INFORMATION_UNSUBSCRIBE . '</a>'; ?></li>
             <?php } ?>
-            <?php if (DEFINE_PAGE_2_STATUS <= '1') { ?>
+            <?php if (DEFINE_PAGE_2_STATUS <= 1) { ?>
             <li><?php echo '<a href="' . zen_href_link(FILENAME_PAGE_2) . '">' . BOX_INFORMATION_PAGE_2 . '</a>'; ?></li>
             <?php } ?>
-            <?php if (DEFINE_PAGE_3_STATUS <= '1') { ?>
+            <?php if (DEFINE_PAGE_3_STATUS <= 1) { ?>
             <li><?php echo '<a href="' . zen_href_link(FILENAME_PAGE_3) . '">' . BOX_INFORMATION_PAGE_3 . '</a>'; ?></li>
             <?php } ?>
-            <?php if (DEFINE_PAGE_4_STATUS <= '1') { ?>
+            <?php if (DEFINE_PAGE_4_STATUS <= 1) { ?>
             <li><?php echo '<a href="' . zen_href_link(FILENAME_PAGE_4) . '">' . BOX_INFORMATION_PAGE_4 . '</a>'; ?></li>
             <?php } ?>
 

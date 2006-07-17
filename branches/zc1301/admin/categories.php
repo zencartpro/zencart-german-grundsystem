@@ -4,7 +4,7 @@
  * @copyright Copyright 2003-2006 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: categories.php 3129 2006-03-07 06:58:04Z drbyte $
+ * @version $Id: categories.php 3396 2006-04-09 00:02:03Z ajeh $
  */
 
   require('includes/application_top.php');
@@ -370,7 +370,8 @@
 
           while (!$category_products->EOF) {
             $cascaded_prod_id_for_delete = $category_products->fields['products_id'];
-            $cascaded_prod_cat_for_delete = $categories[$i]['id'];
+            $cascaded_prod_cat_for_delete = array();
+            $cascaded_prod_cat_for_delete[] = $categories[$i]['id'];
             //echo 'processing product_id: ' . $cascaded_prod_id_for_delete . ' in category: ' . $cascaded_prod_cat_for_delete . '<br>';
 
             // determine product-type-specific override script for this product
@@ -778,6 +779,7 @@ function init()
 
     $contents = array('form' => zen_draw_form('categories', FILENAME_CATEGORIES, 'action=delete_category_confirm&cPath=' . $cPath) . zen_draw_hidden_field('categories_id', $cInfo->categories_id));
     $contents[] = array('text' => TEXT_DELETE_CATEGORY_INTRO);
+    $contents[] = array('text' => '<br />' . TEXT_DELETE_CATEGORY_INTRO_LINKED_PRODUCTS);
     $contents[] = array('text' => '<br /><b>' . $cInfo->categories_name . '</b>');
     if ($cInfo->childs_count > 0) $contents[] = array('text' => '<br />' . sprintf(TEXT_DELETE_WARNING_CHILDS, $cInfo->childs_count));
     if ($cInfo->products_count > 0) $contents[] = array('text' => '<br />' . sprintf(TEXT_DELETE_WARNING_PRODUCTS, $cInfo->products_count));
@@ -963,6 +965,17 @@ function init()
   }
 ?>
 
+          </tr>
+          <tr>
+            <td class="alert" colspan="3" width="100%" align="center">
+<?php
+  // warning if products are in top level categories
+  $check_products_top_categories = $db->Execute("select count(*) as products_errors from " . TABLE_PRODUCTS_TO_CATEGORIES . " where categories_id = 0");
+  if ($check_products_top_categories->fields['products_errors'] > 0) {
+    echo WARNING_PRODUCTS_IN_TOP_INFO . $check_products_top_categories->fields['products_errors'] . '<br />';
+  }
+?>
+            </td>
           </tr>
           <tr>
 <?php

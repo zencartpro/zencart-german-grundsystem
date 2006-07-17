@@ -6,7 +6,7 @@
  * @copyright Copyright 2003-2005 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: header_php.php 3057 2006-02-21 09:33:40Z birdbrain $
+ * @version $Id: header_php.php 3430 2006-04-13 12:58:30Z ajeh $
  */
 
 // This should be first line of the script:
@@ -84,14 +84,14 @@ for ($i=0, $n=sizeof($products); $i<$n; $i++) {
     foreach ($products[$i]['attributes'] as $option => $value) {
       $attributes = "SELECT popt.products_options_name, poval.products_options_values_name, pa.options_values_price, pa.price_prefix
                      FROM " . TABLE_PRODUCTS_OPTIONS . " popt, " . TABLE_PRODUCTS_OPTIONS_VALUES . " poval, " . TABLE_PRODUCTS_ATTRIBUTES . " pa
-                     WHERE pa.products_id = :productsID 
-                     AND pa.options_id = :optionsID 
-                     AND pa.options_id = popt.products_options_id 
-                     AND pa.options_values_id = :optionsValuesID 
-                     AND pa.options_values_id = poval.products_options_values_id 
-                     AND popt.language_id = :languageID 
+                     WHERE pa.products_id = :productsID
+                     AND pa.options_id = :optionsID
+                     AND pa.options_id = popt.products_options_id
+                     AND pa.options_values_id = :optionsValuesID
+                     AND pa.options_values_id = poval.products_options_values_id
+                     AND popt.language_id = :languageID
                      AND poval.language_id = :languageID " . $options_order_by;
-      
+
       $attributes = $db->bindVars($attributes, ':productsID', $products[$i]['id'], 'integer');
       $attributes = $db->bindVars($attributes, ':optionsID', $option, 'integer');
       $attributes = $db->bindVars($attributes, ':optionsValuesID', $value, 'integer');
@@ -122,7 +122,7 @@ for ($i=0, $n=sizeof($products); $i<$n; $i++) {
   $showFixedQuantityAmount = $products[$i]['quantity'] . zen_draw_hidden_Field('products_id[]', $products[$i]['id']) . zen_draw_hidden_Field('cart_quantity[]', 1);
   $showMinUnits = zen_get_products_quantity_min_units_display($products[$i]['id']);
   $quantityField = zen_draw_input_field('cart_quantity[]', $products[$i]['quantity'], 'size="4"');
-  $buttonUpdate = zen_image_submit(ICON_IMAGE_UPDATE, ICON_UPDATE_ALT) . zen_draw_hidden_field('products_id[]', $products[$i]['id']);
+  $buttonUpdate = ((SHOW_SHOPPING_CART_UPDATE == 1 or SHOW_SHOPPING_CART_UPDATE == 3) ? zen_image_submit(ICON_IMAGE_UPDATE, ICON_UPDATE_ALT) . zen_draw_hidden_field('products_id[]', $products[$i]['id']) : '');
   $productsPrice = $currencies->display_price($products[$i]['final_price'], zen_get_tax_rate($products[$i]['tax_class_id']), $products[$i]['quantity']) . ($products[$i]['onetime_charges'] != 0 ? '<br />' . $currencies->display_price($products[$i]['onetime_charges'], zen_get_tax_rate($products[$i]['tax_class_id']), 1) : '');
   $productsPriceEach = $currencies->display_price($products[$i]['final_price'], zen_get_tax_rate($products[$i]['tax_class_id']), 1) . ($products[$i]['onetime_charges'] != 0 ? '<br />' . $currencies->display_price($products[$i]['onetime_charges'], zen_get_tax_rate($products[$i]['tax_class_id']), 1) : '');
   $productArray[$i] = array('attributeHiddenField'=>$attributeHiddenField,

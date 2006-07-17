@@ -6,7 +6,7 @@
  * @copyright Copyright 2003-2006 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: products_quantity_discounts.php 3292 2006-03-28 04:47:16Z ajeh $
+ * @version $Id: products_quantity_discounts.php 3453 2006-04-18 00:31:01Z drbyte $
  */
 if (!defined('IS_ADMIN_FLAG')) {
   die('Illegal Access');
@@ -47,9 +47,15 @@ switch (true) {
   // proceed normally
   break;
 }
+// create products discount output table
 
-// create products discount table
+// find out the minimum quantity for this product
+$products_min_query = $db->Execute("select products_quantity_order_min from " . TABLE_PRODUCTS . " where products_id='" . $products_id_current . "'");
+$products_quantity_order_min = $products_min_query->fields['products_quantity_order_min'];
+
+// retrieve the list of discount levels for this product
 $products_discounts_query = $db->Execute("select * from " . TABLE_PRODUCTS_DISCOUNT_QUANTITY . " where products_id='" . (int)$products_id_current . "' and discount_qty !=0 " . " order by discount_qty");
+
 
 $discount_col_cnt = DISCOUNT_QUANTITY_PRICES_COLUMN;
 
@@ -67,9 +73,11 @@ switch (true) {
   case ($products_discounts_query->fields['discount_qty'] <= 2):
   $show_qty = '1';
   break;
+  case ($products_quantity_order_min == ($products_discounts_query->fields['discount_qty']-1) || $products_quantity_order_min == ($products_discounts_query->fields['discount_qty'])):
+  $show_qty = $products_quantity_order_min;
+  break;
   default:
-  $products_discount_query = $db->Execute("select products_quantity_order_min from " . TABLE_PRODUCTS . " where products_id='" . $products_id_current . "'");
-  $show_qty = $products_discount_query->fields['products_quantity_order_min'] . '-' . number_format($products_discounts_query->fields['discount_qty']-1);
+  $show_qty = $products_quantity_order_min . '-' . number_format($products_discounts_query->fields['discount_qty']-1);
   break;
 }
 //$discounted_price = $products_discounts_query->fields['discount_price'];

@@ -5,7 +5,7 @@
  * @package classes
  * @copyright Copyright 2003-2006 Zen Cart Development Team
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: order.php 3307 2006-03-29 07:57:09Z drbyte $
+ * @version $Id: order.php 3434 2006-04-14 01:24:17Z ajeh $
  */
 /**
  * order class
@@ -111,7 +111,7 @@ class order extends base {
                         'last_modified' => $order->fields['last_modified'],
                         'total' => $order->fields['order_total'],
                         'tax' => $order->fields['order_tax'],
-                        'ip_address' => $orders->fields['ip_address']
+                        'ip_address' => $order->fields['ip_address']
                         );
 
     $this->customer = array('id' => $order->fields['customers_id'],
@@ -235,7 +235,7 @@ class order extends base {
                                     z.zone_name, co.countries_id, co.countries_name,
                                     co.countries_iso_code_2, co.countries_iso_code_3,
                                     co.address_format_id, ab.entry_state
-                                   from " . TABLE_CUSTOMERS . " c, (" . TABLE_ADDRESS_BOOK . " ab
+                                   from (" . TABLE_CUSTOMERS . " c, " . TABLE_ADDRESS_BOOK . " ab
                                    left join " . TABLE_ZONES . " z on (ab.entry_zone_id = z.zone_id)
                                    left join " . TABLE_COUNTRIES . " co on (ab.entry_country_id = co.countries_id) )
                                    where c.customers_id = '" . (int)$_SESSION['customer_id'] . "'
@@ -353,6 +353,9 @@ class order extends base {
     $this->info['payment_method'] = $$_SESSION['payment']->title;
     }
     */
+
+/*
+// bof: move below calculations
     if ($this->info['total'] == 0) {
       if (DEFAULT_ZERO_BALANCE_ORDERS_STATUS_ID == 0) {
         $this->info['order_status'] = DEFAULT_ORDERS_STATUS_ID;
@@ -365,7 +368,8 @@ class order extends base {
         $this->info['order_status'] = $GLOBALS[$class]->order_status;
       }
     }
-
+// eof: move below calculations
+*/
     $this->customer = array('firstname' => $customer_address->fields['customers_firstname'],
                             'lastname' => $customer_address->fields['customers_lastname'],
                             'company' => $customer_address->fields['entry_company'],
@@ -512,6 +516,20 @@ class order extends base {
     } else {
       $this->info['total'] = $this->info['subtotal'] + $this->info['tax'] + $this->info['shipping_cost'];
     }
+
+    if ($this->info['total'] == 0) {
+      if (DEFAULT_ZERO_BALANCE_ORDERS_STATUS_ID == 0) {
+        $this->info['order_status'] = DEFAULT_ORDERS_STATUS_ID;
+      } else {
+        $this->info['order_status'] = DEFAULT_ZERO_BALANCE_ORDERS_STATUS_ID;
+      }
+    }
+    if (isset($GLOBALS[$class]) && is_object($GLOBALS[$class])) {
+      if ( isset($GLOBALS[$class]->order_status) && is_numeric($GLOBALS[$class]->order_status) && ($GLOBALS[$class]->order_status > 0) ) {
+        $this->info['order_status'] = $GLOBALS[$class]->order_status;
+      }
+    }
+
   }
 
   function create($zf_ot_modules, $zf_mode = 2) {

@@ -9,7 +9,7 @@
  * @copyright Copyright 2003-2006 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: tpl_shopping_cart_default.php 3306 2006-03-29 07:15:46Z drbyte $
+ * @version $Id: tpl_shopping_cart_default.php 3455 2006-04-18 04:44:25Z drbyte $
  */
 ?>
 <div class="centerColumn" id="shoppingCartDefault">
@@ -74,7 +74,7 @@
        </td>
        <td class="cartQuantityUpdate">
 <?php
-  if ($product['flagShowFixedQuantity']) {
+  if ($product['buttonUpdate'] == '') {
     echo '' ;
   } else {
     echo $product['buttonUpdate'];
@@ -135,16 +135,16 @@
 // show update cart button
   if (SHOW_SHOPPING_CART_UPDATE == 2 or SHOW_SHOPPING_CART_UPDATE == 3) {
 ?>
-<div class="buttonRow"><?php echo zen_image_submit(ICON_IMAGE_UPDATE, ICON_UPDATE_ALT); ?></div>
+<div class="buttonRow back"><?php echo zen_image_submit(ICON_IMAGE_UPDATE, ICON_UPDATE_ALT); ?></div>
 <?php
   } else { // don't show update button below cart
 ?>
 <?php
-  } // show checkout button 
+  } // show checkout button
 ?>
 
 <!--eof shopping cart buttons-->
-</form> 
+</form>
 
 <br class="clearBoth" />
 <?php

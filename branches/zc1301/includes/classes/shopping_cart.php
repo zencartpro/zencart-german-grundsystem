@@ -3,16 +3,16 @@
  * File contains just the shopping cart class
  *
  * @package classes
- * @copyright Copyright 2003-2005 Zen Cart Development Team
+ * @copyright Copyright 2003-2006 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: shopping_cart.php 3196 2006-03-17 00:07:15Z wilt $
+ * @version $Id: shopping_cart.php 3379 2006-04-06 00:54:13Z drbyte $
  */
 /**
  * Class for managing the Shopping Cart
  *
  * @package classes
- * @copyright Copyright 2003-2005 Zen Cart Development Team
+ * @copyright Copyright 2003-2006 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
  */
@@ -1558,7 +1558,7 @@ class shoppingCart extends base {
         // bof: set error message
         if ($the_list != '') {
           $messageStack->add('product_info', ERROR_CORRECTIONS_HEADING . $the_list, 'caution');
-          $messageStack->add('header', 'REMOVE ME IN SHOPPING CART CLASS BEFORE RELEASE<br/><BR />' . ERROR_CORRECTIONS_HEADING . $the_list, 'error');
+//          $messageStack->add('header', 'REMOVE ME IN SHOPPING CART CLASS BEFORE RELEASE<br/><BR />' . ERROR_CORRECTIONS_HEADING . $the_list, 'error');
         } else {
           // process normally
           // iii 030813 added: File uploading: save uploaded files with unique file names
