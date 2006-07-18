@@ -1,0 +1,1 @@
+<p><strong>E-Mail:</strong> <a href="mailto:info@softwarelandschaft.de">info@softwarelandschaft.de</a><br /><strong>Internet:</strong> <a href="http://www.softwarelandschaft.de/">www.softwarelandschaft.de</a></p><p>HR 215175i<br />UID-DE U53259600<br />GF Herbert Bauer </p><p>Inhaltlich Verantwortlicher gem‰ﬂ ß 10 Absatz 3 MDStV: <br />Herbert Bauer (Anschrift wie oben) </p>
