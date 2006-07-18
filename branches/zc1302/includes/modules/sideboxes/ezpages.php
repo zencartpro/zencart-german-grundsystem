@@ -11,6 +11,12 @@
 
   $zco_notifier->notify('NOTIFY_START_EZPAGES_SIDEBOX');
 
+  if(isset($_SESSION['languages_id'])){
+        $rl_language = $_SESSION['languages_id'];
+    } else {
+        $rl_language=1;
+    }
+
   // test if sidebox should display
   if (EZPAGES_STATUS_SIDEBOX == '1' or (EZPAGES_STATUS_SIDEBOX== '2' and (strstr(EXCLUDE_ADMIN_IP_FOR_MAINTENANCE, $_SERVER['REMOTE_ADDR'])))) {
     if (isset($var_linksList)) {

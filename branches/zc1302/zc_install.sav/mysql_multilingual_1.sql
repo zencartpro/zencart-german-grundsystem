@@ -1,65 +1,13 @@
 # This SQL script upgrades the core Zen Cart database structure from v1.2.1 to v1.2.2
 #
-# $Id: mysql_upgrade_zencart_121_to_122.sql 1390 2005-05-16 07:11:19Z drbyte $
+# $Id$
 #
-
-## CONFIGURATION TABLE
-UPDATE configuration set configuration_title='Send Copy of Order Confirmation Emails To', configuration_description ='Send COPIES of order confirmation emails to the following email addresses, in this format: Name 1 &lt;email@address1&gt;, Name 2 &lt;email@address2&gt;' WHERE configuration_key = 'SEND_EXTRA_ORDER_EMAILS_TO';
-INSERT INTO configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) VALUES ('E-Mail Friendly-Errors', 'EMAIL_FRIENDLY_ERRORS', 'true', 'Do you want to display friendly errors if emails fail?  Setting this to false will display PHP errors and likely cause the script to fail. Only set to false while troubleshooting.', '12', '7', 'zen_cfg_select_option(array(\'true\', \'false\'),', now());
-#INSERT INTO configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) VALUES ('Show Shopping Cart - Delete Checkboxes or Delete Button', 'SHOW_SHOPPING_CART_DELETE', '3', 'Show on Shopping Cart Delete Button and/or Checkboxes<br /><br />1= Delete Button Only<br />2= Checkbox Only<br />3= Delete Button and Checkbox Only', '9', '20', 'zen_cfg_select_option(array(\'1\', \'2\', \'3\'), ', now());
-
-## Table Structure updates
-
-#orders table
-ALTER TABLE orders ADD COLUMN payment_module_code varchar(32) NOT NULL default '' AFTER payment_method;
-ALTER TABLE orders ADD COLUMN shipping_method varchar(32) NOT NULL default '' AFTER payment_module_code;
-ALTER TABLE orders ADD COLUMN shipping_module_code varchar(32) NOT NULL default '' AFTER shipping_method;
-
-#paypal 
-ALTER TABLE paypal ADD COLUMN zen_order_id int(17) NOT NULL default '0' AFTER paypal_ipn_id;
-DROP TABLE IF EXISTS orders_session_info;
-DROP TABLE IF EXISTS paypal_payment_status;
-DROP TABLE IF EXISTS paypal_payment_status_history;
-
-#DROP TABLE IF EXISTS paypal_session;
-CREATE TABLE paypal_session (
-  unique_id int(11) NOT NULL auto_increment,
-  session_id text NOT NULL,
-  saved_session blob NOT NULL,
-  expiry int(17) NOT NULL default '0',
-  PRIMARY KEY  (unique_id)
-) TYPE=MyISAM;
-
-
-
-#Version Control
-ALTER TABLE project_version CHANGE COLUMN project_version_patch_major project_version_patch1 varchar(20) NOT NULL default '';
-ALTER TABLE project_version CHANGE COLUMN project_version_patch_minor project_version_patch2 varchar(20) NOT NULL default '';
-ALTER TABLE project_version ADD COLUMN project_version_patch1_source varchar(20) NOT NULL default '' AFTER project_version_patch2;
-ALTER TABLE project_version ADD COLUMN project_version_patch2_source varchar(20) NOT NULL default '' AFTER project_version_patch1_source;
-ALTER TABLE project_version DROP COLUMN project_version_ip_address;
-
-CREATE TABLE project_version_history (
-  project_version_id tinyint(3) NOT NULL auto_increment,
-  project_version_key varchar(40) NOT NULL default '',
-  project_version_major varchar(20) NOT NULL default '',
-  project_version_minor varchar(20) NOT NULL default '',
-  project_version_patch varchar(20) NOT NULL default '',
-  project_version_comment varchar(250) NOT NULL default '',
-  project_version_date_applied datetime NOT NULL default '0001-01-01 01:01:01',
-  project_version_ip_address varchar(20) NOT NULL default '',
-  PRIMARY KEY  (project_version_id),
-  UNIQUE KEY project_version_key (project_version_key)
-) TYPE=MyISAM COMMENT='Database Version Tracking History';
-
 
 #################################################################
 #  LANGUAGE SPECIFIC                                            #
 #  questions to: zencart(AT)langheiter.at                       #
 #################################################################
 # insert language; id == 43 == telephone-countrycode
-#INSERT INTO languages VALUES (43,'Deutsch','de','icon.gif','german',20);
-#INSERT INTO languages VALUES (22,'English','de','icon.gif','english',20);
 
 DROP TABLE IF EXISTS configuration_language;
 CREATE TABLE configuration_language (
@@ -79,7 +27,8 @@ CREATE TABLE configuration_language (
 # Daten für Tabelle configuration_language
 #
 
-INSERT INTO configuration_language (configuration_title, configuration_key, configuration_language_id, configuration_description, last_modified, date_added) VALUES ('Shopname', 'STORE_NAME', 43, 'Geben Sie hier einen Name f&uuml;r den Shop ein', NULL, '2004-11-20 11:14:04'),
+INSERT INTO configuration_language (configuration_title, configuration_key, configuration_language_id, configuration_description, last_modified, date_added) VALUES
+('Shopname', 'STORE_NAME', 43, 'Geben Sie hier einen Name f&uuml;r den Shop ein', NULL, '2004-11-20 11:14:04'),
 ('Shopinhaber', 'STORE_OWNER', 43, 'Geben Sie hier einen Namen f&uuml;r den Shopinhaber ein', NULL, '2004-11-20 11:14:04'),
 ('Land', 'STORE_COUNTRY', 43, 'Geben Sie hier das Land an, in dem der Shop betrieben wird<br /><br /><strong><b>Hinweis: Bitte nicht vergessen, das Bundesland des Shops zu aktualisieren</b></strong>', NULL, '2004-11-20 11:14:04'),
 ('Bundesland', 'STORE_ZONE', 43, 'Geben Sie hier das Bundesland an, in dem der Shop betrieben wird', NULL, '2004-11-20 11:14:04'),
@@ -503,78 +452,108 @@ INSERT INTO configuration_language (configuration_title, configuration_key, conf
 ('Eigene Seite f&uuml;r "Bestellung erfolgreich" verwenden', 'DEFINE_CHECKOUT_SUCCESS_STATUS', 43, 'Wollen Sie die eigene Seite f&uuml;r die Seite "Bestellung erfolgreich" verwenden?<br />0= NEIN<br />1= JA', '2004-11-20 11:14:04', '2004-11-20 11:14:04'),
 ('Eigene Seite f&uuml;r "Seite 2" verwenden', 'DEFINE_PAGE_2_STATUS', 43, 'Wollen Sie die eigene Seite f&uuml;r "Seite 2" verwenden?<br />0= NEIN<br />1= JA', '2004-11-20 11:14:04', '2004-11-20 11:14:04'),
 ('Eigene Seite f&uuml;r "Seite 3" verwenden', 'DEFINE_PAGE_3_STATUS', 43, 'Wollen Sie die eigene Seite f&uuml;r "Seite 3" verwenden?<br />0= NEIN<br />1= JA', '2004-11-20 11:14:04', '2004-11-20 11:14:04'),
-('Eigene Seite f&uuml;r "Seite 4" verwenden', 'DEFINE_PAGE_4_STATUS', 43, 'Wollen Sie die eigene Seite f&uuml;r "Seite 4" verwenden?<br />0= NEIN<br />1= JA', '2004-11-20 11:14:04', '2004-11-20 11:14:04');
-
-DROP TABLE IF EXISTS configuration_group;
-CREATE TABLE configuration_group (
-  configuration_group_id int(11) NOT NULL auto_increment,
-  configuration_group_title varchar(64) NOT NULL default '',
-  configuration_group_description varchar(255) NOT NULL default '',
-  sort_order int(5) default NULL,
-  visible int(1) default '1',
-  PRIMARY KEY  (configuration_group_id)
-) TYPE=MyISAM;
-INSERT INTO configuration_group VALUES ('1', 'My Store', 'General information about my store', '1', '1');
-INSERT INTO configuration_group VALUES ('2', 'Minimum Values', 'The minimum values for functions / data', '2', '1');
-INSERT INTO configuration_group VALUES ('3', 'Maximum Values', 'The maximum values for functions / data', '3', '1');
-INSERT INTO configuration_group VALUES ('4', 'Images', 'Image parameters', '4', '1');
-INSERT INTO configuration_group VALUES ('5', 'Customer Details', 'Customer account configuration', '5', '1');
-INSERT INTO configuration_group VALUES ('6', 'Module Options', 'Hidden from configuration', '6', '0');
-INSERT INTO configuration_group VALUES ('7', 'Shipping/Packaging', 'Shipping options available at my store', '7', '1');
-INSERT INTO configuration_group VALUES ('8', 'Product Listing', 'Product Listing configuration options', '8', '1');
-INSERT INTO configuration_group VALUES ('9', 'Stock', 'Stock configuration options', '9', '1');
-INSERT INTO configuration_group VALUES ('10', 'Logging', 'Logging configuration options', '10', '1');
-INSERT INTO configuration_group VALUES ('11', 'Regulations', 'Regulation options', '16', '1');
-INSERT INTO configuration_group VALUES ('12', 'E-Mail Options', 'General setting for E-Mail transport and HTML E-Mails', '12', '1');
-INSERT INTO configuration_group VALUES ('13', 'Attribute Settings', 'Configure products attributes settings', '13', '1');
-INSERT INTO configuration_group VALUES ('14', 'GZip Compression', 'GZip compression options', '14', '1');
-INSERT INTO configuration_group VALUES ('15', 'Sessions', 'Session options', '15', '1');
-INSERT INTO configuration_group VALUES ('16', 'GV Coupons', 'Gift Vouchers and Coupons', '16', '1');
-INSERT INTO configuration_group VALUES ('17', 'Credit Cards', 'Credit Cards Accepted', '17', '1');
-INSERT INTO configuration_group VALUES ('18', 'Product Info', 'Product Info Display Options', '18', '1');
-INSERT INTO configuration_group VALUES ('19', 'Layout Settings', 'Layout Options', '19', '1');
-INSERT INTO configuration_group VALUES ('20', 'Website Maintenance', 'Website Maintenance Options', '20', '1');
-INSERT INTO configuration_group VALUES ('21', 'New Listing', 'New Products Listing', '21', '1');
-INSERT INTO configuration_group VALUES ('22', 'Featured Listing', 'Featured Products Listing', '22', '1');
-INSERT INTO configuration_group VALUES ('23', 'All Listing', 'All Products Listing', '23', '1');
-INSERT INTO configuration_group VALUES ('24', 'Index Listing', 'Index Products Listing', '24', '1');
-insert into configuration_group VALUES ('25', 'Define Page Status', 'Define Main Pages and HTMLArea Options', '25', '1');
-
+('Eigene Seite f&uuml;r "Seite 4" verwenden', 'DEFINE_PAGE_4_STATUS', 43, 'Wollen Sie die eigene Seite f&uuml;r "Seite 4" verwenden?<br />0= NEIN<br />1= JA', '2004-11-20 11:14:04', '2004-11-20 11:14:04'),
+('Image - Use Proportional Images on Products and Categories', 'PROPORTIONAL_IMAGES_STATUS', 43, 'übersetzen', NULL, '0001-01-01 00:00:00'),
+('E-Mail Friendly-Errors', 'EMAIL_FRIENDLY_ERRORS', 43, 'übersetzen', NULL, '0001-01-01 00:00:00'),
+('Downloads Controller Order Status Value <= upper value', 'DOWNLOADS_CONTROLLER_ORDERS_STATUS_END', 43, 'übersetzen', NULL, '0001-01-01 00:00:00'),
+('Default Order Status For Zero Balance Orders', 'DEFAULT_ZERO_BALANCE_ORDERS_STATUS_ID', 43, 'übersetzen', NULL, '0001-01-01 00:00:00'),
+('Customer Default Email Preference', 'ACCOUNT_EMAIL_PREFERENCE', 43, 'übersetzen', NULL, '0001-01-01 00:00:00'),
+('Categories - Always Open to Show SubCategories', 'SHOW_CATEGORIES_SUBCATEGORIES_ALWAYS', 43, 'übersetzen', NULL, '0001-01-01 00:00:00'),
+('Also Purchased Products Columns per Row', 'SHOW_PRODUCT_INFO_COLUMNS_ALSO_PURCHASED_PRODUCTS', 43, 'übersetzen', NULL, '0001-01-01 00:00:00'),
+('Manufacturers List - Verify Product Exist', 'PRODUCTS_MANUFACTURERS_STATUS', 43, 'übersetzen', NULL, '0001-01-01 00:00:00'),
+('Read Only option type - Ignore for Add to Cart', 'PRODUCTS_OPTIONS_TYPE_READONLY_IGNORED', 43, 'übersetzen', NULL, '0001-01-01 00:00:00'),
+('Show Shopping Cart - Update Cart Button Location', 'SHOW_SHOPPING_CART_UPDATE', 43, 'übersetzen', NULL, '0001-01-01 00:00:00'),
+('SMTP Email Account Mailbox', 'EMAIL_SMTPAUTH_MAILBOX', 43, 'übersetzen', NULL, '0001-01-01 00:00:00'),
+('SMTP Email Account Password', 'EMAIL_SMTPAUTH_PASSWORD', 43, 'übersetzen', NULL, '0001-01-01 00:00:00'),
+('SMTP Email Mail Host', 'EMAIL_SMTPAUTH_MAIL_SERVER', 43, 'übersetzen', NULL, '0001-01-01 00:00:00'),
+('Allowed Filename Extensions for uploading', 'UPLOAD_FILENAME_EXTENSIONS', 43, 'übersetzen', NULL, '0001-01-01 00:00:00'),
+('Banner Display Group - Side Box banner_box_all', 'SHOW_BANNERS_GROUP_SET_ALL', 43, 'übersetzen', NULL, '0001-01-01 00:00:00'),
+('Categories/Products Display Sort Order', 'CATEGORIES_PRODUCTS_SORT_ORDER', 43, 'übersetzen', NULL, '0001-01-01 00:00:00'),
+('Display Multiple Products Qty Box Status and Set Button Location', 'PRODUCT_LISTING_MULTIPLE_ADD_TO_CART', 43, 'übersetzen', NULL, '0001-01-01 00:00:00'),
+('Display Multiple Products Qty Box Status and Set Button Location', 'PRODUCT_NEW_LISTING_MULTIPLE_ADD_TO_CART', 43, 'übersetzen', NULL, '0001-01-01 00:00:00'),
+('Display Multiple Products Qty Box Status and Set Button Location', 'PRODUCT_FEATURED_LISTING_MULTIPLE_ADD_TO_CART', 43, 'übersetzen', NULL, '0001-01-01 00:00:00'),
+('Display Multiple Products Qty Box Status and Set Button Location', 'PRODUCT_ALL_LISTING_MULTIPLE_ADD_TO_CART', 43, 'übersetzen', NULL, '0001-01-01 00:00:00'),
+('Display Product Description', 'PRODUCT_LIST_DESCRIPTION', 43, 'übersetzen', NULL, '0001-01-01 00:00:00'),
+('IP to Host Conversion Status', 'SESSION_IP_TO_HOST_ADDRESS', 43, 'übersetzen', NULL, '0001-01-01 00:00:00'),
+('Maximum Discount Coupon Report Results Per Page', 'MAX_DISPLAY_SEARCH_RESULTS_DISCOUNT_COUPONS_REPORTS', 43, 'übersetzen', NULL, '0001-01-01 00:00:00'),
+('Maximum Discount Coupons Per Page', 'MAX_DISPLAY_SEARCH_RESULTS_DISCOUNT_COUPONS', 43, 'übersetzen', NULL, '0001-01-01 00:00:00'),
+('Maximum Display Columns Products to Multiple Categories Manager', 'MAX_DISPLAY_PRODUCTS_TO_CATEGORIES_COLUMNS', 43, 'übersetzen', NULL, '0001-01-01 00:00:00'),
+('Maximum Orders Detail Display on Admin Orders Listing', 'MAX_DISPLAY_RESULTS_ORDERS_DETAILS_LISTING', 43, 'übersetzen', NULL, '0001-01-01 00:00:00'),
+('Option Names and Values Global Add, Copy and Delete Features Status', 'OPTION_NAMES_VALUES_GLOBAL_STATUS', 43, 'übersetzen', NULL, '0001-01-01 00:00:00'),
+('Sales Tax Display Status', 'STORE_TAX_DISPLAY_STATUS', 43, 'übersetzen', NULL, '0001-01-01 00:00:00'),
+('Send Copy of Pending Reviews Emails To', 'SEND_EXTRA_REVIEW_NOTIFICATION_EMAILS_TO', 43, 'übersetzen', NULL, '0001-01-01 00:00:00'),
+('Send Copy of Pending Reviews Emails To - Status', 'SEND_EXTRA_REVIEW_NOTIFICATION_EMAILS_TO_STATUS', 43, 'übersetzen', NULL, '0001-01-01 00:00:00'),
+('SMTP Email Mail Server Port', 'EMAIL_SMTPAUTH_MAIL_SERVER_PORT', 43, 'übersetzen', NULL, '0001-01-01 00:00:00');
 # new field: language_id
 ALTER TABLE configuration_group ADD language_id INT( 11 ) DEFAULT '1' NOT NULL AFTER configuration_group_id ;
 ALTER TABLE configuration_group DROP PRIMARY KEY ,
 ADD PRIMARY KEY ( configuration_group_id , language_id );
 
-INSERT INTO configuration_group (configuration_group_id, language_id, configuration_group_title, configuration_group_description, sort_order, visible) VALUES (1, 43, 'Mein Shop', 'Generelle Informationen &uuml;ber den Shop', 1, 1),
-(2, 43, 'Minimale Werte', 'Die minimale Zeichenl&auml;nge f&uuml;r Funktionen / Daten', 2, 1),
-(3, 43, 'Maximale Werte', 'Die maximale Zeichenl&auml;nge f&uuml;r Funktionen / Daten', 3, 1),
-(4, 43, 'Bilder', 'Einstellungen der Bildparameter', 4, 1),
-(5, 43, 'Kundendetails', 'Konfiguration der Kundenkonten', 5, 1),
-(6, 43, 'Moduloptionen', 'Vom Konfigurationsmen&uuml; versteckt', 6, 0),
-(7, 43, 'Versandoptionen', 'Im Shop verf&uuml;gbare Versandoptionen', 7, 1),
-(8, 43, 'Artikelliste', 'Konfiguration der Artikelliste', 8, 1),
-(9, 43, 'Lagerverwaltung', 'Konfigurationen der Lagerverwaltung', 9, 1),
-(10, 43, 'Protokollierung', 'Konfiguration der Protokollierung', 10, 1),
-(11, 43, 'AGB', 'Konfiguration f&uuml;r die AGB', 16, 1),
-(12, 43, 'e-Mail Optionen', 'Generelle Einstellungen f&uuml;r den e-Mail Transport (SMTP) und die HTML Optionen', 12, 1),
-(13, 43, 'Attributeinstellungen', 'Konfiguration f&uuml;r die Einstellungen der Artikeloptionen', 13, 1),
-(14, 43, 'GZip Komprimierung', 'Konfiguration der GZip Komprimierung', 14, 1),
-(15, 43, 'Sitzungen', 'Konfiguration der Sitzungsoptionen', 15, 1),
-(16, 43, 'Gutscheine und Kupons', 'Konfiguration der Gutscheine und Kupons', 16, 1),
-(17, 43, 'Kreditkarten', 'Konfiguration der zu verwendeten Kreditkarten', 17, 1),
-(18, 43, 'Artikeldetails', 'Konfiguration f&uuml;r die Anzeige von Artikeldetails', 18, 1),
-(19, 43, 'Layouteinstellungen', 'Layouteinstellungen', 19, 1),
-(20, 43, 'Shopwartung', 'Konfiguration der Shopwartung', 20, 1),
-(21, 43, 'Liste - Neue Artikel', 'Neue Artikelliste', 21, 1),
-(22, 43, 'Liste - Ähnliche Artikel', 'Liste - Ähnliche Artikel', 22, 1),
-(23, 43, 'Liste - Alle Artikel', 'Liste - Alle Artikel', 23, 1),
-(24, 43, 'Liste - Artikelindex', 'Liste - Artikelindex', 24, 1),
-(25, 43, 'Eigene Seiten', 'Eigene Seiten definieren und HTMLArea Optionen', 25, 1);
+DROP TABLE IF EXISTS configuration_group;
+CREATE TABLE configuration_group (
+  configuration_group_id int(11) NOT NULL auto_increment,
+  language_id int(11) NOT NULL default '1',
+  configuration_group_title varchar(64) NOT NULL default '',
+  configuration_group_description varchar(255) NOT NULL default '',
+  sort_order int(5) default NULL,
+  visible int(1) default '1',
+  PRIMARY KEY  (configuration_group_id,language_id)
+) TYPE=MyISAM AUTO_INCREMENT=26 ;
+
+#
+# Daten für Tabelle `configuration_group`
+#
+
+INSERT INTO configuration_group (configuration_group_id, language_id, configuration_group_title, configuration_group_description, sort_order, visible) VALUES (1, 1, 'My Store', 'General information about my store', 1, 1);
+INSERT INTO configuration_group (configuration_group_id, language_id, configuration_group_title, configuration_group_description, sort_order, visible) VALUES (2, 1, 'Minimum Values', 'The minimum values for functions / data', 2, 1);
+INSERT INTO configuration_group (configuration_group_id, language_id, configuration_group_title, configuration_group_description, sort_order, visible) VALUES (3, 1, 'Maximum Values', 'The maximum values for functions / data', 3, 1);
+INSERT INTO configuration_group (configuration_group_id, language_id, configuration_group_title, configuration_group_description, sort_order, visible) VALUES (4, 1, 'Images', 'Image parameters', 4, 1);
+INSERT INTO configuration_group (configuration_group_id, language_id, configuration_group_title, configuration_group_description, sort_order, visible) VALUES (5, 1, 'Customer Details', 'Customer account configuration', 5, 1);
+INSERT INTO configuration_group (configuration_group_id, language_id, configuration_group_title, configuration_group_description, sort_order, visible) VALUES (6, 1, 'Module Options', 'Hidden from configuration', 6, 0);
+INSERT INTO configuration_group (configuration_group_id, language_id, configuration_group_title, configuration_group_description, sort_order, visible) VALUES (7, 1, 'Shipping/Packaging', 'Shipping options available at my store', 7, 1);
+INSERT INTO configuration_group (configuration_group_id, language_id, configuration_group_title, configuration_group_description, sort_order, visible) VALUES (8, 1, 'Product Listing', 'Product Listing configuration options', 8, 1);
+INSERT INTO configuration_group (configuration_group_id, language_id, configuration_group_title, configuration_group_description, sort_order, visible) VALUES (9, 1, 'Stock', 'Stock configuration options', 9, 1);
+INSERT INTO configuration_group (configuration_group_id, language_id, configuration_group_title, configuration_group_description, sort_order, visible) VALUES (10, 1, 'Logging', 'Logging configuration options', 10, 1);
+INSERT INTO configuration_group (configuration_group_id, language_id, configuration_group_title, configuration_group_description, sort_order, visible) VALUES (11, 1, 'Regulations', 'Regulation options', 16, 1);
+INSERT INTO configuration_group (configuration_group_id, language_id, configuration_group_title, configuration_group_description, sort_order, visible) VALUES (12, 1, 'E-Mail Options', 'General setting for E-Mail transport and HTML E-Mails', 12, 1);
+INSERT INTO configuration_group (configuration_group_id, language_id, configuration_group_title, configuration_group_description, sort_order, visible) VALUES (13, 1, 'Attribute Settings', 'Configure products attributes settings', 13, 1);
+INSERT INTO configuration_group (configuration_group_id, language_id, configuration_group_title, configuration_group_description, sort_order, visible) VALUES (14, 1, 'GZip Compression', 'GZip compression options', 14, 1);
+INSERT INTO configuration_group (configuration_group_id, language_id, configuration_group_title, configuration_group_description, sort_order, visible) VALUES (15, 1, 'Sessions', 'Session options', 15, 1);
+INSERT INTO configuration_group (configuration_group_id, language_id, configuration_group_title, configuration_group_description, sort_order, visible) VALUES (16, 1, 'GV Coupons', 'Gift Vouchers and Coupons', 16, 1);
+INSERT INTO configuration_group (configuration_group_id, language_id, configuration_group_title, configuration_group_description, sort_order, visible) VALUES (17, 1, 'Credit Cards', 'Credit Cards Accepted', 17, 1);
+INSERT INTO configuration_group (configuration_group_id, language_id, configuration_group_title, configuration_group_description, sort_order, visible) VALUES (18, 1, 'Product Info', 'Product Info Display Options', 18, 1);
+INSERT INTO configuration_group (configuration_group_id, language_id, configuration_group_title, configuration_group_description, sort_order, visible) VALUES (19, 1, 'Layout Settings', 'Layout Options', 19, 1);
+INSERT INTO configuration_group (configuration_group_id, language_id, configuration_group_title, configuration_group_description, sort_order, visible) VALUES (20, 1, 'Website Maintenance', 'Website Maintenance Options', 20, 1);
+INSERT INTO configuration_group (configuration_group_id, language_id, configuration_group_title, configuration_group_description, sort_order, visible) VALUES (21, 1, 'New Listing', 'New Products Listing', 21, 1);
+INSERT INTO configuration_group (configuration_group_id, language_id, configuration_group_title, configuration_group_description, sort_order, visible) VALUES (22, 1, 'Featured Listing', 'Featured Products Listing', 22, 1);
+INSERT INTO configuration_group (configuration_group_id, language_id, configuration_group_title, configuration_group_description, sort_order, visible) VALUES (23, 1, 'All Listing', 'All Products Listing', 23, 1);
+INSERT INTO configuration_group (configuration_group_id, language_id, configuration_group_title, configuration_group_description, sort_order, visible) VALUES (24, 1, 'Index Listing', 'Index Products Listing', 24, 1);
+INSERT INTO configuration_group (configuration_group_id, language_id, configuration_group_title, configuration_group_description, sort_order, visible) VALUES (25, 1, 'Define Page Status', 'Define Main Pages and HTMLArea Options', 25, 1);
+INSERT INTO configuration_group (configuration_group_id, language_id, configuration_group_title, configuration_group_description, sort_order, visible) VALUES (1, 43, 'Mein Shop', 'Generelle Informationen &uuml;ber den Shop', 1, 1);
+INSERT INTO configuration_group (configuration_group_id, language_id, configuration_group_title, configuration_group_description, sort_order, visible) VALUES (2, 43, 'Minimale Werte', 'Die minimale Zeichenl&auml;nge f&uuml;r Funktionen / Daten', 2, 1);
+INSERT INTO configuration_group (configuration_group_id, language_id, configuration_group_title, configuration_group_description, sort_order, visible) VALUES (3, 43, 'Maximale Werte', 'Die maximale Zeichenl&auml;nge f&uuml;r Funktionen / Daten', 3, 1);
+INSERT INTO configuration_group (configuration_group_id, language_id, configuration_group_title, configuration_group_description, sort_order, visible) VALUES (4, 43, 'Bilder', 'Einstellungen der Bildparameter', 4, 1);
+INSERT INTO configuration_group (configuration_group_id, language_id, configuration_group_title, configuration_group_description, sort_order, visible) VALUES (5, 43, 'Kundendetails', 'Konfiguration der Kundenkonten', 5, 1);
+INSERT INTO configuration_group (configuration_group_id, language_id, configuration_group_title, configuration_group_description, sort_order, visible) VALUES (6, 43, 'Moduloptionen', 'Vom Konfigurationsmen&uuml; versteckt', 6, 0);
+INSERT INTO configuration_group (configuration_group_id, language_id, configuration_group_title, configuration_group_description, sort_order, visible) VALUES (7, 43, 'Versandoptionen', 'Im Shop verf&uuml;gbare Versandoptionen', 7, 1);
+INSERT INTO configuration_group (configuration_group_id, language_id, configuration_group_title, configuration_group_description, sort_order, visible) VALUES (8, 43, 'Artikelliste', 'Konfiguration der Artikelliste', 8, 1);
+INSERT INTO configuration_group (configuration_group_id, language_id, configuration_group_title, configuration_group_description, sort_order, visible) VALUES (9, 43, 'Lagerverwaltung', 'Konfigurationen der Lagerverwaltung', 9, 1);
+INSERT INTO configuration_group (configuration_group_id, language_id, configuration_group_title, configuration_group_description, sort_order, visible) VALUES (10, 43, 'Protokollierung', 'Konfiguration der Protokollierung', 10, 1);
+INSERT INTO configuration_group (configuration_group_id, language_id, configuration_group_title, configuration_group_description, sort_order, visible) VALUES (11, 43, 'AGB', 'Konfiguration f&uuml;r die AGB', 16, 1);
+INSERT INTO configuration_group (configuration_group_id, language_id, configuration_group_title, configuration_group_description, sort_order, visible) VALUES (12, 43, 'e-Mail Optionen', 'Generelle Einstellungen f&uuml;r den e-Mail Transport (SMTP) und die HTML Optionen', 12, 1);
+INSERT INTO configuration_group (configuration_group_id, language_id, configuration_group_title, configuration_group_description, sort_order, visible) VALUES (13, 43, 'Attributeinstellungen', 'Konfiguration f&uuml;r die Einstellungen der Artikeloptionen', 13, 1);
+INSERT INTO configuration_group (configuration_group_id, language_id, configuration_group_title, configuration_group_description, sort_order, visible) VALUES (14, 43, 'GZip Komprimierung', 'Konfiguration der GZip Komprimierung', 14, 1);
+INSERT INTO configuration_group (configuration_group_id, language_id, configuration_group_title, configuration_group_description, sort_order, visible) VALUES (15, 43, 'Sitzungen', 'Konfiguration der Sitzungsoptionen', 15, 1);
+INSERT INTO configuration_group (configuration_group_id, language_id, configuration_group_title, configuration_group_description, sort_order, visible) VALUES (16, 43, 'Gutscheine und Kupons', 'Konfiguration der Gutscheine und Kupons', 16, 1);
+INSERT INTO configuration_group (configuration_group_id, language_id, configuration_group_title, configuration_group_description, sort_order, visible) VALUES (17, 43, 'Kreditkarten', 'Konfiguration der zu verwendeten Kreditkarten', 17, 1);
+INSERT INTO configuration_group (configuration_group_id, language_id, configuration_group_title, configuration_group_description, sort_order, visible) VALUES (18, 43, 'Artikeldetails', 'Konfiguration f&uuml;r die Anzeige von Artikeldetails', 18, 1);
+INSERT INTO configuration_group (configuration_group_id, language_id, configuration_group_title, configuration_group_description, sort_order, visible) VALUES (19, 43, 'Layouteinstellungen', 'Layouteinstellungen', 19, 1);
+INSERT INTO configuration_group (configuration_group_id, language_id, configuration_group_title, configuration_group_description, sort_order, visible) VALUES (20, 43, 'Shopwartung', 'Konfiguration der Shopwartung', 20, 1);
+INSERT INTO configuration_group (configuration_group_id, language_id, configuration_group_title, configuration_group_description, sort_order, visible) VALUES (21, 43, 'Liste - Neue Artikel', 'Neue Artikelliste', 21, 1);
+INSERT INTO configuration_group (configuration_group_id, language_id, configuration_group_title, configuration_group_description, sort_order, visible) VALUES (22, 43, 'Liste - Ähnliche Artikel', 'Liste - Ähnliche Artikel', 22, 1);
+INSERT INTO configuration_group (configuration_group_id, language_id, configuration_group_title, configuration_group_description, sort_order, visible) VALUES (23, 43, 'Liste - Alle Artikel', 'Liste - Alle Artikel', 23, 1);
+INSERT INTO configuration_group (configuration_group_id, language_id, configuration_group_title, configuration_group_description, sort_order, visible) VALUES (24, 43, 'Liste - Artikelindex', 'Liste - Artikelindex', 24, 1);
+INSERT INTO configuration_group (configuration_group_id, language_id, configuration_group_title, configuration_group_description, sort_order, visible) VALUES (25, 43, 'Eigene Seiten', 'Eigene Seiten definieren und HTMLArea Optionen', 25, 1);
 #####################################################################################################
-## THE FOLLOWING SHOULD BE THE "LAST" ITEMS IN THE FILE, so that if the upgrade fails prematurely, the version info is not updated.
-#NEXT_X_ROWS_AS_ONE_COMMAND:2
-UPDATE project_version SET project_version_major='1', project_version_minor='2.2', project_version_patch1='', project_version_patch1_source='', project_version_patch2='', project_version_patch2_source='', project_version_date_applied=now() WHERE project_version_key = 'Zen-Cart Main';
-UPDATE project_version SET project_version_major='1', project_version_minor='2.2', project_version_patch1='', project_version_patch1_source='', project_version_patch2='', project_version_patch2_source='', project_version_date_applied=now() WHERE project_version_key = 'Zen-Cart Database';
-
-
+UPDATE configuration SET configuration_value = 'de' WHERE configuration_key = 'DEFAULT_LANGUAGE' LIMIT 1 ;
 #####  END OF UPGRADE SCRIPT

@@ -12,6 +12,11 @@ if (!defined('IS_ADMIN_FLAG')) {
   die('Illegal Access');
 }
 $zco_notifier->notify('NOTIFY_START_EZPAGES_HEADERBAR');
+  if(isset($_SESSION['languages_id'])){
+        $rl_language = $_SESSION['languages_id'];
+    } else {
+        $rl_language=1;
+    }
 
 // test if bar should display:
 if (EZPAGES_STATUS_HEADER == '1' or (EZPAGES_STATUS_HEADER == '2' and (strstr(EXCLUDE_ADMIN_IP_FOR_MAINTENANCE, $_SERVER['REMOTE_ADDR'])))) {

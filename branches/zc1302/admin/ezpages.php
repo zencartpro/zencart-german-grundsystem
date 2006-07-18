@@ -33,6 +33,11 @@
 
 
   require('includes/application_top.php');
+    if(isset($_SESSION['languages_id'])){
+        $rl_language = $_SESSION['languages_id'];
+    } else {
+        $rl_language=1;
+    }
 
   if (!isset($_SESSION['ez_sort_order'])) {
     $_SESSION['ez_sort_order'] = 0;
@@ -150,6 +155,7 @@
           $sql_data_array = array('pages_title' => $pages_title,
                                   'page_open_new_window' => $page_open_new_window,
                                   'page_is_ssl' => $page_is_ssl,
+                                  'languages_id' => $rl_language,
                                   'alt_url' => $alt_url,
                                   'alt_url_external' => $alt_url_external,
                                   'status_header' => $status_header,
@@ -542,7 +548,7 @@
       break;
   }
 
-    $pages_query_raw = "select * from " . TABLE_EZPAGES . $ez_order_by;
+   $pages_query_raw = "select * from " . TABLE_EZPAGES . " WHERE languages_id='$rl_language' " .$ez_order_by;
 
 // Split Page
 // reset page when page is unknown
