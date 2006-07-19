@@ -1,0 +1,27 @@
+<!doctype html public "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html {$smarty.const.HTML_PARAMS}>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset={$smarty.const.CHARSET}">
+<title>{$smarty.const.TITLE}</title>
+<link rel="stylesheet" type="text/css" href="{$path}includes/stylesheet.css">
+<link rel="stylesheet" type="text/css" href="{$path}rl_language/rl_language_stylesheet.css" media="all">
+<link rel="stylesheet" type="text/css" href="{$path}includes/cssjsmenuhover.css" media="all" id="hoverJS">
+<script type="text/javascript" language="javascript" src="{$path}includes/menu.js"></script>
+<script type="text/javascript" language="javascript" src="{$path}includes/general.js"></script>
+{literal}
+<script type="text/javascript">
+  <!--
+  function init()
+  {
+    cssjsmenu('navbar');
+    if (document.getElementById)
+    {
+      var kill = document.getElementById('hoverJS');
+      kill.disabled = true;
+    }
+  }
+  // -->
+</script>
+{/literal}
+</head>
+<body onload="init()">
