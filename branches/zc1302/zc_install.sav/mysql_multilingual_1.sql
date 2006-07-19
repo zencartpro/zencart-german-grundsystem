@@ -9,7 +9,7 @@
 #################################################################
 # insert language; id == 43 == telephone-countrycode
 
-CREATE TABLE IF NOT EXISTS configuration_language( (
+CREATE TABLE IF NOT EXISTS configuration_language(
   configuration_id int(11) NOT NULL auto_increment,
   configuration_title text NOT NULL,
   configuration_key varchar(255) NOT NULL default '',
