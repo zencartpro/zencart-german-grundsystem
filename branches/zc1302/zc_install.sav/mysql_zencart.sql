@@ -3846,7 +3846,7 @@ INSERT INTO configuration_group (configuration_group_id, language_id, configurat
 (23, 43, 'Liste - Alle Artikel', 'Listenansicht für alle Artikel', 23, 1),
 (24, 43, 'Liste - Artikelindex', 'Listenansicht für Artikelindex', 24, 1),
 (25, 43, 'Definierte Seiten', 'Definierte Seiten des im Seiteneditor eingegebenen Textes festlegen und HTMLArea Optionen', 25, 1);
-
+(30, 43, 'EZ-Pages Einstellungen', 'EZ-Pages Einstellungen', 30, 1);
 
 # MUST BE PLACED INTO mysql_demo.sql otherwise you get an catalog-tree error
 # 43 == german
