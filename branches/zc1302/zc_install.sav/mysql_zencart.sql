@@ -2890,6 +2890,7 @@ INSERT INTO products_options_types (products_options_types_id, products_options_
 INSERT INTO products_options_types (products_options_types_id, products_options_types_name) VALUES (5, 'Read Only');
 
 INSERT INTO products_options_values (products_options_values_id, language_id, products_options_values_name) VALUES (0, 1, 'TEXT');
+INSERT INTO products_options_values (products_options_values_id, language_id, products_options_values_name) VALUES (0, 43, 'TEXT');
 
 # AUSTRIA
 INSERT INTO zones_to_geo_zones (association_id, zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (4, 0, NULL, 3, '2004-09-29 10:09:11', '2004-09-29 09:52:37');
