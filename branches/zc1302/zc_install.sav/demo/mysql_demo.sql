@@ -1147,7 +1147,8 @@ INSERT INTO products_options (products_options_id, language_id, products_options
 #
 
 #Remove TEXT
-INSERT INTO products_options_values (products_options_values_id, language_id, products_options_values_name, products_options_values_sort_order) VALUES (1, 1, '4 mb', 10),
+INSERT INTO products_options_values (products_options_values_id, language_id, products_options_values_name, products_options_values_sort_order) VALUES 
+(1, 1, '4 mb', 10),
 (2, 1, '8 mb', 20),
 (3, 1, '16 mb', 30),
 (4, 1, '32 mb', 40),
@@ -1739,7 +1740,7 @@ INSERT INTO products_options (products_options_id, language_id, products_options
 INSERT INTO products_options (products_options_id, language_id, products_options_name, products_options_sort_order, products_options_type, products_options_length, products_options_comment, products_options_size, products_options_images_per_row, products_options_images_style) VALUES (18, 43, 'Length', 70, 0, 32, '', 32, 5, 0);
 INSERT INTO products_options (products_options_id, language_id, products_options_name, products_options_sort_order, products_options_type, products_options_length, products_options_comment, products_options_size, products_options_images_per_row, products_options_images_style) VALUES (19, 43, 'Shipping', 600, 5, 32, '', 32, 0, 0);
 
-INSERT INTO products_options_values (products_options_values_id, language_id, products_options_values_name, products_options_values_sort_order) VALUES (0, 43, 'TEXT', 0);
+REPLACE INTO products_options_values (products_options_values_id, language_id, products_options_values_name, products_options_values_sort_order) VALUES (0, 43, 'TEXT', 0);
 INSERT INTO products_options_values (products_options_values_id, language_id, products_options_values_name, products_options_values_sort_order) VALUES (1, 43, '4 mb', 10);
 INSERT INTO products_options_values (products_options_values_id, language_id, products_options_values_name, products_options_values_sort_order) VALUES (2, 43, '8 mb', 20);
 INSERT INTO products_options_values (products_options_values_id, language_id, products_options_values_name, products_options_values_sort_order) VALUES (3, 43, '16 mb', 30);
