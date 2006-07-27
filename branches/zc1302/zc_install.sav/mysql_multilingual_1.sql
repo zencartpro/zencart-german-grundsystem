@@ -9,7 +9,7 @@
 #################################################################
 # insert language; id == 43 == telephone-countrycode
 
-INSERT INTO products_options_values (products_options_values_id, language_id, products_options_values_name) VALUES (0, 43, 'TEXT');
+REPLACE INTO products_options_values (products_options_values_id, language_id, products_options_values_name) VALUES (0, 43, 'TEXT');
 
 CREATE TABLE IF NOT EXISTS configuration_language(
   configuration_id int(11) NOT NULL auto_increment,
