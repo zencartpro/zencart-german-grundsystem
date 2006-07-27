@@ -24,7 +24,7 @@
 // $Id: freecharger.php 2 2006-03-31 09:55:33Z rainer $
 //
 
-define('MODULE_PAYMENT_FREECHARGER_TEXT_TITLE', 'DIE \'GEIZISTGEIL\' KOSTENLOSKARTE');
+define('MODULE_PAYMENT_FREECHARGER_TEXT_TITLE', 'Gratis');
 define('MODULE_PAYMENT_FREECHARGER_TEXT_DESCRIPTION', 'Zur Verwendung bei kostenlosen Artikel');
-define('MODULE_PAYMENT_FREECHARGER_TEXT_EMAIL_FOOTER', 'Zur Verwendung bei kostenlosen Artikel');
+define('MODULE_PAYMENT_FREECHARGER_TEXT_EMAIL_FOOTER', '');
 ?>

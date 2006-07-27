@@ -7,14 +7,12 @@
  * @version $Id: freeoptions.php 2 2006-03-31 09:55:33Z rainer $
 @@@LOOK@@@ */
 
-define('MODULE_SHIPPING_FREEOPTIONS_TEXT_TITLE', 'Free Shipping Options');
-define('MODULE_SHIPPING_FREEOPTIONS_TEXT_DESCRIPTION', 'Free Options is used to display a Free Shipping option when other Shipping Modules are displayed.
-It can be based on: Always show, Order Total, Order Weight or Order Item Count.
-The Free Options module does not show when Free Shipper is displayed.<br /><br />
-Setting Total to >= 0.00 and <= 0.00 will activate this module to show with all shipping modules, except for Free Shipping - freeshipper.<br /><br />
-NOTE: Leaving all settings for Total, Weight and Item count blank will deactivate this module.<br /><br />
-NOTE: Free Shipping Options does not display if Free Shipping is used based on 0 weight is Free Shipping.
-See: freeshipper');
-define('MODULE_SHIPPING_FREEOPTIONS_TEXT_WAY', 'Free Shipping');
+define('MODULE_SHIPPING_FREEOPTIONS_TEXT_TITLE', 'Versandkostenfrei (wenn Limit erreicht)');
+define('MODULE_SHIPPING_FREEOPTIONS_TEXT_DESCRIPTION', 'Dieses Modul wird zusammen mit anderen Versandarten angezeigt um zus&auml;tzliche Versandoptionen zu bieten.
+Als Anzeigebedingung k&ouml;nnen Gewicht, Artikelanzahl, Rechnungsbetrag verwendet werden.
+Dieses Modul wird bei gleichzeitiger Verwendung mit dem Modul (freeshipper) nicht angezeigt.<br /><br />
+Setzt man das Feld Summe >= 0.00 und <= leer, wird das Modul immer angezeigt (Ausnahme freeshipper Modul).<br /><br />
+Anmerkung: Werden die Eingabefelder Gewicht, Summe, St&uuml;ckzahl leer gelassen, dann wird dieses Modul deaktiviert.');
+define('MODULE_SHIPPING_FREEOPTIONS_TEXT_WAY', 'Versandkostenfrei');
 
 ?>
