@@ -28,7 +28,7 @@ CREATE TABLE IF NOT EXISTS configuration_language(
 # Daten für Tabelle configuration_language
 #
 
-REPLACE INTO `configuration_language` (`configuration_title`, `configuration_key`, `configuration_language_id`, `configuration_description`, `last_modified`, `date_added`) VALUES ('Willkommenstext auf Startseite zeigen?', 'SHOW_CUSTOMER_GREETING', 43, 'Willkommenstext auf Startseite zeigen?<br />0= AUS<br />1= EIN', NULL, '2006-07-14 00:00:00'),
+REPLACE INTO configuration_language (`configuration_title`, `configuration_key`, `configuration_language_id`, `configuration_description`, `last_modified`, `date_added`) VALUES ('Willkommenstext auf Startseite zeigen?', 'SHOW_CUSTOMER_GREETING', 43, 'Willkommenstext auf Startseite zeigen?<br />0= AUS<br />1= EIN', NULL, '2006-07-14 00:00:00'),
 ('&Uuml;berspringe Kategorien mit einem Artikel', 'SKIP_SINGLE_PRODUCT_CATEGORIES', 43, '&Uuml;berspringe Kategorien mit einem Artikel<br />Wenn true dann wird bei Klick auf die Kategorie gleich direkt die Artikelansicht angezeigt.<br />Default: True', NULL, '2006-07-14 00:00:00'),
 ('Sitemap - Mein Konto Link?', 'SHOW_ACCOUNT_LINKS_ON_SITE_MAP', 43, 'Soll ein Link f&uuml;r "Mein Konto" in der Sitemap generiert werden?<br /><br />Default: false', NULL, '2006-07-14 00:00:00'),
 ('Max. Anzahl PayPal IPN Transaktionen pro Seite', 'MAX_DISPLAY_SEARCH_RESULTS_PAYPAL_IPN', 43, 'Max. Anzahl PayPal IPN Transaktionen pro Seite<br />Default: 20', NULL, '2006-07-14 00:00:00'),
