@@ -70,7 +70,7 @@ define('BOX_ENTRY_SALEMAKER_EXPIRED', 'abgelaufene Abverk&auml;ufe');
 define('BOX_ENTRY_SPECIALS_ACTIVE', 'aktive Sonderpreise');
 define('BOX_ENTRY_FEATURED_ACTIVE', 'Aktive &auml;hnliche Artikel');
 define('BOX_ENTRY_SALEMAKER_ACTIVE', 'aktive Abverk&auml;ufe');
-define('LAST_10_DAYS', 'Counter Historie f&uuml; die letzten %s Tage');  // new 1.3.0  
+define('LAST_10_DAYS', 'Counter Historie f&uuml;r die letzten %s Tage');  // new 1.3.0  
 define('SESSION', 'Session');         // new 1.3.0  
 define('TOTAL', 'Gesamt'); // new 1.3.0  
 ?>
