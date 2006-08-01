@@ -24,35 +24,35 @@
 // $Id: discount_coupon.php 2 2006-03-31 09:55:33Z rainer $
 //
 
-define('NAVBAR_TITLE', 'Discount Coupon');
-define('HEADING_TITLE', 'Discount Coupon');
+define('NAVBAR_TITLE', 'Aktionskupon');
+define('HEADING_TITLE', 'Aktionskupon');
 
 define('TEXT_INFORMATION', '');
-define('TEXT_COUPON_FAILED', '<span class="alert important">%s</span> does not appear to be a valid Coupon Redemption Code. Please try typing it in again.');
+define('TEXT_COUPON_FAILED', '<span class="alert important">%s</span> scheint kein g&uuml;ltiger Aktionscode zu sein. Bitte nochmals eintippen.');
 
-define('HEADING_COUPON_HELP', 'Discount Coupon Help');
-define('TEXT_CLOSE_WINDOW', 'Close Window [x]');
-define('TEXT_COUPON_HELP_HEADER', '<p class="bold">The Discount Coupon Redemption Code you have entered is for ');
+define('HEADING_COUPON_HELP', 'Aktionskupon Hilfe');
+define('TEXT_CLOSE_WINDOW', 'Fenster schlie&szlig;en [x]');
+define('TEXT_COUPON_HELP_HEADER', '<p class="bold">Der eingegebene Aktionscode geh&ouml;rt zu Kupon: ');
 define('TEXT_COUPON_HELP_NAME', '\'%s\'. </p>');
 define('TEXT_COUPON_HELP_FIXED', '');
 define('TEXT_COUPON_HELP_MINORDER', '');
 define('TEXT_COUPON_HELP_FREESHIP', '');
-define('TEXT_COUPON_HELP_DESC', '<p><span class="bold">Discount Offer:</span> %s</p><p class="smallText">Certain other restrictions may apply. Please see below for other details.</p>');
-define('TEXT_COUPON_HELP_DATE', '<p>The coupon is valid between %s and %s</p>');
-define('TEXT_COUPON_HELP_RESTRICT', '<p class="biggerText bold">Discount Coupon Restrictions</p>');
-define('TEXT_COUPON_HELP_CATEGORIES', '<p class="bold">Category Restrictions:</p>');
-define('TEXT_COUPON_HELP_PRODUCTS', '<p class="bold">Product Restrictions:</p>');
-define('TEXT_ALLOW', 'Allow');
-define('TEXT_DENY', 'Deny');
-define('TEXT_NO_CAT_RESTRICTIONS', '<p>This coupon is valid for all categories.</p>');
-define('TEXT_NO_PROD_RESTRICTIONS', '<p>This coupon is valid for all products.</p>');
-define('TEXT_CAT_ALLOWED', ' (Valid for this category)');
-define('TEXT_CAT_DENIED', ' (Not allowed on this category)');
-define('TEXT_PROD_ALLOWED', ' (Valid for this product)');
-define('TEXT_PROD_DENIED', ' (Not allowed product)');
+define('TEXT_COUPON_HELP_DESC', '<p><span class="bold">Aktionskuponangebot:</span> %s</p><p class="smallText">Folgende Einschr&auml;nkungen bestehen:</p>');
+define('TEXT_COUPON_HELP_DATE', '<p>Der Aktionskupon ist g&uuml;ltig von %s bis %s</p>');
+define('TEXT_COUPON_HELP_RESTRICT', '<p class="biggerText bold">Aktionskupon Einschr&auml;nkungen</p>');
+define('TEXT_COUPON_HELP_CATEGORIES', '<p class="bold">G&uuml;ltig f&uuml;r folgende Kategorien:</p>');
+define('TEXT_COUPON_HELP_PRODUCTS', '<p class="bold">G&uuml;ltig f&uuml;r folgende Artikel:</p>');
+define('TEXT_ALLOW', 'ja');
+define('TEXT_DENY', 'nein');
+define('TEXT_NO_CAT_RESTRICTIONS', '<p>Aktionskupon ist f&uuml;r alle Kategorien g&uuml;ltig.</p>');
+define('TEXT_NO_PROD_RESTRICTIONS', '<p>Aktionskupon ist f&uuml;r alle Artikel g&uuml;ltig.</p>');
+define('TEXT_CAT_ALLOWED', ' (G&uuml;ltig f&uuml;r diese Kategorie)');
+define('TEXT_CAT_DENIED', ' (Nicht g&uuml;ltig f&uuml;r diese Kategorie)');
+define('TEXT_PROD_ALLOWED', ' (G&uuml;ltig f&uuml;r diesen Artikel)');
+define('TEXT_PROD_DENIED', ' (G&uuml;ltig f&uuml;r diesen Artikel)');
 // gift certificates cannot be purchased with Discount Coupons
-define('TEXT_COUPON_GV_RESTRICTION','<p class="smallText">Discount Coupons may not be applied towards the purchase of ' . TEXT_GV_NAMES . '. Limit 1 coupon per order.</p>');
+define('TEXT_COUPON_GV_RESTRICTION','<p class="smallText">Aktionskupons k&ouml;nnen nicht zum Kauf von ' . TEXT_GV_NAMES . ' verwendet werden. Limit: 1 Kupon pro Bestellung.</p>');
 
-define('TEXT_DISCOUNT_COUPON_ID_INFO', 'Look-up Discount Coupon ... ');
-define('TEXT_DISCOUNT_COUPON_ID', 'Your Code: ');
+define('TEXT_DISCOUNT_COUPON_ID_INFO', 'Aktionskupon suchen ... ');
+define('TEXT_DISCOUNT_COUPON_ID', 'Aktionscode: ');
 ?>

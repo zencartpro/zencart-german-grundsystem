@@ -63,7 +63,7 @@ define('BUTTON_IMAGE_CONTINUE_CHECKOUT', 'button_continue_checkout.gif'); // new
 */
 define('BUTTON_ADD_TO_CART_ALT', 'Add This to My Cart');   // new 1.3.0  
 define('BUTTON_ADD_ADDRESS_ALT', 'Adresse hinzuf&uuml;gen');
-define('BUTTON_ADDRESS_BOOK_ALT', 'Adressbuch');
+define('BUTTON_ADD_PRODUCTS_TO_CART_ALT', 'ausgew&auml;hlte in Korb');
 define('BUTTON_BACK_ALT', 'zur&uuml;ck');
 define('BUTTON_BUY_NOW_ALT', 'letzt kaufen');
 define('BUTTON_CANCEL_ALT', 'Abbrechen');   // new 1.3.0  

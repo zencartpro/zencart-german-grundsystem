@@ -15,8 +15,8 @@ define('MODULE_ORDER_TOTAL_COUPON_HEADER', TEXT_GV_NAMES . '');
 define('SHIPPING_NOT_INCLUDED','[Versandkosten nicht inbegriffen]');
 define('TAX_NOT_INCLUDED','[Steuer nicht inbegriffen]');
 define('IMAGE_REDEEM_VOUCHER', 'einl&ouml;sen');
-define('MODULE_ORDER_TOTAL_COUPON_REDEEM_INSTRUCTIONS', '!!!TRANSLATE!!! <p>Schreiben Sie bitte Ihren Kuponcode in den Kasten nahe bei Abzahlungcode . Your coupon will be applied to the total and reflect in your cart after you click continue.</p><p>Please note: you may only use one coupon per order.</p>'); // new 1.3.0  
-define('MODULE_ORDER_TOTAL_COUPON_TEXT_CURRENT_CODE', '!!!TRANSLATE!!! Your Current Redemption Code: '); // new 1.3.0  
-define('MODULE_ORDER_TOTAL_COUPON_REMOVE_INSTRUCTIONS', '!!!TRANSLATE!!! <p>To remove a Discount Coupon from this order type REMOVE and press Enter or Return</p>');   // new 1.3.0  
-define('TEXT_REMOVE_REDEEM_COUPON', 'Diskontkupon entfernt durch Antrag !'); // new 1.3.0  
+define('MODULE_ORDER_TOTAL_COUPON_REDEEM_INSTRUCTIONS', '<p>Geben Sie bitte die Kuponnummer im Eingabefeld ein. Der Kuponwert wird nach dr&uuml;cken der Schaltfl&auml;che "weiter einkaufen" der Bestellung gutgeschrieben.</p>'); // new 1.3.0  
+define('MODULE_ORDER_TOTAL_COUPON_TEXT_CURRENT_CODE', 'Ihr aktueller Diskontkupon lautet: '); // new 1.3.0  
+define('MODULE_ORDER_TOTAL_COUPON_REMOVE_INSTRUCTIONS', '<p>Um den Diskontkupon wieder zu entfernen geben Sie bitte den Text REMOVE ein</p>');   // new 1.3.0  
+define('TEXT_REMOVE_REDEEM_COUPON', 'Diskontkupon entfernt auf Antrag !'); // new 1.3.0  
 ?>

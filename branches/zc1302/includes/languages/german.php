@@ -325,7 +325,7 @@ define('TEXT_CCVAL_ERROR_INVALID_DATE', 'Das Ablaufdatum der Kreditkarte, das Si
 define('TEXT_CCVAL_ERROR_INVALID_NUMBER', 'Die Kreditkartennummer, die Sie angegeben haben, ist nicht g&uuml;ltig. Bitte &uuml;berpr&uuml;fen Sie Ihre Angaben noch einmal und wiederholen Sie den Vorgang.');
 define('TEXT_CCVAL_ERROR_UNKNOWN_CARD', 'Die ersten 4 Ziffer der Kreditkartennummer, sie Sie angegeben haben, lauten: %s. Ist diese Nummer richtig, k&ouml;nnen wir diese Kreditkarte nicht akzeptieren. Bitte korrigieren Sie ggf. die eingegebene Nummer oder setzen Sie sich mit Ihren Kreditinstitut in Verbindung.');
 
-  define('BOX_INFORMATION_DISCOUNT_COUPONS', 'Discount Coupons');
+  define('BOX_INFORMATION_DISCOUNT_COUPONS', 'Aktionskupon');
 define('BOX_INFORMATION_GV', TEXT_GV_NAME . ' FAQ');
 define('VOUCHER_BALANCE', TEXT_GV_NAME . ' Konto: ');
 define('BOX_HEADING_GIFT_VOUCHER', TEXT_GV_NAME . ' Konto');
@@ -542,10 +542,10 @@ define('ERROR_CART_UPDATE', 'Bitte aktualisieren Sie Ihre Bestellung ...<br />')
 define('IMAGE_BUTTON_UPDATE_CART', 'aktualisieren');
 
 // multiple product add to cart
-define('TEXT_PRODUCT_LISTING_MULTIPLE_ADD_TO_CART', 'Add: ');
-define('TEXT_PRODUCT_ALL_LISTING_MULTIPLE_ADD_TO_CART', 'Add: ');
-define('TEXT_PRODUCT_FEATURED_LISTING_MULTIPLE_ADD_TO_CART', 'Add: ');
-define('TEXT_PRODUCT_NEW_LISTING_MULTIPLE_ADD_TO_CART', 'Add: ');
+define('TEXT_PRODUCT_LISTING_MULTIPLE_ADD_TO_CART', 'Anzahl: ');
+define('TEXT_PRODUCT_ALL_LISTING_MULTIPLE_ADD_TO_CART', 'Anzahl: ');
+define('TEXT_PRODUCT_FEATURED_LISTING_MULTIPLE_ADD_TO_CART', 'Anzahl: ');
+define('TEXT_PRODUCT_NEW_LISTING_MULTIPLE_ADD_TO_CART', 'Anzahl: ');
   //moved SUBMIT_BUTTON_ADD_PRODUCTS_TO_CART to button_names.php as BUTTON_ADD_PRODUCTS_TO_CART_ALT
 
 // discount qty table
