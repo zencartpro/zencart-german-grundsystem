@@ -119,7 +119,8 @@ for ($i=0, $n=sizeof($products); $i<$n; $i++) {
   $productsName = $products[$i]['name'];
   $show_products_quantity_max = zen_get_products_quantity_order_max($products[$i]['id']);
   $showFixedQuantity = (($show_products_quantity_max == 1 or zen_get_products_qty_box_status($products[$i]['id']) == 0) ? true : false);
-  $showFixedQuantityAmount = $products[$i]['quantity'] . zen_draw_hidden_Field('products_id[]', $products[$i]['id']) . zen_draw_hidden_Field('cart_quantity[]', 1);
+  // WFH 030806: fix for products with no amount field, basket refresh has removed products
+  $showFixedQuantityAmount = $products[$i]['quantity'] . zen_draw_hidden_Field('cart_quantity[]', 1);
   $showMinUnits = zen_get_products_quantity_min_units_display($products[$i]['id']);
   $quantityField = zen_draw_input_field('cart_quantity[]', $products[$i]['quantity'], 'size="4"');
   $buttonUpdate = ((SHOW_SHOPPING_CART_UPDATE == 1 or SHOW_SHOPPING_CART_UPDATE == 3) ? zen_image_submit(ICON_IMAGE_UPDATE, ICON_UPDATE_ALT) : '') . zen_draw_hidden_field('products_id[]', $products[$i]['id']);
