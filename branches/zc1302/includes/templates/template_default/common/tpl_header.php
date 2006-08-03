@@ -88,7 +88,6 @@ if (!isset($flag_disable_header) || !$flag_disable_header) {
 ?>
     </div>
 </div>
-<br class="clearBoth" />
 <!--eof-branding display-->
 
 <!--eof-header logo and navigation display-->
