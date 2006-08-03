@@ -1,2 +1,2 @@
-<p><strong>Damit Sie schnell einen Überblick über unsere Website bekommen.</strong></p>
-<p>Sollten Sie etwas nicht finden oder Fragen haben, dann lassen Sie es uns bitte wissen! <a href="<?php echo zen_href_link(FILENAME_CONTACT_US); ?>">Kontaktformular</a></p>
+<p>Um diesen Text zu editieren &ouml;ffnen Sie im Adminbereich -> Tools -> den Seiteneditor und w&auml;hlen danach in der Seitenauswahliste 'define_site_map.php'.</p>
+<p><strong>Damit Sie schnell einen Überblick über unsere Website bekommen.</strong></p><p>Sollten Sie etwas nicht finden oder Fragen haben, dann lassen Sie es uns bitte wissen! <a href="<?php echo zen_href_link(FILENAME_CONTACT_US); ?>">Kontaktformular</a></p>

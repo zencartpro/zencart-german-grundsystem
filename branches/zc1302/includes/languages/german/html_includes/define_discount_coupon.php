@@ -1,3 +1,1 @@
-<p><strong>Discount Coupon Sample Text ...</strong></p>
-<p>This section of text is from the Define Pages Editor located under Tools in the Admin.</p>
-<p>To remove this section of the text, delete it from the Define Pages Editor.</p>
+<p>Um diesen Text zu editieren &ouml;ffnen Sie im Adminbereich -> Tools -> den Seiteneditor und w&auml;hlen danach in der Seitenauswahliste 'define_discount_coupon.php'.</p>
