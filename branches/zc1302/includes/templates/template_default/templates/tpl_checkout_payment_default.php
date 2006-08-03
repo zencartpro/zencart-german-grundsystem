@@ -63,7 +63,7 @@
     for ($i=0, $n=sizeof($selection); $i<$n; $i++) {
       if ($_GET['credit_class_error_code'] == $selection[$i]['id']) {
 ?>
-<div class="messageStackError"><?php echo zen_output_string_protected($_GET['credit_class_error']); ?></div>
+<div class="messageStackError"><?php echo $_GET['credit_class_error']; ?></div>
 
 <?php
       }

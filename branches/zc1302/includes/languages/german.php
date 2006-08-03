@@ -350,24 +350,24 @@ define('CART_COUPON_INFO', 'Gutscheininfos');
   define('TEXT_AVAILABLE_BALANCE', 'Ihr ' . TEXT_GV_NAME . ' Guthaben');
 
 // payment method is GV/Discount
-define('PAYMENT_METHOD_GV', 'Gutschein Zertifikat/Kupon');
-define('PAYMENT_MODULE_GV', 'GV/DC');
+define('PAYMENT_METHOD_GV', 'Geschenkgutschein /Aktionskupon');
+define('PAYMENT_MODULE_GV', 'GS/AK');
 
 define('TABLE_HEADING_CREDIT_PAYMENT', 'Guthaben verf&uuml;gbar');
 
-define('TEXT_INVALID_REDEEM_COUPON', 'Ung&uuml;ltige Gutscheinnummer');
-define('TEXT_INVALID_STARTDATE_COUPON', 'Dieser Gutschein ist zur Zeit nicht erh&auml;ltlich');
-define('TEXT_INVALID_FINISDATE_COUPON', 'Dieser Gutschein ist abgelaufen');
-define('TEXT_INVALID_USES_COUPON', 'Dieser Gutschein kann nur');
+define('TEXT_INVALID_REDEEM_COUPON', 'Ung&uuml;ltiger Aktionscode');
+define('TEXT_INVALID_REDEEM_COUPON_MINIMUM', 'Der Mindestbestellwert f&uuml;r diesen Kupon  liegt bei %s');
+define('TEXT_INVALID_STARTDATE_COUPON', 'Dieser Kupon ist zur Zeit nicht erh&auml;ltlich');
+define('TEXT_INVALID_FINISDATE_COUPON', 'Dieser Kupon ist abgelaufen');
+define('TEXT_INVALID_USES_COUPON', 'Dieser Kupon kann nur');
 define('TIMES', 'mal eingel&ouml;st werden');
 define('TIME', 'mal eingel&ouml;st werden.');
-define('TEXT_INVALID_USES_USER_COUPON', 'der Gutschein hat die maximale Einl&ouml;seanzahl pro Kunde erreicht.');
+define('TEXT_INVALID_USES_USER_COUPON', 'der Kupon hat die maximale Einl&ouml;seanzahl pro Kunde erreicht.');
 define('REDEEMED_COUPON', 'Kupon einl&ouml;sen');
 define('REDEEMED_MIN_ORDER', 'bei Bestellungen &uuml;ber');
 define('REDEEMED_RESTRICTIONS', '[Artikelkategorie Einschr&auml;nkung angewendet]');
 define('TEXT_ERROR', 'Es ist ein Fehler aufgetreten.');
-  define('TEXT_INVALID_COUPON_PRODUCT', '##TRANS##This coupon code is not valid for any product currently in your cart.');
-define('TEXT_INVALID_COUPON_PRODUCT', 'Dieser Gutscheincode ist f&uuml;r keinen der im Warenkorb befindlichen Artikel g&uuml;ltig');
+define('TEXT_INVALID_COUPON_PRODUCT', 'Dieser Aktionskupon ist f&uuml;r keinen der im Warenkorb befindlichen Artikel g&uuml;ltig');
 define('TEXT_VALID_COUPON', 'Kupon erfolgreich eingel&ouml;st');
 
 // more info in place of buy now
@@ -513,6 +513,7 @@ define('TEXT_PER_LETTER', '<br />Preis pro Buchstabe: ');
 define('TEXT_LETTERS_FREE', ' Buchstabe(n) frei ');
 define('TEXT_ONETIME_CHARGES', '*einmalige Geb&uuml;hr = ');
 define('TEXT_ONETIME_CHARGES_EMAIL', "\t" . '*einmalige Geb&uuml;hr = ');
+define('TEXT_ONETIME_CHARGES_BASKET' , "-&nbsp;einmalige Gebühren");
 define('TEXT_ATTRIBUTES_QTY_PRICES_HELP', 'Option f&uuml;r Mengenrabatte');
 define('TABLE_ATTRIBUTES_QTY_PRICE_QTY', 'STK');
 define('TABLE_ATTRIBUTES_QTY_PRICE_PRICE', 'PREIS');

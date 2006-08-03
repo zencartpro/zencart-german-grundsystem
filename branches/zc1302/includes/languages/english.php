@@ -505,6 +505,7 @@
   define('TEXT_LETTERS_FREE',' Letter(s) free ');
   define('TEXT_ONETIME_CHARGES','*onetime charges = ');
   define('TEXT_ONETIME_CHARGES_EMAIL',"\t" . '*onetime charges = ');
+  define('TEXT_ONETIME_CHARGES_BASKET' , "-&nbsp;onetime charges");
   define('TEXT_ATTRIBUTES_QTY_PRICES_HELP', 'Option Quantity Discounts');
   define('TABLE_ATTRIBUTES_QTY_PRICE_QTY','QTY');
   define('TABLE_ATTRIBUTES_QTY_PRICE_PRICE','PRICE');
