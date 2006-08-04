@@ -128,6 +128,9 @@ echo $line . '<br />';
 
           $line_upper=strtoupper($line);
           switch (true) {
+          case (substr($line_upper, 0, 13) == 'REPLACE INTO '):
+            $line = 'REPLACE INTO ' . $table_prefix . substr($line, 13);
+            break;
           case (substr($line_upper, 0, 21) == 'DROP TABLE IF EXISTS '):
 //            if (!$checkprivs = zen_check_database_privs('DROP')) return sprintf(REASON_NO_PRIVILEGES,'DROP');
             $line = 'DROP TABLE IF EXISTS ' . $table_prefix . substr($line, 21);
