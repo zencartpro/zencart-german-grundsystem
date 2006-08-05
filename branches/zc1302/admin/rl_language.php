@@ -1,18 +1,17 @@
 <?php
-// Data Manager - Import data from CSV files into a MySQL DB
-// Copyright (C) 2005  Eivind E. Valderhaug
+// Copyright (C) 2006 rainer langheiter
 // 
 // You can contact the original developer by going to this web page:
-// http://www.dataweb.no/net/contact/
+// http://edv.langheiter.com/
 // 
 // This program is subject to the Gnu General Public License version 2 (dated June 1991)
 // 
 // A copy of the license should have been included with this package; see license.txt
 // The license is also available at: http://www.gnu.org/copyleft/gpl.html
-$version = "2006-04-19";
+// $Id$ 
+$version = "2006-07-19";
 if(!defined('SOAPSERVER')){
     define('SOAPSERVER', 'http://translate.ar-pub.com/soap_trans.php');
-    #define('SOAPSERVER', 'http://all.ar-pub.com/kzen/zc130/docs/soap/soap/scalar2.php');
     }
 
 require('includes/application_top.php');
@@ -20,14 +19,22 @@ require_once("../ajax/xajax.inc.php");
 
 $xajax = new xajax();
 $xajax -> registerFunction("makeTrans");
+$xajax -> registerFunction("makeTransAll");
 
 $xajax -> processRequests();
+
+/*
 
 # rldp($_GET, 'GET');
 # rldp($_POST, 'POST');
 
-# $x = getSOAPList();
-# rldp($x, 'X');
+$x = getMenuList('rainer@ar-pub.com');
+rldp($x, 'X');  
+
+#$x = getSOAPList(43);
+rldp($x, 'X');  
+die();
+*/
 /**
  * init smarty environment
  */
@@ -51,15 +58,25 @@ $smarty -> assign('SOAPSERVER', SOAPSERVER);
 
 $smarty -> assign('version', $version);
 $smarty -> assign('lm', getLastChangeDate());
+$smarty -> assign('name', 'Fred2');        // auswahlmenu einblenden
 
-# $newLang = getSOAP(getLastChangeDate(), 'ALL');
-$newLang = getSOAP('ALL', 'ALL', $_SESSION['languages_id']);
+
+#$x = getSOAPList(43);
+#rldp($x, 'X');
+
+$newLang = getSOAP(getLastChangeDate(), 'ALL', 43);
+$newLang = getSOAP('ALL', 'ALL', 43);   
+#$newLang = getSOAP(getOldestChangeDate($_SESSION['languages_id']), 'ALL', $_SESSION['languages_id']);
+#rldp($newLang);
+#die('###');  
+#writeRL2(print_r($newLang, true));
+#rldp($newLang);
 $checkedLang[0] = array('ori' => array('configuration_key' => 'NIX'), 'new' => array('configuration_key' => 'NIX'));   
 if(!empty($newLang)){
      $checkedLang = checkSOAPLang($newLang, $_SESSION['languages_id']);
     }
 $transCount = count($checkedLang);
-$checked = $checkedLang[0];
+$checked = $checkedLang[0];      
 $smarty -> assign('transCount', $transCount);
 
 # rldp($newLang, '000');

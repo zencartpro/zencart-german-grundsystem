@@ -96,7 +96,32 @@ function existTable($table) {
     $anzT = $resT->RecordCount();
     return $anzT;
 }
+function writeRL($somecontent, $filename = "temp/debug.txt", $att='a+'){
+     // Sichergehen, dass die Datei existiert und beschreibbar ist
+     $filename = DIR_FS_CATALOG . $filename;
+    if (is_writable($filename)){
+         if (!$handle = fopen($filename, $att)){
+             print "Kann die Datei $filename nicht öffnen";
+             exit;
+             }
 
-// $x = checkColumn('xxx', 'hugo1', 'char(10)', true);
+         // Schreibe $somecontent in die geöffnete Datei.
+        if (!fwrite($handle, $somecontent)){
+             print "Kann in die Datei $filename nicht schreiben";
+             exit;
+             }
+         fclose($handle);
+
+         }else{
+         print "Die Datei $filename ist nicht schreibbar";
+         }
+     }
+function writeMenu($somecontent, $file){
+    $filename = DIR_FS_CATALOG . $file;   
+    if ( !file_exists($filename)){
+           touch ($filename);
+    }
+    writeRL($somecontent, $file, 'w');
+}
 
 ?>

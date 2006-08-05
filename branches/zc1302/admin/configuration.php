@@ -184,7 +184,7 @@ if ($gID == 7) {
                                  where configuration_id = '" . (int)$configuration->fields['configuration_id'] . "'");
       $cInfo_array1 = array_merge($configuration->fields, $cfg_extra->fields);
       # r.l. language 20040812 merge a second time to get the language text
-      $cInfo_array = array_merge($cInfo_array1, $configLang);
+      $cInfo_array = array_merge($cInfo_array1, $configLang);  
       $cInfo = new objectInfo($cInfo_array);
     }
 
