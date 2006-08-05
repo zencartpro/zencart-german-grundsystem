@@ -11,5 +11,5 @@ if (!defined('IS_ADMIN_FLAG')) {
 }
 define('RL_LANGUAGE_BOX', 'rl_language');
 define('FILENAME_RL_LANGUAGE', 'rl_language');
-  $za_contents[] = array('text' => RL_LANGUAGE_BOX, 'link' => zen_href_link(FILENAME_RL_LANGUAGE, '', 'NONSSL'));
+  #$za_contents[] = array('text' => RL_LANGUAGE_BOX, 'link' => zen_href_link(FILENAME_RL_LANGUAGE, '', 'NONSSL'));
 ?>
