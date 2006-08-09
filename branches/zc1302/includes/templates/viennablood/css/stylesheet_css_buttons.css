@@ -22,7 +22,10 @@ text-align:center;
 white-space: nowrap;
 text-decoration: none;
 font-weight: bold;
+<<<<<<< .mine
+=======
 margin-right: auto;
+>>>>>>> .r38
 }
 
 .cssButtonHover {

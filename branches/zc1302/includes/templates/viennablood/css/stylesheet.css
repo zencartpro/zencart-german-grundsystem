@@ -461,7 +461,10 @@ h3.leftBoxHeading a:hover, h3.rightBoxHeading a:hover{
 	}
 	
 .rightBoxContainer {
+<<<<<<< .mine
+=======
 	text-align: right;
+>>>>>>> .r38
 	border: 1px solid;
 	margin-top: 1.5em;
 	margin-left:  0.2em;
