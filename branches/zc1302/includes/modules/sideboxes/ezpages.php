@@ -22,7 +22,7 @@
     if (isset($var_linksList)) {
       unset($var_linksList);
     }
-    $page_query = $db->Execute("select * from " . TABLE_EZPAGES . " where status_sidebox = 1 and sidebox_sort_order > 0 order by sidebox_sort_order, pages_title");
+    $page_query = $db->Execute("select * from " . TABLE_EZPAGES . " where status_header = 1 and languages_id='$rl_language' and header_sort_order > 0 order by header_sort_order, pages_title");
     if ($page_query->RecordCount()>0) {
       $title =  BOX_HEADING_EZPAGES;
       $box_id =  'ezpages';
