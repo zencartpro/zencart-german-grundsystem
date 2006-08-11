@@ -26,9 +26,10 @@ if(isset($_SESSION['zendeutsch']) && file_exists(DIR_FS_CATALOG . 'images/zendeu
     }
 }
 if(is_array($lines)){ 
-    foreach ($lines as $key => $value) {
-        $split = split('\|', $value);
+    foreach ($lines as $key => $valrl) {
+        $split = split('\|', $valrl);
         $za_contents[] = array('text'=>$split[0], 'link'=>$split[1]);
     }
+    unset($value);
 } 
 ?>
