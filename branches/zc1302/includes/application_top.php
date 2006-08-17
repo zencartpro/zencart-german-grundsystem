@@ -80,8 +80,8 @@ if (file_exists(DIR_WS_INCLUDES . 'auto_loaders/overrides/' . $loader_file)) {
 /**
  * load the default application_top autoloader file.
  */
-include($base_dir . $loader_file);
-if ($loader_dir = dir(DIR_WS_INCLUDES . 'auto_loaders')) {
+$autoLoadConfig = array();
+include($base_dir . $loader_file);  if ($loader_dir = dir(DIR_WS_INCLUDES . 'auto_loaders')) {
   while ($loader_file = $loader_dir->read()) {
     if ((preg_match('/^config\./', $loader_file) > 0) && (preg_match('/\.php$/', $loader_file) > 0)) {
       if ($loader_file != 'config.core.php') {

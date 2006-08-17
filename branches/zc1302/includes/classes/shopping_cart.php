@@ -133,7 +133,7 @@ class shoppingCart extends base {
           }
         } else {
           $sql = "update " . TABLE_CUSTOMERS_BASKET . "
-                    set customers_basket_quantity = '" . $qty . "'
+                    set customers_basket_quantity = '" . (float)$qty . "'        
                     where customers_id = '" . (int)$_SESSION['customer_id'] . "'
                     and products_id = '" . zen_db_input($products_id) . "'";
 
@@ -351,7 +351,6 @@ class shoppingCart extends base {
     // update database
     if (isset($_SESSION['customer_id'])) {
       $sql = "update " . TABLE_CUSTOMERS_BASKET . "
-                set customers_basket_quantity = '" . $quantity . "'
                 where customers_id = '" . (int)$_SESSION['customer_id'] . "'
                 and products_id = '" . zen_db_input($products_id) . "'";
 

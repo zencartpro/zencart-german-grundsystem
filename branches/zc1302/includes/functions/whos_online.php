@@ -98,7 +98,10 @@ function whos_online_session_recreate($old_session, $new_session) {
   global $db;
 
   $sql = "UPDATE " . TABLE_WHOS_ONLINE . "
-          set session_id = '" . $new_session . "' WHERE session_id = '" . $old_session . "'";
+            SET session_id = :newSessionID 
+            WHERE session_id = :oldSessionID";
+  $sql = $db->bindVars($sql, ':newSessionID', $new_session, 'string'); 
+  $sql = $db->bindVars($sql, ':oldSessionID', $old_session, 'string');  
 
   $db->Execute($sql);
 }

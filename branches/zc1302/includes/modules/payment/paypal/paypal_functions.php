@@ -32,7 +32,11 @@
       ipn_debug_email('IPN FATAL ERROR::Could not find custom variable in post, cannot re-create session'); 
       return false;
     }
-    $sql = "select * from " . TABLE_PAYPAL_SESSION . " where session_id = '" . $session_stuff[1] . "'"; 
+    $sql = "SELECT * 
+                FROM " . TABLE_PAYPAL_SESSION . " 
+                WHERE session_id = :sessionID";
+    $sql = $db->bindVars($sql, ':sessionID', $session_stuff[1], 'string');  
+
     $stored_session = $db->Execute($sql);
     if ($stored_session->recordCount() < 1) {
       ipn_debug_email('IPN FATAL ERROR::Could not find stored session in DB, cannot re-create session'); 
