@@ -22,7 +22,8 @@
     if (isset($var_linksList)) {
       unset($var_linksList);
     }
-    $sql = "select * from " . TABLE_EZPAGES . " where status_sidebox = 1 and languages_id='$rl_language' and sidebox_sort_order > 0 order by sidebox_sort_order, pages_title";
+    //$sql = "select * from " . TABLE_EZPAGES . " where status_sidebox = 1 and languages_id='$rl_language' and sidebox_sort_order > 0 order by sidebox_sort_order, pages_title";
+    // für wflohr: nun werden auch pages mit sort_order 0 angezeigt
     $sql = "select * from " . TABLE_EZPAGES . " where status_sidebox = 1 and languages_id='$rl_language' order by sidebox_sort_order, pages_title";
     $page_query = $db->Execute($sql);
     if ($page_query->RecordCount()>0) {
