@@ -101,11 +101,14 @@
 
     if ($_POST['dc_redeem_code']) {
 
-      $coupon_result=$db->Execute("select coupon_id, coupon_amount, coupon_type, coupon_minimum_order,
-                                     uses_per_coupon, uses_per_user, restrict_to_products,
-                                     restrict_to_categories from " . TABLE_COUPONS . "
-                                   where coupon_code='". $_POST['dc_redeem_code']."'
-                                   and coupon_active='Y'");
+      $sql = "select coupon_id, coupon_amount, coupon_type, coupon_minimum_order, uses_per_coupon, uses_per_user,
+              restrict_to_products, restrict_to_categories 
+              from " . TABLE_COUPONS . "
+              where coupon_code= :couponCodeEntered
+              and coupon_active='Y'";
+      $sql = $db->bindVars($sql, ':couponCodeEntered', $_POST['dc_redeem_code'], 'string'); 
+
+      $coupon_result=$db->Execute($sql);
       if ($coupon_result->fields['coupon_type'] != 'G') {
 
         if ($coupon_result->RecordCount() <1 ) {
