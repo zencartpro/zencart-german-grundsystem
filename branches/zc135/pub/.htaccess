@@ -1,5 +1,0 @@
-#prevent directory browsing -- for security
-IndexIgnore */*
-
-  Options +FollowSymLinks -Indexes
-

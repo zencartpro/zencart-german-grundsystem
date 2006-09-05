@@ -1,1 +1,0 @@
-Please see the /docs/read_me_onload.html file for documentation.

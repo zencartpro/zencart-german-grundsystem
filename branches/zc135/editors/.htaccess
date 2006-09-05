@@ -1,3 +1,0 @@
-
-#prevent directory browsing -- for security
-IndexIgnore */*
