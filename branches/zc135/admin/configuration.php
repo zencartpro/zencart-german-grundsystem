@@ -20,6 +20,25 @@
 //  $Id: configuration.php 3993 2006-07-20 21:46:55Z drbyte $
 //
 
+/*
+ helper-function for language-configuration-values
+ r.l. 20040812
+ */
+function getConfigLanguage($cKey){
+     global $db;
+     $languages_id = $_SESSION['languages_id'];
+     if($languages_id == 1){
+         return $cKey;
+         }
+     $query = "SELECT configuration_title, configuration_description FROM " . DB_PREFIX . "configuration_language WHERE configuration_key='" . $cKey['configuration_key'] . "' AND configuration_language_id=" . $languages_id;
+     $config = $db -> Execute($query);
+     if($config -> EOF){
+         return $cKey;
+         }
+     $ckeyM = array_merge($cKey, $config -> fields);
+     return $ckeyM;
+     }
+
 
   require('includes/application_top.php');
 
@@ -65,7 +84,7 @@
   $_GET['gID'] = $gID;
   $cfg_group = $db->Execute("select configuration_group_title
                              from " . TABLE_CONFIGURATION_GROUP . "
-                             where configuration_group_id = '" . (int)$gID . "'");
+                             where configuration_group_id = '" . (int)$gID . "' AND language_id=" . $_SESSION['languages_id']);
 
 if ($gID == 7) {
         $shipping_errors = '';
@@ -156,12 +175,16 @@ if ($gID == 7) {
       $cfgValue = $configuration->fields['configuration_value'];
     }
 
+    # r.l. language 20040812
+    $configLang = getConfigLanguage($configuration -> fields);
     if ((!isset($_GET['cID']) || (isset($_GET['cID']) && ($_GET['cID'] == $configuration->fields['configuration_id']))) && !isset($cInfo) && (substr($action, 0, 3) != 'new')) {
       $cfg_extra = $db->Execute("select configuration_key, configuration_description, date_added,
                                         last_modified, use_function, set_function
                                  from " . TABLE_CONFIGURATION . "
                                  where configuration_id = '" . (int)$configuration->fields['configuration_id'] . "'");
-      $cInfo_array = array_merge($configuration->fields, $cfg_extra->fields);
+      $cInfo_array1 = array_merge($configuration->fields, $cfg_extra->fields);
+      # r.l. language 20040812 merge a second time to get the language text
+      $cInfo_array = array_merge($cInfo_array1, $configLang);  
       $cInfo = new objectInfo($cInfo_array);
     }
 
@@ -170,8 +193,10 @@ if ($gID == 7) {
     } else {
       echo '                  <tr class="dataTableRow" onmouseover="rowOverEffect(this)" onmouseout="rowOutEffect(this)" onclick="document.location.href=\'' . zen_href_link(FILENAME_CONFIGURATION, 'gID=' . $_GET['gID'] . '&cID=' . $configuration->fields['configuration_id'] . '&action=edit') . '\'">' . "\n";
     }
+    // r.l.: language 20040812 use $configLang['configuration_title']
 ?>
-                <td class="dataTableContent"><?php echo $configuration->fields['configuration_title']; ?></td>
+
+<td class="dataTableContent"><?php echo $configLang['configuration_title']; ?></td>
                 <td class="dataTableContent"><?php echo htmlspecialchars($cfgValue); ?></td>
                 <td class="dataTableContent" align="right"><?php if ( (isset($cInfo) && is_object($cInfo)) && ($configuration->fields['configuration_id'] == $cInfo->configuration_id) ) { echo zen_image(DIR_WS_IMAGES . 'icon_arrow_right.gif', ''); } else { echo '<a href="' . zen_href_link(FILENAME_CONFIGURATION, 'gID=' . $_GET['gID'] . '&cID=' . $configuration->fields['configuration_id']) . '">' . zen_image(DIR_WS_IMAGES . 'icon_info.gif', IMAGE_ICON_INFO) . '</a>'; } ?>&nbsp;</td>
               </tr>

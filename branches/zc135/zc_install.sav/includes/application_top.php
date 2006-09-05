@@ -32,7 +32,7 @@ if (!defined('IS_ADMIN_FLAG')) define('IS_ADMIN_FLAG', false);
   $zc_install = new installer;
   define('DIR_WS_INSTALL_TEMPLATE', 'includes/templates/template_default/');
   
-  $language = 'english';
+  $language = 'german';
   if  (isset($_GET['language']) && $_GET['language'] != '') $language = $_GET['language'];
   if (!isset($_GET['language'])) $_GET['language'] = $language;
 

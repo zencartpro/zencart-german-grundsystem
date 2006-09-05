@@ -7,7 +7,7 @@
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
  * @version $Id: header_php.php 4295 2006-08-26 23:45:53Z drbyte $
  */
-
+include('includes/modules/pages/database_upgrade/language_id_change.php');
 /* 
  * Database Upgrade script
  * 1. Checks to be sure that the configure.php exists and can be read
@@ -130,6 +130,8 @@ if (!$zc_install->fatal_error) {
     if (!$dbinfo->version121) {
       $sniffer =  ' upgrade v1.2.0 to v1.2.1';
       $needs_v1_2_1=true;
+    }  else {
+        $got_v1_2_1=true;   // r.l. multilingual
     }
     if (!$dbinfo->version120) {
       $sniffer =  ' upgrade v1.1.4 to v1.2.0';
@@ -156,7 +158,20 @@ if (!$zc_install->fatal_error) {
       $needs_v1_1_0=true;
 //    $needs_v1_1_1=false; // exclude the 1.1.0-to-1.1.1 update since it's included in this step if selected
     }
-
+    if(isMultiLingual($db_test)==false &&  $got_v1_2_1 == true ){
+        $needs_multilingual=true;   
+        /*  
+      $db = new queryFactory;
+      $db->Connect(DB_SERVER, DB_SERVER_USERNAME, DB_SERVER_PASSWORD, DB_DATABASE) or die("Unable to connect to database");
+      if (!ini_get('safe_mode')) set_time_limit(300);
+      // _multilingual_1.sql == all changes since act-version -1
+      executeSql(DB_TYPE . '_multilingual_1.sql', DB_DATABASE, DB_PREFIX);
+      $db->Close();
+     // r.l.: do language_id change
+     changeLanguageID($db_test, "'german', 'deutsch'", "de", 43, true);
+     changeLanguageID($db_test, "'english'", "en", 1, true);
+     */
+    }
 
  if (!isset($sniffer) && empty($sniffer)) {
    $sniffer = ' &nbsp;*** No upgrade required ***';
@@ -317,6 +332,13 @@ if (ZC_UPG_DEBUG2==true) {
           $got_v1_3_5 = true; //after processing this step, this will be the new version-level
           $db_upgraded_to_version='1.3.5';
           break;
+       case 'multilingual':  // upgrading from v1.2.6 TO v1.2.7
+//          if (!$dbinfo->version126 || $dbinfo->version127) continue;  // if prerequisite not completed, or already done, skip
+          $sniffer_file = '_multilingual_1.sql';
+          if (ZC_UPG_DEBUG2==true) echo $sniffer_file.'<br>';
+          $got_multilingual = true; //after processing this step, this will be the new version-level
+          $db_upgraded_to_version='multilingual';
+          break;
        default:
        $nothing_to_process=true;
        } // end while
@@ -355,6 +377,23 @@ if (ZC_UPG_DEBUG2==true) {
 
        if (ZC_UPG_DEBUG2==true) echo 'Processing ['.$sniffer_file.']...<br />';
        if ($zc_install->error == false && $nothing_to_process==false) {
+          // r.l.: check multilangual
+          if(isMultiLingual($db_test)==false &&  $got_v1_2_1 == true ){
+              $db = new queryFactory;
+              $db->Connect(DB_SERVER, DB_SERVER_USERNAME, DB_SERVER_PASSWORD, DB_DATABASE) or die("Unable to connect to database");
+              if (!ini_get('safe_mode')) set_time_limit(300);
+              // _multilingual_1.sql == all changes since act-version -1
+              executeSql('sql/'. DB_TYPE . '_multilingual_1.sql', DB_DATABASE, DB_PREFIX);
+              $db->Close();
+             // r.l.: do language_id change
+             changeLanguageID($db_test, "'german', 'deutsch'", "de", 43, true);
+             changeLanguageID($db_test, "'english'", "en", 1, true);
+          }
+          if($sniffer_file == '_upgrade_zencart_121_to_122.sql'){
+             // r.l.: do language_id change
+             changeLanguageID($db_test, "'german', 'deutsch'", "de", 43, true);
+             changeLanguageID($db_test, "'english'", "en", 1, true);
+          }
         //open database connection to run queries against it 
         $db = new queryFactory;
         $db->Connect(DB_SERVER, DB_SERVER_USERNAME, DB_SERVER_PASSWORD, DB_DATABASE) or die("Unable to connect to database");
