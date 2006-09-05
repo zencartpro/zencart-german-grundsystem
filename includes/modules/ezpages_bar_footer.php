@@ -12,6 +12,11 @@ if (!defined('IS_ADMIN_FLAG')) {
   die('Illegal Access');
 }
 $zco_notifier->notify('NOTIFY_START_EZPAGES_FOOTERBAR');
+  if(isset($_SESSION['languages_id'])){
+        $rl_language = $_SESSION['languages_id'];
+    } else {
+        $rl_language=1;
+    }
 
 // test if bar should display:
 if (EZPAGES_STATUS_FOOTER == '1' or (EZPAGES_STATUS_FOOTER == '2' and (strstr(EXCLUDE_ADMIN_IP_FOR_MAINTENANCE, $_SERVER['REMOTE_ADDR'])))) {
@@ -19,7 +24,8 @@ if (EZPAGES_STATUS_FOOTER == '1' or (EZPAGES_STATUS_FOOTER == '2' and (strstr(EX
   if (isset($var_linksList)) {
     unset($var_linksList);
   }
-  $page_query = $db->Execute("select * from " . TABLE_EZPAGES . " where status_footer = 1 and footer_sort_order > 0 order by footer_sort_order, pages_title");
+// r.l. language_id
+  $page_query = $db->Execute("select * from " . TABLE_EZPAGES . " where status_footer = 1 and languages_id='$rl_language' and footer_sort_order > 0 order by footer_sort_order, pages_title");
   if ($page_query->RecordCount()>0) {
     $rows = 0;
     while (!$page_query->EOF) {

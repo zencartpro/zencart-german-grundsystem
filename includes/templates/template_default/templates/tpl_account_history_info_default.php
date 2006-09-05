@@ -37,6 +37,8 @@
     <tr>
         <td class="accountQuantityDisplay"><?php echo  $order->products[$i]['qty'] . QUANTITY_SUFFIX; ?></td>
         <td class="accountProductDisplay"><?php echo  $order->products[$i]['name'];
+        // WFH 030806: add onetime charges comment
+          if ($order->products[$i]['onetime_charges'] != 0 ) echo "<br /><span class='oneTimeCharge'>" . TEXT_ONETIME_CHARGES_BASKET . "</span>";
 
     if ( (isset($order->products[$i]['attributes'])) && (sizeof($order->products[$i]['attributes']) > 0) ) {
       echo '<ul id="orderAttribsList">';

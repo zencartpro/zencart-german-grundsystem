@@ -11,7 +11,7 @@
 * tutorials I refer to :)
 *
 * @author   Dietrich Ayala <dietrich@ganx4.com>
-* @version  $Id: class.xmlschema.php 15 2006-07-19 09:22:27Z hugo13 $
+* @version  $Id$
 * @access   public
 */
 class XMLSchema extends nusoap_base  {

@@ -51,6 +51,7 @@
 <!-- header_eof //-->
 <?php
 
+  require(DIR_WS_BOXES . 'zendeutsch_dhtml.php');
   require(DIR_WS_BOXES . 'configuration_dhtml.php');
   require(DIR_WS_BOXES . 'catalog_dhtml.php');
   require(DIR_WS_BOXES . 'modules_dhtml.php');
@@ -61,6 +62,7 @@
   require(DIR_WS_BOXES . 'tools_dhtml.php');
   require(DIR_WS_BOXES . 'gv_admin_dhtml.php');
   require(DIR_WS_BOXES . 'extras_dhtml.php');
+
 
 ?>
 </body>
