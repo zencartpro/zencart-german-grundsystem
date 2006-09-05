@@ -1,6 +1,6 @@
 Zen Cart(tm) - The Art of E-Commerce
 Welcome to Zen Cart(tm) E-Commerce
-Version 1.3.0.2
+Version 1.3.5
 
 THE FOLLOWING IS A VERY SIMPLIFIED INSTALLATION DOCUMENT.
 WE SUGGEST YOU USE THE HTML VERSIONS IN THE /docs FOLDER FOR MORE DETAILED INSTRUCTIONS.
@@ -41,4 +41,4 @@ For more detailed installation instructions, please see the /docs/1.readme_insta
 
 
 
-(Document Revision: $Id: INSTALL.TXT 3822 2006-06-21 15:39:57Z drbyte $)
+(Document Revision: $Id: INSTALL.TXT 4278 2006-08-26 03:20:03Z drbyte $)

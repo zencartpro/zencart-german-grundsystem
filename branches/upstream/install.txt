@@ -1,6 +1,6 @@
 Zen Cart(tm) - The Art of E-Commerce
 Welcome to Zen Cart(tm) E-Commerce
-Version 1.3.0.2
+Version 1.3.5
 
 
 THE FOLLOWING IS A VERY SIMPLIFIED INSTALLATION DOCUMENT.
