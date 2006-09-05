@@ -6,7 +6,7 @@
  * @copyright Copyright 2003-2005 Zen Cartt Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: tpl_shopping_cart.php 3650 2006-05-22 04:15:19Z ajeh $
+ * @version $Id: tpl_shopping_cart.php 3952 2006-07-13 02:38:28Z drbyte $
  */
   $content ="";
 
@@ -39,7 +39,7 @@
     }
     $content .= '</ul>' . "\n" . '</div>';
   } else {
-    $content .= '<div class="sideBoxContent center bold">' . BOX_SHOPPING_CART_EMPTY . '</div>';
+    $content .= '<div id="cartBoxEmpty">' . BOX_SHOPPING_CART_EMPTY . '</div>';
   }
 
   if ($_SESSION['cart']->count_contents() > 0) {
@@ -55,8 +55,8 @@
    $gv_result = $db->Execute($gv_query);
 
     if ($gv_result->fields['amount'] > 0 ) {
-      $content .= '<div id="cartBoxGVButton"  class="sideBoxContent"><a href="' . zen_href_link(FILENAME_GV_SEND, '', 'SSL') . '">' . zen_image_button(BUTTON_IMAGE_SEND_A_GIFT_CERT , BUTTON_SEND_A_GIFT_CERT_ALT) . '</a></div>';
-      $content .= '<div class="sideBoxContent center bold">' . VOUCHER_BALANCE . $currencies->format($gv_result->fields['amount']) . '</div>';
+      $content .= '<div id="cartBoxGVButton"><a href="' . zen_href_link(FILENAME_GV_SEND, '', 'SSL') . '">' . zen_image_button(BUTTON_IMAGE_SEND_A_GIFT_CERT , BUTTON_SEND_A_GIFT_CERT_ALT) . '</a></div>';
+      $content .= '<div id="cartBoxVoucherBalance">' . VOUCHER_BALANCE . $currencies->format($gv_result->fields['amount']) . '</div>';
     }
   }
   $content .= '</div>';

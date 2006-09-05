@@ -5,7 +5,7 @@
  * @copyright Copyright 2003-2005 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: inspect.php 3794 2006-06-18 08:07:28Z drbyte $
+ * @version $Id: inspect.php 4267 2006-08-25 08:42:19Z drbyte $
  */
 /**
  * defining language components for the page
@@ -15,7 +15,6 @@
   define('INSTALL_BUTTON', ' Install '); // this comes before TEXT_MAIN
   define('UPGRADE_BUTTON', 'Upgrade Cfg Files'); // this comes before TEXT_MAIN
   define('DB_UPGRADE_BUTTON', 'Database Upgrade'); // this comes before TEXT_MAIN
-  define('REFRESH_BUTTON', 'Re-Check');
 //Button meanings: (to be made into help-text for future version):
 // "Install" = make new configure.php files, regardless of existing contents.  Load new database by dropping old tables.
 // "Upgrade" = read old configure.php files, and write new ones using new structure. Upgrade database, instead of wiping and new install
@@ -38,6 +37,11 @@
   define('LABEL_PREVIOUS_INSTALL_FOUND','Previous Zen Cart Installation Found');
   define('LABEL_PREVIOUS_VERSION_NUMBER','Database appears to be Zen Cart v%s');
   define('LABEL_PREVIOUS_VERSION_NUMBER_UNKNOWN','<em>However, the version level of your database cannot be determined, usually resulting from wrong table prefixes, or other database settings mismatches. <br /><br />CAUTION: Only use the Upgrade option if you are sure your configure.php settings are correct.</em>');
+  define('LABEL_UPGRADE_VS_INSTALL', 'Install or Upgrade?');
+
+  define('IMAGE_STOP_BEFORE_UPGRADING', '<div class="center"><img src="includes/templates/template_default/images/stop.gif" border="0" alt="WARNING: Be sure to choose the proper option below." /></div>');
+
+  define('LABEL_ACTION_SELECTION_INSTRUCTIONS','<p class="errors extralarge"><span class="center">NOTE:</span><br />If you are Upgrading, be sure to choose "<span style="text-decoration: underline;">Database Upgrade</span>" below to keep your data.</p><p class="extralarge">If you choose "Install", you will erase all the contents of your database.</p>');
 
   define('DISPLAY_PHP_INFO','PHP Info link: ');
   define('VIEW_PHP_INFO_LINK_TEXT','View PHPINFO for your server');

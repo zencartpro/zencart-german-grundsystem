@@ -6,15 +6,15 @@
  * Displays the allowed payment modules, for selection by customer.
  *
  * @package templateSystem
- * @copyright Copyright 2003-2005 Zen Cart Development Team
+ * @copyright Copyright 2003-2006 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: tpl_checkout_payment_default.php 3183 2006-03-14 07:58:59Z birdbrain $
+ * @version $Id: tpl_checkout_payment_default.php 4332 2006-09-01 04:33:16Z ajeh $
  */
 ?>
 <?php echo $payment_modules->javascript_validation(); ?>
 <div class="centerColumn" id="checkoutPayment">
-<?php echo zen_draw_form('checkout_payment', zen_href_link(FILENAME_CHECKOUT_CONFIRMATION, '', 'SSL'), 'post', 'onsubmit="return check_form();"'); ?>
+<?php echo zen_draw_form('checkout_payment', zen_href_link(FILENAME_CHECKOUT_CONFIRMATION, '', 'SSL'), 'post', ($flagOnSubmit ? 'onsubmit="return check_form();"' : '')); ?>
 
 <h1 id="checkoutPaymentHeading"><?php echo HEADING_TITLE; ?></h1>
 
@@ -38,7 +38,9 @@
 <h2 id="checkoutPaymentHeadingAddress"><?php echo TITLE_BILLING_ADDRESS; ?></h2>
 
 <div id="checkoutBillto" class="floatingBox back">
+<?php if (MAX_ADDRESS_BOOK_ENTRIES >= 2) { ?>
 <div class="buttonRow forward"><?php echo '<a href="' . zen_href_link(FILENAME_CHECKOUT_PAYMENT_ADDRESS, '', 'SSL') . '">' . zen_image_button(BUTTON_IMAGE_CHANGE_ADDRESS, BUTTON_CHANGE_ADDRESS_ALT) . '</a>'; ?></div>
+<?php } ?>
 <address><?php echo zen_address_label($_SESSION['customer_id'], $_SESSION['billto'], true, ' ', '<br />'); ?></address>
 </div>
 
@@ -81,8 +83,8 @@
     }
 ?>
 
-<?php 
-    } 
+<?php
+    }
 ?>
 
 <fieldset>
@@ -110,9 +112,9 @@
 ?>
 <p class="important"><?php echo TEXT_SELECT_PAYMENT_METHOD; ?></p>
 <?php
-  } else {
+  } elseif (sizeof($selection) == 0) {
 ?>
-<p class="important"><?php echo TEXT_ENTER_PAYMENT_INFORMATION; ?></p>
+<p class="important"><?php echo TEXT_NO_PAYMENT_OPTIONS_AVAILABLE; ?></p>
 
 <?php
   }
@@ -185,7 +187,7 @@
 </fieldset>
 
 <div class="buttonRow forward"><?php echo zen_image_submit(BUTTON_IMAGE_CONTINUE_CHECKOUT, BUTTON_CONTINUE_ALT, 'onclick="submitFunction('.zen_user_has_gv_account($_SESSION['customer_id']).','.$order->info['total'].')"'); ?></div>
-<div class="buttonRow Back"><?php echo TITLE_CONTINUE_CHECKOUT_PROCEDURE . '<br />' . TEXT_CONTINUE_CHECKOUT_PROCEDURE; ?></div>
+<div class="buttonRow back"><?php echo TITLE_CONTINUE_CHECKOUT_PROCEDURE . '<br />' . TEXT_CONTINUE_CHECKOUT_PROCEDURE; ?></div>
 
 </form>
 </div>

@@ -1,24 +1,11 @@
 <?php
-//
-// +----------------------------------------------------------------------+
-// |zen-cart Open Source E-commerce                                       |
-// +----------------------------------------------------------------------+
-// | Copyright (c) 2004 The zen-cart developers                           |
-// |                                                                      |
-// | http://www.zen-cart.com/index.php                                    |
-// |                                                                      |
-// | Portions Copyright (c) 2003 osCommerce                               |
-// +----------------------------------------------------------------------+
-// | This source file is subject to version 2.0 of the GPL license,       |
-// | that is bundled with this package in the file LICENSE, and is        |
-// | available through the world-wide-web at the following url:           |
-// | http://www.zen-cart.com/license/2_0.txt.                             |
-// | If you did not receive a copy of the zen-cart license and are unable |
-// | to obtain it through the world-wide-web, please send a note to       |
-// | license@zen-cart.com so we can mail you a copy immediately.          |
-// +----------------------------------------------------------------------+
-// $Id: zones.php 1969 2005-09-13 06:57:21Z drbyte $
-//
+/**
+ * @package shippingMethod
+ * @copyright Copyright 2003-2006 Zen Cart Development Team
+ * @copyright Portions Copyright 2003 osCommerce
+ * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
+ * @version $Id: zones.php 4342 2006-09-02 16:39:10Z ajeh $
+ */
 /*
 
   USAGE
@@ -116,7 +103,7 @@
       $this->sort_order = MODULE_SHIPPING_ZONES_SORT_ORDER;
       $this->icon = '';
       $this->tax_class = MODULE_SHIPPING_ZONES_TAX_CLASS;
-      $this->tax_class = MODULE_SHIPPING_ZONES_TAX_CLASS;
+      $this->tax_basis = MODULE_SHIPPING_ZONES_TAX_BASIS;
 
       // disable only when entire cart is free shipping
       if (zen_get_shipping_enabled($this->code)) {
@@ -129,8 +116,7 @@
 
 // class methods
     function quote($method = '') {
-      global $order, $shipping_weight, $shipping_num_boxes;
-
+      global $order, $shipping_weight, $shipping_num_boxes, $total_count;
       $dest_country = $order->delivery['country']['iso_code_2'];
       $dest_zone = 0;
       $error = false;
@@ -152,37 +138,55 @@
 
         $zones_table = split("[:,]" , $zones_cost);
         $size = sizeof($zones_table);
+        $done = false;
         for ($i=0; $i<$size; $i+=2) {
-	  if (MODULE_SHIPPING_ZONES_METHOD == 'Weight') {
-            if ($shipping_weight <= $zones_table[$i]) {
-              $shipping = $zones_table[$i+1];
+          switch (MODULE_SHIPPING_ZONES_METHOD) {
+        	  case (MODULE_SHIPPING_ZONES_METHOD == 'Weight'):
+              if (round($shipping_weight,9) <= $zones_table[$i]) {
+                $shipping = $zones_table[$i+1];
 
-          switch (SHIPPING_BOX_WEIGHT_DISPLAY) {
-            case (0):
-              $show_box_weight = '';
-              break;
-            case (1):
-              $show_box_weight = ' (' . $shipping_num_boxes . ' ' . TEXT_SHIPPING_BOXES . ')';
-              break;
-            case (2):
-              $show_box_weight = ' (' . number_format($shipping_weight * $shipping_num_boxes,2) . MODULE_SHIPPING_ZONES_TEXT_UNITS . ')';
-              break;
-            default:
-              $show_box_weight = ' (' . $shipping_num_boxes . ' x ' . number_format($shipping_weight,2) . MODULE_SHIPPING_ZONES_TEXT_UNITS . ')';
-              break;
-          }
+                switch (SHIPPING_BOX_WEIGHT_DISPLAY) {
+                case (0):
+                  $show_box_weight = '';
+                  break;
+                case (1):
+                  $show_box_weight = ' (' . $shipping_num_boxes . ' ' . TEXT_SHIPPING_BOXES . ')';
+                  break;
+                case (2):
+                  $show_box_weight = ' (' . number_format($shipping_weight * $shipping_num_boxes,2) . MODULE_SHIPPING_ZONES_TEXT_UNITS . ')';
+                  break;
+                default:
+                  $show_box_weight = ' (' . $shipping_num_boxes . ' x ' . number_format($shipping_weight,2) . MODULE_SHIPPING_ZONES_TEXT_UNITS . ')';
+                  break;
+                }
 
-//              $shipping_method = MODULE_SHIPPING_ZONES_TEXT_WAY . ' ' . $dest_country . (SHIPPING_BOX_WEIGHT_DISPLAY >= 2 ? ' : ' . $shipping_weight . ' ' . MODULE_SHIPPING_ZONES_TEXT_UNITS : '');
-              $shipping_method = MODULE_SHIPPING_ZONES_TEXT_WAY . ' ' . $dest_country . $show_box_weight;
-              break;
-	    }
-	  } else {
+//                $shipping_method = MODULE_SHIPPING_ZONES_TEXT_WAY . ' ' . $dest_country . (SHIPPING_BOX_WEIGHT_DISPLAY >= 2 ? ' : ' . $shipping_weight . ' ' . MODULE_SHIPPING_ZONES_TEXT_UNITS : '');
+                $shipping_method = MODULE_SHIPPING_ZONES_TEXT_WAY . ' ' . $dest_country . $show_box_weight;
+                $done = true;
+                break;
+        	    }
+      	    break;
+        	  case (MODULE_SHIPPING_ZONES_METHOD == 'Price'):
 // shipping adjustment
-            if (($_SESSION['cart']->show_total() - $_SESSION['cart']->free_shipping_prices()) <= $zones_table[$i]) {
-              $shipping = $zones_table[$i+1];
-              $shipping_method = MODULE_SHIPPING_ZONES_TEXT_WAY . ' ' . $dest_country;
-              break;
-	    }
+              if (($_SESSION['cart']->show_total() - $_SESSION['cart']->free_shipping_prices()) <= $zones_table[$i]) {
+                $shipping = $zones_table[$i+1];
+                $shipping_method = MODULE_SHIPPING_ZONES_TEXT_WAY . ' ' . $dest_country;
+                $done = true;
+                break;
+	            }
+	          break;
+        	  case (MODULE_SHIPPING_ZONES_METHOD == 'Item'):
+// shipping adjustment
+              if (($total_count - $_SESSION['cart']->free_shipping_items()) <= $zones_table[$i]) {
+                $shipping = $zones_table[$i+1];
+                $shipping_method = MODULE_SHIPPING_ZONES_TEXT_WAY . ' ' . $dest_country;
+                $done = true;
+                break;
+  	          }
+	          break;
+          }
+          if ($done == true) {
+            break;
           }
         }
 
@@ -190,11 +194,19 @@
           $shipping_cost = 0;
           $shipping_method = MODULE_SHIPPING_ZONES_UNDEFINED_RATE;
         } else {
-          if (MODULE_SHIPPING_ZONES_METHOD == 'Weight') {
-            $shipping_cost = ($shipping * $shipping_num_boxes) + constant('MODULE_SHIPPING_ZONES_HANDLING_' . $dest_zone);
-          } else {
-            // don't charge per box when done by Price
-            $shipping_cost = ($shipping) + constant('MODULE_SHIPPING_ZONES_HANDLING_' . $dest_zone);
+          switch (MODULE_SHIPPING_ZONES_METHOD) {
+        	  case (MODULE_SHIPPING_ZONES_METHOD == 'Weight'):
+              // charge per box when done by Price
+              $shipping_cost = ($shipping * $shipping_num_boxes) + constant('MODULE_SHIPPING_ZONES_HANDLING_' . $dest_zone);
+              break;
+        	  case (MODULE_SHIPPING_ZONES_METHOD == 'Price'):
+              // don't charge per box when done by Price
+              $shipping_cost = ($shipping) + constant('MODULE_SHIPPING_ZONES_HANDLING_' . $dest_zone);
+            break;
+        	  case (MODULE_SHIPPING_ZONES_METHOD == 'Item'):
+              // don't charge per box when done by Item
+              $shipping_cost = ($shipping) + constant('MODULE_SHIPPING_ZONES_HANDLING_' . $dest_zone);
+            break;
           }
         }
       }
@@ -228,7 +240,7 @@
     function install() {
       global $db;
       $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) VALUES ('Enable Zones Method', 'MODULE_SHIPPING_ZONES_STATUS', 'True', 'Do you want to offer zone rate shipping?', '6', '0', 'zen_cfg_select_option(array(\'True\', \'False\'), ', now())");
-      $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) VALUES ('Calculation Method', 'MODULE_SHIPPING_ZONES_METHOD', 'Weight', 'Calculate cost based on Weight or Price?', '6', '0', 'zen_cfg_select_option(array(\'Weight\', \'Price\'), ', now())");
+      $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) VALUES ('Calculation Method', 'MODULE_SHIPPING_ZONES_METHOD', 'Weight', 'Calculate cost based on Weight, Price or Item?', '6', '0', 'zen_cfg_select_option(array(\'Weight\', \'Price\', \'Item\'), ', now())");
       $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, use_function, set_function, date_added) values ('Tax Class', 'MODULE_SHIPPING_ZONES_TAX_CLASS', '0', 'Use the following tax class on the shipping fee.', '6', '0', 'zen_get_tax_class_title', 'zen_cfg_pull_down_tax_classes(', now())");
       $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) values ('Tax Basis', 'MODULE_SHIPPING_ZONES_TAX_BASIS', 'Shipping', 'On what basis is Shipping Tax calculated. Options are<br />Shipping - Based on customers Shipping Address<br />Billing Based on customers Billing address<br />Store - Based on Store address if Billing/Shipping Zone equals Store zone', '6', '0', 'zen_cfg_select_option(array(\'Shipping\', \'Billing\', \'Store\'), ', now())");
       $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) values ('Sort Order', 'MODULE_SHIPPING_ZONES_SORT_ORDER', '0', 'Sort order of display.', '6', '0', now())");

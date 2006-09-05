@@ -6,7 +6,7 @@
  * @copyright Copyright 2003-2006 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: tpl_categories.php 3157 2006-03-10 23:24:22Z drbyte $
+ * @version $Id: tpl_categories.php 4162 2006-08-17 03:55:02Z ajeh $
  */
   $content = "";
   
@@ -71,7 +71,8 @@
     }
     if (SHOW_CATEGORIES_BOX_PRODUCTS_NEW == 'true') {
       // display limits
-      $display_limit = zen_get_products_new_timelimit();
+//      $display_limit = zen_get_products_new_timelimit();
+      $display_limit = zen_get_new_date_range();
 
       $show_this = $db->Execute("select p.products_id
                                  from " . TABLE_PRODUCTS . " p

@@ -7,7 +7,7 @@
  * @copyright Copyright 2003-2005 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: init_sessions.php 2753 2005-12-31 19:17:17Z wilt $
+ * @version $Id: init_sessions.php 4020 2006-07-24 23:52:40Z drbyte $
  */
 if (!defined('IS_ADMIN_FLAG')) {
   die('Illegal Access');
@@ -71,7 +71,7 @@ if (SESSION_FORCE_COOKIE_USE == 'True') {
  */
 if (!isset($_SESSION['customers_host_address'])) {
   if (SESSION_IP_TO_HOST_ADDRESS == 'true') {
-    $_SESSION['customers_host_address']= gethostbyaddr($_SERVER['REMOTE_ADDR']);
+    $_SESSION['customers_host_address']= @gethostbyaddr($_SERVER['REMOTE_ADDR']);
   } else {
     $_SESSION['customers_host_address'] = OFFICE_IP_TO_HOST_ADDRESS;
   }

@@ -3,15 +3,15 @@
  * Module Template - for shipping-estimator display
  *
  * @package templateSystem
- * @copyright Copyright 2003-2005 Zen Cart Development Team
+ * @copyright Copyright 2003-2006 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: tpl_modules_shipping_estimator.php 3656 2006-05-24 00:08:11Z ajeh $
+ * @version $Id: tpl_modules_shipping_estimator.php 4313 2006-08-28 00:25:40Z drbyte $
  */
 ?>
 
 <?php echo zen_draw_form('estimator', zen_href_link($show_in, '', 'NONSSL'), 'post'); ?>
-<?php echo zen_draw_hidden_field('sid', $selected_shipping['id']); ?>
+<?php echo zen_draw_hidden_field('scid', $selected_shipping['id']); ?>
     <?php
   if(sizeof($quotes)) {
     if ($_SESSION['customer_id']) {
@@ -142,8 +142,10 @@
           }
         }
       }
-    }
-  }
 ?>
 </table>
+<?php
+   }
+  }
+?>
 </form>

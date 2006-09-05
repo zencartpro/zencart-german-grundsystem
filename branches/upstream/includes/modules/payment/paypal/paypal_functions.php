@@ -7,8 +7,14 @@
  * @copyright Portions Copyright 2003 osCommerce
  * @copyright Portions Copyright (c) 2004 DevosC.com
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: paypal_functions.php 3048 2006-02-16 23:40:21Z wilt $
+ * @version $Id: paypal_functions.php 4148 2006-08-16 02:28:27Z drbyte $
  */
+
+// counter used for debug purposes:
+  $paypal_error_counter = 0;
+  $paypal_instance_id = time();
+
+// Functions for paypal processing
   function datetime_to_sql_format($paypalDateTime) {
     //Copyright (c) 2004 DevosC.com
     $months = array('Jan' => '01', 'Feb' => '02', 'Mar' => '03', 'Apr' => '04', 'May' => '05',  'Jun' => '06',  'Jul' => '07', 'Aug' => '08', 'Sep' => '09', 'Oct' => '10', 'Nov' => '11', 'Dec' => '12');
@@ -21,10 +27,12 @@
   }
 
   function ipn_debug_email($message, $email_address = MODULE_PAYMENT_PAYPAL_DEBUG_EMAIL_ADDRESS, $always_send = false) {
-    if (MODULE_PAYMENT_PAYPAL_IPN_DEBUG == 'Yes' || $always_send) {
-      mail($email_address,'IPN DEBUG message', $message);
-      ipn_add_error_log($message);
+    if (MODULE_PAYMENT_PAYPAL_IPN_DEBUG == 'Log and Email' || $always_send) {
+      global $paypal_error_counter, $paypal_instance_id;
+      $paypal_error_counter ++;
+      mail($email_address,'IPN DEBUG message (' . $paypal_instance_id . ') #' . $paypal_error_counter, $message);
     }
+    if (MODULE_PAYMENT_PAYPAL_IPN_DEBUG == 'Log and Email' || MODULE_PAYMENT_PAYPAL_IPN_DEBUG == 'Log File' || MODULE_PAYMENT_PAYPAL_IPN_DEBUG == 'Yes') ipn_add_error_log($message);
   }
   function ipn_get_stored_session($session_stuff) {
     global $db;
@@ -32,7 +40,10 @@
       ipn_debug_email('IPN FATAL ERROR::Could not find custom variable in post, cannot re-create session'); 
       return false;
     }
-    $sql = "select * from " . TABLE_PAYPAL_SESSION . " where session_id = '" . $session_stuff[1] . "'"; 
+    $sql = "SELECT * 
+            FROM " . TABLE_PAYPAL_SESSION . " 
+            WHERE session_id = :sessionID";
+    $sql = $db->bindVars($sql, ':sessionID', $session_stuff[1], 'string'); 
     $stored_session = $db->Execute($sql);
     if ($stored_session->recordCount() < 1) {
       ipn_debug_email('IPN FATAL ERROR::Could not find stored session in DB, cannot re-create session'); 
@@ -46,15 +57,26 @@
       ipn_debug_email('IPN WARNING::Transaction was not marked as VERIFIED. IPN Info = ' . $info);
       return false;
     }
-    if ($postArray['business'] != MODULE_PAYMENT_PAYPAL_BUSINESS_ID) {
+    if ($postArray['business'] != strtolower(MODULE_PAYMENT_PAYPAL_BUSINESS_ID)) {
       ipn_debug_email('IPN WARNING::Transaction email address not matched. From IPN = ' . $postArray['business'] . ': From CONFIG = ' .  MODULE_PAYMENT_PAYPAL_BUSINESS_ID);
       return false;
     }
     return true;
   }  
-    function valid_payment($info, $amount, $currency) {
-    if ( ($_POST['mc_currency'] != $currency) || ($_POST['mc_gross'] != $amount) && MODULE_PAYMENT_PAYPAL_TESTING == false ) {
-      ipn_debug_email('IPN WARNING::Currency Mismatch for email address = ' . $_POST['business'] . ' | mc_currency = ' . $_POST['mc_currency'] . ' | $currency = ' . $currency . ' | mc_gross = ' . $_POST['mc_gross'] . " | $amount = " . $amount);
+
+  function valid_payment($info, $amount, $currency) {
+    global $currencies;
+    if (MODULE_PAYMENT_PAYPAL_CURRENCY == 'Selected Currency') {
+      $my_currency = $_SESSION['currency'];
+    } else {
+      $my_currency = substr(MODULE_PAYMENT_PAYPAL_CURRENCY, 5);
+    }
+    if (!in_array($my_currency, array('CAD', 'EUR', 'GBP', 'JPY', 'USD', 'AUD'))) {
+      $my_currency = 'USD';
+    }
+    $transaction_amount = number_format(($amount) * $currencies->get_value($my_currency), $currencies->get_decimal_places($my_currency));
+    if ( ($_POST['mc_currency'] != $my_currency) || ($_POST['mc_gross'] != $transaction_amount && $_POST['mc_gross'] != -0.01) && MODULE_PAYMENT_PAYPAL_TESTING != 'Test' ) {
+      ipn_debug_email('IPN WARNING::Currency/Amount Mismatch.  Details: PayPal email address = ' . $_POST['business'] . "\n" . '-> | mc_currency = ' . $_POST['mc_currency'] . ' | submitted_currency = ' . $my_currency . ' | order_currency = ' . $currency . ' | mc_gross = ' . $_POST['mc_gross'] . ' | converted_amount = ' . $transaction_amount . ' | order_amount = ' . $amount );
       return false;
     }
     return true;
@@ -66,13 +88,18 @@
     if (isset($_POST['txn_type']) && $_POST['txn_type'] == 'send_money') return $txn_type;
 //    if (isset($_POST['txn_type']) && $_POST['txn_type'] == 'web_accept') return $txn_type;
     if (isset($_POST['parent_txn_id']) && $_POST['parent_txn_id'] != "") {
-      $test_txn = $db->execute("select * from " . TABLE_PAYPAL . " where txn_id = '" . $_POST['parent_txn_id'] . "'");
+      $sql = "select * from " . TABLE_PAYPAL . " where txn_id = :transactionID ";
+      $sql = $db->bindVars($sql, ':transactionID', $_POST['parent_txn_id'], 'string'); 
+      $test_txn = $db->execute($sql);
       if ($test_txn->RecordCount() > 0) { 
         $txn_type = 'parent'; 
         return $txn_type;
       }
     }
-    $test_txn = $db->execute("select * from " . TABLE_PAYPAL . " where txn_id = '" . $_POST['txn_id'] . "'");
+
+    $sql = "select * from " . TABLE_PAYPAL . " where txn_id = :transactionID ";
+    $sql = $db->bindVars($sql, ':transactionID', $_POST['txn_id'], 'string'); 
+    $test_txn = $db->execute($sql);
     if ($test_txn->RecordCount() <= 0) {
       $txn_type = 'unique';
       return $txn_type;
@@ -181,7 +208,7 @@
   }
   function ipn_simulate_ipn_handler($count) {
     global $db;
-    $sql = "select * from paypal_testing order by paypal_ipn_id desc limit " . $count;
+    $sql = "select * from " . DB_PREFIX . "paypal_testing order by paypal_ipn_id desc limit " . (int)$count;
     $paypal_testing = $db->execute($sql);
     while (!$paypal_testing->EOF) {
       $paypal_fields[] = $paypal_testing->fields;
@@ -198,12 +225,11 @@
     }
   }
   function ipn_add_error_log($message) {
-    if (MODULE_PAYMENT_PAYPAL_TESTING == 'Test') {
-//      echo date('D M Y G:i') . ' -- ' . $message . "\n";
-    }
-    $fp = @fopen('ipn.log', 'a');
-    @fwrite($fp, date('D M Y G:i') . ' -- ' . $message . "\n");
+    global  $paypal_instance_id;
+    $fp = @fopen('includes/modules/payment/paypal/logs/ipn_' . $paypal_instance_id . '.log', 'a');
+    @fwrite($fp, date('D M Y G:i') . ' -- ' . $message . "\n\n");
     @fclose($fp);
+    // if (MODULE_PAYMENT_PAYPAL_TESTING == 'Test') echo date('D M Y G:i') . ' -- ' . $message . "\n";
   }
   function ipn_fopen($filename) {
     $response = '';

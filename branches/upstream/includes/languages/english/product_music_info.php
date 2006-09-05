@@ -4,12 +4,12 @@
  * @copyright Copyright 2003-2006 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: product_music_info.php 3027 2006-02-13 17:15:51Z drbyte $
+ * @version $Id: product_music_info.php 4336 2006-09-01 20:04:54Z drbyte $
  */
 
 define('TEXT_PRODUCT_NOT_FOUND', 'Sorry, the product was not found.');
 define('TEXT_CURRENT_REVIEWS', 'Current Reviews:');
-define('TEXT_RECORD_COMPANY_URL', 'For more information, please visit the Record Companies <a href="%s" target="_blank">webpage</a>.');
+define('TEXT_RECORD_COMPANY_URL', 'For more information, please visit the Record Company\'s <a href="%s" target="_blank">webpage</a>.');
 define('TEXT_ARTIST_URL', 'For more information, please visit the Artist\'s <a href="%s" target="_blank">webpage</a>.');
 define('TEXT_DATE_ADDED', 'This product was added to our catalog on %s.');
 define('TEXT_DATE_AVAILABLE', 'This product will be in stock on %s.');

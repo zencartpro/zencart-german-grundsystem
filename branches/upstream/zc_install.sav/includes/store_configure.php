@@ -5,7 +5,7 @@
  * @copyright Copyright 2003-2006 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: store_configure.php 3121 2006-03-06 21:49:11Z drbyte $
+ * @version $Id: store_configure.php 4095 2006-08-08 02:32:01Z drbyte $
  */
 
 if (!isset($_GET['phpbb_dir'])) $_GET['phpbb_dir'] = '';
@@ -53,12 +53,12 @@ $file_contents =
 '// define our database connection' . "\n" .
 '  define(\'DB_TYPE\', \'' . $_POST['db_type']. '\');' . "\n" .
 '  define(\'DB_PREFIX\', \'' . $_POST['db_prefix']. '\');' . "\n" .
-'  define(\'DB_SERVER\', \'' . $_POST['db_host'] . '\'); // eg, localhost - should not be empty' . "\n" .
+'  define(\'DB_SERVER\', \'' . $_POST['db_host'] . '\');' . "\n" .
 '  define(\'DB_SERVER_USERNAME\', \'' . $_POST['db_username'] . '\');' . "\n" .
 '  define(\'DB_SERVER_PASSWORD\', \'' . $_POST['db_pass'] . '\');' . "\n" .
 '  define(\'DB_DATABASE\', \'' . $_POST['db_name'] . '\');' . "\n" .
 '  define(\'USE_PCONNECT\', \'false\'); // use persistent connections?' . "\n" .
-'  define(\'STORE_SESSIONS\', \'' . $_POST['db_sess'] . '\'); // leave empty \'\' for default handler or set to \'db\'' . "\n\n" .
+'  define(\'STORE_SESSIONS\', \'' . $_POST['db_sess'] . '\'); // use \'db\' for best support, or \'\' for file-based storage' . "\n\n" .
 '  // The next 2 "defines" are for SQL cache support.' . "\n" .
 '  // For SQL_CACHE_METHOD, you can select from:  none, database, or file' . "\n" .
 '  // If you choose "file", then you need to set the DIR_FS_SQL_CACHE to a directory where your apache ' . "\n" .

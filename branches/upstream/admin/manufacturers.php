@@ -17,7 +17,7 @@
 // | to obtain it through the world-wide-web, please send a note to       |
 // | license@zen-cart.com so we can mail you a copy immediately.          |
 // +----------------------------------------------------------------------+
-//  $Id: manufacturers.php 1969 2005-09-13 06:57:21Z drbyte $
+//  $Id: manufacturers.php 4300 2006-08-27 19:36:10Z ajeh $
 //
 
   require('includes/application_top.php');
@@ -245,7 +245,7 @@
           $dir_info[] = array('id' => $file . '/', 'text' => $file);
         }
       }
-
+      sort($dir_info);
       $default_directory = 'manufacturers/';
 
       $contents[] = array('text' => '<BR />' . TEXT_PRODUCTS_IMAGE_DIR . zen_draw_pull_down_menu('img_dir', $dir_info, $default_directory));
@@ -273,7 +273,9 @@
           $dir_info[] = array('id' => $file . '/', 'text' => $file);
         }
       }
+      sort($dir_info);
       $default_directory = substr( $mInfo->manufacturers_image, 0,strpos( $mInfo->manufacturers_image, '/')+1);
+
       $contents[] = array('text' => '<BR />' . TEXT_PRODUCTS_IMAGE_DIR . zen_draw_pull_down_menu('img_dir', $dir_info, $default_directory));
       $contents[] = array('text' => '<br />' . zen_info_image($mInfo->manufacturers_image, $mInfo->manufacturers_name));
       $manufacturer_inputs_string = '';

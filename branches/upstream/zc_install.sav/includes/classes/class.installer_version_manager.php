@@ -8,7 +8,7 @@
  * @copyright Copyright 2003-2006 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: class.installer_version_manager.php 3716 2006-06-05 22:29:29Z drbyte $
+ * @version $Id: class.installer_version_manager.php 4317 2006-08-29 00:05:58Z drbyte $
  */
 
 
@@ -29,7 +29,7 @@
       /**
        * The version that this edition of the installer is designed to support
        */
-      $this->latest_version = '1.3.0.2';
+      $this->latest_version = '1.3.5';
 
       /**
        * Check to see if the configuration table can be found...thus validating the installation, in part.
@@ -74,6 +74,7 @@
       $this->version130 = $this->check_version_130();
       $this->version1301 = $this->check_version_1301();
       $this->version1302 = $this->check_version_1302();
+      $this->version135 = $this->check_version_135();
 
 //        if ($this->version103 == true)  $retVal = '1.0.3';
 //        if ($this->version104 == true)  $retVal = '1.0.4';
@@ -93,6 +94,7 @@
         if ($this->version130 == true)  $retVal = '1.3.0';
         if ($this->version1301 == true) $retVal = '1.3.0.1';
         if ($this->version1302 == true) $retVal = '1.3.0.2';
+        if ($this->version135 == true) $retVal = '1.3.5';
 
       return $retVal;
     }
@@ -552,13 +554,37 @@
       return $got_v1_3_0_2;
     } //end of 1.3.0.2 check
 
+    function check_version_135() {
+      global $db_test;
+      $got_v1_3_5 = false;
+      $got_v1_3_5a = false;
+      $got_v1_3_5b = false;
+      //1st check for v1.3.5
+      $sql = "select configuration_title from " . DB_PREFIX . "configuration where configuration_key='PRODUCT_LIST_PRICE_BUY_NOW'";
+      $result = $db_test->Execute($sql);
+      if (ZC_UPG_DEBUG==true) echo "135a-configkey_check PRODUCT_LIST_PRICE_BUY_NOW =" . $result->fields['configuration_title'] . '<br>';
+      if  ($result->fields['configuration_title'] == 'Display Product Add to Cart Button (0=off; 1=on; 2=on with Qty Box per Product)') {
+        $got_v1_3_5a = true;
+      }
+      //2nd check for v1.3.5
+      $sql = "select configuration_title from " . DB_PREFIX . "configuration where configuration_key='PRODUCT_LIST_ALPHA_SORTER'";
+      $result = $db_test->Execute($sql);
+      if (ZC_UPG_DEBUG==true) echo "135b-configkey_check PRODUCT_LIST_ALPHA_SORTER =" . $result->fields['configuration_title'] . '<br>';
+      if  ($result->fields['configuration_title'] == 'Include Product Listing Alpha Sorter Dropdown') {
+        $got_v1_3_5b = true;
+      }
 
-
-
-
-
-
-
+      if (ZC_UPG_DEBUG==true) {
+        echo '1.3.5a='.$got_v1_3_5a.'<br>';
+        echo '1.3.5b='.$got_v1_3_5b.'<br>';
+      }
+      // evaluate all 1.3.5 checks
+      if ($got_v1_3_5a && $got_v1_3_5b ) {
+        $got_v1_3_5 = true;
+        if (ZC_UPG_DEBUG==true) echo '<br>Got 1.3.5<br>';
+      }
+      return $got_v1_3_5;
+    } //end of 1.3.5 check
 
 
 

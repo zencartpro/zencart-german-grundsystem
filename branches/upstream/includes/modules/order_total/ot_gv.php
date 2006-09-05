@@ -1,10 +1,10 @@
 <?php
 /**
  * @package orderTotal
- * @copyright Copyright 2003-2005 Zen Cart Development Team
+ * @copyright Copyright 2003-2006 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: ot_gv.php 3821 2006-06-21 15:04:21Z drbyte $
+ * @version $Id: ot_gv.php 4375 2006-09-03 20:36:38Z drbyte $
  */
 
 class ot_gv {
@@ -43,8 +43,8 @@ class ot_gv {
       $order->info['total'] = zen_round($order->info['total'] - $this->deduction, 2);
       if ($od_amount > 0) {
         $this->output[] = array('title' => $this->title . ':',
-        'text' => '-' . $currencies->format($this->deduction),
-        'value' => $this->deduction);
+                                'text' => '-' . $currencies->format($this->deduction),
+                                'value' => $this->deduction);
       }
     }
   }
@@ -63,7 +63,7 @@ class ot_gv {
   function pre_confirmation_check($order_total) {
     global $order;
     // clean out negative values and strip common currency symbols
-    $_SESSION['cot_gv'] = str_replace(array('$','%','#','€','£','¥','ƒ'), '', $_SESSION['cot_gv']);
+    $_SESSION['cot_gv'] = preg_replace('/[^0-9.%]/', '', $_SESSION['cot_gv']);
     $_SESSION['cot_gv'] = abs($_SESSION['cot_gv']);
 
     if ($_SESSION['cot_gv'] > 0) {
@@ -109,13 +109,13 @@ class ot_gv {
         }
         $total_gv_amount = $total_gv_amount + $gv_order_amount;
         if ($customer_gv) {
-          $db->Execute("update " . TABLE_COUPON_GV_CUSTOMER . " set amount = '" . $total_gv_amount . "' where customer_id = '" . $_SESSION['customer_id'] . "'");
+          $db->Execute("update " . TABLE_COUPON_GV_CUSTOMER . " set amount = '" . $total_gv_amount . "' where customer_id = '" . (int)$_SESSION['customer_id'] . "'");
         } else {
-          $db->Execute("insert into " . TABLE_COUPON_GV_CUSTOMER . " (customer_id, amount) values ('" . $_SESSION['customer_id'] . "', '" . $total_gv_amount . "')");
+          $db->Execute("insert into " . TABLE_COUPON_GV_CUSTOMER . " (customer_id, amount) values ('" . (int)$_SESSION['customer_id'] . "', '" . $total_gv_amount . "')");
         }
       } else {
         // GV_QUEUE is true - so queue the gv for release by store owner
-        $db->Execute("insert into " . TABLE_COUPON_GV_QUEUE . " (customer_id, order_id, amount, date_created, ipaddr) values ('" . $_SESSION['customer_id'] . "', '" . $insert_id . "', '" . $gv_order_amount . "', NOW(), '" . $_SERVER['REMOTE_ADDR'] . "')");
+        $db->Execute("insert into " . TABLE_COUPON_GV_QUEUE . " (customer_id, order_id, amount, date_created, ipaddr) values ('" . (int)$_SESSION['customer_id'] . "', '" . (int)$insert_id . "', '" . $gv_order_amount . "', NOW(), '" . $_SERVER['REMOTE_ADDR'] . "')");
       }
     }
   }
@@ -125,13 +125,13 @@ class ot_gv {
     $gv_query = $db->Execute("select coupon_id from " . TABLE_COUPONS . " where coupon_type = 'G' and coupon_active='Y'");
     if ($gv_query->RecordCount() > 0 || $this->use_credit_amount()) {
       $selection = array('id' => $this->code,
-      'module' => $this->title,
-      'redeem_instructions' => MODULE_ORDER_TOTAL_GV_REDEEM_INSTRUCTIONS,
-      'checkbox' => $this->use_credit_amount(),
-      'fields' => array(array('title' => MODULE_ORDER_TOTAL_GV_TEXT_ENTER_CODE,
-      'field' => zen_draw_input_field('gv_redeem_code', '', 'id="disc-'.$this->code.'" onchange="submitFunction(0,0)"'),
-      'tag' => 'disc-'.$this->code
-      )));
+                         'module' => $this->title,
+                         'redeem_instructions' => MODULE_ORDER_TOTAL_GV_REDEEM_INSTRUCTIONS,
+                         'checkbox' => $this->use_credit_amount(),
+                         'fields' => array(array('title' => MODULE_ORDER_TOTAL_GV_TEXT_ENTER_CODE,
+                                                 'field' => zen_draw_input_field('gv_redeem_code', '', 'id="disc-'.$this->code.'" onchange="submitFunction(0,0)"'),
+                                                 'tag' => 'disc-'.$this->code
+                         )));
 
     }
     return $selection;
@@ -140,10 +140,10 @@ class ot_gv {
   function apply_credit() {
     global $db, $order, $messageStack;
     if ($_SESSION['cot_gv'] != 0) {
-      $gv_result = $db->Execute("select amount from " . TABLE_COUPON_GV_CUSTOMER . " where customer_id = '" . $_SESSION['customer_id'] . "'");
+      $gv_result = $db->Execute("select amount from " . TABLE_COUPON_GV_CUSTOMER . " where customer_id = '" . (int)$_SESSION['customer_id'] . "'");
       $gv_payment_amount = $this->deduction;
       $gv_amount = $gv_result->fields['amount'] - $gv_payment_amount;
-      $db->Execute("update " . TABLE_COUPON_GV_CUSTOMER . " set amount = '" . $gv_amount . "' where customer_id = '" . $_SESSION['customer_id'] . "'");
+      $db->Execute("update " . TABLE_COUPON_GV_CUSTOMER . " set amount = '" . $gv_amount . "' where customer_id = '" . (int)$_SESSION['customer_id'] . "'");
     }
     $_SESSION['cot_gv'] = false;
     return $gv_payment_amount;
@@ -154,9 +154,9 @@ class ot_gv {
     global $db, $currencies, $messageStack;
     if (!$_POST['cot_gv']) $_SESSION['cot_gv'] = '0.00';
     if ($_POST['gv_redeem_code']) {
-      $gv_result = $db->Execute("select coupon_id, coupon_type, coupon_amount from " . TABLE_COUPONS . " where coupon_code = '" . $_POST['gv_redeem_code'] . "'");
+      $gv_result = $db->Execute("select coupon_id, coupon_type, coupon_amount from " . TABLE_COUPONS . " where coupon_code = '" . zen_db_prepare_input($_POST['gv_redeem_code']) . "'");
       if ($gv_result->RecordCount() > 0) {
-        $redeem_query = $db->Execute("select * from " . TABLE_COUPON_REDEEM_TRACK . " where coupon_id = '" . $gv_result->fields['coupon_id'] . "'");
+        $redeem_query = $db->Execute("select * from " . TABLE_COUPON_REDEEM_TRACK . " where coupon_id = '" . (int)$gv_result->fields['coupon_id'] . "'");
         if ( ($redeem_query->RecordCount() > 0) && ($gv_result->fields['coupon_type'] == 'G')  ) {
           $messageStack->add_session('checkout_payment', ERROR_NO_INVALID_REDEEM_GV, error);
           zen_redirect(zen_href_link(FILENAME_CHECKOUT_PAYMENT, '', 'SSL'));
@@ -173,7 +173,7 @@ class ot_gv {
         // date
         // redemption flag
         // now update customer account with gv_amount
-        $gv_amount_result=$db->Execute("select amount from " . TABLE_COUPON_GV_CUSTOMER . " where customer_id = '" . $_SESSION['customer_id'] . "'");
+        $gv_amount_result=$db->Execute("select amount from " . TABLE_COUPON_GV_CUSTOMER . " where customer_id = '" . (int)$_SESSION['customer_id'] . "'");
         $customer_gv = false;
         $total_gv_amount = $gv_amount;;
         if ($gv_amount_result->RecordCount() > 0) {
@@ -181,13 +181,13 @@ class ot_gv {
           $customer_gv = true;
         }
         $db->Execute("update " . TABLE_COUPONS . " set coupon_active = 'N' where coupon_id = '" . $gv_result->fields['coupon_id'] . "'");
-        $db->Execute("insert into  " . TABLE_COUPON_REDEEM_TRACK . " (coupon_id, customer_id, redeem_date, redeem_ip) values ('" . $gv_result->fields['coupon_id'] . "', '" . $_SESSION['customer_id'] . "', now(),'" . $_SERVER['REMOTE_ADDR'] . "')");
+        $db->Execute("insert into  " . TABLE_COUPON_REDEEM_TRACK . " (coupon_id, customer_id, redeem_date, redeem_ip) values ('" . $gv_result->fields['coupon_id'] . "', '" . (int)$_SESSION['customer_id'] . "', now(),'" . $_SERVER['REMOTE_ADDR'] . "')");
         if ($customer_gv) {
           // already has gv_amount so update
-          $db->Execute("update " . TABLE_COUPON_GV_CUSTOMER . " set amount = '" . $total_gv_amount . "' where customer_id = '" . $_SESSION['customer_id'] . "'");
+          $db->Execute("update " . TABLE_COUPON_GV_CUSTOMER . " set amount = '" . $total_gv_amount . "' where customer_id = '" . (int)$_SESSION['customer_id'] . "'");
         } else {
           // no gv_amount so insert
-          $db->Execute("insert into " . TABLE_COUPON_GV_CUSTOMER . " (customer_id, amount) values ('" . $_SESSION['customer_id'] . "', '" . $total_gv_amount . "')");
+          $db->Execute("insert into " . TABLE_COUPON_GV_CUSTOMER . " (customer_id, amount) values ('" . (int)$_SESSION['customer_id'] . "', '" . $total_gv_amount . "')");
         }
         //          zen_redirect(zen_href_link(FILENAME_CHECKOUT_PAYMENT, 'error_message=' . urlencode(ERROR_REDEEMED_AMOUNT. $currencies->format($gv_amount)), 'SSL'));
         $messageStack->add_session('redemptions',ERROR_REDEEMED_AMOUNT. $currencies->format($gv_amount), 'success' );
@@ -250,7 +250,7 @@ class ot_gv {
 
   function user_has_gv_account($c_id) {
     global $db;
-    $gv_result = $db->Execute("select amount from " . TABLE_COUPON_GV_CUSTOMER . " where customer_id = '" . $c_id . "'");
+    $gv_result = $db->Execute("select amount from " . TABLE_COUPON_GV_CUSTOMER . " where customer_id = '" . (int)$c_id . "'");
     if ($gv_result->RecordCount() > 0) {
       return $gv_result->fields['amount'];
     }
@@ -287,7 +287,7 @@ class ot_gv {
     $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) values ('Sort Order', 'MODULE_ORDER_TOTAL_GV_SORT_ORDER', '840', 'Sort order of display.', '6', '2', now())");
     $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) values ('Queue Purchases', 'MODULE_ORDER_TOTAL_GV_QUEUE', 'true', 'Do you want to queue purchases of the Gift Voucher?', '6', '3','zen_cfg_select_option(array(\'true\', \'false\'), ', now())");
     $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function ,date_added) values ('Include Shipping', 'MODULE_ORDER_TOTAL_GV_INC_SHIPPING', 'true', 'Include Shipping in calculation', '6', '5', 'zen_cfg_select_option(array(\'true\', \'false\'), ', now())");
-    $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function ,date_added) values ('Include Tax', 'MODULE_ORDER_TOTAL_GV_INC_TAX', 'true', 'Include Tax in calculation.', '6', '6','zen_cfg_select_option(array(\'true\', \'false\'), ', now())");
+    $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function ,date_added) values ('Include Tax', 'MODULE_ORDER_TOTAL_GV_INC_TAX', 'false', 'Include Tax in calculation.', '6', '6','zen_cfg_select_option(array(\'true\', \'false\'), ', now())");
     $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function ,date_added) values ('Re-calculate Tax', 'MODULE_ORDER_TOTAL_GV_CALC_TAX', 'None', 'Re-Calculate Tax', '6', '7','zen_cfg_select_option(array(\'None\', \'Standard\', \'Credit Note\'), ', now())");
     $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, use_function, set_function, date_added) values ('Tax Class', 'MODULE_ORDER_TOTAL_GV_TAX_CLASS', '0', 'Use the following tax class when treating Gift Voucher as Credit Note.', '6', '0', 'zen_get_tax_class_title', 'zen_cfg_pull_down_tax_classes(', now())");
     $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function ,date_added) values ('Credit including Tax', 'MODULE_ORDER_TOTAL_GV_CREDIT_TAX', 'false', 'Add tax to purchased Gift Voucher when crediting to Account', '6', '8','zen_cfg_select_option(array(\'true\', \'false\'), ', now())");

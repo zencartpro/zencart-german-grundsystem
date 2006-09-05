@@ -6,13 +6,14 @@
  * @copyright Copyright 2003-2006 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: new_products.php 3012 2006-02-11 16:34:02Z wilt $
+ * @version $Id: new_products.php 4162 2006-08-17 03:55:02Z ajeh $
  */
 if (!defined('IS_ADMIN_FLAG')) {
   die('Illegal Access');
 }
 // display limits
-$display_limit = zen_get_products_new_timelimit();
+//$display_limit = zen_get_products_new_timelimit();
+      $display_limit = zen_get_new_date_range();
 
 if ( (!isset($new_products_category_id)) || ($new_products_category_id == '0') ) {
   $new_products_query = "select p.products_id, p.products_image, p.products_tax_class_id, p.products_price, p.products_date_added

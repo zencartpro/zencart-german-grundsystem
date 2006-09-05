@@ -3,7 +3,7 @@
 // +----------------------------------------------------------------------+
 // |zen-cart Open Source E-commerce                                       |
 // +----------------------------------------------------------------------+
-// | Copyright (c) 2003 The zen-cart developers                           |
+// | Copyright (c) 2006 The zen-cart developers                           |
 // |                                                                      |
 // | http://www.zen-cart.com/index.php                                    |
 // |                                                                      |
@@ -17,7 +17,7 @@
 // | to obtain it through the world-wide-web, please send a note to       |
 // | license@zen-cart.com so we can mail you a copy immediately.          |
 // +----------------------------------------------------------------------+
-//  $Id: general.php 3415 2006-04-11 04:51:22Z drbyte $
+//  $Id: general.php 4316 2006-08-28 21:27:21Z drbyte $
 //
 
 ////
@@ -542,33 +542,30 @@
   //
   // Function    : zen_get_zone_code
   //
-  // Arguments   : country           country code string
-  //               zone              state/province zone_id
-  //               def_state         default string if zone==0
+  // Arguments   : country_id           country code string
+  //               zone_id              state/province zone_id
+  //               default_zone         default string if zone==0
   //
-  // Return      : state_prov_code   state/province code
+  // Return      : state_prov_code   s  tate/province code
   //
   // Description : Function to retrieve the state/province code (as in FL for Florida etc)
   //
   ////////////////////////////////////////////////////////////////////////////////////////////////
-  function zen_get_zone_code($country, $zone, $def_state) {
+  function zen_get_zone_code($country_id, $zone_id, $default_zone) {
     global $db;
+    $zone_query = "select zone_code
+                   from " . TABLE_ZONES . "
+                   where zone_country_id = '" . (int)$country_id . "'
+                   and zone_id = '" . (int)$zone_id . "'";
 
-    $state_prov_values = $db->Execute("select zone_code
-                                       from " . TABLE_ZONES . "
-                                       where zone_country_id = '" . (int)$country . "'
-                                       and zone_id = '" . (int)$zone . "'");
+    $zone = $db->Execute($zone_query);
 
-    if (!$state_prov_values->RecordCount() < 1) {
-      $state_prov_code = $def_state;
+    if ($zone->RecordCount() > 0) {
+      return $zone->fields['zone_code'];
+    } else {
+      return $default_zone;
     }
-    else {
-      $state_prov_code = $state_prov_values->fields['zone_code'];
-    }
-
-    return $state_prov_code;
   }
-
 
   function zen_get_uprid($prid, $params) {
     $uprid = $prid;
@@ -1007,7 +1004,7 @@
 
       if ($key_value == $select_array[$i]) $string .= ' CHECKED';
 
-      $string .= '> ' . $select_array[$i];
+      $string .= ' id="' . strtolower($select_array[$i] . '-' . $name) . '"> ' . '<label for="' . strtolower($select_array[$i] . '-' . $name) . '" class="inputSelect">' . $select_array[$i] . '</label>';
     }
 
     return $string;
@@ -2796,7 +2793,9 @@ function zen_copy_products_attributes($products_id_from, $products_id_to) {
       $string .= '<br><input type="checkbox" name="' . $name . '" value="' . $select_array[$i] . '"';
       $key_values = explode( ", ", $key_value);
       if ( in_array($select_array[$i], $key_values) ) $string .= ' CHECKED';
-      $string .= '> ' . $select_array[$i];
+      $string .= ' id="' . strtolower($select_array[$i] . '-' . $name) . '"> ' . '<label for="' . strtolower($select_array[$i] . '-' . $name) . '" class="inputSelect">' . $select_array[$i] . '</label>';
+
+
     }
     $string .= '<input type="hidden" name="' . $name . '" value="--none--">';
     return $string;

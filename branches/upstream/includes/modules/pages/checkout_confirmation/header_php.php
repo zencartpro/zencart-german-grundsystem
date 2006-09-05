@@ -6,7 +6,7 @@
  * @copyright Copyright 2003-2006 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: header_php.php 2974 2006-02-05 04:53:19Z birdbrain $
+ * @version $Id: header_php.php 4097 2006-08-08 22:58:24Z drbyte $
  */
 
 // This should be first line of the script:
@@ -68,8 +68,12 @@ if ($credit_covers) {
 
 $payment_modules = new payment($_SESSION['payment']);
 $payment_modules->update_status();
-if ( (is_array($payment_modules->modules)) && (sizeof($payment_modules->modules) > 1) && (!is_object($$_SESSION['payment'])) && (!$credit_covers) ) {
+if (($_SESSION['payment'] == '' && !$credit_covers) || (is_array($payment_modules->modules)) && (sizeof($payment_modules->modules) > 1) && (!is_object($$_SESSION['payment'])) && (!$credit_covers) ) {
   $messageStack->add_session('checkout_payment', ERROR_NO_PAYMENT_MODULE_SELECTED, 'error');
+}
+
+if (is_array($payment_modules->modules)) {
+  $payment_modules->pre_confirmation_check();
 }
 
 if ($messageStack->size('checkout_payment') > 0) {
@@ -78,24 +82,21 @@ if ($messageStack->size('checkout_payment') > 0) {
 //echo $messageStack->size('checkout_payment');
 //die('here');
 
-if (is_array($payment_modules->modules)) {
-  $payment_modules->pre_confirmation_check();
-}
-
 // load the selected shipping module
 require(DIR_WS_CLASSES . 'shipping.php');
 $shipping_modules = new shipping($_SESSION['shipping']);
 
 // Stock Check
-$any_out_of_stock = false;
+$flagAnyOutOfStock = false;
+$stock_check = array();
 if (STOCK_CHECK == 'true') {
   for ($i=0, $n=sizeof($order->products); $i<$n; $i++) {
-    if (zen_check_stock($order->products[$i]['id'], $order->products[$i]['qty'])) {
-      $any_out_of_stock = true;
+    if ($stock_check[$i] = zen_check_stock($order->products[$i]['id'], $order->products[$i]['qty'])) {
+      $flagAnyOutOfStock = true;
     }
   }
   // Out of Stock
-  if ( (STOCK_ALLOW_CHECKOUT != 'true') && ($any_out_of_stock == true) ) {
+  if ( (STOCK_ALLOW_CHECKOUT != 'true') && ($flagAnyOutOfStock == true) ) {
     zen_redirect(zen_href_link(FILENAME_SHOPPING_CART));
   }
 }
@@ -105,23 +106,23 @@ if ($_SESSION['cc_id']) {
   $discount_coupon_query = "SELECT coupon_code
                             FROM " . TABLE_COUPONS . "
                             WHERE coupon_id = :couponID";
-  
+
   $discount_coupon_query = $db->bindVars($discount_coupon_query, ':couponID', $_SESSION['cc_id'], 'integer');
   $discount_coupon = $db->Execute($discount_coupon_query);
 
-  $customers_referral_query = "SELECT customers_referral 
-                               FROM " . TABLE_CUSTOMERS . " 
+  $customers_referral_query = "SELECT customers_referral
+                               FROM " . TABLE_CUSTOMERS . "
                                WHERE customers_id = :customersID";
-  
+
   $customers_referral_query = $db->bindVars($customers_referral_query, ':customersID', $_SESSION['customer_id'], 'integer');
   $customers_referral = $db->Execute($customers_referral_query);
 
   // only use discount coupon if set by coupon
   if ($customers_referral->fields['customers_referral'] == '' and CUSTOMERS_REFERRAL_STATUS == 1) {
-    $sql = "UPDATE " . TABLE_CUSTOMERS . " 
-            SET customers_referral = :customersReferral 
+    $sql = "UPDATE " . TABLE_CUSTOMERS . "
+            SET customers_referral = :customersReferral
             WHERE customers_id = :customersID";
-    
+
     $sql = $db->bindVars($sql, ':customersID', $_SESSION['customer_id'], 'integer');
     $sql = $db->bindVars($sql, ':customersReferral', $discount_coupon->fields['coupon_code'], 'string');
     $db->Execute($sql);
@@ -135,9 +136,6 @@ if (isset($$_SESSION['payment']->form_action_url)) {
 } else {
   $form_action_url = zen_href_link(FILENAME_CHECKOUT_PROCESS, '', 'SSL');
 }
-
-$stock_check = (STOCK_CHECK == 'true' ? zen_check_stock(stripslashes($order->products[$i]['id']), $order->products[$i]['qty']) : '');
-
 
 require(DIR_WS_MODULES . zen_get_module_directory('require_languages.php'));
 $breadcrumb->add(NAVBAR_TITLE_1, zen_href_link(FILENAME_CHECKOUT_SHIPPING, '', 'SSL'));

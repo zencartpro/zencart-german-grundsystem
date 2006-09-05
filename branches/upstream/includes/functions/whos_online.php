@@ -6,7 +6,7 @@
  * @copyright Copyright 2003-2006 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: whos_online.php 3506 2006-04-24 05:31:42Z ajeh $
+ * @version $Id: whos_online.php 4134 2006-08-14 00:40:21Z drbyte $
  */
 /**
  * zen_update_whos_online
@@ -98,8 +98,10 @@ function whos_online_session_recreate($old_session, $new_session) {
   global $db;
 
   $sql = "UPDATE " . TABLE_WHOS_ONLINE . "
-          set session_id = '" . $new_session . "' WHERE session_id = '" . $old_session . "'";
-
+          SET session_id = :newSessionID 
+          WHERE session_id = :oldSessionID";
+  $sql = $db->bindVars($sql, ':newSessionID', $new_session, 'string'); 
+  $sql = $db->bindVars($sql, ':oldSessionID', $old_session, 'string'); 
   $db->Execute($sql);
 }
 ?>

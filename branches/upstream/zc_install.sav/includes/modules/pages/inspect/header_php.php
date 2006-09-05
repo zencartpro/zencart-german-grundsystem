@@ -5,13 +5,14 @@
  * @copyright Copyright 2003-2006 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: header_php.php 3824 2006-06-21 17:07:09Z drbyte $
+ * @version $Id: header_php.php 4315 2006-08-28 21:00:53Z drbyte $
  */
 
 
   if (!isset($_GET['debug'])  && !zen_not_null($_POST['debug']))  define('ZC_UPG_DEBUG',false);
   if (!isset($_GET['debug2']) && !zen_not_null($_POST['debug2'])) define('ZC_UPG_DEBUG2',false);
   if (!isset($_GET['debug3']) && !zen_not_null($_POST['debug3'])) define('ZC_UPG_DEBUG3',false);
+  $advanced_mode = (isset($_GET['adv'])) ? true : false;
   //////if (isset($_POST['submit']) || isset($_POST['submit'])  ) define('ZC_UPG_DEBUG',false);
 
   $zc_install->error = false;
@@ -174,7 +175,7 @@
   $mysql_ver_class = ($mysql_version == UNKNOWN || $mysql_version > '5.0') ? 'WARN' : $mysql_ver_class;
   
   $status_check[] = array('Importance' => 'Critical', 'Title' => LABEL_MYSQL_AVAILABLE, 'Status' => $mysql_support, 'Class' => ($mysql_support==ON) ? 'OK' : 'FAIL', 'HelpURL' =>ERROR_CODE_DB_NOTSUPPORTED, 'HelpLabel'=>ERROR_TEXT_DB_NOTSUPPORTED);
-  $status_check[] = array('Importance' => 'Info', 'Title' => LABEL_MYSQL_VER, 'Status' => $mysql_version, 'Class' => $mysql_ver_class, 'HelpURL' =>($mysql_version > '5.0' ? ERROR_CODE_DB_MYSQL5 : ERROR_CODE_DB_VER_UNKNOWN), 'HelpLabel'=>($mysql_version > '5.0' ? ERROR_TEXT_DB_MYSQL5 : ERROR_TEXT_DB_VER_UNKNOWN) );
+  if ($mysql_version != UNKNOWN || ($mysql_version == UNKNOWN && $advanced_mode)) $status_check[] = array('Importance' => 'Info', 'Title' => LABEL_MYSQL_VER, 'Status' => $mysql_version, 'Class' => $mysql_ver_class, 'HelpURL' =>($mysql_version > '5.0' ? ERROR_CODE_DB_MYSQL5 : ERROR_CODE_DB_VER_UNKNOWN), 'HelpLabel'=>($mysql_version > '5.0' ? ERROR_TEXT_DB_MYSQL5 : ERROR_TEXT_DB_VER_UNKNOWN) );
   
   //DB Privileges
 if (false) { // DISABLED THIS CODEBLOCK FOR NOW....
@@ -264,7 +265,7 @@ if (false) { // DISABLED THIS CODEBLOCK FOR NOW....
   
   $session_save_path = (@ini_get('session.save_path')) ? ini_get('session.save_path') : UNKNOWN;
   $session_save_path_writable = (@is_writable( $session_save_path )) ? WRITABLE : UNWRITABLE ;
-  $status_check2[3] = array('Importance' => 'Recommended', 'Title' => LABEL_PHP_EXT_SAVE_PATH, 'Status' => $session_save_path . ($session_save_path != UNKNOWN ? '&nbsp;&nbsp;-->' . $session_save_path_writable : ''), 'Class' => ($session_save_path_writable ==WRITABLE || $session_save_path == UNKNOWN) ? 'OK' : 'WARN', 'HelpURL' =>ERROR_CODE_SESSION_SAVE_PATH, 'HelpLabel'=>ERROR_TEXT_SESSION_SAVE_PATH);
+  $status_check2[3] = array('Importance' => 'Optional', 'Title' => LABEL_PHP_EXT_SAVE_PATH, 'Status' => $session_save_path . ($session_save_path != UNKNOWN ? '&nbsp;&nbsp;-->' . $session_save_path_writable : ''), 'Class' => ($session_save_path_writable ==WRITABLE || $session_save_path == UNKNOWN) ? 'OK' : 'WARN', 'HelpURL' =>ERROR_CODE_SESSION_SAVE_PATH, 'HelpLabel'=>ERROR_TEXT_SESSION_SAVE_PATH);
   
   //check various options for cache storage:
   //foreach (array(@ini_get("session.save_path"), '/tmp', '/var/lib/php/session', $dir_fs_www_root . '/tmp', $dir_fs_www_root . '/cache', 'c:/php/tmp', 'c:/php/sessiondata', 'c:/windows/temp', 'c:/temp') as $cache_test) {
@@ -307,7 +308,7 @@ if (false) { // DISABLED THIS CODEBLOCK FOR NOW....
   
   //PHP MagicQuotesRuntime
   $php_magic_quotes_runtime = (@get_magic_quotes_runtime() > 0) ? ON : OFF;
-  $status_check[] = array('Importance' => 'Recommended', 'Title' => LABEL_PHP_MAG_QT_RUN, 'Status' => $php_magic_quotes_runtime , 'Class' => ($php_magic_quotes_runtime==OFF)?'OK':'WARN', 'HelpURL' =>ERROR_CODE_MAGIC_QUOTES_RUNTIME, 'HelpLabel'=>ERROR_TEXT_MAGIC_QUOTES_RUNTIME);
+  $status_check[] = array('Importance' => 'Recommended', 'Title' => LABEL_PHP_MAG_QT_RUN, 'Status' => $php_magic_quotes_runtime , 'Class' => ($php_magic_quotes_runtime==OFF)?'OK':'FAIL', 'HelpURL' =>ERROR_CODE_MAGIC_QUOTES_RUNTIME, 'HelpLabel'=>ERROR_TEXT_MAGIC_QUOTES_RUNTIME);
   
   //PHP GD support check
   $php_ext_gd =       (@extension_loaded('gd'))      ? ON : OFF;
@@ -339,20 +340,20 @@ if (false) { // DISABLED THIS CODEBLOCK FOR NOW....
   
   //Check for XML Support
   $xml_support = function_exists('xml_parser_create') ? ON : OFF;
-  $status_check[] = array('Importance' => 'Optional', 'Title' => LABEL_XML_SUPPORT, 'Status' => $xml_support, 'Class' => ($xml_support==ON)?'OK':'WARN', 'HelpURL' =>'', 'HelpLabel'=>'');
+  $status_check2[] = array('Importance' => 'Optional', 'Title' => LABEL_XML_SUPPORT, 'Status' => $xml_support, 'Class' => ($xml_support==ON)?'OK':'WARN', 'HelpURL' =>'', 'HelpLabel'=>'');
   
   //Check for FTP support built in to PHP (for manual sending of configure.php files to server if applicable)
   $php_ext_ftp =      (@extension_loaded('ftp'))     ? ON : OFF;
-  if ($php_ext_ftp == ON) $status_check[] = array('Importance' => 'Optional', 'Title' => LABEL_PHP_EXT_FTP, 'Status' => $php_ext_ftp, 'Class' => ($php_ext_ftp==ON)?'OK':'WARN', 'HelpURL' =>'', 'HelpLabel'=>'');
+  if ($php_ext_ftp == ON) $status_check2[] = array('Importance' => 'Optional', 'Title' => LABEL_PHP_EXT_FTP, 'Status' => $php_ext_ftp, 'Class' => ($php_ext_ftp==ON)?'OK':'WARN', 'HelpURL' =>'', 'HelpLabel'=>'');
   
   //Check for pfpro support in PHP for Verisign Payflow Pro payment gateway (Verisign SDK required)
   $php_ext_pfpro =    (@extension_loaded('pfpro'))   ? ON : OFF;
-  if ($php_ext_pfpro==ON) $status_check[] = array('Importance' => 'Optional', 'Title' => LABEL_PHP_EXT_PFPRO, 'Status' => $php_ext_pfpro, 'Class' => ($php_ext_pfpro==ON)?'OK':'WARN', 'HelpURL' =>'', 'HelpLabel'=>'');
+  if ($php_ext_pfpro==ON) $status_check2[] = array('Importance' => 'Optional', 'Title' => LABEL_PHP_EXT_PFPRO, 'Status' => $php_ext_pfpro, 'Class' => ($php_ext_pfpro==ON)?'OK':'WARN', 'HelpURL' =>'', 'HelpLabel'=>'');
   
   //Check PostgreSQL availability
   $pg_support = (function_exists( 'pg_connect' )) ? ON : OFF;
   // turn off display of Postgres status until we support it again
-  //$status_check[] = array('Importance' => 'Optional', 'Title' => LABEL_POSTGRES_AVAILABLE, 'Status' => $pg_support, 'Class' => ($pg_support==ON) ? 'OK' : 'WARN', 'HelpURL' =>ERROR_CODE_DB_NOTSUPPORTED, 'HelpLabel'=>ERROR_TEXT_DB_NOTSUPPORTED);
+  //$status_check2[] = array('Importance' => 'Optional', 'Title' => LABEL_POSTGRES_AVAILABLE, 'Status' => $pg_support, 'Class' => ($pg_support==ON) ? 'OK' : 'WARN', 'HelpURL' =>ERROR_CODE_DB_NOTSUPPORTED, 'HelpLabel'=>ERROR_TEXT_DB_NOTSUPPORTED);
   
 
   //OpenBaseDir setting
@@ -370,15 +371,14 @@ if (false) { // DISABLED THIS CODEBLOCK FOR NOW....
     $found_basedir = false;
     // if anything is found for open_basedir, set to warning:
     if ($open_basedir)   $this_class = 'WARN';
-    // expand based on : symbol
+    // expand based on : symbol, or ; for windows
     $basedir_check_array = explode(':',$open_basedir);
     if (!is_array($basedir_check_array)) $basedir_check_array = explode(';',$open_basedir);
     // now loop thru paths in the open_basedir settings to find a match to our site. If not found, issue warning.
-    if (is_array($basedir_check_array)) {
+    if (is_array($basedir_check_array) && $dir_fs_www_root !='') {
       foreach($basedir_check_array as $basedir_check) {
-
 //        echo 'www-root: ' . $dir_fs_www_root . '<br /> basedir: ' . $basedir_check . '<br /><br />';
-        if (strstr($dir_fs_www_root, $basedir_check)) {
+        if ($basedir_check !='' && strstr($dir_fs_www_root, $basedir_check)) {
 				  //echo 'FOUND<br /><br />';
 					$found_basedir=true;
 				}

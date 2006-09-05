@@ -3,7 +3,7 @@
  * @package documentation
  * @copyright Copyright 2003-2006 Zen Cart Development Team
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: 1.readme_installation.html 3825 2006-06-21 17:07:47Z drbyte $
+ * @version $Id: 1.readme_installation.html 4370 2006-09-03 19:32:03Z drbyte $
  */
 //-->
 <html>
@@ -80,12 +80,16 @@ OSI Certified is a certification mark of the Open Source Initiative.
 <p>Questions to ask yourself ...</p>
 <h3>1. Do you have a domain?</h3>
 <p>If No, stop ... see our <a href="http://www.zen-cart.com/index.php?main_page=infopages&pages_id=10" target="_blank">Certified Hosting</a> Sites and find a fast, reliable hosting site that can help you register your own personal domain as well as provide for your hosting needs that meet the Zen Cart&trade; software requirements ...</p>
-<h3>2. Do you have FTP software?</h3>
-<p>If No, stop ... you need to obtain a decent FTP software package such as <a href="http://www.flashfxp.com/" target="_blank">FlashFXP</a>, <a href="http://filezilla.sourceforge.net/" target="_blank">FileZilla</a>, or another FTP software program to transfer files back and forth from your computer to your webserver.<br />
-Note: webserver meaning, the computer on the internet where you have your domain hosted (See 1)</p>
+<h3>2. Do you have reliable FTP software?</h3>
+<p>If No, stop ... you need to obtain a reliable FTP software package such as <a href="http://filezilla.sourceforge.net/" target="_blank">FileZilla</a> (free), <a href="http://www.flashfxp.com/" target="_blank">FlashFXP</a> or another FTP software program to transfer files back and forth from your computer to your webserver.<br />
+  <strong>Note:</strong> webserver meaning, the computer on the internet where you have your domain hosted (See 1)<br>
+  <br>
+<span class="error"><strong>NOTE:</strong> Many people have had timeout and other problems when using programs like SmartFTP and CuteFTP. We recommend that you do NOT use these problematic programs.<br>
+<br>
+<strong>NOTE 2:</strong> If your hosting company provides an FTP program that runs inside your browser, we recommend that you do NOT use that for uploading large amounts of files such as a fresh install of Zen Cart. Those are okay for single-file uploads, but unreliable for several files at once.</span></p>
 <h3>3. Do you have a good Text Editor?</h3>
-<p>If No stop ... you will need a good Text Editing software such as <a href="http://ultraedit.com/" target="_blank">UltraEdit</a>, <a href="http://crimsoneditor.com" target="_blank">CrimsonEditor</a> (free), <a href="http://www.barebones.com" target="_blank">BBedit</a>(Mac), Kedit (linux), or some other type of Text Editor for modifying the files in the Zen Cart&trade; software ...</p>
-<p><span class="error">Note: do <strong>not</strong> use CPanel or MS Word or other software designed for fancy writing ... you want a nice clean Text Editor.</span> You can use windows notepad... but this is limited in capabilities and the size of files that it can open and often can cause more harm than good ...</p>
+<p>If No stop ... you will need a good Text Editing software such as <a href="http://ultraedit.com/" target="_blank">UltraEdit</a>, <a href="http://notepad-plus.sourceforge.net" target="_blank">Notepad++</a> (free), <a href="http://crimsoneditor.com" target="_blank">CrimsonEditor</a> (free), <a href="http://www.barebones.com" target="_blank">BBedit</a>(Mac), Kedit (linux), or some other type of Text Editor for modifying the files in the Zen Cart&trade; software ...</p>
+<p><span class="error">Note: do <strong>not</strong> use CPanel for editing files, nor MS Word or other software designed for fancy writing ... you want a nice clean Text Editor.</span> You can use the Windows Notepad... but this is limited in capabilities and the size of files that it can open and often can cause more harm than good ...</p>
 <h3>4. Do you have access to your webhosting control panel to create a MySQL database and user? </h3>
 <p> BEFORE YOU PROCEED, make sure you have access to a MySQL database, and username/password to that database. You may need to create the database using your webhosting account's control panel. Contact your webhosting company for assistance. Zen Cart&trade; cannot create the database for you. </p>
 <p>(You need the following permissions on your MySQL user: SELECT, INSERT, UPDATE, DELETE, CREATE, ALTER, INDEX, DROP. &nbsp;&nbsp;On an hSphere host, this would be &quot;dba&quot; access, or at least read/write. )<br />
@@ -135,30 +139,37 @@ Rename this file to <span class="filename">configure.php </span>and change the p
 <br />
 <br />
 <br />
-<strong>NOTE FOR IIS USERS:</strong> If using IIS for Windows hosting, the &quot;chmod 777&quot; idea for permissions settings is likely foreign to you. In IIS, under Windows, you need to right-click on the file (or folders in the next section below), and choose Properties. Then under the Security tab, ensure that the MACHINE_NAME\IUSR_MACHINE_NAME account has at least &quot;read&quot; and &quot;write&quot; privileges... likely best to give &quot;modify&quot; as well. This should be done on each file/folder indicated. (If the IUSR_MACHINE_NAME account isn't listed, click &quot;Add&quot; and add that account from the list, and then set the required permissions.)  (Note: &quot;_MACHINE_NAME&quot; above refers to the &quot;machine name&quot; or &quot;computer name&quot; configured by the server administrator to &quot;name&quot; the server.) <br />
+<strong>NOTE FOR IIS USERS:</strong> If using IIS for Windows hosting, the &quot;chmod 777&quot; idea for permissions settings is likely foreign to you. In IIS, under Windows, you need to right-click on the file (or folders in the next section below), and choose Properties. Then under the Security tab, ensure that the&quot;<em><strong>Internet Guest Account</strong></em>&quot;, identified usually as: MACHINE_NAME\IUSR_MACHINE_NAME ... has at least &quot;read&quot; and &quot;write&quot; privileges... likely best to give &quot;modify&quot; as well. This should be done on each file/folder indicated. (If the IUSR_MACHINE_NAME account isn't listed, click &quot;Add&quot; and add that account from the list, and then set the required permissions.)  (Note: &quot;_MACHINE_NAME&quot; above refers to the &quot;machine name&quot; or &quot;computer name&quot; configured by the server administrator to &quot;name&quot; the server.) <br />
 </div>
 <div><h1>Set Permissions on folders</h1>
-Now, change the permissions on the following directories to 777 (read/write/execute). <br />
-<br />
-<span class="filename">/catalog/cache<br />
-/catalog/images<br />
-/catalog/includes/languages/english/html_includes<br />
-/catalog/media<br />
-/catalog/pub<br />
-/catalog/admin/backups <br />
-/catalog/admin/images/graphs<br /></span>
-<br />
-Note: open the catalog/images directory and change <strong>all </strong>of the subdirectories and their subdirectories to 777 as well. For example (this is a partial list): <br />
-<span class="filename">/catalog/images/attributes<br />
-/catalog/images/dvd<br />
-/catalog/images/large<br />
-/catalog/images/large/dvd<br />
-/catalog/images/medium <br />
-/catalog/images/upload<br /></span>
-<br />
-NOTE: If you miss any of the images directories and subdirectories inside <span class="filename">/images</span> and try to use them later, you will get an error message that you cannot write to these directories. <br />
-<br />
-As for other folders and files, they can be CHMOD 644, or 444, depending on your webserver configuration.</div>
+  <p>Now, change the permissions on the following directories to 777 (read/write/execute). <br />
+      <br />
+      <span class="filename">/catalog/cache<br />
+        /catalog/images<br />
+        /catalog/includes/languages/english/html_includes<br />
+        /catalog/media<br />
+        /catalog/pub<br />
+        /catalog/admin/backups <br />
+        /catalog/admin/images/graphs<br />
+        </span>
+      <br />
+    Note: open the catalog/images directory and change <strong>all </strong>of the subdirectories and their subdirectories to 777 as well. For example (this is a partial list): <br />
+  <span class="filename">/catalog/images/attributes<br />
+    /catalog/images/dvd<br />
+    /catalog/images/large<br />
+    /catalog/images/large/dvd<br />
+    /catalog/images/medium <br />
+    /catalog/images/upload<br />
+  </span>
+  <br />
+    NOTE: If you miss any of the images directories and subdirectories inside <span class="filename">/images</span> and try to use them later, you will get an error message that you cannot write to these directories. </p>
+  <h2><br>
+    Other folders/files</h2>
+  <p>    As for other folders and files, depending on your webserver configuration, they can be set to:<br>
+    - folders:  CHMOD 755 &nbsp;&nbsp;&nbsp;&nbsp;(&quot;CHMOD&quot; is a linux/unix term for setting/changing permission levels) <br>
+    - files: CHMOD 644<br>
+    These are typically the defaults that your FTP program will use when uploading, so usually do not need to be set manually. </p>
+</div>
 <div>
 <h1>Before Running the Installer</h1>
 The installer is fairly intelligent and should be able to automatically supply answers to the questions listed below. <br />
@@ -209,7 +220,7 @@ Note: If you receive any of the following error messages, go through the above s
 <li><span class="error"> /includes/configure.php does not exist.</span>&nbsp;&nbsp;<span class="pseudolink">more info...</span></li><li><span class="error">/admin/includes/configure.php does not exist.</span>&nbsp;&nbsp;<span class="pseudolink">more info...</span>
 </li><br />
 </ul></div>
-<h3>phpBB Setup</h3>Next, you will be prompted for phpBB path information. If you have the phpBB forum software already installed on your site, you may enable it for connectivity and synchronization from Zen Cart&trade;. To enable it, specify the path on your server where the phpBB files are located. For example, if they are in <span class="filename">......public_html/forums</span> &nbsp;then you would enter <span class="filename">/forums</span> in the Zen Cart&trade; installer for path to phpBB files. </div>
+<h3>phpBB Setup</h3>Next, you will be prompted for phpBB path information. If you have the phpBB forum software already installed on your site, you may enable it for connectivity and synchronization from Zen Cart&trade;. To enable it, specify the path on your server where the phpBB files are located. For example, if they are in <span class="filename">......public_html/forums</span> &nbsp;then you would enter <span class="filename">/forums</span> in the Zen Cart&trade; installer for path to phpBB files. 
 <h3>Database Setup</h3>
 On the next screen, you are asked for Database Information about your MySQL database, username and password. These can be obtained from your cPanel or equivalent control screen provided by your host. If you do not have a clean MySQL database setup with a username and password, you will need to create one. <br />
 Contact your Hosting site if you need assistance in creating a MySQL database table and/or username and password. <strong>Note that you need to have your database and userID created before the Zen Cart&trade; installer can continue past this screen</strong>.<br />
@@ -265,11 +276,13 @@ NOTE: use a <em>different name</em> than <span class="filename">zc_install_compl
 </div>
 <div>
 <h1>Next Steps</h1>
-For information on <a href="http://www.zen-cart.com/wiki/index.php/Basic_Checklist" target="_blank">"<em>First Steps To Set Up Your Online Shop</em>"</a>, see the Wiki entry discussing a <strong><a href="http://www.zen-cart.com/wiki/index.php/Basic_Checklist" target="_blank">Basic Checklist</a></strong>
-<br />
-
-<br />
-You should also familiarize yourself with the Zen Cart&trade; Developers Toolkit, located in your store's Admin area, under &quot;Tools&quot;. This will help you locate almost anything you want to customize in your shop! </div>
+<p>For information on <a href="http://www.zen-cart.com/wiki/index.php/Basic_Checklist" target="_blank">"<em>First Steps To Set Up Your Online Shop</em>"</a>, see the Wiki entry discussing a <strong><a href="http://www.zen-cart.com/wiki/index.php/Basic_Checklist" target="_blank">Basic Checklist</a></strong>
+    <br />
+  
+    <br />
+  You should also familiarize yourself with the Zen Cart&trade; Developers Toolkit, located in your store's Admin area, under &quot;Tools&quot;. This will help you locate almost anything you want to customize in your shop! </p>
+<p>Once you're set up and ready to start announcing your URL to the public, you should FIRST review <a href="important_site_security_recommendations.html">Site Security Recommendations</a> to be sure your site is safe and not vulnerable to hackers. The most up-to-date version of this file can be found on the <a href="http://www.zen-cart.com/wiki/index.php/Important_Site_Security_Recommendations" target="_blank"> Zen Cart&trade; wiki under Important Security Recommendations</a> </p>
+</div>
 <div>
 <h1>Help and Support</h1>
 For additional help and support issues, visit our <strong>FAQ's</strong> and our <strong>Support Forums</strong> on the web.<br />
@@ -279,8 +292,7 @@ For additional help and support issues, visit our <strong>FAQ's</strong> and our
 <br />
 <em>Good Luck with the software and Enjoy the Zen Cart&trade; Experience!</em> <br />
 <br />
-</div>
-</td>
+</div></td>
 </tr>
 </table>
 <p align="center"><em>Zen Cart&trade; Copyright 2003 - 2006 </em></p>

@@ -17,7 +17,7 @@
 // | to obtain it through the world-wide-web, please send a note to       |
 // | license@zen-cart.com so we can mail you a copy immediately.          |
 // +----------------------------------------------------------------------+
-//  $Id: login.php 3144 2006-03-09 04:45:10Z birdbrain $
+//  $Id: login.php 4347 2006-09-02 19:02:26Z drbyte $
 //
 
   require('includes/application_top.php');
@@ -61,7 +61,7 @@
 <br class="clearBoth" />
     <?php echo $pass_message; ?>
     <input type="submit" name="submit" class="button" value="Login" />
-    <?php echo '<a style="float: right;" href="' . zen_href_link(FILENAME_PASSWORD_FORGOTTEN, '', 'NONSSL') . '">' . TEXT_PASSWORD_FORGOTTEN . '</a>'; ?>
+    <?php echo '<a style="float: right;" href="' . zen_href_link(FILENAME_PASSWORD_FORGOTTEN, '', 'SSL') . '">' . TEXT_PASSWORD_FORGOTTEN . '</a>'; ?>
   </fieldset>
 </form>
 </body>

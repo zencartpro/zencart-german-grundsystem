@@ -3,10 +3,10 @@
  * functions_taxes
  *
  * @package functions
- * @copyright Copyright 2003-2005 Zen Cart Development Team
+ * @copyright Copyright 2003-2006 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: functions_taxes.php 2618 2005-12-20 00:35:47Z drbyte $
+ * @version $Id: functions_taxes.php 4135 2006-08-14 04:25:02Z drbyte $
  */
 
 ////
@@ -90,7 +90,7 @@
   }
 
 ////
-// Add tax to a products price
+// Add tax to a products price based on whether we are displaying tax "in" the price
   function zen_add_tax($price, $tax) {
     global $currencies;
 
@@ -153,10 +153,10 @@
 
     $tax_descriptions = explode(' + ', $tax_desc);
     foreach ($tax_descriptions as $tax_description) {
-      $tax_query = "select tax_rate
-                  from " . TABLE_TAX_RATES . "
-                  where tax_description = '" .    
-                  $tax_description . "'";
+      $tax_query = "SELECT tax_rate
+                    FROM " . TABLE_TAX_RATES . "
+                    WHERE tax_description = :taxDescLookup";
+      $tax_query = $db->bindVars($tax_query, ':taxDescLookup', $tax_description, 'string'); 
 
       $tax = $db->Execute($tax_query);
 

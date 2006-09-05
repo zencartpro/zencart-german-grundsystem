@@ -17,7 +17,7 @@
 // | to obtain it through the world-wide-web, please send a note to       |
 // | license@zen-cart.com so we can mail you a copy immediately.          |
 // +----------------------------------------------------------------------+
-// $Id: dist-configure.php 3071 2006-02-27 23:09:54Z drbyte $
+// $Id: dist-configure.php 4095 2006-08-08 02:32:01Z drbyte $
 //
 
 // Define the webserver and path parameters
@@ -79,12 +79,12 @@
 // define our database connection
   define('DB_TYPE', 'mysql');
   define('DB_PREFIX', 'zen_');
-  define('DB_SERVER', 'localhost'); // eg, localhost - should not be empty
+  define('DB_SERVER', 'localhost'); 
   define('DB_SERVER_USERNAME', 'root');
   define('DB_SERVER_PASSWORD', '');
   define('DB_DATABASE', '');
   define('USE_PCONNECT', 'false'); // use persistent connections?
-  define('STORE_SESSIONS', 'db'); // leave empty '' for default handler or set to 'db' or optionally 'mysql' in some cases
+  define('STORE_SESSIONS', 'db'); // use 'db' for best support, or '' for file-based storage
 
   // The next 2 "defines" are for SQL cache support.
   // For SQL_CACHE_METHOD, you can select from:  none, database, or file

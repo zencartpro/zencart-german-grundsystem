@@ -7,7 +7,7 @@
  * @copyright Copyright 2003-2005 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: init_sanitize.php 3714 2006-06-05 21:29:43Z wilt $
+ * @version $Id: init_sanitize.php 4284 2006-08-26 19:26:51Z wilt $
  * @todo move the array process to security class
  */
 
@@ -23,8 +23,8 @@
  */
   $strictReplace = '[<>\']';
   $unStrictReplace = '[<>]';
-  if (isset($_GET)) {
-    while (list($key, $value) = each($_GET)){
+  if (isset($_GET) && count($_GET) > 0) {
+    foreach($_GET as $key=>$value){
       if(is_array($value)){
         foreach($value as $key2 => $val2){
           if ($key2 == 'keyword') {
@@ -48,37 +48,43 @@
  * process all $_POST terms
  * @todo move the array process to security class
  */
-  while (list($key, $value) = each($_POST)){
-    if(is_array($value)){
-      foreach($value as $key2 => $val2){
+  if (isset($_POST) && count($_POST) > 0) {
+    foreach($_POST as $key=>$value){
+      if(is_array($value)){
+        foreach($value as $key2 => $val2){
+          unset($GLOBALS[$key]);
+        }
+      } else {
         unset($GLOBALS[$key]);
       }
-    } else {
-      unset($GLOBALS[$key]);
     }
   }
 /**
  * process all $_COOKIE terms
  */
-  while (list($key, $value) = each($_COOKIE)){
-    if(is_array($value)){
-      foreach($value as $key2 => $val2){
+  if (isset($_COOKIE) && count($_COOKIE) > 0) {
+    foreach($_COOKIE as $key=>$value){
+      if(is_array($value)){
+        foreach($value as $key2 => $val2){
+          unset($GLOBALS[$key]);  
+        }
+      } else {
         unset($GLOBALS[$key]);
       }
-    } else {
-      unset($GLOBALS[$key]);
     }
   }
 /**
  * process all $_SESSION terms
  */
-  while (list($key, $value) = each($_SESSION)){
-    if(is_array($value)){
-      foreach($value as $key2 => $val2){
+  if (isset($_SESSION) && count($_SESSION) > 0) {
+    foreach($_SESSION as $key=>$value){
+      if(is_array($value)){
+        foreach($value as $key2 => $val2){
+          unset($GLOBALS[$key]);
+        }
+      } else {
         unset($GLOBALS[$key]);
       }
-    } else {
-      unset($GLOBALS[$key]);
     }
   }
 /**
@@ -106,6 +112,7 @@
     if (MISSING_PAGE_CHECK == 'On' || MISSING_PAGE_CHECK == 'true') {
       $_GET['main_page'] = 'index';
     } elseif (MISSING_PAGE_CHECK == 'Page Not Found') {
+      header('HTTP/1.1 404 Not Found');
       $_GET['main_page'] = 'page_not_found';
     }
   }

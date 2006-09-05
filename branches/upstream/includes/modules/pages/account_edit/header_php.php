@@ -6,7 +6,7 @@
  * @copyright Copyright 2003-2006 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: header_php.php 3764 2006-06-12 18:46:24Z drbyte $
+ * @version $Id: header_php.php 4173 2006-08-19 20:02:31Z drbyte $
  */
 // This should be first line of the script:
 $zco_notifier->notify('NOTIFY_HEADER_START_ACCOUNT_EDIT');
@@ -78,14 +78,14 @@ if (isset($_POST['action']) && ($_POST['action'] == 'process')) {
 
   if ($check_email->fields['total'] > 0) {
     $error = true;
-
     $messageStack->add('account_edit', ENTRY_EMAIL_ADDRESS_ERROR_EXISTS);
-  }
+
     // check phpBB for duplicate email address
     if ($phpBB->phpbb_check_for_duplicate_email(zen_db_input($email_address)) == 'already_exists' ) {
       $error = true;
       $messageStack->add('account_edit', 'phpBB-'.ENTRY_EMAIL_ADDRESS_ERROR_EXISTS);
     }
+  }
 
 
   if (strlen($telephone) < ENTRY_TELEPHONE_MIN_LENGTH) {

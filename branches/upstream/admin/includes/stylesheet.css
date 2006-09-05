@@ -4,7 +4,7 @@ http://www.oscommerce.com
 Copyright (c) 2002 osCommerce
 Released under the GNU General Public License
 
- $Id: stylesheet.css 3296 2006-03-28 07:28:20Z drbyte $
+ $Id: stylesheet.css 4234 2006-08-24 06:22:56Z drbyte $
 */
 @import url("menu.css");/* including stylesheet for dhtml menu */
 @import url("index.css");/* including stylesheet for index.php */
@@ -125,7 +125,7 @@ width:400px;
 	}
 body#login legend{
 background:#ffffff;
-border:1px solid #c96e29;
+border:1px solid #003D00;
 color:#333333;
 font-size:90%;
 padding:0.2em 0.5em;
@@ -291,7 +291,7 @@ font-size:12px;
 font-weight:bold;
 }
 .headerBar{
-background-color:#c96e29;
+background-color:#003D00;
 }
 .headerBarContent{
 color:#ffffff;
@@ -303,7 +303,7 @@ background-color:#e7e6e0;
 color:#333333;
 }
 .infoBoxHeading{
-background-color:#c96e29;
+background-color:#003D00;
 color:#ffffff;
 }
 .main{
@@ -330,7 +330,7 @@ background-color:#d4ffbd;
 text-decoration:line-through;
 }
 .pageHeading{
-color:#c96e29; /*727272*/
+color:#003D00; /*727272*/
 font-size:16px;
 font-variant:small-caps;
 font-weight:bold;

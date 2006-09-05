@@ -6,17 +6,17 @@
  * Displays site-map and some hard-coded navigation components
  *
  * @package templateSystem
- * @copyright Copyright 2003-2005 Zen Cart Development Team
+ * @copyright Copyright 2003-2006 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: tpl_site_map_default.php 3464 2006-04-19 00:07:26Z ajeh $
+ * @version $Id: tpl_site_map_default.php 4340 2006-09-02 04:54:53Z drbyte $
  */
 ?>
 <div class="centerColumn" id="siteMap">
 
 <h1 id="siteMapHeading"><?php echo HEADING_TITLE; ?></h1>
 
-<?php if (DEFINE_SITE_MAP_STATUS >= 1 and DEFINE_SITE_MAP_STATUS <= 2) { ?>
+<?php if (DEFINE_SITE_MAP_STATUS >= '1' and DEFINE_SITE_MAP_STATUS <= '2') { ?>
 <div id="siteMapMainContent" class="content">
 <?php
 /**
@@ -46,32 +46,39 @@
           <li><?php echo '<a href="' . zen_href_link(FILENAME_REVIEWS) . '">' . PAGE_REVIEWS . '</a>'; ?></li>
           <li><?php echo BOX_HEADING_INFORMATION; ?>
           <ul>
+<?php if (DEFINE_SHIPPINGINFO_STATUS <= '1') { ?>
             <li><?php echo '<a href="' . zen_href_link(FILENAME_SHIPPING) . '">' . BOX_INFORMATION_SHIPPING . '</a>'; ?></li>
+<?php } ?>
+<?php if (DEFINE_PRIVACY_STATUS <= '1') { ?>
             <li><?php echo '<a href="' . zen_href_link(FILENAME_PRIVACY) . '">' . BOX_INFORMATION_PRIVACY . '</a>'; ?></li>
+<?php } ?>
+<?php if (DEFINE_CONDITIONS_STATUS <= '1') { ?>
             <li><?php echo '<a href="' . zen_href_link(FILENAME_CONDITIONS) . '">' . BOX_INFORMATION_CONDITIONS . '</a>'; ?></li>
+<?php } ?>
+<?php if (DEFINE_CONTACT_US_STATUS <= '1') { ?>
             <li><?php echo '<a href="' . zen_href_link(FILENAME_CONTACT_US) . '">' . BOX_INFORMATION_CONTACT . '</a>'; ?></li>
-
-            <?php if ( (isset($phpBB->phpBB['db_installed_config']) && $phpBB->phpBB['db_installed_config']) && (isset($phpBB->phpBB['files_installed']) && $phpBB->phpBB['files_installed'])  && (PHPBB_LINKS_ENABLED=='true')) { ?>
-            <li><?php echo '<a href="' . zen_href_link($phpBB->phpBB['phpbb_url'] . FILENAME_BB_INDEX, '', 'NONSSL', '', '', true, false) . '" target="_blank">' . BOX_BBINDEX . '</a>'; ?></li>
-            <?php } ?>
-            <?php if (MODULE_ORDER_TOTAL_GV_STATUS == 'true') { ?>
+<?php } ?>
+<?php if ( (isset($phpBB->phpBB['db_installed_config']) && $phpBB->phpBB['db_installed_config']) && (isset($phpBB->phpBB['files_installed']) && $phpBB->phpBB['files_installed'])  && (PHPBB_LINKS_ENABLED=='true')) { ?>
+            <li><?php echo '<a href="' . zen_href_link($phpBB->phpBB['phpbb_url'] . FILENAME_BB_INDEX, '', 'NONSSL', false, '', true) . '" target="_blank">' . BOX_BBINDEX . '</a>'; ?></li>
+<?php } ?>
+<?php if (MODULE_ORDER_TOTAL_GV_STATUS == 'true') { ?>
             <li><?php echo '<a href="' . zen_href_link(FILENAME_GV_FAQ) . '">' . BOX_INFORMATION_GV . '</a>'; ?></li>
-            <?php } ?>
-            <?php if (MODULE_ORDER_TOTAL_COUPON_STATUS == 'true') { ?>
+<?php } ?>
+<?php if (MODULE_ORDER_TOTAL_COUPON_STATUS == 'true') { ?>
             <li><?php echo '<a href="' . zen_href_link(FILENAME_DISCOUNT_COUPON) . '">' . BOX_INFORMATION_DISCOUNT_COUPONS . '</a>'; ?></li>
-            <?php } ?>
-            <?php if (SHOW_NEWSLETTER_UNSUBSCRIBE_LINK == 'true') { ?>
+<?php } ?>
+<?php if (SHOW_NEWSLETTER_UNSUBSCRIBE_LINK == 'true') { ?>
             <li><?php echo '<a href="' . zen_href_link(FILENAME_UNSUBSCRIBE) . '">' . BOX_INFORMATION_UNSUBSCRIBE . '</a>'; ?></li>
-            <?php } ?>
-            <?php if (DEFINE_PAGE_2_STATUS <= 1) { ?>
+<?php } ?>
+<?php if (DEFINE_PAGE_2_STATUS <= '1') { ?>
             <li><?php echo '<a href="' . zen_href_link(FILENAME_PAGE_2) . '">' . BOX_INFORMATION_PAGE_2 . '</a>'; ?></li>
-            <?php } ?>
-            <?php if (DEFINE_PAGE_3_STATUS <= 1) { ?>
+<?php } ?>
+<?php if (DEFINE_PAGE_3_STATUS <= '1') { ?>
             <li><?php echo '<a href="' . zen_href_link(FILENAME_PAGE_3) . '">' . BOX_INFORMATION_PAGE_3 . '</a>'; ?></li>
-            <?php } ?>
-            <?php if (DEFINE_PAGE_4_STATUS <= 1) { ?>
+<?php } ?>
+<?php if (DEFINE_PAGE_4_STATUS <= '1') { ?>
             <li><?php echo '<a href="' . zen_href_link(FILENAME_PAGE_4) . '">' . BOX_INFORMATION_PAGE_4 . '</a>'; ?></li>
-            <?php } ?>
+<?php } ?>
 
          </ul></li>
      </ul>

@@ -17,7 +17,7 @@
 // | to obtain it through the world-wide-web, please send a note to       |
 // | license@zen-cart.com so we can mail you a copy immediately.          |
 // +----------------------------------------------------------------------+
-//  $Id: whos_online.php 3261 2006-03-26 01:46:16Z ajeh $
+//  $Id: whos_online.php 4003 2006-07-22 23:42:16Z drbyte $
 //
 
 // highlight bots
@@ -117,7 +117,7 @@ function zen_check_minutes($the_time_last_click) {
   // -->
 </script>
 </head>
-<body onload="init()">
+<body onLoad="init()">
 <!-- header //-->
 <?php require(DIR_WS_INCLUDES . 'header.php'); ?>
 <!-- header_eof //-->
@@ -249,6 +249,8 @@ function zen_check_minutes($the_time_last_click) {
                 </td>
               </tr>
 <?php
+  $ip_array = array();
+  $d=0;
   while (!$whos_online->EOF) {
     $time_online = (time() - $whos_online->fields['time_entry']);
     if ( ((!$_GET['info']) || (@$_GET['info'] == $whos_online->fields['session_id'])) && (!$info) ) {
@@ -257,9 +259,14 @@ function zen_check_minutes($the_time_last_click) {
       $full_name = $whos_online->fields['full_name'];
     }
 
-    if ($old_array->fields['ip_address'] == $whos_online->fields['ip_address']) {
+// Check for duplicates
+    if (in_array($whos_online->fields['ip_address'], $ip_array)) {
       $d++;
+    } else {
+      $ip_array[] = $whos_online->fields['ip_address'];
     }
+
+// Check for bots
     $is_a_bot=zen_check_bot($whos_online->fields['session_id']);
   if ($whos_online->fields['session_id'] == $info) {
       if ($is_a_bot==true) {
@@ -339,7 +346,6 @@ function zen_check_minutes($the_time_last_click) {
               </tr>
 
 <?php
-  $old_array = $whos_online;
   $whos_online->MoveNext();
   }
   if (!$d) {
@@ -347,6 +353,7 @@ function zen_check_minutes($the_time_last_click) {
   }
   $total_dupes = $d;
   $total_sess = $whos_online->RecordCount();
+  $ip_unique = sizeof($ip_array);
   $total_cust = $total_sess - $total_dupes;
 ?>
               <tr>

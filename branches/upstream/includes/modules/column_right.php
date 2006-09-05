@@ -6,7 +6,7 @@
  * @copyright Copyright 2003-2006 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: column_right.php 3012 2006-02-11 16:34:02Z wilt $
+ * @version $Id: column_right.php 4274 2006-08-26 03:16:53Z drbyte $
  */
 if (!defined('IS_ADMIN_FLAG')) {
   die('Illegal Access');
@@ -34,4 +34,5 @@ if ( file_exists(DIR_WS_MODULES . 'sideboxes/' . $template_dir . '/' . $column_r
   } // file_exists
   $column_right_display->MoveNext();
 } // while column_right
+$box_id = '';
 ?>

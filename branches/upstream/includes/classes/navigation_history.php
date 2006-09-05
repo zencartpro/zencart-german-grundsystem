@@ -6,7 +6,7 @@
  * @copyright Copyright 2003-2006 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: navigation_history.php 3192 2006-03-15 22:37:24Z wilt $
+ * @version $Id: navigation_history.php 4383 2006-09-04 00:42:07Z drbyte $
  */
 if (!defined('IS_ADMIN_FLAG')) {
   die('Illegal Access');
@@ -81,9 +81,9 @@ class navigationHistory extends base {
         $page = 'index';
       }
       $this->path[] = array('page' => $page,
-      'mode' => $request_type,
-      'get' => $get_vars,
-      'post' => $_POST);
+                            'mode' => $request_type,
+                            'get' => $get_vars,
+                            'post' => array() /*$_POST*/);
     }
   }
 
@@ -100,9 +100,9 @@ class navigationHistory extends base {
     $get_vars = array();
     if (is_array($page)) {
       $this->snapshot = array('page' => $page['page'],
-      'mode' => $page['mode'],
-      'get' => $page['get'],
-      'post' => $page['post']);
+                              'mode' => $page['mode'],
+                              'get' => $page['get'],
+                              'post' => $page['post']);
     } else {
       reset($_GET);
       while (list($key, $value) = each($_GET)) {
@@ -116,9 +116,9 @@ class navigationHistory extends base {
         $page = 'index';
       }
       $this->snapshot = array('page' => $page,
-      'mode' => $request_type,
-      'get' => $get_vars,
-      'post' => $_POST);
+                              'mode' => $request_type,
+                              'get' => $get_vars,
+                              'post' => array()/*$_POST*/);
     }
   }
 
@@ -129,9 +129,9 @@ class navigationHistory extends base {
   function set_path_as_snapshot($history = 0) {
     $pos = (sizeof($this->path)-1-$history);
     $this->snapshot = array('page' => $this->path[$pos]['page'],
-    'mode' => $this->path[$pos]['mode'],
-    'get' => $this->path[$pos]['get'],
-    'post' => $this->path[$pos]['post']);
+                            'mode' => $this->path[$pos]['mode'],
+                            'get' => $this->path[$pos]['get'],
+                            'post' => $this->path[$pos]['post']);
   }
 
   function debug() {

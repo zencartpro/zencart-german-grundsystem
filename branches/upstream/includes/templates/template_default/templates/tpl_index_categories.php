@@ -10,7 +10,7 @@
  * @copyright Copyright 2003-2006 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: tpl_index_categories.php 3464 2006-04-19 00:07:26Z ajeh $
+ * @version $Id: tpl_index_categories.php 4329 2006-08-31 17:01:11Z ajeh $
  */
 ?>
 <div class="centerColumn" id="indexCategories">
@@ -43,6 +43,17 @@
 <?php } else { ?>
 <h1 id="indexCategoriesHeading"><?php echo $breadcrumb->last(); ?></h1>
 <?php } ?>
+
+<?php
+if (PRODUCT_LIST_CATEGORIES_IMAGE_STATUS_TOP == 'true') {
+// categories_image
+  if ($categories_image = zen_get_categories_image($current_category_id)) {
+?>
+<div id="categoryImgListing" class="categoryImg"><?php echo zen_image(DIR_WS_IMAGES . $categories_image); ?></div>
+<?php
+  }
+} // categories_image
+?>
 
 <?php
 // categories_description

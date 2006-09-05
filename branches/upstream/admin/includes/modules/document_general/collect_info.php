@@ -4,7 +4,7 @@
  * @copyright Copyright 2003-2006 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: collect_info.php 3009 2006-02-11 15:41:10Z wilt $
+ * @version $Id: collect_info.php 4262 2006-08-25 05:46:23Z ajeh $
  */
 if (!defined('IS_ADMIN_FLAG')) {
   die('Illegal Access');
@@ -158,6 +158,9 @@ if (!defined('IS_ADMIN_FLAG')) {
 // set image overwrite
   $on_overwrite = true;
   $off_overwrite = false;
+// set image delete
+  $on_image_delete = false;
+  $off_image_delete = true;
 ?>
 <link rel="stylesheet" type="text/css" href="includes/javascript/spiffyCal/spiffyCal_v2_1.css">
 <script language="JavaScript" src="includes/javascript/spiffyCal/spiffyCal_v2_1.js"></script>
@@ -273,14 +276,17 @@ echo zen_draw_hidden_field('products_quantity_order_units', 1);
               <tr>
                 <td class="main" width="25" valign="top"><?php echo zen_image(DIR_WS_CATALOG_LANGUAGES . $languages[$i]['directory'] . '/images/' . $languages[$i]['image'], $languages[$i]['name']); ?>&nbsp;</td>
                 <td class="main" width="100%">
-        <?php if (is_null($_SESSION['html_editor_preference_status'])) echo TEXT_HTML_EDITOR_NOT_DEFINED; ?>
         <?php if ($_SESSION['html_editor_preference_status']=="FCKEDITOR") {
-//          if ($_SESSION['html_editor_preference_status']=="FCKEDITOR") require(DIR_WS_INCLUDES.'fckeditor.php');
-          $oFCKeditor = new FCKeditor ;
-          $oFCKeditor->Value = (isset($products_description[$languages[$i]['id']])) ? stripslashes($products_description[$languages[$i]['id']]) : zen_get_products_description($pInfo->products_id, $languages[$i]['id']) ;
-          $oFCKeditor->CreateFCKeditor( 'products_description[' . $languages[$i]['id'] . ']', '99%', '230' ) ;  //instanceName, width, height (px or %)
+                $oFCKeditor = new FCKeditor('products_description[' . $languages[$i]['id'] . ']') ;
+                $oFCKeditor->Value = (isset($products_description[$languages[$i]['id']])) ? stripslashes($products_description[$languages[$i]['id']]) : zen_get_products_description($pInfo->products_id, $languages[$i]['id']) ;
+                $oFCKeditor->Width  = '99%' ;
+                $oFCKeditor->Height = '350' ;
+//                $oFCKeditor->Config['ToolbarLocation'] = 'Out:xToolbar' ;
+//                $oFCKeditor->Create() ;
+                $output = $oFCKeditor->CreateHtml() ;  echo $output;
           } else { // using HTMLAREA or just raw "source"
-          echo zen_draw_textarea_field('products_description[' . $languages[$i]['id'] . ']', 'soft', '100%', '20', (isset($products_description[$languages[$i]['id']])) ? stripslashes($products_description[$languages[$i]['id']]) : zen_get_products_description($pInfo->products_id, $languages[$i]['id'])); //,'id="'.'products_description' . $languages[$i]['id'] . '"');
+
+          echo zen_draw_textarea_field('products_description[' . $languages[$i]['id'] . ']', 'soft', '100%', '30', (isset($products_description[$languages[$i]['id']])) ? stripslashes($products_description[$languages[$i]['id']]) : zen_get_products_description($pInfo->products_id, $languages[$i]['id'])); //,'id="'.'products_description' . $languages[$i]['id'] . '"');
           } ?>
         </td>
               </tr>
@@ -300,14 +306,19 @@ echo zen_draw_hidden_field('products_quantity_order_units', 1);
       $dir_info[] = array('id' => $file . '/', 'text' => $file);
     }
   }
+  sort($dir_info);
 
   $default_directory = substr( $pInfo->products_image, 0,strpos( $pInfo->products_image, '/')+1);
 ?>
           <tr>
+            <td class="main" colspan="2"><table width="100%" border="0" cellspacing="0" cellpadding="0"><tr>
             <td class="main"><?php echo TEXT_DOCUMENT_IMAGE; ?></td>
             <td class="main"><?php echo zen_draw_separator('pixel_trans.gif', '24', '15') . '&nbsp;' . zen_draw_file_field('products_image') . '<br />' . zen_draw_separator('pixel_trans.gif', '24', '15') . '&nbsp;' . $pInfo->products_image . zen_draw_hidden_field('products_previous_image', $pInfo->products_image); ?></td>
             <td valign = "center" class="main"><?php echo TEXT_DOCUMENT_IMAGE_DIR; ?>&nbsp;<?php echo zen_draw_pull_down_menu('img_dir', $dir_info, $default_directory); ?></td>
             <td class="main" valign="top"><?php echo TEXT_IMAGES_OVERWRITE . '<br />' . zen_draw_radio_field('overwrite', '0', $off_overwrite) . '&nbsp;' . TABLE_HEADING_NO . ' ' . zen_draw_radio_field('overwrite', '1', $on_overwrite) . '&nbsp;' . TABLE_HEADING_YES; ?></td>
+            <td class="main" valign="top"><?php echo TEXT_IMAGES_DELETE . '<br />' . zen_draw_radio_field('image_delete', '0', $off_image_delete) . '&nbsp;' . TABLE_HEADING_NO . ' ' . zen_draw_radio_field('image_delete', '1', $on_image_delete) . '&nbsp;' . TABLE_HEADING_YES; ?></td>
+          </tr>
+						</table></td>
           </tr>
           <tr>
             <td colspan="2"><?php echo zen_draw_separator('pixel_trans.gif', '1', '10'); ?></td>

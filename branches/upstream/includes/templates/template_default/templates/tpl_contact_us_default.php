@@ -6,10 +6,10 @@
  * Displays contact us page form.
  *
  * @package templateSystem
- * @copyright Copyright 2003-2005 Zen Cart Development Team
+ * @copyright Copyright 2003-2006 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: tpl_contact_us_default.php 3651 2006-05-22 05:18:52Z ajeh $
+ * @version $Id: tpl_contact_us_default.php 4272 2006-08-26 03:10:49Z drbyte $
  */
 ?>
 <div class="centerColumn" id="contactUsDefault">
@@ -55,7 +55,7 @@
     if (CONTACT_US_LIST !=''){
 ?>
 <label class="inputLabel" for="send-to"><?php echo SEND_TO_TEXT; ?></label>
-<?php echo zen_draw_pull_down_menu('send_to',  $send_to_array, 'id=\"send-to\"') . '<span class="alert">' . ENTRY_REQUIRED_SYMBOL . '</span>'; ?>
+<?php echo zen_draw_pull_down_menu('send_to',  $send_to_array, 0, 'id="send-to"') . '<span class="alert">' . ENTRY_REQUIRED_SYMBOL . '</span>'; ?>
 <br class="clearBoth" />
 <?php
     }

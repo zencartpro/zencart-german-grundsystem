@@ -6,10 +6,10 @@
  * Displays listing of All Products
  *
  * @package templateSystem
- * @copyright Copyright 2003-2005 Zen Cart Development Team
+ * @copyright Copyright 2003-2006 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: tpl_modules_products_all_listing.php 2951 2006-02-03 07:02:51Z birdbrain $
+ * @version $Id: tpl_modules_products_all_listing.php 4272 2006-08-26 03:10:49Z drbyte $
  */
 ?>
 <table border="0" width="100%" cellspacing="2" cellpadding="2">
@@ -21,7 +21,9 @@
 
   if ($products_all_split->number_of_rows > 0) {
     $products_all = $db->Execute($products_all_split->sql_query);
+    $row_counter = 0;
     while (!$products_all->EOF) {
+      $row_counter++;
 
       if (PRODUCT_ALL_LIST_IMAGE != '0') {
         $display_products_image = '<a href="' . zen_href_link(zen_get_info_page($products_all->fields['products_id']), 'products_id=' . $products_all->fields['products_id']) . '">' . zen_image(DIR_WS_IMAGES . $products_all->fields['products_image'], $products_all->fields['products_name'], IMAGE_PRODUCT_ALL_LISTING_WIDTH, IMAGE_PRODUCT_ALL_LISTING_HEIGHT) . '</a>' . str_repeat('<br clear="all" />', substr(PRODUCT_ALL_LIST_IMAGE, 3, 1));
@@ -81,7 +83,7 @@
           $link = '<a href="' . zen_href_link(zen_get_info_page($products_all->fields['products_id']), 'products_id=' . $products_all->fields['products_id']) . '">' . MORE_INFO_TEXT . '</a>';
         } else {
 //          $link= '<a href="' . zen_href_link(FILENAME_PRODUCTS_ALL, zen_get_all_get_params(array('action')) . 'action=buy_now&products_id=' . $products_all->fields['products_id']) . '">' . zen_image_button(BUTTON_IMAGE_IN_CART, BUTTON_IN_CART_ALT) . '</a>';
-          if (PRODUCT_ALL_LISTING_MULTIPLE_ADD_TO_CART > 0) {
+          if (PRODUCT_ALL_LISTING_MULTIPLE_ADD_TO_CART > 0 && $products_all->fields['products_qty_box_status'] != 0) {
 //            $how_many++;
             $link = TEXT_PRODUCT_ALL_LISTING_MULTIPLE_ADD_TO_CART . "<input type=\"text\" name=\"products_id[" . $products_all->fields['products_id'] . "]\" value=\"0\" size=\"4\" />";
           } else {
@@ -109,7 +111,7 @@
       }
 
 ?>
-          <tr>
+          <tr class="<?php echo ((int)($row_counter/2)==($row_counter/2)) ? 'productListing-even' : 'productListing-odd'; ?>">
             <td width="<?php echo IMAGE_PRODUCT_ALL_LISTING_WIDTH + 10; ?>" valign="top" class="main" align="center">
               <?php
                 $disp_sort_order = $db->Execute("select configuration_key, configuration_value from " . TABLE_CONFIGURATION . " where configuration_group_id='" . $group_id . "' and (configuration_value >= 1000 and configuration_value <= 1999) order by LPAD(configuration_value,11,0)");
@@ -184,7 +186,7 @@
             </td>
           </tr>
 <?php if (PRODUCT_ALL_LIST_DESCRIPTION != 0) { ?>
-          <tr>
+          <tr class="<?php echo ((int)($row_counter/2)==($row_counter/2)) ? 'productListing-even' : 'productListing-odd'; ?>">
             <td colspan="3" valign="top" class="main">
               <?php
                 echo $display_products_description;

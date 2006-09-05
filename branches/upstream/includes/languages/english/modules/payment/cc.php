@@ -17,7 +17,7 @@
 // | to obtain it through the world-wide-web, please send a note to       |
 // | license@zen-cart.com so we can mail you a copy immediately.          |
 // +----------------------------------------------------------------------+
-// $Id: cc.php 2424 2005-11-22 09:25:32Z drbyte $
+// $Id: cc.php 4027 2006-07-26 05:27:41Z drbyte $
 //
 
   define('MODULE_PAYMENT_CC_TEXT_TITLE', 'Credit Card');
@@ -32,5 +32,6 @@
   define('MODULE_PAYMENT_CC_TEXT_ERROR', 'Credit Card Error:');
   define('MODULE_PAYMENT_CC_TEXT_JS_CC_CVV', '* The CVV number must be at least ' . CC_CVV_MIN_LENGTH . ' characters.\n');
   define('MODULE_PAYMENT_CC_TEXT_EMAIL_ERROR','Warning - Configuration Error: ');
-  define('MODULE_PAYMENT_CC_TEXT_EMAIL_WARNING','WARNING: You have enabled the CC payment module but have not configured it to send CC information to you by email. As a result, you will not be able to process the CC number for orders placed using this method.  Go to Admin->Modules->Payment->CC->Edit and set the email address for sending CC information.' . "\n\n\n\n");
+  define('MODULE_PAYMENT_CC_TEXT_EMAIL_WARNING','WARNING: You have enabled the CC payment module but have not properly configured it to send CC information to you by email. As a result, you will not be able to process the CC number for orders placed using this method.  Go to Admin->Modules->Payment->CC->Edit and set the preferred email address for sending CC information.' . "\n\n\n\n");
+  define('MODULE_PAYMENT_CC_TEXT_MIDDLE_DIGITS_MESSAGE', 'Please direct this email to the Accounting department so that it may be filed along with the online order it relates to: ' . "\n\n" . 'Order: %s' . "\n\n" . 'Middle Digits: %s' . "\n\n");
 ?>

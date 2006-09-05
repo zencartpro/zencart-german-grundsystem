@@ -4,10 +4,10 @@
  * Lookup Functions for various Zen Cart activities such as countries, prices, products, product types, etc
  *
  * @package functions
- * @copyright Copyright 2003-2005 Zen Cart Development Team
+ * @copyright Copyright 2003-2006 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: functions_lookups.php 2774 2006-01-03 03:07:08Z ajeh $
+ * @version $Id: functions_lookups.php 4277 2006-08-26 03:19:28Z drbyte $
  */
 
 
@@ -125,7 +125,7 @@
     global $db;
     $check_valid = $db->Execute("select p.products_id
                                  from " . TABLE_PRODUCTS . " p
-                                 where products_id='" . $valid_id . "' limit 1");
+                                 where products_id='" . (int)$valid_id . "' limit 1");
     if ($check_valid->EOF) {
       return false;
     } else {
@@ -373,9 +373,9 @@
     global $db;
       $check = $db->Execute("select products_options_sort_order
                              from " . TABLE_PRODUCTS_ATTRIBUTES . "
-                             where products_id = '" . $products_id . "'
-                             and options_id = '" . $options_id . "'
-                             and options_values_id = '" . $options_values_id . "' limit 1");
+                             where products_id = '" . (int)$products_id . "'
+                             and options_id = '" . (int)$options_id . "'
+                             and options_values_id = '" . (int)$options_values_id . "' limit 1");
 
       return $check->fields['products_options_sort_order'];
   }
@@ -388,13 +388,13 @@
     global $db;
       $check = $db->Execute("select products_options_sort_order
                              from " . TABLE_PRODUCTS_OPTIONS . "
-                             where products_options_id = '" . $options_id . "' limit 1");
+                             where products_options_id = '" . (int)$options_id . "' limit 1");
 
       $check_options_id = $db->Execute("select products_id, options_id, options_values_id, products_options_sort_order
                              from " . TABLE_PRODUCTS_ATTRIBUTES . "
-                             where products_id='" . $products_id . "'
-                             and options_id='" . $options_id . "'
-                             and options_values_id = '" . $options_values_id . "' limit 1");
+                             where products_id='" . (int)$products_id . "'
+                             and options_id='" . (int)$options_id . "'
+                             and options_values_id = '" . (int)$options_values_id . "' limit 1");
 
 
       return $check->fields['products_options_sort_order'] . '.' . str_pad($check_options_id->fields['products_options_sort_order'],5,'0',STR_PAD_LEFT);
@@ -407,7 +407,7 @@
     global $db;
 
 // regular attribute validation
-    $check_attributes = $db->Execute("select attributes_display_only, attributes_required from " . TABLE_PRODUCTS_ATTRIBUTES . " where products_id='" . $product_id . "' and options_id='" . $option . "' and options_values_id='" . $value . "'");
+    $check_attributes = $db->Execute("select attributes_display_only, attributes_required from " . TABLE_PRODUCTS_ATTRIBUTES . " where products_id='" . (int)$product_id . "' and options_id='" . (int)$option . "' and options_values_id='" . (int)$value . "'");
 
     $check_valid = true;
 
@@ -418,7 +418,7 @@
 
 // text required validation
     if (ereg('^txt_', $option)) {
-      $check_attributes = $db->Execute("select attributes_display_only, attributes_required from " . TABLE_PRODUCTS_ATTRIBUTES . " where products_id='" . $product_id . "' and options_id='" . ereg_replace('txt_', '', $option) . "' and options_values_id='0'");
+      $check_attributes = $db->Execute("select attributes_display_only, attributes_required from " . TABLE_PRODUCTS_ATTRIBUTES . " where products_id='" . (int)$product_id . "' and options_id='" . (int)ereg_replace('txt_', '', $option) . "' and options_values_id='0'");
 // text cannot be blank
       if ($check_attributes->fields['attributes_required'] == '1' and empty($value)) {
         $check_valid = false;
@@ -496,13 +496,13 @@
  */
   function zen_get_info_page($zf_product_id) {
     global $db;
-    $sql = "select products_type from " . TABLE_PRODUCTS . " where products_id = '" . $zf_product_id . "'";
+    $sql = "select products_type from " . TABLE_PRODUCTS . " where products_id = '" . (int)$zf_product_id . "'";
     $zp_type = $db->Execute($sql);
     if ($zp_type->RecordCount() == 0) {
       return 'product_info';
     } else {
       $zp_product_type = $zp_type->fields['products_type'];
-      $sql = "select type_handler from " . TABLE_PRODUCT_TYPES . " where type_id = '" . $zp_product_type . "'";
+      $sql = "select type_handler from " . TABLE_PRODUCT_TYPES . " where type_id = '" . (int)$zp_product_type . "'";
       $zp_handler = $db->Execute($sql);
       return $zp_handler->fields['type_handler'] . '_info';
     }
@@ -553,8 +553,8 @@
   function zen_get_categories_name_from_product($product_id) {
     global $db;
 
-    $check_products_category= $db->Execute("select products_id, categories_id from " . TABLE_PRODUCTS_TO_CATEGORIES . " where products_id='" . $product_id . "' limit 1");
-    $the_categories_name= $db->Execute("select categories_name from " . TABLE_CATEGORIES_DESCRIPTION . " where categories_id= '" . $check_products_category->fields['categories_id'] . "' and language_id= '" . $_SESSION['languages_id'] . "'");
+    $check_products_category= $db->Execute("select products_id, categories_id from " . TABLE_PRODUCTS_TO_CATEGORIES . " where products_id='" . (int)$product_id . "' limit 1");
+    $the_categories_name= $db->Execute("select categories_name from " . TABLE_CATEGORIES_DESCRIPTION . " where categories_id= '" . (int)$check_products_category->fields['categories_id'] . "' and language_id= '" . (int)$_SESSION['languages_id'] . "'");
 
     return $the_categories_name->fields['categories_name'];
   }
@@ -565,7 +565,7 @@
  */
   function zen_get_configuration_key_value_layout($lookup, $type=1) {
     global $db;
-    $configuration_query= $db->Execute("select configuration_value from " . TABLE_PRODUCT_TYPE_LAYOUT . " where configuration_key='" . $lookup . "' and product_type_id='". $type . "'");
+    $configuration_query= $db->Execute("select configuration_value from " . TABLE_PRODUCT_TYPE_LAYOUT . " where configuration_key='" . $lookup . "' and product_type_id='". (int)$type . "'");
     $lookup_value= $configuration_query->fields['configuration_value'];
     if ( !($lookup_value) ) {
       $lookup_value='<span class="lookupAttention">' . $lookup . '</span>';
@@ -579,7 +579,7 @@
   function zen_get_products_image($product_id, $width = SMALL_IMAGE_WIDTH, $height = SMALL_IMAGE_HEIGHT) {
     global $db;
 
-    $sql = "select p.products_image from " . TABLE_PRODUCTS . " p  where products_id='" . $product_id . "'";
+    $sql = "select p.products_image from " . TABLE_PRODUCTS . " p  where products_id='" . (int)$product_id . "'";
     $look_up = $db->Execute($sql);
 
     return zen_image(DIR_WS_IMAGES . $look_up->fields['products_image'], zen_get_products_name($product_id), $width, $height);
@@ -591,7 +591,7 @@
   function zen_get_products_virtual($lookup) {
     global $db;
 
-    $sql = "select p.products_virtual from " . TABLE_PRODUCTS . " p  where p.products_id='" . $lookup . "'";
+    $sql = "select p.products_virtual from " . TABLE_PRODUCTS . " p  where p.products_id='" . (int)$lookup . "'";
     $look_up = $db->Execute($sql);
 
     if ($look_up->fields['products_virtual'] == '1') {
@@ -607,10 +607,10 @@
   function zen_get_products_allow_add_to_cart($lookup) {
     global $db;
 
-    $sql = "select products_type from " . TABLE_PRODUCTS . " where products_id='" . $lookup . "'";
+    $sql = "select products_type from " . TABLE_PRODUCTS . " where products_id='" . (int)$lookup . "'";
     $type_lookup = $db->Execute($sql);
 
-    $sql = "select allow_add_to_cart from " . TABLE_PRODUCT_TYPES . " where type_id = '" . $type_lookup->fields['products_type'] . "'";
+    $sql = "select allow_add_to_cart from " . TABLE_PRODUCT_TYPES . " where type_id = '" . (int)$type_lookup->fields['products_type'] . "'";
     $allow_add_to_cart = $db->Execute($sql);
 
     return $allow_add_to_cart->fields['allow_add_to_cart'];
@@ -622,10 +622,10 @@
     function zen_get_show_product_switch_name($lookup, $field, $suffix= 'SHOW_', $prefix= '_INFO', $field_prefix= '_', $field_suffix='') {
       global $db;
 
-      $sql = "select products_type from " . TABLE_PRODUCTS . " where products_id='" . $lookup . "'";
+      $sql = "select products_type from " . TABLE_PRODUCTS . " where products_id='" . (int)$lookup . "'";
       $type_lookup = $db->Execute($sql);
 
-      $sql = "select type_handler from " . TABLE_PRODUCT_TYPES . " where type_id = '" . $type_lookup->fields['products_type'] . "'";
+      $sql = "select type_handler from " . TABLE_PRODUCT_TYPES . " where type_id = '" . (int)$type_lookup->fields['products_type'] . "'";
       $show_key = $db->Execute($sql);
 
 
@@ -670,7 +670,7 @@
   function zen_get_product_is_always_free_shipping($lookup) {
     global $db;
 
-    $sql = "select p.product_is_always_free_shipping from " . TABLE_PRODUCTS . " p  where p.products_id='" . $lookup . "'";
+    $sql = "select p.product_is_always_free_shipping from " . TABLE_PRODUCTS . " p  where p.products_id='" . (int)$lookup . "'";
     $look_up = $db->Execute($sql);
 
     if ($look_up->fields['product_is_always_free_shipping'] == '1') {
@@ -750,8 +750,8 @@
 
     $product_lookup = $db->Execute("select " . $what_field . " as lookup_field
                               from " . TABLE_PRODUCTS . " p, " . TABLE_PRODUCTS_DESCRIPTION . " pd
-                              where p.products_id ='" . $product_id . "'
-                              and pd.language_id = '" . $language . "'");
+                              where p.products_id ='" . (int)$product_id . "'
+                              and pd.language_id = '" . (int)$language . "'");
 
     $return_field = $product_lookup->fields['lookup_field'];
 
@@ -830,7 +830,7 @@
     if (DOWNLOAD_ENABLED == 'true') {
       $download_display_query_raw ="select pa.products_attributes_id, pad.products_attributes_filename
                                     from " . TABLE_PRODUCTS_ATTRIBUTES . " pa, " . TABLE_PRODUCTS_ATTRIBUTES_DOWNLOAD . " pad
-                                    where pa.products_id='" . $products_id . "'
+                                    where pa.products_id='" . (int)$products_id . "'
                                       and pad.products_attributes_id= pa.products_attributes_id";
 
       $download_display = $db->Execute($download_display_query_raw);
@@ -843,6 +843,36 @@
       $valid_downloads = false;
     }
     return $valid_downloads;
+  }
+
+// build date range for new products
+  function zen_get_new_date_range($time_limit = false) {
+    if ($time_limit == false) {
+      $time_limit = SHOW_NEW_PRODUCTS_LIMIT;
+    }
+
+    // 120 days; 24 hours; 60 mins; 60secs
+    $date_range = time() - ($time_limit * 24 * 60 * 60);
+// echo 'Now:      '. date('Y-m-d') ."<br />";
+// echo $time_limit . ' Days: '. date('Ymd', $date_range) ."<br />";
+    $zc_new_date = date('Ymd', $date_range);
+    $new_range = ' and p.products_date_added >=' . $zc_new_date;
+    return "";
+    return $new_range;
+  }
+
+
+// build date range for upcoming products
+  function zen_get_upcoming_date_range() {
+    // 120 days; 24 hours; 60 mins; 60secs
+    $date_range = time();
+// echo 'Now:      '. date('Y-m-d') ."<br />";
+// echo 'Upcoming Days: '. date('Ymd', $date_range) ."<br />";
+    $zc_new_date = date('Ymd', $date_range);
+    $new_range = ' and p.products_date_available >=' . $zc_new_date;
+//    $new_range = ' and ' . EXPECTED_PRODUCTS_FIELD . ' <=' . $zc_new_date;
+
+    return $new_range;
   }
 
 ?>

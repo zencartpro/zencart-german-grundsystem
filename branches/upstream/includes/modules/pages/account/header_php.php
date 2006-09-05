@@ -6,7 +6,7 @@
  * @copyright Copyright 2003-2005 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: header_php.php 3160 2006-03-11 01:37:18Z drbyte $
+ * @version $Id: header_php.php 4086 2006-08-07 02:06:18Z ajeh $
  */
 // This should be first line of the script:
 $zco_notifier->notify('NOTIFY_HEADER_START_ACCOUNT');
@@ -47,6 +47,7 @@ $orders_query = $db->bindVars($orders_query, ':customersID', $_SESSION['customer
 $orders_query = $db->bindVars($orders_query, ':languagesID', $_SESSION['languages_id'], 'integer');
 $orders = $db->Execute($orders_query);
 
+$ordersArray = array();
 while (!$orders->EOF) {
   if (zen_not_null($orders->fields['delivery_name'])) {
     $order_name = $orders->fields['delivery_name'];
@@ -61,8 +62,7 @@ while (!$orders->EOF) {
   'order_name'=>$order_name,
   'order_country'=>$order_country,
   'orders_status_name'=>$orders->fields['orders_status_name'],
-  'order_total'=>$orders->fields['order_total'],
-
+  'order_total'=>$orders->fields['order_total']
   );
 
   $orders->MoveNext();

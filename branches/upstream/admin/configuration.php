@@ -17,7 +17,7 @@
 // | to obtain it through the world-wide-web, please send a note to       |
 // | license@zen-cart.com so we can mail you a copy immediately.          |
 // +----------------------------------------------------------------------+
-//  $Id: configuration.php 1969 2005-09-13 06:57:21Z drbyte $
+//  $Id: configuration.php 3993 2006-07-20 21:46:55Z drbyte $
 //
 
 
@@ -75,7 +75,7 @@ if ($gID == 7) {
         if (zen_get_configuration_key_value('ORDER_WEIGHT_ZERO_STATUS') == '1' and !defined('MODULE_SHIPPING_FREESHIPPER_STATUS')) {
           $shipping_errors .= '<br />' . ERROR_ORDER_WEIGHT_ZERO_STATUS;
         }
-        if (defined('MODULE_SHIPPING_USPS_STATUS') and (MODULE_SHIPPING_USPS_USERID=='NONE' or MODULE_SHIPPING_USPS_PASSWORD == 'NONE' or MODULE_SHIPPING_USPS_SERVER == 'test')) {
+        if (defined('MODULE_SHIPPING_USPS_STATUS') and (MODULE_SHIPPING_USPS_USERID=='NONE' or MODULE_SHIPPING_USPS_SERVER == 'test')) {
           $shipping_errors .= '<br />' . ERROR_USPS_STATUS;
         }
         if ($shipping_errors != '') {
@@ -107,7 +107,7 @@ if ($gID == 7) {
   // -->
 </script>
 </head>
-<body marginwidth="0" marginheight="0" topmargin="0" bottommargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFFF" onload="init()">
+<body marginwidth="0" marginheight="0" topmargin="0" bottommargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFFF" onLoad="init()">
 <!-- header //-->
 <?php require(DIR_WS_INCLUDES . 'header.php'); ?>
 <!-- header_eof //-->

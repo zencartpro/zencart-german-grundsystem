@@ -17,7 +17,7 @@
 // | to obtain it through the world-wide-web, please send a note to       |
 // | license@zen-cart.com so we can mail you a copy immediately.          |
 // +----------------------------------------------------------------------+
-//  $Id: modules.php 1105 2005-04-04 22:05:35Z birdbrain $
+//  $Id: modules.php 4366 2006-09-03 19:27:34Z ajeh $
 //
 
 define('HEADING_TITLE_MODULES_PAYMENT', 'Payment Modules');
@@ -31,4 +31,5 @@ define('TABLE_HEADING_ORDERS_STATUS','Orders Status');
 define('TABLE_HEADING_ACTION', 'Action');
 
 define('TEXT_MODULE_DIRECTORY', 'Module Directory:');
+define('WARNING_MODULES_SORT_ORDER','WARNING: YOU HAVE DUPLICATE SORT ORDERS WHICH WILL RESULT IN CALCULATION ERRORS<br />PLEASE CORRECT THESE ISSUES NOW!');
 ?>

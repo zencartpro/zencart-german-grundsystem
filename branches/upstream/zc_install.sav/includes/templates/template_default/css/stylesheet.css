@@ -4,7 +4,7 @@
  * @copyright Copyright 2003-2006 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: stylesheet.css 3824 2006-06-21 17:07:09Z drbyte $
+ * @version $Id: stylesheet.css 4267 2006-08-25 08:42:19Z drbyte $
  */
 
 body {
@@ -146,16 +146,18 @@ body#finished li#databaseupg,
 body#finished li#store,
 body#finished li#admin {color: grey;}
 
-body#index li#welcome {font-weight: bold;    background-color: #ceddf0;}
-body#license li#licenseaccept {font-weight: bold;    background-color: #ceddf0;}
-body#inspect li#inpection {font-weight: bold;    background-color: #ceddf0;}
-body#systemsetup li#system {font-weight: bold; background-color: #ceddf0;}
-body#databasesetup li#database {font-weight: bold; background-color: #ceddf0;}
-body#databaseupgrade li#databaseupg {font-weight: bold; background-color: #ceddf0;}
-body#storesetup li#store {font-weight: bold; background-color: #ceddf0;}
-body#adminsetup li#admin {font-weight: bold; background-color: #ceddf0;}
-body#phpbbsetup li#phpbb {font-weight: bold; background-color: #ceddf0;}
-body#finished li#finish {font-weight: bold;  background-color: #ceddf0;}
+body#index li#welcome,
+body#license li#licenseaccept,
+body#inspect li#inspection,
+body#systemsetup li#system,
+body#databasesetup li#database,
+body#databaseupgrade li#databaseupg,
+body#storesetup li#store,
+body#adminsetup li#admin,
+body#phpbbsetup li#phpbb,
+body#finished li#finish {
+	font-weight: bold;  background-color: #ceddf0;
+}
 
 /*  Footer
 --------------------------------- */
@@ -171,9 +173,14 @@ h1 {
    font-size: 16px;
    padding: 4px;
 }
-h2 { color: #c96e29;
-font-size: 16px;
+h2 {
+	color: #c96e29;
+	font-size: 16px;
 }
+
+.extralarge {
+  font-size: 2em;
+	}
 
 /* Links
 --------------------------------- */
@@ -217,7 +224,7 @@ margin: 0px 0px 1em;
 padding: 0px;
 }
 .center { text-align: center; }
-SPAN.errors {  color: #FF0000;}
+.errors {  color: #FF0000;}
 SPAN.emphasis {  color:#c96e29;}
 a.nowrap {	white-space: nowrap; }
 

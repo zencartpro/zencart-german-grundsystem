@@ -9,18 +9,18 @@
  * @copyright Copyright 2003-2006 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: version.php 3718 2006-06-06 08:23:17Z drbyte $
+ * @version $Id: version.php 4176 2006-08-20 11:27:56Z drbyte $
  * @private
  */
 
 define('PROJECT_VERSION_NAME', 'Zen Cart');
 define('PROJECT_VERSION_MAJOR', '1');
-define('PROJECT_VERSION_MINOR', '3.0.2');
+define('PROJECT_VERSION_MINOR', '3.5');
 define('PROJECT_VERSION_PATCH1', '');
 define('PROJECT_VERSION_PATCH2', '');
 define('PROJECT_VERSION_PATCH1_SOURCE', '');
 define('PROJECT_VERSION_PATCH2_SOURCE', '');
 define('NEW_VERSION_CHECKUP_URL','http://ping.zen-cart.com/version_id.txt');
 define('EXPECTED_DATABASE_VERSION_MAJOR', '1');
-define('EXPECTED_DATABASE_VERSION_MINOR', '3.0.2');
+define('EXPECTED_DATABASE_VERSION_MINOR', '3.5');
 ?>

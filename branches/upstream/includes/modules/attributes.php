@@ -9,7 +9,7 @@
  * @copyright Copyright 2003-2006 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: attributes.php 3206 2006-03-19 04:04:09Z birdbrain $
+ * @version $Id: attributes.php 4341 2006-09-02 15:27:19Z ajeh $
  */
 if (!defined('IS_ADMIN_FLAG')) {
   die('Illegal Access');
@@ -61,6 +61,8 @@ $sql = "select count(*) as total
               $discount_type = zen_get_products_sale_discount_type((int)$_GET['products_id']);
               $discount_amount = zen_get_discount_calc((int)$_GET['products_id']);
 
+              $zv_display_select_option = 0;
+
               while (!$products_options_names->EOF) {
                 $products_options_array = array();
 
@@ -92,7 +94,6 @@ $sql = "select count(*) as total
 
                 $tmp_attributes_image = '';
                 $tmp_attributes_image_row = 0;
-                $zv_display_select_option = 0;
                 $show_attributes_qty_prices_icon = 'false';
                 while (!$products_options->EOF) {
                   // reset
@@ -215,7 +216,10 @@ $sql = "select count(*) as total
                           }
                         }
                       } else {
-                        $selected_attribute = ($products_options->fields['attributes_default']=='1' ? true : false);
+                        // select default but do NOT auto select single radio buttons
+//                        $selected_attribute = ($products_options->fields['attributes_default']=='1' ? true : false);
+                        // select default radio button or auto select single radio buttons
+                        $selected_attribute = ($products_options->fields['attributes_default']=='1' ? true : ($products_options->RecordCount() == 1 ? true : false));
                       }
                     }
 
@@ -567,8 +571,18 @@ $sql = "select count(*) as total
                   if (isset($_SESSION['cart']->contents[$prod_id]['attributes'][$products_options_names->fields['products_options_id']])) {
                     $selected_attribute = $_SESSION['cart']->contents[$prod_id]['attributes'][$products_options_names->fields['products_options_id']];
                   } else {
-                    // selected set above
-                    //                echo 'Type ' . $products_options_names->fields['products_options_type'] . '<br />';
+                    // use customer-selected values
+                    if ($_POST['id'] !='') {
+                      reset($_POST['id']);
+                      foreach ($_POST['id'] as $key => $value) {
+                        if ($key == $products_options_names->fields['products_options_id']) {
+                          $selected_attribute = $value;
+                          break;
+                        }
+                      }
+                    } else {
+                    // use default selected set above
+                    }
                   }
 
                   if ($show_attributes_qty_prices_icon == 'true') {

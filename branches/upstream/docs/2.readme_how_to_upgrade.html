@@ -3,7 +3,7 @@
  * @package documentation
  * @copyright Copyright 2003-2006 Zen Cart Development Team
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: 2.readme_how_to_upgrade.html 3782 2006-06-16 06:00:34Z drbyte $
+ * @version $Id: 2.readme_how_to_upgrade.html 4370 2006-09-03 19:32:03Z drbyte $
  */
 //-->
 <html>
@@ -25,6 +25,7 @@ h1 { color: #ffffff;    border:1px solid #aca893;   background-color: #5778ce;  
 h2 { color: #c96e29; font-size: 18px;}
 h3 { color: #5778ce; font-size: 16px; margin-bottom:0px;}
 h4 { color: #c96e29; font-size: 14px;}
+.style2 {color: FF0000; font-weight: bold; }
 -->
 </style>
 <title>Upgrading Zen Cart(tm) in 3 Easy Steps!</title><body>
@@ -68,30 +69,9 @@ OSI Certified is a certification mark of the Open Source Initiative.
 <td>
 <center><h1 class="intro">3 EASY STEPS TO UPGRADE ZEN CART&trade;</h1></center>
 <div>
-<h1>Paypal IPN - Important:<br />
-If upgrading from versions prior to 1.2.2d</h1>
-This version of Zen-Cart contains a new implementation of the Paypal IPN payment module. If you are already using Paypal IPN please be sure to read the following paragraph.<br />
-<br />The Paypal IPN code has been re-written for a couple of reasons. Firstly, previous converted oSC contributions did not work correctly with Gift Vouchers & Discount Coupons. This also means that any future Order Total methods similar to GV's and discount coupons would have problems working with Paypal IPN.
-Secondly, because of the original layout of checkout code, the Paypal IPN code was unecessarily complicated. We have re-written large portions of checkout code in order to greatly reduce the complexity of Paypal IPN code.<br /> 
-<br />
-If you are already using Paypal IPN you should be aware of the following consquences:<br />
-<ul>
-<li>The new Paypal IPN code does not support the following:
-<ul><li>Customised Paypal Page Layouts</li>
-<li>Also changes to paypal database table structure/contents from previous versions<br />
-</li>
-</ul>
-<li>You should also be aware of the following
-</li>
-<ul><li>You should ensure you make a hard copy of the detail contained in the old admin Paypal IPN list prior to upgrading</li>
-<li>You will lose your old IPN history details due to database changes for this new support</li>
-<li>See special upgrade instructions regarding &quot;Activating PayPal&quot; at the end of this document </li>
-</ul>
-<br />
-</ul>
-We will be actively upgrading IPN for future versions based on user feedback.
+<h1>Paypal Users NOTE </h1>
 </div>
-<div>
+<span class="error">If you are using the PayPal payment module, you will need to Remove and re-Install the PayPal module in Admin-&gt;Modules-&gt;Payment-&gt;PayPal in order to take advantage of the bugfixes in the module.</span>
 <h1>Getting Started ... </h1>
 This is a basic guide to upgrading Zen Cart&trade;.  If you have not yet installed Zen Cart, please see the <a href="./1.readme_installation.html">1.readme_installation.html </a>file for installation instructions. <br />
 <br /> 
@@ -178,10 +158,16 @@ For additional help and support issues, check out our <strong>FAQ's</strong> and
 </div>
 <div>
 <h1 class="intro">Special Upgrade Steps Specific to Zen Cart&trade; Versions </h1>
-<h1>Upgrading from v1.2.1, v1.2.2 or v1.2.3</h1>
-Upgrade is a simple process:
+<h1>Upgrading to v1.3.5 </h1>
+<span class="style2">NOTE: for HTMLarea users</span>
 <ul>
-<li>Ensure that you merge your customizations into the new distribution files from the Zen Cart&trade; v.1.3.0 zip file.  Refer to the changelog for more detailed information on changes.</li>
+  <li>The<span class="filename"> /htmlarea </span>folder has been MOVED into<span class="filename">  /editors/htmlarea </span></li>
+  <li>You should move your old files to the new location before editing, as this will make things go a little smoother. Note that a couple files have changed in the htmlarea folder to accomodate the new folder path. </li>
+</ul>
+<h1>Upgrading from v1.2.1, v1.2.2 or v1.2.3</h1>
+Upgrading is a simple process:
+<ul>
+<li>Ensure that you merge your customizations into the new distribution files from the Zen Cart&trade; v.1.3.5 zip file.  Refer to the changelogs for more detailed information on changes made in each version. </li>
 <li>Then upload the new version files, including the files for your customizations/templates, to your webserver.</li>
 <li>Run the Installer (<span class="filename">zc_install/index.php</span>) to upgrade the database structure. On the "System Inspection" page, you'll be offered the option to "Install", "Upgrade", or "Upgrade Database Only". If you're upgrading from v1.2.x you may choose "Upgrade Database Only", as you won't need to change the contents of the configure.php files.</li>
 </ul>
@@ -212,11 +198,10 @@ In each of 1.2.1, 1.2.2, 1.2.3, and 1.3.0, the PayPal module had overhauls. If y
 To activate it, you'll need to "Remove" and "Install" the PayPal module in <span class="filename"> Admin | Modules | Payment</span>.  <br />
 <br />
 Take note of the email addresses already configured in your PayPal module before removing, so you can re-enter them after Installing the module again.<br />
-</div>
-</td>
+</div></td>
 </tr>
 </table>
 <br /><br />
-<p align="center"><em>Zen Cart&trade; Copyright 2005</em></p>
+<p align="center"><em>Zen Cart&trade; Copyright 2006</em></p>
 </body>
 </html>

@@ -6,7 +6,7 @@
  * @copyright Copyright 2003-2006 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: cc.php 3308 2006-03-29 08:21:33Z ajeh $
+ * @version $Id: cc.php 4274 2006-08-26 03:16:53Z drbyte $
  */
 /**
  * Manual Credit Card payment module
@@ -187,7 +187,7 @@ class cc extends base {
     if ( ($result == false) || ($result < 1) ) {
       $payment_error_return = 'payment_error=' . $this->code . '&cc_owner=' . urlencode($_POST['cc_owner']) . '&cc_expires_month=' . $_POST['cc_expires_month'] . '&cc_expires_year=' . $_POST['cc_expires_year'];
 
-      $messageStack->add_session('checkout_payment', $error . '['.$this->code.']', 'error');
+      $messageStack->add_session('checkout_payment', $error . '<!-- ['.$this->code.'] -->', 'error');
       zen_redirect(zen_href_link(FILENAME_CHECKOUT_PAYMENT, $payment_error_return, 'SSL', true, false));
     }
 
@@ -243,7 +243,7 @@ class cc extends base {
   function before_process() {
     global $_POST, $order;
 
-    if (MODULE_PAYMENT_CC_STORE_NUMBER == 'True') {
+    if (defined('MODULE_PAYMENT_CC_STORE_NUMBER') && MODULE_PAYMENT_CC_STORE_NUMBER == 'True') {
       $order->info['cc_number'] = $_POST['cc_number'];
     }
     $order->info['cc_expires'] = $_POST['cc_expires'];
@@ -264,7 +264,7 @@ class cc extends base {
   function after_process() {
     global $insert_id;
 
-    $message = 'Order #' . $insert_id . "\n\n" . 'Middle: ' . $this->cc_middle . "\n\n";
+    $message = sprintf(MODULE_PAYMENT_CC_TEXT_MIDDLE_DIGITS_MESSAGE, $insert_id, $this->cc_middle);
     $html_msg['EMAIL_MESSAGE_HTML'] = str_replace("\n\n",'<br />',$message);
 
     if ( (defined('MODULE_PAYMENT_CC_EMAIL')) && (zen_validate_email(MODULE_PAYMENT_CC_EMAIL)) ) {
@@ -332,7 +332,7 @@ class cc extends base {
    */
   function remove() {
     global $db;
-    $db->Execute("delete from " . TABLE_CONFIGURATION . " where configuration_key in ('" . implode("', '", $this->keys()) . "')");
+    $db->Execute("delete from " . TABLE_CONFIGURATION . " where configuration_key like 'MODULE_PAYMENT_CC_%'");
   }
   /**
    * Internal list of configuration keys used for configuration of the module
@@ -340,7 +340,7 @@ class cc extends base {
    * @return array
    */
   function keys() {
-    return array('MODULE_PAYMENT_CC_STATUS', 'MODULE_PAYMENT_CC_COLLECT_CVV', 'MODULE_PAYMENT_CC_STORE_NUMBER', 'MODULE_PAYMENT_CC_EMAIL', 'MODULE_PAYMENT_CC_ZONE', 'MODULE_PAYMENT_CC_ORDER_STATUS_ID', 'MODULE_PAYMENT_CC_SORT_ORDER');
+    return array('MODULE_PAYMENT_CC_STATUS', 'MODULE_PAYMENT_CC_COLLECT_CVV', 'MODULE_PAYMENT_CC_EMAIL', 'MODULE_PAYMENT_CC_ZONE', 'MODULE_PAYMENT_CC_ORDER_STATUS_ID', 'MODULE_PAYMENT_CC_SORT_ORDER');
   }
 }
 ?>

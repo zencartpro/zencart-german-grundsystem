@@ -7,7 +7,7 @@
  * @copyright Copyright 2003-2006 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: query_factory.php 3195 2006-03-16 05:13:47Z drbyte $
+ * @version $Id: query_factory.php 4359 2006-09-02 23:47:21Z drbyte $
  */
 if (!defined('IS_ADMIN_FLAG')) {
   die('Illegal Access');
@@ -84,17 +84,19 @@ class queryFactory extends base {
   }
 
   function Execute($zf_sql, $zf_limit = false, $zf_cache = false, $zf_cachetime=0) {
-// bof: collect products_id queries
-/* un comment to write files
-    global $PHP_SELF, $box_id;
-if (strtoupper(substr($zf_sql,0,6))=='SELECT' && strstr($zf_sql,'products_id')) {
-  $f=fopen(DIR_FS_SQL_CACHE.'/query_list_selects_'.time().'.txt','a');
-  fwrite($f,  "\n\n" . 'I AM HERE ' . $_GET['main_page'] . zen_get_all_get_params() . "\n" . 'sidebox: ' . $box_id . "\n\n" . $zf_sql.";\n\n");
-  fclose($f);
-  unset($f);
-}
-*/
-// eof: collect products_id queries
+    // bof: collect database queries
+    if (STORE_DB_TRANSACTIONS=='true') {
+      global $PHP_SELF, $box_id, $current_page_base;
+      if (strtoupper(substr($zf_sql,0,6))=='SELECT' /*&& strstr($zf_sql,'products_id')*/) {
+        $f=@fopen(DIR_FS_SQL_CACHE.'/query_selects_' . $current_page_base . '_' . time() . '.txt','a');
+        if ($f) {
+          fwrite($f,  "\n\n" . 'I AM HERE ' . $current_page_base . /*zen_get_all_get_params() .*/ "\n" . 'sidebox: ' . $box_id . "\n\n" . "Explain \n" . $zf_sql.";\n\n");
+          fclose($f);
+        }
+        unset($f);
+      }
+    }
+    // eof: collect products_id queries
     global $zc_cache;
     if ($zf_limit) {
       $zf_sql = $zf_sql . ' LIMIT ' . $zf_limit;

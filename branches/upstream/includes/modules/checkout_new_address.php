@@ -6,45 +6,14 @@
  * @copyright Copyright 2003-2006 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: checkout_new_address.php 3777 2006-06-15 07:03:03Z drbyte $
+ * @version $Id: checkout_new_address.php 4036 2006-07-28 06:42:59Z drbyte $
  */
+// This should be first line of the script:
+$zco_notifier->notify('NOTIFY_MODULE_START_CHECKOUT_NEW_ADDRESS');
+
 if (!defined('IS_ADMIN_FLAG')) {
   die('Illegal Access');
 }
-
-/**
- * determine pulldown menu contents if appropriate
- */
-  $entry_query = "SELECT entry_country_id, entry_zone_id, entry_state
-                  FROM   " . TABLE_ADDRESS_BOOK . " a, " . TABLE_CUSTOMERS . " c
-                  WHERE  a.customers_id = :customersID
-                  AND  a.customers_id = c.customers_id
-                  AND    a.address_book_id = c.customers_default_address_id";
-  $entry_query = $db->bindVars($entry_query, ':customersID', $_SESSION['customer_id'], 'integer');
-  $entry = $db->Execute($entry_query);
-  $country = $entry->fields['entry_country_id'];
-  if (ACCOUNT_STATE == 'true' && ACCOUNT_STATE_DRAW_INITIAL_DROPDOWN == 'true') {
-    $zone_id = 0;
-    $check_query = "SELECT count(*) AS total
-                      FROM " . TABLE_ZONES . "
-                      WHERE zone_country_id = :zoneCountryID";
-    $check_query = $db->bindVars($check_query, ':zoneCountryID', $country, 'integer');
-    $entry_state_has_zones = ($check->fields['total'] > 0);
-    if ($entry_state_has_zones == true) {
-      $zones_array = array();
-      $zones_array[] = array('id' => PULL_DOWN_ALL, 'text' => PULL_DOWN_ALL);
-      $zones_values = $db->Execute("select zone_name
-                                   from " . TABLE_ZONES . "
-                                   where zone_country_id = '" . (int)$entry->fields['entry_country_id'] . "'
-                                   order by zone_name");
-      while (!$zones_values->EOF) {
-        $zones_array[] = array('id' => $zones_values->fields['zone_name'], 'text' => $zones_values->fields['zone_name']);
-        $zones_values->MoveNext();
-      }
-    }
-  }
-
-
 $error = false;
 $process = false;
 if (isset($_POST['action']) && ($_POST['action'] == 'submit')) {
@@ -59,7 +28,7 @@ if (isset($_POST['action']) && ($_POST['action'] == 'submit')) {
     if (ACCOUNT_SUBURB == 'true') $suburb = zen_db_prepare_input($_POST['suburb']);
     $postcode = zen_db_prepare_input($_POST['postcode']);
     $city = zen_db_prepare_input($_POST['city']);
-    $country = zen_db_prepare_input($_POST['country']);
+    $country = zen_db_prepare_input($_POST['zone_country_id']);
     if (ACCOUNT_STATE == 'true') {
       if (isset($_POST['zone_id'])) {
         $zone_id = zen_db_prepare_input($_POST['zone_id']);
@@ -68,61 +37,63 @@ if (isset($_POST['action']) && ($_POST['action'] == 'submit')) {
       }
       $state = zen_db_prepare_input($_POST['state']);
     }
-
+//echo ' I SEE: country=' . $country . '&nbsp;&nbsp;&nbsp;state=' . $state . '&nbsp;&nbsp;&nbsp;zone_id=' . $zone_id;
     if (ACCOUNT_GENDER == 'true') {
       if ( ($gender != 'm') && ($gender != 'f') ) {
         $error = true;
-
         $messageStack->add('checkout_address', ENTRY_GENDER_ERROR);
       }
     }
 
     if (strlen($firstname) < ENTRY_FIRST_NAME_MIN_LENGTH) {
       $error = true;
-
       $messageStack->add('checkout_address', ENTRY_FIRST_NAME_ERROR);
     }
 
     if (strlen($lastname) < ENTRY_LAST_NAME_MIN_LENGTH) {
       $error = true;
-
       $messageStack->add('checkout_address', ENTRY_LAST_NAME_ERROR);
     }
 
     if (strlen($street_address) < ENTRY_STREET_ADDRESS_MIN_LENGTH) {
       $error = true;
-
       $messageStack->add('checkout_address', ENTRY_STREET_ADDRESS_ERROR);
     }
 
     if (strlen($city) < ENTRY_CITY_MIN_LENGTH) {
       $error = true;
-
       $messageStack->add('checkout_address', ENTRY_CITY_ERROR);
     }
 
     if (ACCOUNT_STATE == 'true') {
+      $check_query = "SELECT count(*) AS total
+                      FROM " . TABLE_ZONES . "
+                      WHERE zone_country_id = :zoneCountryID";
+      $check_query = $db->bindVars($check_query, ':zoneCountryID', $country, 'integer');
+      $check = $db->Execute($check_query);
+      $entry_state_has_zones = ($check->fields['total'] > 0);
       if ($entry_state_has_zones == true) {
-        $zone_query = "SELECT distinct zone_id
+        $zone_query = "SELECT distinct zone_id, zone_name
                        FROM " . TABLE_ZONES . "
                        WHERE zone_country_id = :zoneCountryID
-                       AND (zone_name like ':zone%'
-                       OR zone_code like '%:zone%')";
+                       AND " . 
+                       (trim($state) != '' ? "(upper(zone_name) like ':zoneState%' OR upper(zone_code) like '%:zoneState%') OR " : "") .
+                      "zone_id = :zoneID";
 
         $zone_query = $db->bindVars($zone_query, ':zoneCountryID', $country, 'integer');
-        $zone_query = $db->bindVars($zone_query, ':zone', $state, 'noquotestring');
+        $zone_query = $db->bindVars($zone_query, ':zoneState', strtoupper($state), 'noquotestring');
+        $zone_query = $db->bindVars($zone_query, ':zoneID', $zone_id, 'integer');
         $zone = $db->Execute($zone_query);
         if ($zone->RecordCount() == 1) {
           $zone_id = $zone->fields['zone_id'];
+          $zone_name = $zone->fields['zone_name'];
         } else {
           $error = true;
-
           $messageStack->add('checkout_address', ENTRY_STATE_ERROR_SELECT);
         }
       } else {
         if (strlen($state) < ENTRY_STATE_MIN_LENGTH) {
           $error = true;
-
           $messageStack->add('checkout_address', ENTRY_STATE_ERROR);
         }
       }
@@ -130,13 +101,11 @@ if (isset($_POST['action']) && ($_POST['action'] == 'submit')) {
 
     if (strlen($postcode) < ENTRY_POSTCODE_MIN_LENGTH) {
       $error = true;
-
       $messageStack->add('checkout_address', ENTRY_POST_CODE_ERROR);
     }
 
     if ( (is_numeric($country) == false) || ($country < 1) ) {
       $error = true;
-
       $messageStack->add('checkout_address', ENTRY_COUNTRY_ERROR);
     }
 
@@ -245,4 +214,15 @@ if (isset($_POST['action']) && ($_POST['action'] == 'submit')) {
     }
   }
 }
+
+/*
+ * Set flags for template use:
+ */
+  $selected_country = ($_POST['zone_country_id']) ? $country : SHOW_CREATE_ACCOUNT_DEFAULT_COUNTRY;
+  $flag_show_pulldown_states = ($process == true || $entry_state_has_zones == true || ACCOUNT_STATE_DRAW_INITIAL_DROPDOWN == 'true') ? true : false;
+  $status_state_disabled = ($flag_show_pulldown_states) ? ' disabled="disabled"' : '';
+  $state_field_label = ($flag_show_pulldown_states) ? '' : ENTRY_STATE;
+
+// This should be last line of the script:
+$zco_notifier->notify('NOTIFY_MODULE_END_CHECKOUT_NEW_ADDRESS');
 ?>

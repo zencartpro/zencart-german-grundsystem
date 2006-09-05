@@ -6,7 +6,7 @@
  * @copyright Copyright 2003-2005 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: functions_customers.php 2618 2005-12-20 00:35:47Z drbyte $
+ * @version $Id: functions_customers.php 4324 2006-08-30 15:25:24Z birdbrain $
  */
 
 ////
@@ -72,8 +72,8 @@
 
     if ($html) {
 // HTML Mode
-      $HR = '<hr>';
-      $hr = '<hr>';
+      $HR = '<hr />';
+      $hr = '<hr />';
       if ( ($boln == '') && ($eoln == "\n") ) { // Values not specified, use rational defaults
         $CR = '<br />';
         $cr = '<br />';

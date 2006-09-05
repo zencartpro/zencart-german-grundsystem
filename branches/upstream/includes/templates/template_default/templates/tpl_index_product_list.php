@@ -9,7 +9,7 @@
  * @copyright Copyright 2003-2005 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: tpl_index_product_list.php 2975 2006-02-05 19:33:51Z birdbrain $
+ * @version $Id: tpl_index_product_list.php 4326 2006-08-31 04:04:45Z ajeh $
  */
 ?>
 <div class="centerColumn" id="indexProductList">
@@ -17,13 +17,30 @@
 <h1 id="productListHeading"><?php echo $breadcrumb->last(); ?></h1>
 
 <?php
-  if ($do_filter_list) {
+if (PRODUCT_LIST_CATEGORIES_IMAGE_STATUS == 'true') {
+// categories_image
+  if ($categories_image = zen_get_categories_image($current_category_id)) {
+?>
+<div id="categoryImgListing" class="categoryImg"><?php echo zen_image(DIR_WS_IMAGES . $categories_image, '', CATEGORY_ICON_IMAGE_WIDTH, CATEGORY_ICON_IMAGE_HEIGHT); ?></div>
+<?php
+  }
+} // categories_image
+?>
+
+<?php
+// categories_description
+    if ($current_categories_description != '') {
+?>
+<div id="indexProductListCatDescription" class="content"><?php echo $current_categories_description;  ?></div>
+<?php } // categories_description ?>
+
+<?php
+  if ($do_filter_list || PRODUCT_LIST_ALPHA_SORTER == 'true') {
   $form = zen_draw_form('filter', zen_href_link(FILENAME_DEFAULT), 'get') . '<label class="inputLabel">' .TEXT_SHOW . '</label>';
 ?>
 
 <?php echo $form; ?>
 <?php
-
   if (!$getoption_set) {
     echo zen_draw_hidden_field('cPath', $cPath);
   } else {
@@ -35,22 +52,18 @@
   }
   echo zen_draw_hidden_field('sort', $_GET['sort']);
   echo zen_draw_hidden_field('main_page', FILENAME_DEFAULT);
-  echo zen_draw_pull_down_menu('filter_id', $options, (isset($_GET['filter_id']) ? $_GET['filter_id'] : ''), 'onchange="this.form.submit()"');
+  if ($do_filter_list) {
+    echo zen_draw_pull_down_menu('filter_id', $options, (isset($_GET['filter_id']) ? $_GET['filter_id'] : ''), 'onchange="this.form.submit()"');
+  }
   echo zen_hide_session_id();
+
+  require(DIR_WS_MODULES . zen_get_module_directory(FILENAME_PRODUCT_LISTING_ALPHA_SORTER));
 ?>
 </form>
-
 <?php
   }
 ?>
 <br class="clearBoth" />
-
-<?php
-// categories_description
-    if ($current_categories_description != '') {
-?>
-<div id="indexProductListCatDescription" class="content"><?php echo $current_categories_description;  ?></div>
-<?php } // categories_description ?>
 
 <?php
 /**

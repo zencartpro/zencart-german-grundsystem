@@ -14,7 +14,7 @@
  * @copyright Copyright 2003-2006 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: tpl_header.php 3392 2006-04-08 15:17:37Z birdbrain $
+ * @version $Id: tpl_header.php 4066 2006-08-06 05:50:06Z ajeh $
  */
 ?>
 
@@ -69,6 +69,7 @@ if (!isset($flag_disable_header) || !$flag_disable_header) {
 <!--bof-branding display-->
 <div id="logoWrapper">
     <div id="logo"><?php echo '<a href="' . HTTP_SERVER . DIR_WS_CATALOG . '">' . zen_image($template->get_template_dir(HEADER_LOGO_IMAGE, DIR_WS_TEMPLATE, $current_page_base,'images'). '/' . HEADER_LOGO_IMAGE, HEADER_ALT_TEXT) . '</a>'; ?></div>
+<?php if (HEADER_SALES_TEXT != '' || (SHOW_BANNERS_GROUP_SET2 != '' && $banner = zen_banner_exists('dynamic', SHOW_BANNERS_GROUP_SET2))) { ?>
     <div id="taglineWrapper">
 <?php
               if (HEADER_SALES_TEXT != '') {
@@ -87,6 +88,7 @@ if (!isset($flag_disable_header) || !$flag_disable_header) {
               }
 ?>
     </div>
+<?php } // no HEADER_SALES_TEXT or SHOW_BANNERS_GROUP_SET2 ?>
 </div>
 <br class="clearBoth" />
 <!--eof-branding display-->

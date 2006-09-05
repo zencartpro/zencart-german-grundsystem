@@ -4,7 +4,7 @@
  * @copyright Copyright 2003-2005 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: meta_tags.php 2555 2005-12-13 05:37:01Z drbyte $
+ * @version $Id: meta_tags.php 4273 2006-08-26 03:13:52Z drbyte $
  */
 
 // page title
@@ -28,6 +28,9 @@ define('META_TAGS_REVIEW', 'Reviews: ');
 
 // Define Tertiary Section Output
   define('TERTIARY_SECTION', ', ');
+
+// Define divider ... usually just a space or a comma plus a space
+  define('METATAGS_DIVIDER', ' ');
 
 // Define which pages to tell robots/spiders not to index
 // This is generally used for account-management pages or typical SSL pages, and usually doesn't need to be touched.

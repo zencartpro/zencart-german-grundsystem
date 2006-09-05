@@ -6,7 +6,7 @@
  * @copyright Copyright 2003-2005 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: ipn_main_handler.php 3475 2006-04-22 04:35:09Z ajeh $
+ * @version $Id: ipn_main_handler.php 4030 2006-07-27 06:48:51Z drbyte $
  */
 /**
  * require general paypal functions
@@ -33,6 +33,7 @@ if (ENABLE_SSL == 'true') $scheme = 'http://';
 $web = parse_url($scheme . MODULE_PAYMENT_PAYPAL_HANDLER);
 
 //build post string
+$postdata = '';
 foreach($_POST as $i=>$v) {
   $postdata .= $i . "=" . urlencode(stripslashes($v)) . "&";
 }
@@ -79,7 +80,7 @@ if (MODULE_PAYMENT_PAYPAL_TESTING == 'Test') {
   $info = implode(",",$info);
 }
 
-ipn_debug_email('IPN INFO - POST VARS  ' . "\n" . $postdata);
+ipn_debug_email('IPN INFO - POST VARS  ' . "\n" . str_replace('&', " \n&", $postdata));
 ipn_debug_email('IPN INFO - CURL INFO  ' . "\n" . $info);
 
 
@@ -112,10 +113,10 @@ $order_total_modules = new order_total();
 $order_totals = $order_total_modules->process();
 
 $txn_type = ipn_test_txn_uniqueness();
-ipn_debug_email('IPN NOTICE:set transaction type ' . $txn_type . ' postdata=' . $postdata);
+ipn_debug_email('IPN NOTICE::Set transaction type ' . $txn_type . ' postdata=' . str_replace('&', " \n&", $postdata));
 // For now we filter out subscription payments
 if ($_POST['txn_type'] == 'subcr_payment') {
-  ipn_debug_email('IPN NOTICE: Subscription payemnt - Filter for now');
+  ipn_debug_email('IPN NOTICE::Subscription payment - Filter for now');
   die();
 }
 switch ($txn_type) {
@@ -124,7 +125,7 @@ switch ($txn_type) {
     die();
   }
   if ($ipnFoundSession === false) {
-    ipn_debug_email('IPN NOTICE: Unique but no session - Must be a one of personal payment');
+    ipn_debug_email('IPN NOTICE::Unique but no session - Must be a personal payment, rather than an IPN transaction');
     die();
   }
   $new_order_id = $order->create($order_totals);
@@ -143,15 +144,15 @@ switch ($txn_type) {
   $sql_data_array = array('orders_id' => $new_order_id,
                           'orders_status_id' => $new_status,
                           'date_added' => 'now()',
-                          'comments' => 'PayPal status: ' . $_POST['payment_status'] . ' ' . $_POST['pending_reason']. ' @ '.$_POST['payment_date'] . ' Parent Trans ID:' . $_POST['parent_txn_id'] . ' Trans ID:' . $_POST['txn_id'] . ' Amount: ' . $_POST['mc_gross'],
+                          'comments' => 'PayPal status: ' . $_POST['payment_status'] . ' ' . $_POST['pending_reason']. ' @ '.$_POST['payment_date'] . ' Parent Trans ID:' . $_POST['parent_txn_id'] . ' Trans ID:' . $_POST['txn_id'] . ' Amount: ' . $_POST['mc_gross'] . ' ' . $_POST['mc_currency'],
                           'customer_notified' => false
   );
-
   zen_db_perform(TABLE_ORDERS_STATUS_HISTORY, $sql_data_array);
   $order->create_add_products($new_order_id, 2);
   $order->send_order_email($new_order_id, 2);
   $_SESSION['cart']->reset(true);
   break;
+
   case 'parent':
   case 'echeck-denied':
   case 'echeck-cleared':
@@ -172,13 +173,14 @@ switch ($txn_type) {
    zen_db_perform(TABLE_PAYPAL, $paypal_order, 'update', "txn_id='" . $_POST['txn_id'] . "'");
   }
   $paypal_order_history = ipn_create_order_history_array($ipn_id->fields['paypal_ipn_id']);
+
 //payment_status=Refunded
   if ($_POST['payment_status'] == 'Refunded' || $_POST['payment_status'] == 'Denied') {
     $new_status = MODULE_PAYMENT_PAYPAL_REFUND_ORDER_STATUS_ID;
   } elseif ($txn_type=='echeck-cleared') {
     $new_status = MODULE_PAYMENT_PAYPAL_ORDER_STATUS_ID;
   }
-  ipn_debug_email('IPN NOTICE:set new status ' . $new_status . ' for reason_code = ' . $_POST['pending_reason'] . " order id = " .  $ipn_id->fields['zen_order_id']);
+  ipn_debug_email('IPN NOTICE::Set new status ' . $new_status . " for order id = " .  $ipn_id->fields['zen_order_id'] . ', reason_code = ' . $_POST['pending_reason']);
 
   if ($_POST['payment_status'] == 'Refunded' || $_POST['payment_status'] == 'Denied' || $txn_type=='echeck-cleared') {
     $db->Execute("update " . TABLE_ORDERS  . "
@@ -186,16 +188,27 @@ switch ($txn_type) {
                     where orders_id = '" . $ipn_id->fields['zen_order_id'] . "'");
 
     $sql_data_array = array('orders_id' => $ipn_id->fields['zen_order_id'],
-    'orders_status_id' => $new_status,
-    'date_added' => 'now()',
-    'comments' => 'PayPal status: ' . $_POST['payment_status'] . ' ' . ' @ '.$_POST['payment_date'] . ' Parent Trans ID:' . $_POST['parent_txn_id'] . ' Trans ID:' . $_POST['txn_id'] . ' Amount: ' . $_POST['mc_gross'],
-    'customer_notified' => false
+                                                           'orders_status_id' => $new_status,
+                                                           'date_added' => 'now()',
+                                                           'comments' => 'PayPal status: ' . $_POST['payment_status'] . ' ' . ' @ '.$_POST['payment_date'] . ' Parent Trans ID:' . $_POST['parent_txn_id'] . ' Trans ID:' . $_POST['txn_id'] . ' Amount: ' . $_POST['mc_gross'] . ' ' . $_POST['mc_currency'],
+                                                           'customer_notified' => false
     );
-
     zen_db_perform(TABLE_ORDERS_STATUS_HISTORY, $sql_data_array);
+
+// if this was an echeck-cleared notice, check to see if any download products need to be reset:
+    if ($txn_type=='echeck-cleared') {
+      $check_status = $db->Execute("select orders_status,
+                                    date_purchased from " . TABLE_ORDERS . "
+                                    where orders_id = '" . $ipn_id->fields['zen_order_id'] . "'");
+      $zc_max_days = date_diff($check_status->fields['date_purchased'], date('Y-m-d H:i:s', time())) + DOWNLOAD_MAX_DAYS;
+      $update_downloads_query = "update " . TABLE_ORDERS_PRODUCTS_DOWNLOAD . " set download_maxdays='" . $zc_max_days . "', download_count='" . DOWNLOAD_MAX_COUNT . "' where orders_id='" . (int)$ipn_id->fields['zen_order_id'] . "'";
+      $db->Execute($update_downloads_query);
+    }
+
   }
   break;
+
   default:
-  ipn_debug_email('IPN WARNING:Could not establish txn type ' . $txn_type . ' postdata=' . $postdata);
+  ipn_debug_email('IPN WARNING:: Could not establish txn type ' . $txn_type . "\n" . ' postdata=' . str_replace('&', " \n&", $postdata));
 }
 ?>

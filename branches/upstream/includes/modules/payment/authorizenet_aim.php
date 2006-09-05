@@ -6,7 +6,7 @@
  * @copyright Copyright 2003-2006 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: authorizenet_aim.php 3308 2006-03-29 08:21:33Z ajeh $
+ * @version $Id: authorizenet_aim.php 4275 2006-08-26 03:18:04Z drbyte $
  */
 /**
  * Authorize.net Payment Module (AIM version)
@@ -197,7 +197,7 @@ class authorizenet_aim extends base {
 
     if ( ($result == false) || ($result < 1) ) {
       $payment_error_return = 'payment_error=' . $this->code . '&authorizenet_aim_cc_owner=' . urlencode($_POST['authorizenet_aim_cc_owner']) . '&authorizenet_aim_cc_expires_month=' . $_POST['authorizenet_aim_cc_expires_month'] . '&authorizenet_aim_cc_expires_year=' . $_POST['authorizenet_aim_cc_expires_year'];
-      $messageStack->add_session('checkout_payment', $error . '['.$this->code.']', 'error');
+      $messageStack->add_session('checkout_payment', $error . '<!-- ['.$this->code.'] -->', 'error');
       zen_redirect(zen_href_link(FILENAME_CHECKOUT_PAYMENT, $payment_error_return, 'SSL', true, false));
     }
 
@@ -310,7 +310,7 @@ class authorizenet_aim extends base {
                          'x_email_customer' => MODULE_PAYMENT_AUTHORIZENET_AIM_EMAIL_CUSTOMER == 'True' ? 'TRUE': 'FALSE',
                          'x_email_merchant' => MODULE_PAYMENT_AUTHORIZENET_AIM_EMAIL_MERCHANT == 'True' ? 'TRUE': 'FALSE',
                          'x_cust_id' => $_SESSION['customer_id'],
-                         'x_invoice_num' => $new_order_id,
+                         'x_invoice_num' => (MODULE_PAYMENT_AUTHORIZENET_AIM_TESTMODE == 'Test' ? 'TEST-' : '') . $new_order_id,
                          'x_first_name' => $order->billing['firstname'],
                          'x_last_name' => $order->billing['lastname'],
                          'x_company' => $order->billing['company'],
@@ -358,30 +358,30 @@ class authorizenet_aim extends base {
     $url = 'https://secure.authorize.net/gateway/transact.dll';
 
     $ch = curl_init();
-
     curl_setopt($ch, CURLOPT_URL,$url);
-
     curl_setopt($ch, CURLOPT_VERBOSE, 0);
-
     curl_setopt($ch, CURLOPT_POST, 1);
-
     curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
 
-    curl_setopt($ch, CURLOPT_RETURNTRANSFER,1);
-
-    //========================
-    // If you have GoDaddy hosting or other hosting services that require use of a proxy to talk to external sites via cURL,
-    // then uncomment the following 3 lines and substitute they proxy server's address for 1.1.1.1 below:
-//    curl_setopt ($ch, CURLOPT_HTTPPROXYTUNNEL, true);
-//    curl_setopt ($ch, CURLOPT_PROXYTYPE, CURLPROXY_HTTP);
-//    curl_setopt ($ch, CURLOPT_PROXY, '1.1.1.1');
-    //========================
+    if (CURL_PROXY_REQUIRED == 'True') {
+      curl_setopt ($ch, CURLOPT_HTTPPROXYTUNNEL, true);
+      curl_setopt ($ch, CURLOPT_PROXYTYPE, CURLPROXY_HTTP);
+      curl_setopt ($ch, CURLOPT_PROXY, CURL_PROXY_SERVER_DETAILS);
+    }
 
     $authorize = curl_exec($ch);
-
     curl_close ($ch);
 
     $response = split('\,', $authorize);
+
+    $response_code = explode(',', $response[0]);
+    $response_text = explode(',', $response[3]);
+    $transaction_id = explode(',', $response[6]);
+    $authorization_type = explode(',', $response[11]);
+    $auth_code = explode(',', $response[4]);
+    $this->auth_code = $auth_code[0];
+    $this->transaction_id = $transaction_id[0];
 
 
     // DATABASE SECTION
@@ -398,11 +398,6 @@ class authorizenet_aim extends base {
       // Remove the last "&" from the string
       $response_list = substr($response_list, 0, -1);
 
-
-      $response_code = explode(',', $response[0]);
-      $response_text = explode(',', $response[3]);
-      $transaction_id = explode(',', $response[6]);
-      $authorization_type = explode(',', $response[11]);
 
       $db_response_code = $response_code[0];
       $db_response_text = $response_text[0];
@@ -432,6 +427,8 @@ class authorizenet_aim extends base {
    * @return boolean
    */
   function after_process() {
+    global $insert_id, $db;
+    $db->Execute("insert into " . TABLE_ORDERS_STATUS_HISTORY . " (comments, orders_id, orders_status_id, date_added) values ('Credit Card payment.  AUTH: " . $this->auth_code . ". TransID: " . $this->transaction_id . ".' , '". (int)$insert_id . "','" . $this->order_status . "', now() )");
     return false;
   }
   /**
@@ -467,7 +464,7 @@ class authorizenet_aim extends base {
   function install() {
     global $db;
     $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) values ('Enable Authorize.net (AIM) Module', 'MODULE_PAYMENT_AUTHORIZENET_AIM_STATUS', 'True', 'Do you want to accept Authorize.net payments via the AIM Method?', '6', '0', 'zen_cfg_select_option(array(\'True\', \'False\'), ', now())");
-    $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) values ('Login Username', 'MODULE_PAYMENT_AUTHORIZENET_AIM_LOGIN', 'testing', 'The login username used for the Authorize.net service', '6', '0', now())");
+    $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) values ('Login ID', 'MODULE_PAYMENT_AUTHORIZENET_AIM_LOGIN', 'testing', 'The API Login ID used for the Authorize.net service', '6', '0', now())");
     $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) values ('Transaction Key', 'MODULE_PAYMENT_AUTHORIZENET_AIM_TXNKEY', 'Test', 'Transaction Key used for encrypting TP data', '6', '0', now())");
     $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) values ('Transaction Mode', 'MODULE_PAYMENT_AUTHORIZENET_AIM_TESTMODE', 'Test', 'Transaction mode used for processing orders', '6', '0', 'zen_cfg_select_option(array(\'Test\', \'Production\'), ', now())");
     $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) values ('Authorization Type', 'MODULE_PAYMENT_AUTHORIZENET_AIM_AUTHORIZATION_TYPE', 'Authorize', 'Do you want submitted credit card transactions to be authorized only, or authorized and captured?', '6', '0', 'zen_cfg_select_option(array(\'Authorize\', \'Authorize/Capture\'), ', now())");

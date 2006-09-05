@@ -1,105 +1,157 @@
 <?php
-//
-// +----------------------------------------------------------------------+
-// |zen-cart Open Source E-commerce                                       |
-// +----------------------------------------------------------------------+
-// | Copyright (c) 2003 The zen-cart developers                           |
-// |                                                                      |
-// | http://www.zen-cart.com/index.php                                    |
-// |                                                                      |
-// | Portions Copyright (c) 2003 osCommerce                               |
-// | FCKeditor - The text editor for internet                             |
-// | Copyright (C) 2003-2004 Frederico Caldeira Knabben                   |
-// | Licensed under the terms of the GNU Lesser General Public License    |
-// | (http://www.opensource.org/licenses/lgpl-license.php)                |
-// +----------------------------------------------------------------------+
-// | This source file is subject to version 2.0 of the GPL license,       |
-// | that is bundled with this package in the file LICENSE, and is        |
-// | available through the world-wide-web at the following url:           |
-// | http://www.zen-cart.com/license/2_0.txt.                             |
-// | If you did not receive a copy of the zen-cart license and are unable |
-// | to obtain it through the world-wide-web, please send a note to       |
-// | license@zen-cart.com so we can mail you a copy immediately.          |
-// +----------------------------------------------------------------------+
-//  $Id: fckeditor.php 1863 2005-08-19 04:28:27Z drbyte $
-//
+/**
+ * @package htmleditors
+ * @copyright Copyright 2003-2006 Zen Cart Development Team
+ * @copyright Portions Copyright 2003 osCommerce
+ * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
+ * @version $Id: fckeditor.php 4245 2006-08-24 14:07:50Z drbyte $
+ */
 
+/**
+ * Customizations for Zen Cart based on FCKeditor v2.3.1
+ */
 
 class FCKeditor
 {
+	var $InstanceName ;
+	var $BasePath ;
+	var $Width ;
+	var $Height ;
 	var $ToolbarSet ;
 	var $Value ;
-	var $CanUpload ;
-	var $CanBrowse ;
-	var $BasePath ;
+	var $Config ;
 
-	function FCKeditor()
+	// PHP 5 Constructor (by Marcus Bointon <coolbru@users.sourceforge.net>)
+	function __construct( $instanceName )
 	{
-		$this->ToolbarSet = '' ;      // blank or "Basic" or "Accessible"
+		$this->InstanceName	= $instanceName ;
+		$this->BasePath = DIR_WS_CATALOG.'editors/fckeditor/' ;
+		$this->Width		= '100%' ;
+		$this->Height		= '250' ;
+		$this->ToolbarSet	= 'Default' ;  // 'Default'/blank or "Basic"
 		$this->Value = '' ;           // default text
-		$this->CanUpload = 'true' ;   // true or none
-		$this->CanBrowse = 'true' ;   // true or none
-		$this->BasePath = DIR_WS_CATALOG.'FCKeditor/' ;
+    $this->EditorAreaCSS = DIR_WS_CATALOG . 'includes/templates/template_default/css/stylesheet.css';
+    $this->AutoDetectLanguage = true ;
+    $this->DefaultLanguage    = strtolower($_SESSION['languages_code']);
+
+//		$this->CanUpload = 'true' ;   // true or none
+//		$this->CanBrowse = 'true' ;   // true or none
+
+		$this->Config		= array() ;
 	}
 	
-	function CreateFCKeditor($instanceName, $width, $height)
+	// PHP 4 Contructor
+	function FCKeditor( $instanceName )
 	{
-		echo $this->ReturnFCKeditor($instanceName, $width, $height) ;
+		$this->__construct( $instanceName ) ;
 	}
 	
-	function ReturnFCKeditor($instanceName, $width, $height)
+	function Create()
 	{
+		echo $this->CreateHtml() ;
+	}
 
-//		$grstr = htmlentities( $this->Value ) ;
-		$grstr = htmlspecialchars( $this->Value ) ;
+	function CreateHtml()
+	{
+		$HtmlValue = htmlspecialchars( $this->Value ) ;
 
-		$strEditor = "" ;
+		$Html = '<div>' ;
 		
 		if ( $this->IsCompatible() )
 		{
-			$sLink = $this->BasePath . "fckeditor.html?FieldName=$instanceName" ;
+			if ( isset( $_GET['fcksource'] ) && $_GET['fcksource'] == "true" )
+				$File = 'fckeditor.original.html' ;
+			else
+				$File = 'fckeditor.html' ;
+
+			$Link = "{$this->BasePath}editor/{$File}?InstanceName={$this->InstanceName}" ;
 
 			if ( $this->ToolbarSet != '' )
-				$sLink = $sLink . "&Toolbar=$this->ToolbarSet" ;
+				$Link .= "&amp;Toolbar={$this->ToolbarSet}" ;
 
-			if ( $this->CanUpload != 'none' )
-			{
-				if ($this->CanUpload == true)
-					$sLink = $sLink . "&Upload=true" ;
-				else
-					$sLink = $sLink . "&Upload=false" ;
-			}
+			// Render the linked hidden field.
+			$Html .= "<input type=\"hidden\" id=\"{$this->InstanceName}\" name=\"{$this->InstanceName}\" value=\"{$HtmlValue}\" style=\"display:none\" />" ;
 
-			if ( $this->CanBrowse != 'none' )
-			{
-				if ($this->CanBrowse == true)
-					$sLink = $sLink . "&Browse=true" ;
-				else
-					$sLink = $sLink . "&Browse=false" ;
-			}
+			// Render the configurations hidden field.
+			$Html .= "<input type=\"hidden\" id=\"{$this->InstanceName}___Config\" value=\"" . $this->GetConfigFieldString() . "\" style=\"display:none\" />" ;
 
-			$strEditor .= "<IFRAME src=\"$sLink\" width=\"$width\" height=\"$height\" frameborder=\"no\" scrolling=\"no\"></IFRAME>" ;
-			$strEditor .= "<INPUT type=\"hidden\" name=\"$instanceName\" value=\"$grstr\">" ;
+			// Render the editor IFRAME.
+			$Html .= "<iframe id=\"{$this->InstanceName}___Frame\" src=\"{$Link}\" width=\"{$this->Width}\" height=\"{$this->Height}\" frameborder=\"0\" scrolling=\"no\"></iframe>" ;
 		}
 		else
-		{
-			$strEditor .= "<TEXTAREA name=\"$instanceName\" rows=\"4\" cols=\"40\" style=\"WIDTH: $width; HEIGHT: $height\" wrap=\"virtual\">$grstr</TEXTAREA>" ;
-		}
+			{
+			if ( strpos( $this->Width, '%' ) === false )
+				$WidthCSS = $this->Width . 'px' ;
+				else
+				$WidthCSS = $this->Width ;
+
+			if ( strpos( $this->Height, '%' ) === false )
+				$HeightCSS = $this->Height . 'px' ;
+				else
+				$HeightCSS = $this->Height ;
+
+			$Html .= "<textarea name=\"{$this->InstanceName}\" rows=\"4\" cols=\"40\" style=\"width: {$WidthCSS}; height: {$HeightCSS}\">{$HtmlValue}</textarea>" ;
+			}
+
+		$Html .= '</div>' ;
 		
-		return $strEditor;
-	}
-	
+		return $Html ;
+		}
+
 	function IsCompatible()
 	{
-		$sAgent = $_SERVER['HTTP_USER_AGENT'] ;
+		global $HTTP_USER_AGENT ;
 
-		if ( is_integer( strpos($sAgent, 'MSIE') ) && is_integer( strpos($sAgent, 'Windows') ) && !is_integer( strpos($sAgent, 'Opera') ) )
+		if ( isset( $HTTP_USER_AGENT ) )
+			$sAgent = $HTTP_USER_AGENT ;
+		else
+			$sAgent = $_SERVER['HTTP_USER_AGENT'] ;
+
+		if ( strpos($sAgent, 'MSIE') !== false && strpos($sAgent, 'mac') === false && strpos($sAgent, 'Opera') === false )
 		{
-			$iVersion = (int)substr($sAgent, strpos($sAgent, 'MSIE') + 5, 1) ;
-			return ($iVersion >= 5) ;
-		} else {
-			return FALSE ;
+			$iVersion = (float)substr($sAgent, strpos($sAgent, 'MSIE') + 5, 3) ;
+			return ($iVersion >= 5.5) ;
 		}
+		else if ( strpos($sAgent, 'Gecko/') !== false )
+		{
+			$iVersion = (int)substr($sAgent, strpos($sAgent, 'Gecko/') + 6, 8) ;
+			return ($iVersion >= 20030210) ;
+		}
+		else
+			return false ;
+	}
+	
+	function GetConfigFieldString()
+	{
+		$sParams = '' ;
+		$bFirst = true ;
+
+		foreach ( $this->Config as $sKey => $sValue )
+		{
+			if ( $bFirst == false )
+				$sParams .= '&amp;' ;
+			else
+				$bFirst = false ;
+			
+			if ( $sValue === true )
+				$sParams .= $this->EncodeConfig( $sKey ) . '=true' ;
+			else if ( $sValue === false )
+				$sParams .= $this->EncodeConfig( $sKey ) . '=false' ;
+			else
+				$sParams .= $this->EncodeConfig( $sKey ) . '=' . $this->EncodeConfig( $sValue ) ;
+		}
+		
+		return $sParams ;
+		}
+
+	function EncodeConfig( $valueToEncode )
+	{
+		$chars = array( 
+			'&' => '%26', 
+			'=' => '%3D', 
+			'"' => '%22' ) ;
+
+		return strtr( $valueToEncode,  $chars ) ;
 	}
 }
 ?>

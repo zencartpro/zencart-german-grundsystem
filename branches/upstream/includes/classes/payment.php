@@ -6,7 +6,7 @@
  * @copyright Copyright 2003-2006 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: payment.php 3041 2006-02-15 21:56:45Z wilt $
+ * @version $Id: payment.php 4088 2006-08-07 04:54:43Z drbyte $
  */
 if (!defined('IS_ADMIN_FLAG')) {
   die('Illegal Access');
@@ -99,7 +99,7 @@ class payment extends base {
 
   function javascript_validation() {
     $js = '';
-    if (is_array($this->modules)) {
+    if (is_array($this->modules) && sizeof($this->selection()) > 0) {
       $js = '<script language="javascript"  type="text/javascript"><!-- ' . "\n" .
       'function check_form() {' . "\n" .
       '  var error = 0;' . "\n" .

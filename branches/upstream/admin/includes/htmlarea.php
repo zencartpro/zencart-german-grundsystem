@@ -1,10 +1,10 @@
 <?php
 /**
- * @package admin
+ * @package htmleditors
  * @copyright Copyright 2003-2006 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: htmlarea.php 3061 2006-02-23 19:13:26Z drbyte $
+ * @version $Id: htmlarea.php 4245 2006-08-24 14:07:50Z drbyte $
  */
 if (!defined('IS_ADMIN_FLAG')) {
   die('Illegal Access');
@@ -17,16 +17,16 @@ if ($_SESSION['html_editor_preference_status']=="HTMLAREA") {
 
 //define URL and LANG parameters
   echo '<script type="text/javascript">' .BR;
-  echo '   _editor_url = "'.DIR_WS_CATALOG . 'htmlarea/";' .BR;
-  echo '	_editor_lang = "'.strtolower(DEFAULT_LANGUAGE).'";' .BR;
+  echo '   _editor_url = "'.DIR_WS_CATALOG . 'editors/htmlarea/";' .BR;
+  echo '	_editor_lang = "'.strtolower($_SESSION['languages_code']).'";' .BR;
   echo '</script>' .BR;
 
 //<!-- load the main HTMLArea files -->
-  echo '<script type="text/javascript" src="' . DIR_WS_CATALOG . 'htmlarea/htmlarea.js"></script>' .BR;
-//  echo '<script type="text/javascript" src="' . DIR_WS_CATALOG . 'htmlarea/lang/'.strtolower(DEFAULT_LANGUAGE).'.js"></script>' .BR;
-//  echo '<script type="text/javascript" src="' . DIR_WS_CATALOG . 'htmlarea/dialog.js"></script>' .BR;
-//  echo '<script type="text/javascript" src="' . DIR_WS_CATALOG . 'htmlarea/popupdiv.js"></script>' .BR;
-//  echo '<script type="text/javascript" src="' . DIR_WS_CATALOG . 'htmlarea/popupwin.js"></script>' .BR;
+  echo '<script type="text/javascript" src="' . DIR_WS_CATALOG . 'editors/htmlarea/htmlarea.js"></script>' .BR;
+//  echo '<script type="text/javascript" src="' . DIR_WS_CATALOG . 'editors/htmlarea/lang/'.strtolower(DEFAULT_LANGUAGE).'.js"></script>' .BR;
+//  echo '<script type="text/javascript" src="' . DIR_WS_CATALOG . 'editors/htmlarea/dialog.js"></script>' .BR;
+//  echo '<script type="text/javascript" src="' . DIR_WS_CATALOG . 'editors/htmlarea/popupdiv.js"></script>' .BR;
+//  echo '<script type="text/javascript" src="' . DIR_WS_CATALOG . 'editors/htmlarea/popupwin.js"></script>' .BR;
 
 //<!-- load the plugins -->
   echo '<script type="text/javascript">' .BR;

@@ -1,24 +1,11 @@
 <?php
-//
-// +----------------------------------------------------------------------+
-// |zen-cart Open Source E-commerce                                       |
-// +----------------------------------------------------------------------+
-// | Copyright (c) 2003 The zen-cart developers                           |
-// |                                                                      |
-// | http://www.zen-cart.com/index.php                                    |
-// |                                                                      |
-// | Portions Copyright (c) 2003 osCommerce                               |
-// +----------------------------------------------------------------------+
-// | This source file is subject to version 2.0 of the GPL license,       |
-// | that is bundled with this package in the file LICENSE, and is        |
-// | available through the world-wide-web at the following url:           |
-// | http://www.zen-cart.com/license/2_0.txt.                             |
-// | If you did not receive a copy of the zen-cart license and are unable |
-// | to obtain it through the world-wide-web, please send a note to       |
-// | license@zen-cart.com so we can mail you a copy immediately.          |
-// +----------------------------------------------------------------------+
-//  $Id: english.php 3665 2006-05-28 15:01:11Z ajeh $
-//
+/**
+ * @package admin
+ * @copyright Copyright 2003-2006 Zen Cart Development Team
+ * @copyright Portions Copyright 2003 osCommerce
+ * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
+ * @version $Id: english.php 4385 2006-09-04 04:10:48Z drbyte $
+ */
 
 // added defines for header alt and text
 define('HEADER_ALT_TEXT', 'Admin Powered by Zen Cart :: The Art of E-Commerce');
@@ -271,7 +258,7 @@ define('ENTRY_NEWSLETTER_NO', 'Unsubscribed');
 define('ENTRY_NEWSLETTER_ERROR', '');
 
 // images
-define('IMAGE_ANI_SEND_EMAIL', 'Sending E-Mail');
+//define('IMAGE_ANI_SEND_EMAIL', 'Sending E-Mail');
 define('IMAGE_BACK', 'Back');
 define('IMAGE_BACKUP', 'Backup');
 define('IMAGE_CANCEL', 'Cancel');
@@ -287,6 +274,8 @@ define('IMAGE_ICON_STATUS_GREEN', 'Active');
 define('IMAGE_ICON_STATUS_GREEN_LIGHT', 'Set Active');
 define('IMAGE_ICON_STATUS_RED', 'Inactive');
 define('IMAGE_ICON_STATUS_RED_LIGHT', 'Set Inactive');
+define('IMAGE_ICON_STATUS_RED_EZPAGES', 'Error -- too many URL/content types entered');
+define('IMAGE_ICON_STATUS_RED_ERROR', 'Error');
 define('IMAGE_ICON_INFO', 'Info');
 define('IMAGE_INSERT', 'Insert');
 define('IMAGE_LOCK', 'Lock');
@@ -351,7 +340,7 @@ define('ICON_ERROR', 'Error');
 define('ICON_FILE', 'File');
 define('ICON_FILE_DOWNLOAD', 'Download');
 define('ICON_FOLDER', 'Folder');
-define('ICON_LOCKED', 'Locked');
+//define('ICON_LOCKED', 'Locked');
 define('ICON_MOVE', 'Move');
 define('ICON_PREVIOUS_LEVEL', 'Previous Level');
 define('ICON_PREVIEW', 'Preview');
@@ -359,7 +348,7 @@ define('ICON_RESET', 'Reset');
 define('ICON_STATISTICS', 'Statistics');
 define('ICON_SUCCESS', 'Success');
 define('ICON_TICK', 'True');
-define('ICON_UNLOCKED', 'Unlocked');
+//define('ICON_UNLOCKED', 'Unlocked');
 define('ICON_WARNING', 'Warning');
 
 // constants for use in zen_prev_next_display function
@@ -370,6 +359,7 @@ define('TEXT_DISPLAY_NUMBER_OF_CATEGORIES', 'Displaying <b>%d</b> to <b>%d</b> (
 define('TEXT_DISPLAY_NUMBER_OF_COUNTRIES', 'Displaying <b>%d</b> to <b>%d</b> (of <b>%d</b> countries)');
 define('TEXT_DISPLAY_NUMBER_OF_CUSTOMERS', 'Displaying <b>%d</b> to <b>%d</b> (of <b>%d</b> customers)');
 define('TEXT_DISPLAY_NUMBER_OF_CURRENCIES', 'Displaying <b>%d</b> to <b>%d</b> (of <b>%d</b> currencies)');
+define('TEXT_DISPLAY_NUMBER_OF_FEATURED', 'Displaying <b>%d</b> to <b>%d</b> (of <b>%d</b> products on featured)');
 define('TEXT_DISPLAY_NUMBER_OF_LANGUAGES', 'Displaying <b>%d</b> to <b>%d</b> (of <b>%d</b> languages)');
 define('TEXT_DISPLAY_NUMBER_OF_MANUFACTURERS', 'Displaying <b>%d</b> to <b>%d</b> (of <b>%d</b> manufacturers)');
 define('TEXT_DISPLAY_NUMBER_OF_NEWSLETTERS', 'Displaying <b>%d</b> to <b>%d</b> (of <b>%d</b> newsletters)');
@@ -416,6 +406,9 @@ define('ERROR_ADMIN_SECURITY_WARNING', 'Warning: Your Admin login is not secure 
 define('WARNING_DATABASE_VERSION_OUT_OF_DATE','Your database appears to need patching to a higher level. See Tools->Server Information to review patch levels.');
 define('WARN_DATABASE_VERSION_PROBLEM','true'); //set to false to turn off warnings about database version mismatches
 define('WARNING_ADMIN_DOWN_FOR_MAINTENANCE', '<strong>WARNING:</strong> Site is currently set to Down for Maintenance ...<br />NOTE: You cannot test most Payment and Shipping Modules in Maintenance mode');
+define('WARNING_BACKUP_CFG_FILES_TO_DELETE', 'WARNING: These files should be deleted to prevent security vulnerability: ');
+define('WARNING_INSTALL_DIRECTORY_EXISTS', 'Warning: Installation directory exists at: ' . DIR_FS_CATALOG . 'zc_install. Please remove this directory for security reasons.');
+define('WARNING_CONFIG_FILE_WRITEABLE', 'Warning: Your configuration file: %sincludes/configure.php. This is a potential security risk - please set the right user permissions on this file (read-only, CHMOD 644 or 444 are typical).');
 
 define('_JANUARY', 'January');
 define('_FEBRUARY', 'February');
@@ -544,7 +537,10 @@ define('TEXT_NO', 'No');
 define('ERROR_SHIPPING_CONFIGURATION', '<strong>Shipping Configuration errors!</strong>');
 define('ERROR_SHIPPING_ORIGIN_ZIP', '<strong>Warning:</strong> Store Zip Code is not defined. See Configuration | Shipping/Packaging to set it.');
 define('ERROR_ORDER_WEIGHT_ZERO_STATUS', '<strong>Warning:</strong> 0 weight is configured for Free Shipping and Free Shipping Module is not enabled');
-define('ERROR_USPS_STATUS', '<strong>Warning:</strong> USPS is either missing the username and/or password, or ... it is set to TEST rather than PRODUCTION and will not work<br />If you still cannot retrieve quotes, contact USPS and activate your live account');
+define('ERROR_USPS_STATUS', '<strong>Warning:</strong> USPS shipping module is either missing the username, or it is set to TEST rather than PRODUCTION and will not work.<br />If you cannot retrieve USPS Shipping Quotes, contact USPS to activate your Web Tools account on their production server. 1-800-344-7779 or icustomercare@usps.com');
+
+define('ERROR_SHIPPING_MODULES_NOT_DEFINED', 'NOTE: You have no shipping modules activated. Please go to Modules->Shipping to configure.');
+define('ERROR_PAYMENT_MODULES_NOT_DEFINED', 'NOTE: You have no payment modules activated. Please go to Modules->Payment to configure.');
 
 // text pricing
 define('TEXT_CHARGES_WORD','Calculated Charge:');
@@ -595,9 +591,9 @@ define('ENTRY_EMAIL_OPTOUT_DISPLAY','Opted Out of Newsletters');
 define('ENTRY_NOTHING_TO_SEND','You haven\'t entered any content for your message');
  define('EMAIL_SEND_FAILED','ERROR: Failed sending email to: "%s" <%s> with subject: "%s"');
 
-// toggle on/off
-  define('TEXT_HTML_AREA', 'HTMLarea');
+  define('EDITOR_NONE', 'Plain Text');
   define('TEXT_EDITOR_INFO', 'Text Editor');
+  define('ERROR_EDITORS_FOLDER_NOT_FOUND', 'You have an HTML editor selected in \'My Store\' but the \'/editors/\' folder cannot be located. Please disable your selection or move your editor files into the \''.DIR_WS_CATALOG.'editors/\' folder');
   define('TEXT_CATEGORIES_PRODUCTS_SORT_ORDER_INFO', 'Categories/Product Display Order: ');
   define('TEXT_SORT_PRODUCTS_SORT_ORDER_PRODUCTS_NAME', 'Products Sort Order, Products Name');
   define('TEXT_SORT_PRODUCTS_NAME', 'Products Name');
@@ -613,8 +609,9 @@ define('ENTRY_NOTHING_TO_SEND','You haven\'t entered any content for your messag
 
   define('TABLE_HEADING_YES','Yes');
   define('TABLE_HEADING_NO','No');
-  define('TEXT_IMAGES_OVERWRITE', 'Overwrite Existing Image? Use No for manually typed names');
+  define('TEXT_IMAGES_OVERWRITE', 'Overwrite Existing Image?<br />Use No for manually<br />typed names:');
   define('TEXT_IMAGE_OVERWRITE_WARNING','WARNING: FILENAME was updated but not overwritten ');
+  define('TEXT_IMAGES_DELETE', 'Delete Image?<br />Image is not removed from server:');
 
   define('ERROR_DEFINE_OPTION_NAMES', 'Warning: No Option Names have been defined');
   define('ERROR_DEFINE_OPTION_VALUES', 'Warning: No Option Values have been defined');

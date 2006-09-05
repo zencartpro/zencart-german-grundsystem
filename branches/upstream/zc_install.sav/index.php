@@ -6,11 +6,24 @@
  * @copyright Copyright 2003-2006 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: index.php 3178 2006-03-12 22:30:49Z drbyte $
+ * @version $Id: index.php 4022 2006-07-25 01:07:37Z drbyte $
  */
 
   define('IS_ADMIN_FLAG',false);
   require('includes/application_top.php');
+
+  /* This is for debug purposes to run installer from SSH command line. Set to true to enable it:  */
+  if (false) {
+    if ($argc > 0) {
+      for ($i=1;$i<$argc;$i++) {
+        $it = split("=",$argv[$i]);
+        $_GET[$it[0]] = $it[1];
+        // parse_str($argv[$i],$tmp);
+        // $_REQUEST = array_merge($_REQUEST, $tmp);
+      }
+    }
+  }
+
   if (!isset($_GET['main_page']) || !zen_not_null($_GET['main_page'])) $_GET['main_page'] = 'index';
   $current_page = $_GET['main_page'];
   $page_directory = 'includes/modules/pages/' . $current_page;

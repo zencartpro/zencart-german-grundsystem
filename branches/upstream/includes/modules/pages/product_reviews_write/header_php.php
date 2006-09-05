@@ -6,7 +6,7 @@
  * @copyright Copyright 2003-2006 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: header_php.php 3117 2006-03-05 20:38:44Z ajeh $
+ * @version $Id: header_php.php 4274 2006-08-26 03:16:53Z drbyte $
  */
 /**
  * Header code file for product reviews "write" page
@@ -72,11 +72,11 @@ if (isset($_GET['action']) && ($_GET['action'] == 'process')) {
     }
 
     $sql = "INSERT INTO " . TABLE_REVIEWS . " (products_id, customers_id, customers_name, reviews_rating, date_added, status)
-            VALUES (:productsID, :cutomersID, :customersName, :rating, now(), " . $review_status . ")";
+            VALUES (:productsID, :customersID, :customersName, :rating, now(), " . $review_status . ")";
 
 
     $sql = $db->bindVars($sql, ':productsID', $_GET['products_id'], 'integer');
-    $sql = $db->bindVars($sql, ':cutomersID', $_SESSION['customer_id'], 'integer');
+    $sql = $db->bindVars($sql, ':customersID', $_SESSION['customer_id'], 'integer');
     $sql = $db->bindVars($sql, ':customersName', $customer->fields['customers_firstname'] . ' ' . $customer->fields['customers_lastname'], 'string');
     $sql = $db->bindVars($sql, ':rating', $rating, 'string');
 

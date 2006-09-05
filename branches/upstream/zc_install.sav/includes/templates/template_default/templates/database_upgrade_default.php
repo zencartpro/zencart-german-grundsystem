@@ -5,7 +5,7 @@
  * @copyright Copyright 2003-2006 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: database_upgrade_default.php 3717 2006-06-06 08:20:45Z drbyte $
+ * @version $Id: database_upgrade_default.php 4266 2006-08-25 08:27:53Z drbyte $
  */
 
 ?>
@@ -112,6 +112,10 @@
       <input <?php if ($needs_v1_3_0_2) {echo "checked";} ?> name="version[]" type="checkbox" id="checkbox16" value="1.3.0.1" tabindex="16" />
       <label for="checkbox16">Upgrade DB from 1.3.0.1 to 1.3.0.2</label>
     </div>
+      <div class="input">
+      <input <?php if ($needs_v1_3_5) {echo "checked";} ?> name="version[]" type="checkbox" id="checkbox17" value="1.3.0.2" tabindex="17" />
+      <label for="checkbox17">Upgrade DB from 1.3.0.2 to 1.3.5</label>
+    </div>
     </fieldset>
     <br />
 <?php } //endif $dbinfo->zdb_configuration_table_found ?>
@@ -159,8 +163,10 @@
 <?php if (isset($_GET['debug3'])) echo '<input type="hidden" id="debug3" name="debug3" value="'.$_GET['debug3'].'" />'; ?>
 <?php if (isset($_GET['nogrants'])) echo '<input type="hidden" id="nogrants" name="nogrants" value="'.$_GET['nogrants'].'" />'; ?>
 <?php if (isset($_POST['nogrants'])) echo '<input type="hidden" id="nogrants" name="nogrants" value="'.$_POST['nogrants'].'" />'; ?>
+<br />
     <input type="submit" name="submit" class="button"  tabindex="60" value="<?php echo UPDATE_DATABASE_NOW; ?>" />
 <?php if ($dbinfo->zdb_configuration_table_found) { ?>
     <input type="submit" name="skip" class="button"  tabindex="61" value="<?php echo SKIP_UPDATES; ?>" />
 <?php } //endif ?>
+    <input type="submit" name="refresh" class="button" tabindex="62" value="<?php echo REFRESH_BUTTON; ?>" />
     </form>

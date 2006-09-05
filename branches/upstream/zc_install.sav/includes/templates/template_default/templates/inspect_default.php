@@ -5,7 +5,7 @@
  * @copyright Copyright 2003-2006 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: inspect_default.php 3824 2006-06-21 17:07:09Z drbyte $
+ * @version $Id: inspect_default.php 4267 2006-08-25 08:42:19Z drbyte $
  */
 
 ?>
@@ -87,8 +87,11 @@
 <?php } //end foreach?>
 </ul>
 </div>
-</fieldset>
+</fieldset><br />
 
+<fieldset>
+<legend><strong><?php echo LABEL_UPGRADE_VS_INSTALL; ?></strong></legend>
+<strong><?php if ($zen_cart_allow_database_upgrade == true) echo IMAGE_STOP_BEFORE_UPGRADING . LABEL_ACTION_SELECTION_INSTRUCTIONS; ?></strong>
 <input type="submit" name="submit" class="button" tabindex="8" value="<?php echo INSTALL_BUTTON; ?>" <?php echo $button_status;?> />
 <?php if ($zen_cart_previous_version_installed == true) { ?>
 <input type="submit" name="upgrade" class="button" tabindex="9" value="<?php echo UPGRADE_BUTTON; ?>" <?php echo $button_status;?> />
@@ -97,4 +100,5 @@
 <input type="submit" name="db_upgrade" class="button" tabindex="10" value="<?php echo DB_UPGRADE_BUTTON; ?>" <?php echo $button_status_upg;?> />
 <?php } ?>
 <input type="submit" name="refresh" class="button" tabindex="11" value="<?php echo REFRESH_BUTTON; ?>" />
+</fieldset>
 </form>

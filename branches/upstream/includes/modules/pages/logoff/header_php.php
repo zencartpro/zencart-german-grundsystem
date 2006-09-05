@@ -6,7 +6,7 @@
  * @copyright Copyright 2003-2006 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: header_php.php 2977 2006-02-06 23:37:36Z wilt $
+ * @version $Id: header_php.php 3982 2006-07-20 18:14:43Z drbyte $
  */
 
 // This should be first line of the script:
@@ -16,13 +16,18 @@ require(DIR_WS_MODULES . zen_get_module_directory('require_languages.php'));
 $breadcrumb->add(NAVBAR_TITLE);
 
 /**
+ * Check what language should be used on the logoff screen
+ */
+  $logoff_lang = ($_SESSION['languages_code'] != DEFAULT_LANGUAGE) ? 'language=' . $_SESSION['languages_code'] : '';
+
+/**
   * Check if there is still a customer_id
   * If so, kill the session, and redirect back to the logoff page
   * This will cause the header logic to see that the customer_id is gone, and thus not display another logoff link
   */
 if (!empty($_SESSION['customer_id'])) {
   zen_session_destroy();
-  zen_redirect(zen_href_link(FILENAME_LOGOFF));
+  zen_redirect(zen_href_link(FILENAME_LOGOFF, $logoff_lang));
 }
 
 // This should be last line of the script:

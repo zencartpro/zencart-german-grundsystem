@@ -4,7 +4,7 @@
  * @copyright Copyright 2003-2006 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: preview_info.php 3009 2006-02-11 15:41:10Z wilt $
+ * @version $Id: preview_info.php 4178 2006-08-20 18:47:54Z ajeh $
  */
 if (!defined('IS_ADMIN_FLAG')) {
   die('Illegal Access');
@@ -67,7 +67,7 @@ if (!defined('IS_ADMIN_FLAG')) {
         <td class="main">
           <?php
 //auto replace with defined missing image
-            if ($products_image_name == '' and PRODUCTS_IMAGE_NO_IMAGE_STATUS == '1') {
+            if ($_POST['image_delete'] == 1 || $products_image_name == '' and PRODUCTS_IMAGE_NO_IMAGE_STATUS == '1') {
               echo zen_image(DIR_WS_CATALOG_IMAGES . PRODUCTS_IMAGE_NO_IMAGE, $pInfo->products_name, SMALL_IMAGE_WIDTH, SMALL_IMAGE_HEIGHT, 'align="right" hspace="5" vspace="5"') . $pInfo->products_description;
             } else {
               echo zen_image(DIR_WS_CATALOG_IMAGES . $products_image_name, $pInfo->products_name, SMALL_IMAGE_WIDTH, SMALL_IMAGE_HEIGHT, 'align="right" hspace="5" vspace="5"') . $pInfo->products_description;

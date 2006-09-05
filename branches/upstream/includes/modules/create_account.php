@@ -6,39 +6,19 @@
  * @copyright Copyright 2003-2006 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: create_account.php 3777 2006-06-15 07:03:03Z drbyte $
+ * @version $Id: create_account.php 4282 2006-08-26 08:01:18Z drbyte $
  */
+// This should be first line of the script:
+$zco_notifier->notify('NOTIFY_MODULE_START_CREATE_ACCOUNT');
+
 if (!defined('IS_ADMIN_FLAG')) {
   die('Illegal Access');
 }
-
 /**
  * Set some defaults
  */
-  if (ACCOUNT_STATE == 'true' && ACCOUNT_STATE_DRAW_INITIAL_DROPDOWN == 'true') {
-    $zone_id = 0;
-    $check_query = "select count(*) as total
-                      from " . TABLE_ZONES . "
-                      where zone_country_id = '" . (int)SHOW_CREATE_ACCOUNT_DEFAULT_COUNTRY . "'";
-    $check = $db->Execute($check_query);
-    $entry_state_has_zones = ($check->fields['total'] > 0);
-    if ($entry_state_has_zones == true) {
-      $zones_array = array();
-      $zones_array[] = array('id' => PULL_DOWN_ALL, 'text' => PULL_DOWN_ALL);
-      $zones_values = $db->Execute("select zone_name
-                                   from " . TABLE_ZONES . "
-                                   where zone_country_id = '" . (int)SHOW_CREATE_ACCOUNT_DEFAULT_COUNTRY . "'
-                                   order by zone_name");
-      while (!$zones_values->EOF) {
-        $zones_array[] = array('id' => $zones_values->fields['zone_name'], 'text' => $zones_values->fields['zone_name']);
-        $zones_values->MoveNext();
-      }
-    }
-  }
-
-
   $process = false;
-
+  $zone_name = '';
 /**
  * Process form contents
  */
@@ -63,9 +43,7 @@ if (isset($_POST['action']) && ($_POST['action'] == 'process')) {
   $firstname = zen_db_prepare_input($_POST['firstname']);
   $lastname = zen_db_prepare_input($_POST['lastname']);
   $nick = zen_db_prepare_input($_POST['nick']);
-  //    if (ACCOUNT_DOB == 'true') $dob = zen_db_prepare_input($_POST['dob']);
   if (ACCOUNT_DOB == 'true') $dob = (empty($_POST['dob']) ? zen_db_prepare_input('0001-01-01 00:00:00') : zen_db_prepare_input($_POST['dob']));
-
   $email_address = zen_db_prepare_input($_POST['email_address']);
   if (ACCOUNT_COMPANY == 'true') $company = zen_db_prepare_input($_POST['company']);
   $street_address = zen_db_prepare_input($_POST['street_address']);
@@ -80,7 +58,7 @@ if (isset($_POST['action']) && ($_POST['action'] == 'process')) {
       $zone_id = false;
     }
   }
-  $country = zen_db_prepare_input($_POST['country']);
+  $country = zen_db_prepare_input($_POST['zone_country_id']);
   $telephone = zen_db_prepare_input($_POST['telephone']);
   $fax = zen_db_prepare_input($_POST['fax']);
   $email_format = zen_db_prepare_input($_POST['email_format']);
@@ -107,20 +85,17 @@ if (isset($_POST['action']) && ($_POST['action'] == 'process')) {
   if (ACCOUNT_GENDER == 'true') {
     if ( ($gender != 'm') && ($gender != 'f') ) {
       $error = true;
-
       $messageStack->add('create_account', ENTRY_GENDER_ERROR);
     }
   }
 
   if (strlen($firstname) < ENTRY_FIRST_NAME_MIN_LENGTH) {
     $error = true;
-
     $messageStack->add('create_account', ENTRY_FIRST_NAME_ERROR);
   }
 
   if (strlen($lastname) < ENTRY_LAST_NAME_MIN_LENGTH) {
     $error = true;
-
     $messageStack->add('create_account', ENTRY_LAST_NAME_ERROR);
   }
 
@@ -128,30 +103,33 @@ if (isset($_POST['action']) && ($_POST['action'] == 'process')) {
     if (ENTRY_DOB_MIN_LENGTH > 0 or !empty($_POST['dob'])) {
       if (substr_count($dob,'/') > 2 || checkdate(substr(zen_date_raw($dob), 4, 2), substr(zen_date_raw($dob), 6, 2), substr(zen_date_raw($dob), 0, 4)) == false) {
         $error = true;
-
         $messageStack->add('create_account', ENTRY_DATE_OF_BIRTH_ERROR);
       }
     }
   }
 
+  if (ACCOUNT_COMPANY == 'true') {
+    if ((int)ENTRY_COMPANY_MIN_LENGTH > 0 && strlen($company) < ENTRY_COMPANY_MIN_LENGTH) {
+      $error = true;
+      $messageStack->add('create_account', ENTRY_COMPANY_ERROR);
+    }
+  }
+
+
   if (strlen($email_address) < ENTRY_EMAIL_ADDRESS_MIN_LENGTH) {
     $error = true;
-
     $messageStack->add('create_account', ENTRY_EMAIL_ADDRESS_ERROR);
   } elseif (zen_validate_email($email_address) == false) {
     $error = true;
-
     $messageStack->add('create_account', ENTRY_EMAIL_ADDRESS_CHECK_ERROR);
   } else {
     $check_email_query = "select count(*) as total
                             from " . TABLE_CUSTOMERS . "
                             where customers_email_address = '" . zen_db_input($email_address) . "'";
-
     $check_email = $db->Execute($check_email_query);
 
     if ($check_email->fields['total'] > 0) {
       $error = true;
-
       $messageStack->add('create_account', ENTRY_EMAIL_ADDRESS_ERROR_EXISTS);
     }
   }
@@ -180,83 +158,56 @@ if (isset($_POST['action']) && ($_POST['action'] == 'process')) {
 
   if (strlen($street_address) < ENTRY_STREET_ADDRESS_MIN_LENGTH) {
     $error = true;
-
     $messageStack->add('create_account', ENTRY_STREET_ADDRESS_ERROR);
   }
 
   if (strlen($postcode) < ENTRY_POSTCODE_MIN_LENGTH) {
     $error = true;
-
     $messageStack->add('create_account', ENTRY_POST_CODE_ERROR);
   }
 
   if (strlen($city) < ENTRY_CITY_MIN_LENGTH) {
     $error = true;
-
     $messageStack->add('create_account', ENTRY_CITY_ERROR);
   }
 
   if (is_numeric($country) == false) {
     $error = true;
-
     $messageStack->add('create_account', ENTRY_COUNTRY_ERROR);
   }
 
+  $error_state_input = false;
   if (ACCOUNT_STATE == 'true') {
-    $zone_id = 0;
-    $check_query = "select count(*) as total
-                      from " . TABLE_ZONES . "
-                      where zone_country_id = '" . (int)$country . "'";
-
+    $check_query = "SELECT count(*) AS total
+                    FROM " . TABLE_ZONES . "
+                    WHERE zone_country_id = :zoneCountryID";
+    $check_query = $db->bindVars($check_query, ':zoneCountryID', $country, 'integer');
     $check = $db->Execute($check_query);
-
     $entry_state_has_zones = ($check->fields['total'] > 0);
     if ($entry_state_has_zones == true) {
-      $zones_array = array();
-      $zones_array[] = array('id' => PULL_DOWN_ALL, 'text' => PULL_DOWN_ALL);
-      $zones_values = $db->Execute("select zone_name
-                                   from " . TABLE_ZONES . "
-                                   where zone_country_id = '" . (int)$country . "'
-                                   order by zone_name");
+      $zone_query = "SELECT distinct zone_id, zone_name
+                     FROM " . TABLE_ZONES . "
+                     WHERE zone_country_id = :zoneCountryID
+                     AND " . 
+                     (trim($state) != '' ? "(upper(zone_name) like ':zoneState%' OR upper(zone_code) like '%:zoneState%') OR " : "") .
+                    "zone_id = :zoneID";
 
-      while (!$zones_values->EOF) {
-        $zones_array[] = array('id' => $zones_values->fields['zone_name'], 'text' => $zones_values->fields['zone_name']);
-        $zones_values->MoveNext();
-      }
-      $zone_query = "select distinct zone_id, zone_name
-                       from " . TABLE_ZONES . "
-                       where zone_country_id = '" . (int)$country . "'
-                       and zone_code =  '" . strtoupper(zen_db_input($state)) . "'";
-
+      $zone_query = $db->bindVars($zone_query, ':zoneCountryID', $country, 'integer');
+      $zone_query = $db->bindVars($zone_query, ':zoneState', strtoupper($state), 'noquotestring');
+      $zone_query = $db->bindVars($zone_query, ':zoneID', $zone_id, 'integer');
       $zone = $db->Execute($zone_query);
-      if ($zone->RecordCount() > 0) {
+      if ($zone->RecordCount() == 1) {
         $zone_id = $zone->fields['zone_id'];
         $zone_name = $zone->fields['zone_name'];
-
       } else {
-
-        $zone_query = "select distinct zone_id, zone_name
-                         from " . TABLE_ZONES . "
-                         where zone_country_id = '" . (int)$country . "'
-                         and (zone_name like '" . zen_db_input($state) . "%'
-                         or zone_code like '%" . zen_db_input($state) . "%')";
-
-        $zone = $db->Execute($zone_query);
-
-        if ($zone->RecordCount() > 0) {
-          $zone_id = $zone->fields['zone_id'];
-          $zone_name = $zone->fields['zone_name'];
-        }
-      }
-      if (!$zone_name) {
         $error = true;
-
+        $error_state_input = true;
         $messageStack->add('create_account', ENTRY_STATE_ERROR_SELECT);
       }
     } else {
       if (strlen($state) < ENTRY_STATE_MIN_LENGTH) {
         $error = true;
-
+        $error_state_input = true;
         $messageStack->add('create_account', ENTRY_STATE_ERROR);
       }
     }
@@ -264,18 +215,15 @@ if (isset($_POST['action']) && ($_POST['action'] == 'process')) {
 
   if (strlen($telephone) < ENTRY_TELEPHONE_MIN_LENGTH) {
     $error = true;
-
     $messageStack->add('create_account', ENTRY_TELEPHONE_NUMBER_ERROR);
   }
 
 
   if (strlen($password) < ENTRY_PASSWORD_MIN_LENGTH) {
     $error = true;
-
     $messageStack->add('create_account', ENTRY_PASSWORD_ERROR);
   } elseif ($password != $confirmation) {
     $error = true;
-
     $messageStack->add('create_account', ENTRY_PASSWORD_ERROR_NOT_MATCHING);
   }
 
@@ -298,7 +246,6 @@ if (isset($_POST['action']) && ($_POST['action'] == 'process')) {
 
     if ((CUSTOMERS_REFERRAL_STATUS == '2' and $customers_referral != '')) $sql_data_array['customers_referral'] = $customers_referral;
     if (ACCOUNT_GENDER == 'true') $sql_data_array['customers_gender'] = $gender;
-    //      if (ACCOUNT_DOB == 'true') $sql_data_array['customers_dob'] = zen_date_raw($dob);
     if (ACCOUNT_DOB == 'true') $sql_data_array['customers_dob'] = (empty($_POST['dob']) ? zen_db_prepare_input('0001-01-01 00:00:00') : zen_date_raw($_POST['dob']));
 
     zen_db_perform(TABLE_CUSTOMERS, $sql_data_array);
@@ -455,4 +402,16 @@ if (isset($_POST['action']) && ($_POST['action'] == 'process')) {
 
   } //endif !error
 }
+
+
+/*
+ * Set flags for template use:
+ */
+  $selected_country = ($_POST['zone_country_id']) ? $country : SHOW_CREATE_ACCOUNT_DEFAULT_COUNTRY;
+  $flag_show_pulldown_states = ((($process == true || $entry_state_has_zones == true) && $zone_name == '') || ACCOUNT_STATE_DRAW_INITIAL_DROPDOWN == 'true' || $error_state_input) ? true : false;
+  $status_state_disabled = ($flag_show_pulldown_states && !($process == true || $entry_state_has_zones == true)) ? ' disabled="disabled"' : '';
+  $state_field_label = ($flag_show_pulldown_states) ? '' : ENTRY_STATE;
+
+// This should be last line of the script:
+$zco_notifier->notify('NOTIFY_MODULE_END_CREATE_ACCOUNT');
 ?>

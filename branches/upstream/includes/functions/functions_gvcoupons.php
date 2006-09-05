@@ -1,37 +1,27 @@
 <?php
-//
-// +----------------------------------------------------------------------+
-// |zen-cart Open Source E-commerce                                       |
-// +----------------------------------------------------------------------+
-// | Copyright (c) 2003 The zen-cart developers                           |
-// |                                                                      |
-// | http://www.zen-cart.com/index.php                                    |
-// |                                                                      |
-// | Portions Copyright (c) 2003 osCommerce                               |
-// +----------------------------------------------------------------------+
-// | This source file is subject to version 2.0 of the GPL license,       |
-// | that is bundled with this package in the file LICENSE, and is        |
-// | available through the world-wide-web at the following url:           |
-// | http://www.zen-cart.com/license/2_0.txt.                             |
-// | If you did not receive a copy of the zen-cart license and are unable |
-// | to obtain it through the world-wide-web, please send a note to       |
-// | license@zen-cart.com so we can mail you a copy immediately.          |
-// +----------------------------------------------------------------------+
-// $Id: functions_gvcoupons.php 1969 2005-09-13 06:57:21Z drbyte $
-//
-//
+/**
+ * functions_gvcoupons.php
+ * Functions related to processing Gift Vouchers/Certificates and coupons
+ *
+ * @package functions
+ * @copyright Copyright 2003-2006 Zen Cart Development Team
+ * @copyright Portions Copyright 2003 osCommerce
+ * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
+ * @version $Id: functions_gvcoupons.php 4135 2006-08-14 04:25:02Z drbyte $
+ */
+
 ////
 // Update the Customers GV account
   function zen_gv_account_update($c_id, $gv_id) {
     global $db;
     $customer_gv_query = "select amount
                           from " . TABLE_COUPON_GV_CUSTOMER . "
-                          where customer_id = '" . $c_id . "'";
+                          where customer_id = '" . (int)$c_id . "'";
 
     $customer_gv = $db->Execute($customer_gv_query);
     $coupon_gv_query = "select coupon_amount
                         from " . TABLE_COUPONS . "
-                        where coupon_id = '" . $gv_id . "'";
+                        where coupon_id = '" . (int)$gv_id . "'";
 
     $coupon_gv = $db->Execute($coupon_gv_query);
 
@@ -39,7 +29,7 @@
 
       $new_gv_amount = $customer_gv->fields['amount'] + $coupon_gv->fields['coupon_amount'];
       $gv_query = "update " . TABLE_COUPON_GV_CUSTOMER . "
-                   set amount = '" . $new_gv_amount . "' where customer_id = '" . $c_id . "'";
+                   set amount = '" . $new_gv_amount . "' where customer_id = '" . (int)$c_id . "'";
 
       $db->Execute($gv_query);
 
@@ -47,7 +37,7 @@
 
       $gv_query = "insert into " . TABLE_COUPON_GV_CUSTOMER . "
                                    (customer_id, amount)
-                          values ('" . $c_id . "', '" . $coupon_gv->fields['coupon_amount'] . "')";
+                          values ('" . (int)$c_id . "', '" . $coupon_gv->fields['coupon_amount'] . "')";
 
       $db->Execute($gv_query);
     }
@@ -56,7 +46,7 @@
     function zen_user_has_gv_account($c_id) {
       global $db;
       if ($_SESSION['customer_id']) {
-        $gv_result = $db->Execute("select amount from " . TABLE_COUPON_GV_CUSTOMER . " where customer_id = '" . $c_id . "'");
+        $gv_result = $db->Execute("select amount from " . TABLE_COUPON_GV_CUSTOMER . " where customer_id = '" . (int)$c_id . "'");
         if ($gv_result->RecordCount() > 0) {
           if ($gv_result->fields['amount'] > 0) {
             return $gv_result->fields['amount'];

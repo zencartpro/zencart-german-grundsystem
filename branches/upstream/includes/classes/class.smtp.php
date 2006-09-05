@@ -19,7 +19,7 @@
  * @package classes
  * @ignore
  * @author Chris Ryan
- * @version (within Zen Cart) $Id: class.smtp.php 3397 2006-04-09 01:45:32Z drbyte $
+ * @version (within Zen Cart) $Id: class.smtp.php 4383 2006-09-04 00:42:07Z drbyte $
  */
 /**
  * SMTP Class

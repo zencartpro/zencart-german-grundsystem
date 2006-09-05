@@ -8,7 +8,7 @@
  * @package templateSystem
  * @copyright Copyright 2003-2005 Zen Cart Development Team
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: tpl_account_edit_default.php 3692 2006-06-02 17:15:15Z drbyte $
+ * @version $Id: tpl_account_edit_default.php 3848 2006-06-25 20:33:42Z drbyte $
  * @copyright Portions Copyright 2003 osCommerce
  */
 ?>
@@ -70,7 +70,7 @@
 <?php } ?>
 
 <?php
-  if (CUSTOMERS_REFERRAL_STATUS == 2 and $customers_referral == '') {
+  if (CUSTOMERS_REFERRAL_STATUS == 2 and $customers_referral != '') {
 ?>
 <label for="customers-referral-readonly"><?php echo ENTRY_CUSTOMERS_REFERRAL; ?></label>
 <?php echo $customers_referral; zen_draw_hidden_field('customers_referral', $customers_referral,'id="customers-referral-readonly"'); ?>

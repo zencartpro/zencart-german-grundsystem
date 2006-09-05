@@ -1,24 +1,11 @@
 <?php
-//
-// +----------------------------------------------------------------------+
-// |zen-cart Open Source E-commerce                                       |
-// +----------------------------------------------------------------------+
-// | Copyright (c) 2003 The zen-cart developers                           |
-// |                                                                      |
-// | http://www.zen-cart.com/index.php                                    |
-// |                                                                      |
-// | Portions Copyright (c) 2003 osCommerce                               |
-// +----------------------------------------------------------------------+
-// | This source file is subject to version 2.0 of the GPL license,       |
-// | that is bundled with this package in the file LICENSE, and is        |
-// | available through the world-wide-web at the following url:           |
-// | http://www.zen-cart.com/license/2_0.txt.                             |
-// | If you did not receive a copy of the zen-cart license and are unable |
-// | to obtain it through the world-wide-web, please send a note to       |
-// | license@zen-cart.com so we can mail you a copy immediately.          |
-// +----------------------------------------------------------------------+
-//  $Id: customers.php 3474 2006-04-21 02:20:40Z drbyte $
-//
+/**
+ * @package admin
+ * @copyright Copyright 2003-2006 Zen Cart Development Team
+ * @copyright Portions Copyright 2003 osCommerce
+ * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
+ * @version $Id: customers.php 4280 2006-08-26 03:32:55Z drbyte $
+ */
 
   require('includes/application_top.php');
 
@@ -26,6 +13,7 @@
   $currencies = new currencies();
 
   $action = (isset($_GET['action']) ? $_GET['action'] : '');
+  $customers_id = zen_db_prepare_input($_GET['cID']);
 
   $error = false;
   $processed = false;
@@ -34,23 +22,30 @@
     switch ($action) {
       case 'status':
         if ($_GET['current'] == CUSTOMERS_APPROVAL_AUTHORIZATION) {
-          $sql = "update " . TABLE_CUSTOMERS . " set customers_authorization=0 where customers_id='" . $_GET['cID'] . "'";
+          $sql = "update " . TABLE_CUSTOMERS . " set customers_authorization=0 where customers_id='" . (int)$customers_id . "'";
+          $custinfo = $db->Execute("select customers_email_address, customers_firstname, customers_lastname
+                                    from " . TABLE_CUSTOMERS . "
+                                    where customers_id = '" . (int)$customers_id . "'");
+          if ((int)CUSTOMERS_APPROVAL_AUTHORIZATION > 0 && (int)$_GET['current'] > 0 && $custinfo->RecordCount() > 0) {
+            $message = EMAIL_CUSTOMER_STATUS_CHANGE_MESSAGE;
+            $html_msg['EMAIL_MESSAGE_HTML'] = EMAIL_CUSTOMER_STATUS_CHANGE_MESSAGE ;
+            zen_mail($custinfo->fields['customers_firstname'] . ' ' . $custinfo->fields['customers_lastname'], $custinfo->fields['customers_email_address'], EMAIL_CUSTOMER_STATUS_CHANGE_SUBJECT , $message, STORE_NAME, EMAIL_FROM, $html_msg, 'default');
+          }
         } else {
-          $sql = "update " . TABLE_CUSTOMERS . " set customers_authorization='" . CUSTOMERS_APPROVAL_AUTHORIZATION . "' where customers_id='" . $_GET['cID'] . "'";
+          $sql = "update " . TABLE_CUSTOMERS . " set customers_authorization='" . CUSTOMERS_APPROVAL_AUTHORIZATION . "' where customers_id='" . (int)$customers_id . "'";
         }
         $db->Execute($sql);
         $action = '';
-        zen_redirect(zen_href_link(FILENAME_CUSTOMERS, 'cID=' . $_GET['cID'] . '&page=' . $_GET['page'], 'NONSSL'));
+        zen_redirect(zen_href_link(FILENAME_CUSTOMERS, 'cID=' . (int)$customers_id . '&page=' . $_GET['page'], 'NONSSL'));
         break;
       case 'update':
-        $customers_id = zen_db_prepare_input($_GET['cID']);
         $customers_firstname = zen_db_prepare_input($_POST['customers_firstname']);
         $customers_lastname = zen_db_prepare_input($_POST['customers_lastname']);
         $customers_email_address = zen_db_prepare_input($_POST['customers_email_address']);
         $customers_telephone = zen_db_prepare_input($_POST['customers_telephone']);
         $customers_fax = zen_db_prepare_input($_POST['customers_fax']);
         $customers_newsletter = zen_db_prepare_input($_POST['customers_newsletter']);
-        $customers_group_pricing = zen_db_prepare_input($_POST['customers_group_pricing']);
+        $customers_group_pricing = (int)zen_db_prepare_input($_POST['customers_group_pricing']);
         $customers_email_format = zen_db_prepare_input($_POST['customers_email_format']);
         $customers_gender = zen_db_prepare_input($_POST['customers_gender']);
         $customers_dob = (empty($_POST['customers_dob']) ? zen_db_prepare_input('0001-01-01 00:00:00') : zen_db_prepare_input($_POST['customers_dob']));
@@ -261,16 +256,14 @@
           $messageStack->add_session(ERROR_ADMIN_DEMO, 'caution');
           zen_redirect(zen_href_link(FILENAME_CUSTOMERS, zen_get_all_get_params(array('cID', 'action')), 'NONSSL'));
         }
-        $customers_id = zen_db_prepare_input($_GET['cID']);
 
         if (isset($_POST['delete_reviews']) && ($_POST['delete_reviews'] == 'on')) {
           $reviews = $db->Execute("select reviews_id
                                    from " . TABLE_REVIEWS . "
                                    where customers_id = '" . (int)$customers_id . "'");
-
           while (!$reviews->EOF) {
-            $dbExecute("delete from " . TABLE_REVIEWS_DESCRIPTION . "
-                        where reviews_id = '" . (int)$reviews['reviews_id'] . "'");
+            $db->Execute("delete from " . TABLE_REVIEWS_DESCRIPTION . "
+                          where reviews_id = '" . (int)$reviews->fields['reviews_id'] . "'");
             $reviews->MoveNext();
           }
 
@@ -315,7 +308,7 @@
                                   from " . TABLE_CUSTOMERS . " c left join " . TABLE_ADDRESS_BOOK . " a
                                   on c.customers_default_address_id = a.address_book_id
                                   where a.customers_id = c.customers_id
-                                  and c.customers_id = '" . (int)$_GET['cID'] . "'");
+                                  and c.customers_id = '" . (int)$customers_id . "'");
 
         $cInfo = new objectInfo($customers->fields);
     }
@@ -444,7 +437,7 @@ function check_form() {
   // -->
 </script>
 </head>
-<body onload="init()">
+<body onLoad="init()">
 <!-- header //-->
 <?php require(DIR_WS_INCLUDES . 'header.php'); ?>
 <!-- header_eof //-->
@@ -470,7 +463,8 @@ function check_form() {
       <tr>
         <td><?php echo zen_draw_separator('pixel_trans.gif', '1', '10'); ?></td>
       </tr>
-      <tr><?php echo zen_draw_form('customers', FILENAME_CUSTOMERS, zen_get_all_get_params(array('action')) . 'action=update', 'post', 'onsubmit="return check_form(customers);"', true) . zen_draw_hidden_field('default_address_id', $cInfo->customers_default_address_id); ?>
+      <tr><?php echo zen_draw_form('customers', FILENAME_CUSTOMERS, zen_get_all_get_params(array('action')) . 'action=update', 'post', 'onsubmit="return check_form(customers);"', true) . zen_draw_hidden_field('default_address_id', $cInfo->customers_default_address_id);
+           echo zen_hide_session_id(); ?>
         <td class="formAreaTitle"><?php echo CATEGORY_PERSONAL; ?></td>
       </tr>
       <tr>
@@ -828,7 +822,7 @@ if ($processed == true) {
     } else {
       echo ENTRY_NONE;
     }
-    echo zen_draw_hidden_field('customers_newsletter');
+    echo zen_draw_hidden_field('customers_group_pricing', $cInfo->customers_group_pricing);
   } else {
     $group_array_query = $db->execute("select group_id, group_name, group_percentage from " . TABLE_GROUP_PRICING);
     $group_array[] = array('id'=>0, 'text'=>TEXT_NONE);

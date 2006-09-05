@@ -2,25 +2,18 @@
  * CSS Stylesheet for printing
  *
  * @package templateSystem
- * @copyright Copyright 2003-2005 Zen Cart Development Team
+ * @copyright Copyright 2003-2006 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: print_stylesheet.css 3150 2006-03-10 19:03:51Z birdbrain $
+ * @version $Id: print_stylesheet.css 4226 2006-08-24 02:23:25Z drbyte $
 */
-body {background-color: #ffffff; margin: auto;}
+body {background-color: #ffffff;}
+#contentMainWrapper {background-color: #ffffff;}
+.messageStackWarning, #navMainWrapper, .navMainSearch, #navCatTabsWrapper, #navEZPagesTop, 
+#navColumnOne.columnLeft, #navColumnTwo.columnRight, 
+#navSupp, .banners, #navBreadCrumb, .buttonRow { display: none;}
 
-.messageStackWarning, #navMainWrapper, .navMainSearch, #navCatTabsWrapper, #navEZPagesTop, .footertop, .footerbottom,
-#navColumnOne, #navColumnTwo, .headerNavigation, .header h1, #checkoutConfirmDefaultHeading,
-#navSupp, .banners, #navBreadCrumb, .buttonRow, #cartAdd, #productDateAdded, #productInfoLink, #categoryIcon { display: none;}
 
-TABLE.header {
-  background-image: none;
-}
-.main_page, TABLE.footer, TABLE.header {
-  border-right: none;
-  border-left: none;
-  border-bottom: none;
-}
 /* Other relevant properties for paged media:
 - page-break-before
 - page-break-after

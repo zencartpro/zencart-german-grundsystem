@@ -6,12 +6,12 @@
  * @copyright Copyright 2003-2005 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: whats_new.php 2769 2006-01-02 07:34:58Z drbyte $
+ * @version $Id: whats_new.php 4162 2006-08-17 03:55:02Z ajeh $
  */
 
 // display limits
-  $display_limit = zen_get_products_new_timelimit();
-
+//$display_limit = zen_get_products_new_timelimit();
+      $display_limit = zen_get_new_date_range();
   $random_whats_new_sidebox_product_query = "select p.products_id, p.products_image, p.products_tax_class_id, p.products_price
                            from " . TABLE_PRODUCTS . " p
                            where p.products_status = 1 " . $display_limit . "

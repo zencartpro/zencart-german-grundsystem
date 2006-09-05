@@ -17,7 +17,7 @@
 // | to obtain it through the world-wide-web, please send a note to       |
 // | license@zen-cart.com so we can mail you a copy immediately.          |
 // +----------------------------------------------------------------------+
-//  $Id: application_top.php 3009 2006-02-11 15:41:10Z wilt $
+//  $Id: application_top.php 4265 2006-08-25 08:09:36Z drbyte $
 //
 /**
  * File contains just application_top code
@@ -106,14 +106,16 @@ if (file_exists(DIR_FS_ADMIN . 'includes/local/skip_version_check.ini')) {
  */
 if ($za_dir = @dir(DIR_WS_INCLUDES . 'extra_configures')) {
   while ($zv_file = $za_dir->read()) {
-    if (strstr($zv_file, '.php')) {
-      /** 
-       * include the list of extra configure files
+    if (preg_match('/\.php$/', $zv_file) > 0) {
+      /**
+       * load any user/contribution specific configuration files.
        */
       include(DIR_WS_INCLUDES . 'extra_configures/' . $zv_file);
     }
   }
 }
+
+$autoLoadConfig = array();
 $loader_file = 'config.core.php';
 $base_dir = DIR_WS_INCLUDES . 'auto_loaders/';
 if (file_exists(DIR_WS_INCLUDES . 'auto_loaders/overrides/' . $loader_file)) {

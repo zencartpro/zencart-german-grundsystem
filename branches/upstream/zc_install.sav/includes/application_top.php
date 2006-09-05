@@ -5,7 +5,7 @@
  * @copyright Copyright 2003-2006 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: application_top.php 3178 2006-03-12 22:30:49Z drbyte $
+ * @version $Id: application_top.php 4021 2006-07-25 00:01:47Z drbyte $
  */
 
 /**
@@ -33,7 +33,7 @@ if (!defined('IS_ADMIN_FLAG')) define('IS_ADMIN_FLAG', false);
   define('DIR_WS_INSTALL_TEMPLATE', 'includes/templates/template_default/');
   
   $language = 'english';
-  if  (isset($_GET['language'])) $language = $_GET['language'];
+  if  (isset($_GET['language']) && $_GET['language'] != '') $language = $_GET['language'];
   if (!isset($_GET['language'])) $_GET['language'] = $language;
 
 // initialize the message stack for output messages

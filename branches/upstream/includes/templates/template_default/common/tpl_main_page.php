@@ -35,7 +35,7 @@
  * @copyright Copyright 2003-2006 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: tpl_main_page.php 3721 2006-06-07 03:19:12Z birdbrain $
+ * @version $Id: tpl_main_page.php 3856 2006-06-29 02:26:33Z drbyte $
  */
 
 // the following IF statement can be duplicated/modified as needed to set additional flags
@@ -106,6 +106,10 @@ if (!isset($flag_disable_left) || !$flag_disable_left) {
     }
   }
 ?>
+
+<!-- bof upload alerts -->
+<?php if ($messageStack->size('upload') > 0) echo $messageStack->output('upload'); ?>
+<!-- eof upload alerts -->
 
 <?php
  /**

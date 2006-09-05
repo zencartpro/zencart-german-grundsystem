@@ -5,7 +5,7 @@
  * @copyright Copyright 2003-2006 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: header_php.php 3768 2006-06-13 07:54:16Z drbyte $
+ * @version $Id: header_php.php 4335 2006-09-01 10:30:53Z drbyte $
  * @todo -- test with Mac and Fedora Core 2 ... to see why sometimes fields with just '' are written with only one single-quote instead of two
  *
  */
@@ -27,7 +27,7 @@ $is_upgrade = $_GET['is_upgrade'];
   $zc_install->error_list = array();
 
   if (isset($_POST['submit'])) {
-    if ($_POST['db_type'] != 'mysql') $_POST['db_prefix'] = '';  // if not using mysql, don't support prefixes
+    if ($_POST['db_type'] != 'mysql') $_POST['db_prefix'] = '';  // if not using mysql, don't support prefixes because we don't trap for them
     if ($_POST['db_sess'] != 'true' || $_POST['cache_type'] == 'file') {  //if not storing sessions in database, or if caching to file, check folder
       $zc_install->isEmpty($_POST['sql_cache_dir'],  ERROR_TEXT_CACHE_DIR_ISEMPTY, ERROR_CODE_CACHE_DIR_ISEMPTY);
       $zc_install->isDir($_POST['sql_cache_dir'],  ERROR_TEXT_CACHE_DIR_ISDIR, ERROR_CODE_CACHE_DIR_ISDIR);
@@ -37,7 +37,7 @@ $is_upgrade = $_GET['is_upgrade'];
     $zc_install->isEmpty($_POST['db_host'], ERROR_TEXT_DB_HOST_ISEMPTY, ERROR_CODE_DB_HOST_ISEMPTY);
     $zc_install->isEmpty($_POST['db_username'], ERROR_TEXT_DB_USERNAME_ISEMPTY, ERROR_CODE_DB_USERNAME_ISEMPTY);
     $zc_install->isEmpty($_POST['db_name'], ERROR_TEXT_DB_NAME_ISEMPTY, ERROR_CODE_DB_NAME_ISEMPTY);
-    $zc_install->fileExists($_POST['db_type'] . '_zencart.sql', ERROR_TEXT_DB_SQL_NOTEXIST, ERROR_CODE_DB_SQL_NOTEXIST);
+    $zc_install->fileExists('sql/' . $_POST['db_type'] . '_zencart.sql', ERROR_TEXT_DB_SQL_NOTEXIST, ERROR_CODE_DB_SQL_NOTEXIST);
     $zc_install->functionExists($_POST['db_type'], ERROR_TEXT_DB_NOTSUPPORTED, ERROR_CODE_DB_NOTSUPPORTED);
     $zc_install->dbConnect($_POST['db_type'], $_POST['db_host'], $_POST['db_name'], $_POST['db_username'], $_POST['db_pass'], ERROR_TEXT_DB_CONNECTION_FAILED, ERROR_CODE_DB_CONNECTION_FAILED,ERROR_TEXT_DB_NOTEXIST, ERROR_CODE_DB_NOTEXIST);
     $zc_install->dbExists(false, $_POST['db_type'], $_POST['db_host'], $_POST['db_username'], $_POST['db_pass'], $_POST['db_name'], ERROR_TEXT_DB_NOTEXIST, ERROR_CODE_DB_NOTEXIST);
@@ -58,6 +58,7 @@ $is_upgrade = $_GET['is_upgrade'];
       if (substr($http_catalog, -1) != '/') {
         $http_catalog .= '/';
       }
+      $_POST['db_prefix'] == str_replace('-', '_', $_POST['db_prefix']);
       $sql_cache_dir = $_GET['sql_cache_dir'];
       $cache_type = $_GET['cache_type'];
       $https_server = $_GET['virtual_https_server'];
@@ -71,19 +72,23 @@ $is_upgrade = $_GET['is_upgrade'];
       //now let's write the files
       // Catalog version first:
       require('includes/store_configure.php');
-      $fp = fopen($_GET['physical_path'] . '/includes/configure.php', 'w');
-      fputs($fp, $file_contents);
-      fclose($fp);
-      @chmod($_GET['physical_path'] . '/includes/configure.php', 0644);
+      $config_file_contents_catalog = $file_contents;
+      $fp = @fopen($_GET['physical_path'] . '/includes/configure.php', 'w');
+      if ($fp) {
+        fputs($fp, $file_contents);
+        fclose($fp);
+        @chmod($_GET['physical_path'] . '/includes/configure.php', 0644);
+      }
       // now Admin version:
       require('includes/admin_configure.php');
-      $fp = fopen($_GET['physical_path'] . '/admin/includes/configure.php', 'w');
-      fputs($fp, $file_contents);
-      fclose($fp);
-      @chmod($_GET['physical_path'] . '/admin/includes/configure.php', 0644);
+      $config_file_contents_admin = $file_contents;
+      $fp = @fopen($_GET['physical_path'] . '/admin/includes/configure.php', 'w');
+      if ($fp) {
+        fputs($fp, $file_contents);
+        fclose($fp);
+        @chmod($_GET['physical_path'] . '/admin/includes/configure.php', 0644);
+      }
 
-
-// @todo -- test with Mac and Fedora Core 2 ... to see why sometimes fields with just '' are written with only one single-quote instead of two
       // test whether the files were written successfully
       $ztst_http_server = zen_read_config_value('HTTP_SERVER');
       $ztst_db_server = zen_read_config_value('DB_SERVER');
@@ -129,7 +134,7 @@ $is_upgrade = $_GET['is_upgrade'];
 <div class="progress" align="center"><?php echo INSTALLATION_IN_PROGRESS; ?><br /><br />
 <?php
          }
-         executeSql($_POST['db_type'] . '_zencart.sql', $_POST['db_name'], $_POST['db_prefix']);
+         executeSql('sql/' . $_POST['db_type'] . '_zencart.sql', $_POST['db_name'], $_POST['db_prefix']);
 
          //update the cache folder setting:
          $sql = "update ".$_POST['db_prefix']."configuration set configuration_value='".$_POST['sql_cache_dir']."' where configuration_key='SESSION_WRITE_DIRECTORY'";
@@ -137,8 +142,39 @@ $is_upgrade = $_GET['is_upgrade'];
          //update the phpbb setting:
          $sql = "update ".$_POST['db_prefix']."configuration set configuration_value='".$_GET['use_phpbb']."' where configuration_key='PHPBB_LINKS_ENABLED'";
          $db->Execute($sql);
+         if (file_exists('includes/local/developers_' . $_POST['db_type'] . '.sql')) {
+           executeSql('includes/local/developers_' . $_POST['db_type'] . '.sql', $_POST['db_name'], $_POST['db_prefix']);
+         }
 
+         /**
+          * Support for SQL Plugins in installer 
+          */
+         $sqlpluginsdir = 'sql/plugins/';
+         if ($dir = @dir($sqlpluginsdir)) {
+           while ($file = $dir->read()) {
+             if (!is_dir($sqlpluginsdir . $file)) {
+               if (ZC_UPG_DEBUG3) echo '<br />checking file: ' . $sqlpluginsdir . $file;
+               if (preg_match('/^' . $_POST['db_type'] . '.*\.sql$/', $file) > 0) {
+
+                 $directory_array[] = $file;
+               }
+             }
+           }
+           if (sizeof($directory_array)) {
+             sort($directory_array);
+           }
+           $dir->close();
+         }
+         for ($i = 0, $n = sizeof($directory_array); $i < $n; $i++) {
+           $file = $directory_array[$i];
+           if (file_exists($sqlpluginsdir . $file)) {
+             echo '<br />Processing Plugin: ' . $sqlpluginsdir . $file . '<br />';
+             executeSql($sqlpluginsdir . $file, $_POST['db_name'], $_POST['db_prefix']);
+           }
+         }
+         // Close the database connection
          $db->Close();
+         if (ZC_UPG_DEBUG3) die('ready to continue');
          // done - now on to next page for Store Setup (entries into database)
 
          if ($zc_show_progress == 'yes') {

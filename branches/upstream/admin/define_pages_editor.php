@@ -1,24 +1,11 @@
 <?php
-//
-// +----------------------------------------------------------------------+
-// |zen-cart Open Source E-commerce                                       |
-// +----------------------------------------------------------------------+
-// | Copyright (c) 2003 The zen-cart developers                           |
-// |                                                                      |
-// | http://www.zen-cart.com/index.php                                    |
-// |                                                                      |
-// | Portions Copyright (c) 2003 osCommerce                               |
-// +----------------------------------------------------------------------+
-// | This source file is subject to version 2.0 of the GPL license,       |
-// | that is bundled with this package in the file LICENSE, and is        |
-// | available through the world-wide-web at the following url:           |
-// | http://www.zen-cart.com/license/2_0.txt.                             |
-// | If you did not receive a copy of the zen-cart license and are unable |
-// | to obtain it through the world-wide-web, please send a note to       |
-// | license@zen-cart.com so we can mail you a copy immediately.          |
-// +----------------------------------------------------------------------+
-//  $Id: define_pages_editor.php 3233 2006-03-21 09:37:38Z drbyte $
-//
+/**
+ * @package admin
+ * @copyright Copyright 2003-2006 Zen Cart Development Team
+ * @copyright Portions Copyright 2003 osCommerce
+ * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
+ * @version $Id: define_pages_editor.php 4279 2006-08-26 03:31:29Z drbyte $
+ */
 
   require('includes/application_top.php');
 
@@ -74,11 +61,7 @@
 <?php
   switch ($_GET['action']) {
       case 'set_editor':
-        if ($_GET['reset_editor'] == '0') {
-          $_SESSION['html_editor_preference_status'] = 'NONE';
-        } else {
-          $_SESSION['html_editor_preference_status'] = 'HTMLAREA';
-        }
+        // Reset will be done by init_html_editor.php. Now we simply redirect to refresh page properly.
         $action='';
         zen_redirect(zen_href_link(FILENAME_DEFINE_PAGES_EDITOR));
         break;
@@ -135,8 +118,7 @@
   }
   // -->
 </script>
-<?php if ($_SESSION['html_editor_preference_status']=="FCKEDITOR") include (DIR_WS_INCLUDES.'fckeditor.php'); ?>
-<?php if ($_SESSION['html_editor_preference_status']=="HTMLAREA")  include (DIR_WS_INCLUDES.'htmlarea.php'); ?>
+<?php if ($editor_handler != '') include ($editor_handler); ?>
 </head>
 <body marginwidth="0" marginheight="0" topmargin="0" bottommargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFFF" onLoad="init()">
 <div id="spiffycalendar" class="text"></div>
@@ -169,11 +151,9 @@
           ?>
 <?php
 // toggle switch for editor
-        $editor_array = array(array('id' => '0', 'text' => TEXT_NONE),
-                              array('id' => '1', 'text' => TEXT_HTML_AREA));
-        echo TEXT_EDITOR_INFO . zen_draw_form('set_editor_form', FILENAME_DEFINE_PAGES_EDITOR, '', 'get') . '&nbsp;&nbsp;' . zen_draw_pull_down_menu('reset_editor', $editor_array, ($_SESSION['html_editor_preference_status'] == 'HTMLAREA' ? '1' : '0'), 'onChange="this.form.submit();"') .
-        zen_hide_session_id() . 
+        echo TEXT_EDITOR_INFO . zen_draw_form('set_editor_form', FILENAME_DEFINE_PAGES_EDITOR, '', 'get') . '&nbsp;&nbsp;' . zen_draw_pull_down_menu('reset_editor', $editors_pulldown, $current_editor_key, 'onChange="this.form.submit();"') .
         zen_draw_hidden_field('action', 'set_editor') .
+        zen_hide_session_id() . 
         '</form>';
 ?>
         </td>
@@ -206,13 +186,15 @@ if (isset($_GET['filename'])) {
             <td><table border="0" cellspacing="0" cellpadding="2">
               <tr>
                 <td class="main">
-				<?php if (is_null($_SESSION['html_editor_preference_status'])) echo TEXT_HTML_EDITOR_NOT_DEFINED; ?>
 				<?php if ($_SESSION['html_editor_preference_status']=="FCKEDITOR") {
-					$oFCKeditor = new FCKeditor ;
-					$oFCKeditor->Value = $file_contents ;
-					$oFCKeditor->CreateFCKeditor( 'file_contents', '700', '400' ) ;  //instanceName, width, height (px or %)
+                $oFCKeditor = new FCKeditor('file_contents') ;
+                $oFCKeditor->Value = $file_contents ;
+                $oFCKeditor->Width  = '700' ;
+                $oFCKeditor->Height = '450' ;
+//                $oFCKeditor->Create() ;
+                $output = $oFCKeditor->CreateHtml() ; echo $output;
 					} else { // using HTMLAREA or just raw "source"
-					echo zen_draw_textarea_field('file_contents', 'soft', '100%', '25', $file_contents, (($file_writeable) ? '' : 'readonly') . ' id="file_contents"');
+					echo zen_draw_textarea_field('file_contents', 'soft', '100%', '30', $file_contents, (($file_writeable) ? '' : 'readonly') . ' id="file_contents"');
 					} ?>
 				</td>
               </tr>

@@ -17,7 +17,7 @@
 // | to obtain it through the world-wide-web, please send a note to       |
 // | license@zen-cart.com so we can mail you a copy immediately.          |
 // +----------------------------------------------------------------------+
-//  $Id: featured.php 2685 2005-12-25 22:01:18Z wilt $
+//  $Id: featured.php 4039 2006-07-30 05:19:18Z ajeh $
 //
 
   require('includes/application_top.php');
@@ -85,6 +85,40 @@
 
         zen_redirect(zen_href_link(FILENAME_FEATURED, 'page=' . $_GET['page']));
         break;
+      case 'pre_add_confirmation':
+      // check for blank or existing featured
+        $skip_featured = false;
+        if (empty($_POST['pre_add_products_id'])) {
+          $skip_featured = true;
+          $messageStack->add_session(WARNING_FEATURED_PRE_ADD_EMPTY, 'caution');
+        }
+        $sql = "select featured_id from " . TABLE_FEATURED . " where products_id='" . (int)$_POST['pre_add_products_id'] . "'";
+        $check_featured = $db->Execute($sql);
+        if ($check_featured->RecordCount() > 0) {
+          $skip_featured = true;
+          $messageStack->add_session(WARNING_FEATURED_PRE_ADD_DUPLICATE, 'caution');
+        }
+        if ($skip_featured == true) {
+          zen_redirect(zen_href_link(FILENAME_FEATURED, ((isset($_GET['page']) && $_GET['page'] > 0) ? 'page=' . $_GET['page'] : '')));
+        }
+      // add empty featured
+
+        $featured_date_available = ((zen_db_prepare_input($_POST['start']) == '') ? '0001-01-01' : zen_date_raw($_POST['start']));
+        $expires_date = ((zen_db_prepare_input($_POST['end']) == '') ? '0001-01-01' : zen_date_raw($_POST['end']));
+
+        $products_id = zen_db_prepare_input($_POST['pre_add_products_id']);
+        $db->Execute("insert into " . TABLE_FEATURED . "
+                    (products_id, featured_date_added, expires_date, status, featured_date_available)
+                    values ('" . (int)$products_id . "',
+                            now(),
+                            '" . zen_db_input($expires_date) . "', '0', '" . zen_db_input($featured_date_available) . "')");
+
+        $new_featured = $db->Execute("select featured_id from " . TABLE_FEATURED . " where products_id='" . (int)$products_id . "'");
+
+        $messageStack->add_session(SUCCESS_FEATURED_PRE_ADD, 'success');
+        zen_redirect(zen_href_link(FILENAME_FEATURED, 'action=edit' . '&fID=' . $new_featured->fields['featured_id']));
+        break;
+
     }
   }
 ?>
@@ -156,6 +190,13 @@
         </table></td>
       </tr>
 
+<?php
+  if (empty($action)) {
+?>
+                    <td align="center"><?php echo '<a href="' . zen_href_link(FILENAME_FEATURED, ((isset($_GET['page']) && $_GET['page'] > 0) ? 'page=' . $_GET['page'] . '&' : '') . 'action=new') . '">' . zen_image_button('button_new_product.gif', IMAGE_NEW_PRODUCT) . '</a>'; ?></td>
+<?php
+  }
+?>
 <?php
   if ( ($action == 'new') || ($action == 'edit') ) {
     $form_action = 'insert';
@@ -304,7 +345,7 @@ var EndDate = new ctlSpiffyCalendarBox("EndDate", "new_featured", "end", "btnDat
               <tr>
                 <td colspan="4"><table border="0" width="100%" cellpadding="0"cellspacing="2">
                   <tr>
-                    <td class="smallText" valign="top"><?php echo $featured_split->display_count($featured_query_numrows, MAX_DISPLAY_SEARCH_RESULTS_FEATURED_ADMIN, $_GET['page'], TEXT_DISPLAY_NUMBER_OF_SPECIALS); ?></td>
+                    <td class="smallText" valign="top"><?php echo $featured_split->display_count($featured_query_numrows, MAX_DISPLAY_SEARCH_RESULTS_FEATURED_ADMIN, $_GET['page'], TEXT_DISPLAY_NUMBER_OF_FEATURED); ?></td>
                     <td class="smallText" align="right"><?php echo $featured_split->display_links($featured_query_numrows, MAX_DISPLAY_SEARCH_RESULTS_FEATURED_ADMIN, MAX_DISPLAY_PAGE_LINKS, $_GET['page']); ?></td>
                   </tr>
 <?php
@@ -325,12 +366,19 @@ var EndDate = new ctlSpiffyCalendarBox("EndDate", "new_featured", "end", "btnDat
 
   switch ($action) {
     case 'delete':
-      $heading[] = array('text' => '<b>' . TEXT_INFO_HEADING_DELETE_SPECIALS . '</b>');
+      $heading[] = array('text' => '<b>' . TEXT_INFO_HEADING_DELETE_FEATURED . '</b>');
 
       $contents = array('form' => zen_draw_form('featured', FILENAME_FEATURED, 'page=' . $_GET['page'] . '&fID=' . $fInfo->featured_id . '&action=deleteconfirm'));
       $contents[] = array('text' => TEXT_INFO_DELETE_INTRO);
       $contents[] = array('text' => '<br /><b>' . $fInfo->products_name . '</b>');
       $contents[] = array('align' => 'center', 'text' => '<br />' . zen_image_submit('button_delete.gif', IMAGE_DELETE) . '&nbsp;<a href="' . zen_href_link(FILENAME_FEATURED, 'page=' . $_GET['page'] . '&fID=' . $fInfo->featured_id) . '">' . zen_image_button('button_cancel.gif', IMAGE_CANCEL) . '</a>');
+      break;
+    case 'pre_add':
+      $heading[] = array('text' => '<b>' . TEXT_INFO_HEADING_PRE_ADD_FEATURED . '</b>');
+      $contents = array('form' => zen_draw_form('featured', FILENAME_FEATURED, 'action=pre_add_confirmation'));
+      $contents[] = array('text' => TEXT_INFO_PRE_ADD_INTRO);
+      $contents[] = array('text' => '<br />' . TEXT_PRE_ADD_PRODUCTS_ID . '<br>' . zen_draw_input_field('pre_add_products_id', '', zen_set_field_length(TABLE_FEATURED, 'products_id')));
+      $contents[] = array('align' => 'center', 'text' => '<br>' . zen_image_submit('button_confirm.gif', IMAGE_CONFIRM) . '&nbsp;<a href="' . zen_href_link(FILENAME_FEATURED, 'page=' . $_GET['page'] . '&fID=' . $fInfo->featured_id) . '">' . zen_image_button('button_cancel.gif', IMAGE_CANCEL) . '</a>');
       break;
     default:
       if (is_object($fInfo)) {
@@ -346,6 +394,8 @@ var EndDate = new ctlSpiffyCalendarBox("EndDate", "new_featured", "end", "btnDat
         $contents[] = array('text' => TEXT_INFO_EXPIRES_DATE . ' <b>' . (($fInfo->expires_date != '0001-01-01' and $fInfo->expires_date !='') ? zen_date_short($fInfo->expires_date) : TEXT_NONE) . '</b>');
         $contents[] = array('text' => '<br />' . TEXT_INFO_STATUS_CHANGE . ' ' . zen_date_short($fInfo->date_status_change));
         $contents[] = array('align' => 'center', 'text' => '<a href="' . zen_href_link(FILENAME_CATEGORIES, '&action=new_product' . '&cPath=' . zen_get_product_path($fInfo->products_id, 'override') . '&pID=' . $fInfo->products_id . '&product_type=' . zen_get_products_type($fInfo->products_id)) . '">' . zen_image_button('button_edit_product.gif', IMAGE_EDIT_PRODUCT) . '<br />' . '</a>');
+
+        $contents[] = array('align' => 'center', 'text' => '<a href="' . zen_href_link(FILENAME_FEATURED, 'action=pre_add') . '">' . zen_image_button('button_select.gif', IMAGE_SELECT) . '<br />' . TEXT_INFO_MANUAL . '</a><br /><br />');
       }
       break;
   }

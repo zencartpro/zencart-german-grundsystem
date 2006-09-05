@@ -6,7 +6,7 @@
  * @copyright Copyright 2003-2006 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: init_header.php 3286 2006-03-28 01:14:04Z drbyte $
+ * @version $Id: init_header.php 3964 2006-07-14 03:25:38Z ajeh $
  */
 if (!defined('IS_ADMIN_FLAG')) {
   die('Illegal Access');
@@ -125,13 +125,13 @@ if (defined('MODULE_SHIPPING_USPS_SERVER') &&   MODULE_SHIPPING_USPS_SERVER == '
 }
 
 // Alerts for EZ-Pages
-if (EZPAGES_STATUS_HEADER == '2') {
+if (EZPAGES_STATUS_HEADER == '2' && (strstr(EXCLUDE_ADMIN_IP_FOR_MAINTENANCE, $_SERVER['REMOTE_ADDR']))) {
   $messageStack->add('header', TEXT_EZPAGES_STATUS_HEADER_ADMIN, 'caution');
 }
-if (EZPAGES_STATUS_FOOTER == '2') {
+if (EZPAGES_STATUS_FOOTER == '2' && (strstr(EXCLUDE_ADMIN_IP_FOR_MAINTENANCE, $_SERVER['REMOTE_ADDR']))) {
   $messageStack->add('header', TEXT_EZPAGES_STATUS_FOOTER_ADMIN, 'caution');
 }
-if (EZPAGES_STATUS_SIDEBOX == '2') {
+if (EZPAGES_STATUS_SIDEBOX == '2' && (strstr(EXCLUDE_ADMIN_IP_FOR_MAINTENANCE, $_SERVER['REMOTE_ADDR']))) {
   $messageStack->add('header', TEXT_EZPAGES_STATUS_SIDEBOX_ADMIN, 'caution');
 }
 

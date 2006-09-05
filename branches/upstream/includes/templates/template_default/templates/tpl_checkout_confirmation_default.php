@@ -9,7 +9,7 @@
  * @copyright Copyright 2003-2006 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: tpl_checkout_confirmation_default.php 3306 2006-03-29 07:15:46Z drbyte $
+ * @version $Id: tpl_checkout_confirmation_default.php 4140 2006-08-15 03:37:53Z drbyte $
  */
 ?>
 <div class="centerColumn" id="checkoutConfirmDefault">
@@ -100,8 +100,18 @@
 
 <h2 id="checkoutConfirmDefaultHeadingCart"><?php echo HEADING_PRODUCTS; ?></h2>
 
-<div class="buttonRow forward"><?php echo '<a href="' . zen_href_link(FILENAME_SHOPPING_CART) . '">' . zen_image_button(BUTTON_IMAGE_EDIT_SMALL, BUTTON_EDIT_SMALL_ALT) . '</a>'; ?></div>
+<div class="buttonRow forward"><?php echo '<a href="' . zen_href_link(FILENAME_SHOPPING_CART, '', 'SSL') . '">' . zen_image_button(BUTTON_IMAGE_EDIT_SMALL, BUTTON_EDIT_SMALL_ALT) . '</a>'; ?></div>
 <br class="clearBoth" />
+
+<?php  if ($flagAnyOutOfStock) { ?>
+<?php    if (STOCK_ALLOW_CHECKOUT == 'true') {  ?>
+<div class="messageStackError"><?php echo OUT_OF_STOCK_CAN_CHECKOUT; ?></div>
+<?php    } else { ?>
+<div class="messageStackError"><?php echo OUT_OF_STOCK_CANT_CHECKOUT; ?></div>
+<?php    } //endif STOCK_ALLOW_CHECKOUT ?>
+<?php  } //endif flagAnyOutOfStock ?>
+
+
       <table border="0" width="100%" cellspacing="0" cellpadding="0" id="cartContentsDisplay">
         <tr class="cartTableHeading">
         <th scope="col" id="ccQuantityHeading" width="30"><?php echo TABLE_HEADING_QUANTITY; ?></th>
@@ -118,14 +128,14 @@
         </tr>
 <?php // now loop thru all products to display quantity and price ?>
 <?php for ($i=0, $n=sizeof($order->products); $i<$n; $i++) { ?>
-        <tr class="<?php echo $product['rowClass']; ?>">
+        <tr class="<?php echo $order->products[$i]['rowClass']; ?>">
           <td  class="cartQuantity"><?php echo $order->products[$i]['qty']; ?>&nbsp;x</td>
           <td class="cartProductDisplay"><?php echo $order->products[$i]['name']; ?>
-          <?php  echo $stock_check; ?>
+          <?php  echo $stock_check[$i]; ?>
 
 <?php // if there are attributes, loop thru them and display one per line
     if (isset($order->products[$i]['attributes']) && sizeof($order->products[$i]['attributes']) > 0 ) {
-    echo '<ul id="cartAttribsList">';
+    echo '<ul class="cartAttribsList">';
       for ($j=0, $n2=sizeof($order->products[$i]['attributes']); $j<$n2; $j++) {
 ?>
       <li><?php echo $order->products[$i]['attributes'][$j]['option'] . ': ' . nl2br($order->products[$i]['attributes'][$j]['value']); ?></li>

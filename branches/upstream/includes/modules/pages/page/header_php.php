@@ -6,7 +6,7 @@
  * @copyright Copyright 2003-2006 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: header_php.php 2991 2006-02-08 06:05:47Z drbyte $
+ * @version $Id: header_php.php 4135 2006-08-14 04:25:02Z drbyte $
  */
 /*
 * This "page" page is the display component of the ez-pages module
@@ -26,7 +26,7 @@ $chapter_link = (int)$_GET['chapter'];
 //die('I SEE ' . $id . ' - ' . $group_id);
 //die('I SEE ' . $id . ' - ' . $chapter_id);
 
-$var_pageDetails = $db->Execute("select * from " . TABLE_EZPAGES . " where pages_id = " . $id );
+$var_pageDetails = $db->Execute("select * from " . TABLE_EZPAGES . " where pages_id = " . (int)$id );
 
 //check db for prev/next based on sort orders
 $pos = (isset($_GET['pos'])) ? $_GET['pos'] : 'v';  // v for vertical, h for horizontal  (v assumed if not specified)

@@ -4,9 +4,9 @@
  * see  {@link  http://www.zen-cart.com/wiki/index.php/Developers_API_Tutorials#InitSystem wikitutorials} for more details.
  *
  * @package initSystem
- * @copyright Copyright 2003-2005 Zen Cart Development Team
+ * @copyright Copyright 2003-2006 Zen Cart Development Team
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: config.core.php 3185 2006-03-14 19:19:55Z wilt $
+ * @version $Id: config.core.php 4271 2006-08-26 01:21:02Z drbyte $
  */
 if (!defined('IS_ADMIN_FLAG')) {
  die('Illegal Access');
@@ -58,7 +58,7 @@ if (!defined('IS_ADMIN_FLAG')) {
   $autoLoadConfig[0][] = array('autoType'=>'class',
                                 'loadFile'=>'sniffer.php');
   $autoLoadConfig[0][] = array('autoType'=>'class',
-                                'loadFile'=>'class.phpBB.php');
+                                'loadFile'=>'class.phpbb.php');
   $autoLoadConfig[0][] = array('autoType'=>'class',
                                 'loadFile'=>'shopping_cart.php');
   $autoLoadConfig[0][] = array('autoType'=>'class',
@@ -226,7 +226,7 @@ if (!defined('IS_ADMIN_FLAG')) {
 /**
  * Breakpoint 150.
  * 
- * require('includes/init_includes/init_specail_funcs.php'); 
+ * require('includes/init_includes/init_special_funcs.php'); 
  * 
  */
   $autoLoadConfig[150][] = array('autoType'=>'init_script',

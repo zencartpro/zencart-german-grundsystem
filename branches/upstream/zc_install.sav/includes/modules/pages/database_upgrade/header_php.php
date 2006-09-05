@@ -5,7 +5,7 @@
  * @copyright Copyright 2003-2006 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: header_php.php 3824 2006-06-21 17:07:09Z drbyte $
+ * @version $Id: header_php.php 4295 2006-08-26 23:45:53Z drbyte $
  */
 
 /* 
@@ -27,7 +27,7 @@
 /////////////////////////////////////////////////////////////////////
 //this is the latest database-version-level that this script knows how to inspect and upgrade to.
 //it is used to determine whether to stay on the upgrade page when done, or continue to the finished page
-$latest_version = '1.3.0.2'; 
+$latest_version = '1.3.5'; 
 
 ///////////////////////////////////
 if (!isset($_GET['debug'])  && !zen_not_null($_POST['debug']))  define('ZC_UPG_DEBUG',false);
@@ -87,6 +87,10 @@ if (!$zc_install->fatal_error) {
 
 //display options based on what was found -- THESE SHOULD BE PROCESSED IN REVERSE ORDER, NEWEST VERSION FIRST... !
 //that way only the "earliest-required" upgrade is suggested first.
+    if (!$dbinfo->version135) {
+      $sniffer =  ' upgrade v1.3.0.2 to v1.3.5';
+      $needs_v1_3_5=true;
+    }
     if (!$dbinfo->version1302) {
       $sniffer =  ' upgrade v1.3.0.1 to v1.3.0.2';
       $needs_v1_3_0_2=true;
@@ -178,6 +182,7 @@ if (ZC_UPG_DEBUG2==true) {
   echo '<br>130='.$dbinfo->version130;
   echo '<br>1301='.$dbinfo->version1301;
   echo '<br>1302='.$dbinfo->version1302;
+  echo '<br>135='.$dbinfo->version135;
   echo '<br>';
   }
 
@@ -305,6 +310,13 @@ if (ZC_UPG_DEBUG2==true) {
           $got_v1_3_0_2 = true; //after processing this step, this will be the new version-level
           $db_upgraded_to_version='1.3.0.2';
           break;
+       case '1.3.0.2':  // upgrading from v1.3.0.2 TO 1.3.5
+//          if (!$dbinfo->version1302 || $dbinfo->version135) continue;  // if prerequisite not completed, or already done, skip
+          $sniffer_file = '_upgrade_zencart_1302_to_135.sql';
+          if (ZC_UPG_DEBUG2==true) echo $sniffer_file.'<br>';
+          $got_v1_3_5 = true; //after processing this step, this will be the new version-level
+          $db_upgraded_to_version='1.3.5';
+          break;
        default:
        $nothing_to_process=true;
        } // end while
@@ -314,7 +326,7 @@ if (ZC_UPG_DEBUG2==true) {
      if (!$zc_install->fatal_error) {
         require(DIR_WS_INCLUDES . 'configure.php');
 //        require(DIR_WS_INCLUDES . 'classes/db/' . DB_TYPE . '/query_factory.php');
-        $zc_install->fileExists(DB_TYPE . $sniffer_file, DB_TYPE . $sniffer_file . ' ' . ERROR_TEXT_DB_SQL_NOTEXIST.'<br />"'.DB_TYPE . $sniffer_file.'"' , ERROR_CODE_DB_SQL_NOTEXIST);
+        $zc_install->fileExists('sql/' . DB_TYPE . $sniffer_file, DB_TYPE . $sniffer_file . ' ' . ERROR_TEXT_DB_SQL_NOTEXIST.'<br />"'.DB_TYPE . $sniffer_file.'"' , ERROR_CODE_DB_SQL_NOTEXIST);
         $zc_install->functionExists(DB_TYPE, ERROR_TEXT_DB_NOTSUPPORTED, ERROR_CODE_DB_NOTSUPPORTED);
         $zc_install->dbConnect(DB_TYPE, DB_SERVER, DB_DATABASE, DB_SERVER_USERNAME, DB_SERVER_PASSWORD, ERROR_TEXT_DB_CONNECTION_FAILED, ERROR_CODE_DB_CONNECTION_FAILED,ERROR_TEXT_DB_NOTEXIST, ERROR_CODE_DB_NOTEXIST);
 
@@ -348,7 +360,7 @@ if (ZC_UPG_DEBUG2==true) {
         $db->Connect(DB_SERVER, DB_SERVER_USERNAME, DB_SERVER_PASSWORD, DB_DATABASE) or die("Unable to connect to database");
 
           // load the upgrade.sql file(s) relative to the required step(s)
-          $query_results = executeSql(DB_TYPE . $sniffer_file, DB_DATABASE, DB_PREFIX); 
+          $query_results = executeSql('sql/'. DB_TYPE . $sniffer_file, DB_DATABASE, DB_PREFIX); 
            if ($query_results['queries'] > 0 && $query_results['queries'] != $query_results['ignored']) {
              $messageStack->add('upgrade',$query_results['queries'].' statements processed.', 'success');
            } else {
@@ -531,5 +543,9 @@ if (ZC_UPG_DEBUG2==true) {echo '<span class="errors">NOTE: Skipped upgrade state
  if (isset($_POST['skip'])) {
   header('location: index.php?main_page=finished&language=' . $language);
   exit;
+ }
+ if (isset($_POST['refresh'])) {
+   header('location: index.php?main_page=database_upgrade&language=' . $language);
+   exit;
  }
 ?>

@@ -8,7 +8,7 @@
  * @copyright Copyright 2003-2006 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: functions_email.php 3779 2006-06-16 01:53:31Z drbyte $
+ * @version $Id: functions_email.php 4137 2006-08-14 04:55:51Z drbyte $
  */
 
 /**
@@ -118,8 +118,8 @@
 
       // Build the email based on whether customer has selected HTML or TEXT, and whether we have supplied HTML or TEXT-only components
       if (!zen_not_null($email_text)) {
-        $text = str_replace('<br[[:space:]]*/?[[:space:]]*>', "@CRLF", $block['EMAIL_MESSAGE_HTML']);
-        $text = str_replace('</p>', '</p>@CRLF', $text);
+        $text = str_replace('<br[[:space:]]*/?[[:space:]]*>', "\n", $block['EMAIL_MESSAGE_HTML']);
+        $text = str_replace('</p>', "</p>\n", $text);
         $text = htmlspecialchars(stripslashes(strip_tags($text)));
       } else {
         $text = strip_tags($email_text);
@@ -133,7 +133,8 @@
       if ($debug_mode=='on') $mail->SMTPDebug = true;
       if (EMAIL_TRANSPORT=='smtp' || EMAIL_TRANSPORT=='smtpauth') {
         $mail->IsSMTP();                           // set mailer to use SMTP
-        $mail->Host = EMAIL_SMTPAUTH_MAIL_SERVER;  // specify main (could also do backup server... future feature?)
+        $mail->Host = EMAIL_SMTPAUTH_MAIL_SERVER;
+        if (EMAIL_SMTPAUTH_MAIL_PORT != '25' & EMAIL_SMTPAUTH_MAIL_PORT != '') $mail->Port = EMAIL_SMTPAUTH_MAIL_PORT;
         if (EMAIL_TRANSPORT=='smtpauth') {
           $mail->SMTPAuth = true;     // turn on SMTP authentication
           $mail->Username = (zen_not_null(EMAIL_SMTPAUTH_MAILBOX)) ? EMAIL_SMTPAUTH_MAILBOX : EMAIL_FROM;  // SMTP username
@@ -146,6 +147,9 @@
       $mail->AddAddress($to_email_address, $to_name);
       //    $mail->AddAddress($to_email_address);    // (alternate format if no name, since name is optional)
 
+      // set proper line-endings based on switch ... important for windows vs linux hosts:
+      $mail->LE = (EMAIL_LINEFEED == 'CRLF') ? "\r\n" : "\n";
+
       $mail->WordWrap = 76;    // set word wrap to 76 characters
 
       // set the reply-to address.  If none set yet, then use Store's default email name/address.
@@ -156,6 +160,10 @@
 
       // if mailserver requires that all outgoing mail must go "from" an email address matching domain on server, set it to store address
       if (EMAIL_SEND_MUST_BE_STORE=='Yes') $mail->From = EMAIL_FROM;
+
+      if (EMAIL_TRANSPORT=='sendmail-f' || EMAIL_SEND_MUST_BE_STORE=='Yes') {
+        $mail->Sender = EMAIL_FROM;
+      }
 
       // process attachments
       $zco_notifier->notify('NOTIFY_EMAIL_BEFORE_PROCESS_ATTACHMENTS');
@@ -181,6 +189,10 @@
         $mail->Body    = $text;        // text-only content of message
       }
 
+/**
+ * Send the email. If an error occurs, trap it and display it in the messageStack
+ */
+// EMAIL_FRIENDLY_ERRORS ... debating whether to reinstate it to suppress the messageStack in this case too, or not. 
       $zco_notifier->notify('NOTIFY_EMAIL_READY_TO_SEND');
       if (!$mail->Send()) {
         $messageStack->add('header',sprintf(EMAIL_SEND_FAILED . '&nbsp;'. $mail->ErrorInfo, $to_name, $to_email_address, $email_subject),'error');
@@ -301,10 +313,11 @@
     fclose($fh);
 
     //strip linebreaks and tabs out of the template
-//    $file_holder = zen_convert_linefeeds(array("\r\n", "\n", "\r", "\t"), '', $file_holder);
-    $file_holder = zen_convert_linefeeds(array("\t"), ' ', $file_holder);
+//  $file_holder = str_replace(array("\r\n", "\n", "\r", "\t"), '', $file_holder);
+    $file_holder = str_replace(array("\t"), ' ', $file_holder);
 
 
+    if (!defined('HTTP_CATALOG_SERVER')) define('HTTP_CATALOG_SERVER', HTTP_SERVER);
     //check for some specifics that need to be included with all messages
     if ($block['EMAIL_STORE_NAME']=='')       $block['EMAIL_STORE_NAME']       = STORE_NAME;
     if ($block['EMAIL_STORE_URL']=='')        $block['EMAIL_STORE_URL']        = '<a href="'.HTTP_CATALOG_SERVER . DIR_WS_CATALOG.'">'.STORE_NAME.'</a>';
@@ -316,7 +329,7 @@
     if ($block['EMAIL_DATE_SHORT']=='')       $block['EMAIL_DATE_SHORT']       = zen_date_short(date("Y-m-d"));
     if ($block['EMAIL_DATE_LONG']=='')        $block['EMAIL_DATE_LONG']        = zen_date_long(date("Y-m-d"));
     if ($block['CHARSET']=='')                $block['CHARSET']                = CHARSET;
-    //  if ($block['EMAIL_STYLESHEET']=='')       $block['EMAIL_STYLESHEET']       = str_replace(array("\r\n", "\n", "\r"), '',file_get_contents(DIR_FS_EMAIL_TEMPLATES.'stylesheet.css'));
+    //  if ($block['EMAIL_STYLESHEET']=='')       $block['EMAIL_STYLESHEET']       = str_replace(array("\r\n", "\n", "\r"), "",@file_get_contents(DIR_FS_EMAIL_TEMPLATES.'stylesheet.css'));
 
     if ($block['EXTRA_INFO'] =='EXTRA_INFO')  $block['EXTRA_INFO']  = '';
     if (substr($module,-6) != '_extra' && $module != 'contact_us')  $block['EXTRA_INFO']  = '';

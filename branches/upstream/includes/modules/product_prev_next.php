@@ -6,7 +6,7 @@
  * @copyright Copyright 2003-2006 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: product_prev_next.php 3309 2006-03-29 08:29:44Z drbyte $
+ * @version $Id: product_prev_next.php 4355 2006-09-02 23:04:12Z ajeh $
  */
 if (!defined('IS_ADMIN_FLAG')) {
   die('Illegal Access');
@@ -42,14 +42,30 @@ if (PRODUCT_INFO_PREVIOUS_NEXT != 0) {
     break;
   }
 
-  if (!$current_category_id) {
+/*
+  if (!$current_category_id || SHOW_CATEGORIES_ALWAYS == 1) {
     $sql = "SELECT categories_id
             from   " . TABLE_PRODUCTS_TO_CATEGORIES . "
             where  products_id ='" .  (int)$_GET['products_id']
     . "'";
     $cPath_row = $db->Execute($sql);
     $current_category_id = $cPath_row->fields['categories_id'];
+    $cPath = $current_category_id;
   }
+*/
+
+
+//  if (!$current_category_id || !$cPath) {
+  if ($cPath < 1) {
+    $cPath = zen_get_product_path((int)$_GET['products_id']);
+    $_GET['$cPath'] = $cPath;
+    $cPath_array = zen_parse_category_path($cPath);
+    $cPath = implode('_', $cPath_array);
+    $current_category_id = $cPath_array[(sizeof($cPath_array)-1)];
+
+//    $current_category_id = $cPath;
+  }
+
 
   $sql = "select p.products_id, p.products_model, p.products_price_sorter, pd.products_name, p.products_sort_order
           from   " . TABLE_PRODUCTS . " p, "
@@ -92,8 +108,7 @@ if (PRODUCT_INFO_PREVIOUS_NEXT != 0) {
 
     $sql = "select categories_name
             from   " . TABLE_CATEGORIES_DESCRIPTION . "
-            where  categories_id = $current_category_id AND language_id = '" . $_SESSION['languages_id']
-    . "'";
+            where  categories_id = " . (int)$current_category_id . " AND language_id = '" . (int)$_SESSION['languages_id'] . "'";
 
     $category_name_row = $db->Execute($sql);
   } // if is_array

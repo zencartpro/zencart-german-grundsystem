@@ -6,7 +6,7 @@
  * @copyright Copyright 2003-2006 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: checkout_process.php 3012 2006-02-11 16:34:02Z wilt $
+ * @version $Id: checkout_process.php 4139 2006-08-14 10:33:48Z drbyte $
  */
 if (!defined('IS_ADMIN_FLAG')) {
   die('Illegal Access');
@@ -70,4 +70,20 @@ $zco_notifier->notify('NOTIFY_CHECKOUT_PROCESS_AFTER_ORDER_CREATE_ADD_PRODUCTS')
 //send email notifications
 $order->send_order_email($insert_id, 2);
 $zco_notifier->notify('NOTIFY_CHECKOUT_PROCESS_AFTER_SEND_ORDER_EMAIL');
+/**
+ * Calculate order amount for display purposes on checkout-success page as well as adword campaigns etc
+ */
+  for ($i=0, $n=sizeof($order_totals); $i<$n; $i++) {
+    switch ($order_totals[$i]['code']) {
+      case 'ot_subtotal': $order_subtotal = $order_totals[$i]['value']; break;
+      case 'ot_coupon':   $coupon_amount = $order_totals[$i]['value'];  break;
+      case 'ot_group_pricing': $group_pricing_amount = $order_totals[$i]['value']; break;
+    }
+    //$order_totals[$i]['sort_order']
+  }
+  $commissionable_order = ($order_subtotal - $coupon_amount - $group_pricing_amount);
+  $commissionable_order_formatted = $currencies->format($commissionable_order);
+
+
+
 ?>

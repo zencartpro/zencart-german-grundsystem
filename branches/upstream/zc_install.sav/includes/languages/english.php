@@ -6,13 +6,14 @@
  * @copyright Copyright 2003-2006 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: english.php 3793 2006-06-18 08:01:43Z drbyte $
+ * @version $Id: english.php 4266 2006-08-25 08:27:53Z drbyte $
  */
 /**
  * defining language components for the page
  */
   define('YES', 'YES');
   define('NO', 'NO');
+  define('REFRESH_BUTTON', 'Re-Check');
 
   // Global entries for the <html> tag
   define('HTML_PARAMS','dir="ltr" lang="en"');
@@ -213,10 +214,10 @@ define('ERROR_CODE_GD_SUPPORT','89');
 
 define('ERROR_TEXT_OPEN_BASEDIR','Could have problems uploading files or doing backups');
 define('ERROR_CODE_OPEN_BASEDIR','92');
-define('ERROR_CODE_CURL_SUPPORT','cURL support not detected');
-define('ERROR_TEXT_CURL_SUPPORT','93');
+define('ERROR_TEXT_CURL_SUPPORT','cURL support not detected');
+define('ERROR_CODE_CURL_SUPPORT','93');
 
-  $error_code ='';
+$error_code ='';
 if (isset($_GET['error_code'])) {
   $error_code = $_GET['error_code'];
   }
@@ -249,12 +250,12 @@ switch ($error_code) {
   break;
   case ('6'):
     define('POPUP_ERROR_HEADING', 'Virtual HTTPS Server');
-    define('POPUP_ERROR_TEXT', 'This is the web server address for your secure/SSL server. This address varies depending on how SSL/Secure mode is implemented on your server. You are advised to read the <a href="http://www.zen-cart.com/modules/xoopsfaq/index.php?cat_id=2#46" target="_blank">FAQ Entry</a> on SSL to ensure this is set correctly.');
+    define('POPUP_ERROR_TEXT', 'This is the web server address for your secure/SSL server. This address varies depending on how SSL/Secure mode is implemented on your server. You are advised to read the <a href="http://www.zen-cart.com/forum/faq.php?faq=install_misc#faq_configure_ssl" target="_blank">FAQ Entry</a> on SSL to ensure this is set correctly.');
     
   break;
   case ('7'):
     define('POPUP_ERROR_HEADING', 'Virtual HTTPS Path');
-    define('POPUP_ERROR_TEXT', 'This is the address you would need to put into a web browser to view your Zen Cart&trade; website in secure/SSL mode. You are advised to read the <a href="http://www.zen-cart.com/modules/xoopsfaq/index.php?cat_id=2#46" target="_blank">FAQ Entry</a> on SSL to ensure this is set correctly.');
+    define('POPUP_ERROR_TEXT', 'This is the address you would need to put into a web browser to view your Zen Cart&trade; website in secure/SSL mode. You are advised to read the <a href="http://www.zen-cart.com/forum/faq.php?faq=install_misc#faq_configure_ssl" target="_blank">FAQ Entry</a> on SSL to ensure this is set correctly.');
     
   break;
   case ('8'):
@@ -349,7 +350,7 @@ switch ($error_code) {
   break;
   case ('26'):
     define('POPUP_ERROR_HEADING', 'SQL Install file does not exist');
-    define('POPUP_ERROR_TEXT', 'The installer could not find the required .SQL install file. This should exist within the \'zc_install\' directory and be called something like \'mysql_zencart.sql\'.');
+    define('POPUP_ERROR_TEXT', 'The installer could not find the required .SQL install file. This should exist within the \'zc_install/sql\' directory and be called something like \'mysql_zencart.sql\'.');
     
   break;
   case ('27'):
@@ -563,7 +564,7 @@ You may also have given the wrong database name (<strong>Does it exist?</strong>
   break;
   case ('69'):
     define('POPUP_ERROR_HEADING', 'Register Globals');
-    define('POPUP_ERROR_TEXT', 'Zen Cart&trade; can work with the "Register Globals" setting on or off.  However, having it "off" leaves your system somewhat more secure.<br /><br />If you wish to disable it, and your hosting company won\'t turn it off for you, you might try adding this to an .htaccess file in the root of your shop:<br />php_flag session.use_trans_sid off<BR />php_flag register_globals off<BR />&lt;Files ".ht*"&gt;<BR />deny from all<BR />&lt;/Files&gt;</code><br />or talk to your hosting company for assistance.');
+    define('POPUP_ERROR_TEXT', 'Zen Cart&trade; can work with the "Register Globals" setting on or off.  However, having it "off" leaves your system somewhat more secure.<br /><br />If you wish to disable it, and your hosting company won\'t turn it off for you, you might try adding this to an .htaccess file in the root of your shop (you may have to create the file if you don\'t already have one):<br />php_value session.use_trans_sid off<BR />php_value register_globals off<br />#php_value register_globals off<BR />&lt;Files ".ht*"&gt;<BR />deny from all<BR />&lt;/Files&gt;</code><br />or talk to your hosting company for assistance.');
   break;
   case ('70'):
     define('POPUP_ERROR_HEADING', 'Safe Mode is On');
@@ -624,7 +625,7 @@ You may also have given the wrong database name (<strong>Does it exist?</strong>
   break;
   case ('84'):
     define('POPUP_ERROR_HEADING','PHP Session.autostart should be disabled.');
-    define('POPUP_ERROR_TEXT','The session.auto_start setting in your server\'s PHP.INI file is set to ON. <br /><br />This could potentially cause you some problems with session handling, as Zen Cart&trade; is designed to start sessions when it\'s ready to activate session features. Having sessions start automatically can be a problem in some server configurations.<br /><br />If you wish to attempt disabling this yourself, you could try putting the following into a .htaccess file located in the root of your shop (same folder as index.php):<br /><br /><code>php_value session.auto_start 0</code>');
+    define('POPUP_ERROR_TEXT','The session.auto_start setting in your server\'s PHP.INI file is set to ON. <br /><br />This could potentially cause you some problems with session handling, as Zen Cart&trade; is designed to start sessions when it\'s ready to activate session features. Having sessions start automatically can be a problem in some server configurations.<br /><br />If you wish to attempt disabling this yourself, you could try putting the following into a .htaccess file located in the root of your shop (same folder as index.php):<br /><br /><code>php_value session.auto_start 0</code><br /><br /> (You may have to create the file if you don\'t already have one.)');
   break;
   case ('85'):
     define('POPUP_ERROR_HEADING','Some database-upgrade SQL statements not installed.');
@@ -632,7 +633,7 @@ You may also have given the wrong database name (<strong>Does it exist?</strong>
   break;
   case ('86'):
     define('POPUP_ERROR_HEADING','PHP Session.use_trans_sid should be disabled.');
-    define('POPUP_ERROR_TEXT','The session.use_trans_sid setting in your server\'s PHP.INI file is set to ON. <br /><br />This could potentially cause you some problems with session handling and possibly even security concerns.<br /><br />You can work around this by setting an .htaccess parameter such as this: <a href="http://www.olate.com/articles/252">http://www.olate.com/articles/252</a>, or you could disable it in your PHP.INI if you have access to it.<br /><br />For more information on the security risks it imposes, see: <a href="http://shh.thathost.com/secadv/2003-05-11-php.txt">http://shh.thathost.com/secadv/2003-05-11-php.txt</a>.');
+    define('POPUP_ERROR_TEXT','The session.use_trans_sid setting in your server\'s PHP.INI file is set to ON. <br /><br />This could potentially cause you some problems with session handling and possibly even security concerns.<br /><br />You can work around this by setting an .htaccess parameter such as described here: <a href="http://www.olate.com/articles/252">http://www.olate.com/articles/252</a>, or you could disable it in your PHP.INI if you have access to it.<br /><br />For more information on the security risks it imposes, see: <a href="http://shh.thathost.com/secadv/2003-05-11-php.txt">http://shh.thathost.com/secadv/2003-05-11-php.txt</a>.<br /><br />(You may have to create the .htaccess file if you don\'t already have one.)');
   break;
   case ('87'):
     define('POPUP_ERROR_HEADING','Permissions Required for Database User');

@@ -7,7 +7,7 @@
  * @package classes
  * @copyright Copyright 2003-2006 Zen Cart Development Team
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: class.phpBB.php 3053 2006-02-17 04:57:06Z drbyte $
+ * @version $Id: class.phpbb.php 4271 2006-08-26 01:21:02Z drbyte $
  */
 
 if (!defined('IS_ADMIN_FLAG')) {
@@ -21,7 +21,7 @@ if (!defined('IS_ADMIN_FLAG')) {
       var $dir_phpbb=''; 
 
     function phpBB() {
-      $this->debug=false;
+      $this->debug= (defined('PHPBB_DEBUG_MODE') && strtoupper(PHPBB_DEBUG_MODE)=='ON') ? (defined('PHPBB_DEBUG_IP') && (PHPBB_DEBUG_IP == '' || PHPBB_DEBUG_IP == $_SERVER['REMOTE_ADDR'] || strstr(EXCLUDE_ADMIN_IP_FOR_MAINTENANCE, $_SERVER['REMOTE_ADDR'])) ? true : false ) : false;
       $this->phpBB = Array();
       if (PHPBB_LINKS_ENABLED =='true') {  // if disabled in Zen Cart admin, don't do any checks for phpBB
         $this->get_phpBB_info();
@@ -37,6 +37,7 @@ if (!defined('IS_ADMIN_FLAG')) {
       } elseif ($this->debug==true) {
         echo "phpBB connection disabled in Admin<br>";
       }
+      if ($this->debug==true) echo '<br /><br /><strong>YOU CAN IGNORE THE FOLLOWING "Cannot send session cache limited - headers already sent..." errors, as they are a result of the above debug output.</strong><br><br>';
     }
 
     function get_phpBB_info() {
@@ -78,21 +79,24 @@ if (!defined('IS_ADMIN_FLAG')) {
           if (substr($line,0,13)=='$table_prefix') $this->phpBB['table_prefix'] = $def_string[1];
         }//end foreach $line
        // find phpbb table-names without INCLUDEing file:
-        if (!@file_exists($this->dir_phpbb . 'includes/constants.php')) $this->phpBB['files_installed'] = false;
-        $lines = array();
-        $lines = @file($this->phpBB['phpbb_path']. 'includes/constants.php');
-        foreach($lines as $line) { // read the configure.php file for specific variables
-          if (substr_count($line,'define(')<1) continue;
-          if ($this->debug==true && strlen($line)>3 && substr($line,0,1)!='/') echo 'CONSTANTS.PHP-->'.$line.'<br>';
-          if (substr_count($line,'"')>1) $delim='"';
-          if (substr_count($line,"'")>1) $delim="'"; // determine whether single or double quotes used in this line.
-          $def_string=array();
-          $def_string=explode($delim,$line);
-          if ($def_string[1]=='USERS_TABLE')      $this->phpBB['users_table'] = $this->phpBB['table_prefix'] . $def_string[3];
-          if ($def_string[1]=='USER_GROUP_TABLE') $this->phpBB['user_group_table'] = $this->phpBB['table_prefix'] . $def_string[3];
-          if ($def_string[1]=='GROUPS_TABLE')     $this->phpBB['groups_table'] = $this->phpBB['table_prefix'] . $def_string[3];
-          if ($def_string[1]=='CONFIG_TABLE')     $this->phpBB['config_table'] = $this->phpBB['table_prefix'] . $def_string[3];
-        }//end foreach of $line
+        if (@file_exists($this->dir_phpbb . 'includes/constants.php')) {
+          $lines = array();
+          $lines = @file($this->phpBB['phpbb_path']. 'includes/constants.php');
+          foreach($lines as $line) { // read the configure.php file for specific variables
+            if (substr_count($line,'define(')<1) continue;
+            if ($this->debug==true && strlen($line)>3 && substr($line,0,1)!='/') echo 'CONSTANTS.PHP-->'.$line.'<br>';
+            if (substr_count($line,'"')>1) $delim='"';
+            if (substr_count($line,"'")>1) $delim="'"; // determine whether single or double quotes used in this line.
+            $def_string=array();
+            $def_string=explode($delim,$line);
+            if ($def_string[1]=='USERS_TABLE')      $this->phpBB['users_table'] = $this->phpBB['table_prefix'] . $def_string[3];
+            if ($def_string[1]=='USER_GROUP_TABLE') $this->phpBB['user_group_table'] = $this->phpBB['table_prefix'] . $def_string[3];
+            if ($def_string[1]=='GROUPS_TABLE')     $this->phpBB['groups_table'] = $this->phpBB['table_prefix'] . $def_string[3];
+            if ($def_string[1]=='CONFIG_TABLE')     $this->phpBB['config_table'] = $this->phpBB['table_prefix'] . $def_string[3];
+          }//end foreach of $line
+        } else {
+          $this->phpBB['files_installed'] = false;
+        }
         if ($this->debug==true) {
           echo 'prefix='.$this->phpBB['table_prefix'].'<br>';
           echo 'dbname='.$this->phpBB['dbname'].'<br>';

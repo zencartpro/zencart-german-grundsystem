@@ -9,7 +9,7 @@
  * @copyright Copyright 2003-2006 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: tpl_modules_create_account.php 3777 2006-06-15 07:03:03Z drbyte $
+ * @version $Id: tpl_modules_create_account.php 4356 2006-09-02 23:22:36Z drbyte $
  */
 ?>
 
@@ -30,6 +30,7 @@
 <?php
   }
 ?>
+
 <?php
   if (ACCOUNT_COMPANY == 'true') {
 ?>
@@ -53,7 +54,7 @@
   }
 ?>
 
-<label class="inputLabel" for="firstname" ><?php echo ENTRY_FIRST_NAME; ?></label>
+<label class="inputLabel" for="firstname"><?php echo ENTRY_FIRST_NAME; ?></label>
 <?php echo zen_draw_input_field('firstname', '', zen_set_field_length(TABLE_CUSTOMERS, 'customers_firstname', '40') . ' id="firstname"') . (zen_not_null(ENTRY_FIRST_NAME_TEXT) ? '<span class="alert">' . ENTRY_FIRST_NAME_TEXT . '</span>': ''); ?>
 <br class="clearBoth" />
 
@@ -81,20 +82,22 @@
 
 <?php
   if (ACCOUNT_STATE == 'true') {
+    if ($flag_show_pulldown_states == true) {
 ?>
-<label class="inputLabel" for="state"><?php echo ENTRY_STATE; ?></label>
-
+<label class="inputLabel" for="stateZone"><?php echo ENTRY_STATE; ?></label>
 <?php
-    if ($process == true || $entry_state_has_zones == true ) {
-      if ($entry_state_has_zones == true) {
-        echo zen_draw_pull_down_menu('state', $zones_array, $zone_name, ' id="state"');
-      } else {
-        echo zen_draw_input_field('state', '', zen_set_field_length(TABLE_ADDRESS_BOOK, 'entry_state', '40'), ' id="state"');
-      }
-    } else {
-      echo zen_draw_input_field('state', '', zen_set_field_length(TABLE_ADDRESS_BOOK, 'entry_state', '40'), ' id="state"');
+      echo zen_draw_pull_down_menu('zone_id', zen_prepare_country_zones_pull_down($selected_country), $zone_id, 'id="stateZone"');
     }
-    if (zen_not_null(ENTRY_STATE_TEXT)) echo '<span class="alert">' . ENTRY_STATE_TEXT . '</span>';?>
+?>
+
+<label class="inputLabel" for="state"><?php echo $state_field_label; ?></label>
+<?php
+    echo zen_draw_input_field('state', '', zen_set_field_length(TABLE_ADDRESS_BOOK, 'entry_state', '40') . ' id="state"' . $status_state_disabled);
+    if (zen_not_null(ENTRY_STATE_TEXT)) echo '&nbsp;<span class="alert">' . ENTRY_STATE_TEXT . '</span>'; 
+    if ($flag_show_pulldown_states == false) {
+      echo zen_draw_hidden_field('zone_id', $zone_name);
+    }
+?>
 <br class="clearBoth" />
 <?php
   }
@@ -105,10 +108,7 @@
 <br class="clearBoth" />
 
 <label class="inputLabel" for="country"><?php echo ENTRY_COUNTRY; ?></label>
-<?php
-  $selected_country = ($_POST['country']) ? $country : SHOW_CREATE_ACCOUNT_DEFAULT_COUNTRY;
-?>
-<?php echo zen_get_country_list('country', $selected_country, 'id="country"') . (zen_not_null(ENTRY_COUNTRY_TEXT) ? '<span class="alert">' . ENTRY_COUNTRY_TEXT . '</span>': ''); ?>
+<?php echo zen_get_country_list('zone_country_id', $selected_country, 'id="country" ' . ($flag_show_pulldown_states == true ? 'onchange="update_zone(this.form);"' : '')) . (zen_not_null(ENTRY_COUNTRY_TEXT) ? '<span class="alert">' . ENTRY_COUNTRY_TEXT . '</span>': ''); ?>
 <br class="clearBoth" />
 </fieldset>
 
@@ -151,7 +151,7 @@
   if ($phpBB->phpBB['installed'] == true) {
 ?>
 <label class="inputLabel" for="nickname"><?php echo ENTRY_NICK; ?></label>
-<?php echo zen_draw_input_field('nick','','id="nickname"') . (zen_not_null(ENTRY_NICK) ? '<span class="alert">' . ENTRY_NICK_TEXT . '</span>': ''); ?>
+<?php echo zen_draw_input_field('nick','','id="nickname"') . (zen_not_null(ENTRY_NICK_TEXT) ? '<span class="alert">' . ENTRY_NICK_TEXT . '</span>': ''); ?>
 <br class="clearBoth" />
 <?php
   }

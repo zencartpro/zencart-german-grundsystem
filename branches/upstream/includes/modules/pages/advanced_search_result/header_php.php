@@ -6,7 +6,7 @@
  * @copyright Copyright 2003-2006 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: header_php.php 3547 2006-04-30 16:42:13Z ajeh $
+ * @version $Id: header_php.php 4377 2006-09-03 22:09:20Z wilt $
  */
 
 // This should be first line of the script:
@@ -240,7 +240,7 @@ if ((DISPLAY_PRICE_WITH_TAX == 'true') && ((isset($_GET['pfrom']) && zen_not_nul
 // Notifier Point
 $zco_notifier->notify('NOTIFY_SEARCH_FROM_STRING');
 
-$where_str = " WHERE p.products_status = 1
+$where_str = " WHERE (p.products_status = 1
                AND p.products_id = pd.products_id
                AND pd.language_id = :languagesID
                AND p.products_id = p2c.products_id
@@ -321,9 +321,20 @@ if (isset($keywords) && zen_not_null($keywords)) {
         break;
       }
     }
-    $where_str .= " )";
+    $where_str .= " ))";
   }
 }
+if (!isset($keywords) || $keywords == "") {
+  $where_str .= ')';
+}
+  if (isset($_GET['alpha_filter_id']) && (int)$_GET['alpha_filter_id'] > 0) {
+    $alpha_sort = " and (pd.products_name LIKE '" . chr((int)$_GET['alpha_filter_id']) . "%') ";
+    $where_str .= $alpha_sort;
+  } else {
+    $alpha_sort = '';
+    $where_str .= $alpha_sort;
+  }
+//die('I SEE ' . $where_str);
 
 if (isset($_GET['dfrom']) && zen_not_null($_GET['dfrom']) && ($_GET['dfrom'] != DOB_FORMAT_STRING)) {
   $where_str .= " AND p.products_date_added >= :dateAdded";

@@ -8,7 +8,7 @@
  * @copyright Copyright 2003-2005 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: tpl_gv_faq_default.php 2859 2006-01-17 20:07:36Z birdbrain $
+ * @version $Id: tpl_gv_faq_default.php 4155 2006-08-16 17:14:52Z ajeh $
  */
 ?>
 <div class="centerColumn" id="gvFaqDefault">
@@ -34,4 +34,16 @@
 
 <div class="buttonRow back"><?php echo zen_back_link() . zen_image_button(BUTTON_IMAGE_BACK, BUTTON_BACK_ALT) . '</a>'; ?></div>
 <br class="clearBoth" />
+
+
+<form action="<?php echo zen_href_link(FILENAME_GV_REDEEM, '', 'NONSSL', false); ?>" method="get">
+<?php echo zen_draw_hidden_field('main_page',FILENAME_GV_REDEEM) . zen_draw_hidden_field('goback','true') . zen_hide_session_id(); ?>
+<fieldset>
+<legend><?php echo TEXT_GV_REDEEM_INFO; ?></legend>
+<label class="inputLabel" for="lookup-gv-redeem"><?php echo TEXT_GV_REDEEM_ID; ?></label>
+<?php echo zen_draw_input_field('gv_no', $_GET['gv_no'], 'size="18" id="gv_no"');?>
+</fieldset>
+<div class="buttonRow forward"><?php echo zen_image_submit(BUTTON_IMAGE_REDEEM, BUTTON_REDEEM_ALT); ?></div>
+</form>
+
 </div>

@@ -1,30 +1,18 @@
 <?php
-//
-// +----------------------------------------------------------------------+
-// |zen-cart Open Source E-commerce                                       |
-// +----------------------------------------------------------------------+
-// | Copyright (c) 2006 The zen-cart developers                           |
-// |                                                                      |
-// | http://www.zen-cart.com/index.php                                    |
-// |                                                                      |
-// | Portions Copyright (c) 2003 osCommerce                               |
-// +----------------------------------------------------------------------+
-// | This source file is subject to version 2.0 of the GPL license,       |
-// | that is bundled with this package in the file LICENSE, and is        |
-// | available through the world-wide-web at the following url:           |
-// | http://www.zen-cart.com/license/2_0.txt.                             |
-// | If you did not receive a copy of the zen-cart license and are unable |
-// | to obtain it through the world-wide-web, please send a note to       |
-// | license@zen-cart.com so we can mail you a copy immediately.          |
-// +----------------------------------------------------------------------+
-//  $Id: sqlpatch.php 3296 2006-03-28 07:28:20Z drbyte $
-//
+/**
+ * @package admin
+ * @copyright Copyright 2003-2006 Zen Cart Development Team
+ * @copyright Portions Copyright 2003 osCommerce
+ * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
+ * @version $Id: sqlpatch.php 4279 2006-08-26 03:31:29Z drbyte $
+ */
 
   require('includes/application_top.php');
 
   define('HEADING_TITLE','SQL Query Executor');
   define('HEADING_WARNING','BE SURE TO DO A FULL DATABASE BACKUP BEFORE RUNNING SCRIPTS HERE');
   define('HEADING_WARNING2','If you are installing 3rd-party contributions, note that you do so at your own risk.<br />Zen Cart&trade; makes no warranty as to the safety of scripts supplied by 3rd-party contributors. Test before using on your live database!');
+  define('HEADING_WARNING_INSTALLSCRIPTS', 'NOTE: Zen Cart database-upgrade scripts should NOT be run from this page.<br />Please upload the new <strong>zc_install</strong> folder and run the upgrade from there instead for better reliability.');
   define('TEXT_QUERY_RESULTS','Query Results:');
   define('TEXT_ENTER_QUERY_STRING','Enter the query <br />to be executed:&nbsp;&nbsp;<br /><br />Be sure to<br />end with ;');
   define('TEXT_QUERY_FILENAME','Upload file:');
@@ -108,7 +96,7 @@ $linebreak = '
    $errors = array();
 
    foreach ($lines as $line) {
-echo $line . '<br />';
+if ($_GET['debug']=='ON') echo $line . '<br />';
 
 
      $line = trim($line);
@@ -154,6 +142,33 @@ echo $line . '<br />';
               break;
             } else {
               $line = (strtoupper($param[2].' '.$param[3].' '.$param[4]) == 'IF NOT EXISTS') ? 'CREATE TABLE IF NOT EXISTS ' . $table_prefix . substr($line, 27) : 'CREATE TABLE ' . $table_prefix . substr($line, 13);
+            }
+            break;
+          case (substr($line_upper, 0, 9) == 'TRUNCATE '):
+            // check to see if table exists
+            $table = (strtoupper($param[1]) == 'TABLE') ? $param[3] : $param[2];
+            $result=zen_table_exists($table);
+            if ($result==true) {
+              zen_write_to_upgrade_exceptions_table($line, sprintf(REASON_TABLE_DOESNT_EXIST,$table), $sql_file);
+              $ignore_line=true;
+              $result=sprintf(REASON_TABLE_DOESNT_EXIST,$table); //duplicated here for on-screen error-reporting
+              break;
+            } else {
+              $line = (strtoupper($param[1]) == 'TABLE') ? 'TRUNCATE TABLE ' . $table_prefix . substr($line, 15) : 'TRUNCATE ' . $table_prefix . substr($line, 9);
+            }
+            break;
+          case (substr($line_upper, 0, 13) == 'REPLACE INTO '):
+            //check to see if table prefix is going to match
+            if (!$tbl_exists = zen_table_exists($param[2])) $result=sprintf(REASON_TABLE_NOT_FOUND,$param[2]).' CHECK PREFIXES!';
+            // check to see if INSERT command may be safely executed for "configuration" or "product_type_layout" tables
+            if (($param[2]=='configuration'       && ($result=zen_check_config_key($line))) or 
+                ($param[2]=='product_type_layout' && ($result=zen_check_product_type_layout_key($line))) or
+                (!$tbl_exists)    ) {
+              zen_write_to_upgrade_exceptions_table($line, $result, $sql_file);
+              $ignore_line=true;
+              break;
+            } else {
+              $line = 'REPLACE INTO ' . $table_prefix . substr($line, 13);
             }
             break;
           case (substr($line_upper, 0, 12) == 'INSERT INTO '):
@@ -736,7 +751,7 @@ echo $line . '<br />';
   // -->
 </script>
 </head>
-<body onload="init()" >
+<body onLoad="init()" >
 <!-- header //-->
 <?php require(DIR_WS_INCLUDES . 'header.php'); ?>
 <!-- header_eof //-->
@@ -788,6 +803,7 @@ echo $line . '<br />';
       </table></td>
     </form></tr>
 
+      <tr><td class="alert" colspan="2" style="padding-left:110px;"><?php echo HEADING_WARNING_INSTALLSCRIPTS; ?></td></tr>
 
     <tr><?php echo zen_draw_form('getqueryfile', FILENAME_SQLPATCH, 'action=uploadquery' . (($debug==true)?'&debug=ON':'') . (($skip_stripslashes==true)?'&keepslashes=1':'') ,'post', 'enctype="multipart/form-data"'); ?>
 <?php if (isset($_GET['nogrants'])) echo '<input type="hidden" id="nogrants" name="nogrants" value="'.$_GET['nogrants'].'" />'; ?>

@@ -9,7 +9,7 @@
  * @copyright Copyright 2003-2006 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: header_php.php 3421 2006-04-12 04:16:14Z drbyte $
+ * @version $Id: header_php.php 4274 2006-08-26 03:16:53Z drbyte $
  */
 
 // This should be first line of the script:
@@ -37,8 +37,8 @@ if (isset($_POST['edit_x']) || isset($_POST['edit_y'])) {
 // extract sender's name+email from database, since logged-in customer is the one who is sending this GV email
   $account_query = "SELECT customers_firstname, customers_lastname, customers_email_address
                     FROM " . TABLE_CUSTOMERS . "
-                    WHERE customers_id = customersID";
-  $account_query = $db->bindVars($account_query, 'customersID', $_SESSION['customer_id'], 'integer');
+                    WHERE customers_id = :customersID";
+  $account_query = $db->bindVars($account_query, ':customersID', $_SESSION['customer_id'], 'integer');
   $account = $db->Execute($account_query);
   $send_name = $account->fields['customers_firstname'] . ' ' . $account->fields['customers_lastname'];
   $send_firstname = $account->fields['customers_firstname'];
@@ -163,7 +163,7 @@ if ($_GET['action'] == 'process') {
       $html_msg['GV_REDEEM_CODE'] = $id1;
 
       $gv_email .= sprintf(EMAIL_GV_REDEEM, $id1) . "\n\n";
-      $gv_email .= EMAIL_GV_LINK . ' ' . zen_href_link(FILENAME_GV_REDEEM, 'gv_no=' . $id1, 'NONSSL', false);;
+      $gv_email .= EMAIL_GV_LINK . ' ' . zen_href_link(FILENAME_GV_REDEEM, 'gv_no=' . $id1, 'NONSSL', false);
       $gv_email .= "\n\n";
       $gv_email .= EMAIL_GV_FIXED_FOOTER . "\n\n";
       $gv_email .= EMAIL_GV_SHOP_FOOTER;

@@ -4,10 +4,10 @@
  * Builds output queries for customer segments
  *
  * @package functions
- * @copyright Copyright 2003-2005 Zen Cart Development Team
+ * @copyright Copyright 2003-2006 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: audience.php 3767 2006-06-13 07:54:05Z drbyte $
+ * @version $Id: audience.php 4135 2006-08-14 04:25:02Z drbyte $
  */
 
 

@@ -6,7 +6,7 @@
  * @copyright Copyright 2003-2006 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: products_quantity_discounts.php 3453 2006-04-18 00:31:01Z drbyte $
+ * @version $Id: products_quantity_discounts.php 4135 2006-08-14 04:25:02Z drbyte $
  */
 if (!defined('IS_ADMIN_FLAG')) {
   die('Illegal Access');
@@ -50,7 +50,7 @@ switch (true) {
 // create products discount output table
 
 // find out the minimum quantity for this product
-$products_min_query = $db->Execute("select products_quantity_order_min from " . TABLE_PRODUCTS . " where products_id='" . $products_id_current . "'");
+$products_min_query = $db->Execute("select products_quantity_order_min from " . TABLE_PRODUCTS . " where products_id='" . (int)$products_id_current . "'");
 $products_quantity_order_min = $products_min_query->fields['products_quantity_order_min'];
 
 // retrieve the list of discount levels for this product

@@ -6,7 +6,7 @@
  * @copyright Copyright 2003-2005 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: header_php.php 3579 2006-05-06 06:04:12Z drbyte $
+ * @version $Id: header_php.php 4046 2006-07-30 23:10:43Z drbyte $
  */
 
 // This should be first line of the script:
@@ -67,13 +67,8 @@ for ($i=0, $n=sizeof($products); $i<$n; $i++) {
     $cur_row++;
   } // end switch
   $attributeHiddenField = "";
-  if (STOCK_CHECK == 'true') {
-    $flagStockCheck = zen_check_stock($products[$i]['id'], $products[$i]['quantity']);
-    if ($flagStockCheck == true) {
-      $flagAnyOutOfStock = true;
-    }
-  }
   $attrArray = false;
+  $productsName = $products[$i]['name'];
   // Push all attributes information in an array
   if (isset($products[$i]['attributes']) && is_array($products[$i]['attributes'])) {
     if (PRODUCTS_OPTIONS_SORT_ORDER=='0') {
@@ -113,13 +108,20 @@ for ($i=0, $n=sizeof($products); $i<$n; $i++) {
       $attrArray[$option]['price_prefix'] = $attributes_values->fields['price_prefix'];
     }
   } //end foreach [attributes]
+  if (STOCK_CHECK == 'true') {
+    $flagStockCheck = zen_check_stock($products[$i]['id'], $products[$i]['quantity']);
+    if ($flagStockCheck == true) {
+      $flagAnyOutOfStock = true;
+    }
+  }
   $linkProductsImage = zen_href_link(zen_get_info_page($products[$i]['id']), 'products_id=' . $products[$i]['id']);
   $linkProductsName = zen_href_link(zen_get_info_page($products[$i]['id']), 'products_id=' . $products[$i]['id']);
   $productsImage = (IMAGE_SHOPPING_CART_STATUS == 1 ? zen_image(DIR_WS_IMAGES . $products[$i]['image'], $products[$i]['name'], IMAGE_SHOPPING_CART_WIDTH, IMAGE_SHOPPING_CART_HEIGHT) : '');
-  $productsName = $products[$i]['name'];
   $show_products_quantity_max = zen_get_products_quantity_order_max($products[$i]['id']);
   $showFixedQuantity = (($show_products_quantity_max == 1 or zen_get_products_qty_box_status($products[$i]['id']) == 0) ? true : false);
-  $showFixedQuantityAmount = $products[$i]['quantity'] . zen_draw_hidden_Field('products_id[]', $products[$i]['id']) . zen_draw_hidden_Field('cart_quantity[]', 1);
+//  $showFixedQuantityAmount = $products[$i]['quantity'] . zen_draw_hidden_field('products_id[]', $products[$i]['id']) . zen_draw_hidden_field('cart_quantity[]', 1);
+//  $showFixedQuantityAmount = $products[$i]['quantity'] . zen_draw_hidden_field('cart_quantity[]', 1);
+  $showFixedQuantityAmount = $products[$i]['quantity'] . zen_draw_hidden_field('cart_quantity[]', $products[$i]['quantity']);
   $showMinUnits = zen_get_products_quantity_min_units_display($products[$i]['id']);
   $quantityField = zen_draw_input_field('cart_quantity[]', $products[$i]['quantity'], 'size="4"');
   $buttonUpdate = ((SHOW_SHOPPING_CART_UPDATE == 1 or SHOW_SHOPPING_CART_UPDATE == 3) ? zen_image_submit(ICON_IMAGE_UPDATE, ICON_UPDATE_ALT) : '') . zen_draw_hidden_field('products_id[]', $products[$i]['id']);

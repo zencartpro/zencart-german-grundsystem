@@ -10,7 +10,7 @@
  * @copyright Copyright 2003-2006 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: autoload_func.php 3019 2006-02-13 03:59:48Z birdbrain $
+ * @version $Id: autoload_func.php 4260 2006-08-25 04:22:52Z drbyte $
  */
 if (!defined('IS_ADMIN_FLAG')) {
   die('Illegal Access');
@@ -21,20 +21,21 @@ foreach ($autoLoadConfig as $actionPoint => $row) {
   $debugOutput = "";
   foreach($row as $entry) {
     $debugOutput = 'actionPoint=>'.$actionPoint . ' ';
+    $entry['loadFile'] = str_replace(array(':', '\\\\'), '', $entry['loadFile']);
     switch($entry['autoType']) {
       case 'include':
       /**
        * include a file as specified by autoloader array
        */
-      include($entry['loadFile']);
-      $debugOutput .= 'include(\'' . $entry['loadFile'] . '\');' . '</br>';
+      if (file_exists($entry['loadFile'])) include($entry['loadFile']);
+      $debugOutput .= 'include(\'' . $entry['loadFile'] . '\');' . '<br />';
       break;
       case 'require':
       /**
        * require a file as specified by autoloader array
        */
-      require($entry['loadFile']);
-      $debugOutput .= 'include(\'' . $entry['loadFile'] . '\');' . '</br>';
+      if (file_exists($entry['loadFile'])) require($entry['loadFile']);
+      $debugOutput .= 'include(\'' . $entry['loadFile'] . '\');' . '<br />';
       break;
       case 'init_script':
       $baseDir = DIR_WS_INCLUDES . 'init_includes/';
@@ -44,8 +45,8 @@ foreach ($autoLoadConfig as $actionPoint => $row) {
       /**
        * include an init_script as specified by autoloader array
        */
-      include($baseDir . $entry['loadFile']);
-      $debugOutput .= 'include(\'' . $baseDir . $entry['loadFile'] . '\');' . '</br>';
+      if (file_exists($baseDir . $entry['loadFile'])) include($baseDir . $entry['loadFile']);
+      $debugOutput .= 'include(\'' . $baseDir . $entry['loadFile'] . '\');' . '<br />';
       break;
       case 'class':
       if (isset($entry['classPath'])) {
@@ -56,8 +57,8 @@ foreach ($autoLoadConfig as $actionPoint => $row) {
       /**
        * include a class definition as specified by autoloader array
        */
-      include($classPath . $entry['loadFile']);
-      $debugOutput .= 'include(\'' . $classPath . $entry['loadFile'] . '\');' . '</br>';
+      if (file_exists($classPath . $entry['loadFile'])) include($classPath . $entry['loadFile']);
+      $debugOutput .= 'include(\'' . $classPath . $entry['loadFile'] . '\');' . '<br />';
       break;
       case 'classInstantiate':
       $objectName = $entry['objectName'];
@@ -72,11 +73,11 @@ foreach ($autoLoadConfig as $actionPoint => $row) {
           }
         } else {
           $_SESSION[$objectName] = new $className();
-          $debugOutput .= '  $_SESSION[' . $objectName . '] = new ' . $className . '();</br>';
+          $debugOutput .= '  $_SESSION[' . $objectName . '] = new ' . $className . '();<br />';
         }
       } else {
         $$objectName = new $className();
-        $debugOutput .= '$' . $objectName . ' = new ' . $className . '();</br>';
+        $debugOutput .= '$' . $objectName . ' = new ' . $className . '();<br />';
       }
       break;
       case 'objectMethod':
@@ -84,10 +85,10 @@ foreach ($autoLoadConfig as $actionPoint => $row) {
       $methodName = $entry['methodName'];
       if (is_object($_SESSION[$objectName])) {
         $_SESSION[$objectName]->$methodName();
-        $debugOutput .= '$_SESSION[' . $objectName . ']->' . $methodName . '();</br>';
+        $debugOutput .= '$_SESSION[' . $objectName . ']->' . $methodName . '();<br />';
       } else {
         $$objectName->$methodName();
-        $debugOutput .= '$' . $objectName . '->' . $methodName . '();</br>';
+        $debugOutput .= '$' . $objectName . '->' . $methodName . '();<br />';
       }
       break;
     }

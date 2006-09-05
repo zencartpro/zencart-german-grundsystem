@@ -5,7 +5,7 @@
  * @copyright Copyright 2003-2005 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: header_php.php 2342 2005-11-13 01:07:55Z drbyte $
+ * @version $Id: header_php.php 4230 2006-08-24 05:23:58Z drbyte $
  */
 
 if (!isset($_GET['debug'])  && !zen_not_null($_POST['debug']))  define('ZC_UPG_DEBUG',false);
@@ -63,8 +63,7 @@ if (!isset($_GET['debug3']) && !zen_not_null($_POST['debug3'])) define('ZC_UPG_D
       $sql = "update " . DB_PREFIX . "configuration set configuration_value = '" . $db->prepare_input($store_owner) . "' where configuration_key = 'STORE_OWNER'";
       $db->Execute($sql);
       $sql = "update " . DB_PREFIX . "configuration set configuration_value = '" . $db->prepare_input($store_owner_email) . "' where configuration_key in 
-             ('STORE_OWNER_EMAIL_ADDRESS', 'EMAIL_FROM', 'SEND_EXTRA_ORDER_EMAILS_TO', 'SEND_EXTRA_CREATE_ACCOUNT_EMAILS_TO', 'SEND_EXTRA_LOW_STOCK_EMAILS_TO',
-              'SEND_EXTRA_GV_CUSTOMER_EMAILS_TO', 'SEND_EXTRA_GV_ADMIN_EMAILS_TO', 'SEND_EXTRA_DISCOUNT_COUPON_ADMIN_EMAILS_TO', 'SEND_EXTRA_ORDERS_STATUS_ADMIN_EMAILS_TO', 'SEND_EXTRA_TELL_A_FRIEND_EMAILS_TO', 'SEND_EXTRA_REVIEW_NOTIFICATION_EMAILS_TO')";
+             ('STORE_OWNER_EMAIL_ADDRESS', 'EMAIL_FROM', 'SEND_EXTRA_ORDER_EMAILS_TO', 'SEND_EXTRA_CREATE_ACCOUNT_EMAILS_TO', 'SEND_EXTRA_LOW_STOCK_EMAILS_TO', 'SEND_EXTRA_GV_CUSTOMER_EMAILS_TO', 'SEND_EXTRA_GV_ADMIN_EMAILS_TO', 'SEND_EXTRA_DISCOUNT_COUPON_ADMIN_EMAILS_TO', 'SEND_EXTRA_ORDERS_STATUS_ADMIN_EMAILS_TO', 'SEND_EXTRA_TELL_A_FRIEND_EMAILS_TO', 'SEND_EXTRA_REVIEW_NOTIFICATION_EMAILS_TO', 'MODULE_PAYMENT_CC_EMAIL')";
       $db->Execute($sql);
       $sql = "update " . DB_PREFIX . "configuration set configuration_value = '" . $db->prepare_input($store_country) . "' where configuration_key = 'STORE_COUNTRY'";
       $db->Execute($sql);
@@ -84,14 +83,14 @@ if (!isset($_GET['debug3']) && !zen_not_null($_POST['debug3'])) define('ZC_UPG_D
 
 
   //if not submit, set some defaults
-  $sql = "select countries_id, countries_name from " . DB_PREFIX . "countries";
+  $sql = "select countries_id, countries_name from " . DB_PREFIX . "countries order by countries_name";
   $country = $db->Execute($sql);
   $country_string = '';
   while (!$country->EOF) {
     $country_string .= '<option value="' . $country->fields['countries_id'] . '"' . setSelected($country->fields['countries_id'], $_POST['store_country']) . '>' . $country->fields['countries_name'] . '</option>';
     $country->MoveNext();
   }
-  $sql = "select zone_id, zone_name from " . DB_PREFIX . "zones";
+  $sql = "select zone_id, zone_name from " . DB_PREFIX . "zones";  // order by zone_country_id, zone_name
   $zone = $db->Execute($sql);
   $zone_string = '';
   while (!$zone->EOF) {

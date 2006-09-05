@@ -7,7 +7,7 @@
  * @copyright Copyright 2003-2005 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: sessions.php 3772 2006-06-13 18:51:58Z wilt $
+ * @version $Id: sessions.php 4285 2006-08-26 19:27:31Z wilt $
  */
 if (!defined('IS_ADMIN_FLAG')) {
   die('Illegal Access');
@@ -85,7 +85,7 @@ if (!defined('IS_ADMIN_FLAG')) {
 
     function _sess_gc($maxlifetime) {
       global $db;
-      $sql = "delete from " . TABLE_SESSIONS . " where expiry < '" . time() . "'";
+      $sql = "delete from " . TABLE_SESSIONS . " where expiry < " . time();
       $db->Execute($sql);
       return true;
     }
@@ -94,6 +94,8 @@ if (!defined('IS_ADMIN_FLAG')) {
   }
 
   function zen_session_start() {
+    @ini_set('session.gc_probability', 1);
+    @ini_set('session.gc_divisor', 2);
     if (defined('DIR_WS_ADMIN')) {
       @ini_set('session.gc_maxlifetime', (SESSION_TIMEOUT_ADMIN < 900 ? (SESSION_TIMEOUT_ADMIN + 900) : SESSION_TIMEOUT_ADMIN));
     }

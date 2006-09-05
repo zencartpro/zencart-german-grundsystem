@@ -4,7 +4,7 @@
  * @copyright Copyright 2003-2006 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: init_file_db_names.php 3009 2006-02-11 15:41:10Z wilt $
+ * @version $Id: init_file_db_names.php 4240 2006-08-24 10:38:16Z drbyte $
  */
 if (!defined('IS_ADMIN_FLAG')) {
   die('Illegal Access');
@@ -32,12 +32,15 @@ if (!defined('IS_ADMIN_FLAG')) {
   require(DIR_FS_CATALOG . DIR_WS_FUNCTIONS . 'compatibility.php');
 
 // include the list of extra database tables and filenames
-//  include(DIR_WS_MODULES . 'extra_datafiles.php');
-  if ($za_dir = @dir(DIR_WS_INCLUDES . 'extra_datafiles')) {
-    while ($zv_file = $za_dir->read()) {
-      if (strstr($zv_file, '.php')) {
-        require(DIR_WS_INCLUDES . 'extra_datafiles/' . $zv_file);
+$extra_datafiles_dir = DIR_WS_INCLUDES . 'extra_datafiles/';
+if ($dir = @dir($extra_datafiles_dir)) {
+  while ($file = $dir->read()) {
+    if (!is_dir($extra_datafiles_dir . $file)) {
+      if (preg_match('/\.php$/', $file) > 0) {
+        require($extra_datafiles_dir . $file);
       }
     }
   }
+  $dir->close();
+}
 ?>

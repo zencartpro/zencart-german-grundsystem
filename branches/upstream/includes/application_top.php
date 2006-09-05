@@ -7,10 +7,10 @@
  * see {@link  http://www.zen-cart.com/wiki/index.php/Developers_API_Tutorials#InitSystem wikitutorials} for more details.
  *
  * @package initSystem
- * @copyright Copyright 2003-2005 Zen Cart Development Team
+ * @copyright Copyright 2003-2006 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: application_top.php 3185 2006-03-14 19:19:55Z wilt $
+ * @version $Id: application_top.php 4271 2006-08-26 01:21:02Z drbyte $
  */
 /**
  * boolean if true the autoloader scripts will be parsed and their output shown. For debugging purposes only.
@@ -37,8 +37,15 @@ if (file_exists('includes/local/configure.php')) {
 }
 /**
  * set the level of error reporting
+ * 
+ * Note STRICT_ERROR_REPORTING should never be set to true on a production site. <br />
+ * It is mainly there to show php warnings during testing/bug fixing phases.<br />
+ * note for strict error reporting we also turn on show_errors as this may be disabled<br />
+ * in php.ini. Otherwise we respect the php.ini setting 
+ * 
  */
 if (defined('STRICT_ERROR_REPORTING') && STRICT_ERROR_REPORTING == true) {
+  @ini_set('show_errors', 'on');
   error_reporting(E_ALL);
 } else {
   error_reporting(E_ALL & ~E_NOTICE);
@@ -71,7 +78,7 @@ if ($za_dir = @dir(DIR_WS_INCLUDES . 'extra_configures')) {
     }
   }
 }
-
+$autoLoadConfig = array();
 $loader_file = 'config.core.php';
 $base_dir = DIR_WS_INCLUDES . 'auto_loaders/';
 if (file_exists(DIR_WS_INCLUDES . 'auto_loaders/overrides/' . $loader_file)) {

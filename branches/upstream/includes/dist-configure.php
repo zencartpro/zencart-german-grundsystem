@@ -6,7 +6,7 @@
  * @copyright Copyright 2003-2006 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: dist-configure.php 3071 2006-02-27 23:09:54Z drbyte $
+ * @version $Id: dist-configure.php 4271 2006-08-26 01:21:02Z drbyte $
  * @private
  */
 // Define the webserver and path parameters
@@ -48,13 +48,13 @@ define('DIR_FS_EMAIL_TEMPLATES', DIR_FS_CATALOG . 'email/');
 
 // define our database connection
 define('DB_TYPE', 'mysql');
-define('DB_PREFIX', 'zen_'); // prefix for database table names
-define('DB_SERVER', 'localhost'); // eg, localhost - should not be empty
+define('DB_PREFIX', ''); // prefix for database table names -- preferred to be left empty
+define('DB_SERVER', 'localhost');
 define('DB_SERVER_USERNAME', 'root');
 define('DB_SERVER_PASSWORD', '');
 define('DB_DATABASE', '');
 define('USE_PCONNECT', 'false'); // use persistent connections?
-define('STORE_SESSIONS', 'db'); // leave empty '' for default handler or set to 'db' or optionally 'mysql' in some cases
+define('STORE_SESSIONS', 'db'); // use 'db' for best support, or '' for file-based storage
 
 // The next 2 "defines" are for SQL cache support.
 // For SQL_CACHE_METHOD, you can select from:  none, database, or file

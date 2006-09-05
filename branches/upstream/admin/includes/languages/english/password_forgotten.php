@@ -17,7 +17,7 @@
 // | to obtain it through the world-wide-web, please send a note to       |
 // | license@zen-cart.com so we can mail you a copy immediately.          |
 // +----------------------------------------------------------------------+
-// $Id: password_forgotten.php 1105 2005-04-04 22:05:35Z birdbrain $
+// $Id: password_forgotten.php 4347 2006-09-02 19:02:26Z drbyte $
 //
 
 define('HEADING_TITLE', 'Resend Password');
@@ -25,8 +25,8 @@ define('HEADING_TITLE', 'Resend Password');
 define('TEXT_ADMIN_EMAIL', 'Admin Email Address: ');
 
 define('ERROR_WRONG_EMAIL', '<p>You entered the wrong email address.</p>');
-define('ERROR_WRONG_EMAIL_NULL', '<p>Nice try mate :-P</p>');
-define('SUCCESS_PASSWORD_SENT', '<p>Success: A new password has been sent to your e-mail address.</p>');
+define('ERROR_WRONG_EMAIL_NULL', '<p>Go away gooberbrain :-P</p>');
+define('SUCCESS_PASSWORD_SENT', '<p>A new password has been sent to your e-mail address.</p>');
 
 define('TEXT_EMAIL_SUBJECT', 'Your Requested change');
 define('TEXT_EMAIL_FROM', EMAIL_FROM);

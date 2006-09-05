@@ -1,24 +1,11 @@
 <?php
-//
-// +----------------------------------------------------------------------+
-// |zen-cart Open Source E-commerce                                       |
-// +----------------------------------------------------------------------+
-// | Copyright (c) 2003 The zen-cart developers                           |
-// |                                                                      |
-// | http://www.zen-cart.com/index.php                                    |
-// |                                                                      |
-// | Portions Copyright (c) 2003 osCommerce                               |
-// +----------------------------------------------------------------------+
-// | This source file is subject to version 2.0 of the GPL license,       |
-// | that is bundled with this package in the file LICENSE, and is        |
-// | available through the world-wide-web at the following url:           |
-// | http://www.zen-cart.com/license/2_0.txt.                             |
-// | If you did not receive a copy of the zen-cart license and are unable |
-// | to obtain it through the world-wide-web, please send a note to       |
-// | license@zen-cart.com so we can mail you a copy immediately.          |
-// +----------------------------------------------------------------------+
-//  $Id: options_values_manager.php 3297 2006-03-28 08:35:01Z drbyte $
-//
+/**
+ * @package admin
+ * @copyright Copyright 2003-2006 Zen Cart Development Team
+ * @copyright Portions Copyright 2003 osCommerce
+ * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
+ * @version $Id: options_values_manager.php 4280 2006-08-26 03:32:55Z drbyte $
+ */
 
   require('includes/application_top.php');
 
@@ -369,27 +356,27 @@ die('I SEE match from products_id:' . $copy_from_products_id . ' options_id_from
                                   '" . (int)$values_id . "',
                                   '" . zen_db_input($options_values_price) . "',
                                   '" . zen_db_input($price_prefix) . "',
-                                  '" . zen_db_input($products_options_sort_order) . "',
-                                  '" . zen_db_input($product_attribute_is_free) . "',
-                                  '" . zen_db_input($products_attributes_weight) . "',
+                                  '" . (int)zen_db_input($products_options_sort_order) . "',
+                                  '" . (int)zen_db_input($product_attribute_is_free) . "',
+                                  '" . (float)zen_db_input($products_attributes_weight) . "',
                                   '" . zen_db_input($products_attributes_weight_prefix) . "',
-                                  '" . zen_db_input($attributes_display_only) . "',
-                                  '" . zen_db_input($attributes_default) . "',
-                                  '" . zen_db_input($attributes_discounted) . "',
+                                  '" . (int)zen_db_input($attributes_display_only) . "',
+                                  '" . (int)zen_db_input($attributes_default) . "',
+                                  '" . (int)zen_db_input($attributes_discounted) . "',
                                   '" . zen_db_input($attributes_image_name) . "',
-                                  '" . zen_db_input($attributes_price_base_included) . "',
-                                  '" . zen_db_input($attributes_price_onetime) . "',
-                                  '" . zen_db_input($attributes_price_factor) . "',
-                                  '" . zen_db_input($attributes_price_factor_offset) . "',
-                                  '" . zen_db_input($attributes_price_factor_onetime) . "',
-                                  '" . zen_db_input($attributes_price_factor_onetime_offset) . "',
+                                  '" . (int)zen_db_input($attributes_price_base_included) . "',
+                                  '" . (float)zen_db_input($attributes_price_onetime) . "',
+                                  '" . (float)zen_db_input($attributes_price_factor) . "',
+                                  '" . (float)zen_db_input($attributes_price_factor_offset) . "',
+                                  '" . (float)zen_db_input($attributes_price_factor_onetime) . "',
+                                  '" . (float)zen_db_input($attributes_price_factor_onetime_offset) . "',
                                   '" . zen_db_input($attributes_qty_prices) . "',
                                   '" . zen_db_input($attributes_qty_prices_onetime) . "',
-                                  '" . zen_db_input($attributes_price_words) . "',
-                                  '" . zen_db_input($attributes_price_words_free) . "',
-                                  '" . zen_db_input($attributes_price_letters) . "',
-                                  '" . zen_db_input($attributes_price_letters_free) . "',
-                                  '" . zen_db_input($attributes_required) . "')";
+                                  '" . (float)zen_db_input($attributes_price_words) . "',
+                                  '" . (int)zen_db_input($attributes_price_words_free) . "',
+                                  '" . (float)zen_db_input($attributes_price_letters) . "',
+                                  '" . (int)zen_db_input($attributes_price_letters_free) . "',
+                                  '" . (int)zen_db_input($attributes_required) . "')";
 
               $check_previous = $db->Execute("select * from " . TABLE_PRODUCTS_ATTRIBUTES . " where products_id='" . $current_products_id . "' and options_id='" . $options_id_from . "' and options_values_id='" . $options_values_values_id_from . "' limit 1");
               // do not add duplicate attributes

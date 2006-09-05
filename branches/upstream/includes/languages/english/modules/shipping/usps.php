@@ -1,27 +1,21 @@
 <?php
-//
-// +----------------------------------------------------------------------+
-// |zen-cart Open Source E-commerce                                       |
-// +----------------------------------------------------------------------+
-// | Copyright (c) 2003 The zen-cart developers                           |
-// |                                                                      |
-// | http://www.zen-cart.com/index.php                                    |
-// |                                                                      |
-// | Portions Copyright (c) 2003 osCommerce                               |
-// +----------------------------------------------------------------------+
-// | This source file is subject to version 2.0 of the GPL license,       |
-// | that is bundled with this package in the file LICENSE, and is        |
-// | available through the world-wide-web at the following url:           |
-// | http://www.zen-cart.com/license/2_0.txt.                             |
-// | If you did not receive a copy of the zen-cart license and are unable |
-// | to obtain it through the world-wide-web, please send a note to       |
-// | license@zen-cart.com so we can mail you a copy immediately.          |
-// +----------------------------------------------------------------------+
-// $Id: usps.php 2501 2005-12-02 05:24:31Z drbyte $
-//
+/**
+ * @package languageDefines
+ * @copyright Copyright 2003-2006 Zen Cart Development Team
+ * @copyright Portions Copyright 2003 osCommerce
+ * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
+ * @version $Id: usps.php 3993 2006-07-20 21:46:55Z drbyte $
+ */
 
 define('MODULE_SHIPPING_USPS_TEXT_TITLE', 'United States Postal Service');
-define('MODULE_SHIPPING_USPS_TEXT_DESCRIPTION', 'United States Postal Service<br /><br />You will need to have registered an account with USPS at http://www.uspsprioritymail.com/et_regcert.html to use this module<br /><br />USPS expects you to <strong>use pounds as weight measure</strong> for your products.');
+define('MODULE_SHIPPING_USPS_TEXT_DESCRIPTION', 'United States Postal Service<br /><br />You will need to have registered a Web Tools account with USPS at <a href="http://www.usps.com/webtools/" target="_blank">their website</a> to use this module.<br /><br />USPS expects you to <strong>use pounds as weight measure</strong> for your products.' . ((MODULE_SHIPPING_USPS_USERID == 'NONE' || MODULE_SHIPPING_USPS_USERID == '' || MODULE_SHIPPING_USPS_SERVER == 'test') ? '<br /><br /><strong>Creating a customer account for USPS realtime shipping quotes</strong><br />
+1. <a href="http://www.usps.com/webtools/rate.htm" target="_blank">Info on USPS and Rate Quotes</a><br />
+2. <a href="https://secure.shippingapis.com/registration/" target="_blank">Create a USPS Web Tools account</a><br />
+3. Fill in your customer information details and click Submit<br />
+4. You will receive an email containing your USPS rate-quote Web Tools User ID<br />
+5. Insert the Web Tools User ID in the Zen Cart USPS shipping module.<br />
+6. Telephone USPS 1-800-344-7779 and ask them to move your account to the Production Server or email them at icustomercare@usps.com, quoting your Web Tools User ID.<br />
+7. They will send another confirmation email. Set the Zen Cart module into Production mode (instead of Test mode) to finish activation.': ''));
 define('MODULE_SHIPPING_USPS_TEXT_OPT_PP', 'Parcel Post');
 define('MODULE_SHIPPING_USPS_TEXT_OPT_PM', 'Priority Mail');
 define('MODULE_SHIPPING_USPS_TEXT_OPT_EX', 'Express Mail');

@@ -17,7 +17,7 @@
 // | to obtain it through the world-wide-web, please send a note to       |
 // | license@zen-cart.com so we can mail you a copy immediately.          |
 // +----------------------------------------------------------------------+
-//  $Id: geo_zones.php 1105 2005-04-04 22:05:35Z birdbrain $
+//  $Id: geo_zones.php 3966 2006-07-16 19:40:28Z drbyte $
 //
 
 define('HEADING_TITLE', 'Zone Definitions - Taxes, Payment and Shipping');
@@ -25,6 +25,7 @@ define('HEADING_TITLE', 'Zone Definitions - Taxes, Payment and Shipping');
 define('TABLE_HEADING_COUNTRY', 'Country');
 define('TABLE_HEADING_COUNTRY_ZONE', 'Zone');
 define('TABLE_HEADING_TAX_ZONES', 'Tax Zones');
+define('TABLE_HEADING_TAX_ZONES_DESCRIPTION', 'Zone Description');
 define('TABLE_HEADING_ACTION', 'Action');
 
 define('TEXT_INFO_HEADING_NEW_ZONE', 'New Zone');

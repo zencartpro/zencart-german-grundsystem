@@ -3,10 +3,10 @@
  * banner functions
  *
  * @package functions
- * @copyright Copyright 2003-2005 Zen Cart Development Team
+ * @copyright Copyright 2003-2006 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: banner.php 2967 2006-02-04 03:08:54Z ajeh $
+ * @version $Id: banner.php 4383 2006-09-04 00:42:07Z drbyte $
  */
 
 ////
@@ -112,7 +112,7 @@
                                $new_banner_search . $my_banner_filter . " order by rand()");
 
       } else {
-        return '<strong>ZEN ERROR! (zen_display_banner(' . $action . ', ' . $identifier . ') -> No banners with group \'' . $identifier . '\' found!</strong>';
+        return '<p class="alert">ZEN ERROR! (zen_display_banner(' . $action . ', ' . $identifier . ') -> No banners with group \'' . $identifier . '\' found!</p>';
       }
     } elseif ($action == 'static') {
       if (is_object($identifier)) {
@@ -130,7 +130,7 @@
         }
       }
     } else {
-      return '<strong>ZEN ERROR! (zen_display_banner(' . $action . ', ' . $identifier . ') -> Unknown $action parameter value - it must be either \'dynamic\' or \'static\'</strong>';
+      return '<p class="alert">ZEN ERROR! (zen_display_banner(' . $action . ', ' . $identifier . ') -> Unknown $action parameter value - it must be either \'dynamic\' or \'static\'</p>';
     }
 
     if (zen_not_null($banner->fields['banners_html_text'])) {

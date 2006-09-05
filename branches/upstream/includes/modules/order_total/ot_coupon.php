@@ -1,10 +1,10 @@
 <?php
 /**
  * @package orderTotal
- * @copyright Copyright 2003-2005 Zen Cart Development Team
+ * @copyright Copyright 2003-2006 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: ot_coupon.php 3694 2006-06-03 02:17:36Z ajeh $
+ * @version $Id: ot_coupon.php 4302 2006-08-27 20:32:38Z wilt $
  */
 
   class ot_coupon {
@@ -32,6 +32,7 @@
     $od_amount = $this->calculate_deductions($this->get_order_total());
     $this->deduction = $od_amount['total'];
     if ($od_amount['total'] > 0) {
+      reset($order->info['tax_groups']);
       while (list($key, $value) = each($order->info['tax_groups'])) {
         $tax_rate = zen_get_tax_rate_from_desc($key);
         if ($od_amount[$key]) {
@@ -40,7 +41,7 @@
         }
       }
       if ($od_amount['type'] == 'S') $order->info['shipping_cost'] = 0;
-      $sql = "select coupon_code from " . TABLE_COUPONS . " where coupon_id = '" . $_SESSION['cc_id'] . "'";
+      $sql = "select coupon_code from " . TABLE_COUPONS . " where coupon_id = '" . (int)$_SESSION['cc_id'] . "'";
       $zq_coupon_code = $db->Execute($sql);
       $this->coupon_code = $zq_coupon_code->fields['coupon_code'];
       $order->info['total'] = $order->info['total'] - $od_amount['total'];
@@ -100,12 +101,15 @@
     }
 
     if ($_POST['dc_redeem_code']) {
+      $sql = "select coupon_id, coupon_amount, coupon_type, coupon_minimum_order, uses_per_coupon, uses_per_user,
+              restrict_to_products, restrict_to_categories 
+              from " . TABLE_COUPONS . "
+              where coupon_code= :couponCodeEntered
+              and coupon_active='Y'";
+      $sql = $db->bindVars($sql, ':couponCodeEntered', $_POST['dc_redeem_code'], 'string'); 
 
-      $coupon_result=$db->Execute("select coupon_id, coupon_amount, coupon_type, coupon_minimum_order,
-                                     uses_per_coupon, uses_per_user, restrict_to_products,
-                                     restrict_to_categories from " . TABLE_COUPONS . "
-                                   where coupon_code='". $_POST['dc_redeem_code']."'
-                                   and coupon_active='Y'");
+      $coupon_result=$db->Execute($sql);
+
       if ($coupon_result->fields['coupon_type'] != 'G') {
 
         if ($coupon_result->RecordCount() <1 ) {
@@ -132,7 +136,7 @@
 
         $date_query=$db->Execute("select coupon_start_date from " . TABLE_COUPONS . "
                                   where coupon_start_date <= now() and
-                                  coupon_code='".$_POST['dc_redeem_code']."'");
+                                  coupon_code='" . zen_db_prepare_input($_POST['dc_redeem_code']) . "'");
 
         if ($date_query->RecordCount() < 1 ) {
           zen_redirect(zen_href_link(FILENAME_CHECKOUT_PAYMENT, 'credit_class_error_code=' . $this->code . '&credit_class_error=' . urlencode(TEXT_INVALID_STARTDATE_COUPON), 'SSL', true, false));
@@ -140,18 +144,18 @@
 
         $date_query=$db->Execute("select coupon_expire_date from " . TABLE_COUPONS . "
                                   where coupon_expire_date >= now() and
-                                  coupon_code='".$_POST['dc_redeem_code']."'");
+                                  coupon_code='" . zen_db_prepare_input($_POST['dc_redeem_code']) . "'");
 
         if ($date_query->RecordCount() < 1 ) {
           zen_redirect(zen_href_link(FILENAME_CHECKOUT_PAYMENT, 'credit_class_error_code=' . $this->code . '&credit_class_error=' . urlencode(TEXT_INVALID_FINISDATE_COUPON), 'SSL', true, false));
         }
 
         $coupon_count = $db->Execute("select coupon_id from " . TABLE_COUPON_REDEEM_TRACK . "
-                                      where coupon_id = '" . $coupon_result->fields['coupon_id']."'");
+                                      where coupon_id = '" . (int)$coupon_result->fields['coupon_id']."'");
 
         $coupon_count_customer = $db->Execute("select coupon_id from " . TABLE_COUPON_REDEEM_TRACK . "
                                                where coupon_id = '" . $coupon_result->fields['coupon_id']."' and
-                                               customer_id = '" . $_SESSION['customer_id'] . "'");
+                                               customer_id = '" . (int)$_SESSION['customer_id'] . "'");
 
         if ($coupon_count->RecordCount() >= $coupon_result->fields['uses_per_coupon'] && $coupon_result->fields['uses_per_coupon'] > 0) {
           zen_redirect(zen_href_link(FILENAME_CHECKOUT_PAYMENT, 'credit_class_error_code=' . $this->code . '&credit_class_error=' . urlencode(TEXT_INVALID_USES_COUPON . $coupon_result->fields['uses_per_coupon'] . TIMES ), 'SSL', true, false));
@@ -184,7 +188,7 @@ function update_credit_account($i) {
    if ($this->deduction !=0) {
      $db->Execute("insert into " . TABLE_COUPON_REDEEM_TRACK . "
                    (coupon_id, redeem_date, redeem_ip, customer_id, order_id)
-                   values ('" . $cc_id . "', now(), '" . $_SERVER['REMOTE_ADDR'] . "', '" . $_SESSION['customer_id'] . "', '" . $insert_id . "')");
+                   values ('" . (int)$cc_id . "', now(), '" . $_SERVER['REMOTE_ADDR'] . "', '" . (int)$_SESSION['customer_id'] . "', '" . (int)$insert_id . "')");
    }
    $_SESSION['cc_id'] = "";
  }
@@ -194,7 +198,7 @@ function update_credit_account($i) {
     $tax_address = zen_get_tax_locations();
     $od_amount = array();
     if ($_SESSION['cc_id']) {
-      $coupon = $db->Execute("select * from " . TABLE_COUPONS . " where coupon_id = '" . $_SESSION['cc_id'] . "'");
+      $coupon = $db->Execute("select * from " . TABLE_COUPONS . " where coupon_id = '" . (int)$_SESSION['cc_id'] . "'");
       if (($coupon->RecordCount() > 0 && $order_total !=0) || ($coupon->RecordCount() > 0 && $coupon->fields['coupon_type']=='S') ) {
         if ($coupon->fields['coupon_minimum_order'] <= $order_total) {
           if ($coupon->fields['coupon_type']=='S') {
@@ -328,9 +332,9 @@ function update_credit_account($i) {
         while (list($option, $value) = each($_SESSION['cart']->contents[$product_id]['attributes'])) {
           $attribute_price = $db->Execute("select options_values_price, price_prefix
                                            from " . TABLE_PRODUCTS_ATTRIBUTES . "
-                                           where products_id = '" . $prid . "'
-                                           and options_id = '" . $option . "'
-                                           and options_values_id = '" . $value . "'");
+                                           where products_id = '" . (int)$prid . "'
+                                           and options_id = '" . (int)$option . "'
+                                           and options_values_id = '" . (int)$value . "'");
 
           if ($attribute_price->fields['price_prefix'] == '-') {
             if ($this->include_tax == 'true') {

@@ -6,7 +6,7 @@
  * @copyright Copyright 2003-2006 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: shopping_cart.php 3379 2006-04-06 00:54:13Z drbyte $
+ * @version $Id: shopping_cart.php 4277 2006-08-26 03:19:28Z drbyte $
  */
 /**
  * Class for managing the Shopping Cart
@@ -249,7 +249,7 @@ class shoppingCart extends base {
       $this->update_quantity($products_id, $qty, $attributes);
     } else {
       $this->contents[] = array($products_id);
-      $this->contents[$products_id] = array('qty' => $qty);
+      $this->contents[$products_id] = array('qty' => (float)$qty);
       // insert into database
       if (isset($_SESSION['customer_id'])) {
         $sql = "insert into " . TABLE_CUSTOMERS_BASKET . "
@@ -347,11 +347,11 @@ class shoppingCart extends base {
     $this->notify('NOTIFIER_CART_UPDATE_QUANTITY_START');
     if (empty($quantity)) return true; // nothing needs to be updated if theres no quantity, so we return true..
 
-    $this->contents[$products_id] = array('qty' => $quantity);
+    $this->contents[$products_id] = array('qty' => (float)$quantity);
     // update database
     if (isset($_SESSION['customer_id'])) {
       $sql = "update " . TABLE_CUSTOMERS_BASKET . "
-                set customers_basket_quantity = '" . $quantity . "'
+                set customers_basket_quantity = '" . (float)$quantity . "'
                 where customers_id = '" . (int)$_SESSION['customer_id'] . "'
                 and products_id = '" . zen_db_input($products_id) . "'";
 
@@ -499,7 +499,7 @@ class shoppingCart extends base {
     }
   }
   /**
-   * Method to check wheter a product exists in the cart
+   * Method to check whether a product exists in the cart
    *
    * @param mixed product ID of item to check
    * @return boolean
@@ -660,10 +660,12 @@ class shoppingCart extends base {
         $this->weight += ($qty * $products_weight);
       }
 
+      $adjust_downloads = 0;
       // attributes price
       if (isset($this->contents[$products_id]['attributes'])) {
         reset($this->contents[$products_id]['attributes']);
         while (list($option, $value) = each($this->contents[$products_id]['attributes'])) {
+          $adjust_downloads ++;
           /*
           products_attributes_id, options_values_price, price_prefix,
           attributes_display_only, product_attribute_is_free,
@@ -709,6 +711,24 @@ class shoppingCart extends base {
                 $this->total += $qty * zen_add_tax($attribute_price->fields['options_values_price'], $products_tax);
               }
             }
+// adjust for downloads
+// adjust products price
+  $check_attribute = $attribute_price->fields['products_attributes_id'];
+  $sql = "select *
+                    from " . TABLE_PRODUCTS_ATTRIBUTES_DOWNLOAD . "
+                    where products_attributes_id = '" . $check_attribute . "'";
+  $check_download = $db->Execute($sql);
+  if ($check_download->RecordCount()) {
+// do not count download as free when set to product/download combo
+    if ($adjust_downloads == 1 and $product->fields['product_is_always_free_shipping'] != 2) {
+      $this->free_shipping_price += zen_add_tax($products_price, $products_tax) * $qty;
+      $this->free_shipping_item += $qty;
+    }
+// adjust for attributes price
+    $this->free_shipping_price += $qty * zen_add_tax( ($new_attributes_price), $products_tax);
+//die('I SEE B ' . $this->free_shipping_price);
+  }
+//  echo 'I SEE ' . $this->total . ' vs ' . $this->free_shipping_price . ' items: ' . $this->free_shipping_item. '<br>';
 
             ////////////////////////////////////////////////
             // calculate additional attribute charges
@@ -1030,7 +1050,7 @@ class shoppingCart extends base {
     $products_array = array();
     reset($this->contents);
     while (list($products_id, ) = each($this->contents)) {
-      $products_query = "select p.products_id, p.products_status, pd.products_name, p.products_model, p.products_image,
+      $products_query = "select p.products_id, p.master_categories_id, p.products_status, pd.products_name, p.products_model, p.products_image,
                                   p.products_price, p.products_weight, p.products_tax_class_id,
                                   p.products_quantity_order_min, p.products_quantity_order_units,
                                   p.product_is_free, p.products_priced_by_attribute,
@@ -1148,23 +1168,24 @@ class shoppingCart extends base {
         }
 
         $products_array[] = array('id' => $products_id,
-        'name' => $products->fields['products_name'],
-        'model' => $products->fields['products_model'],
-        'image' => $products->fields['products_image'],
-        'price' => ($products->fields['product_is_free'] =='1' ? 0 : $products_price),
+                                  'category' => $products->fields['master_categories_id'],
+                                  'name' => $products->fields['products_name'],
+                                  'model' => $products->fields['products_model'],
+                                  'image' => $products->fields['products_image'],
+                                  'price' => ($products->fields['product_is_free'] =='1' ? 0 : $products_price),
         //                                    'quantity' => $this->contents[$products_id]['qty'],
-        'quantity' => $new_qty,
-        'weight' => $products->fields['products_weight'] + $this->attributes_weight($products_id),
-        // fix here
-        'final_price' => ($products_price + $this->attributes_price($products_id)),
-        'onetime_charges' => ($this->attributes_price_onetime_charges($products_id, $new_qty)),
-        'tax_class_id' => $products->fields['products_tax_class_id'],
-        'attributes' => (isset($this->contents[$products_id]['attributes']) ? $this->contents[$products_id]['attributes'] : ''),
-        'attributes_values' => (isset($this->contents[$products_id]['attributes_values']) ? $this->contents[$products_id]['attributes_values'] : ''),
-        'products_priced_by_attribute' => $products->fields['products_priced_by_attribute'],
-        'product_is_free' => $products->fields['product_is_free'],
-        'products_discount_type' => $products->fields['products_discount_type'],
-        'products_discount_type_from' => $products->fields['products_discount_type_from']);
+                                  'quantity' => $new_qty,
+                                  'weight' => $products->fields['products_weight'] + $this->attributes_weight($products_id),
+                                  // fix here
+                                  'final_price' => ($products_price + $this->attributes_price($products_id)),
+                                  'onetime_charges' => ($this->attributes_price_onetime_charges($products_id, $new_qty)),
+                                  'tax_class_id' => $products->fields['products_tax_class_id'],
+                                  'attributes' => (isset($this->contents[$products_id]['attributes']) ? $this->contents[$products_id]['attributes'] : ''),
+                                  'attributes_values' => (isset($this->contents[$products_id]['attributes_values']) ? $this->contents[$products_id]['attributes_values'] : ''),
+                                  'products_priced_by_attribute' => $products->fields['products_priced_by_attribute'],
+                                  'product_is_free' => $products->fields['product_is_free'],
+                                  'products_discount_type' => $products->fields['products_discount_type'],
+                                  'products_discount_type_from' => $products->fields['products_discount_type_from']);
       }
     }
     $this->notify('NOTIFIER_CART_GET_PRODUCTS_END');
@@ -1227,7 +1248,7 @@ class shoppingCart extends base {
           while (list(, $value) = each($this->contents[$products_id]['attributes'])) {
             $virtual_check_query = "select count(*) as total
                                       from " . TABLE_PRODUCTS_ATTRIBUTES . " pa, "
-            . TABLE_PRODUCTS_ATTRIBUTES_DOWNLOAD . " pad
+                                      . TABLE_PRODUCTS_ATTRIBUTES_DOWNLOAD . " pad
                                       where pa.products_id = '" . (int)$products_id . "'
                                       and pa.options_values_id = '" . (int)$value . "'
                                       and pa.products_attributes_id = pad.products_attributes_id";
@@ -1237,30 +1258,30 @@ class shoppingCart extends base {
             if ($virtual_check->fields['total'] > 0) {
               switch ($this->content_type) {
                 case 'physical':
-                $this->content_type = 'mixed';
-                if ($gv_only == 'true') {
-                  return $gift_voucher;
-                } else {
-                  return $this->content_type;
-                }
-                break;
-                default:
-                $this->content_type = 'virtual';
-                break;
-              }
-            } else {
-              switch ($this->content_type) {
-                case 'virtual':
-                if ($free_ship_check->fields['products_virtual'] == '1') {
-                  $this->content_type = 'virtual';
-                } else {
                   $this->content_type = 'mixed';
                   if ($gv_only == 'true') {
                     return $gift_voucher;
                   } else {
                     return $this->content_type;
                   }
-                }
+                  break;
+                default:
+                  $this->content_type = 'virtual';
+                  break;
+              }
+            } else {
+              switch ($this->content_type) {
+                case 'virtual':
+                  if ($free_ship_check->fields['products_virtual'] == '1') {
+                   $this->content_type = 'virtual';
+                  } else {
+                    $this->content_type = 'mixed';
+                    if ($gv_only == 'true') {
+                      return $gift_voucher;
+                    } else {
+                      return $this->content_type;
+                    }
+                  }
                 break;
                 case 'physical':
                 if ($free_ship_check->fields['products_virtual'] == '1') {
@@ -1508,7 +1529,7 @@ class shoppingCart extends base {
           $this->add_cart($_POST['products_id'][$i], $new_qty, $attributes, false);
         }
         if ($adjust_max == 'true') {
-          $messageStack->add_session('shopping_cart', ERROR_MAXIMUM_QTY . ' - ' . zen_get_products_name($_POST['products_id'][$i]), 'caution');
+          $messageStack->add_session('shopping_cart', ERROR_MAXIMUM_QTY . ' A: - ' . zen_get_products_name($_POST['products_id'][$i]), 'caution');
         }
       }
     }
@@ -1573,6 +1594,7 @@ class shoppingCart extends base {
               if (zen_not_null($_FILES['id']['tmp_name'][TEXT_PREFIX . $_POST[UPLOAD_PREFIX . $i]]) and ($_FILES['id']['tmp_name'][TEXT_PREFIX . $_POST[UPLOAD_PREFIX . $i]] != 'none')) {
                 $products_options_file = new upload('id');
                 $products_options_file->set_destination(DIR_FS_UPLOADS);
+                $products_options_file->set_output_messages('session');
                 if ($products_options_file->parse(TEXT_PREFIX . $_POST[UPLOAD_PREFIX . $i])) {
                   $products_image_extension = substr($products_options_file->filename, strrpos($products_options_file->filename, '.'));
                   if ($_SESSION['customer_id']) {
@@ -1601,7 +1623,7 @@ class shoppingCart extends base {
       } // eof: quantity maximum = 1
 
       if ($adjust_max == 'true') {
-        $messageStack->add_session('shopping_cart', ERROR_MAXIMUM_QTY . ' - ' . zen_get_products_name($_POST['products_id']), 'caution');
+        $messageStack->add_session('shopping_cart', ERROR_MAXIMUM_QTY . ' B: - ' . zen_get_products_name($_POST['products_id']), 'caution');
       }
     }
     if ($the_list == '') {
@@ -1657,6 +1679,7 @@ class shoppingCart extends base {
     global $messageStack;
     while ( list( $key, $val ) = each($_POST['products_id']) ) {
       if ($val > 0) {
+        $adjust_max = false;
         $prodId = $key;
         $qty = $val;
         $add_max = zen_get_products_quantity_order_max($prodId);
@@ -1674,7 +1697,7 @@ class shoppingCart extends base {
           $this->add_cart($prodId, $this->get_quantity($prodId)+($new_qty));
         }
         if ($adjust_max == 'true') {
-          $messageStack->add_session('shopping_cart', ERROR_MAXIMUM_QTY . ' - ' . zen_get_products_name($prodId), 'caution');
+          $messageStack->add_session('shopping_cart', ERROR_MAXIMUM_QTY . ' C: - ' . zen_get_products_name($prodId), 'caution');
         }
       }
     }

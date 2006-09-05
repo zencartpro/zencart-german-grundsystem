@@ -17,7 +17,7 @@
 // | to obtain it through the world-wide-web, please send a note to       |
 // | license@zen-cart.com so we can mail you a copy immediately.          |
 // +----------------------------------------------------------------------+
-//  $Id: featured.php 1105 2005-04-04 22:05:35Z birdbrain $
+//  $Id: featured.php 4039 2006-07-30 05:19:18Z ajeh $
 //
 
 define('HEADING_TITLE', 'Featured Products');
@@ -47,4 +47,12 @@ define('TEXT_IMAGE_NONEXISTENT', 'No Image Exists');
 
 define('TEXT_INFO_HEADING_DELETE_FEATURED', 'Delete Featured');
 define('TEXT_INFO_DELETE_INTRO', 'Are you sure you want to delete the featured product?');
+
+define('SUCCESS_FEATURED_PRE_ADD', 'Successful: Pre-Add of Featured ... please update the dates ...');
+define('WARNING_FEATURED_PRE_ADD_EMPTY', 'Warning: No Product ID specified ... nothing was added ...');
+define('WARNING_FEATURED_PRE_ADD_DUPLICATE', 'Warning: Product ID already on Special ... nothing was added ...');
+define('TEXT_INFO_HEADING_PRE_ADD_FEATURED', 'Manually add new Featured by Product ID');
+define('TEXT_INFO_PRE_ADD_INTRO', 'On large databases, you may Manually Add a Featured by the Product ID<br /><br />This is best used when the page takes too long to render and trying to select a Product from the dropdown becomes difficult due to too many Products from which to choose.');
+define('TEXT_PRE_ADD_PRODUCTS_ID', 'Please enter the Product ID to be Pre-Added: ');
+define('TEXT_INFO_MANUAL', 'Product ID to be Manually Added as a Featured');
 ?>

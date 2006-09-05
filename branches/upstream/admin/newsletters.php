@@ -1,23 +1,11 @@
 <?php
-//
-// +----------------------------------------------------------------------+
-// |zen-cart Open Source E-commerce                                       |
-// +----------------------------------------------------------------------+
-// | Copyright (c) 2003 The zen-cart developers                           |
-// |                                                                      |
-// | http://www.zen-cart.com/index.php                                    |
-// |                                                                      |
-// | Portions Copyright (c) 2003 osCommerce                               |
-// +----------------------------------------------------------------------+
-// | This source file is subject to version 2.0 of the GPL license,       |
-// | that is bundled with this package in the file LICENSE, and is        |
-// | available through the world-wide-web at the following url:           |
-// | http://www.zen-cart.com/license/2_0.txt.                             |
-// | If you did not receive a copy of the zen-cart license and are unable |
-// | to obtain it through the world-wide-web, please send a note to       |
-// | license@zen-cart.com so we can mail you a copy immediately.          |
-// +----------------------------------------------------------------------+
-//  $Id: newsletters.php 1969 2005-09-13 06:57:21Z drbyte $
+/**
+ * @package admin
+ * @copyright Copyright 2003-2006 Zen Cart Development Team
+ * @copyright Portions Copyright 2003 osCommerce
+ * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
+ * @version $Id: newsletters.php 4385 2006-09-04 04:10:48Z drbyte $
+ */
 
   require('includes/application_top.php');
 
@@ -27,24 +15,9 @@
 
     switch ($action) {
       case 'set_editor':
-        if ($_GET['reset_editor'] == '0') {
-          $_SESSION['html_editor_preference_status'] = 'NONE';
-        } else {
-          $_SESSION['html_editor_preference_status'] = 'HTMLAREA';
-        }
+        // Reset will be done by init_html_editor.php. Now we simply redirect to refresh page properly.
         $action='';
         zen_redirect(zen_href_link(FILENAME_NEWSLETTERS, (isset($_GET['page']) ? 'page=' . $_GET['page'] . '&' : '') . 'nID=' . $newsletter_id));
-        break;
-      case 'lock':
-      case 'unlock':
-        $newsletter_id = zen_db_prepare_input($_GET['nID']);
-        $status = (($action == 'lock') ? '1' : '0');
-
-        $db->Execute("update " . TABLE_NEWSLETTERS . "
-                      set locked = '" . $status . "'
-                      where newsletters_id = '" . (int)$newsletter_id . "'");
-
-        zen_redirect(zen_href_link(FILENAME_NEWSLETTERS, 'page=' . $_GET['page'] . '&nID=' . $_GET['nID']));
         break;
       case 'insert':
       case 'update':
@@ -52,7 +25,7 @@
         $newsletter_module = zen_db_prepare_input($_POST['module']);
         $title = zen_db_prepare_input($_POST['title']);
         $content = zen_db_prepare_input($_POST['content']);
-        $content_html = zen_db_prepare_input($_POST['content_html']);
+        $content_html = zen_db_prepare_input($_POST['message_html']);
 
         $newsletter_error = false;
         if (empty($title)) {
@@ -74,7 +47,6 @@
           if ($action == 'insert') {
             $sql_data_array['date_added'] = 'now()';
             $sql_data_array['status'] = '0';
-            $sql_data_array['locked'] = '0';
 
             zen_db_perform(TABLE_NEWSLETTERS, $sql_data_array);
             $newsletter_id = zen_db_insert_id();
@@ -104,26 +76,6 @@
           $messageStack->add_session(ERROR_ADMIN_DEMO, 'caution');
           zen_redirect(zen_href_link(FILENAME_NEWSLETTERS, 'page=' . $_GET['page'] . '&nID=' . $_GET['nID']));
         }
-      case 'confirm_send':
-        $newsletter_id = zen_db_prepare_input($_GET['nID']);
-
-        $check = $db->Execute("select locked
-                               from " . TABLE_NEWSLETTERS . "
-                               where newsletters_id = '" . (int)$newsletter_id . "'");
-
-        if ($check->fields['locked'] < 1) {
-          switch ($action) {
-            case 'delete': $error = ERROR_REMOVE_UNLOCKED_NEWSLETTER; break;
-            case 'new': $error = ERROR_EDIT_UNLOCKED_NEWSLETTER; break;
-            case 'send': $error = ERROR_SEND_UNLOCKED_NEWSLETTER; break;
-            case 'confirm_send': $error = ERROR_SEND_UNLOCKED_NEWSLETTER; break;
-          }
-
-          $messageStack->add_session($error, 'error');
-
-          zen_redirect(zen_href_link(FILENAME_NEWSLETTERS, 'page=' . $_GET['page'] . '&nID=' . $_GET['nID']));
-        }
-        break;
     }
   }
 
@@ -150,7 +102,7 @@
       var kill = document.getElementById('hoverJS');
       kill.disabled = true;
     }
-  if (typeof _editor_url == "string") HTMLArea.replace('content_html');
+  if (typeof _editor_url == "string") HTMLArea.replace('message_html');
   }
   // -->
 </script>
@@ -171,9 +123,9 @@ function check_select(field_name, field_default, message) {
   }
 }
 function check_message(msg) {
-  if (form.elements['content'] && form.elements['content_html']) {
+  if (form.elements['content'] && form.elements['message_html']) {
     var field_value1 = form.elements['content'].value;
-    var field_value2 = form.elements['content_html'].value;
+    var field_value2 = form.elements['message_html'].value;
 
     if ((field_value1 == '' || field_value1.length < 3) && (field_value2 == '' || field_value2.length < 3)) {
       error_message = error_message + "* " + msg + "\n";
@@ -201,10 +153,9 @@ check_select('audience_selected','',"<?php echo ERROR_PLEASE_SELECT_AUDIENCE; ?>
   }
 }
 //--></script>
-<?php if ($_SESSION['html_editor_preference_status']=="FCKEDITOR") include (DIR_WS_INCLUDES.'fckeditor.php'); ?>
-<?php if ($_SESSION['html_editor_preference_status']=="HTMLAREA")  include (DIR_WS_INCLUDES.'htmlarea.php'); ?>
+<?php if ($editor_handler != '') include ($editor_handler); ?>
 </head>
-<body onload="init()">
+<body onLoad="init()">
 <div id="spiffycalendar" class="text"></div>
 <!-- header //-->
 <?php require(DIR_WS_INCLUDES . 'header.php'); ?>
@@ -222,9 +173,7 @@ check_select('audience_selected','',"<?php echo ERROR_PLEASE_SELECT_AUDIENCE; ?>
             <td class="pageHeading" align="right"><?php echo zen_draw_separator('pixel_trans.gif', HEADING_IMAGE_WIDTH, HEADING_IMAGE_HEIGHT); ?></td>
 <?php
 // toggle switch for editor
-        $editor_array = array(array('id' => '0', 'text' => TEXT_NONE),
-                              array('id' => '1', 'text' => TEXT_HTML_AREA));
-        echo TEXT_EDITOR_INFO . zen_draw_form('set_editor_form', FILENAME_NEWSLETTERS, '', 'get') . '&nbsp;&nbsp;' . zen_draw_pull_down_menu('reset_editor', $editor_array, ($_SESSION['html_editor_preference_status'] == 'HTMLAREA' ? '1' : '0'), 'onChange="this.form.submit();"') .
+        echo TEXT_EDITOR_INFO . zen_draw_form('set_editor_form', FILENAME_NEWSLETTERS, '', 'get') . '&nbsp;&nbsp;' . zen_draw_pull_down_menu('reset_editor', $editors_pulldown, $current_editor_key, 'onChange="this.form.submit();"') .
         zen_hide_session_id() . 
         zen_draw_hidden_field('action', 'set_editor') .
         '</form>';
@@ -238,7 +187,7 @@ check_select('audience_selected','',"<?php echo ERROR_PLEASE_SELECT_AUDIENCE; ?>
 
     $parameters = array('title' => '',
                         'content' => '',
-            'content_html' => '',
+                        'content_html' => '',
                         'module' => '');
 
     $nInfo = new objectInfo($parameters);
@@ -299,19 +248,21 @@ check_select('audience_selected','',"<?php echo ERROR_PLEASE_SELECT_AUDIENCE; ?>
           <tr>
             <td class="main" valign="top"><?php echo TEXT_NEWSLETTER_CONTENT_HTML; ?></td>
             <td class="main">
-        <?php if (is_null($_SESSION['html_editor_preference_status'])) echo TEXT_HTML_EDITOR_NOT_DEFINED; ?>
         <?php if ($_SESSION['html_editor_preference_status']=="FCKEDITOR") {
-          $oFCKeditor = new FCKeditor ;
-          $oFCKeditor->Value = $nInfo->content_html ;
-          $oFCKeditor->CreateFCKeditor( 'content_html', '97%', '350' ) ;  //instanceName, width, height (px or %)
+                $oFCKeditor = new FCKeditor('message_html') ;
+                $oFCKeditor->Value = $nInfo->content_html ;
+                $oFCKeditor->Width  = '97%' ;
+                $oFCKeditor->Height = '350' ;
+//                $oFCKeditor->Create() ;
+                $oFCKeditor->CreateHtml() ; echo $output;
           } else { // using HTMLAREA or just raw "source"
-          echo zen_draw_textarea_field('content_html', 'soft', '100%', '30', $nInfo->content_html,'id="content_html"');
+              echo zen_draw_textarea_field('message_html', 'soft', '100%', '30', $nInfo->content_html,'id="message_html" class="editorHook"');
           } ?>
           </td>
           </tr>
           <tr>
             <td class="main" valign="top"><?php echo TEXT_NEWSLETTER_CONTENT; ?></td>
-            <td class="main"><?php echo zen_draw_textarea_field('content', 'soft', '100%', '20', $nInfo->content); ?></td>
+            <td class="main"><?php echo zen_draw_textarea_field('content', 'soft', '100%', '20', $nInfo->content, 'class="noEditor"'); ?></td>
           </tr>
         </table></td>
       </tr>
@@ -401,7 +352,6 @@ check_select('audience_selected','',"<?php echo ERROR_PLEASE_SELECT_AUDIENCE; ?>
       <tr>
         <td><table border="0" cellspacing="0" cellpadding="2">
           <tr>
-            <td class="main" valign="middle"><?php echo zen_image(DIR_WS_IMAGES . 'ani_send_email.gif', IMAGE_ANI_SEND_EMAIL); ?></td>
             <td class="main" valign="middle"><b><?php echo TEXT_PLEASE_WAIT; ?></b>
 <?php
   zen_set_time_limit(600);
@@ -443,7 +393,7 @@ check_select('audience_selected','',"<?php echo ERROR_PLEASE_SELECT_AUDIENCE; ?>
                 <td class="dataTableHeadingContent" align="right"><?php echo TABLE_HEADING_ACTION; ?>&nbsp;</td>
               </tr>
 <?php
-    $newsletters_query_raw = "select newsletters_id, title, length(content) as content_length, length(content_html) as content_html_length, module, date_added, date_sent, status, locked from " . TABLE_NEWSLETTERS . " order by date_added desc";
+    $newsletters_query_raw = "select newsletters_id, title, length(content) as content_length, length(content_html) as content_html_length, module, date_added, date_sent, status from " . TABLE_NEWSLETTERS . " order by date_added desc";
     $newsletters_split = new splitPageResults($_GET['page'], MAX_DISPLAY_SEARCH_RESULTS, $newsletters_query_raw, $newsletters_query_numrows);
     $newsletters = $db->Execute($newsletters_query_raw);
     while (!$newsletters->EOF) {
@@ -461,7 +411,7 @@ check_select('audience_selected','',"<?php echo ERROR_PLEASE_SELECT_AUDIENCE; ?>
                 <td class="dataTableContent" align="right"><?php echo number_format($newsletters->fields['content_length']+$newsletters->fields['content_html_length']) . ' bytes'; ?></td>
                 <td class="dataTableContent" align="right"><?php echo $newsletters->fields['module']; ?></td>
                 <td class="dataTableContent" align="center"><?php if ($newsletters->fields['status'] == '1') { echo zen_image(DIR_WS_ICONS . 'tick.gif', ICON_TICK); } else { echo zen_image(DIR_WS_ICONS . 'cross.gif', ICON_CROSS); } ?></td>
-                <td class="dataTableContent" align="center"><?php if ($newsletters->fields['locked'] > 0) { echo zen_image(DIR_WS_ICONS . 'locked.gif', ICON_LOCKED); } else { echo zen_image(DIR_WS_ICONS . 'unlocked.gif', ICON_UNLOCKED); } ?></td>
+                <td class="dataTableContent" align="center">&nbsp;</td>
                 <td class="dataTableContent" align="right"><?php if (isset($nInfo) && is_object($nInfo) && ($newsletters->fields['newsletters_id'] == $nInfo->newsletters_id) ) { echo zen_image(DIR_WS_IMAGES . 'icon_arrow_right.gif', ''); }
                                   else { echo '<a href="' . zen_href_link(FILENAME_NEWSLETTERS, 'page=' . $_GET['page'] . '&nID=' . $newsletters->fields['newsletters_id']) . '">' . zen_image(DIR_WS_IMAGES . 'icon_info.gif', IMAGE_ICON_INFO) . '</a>'; } ?>&nbsp;</td>
               </tr>
@@ -498,11 +448,8 @@ check_select('audience_selected','',"<?php echo ERROR_PLEASE_SELECT_AUDIENCE; ?>
       if (is_object($nInfo)) {
         $heading[] = array('text' => '<b>' . $nInfo->title . '</b>');
 
-        if ($nInfo->locked > 0) {
-          $contents[] = array('align' => 'center', 'text' => '<a href="' . zen_href_link(FILENAME_NEWSLETTERS, 'page=' . $_GET['page'] . '&nID=' . $nInfo->newsletters_id . '&action=new') . '">' . zen_image_button('button_edit.gif', IMAGE_EDIT) . '</a> <a href="' . zen_href_link(FILENAME_NEWSLETTERS, 'page=' . $_GET['page'] . '&nID=' . $nInfo->newsletters_id . '&action=delete') . '">' . zen_image_button('button_delete.gif', IMAGE_DELETE) . '</a> <a href="' . zen_href_link(FILENAME_NEWSLETTERS, 'page=' . $_GET['page'] . '&nID=' . $nInfo->newsletters_id . '&action=preview') . '">' . zen_image_button('button_preview.gif', IMAGE_PREVIEW) . '</a> <a href="' . zen_href_link(FILENAME_NEWSLETTERS, 'page=' . $_GET['page'] . '&nID=' . $nInfo->newsletters_id . '&action=send') . '">' . zen_image_button('button_send.gif', IMAGE_SEND) . '</a> <a href="' . zen_href_link(FILENAME_NEWSLETTERS, 'page=' . $_GET['page'] . '&nID=' . $nInfo->newsletters_id . '&action=unlock') . '">' . zen_image_button('button_unlock.gif', IMAGE_UNLOCK) . '</a>');
-        } else {
-          $contents[] = array('align' => 'center', 'text' => '<a href="' . zen_href_link(FILENAME_NEWSLETTERS, 'page=' . $_GET['page'] . '&nID=' . $nInfo->newsletters_id . '&action=preview') . '">' . zen_image_button('button_preview.gif', IMAGE_PREVIEW) . '</a> <a href="' . zen_href_link(FILENAME_NEWSLETTERS, 'page=' . $_GET['page'] . '&nID=' . $nInfo->newsletters_id . '&action=lock') . '">' . zen_image_button('button_lock.gif', IMAGE_LOCK) . '</a>');
-        }
+        $contents[] = array('align' => 'center', 'text' => '<a href="' . zen_href_link(FILENAME_NEWSLETTERS, 'page=' . $_GET['page'] . '&nID=' . $nInfo->newsletters_id . '&action=new') . '">' . zen_image_button('button_edit.gif', IMAGE_EDIT) . '</a> <a href="' . zen_href_link(FILENAME_NEWSLETTERS, 'page=' . $_GET['page'] . '&nID=' . $nInfo->newsletters_id . '&action=delete') . '">' . zen_image_button('button_delete.gif', IMAGE_DELETE) . '</a> <a href="' . zen_href_link(FILENAME_NEWSLETTERS, 'page=' . $_GET['page'] . '&nID=' . $nInfo->newsletters_id . '&action=preview') . '">' . zen_image_button('button_preview.gif', IMAGE_PREVIEW) . '</a> <a href="' . zen_href_link(FILENAME_NEWSLETTERS, 'page=' . $_GET['page'] . '&nID=' . $nInfo->newsletters_id . '&action=send') . '">' . zen_image_button('button_send.gif', IMAGE_SEND) . '</a>');
+
         $contents[] = array('text' => '<br />' . TEXT_NEWSLETTER_DATE_ADDED . ' ' . zen_date_short($nInfo->date_added));
         if ($nInfo->status == '1') $contents[] = array('text' => TEXT_NEWSLETTER_DATE_SENT . ' ' . zen_date_short($nInfo->date_sent));
       }

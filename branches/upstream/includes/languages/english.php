@@ -4,7 +4,7 @@
  * @copyright Copyright 2003-2006 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: english.php 3718 2006-06-06 08:23:17Z drbyte $
+ * @version $Id: english.php 4378 2006-09-03 22:44:36Z drbyte $
  */
 
 // FOLLOWING WERE moved to meta_tags.php
@@ -58,6 +58,10 @@
 // used for redeem code, redemption code, or redemption id
   define('TEXT_GV_REDEEM','Redemption Code');
 
+// used for redeem code sidebox
+  define('BOX_HEADING_GV_REDEEM', TEXT_GV_NAME);
+  define('BOX_GV_REDEEM_INFO', 'Redemption code: ');
+
 // text for gender
   define('MALE', 'Mr.');
   define('FEMALE', 'Ms.');
@@ -107,7 +111,7 @@
   define('BOX_SHOPPING_CART_DIVIDER', 'ea.-&nbsp;');
 
 // order_history box text in sideboxes/order_history.php
-  define('BOX_HEADING_CUSTOMER_ORDERS', 'Recent Purchases');
+  define('BOX_HEADING_CUSTOMER_ORDERS', 'Quick Re-Order');
 
 // best_sellers box text in sideboxes/best_sellers.php
   define('BOX_HEADING_BESTSELLERS', 'Bestsellers');
@@ -183,9 +187,11 @@
   define('CATEGORY_PASSWORD', 'Your Password');
   define('CATEGORY_LOGIN', 'Login');
   define('PULL_DOWN_DEFAULT', 'Please Choose Your Country');
+  define('PLEASE_SELECT', 'Please select ...');
+  define('TYPE_BELOW', 'Type a choice below ...');
 
   define('ENTRY_COMPANY', 'Company Name:');
-  define('ENTRY_COMPANY_ERROR', '');
+  define('ENTRY_COMPANY_ERROR', 'Please enter a company name.');
   define('ENTRY_COMPANY_TEXT', '');
   define('ENTRY_GENDER', 'Salutation:');
   define('ENTRY_GENDER_ERROR', 'Please choose a salutation.');
@@ -205,9 +211,9 @@
   define('ENTRY_EMAIL_ADDRESS_ERROR_EXISTS', 'Our system already has a record of that email address - please try logging in with that email address. If you do not use that address any longer you can correct it in the My Account area.');
   define('ENTRY_EMAIL_ADDRESS_TEXT', '*');
   define('ENTRY_NICK', 'Forum Nick Name:');
-  define('ENTRY_NICK_TEXT', ''); // note to display beside nickname input field
+  define('ENTRY_NICK_TEXT', '*'); // note to display beside nickname input field
   define('ENTRY_NICK_DUPLICATE_ERROR', 'That Nick Name is already being used. Please try another.');
-  define('ENTRY_NICK_LENGTH_ERROR', 'Please try again. Our system requires at least ' . ENTRY_NICK_MIN_LENGTH . ' characters.');
+  define('ENTRY_NICK_LENGTH_ERROR', 'Please try again. Your Nick Name must contain at least ' . ENTRY_NICK_MIN_LENGTH . ' characters.');
   define('ENTRY_STREET_ADDRESS', 'Street Address:');
   define('ENTRY_STREET_ADDRESS_ERROR', 'Your Street Address must contain a minimum of ' . ENTRY_STREET_ADDRESS_MIN_LENGTH . ' characters.');
   define('ENTRY_STREET_ADDRESS_TEXT', '*');
@@ -226,6 +232,7 @@
   define('ENTRY_STATE_ERROR', 'Your State must contain a minimum of ' . ENTRY_STATE_MIN_LENGTH . ' characters.');
   define('ENTRY_STATE_ERROR_SELECT', 'Please select a state from the States pull down menu.');
   define('ENTRY_STATE_TEXT', '*');
+  define('JS_STATE_SELECT', '-- Please Choose --');
   define('ENTRY_COUNTRY', 'Country:');
   define('ENTRY_COUNTRY_ERROR', 'You must select a country from the Countries pull down menu.');
   define('ENTRY_COUNTRY_TEXT', '*');
@@ -303,7 +310,7 @@
 
   $warn_path = (isset($_SERVER['SCRIPT_FILENAME']) ? @dirname($_SERVER['SCRIPT_FILENAME']) : '.....');
   define('WARNING_INSTALL_DIRECTORY_EXISTS', 'Warning: Installation directory exists at: ' . $warn_path . '/zc_install. Please remove this directory for security reasons.');
-  define('WARNING_CONFIG_FILE_WRITEABLE', 'Warning: I am able to write to the configuration file: ' . $warn_path . '/includes/configure.php. This is a potential security risk - please set the right user permissions on this file (read-only, CHMOD 644 or 444 are typical).');
+  define('WARNING_CONFIG_FILE_WRITEABLE', 'Warning: I am able to write to the configuration file: ' . $warn_path . '/includes/configure.php. This is a potential security risk - please set the right user permissions on this file (read-only, CHMOD 644 or 444 are typical). You may need to use your webhost control panel/file-manager to change the permissions effectively. Contact your webhost for assistance.');
   unset($warn_path);
   define('WARNING_SESSION_DIRECTORY_NON_EXISTENT', 'Warning: The sessions directory does not exist: ' . zen_session_save_path() . '. Sessions will not work until this directory is created.');
   define('WARNING_SESSION_DIRECTORY_NOT_WRITEABLE', 'Warning: I am not able to write to the sessions directory: ' . zen_session_save_path() . '. Sessions will not work until the right user permissions are set.');
@@ -532,6 +539,7 @@
   define('CART_SELECT','Select');
   define('ERROR_CART_UPDATE', 'Please update your order ...<br />');
   define('IMAGE_BUTTON_UPDATE_CART', 'Update');
+  define('EMPTY_CART_TEXT_NO_QUOTE', 'Whoops! Your session has expired ... Please update your shopping cart for Shipping Quote ...');
 
 // multiple product add to cart
   define('TEXT_PRODUCT_LISTING_MULTIPLE_ADD_TO_CART', 'Add: ');
@@ -598,6 +606,10 @@
   define('TEXT_EZPAGES_STATUS_FOOTER_ADMIN', 'WARNING: EZ-PAGES FOOTER - On for Admin IP Only');
   define('TEXT_EZPAGES_STATUS_SIDEBOX_ADMIN', 'WARNING: EZ-PAGES SIDEBOX - On for Admin IP Only');
 
+// extra product listing sorter
+  define('TEXT_PRODUCTS_LISTING_ALPHA_SORTER', '');
+  define('TEXT_PRODUCTS_LISTING_ALPHA_SORTER_NAMES', 'Items starting with ...');
+  define('TEXT_PRODUCTS_LISTING_ALPHA_SORTER_NAMES_RESET', '-- Reset --');
 
 ///////////////////////////////////////////////////////////
 // include email extras

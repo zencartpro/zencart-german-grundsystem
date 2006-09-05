@@ -6,7 +6,7 @@
  * @copyright Copyright 2003-2006 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: header_php.php 2978 2006-02-07 00:52:01Z drbyte $
+ * @version $Id: header_php.php 4035 2006-07-28 05:49:06Z drbyte $
  */ 
 
 // This should be first line of the script:
@@ -35,4 +35,7 @@ $breadcrumb->add(NAVBAR_TITLE_1, zen_href_link(FILENAME_CHECKOUT_PAYMENT, '', 'S
 $breadcrumb->add(NAVBAR_TITLE_2);
 
 $addresses_count = zen_count_customer_address_book_entries();
+
+// This should be last line of the script:
+$zco_notifier->notify('NOTIFY_HEADER_END_CHECKOUT_PAYMENT_ADDRESS');
 ?>

@@ -17,7 +17,7 @@
 // | to obtain it through the world-wide-web, please send a note to       |
 // | license@zen-cart.com so we can mail you a copy immediately.          |
 // +----------------------------------------------------------------------+
-// $Id: gv_faq.php 1969 2005-09-13 06:57:21Z drbyte $
+// $Id: gv_faq.php 4155 2006-08-16 17:14:52Z ajeh $
 //
 
 define('NAVBAR_TITLE', TEXT_GV_NAME . ' FAQ');
@@ -92,4 +92,7 @@ validated and the amount added to your ' . TEXT_GV_NAME . ' Account. You can the
   define('SUB_HEADING_TEXT','Please choose from one of the questions above.');
 
   }
+
+  define('TEXT_GV_REDEEM_INFO', 'Please enter your ' . TEXT_GV_NAME . ' redemption code: ');
+  define('TEXT_GV_REDEEM_ID', 'Redemption Code:');
 ?>

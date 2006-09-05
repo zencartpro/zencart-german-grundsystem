@@ -4,7 +4,7 @@
  * @copyright Copyright 2003-2006 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: categories.php 3396 2006-04-09 00:02:03Z ajeh $
+ * @version $Id: categories.php 4300 2006-08-27 19:36:10Z ajeh $
  */
 
   require('includes/application_top.php');
@@ -29,11 +29,7 @@
       zen_redirect(zen_href_link(FILENAME_CATEGORIES,  'cPath=' . $_GET['cPath'] . ((isset($_GET['pID']) and !empty($_GET['pID'])) ? '&pID=' . $_GET['pID'] : '') . ((isset($_GET['page']) and !empty($_GET['page'])) ? '&page=' . $_GET['page'] : '')));
       break;
       case 'set_editor':
-      if ($_GET['reset_editor'] == '0') {
-        $_SESSION['html_editor_preference_status'] = 'NONE';
-      } else {
-        $_SESSION['html_editor_preference_status'] = 'HTMLAREA';
-      }
+      // Reset will be done by init_html_editor.php. Now we simply redirect to refresh page properly.
       $action='';
       zen_redirect(zen_href_link(FILENAME_CATEGORIES,  'cPath=' . $_GET['cPath'] . ((isset($_GET['pID']) and !empty($_GET['pID'])) ? '&pID=' . $_GET['pID'] : '') . ((isset($_GET['page']) and !empty($_GET['page'])) ? '&page=' . $_GET['page'] : '')));
       break;
@@ -222,14 +218,14 @@
         if ($categories_image->parse() && $categories_image->save()) {
           $categories_image_name = $_POST['img_dir'] . $categories_image->filename;
         }
-        if ($categories_image->filename != 'none' && $categories_image->filename != '') {
+        if ($categories_image->filename != 'none' && $categories_image->filename != '' && $_POST['image_delete'] != 1) {
           // save filename when not set to none and not blank
           $db->Execute("update " . TABLE_CATEGORIES . "
                         set categories_image = '" . $categories_image_name . "'
                         where categories_id = '" . (int)$categories_id . "'");
         } else {
           // remove filename when set to none and not blank
-          if ($categories_image->filename != '') {
+          if ($categories_image->filename != '' || $_POST['image_delete'] == 1) {
             $db->Execute("update " . TABLE_CATEGORIES . "
                           set categories_image = ''
                           where categories_id = '" . (int)$categories_id . "'");
@@ -544,8 +540,7 @@ function init()
 // -->
 </script>
 <?php if ($action != 'edit_category_meta_tags') { // bof: categories meta tags ?>
-<?php if ($_SESSION['html_editor_preference_status']=="FCKEDITOR") require(DIR_WS_INCLUDES.'fckeditor.php'); ?>
-<?php if ($_SESSION['html_editor_preference_status']=="HTMLAREA")  require(DIR_WS_INCLUDES.'htmlarea.php'); ?>
+<?php if ($editor_handler != '') include ($editor_handler); ?>
 <?php } // meta tags disable editor eof: categories meta tags?>
 </head>
 <body marginwidth="0" marginheight="0" topmargin="0" bottommargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFFF" onLoad="init()">
@@ -570,19 +565,16 @@ function init()
       </tr>
   <tr>
     <td class="smallText" width="100%" align="right">
-      <?php
-
+<?php
       // toggle switch for editor
-      $editor_array = array(array('id' => '0', 'text' => TEXT_NONE),
-      array('id' => '1', 'text' => TEXT_HTML_AREA));
-      echo TEXT_EDITOR_INFO . zen_draw_form('set_editor_form', FILENAME_CATEGORIES, '', 'get') . '&nbsp;&nbsp;' . zen_draw_pull_down_menu('reset_editor', $editor_array, ($_SESSION['html_editor_preference_status'] == 'HTMLAREA' ? '1' : '0'), 'onChange="this.form.submit();"') . zen_hide_session_id() .
+      echo TEXT_EDITOR_INFO . zen_draw_form('set_editor_form', FILENAME_CATEGORIES, '', 'get') . '&nbsp;&nbsp;' . zen_draw_pull_down_menu('reset_editor', $editors_pulldown, $current_editor_key, 'onChange="this.form.submit();"') . zen_hide_session_id() .
             zen_draw_hidden_field('cID', $cPath) .
             zen_draw_hidden_field('cPath', $cPath) .
             zen_draw_hidden_field('pID', $_GET['pID']) .
             zen_draw_hidden_field('page', $_GET['page']) .
             zen_draw_hidden_field('action', 'set_editor') .
       '</form>';
-      ?>
+?>
     </td>
   </tr>
 
@@ -693,9 +685,17 @@ function init()
     for ($i = 0, $n = sizeof($languages); $i < $n; $i++) {
       $category_inputs_string .= '<br />' . zen_image(DIR_WS_CATALOG_LANGUAGES . $languages[$i]['directory'] . '/images/' . $languages[$i]['image'], $languages[$i]['name']) . '&nbsp;';
       if ($_SESSION['html_editor_preference_status']=='FCKEDITOR') {
-        $category_inputs_string .= '<br />';
-        $category_inputs_string .= '<IFRAME src= "' . DIR_WS_CATALOG . 'FCKeditor/fckeditor.html?FieldName=categories_description[' . $languages[$i]['id']  . ']&Upload=false&Browse=false&Toolbar=Short" width="97%" height="200" frameborder="no" scrolling="yes"></IFRAME>';
-        $category_inputs_string .= '<INPUT type="hidden" name="categories_description[' . $languages[$i]['id']  . ']" ' . 'value=' . "'" . zen_get_category_description($cInfo->categories_id, $languages[$i]['id']) . "'>";
+                $oFCKeditor = new FCKeditor('categories_description[' . $languages[$i]['id']  . ']') ;
+                $oFCKeditor->Value = zen_get_category_description($cInfo->categories_id, $languages[$i]['id']);
+                $oFCKeditor->Width  = '97%' ;
+                $oFCKeditor->Height = '200' ;
+//                $oFCKeditor->Config['ToolbarLocation'] = 'Out:xToolbar' ;
+//                $oFCKeditor->Create() ;
+                $output = $oFCKeditor->CreateHtml() ;
+        $category_inputs_string .= '<br />' . $output;
+
+//        $category_inputs_string .= '<IFRAME src= "' . DIR_WS_CATALOG . 'FCKeditor/fckeditor.html?FieldName=categories_description[' . $languages[$i]['id']  . ']&Upload=false&Browse=false&Toolbar=Short" width="97%" height="200" frameborder="no" scrolling="yes"></IFRAME>';
+//        $category_inputs_string .= '<INPUT type="hidden" name="categories_description[' . $languages[$i]['id']  . ']" ' . 'value=' . "'" . zen_get_category_description($cInfo->categories_id, $languages[$i]['id']) . "'>";
       } else {
         $category_inputs_string .= zen_draw_textarea_field('categories_description[' . $languages[$i]['id'] . ']', 'soft', '100%', '20', zen_get_category_description($cInfo->categories_id, $languages[$i]['id']));
       }
@@ -709,8 +709,9 @@ function init()
         $dir_info[] = array('id' => $file . '/', 'text' => $file);
       }
     }
+    sort($dir_info);
+    $default_directory = 'categories/';
 
-    $default_directory = substr( $cInfo->categories_image, 0,strpos( $cInfo->categories_image, '/')+1);
     $contents[] = array('text' => TEXT_CATEGORIES_IMAGE_DIR . ' ' . zen_draw_pull_down_menu('img_dir', $dir_info, $default_directory));
 
     $contents[] = array('text' => '<br />' . TEXT_SORT_ORDER . '<br />' . zen_draw_input_field('sort_order', '', 'size="6"'));
@@ -718,6 +719,9 @@ function init()
     break;
     case 'edit_category':
     // echo 'I SEE ' . $_SESSION['html_editor_preference_status'];
+    // set image delete
+    $on_image_delete = false;
+    $off_image_delete = true;
     $heading[] = array('text' => '<b>' . TEXT_INFO_HEADING_EDIT_CATEGORY . '</b>');
 
     $contents = array('form' => zen_draw_form('categories', FILENAME_CATEGORIES, 'action=update_category&cPath=' . $cPath, 'post', 'enctype="multipart/form-data"') . zen_draw_hidden_field('categories_id', $cInfo->categories_id));
@@ -734,9 +738,16 @@ function init()
     for ($i = 0, $n = sizeof($languages); $i < $n; $i++) {
       $category_inputs_string .= '<br />' . zen_image(DIR_WS_CATALOG_LANGUAGES . $languages[$i]['directory'] . '/images/' . $languages[$i]['image'], $languages[$i]['name']) . '&nbsp;' ;
       if ($_SESSION['html_editor_preference_status']=='FCKEDITOR') {
-        $category_inputs_string .= '<br />';
-        $category_inputs_string .= '<IFRAME src= "' . DIR_WS_CATALOG . 'FCKeditor/fckeditor.html?FieldName=categories_description[' . $languages[$i]['id']  . ']&Upload=false&Browse=false&Toolbar=Short" width="97%" height="200" frameborder="no" scrolling="yes"></IFRAME>';
-        $category_inputs_string .= '<INPUT type="hidden" name="categories_description[' . $languages[$i]['id']  . ']" ' . 'value=' . "'" . zen_get_category_description($cInfo->categories_id, $languages[$i]['id']) . "'>";
+                $oFCKeditor = new FCKeditor('categories_description[' . $languages[$i]['id']  . ']') ;
+                $oFCKeditor->Value = zen_get_category_description($cInfo->categories_id, $languages[$i]['id']);
+                $oFCKeditor->Width  = '97%' ;
+                $oFCKeditor->Height = '200' ;
+//                $oFCKeditor->Config['ToolbarLocation'] = 'Out:xToolbar' ;
+//                $oFCKeditor->Create() ;
+                $output = $oFCKeditor->CreateHtml() ;
+        $category_inputs_string .= '<br />' . $output;
+//        $category_inputs_string .= '<IFRAME src= "' . DIR_WS_CATALOG . 'FCKeditor/fckeditor.html?FieldName=categories_description[' . $languages[$i]['id']  . ']&Upload=false&Browse=false&Toolbar=Short" width="97%" height="200" frameborder="no" scrolling="yes"></IFRAME>';
+//        $category_inputs_string .= '<INPUT type="hidden" name="categories_description[' . $languages[$i]['id']  . ']" ' . 'value=' . "'" . zen_get_category_description($cInfo->categories_id, $languages[$i]['id']) . "'>";
       } else {
         $category_inputs_string .= zen_draw_textarea_field('categories_description[' . $languages[$i]['id'] . ']', 'soft', '100%', '20', zen_get_category_description($cInfo->categories_id, $languages[$i]['id']));
       }
@@ -751,11 +762,13 @@ function init()
         $dir_info[] = array('id' => $file . '/', 'text' => $file);
       }
     }
-
+    sort($dir_info);
     $default_directory = substr( $cInfo->categories_image, 0,strpos( $cInfo->categories_image, '/')+1);
+
     $contents[] = array('text' => TEXT_CATEGORIES_IMAGE_DIR . ' ' . zen_draw_pull_down_menu('img_dir', $dir_info, $default_directory));
-    $contents[] = array('text' => '<br>' . zen_info_image($cInfo->categories_image, $cInfo->categories_name));
-    $contents[] = array('text' => '<br>' . $cInfo->categories_image);
+    $contents[] = array('text' => '<br />' . zen_info_image($cInfo->categories_image, $cInfo->categories_name));
+    $contents[] = array('text' => '<br />' . $cInfo->categories_image);
+    $contents[] = array('text' => '<br />' . TEXT_IMAGES_DELETE . ' ' . zen_draw_radio_field('image_delete', '0', $off_image_delete) . '&nbsp;' . TABLE_HEADING_NO . ' ' . zen_draw_radio_field('image_delete', '1', $on_image_delete) . '&nbsp;' . TABLE_HEADING_YES);
 
     $contents[] = array('text' => '<br />' . TEXT_EDIT_SORT_ORDER . '<br />' . zen_draw_input_field('sort_order', $cInfo->sort_order, 'size="6"'));
     $contents[] = array('align' => 'center', 'text' => '<br />' . zen_image_submit('button_save.gif', IMAGE_SAVE) . ' <a href="' . zen_href_link(FILENAME_CATEGORIES, 'cPath=' . $cPath . '&cID=' . $cInfo->categories_id) . '">' . zen_image_button('button_cancel.gif', IMAGE_CANCEL) . '</a>');
@@ -820,9 +833,16 @@ function init()
     for ($i = 0, $n = sizeof($languages); $i < $n; $i++) {
       $category_inputs_string_metatags_description .= '<br />' . zen_image(DIR_WS_CATALOG_LANGUAGES . $languages[$i]['directory'] . '/images/' . $languages[$i]['image'], $languages[$i]['name']) . '&nbsp;' ;
       if ($_SESSION['html_editor_preference_status']=='FCKEDITOR') {
-        $category_inputs_string_metatags_description .= '<br />';
-        $category_inputs_string_metatags_description .= '<IFRAME src= "' . DIR_WS_CATALOG . 'FCKeditor/fckeditor.html?FieldName=metatags_description[' . $languages[$i]['id']  . ']&Upload=false&Browse=false&Toolbar=Short" width="97%" height="200" frameborder="no" scrolling="yes"></IFRAME>';
-        $category_inputs_string_metatags_description .= '<INPUT type="hidden" name="metatags_description[' . $languages[$i]['id']  . ']" ' . 'value=' . "'" . zen_get_category_metatags_description($cInfo->categories_id, $languages[$i]['id']) . "'>";
+                $oFCKeditor = new FCKeditor('metatags_description[' . $languages[$i]['id']  . ']') ;
+                $oFCKeditor->Value = zen_get_category_metatags_description($cInfo->categories_id, $languages[$i]['id']);
+                $oFCKeditor->Width  = '97%' ;
+                $oFCKeditor->Height = '200' ;
+//                $oFCKeditor->Config['ToolbarLocation'] = 'Out:xToolbar' ;
+//                $oFCKeditor->Create() ;
+                $output = $oFCKeditor->CreateHtml() ;
+        $category_inputs_string_metatags_description .= '<br />' . $output;
+//        $category_inputs_string_metatags_description .= '<IFRAME src= "' . DIR_WS_CATALOG . 'FCKeditor/fckeditor.html?FieldName=metatags_description[' . $languages[$i]['id']  . ']&Upload=false&Browse=false&Toolbar=Short" width="97%" height="200" frameborder="no" scrolling="yes"></IFRAME>';
+//        $category_inputs_string_metatags_description .= '<INPUT type="hidden" name="metatags_description[' . $languages[$i]['id']  . ']" ' . 'value=' . "'" . zen_get_category_metatags_description($cInfo->categories_id, $languages[$i]['id']) . "'>";
       } else {
         $category_inputs_string_metatags_description .= zen_draw_textarea_field('metatags_description[' . $languages[$i]['id'] . ']', 'soft', '100%', '20', zen_get_category_metatags_description($cInfo->categories_id, $languages[$i]['id']));
       }

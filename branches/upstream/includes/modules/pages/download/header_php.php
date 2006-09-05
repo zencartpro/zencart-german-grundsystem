@@ -6,7 +6,7 @@
  * @copyright Copyright 2003-2006 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: header_php.php 2973 2006-02-04 23:27:35Z wilt $
+ * @version $Id: header_php.php 4135 2006-08-14 04:25:02Z drbyte $
  */
 // This should be first line of the script:
 $zco_notifier->notify('NOTIFY_HEADER_START_DOWNLOAD');
@@ -60,9 +60,9 @@ if (!file_exists(DIR_FS_DOWNLOAD . $downloads->fields['orders_products_filename'
 // Now decrement counter
 $sql = "UPDATE " . TABLE_ORDERS_PRODUCTS_DOWNLOAD . "
           SET download_count = download_count-1 
-          WHERE orders_products_download_id = downloadID";
+          WHERE orders_products_download_id = :downloadID";
 
-$sql = $db->bindVars($sql, 'downloadID', $_GET['id'], 'integer');
+$sql = $db->bindVars($sql, ':downloadID', $_GET['id'], 'integer');
 $db->Execute($sql);
 
 // Returns a random name, 16 to 20 characters long

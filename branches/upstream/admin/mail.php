@@ -1,24 +1,12 @@
 <?php
-//
-// +----------------------------------------------------------------------+
-// |zen-cart Open Source E-commerce                                       |
-// +----------------------------------------------------------------------+
-// | Copyright (c) 2003 The zen-cart developers                           |
-// |                                                                      |
-// | http://www.zen-cart.com/index.php                                    |
-// |                                                                      |
-// | Portions Copyright (c) 2003 osCommerce                               |
-// +----------------------------------------------------------------------+
-// | This source file is subject to version 2.0 of the GPL license,       |
-// | that is bundled with this package in the file LICENSE, and is        |
-// | available through the world-wide-web at the following url:           |
-// | http://www.zen-cart.com/license/2_0.txt.                             |
-// | If you did not receive a copy of the zen-cart license and are unable |
-// | to obtain it through the world-wide-web, please send a note to       |
-// | license@zen-cart.com so we can mail you a copy immediately.          |
-// +----------------------------------------------------------------------+
-//  $Id: mail.php 1969 2005-09-13 06:57:21Z drbyte $
-//
+/**
+ * @package admin
+ * @copyright Copyright 2003-2006 Zen Cart Development Team
+ * @copyright Portions Copyright 2003 osCommerce
+ * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
+ * @version $Id: mail.php 4279 2006-08-26 03:31:29Z drbyte $
+ */
+
   require('includes/application_top.php');
 
 //DEBUG:  // these defines will become switches in ADMIN in a future version.
@@ -30,11 +18,7 @@ if (EMAIL_ATTACHMENT_UPLOADS_ENABLED=='EMAIL_ATTACHMENT_UPLOADS_ENABLED') define
   $action = (isset($_GET['action']) ? $_GET['action'] : '');
 
   if ($action == 'set_editor') {
-    if ($_GET['reset_editor'] == '0') {
-      $_SESSION['html_editor_preference_status'] = 'NONE';
-    } else {
-      $_SESSION['html_editor_preference_status'] = 'HTMLAREA';
-    }
+    // Reset will be done by init_html_editor.php. Now we simply redirect to refresh page properly.
     $action='';
     zen_redirect(zen_href_link(FILENAME_MAIL));
   }
@@ -137,8 +121,7 @@ if (EMAIL_ATTACHMENT_UPLOADS_ENABLED=='EMAIL_ATTACHMENT_UPLOADS_ENABLED') define
   }
   // -->
 </script>
-<?php if ($_SESSION['html_editor_preference_status']=="FCKEDITOR") include (DIR_WS_INCLUDES.'fckeditor.php'); ?>
-<?php if ($_SESSION['html_editor_preference_status']=="HTMLAREA")  include (DIR_WS_INCLUDES.'htmlarea.php'); ?>
+<?php if ($editor_handler != '') include ($editor_handler); ?>
 <script language="javascript" type="text/javascript"><!--
 var form = "";
 var submitted = false;
@@ -229,9 +212,7 @@ function check_form(form_name) {
             <td class="main">
 <?php
 // toggle switch for editor
-        $editor_array = array(array('id' => '0', 'text' => TEXT_NONE),
-                              array('id' => '1', 'text' => TEXT_HTML_AREA));
-        echo TEXT_EDITOR_INFO . zen_draw_form('set_editor_form', FILENAME_MAIL, '', 'get') . '&nbsp;&nbsp;' . zen_draw_pull_down_menu('reset_editor', $editor_array, ($_SESSION['html_editor_preference_status'] == 'HTMLAREA' ? '1' : '0'), 'onChange="this.form.submit();"') .
+        echo TEXT_EDITOR_INFO . zen_draw_form('set_editor_form', FILENAME_MAIL, '', 'get') . '&nbsp;&nbsp;' . zen_draw_pull_down_menu('reset_editor', $editors_pulldown, $current_editor_key, 'onChange="this.form.submit();"') .
         zen_hide_session_id() . 
         zen_draw_hidden_field('action', 'set_editor') .
         '</form>';
@@ -347,17 +328,18 @@ function check_form(form_name) {
               <tr>
                 <td valign="top" class="main"><?php echo TEXT_MESSAGE_HTML; //HTML version?></td>
                 <td class="main" width="750">
-				<?php if (is_null($_SESSION['html_editor_preference_status'])) echo TEXT_HTML_EDITOR_NOT_DEFINED; ?>
 				<?php if (EMAIL_USE_HTML != 'true') echo TEXT_WARNING_HTML_DISABLED; ?>
-				<?php if ($_SESSION['html_editor_preference_status']=="FCKEDITOR") {
-					$oFCKeditor = new FCKeditor ;
-					$oFCKeditor->Value = stripslashes($_POST['message_html']) ;
-					$oFCKeditor->CreateFCKeditor( 'message_html', '97%', '350' ) ;  //instanceName, width, height (px or %)
+<?php  if (EMAIL_USE_HTML == 'true') {
+				 if ($_SESSION['html_editor_preference_status']=="FCKEDITOR") {
+                $oFCKeditor = new FCKeditor('message_html') ;
+                $oFCKeditor->Value = stripslashes($_POST['message_html']) ;
+                $oFCKeditor->Width  = '97%' ;
+                $oFCKeditor->Height = '350' ;
+//                $oFCKeditor->Create() ;
+                $output = $oFCKeditor->CreateHtml() ; echo $output;
 					} else { // using HTMLAREA or just raw "source"
-
-  if (EMAIL_USE_HTML == 'true') {
 					echo zen_draw_textarea_field('message_html', 'soft', '100%', '25', stripslashes($_POST['message_html']), 'id="message_html"');
-}
+  }
 					} ?>
 				</td>
               </tr>

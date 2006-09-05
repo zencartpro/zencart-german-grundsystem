@@ -4,7 +4,7 @@
  * @copyright Copyright 2003-2006 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: update_product.php 3129 2006-03-07 06:58:04Z drbyte $
+ * @version $Id: update_product.php 4178 2006-08-20 18:47:54Z ajeh $
  */
   if (!defined('IS_ADMIN_FLAG')) {
     die('Illegal Access');
@@ -61,6 +61,11 @@
       $sql_data_array['products_image'] = '';
       $new_image= 'false';
     }
+
+if ($_POST['image_delete'] == 1) {
+      $sql_data_array['products_image'] = '';
+      $new_image= 'false';
+}
 
     if ($action == 'insert_product') {
       $insert_sql_data = array( 'products_date_added' => 'now()',

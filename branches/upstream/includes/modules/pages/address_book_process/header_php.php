@@ -6,8 +6,11 @@
  * @copyright Copyright 2003-2006 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: header_php.php 3777 2006-06-15 07:03:03Z drbyte $
+ * @version $Id: header_php.php 4276 2006-08-26 03:18:28Z drbyte $
  */
+// This should be first line of the script:
+$zco_notifier->notify('NOTIFY_HEADER_START_ADDRESS_BOOK_PROCESS');
+
 if (!$_SESSION['customer_id']) {
   $_SESSION['navigation']->set_snapshot();
   zen_redirect(zen_href_link(FILENAME_LOGIN, '', 'SSL'));
@@ -26,6 +29,8 @@ if (isset($_GET['action']) && ($_GET['action'] == 'deleteconfirm') && isset($_GE
   $sql = $db->bindVars($sql, ':customersID', $_SESSION['customer_id'], 'integer');
   $sql = $db->bindVars($sql, ':delete', $_GET['delete'], 'integer');
   $db->Execute($sql);
+
+  $zco_notifier->notify('NOTIFY_HEADER_ADDRESS_BOOK_DELETION_DONE');
 
   $messageStack->add_session('addressbook', SUCCESS_ADDRESS_BOOK_ENTRY_DELETED, 'success');
 
@@ -48,7 +53,7 @@ if (isset($_POST['action']) && (($_POST['action'] == 'process') || ($_POST['acti
   if (ACCOUNT_SUBURB == 'true') $suburb = zen_db_prepare_input($_POST['suburb']);
   $postcode = zen_db_prepare_input($_POST['postcode']);
   $city = zen_db_prepare_input($_POST['city']);
-  $country = zen_db_prepare_input($_POST['country']);
+  $country = zen_db_prepare_input($_POST['zone_country_id']);
 
 
   /**
@@ -62,6 +67,7 @@ if (isset($_POST['action']) && (($_POST['action'] == 'process') || ($_POST['acti
     }
     $state = zen_db_prepare_input($_POST['state']);
   }
+  //echo ' I SEE: country=' . $country . '&nbsp;&nbsp;&nbsp;state=' . $state . '&nbsp;&nbsp;&nbsp;zone_id=' . $zone_id;
 
   if (ACCOUNT_GENDER == 'true') {
     if ( ($gender != 'm') && ($gender != 'f') ) {
@@ -73,83 +79,63 @@ if (isset($_POST['action']) && (($_POST['action'] == 'process') || ($_POST['acti
 
   if (strlen($firstname) < ENTRY_FIRST_NAME_MIN_LENGTH) {
     $error = true;
-
     $messageStack->add('addressbook', ENTRY_FIRST_NAME_ERROR);
   }
 
   if (strlen($lastname) < ENTRY_LAST_NAME_MIN_LENGTH) {
     $error = true;
-
     $messageStack->add('addressbook', ENTRY_LAST_NAME_ERROR);
   }
 
   if (strlen($street_address) < ENTRY_STREET_ADDRESS_MIN_LENGTH) {
     $error = true;
-
     $messageStack->add('addressbook', ENTRY_STREET_ADDRESS_ERROR);
   }
 
   if (strlen($postcode) < ENTRY_POSTCODE_MIN_LENGTH) {
     $error = true;
-
     $messageStack->add('addressbook', ENTRY_POST_CODE_ERROR);
   }
 
   if (strlen($city) < ENTRY_CITY_MIN_LENGTH) {
     $error = true;
-
     $messageStack->add('addressbook', ENTRY_CITY_ERROR);
   }
 
   if (!is_numeric($country)) {
     $error = true;
-
     $messageStack->add('addressbook', ENTRY_COUNTRY_ERROR);
   }
 
   if (ACCOUNT_STATE == 'true') {
-    $zone_id = 0;
     $check_query = "SELECT count(*) AS total
-                    FROM   " . TABLE_ZONES . "
-                    WHERE  zone_country_id = :country";
-
-    $check_query = $db->bindVars($check_query, ':country', $country, 'integer');
+                    FROM " . TABLE_ZONES . "
+                    WHERE zone_country_id = :zoneCountryID";
+    $check_query = $db->bindVars($check_query, ':zoneCountryID', $country, 'integer');
     $check = $db->Execute($check_query);
-
     $entry_state_has_zones = ($check->fields['total'] > 0);
     if ($entry_state_has_zones == true) {
-      $zones_array = array();
-      $zones_array[] = array('id' => PULL_DOWN_ALL, 'text' => PULL_DOWN_ALL);
-      $zones_values = $db->Execute("select zone_name
-                                   from " . TABLE_ZONES . "
-                                   where zone_country_id = '" . (int)$country . "'
-                                   order by zone_name");
+      $zone_query = "SELECT distinct zone_id, zone_name
+                     FROM " . TABLE_ZONES . "
+                     WHERE zone_country_id = :zoneCountryID
+                     AND " . 
+                     (trim($state) != '' ? "(upper(zone_name) like ':zoneState%' OR upper(zone_code) like '%:zoneState%') OR " : "") .
+                    "zone_id = :zoneID";
 
-      while (!$zones_values->EOF) {
-        $zones_array[] = array('id' => $zones_values->fields['zone_name'], 'text' => $zones_values->fields['zone_name']);
-        $zones_values->MoveNext();
-      }
-      $zone_query = "SELECT DISTINCT zone_id
-                     FROM   " . TABLE_ZONES . "
-                     WHERE  zone_country_id = :country 
-                     AND    (zone_name LIKE ':state%'
-                     OR     zone_code LIKE '%:state%')";
-
-      $zone_query = $db->bindVars($zone_query, ':state', $state, 'noquotestring');
-      $zone_query = $db->bindVars($zone_query, ':country', $country, 'integer');
+      $zone_query = $db->bindVars($zone_query, ':zoneCountryID', $country, 'integer');
+      $zone_query = $db->bindVars($zone_query, ':zoneState', strtoupper($state), 'noquotestring');
+      $zone_query = $db->bindVars($zone_query, ':zoneID', $zone_id, 'integer');
       $zone = $db->Execute($zone_query);
-
       if ($zone->RecordCount() == 1) {
         $zone_id = $zone->fields['zone_id'];
+        $zone_name = $zone->fields['zone_name'];
       } else {
         $error = true;
-
         $messageStack->add('addressbook', ENTRY_STATE_ERROR_SELECT);
       }
     } else {
       if (strlen($state) < ENTRY_STATE_MIN_LENGTH) {
         $error = true;
-
         $messageStack->add('addressbook', ENTRY_STATE_ERROR);
       }
     }
@@ -182,6 +168,8 @@ if (isset($_POST['action']) && (($_POST['action'] == 'process') || ($_POST['acti
       $where_clause = $db->bindVars($where_clause, ':edit', $_GET['edit'], 'integer');
       $db->perform(TABLE_ADDRESS_BOOK, $sql_data_array, 'update', $where_clause);
 
+      $zco_notifier->notify('NOTIFY_HEADER_ADDRESS_BOOK_ENTRY_UPDATE_DONE');
+
       // re-register session variables
       if ( (isset($_POST['primary']) && ($_POST['primary'] == 'on')) || ($_GET['edit'] == $_SESSION['customer_default_address_id']) ) {
         $_SESSION['customer_first_name'] = $firstname;
@@ -205,6 +193,8 @@ if (isset($_POST['action']) && (($_POST['action'] == 'process') || ($_POST['acti
       $db->perform(TABLE_ADDRESS_BOOK, $sql_data_array);
 
       $new_address_book_id = $db->Insert_ID();
+
+      $zco_notifier->notify('NOTIFY_HEADER_ADDRESS_BOOK_ADD_ENTRY_DONE');
 
       // reregister session variables
       if (isset($_POST['primary']) && ($_POST['primary'] == 'on')) {
@@ -281,29 +271,16 @@ if (isset($_GET['edit']) && is_numeric($_GET['edit'])) {
   $entry_query = $db->bindVars($entry_query, ':customersID', $_SESSION['customer_id'], 'integer');
   $entry = $db->Execute($entry_query);
 }
-/**
- * determine pulldown menu contents if appropriate
+/*
+ * Set flags for template use:
  */
-  if (ACCOUNT_STATE == 'true' && ACCOUNT_STATE_DRAW_INITIAL_DROPDOWN == 'true') {
-    $zone_id = 0;
-    $check_query = "select count(*) as total
-                      from " . TABLE_ZONES . "
-                      where zone_country_id = '" . (int)$entry->fields['entry_country_id'] . "'";
-    $check = $db->Execute($check_query);
-    $entry_state_has_zones = ($check->fields['total'] > 0);
-    if ($entry_state_has_zones == true) {
-      $zones_array = array();
-      $zones_array[] = array('id' => PULL_DOWN_ALL, 'text' => PULL_DOWN_ALL);
-      $zones_values = $db->Execute("select zone_name
-                                   from " . TABLE_ZONES . "
-                                   where zone_country_id = '" . (int)$entry->fields['entry_country_id'] . "'
-                                   order by zone_name");
-      while (!$zones_values->EOF) {
-        $zones_array[] = array('id' => $zones_values->fields['zone_name'], 'text' => $zones_values->fields['zone_name']);
-        $zones_values->MoveNext();
-      }
-    }
-  }
+  $selected_country = ($_POST['zone_country_id']) ? $country : SHOW_CREATE_ACCOUNT_DEFAULT_COUNTRY;
+  if ($process == true) $entry->fields['entry_country_id'] = $selected_country; 
+  $flag_show_pulldown_states = ($process == true || $entry_state_has_zones == true || ACCOUNT_STATE_DRAW_INITIAL_DROPDOWN == 'true') ? true : false;
+  $status_state_disabled = ($flag_show_pulldown_states) ? ' disabled="disabled"' : '';
+  $state_field_label = ($flag_show_pulldown_states) ? '' : ENTRY_STATE;
+
+
 
 if (!isset($_GET['delete']) && !isset($_GET['edit'])) {
   if (zen_count_customer_address_book_entries() >= MAX_ADDRESS_BOOK_ENTRIES) {
@@ -322,4 +299,7 @@ if (isset($_GET['edit']) && is_numeric($_GET['edit'])) {
 } else {
   $breadcrumb->add(NAVBAR_TITLE_ADD_ENTRY);
 }
+
+// This should be last line of the script:
+$zco_notifier->notify('NOTIFY_HEADER_END_ADDRESS_BOOK_PROCESS');
 ?>

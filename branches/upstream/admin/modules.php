@@ -1,24 +1,12 @@
 <?php
-//
-// +----------------------------------------------------------------------+
-// |zen-cart Open Source E-commerce                                       |
-// +----------------------------------------------------------------------+
-// | Copyright (c) 2003 The zen-cart developers                           |
-// |                                                                      |
-// | http://www.zen-cart.com/index.php                                    |
-// |                                                                      |
-// | Portions Copyright (c) 2003 osCommerce                               |
-// +----------------------------------------------------------------------+
-// | This source file is subject to version 2.0 of the GPL license,       |
-// | that is bundled with this package in the file LICENSE, and is        |
-// | available through the world-wide-web at the following url:           |
-// | http://www.zen-cart.com/license/2_0.txt.                             |
-// | If you did not receive a copy of the zen-cart license and are unable |
-// | to obtain it through the world-wide-web, please send a note to       |
-// | license@zen-cart.com so we can mail you a copy immediately.          |
-// +----------------------------------------------------------------------+
-//  $Id: modules.php 2710 2005-12-27 18:19:58Z ajeh $
-//
+/**
+ * @package admin
+ * @copyright Copyright 2003-2006 Zen Cart Development Team
+ * @copyright Portions Copyright 2003 osCommerce
+ * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
+ * @version $Id: modules.php 4366 2006-09-03 19:27:34Z ajeh $
+ */
+
   require('includes/application_top.php');
 
   $set = (isset($_GET['set']) ? $_GET['set'] : '');
@@ -37,7 +25,7 @@
         if (zen_get_configuration_key_value('ORDER_WEIGHT_ZERO_STATUS') == '1' and !defined('MODULE_SHIPPING_FREESHIPPER_STATUS')) {
           $shipping_errors .= '<br />' . ERROR_ORDER_WEIGHT_ZERO_STATUS;
         }
-        if (defined('MODULE_SHIPPING_USPS_STATUS') and (MODULE_SHIPPING_USPS_USERID=='NONE' or MODULE_SHIPPING_USPS_PASSWORD == 'NONE' or MODULE_SHIPPING_USPS_SERVER == 'test')) {
+        if (defined('MODULE_SHIPPING_USPS_STATUS') and (MODULE_SHIPPING_USPS_USERID=='NONE' or MODULE_SHIPPING_USPS_SERVER == 'test')) {
           $shipping_errors .= '<br />' . ERROR_USPS_STATUS;
         }
         if ($shipping_errors != '') {
@@ -73,12 +61,11 @@
           }
 // EOF: UPS USPS
           $db->Execute("update " . TABLE_CONFIGURATION . "
-                    set configuration_value = '" . $value . "'
-            where configuration_key = '" . $key . "'");
+                        set configuration_value = '" . $value . "'
+                        where configuration_key = '" . $key . "'");
         }
         $configuration_query = 'select configuration_key as cfgkey, configuration_value as cfgvalue
-                          from ' . TABLE_CONFIGURATION;
-
+                                from ' . TABLE_CONFIGURATION;
         $configuration = $db->Execute($configuration_query);
 
         zen_redirect(zen_href_link(FILENAME_MODULES, 'set=' . $set . ($_GET['module'] != '' ? '&module=' . $_GET['module'] : ''), 'NONSSL'));
@@ -88,9 +75,8 @@
         $file_extension = substr($PHP_SELF, strrpos($PHP_SELF, '.'));
         $class = basename($_GET['module']);
         if (file_exists($module_directory . $class . $file_extension)) {
-    $configuration_query = 'select configuration_key as cfgkey, configuration_value as cfgvalue
-                                from ' . TABLE_CONFIGURATION;
-
+          $configuration_query = 'select configuration_key as cfgkey, configuration_value as cfgvalue
+                                  from ' . TABLE_CONFIGURATION;
           $configuration = $db->Execute($configuration_query);
           include($module_directory . $class . $file_extension);
           $module = new $class;
@@ -134,7 +120,7 @@
   // -->
 </script>
 </head>
-<body onload="init()">
+<body onLoad="init()">
 <!-- header //-->
 <?php require(DIR_WS_INCLUDES . 'header.php'); ?>
 <!-- header_eof //-->
@@ -192,6 +178,9 @@
       $module = new $class;
       if ($module->check() > 0) {
         if ($module->sort_order > 0) {
+          if ($installed_modules[$module->sort_order] != '') {
+            $zc_valid = false;
+          }
           $installed_modules[$module->sort_order] = $file;
         } else {
           $installed_modules[] = $file;
@@ -207,8 +196,8 @@
         for ($j=0, $k=sizeof($module_keys); $j<$k; $j++) {
           $key_value = $db->Execute("select configuration_title, configuration_value, configuration_key,
                                         configuration_description, use_function, set_function
-                     from " . TABLE_CONFIGURATION . "
-                   where configuration_key = '" . $module_keys[$j] . "'");
+                                        from " . TABLE_CONFIGURATION . "
+                                        where configuration_key = '" . $module_keys[$j] . "'");
 
           $keys_extra[$module_keys[$j]]['title'] = $key_value->fields['configuration_title'];
           $keys_extra[$module_keys[$j]]['value'] = $key_value->fields['configuration_value'];
@@ -228,10 +217,22 @@
       } else {
         echo '              <tr class="dataTableRow" onmouseover="rowOverEffect(this)" onmouseout="rowOutEffect(this)" onclick="document.location.href=\'' . zen_href_link(FILENAME_MODULES, 'set=' . $set . '&module=' . $class, 'NONSSL') . '\'">' . "\n";
       }
+//print_r($module) . '<br><BR>';
+//echo (!empty($module->enabled) ? 'ENABLED' : 'NOT ENABLED') . ' vs ' . (is_numeric($module->sort_order) ? 'ON' : 'OFF') . '<BR><BR>' ;
 ?>
                 <td class="dataTableContent"><?php echo $module->title; ?></td>
                 <td class="dataTableContent"><?php echo $module->code; ?></td>
-                <td class="dataTableContent" align="right"><?php if (is_numeric($module->sort_order)) echo $module->sort_order; ?></td>
+                <td class="dataTableContent" align="right">
+                  <?php if (is_numeric($module->sort_order)) echo $module->sort_order; ?>
+                  <?php
+                    // show current status
+                    if ($set == 'payment' || $set == 'shipping') {
+                      echo '&nbsp;' . ((!empty($module->enabled) && is_numeric($module->sort_order)) ? zen_image(DIR_WS_IMAGES . 'icon_status_green.gif') : ((empty($module->enabled) && is_numeric($module->sort_order)) ? zen_image(DIR_WS_IMAGES . 'icon_status_yellow.gif') : zen_image(DIR_WS_IMAGES . 'icon_status_red.gif')));
+                    } else {
+                      echo '&nbsp;' . (is_numeric($module->sort_order) ? zen_image(DIR_WS_IMAGES . 'icon_status_green.gif') : zen_image(DIR_WS_IMAGES . 'icon_status_red.gif'));
+                    }
+                  ?>
+                </td>
 <?php
   if ($set == 'payment') {
     $orders_status_name = $db->Execute("select orders_status_id, orders_status_name from " . TABLE_ORDERS_STATUS . " where orders_status_id='" . $module->order_status . "' and language_id='" . $_SESSION['languages_id'] . "'");
@@ -246,20 +247,23 @@
   ksort($installed_modules);
   $check = $db->Execute("select configuration_value
                          from " . TABLE_CONFIGURATION . "
-             where configuration_key = '" . $module_key . "'");
+                         where configuration_key = '" . $module_key . "'");
 
   if ($check->RecordCount() > 0) {
     if ($check->fields['configuration_value'] != implode(';', $installed_modules)) {
       $db->Execute("update " . TABLE_CONFIGURATION . "
-                  set configuration_value = '" . implode(';', $installed_modules) . "', last_modified = now()
-          where configuration_key = '" . $module_key . "'");
+                    set configuration_value = '" . implode(';', $installed_modules) . "', last_modified = now()
+                    where configuration_key = '" . $module_key . "'");
     }
   } else {
     $db->Execute("insert into " . TABLE_CONFIGURATION . "
                 (configuration_title, configuration_key, configuration_value,
                  configuration_description, configuration_group_id, sort_order, date_added)
-                values ('Installed Modules', '" . $module_key . "', '" . implode(';', $installed_modules) . "',
-                        'This is automatically updated. No need to edit.', '6', '0', now())");
+                 values ('Installed Modules', '" . $module_key . "', '" . implode(';', $installed_modules) . "',
+                         'This is automatically updated. No need to edit.', '6', '0', now())");
+  }
+  if (isset($zc_valid) && $zc_valid == false) {
+    echo '<span class="alert">' . WARNING_MODULES_SORT_ORDER . '</span>';
   }
 ?>
               <tr>

@@ -5,7 +5,7 @@
  * @package classes
  * @copyright Copyright 2003-2006 Zen Cart Development Team
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: order.php 3434 2006-04-14 01:24:17Z ajeh $
+ * @version $Id: order.php 4380 2006-09-03 23:07:22Z wilt $
  */
 /**
  * order class
@@ -235,9 +235,9 @@ class order extends base {
                                     z.zone_name, co.countries_id, co.countries_name,
                                     co.countries_iso_code_2, co.countries_iso_code_3,
                                     co.address_format_id, ab.entry_state
-                                   from (" . TABLE_CUSTOMERS . " c, " . TABLE_ADDRESS_BOOK . " ab
+                                   from (" . TABLE_CUSTOMERS . " c, " . TABLE_ADDRESS_BOOK . " ab )
                                    left join " . TABLE_ZONES . " z on (ab.entry_zone_id = z.zone_id)
-                                   left join " . TABLE_COUNTRIES . " co on (ab.entry_country_id = co.countries_id) )
+                                   left join " . TABLE_COUNTRIES . " co on (ab.entry_country_id = co.countries_id)
                                    where c.customers_id = '" . (int)$_SESSION['customer_id'] . "'
                                    and ab.customers_id = '" . (int)$_SESSION['customer_id'] . "'
                                    and c.customers_default_address_id = ab.address_book_id";
@@ -249,9 +249,9 @@ class order extends base {
                                     ab.entry_city, ab.entry_zone_id, z.zone_name, ab.entry_country_id,
                                     c.countries_id, c.countries_name, c.countries_iso_code_2,
                                     c.countries_iso_code_3, c.address_format_id, ab.entry_state
-                                   from (" . TABLE_ADDRESS_BOOK . " ab
+                                   from " . TABLE_ADDRESS_BOOK . " ab
                                    left join " . TABLE_ZONES . " z on (ab.entry_zone_id = z.zone_id)
-                                   left join " . TABLE_COUNTRIES . " c on (ab.entry_country_id = c.countries_id) )
+                                   left join " . TABLE_COUNTRIES . " c on (ab.entry_country_id = c.countries_id) 
                                    where ab.customers_id = '" . (int)$_SESSION['customer_id'] . "'
                                    and ab.address_book_id = '" . (int)$_SESSION['sendto'] . "'";
 
@@ -262,9 +262,9 @@ class order extends base {
                                    ab.entry_city, ab.entry_zone_id, z.zone_name, ab.entry_country_id,
                                    c.countries_id, c.countries_name, c.countries_iso_code_2,
                                    c.countries_iso_code_3, c.address_format_id, ab.entry_state
-                                  from (" . TABLE_ADDRESS_BOOK . " ab
+                                  from " . TABLE_ADDRESS_BOOK . " ab
                                   left join " . TABLE_ZONES . " z on (ab.entry_zone_id = z.zone_id)
-                                  left join " . TABLE_COUNTRIES . " c on (ab.entry_country_id = c.countries_id) )
+                                  left join " . TABLE_COUNTRIES . " c on (ab.entry_country_id = c.countries_id) 
                                   where ab.customers_id = '" . (int)$_SESSION['customer_id'] . "'
                                   and ab.address_book_id = '" . (int)$_SESSION['billto'] . "'";
 
@@ -413,6 +413,11 @@ class order extends base {
     $index = 0;
     $products = $_SESSION['cart']->get_products();
     for ($i=0, $n=sizeof($products); $i<$n; $i++) {
+      if (($i/2) == floor($i/2)) {
+        $rowClass="rowEven";
+      } else {
+        $rowClass="rowOdd";
+      }
       $this->products[$index] = array('qty' => $products[$i]['quantity'],
                                       'name' => $products[$i]['name'],
                                       'model' => $products[$i]['model'],
@@ -426,7 +431,8 @@ class order extends base {
                                       'product_is_free' => $products[$i]['product_is_free'],
                                       'products_discount_type' => $products[$i]['products_discount_type'],
                                       'products_discount_type_from' => $products[$i]['products_discount_type_from'],
-                                      'id' => $products[$i]['id']);
+                                      'id' => $products[$i]['id'],
+                                      'rowClass' => $rowClass);
 
       if ($products[$i]['attributes']) {
         $subindex = 0;
@@ -477,6 +483,9 @@ class order extends base {
       // add onetime charges here
       //$_SESSION['cart']->attributes_price_onetime_charges($products[$i]['id'], $products[$i]['quantity'])
 
+      /*********************************************
+       * Calculate taxes for this product
+       *********************************************/
       $shown_price = (zen_add_tax($this->products[$index]['final_price'], $this->products[$index]['tax']) * $this->products[$index]['qty'])
       + zen_add_tax($this->products[$index]['onetime_charges'], $this->products[$index]['tax']);
       $this->info['subtotal'] += $shown_price;
@@ -507,6 +516,9 @@ class order extends base {
           $this->info['tax_groups']["$products_tax_description"] = $current_row_tax_exc;
         }
       }
+      /*********************************************
+       * END: Calculate taxes for this product
+       *********************************************/
       $index++;
     }
 
@@ -517,6 +529,8 @@ class order extends base {
       $this->info['total'] = $this->info['subtotal'] + $this->info['tax'] + $this->info['shipping_cost'];
     }
 
+/*
+// moved to function create
     if ($this->info['total'] == 0) {
       if (DEFAULT_ZERO_BALANCE_ORDERS_STATUS_ID == 0) {
         $this->info['order_status'] = DEFAULT_ORDERS_STATUS_ID;
@@ -524,6 +538,7 @@ class order extends base {
         $this->info['order_status'] = DEFAULT_ZERO_BALANCE_ORDERS_STATUS_ID;
       }
     }
+*/
     if (isset($GLOBALS[$class]) && is_object($GLOBALS[$class])) {
       if ( isset($GLOBALS[$class]->order_status) && is_numeric($GLOBALS[$class]->order_status) && ($GLOBALS[$class]->order_status > 0) ) {
         $this->info['order_status'] = $GLOBALS[$class]->order_status;
@@ -534,6 +549,14 @@ class order extends base {
 
   function create($zf_ot_modules, $zf_mode = 2) {
     global $db;
+
+    if ($this->info['total'] == 0) {
+      if (DEFAULT_ZERO_BALANCE_ORDERS_STATUS_ID == 0) {
+        $this->info['order_status'] = DEFAULT_ORDERS_STATUS_ID;
+      } else {
+        $this->info['order_status'] = DEFAULT_ZERO_BALANCE_ORDERS_STATUS_ID;
+      }
+    }
 
     if ($_SESSION['shipping'] == 'free_free') {
       $this->info['shipping_module_code'] = $_SESSION['shipping'];
@@ -668,7 +691,7 @@ class order extends base {
 
           $db->Execute("update " . TABLE_PRODUCTS . " set products_quantity = '" . $stock_left . "' where products_id = '" . zen_get_prid($this->products[$i]['id']) . "'");
           //        if ( ($stock_left < 1) && (STOCK_ALLOW_CHECKOUT == 'false') ) {
-          if ($stock_left < 1) {
+          if ($stock_left <= 0) {
             // only set status to off when not displaying sold out
             if (SHOW_PRODUCTS_SOLD_OUT == '0') {
               $db->Execute("update " . TABLE_PRODUCTS . " set products_status = 0 where products_id = '" . zen_get_prid($this->products[$i]['id']) . "'");
@@ -712,7 +735,7 @@ class order extends base {
 
       $zco_notifier->notify('NOTIFY_ORDER_PROCESSING_ATTRIBUTES_BEGIN');
 
-      //------insert customer-chosen options to order--------
+      //------ bof: insert customer-chosen options to order--------
       $attributes_exist = '0';
       $this->products_ordered_attributes = '';
       if (isset($this->products[$i]['attributes'])) {
@@ -806,14 +829,16 @@ class order extends base {
           $this->products_ordered_attributes .= "\n\t" . $attributes_values->fields['products_options_name'] . ' ' . zen_decode_specialchars($this->products[$i]['attributes'][$j]['value']);
         }
       }
-      //------insert customer-chosen options eof ----
+      //------eof: insert customer-chosen options ----
+
+      // update totals counters
       $this->total_weight += ($this->products[$i]['qty'] * $this->products[$i]['weight']);
       $this->total_tax += zen_calculate_tax($total_products_price, $products_tax) * $this->products[$i]['qty'];
       $this->total_cost += $total_products_price;
 
       $zco_notifier->notify('NOTIFY_ORDER_PROCESSING_ONE_TIME_CHARGES_BEGIN');
 
-      // include onetime charges
+      // build output for email notification
       $this->products_ordered .=  $this->products[$i]['qty'] . ' x ' . $this->products[$i]['name'] . ($this->products[$i]['model'] != '' ? ' (' . $this->products[$i]['model'] . ') ' : '') . ' = ' .
       $currencies->display_price($this->products[$i]['final_price'], $this->products[$i]['tax'], $this->products[$i]['qty']) .
       ($this->products[$i]['onetime_charges'] !=0 ? "\n" . TEXT_ONETIME_CHARGES_EMAIL . $currencies->display_price($this->products[$i]['onetime_charges'], $this->products[$i]['tax'], 1) : '') .
@@ -919,9 +944,8 @@ class order extends base {
       EMAIL_SEPARATOR . "\n";
       $payment_class = $_SESSION['payment'];
       $email_order .= $GLOBALS[$payment_class]->title . "\n\n";
-      if ($GLOBALS[$payment_class]->email_footer) {
-        $email_order .= $GLOBALS[$payment_class]->email_footer . "\n\n";
-      }
+      $email_order .= (isset($this->info['cc_type']) && $this->info['cc_type'] != '') ? $this->info['cc_type'] . "\n\n" : '';
+      $email_order .= ($GLOBALS[$payment_class]->email_footer) ? $GLOBALS[$payment_class]->email_footer . "\n\n" : '';
     } else {
       $email_order .= EMAIL_TEXT_PAYMENT_METHOD . "\n" .
       EMAIL_SEPARATOR . "\n";
@@ -929,7 +953,7 @@ class order extends base {
     }
     $html_msg['PAYMENT_METHOD_TITLE']  = EMAIL_TEXT_PAYMENT_METHOD;
     $html_msg['PAYMENT_METHOD_DETAIL'] = (is_object($GLOBALS[$_SESSION['payment']]) ? $GLOBALS[$payment_class]->title : PAYMENT_METHOD_GV );
-    $html_msg['PAYMENT_METHOD_FOOTER'] = (is_object($GLOBALS[$_SESSION['payment']]) ? $GLOBALS[$payment_class]->email_footer : '');
+    $html_msg['PAYMENT_METHOD_FOOTER'] = (is_object($GLOBALS[$_SESSION['payment']]) ? $GLOBALS[$payment_class]->email_footer : $this->info['cc_type'] );
 
     // include disclaimer
     $email_order .= "\n-----\n" . sprintf(EMAIL_DISCLAIMER, STORE_OWNER_EMAIL_ADDRESS) . "\n\n";

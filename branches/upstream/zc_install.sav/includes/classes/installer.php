@@ -7,7 +7,7 @@
  * @copyright Copyright 2003-2006 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: installer.php 3794 2006-06-18 08:07:28Z drbyte $
+ * @version $Id: installer.php 4296 2006-08-27 05:14:23Z drbyte $
  */
 
 
@@ -126,13 +126,16 @@
     }
 
     function isWriteable($zp_file, $zp_error_text='', $zp_error_code='') {
+      $retVal = true;
       if (is_dir($zp_file)) $zp_file .= '/test_writable.txt';
       $fp = @fopen($zp_file, 'a');
       if (!is_writeable($zp_file) || (!$fp) ) {
         if ($zp_error_code !='') $this->setError($zp_error_text, $zp_error_code, true);
-        return false;
+        $retVal = false;
       }
-      return true;
+      @fclose($fp);
+      if (file_exists($zp_file)) @unlink($zp_file);
+      return $retVal;
     }
 
     function functionExists($zp_type, $zp_error_text, $zp_error_code) {

@@ -4,7 +4,7 @@
  * @copyright Copyright 2003-2006 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: init_languages.php 3001 2006-02-09 21:45:06Z wilt $
+ * @version $Id: init_languages.php 4096 2006-08-08 06:26:56Z drbyte $
  */
 if (!defined('IS_ADMIN_FLAG')) {
   die('Illegal Access');
@@ -22,8 +22,9 @@ if (!defined('IS_ADMIN_FLAG')) {
       $lng->set_language(DEFAULT_LANGUAGE);
     }
 
-    $_SESSION['language'] = $lng->language['directory'];
-    $_SESSION['languages_id'] = $lng->language['id'];
+    $_SESSION['language'] = (zen_not_null($lng->language['directory']) ? $lng->language['directory'] : 'english');
+    $_SESSION['languages_id'] = (zen_not_null($lng->language['id']) ? $lng->language['id'] : 1);
+    $_SESSION['languages_code'] = (zen_not_null($lng->language['code']) ? $lng->language['code'] : 'en');
   }
 
 // include the language translations

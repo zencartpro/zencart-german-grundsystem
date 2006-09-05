@@ -4,10 +4,10 @@
  * HTML-generating functions used throughout the core
  *
  * @package functions
- * @copyright Copyright 2003-2005 Zen Cart Development Team
+ * @copyright Copyright 2003-2006 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: html_output.php 3517 2006-04-26 05:09:03Z drbyte $
+ * @version $Id: html_output.php 4263 2006-08-25 06:13:19Z drbyte $
  */
 
 /*
@@ -85,7 +85,7 @@
     }
 
     if (isset($sid)) {
-      $link .= $separator . $sid;
+      $link .= $separator . zen_output_string($sid);
     }
 
 // clean up the link after processing
@@ -182,6 +182,17 @@
       $src = str_replace(DIR_WS_TEMPLATES . $template_dir, DIR_WS_TEMPLATES . 'template_default', $src);
     }
 
+    // hook for handle_image() function such as Image Handler etc
+    if (function_exists('handle_image')) {
+      $newimg = handle_image($src, $alt, $width, $height, $parameters);
+      list($src, $alt, $width, $height, $parameters) = $newimg; 
+    }
+
+    // Convert width/height to int for proper validation.
+    // intval() used to support compatibility with plugins like image-handler
+    $width = empty($width) ? $width : intval($width);
+    $height = empty($height) ? $height : intval($height);
+
 // alt is added to the img tag even if it is null to prevent browsers from outputting
 // the image filename as default
     $image = '<img src="' . zen_output_string($src) . '" alt="' . zen_output_string($alt) . '"';
@@ -222,16 +233,16 @@
       }
 // only use proportional image when image is larger than proportional size
       if ($image_size[0] < $width and $image_size[1] < $height) {
-        $image .= ' width="' . $image_size[0] . '" height="' . $image_size[1] . '"';
+        $image .= ' width="' . $image_size[0] . '" height="' . intval($image_size[1]) . '"';
       } else {
-        $image .= ' width="' . $width . '" height="' . $height . '"';
+        $image .= ' width="' . round($width) . '" height="' . round($height) . '"';
       }
     } else {
        // override on missing image to allow for proportional and required/not required
       if (IMAGE_REQUIRED == 'false') {
         return false;
       } else {
-        $image .= ' width="' . SMALL_IMAGE_WIDTH . '" height="' . SMALL_IMAGE_HEIGHT . '"';
+        $image .= ' width="' . intval(SMALL_IMAGE_WIDTH) . '" height="' . intval(SMALL_IMAGE_HEIGHT) . '"';
       }
     }
 
@@ -464,7 +475,7 @@
 
 /*
  *  Output a form pull down menu
- *  Pulls values from a passed array, ,with the indicated option pre-selected
+ *  Pulls values from a passed array, with the indicated option pre-selected
  */
   function zen_draw_pull_down_menu($name, $values, $default = '', $parameters = '', $required = false) {
     $field = '<select name="' . zen_output_string($name) . '"';

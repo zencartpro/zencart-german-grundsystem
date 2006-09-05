@@ -1,24 +1,11 @@
 <?php
-//
-// +----------------------------------------------------------------------+
-// |zen-cart Open Source E-commerce                                       |
-// +----------------------------------------------------------------------+
-// | Copyright (c) 2003 The zen-cart developers                           |
-// |                                                                      |
-// | http://www.zen-cart.com/index.php                                    |
-// |                                                                      |
-// | Portions Copyright (c) 2003 osCommerce                               |
-// +----------------------------------------------------------------------+
-// | This source file is subject to version 2.0 of the GPL license,       |
-// | that is bundled with this package in the file LICENSE, and is        |
-// | available through the world-wide-web at the following url:           |
-// | http://www.zen-cart.com/license/2_0.txt.                             |
-// | If you did not receive a copy of the zen-cart license and are unable |
-// | to obtain it through the world-wide-web, please send a note to       |
-// | license@zen-cart.com so we can mail you a copy immediately.          |
-// +----------------------------------------------------------------------+
-//  $Id: coupon_admin.php 3728 2006-06-09 03:11:19Z ajeh $
-//
+/**
+ * @package admin
+ * @copyright Copyright 2003-2006 Zen Cart Development Team
+ * @copyright Portions Copyright 2003 osCommerce
+ * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
+ * @version $Id: coupon_admin.php 4363 2006-09-03 19:02:29Z wilt $
+ */
 
   require('includes/application_top.php');
   require(DIR_WS_CLASSES . 'currencies.php');
@@ -100,11 +87,7 @@
 
   switch ($_GET['action']) {
       case 'set_editor':
-        if ($_GET['reset_editor'] == '0') {
-          $_SESSION['html_editor_preference_status'] = 'NONE';
-        } else {
-          $_SESSION['html_editor_preference_status'] = 'HTMLAREA';
-        }
+        // Reset will be done by init_html_editor.php. Now we simply redirect to refresh page properly.
         $action='';
         zen_redirect(zen_href_link(FILENAME_COUPON_ADMIN));
         break;
@@ -209,6 +192,7 @@
           $_POST['coupon_desc'][$language_id] = trim($_POST['coupon_desc'][$language_id]);
         }
       $_POST['coupon_amount'] = trim($_POST['coupon_amount']);
+      $_POST['coupon_amount'] = preg_replace('/[^0-9.%]/', '', $_POST['coupon_amount']);
       if (!$_POST['coupon_name']) {
         $update_errors = 1;
         $messageStack->add(ERROR_NO_COUPON_NAME, 'error');
@@ -310,7 +294,11 @@
       var kill = document.getElementById('hoverJS');
       kill.disabled = true;
     }
-  if (typeof _editor_url == "string") HTMLArea.replace('message_html');
+<?php if ($_GET['action'] == 'new') { ?>
+    if (typeof _editor_url == "string") HTMLArea.replaceAll();
+<?php } else { ?>
+    if (typeof _editor_url == "string") HTMLArea.replace('message_html');
+<?php } ?>
   }
   // -->
 </script>
@@ -374,8 +362,7 @@ function check_form(form_name) {
   }
 }
 //--></script>
-<?php if ($_SESSION['html_editor_preference_status']=="FCKEDITOR") include (DIR_WS_INCLUDES.'fckeditor.php'); ?>
-<?php if ($_SESSION['html_editor_preference_status']=="HTMLAREA")  include (DIR_WS_INCLUDES.'htmlarea.php'); ?>
+<?php if ($editor_handler != '') include ($editor_handler); ?>
 </head>
 <body onLoad="init()">
 <div id="spiffycalendar" class="text"></div>
@@ -637,17 +624,19 @@ $customer = $db->Execute("select customers_firstname, customers_lastname
               <tr>
                 <td valign="top" class="main"><?php echo TEXT_RICH_TEXT_MESSAGE; ?></td>
                 <td>
-				<?php if (is_null($_SESSION['html_editor_preference_status'])) echo TEXT_HTML_EDITOR_NOT_DEFINED; ?>
-				<?php if (EMAIL_USE_HTML != 'true') echo TEXT_WARNING_HTML_DISABLED; ?>
-				<?php if ($_SESSION['html_editor_preference_status']=="FCKEDITOR") {
-					$oFCKeditor = new FCKeditor ;
-					$oFCKeditor->Value = ($_POST['message_html']=='') ? TEXT_COUPON_ANNOUNCE : stripslashes($_POST['message_html']) ;
-					$oFCKeditor->CreateFCKeditor( 'message_html', '97%', '250' ) ;  //instanceName, width, height (px or %)
+<?php  if (EMAIL_USE_HTML == 'true') {
+              if ($_SESSION['html_editor_preference_status']=="FCKEDITOR") {
+                $oFCKeditor = new FCKeditor('message_html') ;
+                $oFCKeditor->Value = ($_POST['message_html']=='') ? TEXT_COUPON_ANNOUNCE : stripslashes($_POST['message_html']) ;
+                $oFCKeditor->Width  = '97%' ;
+                $oFCKeditor->Height = '250' ;
+//                $oFCKeditor->Config['ToolbarLocation'] = 'Out:xToolbar' ;
+//                $oFCKeditor->Create() ;
+                $output = $oFCKeditor->CreateHtml() ; echo $output;
 					} else { // using HTMLAREA or just raw "source"
-  if (EMAIL_USE_HTML == 'true') {
-					echo zen_draw_textarea_field('message_html', 'soft', '100%', '20', ($_POST['message_html']=='') ? TEXT_COUPON_ANNOUNCE : stripslashes($_POST['message_html']), 'id="message_html"');
-}
-					} ?>
+					echo zen_draw_textarea_field('message_html', 'soft', '100%', '25', ($_POST['message_html']=='') ? TEXT_COUPON_ANNOUNCE : stripslashes($_POST['message_html']), 'id="message_html"');
+          }
+} ?>
 				</td>
               </tr>
               <tr>
@@ -870,7 +859,19 @@ $customer = $db->Execute("select customers_firstname, customers_lastname
 
       <tr>
         <td align="left" valign="top" class="main"><?php if ($i==0) echo COUPON_DESC; ?></td>
-        <td align="left" valign="top"><?php echo zen_draw_textarea_field('coupon_desc[' . $languages[$i]['id'] . ']','physical','24','3', stripslashes($_POST['coupon_desc'][$language_id])) . '&nbsp;' . zen_image(DIR_WS_CATALOG_LANGUAGES . $languages[$i]['directory'] . '/images/' . $languages[$i]['image'], $languages[$i]['name']); ?></td>
+        <td align="left" valign="top"><?php 
+            if ($_SESSION['html_editor_preference_status']=="FCKEDITOR") {
+                $oFCKeditor = new FCKeditor('coupon_desc[' . $languages[$i]['id'] . ']') ;
+                $oFCKeditor->Value = (stripslashes($_POST['coupon_desc'][$language_id]) != '') ? stripslashes($_POST['coupon_desc'][$language_id]) : '';
+                $oFCKeditor->Width  = '97%' ;
+                $oFCKeditor->Height = '200' ;
+//                $oFCKeditor->Config['ToolbarLocation'] = 'Out:xToolbar' ;
+//                $oFCKeditor->Create() ;
+                $output = $oFCKeditor->CreateHtml() ; echo $output;
+					} else { // using HTMLAREA or just raw "source"
+					  echo zen_draw_textarea_field('coupon_desc[' . $languages[$i]['id'] . ']','physical','24','8', stripslashes($_POST['coupon_desc'][$language_id])); 
+          } 
+					echo '&nbsp;' . zen_image(DIR_WS_CATALOG_LANGUAGES . $languages[$i]['directory'] . '/images/' . $languages[$i]['image'], $languages[$i]['name']); ?></td>
         <td align="left" valign="top" class="main"><?php if ($i==0) echo COUPON_DESC_HELP; ?></td>
       </tr>
 <?php
@@ -968,9 +969,7 @@ $customer = $db->Execute("select customers_firstname, customers_lastname
             <td class="main">
 <?php
 // toggle switch for editor
-        $editor_array = array(array('id' => '0', 'text' => TEXT_NONE),
-                              array('id' => '1', 'text' => TEXT_HTML_AREA));
-        echo TEXT_EDITOR_INFO . zen_draw_form('set_editor_form', FILENAME_COUPON_ADMIN, '', 'get') . '&nbsp;&nbsp;' . zen_draw_pull_down_menu('reset_editor', $editor_array, ($_SESSION['html_editor_preference_status'] == 'HTMLAREA' ? '1' : '0'), 'onChange="this.form.submit();"') .
+        echo TEXT_EDITOR_INFO . zen_draw_form('set_editor_form', FILENAME_COUPON_ADMIN, '', 'get') . '&nbsp;&nbsp;' . zen_draw_pull_down_menu('reset_editor', $editors_pulldown, $current_editor_key, 'onChange="this.form.submit();"') .
         zen_hide_session_id() .
         zen_draw_hidden_field('action', 'set_editor') .
         '</form>';

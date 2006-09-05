@@ -4,10 +4,10 @@
  * General functions used throughout Zen Cart
  *
  * @package functions
- * @copyright Copyright 2003-2005 Zen Cart Development Team
+ * @copyright Copyright 2003-2006 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: functions_general.php 3670 2006-05-29 20:24:28Z wilt $
+ * @version $Id: functions_general.php 4135 2006-08-14 04:25:02Z drbyte $
  */
 if (!defined('IS_ADMIN_FLAG')) {
   die('Illegal Access');
@@ -778,7 +778,7 @@ if (!defined('IS_ADMIN_FLAG')) {
   function is_product_valid($product_id, $coupon_id) {
     global $db;
     $coupons_query = "SELECT * FROM " . TABLE_COUPON_RESTRICT . "
-                      WHERE coupon_id = '" . $coupon_id . "'
+                      WHERE coupon_id = '" . (int)$coupon_id . "'
                       ORDER BY coupon_restrict ASC";
 
     $coupons = $db->Execute($coupons_query);
@@ -838,8 +838,8 @@ if (!defined('IS_ADMIN_FLAG')) {
     $checkQuery = $db->execute($sql);
     foreach ($catPathArray as $catPath) {
       $sql = "SELECT * FROM " . TABLE_COUPON_RESTRICT . "
-              WHERE category_id = " . $catPath . "
-              AND coupon_id = " . $coupon_id;
+              WHERE category_id = " . (int)$catPath . "
+              AND coupon_id = " . (int)$coupon_id;
       $result = $db->execute($sql);
       if ($result->recordCount() > 0 && $result->fields['coupon_restrict'] == 'N') return true;
       if ($result->recordCount() > 0 && $result->fields['coupon_restrict'] == 'Y') return false;
@@ -854,7 +854,7 @@ if (!defined('IS_ADMIN_FLAG')) {
     global $db;
     $sql = "SELECT * FROM " . TABLE_COUPON_RESTRICT . "
             WHERE product_id = " . (int)$product_id . "
-            AND coupon_id = " . $coupon_id . " LIMIT 1";
+            AND coupon_id = " . (int)$coupon_id . " LIMIT 1";
     $result = $db->execute($sql);
     if ($result->recordCount() > 0) {
       if ($result->fields['coupon_restrict'] == 'N') return true;
@@ -1123,7 +1123,7 @@ if (!defined('IS_ADMIN_FLAG')) {
       return '<a href="' . zen_href_link(FILENAME_CONTACT_US) . '">' .  TEXT_SHOWCASE_ONLY . '</a>';
     }
 
-    $button_check = $db->Execute("select product_is_call, products_quantity from " . TABLE_PRODUCTS . " where products_id = '" . $product_id . "'");
+    $button_check = $db->Execute("select product_is_call, products_quantity from " . TABLE_PRODUCTS . " where products_id = '" . (int)$product_id . "'");
     switch (true) {
 // cannot be added to the cart
     case (zen_get_products_allow_add_to_cart($product_id) == 'N'):
@@ -1334,6 +1334,120 @@ if (!defined('IS_ADMIN_FLAG')) {
     return $zv_paragraph;
   }
 
+
+
+/**
+ * return an array with zones defined for the specified country
+ */
+  function zen_get_country_zones($country_id) {
+    global $db;
+    $zones_array = array();
+    $zones = $db->Execute("select zone_id, zone_name
+                           from " . TABLE_ZONES . "
+                           where zone_country_id = '" . (int)$country_id . "'
+                           order by zone_name");
+    while (!$zones->EOF) {
+      $zones_array[] = array('id' => $zones->fields['zone_id'],
+                             'text' => $zones->fields['zone_name']);
+      $zones->MoveNext();
+    }
+
+    return $zones_array;
+  }
+
+/**
+ * return an array with country names and matching zones to be used in pulldown menus
+ */
+  function zen_prepare_country_zones_pull_down($country_id = '') {
+// preset the width of the drop-down for Netscape
+    $pre = '';
+    if ( (!zen_browser_detect('MSIE')) && (zen_browser_detect('Mozilla/4')) ) {
+      for ($i=0; $i<45; $i++) $pre .= '&nbsp;';
+    }
+
+    $zones = zen_get_country_zones($country_id);
+
+    if (sizeof($zones) > 0) {
+      $zones_select = array(array('id' => '', 'text' => PLEASE_SELECT));
+      $zones = array_merge($zones_select, $zones);
+    } else {
+      $zones = array(array('id' => '', 'text' => TYPE_BELOW));
+// create dummy options for Netscape to preset the height of the drop-down
+      if ( (!zen_browser_detect('MSIE')) && (zen_browser_detect('Mozilla/4')) ) {
+        for ($i=0; $i<9; $i++) {
+          $zones[] = array('id' => '', 'text' => $pre);
+        }
+      }
+    }
+
+    return $zones;
+  }
+
+/**
+ * supplies javascript to dynamically update the states/provinces list when the country is changed
+ * TABLES: zones
+ *
+ * return string
+ */
+  function zen_js_zone_list($country, $form, $field) {
+    global $db;
+    $countries = $db->Execute("select distinct zone_country_id
+                               from " . TABLE_ZONES . "
+                               order by zone_country_id");
+    $num_country = 1;
+    $output_string = '';
+    while (!$countries->EOF) {
+      if ($num_country == 1) {
+        $output_string .= '  if (' . $country . ' == "' . $countries->fields['zone_country_id'] . '") {' . "\n";
+      } else {
+        $output_string .= '  } else if (' . $country . ' == "' . $countries->fields['zone_country_id'] . '") {' . "\n";
+      }
+
+      $states = $db->Execute("select zone_name, zone_id
+                              from " . TABLE_ZONES . "
+                              where zone_country_id = '" . $countries->fields['zone_country_id'] . "'
+                              order by zone_name");
+      $num_state = 1;
+      while (!$states->EOF) {
+        if ($num_state == '1') $output_string .= '    ' . $form . '.' . $field . '.options[0] = new Option("' . PLEASE_SELECT . '", "");' . "\n";
+        $output_string .= '    ' . $form . '.' . $field . '.options[' . $num_state . '] = new Option("' . $states->fields['zone_name'] . '", "' . $states->fields['zone_id'] . '");' . "\n";
+        $num_state++;
+        $states->MoveNext();
+      }
+      $num_country++;
+      $countries->MoveNext();
+    }
+    $output_string .= '  } else {' . "\n" .
+                      '    ' . $form . '.' . $field . '.options[0] = new Option("' . TYPE_BELOW . '", "");' . "\n" .
+											'    ' . $form . '.' . 'state' . '.disabled = false;' . "\n" .
+                      '  }' . "\n";
+    return $output_string;
+  }
+
+
+
+////
+// compute the days between two dates
+  function date_diff($date1, $date2) {
+  //$date1  today, or any other day
+  //$date2  date to check against
+
+    $d1 = explode("-", $date1);
+    $y1 = $d1[0];
+    $m1 = $d1[1];
+    $d1 = $d1[2];
+
+    $d2 = explode("-", $date2);
+    $y2 = $d2[0];
+    $m2 = $d2[1];
+    $d2 = $d2[2];
+
+    $date1_set = mktime(0,0,0, $m1, $d1, $y1);
+    $date2_set = mktime(0,0,0, $m2, $d2, $y2);
+
+    return(round(($date2_set-$date1_set)/(60*60*24)));
+  }
+
 /////////////////////////////////////////////
 ////
 // call additional function files
@@ -1351,4 +1465,5 @@ if (!defined('IS_ADMIN_FLAG')) {
   require(DIR_WS_FUNCTIONS . 'functions_lookups.php');
 ////
 /////////////////////////////////////////////
+
 ?>

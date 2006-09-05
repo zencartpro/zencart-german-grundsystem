@@ -3,10 +3,10 @@
  * functions_categories.php
  *
  * @package functions
- * @copyright Copyright 2003-2005 Zen Cart Development Team
+ * @copyright Copyright 2003-2006 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: functions_categories.php 3118 2006-03-05 22:36:32Z ajeh $
+ * @version $Id: functions_categories.php 4135 2006-08-14 04:25:02Z drbyte $
  */
 
 ////
@@ -119,7 +119,7 @@
 
     // show based on status
     if ($status_setting != '') {
-      $zc_status = " c.categories_status='" . $status_setting . "' and ";
+      $zc_status = " c.categories_status='" . (int)$status_setting . "' and ";
     } else {
       $zc_status = '';
     }
@@ -274,7 +274,7 @@
       $in_cat = true;
     } else {
       $parent_categories_query = "select parent_id from " . TABLE_CATEGORIES . "
-                                  where categories_id = '" . $parent_cat_id . "'";
+                                  where categories_id = '" . (int)$parent_cat_id . "'";
 
       $parent_categories = $db->Execute($parent_categories_query);
 
@@ -451,7 +451,7 @@
 
     $lookup = str_replace('cPath=','',$lookup);
 
-    $sql = "select product_type_id from " . TABLE_PRODUCT_TYPES_TO_CATEGORY . " where category_id='" . $lookup . "'";
+    $sql = "select product_type_id from " . TABLE_PRODUCT_TYPES_TO_CATEGORY . " where category_id='" . (int)$lookup . "'";
     $look_up = $db->Execute($sql);
 
     if ($look_up->RecordCount() > 0) {
@@ -465,10 +465,10 @@
   function zen_get_categories_parent_name($categories_id) {
     global $db;
 
-    $lookup_query = "select parent_id from " . TABLE_CATEGORIES . " where categories_id='" . $categories_id . "'";
+    $lookup_query = "select parent_id from " . TABLE_CATEGORIES . " where categories_id='" . (int)$categories_id . "'";
     $lookup = $db->Execute($lookup_query);
 
-    $lookup_query = "select categories_name from " . TABLE_CATEGORIES_DESCRIPTION . " where categories_id='" . $lookup->fields['parent_id'] . "'";
+    $lookup_query = "select categories_name from " . TABLE_CATEGORIES_DESCRIPTION . " where categories_id='" . (int)$lookup->fields['parent_id'] . "'";
     $lookup = $db->Execute($lookup_query);
 
     return $lookup->fields['categories_name'];

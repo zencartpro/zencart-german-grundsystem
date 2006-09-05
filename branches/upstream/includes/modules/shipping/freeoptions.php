@@ -1,24 +1,11 @@
 <?php
-//
-// +----------------------------------------------------------------------+
-// |zen-cart Open Source E-commerce                                       |
-// +----------------------------------------------------------------------+
-// | Copyright (c) 2004 The zen-cart developers                           |
-// |                                                                      |
-// | http://www.zen-cart.com/index.php                                    |
-// |                                                                      |
-// | Portions Copyright (c) 2003 osCommerce                               |
-// +----------------------------------------------------------------------+
-// | This source file is subject to version 2.0 of the GPL license,       |
-// | that is bundled with this package in the file LICENSE, and is        |
-// | available through the world-wide-web at the following url:           |
-// | http://www.zen-cart.com/license/2_0.txt.                             |
-// | If you did not receive a copy of the zen-cart license and are unable |
-// | to obtain it through the world-wide-web, please send a note to       |
-// | license@zen-cart.com so we can mail you a copy immediately.          |
-// +----------------------------------------------------------------------+
-// $Id: freeoptions.php 3797 2006-06-18 13:38:34Z ajeh $
-//
+/**
+ * @package shippingMethod
+ * @copyright Copyright 2003-2006 Zen Cart Development Team
+ * @copyright Portions Copyright 2003 osCommerce
+ * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
+ * @version $Id: freeoptions.php 4238 2006-08-24 10:01:04Z drbyte $
+ */
 
   class freeoptions extends base {
     var $code, $title, $description, $icon, $enabled;
@@ -64,6 +51,7 @@
 // class methods
     function quote($method = '') {
       global $order;
+      $order_weight = round($_SESSION['cart']->show_weight(),9);
 
       // check if anything is configured for total, weight or item
       if ((MODULE_SHIPPING_FREEOPTIONS_TOTAL_MIN !='' or MODULE_SHIPPING_FREEOPTIONS_TOTAL_MAX !='')) {
@@ -92,21 +80,25 @@
         if ($this->ck_freeoptions_total) {
           switch (true) {
           case ((MODULE_SHIPPING_FREEOPTIONS_TOTAL_MIN !='' and MODULE_SHIPPING_FREEOPTIONS_TOTAL_MAX !='')):
-            if ($_SESSION['cart']->show_total() >= MODULE_SHIPPING_FREEOPTIONS_TOTAL_MIN and $_SESSION['cart']->show_total() <= MODULE_SHIPPING_FREEOPTIONS_TOTAL_MAX) {
+// free shipping total should not need adjusting
+//            if (($_SESSION['cart']->show_total() - $_SESSION['cart']->free_shipping_prices()) >= MODULE_SHIPPING_FREEOPTIONS_TOTAL_MIN and ($_SESSION['cart']->show_total() - $_SESSION['cart']->free_shipping_prices()) <= MODULE_SHIPPING_FREEOPTIONS_TOTAL_MAX) {
+            if (($_SESSION['cart']->show_total()) >= MODULE_SHIPPING_FREEOPTIONS_TOTAL_MIN and ($_SESSION['cart']->show_total()) <= MODULE_SHIPPING_FREEOPTIONS_TOTAL_MAX) {
               $this->ck_freeoptions_total = true;
             } else {
               $this->ck_freeoptions_total = false;
             }
             break;
           case ((MODULE_SHIPPING_FREEOPTIONS_TOTAL_MIN !='')):
-            if ($_SESSION['cart']->show_total() >= MODULE_SHIPPING_FREEOPTIONS_TOTAL_MIN) {
+//            if (($_SESSION['cart']->show_total() - $_SESSION['cart']->free_shipping_prices()) >= MODULE_SHIPPING_FREEOPTIONS_TOTAL_MIN) {
+            if (($_SESSION['cart']->show_total()) >= MODULE_SHIPPING_FREEOPTIONS_TOTAL_MIN) {
               $this->ck_freeoptions_total = true;
             } else {
               $this->ck_freeoptions_total = false;
             }
             break;
           case ((MODULE_SHIPPING_FREEOPTIONS_TOTAL_MAX !='')):
-            if ($_SESSION['cart']->show_total() <= MODULE_SHIPPING_FREEOPTIONS_TOTAL_MAX) {
+//            if (($_SESSION['cart']->show_total() - $_SESSION['cart']->free_shipping_prices()) <= MODULE_SHIPPING_FREEOPTIONS_TOTAL_MAX) {
+            if (($_SESSION['cart']->show_total()) <= MODULE_SHIPPING_FREEOPTIONS_TOTAL_MAX) {
               $this->ck_freeoptions_total = true;
             } else {
               $this->ck_freeoptions_total = false;
@@ -118,21 +110,21 @@
         if ($this->ck_freeoptions_weight) {
           switch (true) {
           case ((MODULE_SHIPPING_FREEOPTIONS_WEIGHT_MIN !='' and MODULE_SHIPPING_FREEOPTIONS_WEIGHT_MAX !='')):
-            if ($_SESSION['cart']->show_weight() >= MODULE_SHIPPING_FREEOPTIONS_WEIGHT_MIN and $_SESSION['cart']->show_weight() <= MODULE_SHIPPING_FREEOPTIONS_WEIGHT_MAX) {
+            if ($order_weight >= MODULE_SHIPPING_FREEOPTIONS_WEIGHT_MIN and $order_weight <= MODULE_SHIPPING_FREEOPTIONS_WEIGHT_MAX) {
               $this->ck_freeoptions_weight = true;
             } else {
               $this->ck_freeoptions_weight = false;
             }
             break;
           case ((MODULE_SHIPPING_FREEOPTIONS_WEIGHT_MIN !='')):
-            if ($_SESSION['cart']->show_weight() >= MODULE_SHIPPING_FREEOPTIONS_WEIGHT_MIN) {
+            if ($order_weight >= MODULE_SHIPPING_FREEOPTIONS_WEIGHT_MIN) {
               $this->ck_freeoptions_weight = true;
             } else {
               $this->ck_freeoptions_weight = false;
             }
             break;
           case ((MODULE_SHIPPING_FREEOPTIONS_WEIGHT_MAX !='')):
-            if ($_SESSION['cart']->show_weight() <= MODULE_SHIPPING_FREEOPTIONS_WEIGHT_MAX) {
+            if ($order_weight <= MODULE_SHIPPING_FREEOPTIONS_WEIGHT_MAX) {
               $this->ck_freeoptions_weight = true;
             } else {
               $this->ck_freeoptions_weight = false;
@@ -144,21 +136,25 @@
         if ($this->ck_freeoptions_items) {
           switch (true) {
           case ((MODULE_SHIPPING_FREEOPTIONS_ITEMS_MIN !='' and MODULE_SHIPPING_FREEOPTIONS_ITEMS_MAX !='')):
-            if ($_SESSION['cart']->count_contents() >= MODULE_SHIPPING_FREEOPTIONS_ITEMS_MIN and $_SESSION['cart']->count_contents() <= MODULE_SHIPPING_FREEOPTIONS_ITEMS_MAX) {
+// free shipping items should not need adjusting
+//            if (($_SESSION['cart']->count_contents() - $_SESSION['cart']->free_shipping_items()) >= MODULE_SHIPPING_FREEOPTIONS_ITEMS_MIN and ($_SESSION['cart']->count_contents() - $_SESSION['cart']->free_shipping_items()) <= MODULE_SHIPPING_FREEOPTIONS_ITEMS_MAX) {
+            if (($_SESSION['cart']->count_contents()) >= MODULE_SHIPPING_FREEOPTIONS_ITEMS_MIN and ($_SESSION['cart']->count_contents()) <= MODULE_SHIPPING_FREEOPTIONS_ITEMS_MAX) {
               $this->ck_freeoptions_items = true;
             } else {
               $this->ck_freeoptions_items = false;
             }
             break;
           case ((MODULE_SHIPPING_FREEOPTIONS_ITEMS_MIN !='')):
-            if ($_SESSION['cart']->count_contents() >= MODULE_SHIPPING_FREEOPTIONS_ITEMS_MIN) {
+//            if (($_SESSION['cart']->count_contents() - $_SESSION['cart']->free_shipping_items()) >= MODULE_SHIPPING_FREEOPTIONS_ITEMS_MIN) {
+            if (($_SESSION['cart']->count_contents()) >= MODULE_SHIPPING_FREEOPTIONS_ITEMS_MIN) {
               $this->ck_freeoptions_items = true;
             } else {
               $this->ck_freeoptions_items = false;
             }
             break;
           case ((MODULE_SHIPPING_FREEOPTIONS_ITEMS_MAX !='')):
-            if ($_SESSION['cart']->count_contents() <= MODULE_SHIPPING_FREEOPTIONS_ITEMS_MAX) {
+//            if (($_SESSION['cart']->count_contents() - $_SESSION['cart']->free_shipping_items())<= MODULE_SHIPPING_FREEOPTIONS_ITEMS_MAX) {
+            if (($_SESSION['cart']->count_contents())<= MODULE_SHIPPING_FREEOPTIONS_ITEMS_MAX) {
               $this->ck_freeoptions_items = true;
             } else {
               $this->ck_freeoptions_items = false;
@@ -167,6 +163,13 @@
           }
         }
       }
+
+/*
+echo 'I see count: ' . $_SESSION['cart']->count_contents() . ' free count: ' . $_SESSION['cart']->free_shipping_items() . '<br>' .
+'I see weight: ' . $_SESSION['cart']->show_weight() . '<br>' .
+'I see total: ' . $_SESSION['cart']->show_total() . ' free price: ' . $_SESSION['cart']->free_shipping_prices() . '<br>' .
+'Final check ' . ($this->ck_freeoptions_total ? 'T: YES ' : 'T: NO ') . ($this->ck_freeoptions_weight ? 'W: YES ' : 'W: NO ') . ($this->ck_freeoptions_items ? 'I: YES ' : 'I: NO ') . '<br>';
+*/
 
 // final check for display of Free Options
       if ($this->ck_freeoptions_total or $this->ck_freeoptions_weight or $this->ck_freeoptions_items) {

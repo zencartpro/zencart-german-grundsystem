@@ -6,7 +6,7 @@
  * @copyright Copyright 2003-2006 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: general.php 3447 2006-04-17 20:10:18Z drbyte $
+ * @version $Id: general.php 4327 2006-08-31 07:59:37Z drbyte $
  */
 
   if (!defined('TABLE_UPGRADE_EXCEPTIONS')) define('TABLE_UPGRADE_EXCEPTIONS','upgrade_exceptions');
@@ -135,6 +135,21 @@ function executeSql($sql_file, $database, $table_prefix = '', $isupgrade=false) 
               break;
             } else {
               $line = (strtoupper($param[2].' '.$param[3].' '.$param[4]) == 'IF NOT EXISTS') ? 'CREATE TABLE IF NOT EXISTS ' . $table_prefix . substr($line, 27) : 'CREATE TABLE ' . $table_prefix . substr($line, 13);
+            }
+            break;
+          case (substr($line_upper, 0, 13) == 'REPLACE INTO '):
+            //check to see if table prefix is going to match
+            if (!$tbl_exists = zen_table_exists($param[2])) $result=sprintf(REASON_TABLE_NOT_FOUND,$param[2]).' CHECK PREFIXES!';
+            // check to see if INSERT command may be safely executed for "configuration" or "product_type_layout" tables
+            if (($param[2]=='configuration'       && ($result=zen_check_config_key($line))) or 
+                ($param[2]=='product_type_layout' && ($result=zen_check_product_type_layout_key($line))) or
+                ($param[2]=='configuration_group' && ($result=zen_check_cfggroup_key($line))) or
+                (!$tbl_exists)    ) {
+              zen_write_to_upgrade_exceptions_table($line, $result, $sql_file);
+              $ignore_line=true;
+              break;
+            } else {
+              $line = 'REPLACE INTO ' . $table_prefix . substr($line, 13);
             }
             break;
           case (substr($line_upper, 0, 12) == 'INSERT INTO '):
@@ -284,7 +299,7 @@ function executeSql($sql_file, $database, $table_prefix = '', $isupgrade=false) 
           global $zc_show_progress;
           if ($zc_show_progress=='yes') {
              $counter++;
-             if ($counter/5 == (int)($counter/5)) echo '~ ';
+             if (($counter/5) == (int)($counter/5)) echo '~ ';
              if ($counter>200) {
                echo '<br /><br />';
                $counter=0;
@@ -439,6 +454,7 @@ function executeSql($sql_file, $database, $table_prefix = '', $isupgrade=false) 
      //echo $filename . '!<br>';
      $lines = file($filename);
      foreach($lines as $line) { // read the configure.php file for specific variables
+       if (substr($line,0,2) == '//') continue;
        $def_string=array();
        $def_string=explode("'",$line);
        //define('CONSTANT','value');
@@ -791,7 +807,7 @@ function executeSql($sql_file, $database, $table_prefix = '', $isupgrade=false) 
             `reason` varchar(200) default NULL,
             `errordate` datetime default '0001-01-01 00:00:00',
             `sqlstatement` text, PRIMARY KEY  (`upgrade_exception_id`)
-          ) TYPE=MyISAM");
+          )");
     return $result;
     }
   }

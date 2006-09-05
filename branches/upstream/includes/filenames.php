@@ -7,7 +7,7 @@
  * @copyright Copyright 2003-2006 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: filenames.php 3454 2006-04-18 00:56:32Z drbyte $
+ * @version $Id: filenames.php 4179 2006-08-20 21:19:52Z ajeh $
  * @private
  */
 /**
@@ -116,6 +116,7 @@ define('FILENAME_POPUP_CVV_HELP', 'popup_cvv_help');
 define('FILENAME_POPUP_ATTRIBUTES_QTY_PRICES', 'popup_attributes_qty_prices');
 define('FILENAME_PRIVACY', 'privacy');
 define('FILENAME_PRODUCT', 'product');
+define('FILENAME_PRODUCT_LISTING_ALPHA_SORTER','product_listing_alpha_sorter');
 define('FILENAME_PRODUCT_TYPES', 'product_types');
 define('FILENAME_PRODUCT_INFO', 'product_info');
 define('FILENAME_PRODUCT_REVIEWS', 'product_reviews');

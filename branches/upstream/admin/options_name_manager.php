@@ -1,24 +1,11 @@
 <?php
-//
-// +----------------------------------------------------------------------+
-// |zen-cart Open Source E-commerce                                       |
-// +----------------------------------------------------------------------+
-// | Copyright (c) 2003 The zen-cart developers                           |
-// |                                                                      |
-// | http://www.zen-cart.com/index.php                                    |
-// |                                                                      |
-// | Portions Copyright (c) 2003 osCommerce                               |
-// +----------------------------------------------------------------------+
-// | This source file is subject to version 2.0 of the GPL license,       |
-// | that is bundled with this package in the file LICENSE, and is        |
-// | available through the world-wide-web at the following url:           |
-// | http://www.zen-cart.com/license/2_0.txt.                             |
-// | If you did not receive a copy of the zen-cart license and are unable |
-// | to obtain it through the world-wide-web, please send a note to       |
-// | license@zen-cart.com so we can mail you a copy immediately.          |
-// +----------------------------------------------------------------------+
-//  $Id: options_name_manager.php 3297 2006-03-28 08:35:01Z drbyte $
-//
+/**
+ * @package admin
+ * @copyright Copyright 2003-2006 Zen Cart Development Team
+ * @copyright Portions Copyright 2003 osCommerce
+ * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
+ * @version $Id: options_name_manager.php 4280 2006-08-26 03:32:55Z drbyte $
+ */
 
   require('includes/application_top.php');
   $languages = zen_get_languages();
@@ -73,11 +60,11 @@
                       values ('" . (int)$products_options_id . "',
                               '" . zen_db_input($option_name) . "',
                               '" . (int)$languages[$i]['id'] . "',
-                              '" . $products_options_sort_order[$languages[$i]['id']] . "',
-                              '" . zen_db_input($option_type) . "',
-                              '" . zen_db_input($products_options_images_per_row) . "',
-                              '" . zen_db_input($products_options_images_style) . "',
-                              '" . (($products_options_rows <= 1 and $option_type == PRODUCTS_OPTIONS_TYPE_TEXT) ? 1 : zen_db_input($products_options_rows)) . "'
+                              '" . (int)$products_options_sort_order[$languages[$i]['id']] . "',
+                              '" . (int)zen_db_input($option_type) . "',
+                              '" . (int)zen_db_input($products_options_images_per_row) . "',
+                              '" . (int)zen_db_input($products_options_images_style) . "',
+                              '" . (int)(($products_options_rows <= 1 and $option_type == PRODUCTS_OPTIONS_TYPE_TEXT) ? 1 : zen_db_input($products_options_rows)) . "'
                               )");
         }
 
@@ -130,16 +117,16 @@
 
         for ($i=0, $n=sizeof($languages); $i<$n; $i ++) {
           $option_name = zen_db_prepare_input($option_name_array[$languages[$i]['id']]);
-          $products_options_sort_order = zen_db_prepare_input($products_options_sort_order_array[$languages[$i]['id']]);
+          $products_options_sort_order = (int)zen_db_prepare_input($products_options_sort_order_array[$languages[$i]['id']]);
 
 
           $products_options_length = zen_db_prepare_input($products_options_length_array[$languages[$i]['id']]);
           $products_options_comment = zen_db_prepare_input($products_options_comment_array[$languages[$i]['id']]);
           $products_options_size = zen_db_prepare_input($products_options_size_array[$languages[$i]['id']]);
 
-          $products_options_images_per_row = zen_db_prepare_input($products_options_images_per_row_array[$languages[$i]['id']]);
-          $products_options_images_style = zen_db_prepare_input($products_options_images_style_array[$languages[$i]['id']]);
-          $products_options_rows = zen_db_prepare_input($products_options_rows_array[$languages[$i]['id']]);
+          $products_options_images_per_row = (int)zen_db_prepare_input($products_options_images_per_row_array[$languages[$i]['id']]);
+          $products_options_images_style = (int)zen_db_prepare_input($products_options_images_style_array[$languages[$i]['id']]);
+          $products_options_rows = (int)zen_db_prepare_input($products_options_rows_array[$languages[$i]['id']]);
 
 //          zen_db_query("update " . TABLE_PRODUCTS_OPTIONS . " set products_options_name = '" . zen_db_input($option_name) . "', products_options_type = '" . $option_type . "' where products_options_id = '" . (int)$option_id . "' and language_id = '" . (int)$languages[$i]['id'] . "'");
 

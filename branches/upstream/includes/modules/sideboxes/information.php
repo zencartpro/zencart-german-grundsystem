@@ -6,7 +6,7 @@
  * @copyright Copyright 2003-2006 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: information.php 3464 2006-04-19 00:07:26Z ajeh $
+ * @version $Id: information.php 4132 2006-08-14 00:36:39Z drbyte $
  */
 
   unset($information);
@@ -26,7 +26,7 @@
 
 // Forum (phpBB) link:
   if ( (isset($phpBB->phpBB['db_installed_config']) && $phpBB->phpBB['db_installed_config']) && (isset($phpBB->phpBB['files_installed']) && $phpBB->phpBB['files_installed'])  && (PHPBB_LINKS_ENABLED=='true')) {
-    $information[] = '<a href="' . zen_href_link($phpBB->phpBB['phpbb_url'] . FILENAME_BB_INDEX, '', 'NONSSL', '', '', true, false) . '" target="_blank">' . BOX_BBINDEX . '</a>';
+    $information[] = '<a href="' . zen_href_link($phpBB->phpBB['phpbb_url'] . FILENAME_BB_INDEX, '', 'NONSSL', false, '', true) . '" target="_blank">' . BOX_BBINDEX . '</a>';
 // or: $phpBB->phpBB['phpbb_url'] . FILENAME_BB_INDEX
 // or: str_replace(str_replace(DIR_WS_CATALOG, '', DIR_FS_CATALOG), '', DIR_WS_PHPBB)
   }

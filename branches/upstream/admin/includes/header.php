@@ -4,7 +4,7 @@
  * @copyright Copyright 2003-2006 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: header.php 3405 2006-04-10 16:43:55Z drbyte $
+ * @version $Id: header.php 4360 2006-09-03 00:04:03Z drbyte $
  */
 if (!defined('IS_ADMIN_FLAG')) {
   die('Illegal Access');
@@ -59,6 +59,13 @@ if ((basename($PHP_SELF) != FILENAME_DEFINE_LANGUAGE . '.php') and (basename($PH
       $messageStack->add(WARNING_DATABASE_VERSION_OUT_OF_DATE, 'warning');
     }
   }
+// Check that shipping/payment modules have been defined
+  if (zen_get_configuration_key_value('MODULE_PAYMENT_INSTALLED') == '') {
+    $messageStack->add(ERROR_PAYMENT_MODULES_NOT_DEFINED, 'caution');
+  }
+  if (zen_get_configuration_key_value('MODULE_SHIPPING_INSTALLED') == '') {
+    $messageStack->add(ERROR_SHIPPING_MODULES_NOT_DEFINED, 'caution');
+  }
 
 // Alerts for EZ-Pages
   if (EZPAGES_STATUS_HEADER == '2' and strstr(EXCLUDE_ADMIN_IP_FOR_MAINTENANCE, $_SERVER['REMOTE_ADDR'])) {
@@ -70,6 +77,12 @@ if ((basename($PHP_SELF) != FILENAME_DEFINE_LANGUAGE . '.php') and (basename($PH
   if (EZPAGES_STATUS_SIDEBOX == '2' and strstr(EXCLUDE_ADMIN_IP_FOR_MAINTENANCE, $_SERVER['REMOTE_ADDR'])) {
     $messageStack->add(TEXT_EZPAGES_STATUS_SIDEBOX_ADMIN, 'caution');
   }
+
+// Editor alerts
+  if (HTML_EDITOR_PREFERENCE != 'NONE' && !is_dir(DIR_FS_CATALOG . 'editors')) {
+    $messageStack->add(ERROR_EDITORS_FOLDER_NOT_FOUND, 'caution');
+  }
+
 
 // check activity log size
   if (basename($PHP_SELF) == FILENAME_DEFAULT . '.php') {

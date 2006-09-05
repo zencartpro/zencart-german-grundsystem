@@ -17,7 +17,7 @@
 // | to obtain it through the world-wide-web, please send a note to       |
 // | license@zen-cart.com so we can mail you a copy immediately.          |
 // +----------------------------------------------------------------------+
-//  $Id: store_manager.php 2634 2005-12-20 06:56:04Z drbyte $
+//  $Id: store_manager.php 4206 2006-08-22 10:00:01Z drbyte $
 //
 //
   define('HEADING_TITLE', 'Store Manager');
@@ -72,4 +72,8 @@
 
   define('TEXT_INFO_NO_EDIT_AVAILABLE','No edit available');
   define('TEXT_INFO_CONFIGURATION_HIDDEN', ' or, HIDDEN');
+
+  define('TEXT_INFO_DATABASE_OPTIMIZE', '<strong>Optimize Database</strong> to remove wasted space from deleted records.<br />May be optionally run monthly or weekly on a busy database.<br />(Best to run during non-busy times.)');
+  define('SUCCESS_DB_OPTIMIZE', 'Database Optimization - Tables Processed: ');
+
 ?>

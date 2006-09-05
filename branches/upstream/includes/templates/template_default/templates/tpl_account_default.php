@@ -9,14 +9,14 @@
  * @copyright Copyright 2003-2005 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: tpl_account_default.php 3105 2006-03-04 18:24:20Z wilt $
+ * @version $Id: tpl_account_default.php 4086 2006-08-07 02:06:18Z ajeh $
  */
 ?>
 
 <div class="centerColumn" id="accountDefault">
-  
+
 <h1 id="accountDefaultHeading"><?php echo HEADING_TITLE; ?></h1>
-<?php if ($messageStack->size('account') > 0) echo $messageStack->output('account'); ?> 
+<?php if ($messageStack->size('account') > 0) echo $messageStack->output('account'); ?>
 
 <?php
     if (zen_count_customer_orders() > 0) {
@@ -66,20 +66,20 @@
   if (SHOW_NEWSLETTER_UNSUBSCRIBE_LINK !='false' or CUSTOMERS_PRODUCTS_NOTIFICATION_STATUS !='0') {
 ?>
 <h2><?php echo EMAIL_NOTIFICATIONS_TITLE; ?></h2>
+<ul id="myAccountNotify" class="list">
 <?php
   if (SHOW_NEWSLETTER_UNSUBSCRIBE_LINK=='true') {
 ?>
-<ul id="myAccountNotify" class="list">
 <li><?php echo ' <a href="' . zen_href_link(FILENAME_ACCOUNT_NEWSLETTERS, '', 'SSL') . '">' . EMAIL_NOTIFICATIONS_NEWSLETTERS . '</a>'; ?></li>
 <?php } //endif newsletter unsubscribe ?>
 <?php
   if (CUSTOMERS_PRODUCTS_NOTIFICATION_STATUS == '1') {
 ?>
 <li><?php echo ' <a href="' . zen_href_link(FILENAME_ACCOUNT_NOTIFICATIONS, '', 'SSL') . '">' . EMAIL_NOTIFICATIONS_PRODUCTS . '</a>'; ?></li>
-</ul>
 
 <?php } //endif product notification ?>
-  
+</ul>
+
 <?php } // endif don't show unsubscribe or notification ?>
 </div>
 

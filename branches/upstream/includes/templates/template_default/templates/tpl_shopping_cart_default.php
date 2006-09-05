@@ -9,7 +9,7 @@
  * @copyright Copyright 2003-2006 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: tpl_shopping_cart_default.php 3455 2006-04-18 04:44:25Z drbyte $
+ * @version $Id: tpl_shopping_cart_default.php 4140 2006-08-15 03:37:53Z drbyte $
  */
 ?>
 <div class="centerColumn" id="shoppingCartDefault">
@@ -89,7 +89,7 @@
 <?php
   echo $product['attributeHiddenField'];
   if (isset($product['attributes']) && is_array($product['attributes'])) {
-  echo '<div id="cartAttribsList">';
+  echo '<div class="cartAttribsList">';
   echo '<ul>';
     reset($product['attributes']);
     foreach ($product['attributes'] as $option => $value) {

@@ -1,24 +1,11 @@
 <?php
-//
-// +----------------------------------------------------------------------+
-// |zen-cart Open Source E-commerce                                       |
-// +----------------------------------------------------------------------+
-// | Copyright (c) 2004 The zen-cart developers                           |
-// |                                                                      |
-// | http://www.zen-cart.com/index.php                                    |
-// |                                                                      |
-// | Portions Copyright (c) 2003 osCommerce                               |
-// +----------------------------------------------------------------------+
-// | This source file is subject to version 2.0 of the GPL license,       |
-// | that is bundled with this package in the file LICENSE, and is        |
-// | available through the world-wide-web at the following url:           |
-// | http://www.zen-cart.com/license/2_0.txt.                             |
-// | If you did not receive a copy of the zen-cart license and are unable |
-// | to obtain it through the world-wide-web, please send a note to       |
-// | license@zen-cart.com so we can mail you a copy immediately.          |
-// +----------------------------------------------------------------------+
-//  $Id: store_manager.php 3297 2006-03-28 08:35:01Z drbyte $
-//
+/**
+ * @package admin
+ * @copyright Copyright 2003-2006 Zen Cart Development Team
+ * @copyright Portions Copyright 2003 osCommerce
+ * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
+ * @version $Id: store_manager.php 4279 2006-08-26 03:31:29Z drbyte $
+ */
 
   require('includes/application_top.php');
 
@@ -40,6 +27,7 @@
 // clean out the admin_activity_log
     case 'clean_admin_activity_log':
       $db->Execute("delete from " . TABLE_ADMIN_ACTIVITY_LOG);
+      $db->Execute("optimize table " . TABLE_ADMIN_ACTIVITY_LOG);
       $messageStack->add_session(SUCCESS_CLEAN_ADMIN_ACTIVITY_LOG, 'success');
       unset($_SESSION['reset_admin_activity_log']);
       zen_redirect(zen_href_link(FILENAME_STORE_MANAGER));
@@ -102,6 +90,20 @@
     $update_counter = $db->Execute($sql);
 
     $messageStack->add_session(SUCCESS_UPDATE_COUNTER . (int)$_POST['new_counter'], 'success');
+    $action='';
+    zen_redirect(zen_href_link(FILENAME_STORE_MANAGER));
+    break;
+
+    case ('optimize_db'):
+    // clean out unused space in database
+    $sql = "SHOW TABLE STATUS FROM " . DB_DATABASE;
+    $tables = $db->Execute($sql);
+    while(!$tables->EOF) {
+      $db->Execute("OPTIMIZE TABLE " . $tables->fields['Name']);
+      $i++;
+      $tables->MoveNext();
+    }
+    $messageStack->add_session(SUCCESS_DB_OPTIMIZE . ' ' . $i, 'success');
     $action='';
     zen_redirect(zen_href_link(FILENAME_STORE_MANAGER));
     break;
@@ -510,7 +512,7 @@ if ($show_configuration_info == 'true') {
 <!-- bof: resrt test order to new order number -->
       <tr>
         <td colspan="2"><br /><table border="0" cellspacing="0" cellpadding="2">
-          <tr><form name = "update_orders" action="<?php echo zen_href_link(FILENAME_STORE_MANAGER, 'action=update_orders_id', 'NONSSL'); ?>"' method="post">
+          <tr><form name = "update_orders" action="<?php echo zen_href_link(FILENAME_STORE_MANAGER, 'action=update_orders_id', 'NONSSL'); ?>" method="post">
             <td class="main" align="left" valign="top"><?php echo TEXT_ORDERS_ID_UPDATE; ?></td>
             <td class="main" align="left" valign="bottom">
               <?php echo TEXT_OLD_ORDERS_ID . '&nbsp;&nbsp;&nbsp;' . zen_draw_input_field('old_orders_id'); ?>
@@ -532,7 +534,7 @@ if ($show_configuration_info == 'true') {
             <td colspan="3" class="main" align="left" valign="middle"><?php echo TEXT_CONFIGURATION_CONSTANT; ?></td>
           </tr>
 
-          <tr><form name = "locate_configure_key" action="<?php echo zen_href_link(FILENAME_STORE_MANAGER, 'action=locate_configuration_key', 'NONSSL'); ?>"' method="post">
+          <tr><form name = "locate_configure_key" action="<?php echo zen_href_link(FILENAME_STORE_MANAGER, 'action=locate_configuration_key', 'NONSSL'); ?>" method="post">
             <td class="main" align="left" valign="bottom"><?php echo '<strong>' . TEXT_CONFIGURATION_KEY . '</strong>' . '<br />' . zen_draw_input_field('configuration_key'); ?></td>
             <td class="main" align="center" valign="bottom"><?php echo zen_image_submit('button_search.gif', IMAGE_SEARCH); ?></td>
             <td class="main" width="60%">&nbsp;</td>
@@ -551,7 +553,7 @@ if ($show_configuration_info == 'true') {
             <td colspan="3" class="main" align="left" valign="middle"><?php echo TEXT_CONFIGURATION_CONSTANT_FILES; ?></td>
           </tr>
 
-          <tr><form name = "locate_configure" action="<?php echo zen_href_link(FILENAME_STORE_MANAGER, 'action=locate_configuration', 'NONSSL'); ?>"' method="post">
+          <tr><form name = "locate_configure" action="<?php echo zen_href_link(FILENAME_STORE_MANAGER, 'action=locate_configuration', 'NONSSL'); ?>" method="post">
             <td class="main" align="left" valign="bottom"><?php echo '<strong>' . TEXT_CONFIGURATION_KEY_FILES . '</strong>' . '<br />' . zen_draw_input_field('configuration_key'); ?></td>
             <td class="main" align="left" valign="middle">
               <?php
@@ -575,6 +577,18 @@ if ($show_configuration_info == 'true') {
         </table></td>
       </tr>
 <!-- eof: Locate a configuration constant -->
+
+<!-- bof: database table-optimize -->
+      <tr>
+        <td colspan="2"><br /><br /><table border="0" cellspacing="0" cellpadding="2">
+          <tr>
+            <td class="main" align="left" valign="top"><?php echo TEXT_INFO_DATABASE_OPTIMIZE; ?></td>
+            <td class="main" align="right" valign="middle"><?php echo '<a href="' . zen_href_link(FILENAME_STORE_MANAGER, 'action=optimize_db') . '">' . zen_image_button('button_confirm.gif', IMAGE_UPDATE) . '</a>'; ?></td>
+          </tr>
+        </table></td>
+      </tr>
+<!-- eof: database table-optimize -->
+
 
 <?php
 } // eof configure

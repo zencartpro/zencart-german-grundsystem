@@ -1,24 +1,11 @@
 <?php
-//
-// +----------------------------------------------------------------------+
-// |zen-cart Open Source E-commerce                                       |
-// +----------------------------------------------------------------------+
-// | Copyright (c) 2003 The zen-cart developers                           |
-// |                                                                      |
-// | http://www.zen-cart.com/index.php                                    |
-// |                                                                      |
-// | Portions Copyright (c) 2003 osCommerce                               |
-// +----------------------------------------------------------------------+
-// | This source file is subject to version 2.0 of the GPL license,       |
-// | that is bundled with this package in the file LICENSE, and is        |
-// | available through the world-wide-web at the following url:           |
-// | http://www.zen-cart.com/license/2_0.txt.                             |
-// | If you did not receive a copy of the zen-cart license and are unable |
-// | to obtain it through the world-wide-web, please send a note to       |
-// | license@zen-cart.com so we can mail you a copy immediately.          |
-// +----------------------------------------------------------------------+
-//  $Id: attributes_controller.php 3205 2006-03-19 01:28:24Z ajeh $
-//
+/**
+ * @package admin
+ * @copyright Copyright 2003-2006 Zen Cart Development Team
+ * @copyright Portions Copyright 2003 osCommerce
+ * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
+ * @version $Id: attributes_controller.php 4280 2006-08-26 03:32:55Z drbyte $
+ */
 
   require('includes/application_top.php');
 
@@ -257,36 +244,36 @@
                                   '" . (int)$products_id . "',
                                   '" . (int)$options_id . "',
                                   '" . (int)$values_id . "',
-                                  '" . zen_db_input($value_price) . "',
+                                  '" . (float)zen_db_input($value_price) . "',
                                   '" . zen_db_input($price_prefix) . "',
-                                  '" . zen_db_input($products_options_sort_order) . "',
-                                  '" . zen_db_input($product_attribute_is_free) . "',
-                                  '" . zen_db_input($products_attributes_weight) . "',
+                                  '" . (int)zen_db_input($products_options_sort_order) . "',
+                                  '" . (int)zen_db_input($product_attribute_is_free) . "',
+                                  '" . (float)zen_db_input($products_attributes_weight) . "',
                                   '" . zen_db_input($products_attributes_weight_prefix) . "',
-                                  '" . zen_db_input($attributes_display_only) . "',
-                                  '" . zen_db_input($attributes_default) . "',
-                                  '" . zen_db_input($attributes_discounted) . "',
+                                  '" . (int)zen_db_input($attributes_display_only) . "',
+                                  '" . (int)zen_db_input($attributes_default) . "',
+                                  '" . (int)zen_db_input($attributes_discounted) . "',
                                   '" . zen_db_input($attributes_image_name) . "',
-                                  '" . zen_db_input($attributes_price_base_included) . "',
-                                  '" . zen_db_input($attributes_price_onetime) . "',
-                                  '" . zen_db_input($attributes_price_factor) . "',
-                                  '" . zen_db_input($attributes_price_factor_offset) . "',
-                                  '" . zen_db_input($attributes_price_factor_onetime) . "',
-                                  '" . zen_db_input($attributes_price_factor_onetime_offset) . "',
+                                  '" . (int)zen_db_input($attributes_price_base_included) . "',
+                                  '" . (float)zen_db_input($attributes_price_onetime) . "',
+                                  '" . (float)zen_db_input($attributes_price_factor) . "',
+                                  '" . (float)zen_db_input($attributes_price_factor_offset) . "',
+                                  '" . (float)zen_db_input($attributes_price_factor_onetime) . "',
+                                  '" . (float)zen_db_input($attributes_price_factor_onetime_offset) . "',
                                   '" . zen_db_input($attributes_qty_prices) . "',
                                   '" . zen_db_input($attributes_qty_prices_onetime) . "',
-                                  '" . zen_db_input($attributes_price_words) . "',
-                                  '" . zen_db_input($attributes_price_words_free) . "',
-                                  '" . zen_db_input($attributes_price_letters) . "',
-                                  '" . zen_db_input($attributes_price_letters_free) . "',
-                                  '" . zen_db_input($attributes_required) . "')");
+                                  '" . (float)zen_db_input($attributes_price_words) . "',
+                                  '" . (int)zen_db_input($attributes_price_words_free) . "',
+                                  '" . (float)zen_db_input($attributes_price_letters) . "',
+                                  '" . (int)zen_db_input($attributes_price_letters_free) . "',
+                                  '" . (int)zen_db_input($attributes_required) . "')");
 
             if (DOWNLOAD_ENABLED == 'true') {
               $products_attributes_id = $db->Insert_ID();
 
               $products_attributes_filename = zen_db_prepare_input($_POST['products_attributes_filename']);
-              $products_attributes_maxdays = zen_db_prepare_input($_POST['products_attributes_maxdays']);
-              $products_attributes_maxcount = zen_db_prepare_input($_POST['products_attributes_maxcount']);
+              $products_attributes_maxdays = (int)zen_db_prepare_input($_POST['products_attributes_maxdays']);
+              $products_attributes_maxcount = (int)zen_db_prepare_input($_POST['products_attributes_maxcount']);
 
 //die( 'I am adding ' . strlen($_POST['products_attributes_filename']) . ' vs ' . strlen(trim($_POST['products_attributes_filename'])) . ' vs ' . strlen(zen_db_prepare_input($_POST['products_attributes_filename'])) . ' vs ' . strlen(zen_db_input($products_attributes_filename)) );
               if (zen_not_null($products_attributes_filename)) {
@@ -384,6 +371,9 @@
             $attributes_image_name = ((isset($_POST['attributes_previous_image']) and $_POST['attributes_image'] != 'none') ? $_POST['attributes_previous_image'] : '');
           }
 
+if ($_POST['image_delete'] == 1) {
+  $attributes_image_name = '';
+}
 // turned off until working
           $db->Execute("update " . TABLE_PRODUCTS_ATTRIBUTES . "
                         set attributes_image = '" .  $attributes_image_name . "'
@@ -1222,6 +1212,10 @@ if ($action == '') {
 // set image overwrite
   $on_overwrite = true;
   $off_overwrite = false;
+// set image delete
+  $on_image_delete = false;
+  $off_image_delete = true;
+
 ?>
             </select>&nbsp;</td>
 
@@ -1366,6 +1360,7 @@ if ($action == '') {
                   <td class="main" valign="top"><?php echo TEXT_ATTRIBUTES_IMAGE_DIR . '<br />' . zen_draw_pull_down_menu('img_dir', $dir_info, $default_directory); ?></td>
                   <td class="main" valign="middle"><?php echo ($attributes_values->fields['attributes_image'] != '' ? zen_image(DIR_WS_CATALOG_IMAGES . $attributes_values->fields['attributes_image']) : ''); ?></td>
                   <td class="main" valign="top"><?php echo TEXT_IMAGES_OVERWRITE . '<br />' . zen_draw_radio_field('overwrite', '0', $off_overwrite) . '&nbsp;' . TABLE_HEADING_NO . ' ' . zen_draw_radio_field('overwrite', '1', $on_overwrite) . '&nbsp;' . TABLE_HEADING_YES; ?></td>
+                  <td class="main" valign="top"><?php echo TEXT_IMAGES_DELETE . '<br />' . zen_draw_radio_field('image_delete', '0', $off_image_delete) . '&nbsp;' . TABLE_HEADING_NO . ' ' . zen_draw_radio_field('image_delete', '1', $on_image_delete) . '&nbsp;' . TABLE_HEADING_YES; ?></td>
                 </tr>
               </table>
             </td>
