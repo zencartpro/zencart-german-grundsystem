@@ -21,21 +21,23 @@ foreach ($autoLoadConfig as $actionPoint => $row) {
   $debugOutput = "";
   foreach($row as $entry) {
     $debugOutput = 'actionPoint=>'.$actionPoint . ' ';
-    $entry['loadFile'] = str_replace(array(':', '\\\\'), '', $entry['loadFile']);
+//    $entry['loadFile'] = str_replace(array(':', '\\\\'), '', $entry['loadFile']);
     switch($entry['autoType']) {
       case 'include':
       /**
        * include a file as specified by autoloader array
        */
-      if (file_exists($entry['loadFile'])) include($entry['loadFile']);
+      if (file_exists($entry['loadFile'])) {include($entry['loadFile']);
       $debugOutput .= 'include(\'' . $entry['loadFile'] . '\');' . '<br />';
+    	}
       break;
       case 'require':
       /**
        * require a file as specified by autoloader array
        */
       if (file_exists($entry['loadFile'])) require($entry['loadFile']);
-      $debugOutput .= 'include(\'' . $entry['loadFile'] . '\');' . '<br />';
+      $debugOutput .= 'require(\'' . $entry['loadFile'] . '\');' . '<br />';
+    
       break;
       case 'init_script':
       $baseDir = DIR_WS_INCLUDES . 'init_includes/';
