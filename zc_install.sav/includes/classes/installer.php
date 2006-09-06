@@ -7,7 +7,7 @@
  * @copyright Copyright 2003-2006 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: installer.php 4296 2006-08-27 05:14:23Z drbyte $
+ * @version $Id: installer.php 4387 2006-09-04 13:54:28Z drbyte $
  */
 
 
@@ -134,7 +134,7 @@
         $retVal = false;
       }
       @fclose($fp);
-      if (file_exists($zp_file)) @unlink($zp_file);
+      if (file_exists($zp_file) && !strstr($zp_file, 'configure.php')) @unlink($zp_file);
       return $retVal;
     }
 
