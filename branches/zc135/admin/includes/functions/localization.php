@@ -17,7 +17,7 @@
 // | to obtain it through the world-wide-web, please send a note to       |
 // | license@zen-cart.com so we can mail you a copy immediately.          |
 // +----------------------------------------------------------------------+
-//  $Id: localization.php 4217 2006-08-23 11:01:10Z drbyte $
+//  $Id: localization.php 4387 2006-09-04 13:54:28Z drbyte $
 //
 
   function quote_oanda_currency($code, $base = DEFAULT_CURRENCY) {
@@ -25,7 +25,7 @@
     $data = 'value=1&redirected=1&exch=' . $code .  '&format=CSV&dest=Get+Table&sel_list=' . $base;
     // check via file() ... may fail if php file Wrapper disabled.
     $page = @file($url . '?' . $data);
-    if (!is_object($page)) {
+    if (!is_object($page) && function_exists('curl_init')) {
       // check via cURL instead.  May fail if proxy not set, esp with GoDaddy.
       $page = doCurlCurrencyRequest('POST', $url, $data) ;
       $page = explode("\n", $page);
@@ -40,8 +40,6 @@
       } else {
         return false;
       }
-    } else { 
-      doCurlCurrencyRequest('POST', $url, $data) ;
     }
   }
 
@@ -50,7 +48,7 @@
     $data = 'Amount=1&From=' . $from . '&To=' . $to;
     // check via file() ... may fail if php file Wrapper disabled.
     $page = @file($url . '?' . $data);
-    if (!is_object($page)) {
+    if (!is_object($page) && function_exists('curl_init')) {
       // check via cURL instead.  May fail if proxy not set, esp with GoDaddy.
       $page = doCurlCurrencyRequest('POST', $url, $data) ;
       $page = explode("\n", $page);
