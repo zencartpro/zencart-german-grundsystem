@@ -3020,6 +3020,7 @@ INSERT INTO products_options_values (products_options_values_id, language_id, pr
 # AUSTRIA
 INSERT INTO zones_to_geo_zones (association_id, zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (4, 0, NULL, 3, '2004-09-29 10:09:11', '2004-09-29 09:52:37');
 INSERT INTO geo_zones (geo_zone_id, geo_zone_name, geo_zone_description, last_modified, date_added) VALUES (3, 'ALL', 'ALL THE ZONES', '2004-09-29 10:54:26', '2004-09-29 09:49:27');
+INSERT INTO tax_class (tax_class_id, tax_class_title, tax_class_description, last_modified, date_added) VALUES (1, '10%', '10%', NULL, '2004-08-06 19:46:30');
 INSERT INTO tax_class (tax_class_id, tax_class_title, tax_class_description, last_modified, date_added) VALUES (2, '20%', '20%', NULL, '2004-08-06 19:46:30');
 INSERT INTO tax_rates (tax_rates_id, tax_zone_id, tax_class_id, tax_priority, tax_rate, tax_description, last_modified, date_added) VALUES (5, 3, 2, 10, '20.0000', '20%', '2004-09-29 10:24:32', '2004-09-29 10:03:07');
 INSERT INTO tax_rates (tax_rates_id, tax_zone_id, tax_class_id, tax_priority, tax_rate, tax_description, last_modified, date_added) VALUES (6, 3, 1, 20, '10.0000', '10%', '2004-09-29 10:24:44', '2004-09-29 10:03:47');
