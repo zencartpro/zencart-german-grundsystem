@@ -1,3 +1,13 @@
+/* xajax Javascript library :: version 0.2.4 */
+
+Array.prototype.containsValue = function(valueToCheck)
+{
+	for (var i=0;i<this.length;i++) {
+		if (this[i] == valueToCheck) return true;
+	}
+	return false;
+}
+
 function Xajax()
 {
 	this.DebugMessage = function(text)
@@ -20,6 +30,7 @@ function Xajax()
 	
 	this.workId = 'xajaxWork'+ new Date().getTime();
 	this.depth = 0;
+	this.responseErrorsForAlert = ["400","401","402","403","404","500","501","502","503"];
 	
 	//Get the XMLHttpRequest Object
 	this.getRequestObject = function()
@@ -169,9 +180,9 @@ function Xajax()
 	this.getInput = function(sType, sName, sId)
 	{
 		var Obj;
-		if (sType == "radio" && !window.addEventListener)
+		if (!window.addEventListener)
 		{
-			Obj = document.createElement('<input type="radio" id="'+sId+'" name="'+sName+'">');
+			Obj = document.createElement('<input type="'+sType+'" id="'+sId+'" name="'+sName+'">');
 		}
 		else
 		{
@@ -200,7 +211,17 @@ function Xajax()
 		if (objElement && objSibling && objSibling.parentNode)
 			objSibling.parentNode.insertBefore(objElement, objSibling);
 	}
-	
+
+	// xajax.insertInputAfter creates a new input node after another node
+	this.insertInputAfter = function(sAfterId, sType, sName, sId)
+	{
+		var objSibling = this.$(sAfterId);
+		var objElement = this.getInput(sType, sName, sId);
+		if (objElement && objSibling && objSibling.parentNode) {
+			objSibling.parentNode.insertBefore(objElement, objSibling.nextSibling);
+		}
+	}
+		
 	// xajax.remove deletes an element
 	this.remove = function(sId)
 	{
@@ -340,7 +361,42 @@ function Xajax()
 	
 		return sXml;
 	}
-	
+
+	// unserializes data structure from xajaxResponse::_buildObjXml()
+	this._nodeToObject = function(node) {
+		// parentNode here is weird, have to tune
+		if (node.nodeName == '#cdata-section') {
+			var data = "";
+			for (var j=0; j<node.parentNode.childNodes.length; j++) {
+				data += node.parentNode.childNodes[j].data;
+			}
+			return data;
+		}
+		else if (node.nodeName == 'xjxobj') {
+			var data = new Array();
+			for (var j=0; j<node.childNodes.length; j++) {
+				var child = node.childNodes[j];
+				var key;
+				var value;
+				if (child.nodeName == 'e') {
+					for (var k=0; k<child.childNodes.length; k++) {
+						if (child.childNodes[k].nodeName == 'k') {
+							key = child.childNodes[k].firstChild.data;
+						}
+						else if (child.childNodes[k].nodeName == 'v') {
+							value = this._nodeToObject(child.childNodes[k].firstChild);
+						}
+					}
+					if (key != null && value != null) {
+						data[key] = value;
+						key = value = null;
+					}
+				}
+			}
+			return data;
+		}		
+	}
+
 	this.loadingFunction = function(){};
 	this.doneLoadingFunction = function(){};
 	var loadingTimeout;
@@ -436,9 +492,11 @@ function Xajax()
 				}
 			}
 			else {
-				var errorString = "Error: the server returned the following HTTP status: " + r.status;
-				errorString += "\nReceived:\n" + r.responseText;
-				alert(errorString);
+				if (xajax.responseErrorsForAlert.containsValue(r.status)) {
+					var errorString = "Error: the server returned the following HTTP status: " + r.status;
+					errorString += "\nReceived:\n" + r.responseText;
+					alert(errorString);
+				}
 				document.body.style.cursor = 'default';
 				if (xajaxStatusMessages == true) window.status = 'Invalid XML response error';								
 			}
@@ -511,8 +569,14 @@ function Xajax()
 		xml = xml.documentElement;
 		if (xml == null)
 			return;
+		
+		var skipCommands = 0;
 		for (var i=0; i<xml.childNodes.length; i++)
 		{
+			if (skipCommands > 0) {
+				skipCommands--;
+				continue;
+			}
 			if (xml.childNodes[i].nodeName == "cmd")
 			{
 				var cmd;
@@ -522,7 +586,8 @@ function Xajax()
 				var search;
 				var type;
 				var before;
-				
+				var objElement = null;
+
 				for (var j=0; j<xml.childNodes[i].attributes.length; j++)
 				{
 					if (xml.childNodes[i].attributes[j].name == "n")
@@ -549,6 +614,10 @@ function Xajax()
 					{
 						data += xml.childNodes[i].childNodes[j].data;
 					}
+				}
+				else if (xml.childNodes[i].firstChild && xml.childNodes[i].firstChild.nodeName == 'xjxobj') {
+					data = this._nodeToObject(xml.childNodes[i].firstChild);
+					objElement = "XJX_SKIP";
 				}
 				else if (xml.childNodes[i].childNodes.length > 1)
 				{
@@ -580,10 +649,17 @@ function Xajax()
 				else
 					data = "";
 				
-				var objElement = this.$(id);
+				if (objElement != "XJX_SKIP") objElement = this.$(id);
 				var cmdFullname;
 				try
 				{
+					if (cmd=="cc") {
+						cmdFullname = "addConfirmCommands";
+						var confirmResult = confirm(data);
+						if (!confirmResult) {
+							skipCommands = id;
+						}
+					}
 					if (cmd=="al")
 					{
 						cmdFullname = "addAlert";
@@ -593,6 +669,19 @@ function Xajax()
 					{
 						cmdFullname = "addScript/addRedirect";
 						eval(data);
+					}
+					else if (cmd=="jc")
+					{
+						cmdFullname = "addScriptCall";
+						var scr = id + '(';
+						if (data[0] != null) {
+							scr += 'data[0]';
+							for (var l=1; l<data.length; l++) {
+								scr += ',data['+l+']';
+							}
+						}
+						scr += ');';
+						eval(scr);
 					}
 					else if (cmd=="in")
 					{
@@ -651,6 +740,11 @@ function Xajax()
 					{
 						cmdFullname = "addInsertInput";
 						this.insertInput(id,type,data,property);
+					}
+					else if (cmd=="iia")
+					{
+						cmdFullname = "addInsertInputAfter";
+						this.insertInputAfter(id,type,data,property);
 					}
 					else if (cmd=="ev")
 					{
