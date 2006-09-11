@@ -44,5 +44,5 @@ define('ERROR_FILE_NOT_WRITEABLE', 'Fehler: Ich kann in die Datei nicht schreibe
 define('TEXT_INFO_SELECT_FILE', 'W&auml;hlen Sie eine Seite zum bearbeiten aus ...');
 define('TEXT_INFO_EDITING', 'Editiere Datei:');
 
-define('TEXT_INFO_CAUTION','Hinweis: Sie immer nur die Dateien Ihres aktuellen Templates bearbeiten, z.B.: /languages/' . $_SESSION['language'] . '/html_defines/' . $template_dir . '<br />Nach den &Auml;nderungen sollten Sie eine Sicherung Ihrer Dateien erstellen.');
+define('TEXT_INFO_CAUTION','Hinweis: Sie sollten immer nur die Dateien Ihres aktuellen Templates bearbeiten, z.B.: /languages/' . $_SESSION['language'] . '/html_defines/' . $template_dir . '<br />Nach den &Auml;nderungen sollten Sie eine Sicherung Ihrer Dateien erstellen.');
 ?>

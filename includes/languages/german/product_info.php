@@ -4,8 +4,7 @@
 * @copyright Copyright 2003-2006 Zen Cart Development Team
 * @copyright Portions Copyright 2003 osCommerce
 * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
-* translatet from: cyaneo/hugo13 / www.zen-cart.at / 31.03.06 
-* @version $Id: product_info.php 2 2006-03-31 09:55:33Z rainer $
+ * @version $Id: product_info.php 3159 2006-03-11 01:35:04Z drbyte $
 */
 
 define('TEXT_PRODUCT_NOT_FOUND', 'Entschuldigen Sie bitte, aber der gew&uuml;nschte Artikel konnte nicht gefunden werden.');
@@ -31,9 +30,9 @@ define('IMAGE_BUTTON_NEXT','N&auml;chster Artikel');
 define('IMAGE_BUTTON_RETURN_TO_PRODUCT_LIST','Zur&uuml;ck zur Artikelliste');
 
 // missing products
-define('TABLE_HEADING_NEW_PRODUCTS','Neue Artikel im %s');
-define('TABLE_HEADING_UPCOMING_PRODUCTS','Demn&auml;chst erscheinende Artikel');
-define('TABLE_HEADING_DATE_EXPECTED','Erscheint am');
+// define('TABLE_HEADING_NEW_PRODUCTS','Neue Artikel im %s');
+// define('TABLE_HEADING_UPCOMING_PRODUCTS','Demn&auml;chst erscheinende Artikel');
+// define('TABLE_HEADING_DATE_EXPECTED','Erscheint am');
 
 define('TEXT_ATTRIBUTES_PRICE_WAS','[war:');
 define('TEXT_ATTRIBUTE_IS_FREE','ist jetzt KOSTENLOS]');

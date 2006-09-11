@@ -17,11 +17,11 @@ define('TABLE_HEADING_DATE', 'Datum');
 define('TABLE_HEADING_ORDER_NUMBER', 'Nr.');
 define('TABLE_HEADING_SHIPPED_TO', 'Lieferadresse');
 define('TABLE_HEADING_STATUS', 'Status');
-define('TABLE_HEADING_TOTAL', 'Gesamt');
-define('TABLE_HEADING_VIEW', 'Anzeigen');
+define('TABLE_HEADING_TOTAL', 'Summe');
+define('TABLE_HEADING_VIEW', 'ansehen');
 
 define('MY_ACCOUNT_TITLE','Mein Konto');
-define('MY_ACCOUNT_INFORMATION','Ihre Kontoinformationen ansehen oder &auml;ndern.');
+define('MY_ACCOUNT_INFORMATION','Meine Kontoinformationen ansehen oder &auml;ndern.');
 define('MY_ACCOUNT_ADDRESS_BOOK','Adressbuch ansehen oder &auml;ndern.');
 define('MY_ACCOUNT_PASSWORD','Mein Passwort &auml;ndern.');
 

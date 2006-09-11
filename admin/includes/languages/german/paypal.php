@@ -28,13 +28,13 @@
 //
 
 // sort orders
-define('TEXT_PAYPAL_IPN_SORT_ORDER_INFO', 'Anzeigesortierung: '); // new 1.3.0  
-define('TEXT_SORT_PAYPAL_ID_DESC', 'PayPal Sortierung (neu - alt)');   // new 1.3.0  
-define('TEXT_SORT_PAYPAL_ID', 'PayPal Sortierung (alt - neu)'); // new 1.3.0  
-define('TEXT_SORT_ZEN_ORDER_ID_DESC', 'Order ID (hoch - niedrig), PayPal Sortierung'); // new 1.3.0  
-define('TEXT_SORT_ZEN_ORDER_ID', 'Order ID (niedrig - hoch), PayPal Sortierung');  // new 1.3.0  
-define('TEXT_PAYMENT_AMOUNT_DESC', 'Bestellsumme (hoch - niedrig)'); // new 1.3.0  
-define('TEXT_PAYMENT_AMOUNT', 'Bestellsumme (niedrig - hoch)'); // new 1.3.0  
+  define('TEXT_PAYPAL_IPN_SORT_ORDER_INFO', 'Anzeigesortierung: ');   
+  define('TEXT_SORT_PAYPAL_ID_DESC', 'PayPal Sortierung (neu - alt)');     
+  define('TEXT_SORT_PAYPAL_ID', 'PayPal Sortierung (alt - neu)');   
+  define('TEXT_SORT_ZEN_ORDER_ID_DESC', 'Order ID (hoch - niedrig), PayPal Sortierung');   
+  define('TEXT_SORT_ZEN_ORDER_ID', 'Order ID (niedrig - hoch), PayPal Sortierung');    
+  define('TEXT_PAYMENT_AMOUNT_DESC', 'Bestellsumme (hoch - niedrig)');   
+  define('TEXT_PAYMENT_AMOUNT', 'Bestellsumme (niedrig - hoch)');   
 
   //begin ADMIN text
   define('HEADING_ADMIN_TITLE', 'PayPal sofortige Zahlungsnotifikationen');
@@ -42,7 +42,7 @@ define('TEXT_PAYMENT_AMOUNT', 'Bestellsumme (niedrig - hoch)'); // new 1.3.0
   define('TEXT_ALL_IPNS', 'Alle');
 
   define('TABLE_HEADING_ORDER_NUMBER', 'Bestellnummer');
-define('TABLE_HEADING_PAYPAL_ID', 'PayPal #'); // new 1.3.0  
+  define('TABLE_HEADING_PAYPAL_ID', 'PayPal #');   
   define('TABLE_HEADING_TXN_TYPE', 'Transaktionstyp');
   define('TABLE_HEADING_PAYMENT_STATUS', 'Zahlungsstatus');
   define('TABLE_HEADING_PAYMENT_AMOUNT', 'Betrag');

@@ -112,18 +112,19 @@ define('TEXT_DOWNLOAD_MAX_COUNT', 'Versuche');
 
 define('TEXT_DOWNLOAD_AVAILABLE', 'Verf&uuml;gbar');
 define('TEXT_DOWNLOAD_EXPIRED', 'Abgelaufen');
-define('TEXT_DOWNLOAD_MISSING', 'Nicht auf Server');
+define('TEXT_DOWNLOAD_MISSING', 'Nicht auf dem Server');
 
-define('IMAGE_ICON_STATUS_CURRENT', 'Status - verf&uuml;gbar');
-define('IMAGE_ICON_STATUS_EXPIRED', 'Status - abgelaufen');
-define('IMAGE_ICON_STATUS_MISSING', 'Status - fehlt');
+define('IMAGE_ICON_STATUS_CURRENT', 'Status - Vorhanden');
+define('IMAGE_ICON_STATUS_EXPIRED', 'Status - Abgelaufen');
+define('IMAGE_ICON_STATUS_MISSING', 'Status - Vermisst');
 
 define('SUCCESS_ORDER_UPDATED_DOWNLOAD_ON', 'Download freigegeben');
 define('SUCCESS_ORDER_UPDATED_DOWNLOAD_OFF', 'Download gesperrt');
 define('TEXT_MORE', '... mehr');
 
 define('TEXT_INFO_IP_ADDRESS', 'IP Adresse: ');
-define('TEXT_DELETE_CVV_FROM_DATABASE', 'Lösche CVV aus der Datenbank'); // new 1.3.0  
-define('TEXT_DELETE_CVV_REPLACEMENT', 'gelöscht'); // new 1.3.0  
-define('TEXT_MASK_CC_NUMBER', 'Diese Nummer verstecken');   // new 1.3.0  
+
+define('TEXT_DELETE_CVV_FROM_DATABASE', 'Lösche CVV aus der Datenbank'); 
+define('TEXT_DELETE_CVV_REPLACEMENT', 'gelöscht'); 
+define('TEXT_MASK_CC_NUMBER','Diese Zahl verdecken');
 ?>

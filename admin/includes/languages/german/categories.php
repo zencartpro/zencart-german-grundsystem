@@ -69,7 +69,7 @@ define('TEXT_INFO_HEADING_MOVE_PRODUCT', 'Artikel verschieben');
 define('TEXT_INFO_HEADING_COPY_TO', 'Kopieren nach');
 
 define('TEXT_DELETE_CATEGORY_INTRO', 'Wollen Sie diese Kategorie wirklich löschen?');
-define('TEXT_DELETE_CATEGORY_INTRO_LINKED_PRODUCTS', '<strong>Achtung:</strong> Verlinkte Artikel bei denen die Hauptkategorie gel&ouml;scht wird haben keine richtige Preisberechnung mehr. Stellen Sie sicher bevor Sie eine Kategorie l&ouml;schen, dass kein Artikel diese als Hauptkategorie verwendet.');
+define('TEXT_DELETE_CATEGORY_INTRO_LINKED_PRODUCTS', '<strong>Warnung:</strong> Verbundene Produkte, deren Vorlagenkategorie gel&ouml;scht wird, setzen nicht den richtigen Preis fest. Vor dem Entfernen einer Kategorie sollten Sie zuerst sicherstellen, da&szlig; die zu l&ouml;schende Kategorie keine verbundenen Produkte enth&auml;lt. Noch enthaltene verbundene Produkte sollten einer anderen Hauptkategorie zugeordnet werden');
 define('TEXT_DELETE_PRODUCT_INTRO', 'Sind Sie sicher, dass Sie diesen Artikel löschen wollen?');
 
 define('TEXT_DELETE_WARNING_CHILDS', '<b>ACHTUNG:</b> Es sind bereits %s (Unter-)Kategorien mit dieser Kategorie verlinkt!');
@@ -223,10 +223,13 @@ define('TEXT_CATEGORIES_DESCRIPTION', 'Kategoriebeschreibung:');
 define('PRODUCTS_PRICE_IS_CALL_FOR_PRICE_TEXT', 'Artikel ist "Preis bitte anfragen."');
 
 // Metatags
-define('TEXT_INFO_HEADING_EDIT_CATEGORY_META_TAGS', 'Kategorien Meta Tags Definitionen');    // new 1.3.0  
-define('TEXT_EDIT_CATEGORIES_META_TAGS_INTRO', 'Definiere Benutzer-Meta Tags');    // new 1.3.0  
-define('TEXT_EDIT_CATEGORIES_META_TAGS_TITLE', 'Titel:'); // new 1.3.0  
-define('TEXT_EDIT_CATEGORIES_META_TAGS_KEYWORDS', 'Schlagwort:'); // new 1.3.0  
-define('TEXT_EDIT_CATEGORIES_META_TAGS_DESCRIPTION', 'Beschreibung'); // new 1.3.0  
-define('WARNING_PRODUCTS_IN_TOP_INFO', 'Achtung: Der Top-Level Kategorie sind Produkte zugeordnet. Dies kann zu Fehlern in der Preisberrechnung f&uuml;hren. Gefundene Artikel: ');
+define('TEXT_INFO_HEADING_EDIT_CATEGORY_META_TAGS', 'Kategorien Meta Tags Definitionen');      
+define('TEXT_EDIT_CATEGORIES_META_TAGS_INTRO', 'Definiere Benutzer-Meta Tags');  
+define('TEXT_EDIT_CATEGORIES_META_TAGS_TITLE', 'Titel:'); 
+define('TEXT_EDIT_CATEGORIES_META_TAGS_KEYWORDS', 'Schlagwort:');
+define('TEXT_EDIT_CATEGORIES_META_TAGS_DESCRIPTION', 'Beschreibung');
+
+define('WARNING_PRODUCTS_IN_TOP_INFO', 'WARNUNG: Sie haben Produkte in der Hauptkategorie. Dadurch werden die Preise im Katalog nicht richtig zugeordnet. Folgende Produkte wurden gefunden: ');
+
+
 ?>

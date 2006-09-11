@@ -13,7 +13,7 @@ define('NAVBAR_TITLE_2','Newsletter Abonnement');
 define('HEADING_TITLE','Newsletter Abonnement');
 
 define('MY_NEWSLETTERS_TITLE','Meine Newsletter Abonnement');
-define('MY_NEWSLETTERS_GENERAL_NEWSLETTER','Standart Newsletter');
+define('MY_NEWSLETTERS_GENERAL_NEWSLETTER', 'Standard Newsletter');
 define('MY_NEWSLETTERS_GENERAL_NEWSLETTER_DESCRIPTION','Beinhaltet Informationen zum Shop, Artikel und Neuerungen. Informiert Sie &uuml;ber Neuheiten, Sonderangebote und wichtige Neuerungen.');
 
 define('SUCCESS_NEWSLETTER_UPDATED','Ihre Newsletter Abonnement wurden erfolgreich aktualisiert.');

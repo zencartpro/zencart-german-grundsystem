@@ -4,8 +4,7 @@
 * @copyright Copyright 2003-2005 Zen Cart Development Team
 * @copyright Portions Copyright 2003 osCommerce
 * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
-* translatet from: cyaneo/hugo13 / www.zen-cart.at / 31.03.06 
-* @version $Id: meta_tags.php 2 2006-03-31 09:55:33Z rainer $
+ * @version $Id: meta_tags.php 4273 2006-08-26 03:13:52Z drbyte $
 */
 
 // page title
@@ -21,13 +20,16 @@ define('CUSTOM_KEYWORDS', 'ecommerce, open source, shop, online shopping');
 define('META_TAGS_REVIEW', 'Bewertungen: ');
 // separators for meta tag definitions
 // Define Primary Section Output
-define('PRIMARY_SECTION', ' : ');  // new 1.3.0  
+  define('PRIMARY_SECTION', ' : ');
 
 // Define Secondary Section Output
-define('SECONDARY_SECTION', ' - ');     // new 1.3.0  
+  define('SECONDARY_SECTION', ' - ');
 
 // Define Tertiary Section Output
-  define('TERTIARY_SECTION', ', '); // new 1.3.0  
+  define('TERTIARY_SECTION', ', ');
+
+// Define divider ... usually just a space or a comma plus a space
+  define('METATAGS_DIVIDER', ' ');
 
 // Define which pages to tell robots/spiders not to index
 // This is generally used for account-management pages or typical SSL pages, and usually doesn't need to be touched.

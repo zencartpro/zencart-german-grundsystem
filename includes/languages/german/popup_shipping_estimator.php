@@ -23,8 +23,8 @@
 // +----------------------------------------------------------------------+
 // $Id: popup_shipping_estimator.php 2 2006-03-31 09:55:33Z rainer $
 //
-define('HEADING_SEARCH_HELP', 'Versand Estimator:');
-define('TEXT_TOTAL_ITEMS', 'Gesamtstückzahl: ');
+define('HEADING_SEARCH_HELP', 'Gesch&auml;tzte Versandkosten:');
+define('TEXT_TOTAL_ITEMS', 'Gesamtst&uuml;ckzahl: ');
 define('TEXT_TOTAL_WEIGHT', '&nbsp;&nbsp;Gewicht: ');
 define('TEXT_TOTAL_AMOUNT', '&nbsp;&nbsp;Preis: ');
 ?>

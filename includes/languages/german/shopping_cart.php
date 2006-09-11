@@ -4,9 +4,8 @@
 * @copyright Copyright 2003-2006 Zen Cart Development Team
 * @copyright Portions Copyright 2003 osCommerce
 * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
-* translatet from: cyaneo/hugo13 / www.zen-cart.at / 31.03.06 
-* @version $Id: shopping_cart.php 2 2006-03-31 09:55:33Z rainer $
-@@@LOOK@@@*/
+ * @version $Id: shopping_cart.php 3183 2006-03-14 07:58:59Z birdbrain $
+ */
 
 define('NAVBAR_TITLE','Warenkorb');
 define('HEADING_TITLE','Ihr Warenkorb enth&auml;lt:');

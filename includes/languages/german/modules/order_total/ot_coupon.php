@@ -11,6 +11,7 @@ define('MODULE_ORDER_TOTAL_COUPON_TITLE','Aktionskupon');
 define('MODULE_ORDER_TOTAL_COUPON_HEADER','Aktionskupon');
 define('MODULE_ORDER_TOTAL_COUPON_DESCRIPTION','Aktionskupon');
 define('MODULE_ORDER_TOTAL_COUPON_TEXT_ENTER_CODE', '');
+define('MODULE_ORDER_TOTAL_COUPON_HEADER', TEXT_GV_NAMES . '');
 define('SHIPPING_NOT_INCLUDED','[Versandkosten nicht inbegriffen]');
 define('TAX_NOT_INCLUDED','[Steuer nicht inbegriffen]');
 define('IMAGE_REDEEM_VOUCHER', 'einl&ouml;sen');

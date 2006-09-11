@@ -40,7 +40,7 @@ define('TEXT_REDEEM_GV_MESSAGE_THANKS', 'Danke, dass Sie bei uns eingekauft habe
 
 define('TEXT_REDEEM_GV_MESSAGE_BODY', '');
 define('TEXT_REDEEM_GV_MESSAGE_FOOTER', '');
-define('TEXT_REDEEM_GV_SUBJECT', ' bestellen');
+define('TEXT_REDEEM_GV_SUBJECT', TEXT_GV_NAME . ' bestellen');
 define('TEXT_REDEEM_GV_SUBJECT_ORDER', ' Bestell #');
 
 define('TEXT_EDIT_ORDER','Bestell ID# bearbeiten');

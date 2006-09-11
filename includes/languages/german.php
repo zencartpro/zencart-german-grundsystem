@@ -13,7 +13,7 @@
 //define('CUSTOM_KEYWORDS', 'ecommerce, open source, shop, online shopping');
 // END: moved to meta_tags.php
 
-  define('FOOTER_TEXT_BODY', 'Copyright &copy; 2006 Softwarelandschaft GmbH. Powered by <a href="http://www.zen-cart.com" target="_blank">Zen Cart</a>');
+define('FOOTER_TEXT_BODY', 'Copyright &copy; 2003-2006 <a href="http://www.zen-cart.com" target="_blank">Zen Cart</a>. Powered by <a href="http://www.zen-cart.com" target="_blank">Zen Cart</a>');
 
 // look in your $PATH_LOCALE/locale directory for available locales..
 // on RedHat try 'en_US'
@@ -29,6 +29,7 @@ define('DATE_TIME_FORMAT', DATE_FORMAT_SHORT . ' %H:%M:%S');
 // Return date in raw format
 // $date should be in format mm/dd/yyyy
 // raw date is in format YYYYMMDD, or DDMMYYYY
+  if (!function_exists('zen_date_raw')) {
 function zen_date_raw($date, $reverse = false){
      if ($reverse){
          return substr($date, 3, 2) . substr($date, 0, 2) . substr($date, 6, 4);
@@ -38,6 +39,7 @@ function zen_date_raw($date, $reverse = false){
         return substr($date, 6, 4) . substr($date, 3, 2) . substr($date, 0, 2);
          }
     }
+  }
 
 
 // if USE_DEFAULT_LANGUAGE_CURRENCY is true, use the following currency, instead of the applications default currency (used when changing language)
@@ -59,6 +61,9 @@ define('TEXT_GV_NAMES', 'Geschenkgutscheine');
 // used for redeem code, redemption code, or redemption id
 define('TEXT_GV_REDEEM', 'Gutscheinnummer');
 
+// wird für die Sidebox Gutschein  einlösen benötigt
+define('BOX_HEADING_GV_REDEEM', TEXT_GV_NAME);
+define('BOX_GV_REDEEM_INFO', 'Gutscheinnummer: ');
 
 
 
@@ -109,7 +114,7 @@ define('BOX_REVIEWS_TEXT_OF_5_STARS', '%s von 5 Sternen!');
 
 // shopping_cart box text in sideboxes/shopping_cart.php
 define('BOX_HEADING_SHOPPING_CART', 'Warenkorb');
-define('BOX_SHOPPING_CART_EMPTY', 'leer');
+define('BOX_SHOPPING_CART_EMPTY', 'Ihr Warenkorb ist leer');
   define('BOX_SHOPPING_CART_DIVIDER', '&nbsp;Stk.&nbsp;');
 
 // order_history box text in sideboxes/order_history.php
@@ -158,7 +163,7 @@ define('BOX_TELL_A_FRIEND_TEXT', 'Empfehlen Sie unsere Artikel weiter.');
 
 // wishlist box text in includes/boxes/wishlist.php
 define('BOX_HEADING_CUSTOMER_WISHLIST', 'Wunschzettel');
-define('BOX_WISHLIST_EMPTY', 'YIhr Wunschzettel ist leer');
+define('BOX_WISHLIST_EMPTY', 'Ihr Wunschzettel ist leer');
 define('IMAGE_BUTTON_ADD_WISHLIST', 'auf meinen Wunschzettel');
 define('TEXT_WISHLIST_COUNT', 'Derzeit sind %s Positionen in Ihrem Wunschzettel.');
 define('TEXT_DISPLAY_NUMBER_OF_WISHLIST', 'zeige <strong>%d</strong> bis <strong>%d</strong> (von <strong>%d</strong> Positionen Ihres Wunschzettels)');
@@ -173,28 +178,30 @@ define('JS_ERROR', 'Es sind Fehler aufgetreten.\n\n Bitte ändern Sie folgendes:\
 define('JS_REVIEW_TEXT', '* Ihre Texteingabe im Bericht muss mindestens ' . REVIEW_TEXT_MIN_LENGTH . ' Zeichen haben.');
 define('JS_REVIEW_RATING', '*Um einen Bericht zu schreiben, m&uuml;ssen Sie den Artikel bewerten.');
 
-define('JS_ERROR_NO_PAYMENT_MODULE_SELECTED', '* Bitte wählen Sie eine Zahlungsart aus.');
+define('JS_ERROR_NO_PAYMENT_MODULE_SELECTED', '* Bitte w&auml;hlen Sie eine Zahlungsart aus.');
 
-define('JS_ERROR_SUBMITTED', 'Die Seite wurde bereits übertragen. Klicken Sie auf \"OK\" und warten Sie auf das Ende des Vorgangs.');
+define('JS_ERROR_SUBMITTED', 'Die Seite wurde bereits &uuml;bertragen. Klicken Sie auf \"OK\" und warten Sie auf das Ende des Vorgangs.');
 
-define('ERROR_NO_PAYMENT_MODULE_SELECTED', 'Bitte wählen Sie eine Zahlungsart aus.');
+define('ERROR_NO_PAYMENT_MODULE_SELECTED', 'Bitte w&auml;hlen Sie eine Zahlungsart aus.');
 define('ERROR_CONDITIONS_NOT_ACCEPTED', 'Bitte best&auml;tigen Sie unsere AGB!');
 define('ERROR_PRIVACY_STATEMENT_NOT_ACCEPTED', 'Bitte best&auml;tigen Sie unsere AGB!');
 
 define('CATEGORY_COMPANY', 'Firma');
-define('CATEGORY_PERSONAL', 'Ihre pers&ouml;nliche Angaben');
+define('CATEGORY_PERSONAL', 'Ihre pers&ouml;nlichen Angaben');
 define('CATEGORY_ADDRESS', 'Anschrift');
-define('CATEGORY_CONTACT', 'Wie erreichen wir Sie');
+define('CATEGORY_CONTACT', 'Wie erreichen wir Sie?');
 define('CATEGORY_OPTIONS', 'Zusatz');
 define('CATEGORY_PASSWORD', 'Ihr Passwort');
 define('CATEGORY_LOGIN', 'Anmelden');
 define('PULL_DOWN_DEFAULT', 'Bitte w&auml;hlen Sie Ihr Land');
+define('PLEASE_SELECT', 'Bitte w&auml;hlen Sie ...');
+define('TYPE_BELOW', 'Bitte w&auml;hlen Sie unter ...');
 
 define('ENTRY_COMPANY', 'Firma:');
 define('ENTRY_COMPANY_ERROR', '');
 define('ENTRY_COMPANY_TEXT', '');
 define('ENTRY_GENDER', 'Geschlecht:');
-define('ENTRY_GENDER_ERROR', 'Bitte w&auml;hlen Sie Ihren Titel.');
+define('ENTRY_GENDER_ERROR', 'Bitte w&auml;hlen Sie Ihre Anrede.');
 define('ENTRY_GENDER_TEXT', '*');
 define('ENTRY_FIRST_NAME', 'Vorname:');
 define('ENTRY_FIRST_NAME_ERROR', 'Ihr Vorname muss mindestens ' . ENTRY_FIRST_NAME_MIN_LENGTH . ' Zeichen haben.');
@@ -202,7 +209,7 @@ define('ENTRY_FIRST_NAME_TEXT', '*');
 define('ENTRY_LAST_NAME', 'Nachname:');
 define('ENTRY_LAST_NAME_ERROR', 'Ihr Nachname muss mindestens ' . ENTRY_LAST_NAME_MIN_LENGTH . ' Zeichen haben.');
 define('ENTRY_LAST_NAME_TEXT', '*');
-define('ENTRY_DATE_OF_BIRTH', 'Geburtstag:');
+define('ENTRY_DATE_OF_BIRTH', 'Geburtsdatum:');
 define('ENTRY_DATE_OF_BIRTH_ERROR', 'Ihr Geburtsdatum muss folgende Form haben: TT/MM/JJJJ (z.B. 21.02.1970)');
 define('ENTRY_DATE_OF_BIRTH_TEXT', '* (z.B. 21.02.1970)');
 define('ENTRY_EMAIL_ADDRESS', 'e-Mail Adresse:');
@@ -210,8 +217,8 @@ define('ENTRY_EMAIL_ADDRESS_ERROR', 'Ihre e-Mail Adresse muss mindestens' . ENTR
 define('ENTRY_EMAIL_ADDRESS_CHECK_ERROR', 'Ihre e-Mail Adresse scheint nicht korrekt zu sein. Bitte &auml;ndern Sie diese.');
 define('ENTRY_EMAIL_ADDRESS_ERROR_EXISTS', 'Ihre e-Mail Adresse ist bereits Registriert. Bitte melden Sie sich an oder registrieren Sie sich mit einer anderen E-Mail Adresse.');
 define('ENTRY_EMAIL_ADDRESS_TEXT', '*');
-define('ENTRY_NICK', 'Forum Nickname:');
-define('ENTRY_NICK_TEXT', ''); // note to display beside nickname input field
+define('ENTRY_NICK', 'Forum Nick Name:');
+define('ENTRY_NICK_TEXT', '*'); // note to display beside nickname input field
 define('ENTRY_NICK_DUPLICATE_ERROR', 'Der Nickname existiert bereits.');
 define('ENTRY_NICK_LENGTH_ERROR', 'Der Nickname muss aus mindestens ' . ENTRY_NICK_MIN_LENGTH . ' Zeichen bestehen.');
 define('ENTRY_STREET_ADDRESS', 'Strasse:');
@@ -224,7 +231,7 @@ define('ENTRY_POST_CODE', 'Postleitzahl:');
 define('ENTRY_POST_CODE_ERROR', 'Die Postleitzahl muss aus mindestens ' . ENTRY_POSTCODE_MIN_LENGTH . ' Zeichen bestehen.');
 define('ENTRY_POST_CODE_TEXT', '*');
 define('ENTRY_CITY', 'Ort:');
-define('ENTRY_CUSTOMERS_REFERRAL', 'Wie wurden Sie auf mich aufmerksam?:');
+define('ENTRY_CUSTOMERS_REFERRAL', 'Wie wurden Sie auf uns aufmerksam?');
 
 define('ENTRY_CITY_ERROR', 'Die Stadt muss aus mindestens ' . ENTRY_CITY_MIN_LENGTH . ' Zeichen bestehen.');
 define('ENTRY_CITY_TEXT', '*');
@@ -232,19 +239,20 @@ define('ENTRY_STATE', 'Bundesland:');
 define('ENTRY_STATE_ERROR', 'Das Bundesland muss aus mindestens ' . ENTRY_STATE_MIN_LENGTH . ' Zeichen bestehen.');
 define('ENTRY_STATE_ERROR_SELECT', 'Bitte w&auml;hlen Sie ein Bundesland aus dem Pulldown Men&uuml;.');
 define('ENTRY_STATE_TEXT', '*');
+define('JS_STATE_SELECT', '-- Bitte w&auml;hlen --');
 define('ENTRY_COUNTRY', 'Land:');
 define('ENTRY_COUNTRY_ERROR', 'Bitte w&auml;hlen Sie ein Land aus dem Pulldown Men&uuml;.');
 define('ENTRY_COUNTRY_TEXT', '*');
-define('ENTRY_TELEPHONE_NUMBER', 'Telefonnummer:');
+define('ENTRY_TELEPHONE_NUMBER', 'Telefon:');
 define('ENTRY_TELEPHONE_NUMBER_ERROR', 'Die Telefonnummer muss aus mindestens ' . ENTRY_TELEPHONE_MIN_LENGTH . ' Zeichen bestehen.');
-define('ENTRY_TELEPHONE_NUMBER_TEXT', '');
+define('ENTRY_TELEPHONE_NUMBER_TEXT', '*');
 define('ENTRY_FAX_NUMBER', 'Fax:');
 define('ENTRY_FAX_NUMBER_ERROR', '');
 define('ENTRY_FAX_NUMBER_TEXT', '');
-define('ENTRY_NEWSLETTER', 'Newsletter:');
+define('ENTRY_NEWSLETTER', 'Newsletter bestellen.');
 define('ENTRY_NEWSLETTER_TEXT', '');
-define('ENTRY_NEWSLETTER_YES', 'bestellt');
-define('ENTRY_NEWSLETTER_NO', 'abbestellt');
+define('ENTRY_NEWSLETTER_YES', 'Bestellen');
+define('ENTRY_NEWSLETTER_NO', 'Abbestellen');
 define('ENTRY_NEWSLETTER_ERROR', '');
 define('ENTRY_PASSWORD', 'Passwort:');
 define('ENTRY_PASSWORD_ERROR', 'Das Passwort muss aus mindestens ' . ENTRY_PASSWORD_MIN_LENGTH . ' Zeichen bestehen.');
@@ -298,7 +306,7 @@ define('TEXT_BY', ' von ');
 define('TEXT_REVIEW_BY', 'von %s');
 define('TEXT_REVIEW_WORD_COUNT', '%s Worte');
 define('TEXT_REVIEW_RATING', 'Bewertung: %s [%s]');
-define('TEXT_REVIEW_DATE_ADDED', 'Erstelldatum: %s');
+define('TEXT_REVIEW_DATE_ADDED', 'Eingetragen: %s');
 define('TEXT_NO_REVIEWS', 'Derzeit gibt es keine Bewertungen.');
 
 define('TEXT_NO_NEW_PRODUCTS', 'Weitere neue Artikel erscheinen in K&uuml;rze. Bitte besuchen Sie unseren Shop regelm&auml;&szlig;ig wieder.');
@@ -435,16 +443,16 @@ define('ERROR_DESTINATION_NOT_WRITEABLE', 'Fehler: Auf das Ziel konnte nicht ges
 define('ERROR_DESTINATION_DOES_NOT_EXIST', 'Fehler: Das Ziel existiert nicht.');
 // End iii added
 
-define('TEXT_BEFORE_DOWN_FOR_MAINTENANCE', 'Hinweis: Shop ist wegen Wartungsarbeiten geschlossen bis (dd/mm/yy) (hh-hh):');
-define('TEXT_ADMIN_DOWN_FOR_MAINTENANCE', 'Hinweis: Shop ist wegen Wartungsarbeiten geschlossen.');
+define('TEXT_BEFORE_DOWN_FOR_MAINTENANCE', 'Hinweis: Unser Shop ist wegen Wartungsarbeiten geschlossen bis (dd/mm/yy) (hh-hh): ');
+define('TEXT_ADMIN_DOWN_FOR_MAINTENANCE', 'Hinweis: Unser Shop ist wegen Wartungsarbeiten geschlossen.');
 
 define('PRODUCTS_PRICE_IS_FREE_TEXT', 'Kostenlos!');
 define('PRODUCTS_PRICE_IS_CALL_FOR_PRICE_TEXT', 'F&uuml;r Preis anfragen');
 define('TEXT_CALL_FOR_PRICE', 'F&uuml;r Preis anfragen');
 
-define('TEXT_INVALID_SELECTION_LABELED', 'Sie haben eine Ung&uuml;ltige Auswahl  getroffen:');
+define('TEXT_INVALID_SELECTION','Sie haben eine ung&uuml;ltige Auswahl  getroffen: ');
 define('TEXT_ERROR_OPTION_FOR', 'in der Option f&uuml;r:');
-define('TEXT_INVALID_USER_INPUT', 'Benutzereingabe ben&ouml;tigt');
+define('TEXT_INVALID_USER_INPUT', 'Benutzereingabe ben&ouml;tigt<br />');
 
 // product_listing
 define('PRODUCTS_QUANTITY_MIN_TEXT_LISTING', 'Minimum:');
@@ -470,6 +478,7 @@ define('TEXT_FILESIZE_MEGS', ' MB');
 
 // shopping cart errors
 define('ERROR_PRODUCT', 'Artikel:');
+define('ERROR_PRODUCT_STATUS_SHOPPING_CART','<br />Leider ist dieses Produkt derzeit nicht in unserem Warenbestand.<br />Das Produkt wurde aus dem Warenkorb entfernt.');
 define('ERROR_PRODUCT_QUANTITY_MIN', '...minimale St&uuml;ckzahl unterschritten -');
 define('ERROR_PRODUCT_QUANTITY_UNITS', '...ung&uuml;ltige St&uuml;ckzahl -');
 define('ERROR_PRODUCT_OPTION_SELECTION', '...ung&uuml;ltige Attributmerkmale gew&auml;hlt -');
@@ -478,17 +487,16 @@ define('ERROR_PRODUCT_QUANTITY_MAX', '...maximale St&uuml;ckzahl &uuml;berschrit
 define('ERROR_PRODUCT_QUANTITY_MIN_SHOPPING_CART', '...minimale St&uuml;ckzahl unterschritten -');
 define('ERROR_PRODUCT_QUANTITY_UNITS_SHOPPING_CART', '...ung&uuml;ltige St&uuml;ckzahl -');
 define('ERROR_PRODUCT_QUANTITY_MAX_SHOPPING_CART', '...maximale St&uuml;ckzahl &uuml;berschritten -');
-  define('ERROR_PRODUCT_QUANTITY_MAX_SHOPPING_CART',' ... Maximum Quantity errors - ');
 
-define('TABLE_HEADING_FEATURED_PRODUCTS', 'Ähnliche Artikel');
+define('TABLE_HEADING_FEATURED_PRODUCTS','&Auml;hnliche Artikel');
 
-define('TABLE_HEADING_NEW_PRODUCTS', 'Neue Artikel f&uuml;r %s');
+define('TABLE_HEADING_NEW_PRODUCTS', 'Neue Artikel im %s');
 define('TABLE_HEADING_UPCOMING_PRODUCTS', 'Kommende Artikel');
 define('TABLE_HEADING_DATE_EXPECTED', 'Eingangsdatum');
-define('TABLE_HEADING_SPECIALS_INDEX', 'Monatliche Sonderangebote f&uuml;r %s');
+define('TABLE_HEADING_SPECIALS_INDEX', 'Monatliche Sonderangebote im %s');
 
 // meta tags special defines
-define('META_TAG_PRODUCTS_PRICE_IS_FREE_TEXT', 'KOSTENLOS!');
+define('META_TAG_PRODUCTS_PRICE_IS_FREE_TEXT','Kostenlos!');
 
 // customer login
 define('TEXT_SHOWCASE_ONLY', 'Kontakt');
@@ -496,13 +504,13 @@ define('TEXT_SHOWCASE_ONLY', 'Kontakt');
 define('TEXT_LOGIN_FOR_PRICE_PRICE', 'Preis nicht erh&auml;ltlich');
 define('TEXT_LOGIN_FOR_PRICE_BUTTON_REPLACE', 'F&uuml;r Preis bitte anmelden');
 // set for show room only
-define('TEXT_LOGIN_FOR_PRICE_PRICE_SHOWROOM', ''); // blank for prices or enter your own text
+define('TEXT_LOGIN_FOR_PRICE_PRICE_SHOWROOM', ''); // leer für Preis, oder schreiben Sie Ihren eigenen Text hinein
 define('TEXT_LOGIN_FOR_PRICE_BUTTON_REPLACE_SHOWROOM', 'Nur Schauraum');
 
 // authorization pending
 define('TEXT_AUTHORIZATION_PENDING_PRICE', 'Preis nicht erh&auml;ltlich');
-define('TEXT_AUTHORIZATION_PENDING_BUTTON_REPLACE', 'ÜBERPRÜFUNG LÄUFT');
-  define('TEXT_LOGIN_TO_SHOP_BUTTON_REPLACE','Login to Shop');
+define('TEXT_AUTHORIZATION_PENDING_BUTTON_REPLACE', '&Uuml;BERPR&Uuml;FUNG L&Auml;UFT');
+define('TEXT_LOGIN_TO_SHOP_BUTTON_REPLACE','Im Shop anmelden');
 
 // text pricing
 define('TEXT_CHARGES_WORD', 'Kalkulierte Geb&uuml;hr:');
@@ -513,15 +521,14 @@ define('TEXT_PER_LETTER', '<br />Preis pro Buchstabe: ');
 define('TEXT_LETTERS_FREE', ' Buchstabe(n) frei ');
 define('TEXT_ONETIME_CHARGES', '*einmalige Geb&uuml;hr = ');
 define('TEXT_ONETIME_CHARGES_EMAIL', "\t" . '*einmalige Geb&uuml;hr = ');
-define('TEXT_ONETIME_CHARGES_BASKET' , "-&nbsp;einmalige Gebühren");
 define('TEXT_ATTRIBUTES_QTY_PRICES_HELP', 'Option f&uuml;r Mengenrabatte');
 define('TABLE_ATTRIBUTES_QTY_PRICE_QTY', 'STK');
 define('TABLE_ATTRIBUTES_QTY_PRICE_PRICE', 'PREIS');
 define('TEXT_ATTRIBUTES_QTY_PRICES_ONETIME_HELP', 'Option f&uuml;r einmalige Geb&uuml;hren f&uuml;r Mengenrabatte');
 
 // textarea attribute input fields
-  define('TEXT_MAXIMUM_CHARACTERS_ALLOWED',' maximum characters allowed');
-  define('TEXT_REMAINING','remaining');
+define('TEXT_MAXIMUM_CHARACTERS_ALLOWED',' maximale Buchstaben erlaubt');
+define('TEXT_REMAINING','restliche');
 
 // Shipping Estimator
 define('CART_SHIPPING_OPTIONS', 'Voraussichtlicher Versand:');
@@ -541,6 +548,7 @@ define('CART_ITEMS', 'im Warenkorb: ');
 define('CART_SELECT', 'w&auml;hlen Sie');
 define('ERROR_CART_UPDATE', 'Bitte aktualisieren Sie Ihre Bestellung ...<br />');
 define('IMAGE_BUTTON_UPDATE_CART', 'aktualisieren');
+define('EMPTY_CART_TEXT_NO_QUOTE', 'Oops! Ihre Sitzung wurde unterbrochen… Aktualisieren Sie bitte Ihren Warenkorb f&uuml;r die Versandart');
 
 // multiple product add to cart
 define('TEXT_PRODUCT_LISTING_MULTIPLE_ADD_TO_CART', 'Anzahl: ');
@@ -554,10 +562,10 @@ define('TEXT_HEADER_DISCOUNT_PRICES_PERCENTAGE', 'Abzug f&uuml;r Mengenrabatt');
 define('TEXT_HEADER_DISCOUNT_PRICES_ACTUAL_PRICE', 'Preis abz&uuml;glich Mengenrabatt');
 define('TEXT_HEADER_DISCOUNT_PRICES_AMOUNT_OFF', 'Abzug f&uuml;r Mengenrabatt');
 define('TEXT_FOOTER_DISCOUNT_QUANTITIES', '* Rabatte k&ouml;nnen abh&auml;ngig von den unteren Optionen variieren');
-  define('TEXT_HEADER_DISCOUNTS_OFF', 'Qty Discounts Unavailable ...');
+define('TEXT_HEADER_DISCOUNTS_OFF', 'Keine Rabatte m&ouml;glich ...');
 
 // sort order titles for dropdowns
-define('PULL_DOWN_ALL_RESET', '- RESET - ');
+define('PULL_DOWN_ALL_RESET','- ZURÜCKSTELLEN - ');
 define('TEXT_INFO_SORT_BY_PRODUCTS_NAME', 'Artikelname');
 define('TEXT_INFO_SORT_BY_PRODUCTS_NAME_DESC', 'Artikelname - absteigend');
 define('TEXT_INFO_SORT_BY_PRODUCTS_PRICE', 'Preis - aufsteigend');
@@ -574,7 +582,7 @@ define('TEXT_INFO_SORT_BY_PRODUCTS_SORT_ORDER', 'Standardansicht');
   define('TABLE_HEADING_DOWNLOAD_FILENAME','Dateiname');
   define('TABLE_HEADING_PRODUCT_NAME','Artikel');
   define('TABLE_HEADING_BYTE_SIZE','Dateigr&ouml;&szlig;e');
-  define('TEXT_DOWNLOADS_UNLIMITED', 'kein Limit');
+  define('TEXT_DOWNLOADS_UNLIMITED', 'Unbegrenzt');
   define('TEXT_DOWNLOADS_UNLIMITED_COUNT', '--- *** ---');
 
 // misc
@@ -586,14 +594,14 @@ define('TEXT_INFO_SORT_BY_PRODUCTS_SORT_ORDER', 'Standardansicht');
   define('TABLE_HEADING_TOTAL', 'Summe');
 
 // create account - login shared
-  define('TABLE_HEADING_PRIVACY_CONDITIONS', 'Privacy Statement');
-  define('TEXT_PRIVACY_CONDITIONS_DESCRIPTION', 'Please acknowledge you agree with our privacy statement by ticking the following box. The privacy statement can be read <a href="' . zen_href_link(FILENAME_PRIVACY, '', 'SSL') . '"><span class="pseudolink">here</span></a>.');
-  define('TEXT_PRIVACY_CONDITIONS_CONFIRM', 'I have read and agreed to your privacy statement.');
-  define('TABLE_HEADING_ADDRESS_DETAILS', 'Kundendaten');
-  define('TABLE_HEADING_PHONE_FAX_DETAILS', 'Wie erreichen wir Sie?');
-  define('TABLE_HEADING_DATE_OF_BIRTH', 'Verify Your Age');
-  define('TABLE_HEADING_LOGIN_DETAILS', 'Benutzerdaten');
-  define('TABLE_HEADING_REFERRAL_DETAILS', 'Were You Referred to Us?');
+define('TABLE_HEADING_PRIVACY_CONDITIONS', 'Datenschutz');
+define('TEXT_PRIVACY_CONDITIONS_DESCRIPTION', 'Bitte best&auml;tigen Sie Ihr Einverst&auml;ndniss mit meinen Datenschutzrichtlinien, indem Sie die Checkbox aktivieren. Die Datenschutzrichtlinien k&ouml;nnen <a href="' . zen_href_link(FILENAME_PRIVACY, '', 'SSL') . '"><span class="pseudolink">hier</span></a> gelesen werden.');
+define('TEXT_PRIVACY_CONDITIONS_CONFIRM', 'Ich habe die Datenschutzrichtlinien gelesen und akzeptiert.');
+define('TABLE_HEADING_ADDRESS_DETAILS', 'Bitte tragen Sie Ihre Adressangaben ein');
+define('TABLE_HEADING_PHONE_FAX_DETAILS', 'Wie kann man Sie erreichen?');
+define('TABLE_HEADING_DATE_OF_BIRTH', 'Bitte geben Sie Ihr Geburtsdatum an');
+define('TABLE_HEADING_LOGIN_DETAILS', 'Bitte geben Sie hier Ihre Anmeldedaten ein');
+define('TABLE_HEADING_REFERRAL_DETAILS', 'Wie wurden Sie auf unseren Shop aufmerksam?');
 
   define('ENTRY_EMAIL_PREFERENCE','Newsletter und Email');
   define('ENTRY_EMAIL_HTML_DISPLAY','HTML');
@@ -603,10 +611,14 @@ define('TEXT_INFO_SORT_BY_PRODUCTS_SORT_ORDER', 'Standardansicht');
   define('DB_ERROR_NOT_CONNECTED', 'Error - Could not connect to Database');
 
 // EZ-PAGES Alerts
-  define('TEXT_EZPAGES_STATUS_HEADER_ADMIN', 'WARNING: EZ-PAGES HEADER - On for Admin IP Only');
-  define('TEXT_EZPAGES_STATUS_FOOTER_ADMIN', 'WARNING: EZ-PAGES FOOTER - On for Admin IP Only');
-  define('TEXT_EZPAGES_STATUS_SIDEBOX_ADMIN', 'WARNING: EZ-PAGES SIDEBOX - On for Admin IP Only');
+define('TEXT_EZPAGES_STATUS_HEADER_ADMIN', 'WARNING: EZ-PAGES HEADER - Darf nur vom Admin ge&ouml;ffnet werden ');
+define('TEXT_EZPAGES_STATUS_FOOTER_ADMIN', 'WARNING: EZ-PAGES FOOTER - Darf nur vom Admin ge&ouml;ffnet werden ');
+define('TEXT_EZPAGES_STATUS_SIDEBOX_ADMIN', 'WARNING: EZ-PAGES SIDEBOX - Darf nur vom Admin ge&ouml;ffnet werden ');
 
+// extra product listing sorter
+define('TEXT_PRODUCTS_LISTING_ALPHA_SORTER', '');
+define('TEXT_PRODUCTS_LISTING_ALPHA_SORTER_NAMES', 'Artikel starten mit ...');
+define('TEXT_PRODUCTS_LISTING_ALPHA_SORTER_NAMES_RESET', '-- Zur&uuml;ckstellen --');
 
 // /////////////////////////////////////////////////////////
 // include email extras

@@ -24,7 +24,7 @@
 //  $Id: attributes_controller.php 4 2006-03-31 16:38:40Z hugo13 $
 //
 
-define('HEADING_TITLE', 'Kategorie: '); // new 1.3.0  
+define('HEADING_TITLE', 'Kategorie: ');
 
 define('HEADING_TITLE_OPT','Artikelattribute');
 define('HEADING_TITLE_VAL','Attributmerkmale');
@@ -167,7 +167,6 @@ define('TEXT_ATTRIBUTE_COPY_UPDATING','<strong>aktualisiere von Attribut </stron
 define('TEXT_ATTRIBUTES_PREVIEW','ATTRIBUTE VORSCHAU');
 define('TEXT_ATTRIBUTES_PREVIEW_DISPLAY','VORSCHAU DER ATTRIBUTE ANZEIGEN FÜR ID#');
 define('TEXT_PRODUCT_OPTIONS','<strong>Bitte w&auml;hlen Sie:</strong>');
-define('TEXT_PRODUCT_WEIGHT_UNIT','kg');
 
 define('TEXT_ATTRIBUTES_INSERT_INFO','<strong>Definieren Sie die Attributeinstellungen, anschlie&szlig;end klicken Sie auf "Einf&uuml;gen" um die Änderungen zu speichern</strong>');
 define('TEXT_PRICED_BY_ATTRIBUTES','Preis durch Attribute festgelegt');
@@ -181,8 +180,8 @@ define('TEXT_SAVE_CHANGES', 'ÄNDERUNGEN AKTUALISIEREN UND SPEICHERN:');
 define('TEXT_INFO_ID', 'ID#');
 define('TEXT_INFO_ALLOW_ADD_TO_CART_NO', 'Nicht zum Warenkorb hinzugef&uuml;gt');
 define('TEXT_DELETE_ATTRIBUTES_OPTION_NAME_VALUES', 'Sollen wirklich ALLE Attributmerkmale des Attributnamens gelöscht werden ...'); // new 1.3.0  
-define('TEXT_INFO_PRODUCT_NAME', '<strong>Produkt Name: </strong>');  // new 1.3.0  
-define('TEXT_INFO_PRODUCTS_OPTION_NAME', '<strong>Artikeloptionen : </strong>');     // new 1.3.0  
-define('TEXT_INFO_PRODUCTS_OPTION_ID', '<strong>ID#</strong>'); // new 1.3.0  
+define('TEXT_INFO_PRODUCT_NAME', '<strong>Produkt Name: </strong>');
+define('TEXT_INFO_PRODUCTS_OPTION_NAME', '<strong>Artikeloptionen : </strong>');
+define('TEXT_INFO_PRODUCTS_OPTION_ID', '<strong>ID#</strong>'); 
 define('SUCCESS_ATTRIBUTES_DELETED_OPTION_NAME_VALUES', 'ALLE Attrbutmerkmale für Attributnamen wurden gelöscht: '); // new 1.3.0  
 ?>

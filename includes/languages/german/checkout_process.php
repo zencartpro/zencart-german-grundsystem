@@ -24,8 +24,8 @@
 // $Id: checkout_process.php 2 2006-03-31 09:55:33Z rainer $
 //
 
-define('EMAIL_TEXT_SUBJECT', 'Ihre Bestellung bei ' . STORE_NAME . ', ');
-define('EMAIL_TEXT_HEADER', 'Bestellbestätigung');
+define('EMAIL_TEXT_SUBJECT', 'Auftragsbestätigung');
+define('EMAIL_TEXT_HEADER', 'Auftragsbestätigung');
 define('EMAIL_TEXT_FROM', ' von '); //added to the EMAIL_TEXT_HEADER, above on text-only emails
 define('EMAIL_THANKS_FOR_SHOPPING', 'Vielen Dank für Ihren Einkauf!');
 define('EMAIL_DETAILS_FOLLOW', 'Im Nachfolgenden sehen Sie die Details Ihrer Bestellung.');
@@ -46,7 +46,7 @@ define('EMAIL_SEPARATOR', '-----------------------------------------------------
 define('TEXT_EMAIL_VIA', 'via');
 
 // suggest not using # vs No as some spamm protection block emails with these subjects
-define('EMAIL_ORDER_NUMBER_SUBJECT', ' Nr: ');
 define('EMAIL_ORDER_NUMBER_SUBJECT', ' Bestellnummer ');
 define('HEADING_ADDRESS_INFORMATION', 'Adressinformationen');
+define('HEADING_SHIPPING_METHOD', 'Versandart');
 ?>

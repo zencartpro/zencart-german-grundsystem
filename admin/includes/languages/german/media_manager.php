@@ -52,6 +52,6 @@ define('IMAGE_PRODUCTS', 'zu Artikel zuteilen');
 define('TEXT_DELETE_PRODUCTS', 'Soll diese Medienkollektion und alle Verlinkungen zu dieser Kollektion gel&ouml;scht werden?');
 define('TEXT_DELETE_WARNING_PRODUCTS', '<b>WARNUNG:</b> Es gibt %s Verlinkungen zu dieser Medienkollektion!');
 define('ERROR_UNKNOWN_DATA', 'FEHLER: Unbekannte Daten geliefert... Operation abgebrochen');
-define('TEXT_ADD', 'hinzufügen'); // new 1.3.0  
+define('TEXT_ADD', 'hinzufügen');
 
 ?>

@@ -214,14 +214,14 @@ define('TEXT_ATTRIBUTE_COPY_INSERTING', '<strong>Füge neue Attribute ein von </s
 define('TEXT_ATTRIBUTE_COPY_UPDATING', '<strong>Aktualisiere von Attribut </strong>');
 
 // meta tags
-define('TEXT_META_TAG_TITLE_INCLUDES', '<strong>Mark What the Document\'s Meta Tag Title Should Include:</strong>');
-define('TEXT_PRODUCTS_METATAGS_PRODUCTS_NAME_STATUS', '<strong>Document Name:</strong>');
-define('TEXT_PRODUCTS_METATAGS_TITLE_STATUS', '<strong>Title:</strong>');
-define('TEXT_PRODUCTS_METATAGS_MODEL_STATUS', '<strong>Model:</strong>');
-define('TEXT_PRODUCTS_METATAGS_PRICE_STATUS', '<strong>Price:</strong>');
-define('TEXT_PRODUCTS_METATAGS_TITLE_TAGLINE_STATUS', '<strong>Title/Tagline:</strong>');
-define('TEXT_META_TAGS_TITLE', '<strong>Meta Tag Title:</strong>');
-define('TEXT_META_TAGS_KEYWORDS', '<strong>Meta Tag Keywords:</strong>');
-define('TEXT_META_TAGS_DESCRIPTION', '<strong>Meta Tag Description:</strong>');
-define('TEXT_META_EXCLUDED', '<span class="alert">EXCLUDED</span>');
+define('TEXT_META_TAG_TITLE_INCLUDES', '<strong>Kennzeichnen, was der Dokumenten-Meta-Tagtitel mit einschlie&szlig;en sollte:</strong>');
+define('TEXT_PRODUCTS_METATAGS_PRODUCTS_NAME_STATUS', '<strong>Name des Dokumentes:</strong>');
+define('TEXT_PRODUCTS_METATAGS_TITLE_STATUS', '<strong>Titel:</strong>');
+define('TEXT_PRODUCTS_METATAGS_MODEL_STATUS', '<strong>Modell:</strong>');
+define('TEXT_PRODUCTS_METATAGS_PRICE_STATUS', '<strong>Preis:</strong>');
+define('TEXT_PRODUCTS_METATAGS_TITLE_TAGLINE_STATUS', '<strong>Titel&uuml;berschrift:</strong>');
+define('TEXT_META_TAGS_TITLE', '<strong>Meta Tag Titel:</strong>');
+define('TEXT_META_TAGS_KEYWORDS', '<strong>Meta Tag Schl&uuml;sselworte:</strong>');
+define('TEXT_META_TAGS_DESCRIPTION', '<strong>Meta Tag Beschreibung:</strong>');
+define('TEXT_META_EXCLUDED', '<span class="alert">AUSGESCHLOSSEN</span>');
 ?>

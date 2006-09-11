@@ -51,4 +51,12 @@ define('TEXT_IMAGE_NONEXISTENT', 'Bild existiert nicht');
 
 define('TEXT_INFO_HEADING_DELETE_FEATURED', 'l&ouml;sche &auml;hnlichen Artikel');
 define('TEXT_INFO_DELETE_INTRO', 'Wollen Sie den &auml;hnlichen Artikel wirklich l&ouml;schen?');
+
+define('SUCCESS_FEATURED_PRE_ADD', 'Erfolgreich: Vor-Hinzuf&uuml;gen von kommenden ... Aktualisieren Sie bitte die Daten ...');
+define('WARNING_FEATURED_PRE_ADD_EMPTY', 'Warnung: Kein Produkt angegeben, welches ... nichts wurde addiert ...');
+define('WARNING_FEATURED_PRE_ADD_DUPLICATE', 'Warnung: Produkt ID bereits als Sonderangebot ... nichts wurde addiert ...');
+define('TEXT_INFO_HEADING_PRE_ADD_FEATURED', 'Neue Artikel manuell addieren mit Produkt ID');
+define('TEXT_INFO_PRE_ADD_INTRO', 'Auf gro&szlig;en Datenbanken kann man Artikel manuell hinzuf&uuml;gen, gekennzeichnet durch die Produkt ID<br /><br />Dies wird dann angewandt, wenn die Seite zu lang zum übertragen wird und der Versuch, ein Produkt mit Dropdown zu w&auml;hlen wegen zu vielen Produkten zu schwierig wird.');
+define('TEXT_PRE_ADD_PRODUCTS_ID', 'Bitte geben Sie die Produkt ID vor dem hinzuf&uuml;gen ein: ');
+define('TEXT_INFO_MANUAL', 'Produkt ID manuell hinzugef&uuml;gt');
 ?>
