@@ -14,7 +14,7 @@ define('NAVBAR_TITLE_3','Bestellung #%s');
 
 define('HEADING_TITLE','Bestellinformationen');
 
-define('HEADING_ORDER_NUMBER','Bestellnummer %s');
+define('HEADING_ORDER_NUMBER', 'Bestellnummer #%s');
 define('HEADING_ORDER_DATE','Bestelldatum:');
 define('HEADING_ORDER_TOTAL','Bestellsumme:');
 

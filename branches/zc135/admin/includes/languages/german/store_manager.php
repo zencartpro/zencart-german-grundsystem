@@ -76,4 +76,8 @@ define('TEXT_LANGUAGE_LOOKUP_CURRENT_ALL', 'Alle derzeit ausgew&auml;hlten Sprac
 
 define('TEXT_INFO_NO_EDIT_AVAILABLE', 'Keine Bearbeitung erh&auml;ltlich');
 define('TEXT_INFO_CONFIGURATION_HIDDEN', ' oder VERSTECKT');
+
+define('TEXT_INFO_DATABASE_OPTIMIZE', '<strong>Datenbank optimieren</strong> um vergeudeten Raum von gel&ouml;schten Aufzeichnungen zu entfernen.<br/>Das kann monatlich oder w&ouml;chentlich auf einer frequentierten Datenbank erforderlich sein.<br/>(Am besten w&auml;hrend der nichtaktiven Zeiten die Optimierung laufen lassen.)');
+define('SUCCESS_DB_OPTIMIZE', 'Datenbank-Optimierung - Tabellen verarbeiten: ');
+
 ?>

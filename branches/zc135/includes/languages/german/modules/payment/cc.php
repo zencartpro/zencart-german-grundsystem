@@ -37,5 +37,6 @@ define('MODULE_PAYMENT_CC_TEXT_JS_CC_NUMBER','* Die Kartennummer muss aus mindes
 define('MODULE_PAYMENT_CC_TEXT_ERROR','Kreditkartenfehler!');
 define('MODULE_PAYMENT_CC_TEXT_JS_CC_CVV','* Der Sicherheitscode f&uuml;r Kreditkarten muss aus mindestens ' . CC_CVV_MIN_LENGTH . ' characters.\n . Zeichen bestehen!');
 define('MODULE_PAYMENT_CC_TEXT_EMAIL_ERROR', 'Warnung - Konfigurations Fehler: ');  // new 1.3.0  
-define('MODULE_PAYMENT_CC_TEXT_EMAIL_WARNING', '!!!TRANSLATE!!! WARNING: You have enabled the CC payment module but have not configured it to send CC information to you by email. As a result, you will not be able to process the CC number for orders placed using this method.  Go to Admin->Modules->Payment->CC->Edit and set the email address for sending CC information.' . "\n\n\n\n");     // new 1.3.0  
+define('MODULE_PAYMENT_CC_TEXT_EMAIL_WARNING','WARNUNG: Sie haben das CC Zahlungsmodul nicht richtig konfiguriert, damit CC Informationen durch email schicken kann. Infolgedessen werden Auftr&auml;ge nicht verarbeitet, die mit dieser Methode erteilt werden.  Zu Admin->Modules->Payment->CC->Edit gehen und die bevorzugte Emailadresse f&uuml;r das senden von CC Informationen einstellen.' . "\n\n\n\n");
+define('MODULE_PAYMENT_CC_TEXT_MIDDLE_DIGITS_MESSAGE', 'Diese Email an die Buchhaltung senden, damit sie zusammen mit dem Online-Auftrag eingeordnet werden kann, auf den sie sich bezieht: ' . "\n\n" . 'Auftrag: %s' . "\n\n" . 'Mittlere Stellen: %s' . "\n\n");
 ?>

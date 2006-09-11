@@ -62,4 +62,7 @@ define('CUSTOMERS_AUTHORIZATION_2', 'Anstehende Autorisierung - darf im Shop bro
 define('CUSTOMERS_AUTHORIZATION_3', 'Anstehende Autorisierung - darf im Shop browsen und Preise sehen, aber nicht kaufen');
 define('ERROR_CUSTOMER_APPROVAL_CORRECTION1', 'Warnung: Ihr Shop ist auf "Autorisierung ohne browsen" eingestellt. Der Kunde wurde auf " anstehende Genehmigung - ohne browsen im Shop" gesetzt');
 define('ERROR_CUSTOMER_APPROVAL_CORRECTION2', 'Warnung: Ihr Shop ist auf "Autorisierung mit browsen ohne Preisanzeige" eingestellt. Der Kunde wurde auf " anstehende Genehmigung - browsen im Shop ohne Preisanzeige" gesetzt');
+
+define('EMAIL_CUSTOMER_STATUS_CHANGE_MESSAGE', 'Ihr Kundenstatus ist aktualisiert worden. Für Ihren Einkauf bei uns danken wir Ihnen. Wir hören gerne wieder von Ihnen.');
+define('EMAIL_CUSTOMER_STATUS_CHANGE_SUBJECT', 'Kundenstatus ist aktualisiert');
 ?>

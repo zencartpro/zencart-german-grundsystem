@@ -25,14 +25,14 @@
 //
 
 define('NAVBAR_TITLE_1', 'Erweiterte Suche');
-define('NAVBAR_TITLE_2', 'Suche Ergebnisse');
+define('NAVBAR_TITLE_2','Suchergebnisse');
 
 // define('HEADING_TITLE_1', 'Advanced Search');
 define('HEADING_TITLE', 'Erweiterte Suche');
 
-define('HEADING_SEARCH_CRITERIA', 'Suchkriterien');
+define('HEADING_SEARCH_CRITERIA','Suchkriterien:');
 
-define('TEXT_SEARCH_IN_DESCRIPTION', 'Suche in Artikelbeschreibungen');
+define('TEXT_SEARCH_IN_DESCRIPTION','In Artikelbeschreibungen suchen');
 define('ENTRY_CATEGORIES', 'Kategorien:');
 define('ENTRY_INCLUDE_SUBCATEGORIES', 'Mit Unterkategorien');
 define('ENTRY_MANUFACTURERS', 'Hersteller:');
@@ -41,12 +41,12 @@ define('ENTRY_PRICE_TO', 'Preis bis:');
 define('ENTRY_DATE_FROM', 'Eintrag ab:');
 define('ENTRY_DATE_TO', 'Eintrag bis:');
 
-define('TEXT_SEARCH_HELP_LINK', 'Suchhilfe [?]');
+define('TEXT_SEARCH_HELP_LINK', 'Hilfe [?]');
 
 define('TEXT_ALL_CATEGORIES', 'Alle Kategorien');
 define('TEXT_ALL_MANUFACTURERS', 'Alle Hersteller');
 
-define('HEADING_SEARCH_HELP', 'Suchhilfe');
+define('HEADING_SEARCH_HELP', 'Hilfe zur Suche');
 define('TEXT_SEARCH_HELP', 'Suchbegriffe k&ouml;nnen mit Hilfe von UND oder ODER benutzt werden.<br /><br />Beispiel: mit Microsoft UND Maus werden Begriffe mit beiden W&ouml;rtern gefunden. Wohingegen mit Microsoft ODER Maus Begriffe gefunden werden, die entweder Microsoft oder Maus beinhalten.');
 define('TEXT_CLOSE_WINDOW', 'Fenster schlie&szlig;en [x]');
 
@@ -59,7 +59,7 @@ define('TABLE_HEADING_PRICE', 'Preis');
 define('TABLE_HEADING_WEIGHT', 'Gewicht');
 define('TABLE_HEADING_BUY_NOW', 'Jetzt kaufen');
 
-define('TEXT_NO_PRODUCTS', 'Keines der Artikel entspricht Ihren Suchkriterien.');
+define('TEXT_NO_PRODUCTS', 'Kein Artikel entsprechend Ihren Suchkriterien gefunden.');
 
 define('ERROR_AT_LEAST_ONE_INPUT', 'Es muss mindestens eine Auswahl getroffen werden.');
 define('ERROR_INVALID_FROM_DATE', 'Fehler bei');

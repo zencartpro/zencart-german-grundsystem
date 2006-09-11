@@ -192,9 +192,9 @@ define('TEXT_PRODUCTS_METATAGS_PRODUCTS_NAME_STATUS', '<strong>Artikelname:</str
 define('TEXT_PRODUCTS_METATAGS_TITLE_STATUS', '<strong>Titel:</strong>');
 define('TEXT_PRODUCTS_METATAGS_MODEL_STATUS', '<strong>Bezeichnung:</strong>');
 define('TEXT_PRODUCTS_METATAGS_PRICE_STATUS', '<strong>Preis:</strong>');
-define('TEXT_PRODUCTS_METATAGS_TITLE_TAGLINE_STATUS', '<strong>Titel/Tagline:</strong>');
-define('TEXT_META_TAGS_TITLE', '<strong>Meta Tag Title:</strong>');
-define('TEXT_META_TAGS_KEYWORDS', '<strong>Meta Tag Keywords:</strong>');
-define('TEXT_META_TAGS_DESCRIPTION', '<strong>Meta Tag Description:</strong>');
-define('TEXT_META_EXCLUDED', '<span class="alert">EXCLUDED</span>');
+define('TEXT_PRODUCTS_METATAGS_TITLE_TAGLINE_STATUS', '<strong>Titel&uuml;berschrift:</strong>');
+define('TEXT_META_TAGS_TITLE', '<strong>Meta Tag Titel:</strong>');
+define('TEXT_META_TAGS_KEYWORDS', '<strong>Meta Tag Schl&uuml;sselw&ouml;rter:</strong>');
+define('TEXT_META_TAGS_DESCRIPTION', '<strong>Meta Tag Beschreibung:</strong>');
+define('TEXT_META_EXCLUDED', '<span class="alert">AUSGESCHLOSSEN</span>');
 ?>

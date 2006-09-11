@@ -4,8 +4,8 @@
 * @copyright Copyright 2003-2006 Zen Cart Development Team
 * @copyright Portions Copyright 2003 osCommerce
 * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- @version $Id: other_images_names.php 2 2006-03-31 09:55:33Z rainer $
-@@@LOOK@@@*/
+ * @version $Id: other_images_names.php 3056 2006-02-21 06:41:36Z birdbrain $
+ */
 
 /*
 * define the other images used in the project
@@ -46,12 +46,12 @@ define('OTHER_DOWN_FOR_MAINTENANCE_ALT', 'Unser Online Shop ist derzeit wegen Wa
 
 
 define('OTHER_TRANPARENT_ALT', '');
-define('OTHER_IMAGE_CUSTOMERS_AUTHORIZATION_ALT', 'CUSTOMER APPROVAL IS PENDING ...');
+define('OTHER_IMAGE_CUSTOMERS_AUTHORIZATION_ALT', '&Uuml;berpr&uuml;fung l&auml;uft...');
 define('OTHER_REVIEWS_RATING_STARS_FIVE_ALT', 'F&uuml;nf Sterne');
 define('OTHER_REVIEWS_RATING_STARS_FOUR_ALT', 'Vier Sterne');
 define('OTHER_REVIEWS_RATING_STARS_THREE_ALT', 'Drei Sterne');
 define('OTHER_REVIEWS_RATING_STARS_TWO_ALT', 'Zwei Sterne');
-define('OTHER_REVIEWS_RATING_STARS_ONE_ALT', 'Ein Sterne');
+define('OTHER_REVIEWS_RATING_STARS_ONE_ALT', 'Ein Stern');
 //define('OTHER_xxx_ALT', '');
 
 ?>

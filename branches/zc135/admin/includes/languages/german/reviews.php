@@ -56,7 +56,7 @@ define('TEXT_GOOD', '<small><font color="#ff0000"><b>Gut</b></font></small>');
 define('TEXT_BAD', '<small><font color="#ff0000"><b>schlecht</b></font></small>');
 define('TEXT_INFO_HEADING_DELETE_REVIEW', 'L&ouml;sche Bericht');
 
-define('TEXT_ALL_STATUS', '--Any--');
+define('TEXT_ALL_STATUS', '--Irgendwelche--');
 define('TEXT_PENDING_APPROVAL', 'ausstehend');
 define('TEXT_APPROVED', 'freigeschalten');
 define('HEADING_TITLE_STATUS', 'Status');

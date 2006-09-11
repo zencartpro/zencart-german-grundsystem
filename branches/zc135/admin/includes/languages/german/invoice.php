@@ -32,9 +32,9 @@ define('TABLE_HEADING_PRODUCTS','Artikel');
 define('TABLE_HEADING_TAX','UST.');
 define('TABLE_HEADING_TOTAL','Summe');
 define('TABLE_HEADING_PRICE_EXCLUDING_TAX','Preis (exkl. UST)');
-define('TABLE_HEADING_PRICE_INCLUDING_TAX','Preis ');
+define('TABLE_HEADING_PRICE_INCLUDING_TAX','Preis (inkl. UST)');
 define('TABLE_HEADING_TOTAL_EXCLUDING_TAX','Summe (exkl. UST)');
-define('TABLE_HEADING_TOTAL_INCLUDING_TAX','Summe ');
+define('TABLE_HEADING_TOTAL_INCLUDING_TAX','Summe (inkl. UST)');
 
 define('ENTRY_CUSTOMER', 'KUNDE:');
 

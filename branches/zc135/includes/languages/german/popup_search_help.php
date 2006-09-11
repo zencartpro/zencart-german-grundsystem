@@ -24,7 +24,7 @@
 // $Id: popup_search_help.php 2 2006-03-31 09:55:33Z rainer $
 //
 
-define('HEADING_SEARCH_HELP','Suche - Hilfe');
+define('HEADING_SEARCH_HELP','Hilfe zur Suche');
 define('TEXT_SEARCH_HELP','
 <p>Unser Shop bietet als weiteren Service  auch eine leistungsstarke Suchmaschine:<br />
   <br />

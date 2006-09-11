@@ -1,28 +1,15 @@
 <?php
-//
-// +----------------------------------------------------------------------+
-// |zen-cart Open Source E-commerce                                       |
-// +----------------------------------------------------------------------+
-// | Copyright (c) 2003 The zen-cart developers                           |
-// |                                                                      |
-// | http://www.zen-cart.com/index.php                                    |
-// |                                                                      |
-// | Portions Copyright (c) 2003 osCommerce                               |
-// +----------------------------------------------------------------------+
-// | This source file is subject to version 2.0 of the GPL license,       |
-// | that is bundled with this package in the file LICENSE, and is        |
-// | available through the world-wide-web at the following url:           |
-// | http://www.zen-cart.com/license/2_0.txt.                             |
-// | If you did not receive a copy of the zen-cart license and are unable |
-// | to obtain it through the world-wide-web, please send a note to       |
-// | license@zen-cart.com so we can mail you a copy immediately.          |
-// +----------------------------------------------------------------------+
-// | Translator:           cyaneo/hugo13                                  |
-// | Date of Translation:  31.03.06                                       |
-// | Homepage:             www.zen-cart.at                                |
-// +----------------------------------------------------------------------+
-//  $Id: newsletters.php 4 2006-03-31 16:38:40Z hugo13 $
-//
+/**
+ * @package admin
+ * @copyright Copyright 2003-2006 Zen Cart Development Team
+ * @copyright Portions Copyright 2003 osCommerce
+ * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
+ * Translator:           klartexter unter Verwendung der
+ *                       Vorlagen von cyaneo/hugo13               
+ * Date of Translation:  06.09.2006                                 
+ * Homepage:             www.zen-cart.at                                
+ * @version $Id: newsletters.php 4385 2006-09-04 04:10:48Z drbyte $
+ */
 
 define('HEADING_TITLE','Newsletter Manager');
 
@@ -51,7 +38,4 @@ define('TEXT_AFTER_EMAIL_INSTRUCTIONS','%s e-Mails versendet. <br /><br />Kontro
 define('ERROR_NEWSLETTER_TITLE','Fehler: Geben Sie bitte den Titel des Newsletter ein');
 define('ERROR_NEWSLETTER_MODULE','Fehler: Das Newsletter Modul wird dazu ben&ouml;tigt.');
 define('ERROR_PLEASE_SELECT_AUDIENCE','Fehler: Bitte w&auml;hlen Sie die Zielgruppe, die den Newsletter erhalten soll');
-define('ERROR_REMOVE_UNLOCKED_NEWSLETTER','Fehler: Bitte sperren Sie den Newsletter, bevor Sie ihn l&ouml;schen.');
-define('ERROR_EDIT_UNLOCKED_NEWSLETTER','Fehler: Bitte sperren Sie den Newsletter, bevor Sie ihn bearbeiten.');
-define('ERROR_SEND_UNLOCKED_NEWSLETTER','Fehler: Bitte sperren Sie den Newsletter, bevor Sie ihn senden.');
 ?>

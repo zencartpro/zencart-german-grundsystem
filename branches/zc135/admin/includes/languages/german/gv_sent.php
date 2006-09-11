@@ -24,13 +24,13 @@
 //  $Id: gv_sent.php 4 2006-03-31 16:38:40Z hugo13 $
 //
 
-define('HEADING_TITLE', 'Gutscheine versendet');
+define('HEADING_TITLE', 'Gutscheine versenden');
 
 define('TABLE_HEADING_SENDERS_NAME', 'Name des Absenders');
 define('TABLE_HEADING_VOUCHER_VALUE', ' Betrag');
 define('TABLE_HEADING_VOUCHER_CODE', ' eingel&ouml;st');
 define('TABLE_HEADING_DATE_SENT', 'gesendet am');
-define('TEXT_HEADING_DATE_REDEEMED', 'eingel&ouml;st am');
+define('TEXT_HEADING_DATE_REDEEMED', 'Einl&ouml;sedatum');
 define('TABLE_HEADING_ACTION', 'Aktion');
 
 define('TEXT_INFO_SENDERS_ID', 'Absender ID:');

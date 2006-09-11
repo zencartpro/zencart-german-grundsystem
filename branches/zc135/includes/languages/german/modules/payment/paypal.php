@@ -1,11 +1,11 @@
 <?php
 /**
 * @package languageDefines
-* @copyright Copyright 2003-2005 Zen Cart Development Team
+ * @copyright Copyright 2003-2006 Zen Cart Development Team
 * @copyright Portions Copyright 2003 osCommerce
 * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
-* @version $Id: paypal.php 2 2006-03-31 09:55:33Z rainer $
-@@@LOOK@@@*/
+ * @version $Id: paypal.php 4334 2006-09-01 08:02:14Z drbyte $
+ */
 
 define('MODULE_PAYMENT_PAYPAL_TEXT_ADMIN_TITLE', 'Paypal IPN');
 define('MODULE_PAYMENT_PAYPAL_TEXT_CATALOG_TITLE', 'Paypal');

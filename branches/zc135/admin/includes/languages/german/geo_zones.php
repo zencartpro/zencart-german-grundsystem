@@ -29,6 +29,7 @@ define('HEADING_TITLE','Steuerzonen');
 define('TABLE_HEADING_COUNTRY','Land');
 define('TABLE_HEADING_COUNTRY_ZONE','Bundesland');
 define('TABLE_HEADING_TAX_ZONES','Steuerzonen');
+define('TABLE_HEADING_TAX_ZONES_DESCRIPTION', 'Zonenbeschreibung');
 define('TABLE_HEADING_ACTION','Aktion');
 
 define('TEXT_INFO_HEADING_NEW_ZONE','Neue Steuerzone');
