@@ -96,4 +96,9 @@ define('SUB_HEADING_TITLE','');
 define('SUB_HEADING_TEXT','Bitte w&auml;hlen Sie Ihr Thema, zudem Sie Fragen haben.');
 
   }
+  
+  define('TEXT_GV_REDEEM_INFO', 'Bitte geben Sie Ihren Gutscheincode ein: ');
+  define('TEXT_GV_REDEEM_INFO', 'Bitte geben Sie Ihren  ' . TEXT_GV_NAME . ' Gutscheincode ein: ');
+  define('TEXT_GV_REDEEM_ID', 'Gutscheincode:');
+  
 ?>

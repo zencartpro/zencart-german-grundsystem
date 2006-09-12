@@ -94,7 +94,7 @@ define('EMAIL_TEXT_INVOICE_URL', 'Detaillierte Rechnung:');
 define('EMAIL_TEXT_DATE_ORDERED', 'Datum der Bestellung:');
 define('EMAIL_TEXT_COMMENTS_UPDATE', '<strong>Anmerkung:</strong> ' . "\n\n");
 define('EMAIL_TEXT_STATUS_UPDATED', 'Ihr Bestellstatus wurde aktualisiert.' . "\n\n");
-define('EMAIL_TEXT_STATUS_LABEL', '<strong>Neuer Status:</strong> ' . "\n\n");
+define('EMAIL_TEXT_STATUS_LABEL', '<strong>Neuer Status:</strong> %s' . "\n\n");
 define('EMAIL_TEXT_STATUS_PLEASE_REPLY', 'Wenn Sie noch Fragen haben, wenden Sie sich bitte an diese e-Mail Adresse <a href="mailto:' . STORE_OWNER_EMAIL_ADDRESS . '">' . STORE_OWNER_EMAIL_ADDRESS . '</a>.<br />' . "\n");
 
 define('ERROR_ORDER_DOES_NOT_EXIST', 'Fehler: Die Bestellung existiert nicht.');
