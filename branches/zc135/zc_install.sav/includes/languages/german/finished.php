@@ -31,7 +31,7 @@ Bitte l&ouml;schen Sie auch den Ordner <strong>/zc_install</strong> bzw. benenne
 <br /><br /><h2>KONFIGURATION</h2>Bitte besuchen Sie unsere Supportseite unter <a href=\"http://www.zen-cart.at\"><strong>Zen Cart FAQ</strong></a>. In unseren Online Foren erhalten Sie Hilfe und Tipps f&uuml;r die Installation, Konfiguration und Anpassung Ihres Zen Cart Shops.
 Wenn Sie Fragen haben, ist dies die erste Anlaufstelle f&uuml;r Sie.
 <h2>WICHTIGER HINWEIS</h2>Damit Sie Ihren Shop Ihren W&uuml;nschen entsprechend anpassen k&ouml;nnen, machen Sie sich bitte als Erstes mit dem <em><strong>Template System</strong></em> vertraut machen. Hilfestellung hierzu erhalten Sie im Handbuch und in unserer <a href=\"http://www.zen-cart.at\">online FAQ Sektion</a>.
-<h2>ZUSÄTZLICHER HINWEIS</h2>In unserer <a href=\"http://www.zen-cart.at\">Online Dokumentation</a>, und in der '<strong>Download Sektion</strong>' erhalten Sie immer die aktuellsten Versionen der Handb&uuml;cher.<br /><br />
+<h2>ZUS&Auml;TZLICHER HINWEIS</h2>In unserer <a href=\"http://www.zen-cart.at\">Online Dokumentation</a>, und in der '<strong>Download Sektion</strong>' erhalten Sie immer die aktuellsten Versionen der Handb&uuml;cher.<br /><br />
 Wir freuen uns, dass Sie Zen Cart als Ihr e-Commerce System ausgew&auml;hlt haben!<br /><br />" .
 '<a href="http://www.zen-cart.at">Besuchen Sie uns auf www.zen-cart.at</a>' . '</p>' .
 '<p>Klicken Sie auf den Button <em>Shop</em>, um Ihr Shopsystem zu testen, oder auf den Button <em>Admin</em>, um Ihr Shopsystem anzupassen.</p>');

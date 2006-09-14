@@ -185,7 +185,7 @@ define('ERROR_CODE_MAGIC_QUOTES_RUNTIME','75');
 define('ERROR_TEXT_DB_VER_UNKNOWN','Datenbank Versionsinformation unbekannt');
 define('ERROR_CODE_DB_VER_UNKNOWN','76');
 
-define('ERROR_TEXT_DB_MYSQL5','MySQL 5 support not fully tested');
+define('ERROR_TEXT_DB_MYSQL5','MySQL 5 Support noch nicht vollst&auml;ndig getestet');
 define('ERROR_CODE_DB_MYSQL5','90');
 
 define('ERROR_TEXT_UPLOADS_DISABLED','Dateiuploads sind deaktiviert');
@@ -220,6 +220,10 @@ define('ERROR_CODE_COULD_NOT_WRITE_CONFIGURE_FILES','88');
 define('ERROR_TEXT_GD_SUPPORT','GD Support Details');
 define('ERROR_CODE_GD_SUPPORT','89');
 
+define('ERROR_TEXT_OPEN_BASEDIR','Es k&ouml;nnte Probleme mit Uploads oder Backups geben.');
+define('ERROR_CODE_OPEN_BASEDIR','92');
+define('ERROR_TEXT_CURL_SUPPORT','cURL Unterst&uuml;tzung nicht gefunden.');
+define('ERROR_CODE_CURL_SUPPORT','93');
 
   $error_code ='';
 if (isset($_GET['error_code'])) {
@@ -494,7 +498,7 @@ switch ($error_code) {
   break;
   case ('54'):
     define('POPUP_ERROR_HEADING', 'Admin Passwortbest&auml;tigung');
-    define('POPUP_ERROR_TEXT', 'Dient zur Überpr&uuml;fung des eingegebenen Passworts und soll vor Tippfehlern vorbeugen.');
+    define('POPUP_ERROR_TEXT', 'Dient zur &Uuml;berpr&uuml;fung des eingegebenen Passworts und soll vor Tippfehlern vorbeugen.');
     
   break;
   case ('55'):
@@ -650,8 +654,20 @@ switch ($error_code) {
     define('POPUP_ERROR_TEXT','Zen Cart&trade; uses GD support in PHP, if available, to do image management activities.  It is preferred to have at least version 2.0 available.<br /><br />If GD support is not compiled into your PHP install, you may want to ask your hosting company to do this for you.');
   break;
   case ('90'):
-    define('POPUP_ERROR_HEADING','MySQL 5 not fully supported');
-    define('POPUP_ERROR_TEXT','While many efforts have been spent on ensuring that database queries in Zen Cart&trade; are compatible with MySQL 5, full  testing has not been completed at the present time.<br /><br />You are welcome to proceed with installation; however, please note that full compatibility is still in development.<br /><br />If you do encounter SQL errors while using Zen Cart&trade; on MySQL 5, please post them to our support forum (after searching to see if the message has already been reported) so we can find a resolution to the problem.');
+    define('POPUP_ERROR_HEADING','MySQL 5 wird nicht vollst&auml;ndig unterst&uuml;tzt');
+    define('POPUP_ERROR_TEXT','Es wurde viel M&uuml;he investiert um Datenbank-Abfragen in Zen Cart&trade; mit MySQL 5 kompatibel zu machen, trotzdem ist ein vollst&auml;ndiger Test noch nicht abgeschlossen.<br /><br />Sie k&ouml;nnen die Installation fortsetzen, sollten aber immer beachten, dass die vollst&auml;ndige Unterst&uuml;tzung noch in der Entwicklung ist.<br /><br />Sollten Sie bei der Nutzung von Zen Cart&trade; mit MySQL 5 auf SQL-Fehlermeldungen sto&szlig;en, melden Sie diese bitte in unserem Support-Forum (Bitte schauen Sie erst, ob das Problem nicht schon gemeldet wurde!), so dass wir das Problem beheben k&ouml;nnen.');
+  break;
+  case ('91'):
+    define('POPUP_ERROR_HEADING','PHP Version Alert');
+    define('POPUP_ERROR_TEXT','Zen Cart&trade; is designed to run on PHP versions 4.3.2 and greater.<br /><br />There are several PHP functions (mostly related to authentication and session-handling) used in Zen Cart&trade; which are either non-existent or have bugs in PHP versions prior to v4.3.2.<br /><br />We strongly recommend that you upgrade your PHP version if you intend to use Zen Cart&trade; on this server.');
+  break;
+  case ('92'):
+    define('POPUP_ERROR_HEADING','open_basedir restriction may cause problems');
+    define('POPUP_ERROR_TEXT','Your PHP is configured in such a way that prevents you from running scripts outside a specified "basedir" folder. Yet, your website files appear to be kept in a folder outside of the allowed "basedir" area.<br /><br />Among other things, you could have problems uploading files or doing backups.<br /><br />You should talk to your web host to change or remove this restriction.');
+  break;
+  case ('93'):
+    define('POPUP_ERROR_HEADING','cURL support not detected');
+    define('POPUP_ERROR_TEXT','Some 3rd-party payment and shipping modules/gateways require cURL in order to talk to an external server to request real-time quotes or payment authorizations. <br /><br />It appears that your server may not have cURL support configured or activated for your account. If you need a 3rd-party tool that uses cURL, you will need to talk to your web host to have them install cURL support on your server.');
   break;
 
 

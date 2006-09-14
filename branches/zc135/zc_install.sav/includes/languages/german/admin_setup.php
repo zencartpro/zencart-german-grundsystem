@@ -26,7 +26,7 @@
   
 define('TEXT_PAGE_HEADING', 'Zen Cart Installation - Administrationszugang');
 define('SAVE_ADMIN_SETTINGS', 'Zugangsdaten speichern');//this comes before TEXT_MAIN
-define('TEXT_MAIN', "Um Ihren Zen Cart Shop administrieren zu k&ouml;nnen, ben&ouml;tigen Sie ein Administratorenkonto. Bitte geben Sie einen Benutzernamen sowie ein Passwort an. Ebenso ben&ouml;tigen Sie eine e-Mail Adresse an die Sie sich Ihr Passwort (falls Sie es einmal vergessen haben sollten) zusenden lassen k&ouml;nnen. Überpr&uuml;fen Sie Ihre Angaben gewissenhaft und klicken Sie auf <em>".SAVE_ADMIN_SETTINGS.'</em> sobald Sie fertig sind.');
+define('TEXT_MAIN', "Um Ihren Zen Cart Shop administrieren zu k&ouml;nnen, ben&ouml;tigen Sie ein Administratorenkonto. Bitte geben Sie einen Benutzernamen sowie ein Passwort an. Ebenso ben&ouml;tigen Sie eine e-Mail Adresse an die Sie sich Ihr Passwort (falls Sie es einmal vergessen haben sollten) zusenden lassen k&ouml;nnen. &Uuml;berpr&uuml;fen Sie Ihre Angaben gewissenhaft und klicken Sie auf <em>".SAVE_ADMIN_SETTINGS.'</em> sobald Sie fertig sind.');
 define('ADMIN_INFORMATION', 'Administrator Informationen');
 define('ADMIN_USERNAME', 'Benutzername des Administrators');
 define('ADMIN_USERNAME_INSTRUCTION', 'Tragen Sie hier den gew&uuml;nschten Benutzernamen f&uuml;r die Anmeldung des Administratorkontos ein.');
