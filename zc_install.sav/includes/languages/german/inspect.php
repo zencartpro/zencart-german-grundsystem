@@ -34,7 +34,7 @@ define('REFRESH_BUTTON', 'neu pr&uuml;fen');
 // "Upgrade" = read old configure.php files, and write new ones using new structure. Upgrade database, instead of wiping and new install
 // "Database Upgrade" = don't write the configure.php files -- simply jump to the database-upgrade page. Only displayed if detected database version is new enough to not require configure.php file updates.
 
-define('TEXT_MAIN', 'Bitte nehmen Sie sich einen Augenblick Zeit f&uuml;r die Systempr&uuml;fung - diese stellt sichter, ob alle notwendigen Systemvoraussetzungen f&uuml;r eine erfolgreiche Installation von Zen Cart gegeben sind. &nbsp;Bitte beheben Sie alle Fehler oder Warnungen, bevor Sie mit der Installation fortfahren. &nbsp;Klicken Sie anschlie&szlig;end auf <em>'.INSTALL_BUTTON.'&nbsp;</em>.');
+define('TEXT_MAIN', 'Bitte nehmen Sie sich einen Augenblick Zeit f&uuml;r die Systempr&uuml;fung - diese stellt sicher, ob alle notwendigen Systemvoraussetzungen f&uuml;r eine erfolgreiche Installation von Zen Cart gegeben sind. &nbsp;Bitte beheben Sie alle Fehler oder Warnungen, bevor Sie mit der Installation fortfahren. &nbsp;Klicken Sie anschlie&szlig;end auf <em>'.INSTALL_BUTTON.'&nbsp;</em>.');
 define('SYSTEM_INSPECTION_RESULTS', 'Systempr&uuml;fung - Ergebnis');
 define('OTHER_INFORMATION', 'Sonstige Systeminformation (Nur zur Refferenz)');
 define('OTHER_INFORMATION_DESCRIPTION', 'Folgende Information mu&szlig; nicht unbedingt ein Problem oder eine fehlerhafte Konfiguration darstellen und dient einfach nur der Darstellung und Lokalisierung.');
@@ -48,6 +48,7 @@ define('UPGRADE_DETECTION','Update Modus erh&auml;ltlich');
 define('LABEL_PREVIOUS_INSTALL_FOUND','Es wurde eine vorherigen Zen Cart installation gefunden:');
 define('LABEL_PREVIOUS_VERSION_NUMBER','Die installierte Version scheint eine Zen Cart v%s zu sein');
 define('LABEL_PREVIOUS_VERSION_NUMBER_UNKNOWN','<em>Die Version Ihrer Datenbank konnte nicht korrekt ermittelt werden. Die Ursache kann ein falsches Tabellen-Pr&auml;fix sein oder es wurden fehlerhafte Angaben zu Ihrer Datenbank gemacht. <br /><br />ACHTUNG: Verwenden Sie die Update Option nur, wenn alle Angaben in Ihrer \'configure.php\' korrekt sind.</em>');
+define('LABEL_UPGRADE_VS_INSTALL', 'Installieren oder Updaten?');
 
 define('DISPLAY_PHP_INFO','PHP Info Link: ');
 define('VIEW_PHP_INFO_LINK_TEXT','PHPINFO f&uuml;r Ihren Server anzeigen');
@@ -90,7 +91,7 @@ define('LABEL_SENDMAIL_PATH','PHP sendmail Pfad');
 define('LABEL_SMTP_MAIL','PHP SMTP Lokalisierung');
 
 define('LABEL_CRITICAL','Kritische Punkte');
-define('LABEL_RECOMMENDED','Ähnliche Punkte');
+define('LABEL_RECOMMENDED','&Auml;hnliche Punkte');
 define('LABEL_OPTIONAL','Optionale Punkte');
 
 define('LABEL_EXPLAIN','&nbsp;F&uuml;r weitere Infos bitte hier klicken');
