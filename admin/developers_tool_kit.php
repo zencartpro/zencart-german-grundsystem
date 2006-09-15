@@ -28,6 +28,7 @@
   $languages = zen_get_languages();
 
   $configuration_key_lookup = zen_db_prepare_input($_POST['configuration_key']);
+  
 
   function getDirList ($dirName) {
     global $directory_array, $sub_dir_files;
@@ -37,7 +38,7 @@
     $file_extension = '.php';
     if ($d) {
       while($entry = $d->read()) {
-        if ($entry != "." && $entry != "..") {
+        if ($entry != "." && $entry != ".." && $entry!='.svn') {
           if (is_dir($dirName."/".$entry)) {
             if ($entry == 'CVS') {
             // skip
@@ -194,6 +195,8 @@
               $check_directory[] = DIR_FS_CATALOG_LANGUAGES . $_SESSION['language']. '/modules/product_types/';
               $check_directory[] = DIR_FS_ADMIN . DIR_WS_LANGUAGES . $_SESSION['language'] . '/';
               $check_directory[] = DIR_FS_ADMIN . DIR_WS_LANGUAGES . $_SESSION['language'] . '/modules/newsletters/';
+              print_r($check_directory);
+              rldp($check_directory);
               break;
             case (2): // all catalog /language/*.php
               $check_directory = array();
