@@ -30,7 +30,7 @@ define('TABLE_HEADING_TAX_CLASS_ID', 'ID');
 define('TABLE_HEADING_TAX_CLASSES','Steuerklassen');
 define('TABLE_HEADING_ACTION','Aktion');
 
-define('TEXT_INFO_EDIT_INTRO','F&uuml;hren Sie hier bitte die notwendigen Änderungen durch');
+define('TEXT_INFO_EDIT_INTRO','F&uuml;hren Sie hier bitte die notwendigen &Auml;nderungen durch');
 define('TEXT_INFO_CLASS_TITLE','Titel der Steuerklasse:');
 define('TEXT_INFO_CLASS_DESCRIPTION','Beschreibung:');
 define('TEXT_INFO_DATE_ADDED','Erstelldatum:');

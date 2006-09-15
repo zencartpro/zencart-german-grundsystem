@@ -67,15 +67,15 @@ define('TEXT_OPTION_ID','Attribut ID');
 define('TEXT_OPTION_NAME','Attributname');
 
 define('ATTRIBUTE_WARNING_DUPLICATE','Hinzuf&uuml;gen nicht m&ouml;glich - Attribut ist bereits vorhanden'); // attributes duplicate warning
-define('ATTRIBUTE_WARNING_DUPLICATE_UPDATE','Änderung nicht m&ouml;glich - Attribut ist bereits vorhanden'); // attributes duplicate warning
+define('ATTRIBUTE_WARNING_DUPLICATE_UPDATE','&Auml;nderung nicht m&ouml;glich - Attribut ist bereits vorhanden'); // attributes duplicate warning
 define('ATTRIBUTE_WARNING_INVALID_MATCH','Attribut konnte nicht erstellt werden - Attributoption und Attributmerkmal stimmen nicht &uuml;berein'); // miss matched option and options value
 define('ATTRIBUTE_WARNING_INVALID_MATCH_UPDATE','Attribut konnte nicht ge&auml;ndert werden - Attributoption und Attributmerkmal stimmen nicht &uuml;berein'); // miss matched option and options value
 define('ATTRIBUTE_POSSIBLE_OPTIONS_NAME_WARNING_DUPLICATE','M&ouml;glicherweise wurde ein doppelter Attributname hinzugef&uuml;gt'); // Options Name Duplicate warning
 define('ATTRIBUTE_POSSIBLE_OPTIONS_VALUE_WARNING_DUPLICATE','M&ouml;glicherweise wurde ein doppeltes Attributmerkmal hinzugef&uuml;gt'); // Options Value Duplicate warning
 
 define('PRODUCTS_ATTRIBUTES_EDITING','BEARBEITE'); // title
-define('PRODUCTS_ATTRIBUTES_DELETE','LÖSCHE'); // title
-define('PRODUCTS_ATTRIBUTES_ADDING','FÜGE NEUES ATTRIBUT HINZU'); // title
+define('PRODUCTS_ATTRIBUTES_DELETE','L&Ouml;SCHE'); // title
+define('PRODUCTS_ATTRIBUTES_ADDING','F&Uuml;GE NEUES ATTRIBUT HINZU'); // title
 define('TEXT_DOWNLOADS_DISABLED','Hinweis: Downloads sind deaktiviert');
 
 define('TABLE_TEXT_MAX_DAYS_SHORT','Tage:');
@@ -128,7 +128,7 @@ define('TEXT_NO_PRODUCTS_SELECTED','Kein Artikel ausgew&auml;hlt');
 define('TEXT_NO_ATTRIBUTES_DEFINED','Kein Attribut f&uuml;r Artikel ID# gew&auml;hlt');
 
 define('TEXT_PRODUCTS_ID','Artikel ID#');
-define('TEXT_ATTRIBUTES_DELETE','LÖSCHE ALLE');
+define('TEXT_ATTRIBUTES_DELETE','L&Ouml;SCHE ALLE');
 define('TEXT_ATTRIBUTES_COPY_PRODUCTS','zu Artikel kopieren');
 define('TEXT_ATTRIBUTES_COPY_CATEGORY','zur Kategorie kopieren');
 
@@ -159,29 +159,29 @@ define('TEXT_PRODUCT_IN_CATEGORY_NAME','- in Kategorie:');
 
 define('TEXT_DELETE_ALL_ATTRIBUTES','Sind Sie sicher, dass Sie alle Attribute f&uuml;r ID# l&ouml;schen wollen?');
 
-define('TEXT_ATTRIBUTE_COPY_SKIPPING','<strong>Überspringe neues Attribut </strong>');
+define('TEXT_ATTRIBUTE_COPY_SKIPPING','<strong>&Uuml;berspringe neues Attribut </strong>');
 define('TEXT_ATTRIBUTE_COPY_INSERTING','<strong>f&uuml;ge neues Attribut ein von</strong>');
 define('TEXT_ATTRIBUTE_COPY_UPDATING','<strong>aktualisiere von Attribut </strong>');
 
 // preview
 define('TEXT_ATTRIBUTES_PREVIEW','ATTRIBUTE VORSCHAU');
-define('TEXT_ATTRIBUTES_PREVIEW_DISPLAY','VORSCHAU DER ATTRIBUTE ANZEIGEN FÜR ID#');
+define('TEXT_ATTRIBUTES_PREVIEW_DISPLAY','VORSCHAU DER ATTRIBUTE ANZEIGEN F&Uuml;R ID#');
 define('TEXT_PRODUCT_OPTIONS','<strong>Bitte w&auml;hlen Sie:</strong>');
 
-define('TEXT_ATTRIBUTES_INSERT_INFO','<strong>Definieren Sie die Attributeinstellungen, anschlie&szlig;end klicken Sie auf "Einf&uuml;gen" um die Änderungen zu speichern</strong>');
+define('TEXT_ATTRIBUTES_INSERT_INFO','<strong>Definieren Sie die Attributeinstellungen, anschlie&szlig;end klicken Sie auf "Einf&uuml;gen" um die &Auml;nderungen zu speichern</strong>');
 define('TEXT_PRICED_BY_ATTRIBUTES','Preis durch Attribute festgelegt');
 define('TEXT_PRODUCTS_PRICE','Artikelpreis:');
 define('TEXT_SPECIAL_PRICE','Sonderpreis:');
 define('TEXT_SALE_PRICE','Abverkaufspreis:');
 define('TEXT_FREE','KOSTENLOS');
 define('TEXT_CALL_FOR_PRICE','Preis bitte anfragen');
-define('TEXT_SAVE_CHANGES', 'ÄNDERUNGEN AKTUALISIEREN UND SPEICHERN:');
+define('TEXT_SAVE_CHANGES', '&Auml;NDERUNGEN AKTUALISIEREN UND SPEICHERN:');
 
 define('TEXT_INFO_ID', 'ID#');
 define('TEXT_INFO_ALLOW_ADD_TO_CART_NO', 'Nicht zum Warenkorb hinzugef&uuml;gt');
-define('TEXT_DELETE_ATTRIBUTES_OPTION_NAME_VALUES', 'Sollen wirklich ALLE Attributmerkmale des Attributnamens gelöscht werden ...'); // new 1.3.0  
+define('TEXT_DELETE_ATTRIBUTES_OPTION_NAME_VALUES', 'Sollen wirklich ALLE Attributmerkmale des Attributnamens gel&ouml;scht werden ...'); // new 1.3.0  
 define('TEXT_INFO_PRODUCT_NAME', '<strong>Produkt Name: </strong>');
 define('TEXT_INFO_PRODUCTS_OPTION_NAME', '<strong>Artikeloptionen : </strong>');
 define('TEXT_INFO_PRODUCTS_OPTION_ID', '<strong>ID#</strong>'); 
-define('SUCCESS_ATTRIBUTES_DELETED_OPTION_NAME_VALUES', 'ALLE Attrbutmerkmale für Attributnamen wurden gelöscht: '); // new 1.3.0  
+define('SUCCESS_ATTRIBUTES_DELETED_OPTION_NAME_VALUES', 'ALLE Attrbutmerkmale f&uuml;r Attributnamen wurden gel&ouml;scht: '); // new 1.3.0  
 ?>

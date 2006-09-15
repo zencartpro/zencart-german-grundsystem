@@ -31,7 +31,7 @@ define('TABLE_HEADING_ZONE_NAME','Bundesland');
 define('TABLE_HEADING_ZONE_CODE','K&uuml;rzel');
 define('TABLE_HEADING_ACTION','Aktion');
 
-define('TEXT_INFO_EDIT_INTRO','F&uuml;hren Sie hier bitte die notwendigen Änderungen durch');
+define('TEXT_INFO_EDIT_INTRO','F&uuml;hren Sie hier bitte die notwendigen &Auml;nderungen durch');
 define('TEXT_INFO_ZONES_NAME','Bundesland:');
 define('TEXT_INFO_ZONES_CODE','Bundesland-K&uuml;rzel:');
 define('TEXT_INFO_COUNTRY_NAME','Land:');

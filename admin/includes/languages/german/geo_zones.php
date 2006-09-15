@@ -36,7 +36,7 @@ define('TEXT_INFO_HEADING_NEW_ZONE','Neue Steuerzone');
 define('TEXT_INFO_NEW_ZONE_INTRO','Geben Sie bitte die notwendigen Informationen f&uuml;r die neue Steuerzone ein');
 
 define('TEXT_INFO_HEADING_EDIT_ZONE','Steuerzone bearbeiten');
-define('TEXT_INFO_EDIT_ZONE_INTRO','F&uuml;hren Sie hier bitte die notwendigen Änderungen durch');
+define('TEXT_INFO_EDIT_ZONE_INTRO','F&uuml;hren Sie hier bitte die notwendigen &Auml;nderungen durch');
 
 define('TEXT_INFO_HEADING_DELETE_ZONE','Steuerzone l&ouml;schen');
 define('TEXT_INFO_DELETE_ZONE_INTRO','Wollen Sie diese Steuerzone wirklich l&ouml;schen?');
@@ -45,13 +45,13 @@ define('TEXT_INFO_HEADING_NEW_SUB_ZONE','Neue Steuerklasse');
 define('TEXT_INFO_NEW_SUB_ZONE_INTRO','Geben Sie bitte die notwendigen Informationen f&uuml;r die neue Steuerklassen ein');
 
 define('TEXT_INFO_HEADING_EDIT_SUB_ZONE','Steuerklasse bearbeiten');
-define('TEXT_INFO_EDIT_SUB_ZONE_INTRO','F&uuml;hren Sie hier bitte die notwendigen Änderungen durch');
+define('TEXT_INFO_EDIT_SUB_ZONE_INTRO','F&uuml;hren Sie hier bitte die notwendigen &Auml;nderungen durch');
 
 define('TEXT_INFO_HEADING_DELETE_SUB_ZONE','Steuerklasse l&ouml;schen');
 define('TEXT_INFO_DELETE_SUB_ZONE_INTRO','Wollen Sie diese Steuerklasse wirklich l&ouml;schen?');
 
 define('TEXT_INFO_DATE_ADDED','Erstelldatum:');
-define('TEXT_INFO_LAST_MODIFIED','Letzte Änderung:');
+define('TEXT_INFO_LAST_MODIFIED','Letzte &Auml;nderung:');
 define('TEXT_INFO_ZONE_NAME','Name der Steuerzone');
 define('TEXT_INFO_NUMBER_ZONES','Anzahl der Steuerzonen:');
 define('TEXT_INFO_ZONE_DESCRIPTION','Beschreibung:');

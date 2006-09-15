@@ -30,7 +30,7 @@ define('TABLE_HEADING_LANGUAGE_NAME','Sprache');
 define('TABLE_HEADING_LANGUAGE_CODE','Code');
 define('TABLE_HEADING_ACTION','Aktion');
 
-define('TEXT_INFO_EDIT_INTRO','F&uuml;hren Sie hier bitte die notwendigen Änderungen durch');
+define('TEXT_INFO_EDIT_INTRO','F&uuml;hren Sie hier bitte die notwendigen &Auml;nderungen durch');
 define('TEXT_INFO_LANGUAGE_NAME','Name:');
 define('TEXT_INFO_LANGUAGE_CODE','Code:');
 define('TEXT_INFO_LANGUAGE_IMAGE','Bild:');

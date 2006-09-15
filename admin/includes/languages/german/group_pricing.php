@@ -36,16 +36,16 @@ define('TEXT_HEADING_EDIT_PRICING_GROUP', 'Preisgruppe bearbeiten');
 define('TEXT_HEADING_DELETE_PRICING_GROUP', 'Preisgruppe l&ouml;schen');
 
 define('TEXT_NEW_INTRO', 'Bitte geben Sie folgende Informationen f&uuml;r die neue Preisgruppe an');
-define('TEXT_EDIT_INTRO', 'Bitte f&uuml;hren Sie hier die notwendigen Änderungen durch');
+define('TEXT_EDIT_INTRO', 'Bitte f&uuml;hren Sie hier die notwendigen &Auml;nderungen durch');
 define('TEXT_DELETE_INTRO', 'Sind Sie sicher, dass Sie diese Preisgruppe l&ouml;schen wollen?');
-define('TEXT_DELETE_PRICING_GROUP', 'Löscht die Preisgruppe'); // new 1.3.0  
+define('TEXT_DELETE_PRICING_GROUP', 'L&ouml;scht die Preisgruppe'); // new 1.3.0  
 define('TEXT_DELETE_WARNING_GROUP_MEMBERS', '<b>WARNING:</b> Es gibt %s Kunden, die noch mit dieser Kategorie verbunden sind !'); // new 1.3.0  
 define('TEXT_GROUP_PRICING_NAME', 'Gruppenname: ');
 define('TEXT_GROUP_PRICING_AMOUNT', 'Preisnachlass in Prozente: ');
 define('TEXT_DATE_ADDED', 'Erstelldatum:');
-define('TEXT_LAST_MODIFIED', 'Letzte Änderung:');
+define('TEXT_LAST_MODIFIED', 'Letzte &Auml;nderung:');
 define('TEXT_CUSTOMERS', 'Kunden in der Gruppe:');
 
-define('ERROR_GROUP_PRICING_CUSTOMERS_EXIST', 'FEHLER: Kunden bestehen in dieser Gruppe.  Bestätigen Sie bitte, daß Sie alle Mitglieder von der Gruppe entfernen und sie löschen möchten.');   // new 1.3.0  
+define('ERROR_GROUP_PRICING_CUSTOMERS_EXIST', 'FEHLER: Kunden bestehen in dieser Gruppe.  Best&auml;tigen Sie bitte, da&szlig; Sie alle Mitglieder von der Gruppe entfernen und sie l&ouml;schen m&ouml;chten.');   // new 1.3.0  
 define('ERROR_MODULE_NOT_CONFIGURED', 'Anmerkung: Sie verwenden Gruppenpreise, haben jedoch nicht das Gruppenerm&auml;&szlig;igunsmodul aktiviert.<br />Gehen Sie zu Admin->Module->Bestellarten->Gruppenerm&auml;&szlig;ig (ot_group_pricing) und installieren/konfigurieren das Modul.'); // new 1.3.0  
 ?>

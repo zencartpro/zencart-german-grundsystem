@@ -24,7 +24,7 @@
 //  $Id: featured.php 4 2006-03-31 16:38:40Z hugo13 $
 //
 
-define('HEADING_TITLE', 'Ähnliche Artikel');
+define('HEADING_TITLE', '&Auml;hnliche Artikel');
 
 define('TABLE_HEADING_PRODUCTS', 'Artikel');
 define('TABLE_HEADING_PRODUCTS_MODEL', 'Artikelnummer');
@@ -40,13 +40,13 @@ define('TEXT_FEATURED_EXPIRES_DATE', 'Ablaufdatum:');
 define('TEXT_FEATURED_AVAILABLE_DATE', 'verf&uuml;gbar ab:');
 
 define('TEXT_INFO_DATE_ADDED', 'Erstelldatum:');
-define('TEXT_INFO_LAST_MODIFIED', 'Letzte Änderung:');
+define('TEXT_INFO_LAST_MODIFIED', 'Letzte &Auml;nderung:');
 define('TEXT_INFO_NEW_PRICE', 'Neuer Preis:');
 define('TEXT_INFO_ORIGINAL_PRICE', 'Originalpreis:');
 define('TEXT_INFO_PERCENTAGE', 'Prozentsatz:');
 define('TEXT_INFO_AVAILABLE_DATE', 'verf&uuml;gbar ab:');
 define('TEXT_INFO_EXPIRES_DATE', 'Ablaufdatum:');
-define('TEXT_INFO_STATUS_CHANGE', 'Letzte Status Änderung:');
+define('TEXT_INFO_STATUS_CHANGE', 'Letzte Status &Auml;nderung:');
 define('TEXT_IMAGE_NONEXISTENT', 'Bild existiert nicht');
 
 define('TEXT_INFO_HEADING_DELETE_FEATURED', 'l&ouml;sche &auml;hnlichen Artikel');
@@ -56,7 +56,7 @@ define('SUCCESS_FEATURED_PRE_ADD', 'Erfolgreich: Vor-Hinzuf&uuml;gen von kommend
 define('WARNING_FEATURED_PRE_ADD_EMPTY', 'Warnung: Kein Produkt angegeben, welches ... nichts wurde addiert ...');
 define('WARNING_FEATURED_PRE_ADD_DUPLICATE', 'Warnung: Produkt ID bereits als Sonderangebot ... nichts wurde addiert ...');
 define('TEXT_INFO_HEADING_PRE_ADD_FEATURED', 'Neue Artikel manuell addieren mit Produkt ID');
-define('TEXT_INFO_PRE_ADD_INTRO', 'Auf gro&szlig;en Datenbanken kann man Artikel manuell hinzuf&uuml;gen, gekennzeichnet durch die Produkt ID<br /><br />Dies wird dann angewandt, wenn die Seite zu lang zum übertragen wird und der Versuch, ein Produkt mit Dropdown zu w&auml;hlen wegen zu vielen Produkten zu schwierig wird.');
+define('TEXT_INFO_PRE_ADD_INTRO', 'Auf gro&szlig;en Datenbanken kann man Artikel manuell hinzuf&uuml;gen, gekennzeichnet durch die Produkt ID<br /><br />Dies wird dann angewandt, wenn die Seite zu lang zum &uuml;bertragen wird und der Versuch, ein Produkt mit Dropdown zu w&auml;hlen wegen zu vielen Produkten zu schwierig wird.');
 define('TEXT_PRE_ADD_PRODUCTS_ID', 'Bitte geben Sie die Produkt ID vor dem hinzuf&uuml;gen ein: ');
 define('TEXT_INFO_MANUAL', 'Produkt ID manuell hinzugef&uuml;gt');
 ?>

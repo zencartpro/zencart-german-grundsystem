@@ -47,15 +47,15 @@ define('TEXT_OPTION_NAME', 'Attributname');
 define('TABLE_HEADING_OPT_DISCOUNTED', 'erm&auml;&szlig;igt');
 
 define('ATTRIBUTE_WARNING_DUPLICATE', 'Hinzuf&uuml;gen nicht m&ouml;glich - Attribut ist bereits vorhanden'); // attributes duplicate warning
-define('ATTRIBUTE_WARNING_DUPLICATE_UPDATE', 'Änderung nicht m&ouml;glich - Attribut ist bereits vorhanden'); // attributes duplicate warning
+define('ATTRIBUTE_WARNING_DUPLICATE_UPDATE', '&Auml;nderung nicht m&ouml;glich - Attribut ist bereits vorhanden'); // attributes duplicate warning
 define('ATTRIBUTE_WARNING_INVALID_MATCH', 'Attribut konnte nicht erstellt werden - Attributoption und Attributmerkmal stimmen nicht &uuml;berein'); // miss matched option and options value
 define('ATTRIBUTE_WARNING_INVALID_MATCH_UPDATE', 'Attribut konnte nicht ge&auml;ndert werden - Attributoption und Attributmerkmal stimmen nicht &uuml;berein'); // miss matched option and options value
 define('ATTRIBUTE_POSSIBLE_OPTIONS_NAME_WARNING_DUPLICATE', 'M&ouml;glicherweise wurde ein doppelter Attributname hinzugef&uuml;gt'); // Options Name Duplicate warning
 define('ATTRIBUTE_POSSIBLE_OPTIONS_VALUE_WARNING_DUPLICATE', 'M&ouml;glicherweise wurde ein doppeltes Attributmerkmal hinzugef&uuml;gt'); // Options Value Duplicate warning
 
 define('PRODUCTS_ATTRIBUTES_EDITING', 'BEARBEITE'); // title
-define('PRODUCTS_ATTRIBUTES_DELETE', 'LÖSCHE'); // title
-define('PRODUCTS_ATTRIBUTES_ADDING', 'FÜGE NEUES ATTRIBUT HINZU'); // title
+define('PRODUCTS_ATTRIBUTES_DELETE', 'L&Ouml;SCHE'); // title
+define('PRODUCTS_ATTRIBUTES_ADDING', 'F&Uuml;GE NEUES ATTRIBUT HINZU'); // title
 define('TEXT_DOWNLOADS_DISABLED', 'Hinweis: Downloads sind deaktiviert');
 
 define('TABLE_TEXT_MAX_DAYS_SHORT', 'Tage:');
@@ -106,17 +106,17 @@ define('TEXT_SELECT_OPTION_VALUES_TO_CATEGORIES_ID', 'leeres Feld = ALLE Artikel
 
 // Option Name/Value to Option Name for Category with Product defaults
 define('TEXT_OPTION_VALUE_COPY_OPTIONS_TO', '<strong>Kopiere Optionsname u. Wert zu Artikel mit einem bestimmten Optionsnamen ...</strong>');
-define('TEXT_INFO_OPTION_VALUE_COPY_OPTIONS_TO', 'Selektieren Sie einen Optionsnamen und Wert der aktuell einem Produkt/Produkte zugeordnet ist, damit sie diese Information einer Kategorie od. allen Artikeln zuweisen können die einen bestimmten Optionsnamen besitzen.
+define('TEXT_INFO_OPTION_VALUE_COPY_OPTIONS_TO', 'Selektieren Sie einen Optionsnamen und Wert der aktuell einem Produkt/Produkte zugeordnet ist, damit sie diese Information einer Kategorie od. allen Artikeln zuweisen k&ouml;nnen die einen bestimmten Optionsnamen besitzen.
                                                  <br /><strong>z.B.:</strong> Hinzuf&uuml;gen Optionsname: Color, Optionswert: Red, zu allen Artikeln mit dem Optionsnamen: Size
                                                  <br /><strong>z.B.:</strong> Hinzuf&uuml;gen Optionsname: Color, Optionswert: Red, mit default Werten von Artikel-ID: 34 zu allen Artikeln mit dem Optionsnamen: Size
                                                  <br /><strong>z.B.:</strong> Hinzuf&uuml;gen Optionsname: Color, Optionswert: Red, mit default Werten von Artikel-ID: 34 zu allen Artikeln mit dem Optionsnamen: Size f&uuml; Kategorie ID: 65
       ');
 define('TEXT_SELECT_OPTION_TO_ADD_TO', 'mit Optionsname:');
-define('TEXT_SELECT_OPTION_FROM_ADD', 'Optionsname hinzufügen:');
-define('TEXT_SELECT_OPTION_VALUES_FROM_ADD', 'Optionswert hinzufügen:');
+define('TEXT_SELECT_OPTION_FROM_ADD', 'Optionsname hinzuf&uuml;gen:');
+define('TEXT_SELECT_OPTION_VALUES_FROM_ADD', 'Optionswert hinzuf&uuml;gen:');
 define('TEXT_SELECT_OPTION_FROM_PRODUCTS_ID', 'Default Optionswerte von Artikel ID# nehmen oder Feld leer lassen:');
 define('TEXT_COPY_ATTRIBUTES_CONDITIONS', '<strong>Wie soll mit bereits existierenden Artikelattributen verfahren werden?</strong>');
-define('TEXT_COPY_ATTRIBUTES_DELETE', 'Existierende Attribute <strong>löschen</strong>, und dann kopieren');
+define('TEXT_COPY_ATTRIBUTES_DELETE', 'Existierende Attribute <strong>l&ouml;schen</strong>, und dann kopieren');
 define('TEXT_COPY_ATTRIBUTES_UPDATE', 'Existierende Attribute mit neuen Werten <strong>aktualisieren</strong>');
 define('TEXT_COPY_ATTRIBUTES_IGNORE', 'Existierende Attribute <strong>ignorieren</strong> und neue hinzuf&uuml;gen');
 
@@ -126,7 +126,7 @@ define('ERROR_OPTION_VALUES_COPIED', 'Fehler: Doppelter Optionsname und Optionsw
 define('ERROR_OPTION_VALUES_COPIED_MISMATCH', 'Fehler: Ausgew&auml;hlter Optionsmane und Optionswert stimmen nicht &uuml;berein');
 define('ERROR_OPTION_VALUES_NONE', 'Fehler: Nichts zum Kopieren gefunden');
 define('SUCCESS_OPTION_VALUES_COPIED', 'Kopieren erfolgreich! ');
-define('ERROR_OPTION_VALUES_COPIED_MISMATCH_PRODUCTS_ID', 'Fehler: kein Optionsname/-wert für Artikel-Nr:');
+define('ERROR_OPTION_VALUES_COPIED_MISMATCH_PRODUCTS_ID', 'Fehler: kein Optionsname/-wert f&uuml;r Artikel-Nr:');
 
 define('TEXT_OPTION_VALUE_DELETE_ALL', '<strong>ALLE Attribute l&ouml;schen, bei denen Optionsname und Wert...</strong>');
 define('TEXT_INFO_OPTION_VALUE_DELETE_ALL', 'W&auml;hlen Sie einen Optionsnamen und einen Wert aus, der bereits in einem (oder mehreren Artikel) existiert, den Sie aus ALLEN Artikel bzw. aus ALLEN Artikel einer Kategorie l&ouml;schen m&ouml;chten');

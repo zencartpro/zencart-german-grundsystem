@@ -28,7 +28,7 @@ define('TABLE_HEADING_CONFIGURATION_TITLE','Titel');
 define('TABLE_HEADING_CONFIGURATION_VALUE','Aktuelle Einstellungen');
 define('TABLE_HEADING_ACTION','Aktion');
 
-define('TEXT_INFO_EDIT_INTRO','F&uuml;hren Sie hier bitte die notwendigen Änderungen durch');
+define('TEXT_INFO_EDIT_INTRO','F&uuml;hren Sie hier bitte die notwendigen &Auml;nderungen durch');
 define('TEXT_INFO_DATE_ADDED','Erstelldatum:');
-define('TEXT_INFO_LAST_MODIFIED','Letzte Änderung:');
+define('TEXT_INFO_LAST_MODIFIED','Letzte &Auml;nderung:');
 ?>

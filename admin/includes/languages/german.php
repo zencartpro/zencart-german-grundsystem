@@ -408,8 +408,8 @@ define('ERROR_FILETYPE_NOT_ALLOWED', 'Fehler: Dateityp %s ist nicht erlaubt');
 define('SUCCESS_FILE_SAVED_SUCCESSFULLY', 'Erfolgreich: Dateiupload %s wurde gespeichert');
 define('WARNING_NO_FILE_UPLOADED', 'Warnung: Keine Datei hochgeladen.');
 define('WARNING_FILE_UPLOADS_DISABLED', 'Warnung: Die Option "Dateiupload" ist in der php.ini deaktiviert.');
-define('ERROR_ADMIN_SECURITY_WARNING', 'Warnung: Ihr Admin login ist nicht sicher ... entweder noch Standard-Login-Einstellungen: Admin admin oder nicht entfernt: demo demoonly<br />Login(s) sollten zur Sicherheit so schnell als möglich geändert werden.<br />F&uuml;r zusätzliche Sicherheitshinweise siehe auch Verzeichnis /docs');
-define('WARNING_DATABASE_VERSION_OUT_OF_DATE', 'Ihre Datenbank scheint einen Patch zu benötigen. Siehe auch Tools->Server Information um die Patchlevels zu betrachten.');
+define('ERROR_ADMIN_SECURITY_WARNING', 'Warnung: Ihr Admin login ist nicht sicher ... entweder noch Standard-Login-Einstellungen: Admin admin oder nicht entfernt: demo demoonly<br />Login(s) sollten zur Sicherheit so schnell als m&ouml;glich ge&auml;ndert werden.<br />F&uuml;r zus&auml;tzliche Sicherheitshinweise siehe auch Verzeichnis /docs');
+define('WARNING_DATABASE_VERSION_OUT_OF_DATE', 'Ihre Datenbank scheint einen Patch zu ben&ouml;tigen. Siehe auch Tools->Server Information um die Patchlevels zu betrachten.');
 define('WARN_DATABASE_VERSION_PROBLEM','true'); //set to false to turn off Warnings about database version mismatches
 define('WARNING_ADMIN_DOWN_FOR_MAINTENANCE', '<strong>WARNUNG:</strong> Der Shop ist z.Zt. wegen Wartung geschlossen ...<br />ANMERKUNG: Sie k&ouml;nnen die meisten Zahlungs- und Versand-Module im Wartungszustand  nicht pr&uuml;fen');
 define('WARNING_BACKUP_CFG_FILES_TO_DELETE', 'WARNUNG: Diese Dateien sollten gel&ouml;scht werden, um fremde Zugriffe zu verhindern: ');
@@ -524,9 +524,9 @@ define('TEXT_VERSION_CHECK_NEW_VER', 'Eine neue Version ist verf&uuml;gbar: Zen 
 define('TEXT_DISPLAY_NUMBER_OF_PRODUCTS_DOWNLOADS_MANAGER', 'zeige <b>%d</b> bis <b>%d</b> (von <b>%d</b> Downloads)');
 define('BOX_CATALOG_CATEGORIES_ATTRIBUTES_DOWNLOADS_MANAGER', 'Download Manager');
 
-define('BOX_CATALOG_FEATURED', 'Ähnliche Artikel');
+define('BOX_CATALOG_FEATURED', '&Auml;hnliche Artikel');
 
-define('ERROR_NOTHING_SELECTED', 'Es wurde nichts ausgew&auml;hlt ... Es wurden keine Änderungen durchgef&uuml;hrt');
+define('ERROR_NOTHING_SELECTED', 'Es wurde nichts ausgew&auml;hlt ... Es wurden keine &Auml;nderungen durchgef&uuml;hrt');
 define('TEXT_STATUS_WARNING', '<strong>HINWEIS:</strong> Der Status ist auf "auto aktiviert/deaktiviert", wenn Datumsangaben vorliegen');
 
 define('TEXT_LEGEND_LINKED', 'Verlinkter Artikel');
@@ -643,28 +643,28 @@ define('ERROR_CATALOG_IMAGE_DIRECTORY_NOT_WRITEABLE', 'Fehler: Bilderverzeichnis
 define('ERROR_CATALOG_IMAGE_DIRECTORY_DOES_NOT_EXIST', 'Error: Bilderverzeichnis existiert nicht: ' . DIR_FS_CATALOG_IMAGES);
 define('ERROR_CANNOT_MOVE_CATEGORY_TO_PARENT', 'Fehler: Kategorie kann nicht in eine Unterkategorie verschoben werden.');
 define('ERROR_CANNOT_MOVE_PRODUCT_TO_CATEGORY_SELF', 'Fehler: Produkt exisitiert bereits in dieser Kategorie.');
-define('ERROR_CATEGORY_HAS_PRODUCTS', 'Fehler: Kategorie enthält Produkte!<br /><br />Diese Aktion ist temporär zulässig während Sie Kategorien neu anordnen. Dennoch gilt der Grundsatz: Eine Kategorie kann entweder andere Kategorien oder Produkte enthalten aber <strong>niemals</strong>beides!');
+define('ERROR_CATEGORY_HAS_PRODUCTS', 'Fehler: Kategorie enth&auml;lt Produkte!<br /><br />Diese Aktion ist tempor&auml;r zul&auml;ssig w&auml;hrend Sie Kategorien neu anordnen. Dennoch gilt der Grundsatz: Eine Kategorie kann entweder andere Kategorien oder Produkte enthalten aber <strong>niemals</strong>beides!');
 define('SUCCESS_CATEGORY_MOVED', 'Erfolgreich! Kategorie erfolgreich verschoben ...');
 define('ERROR_CANNOT_MOVE_CATEGORY_TO_CATEGORY_SELF', 'Fehler: Kategorie kann nicht in sich selbst verschoben werden! ID#');
 
 // EZ-PAGES Alerts
-  define('TEXT_EZPAGES_STATUS_HEADER_ADMIN', 'Achtung: EZ-PAGES HEADER - Ein nur für Admin IP');
-  define('TEXT_EZPAGES_STATUS_FOOTER_ADMIN', 'Achtung: EZ-PAGES FOOTER - Ein nur für Admin IP');
-  define('TEXT_EZPAGES_STATUS_SIDEBOX_ADMIN', 'Achtung: EZ-PAGES SIDEBOX - Ein nur für Admin IP');
+  define('TEXT_EZPAGES_STATUS_HEADER_ADMIN', 'Achtung: EZ-PAGES HEADER - Ein nur f&uuml;r Admin IP');
+  define('TEXT_EZPAGES_STATUS_FOOTER_ADMIN', 'Achtung: EZ-PAGES FOOTER - Ein nur f&uuml;r Admin IP');
+  define('TEXT_EZPAGES_STATUS_SIDEBOX_ADMIN', 'Achtung: EZ-PAGES SIDEBOX - Ein nur f&uuml;r Admin IP');
 
 // moved from product types
 // warnings on Virtual and Always Free Shipping
   define('TEXT_VIRTUAL_PREVIEW','Achtung: Virtuelles Produkt - kein Versand!<br />Sind alle Produkte einer Bestellung virtuell wird keine Versandoption angeboten');
   define('TEXT_VIRTUAL_EDIT','Achtung: Virtuelles Produkt - kein Versand!<br />Sind alle Produkte einer Bestellung virtuell wird keine Versandoption angeboten');
-  define('TEXT_FREE_SHIPPING_PREVIEW','Achtung: kostenloser Versand ausgewählt!<br />Modul "Versandkostenfrei" muss installiert sein wenn alle Artikel einer Bestellung versandkostenfrei sind');
-  define('TEXT_FREE_SHIPPING_EDIT','Achtung: kostenloser Versand ausgewählt!<br />Modul "Versandkostenfrei" muss installiert sein wenn alle Artikel einer Bestellung versandkostenfrei sind');
+  define('TEXT_FREE_SHIPPING_PREVIEW','Achtung: kostenloser Versand ausgew&auml;hlt!<br />Modul "Versandkostenfrei" muss installiert sein wenn alle Artikel einer Bestellung versandkostenfrei sind');
+  define('TEXT_FREE_SHIPPING_EDIT','Achtung: kostenloser Versand ausgew&auml;hlt!<br />Modul "Versandkostenfrei" muss installiert sein wenn alle Artikel einer Bestellung versandkostenfrei sind');
 
 // admin activity log warnings
-  define('WARNING_ADMIN_ACTIVITY_LOG_DATE', 'Achtung: Die Admin Protokolltabelle hat Einträge die &auml;lter sind als 2 Monate und sollte deshalb geleert werden ... ');
+  define('WARNING_ADMIN_ACTIVITY_LOG_DATE', 'Achtung: Die Admin Protokolltabelle hat Eintr&auml;ge die &auml;lter sind als 2 Monate und sollte deshalb geleert werden ... ');
   define('WARNING_ADMIN_ACTIVITY_LOG_RECORDS', 'Achtung: Die Admin Protokolltabelle hat &uuml;ber 50000 Eintr&auml;ge und sollte deshalb geleert werden ... ');
-  define('RESET_ADMIN_ACTIVITY_LOG', 'Wählen Sie Tools -> Shopmanager und leeren die Admin-Protokolltabelle');
+  define('RESET_ADMIN_ACTIVITY_LOG', 'W&auml;hlen Sie Tools -> Shopmanager und leeren die Admin-Protokolltabelle');
 
-  define('CATEGORY_HAS_SUBCATEGORIES', 'Achtung: Kategorie besitzt Unterkategorien<br />Artikel können nicht hinzugef&uuml;gt werden');
+  define('CATEGORY_HAS_SUBCATEGORIES', 'Achtung: Kategorie besitzt Unterkategorien<br />Artikel k&ouml;nnen nicht hinzugef&uuml;gt werden');
 
 ///////////////////////////////////////////////////////////
 // include additional files:

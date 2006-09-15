@@ -26,13 +26,13 @@ define('TABLE_HEADING_VSORT_ORDER', 'Sidebox Sortierung');
 define('TABLE_HEADING_HSORT_ORDER', 'Footer Sortierung');
 define('TEXT_PAGES_TITLE', 'Seitentitel:');
 define('TEXT_PAGES_HTML_TEXT', 'HTML Inhalt:');
-define('TABLE_HEADING_DATE_ADDED', 'Hinzugefügt am:');
-define('TEXT_PAGES_STATUS_CHANGE', 'Status Änderung: %s');
-define('TEXT_INFO_DELETE_INTRO', 'Sind Sie sicher, dass Sie die Seite löschen wollen?');
-define('SUCCESS_PAGE_INSERTED', 'Erfolg: Die Seite wurde eingefügt.');
-define('SUCCESS_PAGE_UPDATED', 'Erfolg: Die Seite wurde geändert.');
-define('SUCCESS_PAGE_REMOVED', 'Erfolg: Die Seite wurde gelöscht.');
-define('SUCCESS_PAGE_STATUS_UPDATED', 'Erfolg: Der Status der Seite wurde geändert.');
+define('TABLE_HEADING_DATE_ADDED', 'Hinzugef&uuml;gt am:');
+define('TEXT_PAGES_STATUS_CHANGE', 'Status &Auml;nderung: %s');
+define('TEXT_INFO_DELETE_INTRO', 'Sind Sie sicher, dass Sie die Seite l&ouml;schen wollen?');
+define('SUCCESS_PAGE_INSERTED', 'Erfolg: Die Seite wurde eingef&uuml;gt.');
+define('SUCCESS_PAGE_UPDATED', 'Erfolg: Die Seite wurde ge&auml;ndert.');
+define('SUCCESS_PAGE_REMOVED', 'Erfolg: Die Seite wurde gel&ouml;scht.');
+define('SUCCESS_PAGE_STATUS_UPDATED', 'Erfolg: Der Status der Seite wurde ge&auml;ndert.');
 define('ERROR_PAGE_TITLE_REQUIRED', 'Fehler: Seitentitel ist notwendig.');
 define('ERROR_UNKNOWN_STATUS_FLAG', 'Fehler: unbekanntes status flag.');
 define('ERROR_MULTIPLE_HTML_URL', 'Fehler: Mehrere Optionen gew&auml;hlt, obwohl pro Link nur eine zul&auml;ssig ist  ...<br />Entweder: HTML Inhalt -oder- Interne Link URL -oder- Externe Link URL');
@@ -44,7 +44,7 @@ define('TABLE_HEADING_STATUS_FOOTER', 'Fusszeile:');
 define('TABLE_HEADING_STATUS_TOC', 'TOC:');
 define('TABLE_HEADING_CHAPTER', 'Kapitel:');
 
-define('TABLE_HEADING_PAGE_OPEN_NEW_WINDOW', 'Öffne neues Fenster:');
+define('TABLE_HEADING_PAGE_OPEN_NEW_WINDOW', '&Ouml;ffne neues Fenster:');
 define('TABLE_HEADING_PAGE_IS_SSL', 'Seite ist SSL:');
 
 define('TEXT_DISPLAY_NUMBER_OF_PAGES', 'Zeige <b>%d</b> bis <b>%d</b> (von <b>%d</b> Seiten)');
@@ -52,7 +52,7 @@ define('IMAGE_NEW_PAGE', 'Neue Seite');
 define('TEXT_INFO_PAGE_IMAGE', 'Bild');
 define('TEXT_INFO_CURRENT_IMAGE', 'Aktuelles Bild:');
 define('TEXT_INFO_PAGES_ID', 'ID: ');
-define('TEXT_INFO_PAGES_ID_SELECT', 'Wählen Sie eine Seite ...');
+define('TEXT_INFO_PAGES_ID_SELECT', 'W&auml;hlen Sie eine Seite ...');
 
 define('TEXT_HEADER_SORT_ORDER', 'Sortierung:');
 define('TEXT_SIDEBOX_SORT_ORDER', 'Sortierung:');

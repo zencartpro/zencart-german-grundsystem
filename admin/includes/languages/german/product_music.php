@@ -49,14 +49,14 @@ define('TEXT_PRODUCTS_AVERAGE_RATING', 'Durchschnittliche Bewertung:');
 define('TEXT_PRODUCTS_QUANTITY_INFO', 'Anzahl:');
 define('TEXT_DATE_ADDED', 'Erstelldatum:');
 define('TEXT_DATE_AVAILABLE', 'Erh&auml;ltlich ab:');
-define('TEXT_LAST_MODIFIED', 'Letzte Änderung:');
+define('TEXT_LAST_MODIFIED', 'Letzte &Auml;nderung:');
 define('TEXT_IMAGE_NONEXISTENT', 'Bild existiert nicht');
 define('TEXT_NO_CHILD_CATEGORIES_OR_PRODUCTS', 'Bitte f&uuml;gen Sie eine neue Kategorie oder einen neuen Artikel in dieser Ebene ein.');
 define('TEXT_PRODUCT_MORE_INFORMATION', 'F&uuml;r weitere Informationen besuchen Sie bitte unsere  <a href="http://%s" target="blank">Homepage</a>.');
 define('TEXT_PRODUCT_DATE_ADDED', 'Dieser Artikel wurde am %s hinzugef&uuml;gt.');
 define('TEXT_PRODUCT_DATE_AVAILABLE', 'Dieser Artikel wird am %s wieder lagernd sein.');
 
-define('TEXT_EDIT_INTRO', 'Bitte f&uuml;hren Sie hier die notwendigen Änderungen durch');
+define('TEXT_EDIT_INTRO', 'Bitte f&uuml;hren Sie hier die notwendigen &Auml;nderungen durch');
 define('TEXT_EDIT_CATEGORIES_ID', 'Kategorie ID:');
 define('TEXT_EDIT_CATEGORIES_NAME', 'Kategoriename:');
 define('TEXT_EDIT_CATEGORIES_IMAGE', 'Kategoriebild:');
@@ -183,7 +183,7 @@ define('TEXT_PRODUCT_IS_CALL', 'Artikel ist "Preis bitte anfragen":');
 define('TEXT_PRODUCTS_IS_CALL_PREVIEW', '*Artikel ist als "Preis bitte anfragen" gekennzeichnet');
 define('TEXT_PRODUCTS_IS_CALL_EDIT', '*Artikel ist als "Preis bitte anfragen" gekennzeichnet');
 
-define('TEXT_ATTRIBUTE_COPY_SKIPPING', '<strong>Überspringe neue Attribute </strong>');
+define('TEXT_ATTRIBUTE_COPY_SKIPPING', '<strong>&Uuml;berspringe neue Attribute </strong>');
 define('TEXT_ATTRIBUTE_COPY_INSERTING', '<strong>Einf&uuml;gen neuer Attribute von</strong>');
 define('TEXT_ATTRIBUTE_COPY_UPDATING', '<strong>Aktualisiere von Attribut </strong>');
 

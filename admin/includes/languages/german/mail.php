@@ -42,5 +42,5 @@ define('TEXT_ATTACHMENTS_DIR', 'Ordner f&uuml;r Upload: ');
 define('NOTICE_EMAIL_SENT_TO','Hinweis: e-Mail wurde versendet an: %s');
 define('ERROR_NO_CUSTOMER_SELECTED','Fehler: Es wurde kein Kunde ausgew&auml;hlt.');
 define('ERROR_NO_SUBJECT', 'Fehler: Es wurde kein Betreff angegeben.');
-define('ERROR_ATTACHMENTS', 'Fehler: Sie k&ouml;nnen nicht beides - UPLOAD und HINZUFÜGEN - ausw&auml;hlen. Bitte w&auml;hlen Sie nur eines von beiden Optionen.');
+define('ERROR_ATTACHMENTS', 'Fehler: Sie k&ouml;nnen nicht beides - UPLOAD und HINZUF&Uuml;GEN - ausw&auml;hlen. Bitte w&auml;hlen Sie nur eines von beiden Optionen.');
 ?>

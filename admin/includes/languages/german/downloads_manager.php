@@ -43,7 +43,7 @@ define('TEXT_PRODUCTS_NAME', 'Artikel: ');
 define('TEXT_PRODUCTS_MODEL', 'Artikelnummer: ');
 
 define('TEXT_INFO_HEADING_EDIT_PRODUCTS_DOWNLOAD', 'BEARBEITE DOWNLOAD INFORMATION');
-define('TEXT_INFO_HEADING_DELETE_PRODUCTS_DOWNLOAD', 'BESTÄTIGE LÖSCHEN DES DOWNLOADS');
+define('TEXT_INFO_HEADING_DELETE_PRODUCTS_DOWNLOAD', 'BEST&Auml;TIGE L&Ouml;SCHEN DES DOWNLOADS');
 define('TEXT_INFO_EDIT_INTRO', 'Bearbeite Downloadinformation:');
 define('TEXT_DELETE_INTRO', 'Der folgende Dateiname wird aus der Datenbank entfernt. Die Datei wird jedoch nicht vom Server gel&ouml;scht:');
 

@@ -33,9 +33,9 @@ define('TABLE_HEADING_ZONE','Steuerzone');
 define('TABLE_HEADING_TAX_RATE','Steuersatz');
 define('TABLE_HEADING_ACTION','Aktion');
 
-define('TEXT_INFO_EDIT_INTRO','F&uuml;hren Sie hier bitte die notwendigen Änderungen durch');
+define('TEXT_INFO_EDIT_INTRO','F&uuml;hren Sie hier bitte die notwendigen &Auml;nderungen durch');
 define('TEXT_INFO_DATE_ADDED','Erstelldatum:');
-define('TEXT_INFO_LAST_MODIFIED','Letzte Änderung:');
+define('TEXT_INFO_LAST_MODIFIED','Letzte &Auml;nderung:');
 define('TEXT_INFO_CLASS_TITLE','Titel des Steuersatzes:');
 define('TEXT_INFO_COUNTRY_NAME','Land:');
 define('TEXT_INFO_ZONE_NAME','Steuerzone:');

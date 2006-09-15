@@ -39,7 +39,7 @@ define('TEXT_MEDIA_TYPE_EXT', 'Dateierweiterung des Medientyps');
 define('TEXT_EXTENSION', 'Dateierweiterung: ');
 
 define('TEXT_NEW_INTRO', 'Bitte tragen Sie die notwendigen Details f&uuml;r den neuen Medientyp ein');
-define('TEXT_EDIT_INTRO', 'Bitte f&uuml;hren Sie hier die notwendigen Änderungen durch');
+define('TEXT_EDIT_INTRO', 'Bitte f&uuml;hren Sie hier die notwendigen &Auml;nderungen durch');
 
 define('TEXT_DELETE_INTRO', 'Sind Sie sicher, dass Sie diesen Medientyp l&ouml;schen wollen?');
 define('TEXT_DISPLAY_NUMBER_OF_MEDIA_TYPES', 'Zeige <strong>%d</strong> bis <strong>%d</strong> (von <strong>%d</strong> Medientypen)');

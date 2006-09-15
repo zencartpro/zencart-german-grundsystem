@@ -39,7 +39,7 @@ define('TEXT_HEADING_NEW_RECORD_ARTIST', 'Neuer K&uuml;nstler');
 define('TEXT_HEADING_EDIT_RECORD_ARTIST', 'K&uuml;nstler bearbeiten');
 define('TEXT_HEADING_DELETE_RECORD_ARTIST', 'K&uuml;nstler l&ouml;schen');
 define('TEXT_DATE_ADDED', 'Erstelldatum');
-define('TEXT_LAST_MODIFIED', 'Letzte Änderung');
+define('TEXT_LAST_MODIFIED', 'Letzte &Auml;nderung');
 define('TEXT_IMAGE_NONEXISTENT', 'Das Bild existiert nicht');
 define('TEXT_PRODUCTS', 'Verlinkte Artikel');
 define('TEXT_DISPLAY_NUMBER_OF_ARTISTS', 'zeige <strong>%d</strong> bis <strong>%d</strong> (von <strong>%d</strong> K&uuml;nstlern)');

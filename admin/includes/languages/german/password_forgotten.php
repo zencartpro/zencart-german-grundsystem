@@ -30,5 +30,5 @@ define('SUCCESS_PASSWORD_SENT','<p>Ihr neues Passwort wurde an die angegebene e-
 
 define('TEXT_EMAIL_SUBJECT',STORE_NAME . ' - Neues Passwort');
 define('TEXT_EMAIL_FROM',EMAIL_FROM);
-define('TEXT_EMAIL_MESSAGE', 'Ein neues Passwort wurde angefordert von ' . $_SESSION['REMOTE_ADDR'] . "\n\nIhr neues Passwort für '" . STORE_NAME . "' ist:\n\n   %s\n\n");
+define('TEXT_EMAIL_MESSAGE', 'Ein neues Passwort wurde angefordert von ' . $_SESSION['REMOTE_ADDR'] . "\n\nIhr neues Passwort f&uuml;r '" . STORE_NAME . "' ist:\n\n   %s\n\n");
 ?>

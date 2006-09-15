@@ -30,10 +30,10 @@ define('TABLE_CONFIGURATION_TABLE', 'Suche KONSTANTE Definitionen');
 define('SUCCESS_PRODUCT_UPDATE_SORT_ALL', 'Die Sortierreihenfolge der Attribute wurde <strong>erfolgreich</strong> aktualisiert');
 define('SUCCESS_PRODUCT_UPDATE_PRODUCTS_PRICE_SORTER', 'Sie Sortiererwerte f&uuml;r Artikelpreise wurden <strong>erfolgreich</strong> aktualisiert');
 define('SUCCESS_PRODUCT_UPDATE_PRODUCTS_VIEWED', 'Die gesehenen Artikel wurden <strong>erfolgreich</strong> auf 0 zur&uuml;ckgesetzt');
-define('SUCCESS_PRODUCT_UPDATE_PRODUCTS_ORDERED', 'Die bestellten Artikel wurden erfolgreich auf 0 zurückgesetzt');
+define('SUCCESS_PRODUCT_UPDATE_PRODUCTS_ORDERED', 'Die bestellten Artikel wurden erfolgreich auf 0 zur&uuml;ckgesetzt');
 define('SUCCESS_UPDATE_ALL_MASTER_CATEGORIES_ID', 'Alle Hauptkategorien f&uuml;r verlinkte Artikel wurden <strong>erfolgreich</strong> zur&uuml;ckgesetzt');
 define('SUCCESS_UPDATE_COUNTER', 'Der Counter wurde <strong>erfolgreich</strong> aktualisiert auf: ');
-define('SUCCESS_CLEAN_ADMIN_ACTIVITY_LOG', '<strong>Erfolgreiches</strong> Update des Admin-Änderungsprotokolls '); // new 1.3.0  
+define('SUCCESS_CLEAN_ADMIN_ACTIVITY_LOG', '<strong>Erfolgreiches</strong> Update des Admin-&Auml;nderungsprotokolls '); // new 1.3.0  
 
 define('ERROR_CONFIGURATION_KEY_NOT_FOUND', '<strong>Fehler:</strong> Keine &uuml;bereinstimmenden Konfigurationsschl&uuml;ssel gefunden ...');
 define('ERROR_CONFIGURATION_KEY_NOT_ENTERED', '<strong>Fehler:</strong> Kein Konfigurationsschl&uuml;ssel oder Text wurden f&uuml;r die Suche angegeben ... die Suche wurde abgebrochen');
@@ -41,9 +41,9 @@ define('ERROR_CONFIGURATION_KEY_NOT_ENTERED', '<strong>Fehler:</strong> Kein Kon
 define('TEXT_INFO_COUNTER_UPDATE', '<strong>Aktualisiere Counter</strong><br />auf einen neuen Wert: ');
 define('TEXT_INFO_PRODUCTS_PRICE_SORTER_UPDATE', '<strong>Aktualisiere ALLE Artikelpreissortierer </strong><br />um eine nach Preisen sortierte Anzeige zu erm&ouml;glichen: ');
 define('TEXT_INFO_PRODUCTS_VIEWED_UPDATE', '<strong>Setze ALLE gesehenen Artikel zur&uuml;ck</strong><br />Setze Anzahl der gesehenen Artikel auf 0: ');
-define('TEXT_INFO_PRODUCTS_ORDERED_UPDATE', '<strong>ALLE bestellten Artikel zurücksetzen</strong><br />Anzahl bestellter Artikel auf 0 setzen: ');
+define('TEXT_INFO_PRODUCTS_ORDERED_UPDATE', '<strong>ALLE bestellten Artikel zur&uuml;cksetzen</strong><br />Anzahl bestellter Artikel auf 0 setzen: ');
 define('TEXT_INFO_MASTER_CATEGORIES_ID_UPDATE', '<strong>Setze ALLE Artikelhauptkategorie IDs</strong><br />zur Verwendung f&uuml;r verlinkte Artikel und Bepreisung zur&uuml;ck: ');
-define('TEXT_INFO_ADMIN_ACTIVITY_LOG', '<strong>Leere Admin-Änderungsprotokolltabelle in der Datenbank <br />Achtung: Datenbank-Backup durchf&uuml;hren bevor Sie diese Aktion ausf&uuml;hren!</strong><br />Die Admin-&Auml;nderungsprotokolltabelle zeichnet jede Adminaktion auf und kann daher sehr gro&szlig; werden. Eine S&auml;uberung der Tabelle sollte daher von Zeit zu Zeit durchgef&uuml;hrt werden. Eine Warmeldung wird bei &Uuml;berschreiten von mehr als 50000 Eintr&auml;gen bzw. mehr als 60 Tagen angezeigt.'); // new 1.3.0  
+define('TEXT_INFO_ADMIN_ACTIVITY_LOG', '<strong>Leere Admin-&Auml;nderungsprotokolltabelle in der Datenbank <br />Achtung: Datenbank-Backup durchf&uuml;hren bevor Sie diese Aktion ausf&uuml;hren!</strong><br />Die Admin-&Auml;nderungsprotokolltabelle zeichnet jede Adminaktion auf und kann daher sehr gro&szlig; werden. Eine S&auml;uberung der Tabelle sollte daher von Zeit zu Zeit durchgef&uuml;hrt werden. Eine Warmeldung wird bei &Uuml;berschreiten von mehr als 50000 Eintr&auml;gen bzw. mehr als 60 Tagen angezeigt.'); // new 1.3.0  
 
 define('TEXT_ORDERS_ID_UPDATE', '<strong>Aktuelle Bestell ID wird zur&uuml;ckgesetzt</strong>');
 define('TEXT_INFO_ORDERS_ID_UPDATE', '<strong>HINWEIS: Vor der Aktualisierung der aktuellen Bestell ID ...</strong><br /><br />f&uuml;hren Sie bitte eine Testbestellung durch. Anschlie&szlig;end verwenden Sie die die Bestell ID, um die unten angef&uuml;hrten Informationen zu vervollst&auml;ndigen.<br />Die neue Bestell ID f&uuml;r die n&auml;chste reale Bestellung sollte um 1 weniger als die Bestell ID sein, die Sie verwenden m&ouml;chten.<br /><strong>Beispiel:</strong> Wenn die n&auml;chste reale Bestellung die Bestell ID 1225 haben soll, geben Sie bitte als ID 1224 ein<br /><br /><strong>WARNUNG:</strong> Sie k&ouml;nnen Bestell IDs nur vorw&auml;rts und nicht r&uuml;ckw&auml;rts zur&uuml;cksetzen.<br />Wenn Sie die Bestell ID auf 25 &auml;ndern und dann auf 20, wird die n&auml;chste Bestell ID trotzdem die 26 sein.');

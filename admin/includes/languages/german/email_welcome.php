@@ -25,6 +25,6 @@
 //
 
 define('HEADING_TITLE', 'Willkommensnachricht - Beispiel / Vorschau');
-define('HEADING_SUBTITLE', 'Hinweis: Die Qualität der Darstellung dieser Vorschau ist vom jeweils verwendeten Browser abhängig und spiegelt nicht unbedingt die aktuelle Darstellung aller e-Mail Clients wieder. <br />Bitte NICHT versenden, bevor Sie die korrekte Darstellung auf allen e-Mail Clients die Sie unterstützen wollen, eingehend getestet haben.');
+define('HEADING_SUBTITLE', 'Hinweis: Die Qualit&auml;t der Darstellung dieser Vorschau ist vom jeweils verwendeten Browser abh&auml;ngig und spiegelt nicht unbedingt die aktuelle Darstellung aller e-Mail Clients wieder. <br />Bitte NICHT versenden, bevor Sie die korrekte Darstellung auf allen e-Mail Clients die Sie unterst&uuml;tzen wollen, eingehend getestet haben.');
 define('TEXT_SUBJECT', 'Betreff:');
 ?>
