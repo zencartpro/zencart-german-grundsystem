@@ -25,7 +25,7 @@
 //
   
 define('SAVE_STORE_SETTINGS', 'Shopeinstellungen speichern');//this comes before TEXT_MAIN
-define('TEXT_MAIN', "Diese Sektion der Zen Cart Installation hilft Ihnen bei der Festlegung Ihrer Basiseinstellungen f&uuml;r den Zen Caft Shop. Diese Einstellungen k&ouml;nnen sp&auml;ter im Admin Men&uuml; ge&auml;ndert werden. Tragen Sie alle Optionen gewissenhaft ein und klicken Sie anschlie&szlig;end zum Fortfahren auf <em>".SAVE_STORE_SETTINGS.'</em>.');
+define('TEXT_MAIN', "Diese Sektion der Zen Cart Installation hilft Ihnen bei der Festlegung Ihrer Basiseinstellungen f&uuml;r den Zen Cart Shop. Diese Einstellungen k&ouml;nnen sp&auml;ter im Admin Men&uuml; ge&auml;ndert werden. Tragen Sie alle Optionen gewissenhaft ein und klicken Sie anschlie&szlig;end zum Fortfahren auf <em>".SAVE_STORE_SETTINGS.'</em>.');
 define('TEXT_PAGE_HEADING', 'Zen Cart Installation - Installation');
 define('STORE_INFORMATION', 'Shopinformation');
 define('STORE_NAME', 'Shopname');

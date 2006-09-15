@@ -24,100 +24,100 @@
 // $Id$
 //
 
-  define('YES', 'JA');
-  define('NO', 'NEIN');
+define('YES', 'JA');
+define('NO', 'NEIN');
 
-  // Global entries for the <html> tag
-  define('HTML_PARAMS','dir="ltr" lang="de"');
+// Global entries for the <html> tag
+define('HTML_PARAMS','dir="ltr" lang="de"');
 
-  // charset for web pages and emails
-  define('CHARSET', 'iso-8859-1');
+// charset for web pages and emails
+define('CHARSET', 'iso-8859-1');
 
-  // META TAG TITLE
-  define('META_TAG_TITLE', 'Zen Cart Installationsprogramm');
+// META TAG TITLE
+define('META_TAG_TITLE', 'Zen Cart Installationsprogramm');
 
-  define('INSTALLATION_IN_PROGRESS','Installation In Progress...');
-  if (isset($_GET['main_page']) && ($_GET['main_page']== 'index' || $_GET['main_page']== 'license')) {
-    define('TEXT_ERROR_WARNING', 'Hi: Ens m&uuml;ssen nur einige Kleinigkeiten adressiert werden, bevor wir fortfahren k&ouml;nnen.');
-  } else {
+define('INSTALLATION_IN_PROGRESS','Installation l&auml;ft...');
+if (isset($_GET['main_page']) && ($_GET['main_page']== 'index' || $_GET['main_page']== 'license')) {
+    define('TEXT_ERROR_WARNING', 'Hi: Es m&uuml;ssen nur einige Kleinigkeiten adressiert werden, bevor wir fortfahren k&ouml;nnen.');
+} else {
     define('TEXT_ERROR_WARNING', '<span class="errors"><strong>Warnung: Es sind Probleme aufgetreten</strong></span>');
-  }
+}
 
-    define('DB_ERROR_NOT_CONNECTED', 'Installationsfehler: Es konnte keine Verbindung zur Datenbank hergestellt werden');
+define('DB_ERROR_NOT_CONNECTED', 'Installationsfehler: Es konnte keine Verbindung zur Datenbank hergestellt werden');
 
-  define('UPLOAD_SETTINGS','The Maximum upload size supported will be whichever the LOWER of these values:.<br />
+define('UPLOAD_SETTINGS','Die maximale Uploadgr&ouml;&szlig;e muss kleiner als einer der folgenden Werte sein:.<br />
 <em>upload_max_filesize</em> in php.ini %s <br />
 <em>post_max_size</em> in php.ini: %s <br />' .
 //'<em>Zen Cart</em> Upload Setting: %s <br />' .
-'You may find some Apache settings that prevent you from uploading files or limit your maximum file size.
-See the Apache documentation for more information.');
+'Einige Apache-Einstellungen k&ouml;nnen das Hochladen von Dateien verhindern bzw. Ihre Dateigr&ouml;&szlig;e begrenzen.
+Nutzen Sie die Apache-Dokumentation um weitere Informationen zu erhalten.');
 
-  define('TEXT_HELP_LINK', ' mehr...');
-  define('TEXT_CLOSE_WINDOW', 'Fenster schlie&szlig;en');
-  define('STORE_ADDRESS_DEFAULT_VALUE', 'Shopname
+define('TEXT_HELP_LINK', ' mehr...');
+define('TEXT_CLOSE_WINDOW', 'Fenster schlie&szlig;en');
+define('STORE_ADDRESS_DEFAULT_VALUE', 'Shopname
   Adresse
   Land
   Telefonnummer');
 
-  define('ERROR_TEXT_4_1_2', 'PHP Version ist 4.1.2');
-  define('ERROR_CODE_4_1_2', '1');
+define('ERROR_TEXT_4_1_2', 'PHP Version ist 4.1.2');
+define('ERROR_CODE_4_1_2', '1');
 
-  define('ERROR_TEXT_ADMIN_CONFIGURE', '/admin/includes/configure.php existiert nicht');
-  define('ERROR_CODE_ADMIN_CONFIGURE', '2');
+define('ERROR_TEXT_ADMIN_CONFIGURE', '/admin/includes/configure.php existiert nicht');
+define('ERROR_CODE_ADMIN_CONFIGURE', '2');
 
-  define('ERROR_TEXT_STORE_CONFIGURE', '/includes/configure.php existiert nicht');
-  define('ERROR_CODE_STORE_CONFIGURE', '3');
+define('ERROR_TEXT_STORE_CONFIGURE', '/includes/configure.php existiert nicht');
+define('ERROR_CODE_STORE_CONFIGURE', '3');
 
-  define('ERROR_TEXT_PHYSICAL_PATH_ISEMPTY', 'Das Feld f&uuml;r den physikalischen Pfad darf nicht leer sein');
-  define('ERROR_CODE_PHYSICAL_PATH_ISEMPTY', '9');
+define('ERROR_TEXT_PHYSICAL_PATH_ISEMPTY', 'Das Feld f&uuml;r den physikalischen Pfad darf nicht leer sein');
+define('ERROR_CODE_PHYSICAL_PATH_ISEMPTY', '9');
 
-  define('ERROR_TEXT_PHYSICAL_PATH_INCORRECT', 'Der physikalische Pfad ist falsch');
-  define('ERROR_CODE_PHYSICAL_PATH_INCORRECT', '10');
+define('ERROR_TEXT_PHYSICAL_PATH_INCORRECT', 'Der physikalische Pfad ist falsch');
+define('ERROR_CODE_PHYSICAL_PATH_INCORRECT', '10');
 
-  define('ERROR_TEXT_VIRTUAL_HTTP_ISEMPTY', 'Das Feld f&uuml;r den virtuellen HTTP Pfad darf nicht leer sein');
-  define('ERROR_CODE_VIRTUAL_HTTP_ISEMPTY', '11');
+define('ERROR_TEXT_VIRTUAL_HTTP_ISEMPTY', 'Das Feld f&uuml;r den virtuellen HTTP Pfad darf nicht leer sein');
+define('ERROR_CODE_VIRTUAL_HTTP_ISEMPTY', '11');
 
-  define('ERROR_TEXT_VIRTUAL_HTTPS_ISEMPTY', 'Das Feld f&uuml;r den virtuellen HTTPS Pfad darf nicht leer sein');
-  define('ERROR_CODE_VIRTUAL_HTTPS_ISEMPTY', '12');
+define('ERROR_TEXT_VIRTUAL_HTTPS_ISEMPTY', 'Das Feld f&uuml;r den virtuellen HTTPS Pfad darf nicht leer sein');
+define('ERROR_CODE_VIRTUAL_HTTPS_ISEMPTY', '12');
 
-  define('ERROR_TEXT_VIRTUAL_HTTPS_SERVER_ISEMPTY', 'Das Feld f&uuml;r den virtuellen HTTPS Server darf nicht leer sein');
-  define('ERROR_CODE_VIRTUAL_HTTPS_SERVER_ISEMPTY', '13');
+define('ERROR_TEXT_VIRTUAL_HTTPS_SERVER_ISEMPTY', 'Das Feld f&uuml;r den virtuellen HTTPS Server darf nicht leer sein');
+define('ERROR_CODE_VIRTUAL_HTTPS_SERVER_ISEMPTY', '13');
 
-  define('ERROR_TEXT_DB_USERNAME_ISEMPTY', 'Das Feld f&uuml;r den DB Benutzernamen darf nicht leer sein');
-  define('ERROR_CODE_DB_USERNAME_ISEMPTY', '16'); // re-using another one, since message is essentially the same.
+define('ERROR_TEXT_DB_USERNAME_ISEMPTY', 'Das Feld f&uuml;r den DB Benutzernamen darf nicht leer sein');
+define('ERROR_CODE_DB_USERNAME_ISEMPTY', '16'); // re-using another one, since message is essentially the same.
 
-  define('ERROR_TEXT_DB_HOST_ISEMPTY', 'Das Feld f&uuml;r den DB Host darf nicht leer sein');
-  define('ERROR_CODE_DB_HOST_ISEMPTY', '24');
+define('ERROR_TEXT_DB_HOST_ISEMPTY', 'Das Feld f&uuml;r den DB Host darf nicht leer sein');
+define('ERROR_CODE_DB_HOST_ISEMPTY', '24');
 
-  define('ERROR_TEXT_DB_NAME_ISEMPTY', 'Das Feld f&uuml;r den DB Namen darf nicht leer sein');
-  define('ERROR_CODE_DB_NAME_ISEMPTY', '25');
+define('ERROR_TEXT_DB_NAME_ISEMPTY', 'Das Feld f&uuml;r den DB Namen darf nicht leer sein');
+define('ERROR_CODE_DB_NAME_ISEMPTY', '25');
 
-  define('ERROR_TEXT_DB_SQL_NOTEXIST', 'Die SQL Installationsdatei existiert nicht');
-  define('ERROR_CODE_DB_SQL_NOTEXIST', '26');
+define('ERROR_TEXT_DB_SQL_NOTEXIST', 'Die SQL Installationsdatei existiert nicht');
+define('ERROR_CODE_DB_SQL_NOTEXIST', '26');
 
-  define('ERROR_TEXT_DB_NOTSUPPORTED', 'Diese Datenbank wird nicht unterst&uuml;tzt');
-  define('ERROR_CODE_DB_NOTSUPPORTED', '27');
+define('ERROR_TEXT_DB_NOTSUPPORTED', 'Diese Datenbank wird nicht unterst&uuml;tzt');
+define('ERROR_CODE_DB_NOTSUPPORTED', '27');
 
-  define('ERROR_TEXT_DB_CONNECTION_FAILED', 'Die Verbindung zur Datenbank ist fehlgeschlagen');
-  define('ERROR_CODE_DB_CONNECTION_FAILED', '28');
+define('ERROR_TEXT_DB_CONNECTION_FAILED', 'Die Verbindung zur Datenbank ist fehlgeschlagen');
+define('ERROR_CODE_DB_CONNECTION_FAILED', '28');
 
-  define('ERROR_TEXT_DB_CREATE_FAILED', 'Die Datenbank konnte nicht erstellt werden');
-  define('ERROR_CODE_DB_CREATE_FAILED', '29');
+define('ERROR_TEXT_DB_CREATE_FAILED', 'Die Datenbank konnte nicht erstellt werden');
+define('ERROR_CODE_DB_CREATE_FAILED', '29');
 
-  define('ERROR_TEXT_DB_NOTEXIST', 'Die Datenbank existiert nicht');
-  define('ERROR_CODE_DB_NOTEXIST', '30');
+define('ERROR_TEXT_DB_NOTEXIST', 'Die Datenbank existiert nicht');
+define('ERROR_CODE_DB_NOTEXIST', '30');
 
-  define('ERROR_TEXT_STORE_NAME_ISEMPTY', 'Das Feld f&uuml;r den Shopnamen darf nicht leer sein');
-  define('ERROR_CODE_STORE_NAME_ISEMPTY', '31');
+define('ERROR_TEXT_STORE_NAME_ISEMPTY', 'Das Feld f&uuml;r den Shopnamen darf nicht leer sein');
+define('ERROR_CODE_STORE_NAME_ISEMPTY', '31');
 
-  define('ERROR_TEXT_STORE_OWNER_ISEMPTY', 'Das Feld f&uuml;r den Shopinhaber darf nicht leer sein');
-  define('ERROR_CODE_STORE_OWNER_ISEMPTY', '32');
+define('ERROR_TEXT_STORE_OWNER_ISEMPTY', 'Das Feld f&uuml;r den Shopinhaber darf nicht leer sein');
+define('ERROR_CODE_STORE_OWNER_ISEMPTY', '32');
 
-  define('ERROR_TEXT_STORE_OWNER_EMAIL_ISEMPTY', 'Das Feld f&uuml;r die Shop e-Mail Adresse darf nicht leer sein');
-  define('ERROR_CODE_STORE_OWNER_EMAIL_ISEMPTY', '33');
+define('ERROR_TEXT_STORE_OWNER_EMAIL_ISEMPTY', 'Das Feld f&uuml;r die Shop e-Mail Adresse darf nicht leer sein');
+define('ERROR_CODE_STORE_OWNER_EMAIL_ISEMPTY', '33');
 
-  define('ERROR_TEXT_STORE_OWNER_EMAIL_NOTEMAIL', 'Die e-Mail Adresse des Shops ist nicht korrekt');
-  define('ERROR_CODE_STORE_OWNER_EMAIL_NOTEMAIL', '34');
+define('ERROR_TEXT_STORE_OWNER_EMAIL_NOTEMAIL', 'Die e-Mail Adresse des Shops ist nicht korrekt');
+define('ERROR_CODE_STORE_OWNER_EMAIL_NOTEMAIL', '34');
 
 define('ERROR_TEXT_STORE_ADDRESS_ISEMPTY', 'Das Feld f&uuml;r die Shopadresse darf nicht leer sein');
 define('ERROR_CODE_STORE_ADDRESS_ISEMPTY', '35');
@@ -233,17 +233,17 @@ if (isset($_GET['error_code'])) {
 switch ($error_code) {
   case ('1'):
     define('POPUP_ERROR_HEADING', 'PHP Version 4.1.2 gefunden');
-    define('POPUP_ERROR_TEXT', 'In der PHP Version 4.1.2 wurden einige Bugs entdeckt. dadurch kann es vorkommen, dass auf die Admin Sektion nicht zugegriffen werden kann. Bitte aktualisieren Sie nach M&ouml;glichkeit Ihre PHP Version.');
+    define('POPUP_ERROR_TEXT', 'In der PHP Version 4.1.2 wurden einige Bugs entdeckt. Dadurch kann es vorkommen, dass auf die Admin Sektion nicht zugegriffen werden kann. Bitte aktualisieren Sie nach M&ouml;glichkeit Ihre PHP Version.');
     
   break;
   case ('2'):
     define('POPUP_ERROR_HEADING', '/admin/includes/configure.php existiert nicht');
-    define('POPUP_ERROR_TEXT', 'Die Datei /admin/includes/configure.php existiert nicht. Erstellen Sie entwerder eine neue Datei oder benenne Sie die Datei /admin/includes/dist-configure.php in configure.php um. Nach dem Erstellen muss die Datei Lese- und Schreibrechte besitzen bzw. auf CHMOD 666 oder CHMOD 777 gesetzt werden.');
+    define('POPUP_ERROR_TEXT', 'Die Datei /admin/includes/configure.php existiert nicht. Erstellen Sie entwerder eine neue Datei oder benennen Sie die Datei /admin/includes/dist-configure.php in configure.php um. Nach dem Erstellen muss die Datei Lese- und Schreibrechte besitzen bzw. auf CHMOD 666 oder CHMOD 777 gesetzt werden.');
     
   break;
   case ('3'):
     define('POPUP_ERROR_HEADING', '/includes/configure.php existiert nicht');
-    define('POPUP_ERROR_TEXT', 'Die Datei /includes/configure.php existiert nicht. Erstellen Sie entweder eine neue Datei oder benenne Sie die Datei /admin/includes/dist-configure.php in configure.php um. Nach dem Erstellen muss die Datei Lese- und Schreibrechte besitzen bzw. auf CHMOD 666 oder CHMOD 777 gesetzt werden.');
+    define('POPUP_ERROR_TEXT', 'Die Datei /includes/configure.php existiert nicht. Erstellen Sie entweder eine neue Datei oder benennen Sie die Datei /admin/includes/dist-configure.php in configure.php um. Nach dem Erstellen muss die Datei Lese- und Schreibrechte besitzen bzw. auf CHMOD 666 oder CHMOD 777 gesetzt werden.');
     
   break;
   case ('4'):
@@ -263,7 +263,7 @@ switch ($error_code) {
   break;
   case ('7'):
     define('POPUP_ERROR_HEADING', 'Virtueller HTTPS Path');
-    define('POPUP_ERROR_TEXT', 'Das ist die Adresse, die Sie in Ihrem Browser eingeben um auf Ihre Shopseite &uuml;ber eine sicher SSL Verbindung zu gelangen, z.B. \'https://www.ihredomain.at\'. Sie k&ouml;nnen auf <a href="http://www.zen-cart.com/modules/xoopsfaq/index.php?cat_id=2#46" target="_blank">Zen Cart FAQ</a> mehr zum Thema SSL erfahren.');
+    define('POPUP_ERROR_TEXT', 'Das ist die Adresse, die Sie in Ihrem Browser eingeben um auf Ihre Shopseite &uuml;ber eine sichere SSL Verbindung zu gelangen, z.B. \'https://www.ihredomain.at\'. Sie k&ouml;nnen auf <a href="http://www.zen-cart.com/modules/xoopsfaq/index.php?cat_id=2#46" target="_blank">Zen Cart FAQ</a> mehr zum Thema SSL erfahren.');
     
   break;
   case ('8'):
@@ -328,7 +328,7 @@ switch ($error_code) {
   break;
   case ('20'):
     define('POPUP_ERROR_HEADING', 'Datenbank erstellen');
-    define('POPUP_ERROR_TEXT', 'Diese Einstellung gibt an, ob das Installationsprogramm versuchen soll, eine Datenbank zu erstellen. Hinweis: Die Option \'erstellen\' hat nichts mit dem Hinzuf&uuml;gen von Tabellen zu tun, die Zen cart ben&ouml;tigt (welche sowieso automatisch erstellt werden). Viele Provider geben Ihren Benutzern nicht das Recht, Datenbanken zu \'erstellen\', bieten jedoch eine andere M&ouml;glichkeit zum erstellen einer Datenbank (z.B. cPanel oder phpMyAdmin). Im Zweifelsfall kontaktieren sie bitte Ihren Provider.');
+    define('POPUP_ERROR_TEXT', 'Diese Einstellung gibt an, ob das Installationsprogramm versuchen soll, eine Datenbank zu erstellen. Hinweis: Die Option \'erstellen\' hat nichts mit dem Hinzuf&uuml;gen von Tabellen zu tun, die Zen Cart ben&ouml;tigt (welche sowieso automatisch erstellt werden). Viele Provider geben Ihren Benutzern nicht das Recht, Datenbanken zu \'erstellen\', bieten jedoch eine andere M&ouml;glichkeit zum erstellen einer Datenbank (z.B. cPanel oder phpMyAdmin). Im Zweifelsfall kontaktieren sie bitte Ihren Provider.');
     
   break;
   case ('21'):
@@ -353,7 +353,7 @@ switch ($error_code) {
   
   case ('25'):
     define('POPUP_ERROR_HEADING', 'Das Feld f&uuml;r den DB Namen darf nicht leer sein');
-    define('POPUP_ERROR_TEXT', 'Der Eintrag f&uuml;r Datenbank Namen darf nicht leer sein. Bitte geben Sie den Namen Ihrer datenbank ein.<br />Das ist der Name f&uuml;r die Datenbank, die Sie zur Verwendung mit Zen Cart ben&ouml;tigen. Wenn Sie sich nicht sicher sind, fragen Sie bitte Ihren Provider f&uuml;r weiter Informationen.');
+    define('POPUP_ERROR_TEXT', 'Der Eintrag f&uuml;r Datenbank Namen darf nicht leer sein. Bitte geben Sie den Namen Ihrer Datenbank ein.<br />Das ist der Name f&uuml;r die Datenbank, die Sie zur Verwendung mit Zen Cart ben&ouml;tigen. Wenn Sie sich nicht sicher sind, fragen Sie bitte Ihren Provider f&uuml;r weiter Informationen.');
     
   break;
   case ('26'):
@@ -368,12 +368,12 @@ switch ($error_code) {
   break;
   case ('28'):
     define('POPUP_ERROR_HEADING', 'Verbindung zur Datenbank fehlgeschlagen');
-    define('POPUP_ERROR_TEXT', 'Es konnte keine Verbindung zur Datenbank hergestellt werden. Daf&uuml;r kann es mehrere Ursache geben: <br /><br />Sie haben entweder einen falschen DB Hostnamen angegeben oder der DB Benutzername bzw. das <em>DB Passwort </em>ist falsch. <br /><br />Ebenso kann der Name der Datenbank falsch sein. Bitte &uuml;berpr&uuml;fen Sie Ihre Angaben auf Richtigkeit und Versuchen Sie es noch einmal.');
+    define('POPUP_ERROR_TEXT', 'Es konnte keine Verbindung zur Datenbank hergestellt werden. Daf&uuml;r kann es mehrere Ursache geben: <br /><br />Sie haben entweder einen falschen DB Hostnamen angegeben oder der DB Benutzername bzw. das <em>DB Passwort </em>ist falsch. <br /><br />Ebenso kann der Name der Datenbank falsch sein. Bitte &uuml;berpr&uuml;fen Sie Ihre Angaben auf Richtigkeit und versuchen Sie es noch einmal.');
     
   break;
   case ('29'):
     define('POPUP_ERROR_HEADING', 'Datenbank konnte nicht erstellt werden');
-    define('POPUP_ERROR_TEXT', 'Eventuell haben Sie keine Berechtigung zum Erstellen einer leeren Datenbank. Setzten Sie sich bitte mit Ihrem Provider in Verbindung um eventuell eine Datenbank f&uuml;r Sie zu erstellen. Alternativ h&auml;lt Ihr Provider cpanel oder phpMyAdmin zum Erstellen einer Datenbank f&uuml;r Sie bereit. Wenn Sie dann eine Datenbank erstellt haben, DEAKTIVIEREN Sie bitte die Option \'Datenbank erstellen\', um mit der Installation fortfahren zu k&ouml;nnen.');
+    define('POPUP_ERROR_TEXT', 'Eventuell haben Sie keine Berechtigung zum Erstellen einer leeren Datenbank. Setzen Sie sich bitte mit Ihrem Provider in Verbindung um eventuell eine Datenbank f&uuml;r Sie zu erstellen. Alternativ h&auml;lt Ihr Provider cPanel oder phpMyAdmin zum Erstellen einer Datenbank f&uuml;r Sie bereit. Wenn Sie dann eine Datenbank erstellt haben, DEAKTIVIEREN Sie bitte die Option \'Datenbank erstellen\', um mit der Installation fortfahren zu k&ouml;nnen.');
     
   break;
   case ('30'):
@@ -418,7 +418,7 @@ switch ($error_code) {
   break;
   case ('38'):
     define('POPUP_ERROR_HEADING', 'Shopinhaber');
-    define('POPUP_ERROR_TEXT', 'Dieser Name wird in einigen e-Mails, die von Shop gesendet werden, verwendet.');
+    define('POPUP_ERROR_TEXT', 'Dieser Name wird in einigen e-Mails, die vom Shop gesendet werden, verwendet.');
     
   break;
   case ('39'):
@@ -433,7 +433,7 @@ switch ($error_code) {
   break;
   case ('41'):
     define('POPUP_ERROR_HEADING', 'Bundesland');
-    define('POPUP_ERROR_TEXT', 'Das Bundesland, von in dem der Shop betrieben wird. Es ist sehr wichtig, dass Sie hier korrekte Angaben machen, da davon ev. die Berechnung der Steuern und der Versandkosten abh&auml;ngig sein kann.');
+    define('POPUP_ERROR_TEXT', 'Das Bundesland, in dem der Shop betrieben wird. Es ist sehr wichtig, dass Sie hier korrekte Angaben machen, da davon ev. die Berechnung der Steuern und der Versandkosten abh&auml;ngig sein kann.');
     
   break;
   case ('42'):
@@ -562,7 +562,7 @@ switch ($error_code) {
   break;
   case ('67'):
     define('POPUP_ERROR_HEADING', 'phpBB Verzeichnis');
-    define('POPUP_ERROR_TEXT', 'Bitte geben Sie hier den vollst&auml;ndigen relativen Pfad zu Ihren phpBB Dateien an. damit erm&ouml;glichen Sie Ihrem Zen Cart Shop Kunden, die auf den phpBB Link klicken, direkt zum phpBB Forum weiter zu leiten.<br /><br />Der Pfad, der hier eingegeben werden muss, ist relativ zum "Rootverzeichnis" ihres Webservers. Wenn z.B. Ihre phpBB Forum Installation in <strong>/home/users/username/public_html/phpbb </strong> liegt, dann m&uuml;ssen Sie <strong>/home/users/username/public_html/phpbb/ </strong>eingeben. Wenn diese in einem Unterordner liegen, so muss dieser im Pfad angegeben werden.<br /><br />Zen Cart wird versuchen, die Datei "<em>config.php</em>" in diesem Ordner zu finden.');
+    define('POPUP_ERROR_TEXT', 'Bitte geben Sie hier den vollst&auml;ndigen relativen Pfad zu Ihren phpBB Dateien an. Damit erm&ouml;glichen Sie Ihrem Zen Cart Shop Kunden, die auf den phpBB Link klicken, direkt zum phpBB Forum weiter zu leiten.<br /><br />Der Pfad, der hier eingegeben werden muss, ist relativ zum "Rootverzeichnis" ihres Webservers. Wenn z.B. Ihre phpBB Forum Installation in <strong>/home/users/username/public_html/phpbb </strong> liegt, dann m&uuml;ssen Sie <strong>/home/users/username/public_html/phpbb/ </strong>eingeben. Wenn diese in einem Unterordner liegen, so muss dieser im Pfad angegeben werden.<br /><br />Zen Cart wird versuchen, die Datei "<em>config.php</em>" in diesem Ordner zu finden.');
   break;
   case ('68'):
     define('POPUP_ERROR_HEADING', 'phpBB Verzeichnis');
@@ -582,92 +582,92 @@ switch ($error_code) {
   break;
   case ('72'):
     define('POPUP_ERROR_HEADING', 'FEHLER: Es konnten nicht alle configure.php Dateien mit den neuen Einstellungen gespeichert werden');
-    define('POPUP_ERROR_TEXT', 'Bei dem Versuch Ihre configure.php Dateien zu aktualisieren, ist ein Fehler aufgetreten. Sie m&uuml;ssen die Konfigurationsdateien /includes/configure.php und /admin/includes/configure.php manuell bearbeiten uns stellen Sie sicher, dass die "define" f&uuml;r "DB_PREFIX" korrekt f&uuml;r die Tabellen der Zen Cart Datenbank eingestellt ist.');
+    define('POPUP_ERROR_TEXT', 'Bei dem Versuch Ihre configure.php Dateien zu aktualisieren, ist ein Fehler aufgetreten. Sie m&uuml;ssen die Konfigurationsdateien /includes/configure.php und /admin/includes/configure.php manuell bearbeiten und stellen Sie sicher, dass die "define" f&uuml;r "DB_PREFIX" korrekt f&uuml;r die Tabellen der Zen Cart Datenbank eingestellt ist.');
   break;
   case ('73'):
     define('POPUP_ERROR_HEADING', 'FEHLER: Das neue Pr&auml;fix der Tabellen konnten nicht auf alle Tabellen angewendet werden');
     define('POPUP_ERROR_TEXT', 'Bei dem Versuch, das Pr&auml;fix der Tabellen umzubenennen, ist ein Fehler aufgetreten. Bitte &uuml;berpr&uuml;fen Sie die Namen der Tabellen in Ihrer Zen Cart Datenbank manuell. Im schlimmsten Fall m&uuml;ssen Sie eine Datenbank-Wiederherstellung von Ihrer Sicherung durchf&uuml;hren.');
   break;
   case ('74'):
-    define('POPUP_ERROR_HEADING', 'NOTE: PHP "session.save_path" is not writable');
-    define('POPUP_ERROR_TEXT', '<strong>This is JUST a note </strong>to inform you that you do not have permission to write to the path specified in the PHP session.save_path setting.<br /><br />This simply means that you cannot use this path setting for temporary file storage.  Instead, use the "suggested cache path" shown below it.');
+    define('POPUP_ERROR_HEADING', 'HINWEIS: PHP "session.save_path" ist nicht beschreibbar');
+    define('POPUP_ERROR_TEXT', '<strong>Das ist nur ein Hinweis</strong>, der Ihnen mitteilt, dass Sie nicht in den durch die PHP-Einstellung "session.save_path" festgelegten Pfad schreiben k&ouml;nnen.<br /><br />Das hei&szlig;t Sie k&ouml;nnen diesen Pfad nicht zum Speichern tempor&auml;rer Dateien nutzen.  Nutzen Sie stattdessen den vorgeschlagenen Cache-Pfad.');
   break;
   case ('75'):
-    define('POPUP_ERROR_HEADING', 'NOTE: PHP "magic_quotes_runtime" is active');
-    define('POPUP_ERROR_TEXT', 'It is best to have "magic_quotes_runtime" disabled. When enabled, it can cause unexpected 1064 SQL errors, and other code-execution problems.<br /><br />If you cannot disable it for the whole server, it may be possible to disable via .htaccess or your own php.ini file in your private webspace.  Talk to your hosting company for assistance.');
+    define('POPUP_ERROR_HEADING', 'HINWEIS: PHP "magic_quotes_runtime" ist aktiv');
+    define('POPUP_ERROR_TEXT', 'Es empfiehlt sich "magic_quotes_runtime" zu deaktivieren. Ist es dennoch aktiv kann es unerwartete SQL Fehler (1064) verursachen.<br /><br />Wenn Sie es nicht f&uuml;r den kompletten Server deaktivieren k&ouml;nnen, ist es evtl. per .htaccess oder Ihre eigene php.ini-Datei in Ihrem privaten Webspace m&ouml;glich. Bitten Sie Ihren Provider um Hilfe.');
   break;
   case ('76'):
-    define('POPUP_ERROR_HEADING', 'Database Engine version information unknown');
-    define('POPUP_ERROR_TEXT', 'The version number of your database engine could not be obtained.<br /><br />This is NOT NECESSARILY a serious issue. In fact, it can be quite common on a production server, as at the stage of this inspection, we may not yet know the required security credentials in order to log in to your server, since those are obtained later in the installation process.<br /><br />It is generally safe to proceed even if this information is listed as Unknown.');
+    define('POPUP_ERROR_HEADING', 'Database Engine Versions-Informationen unbekannt');
+    define('POPUP_ERROR_TEXT', 'Die Version Ihrer Datenbank-Engine kann nicht ermittelt werden.<br /><br />Das ist nicht zwingend ein ernsthaftes Problem. Das kann auf Produktivsystem absolut &uuml;lich sein.<br /><br />Es ist ok, fortzufahren, wenn diese Information als "Unknown" angezeigt wird.');
   break;
   case ('77'):
-    define('POPUP_ERROR_HEADING', 'File Uploads are DISABLED');
-    define('POPUP_ERROR_TEXT', 'File uploads are DISABLED. To enable them, make sure <em><strong>file_uploads = on</strong></em> is in your server\'s php.ini file.');
+    define('POPUP_ERROR_HEADING', 'Datei-Uploads sind DEAKTIVIERT');
+    define('POPUP_ERROR_TEXT', 'Datei-Uploads sind DEAKTIVIERT. Um sie zu aktivieren, stellen Sie sicher, dass <em><strong>file_uploads = on</strong></em> in Ihrer php.ini Datei vorhanden ist.');
   break;
   case ('78'):
-    define('POPUP_ERROR_HEADING', 'ADMIN PASSWORD REQUIRED TO UPGRADE');
-    define('POPUP_ERROR_TEXT', 'The Store Administrator username and password are required in order to make changes to the database.<br /><br />Please enter a valid admin user ID and password for your Zen Cart site.');
+    define('POPUP_ERROR_HEADING', 'ADMIN PASSWORT IST F&Uuml;R EIN UPDATE NOTWENDIG');
+    define('POPUP_ERROR_TEXT', 'Der Admin-Nutzername sowie das Passwort des Shops wird ben&ouml;tigt um die notwendigen &Auml;nderungen in der Datenbank vornehmen zu k&ouml;nnen.<br /><br />Bitte geben Sie einen g&uuml;ltigen Nutzernamen sowie das daszugeh&ouml;rige Passwort ein.');
   break;
   case ('79'):
-    define('POPUP_ERROR_TEXT','OpenSSL is "one" way in which a server can be configured to offer SSL (https://) support for your site.<br /><br />If this is showing as unavailable, possible causes could be:<br />(a) your webhost doesn\'t support SSL<br />(b) your webserver doesn\'t have OpenSSL installed, but MIGHT have another form of SSL services available<br />(c) your web host may not yet be aware of your SSL certificate details so that they can enable SSL support for your domain<br />(d) PHP may not be configured to know about OpenSSL yet.<br /><br />In any case, if you DO require encryption support on your web pages (SSL), you should be contacting your web hosting provider for assistance.');
     define('POPUP_ERROR_HEADING','OpenSSL Information');
+    define('POPUP_ERROR_TEXT','OpenSSL ist "eine" M&ouml;glichkeit um Ihren Server SSL-f&auml;hig (https://) zu machen.<br /><br />Sollte dies nicht m&ouml;glich sein, kann es folgende Ursachen haben:<br />(a) Ihr Provider unterst&uuml;tzt SSL nicht<br />(b) Auf Ihrem Webserver ist OpenSSL nicht installiert, aber es K&Ouml;NNTE eine anderer SSL-Service verf&uuml;gbar sein<br />(c) Ihr Provider wei&szlig; nicht &uuml;ber Ihr SSL-Zertifikat bescheid, so dass sie SSL-Unterst&uuml;tzung f&uuml;r Ihre Domain freischalten.<br />(d) PHP ist noch nicht f&uuml;r die Verwendung von OpenSSL konfiguriert.<br /><br />Sie sollten auf jeden Fall Ihren Provider kontaktieren, wenn Sie SLL-Verschl&uuml;sselung verwenden wollen.');
   break;
   case ('80'):
-    define('POPUP_ERROR_HEADING', 'PHP Session Support is Required');
-    define('POPUP_ERROR_TEXT', 'You need to enable PHP Session support on your webserver.  You might try installing this module: php4-session ');
+    define('POPUP_ERROR_HEADING', 'PHP Session Support wird ben&ouml;tigt');
+    define('POPUP_ERROR_TEXT', 'Sie m&uuml;ssen PHP Sessions auf Ihrem Webserver aktivieren. Sie k&ouml;nnten versuchen folgendes Modul zu installieren: php4-session ');
   break;
   case ('81'):
-    define('POPUP_ERROR_HEADING', 'PHP running as cgi not recommended unless server is Windows');
-    define('POPUP_ERROR_TEXT', 'Running PHP as CGI can be problematic on some Linux/Unix servers.<br /><br />Windows servers, however, "always" run PHP as a cgi module, in which case this warning can be ignored.');
+    define('POPUP_ERROR_HEADING', 'PHP sollte nicht als CGI laufen, sofern der Server nicht auf Windows l&auml;uft');
+    define('POPUP_ERROR_TEXT', 'PHP als CGI auszuf&uuml;hren kann auf einigen Linux/Unix-Servern Probleme verursachen.<br /><br />Windows-Servers, f&uuml;hren PHP immer als CGI-Modul aus. In diesem Fall kann diese Warnung ignoriert werden..');
   break;
   case ('82'):
     define('POPUP_ERROR_HEADING', ERROR_TEXT_DISABLE_FUNCTIONS);
-    define('POPUP_ERROR_TEXT', 'Your PHP configuration has one or more of the following functions marked as "disabled" in your server\'s PHP.INI file:<br /><ul><li>set_time_limit</li><li>exec</li></ul>Your server may suffer from decreased performance due to the use of these security measures which are usually implemented on highly-used public servers... which are not always ideal for running an e-Commerce system.<br /><br />It is recommended that you speak with your hosting provider to determine whether they have another server where you may run your site with these restrictions removed.');
+    define('POPUP_ERROR_TEXT', 'In Ihre PHP Konfiguration (php.ini) sind eine oder mehrere der folgenden Funktionen deaktiviert:<br /><ul><li>set_time_limit</li><li>exec</li></ul>Ihr Server leidet wahrscheinlich unter gedrosselter Leistung um die Sicherheitsma&szlig;nahmen zu gew&auml;hrleisten. Dies wird meist auf hoch frequentierten &ouml;ffentlichen Servern gemacht. Das ist allerdings nicht optimal f&uuml;r e-Commerce-Systeme.<br /><br />Deshalb sollten Sie sich mit Ihrem Provider in Verbindung setzen, um eine L&ouml;sung f&uuml;r dieses Problem zu finden.');
   break;
   case ('83'):
-    define('POPUP_ERROR_HEADING','Invalid characters in database table-prefix');
-    define('POPUP_ERROR_TEXT','Database Table-Prefix may not contain any of these characters:<br />
-&nbsp;&nbsp; / or \\ or . <br /><br />Please select a different prefix. We recommend something simple like "zen_" .');
+    define('POPUP_ERROR_HEADING','Unerlaubtes Zeichen im Tabellen-Pr&auml;fix');
+    define('POPUP_ERROR_TEXT','Der Tabellen-Pr&auml;fix darf keines der folgenden Zeichen enthalten :<br />
+&nbsp;&nbsp; / oder \\ oder . <br /><br />Bitte nutzen Sie einen anderen Pr&auml;fix. Wir empfehlen sowas wie "zen_" .');
   break;
   case ('84'):
-    define('POPUP_ERROR_HEADING','PHP Session.autostart should be disabled.');
-    define('POPUP_ERROR_TEXT','The session.auto_start setting in your server\'s PHP.INI file is set to ON. <br /><br />This could potentially cause you some problems with session handling, as Zen Cart is designed to start sessions when it\'s ready to activate session features. Having sessions start automatically can be a problem in some server configurations.<br /><br />If you wish to tackly disabling this yourself, you could try putting the following into a .htaccess file located in the root of your shop (same folder as index.php):<br /><br /><code>php_value session.auto_start 0</code>');
+    define('POPUP_ERROR_HEADING','PHP Session.autostart sollte deaktiviert werden.');
+    define('POPUP_ERROR_TEXT','Die session.auto_start Option in Ihrer php.ini ist auf ON gesetzt. <br /><br />Dies k&ouml;nnte evtl. zu Problemen mit dem Session-Handling f&uuml;hren, da Zen Cart Sessions startet sobald es bereit ist. Das automatische Starten der Sessions kann bei einigen Server-Konfigurationen zu Fehlern f&uuml;hren.<br /><br />Um die Option zu deaktivieren, k&ouml;nnen Sie folgenden Eintrag in einer .htaccess-Datei (Wurzelverzeichnis) probieren: <br /><br /><code>php_value session.auto_start 0</code>');
   break;
   case ('85'):
-    define('POPUP_ERROR_HEADING','Some database-upgrade SQL statements not installed.');
-    define('POPUP_ERROR_TEXT','During the database-upgrade process, some SQL statements could not be executed because they would have created duplicate entries in the database, or the prerequisites (such as column must exist to change or drop) were not met.<br /><br />THE MOST COMMON CAUSE of these failures/exceptions is that you have installed a contribution/add-on that has made alterations to the core database structure. The upgrader is trying to be friendly and not create a problem for you. <br /><br />YOUR STORE MAY WORK JUST FINE without investigating these errors, however, we recommend that you check them out to be sure. <br /><br />If you wish to investigate, you may look at your "upgrade_exceptions" table in the database for details on which statements failed to execute and why.');
+    define('POPUP_ERROR_HEADING','Einige Updates (SQL) konnten nicht installiert werden.');
+    define('POPUP_ERROR_TEXT','W&auml;hrend des Datenbank-Updates wurden einige SQL-Anweisungen nicht ausgef&uuml;hrt damit keine doppelten Eintr&auml;ge entstehen.<br /><br />Die h&auml;ufigsten Ursachen dieser Fehler/Ausnahmen sind installierte Add-Ons die &Auml;nderungen an der Kern-Datenbank-Struktur vornehmen. Der Updater versucht keine Probleme zu generieren. <br /><br />Ihr Shop sollte trotz dieser Fehler funktionieren. Wir empfehlen trotzdem dies vorher zu testen. <br /><br />Wollen Sie die Fehler dennoch untersuchen k&ouml;nnen Sie in der Tabelle "upgrade_exceptions" nach Details suchen.');
   break;
   case ('86'):
-    define('POPUP_ERROR_HEADING','PHP Session.use_trans_sid should be disabled.');
-    define('POPUP_ERROR_TEXT','The session.use_trans_sid setting in your server\'s PHP.INI file is set to ON. <br /><br />This could potentially cause you some problems with session handling and possibly even security concerns.<br /><br />You can work around this by setting an .htaccess parameter such as this: <a href="http://www.olate.com/articles/252">http://www.olate.com/articles/252</a>, or you could disable it in your PHP.INI if you have access to it.<br /><br />For more information on the security risks it imposes, see: <a href="http://shh.thathost.com/secadv/2003-05-11-php.txt">http://shh.thathost.com/secadv/2003-05-11-php.txt</a>.');
+    define('POPUP_ERROR_HEADING','PHP Session.use_trans_sid sollte deaktiviert werden.');
+    define('POPUP_ERROR_TEXT','Die session.use_trans_sid Option in Ihrer php.ini ist auf ON gesetzt. <br /><br />Dies k&ouml;nnte evtl. zu Problemen mit dem Session-Handling f&uuml;hren.<br /><br />Durch setzen einer .htaccess mit einem Parameter (<a href="http://www.olate.com/articles/252">http://www.olate.com/articles/252</a>) kann man dies umgehen. Oder Sie deaktivieren diese Einstellung in Ihrer php.ini.<br /><br />Mehr Informationen zu Sicherheitsrisiken erhalten Sie hier: <a href="http://shh.thathost.com/secadv/2003-05-11-php.txt">http://shh.thathost.com/secadv/2003-05-11-php.txt</a>.');
   break;
   case ('87'):
-    define('POPUP_ERROR_HEADING','Permissions Required for Database User');
-    define('POPUP_ERROR_TEXT','Zen Cart operations require the following database-level privileges:<ul><li>ALL PRIVILEGES<br /><em>or</em></li><li>SELECT</li><li>INSERT</li><li>UPDATE</li><li>DELETE</li><li>CREATE</li><li>ALTER</li><li>INDEX</li><li>DROP</li></ul>Day-to-day activities do not normally require the "CREATE" and "DROP" privileges, but these ARE required for Installation, Upgrade, and SQLPatch activities.');
+    define('POPUP_ERROR_HEADING','Zugriffsrechte f&uuml;r Datenbank-Nutzer ben&ouml;tigt');
+    define('POPUP_ERROR_TEXT','Zen Cart ben&ouml;tigt das folgende Datenbank-Zugriffsrechte:<ul><li>ALL PRIVILEGES<br /><em>oder</em></li><li>SELECT</li><li>INSERT</li><li>UPDATE</li><li>DELETE</li><li>CREATE</li><li>ALTER</li><li>INDEX</li><li>DROP</li></ul>Im t&auml;glichen Gebrauch ben&ouml;tigt man zwar keine "CREATE" und "DROP" Rechte, aber diese sind f&uuml;r die Installation, ein Update oder SQL-Patches unverzichtbar.');
   break;
   case ('88'):
-    define('POPUP_ERROR_HEADING','Error encountered while writing /includes/configure.php');
-    define('POPUP_ERROR_TEXT','While attempting to save your settings, Zen Cart&trade; Installer was unable to verify successful writing of your configure.php file settings. Please check to be sure that your webserver has full write permissions to the configure.php files shown below.<br /><br />- /includes/configure.php<br />- /admin/includes/configure.php<br /><br />You may want to also check that there is sufficient disk space (or disk quota available to you) in order to write updates to these files. <br /><br />If the files are 0-bytes in size when you encounter this error, then disk space or "available" disk space is likely the cause.<br /><br />Ideal permissions in Unix/Linux hosting is CHMOD 777 until installation is complete. Then they can be set back to 644 or 444 for security after installation is done.<br /><br />If you are running on a Windows host, you may also find it necessary to right-click on each of these files, choose "Properties", then the "Security" tab. Then click on "Add" and select "Everyone", and grant "Everyone" full read/write access until installation is complete. Then reset to read-only after installation.');
+    define('POPUP_ERROR_HEADING','Fehler beim schreiben in /includes/configure.php');
+    define('POPUP_ERROR_TEXT','Bei dem Versuch Ihre Einstellungen in die daf&uuml;r vorgesehne Datei (configure.php) zu schreiben konnte Zen Cart&trade;-Installer das erfolgreiche Schreiben der Datei nicht best&auml;tigen. Bitte pr&uuml;fen Sie die Zugriffsrechte der configure.php-Dateien.<br /><br />- /includes/configure.php<br />- /admin/includes/configure.php<br /><br />Bitte pr&uuml;fen Sie ebenfalls, dass ausreichend Webspace zur Verf&uuml;gung steht. <br /><br />Sollten die Dateien eine Gr&ouml;&szlig;e von 0-bytes haben, ist wahrscheinlich nicht gen&uuml;gend Plattenplatz vorhanden.<br /><br />Optimale Zugriffsrechte f&uuml;r Unix/Linux: CHMOD 777 bis Intalltion komplett, danach CHMOD 644 oder 444.<br /><br />Unter Windows sollte nach der Installation der Schreibschutz aktiviert werden.');
   break;
   case ('89'):
     define('POPUP_ERROR_HEADING','GD Support Details');
-    define('POPUP_ERROR_TEXT','Zen Cart&trade; uses GD support in PHP, if available, to do image management activities.  It is preferred to have at least version 2.0 available.<br /><br />If GD support is not compiled into your PHP install, you may want to ask your hosting company to do this for you.');
+    define('POPUP_ERROR_TEXT','Zen Cart&trade; nutzt GD in PHP, soweit vorhanden, um Bilder zu verarbeiten. version 2.0 wird empfohlen.<br /><br />Sollte die GD-Unterst&uuml;tzung nicht in die PHP-Installation eincompiliert worden sein, sollten sie Ihren Provider um Hilfe bitten.');
   break;
   case ('90'):
     define('POPUP_ERROR_HEADING','MySQL 5 wird nicht vollst&auml;ndig unterst&uuml;tzt');
     define('POPUP_ERROR_TEXT','Es wurde viel M&uuml;he investiert um Datenbank-Abfragen in Zen Cart&trade; mit MySQL 5 kompatibel zu machen, trotzdem ist ein vollst&auml;ndiger Test noch nicht abgeschlossen.<br /><br />Sie k&ouml;nnen die Installation fortsetzen, sollten aber immer beachten, dass die vollst&auml;ndige Unterst&uuml;tzung noch in der Entwicklung ist.<br /><br />Sollten Sie bei der Nutzung von Zen Cart&trade; mit MySQL 5 auf SQL-Fehlermeldungen sto&szlig;en, melden Sie diese bitte in unserem Support-Forum (Bitte schauen Sie erst, ob das Problem nicht schon gemeldet wurde!), so dass wir das Problem beheben k&ouml;nnen.');
   break;
   case ('91'):
-    define('POPUP_ERROR_HEADING','PHP Version Alert');
-    define('POPUP_ERROR_TEXT','Zen Cart&trade; is designed to run on PHP versions 4.3.2 and greater.<br /><br />There are several PHP functions (mostly related to authentication and session-handling) used in Zen Cart&trade; which are either non-existent or have bugs in PHP versions prior to v4.3.2.<br /><br />We strongly recommend that you upgrade your PHP version if you intend to use Zen Cart&trade; on this server.');
+    define('POPUP_ERROR_HEADING','PHP-Versions Warnung');
+    define('POPUP_ERROR_TEXT','Zen Cart&trade; l&auml;uft mit PHP ab Version 4.3.2.<br /><br />&Auml;ltere PHP-Versionen besitzen einige von Zen Cart&trade; verwendete Funktionen nicht und andere sind fehlerhaft.<br /><br />Wir empfehlen dringend Ihre PHP-Version auf den aktuellsten Stand zu bringen, wenn Sie Zen Cart&trade; auf diesem Server verwenden wollen.');
   break;
   case ('92'):
-    define('POPUP_ERROR_HEADING','open_basedir restriction may cause problems');
-    define('POPUP_ERROR_TEXT','Your PHP is configured in such a way that prevents you from running scripts outside a specified "basedir" folder. Yet, your website files appear to be kept in a folder outside of the allowed "basedir" area.<br /><br />Among other things, you could have problems uploading files or doing backups.<br /><br />You should talk to your web host to change or remove this restriction.');
+    define('POPUP_ERROR_HEADING','open_basedir Einschr&auml;nkungen k&ouml;nnen Probleme verursachen');
+    define('POPUP_ERROR_TEXT','Ihr PHP ist so konfiguriert, dass Sie Ihre Skripte nur in einem "basedir"-Verzeichnis ausf&uuml;hren k&ouml;nnen. Dennoch scheinen Ihre Dateien in einem Verzeichnis au&szlig;erhalb des erlaubten "basedir" zu liegen.<br /><br />U.a. k&ouml;nnten Sie Probleme mit Datei-Uploads oder Backups bekommen.<br /><br />Sie sollten sich mit Ihrem Provider in Verbindung setzen um dieses Problem zu beheben.');
   break;
   case ('93'):
-    define('POPUP_ERROR_HEADING','cURL support not detected');
-    define('POPUP_ERROR_TEXT','Some 3rd-party payment and shipping modules/gateways require cURL in order to talk to an external server to request real-time quotes or payment authorizations. <br /><br />It appears that your server may not have cURL support configured or activated for your account. If you need a 3rd-party tool that uses cURL, you will need to talk to your web host to have them install cURL support on your server.');
+    define('POPUP_ERROR_HEADING','cURL Unterst&uuml;tzung nicht gefunden');
+    define('POPUP_ERROR_TEXT','Einige Zahlungs- sowie Versand-Module von Drittanbietern ben&ouml;tigen cURL um mit externen Servern kommunizieren zu k&ouml;nnen. <br /><br />Es scheint, dass Ihr Server cURL-Support nicht konfiguriert hat oder dies f&uuml;r Ihren Account nicht aktiviert ist. Sind Sie auf diese Module angewiesen, m&uuml;ssen Sie Ihren Provider bitten cURL auf Ihrem Server zu installieren.');
   break;
 
 
