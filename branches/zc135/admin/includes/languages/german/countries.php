@@ -30,7 +30,7 @@ define('TABLE_HEADING_COUNTRY_NAME','Land');
 define('TABLE_HEADING_COUNTRY_CODES','ISO Code');
 define('TABLE_HEADING_ACTION','Aktion');
 
-define('TEXT_INFO_EDIT_INTRO','F&uuml;hren Sie hier bitte die notwendigen Änderungen durch');
+define('TEXT_INFO_EDIT_INTRO','F&uuml;hren Sie hier bitte die notwendigen &Auml;nderungen durch');
 define('TEXT_INFO_COUNTRY_NAME','Name:');
 define('TEXT_INFO_COUNTRY_CODE_2','ISO Code (2):');
 define('TEXT_INFO_COUNTRY_CODE_3','ISO Code (3):');

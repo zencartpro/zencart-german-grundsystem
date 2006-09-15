@@ -38,7 +38,7 @@ define('TEXT_HEADING_NEW_MUSIC_GENRE', 'Neues Musik Genre');
 define('TEXT_HEADING_EDIT_MUSIC_GENRE', 'Musik Genre bearbeiten');
 define('TEXT_HEADING_DELETE_MUSIC_GENRE', 'Musik Genre l&ouml;schen');
 define('TEXT_DATE_ADDED', 'Erstelldatum');
-define('TEXT_LAST_MODIFIED', 'Letzte Änderung');
+define('TEXT_LAST_MODIFIED', 'Letzte &Auml;nderung');
 define('TEXT_IMAGE_NONEXISTENT', 'Bild existiert nicht');
 define('TEXT_PRODUCTS', 'Verlinkte Artikel');
 define('TEXT_DISPLAY_NUMBER_OF_MUSIC_GENRES', 'Zeige <strong>%d</strong> bis <strong>%d</strong> (von <strong>%d</strong> Musik Genres)');

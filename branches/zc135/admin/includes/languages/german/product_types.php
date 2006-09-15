@@ -41,14 +41,14 @@ define('TEXT_PRODUCT_TYPES', 'Artikeltypen:');
 define('TEXT_PRODUCT_TYPES_HANDLER', 'Zufuhrseite:');
 define('TEXT_PRODUCT_TYPES_ALLOW_ADD_CART', 'Dieser Artikel kann zum Warenkorb hinzugef&uuml;gt werden:');
 define('TEXT_DATE_ADDED', 'Erstelldatum:');
-define('TEXT_LAST_MODIFIED', 'Letzte Änderung:');
+define('TEXT_LAST_MODIFIED', 'Letzte &Auml;nderung:');
 define('TEXT_PRODUCTS', 'Artikel:');
 define('TEXT_PRODUCTS_IMAGE_DIR', 'zum Verzeichnis hochladen:');
 define('TEXT_IMAGE_NONEXISTENT', 'DAS BILD EXISTIERT NICHT');
 define('TEXT_MASTER_TYPE', 'Diese Produktart sollte als ein Unterprodukt gelten von ');
 
 define('TEXT_NEW_INTRO', 'Bitte geben Sie folgende Informationen f&uuml;r den neuen Hersteller an');
-define('TEXT_EDIT_INTRO', 'Bitte f&uuml;hren Sie hier die notwendigen Änderungen durch');
+define('TEXT_EDIT_INTRO', 'Bitte f&uuml;hren Sie hier die notwendigen &Auml;nderungen durch');
 
 define('TEXT_PRODUCT_TYPES_NAME', 'Artikeltyp Name:');
 define('TEXT_PRODUCT_TYPES_IMAGE', 'Artikeltyp Bild:');

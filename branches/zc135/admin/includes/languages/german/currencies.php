@@ -31,7 +31,7 @@ define('TABLE_HEADING_CURRENCY_CODES','Code');
 define('TABLE_HEADING_CURRENCY_VALUE','Einstellung');
 define('TABLE_HEADING_ACTION','Aktion');
 
-define('TEXT_INFO_EDIT_INTRO','F&uuml;hren Sie hier bitte die notwendigen Änderungen durch');
+define('TEXT_INFO_EDIT_INTRO','F&uuml;hren Sie hier bitte die notwendigen &Auml;nderungen durch');
 define('TEXT_INFO_CURRENCY_TITLE','Titel:');
 define('TEXT_INFO_CURRENCY_CODE','Code:');
 define('TEXT_INFO_CURRENCY_SYMBOL_LEFT','W&auml;hrungssymbol links:');

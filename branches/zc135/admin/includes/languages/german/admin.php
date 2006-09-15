@@ -40,7 +40,7 @@ define('TEXT_ADMINS','Administratoren:');
 define('TEXT_ADMINS_EMAIL','e-Mail:');
 
 define('TEXT_NEW_INTRO','Bitte geben Sie folgende Information f&uuml;r den neuen Administaror an');
-define('TEXT_EDIT_INTRO','Bitte f&uuml;hren Sie hier die notwendigen Änderungen durch');
+define('TEXT_EDIT_INTRO','Bitte f&uuml;hren Sie hier die notwendigen &Auml;nderungen durch');
 
 define('TEXT_ADMINS_NAME','Admin Name:');
 define('TEXT_ADMINS_PASSWORD','Passwort:');
@@ -54,7 +54,7 @@ define('ENTRY_PASSWORD_NEW_ERROR','Ihr neues Passwort muss mindestens ' . ENTRY_
 define('ENTRY_PASSWORD_NEW_ERROR_NOT_MATCHING','Die Passw&ouml;rter stimmen nicht &uuml;berein!');
 
 define('TEXT_ADMINS_LEVEL','Admin Level dieser Anmeldung:');
-define('TEXT_ADMIN_LEVEL_INSTRUCTIONS','Die Änderung des Admin Levels auf  Level "1" erlaubt das &uuml;berschreiben der Einstellungen, die durch dem "Demo" Admin get&auml;tigt wurden. Nur Admins mit Level 1 k&ouml;nnen die Admin Anmeldung sowie Passw&ouml;rter &auml;ndern.');
+define('TEXT_ADMIN_LEVEL_INSTRUCTIONS','Die &Auml;nderung des Admin Levels auf  Level "1" erlaubt das &uuml;berschreiben der Einstellungen, die durch dem "Demo" Admin get&auml;tigt wurden. Nur Admins mit Level 1 k&ouml;nnen die Admin Anmeldung sowie Passw&ouml;rter &auml;ndern.');
 define('TEXT_ADMIN_DEMO','Der Modus "Demo Admin" reduziert die Rechte eines Administrators in den wichtigsten Einstellungen auf "nur lesen". Somit k&ouml;nnen "Demo Admins" den vollen Funktionsumfang einsehen und kennen lernen, jedoch keine Systemrelevanten Einstellungen &auml;ndern.<br />Bitte stellen Sie sicher, dass Sie den Demo Admin auf Level "0" gesetzt haben, bevor Sie diesen aktivieren.');
 define('TEXT_DEMO_STATUS','Derzeitiges Level des Demo Admins:');
 define('TEXT_DEMO_OFF','Aus');

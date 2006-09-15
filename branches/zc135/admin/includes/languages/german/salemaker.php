@@ -47,7 +47,7 @@ define('TEXT_SALEMAKER_NEVER','Nie');
 define('TEXT_SALEMAKER_ENTIRE_CATALOG','Aktivieren Sie diese Box wenn sie den Abverkauf auf <b>alle Artikel</b> anwenden wollen:');
 define('TEXT_SALEMAKER_TOP','Kompletter Katalog');
 define('TEXT_INFO_DATE_ADDED','Erstelldatum:');
-define('TEXT_INFO_DATE_MODIFIED','Letzte Änderung:');
+define('TEXT_INFO_DATE_MODIFIED','Letzte &Auml;nderung:');
 define('TEXT_INFO_DATE_STATUS_CHANGE','Letzte Status&auml;nderung:');
 define('TEXT_INFO_SPECIALS_CONDITION','Sonderkonditionen:');
 define('TEXT_INFO_DEDUCTION','Reduzierung:');

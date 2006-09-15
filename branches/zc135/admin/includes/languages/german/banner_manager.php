@@ -103,6 +103,6 @@ define('IMAGE_ICON_BANNER_OPEN_NEW_WINDOWS_ON', 'Neues Fenster &ouml;ffnen - EIN
 define('IMAGE_ICON_BANNER_OPEN_NEW_WINDOWS_OFF', 'Neues Fenster &ouml;ffnen - AUS');
 define('IMAGE_ICON_BANNER_ON_SSL_ON', 'Auf sicheren Seiten darstellen - EIN');
 define('IMAGE_ICON_BANNER_ON_SSL_OFF', 'Auf sicheren Seiten darstellen - AUS');
-define('SUCCESS_BANNER_OPEN_NEW_WINDOW_UPDATED', 'Erfolg: Der Status des Banners zum Öffnen in einem neuen Fenster ist aktualisiert worden .'); // new 1.3.0  
+define('SUCCESS_BANNER_OPEN_NEW_WINDOW_UPDATED', 'Erfolg: Der Status des Banners zum &Ouml;ffnen in einem neuen Fenster ist aktualisiert worden .'); // new 1.3.0  
 define('SUCCESS_BANNER_ON_SSL_UPDATED', 'Erfolg: Der Status des Banners zum Darstellen auf SSL ist aktualisiert worden .'); // new 1.3.0  
 ?>

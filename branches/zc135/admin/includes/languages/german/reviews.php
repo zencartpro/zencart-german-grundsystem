@@ -43,7 +43,7 @@ define('ENTRY_RATING', 'Bewertung:');
 define('TEXT_INFO_DELETE_REVIEW_INTRO', 'Wollen Sie diesen Bericht wirklich l&ouml;schen?');
 
 define('TEXT_INFO_DATE_ADDED', 'Erstelldatum:');
-define('TEXT_INFO_LAST_MODIFIED', 'Letzte Änderung:');
+define('TEXT_INFO_LAST_MODIFIED', 'Letzte &Auml;nderung:');
 define('TEXT_INFO_IMAGE_NONEXISTENT', 'BILD EXISTIERT NICHT');
 define('TEXT_INFO_REVIEW_AUTHOR', 'Author:');
 define('TEXT_INFO_REVIEW_RATING', 'Bewertung:');

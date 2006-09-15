@@ -54,8 +54,8 @@ define('ATTRIBUTE_POSSIBLE_OPTIONS_NAME_WARNING_DUPLICATE','M&ouml;glicherweise 
 define('ATTRIBUTE_POSSIBLE_OPTIONS_VALUE_WARNING_DUPLICATE','M&ouml;glicherweise doppelter Attributmerkmal hinzugef&uuml;gt'); // Options Value Duplicate warning
 
 define('PRODUCTS_ATTRIBUTES_EDITING','BEARBEITE'); // title
-define('PRODUCTS_ATTRIBUTES_DELETE','LÖSCHE'); // title
-define('PRODUCTS_ATTRIBUTES_ADDING','FÜGE NEUE ATTRIBUTE HINZU'); // title
+define('PRODUCTS_ATTRIBUTES_DELETE','L&Ouml;SCHE'); // title
+define('PRODUCTS_ATTRIBUTES_ADDING','F&Uuml;GE NEUE ATTRIBUTE HINZU'); // title
 define('TEXT_DOWNLOADS_DISABLED','HINWEIS: Downloads sind deaktiviert');
 
 define('TABLE_TEXT_MAX_DAYS_SHORT', 'Tage:');
@@ -134,7 +134,7 @@ define('TEXT_SELECT_OPTION_TO', 'Kopiere alle Attributmerkmale zum Attributnamen
 define('SUCCESS_OPTION_VALUES_COPIED', 'Erfolgreich kopiert! ');
 define('ERROR_OPTION_VALUES_COPIED', 'Fehler - kann keine Attributmerkmale zum selben Attributnamen kopieren! ');
 define('ERROR_OPTION_VALUES_NONE', 'Fehler - Es wurden keine Attributmerkmale definiert - es wurde nichts kopiert! ');
-define('TEXT_WARNING_BACKUP', 'Warnung: F&uuml;hren Sie VOR jeder globalen Änderung immer eine Sicherung der Datenbank durch');
+define('TEXT_WARNING_BACKUP', 'Warnung: F&uuml;hren Sie VOR jeder globalen &Auml;nderung immer eine Sicherung der Datenbank durch');
 
 define('TEXT_OPTION_ATTRIBUTE_IMAGES_PER_ROW', 'Attributbilder pro Reihe: ');
 define('TEXT_OPTION_ATTRIBUTE_IMAGES_STYLE', 'Attributstil f&uuml;r Radio Buttons/Checkboxen: ');

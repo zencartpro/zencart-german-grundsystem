@@ -79,7 +79,7 @@ define('TEXT_INFO_HEADING_DELETE_ORDER', 'Bestellung l&ouml;schen');
 define('TEXT_INFO_DELETE_INTRO', 'Wollen Sie diese Bestellung wirklich l&ouml;schen?');
 define('TEXT_INFO_RESTOCK_PRODUCT_QUANTITY', 'Lagerbestand wieder auff&uuml;llen');
 define('TEXT_DATE_ORDER_CREATED', 'Erstelldatum:');
-define('TEXT_DATE_ORDER_LAST_MODIFIED', 'Letzte Änderung:');
+define('TEXT_DATE_ORDER_LAST_MODIFIED', 'Letzte &Auml;nderung:');
 define('TEXT_INFO_PAYMENT_METHOD', 'Zahlungsart:');
 define('TEXT_PAID', 'bezahlt');
 define('TEXT_UNPAID', 'unbezahlt');
@@ -99,7 +99,7 @@ define('EMAIL_TEXT_STATUS_PLEASE_REPLY', 'Wenn Sie noch Fragen haben, wenden Sie
 
 define('ERROR_ORDER_DOES_NOT_EXIST', 'Fehler: Die Bestellung existiert nicht.');
 define('SUCCESS_ORDER_UPDATED', 'Die Bestellung wurde aktualisiert.');
-define('WARNING_ORDER_NOT_UPDATED', 'Warnung: Keine Änderung festgestellt. Die Rechnung wurde nicht aktualisiert.');
+define('WARNING_ORDER_NOT_UPDATED', 'Warnung: Keine &Auml;nderung festgestellt. Die Rechnung wurde nicht aktualisiert.');
 
 define('ENTRY_ORDER_ID', 'Rechnungsnummer');
 define('TEXT_INFO_ATTRIBUTE_FREE', '&nbsp;-&nbsp;<span class="alert">FREI</span>');
@@ -124,7 +124,7 @@ define('TEXT_MORE', '... mehr');
 
 define('TEXT_INFO_IP_ADDRESS', 'IP Adresse: ');
 
-define('TEXT_DELETE_CVV_FROM_DATABASE', 'Lösche CVV aus der Datenbank'); 
-define('TEXT_DELETE_CVV_REPLACEMENT', 'gelöscht'); 
+define('TEXT_DELETE_CVV_FROM_DATABASE', 'L&ouml;sche CVV aus der Datenbank'); 
+define('TEXT_DELETE_CVV_REPLACEMENT', 'gel&ouml;scht'); 
 define('TEXT_MASK_CC_NUMBER','Diese Zahl verdecken');
 ?>

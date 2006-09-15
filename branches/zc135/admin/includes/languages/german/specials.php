@@ -42,7 +42,7 @@ define('TEXT_SPECIALS_AVAILABLE_DATE', 'verf&uuml;gbar ab:');
 define('TEXT_SPECIALS_PRICE_TIP','<b>Hinweis zu Sonderpreisen::</b><ul><li>Zur Preisreduzierung k&ouml;nnen Sie im Feld "Sonderpreis" eine Prozentzahl eingeben, z.B..: <b>20%</b></li><li>Wenn Sie einen Preis eingeben, muss das Dezimaltrennzeichen ein Punkt (kein Komma Zeichen) sein! (Beispiel: <b>49.99</b></li><li>Wenn Sie kein Ablaufdatum verwenden m&ouml;chten, lassen Sie das Feld einfach leer.</li></ul>');
 
 define('TEXT_INFO_DATE_ADDED','Erstelldatum:');
-define('TEXT_INFO_LAST_MODIFIED','Letzte Änderung:');
+define('TEXT_INFO_LAST_MODIFIED','Letzte &Auml;nderung:');
 define('TEXT_INFO_NEW_PRICE','Neuer Preis:');
 define('TEXT_INFO_ORIGINAL_PRICE','Originalpreis:');
 define('TEXT_INFO_DISPLAY_PRICE', 'Preis anzeigen:<br />');

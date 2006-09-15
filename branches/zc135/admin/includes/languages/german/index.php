@@ -57,7 +57,7 @@ define('BOX_ENTRY_NEWSLETTERS', 'Newsletter Abonnementen:');
 
 define('BOX_ENTRY_PRODUCTS', 'Artikel:');
 define('BOX_ENTRY_PRODUCTS_OFF', 'Deaktivierte Artikel:');
-define('BOX_ENTRY_REVIEWS', 'Überpr&uuml;fungen:');
+define('BOX_ENTRY_REVIEWS', '&Uuml;berpr&uuml;fungen:');
 define('BOX_ENTRY_REVIEWS_PENDING', 'Ausstehende &Uuml;berpr&uuml;fungen:');
 
 define('BOX_ENTRY_NEW_CUSTOMERS', 'Neue Kunden:');

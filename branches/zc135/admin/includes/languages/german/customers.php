@@ -36,13 +36,13 @@ define('TABLE_HEADING_PRICING_GROUP', 'Preisgruppe');
 define('TABLE_HEADING_AUTHORIZATION_APPROVAL', 'Autorisiert');
 
 define('TEXT_DATE_ACCOUNT_CREATED', 'Konto erstellt:');
-define('TEXT_DATE_ACCOUNT_LAST_MODIFIED', 'Letzte Änderung:');
+define('TEXT_DATE_ACCOUNT_LAST_MODIFIED', 'Letzte &Auml;nderung:');
 define('TEXT_INFO_DATE_LAST_LOGON', 'Letzte Anmeldung:');
 define('TEXT_INFO_NUMBER_OF_LOGONS', 'Anzahl der Anmeldungen:');
 define('TEXT_INFO_COUNTRY', 'Land:');
-define('TEXT_INFO_NUMBER_OF_REVIEWS', 'Anzahl der Überpr&uuml;fungen:');
+define('TEXT_INFO_NUMBER_OF_REVIEWS', 'Anzahl der &Uuml;berpr&uuml;fungen:');
 define('TEXT_DELETE_INTRO', 'Sind Sie sicher, dass Sie diesen Kunden l&ouml;schen wollen?');
-define('TEXT_DELETE_REVIEWS', 'L&ouml;sche %s Überpr&uuml;fung(en)');
+define('TEXT_DELETE_REVIEWS', 'L&ouml;sche %s &Uuml;berpr&uuml;fung(en)');
 define('TEXT_INFO_HEADING_DELETE_CUSTOMER', 'L&ouml;sche Kunde');
 define('TYPE_BELOW', 'Geben Sie unten ein');
 define('PLEASE_SELECT', 'W&auml;hlen Sie');
@@ -63,6 +63,6 @@ define('CUSTOMERS_AUTHORIZATION_3', 'Anstehende Autorisierung - darf im Shop bro
 define('ERROR_CUSTOMER_APPROVAL_CORRECTION1', 'Warnung: Ihr Shop ist auf "Autorisierung ohne browsen" eingestellt. Der Kunde wurde auf " anstehende Genehmigung - ohne browsen im Shop" gesetzt');
 define('ERROR_CUSTOMER_APPROVAL_CORRECTION2', 'Warnung: Ihr Shop ist auf "Autorisierung mit browsen ohne Preisanzeige" eingestellt. Der Kunde wurde auf " anstehende Genehmigung - browsen im Shop ohne Preisanzeige" gesetzt');
 
-define('EMAIL_CUSTOMER_STATUS_CHANGE_MESSAGE', 'Ihr Kundenstatus ist aktualisiert worden. Für Ihren Einkauf bei uns danken wir Ihnen. Wir hören gerne wieder von Ihnen.');
+define('EMAIL_CUSTOMER_STATUS_CHANGE_MESSAGE', 'Ihr Kundenstatus ist aktualisiert worden. F&uuml;r Ihren Einkauf bei uns danken wir Ihnen. Wir h&ouml;ren gerne wieder von Ihnen.');
 define('EMAIL_CUSTOMER_STATUS_CHANGE_SUBJECT', 'Kundenstatus ist aktualisiert');
 ?>

@@ -55,7 +55,7 @@ Zum Speichern den Button ' . BUTTON_UPDATE_CATEGORY_LINKS . ' dr&uuml;cken.<br /
 
 define('HEADER_CATEGORIES_GLOBAL_CHANGES', 'Globale Kategorie-Link &Auml;nderungen und Hauptkategorie-ID Reset');
 
-define('TEXT_SET_MASTER_CATEGORIES_ID', '<strong>ACHTUNG:</strong> Hauptkategorie-ID änderen bevor verlinkte Kategorien ver&auml;ndert werden!');
+define('TEXT_SET_MASTER_CATEGORIES_ID', '<strong>ACHTUNG:</strong> Hauptkategorie-ID &auml;nderen bevor verlinkte Kategorien ver&auml;ndert werden!');
 
 // copy category to category linked
 define('TEXT_INFO_COPY_ALL_PRODUCTS_TO_CATEGORY_LINKED', '<strong>Kopiere ALLE Artikel einer Kategorie als VERLINKTE Artikel in eine andere ...</strong><br />z.B. 8 und 22 bedeutet das ALLE Artikel in Kategorie 8 zu Kategorie 22 verlinkt werden');
@@ -63,7 +63,7 @@ define('TEXT_INFO_COPY_ALL_PRODUCTS_TO_CATEGORY_FROM_LINKED', 'Selektiere Alle A
 define('TEXT_INFO_COPY_ALL_PRODUCTS_TO_CATEGORY_TO_LINKED', 'Mit Kategorie verlinken: ');
 define('BUTTON_COPY_CATEGORY_LINKED', 'Kopiere & verlinke Artikel ');
 
-define('WARNING_PRODUCTS_LINK_TO_CATEGORY_REMOVED', 'WARNUNG: Artikel wurde zurückgesetzt und ist nicht mehr Teil dieser Kategorie  ...');
+define('WARNING_PRODUCTS_LINK_TO_CATEGORY_REMOVED', 'WARNUNG: Artikel wurde zur&uuml;ckgesetzt und ist nicht mehr Teil dieser Kategorie  ...');
 define('WARNING_COPY_LINKED', 'WARNUNG: ');
 define('WARNING_COPY_ALL_PRODUCTS_TO_CATEGORY_FROM_LINKED', 'Falsche Kategorie um Artikel aus Kategorie zu verlinken: ');
 define('WARNING_COPY_ALL_PRODUCTS_TO_CATEGORY_TO_LINKED', 'Falsche Kategorie um Artikel in Kategorie zu verlinken: ');
