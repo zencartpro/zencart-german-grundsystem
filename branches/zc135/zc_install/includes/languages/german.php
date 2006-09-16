@@ -36,7 +36,7 @@ define('CHARSET', 'iso-8859-1');
 // META TAG TITLE
 define('META_TAG_TITLE', 'Zen Cart Installationsprogramm');
 
-define('INSTALLATION_IN_PROGRESS','Installation l&auml;ft...');
+define('INSTALLATION_IN_PROGRESS','Installation l&auml;uft...');
 if (isset($_GET['main_page']) && ($_GET['main_page']== 'index' || $_GET['main_page']== 'license')) {
     define('TEXT_ERROR_WARNING', 'Hi: Es m&uuml;ssen nur einige Kleinigkeiten adressiert werden, bevor wir fortfahren k&ouml;nnen.');
 } else {
