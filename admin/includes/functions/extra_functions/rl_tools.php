@@ -35,7 +35,6 @@
 
  $Id$
  */
-#require_once(('includes/application_top.php'));
 
 // shows arrays structered
 function rldp($call, $cname = 'NIX', $show = true)
@@ -89,6 +88,9 @@ function checkColumn($table, $colname, $type, $index=false) {
     }
     return $ret;
 }
+/**
+* @desc exists the table in the database?
+*/
 function existTable($table) {
     global $db;
     $sqlT = "SHOW  TABLE  STATUS  LIKE  '" . $table . "'";
@@ -96,6 +98,9 @@ function existTable($table) {
     $anzT = $resT->RecordCount();
     return $anzT;
 }
+/**
+* @desc for logging
+*/
 function writeRL($somecontent, $filename = "temp/debug.txt", $att='a+'){
      // Sichergehen, dass die Datei existiert und beschreibbar ist
      $filename = DIR_FS_CATALOG . $filename;
