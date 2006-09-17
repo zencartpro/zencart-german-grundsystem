@@ -18,5 +18,5 @@ um Unbefugten nicht die M&ouml;glichkeit zu bieten, an Ihre Zugangsdaten zu gela
   Gehen Sie bitte zu <a href="' . zen_href_link(FILENAME_ACCOUNT, '', 'SSL') . '">Mein Konto</a> um Ihre Bestellung anzusehen.');
 define('TEXT_INFORMATION_LOGGED_IN', 'Sie sind bei Ihrem Konto angemeldet und können nun weiter einkaufen. Wählen Sie einen Menüpunk aus.'); // new 1.3.0  
 define('HEADING_RETURNING_CUSTOMER', 'Anmelden'); // new 1.3.0  
-define('TEXT_PASSWORD_FORGOTTEN', 'Password vergessen?')
+define('TEXT_PASSWORD_FORGOTTEN', 'Password vergessen?');
 ?>
