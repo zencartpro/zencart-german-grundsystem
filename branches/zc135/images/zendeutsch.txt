@@ -1,6 +1,0 @@
-Forum|http://www.zen-cart.at/MDForum.htm|E
-FAQ|http://www.zen-cart.at/FAQ.htm|E
-----
-cyaneo|http://www.brainnetwork.at|E
-hugo13|http://edv.langheiter.com/zencartfaq.0.html|E
-wflohr|http://zen-cart-faq.cyberflohrs.de/phpmyfaq/|E

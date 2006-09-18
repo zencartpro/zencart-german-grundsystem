@@ -28,7 +28,6 @@ define('TEXT_PAGE_HEADING', 'Zen Cart Installation - Systempr&uuml;fung');
 define('INSTALL_BUTTON', ' installieren '); // this comes before TEXT_MAIN
 define('UPGRADE_BUTTON', 'Update'); // this comes before TEXT_MAIN
 define('DB_UPGRADE_BUTTON', 'Datenbank aktualisieren'); // this comes before TEXT_MAIN
-define('REFRESH_BUTTON', 'neu pr&uuml;fen');
 //Button meanings: (to be made into help-text for future version):
 // "Install" = make new configure.php files, regardless of existing contents.  Load new database by dropping old tables.
 // "Upgrade" = read old configure.php files, and write new ones using new structure. Upgrade database, instead of wiping and new install
@@ -43,12 +42,18 @@ define('NOT_EXIST','NICHT GEFUNDEN');
 define('WRITABLE','beschreibbar');
 define('UNWRITABLE',"<span class='errors'>nicht beschreibbar</span>");
 define('UNKNOWN','unbekannt');
+define('ON','EIN');
+define('OFF','AUS');
+define('OK','OK');
 
 define('UPGRADE_DETECTION','Update Modus erh&auml;ltlich');
 define('LABEL_PREVIOUS_INSTALL_FOUND','Es wurde eine vorherigen Zen Cart installation gefunden:');
 define('LABEL_PREVIOUS_VERSION_NUMBER','Die installierte Version scheint eine Zen Cart v%s zu sein');
 define('LABEL_PREVIOUS_VERSION_NUMBER_UNKNOWN','<em>Die Version Ihrer Datenbank konnte nicht korrekt ermittelt werden. Die Ursache kann ein falsches Tabellen-Pr&auml;fix sein oder es wurden fehlerhafte Angaben zu Ihrer Datenbank gemacht. <br /><br />ACHTUNG: Verwenden Sie die Update Option nur, wenn alle Angaben in Ihrer \'configure.php\' korrekt sind.</em>');
 define('LABEL_UPGRADE_VS_INSTALL', 'Installieren oder Updaten?');
+
+define('IMAGE_STOP_BEFORE_UPGRADING', '<div class="center"><img src="includes/templates/template_default/images/stop.gif" border="0" alt="ACHTUNG: Bitte korrekte Option ausw&auml;hlen." /></div>');
+define('LABEL_ACTION_SELECTION_INSTRUCTIONS','<p class="errors extralarge"><span class="center">Achtung:</span><br />Falls Sie upgraden, w&auml;hlen Sie bitte "<span style="text-decoration: underline;">Datenbank aktualisieren</span>" um Ihre Daten zu konvertieren.</p><p class="extralarge">Wenn Sie "Installieren" w&auml;hlen, wird der Inhalt der Datenbank gel&ouml;scht.</p>');
 
 define('DISPLAY_PHP_INFO','PHP Info Link: ');
 define('VIEW_PHP_INFO_LINK_TEXT','PHPINFO f&uuml;r Ihren Server anzeigen');
@@ -89,6 +94,7 @@ define('LABEL_UPLOAD_TMP_DIR','PHP Upload TMP Verzeichnis');
 define('LABEL_SENDMAIL_FROM','PHP sendmail \'from\'');
 define('LABEL_SENDMAIL_PATH','PHP sendmail Pfad');
 define('LABEL_SMTP_MAIL','PHP SMTP Lokalisierung');
+define('LABEL_INCLUDE_PATH','PHP include_path');
 
 define('LABEL_CRITICAL','Kritische Punkte');
 define('LABEL_RECOMMENDED','&Auml;hnliche Punkte');

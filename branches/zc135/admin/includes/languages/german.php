@@ -264,7 +264,6 @@ define('ENTRY_NEWSLETTER_NO', 'abbestellen');
 define('ENTRY_NEWSLETTER_ERROR', '');
 
 // images
-define('IMAGE_ANI_SEND_EMAIL', 'Sende e-Mail');
 define('IMAGE_BACK', 'Zur&uuml;ck');
 define('IMAGE_BACKUP', 'Sichern');
 define('IMAGE_CANCEL', 'Abbrechen');
@@ -346,7 +345,6 @@ define('ICON_ERROR', 'Fehler');
 define('ICON_FILE', 'Datei');
 define('ICON_FILE_DOWNLOAD', 'Download');
 define('ICON_FOLDER', 'Ordner');
-define('ICON_LOCKED', 'Gesperrt');
 define('ICON_MOVE', 'mehr');
 define('ICON_PREVIOUS_LEVEL', 'Vorherige Ebene');
 define('ICON_PREVIEW', 'Vorschau');
@@ -354,7 +352,6 @@ define('ICON_RESET', 'Zur&uuml;cksetzen');
 define('ICON_STATISTICS', 'Statistiken');
 define('ICON_SUCCESS', 'erfolgreich');
 define('ICON_TICK', 'richtig');
-define('ICON_UNLOCKED', 'Entsperren');
 define('ICON_WARNING', 'Warnung');
 
 // constants for use in zen_prev_next_display function
