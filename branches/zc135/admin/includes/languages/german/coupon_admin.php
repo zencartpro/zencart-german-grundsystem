@@ -70,7 +70,7 @@ define('ERROR_NO_CUSTOMER_SELECTED','Fehler: Kein Kunde ausgew&auml;hlt.');
 define('ERROR_NO_SUBJECT', 'Fehler: Kein Betreff angegeben.');
 
 define('COUPON_NAME','Name des Gutscheins');
-define('COUPON_VALUE', 'Gutscheinwert');
+//define('COUPON_VALUE', 'Gutscheinwert');
 define('COUPON_AMOUNT','Gutscheinbetrag');
 define('COUPON_CODE','Gutscheincode');
 define('COUPON_STARTDATE','G&uuml;ltig ab');

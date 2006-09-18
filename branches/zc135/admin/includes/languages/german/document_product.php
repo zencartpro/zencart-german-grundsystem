@@ -23,6 +23,7 @@
 // +----------------------------------------------------------------------+
 //  $Id: document_product.php 4 2006-03-31 16:38:40Z hugo13 $
 //
+
 define('HEADING_TITLE', 'Kategorien & Artikel');
 define('HEADING_TITLE_GOTO', 'Gehe zu:');
 
@@ -84,13 +85,13 @@ define('TEXT_CATEGORIES_NAME', 'Kategoriename:');
 define('TEXT_CATEGORIES_IMAGE', 'Kategoriebild:');
 define('TEXT_SORT_ORDER', 'Sortierreihenfolge:');
 
-define('TEXT_DOCUMENT_STATUS', 'Dokumenten-Status:');
+define('TEXT_PRODUCTS_STATUS', 'Dokumenten-Status:');
 define('TEXT_PRODUCTS_VIRTUAL', 'Artikel ist ein virtueller Artikel:');
 define('TEXT_PRODUCTS_IS_ALWAYS_FREE_SHIPPING', 'immer versandkostenfrei:');
 define('TEXT_PRODUCTS_QTY_BOX_STATUS', 'Box f&uuml;r Artikelst&uuml;ckzahl anzeigen:');
-define('TEXT_DOCUMENT_DATE_AVAILABLE', 'Datum der Verf&uuml;gbarkeit:');
-define('TEXT_DOCUMENT_AVAILABLE', 'Verf&uuml;gbar');
-define('TEXT_DOCUMENT_NOT_AVAILABLE', 'nicht verf&uuml;gbar');
+define('TEXT_PRODUCTS_DATE_AVAILABLE', 'Datum der Verf&uuml;gbarkeit:');
+define('TEXT_PRODUCT_AVAILABLE', 'Verf&uuml;gbar');
+define('TEXT_PRODUCT_NOT_AVAILABLE', 'nicht verf&uuml;gbar');
 define('TEXT_PRODUCT_IS_VIRTUAL', 'Ja, Versandadresse &uuml;berspringen');
 define('TEXT_PRODUCT_NOT_VIRTUAL', 'Nein, Versandadresse wird ben&ouml;tigt');
 define('TEXT_PRODUCT_IS_ALWAYS_FREE_SHIPPING', 'Ja, immer versandkostenfrei');
@@ -131,16 +132,13 @@ define('TEXT_COPY_ATTRIBUTES', 'Sollen die Artikelattribute zum Duplikat kopiert
 define('TEXT_COPY_ATTRIBUTES_YES', 'Ja');
 define('TEXT_COPY_ATTRIBUTES_NO', 'Nein');
 
-
-
-
 define('TEXT_INFO_CURRENT_PRODUCT', 'Aktueller Artikel: ');
 define('TABLE_HEADING_MODEL', 'Artikelnummer');
-
 
 define('TEXT_INFO_HEADING_ATTRIBUTE_FEATURES', 'Attribute wurden ge&auml;ndert f&uuml;r Artikel ID# ');
 define('TEXT_INFO_ATTRIBUTES_FEATURES_DELETE', 'L&ouml;sche <strong>ALLE</strong> Artikelattribute f&uuml;r:<br />');
 define('TEXT_INFO_ATTRIBUTES_FEATURES_COPY_TO', 'Kopiere Attribute zu einem anderen Artikel oder zur ganzen Kategorie von:<br />');
+
 
 define('TEXT_INFO_ATTRIBUTES_FEATURES_COPY_TO_PRODUCT', 'Kopiere Attribute zu einem anderen <strong>Artikel</strong> von:<br />');
 define('TEXT_INFO_ATTRIBUTES_FEATURES_COPY_TO_CATEGORY', 'Kopiere Attribute zu einer anderen <strong>Kategorie</strong> von:<br />');
@@ -153,19 +151,18 @@ define('TEXT_COPY_ATTRIBUTES_IGNORE', '<strong>Ignorieren</strong> und nur neue 
 
 define('SUCCESS_ATTRIBUTES_DELETED', 'Attribute erfolgreich gel&ouml;scht');
 define('SUCCESS_ATTRIBUTES_UPDATE', 'Attribute erfolgreich aktualisiert');
+
 define('ICON_ATTRIBUTES', 'Attributmerkmale');
+
 define('TEXT_CATEGORIES_IMAGE_DIR', 'Zu Verzeichnis hochladen:');
-
-
 
 
 define('TEXT_PRODUCTS_QTY_BOX_STATUS_PREVIEW', 'Warnung: Ohne Anzeige der Lager-St&uuml;ckzahl ist der Standardwert 1');
 define('TEXT_PRODUCTS_QTY_BOX_STATUS_EDIT', 'Warnung: Ohne Anzeige der Lager-St&uuml;ckzahl ist der Standardwert 1');
 
-define('TEXT_PRODUCT_OPTIONS', '<strong>Bitte w&auml;hlen:</strong>');
-define('TEXT_PRODUCT_WEIGHT_UNIT', 'kg');
-define('TEXT_PRODUCTS_ATTRIBUTES_INFO', 'Attributmerkmale f&uuml;r:');
 
+define('TEXT_PRODUCT_OPTIONS', '<strong>Bitte w&auml;hlen:</strong>');
+define('TEXT_PRODUCTS_ATTRIBUTES_INFO', 'Attributmerkmale f&uuml;r:');
 define('TEXT_PRODUCT_ATTRIBUTES_DOWNLOADS', 'Downloads: ');
 
 define('TEXT_PRODUCTS_PRICED_BY_ATTRIBUTES', 'Preis durch Attribute festgelegt:');
