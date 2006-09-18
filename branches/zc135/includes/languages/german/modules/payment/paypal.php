@@ -4,7 +4,7 @@
  * @copyright Copyright 2003-2006 Zen Cart Development Team
 * @copyright Portions Copyright 2003 osCommerce
 * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: paypal.php 4334 2006-09-01 08:02:14Z drbyte $
+ * @version $Id: paypal.php 4334 2006-09-01 08:02:14Z drbyte$
  */
 
 define('MODULE_PAYMENT_PAYPAL_TEXT_ADMIN_TITLE', 'Paypal IPN');
@@ -44,4 +44,6 @@ define('MODULE_PAYMENT_PAYPAL_ENTRY_CART_ITEMS', 'St&uuml;ckzahl Warenkorbinhalt
 define('MODULE_PAYMENT_PAYPAL_ENTRY_TXN_TYPE', 'Trans. Typ:');
 define('MODULE_PAYMENT_PAYPAL_ENTRY_TXN_ID', 'Trans. ID:');
 define('MODULE_PAYMENT_PAYPAL_ENTRY_PARENT_TXN_ID', 'Parent Trans. ID:');
+
+define('MODULE_PAYMENT_PAYPAL_PURCHASE_DECRIPTION_TITLE', STORE_NAME . ' Einkauf');
 ?>

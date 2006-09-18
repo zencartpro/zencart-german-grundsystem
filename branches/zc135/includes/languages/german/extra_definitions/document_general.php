@@ -24,5 +24,5 @@
 // $Id: document_general.php 2 2006-03-31 09:55:33Z rainer $
 //
 
-define('BOX_HEADING_DOCUMENT_CATEGORIES', 'Dokumente');
+DEFINE('BOX_HEADING_DOCUMENT_CATEGORIES', 'Dokumente');
 ?>

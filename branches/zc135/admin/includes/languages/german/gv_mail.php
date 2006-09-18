@@ -53,7 +53,6 @@ define('TEXT_OR_VISIT', 'Alternativ dazu k&ouml;nne Sie uns auf ');
 define('TEXT_ENTER_CODE', ' besuchen und tragen die Gutscheinnummer w&auml;hrend Ihres Bestellvorgangs ein.');
 define('TEXT_CLICK_TO_REDEEM', 'Zum Einl&ouml;sen bitte hier klicken');
 
-define('TEXT_REDEEM_COUPON_MESSAGE_HEADER', 'Sie haben k&uuml;rzlich einen ' . TEXT_GV_NAME . ' von unserer Seite gekauft. Der Betrag des ' . TEXT_GV_NAME . 's wurde Ihnen aus Sicherheisgr&uuml;nden nicht sofort gutgeschrieben. Der Shopbesitzer hat diesen Betrag nun freigegeben.');
 define ('TEXT_REDEEM_COUPON_MESSAGE_AMOUNT', "\n\n" . 'Der Wert des Gutscheins betr&auml;gt %s');
 define ('TEXT_REDEEM_COUPON_MESSAGE_BODY', "\n\n" . 'Sie k&ouml;nnen Ihren Gutschein in unserem Shop einl&ouml;sen oder an eine Person Ihrer Wahl weiterleiten.');
 define ('TEXT_REDEEM_COUPON_MESSAGE_FOOTER', "\n\n");
