@@ -12,29 +12,29 @@
                     'version'=>'ZC135en',           
                     'languageName'=>'english',  
                     'languages_id'=>'1', 
-                    'absPath2LangDir'=>'C:/Daten/Projects/zen-cart-dev-1.3.5/',
+                    'absPath2LangDir'=>'/home/html/zencart-german/branches/zc135/',
                     ),
                 'COMPARE'=>array(                   // dir to compare, the old language dir
                     'version'=>'ZC1302de',
                     'languageName'=>'german',  
                     'languages_id'=>'43', 
-                    'absPath2LangDir'=>'C:/Daten/Projects/zen-cart-dev-1.3.5/',
+                    'absPath2LangDir'=>'/home/html/zencart-german/branches/zc135/',
                     ),
                 'NEW'=>array(                       // place to write the new language files
                     'languageName'=>'german',  
                     'languages_id'=>'43', 
-                    'absPath2LangDir'=>'C:/Daten/Projects/zen-cart-dev-1.3.5-TRANS/',
+                    'absPath2LangDir'=>'/home/html/zencart-translate/',
                     ),
                 'all'=>array(   
                     'reReadFiles'=>true,           // reread all language files
                     'truncateTable'=>true,         // empty the database table
                     'debug'=>true,                  // print debug info onto the screen
-                    'testInclude'=>false,            // test, if the new generated language-file can be included without errors ==> you must turn on debug(transLog)
+                    'testInclude'=>true,            // test, if the new generated language-file can be included without errors ==> you must turn on debug(transLog)
                     ),
                 'debug'=>array(                     // debug flags for functions xy..
                     'compareFiles'=>false,
                     'root'=>false,
-                    'writeKeyFile'=>true,
+                    'writeKeyFile'=>false,
                     'writeLangFile'=>false,
                     'transLog'=>true,
                     'compareFiles2'=>false,

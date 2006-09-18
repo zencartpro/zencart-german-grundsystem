@@ -27,12 +27,11 @@ if(true == $translate->getConf('truncateTable')){
 if(true == $translate->getConf('reReadFiles')){
     echo 'fill database table . ';
     // ORI
-    $ld = $translate->getLanguageFiles($translate->getLangDirs($translate->getConf('absPath2LangDir', 'ORI'), $translate->getConf('languageName', 'ORI')));
+    $ld = $translate->getLanguageFiles($translate->getLangDirs($translate->getConf('absPath2LangDir', 'ORI'), $translate->getConf('languageName', 'ORI')), $translate->getConf('languageName', 'ORI'));
     $translate->setLanguageFiles($ld, $translate->getConf('languageName', 'ORI'));
     $translate->readKeyFile($ld, $translate->getConf('version', 'ORI'), $translate->getConf('languages_id', 'ORI'));
-
     // COMPARE
-    $ld = $translate->getLanguageFiles($translate->getLangDirs($translate->getConf('absPath2LangDir', 'COMPARE'), $translate->getConf('languageName', 'COMPARE')));
+    $ld = $translate->getLanguageFiles($translate->getLangDirs($translate->getConf('absPath2LangDir', 'COMPARE'), $translate->getConf('languageName', 'COMPARE')), $translate->getConf('languageName', 'ORI'));
     $translate->setLanguageFiles($ld, $translate->getConf('languageName', 'COMPARE'));
     $translate->readKeyFile($ld, $translate->getConf('version', 'COMPARE'), $translate->getConf('languages_id', 'COMPARE'));
 }
@@ -40,7 +39,7 @@ if(true == $translate->getConf('reReadFiles')){
 /** 
 * @desc loop through the db & write the language-files && display "running output""
 */
-$sql = 'SELECT DISTINCT keypath FROM ' . $translate->getConf('transTable', 'table') . ' limit 0,299999';
+$sql = 'SELECT DISTINCT keypath FROM ' . $translate->getConf('transTable', 'table') . " limit 0,299999";
 $res = $db->Execute($sql);
 echo '<hr>'.$res->recordCount().'  create new languages files<br />';
 while (!$res->EOF){
