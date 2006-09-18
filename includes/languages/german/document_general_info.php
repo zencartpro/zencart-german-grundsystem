@@ -16,7 +16,6 @@ define('TEXT_ALSO_PURCHASED_PRODUCTS', 'Kunden, die diesen Artikel kauften, habe
 define('TEXT_PRODUCT_OPTIONS', '<strong>Bitte w&auml;hlen Sie:</strong>');
 define('TEXT_PRODUCT_MANUFACTURER', 'hergestellt von: ');
 define('TEXT_PRODUCT_WEIGHT', 'Versandgewicht: ');
-define('TEXT_PRODUCT_WEIGHT_UNIT', ' kg');
 define('TEXT_PRODUCT_QUANTITY', ' Einheiten auf Lager');
 define('TEXT_PRODUCT_MODEL', 'Artikelnummer: ');
 

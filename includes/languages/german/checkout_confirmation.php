@@ -18,7 +18,6 @@ define('HEADING_SHIPPING_METHOD','Versandart:');
 define('HEADING_PAYMENT_METHOD','Zahlungsart:');
 define('HEADING_PRODUCTS','Warenkorbinhalt');
 define('HEADING_TAX','UST.');
-define('HEADING_TOTAL','Gesamt');
 define('HEADING_ORDER_COMMENTS','Anmerkungen oder Hinweise');
 
 // no comments entered

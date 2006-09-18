@@ -26,6 +26,7 @@
 define('HEADING_TITLE', 'SQL Query Executor');
  define('HEADING_WARNING', 'Stellen Sie sicher, dass Sie VOR DEM AUSF&Uuml;HREN DIESES SCRIPTS eine VOLLST&Auml;NDIGE SICHERUNG IHRER DATENBANK erstellt haben!');
  define('HEADING_WARNING2', 'Wenn Sie 3rd-Party Kontributionen installieren, bedenken Sie bitte, dass Sie dies auf eigenen Gefahr machen.<br />Zen Cart&trade; gibt keine Garantie f&uuml;r die Sicherheit oder Funktion von 3rd-Party Kontributionen. Testen Sie die Kontributionen, bevor Sie diese auf eimen Live-System einsetzen!');
+ define('HEADING_WARNING_INSTALLSCRIPTS', 'NOTE: Zen Cart database-upgrade scripts should NOT be run from this page.<br />Please upload the new <strong>zc_install</strong> folder and run the upgrade from there instead for better reliability.');
  define('TEXT_QUERY_RESULTS', 'Abfrageergebnisse:');
  define('TEXT_ENTER_QUERY_STRING', 'SQL-Befehl(e) ausf&uuml;hren:&nbsp;&nbsp;<br />(Abschliessen<br />mit ;)');
  define('TEXT_QUERY_FILENAME', '<br />oder Datei:');
