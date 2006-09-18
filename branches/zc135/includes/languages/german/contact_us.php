@@ -18,5 +18,5 @@ define('ENTRY_ENQUIRY','Ihre Nachricht:');
 
 define('SEND_TO_TEXT','e-Mail senden an:');
 define('ENTRY_EMAIL_NAME_CHECK_ERROR', 'Entschuldigung, ist Ihr Name richtig? Unser System erfordert ein Minimum von ' . ENTRY_FIRST_NAME_MIN_LENGTH . ' Buchstaben. Bitte versuchen Sie es nochmals.'); // new 1.3.0  
-define('ENTRY_EMAIL_CONTENT_CHECK_ERROR', 'Verga&szlig;en Sie Ihre Nachricht?  Wir möchten von Ihnen hören.  Sie können Ihre Anmerkungen im Textbereich unten schreiben. '); // new 1.3.0  
+define('ENTRY_EMAIL_CONTENT_CHECK_ERROR', 'Verga&szlig;en Sie Ihre Nachricht?  Wir m&ouml;chten von Ihnen h&ouml;ren.  Sie k&ouml;nnen Ihre Anmerkungen im Textbereich unten schreiben. '); // new 1.3.0  
 ?>

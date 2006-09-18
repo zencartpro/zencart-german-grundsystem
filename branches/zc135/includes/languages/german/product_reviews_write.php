@@ -18,7 +18,7 @@ define('TEXT_BAD', '<span class="coming"><strong>schlecht</strong></span>');
 define('TEXT_GOOD', '<span class="coming"><strong>gut</strong></span>');
 define('TEXT_PRODUCT_INFO', '<strong>Artikelinformationen</strong>');
 
-define('TEXT_APPROVAL_REQUIRED', '<span class="coming"><strong>HINWEIS:</strong></span>&nbsp;Bewertungen ben&ouml;tigen eine Überpr&uuml;fung, bevor diese ver&ouml;ffentlicht werden k&ouml;nnen');
+define('TEXT_APPROVAL_REQUIRED', '<span class="coming"><strong>HINWEIS:</strong></span>&nbsp;Bewertungen ben&ouml;tigen eine &Uuml;berpr&uuml;fung, bevor diese ver&ouml;ffentlicht werden k&ouml;nnen');
 
 define('EMAIL_REVIEW_PENDING_SUBJECT', 'Freischaltbare Produktbewertungen: %s');
 define('EMAIL_PRODUCT_REVIEW_CONTENT_INTRO', 'Eine Produktbewertung %s wurde abgeschickt und wartet auf Ihre Freischaltung.' . "\n\n");

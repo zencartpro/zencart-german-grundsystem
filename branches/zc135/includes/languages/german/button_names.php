@@ -67,7 +67,7 @@ define('BUTTON_ADD_PRODUCTS_TO_CART_ALT', 'ausgew&auml;hlte in Korb');
 define('BUTTON_BACK_ALT', 'zur&uuml;ck');
 define('BUTTON_BUY_NOW_ALT', 'jetzt kaufen');
 define('BUTTON_CANCEL_ALT', 'abbrechen');   // new 1.3.0  
-define('BUTTON_CHANGE_ADDRESS_ALT', 'Adresse ändern');
+define('BUTTON_CHANGE_ADDRESS_ALT', 'Adresse &auml;ndern');
 define('BUTTON_CHECKOUT_ALT', 'Zur Bestellung');
 define('BUTTON_CONFIRM_SEND_ALT', 'Gutschein senden'); // new 1.3.0  
 define('BUTTON_CONFIRM_ORDER_ALT', 'Bestellung best&auml;tigen');

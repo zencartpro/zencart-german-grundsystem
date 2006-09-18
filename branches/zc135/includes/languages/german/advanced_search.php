@@ -41,7 +41,7 @@ define('TABLE_HEADING_WEIGHT','Gewicht');
 define('TABLE_HEADING_BUY_NOW','Jetzt kaufen');
 
 define('TEXT_NO_PRODUCTS','Kein Artikel entsprechend Ihren Suchkriterien gefunden.');
-define('KEYWORD_FORMAT_STRING', 'Schlüsselwort'); // new 1.3.0
+define('KEYWORD_FORMAT_STRING', 'Schl&uuml;sselwort'); // new 1.3.0
 define('ERROR_AT_LEAST_ONE_INPUT','Es muss wenigstens eine Auswahl getroffen werden.');
 define('ERROR_INVALID_FROM_DATE','Fehler bei');
 define('ERROR_INVALID_TO_DATE','Fehler bei');

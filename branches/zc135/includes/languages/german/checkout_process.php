@@ -24,14 +24,14 @@
 // $Id: checkout_process.php 2 2006-03-31 09:55:33Z rainer $
 //
 
-define('EMAIL_TEXT_SUBJECT', 'Auftragsbestätigung');
-define('EMAIL_TEXT_HEADER', 'Auftragsbestätigung');
+define('EMAIL_TEXT_SUBJECT', 'Auftragsbest&auml;tigung');
+define('EMAIL_TEXT_HEADER', 'Auftragsbest&auml;tigung');
 define('EMAIL_TEXT_FROM', ' von '); //added to the EMAIL_TEXT_HEADER, above on text-only emails
-define('EMAIL_THANKS_FOR_SHOPPING', 'Vielen Dank für Ihren Einkauf!');
+define('EMAIL_THANKS_FOR_SHOPPING', 'Vielen Dank f&uuml;r Ihren Einkauf!');
 define('EMAIL_DETAILS_FOLLOW', 'Im Nachfolgenden sehen Sie die Details Ihrer Bestellung.');
 define('EMAIL_TEXT_ORDER_NUMBER', 'Bestellnummer:');
 define('EMAIL_TEXT_INVOICE_URL', 'Details:');
-define('EMAIL_TEXT_INVOICE_URL_CLICK', 'Für eine detaillierte Rechnung bitte hier klicken');
+define('EMAIL_TEXT_INVOICE_URL_CLICK', 'F&uuml;r eine detaillierte Rechnung bitte hier klicken');
 define('EMAIL_TEXT_DATE_ORDERED', 'Bestelldatum:');
 define('EMAIL_TEXT_PRODUCTS', 'Artikel');
 define('EMAIL_TEXT_SUBTOTAL', 'Zwischensumme:');

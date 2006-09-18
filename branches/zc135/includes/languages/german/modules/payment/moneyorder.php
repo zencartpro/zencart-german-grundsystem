@@ -24,7 +24,7 @@
 // $Id: moneyorder.php 2 2006-03-31 09:55:33Z rainer $
 //
 
-define('MODULE_PAYMENT_MONEYORDER_TEXT_TITLE', 'Vorkasse/Überweisung');
-define('MODULE_PAYMENT_MONEYORDER_TEXT_DESCRIPTION', 'Bitte Überweisen Sie den Betrag auf unser Konto:<br />' . MODULE_PAYMENT_MONEYORDER_PAYTO . '<br /><br />Oder senden Sie einen Scheck an:<br />' . nl2br(STORE_NAME_ADDRESS) . '<br /><br />' . 'Ihre Bestellung wird versendet, sobald wir den Betrag erhalten haben.');
-define('MODULE_PAYMENT_MONEYORDER_TEXT_EMAIL_FOOTER', "Bitte Überweisen Sie den Betrag auf unser Konto: ". MODULE_PAYMENT_MONEYORDER_PAYTO . "\n\nOder senden Sie einen Scheck an:\n" . STORE_NAME_ADDRESS . "\n\n" . 'Ihre Bestellung wird versendet, sobald wir den Betrag erhalten haben.');
+define('MODULE_PAYMENT_MONEYORDER_TEXT_TITLE', 'Vorkasse/&Uuml;berweisung');
+define('MODULE_PAYMENT_MONEYORDER_TEXT_DESCRIPTION', 'Bitte &Uuml;berweisen Sie den Betrag auf unser Konto:<br />' . MODULE_PAYMENT_MONEYORDER_PAYTO . '<br /><br />Oder senden Sie einen Scheck an:<br />' . nl2br(STORE_NAME_ADDRESS) . '<br /><br />' . 'Ihre Bestellung wird versendet, sobald wir den Betrag erhalten haben.');
+define('MODULE_PAYMENT_MONEYORDER_TEXT_EMAIL_FOOTER', "Bitte &Uuml;berweisen Sie den Betrag auf unser Konto: ". MODULE_PAYMENT_MONEYORDER_PAYTO . "\n\nOder senden Sie einen Scheck an:\n" . STORE_NAME_ADDRESS . "\n\n" . 'Ihre Bestellung wird versendet, sobald wir den Betrag erhalten haben.');
 ?>
