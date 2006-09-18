@@ -106,7 +106,7 @@ function writeRL($somecontent, $filename = "temp/debug.txt", $att='a+'){
      $filename = DIR_FS_CATALOG . $filename;
     if (is_writable($filename)){
          if (!$handle = fopen($filename, $att)){
-             print "Kann die Datei $filename nicht öffnen";
+             print "Kann die Datei $filename nicht &ouml;ffnen";
              exit;
              }
 

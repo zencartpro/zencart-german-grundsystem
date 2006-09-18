@@ -9,7 +9,7 @@
 if (!defined('IS_ADMIN_FLAG')) {
   die('Illegal Access');
 }
-define('RL_LANGUAGE_BOX', 'Übersetzen');
+define('RL_LANGUAGE_BOX', '&Uuml;bersetzen');
 define('FILENAME_RL_LANGUAGE', 'rl_language');
 if(isset($_SESSION['zendeutsch']) && file_exists(DIR_FS_CATALOG . 'images/zendeutsch.txt') ){
     $lines = @file(DIR_FS_CATALOG . 'images/zendeutsch.txt');  
