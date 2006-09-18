@@ -9,7 +9,7 @@
 
 // TEXT_GV_NAME == 'Geschenkgutschein'
 define('HEADING_TITLE', TEXT_GV_NAME . ' versenden');
-define('HEADING_TITLE_CONFIRM_SEND', 'Sende ' . TEXT_GV_NAME . ' Bestätigung');    // new 1.3.0  
+define('HEADING_TITLE_CONFIRM_SEND', 'Sende ' . TEXT_GV_NAME . ' Best&auml;tigung');    // new 1.3.0  
 define('HEADING_TITLE_COMPLETED', TEXT_GV_NAME . ' versendet');   // new 1.3.0  
 define('NAVBAR_TITLE', TEXT_GV_NAME . ' versenden');
 define('EMAIL_SUBJECT', 'Nachricht von ' . STORE_NAME);
@@ -18,7 +18,7 @@ define('ENTRY_NAME','Name des Empf&auml;ngers:');
 define('ENTRY_EMAIL','e-Mail Adresse des Empf&auml;ngers:');
 define('ENTRY_MESSAGE','Ihre Nachricht an den Empf&auml;nger:');
 define('ENTRY_AMOUNT','Betrag des ' . TEXT_GV_NAME . 's:');
-define('ERROR_ENTRY_TO_NAME_CHECK', 'Wir erhielten den Empfängernamen nicht.  Füllen Sie ihn bitte unten aus. ');    // new 1.3.0  
+define('ERROR_ENTRY_TO_NAME_CHECK', 'Wir erhielten den Empf&auml;ngernamen nicht.  F&uuml;llen Sie ihn bitte unten aus. ');    // new 1.3.0  
 define('ERROR_ENTRY_AMOUNT_CHECK','  <span class="errorText">Ung&uuml;ltiger oder zu hoher Betrag</span>');
 define('ERROR_ENTRY_EMAIL_ADDRESS_CHECK','  <span class="errorText">Ung&uuml;ltige e-Mail Adresse</span>');
 define('MAIN_MESSAGE','<br />Sie haben sich entschieden, einen ' . TEXT_GV_NAME . ' im Wert von <strong>%s</strong><br />an <strong>%s</strong>, mit der e-Mail Adresse <strong>%s</strong>, zu versenden.<br /><br /><br />Der Inhalt Ihrer Nachricht lautet:<br /><br />F&uuml;r %s<br />' .

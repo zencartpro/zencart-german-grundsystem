@@ -24,8 +24,8 @@
 // $Id: featured_products.php 2 2006-03-31 09:55:33Z rainer $
 //
 
-define('NAVBAR_TITLE', 'Ähnliche Artikel');
-define('HEADING_TITLE', 'Ähnliche Artikel');
+define('NAVBAR_TITLE', '&Auml;hnliche Artikel');
+define('HEADING_TITLE', '&Auml;hnliche Artikel');
 
 define('TEXT_DATE_ADDED', 'Erstelldatum:');
 define('TEXT_MANUFACTURER', 'Hersteller:');

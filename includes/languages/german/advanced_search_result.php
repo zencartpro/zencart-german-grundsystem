@@ -68,5 +68,5 @@ define('ERROR_TO_DATE_LESS_THAN_FROM_DATE', '"Eintrag bis" mus sp&auml;ter sein 
 define('ERROR_PRICE_FROM_MUST_BE_NUM', '"Preis von" muss eine Zahl sein.');
 define('ERROR_PRICE_TO_MUST_BE_NUM', '"Preis bis" muss eine Zahl sein.');
 define('ERROR_PRICE_TO_LESS_THAN_PRICE_FROM', '"Preis bis" muss gr&ouml;&szlig;er sein als "Preis von".');
-define('ERROR_INVALID_KEYWORDS', 'Unzulässige Schlüsselwörter');
+define('ERROR_INVALID_KEYWORDS', 'Unzul&auml;ssige Schl&uuml;sselw&ouml;rter');
 ?>

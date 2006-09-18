@@ -61,7 +61,7 @@ define('TEXT_GV_NAMES', 'Geschenkgutscheine');
 // used for redeem code, redemption code, or redemption id
 define('TEXT_GV_REDEEM', 'Gutscheinnummer');
 
-// wird für die Sidebox Gutschein  einlösen benötigt
+// wird f&uuml;r die Sidebox Gutschein  einl&ouml;sen ben&ouml;tigt
 define('BOX_HEADING_GV_REDEEM', TEXT_GV_NAME);
 define('BOX_GV_REDEEM_INFO', 'Gutscheinnummer: ');
 
@@ -90,8 +90,8 @@ define('BOX_HEADING_MANUFACTURERS', 'Hersteller');
 define('BOX_HEADING_WHATS_NEW', 'Neue Artikel');
 define('CATEGORIES_BOX_HEADING_WHATS_NEW', 'Neue Artikel...');
 
-define('BOX_HEADING_FEATURED_PRODUCTS', 'Ähnliche Artikel');
-define('CATEGORIES_BOX_HEADING_FEATURED_PRODUCTS', 'Ähnliche Artikel...');
+define('BOX_HEADING_FEATURED_PRODUCTS', '&Auml;hnliche Artikel');
+define('CATEGORIES_BOX_HEADING_FEATURED_PRODUCTS', '&Auml;hnliche Artikel...');
 define('TEXT_NO_FEATURED_PRODUCTS', 'Weitere &auml;hnliche Artikel erscheinen in K&uuml;rze. Bitte besuchen Sie unseren Shop regelm&auml;&szlig;ig wieder.');
 
 define('TEXT_NO_ALL_PRODUCTS', 'Weitere Artikel erscheinen in K&uuml;rze. Bitte besuchen Sie unseren Shop regelm&auml;&szlig;ig wieder.');
@@ -173,7 +173,7 @@ define('SET_AS_PRIMARY', 'Als Hauptanschrift verwenden');
 define('NEW_ADDRESS_TITLE', 'Rechnungsadresse');
 
 // javascript messages
-define('JS_ERROR', 'Es sind Fehler aufgetreten.\n\n Bitte ändern Sie folgendes:\n\n');
+define('JS_ERROR', 'Es sind Fehler aufgetreten.\n\n Bitte &auml;ndern Sie folgendes:\n\n');
 
 define('JS_REVIEW_TEXT', '* Ihre Texteingabe im Bericht muss mindestens ' . REVIEW_TEXT_MIN_LENGTH . ' Zeichen haben.');
 define('JS_REVIEW_RATING', '*Um einen Bericht zu schreiben, m&uuml;ssen Sie den Artikel bewerten.');
@@ -504,7 +504,7 @@ define('TEXT_SHOWCASE_ONLY', 'Kontakt');
 define('TEXT_LOGIN_FOR_PRICE_PRICE', 'Preis nicht erh&auml;ltlich');
 define('TEXT_LOGIN_FOR_PRICE_BUTTON_REPLACE', 'F&uuml;r Preis bitte anmelden');
 // set for show room only
-define('TEXT_LOGIN_FOR_PRICE_PRICE_SHOWROOM', ''); // leer für Preis, oder schreiben Sie Ihren eigenen Text hinein
+define('TEXT_LOGIN_FOR_PRICE_PRICE_SHOWROOM', ''); // leer f&uuml;r Preis, oder schreiben Sie Ihren eigenen Text hinein
 define('TEXT_LOGIN_FOR_PRICE_BUTTON_REPLACE_SHOWROOM', 'Nur Schauraum');
 
 // authorization pending
@@ -565,7 +565,7 @@ define('TEXT_FOOTER_DISCOUNT_QUANTITIES', '* Rabatte k&ouml;nnen abh&auml;ngig v
 define('TEXT_HEADER_DISCOUNTS_OFF', 'Keine Rabatte m&ouml;glich ...');
 
 // sort order titles for dropdowns
-define('PULL_DOWN_ALL_RESET','- ZURÜCKSTELLEN - ');
+define('PULL_DOWN_ALL_RESET','- ZUR&Uuml;CKSTELLEN - ');
 define('TEXT_INFO_SORT_BY_PRODUCTS_NAME', 'Artikelname');
 define('TEXT_INFO_SORT_BY_PRODUCTS_NAME_DESC', 'Artikelname - absteigend');
 define('TEXT_INFO_SORT_BY_PRODUCTS_PRICE', 'Preis - aufsteigend');

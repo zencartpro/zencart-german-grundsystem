@@ -10,7 +10,7 @@
 define('NAVBAR_TITLE','Mein Konto');
 define('HEADING_TITLE','Meine Kontoinformationen');
 
-define('OVERVIEW_TITLE','Übersicht');
+define('OVERVIEW_TITLE','&Uuml;bersicht');
 define('OVERVIEW_SHOW_ALL_ORDERS','(alle Bestellungen ansehen)');
 define('OVERVIEW_PREVIOUS_ORDERS','letzte Bestellung');
 define('TABLE_HEADING_DATE', 'Datum');

@@ -78,7 +78,7 @@ e-Mail beinhaltet auch noch den ' . TEXT_GV_NAME . ' mit dem ' . TEXT_GV_REDEEM 
   der Sie direkt auf die  ' . TEXT_GV_NAME . 'seite bringen wird. damit Sie dieser ' . TEXT_GV_NAME . ' g&uuml;ltig wird, m&uuml;ssen Sie - sofern Sie noch keines besitzen - ein Konto in unserem Shop erstellen.
   Nach erfolgreicher Anmeldung wird Ihnen das Guthaben dieses Gutscheins auf Ihr <br /><br /><center><strong>pers&ouml;nliches ' . TEXT_GV_NAME . 'konto</strong></center><br /> gutgeschrieben. Ab sofort k&ouml;nnen sie nun dieses Guthaben f&uuml;r Ihre Zwecke verwenden.<br /><br />
   2. W&auml;hrend des Bestellvorgangs k&ouml;nnen Sie auf der Seite, auf der Sie Ihre <strong>Zahlungsweise</strong> angeben, auch den ' . TEXT_GV_REDEEM . ' eingeben. Geben Sie Ihren pers&ouml;nlichen ' . TEXT_GV_REDEEM . ' ein und
-  klicken Sie abschlie&szlig;end auf "einl&ouml;sen". Nach einer kurzen Überpr&uuml;fung auf G&uuml;ltigkeit des einzul&ouml;senden ' . TEXT_GV_NAME . 's wird das Guthaben Ihrem pers&ouml;nlichen ' . TEXT_GV_NAME . 'konto gutgeschrieben.<br />Ab sofort k&ouml;nnen Sie nun des Betrag zu Ihrem Zweck verwenden.');
+  klicken Sie abschlie&szlig;end auf "einl&ouml;sen". Nach einer kurzen &Uuml;berpr&uuml;fung auf G&uuml;ltigkeit des einzul&ouml;senden ' . TEXT_GV_NAME . 's wird das Guthaben Ihrem pers&ouml;nlichen ' . TEXT_GV_NAME . 'konto gutgeschrieben.<br />Ab sofort k&ouml;nnen Sie nun des Betrag zu Ihrem Zweck verwenden.');
 
 
 

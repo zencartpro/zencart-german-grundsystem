@@ -13,7 +13,7 @@ define('NAVBAR_TITLE_2','Erfolgreich - Vielen Dank!');
 define('HEADING_TITLE','Vielen Dank! Wir haben Ihre Bestellung erhalten.');
 
 define('TEXT_SUCCESS','Ihre Bestellung wird sofort nach Zahlungseingang versendet, sofern Sie nicht per Nachnahme bestellt haben. Bei Nachnahmebestellungen verl&auml;sst die Sendung in der Regel nach 2-3 Werktagen unser Haus.');
-define('TEXT_NOTIFY_PRODUCTS','Bitte informieren Sie mich &uuml;ber Änderungen zu diesem Artikel:');
+define('TEXT_NOTIFY_PRODUCTS','Bitte informieren Sie mich &uuml;ber &Auml;nderungen zu diesem Artikel:');
 define('TEXT_SEE_ORDERS','Sie k&ouml;nnen Ihre Bestellhistorie unter <a href="' . zen_href_link(FILENAME_ACCOUNT, '', 'SSL') . '">\'Mein Konto\'</a> ansehen.');
 define('TEXT_CONTACT_STORE_OWNER','Sollten Sie Fragen haben, wenden Sie sich bitte an unseren  <a href="' . zen_href_link(FILENAME_CONTACT_US) . '">Service</a>.');
 define('TEXT_THANKS_FOR_SHOPPING','<strong>Vielen Dank f&uuml;r Ihre Onlinebestellung!</strong>');

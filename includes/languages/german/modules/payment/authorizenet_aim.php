@@ -13,7 +13,7 @@
 // Admin Configuration Items
 define('MODULE_PAYMENT_AUTHORIZENET_AIM_TEXT_ADMIN_TITLE', 'Authorize.net (AIM)'); // Payment option title as displayed in the admin
 define('MODULE_PAYMENT_AUTHORIZENET_AIM_TEXT_DESCRIPTION', '<b>Automatischer Kreditkartentest Info:</b><br /><br />Visa#: 4007000000027<br />MC#: 5424000000000015<br />Discover#: 6011000000000012<br />AMEX#: 370000000000002<br /><br /><b>Hinweis:</b> Diese Kreditkartennummern bekommen eine Best&auml;tigung f&uuml;r die Ablehnung in Echtzeit zur&uuml;ck und
-eine Überpr&uuml;fung erfolgt im Testmodus. Als Ablaufdatum kann jedes beliebige Datum und als Kreditkarten Sicherheitscode jeder beliebige 3-Stellige bzw. 4-Stellige (AMEX) Code eingegeben werden.<br /><br /><b>Automatisch abgelehnte Kreditkartennummer:</b><br /><br />Nummer: 4222222222222<br /><br />Diese Kreditkartennummer kann f&uuml;r Testzwecke zum Erhalt der Ablehungsbest&auml;tigung verwendet werden.<br /><br />');
+eine &Uuml;berpr&uuml;fung erfolgt im Testmodus. Als Ablaufdatum kann jedes beliebige Datum und als Kreditkarten Sicherheitscode jeder beliebige 3-Stellige bzw. 4-Stellige (AMEX) Code eingegeben werden.<br /><br /><b>Automatisch abgelehnte Kreditkartennummer:</b><br /><br />Nummer: 4222222222222<br /><br />Diese Kreditkartennummer kann f&uuml;r Testzwecke zum Erhalt der Ablehungsbest&auml;tigung verwendet werden.<br /><br />');
 
   // Catalog Items
 define('MODULE_PAYMENT_AUTHORIZENET_AIM_TEXT_CATALOG_TITLE', 'Kreditkarte');  // Payment option title as displayed to the customer
