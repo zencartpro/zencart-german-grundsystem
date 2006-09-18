@@ -26,6 +26,7 @@
 
 define('YES', 'JA');
 define('NO', 'NEIN');
+define('REFRESH_BUTTON', 'Nochmal pr&uuml;fen');
 
 // Global entries for the <html> tag
 define('HTML_PARAMS','dir="ltr" lang="de"');
@@ -44,6 +45,7 @@ if (isset($_GET['main_page']) && ($_GET['main_page']== 'index' || $_GET['main_pa
 }
 
 define('DB_ERROR_NOT_CONNECTED', 'Installationsfehler: Es konnte keine Verbindung zur Datenbank hergestellt werden');
+define('MUST_UPGRADE','Sie m&uuml;ssen zuerst upgraden bevor Sie Zen-Cart installieren');
 
 define('UPLOAD_SETTINGS','Die maximale Uploadgr&ouml;&szlig;e muss kleiner als einer der folgenden Werte sein:.<br />
 <em>upload_max_filesize</em> in php.ini %s <br />
@@ -61,6 +63,8 @@ define('STORE_ADDRESS_DEFAULT_VALUE', 'Shopname
 
 define('ERROR_TEXT_4_1_2', 'PHP Version ist 4.1.2');
 define('ERROR_CODE_4_1_2', '1');
+define('ERROR_TEXT_PHP_OLD_VERSION', 'PHP Version wird nicht unterst&uuml;tzt');
+define('ERROR_CODE_PHP_OLD_VERSION', '55');
 
 define('ERROR_TEXT_ADMIN_CONFIGURE', '/admin/includes/configure.php existiert nicht');
 define('ERROR_CODE_ADMIN_CONFIGURE', '2');

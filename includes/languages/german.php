@@ -152,7 +152,6 @@ define('BOX_INFORMATION_UNSUBSCRIBE', 'Newsletter abbestellen');
   define('BOX_INFORMATION_SITE_MAP', 'Site Map');
 // information box text in sideboxes/more_information.php - were TUTORIAL_
 define('BOX_HEADING_MORE_INFORMATION', 'Weitere Informationen');
-define('BOX_INFORMATION_PAGE_1', 'Seite 1');
 define('BOX_INFORMATION_PAGE_2', 'Seite 2');
 define('BOX_INFORMATION_PAGE_3', 'Seite 3');
 define('BOX_INFORMATION_PAGE_4', 'Seite 4');

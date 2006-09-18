@@ -50,6 +50,7 @@ define('CACHE_TYPE', 'SQL Cache Methode');
 define('CACHE_TYPE_INSTRUCTION', 'W&auml;hlen Sie eine Methoden zum Speichern von SQL Abfragen.');
 define('SQL_CACHE', 'Sitzungs/SQL Cache Verzeichnis');
 define('SQL_CACHE_INSTRUCTION', 'Geben Sie das Verzeichnis zum Datei-basierten Speichern von SQL Abfragen.');
+define('ONLY_UPDATE_CONFIG_FILES','Nur Konfigurationsdateien aktualisieren');
 
 
 
