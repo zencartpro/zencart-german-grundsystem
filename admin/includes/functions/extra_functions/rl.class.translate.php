@@ -83,8 +83,13 @@ class translate {
         $langDirs[] = $path . DIR_WS_LANGUAGES . $language . '/modules/shipping/';
         $langDirs[] = $path . DIR_WS_LANGUAGES . $language . '/modules/order_total/';
         $langDirs[] = $path . DIR_WS_LANGUAGES . $language . '/modules/product_types/';
+        $langDirs[] = $path . 'zc_install/' . DIR_WS_LANGUAGES . $language . '/';
         $langDirs[] = $path . 'admin/' . DIR_WS_LANGUAGES . $language . '/';
         $langDirs[] = $path . 'admin/' . DIR_WS_LANGUAGES . $language . '/modules/newsletters/';
+        $langDirs[] = $path . 'admin/' . DIR_WS_LANGUAGES . '' . $language . '.php'; 
+        $langDirs[] = $path . '' . DIR_WS_LANGUAGES . '' . $language . '.php'; 
+        $langDirs[] = $path . 'zc_install/' . DIR_WS_LANGUAGES . '' . $language . '.php'; 
+
         return $langDirs;
     } 
     
@@ -92,14 +97,20 @@ class translate {
     * @desc build a list from all language-files
     * @param $ld dir-list
     */
-    function getLanguageFiles($ld=array()){
+    function getLanguageFiles($ld=array(), $language){
         $tmp2 = array();
+        $l = array();
         foreach ($ld as $key => $value) {
             if(file_exists($value)){
-                $tmp = $this->directoryToArray($value, false, '.php');
-                $tmp2 = array_merge_recursive($tmp2, $tmp);
+                if(substr($value, -4)=='.php'){
+                    $l[] = $value;
+                } else {
+                    $tmp = $this->directoryToArray($value, false, '.php');
+                }
+                $tmp2 = array_merge_recursive($tmp2, $tmp, $l);
             }
         }
+        
         $tmp = array();
         foreach ($tmp2 as $key => $value) {
             $tmp[$value] = 1;
@@ -203,6 +214,15 @@ class translate {
          $replacements[0] = '/LANGUAGE/';
          $keypath = preg_replace($patterns, $replacements, $filePath);
          
+         /**
+         * @desc special case root entries in language-dir 
+         */
+         $patterns[0] = '/\/' . $this->getConf('languageName', 'COMPARE') . '.php/';
+         $patterns[1] = '/\/' . $this->getConf('languageName', 'ORI')     . '.php/';
+         $replacements[1] = '/LANGUAGE.php';
+         $replacements[0] = '/LANGUAGE.php';
+         $keypath = preg_replace($patterns, $replacements, $keypath);
+         
          $patterns[0] = $this->getConf('absPath2LangDir', 'ORI');
          $patterns[1] = $this->getConf('absPath2LangDir', 'COMPARE');     
          $keypath = str_replace($patterns, '', $keypath);
@@ -256,6 +276,9 @@ class translate {
          $i = 0;
          while (!$res -> EOF){
              #if($res -> fields['languages_id'] == $this -> config[$v2]['languages_id'] && $res -> fields['keyword'] != '@@@COMM@@@'){
+             if($res->filds['keypath']=='admin/includes/languages/german.php'){
+                #$res->filds['keypath']=='admin/includes/languages/english.php';
+             }
              if($res -> fields['languages_id'] == $v2['languages_id'] && $res -> fields['keyword'] != '@@@COMM@@@'){
                  $germanKeys[$res -> fields['keyword']] = $res -> fields;
                  }
@@ -300,6 +323,7 @@ class translate {
              }
          $fn = $this -> getConf('absPath2LangDir', 'NEW') . $filename;
          $filename = str_replace('/LANGUAGE/', '/'.$this->getConf('languageName', 'COMPARE').'/', $fn);
+         $filename = str_replace('/LANGUAGE.php', '/'.$this->getConf('languageName', 'COMPARE').'.php', $filename);
          $fn = str_replace($this->getConf('absPath2LangDir', 'COMPARE'), '', $filename);
 
          $this -> writeLangFile($gggg, $fn);
