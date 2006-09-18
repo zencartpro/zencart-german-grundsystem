@@ -43,7 +43,7 @@ define('TEXT_PRODUCTS_TAX_CLASS', 'Steuersatz:');
 define('TEXT_PRODUCTS_AVERAGE_RATING', 'Durchschnittliche Bewertung:');
 define('TEXT_PRODUCTS_QUANTITY_INFO', 'Anzahl:');
 define('TEXT_DATE_ADDED', 'Erstelldatum:');
-define('TEXT_DATE_AVAILABLE', 'Erhältlich ab:');
+define('TEXT_DATE_AVAILABLE', 'Erh&auml;ltlich ab:');
 define('TEXT_LAST_MODIFIED', 'Letzte &Auml;nderung:');
 define('TEXT_IMAGE_NONEXISTENT', 'Bild existiert nicht');
 define('TEXT_NO_CHILD_CATEGORIES_OR_PRODUCTS', 'Bitte f&uuml;gen Sie eine neue Kategorie oder einen neuen Artikel in dieser Ebene ein.');
