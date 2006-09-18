@@ -27,9 +27,9 @@ if(true == $translate->getConf('truncateTable')){
 if(true == $translate->getConf('reReadFiles')){
     echo 'fill database table . ';
     // ORI
-    $ld = $translate->getLanguageFiles($translate->getLangDirs());
-    $translate->setLanguageFiles($ld, 'english');
-    $translate->readKeyFile($ld, $translate->getConf('version', 'ORI'),$translate->getConf('languages_id', 'ORI'));
+    $ld = $translate->getLanguageFiles($translate->getLangDirs($translate->getConf('absPath2LangDir', 'ORI'), $translate->getConf('languageName', 'ORI')));
+    $translate->setLanguageFiles($ld, $translate->getConf('languageName', 'ORI'));
+    $translate->readKeyFile($ld, $translate->getConf('version', 'ORI'), $translate->getConf('languages_id', 'ORI'));
 
     // COMPARE
     $ld = $translate->getLanguageFiles($translate->getLangDirs($translate->getConf('absPath2LangDir', 'COMPARE'), $translate->getConf('languageName', 'COMPARE')));
