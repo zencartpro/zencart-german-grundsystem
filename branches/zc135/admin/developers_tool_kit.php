@@ -18,7 +18,6 @@
 // | license@zen-cart.com so we can mail you a copy immediately.          |
 // +----------------------------------------------------------------------+
 //  $Id: developers_tool_kit.php 3405 2006-04-10 16:43:55Z drbyte $
-//
 
   require('includes/application_top.php');
 
@@ -195,8 +194,6 @@
               $check_directory[] = DIR_FS_CATALOG_LANGUAGES . $_SESSION['language']. '/modules/product_types/';
               $check_directory[] = DIR_FS_ADMIN . DIR_WS_LANGUAGES . $_SESSION['language'] . '/';
               $check_directory[] = DIR_FS_ADMIN . DIR_WS_LANGUAGES . $_SESSION['language'] . '/modules/newsletters/';
-              print_r($check_directory);
-              rldp($check_directory);
               break;
             case (2): // all catalog /language/*.php
               $check_directory = array();
