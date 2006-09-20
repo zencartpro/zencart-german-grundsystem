@@ -520,6 +520,7 @@ define('TEXT_PER_LETTER', '<br />Preis pro Buchstabe: ');
 define('TEXT_LETTERS_FREE', ' Buchstabe(n) frei ');
 define('TEXT_ONETIME_CHARGES', '*einmalige Geb&uuml;hr = ');
 define('TEXT_ONETIME_CHARGES_EMAIL', "\t" . '*einmalige Geb&uuml;hr = ');
+define('TEXT_ONETIME_CHARGES_BASKET' , "-&nbsp;einmalige Geb&uuml;hren");
 define('TEXT_ATTRIBUTES_QTY_PRICES_HELP', 'Option f&uuml;r Mengenrabatte');
 define('TABLE_ATTRIBUTES_QTY_PRICE_QTY', 'STK');
 define('TABLE_ATTRIBUTES_QTY_PRICE_PRICE', 'PREIS');

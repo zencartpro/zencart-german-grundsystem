@@ -25,7 +25,7 @@ if (isset($_GET['action'])) {
   } else {
     $goto = $_GET['main_page'];
     if ($_GET['action'] == 'buy_now') {
-      $parameters = array('action');
+			$parameters = array('action', 'products_id');
     } else {
       $parameters = array('action', 'pid', 'main_page');
     }
