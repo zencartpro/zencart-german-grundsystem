@@ -134,7 +134,7 @@
       if (EMAIL_TRANSPORT=='smtp' || EMAIL_TRANSPORT=='smtpauth') {
         $mail->IsSMTP();                           // set mailer to use SMTP
         $mail->Host = EMAIL_SMTPAUTH_MAIL_SERVER;
-        if (EMAIL_SMTPAUTH_MAIL_PORT != '25' & EMAIL_SMTPAUTH_MAIL_PORT != '') $mail->Port = EMAIL_SMTPAUTH_MAIL_PORT;
+        if (EMAIL_SMTPAUTH_MAIL_SERVER_PORT != '25' && EMAIL_SMTPAUTH_MAIL_SERVER_PORT != '') $mail->Port = EMAIL_SMTPAUTH_MAIL_SERVER_PORT;
         if (EMAIL_TRANSPORT=='smtpauth') {
           $mail->SMTPAuth = true;     // turn on SMTP authentication
           $mail->Username = (zen_not_null(EMAIL_SMTPAUTH_MAILBOX)) ? EMAIL_SMTPAUTH_MAILBOX : EMAIL_FROM;  // SMTP username

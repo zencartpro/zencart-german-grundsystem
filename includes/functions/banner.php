@@ -226,7 +226,7 @@
       }
     }
     if ($new_banner_search != '') {
-      $new_banner_search = ' and ' . $new_banner_search;
+      $new_banner_search = ' and (' . $new_banner_search . ')';
     }
     return $new_banner_search;
   }

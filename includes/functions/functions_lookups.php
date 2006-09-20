@@ -845,21 +845,30 @@
     return $valid_downloads;
   }
 
-// build date range for new products
-  function zen_get_new_date_range($time_limit = false) {
-    if ($time_limit == false) {
-      $time_limit = SHOW_NEW_PRODUCTS_LIMIT;
-    }
+// build date range for new products 
+  function zen_get_new_date_range($time_limit = false) { 
+    if ($time_limit == false) { 
+      $time_limit = SHOW_NEW_PRODUCTS_LIMIT; 
+    } 
 
-    // 120 days; 24 hours; 60 mins; 60secs
-    $date_range = time() - ($time_limit * 24 * 60 * 60);
-// echo 'Now:      '. date('Y-m-d') ."<br />";
-// echo $time_limit . ' Days: '. date('Ymd', $date_range) ."<br />";
-    $zc_new_date = date('Ymd', $date_range);
-    $new_range = ' and p.products_date_added >=' . $zc_new_date;
-    return "";
-    return $new_range;
-  }
+    // 120 days; 24 hours; 60 mins; 60secs 
+    $date_range = time() - ($time_limit * 24 * 60 * 60); 
+// echo 'Now:      '. date('Y-m-d') ."<br />"; 
+// echo $time_limit . ' Days: '. date('Ymd', $date_range) ."<br />"; 
+    $zc_new_date = date('Ymd', $date_range); 
+    switch (true) { 
+    case (SHOW_NEW_PRODUCTS_LIMIT == 0): 
+      $new_range = ''; 
+      break; 
+    case (SHOW_NEW_PRODUCTS_LIMIT == 1): 
+      $zc_new_date = date('Ym', time()) . '01'; 
+      $new_range = ' and p.products_date_added >=' . $zc_new_date; 
+      break; 
+    default: 
+      $new_range = ' and p.products_date_added >=' . $zc_new_date; 
+    } 
+    return $new_range; 
+  }  
 
 
 // build date range for upcoming products

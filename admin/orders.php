@@ -49,7 +49,7 @@
       // reset single download to off
         if ($_GET['download_reset_off'] > 0) {
           // adjust download_maxdays based on current date
-          $update_downloads_query = "update " . TABLE_ORDERS_PRODUCTS_DOWNLOAD . " set download_maxdays='0', download_count='0' where orders_id='" . $_GET['oID'] . "' and orders_products_download_id='" . $_GET['download_reset_off'] . "'";
+          $update_downloads_query = "update " . TABLE_ORDERS_PRODUCTS_DOWNLOAD . " set download_count='0' where orders_id='" . $_GET['oID'] . "' and orders_products_download_id='" . $_GET['download_reset_off'] . "'";  
           unset($_GET['download_reset_off']);
           $db->Execute($update_downloads_query);
 
