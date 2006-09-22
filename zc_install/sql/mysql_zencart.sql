@@ -3123,7 +3123,7 @@ INSERT INTO zones VALUES (90,81,'SAR','Saarland');
 INSERT INTO zones VALUES (91,81,'SAS','Sachsen');
 INSERT INTO zones VALUES (92,81,'SAC','Sachsen-Anhalt');
 INSERT INTO zones VALUES (93,81,'SCN','Schleswig-Holstein');
-INSERT INTO zones VALUES (94,81,'THE','Thringen');
+INSERT INTO zones VALUES (94,81,'THE','Thüringen');
 
 # Austria
 INSERT INTO zones VALUES (95,14,'WI','Wien');
