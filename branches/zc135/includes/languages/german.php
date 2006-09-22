@@ -115,7 +115,7 @@ define('BOX_REVIEWS_TEXT_OF_5_STARS', '%s von 5 Sternen!');
 // shopping_cart box text in sideboxes/shopping_cart.php
 define('BOX_HEADING_SHOPPING_CART', 'Warenkorb');
 define('BOX_SHOPPING_CART_EMPTY', 'Ihr Warenkorb ist leer');
-  define('BOX_SHOPPING_CART_DIVIDER', '&nbsp;Stk.&nbsp;');
+  define('BOX_SHOPPING_CART_DIVIDER', '&nbsp;x&nbsp;');
 
 // order_history box text in sideboxes/order_history.php
 define('BOX_HEADING_CUSTOMER_ORDERS', 'Bestellte Artikel');
@@ -175,7 +175,7 @@ define('NEW_ADDRESS_TITLE', 'Rechnungsadresse');
 define('JS_ERROR', 'Es sind Fehler aufgetreten.\n\n Bitte &auml;ndern Sie folgendes:\n\n');
 
 define('JS_REVIEW_TEXT', '* Ihre Texteingabe im Bericht muss mindestens ' . REVIEW_TEXT_MIN_LENGTH . ' Zeichen haben.');
-define('JS_REVIEW_RATING', '*Um einen Bericht zu schreiben, m&uuml;ssen Sie den Artikel bewerten.');
+define('JS_REVIEW_RATING', '* Um einen Bericht schreiben zu k&ouml;nnen, m&uuml;ssen Sie den Artikel erst bewerten.');
 
 define('JS_ERROR_NO_PAYMENT_MODULE_SELECTED', '* Bitte w&auml;hlen Sie eine Zahlungsart aus.');
 
@@ -209,19 +209,19 @@ define('ENTRY_LAST_NAME', 'Nachname:');
 define('ENTRY_LAST_NAME_ERROR', 'Ihr Nachname muss mindestens ' . ENTRY_LAST_NAME_MIN_LENGTH . ' Zeichen haben.');
 define('ENTRY_LAST_NAME_TEXT', '*');
 define('ENTRY_DATE_OF_BIRTH', 'Geburtsdatum:');
-define('ENTRY_DATE_OF_BIRTH_ERROR', 'Ihr Geburtsdatum muss folgende Form haben: TT/MM/JJJJ (z.B. 21.02.1970)');
-define('ENTRY_DATE_OF_BIRTH_TEXT', '* (z.B. 21.02.1970)');
-define('ENTRY_EMAIL_ADDRESS', 'e-Mail Adresse:');
-define('ENTRY_EMAIL_ADDRESS_ERROR', 'Ihre e-Mail Adresse muss mindestens' . ENTRY_EMAIL_ADDRESS_MIN_LENGTH . ' Zeichen haben.');
-define('ENTRY_EMAIL_ADDRESS_CHECK_ERROR', 'Ihre e-Mail Adresse scheint nicht korrekt zu sein. Bitte &auml;ndern Sie diese.');
-define('ENTRY_EMAIL_ADDRESS_ERROR_EXISTS', 'Ihre e-Mail Adresse ist bereits Registriert. Bitte melden Sie sich an oder registrieren Sie sich mit einer anderen E-Mail Adresse.');
+define('ENTRY_DATE_OF_BIRTH_ERROR', 'Ihr Geburtsdatum muss folgende Form haben: TT.MM.JJJJ (z. B. 21.02.1970)');
+define('ENTRY_DATE_OF_BIRTH_TEXT', '* (z. B. 21.02.1970)');
+define('ENTRY_EMAIL_ADDRESS', 'E-Mail Adresse:');
+define('ENTRY_EMAIL_ADDRESS_ERROR', 'Ihre E-Mail Adresse muss mindestens' . ENTRY_EMAIL_ADDRESS_MIN_LENGTH . ' Zeichen haben.');
+define('ENTRY_EMAIL_ADDRESS_CHECK_ERROR', 'Ihre E-Mail Adresse scheint nicht korrekt zu sein. Bitte &auml;ndern Sie diese.');
+define('ENTRY_EMAIL_ADDRESS_ERROR_EXISTS', 'Ihre E-Mail Adresse ist bereits registriert. Bitte melden Sie sich an oder registrieren Sie sich mit einer anderen E-Mail Adresse.');
 define('ENTRY_EMAIL_ADDRESS_TEXT', '*');
 define('ENTRY_NICK', 'Forum Nick Name:');
 define('ENTRY_NICK_TEXT', '*'); // note to display beside nickname input field
 define('ENTRY_NICK_DUPLICATE_ERROR', 'Der Nickname existiert bereits.');
 define('ENTRY_NICK_LENGTH_ERROR', 'Der Nickname muss aus mindestens ' . ENTRY_NICK_MIN_LENGTH . ' Zeichen bestehen.');
-define('ENTRY_STREET_ADDRESS', 'Strasse:');
-define('ENTRY_STREET_ADDRESS_ERROR', 'Die Strasse muss aus mindestens ' . ENTRY_STREET_ADDRESS_MIN_LENGTH . ' Zeichen bestehen.');
+define('ENTRY_STREET_ADDRESS', 'Stra&szlig;e:');
+define('ENTRY_STREET_ADDRESS_ERROR', 'Die Stra&szlig;e muss aus mindestens ' . ENTRY_STREET_ADDRESS_MIN_LENGTH . ' Zeichen bestehen.');
 define('ENTRY_STREET_ADDRESS_TEXT', '*');
 define('ENTRY_SUBURB', 'Anschrift Zeile 2:');
 define('ENTRY_SUBURB_ERROR', '');
@@ -286,7 +286,7 @@ define('PREVNEXT_TITLE_PREVIOUS_PAGE', 'Vorherige Seite');
 define('PREVNEXT_TITLE_NEXT_PAGE', 'N&auml;chste Seite');
 define('PREVNEXT_TITLE_LAST_PAGE', 'Letzte Seite');
 define('PREVNEXT_TITLE_PAGE_NO', 'Seite %d');
-define('PREVNEXT_TITLE_PREV_SET_OF_NO_PAGE', 'Vorherige  %d Seiten');
+define('PREVNEXT_TITLE_PREV_SET_OF_NO_PAGE', 'Vorherige %d Seiten');
 define('PREVNEXT_TITLE_NEXT_SET_OF_NO_PAGE', 'N&auml;chsten %d Seiten');
 define('PREVNEXT_BUTTON_FIRST', '<<Erste');
 define('PREVNEXT_BUTTON_PREV', '[<< Vorherige]');
@@ -319,18 +319,18 @@ define('WARNING_INSTALL_DIRECTORY_EXISTS', 'Warnung: Das Installationsverzeichni
 define('WARNING_CONFIG_FILE_WRITEABLE', 'Warnung: In die Konfigurationsdatei kann geschrieben werden: ' . dirname($_SERVER['SCRIPT_FILENAME']) . '/includes/configure.php. Dies stellt ein potenzielles Sicherheitsrisiko dar - bitte &auml;ndern Sie die Schreibrechte f&uuml;r diese Datei.');
 
 unset($warn_path);
-define('WARNING_SESSION_DIRECTORY_NON_EXISTENT', 'Warnung: Das Verzeichnis zum speichern der Sitzungen existiert nicht: ' . zen_session_save_path() . '. Bitte erstellen Sie dieses Verzeichnis, damit Sitzungen gespeichert werden k&ouml;nnen.');
-define('WARNING_SESSION_DIRECTORY_NOT_WRITEABLE', 'Warnung: In das Verzeichnis zum speichern von Sitzungen kann nicht geschrieben werden: ' . zen_session_save_path() . '. Bitte &auml;ndern Sie die Schreibrechte dieses Verzeichnisses.');
+define('WARNING_SESSION_DIRECTORY_NON_EXISTENT', 'Warnung: Das Verzeichnis zum Speichern der Sitzungen existiert nicht: ' . zen_session_save_path() . '. Bitte erstellen Sie dieses Verzeichnis, damit Sitzungen gespeichert werden k&ouml;nnen.');
+define('WARNING_SESSION_DIRECTORY_NOT_WRITEABLE', 'Warnung: In das Verzeichnis zum Speichern von Sitzungen kann nicht geschrieben werden: ' . zen_session_save_path() . '. Bitte &auml;ndern Sie die Schreibrechte dieses Verzeichnisses.');
 define('WARNING_SESSION_AUTO_START', 'Warnung: session.auto_start ist aktiviert - bitte deaktivieren Sie dieses Feature in der php.ini und starten Sie Ihren Webserver neu.');
 define('WARNING_DOWNLOAD_DIRECTORY_NON_EXISTENT', 'Warnung: Das Verzeichnis f&uuml;r Downloadartikel existiert nicht: ' . DIR_FS_DOWNLOAD . '. Downloadartikel funktionieren nicht, solange dieses Verzeichnis nicht erstellt wurde.');
 define('WARNING_SQL_CACHE_DIRECTORY_NON_EXISTENT', 'Warnung: Das SQL-Cache Verzeichnis existiert nicht: ' . DIR_FS_SQL_CACHE . '. SQL Abfragen k&ouml;nnen nicht zwischengespeichert werden, solange dieses Verzeichnis nicht erstellt wurde.');
-define('WARNING_SQL_CACHE_DIRECTORY_NOT_WRITEABLE', 'Warnung: In das Verzeichnis zum zwischenspeichern von SQL Abfragen kann nicht geschrieben werden: ' . DIR_FS_SQL_CACHE . '. Bitte &auml;ndern Sie die Schreibrechte dieses Verzeichnisses, damit SQL Abfragen zwischengespeichert werden k&ouml;nnen.');
+define('WARNING_SQL_CACHE_DIRECTORY_NOT_WRITEABLE', 'Warnung: In das Verzeichnis zum Zwischenspeichern von SQL Abfragen kann nicht geschrieben werden: ' . DIR_FS_SQL_CACHE . '. Bitte &auml;ndern Sie die Schreibrechte dieses Verzeichnisses, damit SQL Abfragen zwischengespeichert werden k&ouml;nnen.');
 define('WARNING_DATABASE_VERSION_OUT_OF_DATE', 'Ihre Datenbank braucht ein Update. Siehe Admin->Tools->Server Information (Patch-Level).');
 
 
 define('TEXT_CCVAL_ERROR_INVALID_DATE', 'Das Ablaufdatum der Kreditkarte, das Sie angegeben haben, ist nicht g&uuml;ltig. Bitte &uuml;berpr&uuml;fen Sie Ihre Angaben noch einmal und wiederholen Sie den Vorgang.');
 define('TEXT_CCVAL_ERROR_INVALID_NUMBER', 'Die Kreditkartennummer, die Sie angegeben haben, ist nicht g&uuml;ltig. Bitte &uuml;berpr&uuml;fen Sie Ihre Angaben noch einmal und wiederholen Sie den Vorgang.');
-define('TEXT_CCVAL_ERROR_UNKNOWN_CARD', 'Die ersten 4 Ziffer der Kreditkartennummer, sie Sie angegeben haben, lauten: %s. Ist diese Nummer richtig, k&ouml;nnen wir diese Kreditkarte nicht akzeptieren. Bitte korrigieren Sie ggf. die eingegebene Nummer oder setzen Sie sich mit Ihren Kreditinstitut in Verbindung.');
+define('TEXT_CCVAL_ERROR_UNKNOWN_CARD', 'Die ersten 4 Ziffer der Kreditkartennummer, die Sie angegeben haben, lauten: %s. Ist diese Nummer richtig, k&ouml;nnen wir diese Kreditkarte nicht akzeptieren. Bitte korrigieren Sie ggf. die eingegebene Nummer oder setzen Sie sich mit Ihren Kreditinstitut in Verbindung.');
 
   define('BOX_INFORMATION_DISCOUNT_COUPONS', 'Aktionskupon');
 define('BOX_INFORMATION_GV', TEXT_GV_NAME . ' FAQ');
@@ -344,7 +344,7 @@ define('TABLE_HEADING_CREDIT', 'Guthaben verf&uuml;gbar');
 define('GV_HAS_VOUCHERA', 'Sie haben Guthaben auf Ihrem ' . TEXT_GV_NAME . 'konto. Wenn Sie m&ouml;chten <br />
                          k&ouml;nnen Sie dieses Guthaben per <a class="pageResults" href="');
 
-define('GV_HAS_VOUCHERB', '"><strong>e-Mail</strong></a> an eine andere Person senden');
+define('GV_HAS_VOUCHERB', '"><strong>E-Mail</strong></a> an eine andere Person senden');
 define('ENTRY_AMOUNT_CHECK_ERROR', 'Sie haben nicht mehr genug Guthaben auf Ihrem Gutscheinkonto');
 define('BOX_SEND_TO_FRIEND', TEXT_GV_NAME . ' versenden >>');
 
@@ -352,8 +352,8 @@ define('VOUCHER_REDEEMED', TEXT_GV_NAME . ' einl&ouml;sen');
 define('CART_COUPON', 'Gutschein:');
 define('CART_COUPON_INFO', 'Gutscheininfos');
   define('TEXT_SEND_OR_SPEND','Sie haben Guthaben auf Ihrem ' . TEXT_GV_NAME . 'konto. Wenn Sie m&ouml;chten <br />
-                         k&ouml;nnen Sie dieses Guthaben durch klick auf untenstehende Schaltfl&auml;che an eine andere Person senden.');
-  define('TEXT_BALANCE_IS', 'Ihr Guthaben betr&auml;t: ');
+                         k&ouml;nnen Sie dieses Guthaben durch Klick auf untenstehende Schaltfl&auml;che an eine andere Person senden.');
+  define('TEXT_BALANCE_IS', 'Ihr Guthaben betr&auml;gt: ');
   define('TEXT_AVAILABLE_BALANCE', 'Ihr ' . TEXT_GV_NAME . ' Guthaben');
 
 // payment method is GV/Discount
@@ -363,8 +363,8 @@ define('PAYMENT_MODULE_GV', 'GS/AK');
 define('TABLE_HEADING_CREDIT_PAYMENT', 'Guthaben verf&uuml;gbar');
 
 define('TEXT_INVALID_REDEEM_COUPON', 'Ung&uuml;ltiger Aktionscode');
-define('TEXT_INVALID_REDEEM_COUPON_MINIMUM', 'Der Mindestbestellwert f&uuml;r diesen Kupon  liegt bei %s');
-define('TEXT_INVALID_STARTDATE_COUPON', 'Dieser Kupon ist zur Zeit nicht erh&auml;ltlich');
+define('TEXT_INVALID_REDEEM_COUPON_MINIMUM', 'Der Mindestbestellwert f&uuml;r diesen Kupon liegt bei %s');
+define('TEXT_INVALID_STARTDATE_COUPON', 'Dieser Kupon ist zurzeit nicht erh&auml;ltlich');
 define('TEXT_INVALID_FINISDATE_COUPON', 'Dieser Kupon ist abgelaufen');
 define('TEXT_INVALID_USES_COUPON', 'Dieser Kupon kann nur');
 define('TIMES', 'mal eingel&ouml;st werden');
@@ -471,7 +471,7 @@ define('ERROR_MAXIMUM_QTY', 'St&uuml;ckzahl angepasst - maximale St&uuml;ckzahl 
 define('ERROR_CORRECTIONS_HEADING', 'Bitte korrigieren Sie folgendes: <br />');
 
 // Downloads Controller
-define('DOWNLOADS_CONTROLLER_ON_HOLD_MSG', 'Bemerkung: Downloads werden erst nach Best&auml;tigung des Zahlungseingangs freigeschalten.');
+define('DOWNLOADS_CONTROLLER_ON_HOLD_MSG', 'Bemerkung: Downloads werden erst nach Best&auml;tigung des Zahlungseingangs freigeschaltet.');
 define('TEXT_FILESIZE_BYTES', ' Bytes');
 define('TEXT_FILESIZE_MEGS', ' MB');
 
@@ -589,13 +589,13 @@ define('TEXT_INFO_SORT_BY_PRODUCTS_SORT_ORDER', 'Standardansicht');
   define('COLON_SPACER', ':&nbsp;&nbsp;');
 
 // table headings for cart display and upcoming products
-  define('TABLE_HEADING_QUANTITY', 'Stk.');
+  define('TABLE_HEADING_QUANTITY', 'Stck.');
   define('TABLE_HEADING_PRODUCTS', 'Artikelname');
   define('TABLE_HEADING_TOTAL', 'Summe');
 
 // create account - login shared
 define('TABLE_HEADING_PRIVACY_CONDITIONS', 'Datenschutz');
-define('TEXT_PRIVACY_CONDITIONS_DESCRIPTION', 'Bitte best&auml;tigen Sie Ihr Einverst&auml;ndniss mit meinen Datenschutzrichtlinien, indem Sie die Checkbox aktivieren. Die Datenschutzrichtlinien k&ouml;nnen <a href="' . zen_href_link(FILENAME_PRIVACY, '', 'SSL') . '"><span class="pseudolink">hier</span></a> gelesen werden.');
+define('TEXT_PRIVACY_CONDITIONS_DESCRIPTION', 'Bitte best&auml;tigen Sie Ihr Einverst&auml;ndniss mit unseren Datenschutzrichtlinien, indem Sie die Checkbox aktivieren. Die Datenschutzrichtlinien k&ouml;nnen <a href="' . zen_href_link(FILENAME_PRIVACY, '', 'SSL') . '"><span class="pseudolink">hier</span></a> gelesen werden.');
 define('TEXT_PRIVACY_CONDITIONS_CONFIRM', 'Ich habe die Datenschutzrichtlinien gelesen und akzeptiert.');
 define('TABLE_HEADING_ADDRESS_DETAILS', 'Bitte tragen Sie Ihre Adressangaben ein');
 define('TABLE_HEADING_PHONE_FAX_DETAILS', 'Wie kann man Sie erreichen?');
@@ -603,12 +603,12 @@ define('TABLE_HEADING_DATE_OF_BIRTH', 'Bitte geben Sie Ihr Geburtsdatum an');
 define('TABLE_HEADING_LOGIN_DETAILS', 'Bitte geben Sie hier Ihre Anmeldedaten ein');
 define('TABLE_HEADING_REFERRAL_DETAILS', 'Wie wurden Sie auf unseren Shop aufmerksam?');
 
-  define('ENTRY_EMAIL_PREFERENCE','Newsletter und Email');
+  define('ENTRY_EMAIL_PREFERENCE','Newsletter und E-mail');
   define('ENTRY_EMAIL_HTML_DISPLAY','HTML');
   define('ENTRY_EMAIL_TEXT_DISPLAY','nur TEXT');
   define('EMAIL_SEND_FAILED','Fehler: E-mail wurde nicht an: "%s" <%s> versendet. Betreff: "%s"');
 
-  define('DB_ERROR_NOT_CONNECTED', 'Error - Could not connect to Database');
+  define('DB_ERROR_NOT_CONNECTED', 'Fehler: Es konnte keine Verbindung mit der Datenbank hergestellt werden');
 
 // EZ-PAGES Alerts
 define('TEXT_EZPAGES_STATUS_HEADER_ADMIN', 'WARNING: EZ-PAGES HEADER - Darf nur vom Admin ge&ouml;ffnet werden ');
