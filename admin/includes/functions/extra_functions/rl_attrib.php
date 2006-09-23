@@ -29,7 +29,7 @@ function getAttrib($paramArray){
          }
     
      $sql = "SELECT POV.products_options_values_id, POV2PO.products_options_id, PO.products_options_name, POV.products_options_values_sort_order, POV.products_options_values_name, POV.products_options_values_id
-                FROM zencart.products_options PO, zencart.products_options_values POV, zencart.products_options_values_to_products_options POV2PO
+                FROM " . TABLE_PRODUCTS_OPTIONS . " PO, " . TABLE_PRODUCTS_OPTIONS_VALUES . " POV, " . TABLE_PRODUCTS_OPTIONS_VALUES_TO_PRODUCTS_OPTIONS . " POV2PO
                 WHERE PO.products_options_id = POV2PO.products_options_id AND POV.products_options_values_id = POV2PO.products_options_values_id 
                     AND ((POV2PO.products_options_id=PO.products_options_id And POV2PO.products_options_id='$options_id') 
                     AND (POV2PO.products_options_values_id=POV.products_options_values_id) AND (POV.language_id=" . $_SESSION['languages_id'] . ") 
