@@ -2519,7 +2519,7 @@ INSERT INTO configuration (configuration_title, configuration_key, configuration
 INSERT INTO configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) VALUES ('Skip 1-prod Categories', 'SKIP_SINGLE_PRODUCT_CATEGORIES', 'True', 'Skip single-product categories<br />If this option is set to True, then if the customer clicks on a link to a category which only contains a single item, then Zen Cart will take them directly to that product-page, rather than present them with another link to click in order to see the product.<br />Default: True', '19', '120', 'zen_cfg_select_option(array(\'True\', \'False\'), ', now());
 
 # CSS Buttons switch
-INSERT INTO configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) VALUES ('CSS Buttons', 'IMAGE_USE_CSS_BUTTONS', 'No', 'CSS Buttons<br />Use CSS buttons instead of images (GIF/JPG)?<br />Button styles must be configured in the stylesheet if you enable this option.', '19', '147', 'zen_cfg_select_option(array(\'No\', \'Yes\'), ', now());
+INSERT INTO configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) VALUES ('CSS Buttons', 'IMAGE_USE_CSS_BUTTONS', 'Yes', 'CSS Buttons<br />Use CSS buttons instead of images (GIF/JPG)?<br />Button styles must be configured in the stylesheet if you enable this option.', '19', '147', 'zen_cfg_select_option(array(\'No\', \'Yes\'), ', now());
 
 INSERT INTO configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added, use_function) VALUES ('<strong>Down for Maintenance: ON/OFF</strong>', 'DOWN_FOR_MAINTENANCE', 'false', 'Down for Maintenance <br />(true=on false=off)', '20', '1', 'zen_cfg_select_option(array(\'true\', \'false\'), ', now(), NULL);
 INSERT INTO configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added, use_function) VALUES ('Down for Maintenance: filename', 'DOWN_FOR_MAINTENANCE_FILENAME', 'down_for_maintenance', 'Down for Maintenance filename<br />Note: Do not include the extension<br />Default=down_for_maintenance', '20', '2', '', now(), NULL);
@@ -3109,7 +3109,7 @@ INSERT INTO zones VALUES (78,38,'YT','Yukon Territory');
 
 # Germany
 INSERT INTO zones VALUES (79,81,'NDS','Niedersachsen');
-INSERT INTO zones VALUES (80,81,'BAW','Baden-Württemberg');
+INSERT INTO zones VALUES (80,81,'BAW','Baden-W&uuml;rttemberg');
 INSERT INTO zones VALUES (81,81,'BAY','Bayern');
 INSERT INTO zones VALUES (82,81,'BER','Berlin');
 INSERT INTO zones VALUES (83,81,'BRG','Brandenburg');
@@ -3123,14 +3123,14 @@ INSERT INTO zones VALUES (90,81,'SAR','Saarland');
 INSERT INTO zones VALUES (91,81,'SAS','Sachsen');
 INSERT INTO zones VALUES (92,81,'SAC','Sachsen-Anhalt');
 INSERT INTO zones VALUES (93,81,'SCN','Schleswig-Holstein');
-INSERT INTO zones VALUES (94,81,'THE','Thüringen');
+INSERT INTO zones VALUES (94,81,'THE','Th&uuml;ringen');
 
 # Austria
 INSERT INTO zones VALUES (95,14,'WI','Wien');
-INSERT INTO zones VALUES (96,14,'NO','Niederösterreich');
-INSERT INTO zones VALUES (97,14,'OO','Oberösterreich');
+INSERT INTO zones VALUES (96,14,'NO','Nieder&ouml;sterreich');
+INSERT INTO zones VALUES (97,14,'OO','Ober&ouml;sterreich');
 INSERT INTO zones VALUES (98,14,'SB','Salzburg');
-INSERT INTO zones VALUES (99,14,'KN','Kärnten');
+INSERT INTO zones VALUES (99,14,'KN','K&auml;rnten');
 INSERT INTO zones VALUES (100,14,'ST','Steiermark');
 INSERT INTO zones VALUES (101,14,'TI','Tirol');
 INSERT INTO zones VALUES (102,14,'BL','Burgenland');
@@ -3162,7 +3162,7 @@ INSERT INTO zones VALUES (125,204,'UR','Uri');
 INSERT INTO zones VALUES (126,204,'VD','Waadt');
 INSERT INTO zones VALUES (127,204,'VS','Wallis');
 INSERT INTO zones VALUES (128,204,'ZG','Zug');
-INSERT INTO zones VALUES (129,204,'ZH','Zürich');
+INSERT INTO zones VALUES (129,204,'ZH','Z&uuml;rich');
 
 # Spain
 INSERT INTO zones (zone_country_id, zone_code, zone_name) VALUES (195,'A Corua','A Corua');
@@ -3450,7 +3450,7 @@ CREATE TABLE IF NOT EXISTS configuration_language(
 );
 
 #
-# Daten für Tabelle configuration_language
+# Daten f&uuml;r Tabelle configuration_language
 #
 
 REPLACE INTO configuration_language (`configuration_title`, `configuration_key`, `configuration_language_id`, `configuration_description`, `last_modified`, `date_added`) VALUES ('Willkommenstext auf Startseite zeigen?', 'SHOW_CUSTOMER_GREETING', 43, 'Willkommenstext auf Startseite zeigen?<br />0= AUS<br />1= EIN', NULL, '2006-07-14 00:00:00'),
@@ -3967,10 +3967,10 @@ INSERT INTO configuration_group (configuration_group_id, language_id, configurat
 (18, 43, 'Artikeldetails', 'Konfiguration f&uuml;r die Anzeige von Artikeldetails', 18, 1),
 (19, 43, 'Layouteinstellungen', 'Layouteinstellungen', 19, 1),
 (20, 43, 'Shopwartung', 'Konfiguration der Shopwartung', 20, 1),
-(21, 43, 'Liste - Neue Artikel', 'Listenansicht für neue Artikel', 21, 1),
-(22, 43, 'Liste - Ähnliche Artikel', 'Listenansicht für ähnliche Artikel', 22, 1),
-(23, 43, 'Liste - Alle Artikel', 'Listenansicht für alle Artikel', 23, 1),
-(24, 43, 'Liste - Artikelindex', 'Listenansicht für Artikelindex', 24, 1),
+(21, 43, 'Liste - Neue Artikel', 'Listenansicht f&uuml;r neue Artikel', 21, 1),
+(22, 43, 'Liste - &Auml;hnliche Artikel', 'Listenansicht f&uuml;r &auml;hnliche Artikel', 22, 1),
+(23, 43, 'Liste - Alle Artikel', 'Listenansicht f&uuml;r alle Artikel', 23, 1),
+(24, 43, 'Liste - Artikelindex', 'Listenansicht f&uuml;r Artikelindex', 24, 1),
 (25, 43, 'Definierte Seiten', 'Definierte Seiten des im Seiteneditor eingegebenen Textes festlegen und HTMLArea Optionen', 25, 1),
 (30, 43, 'EZ-Pages Einstellungen', 'EZ-Pages Einstellungen', 30, 1);
 
