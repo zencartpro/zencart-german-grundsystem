@@ -197,7 +197,7 @@ define('PLEASE_SELECT', 'Bitte w&auml;hlen Sie ...');
 define('TYPE_BELOW', 'Bitte w&auml;hlen Sie unter ...');
 
 define('ENTRY_COMPANY', 'Firma:');
-define('ENTRY_COMPANY_ERROR', '');
+define('ENTRY_COMPANY_ERROR', 'Bitte geben Sie einen Firmennamen ein.');
 define('ENTRY_COMPANY_TEXT', '');
 define('ENTRY_GENDER', 'Geschlecht:');
 define('ENTRY_GENDER_ERROR', 'Bitte w&auml;hlen Sie Ihre Anrede.');
