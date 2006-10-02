@@ -166,6 +166,7 @@ if ($_GET['action'] == 'layout' || $_GET['action'] == 'layout_edit') {
   $sql = "select type_name from " . TABLE_PRODUCT_TYPES . "
           where type_id = '"   . (int)$_GET['ptID'] . "'";
   $type_name = $db->Execute($sql);
+  #rldp($sql, __LINE__.__FILE__);
 
 
 ?>
@@ -191,10 +192,20 @@ if ($_GET['action'] == 'layout' || $_GET['action'] == 'layout_edit') {
                 <td class="dataTableHeadingContent" align="right"><?php echo TABLE_HEADING_ACTION; ?>&nbsp;</td>
               </tr>
 <?php
-  $configuration = $db->Execute("select configuration_id, configuration_title, configuration_value, configuration_key,
+  $sql2 = "select configuration_id, configuration_title, configuration_value, configuration_key,
                                         use_function from " . TABLE_PRODUCT_TYPE_LAYOUT . "
                                         where product_type_id = '" . (int)$_GET['ptID'] . "'
-                                        order by sort_order");
+                                        order by sort_order";
+  $configuration = $db->Execute($sql2);
+  
+  /* r.l. multilanguage */
+  if(!defined('TABLE_PRODUCT_TYPE_LAYOUT_LANGUAGE')){
+        define('TABLE_PRODUCT_TYPE_LAYOUT_LANGUAGE', DB_PREFIX . 'product_type_layout_language');
+    }
+  if(existTable(TABLE_PRODUCT_TYPE_LAYOUT_LANGUAGE)){
+    define('MULTILANG_TYPE', 'YES');
+  }
+
   while (!$configuration->EOF) {
     if (zen_not_null($configuration->fields['use_function'])) {
       $use_function = $configuration->fields['use_function'];
@@ -212,12 +223,19 @@ if ($_GET['action'] == 'layout' || $_GET['action'] == 'layout_edit') {
       $cfgValue = $configuration->fields['configuration_value'];
     }
 
+    /*r.l. multilanguage */
+    if(MULTILANG_TYPE=='YES'){
+        $lang = getProdTypeLangArr($configuration->fields);
+        $configuration->fields['configuration_title'] = $lang['configuration_title'];
+    }
+    
     if ((!isset($_GET['cID']) || (isset($_GET['cID']) && ($_GET['cID'] == $configuration->fields['configuration_id']))) && !isset($cInfo) && (substr($action, 0, 3) != 'new')) {
       $cfg_extra = $db->Execute("select configuration_key, configuration_description, date_added,
                                         last_modified, use_function, set_function
                                  from " . TABLE_PRODUCT_TYPE_LAYOUT . "
-                                 where configuration_id = '" . (int)$configuration->fields['configuration_id'] . "'");
-      $cInfo_array = array_merge($configuration->fields, $cfg_extra->fields);
+                                 where configuration_id = '" . (int)$configuration->fields['configuration_id'] . "'");     
+
+      $cInfo_array = array_merge($configuration->fields, $cfg_extra->fields, $lang);      
       $cInfo = new objectInfo($cInfo_array);
     }
 

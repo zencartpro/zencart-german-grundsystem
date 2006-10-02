@@ -27,7 +27,7 @@
  *
  * This copyright notice MUST APPEAR in all copies of the script!
  *
- * version: 0.1 // 20050411
+ * version: 0.2 // 20061002
  *
  * @author rainer AT langheiter DOT com // http://www.filosofisch.com // http://edv.langheiter.com
 
@@ -35,6 +35,28 @@
 
  $Id$
  */
+ 
+/**
+* @desc  merge languagespcific values to PRODUCT_TYPE_LAYOUT
+*/
+function getProdTypeLangArr($fields){
+    global $db;
+    $key = $fields['configuration_key'];
+    $lang['configuration_title'] = $fields['configuration_title'];
+    $lang['configuration_description'] = $fields['configuration_description'];
+    
+    $sql = "SELECT configuration_title, configuration_description
+                            FROM " . TABLE_PRODUCT_TYPE_LAYOUT_LANGUAGE . "
+                            WHERE configuration_key = :configurationKey AND languages_id = :languagesID";
+    $sql = $db->bindVars($sql, ':configurationKey', $key, 'string');
+    $sql = $db->bindVars($sql, ':languagesID', $_SESSION['languages_id'], 'integer');
+    $res = $db->Execute($sql);   
+    if(!$res->EOF){
+        $lang =  $res->fields;
+    }
+    return $lang;
+}
+
 
 // shows arrays structered
 function rldp($call, $cname = 'NIX', $show = true)
