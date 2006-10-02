@@ -17,7 +17,7 @@
 // | to obtain it through the world-wide-web, please send a note to       |
 // | license@zen-cart.com so we can mail you a copy immediately.          |
 // +----------------------------------------------------------------------+
-//  $Id: login.php 4347 2006-09-02 19:02:26Z drbyte $
+//  $Id: login.php 4638 2006-09-30 22:32:05Z wilt $
 //
 
   require('includes/application_top.php');
@@ -54,10 +54,10 @@
   <fieldset>
     <legend><?php echo HEADING_TITLE; ?></legend>
     <label class="loginLabel" for="admin_name"><?php echo TEXT_ADMIN_NAME; ?></label>
-<input style="float: left" type="text" id="admin_name" name="admin_name" value="<?php echo $_POST['admin_name']; ?>" />
+<input style="float: left" type="text" id="admin_name" name="admin_name" value="<?php echo zen_output_string($admin_name); ?>" />
 <br class="clearBoth" />
     <label  class="loginLabel" for="admin_pass"><?php echo TEXT_ADMIN_PASS; ?></label>
-<input style="float: left" type="password" id="admin_pass" name="admin_pass" value="<?php echo $_POST['admin_pass']; ?>" />
+<input style="float: left" type="password" id="admin_pass" name="admin_pass" value="<?php echo zen_output_string($admin_pass); ?>" />
 <br class="clearBoth" />
     <?php echo $pass_message; ?>
     <input type="submit" name="submit" class="button" value="Login" />
