@@ -9,6 +9,38 @@
 #################################################################
 # insert language; id == 43 == telephone-countrycode
 
+ # new field: language_id
+ALTER TABLE configuration_group ADD language_id INT( 11 ) DEFAULT '1' NOT NULL AFTER configuration_group_id ;
+ALTER TABLE configuration_group DROP PRIMARY KEY ,
+ADD PRIMARY KEY ( configuration_group_id , language_id );
+
+REPLACE INTO configuration_group (configuration_group_id, language_id, configuration_group_title, configuration_group_description, sort_order, visible) VALUES (1, 43, 'Mein Shop', 'Generelle Informationen &uuml;ber den Shop', 1, 1),
+(2, 43, 'Minimale Werte', 'Die minimale Zeichenl&auml;nge f&uuml;r Funktionen / Daten', 2, 1),
+(3, 43, 'Maximale Werte', 'Die maximale Zeichenl&auml;nge f&uuml;r Funktionen / Daten', 3, 1),
+(4, 43, 'Bilder', 'Einstellungen der Bildparameter', 4, 1),
+(5, 43, 'Kundendetails', 'Konfiguration der Kundenkonten', 5, 1),
+(6, 43, 'Moduloptionen', 'Vom Konfigurationsmen&uuml; versteckt', 6, 0),
+(7, 43, 'Versandoptionen', 'Im Shop verf&uuml;gbare Versandoptionen', 7, 1),
+(8, 43, 'Artikelliste', 'Konfiguration der Artikelliste', 8, 1),
+(9, 43, 'Lagerverwaltung', 'Konfigurationen der Lagerverwaltung', 9, 1),
+(10, 43, 'Protokollierung', 'Konfiguration der Protokollierung', 10, 1),
+(11, 43, 'AGB', 'Konfiguration f&uuml;r die AGB', 16, 1),
+(12, 43, 'e-Mail Optionen', 'Generelle Einstellungen f&uuml;r den e-Mail Transport (SMTP) und die HTML Optionen', 12, 1),
+(13, 43, 'Attributeinstellungen', 'Konfiguration f&uuml;r die Einstellungen der Artikeloptionen', 13, 1),
+(14, 43, 'GZip Komprimierung', 'Konfiguration der GZip Komprimierung', 14, 1),
+(15, 43, 'Sitzungen', 'Konfiguration der Sitzungsoptionen', 15, 1),
+(16, 43, 'Gutscheine und Kupons', 'Konfiguration der Gutscheine und Kupons', 16, 1),
+(17, 43, 'Kreditkarten', 'Konfiguration der zu verwendeten Kreditkarten', 17, 1),
+(18, 43, 'Artikeldetails', 'Konfiguration f&uuml;r die Anzeige von Artikeldetails', 18, 1),
+(19, 43, 'Layouteinstellungen', 'Layouteinstellungen', 19, 1),
+(20, 43, 'Shopwartung', 'Konfiguration der Shopwartung', 20, 1),
+(21, 43, 'Liste - Neue Artikel', 'Listenansicht f&uuml;r neue Artikel', 21, 1),
+(22, 43, 'Liste - &Auml;hnliche Artikel', 'Listenansicht f&uuml;r &auml;hnliche Artikel', 22, 1),
+(23, 43, 'Liste - Alle Artikel', 'Listenansicht f&uuml;r alle Artikel', 23, 1),
+(24, 43, 'Liste - Artikelindex', 'Listenansicht f&uuml;r Artikelindex', 24, 1),
+(25, 43, 'Definierte Seiten', 'Definierte Seiten des im Seiteneditor eingegebenen Textes festlegen und HTMLArea Optionen', 25, 1),
+(30, 43, 'EZ-Pages Einstellungen', 'EZ-Pages Einstellungen', 30, 1);
+
 REPLACE INTO products_options_values (products_options_values_id, language_id, products_options_values_name) VALUES (0, 43, 'TEXT');
 
 CREATE TABLE IF NOT EXISTS configuration_language(
