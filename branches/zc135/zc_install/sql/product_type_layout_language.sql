@@ -149,7 +149,7 @@ INSERT INTO `product_type_layout_language` (`configuration_key`, `configuration_
 ('SHOW_PRODUCT_INFO_STARTING_AT', 'DE .. Show Starting At text on Price', 'DE .. Display Starting At text on products with attributes Product Info 0= off 1= on', 43),
 ('SHOW_PRODUCT_INFO_TELL_A_FRIEND', 'DE .. Show Product Tell a Friend button', 'DE .. Display the Tell a Friend button on Product Info<br /><br />Note: Turning this setting off does not affect the Tell a Friend box in the columns and turning off the Tell a Friend box does not affect the button<br />0= off 1= on', 43),
 ('SHOW_PRODUCT_INFO_URL', 'DE .. Show Product URL', 'DE .. Display URL on Product Info 0= off 1= on', 43),
-('!SHOW_PRODUCT_INFO_WEIGHT', 'DE .. Show Weight', 'DE .. Display Weight on Product Info 0= off 1= on', 43),
+('SHOW_PRODUCT_INFO_WEIGHT', 'DE .. Show Weight', 'DE .. Display Weight on Product Info 0= off 1= on', 43),
 ('SHOW_PRODUCT_INFO_WEIGHT_ATTRIBUTES', 'DE .. Show Attribute Weight', 'DE .. Display Attribute Weight on Product Info 0= off 1= on', 43),
 ('SHOW_PRODUCT_MUSIC_INFO_ADDITIONAL_IMAGES', 'DE .. Show Product Additional Images', 'DE .. Display Additional Images on Product Info 0= off 1= on', 43),
 ('SHOW_PRODUCT_MUSIC_INFO_ALWAYS_FREE_SHIPPING_IMAGE_SWITCH', 'DE .. Product Free Shipping Image Status - Catalog', 'DE .. Show the Free Shipping image/text in the catalog?', 43),
