@@ -235,7 +235,10 @@ if ($_GET['action'] == 'layout' || $_GET['action'] == 'layout_edit') {
                                  from " . TABLE_PRODUCT_TYPE_LAYOUT . "
                                  where configuration_id = '" . (int)$configuration->fields['configuration_id'] . "'");     
 
-      $cInfo_array = array_merge($configuration->fields, $cfg_extra->fields, $lang);      
+      $cInfo_array = array_merge($configuration->fields, $cfg_extra->fields);      
+	    if(MULTILANG_TYPE=='YES'){
+	    	$cInfo_array = array_merge($cInfo_array, $lang);
+	    }
       $cInfo = new objectInfo($cInfo_array);
     }
 
