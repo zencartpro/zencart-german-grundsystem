@@ -1,0 +1,12 @@
+<!-- configuration //-->
+<hr>smarty example of config-menu<hr>
+<li class="submenu"> 
+<a target="_self" href="{$cfg_header.link}">{$cfg_header.text}</a><ul>
+<ul>
+{foreach key=cid item=con from=$cfg}
+<li><a href="{$con.link}">{$con.text}</a></li>
+{/foreach}
+</ul>
+</li>
+<!-- configuration_eof //-->
+ 
