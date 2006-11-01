@@ -6,7 +6,7 @@
  * @copyright Copyright 2003-2005 Zen Cartt Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: tpl_shopping_cart.php 3952 2006-07-13 02:38:28Z drbyte $
+ * @version $Id: tpl_shopping_cart.php 4821 2006-10-23 10:54:15Z drbyte $
  */
   $content ="";
 
@@ -54,7 +54,7 @@
                  where customer_id = '" . $_SESSION['customer_id'] . "'";
    $gv_result = $db->Execute($gv_query);
 
-    if ($gv_result->fields['amount'] > 0 ) {
+    if ($gv_result->RecordCount() && $gv_result->fields['amount'] > 0 ) {
       $content .= '<div id="cartBoxGVButton"><a href="' . zen_href_link(FILENAME_GV_SEND, '', 'SSL') . '">' . zen_image_button(BUTTON_IMAGE_SEND_A_GIFT_CERT , BUTTON_SEND_A_GIFT_CERT_ALT) . '</a></div>';
       $content .= '<div id="cartBoxVoucherBalance">' . VOUCHER_BALANCE . $currencies->format($gv_result->fields['amount']) . '</div>';
     }

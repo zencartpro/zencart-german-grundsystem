@@ -6,7 +6,7 @@
  * @copyright Copyright 2003-2006 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: header_php.php 4173 2006-08-19 20:02:31Z drbyte $
+ * @version $Id: header_php.php 4825 2006-10-23 22:25:11Z drbyte $
  */
 // This should be first line of the script:
 $zco_notifier->notify('NOTIFY_HEADER_START_ACCOUNT_EDIT');
@@ -50,7 +50,7 @@ if (isset($_POST['action']) && ($_POST['action'] == 'process')) {
 
   if (ACCOUNT_DOB == 'true') {
     if (ENTRY_DOB_MIN_LENGTH > 0 or !empty($_POST['dob'])) {
-      if (substr_count($dob,'/') > 2 || checkdate(substr(zen_date_raw($dob), 4, 2), substr(zen_date_raw($dob), 6, 2), substr(zen_date_raw($dob), 0, 4)) == false) {
+      if (substr_count($dob,'/') > 2 || checkdate((int)substr(zen_date_raw($dob), 4, 2), (int)substr(zen_date_raw($dob), 6, 2), (int)substr(zen_date_raw($dob), 0, 4)) == false) {
         $error = true;
         $messageStack->add('account_edit', ENTRY_DATE_OF_BIRTH_ERROR);
       }

@@ -8,13 +8,19 @@
  * @copyright Copyright 2003-2006 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: functions_email.php 4137 2006-08-14 04:55:51Z drbyte $
+ * @version $Id: functions_email.php 4839 2006-10-26 02:26:29Z drbyte $
  */
 
 /**
  * Set email system debugging off or on
+ * 0=off
+ * 1=show SMTP status errors
+ * 2=show SMTP server responses
+ * 4=show SMTP readlines if applicable
+ * 5=maximum information
+ * 'preview' to show HTML-emails on-screen while sending
  */
-  define('EMAIL_SYSTEM_DEBUG','off');
+  define('EMAIL_SYSTEM_DEBUG','0');
 
 /**
  * Send email (text/html) using MIME. This is the central mail function.
@@ -130,17 +136,35 @@
       $lang_code = ($_SESSION['languages_code'] == '' ? 'en' : $_SESSION['languages_code'] );
       $mail->SetLanguage($lang_code,DIR_WS_CLASSES . 'support/');
       $mail->CharSet =  (defined('CHARSET')) ? CHARSET : "iso-8859-1";
-      if ($debug_mode=='on') $mail->SMTPDebug = true;
-      if (EMAIL_TRANSPORT=='smtp' || EMAIL_TRANSPORT=='smtpauth') {
-        $mail->IsSMTP();                           // set mailer to use SMTP
-        $mail->Host = EMAIL_SMTPAUTH_MAIL_SERVER;
-        if (EMAIL_SMTPAUTH_MAIL_PORT != '25' & EMAIL_SMTPAUTH_MAIL_PORT != '') $mail->Port = EMAIL_SMTPAUTH_MAIL_PORT;
-        if (EMAIL_TRANSPORT=='smtpauth') {
-          $mail->SMTPAuth = true;     // turn on SMTP authentication
-          $mail->Username = (zen_not_null(EMAIL_SMTPAUTH_MAILBOX)) ? EMAIL_SMTPAUTH_MAILBOX : EMAIL_FROM;  // SMTP username
-          $mail->Password = EMAIL_SMTPAUTH_PASSWORD; // SMTP password
-        }
+      $mail->Encoding = (defined('EMAIL_ENCODING_METHOD')) ? EMAIL_ENCODING_METHOD : "7bit";
+      if ((int)EMAIL_SYSTEM_DEBUG > 0 ) $mail->SMTPDebug = (int)EMAIL_SYSTEM_DEBUG;
+
+      switch (EMAIL_TRANSPORT) {
+        case 'smtp':
+          $mail->IsSMTP();
+          $mail->Host = EMAIL_SMTPAUTH_MAIL_SERVER;
+          if (EMAIL_SMTPAUTH_MAIL_SERVER_PORT != '25' && EMAIL_SMTPAUTH_MAIL_SERVER_PORT != '') $mail->Port = EMAIL_SMTPAUTH_MAIL_SERVER_PORT;
+          break;
+        case 'smtpauth':
+          $mail->IsSMTP();
+          $mail->SMTPAuth = true;
+          $mail->Username = (zen_not_null(EMAIL_SMTPAUTH_MAILBOX)) ? EMAIL_SMTPAUTH_MAILBOX : EMAIL_FROM;
+          $mail->Password = EMAIL_SMTPAUTH_PASSWORD;
+          $mail->Host = EMAIL_SMTPAUTH_MAIL_SERVER;
+          if (EMAIL_SMTPAUTH_MAIL_SERVER_PORT != '25' && EMAIL_SMTPAUTH_MAIL_SERVER_PORT != '') $mail->Port = EMAIL_SMTPAUTH_MAIL_SERVER_PORT;
+          break;
+        case 'PHP':
+          $mail->IsMail();
+          break;
+        case 'Qmail':
+          $mail->IsQmail();
+          break;
+        case 'sendmail':
+        default:
+          $mail->IsSendmail();
+          break;
       }
+
       $mail->Subject  = $email_subject;
       $mail->From     = $from_email_address;
       $mail->FromName = $from_email_name;
@@ -192,7 +216,6 @@
 /**
  * Send the email. If an error occurs, trap it and display it in the messageStack
  */
-// EMAIL_FRIENDLY_ERRORS ... debating whether to reinstate it to suppress the messageStack in this case too, or not. 
       $zco_notifier->notify('NOTIFY_EMAIL_READY_TO_SEND');
       if (!$mail->Send()) {
         $messageStack->add('header',sprintf(EMAIL_SEND_FAILED . '&nbsp;'. $mail->ErrorInfo, $to_name, $to_email_address, $email_subject),'error');
@@ -207,6 +230,8 @@
       } // endif archiving
     } // end foreach loop thru possible multiple email addresses
     $zco_notifier->notify('NOTIFY_EMAIL_AFTER_SEND_ALL_SPECIFIED_ADDRESSES');
+
+    if (EMAIL_FRIENDLY_ERRORS=='false' && $ErrorInfo != '') die('<br /><br />Email Error: ' . $errorInfo);
 
     return $ErrorInfo;
   }  // end function
@@ -289,7 +314,7 @@
  * finally, build full html content as "return" output from class
 **/
   function zen_build_html_email_from_template($module='default',$block) {
-    global $messageStack;
+    global $messageStack, $current_page_base;
     // Identify and Read the template file for the type of message being sent
     $template_filename_base = DIR_FS_EMAIL_TEMPLATES . "email_template_";
     $template_filename = DIR_FS_EMAIL_TEMPLATES . "email_template_" . $current_page_base . ".html";
@@ -345,7 +370,7 @@
     }
 
     //prepare the "unsubscribe" link:
-    if (function_exists(zen_catalog_href_link)) { // is this admin version, or catalog? (zen_catalog_href_link only exists in Admin)
+    if (IS_ADMIN_FLAG === true) { // is this admin version, or catalog?
       $block['UNSUBSCRIBE_LINK'] = str_replace("\n",'',TEXT_UNSUBSCRIBE) . ' <a href="' . zen_catalog_href_link(FILENAME_UNSUBSCRIBE, "addr=" . $block['EMAIL_TO_ADDRESS']) . '">' . zen_catalog_href_link(FILENAME_UNSUBSCRIBE, "addr=" . $block['EMAIL_TO_ADDRESS']) . '</a>';
     } else {
       $block['UNSUBSCRIBE_LINK'] = str_replace("\n",'',TEXT_UNSUBSCRIBE) . ' <a href="' . zen_href_link(FILENAME_UNSUBSCRIBE, "addr=" . $block['EMAIL_TO_ADDRESS']) . '">' . zen_href_link(FILENAME_UNSUBSCRIBE, "addr=" . $block['EMAIL_TO_ADDRESS']) . '</a>';
@@ -357,7 +382,7 @@
     }
 
     //DEBUG -- to display preview on-screen
-    if (EMAIL_SYSTEM_DEBUG=='on') echo $file_holder;
+    if (EMAIL_SYSTEM_DEBUG=='preview') echo $file_holder;
 
     return $file_holder;
   }

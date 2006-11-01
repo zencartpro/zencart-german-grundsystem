@@ -6,7 +6,7 @@
  * @copyright Copyright 2003-2006 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: product_prev_next.php 4355 2006-09-02 23:04:12Z ajeh $
+ * @version $Id: product_prev_next.php 4666 2006-10-02 04:26:51Z ajeh $
  */
 if (!defined('IS_ADMIN_FLAG')) {
   die('Illegal Access');
@@ -58,7 +58,7 @@ if (PRODUCT_INFO_PREVIOUS_NEXT != 0) {
 //  if (!$current_category_id || !$cPath) {
   if ($cPath < 1) {
     $cPath = zen_get_product_path((int)$_GET['products_id']);
-    $_GET['$cPath'] = $cPath;
+//    $_GET['$cPath'] = $cPath;
     $cPath_array = zen_parse_category_path($cPath);
     $cPath = implode('_', $cPath_array);
     $current_category_id = $cPath_array[(sizeof($cPath_array)-1)];

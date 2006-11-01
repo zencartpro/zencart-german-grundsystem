@@ -6,7 +6,7 @@
  * @copyright Copyright 2003-2006 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: ipn_application_top.php 3054 2006-02-19 12:01:34Z wilt $
+ * @version $Id: ipn_application_top.php 4614 2006-09-27 02:55:28Z drbyte $
  */
 
 /**
@@ -89,6 +89,7 @@ define('IS_ADMIN_FLAG', false);
   require(DIR_WS_FUNCTIONS . 'functions_general.php');
   require(DIR_WS_FUNCTIONS . 'html_output.php');
   require(DIR_WS_FUNCTIONS . 'functions_email.php');
+  require(DIR_WS_FUNCTIONS . 'functions_ezpages.php');
 
 // load extra functions
   include(DIR_WS_MODULES . 'extra_functions.php');

@@ -6,7 +6,7 @@
  * @copyright Copyright 2003-2005 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: functions_customers.php 4324 2006-08-30 15:25:24Z birdbrain $
+ * @version $Id: functions_customers.php 4793 2006-10-20 05:25:20Z ajeh $
  */
 
 ////
@@ -61,7 +61,7 @@
     } elseif (isset($address['country']) && zen_not_null($address['country'])) {
       if (is_array($address['country'])) {
         $country = zen_output_string_protected($address['country']['countries_name']);
-      } else {       
+      } else {
       $country = zen_output_string_protected($address['country']);
       }
     } else {
@@ -96,7 +96,7 @@
     if ($country == '') {
       if (is_array($address['country'])) {
         $country = zen_output_string_protected($address['country']['countries_name']);
-      } else {       
+      } else {
       $country = zen_output_string_protected($address['country']);
       }
     }
@@ -195,5 +195,20 @@
     $addresses = $db->Execute($addresses_query);
 
     return $addresses->fields['total'];
+  }
+
+////
+// validate customer matches session
+  function zen_get_customer_validate_session($customer_id) {
+    global $db, $messageStack;
+    $zc_check_customer = $db->Execute("SELECT customers_id from " . TABLE_CUSTOMERS . " WHERE customers_id=" . (int)$customer_id);
+    if ($zc_check_customer->RecordCount() <= 0) {
+      $db->Execute("DELETE from " . TABLE_CUSTOMERS_BASKET . " WHERE customers_id= " . $customer_id);
+      $db->Execute("DELETE from " . TABLE_CUSTOMERS_BASKET_ATTRIBUTES . " WHERE customers_id= " . $customer_id);
+      unset($_SESSION['customer_id']);
+      $messageStack->add_session('header', ERROR_CUSTOMERS_ID_INVALID, 'error');
+      return false;
+    }
+    return true;
   }
 ?>

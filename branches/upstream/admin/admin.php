@@ -17,7 +17,7 @@
 // | to obtain it through the world-wide-web, please send a note to       |
 // | license@zen-cart.com so we can mail you a copy immediately.          |
 // +----------------------------------------------------------------------+
-//  $Id: admin.php 4187 2006-08-21 06:39:21Z drbyte $
+//  $Id: admin.php 4701 2006-10-08 01:09:44Z drbyte $
 //
 
 require('includes/application_top.php');
@@ -61,10 +61,10 @@ if (zen_not_null($action)) {
     	$password_new = zen_db_prepare_input($password_new);
     
     	$sql_data_array = array(
-    		'admin_name' => $admin_name,
-    		'admin_email' => $admin_email,
-    		'admin_level' => $admin_level
-    	);
+                              'admin_name' => $admin_name,
+                              'admin_email' => $admin_email,
+                              'admin_level' => (int)$admin_level
+                              );
     
     	if ($action == 'insert') {
     
@@ -133,7 +133,7 @@ kill.disabled = true;
 // -->
 </script>
 </head>
-<body onload="init()">
+<body onLoad="init()">
 <!-- header //-->
 <?php require(DIR_WS_INCLUDES . 'header.php'); ?>
 <!-- header_eof //-->

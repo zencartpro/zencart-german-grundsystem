@@ -17,7 +17,7 @@
 // | to obtain it through the world-wide-web, please send a note to       |
 // | license@zen-cart.com so we can mail you a copy immediately.          |
 // +----------------------------------------------------------------------+
-//  $Id: order.php 1969 2005-09-13 06:57:21Z drbyte $
+//  $Id: order.php 4774 2006-10-17 06:47:16Z drbyte $
 //
 
   class order {
@@ -36,7 +36,7 @@
     function query($order_id) {
       global $db;
       $order = $db->Execute("select cc_cvv, customers_name, customers_company, customers_street_address,
-                                    customers_suburb, customers_city, customers_postcode,
+                                    customers_suburb, customers_city, customers_postcode, customers_id,
                                     customers_state, customers_country, customers_telephone,
                                     customers_email_address, customers_address_format_id, delivery_name,
                                     delivery_company, delivery_street_address, delivery_suburb,
@@ -85,6 +85,7 @@
                           );
 
       $this->customer = array('name' => $order->fields['customers_name'],
+                              'id' => $order->fields['customers_id'],
                               'company' => $order->fields['customers_company'],
                               'street_address' => $order->fields['customers_street_address'],
                               'suburb' => $order->fields['customers_suburb'],
@@ -117,7 +118,7 @@
                              'format_id' => $order->fields['billing_address_format_id']);
 
       $index = 0;
-      $orders_products = $db->Execute("select orders_products_id, products_name, products_model,
+      $orders_products = $db->Execute("select orders_products_id, products_id, products_name, products_model,
                                               products_price, products_tax, products_quantity,
                                               final_price, onetime_charges,
                                               product_is_free
@@ -147,6 +148,7 @@
           }
 
         $this->products[$index] = array('qty' => $new_qty,
+                                        'id' => $orders_products->fields['products_id'],
                                         'name' => $orders_products->fields['products_name'],
                                         'model' => $orders_products->fields['products_model'],
                                         'tax' => $orders_products->fields['products_tax'],

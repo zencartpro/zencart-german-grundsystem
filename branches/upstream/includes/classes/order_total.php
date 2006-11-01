@@ -5,13 +5,13 @@
  * @package classes
  * @copyright Copyright 2003-2006 Zen Cart Development Team
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: order_total.php 3039 2006-02-15 00:29:28Z wilt $
+ * @version $Id: order_total.php 4457 2006-09-10 05:14:34Z ajeh $
  */
 /**
  * order-total class
  *
  * Handles all order-total processing functions
- * 
+ *
  * @package classes
  */
 if (!defined('IS_ADMIN_FLAG')) {
@@ -208,7 +208,7 @@ class order_total extends base {
     }
   }
   // Called at various times. This function calulates the total value of the order that the
-  // credit will be appled against. This varies depending on whether the credit class applies
+  // credit will be applied against. This varies depending on whether the credit class applies
   // to shipping & tax
   //
   function get_order_total_main($class, $order_total) {

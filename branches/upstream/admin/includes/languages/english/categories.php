@@ -17,7 +17,7 @@
 // | to obtain it through the world-wide-web, please send a note to       |
 // | license@zen-cart.com so we can mail you a copy immediately.          |
 // +----------------------------------------------------------------------+
-//  $Id: categories.php 3396 2006-04-09 00:02:03Z ajeh $
+//  $Id: categories.php 4808 2006-10-22 18:48:53Z ajeh $
 //
 
 define('HEADING_TITLE', 'Categories / Products');
@@ -147,6 +147,7 @@ define('ERROR_CANNOT_ADD_PRODUCT_TYPE','The specified product type cannot be add
   define('ICON_ATTRIBUTES','Attribute Features');
 
   define('TEXT_CATEGORIES_IMAGE_DIR','Upload to directory:');
+  define('TEXT_CATEGORIES_IMAGE_MANUAL', '<strong>Or, select an existing image file from server, filename:</strong>');
 
   define('TEXT_VIRTUAL_PREVIEW','Warning: This product is marked - Free Shipping and Skips Shipping Address');
   define('TEXT_VIRTUAL_EDIT','Warning: This product is marked - Free Shipping and Skips Shipping Address');

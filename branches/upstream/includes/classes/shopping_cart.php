@@ -6,7 +6,7 @@
  * @copyright Copyright 2003-2006 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: shopping_cart.php 4277 2006-08-26 03:19:28Z drbyte $
+ * @version $Id: shopping_cart.php 4791 2006-10-20 03:12:39Z ajeh $
  */
 /**
  * Class for managing the Shopping Cart
@@ -244,6 +244,8 @@ class shoppingCart extends base {
     if ($notify == true) {
       $_SESSION['new_products_id_in_cart'] = $products_id;
     }
+
+$qty = $this->adjust_quantity($qty, $products_id, 'shopping_cart');
 
     if ($this->in_cart($products_id)) {
       $this->update_quantity($products_id, $qty, $attributes);
@@ -1515,6 +1517,10 @@ class shoppingCart extends base {
         $add_max = zen_get_products_quantity_order_max($_POST['products_id'][$i]);
         $cart_qty = $this->in_cart_mixed($_POST['products_id']);
         $new_qty = $_POST['cart_quantity'][$i];
+
+//echo 'I SEE actionUpdateProduct: ' . $_POST['products_id'] . ' ' . $_POST['products_id'][$i] . '<br>';
+     $new_qty = $this->adjust_quantity($new_qty, $_POST['products_id'][$i], 'shopping_cart');
+
 //die('I see Update Cart: ' . $_POST['products_id'][$i] . ' add qty: ' . $add_max . ' - cart qty: ' . $cart_qty . ' - newqty: ' . $new_qty);
         if (($add_max == 1 and $cart_qty == 1)) {
           // do not add
@@ -1530,6 +1536,11 @@ class shoppingCart extends base {
         }
         if ($adjust_max == 'true') {
           $messageStack->add_session('shopping_cart', ERROR_MAXIMUM_QTY . ' A: - ' . zen_get_products_name($_POST['products_id'][$i]), 'caution');
+        } else {
+// display message if all is good and not on shopping_cart page
+          if (DISPLAY_CART == 'false' && $_GET['main_page'] != FILENAME_SHOPPING_CART) {
+            $messageStack->add_session('header', SUCCESS_ADDED_TO_CART_PRODUCT, 'success');
+          }
         }
       }
     }
@@ -1561,6 +1572,10 @@ class shoppingCart extends base {
       $add_max = zen_get_products_quantity_order_max($_POST['products_id']);
       $cart_qty = $this->in_cart_mixed($_POST['products_id']);
       $new_qty = $_POST['cart_quantity'];
+
+//echo 'I SEE actionAddProduct: ' . $_POST['products_id'] . '<br>';
+$new_qty = $this->adjust_quantity($new_qty, $_POST['products_id'], 'shopping_cart');
+
       if (($add_max == 1 and $cart_qty == 1)) {
         // do not add
         $new_qty = 0;
@@ -1628,6 +1643,10 @@ class shoppingCart extends base {
     }
     if ($the_list == '') {
       // no errors
+// display message if all is good and not on shopping_cart page
+      if (DISPLAY_CART == 'false' && $_GET['main_page'] != FILENAME_SHOPPING_CART) {
+        $messageStack->add_session('header', SUCCESS_ADDED_TO_CART_PRODUCT, 'success');
+      }
       zen_redirect(zen_href_link($goto, zen_get_all_get_params($parameters)));
     } else {
       // errors - display popup message
@@ -1640,6 +1659,7 @@ class shoppingCart extends base {
    * @param url parameters
    */
   function actionBuyNow($goto, $parameters) {
+    global $messageStack;
     if (isset($_GET['products_id'])) {
       if (zen_has_product_attributes($_GET['products_id'])) {
         zen_redirect(zen_href_link(zen_get_info_page($_GET['products_id']), 'products_id=' . $_GET['products_id']));
@@ -1667,6 +1687,10 @@ class shoppingCart extends base {
         }
       }
     }
+// display message if all is good and not on shopping_cart page
+    if (DISPLAY_CART == 'false' && $_GET['main_page'] != FILENAME_SHOPPING_CART) {
+      $messageStack->add_session('header', SUCCESS_ADDED_TO_CART_PRODUCT, 'success');
+    }
     zen_redirect(zen_href_link($goto, zen_get_all_get_params($parameters)));
   }
   /**
@@ -1684,7 +1708,10 @@ class shoppingCart extends base {
         $qty = $val;
         $add_max = zen_get_products_quantity_order_max($prodId);
         $cart_qty = $this->in_cart_mixed($prodId);
-        $new_qty = $qty;
+//        $new_qty = $qty;
+//echo 'I SEE actionMultipleAddProduct: ' . $prodId . '<br>';
+$new_qty = $this->adjust_quantity($qty, $prodId, 'shopping_cart');
+
         if (($add_max == 1 and $cart_qty == 1)) {
           // do not add
           $adjust_max= 'true';
@@ -1700,6 +1727,10 @@ class shoppingCart extends base {
           $messageStack->add_session('shopping_cart', ERROR_MAXIMUM_QTY . ' C: - ' . zen_get_products_name($prodId), 'caution');
         }
       }
+    }
+// display message if all is good and not on shopping_cart page
+    if (DISPLAY_CART == 'false' && $_GET['main_page'] != FILENAME_SHOPPING_CART) {
+      $messageStack->add_session('header', SUCCESS_ADDED_TO_CART_PRODUCTS, 'success');
     }
     zen_redirect(zen_href_link($goto, zen_get_all_get_params($parameters)));
   }
@@ -1777,12 +1808,17 @@ class shoppingCart extends base {
    */
   function actionCustomerOrder($goto, $parameters) {
     global $zco_page;
+    global $messageStack;
     if ($_SESSION['customer_id'] && isset($_GET['pid'])) {
       if (zen_has_product_attributes($_GET['pid'])) {
         zen_redirect(zen_href_link(zen_get_info_page($_GET['pid']), 'products_id=' . $_GET['pid']));
       } else {
         $this->add_cart($_GET['pid'], $this->get_quantity($_GET['pid'])+1);
       }
+    }
+// display message if all is good and not on shopping_cart page
+    if (DISPLAY_CART == 'false' && $_GET['main_page'] != FILENAME_SHOPPING_CART) {
+      $messageStack->add_session('header', SUCCESS_ADDED_TO_CART_PRODUCT, 'success');
     }
     zen_redirect(zen_href_link($goto, zen_get_all_get_params($parameters)));
   }
@@ -1804,6 +1840,36 @@ class shoppingCart extends base {
    */
   function actionCartUserAction($goto, $parameters) {
     $this->notify('NOTIFY_CART_USER_ACTION');
+  }
+
+//     $qty = $this->adjust_quantity($qty, (int)$products_id, 'shopping_cart');
+
+  function adjust_quantity($check_qty, $products, $message=false) {
+    global $messageStack;
+      $old_quantity = $check_qty;
+        if (QUANTITY_DECIMALS != 0) {
+          //          $new_qty = round($new_qty, QUANTITY_DECIMALS);
+
+          $fix_qty = $check_qty;
+          switch (true) {
+            case (!strstr($fix_qty, '.')):
+            $new_qty = $fix_qty;
+            $messageStack->add_session('shopping_cart', ERROR_QUANTITY_ADJUSTED . ' - ' . zen_get_products_name($products) . ' - ' . $old_quantity . ' => ' . $new_qty, 'caution');
+            break;
+            default:
+            $new_qty = preg_replace('/[0]+$/','', $check_qty);
+            $messageStack->add_session('shopping_cart', ERROR_QUANTITY_ADJUSTED . ' - ' . zen_get_products_name($products) . ' - ' . $old_quantity . ' => ' . $new_qty, 'caution');
+            break;
+          }
+        } else {
+          if ($check_qty != round($check_qty, QUANTITY_DECIMALS)) {
+            $new_qty = round($check_qty, QUANTITY_DECIMALS);
+            $messageStack->add_session('shopping_cart', ERROR_QUANTITY_ADJUSTED . ' - ' . zen_get_products_name($products) . ' - ' . $old_quantity . ' => ' . $new_qty, 'caution');
+          } else {
+            $new_qty = $check_qty;
+          }
+        }
+     return $new_qty;
   }
 }
 ?>

@@ -4,7 +4,7 @@
  * @copyright Copyright 2003-2006 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: usps.php 4043 2006-07-30 23:08:14Z drbyte $
+ * @version $Id: usps.php 4532 2006-09-16 18:38:02Z ajeh $
  */
 /**
  * USPS Shipping Module class
@@ -125,9 +125,9 @@ class usps extends base {
 
 
     // usps doesnt accept zero weight
-    $shipping_weight = ($shipping_weight < 0.1 ? 0.1 : $shipping_weight);
-    $shipping_pounds = floor ($shipping_weight);
-    $shipping_ounces = round(16 * ($shipping_weight - floor($shipping_weight)));
+    $usps_shipping_weight = ($shipping_weight < 0.1 ? 0.1 : $shipping_weight);
+    $shipping_pounds = floor ($usps_shipping_weight);
+    $shipping_ounces = round(16 * ($usps_shipping_weight - floor($usps_shipping_weight)));
 
     // weight must be less than 35lbs and greater than 6 ounces or it is not machinable
     switch(true) {
@@ -136,7 +136,7 @@ class usps extends base {
       $is_machinable = 'False';
       break;
 
-      case ($shipping_weight > 35):
+      case ($usps_shipping_weight > 35):
       // override admin choice too heavy
       $is_machinable = 'False';
       break;
@@ -169,10 +169,10 @@ class usps extends base {
             $show_box_weight = ' (' . $shipping_num_boxes . ' ' . TEXT_SHIPPING_BOXES . ')';
             break;
             case (2):
-            $show_box_weight = ' (' . number_format($shipping_weight * $shipping_num_boxes,2) . TEXT_SHIPPING_WEIGHT . ')';
+            $show_box_weight = ' (' . number_format($usps_shipping_weight * $shipping_num_boxes,2) . TEXT_SHIPPING_WEIGHT . ')';
             break;
             default:
-            $show_box_weight = ' (' . $shipping_num_boxes . ' x ' . number_format($shipping_weight,2) . TEXT_SHIPPING_WEIGHT . ')';
+            $show_box_weight = ' (' . $shipping_num_boxes . ' x ' . number_format($usps_shipping_weight,2) . TEXT_SHIPPING_WEIGHT . ')';
             break;
           }
         }

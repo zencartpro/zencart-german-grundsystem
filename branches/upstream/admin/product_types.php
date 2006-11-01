@@ -4,7 +4,7 @@
  * @copyright Copyright 2003-2006 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: product_types.php 4279 2006-08-26 03:31:29Z drbyte $
+ * @version $Id: product_types.php 4737 2006-10-13 07:13:11Z drbyte $
  */
 
   require('includes/application_top.php');
@@ -155,7 +155,7 @@
   // -->
 </script>
 </head>
-<body onload="init()">
+<body onLoad="init()">
 <!-- header //-->
 <?php require(DIR_WS_INCLUDES . 'header.php'); ?>
 <!-- header_eof //-->
@@ -343,7 +343,7 @@ if ($_GET['action'] == 'layout' || $_GET['action'] == 'layout_edit') {
   }
 ?>
               <tr>
-                <td colspan="2"><table border="0" width="100%" cellspacing="0" cellpadding="2">
+                <td colspan="3"><table border="0" width="100%" cellspacing="0" cellpadding="2">
                   <tr>
                     <td class="smallText" valign="top"><?php echo $product_types_split->display_count($product_types_query_numrows, MAX_DISPLAY_SEARCH_RESULTS, $_GET['page'], TEXT_DISPLAY_NUMBER_OF_PRODUCT_TYPES); ?></td>
                     <td class="smallText" align="right"><?php echo $product_types_split->display_links($product_types_query_numrows, MAX_DISPLAY_SEARCH_RESULTS, MAX_DISPLAY_PAGE_LINKS, $_GET['page']); ?></td>

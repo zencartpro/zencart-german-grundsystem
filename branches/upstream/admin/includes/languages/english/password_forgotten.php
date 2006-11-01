@@ -17,7 +17,7 @@
 // | to obtain it through the world-wide-web, please send a note to       |
 // | license@zen-cart.com so we can mail you a copy immediately.          |
 // +----------------------------------------------------------------------+
-// $Id: password_forgotten.php 4347 2006-09-02 19:02:26Z drbyte $
+// $Id: password_forgotten.php 4820 2006-10-23 07:19:46Z drbyte $
 //
 
 define('HEADING_TITLE', 'Resend Password');
@@ -30,6 +30,6 @@ define('SUCCESS_PASSWORD_SENT', '<p>A new password has been sent to your e-mail 
 
 define('TEXT_EMAIL_SUBJECT', 'Your Requested change');
 define('TEXT_EMAIL_FROM', EMAIL_FROM);
-define('TEXT_EMAIL_MESSAGE', 'A new password was requested from ' . $_SESSION['REMOTE_ADDR'] . '.' . "\n\n" . 'Your new password to \'' . STORE_NAME . '\' is:' . "\n\n" . '   %s' . "\n\n");
+define('TEXT_EMAIL_MESSAGE', 'A new password was requested from ' . $_SERVER['REMOTE_ADDR']  . '.' . "\n\n" . 'Your new password to \'' . STORE_NAME . '\' is:' . "\n\n" . '   %s' . "\n\nAfter you have logged in using the new password, you may change it by going to the 'Tools->Admin Settings' area.");
 
 ?>

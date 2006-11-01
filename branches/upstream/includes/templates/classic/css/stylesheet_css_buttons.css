@@ -7,14 +7,14 @@
  * @copyright Copyright 2003-2005 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: stylesheet_css_buttons.css 4314 2006-08-28 11:04:53Z drbyte $
+ * @version $Id: stylesheet_css_buttons.css 4567 2006-09-20 01:55:24Z birdbrain $
  */
 
 /* css buttons */
 .cssButton, .cssButtonHover {
 width : 20em;
 background-color: #F4F4F4;
-color : #003D00;
+color : #000000;
 border: 2px outset #F4F4F4;
 font-family: Tahoma, Verdana, Arial, Helvetica, sans-serif;
 font-size: 1.1em;

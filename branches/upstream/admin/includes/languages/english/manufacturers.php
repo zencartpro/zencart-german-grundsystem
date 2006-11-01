@@ -17,7 +17,7 @@
 // | to obtain it through the world-wide-web, please send a note to       |
 // | license@zen-cart.com so we can mail you a copy immediately.          |
 // +----------------------------------------------------------------------+
-//  $Id: manufacturers.php 1105 2005-04-04 22:05:35Z birdbrain $
+//  $Id: manufacturers.php 4808 2006-10-22 18:48:53Z ajeh $
 //
 
 define('HEADING_TITLE', 'Manufacturers');
@@ -35,6 +35,7 @@ define('TEXT_LAST_MODIFIED', 'Last Modified:');
 define('TEXT_PRODUCTS', 'Products:');
 define('TEXT_PRODUCTS_IMAGE_DIR', 'Upload to directory:');
 define('TEXT_IMAGE_NONEXISTENT', 'IMAGE DOES NOT EXIST');
+define('TEXT_MANUFACTURERS_IMAGE_MANUAL', '<strong>Or, select an existing image file from server, filename:</strong>');
 
 define('TEXT_NEW_INTRO', 'Please fill out the following information for the new manufacturer');
 define('TEXT_EDIT_INTRO', 'Please make any necessary changes');

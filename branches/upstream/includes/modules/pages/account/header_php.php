@@ -3,10 +3,10 @@
  * Header code file for the customer's Account page
  *
  * @package page
- * @copyright Copyright 2003-2005 Zen Cart Development Team
+ * @copyright Copyright 2003-2006 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: header_php.php 4086 2006-08-07 02:06:18Z ajeh $
+ * @version $Id: header_php.php 4824 2006-10-23 21:01:28Z drbyte $
  */
 // This should be first line of the script:
 $zco_notifier->notify('NOTIFY_HEADER_START_ACCOUNT');
@@ -24,7 +24,7 @@ $gv_query = "SELECT amount
 $gv_query = $db->bindVars($gv_query, ':customersID', $_SESSION['customer_id'], 'integer');
 $gv_result = $db->Execute($gv_query);
 
-if ($gv_result->fields['amount'] > 0 ) {
+if ($gv_result->RecordCount() && $gv_result->fields['amount'] > 0 ) {
   $customer_has_gv_balance = true;
   $customer_gv_balance = $currencies->format($gv_result->fields['amount']);
 }

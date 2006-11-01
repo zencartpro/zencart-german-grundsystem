@@ -5,7 +5,7 @@
  * @package classes
  * @copyright Copyright 2003-2006 Zen Cart Development Team
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: order.php 4380 2006-09-03 23:07:22Z wilt $
+ * @version $Id: order.php 4766 2006-10-16 15:14:04Z drbyte $
  */
 /**
  * order class
@@ -777,7 +777,7 @@ class order extends base {
                                  pa.attributes_price_words, pa.attributes_price_words_free,
                                  pa.attributes_price_letters, pa.attributes_price_letters_free
                                  from " . TABLE_PRODUCTS_OPTIONS . " popt, " . TABLE_PRODUCTS_OPTIONS_VALUES . " poval, " . TABLE_PRODUCTS_ATTRIBUTES . " pa
-                                 where pa.products_id = '" . $this->products[$i]['id'] . "' and pa.options_id = '" . $this->products[$i]['attributes'][$j]['option_id'] . "' and pa.options_id = popt.products_options_id and pa.options_values_id = '" . $this->products[$i]['attributes'][$j]['value_id'] . "' and pa.options_values_id = poval.products_options_values_id and popt.language_id = '" . $_SESSION['languages_id'] . "' and poval.language_id = '" . $_SESSION['languages_id'] . "'");
+                                 where pa.products_id = '" . $this->products[$i]['id'] . "' and pa.options_id = '" . (int)$this->products[$i]['attributes'][$j]['option_id'] . "' and pa.options_id = popt.products_options_id and pa.options_values_id = '" . (int)$this->products[$i]['attributes'][$j]['value_id'] . "' and pa.options_values_id = poval.products_options_values_id and popt.language_id = '" . $_SESSION['languages_id'] . "' and poval.language_id = '" . $_SESSION['languages_id'] . "'");
           }
 
           //clr 030714 update insert query.  changing to use values form $order->products for products_options_values.
@@ -805,8 +805,8 @@ class order extends base {
                                   'attributes_price_words_free' => $attributes_values->fields['attributes_price_words_free'],
                                   'attributes_price_letters' => $attributes_values->fields['attributes_price_letters'],
                                   'attributes_price_letters_free' => $attributes_values->fields['attributes_price_letters_free'],
-                                  'products_options_id' => $this->products[$i]['attributes'][$j]['option_id'],
-                                  'products_options_values_id' => $this->products[$i]['attributes'][$j]['value_id'],
+                                  'products_options_id' => (int)$this->products[$i]['attributes'][$j]['option_id'],
+                                  'products_options_values_id' => (int)$this->products[$i]['attributes'][$j]['value_id'],
                                   'products_prid' => $this->products[$i]['id']
                                   );
 

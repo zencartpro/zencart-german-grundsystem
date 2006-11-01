@@ -4,7 +4,7 @@
  * @copyright Copyright 2003-2006 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: storepickup.php 3308 2006-03-29 08:21:33Z ajeh $
+ * @version $Id: storepickup.php 4821 2006-10-23 10:54:15Z drbyte $
  */
 /**
  * Store-Pickup / Will-Call shipping method
@@ -55,7 +55,7 @@ class storepickup extends base {
     $this->sort_order = MODULE_SHIPPING_STOREPICKUP_SORT_ORDER;
     $this->icon = '';
     $this->tax_class = MODULE_SHIPPING_STOREPICKUP_TAX_CLASS;
-    $this->tax_basis = MODULE_SHIPPING_ITEM_STOREPICKUP_BASIS;
+    $this->tax_basis = MODULE_SHIPPING_STOREPICKUP_TAX_BASIS;
     $this->enabled = ((MODULE_SHIPPING_STOREPICKUP_STATUS == 'True') ? true : false);
 
     if ( ($this->enabled == true) && ((int)MODULE_SHIPPING_STOREPICKUP_ZONE > 0) ) {

@@ -4,7 +4,7 @@
  * @copyright Copyright 2003-2006 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: ot_coupon.php 4302 2006-08-27 20:32:38Z wilt $
+ * @version $Id: ot_coupon.php 4562 2006-09-19 19:11:08Z wilt $
  */
 
   class ot_coupon {
@@ -33,11 +33,13 @@
     $this->deduction = $od_amount['total'];
     if ($od_amount['total'] > 0) {
       reset($order->info['tax_groups']);
+      $tax = 0;
       while (list($key, $value) = each($order->info['tax_groups'])) {
         $tax_rate = zen_get_tax_rate_from_desc($key);
         if ($od_amount[$key]) {
           $order->info['tax_groups'][$key] -= $od_amount[$key];
           $order->info['total'] -=  $od_amount[$key];
+          $tax += $od_amount[$key];
         }
       }
       if ($od_amount['type'] == 'S') $order->info['shipping_cost'] = 0;
@@ -45,6 +47,9 @@
       $zq_coupon_code = $db->Execute($sql);
       $this->coupon_code = $zq_coupon_code->fields['coupon_code'];
       $order->info['total'] = $order->info['total'] - $od_amount['total'];
+      if (DISPLAY_PRICE_WITH_TAX == 'true') {
+        $od_amount['total'] += zen_calculate_tax($od_amount['total'], $tax);
+      }
 
       $this->output[] = array('title' => $this->title . ': ' . '<a href="javascript:couponpopupWindow(\'' . zen_href_link(FILENAME_POPUP_COUPON_HELP, 'cID=' . $_SESSION['cc_id']) . '\')">' . $this->coupon_code . '</a> :',
                               'text' => '-' . $currencies->format($od_amount['total']),
@@ -60,7 +65,6 @@
     unset($_SESSION['cc_id']);
   }
 
-
   function pre_confirmation_check($order_total) {
     global $order;
     if ($this->include_shipping == 'false') $order_total -= $order->info['shipping_cost'];
@@ -73,7 +77,6 @@
   function use_credit_amount() {
     return false;
   }
-
 
   function credit_selection() {
     global $discount_coupon;
@@ -89,9 +92,8 @@
     return $selection;
   }
 
-
   function collect_posts() {
-    global $db, $currencies, $messageStack;
+    global $db, $currencies, $messageStack, $order;
 
 // remove discount coupon by request
     if (isset($_POST['dc_redeem_code']) && strtoupper($_POST['dc_redeem_code']) == 'REMOVE') {
@@ -100,39 +102,81 @@
       $messageStack->add_session('checkout_payment', TEXT_REMOVE_REDEEM_COUPON, 'caution');
     }
 
+// bof: Discount Coupon zoned always validate coupon for payment address changes
+    if ($_SESSION['cc_id'] > 0) {
+      $sql = "select coupon_id, coupon_amount, coupon_type, coupon_minimum_order, uses_per_coupon, uses_per_user,
+              restrict_to_products, restrict_to_categories, coupon_zone_restriction, coupon_code
+              from " . TABLE_COUPONS . "
+              where coupon_id= :couponIDEntered
+              and coupon_active='Y'";
+      $sql = $db->bindVars($sql, ':couponIDEntered', $_SESSION['cc_id'], 'string');
+
+      $coupon_result=$db->Execute($sql);
+
+      $foundvalid = true;
+
+      $check_flag = false;
+      $check = $db->Execute("select zone_id, zone_country_id from " . TABLE_ZONES_TO_GEO_ZONES . " where geo_zone_id = '" . $coupon_result->fields['coupon_zone_restriction'] . "' and zone_country_id = '" . $order->billing['country']['id'] . "' order by zone_id");
+
+      if ($coupon_result->fields['coupon_zone_restriction'] > 0) {
+        while (!$check->EOF) {
+          if ($check->fields['zone_id'] < 1) {
+            $check_flag = true;
+            break;
+          } elseif ($check->fields['zone_id'] == $order->billing['zone_id']) {
+            $check_flag = true;
+            break;
+          }
+          $check->MoveNext();
+        }
+        $foundvalid = $check_flag;
+      }
+      // remove if fails address validation
+      if (!$foundvalid) {
+        unset($_POST['dc_redeem_code']);
+        unset($_SESSION['cc_id']);
+        $messageStack->add_session('checkout_payment', TEXT_REMOVE_REDEEM_COUPON_ZONE, 'caution');
+        if (!$foundvalid) zen_redirect(zen_href_link(FILENAME_CHECKOUT_PAYMENT, '', 'SSL',true, false));
+      }
+    }
+// eof: Discount Coupon zoned always validate coupon for payment address changes
+
     if ($_POST['dc_redeem_code']) {
       $sql = "select coupon_id, coupon_amount, coupon_type, coupon_minimum_order, uses_per_coupon, uses_per_user,
-              restrict_to_products, restrict_to_categories 
+              restrict_to_products, restrict_to_categories, coupon_zone_restriction
               from " . TABLE_COUPONS . "
               where coupon_code= :couponCodeEntered
               and coupon_active='Y'";
-      $sql = $db->bindVars($sql, ':couponCodeEntered', $_POST['dc_redeem_code'], 'string'); 
+      $sql = $db->bindVars($sql, ':couponCodeEntered', $_POST['dc_redeem_code'], 'string');
 
       $coupon_result=$db->Execute($sql);
 
       if ($coupon_result->fields['coupon_type'] != 'G') {
 
-        if ($coupon_result->RecordCount() <1 ) {
-
+        if ($coupon_result->RecordCount() < 1 ) {
           zen_redirect(zen_href_link(FILENAME_CHECKOUT_PAYMENT, 'credit_class_error_code=' . $this->code . '&credit_class_error=' . urlencode(TEXT_INVALID_REDEEM_COUPON), 'SSL',true, false));
         }
         if ($this->get_order_total() < $coupon_result->fields['coupon_minimum_order']) {
-          zen_redirect(zen_href_link(FILENAME_CHECKOUT_PAYMENT, 'credit_class_error_code=' . $this->code . '&credit_class_error=' . urlencode(sprintf(TEXT_INVALID_REDEEM_COUPON_MINIMUM, $currencies->format($coupon_result->fields['coupon_minimum_order']))), 'SSL',true, false));          
+          zen_redirect(zen_href_link(FILENAME_CHECKOUT_PAYMENT, 'credit_class_error_code=' . $this->code . '&credit_class_error=' . urlencode(sprintf(TEXT_INVALID_REDEEM_COUPON_MINIMUM, $currencies->format($coupon_result->fields['coupon_minimum_order']))), 'SSL',true, false));
         }
 
         // JTD - added missing code here to handle coupon product restrictions
         // look through the items in the cart to see if this coupon is valid for any item in the cart
         $products = $_SESSION['cart']->get_products();
-        $foundvalid = false;
-        for ($i=0; $i<sizeof($products); $i++) {
-//$messageStack->add_session('header','START COUPON collect: ' . ' product: ' . $products[$i]['id'] . ' coupon: ' . $coupon_result->fields['coupon_id'], 'success');
-          if (is_product_valid($products[$i]['id'], $coupon_result->fields['coupon_id'])) {
-            $foundvalid = true;
-            continue;
+        $foundvalid = true;
+
+        if ($foundvalid == true) {
+          $foundvalid = false;
+          for ($i=0; $i<sizeof($products); $i++) {
+            if (is_product_valid($products[$i]['id'], $coupon_result->fields['coupon_id'])) {
+              $foundvalid = true;
+              continue;
+            }
           }
         }
+
         if (!$foundvalid) zen_redirect(zen_href_link(FILENAME_CHECKOUT_PAYMENT, 'credit_class_error_code=' . $this->code . '&credit_class_error=' . urlencode(TEXT_INVALID_COUPON_PRODUCT), 'SSL',true, false));
-       // JTD - end of additions of missing code to handle coupon product restrictions
+         // JTD - end of additions of missing code to handle coupon product restrictions
 
         $date_query=$db->Execute("select coupon_start_date from " . TABLE_COUPONS . "
                                   where coupon_start_date <= now() and
@@ -173,25 +217,24 @@
         $_SESSION['cc_id'] = $coupon_result->fields['coupon_id'];
       }
 //      if ($_POST['submit_redeem_coupon_x'] && !$_POST['gv_redeem_code']) zen_redirect(zen_href_link(FILENAME_CHECKOUT_PAYMENT, 'credit_class_error_code=' . $this->code . '&credit_class_error=' . urlencode(TEST_NO_REDEEM_CODE), 'SSL', true, false));
-     $messageStack->add_session('checkout', TEXT_VALID_COUPON,'success');
+      $messageStack->add_session('checkout', TEXT_VALID_COUPON,'success');
     }
   }
 
+  function update_credit_account($i) {
+    return false;
+  }
 
-function update_credit_account($i) {
-  return false;
- }
-
- function apply_credit() {
-   global $db, $insert_id;
-   $cc_id = $_SESSION['cc_id'];
-   if ($this->deduction !=0) {
-     $db->Execute("insert into " . TABLE_COUPON_REDEEM_TRACK . "
-                   (coupon_id, redeem_date, redeem_ip, customer_id, order_id)
-                   values ('" . (int)$cc_id . "', now(), '" . $_SERVER['REMOTE_ADDR'] . "', '" . (int)$_SESSION['customer_id'] . "', '" . (int)$insert_id . "')");
-   }
-   $_SESSION['cc_id'] = "";
- }
+  function apply_credit() {
+    global $db, $insert_id;
+    $cc_id = $_SESSION['cc_id'];
+    if ($this->deduction !=0) {
+      $db->Execute("insert into " . TABLE_COUPON_REDEEM_TRACK . "
+                    (coupon_id, redeem_date, redeem_ip, customer_id, order_id)
+                    values ('" . (int)$cc_id . "', now(), '" . $_SERVER['REMOTE_ADDR'] . "', '" . (int)$_SESSION['customer_id'] . "', '" . (int)$insert_id . "')");
+    }
+    $_SESSION['cc_id'] = "";
+  }
 
   function calculate_deductions($order_total) {
     global $db, $order, $messageStack;

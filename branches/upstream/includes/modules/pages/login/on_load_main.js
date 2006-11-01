@@ -1,1 +1,1 @@
-document.login.email_address.focus();
+update_zone(document.create_account); document.login.email_address.focus();

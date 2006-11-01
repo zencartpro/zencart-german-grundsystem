@@ -1,12 +1,12 @@
 <?php
 /**
  * Page to let customer change their shipping address(ship to)
- * 
+ *
  * @package page
  * @copyright Copyright 2003-2006 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: header_php.php 3192 2006-03-15 22:37:24Z wilt $
+ * @version $Id: header_php.php 4793 2006-10-20 05:25:20Z ajeh $
  */
 
 // This should be first line of the script:
@@ -18,10 +18,16 @@ if ($_SESSION['cart']->count_contents() <= 0) {
 }
 
 // if the customer is not logged on, redirect them to the login page
-if (!isset($_SESSION['customer_id'])) {
-  $_SESSION['navigation']->set_snapshot();
-  zen_redirect(zen_href_link(FILENAME_LOGIN, '', 'SSL'));
-}
+  if (!isset($_SESSION['customer_id'])) {
+    $_SESSION['navigation']->set_snapshot();
+    zen_redirect(zen_href_link(FILENAME_LOGIN, '', 'SSL'));
+  } else {
+    // validate customer
+    if (zen_get_customer_validate_session($_SESSION['customer_id']) == false) {
+      $_SESSION['navigation']->set_snapshot(array('mode' => 'SSL', 'page' => FILENAME_CHECKOUT_SHIPPING));
+      zen_redirect(zen_href_link(FILENAME_LOGIN, '', 'SSL'));
+    }
+  }
 
 require(DIR_WS_MODULES . zen_get_module_directory('require_languages.php'));
 

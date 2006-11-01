@@ -10,7 +10,7 @@
  * @copyright Portions Copyright 2003 osCommerce
  * @todo Need to add/fine-tune ability to override or insert entry-points on a per-product-type basis
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: default_filter.php 4254 2006-08-25 00:30:56Z ajeh $
+ * @version $Id: default_filter.php 4770 2006-10-17 05:12:23Z drbyte $
  */
 if (!defined('IS_ADMIN_FLAG')) {
   die('Illegal Access');
@@ -22,10 +22,8 @@ if (!defined('IS_ADMIN_FLAG')) {
   }
   if (!isset($select_column_list)) $select_column_list = "";
    // show the products of a specified manufacturer
-  if (isset($_GET['manufacturers_id']) && $_GET['manufacturers_id'] != '' )
-  {
-    if (isset($_GET['filter_id']) && zen_not_null($_GET['filter_id']))
-    {
+  if (isset($_GET['manufacturers_id']) && $_GET['manufacturers_id'] != '' ) {
+    if (isset($_GET['filter_id']) && zen_not_null($_GET['filter_id'])) {
 // We are asked to show only a specific category
       $listing_sql = "select " . $select_column_list . " p.products_id, p.products_type, p.manufacturers_id, p.products_price, p.products_tax_class_id, pd.products_description, if(s.status = 1, s.specials_new_products_price, NULL) AS specials_new_products_price, IF(s.status = 1, s.specials_new_products_price, p.products_price) as final_price, p.products_sort_order, p.product_is_call, p.product_is_always_free_shipping, p.products_qty_box_status
        from " . TABLE_PRODUCTS . " p left join " . TABLE_SPECIALS . " s on p.products_id = s.products_id , " .
@@ -55,8 +53,7 @@ if (!defined('IS_ADMIN_FLAG')) {
     }
   } else {
 // show the products in a given category
-    if (isset($_GET['filter_id']) && zen_not_null($_GET['filter_id']))
-    {
+    if (isset($_GET['filter_id']) && zen_not_null($_GET['filter_id'])) {
 // We are asked to show only specific category
       $listing_sql = "select " . $select_column_list . " p.products_id, p.products_type, p.manufacturers_id, p.products_price, p.products_tax_class_id, pd.products_description, IF(s.status = 1, s.specials_new_products_price, NULL) as specials_new_products_price, IF(s.status = 1, s.specials_new_products_price, p.products_price) as final_price, p.products_sort_order, p.product_is_call, p.product_is_always_free_shipping, p.products_qty_box_status
       from " . TABLE_PRODUCTS . " p left join " . TABLE_SPECIALS . " s on p.products_id = s.products_id, " .
@@ -92,17 +89,14 @@ if (!defined('IS_ADMIN_FLAG')) {
   }
 
   if (isset($column_list)) {
-    if ((!isset($_GET['sort'])) || (isset($_GET['sort']) && !ereg('[1-8][ad]', $_GET['sort'])) || (substr($_GET['sort'], 0, 1) > sizeof($column_list)) )
-    {
-      for ($i=0, $n=sizeof($column_list); $i<$n; $i++)
-      {
-        if (isset($column_list[$i]) && $column_list[$i] == 'PRODUCT_LIST_NAME')
-        {
+    if ((!isset($_GET['sort'])) || (isset($_GET['sort']) && !ereg('[1-8][ad]', $_GET['sort'])) || (substr($_GET['sort'], 0, 1) > sizeof($column_list)) ) {
+      for ($i=0, $n=sizeof($column_list); $i<$n; $i++) {
+        if (isset($column_list[$i]) && $column_list[$i] == 'PRODUCT_LIST_NAME') {
           $_GET['sort'] = $i+1 . 'a';
           $listing_sql .= " order by p.products_sort_order, pd.products_name";
           break;
         } else {
-// sort by products_sort_order when PRODUCT_LISTING_DEFAULT_SORT_ORDER ia left blank
+// sort by products_sort_order when PRODUCT_LISTING_DEFAULT_SORT_ORDER is left blank
 // for reverse, descending order use:
 //       $listing_sql .= " order by p.products_sort_order desc, pd.products_name";
           $listing_sql .= " order by p.products_sort_order, pd.products_name";
@@ -117,8 +111,7 @@ if (!defined('IS_ADMIN_FLAG')) {
       $sort_col = substr($_GET['sort'], 0 , 1);
       $sort_order = substr($_GET['sort'], 1);
       $listing_sql .= ' order by ';
-      switch ($column_list[$sort_col-1])
-      {
+      switch ($column_list[$sort_col-1]) {
         case 'PRODUCT_LIST_MODEL':
           $listing_sql .= "p.products_model " . ($sort_order == 'd' ? 'desc' : '') . ", pd.products_name";
           break;
@@ -145,10 +138,8 @@ if (!defined('IS_ADMIN_FLAG')) {
     }
   }
 // optional Product List Filter
-  if (PRODUCT_LIST_FILTER > 0)
-  {
-    if (isset($_GET['manufacturers_id']) && $_GET['manufacturers_id'] != '')
-    {
+  if (PRODUCT_LIST_FILTER > 0) {
+    if (isset($_GET['manufacturers_id']) && $_GET['manufacturers_id'] != '') {
       $filterlist_sql = "select distinct c.categories_id as id, cd.categories_name as name
       from " . TABLE_PRODUCTS . " p, " .
       TABLE_PRODUCTS_TO_CATEGORIES . " p2c, " .
@@ -174,11 +165,9 @@ if (!defined('IS_ADMIN_FLAG')) {
     }
     $do_filter_list = false;
     $filterlist = $db->Execute($filterlist_sql);
-    if ($filterlist->RecordCount() > 1)
-    {
+    if ($filterlist->RecordCount() > 1) {
         $do_filter_list = true;
-      if (isset($_GET['manufacturers_id']))
-      {
+      if (isset($_GET['manufacturers_id'])) {
         $getoption_set =  true;
         $get_option_variable = 'manufacturers_id';
         $options = array(array('id' => '', 'text' => TEXT_ALL_CATEGORIES));
@@ -194,8 +183,7 @@ if (!defined('IS_ADMIN_FLAG')) {
 
 // Get the right image for the top-right
   $image = DIR_WS_TEMPLATE_IMAGES . 'table_background_list.gif';
-  if (isset($_GET['manufacturers_id']))
-  {
+  if (isset($_GET['manufacturers_id'])) {
     $sql = "select manufacturers_image
               from   " . TABLE_MANUFACTURERS . "
               where      manufacturers_id = '" . (int)$_GET['manufacturers_id'] . "'";

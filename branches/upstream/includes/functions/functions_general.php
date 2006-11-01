@@ -7,7 +7,7 @@
  * @copyright Copyright 2003-2006 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: functions_general.php 4135 2006-08-14 04:25:02Z drbyte $
+ * @version $Id: functions_general.php 4683 2006-10-07 06:11:53Z drbyte $
  */
 if (!defined('IS_ADMIN_FLAG')) {
   die('Illegal Access');
@@ -26,17 +26,20 @@ if (!defined('IS_ADMIN_FLAG')) {
 */
   function zen_redirect($url) {
     global $request_type;
-    if ( (ENABLE_SSL == true) && ($request_type == 'SSL') ) { // We are loading an SSL page
-      if (substr($url, 0, strlen(HTTP_SERVER)) == HTTP_SERVER) { // NONSSL url
-        $url = HTTPS_SERVER . substr($url, strlen(HTTP_SERVER)); // Change it to SSL
+    // Are we loading an SSL page?
+    if ( (ENABLE_SSL == true) && ($request_type == 'SSL') ) { 
+      // yes, but a NONSSL url was supplied
+      if (substr($url, 0, strlen(HTTP_SERVER . DIR_WS_CATALOG)) == HTTP_SERVER . DIR_WS_CATALOG) { 
+        // So, change it to SSL, based on site's configuration for SSL 
+        $url = HTTPS_SERVER . DIR_WS_HTTPS_CATALOG . substr($url, strlen(HTTP_SERVER . DIR_WS_CATALOG)); 
       }
     }
 
-// clean up URL before executing it
-  while (strstr($url, '&&')) $url = str_replace('&&', '&', $url);
-  while (strstr($url, '&amp;&amp;')) $url = str_replace('&amp;&amp;', '&amp;', $url);
-  // header locates should not have the &amp; in the address it breaks things
-  while (strstr($url, '&amp;')) $url = str_replace('&amp;', '&', $url);
+  // clean up URL before executing it
+    while (strstr($url, '&&')) $url = str_replace('&&', '&', $url);
+    while (strstr($url, '&amp;&amp;')) $url = str_replace('&amp;&amp;', '&amp;', $url);
+    // header locates should not have the &amp; in the address it breaks things
+    while (strstr($url, '&amp;')) $url = str_replace('&amp;', '&', $url);
 
     header('Location: ' . $url);
 
@@ -1416,10 +1419,11 @@ if (!defined('IS_ADMIN_FLAG')) {
       }
       $num_country++;
       $countries->MoveNext();
+      $output_string .= '    hideStateField(' . $form . ');' . "\n" ;
     }
     $output_string .= '  } else {' . "\n" .
                       '    ' . $form . '.' . $field . '.options[0] = new Option("' . TYPE_BELOW . '", "");' . "\n" .
-											'    ' . $form . '.' . 'state' . '.disabled = false;' . "\n" .
+                      '    showStateField(' . $form . ');' . "\n" .
                       '  }' . "\n";
     return $output_string;
   }

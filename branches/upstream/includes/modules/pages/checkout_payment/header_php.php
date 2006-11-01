@@ -6,7 +6,7 @@
  * @copyright Copyright 2003-2006 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: header_php.php 4088 2006-08-07 04:54:43Z drbyte $
+ * @version $Id: header_php.php 4793 2006-10-20 05:25:20Z ajeh $
  */
 
 // This should be first line of the script:
@@ -18,10 +18,16 @@ if ($_SESSION['cart']->count_contents() <= 0) {
 }
 
 // if the customer is not logged on, redirect them to the login page
-if (!$_SESSION['customer_id']) {
-  $_SESSION['navigation']->set_snapshot();
-  zen_redirect(zen_href_link(FILENAME_LOGIN, '', 'SSL'));
-}
+  if (!$_SESSION['customer_id']) {
+    $_SESSION['navigation']->set_snapshot();
+    zen_redirect(zen_href_link(FILENAME_LOGIN, '', 'SSL'));
+  } else {
+    // validate customer
+    if (zen_get_customer_validate_session($_SESSION['customer_id']) == false) {
+      $_SESSION['navigation']->set_snapshot();
+      zen_redirect(zen_href_link(FILENAME_LOGIN, '', 'SSL'));
+    }
+  }
 
 // if no shipping method has been selected, redirect the customer to the shipping method selection page
 if (!$_SESSION['shipping']) {
@@ -62,7 +68,7 @@ if (!$_SESSION['billto']) {
 } else {
   // verify the selected billing address
   $check_address_query = "SELECT count(*) AS total FROM " . TABLE_ADDRESS_BOOK . "
-                          WHERE customers_id = :customersID 
+                          WHERE customers_id = :customersID
                           AND address_book_id = :addressBookID";
 
   $check_address_query = $db->bindVars($check_address_query, ':customersID', $_SESSION['customer_id'], 'integer');

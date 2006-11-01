@@ -9,7 +9,7 @@
  * @copyright Copyright 2003-2006 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: tpl_modules_products_all_listing.php 4272 2006-08-26 03:10:49Z drbyte $
+ * @version $Id: tpl_modules_products_all_listing.php 4629 2006-09-28 15:29:18Z ajeh $
  */
 ?>
 <table border="0" width="100%" cellspacing="2" cellpadding="2">
@@ -26,7 +26,11 @@
       $row_counter++;
 
       if (PRODUCT_ALL_LIST_IMAGE != '0') {
-        $display_products_image = '<a href="' . zen_href_link(zen_get_info_page($products_all->fields['products_id']), 'products_id=' . $products_all->fields['products_id']) . '">' . zen_image(DIR_WS_IMAGES . $products_all->fields['products_image'], $products_all->fields['products_name'], IMAGE_PRODUCT_ALL_LISTING_WIDTH, IMAGE_PRODUCT_ALL_LISTING_HEIGHT) . '</a>' . str_repeat('<br clear="all" />', substr(PRODUCT_ALL_LIST_IMAGE, 3, 1));
+        if ($products_all->fields['products_image'] == '' and PRODUCTS_IMAGE_NO_IMAGE_STATUS == 0) {
+          $display_products_image = str_repeat('<br clear="all" />', substr(PRODUCT_ALL_LIST_IMAGE, 3, 1));
+        } else {
+          $display_products_image = '<a href="' . zen_href_link(zen_get_info_page($products_all->fields['products_id']), 'products_id=' . $products_all->fields['products_id']) . '">' . zen_image(DIR_WS_IMAGES . $products_all->fields['products_image'], $products_all->fields['products_name'], IMAGE_PRODUCT_ALL_LISTING_WIDTH, IMAGE_PRODUCT_ALL_LISTING_HEIGHT) . '</a>' . str_repeat('<br clear="all" />', substr(PRODUCT_ALL_LIST_IMAGE, 3, 1));
+        }
       } else {
         $display_products_image = '';
       }

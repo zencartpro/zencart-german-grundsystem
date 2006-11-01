@@ -14,7 +14,7 @@
  * @copyright Copyright 2003-2006 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: tpl_header.php 4066 2006-08-06 05:50:06Z ajeh $
+ * @version $Id: tpl_header.php 4813 2006-10-23 02:13:53Z drbyte $
  */
 ?>
 
@@ -61,7 +61,7 @@ if (!isset($flag_disable_header) || !$flag_disable_header) {
 <?php }?>
 </ul>
 </div>
-<div class="navMainSearch forward"><?php require(DIR_WS_MODULES . 'sideboxes/search_header.php'); ?></div>
+<div id="navMainSearch"><?php require(DIR_WS_MODULES . 'sideboxes/search_header.php'); ?></div>
 <br class="clearBoth" />
 </div>
 <!--eof-navigation display-->

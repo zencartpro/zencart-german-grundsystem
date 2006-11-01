@@ -1,32 +1,24 @@
 <?php
-//
-// +----------------------------------------------------------------------+
-// |zen-cart Open Source E-commerce                                       |
-// +----------------------------------------------------------------------+
-// | Copyright (c) 2003 The zen-cart developers                           |
-// |                                                                      |
-// | http://www.zen-cart.com/index.php                                    |
-// |                                                                      |
-// | Portions Copyright (c) 2003 osCommerce                               |
-// +----------------------------------------------------------------------+
-// | This source file is subject to version 2.0 of the GPL license,       |
-// | that is bundled with this package in the file LICENSE, and is        |
-// | available through the world-wide-web at the following url:           |
-// | http://www.zen-cart.com/license/2_0.txt.                             |
-// | If you did not receive a copy of the zen-cart license and are unable |
-// | to obtain it through the world-wide-web, please send a note to       |
-// | license@zen-cart.com so we can mail you a copy immediately.          |
-// +----------------------------------------------------------------------+
-//  $Id: geo_zones.php 3966 2006-07-16 19:40:28Z drbyte $
-//
+/**
+ * @package admin
+ * @copyright Copyright 2003-2006 Zen Cart Development Team
+ * @copyright Portions Copyright 2003 osCommerce
+ * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
+ * @version $Id: geo_zones.php 4736 2006-10-13 07:11:44Z drbyte $
+ */
 
 define('HEADING_TITLE', 'Zone Definitions - Taxes, Payment and Shipping');
 
 define('TABLE_HEADING_COUNTRY', 'Country');
 define('TABLE_HEADING_COUNTRY_ZONE', 'Zone');
-define('TABLE_HEADING_TAX_ZONES', 'Tax Zones');
+define('TABLE_HEADING_TAX_ZONES', 'Zone Name');
 define('TABLE_HEADING_TAX_ZONES_DESCRIPTION', 'Zone Description');
+define('TABLE_HEADING_STATUS', 'Status');
 define('TABLE_HEADING_ACTION', 'Action');
+//define('TEXT_LEGEND', 'LEGEND: ');
+define('TEXT_LEGEND_TAX_AND_ZONES', ': Taxes &amp; Zones Defined');
+define('TEXT_LEGEND_ONLY_ZONES', ': Zones Defined but not Taxes ');
+define('TEXT_LEGEND_NOT_CONF', ': Not Configured ');
 
 define('TEXT_INFO_HEADING_NEW_ZONE', 'New Zone');
 define('TEXT_INFO_NEW_ZONE_INTRO', 'Please enter the new zone information');

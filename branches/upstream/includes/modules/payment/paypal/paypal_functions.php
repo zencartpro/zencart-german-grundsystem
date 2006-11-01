@@ -3,11 +3,11 @@
  * functions used by payment module class for Paypal IPN payment method
  *
  * @package paymentMethod
- * @copyright Copyright 2003-2005 Zen Cart Development Team
+ * @copyright Copyright 2003-2006 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @copyright Portions Copyright (c) 2004 DevosC.com
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: paypal_functions.php 4148 2006-08-16 02:28:27Z drbyte $
+ * @version $Id: paypal_functions.php 4835 2006-10-25 04:45:40Z drbyte $
  */
 
 // counter used for debug purposes:
@@ -57,7 +57,7 @@
       ipn_debug_email('IPN WARNING::Transaction was not marked as VERIFIED. IPN Info = ' . $info);
       return false;
     }
-    if ($postArray['business'] != strtolower(MODULE_PAYMENT_PAYPAL_BUSINESS_ID)) {
+    if (strtolower($postArray['business']) != strtolower(MODULE_PAYMENT_PAYPAL_BUSINESS_ID)) {
       ipn_debug_email('IPN WARNING::Transaction email address not matched. From IPN = ' . $postArray['business'] . ': From CONFIG = ' .  MODULE_PAYMENT_PAYPAL_BUSINESS_ID);
       return false;
     }

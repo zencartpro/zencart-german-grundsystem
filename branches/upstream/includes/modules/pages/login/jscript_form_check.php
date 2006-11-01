@@ -1,10 +1,12 @@
 <?php
 /**
+ * jscript_form_check
+ *
  * @package page
  * @copyright Copyright 2003-2006 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: jscript_form_check.php 4238 2006-08-24 10:01:04Z drbyte $
+ * @version $Id: jscript_form_check.php 4683 2006-10-07 06:11:53Z drbyte $
  */
 ?>
 <script language="javascript" type="text/javascript"><!--
@@ -105,13 +107,14 @@ function check_form(form_name) {
   check_input("lastname", <?php echo ENTRY_LAST_NAME_MIN_LENGTH; ?>, "<?php echo ENTRY_LAST_NAME_ERROR; ?>");
 
 <?php if (ACCOUNT_DOB == 'true' && (int)ENTRY_DOB_MIN_LENGTH != 0) echo '  check_input("dob", ' . ENTRY_DOB_MIN_LENGTH . ', "' . ENTRY_DATE_OF_BIRTH_ERROR . '");' . "\n"; ?>
+<?php if (ACCOUNT_COMPANY == 'true' && (int)ENTRY_COMPANY_MIN_LENGTH != 0) echo '  check_input("company", ' . ENTRY_COMPANY_MIN_LENGTH . ', "' . ENTRY_COMPANY_ERROR . '");' . "\n"; ?>
 
   check_input("email_address", <?php echo ENTRY_EMAIL_ADDRESS_MIN_LENGTH; ?>, "<?php echo ENTRY_EMAIL_ADDRESS_ERROR; ?>");
   check_input("street_address", <?php echo ENTRY_STREET_ADDRESS_MIN_LENGTH; ?>, "<?php echo ENTRY_STREET_ADDRESS_ERROR; ?>");
   check_input("postcode", <?php echo ENTRY_POSTCODE_MIN_LENGTH; ?>, "<?php echo ENTRY_POST_CODE_ERROR; ?>");
   check_input("city", <?php echo ENTRY_CITY_MIN_LENGTH; ?>, "<?php echo ENTRY_CITY_ERROR; ?>");
 
-<?php if (ACCOUNT_STATE == 'true') echo '  if (!form.state.disabled && form.zone_id.value > 0) check_input("state", ' . ENTRY_STATE_MIN_LENGTH . ', "' . ENTRY_STATE_ERROR . '");' . "\n"; ?>
+<?php if (ACCOUNT_STATE == 'true') echo '  if (!form.state.disabled && form.zone_id.value == "") check_input("state", ' . ENTRY_STATE_MIN_LENGTH . ', "' . ENTRY_STATE_ERROR . '")' . "\n" . '  else if (form.state.disabled) check_select("zone_id", "", "' . ENTRY_STATE_ERROR_SELECT . '");' . "\n"; ?>
 
   check_select("country", "", "<?php echo ENTRY_COUNTRY_ERROR; ?>");
 

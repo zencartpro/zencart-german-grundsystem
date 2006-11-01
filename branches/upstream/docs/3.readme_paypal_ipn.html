@@ -3,7 +3,7 @@
  * @package documentation
  * @copyright Copyright 2003-2006 Zen Cart Development Team
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: 3.readme_paypal_ipn.html 3782 2006-06-16 06:00:34Z drbyte $
+ * @version $Id: 3.readme_paypal_ipn.html 4731 2006-10-12 06:59:52Z drbyte $
  */
 //-->
 <html>
@@ -92,7 +92,7 @@ Features &amp; Installation Instructions</h1>
 <div>
 <h1>Prerequisites for Use</h1>
 <ul type="disc">
-<li>Completed, working installation of Zen Cart&trade; v1.3.0</li>
+<li>Completed, working installation of Zen Cart&trade; v1.3.x</li>
 <li>Premier or Merchant Business Account from PayPal.<br />
 <br />
 <em>Some account configurations may need to be made in your PayPal <br />
@@ -200,17 +200,8 @@ NOTE: This must match <STRONG>EXACTLY </STRONG>the primary email address on your
   <li>(might have to use www.paypal.com/us/cgi-bin/webscr) </li>
   </ul>
 <br />
-<li><strong>Debug Email Notifications</strong> - You can turn off/on the ability to receive email notifications of all the paypal IPN activity that happens between the paypal server and your store. These are very TECHNICAL emails, and will not be of much benefit unless troubleshooting a paypal problem with a support technician.<br>
-  <br>
+<li><strong>Debug Mode </strong> - You can log all the paypal IPN activity that happens between the paypal server and your store. This is very TECHNICAL output, and will not be of much benefit unless troubleshooting a paypal problem with a support technician. If you choose to &quot;email&quot; the data, it will go to the Store Owner's email address. Be sure to check your junkmail folder if messages are not showing up. If you choose to log the results, they will go to the /includes/modules/paypal/logs folder, which you will need to make read/write.<br>
 </li>
-
-
-<li><strong>Debug Email Address</strong> - You can specify here the email address to which debug emails will be sent if this paypal IPN payment module has debug-emails enabled.<br>
-  Be sure to check your junk-email settings as sometimes these emails will be classified as possible junk-mail.<br>
-  <br>
-</li>
-<li><strong>Status Live/Testing</strong> - FOR PROGRAMMERS ONLY - If you are having difficulties with the paypal IPN module, you can put the module into Test mode and simulate IPN transactions to your store. <br>
-BEST TO LEAVE THIS SET TO &quot;Live&quot;. Otherwise, real transactions will not process. </li>
 </ul>
 <br />
 </div>
@@ -218,7 +209,7 @@ BEST TO LEAVE THIS SET TO &quot;Live&quot;. Otherwise, real transactions will no
 <h1>Frequently Asked Questions</h1>
 <p><strong>Do I need to enable IPN in my PayPal Acccount Profile? What URL should I specify for the IPN feature to be used?</strong><br />
 <br />
-<strong>Yes</strong>, you should enable it. <br />
+<strong>Yes</strong>, you must enable it. <br />
 1. Log into your PayPal account and go to <strong>Profile</strong><br />
 2. Click on <strong>"Instant Payment Notification Preferences"</strong><br />
 3. Click on Edit<br />
@@ -264,6 +255,6 @@ Note: The sessions work automatically. Do not change your sessions setting in th
 </tr>
 </table>
 <br /><br />
-<p align="center"><em>Zen Cart&trade; Copyright 2005</em></p>
+<p align="center"><em>Zen Cart&trade; Copyright 2006</em></p>
 </body>
 </html>

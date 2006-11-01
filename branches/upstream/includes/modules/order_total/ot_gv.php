@@ -4,7 +4,7 @@
  * @copyright Copyright 2003-2006 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: ot_gv.php 4375 2006-09-03 20:36:38Z drbyte $
+ * @version $Id: ot_gv.php 4578 2006-09-21 20:19:28Z wilt $
  */
 
 class ot_gv {
@@ -42,6 +42,10 @@ class ot_gv {
       $this->deduction = $od_amount + $tod_amount;
       $order->info['total'] = zen_round($order->info['total'] - $this->deduction, 2);
       if ($od_amount > 0) {
+            if (DISPLAY_PRICE_WITH_TAX == 'true') {
+              $this->deduction += zen_calculate_tax($this->deduction, $tax);
+            }
+
         $this->output[] = array('title' => $this->title . ':',
                                 'text' => '-' . $currencies->format($this->deduction),
                                 'value' => $this->deduction);

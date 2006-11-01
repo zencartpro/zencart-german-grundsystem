@@ -6,7 +6,7 @@
  * @copyright Copyright 2003-2006 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: meta_tags.php 4273 2006-08-26 03:13:52Z drbyte $
+ * @version $Id: meta_tags.php 4795 2006-10-20 17:46:58Z ajeh $
  */
 if (!defined('IS_ADMIN_FLAG')) {
   die('Illegal Access');
@@ -261,7 +261,7 @@ switch ($_GET['main_page']) {
         $meta_products_price = '';
       }
 
-      if (zen_not_null($product_info_metatags->fields['products_model'])) {
+      if (META_TAG_INCLUDE_MODEL == '1' && zen_not_null($product_info_metatags->fields['products_model'])) {
         $meta_products_name = $product_info_metatags->fields['products_name'] . ' [' . $product_info_metatags->fields['products_model'] . ']';
       } else {
         $meta_products_name = $product_info_metatags->fields['products_name'];
@@ -315,8 +315,8 @@ switch ($_GET['main_page']) {
 
   default:
   define('META_TAG_TITLE', (defined('NAVBAR_TITLE') ? NAVBAR_TITLE . PRIMARY_SECTION : '') . TITLE . TAGLINE);
-  define('META_TAG_DESCRIPTION', TITLE . PRIMARY_SECTION . NAVBAR_TITLE . SECONDARY_SECTION . KEYWORDS);
-  define('META_TAG_KEYWORDS', KEYWORDS . METATAGS_DIVIDER . NAVBAR_TITLE);
+  define('META_TAG_DESCRIPTION', TITLE . PRIMARY_SECTION . (defined('NAVBAR_TITLE') ? NAVBAR_TITLE : '' ) . SECONDARY_SECTION . KEYWORDS);
+  define('META_TAG_KEYWORDS', KEYWORDS . METATAGS_DIVIDER . (defined('NAVBAR_TITLE') ? NAVBAR_TITLE : '' ) );
 }
 
 // meta tags override due to 404, missing products_id, cPath or other EOF issues

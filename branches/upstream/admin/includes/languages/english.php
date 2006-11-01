@@ -4,7 +4,7 @@
  * @copyright Copyright 2003-2006 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: english.php 4385 2006-09-04 04:10:48Z drbyte $
+ * @version $Id: english.php 4804 2006-10-21 16:19:59Z ajeh $
  */
 
 // added defines for header alt and text
@@ -497,6 +497,8 @@ define('NOT_INSTALLED_TEXT','Not Installed');
 // search filters
   define('TEXT_INFO_SEARCH_DETAIL_FILTER','Search Filter: ');
   define('HEADING_TITLE_SEARCH_DETAIL','Search: ');
+  define('HEADING_TITLE_SEARCH_DETAIL_REPORTS', 'Search for Product(s) - Delimited by commas');
+  define('HEADING_TITLE_SEARCH_DETAIL_REPORTS_NAME_MODEL', 'Search for Products Name/Model');
 
   define('PREV_NEXT_PRODUCT', 'Products: ');
   define('TEXT_CATEGORIES_STATUS_INFO_OFF', '<span class="alert">*Category is Disabled</span>');
@@ -609,9 +611,11 @@ define('ENTRY_NOTHING_TO_SEND','You haven\'t entered any content for your messag
 
   define('TABLE_HEADING_YES','Yes');
   define('TABLE_HEADING_NO','No');
-  define('TEXT_IMAGES_OVERWRITE', 'Overwrite Existing Image?<br />Use No for manually<br />typed names:');
+  define('TEXT_PRODUCTS_IMAGE_MANUAL', '<br /><strong>Or, select an existing image file from server, filename:</strong>');
+  define('TEXT_IMAGES_OVERWRITE', '<br /><strong>Overwrite Existing Image on Server?</strong>');
   define('TEXT_IMAGE_OVERWRITE_WARNING','WARNING: FILENAME was updated but not overwritten ');
-  define('TEXT_IMAGES_DELETE', 'Delete Image?<br />Image is not removed from server:');
+  define('TEXT_IMAGES_DELETE', '<strong>Delete Image?</strong> NOTE: Removes Image from Product, Image is NOT removed from server:');
+  define('TEXT_IMAGE_CURRENT', 'Image Name: ');
 
   define('ERROR_DEFINE_OPTION_NAMES', 'Warning: No Option Names have been defined');
   define('ERROR_DEFINE_OPTION_VALUES', 'Warning: No Option Values have been defined');

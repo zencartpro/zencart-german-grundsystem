@@ -6,7 +6,7 @@
  * @copyright Copyright 2003-2006 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: header_php.php 2984 2006-02-07 22:00:25Z drbyte $
+ * @version $Id: header_php.php 4635 2006-09-30 18:48:26Z drbyte $
  */
 // This should be first line of the script:
   $zco_notifier->notify('NOTIFY_HEADER_START_POPUP_IMAGES_ADDITIONAL');
@@ -30,7 +30,7 @@
   $products_image = $products_values->fields['products_image'];
 
   $products_image_extension = substr($products_image, strrpos($products_image, '.'));
-  $products_image_base = ereg_replace($products_image_extension, '', $products_image);
+  $products_image_base = str_replace($products_image_extension, '', $products_image);
   $products_image_medium = $products_image_base . IMAGE_SUFFIX_MEDIUM . $products_image_extension;
   $products_image_large = $products_image_base . IMAGE_SUFFIX_LARGE . $products_image_extension;
 

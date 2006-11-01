@@ -14,13 +14,13 @@
  * @copyright Copyright 2003-2005 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: tpl_footer.php 3183 2006-03-14 07:58:59Z birdbrain $
+ * @version $Id: tpl_footer.php 4821 2006-10-23 10:54:15Z drbyte $
  */
 require(DIR_WS_MODULES . zen_get_module_directory('footer.php'));
 ?>
 
 <?php
-if (!$flag_disable_footer) {
+if (!isset($flag_disable_footer) || !$flag_disable_footer) {
 ?>
 
 <!--bof-navigation display -->

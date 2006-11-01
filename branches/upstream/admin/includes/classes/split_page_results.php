@@ -17,13 +17,14 @@
 // | to obtain it through the world-wide-web, please send a note to       |
 // | license@zen-cart.com so we can mail you a copy immediately.          |
 // +----------------------------------------------------------------------+
-//  $Id: split_page_results.php 2839 2006-01-13 06:15:57Z drbyte $
+//  $Id: split_page_results.php 4681 2006-10-06 19:46:03Z wilt $
 //
 
   class splitPageResults {
     function splitPageResults(&$current_page_number, $max_rows_per_page, &$sql_query, &$query_num_rows) {
       global $db;
       if (empty($current_page_number)) $current_page_number = 1;
+      $current_page_number = (int)$current_page_number;
 
       $pos_to = strlen($sql_query);
      $query_lower = strtolower($sql_query);
@@ -58,7 +59,7 @@
 
     function display_links($query_numrows, $max_rows_per_page, $max_page_links, $current_page_number, $parameters = '', $page_name = 'page') {
       global $PHP_SELF;
-
+      $current_page_number = (int)$current_page_number;
       if ( zen_not_null($parameters) && (substr($parameters, -1) != '&') ) $parameters .= '&';
 
 // calculate number of pages needing links
@@ -106,6 +107,7 @@
     }
 
     function display_count($query_numrows, $max_rows_per_page, $current_page_number, $text_output) {
+      $current_page_number = (int)$current_page_number;
       $to_num = ($max_rows_per_page * $current_page_number);
       if ($to_num > $query_numrows) $to_num = $query_numrows;
       $from_num = ($max_rows_per_page * ($current_page_number - 1));

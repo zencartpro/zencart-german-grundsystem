@@ -17,7 +17,7 @@
 // | to obtain it through the world-wide-web, please send a note to       |
 // | license@zen-cart.com so we can mail you a copy immediately.          |
 // +----------------------------------------------------------------------+
-//  $Id: record_company.php 276 2004-09-10 22:35:28Z wilt $
+//  $Id: record_company.php 4811 2006-10-22 19:07:42Z ajeh $
 //
   define('HEADING_TITLE', 'Record Companies');
   define('TABLE_HEADING_RECORD_COMPANY', 'Record Company');
@@ -30,6 +30,7 @@
   define('TEXT_RECORD_COMPANY_IMAGE', 'Record Company Image');
   define('TEXT_RECORD_COMPANY_URL', 'Record Company Web Site');
   define('TEXT_RECORD_COMPANY_IMAGE_DIR', 'Image Directory&nbsp;');
+  define('TEXT_RECORD_COMPANY_IMAGE_MANUAL', '<strong>Or, select an existing image file from server, filename:</strong>');
 
   define('TEXT_HEADING_NEW_RECORD_COMPANY', 'New Record Company');
   define('TEXT_HEADING_EDIT_RECORD_COMPANY', 'Edit Record Company');

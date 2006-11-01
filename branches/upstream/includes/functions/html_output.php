@@ -7,7 +7,7 @@
  * @copyright Copyright 2003-2006 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: html_output.php 4263 2006-08-25 06:13:19Z drbyte $
+ * @version $Id: html_output.php 4792 2006-10-20 04:41:38Z drbyte $
  */
 
 /*
@@ -246,6 +246,11 @@
       }
     }
 
+    // inject rollover class if one is defined. NOTE: This could end up with 2 "class" elements if $parameters contains "class" already.
+    if (defined('IMAGE_ROLLOVER_CLASS') && IMAGE_ROLLOVER_CLASS != '') {
+    	$parameters .= (zen_not_null($parameters) ? ' ' : '') . 'class="rollover"';
+    }
+    // add $parameters to the tag output
     if (zen_not_null($parameters)) $image .= ' ' . $parameters;
 
     $image .= ' />';
@@ -278,6 +283,12 @@
  */
   function zen_image_button($image, $alt = '', $parameters = '', $sec_class = '') {
     global $template, $current_page_base, $zco_notifier;
+
+    // inject rollover class if one is defined. NOTE: This could end up with 2 "class" elements if $parameters contains "class" already.
+    if (defined('IMAGE_ROLLOVER_CLASS') && IMAGE_ROLLOVER_CLASS != '') {
+    	$parameters .= (zen_not_null($parameters) ? ' ' : '') . 'class="rollover"';
+    }
+
     $zco_notifier->notify('PAGE_OUTPUT_IMAGE_BUTTON');
     if (strtolower(IMAGE_USE_CSS_BUTTONS) == 'yes') return zenCssButton($image, $alt, 'button', $sec_class, $parameters = '');
     return zen_image($template->get_template_dir($image, DIR_WS_TEMPLATE, $current_page_base, 'buttons/' . $_SESSION['language'] . '/') . $image, $alt, '', '', $parameters);

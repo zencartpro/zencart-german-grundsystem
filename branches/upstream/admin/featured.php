@@ -17,7 +17,7 @@
 // | to obtain it through the world-wide-web, please send a note to       |
 // | license@zen-cart.com so we can mail you a copy immediately.          |
 // +----------------------------------------------------------------------+
-//  $Id: featured.php 4039 2006-07-30 05:19:18Z ajeh $
+//  $Id: featured.php 4533 2006-09-17 17:21:10Z ajeh $
 //
 
   require('includes/application_top.php');
@@ -92,12 +92,25 @@
           $skip_featured = true;
           $messageStack->add_session(WARNING_FEATURED_PRE_ADD_EMPTY, 'caution');
         }
-        $sql = "select featured_id from " . TABLE_FEATURED . " where products_id='" . (int)$_POST['pre_add_products_id'] . "'";
-        $check_featured = $db->Execute($sql);
-        if ($check_featured->RecordCount() > 0) {
-          $skip_featured = true;
-          $messageStack->add_session(WARNING_FEATURED_PRE_ADD_DUPLICATE, 'caution');
+
+        if ($skip_featured == false) {
+          $sql = "select products_id from " . TABLE_PRODUCTS . " where products_id='" . (int)$_POST['pre_add_products_id'] . "'";
+          $check_featured = $db->Execute($sql);
+          if ($check_featured->RecordCount() < 1) {
+            $skip_featured = true;
+            $messageStack->add_session(WARNING_FEATURED_PRE_ADD_BAD_PRODUCTS_ID, 'caution');
+          }
         }
+
+        if ($skip_featured == false) {
+          $sql = "select featured_id from " . TABLE_FEATURED . " where products_id='" . (int)$_POST['pre_add_products_id'] . "'";
+          $check_featured = $db->Execute($sql);
+          if ($check_featured->RecordCount() > 0) {
+            $skip_featured = true;
+            $messageStack->add_session(WARNING_FEATURED_PRE_ADD_DUPLICATE, 'caution');
+          }
+        }
+
         if ($skip_featured == true) {
           zen_redirect(zen_href_link(FILENAME_FEATURED, ((isset($_GET['page']) && $_GET['page'] > 0) ? 'page=' . $_GET['page'] : '')));
         }

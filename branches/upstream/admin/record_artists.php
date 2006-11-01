@@ -17,7 +17,7 @@
 // | to obtain it through the world-wide-web, please send a note to       |
 // | license@zen-cart.com so we can mail you a copy immediately.          |
 // +----------------------------------------------------------------------+
-//  $Id: record_artists.php 1969 2005-09-13 06:57:21Z drbyte $
+//  $Id: record_artists.php 4810 2006-10-22 19:02:19Z ajeh $
 //
 
   require('includes/application_top.php');
@@ -48,6 +48,13 @@
           zen_db_perform(TABLE_RECORD_ARTISTS, $sql_data_array, 'update', "artists_id = '" . (int)$artists_id . "'");
         }
 
+      if ($_POST['artists_image_manual'] != '') {
+        // add image manually
+        $artists_image_name = $_POST['img_dir'] . $_POST['artists_image_manual'];
+        $db->Execute("update " . TABLE_RECORD_ARTISTS . "
+                      set artists_image = '" .  $artists_image_name . "'
+                      where artists_id = '" . (int)$artists_id . "'");
+      } else {
         $artists_image = new upload('artists_image');
         $artists_image->set_destination(DIR_FS_CATALOG_IMAGES . $_POST['img_dir']);
         if ( $artists_image->parse() &&  $artists_image->save()) {
@@ -62,6 +69,7 @@
                           where artists_id = '" . (int)$artists_id . "'");
           }
         }
+      }
 
         $languages = zen_get_languages();
         for ($i=0, $n=sizeof($languages); $i<$n; $i++) {
@@ -251,6 +259,7 @@
       $default_directory = 'artists/';
 
       $contents[] = array('text' => '<BR />' . TEXT_ARTISTS_IMAGE_DIR . zen_draw_pull_down_menu('img_dir', $dir_info, $default_directory));
+      $contents[] = array('text' => '<br />' . TEXT_ARTISTS_IMAGE_MANUAL . '&nbsp;' . zen_draw_input_field('artists_image_manual'));
 
       $manufacturer_inputs_string = '';
       $languages = zen_get_languages();
@@ -277,6 +286,7 @@
       }
       $default_directory = substr( $aInfo->artists_image, 0,strpos( $aInfo->artists_image, '/')+1);
       $contents[] = array('text' => '<BR />' . TEXT_ARTISTS_IMAGE_DIR . zen_draw_pull_down_menu('img_dir', $dir_info, $default_directory));
+      $contents[] = array('text' => '<br />' . TEXT_ARTISTS_IMAGE_MANUAL . '&nbsp;' . zen_draw_input_field('artists_image_manual'));
       $contents[] = array('text' => '<br />' . zen_info_image($aInfo->artists_image, $aInfo->artists_name));
       $manufacturer_inputs_string = '';
       $languages = zen_get_languages();

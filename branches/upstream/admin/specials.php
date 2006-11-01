@@ -1,24 +1,11 @@
 <?php
-//
-// +----------------------------------------------------------------------+
-// |zen-cart Open Source E-commerce                                       |
-// +----------------------------------------------------------------------+
-// | Copyright (c) 2006 The zen-cart developers                           |
-// |                                                                      |
-// | http://www.zen-cart.com/index.php                                    |
-// |                                                                      |
-// | Portions Copyright (c) 2003 osCommerce                               |
-// +----------------------------------------------------------------------+
-// | This source file is subject to version 2.0 of the GPL license,       |
-// | that is bundled with this package in the file LICENSE, and is        |
-// | available through the world-wide-web at the following url:           |
-// | http://www.zen-cart.com/license/2_0.txt.                             |
-// | If you did not receive a copy of the zen-cart license and are unable |
-// | to obtain it through the world-wide-web, please send a note to       |
-// | license@zen-cart.com so we can mail you a copy immediately.          |
-// +----------------------------------------------------------------------+
-//  $Id: specials.php 3788 2006-06-17 17:08:48Z ajeh $
-//
+/**
+ * @package admin
+ * @copyright Copyright 2003-2006 Zen Cart Development Team
+ * @copyright Portions Copyright 2003 osCommerce
+ * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
+ * @version $Id: specials.php 4737 2006-10-13 07:13:11Z drbyte $
+ */
 
   require('includes/application_top.php');
 
@@ -143,12 +130,25 @@
           $skip_special = true;
           $messageStack->add_session(WARNING_SPECIALS_PRE_ADD_EMPTY, 'caution');
         }
-        $sql = "select specials_id from " . TABLE_SPECIALS . " where products_id='" . (int)$_POST['pre_add_products_id'] . "'";
-        $check_special = $db->Execute($sql);
-        if ($check_special->RecordCount() > 0) {
-          $skip_special = true;
-          $messageStack->add_session(WARNING_SPECIALS_PRE_ADD_DUPLICATE, 'caution');
+
+        if ($skip_special == false) {
+          $sql = "select products_id from " . TABLE_PRODUCTS . " where products_id='" . (int)$_POST['pre_add_products_id'] . "'";
+          $check_special = $db->Execute($sql);
+          if ($check_special->RecordCount() < 1) {
+            $skip_special = true;
+            $messageStack->add_session(WARNING_SPECIALS_PRE_ADD_BAD_PRODUCTS_ID, 'caution');
+          }
         }
+
+        if ($skip_special == false) {
+          $sql = "select specials_id from " . TABLE_SPECIALS . " where products_id='" . (int)$_POST['pre_add_products_id'] . "'";
+          $check_special = $db->Execute($sql);
+          if ($check_special->RecordCount() > 0) {
+            $skip_special = true;
+            $messageStack->add_session(WARNING_SPECIALS_PRE_ADD_DUPLICATE, 'caution');
+          }
+        }
+
         if ($skip_special == true) {
           zen_redirect(zen_href_link(FILENAME_SPECIALS, ((isset($_GET['page']) && $_GET['page'] > 0) ? 'page=' . $_GET['page'] : '')));
         }
@@ -204,7 +204,7 @@
   // -->
 </script>
 </head>
-<body onload="init()">
+<body onLoad="init()">
 <div id="spiffycalendar" class="text"></div>
 <!-- header //-->
 <?php require(DIR_WS_INCLUDES . 'header.php'); ?>
@@ -354,7 +354,7 @@ var EndDate = new ctlSpiffyCalendarBox("EndDate", "new_special", "end", "btnDate
                 <td class="dataTableHeadingContent" align="center"><?php echo TABLE_HEADING_AVAILABLE_DATE; ?></td>
                 <td class="dataTableHeadingContent" align="center"><?php echo TABLE_HEADING_EXPIRES_DATE; ?></td>
                 <td class="dataTableHeadingContent" align="center"><?php echo TABLE_HEADING_STATUS; ?></td>
-                <td class="dataTableHeadingContent" align="right"><?php echo TABLE_HEADING_ACTION; ?>&nbsp;</td>
+                <td class="dataTableHeadingContent" align="right"><?php echo TABLE_HEADING_ACTION; ?>&nbsp;&nbsp;</td>
               </tr>
 <?php
 // create search filter
@@ -446,7 +446,7 @@ if (($_GET['page'] == '1' or $_GET['page'] == '') and $_GET['sID'] != '') {
     }
 ?>
               <tr>
-                <td colspan="4"><table border="0" width="100%" cellpadding="0"cellspacing="2">
+                <td colspan="8"><table border="0" width="100%" cellpadding="0"cellspacing="2">
                   <tr>
                     <td class="smallText" valign="top"><?php echo $specials_split->display_count($specials_query_numrows, MAX_DISPLAY_SEARCH_RESULTS, $_GET['page'], TEXT_DISPLAY_NUMBER_OF_SPECIALS); ?></td>
                     <td class="smallText" align="right"><?php echo $specials_split->display_links($specials_query_numrows, MAX_DISPLAY_SEARCH_RESULTS, MAX_DISPLAY_PAGE_LINKS, $_GET['page']); ?></td>

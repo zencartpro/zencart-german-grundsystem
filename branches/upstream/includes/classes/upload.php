@@ -6,7 +6,7 @@
  * @copyright Copyright 2003-2006 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: upload.php 3041 2006-02-15 21:56:45Z wilt $
+ * @version $Id: upload.php 4806 2006-10-22 04:07:35Z ajeh $
  */
 if (!defined('IS_ADMIN_FLAG')) {
   die('Illegal Access');
@@ -82,10 +82,20 @@ class upload extends base {
     //if ($file['tmp_name'] == 'none') return false;
     //if (!is_uploaded_file($file['tmp_name'])) return false;
 
+// not working at this time to test for server limit error
+    if (!is_uploaded_file($file['tmp_name'])) {
+      if ($this->message_location == 'direct') {
+        $messageStack->add_session('header', WARNING_NO_FILE_UPLOADED, 'warning');
+      } else {
+        $messageStack->add_session('upload', WARNING_NO_FILE_UPLOADED, 'warning');
+      }
+      return false;
+    }
+
     if ( zen_not_null($file['tmp_name']) && ($file['tmp_name'] != 'none') && is_uploaded_file($file['tmp_name']) ) {
       if (zen_not_null($file['size']) and ($file['size'] > MAX_FILE_UPLOAD_SIZE)) {
         if ($this->message_location == 'direct') {
-          $messageStack->add('header', ERROR_FILE_TOO_BIG, 'error');
+          $messageStack->add_session('header', ERROR_FILE_TOO_BIG, 'error');
         } else {
           $messageStack->add_session('upload', ERROR_FILE_TOO_BIG, 'error');
         }
@@ -95,7 +105,7 @@ class upload extends base {
       if (sizeof($this->extensions) > 0) {
         if (!in_array(strtolower(substr($file['name'], strrpos($file['name'], '.')+1)), $this->extensions)) {
           if ($this->message_location == 'direct') {
-            $messageStack->add('header', ERROR_FILETYPE_NOT_ALLOWED . ' ' . UPLOAD_FILENAME_EXTENSIONS, 'error');
+            $messageStack->add_session('header', ERROR_FILETYPE_NOT_ALLOWED . ' ' . UPLOAD_FILENAME_EXTENSIONS, 'error');
           } else {
             $messageStack->add_session('upload', ERROR_FILETYPE_NOT_ALLOWED . ' - ' . UPLOAD_FILENAME_EXTENSIONS, 'error');
           }
@@ -110,7 +120,7 @@ class upload extends base {
       return $this->check_destination();
     } else {
       if ($this->message_location == 'direct') {
-        $messageStack->add('header', WARNING_NO_FILE_UPLOADED, 'warning');
+        $messageStack->add_session('header', WARNING_NO_FILE_UPLOADED, 'warning');
       } else {
         $messageStack->add_session('upload', WARNING_NO_FILE_UPLOADED, 'warning');
       }
@@ -127,7 +137,7 @@ class upload extends base {
       chmod($this->destination . $this->filename, $this->permissions);
 
       if ($this->message_location == 'direct') {
-        $messageStack->add('header', SUCCESS_FILE_SAVED_SUCCESSFULLY, 'success');
+        $messageStack->add_session('header', SUCCESS_FILE_SAVED_SUCCESSFULLY, 'success');
       } else {
         $messageStack->add_session('upload', SUCCESS_FILE_SAVED_SUCCESSFULLY, 'success');
       }
@@ -135,7 +145,7 @@ class upload extends base {
       return true;
     } else {
       if ($this->message_location == 'direct') {
-        $messageStack->add('header', ERROR_FILE_NOT_SAVED, 'error');
+        $messageStack->add_session('header', ERROR_FILE_NOT_SAVED, 'error');
       } else {
         $messageStack->add_session('upload', ERROR_FILE_NOT_SAVED, 'error');
       }
@@ -182,13 +192,13 @@ class upload extends base {
     if (!is_writeable($this->destination)) {
       if (is_dir($this->destination)) {
         if ($this->message_location == 'direct') {
-          $messageStack->add('header', sprintf(ERROR_DESTINATION_NOT_WRITEABLE, $this->destination), 'error');
+          $messageStack->add_session('header', sprintf(ERROR_DESTINATION_NOT_WRITEABLE, $this->destination), 'error');
         } else {
           $messageStack->add_session('upload', sprintf(ERROR_DESTINATION_NOT_WRITEABLE, $this->destination), 'error');
         }
       } else {
         if ($this->message_location == 'direct') {
-          $messageStack->add('header', sprintf(ERROR_DESTINATION_DOES_NOT_EXIST, $this->destination), 'error');
+          $messageStack->add_session('header', sprintf(ERROR_DESTINATION_DOES_NOT_EXIST, $this->destination), 'error');
         } else {
           $messageStack->add_session('upload', sprintf(ERROR_DESTINATION_DOES_NOT_EXIST, $this->destination), 'error');
         }

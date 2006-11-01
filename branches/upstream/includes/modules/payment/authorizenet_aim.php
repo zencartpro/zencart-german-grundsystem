@@ -6,7 +6,7 @@
  * @copyright Copyright 2003-2006 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: authorizenet_aim.php 4275 2006-08-26 03:18:04Z drbyte $
+ * @version $Id: authorizenet_aim.php 4775 2006-10-17 06:47:38Z drbyte $
  */
 /**
  * Authorize.net Payment Module (AIM version)
@@ -267,8 +267,11 @@ class authorizenet_aim extends base {
   function before_process() {
     global $_POST, $response, $db, $order, $messageStack;
 
+    // how many CC digits do we remember?
     if (MODULE_PAYMENT_AUTHORIZENET_AIM_STORE_NUMBER == 'True') {
       $order->info['cc_number'] = $_POST['cc_number'];
+    } else {
+      $order->info['cc_number'] = str_pad(substr($_POST['cc_number'], -4), strlen($_POST['cc_number']), "X", STR_PAD_LEFT);
     }
     $order->info['cc_expires'] = $_POST['cc_expires'];
     $order->info['cc_type'] = $_POST['cc_type'];
@@ -363,9 +366,10 @@ class authorizenet_aim extends base {
     curl_setopt($ch, CURLOPT_POST, 1);
     curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-
+    curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, FALSE); /* compatibility for SSL communications on some Windows servers (IIS 5.0+) */
     if (CURL_PROXY_REQUIRED == 'True') {
-      curl_setopt ($ch, CURLOPT_HTTPPROXYTUNNEL, true);
+      $proxy_tunnel_flag = (defined('CURL_PROXY_TUNNEL_FLAG') && strtoupper(CURL_PROXY_TUNNEL_FLAG) == 'FALSE') ? false : true;
+      curl_setopt ($ch, CURLOPT_HTTPPROXYTUNNEL, $proxy_tunnel_flag);
       curl_setopt ($ch, CURLOPT_PROXYTYPE, CURLPROXY_HTTP);
       curl_setopt ($ch, CURLOPT_PROXY, CURL_PROXY_SERVER_DETAILS);
     }

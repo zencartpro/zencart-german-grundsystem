@@ -3,7 +3,7 @@
 // +----------------------------------------------------------------------+
 // |zen-cart Open Source E-commerce                                       |
 // +----------------------------------------------------------------------+
-// | Copyright (c) 2003 The zen-cart developers                           |
+// | Copyright (c) 2006 The zen-cart developers                           |
 // |                                                                      |
 // | http://www.zen-cart.com/index.php                                    |
 // |                                                                      |
@@ -17,13 +17,13 @@
 // | to obtain it through the world-wide-web, please send a note to       |
 // | license@zen-cart.com so we can mail you a copy immediately.          |
 // +----------------------------------------------------------------------+
-//  $Id: footer.php 4113 2006-08-12 17:07:37Z ajeh $
+//  $Id: footer.php 4583 2006-09-22 03:19:06Z drbyte $
 //
 
 // check and display zen cart version and history version in footer
   $current_sinfo = PROJECT_VERSION_NAME . ' v' . PROJECT_VERSION_MAJOR . '.' . PROJECT_VERSION_MINOR . '/';
 
-  $check_hist_query = "SELECT * from " . TABLE_PROJECT_VERSION_HISTORY . " WHERE project_version_key = 'Zen-Cart Main' ORDER BY project_version_date_applied DESC LIMIT 1";
+  $check_hist_query = "SELECT * from " . TABLE_PROJECT_VERSION . " WHERE project_version_key = 'Zen-Cart Database' ORDER BY project_version_date_applied DESC LIMIT 1";
   $check_hist_details = $db->Execute($check_hist_query);
   if (!$check_hist_details->EOF) {
     $current_sinfo .=  'v' . $check_hist_details->fields['project_version_major'] . '.' . $check_hist_details->fields['project_version_minor'];

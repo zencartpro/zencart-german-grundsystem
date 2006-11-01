@@ -4,7 +4,7 @@
  * @copyright Copyright 2003-2006 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: categories.php 4300 2006-08-27 19:36:10Z ajeh $
+ * @version $Id: categories.php 4809 2006-10-22 18:53:22Z ajeh $
  */
 
   require('includes/application_top.php');
@@ -213,26 +213,33 @@
         }
       }
 
-      if ($categories_image = new upload('categories_image')) {
-        $categories_image->set_destination(DIR_FS_CATALOG_IMAGES . $_POST['img_dir']);
-        if ($categories_image->parse() && $categories_image->save()) {
-          $categories_image_name = $_POST['img_dir'] . $categories_image->filename;
-        }
-        if ($categories_image->filename != 'none' && $categories_image->filename != '' && $_POST['image_delete'] != 1) {
-          // save filename when not set to none and not blank
-          $db->Execute("update " . TABLE_CATEGORIES . "
-                        set categories_image = '" . $categories_image_name . "'
-                        where categories_id = '" . (int)$categories_id . "'");
-        } else {
-          // remove filename when set to none and not blank
-          if ($categories_image->filename != '' || $_POST['image_delete'] == 1) {
+      if ($_POST['categories_image_manual'] != '') {
+        // add image manually
+        $categories_image_name = $_POST['img_dir'] . $_POST['categories_image_manual'];
+        $db->Execute("update " . TABLE_CATEGORIES . "
+                      set categories_image = '" . $categories_image_name . "'
+                      where categories_id = '" . (int)$categories_id . "'");
+      } else {
+        if ($categories_image = new upload('categories_image')) {
+          $categories_image->set_destination(DIR_FS_CATALOG_IMAGES . $_POST['img_dir']);
+          if ($categories_image->parse() && $categories_image->save()) {
+            $categories_image_name = $_POST['img_dir'] . $categories_image->filename;
+          }
+          if ($categories_image->filename != 'none' && $categories_image->filename != '' && $_POST['image_delete'] != 1) {
+            // save filename when not set to none and not blank
             $db->Execute("update " . TABLE_CATEGORIES . "
-                          set categories_image = ''
+                          set categories_image = '" . $categories_image_name . "'
                           where categories_id = '" . (int)$categories_id . "'");
+          } else {
+            // remove filename when set to none and not blank
+            if ($categories_image->filename != '' || $_POST['image_delete'] == 1) {
+              $db->Execute("update " . TABLE_CATEGORIES . "
+                            set categories_image = ''
+                            where categories_id = '" . (int)$categories_id . "'");
+            }
           }
         }
       }
-
 
       zen_redirect(zen_href_link(FILENAME_CATEGORIES, 'cPath=' . $cPath . '&cID=' . $categories_id));
       break;
@@ -242,15 +249,18 @@
       // add or update meta tags
       //die('I SEE ' . $action . ' - ' . $_POST['categories_id']);
       $categories_id = $_POST['categories_id'];
-      if (zen_get_category_metatags_keywords($categories_id, (int)$_SESSION['languages_id']) or zen_get_category_metatags_description($categories_id, (int)$_SESSION['languages_id'])) {
-        $action = 'update_category_meta_tags';
-      } else {
-        $action = 'insert_categories_meta_tags';
-      }
-
       $languages = zen_get_languages();
       for ($i=0, $n=sizeof($languages); $i<$n; $i++) {
         $language_id = $languages[$i]['id'];
+        $check = $db->Execute("select *
+                               from " . TABLE_METATAGS_CATEGORIES_DESCRIPTION . "
+                               where categories_id = '" . (int)$categories_id . "'
+                               and language_id = '" . (int)$language_id . "'");
+        if ($check->RecordCount() > 0) {
+          $action = 'update_category_meta_tags';
+        } else {
+          $action = 'insert_categories_meta_tags';
+        }
 
         $sql_data_array = array('metatags_title' => zen_db_prepare_input($_POST['metatags_title'][$language_id]),
                                 'metatags_keywords' => zen_db_prepare_input($_POST['metatags_keywords'][$language_id]),
@@ -259,7 +269,6 @@
         if ($action == 'insert_categories_meta_tags') {
           $insert_sql_data = array('categories_id' => $categories_id,
                                    'language_id' => $language_id);
-
           $sql_data_array = array_merge($sql_data_array, $insert_sql_data);
 
           zen_db_perform(TABLE_METATAGS_CATEGORIES_DESCRIPTION, $sql_data_array);
@@ -713,6 +722,7 @@ function init()
     $default_directory = 'categories/';
 
     $contents[] = array('text' => TEXT_CATEGORIES_IMAGE_DIR . ' ' . zen_draw_pull_down_menu('img_dir', $dir_info, $default_directory));
+    $contents[] = array('text' => '<br />' . TEXT_CATEGORIES_IMAGE_MANUAL . '&nbsp;' . zen_draw_input_field('categories_image_manual'));
 
     $contents[] = array('text' => '<br />' . TEXT_SORT_ORDER . '<br />' . zen_draw_input_field('sort_order', '', 'size="6"'));
     $contents[] = array('align' => 'center', 'text' => '<br />' . zen_image_submit('button_save.gif', IMAGE_SAVE) . ' <a href="' . zen_href_link(FILENAME_CATEGORIES, 'cPath=' . $cPath) . '">' . zen_image_button('button_cancel.gif', IMAGE_CANCEL) . '</a>');
@@ -766,6 +776,9 @@ function init()
     $default_directory = substr( $cInfo->categories_image, 0,strpos( $cInfo->categories_image, '/')+1);
 
     $contents[] = array('text' => TEXT_CATEGORIES_IMAGE_DIR . ' ' . zen_draw_pull_down_menu('img_dir', $dir_info, $default_directory));
+
+    $contents[] = array('text' => '<br />' . TEXT_CATEGORIES_IMAGE_MANUAL . '&nbsp;' . zen_draw_input_field('categories_image_manual'));
+
     $contents[] = array('text' => '<br />' . zen_info_image($cInfo->categories_image, $cInfo->categories_name));
     $contents[] = array('text' => '<br />' . $cInfo->categories_image);
     $contents[] = array('text' => '<br />' . TEXT_IMAGES_DELETE . ' ' . zen_draw_radio_field('image_delete', '0', $off_image_delete) . '&nbsp;' . TABLE_HEADING_NO . ' ' . zen_draw_radio_field('image_delete', '1', $on_image_delete) . '&nbsp;' . TABLE_HEADING_YES);

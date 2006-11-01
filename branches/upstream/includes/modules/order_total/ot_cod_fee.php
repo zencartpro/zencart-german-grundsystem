@@ -7,7 +7,7 @@
  * @copyright Portions Copyright 2003 osCommerce
  * @copyright Portions Copyright (c) 2002 Thomas Plänkers http://www.oscommerce.at
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: ot_cod_fee.php 3069 2006-02-27 04:24:54Z ajeh $
+ * @version $Id: ot_cod_fee.php 4553 2006-09-18 00:30:40Z ajeh $
  */
 /**
  * COD-FEE Order Totals Module
@@ -83,6 +83,9 @@
             $order->info['tax'] += zen_calculate_tax($cod_cost, $tax);
             $order->info['tax_groups'][$tax_description] += zen_calculate_tax($cod_cost, $tax);
             $order->info['total'] += zen_calculate_tax($cod_cost, $tax);
+            if (DISPLAY_PRICE_WITH_TAX == 'true') {
+              $cod_cost += zen_calculate_tax($cod_cost, $tax);
+            }
           }
 
           $this->output[] = array('title' => $this->title . ':',

@@ -4,7 +4,7 @@
  * @copyright Copyright 2003-2006 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: english.php 4378 2006-09-03 22:44:36Z drbyte $
+ * @version $Id: english.php 4807 2006-10-22 04:10:20Z ajeh $
  */
 
 // FOLLOWING WERE moved to meta_tags.php
@@ -368,6 +368,7 @@
   define('TEXT_ERROR', 'An error has occurred');
   define('TEXT_INVALID_COUPON_PRODUCT', 'This coupon code is not valid for any product currently in your cart.');
   define('TEXT_VALID_COUPON', 'Congratulations you have redeemed the Discount Coupon');
+  define('TEXT_REMOVE_REDEEM_COUPON_ZONE', 'The coupon code you entered is not valid for the address you have selected.');
 
 // more info in place of buy now
   define('MORE_INFO_TEXT','... more info');
@@ -381,6 +382,13 @@
 // cart contents
   define('PRODUCTS_ORDER_QTY_TEXT_IN_CART','Quantity in Cart: ');
   define('PRODUCTS_ORDER_QTY_TEXT','Add to Cart: ');
+
+// success messages for added to cart when display cart is off
+// set to blank for no messages
+// for all pages except where multiple add to cart is used:
+  define('SUCCESS_ADDED_TO_CART_PRODUCT', 'Successfully added Product to the cart ...');
+// only for where multiple add to cart is used:
+  define('SUCCESS_ADDED_TO_CART_PRODUCTS', 'Successfully added selected Product(s) to the cart ...');
 
   define('TEXT_PRODUCT_WEIGHT_UNIT','lbs');
 
@@ -432,6 +440,7 @@
   define('ERROR_FILE_NOT_SAVED', 'Error:  File not saved.');
   define('ERROR_DESTINATION_NOT_WRITEABLE', 'Error:  destination not writeable.');
   define('ERROR_DESTINATION_DOES_NOT_EXIST', 'Error: destination does not exist.');
+  define('ERROR_FILE_TOO_BIG', 'Warning: File was too large to upload!<br />Order can be placed but please contact the site for help with upload');
 // End iii added
 
   define('TEXT_BEFORE_DOWN_FOR_MAINTENANCE', 'NOTICE: This website is scheduled to be down for maintenance on: ');
@@ -461,6 +470,7 @@
 
   define('ERROR_MAXIMUM_QTY','Qty Adjusted - Maximum Qty Added to Cart ');
   define('ERROR_CORRECTIONS_HEADING','Please correct the following: <br />');
+  define('ERROR_QUANTITY_ADJUSTED', 'Quantity Error Adjustment<br />');
 
 // Downloads Controller
   define('DOWNLOADS_CONTROLLER_ON_HOLD_MSG','NOTE: Downloads are not available until payment has been confirmed');
@@ -478,6 +488,9 @@
   define('ERROR_PRODUCT_QUANTITY_MIN_SHOPPING_CART',' ... Minimum Quantity errors - ');
   define('ERROR_PRODUCT_QUANTITY_UNITS_SHOPPING_CART',' ... Quantity Units errors - ');
   define('ERROR_PRODUCT_QUANTITY_MAX_SHOPPING_CART',' ... Maximum Quantity errors - ');
+
+// error on checkout when $_SESSION['customers_id' does not exist in customers table
+  define('ERROR_CUSTOMERS_ID_INVALID', 'Customer information cannot be validated!<br />Please login or recreate your account ...');
 
   define('TABLE_HEADING_FEATURED_PRODUCTS','Featured Products');
 

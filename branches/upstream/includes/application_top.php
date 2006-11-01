@@ -10,7 +10,7 @@
  * @copyright Copyright 2003-2006 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: application_top.php 4271 2006-08-26 01:21:02Z drbyte $
+ * @version $Id: application_top.php 4665 2006-10-02 04:20:24Z drbyte $
  */
 /**
  * boolean if true the autoloader scripts will be parsed and their output shown. For debugging purposes only.
@@ -45,7 +45,7 @@ if (file_exists('includes/local/configure.php')) {
  * 
  */
 if (defined('STRICT_ERROR_REPORTING') && STRICT_ERROR_REPORTING == true) {
-  @ini_set('show_errors', 'on');
+  @ini_set('display_errors', '1');
   error_reporting(E_ALL);
 } else {
   error_reporting(E_ALL & ~E_NOTICE);

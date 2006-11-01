@@ -9,7 +9,7 @@
  * @copyright Copyright 2003-2005 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: tpl_checkout_shipping_address_default.php 4025 2006-07-25 06:39:17Z drbyte $
+ * @version $Id: tpl_checkout_shipping_address_default.php 4554 2006-09-18 01:15:01Z ajeh $
  */
 ?>
 <div class="centerColumn" id="checkoutShipAddressDefault">
@@ -30,7 +30,7 @@
 <br class="clearBoth" />
 
 <?php
-     if ($addresses_count <= MAX_ADDRESS_BOOK_ENTRIES) {
+     if ($addresses_count < MAX_ADDRESS_BOOK_ENTRIES) {
 ?>
 <?php
 /**

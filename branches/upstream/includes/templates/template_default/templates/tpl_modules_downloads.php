@@ -3,10 +3,10 @@
  * Module Template
  *
  * @package templateSystem
- * @copyright Copyright 2003-2005 Zen Cart Development Team
+ * @copyright Copyright 2003-2006 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: tpl_modules_downloads.php 3725 2006-06-07 17:20:36Z ajeh $
+ * @version $Id: tpl_modules_downloads.php 4829 2006-10-24 21:39:15Z drbyte $
  */
 /**
  * require the downloads module
@@ -76,7 +76,6 @@
     }
 ?>
   </table>
-</fieldset>
 
 <?php
 // old way

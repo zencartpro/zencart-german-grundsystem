@@ -6,7 +6,7 @@
  * @copyright Copyright 2003-2006 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: header_php.php 4276 2006-08-26 03:18:28Z drbyte $
+ * @version $Id: header_php.php 4824 2006-10-23 21:01:28Z drbyte $
  */
 // This should be first line of the script:
 $zco_notifier->notify('NOTIFY_HEADER_START_ADDRESS_BOOK_PROCESS');
@@ -38,12 +38,20 @@ if (isset($_GET['action']) && ($_GET['action'] == 'deleteconfirm') && isset($_GE
 }
 
 /**
+ * Set some defaults
+ */
+  $process = false;
+  $zone_name = '';
+  $entry_state_has_zones = '';
+  $error_state_input = false;
+  $state = '';
+  $zone_id = 0;
+  $error = false;
+/**
  * Process new/update actions
  */
-$process = false;
 if (isset($_POST['action']) && (($_POST['action'] == 'process') || ($_POST['action'] == 'update'))) {
   $process = true;
-  $error = false;
 
   if (ACCOUNT_GENDER == 'true') $gender = zen_db_prepare_input($_POST['gender']);
   if (ACCOUNT_COMPANY == 'true') $company = zen_db_prepare_input($_POST['company']);
@@ -53,26 +61,25 @@ if (isset($_POST['action']) && (($_POST['action'] == 'process') || ($_POST['acti
   if (ACCOUNT_SUBURB == 'true') $suburb = zen_db_prepare_input($_POST['suburb']);
   $postcode = zen_db_prepare_input($_POST['postcode']);
   $city = zen_db_prepare_input($_POST['city']);
-  $country = zen_db_prepare_input($_POST['zone_country_id']);
 
 
   /**
 	 * error checking when updating or adding an entry
 	 */
   if (ACCOUNT_STATE == 'true') {
+    $state = zen_db_prepare_input($_POST['state']);
     if (isset($_POST['zone_id'])) {
       $zone_id = zen_db_prepare_input($_POST['zone_id']);
     } else {
       $zone_id = false;
     }
-    $state = zen_db_prepare_input($_POST['state']);
   }
+  $country = zen_db_prepare_input($_POST['zone_country_id']);
   //echo ' I SEE: country=' . $country . '&nbsp;&nbsp;&nbsp;state=' . $state . '&nbsp;&nbsp;&nbsp;zone_id=' . $zone_id;
 
   if (ACCOUNT_GENDER == 'true') {
     if ( ($gender != 'm') && ($gender != 'f') ) {
       $error = true;
-
       $messageStack->add('addressbook', ENTRY_GENDER_ERROR);
     }
   }
@@ -92,19 +99,9 @@ if (isset($_POST['action']) && (($_POST['action'] == 'process') || ($_POST['acti
     $messageStack->add('addressbook', ENTRY_STREET_ADDRESS_ERROR);
   }
 
-  if (strlen($postcode) < ENTRY_POSTCODE_MIN_LENGTH) {
-    $error = true;
-    $messageStack->add('addressbook', ENTRY_POST_CODE_ERROR);
-  }
-
   if (strlen($city) < ENTRY_CITY_MIN_LENGTH) {
     $error = true;
     $messageStack->add('addressbook', ENTRY_CITY_ERROR);
-  }
-
-  if (!is_numeric($country)) {
-    $error = true;
-    $messageStack->add('addressbook', ENTRY_COUNTRY_ERROR);
   }
 
   if (ACCOUNT_STATE == 'true') {
@@ -115,30 +112,56 @@ if (isset($_POST['action']) && (($_POST['action'] == 'process') || ($_POST['acti
     $check = $db->Execute($check_query);
     $entry_state_has_zones = ($check->fields['total'] > 0);
     if ($entry_state_has_zones == true) {
-      $zone_query = "SELECT distinct zone_id, zone_name
+      $zone_query = "SELECT distinct zone_id, zone_name, zone_code
                      FROM " . TABLE_ZONES . "
                      WHERE zone_country_id = :zoneCountryID
                      AND " . 
-                     (trim($state) != '' ? "(upper(zone_name) like ':zoneState%' OR upper(zone_code) like '%:zoneState%') OR " : "") .
-                    "zone_id = :zoneID";
+                     ((trim($state) != '' && $zone_id == 0) ? "(upper(zone_name) like ':zoneState%' OR upper(zone_code) like '%:zoneState%') OR " : "") .
+                    "zone_id = :zoneID
+                     ORDER BY zone_code ASC, zone_name";
 
       $zone_query = $db->bindVars($zone_query, ':zoneCountryID', $country, 'integer');
       $zone_query = $db->bindVars($zone_query, ':zoneState', strtoupper($state), 'noquotestring');
       $zone_query = $db->bindVars($zone_query, ':zoneID', $zone_id, 'integer');
       $zone = $db->Execute($zone_query);
-      if ($zone->RecordCount() == 1) {
+
+      //look for an exact match on zone ISO code
+      $found_exact_iso_match = ($zone->RecordCount() == 1);
+      if ($zone->RecordCount() > 1) {
+        while (!$zone->EOF && !$found_exact_iso_match) {
+          if (strtoupper($zone->fields['zone_code']) == strtoupper($state) ) {
+            $found_exact_iso_match = true;
+            continue;
+          }
+          $zone->MoveNext();
+        }
+      }
+
+      if ($found_exact_iso_match) {
         $zone_id = $zone->fields['zone_id'];
         $zone_name = $zone->fields['zone_name'];
       } else {
         $error = true;
+        $error_state_input = true;
         $messageStack->add('addressbook', ENTRY_STATE_ERROR_SELECT);
       }
     } else {
       if (strlen($state) < ENTRY_STATE_MIN_LENGTH) {
         $error = true;
+        $error_state_input = true;
         $messageStack->add('addressbook', ENTRY_STATE_ERROR);
       }
     }
+  }
+
+  if (strlen($postcode) < ENTRY_POSTCODE_MIN_LENGTH) {
+    $error = true;
+    $messageStack->add('addressbook', ENTRY_POST_CODE_ERROR);
+  }
+
+  if (!is_numeric($country)) {
+    $error = true;
+    $messageStack->add('addressbook', ENTRY_COUNTRY_ERROR);
   }
 
   if ($error == false) {
@@ -239,6 +262,7 @@ if (isset($_GET['edit']) && is_numeric($_GET['edit'])) {
     zen_redirect(zen_href_link(FILENAME_ADDRESS_BOOK, '', 'SSL'));
   }
   if (!isset($zone_name) || (int)$zone_name == 0) $zone_name = zen_get_zone_name($entry->fields['entry_country_id'], $entry->fields['entry_zone_id'], $entry->fields['entry_state']);
+  if (!isset($zone_id) || (int)$zone_id == 0) $zone_id = $entry->fields['entry_zone_id'];
 
 } elseif (isset($_GET['delete']) && is_numeric($_GET['delete'])) {
   if ($_GET['delete'] == $_SESSION['customer_default_address_id']) {
@@ -274,10 +298,10 @@ if (isset($_GET['edit']) && is_numeric($_GET['edit'])) {
 /*
  * Set flags for template use:
  */
-  $selected_country = ($_POST['zone_country_id']) ? $country : SHOW_CREATE_ACCOUNT_DEFAULT_COUNTRY;
+  $selected_country = (isset($_POST['zone_country_id']) && $_POST['zone_country_id'] != '') ? $country : SHOW_CREATE_ACCOUNT_DEFAULT_COUNTRY;
   if ($process == true) $entry->fields['entry_country_id'] = $selected_country; 
-  $flag_show_pulldown_states = ($process == true || $entry_state_has_zones == true || ACCOUNT_STATE_DRAW_INITIAL_DROPDOWN == 'true') ? true : false;
-  $status_state_disabled = ($flag_show_pulldown_states) ? ' disabled="disabled"' : '';
+  $flag_show_pulldown_states = ((($process == true || $entry_state_has_zones == true) && $zone_name == '') || ACCOUNT_STATE_DRAW_INITIAL_DROPDOWN == 'true' || $error_state_input) ? true : false;
+  $state = ($flag_show_pulldown_states) ? $state : $zone_name;
   $state_field_label = ($flag_show_pulldown_states) ? '' : ENTRY_STATE;
 
 

@@ -4,7 +4,7 @@
  * @copyright Copyright 2003-2006 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: ot_group_pricing.php 4372 2006-09-03 20:09:08Z wilt $
+ * @version $Id: ot_group_pricing.php 4601 2006-09-24 18:48:43Z wilt $
  */
 
 class ot_group_pricing {
@@ -28,13 +28,19 @@ class ot_group_pricing {
 		$od_amount = $this->calculate_deductions($this->get_order_total());
 		if ($od_amount['total'] > 0) {
       reset($order->info['tax_groups']);
+                  $tax = 0;
 			while (list($key, $value) = each($order->info['tax_groups'])) {
 				$tax_rate = zen_get_tax_rate_from_desc($key);
 				if ($od_amount[$key]) {
 					$order->info['tax_groups'][$key] -= $od_amount[$key];
 					$order->info['total'] -=  $od_amount[$key];
+                                        $tax += $od_amount[$key];
 				}
 			}
+      if (DISPLAY_PRICE_WITH_TAX == 'true') {
+        $od_amount['total'] += zen_calculate_tax($od_amount['total'], $tax);
+      }
+      
       $order->info['total'] = $order->info['total'] - $od_amount['total'];
 			$this->output[] = array('title' => $this->title . ':',
 			'text' => '-' . $currencies->format($od_amount['total'], true, $order->info['currency'], $order->info['currency_value']),
@@ -62,13 +68,17 @@ class ot_group_pricing {
 			$gift_vouchers = $_SESSION['cart']->gv_only();
 			$discount = ($order_total - $gift_vouchers) * $group_discount->fields['group_percentage'] / 100;
 			$od_amount['total'] = round($discount, 2);
+      /**
+       * when calculating the ratio add some insignificant values to stop divide by zero errors
+       */
+      $ratio = ($od_amount['total'] + .000001)/($order_total - $gift_vouchers + .000001);
 			switch ($this->calculate_tax) {
 				case 'Standard':
           reset($order->info['tax_groups']);
           while (list($key, $value) = each($order->info['tax_groups'])) {
 					  $tax_rate = zen_get_tax_rate_from_desc($key);
 					  if ($tax_rate > 0) {
-					    $od_amount[$key] = $tod_amount = round((($od_amount['total'] * $tax_rate)) /100, 2) ;
+					    $od_amount[$key] = $tod_amount = round(($order->info['tax_groups'][$key]) * $ratio, 2) ;
 					    $od_amount['tax'] += $tod_amount;
 					  }
           }
@@ -78,8 +88,8 @@ class ot_group_pricing {
           while (list($key, $value) = each($order->info['tax_groups'])) {
   					$tax_rate = zen_get_tax_rate_from_desc($order->info['tax_groups']);
 					  if ($tax_rate > 0) {
-	  	  		  $od_amount[$key] = $od_amount['total'] / 100 * $tax_rate;
-	  	  		  $od_amount['tax'] += $od_amount[$key];
+					    $od_amount[$key] = $tod_amount = round(($order->info['tax_groups'][$key]) * $ratio, 2) ;
+					    $od_amount['tax'] += $tod_amount;
 					  }
           }
 				break;

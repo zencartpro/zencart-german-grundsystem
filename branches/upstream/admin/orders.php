@@ -4,7 +4,7 @@
  * @copyright Copyright 2003-2006 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: orders.php 4279 2006-08-26 03:31:29Z drbyte $
+ * @version $Id: orders.php 4680 2006-10-06 15:53:15Z drbyte $
  */
 
   require('includes/application_top.php');
@@ -49,7 +49,8 @@
       // reset single download to off
         if ($_GET['download_reset_off'] > 0) {
           // adjust download_maxdays based on current date
-          $update_downloads_query = "update " . TABLE_ORDERS_PRODUCTS_DOWNLOAD . " set download_maxdays='0', download_count='0' where orders_id='" . $_GET['oID'] . "' and orders_products_download_id='" . $_GET['download_reset_off'] . "'";
+//          $update_downloads_query = "update " . TABLE_ORDERS_PRODUCTS_DOWNLOAD . " set download_maxdays='0', download_count='0' where orders_id='" . $_GET['oID'] . "' and orders_products_download_id='" . $_GET['download_reset_off'] . "'";
+          $update_downloads_query = "update " . TABLE_ORDERS_PRODUCTS_DOWNLOAD . " set download_count='0' where orders_id='" . $_GET['oID'] . "' and orders_products_download_id='" . $_GET['download_reset_off'] . "'";
           unset($_GET['download_reset_off']);
           $db->Execute($update_downloads_query);
 
@@ -305,7 +306,7 @@ function couponpopupWindow(url) {
             <td valign="top"><table width="100%" border="0" cellspacing="0" cellpadding="2">
               <tr>
                 <td class="main" valign="top"><strong><?php echo ENTRY_SHIPPING_ADDRESS; ?></strong></td>
-                <td class="main"><?php echo zen_address_format($order->delivery['format_id'], $order->delivery, 1, '', '<br />'); ?><?php echo ($order->info['shipping_module_code'] == 'flat') ? '<br /><h2>Store Pickup</h2>' . $order->info['shipping_method'] : ''; ?></td>
+                <td class="main"><?php echo zen_address_format($order->delivery['format_id'], $order->delivery, 1, '', '<br />'); ?></td>
               </tr>
             </table></td>
             <td valign="top"><table width="100%" border="0" cellspacing="0" cellpadding="2">

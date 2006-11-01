@@ -6,7 +6,7 @@
  * @copyright Copyright 2003-2006 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: banner.php 4383 2006-09-04 00:42:07Z drbyte $
+ * @version $Id: banner.php 4439 2006-09-10 03:37:03Z ajeh $
  */
 
 ////
@@ -226,7 +226,7 @@
       }
     }
     if ($new_banner_search != '') {
-      $new_banner_search = ' and ' . $new_banner_search;
+      $new_banner_search = ' and (' . $new_banner_search . ')';
     }
     return $new_banner_search;
   }

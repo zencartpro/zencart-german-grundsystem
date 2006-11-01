@@ -17,7 +17,7 @@
 // | to obtain it through the world-wide-web, please send a note to       |
 // | license@zen-cart.com so we can mail you a copy immediately.          |
 // +----------------------------------------------------------------------+
-// $Id: discount_coupon.php 3253 2006-03-25 17:26:14Z birdbrain $
+// $Id: discount_coupon.php 4591 2006-09-23 04:25:15Z ajeh $
 //
 
 define('NAVBAR_TITLE', 'Discount Coupon');
@@ -51,4 +51,6 @@ define('TEXT_COUPON_GV_RESTRICTION','<p class="smallText">Discount Coupons may n
 
 define('TEXT_DISCOUNT_COUPON_ID_INFO', 'Look-up Discount Coupon ... ');
 define('TEXT_DISCOUNT_COUPON_ID', 'Your Code: ');
+
+define('TEXT_COUPON_GV_RESTRICTION_ZONES', 'Billing Address Restrictions apply.');
 ?>

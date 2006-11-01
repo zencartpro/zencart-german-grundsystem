@@ -7,7 +7,7 @@
  * @copyright Copyright 2003-2005 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: init_category_path.php 4047 2006-07-30 23:12:10Z drbyte $
+ * @version $Id: init_category_path.php 4769 2006-10-17 02:59:21Z drbyte $
  */
 if (!defined('IS_ADMIN_FLAG')) {
   die('Illegal Access');
@@ -37,6 +37,6 @@ if (zen_not_null($cPath)) {
 
 // determine whether the current page is the home page or a product listing
 //$this_is_home_page = ($current_page=='index' && ((int)$cPath == 0 || $show_welcome == true));
-$this_is_home_page = ($current_page=='index' && !isset($_GET['cPath']));
+$this_is_home_page = ($current_page=='index' && (!isset($_GET['cPath'])) && (!isset($_GET['manufacturers_id'])) && (!isset($_GET['typefilter'])) );
 
 ?>

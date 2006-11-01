@@ -17,7 +17,7 @@
 // | to obtain it through the world-wide-web, please send a note to       |
 // | license@zen-cart.com so we can mail you a copy immediately.          |
 // +----------------------------------------------------------------------+
-// $Id: ot_loworderfee.php 1969 2005-09-13 06:57:21Z drbyte $
+// $Id: ot_loworderfee.php 4579 2006-09-21 20:20:49Z wilt $
 //
 
   class ot_loworderfee {
@@ -73,8 +73,9 @@
           }
 
           if ($charge_it == 'true') {
-            $tax = zen_get_tax_rate(MODULE_ORDER_TOTAL_LOWORDERFEE_TAX_CLASS, $order->delivery['country']['id'], $order->delivery['zone_id']);
-            $tax_description = zen_get_tax_description(MODULE_ORDER_TOTAL_LOWORDERFEE_TAX_CLASS, $order->delivery['country']['id'], $order->delivery['zone_id']);
+            $tax_address = zen_get_tax_locations();
+            $tax = zen_get_tax_rate(MODULE_ORDER_TOTAL_LOWORDERFEE_TAX_CLASS, $tax_address['country_id'], $tax_address['zone_id']);
+            $tax_description = zen_get_tax_description(MODULE_ORDER_TOTAL_LOWORDERFEE_TAX_CLASS, $tax_address['country_id'], $tax_address['zone_id']);
 
 // calculate from flat fee or percentage
             if (substr(MODULE_ORDER_TOTAL_LOWORDERFEE_FEE, -1) == '%') {
@@ -87,10 +88,13 @@
             $order->info['tax'] += zen_calculate_tax($low_order_fee, $tax);
             $order->info['tax_groups']["$tax_description"] += zen_calculate_tax($low_order_fee, $tax);
             $order->info['total'] += $low_order_fee + zen_calculate_tax($low_order_fee, $tax);
+            if (DISPLAY_PRICE_WITH_TAX == 'true') {
+              $low_order_fee += zen_calculate_tax($low_order_fee, $tax);
+            }
 
             $this->output[] = array('title' => $this->title . ':',
-                                    'text' => $currencies->format(zen_add_tax($low_order_fee, $tax), true, $order->info['currency'], $order->info['currency_value']),
-                                    'value' => zen_add_tax($low_order_fee, $tax));
+                                    'text' => $currencies->format($low_order_fee, true, $order->info['currency'], $order->info['currency_value']),
+                                    'value' => $low_order_fee);
           }
         }
       }

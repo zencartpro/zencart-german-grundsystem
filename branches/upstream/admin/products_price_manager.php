@@ -17,7 +17,7 @@
 // | to obtain it through the world-wide-web, please send a note to       |
 // | license@zen-cart.com so we can mail you a copy immediately.          |
 // +----------------------------------------------------------------------+
-//  $Id: products_price_manager.php 3304 2006-03-28 22:57:31Z ajeh $
+//  $Id: products_price_manager.php 4573 2006-09-20 23:46:43Z ajeh $
 //
 
   require('includes/application_top.php');
@@ -755,7 +755,7 @@ echo zen_draw_hidden_field('master_categories_id', $pInfo->master_categories_id)
     $discounts_qty = $db->Execute("select * from " . TABLE_PRODUCTS_DISCOUNT_QUANTITY . " where products_id='" . $products_filter . "' order by discount_qty");
     $discount_cnt = $discounts_qty->RecordCount();
     $make = 1;
-    $i;
+    $i = 0;
     while (!$discounts_qty->EOF) {
       $i++;
       $discount_name[] = array('id' => $i,

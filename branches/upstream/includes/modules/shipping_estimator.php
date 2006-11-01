@@ -11,7 +11,7 @@
  * @copyright Copyright 2003-2006 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: shipping_estimator.php 4321 2006-08-30 04:40:42Z ajeh $
+ * @version $Id: shipping_estimator.php 4717 2006-10-09 09:27:48Z drbyte $
  */
 if (!defined('IS_ADMIN_FLAG')) {
   die('Illegal Access');
@@ -41,6 +41,8 @@ if ($_SESSION['cart']->count_contents() > 0) {
   // shipping cost
   require('includes/classes/http_client.php'); // shipping in basket
 
+/*
+// moved below and altered to include Tare
   // totals info
   $totalsDisplay = '';
   switch (true) {
@@ -54,7 +56,7 @@ if ($_SESSION['cart']->count_contents() > 0) {
     $totalsDisplay = TEXT_TOTAL_ITEMS . $_SESSION['cart']->count_contents() . TEXT_TOTAL_AMOUNT . $currencies->format($_SESSION['cart']->show_total());
     break;
   }
-
+*/
 
   //if($cart->get_content_type() !== 'virtual') {
   if ($_SESSION['customer_id']) {
@@ -202,7 +204,7 @@ if ($_SESSION['cart']->count_contents() > 0) {
   } else {
     $show_in = FILENAME_SHOPPING_CART;
   }
-  if(sizeof($quotes)) {
+//  if(sizeof($quotes)) {
     if ($_SESSION['customer_id']) {
       $addresses = $db->execute("select address_book_id, entry_city as city, entry_postcode as postcode, entry_state as state, entry_zone_id as zone_id, entry_country_id as country_id from " . TABLE_ADDRESS_BOOK . " where customers_id = '" . (int)$_SESSION['customer_id'] . "'");
       // only display addresses if more than 1
@@ -223,7 +225,23 @@ if ($_SESSION['cart']->count_contents() > 0) {
         }
       }
     }
+//  }
+
+// altered to include Tare adjustment
+  // totals info
+  $totalsDisplay = '';
+  switch (true) {
+    case (SHOW_TOTALS_IN_CART == '1'):
+    $totalsDisplay = TEXT_TOTAL_ITEMS . $_SESSION['cart']->count_contents() . TEXT_TOTAL_WEIGHT . $shipping_weight . TEXT_PRODUCT_WEIGHT_UNIT . TEXT_TOTAL_AMOUNT . $currencies->format($_SESSION['cart']->show_total());
+    break;
+    case (SHOW_TOTALS_IN_CART == '2'):
+    $totalsDisplay = TEXT_TOTAL_ITEMS . $_SESSION['cart']->count_contents() . ($shipping_weight > 0 ? TEXT_TOTAL_WEIGHT . $shipping_weight . TEXT_PRODUCT_WEIGHT_UNIT : '') . TEXT_TOTAL_AMOUNT . $currencies->format($_SESSION['cart']->show_total());
+    break;
+    case (SHOW_TOTALS_IN_CART == '3'):
+    $totalsDisplay = TEXT_TOTAL_ITEMS . $_SESSION['cart']->count_contents() . TEXT_TOTAL_AMOUNT . $currencies->format($_SESSION['cart']->show_total());
+    break;
   }
+
   if (!isset($tplVars['flagShippingPopUp']) || $tplVars['flagShippingPopUp'] !== true) {
 /**
  * use the template tpl_modules_shipping_estimator.php to display the result

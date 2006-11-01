@@ -17,7 +17,7 @@
 // | to obtain it through the world-wide-web, please send a note to       |
 // | license@zen-cart.com so we can mail you a copy immediately.          |
 // +----------------------------------------------------------------------+
-//  $Id: banner_manager.php 3297 2006-03-28 08:35:01Z drbyte $
+//  $Id: banner_manager.php 4675 2006-10-03 03:31:35Z ajeh $
 //
 
   require('includes/application_top.php');
@@ -487,6 +487,26 @@ function popupImageWindow(url) {
                 <td class="dataTableHeadingContent" align="right"><?php echo TABLE_HEADING_ACTION; ?>&nbsp;</td>
               </tr>
 <?php
+// Split Page
+// reset page when page is unknown
+if (($_GET['page'] == '' or $_GET['page'] == '1') and $_GET['bID'] != '') {
+  $banners_query_raw = "select banners_id, banners_title, banners_image, banners_group, status, expires_date, expires_impressions, date_status_change, date_scheduled, date_added, banners_open_new_windows, banners_on_ssl, banners_sort_order from " . TABLE_BANNERS . " order by banners_title, banners_group";
+  $check_page = $db->Execute($banners_query_raw);
+  $check_count=1;
+  if ($check_page->RecordCount() > MAX_DISPLAY_SEARCH_RESULTS) {
+    while (!$check_page->EOF) {
+      if ($check_page->fields['banners_id'] == $_GET['bID']) {
+        break;
+      }
+      $check_count++;
+      $check_page->MoveNext();
+    }
+    $_GET['page'] = round((($check_count/MAX_DISPLAY_SEARCH_RESULTS)+(fmod_round($check_count,MAX_DISPLAY_SEARCH_RESULTS) !=0 ? .5 : 0)),0);
+  } else {
+    $_GET['page'] = 1;
+  }
+}
+
     $banners_query_raw = "select banners_id, banners_title, banners_image, banners_group, status, expires_date, expires_impressions, date_status_change, date_scheduled, date_added, banners_open_new_windows, banners_on_ssl, banners_sort_order from " . TABLE_BANNERS . " order by banners_title, banners_group";
     $banners_split = new splitPageResults($_GET['page'], MAX_DISPLAY_SEARCH_RESULTS, $banners_query_raw, $banners_query_numrows);
     $banners = $db->Execute($banners_query_raw);

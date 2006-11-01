@@ -10,7 +10,7 @@
  * @copyright Copyright 2003-2006 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: autoload_func.php 4260 2006-08-25 04:22:52Z drbyte $
+ * @version $Id: autoload_func.php 4387 2006-09-04 13:54:28Z drbyte $
  */
 if (!defined('IS_ADMIN_FLAG')) {
   die('Illegal Access');
@@ -21,7 +21,7 @@ foreach ($autoLoadConfig as $actionPoint => $row) {
   $debugOutput = "";
   foreach($row as $entry) {
     $debugOutput = 'actionPoint=>'.$actionPoint . ' ';
-    $entry['loadFile'] = str_replace(array(':', '\\\\'), '', $entry['loadFile']);
+//    $entry['loadFile'] = str_replace(array(':', '\\\\'), '', $entry['loadFile']);
     switch($entry['autoType']) {
       case 'include':
       /**
@@ -35,7 +35,7 @@ foreach ($autoLoadConfig as $actionPoint => $row) {
        * require a file as specified by autoloader array
        */
       if (file_exists($entry['loadFile'])) require($entry['loadFile']);
-      $debugOutput .= 'include(\'' . $entry['loadFile'] . '\');' . '<br />';
+      $debugOutput .= 'require(\'' . $entry['loadFile'] . '\');' . '<br />';
       break;
       case 'init_script':
       $baseDir = DIR_WS_INCLUDES . 'init_includes/';

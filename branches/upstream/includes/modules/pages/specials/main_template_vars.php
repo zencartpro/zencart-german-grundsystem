@@ -6,7 +6,7 @@
  * @copyright Copyright 2003-2006 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: main_template_vars.php 4198 2006-08-22 04:31:17Z drbyte $
+ * @version $Id: main_template_vars.php 4629 2006-09-28 15:29:18Z ajeh $
  */
 
 if (MAX_DISPLAY_SPECIAL_PRODUCTS > 0 ) {
@@ -14,8 +14,8 @@ if (MAX_DISPLAY_SPECIAL_PRODUCTS > 0 ) {
                          FROM (" . TABLE_PRODUCTS . " p
                          LEFT JOIN " . TABLE_SPECIALS . " s on p.products_id = s.products_id
                          LEFT JOIN " . TABLE_PRODUCTS_DESCRIPTION . " pd on p.products_id = pd.products_id )
-                         WHERE p.products_id = s.products_id and p.products_id = pd.products_id and p.products_status = '1' 
-                         AND s.status = 1 
+                         WHERE p.products_id = s.products_id and p.products_id = pd.products_id and p.products_status = '1'
+                         AND s.status = 1
                          AND pd.language_id = :languagesID
                          ORDER BY s.specials_date_added DESC";
 
@@ -41,7 +41,7 @@ if (MAX_DISPLAY_SPECIAL_PRODUCTS > 0 ) {
       $products_price = zen_get_products_display_price($specials->fields['products_id']);
       $specials->fields['products_name'] = zen_get_products_name($specials->fields['products_id']);
       $list_box_contents[$row][$col] = array('params' => 'class="specialsListBoxContents"' . ' ' . 'style="width:' . $col_width . '%;"',
-                                             'text' => '<a href="' . zen_href_link(zen_get_info_page($specials->fields['products_id']), 'products_id=' . $specials->fields['products_id']) . '">' . zen_image(DIR_WS_IMAGES . $specials->fields['products_image'], $specials->fields['products_name'], SMALL_IMAGE_WIDTH, SMALL_IMAGE_HEIGHT) . '</a><br /><a href="' . zen_href_link(zen_get_info_page($specials->fields['products_id']), 'products_id=' . $specials->fields['products_id']) . '">' . $specials->fields['products_name'] . '</a><br />' . $products_price);
+                                             'text' => '<a href="' . zen_href_link(zen_get_info_page($specials->fields['products_id']), 'products_id=' . $specials->fields['products_id']) . '">' . (($specials->fields['products_image'] == '' and PRODUCTS_IMAGE_NO_IMAGE_STATUS == 0) ? '' : zen_image(DIR_WS_IMAGES . $specials->fields['products_image'], $specials->fields['products_name'], SMALL_IMAGE_WIDTH, SMALL_IMAGE_HEIGHT) . '</a>') . '<br /><a href="' . zen_href_link(zen_get_info_page($specials->fields['products_id']), 'products_id=' . $specials->fields['products_id']) . '">' . $specials->fields['products_name'] . '</a><br />' . $products_price);
       $col ++;
       if ($col > (SHOW_PRODUCT_INFO_COLUMNS_SPECIALS_PRODUCTS - 1)) {
         $col = 0;

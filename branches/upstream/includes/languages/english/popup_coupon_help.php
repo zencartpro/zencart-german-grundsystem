@@ -17,7 +17,7 @@
 // | to obtain it through the world-wide-web, please send a note to       |
 // | license@zen-cart.com so we can mail you a copy immediately.          |
 // +----------------------------------------------------------------------+
-// $Id: popup_coupon_help.php 1969 2005-09-13 06:57:21Z drbyte $
+// $Id: popup_coupon_help.php 4591 2006-09-23 04:25:15Z ajeh $
 //
 
 define('HEADING_COUPON_HELP', 'Discount Coupon Help');
@@ -40,4 +40,6 @@ define('TEXT_DENIED', ' (Denied)');
 
 // gift certificates cannot be purchased with Discount Coupons
 define('TEXT_COUPON_GV_RESTRICTION','Discount Coupons may not be applied towards the purchase of ' . TEXT_GV_NAMES . '.');
+
+define('TEXT_COUPON_GV_RESTRICTION_ZONES', 'Billing Address Restrictions apply.');
 ?>

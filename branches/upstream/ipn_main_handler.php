@@ -3,10 +3,10 @@
  * ipn_main_handler.php callback handler for paypal IPN payment method
  *
  * @package paymentMethod
- * @copyright Copyright 2003-2005 Zen Cart Development Team
+ * @copyright Copyright 2003-2006 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: ipn_main_handler.php 4030 2006-07-27 06:48:51Z drbyte $
+ * @version $Id: ipn_main_handler.php 4835 2006-10-25 04:45:40Z drbyte $
  */
 /**
  * require general paypal functions
@@ -128,28 +128,28 @@ switch ($txn_type) {
     ipn_debug_email('IPN NOTICE::Unique but no session - Must be a personal payment, rather than an IPN transaction');
     die();
   }
-  $new_order_id = $order->create($order_totals);
-  $paypal_order = ipn_create_order_array($new_order_id, $txn_type);
+  $insert_id = $order->create($order_totals);
+  $paypal_order = ipn_create_order_array($insert_id, $txn_type);
   zen_db_perform(TABLE_PAYPAL, $paypal_order);
-  $insert_id = $db->Insert_ID();
-  $paypal_order_history = ipn_create_order_history_array($insert_id);
+  $pp_hist_id = $db->Insert_ID();
+  $paypal_order_history = ipn_create_order_history_array($pp_hist_id);
   zen_db_perform(TABLE_PAYPAL_PAYMENT_STATUS_HISTORY, $paypal_order_history);
   $new_status = MODULE_PAYMENT_PAYPAL_ORDER_STATUS_ID;
   if ($_POST['payment_status'] =='Pending') {
     $new_status = MODULE_PAYMENT_PAYPAL_PROCESSING_STATUS_ID;
     $db->Execute("update " . TABLE_ORDERS  . "
                     set orders_status = " . MODULE_PAYMENT_PAYPAL_PROCESSING_STATUS_ID . "
-                    where orders_id = '" . $new_order_id . "'");
+                    where orders_id = '" . $insert_id . "'");
   }
-  $sql_data_array = array('orders_id' => $new_order_id,
+  $sql_data_array = array('orders_id' => $insert_id,
                           'orders_status_id' => $new_status,
                           'date_added' => 'now()',
                           'comments' => 'PayPal status: ' . $_POST['payment_status'] . ' ' . $_POST['pending_reason']. ' @ '.$_POST['payment_date'] . ' Parent Trans ID:' . $_POST['parent_txn_id'] . ' Trans ID:' . $_POST['txn_id'] . ' Amount: ' . $_POST['mc_gross'] . ' ' . $_POST['mc_currency'],
                           'customer_notified' => false
   );
   zen_db_perform(TABLE_ORDERS_STATUS_HISTORY, $sql_data_array);
-  $order->create_add_products($new_order_id, 2);
-  $order->send_order_email($new_order_id, 2);
+  $order->create_add_products($insert_id, 2);
+  $order->send_order_email($insert_id, 2);
   $_SESSION['cart']->reset(true);
   break;
 

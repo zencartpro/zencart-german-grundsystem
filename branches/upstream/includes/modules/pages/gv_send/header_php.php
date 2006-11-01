@@ -9,7 +9,7 @@
  * @copyright Copyright 2003-2006 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: header_php.php 4274 2006-08-26 03:16:53Z drbyte $
+ * @version $Id: header_php.php 4631 2006-09-29 03:26:05Z drbyte $
  */
 
 // This should be first line of the script:
@@ -96,8 +96,8 @@ if ($_GET['action'] == 'send') {
 if ($_GET['action'] == 'process') {
   if (!isset($_POST['back'])) { // customer didn't click the back button
     $id1 = zen_create_coupon_code($mail['customers_email_address']);
-
-    $_POST['amount'] = str_replace('$', '', $_POST['amount']);
+    // sanitize and remove non-numeric characters
+    $_POST['amount'] = preg_replace('/[^0-9.%]/', '', $_POST['amount']);
 
     $new_amount = $gv_result->fields['amount'] - $currencies->value($_POST['amount'], true, DEFAULT_CURRENCY);
     //die($currencies->value($_POST['amount'], true, $_SESSION['currency']));

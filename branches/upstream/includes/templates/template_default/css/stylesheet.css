@@ -5,7 +5,7 @@
  * @copyright Copyright 2003-2005 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: stylesheet.css 4376 2006-09-03 20:42:22Z drbyte $
+ * @version $Id: stylesheet.css 4813 2006-10-23 02:13:53Z drbyte $
  */
 
 body {
@@ -57,8 +57,10 @@ h4, h5, h6, LABEL, h4.optionName, LEGEND, ADDRESS, .sideBoxContent, .larger{
 	}
 
 h1, h2, h3, h4, h5, h6 {
-	margin: 0.3em;
-	}
+
+    margin: 0.3em 3px;
+
+}
 
 CODE {
 	font-family: arial, verdana, helvetica, sans-serif;
@@ -269,8 +271,12 @@ HR {
 	margin: 0;
 	}
 
-#navMainSearch, #navCategoryIcon, .buttonRow, #indexProductListCatDescription {
+#navCategoryIcon, .buttonRow, #indexProductListCatDescription {
 	margin: 0.5em;
+	}
+
+#navMainSearch {
+	float: right;
 	}
 
 #navBreadCrumb {
@@ -571,6 +577,13 @@ h3.rightBoxHeading a:hover {
 	height: 1.5em;
 	vertical-align: top;
 	}
+
+.hiddenField {
+	display: none;
+}
+.visibleField {
+	display: inline;
+}
 
 CAPTION {
 	/*display: none;*/

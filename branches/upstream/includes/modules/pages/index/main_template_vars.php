@@ -6,7 +6,7 @@
  * @copyright Copyright 2003-2006 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: main_template_vars.php 2973 2006-02-04 23:27:35Z wilt $
+ * @version $Id: main_template_vars.php 4789 2006-10-18 22:37:27Z ajeh $
  */
 
 // This should be first line of the script:
@@ -41,6 +41,18 @@ if (isset($_GET['record_company_id']) && $_GET['record_company_id'] <= 0) {
 if ((isset($_GET['record_company_id']) && $_GET['record_company_id'] <= 0) and (isset($_GET['music_genre_id']) && $_GET['music_genre_id'] <= 0) ) {
   unset($_GET['typefilter']);
   unset($typefilter);
+}
+
+// release filter for category or manufacturer when nothing is there
+if (isset($_GET['filter_id']) && $_GET['filter_id'] <= 0) {
+  unset($_GET['filter_id']);
+  unset($filter_id);
+}
+
+// release alpha filter when nothing is there
+if (isset($_GET['alpha_filter_id']) && $_GET['alpha_filter_id'] <= 0) {
+  unset($_GET['alpha_filter_id']);
+  unset($alpha_filter_id);
 }
 
 // hook to notifier so that additional product-type-specific vars can be released too

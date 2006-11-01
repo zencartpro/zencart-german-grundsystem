@@ -4,7 +4,7 @@
  * @copyright Copyright 2003-2006 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: usps.php 3993 2006-07-20 21:46:55Z drbyte $
+ * @version $Id: usps.php 4824 2006-10-23 21:01:28Z drbyte $
  */
 
 define('MODULE_SHIPPING_USPS_TEXT_TITLE', 'United States Postal Service');
@@ -19,7 +19,7 @@ define('MODULE_SHIPPING_USPS_TEXT_DESCRIPTION', 'United States Postal Service<br
 define('MODULE_SHIPPING_USPS_TEXT_OPT_PP', 'Parcel Post');
 define('MODULE_SHIPPING_USPS_TEXT_OPT_PM', 'Priority Mail');
 define('MODULE_SHIPPING_USPS_TEXT_OPT_EX', 'Express Mail');
-define('MODULE_SHIPPING_USPS_TEXT_ERROR', 'Unable to find a USPS shipping quote suitable for your mailing address and the shipping methods we typically use.<br />If you prefer to use USPS as your shipping method, please contact us for assistance.');
+define('MODULE_SHIPPING_USPS_TEXT_ERROR', 'We are unable to find a USPS shipping quote suitable for your mailing address and the shipping methods we typically use.<br />If you prefer to use USPS as your shipping method, please contact us for assistance.<br />(Please check that your Zip Code is entered correctly.)');
 define('MODULE_SHIPPING_USPS_TEXT_SERVER_ERROR', 'An error occurred in obtaining USPS shipping quotes.<br />If you prefer to use USPS as your shipping method, please contact the store owner.');
 define('MODULE_SHIPPING_USPS_TEXT_DAY', 'day');
 define('MODULE_SHIPPING_USPS_TEXT_DAYS', 'days');

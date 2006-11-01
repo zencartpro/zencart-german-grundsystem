@@ -6,8 +6,11 @@
  * @copyright Copyright 2003-2006 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: header_php.php 2968 2006-02-04 20:00:28Z wilt $
+ * @version $Id: header_php.php 4816 2006-10-23 04:08:52Z drbyte $
  */
+
+// This should be first line of the script:
+$zco_notifier->notify('NOTIFY_HEADER_START_CREATE_ACCOUNT_SUCCESS');
 
 require(DIR_WS_MODULES . zen_get_module_directory('require_languages.php'));
 $breadcrumb->add(NAVBAR_TITLE_1);
@@ -19,4 +22,30 @@ if (sizeof($_SESSION['navigation']->snapshot) > 0) {
 } else {
   $origin_href = zen_href_link(FILENAME_DEFAULT);
 }
+
+/*  prepare address list */
+$addresses_query = "SELECT address_book_id, entry_firstname as firstname, entry_lastname as lastname,
+                           entry_company as company, entry_street_address as street_address,
+                           entry_suburb as suburb, entry_city as city, entry_postcode as postcode,
+                           entry_state as state, entry_zone_id as zone_id, entry_country_id as country_id
+                    FROM   " . TABLE_ADDRESS_BOOK . "
+                    WHERE  customers_id = :customersID
+                    ORDER BY firstname, lastname";
+
+$addresses_query = $db->bindVars($addresses_query, ':customersID', $_SESSION['customer_id'], 'integer');
+$addresses = $db->Execute($addresses_query);
+
+while (!$addresses->EOF) {
+  $format_id = zen_get_address_format_id($addresses->fields['country_id']);
+
+  $addressArray[] = array('firstname'=>$addresses->fields['firstname'],
+                          'lastname'=>$addresses->fields['lastname'],
+                          'address_book_id'=>$addresses->fields['address_book_id'],
+                          'format_id'=>$format_id,
+                          'address'=>$addresses->fields);
+  $addresses->MoveNext();
+}
+
+// This should be last line of the script:
+$zco_notifier->notify('NOTIFY_HEADER_END_CREATE_ACCOUNT_SUCCESS');
 ?>

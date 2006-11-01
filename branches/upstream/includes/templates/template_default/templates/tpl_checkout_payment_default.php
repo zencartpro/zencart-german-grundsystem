@@ -9,7 +9,7 @@
  * @copyright Copyright 2003-2006 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: tpl_checkout_payment_default.php 4332 2006-09-01 04:33:16Z ajeh $
+ * @version $Id: tpl_checkout_payment_default.php 4821 2006-10-23 10:54:15Z drbyte $
  */
 ?>
 <?php echo $payment_modules->javascript_validation(); ?>
@@ -138,7 +138,7 @@
 <label for="pmt-<?php echo $selection[$i]['id']; ?>" class="radioButtonLabel"><?php echo $selection[$i]['module']; ?></label>
 
 <?php
-    if (MODULE_ORDER_TOTAL_COD_STATUS == 'true' and $selection[$i]['id'] == 'cod') {
+    if (defined('MODULE_ORDER_TOTAL_COD_STATUS') && MODULE_ORDER_TOTAL_COD_STATUS == 'true' and $selection[$i]['id'] == 'cod') {
 ?>
 <div class="alert"><?php echo TEXT_INFO_COD_FEES; ?></div>
 <?php

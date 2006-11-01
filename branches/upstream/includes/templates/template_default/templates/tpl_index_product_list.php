@@ -6,10 +6,10 @@
  * Displays product-listing when a particular category/subcategory is selected for browsing
  *
  * @package templateSystem
- * @copyright Copyright 2003-2005 Zen Cart Development Team
+ * @copyright Copyright 2003-2006 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: tpl_index_product_list.php 4326 2006-08-31 04:04:45Z ajeh $
+ * @version $Id: tpl_index_product_list.php 4772 2006-10-17 05:39:06Z drbyte $
  */
 ?>
 <div class="centerColumn" id="indexProductList">
@@ -39,24 +39,37 @@ if (PRODUCT_LIST_CATEGORIES_IMAGE_STATUS == 'true') {
   $form = zen_draw_form('filter', zen_href_link(FILENAME_DEFAULT), 'get') . '<label class="inputLabel">' .TEXT_SHOW . '</label>';
 ?>
 
-<?php echo $form; ?>
 <?php
+  echo $form;
+  echo zen_draw_hidden_field('main_page', FILENAME_DEFAULT);
+  echo zen_hide_session_id();
+?>
+<?php
+  // draw cPath if known
   if (!$getoption_set) {
     echo zen_draw_hidden_field('cPath', $cPath);
   } else {
+    // draw manufacturers_id
     echo zen_draw_hidden_field($get_option_variable, $_GET[$get_option_variable]);
   }
-  if (isset($_GET['typefilter'])) echo zen_draw_hidden_field('typefilter', $_GET['typefilter']);
-  if ($_GET['manufacturers_id']) {
+
+  // draw typefilter
+  if (isset($_GET['typefilter']) && $_GET['typefilter'] != '') echo zen_draw_hidden_field('typefilter', $_GET['typefilter']);
+
+  // draw manufacturers_id if not already done earlier
+  if ($get_option_variable != 'manufacturers_id' && isset($_GET['manufacturers_id']) && $_GET['manufacturers_id'] > 0) {
     echo zen_draw_hidden_field('manufacturers_id', $_GET['manufacturers_id']);
   }
+
+  // draw sort
   echo zen_draw_hidden_field('sort', $_GET['sort']);
-  echo zen_draw_hidden_field('main_page', FILENAME_DEFAULT);
+
+  // draw filter_id (ie: category/mfg depending on $options)
   if ($do_filter_list) {
     echo zen_draw_pull_down_menu('filter_id', $options, (isset($_GET['filter_id']) ? $_GET['filter_id'] : ''), 'onchange="this.form.submit()"');
   }
-  echo zen_hide_session_id();
 
+  // draw alpha sorter
   require(DIR_WS_MODULES . zen_get_module_directory(FILENAME_PRODUCT_LISTING_ALPHA_SORTER));
 ?>
 </form>

@@ -1,54 +1,54 @@
 <?php
 /**
  * @package shippingMethod
- * @copyright Copyright 2003-2005 Zen Cart Development Team
+ * @copyright Copyright 2003-2006 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: ups.php 3308 2006-03-29 08:21:33Z ajeh $
+ * @version $Id: ups.php 4674 2006-10-03 02:24:08Z drbyte $
  */
 /**
- * Enter description here...
+ * UPS Shipping Module class
  *
  */
 class ups extends base {
   /**
-   * Enter description here...
+   * Declare shipping module alias code
    *
-   * @var unknown_type
+   * @var string
    */
   var $code;
   /**
-   * Enter description here...
+   * Shipping module display name
    *
-   * @var unknown_type
+   * @var string
    */
   var $title;
   /**
-   * Enter description here...
+   * Shipping module display description
    *
-   * @var unknown_type
+   * @var string
    */
   var $description;
   /**
-   * Enter description here...
+   * Shipping module icon filename/path
    *
-   * @var unknown_type
+   * @var string
    */
   var $icon;
   /**
-   * Enter description here...
+   * Shipping module status
    *
-   * @var unknown_type
+   * @var boolean
    */
   var $enabled;
   /**
-   * Enter description here...
+   * Shipping module list of supported countries (unique to USPS/UPS)
    *
-   * @var unknown_type
+   * @var array
    */
   var $types;
   /**
-   * Enter description here...
+   * Constructor
    *
    * @return ups
    */
@@ -88,32 +88,32 @@ class ups extends base {
     }
 
     $this->types = array('1DM' => 'Next Day Air Early AM',
-    '1DML' => 'Next Day Air Early AM Letter',
-    '1DA' => 'Next Day Air',
-    '1DAL' => 'Next Day Air Letter',
-    '1DAPI' => 'Next Day Air Intra (Puerto Rico)',
-    '1DP' => 'Next Day Air Saver',
-    '1DPL' => 'Next Day Air Saver Letter',
-    '2DM' => '2nd Day Air AM',
-    '2DML' => '2nd Day Air AM Letter',
-    '2DA' => '2nd Day Air',
-    '2DAL' => '2nd Day Air Letter',
-    '3DS' => '3 Day Select',
-    'GND' => 'Ground',
-    'GNDCOM' => 'Ground Commercial',
-    'GNDRES' => 'Ground Residential',
-    'STD' => 'Canada Standard',
-    'XPR' => 'Worldwide Express',
-    'XPRL' => 'worldwide Express Letter',
-    'XDM' => 'Worldwide Express Plus',
-    'XDML' => 'Worldwide Express Plus Letter',
-    'XPD' => 'Worldwide Expedited');
+                         '1DML' => 'Next Day Air Early AM Letter',
+                         '1DA' => 'Next Day Air',
+                         '1DAL' => 'Next Day Air Letter',
+                         '1DAPI' => 'Next Day Air Intra (Puerto Rico)',
+                         '1DP' => 'Next Day Air Saver',
+                         '1DPL' => 'Next Day Air Saver Letter',
+                         '2DM' => '2nd Day Air AM',
+                         '2DML' => '2nd Day Air AM Letter',
+                         '2DA' => '2nd Day Air',
+                         '2DAL' => '2nd Day Air Letter',
+                         '3DS' => '3 Day Select',
+                         'GND' => 'Ground',
+                         'GNDCOM' => 'Ground Commercial',
+                         'GNDRES' => 'Ground Residential',
+                         'STD' => 'Canada Standard',
+                         'XPR' => 'Worldwide Express',
+                         'XPRL' => 'worldwide Express Letter',
+                         'XDM' => 'Worldwide Express Plus',
+                         'XDML' => 'Worldwide Express Plus Letter',
+                         'XPD' => 'Worldwide Expedited');
   }
   /**
-   * Enter description here...
+   * Get quote from shipping provider's API:
    *
-   * @param unknown_type $method
-   * @return unknown
+   * @param string $method
+   * @return array of quotation results
    */
   function quote($method = '') {
     global $_POST, $order, $shipping_weight, $shipping_num_boxes;
@@ -132,12 +132,14 @@ class ups extends base {
 
     $this->_upsProduct($prod);
 
+    $ups_shipping_weight = ($shipping_weight < 0.1 ? 0.1 : $shipping_weight);
+
     $country_name = zen_get_countries(SHIPPING_ORIGIN_COUNTRY, true);
     $this->_upsOrigin(SHIPPING_ORIGIN_ZIP, $country_name['countries_iso_code_2']);
     $this->_upsDest($order->delivery['postcode'], $order->delivery['country']['iso_code_2']);
     $this->_upsRate(MODULE_SHIPPING_UPS_PICKUP);
     $this->_upsContainer(MODULE_SHIPPING_UPS_PACKAGE);
-    $this->_upsWeight($shipping_weight);
+    $this->_upsWeight($ups_shipping_weight);
     $this->_upsRescom(MODULE_SHIPPING_UPS_RES);
     $upsQuote = $this->_upsGetQuote();
 
@@ -150,14 +152,14 @@ class ups extends base {
         $show_box_weight = ' (' . $shipping_num_boxes . ' ' . TEXT_SHIPPING_BOXES . ')';
         break;
         case (2):
-        $show_box_weight = ' (' . number_format($shipping_weight * $shipping_num_boxes,2) . TEXT_SHIPPING_WEIGHT . ')';
+        $show_box_weight = ' (' . number_format($ups_shipping_weight * $shipping_num_boxes,2) . TEXT_SHIPPING_WEIGHT . ')';
         break;
         default:
-        $show_box_weight = ' (' . $shipping_num_boxes . ' x ' . number_format($shipping_weight,2) . TEXT_SHIPPING_WEIGHT . ')';
+        $show_box_weight = ' (' . $shipping_num_boxes . ' x ' . number_format($ups_shipping_weight,2) . TEXT_SHIPPING_WEIGHT . ')';
         break;
       }
       $this->quotes = array('id' => $this->code,
-      'module' => $this->title . $show_box_weight);
+                            'module' => $this->title . $show_box_weight);
 
       $methods = array();
       // BOF: UPS USPS
@@ -175,8 +177,8 @@ class ups extends base {
         if (!in_array($type, $allowed_methods)) continue;
         // EOF: UPS USPS
         $methods[] = array('id' => $type,
-        'title' => $this->types[$type],
-        'cost' => ($cost + MODULE_SHIPPING_UPS_HANDLING) * $shipping_num_boxes);
+                           'title' => $this->types[$type],
+                           'cost' => ($cost + MODULE_SHIPPING_UPS_HANDLING) * $shipping_num_boxes);
       }
 
       $this->quotes['methods'] = $methods;
@@ -185,14 +187,8 @@ class ups extends base {
         $this->quotes['tax'] = zen_get_tax_rate($this->tax_class, $order->delivery['country']['id'], $order->delivery['zone_id']);
       }
     } else {
-      /* ORIGINAL
       $this->quotes = array('module' => $this->title,
-      'error' => 'An error occurred with the UPS shipping calculations.<br />' . $upsQuote . '<br />If you prefer to use UPS as your shipping method, please contact the store owner.');
-      */
-      // BOF: UPS USPS
-      $this->quotes = array('module' => $this->title,
-      'error' => 'We are unable to obtain a rate quote for UPS shipping.<br />Please contact the store if no other alternative is shown.');
-      // EOF: UPS USPS
+                            'error' => 'We are unable to obtain a rate quote for UPS shipping.<br />Please contact the store if no other alternative is shown.');
     }
 
     if (zen_not_null($this->icon)) $this->quotes['icon'] = zen_image($this->icon, $this->title);
@@ -200,9 +196,9 @@ class ups extends base {
     return $this->quotes;
   }
   /**
-   * Enter description here...
+   * check status of module
    *
-   * @return unknown
+   * @return boolean
    */
   function check() {
     global $db;
@@ -213,7 +209,7 @@ class ups extends base {
     return $this->_check;
   }
   /**
-   * Enter description here...
+   * Install this module
    *
    */
   function install() {
@@ -233,44 +229,44 @@ class ups extends base {
     // EOF: UPS USPS
   }
   /**
-   * Enter description here...
+   * Remove this module
    *
    */
   function remove() {
     global $db;
-    $db->Execute("delete from " . TABLE_CONFIGURATION . " where configuration_key in ('" . implode("', '", $this->keys()) . "')");
+    $db->Execute("delete from " . TABLE_CONFIGURATION . " where configuration_key like 'MODULE_SHIPPING_UPS_%' ");
   }
   /**
-   * Enter description here...
+   * Build array of keys used for installing/managing this module
    *
-   * @return unknown
+   * @return array
    */
   function keys() {
     return array('MODULE_SHIPPING_UPS_STATUS', 'MODULE_SHIPPING_UPS_PICKUP', 'MODULE_SHIPPING_UPS_PACKAGE', 'MODULE_SHIPPING_UPS_RES', 'MODULE_SHIPPING_UPS_HANDLING', 'MODULE_SHIPPING_UPS_TAX_CLASS', 'MODULE_SHIPPING_UPS_TAX_BASIS', 'MODULE_SHIPPING_UPS_ZONE', 'MODULE_SHIPPING_UPS_SORT_ORDER', 'MODULE_SHIPPING_UPS_TYPES');
   }
   /**
-   * Enter description here...
+   * Set UPS Product Code
    *
-   * @param unknown_type $prod
+   * @param string $prod
    */
   function _upsProduct($prod){
     $this->_upsProductCode = $prod;
   }
   /**
-   * Enter description here...
+   * Set UPS Origin details
    *
-   * @param unknown_type $postal
-   * @param unknown_type $country
+   * @param string $postal
+   * @param string $country
    */
   function _upsOrigin($postal, $country){
-    $this->_upsOriginPostalCode = $postal;
+    $this->_upsOriginPostalCode = substr($postal, 0, 5);
     $this->_upsOriginCountryCode = $country;
   }
   /**
-   * Enter description here...
+   * Set UPS Destination information
    *
-   * @param unknown_type $postal
-   * @param unknown_type $country
+   * @param string $postal
+   * @param string $country
    */
   function _upsDest($postal, $country){
     $postal = str_replace(' ', '', $postal);
@@ -278,15 +274,15 @@ class ups extends base {
     if ($country == 'US') {
       $this->_upsDestPostalCode = substr($postal, 0, 5);
     } else {
-      $this->_upsDestPostalCode = $postal;
+      $this->_upsDestPostalCode = substr($postal, 0, 6);
     }
 
     $this->_upsDestCountryCode = $country;
   }
   /**
-   * Enter description here...
+   * Set UPS rate-quote method
    *
-   * @param unknown_type $foo
+   * @param string $foo
    */
   function _upsRate($foo) {
     switch ($foo) {
@@ -308,59 +304,59 @@ class ups extends base {
     }
   }
   /**
-   * Enter description here...
+   * Set UPS Container type
    *
-   * @param unknown_type $foo
+   * @param string $foo
    */
   function _upsContainer($foo) {
     switch ($foo) {
       case 'CP': // Customer Packaging
-      $this->_upsContainerCode = '00';
-      break;
+        $this->_upsContainerCode = '00';
+        break;
       case 'ULE': // UPS Letter Envelope
-      $this->_upsContainerCode = '01';
-      break;
+        $this->_upsContainerCode = '01';
+        break;
       case 'UT': // UPS Tube
-      $this->_upsContainerCode = '03';
-      break;
+        $this->_upsContainerCode = '03';
+        break;
       case 'UEB': // UPS Express Box
-      $this->_upsContainerCode = '21';
-      break;
+        $this->_upsContainerCode = '21';
+        break;
       case 'UW25': // UPS Worldwide 25 kilo
-      $this->_upsContainerCode = '24';
-      break;
+        $this->_upsContainerCode = '24';
+        break;
       case 'UW10': // UPS Worldwide 10 kilo
-      $this->_upsContainerCode = '25';
-      break;
+        $this->_upsContainerCode = '25';
+        break;
     }
   }
   /**
-   * Enter description here...
+   * Set UPS package weight
    *
-   * @param unknown_type $foo
+   * @param string $foo
    */
   function _upsWeight($foo) {
     $this->_upsPackageWeight = $foo;
   }
   /**
-   * Enter description here...
+   * Set UPS address-quote method (residential vs commercial)
    *
-   * @param unknown_type $foo
+   * @param string $foo
    */
   function _upsRescom($foo) {
     switch ($foo) {
       case 'RES': // Residential Address
-      $this->_upsResComCode = '1';
-      break;
+        $this->_upsResComCode = '1';
+        break;
       case 'COM': // Commercial Address
-      $this->_upsResComCode = '0';
-      break;
+        $this->_upsResComCode = '0';
+        break;
     }
   }
   /**
-   * Enter description here...
+   * Set UPS Action method
    *
-   * @param unknown_type $action
+   * @param string/integer $action
    */
   function _upsAction($action) {
     /* 3 - Single Quote
@@ -369,24 +365,24 @@ class ups extends base {
     $this->_upsActionCode = $action;
   }
   /**
-   * Enter description here...
+   * Sent request for quote to UPS via older HTML method
    *
-   * @return unknown
+   * @return array
    */
   function _upsGetQuote() {
     if (!isset($this->_upsActionCode)) $this->_upsActionCode = '4';
 
     $request = join('&', array('accept_UPS_license_agreement=yes',
-    '10_action=' . $this->_upsActionCode,
-    '13_product=' . $this->_upsProductCode,
-    '14_origCountry=' . $this->_upsOriginCountryCode,
-    '15_origPostal=' . $this->_upsOriginPostalCode,
-    '19_destPostal=' . $this->_upsDestPostalCode,
-    '22_destCountry=' . $this->_upsDestCountryCode,
-    '23_weight=' . $this->_upsPackageWeight,
-    '47_rate_chart=' . $this->_upsRateCode,
-    '48_container=' . $this->_upsContainerCode,
-    '49_residential=' . $this->_upsResComCode));
+                               '10_action=' . $this->_upsActionCode,
+                               '13_product=' . $this->_upsProductCode,
+                               '14_origCountry=' . $this->_upsOriginCountryCode,
+                               '15_origPostal=' . $this->_upsOriginPostalCode,
+                               '19_destPostal=' . $this->_upsDestPostalCode,
+                               '22_destCountry=' . $this->_upsDestCountryCode,
+                               '23_weight=' . $this->_upsPackageWeight,
+                               '47_rate_chart=' . $this->_upsRateCode,
+                               '48_container=' . $this->_upsContainerCode,
+                               '49_residential=' . $this->_upsResComCode));
     $http = new httpClient();
     if ($http->Connect('www.ups.com', 80)) {
       $http->addHeader('Host', 'www.ups.com');
@@ -418,8 +414,17 @@ class ups extends base {
 
     $body_array = explode("\n", $body);
 
+/* //DEBUG ONLY
+    $n = sizeof($body_array);
+    for ($i=0; $i<$n; $i++) {
+      $result = explode('%', $body_array[$i]);
+      print_r($result);
+    }
+    die('END');
+*/
+
     $returnval = array();
-    $errorret = 'error'; // only return error if NO rates returned
+    $errorret = 'error'; // only return 'error' if NO rates returned
 
     $n = sizeof($body_array);
     for ($i=0; $i<$n; $i++) {
@@ -427,10 +432,10 @@ class ups extends base {
       $errcode = substr($result[0], -1);
       switch ($errcode) {
         case 3:
-        if (is_array($returnval)) $returnval[] = array($result[1] => $result[8]);
+        if (is_array($returnval)) $returnval[] = array($result[1] => $result[10]);
         break;
         case 4:
-        if (is_array($returnval)) $returnval[] = array($result[1] => $result[8]);
+        if (is_array($returnval)) $returnval[] = array($result[1] => $result[10]);
         break;
         case 5:
         $errorret = $result[1];

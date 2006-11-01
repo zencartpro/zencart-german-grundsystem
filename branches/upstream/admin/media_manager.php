@@ -17,7 +17,7 @@
 // | to obtain it through the world-wide-web, please send a note to       |
 // | license@zen-cart.com so we can mail you a copy immediately.          |
 // +----------------------------------------------------------------------+
-//  $Id: media_manager.php 3297 2006-03-28 08:35:01Z drbyte $
+//  $Id: media_manager.php 4787 2006-10-18 05:37:55Z ajeh $
 //
 
   require('includes/application_top.php');
@@ -299,7 +299,7 @@
       $contents[] = array('text' => TEXT_PRODUCTS_INTRO . '<br /><br />');
       $contents[] = array('text' => zen_draw_form('new_category', FILENAME_MEDIA_MANAGER, '', 'get') . '&nbsp;&nbsp;' .
                            zen_draw_pull_down_menu('current_category_id', zen_get_category_tree('', '', '0'), '', 'onChange="this.form.submit();"') . zen_hide_session_id() . zen_draw_hidden_field('products_filter', $_GET['products_filter']) . zen_draw_hidden_field('action', 'new_cat') . zen_draw_hidden_field('mID', $mInfo->media_id) . '&nbsp;&nbsp;</form>');
-      $product_array = $zc_products->get_products_in_category($current_category_id);
+      $product_array = $zc_products->get_products_in_category($current_category_id, false);
       if ($product_array) {
         $contents[] = array('text' => zen_draw_form('new_product', FILENAME_MEDIA_MANAGER, '', 'get') . '&nbsp;&nbsp;' .
                            zen_draw_pull_down_menu('current_product_id', $product_array) . '&nbsp;' . '<input type="submit" name="add_product" value="Add">' .

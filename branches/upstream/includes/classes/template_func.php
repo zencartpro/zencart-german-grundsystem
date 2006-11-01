@@ -5,7 +5,7 @@
  * @package classes
  * @copyright Copyright 2003-2006 Zen Cart Development Team
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: template_func.php 4277 2006-08-26 03:19:28Z drbyte $
+ * @version $Id: template_func.php 4580 2006-09-21 20:47:18Z wilt $
  */
 if (!defined('IS_ADMIN_FLAG')) {
   die('Illegal Access');
@@ -54,7 +54,7 @@ class template_func extends base {
   }
   function file_exists($file_dir, $file_pattern, $debug=false) {
     $file_found = false;
-    $file_pattern = '/'.$file_pattern.'$/';
+    $file_pattern = '/'.str_replace("/", "\/", $file_pattern).'$/';
     if ($mydir = @dir($file_dir)) {
       while ($file = $mydir->read()) {
         if (preg_match($file_pattern, $file)) {

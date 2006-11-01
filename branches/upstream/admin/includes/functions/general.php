@@ -17,7 +17,7 @@
 // | to obtain it through the world-wide-web, please send a note to       |
 // | license@zen-cart.com so we can mail you a copy immediately.          |
 // +----------------------------------------------------------------------+
-//  $Id: general.php 4316 2006-08-28 21:27:21Z drbyte $
+//  $Id: general.php 4733 2006-10-12 20:33:19Z drbyte $
 //
 
 ////
@@ -961,6 +961,16 @@
     }
   }
 
+  function zen_cfg_pull_down_htmleditors($html_editor, $key = '') {
+    global $editors_list;
+    $name = (($key) ? 'configuration[' . $key . ']' : 'configuration_value');
+
+    $editors_pulldown = array();
+    foreach($editors_list as $key=>$value) {
+      $editors_pulldown[] = array('id' => $key, 'text' => $value['desc']);
+    }
+    return zen_draw_pull_down_menu($name, $editors_pulldown, $html_editor);
+  }
 
 ////
 // Sets the status of a product
@@ -1565,7 +1575,7 @@
     $statuses = $db->Execute("select orders_status_id, orders_status_name
                               from " . TABLE_ORDERS_STATUS . "
                               where language_id = '" . (int)$_SESSION['languages_id'] . "'
-                              order by orders_status_name");
+                              order by orders_status_id");
 
     while (!$statuses->EOF) {
       $statuses_array[] = array('id' => $statuses->fields['orders_status_id'],
@@ -3179,6 +3189,30 @@ function zen_copy_products_attributes($products_id_from, $products_id_to) {
     }
     $products_id_listing = $categories_products_id_list;
     return $products_id_listing;
+  }
+
+  function zen_geo_zones_pull_down_coupon($parameters, $selected = '') {
+    global $db;
+    $select_string = '<select ' . $parameters . '>';
+    $zones = $db->Execute("select geo_zone_id, geo_zone_name
+                                 from " . TABLE_GEO_ZONES . "
+                                 order by geo_zone_name");
+
+    if ($selected == 0) {
+      $select_string .= '<option value=0 SELECTED>' . TEXT_NONE . '</option>';
+    } else {
+      $select_string .= '<option value=0>' . TEXT_NONE . '</option>';
+    }
+
+    while (!$zones->EOF) {
+      $select_string .= '<option value="' . $zones->fields['geo_zone_id'] . '"';
+      if ($selected == $zones->fields['geo_zone_id']) $select_string .= ' SELECTED';
+      $select_string .= '>' . $zones->fields['geo_zone_name'] . '</option>';
+      $zones->MoveNext();
+    }
+    $select_string .= '</select>';
+
+    return $select_string;
   }
 
 ?>

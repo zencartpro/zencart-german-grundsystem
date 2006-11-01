@@ -6,7 +6,7 @@
  * @copyright Copyright 2003-2006 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: header_php.php 4135 2006-08-14 04:25:02Z drbyte $
+ * @version $Id: header_php.php 4821 2006-10-23 10:54:15Z drbyte $
  */
 /*
 * This "page" page is the display component of the ez-pages module
@@ -19,14 +19,16 @@
 // This should be first line of the script:
 $zco_notifier->notify('NOTIFY_HEADER_START_EZPAGE');
 
-$id = (int)$_GET['id'];
+$ezpage_id = (int)$_GET['id'];
+if ($ezpage_id == 0) zen_redirect(zen_href_link(FILENAME_DEFAULT));
+
 $chapter_id = (int)$_GET['chapter'];
 $chapter_link = (int)$_GET['chapter'];
 
-//die('I SEE ' . $id . ' - ' . $group_id);
-//die('I SEE ' . $id . ' - ' . $chapter_id);
+//die('I SEE ' . $ezpage_id . ' - ' . $group_id);
+//die('I SEE ' . $ezpage_id . ' - ' . $chapter_id);
 
-$var_pageDetails = $db->Execute("select * from " . TABLE_EZPAGES . " where pages_id = " . (int)$id );
+$var_pageDetails = $db->Execute("select * from " . TABLE_EZPAGES . " where pages_id = " . (int)$ezpage_id );
 
 //check db for prev/next based on sort orders
 $pos = (isset($_GET['pos'])) ? $_GET['pos'] : 'v';  // v for vertical, h for horizontal  (v assumed if not specified)
@@ -93,7 +95,7 @@ if ($previous_v == -1) $previous_v = $last_v;
 reset ($horiz_links);
 $counter = 0;
 while (list($key, $value) = each ($horiz_links)) {
-if ($value == $id) {
+if ($value == $ezpage_id) {
 $position_h = $counter;
 $previous_hssl = '0';
 if ($key == 0) {
@@ -130,7 +132,7 @@ $home_button = zen_image_button(BUTTON_IMAGE_CONTINUE, BUTTON_CONTINUE_ALT);
 
 
 
-define('NAVBAR_TITLE', $var_pageDetails->fields[pages_title]);
+define('NAVBAR_TITLE', $var_pageDetails->fields['pages_title']);
 
 require(DIR_WS_MODULES . zen_get_module_directory('require_languages.php'));
 
@@ -144,12 +146,11 @@ if (!defined('EZPAGES_DISABLE_HEADER_DISPLAY_LIST')) define('EZPAGES_DISABLE_HEA
 if (!defined('EZPAGES_DISABLE_FOOTER_DISPLAY_LIST')) define('EZPAGES_DISABLE_FOOTER_DISPLAY_LIST','');
 if (!defined('EZPAGES_DISABLE_LEFTCOLUMN_DISPLAY_LIST')) define('EZPAGES_DISABLE_LEFTCOLUMN_DISPLAY_LIST','');
 if (!defined('EZPAGES_DISABLE_RIGHTCOLUMN_DISPLAY_LIST')) define('EZPAGES_DISABLE_RIGHTCOLUMN_DISPLAY_LIST','');
-if (isset($_GET['id']) && (int)$_GET['id'] > 0 ) {
-  $ezpage_id = (int)$_GET['id'];
-  if (in_array($ezpage_id,explode(",",EZPAGES_DISABLE_HEADER_DISPLAY_LIST)) || strstr(EZPAGES_DISABLE_HEADER_DISPLAY_LIST,'*')) $flag_disable_header = true;
-  if (in_array($ezpage_id,explode(",",EZPAGES_DISABLE_FOOTER_DISPLAY_LIST)) || strstr(EZPAGES_DISABLE_FOOTER_DISPLAY_LIST,'*')) $flag_disable_footer = true;
-  if (in_array($ezpage_id,explode(",",EZPAGES_DISABLE_LEFTCOLUMN_DISPLAY_LIST)) || strstr(EZPAGES_DISABLE_LEFTCOLUMN_DISPLAY_LIST,'*')) $flag_disable_left = true;
-  if (in_array($ezpage_id,explode(",",EZPAGES_DISABLE_RIGHTCOLUMN_DISPLAY_LIST)) || strstr(EZPAGES_DISABLE_RIGHTCOLUMN_DISPLAY_LIST,'*')) $flag_disable_right = true;
+if ($ezpage_id > 0 ) {
+  if (in_array($ezpage_id, explode(",",EZPAGES_DISABLE_HEADER_DISPLAY_LIST)) || strstr(EZPAGES_DISABLE_HEADER_DISPLAY_LIST,'*')) $flag_disable_header = true;
+  if (in_array($ezpage_id, explode(",",EZPAGES_DISABLE_FOOTER_DISPLAY_LIST)) || strstr(EZPAGES_DISABLE_FOOTER_DISPLAY_LIST,'*')) $flag_disable_footer = true;
+  if (in_array($ezpage_id, explode(",",EZPAGES_DISABLE_LEFTCOLUMN_DISPLAY_LIST)) || strstr(EZPAGES_DISABLE_LEFTCOLUMN_DISPLAY_LIST,'*')) $flag_disable_left = true;
+  if (in_array($ezpage_id, explode(",",EZPAGES_DISABLE_RIGHTCOLUMN_DISPLAY_LIST)) || strstr(EZPAGES_DISABLE_RIGHTCOLUMN_DISPLAY_LIST,'*')) $flag_disable_right = true;
 }
 // end flag settings for sections to disable
 

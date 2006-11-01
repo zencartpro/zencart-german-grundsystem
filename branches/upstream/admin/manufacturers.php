@@ -17,7 +17,7 @@
 // | to obtain it through the world-wide-web, please send a note to       |
 // | license@zen-cart.com so we can mail you a copy immediately.          |
 // +----------------------------------------------------------------------+
-//  $Id: manufacturers.php 4300 2006-08-27 19:36:10Z ajeh $
+//  $Id: manufacturers.php 4808 2006-10-22 18:48:53Z ajeh $
 //
 
   require('includes/application_top.php');
@@ -48,6 +48,14 @@
           zen_db_perform(TABLE_MANUFACTURERS, $sql_data_array, 'update', "manufacturers_id = '" . (int)$manufacturers_id . "'");
         }
 
+
+      if ($_POST['manufacturers_image_manual'] != '') {
+        // add image manually
+        $manufacturers_image_name = $_POST['img_dir'] . $_POST['manufacturers_image_manual'];
+        $db->Execute("update " . TABLE_MANUFACTURERS . "
+                      set manufacturers_image = '" .  $manufacturers_image_name . "'
+                      where manufacturers_id = '" . (int)$manufacturers_id . "'");
+      } else {
         $manufacturers_image = new upload('manufacturers_image');
         $manufacturers_image->set_destination(DIR_FS_CATALOG_IMAGES . $_POST['img_dir']);
         if ( $manufacturers_image->parse() &&  $manufacturers_image->save()) {
@@ -62,6 +70,7 @@
                           where manufacturers_id = '" . (int)$manufacturers_id . "'");
           }
         }
+      }
 
         $languages = zen_get_languages();
         for ($i=0, $n=sizeof($languages); $i<$n; $i++) {
@@ -250,6 +259,8 @@
 
       $contents[] = array('text' => '<BR />' . TEXT_PRODUCTS_IMAGE_DIR . zen_draw_pull_down_menu('img_dir', $dir_info, $default_directory));
 
+      $contents[] = array('text' => '<br />' . TEXT_MANUFACTURERS_IMAGE_MANUAL . '&nbsp;' . zen_draw_input_field('manufacturers_image_manual'));
+
       $manufacturer_inputs_string = '';
       $languages = zen_get_languages();
       for ($i=0, $n=sizeof($languages); $i<$n; $i++) {
@@ -277,6 +288,9 @@
       $default_directory = substr( $mInfo->manufacturers_image, 0,strpos( $mInfo->manufacturers_image, '/')+1);
 
       $contents[] = array('text' => '<BR />' . TEXT_PRODUCTS_IMAGE_DIR . zen_draw_pull_down_menu('img_dir', $dir_info, $default_directory));
+
+      $contents[] = array('text' => '<br />' . TEXT_MANUFACTURERS_IMAGE_MANUAL . '&nbsp;' . zen_draw_input_field('manufacturers_image_manual'));
+
       $contents[] = array('text' => '<br />' . zen_info_image($mInfo->manufacturers_image, $mInfo->manufacturers_name));
       $manufacturer_inputs_string = '';
       $languages = zen_get_languages();

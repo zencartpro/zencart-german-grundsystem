@@ -1,24 +1,11 @@
 <?php
-//
-// +----------------------------------------------------------------------+
-// |zen-cart Open Source E-commerce                                       |
-// +----------------------------------------------------------------------+
-// | Copyright (c) 2003 The zen-cart developers                           |
-// |                                                                      |
-// | http://www.zen-cart.com/index.php                                    |
-// |                                                                      |
-// | Portions Copyright (c) 2003 osCommerce                               |
-// +----------------------------------------------------------------------+
-// | This source file is subject to version 2.0 of the GPL license,       |
-// | that is bundled with this package in the file LICENSE, and is        |
-// | available through the world-wide-web at the following url:           |
-// | http://www.zen-cart.com/license/2_0.txt.                             |
-// | If you did not receive a copy of the zen-cart license and are unable |
-// | to obtain it through the world-wide-web, please send a note to       |
-// | license@zen-cart.com so we can mail you a copy immediately.          |
-// +----------------------------------------------------------------------+
-//  $Id: geo_zones.php 3966 2006-07-16 19:40:28Z drbyte $
-//
+/**
+ * @package admin
+ * @copyright Copyright 2003-2006 Zen Cart Development Team
+ * @copyright Portions Copyright 2003 osCommerce
+ * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
+ * @version $Id: geo_zones.php 4838 2006-10-26 02:13:50Z ajeh $
+ */
 
   require('includes/application_top.php');
 
@@ -40,7 +27,8 @@
 
         $new_subzone_id = $db->Insert_ID();
 
-        zen_redirect(zen_href_link(FILENAME_GEO_ZONES, 'zpage=' . $_GET['zpage'] . '&zID=' . $_GET['zID'] . '&action=list&spage=' . $_GET['spage'] . '&sID=' . $new_subzone_id));
+//        zen_redirect(zen_href_link(FILENAME_GEO_ZONES, 'zpage=' . $_GET['zpage'] . '&zID=' . $_GET['zID'] . '&action=list&spage=' . $_GET['spage'] . '&sID=' . $new_subzone_id));
+        zen_redirect(zen_href_link(FILENAME_GEO_ZONES, 'zpage=' . $_GET['zpage'] . '&zID=' . $_GET['zID'] . '&action=list' . '&sID=' . $new_subzone_id));
         break;
       case 'save_sub':
         $sID = zen_db_prepare_input($_GET['sID']);
@@ -90,8 +78,7 @@
                             now())");
 
         $new_zone_id = $db->Insert_ID();
-
-        zen_redirect(zen_href_link(FILENAME_GEO_ZONES, 'zpage=' . $_GET['zpage'] . '&zID=' . $new_zone_id));
+        zen_redirect(zen_href_link(FILENAME_GEO_ZONES, 'zID=' . $new_zone_id));
         break;
       case 'save_zone':
         $zID = zen_db_prepare_input($_GET['zID']);
@@ -103,8 +90,7 @@
                           geo_zone_description = '" . zen_db_input($geo_zone_description) . "',
                           last_modified = now() where geo_zone_id = '" . (int)$zID . "'");
 
-
-        zen_redirect(zen_href_link(FILENAME_GEO_ZONES, 'zpage=' . $_GET['zpage'] . '&zID=' . $_GET['zID']));
+        zen_redirect(zen_href_link(FILENAME_GEO_ZONES, 'zID=' . $_GET['zID']));
         break;
       case 'deleteconfirm_zone':
         // demo active test
@@ -218,8 +204,29 @@ function update_zone(theForm) {
                 <td class="dataTableHeadingContent" align="right"><?php echo TABLE_HEADING_ACTION; ?>&nbsp;</td>
               </tr>
 <?php
+// Split Page
+// reset page when page is unknown
+if ((!isset($_GET['spage']) or $_GET['spage'] == '' or $_GET['spage'] == '1') and $_GET['sID'] != '') {
+//  $zones_query_raw = "select a.association_id, a.zone_country_id, c.countries_name, a.zone_id, a.geo_zone_id, a.last_modified, a.date_added, z.zone_name from (" . TABLE_ZONES_TO_GEO_ZONES . " a left join " . TABLE_COUNTRIES . " c on a.zone_country_id = c.countries_id left join " . TABLE_ZONES . " z on a.zone_id = z.zone_id) where a.geo_zone_id = " . $_GET['zID'] . " order by association_id";
+  $zones_query_raw = "select a.association_id, a.zone_country_id, c.countries_name, a.zone_id, a.geo_zone_id, a.last_modified, a.date_added, z.zone_name from (" . TABLE_ZONES_TO_GEO_ZONES . " a left join " . TABLE_COUNTRIES . " c on a.zone_country_id = c.countries_id left join " . TABLE_ZONES . " z on a.zone_id = z.zone_id) where a.geo_zone_id = " . $_GET['zID'] . " order by c.countries_name, association_id";
+  $check_page = $db->Execute($zones_query_raw);
+  $check_count=1;
+  if ($check_page->RecordCount() > MAX_DISPLAY_SEARCH_RESULTS) {
+    while (!$check_page->EOF) {
+      if ($check_page->fields['association_id'] == $_GET['sID']) {
+        break;
+      }
+      $check_count++;
+      $check_page->MoveNext();
+    }
+    $_GET['spage'] = round((($check_count/MAX_DISPLAY_SEARCH_RESULTS)+(fmod_round($check_count,MAX_DISPLAY_SEARCH_RESULTS) !=0 ? .5 : 0)),0);
+  } else {
+    $_GET['spage'] = 1;
+  }
+}
     $rows = 0;
-    $zones_query_raw = "select a.association_id, a.zone_country_id, c.countries_name, a.zone_id, a.geo_zone_id, a.last_modified, a.date_added, z.zone_name from (" . TABLE_ZONES_TO_GEO_ZONES . " a left join " . TABLE_COUNTRIES . " c on a.zone_country_id = c.countries_id left join " . TABLE_ZONES . " z on a.zone_id = z.zone_id) where a.geo_zone_id = " . $_GET['zID'] . " order by association_id";
+//    $zones_query_raw = "select a.association_id, a.zone_country_id, c.countries_name, a.zone_id, a.geo_zone_id, a.last_modified, a.date_added, z.zone_name from (" . TABLE_ZONES_TO_GEO_ZONES . " a left join " . TABLE_COUNTRIES . " c on a.zone_country_id = c.countries_id left join " . TABLE_ZONES . " z on a.zone_id = z.zone_id) where a.geo_zone_id = " . $_GET['zID'] . " order by association_id";
+    $zones_query_raw = "select a.association_id, a.zone_country_id, c.countries_name, a.zone_id, a.geo_zone_id, a.last_modified, a.date_added, z.zone_name from (" . TABLE_ZONES_TO_GEO_ZONES . " a left join " . TABLE_COUNTRIES . " c on a.zone_country_id = c.countries_id left join " . TABLE_ZONES . " z on a.zone_id = z.zone_id) where a.geo_zone_id = " . $_GET['zID'] . " order by c.countries_name, association_id";
     $zones_split = new splitPageResults($_GET['spage'], MAX_DISPLAY_SEARCH_RESULTS, $zones_query_raw, $zones_query_numrows);
     $zones = $db->Execute($zones_query_raw);
     while (!$zones->EOF) {
@@ -256,18 +263,41 @@ function update_zone(theForm) {
 <?php
   } else {
 ?>
+<?php echo TEXT_LEGEND; ?>&nbsp;
+<?php echo zen_image(DIR_WS_IMAGES . 'icon_status_green.gif') . TEXT_LEGEND_TAX_AND_ZONES; ?>&nbsp;&nbsp;&nbsp;
+<?php echo zen_image(DIR_WS_IMAGES . 'icon_status_yellow.gif') . TEXT_LEGEND_ONLY_ZONES; ?>&nbsp;&nbsp;&nbsp;
+<?php echo zen_image(DIR_WS_IMAGES . 'icon_status_red.gif') . TEXT_LEGEND_NOT_CONF; ?>&nbsp;&nbsp;&nbsp;<br />
             <table border="0" width="100%" cellspacing="0" cellpadding="2">
               <tr class="dataTableHeadingRow">
                 <td class="dataTableHeadingContent"><?php echo TABLE_HEADING_TAX_ZONES; ?></td>
                 <td class="dataTableHeadingContent"><?php echo TABLE_HEADING_TAX_ZONES_DESCRIPTION; ?></td>
+                <td class="dataTableHeadingContent" align="center"><?php echo TABLE_HEADING_STATUS; ?></td>
                 <td class="dataTableHeadingContent" align="right"><?php echo TABLE_HEADING_ACTION; ?>&nbsp;</td>
               </tr>
 <?php
+// Split Page
+// reset page when page is unknown
+if ((!isset($_GET['zpage']) or $_GET['zpage'] == '' or $_GET['zpage'] == '1') and $_GET['zID'] != '') {
+  $zones_query_raw = "select geo_zone_id, geo_zone_name, geo_zone_description, last_modified, date_added from " . TABLE_GEO_ZONES . " order by geo_zone_name";
+  $check_page = $db->Execute($zones_query_raw);
+  $check_count=1;
+  if ($check_page->RecordCount() > MAX_DISPLAY_SEARCH_RESULTS) {
+    while (!$check_page->EOF) {
+      if ($check_page->fields['geo_zone_id'] == $_GET['zID']) {
+        break;
+      }
+      $check_count++;
+      $check_page->MoveNext();
+    }
+    $_GET['zpage'] = round((($check_count/MAX_DISPLAY_SEARCH_RESULTS)+(fmod_round($check_count,MAX_DISPLAY_SEARCH_RESULTS) !=0 ? .5 : 0)),0);
+  } else {
+    $_GET['zpage'] = 1;
+  }
+}
     $zones_query_raw = "select geo_zone_id, geo_zone_name, geo_zone_description, last_modified, date_added from " . TABLE_GEO_ZONES . " order by geo_zone_name";
     $zones_split = new splitPageResults($_GET['zpage'], MAX_DISPLAY_SEARCH_RESULTS, $zones_query_raw, $zones_query_numrows);
     $zones = $db->Execute($zones_query_raw);
     while (!$zones->EOF) {
-      if ((!isset($_GET['zID']) || (isset($_GET['zID']) && ($_GET['zID'] == $zones->fields['geo_zone_id']))) && !isset($zInfo) && (substr($action, 0, 3) != 'new')) {
         $num_zones = $db->Execute("select count(*) as num_zones
                                    from " . TABLE_ZONES_TO_GEO_ZONES . "
                                    where geo_zone_id = '" . (int)$zones->fields['geo_zone_id'] . "'
@@ -290,6 +320,7 @@ function update_zone(theForm) {
           $zones->fields['num_tax_rates'] = 0;
         }
 
+      if ((!isset($_GET['zID']) || (isset($_GET['zID']) && ($_GET['zID'] == $zones->fields['geo_zone_id']))) && !isset($zInfo) && (substr($action, 0, 3) != 'new')) {
         $zInfo = new objectInfo($zones->fields);
       }
       if (isset($zInfo) && is_object($zInfo) && ($zones->fields['geo_zone_id'] == $zInfo->geo_zone_id)) {
@@ -300,6 +331,16 @@ function update_zone(theForm) {
 ?>
                 <td class="dataTableContent"><?php echo '<a href="' . zen_href_link(FILENAME_GEO_ZONES, 'zpage=' . $_GET['zpage'] . '&zID=' . $zones->fields['geo_zone_id'] . '&action=list') . '">' . zen_image(DIR_WS_ICONS . 'folder.gif', ICON_FOLDER) . '</a>&nbsp;' . $zones->fields['geo_zone_name']; ?></td>
                 <td class="dataTableContent"><?php echo $zones->fields['geo_zone_description']; ?></td>
+                <td class="dataTableContent" align="center"><?php
+                    // show current status
+                    if ($zones->fields['num_tax_rates'] && $zones->fields['num_zones']) {
+                      echo zen_image(DIR_WS_IMAGES . 'icon_status_green.gif');
+                    } elseif ($zones->fields['num_zones']) {
+                      echo zen_image(DIR_WS_IMAGES . 'icon_status_yellow.gif');
+                    } else {
+                      echo zen_image(DIR_WS_IMAGES . 'icon_status_red.gif');
+                    }
+                  ?></td>
                 <td class="dataTableContent" align="right"><?php if (isset($zInfo) && is_object($zInfo) && ($zones->fields['geo_zone_id'] == $zInfo->geo_zone_id)) { echo zen_image(DIR_WS_IMAGES . 'icon_arrow_right.gif'); } else { echo '<a href="' . zen_href_link(FILENAME_GEO_ZONES, 'zpage=' . $_GET['zpage'] . '&zID=' . $zones->fields['geo_zone_id']) . '">' . zen_image(DIR_WS_IMAGES . 'icon_info.gif', IMAGE_ICON_INFO) . '</a>'; } ?>&nbsp;</td>
               </tr>
 <?php
@@ -307,7 +348,7 @@ function update_zone(theForm) {
     }
 ?>
               <tr>
-                <td colspan="3"><table border="0" width="100%" cellspacing="0" cellpadding="2">
+                <td colspan="4"><table border="0" width="100%" cellspacing="0" cellpadding="2">
                   <tr>
                     <td class="smallText"><?php echo $zones_split->display_count($zones_query_numrows, MAX_DISPLAY_SEARCH_RESULTS, $_GET['zpage'], TEXT_DISPLAY_NUMBER_OF_TAX_ZONES); ?></td>
                     <td class="smallText" align="right"><?php echo $zones_split->display_links($zones_query_numrows, MAX_DISPLAY_SEARCH_RESULTS, MAX_DISPLAY_PAGE_LINKS, $_GET['zpage'], '', 'zpage'); ?></td>
@@ -315,7 +356,7 @@ function update_zone(theForm) {
                 </table></td>
               </tr>
               <tr>
-                <td align="right" colspan="3"><?php if (!$action) echo '<a href="' . zen_href_link(FILENAME_GEO_ZONES, 'zpage=' . $_GET['zpage'] . '&zID=' . $zInfo->geo_zone_id . '&action=new_zone') . '">' . zen_image_button('button_insert.gif', IMAGE_INSERT) . '</a>'; ?></td>
+                <td align="right" colspan="4"><?php if (!$action) echo '<a href="' . zen_href_link(FILENAME_GEO_ZONES, 'zpage=' . $_GET['zpage'] . '&zID=' . $zInfo->geo_zone_id . '&action=new_zone') . '">' . zen_image_button('button_insert.gif', IMAGE_INSERT) . '</a>'; ?></td>
               </tr>
             </table>
 <?php

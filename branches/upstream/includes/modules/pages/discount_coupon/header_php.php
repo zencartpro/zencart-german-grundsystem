@@ -6,7 +6,7 @@
  * @copyright Copyright 2003-2006 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: header_php.php 4135 2006-08-14 04:25:02Z drbyte $
+ * @version $Id: header_php.php 4591 2006-09-23 04:25:15Z ajeh $
  */
 
   require(DIR_WS_MODULES . zen_get_module_directory('require_languages.php'));
@@ -43,6 +43,11 @@
       if ($coupon->fields['coupon_minimum_order'] > 0 ) $text_coupon_help .= sprintf(TEXT_COUPON_HELP_MINORDER, $currencies->format($coupon->fields['coupon_minimum_order']));
       $text_coupon_help .= sprintf(TEXT_COUPON_HELP_DATE, zen_date_short($coupon->fields['coupon_start_date']),zen_date_short($coupon->fields['coupon_expire_date']));
       $text_coupon_help .= TEXT_COUPON_HELP_RESTRICT;
+
+      if ($coupon->fields['coupon_zone_restriction'] > 0) {
+        $text_coupon_help .= TEXT_COUPON_GV_RESTRICTION_ZONES;
+      }
+
       $text_coupon_help .= TEXT_COUPON_HELP_CATEGORIES;
       $get_result=$db->Execute("select * from " . TABLE_COUPON_RESTRICT . "  where coupon_id='" . (int)$lookup_coupon_id . "' and category_id !='0'");
       $cats = '';

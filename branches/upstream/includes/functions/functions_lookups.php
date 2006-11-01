@@ -7,7 +7,7 @@
  * @copyright Copyright 2003-2006 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: functions_lookups.php 4277 2006-08-26 03:19:28Z drbyte $
+ * @version $Id: functions_lookups.php 4767 2006-10-16 16:31:12Z ajeh $
  */
 
 
@@ -364,6 +364,21 @@
     return $product->fields['manufacturers_image'];
   }
 
+/*
+ * Return a product's manufacturer's id, from Prod ID
+ * TABLES: products
+ */
+  function zen_get_products_manufacturers_id($product_id) {
+    global $db;
+
+    $product_query = "select p.manufacturers_id
+                      from " . TABLE_PRODUCTS . " p
+                      where p.products_id = '" . (int)$product_id . "'";
+
+    $product =$db->Execute($product_query);
+
+    return $product->fields['manufacturers_id'];
+  }
 
 /*
  * Return attributes products_options_sort_order
@@ -850,14 +865,32 @@
     if ($time_limit == false) {
       $time_limit = SHOW_NEW_PRODUCTS_LIMIT;
     }
-
     // 120 days; 24 hours; 60 mins; 60secs
     $date_range = time() - ($time_limit * 24 * 60 * 60);
+    $upcoming_mask_range = time();
+    $upcoming_mask = date('Ymd', $upcoming_mask_range);
+
 // echo 'Now:      '. date('Y-m-d') ."<br />";
 // echo $time_limit . ' Days: '. date('Ymd', $date_range) ."<br />";
     $zc_new_date = date('Ymd', $date_range);
-    $new_range = ' and p.products_date_added >=' . $zc_new_date;
-    return "";
+    switch (true) {
+    case (SHOW_NEW_PRODUCTS_LIMIT == 0):
+      $new_range = '';
+      break;
+    case (SHOW_NEW_PRODUCTS_LIMIT == 1):
+      $zc_new_date = date('Ym', time()) . '01';
+      $new_range = ' and p.products_date_added >=' . $zc_new_date;
+      break;
+    default:
+      $new_range = ' and p.products_date_added >=' . $zc_new_date;
+    }
+
+    if (SHOW_NEW_PRODUCTS_UPCOMING_MASKED == 0) {
+      // do nothing upcoming shows in new
+    } else {
+      // do not include upcoming in new
+      $new_range .= " and (p.products_date_available <=" . $upcoming_mask . " or p.products_date_available IS NULL)";
+    }
     return $new_range;
   }
 

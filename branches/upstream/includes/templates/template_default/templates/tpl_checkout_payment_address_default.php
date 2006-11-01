@@ -9,7 +9,7 @@
  * @copyright Copyright 2003-2005 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: tpl_checkout_payment_address_default.php 2540 2005-12-11 07:55:22Z birdbrain $
+ * @version $Id: tpl_checkout_payment_address_default.php 4554 2006-09-18 01:15:01Z ajeh $
  */
 ?>
 <div class="centerColumn" id="checkoutPayAddressDefault">
@@ -27,11 +27,11 @@
 <br class="clearBoth" />
 
 <?php
-     if ($addresses_count <= MAX_ADDRESS_BOOK_ENTRIES) {
+     if ($addresses_count < MAX_ADDRESS_BOOK_ENTRIES) {
 ?>
 <?php
 /**
- * rewuire template to collect address details
+ * require template to collect address details
  */
  require($template->get_template_dir('tpl_modules_checkout_new_address.php', DIR_WS_TEMPLATE, $current_page_base,'templates'). '/' . 'tpl_modules_checkout_new_address.php');
 ?>

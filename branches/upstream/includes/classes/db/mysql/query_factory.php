@@ -7,7 +7,7 @@
  * @copyright Copyright 2003-2006 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: query_factory.php 4359 2006-09-02 23:47:21Z drbyte $
+ * @version $Id: query_factory.php 4821 2006-10-23 10:54:15Z drbyte $
  */
 if (!defined('IS_ADMIN_FLAG')) {
   die('Illegal Access');
@@ -78,14 +78,14 @@ class queryFactory extends base {
     if ($this->error_number == 0 && $this->error_text == DB_ERROR_NOT_CONNECTED && !headers_sent() && file_exists('nddbc.html') ) include('nddbc.html');
     echo '<div class="systemError">';
     echo $this->error_number . ' ' . $this->error_text;
-    echo '<br />in:<br />[' . $this->zf_sql . ']<br />';
+    echo '<br />in:<br />[' . (strstr($this->zf_sql, 'db_cache') ? 'db_cache table' : $this->zf_sql) . ']<br />';
     if (defined('IS_ADMIN_FLAG') && IS_ADMIN_FLAG==true) echo 'If you were entering information, press the BACK button in your browser and re-check the information you had entered to be sure you left no blank fields.<br />';
     echo '</div>';
   }
 
   function Execute($zf_sql, $zf_limit = false, $zf_cache = false, $zf_cachetime=0) {
     // bof: collect database queries
-    if (STORE_DB_TRANSACTIONS=='true') {
+    if (defined('STORE_DB_TRANSACTIONS') && STORE_DB_TRANSACTIONS=='true') {
       global $PHP_SELF, $box_id, $current_page_base;
       if (strtoupper(substr($zf_sql,0,6))=='SELECT' /*&& strstr($zf_sql,'products_id')*/) {
         $f=@fopen(DIR_FS_SQL_CACHE.'/query_selects_' . $current_page_base . '_' . time() . '.txt','a');

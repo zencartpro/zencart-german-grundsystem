@@ -19,7 +19,7 @@
  * @package classes
  * @ignore
  * @author Chris Ryan
- * @version (within Zen Cart) $Id: class.smtp.php 4383 2006-09-04 00:42:07Z drbyte $
+ * @version (within Zen Cart) $Id: class.smtp.php 4690 2006-10-07 08:37:20Z drbyte $
  */
 /**
  * SMTP Class
@@ -115,7 +115,7 @@ class SMTP
     $tval);   # give up after ? secs
     # verify we connected properly
     if(empty($this->smtp_conn)) {
-      $this->error = array("error" => "Failed to connect to server",
+      $this->error = array("error" => "Failed to connect to server $host $port",
       "errno" => $errno,
       "errstr" => $errstr);
       if($this->do_debug >= 1) {
@@ -1031,8 +1031,10 @@ class SMTP
      */
   function get_lines() {
     $data = "";
-    while($str = fgets($this->smtp_conn,515)) {
+    while($str = @fgets($this->smtp_conn,515)) {
       if($this->do_debug >= 4) {
+        echo "-------------------" .
+        $this->CRLF;
         echo "SMTP -> get_lines(): \$data was \"$data\"" .
         $this->CRLF;
         echo "SMTP -> get_lines(): \$str is \"$str\"" .

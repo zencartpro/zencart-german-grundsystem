@@ -3,7 +3,7 @@
 // +----------------------------------------------------------------------+
 // |zen-cart Open Source E-commerce                                       |
 // +----------------------------------------------------------------------+
-// | Copyright (c) 2003 The zen-cart developers                           |
+// | Copyright (c) 2006 The zen-cart developers                           |
 // |                                                                      |
 // | http://www.zen-cart.com/index.php                                    |
 // |                                                                      |
@@ -17,7 +17,7 @@
 // | to obtain it through the world-wide-web, please send a note to       |
 // | license@zen-cart.com so we can mail you a copy immediately.          |
 // +----------------------------------------------------------------------+
-//  $Id: developers_tool_kit.php 3405 2006-04-10 16:43:55Z drbyte $
+//  $Id: developers_tool_kit.php 4732 2006-10-12 20:31:53Z drbyte $
 //
 
   require('includes/application_top.php');
@@ -90,6 +90,7 @@
       $root_array[] = DIR_FS_CATALOG . 'ipn_main_handler.php';
       $root_array[] = DIR_FS_CATALOG . 'ipn_test.php';
       $root_array[] = DIR_FS_CATALOG . 'ipn_test_return.php';
+      $root_array[] = DIR_FS_CATALOG . 'nddbc.html';
       $root_array[] = DIR_FS_CATALOG . 'page_not_found.php';
       $new_array = array_merge($root_array, $original_array);
       $directory_array = $new_array;

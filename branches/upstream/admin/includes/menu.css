@@ -51,12 +51,14 @@ padding:0;
 width:150px;
 }
 ul.nde-menu-system li ul li a{
-background-color:#E4FEF5;
+background-color:#EFF4EA;
 color:#333333;
 display:block;
 font-weight:normal;
 margin:0;
 padding:3px 5px;
+}
+* html ul.nde-menu-system li ul li a{
 width:100%;
 }
 ul.nde-menu-system li ul li a:hover{

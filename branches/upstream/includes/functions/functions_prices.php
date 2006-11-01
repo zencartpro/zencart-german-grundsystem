@@ -6,7 +6,7 @@
  * @copyright Copyright 2003-2006 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: functions_prices.php 4135 2006-08-14 04:25:02Z drbyte $
+ * @version $Id: functions_prices.php 4660 2006-10-02 03:19:16Z ajeh $
  */
 
 ////
@@ -148,10 +148,10 @@
 // Specials and Tax Included
   function zen_get_products_display_price($products_id) {
     global $db, $currencies;
-    
+
     $free_tag = "";
     $call_tag = "";
-    
+
 // 0 = normal shopping
 // 1 = Login to shop
 // 2 = Can browse but no prices
@@ -384,12 +384,19 @@
   function zen_get_products_quantity_mixed($product_id) {
     global $db;
 
-    $the_products_quantity_mixed = $db->Execute("select products_id, products_quantity_mixed from " . TABLE_PRODUCTS . " where products_id = '" . (int)$product_id . "'");
-    if ($the_products_quantity_mixed->fields['products_quantity_mixed'] == '1') {
-      $look_up = true;
+// don't check for mixed if not attributes
+    $chk_attrib = zen_has_product_attributes((int)$product_id);
+    if ($chk_attrib == true) {
+      $the_products_quantity_mixed = $db->Execute("select products_id, products_quantity_mixed from " . TABLE_PRODUCTS . " where products_id = '" . (int)$product_id . "'");
+      if ($the_products_quantity_mixed->fields['products_quantity_mixed'] == '1') {
+        $look_up = true;
+      } else {
+        $look_up = false;
+      }
     } else {
-      $look_up = false;
+      $look_up = 'none';
     }
+
     return $look_up;
   }
 
@@ -410,17 +417,21 @@
         $the_min_units .= ($the_min_units ? ' ' : '' ) . PRODUCTS_QUANTITY_UNIT_TEXT_LISTING . '&nbsp;' . $check_units;
       }
 
-      if (($check_min > 0 or $check_units > 0) and !zen_get_products_quantity_mixed($product_id)) {
-        if ($include_break == true) {
-          $the_min_units .= '<br />' . ($shopping_cart_msg == false ? TEXT_PRODUCTS_MIX_OFF : TEXT_PRODUCTS_MIX_OFF_SHOPPING_CART);
+// don't check for mixed if not attributes
+      $chk_mix = zen_get_products_quantity_mixed((int)$product_id);
+      if ($chk_mix != 'none') {
+        if (($check_min > 0 or $check_units > 0)) {
+          if ($include_break == true) {
+            $the_min_units .= '<br />' . ($shopping_cart_msg == false ? TEXT_PRODUCTS_MIX_OFF : TEXT_PRODUCTS_MIX_OFF_SHOPPING_CART);
+          } else {
+            $the_min_units .= '&nbsp;&nbsp;' . ($shopping_cart_msg == false ? TEXT_PRODUCTS_MIX_OFF : TEXT_PRODUCTS_MIX_OFF_SHOPPING_CART);
+          }
         } else {
-          $the_min_units .= '&nbsp;&nbsp;' . ($shopping_cart_msg == false ? TEXT_PRODUCTS_MIX_OFF : TEXT_PRODUCTS_MIX_OFF_SHOPPING_CART);
-        }
-      } else {
-        if ($include_break == true) {
-          $the_min_units .= '<br />' . ($shopping_cart_msg == false ? TEXT_PRODUCTS_MIX_ON : TEXT_PRODUCTS_MIX_ON_SHOPPING_CART);
-        } else {
-          $the_min_units .= '&nbsp;&nbsp;' . ($shopping_cart_msg == false ? TEXT_PRODUCTS_MIX_ON : TEXT_PRODUCTS_MIX_ON_SHOPPING_CART);
+          if ($include_break == true) {
+            $the_min_units .= '<br />' . ($shopping_cart_msg == false ? TEXT_PRODUCTS_MIX_ON : TEXT_PRODUCTS_MIX_ON_SHOPPING_CART);
+          } else {
+            $the_min_units .= '&nbsp;&nbsp;' . ($shopping_cart_msg == false ? TEXT_PRODUCTS_MIX_ON : TEXT_PRODUCTS_MIX_ON_SHOPPING_CART);
+          }
         }
       }
     }
@@ -1067,7 +1078,7 @@ If a special exist * 10
   function zen_get_attributes_price_final($attribute, $qty = 1, $pre_selected, $include_onetime = 'false') {
     global $db;
     global $cart;
-    
+
     $attributes_price_final = 0;
 
     if ($pre_selected == '' or $attribute != $pre_selected->fields["products_attributes_id"]) {

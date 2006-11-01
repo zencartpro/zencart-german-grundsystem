@@ -3,7 +3,7 @@
 // +----------------------------------------------------------------------+
 // |zen-cart Open Source E-commerce                                       |
 // +----------------------------------------------------------------------+
-// | Copyright (c) 2003 The zen-cart developers                           |
+// | Copyright (c) 2006 The zen-cart developers                           |
 // |                                                                      |   
 // | http://www.zen-cart.com/index.php                                    |   
 // |                                                                      |   
@@ -17,7 +17,7 @@
 // | to obtain it through the world-wide-web, please send a note to       |
 // | license@zen-cart.com so we can mail you a copy immediately.          |
 // +----------------------------------------------------------------------+
-//  $Id: language.php 1969 2005-09-13 06:57:21Z drbyte $
+//  $Id: language.php 4725 2006-10-11 09:03:27Z drbyte $
 //
 
   class language {
@@ -72,6 +72,7 @@
         $this->catalog_languages[$languages->fields['code']] = array('id' => $languages->fields['languages_id'],
                                                              'name' => $languages->fields['name'],
                                                              'image' => $languages->fields['image'],
+                                                             'code' => $languages->fields['code'],
                                                              'directory' => $languages->fields['directory']);
         $languages->MoveNext();
       }

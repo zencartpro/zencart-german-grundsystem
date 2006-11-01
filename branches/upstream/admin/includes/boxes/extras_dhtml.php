@@ -4,7 +4,7 @@
  * @copyright Copyright 2003-2006 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: extras_dhtml.php 3001 2006-02-09 21:45:06Z wilt $
+ * @version $Id: extras_dhtml.php 4574 2006-09-21 02:30:42Z drbyte $
  */
 if (!defined('IS_ADMIN_FLAG')) {
   die('Illegal Access');
@@ -21,8 +21,8 @@ if ($za_dir = @dir(DIR_WS_BOXES . 'extra_boxes')) {
   }
 }
 ?>
-<!-- reports //-->
+<!-- extras_dhtml //-->
 <?php
-echo zen_draw_admin_box($za_heading, $za_contents);
+if (sizeof($za_contents)) echo zen_draw_admin_box($za_heading, $za_contents);
 ?>
-<!-- reports_eof //-->
+<!-- extras_dhtml_eof //-->

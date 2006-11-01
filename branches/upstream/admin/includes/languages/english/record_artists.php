@@ -17,7 +17,7 @@
 // | to obtain it through the world-wide-web, please send a note to       |
 // | license@zen-cart.com so we can mail you a copy immediately.          |
 // +----------------------------------------------------------------------+
-//  $Id: record_artists.php 276 2004-09-10 22:35:28Z wilt $
+//  $Id: record_artists.php 4810 2006-10-22 19:02:19Z ajeh $
 //
   define('HEADING_TITLE', 'Recording Artists');
   define('TABLE_HEADING_RECORD_ARTISTS', 'Record Artists');
@@ -30,6 +30,7 @@
   define('TEXT_RECORD_ARTIST_IMAGE', 'Artists Image');
   define('TEXT_RECORD_ARTIST_URL', 'Artists Web Site');
   define('TEXT_ARTISTS_IMAGE_DIR', 'Image Directory&nbsp;');
+  define('TEXT_ARTISTS_IMAGE_MANUAL', '<strong>Or, select an existing image file from server, filename:</strong>');
 
   define('TEXT_HEADING_NEW_RECORD_ARTIST', 'New Recording Artist');
   define('TEXT_HEADING_EDIT_RECORD_ARTIST', 'Edit Recording Artist');

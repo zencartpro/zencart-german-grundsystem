@@ -6,7 +6,7 @@
  * @copyright Copyright 2003-2006 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: header_php.php 4276 2006-08-26 03:18:28Z drbyte $
+ * @version $Id: header_php.php 4793 2006-10-20 05:25:20Z ajeh $
  */
 // This should be first line of the script:
   $zco_notifier->notify('NOTIFY_HEADER_START_CHECKOUT_SHIPPING');
@@ -22,6 +22,12 @@
   if (!$_SESSION['customer_id']) {
     $_SESSION['navigation']->set_snapshot();
     zen_redirect(zen_href_link(FILENAME_LOGIN, '', 'SSL'));
+  } else {
+    // validate customer
+    if (zen_get_customer_validate_session($_SESSION['customer_id']) == false) {
+      $_SESSION['navigation']->set_snapshot(array('mode' => 'SSL', 'page' => FILENAME_CHECKOUT_SHIPPING));
+      zen_redirect(zen_href_link(FILENAME_LOGIN, '', 'SSL'));
+    }
   }
 
 // Validate Cart for checkout

@@ -17,7 +17,7 @@
 // | to obtain it through the world-wide-web, please send a note to       |
 // | license@zen-cart.com so we can mail you a copy immediately.          |
 // +----------------------------------------------------------------------+
-//  $Id: record_company.php 1969 2005-09-13 06:57:21Z drbyte $
+//  $Id: record_company.php 4811 2006-10-22 19:07:42Z ajeh $
 //
 
   require('includes/application_top.php');
@@ -48,6 +48,13 @@
           zen_db_perform(TABLE_RECORD_COMPANY, $sql_data_array, 'update', "record_company_id = '" . (int)$record_company_id . "'");
         }
 
+      if ($_POST['record_company_image_manual'] != '') {
+        // add image manually
+        $artists_image_name = $_POST['img_dir'] . $_POST['record_company_image_manual'];
+        $db->Execute("update " . TABLE_RECORD_COMPANY . "
+                      set record_company_image = '" .  $artists_image_name . "'
+                      where record_company_id = '" . (int)$record_company_id . "'");
+      } else {
         $record_company_image = new upload('record_company_image');
         $record_company_image->set_destination(DIR_FS_CATALOG_IMAGES . $_POST['img_dir']);
         if ( $record_company_image->parse() &&  $record_company_image->save()) {
@@ -63,6 +70,7 @@
                           where record_company_id = '" . (int)$record_company_id . "'");
           }
         }
+      }
 
         $languages = zen_get_languages();
         for ($i=0, $n=sizeof($languages); $i<$n; $i++) {
@@ -252,6 +260,7 @@
       $default_directory = 'record_company/';
 
       $contents[] = array('text' => '<BR />' . TEXT_RECORD_COMPANY_IMAGE_DIR . zen_draw_pull_down_menu('img_dir', $dir_info, $default_directory));
+      $contents[] = array('text' => '<br />' . TEXT_RECORD_COMPANY_IMAGE_MANUAL . '&nbsp;' . zen_draw_input_field('record_company_image_manual'));
 
       $record_company_inputs_string = '';
       $languages = zen_get_languages();
@@ -278,6 +287,7 @@
       }
       $default_directory = substr( $aInfo->record_company_image, 0,strpos( $aInfo->record_company_image, '/')+1);
       $contents[] = array('text' => '<BR />' . TEXT_RECORD_COMPANY_IMAGE_DIR . zen_draw_pull_down_menu('img_dir', $dir_info, $default_directory));
+      $contents[] = array('text' => '<br />' . TEXT_RECORD_COMPANY_IMAGE_MANUAL . '&nbsp;' . zen_draw_input_field('record_company_image_manual'));
       $contents[] = array('text' => '<br />' . zen_info_image($aInfo->record_company_image, $aInfo->record_company_name));
       $record_company_inputs_string = '';
       $languages = zen_get_languages();

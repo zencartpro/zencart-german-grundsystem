@@ -5,7 +5,7 @@
  * @copyright Copyright 2003-2006 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: stylesheet.css 4328 2006-08-31 08:01:09Z drbyte $
+ * @version $Id: stylesheet.css 4813 2006-10-23 02:13:53Z drbyte $
  */
 
 body {
@@ -308,13 +308,16 @@ HR {
 	margin: 0;
 	}
 
-#navMainSearch, #navCategoryIcon, .buttonRow, #indexProductListCatDescription {
+#navCategoryIcon, .buttonRow, #indexProductListCatDescription {
 	margin: 0.5em;
+	}
+
+#navMainSearch {
+	float: right;
 	}
 
 #navBreadCrumb {
 	padding: 0.5em 0.5em;
-	margin: 1px;
 	background-color: #ffffff;
 	font-size: 0.95em;
 	font-weight: bold;
@@ -635,6 +638,13 @@ SPAN.category-subs-selected {
 	height: 1.5em;
 	vertical-align: top;
 	}
+
+.hiddenField {
+	display: none;
+}
+.visibleField {
+	display: inline;
+}
 
 CAPTION {
 	/*display: none;*/
