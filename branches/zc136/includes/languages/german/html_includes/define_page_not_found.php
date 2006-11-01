@@ -1,0 +1,2 @@
+<p>Um diesen Text zu editieren &ouml;ffnen Sie im Adminbereich -> Tools -> den Seiteneditor und w&auml;hlen danach in der Seitenauswahliste 'define_page_not_found.php'.</p>
+<p>Seite nicht gefunden: Fehler 404</p>
