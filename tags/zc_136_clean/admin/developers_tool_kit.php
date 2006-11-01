@@ -18,7 +18,6 @@
 // | license@zen-cart.com so we can mail you a copy immediately.          |
 // +----------------------------------------------------------------------+
 //  $Id: developers_tool_kit.php 4732 2006-10-12 20:31:53Z drbyte $
-//
 
   require('includes/application_top.php');
 
@@ -28,6 +27,7 @@
   $languages = zen_get_languages();
 
   $configuration_key_lookup = zen_db_prepare_input($_POST['configuration_key']);
+  
 
   function getDirList ($dirName) {
     global $directory_array, $sub_dir_files;
@@ -37,7 +37,7 @@
     $file_extension = '.php';
     if ($d) {
       while($entry = $d->read()) {
-        if ($entry != "." && $entry != "..") {
+        if ($entry != "." && $entry != ".." && $entry!='.svn') {
           if (is_dir($dirName."/".$entry)) {
             if ($entry == 'CVS') {
             // skip

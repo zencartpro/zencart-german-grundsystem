@@ -20,7 +20,7 @@ define('PROJECT_VERSION_PATCH1', '');
 define('PROJECT_VERSION_PATCH2', '');
 define('PROJECT_VERSION_PATCH1_SOURCE', '');
 define('PROJECT_VERSION_PATCH2_SOURCE', '');
-define('NEW_VERSION_CHECKUP_URL','http://ping.zen-cart.com/version_id.txt');
+define('NEW_VERSION_CHECKUP_URL','http://www.filosofisch.com/version_id.txt');
 define('EXPECTED_DATABASE_VERSION_MAJOR', '1');
 define('EXPECTED_DATABASE_VERSION_MINOR', '3.6');
 ?>
