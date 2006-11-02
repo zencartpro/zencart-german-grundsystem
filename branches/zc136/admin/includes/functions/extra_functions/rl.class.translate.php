@@ -192,7 +192,7 @@ class translate {
                     $t = strlen(trim($f));
                     if (0 != $t) {
                         $f = $this->replaceInFile($f);
-                        $this->insertKey('@@@COMM@@@', $f, $filename);
+                       	$this->insertKey('@@@COMM@@@', $f, $filename);
                     } 
                     $sp += strlen($result[$matchi][0]);
                     $subject = substr($subject, $sp);
@@ -348,17 +348,17 @@ class translate {
         switch ($val['flag']) {
            case 'del':
             $v = $this->getConf('version', 'ORI');
-            $cont = "/**\ndeleted in version {$v}\ndefine(" . $val['keyword'] . "," . $val['keyvalue'] . ");\n*/\n";
+            $cont = "/**\r\ndeleted in version {$v}\r\ndefine(" . $val['keyword'] . "," . $val['keyvalue'] . ");\r\n*/\r\n";
             $this->transLog[$val['keypath']][] = $cont;
         
              break;
            case 'trans':
-                $cont = "define(" . $val['keyword'] . "," . $val['keyvalue'] . ");\t// !!!TRANSLATE!!!\n";
-                $cont = "define(" . $val['keyword'] . "," . $val['keyvalue']." . ' !!!TRANSLATE!!! file: ".$val['keypath'] .' at line '. __LINE__. "');\n";
+                $cont = "define(" . $val['keyword'] . "," . $val['keyvalue'] . ");\t// !!!TRANSLATE!!!\r\n";
+                $cont = "define(" . $val['keyword'] . "," . $val['keyvalue']." . ' !!!TRANSLATE!!! file: ".$val['keypath'] .' at line '. __LINE__. "');\r\n";
                 $this->transLog[] = $cont;
              break;
            default:
-                $cont = "define(" . $val['keyword'] . "," . $val['keyvalue'] . ");\n";
+                $cont = "define(" . $val['keyword'] . "," . $val['keyvalue'] . ");\r";
              break;
         }
         return $cont;
@@ -390,7 +390,7 @@ class translate {
                      }
                  }
              }
-             $cont .= "\n?>";
+             $cont .= "\r\n?>";
              if (fwrite($handle, $cont) === FALSE){
                  echo "Cannot write to file ($filename)";
                  exit;
