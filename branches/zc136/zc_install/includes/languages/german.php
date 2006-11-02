@@ -1,29 +1,16 @@
 <?php
-//
-// +----------------------------------------------------------------------+
-// |zen-cart Open Source E-commerce                                       |
-// +----------------------------------------------------------------------+
-// | Copyright (c) 2004 The zen-cart developers                           |
-// |                                                                      |
-// | http://www.zen-cart.com/index.php                                    |
-// |                                                                      |
-// | Portions Copyright (c) 2003 osCommerce                               |
-// +----------------------------------------------------------------------+
-// | This source file is subject to version 2.0 of the GPL license,       |
-// | that is bundled with this package in the file LICENSE, and is        |
-// | available through the world-wide-web at the following url:           |
-// | http://www.zen-cart.com/license/2_0.txt.                             |
-// | If you did not receive a copy of the zen-cart license and are unable |
-// | to obtain it through the world-wide-web, please send a note to       |
-// | license@zen-cart.com so we can mail you a copy immediately.          |
-// +----------------------------------------------------------------------+
-// | Translator:           cyaneo                                         |
-// | Date of Translation:  28.08.05                                       |
-// | Homepage:             www.zen-cart.at                                |
-// +----------------------------------------------------------------------+
-// $Id: german.php 94 2006-09-18 18:42:45Z wflohr $
-//
-
+/**
+ * Main English language file for installer *
+ * @package Installer
+ * @access private
+ * @copyright Copyright 2003-2006 Zen Cart Development Team
+ * @copyright Portions Copyright 2003 osCommerce
+ * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
+ * @version $Id: english.php 4266 2006-08-25 08:27:53Z drbyte $
+ */
+/**
+ * defining language components for the page
+ */
 define('YES', 'JA');
 define('NO', 'NEIN');
 define('REFRESH_BUTTON', 'Nochmal pr&uuml;fen');
@@ -38,6 +25,7 @@ define('CHARSET', 'iso-8859-1');
 define('META_TAG_TITLE', 'Zen Cart Installationsprogramm');
 
 define('INSTALLATION_IN_PROGRESS','Installation l&auml;uft...');
+
 if (isset($_GET['main_page']) && ($_GET['main_page']== 'index' || $_GET['main_page']== 'license')) {
     define('TEXT_ERROR_WARNING', 'Hi: Es m&uuml;ssen nur einige Kleinigkeiten adressiert werden, bevor wir fortfahren k&ouml;nnen.');
 } else {
@@ -45,6 +33,7 @@ if (isset($_GET['main_page']) && ($_GET['main_page']== 'index' || $_GET['main_pa
 }
 
 define('DB_ERROR_NOT_CONNECTED', 'Installationsfehler: Es konnte keine Verbindung zur Datenbank hergestellt werden');
+define('SHOULD_UPGRADE','Sie sollten einen Softwareupgrade in Betracht ziehen!');
 define('MUST_UPGRADE','Sie m&uuml;ssen zuerst upgraden bevor Sie Zen-Cart installieren');
 
 define('UPLOAD_SETTINGS','Die maximale Uploadgr&ouml;&szlig;e muss kleiner als einer der folgenden Werte sein:.<br />
@@ -60,11 +49,6 @@ define('STORE_ADDRESS_DEFAULT_VALUE', 'Shopname
   Adresse
   Land
   Telefonnummer');
-
-define('ERROR_TEXT_4_1_2', 'PHP Version ist 4.1.2');
-define('ERROR_CODE_4_1_2', '1');
-define('ERROR_TEXT_PHP_OLD_VERSION', 'PHP Version wird nicht unterst&uuml;tzt');
-define('ERROR_CODE_PHP_OLD_VERSION', '55');
 
 define('ERROR_TEXT_ADMIN_CONFIGURE', '/admin/includes/configure.php existiert nicht');
 define('ERROR_CODE_ADMIN_CONFIGURE', '2');
@@ -144,8 +128,12 @@ define('ERROR_CODE_ADMIN_PASS_ISEMPTY', '49');
 define('ERROR_TEXT_ADMIN_PASS_NOTEQUAL', 'Das Passwort stimmt nicht &uuml;berein');
 define('ERROR_CODE_ADMIN_PASS_NOTEQUAL', '50');
 
-define('ERROR_TEXT_PHP_VERSION', 'Ihre derzeit verwendete PHP Version wird nicht unterst&uuml;tzt');
-define('ERROR_CODE_PHP_VERSION', '55');
+define('ERROR_TEXT_4_1_2', 'PHP Version 4.1.2');
+define('ERROR_CODE_4_1_2', '1');
+define('ERROR_TEXT_PHP_OLD_VERSION', 'PHP Version nicht unterstr&uuml;tzt');
+define('ERROR_CODE_PHP_OLD_VERSION', '55');
+define('ERROR_TEXT_PHP_VERSION', 'PHP Version nicht unterstr&uuml;tzt');
+define('ERROR_CODE_PHP_VERSION', '91');
 
 define('ERROR_TEXT_ADMIN_CONFIGURE_WRITE', 'In die Admin Konfigurationsdatei kann nicht geschrieben werden');
 define('ERROR_CODE_ADMIN_CONFIGURE_WRITE', '56');
