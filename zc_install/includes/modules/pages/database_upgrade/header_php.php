@@ -7,7 +7,7 @@
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
  * @version $Id: header_php.php 4707 2006-10-08 08:52:12Z drbyte $
  */
-
+include('includes/modules/pages/database_upgrade/language_id_change.php');
 /* 
  * Database Upgrade script
  * 1. Checks to be sure that the configure.php exists and can be read
@@ -134,6 +134,8 @@ if (!$zc_install->fatal_error) {
     if (!$dbinfo->version121) {
       $sniffer =  ' upgrade v1.2.0 to v1.2.1';
       $needs_v1_2_1=true;
+    }  else {
+        $got_v1_2_1=true;   // r.l. multilingual
     }
     if (!$dbinfo->version120) {
       $sniffer =  ' upgrade v1.1.4 to v1.2.0';
@@ -203,7 +205,7 @@ if (ZC_UPG_DEBUG2==true) {
   echo '<br>136='.$dbinfo->version136;
   echo '<br>';
   }
-
+  
 // IF FORM WAS SUBMITTED, CHECK SELECTIONS AND PERFORM THEM
   if (isset($_POST['submit'])) {
    $sniffer =  '';
@@ -344,7 +346,7 @@ if (ZC_UPG_DEBUG2==true) {
           break;
        case 'multilingual':  // upgrading from v1.2.6 TO v1.2.7
 //          if (!$dbinfo->version126 || $dbinfo->version127) continue;  // if prerequisite not completed, or already done, skip
-          $sniffer_file = '_multilingual_1.sql';
+          $sniffer_file = '_multilingual_2.sql';
           if (ZC_UPG_DEBUG2==true) echo $sniffer_file.'<br>';
           $got_multilingual = true; //after processing this step, this will be the new version-level
           $db_upgraded_to_version='multilingual';

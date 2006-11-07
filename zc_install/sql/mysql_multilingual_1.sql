@@ -41,7 +41,8 @@ REPLACE INTO configuration_group (configuration_group_id, language_id, configura
 (25, 43, 'Definierte Seiten', 'Definierte Seiten des im Seiteneditor eingegebenen Textes festlegen und HTMLArea Optionen', 25, 1),
 (30, 43, 'EZ-Pages Einstellungen', 'EZ-Pages Einstellungen', 30, 1);
 
-REPLACE INTO products_options_values (products_options_values_id, language_id, products_options_values_name) VALUES (0, 43, 'TEXT');
+ALTER TABLE products_options_values ADD UNIQUE XYZ ( products_options_values_id , language_id );
+REPLACE INTO products_options_values (products_options_values_id, language_id, products_options_values_name, products_options_values_sort_order) VALUES (0, 43, 'TEXT_XYZ', 0);
 
 CREATE TABLE IF NOT EXISTS configuration_language(
   configuration_id int(11) NOT NULL auto_increment,
