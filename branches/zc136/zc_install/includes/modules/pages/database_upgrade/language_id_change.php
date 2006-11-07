@@ -146,7 +146,7 @@
                                                    where language_id = '" . (int)$lID . "'");
         
          while (!$products_options_values -> EOF){
-             $db -> Execute("insert into " . TABLE_PRODUCTS_OPTIONS_VALUES . "
+             $db -> Execute("replace into " . TABLE_PRODUCTS_OPTIONS_VALUES . "
                         (products_options_values_id, language_id, products_options_values_name, products_options_values_sort_order)
                                                 values ('" . (int)$products_options_values -> fields['products_options_values_id'] . "',
                                                                     '" . (int)$insert_id . "', '" . zen_db_input($products_options_values -> fields['products_options_values_name']) . "', '" . zen_db_input($products_options_values -> fields['products_options_values_sort_order']) . "')");
