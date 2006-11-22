@@ -20,7 +20,7 @@
 //  $Id: products_price_manager.php 4573 2006-09-20 23:46:43Z ajeh $
 //
 
-  require('includes/applicationg_top.php');
+  require('includes/application_top.php');
 
   // verify products exist
   $chk_products = $db->Execute("select * from " . TABLE_PRODUCTS . " limit 1");
