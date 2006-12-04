@@ -17,22 +17,10 @@
 // | to obtain it through the world-wide-web, please send a note to       |
 // | license@zen-cart.com so we can mail you a copy immediately.          |
 // +----------------------------------------------------------------------+
-// | Translator:           cyaneo/hugo13                                  |
-// | Date of Translation:  31.03.06                                       |
-// | Homepage:             www.zen-cart.at                                |
-// +----------------------------------------------------------------------+
-// $Id: featured_products.php 2 2006-03-31 09:55:33Z rainer $
+// $Id: featured_products.php 1969 2005-09-13 06:57:21Z drbyte $
 //
 
-define('NAVBAR_TITLE', '&Auml;hnliche Artikel');
-define('HEADING_TITLE', '&Auml;hnliche Artikel');
+define('NAVBAR_TITLE', '&Auml;hnliche Artikel');define('HEADING_TITLE', '&Auml;hnliche Artikel');define('TEXT_DATE_ADDED', 'Erstelldatum:');define('TEXT_MANUFACTURER', 'Hersteller:');define('TEXT_PRICE', 'Preis:');define('TEXT_PRODUCTS_MODEL','Artikelnummer: ');define('TEXT_PRODUCTS_WEIGHT','Gewicht: ');define('TEXT_PRODUCTS_QUANTITY','Auf Lager: ');define('TEXT_OUT_OF_STOCK','Nicht lagernd');
 
-define('TEXT_DATE_ADDED', 'Erstelldatum:');
-define('TEXT_MANUFACTURER', 'Hersteller:');
-define('TEXT_PRICE', 'Preis:');
 
-define('TEXT_PRODUCTS_MODEL','Artikelnummer: ');
-define('TEXT_PRODUCTS_WEIGHT','Gewicht: ');
-define('TEXT_PRODUCTS_QUANTITY','Auf Lager: ');
-define('TEXT_OUT_OF_STOCK','Nicht lagernd');
 ?>

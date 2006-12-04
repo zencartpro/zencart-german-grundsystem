@@ -4,9 +4,9 @@
 // |zen-cart Open Source E-commerce                                       |
 // +----------------------------------------------------------------------+
 // | Copyright (c) 2003 The zen-cart developers                           |
-// |                                                                      |
-// | http://www.zen-cart.com/index.php                                    |
-// |                                                                      |
+// |                                                                      |   
+// | http://www.zen-cart.com/index.php                                    |   
+// |                                                                      |   
 // | Portions Copyright (c) 2003 osCommerce                               |
 // +----------------------------------------------------------------------+
 // | This source file is subject to version 2.0 of the GPL license,       |
@@ -17,17 +17,10 @@
 // | to obtain it through the world-wide-web, please send a note to       |
 // | license@zen-cart.com so we can mail you a copy immediately.          |
 // +----------------------------------------------------------------------+
-// | Translator:           cyaneo/hugo13                                  |
-// | Date of Translation:  31.03.06                                       |
-// | Homepage:             www.zen-cart.at                                |
-// +----------------------------------------------------------------------+
-// $Id: account_edit.php 2 2006-03-31 09:55:33Z rainer $
+// $Id: account_edit.php 1969 2005-09-13 06:57:21Z drbyte $
 //
 
-define('NAVBAR_TITLE_1','Mein Konto');
-define('NAVBAR_TITLE_2','Mein Konto &auml;ndern');
+define('NAVBAR_TITLE_1','Mein Konto');define('NAVBAR_TITLE_2','Mein Konto &auml;ndern');define('HEADING_TITLE','Meine Kontoinformationen');define('SUCCESS_ACCOUNT_UPDATED','Ihr Konto wurde erfolgreich aktualisiert.');
+?>
 
-define('HEADING_TITLE','Meine Kontoinformationen');
-
-define('SUCCESS_ACCOUNT_UPDATED','Ihr Konto wurde erfolgreich aktualisiert.');
 ?>

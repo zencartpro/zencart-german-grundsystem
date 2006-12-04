@@ -4,9 +4,9 @@
 // |zen-cart Open Source E-commerce                                       |
 // +----------------------------------------------------------------------+
 // | Copyright (c) 2004 The zen-cart developers                           |
-// |                                                                      |
-// | http://www.zen-cart.com/index.php                                    |
-// |                                                                      |
+// |                                                                      |   
+// | http://www.zen-cart.com/index.php                                    |   
+// |                                                                      |   
 // | Portions Copyright (c) 2003 osCommerce                               |
 // +----------------------------------------------------------------------+
 // | This source file is subject to version 2.0 of the GPL license,       |
@@ -17,22 +17,10 @@
 // | to obtain it through the world-wide-web, please send a note to       |
 // | license@zen-cart.com so we can mail you a copy immediately.          |
 // +----------------------------------------------------------------------+
-// | Translator:           cyaneo/hugo13                                  |
-// | Date of Translation:  31.03.06                                       |
-// | Homepage:             www.zen-cart.at                                |
-// +----------------------------------------------------------------------+
-// $Id: products_all.php 2 2006-03-31 09:55:33Z rainer $
+// $Id: products_all.php 1969 2005-09-13 06:57:21Z drbyte $
 //
 
-define('NAVBAR_TITLE', 'Alle Artikel');
-define('HEADING_TITLE', 'Alle Artikel');
+define('NAVBAR_TITLE', 'Alle Artikel');define('HEADING_TITLE', 'Alle Artikel');define('TEXT_DATE_ADDED', 'Erstelldatum:');define('TEXT_MANUFACTURER', 'Hersteller:');define('TEXT_PRICE', 'Preis:');define('TEXT_PRODUCTS_MODEL','Artikelnummer: ');define('TEXT_PRODUCTS_WEIGHT','Gewicht: ');define('TEXT_PRODUCTS_QUANTITY','lagernd: ');define('TEXT_OUT_OF_STOCK','nicht lagernd');
 
-define('TEXT_DATE_ADDED', 'Erstelldatum:');
-define('TEXT_MANUFACTURER', 'Hersteller:');
-define('TEXT_PRICE', 'Preis:');
 
-define('TEXT_PRODUCTS_MODEL','Artikelnummer: ');
-define('TEXT_PRODUCTS_WEIGHT','Gewicht: ');
-define('TEXT_PRODUCTS_QUANTITY','lagernd: ');
-define('TEXT_OUT_OF_STOCK','nicht lagernd');
 ?>

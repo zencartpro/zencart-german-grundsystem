@@ -17,11 +17,7 @@
 // | to obtain it through the world-wide-web, please send a note to       |
 // | license@zen-cart.com so we can mail you a copy immediately.          |
 // +----------------------------------------------------------------------+
-// | Translator:           cyaneo/hugo13                                  |
-// | Date of Translation:  31.03.06                                       |
-// | Homepage:             www.zen-cart.at                                |
-// +----------------------------------------------------------------------+
-// $Id: popup_coupon_help.php 2 2006-03-31 09:55:33Z rainer $
+// $Id: popup_coupon_help.php 4591 2006-09-23 04:25:15Z ajeh $
 //
 
 define('HEADING_COUPON_HELP','Gutschein Hilfe');
@@ -38,10 +34,13 @@ define('TEXT_COUPON_HELP_CATEGORIES','Kategorie');
 define('TEXT_COUPON_HELP_PRODUCTS','Artikel');
 define('TEXT_ALLOW','erlauben');
 define('TEXT_DENY','verbieten');
-
 define('TEXT_ALLOWED', ' (erlaubt)');
 define('TEXT_DENIED', ' (nicht erlaubt)');
 
 // gift certificates cannot be purchased with Discount Coupons
 define('TEXT_COUPON_GV_RESTRICTION','Kupons k&ouml;nnen nicht in ' . TEXT_GV_NAMES . ' umgewandelt werden.');
+define('TEXT_COUPON_GV_RESTRICTION_ZONES', 'Mit dieser Rechnungsadresse k&ouml;nnen keine Kupons eingel&ouml;st werden.');
+
+
+
 ?>
