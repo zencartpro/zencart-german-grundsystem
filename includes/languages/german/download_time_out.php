@@ -1,5 +1,5 @@
 <?php
-
+//
 // +----------------------------------------------------------------------+
 // |zen-cart Open Source E-commerce                                       |
 // +----------------------------------------------------------------------+
@@ -17,20 +17,15 @@
 // | to obtain it through the world-wide-web, please send a note to       |
 // | license@zen-cart.com so we can mail you a copy immediately.          |
 // +----------------------------------------------------------------------+
-// | Translator:           cyaneo/hugo13                                  |
-// | Date of Translation:  31.03.06                                       |
-// | Homepage:             www.zen-cart.at                                |
-// +----------------------------------------------------------------------+
-// $Id: download_time_out.php 2 2006-03-31 09:55:33Z rainer $
+// $Id: download_time_out.php 1969 2005-09-13 06:57:21Z drbyte $
 //
 
-define('NAVBAR_TITLE', 'Ihr Download ...');
-define('HEADING_TITLE', 'Ihr Download ...');
-
-define('TEXT_INFORMATION', 'Leider ist Ihr Download abgebrochen worden.<br /><br />
+define('NAVBAR_TITLE', 'Ihr Download ...');define('HEADING_TITLE', 'Ihr Download ...');define('TEXT_INFORMATION', 'Leider ist Ihr Download abgebrochen worden.<br /><br />
   Falls Sie weitere Downloads haben und Sie fortsetzen wollen,
   gehen Sie bitte auf Ihre <a href="' . zen_href_link(FILENAME_ACCOUNT, '', 'SSL') . '">Mein Konto</a>-Seite.<br /><br />
   Falls Probleme bei Ihrem Download auftreten, bitte <a href="' . zen_href_link(FILENAME_CONTACT_US) . '">kontaktieren Sie uns</a> <br /><br />
   Vielen Dank!
   ');
+
+
 ?>

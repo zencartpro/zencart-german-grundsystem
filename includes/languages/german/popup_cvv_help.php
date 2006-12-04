@@ -17,25 +17,18 @@
 // | to obtain it through the world-wide-web, please send a note to       |
 // | license@zen-cart.com so we can mail you a copy immediately.          |
 // +----------------------------------------------------------------------+
-// | Translator:           cyaneo/hugo13                                  |
-// | Date of Translation:  31.03.06                                       |
-// | Homepage:             www.zen-cart.at                                |
-// +----------------------------------------------------------------------+
-// $Id: popup_cvv_help.php 2 2006-03-31 09:55:33Z rainer $
+// $Id: popup_cvv_help.php 1969 2005-09-13 06:57:21Z drbyte $
 //
 
-define('HEADING_CVV','Was ist ein Kreditkarten Verifizierungscode (CVV)?');
-define('TEXT_CVV_HELP1','Visa und Mastercard verwenden einen 3-Stelligen Verifizierungscode<br /><br />
+define('HEADING_CVV','Was ist ein Kreditkarten Verifizierungscode (CVV)?');define('TEXT_CVV_HELP1','Visa und Mastercard verwenden einen 3-Stelligen Verifizierungscode<br /><br />
                     Wir ben&ouml;tigen zu Ihrer Sicherheit die Eingabe des 3-Stelligen Verifizierungscodes Ihrer Visa oder Mastercard.<br /><br />
                     Dieser Verifizierungscode ist eine 3-Stellige Nummer auf der R&uuml;ckseite Ihrer Kreditkarte
                     und befindet sich auf dem Unterschriftsstreifen oben Rechts.<br />' .
-                    zen_image(DIR_WS_TEMPLATE_ICONS . 'cvv2visa.gif'));
-
-define('TEXT_CVV_HELP2', 'American Express verwendet einen 4-Stelligen Verifizierungscode<br /><br />
+                    zen_image(DIR_WS_TEMPLATE_ICONS . 'cvv2visa.gif'));define('TEXT_CVV_HELP2', 'American Express verwendet einen 4-Stelligen Verifizierungscode<br /><br />
                     Wir ben&ouml;tigen zu Ihrer Sicherheit die Eingabe der 4-Stelligen Verifizierungscodes Ihrer American Express Karte.<br /><br />
                     Der American Express Verifizierungscode ist ein 4-Stelliger Sicherheitscode auf der Vorderseite Ihrer Kreditkarte
                     und befindet sich nach und oberhalb Ihrer Kreditkartennummer.<br />' .
-                    zen_image(DIR_WS_TEMPLATE_ICONS . 'cvv2amex.gif'));
+                    zen_image(DIR_WS_TEMPLATE_ICONS . 'cvv2amex.gif'));define('TEXT_CLOSE_CVV_WINDOW', 'Fenster schlie&szlig;en [x]');
 
-define('TEXT_CLOSE_CVV_WINDOW', 'Fenster schlie&szlig;en [x]');
+
 ?>

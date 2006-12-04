@@ -17,16 +17,10 @@
 // | to obtain it through the world-wide-web, please send a note to       |
 // | license@zen-cart.com so we can mail you a copy immediately.          |
 // +----------------------------------------------------------------------+
-// | Translator:           cyaneo/hugo13                                  |
-// | Date of Translation:  31.03.06                                       |
-// | Homepage:             www.zen-cart.at                                |
-// +----------------------------------------------------------------------+
-// $Id: gv_redeem.php 2 2006-03-31 09:55:33Z rainer $
+// $Id: gv_redeem.php 4155 2006-08-16 17:14:52Z ajeh $
 //
 
-define('NAVBAR_TITLE', TEXT_GV_NAME .' einl&ouml;sen ');
-define('HEADING_TITLE', TEXT_GV_NAME .' einl&ouml;sen ');
-define('TEXT_INFORMATION', 'Weitere Informationen zum Thema ' . TEXT_GV_NAME . ' erfahren Sie in unserer <br /><br /><strong><a href="' . zen_href_link(FILENAME_GV_FAQ, '', 'NONSSL').'">' . GV_FAQ . '.</a></strong>');
-define('TEXT_INVALID_GV','Der ' . TEXT_GV_NAME . 'code ist ung&uuml;ltig oder wurde bereits eingel&ouml;st. Wenn Sie Fragen haben, kontaktieren Sie uns bitte &uuml;ber unser Kontaktformular hier im Shop');
-define('TEXT_VALID_GV','Herzlichen Gl&uuml;ckwunsch, Sie haben einen ' . TEXT_GV_NAME . ' im Wert von %s eingel&ouml;st.');
+define('NAVBAR_TITLE', TEXT_GV_NAME .' einl&ouml;sen ');define('HEADING_TITLE', TEXT_GV_NAME .' einl&ouml;sen ');define('TEXT_INFORMATION', 'Weitere Informationen zum Thema ' . TEXT_GV_NAME . ' erfahren Sie in unserer <br /><br /><strong><a href="' . zen_href_link(FILENAME_GV_FAQ, '', 'NONSSL').'">' . GV_FAQ . '.</a></strong>');define('TEXT_INVALID_GV','Der ' . TEXT_GV_NAME . 'code ist ung&uuml;ltig oder wurde bereits eingel&ouml;st. Wenn Sie Fragen haben, kontaktieren Sie uns bitte &uuml;ber unser Kontaktformular hier im Shop');define('TEXT_VALID_GV','Herzlichen Gl&uuml;ckwunsch, Sie haben einen ' . TEXT_GV_NAME . ' im Wert von %s eingel&ouml;st.');
+
+
 ?>

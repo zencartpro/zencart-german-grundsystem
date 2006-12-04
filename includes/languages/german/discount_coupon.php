@@ -17,19 +17,13 @@
 // | to obtain it through the world-wide-web, please send a note to       |
 // | license@zen-cart.com so we can mail you a copy immediately.          |
 // +----------------------------------------------------------------------+
-// | Translator:           cyaneo/hugo13                                  |
-// | Date of Translation:  31.03.06                                       |
-// | Homepage:             www.zen-cart.at                                |
-// +----------------------------------------------------------------------+
-// $Id: discount_coupon.php 2 2006-03-31 09:55:33Z rainer $
+// $Id: discount_coupon.php 4591 2006-09-23 04:25:15Z ajeh $
 //
 
 define('NAVBAR_TITLE', 'Aktionskupon');
 define('HEADING_TITLE', 'Aktionskupon');
-
 define('TEXT_INFORMATION', '');
 define('TEXT_COUPON_FAILED', '<span class="alert important">%s</span> scheint kein g&uuml;ltiger Aktionscode zu sein. Bitte nochmals eintippen.');
-
 define('HEADING_COUPON_HELP', 'Aktionskupon Hilfe');
 define('TEXT_CLOSE_WINDOW', 'Fenster schlie&szlig;en [x]');
 define('TEXT_COUPON_HELP_HEADER', '<p class="bold">Der eingegebene Aktionscode geh&ouml;rt zu Kupon: ');
@@ -49,10 +43,13 @@ define('TEXT_NO_PROD_RESTRICTIONS', '<p>Aktionskupon ist f&uuml;r alle Artikel g
 define('TEXT_CAT_ALLOWED', ' (G&uuml;ltig f&uuml;r diese Kategorie)');
 define('TEXT_CAT_DENIED', ' (Nicht g&uuml;ltig f&uuml;r diese Kategorie)');
 define('TEXT_PROD_ALLOWED', ' (G&uuml;ltig f&uuml;r diesen Artikel)');
-define('TEXT_PROD_DENIED', ' (G&uuml;ltig f&uuml;r diesen Artikel)');
+define('TEXT_PROD_DENIED', ' (Nicht g&uuml;ltig f&uuml;r diesen Artikel)');
 // gift certificates cannot be purchased with Discount Coupons
 define('TEXT_COUPON_GV_RESTRICTION','<p class="smallText">Aktionskupons k&ouml;nnen nicht zum Kauf von ' . TEXT_GV_NAMES . ' verwendet werden. Limit: 1 Kupon pro Bestellung.</p>');
-
 define('TEXT_DISCOUNT_COUPON_ID_INFO', 'Aktionskupon suchen ... ');
 define('TEXT_DISCOUNT_COUPON_ID', 'Aktionscode: ');
+define('TEXT_COUPON_GV_RESTRICTION_ZONES', 'Mit dieser Rechnungsadresse k&ouml;nnen keine Aktionkupons eingel&ouml;st werden.');
+
+
+
 ?>
