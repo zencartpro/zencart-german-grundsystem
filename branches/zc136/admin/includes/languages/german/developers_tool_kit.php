@@ -17,70 +17,9 @@
 // | to obtain it through the world-wide-web, please send a note to       |
 // | license@zen-cart.com so we can mail you a copy immediately.          |
 // +----------------------------------------------------------------------+
-// | Translator:           cyaneo/hugo13                                  |
-// | Date of Translation:  31.03.06                                       |
-// | Homepage:             www.zen-cart.at                                |
-// +----------------------------------------------------------------------+
-//  $Id: developers_tool_kit.php 4 2006-03-31 16:38:40Z hugo13 $
+//  $Id: developers_tool_kit.php 1105 2005-04-04 22:05:35Z birdbrain $
 //
-define('HEADING_TITLE', 'Developers Tool Kit');
-define('TABLE_CONFIGURATION_TABLE', 'KONSTANTEN Definition suchen');
+define('HEADING_TITLE', 'Developers Tool Kit');define('TABLE_CONFIGURATION_TABLE', 'KONSTANTEN Definition suchen');define('SUCCESS_PRODUCT_UPDATE_PRODUCTS_PRICE_SORTER', '<strong>Erfolgreich</strong> Artikelpreis Sortierung aktualisiert');define('ERROR_CONFIGURATION_KEY_NOT_FOUND', '<strong>Fehler:</strong> Keine passenden Konfigurationsschl&uuml;ssel gefunden ...');define('ERROR_CONFIGURATION_KEY_NOT_ENTERED', '<strong>Fehler:</strong> Kein Konfigurationsschl&uuml;ssel Key oder Text eingegeben ... Suche abgebrochen');define('TEXT_INFO_PRODUCTS_PRICE_SORTER_UPDATE', '<strong>Aktualisiere ALLE Artikelpreis Sortierungen</strong><br />damit nach angezeigtem Preis sortiert wird: ');define('TEXT_CONFIGURATION_CONSTANT', '<strong>KONSTANTEN und LANGUAGE Definition suchen</strong>');define('TEXT_CONFIGURATION_KEY', 'Schl&uuml;ssel oder Name:');define('TEXT_INFO_CONFIGURATION_UPDATE', '<strong>Anmerkung:</strong> KONSTANTEN gro&szlig; schreiben!<br />Dateien werden erst durchsucht wenn nichts in der Datenbank gefunden werden konnte');define('TABLE_TITLE_KEY', '<strong>Schl&uuml;ssel:</strong>');define('TABLE_TITLE_TITLE', '<strong>Titel:</strong>');define('TABLE_TITLE_DESCRIPTION', '<strong>Beschreibung:</strong>');define('TABLE_TITLE_GROUP', '<strong>Gruppe:</strong>');define('TABLE_TITLE_VALUE', '<strong>Wert:</strong>');define('TEXT_LOOKUP_NONE', 'Keine');define('TEXT_INFO_SEARCHING', 'Durchsuche ');define('TEXT_INFO_FILES_FOR', ' Dateien ... nach: ');define('TEXT_INFO_MATCHES_FOUND', 'Anzahl gefundener Zeilen: ');define('TEXT_LANGUAGE_LOOKUPS', 'Sprachdateien durchsuchen:');define('TEXT_LANGUAGE_LOOKUP_CURRENT_LANGUAGE', 'Alle Sprachdateien f&uuml;r ' . strtoupper($_SESSION['language']) . ' - Webshop/Admin');define('TEXT_LANGUAGE_LOOKUP_CURRENT_CATALOG', 'Alle Haupt-Sprachdateien - Webshop (' . DIR_WS_CATALOG . DIR_WS_LANGUAGES . 'english.php /espanol.php etc.)');define('TEXT_LANGUAGE_LOOKUP_CURRENT_CATALOG_TEMPLATE', 'Alle Sprachdateien - Webshop ' . DIR_WS_CATALOG . DIR_WS_LANGUAGES . $_SESSION['language'] . '/*.php');define('TEXT_LANGUAGE_LOOKUP_CURRENT_ADMIN', 'Alle Haupt-Sprachdateien - Admin (' . DIR_WS_ADMIN . DIR_WS_LANGUAGES . 'english.php /espanol.php etc.)');define('TEXT_LANGUAGE_LOOKUP_CURRENT_ADMIN_LANGUAGE', 'Alle Sprachdateien -Admin (' . DIR_WS_ADMIN . DIR_WS_LANGUAGES . $_SESSION['language'] . '/*.php)');define('TEXT_LANGUAGE_LOOKUP_CURRENT_ALL', 'Alle Sprachdateien - Webshop/Admin');define('TEXT_FUNCTION_CONSTANT', '<strong>Funktionsdateien nach Funktionen und Texten durchsuchen</strong>');define('TEXT_FUNCTION_LOOKUPS', 'Funktionsdateien durchsuchen:');define('TEXT_FUNCTION_LOOKUP_CURRENT', 'Alle Funktionsdateien - Webshop/Admin');define('TEXT_FUNCTION_LOOKUP_CURRENT_CATALOG', 'Alle Funktionsdateien - Webshop');define('TEXT_FUNCTION_LOOKUP_CURRENT_ADMIN', 'Alle Funktionsdateien - Admin');define('TEXT_CLASS_CONSTANT', '<strong>Klassendateien nach Klassen und Texten durchsuchen</strong>');define('TEXT_CLASS_LOOKUPS', 'Klassendateien durchsuchen:');define('TEXT_CLASS_LOOKUP_CURRENT', 'Alle Klassendateien - Webshop/Admin');define('TEXT_CLASS_LOOKUP_CURRENT_CATALOG', 'Alle Klassendateien - Webshop');define('TEXT_CLASS_LOOKUP_CURRENT_ADMIN', 'Alle Klassendateien - Admin');define('TEXT_TEMPLATE_CONSTANT', '<strong>Templatedateien durchsuchen</strong>');define('TEXT_TEMPLATE_LOOKUPS', 'Templatedateien durchsuchen:');define('TEXT_TEMPLATE_LOOKUP_CURRENT', 'Alle Templatedateien - /templates sideboxes /pages etc.');define('TEXT_TEMPLATE_LOOKUP_CURRENT_TEMPLATES', 'Alle Templatedateien - /templates');define('TEXT_TEMPLATE_LOOKUP_CURRENT_SIDEBOXES', 'Alle Templatedateien - /sideboxes');define('TEXT_TEMPLATE_LOOKUP_CURRENT_PAGES', 'Alle Templatedateien - /pages');define('TEXT_ALL_FILES_CONSTANT', '<strong>Alle Dateien durchsuchen</strong>');define('TEXT_ALL_FILES_LOOKUPS', 'Alle Dateien durchsuchen:');define('TEXT_ALL_FILES_LOOKUP_CURRENT', 'Alle Dateien - Webshop/Admin');define('TEXT_ALL_FILES_LOOKUP_CURRENT_CATALOG', 'Alle Dateien - Webshop');define('TEXT_ALL_FILES_LOOKUP_CURRENT_ADMIN', 'Alle Dateien - Admin');define('TEXT_INFO_NO_EDIT_AVAILABLE', 'Editieren nicht verf&uuml;gbar');define('TEXT_INFO_CONFIGURATION_HIDDEN', ' oder, versteckt');
 
-define('SUCCESS_PRODUCT_UPDATE_PRODUCTS_PRICE_SORTER', '<strong>Erfolgreich</strong> Artikelpreis Sortierung aktualisiert');
 
-define('ERROR_CONFIGURATION_KEY_NOT_FOUND', '<strong>Fehler:</strong> Keine passenden Konfigurationsschl&uuml;ssel gefunden ...');
-define('ERROR_CONFIGURATION_KEY_NOT_ENTERED', '<strong>Fehler:</strong> Kein Konfigurationsschl&uuml;ssel Key oder Text eingegeben ... Suche abgebrochen');
-
-define('TEXT_INFO_PRODUCTS_PRICE_SORTER_UPDATE', '<strong>Aktualisiere ALLE Artikelpreis Sortierungen</strong><br />damit nach angezeigtem Preis sortiert wird: ');
-
-define('TEXT_CONFIGURATION_CONSTANT', '<strong>KONSTANTEN und LANGUAGE Definition suchen</strong>');
-define('TEXT_CONFIGURATION_KEY', 'Schl&uuml;ssel oder Name:');
-define('TEXT_INFO_CONFIGURATION_UPDATE', '<strong>Anmerkung:</strong> KONSTANTEN gro&szlig; schreiben!<br />Dateien werden erst durchsucht wenn nichts in der Datenbank gefunden werden konnte');
-
-define('TABLE_TITLE_KEY', '<strong>Schl&uuml;ssel:</strong>');
-define('TABLE_TITLE_TITLE', '<strong>Titel:</strong>');
-define('TABLE_TITLE_DESCRIPTION', '<strong>Beschreibung:</strong>');
-define('TABLE_TITLE_GROUP', '<strong>Gruppe:</strong>');
-define('TABLE_TITLE_VALUE', '<strong>Wert:</strong>');
-
-define('TEXT_LOOKUP_NONE', 'Keine');
-define('TEXT_INFO_SEARCHING', 'Durchsuche ');
-define('TEXT_INFO_FILES_FOR', ' Dateien ... nach: ');
-define('TEXT_INFO_MATCHES_FOUND', 'Anzahl gefundener Zeilen: ');
-
-define('TEXT_LANGUAGE_LOOKUPS', 'Sprachdateien durchsuchen:');
-define('TEXT_LANGUAGE_LOOKUP_CURRENT_LANGUAGE', 'Alle Sprachdateien f&uuml;r ' . strtoupper($_SESSION['language']) . ' - Webshop/Admin');
-define('TEXT_LANGUAGE_LOOKUP_CURRENT_CATALOG', 'Alle Haupt-Sprachdateien - Webshop (' . DIR_WS_CATALOG . DIR_WS_LANGUAGES . 'english.php /espanol.php etc.)');
-define('TEXT_LANGUAGE_LOOKUP_CURRENT_CATALOG_TEMPLATE', 'Alle Sprachdateien - Webshop ' . DIR_WS_CATALOG . DIR_WS_LANGUAGES . $_SESSION['language'] . '/*.php');
-define('TEXT_LANGUAGE_LOOKUP_CURRENT_ADMIN', 'Alle Haupt-Sprachdateien - Admin (' . DIR_WS_ADMIN . DIR_WS_LANGUAGES . 'english.php /espanol.php etc.)');
-define('TEXT_LANGUAGE_LOOKUP_CURRENT_ADMIN_LANGUAGE', 'Alle Sprachdateien -Admin (' . DIR_WS_ADMIN . DIR_WS_LANGUAGES . $_SESSION['language'] . '/*.php)');
-define('TEXT_LANGUAGE_LOOKUP_CURRENT_ALL', 'Alle Sprachdateien - Webshop/Admin');
-
-define('TEXT_FUNCTION_CONSTANT', '<strong>Funktionsdateien nach Funktionen und Texten durchsuchen</strong>');
-define('TEXT_FUNCTION_LOOKUPS', 'Funktionsdateien durchsuchen:');
-define('TEXT_FUNCTION_LOOKUP_CURRENT', 'Alle Funktionsdateien - Webshop/Admin');
-define('TEXT_FUNCTION_LOOKUP_CURRENT_CATALOG', 'Alle Funktionsdateien - Webshop');
-define('TEXT_FUNCTION_LOOKUP_CURRENT_ADMIN', 'Alle Funktionsdateien - Admin');
-
-define('TEXT_CLASS_CONSTANT', '<strong>Klassendateien nach Klassen und Texten durchsuchen</strong>');
-define('TEXT_CLASS_LOOKUPS', 'Klassendateien durchsuchen:');
-define('TEXT_CLASS_LOOKUP_CURRENT', 'Alle Klassendateien - Webshop/Admin');
-define('TEXT_CLASS_LOOKUP_CURRENT_CATALOG', 'Alle Klassendateien - Webshop');
-define('TEXT_CLASS_LOOKUP_CURRENT_ADMIN', 'Alle Klassendateien - Admin');
-
-define('TEXT_TEMPLATE_CONSTANT', '<strong>Templatedateien durchsuchen</strong>');
-define('TEXT_TEMPLATE_LOOKUPS', 'Templatedateien durchsuchen:');
-define('TEXT_TEMPLATE_LOOKUP_CURRENT', 'Alle Templatedateien - /templates sideboxes /pages etc.');
-define('TEXT_TEMPLATE_LOOKUP_CURRENT_TEMPLATES', 'Alle Templatedateien - /templates');
-define('TEXT_TEMPLATE_LOOKUP_CURRENT_SIDEBOXES', 'Alle Templatedateien - /sideboxes');
-define('TEXT_TEMPLATE_LOOKUP_CURRENT_PAGES', 'Alle Templatedateien - /pages');
-
-define('TEXT_ALL_FILES_CONSTANT', '<strong>Alle Dateien durchsuchen</strong>');
-define('TEXT_ALL_FILES_LOOKUPS', 'Alle Dateien durchsuchen:');
-define('TEXT_ALL_FILES_LOOKUP_CURRENT', 'Alle Dateien - Webshop/Admin');
-define('TEXT_ALL_FILES_LOOKUP_CURRENT_CATALOG', 'Alle Dateien - Webshop');
-define('TEXT_ALL_FILES_LOOKUP_CURRENT_ADMIN', 'Alle Dateien - Admin');
-
-define('TEXT_INFO_NO_EDIT_AVAILABLE', 'Editieren nicht verf&uuml;gbar');
-define('TEXT_INFO_CONFIGURATION_HIDDEN', ' oder, versteckt');
 ?>

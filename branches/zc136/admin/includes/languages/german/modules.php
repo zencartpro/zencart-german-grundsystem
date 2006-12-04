@@ -17,23 +17,10 @@
 // | to obtain it through the world-wide-web, please send a note to       |
 // | license@zen-cart.com so we can mail you a copy immediately.          |
 // +----------------------------------------------------------------------+
-// | Translator:           cyaneo/hugo13                                  |
-// | Date of Translation:  31.03.06                                       |
-// | Homepage:             www.zen-cart.at                                |
-// +----------------------------------------------------------------------+
-//  $Id: modules.php 4 2006-03-31 16:38:40Z hugo13 $
+//  $Id: modules.php 4366 2006-09-03 19:27:34Z ajeh $
 //
 
-define('HEADING_TITLE_MODULES_PAYMENT','Zahlungsarten');
-define('HEADING_TITLE_MODULES_SHIPPING','Versandarten');
-define('HEADING_TITLE_MODULES_ORDER_TOTAL','Bestellarten');
-define('HEADING_TITLE_MODULES_PRODUCT_TYPES', 'Artikeltypen Modul');
+define('HEADING_TITLE_MODULES_PAYMENT','Zahlungsarten');define('HEADING_TITLE_MODULES_SHIPPING','Versandarten');define('HEADING_TITLE_MODULES_ORDER_TOTAL','Bestellarten');define('HEADING_TITLE_MODULES_PRODUCT_TYPES', 'Artikeltypen Modul');define('TABLE_HEADING_MODULES', 'Modul');define('TABLE_HEADING_SORT_ORDER', 'Sortierreihenfolge');define('TABLE_HEADING_ORDERS_STATUS','Sortierung');define('TABLE_HEADING_ACTION', 'Aktion');define('TEXT_MODULE_DIRECTORY', 'Modulverzeichnis:');define('WARNING_MODULES_SORT_ORDER','WARNUNG: SIE HABEN EINE DOPPELTE SORTIERUNG, WEWLCHE FEHLER IN DER BERECHNUNG ERGIBT<br/>BITTE &Auml;NDERN SIE DIESE ANGABEN JETZT!');
 
-define('TABLE_HEADING_MODULES', 'Modul');
-define('TABLE_HEADING_SORT_ORDER', 'Sortierreihenfolge');
-define('TABLE_HEADING_ORDERS_STATUS','Sortierung');
-define('TABLE_HEADING_ACTION', 'Aktion');
 
-define('TEXT_MODULE_DIRECTORY', 'Modulverzeichnis:');
-define('WARNING_MODULES_SORT_ORDER','WARNUNG: SIE HABEN EINE DOPPELTE SORTIERUNG, WEWLCHE FEHLER IN DER BERECHNUNG ERGIBT<br/>BITTE &Auml;NDERN SIE DIESE ANGABEN JETZT!');
 ?>

@@ -17,22 +17,10 @@
 // | to obtain it through the world-wide-web, please send a note to       |
 // | license@zen-cart.com so we can mail you a copy immediately.          |
 // +----------------------------------------------------------------------+
-// | Translator:           cyaneo/hugo13                                  |
-// | Date of Translation:  31.03.06                                       |
-// | Homepage:             www.zen-cart.at                                |
-// +----------------------------------------------------------------------+
-//  $Id: product_notification.php 4 2006-03-31 16:38:40Z hugo13 $
+//  $Id: product_notification.php 1105 2005-04-04 22:05:35Z birdbrain $
 //
 
-define('TEXT_COUNT_CUSTOMERS','Kunden, die Newsletter erhalten: %s');
-define('TEXT_PRODUCTS','Artikel');
-define('TEXT_SELECTED_PRODUCTS','Ausgew&auml;hlte Artikel');
+define('TEXT_COUNT_CUSTOMERS','Kunden, die Newsletter erhalten: %s');define('TEXT_PRODUCTS','Artikel');define('TEXT_SELECTED_PRODUCTS','Ausgew&auml;hlte Artikel');define('JS_PLEASE_SELECT_PRODUCTS','Bitte w&auml;hlen Sie einige Artikel.');define('BUTTON_GLOBAL','Global');define('BUTTON_SELECT','>>>');define('BUTTON_UNSELECT','<<<');define('BUTTON_SUBMIT','senden');define('BUTTON_CANCEL','abbrechen');
 
-define('JS_PLEASE_SELECT_PRODUCTS','Bitte w&auml;hlen Sie einige Artikel.');
 
-define('BUTTON_GLOBAL','Global');
-define('BUTTON_SELECT','>>>');
-define('BUTTON_UNSELECT','<<<');
-define('BUTTON_SUBMIT','senden');
-define('BUTTON_CANCEL','abbrechen');
 ?>

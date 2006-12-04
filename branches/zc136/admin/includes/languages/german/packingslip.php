@@ -17,23 +17,10 @@
 // | to obtain it through the world-wide-web, please send a note to       |
 // | license@zen-cart.com so we can mail you a copy immediately.          |
 // +----------------------------------------------------------------------+
-// | Translator:           cyaneo/hugo13                                  |
-// | Date of Translation:  31.03.06                                       |
-// | Homepage:             www.zen-cart.at                                |
-// +----------------------------------------------------------------------+
-//  $Id: packingslip.php 4 2006-03-31 16:38:40Z hugo13 $
+//  $Id: packingslip.php 1109 2005-04-04 23:55:35Z drbyte $
 //
 
-define('TABLE_HEADING_COMMENTS','Kommentare');
-define('TABLE_HEADING_PRODUCTS_MODEL','Artikelnummer');
-define('TABLE_HEADING_PRODUCTS','Artikel');
+define('TABLE_HEADING_COMMENTS','Kommentare');define('TABLE_HEADING_PRODUCTS_MODEL','Artikelnummer');define('TABLE_HEADING_PRODUCTS','Artikel');define('ENTRY_CUSTOMER', 'KUNDE:');define('ENTRY_SOLD_TO','Verkauft an:');define('ENTRY_SHIP_TO','Versand an:');define('ENTRY_PAYMENT_METHOD','Zahlungsart:');define('ENTRY_DATE_PURCHASED', 'Bestelldatum:');define('ENTRY_ORDER_ID','Rechnungsnummer');
 
-define('ENTRY_CUSTOMER', 'KUNDE:');
 
-define('ENTRY_SOLD_TO','Verkauft an:');
-define('ENTRY_SHIP_TO','Versand an:');
-define('ENTRY_PAYMENT_METHOD','Zahlungsart:');
-define('ENTRY_DATE_PURCHASED', 'Bestelldatum:');
-
-define('ENTRY_ORDER_ID','Rechnungsnummer');
 ?>

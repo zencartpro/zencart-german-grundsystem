@@ -17,11 +17,7 @@
 // | to obtain it through the world-wide-web, please send a note to       |
 // | license@zen-cart.com so we can mail you a copy immediately.          |
 // +----------------------------------------------------------------------+
-// | Translator:           cyaneo/hugo13                                  |
-// | Date of Translation:  31.03.06                                       |
-// | Homepage:             www.zen-cart.at                                |
-// +----------------------------------------------------------------------+
-//  $Id: coupon_admin.php 4 2006-03-31 16:38:40Z hugo13 $
+//  $Id: coupon_admin.php 4677 2006-10-04 19:33:39Z drbyte $
 //
 
 define('TOP_BAR_TITLE','Statistiken');
@@ -43,34 +39,27 @@ define('TEXT_ALL_CUSTOMERS','Alle Kunden');
 define('TEXT_NEWSLETTER_CUSTOMERS','An alle Newsletter Abonnementen');
 define('TEXT_CONFIRM_DELETE','Wollen Sie diesen Gutschein wirklich l&ouml;schen?');
 define('TEXT_SEE_RESTRICT','Verwendungseinschr&auml;nkung:');
-
 define('TEXT_COUPON_ANNOUNCE', 'Wir erlauben uns, Ihnen einen Shopgutschein anzubieten');
-
 define('TEXT_TO_REDEEM','Sie k&ouml;nnen diesen Gutschein w&auml;hrend des Bestellvorgangs einl&ouml;sen. Sie brauchen nur die Gutscheinnummer in das entsprechende Eingabefeld eingeben und abschlie&szlig;end auf "einl&ouml;sen" klicken.');
 define('TEXT_IN_CASE','falls Sie irgendeine Probleme haben.');
 define('TEXT_VOUCHER_IS','Die Gutscheinnummer lautet');
 define('TEXT_REMEMBER','Bewahren Sie die Gutscheinnummer sicher auf, damit Sie von diesem Sonderangebot profitieren k&ouml;nnen.');
 define('TEXT_VISIT','Besuchen Sie uns auf ' . HTTP_SERVER . DIR_WS_CATALOG);
 define('TEXT_ENTER_CODE', ' und geben Sie Ihre Gutscheinnummer ein');
-
 define('TABLE_HEADING_ACTION','Aktion');
-
 define('CUSTOMER_ID','Kundennummer');
 define('CUSTOMER_NAME','Kundenname');
 define('REDEEM_DATE','Einzul&ouml;sen bis');
 define('IP_ADDRESS','IP-Adresse');
-
 define('TEXT_REDEMPTIONS','Einl&ouml;sungen');
 define('TEXT_REDEMPTIONS_TOTAL','In Summe');
 define('TEXT_REDEMPTIONS_CUSTOMER','F&uuml;r diesen Kunden');
 define('TEXT_NO_FREE_SHIPPING','nicht versandkostenfrei');
-
 define('NOTICE_EMAIL_SENT_TO','Hinweis: Email gesendet an: %s');
 define('ERROR_NO_CUSTOMER_SELECTED','Fehler: Kein Kunde ausgew&auml;hlt.');
 define('ERROR_NO_SUBJECT', 'Fehler: Kein Betreff angegeben.');
-
 define('COUPON_NAME','Name des Gutscheins');
-//define('COUPON_VALUE', 'Gutscheinwert');
+//define('COUPON_VALUE', 'Coupon Value');
 define('COUPON_AMOUNT','Gutscheinbetrag');
 define('COUPON_CODE','Gutscheincode');
 define('COUPON_STARTDATE','G&uuml;ltig ab');
@@ -87,12 +76,11 @@ define('DATE_CREATED','Erstelldatum');
 define('DATE_MODIFIED','Ge&auml;ndert am');
 define('TEXT_HEADING_NEW_COUPON','Neuen Gutschein erstellen');
 define('TEXT_NEW_INTRO','Bitte geben Sie folgende Informationen f&uuml;r den neuen Gutschein an.<br>');
-
+define('COUPON_ZONE_RESTRICTION', 'Gutschein G&uuml;ltigkeitszone: ');
+define('TEXT_COUPON_ZONE_RESTRICTION', 'Die Gutschein G&uuml;ltigkeitszone ist optional.');
 define('ERROR_NO_COUPON_AMOUNT','Es wurde kein Gutscheinbetrag eingetragen');
 define('ERROR_NO_COUPON_NAME','Es wurde kein Gutscheinname eingetragen');
 define('ERROR_COUPON_EXISTS','Ein Gutschein mit dieser Nummer existiert bereits');
-
-
 define('COUPON_NAME_HELP','Ein kurzer Name f&uuml;r den Gutschein');
 define('COUPON_AMOUNT_HELP','Der Rabattwert f&uuml;r den Gutschein ist falsch. Geben Sie entweder eine Zahl oder den entsprechenden Wert in Prozent (z.B. 10%) ein.');
 define('COUPON_CODE_HELP','Sie k&ouml;nnen einen eigenen Code verwenden oder das Feld leer lassen, um den Code automatisch zu erstellen.');
@@ -108,15 +96,15 @@ define('COUPON_CATEGORIES_HELP','Eine Textdatei mit den Kategorien (mit Komma ge
 define('COUPON_BUTTON_PREVIEW', 'Vorschau');
 define('COUPON_BUTTON_CONFIRM', 'Best&auml;tigen');
 define('COUPON_BUTTON_BACK', 'Zur&uuml;ck');
-
-define('COUPON_ACTIVE', 'Status');     // new 1.3.0  
-define('COUPON_START_DATE', 'Startdatum'); // new 1.3.0  
-define('COUPON_EXPIRE_DATE', 'Endedatum');  // new 1.3.0  
-
+define('COUPON_ACTIVE', 'Status');
+define('COUPON_START_DATE', 'Startdatum');
+define('COUPON_EXPIRE_DATE', 'Endedatum');
 define('ERROR_DISCOUNT_COUPON_WELCOME', 'Gutschein kann nicht deaktiviert werden, da es sich um den Willkommens-Gutschein handelt<br /><br />Verwenden Sie einen anderen Willkommens-Gutschein, damit dieser gel&ouml;scht werden kann.');
 define('SUCCESS_COUPON_DISABLED', 'Gutschein deaktiviert! ...');
 define('TEXT_COUPON_NEW', 'Verwenden Sie folgende Gutscheinnummer:');
 define('ERROR_DISCOUNT_COUPON_DUPLICATE', 'ACHTUNG! Doppelter Gutschein existiert ... Kopiervorgang abgebrochen f&uuml;r: ');
 define('TEXT_CONFIRM_COPY', 'Wollen Sie diesen Gutschein kopieren?');
 define('SUCCESS_COUPON_DUPLICATE', 'Gutschein erfolgreich kopiert ...<br /><br />Bitte Name und Datum &uuml;berpr&uuml;fen ...');
+
+
 ?>

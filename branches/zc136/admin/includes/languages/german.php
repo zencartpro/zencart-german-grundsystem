@@ -4,13 +4,8 @@
  * @copyright Copyright 2003-2006 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- *
- *   Translator:           klartexter unter Verwendung der                
- *                         Vorlagen von cyaneo/hugo13         
- *   Date of Translation:  06.09.2006                          
- *   Homepage:             www.zen-cart.at            
- *
- *  @version $Id: english.php 4385 2006-09-04 04:10:48Z drbyte $
+ * @translator: cyaneo/hugo13/wflohr	http://www.zen-cart.at	2006-11-02
+ * @version $Id: english.php 4804 2006-10-21 16:19:59Z ajeh $
  */
 
 // added defines for header alt and text
@@ -18,6 +13,7 @@ define('HEADER_ALT_TEXT', 'Admin Powered by Zen Cart :: The Art of E-Commerce');
 define('HEADER_LOGO_WIDTH', '200px');
 define('HEADER_LOGO_HEIGHT', '70px');
 define('HEADER_LOGO_IMAGE', 'logo.gif');
+
 // look in your $PATH_LOCALE/locale directory for available locales..
 // on RedHat6.0 I used 'en_US'
 // on FreeBSD 4.0 I use 'en_US.ISO_8859-1'
@@ -30,7 +26,7 @@ define('PHP_DATE_TIME_FORMAT', 'd.m.Y H:i:s'); // this is used for date()
 define('DATE_TIME_FORMAT', DATE_FORMAT_SHORT . ' %H:%M:%S');
 define('DATE_FORMAT_SPIFFYCAL', 'dd.MM.yyyy'); //Use only 'dd', 'MM' and 'yyyy' here in any order
 
-// //
+////
 // Return date in raw format
 // $date should be in format mm/dd/yyyy
 // raw date is in format YYYYMMDD, or DDMMYYYY
@@ -49,13 +45,14 @@ function zen_date_raw($date, $reverse = false){
 //define('TITLE', 'Zen Cart');
 
 // include template specific meta tags defines
-if (file_exists(DIR_FS_CATALOG_LANGUAGES . $_SESSION['language'] . '/' . $template_dir . '/meta_tags.php')){
-     $template_dir_select = $template_dir . '/';
-     }else{
-     $template_dir_select = '';
-     }
- require(DIR_FS_CATALOG_LANGUAGES . $_SESSION['language'] . '/' . $template_dir_select . 'meta_tags.php');
-// die(DIR_FS_CATALOG_LANGUAGES . $_SESSION['language'] . '/' . $template_dir_select . 'meta_tags.php');
+  if (file_exists(DIR_FS_CATALOG_LANGUAGES . $_SESSION['language'] . '/' . $template_dir . '/meta_tags.php')) {
+    $template_dir_select = $template_dir . '/';
+  } else {
+    $template_dir_select = '';
+  }
+  require(DIR_FS_CATALOG_LANGUAGES . $_SESSION['language'] . '/' . $template_dir_select . 'meta_tags.php');
+//die(DIR_FS_CATALOG_LANGUAGES . $_SESSION['language'] . '/' . $template_dir_select . 'meta_tags.php');
+
 // meta tags
 define('ICON_METATAGS_ON', 'Meta Tags definiert');
 define('ICON_METATAGS_OFF', 'Meta Tags nicht definiert');
@@ -156,8 +153,7 @@ define('BOX_TOOLS_WHOS_ONLINE', 'Wer ist Online?');
 define('BOX_TOOLS_STORE_MANAGER', 'Shopmanager');
 define('BOX_TOOLS_DEVELOPERS_TOOL_KIT', 'Developers Tool Kit');
 define('BOX_TOOLS_SQLPATCH','SQL Patches installieren');
-define('BOX_TOOLS_EZPAGES','EZ-Pages');  // new 1.3.0
-
+define('BOX_TOOLS_EZPAGES','EZ-Pages');
 define('BOX_HEADING_EXTRAS', 'Extras');
 
 // define pages editor files
@@ -185,15 +181,12 @@ define('BOX_GV_ADMIN_QUEUE', 'in Warteschleife');
 define('BOX_GV_ADMIN_MAIL', TEXT_GV_NAME . ' senden ');
 define('BOX_GV_ADMIN_SENT', 'bereits gesendet ');
 define('BOX_COUPON_ADMIN', 'Administration');
-
 define('IMAGE_RELEASE', 'einl&ouml;sen ' . TEXT_GV_NAME);
 
 // javascript messages
 define('JS_ERROR', 'Achtung! Es ist ein Fehler aufgetreten.!\nBitte &auml;ndern Sie folgendes:\n\n');
-
 define('JS_OPTIONS_VALUE_PRICE', '* Das neue Artikelattribut ben&ouml;tigt eine Preisangabe\n');
 define('JS_OPTIONS_VALUE_PRICE_PREFIX', '* Das neue Artikelattribut ben&ouml;tigt eine Preisangabe\n');
-
 define('JS_PRODUCTS_NAME', '* Bitte tragen Sie einen Artikelnamen ein');
 define('JS_PRODUCTS_DESCRIPTION', '* Bitte tragen Sie eine Artikelbeschreibung ein');
 define('JS_PRODUCTS_PRICE', '* Bitte tragen Sie den Preis ein');
@@ -201,9 +194,7 @@ define('JS_PRODUCTS_WEIGHT', '* Bitte tragen Sie das Gewicht ein');
 define('JS_PRODUCTS_QUANTITY', '* Bitte tragen Sie die Anzahl ein');
 define('JS_PRODUCTS_MODEL', '* Bitte tragen Sie die Artikelnummer ein');
 define('JS_PRODUCTS_IMAGE', '* Der neue Artikel ben&ouml;tigt ein Bild');
-
 define('JS_SPECIALS_PRODUCTS_PRICE', '* Der neue Artikel ben&ouml;tigt einen Preis\n');
-
 define('JS_GENDER', '* Das \'Geschlecht\' muss ausgew&auml;hlt werden.\n');
 define('JS_FIRST_NAME', '* Der \'Vorname\' muss aus mindestens  ' . ENTRY_FIRST_NAME_MIN_LENGTH . ' Zeichen bestehen.\n');
 define('JS_LAST_NAME', '* Der  \'Nachname\' muss aus mindestens ' . ENTRY_LAST_NAME_MIN_LENGTH . ' Zeichen bestehen.\n');
@@ -218,15 +209,12 @@ define('JS_ZONE', '* Das \'Land\' muss ausgew&auml;hlt sein.');
 define('JS_COUNTRY', '* Das \'Land\' muss ausgew&auml;hlt sein.\n');
 define('JS_TELEPHONE', '* Die \'Telefonnummer\' muss aus mindestens  ' . ENTRY_TELEPHONE_MIN_LENGTH . ' Zeichen bestehen.\n');
 define('JS_PASSWORD', '* Das \'Passwort\' muss aus mindestens  ' . ENTRY_PASSWORD_MIN_LENGTH . ' Zeichen bestehen.\n');
-
 define('JS_ORDER_DOES_NOT_EXIST', 'Diese Bestellnummer %s existiert nicht!');
-
 define('CATEGORY_PERSONAL', 'Pers&ouml;nlich');
 define('CATEGORY_ADDRESS', 'Anschrift');
 define('CATEGORY_CONTACT', 'Telefon');
 define('CATEGORY_COMPANY', 'Firma');
 define('CATEGORY_OPTIONS', 'Zusatz');
-
 define('ENTRY_GENDER', 'Geschlecht:');
 define('ENTRY_GENDER_ERROR', ' <span class="errorText">ben&ouml;tigt</span>');
 define('ENTRY_FIRST_NAME', 'Vorname:');
@@ -264,6 +252,7 @@ define('ENTRY_NEWSLETTER_NO', 'abbestellen');
 define('ENTRY_NEWSLETTER_ERROR', '');
 
 // images
+//define('IMAGE_ANI_SEND_EMAIL', 'Sending E-Mail');
 define('IMAGE_BACK', 'Zur&uuml;ck');
 define('IMAGE_BACKUP', 'Sichern');
 define('IMAGE_CANCEL', 'Abbrechen');
@@ -325,16 +314,13 @@ define('IMAGE_UPDATE_PRICE_CHANGES', 'Preis&auml;nderung aktualisieren');
 define('IMAGE_ADD_BLANK_DISCOUNTS', 'Hinzuf&uuml;gen ' . DISCOUNT_QTY_ADD . ' Leerer Mengenrabatt');
 define('IMAGE_CHECK_VERSION', 'Auf neue Version von Zen Cart pr&uuml;fen');
 define('IMAGE_PRODUCTS_TO_CATEGORIES', 'Mehrfachkategorie Link Manager');
-
 define('IMAGE_ICON_STATUS_ON', 'Status - aktiviert');
 define('IMAGE_ICON_STATUS_OFF', 'Status - deaktiviert');
 define('IMAGE_ICON_LINKED', 'Artikel ist verlinkt');
-
 define('IMAGE_REMOVE_SPECIAL', 'Info f&uuml;r Preiserm&auml;&szlig;igung entfernen');
 define('IMAGE_REMOVE_FEATURED', 'Info f&uuml;r &auml;hnliche Artikel entfernen');
 define('IMAGE_INSTALL_SPECIAL', 'Info f&uuml;r Preiserm&auml;&szlig;igung hinzuf&uuml;gen');
 define('IMAGE_INSTALL_FEATURED', 'Info f&uuml;r &auml;hnliche Artikel hinzuf&uuml;gen');
-
 define('ICON_PRODUCTS_PRICE_MANAGER', 'Artikelpreis Manager');
 define('ICON_COPY_TO', 'Kopieren nach');
 define('ICON_CROSS', 'Falsch');
@@ -345,6 +331,7 @@ define('ICON_ERROR', 'Fehler');
 define('ICON_FILE', 'Datei');
 define('ICON_FILE_DOWNLOAD', 'Download');
 define('ICON_FOLDER', 'Ordner');
+//define('ICON_LOCKED', 'Locked');
 define('ICON_MOVE', 'mehr');
 define('ICON_PREVIOUS_LEVEL', 'Vorherige Ebene');
 define('ICON_PREVIEW', 'Vorschau');
@@ -352,6 +339,7 @@ define('ICON_RESET', 'Zur&uuml;cksetzen');
 define('ICON_STATISTICS', 'Statistiken');
 define('ICON_SUCCESS', 'erfolgreich');
 define('ICON_TICK', 'richtig');
+//define('ICON_UNLOCKED', 'Unlocked');
 define('ICON_WARNING', 'Warnung');
 
 // constants for use in zen_prev_next_display function
@@ -380,24 +368,17 @@ define('TEXT_DISPLAY_NUMBER_OF_TEMPLATES', 'zeige <b>%d</b> bis <b>%d</b> (von <
 define('TEXT_DISPLAY_NUMBER_OF_TAX_ZONES', 'zeige <b>%d</b> bis <b>%d</b> (von <b>%d</b> Steuerzonen)');
 define('TEXT_DISPLAY_NUMBER_OF_TAX_RATES', 'zeige <b>%d</b> bis <b>%d</b> (von <b>%d</b> Steuers&auml;tze)');
 define('TEXT_DISPLAY_NUMBER_OF_ZONES', 'zeige <b>%d</b> bis <b>%d</b> (von <b>%d</b> Zonen)');
-
 define('PREVNEXT_BUTTON_PREV', '&lt;&lt;');
 define('PREVNEXT_BUTTON_NEXT', '&gt;&gt;');
-
-
 define('TEXT_DEFAULT', 'Standard');
 define('TEXT_SET_DEFAULT', 'als Standard definieren');
 define('TEXT_FIELD_REQUIRED', ' <span class="Feld">* ben&ouml;tigt</span>');
-
 define('ERROR_NO_DEFAULT_CURRENCY_DEFINED', 'Fehler: Es wurde keine Standardw&auml;hrung definiert. Sie k&ouml;nnen diese im Admin Men&uuml; unter "Erweitert->W&auml;hrungen" definieren.');
-
 define('TEXT_CACHE_CATEGORIES', 'Kategorien');
 define('TEXT_CACHE_MANUFACTURERS', 'Hersteller');
 define('TEXT_CACHE_ALSO_PURCHASED', 'Verkaufsf&ouml;rderung');
-
 define('TEXT_NONE', '--kein--');
 define('TEXT_TOP', 'Top');
-
 define('ERROR_DESTINATION_DOES_NOT_EXIST', 'Fehler: Ziel %s existiert nicht');
 define('ERROR_DESTINATION_NOT_WRITEABLE', 'Fehler: Ziel %s ist schreibgesch&uuml;tzt');
 define('ERROR_FILE_NOT_SAVED', 'Fehler: Dateiupload wurde nicht gespeichert.');
@@ -407,12 +388,12 @@ define('WARNING_NO_FILE_UPLOADED', 'Warnung: Keine Datei hochgeladen.');
 define('WARNING_FILE_UPLOADS_DISABLED', 'Warnung: Die Option "Dateiupload" ist in der php.ini deaktiviert.');
 define('ERROR_ADMIN_SECURITY_WARNING', 'Warnung: Ihr Admin login ist nicht sicher ... entweder noch Standard-Login-Einstellungen: Admin admin oder nicht entfernt: demo demoonly<br />Login(s) sollten zur Sicherheit so schnell als m&ouml;glich ge&auml;ndert werden.<br />F&uuml;r zus&auml;tzliche Sicherheitshinweise siehe auch Verzeichnis /docs');
 define('WARNING_DATABASE_VERSION_OUT_OF_DATE', 'Ihre Datenbank scheint einen Patch zu ben&ouml;tigen. Siehe auch Tools->Server Information um die Patchlevels zu betrachten.');
-define('WARN_DATABASE_VERSION_PROBLEM','true'); //set to false to turn off Warnings about database version mismatches
+define('WARN_DATABASE_VERSION_PROBLEM','true');
+//set to false to turn off warnings about database version mismatches
 define('WARNING_ADMIN_DOWN_FOR_MAINTENANCE', '<strong>WARNUNG:</strong> Der Shop ist z.Zt. wegen Wartung geschlossen ...<br />ANMERKUNG: Sie k&ouml;nnen die meisten Zahlungs- und Versand-Module im Wartungszustand  nicht pr&uuml;fen');
 define('WARNING_BACKUP_CFG_FILES_TO_DELETE', 'WARNUNG: Diese Dateien sollten gel&ouml;scht werden, um fremde Zugriffe zu verhindern: ');
 define('WARNING_INSTALL_DIRECTORY_EXISTS', 'Warnung: Das Installationsverzeichnis besteht noch: ' . DIR_FS_CATALOG . 'zc_install. Dieses Verzeichnis aus Sicherheitsgr&uuml;nden bitte entfernen.');
 define('WARNING_CONFIG_FILE_WRITEABLE', 'Warnung: Ihre Konfigurationsdatei: %sincludes/configure.php. Dies ist ein potenzielles Sicherheitsrisiko - &auml;ndern Sie bitte die Zugriffsrechte (Read-only, CHMOD 644 oder 444l).');
-
 define('_JANUARY', 'Januar');
 define('_FEBRUARY', 'Februar');
 define('_MARCH', 'M&auml;rz');
@@ -425,21 +406,16 @@ define('_SEPTEMBER', 'September');
 define('_OCTOBER', 'Oktober');
 define('_NOVEMBER', 'November');
 define('_DECEMBER', 'Dezember');
-
 define('TEXT_DISPLAY_NUMBER_OF_GIFT_VOUCHERS', 'zeige <b>%d</b> bis <b>%d</b> (von <b>%d</b> Gutscheinen)');
 define('TEXT_DISPLAY_NUMBER_OF_COUPONS', 'zeige <b>%d</b> bis <b>%d</b> (von <b>%d</b> Kupons)');
-
 define('TEXT_VALID_PRODUCTS_LIST', 'Artikelliste');
 define('TEXT_VALID_PRODUCTS_ID', 'Artikel ID');
 define('TEXT_VALID_PRODUCTS_NAME', 'Artikelbezeichnung');
 define('TEXT_VALID_PRODUCTS_MODEL', 'Artikelnummer');
-
 define('TEXT_VALID_CATEGORIES_LIST', 'Kategorienliste');
 define('TEXT_VALID_CATEGORIES_ID', 'Kategorie ID');
 define('TEXT_VALID_CATEGORIES_NAME', 'Kategoriename');
-
 define('DEFINE_LANGUAGE', 'Sprache w&auml;hlen:');
-
 define('BOX_ENTRY_COUNTER_DATE', 'Besucherz&auml;hler gestartet:');
 define('BOX_ENTRY_COUNTER', 'Besucherz&auml;hler:');
 
@@ -448,7 +424,6 @@ define('NOT_INSTALLED_TEXT', 'nicht installiert');
 
 // Product Options Values Sort Order - option_values.php
 define('BOX_CATALOG_PRODUCT_OPTIONS_VALUES', 'Sortierreihenfolge von Attributmerkmalen');
-
 define('TEXT_UPDATE_SORT_ORDERS_OPTIONS', '<strong>Attribut - Sortierreihenfolge der "Standard Attributmerkmale" aktualisieren</strong>');
 define('TEXT_INFO_ATTRIBUTES_FEATURES_UPDATES', '<strong>Sortierreihenfolge der "Artikelattribute" aktualisieren</strong><br />und mit den "Standard Attributmerkmalen" abgleichen');
 
@@ -469,9 +444,7 @@ define('SHOW_GV_QUEUE', true);
 define('TEXT_SHOW_GV_QUEUE', '%s wartet auf &uuml;berpr&uuml;fung');
 define('IMAGE_GIFT_QUEUE', TEXT_GV_NAME . ' Warteschleife');
 define('IMAGE_ORDER', 'Bestellung');
-
 define('BOX_TOOLS_EMAIL_WELCOME', 'Willkommensnachricht');
-
 define('IMAGE_DISPLAY', 'Anzeige');
 define('IMAGE_UPDATE_SORT', 'Sortierreihenfolge aktualisieren');
 define('IMAGE_EDIT_PRODUCT', 'Artikel bearbeiten');
@@ -493,14 +466,14 @@ define('PRODUCTS_QUANTITY_MIN_TEXT_LISTING', 'Minimum:');
 define('PRODUCTS_QUANTITY_UNIT_TEXT_LISTING', 'Anzahl:');
 define('PRODUCTS_QUANTITY_IN_CART_LISTING', 'Im Warenkorb:');
 define('PRODUCTS_QUANTITY_ADD_ADDITIONAL_LISTING', 'Weitere hinzuf&uuml;gen:');
-
 define('TEXT_PRODUCTS_MIX_OFF', '*Keine gemischte Optionen');
 define('TEXT_PRODUCTS_MIX_ON', '*Gemischte Optionen');
 
 // search filters
 define('TEXT_INFO_SEARCH_DETAIL_FILTER', 'Suchfilter: ');
 define('HEADING_TITLE_SEARCH_DETAIL', 'Suchen: ');
-
+define('HEADING_TITLE_SEARCH_DETAIL_REPORTS', 'Suche nach Artikel(n) - Getrennt durch Kommas');
+define('HEADING_TITLE_SEARCH_DETAIL_REPORTS_NAME_MODEL', 'Suche nach Artikelname/-nummer');
 define('PREV_NEXT_PRODUCT', 'Artikel: ');
 define('TEXT_CATEGORIES_STATUS_INFO_OFF', '<span class="alert">*Die Kategorie ist deaktiviert</span>');
 define('TEXT_PRODUCTS_STATUS_INFO_OFF', '<span class="alert">*Der Artikel ist deaktiviert</span>');
@@ -512,26 +485,22 @@ define('ERROR_ADMIN_DEMO', 'Sie befinden sich im Admin "Demo" Modus ... diese Op
 
 // Version Check notices
 define('TEXT_VERSION_CHECK_NEW_VER', 'Eine neue Version ist verf&uuml;gbar: Zen Cart v');
- define('TEXT_VERSION_CHECK_NEW_PATCH', 'Ein neuer PATCH ist verf&uuml;gbar: v');
- define('TEXT_VERSION_CHECK_PATCH', 'patch');
- define('TEXT_VERSION_CHECK_DOWNLOAD', 'hier herunterladen');
- define('TEXT_VERSION_CHECK_CURRENT', 'Sie verwenden die aktuellste Version von Zen Cart&trade;.');
+define('TEXT_VERSION_CHECK_NEW_PATCH', 'Ein neuer PATCH ist verf&uuml;gbar: v');
+define('TEXT_VERSION_CHECK_PATCH', 'patch');
+define('TEXT_VERSION_CHECK_DOWNLOAD', 'hier herunterladen');
+define('TEXT_VERSION_CHECK_CURRENT', 'Sie verwenden die aktuellste Version von Zen Cart&trade;.');
 
 // downloads manager
 define('TEXT_DISPLAY_NUMBER_OF_PRODUCTS_DOWNLOADS_MANAGER', 'zeige <b>%d</b> bis <b>%d</b> (von <b>%d</b> Downloads)');
 define('BOX_CATALOG_CATEGORIES_ATTRIBUTES_DOWNLOADS_MANAGER', 'Download Manager');
-
 define('BOX_CATALOG_FEATURED', '&Auml;hnliche Artikel');
-
 define('ERROR_NOTHING_SELECTED', 'Es wurde nichts ausgew&auml;hlt ... Es wurden keine &Auml;nderungen durchgef&uuml;hrt');
 define('TEXT_STATUS_WARNING', '<strong>HINWEIS:</strong> Der Status ist auf "auto aktiviert/deaktiviert", wenn Datumsangaben vorliegen');
-
 define('TEXT_LEGEND_LINKED', 'Verlinkter Artikel');
 define('TEXT_MASTER_CATEGORIES_ID', 'Artikel Hauptkategorie:');
 define('TEXT_LEGEND', 'LEGENDE: ');
 define('TEXT_LEGEND_STATUS_OFF', 'Status AUS ');
 define('TEXT_LEGEND_STATUS_ON', 'Status AN ');
-
 define('TEXT_INFO_MASTER_CATEGORIES_ID', '<strong>HINWEIS: Die Hauptkategorie wird f&uuml;r die Bepreisung verwendet, wo<br />Artikelkategorien Preise bei verlinkten Artikel beeinflussen, z.B. bei Abverk&auml;ufen</strong>');
 define('TEXT_YES', 'Ja');
 define('TEXT_NO', 'Nein');
@@ -541,7 +510,6 @@ define('ERROR_SHIPPING_CONFIGURATION', '<strong>Fehler in der Versandkonfigurati
 define('ERROR_SHIPPING_ORIGIN_ZIP', '<strong>Warnung:</strong> Die Postleitzahl des Webshops ist nicht definiert. (Einstellungen in Konfiguration -> Versandoptionen)');
 define('ERROR_ORDER_WEIGHT_ZERO_STATUS', '<strong>Warnung:</strong> 0kg Gewicht ist f&uuml;r kostenfreien Versand konfiguriert und das Modul <strong>versandkostenfrei</strong> ist deaktiviert');
 define('ERROR_USPS_STATUS', '<strong>Warnung:</strong> Bei USPS fehlt entweder der Benutzername und/oder das Passwort, oder ... ist auf TEST gesetzt und arbeitet nicht im PRODUKTIONSMODUS<br />Wenn Sie weiterhin keine Werte erhalten, kontaktieren Sie bitte USPS und aktivieren dort Ihren Account');
-
 define('ERROR_SHIPPING_MODULES_NOT_DEFINED', 'ANMERKUNG: Sie haben keine Versandmodule aktiviert. Bitte &auml;ndern Sie das bei Module->Versandarten.');
 define('ERROR_PAYMENT_MODULES_NOT_DEFINED', 'ANMERKUNG: Sie haben keine Zahlungsmodule aktiviert. Bitte &auml;ndern Sie das in Module->Zahlungsarten.');
 
@@ -560,14 +528,11 @@ define('TABLE_ATTRIBUTES_QTY_PRICE_PRICE', 'Preis');
 define('TEXT_ATTRIBUTES_QTY_PRICES_ONETIME_HELP', 'Option f&uuml;r einmalige Geb&uuml;hren bei Mengenrabatten');
 define('TEXT_CATEGORIES_PRODUCTS', 'W&auml;hlen Sie eine Kategorie mit Artikel ...');
 define('TEXT_PRODUCT_TO_VIEW', 'W&auml;hlen Sie einen Artikel und klicken Sie auf anzeigen ...');
-
 define('TEXT_INFO_SET_MASTER_CATEGORIES_ID', 'Ung&uuml;ltige Master Category ID');
 define('TEXT_INFO_ID', ' ID# ');
 define('TEXT_INFO_SET_MASTER_CATEGORIES_ID_WARNING', '<strong>Achtung:</strong> Dieser Artikel ist mit mehreren Kategorien verlinkt, aber die Masterkategorie wurde nicht eingestellt!');
-
 define('PRODUCTS_PRICE_IS_CALL_FOR_PRICE_TEXT', 'Preis auf Anfrage');
 define('PRODUCTS_PRICE_IS_FREE_TEXT', 'kostenlos');
-
 define('TEXT_PRODUCT_WEIGHT_UNIT','kg');
 
 // min, max, units
@@ -593,11 +558,10 @@ define('ENTRY_EMAIL_NONE_DISPLAY', 'Nie');
 define('ENTRY_EMAIL_OPTOUT_DISPLAY', 'hat augew&auml;hlt von Newslettern');
 define('ENTRY_NOTHING_TO_SEND', 'Ihre Nachricht hat keinen Inhalt');
 define('EMAIL_SEND_FAILED', 'Fehler: Senden der E-Mail an: "%s" <%s> mit Betreff: "%s" fehlgeschlagen');
-
-  define('EDITOR_NONE', 'Normaler Text');
-  define('TEXT_EDITOR_INFO', 'interner HTML-Editor');
-  define('ERROR_EDITORS_FOLDER_NOT_FOUND', 'Sie haben den internen HTML-Editor vorgew&auml;hlt in Konfiguration -> Mein Shop. Der Ordner kann nicht lokalisiert werden. Bitte pr&uuml;fen Sie, ob der Ordner verschoben wurde oder deaktivieren Sie die getroffene Einstellung  \''.DIR_WS_CATALOG.'editor/\' ordner');
-  define('TEXT_CATEGORIES_PRODUCTS_SORT_ORDER_INFO', 'Artikelsortierung: ');
+define('EDITOR_NONE', 'Normaler Text');
+define('TEXT_EDITOR_INFO', 'interner HTML-Editor');
+define('ERROR_EDITORS_FOLDER_NOT_FOUND', 'Sie haben den internen HTML-Editor vorgew&auml;hlt in Konfiguration -> Mein Shop. Der Ordner kann nicht lokalisiert werden. Bitte pr&uuml;fen Sie, ob der Ordner verschoben wurde oder deaktivieren Sie die getroffene Einstellung  \''.DIR_WS_CATALOG.'editor/\' ordner');
+define('TEXT_CATEGORIES_PRODUCTS_SORT_ORDER_INFO', 'Artikelsortierung: ');
 define('TEXT_SORT_PRODUCTS_SORT_ORDER_PRODUCTS_NAME', 'Artikelsortierreihenfolge, Artikelname');
 define('TEXT_SORT_PRODUCTS_NAME', 'Artikelname');
 define('TEXT_SORT_PRODUCTS_MODEL', 'Artikelmodell');
@@ -607,32 +571,26 @@ define('TEXT_SORT_PRODUCTS_PRICE', 'Artikelpreis+, Artikelname');
 define('TEXT_SORT_PRODUCTS_PRICE_DESC', 'Artikelpreis-, Artikelname');
 define('TEXT_SORT_CATEGORIES_SORT_ORDER_PRODUCTS_NAME', 'Kategorie Sortierung, Kategoriename');
 define('TEXT_SORT_CATEGORIES_NAME', 'Kategoriename');
-
-
-
 define('TABLE_HEADING_YES', 'Ja');
 define('TABLE_HEADING_NO', 'Nein');
+define('TEXT_PRODUCTS_IMAGE_MANUAL', '<br /><strong>Oder w&auml;hlen Sie ein bestehendes Bild vom Server, Dateiname:</strong>');
 define('TEXT_IMAGES_OVERWRITE', 'Bestehendes Bild &uuml;berschreiben? Verwenden Sie "Nein" bei manuell eingegebenem Namen');
 define('TEXT_IMAGE_OVERWRITE_WARNING', 'WARNUNG: DATEINAME wurde aktualisiert aber nicht &uuml;berschrieben ');
-  define('TEXT_IMAGES_DELETE', 'Bild l&ouml;schen?<br />Bild wurde nicht vom Server entfernt:');
-
+define('TEXT_IMAGES_DELETE', 'Bild l&ouml;schen?<br />Bild wurde nicht vom Server entfernt:');
+define('TEXT_IMAGE_CURRENT', 'Bild Name: ');
 define('ERROR_DEFINE_OPTION_NAMES', 'Warnung: Es wurde kein Attributname definiert');
 define('ERROR_DEFINE_OPTION_VALUES', 'Warnung: Es wurde kein Optionswert definiert');
 define('ERROR_DEFINE_PRODUCTS', 'Warnung: Es wurden keine Artikel definiert');
-  define('ERROR_DEFINE_PRODUCTS_MASTER_CATEGORIES_ID', 'Warnung: Diesem Produkt ist keine Kategorie zugeordnet worden');
-
+define('ERROR_DEFINE_PRODUCTS_MASTER_CATEGORIES_ID', 'Warnung: Diesem Produkt ist keine Kategorie zugeordnet worden');
 define('BUTTON_ADD_PRODUCT_TYPES_SUBCATEGORIES_ON', 'Hinzuf&uuml;gen inklusive Unterkategorien');
 define('BUTTON_ADD_PRODUCT_TYPES_SUBCATEGORIES_OFF', 'Hinzuf&uuml;gen ohne Unterkategorien');
-
 define('BUTTON_PREVIOUS_ALT', 'Vorheriger Artikel');
-  define('BUTTON_NEXT_ALT', 'N&auml;chster Artikel');
-
+define('BUTTON_NEXT_ALT', 'N&auml;chster Artikel');
 define('BUTTON_PRODUCTS_TO_CATEGORIES', 'Mehrfachkategorie Link Manager');
 define('BUTTON_PRODUCTS_TO_CATEGORIES_ALT', 'Kopiere Artikel in mehrere Kategorien');
-
-  define('TEXT_INFO_OPTION_NAMES_VALUES_COPIER_STATUS', 'Alle globalen Kopier-, Hinzuf&uuml;gen- und L&ouml;scheigenschaften sind z.Zt. AUS');
-  define('TEXT_SHOW_OPTION_NAMES_VALUES_COPIER_ON', 'Anzeige globale Eigenschaften - AN');
-  define('TEXT_SHOW_OPTION_NAMES_VALUES_COPIER_OFF', 'Anzeige globale Eigenschaften - AUS');
+define('TEXT_INFO_OPTION_NAMES_VALUES_COPIER_STATUS', 'Alle globalen Kopier-, Hinzuf&uuml;gen- und L&ouml;scheigenschaften sind z.Zt. AUS');
+define('TEXT_SHOW_OPTION_NAMES_VALUES_COPIER_ON', 'Anzeige globale Eigenschaften - AN');
+define('TEXT_SHOW_OPTION_NAMES_VALUES_COPIER_OFF', 'Anzeige globale Eigenschaften - AUS');
 
 // moved from categories and all product type language files
 define('ERROR_CANNOT_LINK_TO_SAME_CATEGORY', 'Fehler: Kann Produkt nicht in selbe Kategorie verlinken.');
@@ -645,30 +603,31 @@ define('SUCCESS_CATEGORY_MOVED', 'Erfolgreich! Kategorie erfolgreich verschoben 
 define('ERROR_CANNOT_MOVE_CATEGORY_TO_CATEGORY_SELF', 'Fehler: Kategorie kann nicht in sich selbst verschoben werden! ID#');
 
 // EZ-PAGES Alerts
-  define('TEXT_EZPAGES_STATUS_HEADER_ADMIN', 'Achtung: EZ-PAGES HEADER - Ein nur f&uuml;r Admin IP');
-  define('TEXT_EZPAGES_STATUS_FOOTER_ADMIN', 'Achtung: EZ-PAGES FOOTER - Ein nur f&uuml;r Admin IP');
-  define('TEXT_EZPAGES_STATUS_SIDEBOX_ADMIN', 'Achtung: EZ-PAGES SIDEBOX - Ein nur f&uuml;r Admin IP');
+define('TEXT_EZPAGES_STATUS_HEADER_ADMIN', 'Achtung: EZ-PAGES HEADER - Ein nur f&uuml;r Admin IP');
+define('TEXT_EZPAGES_STATUS_FOOTER_ADMIN', 'Achtung: EZ-PAGES FOOTER - Ein nur f&uuml;r Admin IP');
+define('TEXT_EZPAGES_STATUS_SIDEBOX_ADMIN', 'Achtung: EZ-PAGES SIDEBOX - Ein nur f&uuml;r Admin IP');
 
 // moved from product types
 // warnings on Virtual and Always Free Shipping
-  define('TEXT_VIRTUAL_PREVIEW','Achtung: Virtuelles Produkt - kein Versand!<br />Sind alle Produkte einer Bestellung virtuell wird keine Versandoption angeboten');
-  define('TEXT_VIRTUAL_EDIT','Achtung: Virtuelles Produkt - kein Versand!<br />Sind alle Produkte einer Bestellung virtuell wird keine Versandoption angeboten');
-  define('TEXT_FREE_SHIPPING_PREVIEW','Achtung: kostenloser Versand ausgew&auml;hlt!<br />Modul "Versandkostenfrei" muss installiert sein wenn alle Artikel einer Bestellung versandkostenfrei sind');
-  define('TEXT_FREE_SHIPPING_EDIT','Achtung: kostenloser Versand ausgew&auml;hlt!<br />Modul "Versandkostenfrei" muss installiert sein wenn alle Artikel einer Bestellung versandkostenfrei sind');
+define('TEXT_VIRTUAL_PREVIEW','Achtung: Virtuelles Produkt - kein Versand!<br />Sind alle Produkte einer Bestellung virtuell wird keine Versandoption angeboten');
+define('TEXT_VIRTUAL_EDIT','Achtung: Virtuelles Produkt - kein Versand!<br />Sind alle Produkte einer Bestellung virtuell wird keine Versandoption angeboten');
+define('TEXT_FREE_SHIPPING_PREVIEW','Achtung: kostenloser Versand ausgew&auml;hlt!<br />Modul "Versandkostenfrei" muss installiert sein wenn alle Artikel einer Bestellung versandkostenfrei sind');
+define('TEXT_FREE_SHIPPING_EDIT','Achtung: kostenloser Versand ausgew&auml;hlt!<br />Modul "Versandkostenfrei" muss installiert sein wenn alle Artikel einer Bestellung versandkostenfrei sind');
 
 // admin activity log warnings
-  define('WARNING_ADMIN_ACTIVITY_LOG_DATE', 'Achtung: Die Admin Protokolltabelle hat Eintr&auml;ge die &auml;lter sind als 2 Monate und sollte deshalb geleert werden ... ');
-  define('WARNING_ADMIN_ACTIVITY_LOG_RECORDS', 'Achtung: Die Admin Protokolltabelle hat &uuml;ber 50000 Eintr&auml;ge und sollte deshalb geleert werden ... ');
-  define('RESET_ADMIN_ACTIVITY_LOG', 'W&auml;hlen Sie Tools -> Shopmanager und leeren die Admin-Protokolltabelle');
-
-  define('CATEGORY_HAS_SUBCATEGORIES', 'Achtung: Kategorie besitzt Unterkategorien<br />Artikel k&ouml;nnen nicht hinzugef&uuml;gt werden');
+define('WARNING_ADMIN_ACTIVITY_LOG_DATE', 'Achtung: Die Admin Protokolltabelle hat Eintr&auml;ge die &auml;lter sind als 2 Monate und sollte deshalb geleert werden ... ');
+define('WARNING_ADMIN_ACTIVITY_LOG_RECORDS', 'Achtung: Die Admin Protokolltabelle hat &uuml;ber 50000 Eintr&auml;ge und sollte deshalb geleert werden ... ');
+define('RESET_ADMIN_ACTIVITY_LOG', 'W&auml;hlen Sie Tools -> Shopmanager und leeren die Admin-Protokolltabelle');
+define('CATEGORY_HAS_SUBCATEGORIES', 'Achtung: Kategorie besitzt Unterkategorien<br />Artikel k&ouml;nnen nicht hinzugef&uuml;gt werden');
 
 ///////////////////////////////////////////////////////////
 // include additional files:
-require(DIR_WS_LANGUAGES . $_SESSION['language'] . '/' . FILENAME_EMAIL_EXTRAS);
-include(zen_get_file_directory(DIR_FS_CATALOG_LANGUAGES . $_SESSION['language'] . '/', FILENAME_OTHER_IMAGES_NAMES, 'false'));
+  require(DIR_WS_LANGUAGES . $_SESSION['language'] . '/' . FILENAME_EMAIL_EXTRAS);
+  include(zen_get_file_directory(DIR_FS_CATALOG_LANGUAGES . $_SESSION['language'] . '/', FILENAME_OTHER_IMAGES_NAMES, 'false'));
 
 // Additional Localisation - Languages - Phone Country Code
 define('TEXT_INFO_LANGUAGE_ID', 'Geben Sie den Telefon L&auml;ndercode OHNE 0 ein<br />(english MUSS 1 sein, deutsch MUSS 43 sein):');
 define('TEXT_INFO_LANGUAGE_CODE', 'Code:<br />(en = englisch, de = deutsch)');
+
+
 ?>

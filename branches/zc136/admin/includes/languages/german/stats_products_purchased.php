@@ -17,16 +17,21 @@
 // | to obtain it through the world-wide-web, please send a note to       |
 // | license@zen-cart.com so we can mail you a copy immediately.          |
 // +----------------------------------------------------------------------+
-// | Translator:           cyaneo/hugo13                                  |
-// | Date of Translation:  31.03.06                                       |
-// | Homepage:             www.zen-cart.at                                |
-// +----------------------------------------------------------------------+
-//  $Id: stats_products_purchased.php 4 2006-03-31 16:38:40Z hugo13 $
+//  $Id: stats_products_purchased.php 4735 2006-10-12 22:37:46Z ajeh $
 //
 
 define('HEADING_TITLE','Top Artikelbestellungen');
-
 define('TABLE_HEADING_NUMBER','Nr.');
 define('TABLE_HEADING_PRODUCTS','Artikel');
 define('TABLE_HEADING_PURCHASED','Bestellt');
+define('TABLE_HEADING_CUSTOMERS_ID', 'Kunden-<br />nummer');
+define('TABLE_HEADING_ORDERS_ID', 'Bestell-<br />nummer');
+define('TABLE_HEADING_ORDERS_DATE_PURCHASED', 'Datum');
+define('TABLE_HEADING_CUSTOMERS_INFO', 'Kunde');
+define('TABLE_HEADING_PRODUCTS_QUANTITY', 'Menge');
+define('TABLE_HEADING_PRODUCTS_NAME', 'Artikel');
+define('TABLE_HEADING_PRODUCTS_MODEL', 'Artikelnummer');
+
+
+
 ?>

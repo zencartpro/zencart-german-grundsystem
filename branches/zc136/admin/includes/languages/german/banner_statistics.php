@@ -17,32 +17,10 @@
 // | to obtain it through the world-wide-web, please send a note to       |
 // | license@zen-cart.com so we can mail you a copy immediately.          |
 // +----------------------------------------------------------------------+
-// | Translator:           cyaneo/hugo13                                  |
-// | Date of Translation:  31.03.06                                       |
-// | Homepage:             www.zen-cart.at                                |
-// +----------------------------------------------------------------------+
-//  $Id: banner_statistics.php 4 2006-03-31 16:38:40Z hugo13 $
+//  $Id: banner_statistics.php 1105 2005-04-04 22:05:35Z birdbrain $
 //
 
-define('HEADING_TITLE','Bannerstatistik');
+define('HEADING_TITLE','Bannerstatistik');define('TABLE_HEADING_SOURCE','Quelle');define('TABLE_HEADING_VIEWS','Einblendungen');define('TABLE_HEADING_CLICKS','Klicks');define('TEXT_BANNERS_DATA','D<br>a<br>t<br>a');define('TEXT_BANNERS_DAILY_STATISTICS','%s T&auml;gliche Statistik f&uuml;r %s %s');define('TEXT_BANNERS_MONTHLY_STATISTICS','%s Monatliche Statistik f&uuml;r %s');define('TEXT_BANNERS_YEARLY_STATISTICS','%s J&auml;hrliche Statistik');define('STATISTICS_TYPE_DAILY','T&auml;glich');define('STATISTICS_TYPE_MONTHLY','Monatlich');define('STATISTICS_TYPE_YEARLY','J&auml;hrlich');define('TITLE_TYPE','Typ:');define('TITLE_YEAR','Jahr:');define('TITLE_MONTH','Monat:');define('ERROR_GRAPHS_DIRECTORY_DOES_NOT_EXIST','Achtung! Das Grafikverzeichnis existiert nicht. Bitte erstellen Sie das Verzeichnis \'graphs\' im Ordner \'images\'.');define('ERROR_GRAPHS_DIRECTORY_NOT_WRITEABLE','Achtung! Grafikverzeichnis ist nicht beschreibbar.');
 
-define('TABLE_HEADING_SOURCE','Quelle');
-define('TABLE_HEADING_VIEWS','Einblendungen');
-define('TABLE_HEADING_CLICKS','Klicks');
 
-define('TEXT_BANNERS_DATA','D<br>a<br>t<br>a');
-define('TEXT_BANNERS_DAILY_STATISTICS','%s T&auml;gliche Statistik f&uuml;r %s %s');
-define('TEXT_BANNERS_MONTHLY_STATISTICS','%s Monatliche Statistik f&uuml;r %s');
-define('TEXT_BANNERS_YEARLY_STATISTICS','%s J&auml;hrliche Statistik');
-
-define('STATISTICS_TYPE_DAILY','T&auml;glich');
-define('STATISTICS_TYPE_MONTHLY','Monatlich');
-define('STATISTICS_TYPE_YEARLY','J&auml;hrlich');
-
-define('TITLE_TYPE','Typ:');
-define('TITLE_YEAR','Jahr:');
-define('TITLE_MONTH','Monat:');
-
-define('ERROR_GRAPHS_DIRECTORY_DOES_NOT_EXIST','Achtung! Das Grafikverzeichnis existiert nicht. Bitte erstellen Sie das Verzeichnis \'graphs\' im Ordner \'images\'.');
-define('ERROR_GRAPHS_DIRECTORY_NOT_WRITEABLE','Achtung! Grafikverzeichnis ist nicht beschreibbar.');
 ?>

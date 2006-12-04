@@ -17,11 +17,7 @@
 // | to obtain it through the world-wide-web, please send a note to       |
 // | license@zen-cart.com so we can mail you a copy immediately.          |
 // +----------------------------------------------------------------------+
-// | Translator:           cyaneo/hugo13                                  |
-// | Date of Translation:  31.03.06                                       |
-// | Homepage:             www.zen-cart.at                                |
-// +----------------------------------------------------------------------+
-//  $Id: record_artists.php 4 2006-03-31 16:38:40Z hugo13 $
+//  $Id: record_artists.php 4810 2006-10-22 19:02:19Z ajeh $
 //
 define('HEADING_TITLE', 'K&uuml;nstler');
 define('TABLE_HEADING_RECORD_ARTISTS', 'K&uuml;nstler');
@@ -34,7 +30,7 @@ define('TEXT_RECORD_ARTIST_NAME', 'K&uuml;nstlername');
 define('TEXT_RECORD_ARTIST_IMAGE', 'K&uuml;nstlerbild');
 define('TEXT_RECORD_ARTIST_URL', 'Webseite des K&uuml;nstlers');
 define('TEXT_ARTISTS_IMAGE_DIR', 'Bildverzeichnis&nbsp;');
-
+define('TEXT_ARTISTS_IMAGE_MANUAL', '<strong>Oder w&auml;hlen Sie ein bestehendes Bild vom Server, Dateiname:</strong>');
 define('TEXT_HEADING_NEW_RECORD_ARTIST', 'Neuer K&uuml;nstler');
 define('TEXT_HEADING_EDIT_RECORD_ARTIST', 'K&uuml;nstler bearbeiten');
 define('TEXT_HEADING_DELETE_RECORD_ARTIST', 'K&uuml;nstler l&ouml;schen');
@@ -45,4 +41,6 @@ define('TEXT_PRODUCTS', 'Verlinkte Artikel');
 define('TEXT_DISPLAY_NUMBER_OF_ARTISTS', 'zeige <strong>%d</strong> bis <strong>%d</strong> (von <strong>%d</strong> K&uuml;nstlern)');
 define('TEXT_DELETE_PRODUCTS', 'Soll dieser K&uuml;nstler und alle Verlinkungen zu diesem K&uuml;nstler gel&ouml;scht werden?');
 define('TEXT_DELETE_WARNING_PRODUCTS', '<b>WARNUNG:</b> Es gibt %s Verlinkungen zu diesem K&uuml;nstler!');
+
+
 ?>
