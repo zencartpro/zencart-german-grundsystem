@@ -17,12 +17,10 @@
 // | to obtain it through the world-wide-web, please send a note to       |
 // | license@zen-cart.com so we can mail you a copy immediately.          |
 // +----------------------------------------------------------------------+
-// $Id: stats_products_viewed.php 4 2006-03-31 16:38:40Z hugo13 $
+// $Id: stats_products_viewed.php 1105 2005-04-04 22:05:35Z birdbrain $
 //
 
-define('HEADING_TITLE','Die meistgesehenen Artikel');
+define('HEADING_TITLE','Die meistgesehenen Artikel');define('TABLE_HEADING_NUMBER','Nr.');define('TABLE_HEADING_PRODUCTS','Artikel');define('TABLE_HEADING_VIEWED','gesehen');
 
-define('TABLE_HEADING_NUMBER','Nr.');
-define('TABLE_HEADING_PRODUCTS','Artikel');
-define('TABLE_HEADING_VIEWED','gesehen');
+
 ?>

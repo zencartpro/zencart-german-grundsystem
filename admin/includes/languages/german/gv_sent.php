@@ -17,29 +17,10 @@
 // | to obtain it through the world-wide-web, please send a note to       |
 // | license@zen-cart.com so we can mail you a copy immediately.          |
 // +----------------------------------------------------------------------+
-// | Translator:           cyaneo/hugo13                                  |
-// | Date of Translation:  31.03.06                                       |
-// | Homepage:             www.zen-cart.at                                |
-// +----------------------------------------------------------------------+
-//  $Id: gv_sent.php 4 2006-03-31 16:38:40Z hugo13 $
+//  $Id: gv_sent.php 2388 2005-11-18 00:18:35Z ajeh $
 //
 
-define('HEADING_TITLE', 'Gutscheine versenden');
+define('HEADING_TITLE', 'Gutscheine versenden');define('TABLE_HEADING_SENDERS_NAME', 'Name des Absenders');define('TABLE_HEADING_VOUCHER_VALUE', ' Betrag');define('TABLE_HEADING_VOUCHER_CODE', ' eingel&ouml;st');define('TABLE_HEADING_DATE_SENT', 'gesendet am');define('TEXT_HEADING_DATE_REDEEMED', 'Einl&ouml;sedatum');define('TABLE_HEADING_ACTION', 'Aktion');define('TEXT_INFO_SENDERS_ID', 'Absender ID:');define('TEXT_INFO_AMOUNT_SENT', 'Betrag gesendet:');define('TEXT_INFO_DATE_SENT', 'gesendet am:');define('TEXT_INFO_VOUCHER_CODE', ':');define('TEXT_INFO_EMAIL_ADDRESS', 'e-Mail Adresse:');define('TEXT_INFO_DATE_REDEEMED', 'Einl&ouml;sedatum:');define('TEXT_INFO_IP_ADDRESS', 'IP Adresse:');define('TEXT_INFO_CUSTOMERS_ID', 'Kundennummer:');define('TEXT_INFO_NOT_REDEEMED', 'Nicht eingel&ouml;st');
 
-define('TABLE_HEADING_SENDERS_NAME', 'Name des Absenders');
-define('TABLE_HEADING_VOUCHER_VALUE', ' Betrag');
-define('TABLE_HEADING_VOUCHER_CODE', ' eingel&ouml;st');
-define('TABLE_HEADING_DATE_SENT', 'gesendet am');
-define('TEXT_HEADING_DATE_REDEEMED', 'Einl&ouml;sedatum');
-define('TABLE_HEADING_ACTION', 'Aktion');
 
-define('TEXT_INFO_SENDERS_ID', 'Absender ID:');
-define('TEXT_INFO_AMOUNT_SENT', 'Betrag gesendet:');
-define('TEXT_INFO_DATE_SENT', 'gesendet am:');
-define('TEXT_INFO_VOUCHER_CODE', ':');
-define('TEXT_INFO_EMAIL_ADDRESS', 'e-Mail Adresse:');
-define('TEXT_INFO_DATE_REDEEMED', 'Einl&ouml;sedatum:');
-define('TEXT_INFO_IP_ADDRESS', 'IP Adresse:');
-define('TEXT_INFO_CUSTOMERS_ID', 'Kundennummer:');
-define('TEXT_INFO_NOT_REDEEMED', 'Nicht eingel&ouml;st');
 ?>

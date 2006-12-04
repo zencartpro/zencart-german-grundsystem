@@ -17,20 +17,9 @@
 // | to obtain it through the world-wide-web, please send a note to       |
 // | license@zen-cart.com so we can mail you a copy immediately.          |
 // +----------------------------------------------------------------------+
-// | Translator:           cyaneo/hugo13                                  |
-// | Date of Translation:  31.03.06                                       |
-// | Homepage:             www.zen-cart.at                                |
-// +----------------------------------------------------------------------+
-//  $Id: option_name.php 4 2006-03-31 16:38:40Z hugo13 $
+//  $Id: option_name.php 276 2004-09-10 22:35:28Z wilt $
 //
-define('HEADING_TITLE','Sortierreihenfolge der Attributnamen');
-define('TEXT_EDIT_ALL','Alle Attributnamen bearbeiten');
-define('TEXT_CURRENT_NAME','Aktueller Name');
-define('TEXT_SORT_ORDER','Sortierreihenfolge');
-define('TEXT_OPTION_ID','Option ID');
-define('TEXT_OPTION_TYPE','Typ');
-define('TEXT_OPTION_NAME','Attributname');
-define('TEXT_SELECTED_LANGUAGE','Sprache w&auml;hlen:');
+define('HEADING_TITLE','Sortierreihenfolge der Attributnamen');define('TEXT_EDIT_ALL','Alle Attributnamen bearbeiten');define('TEXT_CURRENT_NAME','Aktueller Name');define('TEXT_SORT_ORDER','Sortierreihenfolge');define('TEXT_OPTION_ID','Option ID');define('TEXT_OPTION_TYPE','Typ');define('TEXT_OPTION_NAME','Attributname');define('TEXT_SELECTED_LANGUAGE','Sprache w&auml;hlen:');define('SUCCESS_OPTION_SORT_ORDER','Die Sortierreihenfolge der Attributnamen wurde aktualisiert');
 
-define('SUCCESS_OPTION_SORT_ORDER','Die Sortierreihenfolge der Attributnamen wurde aktualisiert');
+
 ?>

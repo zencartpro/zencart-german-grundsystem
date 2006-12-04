@@ -17,30 +17,10 @@
 // | to obtain it through the world-wide-web, please send a note to       |
 // | license@zen-cart.com so we can mail you a copy immediately.          |
 // +----------------------------------------------------------------------+
-// | Translator:           cyaneo/hugo13                                  |
-// | Date of Translation:  31.03.06                                       |
-// | Homepage:             www.zen-cart.at                                |
-// +----------------------------------------------------------------------+
-//  $Id: mail.php 4 2006-03-31 16:38:40Z hugo13 $
+//  $Id: mail.php 1969 2005-09-13 06:57:21Z drbyte $
 //
 
-define('HEADING_TITLE','Rundschreiben versenden');
+define('HEADING_TITLE','Rundschreiben versenden');define('TEXT_CUSTOMER','Kunde:');define('TEXT_SUBJECT','Thema:');define('TEXT_FROM','Absender:');define('TEXT_MESSAGE','Nur-Text <br />Nachricht:');define('TEXT_MESSAGE_HTML', 'Rich-Text <br />Nachricht:');define('TEXT_SELECT_CUSTOMER','Kunden ausw&auml;hlen');define('TEXT_ALL_CUSTOMERS','Alle Kunden');define('TEXT_NEWSLETTER_CUSTOMERS','An alle Newsletter Abonnementen');define('TEXT_ATTACHMENTS_LIST', 'Ausgew&auml;hlter Anhang: ');define('TEXT_SELECT_ATTACHMENT', 'Anhang<br />auf dem Server: ');define('TEXT_SELECT_ATTACHMENT_TO_UPLOAD', 'Anhang<br />hochzuladen<br />&amp; anh&auml;ngen: ');define('TEXT_ATTACHMENTS_DIR', 'Ordner f&uuml;r Upload: ');define('NOTICE_EMAIL_SENT_TO','Hinweis: e-Mail wurde versendet an: %s');define('ERROR_NO_CUSTOMER_SELECTED','Fehler: Es wurde kein Kunde ausgew&auml;hlt.');define('ERROR_NO_SUBJECT', 'Fehler: Es wurde kein Betreff angegeben.');define('ERROR_ATTACHMENTS', 'Fehler: Sie k&ouml;nnen nicht beides - UPLOAD und HINZUF&Uuml;GEN - ausw&auml;hlen. Bitte w&auml;hlen Sie nur eines von beiden Optionen.');
 
-define('TEXT_CUSTOMER','Kunde:');
-define('TEXT_SUBJECT','Thema:');
-define('TEXT_FROM','Absender:');
-define('TEXT_MESSAGE','Nur-Text <br />Nachricht:');
-define('TEXT_MESSAGE_HTML', 'Rich-Text <br />Nachricht:');
-define('TEXT_SELECT_CUSTOMER','Kunden ausw&auml;hlen');
-define('TEXT_ALL_CUSTOMERS','Alle Kunden');
-define('TEXT_NEWSLETTER_CUSTOMERS','An alle Newsletter Abonnementen');
-define('TEXT_ATTACHMENTS_LIST', 'Ausgew&auml;hlter Anhang: ');
-define('TEXT_SELECT_ATTACHMENT', 'Anhang<br />auf dem Server: ');
-define('TEXT_SELECT_ATTACHMENT_TO_UPLOAD', 'Anhang<br />hochzuladen<br />&amp; anh&auml;ngen: ');
-define('TEXT_ATTACHMENTS_DIR', 'Ordner f&uuml;r Upload: ');
 
-define('NOTICE_EMAIL_SENT_TO','Hinweis: e-Mail wurde versendet an: %s');
-define('ERROR_NO_CUSTOMER_SELECTED','Fehler: Es wurde kein Kunde ausgew&auml;hlt.');
-define('ERROR_NO_SUBJECT', 'Fehler: Es wurde kein Betreff angegeben.');
-define('ERROR_ATTACHMENTS', 'Fehler: Sie k&ouml;nnen nicht beides - UPLOAD und HINZUF&Uuml;GEN - ausw&auml;hlen. Bitte w&auml;hlen Sie nur eines von beiden Optionen.');
 ?>

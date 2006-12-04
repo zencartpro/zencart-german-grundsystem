@@ -1,5 +1,5 @@
 <?php
-
+//
 // +----------------------------------------------------------------------+
 // |zen-cart Open Source E-commerce                                       |
 // +----------------------------------------------------------------------+
@@ -17,14 +17,11 @@
 // | to obtain it through the world-wide-web, please send a note to       |
 // | license@zen-cart.com so we can mail you a copy immediately.          |
 // +----------------------------------------------------------------------+
-// | Translator:           cyaneo/hugo13                                  |
-// | Date of Translation:  31.03.06                                       |
-// | Homepage:             www.zen-cart.at                                |
-// +----------------------------------------------------------------------+
-//  $Id: email_welcome.php 4 2006-03-31 16:38:40Z hugo13 $
+//  $Id: email_welcome.php 1115 2005-04-05 02:54:01Z drbyte $
 //
 
-define('HEADING_TITLE', 'Willkommensnachricht - Beispiel / Vorschau');
-define('HEADING_SUBTITLE', 'Hinweis: Die Qualit&auml;t der Darstellung dieser Vorschau ist vom jeweils verwendeten Browser abh&auml;ngig und spiegelt nicht unbedingt die aktuelle Darstellung aller e-Mail Clients wieder. <br />Bitte NICHT versenden, bevor Sie die korrekte Darstellung auf allen e-Mail Clients die Sie unterst&uuml;tzen wollen, eingehend getestet haben.');
-define('TEXT_SUBJECT', 'Betreff:');
+define('HEADING_TITLE', 'Willkommensnachricht - Beispiel / Vorschau');define('HEADING_SUBTITLE', 'Hinweis: Die Qualit&auml;t der Darstellung dieser Vorschau ist vom jeweils verwendeten Browser abh&auml;ngig und spiegelt nicht unbedingt die aktuelle Darstellung aller e-Mail Clients wieder. <br />Bitte NICHT versenden, bevor Sie die korrekte Darstellung auf allen e-Mail Clients die Sie unterst&uuml;tzen wollen, eingehend getestet haben.');define('TEXT_SUBJECT', 'Betreff:');
+
+
+
 ?>

@@ -17,27 +17,10 @@
 // | to obtain it through the world-wide-web, please send a note to       |
 // | license@zen-cart.com so we can mail you a copy immediately.          |
 // +----------------------------------------------------------------------+
-// | Translator:           cyaneo/hugo13                                  |
-// | Date of Translation:  31.03.06                                       |
-// | Homepage:             www.zen-cart.at                                |
-// +----------------------------------------------------------------------+
-//  $Id: countries.php 4 2006-03-31 16:38:40Z hugo13 $
+//  $Id: countries.php 1105 2005-04-04 22:05:35Z birdbrain $
 //
 
-define('HEADING_TITLE','L&auml;nder');
+define('HEADING_TITLE','L&auml;nder');define('TABLE_HEADING_COUNTRY_NAME','Land');define('TABLE_HEADING_COUNTRY_CODES','ISO Code');define('TABLE_HEADING_ACTION','Aktion');define('TEXT_INFO_EDIT_INTRO','F&uuml;hren Sie hier bitte die notwendigen &Auml;nderungen durch');define('TEXT_INFO_COUNTRY_NAME','Name:');define('TEXT_INFO_COUNTRY_CODE_2','ISO Code (2):');define('TEXT_INFO_COUNTRY_CODE_3','ISO Code (3):');define('TEXT_INFO_ADDRESS_FORMAT','Adressformat:');define('TEXT_INFO_INSERT_INTRO','Tragen Sie bitte das neue Land mit allen relevanten Daten ein');define('TEXT_INFO_DELETE_INTRO','Wollen Sie dieses Land wirklich l&ouml;schen?');define('TEXT_INFO_HEADING_NEW_COUNTRY','Neues Land');define('TEXT_INFO_HEADING_EDIT_COUNTRY','Land bearbeiten');define('TEXT_INFO_HEADING_DELETE_COUNTRY','Land l&ouml;schen');
 
-define('TABLE_HEADING_COUNTRY_NAME','Land');
-define('TABLE_HEADING_COUNTRY_CODES','ISO Code');
-define('TABLE_HEADING_ACTION','Aktion');
 
-define('TEXT_INFO_EDIT_INTRO','F&uuml;hren Sie hier bitte die notwendigen &Auml;nderungen durch');
-define('TEXT_INFO_COUNTRY_NAME','Name:');
-define('TEXT_INFO_COUNTRY_CODE_2','ISO Code (2):');
-define('TEXT_INFO_COUNTRY_CODE_3','ISO Code (3):');
-define('TEXT_INFO_ADDRESS_FORMAT','Adressformat:');
-define('TEXT_INFO_INSERT_INTRO','Tragen Sie bitte das neue Land mit allen relevanten Daten ein');
-define('TEXT_INFO_DELETE_INTRO','Wollen Sie dieses Land wirklich l&ouml;schen?');
-define('TEXT_INFO_HEADING_NEW_COUNTRY','Neues Land');
-define('TEXT_INFO_HEADING_EDIT_COUNTRY','Land bearbeiten');
-define('TEXT_INFO_HEADING_DELETE_COUNTRY','Land l&ouml;schen');
 ?>

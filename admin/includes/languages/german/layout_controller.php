@@ -17,23 +17,17 @@
 // | to obtain it through the world-wide-web, please send a note to       |
 // | license@zen-cart.com so we can mail you a copy immediately.          |
 // +----------------------------------------------------------------------+
-// | Translator:           cyaneo/hugo13                                  |
-// | Date of Translation:  31.03.06                                       |
-// | Homepage:             www.zen-cart.at                                |
-// +----------------------------------------------------------------------+
-//  $Id: layout_controller.php 4 2006-03-31 16:38:40Z hugo13 $
+//  $Id: layout_controller.php 3197 2006-03-17 21:40:58Z drbyte $
 //
 
 define('HEADING_TITLE','Tabellenspalten');
-
 define('TABLE_HEADING_LAYOUT_BOX_NAME','Name der Box');
 define('TABLE_HEADING_LAYOUT_BOX_STATUS','Linke/Rechte Box<br />Status');
 define('TABLE_HEADING_LAYOUT_BOX_STATUS_SINGLE','Einzelne Spalte-<br />Status');
-define('TABLE_HEADING_LAYOUT_BOX_LOCATION','Links der Rechts<br />Status');
+define('TABLE_HEADING_LAYOUT_BOX_LOCATION','Links oder Rechts<br />Status');
 define('TABLE_HEADING_LAYOUT_BOX_SORT_ORDER','Linke/Rechte Box<br />Sortierreihenfolge');
 define('TABLE_HEADING_LAYOUT_BOX_SORT_ORDER_SINGLE','Einzelne Box<br />Sortierreihenfolge');
 define('TABLE_HEADING_ACTION','Aktion');
-
 define('TEXT_INFO_EDIT_INTRO','F&uuml;hren Sie hier bitte die notwendigen &Auml;nderungen durch');
 define('TEXT_INFO_LAYOUT_BOX','Ausgew&auml;hlte Box:');
 define('TEXT_INFO_LAYOUT_BOX_NAME','Name der Box:');
@@ -57,12 +51,8 @@ define('TEXT_INFO_BOX_DETAILS','Boxdetails:');
 ////////////////
 
 define('HEADING_TITLE_LAYOUT_TEMPLATE','Seitenlayout Vorlage (Template)');
-
 define('TABLE_HEADING_LAYOUT_TITLE','Titel');
 define('TABLE_HEADING_LAYOUT_VALUE','Wert');
-define('TABLE_HEADING_ACTION','Aktion');
-
-
 define('TEXT_MODULE_DIRECTORY','Verzeichnis des Seitenlayouts:');
 define('TEXT_INFO_DATE_ADDED','Erstelldatum:');
 define('TEXT_INFO_LAST_MODIFIED','Letzte &Auml;nderung:');
@@ -80,9 +70,11 @@ define('TEXT_BAD_BOX','<font color="ff0000"><b>FEHLT</b></font><br />');
 define('SUCCESS_BOX_DELETED','Das Template der Box wurde entfernt:');
 define('SUCCESS_BOX_RESET','Alle Einstellungen wurden auf die Standardeinstellungen zur&uuml;ckgesetzt:');
 define('SUCCESS_BOX_UPDATED','Die Einstellungen der Box wurden aktualisiert:');
-
 define('TEXT_ON','EIN');
 define('TEXT_OFF','AUS');
 define('TEXT_LEFT','LINKS');
 define('TEXT_RIGHT','RECHTS');
+
+
+
 ?>

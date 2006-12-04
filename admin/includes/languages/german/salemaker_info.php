@@ -17,16 +17,10 @@
 // | to obtain it through the world-wide-web, please send a note to       |
 // | license@zen-cart.com so we can mail you a copy immediately.          |
 // +----------------------------------------------------------------------+
-// | Translator:           cyaneo/hugo13                                  |
-// | Date of Translation:  31.03.06                                       |
-// | Homepage:             www.zen-cart.at                                |
-// +----------------------------------------------------------------------+
-//  $Id: salemaker_info.php 4 2006-03-31 16:38:40Z hugo13 $
+//  $Id: salemaker_info.php 1105 2005-04-04 22:05:35Z birdbrain $
 //
 
-define('HEADING_TITLE','Abverkaufsmanager');
-define('SUBHEADING_TITLE','Verwendungstipps f&uuml;r den Abverkaufsmanager:');
-define('INFO_TEXT','<ul>
+define('HEADING_TITLE','Abverkaufsmanager');define('SUBHEADING_TITLE','Verwendungstipps f&uuml;r den Abverkaufsmanager:');define('INFO_TEXT','<ul>
                       <li>
                         Verwenden Sie immer \'.\' als Trennzeichen f&uuml;r Dezimalstellen.
                       </li>
@@ -73,6 +67,7 @@ define('INFO_TEXT','<ul>
                       <li>
                         die Auswahl einer Kategorie beinhaltet automatisch auch alle Unterkategorien.
                       </li>
-                    </ul>');
-define('TEXT_CLOSE_WINDOW','[ Fenster schlie&szlig;en ]');
+                    </ul>');define('TEXT_CLOSE_WINDOW','[ Fenster schlie&szlig;en ]');
+
+
 ?>
