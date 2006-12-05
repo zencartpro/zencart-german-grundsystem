@@ -20,7 +20,9 @@
 // $Id: freecharger.php 1969 2005-09-13 06:57:21Z drbyte $
 //
 
-define('MODULE_PAYMENT_FREECHARGER_TEXT_TITLE', 'Gratis');define('MODULE_PAYMENT_FREECHARGER_TEXT_DESCRIPTION', 'Zur Verwendung bei kostenlosen Artikel');define('MODULE_PAYMENT_FREECHARGER_TEXT_EMAIL_FOOTER', '');
+define('MODULE_PAYMENT_FREECHARGER_TEXT_TITLE', 'Gratis');
+define('MODULE_PAYMENT_FREECHARGER_TEXT_DESCRIPTION', 'Zur Verwendung bei kostenlosen Artikel');
+define('MODULE_PAYMENT_FREECHARGER_TEXT_EMAIL_FOOTER', '');
 
 
 ?>

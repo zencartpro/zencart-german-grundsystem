@@ -4,9 +4,9 @@
 // |zen-cart Open Source E-commerce                                       |
 // +----------------------------------------------------------------------+
 // | Copyright (c) 2004 The zen-cart developers                           |
-// |                                                                      |   
-// | http://www.zen-cart.com/index.php                                    |   
-// |                                                                      |   
+// |                                                                      |
+// | http://www.zen-cart.com/index.php                                    |
+// |                                                                      |
 // | Portions Copyright (c) 2003 osCommerce                               |
 // +----------------------------------------------------------------------+
 // | This source file is subject to version 2.0 of the GPL license,       |
@@ -17,13 +17,15 @@
 // | to obtain it through the world-wide-web, please send a note to       |
 // | license@zen-cart.com so we can mail you a copy immediately.          |
 // +----------------------------------------------------------------------+
-// $Id: product_free_shipping.php 1969 2005-09-13 06:57:21Z drbyte $
+// | Translator:           cyaneo/hugo13                                  |
+// | Date of Translation:  31.03.06                                       |
+// | Homepage:             www.zen-cart.at                                |
+// +----------------------------------------------------------------------+
+// $Id: product_free_shipping.php 68 2006-11-30 11:33:05Z rainer $
 //
 // defined as an image, text or a combination for Always Free Shipping
 // comment out the ones you do not which to use
 // to show nothing, comment all out except one and define as ''
 //define('TEXT_PRODUCT_FREE_SHIPPING_ICON', 'FREE SHIPPING'); // for text or set to '' for nothing
-define('TEXT_PRODUCT_FREE_SHIPPING_ICON', zen_image(DIR_WS_TEMPLATE_IMAGES . 'always-free-shipping_de.gif', 'Immer versandkostenfrei'));// for an image or comment out to use another
-
-
+define('TEXT_PRODUCT_FREE_SHIPPING_ICON', zen_image(DIR_WS_TEMPLATE_IMAGES . 'always-free-shipping_de.gif', 'Immer versandkostenfrei')); // for an image or comment out to use another
 ?>

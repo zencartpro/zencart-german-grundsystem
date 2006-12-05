@@ -8,7 +8,9 @@
  * @version $Id: logoff.php 3027 2006-02-13 17:15:51Z drbyte $
  */
 
-define('HEADING_TITLE','abgemeldet');define('NAVBAR_TITLE','abgemeldet');define('TEXT_MAIN','Sie sind nun abgemeldet. Vielen Dank f&uuml;r Ihren Besuch.<br /><br />Der Inhalt Ihres Warenkorbs wurde gespeichert und steht Ihnen bei Ihrem n&auml;chsten wieder Besuch zur Verf&uuml;gung.');
+define('HEADING_TITLE','abgemeldet');
+define('NAVBAR_TITLE','abgemeldet');
+define('TEXT_MAIN','Sie sind nun abgemeldet. Vielen Dank f&uuml;r Ihren Besuch.<br /><br />Der Inhalt Ihres Warenkorbs wurde gespeichert und steht Ihnen bei Ihrem n&auml;chsten wieder Besuch zur Verf&uuml;gung.');
 
 
 

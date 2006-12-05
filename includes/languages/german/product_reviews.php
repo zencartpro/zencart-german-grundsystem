@@ -8,7 +8,10 @@
  * @version $Id: product_reviews.php 3027 2006-02-13 17:15:51Z drbyte $
  */
 
-define('NAVBAR_TITLE','Bewertungen');define('TEXT_OF_5_STARS','%s von 5 Sternen');define('TEXT_PRODUCT_INFO','<strong>Artikelinformationen</strong>');define('TEXT_READ_REVIEW','<strong>Bewertungen lesen</strong>');
+define('NAVBAR_TITLE','Bewertungen');
+define('TEXT_OF_5_STARS','%s von 5 Sternen');
+define('TEXT_PRODUCT_INFO','<strong>Artikelinformationen</strong>');
+define('TEXT_READ_REVIEW','<strong>Bewertungen lesen</strong>');
 
 
 ?>

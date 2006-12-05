@@ -20,7 +20,8 @@
 // $Id: ot_tax.php 1969 2005-09-13 06:57:21Z drbyte $
 //
 
-define('MODULE_ORDER_TOTAL_TAX_TITLE', 'Steuern');define('MODULE_ORDER_TOTAL_TAX_DESCRIPTION', 'Enthaltene Steuern der Bestellung');
+define('MODULE_ORDER_TOTAL_TAX_TITLE', 'Steuern');
+define('MODULE_ORDER_TOTAL_TAX_DESCRIPTION', 'Enthaltene Steuern der Bestellung');
 
 
 ?>

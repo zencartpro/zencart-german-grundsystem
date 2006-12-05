@@ -20,7 +20,15 @@
 // $Id: products_new.php 1969 2005-09-13 06:57:21Z drbyte $
 //
 
-define('NAVBAR_TITLE','Neue Artikel');define('HEADING_TITLE','Neue Artikel');define('TEXT_DATE_ADDED','Erstelldatum:');define('TEXT_MANUFACTURER','Hersteller:');define('TEXT_PRICE','Preis:');define('TEXT_PRODUCTS_MODEL','Artikelnummer: ');define('TEXT_PRODUCTS_WEIGHT','Gewicht: ');define('TEXT_PRODUCTS_QUANTITY','lagernd: ');define('TEXT_OUT_OF_STOCK','nicht lagernd');
+define('NAVBAR_TITLE','Neue Artikel');
+define('HEADING_TITLE','Neue Artikel');
+define('TEXT_DATE_ADDED','Erstelldatum:');
+define('TEXT_MANUFACTURER','Hersteller:');
+define('TEXT_PRICE','Preis:');
+define('TEXT_PRODUCTS_MODEL','Artikelnummer: ');
+define('TEXT_PRODUCTS_WEIGHT','Gewicht: ');
+define('TEXT_PRODUCTS_QUANTITY','lagernd: ');
+define('TEXT_OUT_OF_STOCK','nicht lagernd');
 
 
 ?>

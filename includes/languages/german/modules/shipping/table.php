@@ -20,7 +20,9 @@
 // $Id: table.php 1969 2005-09-13 06:57:21Z drbyte $
 //
 
-define('MODULE_SHIPPING_TABLE_TEXT_TITLE','Tabellarische Versandkosten');define('MODULE_SHIPPING_TABLE_TEXT_DESCRIPTION','Tabellarische Versandkosten');define('MODULE_SHIPPING_TABLE_TEXT_WAY','Pauschale');define('MODULE_SHIPPING_TABLE_TEXT_WEIGHT','Gewicht');define('MODULE_SHIPPING_TABLE_TEXT_AMOUNT','Betrag');
-?>
-
+define('MODULE_SHIPPING_TABLE_TEXT_TITLE','Tabellarische Versandkosten');
+define('MODULE_SHIPPING_TABLE_TEXT_DESCRIPTION','Tabellarische Versandkosten');
+define('MODULE_SHIPPING_TABLE_TEXT_WAY','Pauschale');
+define('MODULE_SHIPPING_TABLE_TEXT_WEIGHT','Gewicht');
+define('MODULE_SHIPPING_TABLE_TEXT_AMOUNT','Betrag');
 ?>

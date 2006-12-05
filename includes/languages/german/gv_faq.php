@@ -20,7 +20,9 @@
 // $Id: gv_faq.php 4155 2006-08-16 17:14:52Z ajeh $
 //
 
-define('NAVBAR_TITLE', TEXT_GV_NAME . ' FAQ');define('HEADING_TITLE', TEXT_GV_NAME . ' FAQ');define('TEXT_INFORMATION', '<a name="Top"></a>
+define('NAVBAR_TITLE', TEXT_GV_NAME . ' FAQ');
+define('HEADING_TITLE', TEXT_GV_NAME . ' FAQ');
+define('TEXT_INFORMATION', '<a name="Top"></a>
   <a href="'.zen_href_link(FILENAME_GV_FAQ,'faq_item=1','NONSSL').'">Wie bestelle ich ' . TEXT_GV_NAMES . '</a><br />
   <a href="'.zen_href_link(FILENAME_GV_FAQ,'faq_item=2','NONSSL').'">Wie versende ich ' . TEXT_GV_NAMES . '</a><br />
   <a href="'.zen_href_link(FILENAME_GV_FAQ,'faq_item=3','NONSSL').'">Einkaufen mit ' . TEXT_GV_NAMES . 'n</a><br />
@@ -29,7 +31,8 @@ define('NAVBAR_TITLE', TEXT_GV_NAME . ' FAQ');define('HEADING_TITLE', TEXT_GV_N
 ');
 switch ($_GET['faq_item']) {
   case '1':
-define('SUB_HEADING_TITLE','');define('SUB_HEADING_TEXT','Bitte w&auml;hlen Sie Ihr Thema, zudem Sie Fragen haben.');
+define('SUB_HEADING_TITLE','');
+define('SUB_HEADING_TEXT','Bitte w&auml;hlen Sie Ihr Thema, zudem Sie Fragen haben.');
   break;
   case '2':
 
@@ -48,7 +51,8 @@ define('SUB_HEADING_TITLE','');define('SUB_HEADING_TEXT','Bitte w&auml;hlen Sie
 
   }
 
-define('TEXT_GV_REDEEM_INFO', 'Bitte geben Sie Ihren  ' . TEXT_GV_NAME . ' Gutscheincode ein: ');define('TEXT_GV_REDEEM_ID', 'Gutscheincode:');
+define('TEXT_GV_REDEEM_INFO', 'Bitte geben Sie Ihren  ' . TEXT_GV_NAME . ' Gutscheincode ein: ');
+define('TEXT_GV_REDEEM_ID', 'Gutscheincode:');
 
 
 ?>

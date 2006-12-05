@@ -9,10 +9,20 @@
  */
 
 // define the icon images used in the project
-define('ICON_IMAGE_ERROR', 'error.gif');define('ICON_IMAGE_WARNING', 'warning.gif');define('ICON_IMAGE_SUCCESS', 'success.gif');define('ICON_IMAGE_TRASH', 'small_delete.gif');define('ICON_IMAGE_UPDATE', 'button_update_cart.gif');define('ICON_IMAGE_TINYCART', 'cart.gif');
+define('ICON_IMAGE_ERROR', 'error.gif');
+define('ICON_IMAGE_WARNING', 'warning.gif');
+define('ICON_IMAGE_SUCCESS', 'success.gif');
+define('ICON_IMAGE_TRASH', 'small_delete.gif');
+define('ICON_IMAGE_UPDATE', 'button_update_cart.gif');
+define('ICON_IMAGE_TINYCART', 'cart.gif');
 
 //alt tags for buttons
-define('ICON_ERROR_ALT', 'Fehler');define('ICON_SUCCESS_ALT', 'erfolgreich');define('ICON_WARNING_ALT', 'Warnung');define('ICON_TRASH_ALT', 'Diesen Artikel aus dem Warenkorb l&ouml;schen, indem Sie diese Schaltfl&auml;che anklicken.');define('ICON_UPDATE_ALT', 'Die Menge &auml;ndern, indem Sie die Zahl im Kasten ver&auml;ndern und diese Taste anklicken.');define('ICON_TINYCART_ALT', 'Dieses Produkt dem Warenkorb hinzuf&uuml;gen, indem Sie hier klicken.');
+define('ICON_ERROR_ALT', 'Fehler');
+define('ICON_SUCCESS_ALT', 'erfolgreich');
+define('ICON_WARNING_ALT', 'Warnung');
+define('ICON_TRASH_ALT', 'Diesen Artikel aus dem Warenkorb l&ouml;schen, indem Sie diese Schaltfl&auml;che anklicken.');
+define('ICON_UPDATE_ALT', 'Die Menge &auml;ndern, indem Sie die Zahl im Kasten ver&auml;ndern und diese Taste anklicken.');
+define('ICON_TINYCART_ALT', 'Dieses Produkt dem Warenkorb hinzuf&uuml;gen, indem Sie hier klicken.');
 
 
 

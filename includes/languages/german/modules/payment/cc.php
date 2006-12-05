@@ -20,7 +20,20 @@
 // $Id: cc.php 4027 2006-07-26 05:27:41Z drbyte $
 //
 
-define('MODULE_PAYMENT_CC_TEXT_TITLE','Kreditkarte');define('MODULE_PAYMENT_CC_TEXT_DESCRIPTION','Kreditkarten Test Info:<br /><br />CC#: 4111111111111111<br />G&uuml;ltig bis: alle');define('MODULE_PAYMENT_CC_TEXT_CREDIT_CARD_TYPE','Kreditkarten Typ:');define('MODULE_PAYMENT_CC_TEXT_CREDIT_CARD_OWNER','Karteninhaber:');define('MODULE_PAYMENT_CC_TEXT_CREDIT_CARD_NUMBER','Kartennummer:');define('MODULE_PAYMENT_CC_TEXT_CREDIT_CARD_CVV','Kreditkarensicherheitscode (<a href="javascript:popupWindow(\'' . zen_href_link(FILENAME_POPUP_CVV_HELP) . '\')">' . 'More Info' . '</a>)');define('MODULE_PAYMENT_CC_TEXT_CREDIT_CARD_EXPIRES','G&uuml;ltig bis:');define('MODULE_PAYMENT_CC_TEXT_JS_CC_OWNER','* Der Name des Karteninhabers muss aus mindestens ' . CC_OWNER_MIN_LENGTH . ' characters.\n . Zeichen bestehen!');define('MODULE_PAYMENT_CC_TEXT_JS_CC_NUMBER','* Die Kartennummer muss aus mindestens ' . CC_NUMBER_MIN_LENGTH . ' characters.\n . Zeichen bestehen!');define('MODULE_PAYMENT_CC_TEXT_ERROR','Kreditkartenfehler!');define('MODULE_PAYMENT_CC_TEXT_JS_CC_CVV','* Der Sicherheitscode f&uuml;r Kreditkarten muss aus mindestens ' . CC_CVV_MIN_LENGTH . ' characters.\n . Zeichen bestehen!');define('MODULE_PAYMENT_CC_TEXT_EMAIL_ERROR', 'Warnung - Konfigurations Fehler: ');define('MODULE_PAYMENT_CC_TEXT_EMAIL_WARNING','WARNUNG: Sie haben das CC Zahlungsmodul nicht richtig konfiguriert, damit CC Informationen durch email schicken kann. Infolgedessen werden Auftr&auml;ge nicht verarbeitet, die mit dieser Methode erteilt werden.  Zu Admin->Modules->Payment->CC->Edit gehen und die bevorzugte Emailadresse f&uuml;r das senden von CC Informationen einstellen.' . "\n\n\n\n");define('MODULE_PAYMENT_CC_TEXT_MIDDLE_DIGITS_MESSAGE', 'Diese Email an die Buchhaltung senden, damit sie zusammen mit dem Online-Auftrag eingeordnet werden kann, auf den sie sich bezieht: ' . "\n\n" . 'Auftrag: %s' . "\n\n" . 'Mittlere Stellen: %s' . "\n\n");
+define('MODULE_PAYMENT_CC_TEXT_TITLE','Kreditkarte');
+define('MODULE_PAYMENT_CC_TEXT_DESCRIPTION','Kreditkarten Test Info:<br /><br />CC#: 4111111111111111<br />G&uuml;ltig bis: alle');
+define('MODULE_PAYMENT_CC_TEXT_CREDIT_CARD_TYPE','Kreditkarten Typ:');
+define('MODULE_PAYMENT_CC_TEXT_CREDIT_CARD_OWNER','Karteninhaber:');
+define('MODULE_PAYMENT_CC_TEXT_CREDIT_CARD_NUMBER','Kartennummer:');
+define('MODULE_PAYMENT_CC_TEXT_CREDIT_CARD_CVV','Kreditkarensicherheitscode (<a href="javascript:popupWindow(\'' . zen_href_link(FILENAME_POPUP_CVV_HELP) . '\')">' . 'More Info' . '</a>)');
+define('MODULE_PAYMENT_CC_TEXT_CREDIT_CARD_EXPIRES','G&uuml;ltig bis:');
+define('MODULE_PAYMENT_CC_TEXT_JS_CC_OWNER','* Der Name des Karteninhabers muss aus mindestens ' . CC_OWNER_MIN_LENGTH . ' characters.\n . Zeichen bestehen!');
+define('MODULE_PAYMENT_CC_TEXT_JS_CC_NUMBER','* Die Kartennummer muss aus mindestens ' . CC_NUMBER_MIN_LENGTH . ' characters.\n . Zeichen bestehen!');
+define('MODULE_PAYMENT_CC_TEXT_ERROR','Kreditkartenfehler!');
+define('MODULE_PAYMENT_CC_TEXT_JS_CC_CVV','* Der Sicherheitscode f&uuml;r Kreditkarten muss aus mindestens ' . CC_CVV_MIN_LENGTH . ' characters.\n . Zeichen bestehen!');
+define('MODULE_PAYMENT_CC_TEXT_EMAIL_ERROR', 'Warnung - Konfigurations Fehler: ');
+define('MODULE_PAYMENT_CC_TEXT_EMAIL_WARNING','WARNUNG: Sie haben das CC Zahlungsmodul nicht richtig konfiguriert, damit CC Informationen durch email schicken kann. Infolgedessen werden Auftr&auml;ge nicht verarbeitet, die mit dieser Methode erteilt werden.  Zu Admin->Modules->Payment->CC->Edit gehen und die bevorzugte Emailadresse f&uuml;r das senden von CC Informationen einstellen.' . "\n\n\n\n");
+define('MODULE_PAYMENT_CC_TEXT_MIDDLE_DIGITS_MESSAGE', 'Diese Email an die Buchhaltung senden, damit sie zusammen mit dem Online-Auftrag eingeordnet werden kann, auf den sie sich bezieht: ' . "\n\n" . 'Auftrag: %s' . "\n\n" . 'Mittlere Stellen: %s' . "\n\n");
 
 
 ?>

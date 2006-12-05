@@ -20,7 +20,9 @@
 // $Id: privacy.php 1969 2005-09-13 06:57:21Z drbyte $
 //
 
-define('NAVBAR_TITLE','Datenschutz');define('HEADING_TITLE','Datenschutz');define('TEXT_INFORMATION', 'Datenschutz');
+define('NAVBAR_TITLE','Datenschutz');
+define('HEADING_TITLE','Datenschutz');
+define('TEXT_INFORMATION', 'Datenschutz');
 
 
 ?>

@@ -8,7 +8,20 @@
  * @version $Id: page_not_found.php 3159 2006-03-11 01:35:04Z drbyte $
  */
 
-define('NAVBAR_TITLE', 'Seite nicht gefunden');define('HEADING_TITLE', 'Seite nicht gefunden');define('TEXT_INFORMATION', '');define('PAGE_ACCOUNT', 'Mein Konto');define('PAGE_ACCOUNT_EDIT', 'Kontoinformation');define('PAGE_ADDRESS_BOOK', 'Adressbuch');define('PAGE_ACCOUNT_HISTORY', 'Bestellhistorie');define('PAGE_ACCOUNT_NOTIFICATIONS', 'Newsletter');define('PAGE_SHOPPING_CART', 'Warenkorb');define('PAGE_CHECKOUT_SHIPPING', 'zur Kasse');define('PAGE_ADVANCED_SEARCH', 'Erweiterte Suche');define('PAGE_PRODUCTS_NEW', 'Neue Artikel');define('PAGE_SPECIALS', 'Sonderangebote');define('PAGE_REVIEWS', 'Bewertungen');
+define('NAVBAR_TITLE', 'Seite nicht gefunden');
+define('HEADING_TITLE', 'Seite nicht gefunden');
+define('TEXT_INFORMATION', '');
+define('PAGE_ACCOUNT', 'Mein Konto');
+define('PAGE_ACCOUNT_EDIT', 'Kontoinformation');
+define('PAGE_ADDRESS_BOOK', 'Adressbuch');
+define('PAGE_ACCOUNT_HISTORY', 'Bestellhistorie');
+define('PAGE_ACCOUNT_NOTIFICATIONS', 'Newsletter');
+define('PAGE_SHOPPING_CART', 'Warenkorb');
+define('PAGE_CHECKOUT_SHIPPING', 'zur Kasse');
+define('PAGE_ADVANCED_SEARCH', 'Erweiterte Suche');
+define('PAGE_PRODUCTS_NEW', 'Neue Artikel');
+define('PAGE_SPECIALS', 'Sonderangebote');
+define('PAGE_REVIEWS', 'Bewertungen');
 
 
 ?>

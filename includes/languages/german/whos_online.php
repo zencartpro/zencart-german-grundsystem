@@ -19,7 +19,15 @@
 // +----------------------------------------------------------------------+
 // $Id: whos_online.php 1969 2005-09-13 06:57:21Z drbyte $
 //
-define('BOX_HEADING_WHOS_ONLINE','Wer ist online');define('BOX_WHOS_ONLINE_THEREIS', 'Zur Zeit ist');define('BOX_WHOS_ONLINE_THEREARE', 'Zur Zeit sind');define('BOX_WHOS_ONLINE_GUEST', 'Gast');define('BOX_WHOS_ONLINE_GUESTS', 'G&auml;ste');define('BOX_WHOS_ONLINE_AND', 'und');define('BOX_WHOS_ONLINE_MEMBER', 'Kunde');define('BOX_WHOS_ONLINE_MEMBERS', 'Kunden');define('BOX_WHOS_ONLINE_ONLINE', 'online.');
+define('BOX_HEADING_WHOS_ONLINE','Wer ist online');
+define('BOX_WHOS_ONLINE_THEREIS', 'Zur Zeit ist');
+define('BOX_WHOS_ONLINE_THEREARE', 'Zur Zeit sind');
+define('BOX_WHOS_ONLINE_GUEST', 'Gast');
+define('BOX_WHOS_ONLINE_GUESTS', 'G&auml;ste');
+define('BOX_WHOS_ONLINE_AND', 'und');
+define('BOX_WHOS_ONLINE_MEMBER', 'Kunde');
+define('BOX_WHOS_ONLINE_MEMBERS', 'Kunden');
+define('BOX_WHOS_ONLINE_ONLINE', 'online.');
 
 
 ?>

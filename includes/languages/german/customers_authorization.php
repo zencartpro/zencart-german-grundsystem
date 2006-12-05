@@ -20,7 +20,10 @@
 // $Id: customers_authorization.php 1969 2005-09-13 06:57:21Z drbyte $
 //
 
-define('NAVBAR_TITLE', 'Kundenberechtigung wartend');define('HEADING_TITLE', 'Kundenberechtigung wartend ...');define('CUSTOMERS_AUTHORIZATION_TEXT_INFORMATION', 'Vielen Dank f&uuml;r Ihr Interesse an unserem Shop.<br /><br />Wir werden Sie so rasch wie m&ouml;glich kontaktieren.');define('CUSTOMERS_AUTHORIZATION_STATUS_TEXT', 'Um Ihren Berechtigungsstatus zu &uuml;berpr&uuml;fen ... klicken Sie bitte hier:');
+define('NAVBAR_TITLE', 'Kundenberechtigung wartend');
+define('HEADING_TITLE', 'Kundenberechtigung wartend ...');
+define('CUSTOMERS_AUTHORIZATION_TEXT_INFORMATION', 'Vielen Dank f&uuml;r Ihr Interesse an unserem Shop.<br /><br />Wir werden Sie so rasch wie m&ouml;glich kontaktieren.');
+define('CUSTOMERS_AUTHORIZATION_STATUS_TEXT', 'Um Ihren Berechtigungsstatus zu &uuml;berpr&uuml;fen ... klicken Sie bitte hier:');
 
 
 ?>

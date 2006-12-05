@@ -20,7 +20,7 @@
 // $Id: flat.php 1969 2005-09-13 06:57:21Z drbyte $
 //
 
-define('MODULE_SHIPPING_FLAT_TEXT_TITLE', 'Einheitliche Versandkosten');define('MODULE_SHIPPING_FLAT_TEXT_DESCRIPTION', 'Einheitliche Versandkosten');define('MODULE_SHIPPING_FLAT_TEXT_WAY', 'Auf dem schnellsten Weg');
-?>
-
+define('MODULE_SHIPPING_FLAT_TEXT_TITLE', 'Einheitliche Versandkosten');
+define('MODULE_SHIPPING_FLAT_TEXT_DESCRIPTION', 'Einheitliche Versandkosten');
+define('MODULE_SHIPPING_FLAT_TEXT_WAY', 'Auf dem schnellsten Weg');
 ?>

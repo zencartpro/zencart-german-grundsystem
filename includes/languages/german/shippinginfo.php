@@ -20,7 +20,9 @@
 // $Id: shippinginfo.php 1969 2005-09-13 06:57:21Z drbyte $
 //
 
-define('NAVBAR_TITLE','Preise und Versand');define('HEADING_TITLE','Preise und Versand');define('TEXT_INFORMATION', 'Preise und Versand');
+define('NAVBAR_TITLE','Preise und Versand');
+define('HEADING_TITLE','Preise und Versand');
+define('TEXT_INFORMATION', 'Preise und Versand');
 
 
 ?>

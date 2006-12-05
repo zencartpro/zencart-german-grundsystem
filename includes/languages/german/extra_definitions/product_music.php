@@ -4,9 +4,9 @@
 // |zen-cart Open Source E-commerce                                       |
 // +----------------------------------------------------------------------+
 // | Copyright (c) 2004 The zen-cart developers                           |
-// |                                                                      |   
-// | http://www.zen-cart.com/index.php                                    |   
-// |                                                                      |   
+// |                                                                      |
+// | http://www.zen-cart.com/index.php                                    |
+// |                                                                      |
 // | Portions Copyright (c) 2003 osCommerce                               |
 // +----------------------------------------------------------------------+
 // | This source file is subject to version 2.0 of the GPL license,       |
@@ -17,9 +17,14 @@
 // | to obtain it through the world-wide-web, please send a note to       |
 // | license@zen-cart.com so we can mail you a copy immediately.          |
 // +----------------------------------------------------------------------+
-// $Id: 
+// | Translator:           cyaneo/hugo13                                  |
+// | Date of Translation:  31.03.06                                       |
+// | Homepage:             www.zen-cart.at                                |
+// +----------------------------------------------------------------------+
+// $Id:
 //
-define('BOX_HEADING_MUSIC_GENRES', 'Musik Genre');define('BOX_HEADING_RECORD_COMPANY', 'Plattenfirmen');define('PULL_DOWN_RECORD_COMPANIES', '- zur&uuml;cksetzten -');define('PULL_DOWN_MUSIC_GENRES', '- zur&uuml;cksetzten -');
-
-
+define('BOX_HEADING_MUSIC_GENRES', 'Musik Genre');
+define('BOX_HEADING_RECORD_COMPANY', 'Plattenfirmen');
+define('PULL_DOWN_RECORD_COMPANIES', '- zur&uuml;cksetzten -');
+define('PULL_DOWN_MUSIC_GENRES', '- zur&uuml;cksetzten -');
 ?>
