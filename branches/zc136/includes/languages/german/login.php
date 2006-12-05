@@ -20,9 +20,18 @@
 // $Id: login.php 2471 2005-11-29 01:14:18Z drbyte $
 //
 
-define('NAVBAR_TITLE','anmelden');define('HEADING_TITLE','Willkommen, bitte melden Sie sich an.');define('HEADING_NEW_CUSTOMER','Sie sind neu hier? Dann bitte Kundenkonto erstellen:');define('TEXT_NEW_CUSTOMER_INTRODUCTION','Ein Kundenkonto bei ' . STORE_NAME . ' erm&ouml;glicht Ihnen z.B. komfortabel einzukaufen, sich Ihre aktuellen und bisherigen Bestellungen anzusehen u.v.m.');define('HEADING_RETURNING_CUSTOMER','Stammkunden: Bitte melden Sie sich an');define('TEXT_PASSWORD_FORGOTTEN','Haben Sie Ihr Passwort vergessen?');define('TEXT_LOGIN_ERROR','Achtung! e-Mail Adresse oder Passwort wurden nicht gefunden.');define('TEXT_VISITORS_CART','<strong class="note">Hinweis:</strong> Der Inhalt Ihres "Besucherwarenkorbs" wird nach Ihrer Anmeldung in Ihren pers&ouml;nlichen "Kundenwarenkorb" verschoben. <a href="javascript:session_win();">[More Info]</a>');
+define('NAVBAR_TITLE','anmelden');
+define('HEADING_TITLE','Willkommen, bitte melden Sie sich an.');
+define('HEADING_NEW_CUSTOMER','Sie sind neu hier? Dann bitte Kundenkonto erstellen:');
+define('TEXT_NEW_CUSTOMER_INTRODUCTION','Ein Kundenkonto bei ' . STORE_NAME . ' erm&ouml;glicht Ihnen z.B. komfortabel einzukaufen, sich Ihre aktuellen und bisherigen Bestellungen anzusehen u.v.m.');
+define('HEADING_RETURNING_CUSTOMER','Stammkunden: Bitte melden Sie sich an');
+define('TEXT_PASSWORD_FORGOTTEN','Haben Sie Ihr Passwort vergessen?');
+define('TEXT_LOGIN_ERROR','Achtung! e-Mail Adresse oder Passwort wurden nicht gefunden.');
+define('TEXT_VISITORS_CART','<strong class="note">Hinweis:</strong> Der Inhalt Ihres "Besucherwarenkorbs" wird nach Ihrer Anmeldung in Ihren pers&ouml;nlichen "Kundenwarenkorb" verschoben. <a href="javascript:session_win();">[More Info]</a>');
 
-define('TABLE_HEADING_PRIVACY_CONDITIONS','Privatsph&auml;re');define('TEXT_PRIVACY_CONDITIONS_DESCRIPTION','Bitte best&auml;tigen Sie unsere AGB. Sie k&ouml;nnen diese <a href="' . zen_href_link(FILENAME_PRIVACY, '', 'SSL') . '"><u>hier</u></a> nachlesen.');define('TEXT_PRIVACY_CONDITIONS_CONFIRM','Ich habe die AGB gelesen und akzeptiert.');
+define('TABLE_HEADING_PRIVACY_CONDITIONS','Privatsph&auml;re');
+define('TEXT_PRIVACY_CONDITIONS_DESCRIPTION','Bitte best&auml;tigen Sie unsere AGB. Sie k&ouml;nnen diese <a href="' . zen_href_link(FILENAME_PRIVACY, '', 'SSL') . '"><u>hier</u></a> nachlesen.');
+define('TEXT_PRIVACY_CONDITIONS_CONFIRM','Ich habe die AGB gelesen und akzeptiert.');
 
 
 ?>

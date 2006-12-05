@@ -20,7 +20,9 @@
 // $Id: download_time_out.php 1969 2005-09-13 06:57:21Z drbyte $
 //
 
-define('NAVBAR_TITLE', 'Ihr Download ...');define('HEADING_TITLE', 'Ihr Download ...');define('TEXT_INFORMATION', 'Leider ist Ihr Download abgebrochen worden.<br /><br />
+define('NAVBAR_TITLE', 'Ihr Download ...');
+define('HEADING_TITLE', 'Ihr Download ...');
+define('TEXT_INFORMATION', 'Leider ist Ihr Download abgebrochen worden.<br /><br />
   Falls Sie weitere Downloads haben und Sie fortsetzen wollen,
   gehen Sie bitte auf Ihre <a href="' . zen_href_link(FILENAME_ACCOUNT, '', 'SSL') . '">Mein Konto</a>-Seite.<br /><br />
   Falls Probleme bei Ihrem Download auftreten, bitte <a href="' . zen_href_link(FILENAME_CONTACT_US) . '">kontaktieren Sie uns</a> <br /><br />

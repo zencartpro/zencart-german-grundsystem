@@ -20,7 +20,8 @@
 // $Id: popup_search_help.php 2471 2005-11-29 01:14:18Z drbyte $
 //
 
-define('HEADING_SEARCH_HELP','Hilfe zur Suche');define('TEXT_SEARCH_HELP','
+define('HEADING_SEARCH_HELP','Hilfe zur Suche');
+define('TEXT_SEARCH_HELP','
 <p>Unser Shop bietet als weiteren Service  auch eine leistungsstarke Suchmaschine:<br />
   <br />
   Es gibt die M&ouml;glichkeit meherer Variationen: <br />
@@ -37,7 +38,8 @@ define('HEADING_SEARCH_HELP','Hilfe zur Suche');define('TEXT_SEARCH_HELP','
   <strong>Die exakte Suche:</strong><br />
   Sie geben als Suchbegriff <strong>"Zen Cart"</strong> ein - das Ergebnis werden Begriffe <u>mit exakt dieser Schreibweise</u> sein: <strong>Zen Cart (nicht zen cart) </strong><br />
   <br />
-  Es sind nat&uuml;rlich auch Kombinationen m&ouml;glich (Zen OR Cart OR "zen cart")</p>');define('TEXT_CLOSE_WINDOW','<u>Fenster schlie&szlig;en</u> [x]');
+  Es sind nat&uuml;rlich auch Kombinationen m&ouml;glich (Zen OR Cart OR "zen cart")</p>');
+define('TEXT_CLOSE_WINDOW','<u>Fenster schlie&szlig;en</u> [x]');
 
 
 

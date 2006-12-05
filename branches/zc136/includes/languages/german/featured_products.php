@@ -20,7 +20,15 @@
 // $Id: featured_products.php 1969 2005-09-13 06:57:21Z drbyte $
 //
 
-define('NAVBAR_TITLE', '&Auml;hnliche Artikel');define('HEADING_TITLE', '&Auml;hnliche Artikel');define('TEXT_DATE_ADDED', 'Erstelldatum:');define('TEXT_MANUFACTURER', 'Hersteller:');define('TEXT_PRICE', 'Preis:');define('TEXT_PRODUCTS_MODEL','Artikelnummer: ');define('TEXT_PRODUCTS_WEIGHT','Gewicht: ');define('TEXT_PRODUCTS_QUANTITY','Auf Lager: ');define('TEXT_OUT_OF_STOCK','Nicht lagernd');
+define('NAVBAR_TITLE', '&Auml;hnliche Artikel');
+define('HEADING_TITLE', '&Auml;hnliche Artikel');
+define('TEXT_DATE_ADDED', 'Erstelldatum:');
+define('TEXT_MANUFACTURER', 'Hersteller:');
+define('TEXT_PRICE', 'Preis:');
+define('TEXT_PRODUCTS_MODEL','Artikelnummer: ');
+define('TEXT_PRODUCTS_WEIGHT','Gewicht: ');
+define('TEXT_PRODUCTS_QUANTITY','Auf Lager: ');
+define('TEXT_OUT_OF_STOCK','Nicht lagernd');
 
 
 ?>

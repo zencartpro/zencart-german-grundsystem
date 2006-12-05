@@ -22,5 +22,3 @@
 
 define('NAVBAR_TITLE','Sonderangebote');
 ?>
-
-?>

@@ -20,7 +20,7 @@
 // $Id: freeshipper.php 1969 2005-09-13 06:57:21Z drbyte $
 //
 
-define('MODULE_SHIPPING_FREESHIPPER_TEXT_TITLE','Immer Versandkostenfrei');define('MODULE_SHIPPING_FREESHIPPER_TEXT_DESCRIPTION','Immer Versandkostenfrei');define('MODULE_SHIPPING_FREESHIPPER_TEXT_WAY','Versandkostenfrei');
-?>
-
+define('MODULE_SHIPPING_FREESHIPPER_TEXT_TITLE','Immer Versandkostenfrei');
+define('MODULE_SHIPPING_FREESHIPPER_TEXT_DESCRIPTION','Immer Versandkostenfrei');
+define('MODULE_SHIPPING_FREESHIPPER_TEXT_WAY','Versandkostenfrei');
 ?>

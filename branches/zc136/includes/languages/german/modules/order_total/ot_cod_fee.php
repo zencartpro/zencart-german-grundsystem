@@ -22,7 +22,9 @@
 // $Id: ot_cod_fee.php 1969 2005-09-13 06:57:21Z drbyte $
 //
 
-define('MODULE_ORDER_TOTAL_COD_TITLE', 'Nachnahmegeb&uuml;hr');define('MODULE_ORDER_TOTAL_COD_DESCRIPTION', 'Nachnahmegeb&uuml;hr');define('TEXT_INFO_COD_FEES', '<strong>Hinweis:</strong> Nachnahmegeb&uuml;hren k&ouml;nnen ggf. anfallen');
+define('MODULE_ORDER_TOTAL_COD_TITLE', 'Nachnahmegeb&uuml;hr');
+define('MODULE_ORDER_TOTAL_COD_DESCRIPTION', 'Nachnahmegeb&uuml;hr');
+define('TEXT_INFO_COD_FEES', '<strong>Hinweis:</strong> Nachnahmegeb&uuml;hren k&ouml;nnen ggf. anfallen');
 
 
 ?>

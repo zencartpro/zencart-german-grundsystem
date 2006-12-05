@@ -20,7 +20,8 @@
 // $Id: ot_total.php 1969 2005-09-13 06:57:21Z drbyte $
 //
 
-define('MODULE_ORDER_TOTAL_TOTAL_TITLE', 'Summe');define('MODULE_ORDER_TOTAL_TOTAL_DESCRIPTION', 'Bestellsumme');
+define('MODULE_ORDER_TOTAL_TOTAL_TITLE', 'Summe');
+define('MODULE_ORDER_TOTAL_TOTAL_DESCRIPTION', 'Bestellsumme');
 
 
 ?>

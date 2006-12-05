@@ -20,7 +20,8 @@
 // $Id: ot_group_pricing.php 1969 2005-09-13 06:57:21Z drbyte $
 //
 
-define('MODULE_ORDER_TOTAL_GROUP_PRICING_TITLE', 'Gruppenerm&auml;&szlig;igung');define('MODULE_ORDER_TOTAL_GROUP_PRICING_DESCRIPTION', 'Gruppenerm&auml;&szlig;igung');
+define('MODULE_ORDER_TOTAL_GROUP_PRICING_TITLE', 'Gruppenerm&auml;&szlig;igung');
+define('MODULE_ORDER_TOTAL_GROUP_PRICING_DESCRIPTION', 'Gruppenerm&auml;&szlig;igung');
 
 
 ?>

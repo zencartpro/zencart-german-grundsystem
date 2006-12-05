@@ -21,7 +21,12 @@
 // $Id: down_for_maintenance.php 1969 2005-09-13 06:57:21Z drbyte $
 //
 
-define('NAVBAR_TITLE','Unser Shop ist wegen Wartungsarbeiten vor&uuml;bergehend geschlossen.');define('HEADING_TITLE','Wegen Wartungsarbeiten vor&uuml;bergehend geschlossen ...');define('DOWN_FOR_MAINTENANCE_TEXT_INFORMATION','Dieser Shop ist derzeit wegen Wartungsarbeiten vor&uuml;bergehend geschlossen. Bitte versuchen Sie es zu einem sp&auml;teren Zeitpunkt noch einmal.<br />Wir bitten um Ihr Verst&auml;ndnis.');define('TEXT_MAINTENANCE_ON_AT_TIME','Der Administrator / Webmaster hat mit den Wartungsarbeiten begonnen am:');define('TEXT_MAINTENANCE_PERIOD','Die Wartungsarbeiten dauern voraussichtlich bis:');define('DOWN_FOR_MAINTENANCE_STATUS_TEXT','F&uuml;r eine Statusabfrage... klicken Sie bitte hier:');
+define('NAVBAR_TITLE','Unser Shop ist wegen Wartungsarbeiten vor&uuml;bergehend geschlossen.');
+define('HEADING_TITLE','Wegen Wartungsarbeiten vor&uuml;bergehend geschlossen ...');
+define('DOWN_FOR_MAINTENANCE_TEXT_INFORMATION','Dieser Shop ist derzeit wegen Wartungsarbeiten vor&uuml;bergehend geschlossen. Bitte versuchen Sie es zu einem sp&auml;teren Zeitpunkt noch einmal.<br />Wir bitten um Ihr Verst&auml;ndnis.');
+define('TEXT_MAINTENANCE_ON_AT_TIME','Der Administrator / Webmaster hat mit den Wartungsarbeiten begonnen am:');
+define('TEXT_MAINTENANCE_PERIOD','Die Wartungsarbeiten dauern voraussichtlich bis:');
+define('DOWN_FOR_MAINTENANCE_STATUS_TEXT','F&uuml;r eine Statusabfrage... klicken Sie bitte hier:');
 
 
 ?>

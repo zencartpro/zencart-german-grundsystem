@@ -20,7 +20,8 @@
 // $Id: account_edit.php 1969 2005-09-13 06:57:21Z drbyte $
 //
 
-define('NAVBAR_TITLE_1','Mein Konto');define('NAVBAR_TITLE_2','Mein Konto &auml;ndern');define('HEADING_TITLE','Meine Kontoinformationen');define('SUCCESS_ACCOUNT_UPDATED','Ihr Konto wurde erfolgreich aktualisiert.');
-?>
-
+define('NAVBAR_TITLE_1','Mein Konto');
+define('NAVBAR_TITLE_2','Mein Konto &auml;ndern');
+define('HEADING_TITLE','Meine Kontoinformationen');
+define('SUCCESS_ACCOUNT_UPDATED','Ihr Konto wurde erfolgreich aktualisiert.');
 ?>

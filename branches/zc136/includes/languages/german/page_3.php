@@ -20,7 +20,9 @@
 // $Id: page_3.php 1969 2005-09-13 06:57:21Z drbyte $
 //
 
-define('NAVBAR_TITLE', 'Seite 3');define('HEADING_TITLE', 'Seite 3');define('TEXT_INFORMATION', 'Der Inhalt f&uuml;r die Seite 3 kommt hier hinein. Diesen Text, den Seitenheader und den Link-Text k&ouml;nnen Sie in <strong>includes/languages/german/page_3.php</strong> editieren');
+define('NAVBAR_TITLE', 'Seite 3');
+define('HEADING_TITLE', 'Seite 3');
+define('TEXT_INFORMATION', 'Der Inhalt f&uuml;r die Seite 3 kommt hier hinein. Diesen Text, den Seitenheader und den Link-Text k&ouml;nnen Sie in <strong>includes/languages/german/page_3.php</strong> editieren');
 
 
 ?>
