@@ -9,7 +9,7 @@
  * @copyright Copyright 2003-2006 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: tpl_create_account_success_default.php 4816 2006-10-23 04:08:52Z drbyte $
+ * @version $Id: tpl_create_account_success_default.php 68 2006-11-30 11:33:05Z rainer $
  */
 ?>
 <div class="centerColumn" id="createAcctSuccess">
@@ -18,12 +18,15 @@
 <div id="createAcctSuccessMainContent" class="content"><?php echo TEXT_ACCOUNT_CREATED; ?></div>
 
 <fieldset>
-<legend><?php echo PRIMARY_ADDRESS_TITLE; ?></legend>
+<legend>
+<?php if(!empty($addressArray)){     
+    echo PRIMARY_ADDRESS_TITLE; ?></legend>
 <?php
 /**
  * Used to loop thru and display address book entries
  */
-  foreach ($addressArray as $addresses) {
+ 
+    foreach ((array)$addressArray as $addresses) {
 ?>
 <h3 id="addressBookDefaultName"><?php echo zen_output_string_protected($addresses['firstname'] . ' ' . $addresses['lastname']); ?></h3>
 
@@ -32,7 +35,7 @@
 <div class="buttonRow forward"><?php echo '<a href="' . zen_href_link(FILENAME_ADDRESS_BOOK_PROCESS, 'edit=' . $addresses['address_book_id'], 'SSL') . '">' . zen_image_button(BUTTON_IMAGE_EDIT_SMALL, BUTTON_EDIT_SMALL_ALT) . '</a> <a href="' . zen_href_link(FILENAME_ADDRESS_BOOK_PROCESS, 'delete=' . $addresses['address_book_id'], 'SSL') . '">' . zen_image_button(BUTTON_IMAGE_DELETE, BUTTON_DELETE_ALT) . '</a>'; ?></div>
 <br class="clearBoth">
 <?php
-  }
+  } }
 ?>
 </fieldset>
 
