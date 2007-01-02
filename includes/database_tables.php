@@ -22,6 +22,7 @@ define('TABLE_BANNERS_HISTORY', DB_PREFIX . 'banners_history');
 define('TABLE_CATEGORIES', DB_PREFIX . 'categories');
 define('TABLE_CATEGORIES_DESCRIPTION', DB_PREFIX . 'categories_description');
 define('TABLE_CONFIGURATION', DB_PREFIX . 'configuration');
+define('TABLE_CONFIGURATION_LANGUAGE' , DB_PREFIX . 'configuration_language');
 define('TABLE_CONFIGURATION_GROUP', DB_PREFIX . 'configuration_group');
 define('TABLE_COUNTER', DB_PREFIX . 'counter');
 define('TABLE_COUNTER_HISTORY', DB_PREFIX . 'counter_history');

@@ -11,12 +11,21 @@
 
   $zco_notifier->notify('NOTIFY_START_EZPAGES_SIDEBOX');
 
+  if(isset($_SESSION['languages_id'])){
+        $rl_language = $_SESSION['languages_id'];
+    } else {
+        $rl_language=1;
+    }
+
   // test if sidebox should display
   if (EZPAGES_STATUS_SIDEBOX == '1' or (EZPAGES_STATUS_SIDEBOX== '2' and (strstr(EXCLUDE_ADMIN_IP_FOR_MAINTENANCE, $_SERVER['REMOTE_ADDR'])))) {
     if (isset($var_linksList)) {
       unset($var_linksList);
     }
-    $page_query = $db->Execute("select * from " . TABLE_EZPAGES . " where status_sidebox = 1 and sidebox_sort_order > 0 order by sidebox_sort_order, pages_title");
+    //$sql = "select * from " . TABLE_EZPAGES . " where status_sidebox = 1 and languages_id='$rl_language' and sidebox_sort_order > 0 order by sidebox_sort_order, pages_title";
+    // für wflohr: nun werden auch pages mit sort_order 0 angezeigt
+    $sql = "select * from " . TABLE_EZPAGES . " where status_sidebox = 1 and languages_id='$rl_language' order by sidebox_sort_order, pages_title";
+    $page_query = $db->Execute($sql);
     if ($page_query->RecordCount()>0) {
       $title =  BOX_HEADING_EZPAGES;
       $box_id =  'ezpages';
