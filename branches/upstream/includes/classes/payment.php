@@ -6,7 +6,7 @@
  * @copyright Copyright 2003-2006 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: payment.php 4088 2006-08-07 04:54:43Z drbyte $
+ * @version $Id: payment.php 5382 2006-12-24 18:22:47Z drbyte $
  */
 if (!defined('IS_ADMIN_FLAG')) {
   die('Illegal Access');
@@ -22,7 +22,7 @@ class payment extends base {
 
   // class constructor
   function payment($module = '') {
-    global $PHP_SELF, $payment, $language, $credit_covers;
+    global $PHP_SELF, $language, $credit_covers;
 
     if (defined('MODULE_PAYMENT_INSTALLED') && zen_not_null(MODULE_PAYMENT_INSTALLED)) {
       $this->modules = explode(';', MODULE_PAYMENT_INSTALLED);
@@ -59,8 +59,8 @@ class payment extends base {
 
       for ($i=0, $n=sizeof($include_modules); $i<$n; $i++) {
         //          include(DIR_WS_LANGUAGES . $_SESSION['language'] . '/modules/payment/' . $include_modules[$i]['file']);
-        include(zen_get_file_directory(DIR_WS_LANGUAGES . $_SESSION['language'] . '/modules/payment/', $include_modules[$i]['file'], 'false'));
-        include(DIR_WS_MODULES . 'payment/' . $include_modules[$i]['file']);
+        include_once(zen_get_file_directory(DIR_WS_LANGUAGES . $_SESSION['language'] . '/modules/payment/', $include_modules[$i]['file'], 'false'));
+        include_once(DIR_WS_MODULES . 'payment/' . $include_modules[$i]['file']);
 
         $GLOBALS[$include_modules[$i]['class']] = new $include_modules[$i]['class'];
       }
@@ -105,16 +105,18 @@ class payment extends base {
       '  var error = 0;' . "\n" .
       '  var error_message = "' . JS_ERROR . '";' . "\n" .
       '  var payment_value = null;' . "\n" .
-      '  if (document.checkout_payment.payment.length) {' . "\n" .
-      '    for (var i=0; i<document.checkout_payment.payment.length; i++) {' . "\n" .
-      '      if (document.checkout_payment.payment[i].checked) {' . "\n" .
-      '        payment_value = document.checkout_payment.payment[i].value;' . "\n" .
+      '  if (document.checkout_payment.payment) {' . "\n" .
+      '    if (document.checkout_payment.payment.length) {' . "\n" .
+      '      for (var i=0; i<document.checkout_payment.payment.length; i++) {' . "\n" .
+      '        if (document.checkout_payment.payment[i].checked) {' . "\n" .
+      '          payment_value = document.checkout_payment.payment[i].value;' . "\n" .
+      '        }' . "\n" .
       '      }' . "\n" .
+      '    } else if (document.checkout_payment.payment.checked) {' . "\n" .
+      '      payment_value = document.checkout_payment.payment.value;' . "\n" .
+      '    } else if (document.checkout_payment.payment.value) {' . "\n" .
+      '      payment_value = document.checkout_payment.payment.value;' . "\n" .
       '    }' . "\n" .
-      '  } else if (document.checkout_payment.payment.checked) {' . "\n" .
-      '    payment_value = document.checkout_payment.payment.value;' . "\n" .
-      '  } else if (document.checkout_payment.payment.value) {' . "\n" .
-      '    payment_value = document.checkout_payment.payment.value;' . "\n" .
       '  }' . "\n\n";
 
       reset($this->modules);
@@ -144,7 +146,6 @@ class payment extends base {
 
   function selection() {
     $selection_array = array();
-
     if (is_array($this->modules)) {
       reset($this->modules);
       while (list(, $value) = each($this->modules)) {
@@ -155,8 +156,21 @@ class payment extends base {
         }
       }
     }
-
     return $selection_array;
+  }
+  function in_special_checkout() {
+    $result = false;
+    if (is_array($this->modules)) {
+      reset($this->modules);
+      while (list(, $value) = each($this->modules)) {
+        $class = substr($value, 0, strrpos($value, '.'));
+        if ($GLOBALS[$class]->enabled && method_exists($GLOBALS[$class], 'in_special_checkout')) {
+          $module_result = $GLOBALS[$class]->in_special_checkout();
+          if ($module_result === true) $result = true;
+        }
+      }
+    }
+    return $result;
   }
 
   function pre_confirmation_check() {

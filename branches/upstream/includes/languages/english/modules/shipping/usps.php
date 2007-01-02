@@ -4,7 +4,7 @@
  * @copyright Copyright 2003-2006 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: usps.php 4824 2006-10-23 21:01:28Z drbyte $
+ * @version $Id: usps.php 4867 2006-10-31 09:59:01Z drbyte $
  */
 
 define('MODULE_SHIPPING_USPS_TEXT_TITLE', 'United States Postal Service');
@@ -24,4 +24,6 @@ define('MODULE_SHIPPING_USPS_TEXT_SERVER_ERROR', 'An error occurred in obtaining
 define('MODULE_SHIPPING_USPS_TEXT_DAY', 'day');
 define('MODULE_SHIPPING_USPS_TEXT_DAYS', 'days');
 define('MODULE_SHIPPING_USPS_TEXT_WEEKS', 'weeks');
+define('MODULE_SHIPPING_USPS_TEXT_TEST_MODE_NOTICE', '<br /><span class="alert">Your account is in TEST MODE. Do not expect to see usable rate quotes until your USPS account is moved to the production server (1-800-344-7779) and you have set the module to production mode in Zen Cart admin.</span>');
+
 ?>

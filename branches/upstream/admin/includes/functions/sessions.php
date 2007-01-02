@@ -1,24 +1,14 @@
 <?php
-//
-// +----------------------------------------------------------------------+
-// |zen-cart Open Source E-commerce                                       |
-// +----------------------------------------------------------------------+
-// | Copyright (c) 2003 The zen-cart developers                           |
-// |                                                                      |   
-// | http://www.zen-cart.com/index.php                                    |   
-// |                                                                      |   
-// | Portions Copyright (c) 2003 osCommerce                               |
-// +----------------------------------------------------------------------+
-// | This source file is subject to version 2.0 of the GPL license,       |
-// | that is bundled with this package in the file LICENSE, and is        |
-// | available through the world-wide-web at the following url:           |
-// | http://www.zen-cart.com/license/2_0.txt.                             |
-// | If you did not receive a copy of the zen-cart license and are unable |
-// | to obtain it through the world-wide-web, please send a note to       |
-// | license@zen-cart.com so we can mail you a copy immediately.          |
-// +----------------------------------------------------------------------+
-//  $Id: sessions.php 1969 2005-09-13 06:57:21Z drbyte $
-//
+/**
+ * functions/sessions.php
+ * Session functions
+ *
+ * @package functions
+ * @copyright Copyright 2003-2006 Zen Cart Development Team
+ * @copyright Portions Copyright 2003 osCommerce
+ * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
+ * @version $Id: sessions.php 5240 2006-12-14 05:25:18Z ajeh $
+ */
 
   if (STORE_SESSIONS == 'db') {
     if (!$SESS_LIFE = get_cfg_var('session.gc_maxlifetime')) {
@@ -35,9 +25,9 @@
 
     function _sess_read($key) {
       global $db;
-      $value = $db->Execute("select value 
-                             from " . TABLE_SESSIONS . " 
-                             where sesskey = '" . zen_db_input($key) . "' 
+      $value = $db->Execute("select value
+                             from " . TABLE_SESSIONS . "
+                             where sesskey = '" . zen_db_input($key) . "'
                              and expiry > '" . time() . "'");
 
       if ($value->fields['value']) {
@@ -49,29 +39,34 @@
 
     function _sess_write($key, $val) {
       global $SESS_LIFE, $db;
+      if (!is_object($db)) {
+        //PHP 5.2.0 bug workaround ...
+        $db = new queryFactory();
+        $db->connect(DB_SERVER, DB_SERVER_USERNAME, DB_SERVER_PASSWORD, DB_DATABASE, USE_PCONNECT, false);
+      }
 
       $expiry = time() + $SESS_LIFE;
       $value = $val;
 
-      $total = $db->Execute("select count(*) as total 
-                             from " . TABLE_SESSIONS . " 
+      $total = $db->Execute("select count(*) as total
+                             from " . TABLE_SESSIONS . "
                              where sesskey = '" . zen_db_input($key) . "'");
 
       if ($total->fields['total'] > 0) {
-        return $db->Execute("update " . TABLE_SESSIONS . " 
-                             set expiry = '" . zen_db_input($expiry) . "', 
-                                 value = '" . zen_db_input($value) . "' 
+        return $db->Execute("update " . TABLE_SESSIONS . "
+                             set expiry = '" . zen_db_input($expiry) . "',
+                                 value = '" . zen_db_input($value) . "'
                              where sesskey = '" . zen_db_input($key) . "'");
       } else {
-        return $db->Execute("insert into " . TABLE_SESSIONS . " 
-                             values ('" . zen_db_input($key) . "', '" . zen_db_input($expiry) . "', 
+        return $db->Execute("insert into " . TABLE_SESSIONS . "
+                             values ('" . zen_db_input($key) . "', '" . zen_db_input($expiry) . "',
                                      '" . zen_db_input($value) . "')");
       }
     }
 
     function _sess_destroy($key) {
       global $db;
-      return $db->Execute("delete from " . TABLE_SESSIONS . " 
+      return $db->Execute("delete from " . TABLE_SESSIONS . "
                            where sesskey = '" . zen_db_input($key) . "'");
     }
 

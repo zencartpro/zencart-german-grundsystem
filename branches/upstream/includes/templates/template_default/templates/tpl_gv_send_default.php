@@ -8,7 +8,7 @@
  * @copyright Copyright 2003-2006 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: tpl_gv_send_default.php 3421 2006-04-12 04:16:14Z drbyte $
+ * @version $Id: tpl_gv_send_default.php 4886 2006-11-05 09:01:18Z drbyte $
  */
 ?>
 <div class="centerColumn" id="gvSendDefault">
@@ -63,7 +63,7 @@
 ?>
 
 <div class="buttonRow forward"><?php echo zen_image_submit(BUTTON_IMAGE_CONFIRM_SEND, BUTTON_CONFIRM_SEND_ALT); ?></div>
-<div class="buttonRow back"><?php echo zen_image_submit(BUTTON_IMAGE_EDIT_SMALL, BUTTON_EDIT_SMALL_ALT, 'name="edit" value="edit"') . '</a>'; ?></div>
+<div class="buttonRow back"><?php echo zen_image_submit(BUTTON_IMAGE_EDIT_SMALL, BUTTON_EDIT_SMALL_ALT, 'name="edit" value="edit"'); ?></div>
 
 </form>
 <br class="clearBoth" />
@@ -94,7 +94,7 @@
 <br class="clearBoth" />
 
 <label class="inputLabel" for="amount"><?php echo ENTRY_AMOUNT; ?></label>
-<?php echo zen_draw_input_field('amount', $_POST['amount'], '', 'id="amount"', false) . '<span class="alert">' . ENTRY_REQUIRED_SYMBOL . '</span>'; if ($error) echo $error_amount; ?>
+<?php echo zen_draw_input_field('amount', $_POST['amount'], 'id="amount"', 'text', false) . '<span class="alert">' . ENTRY_REQUIRED_SYMBOL . '</span>'; if ($error) echo $error_amount; ?>
 <br class="clearBoth" />
 
 <label for="message-area"><?php echo ENTRY_MESSAGE; ?></label>

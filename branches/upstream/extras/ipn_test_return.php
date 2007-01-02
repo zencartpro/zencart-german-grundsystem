@@ -6,7 +6,7 @@
  * @copyright Copyright 2003-2005 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: ipn_test_return.php 3953 2006-07-13 02:39:37Z drbyte $
+ * @version $Id: ipn_test_return.php 4862 2006-10-29 21:34:18Z drbyte $
  */
 /**
  * require application_top.php
@@ -79,7 +79,7 @@ if ($paypal_type == 'standard') {
                         'custom'=>$_POST['custom'],
                         'memo'=>'');
                         
-  zen_db_perform(DB_PREFIX . 'paypal_testing', $paypal_testing);
+  zen_db_perform(TABLE_PAYPAL_TESTING, $paypal_testing);
 }
 
 // Test Refund if selected
@@ -141,7 +141,7 @@ if ($paypal_type == 'refund') {
                         'memo'=>'');
 
 
-  zen_db_perform(DB_PREFIX . 'paypal_testing', $paypal_testing);
+  zen_db_perform(TABLE_PAYPAL_TESTING, $paypal_testing);
 }
 $returnURL = $_POST['return'];
 $returnURL .= '&count=' . $count;
@@ -205,7 +205,7 @@ if ($paypal_type == 'echeck' || $paypal_type == 'echeckcleared') {
                         'custom'=>$_POST['custom'],
                         'memo'=>'');
                         
-  zen_db_perform(DB_PREFIX . 'paypal_testing', $paypal_testing);
+  zen_db_perform(TABLE_PAYPAL_TESTING, $paypal_testing);
 }
 $returnURL = $_POST['return'];
 $returnURL .= '&count=' . $count;
@@ -271,7 +271,7 @@ if ($paypal_type == 'echeckcleared') {
                         'memo'=>'');
 
 
-  zen_db_perform(DB_PREFIX . 'paypal_testing', $paypal_testing);
+  zen_db_perform(TABLE_PAYPAL_TESTING, $paypal_testing);
 }
 $returnURL = $_POST['return'];
 $returnURL .= '&count=' . $count;

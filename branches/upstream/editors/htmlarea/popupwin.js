@@ -117,9 +117,9 @@ PopupWin.prototype.showAtElement = function() {
 	setTimeout(function() {
 		var w = self.content.offsetWidth + 4;
 		var h = self.content.offsetHeight + 4;
-		// size to content -- that's fuckin' buggy in all fuckin' browsers!!!
+		// size to content -- buggy in all browsers!!!
 		// so that we set a larger size for the dialog window and then center
-		// the element inside... phuck!
+		// the element inside... 
 
 		// center...
 		var el = self.content;

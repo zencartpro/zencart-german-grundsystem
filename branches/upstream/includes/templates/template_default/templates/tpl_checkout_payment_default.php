@@ -9,7 +9,7 @@
  * @copyright Copyright 2003-2006 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: tpl_checkout_payment_default.php 4821 2006-10-23 10:54:15Z drbyte $
+ * @version $Id: tpl_checkout_payment_default.php 5414 2006-12-27 07:51:03Z drbyte $
  */
 ?>
 <?php echo $payment_modules->javascript_validation(); ?>
@@ -35,6 +35,9 @@
   }
 ?>
 
+<?php // ** BEGIN PAYPAL EXPRESS CHECKOUT **
+      if (!$payment_modules->in_special_checkout()) {
+      // ** END PAYPAL EXPRESS CHECKOUT ** ?>
 <h2 id="checkoutPaymentHeadingAddress"><?php echo TITLE_BILLING_ADDRESS; ?></h2>
 
 <div id="checkoutBillto" class="floatingBox back">
@@ -46,7 +49,10 @@
 
 <div class="floatingBox important forward"><?php echo TEXT_SELECTED_BILLING_DESTINATION; ?></div>
 <br class="clearBoth" />
-
+<?php // ** BEGIN PAYPAL EXPRESS CHECKOUT **
+      }
+      // ** END PAYPAL EXPRESS CHECKOUT ** ?>
+      
 <fieldset id="checkoutOrderTotals">
 <legend id="checkoutPaymentHeadingTotal"><?php echo TEXT_YOUR_TOTAL; ?></legend>
 <?php
@@ -87,6 +93,9 @@
     }
 ?>
 
+<?php // ** BEGIN PAYPAL EXPRESS CHECKOUT **
+      if (!$payment_modules->in_special_checkout()) {
+      // ** END PAYPAL EXPRESS CHECKOUT ** ?>
 <fieldset>
 <legend><?php echo TABLE_HEADING_PAYMENT_METHOD; ?></legend>
 
@@ -126,10 +135,13 @@
 ?>
 <?php
     if (sizeof($selection) > 1) {
+        if (empty($selection[$i]['noradio'])) {
  ?>
 <?php echo zen_draw_radio_field('payment', $selection[$i]['id'], ($selection[$i]['id'] == $_SESSION['payment'] ? true : false), 'id="pmt-'.$selection[$i]['id'].'"'); ?>
+<?php   } ?>
 <?php
     } else {
+    	
 ?>
 <?php echo zen_draw_hidden_field('payment', $selection[$i]['id']); ?>
 <?php
@@ -180,7 +192,11 @@
 ?>
 
 </fieldset>
-
+<?php // ** BEGIN PAYPAL EXPRESS CHECKOUT **
+      } else {
+        ?><input type="hidden" name="payment" value="<?php echo $_SESSION['payment']; ?>" /><?php
+      }
+      // ** END PAYPAL EXPRESS CHECKOUT ** ?>
 <fieldset>
 <legend><?php echo TABLE_HEADING_COMMENTS; ?></legend>
 <?php echo zen_draw_textarea_field('comments', '45', '3'); ?>

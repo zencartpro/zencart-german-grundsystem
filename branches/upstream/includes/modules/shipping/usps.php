@@ -4,7 +4,7 @@
  * @copyright Copyright 2003-2006 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: usps.php 4532 2006-09-16 18:38:02Z ajeh $
+ * @version $Id: usps.php 4867 2006-10-31 09:59:01Z drbyte $
  */
 /**
  * USPS Shipping Module class
@@ -156,7 +156,7 @@ class usps extends base {
     if (is_array($uspsQuote)) {
       if (isset($uspsQuote['error'])) {
         $this->quotes = array('module' => $this->title,
-        'error' => $uspsQuote['error']);
+                              'error' => $uspsQuote['error']);
       } else {
 
         // BOF: UPS USPS
@@ -197,8 +197,8 @@ class usps extends base {
           'cost' => ($cost + MODULE_SHIPPING_USPS_HANDLING) * $shipping_num_boxes);
           */
           $methods[] = array('id' => $type,
-          'title' => $title,
-          'cost' => ($cost + MODULE_SHIPPING_USPS_HANDLING) * $shipping_num_boxes);
+                             'title' => $title,
+                             'cost' => ($cost + MODULE_SHIPPING_USPS_HANDLING) * $shipping_num_boxes);
         }
 
         $this->quotes['methods'] = $methods;
@@ -209,10 +209,10 @@ class usps extends base {
       }
     } elseif ($uspsQuote == -1) {
       $this->quotes = array('module' => $this->title,
-      'error' => MODULE_SHIPPING_USPS_TEXT_SERVER_ERROR);
+                            'error' => MODULE_SHIPPING_USPS_TEXT_SERVER_ERROR . (MODULE_SHIPPING_USPS_SERVER=='test' ? MODULE_SHIPPING_USPS_TEXT_TEST_MODE_NOTICE : ''));
     } else {
       $this->quotes = array('module' => $this->title,
-      'error' => MODULE_SHIPPING_USPS_TEXT_ERROR);
+                            'error' => MODULE_SHIPPING_USPS_TEXT_ERROR . (MODULE_SHIPPING_USPS_SERVER=='test' ? MODULE_SHIPPING_USPS_TEXT_TEST_MODE_NOTICE : ''));
     }
 
     if (zen_not_null($this->icon)) $this->quotes['icon'] = zen_image($this->icon, $this->title);

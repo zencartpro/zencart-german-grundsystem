@@ -1,12 +1,12 @@
 <?php
 /**
- * autorize.net Standard payment method class
+ * authorize.net SIM payment method class
  *
  * @package paymentMethod
  * @copyright Copyright 2003-2006 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: authorizenet.php 4275 2006-08-26 03:18:04Z drbyte $
+ * @version $Id: authorizenet.php 4960 2006-11-20 01:46:46Z drbyte $
  */
 /**
  * Enter description here...
@@ -207,16 +207,19 @@ class authorizenet extends base {
     for ($i=$today['year']; $i < $today['year']+10; $i++) {
       $expires_year[] = array('id' => strftime('%y',mktime(0,0,0,1,1,$i)), 'text' => strftime('%Y',mktime(0,0,0,1,1,$i)));
     }
+
+    $onFocus = ' onfocus="methodSelect(\'pmt-' . $this->code . '\')"';
+
     $selection = array('id' => $this->code,
                        'module' => $this->title,
 	       'fields' => array(array('title' => MODULE_PAYMENT_AUTHORIZENET_TEXT_CREDIT_CARD_OWNER,
-	                               'field' => zen_draw_input_field('authorizenet_cc_owner', $order->billing['firstname'] . ' ' . $order->billing['lastname'], 'id="'.$this->code.'-cc-owner"'),
+	                               'field' => zen_draw_input_field('authorizenet_cc_owner', $order->billing['firstname'] . ' ' . $order->billing['lastname'], 'id="'.$this->code.'-cc-owner"' . $onFocus),
                                                'tag' => $this->code.'-cc-owner'),
                                          array('title' => MODULE_PAYMENT_AUTHORIZENET_TEXT_CREDIT_CARD_NUMBER,
-                                               'field' => zen_draw_input_field('authorizenet_cc_number', '', 'id="'.$this->code.'-cc-number"'),
+                                               'field' => zen_draw_input_field('authorizenet_cc_number', '', 'id="'.$this->code.'-cc-number"' . $onFocus),
                                                'tag' => $this->code.'-cc-number'),
                                          array('title' => MODULE_PAYMENT_AUTHORIZENET_TEXT_CREDIT_CARD_EXPIRES,
-                                               'field' => zen_draw_pull_down_menu('authorizenet_cc_expires_month', $expires_month, '', 'id="'.$this->code.'-cc-expires-month"') . '&nbsp;' . zen_draw_pull_down_menu('authorizenet_cc_expires_year', $expires_year),
+                                               'field' => zen_draw_pull_down_menu('authorizenet_cc_expires_month', $expires_month, '', 'id="'.$this->code.'-cc-expires-month"' . $onFocus) . '&nbsp;' . zen_draw_pull_down_menu('authorizenet_cc_expires_year', $expires_year, '', 'id="'.$this->code.'-cc-expires-year"' . $onFocus),
                                                'tag' => $this->code.'-cc-expires-month')
 		               ));
 

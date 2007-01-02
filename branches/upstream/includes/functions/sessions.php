@@ -7,7 +7,7 @@
  * @copyright Copyright 2003-2005 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: sessions.php 4285 2006-08-26 19:27:31Z wilt $
+ * @version $Id: sessions.php 5237 2006-12-13 21:43:46Z drbyte $
  */
 if (!defined('IS_ADMIN_FLAG')) {
   die('Illegal Access');
@@ -49,6 +49,12 @@ if (!defined('IS_ADMIN_FLAG')) {
 
     function _sess_write($key, $val) {
       global $db;
+      if (!is_object($db)) {
+        //PHP 5.2.0 bug workaround ... 
+        $db = new queryFactory();
+        $db->connect(DB_SERVER, DB_SERVER_USERNAME, DB_SERVER_PASSWORD, DB_DATABASE, USE_PCONNECT, false);
+      }
+
       global $SESS_LIFE;
 
       $expiry = time() + $SESS_LIFE;

@@ -6,7 +6,7 @@
  * @copyright Copyright 2003-2006 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: shopping_cart.php 4791 2006-10-20 03:12:39Z ajeh $
+ * @version $Id: shopping_cart.php 4884 2006-11-05 00:32:55Z ajeh $
  */
 /**
  * Class for managing the Shopping Cart
@@ -1162,8 +1162,12 @@ $qty = $this->adjust_quantity($qty, $products_id, 'shopping_cart');
         } else {
           $new_qty = $this->contents[$products_id]['qty'];
         }
-
-        $new_qty = round($new_qty, QUANTITY_DECIMALS);
+        $check_unit_decimals = zen_get_products_quantity_order_units((int)$products->fields['products_id']);
+        if (strstr($check_unit_decimals, '.')) {
+          $new_qty = round($new_qty, QUANTITY_DECIMALS);
+        } else {
+          $new_qty = round($new_qty, 0);
+        }
 
         if ($new_qty == (int)$new_qty) {
           $new_qty = (int)$new_qty;
@@ -1844,21 +1848,21 @@ $new_qty = $this->adjust_quantity($qty, $prodId, 'shopping_cart');
 
 //     $qty = $this->adjust_quantity($qty, (int)$products_id, 'shopping_cart');
 
+// temporary fixed on messagestack used for check and message needs better separation
   function adjust_quantity($check_qty, $products, $message=false) {
     global $messageStack;
       $old_quantity = $check_qty;
         if (QUANTITY_DECIMALS != 0) {
           //          $new_qty = round($new_qty, QUANTITY_DECIMALS);
-
           $fix_qty = $check_qty;
           switch (true) {
             case (!strstr($fix_qty, '.')):
             $new_qty = $fix_qty;
-            $messageStack->add_session('shopping_cart', ERROR_QUANTITY_ADJUSTED . ' - ' . zen_get_products_name($products) . ' - ' . $old_quantity . ' => ' . $new_qty, 'caution');
+//            $messageStack->add_session('shopping_cart', ERROR_QUANTITY_ADJUSTED . ' - ' . zen_get_products_name($products) . ' - ' . $old_quantity . ' => ' . $new_qty, 'caution');
             break;
             default:
             $new_qty = preg_replace('/[0]+$/','', $check_qty);
-            $messageStack->add_session('shopping_cart', ERROR_QUANTITY_ADJUSTED . ' - ' . zen_get_products_name($products) . ' - ' . $old_quantity . ' => ' . $new_qty, 'caution');
+//            $messageStack->add_session('shopping_cart', 'A: ' . ERROR_QUANTITY_ADJUSTED . ' - ' . zen_get_products_name($products) . ' - ' . $old_quantity . ' => ' . $new_qty, 'caution');
             break;
           }
         } else {

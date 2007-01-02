@@ -9,7 +9,7 @@
  * @copyright Copyright 2003-2006 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: tpl_index_product_list.php 4772 2006-10-17 05:39:06Z drbyte $
+ * @version $Id: tpl_index_product_list.php 5369 2006-12-23 10:55:52Z drbyte $
  */
 ?>
 <div class="centerColumn" id="indexProductList">
@@ -35,7 +35,10 @@ if (PRODUCT_LIST_CATEGORIES_IMAGE_STATUS == 'true') {
 <?php } // categories_description ?>
 
 <?php
-  if ($do_filter_list || PRODUCT_LIST_ALPHA_SORTER == 'true') {
+  $check_for_alpha = $listing_sql;
+  $check_for_alpha = $db->Execute($check_for_alpha);
+
+  if ($check_for_alpha->RecordCount() > 0 && PRODUCT_LIST_ALPHA_SORTER == 'true') {
   $form = zen_draw_form('filter', zen_href_link(FILENAME_DEFAULT), 'get') . '<label class="inputLabel">' .TEXT_SHOW . '</label>';
 ?>
 

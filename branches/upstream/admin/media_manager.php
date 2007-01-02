@@ -3,7 +3,7 @@
 // +----------------------------------------------------------------------+
 // |zen-cart Open Source E-commerce                                       |
 // +----------------------------------------------------------------------+
-// | Copyright (c) 2004 The zen-cart developers                           |
+// | Copyright (c) 2006 The zen-cart developers                           |
 // |                                                                      |
 // | http://www.zen-cart.com/index.php                                    |
 // |                                                                      |
@@ -17,7 +17,7 @@
 // | to obtain it through the world-wide-web, please send a note to       |
 // | license@zen-cart.com so we can mail you a copy immediately.          |
 // +----------------------------------------------------------------------+
-//  $Id: media_manager.php 4787 2006-10-18 05:37:55Z ajeh $
+//  $Id: media_manager.php 4873 2006-11-02 09:12:46Z drbyte $
 //
 
   require('includes/application_top.php');
@@ -27,6 +27,9 @@
 
   if (zen_not_null($action)) {
     switch ($action) {
+      case 'edit':
+        if (!is_writable(DIR_FS_CATALOG_MEDIA)) $messageStack->add(TEXT_WARNING_FOLDER_UNWRITABLE, 'caution');
+      break;
       case 'remove_product':
         $db->Execute("delete from " . TABLE_MEDIA_TO_PRODUCTS . "
                       where media_id = '" . (int)$_GET['mID'] . "'
@@ -157,7 +160,7 @@
   // -->
 </script>
 </head>
-<body onload="init()">
+<body onLoad="init()">
 <!-- header //-->
 <?php require(DIR_WS_INCLUDES . 'header.php'); ?>
 <!-- header_eof //-->
@@ -257,7 +260,7 @@
       $dir = @dir(DIR_FS_CATALOG_MEDIA);
       $dir_info[] = array('id' => '', 'text' => "Main Directory");
       while ($file = $dir->read()) {
-        if (is_dir(DIR_FS_CATALOG_MEDIA . $file) && strtoupper($file) != 'CVS' && $file != "." && $file != "..") {
+        if (@is_dir(DIR_FS_CATALOG_MEDIA . $file) && strtoupper($file) != 'CVS' && $file != "." && $file != "..") {
           $dir_info[] = array('id' => $file . '/', 'text' => $file);
         }
       }

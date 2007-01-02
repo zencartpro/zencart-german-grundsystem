@@ -5,7 +5,7 @@
  * @package classes
  * @copyright Copyright 2003-2006 Zen Cart Development Team
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: order.php 4766 2006-10-16 15:14:04Z drbyte $
+ * @version $Id: order.php 5369 2006-12-23 10:55:52Z drbyte $
  */
 /**
  * order class
@@ -898,7 +898,7 @@ class order extends base {
     //comments area
     if ($this->info['comments']) {
       $email_order .= zen_db_output($this->info['comments']) . "\n\n";
-      $html_msg['ORDER_COMMENTS'] = zen_db_output($this->info['comments']);
+      $html_msg['ORDER_COMMENTS'] = nl2br(zen_db_output($this->info['comments']));
     } else {
       $html_msg['ORDER_COMMENTS'] = '';
     }
@@ -909,7 +909,7 @@ class order extends base {
     $this->products_ordered .
     EMAIL_SEPARATOR . "\n";
     $html_msg['PRODUCTS_TITLE'] = EMAIL_TEXT_PRODUCTS;
-    $html_msg['PRODUCTS_DETAIL']='<table class="product-details" border="0" width="100%" cellspacing="0" cellpadding="2">' . $this->products_ordered_html . '</table>';
+    $html_msg['PRODUCTS_DETAIL']='<table class="product-details" border="0" width="100%" cellspacing="0" cellpadding="2">' . nl2br($this->products_ordered_html) . '</table>';
 
     //order totals area
     $html_ot .= '<td class="order-totals-text" align="right" width="100%">' . '&nbsp;' . '</td><td class="order-totals-num" align="right" nowrap="nowrap">' . '---------' .'</td></tr><tr>';
@@ -953,7 +953,7 @@ class order extends base {
     }
     $html_msg['PAYMENT_METHOD_TITLE']  = EMAIL_TEXT_PAYMENT_METHOD;
     $html_msg['PAYMENT_METHOD_DETAIL'] = (is_object($GLOBALS[$_SESSION['payment']]) ? $GLOBALS[$payment_class]->title : PAYMENT_METHOD_GV );
-    $html_msg['PAYMENT_METHOD_FOOTER'] = (is_object($GLOBALS[$_SESSION['payment']]) ? $GLOBALS[$payment_class]->email_footer : $this->info['cc_type'] );
+    $html_msg['PAYMENT_METHOD_FOOTER'] = (is_object($GLOBALS[$_SESSION['payment']] && $GLOBALS[$payment_class]->email_footer != '') ? $GLOBALS[$payment_class]->email_footer : $this->info['cc_type'] );
 
     // include disclaimer
     $email_order .= "\n-----\n" . sprintf(EMAIL_DISCLAIMER, STORE_OWNER_EMAIL_ADDRESS) . "\n\n";
@@ -972,6 +972,13 @@ class order extends base {
     if (SEND_EXTRA_ORDER_EMAILS_TO != '') {
       $extra_info=email_collect_extra_info('','', $this->customer['firstname'] . ' ' . $this->customer['lastname'], $this->customer['email_address'], $this->customer['telephone']);
       $html_msg['EXTRA_INFO'] = $extra_info['HTML'];
+			
+      if ($GLOBALS[$_SESSION['payment']]->auth_code || $GLOBALS[$_SESSION['payment']]->transaction_id) {
+        $pmt_details = 'AuthCode: ' . $GLOBALS[$_SESSION['payment']]->auth_code . '  TransID: ' . $GLOBALS[$_SESSION['payment']]->transaction_id . "\n\n";
+        $email_order = $pmt_details . $email_order;
+        $html_msg['EMAIL_TEXT_HEADER'] = nl2br($pmt_details) . $html_msg['EMAIL_TEXT_HEADER'];
+      }
+
       zen_mail('', SEND_EXTRA_ORDER_EMAILS_TO, SEND_EXTRA_NEW_ORDERS_EMAILS_TO_SUBJECT . ' ' . EMAIL_TEXT_SUBJECT . EMAIL_ORDER_NUMBER_SUBJECT . $zf_insert_id,
       $email_order . $extra_info['TEXT'], STORE_NAME, EMAIL_FROM, $html_msg, 'checkout_extra');
     }

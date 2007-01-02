@@ -6,7 +6,7 @@
 # * @copyright Copyright 2003-2006 Zen Cart Development Team
 # * @copyright Portions Copyright 2003 osCommerce
 # * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
-# * @version $Id: mysql_upgrade_zencart_1301_to_1302.sql 4243 2006-08-24 10:55:28Z drbyte $
+# * @version $Id: mysql_upgrade_zencart_1301_to_1302.sql 4902 2006-11-09 09:06:38Z drbyte $
 #
 
 ## CONFIGURATION TABLE
@@ -18,7 +18,7 @@ INSERT INTO configuration (configuration_title, configuration_key, configuration
 UPDATE configuration SET sort_order=115 WHERE configuration_key = 'SHOW_ACCOUNT_LINKS_ON_SITE_MAP';
 
 # add ability to send newsletters to self
-REPLACE INTO query_builder ( query_category , query_name , query_description , query_string ) VALUES ('email,newsletters', 'Administrator', 'Just the email account of the current administrator', 'select \'ADMIN\' as customers_firstname, admin_name as customers_lastname, admin_email as customers_email_address from TABLE_ADMIN where admin_id = $SESSION:admin_id');
+REPLACE INTO query_builder ( query_category , query_name , query_description , query_string, query_keys_list) VALUES ('email,newsletters', 'Administrator', 'Just the email account of the current administrator', 'select \'ADMIN\' as customers_firstname, admin_name as customers_lastname, admin_email as customers_email_address from TABLE_ADMIN where admin_id = $SESSION:admin_id', '');
 
 INSERT INTO configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) VALUES ('State - Always display as pulldown?', 'ACCOUNT_STATE_DRAW_INITIAL_DROPDOWN', 'false', 'When state field is displayed, should it always be a pulldown menu?', 5, '5', 'zen_cfg_select_option(array(\'true\', \'false\'), ', now());
 

@@ -4,7 +4,7 @@
  * @copyright Copyright 2003-2006 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: english.php 4807 2006-10-22 04:10:20Z ajeh $
+ * @version $Id: english.php 5454 2006-12-29 20:10:17Z drbyte $
  */
 
 // FOLLOWING WERE moved to meta_tags.php
@@ -13,7 +13,7 @@
 //define('CUSTOM_KEYWORDS', 'ecommerce, open source, shop, online shopping');
 // END: moved to meta_tags.php
 
-  define('FOOTER_TEXT_BODY', 'Copyright &copy; 2003-2006 <a href="http://www.zen-cart.com" target="_blank">Zen Cart</a>. Powered by <a href="http://www.zen-cart.com" target="_blank">Zen Cart</a>');
+  define('FOOTER_TEXT_BODY', 'Copyright &copy; ' . date('Y') . ' <a href="http://www.zen-cart.com" target="_blank">Zen Cart</a>. Powered by <a href="http://www.zen-cart.com" target="_blank">Zen Cart</a>');
 
 // look in your $PATH_LOCALE/locale directory for available locales..
 // on RedHat try 'en_US'
@@ -546,7 +546,7 @@
   define('CART_SHIPPING_METHOD_RECALCULATE','Recalculate');
   define('CART_SHIPPING_METHOD_ZIP_REQUIRED','true');
   define('CART_SHIPPING_METHOD_ADDRESS','Address:');
-  define('CART_OT','Total Cost Etimate:');
+  define('CART_OT','Total Cost Estimate:');
   define('CART_OT_SHOW','true'); // set to false if you don't want order totals
   define('CART_ITEMS','Items in Cart: ');
   define('CART_SELECT','Select');

@@ -6,7 +6,7 @@
  * @copyright Copyright 2003-2006 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: checkout_process.php 4793 2006-10-20 05:25:20Z ajeh $
+ * @version $Id: checkout_process.php 4865 2006-10-31 07:44:40Z drbyte $
  */
 if (!defined('IS_ADMIN_FLAG')) {
   die('Illegal Access');
@@ -86,6 +86,7 @@ $zco_notifier->notify('NOTIFY_CHECKOUT_PROCESS_AFTER_SEND_ORDER_EMAIL');
   for ($i=0, $n=sizeof($order_totals); $i<$n; $i++) {
     if ($order_totals[$i]['code'] == 'ot_subtotal') $order_subtotal = $order_totals[$i]['value'];
     if ($$order_totals[$i]['code']->credit_class == true) $credits_applied += $order_totals[$i]['value'];
+    if ($order_totals[$i]['code'] == 'ot_total') $ototal = $order_totals[$i]['value'];
   }
   $commissionable_order = ($order_subtotal - $credits_applied);
   $commissionable_order_formatted = $currencies->format($commissionable_order);

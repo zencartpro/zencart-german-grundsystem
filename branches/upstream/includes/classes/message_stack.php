@@ -6,7 +6,7 @@
  * @copyright Copyright 2003-2006 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: message_stack.php 3619 2006-05-13 18:52:56Z ajeh $
+ * @version $Id: message_stack.php 5384 2006-12-24 19:38:39Z drbyte $
  */
 if (!defined('IS_ADMIN_FLAG')) {
   die('Illegal Access');
@@ -17,7 +17,7 @@ if (!defined('IS_ADMIN_FLAG')) {
  *
  * @package classes
  */
-class messageStack extends tableBox {
+class messageStack extends base {
 
   // class constructor
   function messageStack() {
@@ -72,7 +72,6 @@ class messageStack extends tableBox {
 
   function output($class) {
     global $template, $current_page_base;
-    $this->table_data_parameters = 'class="messageBox"';
 
     $output = array();
     for ($i=0, $n=sizeof($this->messages); $i<$n; $i++) {
@@ -80,6 +79,10 @@ class messageStack extends tableBox {
         $output[] = $this->messages[$i];
       }
     }
+
+    // remove duplicates before displaying
+//    $output = array_values(array_unique($output)); 
+
     require($template->get_template_dir('tpl_message_stack_default.php',DIR_WS_TEMPLATE, $current_page_base,'templates'). '/tpl_message_stack_default.php');
   }
 

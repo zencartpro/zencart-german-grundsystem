@@ -5,7 +5,7 @@
  * @copyright Copyright 2003-2006 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: header_php.php 4335 2006-09-01 10:30:53Z drbyte $
+ * @version $Id: header_php.php 5454 2006-12-29 20:10:17Z drbyte $
  * @todo -- test with Mac and Fedora Core 2 ... to see why sometimes fields with just '' are written with only one single-quote instead of two
  *
  */
@@ -182,7 +182,7 @@ $is_upgrade = $_GET['is_upgrade'];
            $link = '<a href="' . $linkto . '">' . '<br /><br />Done!<br />Click Here To Continue<br /><br />' . '</a>';
            echo "\n<script type=\"text/javascript\">\nwindow.location=\"$linkto\";\n</script>\n";
            echo '<noscript>'.$link.'</noscript><br /><br />';
-           echo '<div id="footer"><p>Copyright &copy; 2003-2006 <a href="http://www.zen-cart.com" target="_blank">Zen Cart</a></p></div></div></body></html>';
+           echo '<div id="footer"><p>Copyright &copy; 2003-' . date('Y') . ' <a href="http://www.zen-cart.com" target="_blank">Zen Cart</a></p></div></div></body></html>';
          } else {
            header('location: index.php?main_page=store_setup&language=' . $language);
          }

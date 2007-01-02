@@ -5,7 +5,7 @@
  * @copyright Copyright 2003-2005 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: inspect.php 4819 2006-10-23 06:39:08Z drbyte $
+ * @version $Id: inspect.php 5354 2006-12-23 01:55:47Z drbyte $
  */
 /**
  * defining language components for the page
@@ -83,6 +83,7 @@
   define('LABEL_SENDMAIL_FROM','PHP sendmail \'from\'');
   define('LABEL_SENDMAIL_PATH','PHP sendmail path');
   define('LABEL_SMTP_MAIL','PHP SMTP destination');
+  define('LABEL_GZIP', 'PHP Output Buffering (gzip)');
   define('LABEL_INCLUDE_PATH','PHP include_path');
 
   define('LABEL_CRITICAL','Critical Items');

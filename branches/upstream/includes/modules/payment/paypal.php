@@ -6,10 +6,10 @@
  * @copyright Copyright 2003-2006 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: paypal.php 4835 2006-10-25 04:45:40Z drbyte $
+ * @version $Id: paypal.php 5352 2006-12-22 21:35:58Z drbyte $
  */
 
-define('MODULE_PAYMENT_PAYPAL_RM', '2');
+define('MODULE_PAYMENT_PAYPAL_TAX_OVERRIDE', 'true');
 
 if (IS_ADMIN_FLAG === true) {
   include_once(DIR_FS_CATALOG_MODULES . 'payment/paypal/paypal_functions.php');
@@ -17,7 +17,7 @@ if (IS_ADMIN_FLAG === true) {
   include_once(DIR_WS_MODULES . 'payment/paypal/paypal_functions.php');
 }
 /**
- * paypal IPN pyment method class
+ * paypal IPN payment method class
  *
  */
 class paypal extends base {
@@ -56,6 +56,8 @@ class paypal extends base {
     $this->code = 'paypal';
     if (IS_ADMIN_FLAG === true) {
       $this->title = MODULE_PAYMENT_PAYPAL_TEXT_ADMIN_TITLE; // Payment Module title in Admin
+      if (IS_ADMIN_FLAG === true && defined('MODULE_PAYMENT_PAYPAL_IPN_DEBUG') && MODULE_PAYMENT_PAYPAL_IPN_DEBUG != 'Off') $this->title .= '<span class="alert"> (debug mode active)</span>';
+      if (IS_ADMIN_FLAG === true && MODULE_PAYMENT_PAYPAL_TESTING == 'Test') $this->title .= '<span class="alert"> (dev/test mode active)</span>';
     } else {
       $this->title = MODULE_PAYMENT_PAYPAL_TEXT_CATALOG_TITLE; // Payment Module title in Catalog
     }
@@ -151,16 +153,19 @@ class paypal extends base {
     $this->totalsum = $order->info['total'];
 
     // save the session stuff permanently in case paypal loses the session
-    $db->Execute("delete from " . TABLE_PAYPAL_SESSION . " where session_id = '" . session_id() . "'");
+    $db->Execute("delete from " . TABLE_PAYPAL_SESSION . " where session_id = '" . zen_db_input(session_id()) . "'");
 
     $sql = "insert into " . TABLE_PAYPAL_SESSION . " (session_id, saved_session, expiry) values (
-            '" . session_id() . "',
+            '" . zen_db_input(session_id()) . "',
             '" . base64_encode(serialize($_SESSION)) . "',
             '" . (time() + (1*60*60*24*2)) . "')";
 
     $db->Execute($sql);
 
 
+    if (!in_array(strtolower($_SESSION['languages_code']), array('en', 'us', 'it', 'fr', 'es', 'de'))) {
+      $lang_code = 'us';
+    }
     if (MODULE_PAYMENT_PAYPAL_CURRENCY == 'Selected Currency') {
       $my_currency = $_SESSION['currency'];
     } else {
@@ -175,7 +180,7 @@ class paypal extends base {
                              zen_draw_hidden_field('return', zen_href_link(FILENAME_CHECKOUT_PROCESS, 'referer=paypal', 'SSL')) .
                              zen_draw_hidden_field('cancel_return', zen_href_link(FILENAME_CHECKOUT_PAYMENT, '', 'SSL')) .
                              zen_draw_hidden_field('notify_url', zen_href_link('ipn_main_handler.php', '', 'SSL',false,false,true)) .
-                             zen_draw_hidden_field('rm', MODULE_PAYMENT_PAYPAL_RM) .
+                             zen_draw_hidden_field('rm', 2) .
                              zen_draw_hidden_field('currency_code', $my_currency) .
     //                              zen_draw_hidden_field('address_override', MODULE_PAYMENT_PAYPAL_ADDRESS_OVERRIDE) .
     //                              zen_draw_hidden_field('no_shipping', MODULE_PAYMENT_PAYPAL_ADDRESS_REQUIRED) .
@@ -190,11 +195,12 @@ class paypal extends base {
                              zen_draw_hidden_field('item_number', '1') .
     //                               zen_draw_hidden_field('invoice', '') .
     //                               zen_draw_hidden_field('num_cart_items', '') .
-                             zen_draw_hidden_field('lc', $order->customer['country']['iso_code_2']) .
+                             zen_draw_hidden_field('lc', $lang_code) .
     //                               zen_draw_hidden_field('amount', number_format(($order->info['total'] - $order->info['shipping_cost']) * $currencies->get_value($my_currency), $currencies->get_decimal_places($my_currency))) .
     //                               zen_draw_hidden_field('shipping', number_format($order->info['shipping_cost'] * $currencies->get_value($my_currency), $currencies->get_decimal_places($my_currency))) .
                              zen_draw_hidden_field('amount', number_format(($this->totalsum) * $currencies->get_value($my_currency), $currencies->get_decimal_places($my_currency))) .
                              zen_draw_hidden_field('shipping', '0.00') .
+                             (MODULE_PAYMENT_PAYPAL_TAX_OVERRIDE == 'true' ? zen_draw_hidden_field('tax', '0.00') : '') .
                              zen_draw_hidden_field('custom', zen_session_name() . '=' . zen_session_id() ) .
                              zen_draw_hidden_field('upload', sizeof($order->products) ) .
                              zen_draw_hidden_field('redirect_cmd', '_xclick') .
@@ -208,7 +214,6 @@ class paypal extends base {
                              zen_draw_hidden_field('zip', $order->customer['postcode']) .
                              zen_draw_hidden_field('country', $order->customer['country']['iso_code_2']) .
                              zen_draw_hidden_field('charset', CHARSET) .
-//                             zen_draw_hidden_field('lc', $_SESSION['languages_code']) .
                              zen_draw_hidden_field('email', $order->customer['email_address']) .
                              zen_draw_hidden_field('night_phone_a',substr($telephone,0,3)) .
                              zen_draw_hidden_field('night_phone_b',substr($telephone,3,3)) .
@@ -319,11 +324,11 @@ class paypal extends base {
     $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) values ('Shipping Address Options', 'MODULE_PAYMENT_PAYPAL_ADDRESS_REQUIRED', '1', 'The buyers shipping address. If set to 0 your customer will be prompted to include a shipping address. If set to 1 your customer will not be asked for a shipping address. If set to 2 your customer will be required to provide a shipping address.<br />0=Prompt<br />1=Not Asked<br />2=Required<br /><br /><strong>NOTE: If you allow your customers to enter their own shipping address, then MAKE SURE you verify the PayPal confirmation details to verify the proper address when filling orders. Zen Cart does not know if they choose an alternate shipping address compared to the one entered when placing an order.</strong>', '6', '20', 'zen_cfg_select_option(array(\'0\',\'1\',\'2\'), ', now())");
     $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) values ('Continue Button Text', 'MODULE_PAYMENT_PAYPAL_CBT', '', 'Sets the text for the Continue button on the PayPal Payment Complete page. <br />Requires Return URL to be set.<br />Leave blank if no customization required.', '6', '22', now())");
     $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) values ('Image URL', 'MODULE_PAYMENT_PAYPAL_IMAGE_URL', '', 'The internet URL of the 150x50-pixel image you would like to use as your logo. If omitted, the customer will see your Business name if you have a Business account, or your email address if you have premier account.', '6', '24', now())");
-    $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) values ('Page Style', 'MODULE_PAYMENT_PAYPAL_PAGE_STYLE', 'paypal', 'Sets the Custom Payment Page Style for payment pages. The value of page_style is the same as the Page Style Name you chose when adding or editing the page style. You can add and edit Custom Payment Page Styles from the Profile subtab of the My Account tab on the PayPal site. If you would like to always reference your Primary style, set this to \"primary.\" If you would like to reference the default PayPal page style, set this to \"paypal\".', '6', '25', now())");
+    $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) values ('Page Style', 'MODULE_PAYMENT_PAYPAL_PAGE_STYLE', 'Primary', 'Sets the Custom Payment Page Style for payment pages. The value of page_style is the same as the Page Style Name you chose when adding or editing the page style. You can add and edit Custom Payment Page Styles from the Profile subtab of the My Account tab on the PayPal site. If you would like to always reference your Primary style, set this to \"primary.\" If you would like to reference the default PayPal page style, set this to \"paypal\".', '6', '25', now())");
     $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) values ('Mode for PayPal web services<br /><br />Default:<br /><code>www.paypal.com/cgi-bin/webscr</code><br />or<br /><code>www.paypal.com/us/cgi-bin/webscr</code><br />or for the UK,<br /><code>www.paypal.com/uk/cgi-bin/webscr</code>', 'MODULE_PAYMENT_PAYPAL_HANDLER', 'www.paypal.com/cgi-bin/webscr', 'Choose the URL for PayPal live processing', '6', '73', '', now())");
 
     // Paypal testing options go here
-    $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) values ('Debug Mode', 'MODULE_PAYMENT_PAYPAL_IPN_DEBUG', 'Off', 'Enable debug logging? <br />NOTE: This can REALLY clutter your email inbox!<br />Logging goes to the /includes/modules/payment/paypal/logs folder<br />Email goes to the store-owner address.<strong>Leave OFF for normal operation.</strong>', '6', '71', 'zen_cfg_select_option(array(\'Off\',\'Log File\',\'Log and Email\'), ', now())");
+    $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) values ('Debug Mode', 'MODULE_PAYMENT_PAYPAL_IPN_DEBUG', 'Off', 'Enable debug logging? <br />NOTE: This can REALLY clutter your email inbox!<br />Logging goes to the /includes/modules/payment/paypal/logs folder<br />Email goes to the store-owner address.<br /><strong>Leave OFF for normal operation.</strong>', '6', '71', 'zen_cfg_select_option(array(\'Off\',\'Log File\',\'Log and Email\'), ', now())");
     $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) values ('Status Live/Testing', 'MODULE_PAYMENT_PAYPAL_TESTING', 'Live', 'Set PayPal module to Live or Test', '6', '1', 'zen_cfg_select_option(array(\'Live\', \'Test\'), ', now())");
     $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) values ('Debug Email Address', 'MODULE_PAYMENT_PAYPAL_DEBUG_EMAIL_ADDRESS','".STORE_OWNER_EMAIL_ADDRESS."', 'The email address to use for PayPal debugging', '6', '72', now())");
 
@@ -335,7 +340,7 @@ class paypal extends base {
     */
   function remove() {
     global $db;
-    $db->Execute("delete from " . TABLE_CONFIGURATION . " where configuration_key LIKE  'MODULE_PAYMENT_PAYPAL%'");
+    $db->Execute("delete from " . TABLE_CONFIGURATION . " where configuration_key LIKE 'MODULE\_PAYMENT\_PAYPAL\_%'");
     $this->notify('NOTIFY_PAYMENT_PAYPAL_UNINSTALLED');
   }
   /**
@@ -363,7 +368,7 @@ class paypal extends base {
 
     // Paypal testing/debug options go here:
     $keys_list[]='MODULE_PAYMENT_PAYPAL_IPN_DEBUG';
-    if (isset($_GET['debug']) && $_GET['debug']=='on' && !isset($_GET['main_page'])) {
+    if (isset($_GET['debug']) && $_GET['debug']=='on' && IS_ADMIN_FLAG === true) {
       $keys_list[]='MODULE_PAYMENT_PAYPAL_DEBUG_EMAIL_ADDRESS';  /* this defaults to store-owner-email-address */
       $keys_list[]='MODULE_PAYMENT_PAYPAL_TESTING';  /* this is for ipn_test tools, for developers only */
     }

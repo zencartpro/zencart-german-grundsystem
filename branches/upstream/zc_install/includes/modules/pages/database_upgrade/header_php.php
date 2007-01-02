@@ -5,7 +5,7 @@
  * @copyright Copyright 2003-2006 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: header_php.php 4707 2006-10-08 08:52:12Z drbyte $
+ * @version $Id: header_php.php 4871 2006-11-01 07:45:31Z drbyte $
  */
 
 /* 
@@ -27,7 +27,7 @@
 /////////////////////////////////////////////////////////////////////
 //this is the latest database-version-level that this script knows how to inspect and upgrade to.
 //it is used to determine whether to stay on the upgrade page when done, or continue to the finished page
-$latest_version = '1.3.6'; 
+$latest_version = '1.3.7'; 
 
 ///////////////////////////////////
 if (!isset($_GET['debug'])  && !zen_not_null($_POST['debug']))  define('ZC_UPG_DEBUG',false);
@@ -87,6 +87,10 @@ if (!$zc_install->fatal_error) {
 
 //display options based on what was found -- THESE SHOULD BE PROCESSED IN REVERSE ORDER, NEWEST VERSION FIRST... !
 //that way only the "earliest-required" upgrade is suggested first.
+    if (!$dbinfo->version137) {
+      $sniffer =  ' upgrade v1.3.6 to v1.3.7';
+      $needs_v1_3_7=true;
+    }
     if (!$dbinfo->version136) {
       $sniffer =  ' upgrade v1.3.5 to v1.3.6';
       $needs_v1_3_6=true;
@@ -188,6 +192,7 @@ if (ZC_UPG_DEBUG2==true) {
   echo '<br>1302='.$dbinfo->version1302;
   echo '<br>135='.$dbinfo->version135;
   echo '<br>136='.$dbinfo->version136;
+  echo '<br>137='.$dbinfo->version137;
   echo '<br>';
   }
 
@@ -329,6 +334,14 @@ if (ZC_UPG_DEBUG2==true) {
           $got_v1_3_6 = true; //after processing this step, this will be the new version-level
           $db_upgraded_to_version='1.3.6';
           break;
+       case '1.3.6':  // upgrading from v1.3.6 TO 1.3.7
+//          if (!$dbinfo->version135 || $dbinfo->version137) continue;  // if prerequisite not completed, or already done, skip
+          $sniffer_file = '_upgrade_zencart_136_to_137.sql';
+          if (ZC_UPG_DEBUG2==true) echo $sniffer_file.'<br>';
+          $got_v1_3_7 = true; //after processing this step, this will be the new version-level
+          $db_upgraded_to_version='1.3.7';
+          break;
+
        default:
        $nothing_to_process=true;
        } // end while
@@ -416,7 +429,7 @@ if (ZC_UPG_DEBUG2==true) {echo '<span class="errors">NOTE: Skipped upgrade state
        $db_prefix_rename_from = DB_PREFIX;
        }
     if ($newprefix != $db_prefix_rename_from) { // don't process prefix changes if same prefix selected
-     $zc_install->test_admin_configure(ERROR_TEXT_ADMIN_CONFIGURE,ERROR_CODE_ADMIN_CONFIGURE);
+     $zc_install->test_admin_configure(ERROR_TEXT_ADMIN_CONFIGURE,ERROR_CODE_ADMIN_CONFIGURE, true);
      $zc_install->test_store_configure(ERROR_TEXT_STORE_CONFIGURE,ERROR_CODE_STORE_CONFIGURE);
      $zc_install->test_admin_configure_write(ERROR_TEXT_ADMIN_CONFIGURE_WRITE,ERROR_CODE_ADMIN_CONFIGURE_WRITE);
      $zc_install->test_store_configure_write(ERROR_TEXT_STORE_CONFIGURE_WRITE,ERROR_CODE_STORE_CONFIGURE_WRITE);

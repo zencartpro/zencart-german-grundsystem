@@ -6,7 +6,7 @@
  * @copyright Copyright 2003-2006 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: header_php.php 4793 2006-10-20 05:25:20Z ajeh $
+ * @version $Id: header_php.php 5324 2006-12-21 17:41:25Z drbyte $
  */
 
 // This should be first line of the script:
@@ -142,6 +142,19 @@ if (isset($$_SESSION['payment']->form_action_url)) {
 } else {
   $form_action_url = zen_href_link(FILENAME_CHECKOUT_PROCESS, '', 'SSL');
 }
+
+// if shipping-edit button should be overridden, do so
+$editShippingButtonLink = zen_href_link(FILENAME_CHECKOUT_SHIPPING, '', 'SSL');	
+if (method_exists($$_SESSION['payment'], 'alterShippingEditButton')) {
+  $theLink = $$_SESSION['payment']->alterShippingEditButton();
+  if ($theLink) $editShippingButtonLink = $theLink;
+}
+// deal with billing address edit button
+$flagDisablePaymentAddressChange = false;
+if (isset($$_SESSION['payment']->flagDisablePaymentAddressChange)) {
+  $flagDisablePaymentAddressChange = $$_SESSION['payment']->flagDisablePaymentAddressChange;
+}
+
 
 require(DIR_WS_MODULES . zen_get_module_directory('require_languages.php'));
 $breadcrumb->add(NAVBAR_TITLE_1, zen_href_link(FILENAME_CHECKOUT_SHIPPING, '', 'SSL'));

@@ -7,7 +7,7 @@
  * @copyright Copyright 2003-2006 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: query_factory.php 4821 2006-10-23 10:54:15Z drbyte $
+ * @version $Id: query_factory.php 4854 2006-10-28 06:50:01Z drbyte $
  */
 if (!defined('IS_ADMIN_FLAG')) {
   die('Illegal Access');
@@ -26,7 +26,7 @@ class queryFactory extends base {
   function connect($zf_host, $zf_user, $zf_password, $zf_database, $zf_pconnect = 'false', $zp_real = false) {
 //@TODO error class required to virtualise & centralise all error reporting/logging/debugging
     $this->database = $zf_database;
-
+    if (!function_exists('mysql_connect')) die ('Call to undefined function: mysql_connect().  Please install the MySQL Connector for PHP');
     if ($zf_pconnect != 'false') {
       $this->link = @mysql_connect($zf_host, $zf_user, $zf_password, true);
     } else {

@@ -4,7 +4,7 @@
  * @copyright Copyright 2003-2006 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: coupon_admin.php 4737 2006-10-13 07:13:11Z drbyte $
+ * @version $Id: coupon_admin.php 4976 2006-11-20 22:33:34Z wilt $
  */
 
   require('includes/application_top.php');
@@ -226,6 +226,7 @@
       } else {
         $coupon_type = "F";
         if (substr($_POST['coupon_amount'], -1) == '%') $coupon_type='P';
+        $_POST['coupon_amount'] = preg_replace('/[^0-9.]/', '', $_POST['coupon_amount']);
         if ($_POST['coupon_free_ship']) $coupon_type = 'S';
         $sql_data_array = array('coupon_code' => zen_db_prepare_input($_POST['coupon_code']),
                                 'coupon_amount' => zen_db_prepare_input($_POST['coupon_amount']),

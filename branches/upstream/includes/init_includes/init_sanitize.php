@@ -7,7 +7,7 @@
  * @copyright Copyright 2003-2005 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: init_sanitize.php 4284 2006-08-26 19:26:51Z wilt $
+ * @version $Id: init_sanitize.php 5164 2006-12-10 19:01:25Z drbyte $
  * @todo move the array process to security class
  */
 
@@ -87,6 +87,12 @@
       }
     }
   }
+/**
+ * sanitize $_SERVER vars
+ */
+  $_SERVER['REMOTE_ADDR'] = preg_replace('/[^0-9.%]/', '', $_SERVER['REMOTE_ADDR']);
+
+
 /**
  * validate products_id for search engines and bookmarks, etc.
  */

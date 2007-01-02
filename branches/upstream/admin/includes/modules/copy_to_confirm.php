@@ -4,7 +4,7 @@
  * @copyright Copyright 2003-2006 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: copy_to_confirm.php 3380 2006-04-06 05:12:45Z drbyte $
+ * @version $Id: copy_to_confirm.php 4861 2006-10-29 17:15:42Z drbyte $
  */
 if (!defined('IS_ADMIN_FLAG')) {
   die('Illegal Access');
@@ -66,7 +66,7 @@ if (!defined('IS_ADMIN_FLAG')) {
                                   '" . $products_price . "',
                                   '" . zen_db_input($product->fields['products_virtual']) . "',
                                   now(),
-                                  '" . zen_db_input($product->fields['products_date_available']) . "',
+                                  '" . (zen_not_null(zen_db_input($product->fields['products_date_available'])) ? zen_db_input($product->fields['products_date_available']) : '0001-01-01 00:00:00') . "',
                                   '" . $products_weight . "', '0',
                                   '" . (int)$product->fields['products_tax_class_id'] . "',
                                   '" . (int)$product->fields['manufacturers_id'] . "',

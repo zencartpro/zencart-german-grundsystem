@@ -7,7 +7,7 @@
  * @copyright Copyright 2003-2006 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: installer.php 4387 2006-09-04 13:54:28Z drbyte $
+ * @version $Id: installer.php 4849 2006-10-27 19:09:22Z drbyte $
  */
 
 
@@ -18,13 +18,13 @@
       $this->user_agent = $_SERVER['HTTP_USER_AGENT'];
     }
 
-    function test_admin_configure($zp_error_text, $zp_error_code) {
+    function test_admin_configure($zp_error_text, $zp_error_code, $fatal = false) {
       if (!file_exists('../admin/includes/configure.php')) {
         @chmod('../admin/includes', 0777);
         @touch('../admin/includes/configure.php');
         @chmod('../admin/includes', 0755);
         if (!file_exists('../admin/includes/configure.php')) {
-          $this->setError($zp_error_text, $zp_error_code, true);
+          $this->setError($zp_error_text, $zp_error_code, $fatal);
           return false;
         }
       } else {

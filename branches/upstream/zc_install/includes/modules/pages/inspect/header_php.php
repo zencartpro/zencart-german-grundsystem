@@ -5,7 +5,7 @@
  * @copyright Copyright 2003-2006 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: header_php.php 4676 2006-10-03 04:30:37Z drbyte $
+ * @version $Id: header_php.php 5354 2006-12-23 01:55:47Z drbyte $
  */
 
   if (!isset($_GET['debug'])  && !zen_not_null($_POST['debug']))  define('ZC_UPG_DEBUG',false);
@@ -354,6 +354,10 @@ if (false) { // DISABLED THIS CODEBLOCK FOR NOW....
   $php_ext_pfpro =    (@extension_loaded('pfpro'))   ? ON : OFF;
   if ($php_ext_pfpro==ON) $status_check2[] = array('Importance' => 'Optional', 'Title' => LABEL_PHP_EXT_PFPRO, 'Status' => $php_ext_pfpro, 'Class' => ($php_ext_pfpro==ON)?'OK':'WARN', 'HelpURL' =>'', 'HelpLabel'=>'');
   
+  // PHP output buffering (GZip) (PHP configuration)
+  $php_buffer = (@ini_get("output_buffering"))   ? ON : OFF;
+  $status_check2[] = array('Importance' => 'Optional', 'Title' => LABEL_GZIP, 'Status' => $php_buffer, 'Class' => ($php_buffer==ON)?'OK':'WARN', 'HelpURL' =>'', 'HelpLabel'=>'');
+  
   //Check PostgreSQL availability
   $pg_support = (function_exists( 'pg_connect' )) ? ON : OFF;
   // turn off display of Postgres status until we support it again
@@ -403,7 +407,7 @@ if (false) { // DISABLED THIS CODEBLOCK FOR NOW....
   //SMTP (vs sendmail) setting (PHP configuration)
   $smtp = @ini_get("SMTP");
   $status_check2[] = array('Importance' => 'Info', 'Title' => LABEL_SMTP_MAIL, 'Status' => $smtp, 'Class' => 'NA', 'HelpURL' =>'', 'HelpLabel'=>'');
-  
+
   //include_path (PHP configuration)
   $includePath = @ini_get("include_path");
   $status_check2[] = array('Importance' => 'Info', 'Title' => LABEL_INCLUDE_PATH, 'Status' => $includePath, 'Class' => 'NA', 'HelpURL' =>'', 'HelpLabel'=>'');
@@ -415,7 +419,7 @@ if (false) { // DISABLED THIS CODEBLOCK FOR NOW....
 
 // error-condition-detection
   $php_extensions = get_loaded_extensions();
-  $admin_config_exists = $zc_install->test_admin_configure(ERROR_TEXT_ADMIN_CONFIGURE,ERROR_CODE_ADMIN_CONFIGURE);
+  $admin_config_exists = $zc_install->test_admin_configure(ERROR_TEXT_ADMIN_CONFIGURE,ERROR_CODE_ADMIN_CONFIGURE, ($zen_cart_previous_version_installed && $zen_cart_database_connect_OK ? false : true));
   $store_config_exists = $zc_install->test_store_configure(ERROR_TEXT_STORE_CONFIGURE,ERROR_CODE_STORE_CONFIGURE);
   if ($php_ext_sessions=="OFF") {$zc_install->setError(ERROR_TEXT_PHP_SESSION_SUPPORT, ERROR_CODE_PHP_SESSION_SUPPORT, true);}
   

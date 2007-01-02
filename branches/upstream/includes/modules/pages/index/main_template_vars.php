@@ -6,7 +6,7 @@
  * @copyright Copyright 2003-2006 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: main_template_vars.php 4789 2006-10-18 22:37:27Z ajeh $
+ * @version $Id: main_template_vars.php 4958 2006-11-19 04:45:57Z drbyte $
  */
 
 // This should be first line of the script:
@@ -148,6 +148,7 @@ if ($category_depth == 'nested')
   */
   asort($define_list);
   reset($define_list);
+  $column_list = array();
   foreach ($define_list as $key => $value)
   {
     if ($value > 0) $column_list[] = $key;

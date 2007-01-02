@@ -1,12 +1,12 @@
 <?php
 /**
- * GV redeem 
- * 
+ * GV redeem
+ *
  * @package page
  * @copyright Copyright 2003-2006 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: header_php.php 3160 2006-03-11 01:37:18Z drbyte $
+ * @version $Id: header_php.php 4940 2006-11-16 05:23:53Z ajeh $
  */
 
 // if the customer is not logged on, redirect them to the login page
@@ -20,7 +20,8 @@ if (isset($_GET['gv_no'])) {
   $gv_query = "SELECT c.coupon_id, c.coupon_amount
                FROM " . TABLE_COUPONS . " c, " . TABLE_COUPON_EMAIL_TRACK . " et
                WHERE coupon_code = :couponCode
-               AND c.coupon_id = et.coupon_id";
+               AND c.coupon_id = et.coupon_id
+               AND c.coupon_type = 'G'";
 
   $gv_query = $db->bindVars($gv_query, ':couponCode', $_GET['gv_no'], 'string');
   $coupon = $db->Execute($gv_query);
@@ -48,7 +49,7 @@ if ((!$error) && ($_SESSION['customer_id'])) {
   // Update redeem status
   $gv_query = "INSERT INTO  " . TABLE_COUPON_REDEEM_TRACK . "(coupon_id, customer_id, redeem_date, redeem_ip)
                VALUES (:couponID, :customersID, now(), :remoteADDR)";
-  
+
   $gv_query = $db->bindVars($gv_query, ':customersID', $_SESSION['customer_id'], 'integer');
   $gv_query = $db->bindVars($gv_query, ':couponID', $coupon->fields['coupon_id'], 'integer');
   $gv_query = $db->bindVars($gv_query, ':remoteADDR', $REMOTE_ADDR, 'string');

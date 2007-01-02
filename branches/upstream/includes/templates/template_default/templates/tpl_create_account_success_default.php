@@ -9,7 +9,7 @@
  * @copyright Copyright 2003-2006 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: tpl_create_account_success_default.php 4816 2006-10-23 04:08:52Z drbyte $
+ * @version $Id: tpl_create_account_success_default.php 4886 2006-11-05 09:01:18Z drbyte $
  */
 ?>
 <div class="centerColumn" id="createAcctSuccess">
@@ -25,7 +25,7 @@
  */
   foreach ($addressArray as $addresses) {
 ?>
-<h3 id="addressBookDefaultName"><?php echo zen_output_string_protected($addresses['firstname'] . ' ' . $addresses['lastname']); ?></h3>
+<h3 class="addressBookDefaultName"><?php echo zen_output_string_protected($addresses['firstname'] . ' ' . $addresses['lastname']); ?></h3>
 
 <address><?php echo zen_address_format($addresses['format_id'], $addresses['address'], true, ' ', '<br />'); ?></address>
 

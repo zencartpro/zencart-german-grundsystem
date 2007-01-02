@@ -17,7 +17,7 @@
 // | to obtain it through the world-wide-web, please send a note to       |
 // | license@zen-cart.com so we can mail you a copy immediately.          |
 // +----------------------------------------------------------------------+
-//  $Id: media_manager.php 3092 2006-03-02 19:41:04Z drbyte $
+//  $Id: media_manager.php 4873 2006-11-02 09:12:46Z drbyte $
 //
 
 define('HEADING_TITLE_MEDIA_MANAGER', 'Media Manager');
@@ -47,8 +47,10 @@ define('TEXT_PRODUCTS_INTRO', 'You can assign and remove this Media Collection f
 define('IMAGE_PRODUCTS', 'Assign to Product');
 define('TEXT_DELETE_PRODUCTS', 'Delete this Media Collection and all items linked to it?');
 define('TEXT_DELETE_WARNING_PRODUCTS', '<strong>WARNING:</strong> There are %s items still linked to this Media Collection!');
+define('TEXT_WARNING_FOLDER_UNWRITABLE', 'NOTE: media folder ' . DIR_FS_CATALOG_MEDIA . ' is not writable. Cannot upload files.');
 
 define('ERROR_UNKNOWN_DATA', 'ERROR: Unknown data supplied ... operation cancelled');
 define('TEXT_ADD','Add');
+
 
 ?>

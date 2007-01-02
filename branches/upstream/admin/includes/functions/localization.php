@@ -17,7 +17,7 @@
 // | to obtain it through the world-wide-web, please send a note to       |
 // | license@zen-cart.com so we can mail you a copy immediately.          |
 // +----------------------------------------------------------------------+
-//  $Id: localization.php 4688 2006-10-07 08:28:29Z drbyte $
+//  $Id: localization.php 5369 2006-12-23 10:55:52Z drbyte $
 //
 
   function quote_oanda_currency($code, $base = DEFAULT_CURRENCY) {
@@ -73,7 +73,7 @@
     curl_setopt($ch, CURLOPT_VERBOSE, 0);
     curl_setopt($ch, CURLOPT_HEADER, false);
     curl_setopt($ch, CURLOPT_USERAGENT, $_SERVER['HTTP_USER_AGENT']);
-    curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
+    curl_setopt($ch, CURLOPT_FOLLOWLOCATION, false);
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 //  curl_setopt($ch, CURLOPT_COOKIEJAR, 'cookie.txt');
 //  curl_setopt($ch, CURLOPT_COOKIEFILE, 'cookie.txt');

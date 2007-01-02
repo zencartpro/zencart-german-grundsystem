@@ -6,7 +6,7 @@
  * @copyright Copyright 2003-2006 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: cc.php 4274 2006-08-26 03:16:53Z drbyte $
+ * @version $Id: cc.php 4903 2006-11-10 10:26:06Z drbyte $
  */
 /**
  * Manual Credit Card payment module
@@ -133,22 +133,24 @@ class cc extends base {
       $expires_year[] = array('id' => strftime('%y',mktime(0,0,0,1,1,$i)), 'text' => strftime('%Y',mktime(0,0,0,1,1,$i)));
     }
 
+    $onFocus = ' onfocus="methodSelect(\'pmt-' . $this->code . '\')"';
+
     $selection = array('id' => $this->code,
                        'module' => $this->title,
                        'fields' => array(array('title' => MODULE_PAYMENT_CC_TEXT_CREDIT_CARD_OWNER,
-                                               'field' => zen_draw_input_field('cc_owner', $order->billing['firstname'] . ' ' . $order->billing['lastname'], 'id="'.$this->code.'-cc-owner"'),
+                                               'field' => zen_draw_input_field('cc_owner', $order->billing['firstname'] . ' ' . $order->billing['lastname'], 'id="'.$this->code.'-cc-owner"' . $onFocus),
                                                'tag' => $this->code.'-cc-owner'),
                                          array('title' => MODULE_PAYMENT_CC_TEXT_CREDIT_CARD_NUMBER,
-                                               'field' => zen_draw_input_field('cc_number', '', 'id="' . $this->code . '-cc-number"'),
+                                               'field' => zen_draw_input_field('cc_number', '', 'id="' . $this->code . '-cc-number"' . $onFocus),
                                                'tag' => $this->code . '-cc-number'),
                                          array('title' => MODULE_PAYMENT_CC_TEXT_CREDIT_CARD_EXPIRES,
-                                               'field' => zen_draw_pull_down_menu('cc_expires_month', $expires_month, '', 'id="'.$this->code.'-cc-expires-month"') . '&nbsp;' . zen_draw_pull_down_menu('cc_expires_year', $expires_year),
+                                               'field' => zen_draw_pull_down_menu('cc_expires_month', $expires_month, '', 'id="'.$this->code.'-cc-expires-month"' . $onFocus) . '&nbsp;' . zen_draw_pull_down_menu('cc_expires_year', $expires_year,  '', 'id="'.$this->code.'-cc-expires-year"' . $onFocus),
                                                'tag' => $this->code.'-cc-expires-month')
 		               ));
 
     if (MODULE_PAYMENT_CC_COLLECT_CVV == 'True')  {
       $selection['fields'][] = array('title' => MODULE_PAYMENT_CC_TEXT_CREDIT_CARD_CVV,
-                                     'field' => zen_draw_input_field('cc_cvv', '', 'id="'.$this->code.'-cc-cvv"'),
+                                     'field' => zen_draw_input_field('cc_cvv', '', 'size="4" maxlength="4" id="'.$this->code.'-cc-cvv"' . $onFocus),
                                      'tag' => $this->code.'-cc-cvv');
     }
     return $selection;

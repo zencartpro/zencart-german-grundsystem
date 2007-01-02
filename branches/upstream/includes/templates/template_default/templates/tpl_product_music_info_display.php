@@ -9,7 +9,7 @@
  * @copyright Copyright 2003-2006 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: tpl_product_music_info_display.php 4338 2006-09-02 04:30:21Z drbyte $
+ * @version $Id: tpl_product_music_info_display.php 5369 2006-12-23 10:55:52Z drbyte $
  */
 ?>
 <div class="centerColumn" id="productMusicDisplay">
@@ -30,7 +30,7 @@ require($template->get_template_dir('/tpl_modules_category_icon_display.php',DIR
 <?php } ?>
 <!--eof Category Icon -->
 
-<!--eof Prev/Next top position -->
+<!--bof Prev/Next top position -->
 <?php if (PRODUCT_INFO_PREVIOUS_NEXT == 1 or PRODUCT_INFO_PREVIOUS_NEXT == 3) { ?>
 <?php
 /**
@@ -72,7 +72,7 @@ require($template->get_template_dir('/tpl_products_next_previous.php',DIR_WS_TEM
 <!--eof Product Price block -->
 
 <!--bof free ship icon  -->
-<?php if(zen_get_product_is_always_free_shipping($products_id_current)) { ?>
+<?php if(zen_get_product_is_always_free_shipping($products_id_current) && $flag_show_product_info_free_shipping) { ?>
 <div id="freeShippingIcon"><?php echo TEXT_PRODUCT_FREE_SHIPPING_ICON; ?></div>
 <?php } ?>
 <!--eof free ship icon  -->

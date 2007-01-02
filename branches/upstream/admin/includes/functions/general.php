@@ -17,7 +17,7 @@
 // | to obtain it through the world-wide-web, please send a note to       |
 // | license@zen-cart.com so we can mail you a copy immediately.          |
 // +----------------------------------------------------------------------+
-//  $Id: general.php 4733 2006-10-12 20:33:19Z drbyte $
+//  $Id: general.php 5435 2006-12-28 19:09:50Z drbyte $
 //
 
 ////
@@ -972,6 +972,15 @@
     return zen_draw_pull_down_menu($name, $editors_pulldown, $html_editor);
   }
 
+  function zen_cfg_password_input($value, $key = '') {
+    return zen_draw_password_field('configuration[' . $key . ']', $value);
+  }
+
+  function zen_cfg_password_display($value) {
+    $length = strlen($value);
+    return str_repeat('*', ($length > 16 ? 16 : $length));
+  }
+
 ////
 // Sets the status of a product
   function zen_set_product_status($products_id, $status) {
@@ -1049,6 +1058,7 @@
 
     $db_query = $db->Execute("select now() as datetime");
     list($system, $host, $kernel) = preg_split('/[\s,]+/', @exec('uname -a'), 5);
+    if ($host == '') list($system, $host, $kernel) = array('', $_SERVER['SERVER_NAME'], php_uname());
 
 
     return array('date' => zen_datetime_short(date('Y-m-d H:i:s')),

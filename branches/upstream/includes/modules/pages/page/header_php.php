@@ -1,12 +1,12 @@
 <?php
 /**
- * ez_pages ("page") header_php.php 
+ * ez_pages ("page") header_php.php
  *
  * @package page
  * @copyright Copyright 2003-2006 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: header_php.php 4821 2006-10-23 10:54:15Z drbyte $
+ * @version $Id: header_php.php 4881 2006-11-04 17:51:31Z ajeh $
  */
 /*
 * This "page" page is the display component of the ez-pages module
@@ -37,9 +37,9 @@ $horiz_links = array();
 //  $pages_order_query = "SELECT pages_id FROM " . TABLE_EZPAGES . " WHERE status = 1 and vertical_sort_order <> 0 ORDER BY vertical_sort_order, horizontal_sort_order, pages_title";
 //  $pages_order_query = "SELECT * FROM " . TABLE_EZPAGES . " WHERE ((status_sidebox = 1 and sidebox_sort_order <> 0) or (status_footer = 1 and footer_sort_order <> 0) or (status_header = 1 and header_sort_order <> 0)) and alt_url_external = '' ORDER BY header_sort_order, sidebox_sort_order, footer_sort_order, pages_title";
 $pages_order_query = "SELECT *
-                      FROM " . TABLE_EZPAGES . " 
+                      FROM " . TABLE_EZPAGES . "
                       WHERE ((status_toc = 1 and toc_sort_order <> 0) and toc_chapter= :chapterID )
-                      AND alt_url_external = '' and alt_url = '' 
+                      AND alt_url_external = '' and alt_url = ''
                       ORDER BY toc_sort_order, pages_title";
 
 $pages_order_query = $db->bindVars($pages_order_query, ':chapterID', $chapter_id, 'integer');
@@ -70,7 +70,7 @@ $previous_vssl = '0';
 $next_item_v = 0;
 $next_vssl = 0;
 while (list($key, $value) = each ($vert_links)) {
-  if ($value == $id) {
+  if ($value == $ezpage_id) {
     $position_v = $counter;
     $previous_vssl = '0';
     if ($key == 0) {
@@ -131,12 +131,12 @@ $next_item_button = zen_image_button(BUTTON_IMAGE_NEXT, BUTTON_NEXT_ALT);
 $home_button = zen_image_button(BUTTON_IMAGE_CONTINUE, BUTTON_CONTINUE_ALT);
 
 
-
+// set Page Title for heading, navigation, etc
 define('NAVBAR_TITLE', $var_pageDetails->fields['pages_title']);
+define('HEADING_TITLE', $var_pageDetails->fields['pages_title']);
+$breadcrumb->add($var_pageDetails->fields['pages_title']);
 
 require(DIR_WS_MODULES . zen_get_module_directory('require_languages.php'));
-
-$breadcrumb->add($var_pageDetails->fields['pages_title']);
 
 
 

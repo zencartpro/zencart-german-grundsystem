@@ -9,7 +9,7 @@
  * @copyright Copyright 2003-2006 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: tpl_shopping_cart_default.php 4590 2006-09-23 03:28:37Z ajeh $
+ * @version $Id: tpl_shopping_cart_default.php 5414 2006-12-27 07:51:03Z drbyte $
  */
 ?>
 <div class="centerColumn" id="shoppingCartDefault">
@@ -223,5 +223,12 @@ while (!$show_display_shopping_cart_empty->EOF) {
 <?php
   }
 ?>
+<!-- ** BEGIN PAYPAL EXPRESS CHECKOUT ** -->
+  <?php  // only display EC option if cart contents >0 and value >0
+if (defined('MODULE_PAYMENT_PAYPALWPP_STATUS') && MODULE_PAYMENT_PAYPALWPP_STATUS == 'True' && $_SESSION['cart']->count_contents() > 0 && $_SESSION['cart']->total > 0) {
+  include(DIR_FS_CATALOG . DIR_WS_MODULES . 'payment/paypal/tpl_ec_button.php');
+}
+?>
+<!-- ** END PAYPAL EXPRESS CHECKOUT ** -->
 
 </div>

@@ -5,7 +5,7 @@
  * @copyright Copyright 2003-2006 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: tpl_main_page.php 3252 2006-03-24 05:55:07Z drbyte $
+ * @version $Id: tpl_main_page.php 5454 2006-12-29 20:10:17Z drbyte $
  */
 
   $header_template = 'tpl_header.php';
@@ -35,7 +35,7 @@
   ?>
   </div>
   <div id="footer">
-    <p>Copyright &copy; 2003-2006 <a href="http://www.zen-cart.com" target="_blank">Zen Cart&trade;</a></p>
+    <p>Copyright &copy; 2003-<?php echo date('Y'); ?> <a href="http://www.zen-cart.com" target="_blank">Zen Cart&trade;</a></p>
   </div>
 </div>
 <!--  <p><a href="http://validator.w3.org/check?uri=referer">Valid XHTML 1.0 Transitional</a></p>-->

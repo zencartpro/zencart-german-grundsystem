@@ -4,7 +4,7 @@
  * @copyright Copyright 2003-2006 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: ot_gv.php 4578 2006-09-21 20:19:28Z wilt $
+ * @version $Id: ot_gv.php 4975 2006-11-20 22:11:21Z wilt $
  */
 
 class ot_gv {
@@ -26,7 +26,7 @@ class ot_gv {
     $this->show_redeem_box = MODULE_ORDER_TOTAL_GV_REDEEM_BOX;
     $this->credit_class = true;
     if (!zen_not_null(ltrim($_SESSION['cot_gv'], ' 0')) || $_SESSION['cot_gv'] == '0') $_SESSION['cot_gv'] = '0.00';
-    $this->checkbox = $this->user_prompt . '<input type="textfield" size="6" onchange="submitFunction()" name="cot_gv" value="' . number_format($_SESSION['cot_gv'], 2) . '" onfocus="if (this.value == \'' . number_format($_SESSION['cot_gv'], 2) . '\') this.value = \'\';" />' . ($this->user_has_gv_account($_SESSION['customer_id']) > 0 ? '<br />' . MODULE_ORDER_TOTAL_GV_USER_BALANCE . $currencies->format($this->user_has_gv_account($_SESSION['customer_id'])) : '');
+    $this->checkbox = $this->user_prompt . '<input type="text" size="6" onchange="submitFunction()" name="cot_gv" value="' . number_format($_SESSION['cot_gv'], 2) . '" onfocus="if (this.value == \'' . number_format($_SESSION['cot_gv'], 2) . '\') this.value = \'\';" />' . ($this->user_has_gv_account($_SESSION['customer_id']) > 0 ? '<br />' . MODULE_ORDER_TOTAL_GV_USER_BALANCE . $currencies->format($this->user_has_gv_account($_SESSION['customer_id'])) : '');
     $this->output = array();
   }
 
@@ -65,7 +65,7 @@ class ot_gv {
   }
 
   function pre_confirmation_check($order_total) {
-    global $order;
+    global $order, $currencies;
     // clean out negative values and strip common currency symbols
     $_SESSION['cot_gv'] = preg_replace('/[^0-9.%]/', '', $_SESSION['cot_gv']);
     $_SESSION['cot_gv'] = abs($_SESSION['cot_gv']);
@@ -76,7 +76,7 @@ class ot_gv {
       if (ereg('[^0-9/.]', trim($_SESSION['cot_gv']))) {
         zen_redirect(zen_href_link(FILENAME_CHECKOUT_PAYMENT, 'credit_class_error_code=' . $this->code . '&credit_class_error=' . urlencode(TEXT_INVALID_REDEEM_AMOUNT), 'SSL',true, false));
       }
-      if ($_SESSION['cot_gv'] > $this->user_has_gv_account($_SESSION['customer_id'])) {
+      if ($_SESSION['cot_gv'] > $currencies->value($this->user_has_gv_account($_SESSION['customer_id']))) {
         zen_redirect(zen_href_link(FILENAME_CHECKOUT_PAYMENT, 'credit_class_error_code=' . $this->code . '&credit_class_error=' . urlencode(TEXT_INVALID_REDEEM_AMOUNT), 'SSL',true, false));
       }
       $od_amount = $this->calculate_credit($order_total);
@@ -201,8 +201,8 @@ class ot_gv {
   }
 
   function calculate_credit($amount) {
-    global $db, $order;
-    $gv_payment_amount = $_SESSION['cot_gv'];
+    global $db, $order, $currencies;
+    $gv_payment_amount = $currencies->value($_SESSION['cot_gv'], true, DEFAULT_CURRENCY);
     $gv_amount = $gv_payment_amount;
     $save_total_cost = $amount;
     $full_cost = $save_total_cost - $gv_payment_amount;

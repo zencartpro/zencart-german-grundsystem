@@ -6,12 +6,12 @@
  * @copyright Copyright 2003-2006 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: header_php.php 4793 2006-10-20 05:25:20Z ajeh $
+ * @version $Id: header_php.php 5380 2006-12-24 17:50:00Z drbyte $
  */
 // This should be first line of the script:
   $zco_notifier->notify('NOTIFY_HEADER_START_CHECKOUT_SHIPPING');
 
-  require(DIR_WS_CLASSES . 'http_client.php');
+  require_once(DIR_WS_CLASSES . 'http_client.php');
 
 // if there is nothing in the customers cart, redirect them to the shopping cart page
   if ($_SESSION['cart']->count_contents() <= 0) {
@@ -174,6 +174,20 @@
 // a javascript force-selection method, also automatically select the cheapest shipping
 // method if more than one module is now enabled
   if ( !$_SESSION['shipping'] || ( $_SESSION['shipping'] && ($_SESSION['shipping'] == false) && (zen_count_shipping_modules() > 1) ) ) $_SESSION['shipping'] = $shipping_modules->cheapest();
+
+
+  // Should address-edit button be offered?
+  $displayAddressEdit = (MAX_ADDRESS_BOOK_ENTRIES >= 2);
+
+  // if shipping-edit button should be overridden, do so
+  $editShippingButtonLink = zen_href_link(FILENAME_CHECKOUT_SHIPPING_ADDRESS, '', 'SSL');	
+  if (isset($_SESSION['payment']) && method_exists($$_SESSION['payment'], 'alterShippingEditButton')) {
+    $theLink = $$_SESSION['payment']->alterShippingEditButton();
+    if ($theLink) {
+      $editShippingButtonLink = $theLink;
+      $displayAddressEdit = true;
+    }
+  }
 
   $breadcrumb->add(NAVBAR_TITLE_1, zen_href_link(FILENAME_CHECKOUT_SHIPPING, '', 'SSL'));
   $breadcrumb->add(NAVBAR_TITLE_2);

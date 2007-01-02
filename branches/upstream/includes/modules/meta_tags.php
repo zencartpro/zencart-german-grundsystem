@@ -6,7 +6,7 @@
  * @copyright Copyright 2003-2006 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: meta_tags.php 4795 2006-10-20 17:46:58Z ajeh $
+ * @version $Id: meta_tags.php 4960 2006-11-20 01:46:46Z drbyte $
  */
 if (!defined('IS_ADMIN_FLAG')) {
   die('Illegal Access');
@@ -236,7 +236,7 @@ switch ($_GET['main_page']) {
 
       if (!empty($product_info_metatags->fields['metatags_keywords'])) {
         // use custom keywords
-        $metatags_keywords = $product_info_metatags->fields['metatags_keywords'] . ' ' . CUSTOM_KEYWORDS;  // CUSTOM skips categories
+        $metatags_keywords = $product_info_metatags->fields['metatags_keywords'] . METATAGS_DIVIDER . CUSTOM_KEYWORDS;  // CUSTOM skips categories
       } else {
         // no custom keywords defined use product_description
         $metatags_keywords = KEYWORDS . METATAGS_DIVIDER . $meta_products_name . METATAGS_DIVIDER;

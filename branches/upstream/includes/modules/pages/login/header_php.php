@@ -6,7 +6,7 @@
  * @copyright Copyright 2003-2006 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: header_php.php 3777 2006-06-15 07:03:03Z drbyte $
+ * @version $Id: header_php.php 5419 2006-12-28 05:56:39Z drbyte $
  */
 
 // This should be first line of the script:
@@ -114,6 +114,11 @@ if ($error == true) {
 }
 
 $breadcrumb->add(NAVBAR_TITLE);
+
+// Check for PayPal express checkout button suitability:
+$paypalec_enabled = (defined('MODULE_PAYMENT_PAYPALWPP_STATUS') && MODULE_PAYMENT_PAYPALWPP_STATUS == 'True');
+// Check for express checkout button suitability:
+$ec_button_enabled = ($paypalec_enabled && ($_SESSION['cart']->count_contents() > 0));
 
 
 // This should be last line of the script:

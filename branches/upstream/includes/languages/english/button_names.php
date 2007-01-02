@@ -4,7 +4,7 @@
  * @copyright Copyright 2003-2006 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: button_names.php 4381 2006-09-03 23:11:18Z drbyte $
+ * @version $Id: button_names.php 5410 2006-12-27 03:56:46Z drbyte $
  */
 
 
@@ -25,6 +25,7 @@ define('BUTTON_IMAGE_CONFIRM_ORDER', 'button_confirm_order.gif');
 define('BUTTON_IMAGE_CONTINUE', 'button_continue.gif');
 define('BUTTON_IMAGE_CONTINUE_SHOPPING', 'button_continue_shopping.gif');
 define('BUTTON_IMAGE_DELETE', 'button_delete.gif');
+define('BUTTON_IMAGE_DELETE_SMALL', 'button_delete_small.gif');
 define('BUTTON_IMAGE_DOWNLOAD', 'button_download.gif');
 define('BUTTON_IMAGE_EDIT_SMALL', 'small_edit.gif');
 define('BUTTON_IMAGE_IN_CART', 'button_in_cart.gif');
@@ -57,10 +58,14 @@ define('BUTTON_IMAGE_CONTINUE_CHECKOUT', 'button_continue_checkout.gif');
 //define('PREVNEXT_BUTTON_LAST', 'LAST&gt;&gt;');
 
 
-
+define('BUTTON_IMAGE_CREATE_ACCOUNT', 'button_create_account.gif');
+define('BUTTON_IMAGE_LOG_OFF', 'button_logoff.gif');
 /*
  * ALT tags used for buttons
  */
+ 
+define('BUTTON_CREATE_ACCOUNT_ALT', 'Sign Up');
+define('BUTTON_LOG_OFF_ALT', 'Log Off');
 define('BUTTON_ADD_TO_CART_ALT', 'Add This to My Cart');
 define('BUTTON_ADD_ADDRESS_ALT', 'Add Address');
 define('BUTTON_ADD_PRODUCTS_TO_CART_ALT','Add Selected Products to Cart');
@@ -74,6 +79,7 @@ define('BUTTON_CONFIRM_ORDER_ALT', 'Confirm Order');
 define('BUTTON_CONTINUE_ALT', 'Continue');
 define('BUTTON_CONTINUE_SHOPPING_ALT', 'Continue Shopping');
 define('BUTTON_DELETE_ALT', 'Delete');
+define('BUTTON_DELETE_SMALL_ALT', 'Delete');
 define('BUTTON_DOWNLOAD_ALT', 'Download Now');
 define('BUTTON_EDIT_SMALL_ALT', 'Edit');
 define('BUTTON_IN_CART_ALT', 'Add to Cart');

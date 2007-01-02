@@ -9,13 +9,13 @@
  * @copyright Copyright 2003-2006 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: header_php.php 4631 2006-09-29 03:26:05Z drbyte $
+ * @version $Id: header_php.php 5380 2006-12-24 17:50:00Z drbyte $
  */
 
 // This should be first line of the script:
 $zco_notifier->notify('NOTIFY_HEADER_START_GV_SEND');
 
-require('includes/classes/http_client.php');
+require_once('includes/classes/http_client.php');
 
 // verify no timeout has occurred on the send or process
 if (!$_SESSION['customer_id'] and ($_GET['action'] == 'send' or $_GET['action'] == 'process')) {

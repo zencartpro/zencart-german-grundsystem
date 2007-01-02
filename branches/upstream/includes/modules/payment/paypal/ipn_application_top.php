@@ -6,7 +6,7 @@
  * @copyright Copyright 2003-2006 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: ipn_application_top.php 4614 2006-09-27 02:55:28Z drbyte $
+ * @version $Id: ipn_application_top.php 5137 2006-12-09 22:02:24Z wilt $
  */
 
 /**
@@ -248,7 +248,7 @@ define('IS_ADMIN_FLAG', false);
 
 
   include(DIR_WS_LANGUAGES . $template_dir_select . $_SESSION['language'] . '.php');
-  ipn_debug_email('IPN NOTICE::Got past language loads'); 
+  ipn_debug_email('IPN NOTICE::ipn_application_top -> language files okay');
 
 // include the extra language translations
   include(DIR_WS_MODULES . 'extra_definitions.php');

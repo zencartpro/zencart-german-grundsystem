@@ -4,7 +4,7 @@
  * @copyright Copyright 2003-2006 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: orders.php 4680 2006-10-06 15:53:15Z drbyte $
+ * @version $Id: orders.php 5426 2006-12-28 14:58:57Z drbyte $
  */
 
   require('includes/application_top.php');
@@ -12,13 +12,14 @@
   require(DIR_WS_CLASSES . 'currencies.php');
   $currencies = new currencies();
 
+  include(DIR_WS_CLASSES . 'order.php');
+
+  // prepare order-status pulldown list
   $orders_statuses = array();
   $orders_status_array = array();
   $orders_status = $db->Execute("select orders_status_id, orders_status_name
                                  from " . TABLE_ORDERS_STATUS . "
                                  where language_id = '" . (int)$_SESSION['languages_id'] . "'");
-
-
   while (!$orders_status->EOF) {
     $orders_statuses[] = array('id' => $orders_status->fields['orders_status_id'],
                                'text' => $orders_status->fields['orders_status_name'] . ' [' . $orders_status->fields['orders_status_id'] . ']');
@@ -28,7 +29,19 @@
 
   $action = (isset($_GET['action']) ? $_GET['action'] : '');
 
-  if (zen_not_null($action)) {
+  if (isset($_GET['oID'])) {
+    $oID = zen_db_prepare_input($_GET['oID']);
+
+    $orders = $db->Execute("select orders_id from " . TABLE_ORDERS . "
+                            where orders_id = '" . (int)$oID . "'");
+    $order_exists = true;
+    if ($orders->RecordCount() <= 0) {
+      $order_exists = false;
+      if ($action != '') $messageStack->add(sprintf(ERROR_ORDER_DOES_NOT_EXIST, $oID), 'error');
+    }
+  }
+
+  if (zen_not_null($action) && $order_exists == true) {
     switch ($action) {
       case 'edit':
       // reset single download to on
@@ -165,23 +178,65 @@
         $mask_cc = $db->Execute("update " . TABLE_ORDERS . " set cc_number = '" . $new_num . "' where orders_id = '" . (int)$_GET['oID'] . "'");
         zen_redirect(zen_href_link(FILENAME_ORDERS, zen_get_all_get_params(array('action')) . 'action=edit', 'NONSSL'));
         break;
+
+      case 'doRefund':
+        $order = new order($oID);
+        if ($order->info['payment_module_code']) {
+          if (file_exists(DIR_FS_CATALOG_MODULES . 'payment/' . $order->info['payment_module_code'] . '.php')) {
+            require_once(DIR_FS_CATALOG_MODULES . 'payment/' . $order->info['payment_module_code'] . '.php');
+            require_once(DIR_FS_CATALOG_LANGUAGES . $_SESSION['language'] . '/modules/payment/' . $order->info['payment_module_code'] . '.php');
+            $module = new $order->info['payment_module_code'];
+            if (method_exists($module, '_doRefund')) {
+              $module->_doRefund($oID);
+            }
+          }
+        }
+        zen_redirect(zen_href_link(FILENAME_ORDERS, zen_get_all_get_params(array('action')) . 'action=edit', 'NONSSL'));
+        break;
+      case 'doAuth':
+        $order = new order($oID);
+        if ($order->info['payment_module_code']) {
+          if (file_exists(DIR_FS_CATALOG_MODULES . 'payment/' . $order->info['payment_module_code'] . '.php')) {
+            require_once(DIR_FS_CATALOG_MODULES . 'payment/' . $order->info['payment_module_code'] . '.php');
+            require_once(DIR_FS_CATALOG_LANGUAGES . $_SESSION['language'] . '/modules/payment/' . $order->info['payment_module_code'] . '.php');
+            $module = new $order->info['payment_module_code'];
+            if (method_exists($module, '_doAuth')) {
+              $module->_doAuth($oID, $order->info['total'], $order->info['currency']);
+            }
+          }
+        }
+        zen_redirect(zen_href_link(FILENAME_ORDERS, zen_get_all_get_params(array('action')) . 'action=edit', 'NONSSL'));
+        break;
+      case 'doCapture':
+        $order = new order($oID);
+        if ($order->info['payment_module_code']) {
+          if (file_exists(DIR_FS_CATALOG_MODULES . 'payment/' . $order->info['payment_module_code'] . '.php')) {
+            require_once(DIR_FS_CATALOG_MODULES . 'payment/' . $order->info['payment_module_code'] . '.php');
+            require_once(DIR_FS_CATALOG_LANGUAGES . $_SESSION['language'] . '/modules/payment/' . $order->info['payment_module_code'] . '.php');
+            $module = new $order->info['payment_module_code'];
+            if (method_exists($module, '_doCapt')) {
+              $module->_doCapt($oID, 'Complete', $order->info['total'], $order->info['currency']);
+            }
+          }
+        }
+        zen_redirect(zen_href_link(FILENAME_ORDERS, zen_get_all_get_params(array('action')) . 'action=edit', 'NONSSL'));
+        break;
+      case 'doVoid':
+        $order = new order($oID);
+        if ($order->info['payment_module_code']) {
+          if (file_exists(DIR_FS_CATALOG_MODULES . 'payment/' . $order->info['payment_module_code'] . '.php')) {
+            require_once(DIR_FS_CATALOG_MODULES . 'payment/' . $order->info['payment_module_code'] . '.php');
+            require_once(DIR_FS_CATALOG_LANGUAGES . $_SESSION['language'] . '/modules/payment/' . $order->info['payment_module_code'] . '.php');
+            $module = new $order->info['payment_module_code'];
+            if (method_exists($module, '_doVoid')) {
+              $module->_doVoid($oID);
+            }
+          }
+        }
+        zen_redirect(zen_href_link(FILENAME_ORDERS, zen_get_all_get_params(array('action')) . 'action=edit', 'NONSSL'));
+        break;
     }
   }
-
-  if (($action == 'edit') && isset($_GET['oID'])) {
-    $oID = zen_db_prepare_input($_GET['oID']);
-
-    $orders = $db->Execute("select orders_id from " . TABLE_ORDERS . "
-                            where orders_id = '" . (int)$oID . "'");
-
-    $order_exists = true;
-    if ($orders->RecordCount() <= 0) {
-      $order_exists = false;
-      $messageStack->add(sprintf(ERROR_ORDER_DOES_NOT_EXIST, $oID), 'error');
-    }
-  }
-
-  include(DIR_WS_CLASSES . 'order.php');
 ?>
 <!doctype html public "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html <?php echo HTML_PARAMS; ?>>

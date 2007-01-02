@@ -9,7 +9,7 @@
  * @copyright Copyright 2003-2006 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: tpl_checkout_success_default.php 3799 2006-06-18 17:07:40Z ajeh $
+ * @version $Id: tpl_checkout_success_default.php 5407 2006-12-27 01:35:37Z drbyte $
  */
 ?>
 <div class="centerColumn" id="checkoutSuccess">
@@ -28,7 +28,7 @@
 <!--eof -gift certificate- send or spend box-->
 
 <h1 id="checkoutSuccessHeading"><?php echo HEADING_TITLE; ?></h1>
-
+<div id="checkoutSuccessOrderNumber"><?php echo TEXT_YOUR_ORDER_NUMBER . $zv_orders_id; ?></div>
 <?php if (DEFINE_CHECKOUT_SUCCESS_STATUS >= 1 and DEFINE_CHECKOUT_SUCCESS_STATUS <= 2) { ?>
 <div id="checkoutSuccessMainContent" class="content">
 <?php
@@ -39,7 +39,19 @@
 ?>
 </div>
 <?php } ?>
-
+<!--bof logoff-->
+<div id="checkoutSuccessLogoff">
+<?php
+  if (isset($_SESSION['customer_guest_id'])) {
+    echo TEXT_CHECKOUT_LOGOFF_GUEST;
+  } elseif (isset($_SESSION['customer_id'])) {
+    echo TEXT_CHECKOUT_LOGOFF_CUSTOMER;
+  }
+?>
+<div class="buttonRow forward"><a href="<?php echo zen_href_link(FILENAME_LOGOFF, '', 'SSL'); ?>"><?php echo zen_image_button(BUTTON_IMAGE_LOG_OFF , BUTTON_LOG_OFF_ALT); ?></a></div>
+</div>
+<!--eof logoff-->
+<br class="clearBoth" />
 <!--bof -product notifications box-->
 <?php
 /**
@@ -65,7 +77,7 @@
 ?>
 <!--eof -product notifications box-->
 
-<div id="checkoutSuccessOrderNumber"><?php echo TEXT_YOUR_ORDER_NUMBER . $zv_orders_id; ?></div>
+
 
 <!--bof -product downloads module-->
 <?php
@@ -78,5 +90,4 @@
 <div id="checkoutSuccessContactLink"><?php echo TEXT_CONTACT_STORE_OWNER;?></div>
 
 <h3 id="checkoutSuccessThanks" class="centeredContent"><?php echo TEXT_THANKS_FOR_SHOPPING; ?></h3>
-
 </div>

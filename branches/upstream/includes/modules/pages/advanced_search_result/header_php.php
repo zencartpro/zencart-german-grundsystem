@@ -6,7 +6,7 @@
  * @copyright Copyright 2003-2006 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: header_php.php 4655 2006-10-02 01:02:38Z ajeh $
+ * @version $Id: header_php.php 4857 2006-10-28 17:40:08Z ajeh $
  */
 
 // This should be first line of the script:
@@ -17,6 +17,8 @@ if (!defined('KEYWORD_FORMAT_STRING')) define('KEYWORD_FORMAT_STRING','keywords'
 require(DIR_WS_MODULES . zen_get_module_directory('require_languages.php'));
 $error = false;
 $missing_one_input = false;
+
+$_GET['keyword'] = trim($_GET['keyword']);
 
 if ( (isset($_GET['keyword']) && (empty($_GET['keyword']) || $_GET['keyword']==HEADER_SEARCH_DEFAULT_TEXT || $_GET['keyword'] == KEYWORD_FORMAT_STRING ) ) &&
 (isset($_GET['dfrom']) && (empty($_GET['dfrom']) || ($_GET['dfrom'] == DOB_FORMAT_STRING))) &&

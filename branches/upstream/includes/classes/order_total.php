@@ -5,7 +5,7 @@
  * @package classes
  * @copyright Copyright 2003-2006 Zen Cart Development Team
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: order_total.php 4457 2006-09-10 05:14:34Z ajeh $
+ * @version $Id: order_total.php 5273 2006-12-17 12:56:45Z drbyte $
  */
 /**
  * order-total class
@@ -29,8 +29,8 @@ class order_total extends base {
       reset($this->modules);
       while (list(, $value) = each($this->modules)) {
         //          include(DIR_WS_LANGUAGES . $_SESSION['language'] . '/modules/order_total/' . $value);
-        include(zen_get_file_directory(DIR_WS_LANGUAGES . $_SESSION['language'] . '/modules/order_total/', $value, 'false'));
-        include(DIR_WS_MODULES . 'order_total/' . $value);
+        include_once(zen_get_file_directory(DIR_WS_LANGUAGES . $_SESSION['language'] . '/modules/order_total/', $value, 'false'));
+        include_once(DIR_WS_MODULES . 'order_total/' . $value);
 
         $class = substr($value, 0, strrpos($value, '.'));
         $GLOBALS[$class] = new $class;
@@ -49,10 +49,10 @@ class order_total extends base {
         for ($i=0, $n=sizeof($GLOBALS[$class]->output); $i<$n; $i++) {
           if (zen_not_null($GLOBALS[$class]->output[$i]['title']) && zen_not_null($GLOBALS[$class]->output[$i]['text'])) {
             $order_total_array[] = array('code' => $GLOBALS[$class]->code,
-            'title' => $GLOBALS[$class]->output[$i]['title'],
-            'text' => $GLOBALS[$class]->output[$i]['text'],
-            'value' => $GLOBALS[$class]->output[$i]['value'],
-            'sort_order' => $GLOBALS[$class]->sort_order);
+                                         'title' => $GLOBALS[$class]->output[$i]['title'],
+                                         'text' => $GLOBALS[$class]->output[$i]['text'],
+                                         'value' => $GLOBALS[$class]->output[$i]['value'],
+                                         'sort_order' => $GLOBALS[$class]->sort_order);
           }
         }
       }

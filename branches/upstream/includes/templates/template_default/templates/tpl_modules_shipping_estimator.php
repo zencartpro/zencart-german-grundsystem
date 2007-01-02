@@ -6,7 +6,7 @@
  * @copyright Copyright 2003-2006 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: tpl_modules_shipping_estimator.php 4717 2006-10-09 09:27:48Z drbyte $
+ * @version $Id: tpl_modules_shipping_estimator.php 5351 2006-12-22 21:01:55Z drbyte $
  */
 ?>
 
@@ -47,12 +47,15 @@
       if($_SESSION['cart']->get_content_type() != 'virtual'){
 ?>
 
-<label class="inputLabel"><?php echo ENTRY_COUNTRY; ?></label>
-<?php echo zen_get_country_list('country_id', $selected_country,'style="width=200"'); ?>
+<label class="inputLabel" for="country"><?php echo ENTRY_COUNTRY; ?></label>
+<?php echo zen_get_country_list('zone_country_id', $selected_country, 'id="country" onchange="update_zone(this.form);"'); ?>
 <br class="clearBoth" />
 
-<label class="inputLabel"><?php echo ENTRY_STATE; ?></label>
-<?php echo zen_draw_pull_down_menu('state',$state_array, $state_zone_id); ?>
+<label class="inputLabel" for="stateZone" id="zoneLabel"><?php echo ENTRY_STATE; ?></label>
+<?php echo zen_draw_pull_down_menu('zone_id', zen_prepare_country_zones_pull_down($selected_country), $state_zone_id, 'id="stateZone"');?>
+<br class="clearBoth" id="stBreak" />
+<label class="inputLabel" for="state" id="stateLabel"><?php echo $state_field_label; ?></label>
+<?php echo zen_draw_input_field('state', '', zen_set_field_length(TABLE_ADDRESS_BOOK, 'entry_state', '40') . ' id="state"') .'&nbsp;<span class="alert" id="stText">&nbsp;</span>'; ?>
 <br class="clearBoth" />
 
 <?php

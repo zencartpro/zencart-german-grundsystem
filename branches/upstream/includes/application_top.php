@@ -10,7 +10,7 @@
  * @copyright Copyright 2003-2006 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: application_top.php 4665 2006-10-02 04:20:24Z drbyte $
+ * @version $Id: application_top.php 5137 2006-12-09 22:02:24Z wilt $
  */
 /**
  * boolean if true the autoloader scripts will be parsed and their output shown. For debugging purposes only.

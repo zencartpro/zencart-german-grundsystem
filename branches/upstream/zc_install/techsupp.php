@@ -4,7 +4,7 @@ $myemail ="YOUR_EMAIL_ADDRESS_GOES_HERE";
 
 // ****************************************************************
 // * TECHSUPP.PHP
-// * v1.2f  June 22, 2005
+// * v1.2g  Dec 22, 2006
 // * 
 // * Tech Support tool to collect server and Zen Cart config info 
 // * Results can then be reported when requesting tech support on
@@ -17,7 +17,9 @@ $myemail ="YOUR_EMAIL_ADDRESS_GOES_HERE";
 // * will report system info, but will skip the Zen Cart specific items.
 // *
 // * Contributed by: DrByte 
+// * @version $Id: techsupp.php 5353 2006-12-23 01:49:31Z drbyte $
 // *****************************************************************
+// * v1.2g- removed requirement for Register Globals in order to use email test
 // * v1.2f- added ability to list suggested paths for specific Zen Cart configure.php parameters
 // * v1.2e- minor bugfixes
 // * v1.2d- minor bugfixes and code to prevent ZC info if running from zc_install folder
@@ -74,61 +76,53 @@ h3 {
 
 <!-- DO NOT change ANY of the php sections -->
 <?php
-$ipi = getenv("REMOTE_ADDR");
-$httprefi = getenv ("HTTP_REFERER");
-$httpagenti = getenv ("HTTP_USER_AGENT");
 ?>
-
-<input type=hidden name="ip" value="<?php echo $ipi ?>">
-<input type=hidden name="httpref" value="<?php echo $httprefi ?>">
-<input type=hidden name="httpagent" value="<?php echo $httpagenti ?>">
-
-
-Your Name: <input type=text name="visitor" size="35">
-<br>
-Your Email: <input type=text name="visitormail" size="35">
-<br><br>
-Mail Message:
-<br>
-<textarea name=notes rows=4 cols=40>You may optionally enter a message here.</textarea>
-<br>
-<input type=submit name="submit" VALUE="Send Mail">
+Your Name: <input type="text" name="visitor" size="35"><br>
+Your Email: <input type="text" name="visitormail" size="35"><br><br>
+Mail Message:<br>
+<textarea name="notes" rows=4 cols=40>You may optionally enter a message here.</textarea><br>
+<input type="submit" name="submit" VALUE="Send Mail">
 </form>
 
 
 <?php
-if (!isset($visitormail)) echo "Please fill in the fields and click Send.<br>(No content to process yet.) $ip";
+$em_visitormail = (isset($_POST['visitormail'])) ? $_POST['visitormail'] : '';
+$em_visitor = (isset($_POST['visitor'])) ? $_POST['visitor'] : '';
+$em_notes = (isset($_POST['notes'])) ? strip_tags($_POST['notes']) : '';
+if (!isset($em_visitormail)) echo "Please fill in the fields and click Send.<br>(No content to process yet.) $ip";
 
 $todayis = date("l, F j, Y, g:i a");
-
 $subject = "EMAIL SYSTEM -- This is a TEST MESSAGE";
-
+$ipi = $_SERVER['REMOTE_ADDR'];
+$httprefi = $_SERVER['HTTP_REFERER'];
+$httpagenti = $_SERVER['HTTP_USER_AGENT'];
 $message = " $todayis \n
-Message: $notes \n
-From: $visitor ($visitormail)\n
-Additional Info : IP = $ip \n
-Browser Info: $httpagent \n
-Referral : $httpref \n
+Message: " . $em_notes  . "\n
+From: $em_visitor ($em_visitormail)\n
+This email is a simple verification test to demonstrate that your server's \"PHP\" method for sending mail is working properly. If you have received this message, then it is likely that your Zen Cart shop can easily use the \"PHP\" method for Email Transport in your Admin->Configuration->Email Options area. \n\n
+Additional Info : IP = $ipi \n
+Browser Info: $httpagenti \n
+Referral : $httprefi \n
 ";
 
 $from = "From: $myemail\r\n";
 
-if ($myemail != "" && isset($_POST['submit']) ) {
+if ($myemail != "" && isset($_POST['submit']) && $em_visitormail != '' ) {
   mail($myemail, $subject, $message, $from);
-}
 ?>
 
 <p align=center><b>
-Date: <?php echo $todayis ?>
+Date: <?php echo $todayis; ?>
 <br>
-Thank You : <?php echo $visitor ?> ( <?php echo $visitormail ?> )
+Thank You : <?php echo $em_visitor ?> ( <?php echo $em_visitormail; ?> )
 <br>
-<?php echo $ip ?></b>
+<?php echo $ip; ?></b>
 
 <br><br>
 <a href="<?php echo basename(__FILE__); ?>"> Send Another </a>
 </p>
 <?php
+}
  } else {
 echo '<span class=green><em>{if you wish to enable email-testing support, please edit this file ('.basename(__FILE__).') and enter your email address at the top on the 3rd line}</span></em><br />';
  }
@@ -174,6 +168,7 @@ echo '<span class=green><em>{if you wish to enable email-testing support, please
 <li><?php echo '<strong>PHP session.use_trans_sid</strong> = '.(ini_get('session.use_trans_sid') ? ON : OFF); ?></li>
 <li><?php echo '<strong>PHP session.save_path = </strong>'.ini_get("session.save_path"); ?></li>
 <li><?php echo '<strong>PHP Magic_Quotes_Runtime</strong> = '.(@get_magic_quotes_runtime() > 0 ? ON : OFF); ?></li>
+<li><?php echo '<strong>PHP Output Buffering (gzip)</strong> = '.(@ini_get("output_buffering") > 0 ? ON : OFF); ?></li>
 <li><?php echo '<strong>PHP GD Support</strong> = '.(@extension_loaded('gd')? ON : OFF); ?></li>
 <li><?php echo '<strong>PHP ZLIB Support</strong> = '.(@extension_loaded('zlib')? ON : OFF); ?></li>
 <li><?php echo '<strong>PHP OpenSSL Support</strong> = '.(@extension_loaded('openssl') ? ON : OFF); ?></li>

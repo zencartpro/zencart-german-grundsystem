@@ -6,7 +6,7 @@
  * @copyright Copyright 2003-2006 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: shipping.php 3041 2006-02-15 21:56:45Z wilt $
+ * @version $Id: shipping.php 5381 2006-12-24 18:21:59Z drbyte $
  */
 if (!defined('IS_ADMIN_FLAG')) {
   die('Illegal Access');
@@ -41,8 +41,8 @@ class shipping extends base {
 
       for ($i=0, $n=sizeof($include_modules); $i<$n; $i++) {
         //          include(DIR_WS_LANGUAGES . $_SESSION['language'] . '/modules/shipping/' . $include_modules[$i]['file']);
-        include(zen_get_file_directory(DIR_WS_LANGUAGES . $_SESSION['language'] . '/modules/shipping/', $include_modules[$i]['file'], 'false'));
-        include(DIR_WS_MODULES . 'shipping/' . $include_modules[$i]['file']);
+        include_once(zen_get_file_directory(DIR_WS_LANGUAGES . $_SESSION['language'] . '/modules/shipping/', $include_modules[$i]['file'], 'false'));
+        include_once(DIR_WS_MODULES . 'shipping/' . $include_modules[$i]['file']);
 
         $GLOBALS[$include_modules[$i]['class']] = new $include_modules[$i]['class'];
       }

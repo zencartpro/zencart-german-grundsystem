@@ -6,7 +6,7 @@
  * @copyright Copyright 2003-2006 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: header_php.php 4816 2006-10-23 04:08:52Z drbyte $
+ * @version $Id: header_php.php 5244 2006-12-14 18:37:33Z drbyte $
  */
 
 // This should be first line of the script:
@@ -23,6 +23,13 @@ if (sizeof($_SESSION['navigation']->snapshot) > 0) {
   $origin_href = zen_href_link(FILENAME_DEFAULT);
 }
 
+// redirect customer to where they came from if their cart is not empty and they didn't click on create-account specifically
+if ($_SESSION['cart']->count_contents() > 0) {
+  if ($origin_href != zen_href_link(FILENAME_DEFAULT)) {
+    zen_redirect($origin_href);
+  }
+}
+
 /*  prepare address list */
 $addresses_query = "SELECT address_book_id, entry_firstname as firstname, entry_lastname as lastname,
                            entry_company as company, entry_street_address as street_address,
@@ -35,6 +42,7 @@ $addresses_query = "SELECT address_book_id, entry_firstname as firstname, entry_
 $addresses_query = $db->bindVars($addresses_query, ':customersID', $_SESSION['customer_id'], 'integer');
 $addresses = $db->Execute($addresses_query);
 
+$addressArray = array();
 while (!$addresses->EOF) {
   $format_id = zen_get_address_format_id($addresses->fields['country_id']);
 

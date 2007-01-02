@@ -5,7 +5,7 @@
  * @copyright Copyright 2003-2006 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: inspect_default.php 4819 2006-10-23 06:39:08Z drbyte $
+ * @version $Id: inspect_default.php 4855 2006-10-28 06:52:02Z drbyte $
  */
 
 ?>
@@ -84,7 +84,7 @@
    <?php echo $val['writable']; ?>
    <?php echo ($val['writable']==UNWRITABLE)?'&nbsp;&nbsp;(chmod '.$val['chmod'] . ')' : ''; ?>
    </li>
-<?php } //end foreach?>
+<?php } //end foreach ?>
 </ul>
 </div>
 </fieldset><br />

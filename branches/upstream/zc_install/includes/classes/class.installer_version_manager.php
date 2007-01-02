@@ -8,7 +8,7 @@
  * @copyright Copyright 2003-2006 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: class.installer_version_manager.php 4840 2006-10-26 04:31:44Z drbyte $
+ * @version $Id: class.installer_version_manager.php 5369 2006-12-23 10:55:52Z drbyte $
  */
 
 
@@ -29,7 +29,7 @@
       /**
        * The version that this edition of the installer is designed to support
        */
-      $this->latest_version = '1.3.6';
+      $this->latest_version = '1.3.7';
 
       /**
        * Check to see if the configuration table can be found...thus validating the installation, in part.
@@ -76,6 +76,7 @@
       $this->version1302 = $this->check_version_1302();
       $this->version135 = $this->check_version_135();
       $this->version136 = $this->check_version_136();
+      $this->version137 = $this->check_version_137();
 
 //        if ($this->version103 == true)  $retVal = '1.0.3';
 //        if ($this->version104 == true)  $retVal = '1.0.4';
@@ -97,6 +98,7 @@
         if ($this->version1302 == true) $retVal = '1.3.0.2';
         if ($this->version135 == true) $retVal = '1.3.5';
         if ($this->version136 == true) $retVal = '1.3.6';
+        if ($this->version137 == true) $retVal = '1.3.7';
 
       return $retVal;
     }
@@ -619,6 +621,40 @@
       }
       return $got_v1_3_6;
     } //end of 1.3.6 check
+
+
+
+    function check_version_137() {
+      global $db_test;
+      $got_v1_3_7 = false;
+      $got_v1_3_7a = false;
+      $got_v1_3_7b = false;
+      //1st check for v1.3.7
+      $sql = "select configuration_description from " . DB_PREFIX . "configuration where configuration_key='DEFINE_BREADCRUMB_STATUS'";
+      $result = $db_test->Execute($sql);
+      if (ZC_UPG_DEBUG==true) echo "137a-configdesc_check DEFINE_BREADCRUMB_STATUS =" . $result->fields['configuration_description'] . '<br>';
+      if  ($result->fields['configuration_description'] == 'Enable the Breadcrumb Trail Links?<br />0= OFF<br />1= ON<br />2= Off for Home Page Only') {
+        $got_v1_3_7a = true;
+      }
+      //2nd check for v1.3.7
+      $sql = "select configuration_title from " . DB_PREFIX . "configuration where configuration_key='USE_SPLIT_LOGIN_MODE'";
+      $result = $db_test->Execute($sql);
+      if (ZC_UPG_DEBUG==true) echo "137b-configkey_check USE_SPLIT_LOGIN_MODE =" . $result->fields['configuration_title'] . '<br>';
+      if  ($result->fields['configuration_title'] == 'Use split-login page') {
+        $got_v1_3_7b = true;
+      }
+
+      if (ZC_UPG_DEBUG==true) {
+        echo '1.3.7a='.$got_v1_3_7a.'<br>';
+        echo '1.3.7b='.$got_v1_3_7b.'<br>';
+      }
+      // evaluate all 1.3.7 checks
+      if ($got_v1_3_7a && $got_v1_3_7b ) {
+        $got_v1_3_7 = true;
+        if (ZC_UPG_DEBUG==true) echo '<br>Got 1.3.7<br>';
+      }
+      return $got_v1_3_7;
+    } //end of 1.3.7 check
 
 
 

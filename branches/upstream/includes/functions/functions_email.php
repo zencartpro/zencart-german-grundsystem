@@ -8,7 +8,7 @@
  * @copyright Copyright 2003-2006 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: functions_email.php 4839 2006-10-26 02:26:29Z drbyte $
+ * @version $Id: functions_email.php 5442 2006-12-29 04:16:40Z drbyte $
  */
 
 /**
@@ -40,8 +40,11 @@
 **/
   function zen_mail($to_name, $to_address, $email_subject, $email_text, $from_email_name, $from_email_address, $block=array(), $module='default', $attachments_list='' ) {
     global $db, $messageStack, $zco_notifier;
-    if (SEND_EMAILS != 'true') return false;  // if sending email is disabled in Admin, just exit
+    if (!defined('DEVELOPER_OVERRIDE_EMAIL_STATUS') || (defined('DEVELOPER_OVERRIDE_EMAIL_STATUS') && DEVELOPER_OVERRIDE_EMAIL_STATUS == 'site')) 
+      if (SEND_EMAILS != 'true') return false;  // if sending email is disabled in Admin, just exit
 
+    if (defined('DEVELOPER_OVERRIDE_EMAIL_ADDRESS') && DEVELOPER_OVERRIDE_EMAIL_ADDRESS != '') $to_address = DEVELOPER_OVERRIDE_EMAIL_ADDRESS;
+    
     // ignore sending emails for any of the following pages
     // (The EMAIL_MODULES_TO_SKIP constant can be defined in a new file in the "extra_configures" folder)
     if (defined('EMAIL_MODULES_TO_SKIP') && in_array($module,explode(",",constant('EMAIL_MODULES_TO_SKIP')))) return false;
@@ -133,8 +136,8 @@
 
       // now lets build the mail object with the phpmailer class
       $mail = & new PHPMailer();
-      $lang_code = ($_SESSION['languages_code'] == '' ? 'en' : $_SESSION['languages_code'] );
-      $mail->SetLanguage($lang_code,DIR_WS_CLASSES . 'support/');
+      $lang_code = strtolower(($_SESSION['languages_code'] == '' ? 'en' : $_SESSION['languages_code'] ));
+      $mail->SetLanguage($lang_code, DIR_FS_CATALOG . DIR_WS_CLASSES . 'support/');
       $mail->CharSet =  (defined('CHARSET')) ? CHARSET : "iso-8859-1";
       $mail->Encoding = (defined('EMAIL_ENCODING_METHOD')) ? EMAIL_ENCODING_METHOD : "7bit";
       if ((int)EMAIL_SYSTEM_DEBUG > 0 ) $mail->SMTPDebug = (int)EMAIL_SYSTEM_DEBUG;
@@ -160,8 +163,10 @@
           $mail->IsQmail();
           break;
         case 'sendmail':
+        case 'sendmail-f':
         default:
           $mail->IsSendmail();
+          if (defined('EMAIL_SENDMAIL_PATH')) $mail->Sendmail = EMAIL_SENDMAIL_PATH;
           break;
       }
 
@@ -178,8 +183,8 @@
 
       // set the reply-to address.  If none set yet, then use Store's default email name/address.
       // If sending from contact-us or tell-a-friend page, use the supplied info
-      $email_reply_to_address = ($email_reply_to_address) ? $email_reply_to_address : ($module=='contact_us' || $module=='tell_a_friend' ? $from_email_address : EMAIL_FROM);
-      $email_reply_to_name    = ($email_reply_to_name)    ? $email_reply_to_name    : ($module=='contact_us' || $module=='tell_a_friend' ? $from_email_name    : STORE_NAME);
+      $email_reply_to_address = ($email_reply_to_address) ? $email_reply_to_address : (in_array($module, array('contact_us',  'tell_a_friend')) ? $from_email_address : EMAIL_FROM);
+      $email_reply_to_name    = ($email_reply_to_name)    ? $email_reply_to_name    : (in_array($module, array('contact_us',  'tell_a_friend')) ? $from_email_name    : STORE_NAME);
       $mail->AddReplyTo($email_reply_to_address, $email_reply_to_name);
 
       // if mailserver requires that all outgoing mail must go "from" an email address matching domain on server, set it to store address
@@ -231,7 +236,7 @@
     } // end foreach loop thru possible multiple email addresses
     $zco_notifier->notify('NOTIFY_EMAIL_AFTER_SEND_ALL_SPECIFIED_ADDRESSES');
 
-    if (EMAIL_FRIENDLY_ERRORS=='false' && $ErrorInfo != '') die('<br /><br />Email Error: ' . $errorInfo);
+    if (EMAIL_FRIENDLY_ERRORS=='false' && $ErrorInfo != '') die('<br /><br />Email Error: ' . $ErrorInfo);
 
     return $ErrorInfo;
   }  // end function
@@ -313,8 +318,10 @@
  * selectively go thru each template tag and substitute appropriate text
  * finally, build full html content as "return" output from class
 **/
-  function zen_build_html_email_from_template($module='default',$block) {
+  function zen_build_html_email_from_template($module='default',$block='') {
     global $messageStack, $current_page_base;
+    if ($block == '' && !is_array($block)) $block = array();
+
     // Identify and Read the template file for the type of message being sent
     $template_filename_base = DIR_FS_EMAIL_TEMPLATES . "email_template_";
     $template_filename = DIR_FS_EMAIL_TEMPLATES . "email_template_" . $current_page_base . ".html";
@@ -356,7 +363,7 @@
     if ($block['CHARSET']=='')                $block['CHARSET']                = CHARSET;
     //  if ($block['EMAIL_STYLESHEET']=='')       $block['EMAIL_STYLESHEET']       = str_replace(array("\r\n", "\n", "\r"), "",@file_get_contents(DIR_FS_EMAIL_TEMPLATES.'stylesheet.css'));
 
-    if ($block['EXTRA_INFO'] =='EXTRA_INFO')  $block['EXTRA_INFO']  = '';
+    if (!defined($block['EXTRA_INFO']))  $block['EXTRA_INFO']  = '';
     if (substr($module,-6) != '_extra' && $module != 'contact_us')  $block['EXTRA_INFO']  = '';
 
     $block['COUPON_BLOCK'] = '';
