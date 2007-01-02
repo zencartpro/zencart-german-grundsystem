@@ -24,6 +24,8 @@
   if (zen_not_null($action)) {
     switch ($action) {
       case 'insert':
+        // r.l.: added languages_id
+        $language_id = zen_db_prepare_input($_POST['languages_id']);
         $name = zen_db_prepare_input($_POST['name']);
         $code = zen_db_prepare_input($_POST['code']);
         $image = zen_db_prepare_input($_POST['image']);
@@ -35,8 +37,8 @@
         } else {
 
           $db->Execute("insert into " . TABLE_LANGUAGES . "
-                        (name, code, image, directory, sort_order)
-                        values ('" . zen_db_input($name) . "', '" . zen_db_input($code) . "',
+                        (languages_id, name, code, image, directory, sort_order)
+                        values ('" . zen_db_input($language_id) . "', '" . zen_db_input($name) . "', '" . zen_db_input($code) . "',
                                 '" . zen_db_input($image) . "', '" . zen_db_input($directory) . "',
                                 '" . zen_db_input($sort_order) . "')");
 
@@ -213,13 +215,15 @@
         break;
       case 'save':
         //prepare/sanitize inputs
-        $lID = zen_db_prepare_input($_GET['lID']);
+        $lIDW = (int)zen_db_prepare_input($_GET['lID']);
+        // r.l.: get the real languages_id
+        $lID = (int)zen_db_prepare_input($_POST['languages_id']);
         $name = zen_db_prepare_input($_POST['name']);
         $code = zen_db_prepare_input($_POST['code']);
         $image = zen_db_prepare_input($_POST['image']);
         $directory = zen_db_prepare_input($_POST['directory']);
         $sort_order = zen_db_prepare_input($_POST['sort_order']);
-
+        $query = "update " . TABLE_LANGUAGES . " set languages_id = '" . $lID . "', name = '" . zen_db_input($name) . "', code = '" . zen_db_input($code) . "', image = '" . zen_db_input($image) . "', directory = '" . zen_db_input($directory) . "', sort_order = '" . zen_db_input($sort_order) . "' where languages_id = '" . (int)$lID . "'";
         // check if the spelling of the name for the default language has just been changed (thus meaning we need to change the spelling of DEFAULT_LANGUAGE to match it)
 // get "code" for the language we just updated
         $result = $db->Execute("select code from " . TABLE_LANGUAGES . " where languages_id = '" . (int)$lID . "'");
@@ -232,10 +236,11 @@
 
         // save new language settings
         $db->Execute("update " . TABLE_LANGUAGES . "
-                      set name = '" . zen_db_input($name) . "', code = '" . zen_db_input($code) . "',
+                      set languages_id = '" . $lID . "', name = '" . zen_db_input($name) . "', code = '" . zen_db_input($code) . "', 
                       image = '" . zen_db_input($image) . "', directory = '" . zen_db_input($directory) . "',
                       sort_order = '" . zen_db_input($sort_order) . "'
                       where languages_id = '" . (int)$lID . "'");
+        $db->Execute($query);
 
         // update default language setting
         if ((isset($_POST['default']) && $_POST['default'] == 'on') || $default_lang_change_flag == true) {
@@ -387,6 +392,7 @@
       $heading[] = array('text' => '<b>' . TEXT_INFO_HEADING_NEW_LANGUAGE . '</b>');
       $contents = array('form' => zen_draw_form('languages', FILENAME_LANGUAGES, 'action=insert'));
       $contents[] = array('text' => TEXT_INFO_INSERT_INTRO);
+      $contents[] = array('text' => '<br>' . TEXT_INFO_LANGUAGE_ID . '<br>' . zen_draw_input_field('languages_id'));
       $contents[] = array('text' => '<br>' . TEXT_INFO_LANGUAGE_NAME . '<br>' . zen_draw_input_field('name'));
       $contents[] = array('text' => '<br>' . TEXT_INFO_LANGUAGE_CODE . '<br>' . zen_draw_input_field('code', '', 'maxlength="2" size="4"'));
       $contents[] = array('text' => '<br>' . TEXT_INFO_LANGUAGE_IMAGE . '<br>' . zen_draw_input_field('image', 'icon.gif'));
@@ -399,6 +405,7 @@
       $heading[] = array('text' => '<b>' . TEXT_INFO_HEADING_EDIT_LANGUAGE . '</b>');
       $contents = array('form' => zen_draw_form('languages', FILENAME_LANGUAGES, 'page=' . $_GET['page'] . '&lID=' . $lInfo->languages_id . '&action=save'));
       $contents[] = array('text' => TEXT_INFO_EDIT_INTRO);
+      $contents[] = array('text' => '<br>' . TEXT_INFO_LANGUAGE_ID . '<br>' . zen_draw_input_field('languages_id', $lInfo->languages_id,'','','',false));
       $contents[] = array('text' => '<br>' . TEXT_INFO_LANGUAGE_NAME . '<br>' . zen_draw_input_field('name', $lInfo->name));
       $contents[] = array('text' => '<br>' . TEXT_INFO_LANGUAGE_CODE . '<br>' . zen_draw_input_field('code', $lInfo->code, 'maxlength="2" size="4"'));
       $contents[] = array('text' => '<br>' . TEXT_INFO_LANGUAGE_IMAGE . '<br>' . zen_draw_input_field('image', $lInfo->image));

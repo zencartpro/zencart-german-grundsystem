@@ -87,6 +87,7 @@ if (file_exists(DIR_WS_INCLUDES . 'auto_loaders/overrides/' . $loader_file)) {
 /**
  * load the default application_top autoloader file.
  */
+$autoLoadConfig = array();
 include($base_dir . $loader_file);
 if ($loader_dir = dir(DIR_WS_INCLUDES . 'auto_loaders')) {
   while ($loader_file = $loader_dir->read()) {
