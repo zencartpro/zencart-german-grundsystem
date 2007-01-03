@@ -1,30 +1,18 @@
 <?php
-//
-// +----------------------------------------------------------------------+
-// |zen-cart Open Source E-commerce                                       |
-// +----------------------------------------------------------------------+
-// | Copyright (c) 2004 The zen-cart developers                           |
-// |                                                                      |
-// | http://www.zen-cart.com/index.php                                    |
-// |                                                                      |
-// | Portions Copyright (c) 2003 osCommerce                               |
-// +----------------------------------------------------------------------+
-// | This source file is subject to version 2.0 of the GPL license,       |
-// | that is bundled with this package in the file LICENSE, and is        |
-// | available through the world-wide-web at the following url:           |
-// | http://www.zen-cart.com/license/2_0.txt.                             |
-// | If you did not receive a copy of the zen-cart license and are unable |
-// | to obtain it through the world-wide-web, please send a note to       |
-// | license@zen-cart.com so we can mail you a copy immediately.          |
-// +----------------------------------------------------------------------+
-// | Translator:           cyaneo                                         |
-// | Date of Translation:  16.08.04                                       |
-// | Homepage:             www.zen-cart.at                                |
-// +----------------------------------------------------------------------+
-// $Id: system_setup.php 64 2006-09-05 11:19:25Z wflohr $
-//
-
-define('SAVE_SYSTEM_SETTINGS', 'speichern & fortfahren'); //this comes before TEXT_MAIN
+/**
+ * @package Installer
+ * @access private
+ * @copyright Copyright 2003-2005 Zen Cart Development Team
+ * @copyright Portions Copyright 2003 osCommerce
+ * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
+ * @translator: cyaneo/hugo13/wflohr	http://www.zen-cart.at	2007-01-03
+ * @version $Id: system_setup.php 4707 2006-10-08 08:52:12Z drbyte $
+ */
+/**
+ * defining language components for the page
+ */
+define('SAVE_SYSTEM_SETTINGS', 'speichern & fortfahren');
+//this comes before TEXT_MAIN
 define('TEXT_MAIN', "Wir installieren jetzt die Einstellungen Ihrer Zen Cart Systemumgebung. Bitte kontrollieren Sie gewissenhaft alle Einstellungen. Anschlie&szlig;end klicken Sie bitte zum Fortfahren auf <em>".SAVE_SYSTEM_SETTINGS.'</em>.');
 define('TEXT_PAGE_HEADING', 'Zen Cart Installation - Systemumgebung');
 define('SERVER_SETTINGS', 'Servereinstellungen');
@@ -40,4 +28,9 @@ define('ENABLE_SSL', 'SSL im Shop aktivieren');
 define('ENABLE_SSL_INSTRUCTION', 'Wollen Sie SSL (Secure Sockets Layer) im Shop aktivieren?');
 define('ENABLE_SSL_ADMIN', 'SSL f&uuml;r Admin Bereich aktivieren');
 define('ENABLE_SSL_ADMIN_INSTRUCTION', 'Wollen Sie SSL (Secure Sockets Layer) f&uuml;r den Admin Bereich aktivieren?');
+define('REDISCOVER', 'die Default-Werten für diesen Host neu ermitteln');
+
+
+
+
 ?>
