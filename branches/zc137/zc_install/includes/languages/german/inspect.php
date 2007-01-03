@@ -40,7 +40,7 @@ define('LABEL_PREVIOUS_INSTALL_FOUND','Es wurde eine vorherigen Zen Cart install
 define('LABEL_PREVIOUS_VERSION_NUMBER','Die installierte Version scheint eine Zen Cart v%s zu sein');
 define('LABEL_PREVIOUS_VERSION_NUMBER_UNKNOWN','<em>Die Version Ihrer Datenbank konnte nicht korrekt ermittelt werden. Die Ursache kann ein falsches Tabellen-Pr&auml;fix sein oder es wurden fehlerhafte Angaben zu Ihrer Datenbank gemacht. <br /><br />ACHTUNG: Verwenden Sie die Update Option nur, wenn alle Angaben in Ihrer \'configure.php\' korrekt sind.</em>');
 define('LABEL_UPGRADE_VS_INSTALL', 'Installieren oder Updaten?');
-define('LABEL_INSTALL', 'Bereit zum installieren?  (Es werden alle existierenden Daten gelöscht. Du bist NICHT im upgrade Modus!!!)');
+define('LABEL_INSTALL', 'Bereit zum installieren?  <br>(Es werden alle existierenden Daten gelöscht. Du bist NICHT im upgrade Modus!!!)');
 define('IMAGE_STOP_BEFORE_UPGRADING', '<div class="center"><img src="includes/templates/template_default/images/stop.gif" border="0" alt="ACHTUNG: Bitte korrekte Option ausw&auml;hlen." /></div>');
 define('LABEL_ACTION_SELECTION_INSTRUCTIONS','<p class="errors extralarge"><span class="center">Achtung:</span><br />Falls Sie upgraden, w&auml;hlen Sie bitte "<span style="text-decoration: underline;">Datenbank aktualisieren</span>" um Ihre Daten zu konvertieren.</p><p class="extralarge">Wenn Sie "Installieren" w&auml;hlen, wird der Inhalt der Datenbank gel&ouml;scht.</p>');
 define('DISPLAY_PHP_INFO','PHP Info Link: ');
