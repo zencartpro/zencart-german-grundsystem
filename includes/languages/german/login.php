@@ -12,17 +12,17 @@ define('NAVBAR_TITLE','anmelden');
 define('HEADING_TITLE','Willkommen, bitte melden Sie sich an.');
 
 define('HEADING_NEW_CUSTOMER','Sie sind neu hier? Dann bitte Kundenkonto erstellen:');
-define('HEADING_NEW_CUSTOMER_SPLIT', 'New Customers' . ' !!!TRANSLATE!!! file: includes/languages/LANGUAGE/login.php at line 357');
+define('HEADING_NEW_CUSTOMER_SPLIT', 'Neue Kunden');
 
 define('TEXT_NEW_CUSTOMER_INTRODUCTION','Ein Kundenkonto bei ' . STORE_NAME . ' erm&ouml;glicht Ihnen z.B. komfortabel einzukaufen, sich Ihre aktuellen und bisherigen Bestellungen anzusehen u.v.m.');
-define('TEXT_NEW_CUSTOMER_INTRODUCTION_SPLIT', 'Have a PayPal account? Want to pay quickly with a credit card? Use the PayPal button below to use the Express Checkout option.' . ' !!!TRANSLATE!!! file: includes/languages/LANGUAGE/login.php at line 357');
-define('TEXT_NEW_CUSTOMER_POST_INTRODUCTION_DIVIDER', '<span class="larger">Or</span><br />' . ' !!!TRANSLATE!!! file: includes/languages/LANGUAGE/login.php at line 357');
-define('TEXT_NEW_CUSTOMER_POST_INTRODUCTION_SPLIT', 'Create a Customer Profile with <strong>' . STORE_NAME . '</strong> which allows you to shop faster, track the status of your current orders, review your previous orders and take advantage of our other member\'s benefits.' . ' !!!TRANSLATE!!! file: includes/languages/LANGUAGE/login.php at line 357');
+define('TEXT_NEW_CUSTOMER_INTRODUCTION_SPLIT', 'Haben Sie ein PayPal Konto? Möchten mit einer Kreditkarte schnell zahlen? Die PayPal Taste unten benutzen, um die ausdrückliche Prüfung Wahl zu verwenden.');
+define('TEXT_NEW_CUSTOMER_POST_INTRODUCTION_DIVIDER', '<span class="larger">oder</span><br />');
+define('TEXT_NEW_CUSTOMER_POST_INTRODUCTION_SPLIT', 'Ein Kundenprofil mit <strong>' . STORE_NAME . '</strong> eroeffnen, das dir erlaubt, schneller zu kaufen, den Status deiner Stromaufträge aufzuspüren, deine vorhergehenden Aufträge zu wiederholen und Nutzen unser anderes Mitgliedes zu nutzen');
 
 define('HEADING_RETURNING_CUSTOMER','Stammkunden: Bitte melden Sie sich an');
-define('HEADING_RETURNING_CUSTOMER_SPLIT', 'Returning Customers' . ' !!!TRANSLATE!!! file: includes/languages/LANGUAGE/login.php at line 357');
+define('HEADING_RETURNING_CUSTOMER_SPLIT', 'Zurückkommende Kunden ');
 
-define('TEXT_RETURNING_CUSTOMER_SPLIT', 'In order to continue, please login to your <strong>' . STORE_NAME . '</strong> account.' . ' !!!TRANSLATE!!! file: includes/languages/LANGUAGE/login.php at line 357');
+define('TEXT_RETURNING_CUSTOMER_SPLIT', 'Zum fortfahren, bitte anmelden');
 
 define('TEXT_PASSWORD_FORGOTTEN','Haben Sie Ihr Passwort vergessen?');
 

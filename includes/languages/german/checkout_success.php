@@ -25,6 +25,7 @@ define('FOOTER_DOWNLOAD','Sie k&ouml;nnen Ihre Artikel auch zu einem sp&auml;ter
 
 define('TEXT_YOUR_ORDER_NUMBER', '<strong>Ihre Bestellnummer lautet:</strong> ');
 
-define('TEXT_CHECKOUT_LOGOFF_GUEST', 'NOTE: To complete your order, a temporary account was created. You may close this account by clicking Log Off. Clicking Log Off also ensures that your receipt and purchase information is not visible to the next person using this computer. If you wish to continue shopping, feel free! You may log off at anytime using the link at the top of the page.' . ' !!!TRANSLATE!!! file: includes/languages/LANGUAGE/checkout_success.php at line 357');
-define('TEXT_CHECKOUT_LOGOFF_CUSTOMER', 'Thank you for shopping. Please click the Log Off link to ensure that your receipt and purchase information is not visible to the next person using this computer.' . ' !!!TRANSLATE!!! file: includes/languages/LANGUAGE/checkout_success.php at line 357');
+define('TEXT_CHECKOUT_LOGOFF_GUEST',     
+ANMERKUNG: Um deinen Auftrag durchzuführen, wurde ein temporäres Konto verursacht. Du kannst dieses Konto abschließen, indem Sie Logoff anklicken. Klickendes Logoff stellt auch sicher, daß deine Empfang und Erwerb Informationen nicht zur folgenden Person sichtbar sind, die diesen Computer verwendet. Wenn du zu kaufen fortfahren möchtest, frei glauben! Du kannst logoff an die Verbindung an der Oberseite der Seite jederzeit verwenden.');
+define('TEXT_CHECKOUT_LOGOFF_CUSTOMER', 'Für das Einkaufen danke. Die Logoffverbindung bitte klicken, um sicherzugehen, daß deine Empfang und Erwerb Informationen nicht zur folgenden Person sichtbar sind, die diesen Computer verwendet.');
 ?>
