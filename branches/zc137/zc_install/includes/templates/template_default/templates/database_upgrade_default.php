@@ -124,6 +124,10 @@
       <input <?php if ($needs_v1_3_7) {echo "checked";} ?> name="version[]" type="checkbox" id="checkbox19" value="1.3.6" tabindex="19" />
       <label for="checkbox19">Upgrade DB from 1.3.6 to 1.3.7</label>
     </div>
+    <div class="input">
+      <input <?php if ($needs_multilingual) {echo "checked";} ?> name="version[]" type="checkbox" id="checkbox15" value="multilingual" tabindex="15" />
+      <label for="checkbox15">Upgrade DB to Multilingual</label>
+    </div>
     </fieldset>
     <br />
 <?php } //endif $dbinfo->zdb_configuration_table_found ?>
