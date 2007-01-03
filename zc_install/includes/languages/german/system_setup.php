@@ -28,7 +28,7 @@ define('ENABLE_SSL', 'SSL im Shop aktivieren');
 define('ENABLE_SSL_INSTRUCTION', 'Wollen Sie SSL (Secure Sockets Layer) im Shop aktivieren?');
 define('ENABLE_SSL_ADMIN', 'SSL f&uuml;r Admin Bereich aktivieren');
 define('ENABLE_SSL_ADMIN_INSTRUCTION', 'Wollen Sie SSL (Secure Sockets Layer) f&uuml;r den Admin Bereich aktivieren?');
-define('REDISCOVER', 'die Default-Werten für diesen Host neu ermitteln');
+define('REDISCOVER', 'die Default-Werte für diesen Host neu ermitteln');
 
 
 

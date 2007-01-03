@@ -19,7 +19,7 @@ define('HEADER_TITLE_LOGIN', 'anmelden');
 
 // added defines for header alt and text
 define('HEADER_ALT_TEXT', 'Powered by Zen Cart :: The Art of E-Commerce [home link]');
-define('HEADER_SALES_TEXT', '<h1>Abverkaufsnachricht hier angeben</h1>zu finden in:: includes/german/classic/header.php');
+define('HEADER_SALES_TEXT', '<h3>Abverkaufsnachricht hier angeben</h3>zu finden in:: includes/german/classic/header.php');
 define('HEADER_LOGO_WIDTH', '200px');
 define('HEADER_LOGO_HEIGHT', '70px');
 define('HEADER_LOGO_IMAGE', 'logo.gif');

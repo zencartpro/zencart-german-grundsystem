@@ -83,7 +83,7 @@ define('BUTTON_DELETE_ALT', 'l&ouml;schen');
 define('BUTTON_DELETE_SMALL_ALT', 'Loeschen');
 define('BUTTON_DOWNLOAD_ALT', 'download');
 define('BUTTON_EDIT_SMALL_ALT', 'bearbeiten');
-define('BUTTON_IN_CART_ALT', 'in den Warenkorb');
+define('BUTTON_IN_CART_ALT', 'in den Warenkorb ');
 define('BUTTON_LOGIN_ALT', 'anmelden');
 define('BUTTON_NEXT_ALT', 'n&auml;chstes');
 define('BUTTON_PREVIOUS_ALT', 'vorheriges');
