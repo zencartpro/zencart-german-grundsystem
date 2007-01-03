@@ -46,7 +46,7 @@ define('TEXT_PRODUCTS_INTRO', 'Verwenden Sie bitte unten stehendes Formular, um 
 define('IMAGE_PRODUCTS', 'zu Artikel zuteilen');
 define('TEXT_DELETE_PRODUCTS', 'Soll diese Medienkollektion und alle Verlinkungen zu dieser Kollektion gel&ouml;scht werden?');
 define('TEXT_DELETE_WARNING_PRODUCTS', '<b>WARNUNG:</b> Es gibt %s Verlinkungen zu dieser Medienkollektion!');
-define('TEXT_WARNING_FOLDER_UNWRITABLE', 'NOTE: media folder ' . DIR_FS_CATALOG_MEDIA . ' is not writable. Cannot upload files.' . ' !!!TRANSLATE!!! file: admin/includes/languages/LANGUAGE/media_manager.php at line 357');
+define('TEXT_WARNING_FOLDER_UNWRITABLE', 'Hinweis: media Ordner ' . DIR_FS_CATALOG_MEDIA . ' ist nicht schreibbar. Kann Dateien nicht hinaufladen.');
 define('ERROR_UNKNOWN_DATA', 'FEHLER: Unbekannte Daten geliefert... Operation abgebrochen');
 define('TEXT_ADD', 'hinzuf&uuml;gen');
 
