@@ -20,8 +20,8 @@
 // $Id: advanced_search_result.php 1969 2005-09-13 06:57:21Z drbyte $
 //
 
-define('NAVBAR_TITLE_1', 'Erweiterte Suche');d
-efine('NAVBAR_TITLE_2','Suchergebnisse');
+define('NAVBAR_TITLE_1', 'Erweiterte Suche');
+define('NAVBAR_TIT7LE_2','Suchergebnisse');
 
 //define('HEADING_TITLE_1', 'Advanced Search');
 define('HEADING_TITLE', 'Erweiterte Suche');
