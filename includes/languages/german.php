@@ -20,13 +20,10 @@ define('FOOTER_TEXT_BODY', 'Copyright &copy; ' . date('Y') . ' <a href="http://w
 // on RedHat try 'en_US'
 // on FreeBSD try 'en_US.ISO_8859-1'
 // on Windows try 'en', or 'English'
-  @setlocale(LC_TIME, 'en_US.ISO_8859-1');
-define('DATE_FORMAT_SHORT', '%d.%m %Y');
- // this is used for strftime()
-define('DATE_FORMAT_LONG', '%A %d %B, %Y');
-// this is used for strftime()
-define('DATE_FORMAT', 'd.m.Y');
-// this is used for date()
+@setlocale(LC_TIME, 'de_DE.ISO_8859-1');
+define('DATE_FORMAT_SHORT', '%d.%m %Y'); // this is used for strftime()
+define('DATE_FORMAT_LONG', '%A %d %B, %Y'); // this is used for strftime()
+define('DATE_FORMAT', 'd.m.Y'); // this is used for date()
 define('DATE_TIME_FORMAT', DATE_FORMAT_SHORT . ' %H:%M:%S');
 
 ////
@@ -34,12 +31,14 @@ define('DATE_TIME_FORMAT', DATE_FORMAT_SHORT . ' %H:%M:%S');
 // $date should be in format mm/dd/yyyy
 // raw date is in format YYYYMMDD, or DDMMYYYY
   if (!function_exists('zen_date_raw')) {
-    function zen_date_raw($date, $reverse = false) {
-      if ($reverse) {
-        return substr($date, 3, 2) . substr($date, 0, 2) . substr($date, 6, 4);
-      } else {
-        return substr($date, 6, 4) . substr($date, 0, 2) . substr($date, 3, 2);
-      }
+function zen_date_raw($date, $reverse = false){
+     if ($reverse){
+         return substr($date, 3, 2) . substr($date, 0, 2) . substr($date, 6, 4);
+         }else{
+        // edit by cyaneo for german Date support - thx to hugo13
+        // return substr($date, 6, 4) . substr($date, 0, 2) . substr($date, 3, 2);
+        return substr($date, 6, 4) . substr($date, 3, 2) . substr($date, 0, 2);
+         }
     }
   }
 
@@ -142,7 +141,7 @@ define('BOX_HEADING_INFORMATION', 'Information');
 define('BOX_INFORMATION_PRIVACY', 'Datenschutz');
 define('BOX_INFORMATION_CONDITIONS', 'AGB');
 define('BOX_INFORMATION_SHIPPING', 'Preise und Versand');
-define('BOX_INFORMATION_CONTACT', 'Impressum & Kontakt');
+define('BOX_INFORMATION_CONTACT', 'Impressum &amp; Kontakt');
 define('BOX_BBINDEX', 'Forum');
 define('BOX_INFORMATION_UNSUBSCRIBE', 'Newsletter abbestellen');
 
