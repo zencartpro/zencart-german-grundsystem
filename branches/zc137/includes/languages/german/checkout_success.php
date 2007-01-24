@@ -25,7 +25,6 @@ define('FOOTER_DOWNLOAD','Sie k&ouml;nnen Ihre Artikel auch zu einem sp&auml;ter
 
 define('TEXT_YOUR_ORDER_NUMBER', '<strong>Ihre Bestellnummer lautet:</strong> ');
 
-define('TEXT_CHECKOUT_LOGOFF_GUEST',     
-ANMERKUNG: Um deinen Auftrag durchzuführen, wurde ein temporäres Konto verursacht. Du kannst dieses Konto abschließen, indem Sie Logoff anklicken. Klickendes Logoff stellt auch sicher, daß deine Empfang und Erwerb Informationen nicht zur folgenden Person sichtbar sind, die diesen Computer verwendet. Wenn du zu kaufen fortfahren möchtest, frei glauben! Du kannst logoff an die Verbindung an der Oberseite der Seite jederzeit verwenden.');
+define('TEXT_CHECKOUT_LOGOFF_GUEST', 'ANMERKUNG: Um deinen Auftrag durchzuführen, wurde ein temporäres Konto verursacht. Du kannst dieses Konto abschließen, indem Sie Logoff anklicken. Klickendes Logoff stellt auch sicher, daß deine Empfang und Erwerb Informationen nicht zur folgenden Person sichtbar sind, die diesen Computer verwendet. Wenn du zu kaufen fortfahren möchtest, frei glauben! Du kannst logoff an die Verbindung an der Oberseite der Seite jederzeit verwenden.');
 define('TEXT_CHECKOUT_LOGOFF_CUSTOMER', 'Für das Einkaufen danke. Die Logoffverbindung bitte klicken, um sicherzugehen, daß deine Empfang und Erwerb Informationen nicht zur folgenden Person sichtbar sind, die diesen Computer verwendet.');
 ?>
