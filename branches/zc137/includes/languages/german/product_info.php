@@ -15,7 +15,7 @@ define('TEXT_DATE_ADDED','Dieser Artikel wurde am  %s eingetragen.');
 define('TEXT_DATE_AVAILABLE','<font color="#ff0000">Dieser Artikel wird vorraussichtlich am %s auf Lager sein.</font>');
 define('TEXT_ALSO_PURCHASED_PRODUCTS','Kunden die dieses Artikel gekauft haben, haben auch diese Artikel gekauft...');
 define('TEXT_PRODUCT_OPTIONS','<strong>Bitte w&auml;hlen Sie:</strong>');
-define('TEXT_PRODUCT_MANUFACTURER','Hergestellt von:');
+define('TEXT_PRODUCT_MANUFACTURER','Hergestellt von: ');
 define('TEXT_PRODUCT_WEIGHT','Gewicht: ');
 define('TEXT_PRODUCT_QUANTITY',' St&uuml;ck auf Lager');
 define('TEXT_PRODUCT_MODEL','Artikelnummer: ');
@@ -34,7 +34,7 @@ define('IMAGE_BUTTON_RETURN_TO_PRODUCT_LIST','Zur&uuml;ck zur Artikelliste');
 //define('TABLE_HEADING_UPCOMING_PRODUCTS', 'Upcoming Products');
 //define('TABLE_HEADING_DATE_EXPECTED', 'Date Expected');
 
-define('TEXT_ATTRIBUTES_PRICE_WAS','[war:');
+define('TEXT_ATTRIBUTES_PRICE_WAS','[kostete:');
 define('TEXT_ATTRIBUTE_IS_FREE','ist jetzt KOSTENLOS]');
 define('TEXT_ONETIME_CHARGE_SYMBOL', ' *');
 define('TEXT_ONETIME_CHARGE_DESCRIPTION', ' Einmalige Geb&uuml;hren k&ouml;nnen anfallen');

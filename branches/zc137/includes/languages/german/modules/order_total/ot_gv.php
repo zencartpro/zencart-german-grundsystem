@@ -17,7 +17,7 @@ define('MODULE_ORDER_TOTAL_GV_USER_PROMPT', 'Ausgleich anwenden ->&nbsp;');
 define('MODULE_ORDER_TOTAL_GV_TEXT_ENTER_CODE', TEXT_GV_REDEEM);
 define('TEXT_INVALID_REDEEM_AMOUNT', 'Falscher Betrag f&uuml;r Ausgleich verwendet');
 define('MODULE_ORDER_TOTAL_GV_USER_BALANCE', 'Verf&uuml;gbarer Ausgleich: ');
-define('MODULE_ORDER_TOTAL_GV_REDEEM_INSTRUCTIONS', '<p>Wurde der Gutscheinwert bereits Ihrem Konto gutgeschrieben, dann geben Sie im Feld "Ausgleich anwenden" den Betrag ein, den Sie einl&ouml;sen m&ouml;chten.</p><p>Haben Sie den Gutschein nocht nicht eingel&ouml;st, dann geben Sie im Feld "Gutscheinnummer" den Gutscheincode ein und dr&uuml;cken die Schaltfl&auml;che "weiter einkaufen" und geben danach den Betrag ein, den Sie einl&ouml;sen m&ouml;chten.</p>');
+define('MODULE_ORDER_TOTAL_GV_REDEEM_INSTRUCTIONS', '<p>Wurde der Gutscheinwert bereits Ihrem Konto gutgeschrieben, dann geben Sie im Feld &quot;Ausgleich anwenden&quot; den Betrag ein, den Sie einl&ouml;sen m&ouml;chten.</p><p>Haben Sie den Gutschein noch nicht eingel&ouml;st, dann geben Sie im Feld &quot;Gutscheinnummer&quot; den Gutscheincode ein und dr&uuml;cken die Schaltfl&auml;che &quot;Weiter einkaufen&quot; und geben danach den Betrag ein, den Sie einl&ouml;sen m&ouml;chten.</p>');
 
 
 ?>

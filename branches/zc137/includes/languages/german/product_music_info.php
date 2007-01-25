@@ -29,8 +29,8 @@ define('TEXT_PRODUCT_COLLECTIONS', 'Medienkollektion: ');
 // previous next product
 define('PREV_NEXT_PRODUCT', 'Artikel ');
 define('PREV_NEXT_FROM', ' von ');
-define('IMAGE_BUTTON_PREVIOUS','vorheriger Artikel');
-define('IMAGE_BUTTON_NEXT','n&auml;chster Artikel');
+define('IMAGE_BUTTON_PREVIOUS','Vorheriger Artikel');
+define('IMAGE_BUTTON_NEXT','N&auml;chster Artikel');
 define('IMAGE_BUTTON_RETURN_TO_PRODUCT_LIST','Zur&uuml;ck zur Artikelliste');
 
 // missing products

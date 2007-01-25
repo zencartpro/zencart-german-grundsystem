@@ -4,85 +4,85 @@
  * @copyright Copyright 2003-2006 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @translator: cyaneo/hugo13/wflohr	http://www.zen-cart.at	2007-01-03
+ * @translator: cyaneo/hugo13/wflohr/maleborg	http://www.zen-cart.at	2007-01-03
  * @version $Id$
  */
 
-define('MODULE_PAYMENT_PAYPALWPP_TEXT_ADMIN_TITLE_EC', 'PayPal Express Checkout' . ' !!!TRANSLATE!!! file: includes/languages/LANGUAGE/modules/payment/paypalwpp.php at line 357');
-define('MODULE_PAYMENT_PAYPALWPP_TEXT_ADMIN_TITLE_WPP', 'PayPal Website Payments Pro' . ' !!!TRANSLATE!!! file: includes/languages/LANGUAGE/modules/payment/paypalwpp.php at line 357');
-define('MODULE_PAYMENT_PAYPALWPP_TEXT_ADMIN_TITLE_PRO20', 'PayPal Website Payments Pro Payflow Edition (UK)' . ' !!!TRANSLATE!!! file: includes/languages/LANGUAGE/modules/payment/paypalwpp.php at line 357');
+define('MODULE_PAYMENT_PAYPALWPP_TEXT_ADMIN_TITLE_EC', 'PayPal Express Checkout');
+define('MODULE_PAYMENT_PAYPALWPP_TEXT_ADMIN_TITLE_WPP', 'PayPal Website Payments Pro');
+define('MODULE_PAYMENT_PAYPALWPP_TEXT_ADMIN_TITLE_PRO20', 'PayPal Website Payments Pro Payflow Edition (UK)');
   define('MODULE_PAYMENT_PAYPALWPP_TEXT_ADMIN_TITLE_PF_EC', 'PayPal Payflow Pro - Gateway');
-define('MODULE_PAYMENT_PAYPALWPP_TEXT_ADMIN_TITLE_PF_GATEWAY', 'PayPal Payflow Pro + Express Checkout' . ' !!!TRANSLATE!!! file: includes/languages/LANGUAGE/modules/payment/paypalwpp.php at line 357');
+define('MODULE_PAYMENT_PAYPALWPP_TEXT_ADMIN_TITLE_PF_GATEWAY', 'PayPal Payflow Pro + Express Checkout');
 
   if (IS_ADMIN_FLAG === true) {
-    define('MODULE_PAYMENT_PAYPALWPP_TEXT_ADMIN_DESCRIPTION', '<strong>PayPal Express Checkout</strong>%s<br />' . (substr(MODULE_PAYMENT_PAYPALWPP_MODULE_MODE,0,7) == 'Payflow' ? '<a href="https://manager.paypal.com/loginPage.do?partner=ZenCart" target="_blank">Manage your PayPal account.</a>' : '<a href="http://www.zen-cart.com/partners/paypal" target="_blank">Manage your PayPal account.</a>') . '<br /><br /><font color="green">Configuration Instructions:</font><br /><span class="alert">1. </span><a href="http://www.zen-cart.com/partners/paypal" target="_blank">Sign up for your PayPal account - click here.</a><br />' . 
-(defined('MODULE_PAYMENT_PAYPALWPP_STATUS') ? '' : '... and click "install" above to enable PayPal Express Checkout support.</br>') . 
-(MODULE_PAYMENT_PAYPALWPP_MODULE_MODE == 'PayPal' && (!defined('MODULE_PAYMENT_PAYPALWPP_APISIGNATURE') || MODULE_PAYMENT_PAYPALWPP_APISIGNATURE == '') ? '<span class="alert">2. </span><strong>API credentials</strong> from the API Credentials option in your PayPal Profile Settings area. This module uses the <strong>API Signature</strong> option -- you will need the username, password and signature to enter in the fields below.' : (substr(MODULE_PAYMENT_PAYPALWPP_MODULE_MODE,0,7) == 'Payflow' && (!defined('MODULE_PAYMENT_PAYPALWPP_PFUSER') || MODULE_PAYMENT_PAYPALWPP_PFUSER == '') ? '<span class="alert">2. </span><strong>PAYFLOW credentials</strong> This module needs your <strong>PAYFLOW Partner+Vendor+User+Password settings</strong> entered in the 4 fields below. These will be used to communicate with the Payflow system and authorize transactions to your account.' : '<span class="alert">2. </span>Ensure you have entered the appropriate security data for username/pwd etc, below.') ) . 
-(MODULE_PAYMENT_PAYPALWPP_MODULE_MODE == 'PayPal' ? '<br /><span class="alert">3. </span>In your PayPal account, enable <strong>Instant Payment Notification</strong>:<br />under "Profile", select <em>Instant Payment Notification Preferences</em><ul style="margin-top: 0.5;"><li>click the checkbox to enable IPN</li><li>if there is not already a URL specified, set the URL to:<br />'.str_replace('index.php?main_page=index','ipn_main_handler.php',zen_catalog_href_link(FILENAME_DEFAULT, '', 'SSL')) . '</li></ul>' : '') . 
-'<font color="green"><hr /><strong>Requirements:</strong></font><br /><hr />*<strong>CURL</strong> is used for bidirectional communication with the gateway, so must be active on your hosting server (if you need to use a CURL proxy, set the CURL proxy settings under Admin->Configuration->My Store.)<br /><hr />'  . ' !!!TRANSLATE!!! file: includes/languages/LANGUAGE/modules/payment/paypalwpp.php at line 357');
+    define('MODULE_PAYMENT_PAYPALWPP_TEXT_ADMIN_DESCRIPTION', '<strong>PayPal Express Checkout</strong>%s<br />' . (substr(MODULE_PAYMENT_PAYPALWPP_MODULE_MODE,0,7) == 'Payflow' ? '<a href="https://manager.paypal.com/loginPage.do?partner=ZenCart" target="_blank">Verwalten Sie Ihren PayPal Account.</a>' : '<a href="http://www.zen-cart.com/partners/paypal" target="_blank">Verwalten Sie Ihren PayPal Account.</a>') . '<br /><br /><font color="green">Konfiguration Anleitung:</font><br /><span class="alert">1. </span><a href="http://www.zen-cart.com/partners/paypal" target="_blank">Erstellen Sie einen PayPal Account.</a><br />' . 
+(defined('MODULE_PAYMENT_PAYPALWPP_STATUS') ? '' : '... und dr&uuml;cken auf den Button &quot;Installieren&quot; um PayPal Express Checkout zu aktivieren.</br>') . 
+(MODULE_PAYMENT_PAYPALWPP_MODULE_MODE == 'PayPal' && (!defined('MODULE_PAYMENT_PAYPALWPP_APISIGNATURE') || MODULE_PAYMENT_PAYPALWPP_APISIGNATURE == '') ? '<span class="alert">2. </span><strong>API Credentials</strong> Diese Modul benutzt die <strong>API Signatur</strong> Option -- Bitte geben Sie in die utnren Felder Ihren Benutzernamen, Passwort und die Signature ein.' : (substr(MODULE_PAYMENT_PAYPALWPP_MODULE_MODE,0,7) == 'Payflow' && (!defined('MODULE_PAYMENT_PAYPALWPP_PFUSER') || MODULE_PAYMENT_PAYPALWPP_PFUSER == '') ? '<span class="alert">2. </span><strong>PAYFLOW Credentials</strong> Dieses Modul ben&ouml;tigt Ihre <strong>PAYFLOW Partner Daten</strong>. Bitte geben Sie diese in die Felder unten ein. Diese Daten werden f&uuml;r den reibungslosen Transaktionsablauf ben&ouml;tigt..' : '<span class="alert">2. </span>Bitte stellen Sie sicher, das Sie notwendigen Daten f&uuml;r diese Modul eingegeben haben.') ) . 
+(MODULE_PAYMENT_PAYPALWPP_MODULE_MODE == 'PayPal' ? '<br /><span class="alert">3. </span>Aktivieren Sie in Ihrem Paypal Account <strong>Sofortige Zehlungsbenachrichtung</strong>:<br />unter Mein Profil w&auml;hlen Sie <em>Sofortige Zahlungsbenachrichtung Einstellungen</em><ul style="margin-top: 0.5;"><li>und machen einen Haken in das dazugeh&ouml;rige K&auml;stchen</li><li>Falls nicht bereicht eine URL angegeben ist, geben Sie bitte folgende URL ein:<br />'.str_replace('index.php?main_page=index','ipn_main_handler.php',zen_catalog_href_link(FILENAME_DEFAULT, '', 'SSL')) . '</li></ul>' : '') . 
+'<font color="green"><hr /><strong>Vorrausetzungen:</strong></font><br /><hr />*<strong>CURL</strong> wird f&uuml;r die Kommunikation mit dem Gateway genutzt und muss deshlb zwingend auf Ihrem Webspace vorhanden und aktiviert sein. (Falls Sie einen CURL Proxy verwenden, konfigurieren Sie diesen bitte unter Konfiguration -> Mein Shop)<br /><hr />');
   }
 
   define('MODULE_PAYMENT_PAYPALWPP_TEXT_DESCRIPTION', '<strong>PayPal</strong>');
-  define('MODULE_PAYMENT_PAYPALWPP_TEXT_TITLE', 'Credit Card');
+  define('MODULE_PAYMENT_PAYPALWPP_TEXT_TITLE', 'Kreditkarte');
   define('MODULE_PAYMENT_PAYPALWPP_EC_TEXT_TITLE', 'PayPal');
   define('MODULE_PAYMENT_PAYPALWPP_EC_TEXT_TYPE', 'PayPal Express Checkout');
-define('MODULE_PAYMENT_PAYPALWPP_DP_TEXT_TYPE', 'PayPal Direct Payment' . ' !!!TRANSLATE!!! file: includes/languages/LANGUAGE/modules/payment/paypalwpp.php at line 357');
-define('MODULE_PAYMENT_PAYPALWPP_ERROR_HEADING', 'We\'re sorry, but we were unable to process your credit card.' . ' !!!TRANSLATE!!! file: includes/languages/LANGUAGE/modules/payment/paypalwpp.php at line 357');
-define('MODULE_PAYMENT_PAYPALWPP_TEXT_CARD_ERROR', 'The credit card information you entered contains an error.  Please check it and try again.' . ' !!!TRANSLATE!!! file: includes/languages/LANGUAGE/modules/payment/paypalwpp.php at line 357');
-define('MODULE_PAYMENT_PAYPALWPP_TEXT_CREDIT_CARD_FIRSTNAME', 'Credit Card First Name:' . ' !!!TRANSLATE!!! file: includes/languages/LANGUAGE/modules/payment/paypalwpp.php at line 357');
-define('MODULE_PAYMENT_PAYPALWPP_TEXT_CREDIT_CARD_LASTNAME', 'Credit Card Last Name:' . ' !!!TRANSLATE!!! file: includes/languages/LANGUAGE/modules/payment/paypalwpp.php at line 357');
-define('MODULE_PAYMENT_PAYPALWPP_TEXT_CREDIT_CARD_OWNER', 'Cardholder Name:' . ' !!!TRANSLATE!!! file: includes/languages/LANGUAGE/modules/payment/paypalwpp.php at line 357');
-define('MODULE_PAYMENT_PAYPALWPP_TEXT_CREDIT_CARD_TYPE', 'Credit Card Type:' . ' !!!TRANSLATE!!! file: includes/languages/LANGUAGE/modules/payment/paypalwpp.php at line 357');
-define('MODULE_PAYMENT_PAYPALWPP_TEXT_CREDIT_CARD_NUMBER', 'Credit Card Number:' . ' !!!TRANSLATE!!! file: includes/languages/LANGUAGE/modules/payment/paypalwpp.php at line 357');
-define('MODULE_PAYMENT_PAYPALWPP_TEXT_CREDIT_CARD_EXPIRES', 'Credit Card Expiry Date:' . ' !!!TRANSLATE!!! file: includes/languages/LANGUAGE/modules/payment/paypalwpp.php at line 357');
-define('MODULE_PAYMENT_PAYPALWPP_TEXT_CREDIT_CARD_ISSUE', 'Credit Card Issue Date:' . ' !!!TRANSLATE!!! file: includes/languages/LANGUAGE/modules/payment/paypalwpp.php at line 357');
-define('MODULE_PAYMENT_PAYPALWPP_TEXT_CREDIT_CARD_CHECKNUMBER', 'CVV Number:' . ' !!!TRANSLATE!!! file: includes/languages/LANGUAGE/modules/payment/paypalwpp.php at line 357');
-define('MODULE_PAYMENT_PAYPALWPP_TEXT_CREDIT_CARD_CHECKNUMBER_LOCATION', '(on back of the credit card)' . ' !!!TRANSLATE!!! file: includes/languages/LANGUAGE/modules/payment/paypalwpp.php at line 357');
-define('MODULE_PAYMENT_PAYPALWPP_TEXT_DECLINED', 'Your credit card was declined. Please try another card or contact your bank for more information.' . ' !!!TRANSLATE!!! file: includes/languages/LANGUAGE/modules/payment/paypalwpp.php at line 357');
-  define('MODULE_PAYMENT_PAYPALWPP_INVALID_RESPONSE', 'We were not able to process your order. Please try again, select an alternate payment method, or contact the store owner for assistance.');
-define('MODULE_PAYMENT_PAYPALWPP_TEXT_GEN_ERROR', 'An error occurred when we tried to contact the payment processor. Please try again, select an alternate payment method, or contact the store owner for assistance.' . ' !!!TRANSLATE!!! file: includes/languages/LANGUAGE/modules/payment/paypalwpp.php at line 357');
-  define('MODULE_PAYMENT_PAYPALWPP_TEXT_ADDR_ERROR', 'The address information you entered does not appear to be valid or cannot be matched. Please select or add a different address and try again.');
-define('MODULE_PAYMENT_PAYPALWPP_TEXT_CONFIRMEDADDR_ERROR', 'The address you selected at PayPal is not a Confirmed address. Please return to PayPal and select or add a confirmed address and try again.' . ' !!!TRANSLATE!!! file: includes/languages/LANGUAGE/modules/payment/paypalwpp.php at line 357');
-  define('MODULE_PAYMENT_PAYPALWPP_TEXT_ERROR', 'An error occurred when we tried to process your credit card. Please try again, select an alternate payment method, or contact the store owner for assistance.');
-define('MODULE_PAYMENT_PAYPALWPP_TEXT_BAD_CARD', 'We apologize for the inconvenience, but the credit card you entered is not one that we accept. Please use a different credit card.' . ' !!!TRANSLATE!!! file: includes/languages/LANGUAGE/modules/payment/paypalwpp.php at line 357');
-  define('MODULE_PAYMENT_PAYPALWPP_TEXT_BAD_LOGIN', 'There was a problem validating your account. Please try again.');
-define('MODULE_PAYMENT_PAYPALWPP_TEXT_JS_CC_OWNER', '* The cardholder\'s name must be at least ' . CC_OWNER_MIN_LENGTH . ' characters.\n' . ' !!!TRANSLATE!!! file: includes/languages/LANGUAGE/modules/payment/paypalwpp.php at line 357');
-  define('MODULE_PAYMENT_PAYPALWPP_TEXT_JS_CC_NUMBER', '* The credit card number must be at least ' . CC_NUMBER_MIN_LENGTH . ' characters.\n');
-define('MODULE_PAYMENT_PAYPALWPP_TEXT_EC_HEADER', 'Fast, Secure Checkout with PayPal:' . ' !!!TRANSLATE!!! file: includes/languages/LANGUAGE/modules/payment/paypalwpp.php at line 357');
-define('MODULE_PAYMENT_PAYPALWPP_TEXT_BUTTON_TEXT', 'Save time. Checkout securely. Pay without sharing your financial information.' . ' !!!TRANSLATE!!! file: includes/languages/LANGUAGE/modules/payment/paypalwpp.php at line 357');
-define('MODULE_PAYMENT_PAYPALWPP_TEXT_BUTTON_ALTTEXT', 'Click here to pay via PayPal Express Checkout' . ' !!!TRANSLATE!!! file: includes/languages/LANGUAGE/modules/payment/paypalwpp.php at line 357');
-define('MODULE_PAYMENT_PAYPALWPP_TEXT_STATE_ERROR', 'The state assigned to your account is not valid.  Please go into your account settings and change it.' . ' !!!TRANSLATE!!! file: includes/languages/LANGUAGE/modules/payment/paypalwpp.php at line 357');
-define('MODULE_PAYMENT_PAYPALWPP_TEXT_NOT_WPP_ACCOUNT_ERROR', 'We are sorry for the inconvenience. The payment could not be initiated because the PayPal account configured by the store owner is not a PayPal Website Payments Pro account or PayPal gateway services have not been purchased.  Please select an alternate method of payment for your order.' . ' !!!TRANSLATE!!! file: includes/languages/LANGUAGE/modules/payment/paypalwpp.php at line 357');
-define('MODULE_PAYMENT_PAYPALWPP_TEXT_SANDBOX_VS_LIVE_ERROR', 'We are sorry for the inconvenience. The PayPal account in this store is presently misconfigured to use mixed sandbox and live settings. We are unable to complete your transaction. Please notify the store owner so they can correct this problem.' . ' !!!TRANSLATE!!! file: includes/languages/LANGUAGE/modules/payment/paypalwpp.php at line 357');
-define('MODULE_PAYMENT_PAYPALWPP_TEXT_WPP_BAD_COUNTRY_ERROR', 'We are sorry -- the PayPal account configured by the store administrator is based in a country that is not supported for Website Payments Pro at the present time. Please choose another payment method to complete your order.' . ' !!!TRANSLATE!!! file: includes/languages/LANGUAGE/modules/payment/paypalwpp.php at line 357');
-define('MODULE_PAYMENT_PAYPALWPP_TEXT_NOT_CONFIGURED', '<span class="alert">&nbsp;(NOTE: Module is not configured yet)</span>' . ' !!!TRANSLATE!!! file: includes/languages/LANGUAGE/modules/payment/paypalwpp.php at line 357');
-define('MODULE_PAYMENT_PAYPALWPP_TEXT_GETDETAILS_ERROR', 'There was a problem retrieving transaction details. ' . ' !!!TRANSLATE!!! file: includes/languages/LANGUAGE/modules/payment/paypalwpp.php at line 357');
-define('MODULE_PAYMENT_PAYPALWPP_TEXT_VOID_ERROR', 'There was a problem voiding the transaction. ' . ' !!!TRANSLATE!!! file: includes/languages/LANGUAGE/modules/payment/paypalwpp.php at line 357');
-define('MODULE_PAYMENT_PAYPALWPP_TEXT_REFUND_ERROR', 'There was a problem refunding the transaction amount specified. ' . ' !!!TRANSLATE!!! file: includes/languages/LANGUAGE/modules/payment/paypalwpp.php at line 357');
-define('MODULE_PAYMENT_PAYPALWPP_TEXT_AUTH_ERROR', 'There was a problem authorizing the transaction. ' . ' !!!TRANSLATE!!! file: includes/languages/LANGUAGE/modules/payment/paypalwpp.php at line 357');
-define('MODULE_PAYMENT_PAYPALWPP_TEXT_CAPT_ERROR', 'There was a problem voiding the transaction. ' . ' !!!TRANSLATE!!! file: includes/languages/LANGUAGE/modules/payment/paypalwpp.php at line 357');
-define('MODULE_PAYMENT_PAYPALWPP_TEXT_REFUNDFULL_ERROR', 'Your Refund Request was rejected by PayPal.' . ' !!!TRANSLATE!!! file: includes/languages/LANGUAGE/modules/payment/paypalwpp.php at line 357');
-define('MODULE_PAYMENT_PAYPALWPP_TEXT_INVALID_REFUND_AMOUNT', 'You requested a partial refund but did not specify an amount.' . ' !!!TRANSLATE!!! file: includes/languages/LANGUAGE/modules/payment/paypalwpp.php at line 357');
-define('MODULE_PAYMENT_PAYPALWPP_TEXT_REFUND_FULL_CONFIRM_ERROR', 'You requested a full refund but did not check the Confirm box to verify your intent.' . ' !!!TRANSLATE!!! file: includes/languages/LANGUAGE/modules/payment/paypalwpp.php at line 357');
-define('MODULE_PAYMENT_PAYPALWPP_TEXT_INVALID_AUTH_AMOUNT', 'You requested an authorization but did not specify an amount.' . ' !!!TRANSLATE!!! file: includes/languages/LANGUAGE/modules/payment/paypalwpp.php at line 357');
-define('MODULE_PAYMENT_PAYPALWPP_TEXT_INVALID_CAPTURE_AMOUNT', 'You requested a capture but did not specify an amount.' . ' !!!TRANSLATE!!! file: includes/languages/LANGUAGE/modules/payment/paypalwpp.php at line 357');
-define('MODULE_PAYMENT_PAYPALWPP_TEXT_VOID_CONFIRM_CHECK', 'Confirm' . ' !!!TRANSLATE!!! file: includes/languages/LANGUAGE/modules/payment/paypalwpp.php at line 357');
-define('MODULE_PAYMENT_PAYPALWPP_TEXT_VOID_CONFIRM_ERROR', 'You requested to void a transaction but did not check the Confirm box to verify your intent.' . ' !!!TRANSLATE!!! file: includes/languages/LANGUAGE/modules/payment/paypalwpp.php at line 357');
-define('MODULE_PAYMENT_PAYPALWPP_TEXT_AUTH_FULL_CONFIRM_CHECK', 'Confirm' . ' !!!TRANSLATE!!! file: includes/languages/LANGUAGE/modules/payment/paypalwpp.php at line 357');
-define('MODULE_PAYMENT_PAYPALWPP_TEXT_AUTH_CONFIRM_ERROR', 'You requested an authorization but did not check the Confirm box to verify your intent.' . ' !!!TRANSLATE!!! file: includes/languages/LANGUAGE/modules/payment/paypalwpp.php at line 357');
-define('MODULE_PAYMENT_PAYPALWPP_TEXT_CAPTURE_FULL_CONFIRM_ERROR', 'You requested funds-Capture but did not check the Confirm box to verify your intent.' . ' !!!TRANSLATE!!! file: includes/languages/LANGUAGE/modules/payment/paypalwpp.php at line 357');
-define('MODULE_PAYMENT_PAYPALWPP_TEXT_REFUND_INITIATED', 'PayPal refund for %s initiated. Transaction ID: %s. Refresh the screen to see confirmation details updated in the Order Status History/Comments section.' . ' !!!TRANSLATE!!! file: includes/languages/LANGUAGE/modules/payment/paypalwpp.php at line 357');
-define('MODULE_PAYMENT_PAYPALWPP_TEXT_AUTH_INITIATED', 'PayPal Authorization for %s initiated. Refresh the screen to see confirmation details updated in the Order Status History/Comments section.' . ' !!!TRANSLATE!!! file: includes/languages/LANGUAGE/modules/payment/paypalwpp.php at line 357');
-define('MODULE_PAYMENT_PAYPALWPP_TEXT_CAPT_INITIATED', 'PayPal Capture for %s initiated. Receipt ID: %s. Refresh the screen to see confirmation details updated in the Order Status History/Comments section.' . ' !!!TRANSLATE!!! file: includes/languages/LANGUAGE/modules/payment/paypalwpp.php at line 357');
-define('MODULE_PAYMENT_PAYPALWPP_TEXT_VOID_INITIATED', 'PayPal Void request initiated. Transaction ID: %s. Refresh the screen to see confirmation details updated in the Order Status History/Comments section.' . ' !!!TRANSLATE!!! file: includes/languages/LANGUAGE/modules/payment/paypalwpp.php at line 357');
-define('MODULE_PAYMENT_PAYPALWPP_TEXT_GEN_API_ERROR', 'There was an error in the attempted transaction. Please see the API Reference guide or transaction logs for detailed information.' . ' !!!TRANSLATE!!! file: includes/languages/LANGUAGE/modules/payment/paypalwpp.php at line 357');
-  define('MODULE_PAYMENT_PAYPALWPP_TEXT_INVALID_ZONE_ERROR', 'We are sorry for the inconvenience; however, at the present time we are unable to use PayPal to process orders from the geographic region you selected as your PayPal address.  Please continue using normal checkout and select from the available payment methods to complete your order.');
+define('MODULE_PAYMENT_PAYPALWPP_DP_TEXT_TYPE', 'PayPal Direct Payment');
+define('MODULE_PAYMENT_PAYPALWPP_ERROR_HEADING', 'Es war uns leider nicht m&ouml;glich Ihre Kreditkarten zu verarbeiten');
+define('MODULE_PAYMENT_PAYPALWPP_TEXT_CARD_ERROR', 'Die angegebenen Kreditkarten Informationen enthalten einen Fehler, Bitte pr&uuml;fen Sie ihre Angaben und versuchen Sie es erneut.');
+define('MODULE_PAYMENT_PAYPALWPP_TEXT_CREDIT_CARD_FIRSTNAME', 'Kreditkarteninhaber Vorname:');
+define('MODULE_PAYMENT_PAYPALWPP_TEXT_CREDIT_CARD_LASTNAME', 'Kreditkarteninhaber Nachname');
+define('MODULE_PAYMENT_PAYPALWPP_TEXT_CREDIT_CARD_OWNER', 'Kreditkarteninhaber:');
+define('MODULE_PAYMENT_PAYPALWPP_TEXT_CREDIT_CARD_TYPE', 'Kreditkarte:');
+define('MODULE_PAYMENT_PAYPALWPP_TEXT_CREDIT_CARD_NUMBER', 'Kreditkartennummer:');
+define('MODULE_PAYMENT_PAYPALWPP_TEXT_CREDIT_CARD_EXPIRES', 'G&uuml;ltig bis:');
+define('MODULE_PAYMENT_PAYPALWPP_TEXT_CREDIT_CARD_ISSUE', 'Ausgabedatum der KK:');
+define('MODULE_PAYMENT_PAYPALWPP_TEXT_CREDIT_CARD_CHECKNUMBER', 'Pr&uuml;fziffer:');
+define('MODULE_PAYMENT_PAYPALWPP_TEXT_CREDIT_CARD_CHECKNUMBER_LOCATION', '(auf der R&uuml;ckseite Ihrer Kreditkarte)');
+define('MODULE_PAYMENT_PAYPALWPP_TEXT_DECLINED', 'Ihre Kreditkarte wurde abgelehnt. Bitte versuchen Sie es mit einer anderen Kreditkarter erneut oder nehmen Sie Kontakt mit Ihrer Bank auf um weitere Informationen zu erhalten.');
+  define('MODULE_PAYMENT_PAYPALWPP_INVALID_RESPONSE', 'Wir konnten Ihre Auftrag leider nicht ausf&uuml;hren. Bitte nehmen Sie mit uns Kontakt auf um nach m&ouml;glichen Alternativen zu suchen.');
+define('MODULE_PAYMENT_PAYPALWPP_TEXT_GEN_ERROR', 'Es trat ein Fehler beim Kontakt mit der Kreditkartenpr&uuml;fstelle auf. Bitte versuchen Sie es sp&auml;ter noch einmal oder nehmen Sie mit uns Kontakt auf.');
+  define('MODULE_PAYMENT_PAYPALWPP_TEXT_ADDR_ERROR', 'Die angegebene Adresse scheint ung&uuml;ltig zu sein oder stimmt nicht mit der bei Paypal hinterlegten &uuml;berein. Bitte w&auml;hlen Sie eine andere Adresse und versuchen Sie es erneut.');
+define('MODULE_PAYMENT_PAYPALWPP_TEXT_CONFIRMEDADDR_ERROR', 'Die ausgew&auml;hlte Adresse bei Paypal ist keine best&auml;tigte Adresse. Bitte w&auml;hlen Sie eine Andere aus und versuchen Sie es erneut.');
+  define('MODULE_PAYMENT_PAYPALWPP_TEXT_ERROR', 'Es trat ein Fehler w&auml;hrend der Verarbeitung Ihrer Kreditkarten Informationen auf. Bitte versuchen Sie es erneut oder nehmen Sie mit uns Kontakt auf.');
+define('MODULE_PAYMENT_PAYPALWPP_TEXT_BAD_CARD', 'Es tut uns leid, aber die angebene Kreditkarte akzeptieren wir nicht. Bitte w&auml;hlen sie eine Andere oder nehmen Sie mit uns Kontakt auf.');
+  define('MODULE_PAYMENT_PAYPALWPP_TEXT_BAD_LOGIN', 'Es gab ein Problem bei der &Uuml;berpr&uuml;fung Ihres Paypal Accounts, bitte versuchen Sie es erneut.');
+define('MODULE_PAYMENT_PAYPALWPP_TEXT_JS_CC_OWNER', '* Der Kreditkarteninhaber sollte mindestens eine L&auml;nge von' . CC_OWNER_MIN_LENGTH . ' Zeichen haben.\n');
+  define('MODULE_PAYMENT_PAYPALWPP_TEXT_JS_CC_NUMBER', '* Die Kreditkartenummer sollte mindestens eine L&auml;nge von ' . CC_NUMBER_MIN_LENGTH . ' Zeichen haben.\n');
+define('MODULE_PAYMENT_PAYPALWPP_TEXT_EC_HEADER', 'Schnelle und sichere Bestellung mit Paypal:');
+define('MODULE_PAYMENT_PAYPALWPP_TEXT_BUTTON_TEXT', 'Sparen sie Zeit und bestellen sie vollkommen sicher. Zahlen Sie ohne ihre finanzielle Situation preiszugeben');
+define('MODULE_PAYMENT_PAYPALWPP_TEXT_BUTTON_ALTTEXT', 'Klicken Sie hier um per PayPal Express Checkout zu bestellen');
+define('MODULE_PAYMENT_PAYPALWPP_TEXT_STATE_ERROR', 'Der zugewiesene Status zu ihrem Paypal Account ist nicht g&uuml;ltig., Bitte &auml;&auml;ndern Sie Ihre Einstellungen.');
+define('MODULE_PAYMENT_PAYPALWPP_TEXT_NOT_WPP_ACCOUNT_ERROR', 'Es tut uns leid, wir konnten Ihre Zahlungsart Paypal Express Checkout leider nicht akzeptieren. Entweder sind die Shopeinstellungen fehlerhaft oder die Zahlungsart wurde noch nicht von Paypal f&uuml;r diesen Webshop aktiviert. Bitte nehmen Sie mit uns Kontakt auf');
+define('MODULE_PAYMENT_PAYPALWPP_TEXT_SANDBOX_VS_LIVE_ERROR', 'Es tut uns leid, wir konnten die Transaktion leider nicht ausf&uuml;hren. Der Paypal Account dieses Webshops ist leider fehlerhaft (Sandbox und Live Status aktiviert) eingestellt. Bitte nehmen Sie mit dem Shopinhaber Kontakt auf und weisen Sie ihn auf diesen Fehler hin.');
+define('MODULE_PAYMENT_PAYPALWPP_TEXT_WPP_BAD_COUNTRY_ERROR', 'Es tut uns leid, der Paypal Account des Shopinhabers liegt in einem Land, das derzeit noch nicht von Paypal Express Checkout unterst&uuml;tzt wird. Bitte w&auml;hlen Sie eine andere Zahlungsweise aus.');
+define('MODULE_PAYMENT_PAYPALWPP_TEXT_NOT_CONFIGURED', '<span class="alert">&nbsp;(Hinweis: Das Modul ist noch nicht konfiguriert)</span>');
+define('MODULE_PAYMENT_PAYPALWPP_TEXT_GETDETAILS_ERROR', 'Es gab Problem beim Empfangen von Transaktionsdetails. ');
+define('MODULE_PAYMENT_PAYPALWPP_TEXT_VOID_ERROR', 'Ein Problem hat die Ausf&uuml;hrung der Transaktion verhindert. ');
+define('MODULE_PAYMENT_PAYPALWPP_TEXT_REFUND_ERROR', 'Es gab ein Problem beim R&uuml;ckerstatten der Zahlung. ');
+define('MODULE_PAYMENT_PAYPALWPP_TEXT_AUTH_ERROR', 'Es gab ein Problem bei der Authorisierung der Transaktion. ');
+define('MODULE_PAYMENT_PAYPALWPP_TEXT_CAPT_ERROR', 'Ein Problem hat die Ausf&uuml;hrung der Transaktion verhindert. ');
+define('MODULE_PAYMENT_PAYPALWPP_TEXT_REFUNDFULL_ERROR', 'Ihr R&uuml;ckerstattungsanliegen wurde von Paypal abgelehnt.');
+define('MODULE_PAYMENT_PAYPALWPP_TEXT_INVALID_REFUND_AMOUNT', 'Sie haben eine teilweise R&uuml;ckerstattung angefordert, haben allerdings keinen Betrag eingegeben.');
+define('MODULE_PAYMENT_PAYPALWPP_TEXT_REFUND_FULL_CONFIRM_ERROR', 'Sie haben die volle R&uuml;ckerstattung angefordert, aber haben nicht die Best&auml;tigen Checkbox angehakt.');
+define('MODULE_PAYMENT_PAYPALWPP_TEXT_INVALID_AUTH_AMOUNT', 'Sie haben eine Authorisation angefordert, aber haben keinen Betrag angegeben.');
+define('MODULE_PAYMENT_PAYPALWPP_TEXT_INVALID_CAPTURE_AMOUNT', 'Die haben eine Capture angefordert, aber haben keinen Betrag angegeben.');
+define('MODULE_PAYMENT_PAYPALWPP_TEXT_VOID_CONFIRM_CHECK', 'Best&auml;tigen');
+define('MODULE_PAYMENT_PAYPALWPP_TEXT_VOID_CONFIRM_ERROR', 'Sie wollten eine Transaktion abbrechen, haben aber nicht die Best&auml;tigen Checkbox angehakt.');
+define('MODULE_PAYMENT_PAYPALWPP_TEXT_AUTH_FULL_CONFIRM_CHECK', 'Best&auml;tigen');
+define('MODULE_PAYMENT_PAYPALWPP_TEXT_AUTH_CONFIRM_ERROR', 'Sie haben eine Authorisation angefordert, aber haben nicht die Best&auml;tigen Checkbox angehakt.');
+define('MODULE_PAYMENT_PAYPALWPP_TEXT_CAPTURE_FULL_CONFIRM_ERROR', 'Sie haben einen Funds-Capture angefordert, aber haben nicht die Best&auml;tigen Checkbox angehakt.');
+define('MODULE_PAYMENT_PAYPALWPP_TEXT_REFUND_INITIATED', 'PayPal R&uuml;ckerstattung f&uuml;r %s gestartet. Transaction ID: %s. Aktualisieren Sie die Seite (F5) um den aktuellen Status einzusehen.');
+define('MODULE_PAYMENT_PAYPALWPP_TEXT_AUTH_INITIATED', 'PayPal Authorization f&uuml;r %s gestartet. Aktualisieren Sie die Seite (F5) um den aktuellen Status einzusehen.');
+define('MODULE_PAYMENT_PAYPALWPP_TEXT_CAPT_INITIATED', 'PayPal Capture f&uuml;r %s gestartet. Receipt ID: %s. Aktualisieren Sie die Seite (F5) um den aktuellen Status einzusehen.');
+define('MODULE_PAYMENT_PAYPALWPP_TEXT_VOID_INITIATED', 'PayPal Abbrechen Request gestartet. Transaction ID: %s. Aktualisieren Sie die Seite (F5) um den aktuellen Status einzusehen.');
+define('MODULE_PAYMENT_PAYPALWPP_TEXT_GEN_API_ERROR', 'Es gab einen Fehler bei der auszuf&uuml;hrenden Transaktion. Bitte schauen Sie in der API Anleitung oder in den Transaktions Logs f&uuml;r weitere Informationen nach.');
+  define('MODULE_PAYMENT_PAYPALWPP_TEXT_INVALID_ZONE_ERROR', 'Es tut uns leid, aber zur Zeit ist es uns nicht m&ouml;glich, die Zahlungsart Paypal f&uuml;r ihre geographische Region zu benutzen. Bitte w&auml;hlen Sie eine andere Zahlungsart.');
 
 // EC buttons -- Do not change these values:
-define('MODULE_PAYMENT_PAYPALWPP_EC_BUTTON_IMG', 'https://www.paypal.com/en_US/i/btn/btn_xpressCheckout.gif' . ' !!!TRANSLATE!!! file: includes/languages/LANGUAGE/modules/payment/paypalwpp.php at line 357');
-define('MODULE_PAYMENT_PAYPALWPP_EC_BUTTON_SM_IMG', 'https://www.paypal.com/en_US/i/btn/btn_xpressCheckoutsm.gif' . ' !!!TRANSLATE!!! file: includes/languages/LANGUAGE/modules/payment/paypalwpp.php at line 357');
-define('MODULE_PAYMENT_PAYPALWPP_MARK_BUTTON_IMG', 'https://www.paypal.com/en_US/i/logo/PayPal_mark_37x23.gif' . ' !!!TRANSLATE!!! file: includes/languages/LANGUAGE/modules/payment/paypalwpp.php at line 357');
-define('MODULE_PAYMENT_PAYPALWPP_MARK_BUTTON_TXT', 'Checkout with PayPal' . ' !!!TRANSLATE!!! file: includes/languages/LANGUAGE/modules/payment/paypalwpp.php at line 357');
+define('MODULE_PAYMENT_PAYPALWPP_EC_BUTTON_IMG', 'https://www.paypal.com/en_US/i/btn/btn_xpressCheckout.gif');
+define('MODULE_PAYMENT_PAYPALWPP_EC_BUTTON_SM_IMG', 'https://www.paypal.com/en_US/i/btn/btn_xpressCheckoutsm.gif');
+define('MODULE_PAYMENT_PAYPALWPP_MARK_BUTTON_IMG', 'https://www.paypal.com/en_US/i/logo/PayPal_mark_37x23.gif');
+define('MODULE_PAYMENT_PAYPALWPP_MARK_BUTTON_TXT', 'Checkout with PayPal');
 
 ////////////////////////////////////////
 // Styling of the PayPal Payment Page. Uncomment to customize.  Otherwise, simply create a Custom Page Style at PayPal and mark it as Primary or name it in your Zen Cart PayPal WPP settings.
@@ -94,72 +94,72 @@ define('MODULE_PAYMENT_PAYPALWPP_MARK_BUTTON_TXT', 'Checkout with PayPal' . ' !!
 
 
   // These are used for displaying raw transaction details in the Admin area:
-define('MODULE_PAYMENT_PAYPAL_ENTRY_FIRST_NAME', 'First Name:' . ' !!!TRANSLATE!!! file: includes/languages/LANGUAGE/modules/payment/paypalwpp.php at line 357');
-define('MODULE_PAYMENT_PAYPAL_ENTRY_LAST_NAME', 'Last Name:' . ' !!!TRANSLATE!!! file: includes/languages/LANGUAGE/modules/payment/paypalwpp.php at line 357');
-define('MODULE_PAYMENT_PAYPAL_ENTRY_BUSINESS_NAME', 'Business Name:' . ' !!!TRANSLATE!!! file: includes/languages/LANGUAGE/modules/payment/paypalwpp.php at line 357');
-define('MODULE_PAYMENT_PAYPAL_ENTRY_ADDRESS_NAME', 'Address Name:' . ' !!!TRANSLATE!!! file: includes/languages/LANGUAGE/modules/payment/paypalwpp.php at line 357');
-define('MODULE_PAYMENT_PAYPAL_ENTRY_ADDRESS_STREET', 'Address Street:' . ' !!!TRANSLATE!!! file: includes/languages/LANGUAGE/modules/payment/paypalwpp.php at line 357');
-define('MODULE_PAYMENT_PAYPAL_ENTRY_ADDRESS_CITY', 'Address City:' . ' !!!TRANSLATE!!! file: includes/languages/LANGUAGE/modules/payment/paypalwpp.php at line 357');
-define('MODULE_PAYMENT_PAYPAL_ENTRY_ADDRESS_STATE', 'Address State:' . ' !!!TRANSLATE!!! file: includes/languages/LANGUAGE/modules/payment/paypalwpp.php at line 357');
-define('MODULE_PAYMENT_PAYPAL_ENTRY_ADDRESS_ZIP', 'Address Zip:' . ' !!!TRANSLATE!!! file: includes/languages/LANGUAGE/modules/payment/paypalwpp.php at line 357');
-define('MODULE_PAYMENT_PAYPAL_ENTRY_ADDRESS_COUNTRY', 'Address Country:' . ' !!!TRANSLATE!!! file: includes/languages/LANGUAGE/modules/payment/paypalwpp.php at line 357');
-define('MODULE_PAYMENT_PAYPAL_ENTRY_EMAIL_ADDRESS', 'Payer Email:' . ' !!!TRANSLATE!!! file: includes/languages/LANGUAGE/modules/payment/paypalwpp.php at line 357');
-define('MODULE_PAYMENT_PAYPAL_ENTRY_EBAY_ID', 'Ebay ID:' . ' !!!TRANSLATE!!! file: includes/languages/LANGUAGE/modules/payment/paypalwpp.php at line 357');
-define('MODULE_PAYMENT_PAYPAL_ENTRY_PAYER_ID', 'Payer ID:' . ' !!!TRANSLATE!!! file: includes/languages/LANGUAGE/modules/payment/paypalwpp.php at line 357');
-define('MODULE_PAYMENT_PAYPAL_ENTRY_PAYER_STATUS', 'Payer Status:' . ' !!!TRANSLATE!!! file: includes/languages/LANGUAGE/modules/payment/paypalwpp.php at line 357');
-define('MODULE_PAYMENT_PAYPAL_ENTRY_ADDRESS_STATUS', 'Address Status:' . ' !!!TRANSLATE!!! file: includes/languages/LANGUAGE/modules/payment/paypalwpp.php at line 357');
-define('MODULE_PAYMENT_PAYPAL_ENTRY_PAYMENT_TYPE', 'Payment Type:' . ' !!!TRANSLATE!!! file: includes/languages/LANGUAGE/modules/payment/paypalwpp.php at line 357');
-define('MODULE_PAYMENT_PAYPAL_ENTRY_PAYMENT_STATUS', 'Payment Status:' . ' !!!TRANSLATE!!! file: includes/languages/LANGUAGE/modules/payment/paypalwpp.php at line 357');
-define('MODULE_PAYMENT_PAYPAL_ENTRY_PENDING_REASON', 'Pending Reason:' . ' !!!TRANSLATE!!! file: includes/languages/LANGUAGE/modules/payment/paypalwpp.php at line 357');
-define('MODULE_PAYMENT_PAYPAL_ENTRY_INVOICE', 'Invoice:' . ' !!!TRANSLATE!!! file: includes/languages/LANGUAGE/modules/payment/paypalwpp.php at line 357');
-define('MODULE_PAYMENT_PAYPAL_ENTRY_PAYMENT_DATE', 'Payment Date:' . ' !!!TRANSLATE!!! file: includes/languages/LANGUAGE/modules/payment/paypalwpp.php at line 357');
-define('MODULE_PAYMENT_PAYPAL_ENTRY_CURRENCY', 'Currency:' . ' !!!TRANSLATE!!! file: includes/languages/LANGUAGE/modules/payment/paypalwpp.php at line 357');
-define('MODULE_PAYMENT_PAYPAL_ENTRY_GROSS_AMOUNT', 'Gross Amount:' . ' !!!TRANSLATE!!! file: includes/languages/LANGUAGE/modules/payment/paypalwpp.php at line 357');
-define('MODULE_PAYMENT_PAYPAL_ENTRY_PAYMENT_FEE', 'Payment Fee:' . ' !!!TRANSLATE!!! file: includes/languages/LANGUAGE/modules/payment/paypalwpp.php at line 357');
-define('MODULE_PAYMENT_PAYPAL_ENTRY_EXCHANGE_RATE', 'Exchange Rate:' . ' !!!TRANSLATE!!! file: includes/languages/LANGUAGE/modules/payment/paypalwpp.php at line 357');
-define('MODULE_PAYMENT_PAYPAL_ENTRY_CART_ITEMS', 'Cart items:' . ' !!!TRANSLATE!!! file: includes/languages/LANGUAGE/modules/payment/paypalwpp.php at line 357');
-define('MODULE_PAYMENT_PAYPAL_ENTRY_TXN_TYPE', 'Trans. Type:' . ' !!!TRANSLATE!!! file: includes/languages/LANGUAGE/modules/payment/paypalwpp.php at line 357');
-define('MODULE_PAYMENT_PAYPAL_ENTRY_TXN_ID', 'Trans. ID:' . ' !!!TRANSLATE!!! file: includes/languages/LANGUAGE/modules/payment/paypalwpp.php at line 357');
-define('MODULE_PAYMENT_PAYPAL_ENTRY_PARENT_TXN_ID', 'Parent Trans. ID:' . ' !!!TRANSLATE!!! file: includes/languages/LANGUAGE/modules/payment/paypalwpp.php at line 357');
-define('MODULE_PAYMENT_PAYPAL_ENTRY_REFUND_TITLE', '<strong>Order Refunds</strong>' . ' !!!TRANSLATE!!! file: includes/languages/LANGUAGE/modules/payment/paypalwpp.php at line 357');
-define('MODULE_PAYMENT_PAYPAL_ENTRY_REFUND_FULL', 'If you wish to refund this order in its entirety, click here:' . ' !!!TRANSLATE!!! file: includes/languages/LANGUAGE/modules/payment/paypalwpp.php at line 357');
-define('MODULE_PAYMENT_PAYPAL_ENTRY_REFUND_BUTTON_TEXT_FULL', 'Do Full Refund' . ' !!!TRANSLATE!!! file: includes/languages/LANGUAGE/modules/payment/paypalwpp.php at line 357');
-define('MODULE_PAYMENT_PAYPAL_ENTRY_REFUND_BUTTON_TEXT_PARTIAL', 'Do Partial Refund' . ' !!!TRANSLATE!!! file: includes/languages/LANGUAGE/modules/payment/paypalwpp.php at line 357');
-define('MODULE_PAYMENT_PAYPAL_ENTRY_REFUND_PARTIAL_TEXT', '<br />... or enter the partial refund amount here and click on Partial Refund' . ' !!!TRANSLATE!!! file: includes/languages/LANGUAGE/modules/payment/paypalwpp.php at line 357');
-define('MODULE_PAYMENT_PAYPAL_ENTRY_REFUND_SUFFIX', '*A Full refund may not be issued after a Partial refund has been applied.<br />*Multiple Partial refunds are permitted up to the remaining unrefunded balance.' . ' !!!TRANSLATE!!! file: includes/languages/LANGUAGE/modules/payment/paypalwpp.php at line 357');
-define('MODULE_PAYMENT_PAYPAL_ENTRY_REFUND_TEXT_COMMENTS', '<strong>Note to display to customer:</strong>' . ' !!!TRANSLATE!!! file: includes/languages/LANGUAGE/modules/payment/paypalwpp.php at line 357');
-define('MODULE_PAYMENT_PAYPAL_ENTRY_REFUND_DEFAULT_MESSAGE', 'Refunded by store administrator.' . ' !!!TRANSLATE!!! file: includes/languages/LANGUAGE/modules/payment/paypalwpp.php at line 357');
-define('MODULE_PAYMENT_PAYPALWPP_TEXT_REFUND_FULL_CONFIRM_CHECK','Confirm: ' . ' !!!TRANSLATE!!! file: includes/languages/LANGUAGE/modules/payment/paypalwpp.php at line 357');
+define('MODULE_PAYMENT_PAYPAL_ENTRY_FIRST_NAME', 'Vorname:');
+define('MODULE_PAYMENT_PAYPAL_ENTRY_LAST_NAME', 'Nachname:');
+define('MODULE_PAYMENT_PAYPAL_ENTRY_BUSINESS_NAME', 'Firmenname:');
+define('MODULE_PAYMENT_PAYPAL_ENTRY_ADDRESS_NAME', 'Adressen Name:');
+define('MODULE_PAYMENT_PAYPAL_ENTRY_ADDRESS_STREET', 'Strasse:');
+define('MODULE_PAYMENT_PAYPAL_ENTRY_ADDRESS_CITY', 'Stadt:');
+define('MODULE_PAYMENT_PAYPAL_ENTRY_ADDRESS_STATE', 'Bundesland:');
+define('MODULE_PAYMENT_PAYPAL_ENTRY_ADDRESS_ZIP', 'Postleitzahl:');
+define('MODULE_PAYMENT_PAYPAL_ENTRY_ADDRESS_COUNTRY', 'Land:');
+define('MODULE_PAYMENT_PAYPAL_ENTRY_EMAIL_ADDRESS', 'E-Mail:');
+define('MODULE_PAYMENT_PAYPAL_ENTRY_EBAY_ID', 'Ebay ID:');
+define('MODULE_PAYMENT_PAYPAL_ENTRY_PAYER_ID', 'Zahlender ID:');
+define('MODULE_PAYMENT_PAYPAL_ENTRY_PAYER_STATUS', 'Zahlender Status:');
+define('MODULE_PAYMENT_PAYPAL_ENTRY_ADDRESS_STATUS', 'Adressen Status:');
+define('MODULE_PAYMENT_PAYPAL_ENTRY_PAYMENT_TYPE', 'Zahlungsart:');
+define('MODULE_PAYMENT_PAYPAL_ENTRY_PAYMENT_STATUS', 'Zahlungsart Status:');
+define('MODULE_PAYMENT_PAYPAL_ENTRY_PENDING_REASON', 'Wartet aufgrund von:');
+define('MODULE_PAYMENT_PAYPAL_ENTRY_INVOICE', 'Rechnung:');
+define('MODULE_PAYMENT_PAYPAL_ENTRY_PAYMENT_DATE', 'Datum der Zahlung:');
+define('MODULE_PAYMENT_PAYPAL_ENTRY_CURRENCY', 'W&auml;hrung:');
+define('MODULE_PAYMENT_PAYPAL_ENTRY_GROSS_AMOUNT', 'Summe:');
+define('MODULE_PAYMENT_PAYPAL_ENTRY_PAYMENT_FEE', 'Kosten Zahlungsart:');
+define('MODULE_PAYMENT_PAYPAL_ENTRY_EXCHANGE_RATE', 'Wechselkurs:';
+define('MODULE_PAYMENT_PAYPAL_ENTRY_CART_ITEMS', 'Warenkorbinhalt:');
+define('MODULE_PAYMENT_PAYPAL_ENTRY_TXN_TYPE', 'Trans. Typ:');
+define('MODULE_PAYMENT_PAYPAL_ENTRY_TXN_ID', 'Trans. ID:');
+define('MODULE_PAYMENT_PAYPAL_ENTRY_PARENT_TXN_ID', 'Zugeh&ouml;rige Trans. ID:');
+define('MODULE_PAYMENT_PAYPAL_ENTRY_REFUND_TITLE', '<strong>R&uuml;ckerstattatung</strong>');
+define('MODULE_PAYMENT_PAYPAL_ENTRY_REFUND_FULL', 'Wenn Sie diese Bestellung komplett zur&uuml;ckerstattet haben wollen, dann klicken Sie bitte hier:');
+define('MODULE_PAYMENT_PAYPAL_ENTRY_REFUND_BUTTON_TEXT_FULL', 'Volle R&uuml;ckerstattung');
+define('MODULE_PAYMENT_PAYPAL_ENTRY_REFUND_BUTTON_TEXT_PARTIAL', 'Teilweise R&uuml;ckerstattung');
+define('MODULE_PAYMENT_PAYPAL_ENTRY_REFUND_PARTIAL_TEXT', '<br />... oder tragen Sie den gew&uuml;nschten Betrag für eine teilweise R&uuml;ckerstattung ein und klicken auf Teilweise R&uuml;ckerstattung');
+define('MODULE_PAYMENT_PAYPAL_ENTRY_REFUND_SUFFIX', '*Eine volle R&uuml;ckerstattung ist nach einer teilweisen R&uuml;ckerstattung nicht m&ouml;glich.<br />*Mehrere teilweise R&uuml;ckerstattungen sind m&ouml;glich, h&ouml;chstens allerdings bis zum vollst&auml;ndigen Aufbrauchen des Restbetrages.');
+define('MODULE_PAYMENT_PAYPAL_ENTRY_REFUND_TEXT_COMMENTS', '<strong>Hinweis für den Kunden:</strong>');
+define('MODULE_PAYMENT_PAYPAL_ENTRY_REFUND_DEFAULT_MESSAGE', 'R&uuml;ckerstattet vom Shopinhaber.');
+define('MODULE_PAYMENT_PAYPALWPP_TEXT_REFUND_FULL_CONFIRM_CHECK','Best&auml;tigung: ');
 
 
-define('MODULE_PAYMENT_PAYPAL_ENTRY_AUTH_TITLE', '<strong>Order Authorizations</strong>' . ' !!!TRANSLATE!!! file: includes/languages/LANGUAGE/modules/payment/paypalwpp.php at line 357');
-define('MODULE_PAYMENT_PAYPAL_ENTRY_AUTH_PARTIAL_TEXT', 'If you wish to authorize part of this order, enter the amount  here:' . ' !!!TRANSLATE!!! file: includes/languages/LANGUAGE/modules/payment/paypalwpp.php at line 357');
-define('MODULE_PAYMENT_PAYPAL_ENTRY_AUTH_BUTTON_TEXT_PARTIAL', 'Do Authorization' . ' !!!TRANSLATE!!! file: includes/languages/LANGUAGE/modules/payment/paypalwpp.php at line 357');
-define('MODULE_PAYMENT_PAYPAL_ENTRY_AUTH_SUFFIX', '' . ' !!!TRANSLATE!!! file: includes/languages/LANGUAGE/modules/payment/paypalwpp.php at line 357');
-define('MODULE_PAYMENT_PAYPAL_ENTRY_REFUND_TEXT_COMMENTS', '<strong>Note to display to customer:</strong>');
-define('MODULE_PAYMENT_PAYPAL_ENTRY_REFUND_DEFAULT_MESSAGE', 'Refunded by store administrator.');
+define('MODULE_PAYMENT_PAYPAL_ENTRY_AUTH_TITLE', '<strong>Bestell Authorisation</strong>');
+define('MODULE_PAYMENT_PAYPAL_ENTRY_AUTH_PARTIAL_TEXT', 'Wollen Sie einen Teil dieser Bestellungen authorisieren, dann tragen Sie den Betrag hier ein:');
+define('MODULE_PAYMENT_PAYPAL_ENTRY_AUTH_BUTTON_TEXT_PARTIAL', 'Authorisieren');
+define('MODULE_PAYMENT_PAYPAL_ENTRY_AUTH_SUFFIX', '');
+define('MODULE_PAYMENT_PAYPAL_ENTRY_REFUND_TEXT_COMMENTS', '<strong>Hinweis für den Kunden:</strong>');
+define('MODULE_PAYMENT_PAYPAL_ENTRY_REFUND_DEFAULT_MESSAGE', 'R&uuml;ckerstattet vom Shopinhaber.');
 
-define('MODULE_PAYMENT_PAYPAL_ENTRY_CAPTURE_TITLE', '<strong>Capturing Authorizations</strong>' . ' !!!TRANSLATE!!! file: includes/languages/LANGUAGE/modules/payment/paypalwpp.php at line 357');
-define('MODULE_PAYMENT_PAYPAL_ENTRY_CAPTURE_FULL', 'If you wish to capture all or part of the outstanding authorized amounts for this order, enter the Capture Amount and select whether this is the final capture for this order.  Check the confirm box before submitting your Capture request.<br />' . ' !!!TRANSLATE!!! file: includes/languages/LANGUAGE/modules/payment/paypalwpp.php at line 357');
-define('MODULE_PAYMENT_PAYPAL_ENTRY_CAPTURE_BUTTON_TEXT_FULL', 'Do Capture' . ' !!!TRANSLATE!!! file: includes/languages/LANGUAGE/modules/payment/paypalwpp.php at line 357');
-define('MODULE_PAYMENT_PAYPAL_ENTRY_CAPTURE_AMOUNT_TEXT', 'Amount to Capture:' . ' !!!TRANSLATE!!! file: includes/languages/LANGUAGE/modules/payment/paypalwpp.php at line 357');
-define('MODULE_PAYMENT_PAYPAL_ENTRY_CAPTURE_FINAL_TEXT', 'Is this the final capture?' . ' !!!TRANSLATE!!! file: includes/languages/LANGUAGE/modules/payment/paypalwpp.php at line 357');
-define('MODULE_PAYMENT_PAYPAL_ENTRY_CAPTURE_SUFFIX', '' . ' !!!TRANSLATE!!! file: includes/languages/LANGUAGE/modules/payment/paypalwpp.php at line 357');
-define('MODULE_PAYMENT_PAYPAL_ENTRY_CAPTURE_TEXT_COMMENTS', '<strong>Note to display to customer:</strong>' . ' !!!TRANSLATE!!! file: includes/languages/LANGUAGE/modules/payment/paypalwpp.php at line 357');
-define('MODULE_PAYMENT_PAYPAL_ENTRY_CAPTURE_DEFAULT_MESSAGE', 'Thank you for your order.' . ' !!!TRANSLATE!!! file: includes/languages/LANGUAGE/modules/payment/paypalwpp.php at line 357');
-define('MODULE_PAYMENT_PAYPALWPP_TEXT_CAPTURE_FULL_CONFIRM_CHECK','Confirm: ' . ' !!!TRANSLATE!!! file: includes/languages/LANGUAGE/modules/payment/paypalwpp.php at line 357');
+define('MODULE_PAYMENT_PAYPAL_ENTRY_CAPTURE_TITLE', '<strong>Authorisationen Abfangen</strong>');
+define('MODULE_PAYMENT_PAYPAL_ENTRY_CAPTURE_FULL', 'Wenn Sie alle oder einen Teil der ausstehenden Authorisationen f&uuml;r diesen Auftrag abfangen wollen, dann geben sie bitte den gew&uuml;nschten Betrag ein. Bitte machen Sie auch einen Haken in die Best&auml;tigung Checkbox, bevor Sie auf den Button Abfangen klicken..<br />');
+define('MODULE_PAYMENT_PAYPAL_ENTRY_CAPTURE_BUTTON_TEXT_FULL', 'Abfangen');
+define('MODULE_PAYMENT_PAYPAL_ENTRY_CAPTURE_AMOUNT_TEXT', 'Betrag:');
+define('MODULE_PAYMENT_PAYPAL_ENTRY_CAPTURE_FINAL_TEXT', 'Ist dieses der endg&uuml;ltige Abfangversuch??');
+define('MODULE_PAYMENT_PAYPAL_ENTRY_CAPTURE_SUFFIX', '');
+define('MODULE_PAYMENT_PAYPAL_ENTRY_CAPTURE_TEXT_COMMENTS', '<strong>Hinweis f&uuml;r den Kunden:</strong>');
+define('MODULE_PAYMENT_PAYPAL_ENTRY_CAPTURE_DEFAULT_MESSAGE', 'Vielen Dank für Ihren Auftrag.');
+define('MODULE_PAYMENT_PAYPALWPP_TEXT_CAPTURE_FULL_CONFIRM_CHECK','Bestätigung: ');
 
-define('MODULE_PAYMENT_PAYPAL_ENTRY_VOID_TITLE', '<strong>Voiding Order Authorizations</strong>' . ' !!!TRANSLATE!!! file: includes/languages/LANGUAGE/modules/payment/paypalwpp.php at line 357');
-define('MODULE_PAYMENT_PAYPAL_ENTRY_VOID', 'If you wish to void an authorization, enter the authorization ID here, and confirm:' . ' !!!TRANSLATE!!! file: includes/languages/LANGUAGE/modules/payment/paypalwpp.php at line 357');
-define('MODULE_PAYMENT_PAYPAL_ENTRY_VOID_TEXT_COMMENTS', '<strong>Note to display to customer:</strong>' . ' !!!TRANSLATE!!! file: includes/languages/LANGUAGE/modules/payment/paypalwpp.php at line 357');
-define('MODULE_PAYMENT_PAYPAL_ENTRY_VOID_DEFAULT_MESSAGE', 'Thank you for your patronage. Please come again.' . ' !!!TRANSLATE!!! file: includes/languages/LANGUAGE/modules/payment/paypalwpp.php at line 357');
-define('MODULE_PAYMENT_PAYPAL_ENTRY_VOID_BUTTON_TEXT_FULL', 'Do Void' . ' !!!TRANSLATE!!! file: includes/languages/LANGUAGE/modules/payment/paypalwpp.php at line 357');
-define('MODULE_PAYMENT_PAYPAL_ENTRY_VOID_SUFFIX', '' . ' !!!TRANSLATE!!! file: includes/languages/LANGUAGE/modules/payment/paypalwpp.php at line 357');
+define('MODULE_PAYMENT_PAYPAL_ENTRY_VOID_TITLE', '<strong>Abbrechen von Auftrags Authorisationen</strong>');
+define('MODULE_PAYMENT_PAYPAL_ENTRY_VOID', 'Wenn Sie eine Authorisation abbrechen wollen, dann tragen Sie bitte die entsprechende ID hier ein und klicken auf Abbrechen.');
+define('MODULE_PAYMENT_PAYPAL_ENTRY_VOID_TEXT_COMMENTS', '<strong>Hinweis f&uuml;r den Kunden:</strong>');
+define('MODULE_PAYMENT_PAYPAL_ENTRY_VOID_DEFAULT_MESSAGE', 'Vielen Dank das Sie ein Kunde von uns sind, bitte besuchen Sie uns bald wieder.');
+define('MODULE_PAYMENT_PAYPAL_ENTRY_VOID_BUTTON_TEXT_FULL', 'Abbrechen');
+define('MODULE_PAYMENT_PAYPAL_ENTRY_VOID_SUFFIX', '');
 
 
 
 // this text is used to announce the username/password when the module creates the customer account and emails data to them:
-define('EMAIL_EC_ACCOUNT_INFORMATION', 'Your account login details, which you can use to review your purchase, are as follows:' . ' !!!TRANSLATE!!! file: includes/languages/LANGUAGE/modules/payment/paypalwpp.php at line 357');
+define('EMAIL_EC_ACCOUNT_INFORMATION', 'Mit folgenden Kundendaten k&ouml;nnen Sie ihren Einkauf erneut aufrufen:');
 
 
 

@@ -22,7 +22,7 @@
 
 define('NAVBAR_TITLE','Allgemeine Gesch&auml;ftbedingungen');
 define('HEADING_TITLE','Allgemeine Gesch&auml;ftbedingungen');
-define('TEXT_INFORMATION', 'Allgemeine Gesch&auml;ftbedingungen');
+define('TEXT_INFORMATION', 'Ihre Allgemeine Gesch&auml;ftbedingungen sollten hier eingetragen werden!');
 
 
 ?>

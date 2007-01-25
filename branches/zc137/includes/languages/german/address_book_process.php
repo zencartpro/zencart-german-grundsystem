@@ -22,7 +22,7 @@ define('DELETE_ADDRESS_DESCRIPTION','Sind Sie sicher das Sie die Anschrift aus I
 define('NEW_ADDRESS_TITLE','Neuer Eintrag ins Adressbuch');
 define('SELECTED_ADDRESS','Ausgew&auml;hlte Anschrift:');
 define('SET_AS_PRIMARY','Als Hauptanschrift benutzen.');
-define('SUCCESS_ADDRESS_BOOK_ENTRY_DELETED','Die Ausgew&auml;hlte Anschrift wurde erfolgreich gel&ouml;scht.');
+define('SUCCESS_ADDRESS_BOOK_ENTRY_DELETED','Die ausgew&auml;hlte Anschrift wurde erfolgreich gel&ouml;scht.');
 define('SUCCESS_ADDRESS_BOOK_ENTRY_UPDATED','Ihr Adressbuch wurde erfolgreich aktualisiert.');
 define('WARNING_PRIMARY_ADDRESS_DELETION','Die Hauptanschrift kann nicht gel&ouml;scht werden. Bitte &auml;ndern Sie Ihre Hauptanschrift und versuchen Sie es erneut.');
 define('ERROR_NONEXISTING_ADDRESS_BOOK_ENTRY','Der Eintrag im Adressbuch existiert nicht.');

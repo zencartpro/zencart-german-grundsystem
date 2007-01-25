@@ -4,7 +4,7 @@
  * @copyright Copyright 2003-2006 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @translator: cyaneo/hugo13/wflohr	http://www.zen-cart.at	2007-01-03
+ * @translator: cyaneo/hugo13/wflohr/maleborg	http://www.zen-cart.at	2007-01-03
  * @version $Id: english.php 5454 2006-12-29 20:10:17Z drbyte $
  */
 
@@ -22,7 +22,7 @@ define('FOOTER_TEXT_BODY', 'Copyright &copy; ' . date('Y') . ' <a href="http://w
 // on Windows try 'en', or 'English'
 @setlocale(LC_TIME, 'de_DE.ISO_8859-1');
 define('DATE_FORMAT_SHORT', '%d.%m %Y'); // this is used for strftime()
-define('DATE_FORMAT_LONG', '%A %d %B, %Y'); // this is used for strftime()
+define('DATE_FORMAT_LONG', '%A, %d. %B %Y'); // this is used for strftime()
 define('DATE_FORMAT', 'd.m.Y'); // this is used for date()
 define('DATE_TIME_FORMAT', DATE_FORMAT_SHORT . ' %H:%M:%S');
 
@@ -72,7 +72,7 @@ define('MALE_ADDRESS', 'Herr');
 define('FEMALE_ADDRESS', 'Frau');
 
 // text for date of birth example
-define('DOB_FORMAT_STRING', 'mm/dd/yyyy');
+define('DOB_FORMAT_STRING', 'tt/mm/jjjj');
 
 //text for sidebox heading links
 define('BOX_HEADING_LINKS', '  [mehr]');
@@ -314,8 +314,8 @@ define('TEXT_REQUIRED', '<span class="errorText">ben&ouml;tigt</span>');
 define('WARNING_INSTALL_DIRECTORY_EXISTS', 'Warnung: Das Installationsverzeichnis existiert noch: ' . dirname($_SERVER['SCRIPT_FILENAME']) . '/zc_install. Bitte entfernen Sie zu Ihrer Sicherheit dieses Verzeichnis.');
 define('WARNING_CONFIG_FILE_WRITEABLE', 'Warnung: In die Konfigurationsdatei kann geschrieben werden: ' . dirname($_SERVER['SCRIPT_FILENAME']) . '/includes/configure.php. Dies stellt ein potenzielles Sicherheitsrisiko dar - bitte &auml;ndern Sie die Schreibrechte f&uuml;r diese Datei.');
   unset($warn_path);
-define('WARNING_SESSION_DIRECTORY_NON_EXISTENT', 'Warnung: Das Verzeichnis zum Speichern der Sitzungen existiert nicht: ' . zen_session_save_path() . '. Bitte erstellen Sie dieses Verzeichnis, damit Sitzungen gespeichert werden k&ouml;nnen.');
-define('WARNING_SESSION_DIRECTORY_NOT_WRITEABLE', 'Warnung: In das Verzeichnis zum Speichern von Sitzungen kann nicht geschrieben werden: ' . zen_session_save_path() . '. Bitte &auml;ndern Sie die Schreibrechte dieses Verzeichnisses.');
+define('WARNING_SESSION_DIRECTORY_NON_EXISTENT', 'Warnung: Das Verzeichnis zum Speichern der Sitzungen (Sessions) existiert nicht: ' . zen_session_save_path() . '. Bitte erstellen Sie dieses Verzeichnis, damit Sitzungen (Sessions)gespeichert werden k&ouml;nnen.');
+define('WARNING_SESSION_DIRECTORY_NOT_WRITEABLE', 'Warnung: In das Verzeichnis zum Speichern von Sitzungen (Sessions) kann nicht geschrieben werden: ' . zen_session_save_path() . '. Bitte &auml;ndern Sie die Schreibrechte dieses Verzeichnisses.');
 define('WARNING_SESSION_AUTO_START', 'Warnung: session.auto_start ist aktiviert - bitte deaktivieren Sie dieses Feature in der php.ini und starten Sie Ihren Webserver neu.');
 define('WARNING_DOWNLOAD_DIRECTORY_NON_EXISTENT', 'Warnung: Das Verzeichnis f&uuml;r Downloadartikel existiert nicht: ' . DIR_FS_DOWNLOAD . '. Downloadartikel funktionieren nicht, solange dieses Verzeichnis nicht erstellt wurde.');
 define('WARNING_SQL_CACHE_DIRECTORY_NON_EXISTENT', 'Warnung: Das SQL-Cache Verzeichnis existiert nicht: ' . DIR_FS_SQL_CACHE . '. SQL Abfragen k&ouml;nnen nicht zwischengespeichert werden, solange dieses Verzeichnis nicht erstellt wurde.');
@@ -355,20 +355,20 @@ define('PAYMENT_MODULE_GV', 'GS/AK');
 define('TABLE_HEADING_CREDIT_PAYMENT', 'Guthaben verf&uuml;gbar');
 
 define('TEXT_INVALID_REDEEM_COUPON', 'Ung&uuml;ltiger Aktionscode');
-define('TEXT_INVALID_REDEEM_COUPON_MINIMUM', 'Der Mindestbestellwert f&uuml;r diesen Kupon liegt bei %s');
-define('TEXT_INVALID_STARTDATE_COUPON', 'Dieser Kupon ist zurzeit nicht erh&auml;ltlich');
-define('TEXT_INVALID_FINISDATE_COUPON', 'Dieser Kupon ist abgelaufen');
-define('TEXT_INVALID_USES_COUPON', 'Dieser Kupon kann nur');
+define('TEXT_INVALID_REDEEM_COUPON_MINIMUM', 'Der Mindestbestellwert f&uuml;r diesen Aktionskupon liegt bei %s');
+define('TEXT_INVALID_STARTDATE_COUPON', 'Dieser Aktionskupon ist zurzeit nicht erh&auml;ltlich');
+define('TEXT_INVALID_FINISDATE_COUPON', 'Dieser Aktionskupon ist abgelaufen');
+define('TEXT_INVALID_USES_COUPON', 'Dieser Aktionskupon kann nur');
 define('TIMES', 'mal eingel&ouml;st werden');
 define('TIME', 'mal eingel&ouml;st werden.');
-define('TEXT_INVALID_USES_USER_COUPON', 'der Kupon hat die maximale Einl&ouml;seanzahl pro Kunde erreicht.');
-define('REDEEMED_COUPON', 'Kupon einl&ouml;sen');
+define('TEXT_INVALID_USES_USER_COUPON', 'der Aktionskupon hat die maximale Einl&ouml;seanzahl pro Kunde erreicht.');
+define('REDEEMED_COUPON', 'Aktionskupon einl&ouml;sen');
 define('REDEEMED_MIN_ORDER', 'bei Bestellungen &uuml;ber');
 define('REDEEMED_RESTRICTIONS', '[Artikelkategorie Einschr&auml;nkung angewendet]');
 define('TEXT_ERROR', 'Es ist ein Fehler aufgetreten.');
 define('TEXT_INVALID_COUPON_PRODUCT', 'Dieser Aktionskupon ist f&uuml;r keinen der im Warenkorb befindlichen Artikel g&uuml;ltig');
-define('TEXT_VALID_COUPON', 'Kupon erfolgreich eingel&ouml;st');
-define('TEXT_REMOVE_REDEEM_COUPON_ZONE', 'Der eingegebene Kupon kann mit der ausgew&auml;hlten Adresse nicht eingel&ouml;st werden.');
+define('TEXT_VALID_COUPON', 'Aktionskupon erfolgreich eingel&ouml;st');
+define('TEXT_REMOVE_REDEEM_COUPON_ZONE', 'Der eingegebene Aktionskupon kann mit der ausgew&auml;hlten Adresse nicht eingel&ouml;st werden.');
 
 // more info in place of buy now
 define('MORE_INFO_TEXT', '... weitere Infos');
@@ -386,9 +386,9 @@ define('PRODUCTS_ORDER_QTY_TEXT', 'Anzahl: ');
 // success messages for added to cart when display cart is off
 // set to blank for no messages
 // for all pages except where multiple add to cart is used:
-define('SUCCESS_ADDED_TO_CART_PRODUCT', 'Der Artikel wurde dem Warenkorb hinzugef&uuml;gt ...');
+define('SUCCESS_ADDED_TO_CART_PRODUCT', 'Der Artikel wurde in den Warenkorb gelegt ...');
 // only for where multiple add to cart is used:
-define('SUCCESS_ADDED_TO_CART_PRODUCTS', 'Die ausgew&auml;hlten Artikel wurden dem Warenkorb hinzugef&uuml;gt ...');
+define('SUCCESS_ADDED_TO_CART_PRODUCTS', 'Die ausgew&auml;hlten Artikel wurden in den Warenkorb gelegt ...');
 
 define('TEXT_PRODUCT_WEIGHT_UNIT','kg');
 
@@ -435,7 +435,7 @@ define('TEXT_CURRENT_CLOSE_WINDOW', '[ Fenster schlie&szlig;en ]');
 
 // iii 031104 added:  File upload error strings
 define('ERROR_FILETYPE_NOT_ALLOWED', 'Fehler: Dateityp nicht erlaubt.');
-define('WARNING_NO_FILE_UPLOADED', 'Warnung: keine Datei hochgeladen');
+define('WARNING_NO_FILE_UPLOADED', 'Warnung: Keine Datei hochgeladen');
 define('SUCCESS_FILE_SAVED_SUCCESSFULLY', 'Die Datei wurde erfolgreich gespeichert.');
 define('ERROR_FILE_NOT_SAVED', 'Fehler: Datei nicht gespeichert.');
 define('ERROR_DESTINATION_NOT_WRITEABLE', 'Fehler: Auf das Ziel konnte nicht geschrieben werden.');
@@ -449,7 +449,7 @@ define('TEXT_ADMIN_DOWN_FOR_MAINTENANCE', 'Hinweis: Unser Shop ist wegen Wartung
 define('PRODUCTS_PRICE_IS_FREE_TEXT', 'Kostenlos!');
 define('PRODUCTS_PRICE_IS_CALL_FOR_PRICE_TEXT', 'F&uuml;r Preis anfragen');
 define('TEXT_CALL_FOR_PRICE', 'F&uuml;r Preis anfragen');
-define('TEXT_INVALID_SELECTION','Sie haben eine ung&uuml;ltige Auswahl  getroffen: ');
+define('TEXT_INVALID_SELECTION','Sie haben eine ung&uuml;ltige Auswahl getroffen: ');
 define('TEXT_ERROR_OPTION_FOR', 'in der Option f&uuml;r:');
 define('TEXT_INVALID_USER_INPUT', 'Benutzereingabe ben&ouml;tigt<br />');
 
@@ -535,7 +535,7 @@ define('TEXT_REMAINING','restliche');
 
 // Shipping Estimator
 define('CART_SHIPPING_OPTIONS', 'Voraussichtlicher Versand:');
-define('CART_SHIPPING_OPTIONS_LOGIN', 'Hier <a href="' . zen_href_link(FILENAME_LOGIN, '', 'SSL') . '"><u>Log In</u></a>, um Ihre pers&ouml;nlichen Versandkosten anzuzeigen.');
+define('CART_SHIPPING_OPTIONS_LOGIN', 'Bitte melden Sie sich <a href="' . zen_href_link(FILENAME_LOGIN, '', 'SSL') . '"><u>hier</u></a> an, um Ihre pers&ouml;nlichen Versandkosten anzuzeigen.');
 define('CART_SHIPPING_METHOD_TEXT', 'Versandarten:');
 define('CART_SHIPPING_METHOD_RATES', 'S&auml;tze:');
 define('CART_SHIPPING_METHOD_TO', 'Versand an: ');
@@ -581,7 +581,7 @@ define('TEXT_INFO_SORT_BY_PRODUCTS_SORT_ORDER', 'Standardansicht');
 // downloads module defines
 define('TABLE_HEADING_DOWNLOAD_DATE', 'g&uuml;ltig bis');
 define('TABLE_HEADING_DOWNLOAD_COUNT', 'verbleibend');
-define('HEADING_DOWNLOAD', 'Dateien zum Herunterladen');
+define('HEADING_DOWNLOAD', 'Um Ihre Dateien herunterzuladen, klicken Sie bitte auf den Download Button und w&auml;hlen Sie "Ziel speichern unter".');
 define('TABLE_HEADING_DOWNLOAD_FILENAME','Dateiname');
 define('TABLE_HEADING_PRODUCT_NAME','Artikel');
 define('TABLE_HEADING_BYTE_SIZE','Dateigr&ouml;&szlig;e');
@@ -592,23 +592,23 @@ define('TEXT_DOWNLOADS_UNLIMITED_COUNT', '--- *** ---');
 define('COLON_SPACER', ':&nbsp;&nbsp;');
 
 // table headings for cart display and upcoming products
-define('TABLE_HEADING_QUANTITY', 'Stck.');
+define('TABLE_HEADING_QUANTITY', 'St&uuml;ck');
 define('TABLE_HEADING_PRODUCTS', 'Artikelname');
 define('TABLE_HEADING_TOTAL', 'Summe');
 
 // create account - login shared
 define('TABLE_HEADING_PRIVACY_CONDITIONS', 'Datenschutz');
-define('TEXT_PRIVACY_CONDITIONS_DESCRIPTION', 'Bitte best&auml;tigen Sie Ihr Einverst&auml;ndniss mit unseren Datenschutzrichtlinien, indem Sie die Checkbox aktivieren. Die Datenschutzrichtlinien k&ouml;nnen <a href="' . zen_href_link(FILENAME_PRIVACY, '', 'SSL') . '"><span class="pseudolink">hier</span></a> gelesen werden.');
-define('TEXT_PRIVACY_CONDITIONS_CONFIRM', 'Ich habe die Datenschutzrichtlinien gelesen und akzeptiert.');
+define('TEXT_PRIVACY_CONDITIONS_DESCRIPTION', 'Bitte best&auml;tigen Sie Ihr Einverst&auml;ndniss mit unseren Datenschutzbestimmungen, indem Sie die Checkbox aktivieren. Die Datenschutzbestimmungen k&ouml;nnen Sie <a href="' . zen_href_link(FILENAME_PRIVACY, '', 'SSL') . '"><span class="pseudolink">hier</span></a> nachesen.');
+define('TEXT_PRIVACY_CONDITIONS_CONFIRM', 'Ich habe die Datenschutzbestimmungen gelesen und akzeptiert.');
 define('TABLE_HEADING_ADDRESS_DETAILS', 'Bitte tragen Sie Ihre Adressangaben ein');
 define('TABLE_HEADING_PHONE_FAX_DETAILS', 'Wie kann man Sie erreichen?');
 define('TABLE_HEADING_DATE_OF_BIRTH', 'Bitte geben Sie Ihr Geburtsdatum an');
 define('TABLE_HEADING_LOGIN_DETAILS', 'Bitte geben Sie hier Ihre Anmeldedaten ein');
 define('TABLE_HEADING_REFERRAL_DETAILS', 'Wie wurden Sie auf unseren Shop aufmerksam?');
-define('ENTRY_EMAIL_PREFERENCE','Newsletter und E-mail');
+define('ENTRY_EMAIL_PREFERENCE','Newsletter und E-Mail');
 define('ENTRY_EMAIL_HTML_DISPLAY','HTML');
 define('ENTRY_EMAIL_TEXT_DISPLAY','nur TEXT');
-define('EMAIL_SEND_FAILED','Fehler: E-mail wurde nicht an: "%s" <%s> versendet. Betreff: "%s"');
+define('EMAIL_SEND_FAILED','Fehler: E-Mail wurde nicht an: "%s" <%s> versendet. Betreff: "%s"');
 
 define('DB_ERROR_NOT_CONNECTED', 'Fehler: Es konnte keine Verbindung mit der Datenbank hergestellt werden');
 
@@ -619,7 +619,7 @@ define('TEXT_EZPAGES_STATUS_SIDEBOX_ADMIN', 'WARNING: EZ-PAGES SIDEBOX - Darf nu
 
 // extra product listing sorter
 define('TEXT_PRODUCTS_LISTING_ALPHA_SORTER', '');
-define('TEXT_PRODUCTS_LISTING_ALPHA_SORTER_NAMES', 'Artikel starten mit ...');
+define('TEXT_PRODUCTS_LISTING_ALPHA_SORTER_NAMES', 'Artikelname beginnt mit ...');
 define('TEXT_PRODUCTS_LISTING_ALPHA_SORTER_NAMES_RESET', '-- Zur&uuml;ckstellen --');
 
 ///////////////////////////////////////////////////////////

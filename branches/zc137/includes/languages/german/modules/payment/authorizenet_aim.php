@@ -6,7 +6,7 @@
  * @copyright Copyright 2003-2005 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @translator: cyaneo/hugo13/wflohr	http://www.zen-cart.at	2007-01-03
+ * @translator: cyaneo/hugo13/wflohr/maleborg	http://www.zen-cart.at	2007-01-03
  * @version $Id: authorizenet_aim.php 5422 2006-12-28 08:15:15Z drbyte $
  */
 

@@ -16,7 +16,7 @@ define('MY_NOTIFICATIONS_DESCRIPTION','Die Artikelbenachrichtigungen halten Sie 
 define('GLOBAL_NOTIFICATIONS_TITLE','Alle Artikelbenachrichtigungen');
 define('GLOBAL_NOTIFICATIONS_DESCRIPTION','Alle Artikelbenachrichtigungen erhalten, die verf&uuml;gbar sind.');
 define('NOTIFICATIONS_TITLE','Artikelbenachrichtigungen');
-define('NOTIFICATIONS_DESCRIPTION','Um Artikelbenachrichtigungen zu entfernen, klicken Sie auf den Auswahl Button und kicken auf "weiter".');
+define('NOTIFICATIONS_DESCRIPTION','Um Artikelbenachrichtigungen zu entfernen, klicken Sie auf den Auswahl Button und klicken auf &quot;weiter&quot;.');
 define('NOTIFICATIONS_NON_EXISTING','Zurzeit haben Sie keine Artikelbenachrichtigungen.<br /><br />Um Artikelbenachrichtigungen zu erhalten ,w&auml;hlen Sie diese auf der Artikelseite aus.');
 define('TEXT_NO_PURCHASES','Keine &Auml;nderung');
 define('SUCCESS_NOTIFICATIONS_UPDATED','Ihre Artikelbenachrichtigungen wurden erfolgreich aktualisiert.');

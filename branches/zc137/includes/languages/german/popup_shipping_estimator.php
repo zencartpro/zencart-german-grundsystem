@@ -19,7 +19,7 @@
 // +----------------------------------------------------------------------+
 // $Id: popup_shipping_estimator.php 2642 2005-12-21 15:35:44Z ajeh $
 //
-define('HEADING_SEARCH_HELP', 'Gesch&auml;tzte Versandkosten:');
+define('HEADING_SEARCH_HELP', 'Voraussichtliche Versandkosten:');
 define('TEXT_TOTAL_ITEMS', 'Gesamtst&uuml;ckzahl: ');
 define('TEXT_TOTAL_WEIGHT', '&nbsp;&nbsp;Gewicht: ');
 define('TEXT_TOTAL_AMOUNT', '&nbsp;&nbsp;Preis: ');

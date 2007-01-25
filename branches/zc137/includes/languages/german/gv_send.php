@@ -15,13 +15,13 @@ define('NAVBAR_TITLE', TEXT_GV_NAME . ' versenden');
 define('EMAIL_SUBJECT', 'Nachricht von ' . STORE_NAME);
 define('HEADING_TEXT','<br />Bitte tragen Sie unten die Daten f&uuml;r den ' . TEXT_GV_NAME . ' ein, den Sie versenden m&ouml;chten. F&uuml;r weitere Informationen zum Thema ' . TEXT_GV_NAME . ', lesen Sie bitte die <a href="' . zen_href_link(FILENAME_GV_FAQ, '', 'NONSSL').'">' . GV_FAQ . '</a>.<br />');
 define('ENTRY_NAME','Name des Empf&auml;ngers:');
-define('ENTRY_EMAIL','e-Mail Adresse des Empf&auml;ngers:');
+define('ENTRY_EMAIL','E-Mail Adresse des Empf&auml;ngers:');
 define('ENTRY_MESSAGE','Ihre Nachricht an den Empf&auml;nger:');
 define('ENTRY_AMOUNT','Betrag des ' . TEXT_GV_NAME . 's:');
 define('ERROR_ENTRY_TO_NAME_CHECK', 'Wir erhielten den Empf&auml;ngernamen nicht.  F&uuml;llen Sie ihn bitte unten aus. ');
 define('ERROR_ENTRY_AMOUNT_CHECK','  <span class="errorText">Ung&uuml;ltiger oder zu hoher Betrag</span>');
-define('ERROR_ENTRY_EMAIL_ADDRESS_CHECK','  <span class="errorText">Ung&uuml;ltige e-Mail Adresse</span>');
-define('MAIN_MESSAGE','<br />Sie haben sich entschieden, einen ' . TEXT_GV_NAME . ' im Wert von <strong>%s</strong><br />an <strong>%s</strong>, mit der e-Mail Adresse <strong>%s</strong>, zu versenden.<br /><br /><br />Der Inhalt Ihrer Nachricht lautet:<br /><br />F&uuml;r %s<br />' .
+define('ERROR_ENTRY_EMAIL_ADDRESS_CHECK','  <span class="errorText">Ung&uuml;ltige E-Mail Adresse</span>');
+define('MAIN_MESSAGE','<br />Sie haben sich entschieden, einen ' . TEXT_GV_NAME . ' im Wert von <strong>%s</strong><br />an <strong>%s</strong>, mit der E-Mail Adresse <strong>%s</strong>, zu versenden.<br /><br /><br />Der Inhalt Ihrer Nachricht lautet:<br /><br />F&uuml;r %s<br />' .
                         'Sie haben einen ' . TEXT_GV_NAME . ' im Wert von <strong>%s</strong> von <strong>%s</strong> erhalten!');
 define('SECONDARY_MESSAGE', 'Liebe(r)) %s,<br /><br />' . 'Du hast einen ' . TEXT_GV_NAME . ' im Wert on %s von %s erhalten');
 define('PERSONAL_MESSAGE','%s schreibt:');

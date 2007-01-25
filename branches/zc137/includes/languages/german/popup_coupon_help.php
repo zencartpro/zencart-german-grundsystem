@@ -20,15 +20,15 @@
 // $Id: popup_coupon_help.php 4591 2006-09-23 04:25:15Z ajeh $
 //
 
-define('HEADING_COUPON_HELP','Gutschein Hilfe');
+define('HEADING_COUPON_HELP','Aktionskupon Hilfe');
 define('TEXT_CLOSE_WINDOW','Fenster schlie&szlig;en [x]');
-define('TEXT_COUPON_HELP_HEADER','Herzlichen Gl&uuml;ckwunsch! Sie haben Ihren Gutschein erfolgreich eingel&ouml;st.');
-define('TEXT_COUPON_HELP_NAME','<br /><br />Name des Gutscheins: %s');
-define('TEXT_COUPON_HELP_FIXED','<br /><br />Der Gutscheinwert von %s Nachlass wird in Ihrer Bestellung gutgeschrieben.');
-define('TEXT_COUPON_HELP_MINORDER','<br /><br />Sie ben&ouml;tigen noch Artiken im Wert von %s, damit Sie Ihren Gutschein einl&ouml;sen k&ouml;nnen');
-define('TEXT_COUPON_HELP_FREESHIP','<br /><br />Dieser Gutschein erm&ouml;glicht Ihnen eine <strong>versandkostenfreie</strong> Lieferung');
-define('TEXT_COUPON_HELP_DESC','<br /><br />Gutscheinbeschreibung: %s');
-define('TEXT_COUPON_HELP_DATE','<br /><br />Dieser Gutschein ist von %s bis %s g&uuml;ltig');
+define('TEXT_COUPON_HELP_HEADER','Herzlichen Gl&uuml;ckwunsch! Sie haben Ihren Aktionskupon erfolgreich eingel&ouml;st.');
+define('TEXT_COUPON_HELP_NAME','<br /><br />Name des Aktionskupons: %s');
+define('TEXT_COUPON_HELP_FIXED','<br /><br />Der Wert des Aktionskupons von %s wird in Ihrer Bestellung gutgeschrieben.');
+define('TEXT_COUPON_HELP_MINORDER','<br /><br />Sie ben&ouml;tigen noch Artikel im Wert von %s, damit Sie Ihren Aktionskupon einl&ouml;sen k&ouml;nnen');
+define('TEXT_COUPON_HELP_FREESHIP','<br /><br />Dieser Aktionskupon erm&ouml;glicht Ihnen eine <strong>versandkostenfreie</strong> Lieferung');
+define('TEXT_COUPON_HELP_DESC','<br /><br />Aktionskupon Beschreibung: %s');
+define('TEXT_COUPON_HELP_DATE','<br /><br />Dieser Aktionskupon ist von %s bis %s g&uuml;ltig');
 define('TEXT_COUPON_HELP_RESTRICT','<br /><br />Artikel-/Kategoriebeschr&auml;nkungen');
 define('TEXT_COUPON_HELP_CATEGORIES','Kategorie');
 define('TEXT_COUPON_HELP_PRODUCTS','Artikel');
@@ -38,8 +38,8 @@ define('TEXT_ALLOWED', ' (erlaubt)');
 define('TEXT_DENIED', ' (nicht erlaubt)');
 
 // gift certificates cannot be purchased with Discount Coupons
-define('TEXT_COUPON_GV_RESTRICTION','Kupons k&ouml;nnen nicht in ' . TEXT_GV_NAMES . ' umgewandelt werden.');
-define('TEXT_COUPON_GV_RESTRICTION_ZONES', 'Mit dieser Rechnungsadresse k&ouml;nnen keine Kupons eingel&ouml;st werden.');
+define('TEXT_COUPON_GV_RESTRICTION','Aktionskupons k&ouml;nnen nicht zum Kauf von ' . TEXT_GV_NAMES . ' verwendet werden.');
+define('TEXT_COUPON_GV_RESTRICTION_ZONES', 'Mit dieser Rechnungsadresse k&ouml;nnen keine Aktionskupons eingel&ouml;st werden.');
 
 
 

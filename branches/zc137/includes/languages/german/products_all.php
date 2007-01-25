@@ -27,8 +27,8 @@ define('TEXT_MANUFACTURER', 'Hersteller:');
 define('TEXT_PRICE', 'Preis:');
 define('TEXT_PRODUCTS_MODEL','Artikelnummer: ');
 define('TEXT_PRODUCTS_WEIGHT','Gewicht: ');
-define('TEXT_PRODUCTS_QUANTITY','lagernd: ');
-define('TEXT_OUT_OF_STOCK','nicht lagernd');
+define('TEXT_PRODUCTS_QUANTITY','Im Lager: ');
+define('TEXT_OUT_OF_STOCK','Nicht lagernd');
 
 
 ?>

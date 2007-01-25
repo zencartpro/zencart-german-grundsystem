@@ -18,10 +18,10 @@ define('ICON_IMAGE_TINYCART', 'cart.gif');
 
 //alt tags for buttons
 define('ICON_ERROR_ALT', 'Fehler');
-define('ICON_SUCCESS_ALT', 'erfolgreich');
+define('ICON_SUCCESS_ALT', 'Erfolgreich');
 define('ICON_WARNING_ALT', 'Warnung');
-define('ICON_TRASH_ALT', 'Diesen Artikel aus dem Warenkorb l&ouml;schen, indem Sie diese Schaltfl&auml;che anklicken.');
-define('ICON_UPDATE_ALT', 'Die Menge &auml;ndern, indem Sie die Zahl im Kasten ver&auml;ndern und diese Taste anklicken.');
+define('ICON_TRASH_ALT', 'Sie k&ouml;nnen diesen Artikel aus dem Warenkorb l&ouml;schen, indem Sie diese Schaltfl&auml;che anklicken.');
+define('ICON_UPDATE_ALT', 'Sie k&ouml;nnen die Bestellmenge &auml;ndern, indem Sie die Zahl im Kasten ver&auml;ndern und diese Schaltfl&auml;che anklicken.');
 define('ICON_TINYCART_ALT', 'Dieses Produkt dem Warenkorb hinzuf&uuml;gen, indem Sie hier klicken.');
 
 
