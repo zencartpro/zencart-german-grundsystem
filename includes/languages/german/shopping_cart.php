@@ -24,7 +24,7 @@ define('OUT_OF_STOCK_CAN_CHECKOUT','Artikel, die markiert sind, ' . STOCK_MARK_P
 define('TEXT_TOTAL_ITEMS','Summe Artikel:&nbsp;');
 define('TEXT_TOTAL_WEIGHT','  Gewicht:&nbsp;');
 define('TEXT_TOTAL_AMOUNT','  Betrag:&nbsp;');
-define('TEXT_VISITORS_CART', '<a href="javascript:session_win();">[help (?)]</a>');
+define('TEXT_VISITORS_CART', '<a href="javascript:session_win();">[Hilfe (?)]</a>');
 define('TEXT_OPTION_DIVIDER', '&nbsp;-&nbsp;');
 
 
