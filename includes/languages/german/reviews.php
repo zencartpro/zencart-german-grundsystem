@@ -11,7 +11,7 @@
 define('NAVBAR_TITLE','Bewertungen');
 define('TEXT_OF_5_STARS','%s von 5 Sternen');
 define('TEXT_PRODUCT_INFO','<strong>Artikelinformationen</strong>');
-define('TEXT_READ_REVIEW','<strong>Bewertungen lesen</strong>');
+define('TEXT_READ_REVIEW','<strong>Bewertung lesen</strong>');
 
 
 ?>

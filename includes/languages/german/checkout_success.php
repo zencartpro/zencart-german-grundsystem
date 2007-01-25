@@ -4,7 +4,7 @@
  * @copyright Copyright 2003-2006 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @translator: cyaneo/hugo13/wflohr	http://www.zen-cart.at	2007-01-03
+ * @translator: cyaneo/hugo13/wflohr/maleborg	http://www.zen-cart.at	2007-01-03
  * @version $Id: checkout_success.php 5407 2006-12-27 01:35:37Z drbyte $
  */
 
@@ -25,6 +25,6 @@ define('FOOTER_DOWNLOAD','Sie k&ouml;nnen Ihre Artikel auch zu einem sp&auml;ter
 
 define('TEXT_YOUR_ORDER_NUMBER', '<strong>Ihre Bestellnummer lautet:</strong> ');
 
-define('TEXT_CHECKOUT_LOGOFF_GUEST', 'ANMERKUNG: Um deinen Auftrag durchzuführen, wurde ein temporäres Konto verursacht. Du kannst dieses Konto abschließen, indem Sie Logoff anklicken. Klickendes Logoff stellt auch sicher, daß deine Empfang und Erwerb Informationen nicht zur folgenden Person sichtbar sind, die diesen Computer verwendet. Wenn du zu kaufen fortfahren möchtest, frei glauben! Du kannst logoff an die Verbindung an der Oberseite der Seite jederzeit verwenden.');
-define('TEXT_CHECKOUT_LOGOFF_CUSTOMER', 'Für das Einkaufen danke. Die Logoffverbindung bitte klicken, um sicherzugehen, daß deine Empfang und Erwerb Informationen nicht zur folgenden Person sichtbar sind, die diesen Computer verwendet.');
+define('TEXT_CHECKOUT_LOGOFF_GUEST', 'ANMERKUNG: Um Ihren Auftrag durchzuf&uuml;hren, wurde ein tempor&auml;res Konto erstellt. Sie k&ouml;nnen dieses Konto schlie&szlig;en, indem Sie auf Abmelden klicken. Das Abmelden stellt auch sicher, da&szlig; die Informationen &uuml;ber Ihren Aufenhalt in unserem Shop nicht der n&auml;chsten Person sichtbar sind, die diesen Computer verwendet. Wenn Sie mit Ihrem Einkauf fortfahren m&öuml;chten, denken Sie bitte daran, vor dem Verlassen unseres Shops auf Abmelden zu klicken.');
+define('TEXT_CHECKOUT_LOGOFF_CUSTOMER', 'Vielen Dank f&uuml;r Ihren Einkauf! Bitte melden Sie sich vor Verlassen des Shop ab, um sicherzugehen, da&szlig; Informationen &uuml;ber Ihren Aufenthalt in unserem Shop nicht f&uuml;r die n&auml;chste Person sichtbar sind, die diesen Computer verwendet.');
 ?>

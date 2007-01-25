@@ -17,8 +17,8 @@ define('TEXT_GREETING_GUEST', 'Willkommen! Bitte genie&szlig;en Sie unseren Scha
 
 }
 
-define('TEXT_GREETING_PERSONAL', 'Willkommen <span class="greetUser">%s</span>! Wollen Sie sehen, was es <a href="%s">neues</a> bei uns gibt?');
-define('TEXT_INFORMATION', 'Definieren Sie hier Ihren pers&ouml;nlichen Text. Diesen Text k&ouml;nnen Sie in <strong>/includes/languages/german/index.php (Zeile 38)</strong> editieren.');
+define('TEXT_GREETING_PERSONAL', 'Willkommen <span class="greetUser">%s</span>! Wollen Sie sehen, was es <a href="%s">Neues</a> bei uns gibt?');
+define('TEXT_INFORMATION', 'Definieren Sie hier Ihren pers&ouml;nlichen Text. Diesen Text k&ouml;nnen Sie in <strong>/includes/languages/german/index.php (Zeile 21)</strong> editieren.');
 
 //moved to english
 //define('TABLE_HEADING_FEATURED_PRODUCTS','Featured Products');
@@ -39,7 +39,7 @@ define('TABLE_HEADING_PRICE','Preis');
 define('TABLE_HEADING_WEIGHT','Gewicht');
 define('TABLE_HEADING_BUY_NOW','Jetzt kaufen');
 define('TEXT_NO_PRODUCTS','In dieser Kategorie gibt es derzeit keine Artikel.');
-define('TEXT_NO_PRODUCTS2','Von diesem Hersteller ist kein Artikelverf&uuml;gbar.');
+define('TEXT_NO_PRODUCTS2','Von diesem Hersteller ist kein Artikel verf&uuml;gbar.');
 define('TEXT_NUMBER_OF_PRODUCTS','Anzahl der Artikel:');
 define('TEXT_SHOW','<b>Herstellerauswahl:</b>');
 define('TEXT_BUY','Kaufe 1 ');

@@ -23,10 +23,10 @@
 define('NAVBAR_TITLE', 'Aktionskupon');
 define('HEADING_TITLE', 'Aktionskupon');
 define('TEXT_INFORMATION', '');
-define('TEXT_COUPON_FAILED', '<span class="alert important">%s</span> scheint kein g&uuml;ltiger Aktionscode zu sein. Bitte nochmals eintippen.');
+define('TEXT_COUPON_FAILED', '<span class="alert important">%s</span> scheint kein g&uuml;ltiger Aktionskupon Code zu sein. Bitte nochmals eintippen.');
 define('HEADING_COUPON_HELP', 'Aktionskupon Hilfe');
 define('TEXT_CLOSE_WINDOW', 'Fenster schlie&szlig;en [x]');
-define('TEXT_COUPON_HELP_HEADER', '<p class="bold">Der eingegebene Aktionscode geh&ouml;rt zu Kupon: ');
+define('TEXT_COUPON_HELP_HEADER', '<p class="bold">Der eingegebene Code geh&ouml;rt zu Aktionskupon: ');
 define('TEXT_COUPON_HELP_NAME', '\'%s\'. </p>');
 define('TEXT_COUPON_HELP_FIXED', '');
 define('TEXT_COUPON_HELP_MINORDER', '');
@@ -45,9 +45,9 @@ define('TEXT_CAT_DENIED', ' (Nicht g&uuml;ltig f&uuml;r diese Kategorie)');
 define('TEXT_PROD_ALLOWED', ' (G&uuml;ltig f&uuml;r diesen Artikel)');
 define('TEXT_PROD_DENIED', ' (Nicht g&uuml;ltig f&uuml;r diesen Artikel)');
 // gift certificates cannot be purchased with Discount Coupons
-define('TEXT_COUPON_GV_RESTRICTION','<p class="smallText">Aktionskupons k&ouml;nnen nicht zum Kauf von ' . TEXT_GV_NAMES . ' verwendet werden. Limit: 1 Kupon pro Bestellung.</p>');
+define('TEXT_COUPON_GV_RESTRICTION','<p class="smallText">Aktionskupons k&ouml;nnen nicht zum Kauf von ' . TEXT_GV_NAMES . ' verwendet werden. Limit: 1 Aktionskupon pro Bestellung.</p>');
 define('TEXT_DISCOUNT_COUPON_ID_INFO', 'Aktionskupon suchen ... ');
-define('TEXT_DISCOUNT_COUPON_ID', 'Aktionscode: ');
+define('TEXT_DISCOUNT_COUPON_ID', 'Aktionskupon Code: ');
 define('TEXT_COUPON_GV_RESTRICTION_ZONES', 'Mit dieser Rechnungsadresse k&ouml;nnen keine Aktionkupons eingel&ouml;st werden.');
 
 

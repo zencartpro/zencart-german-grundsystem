@@ -22,5 +22,5 @@
 
 define('MODULE_SHIPPING_STOREPICKUP_TEXT_TITLE','Abholung');
 define('MODULE_SHIPPING_STOREPICKUP_TEXT_DESCRIPTION','Abholer');
-define('MODULE_SHIPPING_STOREPICKUP_TEXT_WAY','kommt vorbei');
+define('MODULE_SHIPPING_STOREPICKUP_TEXT_WAY','Holt die Ware in unserem Hause ab');
 ?>

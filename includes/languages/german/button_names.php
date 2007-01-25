@@ -4,7 +4,7 @@
  * @copyright Copyright 2003-2006 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @translator: cyaneo/hugo13/wflohr	http://www.zen-cart.at	2007-01-03
+ * @translator: cyaneo/hugo13/wflohr/maleborg	http://www.zen-cart.at	2007-01-03
  * @version $Id: button_names.php 5410 2006-12-27 03:56:46Z drbyte $
  */
 
@@ -69,44 +69,44 @@ define('BUTTON_CREATE_ACCOUNT_ALT', 'Anmelden');
 define('BUTTON_LOG_OFF_ALT', 'Abmelden');
 define('BUTTON_ADD_TO_CART_ALT', 'In meinen Warenkorb');
 define('BUTTON_ADD_ADDRESS_ALT', 'Adresse hinzuf&uuml;gen');
-define('BUTTON_ADD_PRODUCTS_TO_CART_ALT', 'ausgew&auml;hlte in Korb');
-define('BUTTON_BACK_ALT', 'zur&uuml;ck');
-define('BUTTON_BUY_NOW_ALT', 'jetzt kaufen');
-define('BUTTON_CANCEL_ALT', 'abbrechen');
+define('BUTTON_ADD_PRODUCTS_TO_CART_ALT', 'Ausgew&auml;hlte Artikel in den Warenkorb');
+define('BUTTON_BACK_ALT', 'Zur&uuml;ck');
+define('BUTTON_BUY_NOW_ALT', 'Jetzt kaufen');
+define('BUTTON_CANCEL_ALT', 'Abbrechen');
 define('BUTTON_CHANGE_ADDRESS_ALT', 'Adresse &auml;ndern');
 define('BUTTON_CHECKOUT_ALT', 'Zur Bestellung');
 define('BUTTON_CONFIRM_SEND_ALT', 'Gutschein senden');
 define('BUTTON_CONFIRM_ORDER_ALT', 'Bestellung best&auml;tigen');
-define('BUTTON_CONTINUE_ALT', 'weiter');
-define('BUTTON_CONTINUE_SHOPPING_ALT', 'weiter einkaufen');
-define('BUTTON_DELETE_ALT', 'l&ouml;schen');
+define('BUTTON_CONTINUE_ALT', 'Weiter');
+define('BUTTON_CONTINUE_SHOPPING_ALT', 'Weiter einkaufen');
+define('BUTTON_DELETE_ALT', 'L&ouml;schen');
 define('BUTTON_DELETE_SMALL_ALT', 'Loeschen');
-define('BUTTON_DOWNLOAD_ALT', 'download');
-define('BUTTON_EDIT_SMALL_ALT', 'bearbeiten');
-define('BUTTON_IN_CART_ALT', 'in den Warenkorb ');
-define('BUTTON_LOGIN_ALT', 'anmelden');
-define('BUTTON_NEXT_ALT', 'n&auml;chstes');
-define('BUTTON_PREVIOUS_ALT', 'vorheriges');
-define('BUTTON_REDEEM_ALT', 'einl&ouml;sen');
-define('BUTTON_RETURN_TO_PROD_LIST_ALT', 'zur&uuml;ck zur Artikelliste');
-define('BUTTON_REVIEWS_ALT', 'zu den Bewertungen');
+define('BUTTON_DOWNLOAD_ALT', 'Download');
+define('BUTTON_EDIT_SMALL_ALT', 'Bearbeiten');
+define('BUTTON_IN_CART_ALT', 'In den Warenkorb ');
+define('BUTTON_LOGIN_ALT', 'Anmelden');
+define('BUTTON_NEXT_ALT', 'N&auml;chster');
+define('BUTTON_PREVIOUS_ALT', 'Vorheriger');
+define('BUTTON_REDEEM_ALT', 'Einl&ouml;sen');
+define('BUTTON_RETURN_TO_PROD_LIST_ALT', 'Zur&uuml;ck zur Artikelliste');
+define('BUTTON_REVIEWS_ALT', 'Zu den Bewertungen');
 define('BUTTON_SEARCH_ALT', 'Suche');
-define('BUTTON_SEND_ALT', 'jetzt senden');
-define('BUTTON_SEND_ANOTHER_ALT', 'Einen anderen Gutschein versenden');
+define('BUTTON_SEND_ALT', 'Jetzt senden');
+define('BUTTON_SEND_ANOTHER_ALT', 'Einen weiteren Gutschein versenden');
 define('BUTTON_SEND_A_GIFT_CERT_ALT', 'Einen Gutschein senden');
-define('BUTTON_SHIPPING_ESTIMATOR_ALT', 'voraussichtliche Versandkosten');
-define('BUTTON_SOLD_OUT_ALT', 'ausverkauft');
-define('BUTTON_SOLD_OUT_SMALL_ALT', 'ausverkauft');
+define('BUTTON_SHIPPING_ESTIMATOR_ALT', 'Voraussichtliche Versandkosten');
+define('BUTTON_SOLD_OUT_ALT', 'Ausverkauft');
+define('BUTTON_SOLD_OUT_SMALL_ALT', 'Ausverkauft');
 define('BUTTON_SUBMIT_ALT', 'Information senden');
-define('BUTTON_TELL_A_FRIEND_ALT', 'an einen Freund senden');
-define('BUTTON_TELLAFRIEND_ALT', 'an einen Freund senden');
-define('BUTTON_UNSUBSCRIBE', 'abbestellen');
-define('BUTTON_UPDATE_ALT', 'aktualisieren');
-define('BUTTON_VIEW_SMALL_ALT', 'anzeigen');
+define('BUTTON_TELL_A_FRIEND_ALT', 'An einen Freund senden');
+define('BUTTON_TELLAFRIEND_ALT', 'An einen Freund senden');
+define('BUTTON_UNSUBSCRIBE', 'Abbestellen');
+define('BUTTON_UPDATE_ALT', 'Aktualisieren');
+define('BUTTON_VIEW_SMALL_ALT', 'Anzeigen');
 define('BUTTON_WRITE_REVIEW_ALT', 'Bewertung schreiben');
-define('BUTTON_READ_REVIEWS_ALT', 'die Bewertung lesen');
+define('BUTTON_READ_REVIEWS_ALT', 'Die Bewertung lesen');
 define('BUTTON_GOTO_PROD_DETAILS_ALT', 'Lesen Sie die detailierte Produktbeschreibung');
-define('BUTTON_MORE_REVIEWS_ALT', 'Lesen Sie mehr Bewertungen');
+define('BUTTON_MORE_REVIEWS_ALT', 'Lesen Sie weitere Bewertungen');
 
 
 ?>

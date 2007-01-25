@@ -21,9 +21,9 @@ define('EMAIL_GREET_NONE', 'Sehr geehrte(r) Frau/Herr %s' . "\n\n");
 // First line of the greeting
 define('EMAIL_WELCOME', 'Herzlich Willkommen bei <strong>' . STORE_NAME . '</strong>.');
 define('EMAIL_SEPARATOR', '--------------------');
-define('EMAIL_COUPON_INCENTIVE_HEADER', 'Herzlichen Gl&uuml;ckwunsch! Um Ihren n&auml;chsten Besuch in unserem Online Shop zu belohnen, haben wir f&uuml;r Sie einen Geschenkgutschein reserviert!' . "\n\n");
+define('EMAIL_COUPON_INCENTIVE_HEADER', 'Herzlichen Gl&uuml;ckwunsch! Um Ihren n&auml;chsten Besuch in unserem Online Shop zu belohnen, haben wir f&uuml;r Sie einen Aktionskupon reserviert!' . "\n\n");
 // your Discount Coupon Description will be inserted before this next define
-define('EMAIL_COUPON_REDEEM', 'Diesen Geschenkgutschein k&ouml;nnen Sie bei Ihrem n&auml;chsten Einkauf einl&ouml;sen. Geben Sie dazu die ' . TEXT_GV_REDEEM . ':<br /> %s w&auml;hrend des Bestellvorgangs ein' . "\n\n");
+define('EMAIL_COUPON_REDEEM', 'Diesen Aktionskupon k&ouml;nnen Sie bei Ihrem n&auml;chsten Einkauf einl&ouml;sen. Geben Sie dazu die ' . TEXT_GV_REDEEM . ':<br /> %s w&auml;hrend des Bestellvorgangs ein' . "\n\n");
 define('EMAIL_GV_INCENTIVE_HEADER', 'Wenn Sie heute bei uns einkaufen, erhalten Sie den ' . TEXT_GV_NAME . ' f&uuml;r %s!' . "\n\n");
 define('EMAIL_GV_REDEEM', 'Ihr ' . TEXT_GV_NAME . ' ' . TEXT_GV_REDEEM . ' im Wert von: %s ' . "\n\n" . 'Geben Sie dazu bitte den ' . TEXT_GV_REDEEM . ' w&auml;hrend des Bestellvorgangs ein, nachdem Sie Ihre Artikel ausgesucht haben.' . "\n\n");
 define('EMAIL_GV_LINK', 'Oder l&ouml;sen Sie den Gutschein mithilfe des folgenden Links ein: ' . "\n\n");
@@ -41,7 +41,7 @@ define('EMAIL_CONTACT', 'Sollten Sie einmal Hilfe zu unseren Diensten und Artike
 define('EMAIL_GV_CLOSURE', 'Mit freundlichen Gr&uuml;ssen,' . "\n\n" . STORE_OWNER . "\nShopinhaber\n\n" . '<a href="' . HTTP_SERVER . DIR_WS_CATALOG . '">' . HTTP_SERVER . DIR_WS_CATALOG . "</a>\n\n");
 
 // email disclaimer - this disclaimer is separate from all other email disclaimers
-define('EMAIL_DISCLAIMER_NEW_CUSTOMER', 'Diese e-Mail Adresse haben wir von Ihnen oder einer unserer Kunden erhalten. Sollten Sie dieses Nachricht zu Unrecht erhalten haben, kontaktieren Sie uns bitte unter %s');
+define('EMAIL_DISCLAIMER_NEW_CUSTOMER', 'Diese e-Mail Adresse haben wir von Ihnen oder einer unserer Kunden erhalten. Sollten Sie diese Nachricht zu Unrecht erhalten haben, kontaktieren Sie uns bitte unter %s');
 
 //moved definitions to english.php
 //define('TABLE_HEADING_PRIVACY_CONDITIONS', 'Privacy Statement');

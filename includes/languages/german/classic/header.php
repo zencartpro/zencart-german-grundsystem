@@ -14,8 +14,8 @@ define('HEADER_TITLE_CART_CONTENTS', 'Warenkorb');
 define('HEADER_TITLE_CHECKOUT', 'Kasse');
 define('HEADER_TITLE_TOP', 'Top');
 define('HEADER_TITLE_CATALOG', 'Startseite');
-define('HEADER_TITLE_LOGOFF', 'abmelden');
-define('HEADER_TITLE_LOGIN', 'anmelden');
+define('HEADER_TITLE_LOGOFF', 'Abmelden');
+define('HEADER_TITLE_LOGIN', 'Anmelden');
 
 // added defines for header alt and text
 define('HEADER_ALT_TEXT', 'Powered by Zen Cart :: The Art of E-Commerce [home link]');
@@ -25,6 +25,6 @@ define('HEADER_LOGO_HEIGHT', '70px');
 define('HEADER_LOGO_IMAGE', 'logo.gif');
 
 // header Search Button/Box Search Button
-define('HEADER_SEARCH_BUTTON', 'suchen');
+define('HEADER_SEARCH_BUTTON', 'Suchen');
 define('HEADER_SEARCH_DEFAULT_TEXT', 'Suchbegriff eingeben');
 ?>

@@ -31,7 +31,7 @@ define('EMAIL_TEXT_INVOICE_URL_CLICK', 'F&uuml;r eine detaillierte Rechnung bitt
 define('EMAIL_TEXT_DATE_ORDERED', 'Bestelldatum:');
 define('EMAIL_TEXT_PRODUCTS', 'Artikel');
 define('EMAIL_TEXT_SUBTOTAL', 'Zwischensumme:');
-define('EMAIL_TEXT_TAX', 'UST.:');
+define('EMAIL_TEXT_TAX', 'MwSt:');
 define('EMAIL_TEXT_SHIPPING', 'Versandkosten:');
 define('EMAIL_TEXT_TOTAL', 'Gesamt:');
 define('EMAIL_TEXT_DELIVERY_ADDRESS', 'Lieferanschrift');

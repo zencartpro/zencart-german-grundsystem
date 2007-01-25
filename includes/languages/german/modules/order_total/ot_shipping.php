@@ -20,10 +20,10 @@
 // $Id: ot_shipping.php 1969 2005-09-13 06:57:21Z drbyte $
 //
 
-define('MODULE_ORDER_TOTAL_SHIPPING_TITLE', 'Versandkostenfrei');
-define('MODULE_ORDER_TOTAL_SHIPPING_DESCRIPTION', 'Versandkostenfreie Bestellung');
-define('FREE_SHIPPING_TITLE', 'versandkostenfrei');
-define('FREE_SHIPPING_DESCRIPTION', 'versandkostenfrei ab %s');
+define('MODULE_ORDER_TOTAL_SHIPPING_TITLE', 'Versandkosten');
+define('MODULE_ORDER_TOTAL_SHIPPING_DESCRIPTION', 'Dieses Modul muss zwingend aktiviert sein, damit die aktuellen Versandkosten ausgegeben werden!<br/>Hier k&öuml;nnen Sie weiterhin festlegen, ob und ab welchen Betrag eine versandkostenfrei Lieferung erfolgt.');
+define('FREE_SHIPPING_TITLE', 'Versandkostenfrei');
+define('FREE_SHIPPING_DESCRIPTION', 'Versandkostenfrei ab %s');
 
 
 ?>

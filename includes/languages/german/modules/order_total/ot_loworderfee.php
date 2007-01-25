@@ -20,8 +20,8 @@
 // $Id: ot_loworderfee.php 1969 2005-09-13 06:57:21Z drbyte $
 //
 
-define('MODULE_ORDER_TOTAL_LOWORDERFEE_TITLE', 'Mindestbestellzuschlag');
-define('MODULE_ORDER_TOTAL_LOWORDERFEE_DESCRIPTION', 'Mindestbestellzuschlag');
+define('MODULE_ORDER_TOTAL_LOWORDERFEE_TITLE', 'Zuschlag f&uuml;r Minderbestellungen');
+define('MODULE_ORDER_TOTAL_LOWORDERFEE_DESCRIPTION', 'Hier k&ouml;nnen Sie einen Zuschlag f&uuml;r Bestellungen unter einem bestimmten Bestellwert festlegen.');
 
 
 ?>

@@ -19,7 +19,7 @@ define('HEADING_ORDER_TOTAL','Bestellsumme:');
 define('HEADING_DELIVERY_ADDRESS','Lieferanschrift');
 define('HEADING_SHIPPING_METHOD','Versandart');
 define('HEADING_PRODUCTS','Artikel');
-define('HEADING_TAX','UST.');
+define('HEADING_TAX','MwSt');
 define('HEADING_TOTAL','Gesamt');
 define('HEADING_QUANTITY', 'Stk.');
 define('HEADING_BILLING_ADDRESS','Rechnungsanschrift');

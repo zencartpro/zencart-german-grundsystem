@@ -20,7 +20,7 @@
 // $Id: item.php 1969 2005-09-13 06:57:21Z drbyte $
 //
 
-define('MODULE_SHIPPING_ITEM_TEXT_TITLE','Pro St&uuml;ck');
+define('MODULE_SHIPPING_ITEM_TEXT_TITLE','Versandkosten pro St&uuml;ck');
 define('MODULE_SHIPPING_ITEM_TEXT_DESCRIPTION','Pro St&uuml;ck');
-define('MODULE_SHIPPING_ITEM_TEXT_WAY','Pauschale');
+define('MODULE_SHIPPING_ITEM_TEXT_WAY','Auf dem schnellsten Weg');
 ?>

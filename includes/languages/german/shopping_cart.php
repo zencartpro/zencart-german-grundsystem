@@ -10,7 +10,7 @@
 
 define('NAVBAR_TITLE','Warenkorb');
 define('HEADING_TITLE','Ihr Warenkorb enth&auml;lt:');
-define('HEADING_TITLE_EMPTY', 'Ihr Einkaufswagen');
+define('HEADING_TITLE_EMPTY', 'Ihr Warenkorb');
 define('TEXT_INFORMATION', 'Hier k&ouml;nnen Sie einige Informationen f&uuml;r Ihre Kunden anzeigen. (definiert in includes/languages/german/shopping_cart.php)');
 define('TABLE_HEADING_REMOVE','Entfernen');
 define('TABLE_HEADING_QUANTITY','Stk.');

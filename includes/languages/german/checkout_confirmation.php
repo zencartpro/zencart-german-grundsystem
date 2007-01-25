@@ -16,13 +16,13 @@ define('HEADING_DELIVERY_ADDRESS','Lieferanschrift');
 define('HEADING_SHIPPING_METHOD','Versandart:');
 define('HEADING_PAYMENT_METHOD','Zahlungsart:');
 define('HEADING_PRODUCTS','Warenkorbinhalt');
-define('HEADING_TAX','UST.');
+define('HEADING_TAX','MwSt');
 define('HEADING_ORDER_COMMENTS','Anmerkungen oder Hinweise');
 // no comments entered
 define('NO_COMMENTS_TEXT','Keine');
 define('TITLE_CONTINUE_CHECKOUT_PROCEDURE','<strong>Bestellung best&auml;tigen</strong>');
 define('TEXT_CONTINUE_CHECKOUT_PROCEDURE','- weiter um Ihre Bestellung zu best&auml;tigen ... Vielen Dank!');
-define('OUT_OF_STOCK_CAN_CHECKOUT', 'Produkte sind nicht vorr&auml;tig, welche mit ' . STOCK_MARK_PRODUCT_OUT_OF_STOCK . ' gekennzeichnet sind.<br />Items not in stock will be placed on backorder.');
+define('OUT_OF_STOCK_CAN_CHECKOUT', 'Produkte, die mit ' . STOCK_MARK_PRODUCT_OUT_OF_STOCK . ' gekennzeichnet sind, sind nicht vorr&auml;tig.<br />Diese Artikel werden nachtr&auml;glich geliefert');
 
 
 

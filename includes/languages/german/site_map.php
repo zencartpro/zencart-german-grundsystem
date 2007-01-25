@@ -17,7 +17,7 @@ define('PAGE_ADDRESS_BOOK', 'Adressbuch');
 define('PAGE_ACCOUNT_HISTORY', 'Bestellhistorie');
 define('PAGE_ACCOUNT_NOTIFICATIONS', 'Newsletter');
 define('PAGE_SHOPPING_CART', 'Warenkorb');
-define('PAGE_CHECKOUT_SHIPPING', 'zur Kasse');
+define('PAGE_CHECKOUT_SHIPPING', 'Zur Kasse');
 define('PAGE_ADVANCED_SEARCH', 'Erweiterte Suche');
 define('PAGE_PRODUCTS_NEW', 'Neue Produkte');
 define('PAGE_SPECIALS', 'Sonderangebote');

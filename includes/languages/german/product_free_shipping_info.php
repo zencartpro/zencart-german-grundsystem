@@ -15,7 +15,7 @@ define('TEXT_DATE_ADDED', 'Dieser Artikel wurde am %s im Shop aufgenommen.');
 define('TEXT_DATE_AVAILABLE', '<font color="#ff0000">Dieser Artikel wird voraussichtlich ab %s wieder lagernd sein.</font>');
 define('TEXT_ALSO_PURCHASED_PRODUCTS', 'Kunden, die diesen Artikel kauften, haben auch diese Artikel gekauft...');
 define('TEXT_PRODUCT_OPTIONS', '<strong>Bitte w&auml;hlen Sie:</strong>');
-define('TEXT_PRODUCT_MANUFACTURER', 'hergestellt von: ');
+define('TEXT_PRODUCT_MANUFACTURER', 'Hergestellt von: ');
 define('TEXT_PRODUCT_WEIGHT', 'Versandgewicht: ');
 define('TEXT_PRODUCT_QUANTITY', ' Einheiten auf Lager');
 define('TEXT_PRODUCT_MODEL', 'Artikelnummer: ');
@@ -25,8 +25,8 @@ define('TEXT_PRODUCT_MODEL', 'Artikelnummer: ');
 // previous next product
 define('PREV_NEXT_PRODUCT', 'Artikel ');
 define('PREV_NEXT_FROM', ' von ');
-define('IMAGE_BUTTON_PREVIOUS','vorheriger Artikel');
-define('IMAGE_BUTTON_NEXT','n&auml;chster Artikel');
+define('IMAGE_BUTTON_PREVIOUS','Vorheriger Artikel');
+define('IMAGE_BUTTON_NEXT','N&auml;chster Artikel');
 define('IMAGE_BUTTON_RETURN_TO_PRODUCT_LIST','Zur&uuml;ck zur Artikelliste');
 
 // missing products
