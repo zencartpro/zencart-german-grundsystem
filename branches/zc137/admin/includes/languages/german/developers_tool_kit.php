@@ -21,7 +21,7 @@
 //
 define('HEADING_TITLE', 'Developers Tool Kit');
 define('TABLE_CONFIGURATION_TABLE', 'KONSTANTEN Definition suchen');
-define('SUCCESS_PRODUCT_UPDATE_PRODUCTS_PRICE_SORTER', '<strong>Erfolgreich</strong> Artikelpreis Sortierung aktualisiert');
+define('SUCCESS_PRODUCT_UPDATE_PRODUCTS_PRICE_SORTER', '<strong>Erfolgreiche</strong> Aktualisierung der Artikelpreis Sortierung');
 define('ERROR_CONFIGURATION_KEY_NOT_FOUND', '<strong>Fehler:</strong> Keine passenden Konfigurationsschl&uuml;ssel gefunden ...');
 define('ERROR_CONFIGURATION_KEY_NOT_ENTERED', '<strong>Fehler:</strong> Kein Konfigurationsschl&uuml;ssel Key oder Text eingegeben ... Suche abgebrochen');
 define('TEXT_INFO_PRODUCTS_PRICE_SORTER_UPDATE', '<strong>Aktualisiere ALLE Artikelpreis Sortierungen</strong><br />damit nach angezeigtem Preis sortiert wird: ');

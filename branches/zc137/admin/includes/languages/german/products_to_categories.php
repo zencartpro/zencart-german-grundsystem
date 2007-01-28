@@ -20,7 +20,7 @@
 //  $Id: products_to_categories.php 2909 2006-01-29 21:29:35Z ajeh $
 //
 
-define('HEADING_TITLE', 'Artikel - Mehrfachkategorie Link Manager ...');
+define('HEADING_TITLE', 'Artikel in mehrere Kategorien anzeigen - Link Manager ...');
 define('HEADING_TITLE2', 'Kategorien / Artikel');
 define('TEXT_INFO_PRODUCTS_TO_CATEGORIES_AVAILABLE', 'Kategorien mit verlinkbaren Artikeln ...');
 define('TABLE_HEADING_PRODUCTS_ID', 'Artikel ID');
@@ -37,10 +37,10 @@ define('BUTTON_NEW_PRODUCTS_TO_CATEGORIES', 'Artikel verlinken');
 define('TEXT_SET_PRODUCTS_TO_CATEGORIES_LINKS', 'Setze Artikel - Kategorie Links f&uuml;r: ');
 define('TEXT_INFO_LINKED_TO_COUNT', '&nbsp;&nbsp;Aktuelle Anzahl verlinkter Kategorien: ');
 define('TEXT_INFO_PRODUCTS_TO_CATEGORIES_LINKER_INTRO',
-    'Der Artikel zu Kategorie Verlinker wurde entwickelt um schnell einen Artikel mit ein oder mehreren anderen Kategorien verlinken zu k&ouml;nnen.<br />Es k&ouml;nnen auch alle Artikel einer Kategorie mit einer anderen Kategorie verlinkt werden. Selbstverst&auml;ndlich k&ouml;nnen bestehende Links mit dieses Tool wieder gel&ouml;scht werden. (siehe Information n&auml;chster Punkt)');
+    'Artikel in mehrere Kategorien anzeigen - Link Manager wurde entwickelt um schnell einen Artikel mit ein oder mehreren anderen Kategorien verlinken zu k&ouml;nnen.<br />Es k&ouml;nnen auch alle Artikel einer Kategorie mit einer anderen Kategorie verlinkt werden. Selbstverst&auml;ndlich k&ouml;nnen bestehende Links mit dieses Tool wieder gel&ouml;scht werden. (siehe Information n&auml;chster Punkt)');
 define('TEXT_INFO_PRODUCTS_TO_CATEGORIES_LINKER',
-    'Zur Preisberechnung muss jeder Artikel einer Hauptkategorie zugewiesen sein, unabh&auml;ngig davon mit wievielen anderen Kategorien dieser verlinkt ist. Verwenden Sie dazu das Dropdown Feld "Hauptkategorie".<br />
-Der Artikel ist aktuell folgenden Kategorien zugewiesen (siehe Checkbox). Einfach Checkbox neben Kategorienamen selektieren bzw. deselektiern um Verlinkung hinzu zuf&uuml;gen bzw. zu l&ouml;schen.<br />
+    'Zur Preisberechnung muss jeder Artikel einer Hauptkategorie zugewiesen sein, unabh&auml;ngig davon mit wievielen anderen Kategorien dieser verlinkt ist. Verwenden Sie dazu das Dropdown Feld &quot;Hauptkategorie&quot;.<br />
+Der Artikel ist aktuell folgenden Kategorien zugewiesen (siehe Checkbox). Einfach Checkbox neben Kategorienamen selektieren bzw. deselektiern um Verlinkung hinzu zu f&uuml;gen bzw. zu l&ouml;schen.<br />
 Zum Speichern den Button ' . BUTTON_UPDATE_CATEGORY_LINKS . ' dr&uuml;cken.<br />'
     );
 define('HEADER_CATEGORIES_GLOBAL_CHANGES', 'Globale Kategorie-Link &Auml;nderungen und Hauptkategorie-ID Reset');
@@ -48,7 +48,7 @@ define('TEXT_SET_MASTER_CATEGORIES_ID', '<strong>ACHTUNG:</strong> Hauptkategori
 
 // copy category to category linked
 define('TEXT_INFO_COPY_ALL_PRODUCTS_TO_CATEGORY_LINKED', '<strong>Kopiere ALLE Artikel einer Kategorie als VERLINKTE Artikel in eine andere ...</strong><br />z.B. 8 und 22 bedeutet das ALLE Artikel in Kategorie 8 zu Kategorie 22 verlinkt werden');
-define('TEXT_INFO_COPY_ALL_PRODUCTS_TO_CATEGORY_FROM_LINKED', 'Selektiere Alle Artikel einer Kategorie: ');
+define('TEXT_INFO_COPY_ALL_PRODUCTS_TO_CATEGORY_FROM_LINKED', 'Selektiere ALLE Artikel einer Kategorie: ');
 define('TEXT_INFO_COPY_ALL_PRODUCTS_TO_CATEGORY_TO_LINKED', 'Mit Kategorie verlinken: ');
 define('BUTTON_COPY_CATEGORY_LINKED', 'Kopiere & verlinke Artikel ');
 define('WARNING_PRODUCTS_LINK_TO_CATEGORY_REMOVED', 'WARNUNG: Artikel wurde zur&uuml;ckgesetzt und ist nicht mehr Teil dieser Kategorie  ...');
@@ -69,7 +69,7 @@ define('BUTTON_REMOVE_CATEGORY_LINKED', 'Entferne verlinkte Artikel');
 define('WARNING_REMOVE_LINKED', 'WARNUNG: ');
 define('WARNING_REMOVE_ALL_PRODUCTS_TO_CATEGORY_FROM_LINKED', 'Nicht m&ouml;glich Artikel aus folgender Kategorie zu verlinken: ');
 define('WARNING_REMOVE_ALL_PRODUCTS_TO_CATEGORY_TO_LINKED', 'Nicht m&ouml;glich Artikel in diese Kategorie zu verlinken: ');
-define('SUCCESS_REMOVE_LINKED', 'Erfolgrreich verlinkte Artikel entfernt ... ');
+define('SUCCESS_REMOVE_LINKED', 'Verlinkte Artikel erfolgreich entfernt ... ');
 define('SUCCESS_REMOVE_ALL_PRODUCTS_TO_CATEGORY_FROM_LINKED', 'Verlinkte Artikel aus Kategorie l&ouml;schen: ');
 define('SUCCESS_REMOVE_ALL_PRODUCTS_TO_CATEGORY_TO_LINKED', 'Verlinkte Artikel in diese Kategorie l&ouml;schen: ');
 define('WARNING_REMOVE_FROM_IN_TO_LINKED', '<strong>WARNUNG: Keine &Auml;nderungen gemacht, keine Artikel verlinkt ... </strong>');
@@ -88,7 +88,7 @@ define('TEXT_PRODUCTS_ID_NOT_REQUIRED', 'Anmerkung: Eine Artikel-ID wird nicht u
 // copy category to category linked
 define('TEXT_INFO_RESET_ALL_PRODUCTS_TO_CATEGORY_MASTER', '<strong>ALLE Artikel in der selektierten Kategorie sollen diese als Hauptkategorie verwenden ...</strong><br />z.B: Kategorie 22 zur&uuml;cksetzen bedeutet, dass ALLE Produkte in Kategorie 22, diese als HauptKategorie-ID verwenden');
 define('TEXT_INFO_RESET_ALL_PRODUCTS_TO_CATEGORY_FROM_MASTER', 'R&uuml;cksetzen der Hauptkategorie-ID f&uuml;r ALLE Artikel in Kategorie: ');
-define('BUTTON_RESET_CATEGORY_MASTER', 'R&uuml;cksetzen Hauptkategorie-ID');
+define('BUTTON_RESET_CATEGORY_MASTER', 'Hauptkategorie-ID zur&uuml;cksetzen');
 define('WARNING_RESET_ALL_PRODUCTS_TO_CATEGORY_FROM_MASTER', 'WARNUNG: Unzul&auml;ssige Kategorie ausgew&auml;hlt ...');
 define('SUCCESS_RESET_ALL_PRODUCTS_TO_CATEGORY_FROM_MASTER', 'Erfolgreiche Aktualisierung der Hauptkategorie-ID f&uuml;r alle Artikel der Kategorie: ');
 

@@ -38,7 +38,7 @@ define('TEXT_WARNING_OF_DELETE', 'Diese Option hat verlinkte Artikel und Werte -
 define('TEXT_OK_TO_DELETE', 'Diese Option hat keine verlinkte Artikel und Werte und kann gel&ouml;scht werden.');
 define('TEXT_OPTION_ID', 'Option ID');
 define('TEXT_OPTION_NAME', 'Attributname');
-define('TABLE_HEADING_OPT_DISCOUNTED','erm&auml;&szlig;igt');
+define('TABLE_HEADING_OPT_DISCOUNTED','Erm&auml;&szlig;igt');
 define('ATTRIBUTE_WARNING_DUPLICATE','Doppeltes Attribut - Attribut wurde nicht hinzugef&uuml;gt');
 // attributes duplicate warning
 define('ATTRIBUTE_WARNING_DUPLICATE_UPDATE','Doppeltes Attribut existiert - Attribut wurde nicht ge&auml;ndert');
@@ -49,7 +49,7 @@ define('ATTRIBUTE_WARNING_INVALID_MATCH_UPDATE','Attributoption und Attributmerk
 // miss matched option and options value
 define('ATTRIBUTE_POSSIBLE_OPTIONS_NAME_WARNING_DUPLICATE','M&ouml;glicherweise doppelter Attributname hinzugef&uuml;gt');
 // Options Name Duplicate warning
-define('ATTRIBUTE_POSSIBLE_OPTIONS_VALUE_WARNING_DUPLICATE','M&ouml;glicherweise doppelter Attributmerkmal hinzugef&uuml;gt');
+define('ATTRIBUTE_POSSIBLE_OPTIONS_VALUE_WARNING_DUPLICATE','M&ouml;glicherweise doppeltes Attributmerkmal hinzugef&uuml;gt');
 // Options Value Duplicate warning
 
 define('PRODUCTS_ATTRIBUTES_EDITING','BEARBEITE');
@@ -61,12 +61,12 @@ define('PRODUCTS_ATTRIBUTES_ADDING','F&Uuml;GE NEUE ATTRIBUTE HINZU');
 define('TEXT_DOWNLOADS_DISABLED','HINWEIS: Downloads sind deaktiviert');
 define('TABLE_TEXT_MAX_DAYS_SHORT', 'Tage:');
 define('TABLE_TEXT_MAX_COUNT_SHORT', 'Max:');
-define('TABLE_HEADING_OPTION_SORT_ORDER','Sortierreihenfolge');
+define('TABLE_HEADING_OPTION_SORT_ORDER','Sortierung');
 define('TABLE_HEADING_OPTION_VALUE_SORT_ORDER','Standardsortierung');
-define('TEXT_SORT',' Order: ');
+define('TEXT_SORT',' Sortierung: ');
 define('TABLE_HEADING_OPT_WEIGHT_PREFIX','Pr&auml;fix');
 define('TABLE_HEADING_OPT_WEIGHT','Gewicht');
-define('TABLE_HEADING_OPT_SORT_ORDER','Sortierreihenfolge');
+define('TABLE_HEADING_OPT_SORT_ORDER','Sortierung');
 define('TABLE_HEADING_OPT_DEFAULT','Standard');
 define('TABLE_HEADING_YES','Ja');
 define('TABLE_HEADING_NO','Nein');
@@ -84,7 +84,7 @@ define('TEXT_ATTRIBUTES_IMAGE','Attributbild Muster:');
 define('TEXT_ATTRIBUTES_IMAGE_DIR','Attributbild Verzeichnis:');
 define('TEXT_ATTRIBUTES_FLAGS','Attribut<br />Kennzeichen:');
 define('TEXT_ATTRIBUTES_DISPLAY_ONLY', 'Nur zur<br />Ansicht verwendet:');
-define('TEXT_ATTRIBUTES_IS_FREE', 'Attribut ist frei<br />wenn Artikel frei ist:');
+define('TEXT_ATTRIBUTES_IS_FREE', 'Attribut ist kostenlos<br />wenn Artikel kostenlos ist:');
 define('TEXT_ATTRIBUTES_DEFAULT', 'Standard Attribute<br />zur Auswahl markiert:');
 define('TEXT_ATTRIBUTE_IS_DISCOUNTED', 'Verwende selben Preisnachlass<br />wie von Artikel:');
 define('TEXT_ATTRIBUTE_PRICE_BASE_INCLUDED','Inkludiert im Grundpreis<br />wenn Preis durch Attribute bestimmt');
@@ -104,7 +104,7 @@ define('TEXT_OPTION_VALUE_ADD_PRODUCT', '<br /><strong>ALLE Attributmerkmale zu 
 define('TEXT_INFO_OPTION_VALUE_ADD_PRODUCT', 'EINEN Artikel mit mindestens EINEM Attributmerkmal aktualisieren und ALLE Attributmerkmale einem Attributname hinzuf&uuml;gen');
 define('TEXT_OPTION_VALUE_ADD_CATEGORY', '<br /><strong>ALLE Attributmerkmale zu EINER Kategorie von Artikel f&uuml;r Attributnamen hinzuf&uuml;gen</strong>');
 define('TEXT_INFO_OPTION_VALUE_ADD_CATEGORY', 'EINE Kategorie von Artikel aktualisieren, wenn der Artikel mindestens EINEN Attributmerkmal hat und ALLE Attributmerkmale einem Attributnamen hinzuf&uuml;gen');
-define('TEXT_COMMENT_OPTION_VALUE_ADD_ALL', '<strong>HINWEIS:</strong> Die Sortierreihenfolge wird f&uuml;r diese Artikel auf die Standard Sortierreihenfolge f&uuml;r Attributmerkmale gesetzt');
+define('TEXT_COMMENT_OPTION_VALUE_ADD_ALL', '<strong>HINWEIS:</strong> Die Sortierung wird f&uuml;r diese Artikel auf die Standard Sortierung f&uuml;r Attributmerkmale gesetzt');
 
 // delete
 define('TEXT_OPTION_VALUE_DELETE_ALL', '<br /><strong>L&ouml;sche ALLE Attributmerkmale f&uuml;r ALLE Artikel f&uuml;r Attributnamen</strong>');

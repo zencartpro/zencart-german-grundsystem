@@ -38,7 +38,7 @@ define('TEXT_WARNING_OF_DELETE', 'Diese Option ist Artikel und Optionen zugewies
 define('TEXT_OK_TO_DELETE', 'Diese Option ist keinen Artikeln und keinen Optionen zugewiesen und kann gel&ouml;scht werden.');
 define('TEXT_OPTION_ID', 'Option ID');
 define('TEXT_OPTION_NAME', 'Attributname');
-define('TABLE_HEADING_OPT_DISCOUNTED', 'erm&auml;&szlig;igt');
+define('TABLE_HEADING_OPT_DISCOUNTED', 'Erm&auml;&szlig;igt');
 define('ATTRIBUTE_WARNING_DUPLICATE', 'Hinzuf&uuml;gen nicht m&ouml;glich - Attribut ist bereits vorhanden');
 // attributes duplicate warning
 define('ATTRIBUTE_WARNING_DUPLICATE_UPDATE', '&Auml;nderung nicht m&ouml;glich - Attribut ist bereits vorhanden');
@@ -61,7 +61,7 @@ define('PRODUCTS_ATTRIBUTES_ADDING', 'F&Uuml;GE NEUES ATTRIBUT HINZU');
 define('TEXT_DOWNLOADS_DISABLED', 'Hinweis: Downloads sind deaktiviert');
 define('TABLE_TEXT_MAX_DAYS_SHORT', 'Tage:');
 define('TABLE_TEXT_MAX_COUNT_SHORT', 'Maximal:');
-define('TABLE_HEADING_OPTION_SORT_ORDER', 'Sortierreihenfolge');
+define('TABLE_HEADING_OPTION_SORT_ORDER', 'Sortierung');
 define('TABLE_HEADING_OPTION_VALUE_SORT_ORDER', 'Standardsortierung');
 define('TEXT_SORT', 'Sortierung:');
 define('TABLE_HEADING_OPT_WEIGHT_PREFIX', 'Pr&auml;fix');
@@ -86,7 +86,7 @@ define('TEXT_ATTRIBUTES_DISPLAY_ONLY', 'Nur zur<br />Darstellung ben&ouml;tigt:'
 define('TEXT_ATTRIBUTES_IS_FREE', 'Attribut ist kostenlos<br />wenn der Artikel kostenlos ist:');
 define('TEXT_ATTRIBUTES_DEFAULT', 'Attribut, welches standardm&auml;&szlig;ig<br />markiert werden soll:');
 define('TEXT_ATTRIBUTE_IS_DISCOUNTED', 'Rabatte verwenden die vom<br />Artikel verwendet werden:');
-define('TEXT_ATTRIBUTE_PRICE_BASE_INCLUDED', 'inklusive Grundpreis<br />wenn Preis durch Attribute bestimmt wird:');
+define('TEXT_ATTRIBUTE_PRICE_BASE_INCLUDED', 'Inklusive Grundpreis<br />wenn Preis durch Attribute bestimmt wird:');
 define('TEXT_PRODUCT_OPTIONS_INFO', 'F&uuml;r weitere Einstellungen bitte Artikeloptionen bearbeiten');
 
 // Option Names/Values copier from one to another
@@ -116,7 +116,7 @@ define('TEXT_COPY_ATTRIBUTES_IGNORE', 'Existierende Attribute <strong>ignorieren
 define('TEXT_INFO_FROM', ' von: ');
 define('TEXT_INFO_TO', ' nach: ');
 define('ERROR_OPTION_VALUES_COPIED', 'Fehler: Doppelter Optionsname und Optionswert');
-define('ERROR_OPTION_VALUES_COPIED_MISMATCH', 'Fehler: Ausgew&auml;hlter Optionsmane und Optionswert stimmen nicht &uuml;berein');
+define('ERROR_OPTION_VALUES_COPIED_MISMATCH', 'Fehler: Ausgew&auml;hlter Optionsname und Optionswert stimmen nicht &uuml;berein');
 define('ERROR_OPTION_VALUES_NONE', 'Fehler: Nichts zum Kopieren gefunden');
 define('SUCCESS_OPTION_VALUES_COPIED', 'Kopieren erfolgreich! ');
 define('ERROR_OPTION_VALUES_COPIED_MISMATCH_PRODUCTS_ID', 'Fehler: kein Optionsname/-wert f&uuml;r Artikel-Nr:');

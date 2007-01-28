@@ -20,10 +20,10 @@
 // $Id: stats_products_viewed.php 1105 2005-04-04 22:05:35Z birdbrain $
 //
 
-define('HEADING_TITLE','Die meistgesehenen Artikel');
+define('HEADING_TITLE','Die meist besuchten Artikel');
 define('TABLE_HEADING_NUMBER','Nr.');
 define('TABLE_HEADING_PRODUCTS','Artikel');
-define('TABLE_HEADING_VIEWED','gesehen');
+define('TABLE_HEADING_VIEWED','Besucher');
 
 
 ?>

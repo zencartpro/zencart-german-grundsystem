@@ -38,7 +38,7 @@ define('TEXT_DATE_ADDED', 'Erstelldatum');
 define('TEXT_LAST_MODIFIED', 'Letzte &Auml;nderung');
 define('TEXT_IMAGE_NONEXISTENT', 'Das Bild existiert nicht');
 define('TEXT_PRODUCTS', 'Verlinkte Artikel');
-define('TEXT_DISPLAY_NUMBER_OF_RECORD_COMPANIES', 'zeige <strong>%d</strong> bis <strong>%d</strong> (von <strong>%d</strong> Plattenfirmen)');
+define('TEXT_DISPLAY_NUMBER_OF_RECORD_COMPANIES', 'Zeige <strong>%d</strong> bis <strong>%d</strong> (von <strong>%d</strong> Plattenfirmen)');
 define('TEXT_DELETE_PRODUCTS', 'L&ouml;schen Sie diese Plattenfirma und alle zugeorneten Einzelteile ?');
 define('TEXT_DELETE_WARNING_PRODUCTS', '<b>WARNING:</b>  Es gibt %s Einzelteile, die noch mit dieser Plattenfirma verbunden sind!');
 

@@ -21,9 +21,9 @@
 //
 
 define('HEADING_TITLE', 'Artikeltypen');
-define('HEADING_TITLE_LAYOUT', 'Layout der Infoseite f&uuml;r Artikeltypen :: ');
+define('HEADING_TITLE_LAYOUT', 'Layout der Infoseite f&uuml;r Artikeltypen : ');
 define('TABLE_HEADING_PRODUCT_TYPES', 'Artikeltypen');
-define('TABLE_HEADING_PRODUCT_TYPES_ALLOW_ADD_TO_CART', 'in den<br />Warenkorb');
+define('TABLE_HEADING_PRODUCT_TYPES_ALLOW_ADD_TO_CART', 'In den<br />Warenkorb');
 define('TABLE_HEADING_ACTION', 'Aktion');
 define('TABLE_HEADING_CONFIGURATION_TITLE', 'Titel');
 define('TABLE_HEADING_CONFIGURATION_VALUE', 'Wert');
@@ -36,7 +36,7 @@ define('TEXT_PRODUCT_TYPES_ALLOW_ADD_CART', 'Dieser Artikel kann zum Warenkorb h
 define('TEXT_DATE_ADDED', 'Erstelldatum:');
 define('TEXT_LAST_MODIFIED', 'Letzte &Auml;nderung:');
 define('TEXT_PRODUCTS', 'Artikel:');
-define('TEXT_PRODUCTS_IMAGE_DIR', 'zum Verzeichnis hochladen:');
+define('TEXT_PRODUCTS_IMAGE_DIR', 'Zum Verzeichnis hochladen:');
 define('TEXT_IMAGE_NONEXISTENT', 'DAS BILD EXISTIERT NICHT');
 define('TEXT_MASTER_TYPE', 'Diese Produktart sollte als ein Unterprodukt gelten von ');
 define('TEXT_NEW_INTRO', 'Bitte geben Sie folgende Informationen f&uuml;r den neuen Hersteller an');
@@ -45,7 +45,7 @@ define('TEXT_PRODUCT_TYPES_NAME', 'Artikeltyp Name:');
 define('TEXT_PRODUCT_TYPES_IMAGE', 'Artikeltyp Bild:');
 define('TEXT_PRODUCT_TYPES_URL', 'Hersteller URL:');
 define('TEXT_DELETE_INTRO', 'Sind Sie sicher, dass Sie diesen Artikeltyp l&ouml;schen wollen?');
-define('TEXT_DELETE_IMAGE', 'Soll das Standardbild dieser Artikeltype wirklich gel&ouml;scht werden?');
+define('TEXT_DELETE_IMAGE', 'Soll das Standardbild dieser Artikeltyp wirklich gel&ouml;scht werden?');
 define('TEXT_DELETE_PRODUCTS', 'Sollen die Artikel von diesem Artikeltyp gel&ouml;scht werden? (Beinhaltet auch Artikelvorschau, Sonderangebote und Artikel Neuerscheinungen)');
 define('TEXT_DELETE_WARNING_PRODUCTS', '<b>WARNUNG:</b> Es sind immer noch %s Artikel zu diesem Artikeltyp verlinkt!');
 define('ERROR_DIRECTORY_NOT_WRITEABLE', 'Fehler: In das Verzeichnis kann nicht geschrieben werden. Bitte setzten Sie die entsprechenden Berechtigungen auf %s');

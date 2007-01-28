@@ -22,7 +22,7 @@
 //
 define('HEADING_TITLE', 'Shopmanager');
 define('TABLE_CONFIGURATION_TABLE', 'Suche KONSTANTE Definitionen');
-define('SUCCESS_PRODUCT_UPDATE_SORT_ALL', 'Die Sortierreihenfolge der Attribute wurde <strong>erfolgreich</strong> aktualisiert');
+define('SUCCESS_PRODUCT_UPDATE_SORT_ALL', 'Die Sortierung der Attribute wurde <strong>erfolgreich</strong> aktualisiert');
 define('SUCCESS_PRODUCT_UPDATE_PRODUCTS_PRICE_SORTER', 'Sie Sortiererwerte f&uuml;r Artikelpreise wurden <strong>erfolgreich</strong> aktualisiert');
 define('SUCCESS_PRODUCT_UPDATE_PRODUCTS_VIEWED', 'Die gesehenen Artikel wurden <strong>erfolgreich</strong> auf 0 zur&uuml;ckgesetzt');
 define('SUCCESS_PRODUCT_UPDATE_PRODUCTS_ORDERED', 'Die bestellten Artikel wurden erfolgreich auf 0 zur&uuml;ckgesetzt');
@@ -32,7 +32,7 @@ define('SUCCESS_CLEAN_ADMIN_ACTIVITY_LOG', '<strong>Erfolgreiches</strong> Updat
 define('ERROR_CONFIGURATION_KEY_NOT_FOUND', '<strong>Fehler:</strong> Keine &uuml;bereinstimmenden Konfigurationsschl&uuml;ssel gefunden ...');
 define('ERROR_CONFIGURATION_KEY_NOT_ENTERED', '<strong>Fehler:</strong> Kein Konfigurationsschl&uuml;ssel oder Text wurden f&uuml;r die Suche angegeben ... die Suche wurde abgebrochen');
 define('TEXT_INFO_COUNTER_UPDATE', '<strong>Aktualisiere Counter</strong><br />auf einen neuen Wert: ');
-define('TEXT_INFO_PRODUCTS_PRICE_SORTER_UPDATE', '<strong>Aktualisiere ALLE Artikelpreissortierer </strong><br />um eine nach Preisen sortierte Anzeige zu erm&ouml;glichen: ');
+define('TEXT_INFO_PRODUCTS_PRICE_SORTER_UPDATE', '<strong>Aktualisiere ALLE Artikelpreissortierungen </strong><br />um eine nach Preisen sortierte Anzeige zu erm&ouml;glichen: ');
 define('TEXT_INFO_PRODUCTS_VIEWED_UPDATE', '<strong>Setze ALLE gesehenen Artikel zur&uuml;ck</strong><br />Setze Anzahl der gesehenen Artikel auf 0: ');
 define('TEXT_INFO_PRODUCTS_ORDERED_UPDATE', '<strong>ALLE bestellten Artikel zur&uuml;cksetzen</strong><br />Anzahl bestellter Artikel auf 0 setzen: ');
 define('TEXT_INFO_MASTER_CATEGORIES_ID_UPDATE', '<strong>Setze ALLE Artikelhauptkategorie IDs</strong><br />zur Verwendung f&uuml;r verlinkte Artikel und Bepreisung zur&uuml;ck: ');
@@ -42,8 +42,8 @@ define('TEXT_INFO_ORDERS_ID_UPDATE', '<strong>HINWEIS: Vor der Aktualisierung de
 define('TEXT_OLD_ORDERS_ID', 'Alte Bestell ID');
 define('TEXT_NEW_ORDERS_ID', 'Neue Bestell ID');
 define('TEXT_CONFIGURATION_CONSTANT', '<strong>Suche KONSTANTE oder Sprachdateidefinitionen</strong>');
-define('TEXT_CONFIGURATION_KEY', 'Schl&uuml;ssen oder Name:');
-define('TEXT_INFO_CONFIGURATION_UPDATE', '<strong>HINWEIS:</strong> KONSTANTEN sind immer in Gro&szlig;buchstaben geschrieben.<br />Die Suche in Sprachdateien kann eine alternative sein, wenn in den Datenbanktabellen nichts gefunden wurde.');
+define('TEXT_CONFIGURATION_KEY', 'Schl&uuml;ssel oder Name:');
+define('TEXT_INFO_CONFIGURATION_UPDATE', '<strong>HINWEIS:</strong> KONSTANTEN sind immer in Gro&szlig;buchstaben geschrieben.<br />Die Suche in Sprachdateien kann eine Alternative sein, wenn in den Datenbanktabellen nichts gefunden wurde.');
 define('TEXT_CONFIGURATION_CONSTANT_FILES', '<strong>Suche in Sprachdateidefinitionen</strong>');
 define('TEXT_CONFIGURATION_KEY_FILES', 'Suche Text:');
 define('TEXT_INFO_CONFIGURATION_UPDATE_FILES', '<strong>HINWEIS:</strong> Die Suche in Sprachdateien kann in Gro&szlig;- oder Kleinschreibung erfolgen');
@@ -52,7 +52,7 @@ define('TABLE_TITLE_TITLE', '<strong>Titel:</strong>');
 define('TABLE_TITLE_DESCRIPTION', '<strong>Beschreibung:</strong>');
 define('TABLE_TITLE_GROUP', '<strong>Gruppe:</strong>');
 define('TABLE_TITLE_VALUE', '<strong>Wert:</strong>');
-define('TEXT_LANGUAGE_LOOKUPS', 'Sprachdatei suche:');
+define('TEXT_LANGUAGE_LOOKUPS', 'Sprachdateisuche:');
 define('TEXT_LANGUAGE_LOOKUP_NONE', 'Kein');
 define('TEXT_LANGUAGE_LOOKUP_CURRENT_LANGUAGE', 'Alle Sprachdateien f&uuml;r ' . strtoupper($_SESSION['language']) . ' - Webshop/Admin');
 define('TEXT_LANGUAGE_LOOKUP_CURRENT_CATALOG', 'Alle Hauptsprachdateien - Webshop (' . DIR_WS_CATALOG . DIR_WS_LANGUAGES . 'english.php /german.php etc.)');

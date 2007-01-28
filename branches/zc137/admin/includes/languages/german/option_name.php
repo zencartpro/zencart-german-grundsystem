@@ -19,15 +19,15 @@
 // +----------------------------------------------------------------------+
 //  $Id: option_name.php 276 2004-09-10 22:35:28Z wilt $
 //
-define('HEADING_TITLE','Sortierreihenfolge der Attributnamen');
+define('HEADING_TITLE','Sortierung der Attributnamen');
 define('TEXT_EDIT_ALL','Alle Attributnamen bearbeiten');
 define('TEXT_CURRENT_NAME','Aktueller Name');
-define('TEXT_SORT_ORDER','Sortierreihenfolge');
+define('TEXT_SORT_ORDER','Sortierung');
 define('TEXT_OPTION_ID','Option ID');
 define('TEXT_OPTION_TYPE','Typ');
 define('TEXT_OPTION_NAME','Attributname');
 define('TEXT_SELECTED_LANGUAGE','Sprache w&auml;hlen:');
-define('SUCCESS_OPTION_SORT_ORDER','Die Sortierreihenfolge der Attributnamen wurde aktualisiert');
+define('SUCCESS_OPTION_SORT_ORDER','Die Sortierung der Attributnamen wurde aktualisiert');
 
 
 ?>

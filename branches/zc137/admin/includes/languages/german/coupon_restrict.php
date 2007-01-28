@@ -20,21 +20,21 @@
 //  $Id: coupon_restrict.php 3666 2006-05-28 21:21:37Z wilt $
 //
 
-define('HEADING_TITLE','Gutscheine - Artikel/Kategorien Einschr&auml;nkungen');
+define('HEADING_TITLE','Aktionskupon - Artikel/Kategorien Einschr&auml;nkungen');
 define('HEADING_TITLE_CATEGORY','Kategorieneinschr&auml;nkungen');
 define('HEADING_TITLE_PRODUCT','Artikeleinschr&auml;nkungen');
-define('HEADER_COUPON_ID','Gutschein ID');
-define('HEADER_COUPON_NAME','Gutscheinname');
+define('HEADER_COUPON_ID','Aktionskupon ID');
+define('HEADER_COUPON_NAME','Aktionskupon Name');
 define('HEADER_CATEGORY_ID','Kategorie ID');
 define('HEADER_CATEGORY_NAME','Kategorienname');
 define('HEADER_PRODUCT_ID','Artikel ID');
 define('HEADER_PRODUCT_NAME','Artikelname');
-define('HEADER_RESTRICT_ALLOW','erlauben');
-define('HEADER_RESTRICT_DENY','nicht erlauben');
-define('HEADER_RESTRICT_REMOVE','entfernen');
-define('IMAGE_ALLOW','erlauben');
-define('IMAGE_DENY','nicht erlauben');
-define('IMAGE_REMOVE','entfernen');
+define('HEADER_RESTRICT_ALLOW','Eerlauben');
+define('HEADER_RESTRICT_DENY','Nicht erlauben');
+define('HEADER_RESTRICT_REMOVE','Entfernen');
+define('IMAGE_ALLOW','Erlauben');
+define('IMAGE_DENY','Nicht erlauben');
+define('IMAGE_REMOVE','Entfernen');
 define('TEXT_ALL_CATEGORIES', 'Alle Kategorien');
 
 
