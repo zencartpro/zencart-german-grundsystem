@@ -26,7 +26,7 @@ define('TABLE_HEADING_ACTION', 'Aktion');
 define('TEXT_HEADING_NEW_MEDIA_COLLECTION', 'Neue Medienkollektion');
 define('TEXT_NEW_INTRO', 'Bitte tragen Sie die notwendigen Details f&uuml;r die neue Medienkollektion ein');
 define('TEXT_MEDIA_COLLECTION_NAME', 'Name der Medienkollektion');
-define('TEXT_MEDIA_EDIT_INSTRUCTIONS', 'Zum &auml;ndern des Namens der Medienkollektion verwenden Sie bitte die obere Sektion. Klicken Sie anschlie&szlig;end auf "speichern".<br /><br />
+define('TEXT_MEDIA_EDIT_INSTRUCTIONS', 'Zum &Auml;ndern des Namens der Medienkollektion verwenden Sie bitte die obere Sektion. Klicken Sie anschlie&szlig;end auf &quot;Speichern&quot;.<br /><br />
                                         Verwenden Sie die untere Sektion, um Medien zur Medienkollektion hinzuzuf&uuml;gen oder von dieser zu entfernen.');
 define('TEXT_DATE_ADDED', 'Erstelldatum:');
 define('TEXT_LAST_MODIFIED', 'Letzte &Auml;nderung:');
@@ -43,12 +43,12 @@ define('TEXT_MEDIA_CLIP_DIR', 'Zum Medienverzeichnis hochladen');
 define('TEXT_MEDIA_CLIP_TYPE', 'Medientyp');
 define('TEXT_HEADING_ASSIGN_MEDIA_COLLECTION', 'Medienkollektion Artikel zuteilen');
 define('TEXT_PRODUCTS_INTRO', 'Verwenden Sie bitte unten stehendes Formular, um diese Medienkollektion von Artikel zu entfernen oder Artikel zuzuteilen.');
-define('IMAGE_PRODUCTS', 'zu Artikel zuteilen');
+define('IMAGE_PRODUCTS', 'Zu Artikel zuteilen');
 define('TEXT_DELETE_PRODUCTS', 'Soll diese Medienkollektion und alle Verlinkungen zu dieser Kollektion gel&ouml;scht werden?');
 define('TEXT_DELETE_WARNING_PRODUCTS', '<b>WARNUNG:</b> Es gibt %s Verlinkungen zu dieser Medienkollektion!');
-define('TEXT_WARNING_FOLDER_UNWRITABLE', 'Hinweis: media Ordner ' . DIR_FS_CATALOG_MEDIA . ' ist nicht schreibbar. Kann Dateien nicht hinaufladen.');
+define('TEXT_WARNING_FOLDER_UNWRITABLE', 'Hinweis: Das Verzeichnis ' . DIR_FS_CATALOG_MEDIA . ' ist nicht beschreibbar. Kann Dateien nicht hinaufladen.');
 define('ERROR_UNKNOWN_DATA', 'FEHLER: Unbekannte Daten geliefert... Operation abgebrochen');
-define('TEXT_ADD', 'hinzuf&uuml;gen');
+define('TEXT_ADD', 'HSinzuf&uuml;gen');
 
 
 

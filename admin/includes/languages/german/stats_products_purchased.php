@@ -20,7 +20,7 @@
 //  $Id: stats_products_purchased.php 4735 2006-10-12 22:37:46Z ajeh $
 //
 
-define('HEADING_TITLE','Top Artikelbestellungen');
+define('HEADING_TITLE','Die Meistverkauften Artikel (Bestseller)');
 define('TABLE_HEADING_NUMBER','Nr.');
 define('TABLE_HEADING_PRODUCTS','Artikel');
 define('TABLE_HEADING_PURCHASED','Bestellt');

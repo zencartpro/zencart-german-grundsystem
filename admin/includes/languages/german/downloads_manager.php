@@ -29,7 +29,7 @@ define('TABLE_HEADING_OPT_NAME', 'Attributname');
 define('TABLE_HEADING_OPT_VALUE', 'Attributmerkmal Name');
 define('TABLE_TEXT_FILENAME', 'Dateiname');
 define('TABLE_TEXT_MAX_DAYS', 'Tage');
-define('TABLE_TEXT_MAX_COUNT', 'Count');
+define('TABLE_TEXT_MAX_COUNT', 'Downloads');
 define('TABLE_HEADING_ACTION', 'Aktion');
 define('TABLE_HEADING_OPT_PRICE', 'Preis');
 define('TABLE_HEADING_OPT_PRICE_PREFIX', 'Pr&auml;fix');

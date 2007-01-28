@@ -22,9 +22,9 @@
 
 define('HEADING_TITLE','Artikel Neuerscheinungen');
 define('TABLE_HEADING_PRODUCTS','Artikel');
-define('TABLE_HEADING_DATE_EXPECTED','Eingangsdatum');
+define('TABLE_HEADING_DATE_EXPECTED','Erscheinungsdatum');
 define('TABLE_HEADING_ACTION','Aktion');
-define('TEXT_INFO_DATE_EXPECTED','Eingangsdatum:');
+define('TEXT_INFO_DATE_EXPECTED','Erscheinungsdatum:');
 
 
 ?>

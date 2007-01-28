@@ -44,7 +44,7 @@ define('TEXT_INFO_HEADING_DELETE_CURRENCY','W&auml;hrung l&ouml;schen');
 define('TEXT_INFO_SET_AS_DEFAULT',TEXT_SET_DEFAULT . '(Ein manuelles Update der W&auml;hrungskurse ist notwendig)');
 define('TEXT_INFO_CURRENCY_UPDATED','Der Umrechnungskurs f&uuml;r %s (%s) wurde mit %s aktualisiert.');
 define('ERROR_REMOVE_DEFAULT_CURRENCY','Fehler: Die Standardw&auml;hrung kann nicht gel&ouml;scht werden. Legen Sie eine andere W&auml;hrung als Standard fest und versuchen Sie es noch einmal.');
-define('ERROR_CURRENCY_INVALID','Fehler: Der Umrechnungskurss f&uuml;r %s (%s) konnte mit %s nicht aktualisiert werden. Haben Sie den richtigen W&auml;hrungs-Code eingeben?');
+define('ERROR_CURRENCY_INVALID','Fehler: Der Umrechnungskurs f&uuml;r %s (%s) konnte mit %s nicht aktualisiert werden. Haben Sie den richtigen W&auml;hrungs-Code eingeben?');
 define('WARNING_PRIMARY_SERVER_FAILED','Warnung: Der prim&auml;re Aktualisierungs-Server (%s) konnte nach %s (%s) Versuchen nicht erreicht werden - Es wird versucht, die Aktualisierung &uuml;ber den sekund&auml;ren Server durchzuf&uuml;hren.');
 
 

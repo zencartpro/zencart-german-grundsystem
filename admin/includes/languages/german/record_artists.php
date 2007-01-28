@@ -38,7 +38,7 @@ define('TEXT_DATE_ADDED', 'Erstelldatum');
 define('TEXT_LAST_MODIFIED', 'Letzte &Auml;nderung');
 define('TEXT_IMAGE_NONEXISTENT', 'Das Bild existiert nicht');
 define('TEXT_PRODUCTS', 'Verlinkte Artikel');
-define('TEXT_DISPLAY_NUMBER_OF_ARTISTS', 'zeige <strong>%d</strong> bis <strong>%d</strong> (von <strong>%d</strong> K&uuml;nstlern)');
+define('TEXT_DISPLAY_NUMBER_OF_ARTISTS', 'Zeige <strong>%d</strong> bis <strong>%d</strong> (von <strong>%d</strong> K&uuml;nstlern)');
 define('TEXT_DELETE_PRODUCTS', 'Soll dieser K&uuml;nstler und alle Verlinkungen zu diesem K&uuml;nstler gel&ouml;scht werden?');
 define('TEXT_DELETE_WARNING_PRODUCTS', '<b>WARNUNG:</b> Es gibt %s Verlinkungen zu diesem K&uuml;nstler!');
 

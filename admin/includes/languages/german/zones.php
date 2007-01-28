@@ -20,14 +20,14 @@
 //  $Id: zones.php 1105 2005-04-04 22:05:35Z birdbrain $
 //
 
-define('HEADING_TITLE','Bundesl&auml;nder');
+define('HEADING_TITLE','Zonen/Bundesl&auml;nder');
 define('TABLE_HEADING_COUNTRY_NAME','Land');
-define('TABLE_HEADING_ZONE_NAME','Bundesland');
+define('TABLE_HEADING_ZONE_NAME','Zone/Bundesland');
 define('TABLE_HEADING_ZONE_CODE','K&uuml;rzel');
 define('TABLE_HEADING_ACTION','Aktion');
 define('TEXT_INFO_EDIT_INTRO','F&uuml;hren Sie hier bitte die notwendigen &Auml;nderungen durch');
-define('TEXT_INFO_ZONES_NAME','Bundesland:');
-define('TEXT_INFO_ZONES_CODE','Bundesland-K&uuml;rzel:');
+define('TEXT_INFO_ZONES_NAME','Zone/Bundesland:');
+define('TEXT_INFO_ZONES_CODE','Zone/Bundesland K&uuml;rzel:');
 define('TEXT_INFO_COUNTRY_NAME','Land:');
 define('TEXT_INFO_INSERT_INTRO','Tragen Sie bitte die neue Zone mit den notwendigen Daten ein');
 define('TEXT_INFO_DELETE_INTRO','Wollen Sie diese Zone wirklich l&ouml;schen?');

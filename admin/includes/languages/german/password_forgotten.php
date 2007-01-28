@@ -21,10 +21,10 @@
 //
 
 define('HEADING_TITLE','Passwort erneut senden');
-define('TEXT_ADMIN_EMAIL','Admin e-Mail Adresse:');
-define('ERROR_WRONG_EMAIL','<p>Sie haben eine falsche e-Mail Adresse eingegeben.</p>');
+define('TEXT_ADMIN_EMAIL','Admin E-Mail Adresse:');
+define('ERROR_WRONG_EMAIL','<p>Sie haben eine falsche E-Mail Adresse eingegeben.</p>');
 define('ERROR_WRONG_EMAIL_NULL','<p>Netter Versuch :-P</p>');
-define('SUCCESS_PASSWORD_SENT','<p>Ihr neues Passwort wurde an die angegebene e-Mail Adresse versendet.</p>');
+define('SUCCESS_PASSWORD_SENT','<p>Ihr neues Passwort wurde an die angegebene E-Mail Adresse versendet.</p>');
 define('TEXT_EMAIL_SUBJECT',STORE_NAME . ' - Neues Passwort');
 define('TEXT_EMAIL_FROM',EMAIL_FROM);
 define('TEXT_EMAIL_MESSAGE', 'Ein neues Passwort wurde angefordert von ' . $_SESSION['REMOTE_ADDR'] . "\n\nIhr neues Passwort f&uuml;r '" . STORE_NAME . "' ist:\n\n   %s\n\n");

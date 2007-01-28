@@ -31,7 +31,7 @@ define('ENTRY_PRODUCT', 'Artikel:');
 define('ENTRY_FROM', 'Absender:');
 define('ENTRY_DATE', 'Datum:');
 define('ENTRY_REVIEW', 'Bewertungen:');
-define('ENTRY_REVIEW_TEXT', '<small><font color="#ff0000"><b>NOTE:</b></font></small> HTML wird nicht &uuml;bersetzt! ');
+define('ENTRY_REVIEW_TEXT', '<small><font color="#ff0000"><b>HINWEIS:</b></font></small> HTML wird nicht &uuml;bersetzt! ');
 define('ENTRY_RATING', 'Bewertung:');
 define('TEXT_INFO_DELETE_REVIEW_INTRO', 'Wollen Sie diesen Bericht wirklich l&ouml;schen?');
 define('TEXT_INFO_DATE_ADDED', 'Erstelldatum:');
@@ -47,8 +47,8 @@ define('TEXT_GOOD', '<small><font color="#ff0000"><b>Gut</b></font></small>');
 define('TEXT_BAD', '<small><font color="#ff0000"><b>schlecht</b></font></small>');
 define('TEXT_INFO_HEADING_DELETE_REVIEW', 'L&ouml;sche Bericht');
 define('TEXT_ALL_STATUS', '--Irgendwelche--');
-define('TEXT_PENDING_APPROVAL', 'ausstehend');
-define('TEXT_APPROVED', 'freigeschalten');
+define('TEXT_PENDING_APPROVAL', 'Ausstehend');
+define('TEXT_APPROVED', 'Freigeschaltet');
 define('HEADING_TITLE_STATUS', 'Status');
 
 

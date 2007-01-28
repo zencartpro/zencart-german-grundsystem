@@ -25,8 +25,8 @@ define('TABLE_HEADING_LAYOUT_BOX_NAME','Name der Box');
 define('TABLE_HEADING_LAYOUT_BOX_STATUS','Linke/Rechte Box<br />Status');
 define('TABLE_HEADING_LAYOUT_BOX_STATUS_SINGLE','Einzelne Spalte-<br />Status');
 define('TABLE_HEADING_LAYOUT_BOX_LOCATION','Links oder Rechts<br />Status');
-define('TABLE_HEADING_LAYOUT_BOX_SORT_ORDER','Linke/Rechte Box<br />Sortierreihenfolge');
-define('TABLE_HEADING_LAYOUT_BOX_SORT_ORDER_SINGLE','Einzelne Box<br />Sortierreihenfolge');
+define('TABLE_HEADING_LAYOUT_BOX_SORT_ORDER','Linke/Rechte Box<br />Sortierung');
+define('TABLE_HEADING_LAYOUT_BOX_SORT_ORDER_SINGLE','Einzelne Box<br />Sortierung');
 define('TABLE_HEADING_ACTION','Aktion');
 define('TEXT_INFO_EDIT_INTRO','F&uuml;hren Sie hier bitte die notwendigen &Auml;nderungen durch');
 define('TEXT_INFO_LAYOUT_BOX','Ausgew&auml;hlte Box:');
@@ -35,8 +35,8 @@ define('TEXT_INFO_LAYOUT_BOX_LOCATION','Lokation: (Einzelne Boxen ignorieren die
 define('TEXT_INFO_LAYOUT_BOX_STATUS','Linke/Rechte Box');
 define('TEXT_INFO_LAYOUT_BOX_STATUS_SINGLE','Einzelner Boxstatus:');
 define('TEXT_INFO_LAYOUT_BOX_STATUS_INFO','EIN= 1 AUS=0');
-define('TEXT_INFO_LAYOUT_BOX_SORT_ORDER','Linke/Rechte Box Sortierreihenfolge');
-define('TEXT_INFO_LAYOUT_BOX_SORT_ORDER_SINGLE','Einzelne Box Sortierreihenfolge');
+define('TEXT_INFO_LAYOUT_BOX_SORT_ORDER','Linke/Rechte Box Sortierung');
+define('TEXT_INFO_LAYOUT_BOX_SORT_ORDER_SINGLE','Einzelne Box Sortierung');
 define('TEXT_INFO_INSERT_INTRO','Tragen Sie bitte die neue Box mit den notwendigen Daten ein');
 define('TEXT_INFO_DELETE_INTRO','Wollen Sie diese Box wirklich l&ouml;schen?');
 define('TEXT_INFO_HEADING_NEW_BOX','Neue Box');
@@ -44,8 +44,8 @@ define('TEXT_INFO_HEADING_EDIT_BOX','Box bearbeiten');
 define('TEXT_INFO_HEADING_DELETE_BOX','Box l&ouml;schen');
 define('TEXT_INFO_DELETE_MISSING_LAYOUT_BOX','L&ouml;sche fehlende Box aus der Templateliste:');
 define('TEXT_INFO_DELETE_MISSING_LAYOUT_BOX_NOTE','HINWEIS: Dieser Vorgang l&ouml;scht keine Dateien und Sie k&ouml;nnen die Box wieder hinzuf&uuml;gen, in dem Sie die dazu notwendigen Dateien in das daf&uuml;r vorgesehene Verzeichnis kopieren.<br /><br /><strong>L&ouml;sche Box: </strong>');
-define('TEXT_INFO_RESET_TEMPLATE_SORT_ORDER','Setze die Sortierreihenfolge aller Boxen f&uuml;r dieses Template auf die STANDARDWERTE zur&uuml;ck:');
-define('TEXT_INFO_RESET_TEMPLATE_SORT_ORDER_NOTE','Dieser Vorgang l&ouml;scht keine dieser Boxen. Es wird nur die aktuellen Sortierreihenfolge zur&uuml;ckgesetzt');
+define('TEXT_INFO_RESET_TEMPLATE_SORT_ORDER','Setze die Sortierung aller Boxen f&uuml;r dieses Template auf die STANDARDWERTE zur&uuml;ck:');
+define('TEXT_INFO_RESET_TEMPLATE_SORT_ORDER_NOTE','Dieser Vorgang l&ouml;scht keine dieser Boxen. Es wird nur die aktuellen Sortierung zur&uuml;ckgesetzt');
 define('TEXT_INFO_BOX_DETAILS','Boxdetails:');
 
 ////////////////

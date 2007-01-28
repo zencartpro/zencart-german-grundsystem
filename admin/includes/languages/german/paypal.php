@@ -53,11 +53,11 @@ define('TEXT_DISPLAY_NUMBER_OF_TRANSACTIONS', 'zeige <strong>%d</strong> bis <st
 define('HEADING_DEATILS_CUSTOMER_REGISTRATION_TITLE', 'PayPal Kundenregistrierungsdetails');
 define('HEADING_DETAILS_REGISTRATION_TITLE', 'PayPal sofortige Zahlungsnotifikation');
 define('TEXT_INFO_ENTRY_ADDRESS', 'Adresse');
-define('TEXT_INFO_ORDER_NUMBER', 'Besgtellnummer');
+define('TEXT_INFO_ORDER_NUMBER', 'Bestellnummer');
 define('TEXT_INFO_TXN_TYPE', 'Transaktionstyp');
 define('TEXT_INFO_PAYMENT_STATUS', 'Zahlungsstatus');
 define('TEXT_INFO_PAYMENT_AMOUNT', 'Betrag');
-define('ENTRY_FIRST_NAME', 'vorname');
+define('ENTRY_FIRST_NAME', 'Vorname');
 define('ENTRY_LAST_NAME', 'Nachname');
 define('ENTRY_BUSINESS_NAME', 'Firmenname');
 define('ENTRY_ADDRESS', 'Adresse');
@@ -67,12 +67,12 @@ define('ENTRY_PAYER_STATUS', 'Bezahlerstatus');
 define('ENTRY_ADDRESS_STATUS', 'Adress-Status');
 define('ENTRY_PAYMENT_TYPE', 'Zahlungstyp');
 define('TABLE_HEADING_ENTRY_PAYMENT_STATUS', 'Zahlungsstatus');
-define('TABLE_HEADING_PENDING_REASON', 'In Schwebe - Ursache');
+define('TABLE_HEADING_PENDING_REASON', 'In Warteschlange - Grund');
 define('TABLE_HEADING_IPN_DATE', 'IPN Datum');
-define('ENTRY_INVOICE', 'rechnung');
+define('ENTRY_INVOICE', 'Rechnung');
 define('ENTRY_PAYPAL_IPN_TXN', 'Transaktions- ID');
 define('ENTRY_PAYMENT_DATE', 'Zahlungsdatum');
-define('ENTRY_PAYMENT_LAST_MODIFIED', 'zuletzt bearbeitet');
+define('ENTRY_PAYMENT_LAST_MODIFIED', 'Zuletzt bearbeitet');
 define('ENTRY_MC_CURRENCY', 'MC W&auml;hrung');
 define('ENTRY_MC_GROSS', 'MC Brutto');
 define('ENTRY_MC_FEE', 'MC geb&uuml;hr');
@@ -84,8 +84,6 @@ define('ENTRY_EXCHANGE_RATE', 'Wechselkurs');
 define('ENTRY_CART_ITEMS', 'St&uuml;ckzahl Warenkorbinhalt');
 define('ENTRY_CUSTOMER_COMMENTS', 'Kundenkommentare');
 define('TEXT_NO_IPN_HISTORY', 'Keine IPN Historie erh&auml;ltlich');
-define('TEXT_TXN_SIGNATURE', 'Transaktions- Signatur');
+define('TEXT_TXN_SIGNATURE', 'Transaktions Signatur');
   //end ADMIN text
-?>
-
 ?>

@@ -33,10 +33,10 @@ define('TEXT_ATTACHMENTS_LIST', 'Ausgew&auml;hlter Anhang: ');
 define('TEXT_SELECT_ATTACHMENT', 'Anhang<br />auf dem Server: ');
 define('TEXT_SELECT_ATTACHMENT_TO_UPLOAD', 'Anhang<br />hochzuladen<br />&amp; anh&auml;ngen: ');
 define('TEXT_ATTACHMENTS_DIR', 'Ordner f&uuml;r Upload: ');
-define('NOTICE_EMAIL_SENT_TO','Hinweis: e-Mail wurde versendet an: %s');
+define('NOTICE_EMAIL_SENT_TO','Hinweis: E-Mail wurde versendet an: %s');
 define('ERROR_NO_CUSTOMER_SELECTED','Fehler: Es wurde kein Kunde ausgew&auml;hlt.');
 define('ERROR_NO_SUBJECT', 'Fehler: Es wurde kein Betreff angegeben.');
-define('ERROR_ATTACHMENTS', 'Fehler: Sie k&ouml;nnen nicht beides - UPLOAD und HINZUF&Uuml;GEN - ausw&auml;hlen. Bitte w&auml;hlen Sie nur eines von beiden Optionen.');
+define('ERROR_ATTACHMENTS', 'Fehler: Sie k&ouml;nnen nicht beides - UPLOAD und HINZUF&Uuml;GEN - ausw&auml;hlen. Bitte w&auml;hlen Sie nur eine von beiden Optionen.');
 
 
 ?>

@@ -24,17 +24,17 @@ define('HEADING_TITLE', TEXT_GV_NAME . ' an Kunden versenden');
 define('TEXT_CUSTOMER', 'Kunde:');
 define('TEXT_SUBJECT', 'Inhalt:');
 define('TEXT_FROM', 'Absender:');
-define('TEXT_TO', 'e-Mail an:');
+define('TEXT_TO', 'E-Mail an:');
 define('TEXT_AMOUNT', 'Betrag');
 define('TEXT_MESSAGE', 'Nur-Text <br />Nachricht:');
 define('TEXT_RICH_TEXT_MESSAGE', 'Rich-Text <br />Nachricht:');
-define('TEXT_SINGLE_EMAIL', '<span class="smallText">Verwenden Sie dieses Feld, um eine einzelne e-Mail zu senden</span>');
+define('TEXT_SINGLE_EMAIL', '<span class="smallText">Verwenden Sie dieses Feld, um eine einzelne E-Mail zu senden</span>');
 define('TEXT_SELECT_CUSTOMER', 'Kunde w&auml;hlen');
-define('TEXT_ALL_CUSTOMERS', 'alle Kunden');
+define('TEXT_ALL_CUSTOMERS', 'Alle Kunden');
 define('TEXT_NEWSLETTER_CUSTOMERS', 'An alle Newsletter Abonnementen');
-define('NOTICE_EMAIL_SENT_TO', 'Hinweis: e-Mail wurde versendet an: %s');
+define('NOTICE_EMAIL_SENT_TO', 'Hinweis: E-Mail wurde versendet an: %s');
 define('ERROR_NO_CUSTOMER_SELECTED', 'Fehler: Es wurde kein Kunde ausgew&auml;hlt.');
-define('ERROR_NO_AMOUNT_SELECTED', 'Fehler: kein Betrag gew&auml;hlt.');
+define('ERROR_NO_AMOUNT_SELECTED', 'Fehler: Kein Betrag gew&auml;hlt.');
 define('ERROR_NO_SUBJECT', 'Fehler: Es wurde kein Betreff angegeben.');
 define('ERROR_GV_AMOUNT', 'Bitte den Wert ohne Symbole angeben. Beispiel: 25.00');
 define('TEXT_GV_ANNOUNCE', '<font color="#0000ff">Wir freuen uns, Ihnen einen ' . TEXT_GV_NAME . ' schenken zu k&ouml;nnen</font>');
@@ -46,8 +46,9 @@ define('TEXT_OR_VISIT', 'Alternativ dazu k&ouml;nne Sie uns auf ');
 define('TEXT_ENTER_CODE', ' besuchen und tragen die Gutscheinnummer w&auml;hrend Ihres Bestellvorgangs ein.');
 define('TEXT_CLICK_TO_REDEEM', 'Zum Einl&ouml;sen bitte hier klicken');
 
-define ('TEXT_REDEEM_COUPON_MESSAGE_AMOUNT', "\n\n" . 'The value of the  ' . TEXT_GV_NAME . ' was %s');
-define ('TEXT_REDEEM_COUPON_MESSAGE_BODY', "\n\n" . 'You can now visit our site, login and send the  ' . TEXT_GV_NAME . ' amount to anyone you want.');
+define ('TEXT_REDEEM_COUPON_MESSAGE_HEADER', 'Sie haben einen ' . TEXT_GV_NAME . ' erworben. Aus Sicherheitsgr&uuml;nden wurde der Betrag des ' . TEXT_GV_NAME . 's nicht sofort freigegeben. Der Shop Inhaber hat diesen Betrag nun freigegeben.');
+define ('TEXT_REDEEM_COUPON_MESSAGE_AMOUNT', "\n\n" . 'Der Betrag des  ' . TEXT_GV_NAME . 's war %s');
+define ('TEXT_REDEEM_COUPON_MESSAGE_BODY', "\n\n" . 'Sie k&ouml;nnen nun unseren Shop besuchen, sich anmelden und den Betrag des   ' . TEXT_GV_NAME . 's weiterverschicken.');
 define ('TEXT_REDEEM_COUPON_MESSAGE_FOOTER', "\n\n");
 
 

@@ -41,9 +41,9 @@ define('INFO_TEXT','<ul>
                         W&auml;hlen Sie diese Aktion, wenn ein Artikel ein Sonderangebot ist <i>und</i> Subjekt dieses Abverkaufs ist:
                                                 <ul>
                           <li>
-                            <strong>Sonderpreis ignorieren - Aktualisiere Artikelpreis und ersetze Sonderpreis</strong><br>
+                            <strong>Sonderpreis ignorieren - Aktualisiere Artikelpreis und ersetze Sonderpreis durch den Abverkaufspreis</strong><br>
                                                         die Preisreduktion wird auf den Regul&auml;rpreis des Artikels angewendet.
-                            (eg. Regul&auml;rer Preis ist &euro;  10.00, der Sonderpreis betr&auml;gt &euro;  9.50, die Abverkaufserm&auml;&szlig;igung betr&auml;gt 10%.
+                            (z.B. Regul&auml;rer Preis ist &euro;  10.00, der Sonderpreis betr&auml;gt &euro;  9.50, die Abverkaufserm&auml;&szlig;igung betr&auml;gt 10%.
                                                         Der endg&uuml;ltige Preis des Artikels wird bei einem Abverkauf &euro;  9.00 betragen. Der Sonderpreis wird ignoriert.)
                           </li>
                           <li>
@@ -53,7 +53,7 @@ define('INFO_TEXT','<ul>
                             Der Sonderpreis wird ignoriert.)
                           </li>
                           <li>
-                            <strong>Abverkaufserm&auml;&szlig;igung auf Sonderpreis anwenden - ansonsten auf Grundpreis anwenden</strong><br>
+                            <strong>Abverkaufserm&auml;&szlig;igung auf Sonderpreis anwenden - ansonsten auf Artikelpreis anwenden</strong><br>
                             Die Abverkaufserm&auml;&szlig;igung wird auf Sonderpreise anwenden. Ein vermengter Preis wird angezeigt.
                             (z.B.. Der Regul&auml;re Preis betr&auml;gt &euro; 10.00, der Sonderpreis betr&auml;gt &euro; 9.50, die Abverkaufserm&auml;&szlig;igung betr&auml;gt 10%.
                             Der endg&uuml;ltige Preis des Artikels wird bei einem Abverkauf &euro; 8.55 betragen.
@@ -67,7 +67,7 @@ define('INFO_TEXT','<ul>
                       <li>
                         Lassen Sie das Feld f&uuml;r das Enddatum leer, wenn der Zeitraum f&uuml;r den Abverkauf unbegrenzt sein soll.</li>
                       <li>
-                        die Auswahl einer Kategorie beinhaltet automatisch auch alle Unterkategorien.
+                        Die Auswahl einer Kategorie beinhaltet automatisch auch alle Unterkategorien.
                       </li>
                     </ul>');
 define('TEXT_CLOSE_WINDOW','[ Fenster schlie&szlig;en ]');

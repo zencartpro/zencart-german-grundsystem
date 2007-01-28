@@ -32,9 +32,9 @@ define('TEXT_NEW_INTRO', 'Bitte geben Sie folgende Informationen f&uuml;r die ne
 define('TEXT_EDIT_INTRO', 'Bitte f&uuml;hren Sie hier die notwendigen &Auml;nderungen durch');
 define('TEXT_DELETE_INTRO', 'Sind Sie sicher, dass Sie diese Preisgruppe l&ouml;schen wollen?');
 define('TEXT_DELETE_PRICING_GROUP', 'L&ouml;scht die Preisgruppe');
-define('TEXT_DELETE_WARNING_GROUP_MEMBERS', '<b>WARNING:</b> Es gibt %s Kunden, die noch mit dieser Kategorie verbunden sind !');
+define('TEXT_DELETE_WARNING_GROUP_MEMBERS', '<b>WARNUNG:</b> Es gibt %s Kunden, die noch mit dieser Kategorie verbunden sind !');
 define('TEXT_GROUP_PRICING_NAME', 'Gruppenname: ');
-define('TEXT_GROUP_PRICING_AMOUNT', 'Preisnachlass in Prozente: ');
+define('TEXT_GROUP_PRICING_AMOUNT', 'Preisnachlass in Prozent: ');
 define('TEXT_DATE_ADDED', 'Erstelldatum:');
 define('TEXT_LAST_MODIFIED', 'Letzte &Auml;nderung:');
 define('TEXT_CUSTOMERS', 'Kunden in der Gruppe:');

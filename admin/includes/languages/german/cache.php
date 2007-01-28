@@ -20,14 +20,14 @@
 //  $Id: cache.php 1105 2005-04-04 22:05:35Z birdbrain $
 //
 
-define('HEADING_TITLE','Speichermanagement');
-define('TABLE_HEADING_CACHE','Speicherbl&ouml;cke');
+define('HEADING_TITLE','Cache (Zwischenspeicher)Management');
+define('TABLE_HEADING_CACHE','Cache Bl&ouml;cke');
 define('TABLE_HEADING_DATE_CREATED','Erstellungsdatum');
 define('TABLE_HEADING_ACTION','Aktion');
 define('TEXT_FILE_DOES_NOT_EXIST','Die Datei existiert nicht');
-define('TEXT_CACHE_DIRECTORY','Speicherverzeichnis:');
-define('ERROR_CACHE_DIRECTORY_DOES_NOT_EXIST','Achtung! Das Speicherverzeichnis existiert nicht.');
-define('ERROR_CACHE_DIRECTORY_NOT_WRITEABLE','Achtung! Das Speicherverzeichnis ist nicht beschreibbar.');
+define('TEXT_CACHE_DIRECTORY','Cache Verzeichnis:');
+define('ERROR_CACHE_DIRECTORY_DOES_NOT_EXIST','Achtung! Das Cacheverzeichnis existiert nicht.');
+define('ERROR_CACHE_DIRECTORY_NOT_WRITEABLE','Achtung! Das Cacheverzeichnis ist nicht beschreibbar.');
 
 
 ?>
