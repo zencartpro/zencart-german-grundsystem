@@ -20,9 +20,9 @@ define('ICON_IMAGE_TINYCART', 'cart.gif');
 define('ICON_ERROR_ALT', 'Fehler');
 define('ICON_SUCCESS_ALT', 'Erfolgreich');
 define('ICON_WARNING_ALT', 'Warnung');
-define('ICON_TRASH_ALT', 'Sie k&ouml;nnen diesen Artikel aus dem Warenkorb l&ouml;schen, indem Sie diese Schaltfl&auml;che anklicken.');
-define('ICON_UPDATE_ALT', 'Sie k&ouml;nnen die Bestellmenge &auml;ndern, indem Sie die Zahl im Kasten ver&auml;ndern und diese Schaltfl&auml;che anklicken.');
-define('ICON_TINYCART_ALT', 'Dieses Produkt dem Warenkorb hinzuf&uuml;gen, indem Sie hier klicken.');
+define('ICON_TRASH_ALT', 'Artikel löschen');
+define('ICON_UPDATE_ALT', 'Warenkorb aktualisieren');
+define('ICON_TINYCART_ALT', 'Artikel in Warenkorb legen');
 
 
 
