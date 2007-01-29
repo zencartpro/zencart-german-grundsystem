@@ -555,7 +555,7 @@ CREATE TABLE customers_info (
 DROP TABLE IF EXISTS db_cache;
 CREATE TABLE db_cache (
   cache_entry_name varchar(64) NOT NULL default '',
-  cache_data blob,
+  cache_data  mediumblob NOT NULL,
   cache_entry_created int(15) default NULL,
   PRIMARY KEY  (cache_entry_name)
 ) TYPE=MyISAM;
