@@ -20,7 +20,7 @@
 // $Id: storepickup.php 1969 2005-09-13 06:57:21Z drbyte $
 //
 
-define('MODULE_SHIPPING_STOREPICKUP_TEXT_TITLE','Abholung');
-define('MODULE_SHIPPING_STOREPICKUP_TEXT_DESCRIPTION','Abholer');
-define('MODULE_SHIPPING_STOREPICKUP_TEXT_WAY','Holt die Ware in unserem Hause ab');
+define('MODULE_SHIPPING_STOREPICKUP_TEXT_TITLE','Selbstabholer');
+define('MODULE_SHIPPING_STOREPICKUP_TEXT_DESCRIPTION','Selbstabholer');
+define('MODULE_SHIPPING_STOREPICKUP_TEXT_WAY','Sie holen die Ware in unserem Hause ab');
 ?>

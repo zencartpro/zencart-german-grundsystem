@@ -22,5 +22,5 @@
 
 define('MODULE_SHIPPING_ITEM_TEXT_TITLE','Versandkosten pro St&uuml;ck');
 define('MODULE_SHIPPING_ITEM_TEXT_DESCRIPTION','Pro St&uuml;ck');
-define('MODULE_SHIPPING_ITEM_TEXT_WAY','Auf dem schnellsten Weg');
+define('MODULE_SHIPPING_ITEM_TEXT_WAY','Standard');
 ?>

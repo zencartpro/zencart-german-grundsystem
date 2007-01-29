@@ -12,9 +12,9 @@ define('TEXT_MAIN','Definieren Sie hier Ihren pers&ouml;nlichen Text. Diesen Tex
 
 // Showcase vs Store
 if (STORE_STATUS == '0') {
-define('TEXT_GREETING_GUEST', 'Willkommen! Bitte genie&szlig;en Sie unseren Schauraum.');
+  define('TEXT_GREETING_GUEST', 'Willkommen <span class="greetUser">Gast!</span> Wollen Sie sich <a href="%s">anmelden</a>?');
 } else {
-
+	define('TEXT_GREETING_GUEST', 'Willkommen! Bitte genie&szlig;en Sie unseren Schauraum.');
 }
 
 define('TEXT_GREETING_PERSONAL', 'Willkommen <span class="greetUser">%s</span>! Wollen Sie sehen, was es <a href="%s">Neues</a> bei uns gibt?');
