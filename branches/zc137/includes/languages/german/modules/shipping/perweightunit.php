@@ -10,5 +10,5 @@
 
 define('MODULE_SHIPPING_PERWEIGHTUNIT_TEXT_TITLE', 'Versandkosten per Gewicht');
 define('MODULE_SHIPPING_PERWEIGHTUNIT_TEXT_DESCRIPTION', 'Per Gewicht');
-define('MODULE_SHIPPING_PERWEIGHTUNIT_TEXT_WAY', 'Auf dem schnellsten Weg');
+define('MODULE_SHIPPING_PERWEIGHTUNIT_TEXT_WAY', 'Standard');
 ?>

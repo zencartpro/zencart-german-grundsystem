@@ -22,5 +22,5 @@
 
 define('MODULE_SHIPPING_FLAT_TEXT_TITLE', 'Versandkostenpauschale');
 define('MODULE_SHIPPING_FLAT_TEXT_DESCRIPTION', 'Hier legen Sie die Kosten f&uuml;r eine Versandkostenpauschale fest');
-define('MODULE_SHIPPING_FLAT_TEXT_WAY', 'Auf dem schnellsten Weg');
+define('MODULE_SHIPPING_FLAT_TEXT_WAY', 'Standard');
 ?>

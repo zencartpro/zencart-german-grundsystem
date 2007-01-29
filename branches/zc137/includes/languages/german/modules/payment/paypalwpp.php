@@ -11,21 +11,21 @@
 define('MODULE_PAYMENT_PAYPALWPP_TEXT_ADMIN_TITLE_EC', 'PayPal Express Checkout');
 define('MODULE_PAYMENT_PAYPALWPP_TEXT_ADMIN_TITLE_WPP', 'PayPal Website Payments Pro');
 define('MODULE_PAYMENT_PAYPALWPP_TEXT_ADMIN_TITLE_PRO20', 'PayPal Website Payments Pro Payflow Edition (UK)');
-  define('MODULE_PAYMENT_PAYPALWPP_TEXT_ADMIN_TITLE_PF_EC', 'PayPal Payflow Pro - Gateway');
-define('MODULE_PAYMENT_PAYPALWPP_TEXT_ADMIN_TITLE_PF_GATEWAY', 'PayPal Payflow Pro + Express Checkout');
+define('MODULE_PAYMENT_PAYPALWPP_TEXT_ADMIN_TITLE_PF_EC', 'PayPal Payflow Pro - Gateway');
+define('MODULE_PAYMENT_PAYPALWPP_TEXT_ADMIN_TITLE_PF_GATEWAY', 'PayPal Payflow Pro Express Checkout');
 
-  if (IS_ADMIN_FLAG === true) {
-    define('MODULE_PAYMENT_PAYPALWPP_TEXT_ADMIN_DESCRIPTION', '<strong>PayPal Express Checkout</strong>%s<br />' . (substr(MODULE_PAYMENT_PAYPALWPP_MODULE_MODE,0,7) == 'Payflow' ? '<a href="https://manager.paypal.com/loginPage.do?partner=ZenCart" target="_blank">Verwalten Sie Ihren PayPal Account.</a>' : '<a href="http://www.zen-cart.com/partners/paypal" target="_blank">Verwalten Sie Ihren PayPal Account.</a>') . '<br /><br /><font color="green">Konfiguration Anleitung:</font><br /><span class="alert">1. </span><a href="http://www.zen-cart.com/partners/paypal" target="_blank">Erstellen Sie einen PayPal Account.</a><br />' . 
-(defined('MODULE_PAYMENT_PAYPALWPP_STATUS') ? '' : '... und dr&uuml;cken auf den Button &quot;Installieren&quot; um PayPal Express Checkout zu aktivieren.</br>') . 
-(MODULE_PAYMENT_PAYPALWPP_MODULE_MODE == 'PayPal' && (!defined('MODULE_PAYMENT_PAYPALWPP_APISIGNATURE') || MODULE_PAYMENT_PAYPALWPP_APISIGNATURE == '') ? '<span class="alert">2. </span><strong>API Credentials</strong> Diese Modul benutzt die <strong>API Signatur</strong> Option -- Bitte geben Sie in die utnren Felder Ihren Benutzernamen, Passwort und die Signature ein.' : (substr(MODULE_PAYMENT_PAYPALWPP_MODULE_MODE,0,7) == 'Payflow' && (!defined('MODULE_PAYMENT_PAYPALWPP_PFUSER') || MODULE_PAYMENT_PAYPALWPP_PFUSER == '') ? '<span class="alert">2. </span><strong>PAYFLOW Credentials</strong> Dieses Modul ben&ouml;tigt Ihre <strong>PAYFLOW Partner Daten</strong>. Bitte geben Sie diese in die Felder unten ein. Diese Daten werden f&uuml;r den reibungslosen Transaktionsablauf ben&ouml;tigt..' : '<span class="alert">2. </span>Bitte stellen Sie sicher, das Sie notwendigen Daten f&uuml;r diese Modul eingegeben haben.') ) . 
-(MODULE_PAYMENT_PAYPALWPP_MODULE_MODE == 'PayPal' ? '<br /><span class="alert">3. </span>Aktivieren Sie in Ihrem Paypal Account <strong>Sofortige Zehlungsbenachrichtung</strong>:<br />unter Mein Profil w&auml;hlen Sie <em>Sofortige Zahlungsbenachrichtung Einstellungen</em><ul style="margin-top: 0.5;"><li>und machen einen Haken in das dazugeh&ouml;rige K&auml;stchen</li><li>Falls nicht bereicht eine URL angegeben ist, geben Sie bitte folgende URL ein:<br />'.str_replace('index.php?main_page=index','ipn_main_handler.php',zen_catalog_href_link(FILENAME_DEFAULT, '', 'SSL')) . '</li></ul>' : '') . 
-'<font color="green"><hr /><strong>Vorrausetzungen:</strong></font><br /><hr />*<strong>CURL</strong> wird f&uuml;r die Kommunikation mit dem Gateway genutzt und muss deshlb zwingend auf Ihrem Webspace vorhanden und aktiviert sein. (Falls Sie einen CURL Proxy verwenden, konfigurieren Sie diesen bitte unter Konfiguration -> Mein Shop)<br /><hr />');
-  }
+if (IS_ADMIN_FLAG === true) {
+  define('MODULE_PAYMENT_PAYPALWPP_TEXT_ADMIN_DESCRIPTION', '<strong>PayPal Express Checkout</strong>%s<br />' . (substr(MODULE_PAYMENT_PAYPALWPP_MODULE_MODE,0,7) == 'Payflow' ? '<a href="https://manager.paypal.com/loginPage.do?partner=ZenCart" target="_blank">Verwalten Sie Ihren PayPal Account.</a>' : '<a href="http://www.zen-cart.com/partners/paypal" target="_blank">Verwalten Sie Ihren PayPal Account.</a>') . '<br /><br /><font color="green">Konfiguration Anleitung:</font><br /><span class="alert">1. </span><a href="http://www.zen-cart.com/partners/paypal" target="_blank">Erstellen Sie einen PayPal Account.</a><br />' . 
+  (defined('MODULE_PAYMENT_PAYPALWPP_STATUS') ? '' : '... und dr&uuml;cken auf den Button &quot;Installieren&quot; um PayPal Express Checkout zu aktivieren.</br>') . 
+  (MODULE_PAYMENT_PAYPALWPP_MODULE_MODE == 'PayPal' && (!defined('MODULE_PAYMENT_PAYPALWPP_APISIGNATURE') || MODULE_PAYMENT_PAYPALWPP_APISIGNATURE == '') ? '<span class="alert">2. </span><strong>API Credentials</strong> Diese Modul benutzt die <strong>API Signatur</strong> Option -- Bitte geben Sie in die utnren Felder Ihren Benutzernamen, Passwort und die Signature ein.' : (substr(MODULE_PAYMENT_PAYPALWPP_MODULE_MODE,0,7) == 'Payflow' && (!defined('MODULE_PAYMENT_PAYPALWPP_PFUSER') || MODULE_PAYMENT_PAYPALWPP_PFUSER == '') ? '<span class="alert">2. </span><strong>PAYFLOW Credentials</strong> Dieses Modul ben&ouml;tigt Ihre <strong>PAYFLOW Partner Daten</strong>. Bitte geben Sie diese in die Felder unten ein. Diese Daten werden f&uuml;r den reibungslosen Transaktionsablauf ben&ouml;tigt..' : '<span class="alert">2. </span>Bitte stellen Sie sicher, das Sie notwendigen Daten f&uuml;r diese Modul eingegeben haben.') ) . 
+  (MODULE_PAYMENT_PAYPALWPP_MODULE_MODE == 'PayPal' ? '<br /><span class="alert">3. </span>Aktivieren Sie in Ihrem Paypal Account <strong>Sofortige Zehlungsbenachrichtung</strong>:<br />unter Mein Profil w&auml;hlen Sie <em>Sofortige Zahlungsbenachrichtung Einstellungen</em><ul style="margin-top: 0.5;"><li>und machen einen Haken in das dazugeh&ouml;rige K&auml;stchen</li><li>Falls nicht bereicht eine URL angegeben ist, geben Sie bitte folgende URL ein:<br />'.str_replace('index.php?main_page=index','ipn_main_handler.php',zen_catalog_href_link(FILENAME_DEFAULT, '', 'SSL')) . '</li></ul>' : '') . 
+  '<font color="green"><hr /><strong>Vorrausetzungen:</strong></font><br /><hr />*<strong>CURL</strong> wird f&uuml;r die Kommunikation mit dem Gateway genutzt und muss deshlb zwingend auf Ihrem Webspace vorhanden und aktiviert sein. (Falls Sie einen CURL Proxy verwenden, konfigurieren Sie diesen bitte unter Konfiguration -> Mein Shop)<br /><hr />');
+}
 
-  define('MODULE_PAYMENT_PAYPALWPP_TEXT_DESCRIPTION', '<strong>PayPal</strong>');
-  define('MODULE_PAYMENT_PAYPALWPP_TEXT_TITLE', 'Kreditkarte');
-  define('MODULE_PAYMENT_PAYPALWPP_EC_TEXT_TITLE', 'PayPal');
-  define('MODULE_PAYMENT_PAYPALWPP_EC_TEXT_TYPE', 'PayPal Express Checkout');
+define('MODULE_PAYMENT_PAYPALWPP_TEXT_DESCRIPTION', '<strong>PayPal</strong>');
+define('MODULE_PAYMENT_PAYPALWPP_TEXT_TITLE', 'Kreditkarte');
+define('MODULE_PAYMENT_PAYPALWPP_EC_TEXT_TITLE', 'PayPal');
+define('MODULE_PAYMENT_PAYPALWPP_EC_TEXT_TYPE', 'PayPal Express Checkout');
 define('MODULE_PAYMENT_PAYPALWPP_DP_TEXT_TYPE', 'PayPal Direct Payment');
 define('MODULE_PAYMENT_PAYPALWPP_ERROR_HEADING', 'Es war uns leider nicht m&ouml;glich Ihre Kreditkarten zu verarbeiten');
 define('MODULE_PAYMENT_PAYPALWPP_TEXT_CARD_ERROR', 'Die angegebenen Kreditkarten Informationen enthalten einen Fehler, Bitte pr&uuml;fen Sie ihre Angaben und versuchen Sie es erneut.');
@@ -39,15 +39,15 @@ define('MODULE_PAYMENT_PAYPALWPP_TEXT_CREDIT_CARD_ISSUE', 'Ausgabedatum der KK:'
 define('MODULE_PAYMENT_PAYPALWPP_TEXT_CREDIT_CARD_CHECKNUMBER', 'Pr&uuml;fziffer:');
 define('MODULE_PAYMENT_PAYPALWPP_TEXT_CREDIT_CARD_CHECKNUMBER_LOCATION', '(auf der R&uuml;ckseite Ihrer Kreditkarte)');
 define('MODULE_PAYMENT_PAYPALWPP_TEXT_DECLINED', 'Ihre Kreditkarte wurde abgelehnt. Bitte versuchen Sie es mit einer anderen Kreditkarter erneut oder nehmen Sie Kontakt mit Ihrer Bank auf um weitere Informationen zu erhalten.');
-  define('MODULE_PAYMENT_PAYPALWPP_INVALID_RESPONSE', 'Wir konnten Ihre Auftrag leider nicht ausf&uuml;hren. Bitte nehmen Sie mit uns Kontakt auf um nach m&ouml;glichen Alternativen zu suchen.');
+define('MODULE_PAYMENT_PAYPALWPP_INVALID_RESPONSE', 'Wir konnten Ihre Auftrag leider nicht ausf&uuml;hren. Bitte nehmen Sie mit uns Kontakt auf um nach m&ouml;glichen Alternativen zu suchen.');
 define('MODULE_PAYMENT_PAYPALWPP_TEXT_GEN_ERROR', 'Es trat ein Fehler beim Kontakt mit der Kreditkartenpr&uuml;fstelle auf. Bitte versuchen Sie es sp&auml;ter noch einmal oder nehmen Sie mit uns Kontakt auf.');
-  define('MODULE_PAYMENT_PAYPALWPP_TEXT_ADDR_ERROR', 'Die angegebene Adresse scheint ung&uuml;ltig zu sein oder stimmt nicht mit der bei Paypal hinterlegten &uuml;berein. Bitte w&auml;hlen Sie eine andere Adresse und versuchen Sie es erneut.');
+define('MODULE_PAYMENT_PAYPALWPP_TEXT_ADDR_ERROR', 'Die angegebene Adresse scheint ung&uuml;ltig zu sein oder stimmt nicht mit der bei Paypal hinterlegten &uuml;berein. Bitte w&auml;hlen Sie eine andere Adresse und versuchen Sie es erneut.');
 define('MODULE_PAYMENT_PAYPALWPP_TEXT_CONFIRMEDADDR_ERROR', 'Die ausgew&auml;hlte Adresse bei Paypal ist keine best&auml;tigte Adresse. Bitte w&auml;hlen Sie eine Andere aus und versuchen Sie es erneut.');
-  define('MODULE_PAYMENT_PAYPALWPP_TEXT_ERROR', 'Es trat ein Fehler w&auml;hrend der Verarbeitung Ihrer Kreditkarten Informationen auf. Bitte versuchen Sie es erneut oder nehmen Sie mit uns Kontakt auf.');
+define('MODULE_PAYMENT_PAYPALWPP_TEXT_ERROR', 'Es trat ein Fehler w&auml;hrend der Verarbeitung Ihrer Kreditkarten Informationen auf. Bitte versuchen Sie es erneut oder nehmen Sie mit uns Kontakt auf.');
 define('MODULE_PAYMENT_PAYPALWPP_TEXT_BAD_CARD', 'Es tut uns leid, aber die angebene Kreditkarte akzeptieren wir nicht. Bitte w&auml;hlen sie eine Andere oder nehmen Sie mit uns Kontakt auf.');
-  define('MODULE_PAYMENT_PAYPALWPP_TEXT_BAD_LOGIN', 'Es gab ein Problem bei der &Uuml;berpr&uuml;fung Ihres Paypal Accounts, bitte versuchen Sie es erneut.');
+define('MODULE_PAYMENT_PAYPALWPP_TEXT_BAD_LOGIN', 'Es gab ein Problem bei der &Uuml;berpr&uuml;fung Ihres Paypal Accounts, bitte versuchen Sie es erneut.');
 define('MODULE_PAYMENT_PAYPALWPP_TEXT_JS_CC_OWNER', '* Der Kreditkarteninhaber sollte mindestens eine L&auml;nge von' . CC_OWNER_MIN_LENGTH . ' Zeichen haben.\n');
-  define('MODULE_PAYMENT_PAYPALWPP_TEXT_JS_CC_NUMBER', '* Die Kreditkartenummer sollte mindestens eine L&auml;nge von ' . CC_NUMBER_MIN_LENGTH . ' Zeichen haben.\n');
+define('MODULE_PAYMENT_PAYPALWPP_TEXT_JS_CC_NUMBER', '* Die Kreditkartenummer sollte mindestens eine L&auml;nge von ' . CC_NUMBER_MIN_LENGTH . ' Zeichen haben.\n');
 define('MODULE_PAYMENT_PAYPALWPP_TEXT_EC_HEADER', 'Schnelle und sichere Bestellung mit Paypal:');
 define('MODULE_PAYMENT_PAYPALWPP_TEXT_BUTTON_TEXT', 'Sparen sie Zeit und bestellen sie vollkommen sicher. Zahlen Sie ohne ihre finanzielle Situation preiszugeben');
 define('MODULE_PAYMENT_PAYPALWPP_TEXT_BUTTON_ALTTEXT', 'Klicken Sie hier um per PayPal Express Checkout zu bestellen');
@@ -76,7 +76,7 @@ define('MODULE_PAYMENT_PAYPALWPP_TEXT_AUTH_INITIATED', 'PayPal Authorization f&u
 define('MODULE_PAYMENT_PAYPALWPP_TEXT_CAPT_INITIATED', 'PayPal Capture f&uuml;r %s gestartet. Receipt ID: %s. Aktualisieren Sie die Seite (F5) um den aktuellen Status einzusehen.');
 define('MODULE_PAYMENT_PAYPALWPP_TEXT_VOID_INITIATED', 'PayPal Abbrechen Request gestartet. Transaction ID: %s. Aktualisieren Sie die Seite (F5) um den aktuellen Status einzusehen.');
 define('MODULE_PAYMENT_PAYPALWPP_TEXT_GEN_API_ERROR', 'Es gab einen Fehler bei der auszuf&uuml;hrenden Transaktion. Bitte schauen Sie in der API Anleitung oder in den Transaktions Logs f&uuml;r weitere Informationen nach.');
-  define('MODULE_PAYMENT_PAYPALWPP_TEXT_INVALID_ZONE_ERROR', 'Es tut uns leid, aber zur Zeit ist es uns nicht m&ouml;glich, die Zahlungsart Paypal f&uuml;r ihre geographische Region zu benutzen. Bitte w&auml;hlen Sie eine andere Zahlungsart.');
+define('MODULE_PAYMENT_PAYPALWPP_TEXT_INVALID_ZONE_ERROR', 'Es tut uns leid, aber zur Zeit ist es uns nicht m&ouml;glich, die Zahlungsart Paypal f&uuml;r ihre geographische Region zu benutzen. Bitte w&auml;hlen Sie eine andere Zahlungsart.');
 
 // EC buttons -- Do not change these values:
 define('MODULE_PAYMENT_PAYPALWPP_EC_BUTTON_IMG', 'https://www.paypal.com/en_US/i/btn/btn_xpressCheckout.gif');
@@ -116,7 +116,7 @@ define('MODULE_PAYMENT_PAYPAL_ENTRY_PAYMENT_DATE', 'Datum der Zahlung:');
 define('MODULE_PAYMENT_PAYPAL_ENTRY_CURRENCY', 'W&auml;hrung:');
 define('MODULE_PAYMENT_PAYPAL_ENTRY_GROSS_AMOUNT', 'Summe:');
 define('MODULE_PAYMENT_PAYPAL_ENTRY_PAYMENT_FEE', 'Kosten Zahlungsart:');
-define('MODULE_PAYMENT_PAYPAL_ENTRY_EXCHANGE_RATE', 'Wechselkurs:';
+define('MODULE_PAYMENT_PAYPAL_ENTRY_EXCHANGE_RATE', 'Wechselkurs:');
 define('MODULE_PAYMENT_PAYPAL_ENTRY_CART_ITEMS', 'Warenkorbinhalt:');
 define('MODULE_PAYMENT_PAYPAL_ENTRY_TXN_TYPE', 'Trans. Typ:');
 define('MODULE_PAYMENT_PAYPAL_ENTRY_TXN_ID', 'Trans. ID:');
