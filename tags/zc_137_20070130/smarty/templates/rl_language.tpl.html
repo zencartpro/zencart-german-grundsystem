@@ -1,0 +1,42 @@
+rl_language version: {$version}//{$languages_id}//{$SOAPSERVER}//tC:{$transCount}
+<div id="rl-language-wrap1"> 
+  <div id="rl-language-form1"><form action="" method="get" enctype="application/x-www-form-urlencoded" name="rl-language" target="_self">
+	<strong>last changes: {$lm}</strong>
+    <input type="submit" name="Submit" value="update_languages">
+    {if $name eq "Fred"}
+    <input name="update[]" type="checkbox" id="update[]" value="1"> 
+    update all
+    <select name="update[]" id="update[]">
+      <option value="CORE">CORE</option>
+      <option value="LANG">LANG</option>
+      <option value="ALL">ALL</option>
+    </select>
+    {/if}
+  </form> </div>
+<div id="rl-language-result"><table>
+  <tr>
+    <th scope="col"><span>KEY</span></th>
+    <th scope="col">TITLE</th>
+    <th scope="col">DESCRIPTION</th>
+    <th scope="col">&nbsp;</th>
+    <th scope="col">&nbsp;</th>
+  </tr>
+{foreach key=cid item=checked from=$checkedA}     
+  <tr class="p20">
+    <td class="p20b"><span class="rl-language-key" id="id-{$checked.new.configuration_id}">{$checked.ori.configuration_key}</span>
+    <td><span class="Stil1">{$checked.ori.configuration_title}</span>
+    <td><span class="Stil1">{$checked.ori.configuration_description}</span>
+    <td><span class="Stil1">ori</span>
+    <td>
+  </tr>
+  <tr class="p21" id="tab-{$checked.ori.configuration_key}">  
+    <td><span class="rl-language-pad">&nbsp;{$checked.new.configuration_id}</span></td>
+    <td><span class="Stil2">{$checked.new.configuration_title}</span></td>
+    <td><span class="Stil2">{$checked.new.configuration_description}</span></td>
+    <td>new</td>
+    <td><div id="but-{$checked.new.configuration_id}" align="right"><button id="butt-{$checked.new.configuration_id}" onclick="xajax_makeTrans('{$checked.ori.configuration_key}', '{$checked.new.configuration_key}', {$languages_id}, {$checked.new.configuration_id});">GetTrans</button></div></td>
+  </tr>
+{/foreach}
+</table>
+</div> 
+</div>
