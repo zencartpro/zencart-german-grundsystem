@@ -26,5 +26,5 @@ define('FOOTER_DOWNLOAD','Sie k&ouml;nnen Ihre Artikel auch zu einem sp&auml;ter
 define('TEXT_YOUR_ORDER_NUMBER', '<strong>Ihre Bestellnummer lautet:</strong> ');
 
 define('TEXT_CHECKOUT_LOGOFF_GUEST', 'ANMERKUNG: Um Ihren Auftrag durchzuf&uuml;hren, wurde ein tempor&auml;res Konto erstellt. Sie k&ouml;nnen dieses Konto schlie&szlig;en, indem Sie auf Abmelden klicken. Das Abmelden stellt auch sicher, da&szlig; die Informationen &uuml;ber Ihren Aufenhalt in unserem Shop nicht der n&auml;chsten Person sichtbar sind, die diesen Computer verwendet. Wenn Sie mit Ihrem Einkauf fortfahren m&öuml;chten, denken Sie bitte daran, vor dem Verlassen unseres Shops auf Abmelden zu klicken.');
-define('TEXT_CHECKOUT_LOGOFF_CUSTOMER', 'Vielen Dank f&uuml;r Ihren Einkauf! Bitte melden Sie sich vor Verlassen des Shop ab, um sicherzugehen, da&szlig; Informationen &uuml;ber Ihren Aufenthalt in unserem Shop nicht f&uuml;r die n&auml;chste Person sichtbar sind, die diesen Computer verwendet.');
+define('TEXT_CHECKOUT_LOGOFF_CUSTOMER', 'Vielen Dank f&uuml;r Ihren Einkauf! Bitte melden Sie sich vor Verlassen des Shops ab, um sicherzugehen, da&szlig; Informationen &uuml;ber Ihren Aufenthalt in unserem Shop nicht f&uuml;r die n&auml;chste Person sichtbar sind, die diesen Computer verwendet.');
 ?>
