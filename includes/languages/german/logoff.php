@@ -10,7 +10,7 @@
 
 define('HEADING_TITLE','Abgemeldet');
 define('NAVBAR_TITLE','Abgemeldet');
-define('TEXT_MAIN','Sie sind nun abgemeldet. Vielen Dank f&uuml;r Ihren Besuch.<br /><br />Der Inhalt Ihres Warenkorbs wurde gespeichert und steht Ihnen bei Ihrem n&auml;chsten wieder Besuch zur Verf&uuml;gung.');
+define('TEXT_MAIN','Sie sind nun abgemeldet. Vielen Dank f&uuml;r Ihren Besuch.<br /><br />Der Inhalt Ihres Warenkorbs wurde gespeichert und steht Ihnen bei Ihrem n&auml;chsten Besuch wieder zur Verf&uuml;gung.');
 
 
 
