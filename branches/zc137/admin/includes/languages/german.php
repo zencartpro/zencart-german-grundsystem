@@ -18,7 +18,7 @@ define('HEADER_LOGO_IMAGE', 'logo.gif');
 // on RedHat6.0 I used 'en_US'
 // on FreeBSD 4.0 I use 'en_US.ISO_8859-1'
 // this may not work under win32 environments..
-setlocale(LC_TIME, 'de_DE.ISO_8859-1');
+setlocale(LC_TIME, 'de_DE.ISO_8859-15');
 define('DATE_FORMAT_SHORT', '%d.%m.%Y'); // this is used for strftime()
 define('DATE_FORMAT_LONG', '%A, %d. %B %Y'); // this is used for strftime()
 define('DATE_FORMAT', 'd.m.Y'); // this is used for date()
@@ -247,7 +247,7 @@ define('ENTRY_FAX_NUMBER', 'Faxnummer:');
 define('ENTRY_FAX_NUMBER_ERROR', '');
 define('ENTRY_NEWSLETTER', 'Newsletter:');
 define('ENTRY_NEWSLETTER_YES', 'Bestellen');
-define('ENTRY_NEWSLETTER_NO', 'Sbbestellen');
+define('ENTRY_NEWSLETTER_NO', 'Abbestellen');
 define('ENTRY_NEWSLETTER_ERROR', '');
 
 // images
