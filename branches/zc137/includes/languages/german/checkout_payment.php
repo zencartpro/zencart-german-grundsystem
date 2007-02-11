@@ -27,7 +27,7 @@ define('TABLE_HEADING_CONDITIONS', 'Allgemeine Gesch&auml;ftsbedingungen');
 define('TEXT_CONDITIONS_DESCRIPTION', 'Mit Fortfahren der Bestellung best&auml;tigen Sie unsere <a href="' . zen_href_link(FILENAME_CONDITIONS, '', 'SSL') . '"><u>AGB</u></a>.');
 define('TEXT_CONDITIONS_CONFIRM', 'Ich habe die AGB gelesen und akzeptiert.');
 define('TEXT_CHECKOUT_AMOUNT_DUE', 'Gesamtmenge passend');
-define('TEXT_YOUR_TOTAL', 'Ihre Gesamtmenge');
+define('TEXT_YOUR_TOTAL', 'Rechnungsbetrag');
 
 
 ?>
