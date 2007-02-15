@@ -20,9 +20,9 @@
 // $Id: conditions.php 1969 2005-09-13 06:57:21Z drbyte $
 //
 
-define('NAVBAR_TITLE','Allgemeine Gesch&auml;ftbedingungen');
-define('HEADING_TITLE','Allgemeine Gesch&auml;ftbedingungen');
-define('TEXT_INFORMATION', 'Ihre Allgemeine Gesch&auml;ftbedingungen sollten hier eingetragen werden!');
+define('NAVBAR_TITLE','Allgemeine Gesch&auml;fstbedingungen');
+define('HEADING_TITLE','Allgemeine Gesch&auml;fstbedingungen');
+define('TEXT_INFORMATION', 'Ihre Allgemeine Gesch&auml;fstbedingungen sollten hier eingetragen werden!');
 
 
 ?>
