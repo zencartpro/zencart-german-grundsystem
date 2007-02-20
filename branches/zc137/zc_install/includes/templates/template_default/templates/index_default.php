@@ -14,7 +14,7 @@
 <?php
   if ($zc_install->error) include(DIR_WS_INSTALL_TEMPLATE . 'templates/display_errors.php');
 ?>
-<iframe src="includes/templates/template_default/templates/about_zencart.html"></iframe>
+<iframe src="includes/templates/template_default/templates/ueber_zencart.html"></iframe>
 <form method="post" action="index.php?main_page=license<?php if (isset($_GET['language'])) { echo '&amp;language=' . $_GET['language']; } ?>">
   <input type="submit" name="submit" class="button" value="<?php echo INSTALL; ?>" />
 </form>

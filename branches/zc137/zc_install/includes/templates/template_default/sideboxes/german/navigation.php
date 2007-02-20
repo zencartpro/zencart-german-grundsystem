@@ -11,15 +11,15 @@
 ?>
 <ul>
   <li id="welcome">Willkommen</li>
-  <li id="licenseaccept">Lizenz</li>
-  <li id="inspection">Voraussetzungen</li>
-  <li id="system">System Setup</li>
-  <li id="phpbb">phpBB Setup</li>
-  <li id="database">Datenbank Setup</li>
+  <li id="licenseaccept">GPL Lizenz</li>
+  <li id="inspection">Systempr&uuml;fung</li>
+  <li id="system">Servereinstellungen</li>
+  <li id="phpbb">phpBB Integration</li>
+  <li id="database">Datenbankanbindung</li>
 <?php if ((isset($is_upgradable) && $is_upgradable) || (isset($is_upgrade) && $is_upgrade)) { ?>
   <li id="databaseupg">Datenbank Upgrade</li>
 <?php } ?>
-  <li id="store">Store Setup</li>
-  <li id="admin">Admin Setup</li>
-  <li id="finish">Finished</li>
+  <li id="store">Shopkonfiguration</li>
+  <li id="admin">Administrator Konto</li>
+  <li id="finish">Fertigstellung</li>
 </ul>

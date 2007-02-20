@@ -11,9 +11,9 @@
 /**
  * defining language components for the page
  */
-define('SAVE_SYSTEM_SETTINGS', 'speichern & fortfahren');
+define('SAVE_SYSTEM_SETTINGS', 'Speichern & fortfahren');
 //this comes before TEXT_MAIN
-define('TEXT_MAIN', "Wir installieren jetzt die Einstellungen Ihrer Zen Cart Systemumgebung. Bitte kontrollieren Sie gewissenhaft alle Einstellungen. Anschlie&szlig;end klicken Sie bitte zum Fortfahren auf <em>".SAVE_SYSTEM_SETTINGS.'</em>.');
+define('TEXT_MAIN', "Hier werden die Einstellungen Ihrer Zen Cart Systemumgebung ermittelt. Bitte kontrollieren Sie gewissenhaft alle Einstellungen. Klicken Sie bitte zum Fortfahren auf <em>".SAVE_SYSTEM_SETTINGS.'</em>.');
 define('TEXT_PAGE_HEADING', 'Zen Cart Installation - Systemumgebung');
 define('SERVER_SETTINGS', 'Servereinstellungen');
 define('PHYSICAL_PATH', 'Physikalischer Pfad');
@@ -28,7 +28,7 @@ define('ENABLE_SSL', 'SSL im Shop aktivieren');
 define('ENABLE_SSL_INSTRUCTION', 'Wollen Sie SSL (Secure Sockets Layer) im Shop aktivieren?');
 define('ENABLE_SSL_ADMIN', 'SSL f&uuml;r Admin Bereich aktivieren');
 define('ENABLE_SSL_ADMIN_INSTRUCTION', 'Wollen Sie SSL (Secure Sockets Layer) f&uuml;r den Admin Bereich aktivieren?');
-define('REDISCOVER', 'die Default-Werte f&uuml;r diesen Host neu ermitteln');
+define('REDISCOVER', 'Die Standardwerte f&uuml;r diesen Host neu ermitteln');
 
 
 
