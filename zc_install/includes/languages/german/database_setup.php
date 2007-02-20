@@ -25,8 +25,8 @@
 //
   
 define('SAVE_DATABASE_SETTINGS', 'Datenbankeinstellungen speichern');//this comes before TEXT_MAIN
-define('TEXT_MAIN',' Als n&auml;chstes ben&ouml;tigen wir einige Informationen zu Ihrer Datenbankanbindung. Tragen Sie auch hier bitte jede Option sorgf&auml;ltig ein - anschlie&szlig;end klicken Sie auf <em>Datenbankeinstellungen speichern</em> und folgen Sie den Anweisungen im n&auml;chsten Schritt.');
-define('TEXT_PAGE_HEADING', 'Zen Cart Installation - Datenbank Setup');
+define('TEXT_MAIN',' Geben Sie hier bitte die Informationen zu Ihrer Datenbankanbindung ein. Tragen Sie auch hier bitte jede Option sorgf&auml;ltig ein - anschlie&szlig;end klicken Sie auf <em>Datenbankeinstellungen speichern</em> und folgen Sie den Anweisungen im n&auml;chsten Schritt.');
+define('TEXT_PAGE_HEADING', 'Zen Cart Installation - Datenbankanbindung');
 define('DATABASE_INFORMATION', 'Datenbankinformationen');
 define('DATABASE_TYPE', 'Datenbanktyp');
 define('DATABASE_TYPE_INSTRUCTION', 'W&auml;hlen Sie hier den Datenbanktyp aus, den Sie verwenden wollen.');

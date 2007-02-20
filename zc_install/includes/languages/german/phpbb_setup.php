@@ -24,8 +24,8 @@
 // $Id: phpbb_setup.php 64 2006-09-05 11:19:25Z wflohr $
 //
   
-define('SAVE_PHPBB_SETTINGS', 'speichern & fortfahren'); //this comes before TEXT_MAIN
-define('TEXT_MAIN', "Als n&auml;chstes ben&ouml;tigen wir Informationen, wo Ihr phpBB Forum installiert ist und ob Sie phpBB verwenden wollen. F&uuml;hren Sie sorgf&auml;ltig alle Einstellungen durch und klicken Sie anschlie&szlig;end auf <em>".SAVE_PHPBB_SETTINGS.'</em>.');
+define('SAVE_PHPBB_SETTINGS', 'Speichern & fortfahren'); //this comes before TEXT_MAIN
+define('TEXT_MAIN', "Als n&auml;chstes werden Informationen ben&ouml;tigt, wo Ihr phpBB Forum installiert ist und ob Sie phpBB verwenden wollen. F&uuml;hren Sie sorgf&auml;ltig alle Einstellungen durch und klicken Sie anschlie&szlig;end auf <em>".SAVE_PHPBB_SETTINGS.'</em>.');
 define('TEXT_PAGE_HEADING', 'Zen Cart Installation - phpBB Anbindung');
 define('PHPBB_INFORMATION', 'phpBB Information');
 define('PHPBB_USE', 'Wollen Sie phpBB Foren mit Zen Cart verwenden?');

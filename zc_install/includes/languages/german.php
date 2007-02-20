@@ -19,7 +19,7 @@ define('REFRESH_BUTTON', 'Nochmal pr&uuml;fen');
 define('HTML_PARAMS','dir="ltr" lang="de"');
 
 // charset for web pages and emails
-define('CHARSET', 'iso-8859-1');
+define('CHARSET', 'UTF-8');
 
 // META TAG TITLE
 define('META_TAG_TITLE', 'Zen Cart Installationsprogramm');
