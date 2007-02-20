@@ -15,7 +15,7 @@ define('HEADING_NEW_CUSTOMER','Sie sind neu hier? Dann erstellen Sie bitte Kunde
 define('HEADING_NEW_CUSTOMER_SPLIT', 'Neue Kunden');
 
 define('TEXT_NEW_CUSTOMER_INTRODUCTION','Ein Kundenkonto bei ' . STORE_NAME . ' erm&ouml;glicht Ihnen z.B. komfortabel einzukaufen, sich Ihre aktuellen und bisherigen Bestellungen anzusehen u.v.m.');
-define('TEXT_NEW_CUSTOMER_INTRODUCTION_SPLIT', 'Haben Sie ein PayPal Konto? M&öuml;chten mit einer Kreditkarte schnell zahlen? Klicken Sie auf den PayPal Button unten, um die Option &quot;Paypal Express&quot; zu verwenden.');
+define('TEXT_NEW_CUSTOMER_INTRODUCTION_SPLIT', 'Haben Sie ein PayPal Konto? M&ouml;chten mit einer Kreditkarte schnell zahlen? Klicken Sie auf den PayPal Button unten, um die Option &quot;Paypal Express&quot; zu verwenden.');
 define('TEXT_NEW_CUSTOMER_POST_INTRODUCTION_DIVIDER', '<span class="larger">oder</span><br />');
 define('TEXT_NEW_CUSTOMER_POST_INTRODUCTION_SPLIT', 'Ein Kundenkonto bei ' . STORE_NAME . ' erm&ouml;glicht Ihnen z.B. komfortabel einzukaufen, sich Ihre aktuellen und bisherigen Bestellungen anzusehen sowie weiterer Vorteile die Kunden vorbehalten sind.');
 

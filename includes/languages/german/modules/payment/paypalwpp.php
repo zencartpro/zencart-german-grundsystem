@@ -127,7 +127,7 @@ define('MODULE_PAYMENT_PAYPAL_ENTRY_REFUND_BUTTON_TEXT_FULL', 'Volle R&uuml;cker
 define('MODULE_PAYMENT_PAYPAL_ENTRY_REFUND_BUTTON_TEXT_PARTIAL', 'Teilweise R&uuml;ckerstattung');
 define('MODULE_PAYMENT_PAYPAL_ENTRY_REFUND_PARTIAL_TEXT', '<br />... oder tragen Sie den gew&uuml;nschten Betrag für eine teilweise R&uuml;ckerstattung ein und klicken auf Teilweise R&uuml;ckerstattung');
 define('MODULE_PAYMENT_PAYPAL_ENTRY_REFUND_SUFFIX', '*Eine volle R&uuml;ckerstattung ist nach einer teilweisen R&uuml;ckerstattung nicht m&ouml;glich.<br />*Mehrere teilweise R&uuml;ckerstattungen sind m&ouml;glich, h&ouml;chstens allerdings bis zum vollst&auml;ndigen Aufbrauchen des Restbetrages.');
-define('MODULE_PAYMENT_PAYPAL_ENTRY_REFUND_TEXT_COMMENTS', '<strong>Hinweis für den Kunden:</strong>');
+define('MODULE_PAYMENT_PAYPAL_ENTRY_REFUND_TEXT_COMMENTS', '<strong>Hinweis f&uuml;r den Kunden:</strong>');
 define('MODULE_PAYMENT_PAYPAL_ENTRY_REFUND_DEFAULT_MESSAGE', 'R&uuml;ckerstattet vom Shopinhaber.');
 define('MODULE_PAYMENT_PAYPALWPP_TEXT_REFUND_FULL_CONFIRM_CHECK','Best&auml;tigung: ');
 
@@ -136,7 +136,7 @@ define('MODULE_PAYMENT_PAYPAL_ENTRY_AUTH_TITLE', '<strong>Bestell Authorisation<
 define('MODULE_PAYMENT_PAYPAL_ENTRY_AUTH_PARTIAL_TEXT', 'Wollen Sie einen Teil dieser Bestellungen authorisieren, dann tragen Sie den Betrag hier ein:');
 define('MODULE_PAYMENT_PAYPAL_ENTRY_AUTH_BUTTON_TEXT_PARTIAL', 'Authorisieren');
 define('MODULE_PAYMENT_PAYPAL_ENTRY_AUTH_SUFFIX', '');
-define('MODULE_PAYMENT_PAYPAL_ENTRY_REFUND_TEXT_COMMENTS', '<strong>Hinweis für den Kunden:</strong>');
+define('MODULE_PAYMENT_PAYPAL_ENTRY_REFUND_TEXT_COMMENTS', '<strong>Hinweis f&uuml;r den Kunden:</strong>');
 define('MODULE_PAYMENT_PAYPAL_ENTRY_REFUND_DEFAULT_MESSAGE', 'R&uuml;ckerstattet vom Shopinhaber.');
 
 define('MODULE_PAYMENT_PAYPAL_ENTRY_CAPTURE_TITLE', '<strong>Authorisationen Abfangen</strong>');
@@ -146,8 +146,8 @@ define('MODULE_PAYMENT_PAYPAL_ENTRY_CAPTURE_AMOUNT_TEXT', 'Betrag:');
 define('MODULE_PAYMENT_PAYPAL_ENTRY_CAPTURE_FINAL_TEXT', 'Ist dieses der endg&uuml;ltige Abfangversuch??');
 define('MODULE_PAYMENT_PAYPAL_ENTRY_CAPTURE_SUFFIX', '');
 define('MODULE_PAYMENT_PAYPAL_ENTRY_CAPTURE_TEXT_COMMENTS', '<strong>Hinweis f&uuml;r den Kunden:</strong>');
-define('MODULE_PAYMENT_PAYPAL_ENTRY_CAPTURE_DEFAULT_MESSAGE', 'Vielen Dank für Ihren Auftrag.');
-define('MODULE_PAYMENT_PAYPALWPP_TEXT_CAPTURE_FULL_CONFIRM_CHECK','Bestätigung: ');
+define('MODULE_PAYMENT_PAYPAL_ENTRY_CAPTURE_DEFAULT_MESSAGE', 'Vielen Dank f&uuml;r Ihren Auftrag.');
+define('MODULE_PAYMENT_PAYPALWPP_TEXT_CAPTURE_FULL_CONFIRM_CHECK','Best&auml;tigung: ');
 
 define('MODULE_PAYMENT_PAYPAL_ENTRY_VOID_TITLE', '<strong>Abbrechen von Auftrags Authorisationen</strong>');
 define('MODULE_PAYMENT_PAYPAL_ENTRY_VOID', 'Wenn Sie eine Authorisation abbrechen wollen, dann tragen Sie bitte die entsprechende ID hier ein und klicken auf Abbrechen.');
