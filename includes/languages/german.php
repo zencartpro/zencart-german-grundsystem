@@ -619,7 +619,7 @@ define('TEXT_EZPAGES_STATUS_SIDEBOX_ADMIN', 'WARNING: EZ-PAGES SIDEBOX - Darf nu
 
 // extra product listing sorter
 define('TEXT_PRODUCTS_LISTING_ALPHA_SORTER', '');
-define('TEXT_PRODUCTS_LISTING_ALPHA_SORTER_NAMES', 'Artikelname beginnt mit ...');
+define('TEXT_PRODUCTS_LISTING_ALPHA_SORTER_NAMES', 'Artikelname, beginnend mit...');
 define('TEXT_PRODUCTS_LISTING_ALPHA_SORTER_NAMES_RESET', '-- Zur&uuml;ckstellen --');
 
 ///////////////////////////////////////////////////////////
