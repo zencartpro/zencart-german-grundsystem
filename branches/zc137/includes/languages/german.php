@@ -440,7 +440,7 @@ define('SUCCESS_FILE_SAVED_SUCCESSFULLY', 'Die Datei wurde erfolgreich gespeiche
 define('ERROR_FILE_NOT_SAVED', 'Fehler: Datei nicht gespeichert.');
 define('ERROR_DESTINATION_NOT_WRITEABLE', 'Fehler: Auf das Ziel konnte nicht geschrieben werden.');
 define('ERROR_DESTINATION_DOES_NOT_EXIST', 'Fehler: Das Ziel existiert nicht.');
-define('ERROR_FILE_TOO_BIG', 'Warnung: Die Datei ist zu gro&szlig; für den Upload!<br />Der Auftrag kann erteilt werden, nehmen Sie bitte mit uns Kontakt auf um den Upload erfolgreich abzuschlie&szlig;en.');
+define('ERROR_FILE_TOO_BIG', 'Warnung: Die Datei ist zu gro&szlig; f&uuml;r den Upload!<br />Der Auftrag kann erteilt werden, nehmen Sie bitte mit uns Kontakt auf um den Upload erfolgreich abzuschlie&szlig;en.');
 // End iii added
 
 define('TEXT_BEFORE_DOWN_FOR_MAINTENANCE', 'Hinweis: Unser Shop ist wegen Wartungsarbeiten geschlossen bis (dd/mm/yy) (hh-hh): ');
