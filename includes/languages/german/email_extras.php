@@ -27,7 +27,7 @@ define('OFFICE_DATE_TIME', 'Datum und Uhrzeit:');
 // email disclaimer
 define('EMAIL_DISCLAIMER', 'Diese E-Mail Adresse wurde uns von Ihnen oder einem unserer Kunden mitgeteilt.' . "\n" . 'Sollten Sie diese Nachricht versehentlich erhalten haben, wenden Sie sich bitte an <a href="mailto:' . STORE_OWNER_EMAIL_ADDRESS . '">' . STORE_OWNER_EMAIL_ADDRESS . '</a>.<br />');
 define('EMAIL_SPAM_DISCLAIMER', '');
-define('EMAIL_FOOTER_COPYRIGHT','Copyright (c) ' . date('Y') . ' <a href="http://www.zen-cart.com" target="_blank">Zen Cart</a>. Powered by <a href="http://www.zen-cart.com" target="_blank">Zen Cart</a>');
+define('EMAIL_FOOTER_COPYRIGHT','Copyright (c) ' . date('Y') . ' <a href="http://www.zen-cart.at" target="_blank">Zen Cart</a>. Powered by <a href="http://www.zen-cart.at" target="_blank">Zen Cart</a>');
 // email advisory for all emails customer generate - tell-a-friend and GV send
 define('EMAIL_ADVISORY', '-----' . "\n" . '<strong>Achtung:</strong> Aus Sicherheitsgr&uuml;nden werden alle gesendeten E-Mails zwischengespeichert.<br />Sollten Sie diesbez&uuml;glich Fragen haben, wenden Sie sich bitte an <a href="mailto:' . STORE_OWNER_EMAIL_ADDRESS . '">' . STORE_OWNER_EMAIL_ADDRESS . '</a>.<br />');
 
