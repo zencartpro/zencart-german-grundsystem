@@ -65,7 +65,7 @@ define('BUTTON_IMAGE_LOG_OFF', 'button_logoff.gif');
  * ALT tags used for buttons
  */
  
-define('BUTTON_CREATE_ACCOUNT_ALT', 'Anmelden');
+define('BUTTON_CREATE_ACCOUNT_ALT', 'Neues Konto erstellen');
 define('BUTTON_LOG_OFF_ALT', 'Abmelden');
 define('BUTTON_ADD_TO_CART_ALT', 'In meinen Warenkorb');
 define('BUTTON_ADD_ADDRESS_ALT', 'Adresse hinzuf&uuml;gen');

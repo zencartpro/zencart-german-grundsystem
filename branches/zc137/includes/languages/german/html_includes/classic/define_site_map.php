@@ -1,2 +1,5 @@
-<p><strong>To assist you in navigating our site, we have provided the following map.</strong></p>
-<p>If you are having difficulty in locating something on our site, please visit our <a href="<?php echo zen_href_link(FILENAME_CONTACT_US); ?>">Contact Us </a> page and let us know! </p>
+<p><strong>Beispieltext f&uuml;r die Sitemap Ihres Shops  ...</strong></p><p>Dieser Bereich kann &uuml;ber den Seiteneditor im Adminbereich (Admin-&gt;Tools-&gt;Seiteneditor) bearbeitet werden.<br>
+W&auml;hlen Sie hierf&uuml;r in der Auswahlliste <strong>Ihrer Sprache</strong> die Datei <strong><em>define_site_map.php</em></strong></p>
+<p>Wollen Sie diesen Text entfernen, l&ouml;schen Sie diesen im Seiteneditor.</p>
+<p>Diese Datei finden Sie unter<code> /languages/german/html_includes/classic/</code></p>
+<p><strong>Hinweis: Sichern Sie immer VOR der Bearbeitung Ihre Dateien!</strong></p>

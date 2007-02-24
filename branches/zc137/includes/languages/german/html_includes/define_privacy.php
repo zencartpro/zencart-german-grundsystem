@@ -1,2 +1,5 @@
-<p>Um diesen Text zu editieren &ouml;ffnen Sie im Adminbereich -> Tools -> den Seiteneditor und w&auml;hlen danach in der Seitenauswahliste 'define_privacy.php'.</p>
-<p><b>Der Schutz Ihrer Privatsph&auml;re und der Datenschutz sind f&uuml;r uns von h&ouml;chster Bedeutung <br /></b><br />Daher verpflichten wir uns zum Schutz Ihrer pers&ouml;nlicher Daten. Alle Ihre personengebundenen Daten werden streng vertraulich behandelt und nur im Rahmen der gesetzlichen Vorschriften erhoben. </p><p><br /><b>GARANTIE: Keine unerw&uuml;nschte Nutzung Ihrer Daten</b></p><p>Ihre Daten werden von uns weder verkauft, vermietet noch getauscht. Und Sie erhalten von uns keine Werbesendungen per Post oder eMail, ausser Sie haben sich bei unserem Newsletter eingetragen.<br /></p>
+<p><strong>Beispieltext f&uuml;r Ihre Datenschutz - Bestimmungen  ...</strong></p><p>Dieser Bereich kann &uuml;ber den Seiteneditor im Adminbereich (Admin-&gt;Tools-&gt;Seiteneditor) bearbeitet werden.<br>
+W&auml;hlen Sie hierf&uuml;r in der Auswahlliste <strong>Ihrer Sprache</strong> die Datei <strong><em>define_privacy.php</em></strong></p>
+<p>Wollen Sie diesen Text entfernen, l&ouml;schen Sie diesen im Seiteneditor.</p>
+<p>Diese Datei finden Sie unter<code> /languages/german/html_includes/classic/</code></p>
+<p><strong>Hinweis: Sichern Sie immer VOR der Bearbeitung Ihre Dateien!</strong></p>

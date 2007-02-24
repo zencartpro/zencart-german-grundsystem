@@ -1,6 +1,5 @@
-<p><strong><font face="verdana,arial,helvetica,sans-serif">Beispieltext f&uuml;r die Bestellbest&auml;tigung ...
-</font></strong></p><p>Diese Sektion kann mit dem <b>Seiteneditor</b> im Admin Men&uuml; bearbeitet werden.</p>
-<p>Sie k&ouml;nnen entweder eine andere Seite verwenden oder eine Andere mit dieser Seite gemeinsam.</p>
-<p>Um die Sprachdateidefinition zu entfernen l&ouml;schen Sie bitte nicht die Definition, sondern setzten Sie diese auf leer.
-Beispiel: Vorher: define('TEXT_INFORMATION', 'Das ist ein Text'); Nachher: define ['TEXT_INFORMATION', '');</p>
-<p>Um diese Sektion des Textes zu entfernen, l&ouml;schen Sie diese bitte mit dem Seiteneditor im Admin Men&uuml;.</p>
+<p><strong><font face="verdana,arial,helvetica,sans-serif">Beispieltext f&uuml;r die Bestellbest&auml;tigung  ...</font></strong></p><p>Dieser Bereich kann &uuml;ber den Seiteneditor im Adminbereich (Admin-&gt;Tools-&gt;Seiteneditor) bearbeitet werden.<br>
+W&auml;hlen Sie hierf&uuml;r in der Auswahlliste <strong>Ihrer Sprache</strong> die Datei <strong><em>define_checkout_success.php</em></strong></p>
+<p>Wollen Sie diesen Text entfernen, l&ouml;schen Sie diesen im Seiteneditor.</p>
+<p>Diese Datei finden Sie unter<code> /languages/german/html_includes/classic/</code></p>
+<p><strong>Hinweis: Sichern Sie immer VOR der Bearbeitung Ihre Dateien!</strong></p>

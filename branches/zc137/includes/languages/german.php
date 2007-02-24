@@ -162,7 +162,7 @@ define('BOX_HEADING_CUSTOMER_WISHLIST', 'Wunschzettel');
 define('BOX_WISHLIST_EMPTY', 'Ihr Wunschzettel ist leer');
 define('IMAGE_BUTTON_ADD_WISHLIST', 'auf meinen Wunschzettel');
 define('TEXT_WISHLIST_COUNT', 'Derzeit sind %s Positionen in Ihrem Wunschzettel.');
-define('TEXT_DISPLAY_NUMBER_OF_WISHLIST', 'zeige <strong>%d</strong> bis <strong>%d</strong> (von <strong>%d</strong> Positionen Ihres Wunschzettels)');
+define('TEXT_DISPLAY_NUMBER_OF_WISHLIST', 'Zeige <strong>%d</strong> bis <strong>%d</strong> (von <strong>%d</strong> Positionen Ihres Wunschzettels)');
 
 //New billing address text
 define('SET_AS_PRIMARY', 'Als Hauptanschrift verwenden');
@@ -269,13 +269,13 @@ define('ENTRY_REQUIRED_SYMBOL', '*');
 
   // constants for use in zen_prev_next_display function
 define('TEXT_RESULT_PAGE', '');
-define('TEXT_DISPLAY_NUMBER_OF_PRODUCTS', 'zeige <strong>%d</strong> bis <strong>%d</strong> (von <strong>%d</strong> Artikel)');
-define('TEXT_DISPLAY_NUMBER_OF_ORDERS', 'zeige <strong>%d</strong> bis <strong>%d</strong> (von <strong>%d</strong> Bestellungen)');
-define('TEXT_DISPLAY_NUMBER_OF_REVIEWS', 'zeige <strong>%d</strong> bis <strong>%d</strong> (von <strong>%d</strong> Bewertungen)');
-define('TEXT_DISPLAY_NUMBER_OF_PRODUCTS_NEW', 'zeige <strong>%d</strong> bis <strong>%d</strong> (von <strong>%d</strong> neuen Produkten)');
-define('TEXT_DISPLAY_NUMBER_OF_SPECIALS', 'zeige <strong>%d</strong> bis <strong>%d</strong> (von <strong>%d</strong> Sonderangeboten)');
-define('TEXT_DISPLAY_NUMBER_OF_PRODUCTS_FEATURED_PRODUCTS', 'zeige <strong>%d</strong> bis <strong>%d</strong> (von <strong>%d</strong> &auml;hnlichen Artikel)');
-define('TEXT_DISPLAY_NUMBER_OF_PRODUCTS_ALL', 'zeige <strong>%d</strong> bis <strong>%d</strong> (von <strong>%d</strong> Artikel)');
+define('TEXT_DISPLAY_NUMBER_OF_PRODUCTS', 'Zeige <strong>%d</strong> bis <strong>%d</strong> (von <strong>%d</strong> Artikel)');
+define('TEXT_DISPLAY_NUMBER_OF_ORDERS', 'Zeige <strong>%d</strong> bis <strong>%d</strong> (von <strong>%d</strong> Bestellungen)');
+define('TEXT_DISPLAY_NUMBER_OF_REVIEWS', 'Zeige <strong>%d</strong> bis <strong>%d</strong> (von <strong>%d</strong> Bewertungen)');
+define('TEXT_DISPLAY_NUMBER_OF_PRODUCTS_NEW', 'Zeige <strong>%d</strong> bis <strong>%d</strong> (von <strong>%d</strong> neuen Produkten)');
+define('TEXT_DISPLAY_NUMBER_OF_SPECIALS', 'Zeige <strong>%d</strong> bis <strong>%d</strong> (von <strong>%d</strong> Sonderangeboten)');
+define('TEXT_DISPLAY_NUMBER_OF_PRODUCTS_FEATURED_PRODUCTS', 'Zeige <strong>%d</strong> bis <strong>%d</strong> (von <strong>%d</strong> &auml;hnlichen Artikel)');
+define('TEXT_DISPLAY_NUMBER_OF_PRODUCTS_ALL', 'Zeige <strong>%d</strong> bis <strong>%d</strong> (von <strong>%d</strong> Artikel)');
 
 define('PREVNEXT_TITLE_FIRST_PAGE', 'Erste Seite');
 define('PREVNEXT_TITLE_PREVIOUS_PAGE', 'Vorherige Seite');
@@ -493,7 +493,7 @@ define('ERROR_CUSTOMERS_ID_INVALID', 'Die Kundeninformation konnte nicht verifiz
 define('TABLE_HEADING_FEATURED_PRODUCTS','&Auml;hnliche Artikel');
 
 define('TABLE_HEADING_NEW_PRODUCTS', 'Neue Artikel im %s');
-define('TABLE_HEADING_UPCOMING_PRODUCTS', 'Kommende Artikel');
+define('TABLE_HEADING_UPCOMING_PRODUCTS', 'Artikelank&uuml;ndigungen');
 define('TABLE_HEADING_DATE_EXPECTED', 'Eingangsdatum');
 define('TABLE_HEADING_SPECIALS_INDEX', 'Monatliche Sonderangebote im %s');
 
@@ -551,7 +551,7 @@ define('CART_ITEMS', 'im Warenkorb: ');
 define('CART_SELECT', 'w&auml;hlen Sie');
 define('ERROR_CART_UPDATE', 'Bitte aktualisieren Sie Ihre Bestellung ...<br />');
 define('IMAGE_BUTTON_UPDATE_CART', 'aktualisieren');
-define('EMPTY_CART_TEXT_NO_QUOTE', 'Oops! Ihre Sitzung wurde unterbrochen… Aktualisieren Sie bitte Ihren Warenkorb f&uuml;r die Versandart');
+define('EMPTY_CART_TEXT_NO_QUOTE', 'Uups! Ihre Sitzung wurde unterbrochen… Aktualisieren Sie bitte Ihren Warenkorb f&uuml;r die Versandart');
 
 // multiple product add to cart
 define('TEXT_PRODUCT_LISTING_MULTIPLE_ADD_TO_CART', 'Anzahl: ');

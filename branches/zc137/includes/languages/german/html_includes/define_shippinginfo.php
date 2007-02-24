@@ -1,2 +1,5 @@
-<p>Um diesen Text zu editieren &ouml;ffnen Sie im Adminbereich -> Tools -> den Seiteneditor und w&auml;hlen danach in der Seitenauswahliste 'define_shippinginfo.php'.</p>
-<p><strong>Preise<br /></strong><strong><br /></strong>Alle Preise verstehen sich als Endpreise (inkl. Mwst.) und beziehen sich, wenn nicht anders angegeben, auf 1 St&uuml;ck zzgl. Versandkosten.</p><p><strong>Versand</strong></p><p><strong>Innerhalb Deutschlands:</strong></p><p>Versandkostenpauschale von 4,50 &euro;. <br /><br /><b>Sendungen in andere europ&auml;ische L&auml;nder:</b></p><p>Versandkostenpauschale von 7,50 &euro;. </p>
+<p><strong>Beispieltext f&uuml;r Ihre Preis- und Versandbestimmungen  ...</strong></p><p>Dieser Bereich kann &uuml;ber den Seiteneditor im Adminbereich (Admin-&gt;Tools-&gt;Seiteneditor) bearbeitet werden.<br>
+W&auml;hlen Sie hierf&uuml;r in der Auswahlliste <strong>Ihrer Sprache</strong> die Datei <strong><em>define_shippinginfo.php</em></strong></p>
+<p>Wollen Sie diesen Text entfernen, l&ouml;schen Sie diesen im Seiteneditor.</p>
+<p>Diese Datei finden Sie unter<code> /languages/german/html_includes/classic/</code></p>
+<p><strong>Hinweis: Sichern Sie immer VOR der Bearbeitung Ihre Dateien!</strong></p>

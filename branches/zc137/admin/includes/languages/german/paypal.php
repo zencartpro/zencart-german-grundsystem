@@ -47,7 +47,7 @@ define('TABLE_HEADING_NUM_HISTORY_ENTRIES', 'Anzahl Eintr&auml;ge in der Statush
 define('TABLE_HEADING_ENTRY_NUM', 'Anfangsnummer');
 define('TABLE_HEADING_TRANS_ID', 'Trans. ID');
 define('TEXT_INFO_PAYPAL_IPN_HEADING', 'PayPal');
-define('TEXT_DISPLAY_NUMBER_OF_TRANSACTIONS', 'zeige <strong>%d</strong> bis <strong>%d</strong> (von <strong>%d</strong> IPN\'s)');
+define('TEXT_DISPLAY_NUMBER_OF_TRANSACTIONS', 'Zeige <strong>%d</strong> bis <strong>%d</strong> (von <strong>%d</strong> IPN\'s)');
 
   //Details section
 define('HEADING_DEATILS_CUSTOMER_REGISTRATION_TITLE', 'PayPal Kundenregistrierungsdetails');

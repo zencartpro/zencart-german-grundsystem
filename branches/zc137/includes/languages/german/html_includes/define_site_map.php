@@ -1,2 +1,5 @@
-<p>Um diesen Text zu editieren &ouml;ffnen Sie im Adminbereich -> Tools -> den Seiteneditor und w&auml;hlen danach in der Seitenauswahliste 'define_site_map.php'.</p>
-<p><strong>Damit Sie schnell einen &Uuml;berblick &uuml;ber unsere Website bekommen.</strong></p><p>Sollten Sie etwas nicht finden oder Fragen haben, dann lassen Sie es uns bitte wissen! <a href="<?php echo zen_href_link(FILENAME_CONTACT_US); ?>">Kontaktformular</a></p>
+<p><strong>Beispieltext f&uuml;r die Sitemap Ihres Shops  ...</strong></p><p>Dieser Bereich kann &uuml;ber den Seiteneditor im Adminbereich (Admin-&gt;Tools-&gt;Seiteneditor) bearbeitet werden.<br>
+W&auml;hlen Sie hierf&uuml;r in der Auswahlliste <strong>Ihrer Sprache</strong> die Datei <strong><em>define_site_map.php</em></strong></p>
+<p>Wollen Sie diesen Text entfernen, l&ouml;schen Sie diesen im Seiteneditor.</p>
+<p>Diese Datei finden Sie unter<code> /languages/german/html_includes/classic/</code></p>
+<p><strong>Hinweis: Sichern Sie immer VOR der Bearbeitung Ihre Dateien!</strong></p>
