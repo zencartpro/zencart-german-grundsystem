@@ -1,5 +1,6 @@
-<p><strong>Discount Coupon Sample Text ...</strong></p>
-<p>This section of text is from the Define Pages Editor located under Tools in the Admin.</p>
-<p>To remove this section of the text, delete it from the Define Pages Editor.</p>
-<p>This file is located in<code> /languages/english/html_includes/classic/</code></p>
-<p><strong>NOTE: Always backup the files in<code> /languages/english/html_includes/your_template</code></strong></p>
+<p><strong>Aktionskupons Beispieltext...</strong></p>
+<p>Dieser Bereich kann &uuml;ber den Seiteneditor im Adminbereich (Admin-&gt;Tools-&gt;Seiteneditor) bearbeitet werden.<br>
+W&auml;hlen Sie hierf&uuml;r in der Auswahlliste <strong>Ihrer Sprache</strong> die Datei <strong><em>define_discount_coupon.php</em></strong></p>
+<p>Wollen Sie diesen Text entfernen, l&ouml;schen Sie diesen im Seiteneditor.</p>
+<p>Diese Datei finden Sie unter<code> /languages/german/html_includes/classic/</code></p>
+<p><strong>Hinweis: Sichern Sie immer VOR der Bearbeitung Ihre Dateien!</strong></p>

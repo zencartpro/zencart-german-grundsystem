@@ -1,4 +1,5 @@
-<p><strong>Custom 404 Error Page with Site Map Sample Text ...</strong></p>
-<p>Put your custom "page not found" message here.  You can change this text in the Define Pages Editor located under Tools in the Admin.</p>
-<p>This file is located in<code> /languages/english/html_includes/classic/</code></p>
-<p><strong>NOTE: Always backup the files in<code> /languages/english/html_includes/your_template</code></strong></p>
+<p><strong>Eigene 404 Error Seite ...</strong></p><p>Dieser Bereich kann &uuml;ber den Seiteneditor im Adminbereich (Admin-&gt;Tools-&gt;Seiteneditor) bearbeitet werden.<br>
+W&auml;hlen Sie hierf&uuml;r in der Auswahlliste <strong>Ihrer Sprache</strong> die Datei <strong><em>define_page_not_found.php</em></strong></p>
+<p>Wollen Sie diesen Text entfernen, l&ouml;schen Sie diesen im Seiteneditor.</p>
+<p>Diese Datei finden Sie unter<code> /languages/german/html_includes/classic/</code></p>
+<p><strong>Hinweis: Sichern Sie immer VOR der Bearbeitung Ihre Dateien!</strong></p>

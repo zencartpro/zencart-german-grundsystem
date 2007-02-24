@@ -1,2 +1,5 @@
-<p>Um diesen Text zu editieren &ouml;ffnen Sie im Adminbereich -> Tools -> den Seiteneditor und w&auml;hlen danach in der Seitenauswahliste 'define_contact_us.php'.</p>
-<p><strong>E-Mail:</strong> <a href="mailto:info@meinedomain.de">info@meinedomain.de</a><br /><strong>Internet:</strong> <a href="http://www.meinedomain.de/">www.meinedomain.de</a></p><p>HR ??????<br />UID-DE ???????<br />GF Max Mustermann </p><p>Inhaltlich Verantwortlicher gem&auml;&szlig; &sect; 10 Absatz 3 MDStV: <br />Max Mustermann (Anschrift wie oben) </p>
+<p><strong><font face="verdana,arial,helvetica,sans-serif">Beispieltext f&uuml;r die Kontaktseite  ...</font></strong></p><p>Dieser Bereich kann &uuml;ber den Seiteneditor im Adminbereich (Admin-&gt;Tools-&gt;Seiteneditor) bearbeitet werden.<br>
+W&auml;hlen Sie hierf&uuml;r in der Auswahlliste <strong>Ihrer Sprache</strong> die Datei <strong><em>define_contact_us.php</em></strong></p>
+<p>Wollen Sie diesen Text entfernen, l&ouml;schen Sie diesen im Seiteneditor.</p>
+<p>Diese Datei finden Sie unter<code> /languages/german/html_includes/classic/</code></p>
+<p><strong>Hinweis: Sichern Sie immer VOR der Bearbeitung Ihre Dateien!</strong></p>

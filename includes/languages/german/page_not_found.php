@@ -8,8 +8,8 @@
  * @version $Id: page_not_found.php 3159 2006-03-11 01:35:04Z drbyte $
  */
 
-define('NAVBAR_TITLE', 'Seite nicht gefunden');
-define('HEADING_TITLE', 'Seite nicht gefunden');
+define('NAVBAR_TITLE', '404 ERROR - Seite nicht gefunden');
+define('HEADING_TITLE', '404 ERROR - Seite nicht gefunden');
 define('TEXT_INFORMATION', '');
 define('PAGE_ACCOUNT', 'Mein Konto');
 define('PAGE_ACCOUNT_EDIT', 'Kontoinformation');
