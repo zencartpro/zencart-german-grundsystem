@@ -118,10 +118,10 @@ define('BOX_HEADING_CUSTOMERS', 'Kunden');
 define('BOX_CUSTOMERS_CUSTOMERS', 'Kunden');
 define('BOX_CUSTOMERS_ORDERS', 'Bestellungen');
 define('BOX_CUSTOMERS_GROUP_PRICING', 'Gruppenpreise');
-define('BOX_CUSTOMERS_PAYPAL', 'PayPal IPN');
+define('BOX_CUSTOMERS_PAYPAL', 'PayPal');
 
 // taxes box text in includes/boxes/taxes.php
-define('BOX_HEADING_LOCATION_AND_TAXES', 'L&auml;nder & Steuern');
+define('BOX_HEADING_LOCATION_AND_TAXES', 'L&auml;nder &amp; Steuern');
 define('BOX_TAXES_COUNTRIES', 'L&auml;nder');
 define('BOX_TAXES_ZONES', 'Zonen / Bundesl&auml;nder');
 define('BOX_TAXES_GEO_ZONES', 'Steuerzonen');
@@ -175,7 +175,7 @@ define('BOX_LOCALIZATION_LANGUAGES', 'Sprachen');
 define('BOX_LOCALIZATION_ORDERS_STATUS', 'Bestellstatus');
 
 // gift vouchers box text in includes/boxes/gv_admin.php
-define('BOX_HEADING_GV_ADMIN', TEXT_GV_NAMES . ' & Aktionskupons');
+define('BOX_HEADING_GV_ADMIN', TEXT_GV_NAMES . ' &amp; Aktionskupons');
 define('BOX_GV_ADMIN_QUEUE', 'In Warteschleife');
 define('BOX_GV_ADMIN_MAIL', TEXT_GV_NAME . ' senden ');
 define('BOX_GV_ADMIN_SENT', 'Bereits gesendet ');

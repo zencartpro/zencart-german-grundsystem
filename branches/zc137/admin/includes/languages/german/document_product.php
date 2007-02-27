@@ -20,10 +20,10 @@
 //  $Id: document_product.php 2830 2006-01-10 17:13:18Z birdbrain $
 //
 
-define('HEADING_TITLE', 'Kategorien & Artikel');
+define('HEADING_TITLE', 'Kategorien &amp; Artikel');
 define('HEADING_TITLE_GOTO', 'Gehe zu:');
 define('TABLE_HEADING_ID', 'ID');
-define('TABLE_HEADING_CATEGORIES_PRODUCTS', 'Kategorien & Artikel');
+define('TABLE_HEADING_CATEGORIES_PRODUCTS', 'Kategorien &amp; Artikel');
 define('TABLE_HEADING_CATEGORIES_SORT_ORDER', 'Sortierung');
 define('TABLE_HEADING_PRICE', 'Preis | Sonderpreis | Abverkauf');
 define('TABLE_HEADING_QUANTITY', 'St&uuml;ckzahl');

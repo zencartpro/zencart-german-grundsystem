@@ -331,9 +331,9 @@ define('BOX_INFORMATION_GV', TEXT_GV_NAME . ' FAQ');
 define('VOUCHER_BALANCE', TEXT_GV_NAME . ' Konto: ');
 define('BOX_HEADING_GIFT_VOUCHER', TEXT_GV_NAME . ' Konto');
 define('GV_FAQ', TEXT_GV_NAME . ' FAQ');
-define('ERROR_REDEEMED_AMOUNT', 'Herzlichen Gl&uuml;ckwunsch! Sie haben Ihren Gutschein erfolgreich eingel&ouml;st.');
+define('ERROR_REDEEMED_AMOUNT', 'Herzlichen Gl&uuml;ckwunsch!<br />Sie haben Ihren Gutschein erfolgreich eingel&ouml;st.<br />Betrag: ');
 define('ERROR_NO_REDEEM_CODE', 'Sie haben keinen ' . TEXT_GV_REDEEM . ' eingegeben.');
-define('ERROR_NO_INVALID_REDEEM_GV', 'Falscher ' . TEXT_GV_NAME . ' ' . TEXT_GV_REDEEM);
+define('ERROR_NO_INVALID_REDEEM_GV', 'Falscher ' . TEXT_GV_NAME . ' oder ' . TEXT_GV_REDEEM);
 define('TABLE_HEADING_CREDIT', 'Guthaben verf&uuml;gbar');
 define('GV_HAS_VOUCHERA', 'Sie haben Guthaben auf Ihrem ' . TEXT_GV_NAME . 'konto. Wenn Sie m&ouml;chten <br />k&ouml;nnen Sie dieses Guthaben per <a class="pageResults" href="');
 

@@ -56,7 +56,7 @@ define('ENTRY_CREDIT_CARD_OWNER', 'Karteninhaber:');
 define('ENTRY_CREDIT_CARD_NUMBER', 'Kartennummer:');
 define('ENTRY_CREDIT_CARD_CVV', 'CVV Nummer:');
 define('ENTRY_CREDIT_CARD_EXPIRES', 'Karte g&uuml;ltig bis:');
-define('ENTRY_SUB_TOTAL', 'Zwischensumme:');
+define('ENTRY_SUB_TOTAL', 'Summe Artikel (netto):');
 define('ENTRY_TAX', 'MwSt');
 define('ENTRY_SHIPPING', 'Versand:');
 define('ENTRY_TOTAL', 'Summe:');

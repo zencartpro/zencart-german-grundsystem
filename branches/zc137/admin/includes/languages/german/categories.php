@@ -20,10 +20,10 @@
 //  $Id: categories.php 4808 2006-10-22 18:48:53Z ajeh $
 //
 
-define('HEADING_TITLE', 'Kategorien & Artikel');
+define('HEADING_TITLE', 'Kategorien &amp; Artikel');
 define('HEADING_TITLE_GOTO', 'Gehe zu:');
 define('TABLE_HEADING_ID', 'ID');
-define('TABLE_HEADING_CATEGORIES_PRODUCTS', 'Kategorien & Artikel');
+define('TABLE_HEADING_CATEGORIES_PRODUCTS', 'Kategorien &amp; Artikel');
 define('TABLE_HEADING_CATEGORIES_SORT_ORDER', 'Sortierung');
 define('TABLE_HEADING_PRICE', 'Preis | Sonderpreis | Abverkauf');
 define('TABLE_HEADING_QUANTITY', 'Anzahl');

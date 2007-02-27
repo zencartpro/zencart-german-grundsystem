@@ -27,7 +27,7 @@ define('TEXT_RETURNING_CUSTOMER_SPLIT', 'Zum Fortfahren, bitte anmelden');
 define('TEXT_PASSWORD_FORGOTTEN','Haben Sie Ihr Passwort vergessen?');
 
 define('TEXT_LOGIN_ERROR','Achtung! E-Mail Adresse oder Passwort wurden nicht gefunden.');
-define('TEXT_VISITORS_CART','<strong class="note">Hinweis:</strong> Der Inhalt Ihres &quot;Besucherwarenkorbs&quot; wird nach Ihrer Anmeldung in Ihren pers&ouml;nlichen &quot;Kundenwarenkorb&quot; verschoben. <a href="javascript:session_win();">[More Info]</a>');
+define('TEXT_VISITORS_CART','<strong class="note">Hinweis:</strong> Der Inhalt Ihres aktuellen Warenkorbs wird nach Ihrer Anmeldung bzw. Registrierung in Ihrem &quot;pers&ouml;nlichen Warenkorb&quot; &uuml;bernommen. <a href="javascript:session_win();">[More Info]</a>');
 
 define('TABLE_HEADING_PRIVACY_CONDITIONS','Datenschutz');
 define('TEXT_PRIVACY_CONDITIONS_DESCRIPTION','Bitte best&auml;tigen Sie unsere Datenschutzbestimmungen. Sie k&ouml;nnen diese <a href="' . zen_href_link(FILENAME_PRIVACY, '', 'SSL') . '"><u>hier</u></a> nachlesen.');
