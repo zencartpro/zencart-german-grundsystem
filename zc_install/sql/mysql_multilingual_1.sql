@@ -29,7 +29,7 @@ REPLACE INTO configuration_group (configuration_group_id, language_id, configura
 (13, 43, 'Attributeinstellungen', 'Konfiguration f&uuml;r die Einstellungen der Artikeloptionen', 13, 1),
 (14, 43, 'GZip Komprimierung', 'Konfiguration der GZip Komprimierung', 14, 1),
 (15, 43, 'Sitzungen/Sessions', 'Konfiguration der Sitzungsoptionen', 15, 1),
-(16, 43, 'Gutscheine und Aktionskupons', 'Konfiguration der Gutscheine und Kupons', 16, 1),
+(16, 43, 'Gutscheine &amp; Aktionskupons', 'Konfiguration der Gutscheine und Kupons', 16, 1),
 (17, 43, 'Kreditkarten', 'Konfiguration der zu verwendeten Kreditkarten', 17, 1),
 (18, 43, 'Artikeldetails', 'Konfiguration f&uuml;r die Anzeige von Artikeldetails', 18, 1),
 (19, 43, 'Layouteinstellungen', 'Layouteinstellungen', 19, 1),
@@ -568,7 +568,20 @@ REPLACE INTO configuration_language (`configuration_title`, `configuration_key`,
 ('Maestro', 'CC_ENABLED_MAESTRO', 43 , 'Wollen Sie Zahlungen mit Maestro Kreditkarten akzeptieren (0= nein 1= ja)', NULL, '2004-11-20 11:14:04'),
 ('Meta Tags: Artikelnummer im Titel integrieren', 'META_TAG_INCLUDE_MODEL', 43, 'Soll die Artikelnummer im Meta Tag Titel integriert werden?<br /><br />0= nein 1= ja', NULL, '2004-11-20 11:14:04'),
 ('&quot;Vorheriger - Nächster&quot; Navigation: Kategoriebezeichnung und -Bild anzeigen', 'PRODUCT_INFO_CATEGORIES_IMAGE_STATUS', 43 , 'Wie sollen Kategoriename und Kategoriebild angezeigt werden?<br />0= Kategoriename und -Bild immer anzeigen<br />1= Nur Kategoriename<br />2= Kategoriename und -Bild falls vorhanden', NULL, '2004-11-20 11:14:04'),
-('Anmeldeseite geteilt anzeigen', 'USE_SPLIT_LOGIN_MODE', 43 , 'Die Anmeldeseite kann in zwei Varianten angezeigt werden: Geteilt oder vertikal.<br />Die geteilte Variante zeigt neben der Felder f&uuml;r die Anmeldung einen Text und einen &quot;Neues Konto erstellen&quot; Button, der auf die Seite zur <em>Kontoerstellung</em> weiterleitet. In der vertikalen Variante werden alle Felder zur Kontoerstellung unterhalb der Felder f&uuml;r die Anmeldung angezeigt.<br />Standard: False', NULL, '2004-11-20 11:14:04');
+('Anmeldeseite geteilt anzeigen', 'USE_SPLIT_LOGIN_MODE', 43 , 'Die Anmeldeseite kann in zwei Varianten angezeigt werden: Geteilt oder vertikal.<br />Die geteilte Variante zeigt neben der Felder f&uuml;r die Anmeldung einen Text und einen &quot;Neues Konto erstellen&quot; Button, der auf die Seite zur <em>Kontoerstellung</em> weiterleitet. In der vertikalen Variante werden alle Felder zur Kontoerstellung unterhalb der Felder f&uuml;r die Anmeldung angezeigt.<br />Standard: False', NULL, '2004-11-20 11:14:04'),
+('Versandkostenfrei mit Optionen aktivieren', 'MODULE_SHIPPING_FREEOPTIONS_STATUS', 43, 'Wollen Sie &quot;Versandkostenfrei mit Optionen&quot; aktivieren?', NULL, '2004-11-20 11:14:04'),
+('Versandkosten', 'MODULE_SHIPPING_FREEOPTIONS_COST', 43, 'Die Versandkosten betragen', NULL, '2004-11-20 11:14:04'),
+('Bearbeitungsgeb&uuml;hr', 'MODULE_SHIPPING_FREEOPTIONS_HANDLING', 43, 'Die Bearbeitungsgeb&uuml;hr betr&auml;gt', NULL, '2004-11-20 11:14:04'),
+('Ab Bestellsumme', 'MODULE_SHIPPING_FREEOPTIONS_TOTAL_MIN', 43, 'Versandkostenfrei ab einer Bestellsumme von', NULL, '2004-11-20 11:14:04'),
+('Bis Bestellsumme', 'MODULE_SHIPPING_FREEOPTIONS_TOTAL_MAX', 43, 'Versandkostenfrei bis zu einer Bestellsumme von', NULL, '2004-11-20 11:14:04'),
+('Ab Gewicht', 'MODULE_SHIPPING_FREEOPTIONS_WEIGHT_MIN', 43, 'Versandkostenfrei ab einem Gewicht von', NULL, '2004-11-20 11:14:04'),
+('Bis Gewicht', 'MODULE_SHIPPING_FREEOPTIONS_WEIGHT_MAX', 43, 'Versandkostenfrei bis zu einen Gewicht von', NULL, '2004-11-20 11:14:04'),
+('Ab Artikelanzahl', 'MODULE_SHIPPING_FREEOPTIONS_ITEMS_MIN', 43, 'Versandkostenfrei ab einer Artikelanzahl von', NULL, '2004-11-20 11:14:04'),
+('Bis Artikelanzahl', 'MODULE_SHIPPING_FREEOPTIONS_ITEMS_MAX', 43, 'Versandkostenfrei bis zu einer Artikelanzahl von', NULL, '2004-11-20 11:14:04'),
+('Steuerklasse', 'MODULE_SHIPPING_FREEOPTIONS_TAX_CLASS', 43, '', NULL, '2004-11-20 11:14:04'),
+('Basis der Steuern', 'MODULE_SHIPPING_FREEOPTIONS_TAX_BASIS', 43, '', NULL, '2004-11-20 11:14:04'),
+('Versandzone', 'MODULE_SHIPPING_FREEOPTIONS_ZONE', 43, '', NULL, '2004-11-20 11:14:04'),
+('Reihenfolge der Anzeige:', 'MODULE_SHIPPING_FREEOPTIONS_SORT_ORDER', 43, '', NULL, '2004-11-20 11:14:04');
 
 
 

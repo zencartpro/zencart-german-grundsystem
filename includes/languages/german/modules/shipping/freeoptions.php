@@ -8,13 +8,13 @@
  * @version $Id: freeoptions.php 3830 2006-06-21 23:47:16Z ajeh $
  */
 
-define('MODULE_SHIPPING_FREEOPTIONS_TEXT_TITLE', 'Versandkostenfrei (wenn Limit erreicht)');
+define('MODULE_SHIPPING_FREEOPTIONS_TEXT_TITLE', 'Versandkostenfrei mit Optionen');
 define('MODULE_SHIPPING_FREEOPTIONS_TEXT_DESCRIPTION', 'Dieses Modul wird zusammen mit anderen Versandarten angezeigt um zus&auml;tzliche Versandoptionen zu bieten.
 Als Anzeigebedingung k&ouml;nnen Gewicht, Artikelanzahl, Rechnungsbetrag verwendet werden.
-Dieses Modul wird bei gleichzeitiger Verwendung mit dem Modul (freeshipper) nicht angezeigt.<br /><br />
-Setzt man das Feld Summe >= 0.00 und <= leer, wird das Modul immer angezeigt (Ausnahme freeshipper Modul).<br /><br />
+Dieses Modul wird bei gleichzeitiger Verwendung mit dem Modul &quot;Immer Versandkostenfrei&quot; nicht angezeigt.<br /><br />
+Gibt man im Feld &quot;Ab Bestellsumme&quot; den Wert 0.00 ein und l&auml;sst man das Feld &quot;Bis Bestellsumme&quot; leer, wird das Modul immer angezeigt, au&szlig;er das Modul &quot;Immer Versandkostenfrei&quot; ist aktiviert.<br /><br />
 Anmerkung: Werden die Eingabefelder Gewicht, Summe, St&uuml;ckzahl leer gelassen, dann wird dieses Modul deaktiviert.');
-define('MODULE_SHIPPING_FREEOPTIONS_TEXT_WAY', 'Versandkostenfrei');
+define('MODULE_SHIPPING_FREEOPTIONS_TEXT_WAY', 'Versandkostenfrei mit Optionen');
 
 
 

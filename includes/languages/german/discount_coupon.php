@@ -23,7 +23,7 @@
 define('NAVBAR_TITLE', 'Aktionskupon');
 define('HEADING_TITLE', 'Aktionskupon');
 define('TEXT_INFORMATION', '');
-define('TEXT_COUPON_FAILED', '<span class="alert important">%s</span> scheint kein g&uuml;ltiger Aktionskupon Code zu sein. Bitte nochmals eintippen.');
+define('TEXT_COUPON_FAILED', '<span class="alert important">%s</span> scheint kein g&uuml;ltiger Aktionskupon zu sein. Bitte &uuml;berpr&uuml;fen Sie die Nummer auf Ihrem Aktionskupon und geben Sie diese nochmals ein.');
 define('HEADING_COUPON_HELP', 'Aktionskupon Hilfe');
 define('TEXT_CLOSE_WINDOW', 'Fenster schlie&szlig;en [x]');
 define('TEXT_COUPON_HELP_HEADER', '<p class="bold">Der eingegebene Code geh&ouml;rt zu Aktionskupon: ');

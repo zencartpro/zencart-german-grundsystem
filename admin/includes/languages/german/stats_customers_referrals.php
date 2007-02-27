@@ -21,7 +21,7 @@
 //
 
 define('HEADING_TITLE', 'Kundenverweise (Referal) Report');
-define('TEXT_INFO_SELECT_REFERRAL','W&auml;hlen Sie den Verweis/Aktionskupon Code');
+define('TEXT_INFO_SELECT_REFERRAL','W&auml;hlen Sie den Verweis/Aktionskuponnummer');
 define('TEXT_REFERRAL_UNKNOWN', 'Unbekannt');
 define('TEXT_INFO_START_DATE', 'Von');
 define('TEXT_INFO_END_DATE', 'bis');

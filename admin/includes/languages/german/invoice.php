@@ -33,7 +33,7 @@ define('ENTRY_CUSTOMER', 'KUNDE:');
 define('ENTRY_SOLD_TO','Verkauft an:');
 define('ENTRY_SHIP_TO','Versendet an:');
 define('ENTRY_PAYMENT_METHOD','Zahlungsarten:');
-define('ENTRY_SUB_TOTAL','Zwischensumme:');
+define('ENTRY_SUB_TOTAL','Summe Artikel (netto):');
 define('ENTRY_TAX','MwSt:');
 define('ENTRY_SHIPPING','Versandkosten:');
 define('ENTRY_TOTAL','Endsumme:');

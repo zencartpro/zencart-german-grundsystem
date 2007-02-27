@@ -41,7 +41,7 @@ define('TABLE_HEADING_BUY_NOW','Jetzt kaufen');
 define('TEXT_NO_PRODUCTS','In dieser Kategorie gibt es derzeit keine Artikel.');
 define('TEXT_NO_PRODUCTS2','Von diesem Hersteller ist kein Artikel verf&uuml;gbar.');
 define('TEXT_NUMBER_OF_PRODUCTS','Anzahl der Artikel:');
-define('TEXT_SHOW','<b>Filter:</b>');
+define('TEXT_SHOW','<strong>Filter:</strong>');
 define('TEXT_BUY','Kaufe 1 ');
 define('TEXT_NOW',' jetzt');
 define('TEXT_ALL_CATEGORIES','Alle Kategorien');

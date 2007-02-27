@@ -12,7 +12,7 @@ define('NAVBAR_TITLE_1', 'Zahlungsart');
 define('NAVBAR_TITLE_2', 'Zahlungsart');
 define('HEADING_TITLE', 'Schritt 2 von 3 , Zahlungsart');
 define('TABLE_HEADING_BILLING_ADDRESS', 'Rechnungsanschrift');
-define('TEXT_SELECTED_BILLING_DESTINATION', 'Ihre Rechnungsanschrift steht links. Sie k&ouml;nnen Ihre Rechnungsanschrift &auml;ndern indem Sie auf <em>Anschrift &auml;ndern</em> klicken.');
+define('TEXT_SELECTED_BILLING_DESTINATION', 'Ihre Rechnungsanschrift steht links. Sie k&ouml;nnen Ihre Rechnungsanschrift &auml;ndern indem Sie auf <em>Adresse &auml;ndern</em> klicken.');
 define('TITLE_BILLING_ADDRESS', 'Rechnungsanschrift:');
 define('TABLE_HEADING_PAYMENT_METHOD', 'Zahlungsart');
 define('TEXT_SELECT_PAYMENT_METHOD', 'Bitte w&auml;hlen Sie eine Zahlungsart f&uuml;r diese Bestellung.');

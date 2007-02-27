@@ -17,7 +17,7 @@ define('TABLE_HEADING_QUANTITY','Stk.');
 define('TABLE_HEADING_MODEL','Artikelnummer');
 define('TABLE_HEADING_PRICE','Preis/Stk.');
 define('TEXT_CART_EMPTY','Ihr Warenkorb ist leer.');
-define('SUB_TITLE_SUB_TOTAL','Zwischensumme:');
+define('SUB_TITLE_SUB_TOTAL','Summe Artikel (netto):');
 define('SUB_TITLE_TOTAL','Gesamt:');
 define('OUT_OF_STOCK_CANT_CHECKOUT','Artikel, die markiert sind, ' . STOCK_MARK_PRODUCT_OUT_OF_STOCK . ' sind zurzeit leider nicht auf Lager.');
 define('OUT_OF_STOCK_CAN_CHECKOUT','Artikel, die markiert sind, ' . STOCK_MARK_PRODUCT_OUT_OF_STOCK . ' sind zurzeit leider nicht auf Lager.');

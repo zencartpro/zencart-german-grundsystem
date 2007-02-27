@@ -24,7 +24,7 @@ define('NAVBAR_TITLE','Verwendung von Cookies');
 define('HEADING_TITLE','Verwendung von Cookies');
 define('TEXT_INFORMATION','Unser System hat festgestellt, dass Ihr Browser Cookies nicht unterst&uuml;tzt oder die Verwendung von Cookies deaktiviert ist.');
 define('TEXT_INFORMATION_2','Um unsere Onlinedienste in Anspruch nehmen zu k&ouml;nnen, muss die Verwendung von Cookies in Ihrem Browser aktiviert sein.');
-define('TEXT_INFORMATION_3','Benutzer des <b>Internet Explorers 5.x</b>, folgen bitte diesen Anweisungen:<br /><ol><li>Klicken Sie auf &quot;Extras&quot;, und w&auml;hlen Sie &quot;Internetoptionen&quot;</li><li>Klicken Sie auf den Tabulator &quot;Sicherheit&quot;, und &auml;ndern die Sicherheitsstufe auf &quot;mittel&quot; </li></ol>');
+define('TEXT_INFORMATION_3','Benutzer des <strong>Internet Explorers 5.x</strong>, folgen bitte diesen Anweisungen:<br /><ol><li>Klicken Sie auf &quot;Extras&quot;, und w&auml;hlen Sie &quot;Internetoptionen&quot;</li><li>Klicken Sie auf den Tabulator &quot;Sicherheit&quot;, und &auml;ndern die Sicherheitsstufe auf &quot;mittel&quot; </li></ol>');
 define('TEXT_INFORMATION_4','Wir haben diese Option zugunsten Ihrer und unserer Sicherheit gew&auml;hlt. Bitte entschuldigen Sie, wenn Ihnen dadurch Unbequemlichkeiten entstanden sind.');
 define('TEXT_INFORMATION_5','Sollten Sie Fragen haben, kontaktieren Sie bitte den Shopbetreiber.');
 define('BOX_INFORMATION_HEADING','<strong>Cookies - Datenschutz und Sicherheit</strong>');
