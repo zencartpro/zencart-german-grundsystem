@@ -21,8 +21,7 @@ define('ENTRY_AMOUNT','Betrag des ' . TEXT_GV_NAME . 's:');
 define('ERROR_ENTRY_TO_NAME_CHECK', 'Wir erhielten den Empf&auml;ngernamen nicht.  F&uuml;llen Sie ihn bitte unten aus. ');
 define('ERROR_ENTRY_AMOUNT_CHECK','  <span class="errorText">Ung&uuml;ltiger oder zu hoher Betrag</span>');
 define('ERROR_ENTRY_EMAIL_ADDRESS_CHECK','  <span class="errorText">Ung&uuml;ltige E-Mail Adresse</span>');
-define('MAIN_MESSAGE','<br />Sie haben sich entschieden, einen ' . TEXT_GV_NAME . ' im Wert von <strong>%s</strong><br />an <strong>%s</strong>, mit der E-Mail Adresse <strong>%s</strong>, zu versenden.<br /><br /><br />Der Inhalt Ihrer Nachricht lautet:<br /><br />F&uuml;r %s<br />' .
-                        'Sie haben einen ' . TEXT_GV_NAME . ' im Wert von <strong>%s</strong> von <strong>%s</strong> erhalten!');
+define('MAIN_MESSAGE','<br />Sie haben sich entschieden, einen ' . TEXT_GV_NAME . ' im Wert von <strong>%s</strong><br />an <strong>%s</strong>, mit der E-Mail Adresse <strong>%s</strong>, zu versenden.<br /><br /><br />Der Inhalt Ihrer Nachricht lautet:<br />');
 define('SECONDARY_MESSAGE', 'Liebe(r)) %s,<br /><br />' . 'Du hast einen ' . TEXT_GV_NAME . ' im Wert on %s von %s erhalten');
 define('PERSONAL_MESSAGE','%s schreibt:');
 define('TEXT_SUCCESS','Herzlichen Gl&uuml;ckwunsch, der ' . TEXT_GV_NAME . ' wurde erfolgreich versendet.');
