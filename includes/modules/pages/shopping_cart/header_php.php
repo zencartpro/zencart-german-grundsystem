@@ -3,10 +3,10 @@
  * shopping_cart header_php.php
  *
  * @package page
- * @copyright Copyright 2003-2005 Zen Cart Development Team
+ * @copyright Copyright 2003-2007 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: header_php.php 4046 2006-07-30 23:10:43Z drbyte $
+ * @version $Id: header_php.php 6246 2007-04-21 21:22:44Z wilt $
  */
 
 // This should be first line of the script:
@@ -103,7 +103,7 @@ for ($i=0, $n=sizeof($products); $i<$n; $i++) {
       //clr 030714 determine if attribute is a text attribute and assign to $attr_value temporarily
       $attrArray[$option]['products_options_name'] = $attributes_values->fields['products_options_name'];
       $attrArray[$option]['options_values_id'] = $value;
-      $attrArray[$option]['products_options_values_name'] = $attr_value ;
+      $attrArray[$option]['products_options_values_name'] = zen_output_string_protected($attr_value) ;
       $attrArray[$option]['options_values_price'] = $attributes_values->fields['options_values_price'];
       $attrArray[$option]['price_prefix'] = $attributes_values->fields['price_prefix'];
     }
