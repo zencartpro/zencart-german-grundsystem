@@ -418,7 +418,7 @@
       }
 
 // don't check for mixed if not attributes
-      $chk_mix = zen_get_products_quantity_mixed((int)$product_id);
+      $chk_mix = zen_get_products_quantity_mixed((int)$product_id);            
       if ($chk_mix != 'none') {
         if (($check_min > 0 or $check_units > 0)) {
           if ($include_break == true) {

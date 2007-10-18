@@ -1017,7 +1017,7 @@ if (($_GET['page'] == '' or $_GET['page'] == '1') and $_GET['cID'] != '') {
         $reviews = $db->Execute("select count(*) as number_of_reviews
                                  from " . TABLE_REVIEWS . " where customers_id = '" . (int)$customers->fields['customers_id'] . "'");
 
-        $customer_info = array_merge($country->fields, $info->fields, $reviews->fields);
+        $customer_info = array(array_merge($country->fields, $info->fields, $reviews->fields));
 
         $cInfo_array = array_merge($customers->fields, $customer_info);
         $cInfo = new objectInfo($cInfo_array);
