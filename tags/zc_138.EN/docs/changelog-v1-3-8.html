@@ -1,0 +1,402 @@
+<!--
+/**
+ * @package documentation
+ * @copyright Copyright 2003-2006 Zen Cart Development Team
+ * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
+ * @version $Id: changelog-v1-3-8.html 7438 2007-11-16 21:37:49Z drbyte $
+ */
+//-->
+<html>
+<style type="text/css">
+<!--
+body, table{ font-family:Verdana, Arial, Helvetica, sans-serif; font-size:14px; }
+table.intro {border-color:C96E29; }
+td.intro{background-color:#EEEEEE ; border-color:5778ce; font-size:14px; }
+td.plainbox, div.callout {border: 1px dashed; border-color: C96E29; margin:5 40 5 40;}
+.heading {background-color:5778CE; font-weight:bold; font-size:14px;	width: 100%; }
+
+.title1 {color:C96E29; font-weight:bold; font-size:22px; }
+.title2 {color:C96E29; font-weight:bold; font-size:13px; }
+.small {font-size:10px ;}
+.error {color:FF0000; }
+.filename {font-family: mono, "Courier New", Courier ; font-size:14px; color: c96e29;}
+.pseudolink {text-decoration:underline; color:5778CE;}
+h1.intro { color: #ffffff; border:1px solid #aca893; background-color: #c96e29;  font-size: 22px;   padding: 4px;}
+h1 { color: #ffffff;    border:1px solid #aca893;   background-color: #5778ce;   font-size: 20px;   padding: 4px;}
+h2 { color: #c96e29; 	font-size: 18px;}
+h3 { color: #5778ce;	font-size: 16px; margin-bottom:0px;}
+h4 { color: #c96e29;	font-size: 14px;}
+
+
+-->
+</style>
+<title>Zen Cart(tm) Changelog</title><body>
+
+<table class="intro" cellspacing="4" cellpadding="6" border="3" width="748px" align="center">
+<tr><td class="intro">
+<center><h1 class="intro">Welcome to Zen Cart&trade; ...</h1></center>
+<br />
+The Zen Cart&trade; software is made available to you for use, additions, changes, modifications, etc. without charge, under the GNU General Public License.
+<br />
+<br />
+While we do not charge for this software, donations are greatly appreciated each time you download a new version, to help cover the expenses of maintenance, upgrades, updates, the free support forum and the continued development of this software for your online e-commerce store.
+<br />
+<br />
+Donations can be made at:
+<a href="http://www.zen-cart.com/index.php?main_page=infopages&pages_id=14" target="_blank">The Zen Cart&trade; Team Page</a>
+<br />
+<br />
+We appreciate your support.<br />
+<em>The Zen Cart&trade; Team</em><br />
+<br />
+
+<center>
+<span class="small">
+Zen Cart&trade; is derived from: Copyright  2003 osCommerce<br />
+This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;<br />
+without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE<br />
+and is redistributable under the GNU General Public License<br /><br />
+</span>
+</center>
+</td></tr></table>
+
+<br />
+<table border="3" width="748px" align="center" cellpadding="6">
+  <tr>
+<td align="center"><img src="osi-certified-120x100.png" /><br />
+This software is OSI Certified Open Source Software.<br />
+OSI Certified is a certification mark of the Open Source Initiative.
+</td></tr></table>
+<br />
+
+s
+<table border="3" width="748px" align="center" cellpadding="6">
+<tr><td>
+<h1 align="center" class="intro">Version 1.3.8</h1>
+<p>NOTE:<br>
+  For a listing of What's New in this release, please see the <a href="whatsnew_1.3.8.html" target="_blank">whatsnew_1.3.8.html</a> file in the <span class="filename">/docs</span> folder. <br />
+      <a href="http://www.zen-cart.com/forum/showthread.php?t=******" target="_blank">You may also see the list in the support forum here</a>. <br />
+      <br>
+      The following is a list of FILE/FOLDER changes: </p>
+<h1>Moved Files (since release of v1.3.7)</h1>
+<ul>
+<li>None</li>
+</ul>
+<h1>Changed Files (since release of v1.3.7)</h1>
+<ul>
+<li>/install.txt<br>
+/ipn_main_handler.php<br>
+/admin/attributes_controller.php<br>
+/admin/categories.php<br>
+/admin/coupon_admin.php<br>
+/admin/coupon_restrict.php<br>
+/admin/customers.php<br>
+/admin/developers_tool_kit.php<br>
+/admin/document_general.php<br>
+/admin/document_product.php<br>
+/admin/downloads_manager.php<br>
+/admin/email_welcome.php<br>
+/admin/featured.php<br>
+/admin/invoice.php<br>
+/admin/languages.php<br>
+/admin/login.php<br>
+/admin/mail.php<br>
+/admin/manufacturers.php<br>
+/admin/media_manager.php<br>
+/admin/modules.php<br>
+/admin/newsletters.php<br>
+/admin/options_name_manager.php<br>
+/admin/options_values_manager.php<br>
+/admin/orders.php<br>
+/admin/packingslip.php<br>
+/admin/paypal.php<br>
+/admin/product.php<br>
+/admin/product_free_shipping.php<br>
+/admin/product_music.php<br>
+/admin/product_types.php<br>
+/admin/products_price_manager.php<br>
+/admin/record_artists.php<br>
+/admin/record_company.php<br>
+/admin/salemaker.php<br>
+/admin/salemaker_popup.php<br>
+/admin/server_info.php<br>
+/admin/specials.php<br>
+/admin/sqlpatch.php<br>
+/admin/store_manager.php<br>
+/admin/tax_classes.php<br>
+/admin/template_select.php<br>
+/admin/includes/application_bottom.php<br>
+/admin/includes/application_top.php<br>
+/admin/includes/dist-configure.php<br>
+/admin/includes/footer.php<br>
+/admin/includes/header.php<br>
+/admin/includes/boxes/catalog_dhtml.php<br>
+/admin/includes/boxes/customers_dhtml.php<br>
+/admin/includes/boxes/extras_dhtml.php<br>
+/admin/includes/boxes/gv_admin_dhtml.php<br>
+/admin/includes/boxes/localization_dhtml.php<br>
+/admin/includes/boxes/modules_dhtml.php<br>
+/admin/includes/boxes/reports_dhtml.php<br>
+/admin/includes/boxes/taxes_dhtml.php<br>
+/admin/includes/boxes/tools_dhtml.php<br>
+/admin/includes/boxes/extra_boxes/linkpoint_review_customers_dhtml.php<br>
+/admin/includes/classes/order.php<br>
+/admin/includes/classes/split_page_results.php<br>
+/admin/includes/functions/general.php<br>
+/admin/includes/init_includes/init_admin_history.php<br>
+/admin/includes/init_includes/init_general_funcs.php<br>
+/admin/includes/init_includes/init_languages.php<br>
+/admin/includes/languages/english.php<br>
+/admin/includes/languages/english/coupon_admin.php<br>
+/admin/includes/languages/english/customers.php<br>
+/admin/includes/languages/english/developers_tool_kit.php<br>
+/admin/includes/languages/english/invoice.php<br>
+/admin/includes/languages/english/login.php<br>
+/admin/includes/languages/english/mail.php<br>
+/admin/includes/languages/english/orders.php<br>
+/admin/includes/languages/english/packingslip.php<br>
+/admin/includes/languages/english/salemaker.php<br>
+/admin/includes/languages/english/server_info.php<br>
+/admin/includes/languages/english/tax_classes.php<br>
+/admin/includes/modules/orders_download.php<br>
+/admin/includes/modules/update_product.php<br>
+/admin/includes/modules/document_general/collect_info.php<br>
+/admin/includes/modules/document_product/collect_info.php<br>
+/admin/includes/modules/product/collect_info.php<br>
+/admin/includes/modules/product_free_shipping/collect_info.php<br>
+/admin/includes/modules/product_music/collect_info.php<br>
+/admin/includes/modules/product_music/update_product.php<br>
+/docs/1.readme_installation.html<br>
+/docs/important_site_security_recommendations.html<br>
+/docs/index.html<br>
+/docs/INSTALL.TXT<br>
+/docs/whatsnew_1.3.7.html<br>
+/includes/application_bottom.php<br>
+/includes/application_top.php<br>
+/includes/autoload_func.php<br>
+/includes/database_tables.php<br>
+/includes/dist-configure.php<br>
+/includes/main_cart_actions.php<br>
+/includes/spiders.txt<br>
+/includes/version.php<br>
+/includes/classes/cache.php<br>
+/includes/classes/cc_validation.php<br>
+/includes/classes/class.phpmailer.php<br>
+/includes/classes/class.smtp.php<br>
+/includes/classes/http_client.php<br>
+/includes/classes/order.php<br>
+/includes/classes/order_total.php<br>
+/includes/classes/payment.php<br>
+/includes/classes/shipping.php<br>
+/includes/classes/shopping_cart.php<br>
+/includes/classes/sniffer.php<br>
+/includes/classes/template_func.php<br>
+/includes/classes/db/mysql/query_factory.php<br>
+/includes/classes/support/phpmailer.lang-en.php<br>
+/includes/extra_datafiles/music_type_database_names.php<br>
+/includes/functions/banner.php<br>
+/includes/functions/featured.php<br>
+/includes/functions/functions_categories.php<br>
+/includes/functions/functions_email.php<br>
+/includes/functions/functions_ezpages.php<br>
+/includes/functions/functions_general.php<br>
+/includes/functions/functions_lookups.php<br>
+/includes/functions/functions_prices.php<br>
+/includes/functions/functions_taxes.php<br>
+/includes/functions/html_output.php<br>
+/includes/functions/sessions.php<br>
+/includes/functions/specials.php<br>
+/includes/functions/whos_online.php<br>
+/includes/index_filters/default_filter.php<br>
+/includes/index_filters/music_genre_filter.php<br>
+/includes/index_filters/record_company_filter.php<br>
+/includes/init_includes/init_add_crumbs.php<br>
+/includes/init_includes/init_currencies.php<br>
+/includes/init_includes/init_customer_auth.php<br>
+/includes/init_includes/init_header.php<br>
+/includes/init_includes/init_sanitize.php<br>
+/includes/init_includes/init_special_funcs.php<br>
+/includes/languages/english.php<br>
+/includes/languages/english/contact_us.php<br>
+/includes/languages/english/create_account.php<br>
+/includes/languages/english/credit_cards.php<br>
+/includes/languages/english/document_general_info.php<br>
+/includes/languages/english/document_product_info.php<br>
+/includes/languages/english/email_extras.php<br>
+/includes/languages/english/index.php<br>
+/includes/languages/english/login.php<br>
+/includes/languages/english/logoff.php<br>
+/includes/languages/english/meta_tags.php<br>
+/includes/languages/english/product_free_shipping_info.php<br>
+/includes/languages/english/product_info.php<br>
+/includes/languages/english/product_music_info.php<br>
+/includes/languages/english/html_includes/define_main_page.php<br>
+/includes/languages/english/html_includes/classic/define_main_page.php<br>
+/includes/languages/english/modules/order_total/ot_coupon.php<br>
+/includes/languages/english/modules/order_total/ot_gv.php<br>
+/includes/languages/english/modules/payment/authorizenet.php<br>
+/includes/languages/english/modules/payment/authorizenet_aim.php<br>
+/includes/languages/english/modules/payment/cc.php<br>
+/includes/languages/english/modules/payment/linkpoint_api.php<br>
+/includes/languages/english/modules/payment/paypal.php<br>
+/includes/languages/english/modules/payment/paypalwpp.php<br>
+/includes/modules/additional_images.php<br>
+/includes/modules/attributes.php<br>
+/includes/modules/category_icon_display.php<br>
+/includes/modules/checkout_new_address.php<br>
+/includes/modules/checkout_process.php<br>
+/includes/modules/create_account.php<br>
+/includes/modules/ezpages_bar_footer.php<br>
+/includes/modules/ezpages_bar_header.php<br>
+/includes/modules/featured_products.php<br>
+/includes/modules/meta_tags.php<br>
+/includes/modules/new_products.php<br>
+/includes/modules/product_listing.php<br>
+/includes/modules/product_prev_next.php<br>
+/includes/modules/products_quantity_discounts.php<br>
+/includes/modules/shipping_estimator.php<br>
+/includes/modules/specials_index.php<br>
+/includes/modules/upcoming_products.php<br>
+/includes/modules/order_total/ot_coupon.php<br>
+/includes/modules/order_total/ot_group_pricing.php<br>
+/includes/modules/order_total/ot_gv.php<br>
+/includes/modules/order_total/ot_loworderfee.php<br>
+/includes/modules/order_total/ot_shipping.php<br>
+/includes/modules/order_total/ot_subtotal.php<br>
+/includes/modules/order_total/ot_tax.php<br>
+/includes/modules/order_total/ot_total.php<br>
+/includes/modules/pages/address_book_process/header_php.php<br>
+/includes/modules/pages/advanced_search_result/header_php.php<br>
+/includes/modules/pages/checkout_confirmation/header_php.php<br>
+/includes/modules/pages/checkout_payment/header_php.php<br>
+/includes/modules/pages/checkout_shipping/header_php.php<br>
+/includes/modules/pages/checkout_success/header_php.php<br>
+/includes/modules/pages/contact_us/header_php.php<br>
+/includes/modules/pages/discount_coupon/header_php.php<br>
+/includes/modules/pages/document_general_info/jscript_textarea_counter.js<br>
+/includes/modules/pages/document_product_info/jscript_textarea_counter.js<br>
+/includes/modules/pages/download/header_php.php<br>
+/includes/modules/pages/featured_products/header_php.php<br>
+/includes/modules/pages/gv_redeem/header_php.php<br>
+/includes/modules/pages/index/main_template_vars.php<br>
+/includes/modules/pages/login/header_php.php<br>
+/includes/modules/pages/page_not_found/header_php.php<br>
+/includes/modules/pages/popup_image/header_php.php<br>
+/includes/modules/pages/product_free_shipping_info/jscript_textarea_counter.js<br>
+/includes/modules/pages/product_info/header_php.php<br>
+/includes/modules/pages/product_info/jscript_textarea_counter.js<br>
+/includes/modules/pages/product_info/main_template_vars.php<br>
+/includes/modules/pages/product_music_info/jscript_textarea_counter.js<br>
+/includes/modules/pages/products_all/header_php.php<br>
+/includes/modules/pages/products_new/header_php.php<br>
+/includes/modules/pages/redirect/header_php.php<br>
+/includes/modules/pages/shopping_cart/header_php.php<br>
+/includes/modules/pages/specials/main_template_vars.php<br>
+/includes/modules/pages/time_out/header_php.php<br>
+/includes/modules/payment/authorizenet.php<br>
+/includes/modules/payment/authorizenet_aim.php<br>
+/includes/modules/payment/cc.php<br>
+/includes/modules/payment/linkpoint_api.php<br>
+/includes/modules/payment/paypal.php<br>
+/includes/modules/payment/paypalwpp.php<br>
+/includes/modules/payment/linkpoint_api/linkpoint_api_admin_notification.php<br>
+/includes/modules/payment/paypal/ipn_application_top.php<br>
+/includes/modules/payment/paypal/paypal_admin_notification.php<br>
+/includes/modules/payment/paypal/paypal_curl.php<br>
+/includes/modules/payment/paypal/paypal_functions.php<br>
+/includes/modules/payment/paypal/paypalwpp_admin_notification.php<br>
+/includes/modules/payment/paypal/tpl_ec_button.php<br>
+/includes/modules/shipping/item.php<br>
+/includes/modules/shipping/table.php<br>
+/includes/modules/shipping/ups.php<br>
+/includes/modules/shipping/usps.php<br>
+/includes/modules/shipping/zones.php<br>
+/includes/modules/sideboxes/ezpages.php<br>
+/includes/modules/sideboxes/featured.php<br>
+/includes/modules/sideboxes/shopping_cart.php<br>
+/includes/modules/sideboxes/specials.php<br>
+/includes/modules/sideboxes/whats_new.php<br>
+/includes/templates/classic/css/stylesheet.css<br>
+/includes/templates/template_default/common/html_header.php<br>
+/includes/templates/template_default/common/tpl_main_page.php<br>
+/includes/templates/template_default/css/stylesheet.css<br>
+/includes/templates/template_default/sideboxes/tpl_featured.php<br>
+/includes/templates/template_default/sideboxes/tpl_shopping_cart.php<br>
+/includes/templates/template_default/sideboxes/tpl_specials.php<br>
+/includes/templates/template_default/sideboxes/tpl_whats_new.php<br>
+/includes/templates/template_default/templates/tpl_account_history_info_default.php<br>
+/includes/templates/template_default/templates/tpl_checkout_confirmation_default.php<br>
+/includes/templates/template_default/templates/tpl_checkout_shipping_default.php<br>
+/includes/templates/template_default/templates/tpl_create_account_default.php<br>
+/includes/templates/template_default/templates/tpl_gv_send_default.php<br>
+/includes/templates/template_default/templates/tpl_index_product_list.php<br>
+/includes/templates/template_default/templates/tpl_login_default.php<br>
+/includes/templates/template_default/templates/tpl_modules_address_book_details.php<br>
+/includes/templates/template_default/templates/tpl_modules_category_icon_display.php<br>
+/includes/templates/template_default/templates/tpl_modules_downloads.php<br>
+/includes/templates/template_default/templates/tpl_modules_media_manager.php<br>
+/includes/templates/template_default/templates/tpl_modules_products_all_listing.php<br>
+/includes/templates/template_default/templates/tpl_modules_products_featured_listing.php<br>
+/includes/templates/template_default/templates/tpl_modules_products_new_listing.php<br>
+/includes/templates/template_default/templates/tpl_modules_shipping_estimator.php<br>
+/includes/templates/template_default/templates/tpl_modules_upcoming_products.php<br>
+/includes/templates/template_default/templates/tpl_products_next_previous.php<br>
+/includes/templates/template_default/templates/tpl_shopping_cart_default.php<br>
+/includes/templates/template_default/templates/tpl_tell_a_friend_default.php<br>
+/includes/templates/template_default/templates/tpl_time_out_default.php<br>
+<br>
+  <br>
+<li>/zc_install/ ... assume *all* of /zc_install/ has changed
+</ul>
+
+<h1>Deleted Files (since  release of v1.3.7)</h1>
+<ul>
+<li>/admin/includes/classes/sessions.php</li>
+<li>/extras/ipn_test.php</li>
+<li>/extras/ipn_test_return.php</li>
+<li>/zc_install/includes/classes/boxes.php</li>
+</ul>
+<h1>New Files (since  release of v1.3.7)</h1>
+<ul>
+<li>/nochex_apc_handler.php<br>
+
+<li>/admin/includes/initsystem.php<br>
+
+<li>/admin/includes/extra_configures/email_use_8bit.php<br>
+<li>/admin/includes/functions/functions_customers.php<br>
+<li>/docs/changelog-v1-3-7-1.html<br>
+<li>/docs/changelog-v1-3-8.html<br>
+<li>/docs/whatsnew_1.3.7-1.html<br>
+<li>/docs/whatsnew_1.3.8.html<br>
+<li>/extras/curltest.php<br>
+
+<li>/extras/ipncheck.php<br>
+<li>/extras/nochex_apc_test.php<br>
+<li>/extras/nochex_apc_test_return.php<br>
+<li>/images/banners/big-book-ad.gif<br>
+<li>/images/banners/tall-book.gif<br>
+<li>/images/large/e-start-book.gif<br>
+<li>/includes/initsystem.php<br>
+<li>/includes/auto_loaders/nochex_apc.core.php<br>
+<li>/includes/auto_loaders/paypal_ipn.core.php<br>
+<li>/includes/init_includes/init_ipn_postcfg.php<br>
+<li>/includes/init_includes/init_nochex_apc_sessions.php<br>
+<li>/includes/init_includes/init_paypal_ipn_sessions.php<br>
+<li>/includes/languages/english/modules/payment/authorizenet_echeck.php
+<li>/includes/languages/english/modules/payment/nochex_apc.php<br>
+<li>/includes/languages/english/modules/payment/paypaldp.php<br>
+<li>/includes/modules/payment/authorizenet/authorizenet_admin_notification.php
+<li>/includes/modules/payment/authorizenet_echeck.php
+<li>/includes/modules/payment/nochex_apc<br>
+<li>/includes/modules/payment/nochex_apc.php<br>
+<li>/includes/modules/payment/paypaldp.php<br>
+<li>/includes/templates/template_default/templates/tpl_zc_install_suggested_default.php
+<li>/zc_install/ ... assume *all* of /zc_install/ has changed
+<h1>&nbsp;</h1>
+</td>
+</tr>
+</table>
+<p align="center"><em>Zen Cart&trade; Copyright 2007</em></p>
+<br /><br />
+</body>
+</html>

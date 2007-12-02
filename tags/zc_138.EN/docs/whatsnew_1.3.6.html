@@ -1,0 +1,247 @@
+<!--
+/**
+ * @package documentation
+ * @copyright Copyright 2003-2006 Zen Cart Development Team
+ * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
+ * @version $Id: whatsnew_1.3.6.html 4845 2006-10-27 03:12:16Z drbyte $
+ */
+//-->
+<html>
+<style type="text/css">
+<!--
+body, table{ font-family:Verdana, Arial, Helvetica, sans-serif; font-size:14px; }
+table.intro {border-color:C96E29; }
+td.intro{background-color:#EEEEEE ; border-color:5778ce; font-size:11px; }
+td.plainbox, div.callout {border: 1px dashed; border-color: C96E29; margin:5 40 5 40;}
+.heading {background-color:5778CE; font-weight:bold; font-size:14px;	width: 100%; }
+
+.title1 {color:C96E29; font-weight:bold; font-size:22px; }
+.title2 {color:C96E29; font-weight:bold; font-size:13px; }
+.small {font-size:10px ;}
+.error {color:FF0000; }
+.filename {font-family: mono, "Courier New", Courier ; font-size:14px; color: c96e29;}
+.pseudolink {text-decoration:underline; color:5778CE;}
+h1.intro { color: #ffffff; border:1px solid #aca893; background-color: #c96e29;  font-size: 22px;   padding: 4px;}
+h1 { color: #ffffff;    border:1px solid #aca893;   background-color: #5778ce;   font-size: 20px;   padding: 4px;}
+h2 { color: #c96e29; 	font-size: 18px;}
+h3 { color: #5778ce;	font-size: 16px; margin-bottom:0px;}
+h4 { color: #c96e29;	font-size: 14px;}
+h5 { color: #5778ce;	font-size: 16px; margin-bottom:0px; margin-top:0px; }
+.style1 {
+	font-size: 18px;
+	font-weight: bold;
+}
+.emphasize {
+	color: #336600;
+}
+
+
+-->
+</style>
+<title>What's New in Zen Cart(tm) v1.3.6</title><body>
+
+<table class="intro" cellspacing="4" cellpadding="6" border="3" width="748px" align="center">
+<tr><td class="intro">
+<center><h1 class="intro">Welcome to Zen Cart&trade; ...</h1></center>
+<br />
+The Zen Cart&trade; software is made available to you for use, additions, changes, modifications, etc. without charge, under the GNU General Public License.
+<br />
+<br />
+While we do not charge for this software, donations are greatly appreciated each time you download a new version, to help cover the expenses of maintenance, upgrades, updates, the free support forum and the continued development of this software for your online e-commerce store.
+<br />
+<br />
+Donations can be made at:
+<a href="http://www.zen-cart.com/index.php?main_page=infopages&pages_id=14" target="_blank">The Zen Cart&trade; Team Page</a>
+<br />
+<br />
+We appreciate your support.<br />
+<em>The Zen Cart&trade; Team</em><br />
+<br />
+
+<center>
+<span class="small">
+Zen Cart&trade; is derived from: Copyright  2003 osCommerce<br />
+This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;<br />
+without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE<br />
+and is redistributable under the GNU General Public License<br /><br />
+</span>
+</center>
+</td></tr></table>
+
+<br />
+<table border="3" width="748px" align="center" cellpadding="6">
+  <tr>
+<td align="center"><img src="osi-certified-120x100.png" /><br />
+This software is OSI Certified Open Source Software.<br />
+OSI Certified is a certification mark of the Open Source Initiative.
+</td></tr></table>
+<br />
+
+<table border="3" width="748px" align="center" cellpadding="6">
+  <tr>
+<td>
+<h1>Upgrade Instructions from v1.3.5 to 1.3.6</h1>
+<p>If you are upgrading <strong><u>from Zen Cart v1.3.5</u></strong>, the process is simple:<br>
+  - compare all the changed files with the files on your own site... and re-apply your customizations to the new files<br>
+  - upload the new files (with your customizations added) to your site<br>
+  - upload the <span class="filename">zc_install</span> folder to your server, and run <span class="filename">zc_install/index.php</span> <br>
+  ... select <strong>Database Upgrade</strong> from the System Inspection screen. Apply the required updates. </p>
+<p>If you are upgrading <strong><u>from a version prior to v1.3.5</u></strong>, please follow the instructions in the &quot;<a href="2.readme_how_to_upgrade.html">how to upgrade</a>&quot; documentation in the /docs folder. </p>
+<h1>IMPORTANT NOTES </h1>
+<ul>
+<li><span class="style1">SECURITY:</span><span class="error"> Please be sure to review and apply the <a href="./important_site_security_recommendations.html" target="_blank">Site Security Recommendations</a> to your site prior to taking your shop &quot;live&quot;.</span> If you are uncertain about how site security applies to you, talk to your web host to ensure that you have proper measures in place. <br>
+  <br>
+  <br>
+  </li>
+<li><span class="style1">Stylesheet Changes:</span>  There are some important stylesheet additions and a few changes.<br>
+  <br> 
+<ol>
+<li>Two new styles were added: <br>
+  <br>
+  <span class="filename">.hiddenField {<br>
+&nbsp;&nbsp;display: none;<br>
+&nbsp;&nbsp;}<br>
+.visibleField {<br>
+&nbsp;&nbsp;display: inline;<br>
+&nbsp;&nbsp;}<br>
+  </span></li>
+  <br>
+  <li>There was a conversion from <span class="filename">&lt;div class=&quot;navMainSearch forward&quot;&gt;</span> to <br>
+    <span class="filename">&lt;div id=&quot;navMainSearch&quot;&gt;</span> in the<span class="filename"> tpl_header.php</span> file. If you wish to &quot;not&quot; convert that part of your header, you will need to add the following to your stylesheet <br>
+    <span class="filename"><br>
+      /**************************/<br>
+  /* backward compatibility, to be removed in 1.4: */<br>
+  .navMainSearch {<br>
+&nbsp;&nbsp;float: right;<br>
+&nbsp;&nbsp;margin: 0.5em;<br>
+&nbsp;&nbsp;}<br>
+/**************************/</span><br>
+<br>
+<br>
+</li>
+</ol></li>
+  <li><span class="style1 error">PayPal Users:</span> <span class="error">If you are using the PayPal payment module, you will need to Remove and re-Install the PayPal module in Admin-&gt;Modules-&gt;Payment-&gt;PayPal in order to take advantage of the bugfixes in the module.</span> (Write down your settings first, for easier re-configuration!) <br>
+  <br>
+</li>
+</ul>
+<h1>UPGRADING YOUR TEMPLATES </h1>
+Since version 1.2, Zen Cart&trade; has had a major overhaul of the templating system for v1.3.  As such, you have two options:
+<ul>
+<li>
+upgrade your existing template by applying the new stylesheet and moving a few lines of code around; or</li>
+<li><strong>the best way </strong>to have almost-tableless and much tidier template code, is to make a new template (based on template_default or the new &quot;green&quot; classic introduced in v1.3.5) and carefully re-apply your own customizations to the new template system.</li>
+</ul>
+
+
+<p>For further information on template upgrading, see the support-forum discussion on this topic. </p>
+
+
+<h1>CHANGELOG - List of Changed Files </h1>
+<p>For a list of files that have been changed since v1.3.5, see the <a href="changelog-v1-3-6.html" target="_blank">changelog-v1-3-6.html</a> </p>
+<h1>Whats New ... </h1>
+<h3><strong>The following Improvements and bugfixes are included in v1.3.6: </strong></h3>
+<ul>
+  <li class="error"><strong>SECURITY UPDATES. Important security updates related to XSS vulnerabilities have been included in this release to prevent exploitation of your site.<br>
+<strong class="style1 error">YOU SHOULD PREPARE TO UPGRADE ASAP</strong></strong><br>
+</li>
+  <li class="emphasize">XSS vulnerability fixes included in this release <br>
+      <br>
+  </li>
+  <li class="emphasize"><strong>State/Country pulldown menus work intelligently across browser platforms</strong><br>
+      <br>
+  </li>
+  <li class="emphasize"><strong>Discount coupons can now be restricted to only be usable if the customer's Billing Address matches the selected zone</strong> (ie: a 10%-off coupon could be set to apply only to US customers) <br>
+      <br>
+  </li>
+  <li class="emphasize">Linkpoint/YourPay API payment module now included with Zen Cart. Minor updates to module. <br>
+      <br>
+  </li>
+  <li class="emphasize">Products-Purchased report enhanced with search, hotlinks, etc </li>
+  <span class="emphasize"><br>
+        </span>
+  <li class="emphasize">Added: image-size settings can now be configured for top-level category images </li>
+        <li class="emphasize">Added: centerboxes on Empty Shopping Cart page can now be enabled/disabled/sorted via the admin interface under &quot;Stock&quot; settings </li>
+        <li class="emphasize">Added: currency-exchange &quot;uplift&quot; calculator added to My Store area, allowing automatic global padding of exchange rates during automated updates </li>
+        <li class="emphasize">Added: search page now accepts URL parameters, allowing some retention of search history if details supplied by a referring source/link </li>
+        <li class="emphasize">Added: Subcategories Row switch added to admin for Product Listing page </li>
+        <li class="emphasize">Added: &quot;zones&quot; shipping module now allows &quot;00&quot; for &quot;All zones&quot;. Also no longer case-sensitive </li>
+        <li class="emphasize">Added: zone-status indicators added to suggest where zone configurations may be incomplete </li>
+        <li class="emphasize">Added: &quot;upcoming products&quot; can now be excluded from New Products boxes/listings </li>
+        <li class="emphasize">Added: built-in support for easy_rollovers contribution to be plugged in more simply </li>
+        <li class="emphasize">Added: new switch for Product Info to disable display of product-model in meta-tags output where custom meta-tags not defined </li>
+        <li class="emphasize">Added: create-account-success page now shows the customer's address for quick visual verification of their personal data <br>
+          <br>
+        </li>
+        <li class="emphasize">Enhanced: $this_is_home_page variable can be used to determine whether the displayed page is truly the home page of the site or not. Handy for disabling breadcrumbs or other items for just the home page. </li>
+        <br>
+        <li>Change: admin - when entering/editing products, now have the option to key in the name of the product image filename to use images already uploaded to server</li>
+        <li>Change: admin order-status pulldowns now sort by ID instead of name </li>
+        <li>Change: admin &quot;extras&quot; menu no longer appears if it has no content (ie: can remove the menu file for music items from the extra_boxes folder and the menu option will disappear) </li>
+        <li>Change: improved calculation of commissionable_amount for affiliate hooks to support credit modules offering discounts </li>
+        <li>Change: email system change to allow separation between php, sendmail, smtp etc methods of transport instead of only smtp/sendmail </li>
+        <li>Change: Alternate email-encoding methods available. Default is now 7bit instead of 8bit. Can override via new file in extra_configures folder </li>
+        <li>Change: image ALT text no longer displays if image not found </li>
+        <li>Change: &quot;Mixed ON/OFF&quot; text no longer appears if there are no attributes for selected product </li>
+        <li>Change: removed auto_increment from metatags tables for foreign-key fields </li>
+        <li>Change: default editor plugins now selectable from Admin-&gt;Config-&gt;My Store via pulldown </li>
+        <li>Change: status message added to messageStack if add-to-cart set to return to product </li>
+        <li>Change: if customer record is deleted during a shopping session, they will now be logged out </li>
+        <br>
+        <li>PayPal: no longer requires case-sensitivity on email address of PayPal account </li>
+        <li>PayPal: was encountering an error if ez-pages functions were called in language files <br>
+        (unrelated to PayPal ... only related to customizations affecting PayPal loading) </li>
+        <li>PayPal: fixed problem where purchase of a GV via PayPal was leaving GV linked to wrong order #</li>
+        <br>
+        <li>Bugfix: banner bug related to status change ... missing parenthesis found </li>
+        <li>Bugfix: textarea displays for define-pages area in Opera not displaying properly </li>
+        <li>Bugfix: line-ending problem in the admin language file for coupon_admin.php </li>
+        <li>Bugfix: email problems for SMTP mailservers resolved </li>
+        <li>Bugfix: New Products date fixed to manage &quot;All&quot;, &quot;Current Month&quot;, and any number of days</li>
+        <li>Bugfix: download-resets via Admin were not properly considering &quot;unlimited&quot; vs max days</li>
+        <li>Bugfix: breadcrumb was displaying incompletely/incorrectly when navigating prev/next </li>
+        <li>Bugfix: zen_redirect function works smarter for SSL pages</li>
+        <li>Bugfix: USPS/UPS modules were incorrectly adjusting weight in some cases</li>
+        <li>Bugfix: Manual-Add of Specials/Features product numbers in admin now checks proper ID's</li>
+        <li>Bugfix: ot modules were not properly handling taxes when &quot;tax in&quot; pricing  enabled </li>
+        <li>Bugfix: maximum address book entries restriction was allowing one too many</li>
+        <li>Bugfix: added missing switch to configuration menu for Page Not Found &quot;define page&quot;</li>
+        <li>Bugfix:  sidebox &quot;id&quot; duplicates removed</li>
+        <li>Bugfix: stylesheet fixes </li>
+        <li>Bugfix: Discount Quantity would occasionally vanish when editing by product price manager</li>
+        <li>Bugfix: preg was breaking when testing template override files in template_func.php</li>
+        <li>Bugfix: admin footer now properly shows version details</li>
+        <li>Bugfix: admin coupon editor was incompletely handling multiple languages </li>
+        <li>Bugfix: Coupon Zone notice in popup and lookup pages added</li>
+        <li>Bugfix: Search page MySQL errors due to version-specific query problem</li>
+        <li>Bugfix: tax calculations fixed for order total modules where include tax/shipping flags selected</li>
+        <li>Bugfix: shopping cart was holding on to old quantity during some adjustment requests</li>
+        <li>Bugfix: admin categories-metatags editor  not handling language properly   and giving SQL errors </li>
+        <li>Bugfix: UPS shipping module changed to retrieve Fuel Surcharge rate if exists </li>
+        <li>Bugfix: remove ereg_replace errors on additional-image-popup window (now uses str_replace) </li>
+        <li>Bugfix: fixed occasional DOB errors when format changed or null data supplied</li>
+        <li>Bugfix: coupon &quot;amounts&quot; now allowed 15,4 precision instead of 11 </li>
+        <li>Bugfix: product-listing quantity boxes are now similar on advanced-search results</li>
+        <li>Bugfix: sales/specials/features were not accurately expiring once-per-session</li>
+        <li>Bugfix: apostrophes were causing problems when sending mail from admin</li>
+        <li>Bugfix: admin menu pulldown borders were inconsistently displaying in FF</li>
+        <li>Bugfix: admin banner manager page-selection occasionally lost  </li>
+        <li>Bugfix: remove hard-coded &quot;Store Pickup&quot; text from admin orders screen</li>
+        <li>Bugfix: CURL proxy support consistency tidied</li>
+        <li>Bugfix: currency-updater was timing out if more than 6 currencies had to be processed</li>
+        <li>Bugfix: some MySQL5 strict_trans issues resolved</li>
+        <li>Bugfix: shipping estimator was showing blank if all shipping modules were restricted by zones and the customer wasn't logged in</li>
+        <li>Bugfix: remove stray NAVBAR_TITLE constant name from showing in metatags in popups etc </li>
+        <li>Bugfix: $lng object consistency between catalog and admin fixed</li>
+        <li>Bugfix: order of parameters in some URL's tidied (ie: mfg selection etc)</li>
+        <li>Bugfix: media manager was including recursive cat/prod listings in pulldown </li>
+        <li>Bugfix: status messages fixed where uploads failed when adding product to cart</li>
+        <li>Bugfix: zone-definitions page wasn't retaining pointers properly for sidebox during navigation </li>
+</ul>
+</td>
+</tr>
+</table>
+<br /><br />
+<p align="center"><em>Zen Cart&trade; Copyright 2006</em></p>
+<br /><br />
+</body>
+</html>

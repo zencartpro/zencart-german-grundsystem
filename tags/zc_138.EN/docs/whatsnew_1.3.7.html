@@ -1,0 +1,236 @@
+<!--
+/**
+ * @package documentation
+ * @copyright Copyright 2003-2006 Zen Cart Development Team
+ * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
+ * @version $Id: whatsnew_1.3.7.html 6553 2007-07-05 04:22:41Z drbyte $
+ */
+//-->
+<html>
+<style type="text/css">
+<!--
+body, table{ font-family:Verdana, Arial, Helvetica, sans-serif; font-size:14px; }
+table.intro {border-color:C96E29; }
+td.intro{background-color:#EEEEEE ; border-color:5778ce; font-size:11px; }
+td.plainbox, div.callout {border: 1px dashed; border-color: C96E29; margin:5 40 5 40;}
+.heading {background-color:5778CE; font-weight:bold; font-size:14px;	width: 100%; }
+
+.title1 {color:C96E29; font-weight:bold; font-size:22px; }
+.title2 {color:C96E29; font-weight:bold; font-size:13px; }
+.small {font-size:10px ;}
+.error {color:FF0000; }
+.filename {font-family: mono, "Courier New", Courier ; font-size:14px; color: c96e29;}
+.pseudolink {text-decoration:underline; color:5778CE;}
+h1.intro { color: #ffffff; border:1px solid #aca893; background-color: #c96e29;  font-size: 22px;   padding: 4px;}
+h1 { color: #ffffff;    border:1px solid #aca893;   background-color: #5778ce;   font-size: 20px;   padding: 4px;}
+h2 { color: #c96e29; 	font-size: 18px;}
+h3 { color: #5778ce;	font-size: 16px; margin-bottom:0px;}
+h4 { color: #c96e29;	font-size: 14px;}
+h5 { color: #5778ce;	font-size: 16px; margin-bottom:0px; margin-top:0px; }
+.style1 {
+	font-size: 18px;
+	font-weight: bold;
+}
+.emphasize {
+	color: #336600;
+}
+.style2 {
+	color: #0000FF;
+	font-weight: bold;
+	font-size: 24px;
+}
+
+
+-->
+</style>
+<title>What's New in Zen Cart(tm) v1.3.7</title><body>
+
+<table class="intro" cellspacing="4" cellpadding="6" border="3" width="748px" align="center">
+<tr><td class="intro">
+<center><h1 class="intro">Welcome to Zen Cart&trade; ...</h1></center>
+<br />
+The Zen Cart&trade; software is made available to you for use, additions, changes, modifications, etc. without charge, under the GNU General Public License.
+<br />
+<br />
+While we do not charge for this software, donations are greatly appreciated each time you download a new version, to help cover the expenses of maintenance, upgrades, updates, the free support forum and the continued development of this software for your online e-commerce store.
+<br />
+<br />
+Donations can be made at:
+<a href="http://www.zen-cart.com/index.php?main_page=infopages&pages_id=14" target="_blank">The Zen Cart&trade; Team Page</a>
+<br />
+<br />
+We appreciate your support.<br />
+<em>The Zen Cart&trade; Team</em><br />
+<br />
+
+<center>
+<span class="small">
+Zen Cart&trade; is derived from: Copyright  2003 osCommerce<br />
+This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;<br />
+without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE<br />
+and is redistributable under the GNU General Public License<br /><br />
+</span>
+</center>
+</td></tr></table>
+
+<br />
+<table border="3" width="748px" align="center" cellpadding="6">
+  <tr>
+<td align="center"><img src="osi-certified-120x100.png" /><br />
+This software is OSI Certified Open Source Software.<br />
+OSI Certified is a certification mark of the Open Source Initiative.
+</td></tr></table>
+<br />
+
+<table border="3" width="748px" align="center" cellpadding="6">
+  <tr>
+<td>
+<h1>Upgrade Instructions from v1.3.6 to 1.3.7</h1>
+<p>If you are upgrading <strong><u>from Zen Cart v1.3.6</u></strong>, the process is simple:<br>
+  - compare all the changed files with the files on your own site... and re-apply your customizations to the new files<br>
+  - upload the new files (with your customizations added) to your site<br>
+  - upload the <span class="filename">zc_install</span> folder to your server, and run <span class="filename">zc_install/index.php</span> <br>
+  ... select <strong>Database Upgrade</strong> from the System Inspection screen. Apply the required updates. </p>
+<p>If you are upgrading <strong><u>from a version prior to v1.3.6</u></strong>, please follow the instructions in the &quot;<a href="2.readme_how_to_upgrade.html">how to upgrade</a>&quot; documentation in the /docs folder. </p>
+<h1>IMPORTANT NOTES </h1>
+<ul>
+<li><span class="style1">SECURITY:</span><span class="error"> Please be sure to review and apply the <a href="./important_site_security_recommendations.html" target="_blank">Site Security Recommendations</a> to your site prior to taking your shop &quot;live&quot;.</span> If you are uncertain about how site security applies to you, talk to your web host to ensure that you have proper measures in place. <br>
+  <br>
+  <br>
+  </li>
+<li><span class="emphasize">NEW <strong class="style1">PayPal Express Checkout</strong> module added. This allows you to use the PayPal Express Checkout option for your customers' shopping convenience.<br>
+  You do NOT need a Website Payments Pro account in order to use this module.<br>
+  Support for Website Payments Pro features (such as DirectPayment) will be added in a future release.<br>
+  All you need in order to use this module is your API credentials from your PayPal &quot;business&quot; or &quot;premier&quot; account, which are available under your PayPal &quot;Profile&quot; tab on the PayPal website. <br>
+  See further module details below. </span><br>
+  <br>
+  <br>
+</li>
+  <li><span class="style1 error">PayPal IPN Users:</span> <span class="error">If you are using the <strong>PayPal IPN</strong> payment module, you will need to Remove and re-Install the PayPal module in Admin-&gt;Modules-&gt;Payment-&gt;PayPal in order to take advantage of the bugfixes in the module.</span> (Write down your settings first, for easier re-configuration!) <br>
+  <br>
+</li>
+  <li><span class="style1">Authorizenet AIM Users:</span> <span class="error">A change was made to this module to allow easier logging of problems via a debug mode. If you are using the <strong>Authorizenet AIM</strong> payment module, you will need to Remove and re-Install the module in Admin-&gt;Modules-&gt;Payment in order to make this work properly.</span> (Write down your settings first, for easier re-configuration!) <br>
+        <em>If you don't remove+reinstall it, you will have some blank spaces in your configuration settings when you attempt to edit it next.</em> <br>
+  <br>
+</li>
+</ul>
+<h1>UPGRADING YOUR TEMPLATES </h1>
+Since version 1.2, Zen Cart&trade; has had a major overhaul of the templating system for v1.3.  As such, you have two options:
+<ul>
+<li>
+upgrade your existing template by applying the new stylesheet and moving a few lines of code around; or</li>
+<li><strong>the best way </strong>to have almost-tableless and much tidier template code, is to <strong>make a new template</strong> (based on template_default or the new &quot;green&quot; classic introduced in v1.3.5) and carefully re-apply your own customizations to the new template system.</li>
+</ul>
+
+
+<p>For further information on template upgrading, see the support-forum discussion on this topic. </p>
+
+
+<h1>CHANGELOG - List of Changed Files </h1>
+<p>For a list of files that have been changed since v1.3.6, see the <a href="changelog-v1-3-7.html" target="_blank">changelog-v1-3-7.html</a> </p>
+<h1>Whats New ... </h1>
+<h3><strong>The following Improvements and bugfixes are included in v1.3.7: </strong></h3>
+<ul>
+  <li class="error"><strong>SECURITY UPDATES. There are two important security updates related to XSS vulnerabilities included in this release. <strong class="style1 error">YOU SHOULD PREPARE TO UPGRADE ASAP</strong></strong><br>
+    <br>
+</li>
+  <li><span class="style2">Zen Cart v1.3.7 is officially PayPal-Certified <br>
+    for Express Checkout </span>(for US merchant accounts)<br>
+    <br>
+  </li>
+  <li class="emphasize"><strong class="style1">PayPal Express Checkout</strong> payment module added 
+<br>
+    <br>
+    NOTE: This module does NOT require or use Website Payments Pro. WPP will come in a future release.<br> 
+    <br>
+  Some of the features include: <ul>
+    <li>NO LONGER RELIES ON IPN POST-BACKS TO RELEASE ORDERS 
+    <li><strong>Requires CURL </strong>for operation, and supports CURL by Proxy if required
+    by hosting server <li>Customers can initiate Express Checkout directly from the Shopping-Cart page       or from the Login page (if they have something in their shopping cart already) 
+    <li>Depending on configuration settings, checkout could be done in two clicks at your site (apart from processing login and address selection on the PayPal site).     <br>- can auto-select &quot;cheapest&quot;-available shipping method for the customer<br>- can skip the payment-selection page if no coupons or gift certificates are active<br>- customer can jump directly from PayPal page to confirmation page to complete an order 
+    <li>PayPal can still be selected from the regular payments page as a regular option instead of Express Checkout if the customer prefers or requires such an approach. 
+    <li>PayPal invoices can now include detailed line-item transaction information (as long as no discounts were applied to the order)     
+    <li>Merchant can now &quot;require&quot; that the customer supply a PayPal-&quot;confirmed&quot; address     
+    <li>If an account doesn't already exist for the customer using express-checkout, it is auto-created for them. If the customer purchases downloads or gift certificates, their password is emailed to them along with the create-account welcome message. This can be always-on by default if the module's settings are configured as such. 
+    <li>Supports all 17 currencies supported by PayPal     
+    <li>Refund all or part of an order directly from Admin     
+    <li>PayPal page-style support built-in     
+    <li>Still uses IPN functionality to update orders when status is changed in PayPal account, but orders will not be held 
+    <li>Older PayPal IPN payment module can still be used, or can be turned off in lieu of this one     
+  </ul>
+<strong>Configuration instructions </strong>can be found here: <a href="http://www.zen-cart.com/getpaypal/" target="_blank">PayPal Express Checkout Setup Instructions</a>  <br>
+(NEEDS a PayPal API Username, Password, and Signature key, from your PayPal profile screens) <br>
+<br>
+<em>Future enhancements will include Website Payments Pro support. </em><br>
+</li>
+      <br>
+  <li class="emphasize"><strong>Added: </strong>Split login page  -- is auto-activated if using PayPal Express Checkout with an active cart <br>
+      <br>
+  </li>
+  <li class="emphasize"><strong>Added</strong>: Logoff button added to Checkout_Success page </li>
+  <span class="emphasize"><br>
+</span>
+  <li class="emphasize"><strong>Added</strong>:  Stylesheet: Added #indexHomeBody to identify the &quot;home&quot; page. This also means that a css file named
+    &quot;home.css&quot; can now optionally be used to override just the home page.</li>
+        <li class="emphasize"><strong>Added</strong>: Templates: Added switch to Admin-&gt;Configuration-&gt;Layout Settings for breadcrumb to show on home page or not  </li>
+        <li class="emphasize"><strong>Added</strong>: security-sensitive configuration keys (such as passwords) can now be set to be displayed obfuscated. New functions added: zen_cfg_password_input() &amp; zen_cfg_password_display() allow this.</li>
+        <li class="emphasize"><strong>Added</strong>: admin orders page can now hook into an order-refund method if a given payment module has support for such built-in. <br>
+          <br>
+        </li>
+        <li class="emphasize"><strong>Enhanced</strong>: Credit Card fields on built-in payment modules will now <strong>auto-select</strong> that payment module if the customer clicks in one of the fields for the module. This prevents the need for them to click on a certain radio-button to choose their desired module.        </li>
+        <li class="emphasize"><strong>Enhanced</strong>: Shipping Estimator now has dynamically-updated pulldowns similar to create-account </li>
+        <li class="emphasize"><strong>Enhanced: </strong>Copyright auto-updates to current year for both template and email footers <br>
+          <br>
+          <br>
+        </li>
+        <li>        Change: CSS -- Some template ID tags changed to classes because rendered from inside a loop </li>
+        <li>Change: Updated some payment modules to display &quot;not configured&quot; alerts if appropriate </li>
+        <li>Change: free-shipping-icon switch at product-type level now affects both product listing and template </li>
+        <li>Change: when a customer creates an account during the checkout flow, they do not see the create_account_success page; instead, they go back to the checkout page they came from </li>
+        <br>
+        <li>PayPal IPN: Important bugfix related to properly processing data via SSL </li>
+        <li>PayPal IPN: Added override to prevent PayPal from adding tax to orders</li>
+        <br>
+        <li>Bugfix: installer no longer requires &quot;admin&quot; folder be named &quot;admin&quot; just to upgrade database </li>
+        <li>Bugfix: ez-pages name set for HEADING_TITLE constant for consistency and tracking </li>
+        <li>Bugfix: ez-pages problem fixed with header -- was preventing prev/next navigation since 1.3.6</li>
+        <li>Bugfix: removed stray &lt;/a&gt; tag from gv-send template </li>
+        <li>Bugfix: search was returning error if only a space was entered for search criteria </li>
+        <li>Bugfix: removed vulgar comments embedded in htmlarea code by its original authors</li>
+        <li>Bugfix: MySQL5 error on admin copy-to-confirm script and on coupon_admin values </li>
+        <li>Bugfix: MySQL5 syntax changes to install script for BLOB and TEXT fields </li>
+        <li>Bugfix: improved warnings on USPS shipping module for those who don't read instructions</li>
+        <li>Bugfix: media-manager was crashing if the media folder was not writable</li>
+        <li>Bugfix: fixed uninitialized array in create_account_success related to displaying address info</li>
+        <li>Bugfix: fixed gv_redeem page logic to verify whether a given code is a GV vs a coupon</li>
+        <li>Bugfix: added missing javascript for coupon popupwindow link on account-history-info pages       </li>
+        <li>Bugfix: down-for-maintenance was not properly listening to alternate redirection logic</li>
+        <li>Bugfix: relocated &lt;form&gt; element in admin product-preview page so that forms in product descriptions wouldn't break the preview page</li>
+        <li>Bugfix: GV redeem amounts weren't converting currencies correctly</li>
+        <li>Bugfix: REMOTE_ADDR is now restricted to a single and sanitized value</li>
+        <li>Bugfix: button_sold_out_sm.gif image file rebuilt   </li>
+        <li>Bugfix: button_delete_small.gif implemented </li>
+        <li>Bugfix: added &quot;small&quot; search button </li>
+        <li>Bugfix: PHP 5.2.0 quirk now accounted for </li>
+        <li>Bugfix: fix HTML email line-breaks for attributes and comments in order emails </li>
+        <li>Bugfix: turn off alpha filter on categories with subcats and no immediate products</li>
+        <li>Bugfix: email options for sendmail-f were inconsistently working</li>
+        <li>Bugfix: email error messages were not displaying the actual errors</li>
+        <li>Bugfix: html-formatted emails weren't displaying CC type if CC used for payment </li>
+        <li>Bugfix: fixed misnamed button on address book page </li>
+        <li>Bugfix: Fixed popup windows to regain focus if accidentally pushed behind current window </li>
+        <li>Bugfix: rare JS validator script problem fixed on payment page </li>
+        <li>Bugfix: some programming changes implementing require_once/include_once to prevent duplicate loading of components if calling from modular points </li>
+        <li>Bugfix: on fresh installs, if GV module wasn't removed and re-installed, the order-status key wasn't made available. Thus, orders paid-in-full via GV were set to the store's default order status upon completion. (In most cases this was still okay.) </li>
+        <li>Bugfix: techsupp.php utility wasn't register-globals friendly. Changed+enhanced+sanitized.<br>  
+          <br>
+        </li>
+        <li>Other: example zip files in the /download folder fixed -- now are working zip's </li>
+</ul></td>
+</tr>
+</table>
+<br /><br />
+<p align="center"><em>Zen Cart&trade; Copyright 2006</em></p>
+<br /><br />
+</body>
+</html>
