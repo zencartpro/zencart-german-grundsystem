@@ -889,11 +889,11 @@
     return $valid_downloads;
   }
 
-// build date range for new products
-  function zen_get_new_date_range($time_limit = false) {
-    if ($time_limit == false) {
-      $time_limit = SHOW_NEW_PRODUCTS_LIMIT;
-    }
+// build date range for new products 
+  function zen_get_new_date_range($time_limit = false) { 
+    if ($time_limit == false) { 
+      $time_limit = SHOW_NEW_PRODUCTS_LIMIT; 
+    } 
     // 120 days; 24 hours; 60 mins; 60secs
     $date_range = time() - ($time_limit * 24 * 60 * 60);
     $upcoming_mask_range = time();
@@ -922,7 +922,6 @@
     }
     return $new_range;
   }
-
 
 // build date range for upcoming products
   function zen_get_upcoming_date_range() {

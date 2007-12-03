@@ -22,10 +22,12 @@ if (!defined('IS_ADMIN_FLAG')) {
                      'link'  => zen_href_link(basename($PHP_SELF), zen_get_all_get_params(array('selected_box')) . 'selected_box=configuration'));
   if (1 == 1) {
     $cfg_groups = '';
-    $configuration_groups = $db->Execute("select configuration_group_id as cgID, 
-                                                       configuration_group_title as cgTitle 
-                                                from " . TABLE_CONFIGURATION_GROUP . " 
-                                                where visible = '1' order by sort_order");
+    # r.l. added language_id
+    $configuration_groups = $db->Execute("select configuration_group_id as cgID,
+                                                       configuration_group_title as cgTitle
+                                                from " . TABLE_CONFIGURATION_GROUP . "
+                                 where visible = '1' AND language_id = '" . $_SESSION['languages_id'] . "'
+                                 order by sort_order");
 
     while (!$configuration_groups->EOF) {
       $cfg_groups .= '<li><a href="' . zen_href_link(FILENAME_CONFIGURATION, 'gID=' . $configuration_groups->fields['cgID'], 'NONSSL') . '">' . $configuration_groups->fields['cgTitle'] . '</a></li>' . "\n";

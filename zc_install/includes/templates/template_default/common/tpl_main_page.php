@@ -33,7 +33,7 @@
   </div>
   <div id="navigation">
   <?php
-  require(DIR_WS_INSTALL_TEMPLATE . "sideboxes/navigation.php");
+  require(DIR_WS_INSTALL_TEMPLATE . "sideboxes/$language/navigation.php");
   ?>
   </div>
   <div id="footer">

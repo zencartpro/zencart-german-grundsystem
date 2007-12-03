@@ -49,7 +49,6 @@ define('TEXT_OR_VISIT', 'or visit ');
 define('TEXT_ENTER_CODE', ' and enter the code during the checkout process');
 define('TEXT_CLICK_TO_REDEEM','Click here to redeem');
 
-define ('TEXT_REDEEM_COUPON_MESSAGE_HEADER', 'You recently purchased a  ' . TEXT_GV_NAME . ' from our site, for security reasons, the amount of the  ' . TEXT_GV_NAME . ' was not immediately credited to you. The shop owner has now released this amount.');
 define ('TEXT_REDEEM_COUPON_MESSAGE_AMOUNT', "\n\n" . 'The value of the  ' . TEXT_GV_NAME . ' was %s');
 define ('TEXT_REDEEM_COUPON_MESSAGE_BODY', "\n\n" . 'You can now visit our site, login and send the  ' . TEXT_GV_NAME . ' amount to anyone you want.');
 define ('TEXT_REDEEM_COUPON_MESSAGE_FOOTER', "\n\n");

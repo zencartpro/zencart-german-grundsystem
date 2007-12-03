@@ -25,6 +25,7 @@ if (!defined('IS_ADMIN_FLAG')) {
   require(DIR_WS_BOXES . 'tools_dhtml.php');
   require(DIR_WS_BOXES . 'gv_admin_dhtml.php');
   require(DIR_WS_BOXES . 'extras_dhtml.php');
+  require(DIR_WS_BOXES . 'zendeutsch_dhtml.php');
 
 ?>
 </ul>

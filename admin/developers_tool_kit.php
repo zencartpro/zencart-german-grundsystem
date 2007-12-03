@@ -43,7 +43,7 @@
     $file_extension = '.php';
     if ($d) {
       while($entry = $d->read()) {
-        if ($entry != "." && $entry != "..") {
+        if ($entry != "." && $entry != ".." && $entry!='.svn') {
           if (is_dir($dirName."/".$entry)) {
             if ($entry == 'CVS') {
             // skip
