@@ -1,0 +1,233 @@
+<!--
+/**
+ * @package documentation
+ * @copyright Copyright 2003-2006 Zen Cart Development Team
+ * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
+ * @version $Id: changelog-v1-3-7.html 5462 2006-12-30 00:48:28Z drbyte $
+ */
+//-->
+<html>
+<style type="text/css">
+<!--
+body, table{ font-family:Verdana, Arial, Helvetica, sans-serif; font-size:14px; }
+table.intro {border-color:C96E29; }
+td.intro{background-color:#EEEEEE ; border-color:5778ce; font-size:14px; }
+td.plainbox, div.callout {border: 1px dashed; border-color: C96E29; margin:5 40 5 40;}
+.heading {background-color:5778CE; font-weight:bold; font-size:14px;	width: 100%; }
+
+.title1 {color:C96E29; font-weight:bold; font-size:22px; }
+.title2 {color:C96E29; font-weight:bold; font-size:13px; }
+.small {font-size:10px ;}
+.error {color:FF0000; }
+.filename {font-family: mono, "Courier New", Courier ; font-size:14px; color: c96e29;}
+.pseudolink {text-decoration:underline; color:5778CE;}
+h1.intro { color: #ffffff; border:1px solid #aca893; background-color: #c96e29;  font-size: 22px;   padding: 4px;}
+h1 { color: #ffffff;    border:1px solid #aca893;   background-color: #5778ce;   font-size: 20px;   padding: 4px;}
+h2 { color: #c96e29; 	font-size: 18px;}
+h3 { color: #5778ce;	font-size: 16px; margin-bottom:0px;}
+h4 { color: #c96e29;	font-size: 14px;}
+
+
+-->
+</style>
+<title>Zen Cart(tm) Changelog</title><body>
+
+<table class="intro" cellspacing="4" cellpadding="6" border="3" width="748px" align="center">
+<tr><td class="intro">
+<center><h1 class="intro">Welcome to Zen Cart&trade; ...</h1></center>
+<br />
+The Zen Cart&trade; software is made available to you for use, additions, changes, modifications, etc. without charge, under the GNU General Public License.
+<br />
+<br />
+While we do not charge for this software, donations are greatly appreciated each time you download a new version, to help cover the expenses of maintenance, upgrades, updates, the free support forum and the continued development of this software for your online e-commerce store.
+<br />
+<br />
+Donations can be made at:
+<a href="http://www.zen-cart.com/index.php?main_page=infopages&pages_id=14" target="_blank">The Zen Cart&trade; Team Page</a>
+<br />
+<br />
+We appreciate your support.<br />
+<em>The Zen Cart&trade; Team</em><br />
+<br />
+
+<center>
+<span class="small">
+Zen Cart&trade; is derived from: Copyright  2003 osCommerce<br />
+This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;<br />
+without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE<br />
+and is redistributable under the GNU General Public License<br /><br />
+</span>
+</center>
+</td></tr></table>
+
+<br />
+<table border="3" width="748px" align="center" cellpadding="6">
+  <tr>
+<td align="center"><img src="osi-certified-120x100.png" /><br />
+This software is OSI Certified Open Source Software.<br />
+OSI Certified is a certification mark of the Open Source Initiative.
+</td></tr></table>
+<br />
+
+<table border="3" width="748px" align="center" cellpadding="6">
+<tr><td>
+<h1 align="center" class="intro">Version 1.3.7</h1>
+<p>NOTE:<br>
+  For a listing of What's New in this release, please see the <a href="whatsnew_1.3.7.html" target="_blank">whatsnew_1.3.7.html</a> file in the <span class="filename">/docs</span> folder. <br />
+      <a href="http://www.zen-cart.com/forum/showthread.php?t=54424" target="_blank">You may also see the list in the support forum here</a>. <br />
+      <br>
+      The following is a list of FILE/FOLDER changes: </p>
+<h1>Moved Files (since release of v1.3.6)</h1>
+<ul>
+<li>None</li>
+</ul>
+<h1>Changed Files (since release of v1.3.6)</h1>
+<ul>
+<li>/install.txt
+<li>/ipn_main_handler.php
+<li>/admin/coupon_admin.php
+<li>/admin/index.php
+<li>/admin/media_manager.php
+<li>/admin/orders.php
+<li>/admin/includes/footer.php
+<li>/admin/includes/index.css
+<li>/admin/includes/stylesheet.css
+<li>/admin/includes/functions/general.php
+<li>/admin/includes/functions/localization.php
+<li>/admin/includes/functions/sessions.php
+<li>/admin/includes/languages/english/email_extras.php
+<li>/admin/includes/languages/english/media_manager.php
+
+<li>/admin/includes/modules/copy_to_confirm.php
+<li>/admin/includes/modules/product/preview_info.php
+<li>/docs/1.readme_installation.html
+<li>/docs/2.readme_how_to_upgrade.html
+
+<li>/docs/index.html
+
+<li>/docs/INSTALL.TXT
+
+<li>/docs/readme_css_system.html
+<li>/download/test.zip
+
+<li>/download/test2.zip
+<li>/download/unreal.zip
+<li>/editors/htmlarea/popupwin.js
+<li>/extras/ipn_test_return.php
+<li>/includes/database_tables.php
+<li>/includes/version.php
+<li>/includes/classes/cc_validation.php
+<li>/includes/classes/message_stack.php
+<li>/includes/classes/order.php
+<li>/includes/classes/order_total.php
+<li>/includes/classes/payment.php
+<li>/includes/classes/shipping.php
+<li>/includes/classes/shopping_cart.php
+<li>/includes/classes/db/mysql/query_factory.php
+<li>/includes/functions/functions_email.php
+<li>/includes/functions/sessions.php
+<li>/includes/init_includes/init_customer_auth.php
+<li>/includes/init_includes/init_sanitize.php
+<li>/includes/init_includes/init_sessions.php
+<li>/includes/languages/english.php
+<li>/includes/languages/english/button_names.php
+<li>/includes/languages/english/checkout_success.php
+<li>/includes/languages/english/email_extras.php
+<li>/includes/languages/english/login.php
+<li>/includes/languages/english/modules/payment/authorizenet.php
+<li>/includes/languages/english/modules/payment/authorizenet_aim.php
+<li>/includes/languages/english/modules/payment/linkpoint_api.php
+<li>/includes/languages/english/modules/payment/paypal.php
+<li>/includes/languages/english/modules/shipping/usps.php
+<li>/includes/modules/additional_images.php
+<li>/includes/modules/also_purchased_products.php
+<li>/includes/modules/checkout_process.php
+<li>/includes/modules/meta_tags.php
+<li>/includes/modules/shipping_estimator.php
+<li>/includes/modules/order_total/ot_gv.php
+<li>/includes/modules/pages/advanced_search_result/header_php.php
+<li>/includes/modules/pages/checkout_confirmation/header_php.php
+<li>/includes/modules/pages/checkout_payment/jscript_main.php
+<li>/includes/modules/pages/checkout_shipping/header_php.php
+<li>/includes/modules/pages/create_account/jscript_form_check.php
+<li>/includes/modules/pages/create_account_success/header_php.php
+<li>/includes/modules/pages/document_general_info/main_template_vars.php
+<li>/includes/modules/pages/document_product_info/main_template_vars.php
+<li>/includes/modules/pages/gv_redeem/header_php.php
+<li>/includes/modules/pages/gv_send/header_php.php
+<li>/includes/modules/pages/index/main_template_vars.php
+<li>/includes/modules/pages/login/header_php.php
+<li>/includes/modules/pages/logoff/header_php.php
+
+<li>/includes/modules/pages/page/header_php.php
+
+<li>/includes/modules/pages/product_free_shipping_info/main_template_vars.php
+<li>/includes/modules/pages/product_info/main_template_vars.php
+<li>/includes/modules/pages/product_music_info/main_template_vars.php
+<li>/includes/modules/payment/authorizenet.php
+<li>/includes/modules/payment/authorizenet_aim.php
+<li>/includes/modules/payment/cc.php
+<li>/includes/modules/payment/linkpoint_api.php
+<li>/includes/modules/payment/linkpoint_api/class.linkpoint_api.php
+<li>/includes/modules/payment/moneyorder.php
+<li>/includes/modules/payment/paypal.php
+<li>/includes/modules/payment/paypal/ipn_application_top.php
+<li>/includes/modules/payment/paypal/paypal_functions.php
+<li>/includes/modules/shipping/usps.php
+<li>/includes/templates/classic/css/stylesheet.css
+<li>/includes/templates/template_default/buttons/english/button_sold_out_sm.gif
+<li>/includes/templates/template_default/common/tpl_main_page.php
+<li>/includes/templates/template_default/css/stylesheet.css
+<li>/includes/templates/template_default/templates/tpl_address_book_default.php
+<li>/includes/templates/template_default/templates/tpl_checkout_confirmation_default.php
+<li>/includes/templates/template_default/templates/tpl_checkout_payment_address_default.php
+<li>/includes/templates/template_default/templates/tpl_checkout_payment_default.php
+<li>/includes/templates/template_default/templates/tpl_checkout_shipping_address_default.php
+<li>/includes/templates/template_default/templates/tpl_checkout_shipping_default.php
+<li>/includes/templates/template_default/templates/tpl_checkout_success_default.php
+<li>/includes/templates/template_default/templates/tpl_create_account_success_default.php
+<li>/includes/templates/template_default/templates/tpl_document_general_info_display.php
+<li>/includes/templates/template_default/templates/tpl_document_product_info_display.php
+<li>/includes/templates/template_default/templates/tpl_gv_faq_default.php
+<li>/includes/templates/template_default/templates/tpl_gv_send_default.php
+<li>/includes/templates/template_default/templates/tpl_index_product_list.php
+<li>/includes/templates/template_default/templates/tpl_login_default.php
+<li>/includes/templates/template_default/templates/tpl_modules_shipping_estimator.php
+<li>/includes/templates/template_default/templates/tpl_product_free_shipping_info_display.php
+<li>/includes/templates/template_default/templates/tpl_product_info_display.php
+<li>/includes/templates/template_default/templates/tpl_product_music_info_display.php
+<li>/includes/templates/template_default/templates/tpl_product_reviews_default.php
+<li>/includes/templates/template_default/templates/tpl_shopping_cart_default.php
+  <br>
+  <br>
+<li>/zc_install/ ... assume *all* of /zc_install/ has changed
+</ul>
+
+<h1>Deleted Files (since  release of v1.3.6)</h1>
+<ul>
+<li>None</li>
+</ul>
+<h1>New Files (since  release of v1.3.6)</h1>
+<ul>
+<li>/docs/changelog-v1-3-7.html
+<li>/docs/whatsnew_1.3.7.html
+<li>/includes/languages/english/modules/payment/paypalwpp.php
+<li>/includes/modules/pages/account_history_info/jscript_main.php
+<li>/includes/modules/pages/popup_shipping_estimator/jscript_addr_pulldowns.php
+<li>/includes/modules/payment/paypalwpp.php
+<li>/includes/modules/payment/paypal/paypal_curl.php
+<li>/includes/modules/payment/paypal/paypalwpp_admin_notification.php
+<li>/includes/modules/payment/paypal/tpl_ec_button.php
+<li>/includes/templates/template_default/buttons/english/button_create_account.gif
+<li>/includes/templates/template_default/buttons/english/button_delete_small.gif
+<li>/includes/templates/template_default/buttons/english/button_logoff.gif
+<li>/includes/templates/template_default/buttons/english/search_small.gif
+<li>/zc_install/sql/mysql_upgrade_zencart_136_to_137.sql
+<h1>&nbsp;</h1>
+</td>
+</tr>
+</table>
+<p align="center"><em>Zen Cart&trade; Copyright 2006</em></p>
+<br /><br />
+</body>
+</html>
