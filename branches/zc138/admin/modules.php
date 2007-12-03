@@ -8,6 +8,19 @@
  */
 
   require('includes/application_top.php');
+//r.l.: merge module languages
+  function getModuleLanguage($module_keys, $mKeys) {
+    global $db;
+    $keys = "'" . implode("','", $module_keys) . "'";
+    $query = "SELECT * FROM ".TABLE_CONFIGURATION_LANGUAGE . " WHERE configuration_language_id=". $_SESSION['languages_id'] . " AND configuration_key IN (".$keys . ")";
+    $conf = $db->Execute($query);
+    while (!$conf->EOF) {
+        $mKeys[$conf->fields['configuration_key']]['title'] = $conf->fields['configuration_title'];
+        $mKeys[$conf->fields['configuration_key']]['description'] = $conf->fields['configuration_description'];
+        $conf->MoveNext();
+    }
+    return $mKeys;
+  }
 
   $set = (isset($_GET['set']) ? $_GET['set'] : '');
 
@@ -204,7 +217,11 @@
           $keys_extra[$module_keys[$j]]['use_function'] = $key_value->fields['use_function'];
           $keys_extra[$module_keys[$j]]['set_function'] = $key_value->fields['set_function'];
         }
-        $module_info['keys'] = $keys_extra;
+        //r.l.: merge module languages
+        $keys_extraL = getModuleLanguage($module_keys, $keys_extra);
+        #rldp($keys_extraL, '$keys_extraL');
+        $module_info['keys'] = $keys_extraL;
+        #rldp($module_info['keys']);
         $mInfo = new objectInfo($module_info);
       }
       if (isset($mInfo) && is_object($mInfo) && ($class == $mInfo->code) ) {

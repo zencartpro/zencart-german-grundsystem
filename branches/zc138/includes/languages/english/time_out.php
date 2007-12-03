@@ -15,5 +15,5 @@ define('TEXT_INFORMATION', '<p>If you were placing an order, please login and yo
 define('TEXT_INFORMATION_LOGGED_IN', 'You are still logged in to your account and may continue shopping. Please choose a destination from a menu.');
 
 define('HEADING_RETURNING_CUSTOMER', 'Login');
-define('TEXT_PASSWORD_FORGOTTEN', 'Forgot Your Password?')
+define('TEXT_PASSWORD_FORGOTTEN', 'Forgot Your Password?');
 ?>

@@ -97,6 +97,31 @@ if (isset($loaderPrefix)) {
 $loader_file = $loaderPrefix . '.core.php';
 require('includes/initsystem.php');
 /**
+<<<<<<< .working
+=======
+ * load the default application_top autoloader file.
+ */
+$autoLoadConfig = array();
+include($base_dir . $loader_file);
+if ($loader_dir = dir(DIR_WS_INCLUDES . 'auto_loaders')) {
+  while ($loader_file = $loader_dir->read()) {
+    if ((preg_match('/^config\./', $loader_file) > 0) && (preg_match('/\.php$/', $loader_file) > 0)) {
+      if ($loader_file != 'config.core.php') {
+        $base_dir = DIR_WS_INCLUDES . 'auto_loaders/';
+        if (file_exists(DIR_WS_INCLUDES . 'auto_loaders/overrides/' . $loader_file)) {
+          $base_dir = DIR_WS_INCLUDES . 'auto_loaders/overrides/';
+        }
+        /**
+         * load the application_top autoloader files.
+         */
+        include($base_dir . $loader_file);
+      }
+    }
+  }
+}
+
+/**
+>>>>>>> .merge-rechts.r186
  * determine install status
  */
 if (( (!file_exists('includes/configure.php') && !file_exists('includes/local/configure.php')) ) || (DB_TYPE == '') || (!file_exists('includes/classes/db/' .DB_TYPE . '/query_factory.php')) || !file_exists('includes/autoload_func.php')) {

@@ -127,7 +127,7 @@ $language = (isset($_GET['language']) && $_GET['language'] != '') ? $_GET['langu
 if ($language == '') $language = 'english';
 if (!file_exists('includes/languages/' . $language . '.php')) {
   $zc_install->throwException('Specified language file not found. Defaulting to english. (' . 'includes/languages/' . $language . '.php)');
-  $language = 'english';
+  $language = 'german';
 }
 $zc_install->setConfigKey('language', $language);
 /*

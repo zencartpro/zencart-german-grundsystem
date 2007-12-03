@@ -1,14 +1,26 @@
 <?php
 /**
  * @package admin
- * @copyright Copyright 2003-2007 Zen Cart Development Team
+ * @copyright Copyright 2003-2006 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: attributes_controller.php 182 2007-12-02 10:04:59Z hugo13 $
+ * @version $Id: attributes_controller.php 4280 2006-08-26 03:32:55Z drbyte $
  */
 
   require('includes/application_top.php');
 
+/* r.l. ajax */ 
+require_once("../ajax/xajax.inc.php");
+define ('XAJAX_DEFAULT_CHAR_ENCODING', 'windows-1251');   
+$xajax = new xajax();
+$xajax -> registerFunction("getAttrib");
+$xajax -> registerFunction("hideoptionname");
+$xajax -> processRequests();
+#$xajax -> printJavascript('../ajax/');
+$xajax -> decodeUTF8InputOn();     
+$xajax->outputEntitiesOn();
+
+                       
   // verify option names, values, products
   $chk_option_names = $db->Execute("select * from " . TABLE_PRODUCTS_OPTIONS . " where language_id='" . $_SESSION['languages_id'] . "' limit 1");
   if ($chk_option_names->RecordCount() < 1) {
@@ -173,24 +185,28 @@
         break;
       case 'add_product_attributes':
 // check for duplicate and block them
-        $check_duplicate = $db->Execute("select * from " . TABLE_PRODUCTS_ATTRIBUTES . "
+/* r.l. ajax ; multiple inserts*/ 
+        foreach ($_POST['values_id'] as $Pvalues_id) {
+            $sql = "select * from " . TABLE_PRODUCTS_ATTRIBUTES . "
                                          where products_id ='" . $_POST['products_id'] . "'
                                          and options_id = '" . $_POST['options_id'] . "'
-                                         and options_values_id = '" . $_POST['values_id'] . "'");
-
+                                             and options_values_id = '" . $Pvalues_id . "'";
+        $check_duplicate = $db->Execute($sql);
+        #echo $sql;
         if ($check_duplicate->RecordCount() > 0) {
           // do not add duplicates give a warning
-          $messageStack->add_session(ATTRIBUTE_WARNING_DUPLICATE . ' - ' . zen_options_name($_POST['options_id']) . ' : ' . zen_values_name($_POST['values_id']), 'error');
+              $messageStack->add_session(ATTRIBUTE_WARNING_DUPLICATE . ' - ' . zen_options_name($_POST['options_id']) . ' : ' . zen_values_name($Pvalues_id), 'error');
         } else {
           // Validate options_id and options_value_id
-          if (!zen_validate_options_to_options_value($_POST['options_id'], $_POST['values_id'])) {
-            // do not add invalid match
-            $messageStack->add_session(ATTRIBUTE_WARNING_INVALID_MATCH . ' - ' . zen_options_name($_POST['options_id']) . ' : ' . zen_values_name($_POST['values_id']), 'error');
-          } else {
-// iii 030811 added:  For TEXT and FILE option types, ignore option value
+              /*
+              if (!zen_validate_options_to_options_value($_POST['options_id'], $Pvalues_id)) {
+                // do not add invalid match
+                $messageStack->add_session(ATTRIBUTE_WARNING_INVALID_MATCH . ' - ' . zen_options_name($_POST['options_id']) . ' : ' . zen_values_name($Pvalues_id), 'error');
+              } else {
+                  */
 // entered by administrator and use PRODUCTS_OPTIONS_VALUES_TEXT instead.
         $products_options_array = $db->Execute("select products_options_type from " . TABLE_PRODUCTS_OPTIONS . " where products_options_id = '" . $_POST['options_id'] . "'");
-        $values_id = zen_db_prepare_input((($products_options_array->fields['products_options_type'] == PRODUCTS_OPTIONS_TYPE_TEXT) or ($products_options_array->fields['products_options_type'] == PRODUCTS_OPTIONS_TYPE_FILE)) ? PRODUCTS_OPTIONS_VALUES_TEXT_ID : $_POST['values_id']);
+            $values_id = zen_db_prepare_input((($products_options_array->fields['products_options_type'] == PRODUCTS_OPTIONS_TYPE_TEXT) or ($products_options_array->fields['products_options_type'] == PRODUCTS_OPTIONS_TYPE_FILE)) ? PRODUCTS_OPTIONS_VALUES_TEXT_ID : $Pvalues_id);
 
             $products_id = zen_db_prepare_input($_POST['products_id']);
             $options_id = zen_db_prepare_input($_POST['options_id']);
@@ -238,7 +254,8 @@
             $attributes_image_name = (isset($_POST['attributes_previous_image']) ? $_POST['attributes_previous_image'] : '');
           }
 
-            $db->Execute("insert into " . TABLE_PRODUCTS_ATTRIBUTES . " (products_attributes_id, products_id, options_id, options_values_id, options_values_price, price_prefix, products_options_sort_order, product_attribute_is_free, products_attributes_weight, products_attributes_weight_prefix, attributes_display_only, attributes_default, attributes_discounted, attributes_image, attributes_price_base_included, attributes_price_onetime, attributes_price_factor, attributes_price_factor_offset, attributes_price_factor_onetime, attributes_price_factor_onetime_offset, attributes_qty_prices, attributes_qty_prices_onetime, attributes_price_words, attributes_price_words_free, attributes_price_letters, attributes_price_letters_free, attributes_required) 
+// @TODO: MySQL5
+            $db->Execute("insert into " . TABLE_PRODUCTS_ATTRIBUTES . "
                           values (0,
                                   '" . (int)$products_id . "',
                                   '" . (int)$options_id . "',
@@ -277,14 +294,14 @@
 //die( 'I am adding ' . strlen($_POST['products_attributes_filename']) . ' vs ' . strlen(trim($_POST['products_attributes_filename'])) . ' vs ' . strlen(zen_db_prepare_input($_POST['products_attributes_filename'])) . ' vs ' . strlen(zen_db_input($products_attributes_filename)) );
               if (zen_not_null($products_attributes_filename)) {
                 $db->Execute("insert into " . TABLE_PRODUCTS_ATTRIBUTES_DOWNLOAD . "
-                              (products_attributes_id, products_attributes_filename, products_attributes_maxdays, products_attributes_maxcount)
                               values (" . (int)$products_attributes_id . ",
                                       '" . zen_db_input($products_attributes_filename) . "',
                                       '" . zen_db_input($products_attributes_maxdays) . "',
                                       '" . zen_db_input($products_attributes_maxcount) . "')");
-              }
+                  }
+                }
+              #}
             }
-          }
         }
 
         // reset products_price_sorter for searches etc.
@@ -989,7 +1006,7 @@ if ($action == '') {
 // fix here border width
 ?>
       <tr>
-        <td><form name="attributes" action="<?php echo zen_href_link(FILENAME_ATTRIBUTES_CONTROLLER, 'action=' . $form_action . (isset($_GET['option_page']) ? '&option_page=' . $_GET['option_page'] . '&' : '') . (isset($_GET['value_page']) ? '&value_page=' . $_GET['value_page'] . '&' : '') . (isset($_GET['attribute_page']) ? '&attribute_page=' . $_GET['attribute_page'] : '') . '&products_filter=' . $products_filter ); ?>" method="post", enctype="multipart/form-data"><table border="0" cellspacing="0" cellpadding="2">
+        <td><form id="attributes" name="attributes" action="<?php echo zen_href_link(FILENAME_ATTRIBUTES_CONTROLLER, 'action=' . $form_action . (isset($_GET['option_page']) ? '&option_page=' . $_GET['option_page'] . '&' : '') . (isset($_GET['value_page']) ? '&value_page=' . $_GET['value_page'] . '&' : '') . (isset($_GET['attribute_page']) ? '&attribute_page=' . $_GET['attribute_page'] : '') . '&products_filter=' . $products_filter ); ?>" method="post", enctype="multipart/form-data"><table border="0" cellspacing="0" cellpadding="2">
 
           <tr>
             <td colspan="10" class="smallText">
@@ -1338,7 +1355,6 @@ if ($action == '') {
       $dir_info[] = array('id' => $file . '/', 'text' => $file);
     }
   }
-  $dir->close();
 
   sort($dir_info);
 
@@ -1640,26 +1656,33 @@ if ($action == '') {
           </tr></table></td></tr>
           <tr class="attributeBoxContent"><td><table><tr>
             <td class="attributeBoxContent" width="40">&nbsp;</td>
-            <td class="attributeBoxContent">&nbsp;<?php echo TABLE_HEADING_OPT_NAME . '<br />'; ?><select name="options_id" size="<?php echo ($action != 'delete_attribute' ? "5" : "1"); ?>">
+            <td class="attributeBoxContent">&nbsp;
 <?php
+// r.l.  AJAX1 changes for ajax
+            echo TABLE_HEADING_OPT_NAME . '<br />'; 
+            $si = ($action != 'delete_attribute' ? "5" : "1");
     $options_values = $db->Execute("select * from " . TABLE_PRODUCTS_OPTIONS . "
                                     where language_id = '" . $_SESSION['languages_id'] . "'
                                     order by products_options_name");
 
     while (!$options_values->EOF) {
-      echo '<option name="' . $options_values->fields['products_options_name'] . '" value="' . $options_values->fields['products_options_id'] . '">' . $options_values->fields['products_options_name'] . '&nbsp;&nbsp;&nbsp;[' . translate_type_to_name($options_values->fields['products_options_type']) . ']' . '</option>';
+     $val_1[]=array('id'=>$options_values -> fields['products_options_id'], 'text'=>$options_values -> fields['products_options_name']);
       $options_values->MoveNext();
     }
+/* r.l. ajax */ 
+ $xajax -> printJavascript('../ajax/');
+    echo zen_draw_pull_down_menu('options_id', $val_1, '', ' size="'.$si.'" id="options_id" onchange="xajax_getAttrib(xajax.getFormValues(\'attributes\'));return false; "');
 ?>
-            </select>&nbsp;</td>
-            <td class="attributeBoxContent">&nbsp;<?php echo TABLE_HEADING_OPT_VALUE . '<br />'; ?><select name="values_id" size="<?php echo ($action != 'delete_attribute' ? "5" : "1"); ?>">
+            </td>
+            <td class="attributeBoxContent">&nbsp;<?php echo TABLE_HEADING_OPT_VALUE . '<br />
+            <div id="values_id"><strong>select a Attributname</strong></div>'; ?>
 <?php
     $values_values = $db->Execute("select * from " . TABLE_PRODUCTS_OPTIONS_VALUES . "
                                    where language_id = '" . $_SESSION['languages_id'] . "'
                                    order by products_options_values_name");
     while (!$values_values->EOF) {
       $show_option_name= '&nbsp;&nbsp;&nbsp;[' . strtoupper(zen_get_products_options_name_from_value($values_values->fields['products_options_values_id'])) . ']';
-      echo '<option name="' . $values_values->fields['products_options_values_name'] . '" value="' . $values_values->fields['products_options_values_id'] . '">' . $values_values->fields['products_options_values_name'] . $show_option_name . '</option>';
+      #echo '<option name="' . $values_values->fields['products_options_values_name'] . '" value="' . $values_values->fields['products_options_values_id'] . '">' . $values_values->fields['products_options_values_name'] . $show_option_name . '</option>';
       $values_values->MoveNext();
     }
 ?>

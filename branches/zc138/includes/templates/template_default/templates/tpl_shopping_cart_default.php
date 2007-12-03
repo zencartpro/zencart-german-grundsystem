@@ -83,6 +83,9 @@
        </td>
        <td class="cartProductDisplay">
 <a href="<?php echo $product['linkProductsName']; ?>"><span id="cartImage" class="back"><?php echo $product['productsImage']; ?></span><span id="cartProdTitle"><?php echo $product['productsName'] . '<span class="alert bold">' . $product['flagStockCheck'] . '</span>'; ?></span></a>
+<?php
+	// WFH 030806: add comment for onetime charges 
+	echo $product['productsImage'] ? '<div id="cartImage" class="back">' . $product['productsImage'] . '</div>' : ""; ?><div id="cartProdTitle"><a href="<?php echo $product['linkProductsName']; ?>"><?php echo $product['productsName'] . '<span class="alert bold">' . $product['flagStockCheck'] . '</span></a>' . ($product['oneTimeCharge'] ? "<br/><span class='oneTimeCharge'>" . TEXT_ONETIME_CHARGES_BASKET . "</span></div>" : "</div>"); ?>
 <br class="clearBoth" />
 
 

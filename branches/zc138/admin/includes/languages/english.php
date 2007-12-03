@@ -673,5 +673,7 @@ define('ENTRY_NOTHING_TO_SEND','You haven\'t entered any content for your messag
   require(DIR_WS_LANGUAGES . $_SESSION['language'] . '/' . FILENAME_EMAIL_EXTRAS);
   include(zen_get_file_directory(DIR_FS_CATALOG_LANGUAGES . $_SESSION['language'] . '/', FILENAME_OTHER_IMAGES_NAMES, 'false'));
 
-
+// Additional Localisation - Languages - Phone Country Code
+define('TEXT_INFO_LANGUAGE_ID', 'Enter telephon country access code without leading 0<br />(english must be 1, german musst be 43):');
+define('TEXT_INFO_LANGUAGE_CODE', 'Code:<br />(en = englisch, de = german)');
 ?>
