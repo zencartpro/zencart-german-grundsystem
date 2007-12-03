@@ -4,10 +4,10 @@
  * General functions used throughout Zen Cart
  *
  * @package functions
- * @copyright Copyright 2003-2006 Zen Cart Development Team
+ * @copyright Copyright 2003-2007 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: functions_general.php 4683 2006-10-07 06:11:53Z drbyte $
+ * @version $Id: functions_general.php 7125 2007-09-29 00:03:01Z ajeh $
  */
 if (!defined('IS_ADMIN_FLAG')) {
   die('Illegal Access');
@@ -16,7 +16,7 @@ if (!defined('IS_ADMIN_FLAG')) {
  * Stop from parsing any further PHP code
 */
   function zen_exit() {
-   zen_session_close();
+   session_write_close();
    exit();
   }
 
@@ -27,11 +27,11 @@ if (!defined('IS_ADMIN_FLAG')) {
   function zen_redirect($url) {
     global $request_type;
     // Are we loading an SSL page?
-    if ( (ENABLE_SSL == true) && ($request_type == 'SSL') ) { 
+    if ( (ENABLE_SSL == true) && ($request_type == 'SSL') ) {
       // yes, but a NONSSL url was supplied
-      if (substr($url, 0, strlen(HTTP_SERVER . DIR_WS_CATALOG)) == HTTP_SERVER . DIR_WS_CATALOG) { 
-        // So, change it to SSL, based on site's configuration for SSL 
-        $url = HTTPS_SERVER . DIR_WS_HTTPS_CATALOG . substr($url, strlen(HTTP_SERVER . DIR_WS_CATALOG)); 
+      if (substr($url, 0, strlen(HTTP_SERVER . DIR_WS_CATALOG)) == HTTP_SERVER . DIR_WS_CATALOG) {
+        // So, change it to SSL, based on site's configuration for SSL
+        $url = HTTPS_SERVER . DIR_WS_HTTPS_CATALOG . substr($url, strlen(HTTP_SERVER . DIR_WS_CATALOG));
       }
     }
 
@@ -145,7 +145,7 @@ if (!defined('IS_ADMIN_FLAG')) {
       while (list($key, $value) = each($_GET)) {
         if ( (strlen($value) > 0) && ($key != 'main_page') && ($key != zen_session_name()) && ($key != 'error') && (!in_array($key, $exclude_array)) && ($key != 'x') && ($key != 'y') ) {
           if ( (SEARCH_ENGINE_FRIENDLY_URLS == 'true') && ($search_engine_safe == true) ) {
-//	  die ('here');
+//    die ('here');
             $get_url .= $key . '/' . rawurlencode(stripslashes($value)) . '/';
           } else {
             $get_url .= $key . '=' . rawurlencode(stripslashes($value)) . '&';
@@ -536,12 +536,12 @@ if (!defined('IS_ADMIN_FLAG')) {
     $uprid = $prid;
     if ( (is_array($params)) && (!strstr($prid, ':')) ) {
       while (list($option, $value) = each($params)) {
-	    if (is_array($value)) {
+        if (is_array($value)) {
           while (list($opt, $val) = each($value)) {
             $uprid = $uprid . '{' . $option . '}' . trim($opt);
-		  }
-		  break;
-	    }
+          }
+          break;
+        }
         //CLR 030714 Add processing around $value. This is needed for text attributes.
         $uprid = $uprid . '{' . $option . '}' . trim($value);
       }
@@ -549,9 +549,9 @@ if (!defined('IS_ADMIN_FLAG')) {
       $md_uprid = '';
 
       $md_uprid = md5($uprid);
-	  return $prid . ':' . $md_uprid;
-	} else {
-	  return $prid;
+      return $prid . ':' . $md_uprid;
+    } else {
+      return $prid;
     }
   }
 
@@ -656,6 +656,12 @@ if (!defined('IS_ADMIN_FLAG')) {
       } else {
         return false;
       }
+    } elseif( is_a( $value, 'queryFactoryResult' ) ) {
+      if (sizeof($value->result) > 0) {
+        return true;
+      } else {
+        return false;
+      }
     } else {
       if (($value != '') && (strtolower($value) != 'null') && (strlen(trim($value)) > 0)) {
         return true;
@@ -669,18 +675,22 @@ if (!defined('IS_ADMIN_FLAG')) {
 ////
 // Checks to see if the currency code exists as a currency
 // TABLES: currencies
-  function zen_currency_exists($code) {
+  function zen_currency_exists($code, $getFirstDefault = false) {
     global $db;
     $code = zen_db_prepare_input($code);
 
-    $currency_code = "select currencies_id
+    $currency_code = "select code
                       from " . TABLE_CURRENCIES . "
-                      where code = '" . zen_db_input($code) . "'";
+                      where code = '" . zen_db_input($code) . "' LIMIT 1";
 
-    $currency = $db->Execute($currency_code);
+    $currency_first = "select code
+                      from " . TABLE_CURRENCIES . "
+                      order by value ASC LIMIT 1";
+
+    $currency = $db->Execute(($getFirstDefault == false) ? $currency_code : $currency_first);
 
     if ($currency->RecordCount()) {
-      return strtoupper($code);
+      return strtoupper($currency->fields['code']);
     } else {
       return false;
     }
@@ -834,8 +844,8 @@ if (!defined('IS_ADMIN_FLAG')) {
     $retVal = 'none';
     $productCatPath = zen_get_product_path($product_id);
     $catPathArray = array_reverse(explode('_', $productCatPath));
-    $sql = "SELECT count(*) AS total 
-            FROM " . TABLE_COUPON_RESTRICT . " 
+    $sql = "SELECT count(*) AS total
+            FROM " . TABLE_COUPON_RESTRICT . "
             WHERE category_id = -1
             AND coupon_restrict = 'Y'";
     $checkQuery = $db->execute($sql);
@@ -1075,6 +1085,10 @@ if (!defined('IS_ADMIN_FLAG')) {
   function zen_get_buy_now_button($product_id, $link, $additional_link = false) {
     global $db;
 
+// show case only superceeds all other settings
+    if (STORE_STATUS != '0') {
+      return '<a href="' . zen_href_link(FILENAME_CONTACT_US) . '">' .  TEXT_SHOWCASE_ONLY . '</a>';
+    }
 
 // 0 = normal shopping
 // 1 = Login to shop
@@ -1120,11 +1134,6 @@ if (!defined('IS_ADMIN_FLAG')) {
         // proceed normally
         break;
       }
-
-// show case only
-    if (STORE_STATUS != '0') {
-      return '<a href="' . zen_href_link(FILENAME_CONTACT_US) . '">' .  TEXT_SHOWCASE_ONLY . '</a>';
-    }
 
     $button_check = $db->Execute("select product_is_call, products_quantity from " . TABLE_PRODUCTS . " where products_id = '" . (int)$product_id . "'");
     switch (true) {
@@ -1228,7 +1237,8 @@ if (!defined('IS_ADMIN_FLAG')) {
 
 ////
 // remove common HTML from text for display as paragraph
-  function zen_clean_html($clean_it) {
+  function zen_clean_html($clean_it, $extraTags = '') {
+    if (!is_array($extraTags)) $extraTags = array($extraTags);
 
     $clean_it = preg_replace('/\r/', ' ', $clean_it);
     $clean_it = preg_replace('/\t/', ' ', $clean_it);
@@ -1237,16 +1247,24 @@ if (!defined('IS_ADMIN_FLAG')) {
     $clean_it= nl2br($clean_it);
 
 // update breaks with a space for text displays in all listings with descriptions
-    while (strstr($clean_it, '<br>')) $clean_it = str_replace('<br>', ' ', $clean_it);
+    while (strstr($clean_it, '<br>'))   $clean_it = str_replace('<br>',   ' ', $clean_it);
     while (strstr($clean_it, '<br />')) $clean_it = str_replace('<br />', ' ', $clean_it);
-    while (strstr($clean_it, '<br/>')) $clean_it = str_replace('<br/>', ' ', $clean_it);
-    while (strstr($clean_it, '<p>')) $clean_it = str_replace('<p>', ' ', $clean_it);
-    while (strstr($clean_it, '</p>')) $clean_it = str_replace('</p>', ' ', $clean_it);
+    while (strstr($clean_it, '<br/>'))  $clean_it = str_replace('<br/>',  ' ', $clean_it);
+    while (strstr($clean_it, '<p>'))    $clean_it = str_replace('<p>',    ' ', $clean_it);
+    while (strstr($clean_it, '</p>'))   $clean_it = str_replace('</p>',   ' ', $clean_it);
 
 // temporary fix more for reviews than anything else
     while (strstr($clean_it, '<span class="smallText">')) $clean_it = str_replace('<span class="smallText">', ' ', $clean_it);
     while (strstr($clean_it, '</span>')) $clean_it = str_replace('</span>', ' ', $clean_it);
 
+// clean general and specific tags:
+    $taglist = array('strong','b','u','i','em');
+    $taglist = array_merge($taglist, (is_array($extraTags) ? $extraTags : array($extraTags)));
+    foreach ($taglist as $tofind) {
+      if ($tofind != '') $clean_it = preg_replace("/<[\/\!]*?" . $tofind . "[^<>]*?>/si", ' ', $clean_it);
+    }
+
+// remove any double-spaces created by cleanups:
     while (strstr($clean_it, '  ')) $clean_it = str_replace('  ', ' ', $clean_it);
 
 // remove other html code to prevent problems on display of text
@@ -1315,10 +1333,15 @@ if (!defined('IS_ADMIN_FLAG')) {
   }
 
 // replacement for fmod to manage values < 1
-    function fmod_round($x, $y) {
-      $i = fmod($x*1000,$y*1000);
-      return $i;
-    }
+  function fmod_round($x, $y) {
+    $x = strval($x);
+    $y = strval($y);
+    $zc_round = ($x*1000)/($y*1000);
+    $zc_round_ceil = (int)($zc_round);
+    $multiplier = $zc_round_ceil * $y;
+    $results = abs(round($x - $multiplier, 6));
+     return $results;
+  }
 
 ////
 // return truncated paragraph
@@ -1451,6 +1474,36 @@ if (!defined('IS_ADMIN_FLAG')) {
 
     return(round(($date2_set-$date1_set)/(60*60*24)));
   }
+
+
+/**
+ * strip out accented characters to reasonable approximations of english equivalents
+ */
+  function replace_accents($s) {
+    $s = htmlentities($s);
+    $s = preg_replace ('/&([a-zA-Z])(uml|acute|elig|grave|circ|tilde|cedil|ring|quest|slash|caron);/', '$1', $s);
+    $s = html_entity_decode($s);
+    return $s;
+  }
+
+/**
+ * function to override PHP's is_writable() which can occasionally be unreliable due to O/S and F/S differences
+ * attempts to open the specified file for writing. Returns true if successful, false if not.
+ * if a directory is specified, uses PHP's is_writable() anyway
+ *
+ * @var string
+ * @return boolean
+ */
+  function is__writeable($filepath) {
+    if (is_dir($filepath)) return is_writable($filepath);
+    $fp = @fopen($filepath, 'a');
+    if ($fp) {
+      @fclose($fp);
+      return true;
+    }
+    return false;
+  }
+
 
 /////////////////////////////////////////////
 ////

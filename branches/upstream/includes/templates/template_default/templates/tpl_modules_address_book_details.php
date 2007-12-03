@@ -5,10 +5,10 @@
  * Displays address-book details/selection
  *
  * @package templateSystem
- * @copyright Copyright 2003-2006 Zen Cart Development Team
+ * @copyright Copyright 2003-2007 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: tpl_modules_address_book_details.php 4683 2006-10-07 06:11:53Z drbyte $
+ * @version $Id: tpl_modules_address_book_details.php 5924 2007-02-28 08:25:15Z drbyte $
  */
 ?>
 <fieldset>
@@ -43,7 +43,7 @@
   if (ACCOUNT_COMPANY == 'true') {
 ?>
 <label class="inputLabel" for="company"><?php echo ENTRY_COMPANY; ?></label>
-<?php echo zen_draw_input_field('company', '', zen_set_field_length(TABLE_ADDRESS_BOOK, 'entry_company', '40') . ' id="company"') . (zen_not_null(ENTRY_COMPANY_TEXT) ? '<span class="alert">' . ENTRY_COMPANY_TEXT . '</span>': ''); ?>
+<?php echo zen_draw_input_field('company', $entry->fields['entry_company'], zen_set_field_length(TABLE_ADDRESS_BOOK, 'entry_company', '40') . ' id="company"') . (zen_not_null(ENTRY_COMPANY_TEXT) ? '<span class="alert">' . ENTRY_COMPANY_TEXT . '</span>': ''); ?>
 <br class="clearBoth" />
 <?php
   }
@@ -73,7 +73,7 @@
 <label class="inputLabel" for="stateZone" id="zoneLabel"><?php echo ENTRY_STATE; ?></label>
 <?php
       echo zen_draw_pull_down_menu('zone_id', zen_prepare_country_zones_pull_down($selected_country), $zone_id, 'id="stateZone"');
-      if (zen_not_null(ENTRY_STATE_TEXT)) echo '&nbsp;<span class="alert">' . ENTRY_STATE_TEXT . '</span>'; 
+      if (zen_not_null(ENTRY_STATE_TEXT)) echo '&nbsp;<span class="alert">' . ENTRY_STATE_TEXT . '</span>';
     }
 ?>
 

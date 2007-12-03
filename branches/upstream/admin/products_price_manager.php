@@ -1,24 +1,11 @@
 <?php
-//
-// +----------------------------------------------------------------------+
-// |zen-cart Open Source E-commerce                                       |
-// +----------------------------------------------------------------------+
-// | Copyright (c) 2006 The zen-cart developers                           |
-// |                                                                      |
-// | http://www.zen-cart.com/index.php                                    |
-// |                                                                      |
-// | Portions Copyright (c) 2003 osCommerce                               |
-// +----------------------------------------------------------------------+
-// | This source file is subject to version 2.0 of the GPL license,       |
-// | that is bundled with this package in the file LICENSE, and is        |
-// | available through the world-wide-web at the following url:           |
-// | http://www.zen-cart.com/license/2_0.txt.                             |
-// | If you did not receive a copy of the zen-cart license and are unable |
-// | to obtain it through the world-wide-web, please send a note to       |
-// | license@zen-cart.com so we can mail you a copy immediately.          |
-// +----------------------------------------------------------------------+
-//  $Id: products_price_manager.php 4573 2006-09-20 23:46:43Z ajeh $
-//
+/**
+ * @package admin
+ * @copyright Copyright 2003-2007 Zen Cart Development Team
+ * @copyright Portions Copyright 2003 osCommerce
+ * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
+ * @version $Id: products_price_manager.php 6561 2007-07-05 17:12:31Z drbyte $
+ */
 
   require('includes/application_top.php');
 
@@ -40,14 +27,38 @@
 
   if ($action == 'new_cat') {
     $current_category_id = (isset($_GET['current_category_id']) ? $_GET['current_category_id'] : $current_category_id);
-    $new_product_query = $db->Execute("select ptc.* from " . TABLE_PRODUCTS_TO_CATEGORIES . " ptc  left join " . TABLE_PRODUCTS_DESCRIPTION . " pd on ptc.products_id = pd.products_id and pd.language_id = '" . (int)$_SESSION['languages_id'] . "' where ptc.categories_id='" . $current_category_id . "' order by pd.products_name");
+    $sql = "SELECT ptc.* 
+            FROM " . TABLE_PRODUCTS_TO_CATEGORIES . " ptc  
+            LEFT JOIN " . TABLE_PRODUCTS_DESCRIPTION . " pd 
+            ON ptc.products_id = pd.products_id 
+            AND pd.language_id = '" . (int)$_SESSION['languages_id'] . "' 
+            LEFT join " . TABLE_PRODUCTS . " p 
+            ON p.products_id = pd.products_id 
+            LEFT JOIN " . TABLE_PRODUCT_TYPES  . " pt
+            ON p.products_type = pt.type_id  
+            WHERE ptc.categories_id='" . $current_category_id . "'
+            AND pt.allow_add_to_cart = 'Y'  
+            ORDER by pd.products_name";
+    $new_product_query = $db->Execute($sql);
     $products_filter = $new_product_query->fields['products_id'];
     zen_redirect(zen_href_link(FILENAME_PRODUCTS_PRICE_MANAGER, 'products_filter=' . $products_filter . '&current_category_id=' . $current_category_id));
   }
 
 // set categories and products if not set
   if ($products_filter == '' and $current_category_id != '') {
-    $new_product_query = $db->Execute("select ptc.* from " . TABLE_PRODUCTS_TO_CATEGORIES . " ptc  left join " . TABLE_PRODUCTS_DESCRIPTION . " pd on ptc.products_id = pd.products_id and pd.language_id = '" . (int)$_SESSION['languages_id'] . "' where ptc.categories_id='" . $current_category_id . "' order by pd.products_name");
+    $sql = "SELECT ptc.* 
+            FROM " . TABLE_PRODUCTS_TO_CATEGORIES . " ptc  
+            LEFT JOIN " . TABLE_PRODUCTS_DESCRIPTION . " pd 
+            ON ptc.products_id = pd.products_id 
+            AND pd.language_id = '" . (int)$_SESSION['languages_id'] . "' 
+            LEFT join " . TABLE_PRODUCTS . " p 
+            ON p.products_id = pd.products_id 
+            LEFT JOIN " . TABLE_PRODUCT_TYPES  . " pt
+            ON p.products_type = pt.type_id  
+            WHERE ptc.categories_id='" . $current_category_id . "'
+            AND pt.allow_add_to_cart = 'Y'  
+            ORDER by pd.products_name";
+    $new_product_query = $db->Execute($sql);
     $products_filter = $new_product_query->fields['products_id'];
     if ($products_filter != '') {
       zen_redirect(zen_href_link(FILENAME_PRODUCTS_PRICE_MANAGER, 'products_filter=' . $products_filter . '&current_category_id=' . $current_category_id));
@@ -56,7 +67,19 @@
     if ($products_filter == '' and $current_category_id == '') {
       $reset_categories_id = zen_get_category_tree('', '', '0', '', '', true);
       $current_category_id = $reset_categories_id[0]['id'];
-      $new_product_query = $db->Execute("select ptc.* from " . TABLE_PRODUCTS_TO_CATEGORIES . " ptc  left join " . TABLE_PRODUCTS_DESCRIPTION . " pd on ptc.products_id = pd.products_id and pd.language_id = '" . (int)$_SESSION['languages_id'] . "' where ptc.categories_id='" . $current_category_id . "' order by pd.products_name");
+    $sql = "SELECT ptc.* 
+            FROM " . TABLE_PRODUCTS_TO_CATEGORIES . " ptc  
+            LEFT JOIN " . TABLE_PRODUCTS_DESCRIPTION . " pd 
+            ON ptc.products_id = pd.products_id 
+            AND pd.language_id = '" . (int)$_SESSION['languages_id'] . "' 
+            LEFT join " . TABLE_PRODUCTS . " p 
+            ON p.products_id = pd.products_id 
+            LEFT JOIN " . TABLE_PRODUCT_TYPES  . " pt
+            ON p.products_type = pt.type_id  
+            WHERE ptc.categories_id='" . $current_category_id . "'
+            AND pt.allow_add_to_cart = 'Y'  
+            ORDER by pd.products_name";
+    $new_product_query = $db->Execute($sql);
       $products_filter = $new_product_query->fields['products_id'];
       $_GET['products_filter'] = $products_filter;
     }
@@ -127,11 +150,11 @@
             product_is_call='" . zen_db_prepare_input($_POST['product_is_call']) . "',
             products_quantity_mixed='" . zen_db_prepare_input($_POST['products_quantity_mixed']) . "',
             products_priced_by_attribute='" . zen_db_prepare_input($_POST['products_priced_by_attribute']) . "',
-            products_discount_type='" . zen_db_prepare_input($_POST['products_discount_type']) . "',
-            products_discount_type_from='" . zen_db_prepare_input($_POST['products_discount_type_from']) . "',
+            products_discount_type='" . (int)zen_db_prepare_input($_POST['products_discount_type']) . "',
+            products_discount_type_from='" . (int)zen_db_prepare_input($_POST['products_discount_type_from']) . "',
             products_price_sorter='" . $products_price_sorter . "',
             master_categories_id='" . zen_db_prepare_input($master_categories_id) . "',
-            products_mixed_discount_quantity='" . zen_db_prepare_input($_POST['products_mixed_discount_quantity']) . "'
+            products_mixed_discount_quantity='" . (int)zen_db_prepare_input($_POST['products_mixed_discount_quantity']) . "'
             where products_id='" . $products_filter . "'");
 
         if ($_POST['specials_id'] != '') {
@@ -250,7 +273,7 @@
   // -->
 </script>
 </head>
-<body onload="init()">
+<body onLoad="init()">
 <div id="spiffycalendar" class="text"></div>
 <!-- header //-->
 <?php require(DIR_WS_INCLUDES . 'header.php'); ?>
@@ -814,14 +837,12 @@ echo zen_draw_hidden_field('master_categories_id', $pInfo->master_categories_id)
 <?php } ?>
           </tr>
 <?php
-/*
+
   $display_priced_by_attributes = zen_get_products_price_is_priced_by_attributes($_GET['products_filter']);
   $display_price = zen_get_products_base_price($_GET['products_filter']);
   $display_specials_price = zen_get_products_special_price($_GET['products_filter'], true);
-  $display_sale_price = zen_get_products_special_price($_GET['products_filter'], false);
-  $display_free_price = zen_get_products_price_is_free($_GET['products_filter']);
-  $display_call_price = zen_get_products_price_is_call($_GET['products_filter']);
-*/
+//  $display_sale_price = zen_get_products_special_price($_GET['products_filter'], false);
+
     for ($i=0, $n=sizeof($discount_name); $i<$n; $i++) {
       switch ($pInfo->products_discount_type) {
         // none
@@ -830,7 +851,6 @@ echo zen_draw_hidden_field('master_categories_id', $pInfo->master_categories_id)
           break;
         // percentage discount
         case '1':
-          $display_price = zen_get_products_base_price($_GET['products_filter']);
           if ($pInfo->products_discount_type_from == '0') {
             $discounted_price = $display_price - ($display_price * ($discount_name[$i]['discount_price']/100));
           } else {
@@ -852,7 +872,6 @@ echo zen_draw_hidden_field('master_categories_id', $pInfo->master_categories_id)
           break;
         // amount offprice
         case '3':
-          $display_price = zen_get_products_base_price($_GET['products_filter']);
           if ($pInfo->products_discount_type_from == '0') {
             $discounted_price = $display_price - $discount_name[$i]['discount_price'];
           } else {

@@ -19,7 +19,8 @@
  * @package classes
  * @ignore
  * @author Chris Ryan
- * @version (within Zen Cart) $Id: class.smtp.php 4690 2006-10-07 08:37:20Z drbyte $
+ * @version (within Zen Cart) $Id: class.smtp.php 7175 2007-10-05 10:43:27Z drbyte $
+ * @version Modified for Zen Cart added protocols to enable use with Gmail 2007-09-30 Chuck Redman
  */
 /**
  * SMTP Class
@@ -50,6 +51,13 @@ class SMTP
      *  @var bool
      */
   var $do_debug;       # the level of debug to perform
+
+  /**
+   *  Sets protocol to help enable support for gmail
+   *  @var string
+   *  Added CER
+   */
+  var $Protocol = '';
 
   /**#@+
   * @access private
@@ -106,6 +114,8 @@ class SMTP
     if(empty($port)) {
       $port = $this->SMTP_PORT;
     }
+    //Added for Gmail support CER
+    if($this-Protocol != '') $host = $this->Protocol."://".$host; 
 
     #connect to the smtp server
     $this->smtp_conn = @fsockopen($host,    # the host of the server

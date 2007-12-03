@@ -4,10 +4,10 @@
  * Lookup Functions for various Zen Cart activities such as countries, prices, products, product types, etc
  *
  * @package functions
- * @copyright Copyright 2003-2006 Zen Cart Development Team
+ * @copyright Copyright 2003-2007 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: functions_lookups.php 4767 2006-10-16 16:31:12Z ajeh $
+ * @version $Id: functions_lookups.php 6485 2007-06-12 06:46:08Z ajeh $
  */
 
 
@@ -196,12 +196,22 @@
 /*
  * List manufacturers (returned in an array)
  */
-  function zen_get_manufacturers($manufacturers_array = '') {
+  function zen_get_manufacturers($manufacturers_array = '', $have_products = false) {
     global $db;
     if (!is_array($manufacturers_array)) $manufacturers_array = array();
 
-    $manufacturers_query = "select manufacturers_id, manufacturers_name
-                            from " . TABLE_MANUFACTURERS . " order by manufacturers_name";
+    if ($have_products == true) {
+      $manufacturers_query = "select distinct m.manufacturers_id, m.manufacturers_name
+                              from " . TABLE_MANUFACTURERS . " m
+                              left join " . TABLE_PRODUCTS . " p on m.manufacturers_id = p.manufacturers_id
+                              where p.manufacturers_id = m.manufacturers_id
+                              and (p.products_status = 1
+                              and p.products_quantity > 0)
+                              order by m.manufacturers_name";
+    } else {
+      $manufacturers_query = "select manufacturers_id, manufacturers_name
+                              from " . TABLE_MANUFACTURERS . " order by manufacturers_name";
+    }
 
     $manufacturers = $db->Execute($manufacturers_query);
 
@@ -774,6 +784,25 @@
   }
 
 /*
+ * Return any field from categories or categories_description table
+ * Example: zen_categories_lookup('10', 'parent_id');
+ */
+  function zen_categories_lookup($categories_id, $what_field = 'categories_name', $language = '') {
+    global $db;
+
+    if (empty($language)) $language = $_SESSION['languages_id'];
+
+    $category_lookup = $db->Execute("select " . $what_field . " as lookup_field
+                              from " . TABLE_CATEGORIES . " c, " . TABLE_CATEGORIES_DESCRIPTION . " cd
+                              where c.categories_id ='" . (int)$categories_id . "'
+                              and cd.language_id = '" . (int)$language . "'");
+
+    $return_field = $category_lookup->fields['lookup_field'];
+
+    return $return_field;
+  }
+
+/*
  * Find index_filters directory
  * suitable for including template-specific immediate /modules files, such as:
  * new_products, products_new_listing, featured_products, featured_products_listing, product_listing, specials_index, upcoming,
@@ -899,11 +928,10 @@
   function zen_get_upcoming_date_range() {
     // 120 days; 24 hours; 60 mins; 60secs
     $date_range = time();
-// echo 'Now:      '. date('Y-m-d') ."<br />";
-// echo 'Upcoming Days: '. date('Ymd', $date_range) ."<br />";
     $zc_new_date = date('Ymd', $date_range);
-    $new_range = ' and p.products_date_available >=' . $zc_new_date;
-//    $new_range = ' and ' . EXPECTED_PRODUCTS_FIELD . ' <=' . $zc_new_date;
+// need to check speed on this for larger sites
+//    $new_range = ' and date_format(p.products_date_available, \'%Y%m%d\') >' . $zc_new_date;
+    $new_range = ' and p.products_date_available >' . $zc_new_date . '235959';
 
     return $new_range;
   }

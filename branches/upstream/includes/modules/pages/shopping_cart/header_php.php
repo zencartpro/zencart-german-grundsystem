@@ -3,10 +3,10 @@
  * shopping_cart header_php.php
  *
  * @package page
- * @copyright Copyright 2003-2005 Zen Cart Development Team
+ * @copyright Copyright 2003-2007 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: header_php.php 4046 2006-07-30 23:10:43Z drbyte $
+ * @version $Id: header_php.php 7171 2007-10-05 08:42:24Z drbyte $
  */
 
 // This should be first line of the script:
@@ -24,13 +24,26 @@ if (!$_SESSION['valid_to_checkout']) {
   $messageStack->add('shopping_cart', ERROR_CART_UPDATE . $_SESSION['cart_errors'] , 'caution');
 }
 
+// build shipping with Tare included
+$shipping_weight = $_SESSION['cart']->show_weight();
+/*
+  $shipping_weight = 0;
+  require(DIR_WS_CLASSES . 'order.php');
+  $order = new order;
+  require_once('includes/classes/http_client.php'); // shipping in basket
+  $total_weight = $_SESSION['cart']->show_weight();
+  $total_count = $_SESSION['cart']->count_contents();
+  require(DIR_WS_CLASSES . 'shipping.php');
+  $shipping_modules = new shipping;
+  $quotes = $shipping_modules->quote();
+*/
 $totalsDisplay = '';
 switch (true) {
   case (SHOW_TOTALS_IN_CART == '1'):
-  $totalsDisplay = TEXT_TOTAL_ITEMS . $_SESSION['cart']->count_contents() . TEXT_TOTAL_WEIGHT . $_SESSION['cart']->show_weight() . TEXT_PRODUCT_WEIGHT_UNIT . TEXT_TOTAL_AMOUNT . $currencies->format($_SESSION['cart']->show_total());
+  $totalsDisplay = TEXT_TOTAL_ITEMS . $_SESSION['cart']->count_contents() . TEXT_TOTAL_WEIGHT . $shipping_weight . TEXT_PRODUCT_WEIGHT_UNIT . TEXT_TOTAL_AMOUNT . $currencies->format($_SESSION['cart']->show_total());
   break;
   case (SHOW_TOTALS_IN_CART == '2'):
-  $totalsDisplay = TEXT_TOTAL_ITEMS . $_SESSION['cart']->count_contents() . ($_SESSION['cart']->show_weight() > 0 ? TEXT_TOTAL_WEIGHT . $_SESSION['cart']->show_weight() . TEXT_PRODUCT_WEIGHT_UNIT : '') . TEXT_TOTAL_AMOUNT . $currencies->format($_SESSION['cart']->show_total());
+  $totalsDisplay = TEXT_TOTAL_ITEMS . $_SESSION['cart']->count_contents() . ($shipping_weight > 0 ? TEXT_TOTAL_WEIGHT . $shipping_weight . TEXT_PRODUCT_WEIGHT_UNIT : '') . TEXT_TOTAL_AMOUNT . $currencies->format($_SESSION['cart']->show_total());
   break;
   case (SHOW_TOTALS_IN_CART == '3'):
   $totalsDisplay = TEXT_TOTAL_ITEMS . $_SESSION['cart']->count_contents() . TEXT_TOTAL_AMOUNT . $currencies->format($_SESSION['cart']->show_total());
@@ -92,6 +105,7 @@ for ($i=0, $n=sizeof($products); $i<$n; $i++) {
       $attributes = $db->bindVars($attributes, ':optionsValuesID', $value, 'integer');
       $attributes = $db->bindVars($attributes, ':languageID', $_SESSION['languages_id'], 'integer');
       $attributes_values = $db->Execute($attributes);
+      //clr 030714 determine if attribute is a text attribute and assign to $attr_value temporarily
       if ($value == PRODUCTS_OPTIONS_VALUES_TEXT_ID) {
         $attributeHiddenField .= zen_draw_hidden_field('id[' . $products[$i]['id'] . '][' . TEXT_PREFIX . $option . ']',  $products[$i]['attributes_values'][$option]);
         $attr_value = $products[$i]['attributes_values'][$option];
@@ -100,10 +114,9 @@ for ($i=0, $n=sizeof($products); $i<$n; $i++) {
         $attr_value = $attributes_values->fields['products_options_values_name'];
       }
 
-      //clr 030714 determine if attribute is a text attribute and assign to $attr_value temporarily
       $attrArray[$option]['products_options_name'] = $attributes_values->fields['products_options_name'];
       $attrArray[$option]['options_values_id'] = $value;
-      $attrArray[$option]['products_options_values_name'] = $attr_value ;
+      $attrArray[$option]['products_options_values_name'] = zen_output_string_protected($attr_value) ;
       $attrArray[$option]['options_values_price'] = $attributes_values->fields['options_values_price'];
       $attrArray[$option]['price_prefix'] = $attributes_values->fields['price_prefix'];
     }
@@ -147,6 +160,8 @@ for ($i=0, $n=sizeof($products); $i<$n; $i++) {
                             'id'=>$products[$i]['id'],
                             'attributes'=>$attrArray);
 } // end FOR loop
+
+
 // This should be last line of the script:
 $zco_notifier->notify('NOTIFY_HEADER_END_SHOPPING_CART');
 ?>

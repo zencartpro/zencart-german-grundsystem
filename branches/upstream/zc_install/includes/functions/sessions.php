@@ -3,22 +3,16 @@
  * session-related functions used by installer *
  * @package Installer
  * @access private
- * @copyright Copyright 2003-2005 Zen Cart Development Team
+ * @copyright Copyright 2003-2007 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: sessions.php 2342 2005-11-13 01:07:55Z drbyte $
+ * @version $Id: sessions.php 7405 2007-11-11 04:20:58Z drbyte $
  */
 
 
   if (STORE_SESSIONS == 'db') {
-    if (defined('DIR_WS_ADMIN')) {
-      if (!$SESS_LIFE = (SESSION_TIMEOUT_ADMIN + 900)) {
-        $SESS_LIFE = (SESSION_TIMEOUT_ADMIN + 900);
-      }
-    } else {
-      if (!$SESS_LIFE = get_cfg_var('session.gc_maxlifetime')) {
-        $SESS_LIFE = 1440;
-      }
+    if (!$SESS_LIFE = get_cfg_var('session.gc_maxlifetime')) {
+        $SESS_LIFE = 10800;
     }
 
     function _sess_open($save_path, $session_name) {
@@ -88,7 +82,7 @@
       return true;
     }
 
-    session_set_save_handler('_sess_open', '_sess_close', '_sess_read', '_sess_write', '_sess_destroy', '_sess_gc');
+    zen_session_set_save_handler('_sess_open', '_sess_close', '_sess_read', '_sess_write', '_sess_destroy', '_sess_gc');
   }
 
   function zen_session_start() {
@@ -153,7 +147,7 @@
       zen_session_destroy();
 
       if (STORE_SESSIONS == 'db') {
-        session_set_save_handler('_sess_open', '_sess_close', '_sess_read', '_sess_write', '_sess_destroy', '_sess_gc');
+        zen_session_set_save_handler('_sess_open', '_sess_close', '_sess_read', '_sess_write', '_sess_destroy', '_sess_gc');
       }
 
       zen_session_start();
@@ -161,5 +155,14 @@
       $_SESSION = $session_backup;
       unset($session_backup);
     }
+  }
+
+  function zen_session_set_save_handler ($open, $close, $read, $write, $destroy, $gc) {
+    if (session_set_save_handler($open, $close, $read, $write, $destroy, $gc) === false) {
+      return false;
+    }
+    # write and close session at the end of script, and before objects are destroyed (required for PHP5.2)
+    register_shutdown_function('session_write_close');
+    return true;
   }
 ?>

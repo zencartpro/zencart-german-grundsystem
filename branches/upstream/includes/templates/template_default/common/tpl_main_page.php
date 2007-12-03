@@ -32,10 +32,10 @@
  * }<br />
  *
  * @package templateSystem
- * @copyright Copyright 2003-2006 Zen Cart Development Team
+ * @copyright Copyright 2003-2007 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: tpl_main_page.php 4886 2006-11-05 09:01:18Z drbyte $
+ * @version $Id: tpl_main_page.php 7085 2007-09-22 04:56:31Z ajeh $
  */
 
 // the following IF statement can be duplicated/modified as needed to set additional flags
@@ -48,7 +48,7 @@
   $footer_template = 'tpl_footer.php';
   $left_column_file = 'column_left.php';
   $right_column_file = 'column_right.php';
-  $body_id = ($this_is_main_page) ? 'indexHome' : str_replace('_', '', $_GET['main_page']);
+  $body_id = ($this_is_home_page) ? 'indexHome' : str_replace('_', '', $_GET['main_page']);
 ?>
 <body id="<?php echo $body_id . 'Body'; ?>"<?php if($zv_onload !='') echo ' onload="'.$zv_onload.'"'; ?>>
 <?php
@@ -67,12 +67,15 @@
   * prepares and displays header output
   *
   */
+  if (CUSTOMERS_APPROVAL_AUTHORIZATION == 1 && CUSTOMERS_AUTHORIZATION_HEADER_OFF == 'true' and ($_SESSION['customers_authorization'] != 0 or $_SESSION['customer_id'] == '')) {
+    $flag_disable_header = true;
+  }
   require($template->get_template_dir('tpl_header.php',DIR_WS_TEMPLATE, $current_page_base,'common'). '/tpl_header.php');?>
 
 <table width="100%" border="0" cellspacing="0" cellpadding="0" id="contentMainWrapper">
   <tr>
 <?php
-if (COLUMN_LEFT_STATUS == 0 or (CUSTOMERS_APPROVAL == '1' and $_SESSION['customer_id'] == '')) {
+if (COLUMN_LEFT_STATUS == 0 || (CUSTOMERS_APPROVAL == '1' and $_SESSION['customer_id'] == '') || (CUSTOMERS_APPROVAL_AUTHORIZATION == 1 && CUSTOMERS_AUTHORIZATION_COLUMN_LEFT_OFF == 'true' and ($_SESSION['customers_authorization'] != 0 or $_SESSION['customer_id'] == ''))) {
   // global disable of column_left
   $flag_disable_left = true;
 }
@@ -129,7 +132,8 @@ if (!isset($flag_disable_left) || !$flag_disable_left) {
 ?></td>
 
 <?php
-if (COLUMN_RIGHT_STATUS == 0 or (CUSTOMERS_APPROVAL == '1' and $_SESSION['customer_id'] == '')) {
+//if (COLUMN_RIGHT_STATUS == 0 || (CUSTOMERS_APPROVAL == '1' and $_SESSION['customer_id'] == '') || (CUSTOMERS_APPROVAL_AUTHORIZATION == 1 && CUSTOMERS_AUTHORIZATION_COLUMN_RIGHT_OFF == 'true' && $_SESSION['customers_authorization'] != 0)) {
+if (COLUMN_RIGHT_STATUS == 0 || (CUSTOMERS_APPROVAL == '1' and $_SESSION['customer_id'] == '') || (CUSTOMERS_APPROVAL_AUTHORIZATION == 1 && CUSTOMERS_AUTHORIZATION_COLUMN_RIGHT_OFF == 'true' and ($_SESSION['customers_authorization'] != 0 or $_SESSION['customer_id'] == ''))) {
   // global disable of column_right
   $flag_disable_right = true;
 }
@@ -154,7 +158,12 @@ if (!isset($flag_disable_right) || !$flag_disable_right) {
   * prepares and displays footer output
   *
   */
-  require($template->get_template_dir('tpl_footer.php',DIR_WS_TEMPLATE, $current_page_base,'common'). '/tpl_footer.php');?>
+  if (CUSTOMERS_APPROVAL_AUTHORIZATION == 1 && CUSTOMERS_AUTHORIZATION_FOOTER_OFF == 'true' and ($_SESSION['customers_authorization'] != 0 or $_SESSION['customer_id'] == '')) {
+    $flag_disable_footer = true;
+  }
+  require($template->get_template_dir('tpl_footer.php',DIR_WS_TEMPLATE, $current_page_base,'common'). '/tpl_footer.php');
+?>
+
 </div>
 <!--bof- parse time display -->
 <?php

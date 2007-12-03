@@ -3,10 +3,10 @@
  * Header code file for the Address Book Process page
  *
  * @package page
- * @copyright Copyright 2003-2006 Zen Cart Development Team
+ * @copyright Copyright 2003-2007 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: header_php.php 4824 2006-10-23 21:01:28Z drbyte $
+ * @version $Id: header_php.php 6772 2007-08-21 12:33:29Z drbyte $
  */
 // This should be first line of the script:
 $zco_notifier->notify('NOTIFY_HEADER_START_ADDRESS_BOOK_PROCESS');
@@ -191,7 +191,7 @@ if (isset($_POST['action']) && (($_POST['action'] == 'process') || ($_POST['acti
       $where_clause = $db->bindVars($where_clause, ':edit', $_GET['edit'], 'integer');
       $db->perform(TABLE_ADDRESS_BOOK, $sql_data_array, 'update', $where_clause);
 
-      $zco_notifier->notify('NOTIFY_HEADER_ADDRESS_BOOK_ENTRY_UPDATE_DONE');
+      $zco_notifier->notify('NOTIFY_MODULE_ADDRESS_BOOK_UPDATED_ADDRESS_BOOK_RECORD', array_merge(array('address_book_id' => $_GET['edit'], 'customers_id' => $_SESSION['customer_id']), $sql_data_array));
 
       // re-register session variables
       if ( (isset($_POST['primary']) && ($_POST['primary'] == 'on')) || ($_GET['edit'] == $_SESSION['customer_default_address_id']) ) {
@@ -208,33 +208,36 @@ if (isset($_POST['action']) && (($_POST['action'] == 'process') || ($_POST['acti
         $where_clause = "customers_id = :customersID";
         $where_clause = $db->bindVars($where_clause, ':customersID', $_SESSION['customer_id'], 'integer');
         $db->perform(TABLE_CUSTOMERS, $sql_data_array, 'update', $where_clause);
+        $zco_notifier->notify('NOTIFY_MODULE_ADDRESS_BOOK_UPDATED_CUSTOMER_RECORD', array_merge(array('customers_id' => $_SESSION['customer_id']), $sql_data_array));
       }
     } else {
 
       $sql_data_array[] = array('fieldName'=>'customers_id', 'value'=>$_SESSION['customer_id'], 'type'=>'integer');
-//      print_r($sql_data_array);
       $db->perform(TABLE_ADDRESS_BOOK, $sql_data_array);
 
       $new_address_book_id = $db->Insert_ID();
+      $zco_notifier->notify('NOTIFY_MODULE_ADDRESS_BOOK_ADDED_ADDRESS_BOOK_RECORD', array_merge(array('address_id' => $new_address_book_id), $sql_data_array));
 
-      $zco_notifier->notify('NOTIFY_HEADER_ADDRESS_BOOK_ADD_ENTRY_DONE');
 
       // reregister session variables
       if (isset($_POST['primary']) && ($_POST['primary'] == 'on')) {
         $_SESSION['customer_first_name'] = $firstname;
         $_SESSION['customer_country_id'] = $country;
         $_SESSION['customer_zone_id'] = (($zone_id > 0) ? (int)$zone_id : '0');
-        if (isset($_POST['primary']) && ($_POST['primary'] == 'on')) $_SESSION['customer_default_address_id'] = $new_address_book_id;
+        //if (isset($_POST['primary']) && ($_POST['primary'] == 'on')) 
+        $_SESSION['customer_default_address_id'] = $new_address_book_id;
 
         $sql_data_array = array(array('fieldName'=>'customers_firstname', 'value'=>$firstname, 'type'=>'string'),
                                 array('fieldName'=>'customers_lastname', 'value'=>$lastname, 'type'=>'string'));
 
         if (ACCOUNT_GENDER == 'true') $sql_data_array[] = array('fieldName'=>'customers_gender', 'value'=>$gender, 'type'=>'string');
-        if (isset($_POST['primary']) && ($_POST['primary'] == 'on')) $sql_data_array[] = array('fieldName'=>'customers_default_address_id', 'value'=>$new_address_book_id, 'type'=>'integer');
+        //if (isset($_POST['primary']) && ($_POST['primary'] == 'on')) 
+        $sql_data_array[] = array('fieldName'=>'customers_default_address_id', 'value'=>$new_address_book_id, 'type'=>'integer');
 
         $where_clause = "customers_id = :customersID";
         $where_clause = $db->bindVars($where_clause, ':customersID', $_SESSION['customer_id'], 'integer');
         $db->perform(TABLE_CUSTOMERS, $sql_data_array, 'update', $where_clause);
+        $zco_notifier->notify('NOTIFY_MODULE_ADDRESS_BOOK_UPDATED_PRIMARY_CUSTOMER_RECORD', array_merge(array('address_id' => $new_address_book_id, 'customers_id' => $_SESSION['customer_id']), $sql_data_array));
       }
     }
 

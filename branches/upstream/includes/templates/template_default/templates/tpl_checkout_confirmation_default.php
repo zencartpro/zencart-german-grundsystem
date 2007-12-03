@@ -9,7 +9,7 @@
  * @copyright Copyright 2003-2006 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: tpl_checkout_confirmation_default.php 5326 2006-12-21 18:12:54Z drbyte $
+ * @version $Id: tpl_checkout_confirmation_default.php 6247 2007-04-21 21:34:47Z wilt $
  */
 ?>
 <div class="centerColumn" id="checkoutConfirmDefault">
@@ -138,7 +138,7 @@
     echo '<ul class="cartAttribsList">';
       for ($j=0, $n2=sizeof($order->products[$i]['attributes']); $j<$n2; $j++) {
 ?>
-      <li><?php echo $order->products[$i]['attributes'][$j]['option'] . ': ' . nl2br($order->products[$i]['attributes'][$j]['value']); ?></li>
+      <li><?php echo $order->products[$i]['attributes'][$j]['option'] . ': ' . nl2br(zen_output_string_protected($order->products[$i]['attributes'][$j]['value'])); ?></li>
 <?php
       } // end loop
       echo '</ul>';

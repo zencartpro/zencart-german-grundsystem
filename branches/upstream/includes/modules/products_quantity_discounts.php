@@ -3,10 +3,10 @@
  * products_quantity_discounts module
  *
  * @package modules
- * @copyright Copyright 2003-2006 Zen Cart Development Team
+ * @copyright Copyright 2003-2007 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: products_quantity_discounts.php 4135 2006-08-14 04:25:02Z drbyte $
+ * @version $Id: products_quantity_discounts.php 6477 2007-06-09 04:38:22Z ajeh $
  */
 if (!defined('IS_ADMIN_FLAG')) {
   die('Illegal Access');
@@ -23,7 +23,7 @@ switch (true) {
   $zc_hidden_discounts_on = true;
   $zc_hidden_discounts_text = 'MUST LOGIN';
   break;
-  case (CUSTOMERS_APPROVAL == '2' and $_SESSION['customer_id'] == ''):
+  case (STORE_STATUS == 1 || CUSTOMERS_APPROVAL == '2' and $_SESSION['customer_id'] == ''):
   // customer may browse but no prices
   $zc_hidden_discounts_on = true;
   $zc_hidden_discounts_text = TEXT_LOGIN_FOR_PRICE_PRICE;

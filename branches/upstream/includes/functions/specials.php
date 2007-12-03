@@ -6,7 +6,7 @@
  * @copyright Copyright 2003-2005 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: specials.php 2618 2005-12-20 00:35:47Z drbyte $
+ * @version $Id: specials.php 6345 2007-05-20 01:51:25Z ajeh $
  */
 
 ////
@@ -25,11 +25,14 @@
   function zen_expire_specials() {
     global $db;
 
+    $date_range = time();
+    $zc_specials_date = date('Ymd', $date_range);
+
     $specials_query = "select specials_id, products_id
                        from " . TABLE_SPECIALS . "
                        where status = '1'
-                       and ((now() >= expires_date and expires_date != '0001-01-01')
-                       or (now() < specials_date_available and specials_date_available != '0001-01-01'))";
+                       and ((" . $zc_specials_date . " >= expires_date and expires_date != '0001-01-01')
+                       or (" . $zc_specials_date . " < specials_date_available and specials_date_available != '0001-01-01'))";
 
     $specials = $db->Execute($specials_query);
 
@@ -47,13 +50,16 @@
   function zen_start_specials() {
     global $db;
 
+    $date_range = time();
+    $zc_specials_date = date('Ymd', $date_range);
+
 // turn on special if active
     $specials_query = "select specials_id, products_id
                        from " . TABLE_SPECIALS . "
                        where status = '0'
-                       and (((specials_date_available <= now() and specials_date_available != '0001-01-01') and (expires_date >= now()))
-                       or ((specials_date_available <= now() and specials_date_available != '0001-01-01') and (expires_date = '0001-01-01'))
-                       or (specials_date_available = '0001-01-01' and expires_date >= now()))
+                       and (((specials_date_available <= " . $zc_specials_date . " and specials_date_available != '0001-01-01') and (expires_date >= " . $zc_specials_date . "))
+                       or ((specials_date_available <= " . $zc_specials_date . " and specials_date_available != '0001-01-01') and (expires_date = '0001-01-01'))
+                       or (specials_date_available = '0001-01-01' and expires_date >= " . $zc_specials_date . "))
                        ";
 
     $specials = $db->Execute($specials_query);
@@ -70,7 +76,7 @@
     $specials_query = "select specials_id, products_id
                        from " . TABLE_SPECIALS . "
                        where status = '1'
-                       and (now() < specials_date_available and specials_date_available != '0001-01-01')
+                       and (" . $zc_specials_date . " < specials_date_available and specials_date_available != '0001-01-01')
                        ";
 
     $specials = $db->Execute($specials_query);

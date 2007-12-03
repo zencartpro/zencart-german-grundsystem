@@ -1,29 +1,17 @@
 <?php
-//
-// +----------------------------------------------------------------------+
-// |zen-cart Open Source E-commerce                                       |
-// +----------------------------------------------------------------------+
-// | Copyright (c) 2003 The zen-cart developers                           |
-// |                                                                      |
-// | http://www.zen-cart.com/index.php                                    |
-// |                                                                      |
-// | Portions Copyright (c) 2003 osCommerce                               |
-// +----------------------------------------------------------------------+
-// | This source file is subject to version 2.0 of the GPL license,       |
-// | that is bundled with this package in the file LICENSE, and is        |
-// | available through the world-wide-web at the following url:           |
-// | http://www.zen-cart.com/license/2_0.txt.                             |
-// | If you did not receive a copy of the zen-cart license and are unable |
-// | to obtain it through the world-wide-web, please send a note to       |
-// | license@zen-cart.com so we can mail you a copy immediately.          |
-// +----------------------------------------------------------------------+
-//  $Id: orders.php 2652 2005-12-22 18:30:59Z drbyte $
-//
+/**
+ * @package admin
+ * @copyright Copyright 2003-2007 Zen Cart Development Team
+ * @copyright Portions Copyright 2003 osCommerce
+ * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
+ * @version $Id: orders.php 6214 2007-04-17 02:24:25Z ajeh $
+ */
 
 define('HEADING_TITLE', 'Orders');
 define('HEADING_TITLE_SEARCH', 'Order ID:');
 define('HEADING_TITLE_STATUS', 'Status:');
-
+define('HEADING_TITLE_SEARCH_DETAIL_ORDERS_PRODUCTS', 'Search by Product Name or <strong>ID:XX</strong> or Model ');
+define('TEXT_INFO_SEARCH_DETAIL_FILTER_ORDERS_PRODUCTS', 'Search Filter: ');
 define('TABLE_HEADING_PAYMENT_METHOD', 'Payment<br />Shipping');
 define('TABLE_HEADING_ORDERS_ID','ID');
 
@@ -123,4 +111,11 @@ define('TEXT_INFO_IP_ADDRESS', 'IP Address: ');
 define('TEXT_DELETE_CVV_FROM_DATABASE','Delete CVV from database');
 define('TEXT_DELETE_CVV_REPLACEMENT','Deleted');
 define('TEXT_MASK_CC_NUMBER','Mask this number');
+
+define('TEXT_INFO_EXPIRED_DATE', 'Expired Date:<br />');
+define('TEXT_INFO_EXPIRED_COUNT', 'Expired Count:<br />');
+
+define('TABLE_HEADING_CUSTOMER_COMMENTS', 'Customer<br />Comments');
+define('TEXT_COMMENTS_YES', 'Customer Comments - YES');
+define('TEXT_COMMENTS_NO', 'Customer Comments - NO');
 ?>

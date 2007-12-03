@@ -4,7 +4,7 @@
  * @copyright Copyright 2003-2006 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: newsletters.php 4385 2006-09-04 04:10:48Z drbyte $
+ * @version $Id: newsletters.php 6026 2007-03-21 09:07:00Z drbyte $
  */
 
   require('includes/application_top.php');
@@ -172,11 +172,13 @@ check_select('audience_selected','',"<?php echo ERROR_PLEASE_SELECT_AUDIENCE; ?>
             <td class="pageHeading"><?php echo HEADING_TITLE; ?></td>
             <td class="pageHeading" align="right"><?php echo zen_draw_separator('pixel_trans.gif', HEADING_IMAGE_WIDTH, HEADING_IMAGE_HEIGHT); ?></td>
 <?php
+      if (!in_array($action, array('send','confirm','confirm_send', ''))) {
 // toggle switch for editor
         echo TEXT_EDITOR_INFO . zen_draw_form('set_editor_form', FILENAME_NEWSLETTERS, '', 'get') . '&nbsp;&nbsp;' . zen_draw_pull_down_menu('reset_editor', $editors_pulldown, $current_editor_key, 'onChange="this.form.submit();"') .
         zen_hide_session_id() . 
         zen_draw_hidden_field('action', 'set_editor') .
         '</form>';
+      }
 ?>
           </tr>
         </table></td>
@@ -254,7 +256,7 @@ check_select('audience_selected','',"<?php echo ERROR_PLEASE_SELECT_AUDIENCE; ?>
                 $oFCKeditor->Width  = '97%' ;
                 $oFCKeditor->Height = '350' ;
 //                $oFCKeditor->Create() ;
-                $oFCKeditor->CreateHtml() ; echo $output;
+                $output = $oFCKeditor->CreateHtml() ; echo $output;
           } else { // using HTMLAREA or just raw "source"
               echo zen_draw_textarea_field('message_html', 'soft', '100%', '30', $nInfo->content_html,'id="message_html" class="editorHook"');
           } ?>

@@ -2,23 +2,19 @@
 /**
  * @package Installer
  * @access private
- * @copyright Copyright 2003-2006 Zen Cart Development Team
+ * @copyright Copyright 2003-2007 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: database_upgrade_default.php 4855 2006-10-28 06:52:02Z drbyte $
+ * @version $Id: database_upgrade_default.php 7040 2007-09-18 05:54:25Z drbyte $
  */
 
-?>
-<h1>:: <?php echo PAGE_HEADING; ?></h1>
-<p><?php echo TEXT_MAIN; ?></p>
-<?php
   if ($zc_install->error) include(DIR_WS_INSTALL_TEMPLATE . 'templates/display_errors.php');
 ?>
-    <form method="post" action="index.php?main_page=database_upgrade<?php if (isset($_GET['language'])) { echo '&amp;language=' . $_GET['language']; } ?>">
+    <form method="post" action="index.php?main_page=database_upgrade<?php echo zcInstallAddSID(); ?>">
 <?php if ($dbinfo->zdb_configuration_table_found) { ?>
 <p><?php echo TEXT_MAIN_2; ?></p>
     <fieldset>
-    <legend><?php echo DATABASE_INFORMATION . ' -- &nbsp;<strong>' . SNIFFER_PREDICTS . $sniffer . '</strong>'; ?></legend>
+    <legend><?php echo DATABASE_INFORMATION . ' -- &nbsp;<strong>' . SNIFFER_PREDICTS . ' ' . $sniffer_text . '</strong>'; ?></legend>
       <div class="section">
         <label><?php echo '<a href="javascript:popupWindow(\'popup_help_screen.php?error_code=14\')"> ' . DATABASE_TYPE. '</a>'; ?></label>
       <?php echo '&nbsp;=&nbsp;' . DB_TYPE; ?>
@@ -39,10 +35,10 @@
       <label><?php echo '<a href="javascript:popupWindow(\'popup_help_screen.php?error_code=19\')"> ' . DATABASE_PREFIX . '</a>'; ?></label>
       <?php echo '&nbsp;=&nbsp;' . DB_PREFIX; ?>
     </div>
-    <div class="section">
+<!--    <div class="section">
       <label><?php echo '<a href="javascript:popupWindow(\'popup_help_screen.php?error_code=87\')"> ' . DATABASE_PRIVILEGES . '</a>'; ?></label>
       <?php echo '&nbsp;=&nbsp;' . $zdb_privs; ?>
-    </div>
+    </div>-->
     </fieldset>
     <br />
 
@@ -124,6 +120,10 @@
       <input <?php if ($needs_v1_3_7) {echo "checked";} ?> name="version[]" type="checkbox" id="checkbox19" value="1.3.6" tabindex="19" />
       <label for="checkbox19">Upgrade DB from 1.3.6 to 1.3.7</label>
     </div>
+      <div class="input">
+      <input <?php if ($needs_v1_3_8) {echo "checked";} ?> name="version[]" type="checkbox" id="checkbox20" value="1.3.7" tabindex="20" />
+      <label for="checkbox20">Upgrade DB from 1.3.7 to 1.3.8</label>
+    </div>
     </fieldset>
     <br />
 <?php } //endif $dbinfo->zdb_configuration_table_found ?>
@@ -154,7 +154,7 @@
     <legend><strong><?php echo TITLE_SECURITY; ?></strong></legend>
       <?php echo ADMIN_PASSSWORD_INSTRUCTION .'&nbsp; <a href="javascript:popupWindow(\'popup_help_screen.php?error_code=78\')"> ' . TEXT_HELP_LINK . '</a>'; ?> <br /><br />
      <div class="section">
-      <input type="text" id="adminid" name="adminid" tabindex="50" size="18" value="<?php echo $_POST['adminid']; ?>" />
+      <input type="text" id="adminid" name="adminid" tabindex="50" size="18" value="<?php echo $adminName; ?>" />
       <label for="adminid"><?php echo ENTRY_ADMIN_ID; ?></label>
      <div class="section">
     </div>
@@ -177,4 +177,5 @@
     <input type="submit" name="skip" class="button"  tabindex="61" value="<?php echo SKIP_UPDATES; ?>" />
 <?php } //endif ?>
     <input type="submit" name="refresh" class="button" tabindex="62" value="<?php echo REFRESH_BUTTON; ?>" />
+<?php echo $zc_install->getConfigKeysAsPost(); ?>
     </form>

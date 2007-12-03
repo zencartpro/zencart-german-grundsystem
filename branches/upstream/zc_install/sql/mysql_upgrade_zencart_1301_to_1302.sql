@@ -6,7 +6,7 @@
 # * @copyright Copyright 2003-2006 Zen Cart Development Team
 # * @copyright Portions Copyright 2003 osCommerce
 # * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
-# * @version $Id: mysql_upgrade_zencart_1301_to_1302.sql 4902 2006-11-09 09:06:38Z drbyte $
+# * @version $Id: mysql_upgrade_zencart_1301_to_1302.sql 6267 2007-04-27 05:52:46Z drbyte $
 #
 
 ## CONFIGURATION TABLE
@@ -16,6 +16,14 @@ INSERT INTO configuration (configuration_title, configuration_key, configuration
 INSERT INTO configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, use_function, set_function, date_added) VALUES ('Meta Tags Generated Description Maximum Length?', 'MAX_META_TAG_DESCRIPTION_LENGTH', '50', 'Set Generated Meta Tag Description Maximum Length to (words) Default 50:', '18', '71', '', '', now());
 #tidy sort order for consistency between upgrades and fresh installs
 UPDATE configuration SET sort_order=115 WHERE configuration_key = 'SHOW_ACCOUNT_LINKS_ON_SITE_MAP';
+
+#table alterations fixed in 1.3.5 but best completed here also for upgraders:
+ALTER TABLE query_builder CHANGE COLUMN query_category query_category varchar(40) NOT NULL default '';
+ALTER TABLE query_builder CHANGE COLUMN query_name query_name varchar(80) NOT NULL default '';
+ALTER TABLE query_builder CHANGE COLUMN query_description query_description TEXT NOT NULL;
+ALTER TABLE query_builder CHANGE COLUMN query_string query_string TEXT NOT NULL;
+ALTER TABLE query_builder CHANGE COLUMN query_keys_list query_keys_list TEXT NOT NULL;
+
 
 # add ability to send newsletters to self
 REPLACE INTO query_builder ( query_category , query_name , query_description , query_string, query_keys_list) VALUES ('email,newsletters', 'Administrator', 'Just the email account of the current administrator', 'select \'ADMIN\' as customers_firstname, admin_name as customers_lastname, admin_email as customers_email_address from TABLE_ADMIN where admin_id = $SESSION:admin_id', '');

@@ -3,10 +3,10 @@
  *  product_info main_template_vars.php
  *
  * @package productTypes
- * @copyright Copyright 2003-2006 Zen Cart Development Team
+ * @copyright Copyright 2003-2007 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: main_template_vars.php 5369 2006-12-23 10:55:52Z drbyte $
+ * @version $Id: main_template_vars.php 6275 2007-05-02 11:46:37Z drbyte $
  */
 /*
  * Extracts and constructs the data to be used in the product-type template tpl_TYPEHANDLER_info_display.php

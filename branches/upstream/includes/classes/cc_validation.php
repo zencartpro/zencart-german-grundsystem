@@ -3,10 +3,10 @@
  * cc_validation Class.
  *
  * @package classes
- * @copyright Copyright 2003-2006 Zen Cart Development Team
+ * @copyright Copyright 2003-2007 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: cc_validation.php 5209 2006-12-11 22:09:09Z drbyte $
+ * @version $Id: cc_validation.php 7379 2007-11-08 03:58:07Z drbyte $
  */
 if (!defined('IS_ADMIN_FLAG')) {
   die('Illegal Access');
@@ -26,14 +26,8 @@ class cc_validation extends base {
       // Check specific card-types based on first 6 digits:
       $NumberLeft6 = substr($this->cc_number, 0, 6);
 
-      /***** MASTERCARD *****/
-      if (($NumberLeft6 >= 510000) && ($NumberLeft6 <= 559999)
-          && (ereg('[0-9]{16}', $this->cc_number)) and CC_ENABLED_MC=='1') {
-          $this->cc_type = "MasterCard";
-      }
-
       /***** SWITCH *****/
-      elseif (( (($NumberLeft6 >= 490302) && ($NumberLeft6 <= 490309))
+      if (( (($NumberLeft6 >= 490302) && ($NumberLeft6 <= 490309))
                 || (($NumberLeft6 >= 490335) && ($NumberLeft6 <= 490339))
                 || (($NumberLeft6 >= 491101) && ($NumberLeft6 <= 491102))
                 || (($NumberLeft6 >= 491174) && ($NumberLeft6 <= 491182))
@@ -60,8 +54,8 @@ class cc_validation extends base {
 
       /***** JCB *****/
       elseif (( (($NumberLeft6 >= 352800) && ($NumberLeft6 <= 358999))
-	            ||  ($NumberLeft6 == 411111)
-	            )
+//              ||  ($NumberLeft6 == 411111)
+              )
               && (ereg('[0-9]{16}', $this->cc_number))  and CC_ENABLED_JCB=='1') {
           $this->cc_type = "JCB";
       }
@@ -74,7 +68,7 @@ class cc_validation extends base {
                 || (($NumberLeft6 >= 500000) && ($NumberLeft6 <= 509999))
                 || (($NumberLeft6 >= 560000) && ($NumberLeft6 <= 589999))
                 || (($NumberLeft6 >= 600000) && ($NumberLeft6 <= 699999))
-                ) && (ereg('[0-9]{16}', $this->cc_number))  and CC_ENABLED_MAESTRO=='1') {
+                ) && (ereg('[0-9]{16}([0-9]{3})', $this->cc_number))  and CC_ENABLED_MAESTRO=='1') {
           $this->cc_type = "Maestro";
       }
 
@@ -103,7 +97,7 @@ class cc_validation extends base {
     } elseif (ereg('^4[0-9]{12}([0-9]{3})?$', $this->cc_number) and CC_ENABLED_VISA=='1') {
       $this->cc_type = 'Visa';
     } elseif (ereg('^5[1-5][0-9]{14}$', $this->cc_number) and CC_ENABLED_MC=='1') {
-      $this->cc_type = 'Master Card';
+      $this->cc_type = 'MasterCard';
     } elseif (ereg('^3[47][0-9]{13}$', $this->cc_number) and CC_ENABLED_AMEX=='1') {
       $this->cc_type = 'American Express';
     } elseif (ereg('^3(0[0-5]|[68][0-9])[0-9]{11}$', $this->cc_number) and CC_ENABLED_DINERS_CLUB=='1') {
@@ -125,7 +119,7 @@ class cc_validation extends base {
     }
 
     $current_year = date('Y');
-    $expiry_y = substr($current_year, 0, 2) . $expiry_y;
+    if (strlen($expiry_y) == 2) $expiry_y = intval(substr($current_year, 0, 2) . $expiry_y);
     if (is_numeric($expiry_y) && ($expiry_y >= $current_year) && ($expiry_y <= ($current_year + 10))) {
       $this->cc_expiry_year = $expiry_y;
     } else {
@@ -146,9 +140,9 @@ class cc_validation extends base {
 
       if (strlen($start_y) == 2) {
         if ($start_y > 80) {
-          $start_y = '19' . $start_y;
+          $start_y = intval('19' . $start_y);
         } else {
-          $start_y = '20' . $start_y;
+          $start_y = intval('20' . $start_y);
         }
       }
 

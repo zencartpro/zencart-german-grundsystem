@@ -1,24 +1,11 @@
 <?php
-//
-// +----------------------------------------------------------------------+
-// |zen-cart Open Source E-commerce                                       |
-// +----------------------------------------------------------------------+
-// | Copyright (c) 2003 The zen-cart developers                           |
-// |                                                                      |
-// | http://www.zen-cart.com/index.php                                    |
-// |                                                                      |
-// | Portions Copyright (c) 2003 osCommerce                               |
-// +----------------------------------------------------------------------+
-// | This source file is subject to version 2.0 of the GPL license,       |
-// | that is bundled with this package in the file LICENSE, and is        |
-// | available through the world-wide-web at the following url:           |
-// | http://www.zen-cart.com/license/2_0.txt.                             |
-// | If you did not receive a copy of the zen-cart license and are unable |
-// | to obtain it through the world-wide-web, please send a note to       |
-// | license@zen-cart.com so we can mail you a copy immediately.          |
-// +----------------------------------------------------------------------+
-//  $Id: split_page_results.php 4681 2006-10-06 19:46:03Z wilt $
-//
+/**
+ * @package admin
+ * @copyright Copyright 2003-2007 Zen Cart Development Team
+ * @copyright Portions Copyright 2003 osCommerce
+ * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
+ * @version $Id: split_page_results.php 5617 2007-01-18 05:58:50Z drbyte $
+ */
 
   class splitPageResults {
     function splitPageResults(&$current_page_number, $max_rows_per_page, &$sql_query, &$query_num_rows) {
@@ -27,8 +14,12 @@
       $current_page_number = (int)$current_page_number;
 
       $pos_to = strlen($sql_query);
+
      $query_lower = strtolower($sql_query);
      $pos_from = strpos($query_lower, ' from', 0);
+
+     $pos_distinct_start = strpos($query_lower, ' distinct', 0);
+     $pos_distinct_end = strpos(substr($query_lower, $pos_distinct_start), ',', 0);
 
      $pos_group_by = strpos($query_lower, ' group by', $pos_from);
      if (($pos_group_by < $pos_to) && ($pos_group_by != false)) $pos_to = $pos_group_by;
@@ -39,9 +30,9 @@
      $pos_order_by = strpos($query_lower, ' order by', $pos_from);
      if (($pos_order_by < $pos_to) && ($pos_order_by != false)) $pos_to = $pos_order_by;
 
-
-      $reviews_count = $db->Execute("select count(*) as total " .
-                                            substr($sql_query, $pos_from, ($pos_to - $pos_from)));
+      $sql = ($pos_distinct_start == 0) ? "select count(*) as total " : "select count(distinct " . substr($sql_query, $pos_distinct_start+9, $pos_distinct_end-9) . ") as total ";
+      $sql .= substr($sql_query, $pos_from, ($pos_to - $pos_from));
+      $reviews_count = $db->Execute($sql);
 
       $query_num_rows = $reviews_count->fields['total'];
 

@@ -3,10 +3,10 @@
  * checkout_payment header_php.php
  *
  * @package page
- * @copyright Copyright 2003-2006 Zen Cart Development Team
+ * @copyright Copyright 2003-2007 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: header_php.php 4793 2006-10-20 05:25:20Z ajeh $
+ * @version $Id: header_php.php 6363 2007-05-24 21:18:22Z drbyte $
  */
 
 // This should be first line of the script:
@@ -83,6 +83,9 @@ if (!$_SESSION['billto']) {
 
 require(DIR_WS_CLASSES . 'order.php');
 $order = new order;
+// Load the selected shipping module(needed to calculate tax correctly)
+require(DIR_WS_CLASSES . 'shipping.php');
+$shipping_modules = new shipping($_SESSION['shipping']);
 require(DIR_WS_CLASSES . 'order_total.php');
 $order_total_modules = new order_total;
 $order_total_modules->collect_posts();
@@ -99,9 +102,6 @@ require(DIR_WS_CLASSES . 'payment.php');
 $payment_modules = new payment;
 $flagOnSubmit = sizeof($payment_modules->selection());
 
-// Load the selected shipping module(needed to calculate tax correctly)
-require(DIR_WS_CLASSES . 'shipping.php');
-$shipping_modules = new shipping($_SESSION['shipping']);
 
 require(DIR_WS_MODULES . zen_get_module_directory('require_languages.php'));
 

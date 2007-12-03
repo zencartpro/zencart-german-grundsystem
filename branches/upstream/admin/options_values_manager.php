@@ -1,17 +1,17 @@
 <?php
 /**
  * @package admin
- * @copyright Copyright 2003-2006 Zen Cart Development Team
+ * @copyright Copyright 2003-2007 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: options_values_manager.php 4280 2006-08-26 03:32:55Z drbyte $
+ * @version $Id: options_values_manager.php 6952 2007-09-03 16:17:05Z drbyte $
  */
 
   require('includes/application_top.php');
 
   // verify option names and values
-  $chk_option_names = $db->Execute("select * from " . TABLE_PRODUCTS_OPTIONS . " where language_id='" . $_SESSION['languages_id'] . "' limit 1");
-  if ($chk_option_names->RecordCount() < 1) {
+  $chk_option_names = $db->Execute("select count(*) as count from " . TABLE_PRODUCTS_OPTIONS . " where language_id='" . $_SESSION['languages_id'] . "' limit 1");
+  if ($chk_option_names->fields['count'] < 1) {
     $messageStack->add_session(ERROR_DEFINE_OPTION_NAMES, 'caution');
     zen_redirect(zen_href_link(FILENAME_OPTIONS_NAME_MANAGER));
   }
@@ -69,20 +69,21 @@
         for ($i=0, $n=sizeof($languages); $i<$n; $i ++) {
           $value_name = zen_db_prepare_input($value_name_array[$languages[$i]['id']]);
 
-          $check= $db->Execute("select pov.products_options_values_id, pov.products_options_values_name, pov.language_id
+          if (!empty($value_name)) {
+            $check= $db->Execute("select pov.products_options_values_id, pov.products_options_values_name, pov.language_id
                                 from " . TABLE_PRODUCTS_OPTIONS_VALUES . " pov
                                 left join " . TABLE_PRODUCTS_OPTIONS_VALUES_TO_PRODUCTS_OPTIONS . " pov2po on pov.products_options_values_id = pov2po.products_options_values_id
                                 where pov.language_id= '" . $languages[$i]['id'] . "'
                                 and pov.products_options_values_name='" . zen_db_input($value_name) . "'
                                 and pov2po.products_options_id ='" . (int)$option_id .
                                 "'");
-
-          if ($check->RecordCount() > 1 and !empty($value_name)) {
-            while (!$check->EOF) {
-              $check_dups .= ' - ' . $check->fields['products_options_values_id'];
-              $check->MoveNext();
+            if ($check->RecordCount() > 1) {
+              while (!$check->EOF) {
+                $check_dups .= ' - ' . $check->fields['products_options_values_id'];
+                $check->MoveNext();
+              }
+              $duplicate_option_values .= ' <b>' . strtoupper(zen_get_language_name($languages[$i]['id'])) . '</b> : ' . $check_dups;
             }
-            $duplicate_option_values .= ' <b>' . strtoupper(zen_get_language_name($languages[$i]['id'])) . '</b> : ' . $check_dups;
           }
         }
         if (!empty($duplicate_option_values)) {
@@ -117,7 +118,8 @@
         for ($i=0, $n=sizeof($languages); $i<$n; $i ++) {
           $value_name = zen_db_prepare_input($value_name_array[$languages[$i]['id']]);
 
-          $check= $db->Execute("select pov.products_options_values_id, pov.products_options_values_name, pov.language_id
+          if (!empty($value_name)) {
+            $check= $db->Execute("select pov.products_options_values_id, pov.products_options_values_name, pov.language_id
                                 from " . TABLE_PRODUCTS_OPTIONS_VALUES . " pov
                                 left join " . TABLE_PRODUCTS_OPTIONS_VALUES_TO_PRODUCTS_OPTIONS . " pov2po on pov.products_options_values_id = pov2po.products_options_values_id
                                 where pov.language_id= '" . $languages[$i]['id'] . "'
@@ -125,12 +127,13 @@
                                 and pov2po.products_options_id ='" . (int)$option_id .
                                 "'");
 
-          if ($check->RecordCount() > 1 and !empty($value_name)) {
-            while (!$check->EOF) {
-              $check_dups .= ' - ' . $check->fields['products_options_values_id'];
-              $check->MoveNext();
+            if ($check->RecordCount() > 1) {
+              while (!$check->EOF) {
+                $check_dups .= ' - ' . $check->fields['products_options_values_id'];
+                $check->MoveNext();
+              }
+              $duplicate_option_values .= ' <b>' . strtoupper(zen_get_language_name($languages[$i]['id'])) . '</b> : ' . $check_dups;
             }
-            $duplicate_option_values .= ' <b>' . strtoupper(zen_get_language_name($languages[$i]['id'])) . '</b> : ' . $check_dups;
           }
         }
         if (!empty($duplicate_option_values)) {
@@ -152,31 +155,23 @@
         $remove_attributes_query = $db->Execute("select products_attributes_id, options_id, options_values_id from " . TABLE_PRODUCTS_ATTRIBUTES . " where options_values_id ='" . (int)$value_id . "'");
         if ($remove_attributes_query->RecordCount() > 0) {
           // clean all tables of option value
-          While (!$remove_attributes_query->EOF) {
+          while (!$remove_attributes_query->EOF) {
 
             $db->Execute("delete from " . TABLE_PRODUCTS_ATTRIBUTES_DOWNLOAD . "
                           where products_attributes_id='" . $remove_attributes_query->fields['products_attributes_id'] . "'");
 
-            $db->Execute("delete from " . TABLE_PRODUCTS_ATTRIBUTES . "
-                          where options_values_id='" . $remove_attributes_query->fields['options_values_id'] . "'");
-
-            $db->Execute("delete from " . TABLE_PRODUCTS_OPTIONS_VALUES . "
-                          where products_options_values_id = '" . $remove_attributes_query->fields['options_values_id'] . "'");
-
-            $db->Execute("delete from " . TABLE_PRODUCTS_OPTIONS_VALUES_TO_PRODUCTS_OPTIONS . "
-                          where products_options_values_id = '" . $remove_attributes_query->fields['options_values_id'] . "'");
-
             $remove_attributes_query->MoveNext();
           }
-        } else {
-          // remove option value only
-          $db->Execute("delete from " . TABLE_PRODUCTS_OPTIONS_VALUES . "
-                        where products_options_values_id = '" . (int)$value_id . "'");
-
-          $db->Execute("delete from " . TABLE_PRODUCTS_OPTIONS_VALUES_TO_PRODUCTS_OPTIONS . "
-                        where products_options_values_id = '" . (int)$value_id . "'");
-
+          $db->Execute("delete from " . TABLE_PRODUCTS_ATTRIBUTES . "
+                        where options_values_id='" . (int)$value_id . "'");
         }
+
+        $db->Execute("delete from " . TABLE_PRODUCTS_OPTIONS_VALUES . "
+                      where products_options_values_id = '" . (int)$value_id . "'");
+
+        $db->Execute("delete from " . TABLE_PRODUCTS_OPTIONS_VALUES_TO_PRODUCTS_OPTIONS . "
+                      where products_options_values_id = '" . (int)$value_id . "'");
+
         zen_redirect(zen_href_link(FILENAME_OPTIONS_VALUES_MANAGER, $_SESSION['page_info']));
         break;
 
@@ -229,10 +224,10 @@ die('I SEE match from: ' . $options_id_from . '-' . $options_values_values_id_fr
             // check existing matching products and add new attributes
             while(!$products_only->EOF) {
               $current_products_id = $products_only->fields['products_id'];
-              $sql = "insert into " . TABLE_PRODUCTS_ATTRIBUTES . "(products_id, options_id, options_values_id) values('" . $current_products_id . "', '" . $options_id_to . "', '" . $options_values_values_id_to . "')";
-              $check_previous = $db->Execute("select * from " . TABLE_PRODUCTS_ATTRIBUTES . " where products_id='" . $current_products_id . "' and options_id='" . $options_id_to . "' and options_values_id='" . $options_values_values_id_to . "' limit 1");
+              $sql = "insert into " . TABLE_PRODUCTS_ATTRIBUTES . " (products_id, options_id, options_values_id) values('" . $current_products_id . "', '" . $options_id_to . "', '" . $options_values_values_id_to . "')";
+              $check_previous = $db->Execute("select count(*) as count from " . TABLE_PRODUCTS_ATTRIBUTES . " where products_id='" . $current_products_id . "' and options_id='" . $options_id_to . "' and options_values_id='" . $options_values_values_id_to . "' limit 1");
               // do not add duplicate attributes
-              if ($check_previous->RecordCount() < 1) {
+              if ($check_previous->fields['count'] < 1) {
                 $db->Execute($sql);
                 $new_attribute++;
               }
@@ -349,7 +344,7 @@ die('I SEE match from products_id:' . $copy_from_products_id . ' options_id_from
               $current_products_id = $products_only->fields['products_id'];
 
 //              $sql = "insert into " . TABLE_PRODUCTS_ATTRIBUTES . "(products_id, options_id, options_values_id) values('" . $current_products_id . "', '" . $options_id_from . "', '" . $options_values_values_id_from . "')";
-                $sql = "insert into " . TABLE_PRODUCTS_ATTRIBUTES . "
+                $sql = "insert into " . TABLE_PRODUCTS_ATTRIBUTES . " (products_attributes_id, products_id, options_id, options_values_id, options_values_price, price_prefix, products_options_sort_order, product_attribute_is_free, products_attributes_weight, products_attributes_weight_prefix, attributes_display_only, attributes_default, attributes_discounted, attributes_image, attributes_price_base_included, attributes_price_onetime, attributes_price_factor, attributes_price_factor_offset, attributes_price_factor_onetime, attributes_price_factor_onetime_offset, attributes_qty_prices, attributes_qty_prices_onetime, attributes_price_words, attributes_price_words_free, attributes_price_letters, attributes_price_letters_free, attributes_required) 
                           values (0,
                                   '" . (int)$current_products_id . "',
                                   '" . (int)$options_id . "',
@@ -378,9 +373,9 @@ die('I SEE match from products_id:' . $copy_from_products_id . ' options_id_from
                                   '" . (int)zen_db_input($attributes_price_letters_free) . "',
                                   '" . (int)zen_db_input($attributes_required) . "')";
 
-              $check_previous = $db->Execute("select * from " . TABLE_PRODUCTS_ATTRIBUTES . " where products_id='" . $current_products_id . "' and options_id='" . $options_id_from . "' and options_values_id='" . $options_values_values_id_from . "' limit 1");
+              $check_previous = $db->Execute("select count(*) as count from " . TABLE_PRODUCTS_ATTRIBUTES . " where products_id='" . $current_products_id . "' and options_id='" . $options_id_from . "' and options_values_id='" . $options_values_values_id_from . "' limit 1");
               // do not add duplicate attributes
-              if ($check_previous->RecordCount() < 1) {
+              if ($check_previous->fields['count'] < 1) {
               // add new attribute
                 $db->Execute($sql);
                 //echo $sql . '<br>';

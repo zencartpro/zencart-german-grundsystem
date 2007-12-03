@@ -1,4 +1,4 @@
-$Id: spiders.txt 2781 2006-01-04 05:44:30Z ajeh $
+$Id: spiders.txt 6506 2007-06-16 20:36:51Z drbyte $
 bot
 abcdatos
 acme
@@ -229,6 +229,7 @@ orb search
 osis-project
 pack rat
 pageboy
+panscient
 parasite
 patric
 patwebbot
@@ -378,6 +379,7 @@ webzinger
 whatuseek
 whowhere robot
 wildferret
+worio
 xenu link sleuth
 xenu link sleuth 1.2d
 xenu link sleuth 1.2e

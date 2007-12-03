@@ -6,7 +6,7 @@
 # * @copyright Copyright 2003-2006 Zen Cart Development Team
 # * @copyright Portions Copyright 2003 osCommerce
 # * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
-# * @version $Id: mysql_upgrade_zencart_1302_to_135.sql 4534 2006-09-17 17:27:55Z drbyte $
+# * @version $Id: mysql_upgrade_zencart_1302_to_135.sql 6020 2007-03-17 16:32:42Z drbyte $
 #
 
 ## CONFIGURATION TABLE
@@ -40,9 +40,9 @@ UPDATE query_builder SET query_string = 'select o.date_purchased, c.customers_em
 #table alterations
 ALTER TABLE query_builder CHANGE COLUMN query_category query_category varchar(40) NOT NULL default '';
 ALTER TABLE query_builder CHANGE COLUMN query_name query_name varchar(80) NOT NULL default '';
-ALTER TABLE query_builder CHANGE COLUMN query_description query_description TEXT NOT NULL default '';
-ALTER TABLE query_builder CHANGE COLUMN query_string query_string TEXT NOT NULL default '';
-ALTER TABLE query_builder CHANGE COLUMN query_keys_list query_keys_list TEXT NOT NULL default '';
+ALTER TABLE query_builder CHANGE COLUMN query_description query_description TEXT NOT NULL;
+ALTER TABLE query_builder CHANGE COLUMN query_string query_string TEXT NOT NULL;
+ALTER TABLE query_builder CHANGE COLUMN query_keys_list query_keys_list TEXT NOT NULL;
 
 
 #Index Optimizations

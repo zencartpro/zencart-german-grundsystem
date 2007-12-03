@@ -2,51 +2,37 @@
 /**
  * @package Installer
  * @access private
- * @copyright Copyright 2003-2005 Zen Cart Development Team
+ * @copyright Copyright 2003-2007 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: header_php.php 2342 2005-11-13 01:07:55Z drbyte $
+ * @version $Id: header_php.php 7011 2007-09-15 12:20:46Z drbyte $
  */
 
 // check to see if we're upgrading
-$is_upgrade = $_GET['is_upgrade'];
+$is_upgrade = (int)$zc_install->getConfigKey('is_upgrade');
 
-  $zc_install->error = false;
-  $zc_install->fatal_error = false;
-  $zc_install->error_list = array();
+  if (!isset($_POST['phpbb_use'])) $_POST['phpbb_use'] = 'false';
 
-      $virtual_http_path = parse_url($_GET['virtual_http_path']);
-      $http_catalog = $virtual_http_path['path'];
-      if (substr($http_catalog, -1) == '/') $http_catalog = substr($http_catalog, 0, strlen($http_catalog)-1);
-
-
-//echo 'filename='.$_SERVER['SCRIPT_FILENAME'].'<br>';
-//echo 'self='.$_SERVER['PHP_SELF'].'<br>';
-//echo 'docroot1='.$_SERVER['DOCUMENT_ROOT'].'<br>';
-
-
-      if ($_SERVER['DOCUMENT_ROOT'] == '') { // try to calculate docroot
-          $docroot = substr($_SERVER['SCRIPT_FILENAME'],0,strpos($_SERVER['SCRIPT_FILENAME'],$_SERVER['PHP_SELF']));
-      } else {
-          $docroot = $_SERVER['DOCUMENT_ROOT'];
-      }
-      $phpbb_suggest_dir = '';
-//echo 'docroot='.$docroot.'<br>';
+  if ($_SERVER['DOCUMENT_ROOT'] == '') { // try to calculate docroot
+    $docroot = substr($_SERVER['SCRIPT_FILENAME'],0,strpos($_SERVER['SCRIPT_FILENAME'],$_SERVER['PHP_SELF']));
+  } else {
+    $docroot = $_SERVER['DOCUMENT_ROOT'];
+  }
+  $phpbb_suggest_dir = '';
 
   //look for typical paths to phpBB files
   foreach (array('/phpBB2', '/phpbb2', '/phpbb', '/phpBB', '/forum', '/forums') as $testpath) {
-//echo 'path='.$testpath.'<br>';
-     if (file_exists($docroot . $testpath . '/config.php') )  {
-         $phpbb_suggest_dir = $docroot . $testpath;
-         break;
-         }
-     if (file_exists($docroot . str_replace($docroot,'',$_GET['physical_path'] ) . $testpath . '/config.php') && $phpbb_suggest_dir=='')  {
-         $phpbb_suggest_dir = $docroot .str_replace($docroot,'',$_GET['physical_path'] ) . $testpath ;
-         break;
-         }
+    if (@file_exists($docroot . $testpath . '/config.php') )  {
+      $phpbb_suggest_dir = $docroot . $testpath;
+      break;
+    }
+    if (@file_exists($docroot . str_replace($docroot,'',$_GET['DIR_FS_CATALOG'] ) . $testpath . '/config.php') && $phpbb_suggest_dir=='')  {
+      $phpbb_suggest_dir = $docroot .str_replace($docroot,'',$_GET['DIR_FS_CATALOG'] ) . $testpath ;
+      break;
+    }
   }
-   $phpbb_suggest_dir = (substr($phpbb_suggest_dir,-1)=='/') ? substr($phpbb_suggest_dir,0,(strlen($phpbb_suggest_dir)-1)) : $phpbb_suggest_dir; //remove any trailing slashes
-   $phpbb_suggest_dir = str_replace('//','/',$phpbb_suggest_dir); // remove any double-slashes
+  $phpbb_suggest_dir = (substr($phpbb_suggest_dir,-1)=='/') ? substr($phpbb_suggest_dir,0,(strlen($phpbb_suggest_dir)-1)) : $phpbb_suggest_dir; //remove any trailing slashes
+  $phpbb_suggest_dir = str_replace('//','/',$phpbb_suggest_dir); // remove any double-slashes
 
   if (isset($_POST['submit'])) {
     if ($_POST['phpbb_use'] == 'true') {
@@ -56,7 +42,11 @@ $is_upgrade = $_GET['is_upgrade'];
     }
 
     if (!$zc_install->fatal_error) {
-      header('location: index.php?main_page=database_setup&language=' . $language . '&physical_path='.$_GET['physical_path'].'&virtual_http_path='.$_GET['virtual_http_path'].'&virtual_https_path='.$_GET['virtual_https_path'].'&virtual_https_server='.$_GET['virtual_https_server'].'&enable_ssl='.$_GET['enable_ssl'].'&enable_ssl_admin='.$_GET['enable_ssl_admin'].'&sql_cache='.$_GET['sql_cache'].'&phpbb_dir='.$_POST['phpbb_dir'].'&is_upgrade='.$_GET['is_upgrade'].'&use_phpbb='.$_POST['phpbb_use']);
+      $zc_install->setConfigKey('DIR_FS_PHPBB', $_POST['phpbb_dir']);
+      $zc_install->setConfigKey('PHPBB_ENABLE', $_POST['phpbb_use']);
+//      $zc_install->setConfigKey('PHPBB_DB_NAME', $_POST['phpbb_db_name']);
+//      $zc_install->setConfigKey('PHPBB_DB_PREFIX', $_POST['phpbb_db_prefix']);
+      header('location: index.php?main_page=config_checkup&action=write' . zcInstallAddSID() );
     }
   } //endif 'submit'
 
@@ -65,7 +55,7 @@ $is_upgrade = $_GET['is_upgrade'];
 //  if (!isset($_POST['phpbb_db_prefix'])) $_POST['phpbb_db_prefix'] = '';
   // set defaults
   if (!isset($_POST['phpbb_dir'])) $_POST['phpbb_dir'] = $phpbb_suggest_dir;
-  if (!isset($_POST['phpbb_use'])) $_POST['phpbb_use'] = '';
+  if (!isset($_POST['phpbb_use'])) $_POST['phpbb_use'] = 'false';
 
   setInputValue($_POST['phpbb_dir'], 'PHPBB_DIR_VALUE', $phpbb_suggest_dir);
   setRadioChecked($_POST['phpbb_use'], 'PHPBB_USE', 'false');

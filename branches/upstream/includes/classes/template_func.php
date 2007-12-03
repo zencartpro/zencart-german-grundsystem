@@ -3,9 +3,9 @@
  * template_func Class.
  *
  * @package classes
- * @copyright Copyright 2003-2006 Zen Cart Development Team
+ * @copyright Copyright 2003-2007 Zen Cart Development Team
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: template_func.php 4580 2006-09-21 20:47:18Z wilt $
+ * @version $Id: template_func.php 6023 2007-03-19 06:40:13Z drbyte $
  */
 if (!defined('IS_ADMIN_FLAG')) {
   die('Illegal Access');
@@ -62,6 +62,7 @@ class template_func extends base {
           break;
         }
       }
+      $mydir->close();
     }
     return $file_found;
   }

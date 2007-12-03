@@ -4,7 +4,7 @@
  * @copyright Copyright 2003-2006 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: server_info.php 4279 2006-08-26 03:31:29Z drbyte $
+ * @version $Id: server_info.php 6498 2007-06-16 06:30:49Z drbyte $
  */
 
   require('includes/application_top.php');
@@ -13,7 +13,7 @@
   $system = zen_get_system_information();
 
 // the following is for display later
-  $sinfo =  '<table width="600" border="1" cellpadding="3" style="border: 0px; border-color: #000000;">' .
+  $sinfo =  '<table width="700" border="1" cellpadding="3" style="border: 0px; border-color: #000000;">' .
          '  <tr align="center"><td><a href="http://www.zen-cart.com"><img border="0" src="images/logo.gif" alt=" Zen Cart " /></a>' .
          '     <h2 class="p"> ' . PROJECT_VERSION_NAME . ' ' . PROJECT_VERSION_MAJOR . '.' . PROJECT_VERSION_MINOR . '</h2>' .
                ((PROJECT_VERSION_PATCH1 =='') ? '' : '<h3>Patch: ' . PROJECT_VERSION_PATCH1 . '::' . PROJECT_VERSION_PATCH1_SOURCE . '</h3>') .
@@ -22,6 +22,13 @@
                ((PROJECT_DB_VERSION_PATCH1 =='') ? '' : '<h3>Patch: ' . PROJECT_DB_VERSION_PATCH1 . '::' . PROJECT_DB_VERSION_PATCH1_SOURCE . '</h3>') .
                ((PROJECT_DB_VERSION_PATCH2 =='') ? '' : '<h3>Patch: ' . PROJECT_DB_VERSION_PATCH2 . '::' . PROJECT_DB_VERSION_PATCH2_SOURCE . '</h3>') ;
 
+  $hist_query = "SELECT * from " . TABLE_PROJECT_VERSION . " WHERE project_version_key = 'Zen-Cart Main' GROUP BY concat(project_version_major, project_version_minor, project_version_comment) ORDER BY project_version_date_applied DESC, project_version_major DESC, project_version_minor DESC";
+  $hist_details = $db->Execute($hist_query);
+      $sinfo .=  'v' . $hist_details->fields['project_version_major'] . '.' . $hist_details->fields['project_version_minor'];
+      if (zen_not_null($hist_details->fields['project_version_patch'])) $sinfo .= '&nbsp;&nbsp;Patch: ' . $hist_details->fields['project_version_patch'];
+      if (zen_not_null($hist_details->fields['project_version_date_applied'])) $sinfo .= ' &nbsp;&nbsp;[' . $hist_details->fields['project_version_date_applied'] . '] ';
+      if (zen_not_null($hist_details->fields['project_version_comment'])) $sinfo .= ' &nbsp;&nbsp;(' . $hist_details->fields['project_version_comment'] . ')';
+      $sinfo .=  '<br />';
   $hist_query = "SELECT * from " . TABLE_PROJECT_VERSION_HISTORY . " WHERE project_version_key = 'Zen-Cart Main' GROUP BY concat(project_version_major, project_version_minor, project_version_comment) ORDER BY project_version_date_applied DESC, project_version_major DESC, project_version_minor DESC, project_version_patch DESC";
   $hist_details = $db->Execute($hist_query);
     while (!$hist_details->EOF) {
@@ -58,7 +65,7 @@
   // -->
 </script>
 </head>
-<body onload="init()" >
+<body onLoad="init()" >
 <!-- header //-->
 <?php require(DIR_WS_INCLUDES . 'header.php'); ?>
 <!-- header_eof //-->
@@ -66,70 +73,37 @@
 <!-- body_text //-->
 <table width="90%" border="0" cellspacing="0" cellpadding="4">
   <tr>
-    <td colspan="2" height="44"> <br>
-      <font size="+2"><b>
-      <?php echo HEADING_TITLE; ?>
-      </b></font> </td>
+    <td colspan="2" height="44"><h1><?php echo HEADING_TITLE; ?></h1></td>
   </tr>
   <tr>
-    <td colspan="2" align="left">
-      <?php echo zen_draw_separator('pixel_trans.gif', HEADING_IMAGE_WIDTH, HEADING_IMAGE_HEIGHT); ?>
-    </td>
+    <td><strong><?php echo TITLE_SERVER_HOST; ?></strong> <?php echo $system['host'] . ' (' . $system['ip'] . ')'; ?>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong> </strong></td>
+    <td width="51%"><strong><?php echo TITLE_DATABASE_HOST; ?></strong> <?php echo $system['db_server'] . ' (' . $system['db_ip'] . ')'; ?></td>
   </tr>
   <tr>
-    <td><b>
-      <?php echo TITLE_SERVER_HOST; ?>
-      </b>
-      <?php echo $system['host'] . ' (' . $system['ip'] . ')'; ?>
-      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b> </b></td>
-    <td width="51%"><b>
-      <?php echo TITLE_DATABASE_HOST; ?>
-      </b>
-      <?php echo $system['db_server'] . ' (' . $system['db_ip'] . ')'; ?>
-    </td>
+    <td><strong><?php echo TITLE_SERVER_OS; ?></strong> <?php echo $system['system'] . ' ' . $system['kernel']; ?> &nbsp;&nbsp;</td>
+    <td width="51%"><strong><?php echo TITLE_DATABASE; ?></strong> <?php echo $system['db_version'] . ($system['mysql_strict_mode'] == true ? '<em> ' . TITLE_MYSQL_STRICT_MODE . '</em>' : ''); ?></td>
   </tr>
   <tr>
-    <td><b>
-      <?php echo TITLE_SERVER_OS; ?>
-      </b>
-      <?php echo $system['system'] . ' ' . $system['kernel']; ?>
-      &nbsp;&nbsp;</td>
-    <td width="51%"><b>
-      <?php echo TITLE_DATABASE; ?>
-      </b>
-      <?php echo $system['db_version']; ?>
-    </td>
+    <td><strong><?php echo TITLE_SERVER_DATE; ?></strong> <?php echo $system['date']; ?> &nbsp;</td>
+    <td width="51%"><strong><?php echo TITLE_DATABASE_DATE; ?></strong> <?php echo $system['db_date']; ?> </td>
   </tr>
   <tr>
-    <td><b>
-      <?php echo TITLE_SERVER_DATE; ?>
-      </b>
-      <?php echo $system['date']; ?>
-      &nbsp;</td>
-    <td width="51%"><b>
-      <?php echo TITLE_DATABASE_DATE; ?>
-      </b>
-      <?php echo $system['db_date']; ?>
-    </td>
+    <td><strong><?php echo TITLE_SERVER_UP_TIME; ?></strong> <?php echo $system['uptime']; ?></td>
+    <td width="51%"><strong><?php echo TITLE_HTTP_SERVER; ?></strong> <?php echo $system['http_server']; ?></td>
   </tr>
   <tr>
-    <td height="26">
-      <p><b>
-        <?php echo TITLE_SERVER_UP_TIME; ?>
-        </b>
-        <?php echo $system['uptime']; ?>
-        <br>
-        <b>
-        <?php echo TITLE_PHP_VERSION; ?>
-        </b>
-        <?php echo $system['php'] . ' (' . TITLE_ZEND_VERSION . ' ' . $system['zend'] . ')'; ?>
-      </p>
-    </td>
-    <td width="51%" height="26"><b>
-      <?php echo TITLE_HTTP_SERVER; ?>
-      </b>
-      <?php echo $system['http_server']; ?>
-    </td>
+    <td><strong><?php echo TITLE_PHP_VERSION; ?></strong> <?php echo $system['php'] . ' (' . TITLE_ZEND_VERSION . ' ' . $system['zend'] . ')' . ($system['php_memlimit'] != '' ? ' &nbsp; <strong>' . TITLE_PHP_MEMORY_LIMIT . '</strong> ' . $system['php_memlimit'] : ''); ?></td>
+    <td><?php echo '<strong>' . TITLE_PHP_SAFE_MODE . '</strong> ' . ($system['php_safemode'] != '' && $system['php_safemode'] != 'off' && $system['php_safemode'] != '0' ? 'On' : 'Off'); ?></td>
+  </tr>
+  <tr>
+    <td><strong><?php echo TITLE_PHP_FILE_UPLOADS; ?></strong>
+      <?php echo ($system['php_file_uploads'] != '' && $system['php_file_uploads'] != 'off' && $system['php_file_uploads'] != '0') ? 'On' : 'Off';  echo ' &nbsp;&nbsp; <strong>' . TITLE_PHP_UPLOAD_MAX . '</strong> ' . $system['php_uploadmaxsize'];?></td>
+    <td><strong><?php echo TITLE_PHP_POST_MAX_SIZE; ?></strong> <?php echo $system['php_postmaxsize']; ?></td>
+  </tr>
+  <tr>
+    <td><strong><?php echo TITLE_DATABASE_DATA_SIZE; ?></strong> <?php echo number_format(($system['database_size']/1024),0); ?> kB</td>
+    <td><strong><?php echo TITLE_DATABASE_INDEX_SIZE; ?></strong> <?php echo number_format(($system['index_size']/1024),0); ?> kB</td>
   </tr>
 </table>
 <br />
@@ -153,6 +127,7 @@ hr {display: none; font-size: 11px;}
     ob_end_clean();
 
     $phpinfo = str_replace('border: 1px', '', $phpinfo);
+    $phpinfo = str_replace('width="600"', 'width="700"', $phpinfo);
     ereg('<body>(.*)</body>', $phpinfo, $regs);
     echo $sinfo;
     echo $regs[1];
@@ -163,7 +138,7 @@ hr {display: none; font-size: 11px;}
 ?>
     </td>
   </tr>
- </table>
+</table>
 <!-- body_text_eof //-->
 
 <!-- body_eof //-->

@@ -3,10 +3,10 @@
  * special application_top for Paypal IPN payment method
  *
  * @package paymentMethod
- * @copyright Copyright 2003-2006 Zen Cart Development Team
+ * @copyright Copyright 2003-2007 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: ipn_application_top.php 5137 2006-12-09 22:02:24Z wilt $
+ * @version $Id: ipn_application_top.php 6376 2007-05-25 20:29:51Z drbyte $
  */
 
 /**
@@ -14,9 +14,9 @@
  */
 define('IS_ADMIN_FLAG', false);
 
-  
   error_reporting(0);
-
+  $show_all_errors = false;
+  $current_page_base = 'paypalipn';
   @ini_set("arg_separator.output","&");
 
 // Set the local configuration parameters - mainly for developers
@@ -65,6 +65,7 @@ define('IS_ADMIN_FLAG', false);
         require(DIR_WS_INCLUDES . 'extra_datafiles/' . $zv_file);
       }
     }
+    $za_dir->close();
   }
 
 // include the cache class
@@ -83,6 +84,14 @@ define('IS_ADMIN_FLAG', false);
 // Load the database dependant query defines
   if (file_exists(DIR_WS_CLASSES . 'db/' . DB_TYPE . '/define_queries.php')) {
     include(DIR_WS_CLASSES . 'db/' . DB_TYPE . '/define_queries.php');
+  }
+
+  if (  (defined('MODULE_PAYMENT_PAYPALWPP_DEBUGGING') && strstr(MODULE_PAYMENT_PAYPALWPP_DEBUGGING, 'Log')) ||
+        (defined('MODULE_PAYMENT_PAYPAL_IPN_DEBUG') && strstr(MODULE_PAYMENT_PAYPAL_IPN_DEBUG, 'Log')) || 
+        ($_POST['ppdebug'] == 'on' && strstr(EXCLUDE_ADMIN_IP_FOR_MAINTENANCE, $_SERVER['REMOTE_ADDR']))  ) {
+    @ini_set('display_errors', E_ALL ^ E_NOTICE);
+    error_reporting(E_ALL ^ E_NOTICE);
+    $show_all_errors = true;
   }
 
 // define general functions used application-wide
@@ -160,6 +169,11 @@ define('IS_ADMIN_FLAG', false);
     zen_session_start();
     $session_started = true;
   }
+
+/**
+ * Begin processing. Add notice to log if logging enabled.
+ */
+  ipn_debug_email('IPN PROCESSING INITIATED. ' . "\n" . '*** Originating IP: ' . $_SERVER['REMOTE_ADDR'] . '  ' . (SESSION_IP_TO_HOST_ADDRESS == 'true' ? @gethostbyaddr($_SERVER['REMOTE_ADDR']) : '') . ($_SERVER['HTTP_USER_AGENT'] == '' ? '' : "\n" . '*** Browser/User Agent: ' . $_SERVER['HTTP_USER_AGENT']));
   
 // need to see if we are in test mode. If so then the data is going to come in as a GET string
   if (MODULE_PAYMENT_PAYPAL_TESTING == 'Test') {
@@ -168,15 +182,16 @@ define('IS_ADMIN_FLAG', false);
     }
   }  
   if (!$_POST) {
-    ipn_debug_email('IPN FATAL ERROR::No POST data available'); 
+    ipn_debug_email('IPN FATAL ERROR :: No POST data available -- Most likely initiated by browser and not PayPal.' . "\n\n\n" . '     *** The rest of this log report can most likely be ignored !! ***' . "\n\n\n\n");
+     //if ($show_all_errors) echo 'No POST data. This is not a real IPN transaction. Any "Undefined" errors below can be ignored ...<br />';
   }
   
   
-  $session_post = $_POST['custom'];
+  $session_post = isset($_POST['custom']) ? $_POST['custom'] : '=';
   $session_stuff = explode('=', $session_post);
   $ipnFoundSession = true;
-  if (ipn_get_stored_session($session_stuff) === false) {
-    ipn_debug_email('IPN FATAL ERROR::No saved session data available'); 
+  if (!$isECtransaction && !isset($_POST['parent_txn_id']) && ipn_get_stored_session($session_stuff) === false) {
+    ipn_debug_email('IPN FATAL ERROR :: No saved session data available to build order from IPN. Cannot process this as an IPN-only transaction.'); 
     $ipnFoundSession = false;
   }
 // create the shopping cart & fix the cart if necesary
@@ -248,7 +263,7 @@ define('IS_ADMIN_FLAG', false);
 
 
   include(DIR_WS_LANGUAGES . $template_dir_select . $_SESSION['language'] . '.php');
-  ipn_debug_email('IPN NOTICE::ipn_application_top -> language files okay');
+  ipn_debug_email('IPN NOTICE :: ipn_application_top -> language files okay');
 
 // include the extra language translations
   include(DIR_WS_MODULES . 'extra_definitions.php');

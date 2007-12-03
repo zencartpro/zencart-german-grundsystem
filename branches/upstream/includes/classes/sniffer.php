@@ -3,9 +3,9 @@
  * Sniffer Class.
  *
  * @package classes
- * @copyright Copyright 2003-2006 Zen Cart Development Team
+ * @copyright Copyright 2003-2007 Zen Cart Development Team
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: sniffer.php 3260 2006-03-26 00:18:01Z drbyte $
+ * @version $Id: sniffer.php 5645 2007-01-21 00:40:03Z drbyte $
  */
 if (!defined('IS_ADMIN_FLAG')) {
   die('Illegal Access');
@@ -48,6 +48,24 @@ class sniffer extends base {
       // echo 'fields found='.$result->fields['Field'].'<br />';
       if  ($result->fields['Field'] == $field_name) {
         return true; // exists, so return with no error
+      }
+      $result->MoveNext();
+    }
+    return false;
+  }
+
+  function field_type($table_name, $field_name, $field_type, $return_found = false) {
+    global $db;
+    $sql = "show fields from " . $table_name;
+    $result = $db->Execute($sql);
+    while (!$result->EOF) {
+      // echo 'fields found='.$result->fields['Field'].'<br />';
+      if  ($result->fields['Field'] == $field_name) {
+        if  ($result->fields['Type'] == $field_type) {
+          return true; // exists and matches required type, so return with no error
+        } elseif ($return_found) {
+          return $result->fields['Type']; // doesn't match, so return what it "is", if requested
+        }
       }
       $result->MoveNext();
     }

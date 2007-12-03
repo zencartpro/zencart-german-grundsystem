@@ -1,10 +1,10 @@
 <?php
 /**
  * @package admin
- * @copyright Copyright 2003-2006 Zen Cart Development Team
+ * @copyright Copyright 2003-2007 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: options_name_manager.php 4723 2006-10-11 00:59:28Z ajeh $
+ * @version $Id: options_name_manager.php 6895 2007-08-31 15:34:44Z drbyte $
  */
 
   require('includes/application_top.php');
@@ -92,13 +92,14 @@
         for ($i=0, $n=sizeof($languages); $i<$n; $i ++) {
           $option_name = zen_db_prepare_input($option_name_array[$languages[$i]['id']]);
 
-          $check= $db->Execute("select products_options_name
-                                from " . TABLE_PRODUCTS_OPTIONS . "
-                                where language_id= '" . $languages[$i]['id'] . "'
-                                and products_options_name='" . zen_db_input($option_name) . "'");
-
-          if ($check->RecordCount() > 1 and !empty($option_name)) {
-            $duplicate_option .= ' <b>' . strtoupper(zen_get_language_name($languages[$i]['id'])) . '</b> : ' . $option_name;
+          if (!empty($option_name)) {
+            $check= $db->Execute("select count(products_options_name) as count
+                                  from " . TABLE_PRODUCTS_OPTIONS . "
+                                  where language_id= '" . $languages[$i]['id'] . "'
+                                  and products_options_name='" . zen_db_input($option_name) . "'");
+            if ($check->fields['count'] > 1) {
+              $duplicate_option .= ' <b>' . strtoupper(zen_get_language_name($languages[$i]['id'])) . '</b> : ' . $option_name;
+            }
           }
         }
         if (!empty($duplicate_option)) {
@@ -138,10 +139,9 @@
 //          zen_db_query("update " . TABLE_PRODUCTS_OPTIONS . " set products_options_name = '" . zen_db_input($option_name) . "', products_options_type = '" . $option_type . "' where products_options_id = '" . (int)$option_id . "' and language_id = '" . (int)$languages[$i]['id'] . "'");
 
           $db->Execute("update " . TABLE_PRODUCTS_OPTIONS . "
-                        set products_options_name = '" . zen_db_input($option_name) . "', products_options_type = '" . $option_type . "', products_options_length = '" . zen_db_input($products_options_length) . "', products_options_comment = '" . zen_db_input($products_options_comment) . "', products_options_size = '" . zen_db_input($products_options_size) . "', products_options_sort_order = '" . zen_db_input($products_options_sort_order) . "', products_options_sort_order = '" . zen_db_input($products_options_sort_order) . "', products_options_images_per_row = '" . zen_db_input($products_options_images_per_row) . "', products_options_images_style = '" . zen_db_input($products_options_images_style) . "', products_options_rows = '" . zen_db_input($products_options_rows) . "'
+                        set products_options_name = '" . zen_db_input($option_name) . "', products_options_type = '" . $option_type . "', products_options_length = '" . zen_db_input($products_options_length) . "', products_options_comment = '" . zen_db_input($products_options_comment) . "', products_options_size = '" . zen_db_input($products_options_size) . "', products_options_sort_order = '" . zen_db_input($products_options_sort_order) . "', products_options_images_per_row = '" . zen_db_input($products_options_images_per_row) . "', products_options_images_style = '" . zen_db_input($products_options_images_style) . "', products_options_rows = '" . zen_db_input($products_options_rows) . "'
                         where products_options_id = '" . (int)$option_id . "'
                         and language_id = '" . (int)$languages[$i]['id'] . "'");
-
         }
 
         switch ($option_type) {
@@ -150,9 +150,9 @@
 // disabled because this could cause trouble if someone changed types unintentionally and deleted all their option values.  Shops with small numbers of values per option should consider uncommenting this.
 //            zen_db_query("delete from " . TABLE_PRODUCTS_OPTIONS_VALUES_TO_PRODUCTS_OPTIONS . " where products_options_id = '" . $_POST['option_id'] . "'");
 // add in a record if none exists when option type is switched
-            $check_type = $db->Execute("select * from " . TABLE_PRODUCTS_OPTIONS_VALUES_TO_PRODUCTS_OPTIONS . " where products_options_id='" . $_POST['option_id'] .  "' and products_options_values_id ='0'");
-            if ($check_type->EOF) {
-              $db->Execute("insert into " . TABLE_PRODUCTS_OPTIONS_VALUES_TO_PRODUCTS_OPTIONS . " values (NULL, '" . $_POST['option_id'] . "', '" . PRODUCTS_OPTIONS_VALUES_TEXT_ID . "')");
+            $check_type = $db->Execute("select count(products_options_id) as count from " . TABLE_PRODUCTS_OPTIONS_VALUES_TO_PRODUCTS_OPTIONS . " where products_options_id='" . $_POST['option_id'] .  "' and products_options_values_id ='0'");
+            if ($check_type->fields['count'] == 0) {
+              $db->Execute("insert into " . TABLE_PRODUCTS_OPTIONS_VALUES_TO_PRODUCTS_OPTIONS . " (products_options_values_to_products_options_id, products_options_id, products_options_values_id) values (NULL, '" . $_POST['option_id'] . "', '" . PRODUCTS_OPTIONS_VALUES_TEXT_ID . "')");
             }
             break;
           default:
@@ -306,11 +306,11 @@
           $next_id = ($start_id->fields['products_options_values_id'] + 1);
           while(!$copy_from_values->EOF) {
             $current_id = $copy_from_values->fields['products_options_values_id'];
-            $sql = "insert into " . TABLE_PRODUCTS_OPTIONS_VALUES . " values ('" . $next_id . "', '" . $copy_from_values->fields['language_id'] . "', '" . $copy_from_values->fields['products_options_values_name'] . "', '" . $copy_from_values->fields['products_options_values_sort_order'] . "')";
+            $sql = "insert into " . TABLE_PRODUCTS_OPTIONS_VALUES . " (products_options_values_id, language_id, products_options_values_name, products_options_values_sort_order) values ('" . $next_id . "', '" . $copy_from_values->fields['language_id'] . "', '" . $copy_from_values->fields['products_options_values_name'] . "', '" . $copy_from_values->fields['products_options_values_sort_order'] . "')";
             $db->Execute($sql);
             $copy_from_values->MoveNext();
             if ($copy_from_values->fields['products_options_values_id'] != $current_id or $copy_from_values->EOF) {
-              $sql = "insert into " . TABLE_PRODUCTS_OPTIONS_VALUES_TO_PRODUCTS_OPTIONS . " values (0, '" . $options_id_to . "', '" . $next_id . "')";
+              $sql = "insert into " . TABLE_PRODUCTS_OPTIONS_VALUES_TO_PRODUCTS_OPTIONS . " (products_options_values_to_products_options_id, products_options_id, products_options_values_id) values (0, '" . $options_id_to . "', '" . $next_id . "')";
               $db->Execute($sql);
               $next_id++;
             }
@@ -387,7 +387,7 @@ function go_option() {
   // -->
 </script>
 </head>
-<body onload="init()">
+<body onLoad="init()">
 <!-- header //-->
 <?php require(DIR_WS_INCLUDES . 'header.php'); ?>
 <!-- header_eof //-->

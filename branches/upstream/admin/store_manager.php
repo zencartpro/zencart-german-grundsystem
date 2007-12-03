@@ -1,10 +1,10 @@
 <?php
 /**
  * @package admin
- * @copyright Copyright 2003-2006 Zen Cart Development Team
+ * @copyright Copyright 2003-2007 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: store_manager.php 4279 2006-08-26 03:31:29Z drbyte $
+ * @version $Id: store_manager.php 6019 2007-03-16 20:34:05Z drbyte $
  */
 
   require('includes/application_top.php');
@@ -22,6 +22,7 @@
 
   $configuration_key_lookup = zen_db_prepare_input($_POST['configuration_key']);
 
+  zen_set_time_limit(600);
   switch($action) {
 
 // clean out the admin_activity_log
@@ -331,7 +332,7 @@
   // -->
 </script>
 </head>
-<body onload="init()">
+<body onLoad="init()">
 <!-- header //-->
 <?php require(DIR_WS_INCLUDES . 'header.php'); ?>
 <!-- header_eof //-->

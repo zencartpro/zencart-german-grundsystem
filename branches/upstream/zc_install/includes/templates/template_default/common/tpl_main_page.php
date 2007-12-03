@@ -2,10 +2,10 @@
 /**
  * @package Installer
  * @access private
- * @copyright Copyright 2003-2006 Zen Cart Development Team
+ * @copyright Copyright 2003-2007 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: tpl_main_page.php 5454 2006-12-29 20:10:17Z drbyte $
+ * @version $Id: tpl_main_page.php 7064 2007-09-20 10:31:48Z drbyte $
  */
 
   $header_template = 'tpl_header.php';
@@ -25,6 +25,8 @@
   <img src="<?php echo DIR_WS_INSTALL_TEMPLATE; ?>images/zen_header_bg.jpg" alt="Zen Cart&trade; - The Art of eCommerce" title="Zen Cart&trade;"/>
   </div>
   <div id="content">
+  <h1>:: <?php echo TEXT_PAGE_HEADING; ?></h1>
+  <p><?php echo TEXT_MAIN; ?></p>
   <?php
   require($body_code);
   ?>
@@ -44,5 +46,7 @@
     echo $messageStack->output('upgrade-error-details');
   }
 ?>
+<!-- <pre style="text-align: left"><?php print_r($zc_install->getConfigKey('-')); ?> </pre> -->
+
 </body>
 </html>

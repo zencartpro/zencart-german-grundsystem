@@ -1,26 +1,14 @@
 <?php
-//
-// +----------------------------------------------------------------------+
-// |zen-cart Open Source E-commerce                                       |
-// +----------------------------------------------------------------------+
-// | Copyright (c) 2003 The zen-cart developers                           |
-// |                                                                      |
-// | http://www.zen-cart.com/index.php                                    |
-// |                                                                      |
-// | Portions Copyright (c) 2003 osCommerce                               |
-// +----------------------------------------------------------------------+
-// | This source file is subject to version 2.0 of the GPL license,       |
-// | that is bundled with this package in the file LICENSE, and is        |
-// | available through the world-wide-web at the following url:           |
-// | http://www.zen-cart.com/license/2_0.txt.                             |
-// | If you did not receive a copy of the zen-cart license and are unable |
-// | to obtain it through the world-wide-web, please send a note to       |
-// | license@zen-cart.com so we can mail you a copy immediately.          |
-// +----------------------------------------------------------------------+
-// $Id: cc.php 4027 2006-07-26 05:27:41Z drbyte $
-//
-
-  define('MODULE_PAYMENT_CC_TEXT_TITLE', 'Credit Card');
+/**
+ * @package languageDefines
+ * @copyright Copyright 2003-2007 Zen Cart Development Team
+ * @copyright Portions Copyright 2003 osCommerce
+ * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
+ * @version $Id: cc.php 6361 2007-05-24 21:17:14Z drbyte $
+ */
+ 
+  define('MODULE_PAYMENT_CC_TEXT_ADMIN_TITLE', 'Credit Card - Offline Processing');
+  define('MODULE_PAYMENT_CC_TEXT_CATALOG_TITLE', 'Credit Card');
   define('MODULE_PAYMENT_CC_TEXT_DESCRIPTION', 'Credit Card Test Info:<br /><br />CC#: 4111111111111111<br />Expiration: Any');
   define('MODULE_PAYMENT_CC_TEXT_CREDIT_CARD_TYPE', 'Credit Card Type:');
   define('MODULE_PAYMENT_CC_TEXT_CREDIT_CARD_OWNER', 'Card Owner\'s Name:');

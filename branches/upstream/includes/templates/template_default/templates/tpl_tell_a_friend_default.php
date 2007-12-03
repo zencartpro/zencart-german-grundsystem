@@ -3,10 +3,10 @@
  * Page Template
  *
  * @package templateSystem
- * @copyright Copyright 2003-2005 Zen Cart Development Team
+ * @copyright Copyright 2003-2007 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: tpl_tell_a_friend_default.php 2894 2006-01-25 04:51:59Z birdbrain $
+ * @version $Id: tpl_tell_a_friend_default.php 5927 2007-02-28 18:32:34Z drbyte $
  */
 ?>
 <div class="centerColumn" id="tellAFriendDefault">
@@ -40,7 +40,7 @@
 <br class="clearBoth" />
 </fieldset>
 
-<div class="buttonRow back"><?php echo '<a href="' . zen_href_link(zen_get_info_page($_GET['products_id']), 'products_id=' . $_GET['products_id']) . '">' . zen_image_button(BUTTON_IMAGE_BACK, BUTTON_ADD_ADDRESS_ALT) . '</a>'; ?></div>
+<div class="buttonRow back"><?php echo '<a href="' . zen_href_link(zen_get_info_page($_GET['products_id']), 'products_id=' . $_GET['products_id']) . '">' . zen_image_button(BUTTON_IMAGE_BACK, BUTTON_BACK_ALT) . '</a>'; ?></div>
 <div class="buttonRow forward"><?php echo zen_image_submit(BUTTON_IMAGE_SEND, BUTTON_SEND_ALT); ?></div>
 <br class="clearBoth" />
 

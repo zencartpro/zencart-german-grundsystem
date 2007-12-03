@@ -6,11 +6,11 @@
  * show the products of a specified manufacturer
  *
  * @package productTypes
- * @copyright Copyright 2003-2006 Zen Cart Development Team
+ * @copyright Copyright 2003-2007 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @todo Need to add/fine-tune ability to override or insert entry-points on a per-product-type basis
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: default_filter.php 4770 2006-10-17 05:12:23Z drbyte $
+ * @version $Id: default_filter.php 6912 2007-09-02 02:23:45Z drbyte $
  */
 if (!defined('IS_ADMIN_FLAG')) {
   die('Illegal Access');
@@ -25,7 +25,7 @@ if (!defined('IS_ADMIN_FLAG')) {
   if (isset($_GET['manufacturers_id']) && $_GET['manufacturers_id'] != '' ) {
     if (isset($_GET['filter_id']) && zen_not_null($_GET['filter_id'])) {
 // We are asked to show only a specific category
-      $listing_sql = "select " . $select_column_list . " p.products_id, p.products_type, p.manufacturers_id, p.products_price, p.products_tax_class_id, pd.products_description, if(s.status = 1, s.specials_new_products_price, NULL) AS specials_new_products_price, IF(s.status = 1, s.specials_new_products_price, p.products_price) as final_price, p.products_sort_order, p.product_is_call, p.product_is_always_free_shipping, p.products_qty_box_status
+      $listing_sql = "select " . $select_column_list . " p.products_id, p.products_type, p.master_categories_id, p.manufacturers_id, p.products_price, p.products_tax_class_id, pd.products_description, if(s.status = 1, s.specials_new_products_price, NULL) AS specials_new_products_price, IF(s.status = 1, s.specials_new_products_price, p.products_price) as final_price, p.products_sort_order, p.product_is_call, p.product_is_always_free_shipping, p.products_qty_box_status
        from " . TABLE_PRODUCTS . " p left join " . TABLE_SPECIALS . " s on p.products_id = s.products_id , " .
        TABLE_PRODUCTS_DESCRIPTION . " pd, " .
        TABLE_MANUFACTURERS . " m, " .
@@ -40,7 +40,7 @@ if (!defined('IS_ADMIN_FLAG')) {
          $alpha_sort;
     } else {
 // We show them all
-      $listing_sql = "select " . $select_column_list . " p.products_id, p.products_type, p.manufacturers_id, p.products_price, p.products_tax_class_id, pd.products_description, IF(s.status = 1, s.specials_new_products_price, NULL) as specials_new_products_price, IF(s.status = 1, s.specials_new_products_price, p.products_price) as final_price, p.products_sort_order, p.product_is_call, p.product_is_always_free_shipping, p.products_qty_box_status
+      $listing_sql = "select " . $select_column_list . " p.products_id, p.products_type, p.master_categories_id, p.manufacturers_id, p.products_price, p.products_tax_class_id, pd.products_description, IF(s.status = 1, s.specials_new_products_price, NULL) as specials_new_products_price, IF(s.status = 1, s.specials_new_products_price, p.products_price) as final_price, p.products_sort_order, p.product_is_call, p.product_is_always_free_shipping, p.products_qty_box_status
       from " . TABLE_PRODUCTS . " p left join " . TABLE_SPECIALS . " s on p.products_id = s.products_id, " .
       TABLE_PRODUCTS_DESCRIPTION . " pd, " .
       TABLE_MANUFACTURERS . " m
@@ -55,7 +55,7 @@ if (!defined('IS_ADMIN_FLAG')) {
 // show the products in a given category
     if (isset($_GET['filter_id']) && zen_not_null($_GET['filter_id'])) {
 // We are asked to show only specific category
-      $listing_sql = "select " . $select_column_list . " p.products_id, p.products_type, p.manufacturers_id, p.products_price, p.products_tax_class_id, pd.products_description, IF(s.status = 1, s.specials_new_products_price, NULL) as specials_new_products_price, IF(s.status = 1, s.specials_new_products_price, p.products_price) as final_price, p.products_sort_order, p.product_is_call, p.product_is_always_free_shipping, p.products_qty_box_status
+      $listing_sql = "select " . $select_column_list . " p.products_id, p.products_type, p.master_categories_id, p.manufacturers_id, p.products_price, p.products_tax_class_id, pd.products_description, IF(s.status = 1, s.specials_new_products_price, NULL) as specials_new_products_price, IF(s.status = 1, s.specials_new_products_price, p.products_price) as final_price, p.products_sort_order, p.product_is_call, p.product_is_always_free_shipping, p.products_qty_box_status
       from " . TABLE_PRODUCTS . " p left join " . TABLE_SPECIALS . " s on p.products_id = s.products_id, " .
       TABLE_PRODUCTS_DESCRIPTION . " pd, " .
       TABLE_MANUFACTURERS . " m, " .
@@ -70,7 +70,7 @@ if (!defined('IS_ADMIN_FLAG')) {
         $alpha_sort;
     } else {
 // We show them all
-      $listing_sql = "select " . $select_column_list . " p.products_id, p.products_type, p.manufacturers_id, p.products_price, p.products_tax_class_id, pd.products_description, IF(s.status = 1, s.specials_new_products_price, NULL) as specials_new_products_price, IF(s.status =1, s.specials_new_products_price, p.products_price) as final_price, p.products_sort_order, p.product_is_call, p.product_is_always_free_shipping, p.products_qty_box_status
+      $listing_sql = "select " . $select_column_list . " p.products_id, p.products_type, p.master_categories_id, p.manufacturers_id, p.products_price, p.products_tax_class_id, pd.products_description, IF(s.status = 1, s.specials_new_products_price, NULL) as specials_new_products_price, IF(s.status =1, s.specials_new_products_price, p.products_price) as final_price, p.products_sort_order, p.product_is_call, p.product_is_always_free_shipping, p.products_qty_box_status
        from " . TABLE_PRODUCTS_DESCRIPTION . " pd, " .
        TABLE_PRODUCTS . " p left join " . TABLE_MANUFACTURERS . " m on p.manufacturers_id = m.manufacturers_id, " .
        TABLE_PRODUCTS_TO_CATEGORIES . " p2c left join " . TABLE_SPECIALS . " s on p2c.products_id = s.products_id

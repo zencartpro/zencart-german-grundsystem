@@ -1,10 +1,10 @@
 <?php
 /**
  * @package shippingMethod
- * @copyright Copyright 2003-2006 Zen Cart Development Team
+ * @copyright Copyright 2003-2007 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: usps.php 4867 2006-10-31 09:59:01Z drbyte $
+ * @version $Id: usps.php 7503 2007-11-27 20:36:04Z ajeh $
  */
 /**
  * USPS Shipping Module class
@@ -87,25 +87,27 @@ class usps extends base {
       }
     }
 
-    $this->types = array('Express' => 'Express Mail',
-    'First Class' => 'First-Class Mail',
-    'Priority' => 'Priority Mail',
-    'Parcel' => 'Parcel Post',
-    'Media' => 'Media Mail',
-    'BPM' => 'Bound Printed Material',
-    'Library' => 'Library'
-    );
+    $this->types = array('EXPRESS' => 'Express Mail',
+        'FIRST CLASS' => 'First-Class Mail',
+        'PRIORITY' => 'Priority Mail',
+        'PARCEL' => 'Parcel Post',
+        'MEDIA' => 'Media Mail',
+        'BPM' => 'Bound Printed Material',
+        'LIBRARY' => 'Library'
+        );
 
-    $this->intl_types = array('GXG Document' => 'Global Express Guaranteed Document Service',
-    'GXG Non-Document' => 'Global Express Guaranteed Non-Document Service',
-    'Express' => 'Global Express Mail (EMS)',
-    'Priority Lg' => 'Global Priority Mail - Flat-rate Envelope (Large)',
-    'Priority Sm' => 'Global Priority Mail - Flat-rate Envelope (Small)',
-    'Priority Var' => 'Global Priority Mail - Variable Weight (Single)',
-    'Airmail Letter' => 'Airmail Letter Post',
-    'Airmail Parcel' => 'Airmail Parcel Post',
-    'Surface Letter' => 'Economy (Surface) Letter Post',
-    'Surface Post' => 'Economy (Surface) Parcel Post');
+    $this->intl_types = array(
+        'Global Express' => 'Global Express Guaranteed',
+        'Global Express Non-Doc Rect' => 'Global Express Guaranteed Non-Document Rectangular',
+        'Global Express Non-Doc Non-Rect' => 'Global Express Guaranteed Non-Document Non-Rectangular',
+        'Express Mail Int' => 'Express Mail International (EMS)',
+        'Express Mail Int Flat Rate Env' => 'Express Mail International (EMS) Flat Rate Envelope',
+        'Priority Mail International' => 'Priority Mail International',
+        'Priority Mail Int Flat Rate Env' => 'Priority Mail International Flat Rate Envelope',
+        'Priority Mail Int Flat Rate Box' => 'Priority Mail International Flat Rate Box',
+        'First-Class Mail Int' => 'First-Class Mail International'
+         );
+
 
     $this->countries = $this->country_list();
   }
@@ -240,7 +242,6 @@ class usps extends base {
     global $db;
     $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) values ('Enable USPS Shipping', 'MODULE_SHIPPING_USPS_STATUS', 'True', 'Do you want to offer USPS shipping?', '6', '0', 'zen_cfg_select_option(array(\'True\', \'False\'), ', now())");
     $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) values ('Enter the USPS Web Tools User ID', 'MODULE_SHIPPING_USPS_USERID', 'NONE', 'Enter the USPS USERID assigned to you for Rate Quotes/ShippingAPI.', '6', '0', now())");
-    $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) values ('Enter the USPS Password', 'MODULE_SHIPPING_USPS_PASSWORD', 'NONE', 'See USERID, above.', '6', '0', now())");
     $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) values ('Which server to use', 'MODULE_SHIPPING_USPS_SERVER', 'production', 'An account at USPS is needed to use the Production server', '6', '0', 'zen_cfg_select_option(array(\'test\', \'production\'), ', now())");
     $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) values ('All Packages are Machinable', 'MODULE_SHIPPING_USPS_MACHINABLE', 'False', 'Are all products shipped machinable based on C700 Package Services 2.0 Nonmachinable PARCEL POST USPS Rules and Regulations?<br /><br /><strong>Note: Nonmachinable packages will usually result in a higher Parcel Post Rate Charge.<br /><br />Packages 35lbs or more, or less than 6 ounces (.375), will be overridden and set to False</strong>', '6', '0', 'zen_cfg_select_option(array(\'True\', \'False\'), ', now())");
     $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) values ('Handling Fee', 'MODULE_SHIPPING_USPS_HANDLING', '0', 'Handling fee for this shipping method.', '6', '0', now())");
@@ -249,10 +250,11 @@ class usps extends base {
     $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, use_function, set_function, date_added) values ('Shipping Zone', 'MODULE_SHIPPING_USPS_ZONE', '0', 'If a zone is selected, only enable this shipping method for that zone.', '6', '0', 'zen_get_zone_class_title', 'zen_cfg_pull_down_zone_classes(', now())");
     $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) values ('Sort Order', 'MODULE_SHIPPING_USPS_SORT_ORDER', '0', 'Sort order of display.', '6', '0', now())");
     // BOF: UPS USPS
-    $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) values ('Domestic Shipping Methods', 'MODULE_SHIPPING_USPS_TYPES', 'Express, Priority, First Class, Parcel, Media, BPM, Library', 'Select the domestic services to be offered:', '6', '14', 'zen_cfg_select_multioption(array(\'Express\', \'Priority\', \'First Class\', \'Parcel\', \'Media\', \'BPM\', \'Library\'), ',  now())");
-    $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) values ('Int\'l Shipping Methods', 'MODULE_SHIPPING_USPS_TYPES_INTL', 'GXG Document, GXG Non-Document, Express, Priority Lg, Priority Sm, Priority Var, Airmail Letter, Airmail Parcel, Surface Letter, Surface Post', 'Select the international services to be offered:', '6', '15', 'zen_cfg_select_multioption(array(\'GXG Document\', \'GXG Non-Document\', \'Express\', \'Priority Lg\', \'Priority Sm\', \'Priority Var\', \'Airmail Letter\', \'Airmail Parcel\', \'Surface Letter\', \'Surface Post\'), ',  now())");
+    $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) values ('Domestic Shipping Methods', 'MODULE_SHIPPING_USPS_TYPES', 'EXPRESS, PRIORITY, FIRST CLASS, PARCEL, MEDIA, BPM, LIBRARY', 'Select the domestic services to be offered:', '6', '14', 'zen_cfg_select_multioption(array(\'EXPRESS\', \'PRIORITY\', \'FIRST CLASS\', \'PARCEL\', \'MEDIA\', \'BPM\', \'LIBRARY\'), ',  now())");
+    $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) values ('International Shipping Methods', 'MODULE_SHIPPING_USPS_TYPES_INTL', 'Global Express, Global Express Non-Doc Rect, Global Express Non-Doc Non-Rect, Express Mail Int, Express Mail Int Flat Rate Env, Priority Mail International, Priority Mail Int Flat Rate Env, Priority Mail Int Flat Rate Box, First-Class Mail Int', 'Select the international services to be offered:', '6', '15', 'zen_cfg_select_multioption(array(\'Global Express\', \'Global Express Non-Doc Rect\', \'Global Express Non-Doc Non-Rect\', \'Express Mail Int\', \'Express Mail Int Flat Rate Env\', \'Priority Mail International\', \'Priority Mail Int Flat Rate Env\', \'Priority Mail Int Flat Rate Box\', \'First-Class Mail Int\'), ',  now())");
     $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) values ('USPS Options', 'MODULE_SHIPPING_USPS_OPTIONS', 'Display weight, Display transit time', 'Select from the following the USPS options.', '6', '16', 'zen_cfg_select_multioption(array(\'Display weight\', \'Display transit time\'), ',  now())");
     // EOF: UPS USPS
+    $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) values ('Debug Mode', 'MODULE_SHIPPING_USPS_DEBUG_MODE', 'Off', 'Would you like to enable debug mode?  A complete detailed log of USPS quote results may be emailed to the store owner.', '6', '0', 'zen_cfg_select_option(array(\'Off\', \'Email\'), ', now())");
   }
   /**
    * Remove this module
@@ -260,7 +262,7 @@ class usps extends base {
    */
   function remove() {
     global $db;
-    $db->Execute("delete from " . TABLE_CONFIGURATION . " where configuration_key like 'MODULE_SHIPPING_USPS_%' ");
+    $db->Execute("delete from " . TABLE_CONFIGURATION . " where configuration_key like 'MODULE\_SHIPPING\_USPS\_%' ");
   }
   /**
    * Build array of keys used for installing/managing this module
@@ -268,8 +270,9 @@ class usps extends base {
    * @return array
    */
   function keys() {
-    return array('MODULE_SHIPPING_USPS_STATUS', 'MODULE_SHIPPING_USPS_USERID', 'MODULE_SHIPPING_USPS_SERVER', 'MODULE_SHIPPING_USPS_HANDLING', 'MODULE_SHIPPING_USPS_TAX_CLASS', 'MODULE_SHIPPING_USPS_TAX_BASIS', 'MODULE_SHIPPING_USPS_ZONE', 'MODULE_SHIPPING_USPS_SORT_ORDER', 'MODULE_SHIPPING_USPS_MACHINABLE', 'MODULE_SHIPPING_USPS_OPTIONS', 'MODULE_SHIPPING_USPS_TYPES', 'MODULE_SHIPPING_USPS_TYPES_INTL');
-    //      return array('MODULE_SHIPPING_USPS_STATUS', 'MODULE_SHIPPING_USPS_USERID', 'MODULE_SHIPPING_USPS_PASSWORD', 'MODULE_SHIPPING_USPS_SERVER', 'MODULE_SHIPPING_USPS_HANDLING', 'MODULE_SHIPPING_USPS_TAX_CLASS', 'MODULE_SHIPPING_USPS_ZONE', 'MODULE_SHIPPING_USPS_SORT_ORDER', 'MODULE_SHIPPING_USPS_OPTIONS', 'MODULE_SHIPPING_USPS_TYPES', 'MODULE_SHIPPING_USPS_TYPES_INTL');
+    $keys_list = array('MODULE_SHIPPING_USPS_STATUS', 'MODULE_SHIPPING_USPS_USERID', 'MODULE_SHIPPING_USPS_SERVER', 'MODULE_SHIPPING_USPS_HANDLING', 'MODULE_SHIPPING_USPS_TAX_CLASS', 'MODULE_SHIPPING_USPS_TAX_BASIS', 'MODULE_SHIPPING_USPS_ZONE', 'MODULE_SHIPPING_USPS_SORT_ORDER', 'MODULE_SHIPPING_USPS_MACHINABLE', 'MODULE_SHIPPING_USPS_OPTIONS', 'MODULE_SHIPPING_USPS_TYPES', 'MODULE_SHIPPING_USPS_TYPES_INTL');
+    $keys_list[]='MODULE_SHIPPING_USPS_DEBUG_MODE';
+    return $keys_list;
   }
   /**
    * Set USPS service mode
@@ -325,7 +328,7 @@ class usps extends base {
     // EOF: UPS USPS
 
     if ($order->delivery['country']['id'] == SHIPPING_ORIGIN_COUNTRY) {
-      $request  = '<RateRequest USERID="' . MODULE_SHIPPING_USPS_USERID . '" PASSWORD="' . MODULE_SHIPPING_USPS_PASSWORD . '">';
+      $request  = '<RateRequest USERID="' . MODULE_SHIPPING_USPS_USERID . '">';
       $services_count = 0;
 
       if (isset($this->service)) {
@@ -353,19 +356,18 @@ class usps extends base {
         '</Package>';
         // BOF: UPS USPS
         if($transit){
-          $transitreq  = 'USERID="' . MODULE_SHIPPING_USPS_USERID .
-          '" PASSWORD="' . MODULE_SHIPPING_USPS_PASSWORD . '">' .
+          $transitreq  = 'USERID="' . MODULE_SHIPPING_USPS_USERID . '">' .
           '<OriginZip>' . STORE_ORIGIN_ZIP . '</OriginZip>' .
           '<DestinationZip>' . $dest_zip . '</DestinationZip>';
 
           switch ($key) {
-            case 'Express':  $transreq[$key] = 'API=ExpressMail&XML=' .
+            case 'EXPRESS':  $transreq[$key] = 'API=ExpressMail&XML=' .
             urlencode( '<ExpressMailRequest ' . $transitreq . '</ExpressMailRequest>');
             break;
-            case 'Priority': $transreq[$key] = 'API=PriorityMail&XML=' .
+            case 'PRIORITY': $transreq[$key] = 'API=PriorityMail&XML=' .
             urlencode( '<PriorityMailRequest ' . $transitreq . '</PriorityMailRequest>');
             break;
-            case 'Parcel':   $transreq[$key] = 'API=StandardB&XML=' .
+            case 'PARCEL':   $transreq[$key] = 'API=StandardB&XML=' .
             urlencode( '<StandardBRequest ' . $transitreq . '</StandardBRequest>');
             break;
             default:         $transreq[$key] = '';
@@ -379,7 +381,7 @@ class usps extends base {
 
       $request = 'API=Rate&XML=' . urlencode($request);
     } else {
-      $request  = '<IntlRateRequest USERID="' . MODULE_SHIPPING_USPS_USERID . '" PASSWORD="' . MODULE_SHIPPING_USPS_PASSWORD . '">' .
+      $request  = '<IntlRateRequest USERID="' . MODULE_SHIPPING_USPS_USERID . '">' .
       '<Package ID="0">' .
       '<Pounds>' . $this->pounds . '</Pounds>' .
       '<Ounces>' . $this->ounces . '</Ounces>' .
@@ -399,21 +401,22 @@ class usps extends base {
       case 'test':
       default:
       $usps_server = 'testing.shippingapis.com';
-      $api_dll = 'ShippingAPITest.dll';
+      $api_dll = 'ShippingAPI.dll';
       break;
     }
 
     $body = '';
 
     $http = new httpClient();
+    $http->timeout = 5;
     if ($http->Connect($usps_server, 80)) {
       $http->addHeader('Host', $usps_server);
       $http->addHeader('User-Agent', 'Zen Cart');
       $http->addHeader('Connection', 'Close');
 
       if ($http->Get('/' . $api_dll . '?' . $request)) $body = $http->getBody();
+      if (MODULE_SHIPPING_USPS_DEBUG_MODE == 'Email') mail(STORE_OWNER_EMAIL_ADDRESS, 'Debug: USPS rate quote response', $body, 'From: <' . EMAIL_FROM . '>');
       // BOF: UPS USPS
-      //  mail('you@yourdomain.com','USPS rate quote response',$body,'From: <you@yourdomain.com>');
       if ($transit && is_array($transreq) && ($order->delivery['country']['id'] == STORE_COUNTRY)) {
         while (list($key, $value) = each($transreq)) {
           if ($http->Get('/' . $api_dll . '?' . $value)) $transresp[$key] = $http->getBody();
@@ -464,7 +467,7 @@ class usps extends base {
           // BOF: UPS USPS
           if ($transit) {
             switch ($service) {
-              case 'Express':     $time = ereg('<MonFriCommitment>(.*)</MonFriCommitment>', $transresp[$service], $tregs);
+              case 'EXPRESS':     $time = ereg('<MonFriCommitment>(.*)</MonFriCommitment>', $transresp[$service], $tregs);
               $time = $tregs[1];
               if ($time == '' || $time == 'No Data') {
                 $time = '1 - 2 ' . MODULE_SHIPPING_USPS_TEXT_DAYS;
@@ -472,7 +475,7 @@ class usps extends base {
                 $time = 'Tomorrow by ' . $time;
               }
               break;
-              case 'Priority':    $time = ereg('<Days>(.*)</Days>', $transresp[$service], $tregs);
+              case 'PRIORITY':    $time = ereg('<Days>(.*)</Days>', $transresp[$service], $tregs);
               $time = $tregs[1];
               if ($time == '' || $time == 'No Data') {
                 $time = '2 - 3 ' . MODULE_SHIPPING_USPS_TEXT_DAYS;
@@ -482,7 +485,7 @@ class usps extends base {
                 $time .= ' ' . MODULE_SHIPPING_USPS_TEXT_DAYS;
               }
               break;
-              case 'Parcel':      $time = ereg('<Days>(.*)</Days>', $transresp[$service], $tregs);
+              case 'PARCEL':      $time = ereg('<Days>(.*)</Days>', $transresp[$service], $tregs);
               $time = $tregs[1];
               if ($time == '' || $time == 'No Data') {
                 $time = '4 - 7 ' . MODULE_SHIPPING_USPS_TEXT_DAYS;
@@ -492,7 +495,7 @@ class usps extends base {
                 $time .= ' ' . MODULE_SHIPPING_USPS_TEXT_DAYS;
               }
               break;
-              case 'First Class': $time = '2 - 5 ' . MODULE_SHIPPING_USPS_TEXT_DAYS;
+              case 'FIRST CLASS': $time = '2 - 5 ' . MODULE_SHIPPING_USPS_TEXT_DAYS;
               break;
               default:            $time = '';
               break;
@@ -544,6 +547,7 @@ class usps extends base {
             $time = preg_replace('/Day$/', MODULE_SHIPPING_USPS_TEXT_DAY, $time);
 
             if( !in_array($service, $allowed_types) ) continue;
+            if ($_SESSION['cart']->total > 400 && strstr($services[$i], 'Priority Mail International Flat Rate Envelope')) continue; // skip value > $400 Priority Mail International Flat Rate Envelope
             // EOF: UPS USPS
             if (isset($this->service) && ($service != $this->service) ) {
               continue;
@@ -557,6 +561,7 @@ class usps extends base {
         }
       }
     }
+//echo 'RATE RESPONSE: ' . "\n" . print_r($rates);
 
     return ((sizeof($rates) > 0) ? $rates : false);
   }

@@ -3,35 +3,28 @@
  * Module Template
  *
  * @package templateSystem
- * @copyright Copyright 2003-2005 Zen Cart Development Team
+ * @copyright Copyright 2003-2007 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: tpl_modules_upcoming_products.php 2834 2006-01-11 22:16:37Z birdbrain $
+ * @version $Id: tpl_modules_upcoming_products.php 6422 2007-05-31 00:51:40Z ajeh $
  */
 ?>
 <!-- bof: upcoming_products -->
 <fieldset>
 <legend><?php echo TABLE_HEADING_UPCOMING_PRODUCTS; ?></legend>
-<table border="0" width="100%" cellspacing="0" cellpadding="2" id="upcomingProductsTable" summary="table contains a list of products that are due to be instock soon and the dates the items are expected">
-<caption>These items will be in stock soon</caption>
+<table border="0" width="100%" cellspacing="0" cellpadding="2" id="upcomingProductsTable" summary="<?php echo SUMMARY_TABLE_UPCOMING_PRODUCTS; ?>">
+<caption><?php echo CAPTION_UPCOMING_PRODUCTS; ?></caption>
   <tr>
     <th scope="col" id="upProductsHeading"><?php echo TABLE_HEADING_PRODUCTS; ?></th>
     <th scope="col" id="upDateHeading"><?php echo TABLE_HEADING_DATE_EXPECTED; ?></th>
   </tr>
 <?php
-    $row = 0;
-    while (!$expected->EOF) {
-      $row++;
-      if (($row / 2) == floor($row / 2)) {
-        echo '  <tr class="rowEven">' . "\n";
-      } else {
-        echo '  <tr class="rowOdd">' . "\n";
-      }
-
-      echo '    <td ><a href="' . zen_href_link(zen_get_info_page($expected->fields['products_id']), 'products_id=' . $expected->fields['products_id']) . '">' . $expected->fields['products_name'] . '</a></td>' . "\n" .
-           '    <td align="right" >' . zen_date_short($expected->fields['date_expected']) . '</td>' . "\n" .
-           '  </tr>' . "\n";
-      $expected->MoveNext();
+    for($i=0, $row=0; $i < sizeof($expectedItems); $i++, $row++) {
+      $rowClass = (($row / 2) == floor($row / 2)) ? "rowEven" : "rowOdd";
+      echo '  <tr class="' . $rowClass . '">' . "\n";
+      echo '    <td ><a href="' . zen_href_link(zen_get_info_page($expectedItems[$i]['products_id']), 'cPath=' . $productsInCategory[$expectedItems[$i]['products_id']] . '&products_id=' . $expectedItems[$i]['products_id']) . '">' . $expectedItems[$i]['products_name'] . '</a></td>' . "\n";
+      echo '    <td align="right" >' . zen_date_short($expectedItems[$i]['date_expected']) . '</td>' . "\n";
+      echo '  </tr>' . "\n";
     }
 ?>
 </table>

@@ -3,10 +3,10 @@
  * create_account header_php.php
  *
  * @package modules
- * @copyright Copyright 2003-2006 Zen Cart Development Team
+ * @copyright Copyright 2003-2007 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: create_account.php 4825 2006-10-23 22:25:11Z drbyte $
+ * @version $Id: create_account.php 6772 2007-08-21 12:33:29Z drbyte $
  */
 // This should be first line of the script:
 $zco_notifier->notify('NOTIFY_MODULE_START_CREATE_ACCOUNT');
@@ -24,6 +24,9 @@ if (!defined('IS_ADMIN_FLAG')) {
   $state = '';
   $zone_id = 0;
   $error = false;
+  $email_format = (ACCOUNT_EMAIL_PREFERENCE == '1' ? 'HTML' : 'TEXT');
+  $newsletter = (ACCOUNT_NEWSLETTER_STATUS == '1' ? false : true);
+
 /**
  * Process form contents
  */
@@ -63,7 +66,6 @@ if (isset($_POST['action']) && ($_POST['action'] == 'process')) {
   $country = zen_db_prepare_input($_POST['zone_country_id']);
   $telephone = zen_db_prepare_input($_POST['telephone']);
   $fax = zen_db_prepare_input($_POST['fax']);
-  $email_format = zen_db_prepare_input($_POST['email_format']);
   $customers_authorization = CUSTOMERS_APPROVAL_AUTHORIZATION;
   $customers_referral = zen_db_prepare_input($_POST['customers_referral']);
 
@@ -176,7 +178,7 @@ if (isset($_POST['action']) && ($_POST['action'] == 'process')) {
       $zone_query = "SELECT distinct zone_id, zone_name, zone_code
                      FROM " . TABLE_ZONES . "
                      WHERE zone_country_id = :zoneCountryID
-                     AND " . 
+                     AND " .
                      ((trim($state) != '' && $zone_id == 0) ? "(upper(zone_name) like ':zoneState%' OR upper(zone_code) like '%:zoneState%') OR " : "") .
                     "zone_id = :zoneID
                      ORDER BY zone_code ASC, zone_name";
@@ -264,6 +266,8 @@ if (isset($_POST['action']) && ($_POST['action'] == 'process')) {
 
     $_SESSION['customer_id'] = $db->Insert_ID();
 
+    $zco_notifier->notify('NOTIFY_MODULE_CREATE_ACCOUNT_ADDED_CUSTOMER_RECORD', array_merge(array('customer_id' => $_SESSION['customer_id']), $sql_data_array));
+
     $sql_data_array = array('customers_id' => $_SESSION['customer_id'],
                             'entry_firstname' => $firstname,
                             'entry_lastname' => $lastname,
@@ -288,6 +292,8 @@ if (isset($_POST['action']) && ($_POST['action'] == 'process')) {
     zen_db_perform(TABLE_ADDRESS_BOOK, $sql_data_array);
 
     $address_id = $db->Insert_ID();
+
+    $zco_notifier->notify('NOTIFY_MODULE_CREATE_ACCOUNT_ADDED_ADDRESS_BOOK_RECORD', array_merge(array('address_id' => $address_id), $sql_data_array));
 
     $sql = "update " . TABLE_CUSTOMERS . "
               set customers_default_address_id = '" . (int)$address_id . "'
@@ -350,16 +356,18 @@ if (isset($_POST['action']) && ($_POST['action'] == 'process')) {
       $coupon_desc = $db->Execute("select coupon_description from " . TABLE_COUPONS_DESCRIPTION . " where coupon_id = '" . $coupon_id . "' and language_id = '" . $_SESSION['languages_id'] . "'");
       $db->Execute("insert into " . TABLE_COUPON_EMAIL_TRACK . " (coupon_id, customer_id_sent, sent_firstname, emailed_to, date_sent) values ('" . $coupon_id ."', '0', 'Admin', '" . $email_address . "', now() )");
 
+      $text_coupon_help = sprintf(TEXT_COUPON_HELP_DATE, zen_date_short($coupon->fields['coupon_start_date']),zen_date_short($coupon->fields['coupon_expire_date']));
+
       // if on, add in Discount Coupon explanation
       //        $email_text .= EMAIL_COUPON_INCENTIVE_HEADER .
       $email_text .= "\n" . EMAIL_COUPON_INCENTIVE_HEADER .
-      (!empty($coupon_desc->fields['coupon_description']) ? $coupon_desc->fields['coupon_description'] . "\n\n" : '') .
+      (!empty($coupon_desc->fields['coupon_description']) ? $coupon_desc->fields['coupon_description'] . "\n\n" : '') . $text_coupon_help  . "\n\n" .
       strip_tags(sprintf(EMAIL_COUPON_REDEEM, ' ' . $coupon->fields['coupon_code'])) . EMAIL_SEPARATOR;
 
       $html_msg['COUPON_TEXT_VOUCHER_IS'] = EMAIL_COUPON_INCENTIVE_HEADER ;
       $html_msg['COUPON_DESCRIPTION']     = (!empty($coupon_desc->fields['coupon_description']) ? '<strong>' . $coupon_desc->fields['coupon_description'] . '</strong>' : '');
       $html_msg['COUPON_TEXT_TO_REDEEM']  = str_replace("\n", '', sprintf(EMAIL_COUPON_REDEEM, ''));
-      $html_msg['COUPON_CODE']  = $coupon->fields['coupon_code'];
+      $html_msg['COUPON_CODE']  = $coupon->fields['coupon_code'] . $text_coupon_help;
     } //endif coupon
 
     if (NEW_SIGNUP_GIFT_VOUCHER_AMOUNT > 0) {
@@ -397,14 +405,14 @@ if (isset($_POST['action']) && ($_POST['action'] == 'process')) {
     // send additional emails
     if (SEND_EXTRA_CREATE_ACCOUNT_EMAILS_TO_STATUS == '1' and SEND_EXTRA_CREATE_ACCOUNT_EMAILS_TO !='') {
       if ($_SESSION['customer_id']) {
-        $account_query = "select customers_firstname, customers_lastname, customers_email_address
+        $account_query = "select customers_firstname, customers_lastname, customers_email_address, customers_telephone, customers_fax
                             from " . TABLE_CUSTOMERS . "
                             where customers_id = '" . (int)$_SESSION['customer_id'] . "'";
 
         $account = $db->Execute($account_query);
       }
 
-      $extra_info=email_collect_extra_info($name,$email_address, $account->fields['customers_firstname'] . ' ' . $account->fields['customers_lastname'] , $account->fields['customers_email_address'] );
+      $extra_info=email_collect_extra_info($name,$email_address, $account->fields['customers_firstname'] . ' ' . $account->fields['customers_lastname'], $account->fields['customers_email_address'], $account->fields['customers_telephone'], $account->fields['customers_fax']);
       $html_msg['EXTRA_INFO'] = $extra_info['HTML'];
       zen_mail('', SEND_EXTRA_CREATE_ACCOUNT_EMAILS_TO, SEND_EXTRA_CREATE_ACCOUNT_EMAILS_TO_SUBJECT . ' ' . EMAIL_SUBJECT,
       $email_text . $extra_info['TEXT'], STORE_NAME, EMAIL_FROM, $html_msg, 'welcome_extra');
@@ -423,9 +431,6 @@ if (isset($_POST['action']) && ($_POST['action'] == 'process')) {
   $flag_show_pulldown_states = ((($process == true || $entry_state_has_zones == true) && $zone_name == '') || ACCOUNT_STATE_DRAW_INITIAL_DROPDOWN == 'true' || $error_state_input) ? true : false;
   $state = ($flag_show_pulldown_states) ? ($state == '' ? '&nbsp;' : $state) : $zone_name;
   $state_field_label = ($flag_show_pulldown_states) ? '' : ENTRY_STATE;
-
-  if (!isset($email_format)) $email_format = (ACCOUNT_EMAIL_PREFERENCE == '1' ? 'HTML' : 'TEXT');
-  if (!isset($newsletter))   $newsletter = (ACCOUNT_NEWSLETTER_STATUS == '1' ? false : true);
 
 // This should be last line of the script:
 $zco_notifier->notify('NOTIFY_MODULE_END_CREATE_ACCOUNT');

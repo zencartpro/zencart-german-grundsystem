@@ -1,10 +1,16 @@
-<?
+<?php
 //You must enter YOUR email address ($myemail on line below).
 $myemail ="YOUR_EMAIL_ADDRESS_GOES_HERE";
+// If the email you send is properly received, then your mailserver (PHP) configuration settings are fine.
+// If the emails you send from this tool are "not" received, then you should check with your 
+// webhosting provider to see whether there are special requirements for sending mail
+// or perhaps you need to use an authentication method such as SMTPAUTH (which this tool cannot test).
+// Further, you might check the mailserver logs to see what happens to your messages
+// if they are not being received at the destination you entered in $myemail above.
 
 // ****************************************************************
 // * TECHSUPP.PHP
-// * v1.2g  Dec 22, 2006
+// * v1.2i  September 12, 2007
 // * 
 // * Tech Support tool to collect server and Zen Cart config info 
 // * Results can then be reported when requesting tech support on
@@ -17,8 +23,10 @@ $myemail ="YOUR_EMAIL_ADDRESS_GOES_HERE";
 // * will report system info, but will skip the Zen Cart specific items.
 // *
 // * Contributed by: DrByte 
-// * @version $Id: techsupp.php 5353 2006-12-23 01:49:31Z drbyte $
+// * @version $Id: techsupp.php 7096 2007-09-24 20:18:00Z drbyte $
 // *****************************************************************
+// * v1.2i- added realpath() to output
+// * v1.2h- added SCRIPT_URI to the list of reported data
 // * v1.2g- removed requirement for Register Globals in order to use email test
 // * v1.2f- added ability to list suggested paths for specific Zen Cart configure.php parameters
 // * v1.2e- minor bugfixes
@@ -30,15 +38,6 @@ $myemail ="YOUR_EMAIL_ADDRESS_GOES_HERE";
 // * v1.1 - revised to work with or without Zen files available
 // *      - added some CSS for easier reading
 // *****************************************************************
-
-// If the email you send is properly received, then your mailserver (PHP) configuration settings are fine.
-// If the emails you send from this tool are "not" received, then you should check with your 
-// webhosting provider to see whether there are special requirements for sending mail
-// or perhaps you need to use an authentication method such as SMTPAUTH (which this tool cannot test).
-// Further, you might check the mailserver logs to see what happens to your messages
-// if they are not being received at the destination you entered in $myemail above.
-
-
 
 // suppress errors
   error_reporting(E_ALL & ~E_NOTICE);
@@ -132,7 +131,7 @@ echo '<span class=green><em>{if you wish to enable email-testing support, please
 
 <h2>Server Info</h2>
 <ul>
-<li><strong>Webserver: </strong><?=getenv("SERVER_SOFTWARE")?></li><br /><br />
+<li><strong>Webserver: </strong><?php echo getenv("SERVER_SOFTWARE"); ?></li><br /><br />
 <?php 
  $disk_freespaceGB=round(@diskfreespace(__FILE__)/1024/1024/1024,2);
  $disk_freespaceMB=round(@diskfreespace(__FILE__)/1024/1024,2);
@@ -145,7 +144,7 @@ echo '<span class=green><em>{if you wish to enable email-testing support, please
 
 <h2>PHP Info</h2><ul>
 <li><strong>PHP version: </strong>
-<? if (phpversion()=="4.1.2") {
+<?php if (phpversion()=="4.1.2") {
    echo "<span class='red'>".phpversion()." {You SHOULD upgrade this!}</span>";
    } else {
    echo phpversion();
@@ -153,7 +152,7 @@ echo '<span class=green><em>{if you wish to enable email-testing support, please
 <li><?php echo '<strong>PHP API version</strong>= '.@php_sapi_name(); ?></li>
 
 <li><strong>PHP Safe Mode</strong>= 
-<? if (ini_get("safe_mode")) {
+<?php if (ini_get("safe_mode")) {
    echo "<span class='red'>ON</span>";
    } else{
    echo "OFF";
@@ -202,9 +201,11 @@ echo '<span class=green><em>{if you wish to enable email-testing support, please
 <li><?php echo '<strong>SERVER_SOFTWARE</strong>= "'.$_SERVER['SERVER_SOFTWARE'].'"'; ?></li>
 <li><?php echo '<strong>SERVER_NAME</strong>= "'.$_SERVER['SERVER_NAME'].'"'; ?></li>
 <li><?php echo '<strong>DOCUMENT_ROOT</strong>= "'.$_SERVER['DOCUMENT_ROOT'].'"'; ?></li>
+<li><?php echo '<span class=red>SCRIPT_URI= "'.$_SERVER['SCRIPT_URI'].'"</span>'; ?></li>
 <li><?php echo '<span class=red>REQUEST_URI= "'.$_SERVER['REQUEST_URI'].'"</span>'; ?></li>
 <li><?php echo '<span class=red>SCRIPT_NAME= "'.$_SERVER['SCRIPT_NAME'].'"</span>'; ?></li>
 <li><?php echo '<span class=red>PHP_SELF= "'.$_SERVER['PHP_SELF'].'"</span>'; ?></li>
+<li><?php echo '<span class=red>real_path()= "'.realpath(dirname(basename($PHP_SELF))).'"</span>'; ?></li>
 <li><?php echo '<span class=red>SCRIPT_FILENAME= "'.$_SERVER['SCRIPT_FILENAME'].'"</span>'; ?></li>
 <li><?php echo '<span class=red>PATH_TRANSLATED= "'.$_SERVER['PATH_TRANSLATED'].'"</span>'; ?></li>
 <li><?php echo '<span class=red>PHP __FILE__: "'.__FILE__.'"</span>'; ?></li>
@@ -273,20 +274,20 @@ foreach (array('cache'=>'777 read/write/execute',
         if (headers_sent) echo 'YOU CAN SAFELY IGNORE THE FOLLOWING "Headers already sent" ERRORS:';
         include('includes/application_top.php'); ?>
 <h3>From APPLICATION_TOP.PHP</h3><ul>
-<li><strong>Version: </strong><? echo PROJECT_VERSION_NAME; ?></li><br />
-<li><strong>Version Major: </strong><? echo PROJECT_VERSION_MAJOR; ?></li><br />
-<li><strong>Version Minor: </strong><? echo PROJECT_VERSION_MINOR; ?></li>
+<li><strong>Version: </strong><?php echo PROJECT_VERSION_NAME; ?></li><br />
+<li><strong>Version Major: </strong><?php echo PROJECT_VERSION_MAJOR; ?></li><br />
+<li><strong>Version Minor: </strong><?php echo PROJECT_VERSION_MINOR; ?></li>
 </ul>
 
 <h3>Settings from Zen Cart Database:</h3><ul>
-<li><strong>Installed Payment Modules: </strong><? echo MODULE_PAYMENT_INSTALLED; ?></li><br />
-<li><strong>Installed Order Total Modules: </strong><? echo MODULE_ORDER_TOTAL_INSTALLED; ?></li><br />
-<li><strong>Installed Shipping Modules: </strong><? echo MODULE_SHIPPING_INSTALLED; ?></li><br />
-<li><strong>Default Currency: </strong><? echo DEFAULT_CURRENCY; ?></li><br />
-<li><strong>Default Language: </strong><? echo DEFAULT_LANGUAGE; ?></li><br />
-<li><strong>Enable Downloads: </strong><? echo DOWNLOAD_ENABLED; ?></li><br />
-<li><strong>Enable GZip Compression: </strong><? echo GZIP_LEVEL; ?></li><br />
-<li><strong>Admin Demo Status: </strong><? echo ADMIN_DEMO; ?></li>
+<li><strong>Installed Payment Modules: </strong><?php echo MODULE_PAYMENT_INSTALLED; ?></li><br />
+<li><strong>Installed Order Total Modules: </strong><?php echo MODULE_ORDER_TOTAL_INSTALLED; ?></li><br />
+<li><strong>Installed Shipping Modules: </strong><?php echo MODULE_SHIPPING_INSTALLED; ?></li><br />
+<li><strong>Default Currency: </strong><?php echo DEFAULT_CURRENCY; ?></li><br />
+<li><strong>Default Language: </strong><?php echo DEFAULT_LANGUAGE; ?></li><br />
+<li><strong>Enable Downloads: </strong><?php echo DOWNLOAD_ENABLED; ?></li><br />
+<li><strong>Enable GZip Compression: </strong><?php echo GZIP_LEVEL; ?></li><br />
+<li><strong>Admin Demo Status: </strong><?php echo ADMIN_DEMO; ?></li>
 </ul>
 <?php
         } //endif check if we're in zc_install
@@ -297,7 +298,7 @@ foreach (array('cache'=>'777 read/write/execute',
 ?>
 
 <br /><strong><h2>PHP Modules:</h2></strong><ul>
-<?
+<?php
 $le = get_loaded_extensions();
 foreach($le as $module) {
     print "<li>$module</li>";

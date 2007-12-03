@@ -17,7 +17,7 @@
 // | to obtain it through the world-wide-web, please send a note to       |
 // | license@zen-cart.com so we can mail you a copy immediately.          |
 // +----------------------------------------------------------------------+
-//  $Id: salemaker.php 1105 2005-04-04 22:05:35Z birdbrain $
+//  $Id: salemaker.php 6369 2007-05-25 03:03:42Z ajeh $
 //
 
 define('HEADING_TITLE', 'SaleMaker');
@@ -64,4 +64,7 @@ define('TEXT_INFO_HEADING_COPY_SALE', 'Copy Sale');
 define('TEXT_INFO_COPY_INTRO', 'Enter a name for the copy of<br>&nbsp;&nbsp;"%s"');
 define('TEXT_INFO_HEADING_DELETE_SALE', 'Delete Sale');
 define('TEXT_INFO_DELETE_INTRO', 'Are you sure you want to permanently delete this sale?');
+define('TEXT_MORE_INFO', '(More Info)');
+
+define('TEXT_WARNING_SALEMAKER_PREVIOUS_CATEGORIES','&nbsp;Warning : %s sales already include this category');
 ?>

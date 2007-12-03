@@ -17,7 +17,8 @@
  * @package classes
  * @author Brent R. Matzelle
  * @copyright 2001 - 2003 Brent R. Matzelle
- * @version (within Zen Cart) $Id: class.phpmailer.php 3041 2006-02-15 21:56:45Z wilt $
+ * @version (within Zen Cart) $Id: class.phpmailer.php 7175 2007-10-05 10:43:27Z drbyte $
+ * @version Modified for Zen Cart added protocols to enable use with Gmail 2007-09-30 Chuck Redman
  */
 /**
  * PHPMailer - PHP email transport class
@@ -167,6 +168,13 @@ class PHPMailer
      *  @var int
      */
   var $Port        = 25;
+
+  /**
+   *  Sets the SMTP server socket protocol.
+   *  @var string
+   *  Added for Gmail support CER.
+   */
+  var $Protocol = '';
 
   /**
      *  Sets the SMTP HELO of the message (Default is $Hostname).
@@ -397,9 +405,9 @@ class PHPMailer
      */
   function SendmailSend($header, $body) {
     if ($this->Sender != "")
-    $sendmail = sprintf("%s -oi -f %s -t", $this->Sendmail, $this->Sender);
+    $sendmail = sprintf("%s -oi -f %s -t", escapeshellcmd($this->Sendmail), escapeshellarg($this->Sender));
     else
-    $sendmail = sprintf("%s -oi -t", $this->Sendmail);
+    $sendmail = sprintf("%s -oi -t", escapeshellcmd($this->Sendmail));
 
     if(!@$mail = popen($sendmail, "w"))
     {
@@ -532,6 +540,9 @@ class PHPMailer
      */
   function SmtpConnect() {
     if($this->smtp == NULL) { $this->smtp = new SMTP(); }
+
+    //Added for Gmail support CER
+    $this->smtp->Protocol = $this->Protocol;
 
     $this->smtp->do_debug = $this->SMTPDebug;
     $hosts = explode(";", $this->Host);

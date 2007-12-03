@@ -3,10 +3,10 @@
  * functions_categories.php
  *
  * @package functions
- * @copyright Copyright 2003-2006 Zen Cart Development Team
+ * @copyright Copyright 2003-2007 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: functions_categories.php 4135 2006-08-14 04:25:02Z drbyte $
+ * @version $Id: functions_categories.php 6424 2007-05-31 05:59:21Z ajeh $
  */
 
 ////
@@ -479,43 +479,130 @@
 // use as:
 // $my_products_id_list = array();
 // $my_products_id_list = zen_get_categories_products_list($categories_id)
-  function zen_get_categories_products_list($categories_id, $include_deactivated = false, $include_child = true) {
+  function zen_get_categories_products_list($categories_id, $include_deactivated = false, $include_child = true, $parent_category = '0', $display_limit = '') {
     global $db;
     global $categories_products_id_list;
+    $childCatID = str_replace('_', '', substr($categories_id, strrpos($categories_id, '_')));
 
-    if ($include_deactivated) {
+    $current_cPath = ($parent_category != '0' ? $parent_category . '_' : '') . $categories_id;
 
-      $products = $db->Execute("select p.products_id
-                                from " . TABLE_PRODUCTS . " p, " . TABLE_PRODUCTS_TO_CATEGORIES . " p2c
-                                where p.products_id = p2c.products_id
-                                and p2c.categories_id = '" . (int)$categories_id . "'");
-    } else {
-      $products = $db->Execute("select p.products_id
-                                from " . TABLE_PRODUCTS . " p, " . TABLE_PRODUCTS_TO_CATEGORIES . " p2c
-                                where p.products_id = p2c.products_id
-                                and p.products_status = '1'
-                                and p2c.categories_id = '" . (int)$categories_id . "'");
-    }
+    $sql = "select p.products_id
+            from " . TABLE_PRODUCTS . " p, " . TABLE_PRODUCTS_TO_CATEGORIES . " p2c
+            where p.products_id = p2c.products_id
+            and p2c.categories_id = '" . (int)$childCatID . "'" .
+            ($include_deactivated ? " and p.products_status = 1" : "") .
+            $display_limit;
 
+    $products = $db->Execute($sql);
     while (!$products->EOF) {
-// categories_products_id_list keeps resetting when category changes ...
-//      echo 'Products ID: ' . $products->fields['products_id'] . '<br>';
-      $categories_products_id_list[] = $products->fields['products_id'];
+      $categories_products_id_list[$products->fields['products_id']] = $current_cPath;
       $products->MoveNext();
     }
 
     if ($include_child) {
-      $childs = $db->Execute("select categories_id from " . TABLE_CATEGORIES . "
-                              where parent_id = '" . (int)$categories_id . "'");
+      $sql = "select categories_id from " . TABLE_CATEGORIES . "
+              where parent_id = '" . (int)$childCatID . "'";
+
+      $childs = $db->Execute($sql);
       if ($childs->RecordCount() > 0 ) {
         while (!$childs->EOF) {
-          zen_get_categories_products_list($childs->fields['categories_id'], $include_deactivated);
+          zen_get_categories_products_list($childs->fields['categories_id'], $include_deactivated, $include_child, $current_cPath, $display_limit);
           $childs->MoveNext();
         }
       }
     }
-    $products_id_listing = $categories_products_id_list;
-    return $products_id_listing;
+    return $categories_products_id_list;
   }
+
+//// bof: manage master_categories_id vs cPath
+  function zen_generate_category_path($id, $from = 'category', $categories_array = '', $index = 0) {
+    global $db;
+
+    if (!is_array($categories_array)) $categories_array = array();
+
+    if ($from == 'product') {
+      $categories = $db->Execute("select categories_id
+                                  from " . TABLE_PRODUCTS_TO_CATEGORIES . "
+                                  where products_id = '" . (int)$id . "'");
+
+      while (!$categories->EOF) {
+        if ($categories->fields['categories_id'] == '0') {
+          $categories_array[$index][] = array('id' => '0', 'text' => TEXT_TOP);
+        } else {
+          $category = $db->Execute("select cd.categories_name, c.parent_id
+                                    from " . TABLE_CATEGORIES . " c, " . TABLE_CATEGORIES_DESCRIPTION . " cd
+                                    where c.categories_id = '" . (int)$categories->fields['categories_id'] . "'
+                                    and c.categories_id = cd.categories_id
+                                    and cd.language_id = '" . (int)$_SESSION['languages_id'] . "'");
+
+          $categories_array[$index][] = array('id' => $categories->fields['categories_id'], 'text' => $category->fields['categories_name']);
+          if ( (zen_not_null($category->fields['parent_id'])) && ($category->fields['parent_id'] != '0') ) $categories_array = zen_generate_category_path($category->fields['parent_id'], 'category', $categories_array, $index);
+          $categories_array[$index] = array_reverse($categories_array[$index]);
+        }
+        $index++;
+        $categories->MoveNext();
+      }
+    } elseif ($from == 'category') {
+      $category = $db->Execute("select cd.categories_name, c.parent_id
+                                from " . TABLE_CATEGORIES . " c, " . TABLE_CATEGORIES_DESCRIPTION . " cd
+                                where c.categories_id = '" . (int)$id . "'
+                                and c.categories_id = cd.categories_id
+                                and cd.language_id = '" . (int)$_SESSION['languages_id'] . "'");
+
+      $categories_array[$index][] = array('id' => $id, 'text' => $category->fields['categories_name']);
+      if ( (zen_not_null($category->fields['parent_id'])) && ($category->fields['parent_id'] != '0') ) $categories_array = zen_generate_category_path($category->fields['parent_id'], 'category', $categories_array, $index);
+    }
+
+    return $categories_array;
+  }
+
+  function zen_output_generated_category_path($id, $from = 'category') {
+    $calculated_category_path_string = '';
+    $calculated_category_path = zen_generate_category_path($id, $from);
+    for ($i=0, $n=sizeof($calculated_category_path); $i<$n; $i++) {
+      for ($j=0, $k=sizeof($calculated_category_path[$i]); $j<$k; $j++) {
+//        $calculated_category_path_string .= $calculated_category_path[$i][$j]['text'] . '&nbsp;&gt;&nbsp;';
+        $calculated_category_path_string = $calculated_category_path[$i][$j]['text'] . '&nbsp;&gt;&nbsp;' . $calculated_category_path_string;
+      }
+      $calculated_category_path_string = substr($calculated_category_path_string, 0, -16) . '<br>';
+    }
+    $calculated_category_path_string = substr($calculated_category_path_string, 0, -4);
+
+    if (strlen($calculated_category_path_string) < 1) $calculated_category_path_string = TEXT_TOP;
+
+    return $calculated_category_path_string;
+  }
+
+  function zen_get_generated_category_path_ids($id, $from = 'category') {
+    global $db;
+    $calculated_category_path_string = '';
+    $calculated_category_path = zen_generate_category_path($id, $from);
+    for ($i=0, $n=sizeof($calculated_category_path); $i<$n; $i++) {
+      for ($j=0, $k=sizeof($calculated_category_path[$i]); $j<$k; $j++) {
+        $calculated_category_path_string .= $calculated_category_path[$i][$j]['id'] . '_';
+      }
+      $calculated_category_path_string = substr($calculated_category_path_string, 0, -1) . '<br>';
+    }
+    $calculated_category_path_string = substr($calculated_category_path_string, 0, -4);
+
+    if (strlen($calculated_category_path_string) < 1) $calculated_category_path_string = TEXT_TOP;
+
+    return $calculated_category_path_string;
+  }
+
+  function zen_get_generated_category_path_rev($this_categories_id) {
+    $categories = array();
+    zen_get_parent_categories($categories, $this_categories_id);
+
+    $categories = array_reverse($categories);
+
+    $categories_imploded = implode('_', $categories);
+
+    if (zen_not_null($categories_imploded)) $categories_imploded .= '_';
+    $categories_imploded .= $this_categories_id;
+
+    return $categories_imploded;
+  }
+//// bof: manage master_categories_id vs cPath
 
 ?>

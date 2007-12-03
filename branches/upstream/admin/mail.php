@@ -1,18 +1,18 @@
 <?php
 /**
  * @package admin
- * @copyright Copyright 2003-2006 Zen Cart Development Team
+ * @copyright Copyright 2003-2007 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: mail.php 4704 2006-10-08 04:43:50Z drbyte $
+ * @version $Id: mail.php 7197 2007-10-06 20:35:52Z drbyte $
  */
 
   require('includes/application_top.php');
   
   //DEBUG:  // these defines will become configuration switches in ADMIN in a future version.
   //DEBUG:  // right now, attachments aren't working right unless only sending HTML messages with NO text-only version supplied.
-  if (!defined('EMAIL_ATTACHMENTS_ENABLED'))        define(EMAIL_ATTACHMENTS_ENABLED,false);
-  if (!defined('EMAIL_ATTACHMENT_UPLOADS_ENABLED')) define(EMAIL_ATTACHMENT_UPLOADS_ENABLED,false);
+  if (!defined('EMAIL_ATTACHMENTS_ENABLED'))        define('EMAIL_ATTACHMENTS_ENABLED',false);
+  if (!defined('EMAIL_ATTACHMENT_UPLOADS_ENABLED')) define('EMAIL_ATTACHMENT_UPLOADS_ENABLED',false);
   
   
   $action = (isset($_GET['action']) ? $_GET['action'] : '');
@@ -43,6 +43,7 @@
     $message = zen_db_prepare_input($_POST['message']);
     $html_msg['EMAIL_MESSAGE_HTML'] = zen_db_prepare_input($_POST['message_html']);
     $attachment_file = $_POST['attachment_file'];
+    $attachment_fname = basename($_POST['attachment_file']);
     $attachment_filetype = $_POST['attachment_filetype'];
   
     // demo active test
@@ -58,12 +59,15 @@
     while (!$mail->EOF) {
       $html_msg['EMAIL_FIRST_NAME'] = $mail->fields['customers_firstname'];
       $html_msg['EMAIL_LAST_NAME']  = $mail->fields['customers_lastname'];
-      zen_mail($mail->fields['customers_firstname'] . ' ' . $mail->fields['customers_lastname'], $mail->fields['customers_email_address'], $subject, $message, STORE_NAME, $from, $html_msg, 'direct_email', array('file' => $attachment_file, 'file_type'=>$attachment_filetype) );
+      zen_mail($mail->fields['customers_firstname'] . ' ' . $mail->fields['customers_lastname'], $mail->fields['customers_email_address'], $subject, $message, STORE_NAME, $from, $html_msg, 'direct_email', array('file' => $attachment_file, 'name' => basename($attachment_file), 'mime_type'=>$attachment_filetype) );
       $recip_count++;
       $mail->MoveNext();
     }
-
-    $messageStack->add_session(sprintf(NOTICE_EMAIL_SENT_TO, $mail_sent_to .  ' (' . $recip_count . ')'), 'success');
+    if ($recip_count > 0) {
+      $messageStack->add_session(sprintf(NOTICE_EMAIL_SENT_TO, $mail_sent_to .  ' (' . $recip_count . ')'), 'success');
+    } else {
+      $messageStack->add_session(sprintf(NOTICE_EMAIL_FAILED_SEND, $mail_sent_to .  ' (' . $recip_count . ')'), 'error');
+    }
     zen_redirect(zen_href_link(FILENAME_MAIL, 'mail_sent_to=' . urlencode($mail_sent_to) . '&recip_count='. $recip_count ));
   }
   
@@ -74,6 +78,7 @@
         $attachments_obj->set_destination(DIR_WS_ADMIN_ATTACHMENTS . $_POST['attach_dir']);
         if ($attachments_obj->parse() && $attachments_obj->save()) {
           $attachment_file = $_POST['attach_dir'] . $attachments_obj->filename;
+          $attachment_fname = $attachments_obj->filename;
           $attachment_filetype= $_FILES['upload_file']['type'];
         }
       }
@@ -245,7 +250,7 @@ function check_form(form_name) {
             <tr>
               <td width="500">
 <?php if (EMAIL_USE_HTML != 'true') echo TEXT_WARNING_HTML_DISABLED.'<br />'; ?>
-<?php echo stripslashes($_POST['message_html']); ?><hr /></td>
+<?php $html_preview = stripslashes($_POST['message_html']); echo (stristr($html_preview, '<br') ? $html_preview : nl2br($html_preview)); ?><hr /></td>
             </tr>
             <tr>
               <td class="smallText"><b><?php echo strip_tags(TEXT_MESSAGE); ?></b><br /></td>
@@ -254,14 +259,15 @@ function check_form(form_name) {
               <td>
 <?php
   $message_preview = ((is_null($_POST['message']) || $_POST['message']=='') ? $_POST['message_html'] : $_POST['message'] );
-  $message_preview = str_replace('<br[[:space:]]*/?[[:space:]]*>', "@CRLF", $message_preview);
-  $message_preview = str_replace('</p>', '</p>@CRLF', $message_preview);
-  echo '<tt>' . str_replace('@CRLF', '<br />', htmlspecialchars(stripslashes(strip_tags($message_preview))) ) . '</tt>';
+  $message_preview = (stristr($message_preview, '<br') ? $message_preview : nl2br($message_preview));
+  $message_preview = str_replace(array('<br>','<br />'), "<br />\n", $message_preview);
+  $message_preview = str_replace('</p>', "</p>\n", $message_preview);
+  echo '<tt>' . nl2br(htmlspecialchars(stripslashes(strip_tags($message_preview))) ) . '</tt>';
 ?>
                 <hr />
               </td>
             </tr>
-<?php if (EMAIL_ATTACHMENTS_ENABLED) { ?>
+<?php if (EMAIL_ATTACHMENTS_ENABLED && ($upload_file_name != '' || $attachment_file != '')) { ?>
             <tr>
               <td class="smallText"><b><?php echo TEXT_ATTACHMENTS_LIST; ?></b><?php echo '&nbsp;&nbsp;&nbsp;' . ((EMAIL_ATTACHMENT_UPLOADS_ENABLED && zen_not_null($upload_file_name)) ? $upload_file_name : $attachment_file) ; ?></td>
             </tr>
@@ -276,7 +282,6 @@ function check_form(form_name) {
   reset($_POST);
   while (list($key, $value) = each($_POST)) {
     if (!is_array($_POST[$key])) {
-//    echo zen_draw_hidden_field($key, htmlspecialchars(stripslashes($value)));
       echo zen_draw_hidden_field($key, stripslashes($value));
     }
   }
@@ -351,11 +356,11 @@ function check_form(form_name) {
               <td><?php echo zen_draw_textarea_field('message', 'soft', '100%', '15', $_POST['message']); ?></td>
             </tr>
             
-<?php if (EMAIL_ATTACHMENTS_ENABLED) { ?>
+<?php if (defined('EMAIL_ATTACHMENTS_ENABLED') && EMAIL_ATTACHMENTS_ENABLED === true && defined('DIR_WS_ADMIN_ATTACHMENTS') && is_dir(DIR_WS_ADMIN_ATTACHMENTS) && is_writable(DIR_WS_ADMIN_ATTACHMENTS) ) { ?>
             <tr>
               <td colspan="2"><?php echo zen_draw_separator('pixel_trans.gif', '1', '10'); ?></td>
             </tr>
-<?php if (EMAIL_ATTACHMENT_UPLOADS_ENABLED) { ?>
+<?php if (defined('EMAIL_ATTACHMENT_UPLOADS_ENABLED') && EMAIL_ATTACHMENT_UPLOADS_ENABLED === true) { ?>
 <?php
   $dir = @dir(DIR_WS_ADMIN_ATTACHMENTS);
   $dir_info[] = array('id' => '', 'text' => "admin-attachments");
@@ -364,6 +369,7 @@ function check_form(form_name) {
       $dir_info[] = array('id' => $file . '/', 'text' => $file);
     }
   }
+  $dir->close();
 ?>
             <tr>
               <td class="main" valign="top"><?php echo TEXT_SELECT_ATTACHMENT_TO_UPLOAD; ?></td>
@@ -373,7 +379,7 @@ function check_form(form_name) {
             <tr>
               <td colspan="2"><?php echo zen_draw_separator('pixel_trans.gif', '1', '10'); ?></td>
             </tr>
-<?php  } // end upload dialog ?>
+<?php  } // end uploads-enabled dialog ?>
 <?php
   $dir = @dir(DIR_WS_ADMIN_ATTACHMENTS);
   $file_list[] = array('id' => '', 'text' => "(none)");
@@ -382,6 +388,7 @@ function check_form(form_name) {
       $file_list[] = array('id' => $file , 'text' => $file);
     }
   }
+  $dir->close();
 ?>
             <tr>
               <td class="main" valign="top"><?php echo TEXT_SELECT_ATTACHMENT; ?></td>

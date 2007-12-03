@@ -6,10 +6,10 @@
  * This can be added to externally using the extra_cart_actions directory.
  *
  * @package initSystem
- * @copyright Copyright 2003-2005 Zen Cart Development Team
+ * @copyright Copyright 2003-2007 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: main_cart_actions.php 3066 2006-02-25 22:14:00Z wilt $
+ * @version $Id: main_cart_actions.php 6644 2007-07-27 09:12:36Z drbyte $
  */
 if (!defined('IS_ADMIN_FLAG')) {
   die('Illegal Access');
@@ -26,6 +26,7 @@ if ($za_dir = @dir(DIR_WS_INCLUDES . 'extra_cart_actions')) {
       include(DIR_WS_INCLUDES . 'extra_cart_actions/' . $zv_file);
     }
   }
+  $za_dir->close();
 }
 switch ($_GET['action']) {
   /**
@@ -67,6 +68,9 @@ switch ($_GET['action']) {
   break;
   case 'cart' :
   $_SESSION['cart']->actionCartUserAction($goto, $parameters);
+  break;
+  case 'empty_cart' :
+  $_SESSION['cart']->reset(true);
   break;
 }
 ?>

@@ -1,24 +1,11 @@
 <?php
-//
-// +----------------------------------------------------------------------+
-// |zen-cart Open Source E-commerce                                       |
-// +----------------------------------------------------------------------+
-// | Copyright (c) 2003 The zen-cart developers                           |
-// |                                                                      |
-// | http://www.zen-cart.com/index.php                                    |
-// |                                                                      |
-// | Portions Copyright (c) 2003 osCommerce                               |
-// +----------------------------------------------------------------------+
-// | This source file is subject to version 2.0 of the GPL license,       |
-// | that is bundled with this package in the file LICENSE, and is        |
-// | available through the world-wide-web at the following url:           |
-// | http://www.zen-cart.com/license/2_0.txt.                             |
-// | If you did not receive a copy of the zen-cart license and are unable |
-// | to obtain it through the world-wide-web, please send a note to       |
-// | license@zen-cart.com so we can mail you a copy immediately.          |
-// +----------------------------------------------------------------------+
-//  $Id: order.php 4774 2006-10-17 06:47:16Z drbyte $
-//
+/**
+ * @package admin
+ * @copyright Copyright 2003-2007 Zen Cart Development Team
+ * @copyright Portions Copyright 2003 osCommerce
+ * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
+ * @version $Id: order.php 5784 2007-02-14 04:00:58Z ajeh $
+ */
 
   class order {
     var $info, $totals, $products, $customer, $delivery;
@@ -58,7 +45,14 @@
                               order by sort_order");
 
       while (!$totals->EOF) {
-        $this->totals[] = array('title' => $totals->fields['title'],
+        if ($totals->fields['class'] == 'ot_coupon') {
+          $coupon_link_query = "SELECT coupon_id
+                  from " . TABLE_COUPONS . "
+                  where coupon_code ='" . $order->fields['coupon_code'] . "'";
+          $coupon_link = $db->Execute($coupon_link_query);
+          $zc_coupon_link = '<a href="javascript:couponpopupWindow(\'' . zen_catalog_href_link(FILENAME_POPUP_COUPON_HELP, 'cID=' . $coupon_link->fields['coupon_id']) . '\')">';
+        }
+        $this->totals[] = array('title' => ($totals->fields['class'] == 'ot_coupon' ? $zc_coupon_link . $totals->fields['title'] . '</a>' : $totals->fields['title']),
                                 'text' => $totals->fields['text'],
                                 'class' => $totals->fields['class']);
         $totals->MoveNext();
@@ -123,7 +117,8 @@
                                               final_price, onetime_charges,
                                               product_is_free
                                        from " . TABLE_ORDERS_PRODUCTS . "
-                                       where orders_id = '" . (int)$order_id . "'");
+                                       where orders_id = '" . (int)$order_id . "'
+                                       order by orders_products_id");
 
       while (!$orders_products->EOF) {
 // convert quantity to proper decimals - account history

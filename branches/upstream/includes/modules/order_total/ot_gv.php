@@ -1,15 +1,35 @@
 <?php
 /**
+ * ot_gv order-total module
+ *
  * @package orderTotal
- * @copyright Copyright 2003-2006 Zen Cart Development Team
+ * @copyright Copyright 2003-2007 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: ot_gv.php 4975 2006-11-20 22:11:21Z wilt $
+ * @version $Id: ot_gv.php 7203 2007-10-07 12:29:53Z drbyte $
  */
-
+/**
+ * Enter description here...
+ *
+ */
 class ot_gv {
-  var $title, $output;
-
+  /**
+   * Enter description here...
+   *
+   * @var unknown_type
+   */
+  var $title;
+  /**
+   * Enter description here...
+   *
+   * @var unknown_type
+   */
+  var $output;
+  /**
+   * Enter description here...
+   *
+   * @return ot_gv
+   */
   function ot_gv() {
     global $currencies;
     $this->code = 'ot_gv';
@@ -26,36 +46,52 @@ class ot_gv {
     $this->show_redeem_box = MODULE_ORDER_TOTAL_GV_REDEEM_BOX;
     $this->credit_class = true;
     if (!zen_not_null(ltrim($_SESSION['cot_gv'], ' 0')) || $_SESSION['cot_gv'] == '0') $_SESSION['cot_gv'] = '0.00';
-    $this->checkbox = $this->user_prompt . '<input type="text" size="6" onchange="submitFunction()" name="cot_gv" value="' . number_format($_SESSION['cot_gv'], 2) . '" onfocus="if (this.value == \'' . number_format($_SESSION['cot_gv'], 2) . '\') this.value = \'\';" />' . ($this->user_has_gv_account($_SESSION['customer_id']) > 0 ? '<br />' . MODULE_ORDER_TOTAL_GV_USER_BALANCE . $currencies->format($this->user_has_gv_account($_SESSION['customer_id'])) : '');
+    $this->checkbox = $this->user_prompt . '<input type="text" size="6" onkeyup="submitFunction()" name="cot_gv" value="' . number_format($_SESSION['cot_gv'], 2) . '" onfocus="if (this.value == \'' . number_format($_SESSION['cot_gv'], 2) . '\') this.value = \'\';" />' . ($this->user_has_gv_account($_SESSION['customer_id']) > 0 ? '<br />' . MODULE_ORDER_TOTAL_GV_USER_BALANCE . $currencies->format($this->user_has_gv_account($_SESSION['customer_id'])) : '');
     $this->output = array();
-  }
-
-  function process() {
-    global $order, $currencies;
-    if ($_SESSION['cot_gv']) {
-      $order_total = $this->get_order_total();
-      $od_amount = $this->calculate_credit($order_total);
-      if ($this->calculate_tax != "none") {
-        $tod_amount = zen_round($this->calculate_tax_deduction($order_total, $od_amount, $this->calculate_tax, true), 2);
-        $od_amount = $this->calculate_credit($order_total);
-      }
-      $this->deduction = $od_amount + $tod_amount;
-      $order->info['total'] = zen_round($order->info['total'] - $this->deduction, 2);
-      if ($od_amount > 0) {
-            if (DISPLAY_PRICE_WITH_TAX == 'true') {
-              $this->deduction += zen_calculate_tax($this->deduction, $tax);
-            }
-
-        $this->output[] = array('title' => $this->title . ':',
-                                'text' => '-' . $currencies->format($this->deduction),
-                                'value' => $this->deduction);
+    if (IS_ADMIN_FLAG === true) {
+      if ($this->include_tax == 'true' && $this->calculate_tax != "None") {
+        $this->title .= '<span class="alert">' . MODULE_ORDER_TOTAL_GV_INCLUDE_ERROR . '</span>';
       }
     }
   }
-
+  /**
+   * Enter description here...
+   *
+   */
+  function process() {
+    global $order, $currencies;
+    if ($_SESSION['cot_gv']) {
+      $od_amount = $this->calculate_deductions($this->get_order_total());
+      $this->deduction = $od_amount['total'];
+      if ($od_amount['total'] > 0) {
+        reset($order->info['tax_groups']);
+        $tax = 0;
+        while (list($key, $value) = each($order->info['tax_groups'])) {
+          if ($od_amount['tax_groups'][$key]) {
+            $order->info['tax_groups'][$key] -= $od_amount['tax_groups'][$key];
+            $tax += $od_amount['tax_groups'][$key];
+          }
+        }
+        $order->info['total'] = $order->info['total'] - $od_amount['total'];
+        if ($this->calculate_tax = "Standard") $order->info['total'] -= $tax;
+        if ($order->info['total'] < 0) $order->info['total'] = 0;
+        $order->info['tax'] = $order->info['tax'] - $od_amount['tax'];
+        // prepare order-total output for display and storing to invoice
+        $this->output[] = array('title' => $this->title . ':',
+        'text' => '-' . $currencies->format($od_amount['total']),
+        'value' => $od_amount['total']);
+      }
+    }
+  }
+  /**
+   * This is called to reset any GV values, effectively cancelling all GV's applied during current login session
+   */
   function clear_posts() {
     unset($_SESSION['cot_gv']);
   }
+  /**
+   * This just checks to see whether the currently-logged-in customer has any GV credits on their account
+   */
   function selection_test() {
     if ($this->user_has_gv_account($_SESSION['customer_id'])) {
       return true;
@@ -63,45 +99,53 @@ class ot_gv {
       return false;
     }
   }
-
+  /**
+   * Check for validity of redemption amounts and recalculate order totals to include proposed GV redemption deductions
+   */
   function pre_confirmation_check($order_total) {
-    global $order, $currencies;
+    global $order, $currencies, $messageStack;
     // clean out negative values and strip common currency symbols
     $_SESSION['cot_gv'] = preg_replace('/[^0-9.%]/', '', $_SESSION['cot_gv']);
     $_SESSION['cot_gv'] = abs($_SESSION['cot_gv']);
 
     if ($_SESSION['cot_gv'] > 0) {
-      if ($this->include_shipping == 'false') $order_total -= $order->info['shipping_cost'];
-      if ($this->include_tax == 'false') $order_total -= $order->info['tax'];
+      // if cot_gv value contains any nonvalid characters, throw error
       if (ereg('[^0-9/.]', trim($_SESSION['cot_gv']))) {
-        zen_redirect(zen_href_link(FILENAME_CHECKOUT_PAYMENT, 'credit_class_error_code=' . $this->code . '&credit_class_error=' . urlencode(TEXT_INVALID_REDEEM_AMOUNT), 'SSL',true, false));
+        $messageStack->add_session('checkout_payment', TEXT_INVALID_REDEEM_AMOUNT, error);
+        zen_redirect(zen_href_link(FILENAME_CHECKOUT_PAYMENT, '', 'SSL'));
       }
+      // if requested redemption amount is greater than value of credits on account, throw error
       if ($_SESSION['cot_gv'] > $currencies->value($this->user_has_gv_account($_SESSION['customer_id']))) {
-        zen_redirect(zen_href_link(FILENAME_CHECKOUT_PAYMENT, 'credit_class_error_code=' . $this->code . '&credit_class_error=' . urlencode(TEXT_INVALID_REDEEM_AMOUNT), 'SSL',true, false));
+        $messageStack->add_session('checkout_payment', TEXT_INVALID_REDEEM_AMOUNT, error);
+        zen_redirect(zen_href_link(FILENAME_CHECKOUT_PAYMENT, '', 'SSL'));
       }
-      $od_amount = $this->calculate_credit($order_total);
-      if ($this->calculate_tax != "none") {
-        $tod_amount = $this->calculate_tax_deduction($order_total, $od_amount, $this->calculate_tax);
-        $od_amount = $this->calculate_credit($order_total)+$tod_amount;
-      }
-      if ($od_amount >= $order->info['total'] && MODULE_ORDER_TOTAL_GV_ORDER_STATUS_ID != 0) $order->info['order_status'] = MODULE_ORDER_TOTAL_GV_ORDER_STATUS_ID;
+      $od_amount = $this->calculate_deductions($order_total);
+      return $od_amount['total'] + $od_amount['tax'];
     }
-    return $od_amount + $tod_amount;
+    return 0;
   }
-
+  /**
+   * if customer has a GV balance, then we display the input field to allow entry of desired GV redemption amount
+   */
   function use_credit_amount() {
     if ($this->selection_test()) {
       $output_string = $this->checkbox;
     }
     return $output_string;
   }
-
+  /**
+   * queue or release newly-purchased GV's
+   */
   function update_credit_account($i) {
     global $db, $order, $insert_id;
+    // only act on newly-purchased gift certificates
     if (ereg('^GIFT', addslashes($order->products[$i]['model']))) {
+      // determine how much GV was purchased
       $gv_order_amount = ($order->products[$i]['final_price'] * $order->products[$i]['qty']);
+      // if tax is to be calculated on purchased GVs, calculate it
       if ($this->credit_tax=='true') $gv_order_amount = $gv_order_amount * (100 + $order->products[$i]['tax']) / 100;
       $gv_order_amount = $gv_order_amount * 100 / 100;
+
       if (MODULE_ORDER_TOTAL_GV_QUEUE == 'false') {
         // GV_QUEUE is false so release amount to account immediately
         $gv_result = $this->user_has_gv_account($_SESSION['customer_id']);
@@ -123,52 +167,70 @@ class ot_gv {
       }
     }
   }
-
+  /**
+   * check system to see if GVs should be made available or not. If true, then supply GV-selection fields on checkout pages
+   */
   function credit_selection() {
     global $db, $currencies;
     $gv_query = $db->Execute("select coupon_id from " . TABLE_COUPONS . " where coupon_type = 'G' and coupon_active='Y'");
+    // checks to see if any GVs are in the system and active or if the current customer has any GV balance
     if ($gv_query->RecordCount() > 0 || $this->use_credit_amount()) {
       $selection = array('id' => $this->code,
                          'module' => $this->title,
                          'redeem_instructions' => MODULE_ORDER_TOTAL_GV_REDEEM_INSTRUCTIONS,
                          'checkbox' => $this->use_credit_amount(),
                          'fields' => array(array('title' => MODULE_ORDER_TOTAL_GV_TEXT_ENTER_CODE,
-                                                 'field' => zen_draw_input_field('gv_redeem_code', '', 'id="disc-'.$this->code.'" onchange="submitFunction(0,0)"'),
-                                                 'tag' => 'disc-'.$this->code
+                         'field' => zen_draw_input_field('gv_redeem_code', '', 'id="disc-'.$this->code.'" onkeyup="submitFunction(0,0)"'),
+                         'tag' => 'disc-'.$this->code
                          )));
 
     }
     return $selection;
   }
-
+  /**
+   * Verify that the customer has entered a valid redemption amount, and return the amount that can be applied to this order
+   */
   function apply_credit() {
     global $db, $order, $messageStack;
+    // check for valid redemption amount vs available credit for current customer
     if ($_SESSION['cot_gv'] != 0) {
       $gv_result = $db->Execute("select amount from " . TABLE_COUPON_GV_CUSTOMER . " where customer_id = '" . (int)$_SESSION['customer_id'] . "'");
+      // obtain final "deduction" amount
       $gv_payment_amount = $this->deduction;
+      // determine amount of GV to redeem based on available balance minus qualified/calculated deduction suitable to this order
       $gv_amount = $gv_result->fields['amount'] - $gv_payment_amount;
+      // reduce customer's GV balance by the amount redeemed
       $db->Execute("update " . TABLE_COUPON_GV_CUSTOMER . " set amount = '" . $gv_amount . "' where customer_id = '" . (int)$_SESSION['customer_id'] . "'");
     }
+    // clear GV redemption flag since it's already been claimed and deducted
     $_SESSION['cot_gv'] = false;
+    // send back the amount of GV used for payment on this order
     return $gv_payment_amount;
   }
-
-
+  /**
+   * Check to see if redemption code has been entered and redeem if valid
+   */
   function collect_posts() {
     global $db, $currencies, $messageStack;
+    // if we have no GV amount selected, set it to 0
     if (!$_POST['cot_gv']) $_SESSION['cot_gv'] = '0.00';
+    // if we have a GV redemption code submitted, process it
     if ($_POST['gv_redeem_code']) {
+      // check for validity
       $gv_result = $db->Execute("select coupon_id, coupon_type, coupon_amount from " . TABLE_COUPONS . " where coupon_code = '" . zen_db_prepare_input($_POST['gv_redeem_code']) . "'");
       if ($gv_result->RecordCount() > 0) {
         $redeem_query = $db->Execute("select * from " . TABLE_COUPON_REDEEM_TRACK . " where coupon_id = '" . (int)$gv_result->fields['coupon_id'] . "'");
+        // if already redeemed, throw error
         if ( ($redeem_query->RecordCount() > 0) && ($gv_result->fields['coupon_type'] == 'G')  ) {
           $messageStack->add_session('checkout_payment', ERROR_NO_INVALID_REDEEM_GV, error);
           zen_redirect(zen_href_link(FILENAME_CHECKOUT_PAYMENT, '', 'SSL'));
         }
       } else {
+        // if not valid redemption code, throw error
         $messageStack->add_session('checkout_payment', ERROR_NO_INVALID_REDEEM_GV, error);
         zen_redirect(zen_href_link(FILENAME_CHECKOUT_PAYMENT, '', 'SSL'));
       }
+      // if valid, add redeemed amount to customer's GV balance and mark as redeemed
       if ($gv_result->fields['coupon_type'] == 'G') {
         $gv_amount = $gv_result->fields['coupon_amount'];
         // Things to set
@@ -199,12 +261,13 @@ class ot_gv {
     }
     if ($_POST['submit_redeem_x'] && $gv_result->fields['coupon_type'] == 'G') zen_redirect(zen_href_link(FILENAME_CHECKOUT_PAYMENT, 'error_message=' . urlencode(ERROR_NO_REDEEM_CODE), 'SSL'));
   }
-
-  function calculate_credit($amount) {
+  /**
+   * Calculate GV claim amount (GV amounts are always based on the STORE's default currency value)
+   */
+  function calculate_credit($save_total_cost) {
     global $db, $order, $currencies;
+    // calculate value based on default currency
     $gv_payment_amount = $currencies->value($_SESSION['cot_gv'], true, DEFAULT_CURRENCY);
-    $gv_amount = $gv_payment_amount;
-    $save_total_cost = $amount;
     $full_cost = $save_total_cost - $gv_payment_amount;
     if ($full_cost < 0) {
       $full_cost = 0;
@@ -212,65 +275,86 @@ class ot_gv {
     }
     return zen_round($gv_payment_amount,2);
   }
-
-  function calculate_tax_deduction($amount, $od_amount, $method, $finalise = false) {
-    global $order;
-    $tax_address = zen_get_tax_locations();
-    switch ($method) {
-      case 'Standard':
-      $ratio1 = zen_round($od_amount / $amount,2);
-      $tod_amount = 0;
-      reset($order->info['tax_groups']);
-      while (list($key, $value) = each($order->info['tax_groups'])) {
-        $tax_rate = zen_get_tax_rate_from_desc($key, $tax_address['country_id'], $tax_address['zone_id']);
-        $total_net += $tax_rate * $value;
-      }
-      if ($od_amount > $total_net) $od_amount = $total_net;
-      reset($order->info['tax_groups']);
-      while (list($key, $value) = each($order->info['tax_groups'])) {
-        $tax_rate = zen_get_tax_rate_from_desc($key, $tax_address['country_id'], $tax_address['zone_id']);
-        $net = $tax_rate * $value;
-        if ($net > 0) {
-          $god_amount = $value * $ratio1;
-          $tod_amount += $god_amount;
-          if ($finalise) $order->info['tax_groups'][$key] = $order->info['tax_groups'][$key] - $god_amount;
+  function calculate_deductions($order_total) {
+    global $db, $order, $messageStack;
+    $od_amount = array();
+    $deduction = $this->calculate_credit($this->get_order_total());
+    $od_amount['total'] = $deduction;
+    switch ($this->calculate_tax) {
+      case 'None':
+        $remainder = $order->info['total'] - $od_amount['total'];
+        $tax_deduct = $order->info['tax'] - $remainder;
+        // division by 0
+        if ($order->info['tax'] <= 0) {
+          $ratio_tax = 0;
+        } else {
+          $ratio_tax = $tax_deduct/$order->info['tax'];
         }
+        $tax_deduct = 0;
+        if ($this->include_tax) {
+          reset($order->info['tax_groups']);
+          foreach ($order->info['tax_groups'] as $key=>$value) {
+            $od_amount['tax_groups'][$key] = $order->info['tax_groups'][$key] * $ratio_tax;
+            $tax_deduct += $od_amount['tax_groups'][$key];
+          }
+        }
+      $od_amount['tax'] = $tax_deduct;
+      break;
+      case 'Standard':
+      if ($od_amount['total'] >= $order_total) {
+        $ratio = 1;
+      } else {
+        $ratio = ($od_amount['total'] / ($order_total - $order->info['tax']));
       }
-      if ($finalise) $order->info['tax'] -= $tod_amount;
-      if ($finalise) $order->info['total'] -= $tod_amount;
+      reset($order->info['tax_groups']);
+      $tax_deduct = 0;
+      foreach ($order->info['tax_groups'] as $key=>$value) {
+        $od_amount['tax_groups'][$key] = $order->info['tax_groups'][$key] * $ratio;
+        $tax_deduct += $od_amount['tax_groups'][$key];
+      }
+      $od_amount['tax'] = $tax_deduct;
       break;
       case 'Credit Note':
-      $tax_rate = zen_get_tax_rate($this->tax_class, $tax_address['country_id'], $tax_address['zone_id']);
-      $tax_desc = zen_get_tax_description($this->tax_class, $tax_address['country_id'], $tax_address['zone_id']);
-      $tod_amount = $this->deduction / (100 + $tax_rate)* $tax_rate;
-      if ($finalise) $order->info['tax_groups'][$tax_desc] -= $tod_amount;
-      if ($finalise) $order->info['tax'] -= $tod_amount;
-      if ($finalise) $order->info['total'] -= $tod_amount;
+        $od_amount['total'] = $deduction;
+        $tax_rate = zen_get_tax_rate($this->tax_class);
+        $od_amount['tax'] = zen_calculate_tax($deduction, $tax_rate);
+        $tax_description = zen_get_tax_description($this->tax_class);
+        $od_amount['tax_groups'][$tax_description] = $od_amount['tax'];
       break;
       default:
     }
-    return $tod_amount;
+    return $od_amount;
   }
-
+  /**
+   * Check to see whether current customer has a GV balance available
+   * Returns amount of GV balance on account
+   */
   function user_has_gv_account($c_id) {
     global $db;
     $gv_result = $db->Execute("select amount from " . TABLE_COUPON_GV_CUSTOMER . " where customer_id = '" . (int)$c_id . "'");
     if ($gv_result->RecordCount() > 0) {
       return $gv_result->fields['amount'];
     }
-    //      return false;
-    return 0; // was preventing checkout_payment from continuing
+    return 0; // use 0 because 'false' was preventing checkout_payment from continuing
   }
-
+  /**
+   * Recalculates base order-total amount for use in deduction calculations
+   */
   function get_order_total() {
     global $order;
     $order_total = $order->info['total'];
-    if ($this->include_tax == 'false') $order_total = $order_total - $order->info['tax'];
-    if ($this->include_shipping == 'false') $order_total = $order_total - $order->info['shipping_cost'];
-
+    // if we are not supposed to include tax in credit calculations, subtract it out
+    if ($this->include_tax != 'true') $order_total -= $order->info['tax'];
+    // if we are not supposed to include shipping amount in credit calcs, subtract it out
+    if ($this->include_shipping != 'true') $order_total -= $order->info['shipping_cost'];
+    $order_total = $order->info['total'];
     return $order_total;
   }
-
+  /**
+   * Enter description here...
+   *
+   * @return unknown
+   */
   function check() {
     global $db;
     if (!isset($this->check)) {
@@ -280,11 +364,18 @@ class ot_gv {
 
     return $this->check;
   }
-
+  /**
+   * Enter description here...
+   *
+   * @return unknown
+   */
   function keys() {
     return array('MODULE_ORDER_TOTAL_GV_STATUS', 'MODULE_ORDER_TOTAL_GV_SORT_ORDER', 'MODULE_ORDER_TOTAL_GV_QUEUE', 'MODULE_ORDER_TOTAL_GV_INC_SHIPPING', 'MODULE_ORDER_TOTAL_GV_INC_TAX', 'MODULE_ORDER_TOTAL_GV_CALC_TAX', 'MODULE_ORDER_TOTAL_GV_TAX_CLASS', 'MODULE_ORDER_TOTAL_GV_CREDIT_TAX',  'MODULE_ORDER_TOTAL_GV_ORDER_STATUS_ID');
   }
-
+  /**
+   * Enter description here...
+   *
+   */
   function install() {
     global $db;
     $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) values ('This module is installed', 'MODULE_ORDER_TOTAL_GV_STATUS', 'true', '', '6', '1','zen_cfg_select_option(array(\'true\'), ', now())");
@@ -297,7 +388,10 @@ class ot_gv {
     $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function ,date_added) values ('Credit including Tax', 'MODULE_ORDER_TOTAL_GV_CREDIT_TAX', 'false', 'Add tax to purchased Gift Voucher when crediting to Account', '6', '8','zen_cfg_select_option(array(\'true\', \'false\'), ', now())");
     $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, use_function, date_added) values ('Set Order Status', 'MODULE_ORDER_TOTAL_GV_ORDER_STATUS_ID', '0', 'Set the status of orders made where GV covers full payment', '6', '0', 'zen_cfg_pull_down_order_statuses(', 'zen_get_order_status_name', now())");
   }
-
+  /**
+   * Enter description here...
+   *
+   */
   function remove() {
     global $db;
     $db->Execute("delete from " . TABLE_CONFIGURATION . " where configuration_key in ('" . implode("', '", $this->keys()) . "')");

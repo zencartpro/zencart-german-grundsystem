@@ -4,7 +4,7 @@
  * @copyright Copyright 2003-2006 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: header.php 4360 2006-09-03 00:04:03Z drbyte $
+ * @version $Id: header.php 5700 2007-01-27 02:57:45Z ajeh $
  */
 if (!defined('IS_ADMIN_FLAG')) {
   die('Illegal Access');
@@ -66,6 +66,17 @@ if ((basename($PHP_SELF) != FILENAME_DEFINE_LANGUAGE . '.php') and (basename($PH
   if (zen_get_configuration_key_value('MODULE_SHIPPING_INSTALLED') == '') {
     $messageStack->add(ERROR_SHIPPING_MODULES_NOT_DEFINED, 'caution');
   }
+
+// if welcome email coupon is set and <= 21 days warn shop owner
+    if (NEW_SIGNUP_DISCOUNT_COUPON > 0) {
+      $zc_welcome_check = $db->Execute("SELECT coupon_expire_date from " . TABLE_COUPONS . " WHERE coupon_id=" . (int)NEW_SIGNUP_DISCOUNT_COUPON);
+      $zc_current_date = date('Y-m-d');
+      $zc_days_to_expire = date_diff($zc_current_date, $zc_welcome_check->fields['coupon_expire_date']);
+      if ($zc_days_to_expire <= 21) {
+        $zc_caution_warning = ($zc_days_to_expire <= 5 ? 'warning' : 'caution');
+        $messageStack->add(sprintf(WARNING_WELCOME_DISCOUNT_COUPON_EXPIRES_IN, $zc_days_to_expire), $zc_caution_warning);
+      }
+    }
 
 // Alerts for EZ-Pages
   if (EZPAGES_STATUS_HEADER == '2' and strstr(EXCLUDE_ADMIN_IP_FOR_MAINTENANCE, $_SERVER['REMOTE_ADDR'])) {

@@ -6,10 +6,10 @@
  * Displays allowed shipping modules for selection by customer.
  *
  * @package templateSystem
- * @copyright Copyright 2003-2006 Zen Cart Development Team
+ * @copyright Copyright 2003-2007 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: tpl_checkout_shipping_default.php 5316 2006-12-21 02:25:58Z drbyte $
+ * @version $Id: tpl_checkout_shipping_default.php 6964 2007-09-09 14:22:44Z ajeh $
  */
 ?>
 <div class="centerColumn" id="checkoutShipping">
@@ -60,6 +60,10 @@
     } else {
       $radio_buttons = 0;
       for ($i=0, $n=sizeof($quotes); $i<$n; $i++) {
+      // bof: field set
+// allows FedEx to work comment comment out Standard and Uncomment FedEx
+//      if ($quotes[$i]['id'] != '' || $quotes[$i]['module'] != '') { // FedEx
+      if ($quotes[$i]['module'] != '') { // Standard
 ?>
 <fieldset>
 <legend><?php echo $quotes[$i]['module']; ?>&nbsp;<?php if (isset($quotes[$i]['icon']) && zen_not_null($quotes[$i]['icon'])) { echo $quotes[$i]['icon']; } ?></legend>
@@ -104,6 +108,8 @@
 
 </fieldset>
 <?php
+    }
+// eof: field set
       }
     }
 ?>

@@ -5,10 +5,10 @@
  * Template used to collect/display details of sending a GV to a friend from own GV balance. <br />
  *
  * @package templateSystem
- * @copyright Copyright 2003-2006 Zen Cart Development Team
+ * @copyright Copyright 2003-2007 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: tpl_gv_send_default.php 4886 2006-11-05 09:01:18Z drbyte $
+ * @version $Id: tpl_gv_send_default.php 5924 2007-02-28 08:25:15Z drbyte $
  */
 ?>
 <div class="centerColumn" id="gvSendDefault">
@@ -17,7 +17,7 @@
 <h2><?php echo TEXT_AVAILABLE_BALANCE;?></h2>
 <p id="gvSendDefaultBalance"><?php echo TEXT_BALANCE_IS . $gv_current_balance; ?></p>
 <?php
-  if ($_GET['action'] == 'doneprocess') {
+  if ($gv_result->fields['amount'] > 0 && $_GET['action'] == 'doneprocess') {
 ?>
 <p><?php echo TEXT_SEND_ANOTHER; ?></p>
 <div class="buttonRow forward"><a href="<?php echo zen_href_link(FILENAME_GV_SEND, '', 'SSL', false); ?>"><?php echo zen_image_button(BUTTON_IMAGE_SEND_ANOTHER, BUTTON_SEND_ANOTHER_ALT); ?></a></div>

@@ -3,10 +3,10 @@
  * cc payment method class
  *
  * @package paymentMethod
- * @copyright Copyright 2003-2006 Zen Cart Development Team
+ * @copyright Copyright 2003-2007 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: cc.php 4903 2006-11-10 10:26:06Z drbyte $
+ * @version $Id: cc.php 6666 2007-08-15 06:03:24Z ajeh $
  */
 /**
  * Manual Credit Card payment module
@@ -45,7 +45,12 @@ class cc extends base {
     global $order;
 
     $this->code = 'cc';
-    $this->title = MODULE_PAYMENT_CC_TEXT_TITLE;
+    if (IS_ADMIN_FLAG === true) {
+      // Payment module title in Admin
+      $this->title = MODULE_PAYMENT_CC_TEXT_ADMIN_TITLE;
+    } else {
+      $this->title = MODULE_PAYMENT_CC_TEXT_CATALOG_TITLE;
+    }
     $this->description = MODULE_PAYMENT_CC_TEXT_DESCRIPTION;
     $this->sort_order = MODULE_PAYMENT_CC_SORT_ORDER;
     $this->enabled = ((MODULE_PAYMENT_CC_STATUS == 'True') ? true : false);
@@ -125,7 +130,7 @@ class cc extends base {
     global $order;
 
     for ($i=1; $i<13; $i++) {
-      $expires_month[] = array('id' => sprintf('%02d', $i), 'text' => strftime('%B',mktime(0,0,0,$i,1,2000)));
+      $expires_month[] = array('id' => sprintf('%02d', $i), 'text' => strftime('%B - (%m)',mktime(0,0,0,$i,1,2000)));
     }
 
     $today = getdate();
@@ -160,7 +165,7 @@ class cc extends base {
    *
    */
   function pre_confirmation_check() {
-    global $_POST, $messageStack;
+    global $messageStack;
     /**
      * Load the cc_validation class
      */
@@ -202,8 +207,6 @@ class cc extends base {
    * @return array
    */
   function confirmation() {
-    global $_POST;
-
     $confirmation = array('title' => $this->title . ': ' . $this->cc_card_type,
                           'fields' => array(array('title' => MODULE_PAYMENT_CC_TEXT_CREDIT_CARD_OWNER,
                           'field' => $_POST['cc_owner']),
@@ -226,8 +229,6 @@ class cc extends base {
    * @return string
    */
   function process_button() {
-    global $_POST;
-
     $process_button_string = zen_draw_hidden_field('cc_owner', $_POST['cc_owner']) .
                              zen_draw_hidden_field('cc_expires', $_POST['cc_expires_month'] . $_POST['cc_expires_year']) .
                              zen_draw_hidden_field('cc_type', $this->cc_card_type) .
@@ -243,11 +244,7 @@ class cc extends base {
    *
    */
   function before_process() {
-    global $_POST, $order;
-
-    if (defined('MODULE_PAYMENT_CC_STORE_NUMBER') && MODULE_PAYMENT_CC_STORE_NUMBER == 'True') {
-      $order->info['cc_number'] = $_POST['cc_number'];
-    }
+    global $order;
     $order->info['cc_expires'] = $_POST['cc_expires'];
     $order->info['cc_type'] = $_POST['cc_type'];
     $order->info['cc_owner'] = $_POST['cc_owner'];
@@ -294,8 +291,6 @@ class cc extends base {
    * @return array
    */
   function get_error() {
-    global $_GET;
-
     $error = array('title' => MODULE_PAYMENT_CC_TEXT_ERROR,
                    'error' => stripslashes(urldecode($_GET['error'])));
 
@@ -322,8 +317,7 @@ class cc extends base {
     global $db;
     $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) values ('Enable Credit Card Module', 'MODULE_PAYMENT_CC_STATUS', 'True', 'Do you want to accept credit card payments?', '6', '130', 'zen_cfg_select_option(array(\'True\', \'False\'), ', now())");
     $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) values ('Split Credit Card Email Address', 'MODULE_PAYMENT_CC_EMAIL', '" . STORE_OWNER_EMAIL_ADDRESS . "', 'If an email address is entered, the middle digits of the credit card number will be sent to the email address (the outside digits are stored in the database with the middle digits censored)', '6', '131', now())");
-    $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) values ('Collect & store the CVV number', 'MODULE_PAYMENT_CC_COLLECT_CVV', 'True', 'Do you want to collect the CVV number. Note: If you do the CVV number will be stored in the database in an encoded format.', '6', '132', 'zen_cfg_select_option(array(\'True\', \'False\'), ', now())");
-    $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) values ('Store the Credit Card Number', 'MODULE_PAYMENT_CC_STORE_NUMBER', 'False', 'Do you want to store the Credit Card Number?<br /><br /><strong>WARNING: The Credit Card Number will be stored unenecrypted, and as such may represent a security problem.</strong>', '6', '133', 'zen_cfg_select_option(array(\'True\', \'False\'), ', now())");
+    $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) values ('Collect & store the CVV number', 'MODULE_PAYMENT_CC_COLLECT_CVV', 'False', 'Do you want to collect the CVV number. Note: If you do the CVV number will be stored in the database in an encoded format. Be sure to check with your merchant account provider about whether you need this information or not, as storing CVV data is often a violation of TOS.', '6', '132', 'zen_cfg_select_option(array(\'True\', \'False\'), ', now())");
     $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) values ('Sort order of display.', 'MODULE_PAYMENT_CC_SORT_ORDER', '0', 'Sort order of display. Lowest is displayed first.', '6', '134' , now())");
     $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, use_function, set_function, date_added) values ('Payment Zone', 'MODULE_PAYMENT_CC_ZONE', '0', 'If a zone is selected, only enable this payment method for that zone.', '6', '135', 'zen_get_zone_class_title', 'zen_cfg_pull_down_zone_classes(', now())");
     $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, use_function, date_added) values ('Set Order Status', 'MODULE_PAYMENT_CC_ORDER_STATUS_ID', '0', 'Set the status of orders made with this payment module to this value', '6', '136', 'zen_cfg_pull_down_order_statuses(', 'zen_get_order_status_name', now())");
@@ -334,7 +328,7 @@ class cc extends base {
    */
   function remove() {
     global $db;
-    $db->Execute("delete from " . TABLE_CONFIGURATION . " where configuration_key like 'MODULE_PAYMENT_CC_%'");
+    $db->Execute("delete from " . TABLE_CONFIGURATION . " where configuration_key like 'MODULE\_PAYMENT\_CC\_%'");
   }
   /**
    * Internal list of configuration keys used for configuration of the module
@@ -342,7 +336,7 @@ class cc extends base {
    * @return array
    */
   function keys() {
-    return array('MODULE_PAYMENT_CC_STATUS', 'MODULE_PAYMENT_CC_COLLECT_CVV', 'MODULE_PAYMENT_CC_EMAIL', 'MODULE_PAYMENT_CC_ZONE', 'MODULE_PAYMENT_CC_ORDER_STATUS_ID', 'MODULE_PAYMENT_CC_SORT_ORDER');
+    return array('MODULE_PAYMENT_CC_STATUS', 'MODULE_PAYMENT_CC_EMAIL', 'MODULE_PAYMENT_CC_ZONE', 'MODULE_PAYMENT_CC_ORDER_STATUS_ID', 'MODULE_PAYMENT_CC_SORT_ORDER', 'MODULE_PAYMENT_CC_COLLECT_CVV');
   }
 }
 ?>

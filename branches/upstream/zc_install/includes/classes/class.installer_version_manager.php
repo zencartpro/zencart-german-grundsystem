@@ -5,10 +5,10 @@
  * This class is used during the installation and upgrade processes *
  * @package Installer
  * @access private
- * @copyright Copyright 2003-2006 Zen Cart Development Team
+ * @copyright Copyright 2003-2007 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: class.installer_version_manager.php 5369 2006-12-23 10:55:52Z drbyte $
+ * @version $Id: class.installer_version_manager.php 7410 2007-11-11 05:46:02Z drbyte $
  */
 
 
@@ -29,7 +29,7 @@
       /**
        * The version that this edition of the installer is designed to support
        */
-      $this->latest_version = '1.3.7';
+      $this->latest_version = '1.3.8';
 
       /**
        * Check to see if the configuration table can be found...thus validating the installation, in part.
@@ -43,7 +43,6 @@
 
     function check_configuration_table() {
       global $db_test;
-//			if (!defined('ZC_UPG_DEBUG')) define('ZC_UPG_DEBUG',false);
 // Check to see if any Zen Cart tables exist
       $tables = $db_test->Execute("SHOW TABLES like '".DB_PREFIX."configuration'");
        if (ZC_UPG_DEBUG==true) echo 'ZEN-Configuration (should be 1) = '. $tables->RecordCount() .'<br>';
@@ -77,6 +76,7 @@
       $this->version135 = $this->check_version_135();
       $this->version136 = $this->check_version_136();
       $this->version137 = $this->check_version_137();
+      $this->version138 = $this->check_version_138();
 
 //        if ($this->version103 == true)  $retVal = '1.0.3';
 //        if ($this->version104 == true)  $retVal = '1.0.4';
@@ -99,6 +99,7 @@
         if ($this->version135 == true) $retVal = '1.3.5';
         if ($this->version136 == true) $retVal = '1.3.6';
         if ($this->version137 == true) $retVal = '1.3.7';
+        if ($this->version138 == true) $retVal = '1.3.8';
 
       return $retVal;
     }
@@ -350,7 +351,7 @@
         $sql = "show index from " . DB_PREFIX . "project_version_history";
         $result = $db_test->Execute($sql);
         while (!$result->EOF) {
-          if (ZC_UPG_DEBUG==true) echo "INDEX TEST-'project_version_history'=" . $result->fields['Field'] . '->' . $result->fields['Type'] . '<br>';
+          if (ZC_UPG_DEBUG==true) echo "INDEX TEST-'project_version_history'=" . $result->fields['Key_name'] . ' (vs project_version_key)' . '<br>';
           if  ($result->fields['Key_name'] == 'project_version_key') {
             if (ZC_UPG_DEBUG==true) echo 'Index on project_version_key found. Deleting.<br>';
             $db_test->Execute("drop index project_version_key on " . DB_PREFIX . "project_version_history");
@@ -655,6 +656,40 @@
       }
       return $got_v1_3_7;
     } //end of 1.3.7 check
+
+
+
+    function check_version_138() {
+      global $db_test;
+      $got_v1_3_8 = false;
+      $got_v1_3_8a = false;
+      $got_v1_3_8b = false;
+      //1st check for v1.3.8
+      $sql = "select configuration_title from " . DB_PREFIX . "configuration where configuration_key = 'SHOW_SHOPPING_CART_COMBINED'";
+      $result = $db_test->Execute($sql);
+      if (ZC_UPG_DEBUG==true) echo "138a-configtitle_check SHOW_SHOPPING_CART_COMBINED =" . $result->fields['configuration_title'] . '<br>';
+      if  ($result->fields['configuration_title'] == 'Show Notice of Combining Shopping Cart on Login') {
+        $got_v1_3_8a = true;
+      }
+      //2nd check for v1.3.8
+      $sql = "select configuration_title from " . DB_PREFIX . "configuration where configuration_key = 'MAX_RANDOM_SELECT_FEATURED_PRODUCTS'";
+      $result = $db_test->Execute($sql);
+      if (ZC_UPG_DEBUG==true) echo "138b-configkey_check MAX_RANDOM_SELECT_FEATURED_PRODUCTS =" . $result->fields['configuration_title'] . '<br>';
+      if  ($result->fields['configuration_title'] == 'Random Featured Products for SideBox') {
+        $got_v1_3_8b = true;
+      }
+
+      if (ZC_UPG_DEBUG==true) {
+        echo '1.3.8a='.$got_v1_3_8a.'<br>';
+        echo '1.3.8b='.$got_v1_3_8b.'<br>';
+      }
+      // evaluate all 1.3.8 checks
+      if ($got_v1_3_8a && $got_v1_3_8b ) {
+        $got_v1_3_8 = true;
+        if (ZC_UPG_DEBUG==true) echo '<br>Got 1.3.8<br>';
+      }
+      return $got_v1_3_8;
+    } //end of 1.3.8 check
 
 
 

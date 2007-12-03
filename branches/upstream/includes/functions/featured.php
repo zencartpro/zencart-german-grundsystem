@@ -6,7 +6,7 @@
  * @copyright Copyright 2003-2005 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: featured.php 2618 2005-12-20 00:35:47Z drbyte $
+ * @version $Id: featured.php 6345 2007-05-20 01:51:25Z ajeh $
  */
 
 ////
@@ -24,11 +24,15 @@
 // Auto expire products on featured
   function zen_expire_featured() {
     global $db;
+
+    $date_range = time();
+    $zc_featured_date = date('Ymd', $date_range);
+
     $featured_query = "select featured_id
                        from " . TABLE_FEATURED . "
                        where status = '1'
-                       and ((now() >= expires_date and expires_date != '0001-01-01')
-                       or (now() < featured_date_available and featured_date_available != '0001-01-01'))";
+                       and ((" . $zc_featured_date . " >= expires_date and expires_date != '0001-01-01')
+                       or (" . $zc_featured_date . " < featured_date_available and featured_date_available != '0001-01-01'))";
 
     $featured = $db->Execute($featured_query);
 
@@ -45,12 +49,15 @@
   function zen_start_featured() {
     global $db;
 
+    $date_range = time();
+    $zc_featured_date = date('Ymd', $date_range);
+
     $featured_query = "select featured_id
                        from " . TABLE_FEATURED . "
                        where status = '0'
-                       and (((featured_date_available <= now() and featured_date_available != '0001-01-01') and (expires_date >= now()))
-                       or ((featured_date_available <= now() and featured_date_available != '0001-01-01') and (expires_date = '0001-01-01'))
-                       or (featured_date_available = '0001-01-01' and expires_date >= now()))
+                       and (((featured_date_available <= " . $zc_featured_date . " and featured_date_available != '0001-01-01') and (expires_date >= " . $zc_featured_date . "))
+                       or ((featured_date_available <= " . $zc_featured_date . " and featured_date_available != '0001-01-01') and (expires_date = '0001-01-01'))
+                       or (featured_date_available = '0001-01-01' and expires_date >= " . $zc_featured_date . "))
                        ";
 
     $featured = $db->Execute($featured_query);
@@ -66,7 +73,7 @@
     $featured_query = "select featured_id
                        from " . TABLE_FEATURED . "
                        where status = '1'
-                       and (now() < featured_date_available and featured_date_available != '0001-01-01')
+                       and (" . $zc_featured_date . " < featured_date_available and featured_date_available != '0001-01-01')
                        ";
 
     $featured = $db->Execute($featured_query);

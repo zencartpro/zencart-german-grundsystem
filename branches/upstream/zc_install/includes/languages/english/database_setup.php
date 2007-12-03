@@ -2,10 +2,10 @@
 /**
  * @package Installer
  * @access private
- * @copyright Copyright 2003-2006 Zen Cart Development Team
+ * @copyright Copyright 2003-2007 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: database_setup.php 3164 2006-03-11 01:54:17Z drbyte $
+ * @version $Id: database_setup.php 7411 2007-11-11 05:47:10Z drbyte $
  */
 /**
  * defining language components for the page
@@ -14,6 +14,8 @@
   define('TEXT_MAIN', "Next we need to know some information on your database settings.  Please carefully enter each setting in the appropriate box and press <em>Save Database Settings</em> to continue.'");
   define('TEXT_PAGE_HEADING', 'Zen Cart&trade; Setup - Database Setup');
   define('DATABASE_INFORMATION', 'Database Information');
+  define('DATABASE_OPTIONAL_INFORMATION', 'Database - OPTIONAL Settings');
+  define('DATABASE_OPTIONAL_INSTRUCTION', 'It is recommended to leave these settings as-is unless you have a specific reason for altering them.');
   define('DATABASE_TYPE', 'Database Type');
   define('DATABASE_TYPE_INSTRUCTION', 'Choose the database type to be used.');
   define('DATABASE_HOST', 'Database Host');
@@ -27,7 +29,7 @@
   define('DATABASE_PREFIX', 'Store Identifier (Table-Prefix)');
   define('DATABASE_PREFIX_INSTRUCTION', 'What is the prefix you would like used for database tables?  Example: zen_ Leave empty if no prefix is needed.<br />You can use prefixes to allow more than one store to share the same database.');
   define('DATABASE_CREATE', 'Create Database?');
-  define('DATABASE_CREATE_INSTRUCTION', 'Would you like Zen Cart to create the database?');
+  define('DATABASE_CREATE_INSTRUCTION', 'Would you like Zen Cart&trade; to create the database?');
   define('DATABASE_CONNECTION', 'Persistent Connection');
   define('DATABASE_CONNECTION_INSTRUCTION', 'Would you like to enable persistent database connections?  Click \'no\' if you are unsure.');
   define('DATABASE_SESSION', 'Database Sessions');

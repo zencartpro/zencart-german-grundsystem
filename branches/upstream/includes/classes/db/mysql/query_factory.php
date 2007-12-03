@@ -4,10 +4,10 @@
  * Class used for database abstraction to MySQL
  *
  * @package classes
- * @copyright Copyright 2003-2006 Zen Cart Development Team
+ * @copyright Copyright 2003-2007 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: query_factory.php 4854 2006-10-28 06:50:01Z drbyte $
+ * @version $Id: query_factory.php 5741 2007-01-31 20:37:46Z wilt $
  */
 if (!defined('IS_ADMIN_FLAG')) {
   die('Illegal Access');
@@ -361,6 +361,12 @@ class queryFactory extends base {
           $enumArray = explode('|', $typeArray[1]);
         }
         return '\'' . $this->prepare_input($value) . '\'';
+      case 'regexp':
+        $searchArray = array('[', ']', '(', ')', '{', '}', '|', '*', '?', '.', '$', '^');
+        foreach ($searchArray as $searchTerm) {
+          $value = str_replace($searchTerm, '\\' . $searchTerm, $value);
+        }
+        return $this->prepare_input($value);
       default:
       die('var-type undefined: ' . $type . '('.$value.')');
     }

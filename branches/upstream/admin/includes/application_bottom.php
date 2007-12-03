@@ -4,13 +4,13 @@
  * @copyright Copyright 2003-2006 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: application_bottom.php 3009 2006-02-11 15:41:10Z wilt $
+ * @version $Id: application_bottom.php 5658 2007-01-21 19:39:51Z wilt $
  */
 if (!defined('IS_ADMIN_FLAG')) {
   die('Illegal Access');
 }
 // close session (store variables)
-  zen_session_close();
+  session_write_close();
 
   if (STORE_PAGE_PARSE_TIME == 'true') {
     if (!is_object($logger)) $logger = new logger;

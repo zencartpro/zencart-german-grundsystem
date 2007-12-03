@@ -1,10 +1,10 @@
 <?php
 /**
  * @package languageDefines
- * @copyright Copyright 2003-2006 Zen Cart Development Team
+ * @copyright Copyright 2003-2007 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: product_music_info.php 4336 2006-09-01 20:04:54Z drbyte $
+ * @version $Id: product_music_info.php 6371 2007-05-25 19:55:59Z ajeh $
  */
 
 define('TEXT_PRODUCT_NOT_FOUND', 'Sorry, the product was not found.');
@@ -43,5 +43,10 @@ define('TEXT_ONETIME_CHARGE_SYMBOL', ' *');
 define('TEXT_ONETIME_CHARGE_DESCRIPTION', ' One time charges may apply');
 define('TEXT_ATTRIBUTES_QTY_PRICE_HELP_LINK','Quantity Discounts Available');
 define('ATTRIBUTES_QTY_PRICE_SYMBOL', zen_image(DIR_WS_TEMPLATE_ICONS . 'icon_status_green.gif', TEXT_ATTRIBUTES_QTY_PRICE_HELP_LINK, 10, 10) . '&nbsp;');
+
+define('ATTRIBUTES_PRICE_DELIMITER_PREFIX', ' ( ');
+define('ATTRIBUTES_PRICE_DELIMITER_SUFFIX', ' )');
+define('ATTRIBUTES_WEIGHT_DELIMITER_PREFIX', ' (');
+define('ATTRIBUTES_WEIGHT_DELIMITER_SUFFIX', ') ');
 
 ?>

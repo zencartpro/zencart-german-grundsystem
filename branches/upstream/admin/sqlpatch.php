@@ -4,7 +4,7 @@
  * @copyright Copyright 2003-2006 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: sqlpatch.php 4279 2006-08-26 03:31:29Z drbyte $
+ * @version $Id: sqlpatch.php 7166 2007-10-03 23:01:46Z drbyte $
  */
 
   require('includes/application_top.php');
@@ -144,17 +144,15 @@ if ($_GET['debug']=='ON') echo $line . '<br />';
               $line = (strtoupper($param[2].' '.$param[3].' '.$param[4]) == 'IF NOT EXISTS') ? 'CREATE TABLE IF NOT EXISTS ' . $table_prefix . substr($line, 27) : 'CREATE TABLE ' . $table_prefix . substr($line, 13);
             }
             break;
-          case (substr($line_upper, 0, 9) == 'TRUNCATE '):
-            // check to see if table exists
-            $table = (strtoupper($param[1]) == 'TABLE') ? $param[3] : $param[2];
-            $result=zen_table_exists($table);
-            if ($result==true) {
-              zen_write_to_upgrade_exceptions_table($line, sprintf(REASON_TABLE_DOESNT_EXIST,$table), $sql_file);
+          case (substr($line_upper, 0, 15) == 'TRUNCATE TABLE '):
+            // check to see if TRUNCATE command may be safely executed
+            if (!$tbl_exists = zen_table_exists($param[2])) {
+              $result=sprintf(REASON_TABLE_NOT_FOUND,$param[2]).' CHECK PREFIXES!' . $param[2];
+              zen_write_to_upgrade_exceptions_table($line, $result, $sql_file);
               $ignore_line=true;
-              $result=sprintf(REASON_TABLE_DOESNT_EXIST,$table); //duplicated here for on-screen error-reporting
               break;
             } else {
-              $line = (strtoupper($param[1]) == 'TABLE') ? 'TRUNCATE TABLE ' . $table_prefix . substr($line, 15) : 'TRUNCATE ' . $table_prefix . substr($line, 9);
+              $line = 'TRUNCATE TABLE ' . $table_prefix . substr($line, 15);
             }
             break;
           case (substr($line_upper, 0, 13) == 'REPLACE INTO '):
@@ -693,7 +691,8 @@ if ($_GET['debug']=='ON') echo $line . '<br />';
        break;
       case 'uploadquery':
             $upload_query = file($_FILES['sql_file']['tmp_name']);
-            $query_string  = zen_db_prepare_input($upload_query);
+            $query_string  = $upload_query;
+            if (@get_magic_quotes_runtime() > 0) $query_string  = zen_db_prepare_input($upload_query);
             if ($query_string !='') {
               $query_results = executeSql($query_string, DB_DATABASE, DB_PREFIX);
               if ($query_results['queries'] > 0 && $query_results['queries'] != $query_results['ignored']) {

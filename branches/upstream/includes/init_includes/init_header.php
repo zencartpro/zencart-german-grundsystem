@@ -1,12 +1,12 @@
 <?php
 /**
- * header code, mainly concerned with adding to messagestack.
+ * header code, mainly concerned with adding to messagestack when certain warnings are applicable
  *
  * @package templateStructure
- * @copyright Copyright 2003-2006 Zen Cart Development Team
+ * @copyright Copyright 2003-2007 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: init_header.php 3964 2006-07-14 03:25:38Z ajeh $
+ * @version $Id: init_header.php 6990 2007-09-12 21:45:57Z drbyte $
  */
 if (!defined('IS_ADMIN_FLAG')) {
   die('Illegal Access');
@@ -42,17 +42,19 @@ define('WARN_DOWNLOAD_DIRECTORY_NOT_READABLE', 'true');
  * should a message be displayed if system detects version problem with the database
  */
 define('WARN_DATABASE_VERSION_PROBLEM','true');
-// check if the 'install' directory exists, and warn of its existence
+// check if the installer directory exists, and warn of its existence
 if (WARN_INSTALL_EXISTENCE == 'true') {
-  if (file_exists(dirname($_SERVER['SCRIPT_FILENAME']) . '/zc_install')) {
-    $messageStack->add('header', WARNING_INSTALL_DIRECTORY_EXISTS, 'warning');
+  $check_path = realpath(dirname(basename($PHP_SELF)) . '/zc_install');
+  if (is_dir($check_path)) {
+    $messageStack->add('header', sprintf(WARNING_INSTALL_DIRECTORY_EXISTS, ($check_path == '' ? '..../zc_install' : $check_path)), 'warning');
   }
 }
 
 // check if the configure.php file is writeable
 if (WARN_CONFIG_WRITEABLE == 'true') {
-  if ( (file_exists(dirname($_SERVER['SCRIPT_FILENAME']) . '/includes/configure.php')) && (is_writeable(dirname($_SERVER['SCRIPT_FILENAME']) . '/includes/configure.php')) ) {
-    $messageStack->add('header', WARNING_CONFIG_FILE_WRITEABLE, 'warning');
+  $check_path = realpath(dirname(basename($PHP_SELF)) . '/includes/configure.php');
+  if (file_exists($check_path) && is__writeable($check_path)) {
+    $messageStack->add('header', sprintf(WARNING_CONFIG_FILE_WRITEABLE, ($check_path == '' ? '..../includes/configure.php' : $check_path)), 'warning');
   }
 }
 
@@ -117,7 +119,7 @@ if (WARN_DATABASE_VERSION_PROBLEM != 'false') {
 if (defined('MODULE_PAYMENT_PAYPAL_IPN_DEBUG') && (MODULE_PAYMENT_PAYPAL_IPN_DEBUG == 'true' || MODULE_PAYMENT_PAYPAL_TESTING == 'Test')) {
   $messageStack->add('header', 'PAYPAL IS IN TESTING MODE', 'warning');
 }
-if (defined('MODULE_PAYMENT_AUTHORIZENET_AIM_TESTMODE') &&  (MODULE_PAYMENT_AUTHORIZENET_AIM_TESTMODE == 'Test' || MODULE_PAYMENT_AUTHORIZENET_TESTMODE =='Test' ) ) {
+if ((defined('MODULE_PAYMENT_AUTHORIZENET_AIM_STATUS') && MODULE_PAYMENT_AUTHORIZENET_AIM_STATUS == 'True' && defined('MODULE_PAYMENT_AUTHORIZENET_AIM_TESTMODE') && MODULE_PAYMENT_AUTHORIZENET_AIM_TESTMODE == 'Test') || (defined('MODULE_PAYMENT_AUTHORIZENET_STATUS') && MODULE_PAYMENT_AUTHORIZENET_STATUS == 'True' && defined('MODULE_PAYMENT_AUTHORIZENET_TESTMODE') && MODULE_PAYMENT_AUTHORIZENET_TESTMODE =='Test' ) ) {
   $messageStack->add('header', 'AUTHORIZENET IS IN TESTING MODE', 'warning');
 }
 if (defined('MODULE_SHIPPING_USPS_SERVER') &&   MODULE_SHIPPING_USPS_SERVER == 'test' ) {
@@ -134,5 +136,7 @@ if (EZPAGES_STATUS_FOOTER == '2' && (strstr(EXCLUDE_ADMIN_IP_FOR_MAINTENANCE, $_
 if (EZPAGES_STATUS_SIDEBOX == '2' && (strstr(EXCLUDE_ADMIN_IP_FOR_MAINTENANCE, $_SERVER['REMOTE_ADDR']))) {
   $messageStack->add('header', TEXT_EZPAGES_STATUS_SIDEBOX_ADMIN, 'caution');
 }
-
+if (defined('STRICT_ERROR_REPORTING') && STRICT_ERROR_REPORTING == true) {
+  $messageStack->add('header', 'STRICT ERROR REPORTING IS ON', 'warning');
+}
 ?>

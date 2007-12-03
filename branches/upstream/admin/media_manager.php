@@ -1,24 +1,11 @@
 <?php
-//
-// +----------------------------------------------------------------------+
-// |zen-cart Open Source E-commerce                                       |
-// +----------------------------------------------------------------------+
-// | Copyright (c) 2006 The zen-cart developers                           |
-// |                                                                      |
-// | http://www.zen-cart.com/index.php                                    |
-// |                                                                      |
-// | Portions Copyright (c) 2003 osCommerce                               |
-// +----------------------------------------------------------------------+
-// | This source file is subject to version 2.0 of the GPL license,       |
-// | that is bundled with this package in the file LICENSE, and is        |
-// | available through the world-wide-web at the following url:           |
-// | http://www.zen-cart.com/license/2_0.txt.                             |
-// | If you did not receive a copy of the zen-cart license and are unable |
-// | to obtain it through the world-wide-web, please send a note to       |
-// | license@zen-cart.com so we can mail you a copy immediately.          |
-// +----------------------------------------------------------------------+
-//  $Id: media_manager.php 4873 2006-11-02 09:12:46Z drbyte $
-//
+/**
+ * @package admin
+ * @copyright Copyright 2003-2007 Zen Cart Development Team
+ * @copyright Portions Copyright 2003 osCommerce
+ * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
+ * @version $Id: media_manager.php 7059 2007-09-20 01:50:42Z ajeh $
+ */
 
   require('includes/application_top.php');
 
@@ -34,19 +21,19 @@
         $db->Execute("delete from " . TABLE_MEDIA_TO_PRODUCTS . "
                       where media_id = '" . (int)$_GET['mID'] . "'
                       and product_id = '" . (int)$_GET['product_id'] . "'");
-       zen_redirect(zen_href_link(FILENAME_MEDIA_MANAGER, 'action=products&current_category_id=' . $current_category_id) . '&mID=' . (int)$_GET['mID']);
+       zen_redirect(zen_href_link(FILENAME_MEDIA_MANAGER, 'action=products&current_category_id=' . $current_category_id) . '&mID=' . (int)$_GET['mID'] . '&page=' . $_GET['page']);
 
       break;
       case 'add_product':
         $product_add_query = $db->Execute("insert into " . TABLE_MEDIA_TO_PRODUCTS . " (media_id, product_id) values
                                            ('" . (int)$_GET['mID'] . "', '" . (int)$_GET['current_product_id'] . "')");
-         zen_redirect(zen_href_link(FILENAME_MEDIA_MANAGER, 'action=products&current_category_id=' . $current_category_id) . '&mID=' . $_GET['mID']);
+         zen_redirect(zen_href_link(FILENAME_MEDIA_MANAGER, 'action=products&current_category_id=' . $current_category_id) . '&mID=' . $_GET['mID'] . '&page=' . $_GET['page']);
 
       break;
       case 'new_cat':
     $current_category_id = (isset($_GET['current_category_id']) ? $_GET['current_category_id'] : $current_category_id);
     $products_filter = $new_product_query->fields['products_id'];
-    zen_redirect(zen_href_link(FILENAME_MEDIA_MANAGER, 'action=products&current_category_id=' . $current_category_id . '&mID=' . $_GET['mID']));
+    zen_redirect(zen_href_link(FILENAME_MEDIA_MANAGER, 'action=products&current_category_id=' . $current_category_id . '&mID=' . $_GET['mID'] . '&page=' . $_GET['page']));
       break;
       case 'remove_clip':
         $delete_query = "delete from " . TABLE_MEDIA_CLIPS . " where clip_id  = '" . $_GET['clip_id'] . "'";
@@ -239,7 +226,7 @@
     case 'new':
       $heading[] = array('text' => '<strong>' . TEXT_HEADING_NEW_MEDIA_COLLECTION . '</strong>');
 
-      $contents = array('form' => zen_draw_form('collections', FILENAME_MEDIA_MANAGER, 'action=insert', 'post', 'enctype="multipart/form-data"'));
+      $contents = array('form' => zen_draw_form('collections', FILENAME_MEDIA_MANAGER, 'action=insert&page=' . $_GET['page'], 'post', 'enctype="multipart/form-data"'));
       $contents[] = array('text' => TEXT_NEW_INTRO);
       $contents[] = array('text' => '<br>' . TEXT_MEDIA_COLLECTION_NAME . '<br>' . zen_draw_input_field('media_name', '', zen_set_field_length(TABLE_MEDIA_MANAGER, 'media_name')));
 
@@ -264,6 +251,7 @@
           $dir_info[] = array('id' => $file . '/', 'text' => $file);
         }
       }
+      $dir->close();
       $contents[] = array('text' => '<br />' . TEXT_ADD_MEDIA_CLIP . zen_draw_file_field('clip_filename'));
       $contents[] = array('text' => TEXT_MEDIA_CLIP_DIR . ' ' . zen_draw_pull_down_menu('media_dir', $dir_info));
       $media_type_query = "select type_id, type_name, type_ext from " . TABLE_MEDIA_TYPES;
@@ -301,13 +289,14 @@
       $heading[] = array('text' => '<strong>' . TEXT_HEADING_ASSIGN_MEDIA_COLLECTION . '</strong>');
       $contents[] = array('text' => TEXT_PRODUCTS_INTRO . '<br /><br />');
       $contents[] = array('text' => zen_draw_form('new_category', FILENAME_MEDIA_MANAGER, '', 'get') . '&nbsp;&nbsp;' .
-                           zen_draw_pull_down_menu('current_category_id', zen_get_category_tree('', '', '0'), '', 'onChange="this.form.submit();"') . zen_hide_session_id() . zen_draw_hidden_field('products_filter', $_GET['products_filter']) . zen_draw_hidden_field('action', 'new_cat') . zen_draw_hidden_field('mID', $mInfo->media_id) . '&nbsp;&nbsp;</form>');
+                           zen_draw_pull_down_menu('current_category_id', zen_get_category_tree('', '', '0'), '', 'onChange="this.form.submit();"') . zen_hide_session_id() . zen_draw_hidden_field('products_filter', $_GET['products_filter']) . zen_draw_hidden_field('action', 'new_cat') . zen_draw_hidden_field('mID', $mInfo->media_id) . zen_draw_hidden_field('page', $_GET['page']) . '&nbsp;&nbsp;</form>');
       $product_array = $zc_products->get_products_in_category($current_category_id, false);
       if ($product_array) {
         $contents[] = array('text' => zen_draw_form('new_product', FILENAME_MEDIA_MANAGER, '', 'get') . '&nbsp;&nbsp;' .
                            zen_draw_pull_down_menu('current_product_id', $product_array) . '&nbsp;' . '<input type="submit" name="add_product" value="Add">' .
                            zen_draw_hidden_field('current_category_id', $current_category_id) .
                            zen_draw_hidden_field('action', 'add_product') .
+                           zen_draw_hidden_field('page', $_GET['page']) .
                            zen_draw_hidden_field('mID', $mInfo->media_id) . '&nbsp;&nbsp;</form>');
       } else {
         $contents[] = array('text' => '&nbsp;&nbsp;' . TEXT_NO_PRODUCTS);
@@ -316,7 +305,7 @@
                                 where media_id = '" . $mInfo->media_id . "'";
       $products_linked = $db->Execute($products_linked_query);
       while (!$products_linked->EOF) {
-        $contents[] = array('text' => '<a href="' . zen_href_link(FILENAME_MEDIA_MANAGER, 'action=remove_product&mID='.$mInfo->media_id.'&product_id='. $products_linked->fields['product_id']) . '">' . zen_image_button('button_delete.gif', IMAGE_DELETE) . '</a>&nbsp;' . $zc_products->products_name($products_linked->fields['product_id']) . '<br />');
+        $contents[] = array('text' => '<a href="' . zen_href_link(FILENAME_MEDIA_MANAGER, 'action=remove_product&mID='.$mInfo->media_id . '&page=' . $_GET['page'] . '&product_id='. $products_linked->fields['product_id']) . '">' . zen_image_button('button_delete.gif', IMAGE_DELETE) . '</a>&nbsp;' . $zc_products->products_name($products_linked->fields['product_id']) . '<br />');
         $products_linked->MoveNext();
       }
       $contents[] = array('align' => 'center', 'text' =>  '<br /><a href="' . zen_href_link(FILENAME_MEDIA_MANAGER, 'page=' . $_GET['page'] . '&mID=' . $mInfo->media_id) . '">' . zen_image_button('button_cancel.gif', IMAGE_CANCEL) . '</a>');

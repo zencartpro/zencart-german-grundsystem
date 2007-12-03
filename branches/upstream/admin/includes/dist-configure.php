@@ -1,30 +1,21 @@
 <?php
-//
-// +----------------------------------------------------------------------+
-// |zen-cart Open Source E-commerce                                       |
-// +----------------------------------------------------------------------+
-// | Copyright (c) 2003 The zen-cart developers                           |
-// |                                                                      |
-// | http://www.zen-cart.com/index.php                                    |
-// |                                                                      |
-// | Portions Copyright (c) 2003 osCommerce                               |
-// +----------------------------------------------------------------------+
-// | This source file is subject to version 2.0 of the GPL license,       |
-// | that is bundled with this package in the file LICENSE, and is        |
-// | available through the world-wide-web at the following url:           |
-// | http://www.zen-cart.com/license/2_0.txt.                             |
-// | If you did not receive a copy of the Zen Cart license and are unable |
-// | to obtain it through the world-wide-web, please send a note to       |
-// | license@zen-cart.com so we can mail you a copy immediately.          |
-// +----------------------------------------------------------------------+
-// $Id: dist-configure.php 4095 2006-08-08 02:32:01Z drbyte $
-//
+/**
+ * dist-configure.php
+ *
+ * @package Configuration Settings
+ * @package Admin
+ * @copyright Copyright 2003-2007 Zen Cart Development Team
+ * @copyright Portions Copyright 2003 osCommerce
+ * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
+ * @version $Id: dist-configure.php 6329 2007-05-16 15:36:56Z drbyte $
+ * @private
+ */
 
 // Define the webserver and path parameters
-// HTTP_SERVER is your Main webserver: eg, http://www.yourdomain.com
-// HTTPS_SERVER is your Secure webserver: eg, https://www.yourdomain.com
-// HTTP_CATALOG_SERVER is your Main webserver: eg, http://www.yourdomain.com
-// HTTPS_CATALOG_SERVER is your Secure webserver: eg, https://www.yourdomain.com
+// HTTP_SERVER is your Main webserver: eg-http://www.yourdomain.com
+// HTTPS_SERVER is your Secure webserver: eg-https://www.yourdomain.com
+// HTTP_CATALOG_SERVER is your Main webserver: eg-http://www.yourdomain.com
+// HTTPS_CATALOG_SERVER is your Secure webserver: eg-https://www.yourdomain.com
 /* 
  * URL's for your site will be built via:  
  *     HTTP_SERVER plus DIR_WS_ADMIN or
@@ -32,9 +23,11 @@
  *     HTTP_SERVER plus DIR_WS_CATALOG or 
  *     HTTPS_SERVER plus DIR_WS_HTTPS_CATALOG
  * ...depending on your system configuration settings
+ *
+ * If you desire your *entire* admin to be SSL-protected, make sure you use a "https:" URL for all 4 of the following:
  */
   define('HTTP_SERVER', 'http://localhost');
-  define('HTTPS_SERVER', 'https://127.0.0.1');
+  define('HTTPS_SERVER', 'https://localhost');
   define('HTTP_CATALOG_SERVER', 'http://localhost');
   define('HTTPS_CATALOG_SERVER', 'https://localhost');
 
@@ -83,8 +76,9 @@
   define('DB_SERVER_USERNAME', 'root');
   define('DB_SERVER_PASSWORD', '');
   define('DB_DATABASE', '');
-  define('USE_PCONNECT', 'false'); // use persistent connections?
-  define('STORE_SESSIONS', 'db'); // use 'db' for best support, or '' for file-based storage
+  define('USE_PCONNECT', 'false');
+  define('STORE_SESSIONS', 'db'); 
+  // use 'db' for best support, or '' for file-based storage
 
   // The next 2 "defines" are for SQL cache support.
   // For SQL_CACHE_METHOD, you can select from:  none, database, or file

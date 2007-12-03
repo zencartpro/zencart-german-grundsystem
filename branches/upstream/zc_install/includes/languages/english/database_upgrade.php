@@ -2,17 +2,17 @@
 /**
  * @package Installer
  * @access private
- * @copyright Copyright 2003-2005 Zen Cart Development Team
+ * @copyright Copyright 2003-2007 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: database_upgrade.php 3447 2006-04-17 20:10:18Z drbyte $
+ * @version $Id: database_upgrade.php 7411 2007-11-11 05:47:10Z drbyte $
  */
 /**
  * defining language components for the page
  */
-  define('PAGE_HEADING', 'Zen Cart&trade; Setup - Database Upgrade');
+  define('TEXT_PAGE_HEADING', 'Zen Cart&trade; Setup - Database Upgrade');
   define('UPDATE_DATABASE_NOW','Update Database Now');//this comes before TEXT_MAIN
-  define('TEXT_MAIN', '<em>Warning: </em> This script should ONLY be used to upgrade your Zen Cart database schema through the versions listed below.  ' .
+  define('TEXT_MAIN', '<em>Warning: </em> This script should ONLY be used to upgrade your Zen Cart&trade; database schema through the versions listed below.  ' .
                       '<span class="emphasis"><strong>We HIGHLY RECOMMEND doing a full backup of your database prior to performing any upgrades on it!</strong></span>');
   define('TEXT_MAIN_2','<span class="emphasis">Please check the details below very carefully</span>. This information is taken from your configure.php settings.<br />' .
                       'Do not proceed unless you\'re sure they\'re correct, or else you risk corruption to your database.');
@@ -29,14 +29,14 @@
   define('SNIFFER_PREDICTS','<em>Upgrade Sniffer</em> predicts: ');
   define('CHOOSE_UPGRADES','Please confirm your desired upgrade steps');
   define('TITLE_DATABASE_PREFIX_CHANGE','Change Database Table-Prefix');
-  define('ERROR_PREFIX_CHANGE_NEEDED','<span class="errors">We were unable to locate the Zen Cart tables in your database.<br />Perhaps your database table-prefix has been specified incorrectly?</span><br />If modifying table prefixes doesn\'t solve your problem, you will need to manually compare your configure.php settings with your actual database, perhaps through phpMyAdmin or your webserver control panel.');
+  define('ERROR_PREFIX_CHANGE_NEEDED','<span class="errors">We were unable to locate the Zen Cart&trade; tables in your database.<br />Perhaps your database table-prefix has been specified incorrectly?</span><br />If modifying table prefixes doesn\'t solve your problem, you will need to manually compare your configure.php settings with your actual database, perhaps through phpMyAdmin or your webserver control panel.');
   define('TEXT_DATABASE_PREFIX_CHANGE','If you wish to change the database table prefixes, enter the new prefix below. <span class="emphasis">NOTE: please verify that the prefix name is not already used in your database</span>, as we do not check for such duplication. Using an already-existing table prefix will corrupt your database.');
   define('TEXT_DATABASE_PREFIX_CHANGE_WARNING','<span class="errors"><strong>WARNING: DO NOT ATTEMPT TO CHANGE TABLE PREFIXES IF YOU DO NOT HAVE A FULL AND DEPENDABLE RECENT BACKUP OF YOUR DATABASE CONTENTS. If something goes wrong in the process, you will need to recover from your backup. If this is cause for concern or uncertainty for you, then DO NOT attempt to rename your tables.</strong></span>');
   define('DATABASE_OLD_PREFIX','Old Table-Prefix');
   define('DATABASE_OLD_PREFIX_INSTRUCTION','Enter the OLD Table-Prefix');
   define('ENTRY_NEW_PREFIX','New Table-Prefix ');
   define('DATABASE_NEW_PREFIX_INSTRUCTION','Enter the NEW Table-Prefix');
-  define('ENTRY_ADMIN_ID','Admin Username (from Zen Cart Admin area)');
+  define('ENTRY_ADMIN_ID','Admin Username (from Zen Cart&trade; Admin area)');
   define('ENTRY_ADMIN_PASSWORD','Password');
   define('ADMIN_PASSSWORD_INSTRUCTION','Your Administrator username/password (the one that you use to access your shop Admin area) are required in order to make database changes. <em>(This is NOT your MySQL password)</em>');
   define('TITLE_SECURITY','Database Security');
@@ -47,6 +47,7 @@
 
   define('REASON_TABLE_ALREADY_EXISTS','Cannot create table %s because it already exists');
   define('REASON_TABLE_DOESNT_EXIST','Cannot drop table %s because it does not exist.');
+  define('REASON_TABLE_NOT_FOUND', 'Cannot ALTER or INSERT/REPLACE into table %s because it does not exist.');
   define('REASON_CONFIG_KEY_ALREADY_EXISTS','Cannot insert configuration_key "%s" because it already exists');
   define('REASON_COLUMN_ALREADY_EXISTS','Cannot ADD column %s because it already exists.');
   define('REASON_COLUMN_DOESNT_EXIST_TO_DROP','Cannot DROP column %s because it does not exist.');

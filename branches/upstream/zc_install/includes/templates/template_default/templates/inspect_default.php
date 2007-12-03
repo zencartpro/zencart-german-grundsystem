@@ -2,19 +2,23 @@
 /**
  * @package Installer
  * @access private
- * @copyright Copyright 2003-2006 Zen Cart Development Team
+ * @copyright Copyright 2003-2007 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: inspect_default.php 4855 2006-10-28 06:52:02Z drbyte $
+ * @version $Id: inspect_default.php 7407 2007-11-11 05:02:44Z drbyte $
  */
 
-?>
-<h1>:: <?php echo TEXT_PAGE_HEADING; ?></h1>
-<p><?php echo TEXT_MAIN; ?></p>
-<?php
   if ($zc_install->error) include(DIR_WS_INSTALL_TEMPLATE . 'templates/display_errors.php');
 ?>
-<form method="post" action="index.php?main_page=inspect<?php if (isset($_GET['language'])) { echo '&amp;language=' . $_GET['language']; } ?>">
+
+<fieldset>
+<legend><strong><?php echo TITLE_DOCUMENTATION; ?></strong></legend>
+<div class="section"><br />
+ <?php echo sprintf(TEXT_DOCUMENTATION, (file_exists('../docs/index.html') ? '../docs/index.html' : 'http://tutorials.zen-cart.com/index.php?article=107')); ?><br />
+ </div></fieldset>
+ <br />
+
+<form method="post" action="index.php?main_page=inspect<?php echo zcInstallAddSID(); ?>">
 
 <?php if ($zen_cart_previous_version_installed == true) { ?>
 <fieldset>
@@ -71,16 +75,18 @@
 <fieldset>
 <legend><strong><?php echo LABEL_FOLDER_PERMISSIONS; ?></strong></legend>
 <div class='section'>
-<?php echo LABEL_WRITABLE_FOLDER_INFO; ?>
+<?php echo LABEL_WRITABLE_FILE_INFO; ?>
 <ul class="inspect-list">
 <?php foreach ($file_status as $val) { ?>
-   <li class='<?php echo $val['class']; ?>'><strong><?php echo $val['file']; ?></strong> = 
+   <li class='<?php echo $val['class']; ?>'><strong><?php echo $val['file']; ?></strong> =
    <?php echo $val['exists'] . $val['writable']; ?>
    </li>
 <?php } //end foreach?>
-<li>&nbsp;</li>
+</ul>
+<?php echo LABEL_WRITABLE_FOLDER_INFO; ?>
+<ul class="inspect-list">
 <?php foreach ($folder_status as $val) { ?>
-   <li class='<?php echo $val['class']; ?>'><strong><?php echo $val['folder']; ?></strong> = 
+   <li class='<?php echo $val['class']; ?>'><strong><?php echo $val['folder']; ?></strong> =
    <?php echo $val['writable']; ?>
    <?php echo ($val['writable']==UNWRITABLE)?'&nbsp;&nbsp;(chmod '.$val['chmod'] . ')' : ''; ?>
    </li>
@@ -101,4 +107,5 @@
 <?php } ?>
 <input type="submit" name="refresh" class="button" tabindex="11" value="<?php echo REFRESH_BUTTON; ?>" />
 </fieldset>
+<?php echo $zc_install->getConfigKeysAsPost(); ?>
 </form>

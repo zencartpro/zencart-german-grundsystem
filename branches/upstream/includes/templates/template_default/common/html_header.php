@@ -8,7 +8,7 @@
  * @copyright Copyright 2003-2006 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: html_header.php 4368 2006-09-03 19:31:00Z drbyte $
+ * @version $Id: html_header.php 6948 2007-09-02 23:30:49Z drbyte $
  */
 /**
  * load the module for generating page meta-tags
@@ -28,7 +28,7 @@ require(DIR_WS_MODULES . zen_get_module_directory('meta_tags.php'));
 <meta http-equiv="imagetoolbar" content="no" />
 <meta name="author" content="The Zen Cart&trade; Team and others" />
 <meta name="generator" content="shopping cart program by Zen Cart&trade;, http://www.zen-cart.com eCommerce" />
-<?php if (defined('ROBOTS_PAGES_TO_SKIP') && in_array($current_page_base,explode(",",constant('ROBOTS_PAGES_TO_SKIP'))) || $current_page_base=='down_for_maintenance') { ?>
+<?php if (defined('ROBOTS_PAGES_TO_SKIP') && in_array($current_page_base,explode(",",constant('ROBOTS_PAGES_TO_SKIP'))) || $current_page_base=='down_for_maintenance' || $robotsNoIndex === true) { ?>
 <meta name="robots" content="noindex, nofollow" />
 <?php } ?>
 <?php if (defined('FAVICON')) { ?>

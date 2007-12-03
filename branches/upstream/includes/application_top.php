@@ -7,11 +7,16 @@
  * see {@link  http://www.zen-cart.com/wiki/index.php/Developers_API_Tutorials#InitSystem wikitutorials} for more details.
  *
  * @package initSystem
- * @copyright Copyright 2003-2006 Zen Cart Development Team
+ * @copyright Copyright 2003-2007 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: application_top.php 5137 2006-12-09 22:02:24Z wilt $
+ * @version $Id: application_top.php 7470 2007-11-24 20:54:50Z drbyte $
  */
+/*
+ * turn off magic-quotes support, for both runtime and sybase, as both will cause problems if enabled
+ */
+set_magic_quotes_runtime(0);
+if (@ini_get('magic_quotes_sybase') != 0) @ini_set('magic_quotes_sybase', 0);
 /**
  * boolean if true the autoloader scripts will be parsed and their output shown. For debugging purposes only.
  */
@@ -48,10 +53,10 @@ if (defined('STRICT_ERROR_REPORTING') && STRICT_ERROR_REPORTING == true) {
   @ini_set('display_errors', '1');
   error_reporting(E_ALL);
 } else {
-  error_reporting(E_ALL & ~E_NOTICE);
+  error_reporting(0);
 }
 /**
- * include server parameters
+ * check for and include load application parameters
  */
 if (file_exists('includes/configure.php')) {
   /**
@@ -59,12 +64,16 @@ if (file_exists('includes/configure.php')) {
    */
   include('includes/configure.php');
 } else {
-  header('location: zc_install/index.php');
+  require('includes/templates/template_default/templates/tpl_zc_install_suggested_default.php');
+  exit;
 }
 /**
- * if main configure file doesn't contain valid info (ie: is dummy or doesn't match filestructure, goto installer)
+ * if main configure file doesn't contain valid info (ie: is dummy or doesn't match filestructure, display assistance page to suggest running the installer)
  */
-if (!is_dir(DIR_FS_CATALOG.'/includes/classes'))  header('location: zc_install/index.php');
+if (!defined('DIR_FS_CATALOG') || !is_dir(DIR_FS_CATALOG.'/includes/classes')) {
+  require('includes/templates/template_default/templates/tpl_zc_install_suggested_default.php');
+  exit;
+}
 /**
  * include the list of extra configure files
  */
@@ -77,38 +86,21 @@ if ($za_dir = @dir(DIR_WS_INCLUDES . 'extra_configures')) {
       include(DIR_WS_INCLUDES . 'extra_configures/' . $zv_file);
     }
   }
+  $za_dir->close();
 }
 $autoLoadConfig = array();
-$loader_file = 'config.core.php';
-$base_dir = DIR_WS_INCLUDES . 'auto_loaders/';
-if (file_exists(DIR_WS_INCLUDES . 'auto_loaders/overrides/' . $loader_file)) {
-  $base_dir = DIR_WS_INCLUDES . 'auto_loaders/overrides/';
+if (isset($loaderPrefix)) {
+ $loaderPrefix = preg_replace('/[a-z_]^/', '', $loaderPrefix); 
+} else {
+  $loaderPrefix = 'config';
 }
-/**
- * load the default application_top autoloader file.
- */
-include($base_dir . $loader_file);
-if ($loader_dir = dir(DIR_WS_INCLUDES . 'auto_loaders')) {
-  while ($loader_file = $loader_dir->read()) {
-    if ((preg_match('/^config\./', $loader_file) > 0) && (preg_match('/\.php$/', $loader_file) > 0)) {
-      if ($loader_file != 'config.core.php') {
-        $base_dir = DIR_WS_INCLUDES . 'auto_loaders/';
-        if (file_exists(DIR_WS_INCLUDES . 'auto_loaders/overrides/' . $loader_file)) {
-          $base_dir = DIR_WS_INCLUDES . 'auto_loaders/overrides/';
-        }
-        /**
-         * load the application_top autoloader files.
-         */
-        include($base_dir . $loader_file);
-      }
-    }
-  }
-}
-
+$loader_file = $loaderPrefix . '.core.php';
+require('includes/initsystem.php');
 /**
  * determine install status
  */
-if (( (!file_exists('includes/configure.php') && !file_exists('includes/local/configure.php')) ) || (DB_TYPE == '') || (!file_exists('includes/classes/db/' .DB_TYPE . '/query_factory.php'))) {
+if (( (!file_exists('includes/configure.php') && !file_exists('includes/local/configure.php')) ) || (DB_TYPE == '') || (!file_exists('includes/classes/db/' .DB_TYPE . '/query_factory.php')) || !file_exists('includes/autoload_func.php')) {
+  require('includes/templates/template_default/templates/tpl_zc_install_suggested_default.php');
   header('location: zc_install/index.php');
   exit;
 }
@@ -116,7 +108,6 @@ if (( (!file_exists('includes/configure.php') && !file_exists('includes/local/co
  * load the autoloader interpreter code.
 */
 require('includes/autoload_func.php');
-
 /**
  * load the counter code
 **/

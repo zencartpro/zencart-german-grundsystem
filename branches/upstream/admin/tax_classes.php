@@ -17,7 +17,7 @@
 // | to obtain it through the world-wide-web, please send a note to       |
 // | license@zen-cart.com so we can mail you a copy immediately.          |
 // +----------------------------------------------------------------------+
-//  $Id: tax_classes.php 3780 2006-06-16 03:04:43Z drbyte $
+//  $Id: tax_classes.php 7167 2007-10-03 23:02:17Z drbyte $
 //
   require('includes/application_top.php');
 
@@ -60,9 +60,22 @@
         }
         $tax_class_id = zen_db_prepare_input($_GET['tID']);
 
-        $db->Execute("delete from " . TABLE_TAX_CLASS . "
-                      where tax_class_id = '" . (int)$tax_class_id . "'");
-
+        $sql = "select tax_class_id from " . TABLE_TAX_RATES . " where tax_class_id='" . $tax_class_id . "'";
+        $result = $db->Execute($sql);
+        if ($result->RecordCount() > 0) {
+          $_GET['action']= '';
+          $messageStack->add_session(ERROR_TAX_RATE_EXISTS_FOR_CLASS, 'error');
+        }
+        $sql = "select count(*) as count from " . TABLE_PRODUCTS . " where products_tax_class_id='" . $tax_class_id . "'";
+        $result = $db->Execute($sql);
+        if ($result->fields['count'] > 0) {
+          $_GET['action']= '';
+          $messageStack->add_session(sprintf(ERROR_TAX_RATE_EXISTS_FOR_PRODUCTS, $result->fields['count']), 'error');
+        }
+        if ($_GET['action'] == 'deleteconfirm') {
+          $db->Execute("delete from " . TABLE_TAX_CLASS . "
+                        where tax_class_id = '" . (int)$tax_class_id . "'");
+        }
         zen_redirect(zen_href_link(FILENAME_TAX_CLASSES, 'page=' . $_GET['page']));
         break;
     }

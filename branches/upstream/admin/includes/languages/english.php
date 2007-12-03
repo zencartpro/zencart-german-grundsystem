@@ -1,10 +1,10 @@
 <?php
 /**
  * @package admin
- * @copyright Copyright 2003-2006 Zen Cart Development Team
+ * @copyright Copyright 2003-2007 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: english.php 4804 2006-10-21 16:19:59Z ajeh $
+ * @version $Id: english.php 7440 2007-11-17 21:51:35Z drbyte $
  */
 
 // added defines for header alt and text
@@ -408,7 +408,9 @@ define('WARN_DATABASE_VERSION_PROBLEM','true'); //set to false to turn off warni
 define('WARNING_ADMIN_DOWN_FOR_MAINTENANCE', '<strong>WARNING:</strong> Site is currently set to Down for Maintenance ...<br />NOTE: You cannot test most Payment and Shipping Modules in Maintenance mode');
 define('WARNING_BACKUP_CFG_FILES_TO_DELETE', 'WARNING: These files should be deleted to prevent security vulnerability: ');
 define('WARNING_INSTALL_DIRECTORY_EXISTS', 'Warning: Installation directory exists at: ' . DIR_FS_CATALOG . 'zc_install. Please remove this directory for security reasons.');
-define('WARNING_CONFIG_FILE_WRITEABLE', 'Warning: Your configuration file: %sincludes/configure.php. This is a potential security risk - please set the right user permissions on this file (read-only, CHMOD 644 or 444 are typical).');
+define('WARNING_CONFIG_FILE_WRITEABLE', 'Warning: Your configuration file: %sincludes/configure.php. This is a potential security risk - please set the right user permissions on this file (read-only, CHMOD 644 or 444 are typical).  <a href="http://tutorials.zen-cart.com/index.php?article=90" target="_blank">See this FAQ</a>');
+define('WARNING_COULD_NOT_LOCATE_LANG_FILE', 'WARNING: Could not locate language file: ');
+define('ERROR_MODULE_REMOVAL_PROHIBITED', 'ERROR: Module removal prohibited: ');
 
 define('_JANUARY', 'January');
 define('_FEBRUARY', 'February');
@@ -663,6 +665,8 @@ define('ENTRY_NOTHING_TO_SEND','You haven\'t entered any content for your messag
   define('RESET_ADMIN_ACTIVITY_LOG', 'Go to Store Manager to Reset the Admin Activity Log');
 
   define('CATEGORY_HAS_SUBCATEGORIES', 'NOTE: Category has SubCategories<br />Products cannot be added');
+
+  define('WARNING_WELCOME_DISCOUNT_COUPON_EXPIRES_IN', 'WARNING! Welcome Email Discount Coupon expires in %s days');
 
 ///////////////////////////////////////////////////////////
 // include additional files:

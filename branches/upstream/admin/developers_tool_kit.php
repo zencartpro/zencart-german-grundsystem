@@ -17,7 +17,7 @@
 // | to obtain it through the world-wide-web, please send a note to       |
 // | license@zen-cart.com so we can mail you a copy immediately.          |
 // +----------------------------------------------------------------------+
-//  $Id: developers_tool_kit.php 4732 2006-10-12 20:31:53Z drbyte $
+//  $Id: developers_tool_kit.php 182 2007-12-02 10:04:59Z hugo13 $
 //
 
   require('includes/application_top.php');
@@ -28,6 +28,12 @@
   $languages = zen_get_languages();
 
   $configuration_key_lookup = zen_db_prepare_input($_POST['configuration_key']);
+
+  if ($_GET['configuration_key_lookup'] != '') {
+    $configuration_key_lookup = strtoupper($_GET['configuration_key_lookup']);
+    $_POST['configuration_key'] = strtoupper($_GET['configuration_key_lookup']);
+    $_POST['zv_files'] = 1;
+  }
 
   function getDirList ($dirName) {
     global $directory_array, $sub_dir_files;
@@ -62,6 +68,7 @@
 
   function zen_display_files($include_root = false) {
     global $check_directory, $found, $configuration_key_lookup;
+    global $db;
     for ($i = 0, $n = sizeof($check_directory); $i < $n; $i++) {
 //echo 'I SEE ' . $check_directory[$i] . '<br>';
 
@@ -97,8 +104,30 @@
     }
 
 // show path and filename
+    if (strtoupper($configuration_key_lookup) == $configuration_key_lookup) {
+      while (strstr($configuration_key_lookup, '"')) $configuration_key_lookup = str_replace('"', '', $configuration_key_lookup);
+      while (strstr($configuration_key_lookup, "'")) $configuration_key_lookup = str_replace("'", '', $configuration_key_lookup);
+
+      // if appears to be a constant ask about configuration table
+      $check_database = true;
+      $check_configure = $db->Execute("select * from " . TABLE_CONFIGURATION . " where configuration_key='" . strtoupper($configuration_key_lookup) . "'");
+      if ($check_configure->RecordCount() < 1) {
+        $check_configure = $db->Execute("select * from " . TABLE_PRODUCT_TYPE_LAYOUT . " where configuration_key='" . strtoupper($configuration_key_lookup) . "'");
+      }
+      if ($check_configure->RecordCount() >= 1) {
+        $links = '<strong><span class="alert">' . TEXT_SEARCH_DATABASE_TABLES . '</span></strong> ' . '<a href="' . zen_href_link(FILENAME_DEVELOPERS_TOOL_KIT, 'action=' . 'locate_configuration' . '&configuration_key_lookup=' . $configuration_key_lookup) . '">' . $configuration_key_lookup . '</a><br /><br />';
+      } else {
+        // do nothing
+      }
+    } else {
+      // don't ask about configuration table
+    }
+//die('I SEE ' . $check_configure->RecordCount() . ' vs ' . $check_database);
     echo '<table border="0" width="100%" cellspacing="2" cellpadding="1" align="center">' . "\n";
-    echo '<tr><td>&nbsp;</td></tr>';
+    if ($check_database == true && $check_configure->RecordCount() >= 1) {
+      // only ask if found
+      echo '<tr><td>' . $links . '</td></tr>';
+    }
     echo '<tr class="infoBoxContent"><td class="dataTableHeadingContent">' . '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;' . TEXT_INFO_SEARCHING . sizeof($directory_array) . TEXT_INFO_FILES_FOR . $configuration_key_lookup . '</td></tr></table>' . "\n\n";
     echo '<tr><td>&nbsp;</td></tr>';
 
@@ -157,7 +186,6 @@
   $products_filter = (isset($_GET['products_filter']) ? $_GET['products_filter'] : $products_filter);
 
   $action = (isset($_GET['action']) ? $_GET['action'] : '');
-
   // don't do any 'action' if clicked on the Check for Updates button
   if (isset($_GET['vcheck']) && $_GET['vcheck']=='yes') $action = '';
 
@@ -545,7 +573,7 @@ if ($show_configuration_info == 'true') {
           </tr>
 <?php } ?>
           <tr>
-            <td class="main" align="right" valign="middle">
+            <td class="main" align="center" valign="middle">
               <?php
                 if ($show_products_type_layout == 'false' and ($check_configure->fields['configuration_id'] != 0 and $check_configure->fields['configuration_group_id'] != 6)) {
                   echo '<a href="' . zen_href_link(FILENAME_CONFIGURATION, 'gID=' . $check_configure_group->fields['configuration_group_id'] . '&cID=' . $check_configure->fields['configuration_id']) . '">' . zen_image_button('button_edit.gif', IMAGE_EDIT) . '</a>';
@@ -567,7 +595,15 @@ if ($show_configuration_info == 'true') {
                 }
               ?>
               </td>
-            <td class="main" align="center" valign="middle"><?php echo '<a href="' . zen_href_link(FILENAME_DEVELOPERS_TOOL_KIT) . '">' . zen_image_button('button_reset.gif', IMAGE_RESET) . '</a>'; ?></td>
+            <td class="main" align="center" valign="middle"><?php echo '<a href="' . zen_href_link(FILENAME_DEVELOPERS_TOOL_KIT) . '">' . zen_image_button('button_cancel.gif', IMAGE_CANCEL) . '</a>'; ?></td>
+          </tr>
+          <tr class="infoBoxContent">
+            <td colspan="2" class="pageHeading" align="center">
+<?php
+      $links = '<br /><strong><span class="alert">' . TEXT_SEARCH_ALL_FILES . '</span></strong> ' . '<a href="' . zen_href_link(FILENAME_DEVELOPERS_TOOL_KIT, 'action=' . 'locate_all_files' . '&configuration_key_lookup=' . $configuration_key_lookup . '&zv_files=1') . '">' . $configuration_key_lookup . '</a><br />';
+      echo $links;
+?>
+            </td>
           </tr>
         </table>
       </td></tr>

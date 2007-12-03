@@ -7,7 +7,7 @@
  * @copyright Copyright 2003-2005 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: init_add_crumbs.php 4355 2006-09-02 23:04:12Z ajeh $
+ * @version $Id: init_add_crumbs.php 6948 2007-09-02 23:30:49Z drbyte $
  */
 if (!defined('IS_ADMIN_FLAG')) {
   die('Illegal Access');
@@ -29,6 +29,8 @@ if (isset($cPath_array) && isset($cPath)) {
     if ($categories->RecordCount() > 0) {
       $breadcrumb->add($categories->fields['categories_name'], zen_href_link(FILENAME_DEFAULT, 'cPath=' . implode('_', array_slice($cPath_array, 0, ($i+1)))));
     } else {
+      // if invalid, set the robots noindex/nofollow for this page
+      $robotsNoIndex = true;
       break;
     }
   }

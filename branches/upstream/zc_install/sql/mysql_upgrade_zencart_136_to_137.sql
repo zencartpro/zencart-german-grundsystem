@@ -6,17 +6,17 @@
 # * @copyright Copyright 2003-2006 Zen Cart Development Team
 # * @copyright Portions Copyright 2003 osCommerce
 # * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
-# * @version $Id: mysql_upgrade_zencart_136_to_137.sql 5480 2006-12-30 19:36:16Z drbyte $
+# * @version $Id: mysql_upgrade_zencart_136_to_137.sql 5618 2007-01-19 00:15:46Z ajeh $
 #
 
 ############ IMPORTANT INSTRUCTIONS ###############
 #
 # * Zen Cart uses the zc_install/index.php program to do database upgrades
-# * This SQL script is intended to be used by running zc_install 
+# * This SQL script is intended to be used by running zc_install
 # * It is *not* recommended to simply run these statements manually via any other means
 # * ie: not via phpMyAdmin or via the Install SQL Patch tool in Zen Cart admin
 # * The zc_install program catches possible problems and also handles table-prefixes automatically
-# * 
+# *
 # * To use the zc_install program to do your database upgrade:
 # * a. Upload the NEWEST zc_install folder to your server
 # * b. Surf to zc_install/index.php via your browser
@@ -34,12 +34,16 @@
 
 ## CONFIGURATION TABLE
 UPDATE configuration set configuration_description = 'Enable the Breadcrumb Trail Links?<br />0= OFF<br />1= ON<br />2= Off for Home Page Only', set_function = 'zen_cfg_select_option(array(\'0\', \'1\', \'2\'), ' WHERE configuration_key = 'DEFINE_BREADCRUMB_STATUS';
+UPDATE configuration set configuration_description = 'Categories/Products Display Sort Order<br />0= Categories/Products Sort Order/Name<br />1= Categories/Products Name<br />2= Products Model<br />3= Products Qty+, Products Name<br />4= Products Qty-, Products Name<br />5= Products Price+, Products Name<br />6= Products Price-, Products Name' WHERE configuration_key = 'CATEGORIES_PRODUCTS_SORT_ORDER';
 INSERT INTO configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) VALUES ('Use split-login page', 'USE_SPLIT_LOGIN_MODE', 'False', 'The login page can be displayed in two modes: Split or Vertical.<br />In Split mode, the create-account options are accessed by clicking a button to get to the create-account page.  In Vertical mode, the create-account input fields are all displayed inline, below the login field, making one less click for the customer to create their account.<br />Default: False', '19', '121', 'zen_cfg_select_option(array(\'True\', \'False\'), ', now());
 
 ## PP EC
 ALTER TABLE customers ADD customers_paypal_payerid VARCHAR(20) NOT NULL default '' AFTER customers_referral;
 ALTER TABLE customers ADD customers_paypal_ec TINYINT(1) UNSIGNED DEFAULT 0 NOT NULL AFTER customers_paypal_payerid;
 ALTER TABLE paypal CHANGE txn_type txn_type varchar(32) NOT NULL default '';
+ALTER TABLE paypal CHANGE payment_type payment_type varchar(40) NOT NULL default '';
+ALTER TABLE paypal_testing CHANGE txn_type txn_type varchar(32) NOT NULL default '';
+ALTER TABLE paypal_testing CHANGE payment_type payment_type varchar(40) NOT NULL default '';
 INSERT INTO configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) VALUES ('Credit Card Enable Status - SOLO', 'CC_ENABLED_SOLO', '0', 'Accept SOLO Card 0= off 1= on', '17', '8', 'zen_cfg_select_option(array(\'0\', \'1\'), ', now());
 INSERT INTO configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) VALUES ('Credit Card Enable Status - Switch', 'CC_ENABLED_SWITCH', '0', 'Accept SWITCH Card 0= off 1= on', '17', '9', 'zen_cfg_select_option(array(\'0\', \'1\'), ', now());
 INSERT INTO configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) VALUES ('Credit Card Enable Status - Maestro', 'CC_ENABLED_MAESTRO', '0', 'Accept MAESTRO Card 0= off 1= on', '17', '10', 'zen_cfg_select_option(array(\'0\', \'1\'), ', now());

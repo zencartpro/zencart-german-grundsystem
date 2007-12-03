@@ -1,12 +1,12 @@
 <?php
 /**
- * general functions used by installer *
+ * general functions used by the installer
  * @package Installer
  * @access private
- * @copyright Copyright 2003-2006 Zen Cart Development Team
+ * @copyright Copyright 2003-2007 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: general.php 4327 2006-08-31 07:59:37Z drbyte $
+ * @version $Id: general.php 7333 2007-10-31 10:16:15Z drbyte $
  */
 
   if (!defined('TABLE_UPGRADE_EXCEPTIONS')) define('TABLE_UPGRADE_EXCEPTIONS','upgrade_exceptions');
@@ -39,6 +39,12 @@
     }
   }
 
+////
+  function zen_db_input($string) {
+    return addslashes($string);
+  }
+
+////
   function zen_parse_input_field_data($data, $parse) {
     return strtr(trim($data), $parse);
   }
@@ -89,6 +95,7 @@ function executeSql($sql_file, $database, $table_prefix = '', $isupgrade=false) 
     @set_time_limit(1200);
   }
 
+  $counter = 0;
   $lines = file($sql_file);
   $newline = '';
 	$lines_to_keep_together_counter=0;
@@ -100,6 +107,8 @@ function executeSql($sql_file, $database, $table_prefix = '', $isupgrade=false) 
 
      // split the line into words ... starts at $param[0] and so on.  Also remove the ';' from end of last param if exists
      $param=explode(" ",(substr($line,-1)==';') ? substr($line,0,strlen($line)-1) : $line);
+     if (!isset($param[4])) $param[4] = '';
+     if (!isset($param[5])) $param[5] = '';
 
       // The following command checks to see if we're asking for a block of commands to be run at once.
       // Syntax: #NEXT_X_ROWS_AS_ONE_COMMAND:6     for running the next 6 commands together (commands denoted by a ;)
@@ -179,6 +188,7 @@ function executeSql($sql_file, $database, $table_prefix = '', $isupgrade=false) 
             }
             break;
           case (substr($line_upper, 0, 12) == 'ALTER TABLE '):
+            //if (ZC_UPG_DEBUG3==true) echo 'ALTER -- Table check ('.$param[2].')' .'<br>';
             // check to see if ALTER command may be safely executed
             if ($result=zen_check_alter_command($param)) {
               zen_write_to_upgrade_exceptions_table($line, $result, $sql_file);
@@ -186,6 +196,17 @@ function executeSql($sql_file, $database, $table_prefix = '', $isupgrade=false) 
               break;
             } else {
               $line = 'ALTER TABLE ' . $table_prefix . substr($line, 12);
+            }
+            break;
+          case (substr($line_upper, 0, 15) == 'TRUNCATE TABLE '):
+            // check to see if TRUNCATE command may be safely executed
+            if (!$tbl_exists = zen_table_exists($param[2])) {
+              $result=sprintf(REASON_TABLE_NOT_FOUND,$param[3]).' CHECK PREFIXES!';
+              zen_write_to_upgrade_exceptions_table($line, $result, $sql_file);
+              $ignore_line=true;
+              break;
+            } else {
+              $line = 'TRUNCATE TABLE ' . $table_prefix . substr($line, 15);
             }
             break;
           case (substr($line_upper, 0, 13) == 'RENAME TABLE '):
@@ -283,7 +304,7 @@ function executeSql($sql_file, $database, $table_prefix = '', $isupgrade=false) 
         if ($complete_line) {
           if ($debug==true) echo ((!$ignore_line) ? '<br /><strong>About to execute.</strong>': '<strong>Ignoring statement. This command WILL NOT be executed.</strong>').'<br />Debug info:<br />$ line='.$line.'<br />$ complete_line='.$complete_line.'<br>$ keep_together='.$keep_together.'<br />SQL='.$newline.'<br /><br />';
           if (get_magic_quotes_runtime() > 0) $newline=stripslashes($newline);
-          if (trim(str_replace(';','',$newline)) != '' && !$ignore_line) $output=$db->Execute($newline);
+          $output = (trim(str_replace(';','',$newline)) != '' && !$ignore_line) ? $db->Execute($newline) : '';
           $results++;
           $string .= $newline.'<br />';
           $return_output[]=$output;
@@ -443,7 +464,7 @@ function executeSql($sql_file, $database, $table_prefix = '', $isupgrade=false) 
 
     if ($za_dir = @dir('../includes/' . 'extra_configures')) {
       while ($zv_file = $za_dir->read()) {
-        if (strstr($zv_file, '.php')) {
+        if (preg_match('/\.php$/', $zv_file) > 0) {
           //echo $zv_file.'<br>';
           $files_array[] = $zv_file;
         }
@@ -599,6 +620,7 @@ function executeSql($sql_file, $database, $table_prefix = '', $isupgrade=false) 
     global $db;
     if (!zen_not_null($param)) return "Empty SQL Statement";
     if (!$checkprivs = zen_check_database_privs('ALTER')) return sprintf(REASON_NO_PRIVILEGES,DB_SERVER_USERNAME, DB_SERVER, 'ALTER');
+    if (!$tbl_exists = zen_table_exists($param[2])) return sprintf(REASON_TABLE_NOT_FOUND,$param[2]).' CHECK PREFIXES!';
     switch (strtoupper($param[3])) {
       case ("ADD"):
         if (strtoupper($param[4]) == 'INDEX') {
@@ -724,12 +746,14 @@ function executeSql($sql_file, $database, $table_prefix = '', $isupgrade=false) 
         $sql = "show fields from " . DB_PREFIX . $param[2];
         $result = $db->Execute($sql);
         while (!$result->EOF) {
-          if (ZC_UPG_DEBUG3==true) echo $result->fields['Field'].'<br />';
+          if (ZC_UPG_DEBUG3==true) echo 'Field: ' . $result->fields['Field'].'<br />';
           if  ($result->fields['Field'] == $colname) {
+            if (ZC_UPG_DEBUG3==true) echo '**FOUND**<br />';
             return; // exists, so return with no error
           }
           $result->MoveNext();
         }
+        if (ZC_UPG_DEBUG3==true) echo '******NOT FOUND (' . $colname . ') ******<br />';
         // if we get here, then the column didn't exist
         return sprintf(REASON_COLUMN_DOESNT_EXIST_TO_CHANGE,$colname);
         break;
@@ -801,12 +825,12 @@ function executeSql($sql_file, $database, $table_prefix = '', $isupgrade=false) 
   function zen_create_exceptions_table() {
     global $db;
     if (!zen_table_exists(TABLE_UPGRADE_EXCEPTIONS)) {  
-      $result = $db->Execute("CREATE TABLE `" . DB_PREFIX . TABLE_UPGRADE_EXCEPTIONS ."` (
-            `upgrade_exception_id` smallint(5) NOT NULL auto_increment,
-            `sql_file` varchar(50) default NULL,
-            `reason` varchar(200) default NULL,
-            `errordate` datetime default '0001-01-01 00:00:00',
-            `sqlstatement` text, PRIMARY KEY  (`upgrade_exception_id`)
+      $result = $db->Execute("CREATE TABLE " . DB_PREFIX . TABLE_UPGRADE_EXCEPTIONS ." (
+            upgrade_exception_id smallint(5) NOT NULL auto_increment,
+            sql_file varchar(50) default NULL,
+            reason varchar(200) default NULL,
+            errordate datetime default '0001-01-01 00:00:00',
+            sqlstatement text, PRIMARY KEY  (upgrade_exception_id)
           )");
     return $result;
     }
@@ -819,5 +843,23 @@ function executeSql($sql_file, $database, $table_prefix = '', $isupgrade=false) 
     if (strstr($result,'DEFINE_SITE_MAP_STATUS') && strstr(strtolower($line), 'insert into configuration')) return true;
     //echo '<br /><strong>NO EXCEPTIONS </strong>TO IGNORE<br />';
   }
+
+  function zcInstallAddSID($connection = '') {
+    global $request_type, $session_started, $http_domain, $https_domain;
+    $sid = '';
+    if ($connection == '') $connection = $request_type;
+    // Add the session ID when moving from different HTTP and HTTPS servers, or when SID is defined
+    if ($session_started == true) {
+      if (defined('SID') && zen_not_null(SID)) {
+        $sid = SID;
+      } elseif ( ($request_type == 'NONSSL' && $connection == 'SSL') || ($request_type == 'SSL' && $connection == 'NONSSL') ) {
+        if ($http_domain != $https_domain) {
+          $sid = zen_session_name() . '=' . zen_session_id();
+        }
+      }
+    }
+    return ($sid == '') ? '' : '&' . zen_output_string($sid);
+  }
+
 
 ?>

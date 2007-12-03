@@ -1,10 +1,10 @@
 <?php
 /**
  * @package admin
- * @copyright Copyright 2003-2006 Zen Cart Development Team
+ * @copyright Copyright 2003-2007 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: modules.php 4366 2006-09-03 19:27:34Z ajeh $
+ * @version $Id: modules.php 6589 2007-07-12 19:36:46Z drbyte $
  */
 
   require('includes/application_top.php');
@@ -81,14 +81,13 @@
           include($module_directory . $class . $file_extension);
           $module = new $class;
           if ($action == 'install') {
-            $module->install();
+            $result = $module->install();
           } elseif ($action == 'remove') {
-            $module->remove();
+            $result = $module->remove();
           }
         }
 
-        if ($action == 'install') {
-//          zen_href_link(FILENAME_MODULES, 'set=' . $set . (isset($_GET['module']) ? '&module=' . $_GET['module'] : '') . '&action=edit');
+        if ($action == 'install' && $result != 'failed') {
           zen_redirect(zen_href_link(FILENAME_MODULES, 'set=' . $set . '&module=' . $class . '&action=edit', 'NONSSL'));
         } else {
           zen_redirect(zen_href_link(FILENAME_MODULES, 'set=' . $set . '&module=' . $class, 'NONSSL'));
@@ -221,7 +220,7 @@
 //echo (!empty($module->enabled) ? 'ENABLED' : 'NOT ENABLED') . ' vs ' . (is_numeric($module->sort_order) ? 'ON' : 'OFF') . '<BR><BR>' ;
 ?>
                 <td class="dataTableContent"><?php echo $module->title; ?></td>
-                <td class="dataTableContent"><?php echo $module->code; ?></td>
+                <td class="dataTableContent"><?php echo (strstr($module->code, 'paypal') ? 'PayPal' : $module->code); ?></td>
                 <td class="dataTableContent" align="right">
                   <?php if (is_numeric($module->sort_order)) echo $module->sort_order; ?>
                   <?php

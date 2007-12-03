@@ -3,10 +3,10 @@
  * functions_prices
  *
  * @package functions
- * @copyright Copyright 2003-2006 Zen Cart Development Team
+ * @copyright Copyright 2003-2007 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: functions_prices.php 4660 2006-10-02 03:19:16Z ajeh $
+ * @version $Id: functions_prices.php 6905 2007-09-01 20:05:11Z ajeh $
  */
 
 ////
@@ -190,7 +190,12 @@
     }
 
     // $new_fields = ', product_is_free, product_is_call, product_is_showroom_only';
-    $product_check = $db->Execute("select products_tax_class_id, products_price, products_priced_by_attribute, product_is_free, product_is_call from " . TABLE_PRODUCTS . " where products_id = '" . (int)$products_id . "'" . " limit 1");
+    $product_check = $db->Execute("select products_tax_class_id, products_price, products_priced_by_attribute, product_is_free, product_is_call, products_type from " . TABLE_PRODUCTS . " where products_id = '" . (int)$products_id . "'" . " limit 1");
+
+    // no prices on Document General
+    if ($product_check->fields['products_type'] == 3) {
+      return '';
+    }
 
     $show_display_price = '';
     $display_normal_price = zen_get_products_base_price($products_id);
@@ -1160,6 +1165,8 @@ If a special exist * 10
 ////
 // calculate words
   function zen_get_word_count($string, $free=0) {
+    $string = str_replace(array("\r\n", "\n", "\r", "\t"), ' ', $string);
+
     if ($string != '') {
       while (strstr($string, '  ')) $string = str_replace('  ', ' ', $string);
       $string = trim($string);
@@ -1175,6 +1182,7 @@ If a special exist * 10
 ////
 // calculate words price
   function zen_get_word_count_price($string, $free=0, $price) {
+
     $word_count = zen_get_word_count($string, $free);
     if ($word_count >= 1) {
       return ($word_count * $price);
@@ -1187,6 +1195,8 @@ If a special exist * 10
 ////
 // calculate letters
   function zen_get_letters_count($string, $free=0) {
+    $string = str_replace(array("\r\n", "\n", "\r", "\t"), ' ', $string);
+
     while (strstr($string, '  ')) $string = str_replace('  ', ' ', $string);
     $string = trim($string);
     if (TEXT_SPACES_FREE == '1') {
@@ -1205,12 +1215,13 @@ If a special exist * 10
 ////
 // calculate letters price
   function zen_get_letters_count_price($string, $free=0, $price) {
-      $letters_price = zen_get_letters_count($string, $free) * $price;
-      if ($letters_price <= 0) {
-        return 0;
-      } else {
-        return $letters_price;
-      }
+
+    $letters_price = zen_get_letters_count($string, $free) * $price;
+    if ($letters_price <= 0) {
+      return 0;
+    } else {
+      return $letters_price;
+    }
   }
 
 

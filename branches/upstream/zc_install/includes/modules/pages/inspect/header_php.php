@@ -2,23 +2,21 @@
 /**
  * @package Installer
  * @access private
- * @copyright Copyright 2003-2006 Zen Cart Development Team
+ * @copyright Copyright 2003-2007 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: header_php.php 5354 2006-12-23 01:55:47Z drbyte $
+ * @version $Id: header_php.php 7421 2007-11-11 09:20:27Z drbyte $
+ *
+ * @TODO - http://dev.mysql.com/doc/refman/5.0/en/user-resources.html
  */
 
-  if (!isset($_GET['debug'])  && !zen_not_null($_POST['debug']))  define('ZC_UPG_DEBUG',false);
-  if (!isset($_GET['debug2']) && !zen_not_null($_POST['debug2'])) define('ZC_UPG_DEBUG2',false);
-  if (!isset($_GET['debug3']) && !zen_not_null($_POST['debug3'])) define('ZC_UPG_DEBUG3',false);
   $advanced_mode = (isset($_GET['adv'])) ? true : false;
-  //////if (isset($_POST['submit']) || isset($_POST['submit'])  ) define('ZC_UPG_DEBUG',false);
 
-  $zc_install->error = false;
-  $zc_install->fatal_error = false;
-  $zc_install->error_list = array();
-  
   $zen_cart_previous_version_installed = false;
+  $zen_cart_database_connect_OK = false;
+  $zen_cart_allow_database_upgrade = false;
+  $zdb_sql_cache = '';
+  $configWriteOverride = (isset($_GET['overrideconfig'])) ? true : false;
   if (file_exists('../includes/configure.php')) {
     // read the existing configure.php file(s) to get values and guess whether it looks like a valid prior install
     if (zen_read_config_value('HTTP_SERVER')      == 'http://localhost') $zen_cart_previous_version_installed = 'maybe';
@@ -66,6 +64,7 @@
       if ($zc_install->error == true) { 
         $zen_cart_previous_version_installed = false;
         if (ZC_UPG_DEBUG==true) echo 'db-connection failed using the credentials supplied';
+        if (ZC_UPG_DEBUG==true) $zc_install->logDetails('db-connection failed using the credentials supplied');
       }
 
       //reset error-check class after connection attempt
@@ -85,11 +84,21 @@
         // Now check the database for what version it's at, if found
         require('includes/classes/class.installer_version_manager.php');
         $dbinfo = new versionManager;
+
+        // Check to see whether we should offer the option to upgrade "database only", rather than rebuild configure.php files too.
+        // For v1.2.1, the only check we need is whether we're at v1.2.0 already or not.
+        // Future versions may require more extensive checking if the core configure.php files change.
+        // NOTE: This flag is also used to determine whether or not we prevent moving to next screen if the configure.php files are not writable
+        if ($dbinfo->found_version >= '1.2.0') {
+          $zen_cart_allow_database_upgrade=true;
+        }
+
       } //endif $zen_cart_database_connect_OK #2
     } //endif $zen_cart_database_connect_OK
   } else {
     $zen_cart_previous_version_installed = false;
     if (ZC_UPG_DEBUG==true) echo 'NOTE: Did not find existing configure.php file. Assuming fresh install.';
+    if (ZC_UPG_DEBUG==true) $zc_install->logDetails('NOTE: Did not find existing configure.php file. Assuming fresh install.');
   } //endif exists configure.php
   
 //  if ($check_count > 1) $zen_cart_version_already_installed = false; // if more than one test failed, it must be a fresh install
@@ -103,13 +112,6 @@
       $zdb_version_message = LABEL_PREVIOUS_VERSION_NUMBER_UNKNOWN;
     }
   }
-// Check to see whether we should offer the option to upgrade "database only", rather than rebuild configure.php files too.
-// For v1.2.1, the only check we need is whether we're at v1.2.0 already or not.
-// Future versions may require more extensive checking if the core configure.php files change.
-// NOTE: This flag is also used to determine whether or not we prevent moving to next screen if the configure.php files are not writable
-  if ($dbinfo->found_version >= '1.2.0') {
-    $zen_cart_allow_database_upgrade=true;
-  }
   
   
   
@@ -120,6 +122,7 @@
 ///////////////////////////////////
   $status_check = array();
   $status_check2 = array();
+  $dir_fs_www_root = $zc_install->detectDocumentRoot();
   //Structure is this:
   //$status_check[] = array('Importance' => '', 'Title' => '', 'Status' => '', 'Class' => '', 'HelpURL' =>'', 'HelpLabel'=>'');
   
@@ -128,21 +131,24 @@
   
   //General info
   $status_check[] = array('Importance' => 'Info', 'Title' => LABEL_HTTP_HOST, 'Status' => $_SERVER['HTTP_HOST'], 'Class' => 'NA', 'HelpURL' =>'', 'HelpLabel'=>'');
-  $path_trans=$_SERVER['PATH_TRANSLATED'];
-  $path_trans_display=$_SERVER['PATH_TRANSLATED'];
+  $path_trans = @$_SERVER['PATH_TRANSLATED'];
+  $path_trans_display = $path_trans;
   if (empty($path_trans)) {
     $path_trans_display = $_SERVER['SCRIPT_FILENAME'] . '(SCRIPT_FILENAME)';
     $path_trans = $_SERVER['SCRIPT_FILENAME'];
   }
   $status_check[] = array('Importance' => 'Info', 'Title' => LABEL_PATH_TRANLSATED, 'Status' => $path_trans_display, 'Class' => 'NA', 'HelpURL' =>'', 'HelpLabel'=>'');
-  
+
+  $real_path = realpath(dirname(basename($PHP_SELF)).'/..');
+  $status_check[] = array('Importance' => 'Info', 'Title' => LABEL_REALPATH, 'Status' => $real_path, 'Class' => 'NA', 'HelpURL' =>'', 'HelpLabel'=>'');
+
   //get list of disabled functions
   $disabled_funcs = ini_get("disable_functions");
-  if (!strstr($disabled_funcs,'diskfreespace')) {
+  if (!strstr($disabled_funcs,'disk_free_space')) {
     // get free space on disk
-    $disk_freespaceGB=round(@diskfreespace($path_trans)/1024/1024/1024,2);
-    $disk_freespaceMB=round(@diskfreespace($path_trans)/1024/1024,2);
-    if ($disk_freespaceGB !=0) $status_check[] = array('Importance' => 'Info', 'Title' => LABEL_DISK_FREE_SPACE, 'Status' => $disk_freespaceGB . ' GB' . (($disk_freespaceGB==0) ? ' (can be ignored)' : ''), 'Class' => ($disk_freespaceMB<1000)?'FAIL':'NA', 'HelpURL' =>'', 'HelpLabel'=>'');
+    $disk_freespaceGB=round(@disk_free_space($path_trans)/1024/1024/1024,2);
+    $disk_freespaceMB=round(@disk_free_space($path_trans)/1024/1024,2);
+    if ($disk_freespaceGB >0) $status_check[] = array('Importance' => 'Info', 'Title' => LABEL_DISK_FREE_SPACE, 'Status' => $disk_freespaceGB . ' GB' . (($disk_freespaceGB==0) ? ' (can be ignored)' : ''), 'Class' => ($disk_freespaceMB<1000 && $disk_freespaceGB != 0)?'FAIL':'NA', 'HelpURL' =>'', 'HelpLabel'=>'');
   }
 
   // Operating System as reported by PHP:
@@ -245,28 +251,13 @@ if (false) { // DISABLED THIS CODEBLOCK FOR NOW....
   
   //session.auto_start check
   $php_session_auto = (ini_get('session.auto_start')) ? ON : OFF;
-  $status_check[] = array('Importance' => 'Recommended', 'Title' => LABEL_PHP_SESSION_AUTOSTART, 'Status' => $php_session_auto, 'Class' => ($php_session_auto==ON)?'WARN':'OK', 'HelpURL' =>ERROR_CODE_PHP_SESSION_AUTOSTART, 'HelpLabel'=>ERROR_TEXT_PHP_SESSION_AUTOSTART);
+  $status_check[] = array('Importance' => 'Critical', 'Title' => LABEL_PHP_SESSION_AUTOSTART, 'Status' => $php_session_auto, 'Class' => ($php_session_auto==ON) ? 'FAIL' : 'OK', 'HelpURL' =>ERROR_CODE_PHP_SESSION_AUTOSTART, 'HelpLabel'=>ERROR_TEXT_PHP_SESSION_AUTOSTART);
   
   //session.trans_sid check
   $php_session_trans_sid = (ini_get('session.use_trans_sid')) ? ON : OFF;
-  $status_check[] = array('Importance' => 'Recommended', 'Title' => LABEL_PHP_SESSION_TRANS_SID, 'Status' => $php_session_trans_sid, 'Class' => ($php_session_trans_sid==ON)?'WARN':'OK', 'HelpURL' =>ERROR_CODE_PHP_SESSION_TRANS_SID, 'HelpLabel'=>ERROR_TEXT_PHP_SESSION_TRANS_SID);
+  $status_check[] = array('Importance' => 'Critical', 'Title' => LABEL_PHP_SESSION_TRANS_SID, 'Status' => $php_session_trans_sid, 'Class' => ($php_session_trans_sid==ON) ? 'FAIL' : 'OK', 'HelpURL' =>ERROR_CODE_PHP_SESSION_TRANS_SID, 'HelpLabel'=>ERROR_TEXT_PHP_SESSION_TRANS_SID);
   
   // Check for 'tmp' folder for file-based caching. This checks numerous places, and tests actual writing of a file to those folders.
-  $script_filename = $_SERVER['PATH_TRANSLATED'];
-  if (empty($script_filename)) {
-    $script_filename = $_SERVER['SCRIPT_FILENAME'];
-  }
-  
-  $script_filename = str_replace('\\', '/', $script_filename);
-  $script_filename = str_replace('//', '/', $script_filename);
-  
-  $dir_fs_www_root_array = explode('/', dirname($script_filename));
-  $dir_fs_www_root = array();
-  for ($i=0, $n=sizeof($dir_fs_www_root_array)-1; $i<$n; $i++) {
-    $dir_fs_www_root[] = $dir_fs_www_root_array[$i];
-  }
-  $dir_fs_www_root = implode('/', $dir_fs_www_root);
-  
   $session_save_path = (@ini_get('session.save_path')) ? ini_get('session.save_path') : UNKNOWN;
   $session_save_path_writable = (@is_writable( $session_save_path )) ? WRITABLE : UNWRITABLE ;
   $status_check2[3] = array('Importance' => 'Optional', 'Title' => LABEL_PHP_EXT_SAVE_PATH, 'Status' => $session_save_path . ($session_save_path != UNKNOWN ? '&nbsp;&nbsp;-->' . $session_save_path_writable : ''), 'Class' => ($session_save_path_writable ==WRITABLE || $session_save_path == UNKNOWN) ? 'OK' : 'WARN', 'HelpURL' =>ERROR_CODE_SESSION_SAVE_PATH, 'HelpLabel'=>ERROR_TEXT_SESSION_SAVE_PATH);
@@ -306,13 +297,16 @@ if (false) { // DISABLED THIS CODEBLOCK FOR NOW....
     $sugg_cache_text = ERROR_TEXT_CACHE_DIR_ISWRITABLE;
     $sugg_cache_class = 'WARN';
   }//endif $suggested_cache
+  $zc_install->setConfigKey('DIR_FS_SQL_CACHE', $suggested_cache);
+
   $zdb_sql_cache_writable = (@is_writable($zdb_sql_cache)) ? WRITABLE : UNWRITABLE;
   if ($zdb_sql_cache != '') $status_check[] = array('Importance' => 'Recommended', 'Title' => LABEL_CURRENT_CACHE_PATH, 'Status' => $zdb_sql_cache . '&nbsp;&nbsp;-->' . $zdb_sql_cache_writable , 'Class' => ($zdb_sql_cache_writable ==WRITABLE) ? 'OK' : 'WARN', 'HelpURL' =>ERROR_CODE_CACHE_DIR_ISWRITEABLE, 'HelpLabel'=>ERROR_TEXT_CACHE_DIR_ISWRITEABLE);
   $status_check[] = array('Importance' => 'Recommended', 'Title' => LABEL_SUGGESTED_CACHE_PATH, 'Status' => $suggested_cache, 'Class' => $sugg_cache_class, 'HelpURL' =>$sugg_cache_code, 'HelpLabel'=>$sugg_cache_text);
   
   //PHP MagicQuotesRuntime
-  $php_magic_quotes_runtime = (@get_magic_quotes_runtime() > 0) ? ON : OFF;
-  $status_check[] = array('Importance' => 'Recommended', 'Title' => LABEL_PHP_MAG_QT_RUN, 'Status' => $php_magic_quotes_runtime , 'Class' => ($php_magic_quotes_runtime==OFF)?'OK':'FAIL', 'HelpURL' =>ERROR_CODE_MAGIC_QUOTES_RUNTIME, 'HelpLabel'=>ERROR_TEXT_MAGIC_QUOTES_RUNTIME);
+  $status_check[] = array('Importance' => 'Recommended', 'Title' => LABEL_PHP_MAG_QT_RUN, 'Status' => $php_magic_quotes_runtime , 'Class' => ($php_magic_quotes_runtime=='OFF')?'OK':'FAIL', 'HelpURL' =>ERROR_CODE_MAGIC_QUOTES_RUNTIME, 'HelpLabel'=>ERROR_TEXT_MAGIC_QUOTES_RUNTIME);
+  //PHP MagicQuotesSybase
+  $status_check[] = array('Importance' => 'Recommended', 'Title' => LABEL_PHP_MAG_QT_SYBASE, 'Status' => $php_magic_quotes_sybase , 'Class' => ($php_magic_quotes_sybase=='OFF')?'OK':'FAIL', 'HelpURL' =>ERROR_CODE_MAGIC_QUOTES_SYBASE, 'HelpLabel'=>ERROR_TEXT_MAGIC_QUOTES_SYBASE);
   
   //PHP GD support check
   $php_ext_gd =       (@extension_loaded('gd'))      ? ON : OFF;
@@ -333,10 +327,23 @@ if (false) { // DISABLED THIS CODEBLOCK FOR NOW....
   // could also check for (function_exists('curl_init'))
   $php_ext_curl =     (@extension_loaded('curl'))    ? ON : OFF;
   $status_check[] = array('Importance' => 'Optional', 'Title' => LABEL_PHP_EXT_CURL, 'Status' => $php_ext_curl, 'Class' => ($php_ext_curl==ON)?'OK':'WARN', 'HelpURL' =>ERROR_CODE_CURL_SUPPORT, 'HelpLabel'=>ERROR_TEXT_CURL_SUPPORT);
-  
+
+  // check for actual CURL operation
+  $curl_nonssl_test = $zc_install->test_curl('NONSSL');
+  $curl_ssl_test = $zc_install->test_curl('SSL');
+  $status_check[] = array('Importance' => 'Optional', 'Title' => LABEL_CURL_NONSSL, 'Status' => $curl_nonssl_test, 'Class' => ($curl_nonssl_test == OKAY) ? 'OK' : 'WARN', 'HelpURL' =>ERROR_CODE_CURL_SUPPORT, 'HelpLabel'=>ERROR_TEXT_CURL_SUPPORT);
+  $status_check[] = array('Importance' => 'Optional', 'Title' => LABEL_CURL_SSL, 'Status' => $curl_ssl_test, 'Class' => ($curl_ssl_test == OKAY) ? 'OK' : 'WARN', 'HelpURL' =>ERROR_CODE_CURL_SSL_PROBLEM, 'HelpLabel'=>ERROR_TEXT_CURL_SSL_PROBLEM);
+  if ($curl_nonssl_test != OKAY || $curl_ssl_test != OKAY) {
+    $curl_nonssl_proxy_test = $zc_install->test_curl('NONSSL', true);
+    $curl_ssl_proxy_test = $zc_install->test_curl('SSL', true);
+    $status_check[] = array('Importance' => 'Optional', 'Title' => LABEL_CURL_NONSSL_PROXY, 'Status' => $curl_nonssl_proxy_test, 'Class' => ($curl_nonssl_proxy_test == OKAY) ? 'OK' : 'WARN', 'HelpURL' =>ERROR_CODE_CURL_SUPPORT, 'HelpLabel'=>ERROR_TEXT_CURL_SUPPORT);
+    $status_check[] = array('Importance' => 'Optional', 'Title' => LABEL_CURL_SSL_PROXY, 'Status' => $curl_ssl_proxy_test, 'Class' => ($curl_ssl_proxy_test == OKAY) ? 'OK' : 'WARN', 'HelpURL' =>ERROR_CODE_CURL_SSL_PROBLEM, 'HelpLabel'=>ERROR_TEXT_CURL_SSL_PROBLEM);
+  }
+
+
   //Check for upload support built in to PHP
   $php_uploads =      (@ini_get('file_uploads')) ? ON : OFF;
-  $status_check[] = array('Importance' => 'Optional', 'Title' => LABEL_PHP_UPLOAD_STATUS, 'Status' => $php_uploads . sprintf('&nbsp;&nbsp;upload_max_filesize=%s;&nbsp;&nbsp;post_max_size=%s',@ini_get('upload_max_filesize'), @ini_get('post_max_size')) , 'Class' => ($php_uploads==ON)?'OK':'WARN', 'HelpURL' =>ERROR_CODE_UPLOADS_DISABLED, 'HelpLabel'=>ERROR_TEXT_UPLOADS_DISABLED);
+  $status_check[] = array('Importance' => 'Optional', 'Title' => LABEL_PHP_UPLOAD_STATUS, 'Status' => $php_uploads . sprintf('&nbsp;&nbsp;  upload_max_filesize=%s;&nbsp;&nbsp;  post_max_size=%s',@ini_get('upload_max_filesize'), @ini_get('post_max_size')) , 'Class' => ($php_uploads==ON)?'OK':'WARN', 'HelpURL' =>ERROR_CODE_UPLOADS_DISABLED, 'HelpLabel'=>ERROR_TEXT_UPLOADS_DISABLED);
   
   //Upload TMP dir setting
   $upload_tmp_dir = ini_get("upload_tmp_dir");
@@ -366,15 +373,7 @@ if (false) { // DISABLED THIS CODEBLOCK FOR NOW....
 
   //OpenBaseDir setting
   // read restrictions, and check whether the working folder falls within the list of restricted areas
-  $script_filename = str_replace(array('\\','//'), '/', $path_trans);
-  $dir_fs_www_root_array = explode('/', dirname($script_filename));
-  $dir_fs_www_root_tmp = array();
-  for ($i=0, $n=sizeof($dir_fs_www_root_array)-1; $i<$n; $i++) {
-    $dir_fs_www_root_tmp[] = $dir_fs_www_root_array[$i];
-  }
-  $dir_fs_www_root = implode('/', $dir_fs_www_root_tmp);
   $this_class = 'OK';
-
   if ($open_basedir = ini_get('open_basedir')) {
     $found_basedir = false;
     // if anything is found for open_basedir, set to warning:
@@ -387,13 +386,14 @@ if (false) { // DISABLED THIS CODEBLOCK FOR NOW....
       foreach($basedir_check_array as $basedir_check) {
 //        echo 'www-root: ' . $dir_fs_www_root . '<br /> basedir: ' . $basedir_check . '<br /><br />';
         if ($basedir_check !='' && strstr($dir_fs_www_root, $basedir_check)) {
-				  //echo 'FOUND<br /><br />';
-					$found_basedir=true;
-				}
+          //echo 'FOUND<br /><br />';
+          $found_basedir=true;
+        }
       }
     }
     if (!$found_basedir) $this_class = 'FAIL';
   }
+
   $status_check2[] = array('Importance' => 'Recommended', 'Title' => LABEL_OPEN_BASEDIR, 'Status' => $open_basedir, 'Class' => $this_class, 'HelpURL' =>'', 'HelpLabel'=>'Could have problems uploading files or doing backups');
 
   //Sendmail-From setting (PHP configuration)
@@ -407,6 +407,7 @@ if (false) { // DISABLED THIS CODEBLOCK FOR NOW....
   //SMTP (vs sendmail) setting (PHP configuration)
   $smtp = @ini_get("SMTP");
   $status_check2[] = array('Importance' => 'Info', 'Title' => LABEL_SMTP_MAIL, 'Status' => $smtp, 'Class' => 'NA', 'HelpURL' =>'', 'HelpLabel'=>'');
+
 
   //include_path (PHP configuration)
   $includePath = @ini_get("include_path");
@@ -425,9 +426,14 @@ if (false) { // DISABLED THIS CODEBLOCK FOR NOW....
   
   // don't restrict ability to proceed with installation if upgrading the database w/o touching configure.php files is a suitable option
   $zen_cart_allow_database_upgrade_button_disable = $zc_install->fatal_error;
+
+  // do we override the fatal error caused by configure.php files not being writable?  Automatic for Windows hosts, due to the complexities of permissions on Windoze
+  if ($configWriteOverride || stristr(PHP_OS, 'WinNT') || stristr(getenv("SERVER_SOFTWARE"), 'Win32') || stristr($real_path, 'wwwroot') || stristr($real_path, 'inetpub') || stristr($real_path, ':')) {
+    $configWriteOverride = true;
+  }
   // now check for writability of the configure.php files (after capturing fatal_error status above).
-  if ($admin_config_exists) $admin_config_writable = $zc_install->test_admin_configure_write(ERROR_TEXT_ADMIN_CONFIGURE_WRITE,ERROR_CODE_ADMIN_CONFIGURE_WRITE);
-  if ($store_config_exists) $store_config_writable = $zc_install->test_store_configure_write(ERROR_TEXT_STORE_CONFIGURE_WRITE,ERROR_CODE_STORE_CONFIGURE_WRITE);
+  if ($admin_config_exists) $admin_config_writable = $zc_install->test_admin_configure_write(ERROR_TEXT_ADMIN_CONFIGURE_WRITE,ERROR_CODE_ADMIN_CONFIGURE_WRITE, !$configWriteOverride);
+  if ($store_config_exists) $store_config_writable = $zc_install->test_store_configure_write(ERROR_TEXT_STORE_CONFIGURE_WRITE,ERROR_CODE_STORE_CONFIGURE_WRITE, !$configWriteOverride);
   
   foreach (array('includes/configure.php', 'admin/includes/configure.php') as $file) {
     $this_writable='';
@@ -469,28 +475,54 @@ if (false) { // DISABLED THIS CODEBLOCK FOR NOW....
   $button_status_upg = ($zen_cart_allow_database_upgrade_button_disable && !isset($_GET['ignorefatal'])) ? 'disabled="disabled"' : '';  
 
 
-  
+// record system inspection results
+  $data = "\n------------------------------\n";
+  foreach ($status_check as $val) {
+    $data .= $val['Class'] . ': ' . $val['Title'] . ' => ' . $val['Status'] . "\n"; //	$val['HelpLabel']
+	}
+  foreach ($status_check2 as $val) {
+    $data .= $val['Class'] . ': ' . $val['Title'] . ' => ' . $val['Status'] . "\n"; //	$val['HelpLabel']
+	}
+  foreach ($file_status as $val) {
+    $data .= $val['class'] . ': ' . $val['file'] . ' => ' . $val['exists'] . ' ' . $val['writable'] . "\n";
+	}
+  foreach ($folder_status as $val) {
+    $data .= $val['class'] . ': ' . $val['folder'] . ' => ' . $val['writable'] . ' ' . $val['chmod'] . "\n";
+	}
+  $data .= 'PHP Extensions compiled: ';
+  foreach($php_extensions as $module) { $data .= $module . ', '; }
+  $data = substr($data, 0, -2); // remove trailing comma
+  $data .= "\n------------------------------\n";
+//  $zc_install->logDetails('System Inspection Results: ' . str_replace(array('<br />', '<br>', '&nbsp;'), '', $data));
+
+
   // PROCESS TEMPLATE BUTTONS, IF CLICKED
   if (isset($_POST['submit'])) {
     if (!$zc_install->fatal_error) {
-      header('location: index.php?main_page=system_setup&language=' . $language . '&sql_cache='.$suggested_cache);
+      $zc_install->setConfigKey('is_upgrade', 0);
+      header('location: index.php?main_page=database_setup' . zcInstallAddSID() );
       exit;
     }
-  }
+  } else
   if (isset($_POST['upgrade'])) {
     if (!$zc_install->fatal_error) {
-      header('location: index.php?main_page=system_setup&language=' . $language . '&sql_cache='.$suggested_cache . '&is_upgrade=1');
+      $zc_install->setConfigKey('is_upgrade', 1);
+      header('location: index.php?main_page=database_setup' . zcInstallAddSID() );
       exit;
     }
-  }
+  } else
   if (isset($_POST['db_upgrade'])) {
     if (!$zen_cart_allow_database_upgrade_button_disable) {
-      header('location: index.php?main_page=database_upgrade&language=' . $language . '&is_upgrade=1');
+      $zc_install->setConfigKey('is_upgrade', 1);
+      header('location: index.php?main_page=database_upgrade' . zcInstallAddSID() );
       exit;
     }
-  }
+  } else
   if (isset($_POST['refresh'])) {
-    header('location: index.php?main_page=inspect&language=' . $language . '&sql_cache='.$suggested_cache);
+    $zc_install->logDetails('System Inspection Results: ' . str_replace(array('<br />', '<br>', '&nbsp;'), '', $data));
+    header('location: index.php?main_page=inspect' . zcInstallAddSID() );
     exit;
+  } else {
+    $zc_install->logDetails('System Inspection Results: ' . str_replace(array('<br />', '<br>', '&nbsp;'), '', $data));
   }
 ?>

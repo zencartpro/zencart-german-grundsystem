@@ -3,9 +3,10 @@
  * File contains the order-totals-processing class ("order-total")
  *
  * @package classes
- * @copyright Copyright 2003-2006 Zen Cart Development Team
+ * @copyright Copyright 2003-2007 Zen Cart Development Team
+ * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: order_total.php 5273 2006-12-17 12:56:45Z drbyte $
+ * @version $Id: order_total.php 7543 2007-11-29 01:46:56Z drbyte $
  */
 /**
  * order-total class
@@ -18,22 +19,34 @@ if (!defined('IS_ADMIN_FLAG')) {
   die('Illegal Access');
 }
 class order_total extends base {
-  var $modules;
+  var $modules = array();
 
   // class constructor
   function order_total() {
-
+    global $messageStack;
     if (defined('MODULE_ORDER_TOTAL_INSTALLED') && zen_not_null(MODULE_ORDER_TOTAL_INSTALLED)) {
-      $this->modules = explode(';', MODULE_ORDER_TOTAL_INSTALLED);
+      $module_list = explode(';', MODULE_ORDER_TOTAL_INSTALLED);
 
-      reset($this->modules);
-      while (list(, $value) = each($this->modules)) {
-        //          include(DIR_WS_LANGUAGES . $_SESSION['language'] . '/modules/order_total/' . $value);
-        include_once(zen_get_file_directory(DIR_WS_LANGUAGES . $_SESSION['language'] . '/modules/order_total/', $value, 'false'));
-        include_once(DIR_WS_MODULES . 'order_total/' . $value);
-
-        $class = substr($value, 0, strrpos($value, '.'));
-        $GLOBALS[$class] = new $class;
+      reset($module_list);
+      while (list(, $value) = each($module_list)) {
+        //include(DIR_WS_LANGUAGES . $_SESSION['language'] . '/modules/order_total/' . $value);
+        $lang_file = zen_get_file_directory(DIR_WS_LANGUAGES . $_SESSION['language'] . '/modules/order_total/', $value, 'false');
+        if (@file_exists($lang_file)) {
+          include_once($lang_file);
+        } else {
+          if (IS_ADMIN_FLAG === false) {
+            $messageStack->add(WARNING_COULD_NOT_LOCATE_LANG_FILE . $lang_file, 'caution');
+          } else {
+            $messageStack->add_session(WARNING_COULD_NOT_LOCATE_LANG_FILE . $lang_file, 'caution');
+          }
+        }
+        $module_file = DIR_WS_MODULES . 'order_total/' . $value;
+        if (@file_exists($module_file)) {
+          include_once($module_file);
+          $class = substr($value, 0, strrpos($value, '.'));
+          $GLOBALS[$class] = new $class;
+          $this->modules[] = $value;
+        }
       }
     }
   }
@@ -45,6 +58,7 @@ class order_total extends base {
       reset($this->modules);
       while (list(, $value) = each($this->modules)) {
         $class = substr($value, 0, strrpos($value, '.'));
+        if (!isset($GLOBALS[$class])) continue; 
         $GLOBALS[$class]->process();
         for ($i=0, $n=sizeof($GLOBALS[$class]->output); $i<$n; $i++) {
           if (zen_not_null($GLOBALS[$class]->output[$i]['title']) && zen_not_null($GLOBALS[$class]->output[$i]['text'])) {
@@ -62,7 +76,7 @@ class order_total extends base {
   }
 
   function output($return_html=false) {
-    global $template;
+    global $template, $current_page_base;
     $output_string = '';
     if (is_array($this->modules)) {
       reset($this->modules);
@@ -161,17 +175,15 @@ class order_total extends base {
     if (MODULE_ORDER_TOTAL_INSTALLED) {
       $total_deductions  = 0;
       reset($this->modules);
-      $order_total = $order->info['total'];
       while (list(, $value) = each($this->modules)) {
         $class = substr($value, 0, strrpos($value, '.'));
         if ( $GLOBALS[$class]->credit_class ) {
+          $order_total = $GLOBALS[$class]->get_order_total();
+          if (is_array($order_total)) $order_total = $order_total['total'];
           $total_deductions = $total_deductions + $GLOBALS[$class]->pre_confirmation_check($order_total);
-          //echo 'deduction' . $GLOBALS[$class]->pre_confirmation_check($order_total) . '#'.$order_total;
-          $order_total = $order_total - $GLOBALS[$class]->pre_confirmation_check($order_total);
         }
       }
       $difference = $order->info['total'] - $total_deductions;
-      //die('here');
       if ( $difference <= 0.009 ) {
         $credit_covers = true;
       }
@@ -201,8 +213,8 @@ class order_total extends base {
       reset($this->modules);
       while (list(, $value) = each($this->modules)) {
         $class = substr($value, 0, strrpos($value, '.'));
-        if ( $GLOBALS[$class]->credit_class ) {
-          $_SESSION[$post_var] = 'c_' . $GLOBALS[$class]->code;
+        if ( $GLOBALS[$class]->credit_class && method_exists($GLOBALS[$class], 'clear_posts')) {
+          $GLOBALS[$class]->clear_posts();
         }
       }
     }

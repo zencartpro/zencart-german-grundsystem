@@ -4,7 +4,7 @@
  * @copyright Copyright 2003-2006 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: item.php 4238 2006-08-24 10:01:04Z drbyte $
+ * @version $Id: item.php 5501 2007-01-01 15:42:54Z ajeh $
  */
 
 
@@ -53,14 +53,12 @@
       global $order, $total_count;
 
       // adjusted count for free shipping
-//      $total_count = $total_count - $_SESSION['cart']->in_cart_check('product_is_free','1');
-//      $total_count = $total_count - $_SESSION['cart']->in_cart_check('product_is_always_free_shipping','1');
-      $total_count = $total_count - $_SESSION['cart']->free_shipping_items();
+      $item_total_count = $total_count - $_SESSION['cart']->free_shipping_items();
       $this->quotes = array('id' => $this->code,
                             'module' => MODULE_SHIPPING_ITEM_TEXT_TITLE,
                             'methods' => array(array('id' => $this->code,
                                                      'title' => MODULE_SHIPPING_ITEM_TEXT_WAY,
-                                                     'cost' => (MODULE_SHIPPING_ITEM_COST * $total_count) + MODULE_SHIPPING_ITEM_HANDLING)));
+                                                     'cost' => (MODULE_SHIPPING_ITEM_COST * $item_total_count) + MODULE_SHIPPING_ITEM_HANDLING)));
 
       if ($this->tax_class > 0) {
         $this->quotes['tax'] = zen_get_tax_rate($this->tax_class, $order->delivery['country']['id'], $order->delivery['zone_id']);

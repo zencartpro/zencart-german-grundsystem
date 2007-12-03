@@ -6,7 +6,7 @@
  * @copyright Copyright 2003-2006 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: header_php.php 5380 2006-12-24 17:50:00Z drbyte $
+ * @version $Id: header_php.php 6669 2007-08-16 10:05:49Z drbyte $
  */
 // This should be first line of the script:
   $zco_notifier->notify('NOTIFY_HEADER_START_CHECKOUT_SHIPPING');
@@ -19,7 +19,7 @@
   }
 
 // if the customer is not logged on, redirect them to the login page
-  if (!$_SESSION['customer_id']) {
+  if (!isset($_SESSION['customer_id']) || !$_SESSION['customer_id']) {
     $_SESSION['navigation']->set_snapshot();
     zen_redirect(zen_href_link(FILENAME_LOGIN, '', 'SSL'));
   } else {

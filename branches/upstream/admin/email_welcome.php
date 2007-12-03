@@ -1,36 +1,22 @@
 <?php
-//
-// +----------------------------------------------------------------------+
-// |zen-cart Open Source E-commerce                                       |
-// +----------------------------------------------------------------------+
-// | Copyright (c) 2003 The zen-cart developers                           |
-// |                                                                      |
-// | http://www.zen-cart.com/index.php                                    |
-// |                                                                      |
-// | Portions Copyright (c) 2003 osCommerce                               |
-// +----------------------------------------------------------------------+
-// | This source file is subject to version 2.0 of the GPL license,       |
-// | that is bundled with this package in the file LICENSE, and is        |
-// | available through the world-wide-web at the following url:           |
-// | http://www.zen-cart.com/license/2_0.txt.                             |
-// | If you did not receive a copy of the zen-cart license and are unable |
-// | to obtain it through the world-wide-web, please send a note to       |
-// | license@zen-cart.com so we can mail you a copy immediately.          |
-// +----------------------------------------------------------------------+
-//  $Id: email_welcome.php 2999 2006-02-09 17:21:39Z drbyte $
-//
+/**
+ * @package admin
+ * @copyright Copyright 2003-2007 Zen Cart Development Team
+ * @copyright Portions Copyright 2003 osCommerce
+ * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
+ * @version $Id: email_welcome.php 5805 2007-02-18 04:27:17Z ajeh $
+ */
 
   require('includes/application_top.php');
 
   require(DIR_WS_CLASSES . 'currencies.php');
   $currencies = new currencies();
 
-  if (file_exists('../' . DIR_WS_LANGUAGES . $_SESSION['language'] . (($template_dir=='') ? '' : '/'.$template_dir) .'/' . 'create_account.php')) {
-    require('../' . DIR_WS_LANGUAGES . $_SESSION['language'] . (($template_dir=='') ? '' : '/'.$template_dir) . '/' . 'create_account.php');
+  if (file_exists(DIR_FS_CATALOG . DIR_WS_LANGUAGES . $_SESSION['language'] . (($template_dir=='') ? '' : '/'.$template_dir) .'/' . 'create_account.php')) {
+    require(DIR_FS_CATALOG . DIR_WS_LANGUAGES . $_SESSION['language'] . (($template_dir=='') ? '' : '/'.$template_dir) . '/' . 'create_account.php');
   } else {
-    require('../' . DIR_WS_LANGUAGES . $_SESSION['language'] . '/' . 'create_account.php');
+    require(DIR_FS_CATALOG . DIR_WS_LANGUAGES . $_SESSION['language'] . '/' . 'create_account.php');
   }
-
 
 // build the message content
       $name = 'Fred Smith';
@@ -68,7 +54,7 @@
         $email_text .= "\n" . EMAIL_COUPON_INCENTIVE_HEADER .
                        (!empty($coupon_desc->fields['coupon_description']) ? $coupon_desc->fields['coupon_description'] . "\n\n" : '') .
                        strip_tags(sprintf(EMAIL_COUPON_REDEEM, ' ' . $coupon->fields['coupon_code'])) . EMAIL_SEPARATOR ;
-		
+
       $html_msg['COUPON_TEXT_VOUCHER_IS'] = EMAIL_COUPON_INCENTIVE_HEADER ;
 	  $html_msg['COUPON_DESCRIPTION']     = (!empty($coupon_desc->fields['coupon_description']) ? '<strong>' . $coupon_desc->fields['coupon_description'] . '</strong>' : '');
       $html_msg['COUPON_TEXT_TO_REDEEM']  = str_replace("\n", '', sprintf(EMAIL_COUPON_REDEEM, ''));

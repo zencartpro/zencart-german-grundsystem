@@ -17,10 +17,14 @@
 // | to obtain it through the world-wide-web, please send a note to       |
 // | license@zen-cart.com so we can mail you a copy immediately.          |
 // +----------------------------------------------------------------------+
-//  $Id: invoice.php 1109 2005-04-04 23:55:35Z drbyte $
+//  $Id: invoice.php 5961 2007-03-03 17:17:39Z ajeh $
 //
 
 define('TABLE_HEADING_COMMENTS', 'Comments');
+define('TABLE_HEADING_CUSTOMER_NOTIFIED', 'Customer Notified');
+define('TABLE_HEADING_DATE_ADDED', 'Date Added');
+define('TABLE_HEADING_STATUS', 'Status');
+
 define('TABLE_HEADING_PRODUCTS_MODEL', 'Model');
 define('TABLE_HEADING_PRODUCTS', 'Products');
 define('TABLE_HEADING_TAX', 'Tax');

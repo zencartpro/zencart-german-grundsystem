@@ -1,10 +1,10 @@
 <?php
 /**
  * @package admin
- * @copyright Copyright 2003-2006 Zen Cart Development Team
+ * @copyright Copyright 2003-2007 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: attributes_controller.php 4280 2006-08-26 03:32:55Z drbyte $
+ * @version $Id: attributes_controller.php 182 2007-12-02 10:04:59Z hugo13 $
  */
 
   require('includes/application_top.php');
@@ -238,8 +238,7 @@
             $attributes_image_name = (isset($_POST['attributes_previous_image']) ? $_POST['attributes_previous_image'] : '');
           }
 
-// @TODO: MySQL5
-            $db->Execute("insert into " . TABLE_PRODUCTS_ATTRIBUTES . "
+            $db->Execute("insert into " . TABLE_PRODUCTS_ATTRIBUTES . " (products_attributes_id, products_id, options_id, options_values_id, options_values_price, price_prefix, products_options_sort_order, product_attribute_is_free, products_attributes_weight, products_attributes_weight_prefix, attributes_display_only, attributes_default, attributes_discounted, attributes_image, attributes_price_base_included, attributes_price_onetime, attributes_price_factor, attributes_price_factor_offset, attributes_price_factor_onetime, attributes_price_factor_onetime_offset, attributes_qty_prices, attributes_qty_prices_onetime, attributes_price_words, attributes_price_words_free, attributes_price_letters, attributes_price_letters_free, attributes_required) 
                           values (0,
                                   '" . (int)$products_id . "',
                                   '" . (int)$options_id . "',
@@ -278,6 +277,7 @@
 //die( 'I am adding ' . strlen($_POST['products_attributes_filename']) . ' vs ' . strlen(trim($_POST['products_attributes_filename'])) . ' vs ' . strlen(zen_db_prepare_input($_POST['products_attributes_filename'])) . ' vs ' . strlen(zen_db_input($products_attributes_filename)) );
               if (zen_not_null($products_attributes_filename)) {
                 $db->Execute("insert into " . TABLE_PRODUCTS_ATTRIBUTES_DOWNLOAD . "
+                              (products_attributes_id, products_attributes_filename, products_attributes_maxdays, products_attributes_maxcount)
                               values (" . (int)$products_attributes_id . ",
                                       '" . zen_db_input($products_attributes_filename) . "',
                                       '" . zen_db_input($products_attributes_maxdays) . "',
@@ -1338,6 +1338,7 @@ if ($action == '') {
       $dir_info[] = array('id' => $file . '/', 'text' => $file);
     }
   }
+  $dir->close();
 
   sort($dir_info);
 
@@ -1797,6 +1798,7 @@ $off_overwrite = false;
       $dir_info[] = array('id' => $file . '/', 'text' => $file);
     }
   }
+  $dir->close();
   sort($dir_info);
 
   $default_directory = 'attributes/';

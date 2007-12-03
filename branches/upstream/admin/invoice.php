@@ -17,7 +17,7 @@
 // | to obtain it through the world-wide-web, please send a note to       |
 // | license@zen-cart.com so we can mail you a copy immediately.          |
 // +----------------------------------------------------------------------+
-//  $Id: invoice.php 3465 2006-04-19 04:04:16Z drbyte $
+//  $Id: invoice.php 6251 2007-04-22 19:21:48Z wilt $
 //
 
   require('includes/application_top.php');
@@ -29,6 +29,19 @@
 
   include(DIR_WS_CLASSES . 'order.php');
   $order = new order($oID);
+
+  // prepare order-status pulldown list
+  $orders_statuses = array();
+  $orders_status_array = array();
+  $orders_status = $db->Execute("select orders_status_id, orders_status_name
+                                 from " . TABLE_ORDERS_STATUS . "
+                                 where language_id = '" . (int)$_SESSION['languages_id'] . "'");
+  while (!$orders_status->EOF) {
+    $orders_statuses[] = array('id' => $orders_status->fields['orders_status_id'],
+                               'text' => $orders_status->fields['orders_status_name'] . ' [' . $orders_status->fields['orders_status_id'] . ']');
+    $orders_status_array[$orders_status->fields['orders_status_id']] = $orders_status->fields['orders_status_name'];
+    $orders_status->MoveNext();
+  }
 ?>
 <!doctype html public "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html <?php echo HTML_PARAMS; ?>>
@@ -160,7 +173,7 @@ function couponpopupWindow(url) {
 
       if (isset($order->products[$i]['attributes']) && (($k = sizeof($order->products[$i]['attributes'])) > 0)) {
         for ($j = 0; $j < $k; $j++) {
-          echo '<br><nobr><small>&nbsp;<i> - ' . $order->products[$i]['attributes'][$j]['option'] . ': ' . nl2br($order->products[$i]['attributes'][$j]['value']);
+          echo '<br><nobr><small>&nbsp;<i> - ' . $order->products[$i]['attributes'][$j]['option'] . ': ' . nl2br(zen_output_string_protected($order->products[$i]['attributes'][$j]['value']));
           if ($order->products[$i]['attributes'][$j]['price'] != '0') echo ' (' . $order->products[$i]['attributes'][$j]['prefix'] . $currencies->format($order->products[$i]['attributes'][$j]['price'] * $order->products[$i]['qty'], true, $order->info['currency'], $order->info['currency_value']) . ')';
           if ($order->products[$i]['attributes'][$j]['product_attribute_is_free'] == '1' and $order->products[$i]['product_is_free'] == '1') echo TEXT_INFO_ATTRIBUTE_FREE;
           echo '</i></small></nobr>';
@@ -203,6 +216,52 @@ function couponpopupWindow(url) {
       </tr>
     </table></td>
   </tr>
+
+<?php if (ORDER_COMMENTS_INVOICE > 0) { ?>
+      <tr>
+        <td class="main"><table border="1" cellspacing="0" cellpadding="5">
+          <tr>
+            <td class="smallText" align="center"><strong><?php echo TABLE_HEADING_DATE_ADDED; ?></strong></td>
+            <td class="smallText" align="center"><strong><?php echo TABLE_HEADING_CUSTOMER_NOTIFIED; ?></strong></td>
+            <td class="smallText" align="center"><strong><?php echo TABLE_HEADING_STATUS; ?></strong></td>
+            <td class="smallText" align="center"><strong><?php echo TABLE_HEADING_COMMENTS; ?></strong></td>
+          </tr>
+<?php
+    $orders_history = $db->Execute("select orders_status_id, date_added, customer_notified, comments
+                                    from " . TABLE_ORDERS_STATUS_HISTORY . "
+                                    where orders_id = '" . zen_db_input($oID) . "'
+                                    order by date_added");
+
+    if ($orders_history->RecordCount() > 0) {
+      $count_comments=0;
+      while (!$orders_history->EOF) {
+        $count_comments++;
+        echo '          <tr>' . "\n" .
+             '            <td class="smallText" align="center">' . zen_datetime_short($orders_history->fields['date_added']) . '</td>' . "\n" .
+             '            <td class="smallText" align="center">';
+        if ($orders_history->fields['customer_notified'] == '1') {
+          echo zen_image(DIR_WS_ICONS . 'tick.gif', ICON_TICK) . "</td>\n";
+        } else {
+          echo zen_image(DIR_WS_ICONS . 'cross.gif', ICON_CROSS) . "</td>\n";
+        }
+        echo '            <td class="smallText">' . $orders_status_array[$orders_history->fields['orders_status_id']] . '</td>' . "\n";
+        echo '            <td class="smallText">' . ($orders_history->fields['comments'] == '' ? TEXT_NONE : nl2br(zen_db_output($orders_history->fields['comments']))) . '&nbsp;</td>' . "\n" .
+             '          </tr>' . "\n";
+        $orders_history->MoveNext();
+        if (ORDER_COMMENTS_INVOICE == 1 && $count_comments >= 1) {
+          break;
+        }
+      }
+    } else {
+        echo '          <tr>' . "\n" .
+             '            <td class="smallText" colspan="5">' . TEXT_NO_ORDER_HISTORY . '</td>' . "\n" .
+             '          </tr>' . "\n";
+    }
+?>
+        </table></td>
+      </tr>
+<?php } // order comments ?>
+
 </table>
 <!-- body_text_eof //-->
 

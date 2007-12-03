@@ -5,10 +5,10 @@
  * Prepares list of additional product images to be displayed in template
  *
  * @package templateSystem
- * @copyright Copyright 2003-2006 Zen Cart Development Team
+ * @copyright Copyright 2003-2007 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: additional_images.php 5369 2006-12-23 10:55:52Z drbyte $
+ * @version $Id: additional_images.php 6132 2007-04-08 06:58:40Z drbyte $
  */
 if (!defined('IS_ADMIN_FLAG')) {
   die('Illegal Access');
@@ -44,7 +44,7 @@ if ($products_image != '') {
       if (!is_dir($products_image_directory . $file)) {
         if (substr($file, strrpos($file, '.')) == $file_extension) {
           //          if(preg_match("/" . $products_image_match . "/i", $file) == '1') {
-          if(preg_match("/" . $products_image_base . "/i", $file) == '1') {
+          if(preg_match("/" . $products_image_base . "/i", $file) == 1) {
             if ($file != $products_image) {
               if ($products_image_base . str_replace($products_image_base, '', $file) == $file) {
                 //  echo 'I AM A MATCH ' . $file . '<br>';

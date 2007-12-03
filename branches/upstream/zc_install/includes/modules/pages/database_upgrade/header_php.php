@@ -2,13 +2,13 @@
 /**
  * @package Installer
  * @access private
- * @copyright Copyright 2003-2006 Zen Cart Development Team
+ * @copyright Copyright 2003-2007 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: header_php.php 4871 2006-11-01 07:45:31Z drbyte $
+ * @version $Id: header_php.php 7115 2007-09-27 03:50:44Z drbyte $
  */
 
-/* 
+/*
  * Database Upgrade script
  * 1. Checks to be sure that the configure.php exists and can be read
  * 2. Uses info from configure.php to connect to database
@@ -27,18 +27,11 @@
 /////////////////////////////////////////////////////////////////////
 //this is the latest database-version-level that this script knows how to inspect and upgrade to.
 //it is used to determine whether to stay on the upgrade page when done, or continue to the finished page
-$latest_version = '1.3.7'; 
+$latest_version = '1.3.8'; 
 
 ///////////////////////////////////
-if (!isset($_GET['debug'])  && !zen_not_null($_POST['debug']))  define('ZC_UPG_DEBUG',false);
-if (!isset($_GET['debug2']) && !zen_not_null($_POST['debug2'])) define('ZC_UPG_DEBUG2',false);
-if (!isset($_GET['debug3']) && !zen_not_null($_POST['debug3'])) define('ZC_UPG_DEBUG3',false);
-
 $is_upgrade = true; //that's what this page is all about!
 $failed_entries=0;
-$zc_install->error = false;
-$zc_install->fatal_error = false;
-$zc_install->error_list = array();
 
 $configure_files_array = array('../includes/configure.php','../admin/includes/configure.php');
 $database_tablenames_array=array('../includes/database_tables.php', '../includes/extra_datafiles/music_type_database_names.php');
@@ -49,7 +42,8 @@ if (ZC_UPG_DEBUG==true && $zc_install->fatal_error) echo 'FATAL ERROR-CONFIGURE 
 
 if (!$zc_install->fatal_error) {
   if (ZC_UPG_DEBUG==true) echo 'configure.php file exists<br />';
-  require(DIR_WS_INCLUDES . 'configure.php');
+  @require_once(DIR_WS_INCLUDES . 'configure.php');
+
   require(DIR_WS_INCLUDES . 'classes/db/' . DB_TYPE . '/query_factory.php');
 
   //open database connection to run queries against it
@@ -84,92 +78,116 @@ if (!$zc_install->fatal_error) {
 
 
 // *** NOW DETERMINE REQUIRED UPDATES BASED ON TEST RESULTS
+$sniffer_text = '';
 
 //display options based on what was found -- THESE SHOULD BE PROCESSED IN REVERSE ORDER, NEWEST VERSION FIRST... !
 //that way only the "earliest-required" upgrade is suggested first.
+    $needs_v1_3_8=false;
+    if (!$dbinfo->version138) {
+      $sniffer_text =  ' upgrade v1.3.7 to v1.3.8';
+      $needs_v1_3_8=true;
+    }
+    $needs_v1_3_7=false;
     if (!$dbinfo->version137) {
-      $sniffer =  ' upgrade v1.3.6 to v1.3.7';
+      $sniffer_text =  ' upgrade v1.3.6 to v1.3.7';
       $needs_v1_3_7=true;
     }
+    $needs_v1_3_6=false;
     if (!$dbinfo->version136) {
-      $sniffer =  ' upgrade v1.3.5 to v1.3.6';
+      $sniffer_text =  ' upgrade v1.3.5 to v1.3.6';
       $needs_v1_3_6=true;
     }
+    $needs_v1_3_5=false;
     if (!$dbinfo->version135) {
-      $sniffer =  ' upgrade v1.3.0.2 to v1.3.5';
+      $sniffer_text =  ' upgrade v1.3.0.2 to v1.3.5';
       $needs_v1_3_5=true;
     }
+    $needs_v1_3_0_2=false;
     if (!$dbinfo->version1302) {
-      $sniffer =  ' upgrade v1.3.0.1 to v1.3.0.2';
+      $sniffer_text =  ' upgrade v1.3.0.1 to v1.3.0.2';
       $needs_v1_3_0_2=true;
     }
+    $needs_v1_3_0_1=false;
     if (!$dbinfo->version1301) {
-      $sniffer =  ' upgrade v1.3.0 to v1.3.0.1';
+      $sniffer_text =  ' upgrade v1.3.0 to v1.3.0.1';
       $needs_v1_3_0_1=true;
     }
+    $needs_v1_3_0=false;
     if (!$dbinfo->version130) {
-      $sniffer =  ' upgrade v1.2.7 to v1.3.0';
+      $sniffer_text =  ' upgrade v1.2.7 to v1.3.0';
       $needs_v1_3_0=true;
     }
+    $needs_v1_2_7=false;
     if (!$dbinfo->version127) {
-      $sniffer =  ' upgrade v1.2.6 to v1.2.7';
+      $sniffer_text =  ' upgrade v1.2.6 to v1.2.7';
       $needs_v1_2_7=true;
     }
+    $needs_v1_2_6=false;
     if (!$dbinfo->version126) {
-      $sniffer =  ' upgrade v1.2.5 to v1.2.6';
+      $sniffer_text =  ' upgrade v1.2.5 to v1.2.6';
       $needs_v1_2_6=true;
     }
+    $needs_v1_2_5=false;
     if (!$dbinfo->version125) {
-      $sniffer =  ' upgrade v1.2.4 to v1.2.5';
+      $sniffer_text =  ' upgrade v1.2.4 to v1.2.5';
       $needs_v1_2_5=true;
     }
+    $needs_v1_2_4=false;
     if (!$dbinfo->version124) {
-      $sniffer =  ' upgrade v1.2.3 to v1.2.4';
+      $sniffer_text =  ' upgrade v1.2.3 to v1.2.4';
       $needs_v1_2_4=true;
     }
+    $needs_v1_2_3=false;
     if (!$dbinfo->version123) {
-      $sniffer =  ' upgrade v1.2.2 to v1.2.3';
+      $sniffer_text =  ' upgrade v1.2.2 to v1.2.3';
       $needs_v1_2_3=true;
     }
+    $needs_v1_2_2=false;
     if (!$dbinfo->version122) {
-      $sniffer =  ' upgrade v1.2.1 to v1.2.2';
+      $sniffer_text =  ' upgrade v1.2.1 to v1.2.2';
       $needs_v1_2_2=true;
     }
+    $needs_v1_2_1=false;
     if (!$dbinfo->version121) {
-      $sniffer =  ' upgrade v1.2.0 to v1.2.1';
+      $sniffer_text =  ' upgrade v1.2.0 to v1.2.1';
       $needs_v1_2_1=true;
     }
+    $needs_v1_2_0=false;
     if (!$dbinfo->version120) {
-      $sniffer =  ' upgrade v1.1.4 to v1.2.0';
+      $sniffer_text =  ' upgrade v1.1.4 to v1.2.0';
       $needs_v1_2_0=true;
     }
+    $needs_v1_1_4_patch1=false;
     if (!$dbinfo->version1141) {
-      $sniffer =  ' upgrade v1.1.4 to v1.1.4_patch1';
+      $sniffer_text =  ' upgrade v1.1.4 to v1.1.4_patch1';
       $needs_v1_1_4_patch1=true;
     }
+    $needs_v1_1_4=false;
     if (!$dbinfo->version114) {
-      $sniffer =  ' upgrade v1.1.2 or v1.1.3 to v1.1.4';
+      $sniffer_text =  ' upgrade v1.1.2 or v1.1.3 to v1.1.4';
       $needs_v1_1_4=true;
     }
+    $needs_v1_1_2=false;
     if (!$dbinfo->version112) {
-      $sniffer =  ' upgrade v1.1.1 to v1.1.2';
+      $sniffer_text =  ' upgrade v1.1.1 to v1.1.2';
       $needs_v1_1_2=true;
     }
+    $needs_v1_1_1=false;
     if (!$dbinfo->version111) {
-      $sniffer =  ' upgrade v1.1.0 to v1.1.1';
+      $sniffer_text =  ' upgrade v1.1.0 to v1.1.1';
       $needs_v1_1_1=true;
     }
+    $needs_v1_1_0=false;
     if (!$dbinfo->version110) {
-      $sniffer =  ' upgrade v1.04 to v.1.1.1';
+      $sniffer_text =  ' upgrade v1.04 to v.1.1.1';
       $needs_v1_1_0=true;
 //    $needs_v1_1_1=false; // exclude the 1.1.0-to-1.1.1 update since it's included in this step if selected
     }
 
-
- if (!isset($sniffer) && empty($sniffer)) {
-   $sniffer = ' &nbsp;*** No upgrade required ***';
-   $sniffer_version = "";
-   }
+    if (!isset($sniffer_text) || $sniffer_text == '') {
+      $sniffer_text = ' &nbsp;*** No upgrade required ***';
+      $sniffer_version = '';
+    }
 
 } // end if zc_install_error == false ....... and database schema checks
 
@@ -193,14 +211,15 @@ if (ZC_UPG_DEBUG2==true) {
   echo '<br>135='.$dbinfo->version135;
   echo '<br>136='.$dbinfo->version136;
   echo '<br>137='.$dbinfo->version137;
+  echo '<br>138='.$dbinfo->version138;
   echo '<br>';
   }
 
 // IF FORM WAS SUBMITTED, CHECK SELECTIONS AND PERFORM THEM
   if (isset($_POST['submit'])) {
-   $sniffer =  '';
+   $sniffer_text =  '';
    $sniffer_version = '';
-
+   $nothing_to_process = false;
    if (is_array($_POST['version'])) {
    if (ZC_UPG_DEBUG2==true) foreach($_POST['version'] as $value) { echo 'Selected: ' . $value.'<br />';}
      reset($_POST['version']);
@@ -341,41 +360,25 @@ if (ZC_UPG_DEBUG2==true) {
           $got_v1_3_7 = true; //after processing this step, this will be the new version-level
           $db_upgraded_to_version='1.3.7';
           break;
+       case '1.3.7':  // upgrading from v1.3.7 TO 1.3.8
+//          if (!$dbinfo->version137 || $dbinfo->version138) continue;  // if prerequisite not completed, or already done, skip
+          $sniffer_file = '_upgrade_zencart_137_to_138.sql';
+          if (ZC_UPG_DEBUG2==true) echo $sniffer_file.'<br>';
+          $got_v1_3_8 = true; //after processing this step, this will be the new version-level
+          $db_upgraded_to_version='1.3.8';
+          break;
 
        default:
        $nothing_to_process=true;
        } // end while
 
-       //check for errors
-     $zc_install->test_store_configure(ERROR_TEXT_STORE_CONFIGURE,ERROR_CODE_STORE_CONFIGURE);
-     if (!$zc_install->fatal_error) {
-        require(DIR_WS_INCLUDES . 'configure.php');
-//        require(DIR_WS_INCLUDES . 'classes/db/' . DB_TYPE . '/query_factory.php');
-        $zc_install->fileExists('sql/' . DB_TYPE . $sniffer_file, DB_TYPE . $sniffer_file . ' ' . ERROR_TEXT_DB_SQL_NOTEXIST.'<br />"'.DB_TYPE . $sniffer_file.'"' , ERROR_CODE_DB_SQL_NOTEXIST);
-        $zc_install->functionExists(DB_TYPE, ERROR_TEXT_DB_NOTSUPPORTED, ERROR_CODE_DB_NOTSUPPORTED);
-        $zc_install->dbConnect(DB_TYPE, DB_SERVER, DB_DATABASE, DB_SERVER_USERNAME, DB_SERVER_PASSWORD, ERROR_TEXT_DB_CONNECTION_FAILED, ERROR_CODE_DB_CONNECTION_FAILED,ERROR_TEXT_DB_NOTEXIST, ERROR_CODE_DB_NOTEXIST);
-
-// security check 
-    if ((!isset($_POST['adminid']) && !isset($_POST['adminpwd'])) || (isset($_POST['adminid']) && ($_POST['adminid']=='' || $_POST['adminid']=='demo'))) {
-      $zc_install->setError(ERROR_TEXT_ADMIN_PWD_REQUIRED, ERROR_CODE_ADMIN_PWD_REQUIRED, true);
-    } else {
-      $admin_name = zen_db_prepare_input($_POST['adminid']);
-      $admin_pass = zen_db_prepare_input($_POST['adminpwd']);
-      $sql = "select admin_id, admin_name, admin_pass from " . DB_PREFIX . "admin where admin_name = '" . zen_db_prepare_input($admin_name) . "'";
-
-      //open database connection to run queries against it
-      $db = new queryFactory;
-      $db->Connect(DB_SERVER, DB_SERVER_USERNAME, DB_SERVER_PASSWORD, DB_DATABASE) or die("Unable to connect to database");
-      $result = $db->Execute($sql);
-      $db->Close();
-      if (!($admin_name == $result->fields['admin_name'])  || $admin_name=='demo') {
-        $zc_install->setError(ERROR_TEXT_ADMIN_PWD_REQUIRED, ERROR_CODE_ADMIN_PWD_REQUIRED, true);
-      }
-      if (!zen_validate_password($admin_pass, $result->fields['admin_pass'])) {
-        $zc_install->setError(ERROR_TEXT_ADMIN_PWD_REQUIRED, ERROR_CODE_ADMIN_PWD_REQUIRED, true);
-      }
-    }
-// end admin verification
+        //check for errors
+        $zc_install->test_store_configure(ERROR_TEXT_STORE_CONFIGURE,ERROR_CODE_STORE_CONFIGURE);
+        if (!$zc_install->fatal_error && isset($_POST['adminid']) && isset($_POST['adminpwd'])) {
+          $zc_install->fileExists('sql/' . DB_TYPE . $sniffer_file, DB_TYPE . $sniffer_file . ' ' . ERROR_TEXT_DB_SQL_NOTEXIST, ERROR_CODE_DB_SQL_NOTEXIST);
+          $zc_install->functionExists(DB_TYPE, ERROR_TEXT_DB_NOTSUPPORTED, ERROR_CODE_DB_NOTSUPPORTED);
+          $zc_install->dbConnect(DB_TYPE, DB_SERVER, DB_DATABASE, DB_SERVER_USERNAME, DB_SERVER_PASSWORD, ERROR_TEXT_DB_CONNECTION_FAILED, ERROR_CODE_DB_CONNECTION_FAILED,ERROR_TEXT_DB_NOTEXIST, ERROR_CODE_DB_NOTEXIST);
+          $zc_install->verifyAdminCredentials($_POST['adminid'], $_POST['adminpwd']);
         } //end if !fatal_error
 
        if (ZC_UPG_DEBUG2==true) echo 'Processing ['.$sniffer_file.']...<br />';
@@ -410,167 +413,56 @@ echo 'CAUTION: '.$value.'<br />';
           $db->Close();
           } // end if "no error"
      } // end while - version loop
-if ($failed_entries !=0) {
-  $zc_install->setError('<span class="errors">NOTE: Skipped upgrade statements: '.$failed_entries.'<br />See details at bottom of page for your inspection.<br />(Details also logged in the "upgrade_exceptions" table.)</span><br />Note: In most cases, these failed statements can be ignored, <br />as they are indications that certain settings may have already been set on your site. <br />If all the suggested upgrade steps have been completed (no recommendations left), <br />you may proceed to Skip Upgrades and continue configuring your site.','85', false);
-  }
-if (ZC_UPG_DEBUG2==true) {echo '<span class="errors">NOTE: Skipped upgrade statements: '.$failed_entries.'<br />See details at bottom of page for your inspection.<br />(Details also logged in the "upgrade_exceptions" table.)</span>';}
+    if ($failed_entries !=0 ) {
+      $zc_install->setError('<span class="errors">NOTE: Skipped upgrade statements: '.$failed_entries.'<br />See details at bottom of page for your inspection.<br />(Details also logged in the "upgrade_exceptions" table.)</span><br />Note: In most cases, these failed statements can be ignored, <br />as they are indications that certain settings may have already been set on your site. <br />If all the suggested upgrade steps have been completed (no recommendations left), <br />you may proceed to Skip Upgrades and continue configuring your site.','85', false);
+    }
+    if (ZC_UPG_DEBUG2==true) echo '<span class="errors">NOTE: Skipped upgrade statements: '.$failed_entries.'<br />See details at bottom of page for your inspection.<br />(Details also logged in the "upgrade_exceptions" table.)</span>';
   } // end if-is-array-POST['version']
 
 
 
-
-  // PREFIX-RENAME ROUTINE:
-  // if database table-prefix 'change' has been requested, process it here:
-  if (isset($_POST['newprefix'])) {
-    $newprefix = $_POST['newprefix'];
-    if (isset($_POST['db_prefix'])) { //use specified "old" prefix if entered
-       $db_prefix_rename_from = $_POST['db_prefix'];
-       } else {
-       $db_prefix_rename_from = DB_PREFIX;
-       }
-    if ($newprefix != $db_prefix_rename_from) { // don't process prefix changes if same prefix selected
-     $zc_install->test_admin_configure(ERROR_TEXT_ADMIN_CONFIGURE,ERROR_CODE_ADMIN_CONFIGURE, true);
-     $zc_install->test_store_configure(ERROR_TEXT_STORE_CONFIGURE,ERROR_CODE_STORE_CONFIGURE);
-     $zc_install->test_admin_configure_write(ERROR_TEXT_ADMIN_CONFIGURE_WRITE,ERROR_CODE_ADMIN_CONFIGURE_WRITE);
-     $zc_install->test_store_configure_write(ERROR_TEXT_STORE_CONFIGURE_WRITE,ERROR_CODE_STORE_CONFIGURE_WRITE);
-     $zc_install->functionExists(DB_TYPE, ERROR_TEXT_DB_NOTSUPPORTED, ERROR_CODE_DB_NOTSUPPORTED);
-     $zc_install->dbConnect(DB_TYPE, DB_SERVER, DB_DATABASE, DB_SERVER_USERNAME, DB_SERVER_PASSWORD, ERROR_TEXT_DB_CONNECTION_FAILED, ERROR_CODE_DB_CONNECTION_FAILED,ERROR_TEXT_DB_NOTEXIST, ERROR_CODE_DB_NOTEXIST);
-
-// security check 
-    if (!isset($_POST['adminid']) && !isset($_POST['adminpwd'])) {
-      $zc_install->setError(ERROR_TEXT_ADMIN_PWD_REQUIRED, ERROR_CODE_ADMIN_PWD_REQUIRED, true);
-    } elseif ($_POST['adminid']=='') {
-      $zc_install->setError(ERROR_TEXT_ADMIN_PWD_REQUIRED, ERROR_CODE_ADMIN_PWD_REQUIRED, true);
-    } else {
-      $admin_name = zen_db_prepare_input($_POST['adminid']);
-      $admin_pass = zen_db_prepare_input($_POST['adminpwd']);
-      $sql = "select admin_id, admin_name, admin_pass from " . DB_PREFIX . "admin where admin_name = '" . zen_db_prepare_input($admin_name) . "'";
-      $db = new queryFactory;
-      $db->Connect(DB_SERVER, DB_SERVER_USERNAME, DB_SERVER_PASSWORD, DB_DATABASE) or die("Unable to connect to database");
-      $result = $db->Execute($sql);
-      $db->Close();
-      if (!($admin_name == $result->fields['admin_name'])  || $admin_name=='demo') {
-        $zc_install->setError(ERROR_TEXT_ADMIN_PWD_REQUIRED, ERROR_CODE_ADMIN_PWD_REQUIRED, true);
+    // PREFIX-RENAME ROUTINE:
+    // if database table-prefix 'change' has been requested, process it here:
+    if (isset($_POST['newprefix'])) {
+      $zc_install->checkPrefix($_POST['newprefix'], ERROR_TEXT_DB_PREFIX_NODOTS, ERROR_CODE_DB_PREFIX_NODOTS);
+      $newprefix = $_POST['newprefix'];
+      if (isset($_POST['db_prefix'])) { //use specified "old" prefix if entered
+        $db_prefix_rename_from = $_POST['db_prefix'];
+      } else {
+        $db_prefix_rename_from = DB_PREFIX;
       }
-      if (!zen_validate_password($admin_pass, $result->fields['admin_pass'])) {
-        $zc_install->setError(ERROR_TEXT_ADMIN_PWD_REQUIRED, ERROR_CODE_ADMIN_PWD_REQUIRED, true);
-      }
-    }
-// end admin verification
-
-     if (ZC_UPG_DEBUG2==true) echo 'Processing prefix updates...<br />';
-     if ($zc_install->error == false && $nothing_to_process==false) {
-       $db = new queryFactory;
-       $db->Connect(DB_SERVER, DB_SERVER_USERNAME, DB_SERVER_PASSWORD, DB_DATABASE) or die("Unable to connect to database");
-
-       $tables = $db->Execute("SHOW TABLES"); // get a list of tables to compare against
-       $tables_list = array();
-       while (!$tables->EOF) {
-	  $tables_list[] = $tables->fields['Tables_in_' . DB_DATABASE];
-       $tables->MoveNext();
-       } //end while
-
-
-      //read the "database_tables.php" files, and loop through the table names
-      foreach($database_tablenames_array as $filename) {
-       if (!file_exists($filename)) continue;
-       $lines = file($filename);
-       foreach ($lines as $line) {
-         $line = trim($line);
-         if (substr($line,0,1) != '<' && substr($line,0,2) != '?'.'>' && substr($line,0,2) != '//' && $line != '') {
-//           echo 'line='.$line.'<br>';
-             $def_string=array();
-             $def_string=explode("'",$line);
-             //define('TABLE_CONSTANT',DB_PREFIX.'tablename');
-             //[1]=TABLE_CONSTANT
-             //[2]=,DB_PREFIX.
-             //[3]=tablename
-             //[4]=);
-             //[5]=
-             //echo '[1]->'.$def_string[1].'<br>';
-             //echo '[2]->'.$def_string[2].'<br>';
-             //echo '[3]->'.$def_string[3].'<br>';
-             //echo '[4]->'.$def_string[4].'<br>';
-             //echo '[5]->'.$def_string[5].'<br>';
-           if (strtoupper($def_string[1]) != 'DB_PREFIX' // the define of DB_PREFIX is not a tablename
-               && str_replace('PHPBB','',strtoupper($def_string[1]) ) == strtoupper($def_string[1])  // this is not a phpbb table
-               && str_replace(' ','',$def_string[2]) == ',DB_PREFIX.') { // this is a Zen Cart-related table (vs phpbb)
-               $tablename_read = $def_string[3];
-               foreach($tables_list as $existing_table) {
-                 if ($tablename_read == str_replace($db_prefix_rename_from,'',$existing_table)) {
-                  //echo $tablename_read.'<br>';
-                  $sql_command = 'alter table '. $db_prefix_rename_from . $tablename_read . ' rename ' . $newprefix.$tablename_read;
-                  //echo $sql_command .'<br>';
-                  $db->Execute($sql_command);
-                  $tables_updated++;
-                  $tablename_read = '';
-                  $sql_command = '';
-                }//endif $tablename_read == existing
-               }//end foreach $tables_list
-              } //endif is "DEFINE"?
-            } // endif substring not < or ? or // etc
-          } //end foreach $lines
-         }//end foreach $database_tablenames array
-
-         $db->Close();
-         } // end if zc_install-error
-
-         //echo $tables_updated;
-         if ($tables_updated <50) $zc_install->setError(ERROR_TEXT_TABLE_RENAME_INCOMPLETE, ERROR_CODE_TABLE_RENAME_INCOMPLETE, false);
-
-         if ($tables_updated >50) {
-           //update the configure.php files with the new prefix.
-           $configure_files_updated = 0;
-           foreach($configure_files_array as $filename) {
-            $lines = file($filename);
-            $full_file = '';
-            foreach ($lines as $line) {
-              $def_string=explode("'",$line);
-              if (strtoupper($def_string[1]) == 'DB_PREFIX') {
-              // check to see if prefix found matches what we've been processing... for safety to be sure we have the right line
-                $old_prefix_from_file = $def_string[3];
-                if ($old_prefix_from_file == DB_PREFIX || $old_prefix_from_file == $db_prefix_rename_from) {
-                  $line = '  define(\'DB_PREFIX\', \'' . $newprefix. '\');' . "\n";
-                  $configure_files_updated++;
-                }
-              } // endif DEFINE DB_PREFIX found;
-              $full_file .= $line;
-            } //end foreach $lines
-            $fp = fopen($filename, 'w');
-            fputs($fp, $full_file);
-            fclose($fp);
-            @chmod($filename, 0644);
-           } //end foreach array to update configure.php files
-         if ($configure_files_updated <2) $zc_install->setError(ERROR_TEXT_TABLE_RENAME_CONFIGUREPHP_FAILED, ERROR_CODE_TABLE_RENAME_CONFIGUREPHP_FAILED, false);
-        } //endif $tables_updated count sufficient
+      if ($newprefix != $db_prefix_rename_from) { // don't process prefix changes if same prefix selected
+        $zc_install->doPrefixRename($newprefix, $db_prefix_rename_from);
       } //endif newprefix != DB_PREFIX
   } //endif prefix POST'd
 
 // ?
   if (isset($_POST['upgrade'])) {
-      header('location: index.php?main_page=system_setup&language=' . $language . '&sql_cache='.$suggested_cache . '&is_upgrade=1');
+      header('location: index.php?main_page=system_setup' . zcInstallAddSID() );
     exit;
   }
 
 
  if ($db_upgraded_to_version==$latest_version && $zc_install->error == false && $failed_entries==0) { 
   // if all db upgrades have been applied, go to the 'finished' page.
-  header('location: index.php?main_page=finished&language=' . $language);
+  header('location: index.php?main_page=finished' . zcInstallAddSID() );
   exit;
   } else { //return for more upgrades
     if (!$zc_install->fatal_error && !$zc_install->error && $failed_entries==0 ) {
-      header('location: index.php?main_page=database_upgrade&language=' . $language);
+      header('location: index.php?main_page=database_upgrade' . zcInstallAddSID() );
       exit;
     }
   }//endif
  } // end if POST==submit
 
  if (isset($_POST['skip'])) {
-  header('location: index.php?main_page=finished&language=' . $language);
+  header('location: index.php?main_page=finished' . zcInstallAddSID() );
   exit;
  }
  if (isset($_POST['refresh'])) {
-   header('location: index.php?main_page=database_upgrade&language=' . $language);
+   header('location: index.php?main_page=database_upgrade' . zcInstallAddSID() );
    exit;
  }
+
+  $adminName = (isset($_POST['adminid'])) ? $_POST['adminid'] : '';
 ?>

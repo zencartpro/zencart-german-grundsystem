@@ -3,10 +3,10 @@
  * checkout_confirmation header_php.php
  *
  * @package page
- * @copyright Copyright 2003-2006 Zen Cart Development Team
+ * @copyright Copyright 2003-2007 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: header_php.php 5324 2006-12-21 17:41:25Z drbyte $
+ * @version $Id: header_php.php 6100 2007-04-01 10:24:05Z wilt $
  */
 
 // This should be first line of the script:
@@ -57,6 +57,10 @@ if (DISPLAY_CONDITIONS_ON_CHECKOUT == 'true') {
 
 require(DIR_WS_CLASSES . 'order.php');
 $order = new order;
+// load the selected shipping module
+require(DIR_WS_CLASSES . 'shipping.php');
+$shipping_modules = new shipping($_SESSION['shipping']);
+
 
 require(DIR_WS_CLASSES . 'order_total.php');
 $order_total_modules = new order_total;
@@ -65,12 +69,12 @@ $order_total_modules->pre_confirmation_check();
 
 // load the selected payment module
 require(DIR_WS_CLASSES . 'payment.php');
-
 if ($credit_covers) {
   unset($_SESSION['payment']);
   $_SESSION['payment'] = '';
 }
 
+//@debug echo ($credit_covers == true) ? 'TRUE' : 'FALSE';
 
 $payment_modules = new payment($_SESSION['payment']);
 $payment_modules->update_status();
@@ -87,10 +91,6 @@ if ($messageStack->size('checkout_payment') > 0) {
 }
 //echo $messageStack->size('checkout_payment');
 //die('here');
-
-// load the selected shipping module
-require(DIR_WS_CLASSES . 'shipping.php');
-$shipping_modules = new shipping($_SESSION['shipping']);
 
 // Stock Check
 $flagAnyOutOfStock = false;

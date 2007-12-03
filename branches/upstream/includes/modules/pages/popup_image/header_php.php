@@ -3,10 +3,10 @@
  * Pop up Image Header
  *
  * @package page
- * @copyright Copyright 2003-2006 Zen Cart Development Team
+ * @copyright Copyright 2003-2007 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: header_php.php 2984 2006-02-07 22:00:25Z drbyte $
+ * @version $Id: header_php.php 7319 2007-10-30 16:40:03Z drbyte $
  */
 /**
  * Header code file for the product-larger-images popup window
@@ -50,11 +50,7 @@
   }
   // check for a large image else use medium else use small
   if (!file_exists(DIR_WS_IMAGES . 'large/' . $products_image_large)) {
-    if (!file_exists(DIR_WS_IMAGES . 'medium/' . $products_image_medium)) {
-      $products_image_large = DIR_WS_IMAGES . $products_image;
-    } else {
-      $products_image_large = DIR_WS_IMAGES . 'medium/' . $products_image_medium;
-    }
+    $products_image_large = $products_image_medium;
   } else {
     $products_image_large = DIR_WS_IMAGES . 'large/' . $products_image_large;
   }

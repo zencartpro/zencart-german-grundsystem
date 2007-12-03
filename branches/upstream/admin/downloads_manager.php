@@ -1,23 +1,11 @@
 <?php
-//
-// +----------------------------------------------------------------------+
-// |zen-cart Open Source E-commerce                                       |
-// +----------------------------------------------------------------------+
-// | Copyright (c) 2003 The zen-cart developers                           |
-// |                                                                      |
-// | http://www.zen-cart.com/index.php                                    |
-// |                                                                      |
-// | Portions Copyright (c) 2003 osCommerce                               |
-// +----------------------------------------------------------------------+
-// | This source file is subject to version 2.0 of the GPL license,       |
-// | that is bundled with this package in the file LICENSE, and is        |
-// | available through the world-wide-web at the following url:           |
-// | http://www.zen-cart.com/license/2_0.txt.                             |
-// | If you did not receive a copy of the zen-cart license and are unable |
-// | to obtain it through the world-wide-web, please send a note to       |
-// | license@zen-cart.com so we can mail you a copy immediately.          |
-// +----------------------------------------------------------------------+
-//  $Id: downloads_manager.php 2685 2005-12-25 22:01:18Z wilt $
+/**
+ * @package admin
+ * @copyright Copyright 2003-2007 Zen Cart Development Team
+ * @copyright Portions Copyright 2003 osCommerce
+ * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
+ * @version $Id: downloads_manager.php 182 2007-12-02 10:04:59Z hugo13 $
+ */
 
   require('includes/application_top.php');
 
@@ -32,7 +20,7 @@
     switch ($action) {
       case 'insert':
       case 'save':
-        $db->Execute("update " . TABLE_PRODUCTS_ATTRIBUTES_DOWNLOAD . " set products_attributes_filename='" . $_POST['products_attributes_filename'] . "', products_attributes_maxdays='" . $_POST['products_attributes_maxdays'] . "', products_attributes_maxcount='" . $_POST['products_attributes_maxcount'] . "' where products_attributes_id='" . $_GET['padID'] . "'");
+        $db->Execute("update " . TABLE_PRODUCTS_ATTRIBUTES_DOWNLOAD . " set products_attributes_filename='" . zen_db_prepare_input($_POST['products_attributes_filename']) . "', products_attributes_maxdays='" . zen_db_prepare_input($_POST['products_attributes_maxdays']) . "', products_attributes_maxcount='" . zen_db_prepare_input($_POST['products_attributes_maxcount']) . "' where products_attributes_id='" . $_GET['padID'] . "'");
         zen_redirect(zen_href_link(FILENAME_DOWNLOADS_MANAGER, 'padID=' . $_GET['padID'] . '&page=' . $_GET['page']));
         break;
     }

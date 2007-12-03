@@ -3,10 +3,10 @@
  * meta_tags module
  *
  * @package modules
- * @copyright Copyright 2003-2006 Zen Cart Development Team
+ * @copyright Copyright 2003-2007 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: meta_tags.php 4960 2006-11-20 01:46:46Z drbyte $
+ * @version $Id: meta_tags.php 6863 2007-08-27 16:06:25Z drbyte $
  */
 if (!defined('IS_ADMIN_FLAG')) {
   die('Illegal Access');
@@ -46,10 +46,17 @@ if (!defined('METATAGS_DIVIDER')) define('METATAGS_DIVIDER', ' ');
 $sql = "select cd.categories_name from " . TABLE_CATEGORIES . " c, " . TABLE_CATEGORIES_DESCRIPTION . " cd where c.parent_id = 0 and c.categories_id = cd.categories_id and cd.language_id='" . (int)$_SESSION['languages_id'] . "' and c.categories_status=1";
 $keywords_metatags = $db->Execute($sql);
 while (!$keywords_metatags->EOF) {
-  $keywords_string_metatags .= $keywords_metatags->fields['categories_name'] . METATAGS_DIVIDER;
+  $keywords_string_metatags .= zen_clean_html($keywords_metatags->fields['categories_name']) . METATAGS_DIVIDER;
   $keywords_metatags->MoveNext();
 }
 define('KEYWORDS', str_replace('"','',zen_clean_html($keywords_string_metatags) . CUSTOM_KEYWORDS));
+
+// if per-page metatags overrides have been defined, use those, otherwise use usual defaults:
+if ($current_page_base != 'index') {
+  if (defined('META_TAG_TITLE_' . strtoupper($current_page_base))) define('META_TAG_TITLE', constant('META_TAG_TITLE_' . strtoupper($current_page_base)));
+  if (defined('META_TAG_DESCRIPTION_' . strtoupper($current_page_base))) define('META_TAG_DESCRIPTION', constant('META_TAG_DESCRIPTION_' . strtoupper($current_page_base)));
+  if (defined('META_TAG_KEYWORDS_' . strtoupper($current_page_base))) define('META_TAG_KEYWORDS', constant('META_TAG_KEYWORDS_' . strtoupper($current_page_base)));
+}
 
 // Get different meta tag values depending on main_page values
 switch ($_GET['main_page']) {
@@ -90,6 +97,12 @@ switch ($_GET['main_page']) {
   define('META_TAG_KEYWORDS', KEYWORDS . METATAGS_DIVIDER . HEADING_TITLE);
   break;
 
+  case ($this_is_home_page):
+  define('META_TAG_TITLE', (HOME_PAGE_TITLE != '' ? HOME_PAGE_TITLE : (defined('NAVBAR_TITLE') ? NAVBAR_TITLE . PRIMARY_SECTION : '') . TITLE . TAGLINE));
+  define('META_TAG_DESCRIPTION', (HOME_PAGE_META_DESCRIPTION != '') ? HOME_PAGE_META_DESCRIPTION : TITLE . PRIMARY_SECTION . (defined('NAVBAR_TITLE') ? NAVBAR_TITLE : '' ) . SECONDARY_SECTION . KEYWORDS);
+  define('META_TAG_KEYWORDS', (HOME_PAGE_META_KEYWORDS != '') ? HOME_PAGE_META_KEYWORDS : KEYWORDS . METATAGS_DIVIDER . (defined('NAVBAR_TITLE') ? NAVBAR_TITLE : '' ) );
+  break;
+
   case 'index':
   // bof: categories meta tags
   // run custom categories meta tags
@@ -108,9 +121,9 @@ switch ($_GET['main_page']) {
       if ($category_metatags->EOF) {
         $meta_tags_over_ride = true;
       } else {
-        define('META_TAG_TITLE', str_replace('"','',$category_metatags->fields['categories_name'] . PRIMARY_SECTION . TITLE . TAGLINE));
-        define('META_TAG_DESCRIPTION', str_replace('"','',TITLE . PRIMARY_SECTION . $category_metatags->fields['categories_name'] . SECONDARY_SECTION . KEYWORDS));
-        define('META_TAG_KEYWORDS', str_replace('"','',KEYWORDS . METATAGS_DIVIDER . $category_metatags->fields['categories_name']));
+        define('META_TAG_TITLE', str_replace('"','', zen_clean_html($category_metatags->fields['categories_name']) . PRIMARY_SECTION . TITLE . TAGLINE));
+        define('META_TAG_DESCRIPTION', str_replace('"','',TITLE . PRIMARY_SECTION . zen_clean_html($category_metatags->fields['categories_name']) . SECONDARY_SECTION . KEYWORDS));
+        define('META_TAG_KEYWORDS', str_replace('"','',KEYWORDS . METATAGS_DIVIDER . zen_clean_html($category_metatags->fields['categories_name'])));
       } // EOF
     } elseif ($category_depth == 'products') {
       if (isset($_GET['manufacturers_id']) || ((isset($_GET['filter_id']) && $_GET['filter_id'] > 0) && isset($_GET['cPath'])) ) {
@@ -134,9 +147,9 @@ switch ($_GET['main_page']) {
         if ($category_metatags->EOF) {
           $meta_tags_over_ride = true;
         } else {
-          define('META_TAG_TITLE', str_replace('"','',$category_metatags->fields['categories_name'] . PRIMARY_SECTION . TITLE . TAGLINE));
-          define('META_TAG_DESCRIPTION', str_replace('"','',TITLE . PRIMARY_SECTION . $category_metatags->fields['categories_name'] . SECONDARY_SECTION . KEYWORDS));
-          define('META_TAG_KEYWORDS', str_replace('"','',KEYWORDS . METATAGS_DIVIDER . $category_metatags->fields['categories_name']));
+          define('META_TAG_TITLE', str_replace('"','', zen_clean_html($category_metatags->fields['categories_name']) . PRIMARY_SECTION . TITLE . TAGLINE));
+          define('META_TAG_DESCRIPTION', str_replace('"','',TITLE . PRIMARY_SECTION . zen_clean_html($category_metatags->fields['categories_name']) . SECONDARY_SECTION . KEYWORDS));
+          define('META_TAG_KEYWORDS', str_replace('"','',KEYWORDS . METATAGS_DIVIDER . zen_clean_html($category_metatags->fields['categories_name'])));
         } // EOF
       }
     } else {
@@ -197,7 +210,7 @@ switch ($_GET['main_page']) {
   $sql= "select pd.products_name, p.products_model, p.products_price_sorter, p.products_tax_class_id,
                                       p.metatags_title_status, p.metatags_products_name_status, p.metatags_model_status,
                                       p.products_id, p.metatags_price_status, p.metatags_title_tagline_status,
-                                      pd.products_description, p.product_is_free,
+                                      pd.products_description, p.product_is_free, p.product_is_call,
                                       mtpd.metatags_title, mtpd.metatags_keywords, mtpd.metatags_description
                               from (" . TABLE_PRODUCTS . " p, " . TABLE_PRODUCTS_DESCRIPTION . " pd) left join " . TABLE_META_TAGS_PRODUCTS_DESCRIPTION . " mtpd on mtpd.products_id = p.products_id and mtpd.language_id = '" . (int)$_SESSION['languages_id'] . "'
                               where p.products_id = '" . (int)$_GET['products_id'] . "'
@@ -252,7 +265,8 @@ switch ($_GET['main_page']) {
         if ($product_info_metatags->fields['product_is_free'] != '1') {
           if (zen_check_show_prices() == true) {
             $meta_products_price = zen_get_products_actual_price($product_info_metatags->fields['products_id']);
-            $meta_products_price = SECONDARY_SECTION . $currencies->display_price($meta_products_price, zen_get_tax_rate($product_info_metatags->fields['products_tax_class_id']));
+            $prod_is_call_and_no_price = ($product_info_metatags->fields['product_is_call'] == '1' && $meta_products_price == 0);
+            $meta_products_price = (!$prod_is_call_and_no_price ? SECONDARY_SECTION . $currencies->display_price($meta_products_price, zen_get_tax_rate($product_info_metatags->fields['products_tax_class_id'])) : '');
           }
         } else {
           $meta_products_price = SECONDARY_SECTION . META_TAG_PRODUCTS_PRICE_IS_FREE_TEXT;
@@ -312,7 +326,14 @@ switch ($_GET['main_page']) {
     define('META_TAG_KEYWORDS', str_replace('"','',KEYWORDS . METATAGS_DIVIDER . $meta_products_name . METATAGS_DIVIDER . $review_metatags->fields['customers_name'] . METATAGS_DIVIDER . $reviews_rating_metatags));
   } // EOF
   break;
-
+// EZ-Pages:
+  case 'page':
+  $ezpage_id = (int)$_GET['id'];
+  $chapter_id = (int)$_GET['chapter'];
+  if (defined('META_TAG_TITLE_EZPAGE_'.$ezpage_id)) define('META_TAG_TITLE', constant('META_TAG_TITLE_EZPAGE_'.$ezpage_id));
+  if (defined('META_TAG_DESCRIPTION_EZPAGE_'.$ezpage_id)) define('META_TAG_DESCRIPTION', constant('META_TAG_DESCRIPTION_EZPAGE_'.$ezpage_id));
+  if (defined('META_TAG_KEYWORDS_EZPAGE_'.$ezpage_id)) define('META_TAG_KEYWORDS', constant('META_TAG_KEYWORDS_EZPAGE_'.$ezpage_id));
+// NO "break" here. Allow defaults if not overridden at the per-page level
   default:
   define('META_TAG_TITLE', (defined('NAVBAR_TITLE') ? NAVBAR_TITLE . PRIMARY_SECTION : '') . TITLE . TAGLINE);
   define('META_TAG_DESCRIPTION', TITLE . PRIMARY_SECTION . (defined('NAVBAR_TITLE') ? NAVBAR_TITLE : '' ) . SECONDARY_SECTION . KEYWORDS);

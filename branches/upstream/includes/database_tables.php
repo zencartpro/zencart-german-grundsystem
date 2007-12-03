@@ -4,10 +4,10 @@
  * Defines the database table names used in the project
  *
  * @package initSystem
- * @copyright Copyright 2003-2005 Zen Cart Development Team
+ * @copyright Copyright 2003-2007 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: database_tables.php 4862 2006-10-29 21:34:18Z drbyte $
+ * @version $Id: database_tables.php 5924 2007-02-28 08:25:15Z drbyte $
  * @private
  */
 
@@ -52,6 +52,8 @@ define('TABLE_MANUFACTURERS_INFO', DB_PREFIX . 'manufacturers_info');
 define('TABLE_META_TAGS_PRODUCTS_DESCRIPTION', DB_PREFIX . 'meta_tags_products_description');
 define('TABLE_METATAGS_CATEGORIES_DESCRIPTION', DB_PREFIX . 'meta_tags_categories_description');
 define('TABLE_NEWSLETTERS', DB_PREFIX . 'newsletters');
+define('TABLE_NOCHEX', DB_PREFIX . 'nochex_apc_transactions');
+define('TABLE_NOCHEX_SESSION', DB_PREFIX . 'nochex_sessions');
 define('TABLE_ORDERS', DB_PREFIX . 'orders');
 define('TABLE_ORDERS_PRODUCTS', DB_PREFIX . 'orders_products');
 define('TABLE_ORDERS_PRODUCTS_ATTRIBUTES', DB_PREFIX . 'orders_products_attributes');

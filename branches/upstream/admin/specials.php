@@ -4,7 +4,7 @@
  * @copyright Copyright 2003-2006 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: specials.php 4737 2006-10-13 07:13:11Z drbyte $
+ * @version $Id: specials.php 6346 2007-05-20 14:20:46Z ajeh $
  */
 
   require('includes/application_top.php');
@@ -335,7 +335,7 @@ var EndDate = new ctlSpiffyCalendarBox("EndDate", "new_special", "end", "btnDate
         <td><table border="0" width="100%" cellspacing="0" cellpadding="2">
           <tr>
             <td class="main"><br><?php echo TEXT_SPECIALS_PRICE_TIP; ?></td>
-            <td class="main" align="right" valign="top"><br><?php echo (($form_action == 'insert') ? zen_image_submit('button_insert.gif', IMAGE_INSERT) : zen_image_submit('button_update.gif', IMAGE_UPDATE)) . '&nbsp;&nbsp;&nbsp;<a href="' . zen_href_link(FILENAME_SPECIALS, 'page=' . $_GET['page'] . ((isset($_GET['sID']) and $_GET['sID'] != '') ? '&sID=' . $_GET['sID'] : '')) . '">' . zen_image_button('button_cancel.gif', IMAGE_CANCEL) . '</a>'; ?></td>
+            <td class="main" align="right" valign="top"><br><?php echo (($form_action == 'insert') ? zen_image_submit('button_insert.gif', IMAGE_INSERT) : zen_image_submit('button_update.gif', IMAGE_UPDATE)) . '&nbsp;&nbsp;&nbsp;<a href="' . ($_GET['go_back'] == 'ON' ? zen_href_link(FILENAME_PRODUCTS_PRICE_MANAGER, 'products_filter=' . $_GET['add_products_id']) : zen_href_link(FILENAME_SPECIALS, 'page=' . $_GET['page'] . ((isset($_GET['sID']) and $_GET['sID'] != '') ? '&sID=' . $_GET['sID'] : ''))) . '">' . zen_image_button('button_cancel.gif', IMAGE_CANCEL) . '</a>'; ?></td>
           </tr>
         </table></td>
       </form></tr>

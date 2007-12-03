@@ -3,10 +3,10 @@
  * ezpages_bar_header - used to display links to EZ-Pages content horizontally as a header element
  *
  * @package templateSystem
- * @copyright Copyright 2003-2006 Zen Cart Development Team
+ * @copyright Copyright 2003-2007 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: ezpages_bar_header.php 3179 2006-03-12 22:31:33Z drbyte $
+ * @version $Id: ezpages_bar_header.php 6021 2007-03-17 16:34:19Z ajeh $
  */
 if (!defined('IS_ADMIN_FLAG')) {
   die('Illegal Access');
@@ -37,7 +37,7 @@ if (EZPAGES_STATUS_HEADER == '1' or (EZPAGES_STATUS_HEADER == '2' and (strstr(EX
         case ($page_query->fields['alt_url'] != '' and $page_query->fields['page_open_new_window'] == '1'):
         $page_query_list_header[$rows]['altURL']  = (substr($page_query->fields['alt_url'],0,4) == 'http') ?
         $page_query->fields['alt_url'] :
-        ($page_query->fields['alt_url']=='' ? '' : zen_href_link($page_query->fields['alt_url'], 'target="_blank', ($page_query->fields['page_is_ssl']=='0' ? 'NONSSL' : 'SSL'), true, true, true));
+        ($page_query->fields['alt_url']=='' ? '' : zen_href_link($page_query->fields['alt_url'], '', ($page_query->fields['page_is_ssl']=='0' ? 'NONSSL' : 'SSL'), true, true, true));
         break;
         // internal link same window
         case ($page_query->fields['alt_url'] != '' and $page_query->fields['page_open_new_window'] == '0'):
@@ -49,7 +49,7 @@ if (EZPAGES_STATUS_HEADER == '1' or (EZPAGES_STATUS_HEADER == '2' and (strstr(EX
 
       // if altURL is specified, use it; otherwise, use EZPage ID to create link
       $page_query_list_header[$rows]['link'] = ($page_query_list_header[$rows]['altURL'] =='') ?
-      zen_href_link(FILENAME_EZPAGES, 'id=' . $page_query->fields['pages_id'] . '&chapter=' . $page_query->fields['toc_chapter'], ($page_query->fields['page_is_ssl']=='0' ? 'NONSSL' : 'SSL')) :
+      zen_href_link(FILENAME_EZPAGES, 'id=' . $page_query->fields['pages_id'] . ($page_query->fields['toc_chapter'] > 0 ? '&chapter=' . $page_query->fields['toc_chapter'] : ''), ($page_query->fields['page_is_ssl']=='0' ? 'NONSSL' : 'SSL')) :
       $page_query_list_header[$rows]['altURL'];
       $page_query_list_header[$rows]['link'] .= ($page_query->fields['page_open_new_window'] == '1' ? '" target="_blank' : '');
 

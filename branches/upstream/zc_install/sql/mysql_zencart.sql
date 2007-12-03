@@ -2,16 +2,16 @@
 # * Main Zen Cart SQL Load for MySQL databases
 # * @package Installer
 # * @access private
-# * @copyright Copyright 2003-2006 Zen Cart Development Team
+# * @copyright Copyright 2003-2007 Zen Cart Development Team
 # * @copyright Portions Copyright 2003 osCommerce
 # * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
-# * @version $Id: mysql_zencart.sql 5459 2006-12-29 23:56:20Z drbyte $
+# * @version $Id: mysql_zencart.sql 7555 2007-11-30 17:39:21Z drbyte $
 #
 
 ############ IMPORTANT INSTRUCTIONS ###############
 #
 # * Zen Cart uses the zc_install/index.php program to do installations
-# * This SQL script is intended to be used by running zc_install 
+# * This SQL script is intended to be used by running zc_install
 # * It is *not* recommended to simply run these statements manually via any other means
 # * ie: not via phpMyAdmin or other SQL front-end tools
 # * The zc_install program catches possible problems/exceptions
@@ -47,7 +47,7 @@ CREATE TABLE address_book (
   address_book_id int(11) NOT NULL auto_increment,
   customers_id int(11) NOT NULL default '0',
   entry_gender char(1) NOT NULL default '',
-  entry_company varchar(32) default NULL,
+  entry_company varchar(64) default NULL,
   entry_firstname varchar(32) NOT NULL default '',
   entry_lastname varchar(32) NOT NULL default '',
   entry_street_address varchar(64) NOT NULL default '',
@@ -105,7 +105,7 @@ CREATE TABLE admin_activity_log (
   access_date datetime NOT NULL default '0001-01-01 00:00:00',
   admin_id int(11) NOT NULL default '0',
   page_accessed varchar(80) NOT NULL default '',
-  page_parameters varchar(150) default NULL,
+  page_parameters text,
   ip_address varchar(15) NOT NULL default '',
   PRIMARY KEY  (log_id),
   KEY idx_page_accessed_zen (page_accessed),
@@ -126,7 +126,7 @@ CREATE TABLE authorizenet (
   order_id int(11) NOT NULL default '0',
   response_code int(1) NOT NULL default '0',
   response_text varchar(255) NOT NULL default '',
-  authorization_type text NOT NULL,
+  authorization_type varchar(50) NOT NULL default '',
   transaction_id int(15) NOT NULL default '0',
   sent longtext NOT NULL,
   received longtext NOT NULL,
@@ -555,7 +555,7 @@ CREATE TABLE customers_info (
 DROP TABLE IF EXISTS db_cache;
 CREATE TABLE db_cache (
   cache_entry_name varchar(64) NOT NULL default '',
-  cache_data blob,
+  cache_data mediumblob,
   cache_entry_created int(15) default NULL,
   PRIMARY KEY  (cache_entry_name)
 ) TYPE=MyISAM;
@@ -599,7 +599,7 @@ CREATE TABLE ezpages (
   pages_title varchar(64) NOT NULL default '',
   alt_url varchar(255) NOT NULL default '',
   alt_url_external varchar(255) NOT NULL default '',
-  pages_html_text text,
+  pages_html_text mediumtext,
   status_header int(1) NOT NULL default '1',
   status_sidebox int(1) NOT NULL default '1',
   status_footer int(1) NOT NULL default '1',
@@ -912,6 +912,50 @@ CREATE TABLE newsletters (
 # --------------------------------------------------------
 
 #
+# Table structure for table 'nochex_apc_transactions'
+#
+
+DROP TABLE IF EXISTS nochex_apc_transactions;
+CREATE TABLE nochex_apc_transactions (
+  nochex_apc_id int(11) unsigned NOT NULL auto_increment,
+  order_id int(11) unsigned NOT NULL default 0,
+  nc_transaction_id varchar(30) NOT NULL,
+  nc_transaction_date varchar(100) NOT NULL,
+  nc_to_email varchar(255) NOT NULL,
+  nc_from_email varchar(255) NOT NULL,
+  nc_order_id varchar(255) NOT NULL,
+  nc_custom varchar(255) NOT NULL,
+  nc_amount decimal(9,2) NOT NULL,
+  nc_security_key varchar(255) NOT NULL,
+  nc_status varchar(15) NOT NULL,
+  nochex_response varchar(255) NOT NULL,
+  last_modified datetime NOT NULL default '0001-01-01 00:00:00',
+  date_added datetime NOT NULL default '0001-01-01 00:00:00',
+  memo text,
+  PRIMARY KEY  (nochex_apc_id),
+  KEY idx_order_id_zen (order_id)
+);
+
+# --------------------------------------------------------
+
+#
+# Table structure for table 'nochex_sessions'
+#
+
+DROP TABLE IF EXISTS nochex_sessions;
+CREATE TABLE nochex_sessions (
+  unique_id int(11) NOT NULL auto_increment,
+  session_id text NOT NULL,
+  saved_session mediumblob NOT NULL,
+  expiry int(17) NOT NULL default '0',
+  PRIMARY KEY  (unique_id),
+  KEY idx_session_id_zen (session_id(36))
+);
+
+
+# --------------------------------------------------------
+
+#
 # Table structure for table 'orders'
 #
 
@@ -920,7 +964,7 @@ CREATE TABLE orders (
   orders_id int(11) NOT NULL auto_increment,
   customers_id int(11) NOT NULL default '0',
   customers_name varchar(64) NOT NULL default '',
-  customers_company varchar(32) default NULL,
+  customers_company varchar(64) default NULL,
   customers_street_address varchar(64) NOT NULL default '',
   customers_suburb varchar(32) default NULL,
   customers_city varchar(32) NOT NULL default '',
@@ -931,7 +975,7 @@ CREATE TABLE orders (
   customers_email_address varchar(96) NOT NULL default '',
   customers_address_format_id int(5) NOT NULL default '0',
   delivery_name varchar(64) NOT NULL default '',
-  delivery_company varchar(32) default NULL,
+  delivery_company varchar(64) default NULL,
   delivery_street_address varchar(64) NOT NULL default '',
   delivery_suburb varchar(32) default NULL,
   delivery_city varchar(32) NOT NULL default '',
@@ -940,7 +984,7 @@ CREATE TABLE orders (
   delivery_country varchar(32) NOT NULL default '',
   delivery_address_format_id int(5) NOT NULL default '0',
   billing_name varchar(64) NOT NULL default '',
-  billing_company varchar(32) default NULL,
+  billing_company varchar(64) default NULL,
   billing_street_address varchar(64) NOT NULL default '',
   billing_suburb varchar(32) default NULL,
   billing_city varchar(32) NOT NULL default '',
@@ -1014,7 +1058,7 @@ CREATE TABLE orders_products_attributes (
   orders_id int(11) NOT NULL default '0',
   orders_products_id int(11) NOT NULL default '0',
   products_options varchar(32) NOT NULL default '',
-  products_options_values BLOB NOT NULL,
+  products_options_values text NOT NULL,
   options_values_price decimal(15,4) NOT NULL default '0.0000',
   price_prefix char(1) NOT NULL default '',
   product_attribute_is_free tinyint(1) NOT NULL default '0',
@@ -1122,33 +1166,35 @@ CREATE TABLE orders_total (
 DROP TABLE IF EXISTS paypal;
 CREATE TABLE paypal (
   paypal_ipn_id int(11) unsigned NOT NULL auto_increment,
-  zen_order_id int(11) unsigned NOT NULL default '0',
-  txn_type varchar(32) NOT NULL default '',
-  reason_code varchar(15) default NULL,
-  payment_type varchar(7) NOT NULL default '',
-  payment_status varchar(17) NOT NULL default '',
-  pending_reason varchar(14) default NULL,
-  invoice varchar(64) default NULL,
+  order_id int(11) unsigned NOT NULL default '0',
+  txn_type varchar(40) NOT NULL default '',
+  module_name varchar(40) NOT NULL default '',
+  module_mode varchar(40) NOT NULL default '',
+  reason_code varchar(40) default NULL,
+  payment_type varchar(40) NOT NULL default '',
+  payment_status varchar(32) NOT NULL default '',
+  pending_reason varchar(32) default NULL,
+  invoice varchar(128) default NULL,
   mc_currency char(3) NOT NULL default '',
   first_name varchar(32) NOT NULL default '',
   last_name varchar(32) NOT NULL default '',
-  payer_business_name varchar(64) default NULL,
-  address_name varchar(32) default NULL,
-  address_street varchar(64) default NULL,
-  address_city varchar(32) default NULL,
-  address_state varchar(32) default NULL,
+  payer_business_name varchar(128) default NULL,
+  address_name varchar(64) default NULL,
+  address_street varchar(254) default NULL,
+  address_city varchar(120) default NULL,
+  address_state varchar(120) default NULL,
   address_zip varchar(10) default NULL,
   address_country varchar(64) default NULL,
   address_status varchar(11) default NULL,
-  payer_email varchar(96) NOT NULL default '',
+  payer_email varchar(128) NOT NULL default '',
   payer_id varchar(32) NOT NULL default '',
   payer_status varchar(10) NOT NULL default '',
   payment_date datetime NOT NULL default '0001-01-01 00:00:00',
-  business varchar(96) NOT NULL default '',
-  receiver_email varchar(96) NOT NULL default '',
+  business varchar(128) NOT NULL default '',
+  receiver_email varchar(128) NOT NULL default '',
   receiver_id varchar(32) NOT NULL default '',
-  txn_id varchar(17) NOT NULL default '',
-  parent_txn_id varchar(17) default NULL,
+  txn_id varchar(20) NOT NULL default '',
+  parent_txn_id varchar(20) default NULL,
   num_cart_items tinyint(4) unsigned NOT NULL default '1',
   mc_gross decimal(7,2) NOT NULL default '0.00',
   mc_fee decimal(7,2) NOT NULL default '0.00',
@@ -1163,7 +1209,7 @@ CREATE TABLE paypal (
   date_added datetime NOT NULL default '0001-01-01 00:00:00',
   memo text,
   PRIMARY KEY (paypal_ipn_id,txn_id),
-  KEY idx_zen_order_id_zen (zen_order_id)
+  KEY idx_order_id_zen (order_id)
 ) TYPE=MyISAM;
 
 # --------------------------------------------------------
@@ -1220,7 +1266,7 @@ DROP TABLE IF EXISTS paypal_session;
 CREATE TABLE paypal_session (
   unique_id int(11) NOT NULL auto_increment,
   session_id text NOT NULL,
-  saved_session blob NOT NULL,
+  saved_session mediumblob NOT NULL,
   expiry int(17) NOT NULL default '0',
   PRIMARY KEY  (unique_id),
   KEY idx_session_id_zen (session_id(36))
@@ -1235,34 +1281,36 @@ CREATE TABLE paypal_session (
 DROP TABLE IF EXISTS paypal_testing;
 CREATE TABLE paypal_testing (
   paypal_ipn_id int(11) unsigned NOT NULL auto_increment,
-  zen_order_id int(11) unsigned NOT NULL default '0',
+  order_id int(11) unsigned NOT NULL default '0',
   custom varchar(255) NOT NULL default '',
-  txn_type varchar(10) NOT NULL default '',
-  reason_code varchar(15) default NULL,
-  payment_type varchar(7) NOT NULL default '',
-  payment_status varchar(17) NOT NULL default '',
-  pending_reason varchar(14) default NULL,
-  invoice varchar(64) default NULL,
+  txn_type varchar(40) NOT NULL default '',
+  module_name varchar(40) NOT NULL default '',
+  module_mode varchar(40) NOT NULL default '',
+  reason_code varchar(40) default NULL,
+  payment_type varchar(40) NOT NULL default '',
+  payment_status varchar(32) NOT NULL default '',
+  pending_reason varchar(32) default NULL,
+  invoice varchar(128) default NULL,
   mc_currency char(3) NOT NULL default '',
   first_name varchar(32) NOT NULL default '',
   last_name varchar(32) NOT NULL default '',
-  payer_business_name varchar(64) default NULL,
-  address_name varchar(32) default NULL,
-  address_street varchar(64) default NULL,
-  address_city varchar(32) default NULL,
-  address_state varchar(32) default NULL,
+  payer_business_name varchar(128) default NULL,
+  address_name varchar(64) default NULL,
+  address_street varchar(254) default NULL,
+  address_city varchar(120) default NULL,
+  address_state varchar(120) default NULL,
   address_zip varchar(10) default NULL,
   address_country varchar(64) default NULL,
   address_status varchar(11) default NULL,
-  payer_email varchar(96) NOT NULL default '',
+  payer_email varchar(128) NOT NULL default '',
   payer_id varchar(32) NOT NULL default '',
   payer_status varchar(10) NOT NULL default '',
   payment_date datetime NOT NULL default '0001-01-01 00:00:00',
-  business varchar(96) NOT NULL default '',
-  receiver_email varchar(96) NOT NULL default '',
+  business varchar(128) NOT NULL default '',
+  receiver_email varchar(128) NOT NULL default '',
   receiver_id varchar(32) NOT NULL default '',
-  txn_id varchar(17) NOT NULL default '',
-  parent_txn_id varchar(17) default NULL,
+  txn_id varchar(20) NOT NULL default '',
+  parent_txn_id varchar(20) default NULL,
   num_cart_items tinyint(4) unsigned NOT NULL default '1',
   mc_gross decimal(7,2) NOT NULL default '0.00',
   mc_fee decimal(7,2) NOT NULL default '0.00',
@@ -1277,7 +1325,7 @@ CREATE TABLE paypal_testing (
   date_added datetime NOT NULL default '0001-01-01 00:00:00',
   memo text,
   PRIMARY KEY  (paypal_ipn_id,txn_id),
-  KEY idx_zen_order_id_zen (zen_order_id)
+  KEY idx_order_id_zen (order_id)
 ) TYPE=MyISAM;
 
 # --------------------------------------------------------
@@ -1799,7 +1847,7 @@ DROP TABLE IF EXISTS sessions;
 CREATE TABLE sessions (
   sesskey varchar(32) NOT NULL default '',
   expiry int(11) unsigned NOT NULL default '0',
-  value text NOT NULL,
+  value mediumblob NOT NULL,
   PRIMARY KEY  (sesskey)
 ) TYPE=MyISAM;
 
@@ -1991,11 +2039,13 @@ INSERT INTO banners (banners_title, banners_url, banners_image, banners_group, b
 INSERT INTO banners (banners_title, banners_url, banners_image, banners_group, banners_html_text, expires_impressions, expires_date, date_scheduled, date_added, date_status_change, status, banners_open_new_windows, banners_on_ssl, banners_sort_order) VALUES ('Zen Cart the art of e-commerce', 'http://www.zen-cart.com', 'banners/125zen_logo.gif', 'SideBox-Banners', '', 0, NULL, NULL, '2004-01-11 20:59:12', NULL, 1, 1, 1, 0);
 INSERT INTO banners (banners_title, banners_url, banners_image, banners_group, banners_html_text, expires_impressions, expires_date, date_scheduled, date_added, date_status_change, status, banners_open_new_windows, banners_on_ssl, banners_sort_order) VALUES ('Zen Cart the art of e-commerce', 'http://www.zen-cart.com', 'banners/125x125_zen_logo.gif', 'SideBox-Banners', '', 0, NULL, NULL, '2004-01-11 20:59:12', NULL, 1, 1, 1, 0);
 INSERT INTO banners (banners_title, banners_url, banners_image, banners_group, banners_html_text, expires_impressions, expires_date, date_scheduled, date_added, date_status_change, status, banners_open_new_windows, banners_on_ssl, banners_sort_order) VALUES ('if you have to think ... you haven''t been Zenned!', 'http://www.zen-cart.com', 'banners/think_anim.gif', 'Wide-Banners', '', 0, NULL, NULL, '2004-01-12 20:53:18', NULL, 1, 1, 1, 0);
-INSERT INTO banners (banners_title, banners_url, banners_image, banners_group, banners_html_text, expires_impressions, expires_date, date_scheduled, date_added, date_status_change, status, banners_open_new_windows, banners_on_ssl, banners_sort_order) VALUES ('Sashbox.net - the ultimate e-commerce hosting solution', 'http://www.sashbox.net/zencart/', 'banners/sashbox_125x50.jpg', 'BannersAll', '', 0, NULL, NULL, '2005-05-13 10:53:50', NULL, 1, 1, 1, 20);
+#INSERT INTO banners (banners_title, banners_url, banners_image, banners_group, banners_html_text, expires_impressions, expires_date, date_scheduled, date_added, date_status_change, status, banners_open_new_windows, banners_on_ssl, banners_sort_order) VALUES ('Sashbox.net - the ultimate e-commerce hosting solution', 'http://www.sashbox.net/zencart/', 'banners/sashbox_125x50.jpg', 'BannersAll', '', 0, NULL, NULL, '2005-05-13 10:53:50', NULL, 1, 1, 1, 20);
 INSERT INTO banners (banners_title, banners_url, banners_image, banners_group, banners_html_text, expires_impressions, expires_date, date_scheduled, date_added, date_status_change, status, banners_open_new_windows, banners_on_ssl, banners_sort_order) VALUES ('Zen Cart the art of e-commerce', 'http://www.zen-cart.com', 'banners/bw_zen_88wide.gif', 'BannersAll', '', 0, NULL, NULL, '2005-05-13 10:54:38', NULL, 1, 1, 1, 10);
-INSERT INTO banners (banners_title, banners_url, banners_image, banners_group, banners_html_text, expires_impressions, expires_date, date_scheduled, date_added, date_status_change, status, banners_open_new_windows, banners_on_ssl, banners_sort_order) VALUES ('Sashbox.net - the ultimate e-commerce hosting solution', 'http://www.sashbox.net/zencart/', 'banners/sashbox_468x60.jpg', 'Wide-Banners', '', 0, NULL, NULL, '2005-05-13 10:55:11', NULL, 1, 1, 1, 0);
+#INSERT INTO banners (banners_title, banners_url, banners_image, banners_group, banners_html_text, expires_impressions, expires_date, date_scheduled, date_added, date_status_change, status, banners_open_new_windows, banners_on_ssl, banners_sort_order) VALUES ('Sashbox.net - the ultimate e-commerce hosting solution', 'http://www.sashbox.net/zencart/', 'banners/sashbox_468x60.jpg', 'Wide-Banners', '', 0, NULL, NULL, '2005-05-13 10:55:11', NULL, 1, 1, 1, 0);
 INSERT INTO banners (banners_title, banners_url, banners_image, banners_group, banners_html_text, expires_impressions, expires_date, date_scheduled, date_added, date_status_change, status, banners_open_new_windows, banners_on_ssl, banners_sort_order) VALUES ('Start Accepting Credit Cards For Your Business Today!', 'http://www.zen-cart.com/index.php?main_page=infopages&pages_id=30', 'banners/cardsvcs_468x60.gif', 'Wide-Banners', '', 0, NULL, NULL, '2006-03-13 11:02:43', NULL, 1, 1, 1, 0);
-
+INSERT INTO banners (banners_title, banners_url, banners_image, banners_group, banners_html_text, expires_impressions, expires_date, date_scheduled, date_added, date_status_change, status, banners_open_new_windows, banners_on_ssl, banners_sort_order) VALUES ('eStart Your Web Store with Zen Cart(tm)', 'http://www.lulu.com/content/466605', 'banners/big-book-ad.gif', 'Wide-Banners', '', '0', NULL, NULL, '2007-02-10 00:00:00',NULL,'1','1','1','1');
+INSERT INTO banners (banners_title, banners_url, banners_image, banners_group, banners_html_text, expires_impressions, expires_date, date_scheduled, date_added, date_status_change, status, banners_open_new_windows, banners_on_ssl, banners_sort_order) VALUES ('eStart Your Web Store with Zen Cart(tm)', 'http://www.lulu.com/content/466605', 'banners/tall-book.gif', 'SideBox-Banners', '', '0', NULL, NULL, '2007-02-10 00:00:00',NULL,'1','1','1','1');
+INSERT INTO banners (banners_title, banners_url, banners_image, banners_group, banners_html_text, expires_impressions, expires_date, date_scheduled, date_added, date_status_change, status, banners_open_new_windows, banners_on_ssl, banners_sort_order) VALUES ('eStart Your Web Store with Zen Cart(tm)', 'http://www.lulu.com/content/466605', 'banners/tall-book.gif', 'BannersAll', '', '0', NULL, NULL, '2007-02-10 00:00:00',NULL,'1','1','1','15');
 
 
 INSERT INTO configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) VALUES ('Store Name', 'STORE_NAME', 'Zen Cart', 'The name of my store', '1', '1', now());
@@ -2029,7 +2079,7 @@ INSERT INTO configuration (configuration_title, configuration_key, configuration
 INSERT INTO configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, last_modified, date_added, use_function, set_function) VALUES ('Missing Page Check', 'MISSING_PAGE_CHECK', 'Page Not Found', 'Zen Cart can check for missing pages in the URL and redirect to Index page. For debugging you may want to turn this off. <br /><br /><strong>Default=On</strong><br />On = Send missing pages to \'index\'<br />Off = Don\'t check for missing pages<br />Page Not Found = display the Page-Not-Found page', 1, 48, '2003-11-08 20:24:47', '0001-01-01 00:00:00', '', 'zen_cfg_select_option(array(\'On\', \'Off\', \'Page Not Found\'),');
 
 INSERT INTO configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) VALUES ('cURL Proxy Status', 'CURL_PROXY_REQUIRED', 'False', 'Does your host require that you use a proxy for cURL communication?', '1', '50', 'zen_cfg_select_option(array(\'True\', \'False\'), ', now());
-INSERT INTO configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, last_modified, date_added, use_function, set_function) VALUES ('cURL Proxy Address', 'CURL_PROXY_SERVER_DETAILS', '', 'If you have GoDaddy hosting or other hosting services that require use of a proxy to talk to external sites via cURL, enter their proxy address here.<br />format: address:port<br />ie: for GoDaddy, enter: 64.202.165.130:3128', 1, 51, NULL, now(), NULL, NULL);
+INSERT INTO configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, last_modified, date_added, use_function, set_function) VALUES ('cURL Proxy Address', 'CURL_PROXY_SERVER_DETAILS', '', 'If you have GoDaddy hosting or other hosting services that require use of a proxy to talk to external sites via cURL, enter their proxy address here.<br />format: address:port<br />ie: for GoDaddy, enter: <strong>proxy.shr.secureserver.net:3128</strong> or possibly 64.202.165.130:3128', 1, 51, NULL, now(), NULL, NULL);
 
 
 INSERT INTO configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) VALUES ('HTML Editor', 'HTML_EDITOR_PREFERENCE', 'NONE', 'Please select the HTML/Rich-Text editor you wish to use for composing Admin-related emails, newsletters, and product descriptions', '1', '110', 'zen_cfg_pull_down_htmleditors(', now());
@@ -2047,7 +2097,7 @@ INSERT INTO configuration (configuration_title, configuration_key, configuration
 INSERT INTO configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) VALUES ('Street Address', 'ENTRY_STREET_ADDRESS_MIN_LENGTH', '5', 'Minimum length of street address', '2', '5', now());
 INSERT INTO configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) VALUES ('Company', 'ENTRY_COMPANY_MIN_LENGTH', '0', 'Minimum length of company name', '2', '6', now());
 INSERT INTO configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) VALUES ('Post Code', 'ENTRY_POSTCODE_MIN_LENGTH', '4', 'Minimum length of post code', '2', '7', now());
-INSERT INTO configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) VALUES ('City', 'ENTRY_CITY_MIN_LENGTH', '3', 'Minimum length of city', '2', '8', now());
+INSERT INTO configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) VALUES ('City', 'ENTRY_CITY_MIN_LENGTH', '2', 'Minimum length of city', '2', '8', now());
 INSERT INTO configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) VALUES ('State', 'ENTRY_STATE_MIN_LENGTH', '2', 'Minimum length of state', '2', '9', now());
 INSERT INTO configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) VALUES ('Telephone Number', 'ENTRY_TELEPHONE_MIN_LENGTH', '3', 'Minimum length of telephone number', '2', '10', now());
 INSERT INTO configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) VALUES ('Password', 'ENTRY_PASSWORD_MIN_LENGTH', '5', 'Minimum length of password', '2', '11', now());
@@ -2075,11 +2125,13 @@ INSERT INTO configuration (configuration_title, configuration_key, configuration
 INSERT INTO configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) VALUES ('Length of Music Genre Name', 'MAX_DISPLAY_MUSIC_GENRES_NAME_LEN', '15', 'Used in music genres box; maximum length of music genre name to display. Longer names will be truncated.', '3', '8', now());
 INSERT INTO configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) VALUES ('Length of Manufacturers Name', 'MAX_DISPLAY_MANUFACTURER_NAME_LEN', '15', 'Used in manufacturers box; maximum length of manufacturers name to display. Longer names will be truncated.', '3', '8', now());
 INSERT INTO configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) VALUES ('New Product Reviews Per Page', 'MAX_DISPLAY_NEW_REVIEWS', '6', 'Number of new reviews to display on each page', '3', '9', now());
-INSERT INTO configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) VALUES ('Random Product Reviews For Box', 'MAX_RANDOM_SELECT_REVIEWS', '10', 'Number of random product reviews to rotate in the box', '3', '10', now());
-INSERT INTO configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) VALUES ('Random New Products For Box', 'MAX_RANDOM_SELECT_NEW', '10', 'Number of random new product to display in box', '3', '11', now());
-INSERT INTO configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) VALUES ('Random Products On Special For Box', 'MAX_RANDOM_SELECT_SPECIALS', '10', 'Number of random products on special to display in box', '3', '12', now());
+
+INSERT INTO configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) VALUES ('Random Product Reviews for SideBox', 'MAX_RANDOM_SELECT_REVIEWS', '1', 'Number of random product REVIEWS to rotate in the sidebox<br />Enter the number of products to display in this sidebox at one time.<br /><br />How many products do you want to display in this sidebox?', '3', '10', now());
+INSERT INTO configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) VALUES ('Random New Products for SideBox', 'MAX_RANDOM_SELECT_NEW', '3', 'Number of random NEW products to rotate in the sidebox<br />Enter the number of products to display in this sidebox at one time.<br /><br />How many products do you want to display in this sidebox?', '3', '11', now());
+INSERT INTO configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) VALUES ('Random Products On Special for SideBox', 'MAX_RANDOM_SELECT_SPECIALS', '2', 'Number of random products on SPECIAL to rotate in the sidebox<br />Enter the number of products to display in this sidebox at one time.<br /><br />How many products do you want to display in this sidebox?', '3', '12', now());
+
 INSERT INTO configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) VALUES ('Categories To List Per Row', 'MAX_DISPLAY_CATEGORIES_PER_ROW', '3', 'How many categories to list per row', '3', '13', now());
-INSERT INTO configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) VALUES ('New Products Listing- Number Per Page', 'MAX_DISPLAY_PRODUCTS_NEW', '10', 'Number of new products\' listings per page', '3', '14', now());
+INSERT INTO configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) VALUES ('New Products Listing- Number Per Page', 'MAX_DISPLAY_PRODUCTS_NEW', '10', 'Number of new products listed per page', '3', '14', now());
 INSERT INTO configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) VALUES ('Best Sellers For Box', 'MAX_DISPLAY_BESTSELLERS', '10', 'Number of best sellers to display in box', '3', '15', now());
 INSERT INTO configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) VALUES ('Also Purchased Products', 'MAX_DISPLAY_ALSO_PURCHASED', '6', 'Number of products to display in the \'This Customer Also Purchased\' box', '3', '16', now());
 INSERT INTO configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) VALUES ('Recent Purchases Box- NOTE: box is disabled ', 'MAX_DISPLAY_PRODUCTS_IN_ORDER_HISTORY_BOX', '6', 'Number of products to display in the recent purchases box', '3', '17', now());
@@ -2099,7 +2151,7 @@ INSERT INTO configuration (configuration_title, configuration_key, configuration
 INSERT INTO configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) VALUES ('Featured Products - Number to Display Admin', 'MAX_DISPLAY_SEARCH_RESULTS_FEATURED_ADMIN', '10', 'Number of featured products to list per screen - Admin', 3, 27, now());
 INSERT INTO configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) VALUES ('Maximum Display of Featured Products - Main Page', 'MAX_DISPLAY_SEARCH_RESULTS_FEATURED', '9', 'Number of featured products to list on main page', 3, 28, now());
 INSERT INTO configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) VALUES ('Maximum Display of Featured Products Page', 'MAX_DISPLAY_PRODUCTS_FEATURED_PRODUCTS', '10', 'Number of featured products to list per screen', 3, 29, now());
-INSERT INTO configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) VALUES ('Random Featured Products For Box', 'MAX_RANDOM_SELECT_FEATURED_PRODUCTS', '10', 'Number of random featured products to display in box', '3', '30', now());
+INSERT INTO configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) VALUES ('Random Featured Products for SideBox', 'MAX_RANDOM_SELECT_FEATURED_PRODUCTS', '2', 'Number of random FEATURED products to rotate in the sidebox<br />Enter the number of products to display in this sidebox at one time.<br /><br />How many products do you want to display in this sidebox?', '3', '30', now());
 INSERT INTO configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) VALUES ('Maximum Display of Specials Products - Main Page', 'MAX_DISPLAY_SPECIAL_PRODUCTS_INDEX', '9', 'Number of special products to list on main page', 3, 31, now());
 
 INSERT INTO configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) VALUES ('New Product Listing - Limited to ...', 'SHOW_NEW_PRODUCTS_LIMIT', '0', 'Limit the New Product Listing to<br />0= All Products<br />1= Current Month<br />7= 7 Days<br />14= 14 Days<br />30= 30 Days<br />60= 60 Days<br />90= 90 Days<br />120= 120 Days', '3', '40', 'zen_cfg_select_option(array(\'0\', \'1\', \'7\', \'14\', \'30\', \'60\', \'90\', \'120\'), ', now());
@@ -2188,7 +2240,7 @@ INSERT INTO configuration (configuration_title, configuration_key, configuration
 
 INSERT INTO configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) VALUES ('Enable Credit Card Module', 'MODULE_PAYMENT_CC_STATUS', 'True', 'Do you want to accept credit card payments?', '6', '0', 'zen_cfg_select_option(array(\'True\', \'False\'), ', now());
 INSERT INTO configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) VALUES ('Split Credit Card E-Mail Address', 'MODULE_PAYMENT_CC_EMAIL', '', 'If an e-mail address is entered, the middle digits of the credit card number will be sent to the e-mail address (the outside digits are stored in the database with the middle digits censored)', '6', '0', now());
-INSERT INTO configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, last_modified, date_added, use_function, set_function) VALUES ('Collect & store the CVV number', 'MODULE_PAYMENT_CC_COLLECT_CVV', 'True', 'Do you want to collect the CVV number. Note: If you do the CVV number will be stored in the database in an encoded format.', 6, 0, NULL, '2004-01-11 22:55:51', NULL, 'zen_cfg_select_option(array(\'True\', \'False\'),');
+INSERT INTO configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, last_modified, date_added, use_function, set_function) VALUES ('Collect & store the CVV number', 'MODULE_PAYMENT_CC_COLLECT_CVV', 'False', 'Do you want to collect the CVV number. Note: If you do the CVV number will be stored in the database in an encoded format.', 6, 0, NULL, '2004-01-11 22:55:51', NULL, 'zen_cfg_select_option(array(\'True\', \'False\'),');
 INSERT INTO configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, last_modified, date_added, use_function, set_function) VALUES ('Store the Credit Card Number', 'MODULE_PAYMENT_CC_STORE_NUMBER', 'False', 'Do you want to store the Credit Card Number. Note: The Credit Card Number will be stored unenecrypted, and as such may represent a security problem', 6, 0, NULL, now(), NULL, 'zen_cfg_select_option(array(\'True\', \'False\'),');
 INSERT INTO configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) VALUES ('Sort order of display.', 'MODULE_PAYMENT_CC_SORT_ORDER', '0', 'Sort order of display. Lowest is displayed first.', '6', '0' , now());
 INSERT INTO configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, use_function, set_function, date_added) VALUES ('Payment Zone', 'MODULE_PAYMENT_CC_ZONE', '0', 'If a zone is selected, only enable this payment method for that zone.', '6', '2', 'zen_get_zone_class_title', 'zen_cfg_pull_down_zone_classes(', now());
@@ -2253,6 +2305,8 @@ INSERT INTO configuration (configuration_title, configuration_key, configuration
 
 INSERT INTO configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) VALUES ('Display Number of Boxes and Weight Status', 'SHIPPING_BOX_WEIGHT_DISPLAY', '3', 'Display Shipping Weight and Number of Boxes?<br /><br />0= off<br />1= Boxes Only<br />2= Weight Only<br />3= Both Boxes and Weight', '7', '15', 'zen_cfg_select_option(array(\'0\', \'1\', \'2\', \'3\'), ', now());
 INSERT INTO configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) VALUES ('Shipping Estimator Display Settings for Shopping Cart', 'SHOW_SHIPPING_ESTIMATOR_BUTTON', '1', '<br />0= Off<br />1= Display as Button on Shopping Cart<br />2= Display as Listing on Shopping Cart Page', '7', '20', 'zen_cfg_select_option(array(\'0\', \'1\', \'2\'), ', now());
+INSERT INTO configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added, use_function, set_function) VALUES ('Display Order Comments on Admin Invoice', 'ORDER_COMMENTS_INVOICE', '1', 'Do you want to display the Order Comments on the Admin Invoice?<br />0= OFF<br />1= First Comment by Customer only<br />2= All Comments for the Order', 7, 25, now(), NULL, 'zen_cfg_select_option(array(''0'', ''1'', ''2''), ');
+INSERT INTO configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added, use_function, set_function) VALUES ('Display Order Comments on Admin Packing Slip', 'ORDER_COMMENTS_PACKING_SLIP', '1', 'Do you want to display the Order Comments on the Admin Packing Slip?<br />0= OFF<br />1= First Comment by Customer only<br />2= All Comments for the Order', 7, 26, now(), NULL, 'zen_cfg_select_option(array(''0'', ''1'', ''2''), ');
 
 
 INSERT INTO configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) VALUES ('Order Free Shipping 0 Weight Status', 'ORDER_WEIGHT_ZERO_STATUS', '0', 'If there is no weight to the order, does the order have Free Shipping?<br />0= no<br />1= yes<br /><br />Note: When using Free Shipping, Enable the Free Shipping Module this will only show when shipping is free.', '7', '15', 'zen_cfg_select_option(array(\'0\', \'1\'), ', now());
@@ -2299,6 +2353,8 @@ INSERT INTO configuration (configuration_title, configuration_key, configuration
 INSERT INTO configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) VALUES ('Show Special Products on empty Shopping Cart Page', 'SHOW_SHOPPING_CART_EMPTY_SPECIALS_PRODUCTS', '3', 'Show Special Products on empty Shopping Cart Page<br />0= off or set the sort order', '9', '32', 'zen_cfg_select_option(array(\'0\', \'1\', \'2\', \'3\', \'4\'), ', now());
 INSERT INTO configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) VALUES ('Show Upcoming Products on empty Shopping Cart Page', 'SHOW_SHOPPING_CART_EMPTY_UPCOMING', '4', 'Show Upcoming Products on empty Shopping Cart Page<br />0= off or set the sort order', '9', '33', 'zen_cfg_select_option(array(\'0\', \'1\', \'2\', \'3\', \'4\'), ', now());
 
+INSERT INTO configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) VALUES ('Show Notice of Combining Shopping Cart on Login', 'SHOW_SHOPPING_CART_COMBINED', '1', 'When a customer logs in and has a previously stored shopping cart, the products are combined with the existing shopping cart.<br /><br />Do you wish to display a Notice to the customer?<br /><br />0= OFF, do not display a notice<br />1= Yes show notice and go to shopping cart<br />2= Yes show notice, but do not go to shopping cart', '9', '35', 'zen_cfg_select_option(array(\'0\', \'1\', \'2\'), ', now());
+
 INSERT INTO configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) VALUES ('Store Page Parse Time', 'STORE_PAGE_PARSE_TIME', 'false', 'Store the time it takes to parse a page', '10', '1', 'zen_cfg_select_option(array(\'true\', \'false\'), ', now());
 INSERT INTO configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) VALUES ('Log Destination', 'STORE_PAGE_PARSE_TIME_LOG', '/var/log/www/zen/page_parse_time.log', 'Directory and filename of the page parse time log', '10', '2', now());
 INSERT INTO configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) VALUES ('Log Date Format', 'STORE_PARSE_DATE_TIME_FORMAT', '%d/%m/%Y %H:%M:%S', 'The date format', '10', '3', now());
@@ -2307,7 +2363,7 @@ INSERT INTO configuration (configuration_title, configuration_key, configuration
 
 INSERT INTO configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) VALUES ('E-Mail Transport Method', 'EMAIL_TRANSPORT', 'PHP', 'Defines the method for sending mail.<br /><strong>PHP</strong> is the default, and uses built-in PHP wrappers for processing.<br />Servers running on Windows and MacOS should change this setting to <strong>SMTP</strong>.<br /><br /><strong>SMTPAUTH</strong> should only be used if your server requires SMTP authorization to send messages. You must also configure your SMTPAUTH settings in the appropriate fields in this admin section.<br /><br /><strong>sendmail</strong> is for linux/unix hosts using the sendmail program on the server<br /><strong>"sendmail-f"</strong> is only for servers which require the use of the -f parameter to send mail. This is a security setting often used to prevent spoofing. Will cause errors if your host mailserver is not configured to use it.<br /><br /><strong>Qmail</strong> is used for linux/unix hosts running Qmail as sendmail wrapper at /var/qmail/bin/sendmail.', '12', '1', 'zen_cfg_select_option(array(\'PHP\', \'sendmail\', \'sendmail-f\', \'smtp\', \'smtpauth\', \'Qmail\'),', now());
 INSERT INTO configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) VALUES ('SMTP Email Account Mailbox', 'EMAIL_SMTPAUTH_MAILBOX', 'YourEmailAccountNameHere', 'Enter the mailbox account name (me@mydomain.com) supplied by your host. This is the account name that your host requires for SMTP authentication.<br />Only required if using SMTP Authentication for email.', '12', '101', now());
-INSERT INTO configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) VALUES ('SMTP Email Account Password', 'EMAIL_SMTPAUTH_PASSWORD', 'YourPasswordHere', 'Enter the password for your SMTP mailbox. <br />Only required if using SMTP Authentication for email.', '12', '101', now());
+INSERT INTO configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added, use_function) VALUES ('SMTP Email Account Password', 'EMAIL_SMTPAUTH_PASSWORD', 'YourPasswordHere', 'Enter the password for your SMTP mailbox. <br />Only required if using SMTP Authentication for email.', '12', '101', now(), 'zen_cfg_password_display');
 INSERT INTO configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) VALUES ('SMTP Email Mail Host', 'EMAIL_SMTPAUTH_MAIL_SERVER', 'mail.EnterYourDomain.com', 'Enter the DNS name of your SMTP mail server.<br />ie: mail.mydomain.com<br />or 55.66.77.88<br />Only required if using SMTP Authentication for email.', '12', '101', now());
 INSERT INTO configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) VALUES ('SMTP Email Mail Server Port', 'EMAIL_SMTPAUTH_MAIL_SERVER_PORT', '25', 'Enter the IP port number that your SMTP mailserver operates on.<br />Only required if using SMTP Authentication for email.', '12', '101', now());
 
@@ -2315,13 +2371,13 @@ INSERT INTO configuration (configuration_title, configuration_key, configuration
 
 INSERT INTO configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) VALUES ('E-Mail Linefeeds', 'EMAIL_LINEFEED', 'LF', 'Defines the character sequence used to separate mail headers.', '12', '2', 'zen_cfg_select_option(array(\'LF\', \'CRLF\'),', now());
 INSERT INTO configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) VALUES ('Use MIME HTML When Sending Emails', 'EMAIL_USE_HTML', 'false', 'Send e-mails in HTML format', '12', '3', 'zen_cfg_select_option(array(\'true\', \'false\'),', now());
-INSERT INTO configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) VALUES ('Verify E-Mail Addresses Through DNS', 'ENTRY_EMAIL_ADDRESS_CHECK', 'false', 'Verify e-mail address through a DNS server', '12', '6', 'zen_cfg_select_option(array(\'true\', \'false\'), ', now());
+INSERT INTO configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) VALUES ('Verify E-Mail Addresses Through DNS', 'ENTRY_EMAIL_ADDRESS_CHECK', 'false', 'Verify e-mail address through a DNS server', '6', '6', 'zen_cfg_select_option(array(\'true\', \'false\'), ', now());
 INSERT INTO configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) VALUES ('Send E-Mails', 'SEND_EMAILS', 'true', 'Send out e-mails', '12', '5', 'zen_cfg_select_option(array(\'true\', \'false\'), ', now());
 INSERT INTO configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) VALUES ('Email Archiving Active?', 'EMAIL_ARCHIVE', 'false', 'If you wish to have email messages archived/stored when sent, set this to "true".', '12', '6', 'zen_cfg_select_option(array(\'true\', \'false\'),', now());
 INSERT INTO configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) VALUES ('E-Mail Friendly-Errors', 'EMAIL_FRIENDLY_ERRORS', 'false', 'Do you want to display friendly errors if emails fail?  Setting this to false will display PHP errors and likely cause the script to fail. Only set to false while troubleshooting, and true for a live shop.', '12', '7', 'zen_cfg_select_option(array(\'true\', \'false\'),', now());
 INSERT INTO configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) VALUES ('Email Address (Displayed to Contact you)', 'STORE_OWNER_EMAIL_ADDRESS', 'root@localhost', 'Email address of Store Owner.  Used as "display only" when informing customers of how to contact you.', '12', '10', now());
 INSERT INTO configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) VALUES ('Email Address (sent FROM)', 'EMAIL_FROM', 'Zen Cart <root@localhost>', 'Address from which email messages will be "sent" by default. Can be over-ridden at compose-time in admin modules.', '12', '11', now());
-INSERT INTO configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, use_function, set_function) VALUES ('Emails must send from known domain?', 'EMAIL_SEND_MUST_BE_STORE', 'No', 'Does your mailserver require that all outgoing emails have their "from" address match a known domain that exists on your webserver?<br /><br />This is often set in order to prevent spoofing and spam broadcasts.  If set to Yes, this will cause the email address (sent FROM) to be used as the "from" address on all outgoing mail.', 12, 11, NULL, 'zen_cfg_select_option(array(\'No\', \'Yes\'), ');
+INSERT INTO configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, use_function, set_function) VALUES ('Emails must send from known domain?', 'EMAIL_SEND_MUST_BE_STORE', 'Yes', 'Does your mailserver require that all outgoing emails have their "from" address match a known domain that exists on your webserver?<br /><br />This is often required in order to prevent spoofing and spam broadcasts.  If set to Yes, this will cause the email address (sent FROM) to be used as the "from" address on all outgoing mail.', 12, 11, NULL, 'zen_cfg_select_option(array(\'No\', \'Yes\'), ');
 INSERT INTO configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, use_function, set_function) VALUES ('Email Admin Format?', 'ADMIN_EXTRA_EMAIL_FORMAT', 'TEXT', 'Please select the Admin extra email format', 12, 12, NULL, 'zen_cfg_select_option(array(\'TEXT\', \'HTML\'), ');
 INSERT INTO configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) VALUES ('Send Copy of Order Confirmation Emails To', 'SEND_EXTRA_ORDER_EMAILS_TO', '', 'Send COPIES of order confirmation emails to the following email addresses, in this format: Name 1 &lt;email@address1&gt;, Name 2 &lt;email@address2&gt;', '12', '12', now());
 INSERT INTO configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) VALUES ('Send Copy of Create Account Emails To - Status', 'SEND_EXTRA_CREATE_ACCOUNT_EMAILS_TO_STATUS', '0', 'Send copy of Create Account Status<br />0= off 1= on', '12', '13', 'zen_cfg_select_option(array(\'0\', \'1\'),', now());
@@ -2546,7 +2602,7 @@ INSERT INTO configuration (configuration_title, configuration_key, configuration
 INSERT INTO configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, use_function, set_function, date_added) VALUES ('Product Discount Quantities - Add how many blank discounts?', 'DISCOUNT_QTY_ADD', '5', 'How many blank discount quantities should be added for Product Pricing?', '19', '90', '', '', now());
 INSERT INTO configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, use_function, set_function, date_added) VALUES ('Product Discount Quantities - Display how many per row?', 'DISCOUNT_QUANTITY_PRICES_COLUMN', '5', 'How many discount quantities should show per row on Product Info Pages?', '19', '95', '', '', now());
 
-INSERT INTO configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) VALUES ('Categories/Products Display Sort Order', 'CATEGORIES_PRODUCTS_SORT_ORDER', '0', 'Categories/Products Display Sort Order<br />0= Categories/Products Sort Order/Name<br />1= Categories/Products Name<br />2= Products Model<br />3= Products Qty+, Products Name<br />4= Products Qty-, Products Name<br />5= Products Price+, Products Name<br />6= Products Price+, Products Name', '19', '100', 'zen_cfg_select_option(array(\'0\', \'1\', \'2\', \'3\', \'4\', \'5\', \'6\'), ', now());
+INSERT INTO configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) VALUES ('Categories/Products Display Sort Order', 'CATEGORIES_PRODUCTS_SORT_ORDER', '0', 'Categories/Products Display Sort Order<br />0= Categories/Products Sort Order/Name<br />1= Categories/Products Name<br />2= Products Model<br />3= Products Qty+, Products Name<br />4= Products Qty-, Products Name<br />5= Products Price+, Products Name<br />6= Products Price-, Products Name', '19', '100', 'zen_cfg_select_option(array(\'0\', \'1\', \'2\', \'3\', \'4\', \'5\', \'6\'), ', now());
 
 INSERT INTO configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) VALUES ('Option Names and Values Global Add, Copy and Delete Features Status', 'OPTION_NAMES_VALUES_GLOBAL_STATUS', '1', 'Option Names and Values Global Add, Copy and Delete Features Status<br />0= Hide Features<br />1= Show Features<br />2= Products Model', '19', '110', 'zen_cfg_select_option(array(\'0\', \'1\'), ', now());
 INSERT INTO configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) VALUES ('Categories-Tabs Menu ON/OFF', 'CATEGORIES_TABS_STATUS', '1', 'Categories-Tabs<br />This enables the display of your store\'s categories as a menu across the top of your header. There are many potential creative uses for this.<br />0= Hide Categories Tabs<br />1= Show Categories Tabs', '19', '112', 'zen_cfg_select_option(array(\'0\', \'1\'), ', now());
@@ -2586,7 +2642,9 @@ INSERT INTO configuration (configuration_title, configuration_key, configuration
 INSERT INTO configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) VALUES ('Display Product Price', 'PRODUCT_NEW_LIST_PRICE', '2402', 'Do you want to display the Product Price<br /><br />0= off<br />1st digit Left or Right<br />2nd and 3rd digit Sort Order<br />4th digit number of breaks after<br />', '21', '7', now());
 INSERT INTO configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) VALUES ('Display Product Weight', 'PRODUCT_NEW_LIST_WEIGHT', '2502', 'Do you want to display the Product Weight?<br /><br />0= off<br />1st digit Left or Right<br />2nd and 3rd digit Sort Order<br />4th digit number of breaks after<br />', '21', '8', now());
 INSERT INTO configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) VALUES ('Display Product Date Added', 'PRODUCT_NEW_LIST_DATE_ADDED', '2601', 'Do you want to display the Product Date Added?<br /><br />0= off<br />1st digit Left or Right<br />2nd and 3rd digit Sort Order<br />4th digit number of breaks after<br />', '21', '9', now());
-INSERT INTO configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) VALUES ('Display Product Description', 'PRODUCT_NEW_LIST_DESCRIPTION', '1', 'Do you want to display the Product Description - First 150 characters?<br />0= off<br />1= on', '21', '10', 'zen_cfg_select_option(array(\'0\', \'1\'), ', now());
+INSERT INTO configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) VALUES ('Display Product Description', 'PRODUCT_NEW_LIST_DESCRIPTION', '150', 'How many characters do you want to display of the Product Description?<br /><br />0= OFF<br />150= Suggested Length, or enter the maximum number of characters to display', '21', '10', now());
+
+
 INSERT INTO configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) VALUES ('Display Product Display - Default Sort Order', 'PRODUCT_NEW_LIST_SORT_DEFAULT', '6', 'What Sort Order Default should be used for New Products Display?<br />Default= 6 for Date New to Old<br /><br />1= Products Name<br />2= Products Name Desc<br />3= Price low to high, Products Name<br />4= Price high to low, Products Name<br />5= Model<br />6= Date Added desc<br />7= Date Added<br />8= Product Sort Order', '21', '11', 'zen_cfg_select_option(array(\'1\', \'2\', \'3\', \'4\', \'5\', \'6\', \'7\', \'8\'), ', now());
 INSERT INTO configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) VALUES ('Default Products New Group ID', 'PRODUCT_NEW_LIST_GROUP_ID', '21', 'Warning: Only change this if your Products New Group ID has changed from the default of 21<br />What is the configuration_group_id for New Products Listings?', '21', '12', now());
 INSERT INTO configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) VALUES ('Display Multiple Products Qty Box Status and Set Button Location', 'PRODUCT_NEW_LISTING_MULTIPLE_ADD_TO_CART', '3', 'Do you want to display Add Multiple Products Qty Box and Set Button Location?<br />0= off<br />1= Top<br />2= Bottom<br />3= Both', '21', '25', 'zen_cfg_select_option(array(\'0\', \'1\', \'2\', \'3\'), ', now());
@@ -2602,7 +2660,8 @@ INSERT INTO configuration (configuration_title, configuration_key, configuration
 INSERT INTO configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) VALUES ('Display Product Price', 'PRODUCT_FEATURED_LIST_PRICE', '2402', 'Do you want to display the Product Price<br /><br />0= off<br />1st digit Left or Right<br />2nd and 3rd digit Sort Order<br />4th digit number of breaks after<br />', '22', '7', now());
 INSERT INTO configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) VALUES ('Display Product Weight', 'PRODUCT_FEATURED_LIST_WEIGHT', '2502', 'Do you want to display the Product Weight?<br /><br />0= off<br />1st digit Left or Right<br />2nd and 3rd digit Sort Order<br />4th digit number of breaks after<br />', '22', '8', now());
 INSERT INTO configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) VALUES ('Display Product Date Added', 'PRODUCT_FEATURED_LIST_DATE_ADDED', '2601', 'Do you want to display the Product Date Added?<br /><br />0= off<br />1st digit Left or Right<br />2nd and 3rd digit Sort Order<br />4th digit number of breaks after<br />', '22', '9', now());
-INSERT INTO configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) VALUES ('Display Product Description', 'PRODUCT_FEATURED_LIST_DESCRIPTION', '1', 'Do you want to display the Product Description - First 150 characters?', '22', '10', 'zen_cfg_select_option(array(\'0\', \'1\'), ', now());
+INSERT INTO configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) VALUES ('Display Product Description', 'PRODUCT_FEATURED_LIST_DESCRIPTION', '150', 'How many characters do you want to display of the Product Description?<br /><br />0= OFF<br />150= Suggested Length, or enter the maximum number of characters to display', '22', '10', now());
+
 INSERT INTO configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) VALUES ('Display Product Display - Default Sort Order', 'PRODUCT_FEATURED_LIST_SORT_DEFAULT', '1', 'What Sort Order Default should be used for Featured Product Display?<br />Default= 1 for Product Name<br /><br />1= Products Name<br />2= Products Name Desc<br />3= Price low to high, Products Name<br />4= Price high to low, Products Name<br />5= Model<br />6= Date Added desc<br />7= Date Added<br />8= Product Sort Order', '22', '11', 'zen_cfg_select_option(array(\'1\', \'2\', \'3\', \'4\', \'5\', \'6\', \'7\', \'8\'), ', now());
 INSERT INTO configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) VALUES ('Default Featured Products Group ID', 'PRODUCT_FEATURED_LIST_GROUP_ID', '22', 'Warning: Only change this if your Featured Products Group ID has changed from the default of 22<br />What is the configuration_group_id for Featured Products Listings?', '22', '12', now());
 INSERT INTO configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) VALUES ('Display Multiple Products Qty Box Status and Set Button Location', 'PRODUCT_FEATURED_LISTING_MULTIPLE_ADD_TO_CART', '3', 'Do you want to display Add Multiple Products Qty Box and Set Button Location?<br />0= off<br />1= Top<br />2= Bottom<br />3= Both', '22', '25', 'zen_cfg_select_option(array(\'0\', \'1\', \'2\', \'3\'), ', now());
@@ -2616,7 +2675,9 @@ INSERT INTO configuration (configuration_title, configuration_key, configuration
 INSERT INTO configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) VALUES ('Display Product Price', 'PRODUCT_ALL_LIST_PRICE', '2402', 'Do you want to display the Product Price<br /><br />0= off<br />1st digit Left or Right<br />2nd and 3rd digit Sort Order<br />4th digit number of breaks after<br />', '23', '7', now());
 INSERT INTO configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) VALUES ('Display Product Weight', 'PRODUCT_ALL_LIST_WEIGHT', '2502', 'Do you want to display the Product Weight?<br /><br />0= off<br />1st digit Left or Right<br />2nd and 3rd digit Sort Order<br />4th digit number of breaks after<br />', '23', '8', now());
 INSERT INTO configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) VALUES ('Display Product Date Added', 'PRODUCT_ALL_LIST_DATE_ADDED', '2601', 'Do you want to display the Product Date Added?<br /><br />0= off<br />1st digit Left or Right<br />2nd and 3rd digit Sort Order<br />4th digit number of breaks after<br />', '23', '9', now());
-INSERT INTO configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) VALUES ('Display Product Description', 'PRODUCT_ALL_LIST_DESCRIPTION', '1', 'Do you want to display the Product Description - First 150 characters?', '23', '10', 'zen_cfg_select_option(array(\'0\', \'1\'), ', now());
+INSERT INTO configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) VALUES ('Display Product Description', 'PRODUCT_ALL_LIST_DESCRIPTION', '150', 'How many characters do you want to display of the Product Description?<br /><br />0= OFF<br />150= Suggested Length, or enter the maximum number of characters to display', '23', '10', now());
+
+
 INSERT INTO configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) VALUES ('Display Product Display - Default Sort Order', 'PRODUCT_ALL_LIST_SORT_DEFAULT', '1', 'What Sort Order Default should be used for All Products Display?<br />Default= 1 for Product Name<br /><br />1= Products Name<br />2= Products Name Desc<br />3= Price low to high, Products Name<br />4= Price high to low, Products Name<br />5= Model<br />6= Date Added desc<br />7= Date Added<br />8= Product Sort Order', '23', '11', 'zen_cfg_select_option(array(\'1\', \'2\', \'3\', \'4\', \'5\', \'6\', \'7\', \'8\'), ', now());
 INSERT INTO configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) VALUES ('Default Products All Group ID', 'PRODUCT_ALL_LIST_GROUP_ID', '23', 'Warning: Only change this if your Products All Group ID has changed from the default of 23<br />What is the configuration_group_id for Products All Listings?', '23', '12', now());
 INSERT INTO configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) VALUES ('Display Multiple Products Qty Box Status and Set Button Location', 'PRODUCT_ALL_LISTING_MULTIPLE_ADD_TO_CART', '3', 'Do you want to display Add Multiple Products Qty Box and Set Button Location?<br />0= off<br />1= Top<br />2= Bottom<br />3= Both', '23', '25', 'zen_cfg_select_option(array(\'0\', \'1\', \'2\', \'3\'), ', now());
@@ -2744,7 +2805,7 @@ INSERT INTO countries VALUES (34,'Burkina Faso','BF','BFA','1');
 INSERT INTO countries VALUES (35,'Burundi','BI','BDI','1');
 INSERT INTO countries VALUES (36,'Cambodia','KH','KHM','1');
 INSERT INTO countries VALUES (37,'Cameroon','CM','CMR','1');
-INSERT INTO countries VALUES (38,'Canada','CA','CAN','1');
+INSERT INTO countries VALUES (38,'Canada','CA','CAN','2');
 INSERT INTO countries VALUES (39,'Cape Verde','CV','CPV','1');
 INSERT INTO countries VALUES (40,'Cayman Islands','KY','CYM','1');
 INSERT INTO countries VALUES (41,'Central African Republic','CF','CAF','1');
@@ -2948,11 +3009,11 @@ INSERT INTO countries VALUES (238,'Zambia','ZM','ZMB','1');
 INSERT INTO countries VALUES (239,'Zimbabwe','ZW','ZWE','1');
 
 INSERT INTO currencies VALUES (1,'US Dollar','USD','$','','.',',','2','1.0000', now());
-INSERT INTO currencies VALUES (2,'Euro','EUR','&euro;','','.',',','2','0.7811', now());
-INSERT INTO currencies VALUES (3,'GB Pound','GBP','&pound;','','.',',','2','0.5289', now());
-INSERT INTO currencies VALUES (4,'Canadian Dollar','CAD','$','','.',',','2','1.1113', now());
-INSERT INTO currencies VALUES (5,'Australian Dollar','AUD','$','','.',',','2','1.3097', now());
-#INSERT INTO currencies VALUES (6,'Japanese Yen','JPY','&yen;','','.',',','2','116.3889', now());
+INSERT INTO currencies VALUES (2,'Euro','EUR','&euro;','','.',',','2','0.7413', now());
+INSERT INTO currencies VALUES (3,'GB Pound','GBP','&pound;','','.',',','2','0.5030', now());
+INSERT INTO currencies VALUES (4,'Canadian Dollar','CAD','$','','.',',','2','1.1059', now());
+INSERT INTO currencies VALUES (5,'Australian Dollar','AUD','$','','.',',','2','1.2407', now());
+#INSERT INTO currencies VALUES (6,'Japanese Yen','JPY','&yen;','','.',',','2','115.0750', now());
 
 INSERT INTO languages VALUES (1,'English','en','icon.gif','english',1);
 
@@ -3132,7 +3193,7 @@ INSERT INTO zones VALUES (65,223,'WY','Wyoming');
 INSERT INTO zones VALUES (66,38,'AB','Alberta');
 INSERT INTO zones VALUES (67,38,'BC','British Columbia');
 INSERT INTO zones VALUES (68,38,'MB','Manitoba');
-INSERT INTO zones VALUES (69,38,'NF','Newfoundland');
+INSERT INTO zones VALUES (69,38,'NL','Newfoundland');
 INSERT INTO zones VALUES (70,38,'NB','New Brunswick');
 INSERT INTO zones VALUES (71,38,'NS','Nova Scotia');
 INSERT INTO zones VALUES (72,38,'NT','Northwest Territories');
@@ -3145,7 +3206,7 @@ INSERT INTO zones VALUES (78,38,'YT','Yukon Territory');
 
 # Germany
 INSERT INTO zones VALUES (79,81,'NDS','Niedersachsen');
-INSERT INTO zones VALUES (80,81,'BAW','Baden-Wrttemberg');
+INSERT INTO zones VALUES (80,81,'BAW','Baden Würtemberg');
 INSERT INTO zones VALUES (81,81,'BAY','Bayern');
 INSERT INTO zones VALUES (82,81,'BER','Berlin');
 INSERT INTO zones VALUES (83,81,'BRG','Brandenburg');
@@ -3166,7 +3227,7 @@ INSERT INTO zones VALUES (95,14,'WI','Wien');
 INSERT INTO zones VALUES (96,14,'NO','Niedersterreich');
 INSERT INTO zones VALUES (97,14,'OO','Obersterreich');
 INSERT INTO zones VALUES (98,14,'SB','Salzburg');
-INSERT INTO zones VALUES (99,14,'KN','KÃ¤rtnen');
+INSERT INTO zones VALUES (99,14,'KN','Kärnten');
 INSERT INTO zones VALUES (100,14,'ST','Steiermark');
 INSERT INTO zones VALUES (101,14,'TI','Tirol');
 INSERT INTO zones VALUES (102,14,'BL','Burgenland');
@@ -3449,12 +3510,13 @@ INSERT INTO product_type_layout (configuration_title, configuration_key, configu
 
 
 ## Insert the default queries for "all customers" and "all newsletter subscribers"
-INSERT INTO query_builder ( query_id , query_category , query_name , query_description , query_string , query_keys_list ) VALUES ( '1', 'email', 'All Customers', 'Returns all customers name and email address for sending mass emails (ie: for newsletters, coupons, GV\'s, messages, etc).', 'select customers_email_address, customers_firstname, customers_lastname from TABLE_CUSTOMERS order by customers_lastname, customers_firstname, customers_email_address', '');
+INSERT INTO query_builder ( query_id , query_category , query_name , query_description , query_string , query_keys_list ) VALUES ( '1', 'email', 'All Customers', 'Returns all customers name and email address for sending mass emails (ie: for newsletters, coupons, GVs, messages, etc).', 'select customers_email_address, customers_firstname, customers_lastname from TABLE_CUSTOMERS order by customers_lastname, customers_firstname, customers_email_address', '');
 INSERT INTO query_builder ( query_id , query_category , query_name , query_description , query_string , query_keys_list ) VALUES ( '2', 'email,newsletters', 'All Newsletter Subscribers', 'Returns name and email address of newsletter subscribers', 'select customers_firstname, customers_lastname, customers_email_address from TABLE_CUSTOMERS where customers_newsletter = \'1\'', '');
 INSERT INTO query_builder ( query_id , query_category , query_name , query_description , query_string , query_keys_list ) VALUES ( '3', 'email,newsletters', 'Dormant Customers (>3months) (Subscribers)', 'Subscribers who HAVE purchased something, but have NOT purchased for at least three months.', 'select o.date_purchased, c.customers_email_address, c.customers_lastname, c.customers_firstname from TABLE_CUSTOMERS c, TABLE_ORDERS o WHERE c.customers_id = o.customers_id AND c.customers_newsletter = 1 GROUP BY c.customers_email_address HAVING max(o.date_purchased) <= subdate(now(),INTERVAL 3 MONTH) ORDER BY c.customers_lastname, c.customers_firstname ASC', '');
 INSERT INTO query_builder ( query_id , query_category , query_name , query_description , query_string , query_keys_list ) VALUES ( '4', 'email,newsletters', 'Active customers in past 3 months (Subscribers)', 'Newsletter subscribers who are also active customers (purchased something) in last 3 months.', 'select c.customers_email_address, c.customers_lastname, c.customers_firstname from TABLE_CUSTOMERS c, TABLE_ORDERS o where c.customers_newsletter = \'1\' AND c.customers_id = o.customers_id and o.date_purchased > subdate(now(),INTERVAL 3 MONTH) GROUP BY c.customers_email_address order by c.customers_lastname, c.customers_firstname ASC', '');
 INSERT INTO query_builder ( query_id , query_category , query_name , query_description , query_string , query_keys_list ) VALUES ( '5', 'email,newsletters', 'Active customers in past 3 months (Regardless of subscription status)', 'All active customers (purchased something) in last 3 months, ignoring newsletter-subscription status.', 'select c.customers_email_address, c.customers_lastname, c.customers_firstname from TABLE_CUSTOMERS c, TABLE_ORDERS o WHERE c.customers_id = o.customers_id and o.date_purchased > subdate(now(),INTERVAL 3 MONTH) GROUP BY c.customers_email_address order by c.customers_lastname, c.customers_firstname ASC', '');
 INSERT INTO query_builder ( query_id , query_category , query_name , query_description , query_string , query_keys_list ) VALUES ( '6', 'email,newsletters', 'Administrator', 'Just the email account of the current administrator', 'select \'ADMIN\' as customers_firstname, admin_name as customers_lastname, admin_email as customers_email_address from TABLE_ADMIN where admin_id = $SESSION:admin_id', '');
+INSERT INTO query_builder ( query_id , query_category , query_name , query_description , query_string , query_keys_list ) VALUES ( '7', 'email,newsletters', 'Customers who have never completed a purchase', 'For sending newsletter to all customers who registered but have never completed a purchase', 'SELECT DISTINCT c.customers_email_address as customers_email_address, c.customers_lastname as customers_lastname, c.customers_firstname as customers_firstname FROM TABLE_CUSTOMERS c LEFT JOIN  TABLE_ORDERS o ON c.customers_id=o.customers_id WHERE o.date_purchased IS NULL', '');
 
 #
 # end of Query-Builder Setup
@@ -3472,9 +3534,9 @@ INSERT INTO get_terms_to_filter VALUES ('record_company_id', 'TABLE_RECORD_COMPA
 # Dumping data for table project_version
 #
 
-INSERT INTO project_version (project_version_id, project_version_key, project_version_major, project_version_minor, project_version_patch1, project_version_patch1_source, project_version_patch2, project_version_patch2_source, project_version_comment, project_version_date_applied) VALUES (1, 'Zen-Cart Main', '1', '3.7', '', '', '', '', 'Fresh Installation', now());
-INSERT INTO project_version (project_version_id, project_version_key, project_version_major, project_version_minor, project_version_patch1, project_version_patch1_source, project_version_patch2, project_version_patch2_source, project_version_comment, project_version_date_applied) VALUES (2, 'Zen-Cart Database', '1', '3.7', '', '', '', '', 'Fresh Installation', now());
-INSERT INTO project_version_history (project_version_id, project_version_key, project_version_major, project_version_minor, project_version_patch, project_version_comment, project_version_date_applied) VALUES (1, 'Zen-Cart Main', '1', '3.7', '', 'Fresh Installation', now());
-INSERT INTO project_version_history (project_version_id, project_version_key, project_version_major, project_version_minor, project_version_patch, project_version_comment, project_version_date_applied) VALUES (2, 'Zen-Cart Database', '1', '3.7', '', 'Fresh Installation', now());
+INSERT INTO project_version (project_version_id, project_version_key, project_version_major, project_version_minor, project_version_patch1, project_version_patch1_source, project_version_patch2, project_version_patch2_source, project_version_comment, project_version_date_applied) VALUES (1, 'Zen-Cart Main', '1', '3.8', '', '', '', '', 'Fresh Installation', now());
+INSERT INTO project_version (project_version_id, project_version_key, project_version_major, project_version_minor, project_version_patch1, project_version_patch1_source, project_version_patch2, project_version_patch2_source, project_version_comment, project_version_date_applied) VALUES (2, 'Zen-Cart Database', '1', '3.8', '', '', '', '', 'Fresh Installation', now());
+INSERT INTO project_version_history (project_version_id, project_version_key, project_version_major, project_version_minor, project_version_patch, project_version_comment, project_version_date_applied) VALUES (1, 'Zen-Cart Main', '1', '3.8', '', 'Fresh Installation', now());
+INSERT INTO project_version_history (project_version_id, project_version_key, project_version_major, project_version_minor, project_version_patch, project_version_comment, project_version_date_applied) VALUES (2, 'Zen-Cart Database', '1', '3.8', '', 'Fresh Installation', now());
 
 ##### End of SQL setup for Zen Cart.

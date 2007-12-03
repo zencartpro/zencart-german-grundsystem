@@ -1,10 +1,10 @@
 /**
  * @package Installer
  * @access private
- * @copyright Copyright 2003-2006 Zen Cart Development Team
+ * @copyright Copyright 2003-2007 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: stylesheet.css 4267 2006-08-25 08:42:19Z drbyte $
+ * @version $Id: stylesheet.css 7039 2007-09-18 03:51:51Z drbyte $
  */
 
 body {
@@ -97,27 +97,27 @@ body#license li#welcome,
 body#inspect li#welcome,
 body#inspect li#licenseaccept,
 
-body#systemsetup li#welcome,
-body#systemsetup li#licenseaccept,
-body#systemsetup li#inpection,
-
-body#phpbbsetup li#welcome,
-body#phpbbsetup li#license,
-body#phpbbsetup li#inpection,
-body#phpbbsetup li#system,
-
 body#databasesetup li#welcome,
 body#databasesetup li#licenseaccept,
 body#databasesetup li#inpection,
-body#databasesetup li#system,
-body#databasesetup li#phpbb,
 
 body#databaseupgrade li#welcome,
 body#databaseupgrade li#licenseaccept,
 body#databaseupgrade li#inpection,
 body#databaseupgrade li#system,
-body#databaseupgrade li#phpbb,
-body#databaseupgrade li#database,
+
+body#systemsetup li#welcome,
+body#systemsetup li#licenseaccept,
+body#systemsetup li#inpection,
+body#systemsetup li#system,
+body#systemsetup li#phpbb,
+
+body#phpbbsetup li#welcome,
+body#phpbbsetup li#license,
+body#phpbbsetup li#inpection,
+body#phpbbsetup li#system,
+body#phpbbsetup li#phpbb,
+body#phpbbsetup li#database,
 
 body#storesetup li#welcome,
 body#storesetup li#licenseaccept,
@@ -152,6 +152,7 @@ body#inspect li#inspection,
 body#systemsetup li#system,
 body#databasesetup li#database,
 body#databaseupgrade li#databaseupg,
+body#configcheckup li#cfgcheck,
 body#storesetup li#store,
 body#adminsetup li#admin,
 body#phpbbsetup li#phpbb,
@@ -193,7 +194,8 @@ a.button:hover {background-color: #ceddf0; }
 --------------------------------- */
 form { margin: 0; padding: 0; }
 fieldset { margin: 0; padding: 10px; border: 1px solid #666; }
-legend { margin: 0; padding: 0 4px; color: #e80; }
+legend { margin: 0; padding: 0 4px; color: #e80; font-weight: bold;}
+.attention { color: red; }
 input, select, textarea { margin: 10px 5px 0; padding: 0; }
 label, span.label { margin: 0; padding: 0; font-weight: bold; }
 
@@ -260,4 +262,8 @@ background-color:#d4ffbd;
 #stopsign {
   float: left;
   width: 140px;
+	}
+
+.cfgfilecontent {
+	font-size:11px;
 	}

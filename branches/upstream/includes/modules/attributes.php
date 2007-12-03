@@ -6,14 +6,15 @@
  * Prepares HTML for input fields with required uniqueness so template can display them as needed and keep collected data in proper fields
  *
  * @package modules
- * @copyright Copyright 2003-2006 Zen Cart Development Team
+ * @copyright Copyright 2003-2007 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: attributes.php 4341 2006-09-02 15:27:19Z ajeh $
+ * @version $Id: attributes.php 6371 2007-05-25 19:55:59Z ajeh $
  */
 if (!defined('IS_ADMIN_FLAG')) {
   die('Illegal Access');
 }
+
 $show_onetime_charges_description = 'false';
 $show_attributes_qty_prices_description = 'false';
 
@@ -142,8 +143,8 @@ $sql = "select count(*) as total
 
                     if ($products_options->fields['options_values_price'] != '0' and ($products_options->fields['product_attribute_is_free'] != '1' and $product_info->fields['product_is_free'] != '1')) {
                       // show sale maker discount if a percentage
-                      $products_options_display_price= ' (' . $products_options->fields['price_prefix'] .
-                      $currencies->display_price($new_attributes_price, zen_get_tax_rate($product_info->fields['products_tax_class_id'])) . ') ';
+                      $products_options_display_price= ATTRIBUTES_PRICE_DELIMITER_PREFIX . $products_options->fields['price_prefix'] .
+                      $currencies->display_price($new_attributes_price, zen_get_tax_rate($product_info->fields['products_tax_class_id'])) . ATTRIBUTES_PRICE_DELIMITER_SUFFIX;
                     } else {
                       // if product_is_free and product_attribute_is_free
                       if ($products_options->fields['product_attribute_is_free'] == '1' and $product_info->fields['product_is_free'] == '1') {
@@ -154,8 +155,8 @@ $sql = "select count(*) as total
                         if ($new_attributes_price == 0) {
                           $products_options_display_price= '';
                         } else {
-                          $products_options_display_price= ' (' . $products_options->fields['price_prefix'] .
-                          $currencies->display_price($new_attributes_price, zen_get_tax_rate($product_info->fields['products_tax_class_id'])) . ') ';
+                          $products_options_display_price= ATTRIBUTES_PRICE_DELIMITER_PREFIX . $products_options->fields['price_prefix'] .
+                          $currencies->display_price($new_attributes_price, zen_get_tax_rate($product_info->fields['products_tax_class_id'])) . ATTRIBUTES_PRICE_DELIMITER_SUFFIX;
                         }
                       }
                     }
@@ -167,7 +168,7 @@ $sql = "select count(*) as total
 
                   // collect weight information if it exists
                   if (($flag_show_weight_attrib_for_this_prod_type=='1' and $products_options->fields['products_attributes_weight'] != '0')) {
-                    $products_options_display_weight = ' (' . $products_options->fields['products_attributes_weight_prefix'] . round($products_options->fields['products_attributes_weight'],2) . TEXT_PRODUCT_WEIGHT_UNIT . ')';
+                    $products_options_display_weight = ATTRIBUTES_WEIGHT_DELIMITER_PREFIX . $products_options->fields['products_attributes_weight_prefix'] . round($products_options->fields['products_attributes_weight'],2) . TEXT_PRODUCT_WEIGHT_UNIT . ATTRIBUTES_WEIGHT_DELIMITER_SUFFIX;
                     $products_options_array[sizeof($products_options_array)-1]['text'] .= $products_options_display_weight;
                   } else {
                     // reset
@@ -599,7 +600,7 @@ $sql = "select count(*) as total
                 }
 
                 // attributes images table
-                $options_attributes_image[] = $tmp_attributes_image . "\n";
+                $options_attributes_image[] = trim($tmp_attributes_image) . "\n";
                 $products_options_names->MoveNext();
               }
               // manage filename uploads

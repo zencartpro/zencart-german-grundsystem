@@ -17,7 +17,7 @@
 // | to obtain it through the world-wide-web, please send a note to       |
 // | license@zen-cart.com so we can mail you a copy immediately.          |
 // +----------------------------------------------------------------------+
-//  $Id: coupon_admin.php 4677 2006-10-04 19:33:39Z drbyte $
+//  $Id: coupon_admin.php 5758 2007-02-08 01:39:34Z ajeh $
 //
 
 define('TOP_BAR_TITLE', 'Statistics');
@@ -48,6 +48,8 @@ define('TEXT_VOUCHER_IS', 'The coupon code is ');
 define('TEXT_REMEMBER', 'Don\'t lose the coupon code, make sure to keep the code safe so you can benefit from this special offer.');
 define('TEXT_VISIT', 'Visit us at %s');
 define('TEXT_ENTER_CODE', ' and enter the code ');
+define('TEXT_COUPON_HELP_DATE', '<p><p>The coupon is valid between %s and %s</p></p>');
+define('HTML_COUPON_HELP_DATE', '<p><p>The coupon is valid between %s and %s</p></p>');
 
 define('TABLE_HEADING_ACTION', 'Action');
 

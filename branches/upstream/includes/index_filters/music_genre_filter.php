@@ -6,11 +6,11 @@
  * show the products of a specified music_genre
  *
  * @package productTypes
- * @copyright Copyright 2003-2006 Zen Cart Development Team
+ * @copyright Copyright 2003-2007 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @todo Need to add/fine-tune ability to override or insert entry-points on a per-product-type basis
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: music_genre_filter.php 4254 2006-08-25 00:30:56Z ajeh $
+ * @version $Id: music_genre_filter.php 6912 2007-09-02 02:23:45Z drbyte $
  */
 if (!defined('IS_ADMIN_FLAG')) {
   die('Illegal Access');
@@ -23,7 +23,7 @@ if (!defined('IS_ADMIN_FLAG')) {
     if (isset($_GET['filter_id']) && zen_not_null($_GET['filter_id']))
     {
       // We are asked to show only a specific category
-      $listing_sql = "select " . $select_column_list . " p.products_id, p.products_type, p.products_price, p.products_tax_class_id, pd.products_description, if(s.status = 1, s.specials_new_products_price, NULL) AS specials_new_products_price, IF(s.status = 1, s.specials_new_products_price, p.products_price) as final_price, p.products_sort_order, p.product_is_call, p.product_is_always_free_shipping, p.products_qty_box_status
+      $listing_sql = "select " . $select_column_list . " p.products_id, p.products_type, p.master_categories_id, p.products_price, p.products_tax_class_id, pd.products_description, if(s.status = 1, s.specials_new_products_price, NULL) AS specials_new_products_price, IF(s.status = 1, s.specials_new_products_price, p.products_price) as final_price, p.products_sort_order, p.product_is_call, p.product_is_always_free_shipping, p.products_qty_box_status
         from " . TABLE_PRODUCTS . " p, " .
         TABLE_PRODUCTS_DESCRIPTION . " pd, " .
         TABLE_PRODUCT_MUSIC_EXTRA . " pme left join " . TABLE_SPECIALS . " s on pme.products_id = s.products_id, " .
@@ -39,7 +39,7 @@ if (!defined('IS_ADMIN_FLAG')) {
           and p2c.categories_id = '" . (int)$_GET['filter_id'] . "'";
     } else {
       // We show them all
-      $listing_sql = "select " . $select_column_list . " pme.products_id, p.products_type, p.products_price, p.products_tax_class_id, pd.products_description, IF(s.status = 1, s.specials_new_products_price, NULL) as specials_new_products_price, IF(s.status = 1, s.specials_new_products_price, p.products_price) as final_price, p.products_sort_order, p.product_is_call, p.product_is_always_free_shipping, p.products_qty_box_status
+      $listing_sql = "select " . $select_column_list . " pme.products_id, p.products_type, p.master_categories_id, p.products_price, p.products_tax_class_id, pd.products_description, IF(s.status = 1, s.specials_new_products_price, NULL) as specials_new_products_price, IF(s.status = 1, s.specials_new_products_price, p.products_price) as final_price, p.products_sort_order, p.product_is_call, p.product_is_always_free_shipping, p.products_qty_box_status
         from " . TABLE_PRODUCTS . " p, " .
         TABLE_PRODUCTS_DESCRIPTION . " pd, " .
         TABLE_PRODUCT_MUSIC_EXTRA . " pme left join " . TABLE_SPECIALS . " s on pme.products_id = s.products_id, " .
@@ -56,7 +56,7 @@ if (!defined('IS_ADMIN_FLAG')) {
     if (isset($_GET['filter_id']) && zen_not_null($_GET['filter_id']))
     {
       // We are asked to show only specific category
-      $listing_sql = "select " . $select_column_list . " p.products_id, p.products_type, m.music_genre_id, p.products_price, p.products_tax_class_id, pd.products_description, IF(s.status = 1, s.specials_new_products_price, NULL) as specials_new_products_price, IF(s.status = 1, s.specials_new_products_price, p.products_price) as final_price, p.products_sort_order, p.product_is_call, p.product_is_always_free_shipping, p.products_qty_box_status
+      $listing_sql = "select " . $select_column_list . " p.products_id, p.products_type, p.master_categories_id, m.music_genre_id, p.products_price, p.products_tax_class_id, pd.products_description, IF(s.status = 1, s.specials_new_products_price, NULL) as specials_new_products_price, IF(s.status = 1, s.specials_new_products_price, p.products_price) as final_price, p.products_sort_order, p.product_is_call, p.product_is_always_free_shipping, p.products_qty_box_status
         from " . TABLE_PRODUCTS . " p left join " . TABLE_SPECIALS . " s on p.products_id = s.products_id, " .
         TABLE_PRODUCTS_DESCRIPTION . " pd, " .
         TABLE_MUSIC_GENRE . " m, " .
@@ -72,7 +72,7 @@ if (!defined('IS_ADMIN_FLAG')) {
     } else {
       // We show them all
       if ($current_categories_id) {
-        $listing_sql = "select " . $select_column_list . " p.products_id, p.products_type, m.music_genre_id, p.products_price, p.products_tax_class_id, pd.products_description, IF(s.status = 1, s.specials_new_products_price, NULL) as specials_new_products_price, IF(s.status = 1, s.specials_new_products_price, p.products_price) as final_price, p.products_sort_order, p.product_is_call, p.product_is_always_free_shipping, p.products_qty_box_status
+        $listing_sql = "select " . $select_column_list . " p.products_id, p.products_type, p.master_categories_id, m.music_genre_id, p.products_price, p.products_tax_class_id, pd.products_description, IF(s.status = 1, s.specials_new_products_price, NULL) as specials_new_products_price, IF(s.status = 1, s.specials_new_products_price, p.products_price) as final_price, p.products_sort_order, p.product_is_call, p.product_is_always_free_shipping, p.products_qty_box_status
           from " . TABLE_PRODUCTS_DESCRIPTION . " pd, " .
           TABLE_PRODUCTS . " p left join " . TABLE_MUSIC_GENRE . " m, " . TABLE_PRODUCT_MUSIC_EXTRA . " pme on pme.music_genre_id = m.music_genre_id, " .
           TABLE_PRODUCTS_TO_CATEGORIES . " p2c left join " . TABLE_SPECIALS . " s on p2c.products_id = s.products_id
@@ -82,7 +82,7 @@ if (!defined('IS_ADMIN_FLAG')) {
             and pd.language_id = '" . (int)$_SESSION['languages_id'] . "'
             and p2c.categories_id = '" . (int)$current_category_id . "'";
       } else {
-        $listing_sql = "select " . $select_column_list . " p.products_id, p.products_type, m.music_genre_id, p.products_price, p.products_tax_class_id, pd.products_description, IF(s.status = 1, s.specials_new_products_price, NULL) as specials_new_products_price, IF(s.status = 1, s.specials_new_products_price, p.products_price) as final_price, p.products_sort_order, p.product_is_call, p.product_is_always_free_shipping, p.products_qty_box_status
+        $listing_sql = "select " . $select_column_list . " p.products_id, p.products_type, p.master_categories_id, m.music_genre_id, p.products_price, p.products_tax_class_id, pd.products_description, IF(s.status = 1, s.specials_new_products_price, NULL) as specials_new_products_price, IF(s.status = 1, s.specials_new_products_price, p.products_price) as final_price, p.products_sort_order, p.product_is_call, p.product_is_always_free_shipping, p.products_qty_box_status
           from " . TABLE_PRODUCTS_DESCRIPTION . " pd, " .
           TABLE_PRODUCTS . " p left join " . TABLE_MUSIC_GENRE . " m, " . TABLE_PRODUCT_MUSIC_EXTRA . " pme on pme.music_genre_id = m.music_genre_id, " .
           TABLE_PRODUCTS_TO_CATEGORIES . " p2c left join " . TABLE_SPECIALS . " s on p2c.products_id = s.products_id

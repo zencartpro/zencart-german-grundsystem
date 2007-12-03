@@ -1,10 +1,10 @@
 <?php
 /**
  * @package languageDefines
- * @copyright Copyright 2003-2006 Zen Cart Development Team
+ * @copyright Copyright 2003-2007 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: ot_coupon.php 4274 2006-08-26 03:16:53Z drbyte $
+ * @version $Id: ot_coupon.php 6099 2007-04-01 10:22:42Z wilt $
  */
 
   define('MODULE_ORDER_TOTAL_COUPON_TITLE', 'Discount Coupon');
@@ -19,4 +19,5 @@
   define('MODULE_ORDER_TOTAL_COUPON_TEXT_CURRENT_CODE', 'Your Current Redemption Code: ');
   define('MODULE_ORDER_TOTAL_COUPON_REMOVE_INSTRUCTIONS', '<p>To remove a Discount Coupon from this order type REMOVE and press Enter or Return</p>');
   define('TEXT_REMOVE_REDEEM_COUPON', 'Discount Coupon Removed by Request!');
+  define('MODULE_ORDER_TOTAL_COUPON_INCLUDE_ERROR', ' Setting Include tax = true, should only happen when recalculate = None');
 ?>

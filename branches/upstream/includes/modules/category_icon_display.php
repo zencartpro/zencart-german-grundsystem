@@ -3,10 +3,10 @@
  * category_icon_display module
  *
  * @package modules
- * @copyright Copyright 2003-2006 Zen Cart Development Team
+ * @copyright Copyright 2003-2007 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: category_icon_display.php 4348 2006-09-02 20:50:32Z ajeh $
+ * @version $Id: category_icon_display.php 6104 2007-04-01 14:54:40Z ajeh $
  */
 if (!defined('IS_ADMIN_FLAG')) {
   die('Illegal Access');
@@ -28,8 +28,13 @@ switch(true) {
   $align='right';
   break;
 }
-$category_icon_display_name = zen_get_categories_name(zen_get_products_category_id((int)$_GET['products_id']), $_SESSION['languages_id']);
-$category_icon_display_image = zen_get_categories_image(zen_get_products_category_id((int)$_GET['products_id']));
+//echo 'I SEE ' . $cPath . ' vs ' . $current_category_id;
+//$category_icon_display_name = zen_get_categories_name(zen_get_products_category_id((int)$_GET['products_id']), $_SESSION['languages_id']);
+//$category_icon_display_image = zen_get_categories_image(zen_get_products_category_id((int)$_GET['products_id']));
+
+
+$category_icon_display_name = zen_get_categories_name((int)$current_category_id);
+$category_icon_display_image = zen_get_categories_image((int)$current_category_id);
 
 switch(true) {
   // name only

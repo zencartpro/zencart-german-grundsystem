@@ -1,10 +1,10 @@
 <?php
 /**
  * @package shippingMethod
- * @copyright Copyright 2003-2006 Zen Cart Development Team
+ * @copyright Copyright 2003-2007 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: ups.php 4674 2006-10-03 02:24:08Z drbyte $
+ * @version $Id: ups.php 5849 2007-02-20 01:28:43Z drbyte $
  */
 /**
  * UPS Shipping Module class
@@ -107,7 +107,8 @@ class ups extends base {
                          'XPRL' => 'worldwide Express Letter',
                          'XDM' => 'Worldwide Express Plus',
                          'XDML' => 'Worldwide Express Plus Letter',
-                         'XPD' => 'Worldwide Expedited');
+                         'XPD' => 'Worldwide Expedited',
+                         'WXS' => 'Worldwide Saver');
   }
   /**
    * Get quote from shipping provider's API:
@@ -225,7 +226,7 @@ class ups extends base {
     $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) values ('Sort order of display.', 'MODULE_SHIPPING_UPS_SORT_ORDER', '0', 'Sort order of display. Lowest is displayed first.', '6', '0', now())");
     // BOF: UPS USPS
     //      $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) values ( 'Shipping Methods', 'MODULE_SHIPPING_UPS_TYPES', 'Nxt AM,Nxt AM Ltr,Nxt,Nxt Ltr,Nxt PR,Nxt Save,Nxt Save Ltr,2nd AM,2nd AM Ltr,2nd,2nd Ltr,3 Day Select,Ground,Canada,World Xp,World Xp Ltr, World Xp Plus,World Xp Plus Ltr,World Expedite', 'Select the USPS services to be offered.', '6', '13', 'zen_cfg_select_multioption(array(\'1DM\',\'1DML\', \'1DA\', \'1DAL\', \'1DAPI\', \'1DP\', \'1DPL\', \'2DM\', \'2DML\', \'2DA\', \'2DAL\', \'3DS\',\'GND\', \'STD\', \'XPR\', \'XPRL\', \'XDM\', \'XDML\', \'XPD\'), ', now() )");
-    $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) values ( 'Shipping Methods: <br />Nxt AM, Nxt AM Ltr, Nxt, Nxt Ltr, Nxt PR, Nxt Save, Nxt Save Ltr, 2nd AM, 2nd AM Ltr, 2nd, 2nd Ltr, 3 Day Select, Ground, Canada,World Xp, World Xp Ltr, World Xp Plus, World Xp Plus Ltr, World Expedite', 'MODULE_SHIPPING_UPS_TYPES', '1DM, 1DML, 1DA, 1DAL, 1DAPI, 1DP, 1DPL, 2DM, 2DML, 2DA, 2DAL, 3DS, GND, STD, XPR, XPRL, XDM, XDML, XPD', 'Select the UPS services to be offered.', '6', '13', 'zen_cfg_select_multioption(array(\'1DM\',\'1DML\', \'1DA\', \'1DAL\', \'1DAPI\', \'1DP\', \'1DPL\', \'2DM\', \'2DML\', \'2DA\', \'2DAL\', \'3DS\',\'GND\', \'STD\', \'XPR\', \'XPRL\', \'XDM\', \'XDML\', \'XPD\'), ', now() )");
+    $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) values ( 'Shipping Methods: <br />Nxt AM, Nxt AM Ltr, Nxt, Nxt Ltr, Nxt PR, Nxt Save, Nxt Save Ltr, 2nd AM, 2nd AM Ltr, 2nd, 2nd Ltr, 3 Day Select, Ground, Canada,World Xp, World Xp Ltr, World Xp Plus, World Xp Plus Ltr, World Expedite, WorldWideSaver', 'MODULE_SHIPPING_UPS_TYPES', '1DM, 1DML, 1DA, 1DAL, 1DAPI, 1DP, 1DPL, 2DM, 2DML, 2DA, 2DAL, 3DS, GND, STD, XPR, XPRL, XDM, XDML, XPD, WXS', 'Select the UPS services to be offered.', '6', '13', 'zen_cfg_select_multioption(array(\'1DM\',\'1DML\', \'1DA\', \'1DAL\', \'1DAPI\', \'1DP\', \'1DPL\', \'2DM\', \'2DML\', \'2DA\', \'2DAL\', \'3DS\',\'GND\', \'STD\', \'XPR\', \'XPRL\', \'XDM\', \'XDML\', \'XPD\', \'WXS\'), ', now() )");
     // EOF: UPS USPS
   }
   /**
@@ -405,11 +406,11 @@ class ups extends base {
     a origin that UPS recognizes.
 
     If you STILL don't get any quotes, here is a way to find out exactly what UPS is sending
-    back in response to rate quote request.  At line 278, you will find this statement in a
-    comment block:
-
-    mail('you@yourdomain.com','UPS response',$body,'From: <you@yourdomain.com>');
+    back in response to rate quote request, you can uncomment the following mail() line and 
+    then check your email after visiting the shipping page in checkout ...
     */
+    //mail(STORE_OWNER_EMAIL_ADDRESS, 'UPS response', $body, 'From: <'.STORE_OWNER_EMAIL_ADDRESS.'>');
+    
     // EOF: UPS USPS
 
     $body_array = explode("\n", $body);

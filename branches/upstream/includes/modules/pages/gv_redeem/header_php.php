@@ -3,10 +3,10 @@
  * GV redeem
  *
  * @package page
- * @copyright Copyright 2003-2006 Zen Cart Development Team
+ * @copyright Copyright 2003-2007 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: header_php.php 4940 2006-11-16 05:23:53Z ajeh $
+ * @version $Id: header_php.php 6736 2007-08-19 09:55:01Z drbyte $
  */
 
 // if the customer is not logged on, redirect them to the login page
@@ -52,7 +52,7 @@ if ((!$error) && ($_SESSION['customer_id'])) {
 
   $gv_query = $db->bindVars($gv_query, ':customersID', $_SESSION['customer_id'], 'integer');
   $gv_query = $db->bindVars($gv_query, ':couponID', $coupon->fields['coupon_id'], 'integer');
-  $gv_query = $db->bindVars($gv_query, ':remoteADDR', $REMOTE_ADDR, 'string');
+  $gv_query = $db->bindVars($gv_query, ':remoteADDR', zen_get_ip_address(), 'string');
   $db->Execute($gv_query);
 
   $gv_update = "UPDATE " . TABLE_COUPONS . "

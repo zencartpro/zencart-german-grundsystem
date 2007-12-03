@@ -7,10 +7,10 @@
  * see {@link http://www.zen-cart.com/wiki/index.php/Developers_API_Tutorials#InitSystem} for more details.
  *
  * @package initSystem
- * @copyright Copyright 2003-2006 Zen Cart Development Team
+ * @copyright Copyright 2003-2007 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: autoload_func.php 4387 2006-09-04 13:54:28Z drbyte $
+ * @version $Id: autoload_func.php 6559 2007-07-05 06:42:51Z drbyte $
  */
 if (!defined('IS_ADMIN_FLAG')) {
   die('Illegal Access');
@@ -27,14 +27,14 @@ foreach ($autoLoadConfig as $actionPoint => $row) {
       /**
        * include a file as specified by autoloader array
        */
-      if (file_exists($entry['loadFile'])) include($entry['loadFile']);
+      if (file_exists($entry['loadFile'])) include($entry['loadFile']); else $debugOutput .= 'FAILED: ';
       $debugOutput .= 'include(\'' . $entry['loadFile'] . '\');' . '<br />';
       break;
       case 'require':
       /**
        * require a file as specified by autoloader array
        */
-      if (file_exists($entry['loadFile'])) require($entry['loadFile']);
+      if (file_exists($entry['loadFile'])) require($entry['loadFile']); else $debugOutput .= 'FAILED: ';
       $debugOutput .= 'require(\'' . $entry['loadFile'] . '\');' . '<br />';
       break;
       case 'init_script':
@@ -45,7 +45,7 @@ foreach ($autoLoadConfig as $actionPoint => $row) {
       /**
        * include an init_script as specified by autoloader array
        */
-      if (file_exists($baseDir . $entry['loadFile'])) include($baseDir . $entry['loadFile']);
+      if (file_exists($baseDir . $entry['loadFile'])) include($baseDir . $entry['loadFile']); else $debugOutput .= 'FAILED: ';
       $debugOutput .= 'include(\'' . $baseDir . $entry['loadFile'] . '\');' . '<br />';
       break;
       case 'class':
@@ -57,7 +57,7 @@ foreach ($autoLoadConfig as $actionPoint => $row) {
       /**
        * include a class definition as specified by autoloader array
        */
-      if (file_exists($classPath . $entry['loadFile'])) include($classPath . $entry['loadFile']);
+      if (file_exists($classPath . $entry['loadFile'])) include($classPath . $entry['loadFile']); else $debugOutput .= 'FAILED: ';
       $debugOutput .= 'include(\'' . $classPath . $entry['loadFile'] . '\');' . '<br />';
       break;
       case 'classInstantiate':

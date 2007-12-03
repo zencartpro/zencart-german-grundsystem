@@ -17,7 +17,7 @@
 // | to obtain it through the world-wide-web, please send a note to       |
 // | license@zen-cart.com so we can mail you a copy immediately.          |
 // +----------------------------------------------------------------------+
-//  $Id: coupon_restrict.php 3666 2006-05-28 21:21:37Z wilt $
+//  $Id: coupon_restrict.php 182 2007-12-02 10:04:59Z hugo13 $
 //
   define('MAX_DISPLAY_RESTRICT_ENTRIES', 5);
   require('includes/application_top.php');
@@ -49,14 +49,14 @@
                   values ('" . $_GET['cid'] . "', '" . $_POST['cPath'] . "', '" . $status . "')");
     }
   }
-  if ($_GET['action']=='add_product' && $_POST['products']) {
-    $test_query=$db->Execute("select * from " . TABLE_COUPON_RESTRICT . " where coupon_id = '" . $_GET['cid'] . "' and product_id = '" . $_POST['products'] . "'");
+  if ($_GET['action']=='add_product' && $_POST['products_drop']) {
+    $test_query=$db->Execute("select * from " . TABLE_COUPON_RESTRICT . " where coupon_id = '" . $_GET['cid'] . "' and product_id = '" . $_POST['products_drop'] . "'");
     if ($test_query->RecordCount() < 1) {
       $status = 'N';
       if ($_POST['restrict_status']=='Deny') $status = 'Y';
       $db->Execute("insert into " . TABLE_COUPON_RESTRICT . "
                   (coupon_id, product_id, coupon_restrict)
-                  values ('" . $_GET['cid'] . "', '" . $_POST['products'] . "', '" . $status . "')");
+                  values ('" . $_GET['cid'] . "', '" . $_POST['products_drop'] . "', '" . $status . "')");
     }
   }
   if ($_GET['action']=='remove' && $_GET['info']) {
@@ -283,13 +283,17 @@
                     <td class="smallText" align="left"></td><form name="restrict_product" method="post" action="<?php echo zen_href_link('coupon_restrict.php', zen_get_all_get_params(array('info', 'action', 'x', 'y')) . 'info=' . $cInfo->restrict_id, 'NONSSL'); ?>">
                     <?php echo zen_hide_session_id(); ?>
                     <td class="smallText" align="left"><?php echo zen_draw_pull_down_menu('cPath_prod', zen_get_category_tree(), $current_category_id, 'onChange="this.form.submit();"'); ?></td></form>
+<?php if (sizeof($products_array) > 0) { ?>
                     <form name="restrict_category" method="post" action="<?php echo zen_href_link('coupon_restrict.php', zen_get_all_get_params(array('info', 'action', 'x', 'y')) . 'action=add_product&info=' . $cInfo->restrict_id, 'NONSSL'); ?>">
                     <td class="smallText" valign="top"><?php echo HEADER_PRODUCT_NAME; ?></td>
-                    <td class="smallText" align="left"><?php echo zen_draw_pull_down_menu('products', $products_array, $current_category_id); ?></td>
+                    <td class="smallText" align="left"><?php echo zen_draw_pull_down_menu('products_drop', $products_array, $current_category_id); ?></td>
                     <td class="smallText" align="left"><?php echo zen_draw_pull_down_menu('restrict_status', $restrict_array); ?></td>
                     <td class="smallText" align="left"><input type="submit" name="add" value="Add"></td>
                     <td class="smallText" align="left">&nbsp;</td>
                     <td class="smallText" align="left">&nbsp;</td>
+<?php } else { ?>
+                    <td class="smallText" align="left" colspan="6">&nbsp;</td>
+<?php } ?>
                   </tr>
                 </table></td>
               </tr></form>

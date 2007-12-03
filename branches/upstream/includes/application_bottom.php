@@ -7,13 +7,13 @@
  * @copyright Copyright 2003-2006 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: application_bottom.php 3019 2006-02-13 03:59:48Z birdbrain $
+ * @version $Id: application_bottom.php 5658 2007-01-21 19:39:51Z wilt $
  */
 if (!defined('IS_ADMIN_FLAG')) {
   die('Illegal Access');
 }
 // close session (store variables)
-zen_session_close();
+session_write_close();
 
 // breaks things
 // pconnect disabled (safety switch)

@@ -4,10 +4,10 @@
  * see {@link  http://www.zen-cart.com/wiki/index.php/Developers_API_Tutorials#InitSystem wikitutorials} for more details.
  *
  * @package initSystem
- * @copyright Copyright 2003-2006 Zen Cart Development Team
+ * @copyright Copyright 2003-2007 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: init_special_funcs.php 4662 2006-10-02 03:40:44Z drbyte $
+ * @version $Id: init_special_funcs.php 5924 2007-02-28 08:25:15Z drbyte $
  */
 if (!defined('IS_ADMIN_FLAG')) {
   die('Illegal Access');
@@ -33,6 +33,14 @@ zen_expire_banners();
  *
  * this is processed in the admin for dates that expire while being worked on
  */
+// check if a reset on one time sessions settings should occur due to the midnight hour happening
+  if (!isset($_SESSION['today_is'])) {
+    $_SESSION['today_is'] = date('Y-m-d');
+  }
+  if ($_SESSION['today_is'] != date('Y-m-d')) {
+    $_SESSION['today_is'] = date('Y-m-d');
+    $_SESSION['updateExpirations'] = false;
+  }
 if (!isset($_SESSION['updateExpirations']) || $_SESSION['updateExpirations'] !== true) {
   /**
    * require the specials products functions, auto-activate and auto-expire

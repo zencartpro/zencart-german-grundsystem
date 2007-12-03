@@ -4,7 +4,7 @@
  * @copyright Copyright 2003-2006 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: zones.php 4805 2006-10-22 02:32:33Z ajeh $
+ * @version $Id: zones.php 6347 2007-05-20 19:46:59Z ajeh $
  */
 /*
 
@@ -121,6 +121,8 @@
       $dest_zone = 0;
       $error = false;
 
+    $order_total_amount = $_SESSION['cart']->show_total() - $_SESSION['cart']->free_shipping_prices() ;
+
       for ($i=1; $i<=$this->num_zones; $i++) {
         $countries_table = constant('MODULE_SHIPPING_ZONES_COUNTRIES_' . $i);
         $countries_table = strtoupper(str_replace(' ', '', $countries_table));
@@ -168,6 +170,11 @@
 //                $shipping_method = MODULE_SHIPPING_ZONES_TEXT_WAY . ' ' . $dest_country . (SHIPPING_BOX_WEIGHT_DISPLAY >= 2 ? ' : ' . $shipping_weight . ' ' . MODULE_SHIPPING_ZONES_TEXT_UNITS : '');
                 $shipping_method = MODULE_SHIPPING_ZONES_TEXT_WAY . ' ' . $dest_country . $show_box_weight;
                 $done = true;
+        if (strstr($zones_table[$i+1], '%')) {
+          $shipping = ($zones_table[$i+1]/100) * $order_total_amount;
+        } else {
+          $shipping = $zones_table[$i+1];
+        }
                 break;
         	    }
       	    break;
@@ -176,6 +183,11 @@
               if (($_SESSION['cart']->show_total() - $_SESSION['cart']->free_shipping_prices()) <= $zones_table[$i]) {
                 $shipping = $zones_table[$i+1];
                 $shipping_method = MODULE_SHIPPING_ZONES_TEXT_WAY . ' ' . $dest_country;
+        if (strstr($zones_table[$i+1], '%')) {
+          $shipping = ($zones_table[$i+1]/100) * $order_total_amount;
+        } else {
+          $shipping = $zones_table[$i+1];
+        }
                 $done = true;
                 break;
 	            }
@@ -186,6 +198,11 @@
                 $shipping = $zones_table[$i+1];
                 $shipping_method = MODULE_SHIPPING_ZONES_TEXT_WAY . ' ' . $dest_country;
                 $done = true;
+        if (strstr($zones_table[$i+1], '%')) {
+          $shipping = ($zones_table[$i+1]/100) * $order_total_amount;
+        } else {
+          $shipping = $zones_table[$i+1];
+        }
                 break;
   	          }
 	          break;
@@ -261,7 +278,7 @@
           $default_countries = 'US,CA';
         }
         $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) values ('Zone " . $i ." Countries', 'MODULE_SHIPPING_ZONES_COUNTRIES_" . $i ."', '" . $default_countries . "', 'Comma separated list of two character ISO country codes that are part of Zone " . $i . ".<br />Set as 00 to indicate all two character ISO country codes that are not specifically defined.', '6', '0', 'zen_cfg_textarea(', now())");
-        $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) values ('Zone " . $i ." Shipping Table', 'MODULE_SHIPPING_ZONES_COST_" . $i ."', '3:8.50,7:10.50,99:20.00', 'Shipping rates to Zone " . $i . " destinations based on a group of maximum order weights/prices. Example: 3:8.50,7:10.50,... Weight/Price less than or equal to 3 would cost 8.50 for Zone " . $i . " destinations.', '6', '0', 'zen_cfg_textarea(', now())");
+        $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) values ('Zone " . $i ." Shipping Table', 'MODULE_SHIPPING_ZONES_COST_" . $i ."', '3:8.50,7:10.50,99:20.00', 'Shipping rates to Zone " . $i . " destinations based on a group of maximum order weights/prices. Example: 3:8.50,7:10.50,... Weight/Price less than or equal to 3 would cost 8.50 for Zone " . $i . " destinations.<br />You can end the last amount as 10000:7% to charge 7% of the Order Total', '6', '0', 'zen_cfg_textarea(', now())");
         $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) values ('Zone " . $i ." Handling Fee', 'MODULE_SHIPPING_ZONES_HANDLING_" . $i."', '0', 'Handling Fee for this shipping zone', '6', '0', now())");
       }
     }

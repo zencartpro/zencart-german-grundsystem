@@ -1,9 +1,9 @@
 <!--
 /**
  * @package documentation
- * @copyright Copyright 2003-2006 Zen Cart Development Team
+ * @copyright Copyright 2003-2007 Zen Cart Development Team
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: 1.readme_installation.html 5461 2006-12-30 00:28:54Z drbyte $
+ * @version $Id: 1.readme_installation.html 6664 2007-08-15 05:40:03Z drbyte $
  */
 //-->
 <html>
@@ -106,7 +106,7 @@ OSI Certified is a certification mark of the Open Source Initiative.
 </span><br />
 <em>(We will use &quot;<span class="filename">/catalog</span>&quot; as an example here. You can choose &quot;no&quot; foldername, or something else if you prefer, such as &quot;<span class="filename">/zencart</span>&quot;, or &quot;<span class="filename">/store</span>&quot; etc)</em> <br />
 <br />
-<em>NOTE: As you upload your files, make sure that your FTP program and your webserver allow &quot;<span class="error">long filenames</span>&quot;. For example, by default, MAC OS tends to not maintain long filenames, and you'll need to modify settings to allow this.</em> </p>
+<em>NOTE: As you upload your files, make sure that your FTP program and your webserver allow &quot;<span class="error">long filenames</span>&quot;. For example, in some cases some FTP software connected to servers running the MAC OS have been known to not maintain long filenames, thus you'd need to modify settings to allow this.</em> </p>
 <h3>What folder do I upload into?</h3>
 Each web host has his/her own preference in naming folders for use in running a website.<br>
 You can have many files that don't even get shown to the public. The ones that are available for access via a browser are usually in a folder called something like:
@@ -181,7 +181,11 @@ You will need the following information for the installation: <br />
 <li><strong>The  physical path to your new Zen Cart&trade; directory</strong><br />
 Example: <span class="filename">/home2/zencart/public_html/catalog</span></li><br /><br />
 <li><strong>The Virtual HTTP Path (the URL to your domain and directory for your shop)</strong><br />
-Example: <span class="filename">http://www.mydomain.com/catalog</span><br /></li><br />
+Example: <span class="filename">http://www.mydomain.com/catalog</span><br /></li></ul>
+<h3>SSL</h3>
+If you are installing onto a live webserver where you intend to process real transactions, you should plan on securing your customers' transaction data with SSL.  If you don't already have an SSL certificate, talk to your hosting company about your available options.  You will need to enter your SSL details below. In most cases they will be correct, unless you're using a "shared SSL" service. Your hosting company can give you the correct URL.<br />
+If you are installing to a local PC or to a development server where you do not need to protect sensitive data, you can leave the SSL settings at their defaults, and when asked about enabling SSL later in the installation process, just leave it off if you're not on a live production server.
+<ul>
 <li><strong>The Virtual HTTPS Server (the secure URL to your domain)</strong><br />
 Example: <span class="filename">https://www.mydomain.com</span><br />
 Note: if you have a shared certificate on a virtual server this may look like:<br />
@@ -296,7 +300,7 @@ NOTE: use a <em>different name</em> than <span class="filename">zc_install_compl
 </div></td>
 </tr>
 </table>
-<p align="center"><em>Zen Cart&trade; Copyright 2003 - 2006 </em></p>
+<p align="center"><em>Zen Cart&trade; Copyright 2003 - 2007</em></p>
 <br /><br />
 </body>
 </html>

@@ -17,7 +17,7 @@
 // | to obtain it through the world-wide-web, please send a note to       |
 // | license@zen-cart.com so we can mail you a copy immediately.          |
 // +----------------------------------------------------------------------+
-//  $Id: login.php 3146 2006-03-09 07:12:11Z birdbrain $
+//  $Id: login.php 5821 2007-02-18 23:17:29Z wilt $
 //
 
 define('HEADING_TITLE', 'Admin Login');
@@ -26,6 +26,7 @@ define('TEXT_ADMIN_NAME', 'Admin Username:');
 define('TEXT_ADMIN_PASS', 'Admin Password:');
 
 define('ERROR_WRONG_LOGIN', 'You entered the wrong username or password.');
+define('ERROR_SECURITY_ERROR', 'There was a security error when trying to login.');
 
 define('TEXT_PASSWORD_FORGOTTEN', 'Resend Password');
 ?>

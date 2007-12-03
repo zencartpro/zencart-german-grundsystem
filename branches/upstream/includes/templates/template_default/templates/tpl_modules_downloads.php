@@ -6,7 +6,7 @@
  * @copyright Copyright 2003-2006 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: tpl_modules_downloads.php 4829 2006-10-24 21:39:15Z drbyte $
+ * @version $Id: tpl_modules_downloads.php 6374 2007-05-25 20:24:42Z drbyte $
  */
 /**
  * require the downloads module
@@ -36,6 +36,16 @@
       list($dt_year, $dt_month, $dt_day) = explode('-', $downloads->fields['date_purchased_day']);
       $download_timestamp = mktime(23, 59, 59, $dt_month, $dt_day + $downloads->fields['download_maxdays'], $dt_year);
       $download_expiry = date('Y-m-d H:i:s', $download_timestamp);
+
+      $is_downloadable = ( (file_exists(DIR_FS_DOWNLOAD . $downloads->fields['orders_products_filename']) && (($downloads->fields['download_count'] > 0 && $download_timestamp > time()) || $downloads->fields['download_maxdays'] == 0)) ) ? true : false;
+      $zv_filesize = filesize (DIR_FS_DOWNLOAD . $downloads->fields['orders_products_filename']);
+      if ($zv_filesize >= 1024) {
+        $zv_filesize = number_format($zv_filesize/1024/1024,2);
+        $zv_filesize_units = TEXT_FILESIZE_MEGS;
+      } else {
+        $zv_filesize = number_format($zv_filesize);
+        $zv_filesize_units = TEXT_FILESIZE_BYTES;
+      }
 ?>
           <tr class="tableRow">
 <!-- left box -->
@@ -47,29 +57,19 @@
 // - The expiry date is not reached
 
 //      if ( ($downloads->fields['download_count'] > 0) && (file_exists(DIR_FS_DOWNLOAD . $downloads->fields['orders_products_filename'])) && ( ($downloads->fields['download_maxdays'] == 0) || ($download_timestamp > time())) ) {
-      if ( (file_exists(DIR_FS_DOWNLOAD . $downloads->fields['orders_products_filename']) && (($downloads->fields['download_count'] > 0 && $download_timestamp > time()) || $downloads->fields['download_maxdays'] == 0)) ) {
-        $zv_filesize = filesize (DIR_FS_DOWNLOAD . $downloads->fields['orders_products_filename']);
-        if ($zv_filesize >= 1024) {
-          $zv_filesize = number_format($zv_filesize/1024/1000,2);
-          $zv_filesize_units = TEXT_FILESIZE_MEGS;
-        } else {
-          $zv_filesize = number_format($zv_filesize);
-          $zv_filesize_units = TEXT_FILESIZE_BYTES;
-        }
+      if  ($is_downloadable) {
 ?>
       <td class=""><?php echo '<a href="' . zen_href_link(FILENAME_DOWNLOAD, 'order=' . $last_order . '&id=' . $downloads->fields['orders_products_download_id']) . '">' . $downloads->fields['products_name'] . '</a>'; ?></td>
-      <td class=""><?php echo $zv_filesize . $zv_filesize_units; ?></td>
-      <td class=""><?php echo $downloads->fields['orders_products_filename']; ?></td>
 <?php } else { ?>
       <td class=""><?php echo $downloads->fields['products_name']; ?></td>
-      <td class=""><?php echo $zv_filesize . $zv_filesize_units; ?></td>
-      <td class=""><?php echo $downloads->fields['orders_products_filename']; ?></td>
 <?php
       }
 ?>
+      <td class=""><?php echo $zv_filesize . $zv_filesize_units; ?></td>
+      <td class=""><?php echo $downloads->fields['orders_products_filename']; ?></td>
       <td class=""><?php echo ($downloads->fields['download_maxdays'] == 0 ? TEXT_DOWNLOADS_UNLIMITED : zen_date_short($download_expiry)); ?></td>
       <td class="centeredContent"><?php echo ($downloads->fields['download_maxdays'] == 0 ? TEXT_DOWNLOADS_UNLIMITED_COUNT : $downloads->fields['download_count']); ?></td>
-      <td class="centeredContent"><?php echo '<a href="' . zen_href_link(FILENAME_DOWNLOAD, 'order=' . $last_order . '&id=' . $downloads->fields['orders_products_download_id']) . '">' . zen_image_button(BUTTON_IMAGE_DOWNLOAD, BUTTON_DOWNLOAD_ALT) . '</a>'; ?></td>
+      <td class="centeredContent"><?php echo ($is_downloadable) ? '<a href="' . zen_href_link(FILENAME_DOWNLOAD, 'order=' . $last_order . '&id=' . $downloads->fields['orders_products_download_id']) . '">' . zen_image_button(BUTTON_IMAGE_DOWNLOAD, BUTTON_DOWNLOAD_ALT) . '</a>' : '&nbsp;'; ?></td>
     </tr>
 <?php
     $downloads->MoveNext();

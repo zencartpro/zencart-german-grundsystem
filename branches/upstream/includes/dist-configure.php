@@ -2,16 +2,16 @@
 /**
  * dist-configure.php
  *
- * @package initSystem
- * @copyright Copyright 2003-2006 Zen Cart Development Team
+ * @package Configuration Settings
+ * @copyright Copyright 2003-2007 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: dist-configure.php 4271 2006-08-26 01:21:02Z drbyte $
+ * @version $Id: dist-configure.php 6329 2007-05-16 15:36:56Z drbyte $
  * @private
  */
 // Define the webserver and path parameters
-// HTTP_SERVER is your Main webserver: eg, http://www.yourdomain.com
-// HTTPS_SERVER is your Secure webserver: eg, https://www.yourdomain.com
+// HTTP_SERVER is your Main webserver: eg-http://www.yourdomain.com
+// HTTPS_SERVER is your Secure webserver: eg-https://www.yourdomain.com
 define('HTTP_SERVER', 'http://localhost');
 define('HTTPS_SERVER', 'https://localhost');
 
@@ -53,8 +53,9 @@ define('DB_SERVER', 'localhost');
 define('DB_SERVER_USERNAME', 'root');
 define('DB_SERVER_PASSWORD', '');
 define('DB_DATABASE', '');
-define('USE_PCONNECT', 'false'); // use persistent connections?
-define('STORE_SESSIONS', 'db'); // use 'db' for best support, or '' for file-based storage
+define('USE_PCONNECT', 'false');
+define('STORE_SESSIONS', 'db'); 
+// use 'db' for best support, or '' for file-based storage
 
 // The next 2 "defines" are for SQL cache support.
 // For SQL_CACHE_METHOD, you can select from:  none, database, or file

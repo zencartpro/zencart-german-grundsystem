@@ -6,7 +6,7 @@
  * @copyright Copyright 2003-2006 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: header_php.php 4591 2006-09-23 04:25:15Z ajeh $
+ * @version $Id: header_php.php 7481 2007-11-26 12:50:17Z wilt $
  */
 
   require(DIR_WS_MODULES . zen_get_module_directory('require_languages.php'));
@@ -18,7 +18,7 @@
 
     if ($coupon->RecordCount() < 1) {
 // invalid discount coupon code
-      $text_coupon_help = sprintf(TEXT_COUPON_FAILED, $_POST['lookup_discount_coupon']);
+      $text_coupon_help = sprintf(TEXT_COUPON_FAILED, zen_output_string_protected($_POST['lookup_discount_coupon']));
     } else {
 // valid discount coupon code
       $lookup_coupon_id = $coupon->fields['coupon_id'];
@@ -51,17 +51,20 @@
       $text_coupon_help .= TEXT_COUPON_HELP_CATEGORIES;
       $get_result=$db->Execute("select * from " . TABLE_COUPON_RESTRICT . "  where coupon_id='" . (int)$lookup_coupon_id . "' and category_id !='0'");
       $cats = '';
+      $skip_cat_restriction = true;
       while (!$get_result->EOF) {
         if ($get_result->fields['coupon_restrict'] == 'N') {
           $restrict = TEXT_CAT_ALLOWED;
         } else {
           $restrict = TEXT_CAT_DENIED;
         }
-        $result = $db->Execute("SELECT * FROM " . TABLE_CATEGORIES . " c, " . TABLE_CATEGORIES_DESCRIPTION . " cd WHERE c.categories_id = cd.categories_id and cd.language_id = '" . (int)$_SESSION['languages_id'] . "' and c.categories_id='" . $get_result->fields['category_id'] . "'");
-        $cats .= '<br />' . $result->fields["categories_name"] . $restrict;
+        if ($get_result->RecordCount() != 1 and $get_result->fields['category_id'] != '-1') {
+          $result = $db->Execute("SELECT * FROM " . TABLE_CATEGORIES . " c, " . TABLE_CATEGORIES_DESCRIPTION . " cd WHERE c.categories_id = cd.categories_id and cd.language_id = '" . (int)$_SESSION['languages_id'] . "' and c.categories_id='" . $get_result->fields['category_id'] . "'");
+          $cats .= '<br />' . $result->fields["categories_name"] . $restrict;
+        }
         $get_result->MoveNext();
       }
-      if ($cats=='') $cats = TEXT_NO_CAT_RESTRICTIONS;
+      if ($skip_cat_restriction == false) $cats = TEXT_NO_CAT_RESTRICTIONS;
       $text_coupon_help .= $cats;
       $text_coupon_help .= TEXT_COUPON_HELP_PRODUCTS;
       $get_result=$db->Execute("select * from " . TABLE_COUPON_RESTRICT . "  where coupon_id='" . (int)$lookup_coupon_id . "' and product_id !='0'");

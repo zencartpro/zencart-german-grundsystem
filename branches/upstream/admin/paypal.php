@@ -1,27 +1,13 @@
 <?php
-//
-// +----------------------------------------------------------------------+
-// |zen-cart Open Source E-commerce                                       |
-// +----------------------------------------------------------------------+
-// | Copyright (c) 2003 The zen-cart developers                           |
-// |                                                                      |
-// | http://www.zen-cart.com/index.php                                    |
-// |                                                                      |
-// | Portions Copyright (c) 2003 osCommerce                               |
-// |                                                                      |
-// |   DevosC, Developing open source Code                                |
-// |   Copyright (c) 2004 DevosC.com                                      |
-// +----------------------------------------------------------------------+
-// | This source file is subject to version 2.0 of the GPL license,       |
-// | that is bundled with this package in the file LICENSE, and is        |
-// | available through the world-wide-web at the following url:           |
-// | http://www.zen-cart.com/license/2_0.txt.                             |
-// | If you did not receive a copy of the zen-cart license and are unable |
-// | to obtain it through the world-wide-web, please send a note to       |
-// | license@zen-cart.com so we can mail you a copy immediately.          |
-// +----------------------------------------------------------------------+
-//  $Id: paypal.php 3016 2006-02-12 05:26:46Z ajeh $
-//
+/**
+ * @package admin
+ * @copyright Copyright 2003-2007 Zen Cart Development Team
+ * @copyright Portions Copyright 2003 osCommerce
+ * @copyright Portions Copyright (c) 2004 DevosC.com    
+ * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
+ * @version $Id: paypal.php 6730 2007-08-19 08:25:07Z drbyte $
+ */
+
   require('includes/application_top.php');
 
   $paypal_ipn_sort_order_array = array(array('id' => '0', 'text' => TEXT_SORT_PAYPAL_ID_DESC),
@@ -37,7 +23,7 @@
   } else {
     $paypal_ipn_sort_order = 0;
   }
-//        $ipn_query_raw = "select p.zen_order_id, p.paypal_ipn_id, p.txn_type, p.payment_type, p.payment_status, p.pending_reason, p.mc_currency, p.payer_status, p.mc_currency, p.date_added, p.mc_gross, p.first_name, p.last_name, p.payer_business_name, p.parent_txn_id, p.txn_id from " . TABLE_PAYPAL . " as p, " .TABLE_ORDERS . " as o  where o.orders_id = p.zen_order_id " . $ipn_search . " order by o.orders_id DESC";
+//        $ipn_query_raw = "select p.order_id, p.paypal_ipn_id, p.txn_type, p.payment_type, p.payment_status, p.pending_reason, p.mc_currency, p.payer_status, p.mc_currency, p.date_added, p.mc_gross, p.first_name, p.last_name, p.payer_business_name, p.parent_txn_id, p.txn_id from " . TABLE_PAYPAL . " as p, " .TABLE_ORDERS . " as o  where o.orders_id = p.order_id " . $ipn_search . " order by o.orders_id DESC";
 
   switch ($paypal_ipn_sort_order) {
     case (0):
@@ -47,10 +33,10 @@
       $order_by = " order by p.paypal_ipn_id";
       break;
     case (2):
-      $order_by = " order by p.zen_order_id DESC, p.paypal_ipn_id";
+      $order_by = " order by p.order_id DESC, p.paypal_ipn_id";
       break;
     case (3):
-      $order_by = " order by p.zen_order_id, p.paypal_ipn_id";
+      $order_by = " order by p.order_id, p.paypal_ipn_id";
       break;
     case (4):
       $order_by = " order by p.mc_gross DESC";
@@ -100,7 +86,7 @@
   // -->
 </script>
 </head>
-<body marginwidth="0" marginheight="0" topmargin="0" bottommargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFFF" onload="SetFocus(), init();">
+<body marginwidth="0" marginheight="0" topmargin="0" bottommargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFFF" onLoad="SetFocus(), init();">
 <!-- header //-->
 <?php require(DIR_WS_INCLUDES . 'header.php'); ?>
 <!-- header_eof //-->
@@ -120,7 +106,6 @@
   echo zen_draw_form('payment_status', FILENAME_PAYPAL, '', 'get') . HEADING_PAYMENT_STATUS . ' ' . zen_draw_pull_down_menu('payment_status', array_merge(array(array('id' => '', 'text' => TEXT_ALL_IPNS)), $payment_statuses), $selected_status, 'onChange="this.form.submit();"') . zen_hide_session_id() . zen_draw_hidden_field('paypal_ipn_sort_order', $_GET['paypal_ipn_sort_order']) . '</form>';
 ?>
 <?php
-//  echo zen_draw_form('payment_sort_order', FILENAME_PAYPAL, '', 'get') . HEADING_PAYMENT_STATUS . ' ' . zen_draw_pull_down_menu('payment_sort_order', array_merge(array(array('id' => '', 'text' => TEXT_ALL_IPNS)), $payment_statuses), $selected_status, 'onChange="this.form.submit();"') . zen_hide_session_id() . '</form>';
   echo '&nbsp;&nbsp;&nbsp;' . TEXT_PAYPAL_IPN_SORT_ORDER_INFO . zen_draw_form('paypal_ipn_sort_order', FILENAME_PAYPAL, '', 'get') . '&nbsp;&nbsp;' . zen_draw_pull_down_menu('paypal_ipn_sort_order', $paypal_ipn_sort_order_array, $reset_paypal_ipn_sort_order, 'onChange="this.form.submit();"') . zen_hide_session_id() . zen_draw_hidden_field('payment_status', $_GET['payment_status']) . '</form>';
 ?>
             </td>
@@ -147,13 +132,11 @@
       case 'Pending':
       case 'Completed':
       default:
-//        $ipn_query_raw = "select p.zen_order_id, p.paypal_ipn_id, p.txn_type, p.payment_type, p.payment_status, p.pending_reason, p.mc_currency, p.payer_status, p.mc_currency, p.date_added, p.mc_gross, p.first_name, p.last_name, p.payer_business_name, p.parent_txn_id, p.txn_id from " . TABLE_PAYPAL . " as p, " .TABLE_ORDERS . " as o  where o.orders_id = p.zen_order_id " . $ipn_search . " order by o.orders_id DESC";
-        $ipn_query_raw = "select p.zen_order_id, p.paypal_ipn_id, p.txn_type, p.payment_type, p.payment_status, p.pending_reason, p.mc_currency, p.payer_status, p.mc_currency, p.date_added, p.mc_gross, p.first_name, p.last_name, p.payer_business_name, p.parent_txn_id, p.txn_id from " . TABLE_PAYPAL . " as p, " .TABLE_ORDERS . " as o  where o.orders_id = p.zen_order_id " . $ipn_search . $order_by;
+        $ipn_query_raw = "select p.order_id, p.paypal_ipn_id, p.txn_type, p.payment_type, p.payment_status, p.pending_reason, p.mc_currency, p.payer_status, p.mc_currency, p.date_added, p.mc_gross, p.first_name, p.last_name, p.payer_business_name, p.parent_txn_id, p.txn_id from " . TABLE_PAYPAL . " as p, " .TABLE_ORDERS . " as o  where o.orders_id = p.order_id " . $ipn_search . $order_by;
         break;
     }
   } else {
-//        $ipn_query_raw = "select p.zen_order_id, p.paypal_ipn_id, p.txn_type, p.payment_type, p.payment_status, p.pending_reason, p.mc_currency, p.payer_status, p.mc_currency, p.date_added, p.mc_gross, p.first_name, p.last_name, p.payer_business_name, p.parent_txn_id, p.txn_id from " . TABLE_PAYPAL . " as p left join " .TABLE_ORDERS . " as o on o.orders_id = p.zen_order_id order by p.paypal_ipn_id DESC";
-        $ipn_query_raw = "select p.zen_order_id, p.paypal_ipn_id, p.txn_type, p.payment_type, p.payment_status, p.pending_reason, p.mc_currency, p.payer_status, p.mc_currency, p.date_added, p.mc_gross, p.first_name, p.last_name, p.payer_business_name, p.parent_txn_id, p.txn_id from " . TABLE_PAYPAL . " as p left join " .TABLE_ORDERS . " as o on o.orders_id = p.zen_order_id" . $order_by;
+        $ipn_query_raw = "select p.order_id, p.paypal_ipn_id, p.txn_type, p.payment_type, p.payment_status, p.pending_reason, p.mc_currency, p.payer_status, p.mc_currency, p.date_added, p.mc_gross, p.first_name, p.last_name, p.payer_business_name, p.parent_txn_id, p.txn_id from " . TABLE_PAYPAL . " as p left join " .TABLE_ORDERS . " as o on o.orders_id = p.order_id" . $order_by;
   }
   $ipn_split = new splitPageResults($_GET['page'], MAX_DISPLAY_SEARCH_RESULTS_PAYPAL_IPN, $ipn_query_raw, $ipn_query_numrows);
   $ipn_trans = $db->Execute($ipn_query_raw);
@@ -163,12 +146,12 @@
     }
 
     if (isset($ipnInfo) && is_object($ipnInfo) && ($ipn_trans->fields['paypal_ipn_id'] == $ipnInfo->paypal_ipn_id) ) {
-      echo '              <tr id="defaultSelected" class="dataTableRowSelected" onmouseover="rowOverEffect(this)" onmouseout="rowOutEffect(this)" onclick="document.location.href=\'' . zen_href_link(FILENAME_ORDERS, 'page=' . $_GET['page'] . '&ipnID=' . $ipnInfo->paypal_ipn_id . '&oID=' . $ipnInfo->zen_order_id . '&action=edit' . '&referer=ipn' . (zen_not_null($selected_status) ? '&payment_status=' . $selected_status : '') . (zen_not_null($paypal_ipn_sort_order) ? '&paypal_ipn_sort_order=' . $paypal_ipn_sort_order : '') ) . '\'">' . "\n";
+      echo '              <tr id="defaultSelected" class="dataTableRowSelected" onmouseover="rowOverEffect(this)" onmouseout="rowOutEffect(this)" onclick="document.location.href=\'' . zen_href_link(FILENAME_ORDERS, 'page=' . $_GET['page'] . '&ipnID=' . $ipnInfo->paypal_ipn_id . '&oID=' . $ipnInfo->order_id . '&action=edit' . '&referer=ipn' . (zen_not_null($selected_status) ? '&payment_status=' . $selected_status : '') . (zen_not_null($paypal_ipn_sort_order) ? '&paypal_ipn_sort_order=' . $paypal_ipn_sort_order : '') ) . '\'">' . "\n";
     } else {
       echo '              <tr class="dataTableRow" onmouseover="rowOverEffect(this)" onmouseout="rowOutEffect(this)" onclick="document.location.href=\'' . zen_href_link(FILENAME_PAYPAL, 'page=' . $_GET['page'] . '&ipnID=' . $ipn_trans->fields['paypal_ipn_id'] . (zen_not_null($selected_status) ? '&payment_status=' . $selected_status : '') . (zen_not_null($paypal_ipn_sort_order) ? '&paypal_ipn_sort_order=' . $paypal_ipn_sort_order : '') ) . '\'">' . "\n";
     }
 ?>
-                <td class="dataTableContent"> <?php echo $ipn_trans->fields['zen_order_id']; ?> </td>
+                <td class="dataTableContent"> <?php echo $ipn_trans->fields['order_id']; ?> </td>
                 <td class="dataTableContent"> <?php echo $ipn_trans->fields['paypal_ipn_id']; ?> </td>
                 <td class="dataTableContent"> <?php echo $ipn_trans->fields['txn_type'] . '<br />' . $ipn_trans->fields['first_name'] . ' ' . $ipn_trans->fields['last_name'] . ($ipn_trans->fields['payer_business_name'] != '' ? '<br />' . $ipn_trans->fields['payer_business_name'] : ''); ?>
                 <td class="dataTableContent"><?php echo $ipn_trans->fields['payment_status_name'] . ' '. $ipn_trans->fields['payment_status'] . '<br />Parent Trans ID:' . $ipn_trans->fields['parent_txn_id'] . '<br />Trans ID:' . $ipn_trans->fields['txn_id']; ?></td>
@@ -205,7 +188,7 @@
         $ipn = $db->Execute("select * from " . TABLE_PAYPAL_PAYMENT_STATUS_HISTORY . " where paypal_ipn_id = '" . $ipnInfo->paypal_ipn_id . "'");
         $ipn_count = $ipn->RecordCount();
 
-        $contents[] = array('align' => 'center', 'text' => '<a href="' . zen_href_link(FILENAME_ORDERS, zen_get_all_get_params(array('ipnID', 'action')) . 'oID=' . $ipnInfo->zen_order_id .'&' . 'ipnID=' . $ipnInfo->paypal_ipn_id .'&action=edit' . '&referer=ipn') . '">' . zen_image_button('button_orders.gif', IMAGE_ORDERS) . '</a>');
+        $contents[] = array('align' => 'center', 'text' => '<a href="' . zen_href_link(FILENAME_ORDERS, zen_get_all_get_params(array('ipnID', 'action')) . 'oID=' . $ipnInfo->order_id .'&' . 'ipnID=' . $ipnInfo->paypal_ipn_id .'&action=edit' . '&referer=ipn') . '">' . zen_image_button('button_orders.gif', IMAGE_ORDERS) . '</a>');
         $contents[] = array('text' => '<br>' . TABLE_HEADING_NUM_HISTORY_ENTRIES . ': '. $ipn_count);
         $count = 1;
         while (!$ipn->EOF) {

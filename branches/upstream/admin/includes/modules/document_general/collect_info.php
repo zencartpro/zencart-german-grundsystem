@@ -1,10 +1,10 @@
 <?php
 /**
  * @package admin
- * @copyright Copyright 2003-2006 Zen Cart Development Team
+ * @copyright Copyright 2003-2007 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: collect_info.php 4804 2006-10-21 16:19:59Z ajeh $
+ * @version $Id: collect_info.php 6131 2007-04-08 06:56:51Z drbyte $
  */
 if (!defined('IS_ADMIN_FLAG')) {
   die('Illegal Access');
@@ -306,6 +306,7 @@ echo zen_draw_hidden_field('products_quantity_order_units', 1);
       $dir_info[] = array('id' => $file . '/', 'text' => $file);
     }
   }
+  $dir->close();
   sort($dir_info);
 
   $default_directory = substr( $pInfo->products_image, 0,strpos( $pInfo->products_image, '/')+1);

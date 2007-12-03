@@ -17,7 +17,7 @@
 // | to obtain it through the world-wide-web, please send a note to       |
 // | license@zen-cart.com so we can mail you a copy immediately.          |
 // +----------------------------------------------------------------------+
-//  $Id: languages.php 3813 2006-06-20 03:49:38Z ajeh $
+//  $Id: languages.php 7282 2007-10-25 03:39:06Z ajeh $
 
   require('includes/application_top.php');
   $action = (isset($_GET['action']) ? $_GET['action'] : '');
@@ -255,12 +255,12 @@
         $lID = zen_db_prepare_input($_GET['lID']);
         $lng = $db->Execute("select languages_id
                              from " . TABLE_LANGUAGES . "
-                             where code = '" . DEFAULT_CURRENCY . "'");
+                             where code = '" . DEFAULT_LANGUAGE . "'");
 
         if ($lng->fields['languages_id'] == $lID) {
           $db->Execute("update " . TABLE_CONFIGURATION . "
                         set configuration_value = ''
-                        where configuration_key = 'DEFAULT_CURRENCY'");
+                        where configuration_key = 'DEFAULT_LANGUAGE'");
         }
         $db->Execute("delete from " . TABLE_CATEGORIES_DESCRIPTION . " where language_id = '" . (int)$lID . "'");
         $db->Execute("delete from " . TABLE_PRODUCTS_DESCRIPTION . " where language_id = '" . (int)$lID . "'");
@@ -272,6 +272,11 @@
         $db->Execute("delete from " . TABLE_COUPONS_DESCRIPTION . " where language_id = '" . (int)$lID . "'");
         $db->Execute("delete from " . TABLE_META_TAGS_PRODUCTS_DESCRIPTION . " where language_id = '" . (int)$lID . "'");
         $db->Execute("delete from " . TABLE_METATAGS_CATEGORIES_DESCRIPTION . " where language_id = '" . (int)$lID . "'");
+
+        // if we just deleted our currently-selected language, need to switch to default lang:
+        $lng = $db->Execute("select languages_id from " . TABLE_LANGUAGES . " where code = '" . DEFAULT_LANGUAGE . "'");
+        if ((int)$_SESSION['languages_id'] == (int)$_GET['lID'])  $_SESSION['languages_id'] = $lng->fields['languages_id'];
+
         zen_redirect(zen_href_link(FILENAME_LANGUAGES, 'page=' . $_GET['page']));
         break;
       case 'delete':

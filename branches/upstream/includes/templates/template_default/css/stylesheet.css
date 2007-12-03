@@ -2,10 +2,10 @@
  * Main CSS Stylesheet
  *
  * @package templateSystem
- * @copyright Copyright 2003-2005 Zen Cart Development Team
+ * @copyright Copyright 2003-2007 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: stylesheet.css 5347 2006-12-22 20:26:09Z birdbrain $
+ * @version $Id: stylesheet.css 5952 2007-03-03 06:18:46Z drbyte $
  */
 
 body {
@@ -57,9 +57,7 @@ h4, h5, h6, LABEL, h4.optionName, LEGEND, ADDRESS, .sideBoxContent, .larger{
 	}
 
 h1, h2, h3, h4, h5, h6 {
-
-    margin: 0.3em 3px;
-
+	margin: 0.3em 3px;
 }
 
 CODE {
@@ -403,10 +401,16 @@ HR {
 	}
 
 #mediaManager {
-  width: 50%; 
-  margin: 0.2em;
-  padding: 0.5em;
-  }
+	width: 50%; 
+	margin: 0.2em;
+	padding: 0.5em;
+	}
+.mediaTitle {
+	float: left;
+	}
+.mediaTypeLink {
+	float: right;
+	}
 
 .normalprice, .productSpecialPriceSale {
 	text-decoration: line-through;
@@ -431,8 +435,8 @@ HR {
 	} 
 
 #cartBoxEmpty, #cartBoxVoucherBalance {
-  font-weight: bold;
-  }
+	font-weight: bold;
+	}
 
 .totalBox {
 	width: 5.5em;
@@ -627,3 +631,20 @@ LABEL#textAreaReviews {
 	background-color: #ffffff;
 	}
 .information {padding: 10px 3px; line-height: 150%;}
+
+#shoppingcartBody #shippingEstimatorContent {
+	clear: both;
+	}
+
+.seDisplayedAddressLabel {
+	background-color:#85C285;
+	text-align: center;
+	}
+.seDisplayedAddressInfo {
+	text-transform: uppercase;
+	text-align: center;
+	font-weight: bold;
+	}
+#seShipTo {
+	padding: 0.2em;
+	}

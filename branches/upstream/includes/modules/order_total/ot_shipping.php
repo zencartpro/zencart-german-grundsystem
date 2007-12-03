@@ -1,40 +1,25 @@
 <?php
-//
-// +----------------------------------------------------------------------+
-// |zen-cart Open Source E-commerce                                       |
-// +----------------------------------------------------------------------+
-// | Copyright (c) 2004 The zen-cart developers                           |
-// |                                                                      |
-// | http://www.zen-cart.com/index.php                                    |
-// |                                                                      |
-// | Portions Copyright (c) 2003 osCommerce                               |
-// +----------------------------------------------------------------------+
-// | This source file is subject to version 2.0 of the GPL license,       |
-// | that is bundled with this package in the file LICENSE, and is        |
-// | available through the world-wide-web at the following url:           |
-// | http://www.zen-cart.com/license/2_0.txt.                             |
-// | If you did not receive a copy of the zen-cart license and are unable |
-// | to obtain it through the world-wide-web, please send a note to       |
-// | license@zen-cart.com so we can mail you a copy immediately.          |
-// +----------------------------------------------------------------------+
-// $Id: ot_shipping.php 1969 2005-09-13 06:57:21Z drbyte $
-//
+/**
+ * ot_shipping order-total module
+ *
+ * @package orderTotal
+ * @copyright Copyright 2003-2007 Zen Cart Development Team
+ * @copyright Portions Copyright 2003 osCommerce
+ * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
+ * @version $Id: ot_shipping.php 6507 2007-06-16 21:05:25Z wilt $
+ */
 
   class ot_shipping {
     var $title, $output;
 
     function ot_shipping() {
+      global $order, $currencies;
       $this->code = 'ot_shipping';
       $this->title = MODULE_ORDER_TOTAL_SHIPPING_TITLE;
       $this->description = MODULE_ORDER_TOTAL_SHIPPING_DESCRIPTION;
       $this->sort_order = MODULE_ORDER_TOTAL_SHIPPING_SORT_ORDER;
 
       $this->output = array();
-    }
-
-    function process() {
-      global $order, $currencies;
-
       if (MODULE_ORDER_TOTAL_SHIPPING_FREE_SHIPPING == 'true') {
         switch (MODULE_ORDER_TOTAL_SHIPPING_DESTINATION) {
           case 'national':
@@ -79,19 +64,26 @@
               $shipping_tax = 0;
             }
           }
-          $order->info['tax'] += zen_calculate_tax($order->info['shipping_cost'], $shipping_tax);
+          $shipping_tax_amount = zen_calculate_tax($order->info['shipping_cost'], $shipping_tax);
+          $order->info['tax'] += $shipping_tax_amount;
           $order->info['tax_groups']["$shipping_tax_description"] += zen_calculate_tax($order->info['shipping_cost'], $shipping_tax);
           $order->info['total'] += zen_calculate_tax($order->info['shipping_cost'], $shipping_tax);
-
+          $_SESSION['shipping_tax_description'] =  $shipping_tax_description;
+          $_SESSION['shipping_tax_amount'] =  $shipping_tax_amount;
           if (DISPLAY_PRICE_WITH_TAX == 'true') $order->info['shipping_cost'] += zen_calculate_tax($order->info['shipping_cost'], $shipping_tax);
         }
 
         if ($_SESSION['shipping'] == 'free_free') $order->info['shipping_method'] = FREE_SHIPPING_TITLE;
 
+      }
+    }
+
+    function process() {
+      global $order, $currencies;
+
         $this->output[] = array('title' => $order->info['shipping_method'] . ':',
                                 'text' => $currencies->format($order->info['shipping_cost'], true, $order->info['currency'], $order->info['currency_value']),
                                 'value' => $order->info['shipping_cost']);
-      }
     }
 
     function check() {

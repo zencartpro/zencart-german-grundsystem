@@ -17,7 +17,7 @@
 // | to obtain it through the world-wide-web, please send a note to       |
 // | license@zen-cart.com so we can mail you a copy immediately.          |
 // +----------------------------------------------------------------------+
-//  $Id: developers_tool_kit.php 1105 2005-04-04 22:05:35Z birdbrain $
+//  $Id: developers_tool_kit.php 6082 2007-03-31 04:26:08Z ajeh $
 //
   define('HEADING_TITLE', 'Developers Tool Kit');
   define('TABLE_CONFIGURATION_TABLE', 'Lookup CONSTANT Definitions');
@@ -79,4 +79,7 @@
 
   define('TEXT_INFO_NO_EDIT_AVAILABLE','No edit available');
   define('TEXT_INFO_CONFIGURATION_HIDDEN', ' or, HIDDEN');
+
+  define('TEXT_SEARCH_ALL_FILES', 'Search ALL files for: ');
+  define('TEXT_SEARCH_DATABASE_TABLES', 'Search database configuration tables for: ');
 ?>

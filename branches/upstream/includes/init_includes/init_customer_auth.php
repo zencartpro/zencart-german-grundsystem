@@ -4,10 +4,10 @@
  * see {@link  http://www.zen-cart.com/wiki/index.php/Developers_API_Tutorials#InitSystem wikitutorials} for more details.
  *
  * @package initSystem
- * @copyright Copyright 2003-2006 Zen Cart Development Team
+ * @copyright Copyright 2003-2007 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: init_customer_auth.php 5031 2006-12-02 00:59:31Z drbyte $
+ * @version $Id: init_customer_auth.php 6992 2007-09-13 02:54:24Z ajeh $
  */
 if (!defined('IS_ADMIN_FLAG')) {
   die('Illegal Access');
@@ -22,7 +22,7 @@ if (DOWN_FOR_MAINTENANCE=='false' and $_GET['main_page'] == DOWN_FOR_MAINTENANCE
 /**
  * see if DFM mode type is defined (strict means all pages blocked, relaxed means logoff/privacy/etc pages are usable)
  */
-if (!defined('DOWN_FOR_MAINTENANCE_TYPE')) define(DOWN_FOR_MAINTENANCE_TYPE, 'relaxed');
+if (!defined('DOWN_FOR_MAINTENANCE_TYPE')) define('DOWN_FOR_MAINTENANCE_TYPE', 'relaxed');
 /**
  * check to see if site is DFM, and set a flag for use later
  */
@@ -58,7 +58,7 @@ switch (true) {
     zen_redirect(zen_href_link(DOWN_FOR_MAINTENANCE_FILENAME));
   break;
 
-  case (!in_array($_GET['main_page'], array(FILENAME_LOGOFF, FILENAME_PRIVACY, FILENAME_CONTACT_US, FILENAME_CONDITIONS, FILENAME_SHIPPING))):
+  case ((DOWN_FOR_MAINTENANCE == 'true') && !in_array($_GET['main_page'], array(FILENAME_LOGOFF, FILENAME_PRIVACY, FILENAME_CONTACT_US, FILENAME_CONDITIONS, FILENAME_SHIPPING))):
     // on special pages, if DFM mode is "relaxed", allow access to these pages
     if ($down_for_maint_flag && DOWN_FOR_MAINTENANCE_TYPE == 'relaxed') {
       zen_redirect(zen_href_link(DOWN_FOR_MAINTENANCE_FILENAME));
@@ -69,6 +69,11 @@ switch (true) {
     // on special pages, allow customers to access regardless of store mode or cust auth mode
   break;
 
+/**
+ * check store status before authorizations
+ */
+  case (STORE_STATUS != 0):
+    break;
 /**
  * if not down for maintenance check login status
  */
@@ -97,11 +102,17 @@ switch (true) {
 }
 
 switch (true) {
+/**
+ * check store status before authorizations
+ */
+  case (STORE_STATUS != 0):
+    break;
   case (CUSTOMERS_APPROVAL_AUTHORIZATION == '1' and $_SESSION['customer_id'] == ''):
   /**
    * customer must be logged in to browse
    */
-  if (!in_array($_GET['main_page'], array(FILENAME_LOGIN, FILENAME_CREATE_ACCOUNT))) {
+//  if (!in_array($_GET['main_page'], array(FILENAME_LOGIN, FILENAME_CREATE_ACCOUNT))) {
+  if (!in_array($_GET['main_page'], array(FILENAME_LOGIN, FILENAME_LOGOFF, FILENAME_CREATE_ACCOUNT, FILENAME_PASSWORD_FORGOTTEN, FILENAME_CONTACT_US, FILENAME_PRIVACY))) {
     if (!isset($_GET['set_session_login'])) {
       $_GET['set_session_login'] = 'true';
       $_SESSION['navigation']->set_snapshot();
@@ -111,7 +122,7 @@ switch (true) {
   break;
   case (CUSTOMERS_APPROVAL_AUTHORIZATION == '2' and $_SESSION['customer_id'] == ''):
   /**
-   * customer must be logged in to browse
+   * customer may browse but no prices unless Authorized
    */
   /*
   if (!in_array($_GET['main_page'], array(FILENAME_LOGIN, FILENAME_CREATE_ACCOUNT))) {
@@ -128,8 +139,10 @@ switch (true) {
    * customer is pending approval
    * customer must be logged in to browse
    */
+  if (!in_array($_GET['main_page'], array(FILENAME_LOGIN, FILENAME_LOGOFF, FILENAME_CONTACT_US, FILENAME_PRIVACY))) {
   if ($_GET['main_page'] != CUSTOMERS_AUTHORIZATION_FILENAME) {
     zen_redirect(zen_href_link(CUSTOMERS_AUTHORIZATION_FILENAME));
+    }
   }
   break;
   case (CUSTOMERS_APPROVAL_AUTHORIZATION == '2' and $_SESSION['customers_authorization'] != '0'):

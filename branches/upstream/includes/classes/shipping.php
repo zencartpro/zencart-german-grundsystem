@@ -3,10 +3,10 @@
  * shipping class
  *
  * @package classes
- * @copyright Copyright 2003-2006 Zen Cart Development Team
+ * @copyright Copyright 2003-2007 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: shipping.php 5381 2006-12-24 18:21:59Z drbyte $
+ * @version $Id: shipping.php 6276 2007-05-02 11:50:10Z drbyte $
  */
 if (!defined('IS_ADMIN_FLAG')) {
   die('Illegal Access');
@@ -22,7 +22,7 @@ class shipping extends base {
 
   // class constructor
   function shipping($module = '') {
-    global $PHP_SELF;
+    global $PHP_SELF, $messageStack;
 
     if (defined('MODULE_SHIPPING_INSTALLED') && zen_not_null(MODULE_SHIPPING_INSTALLED)) {
       $this->modules = explode(';', MODULE_SHIPPING_INSTALLED);
@@ -41,7 +41,16 @@ class shipping extends base {
 
       for ($i=0, $n=sizeof($include_modules); $i<$n; $i++) {
         //          include(DIR_WS_LANGUAGES . $_SESSION['language'] . '/modules/shipping/' . $include_modules[$i]['file']);
-        include_once(zen_get_file_directory(DIR_WS_LANGUAGES . $_SESSION['language'] . '/modules/shipping/', $include_modules[$i]['file'], 'false'));
+        $lang_file = zen_get_file_directory(DIR_WS_LANGUAGES . $_SESSION['language'] . '/modules/shipping/', $include_modules[$i]['file'], 'false');
+        if (@file_exists($lang_file)) {
+          include_once($lang_file);
+        } else {
+          if (IS_ADMIN_FLAG === false) {
+            $messageStack->add(WARNING_COULD_NOT_LOCATE_LANG_FILE . $lang_file, 'caution');
+          } else {
+            $messageStack->add_session(WARNING_COULD_NOT_LOCATE_LANG_FILE . $lang_file, 'caution');
+          }
+        }
         include_once(DIR_WS_MODULES . 'shipping/' . $include_modules[$i]['file']);
 
         $GLOBALS[$include_modules[$i]['class']] = new $include_modules[$i]['class'];
@@ -49,10 +58,8 @@ class shipping extends base {
     }
   }
 
-  function quote($method = '', $module = '') {
+  function calculate_boxes_weight_and_tare() {
     global $total_weight, $shipping_weight, $shipping_quoted, $shipping_num_boxes;
-
-    $quotes_array = array();
 
     if (is_array($this->modules)) {
       $shipping_quoted = '';
@@ -73,28 +80,36 @@ class shipping extends base {
 
       /*
       if (SHIPPING_BOX_WEIGHT >= $shipping_weight*SHIPPING_BOX_PADDING/100) {
-      $shipping_weight = $shipping_weight+SHIPPING_BOX_WEIGHT;
+        $shipping_weight = $shipping_weight+SHIPPING_BOX_WEIGHT;
       } else {
-      $shipping_weight = $shipping_weight + ($shipping_weight*SHIPPING_BOX_PADDING/100);
+        $shipping_weight = $shipping_weight + ($shipping_weight*SHIPPING_BOX_PADDING/100);
       }
       */
 
       switch (true) {
         // large box add padding
         case(SHIPPING_MAX_WEIGHT <= $shipping_weight):
-        $shipping_weight = $shipping_weight + ($shipping_weight*($zc_large_percent/100)) + $zc_large_weight;
-        break;
+          $shipping_weight = $shipping_weight + ($shipping_weight*($zc_large_percent/100)) + $zc_large_weight;
+          break;
         default:
         // add tare weight < large
-        $shipping_weight = $shipping_weight + ($shipping_weight*($zc_tare_percent/100)) + $zc_tare_weight;
-        break;
+          $shipping_weight = $shipping_weight + ($shipping_weight*($zc_tare_percent/100)) + $zc_tare_weight;
+          break;
       }
 
       if ($shipping_weight > SHIPPING_MAX_WEIGHT) { // Split into many boxes
-      $shipping_num_boxes = ceil($shipping_weight/SHIPPING_MAX_WEIGHT);
-      $shipping_weight = $shipping_weight/$shipping_num_boxes;
+        $shipping_num_boxes = ceil($shipping_weight/SHIPPING_MAX_WEIGHT);
+        $shipping_weight = $shipping_weight/$shipping_num_boxes;
       }
+    }
+  }
 
+  function quote($method = '', $module = '', $calc_boxes_weight_tare = true) {
+    $quotes_array = array();
+
+    if ($calc_boxes_weight_tare) $this->calculate_boxes_weight_and_tare();
+
+    if (is_array($this->modules)) {
       $include_quotes = array();
 
       reset($this->modules);
@@ -133,9 +148,9 @@ class shipping extends base {
             //              if ($quotes['methods'][$i]['cost']) {
             if (isset($quotes['methods'][$i]['cost'])){
               $rates[] = array('id' => $quotes['id'] . '_' . $quotes['methods'][$i]['id'],
-              'title' => $quotes['module'] . ' (' . $quotes['methods'][$i]['title'] . ')',
-              'cost' => $quotes['methods'][$i]['cost'],
-              'module' => $quotes['id']
+                               'title' => $quotes['module'] . ' (' . $quotes['methods'][$i]['title'] . ')',
+                               'cost' => $quotes['methods'][$i]['cost'],
+                               'module' => $quotes['id']
               );
             }
           }

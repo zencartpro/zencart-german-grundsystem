@@ -5,7 +5,7 @@
  * @copyright Copyright 2003-2005 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: store_setup.php 4297 2006-08-27 11:48:42Z drbyte $
+ * @version $Id: store_setup.php 7411 2007-11-11 05:47:10Z drbyte $
  */
 /**
  * defining language components for the page
@@ -15,22 +15,22 @@
   define('TEXT_PAGE_HEADING', 'Zen Cart&trade; Setup - Store Setup');
   define('STORE_INFORMATION', 'Store Information');
   define('STORE_NAME', 'Store Name');
-  define('STORE_NAME_INSTRUCTION', 'What is the name of your Zen Cart store?');
+  define('STORE_NAME_INSTRUCTION', 'What is the name of your Zen Cart&trade; store?');
   define('STORE_OWNER', 'Store Owner');
-  define('STORE_OWNER_INSTRUCTION', 'Who is the owner of your Zen Cart store?');
+  define('STORE_OWNER_INSTRUCTION', 'Who is the owner of your Zen Cart&trade; store?');
   define('STORE_OWNER_EMAIL', 'Store Owner Email');
-  define('STORE_OWNER_EMAIL_INSTRUCTION', 'What is the Zen Cart store owner\'s email address?');
+  define('STORE_OWNER_EMAIL_INSTRUCTION', 'What is the Zen Cart&trade; store owner\'s email address?');
   define('STORE_COUNTRY', 'Store Country');
-  define('STORE_COUNTRY_INSTRUCTION', 'What country is your Zen Cart store located in?');
+  define('STORE_COUNTRY_INSTRUCTION', 'What country is your Zen Cart&trade; store located in?');
   define('STORE_ZONE', 'Store Zone');
-  define('STORE_ZONE_INSTRUCTION', 'What zone is your Zen Cart store located in?');
+  define('STORE_ZONE_INSTRUCTION', 'What zone is your Zen Cart&trade; store located in?');
   define('STORE_ADDRESS', 'Store Address');
-  define('STORE_ADDRESS_INSTRUCTION', 'What is the address of your Zen Cart store?  This address will be used on printable documents and displayed online.');
+  define('STORE_ADDRESS_INSTRUCTION', 'What is the address of your Zen Cart&trade; store?  This address will be used on printable documents and displayed online.');
   define('STORE_DEFAULT_LANGUAGE', 'Default Language');
   define('STORE_DEFAULT_LANGUAGE_INSTRUCTION', 'Please select your default language?');
   define('STORE_DEFAULT_CURRENCY', 'Default Currency');
   define('STORE_DEFAULT_CURRENCY_INSTRUCTION', 'Please select your default currency?');
   define('DEMO_INFORMATION', 'Demo Information');
   define('DEMO_INSTALL', 'Store Demo');
-  define('DEMO_INSTALL_INSTRUCTION', 'Would you like to install the Zen Cart demonstration categories and products?');
+  define('DEMO_INSTALL_INSTRUCTION', 'Would you like to install the Zen Cart&trade; demonstration categories and products?');
 ?>

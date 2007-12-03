@@ -3,10 +3,10 @@
  * Payment Class.
  *
  * @package classes
- * @copyright Copyright 2003-2006 Zen Cart Development Team
+ * @copyright Copyright 2003-2007 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: payment.php 5382 2006-12-24 18:22:47Z drbyte $
+ * @version $Id: payment.php 6276 2007-05-02 11:50:10Z drbyte $
  */
 if (!defined('IS_ADMIN_FLAG')) {
   die('Illegal Access');
@@ -22,7 +22,7 @@ class payment extends base {
 
   // class constructor
   function payment($module = '') {
-    global $PHP_SELF, $language, $credit_covers;
+    global $PHP_SELF, $language, $credit_covers, $messageStack;
 
     if (defined('MODULE_PAYMENT_INSTALLED') && zen_not_null(MODULE_PAYMENT_INSTALLED)) {
       $this->modules = explode(';', MODULE_PAYMENT_INSTALLED);
@@ -59,7 +59,16 @@ class payment extends base {
 
       for ($i=0, $n=sizeof($include_modules); $i<$n; $i++) {
         //          include(DIR_WS_LANGUAGES . $_SESSION['language'] . '/modules/payment/' . $include_modules[$i]['file']);
-        include_once(zen_get_file_directory(DIR_WS_LANGUAGES . $_SESSION['language'] . '/modules/payment/', $include_modules[$i]['file'], 'false'));
+        $lang_file = zen_get_file_directory(DIR_WS_LANGUAGES . $_SESSION['language'] . '/modules/payment/', $include_modules[$i]['file'], 'false');
+        if (@file_exists($lang_file)) {
+          include_once($lang_file);
+        } else {
+          if (IS_ADMIN_FLAG === false) {
+            $messageStack->add(WARNING_COULD_NOT_LOCATE_LANG_FILE . $lang_file, 'caution');
+          } else {
+            $messageStack->add_session(WARNING_COULD_NOT_LOCATE_LANG_FILE . $lang_file, 'caution');
+          }
+        }
         include_once(DIR_WS_MODULES . 'payment/' . $include_modules[$i]['file']);
 
         $GLOBALS[$include_modules[$i]['class']] = new $include_modules[$i]['class'];

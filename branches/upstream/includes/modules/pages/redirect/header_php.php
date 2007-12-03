@@ -3,10 +3,10 @@
  * redirect handler 
  *
  * @package page
- * @copyright Copyright 2003-2006 Zen Cart Development Team
+ * @copyright Copyright 2003-2007 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: header_php.php 3000 2006-02-09 21:11:37Z wilt $
+ * @version $Id: header_php.php 7285 2007-10-25 21:53:56Z drbyte $
  */
 if (!defined('IS_ADMIN_FLAG')) {
   die('Illegal Access');
@@ -66,7 +66,7 @@ switch ($_GET['action']) {
       $sql = $db->bindVars($sql, ':manufacturersID', $_GET['manufacturers_id'], 'integer');
       $manufacturer = $db->Execute(sql);
 
-      if ($manufacturer->RecordCount > 0) {
+      if ($manufacturer->RecordCount() > 0) {
 
         if (zen_not_null($manufacturer->fields['manufacturers_url'])) {
           $sql = "UPDATE " . TABLE_MANUFACTURERS_INFO . "

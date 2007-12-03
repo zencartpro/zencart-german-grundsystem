@@ -3,10 +3,10 @@
  * download header_php.php
  *
  * @package page
- * @copyright Copyright 2003-2006 Zen Cart Development Team
+ * @copyright Copyright 2003-2007 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: header_php.php 4135 2006-08-14 04:25:02Z drbyte $
+ * @version $Id: header_php.php 7428 2007-11-12 09:40:31Z drbyte $
  */
 // This should be first line of the script:
 $zco_notifier->notify('NOTIFY_HEADER_START_DOWNLOAD');
@@ -57,7 +57,7 @@ if ($downloads->fields['download_count'] <= 0 and $downloads->fields['download_m
 // Die if file is not there
 if (!file_exists(DIR_FS_DOWNLOAD . $downloads->fields['orders_products_filename'])) die('Sorry. File not found. Please contact the webmaster to report this error.<br />c/f: ' . $downloads->fields['orders_products_filename']);
 
-// Now decrement counter
+// Now decrement counter (probably should skip this if download_maxdays = 0, ie: unlimited) -- move it up to lines 48-54?
 $sql = "UPDATE " . TABLE_ORDERS_PRODUCTS_DOWNLOAD . "
           SET download_count = download_count-1 
           WHERE orders_products_download_id = :downloadID";
@@ -102,15 +102,27 @@ function zen_unlink_temp_dir($dir)
   closedir($h1);
 }
 
+// disable gzip output buffering if active:
+@ob_end_clean();
+@ini_set('zlib.output_compression', 'Off');
+
+// determine filename for download
+$origin_filename = $downloads->fields['orders_products_filename'];
+$browser_filename = str_replace(' ', '_', $origin_filename);
+if (strstr($browser_filename, '/')) $browser_filename = substr($browser_filename, strrpos($browser_filename, '/')+1);
+if (strstr($browser_filename, '\\')) $browser_filename = substr($browser_filename, strrpos($browser_filename, '\\')+1);
 
 // Now send the file with header() magic
+// the "must-revalidate" and expiry times are used to prevent caching and fraudulent re-acquiring of files w/o redownloading.
 header("Expires: Mon, 26 Nov 1962 00:00:00 GMT");
 header("Last-Modified: " . gmdate("D,d M Y H:i:s") . " GMT");
 header("Cache-Control: no-cache, must-revalidate");
 header("Pragma: no-cache");
 header("Content-Type: Application/octet-stream");
-header("Content-disposition: attachment; filename=" . $downloads->fields['orders_products_filename']);
-$zv_filesize = filesize(DIR_FS_DOWNLOAD . $downloads->fields['orders_products_filename']);
+header("Content-disposition: attachment; filename=" . $browser_filename);
+header("Content-Transfer-Encoding: binary");
+
+$zv_filesize = filesize(DIR_FS_DOWNLOAD . $origin_filename);
 
 if (DOWNLOAD_BY_REDIRECT == 'true') {
   // This will work only on Unix/Linux hosts
@@ -118,27 +130,32 @@ if (DOWNLOAD_BY_REDIRECT == 'true') {
   $tempdir = zen_random_name();
   umask(0000);
   mkdir(DIR_FS_DOWNLOAD_PUBLIC . $tempdir, 0777);
-  $download_link = str_replace(array('/','\\'),'_',$downloads->fields['orders_products_filename']);
-  $link_create_status = symlink(DIR_FS_DOWNLOAD . $downloads->fields['orders_products_filename'], DIR_FS_DOWNLOAD_PUBLIC . $tempdir . '/' . $download_link);
-  $zco_notifier->notify('NOTIFY_DOWNLOAD_VIA_SYMLINK___BEGINS');
+  $download_link = str_replace(array('/','\\'),'_',$browser_filename);
+  $link_create_status = @symlink(DIR_FS_DOWNLOAD . $origin_filename, DIR_FS_DOWNLOAD_PUBLIC . $tempdir . '/' . $download_link);
 
-  if ($link_create_status==true) zen_redirect(DIR_WS_DOWNLOAD_PUBLIC . $tempdir . '/' . $download_link);
+  if ($link_create_status==true) {
+    $zco_notifier->notify('NOTIFY_DOWNLOAD_VIA_SYMLINK___BEGINS');
+    header("HTTP/1.1 303 See Other");
+    zen_redirect(DIR_WS_DOWNLOAD_PUBLIC . $tempdir . '/' . $download_link);
+  }
 }
 
 if (DOWNLOAD_BY_REDIRECT != 'true' or $link_create_status==false ) {
-  // not downloading by redirect; instead, we stream it to the browser.  This happens if the symlink couldn't happen, or if set as default in Admin
+  // not downloading by redirect; instead, we stream it to the browser.
+  // This happens if the symlink couldn't happen, or if set as default in Admin
+  header("Content-Length: " . (string)$zv_filesize);
   if (DOWNLOAD_IN_CHUNKS != 'true') {
     // This will work on all systems, but will need considerable resources
-    header("Content-Length: " . $zv_filesize);
     $zco_notifier->notify('NOTIFY_DOWNLOAD_WITHOUT_REDIRECT___COMPLETED');
-    readfile(DIR_FS_DOWNLOAD . $downloads->fields['orders_products_filename']);
+    readfile(DIR_FS_DOWNLOAD . $origin_filename);
   } else {
+    // override PHP timeout to 20 minutes, if allowed
+    @set_time_limit(1200);
     // loop with fread($fp, xxxx) to allow streaming in chunk sizes below the PHP memory_limit
-    header("Content-Length: " . $zv_filesize);
-    $handle = fopen(DIR_FS_DOWNLOAD . $downloads->fields['orders_products_filename'], "rb");
-    while (!feof($handle)) {
+    $handle = @fopen(DIR_FS_DOWNLOAD . $origin_filename, "rb");
+    while (!@feof($handle)) {
       echo(fread($handle, 4096));
-      flush();
+      @flush();
     }
     fclose($handle);
     $zco_notifier->notify('NOTIFY_DOWNLOAD_WITHOUT_REDIRECT_VIA_CHUNKS___COMPLETED');
@@ -147,4 +164,7 @@ if (DOWNLOAD_BY_REDIRECT != 'true' or $link_create_status==false ) {
 
 // This should be last line of the script:
 $zco_notifier->notify('NOTIFY_HEADER_END_DOWNLOAD');
+
+// finally, upon completion of the download, the script should end here and not attempt to display any template components etc.
+zen_exit();
 ?>

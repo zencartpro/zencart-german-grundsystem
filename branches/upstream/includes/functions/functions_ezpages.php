@@ -3,10 +3,10 @@
  * ezpages functions - used to prepare links for EZ-Pages
  *
  * @package functions
- * @copyright Copyright 2003-2006 Zen Cart Development Team
+ * @copyright Copyright 2003-2007 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: functions_ezpages.php 3817 2006-06-20 19:31:24Z drbyte $
+ * @version $Id: functions_ezpages.php 5662 2007-01-22 17:19:26Z drbyte $
  */
 
 
@@ -38,7 +38,7 @@
         case ($ez_pages_alturl != '' and $ez_pages_open_new_window == '1'):
           $ez_pages_linkto  = (substr($ez_pages_alturl,0,4) == 'http') ?
                               $ez_pages_alturl :
-                              ($ez_pages_alturl=='' ? '' : zen_href_link($ez_pages_alturl, 'target="_blank', ($ez_pages_is_ssl=='0' ? 'NONSSL' : 'SSL'), true, true, true));
+                              ($ez_pages_alturl=='' ? '' : zen_href_link($ez_pages_alturl, '', ($ez_pages_is_ssl=='0' ? 'NONSSL' : 'SSL'), true, true, true));
           break;
           // internal link same window
         case ($ez_pages_alturl != '' and $ez_pages_open_new_window == '0'):

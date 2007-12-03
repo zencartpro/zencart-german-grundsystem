@@ -1,10 +1,10 @@
 <?php
 /**
  * @package admin
- * @copyright Copyright 2003-2006 Zen Cart Development Team
+ * @copyright Copyright 2003-2007 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: salemaker.php 3474 2006-04-21 02:20:40Z drbyte $
+ * @version $Id: salemaker.php 6369 2007-05-25 03:03:42Z ajeh $
  */
 //
 define('AUTOCHECK', 'False');
@@ -28,8 +28,8 @@ define('AUTOCHECK', 'False');
     switch ($action) {
       case 'setflag':
         $salemaker_data_array = array('sale_status' => zen_db_prepare_input($_GET['flag']),
-	                                  'sale_date_last_modified' => 'now()',
-	                                  'sale_date_status_change' => 'now()');
+                                    'sale_date_last_modified' => 'now()',
+                                    'sale_date_status_change' => 'now()');
 
         zen_db_perform(TABLE_SALEMAKER_SALES, $salemaker_data_array, 'update', "sale_id = '" . zen_db_prepare_input($_GET['sID']) . "'");
 
@@ -44,7 +44,7 @@ define('AUTOCHECK', 'False');
 
 // Create a string of all affected (sub-)categories
         if (zen_not_null($_POST['categories'])) {
-      	  $categories_selected = array();
+          $categories_selected = array();
           $categories_all = array();
           foreach(zen_db_prepare_input($_POST['categories']) as $category_path) {
             $tmp = explode('_', substr($category_path,0,strlen($category_path)-1));
@@ -87,7 +87,7 @@ define('AUTOCHECK', 'False');
           $_POST['sID'] = $db->Insert_ID();
 
         } else {
-	        $salemaker_sales_data_array['sale_date_last_modified'] = 'now()';
+          $salemaker_sales_data_array['sale_date_last_modified'] = 'now()';
           zen_db_perform(TABLE_SALEMAKER_SALES, $salemaker_sales_data_array, 'update', "sale_id = '" . zen_db_input($_POST['sID']) . "'");
         }
 
@@ -130,7 +130,7 @@ define('AUTOCHECK', 'False');
         zen_redirect(zen_href_link(FILENAME_SALEMAKER, 'page=' . $_GET['page'] . '&sID=' . $db->Insert_ID()));
         break;
       case 'deleteconfirm':
-  	    $sale_id = zen_db_prepare_input($_GET['sID']);
+        $sale_id = zen_db_prepare_input($_GET['sID']);
 
         // set sale off to update prices before removing
         $db->Execute("update " . TABLE_SALEMAKER_SALES . " set sale_status=0 where sale_id='" . $sale_id . "'");
@@ -213,7 +213,7 @@ function SetCategories() {
   for (i=0; i<document.sale_form.length; i++) {
     if(document.sale_form.elements[i].type == 'checkbox') {
       document.sale_form.elements[i].disabled = false;
-	  document.sale_form.elements[i].onclick = CheckBoxClick;
+    document.sale_form.elements[i].onclick = CheckBoxClick;
       document.sale_form.elements[i].parentNode.parentNode.className = 'SaleMakerOver';
     }
   }
@@ -260,6 +260,7 @@ function SetCategories() {
   } else {
 ?>
 </head>
+<body marginwidth="0" marginheight="0" topmargin="0" bottommargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFFF" onload="SetFocus();init()">
 <?php
   }
 ?>
@@ -284,7 +285,7 @@ function SetCategories() {
   if ( ($action == 'new') || ($action == 'edit') ) {
     $form_action = 'insert';
     if ( ($action == 'edit') && ($_GET['sID']) ) {
-	  $form_action = 'update';
+      $form_action = 'update';
 
       $salemaker_sales = $db->Execute("select sale_id, sale_status, sale_name, sale_deduction_value, sale_deduction_type, sale_pricerange_from, sale_pricerange_to, sale_specials_condition, sale_categories_selected, sale_categories_all, sale_date_start, sale_date_end, sale_date_added, sale_date_last_modified, sale_date_status_change from " . TABLE_SALEMAKER_SALES . " where sale_id = '" . (int)$_GET['sID'] . "'");
 
@@ -343,7 +344,7 @@ var EndDate = new ctlSpiffyCalendarBox("EndDate", "sale_form", "end", "btnDate2"
       $categories_array[$i]['categories_id'] = $categories_array[$i]['id'];
       $categories_array[$i]['path'] = $categories_array[$i]['categories_id'];
       $categories_array[$i]['indent'] = 0;
-	  $parent = $categories_array[$i]['parent_id'];
+      $parent = $categories_array[$i]['parent_id'];
       while($parent != 0) {
         $categories_array[$i]['indent']++;
         for($j = 0; $j < $n; $j++) {
@@ -363,19 +364,19 @@ var EndDate = new ctlSpiffyCalendarBox("EndDate", "sale_form", "end", "btnDate2"
       $selected = false;
     }
 
-	$prev_sales = $db->Execute("select sale_categories_all from " . TABLE_SALEMAKER_SALES);
-	while (!$prev_sales->EOF) {
-	  $prev_categories = explode(',', $prev_sales->fields['sale_categories_all']);
-	  while(list($key,$value) = each($prev_categories)) {
-	    if ($value) $prev_categories_array[$value]++;
-	  }
-	  $prev_sales->MoveNext();
-	}
+  $prev_sales = $db->Execute("select sale_categories_all from " . TABLE_SALEMAKER_SALES);
+  while (!$prev_sales->EOF) {
+    $prev_categories = explode(',', $prev_sales->fields['sale_categories_all']);
+    while(list($key,$value) = each($prev_categories)) {
+      if ($value) $prev_categories_array[$value]++;
+    }
+    $prev_sales->MoveNext();
+  }
     echo "      <tr>\n";
     echo '        <td valign="bottom" class="main">' . zen_draw_separator('pixel_trans.gif', '4', '1') . zen_image(DIR_WS_IMAGES . 'icon_arrow_right.gif') . "</td>\n";
     echo '        <td class="main" colspan="2"><br>' . TEXT_SALEMAKER_ENTIRE_CATALOG . "</td>\n";
     echo "      </tr>\n";
-	echo '      <tr onClick="RowClick(\'0\')">' . "\n";
+    echo '      <tr onClick="RowClick(\'0\')">' . "\n";
     echo '        <td width="10" class="main">' . zen_draw_checkbox_field('categories[]', '0', $selected) . "</td>\n";
     echo '        <td class="main" colspan="2">' . TEXT_SALEMAKER_TOP . "</td>\n";
     echo "      </tr>\n";
@@ -384,56 +385,41 @@ var EndDate = new ctlSpiffyCalendarBox("EndDate", "sale_form", "end", "btnDate2"
     echo '        <td class="main" colspan="2"><br>' . TEXT_SALEMAKER_CATEGORIES . "</td>\n";
     echo "      </tr>\n";
     echo "      </table></tr>\n";
-	echo '      <tr valign="top"><table width="80%" border ="0" cellspacing="2" cellpadding="2">' . "\n";
+    echo '      <tr valign="top"><table width="80%" border ="0" cellspacing="2" cellpadding="2">' . "\n";
     foreach($categories_array as $category) {
       if (zen_not_null($sInfo->sale_categories_selected)) {
         $selected = in_array($category['categories_id'], $categories_selected);
       } else {
         $selected = false;
       }
-    echo '        <tr valign="top"><td><table border="0" cellspacing="2" cellpadding="2">' . "\n";
-	  echo '      <tr onClick="RowClick(\'' . $category['path'] . '\')">' . "\n";
+      echo '        <tr valign="top"><td><table border="0" cellspacing="2" cellpadding="2">' . "\n";
+      echo '      <tr onClick="RowClick(\'' . $category['path'] . '\')">' . "\n";
       echo '        <td width="10">' . zen_draw_checkbox_field('categories[]', $category['path'], $selected) . "</td>\n";
       echo '        <td width="40%">' . $category['text']. "</td>\n";
-	  echo '<td width="70%">';
-	  if ($prev_categories_array[$category['categories_id']]) {
-	    echo '&nbsp;Warning : ' . $prev_categories_array[$category['categories_id']] . ' sales already include this category';
-	  }
-	  echo "</td>\n";
-      echo '      </tr>' . "\n";
+      echo '<td width="70%">';
+    if ($prev_categories_array[$category['categories_id']]) {
+      echo sprintf(TEXT_WARNING_SALEMAKER_PREVIOUS_CATEGORIES, $prev_categories_array[$category['categories_id']]);
+    }
+    echo "</td>\n";
+    echo '      </tr>' . "\n";
 
-	echo '        </table></td>' . "\n";
+    echo '        </table></td>' . "\n";
     echo '        <td align="right"><table border="0" cellspacing="2" cellpadding="2">' . "\n";
-	echo '        <tr>' . "\n";
-	  if ($prev_categories_array[$category['categories_id']]) {
+    echo '        <tr>' . "\n";
+    if ($prev_categories_array[$category['categories_id']]) {
       echo '        <td>' . "\n";
 ?>
 <script language="javascript" type="text/javascript"><!--
-document.write('<?php echo '<a href="javascript:popupWindow(\\\'' . zen_href_link(FILENAME_SALEMAKER_POPUP, 'cid=' . $category['categories_id'] . '&cname='.$category['categories_name']) . '\\\')">'.'(More Info)'.'</a>'; ?>');
+document.write('<?php echo '<a href="javascript:popupWindow(\\\'' . zen_href_link(FILENAME_SALEMAKER_POPUP, 'cid=' . $category['categories_id']) . '\\\')">'.TEXT_MORE_INFO.'</a>'; ?>');
 //--></script>
 <?php
-	  }
-	  echo "</td>\n";
-	echo '        </tr>' . "\n";
-	echo '        </table></td>' . "\n";
-	echo '        </tr>' . "\n";
-	}
-	echo '        </table></tr>' . "\n";
-/*
-	  echo "";
-	  echo "<td align=''left''>";
-	  if ($prev_categories_array[$category['categories_id']]) {
-	    echo '&nbsp;Warning : ' . $prev_categories_array[$category['categories_id']] . ' sales already include this category';
-?>
-<script language="javascript" type="text/javascript"><!--
-document.write('<?php echo '<a href="javascript:popupWindow(\\\'' . zen_href_link(FILENAME_SALEMAKER_POPUP, 'cid=' . $category['categories_id'] . '&cname='.$category['categories_name']) . '\\\')">'.'(More Info)'.'</a>'; ?>');
-//--></script>
-<?php
-	  }
-	  echo "</td>\n";
     }
-echo '</table></tr>';
-*/
+    echo "</td>\n";
+    echo '        </tr>' . "\n";
+    echo '        </table></td>' . "\n";
+    echo '        </tr>' . "\n";
+  }
+  echo '        </table></tr>' . "\n";
 ?>
         </table></td>
       </form></tr>

@@ -2,15 +2,11 @@
 /**
  * @package Installer
  * @access private
- * @copyright Copyright 2003-2006 Zen Cart Development Team
+ * @copyright Copyright 2003-2007 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: header_php.php 5369 2006-12-23 10:55:52Z drbyte $
+ * @version $Id: header_php.php 7176 2007-10-05 11:05:31Z drbyte $
  */
-
-if (!isset($_GET['debug'])  && !zen_not_null($_POST['debug']))  define('ZC_UPG_DEBUG',false);
-if (!isset($_GET['debug2']) && !zen_not_null($_POST['debug2'])) define('ZC_UPG_DEBUG2',false);
-if (!isset($_GET['debug3']) && !zen_not_null($_POST['debug3'])) define('ZC_UPG_DEBUG3',false);
 
   $zc_install->error = false;
 
@@ -23,63 +19,37 @@ if (!isset($_GET['debug3']) && !zen_not_null($_POST['debug3'])) define('ZC_UPG_D
   if (!isset($_POST['store_default_language'])) $_POST['store_default_language'] = '';
   if (!isset($_POST['store_default_currency'])) $_POST['store_default_currency'] = '';
 
-  require('../includes/configure.php');
+  @require_once('../includes/configure.php');
   if (!defined('DB_TYPE') || DB_TYPE=='') {
-    echo('Database Type Invalid. Did your configure.php file get written correctly?');
+    die('Database Type Invalid. Did your configure.php file get written correctly?');
     $zc_install->setError('Database Type Invalid', 27);
   }
 
-  require('../includes/classes/db/' . DB_TYPE . '/query_factory.php');
-  $db = new queryFactory;
-  $db->Connect(DB_SERVER, DB_SERVER_USERNAME, DB_SERVER_PASSWORD, DB_DATABASE) or die("Unable to connect to database");
-
 
   if (isset($_POST['submit'])) {
-    $store_name = zen_db_prepare_input($_POST['store_name']);
-    $store_owner = zen_db_prepare_input($_POST['store_owner']);
-    $store_owner_email = zen_db_prepare_input($_POST['store_owner_email']);
-    $store_country = zen_db_prepare_input($_POST['store_country']);
-    $store_zone = zen_db_prepare_input($_POST['store_zone']);
-    $store_address = zen_db_prepare_input($_POST['store_address']);
-    $store_default_language = zen_db_prepare_input($_POST['store_default_language']);
-    $store_default_currency = zen_db_prepare_input($_POST['store_default_currency']);
+    $zc_install->validateStoreSetup($_POST);
 
-    $zc_install->isEmpty($store_name, ERROR_TEXT_STORE_NAME_ISEMPTY, ERROR_CODE_STORE_NAME_ISEMPTY);
-    $zc_install->isEmpty($store_owner, ERROR_TEXT_STORE_OWNER_ISEMPTY, ERROR_CODE_STORE_OWNER_ISEMPTY);
-    $zc_install->isEmpty($store_owner_email, ERROR_TEXT_STORE_OWNER_EMAIL_ISEMPTY, ERROR_CODE_STORE_OWNER_EMAIL_ISEMPTY);
-    $zc_install->isEmail($store_owner_email, ERROR_TEXT_STORE_OWNER_EMAIL_NOTEMAIL, ERROR_CODE_STORE_OWNER_EMAIL_NOTEMAIL);
-    $zc_install->isEmpty($store_address, ERROR_TEXT_STORE_ADDRESS_ISEMPTY, ERROR_CODE_STORE_ADDRESS_ISEMPTY);
     if ($_POST['demo_install'] == 'true') {
       $zc_install->fileExists('demo/' . DB_TYPE . '_demo.sql', ERROR_TEXT_DEMO_SQL_NOTEXIST, ERROR_CODE_DEMO_SQL_NOTEXIST);
     }
 
     if ($zc_install->error == false) {
       if ($_POST['demo_install'] == 'true') {
-        executeSql('demo/' . DB_TYPE . '_demo.sql', DB_DATABASE, DB_PREFIX);
+        $zc_install->dbDemoDataInstall();
       }
+ 
+      $zc_install->dbStoreSetup();
+      // Close the database connection
+      $zc_install->db->Close();
 
-      $sql = "update " . DB_PREFIX . "configuration set configuration_value = '" . $db->prepare_input($store_name) . "' where configuration_key = 'STORE_NAME'";
-      $db->Execute($sql);
-      $sql = "update " . DB_PREFIX . "configuration set configuration_value = '" . $db->prepare_input($store_owner) . "' where configuration_key = 'STORE_OWNER'";
-      $db->Execute($sql);
-      $sql = "update " . DB_PREFIX . "configuration set configuration_value = '" . $db->prepare_input($store_owner_email) . "' where configuration_key in 
-             ('STORE_OWNER_EMAIL_ADDRESS', 'EMAIL_FROM', 'SEND_EXTRA_ORDER_EMAILS_TO', 'SEND_EXTRA_CREATE_ACCOUNT_EMAILS_TO', 'SEND_EXTRA_LOW_STOCK_EMAILS_TO', 'SEND_EXTRA_GV_CUSTOMER_EMAILS_TO', 'SEND_EXTRA_GV_ADMIN_EMAILS_TO', 'SEND_EXTRA_DISCOUNT_COUPON_ADMIN_EMAILS_TO', 'SEND_EXTRA_ORDERS_STATUS_ADMIN_EMAILS_TO', 'SEND_EXTRA_TELL_A_FRIEND_EMAILS_TO', 'SEND_EXTRA_REVIEW_NOTIFICATION_EMAILS_TO', 'MODULE_PAYMENT_CC_EMAIL')";
-      $db->Execute($sql);
-      $sql = "update " . DB_PREFIX . "configuration set configuration_value = '" . $db->prepare_input($store_country) . "' where configuration_key = 'STORE_COUNTRY'";
-      $db->Execute($sql);
-      $sql = "update " . DB_PREFIX . "configuration set configuration_value = '" . $db->prepare_input($store_zone) . "' where configuration_key = 'STORE_ZONE'";
-      $db->Execute($sql);
-      $sql = "update " . DB_PREFIX . "configuration set configuration_value = '" . $db->prepare_input($store_address) . "' where configuration_key = 'STORE_NAME_ADDRESS'";
-      $db->Execute($sql);
-      $sql = "update " . DB_PREFIX . "configuration set configuration_value = '" . $db->prepare_input($store_default_language) . "' where configuration_key = 'DEFAULT_LANGUAGE'";
-      $db->Execute($sql);
-      $sql = "update " . DB_PREFIX . "configuration set configuration_value = '" . $db->prepare_input($store_default_currency) . "' where configuration_key = 'DEFAULT_CURRENCY'";
-      $db->Execute($sql);
-      $db->Close();
-      header('location: index.php?main_page=admin_setup&language=' . $language);
+      header('location: index.php?main_page=admin_setup' . zcInstallAddSID() );
       exit;
     }
   }
+	
+  require('../includes/classes/db/' . DB_TYPE . '/query_factory.php');
+  $db = new queryFactory;
+  $db->Connect(DB_SERVER, DB_SERVER_USERNAME, DB_SERVER_PASSWORD, DB_DATABASE) or die("Unable to connect to database");
 
 
   //if not submit, set some defaults

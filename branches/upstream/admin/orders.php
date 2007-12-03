@@ -1,10 +1,10 @@
 <?php
 /**
  * @package admin
- * @copyright Copyright 2003-2006 Zen Cart Development Team
+ * @copyright Copyright 2003-2007 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: orders.php 5426 2006-12-28 14:58:57Z drbyte $
+ * @version $Id: orders.php 6864 2007-08-27 16:15:20Z drbyte $
  */
 
   require('includes/application_top.php');
@@ -28,9 +28,12 @@
   }
 
   $action = (isset($_GET['action']) ? $_GET['action'] : '');
+  $order_exists = false;
+  if (isset($_GET['oID']) && trim($_GET['oID']) == '') unset($_GET['oID']);
+  if ($action == 'edit' && !isset($_GET['oID'])) $action = '';
 
   if (isset($_GET['oID'])) {
-    $oID = zen_db_prepare_input($_GET['oID']);
+    $oID = zen_db_prepare_input(trim($_GET['oID']));
 
     $orders = $db->Execute("select orders_id from " . TABLE_ORDERS . "
                             where orders_id = '" . (int)$oID . "'");
@@ -62,6 +65,7 @@
       // reset single download to off
         if ($_GET['download_reset_off'] > 0) {
           // adjust download_maxdays based on current date
+          // *** fix: adjust count not maxdays to cancel download
 //          $update_downloads_query = "update " . TABLE_ORDERS_PRODUCTS_DOWNLOAD . " set download_maxdays='0', download_count='0' where orders_id='" . $_GET['oID'] . "' and orders_products_download_id='" . $_GET['download_reset_off'] . "'";
           $update_downloads_query = "update " . TABLE_ORDERS_PRODUCTS_DOWNLOAD . " set download_count='0' where orders_id='" . $_GET['oID'] . "' and orders_products_download_id='" . $_GET['download_reset_off'] . "'";
           unset($_GET['download_reset_off']);
@@ -92,37 +96,35 @@
                         set orders_status = '" . zen_db_input($status) . "', last_modified = now()
                         where orders_id = '" . (int)$oID . "'");
 
+          $notify_comments = '';
+          if (isset($_POST['notify_comments']) && ($_POST['notify_comments'] == 'on') && zen_not_null($comments)) {
+            $notify_comments = EMAIL_TEXT_COMMENTS_UPDATE . $comments . "\n\n";
+          }
+          //send emails
+          $message = STORE_NAME . "\n" . EMAIL_SEPARATOR . "\n" .
+          EMAIL_TEXT_ORDER_NUMBER . ' ' . $oID . "\n\n" .
+          EMAIL_TEXT_INVOICE_URL . ' ' . zen_catalog_href_link(FILENAME_CATALOG_ACCOUNT_HISTORY_INFO, 'order_id=' . $oID, 'SSL') . "\n\n" .
+          EMAIL_TEXT_DATE_ORDERED . ' ' . zen_date_long($check_status->fields['date_purchased']) . "\n\n" .
+          strip_tags($notify_comments) .
+          EMAIL_TEXT_STATUS_UPDATED . sprintf(EMAIL_TEXT_STATUS_LABEL, $orders_status_array[$status] ) .
+          EMAIL_TEXT_STATUS_PLEASE_REPLY;
+
+          $html_msg['EMAIL_CUSTOMERS_NAME']    = $check_status->fields['customers_name'];
+          $html_msg['EMAIL_TEXT_ORDER_NUMBER'] = EMAIL_TEXT_ORDER_NUMBER . ' ' . $oID;
+          $html_msg['EMAIL_TEXT_INVOICE_URL']  = '<a href="' . zen_catalog_href_link(FILENAME_CATALOG_ACCOUNT_HISTORY_INFO, 'order_id=' . $oID, 'SSL') .'">'.str_replace(':','',EMAIL_TEXT_INVOICE_URL).'</a>';
+          $html_msg['EMAIL_TEXT_DATE_ORDERED'] = EMAIL_TEXT_DATE_ORDERED . ' ' . zen_date_long($check_status->fields['date_purchased']);
+          $html_msg['EMAIL_TEXT_STATUS_COMMENTS'] = nl2br($notify_comments);
+          $html_msg['EMAIL_TEXT_STATUS_UPDATED'] = str_replace('\n','', EMAIL_TEXT_STATUS_UPDATED);
+          $html_msg['EMAIL_TEXT_STATUS_LABEL'] = str_replace('\n','', sprintf(EMAIL_TEXT_STATUS_LABEL, $orders_status_array[$status] ));
+          $html_msg['EMAIL_TEXT_NEW_STATUS'] = $orders_status_array[$status];
+          $html_msg['EMAIL_TEXT_STATUS_PLEASE_REPLY'] = str_replace('\n','', EMAIL_TEXT_STATUS_PLEASE_REPLY);
+
           $customer_notified = '0';
           if (isset($_POST['notify']) && ($_POST['notify'] == 'on')) {
-            $notify_comments = '';
-            if (isset($_POST['notify_comments']) && ($_POST['notify_comments'] == 'on') && zen_not_null($comments)) {
-              $notify_comments = EMAIL_TEXT_COMMENTS_UPDATE . $comments . "\n\n";
-            }
-
-
-//send emails
-      $message = STORE_NAME . "\n" . EMAIL_SEPARATOR . "\n" .
-      EMAIL_TEXT_ORDER_NUMBER . ' ' . $oID . "\n\n" .
-      EMAIL_TEXT_INVOICE_URL . ' ' . zen_catalog_href_link(FILENAME_CATALOG_ACCOUNT_HISTORY_INFO, 'order_id=' . $oID, 'SSL') . "\n\n" .
-      EMAIL_TEXT_DATE_ORDERED . ' ' . zen_date_long($check_status->fields['date_purchased']) . "\n\n" .
-      strip_tags($notify_comments) .
-      EMAIL_TEXT_STATUS_UPDATED . sprintf(EMAIL_TEXT_STATUS_LABEL, $orders_status_array[$status] ) .
-      EMAIL_TEXT_STATUS_PLEASE_REPLY;
-
-      $html_msg['EMAIL_CUSTOMERS_NAME']    = $check_status->fields['customers_name'];
-      $html_msg['EMAIL_TEXT_ORDER_NUMBER'] = EMAIL_TEXT_ORDER_NUMBER . ' ' . $oID;
-      $html_msg['EMAIL_TEXT_INVOICE_URL']  = '<a href="' . zen_catalog_href_link(FILENAME_CATALOG_ACCOUNT_HISTORY_INFO, 'order_id=' . $oID, 'SSL') .'">'.str_replace(':','',EMAIL_TEXT_INVOICE_URL).'</a>';
-      $html_msg['EMAIL_TEXT_DATE_ORDERED'] = EMAIL_TEXT_DATE_ORDERED . ' ' . zen_date_long($check_status->fields['date_purchased']);
-      $html_msg['EMAIL_TEXT_STATUS_COMMENTS'] = nl2br($notify_comments);
-      $html_msg['EMAIL_TEXT_STATUS_UPDATED'] = str_replace('\n','', EMAIL_TEXT_STATUS_UPDATED);
-      $html_msg['EMAIL_TEXT_STATUS_LABEL'] = str_replace('\n','', sprintf(EMAIL_TEXT_STATUS_LABEL, $orders_status_array[$status] ));
-      $html_msg['EMAIL_TEXT_NEW_STATUS'] = $orders_status_array[$status];
-      $html_msg['EMAIL_TEXT_STATUS_PLEASE_REPLY'] = str_replace('\n','', EMAIL_TEXT_STATUS_PLEASE_REPLY);
-
             zen_mail($check_status->fields['customers_name'], $check_status->fields['customers_email_address'], EMAIL_TEXT_SUBJECT . ' #' . $oID, $message, STORE_NAME, EMAIL_FROM, $html_msg, 'order_status');
-
             $customer_notified = '1';
-//send extra emails
+
+            //send extra emails
             if (SEND_EXTRA_ORDERS_STATUS_ADMIN_EMAILS_TO_STATUS == '1' and SEND_EXTRA_ORDERS_STATUS_ADMIN_EMAILS_TO != '') {
               zen_mail('', SEND_EXTRA_ORDERS_STATUS_ADMIN_EMAILS_TO, SEND_EXTRA_ORDERS_STATUS_ADMIN_EMAILS_TO_SUBJECT . ' ' . EMAIL_TEXT_SUBJECT . ' #' . $oID, $message, STORE_NAME, EMAIL_FROM, $html_msg, 'order_status_extra');
             }
@@ -135,7 +137,6 @@
                       now(),
                       '" . zen_db_input($customer_notified) . "',
                       '" . zen_db_input($comments)  . "')");
-
           $order_updated = true;
         }
 
@@ -281,13 +282,13 @@ function couponpopupWindow(url) {
   <tr>
 <!-- body_text //-->
 
-<?php if (empty($action)) { ?>
+<?php if ($action == '') { ?>
 <!-- search -->
     <td width="100%" valign="top"><table border="0" width="100%" cellspacing="0" cellpadding="2">
       <tr>
         <td><table border="0" width="100%" cellspacing="0" cellpadding="0">
          <tr><?php echo zen_draw_form('search', FILENAME_ORDERS, '', 'get', '', true); ?>
-            <td class="pageHeading" align="right"><?php echo zen_draw_separator('pixel_trans.gif', 1, HEADING_IMAGE_HEIGHT); ?></td>
+            <td width="65%" class="pageHeading" align="right"><?php echo zen_draw_separator('pixel_trans.gif', 1, HEADING_IMAGE_HEIGHT); ?></td>
             <td colspan="2" class="smallText" align="right">
 <?php
 // show reset search
@@ -303,7 +304,28 @@ function couponpopupWindow(url) {
   }
 ?>
             </td>
-          </form></tr>
+          </form>
+
+
+         <?php echo zen_draw_form('search_orders_products', FILENAME_ORDERS, '', 'get', '', true); ?>
+            <td class="pageHeading" align="right"><?php echo zen_draw_separator('pixel_trans.gif', 1, HEADING_IMAGE_HEIGHT); ?></td>
+            <td colspan="2" class="smallText" align="right">
+<?php
+// show reset search orders_products
+  if ((isset($_GET['search_orders_products']) && zen_not_null($_GET['search_orders_products'])) or $_GET['cID'] !='') {
+    echo '<a href="' . zen_href_link(FILENAME_ORDERS, '', 'NONSSL') . '">' . zen_image_button('button_reset.gif', IMAGE_RESET) . '</a><br />';
+  }
+?>
+<?php
+  echo HEADING_TITLE_SEARCH_DETAIL_ORDERS_PRODUCTS . ' ' . zen_draw_input_field('search_orders_products') . zen_hide_session_id();
+  if (isset($_GET['search_orders_products']) && zen_not_null($_GET['search_orders_products'])) {
+    $keywords_orders_products = zen_db_input(zen_db_prepare_input($_GET['search_orders_products']));
+    echo '<br/ >' . TEXT_INFO_SEARCH_DETAIL_FILTER_ORDERS_PRODUCTS . zen_db_prepare_input($keywords_orders_products);
+  }
+?>
+            </td>
+          </form>
+
         </table></td>
       </tr>
 <!-- search -->
@@ -454,7 +476,7 @@ function couponpopupWindow(url) {
 
       if (isset($order->products[$i]['attributes']) && (sizeof($order->products[$i]['attributes']) > 0)) {
         for ($j = 0, $k = sizeof($order->products[$i]['attributes']); $j < $k; $j++) {
-          echo '<br /><nobr><small>&nbsp;<i> - ' . $order->products[$i]['attributes'][$j]['option'] . ': ' . nl2br($order->products[$i]['attributes'][$j]['value']);
+          echo '<br /><nobr><small>&nbsp;<i> - ' . $order->products[$i]['attributes'][$j]['option'] . ': ' . nl2br(zen_output_string_protected($order->products[$i]['attributes'][$j]['value']));
           if ($order->products[$i]['attributes'][$j]['price'] != '0') echo ' (' . $order->products[$i]['attributes'][$j]['prefix'] . $currencies->format($order->products[$i]['attributes'][$j]['price'] * $order->products[$i]['qty'], true, $order->info['currency'], $order->info['currency_value']) . ')';
           if ($order->products[$i]['attributes'][$j]['product_attribute_is_free'] == '1' and $order->products[$i]['product_is_free'] == '1') echo TEXT_INFO_ATTRIBUTE_FREE;
           echo '</i></small></nobr>';
@@ -654,27 +676,79 @@ function couponpopupWindow(url) {
                 <td class="dataTableHeadingContent" align="right"><?php echo TABLE_HEADING_ORDER_TOTAL; ?></td>
                 <td class="dataTableHeadingContent" align="center"><?php echo TABLE_HEADING_DATE_PURCHASED; ?></td>
                 <td class="dataTableHeadingContent" align="right"><?php echo TABLE_HEADING_STATUS; ?></td>
+                <td class="dataTableHeadingContent" align="center"><?php echo TABLE_HEADING_CUSTOMER_COMMENTS; ?></td>
                 <td class="dataTableHeadingContent" align="right"><?php echo TABLE_HEADING_ACTION; ?>&nbsp;</td>
               </tr>
 
 <?php
+// Only one or the other search
+// create search_orders_products filter
+  $search = '';
+  $new_table = '';
+  $new_fields = '';
+  if (isset($_GET['search_orders_products']) && zen_not_null($_GET['search_orders_products'])) {
+    $new_fields = '';
+    $search_distinct = ' distinct ';
+    $new_table = " left join " . TABLE_ORDERS_PRODUCTS . " op on (op.orders_id = o.orders_id) ";
+    $keywords = zen_db_input(zen_db_prepare_input($_GET['search_orders_products']));
+    $search = " and (op.products_model like '%" . $keywords . "%' or op.products_name like '" . $keywords . "%')";
+    if (substr(strtoupper($_GET['search_orders_products']), 0, 3) == 'ID:') {
+      $keywords = TRIM(substr($_GET['search_orders_products'], 3));
+      $search = " and op.products_id ='" . (int)$keywords . "'";
+    }
+  } else {
+?>
+<?php
 // create search filter
   $search = '';
   if (isset($_GET['search']) && zen_not_null($_GET['search'])) {
+    $search_distinct = ' ';
     $keywords = zen_db_input(zen_db_prepare_input($_GET['search']));
     $search = " and (o.customers_city like '%" . $keywords . "%' or o.customers_postcode like '%" . $keywords . "%' or o.date_purchased like '%" . $keywords . "%' or o.billing_name like '%" . $keywords . "%' or o.billing_company like '%" . $keywords . "%' or o.billing_street_address like '%" . $keywords . "%' or o.delivery_city like '%" . $keywords . "%' or o.delivery_postcode like '%" . $keywords . "%' or o.delivery_name like '%" . $keywords . "%' or o.delivery_company like '%" . $keywords . "%' or o.delivery_street_address like '%" . $keywords . "%' or o.billing_city like '%" . $keywords . "%' or o.billing_postcode like '%" . $keywords . "%' or o.customers_email_address like '%" . $keywords . "%' or o.customers_name like '%" . $keywords . "%' or o.customers_company like '%" . $keywords . "%' or o.customers_street_address  like '%" . $keywords . "%' or o.customers_telephone like '%" . $keywords . "%' or o.ip_address  like '%" . $keywords . "%')";
+    $new_table = '';
+//    $new_fields = ", o.customers_company, o.customers_email_address, o.customers_street_address, o.delivery_company, o.delivery_name, o.delivery_street_address, o.billing_company, o.billing_name, o.billing_street_address, o.payment_module_code, o.shipping_module_code, o.ip_address ";
   }
+} // eof: search orders or orders_products
+    $new_fields = ", o.customers_company, o.customers_email_address, o.customers_street_address, o.delivery_company, o.delivery_name, o.delivery_street_address, o.billing_company, o.billing_name, o.billing_street_address, o.payment_module_code, o.shipping_module_code, o.ip_address ";
 ?>
 <?php
-    $new_fields = ", o.customers_company, o.customers_email_address, o.customers_street_address, o.delivery_company, o.delivery_name, o.delivery_street_address, o.billing_company, o.billing_name, o.billing_street_address, o.payment_module_code, o.shipping_module_code, o.ip_address ";
     if (isset($_GET['cID'])) {
       $cID = zen_db_prepare_input($_GET['cID']);
-      $orders_query_raw = "select o.orders_id, o.customers_id, o.customers_name, o.payment_method, o.shipping_method, o.date_purchased, o.last_modified, o.currency, o.currency_value, s.orders_status_name, ot.text as order_total" . $new_fields . " from " . TABLE_ORDERS . " o left join " . TABLE_ORDERS_TOTAL . " ot on (o.orders_id = ot.orders_id), " . TABLE_ORDERS_STATUS . " s where o.customers_id = '" . (int)$cID . "' and o.orders_status = s.orders_status_id and s.language_id = '" . (int)$_SESSION['languages_id'] . "' and ot.class = 'ot_total' order by orders_id DESC";
+      $orders_query_raw =   "select o.orders_id, o.customers_id, o.customers_name, o.payment_method, o.shipping_method, o.date_purchased, o.last_modified, o.currency, o.currency_value, s.orders_status_name, ot.text as order_total" .
+                            $new_fields . "
+                            from (" . TABLE_ORDERS . " o, " .
+                            TABLE_ORDERS_STATUS . " s " .
+                            $new_table . ")
+                            left join " . TABLE_ORDERS_TOTAL . " ot on (o.orders_id = ot.orders_id) " . "
+                            where o.customers_id = '" . (int)$cID . "' and o.orders_status = s.orders_status_id and s.language_id = '" . (int)$_SESSION['languages_id'] . "' and ot.class = 'ot_total' order by orders_id DESC";
+
+//echo '<BR><BR>I SEE A: ' . $orders_query_raw . '<BR><BR>';
+
     } elseif ($_GET['status'] != '') {
       $status = zen_db_prepare_input($_GET['status']);
-      $orders_query_raw = "select o.orders_id, o.customers_id, o.customers_name, o.payment_method, o.shipping_method, o.date_purchased, o.last_modified, o.currency, o.currency_value, s.orders_status_name, ot.text as order_total" . $new_fields . " from " . TABLE_ORDERS . " o left join " . TABLE_ORDERS_TOTAL . " ot on (o.orders_id = ot.orders_id), " . TABLE_ORDERS_STATUS . " s where o.orders_status = s.orders_status_id and s.language_id = '" . (int)$_SESSION['languages_id'] . "' and s.orders_status_id = '" . (int)$status . "' and ot.class = 'ot_total'  " . $search . " order by o.orders_id DESC";
+      $orders_query_raw = "select o.orders_id, o.customers_id, o.customers_name, o.payment_method, o.shipping_method, o.date_purchased, o.last_modified, o.currency, o.currency_value, s.orders_status_name, ot.text as order_total" .
+                          $new_fields . "
+                          from (" . TABLE_ORDERS . " o, " .
+                          TABLE_ORDERS_STATUS . " s " .
+                          $new_table . ")
+                          left join " . TABLE_ORDERS_TOTAL . " ot on (o.orders_id = ot.orders_id) " . "
+                          where o.orders_status = s.orders_status_id and s.language_id = '" . (int)$_SESSION['languages_id'] . "' and s.orders_status_id = '" . (int)$status . "' and ot.class = 'ot_total'  " .
+                          $search . " order by o.orders_id DESC";
+
+//echo '<BR><BR>I SEE B: ' . $orders_query_raw . '<BR><BR>';
+
     } else {
-      $orders_query_raw = "select o.orders_id, o.customers_id, o.customers_name, o.payment_method, o.shipping_method, o.date_purchased, o.last_modified, o.currency, o.currency_value, s.orders_status_name, ot.text as order_total" . $new_fields . " from " . TABLE_ORDERS . " o left join " . TABLE_ORDERS_TOTAL . " ot on (o.orders_id = ot.orders_id), " . TABLE_ORDERS_STATUS . " s where o.orders_status = s.orders_status_id and s.language_id = '" . (int)$_SESSION['languages_id'] . "' and ot.class = 'ot_total'  " . $search . " order by o.orders_id DESC";
+      $orders_query_raw = "select " . $search_distinct . " o.orders_id, o.customers_id, o.customers_name, o.payment_method, o.shipping_method, o.date_purchased, o.last_modified, o.currency, o.currency_value, s.orders_status_name, ot.text as order_total" .
+                          $new_fields . "
+                          from (" . TABLE_ORDERS . " o, " .
+                          TABLE_ORDERS_STATUS . " s " .
+                          $new_table . ")
+                          left join " . TABLE_ORDERS_TOTAL . " ot on (o.orders_id = ot.orders_id) " . "
+                          where (o.orders_status = s.orders_status_id and s.language_id = '" . (int)$_SESSION['languages_id'] . "' and ot.class = 'ot_total')  " .
+                          $search . " order by o.orders_id DESC";
+
+//echo '<BR><BR>I SEE C: ' . $orders_query_raw . '<BR><BR>';
+
     }
 
 // Split Page
@@ -725,6 +799,7 @@ if (($_GET['page'] == '' or $_GET['page'] <= 1) and $_GET['oID'] != '') {
                 <td class="dataTableContent" align="right"><?php echo strip_tags($orders->fields['order_total']); ?></td>
                 <td class="dataTableContent" align="center"><?php echo zen_datetime_short($orders->fields['date_purchased']); ?></td>
                 <td class="dataTableContent" align="right"><?php echo $orders->fields['orders_status_name']; ?></td>
+                <td class="dataTableContent" align="center"><?php echo (zen_get_orders_comments($orders->fields['orders_id']) == '' ? '' : zen_image(DIR_WS_IMAGES . 'icon_yellow_on.gif', TEXT_COMMENTS_YES, 16, 16)); ?></td>
 
                 <td class="dataTableContent" align="right"><?php echo '<a href="' . zen_href_link(FILENAME_ORDERS, zen_get_all_get_params(array('oID', 'action')) . 'oID=' . $orders->fields['orders_id'] . '&action=edit', 'NONSSL') . '">' . zen_image(DIR_WS_IMAGES . 'icon_edit.gif', ICON_EDIT) . '</a>'; ?><?php if (isset($oInfo) && is_object($oInfo) && ($orders->fields['orders_id'] == $oInfo->orders_id)) { echo zen_image(DIR_WS_IMAGES . 'icon_arrow_right.gif', ''); } else { echo '<a href="' . zen_href_link(FILENAME_ORDERS, zen_get_all_get_params(array('oID')) . 'oID=' . $orders->fields['orders_id'], 'NONSSL') . '">' . zen_image(DIR_WS_IMAGES . 'icon_info.gif', IMAGE_ICON_INFO) . '</a>'; } ?>&nbsp;</td>
               </tr>
@@ -810,7 +885,7 @@ if (($_GET['page'] == '' or $_GET['page'] <= 1) and $_GET['oID'] != '') {
 
         if (sizeof($order->products[$i]['attributes']) > 0) {
           for ($j=0; $j<sizeof($order->products[$i]['attributes']); $j++) {
-            $contents[] = array('text' => '&nbsp;<i> - ' . $order->products[$i]['attributes'][$j]['option'] . ': ' . nl2br($order->products[$i]['attributes'][$j]['value']) . '</i></nobr>' );
+            $contents[] = array('text' => '&nbsp;<i> - ' . $order->products[$i]['attributes'][$j]['option'] . ': ' . nl2br(zen_output_string_protected($order->products[$i]['attributes'][$j]['value'])) . '</i></nobr>' );
           }
         }
         if ($i > MAX_DISPLAY_RESULTS_ORDERS_DETAILS_LISTING and MAX_DISPLAY_RESULTS_ORDERS_DETAILS_LISTING != 0) {

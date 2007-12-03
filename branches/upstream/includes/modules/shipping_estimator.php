@@ -7,11 +7,11 @@
  * - Shows Free Shipping on Virtual products
  *
  * @package modules
- * @copyright Copyright 2003-2006 Zen Cart Development Team
+ * @copyright Copyright 2003-2007 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * portions Copyright (c) 2003 Edwin Bekaert (edwin@ednique.com)
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: shipping_estimator.php 5380 2006-12-24 17:50:00Z drbyte $
+ * @version $Id: shipping_estimator.php 6996 2007-09-13 22:36:54Z ajeh $
  */
 if (!defined('IS_ADMIN_FLAG')) {
   die('Illegal Access');
@@ -25,10 +25,7 @@ if ($current_page_base != 'popup_shipping_estimator') {
 <!-- shipping_estimator //-->
 
 <script language="javascript" type="text/javascript">
-function shipincart_submit(sid){
-  if(sid){
-    document.estimator.sid.value=sid;
-  }
+function shipincart_submit(){
   document.estimator.submit();
   return false;
 }
@@ -41,6 +38,7 @@ if ($_SESSION['cart']->count_contents() > 0) {
    $zip_code = (isset($_POST['zip_code'])) ? strip_tags(addslashes($_POST['zip_code'])) : $zip_code;
    $state_zone_id = (isset($_SESSION['cart_zone'])) ? (int)$_SESSION['cart_zone'] : '';
    $state_zone_id = (isset($_POST['zone_id'])) ? (int)$_POST['zone_id'] : $state_zone_id;
+   $selectedState = zen_db_input($_POST['state']);
   // Could be placed in english.php
   // shopping cart quotes
   // shipping cost
@@ -109,6 +107,7 @@ if ($_SESSION['cart']->count_contents() > 0) {
       $order->delivery = array('postcode' => $_SESSION['cart_zip_code'],
                                'country' => array('id' => $_SESSION['cart_country_id'], 'title' => $country_info['countries_name'], 'iso_code_2' => $country_info['countries_iso_code_2'], 'iso_code_3' =>  $country_info['countries_iso_code_3']),
                                'country_id' => $_SESSION['cart_country_id'],
+                               'zone_id' => $state_zone_id,
                                'format_id' => zen_get_address_format_id($_SESSION['cart_country_id']));
     } else {
       // first timer
@@ -118,6 +117,7 @@ if ($_SESSION['cart']->count_contents() > 0) {
       $order->delivery = array(//'postcode' => '',
                                'country' => array('id' => STORE_COUNTRY, 'title' => $country_info['countries_name'], 'iso_code_2' => $country_info['countries_iso_code_2'], 'iso_code_3' =>  $country_info['countries_iso_code_3']),
                                'country_id' => STORE_COUNTRY,
+                               'zone_id' => $state_zone_id,
                                'format_id' => zen_get_address_format_id($_POST['zone_country_id']));
     }
     // set the cost to be able to calculate free shipping
@@ -127,6 +127,7 @@ if ($_SESSION['cart']->count_contents() > 0) {
   }
   // weight and count needed for shipping !
   $total_weight = $_SESSION['cart']->show_weight();
+  $shipping_estimator_display_weight = $total_weight;
   $total_count = $_SESSION['cart']->count_contents();
   require(DIR_WS_CLASSES . 'shipping.php');
   $shipping_modules = new shipping;
@@ -232,19 +233,20 @@ if ($_SESSION['cart']->count_contents() > 0) {
     }
 //  }
 
-// altered to include Tare adjustment
-  // totals info
+// This is done after quote-calcs in order to include Tare info accurately.  NOTE: tare values are *not* included in weights shown on-screen.
   $totalsDisplay = '';
-  switch (true) {
-    case (SHOW_TOTALS_IN_CART == '1'):
-    $totalsDisplay = TEXT_TOTAL_ITEMS . $_SESSION['cart']->count_contents() . TEXT_TOTAL_WEIGHT . $shipping_weight . TEXT_PRODUCT_WEIGHT_UNIT . TEXT_TOTAL_AMOUNT . $currencies->format($_SESSION['cart']->show_total());
-    break;
-    case (SHOW_TOTALS_IN_CART == '2'):
-    $totalsDisplay = TEXT_TOTAL_ITEMS . $_SESSION['cart']->count_contents() . ($shipping_weight > 0 ? TEXT_TOTAL_WEIGHT . $shipping_weight . TEXT_PRODUCT_WEIGHT_UNIT : '') . TEXT_TOTAL_AMOUNT . $currencies->format($_SESSION['cart']->show_total());
-    break;
-    case (SHOW_TOTALS_IN_CART == '3'):
-    $totalsDisplay = TEXT_TOTAL_ITEMS . $_SESSION['cart']->count_contents() . TEXT_TOTAL_AMOUNT . $currencies->format($_SESSION['cart']->show_total());
-    break;
+  if (SHOW_SHIPPING_ESTIMATOR_BUTTON != 2) {
+    switch (true) {
+      case (SHOW_TOTALS_IN_CART == '1'):
+      $totalsDisplay = TEXT_TOTAL_ITEMS . $_SESSION['cart']->count_contents() . TEXT_TOTAL_WEIGHT . $shipping_estimator_display_weight . TEXT_PRODUCT_WEIGHT_UNIT . TEXT_TOTAL_AMOUNT . $currencies->format($_SESSION['cart']->show_total());
+      break;
+      case (SHOW_TOTALS_IN_CART == '2'):
+      $totalsDisplay = TEXT_TOTAL_ITEMS . $_SESSION['cart']->count_contents() . ($shipping_estimator_display_weight > 0 ? TEXT_TOTAL_WEIGHT . $shipping_estimator_display_weight . TEXT_PRODUCT_WEIGHT_UNIT : '') . TEXT_TOTAL_AMOUNT . $currencies->format($_SESSION['cart']->show_total());
+      break;
+      case (SHOW_TOTALS_IN_CART == '3'):
+      $totalsDisplay = TEXT_TOTAL_ITEMS . $_SESSION['cart']->count_contents() . TEXT_TOTAL_AMOUNT . $currencies->format($_SESSION['cart']->show_total());
+      break;
+    }
   }
 
   if (!isset($tplVars['flagShippingPopUp']) || $tplVars['flagShippingPopUp'] !== true) {

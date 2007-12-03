@@ -1,5 +1,4 @@
-<p><strong>Main Page Sample Text ...</strong></p>
-<p>This section of text is from the Define Pages Editor located under Tools in the Admin.</p>
-<p>To remove this section of the text, delete it from the Define Pages Editor.</p>
-<p>This file is located in<code> /languages/english/html_includes/classic/</code></p>
+<a href="http://www.lulu.com/content/466605"><img src="images/large/e-start-book.gif" alt="get your manual today" title="Have you got yours yet? Join the 1000’s of Zen Cart users that have bought the only comprehensive owners manual !" /></a>
+<p>This content is located in the file at: <code> /languages/english/html_includes/classic/define_main_page.php</code></p>
+<p>You can quickly edit this content via Admin->Tools->Define Pages Editor, and select define_main_page from the pulldown.</p>
 <p><strong>NOTE: Always backup the files in<code> /languages/english/html_includes/your_template</code></strong></p>

@@ -1,24 +1,11 @@
 <?php
-//
-// +----------------------------------------------------------------------+
-// |zen-cart Open Source E-commerce                                       |
-// +----------------------------------------------------------------------+
-// | Copyright (c) 2004 The zen-cart developers                           |
-// |                                                                      |
-// | http://www.zen-cart.com/index.php                                    |
-// |                                                                      |
-// | Portions Copyright (c) 2003 osCommerce                               |
-// +----------------------------------------------------------------------+
-// | This source file is subject to version 2.0 of the GPL license,       |
-// | that is bundled with this package in the file LICENSE, and is        |
-// | available through the world-wide-web at the following url:           |
-// | http://www.zen-cart.com/license/2_0.txt.                             |
-// | If you did not receive a copy of the zen-cart license and are unable |
-// | to obtain it through the world-wide-web, please send a note to       |
-// | license@zen-cart.com so we can mail you a copy immediately.          |
-// +----------------------------------------------------------------------+
-//  $Id: record_company.php 4811 2006-10-22 19:07:42Z ajeh $
-//
+/**
+ * @package admin
+ * @copyright Copyright 2003-2007 Zen Cart Development Team
+ * @copyright Portions Copyright 2003 osCommerce
+ * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
+ * @version $Id: record_company.php 6131 2007-04-08 06:56:51Z drbyte $
+ */
 
   require('includes/application_top.php');
 
@@ -256,6 +243,7 @@
           $dir_info[] = array('id' => $file . '/', 'text' => $file);
         }
       }
+      $dir->close();
 
       $default_directory = 'record_company/';
 
@@ -285,6 +273,7 @@
           $dir_info[] = array('id' => $file . '/', 'text' => $file);
         }
       }
+      $dir->close();
       $default_directory = substr( $aInfo->record_company_image, 0,strpos( $aInfo->record_company_image, '/')+1);
       $contents[] = array('text' => '<BR />' . TEXT_RECORD_COMPANY_IMAGE_DIR . zen_draw_pull_down_menu('img_dir', $dir_info, $default_directory));
       $contents[] = array('text' => '<br />' . TEXT_RECORD_COMPANY_IMAGE_MANUAL . '&nbsp;' . zen_draw_input_field('record_company_image_manual'));

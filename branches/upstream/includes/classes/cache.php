@@ -3,10 +3,10 @@
  * cache Class.
  *
  * @package classes
- * @copyright Copyright 2003-2006 Zen Cart Development Team
+ * @copyright Copyright 2003-2007 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: cache.php 3041 2006-02-15 21:56:45Z wilt $
+ * @version $Id: cache.php 6338 2007-05-19 20:02:26Z drbyte $
  */
 if (!defined('IS_ADMIN_FLAG')) {
   die('Illegal Access');
@@ -45,6 +45,7 @@ class cache extends base {
       return false;
       break;
       case 'none':
+      default:
       return false;
       break;
     }
@@ -76,6 +77,7 @@ class cache extends base {
       return true;
       break;
       case 'none':
+      default:
       return true;
       break;
     }
@@ -99,6 +101,7 @@ class cache extends base {
       return true;
       break;
       case 'none':
+      default:
       return true;
       break;
     }
@@ -116,6 +119,11 @@ class cache extends base {
       return true;
       break;
       case 'database':
+      $sql = "select * from " . TABLE_DB_CACHE . " where cache_entry_name = '" . $zp_cache_name . "'";
+      $zp_cache_exists = $db->Execute($sql);
+      if ($zp_cache_exists->RecordCount() > 0) {
+        return true;
+      }
       $result_serialize = $db->prepare_input(serialize($zf_result_array));
       $sql = "insert into " . TABLE_DB_CACHE . " set cache_entry_name = '" . $zp_cache_name . "',
 	                                               cache_data = '" . $result_serialize . "',
@@ -127,6 +135,7 @@ class cache extends base {
       return true;
       break;
       case 'none':
+      default:
       return true;
       break;
     }
@@ -151,6 +160,7 @@ class cache extends base {
       return true;
       break;
       case 'none':
+      default:
       return true;
       break;
     }
@@ -166,6 +176,7 @@ class cache extends base {
             @unlink(DIR_FS_SQL_CACHE . '/' . $zv_file);
           }
         }
+        $za_dir->close();
       }
       return true;
       break;
@@ -178,6 +189,7 @@ class cache extends base {
       return true;
       break;
       case 'none':
+      default:
       return true;
       break;
     }
@@ -195,6 +207,7 @@ class cache extends base {
       return 'zc_' . md5($zf_query);
       break;
       case 'none':
+      default:
       return true;
       break;
     }

@@ -1,10 +1,10 @@
 <?php
 /**
  * @package admin
- * @copyright Copyright 2003-2006 Zen Cart Development Team
+ * @copyright Copyright 2003-2007 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: init_general_funcs.php 4682 2006-10-06 20:52:56Z wilt $
+ * @version $Id: init_general_funcs.php 6027 2007-03-21 09:11:58Z drbyte $
  */
 if (!defined('IS_ADMIN_FLAG')) {
   die('Illegal Access');
@@ -31,6 +31,7 @@ if (!defined('IS_ADMIN_FLAG')) {
   require(DIR_WS_FUNCTIONS . 'general.php');
   require(DIR_WS_FUNCTIONS . 'functions_prices.php');
   require(DIR_WS_FUNCTIONS . 'html_output.php');
+  require(DIR_WS_FUNCTIONS . 'functions_customers.php'); // partial copy of catalog functions customers for now
   require(DIR_FS_CATALOG . DIR_WS_FUNCTIONS . 'functions_email.php');
 
 /**
@@ -46,6 +47,7 @@ require(DIR_WS_FUNCTIONS . 'functions_metatags.php');
         require(DIR_WS_FUNCTIONS . 'extra_functions/' . $zv_file);
       }
     }
+    $za_dir->close();
   }
 if (isset($_GET) & sizeof($_GET) > 0 ) {
   foreach ($_GET as $key=>$value) {

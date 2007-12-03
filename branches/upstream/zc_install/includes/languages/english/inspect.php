@@ -2,15 +2,14 @@
 /**
  * @package Installer
  * @access private
- * @copyright Copyright 2003-2005 Zen Cart Development Team
+ * @copyright Copyright 2003-2007 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: inspect.php 5354 2006-12-23 01:55:47Z drbyte $
+ * @version $Id: inspect.php 7411 2007-11-11 05:47:10Z drbyte $
  */
 /**
  * defining language components for the page
  */
-  
   define('TEXT_PAGE_HEADING', 'Zen Cart&trade; Setup - System Inspection');
   define('INSTALL_BUTTON', ' Install '); // this comes before TEXT_MAIN
   define('UPGRADE_BUTTON', 'Upgrade Cfg Files'); // this comes before TEXT_MAIN
@@ -19,6 +18,9 @@
 // "Install" = make new configure.php files, regardless of existing contents.  Load new database by dropping old tables.
 // "Upgrade" = read old configure.php files, and write new ones using new structure. Upgrade database, instead of wiping and new install
 // "Database Upgrade" = don't write the configure.php files -- simply jump to the database-upgrade page. Only displayed if detected database version is new enough to not require configure.php file updates.
+
+  define('TITLE_DOCUMENTATION', 'Documentation');
+  define('TEXT_DOCUMENTATION', '<h3>Have you read the Installation Instructions yet?</h3>The <a href="%s" target="_blank">Installation Instructions</a> will be a big help if you have not already read them.<br />There you will find information about permissions-levels you will need to set to various folders/files and other details about installation prerequisites, as well as things to do after you are done with installation. There are also links there to the <a href="http://tutorials.zen-cart.com/" target="_blank">online FAQs</a> and other helpful resources.');
 
   define('TEXT_MAIN', 'Take a moment to check whether your webserver supports the features required for Zen Cart&trade; to operate. &nbsp;Please resolve any errors or warnings before continuing. &nbsp;Then click on <em>'.INSTALL_BUTTON.'&nbsp;</em> to continue.');
   define('SYSTEM_INSPECTION_RESULTS', 'System Inspection Results');
@@ -34,8 +36,8 @@
   define('OK','OK');
 
   define('UPGRADE_DETECTION','Upgrade Mode Available');
-  define('LABEL_PREVIOUS_INSTALL_FOUND','Previous Zen Cart Installation Found');
-  define('LABEL_PREVIOUS_VERSION_NUMBER','Database appears to be Zen Cart v%s');
+  define('LABEL_PREVIOUS_INSTALL_FOUND','Previous Zen Cart&trade; Installation Found');
+  define('LABEL_PREVIOUS_VERSION_NUMBER','Database appears to be Zen Cart&trade; v%s');
   define('LABEL_PREVIOUS_VERSION_NUMBER_UNKNOWN','<em>However, the version level of your database cannot be determined, usually resulting from wrong table prefixes, or other database settings mismatches. <br /><br />CAUTION: Only use the Upgrade option if you are sure your configure.php settings are correct.</em>');
   define('LABEL_UPGRADE_VS_INSTALL', 'Install or Upgrade?');
   define('LABEL_INSTALL', 'Ready to Install?  (This will wipe any existing data. You are NOT in Upgrade mode!!!)');
@@ -61,6 +63,7 @@
   define('LABEL_SUGGESTED_CACHE_PATH','Suggested SQL Cache Folder');
   define('LABEL_HTTP_HOST','HTTP Host');
   define('LABEL_PATH_TRANLSATED','Path_Translated');
+  define('LABEL_REALPATH', 'Real Path');
   define('LABEL_PHP_API_MODE','PHP API Mode');
   define('LABEL_PHP_MODULES','PHP Modules Active');
   define('LABEL_PHP_EXT_SESSIONS','PHP Sessions Support');
@@ -68,7 +71,12 @@
   define('LABEL_PHP_EXT_SAVE_PATH','PHP Session.Save_Path');
   define('LABEL_PHP_EXT_FTP','PHP FTP Support');
   define('LABEL_PHP_EXT_CURL','PHP cURL Support');
+  define('LABEL_CURL_NONSSL','CURL NON-SSL Capability');
+  define('LABEL_CURL_SSL','CURL SSL Capability');
+  define('LABEL_CURL_NONSSL_PROXY','CURL NON-SSL Capability via Proxy');
+  define('LABEL_CURL_SSL_PROXY','CURL SSL Capability via Proxy');
   define('LABEL_PHP_MAG_QT_RUN','PHP magic_quotes_runtime setting');
+  define('LABEL_PHP_MAG_QT_SYBASE','PHP magic_quotes_sybase setting');
   define('LABEL_PHP_EXT_GD','PHP GD Support');
   define('LABEL_GD_VER','GD Version');
   define('LABEL_PHP_EXT_OPENSSL','PHP OpenSSL Support');
@@ -92,10 +100,9 @@
 
   define('LABEL_EXPLAIN','&nbsp;Click here for more info');
   define('LABEL_FOLDER_PERMISSIONS','File and Folder Permissions');
+  define('LABEL_WRITABLE_FILE_INFO', 'In order for the installer to store the setup information you provide in the following pages, the configure.php files shown below need to be "writable".');
   define('LABEL_WRITABLE_FOLDER_INFO','In order for many Zen Cart&trade; administrative and day-to-day functions to work properly,
 You need to mark several files/folders "Writeable".  The following is a list of folders which need to be "read-write", 
 along with recommended CHMOD settings. Please correct these settings before continuing installation. 
 Refresh this page in your browser to re-check settings.<br /><br />Some hosts may not allow you to set CHMOD 777, but only 666. Start with the higher setting first, and switch to lower values if required.');
-
-
 ?>

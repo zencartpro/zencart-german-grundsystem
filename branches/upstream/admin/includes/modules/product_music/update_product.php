@@ -4,7 +4,7 @@
  * @copyright Copyright 2003-2006 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: update_product.php 4178 2006-08-20 18:47:54Z ajeh $
+ * @version $Id: update_product.php 5974 2007-03-04 01:17:35Z ajeh $
  */
   if (!defined('IS_ADMIN_FLAG')) {
     die('Illegal Access');
@@ -53,19 +53,14 @@
                             );
 
     // when set to none remove from database
-    // if (isset($_POST['products_image']) && zen_not_null($_POST['products_image']) && ($_POST['products_image'] != 'none')) {
-    if (isset($_POST['products_image']) && zen_not_null($_POST['products_image']) && (!is_numeric(strpos($_POST['products_image'],'none'))) ) {
+    // is out dated for browsers use radio only
       $sql_data_array['products_image'] = zen_db_prepare_input($_POST['products_image']);
       $new_image= 'true';
-    } else {
+
+    if ($_POST['image_delete'] == 1) {
       $sql_data_array['products_image'] = '';
       $new_image= 'false';
     }
-
-if ($_POST['image_delete'] == 1) {
-      $sql_data_array['products_image'] = '';
-      $new_image= 'false';
-}
 
     if ($action == 'insert_product') {
       $insert_sql_data = array( 'products_date_added' => 'now()',

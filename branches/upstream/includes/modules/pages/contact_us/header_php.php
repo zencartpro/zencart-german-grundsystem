@@ -3,10 +3,10 @@
  * Contact Us Page
  *
  * @package page
- * @copyright Copyright 2003-2006 Zen Cart Development Team
+ * @copyright Copyright 2003-2007 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: header_php.php 3230 2006-03-20 23:21:29Z drbyte $
+ * @version $Id: header_php.php 6202 2007-04-12 22:56:10Z drbyte $
  */
 require(DIR_WS_MODULES . zen_get_module_directory('require_languages.php'));
 
@@ -30,8 +30,8 @@ if (isset($_GET['action']) && ($_GET['action'] == 'send')) {
       $customer_email= $check_customer->fields['customers_email_address'];
       $customer_name= $check_customer->fields['customers_firstname'] . ' ' . $check_customer->fields['customers_lastname'];
     } else {
-      $customer_email='Not logged in';
-      $customer_name='Not logged in';
+      $customer_email = NOT_LOGGED_IN_TEXT;
+      $customer_name = NOT_LOGGED_IN_TEXT;
     }
 
     // use contact us dropdown if defined

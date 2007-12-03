@@ -3,10 +3,10 @@
  * checkout_new_address.php
  *
  * @package modules
- * @copyright Copyright 2003-2006 Zen Cart Development Team
+ * @copyright Copyright 2003-2007 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: checkout_new_address.php 4824 2006-10-23 21:01:28Z drbyte $
+ * @version $Id: checkout_new_address.php 6772 2007-08-21 12:33:29Z drbyte $
  */
 // This should be first line of the script:
 $zco_notifier->notify('NOTIFY_MODULE_START_CHECKOUT_NEW_ADDRESS');
@@ -157,6 +157,7 @@ if (isset($_POST['action']) && ($_POST['action'] == 'submit')) {
         }
       }
       $db->perform(TABLE_ADDRESS_BOOK, $sql_data_array);
+      $zco_notifier->notify('NOTIFY_MODULE_CHECKOUT_ADDED_ADDRESS_BOOK_RECORD', array_merge(array('address_id' => $db->Insert_ID() ), $sql_data_array));
       switch($addressType) {
         case 'billto':
         $_SESSION['billto'] = $db->Insert_ID();

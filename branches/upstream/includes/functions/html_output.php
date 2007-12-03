@@ -4,10 +4,10 @@
  * HTML-generating functions used throughout the core
  *
  * @package functions
- * @copyright Copyright 2003-2006 Zen Cart Development Team
+ * @copyright Copyright 2003-2007 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: html_output.php 4792 2006-10-20 04:41:38Z drbyte $
+ * @version $Id: html_output.php 6726 2007-08-19 03:49:38Z drbyte $
  */
 
 /*
@@ -17,7 +17,7 @@
     global $request_type, $session_started, $http_domain, $https_domain;
 
     if (!zen_not_null($page)) {
-      die('</td></tr></table></td></tr></table><br /><br /><strong class="note">Error!<br /><br />Unable to determine the page link!</strong><br /><br />');
+      die('</td></tr></table></td></tr></table><br /><br /><strong class="note">Error!<br /><br />Unable to determine the page link!</strong><br /><br /><!--' . $page . '<br />' . $parameters . ' -->');
     }
 
     if ($connection == 'NONSSL') {
@@ -524,5 +524,19 @@
     }
 
     return zen_draw_pull_down_menu($name, $countries_array, $selected, $parameters);
+  }
+
+/*
+ * Assesses suitability for additional parameters such as rel=nofollow etc
+ */
+  function zen_href_params($page = '', $parameters = '') {
+    global $current_page_base;
+    $addparms = '';
+    // if nofollow has already been set, ignore this function
+    if (stristr($parameters, 'nofollow')) return $parameters;
+    // if list of skippable pages has been set in meta_tags.php lang file (is by default), use that to add rel=nofollow params
+    if (defined('ROBOTS_PAGES_TO_SKIP') && in_array($page, explode(",", constant('ROBOTS_PAGES_TO_SKIP'))) 
+        || $current_page_base=='down_for_maintenance') $addparms = 'rel="nofollow"';
+    return ($parameters == '' ? $addparms : $parameters . ' ' . $addparms);
   }
 ?>

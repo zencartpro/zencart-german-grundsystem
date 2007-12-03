@@ -3,13 +3,13 @@
  * Module Template - for shipping-estimator display
  *
  * @package templateSystem
- * @copyright Copyright 2003-2006 Zen Cart Development Team
+ * @copyright Copyright 2003-2007 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: tpl_modules_shipping_estimator.php 5351 2006-12-22 21:01:55Z drbyte $
+ * @version $Id: tpl_modules_shipping_estimator.php 5853 2007-02-20 05:49:48Z drbyte $
  */
 ?>
-
+<div id="shippingEstimatorContent">
 <?php echo zen_draw_form('estimator', zen_href_link($show_in, '', 'NONSSL'), 'post'); ?>
 <?php echo zen_draw_hidden_field('scid', $selected_shipping['id']); ?>
 <?php
@@ -27,13 +27,13 @@
     // only display addresses if more than 1
       if ($addresses->RecordCount() > 1){
 ?>
-<label class="inputLabel"><?php echo CART_SHIPPING_METHOD_ADDRESS; ?></label>
-<?php echo zen_draw_pull_down_menu('address_id', $addresses_array, $selected_address, 'onchange="return shipincart_submit(\'\');"'); ?>
+<label class="inputLabel" for="seAddressPulldown"><?php echo CART_SHIPPING_METHOD_ADDRESS; ?></label>
+<?php echo zen_draw_pull_down_menu('address_id', $addresses_array, $selected_address, 'onchange="return shipincart_submit();" name="seAddressPulldown"'); ?>
 <?php
       }
 ?>
 
-<div class="bold back"><?php echo CART_SHIPPING_METHOD_TO; ?></div>
+<div class="bold back" id="seShipTo"><?php echo CART_SHIPPING_METHOD_TO; ?></div>
 <address class="back"><?php echo zen_address_format($order->delivery['format_id'], $order->delivery, 1, ' ', '<br />'); ?></address>
 <br class="clearBoth" />
 <?php
@@ -55,7 +55,7 @@
 <?php echo zen_draw_pull_down_menu('zone_id', zen_prepare_country_zones_pull_down($selected_country), $state_zone_id, 'id="stateZone"');?>
 <br class="clearBoth" id="stBreak" />
 <label class="inputLabel" for="state" id="stateLabel"><?php echo $state_field_label; ?></label>
-<?php echo zen_draw_input_field('state', '', zen_set_field_length(TABLE_ADDRESS_BOOK, 'entry_state', '40') . ' id="state"') .'&nbsp;<span class="alert" id="stText">&nbsp;</span>'; ?>
+<?php echo zen_draw_input_field('state', $selectedState, zen_set_field_length(TABLE_ADDRESS_BOOK, 'entry_state', '40') . ' id="state"') .'&nbsp;<span class="alert" id="stText">&nbsp;</span>'; ?>
 <br class="clearBoth" />
 
 <?php
@@ -67,7 +67,7 @@
 <?php
         }
 ?>
-<div class="buttonRow forward"><a href="_" onclick="return shipincart_submit('');"><?php echo  zen_image_button(BUTTON_IMAGE_UPDATE, BUTTON_UPDATE_ALT); ?></a></div>
+<div class="buttonRow forward"><?php echo  zen_image_submit(BUTTON_IMAGE_UPDATE, BUTTON_UPDATE_ALT); ?></div>
 <br class="clearBoth" />
 <?php
       }
@@ -83,6 +83,14 @@
     }else{
 ?>
 <table width="100%" border="1" cellpadding="2" cellspacing ="2">
+<?php if ($_SESSION['customer_id'] < 1 ){ ?>
+    <tr>
+      <td colspan="2" class="seDisplayedAddressLabel">
+        <?php echo CART_SHIPPING_QUOTE_CRITERIA; ?><br />
+        <?php echo '<span class="seDisplayedAddressInfo">' . zen_get_zone_name($selected_country, $state_zone_id, '') . ($selectedState != '' ? ' ' . $selectedState : '') . ' ' . $order->delivery['postcode'] . ' ' . zen_get_country_name($order->delivery['country_id']) . '</span>'; ?>
+      </td>
+    </tr>
+<?php } ?>
      <tr>
        <th scope="col" id="seProductsHeading"><?php echo CART_SHIPPING_METHOD_TEXT; ?></th>
        <th scope="col" id="seTotalHeading"><?php echo CART_SHIPPING_METHOD_RATES; ?></th>
@@ -152,3 +160,4 @@
   }
 ?>
 </form>
+</div>

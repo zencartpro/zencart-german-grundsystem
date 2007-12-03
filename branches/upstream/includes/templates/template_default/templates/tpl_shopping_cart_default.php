@@ -6,10 +6,10 @@
  * Displays shopping-cart contents
  *
  * @package templateSystem
- * @copyright Copyright 2003-2006 Zen Cart Development Team
+ * @copyright Copyright 2003-2007 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: tpl_shopping_cart_default.php 5414 2006-12-27 07:51:03Z drbyte $
+ * @version $Id: tpl_shopping_cart_default.php 5554 2007-01-07 02:45:29Z drbyte $
  */
 ?>
 <div class="centerColumn" id="shoppingCartDefault">
@@ -82,7 +82,7 @@
 ?>
        </td>
        <td class="cartProductDisplay">
-<a href="<?php echo $product['linkProductsName']; ?>"><div id="cartImage" class="back"><?php echo $product['productsImage']; ?></div><div id="cartProdTitle"><?php echo $product['productsName'] . '<span class="alert bold">' . $product['flagStockCheck'] . '</span>'; ?></div></a>
+<a href="<?php echo $product['linkProductsName']; ?>"><span id="cartImage" class="back"><?php echo $product['productsImage']; ?></span><span id="cartProdTitle"><?php echo $product['productsName'] . '<span class="alert bold">' . $product['flagStockCheck'] . '</span>'; ?></span></a>
 <br class="clearBoth" />
 
 
@@ -140,24 +140,32 @@
   } else { // don't show update button below cart
 ?>
 <?php
-  } // show checkout button
+  } // show update button
 ?>
-
 <!--eof shopping cart buttons-->
 </form>
 
 <br class="clearBoth" />
 <?php
-    switch (true) {
-      case (SHOW_SHIPPING_ESTIMATOR_BUTTON == '1'):
+    if (SHOW_SHIPPING_ESTIMATOR_BUTTON == '1') {
 ?>
 
 <div class="buttonRow back"><?php echo '<a href="javascript:popupWindow(\'' . zen_href_link(FILENAME_POPUP_SHIPPING_ESTIMATOR) . '\')">' .
  zen_image_button(BUTTON_IMAGE_SHIPPING_ESTIMATOR, BUTTON_SHIPPING_ESTIMATOR_ALT) . '</a>'; ?></div>
+<?php
+    }
+?>
+
+<!-- ** BEGIN PAYPAL EXPRESS CHECKOUT ** -->
+<?php  // the tpl_ec_button template only displays EC option if cart contents >0 and value >0
+if (defined('MODULE_PAYMENT_PAYPALWPP_STATUS') && MODULE_PAYMENT_PAYPALWPP_STATUS == 'True') {
+  include(DIR_FS_CATALOG . DIR_WS_MODULES . 'payment/paypal/tpl_ec_button.php');
+}
+?>
+<!-- ** END PAYPAL EXPRESS CHECKOUT ** -->
 
 <?php
-      break;
-      case (SHOW_SHIPPING_ESTIMATOR_BUTTON == '2'):
+      if (SHOW_SHIPPING_ESTIMATOR_BUTTON == '2') {
 /**
  * load the shipping estimator code if needed
  */
@@ -165,7 +173,6 @@
       <?php require(DIR_WS_MODULES . zen_get_module_directory('shipping_estimator.php')); ?>
 
 <?php
-        break;
       }
 ?>
 <?php
@@ -219,16 +226,7 @@ while (!$show_display_shopping_cart_empty->EOF) {
   $show_display_shopping_cart_empty->MoveNext();
 } // !EOF
 ?>
-
 <?php
   }
 ?>
-<!-- ** BEGIN PAYPAL EXPRESS CHECKOUT ** -->
-  <?php  // only display EC option if cart contents >0 and value >0
-if (defined('MODULE_PAYMENT_PAYPALWPP_STATUS') && MODULE_PAYMENT_PAYPALWPP_STATUS == 'True' && $_SESSION['cart']->count_contents() > 0 && $_SESSION['cart']->total > 0) {
-  include(DIR_FS_CATALOG . DIR_WS_MODULES . 'payment/paypal/tpl_ec_button.php');
-}
-?>
-<!-- ** END PAYPAL EXPRESS CHECKOUT ** -->
-
 </div>

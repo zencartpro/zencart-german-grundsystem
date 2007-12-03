@@ -3,11 +3,11 @@
  * httpClient Class.
  *
  * @package classes
- * @copyright Copyright 2003-2005 Zen Cart Development Team
+ * @copyright Copyright 2003-2007 Zen Cart Development Team
  * @copyright Portions Copyright 2001 Leo West <west_leo@yahoo-REMOVE-.com> Net_HTTP_Client v0.6
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: http_client.php 3047 2006-02-16 21:53:56Z wilt $
+ * @version $Id: http_client.php 6257 2007-04-24 06:02:20Z drbyte $
  */
 if (!defined('IS_ADMIN_FLAG')) {
   die('Illegal Access');
@@ -29,6 +29,7 @@ if (!defined('IS_ADMIN_FLAG')) {
 // proxy stuff
     var $useProxy = false;
     var $proxyHost, $proxyPort;
+    var $timeout = 8; // 8-second default timeout
 
 /**
  * httpClient constructor
@@ -303,7 +304,7 @@ if (!defined('IS_ADMIN_FLAG')) {
 
         if (!zen_not_null($port)) $port = 80;
 
-        if (!$this->socket = @fsockopen($host, $port, $this->reply, $this->replyString)) {
+        if (!$this->socket = @fsockopen($host, $port, $this->reply, $this->replyString, $this->timeout)) {
           return false;
         }
 

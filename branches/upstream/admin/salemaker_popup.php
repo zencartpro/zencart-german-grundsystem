@@ -1,28 +1,17 @@
 <?php
+/**
+ * @package admin
+ * @copyright Copyright 2003-2006 Zen Cart Development Team
+ * @copyright Portions Copyright 2003 osCommerce
+ * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
+ * @version $Id: salemaker_popup.php 5498 2007-01-01 04:10:07Z ajeh $
+ */
 //
-// +----------------------------------------------------------------------+
-// |zen-cart Open Source E-commerce                                       |
-// +----------------------------------------------------------------------+
-// | Copyright (c) 2003 The zen-cart developers                           |
-// |                                                                      |
-// | http://www.zen-cart.com/index.php                                    |
-// |                                                                      |
-// | Portions Copyright (c) 2003 osCommerce                               |
-// +----------------------------------------------------------------------+
-// | This source file is subject to version 2.0 of the GPL license,       |
-// | that is bundled with this package in the file LICENSE, and is        |
-// | available through the world-wide-web at the following url:           |
-// | http://www.zen-cart.com/license/2_0.txt.                             |
-// | If you did not receive a copy of the zen-cart license and are unable |
-// | to obtain it through the world-wide-web, please send a note to       |
-// | license@zen-cart.com so we can mail you a copy immediately.          |
-// +----------------------------------------------------------------------+
-//  $Id: salemaker_popup.php 1969 2005-09-13 06:57:21Z drbyte $
-//
-
   require("includes/application_top.php");
 
   require(DIR_WS_LANGUAGES . $_SESSION['language'] . '/' . FILENAME_SALEMAKER_POPUP . '.php');
+  $cname = zen_get_category_name($_GET['cid'], (int)$_SESSION['languages_id']);
+
 ?>
 <!doctype html public "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html <?php echo HTML_PARAMS; ?>>
@@ -32,7 +21,7 @@
 <link rel="stylesheet" type="text/css" href="includes/stylesheet.css">
 </head>
 <body>
-<p class="main"><center><h1><?php echo HEADING_TITLE . ' - ' . $_GET['cname']; ?><?php echo zen_draw_separator(); ?></h1></center></p>
+<p class="main"><center><h1><?php echo HEADING_TITLE . ' - ' . $cname; ?><?php echo zen_draw_separator(); ?></h1></center></p>
 <table width="90%" align="center">
       <tr>
         <td><table border="0" width="100%" cellspacing="0" cellpadding="0">

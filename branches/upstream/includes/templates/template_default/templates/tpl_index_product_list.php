@@ -6,10 +6,10 @@
  * Displays product-listing when a particular category/subcategory is selected for browsing
  *
  * @package templateSystem
- * @copyright Copyright 2003-2006 Zen Cart Development Team
+ * @copyright Copyright 2003-2007 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: tpl_index_product_list.php 5369 2006-12-23 10:55:52Z drbyte $
+ * @version $Id: tpl_index_product_list.php 6009 2007-03-13 23:56:45Z ajeh $
  */
 ?>
 <div class="centerColumn" id="indexProductList">
@@ -38,7 +38,7 @@ if (PRODUCT_LIST_CATEGORIES_IMAGE_STATUS == 'true') {
   $check_for_alpha = $listing_sql;
   $check_for_alpha = $db->Execute($check_for_alpha);
 
-  if ($check_for_alpha->RecordCount() > 0 && PRODUCT_LIST_ALPHA_SORTER == 'true') {
+  if ($do_filter_list || ($check_for_alpha->RecordCount() > 0 && PRODUCT_LIST_ALPHA_SORTER == 'true')) {
   $form = zen_draw_form('filter', zen_href_link(FILENAME_DEFAULT), 'get') . '<label class="inputLabel">' .TEXT_SHOW . '</label>';
 ?>
 

@@ -1,10 +1,10 @@
 <?php
 /**
  * @package admin
- * @copyright Copyright 2003-2006 Zen Cart Development Team
+ * @copyright Copyright 2003-2007 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: taxes_dhtml.php 3001 2006-02-09 21:45:06Z wilt $
+ * @version $Id: taxes_dhtml.php 6027 2007-03-21 09:11:58Z drbyte $
  */
 if (!defined('IS_ADMIN_FLAG')) {
   die('Illegal Access');
@@ -23,6 +23,7 @@ if ($za_dir = @dir(DIR_WS_BOXES . 'extra_boxes')) {
       require(DIR_WS_BOXES . 'extra_boxes/' . $zv_file);
     }
   }
+  $za_dir->close();
 }
 ?>
 <!-- taxes //-->

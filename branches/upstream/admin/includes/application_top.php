@@ -1,24 +1,11 @@
 <?php
-//
-// +----------------------------------------------------------------------+
-// |zen-cart Open Source E-commerce                                       |
-// +----------------------------------------------------------------------+
-// | Copyright (c) 2003 The zen-cart developers                           |
-// |                                                                      |
-// | http://www.zen-cart.com/index.php                                    |
-// |                                                                      |
-// | Portions Copyright (c) 2003 osCommerce                               |
-// +----------------------------------------------------------------------+
-// | This source file is subject to version 2.0 of the GPL license,       |
-// | that is bundled with this package in the file LICENSE, and is        |
-// | available through the world-wide-web at the following url:           |
-// | http://www.zen-cart.com/license/2_0.txt.                             |
-// | If you did not receive a copy of the zen-cart license and are unable |
-// | to obtain it through the world-wide-web, please send a note to       |
-// | license@zen-cart.com so we can mail you a copy immediately.          |
-// +----------------------------------------------------------------------+
-//  $Id: application_top.php 4265 2006-08-25 08:09:36Z drbyte $
-//
+/**
+ * @package admin
+ * @copyright Copyright 2003-2007 Zen Cart Development Team
+ * @copyright Portions Copyright 2003 osCommerce
+ * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
+ * @version $Id: application_top.php 7544 2007-11-29 04:40:11Z drbyte $
+ */
 /**
  * File contains just application_top code
  * 
@@ -26,9 +13,14 @@
  * the elements to be initialised and the order in which that happens.
  *
  * @package admin
- * @copyright Copyright 2003-2005 zen-cart Development Team
+ * @copyright Copyright 2003-2007 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  */
+/*
+ * turn off magic-quotes support, for both runtime and sybase, as both will cause problems if enabled
+ */
+set_magic_quotes_runtime(0);
+if (@ini_get('magic_quotes_sybase') != 0) @ini_set('magic_quotes_sybase', 0);
 /**
  * boolean if true the autoloader scripts will be parsed and their output shown. For debugging purposes only.
  */
@@ -59,19 +51,25 @@ if (file_exists('includes/local/configure.php')) {
    */
   include('includes/local/configure.php');
 }
-// Check for application configuration parameters
-if (!file_exists('includes/configure.php')) {
-  if (file_exists('../zc_install/index.php')) {
-    //header('location: ../zc_install/index.php');
+/**
+ * check for and load application configuration parameters
+ */
+if (file_exists('includes/configure.php')) {
+  /**
+   * load the main configure file.
+   */
+  include('includes/configure.php');
+}
+if (!defined('DIR_FS_CATALOG') || !is_dir(DIR_FS_CATALOG.'/includes/classes') || !defined('DB_TYPE') || DB_TYPE == '') {
+  if (file_exists('../includes/templates/template_default/templates/tpl_zc_install_suggested_default.php')) {
+    require('../includes/templates/template_default/templates/tpl_zc_install_suggested_default.php');
+    exit;
+  } elseif (file_exists('../zc_install/index.php')) {
     echo 'ERROR: Admin configure.php not found. Suggest running install? <a href="../zc_install/index.php">Click here for installation</a>';
   } else {
     die('ERROR: admin/includes/configure.php file not found. Suggest running zc_install/index.php?');
   }
 }
-/**
- * load the main configure file.
- */
-require('includes/configure.php');
 /**
  * ignore version-check if INI file setting has been set
  */
@@ -113,36 +111,21 @@ if ($za_dir = @dir(DIR_WS_INCLUDES . 'extra_configures')) {
       include(DIR_WS_INCLUDES . 'extra_configures/' . $zv_file);
     }
   }
-}
-
-$autoLoadConfig = array();
-$loader_file = 'config.core.php';
-$base_dir = DIR_WS_INCLUDES . 'auto_loaders/';
-if (file_exists(DIR_WS_INCLUDES . 'auto_loaders/overrides/' . $loader_file)) {
-  $base_dir = DIR_WS_INCLUDES . 'auto_loaders/overrides/';
+  $za_dir->close();
 }
 /**
- * load the default application_top autoloader file. 
+ * if main configure file doesn't contain valid info (ie: is dummy or doesn't match filestructure, display assistance page to suggest running the installer)
  */
-include($base_dir . $loader_file);
-if ($loader_dir = dir(DIR_WS_INCLUDES . 'auto_loaders')) {
-  while ($loader_file = $loader_dir->read()) {
-    if ((preg_match('/^config\./', $loader_file) > 0) && (preg_match('/\.php$/', $loader_file) > 0)) {
-      if ($loader_file != 'config.core.php') {
-        $base_dir = DIR_WS_INCLUDES . 'auto_loaders/';
-        if (file_exists(DIR_WS_INCLUDES . 'auto_loaders/overrides/' . $loader_file)) {
-          $base_dir = DIR_WS_INCLUDES . 'auto_loaders/overrides/';
-        }
-        /**
-         * load the application_top autoloader files.
-         */
-        include($base_dir . $loader_file);
-      }
-    }
-  }
+$autoLoadConfig = array();
+if (isset($loaderPrefix)) {
+ $loaderPrefix = preg_replace('/[a-z_]^/', '', $loaderPrefix); 
+} else {
+  $loaderPrefix = 'config';
 }
+$loader_file = $loaderPrefix . '.core.php';
+require('includes/initsystem.php');
 /** 
  * load the autoloader interpreter code.
  */
-require(DIR_FS_CATALOG . 'includes/autoload_func.php');
+  require(DIR_FS_CATALOG . 'includes/autoload_func.php');
 ?>

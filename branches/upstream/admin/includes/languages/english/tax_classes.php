@@ -1,24 +1,11 @@
 <?php
-//
-// +----------------------------------------------------------------------+
-// |zen-cart Open Source E-commerce                                       |
-// +----------------------------------------------------------------------+
-// | Copyright (c) 2003 The zen-cart developers                           |
-// |                                                                      |
-// | http://www.zen-cart.com/index.php                                    |
-// |                                                                      |
-// | Portions Copyright (c) 2003 osCommerce                               |
-// +----------------------------------------------------------------------+
-// | This source file is subject to version 2.0 of the GPL license,       |
-// | that is bundled with this package in the file LICENSE, and is        |
-// | available through the world-wide-web at the following url:           |
-// | http://www.zen-cart.com/license/2_0.txt.                             |
-// | If you did not receive a copy of the zen-cart license and are unable |
-// | to obtain it through the world-wide-web, please send a note to       |
-// | license@zen-cart.com so we can mail you a copy immediately.          |
-// +----------------------------------------------------------------------+
-//  $Id: tax_classes.php 3780 2006-06-16 03:04:43Z drbyte $
-//
+/**
+ * @package admin
+ * @copyright Copyright 2003-2007 Zen Cart Development Team
+ * @copyright Portions Copyright 2003 osCommerce
+ * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
+ * @version $Id: tax_classes.php 7167 2007-10-03 23:02:17Z drbyte $
+ */
 
 define('HEADING_TITLE', 'Tax Classes');
 
@@ -36,4 +23,6 @@ define('TEXT_INFO_DELETE_INTRO', 'Are you sure you want to delete this tax class
 define('TEXT_INFO_HEADING_NEW_TAX_CLASS', 'New Tax Class');
 define('TEXT_INFO_HEADING_EDIT_TAX_CLASS', 'Edit Tax Class');
 define('TEXT_INFO_HEADING_DELETE_TAX_CLASS', 'Delete Tax Class');
+define('ERROR_TAX_RATE_EXISTS_FOR_CLASS', 'ERROR: Cannot delete this Tax Class -- Tax Rates are currently linked to this Tax Class.');
+define('ERROR_TAX_RATE_EXISTS_FOR_PRODUCTS', 'ERROR: Cannot delete this Tax Class -- There are %s products linked to this Tax Class.');
 ?>

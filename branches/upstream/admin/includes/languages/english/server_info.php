@@ -1,25 +1,12 @@
 <?php
-//
-// +----------------------------------------------------------------------+
-// |zen-cart Open Source E-commerce                                       |
-// +----------------------------------------------------------------------+
-// | Copyright (c) 2003 The zen-cart developers                           |
-// |                                                                      |
-// | http://www.zen-cart.com/index.php                                    |
-// |                                                                      |
-// | Portions Copyright (c) 2003 osCommerce                               |
-// +----------------------------------------------------------------------+
-// | This source file is subject to version 2.0 of the GPL license,       |
-// | that is bundled with this package in the file LICENSE, and is        |
-// | available through the world-wide-web at the following url:           |
-// | http://www.zen-cart.com/license/2_0.txt.                             |
-// | If you did not receive a copy of the zen-cart license and are unable |
-// | to obtain it through the world-wide-web, please send a note to       |
-// | license@zen-cart.com so we can mail you a copy immediately.          |
-// +----------------------------------------------------------------------+
-//  $Id: server_info.php 1105 2005-04-04 22:05:35Z birdbrain $
-//
-
+/**
+ * @package admin
+ * @copyright Copyright 2003-2007 Zen Cart Development Team
+ * @copyright Portions Copyright 2003 osCommerce
+ * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
+ * @version $Id: server_info.php 5954 2007-03-03 08:09:35Z drbyte $
+ */
+ 
 define('HEADING_TITLE', 'Server Information');
 
 define('TITLE_SERVER_HOST', 'Server Host:');
@@ -32,5 +19,13 @@ define('TITLE_ZEND_VERSION', 'Zend:');
 define('TITLE_DATABASE_HOST', 'Database Host:');
 define('TITLE_DATABASE', 'Database:');
 define('TITLE_DATABASE_DATE', 'Database Date:');
+define('TITLE_DATABASE_DATA_SIZE', 'Database Data Size:');
+define('TITLE_DATABASE_INDEX_SIZE', 'Database Index Size:');
+define('TITLE_PHP_SAFE_MODE', 'PHP Safe Mode:');
+define('TITLE_PHP_MEMORY_LIMIT', 'PHP Memory Limit:');
+define('TITLE_PHP_FILE_UPLOADS', 'PHP File Uploads:');
+define('TITLE_PHP_UPLOAD_MAX', 'Max Size:');
+define('TITLE_PHP_POST_MAX_SIZE', 'POST Max Size:');
 define('PROJECT_DATABASE_LABEL','Database Patch Level: ');
+define('TITLE_MYSQL_STRICT_MODE', '(in Strict mode)');
 ?>

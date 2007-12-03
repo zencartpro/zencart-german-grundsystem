@@ -3,10 +3,10 @@
  * module to process a completed checkout
  *
  * @package procedureCheckout
- * @copyright Copyright 2003-2006 Zen Cart Development Team
+ * @copyright Copyright 2003-2007 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: checkout_process.php 4865 2006-10-31 07:44:40Z drbyte $
+ * @version $Id: checkout_process.php 6491 2007-06-15 07:00:52Z drbyte $
  */
 if (!defined('IS_ADMIN_FLAG')) {
   die('Illegal Access');
@@ -90,6 +90,13 @@ $zco_notifier->notify('NOTIFY_CHECKOUT_PROCESS_AFTER_SEND_ORDER_EMAIL');
   }
   $commissionable_order = ($order_subtotal - $credits_applied);
   $commissionable_order_formatted = $currencies->format($commissionable_order);
+  $_SESSION['order_summary']['order_number'] = $insert_id;
+  $_SESSION['order_summary']['order_subtotal'] = $order_subtotal;
+  $_SESSION['order_summary']['credits_applied'] = $credits_applied;
+  $_SESSION['order_summary']['order_total'] = $ototal;
+  $_SESSION['order_summary']['commissionable_order'] = $commissionable_order;
+  $_SESSION['order_summary']['commissionable_order_formatted'] = $commissionable_order_formatted;
+  $_SESSION['order_summary']['coupon_code'] = $order->info['coupon_code'];
   $zco_notifier->notify('NOTIFY_CHECKOUT_PROCESS_HANDLE_AFFILIATES');
 
 ?>

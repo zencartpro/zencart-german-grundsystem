@@ -1,24 +1,11 @@
 <?php
-//
-// +----------------------------------------------------------------------+
-// |zen-cart Open Source E-commerce                                       |
-// +----------------------------------------------------------------------+
-// | Copyright (c) 2006 The zen-cart developers                           |
-// |                                                                      |
-// | http://www.zen-cart.com/index.php                                    |
-// |                                                                      |
-// | Portions Copyright (c) 2003 osCommerce                               |
-// +----------------------------------------------------------------------+
-// | This source file is subject to version 2.0 of the GPL license,       |
-// | that is bundled with this package in the file LICENSE, and is        |
-// | available through the world-wide-web at the following url:           |
-// | http://www.zen-cart.com/license/2_0.txt.                             |
-// | If you did not receive a copy of the zen-cart license and are unable |
-// | to obtain it through the world-wide-web, please send a note to       |
-// | license@zen-cart.com so we can mail you a copy immediately.          |
-// +----------------------------------------------------------------------+
-//  $Id: general.php 5435 2006-12-28 19:09:50Z drbyte $
-//
+/**
+ * @package admin
+ * @copyright Copyright 2003-2007 Zen Cart Development Team
+ * @copyright Portions Copyright 2003 osCommerce
+ * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
+ * @version $Id: general.php 7125 2007-09-29 00:03:01Z ajeh $
+ */
 
 ////
 // Redirect to another page or site
@@ -397,6 +384,12 @@
       } else {
         return false;
       }
+    } elseif( is_a( $value, 'queryFactoryResult' ) ) {
+      if (sizeof($value->result) > 0) {
+        return true;
+      } else {
+        return false;
+      }
     } else {
       if ( (is_string($value) || is_int($value)) && ($value != '') && ($value != 'NULL') && (strlen(trim($value)) > 0)) {
         return true;
@@ -467,6 +460,8 @@
   }
 
 
+// USED FROM functions_customers
+/*
   function zen_address_format($address_format_id, $address, $html, $boln, $eoln) {
     global $db;
     $address_format = $db->Execute("select address_format as format
@@ -504,11 +499,11 @@
 
     if ($html) {
 // HTML Mode
-      $HR = '<hr>';
-      $hr = '<hr>';
+      $HR = '<hr />';
+      $hr = '<hr />';
       if ( ($boln == '') && ($eoln == "\n") ) { // Values not specified, use rational defaults
-        $CR = '<br>';
-        $cr = '<br>';
+        $CR = '<br />';
+        $cr = '<br />';
         $eoln = $cr;
       } else { // Use values supplied
         $CR = $eoln . $boln;
@@ -537,6 +532,7 @@
 
     return $address;
   }
+*/
 
   ////////////////////////////////////////////////////////////////////////////////////////////////
   //
@@ -1054,26 +1050,50 @@
 ////
 // Retreive server information
   function zen_get_system_information() {
-    global $db, $_SERVER;
+    global $db;
+
+    // determine database size stats
+    $indsize = 0;
+    $datsize = 0;
+    $result = $db->Execute("SHOW TABLE STATUS" . (DB_PREFIX == '' ? '' : " LIKE '" . str_replace('_', '\_', DB_PREFIX) . "%'"));
+    while (!$result->EOF) {
+      $datsize += $result->fields['Data_length'];
+      $indsize += $result->fields['Index_length'];
+      $result->MoveNext();
+    }
+    $mysql_in_strict_mode = false;
+    $result = $db->Execute("SHOW VARIABLES LIKE 'sql\_mode'");
+    while (!$result->EOF) {
+      if (strstr($result->fields['Value'], 'strict_')) $mysql_in_strict_mode = true;
+      $result->MoveNext();
+    }
 
     $db_query = $db->Execute("select now() as datetime");
     list($system, $host, $kernel) = preg_split('/[\s,]+/', @exec('uname -a'), 5);
     if ($host == '') list($system, $host, $kernel) = array('', $_SERVER['SERVER_NAME'], php_uname());
-
 
     return array('date' => zen_datetime_short(date('Y-m-d H:i:s')),
                  'system' => $system,
                  'kernel' => $kernel,
                  'host' => $host,
                  'ip' => gethostbyname($host),
-                 'uptime' => (DISPLAY_SERVER_UPTIME == 'true' ? @exec('uptime') : ''),
+                 'uptime' => (DISPLAY_SERVER_UPTIME == 'true' ? @exec('uptime 2>&1') : 'Unchecked'),
                  'http_server' => $_SERVER['SERVER_SOFTWARE'],
                  'php' => PHP_VERSION,
                  'zend' => (function_exists('zend_version') ? zend_version() : ''),
                  'db_server' => DB_SERVER,
                  'db_ip' => gethostbyname(DB_SERVER),
                  'db_version' => 'MySQL ' . (function_exists('mysql_get_server_info') ? mysql_get_server_info() : ''),
-                 'db_date' => zen_datetime_short($db_query->fields['datetime']));
+                 'db_date' => zen_datetime_short($db_query->fields['datetime']),
+                 'php_memlimit' => @ini_get('memory_limit'),
+                 'php_safemode' => strtolower(@ini_get('safe_mode')),
+                 'php_file_uploads' => strtolower(@ini_get('file_uploads')),
+                 'php_uploadmaxsize' => @ini_get('upload_max_filesize'),
+                 'php_postmaxsize' => @ini_get('post_max_size'),
+                 'database_size' => $datsize,
+                 'index_size' => $indsize,
+                 'mysql_strict_mode' => $mysql_in_strict_mode,
+                 );
   }
 
   function zen_generate_category_path($id, $from = 'category', $categories_array = '', $index = 0) {
@@ -1176,7 +1196,8 @@
     $db->Execute("delete from " . TABLE_PRODUCTS_TO_CATEGORIES . "
                   where categories_id = '" . (int)$category_id . "'");
 
-
+    $db->Execute("delete from " . TABLE_METATAGS_CATEGORIES_DESCRIPTION . "
+                  where categories_id = '" . (int)$category_id . "'");
   }
 
   function zen_remove_product($product_id, $ptc = 'true') {
@@ -1515,22 +1536,7 @@
 // Returns the tax rate for a tax class
 // TABLES: tax_rates
   function zen_get_tax_rate_value($class_id) {
-    global $db;
-    $tax = $db->Execute("select SUM(tax_rate) as tax_rate
-                         from " . TABLE_TAX_RATES . "
-                         where tax_class_id = '" . (int)$class_id . "'
-                         group by tax_priority");
-
-    if ($tax->RecordCount() > 0) {
-      $tax_multiplier = 0;
-      while (!$tax->EOF) {
-        $tax_multiplier += $tax->fields['tax_rate'];
-        $tax->MoveNext();
-      }
-      return $tax_multiplier;
-    } else {
-      return 0;
-    }
+    return zen_get_tax_rate($class_id);
   }
 
   function zen_call_function($function, $parameter, $object = '') {
@@ -1927,8 +1933,7 @@ function zen_copy_products_attributes($products_id_from, $products_id_to) {
       } else {
         if ($add_attribute == true) {
           // New attribute - insert it
-// @TODO: MySQL5
-          $db->Execute("insert into " . TABLE_PRODUCTS_ATTRIBUTES . " values (0, '" . $products_id_to . "',
+          $db->Execute("insert into " . TABLE_PRODUCTS_ATTRIBUTES . " (products_attributes_id, products_id, options_id, options_values_id, options_values_price, price_prefix, products_options_sort_order, product_attribute_is_free, products_attributes_weight, products_attributes_weight_prefix, attributes_display_only, attributes_default, attributes_discounted, attributes_image, attributes_price_base_included, attributes_price_onetime, attributes_price_factor, attributes_price_factor_offset, attributes_price_factor_onetime, attributes_price_factor_onetime_offset, attributes_qty_prices, attributes_qty_prices_onetime, attributes_price_words, attributes_price_words_free, attributes_price_letters, attributes_price_letters_free, attributes_required) values (0, '" . $products_id_to . "',
           '" . $products_copy_from->fields['options_id'] . "',
           '" . $products_copy_from->fields['options_values_id'] . "',
           '" . $products_copy_from->fields['options_values_price'] . "',
@@ -2813,9 +2818,7 @@ function zen_copy_products_attributes($products_id_from, $products_id_to) {
       $string .= '<br><input type="checkbox" name="' . $name . '" value="' . $select_array[$i] . '"';
       $key_values = explode( ", ", $key_value);
       if ( in_array($select_array[$i], $key_values) ) $string .= ' CHECKED';
-      $string .= ' id="' . strtolower($select_array[$i] . '-' . $name) . '"> ' . '<label for="' . strtolower($select_array[$i] . '-' . $name) . '" class="inputSelect">' . $select_array[$i] . '</label>';
-
-
+      $string .= ' id="' . strtolower($select_array[$i] . '-' . $name) . '"> ' . '<label for="' . strtolower($select_array[$i] . '-' . $name) . '" class="inputSelect">' . $select_array[$i] . '</label>' . "\n";
     }
     $string .= '<input type="hidden" name="' . $name . '" value="--none--">';
     return $string;
@@ -3104,10 +3107,15 @@ function zen_copy_products_attributes($products_id_from, $products_id_to) {
   }
 
 // replacement for fmod to manage values < 1
-    function fmod_round($x, $y) {
-      $i = fmod($x*1000,$y*1000);
-      return $i;
-    }
+  function fmod_round($x, $y) {
+    $x = strval($x);
+    $y = strval($y);
+    $zc_round = ($x*1000)/($y*1000);
+    $zc_round_ceil = (int)($zc_round);
+    $multiplier = $zc_round_ceil * $y;
+    $results = abs(round($x - $multiplier, 6));
+     return $results;
+  }
 
 ////
 // return any field from products or products_description table
@@ -3223,6 +3231,32 @@ function zen_copy_products_attributes($products_id_from, $products_id_to) {
     $select_string .= '</select>';
 
     return $select_string;
+  }
+
+// customer lookup of address book
+  function zen_get_customers_address_book($customer_id) {
+    global $db;
+
+    $customer_address_book_count_query = "SELECT c.*, ab.* from " .
+                                          TABLE_CUSTOMERS . " c
+                                          left join " . TABLE_ADDRESS_BOOK . " ab on c.customers_id = ab.customers_id
+                                          WHERE c.customers_id = '" . (int)$customer_id . "'";
+
+    $customer_address_book_count = $db->Execute($customer_address_book_count_query);
+    return $customer_address_book_count;
+  }
+
+// get customer comments
+  function zen_get_orders_comments($orders_id) {
+    global $db;
+    $orders_comments_query = "SELECT osh.comments from " .
+                              TABLE_ORDERS_STATUS_HISTORY . " osh
+                              where osh.orders_id = '" . $orders_id . "'
+                              order by osh.date_added
+                              limit 1";
+
+    $orders_comments = $db->Execute($orders_comments_query);
+    return $orders_comments->fields['comments'];
   }
 
 ?>

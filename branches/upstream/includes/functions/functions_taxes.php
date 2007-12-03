@@ -6,7 +6,7 @@
  * @copyright Copyright 2003-2006 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: functions_taxes.php 4135 2006-08-14 04:25:02Z drbyte $
+ * @version $Id: functions_taxes.php 6789 2007-08-24 15:46:37Z drbyte $
  */
 
 ////
@@ -59,8 +59,19 @@
 ////
 // Return the tax description for a zone / class
 // TABLES: tax_rates;
-  function zen_get_tax_description($class_id, $country_id, $zone_id) {
+  function zen_get_tax_description($class_id, $country_id = -1, $zone_id = -1) {
     global $db;
+    
+    if ( ($country_id == -1) && ($zone_id == -1) ) {
+      if (isset($_SESSION['customer_id'])) {
+        $country_id = $_SESSION['customer_country_id'];
+        $zone_id = $_SESSION['customer_zone_id'];
+      } else {
+        $country_id = STORE_COUNTRY;
+        $zone_id = STORE_ZONE;
+      }
+    }
+
     $tax_query = "select tax_description
                   from (" . TABLE_TAX_RATES . " tr
                   left join " . TABLE_ZONES_TO_GEO_ZONES . " za on (tr.tax_zone_id = za.geo_zone_id)
@@ -87,6 +98,61 @@
     } else {
       return TEXT_UNKNOWN_TAX_RATE;
     }
+  }
+////
+// Return the tax rates for each defined tax for the given class and zone
+// @returns array(description => tax_rate)
+  function zen_get_multiple_tax_rates($class_id, $country_id, $zone_id, $tax_description=array()) {
+    global $db;
+
+    if ( ($country_id == -1) && ($zone_id == -1) ) {
+      if (isset($_SESSION['customer_id'])) {
+        $country_id = $_SESSION['customer_country_id'];
+        $zone_id = $_SESSION['customer_zone_id'];
+      } else {
+        $country_id = STORE_COUNTRY;
+        $zone_id = STORE_ZONE;
+      }
+    }
+
+    $tax_query = "select tax_description, tax_rate, tax_priority
+                  from (" . TABLE_TAX_RATES . " tr
+                  left join " . TABLE_ZONES_TO_GEO_ZONES . " za on (tr.tax_zone_id = za.geo_zone_id)
+                  left join " . TABLE_GEO_ZONES . " tz on (tz.geo_zone_id = tr.tax_zone_id) )
+                  where (za.zone_country_id is null or za.zone_country_id = 0
+                  or za.zone_country_id = '" . (int)$country_id . "')
+                  and (za.zone_id is null
+                  or za.zone_id = 0
+                  or za.zone_id = '" . (int)$zone_id . "')
+                  and tr.tax_class_id = '" . (int)$class_id . "'
+                  order by tr.tax_priority";
+    $tax = $db->Execute($tax_query);
+
+    // calculate appropriate tax rate respecting priorities and compounding
+    if ($tax->RecordCount() > 0) {
+      $tax_aggregate_rate = 1;
+      $tax_rate_factor = 1;
+      $tax_prior_rate = 1;
+      $tax_priority = 0;
+      while (!$tax->EOF) {
+        if ((int)$tax->fields['tax_priority'] > $tax_priority) {
+          $tax_priority = $tax->fields['tax_priority'];
+          $tax_prior_rate = $tax_aggregate_rate;
+          $tax_rate_factor = 1 + ($tax->fields['tax_rate'] / 100);
+          $tax_rate_factor *= $tax_aggregate_rate;
+          $tax_aggregate_rate = 1;
+        } else {
+          $tax_rate_factor = $tax_prior_rate * ( 1 + ($tax->fields['tax_rate'] / 100));
+        }
+        $rates_array[$tax->fields['tax_description']] = 100 * ($tax_rate_factor - $tax_prior_rate);
+        $tax_aggregate_rate += $tax_rate_factor - 1;
+        $tax->MoveNext();
+      }
+    } else {
+      // no tax at this level, set rate to 0 and description of unknown
+      $rates_array[0] = TEXT_UNKNOWN_TAX_RATE;
+    }
+    return $rates_array;
   }
 
 ////

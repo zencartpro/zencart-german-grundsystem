@@ -1,9 +1,9 @@
 <!--
 /**
  * @package documentation
- * @copyright Copyright 2003-2006 Zen Cart Development Team
+ * @copyright Copyright 2003-2007 Zen Cart Development Team
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: important_site_security_recommendations.html 4323 2006-08-30 06:17:19Z drbyte $
+ * @version $Id: important_site_security_recommendations.html 7498 2007-11-27 06:20:49Z drbyte $
  */
 //-->
 <html>
@@ -79,12 +79,7 @@ OSI Certified is a certification mark of the Open Source Initiative.
 <p>Once installation is complete, delete the <span class="filename">/zc_install</span> folder from the server. <br />
 Don't simply rename the folder, as this leaves you vulnerable if someone were to discover this renamed folder.
 </p>
-<h1>2. Set configure.php files read-only</h1>
-<p>It's important that you CHMOD (set permissions) on the two configure.php files as read-only.<br />
-Typically this means setting it to &quot;644&quot;, or in some cases &quot;444&quot;.</p>
-<p> If you cannot do this with your FTP software, try using the File Manager supplied with your webhosting account.</p>
-<p> If you're using a Windows server, simply set the file as &quot;Read-Only&quot; for &quot;Everyone&quot; and especially the <strong>IUSR_xxxxx</strong> user if running IIS, or the &quot;System&quot; account or &quot;apache user&quot; if running Apache.</p>
-<h1>3. Rename your &quot;/admin&quot; folder </h1>
+<h1>2. Rename your &quot;/admin&quot; folder </h1>
 <p>Renaming the &quot;admin&quot; folder makes it much harder for would-be hackers to get into your admin area. </p>
 <p><em>(Before making the following changes, make sure to have a current backup of your files and your database.)</em></p>
 <p>A- Open your <span class="filename">admin/includes/configure.php</span>, using a simple text editor like notepad. <br>
@@ -99,7 +94,16 @@ define('DIR_WS_HTTPS_CATALOG', '/');</p>
 define('DIR_FS_CATALOG', '/home/mystore.com/www/public/');</span></p>
 <p>B- Find your Zen Cart<span class="filename"> /admin/</span> directory, using your FTP software or your webhost File Manager.<br />
 Rename the directory to match the settings you just made in your <span class="filename">admin/includes/configure.php</span>.</p>
-<p>C - You should also protect your admin area by using a .htaccess file similar to the one shown below, and placing it into /admin/includes. (This should already exist in Zen Cart versions 1.2.7 and greater.) </p>
+<p>C - To login to your admin system you will now have to visit a new URL  that matches the new name used in steps A and B above. For example  instead of visiting <em>http://www.example.com/admin/</em> visit <em>http://www.example.com/NeW_NamE4u/</em>. </p>
+<p>D - You should also protect your admin area by using a .htaccess file similar to the one shown below, and placing it into /admin/includes. (This should already exist in Zen Cart versions 1.2.7 and greater.) </p>
+<h1>3. Set configure.php files read-only</h1>
+<p>It's important that you CHMOD (set permissions) on the two configure.php files as read-only.<br />
+Typically this means setting it to &quot;644&quot;, or in some cases &quot;444&quot;.</p>
+<p> The configure.php files are located in:<br>
+/&lt;YourStoresFolder&gt;/includes/configure.php<br>
+/&lt;YourStoresFolder&gt;/admin/includes/configure.php </p>
+<p>Quite often setting permissions on a file to read only via FTP  will not work. Even if the permission looks like it was set to read  only, it really may not have been. You must verify the correct setting  by entering the store and seeing if there is a warning message on the  top of the screen. "Warning: I am able to write to the configuration  file:..." In this case you will need to use the "File Manager" supplied  with your webhosting account. </p>
+<p>If you're using a Windows server, simply set the file as <em>Read-Only</em> for <em>Everyone</em> and especially the <strong>IUSR_xxxxx (Internet Guest Account)</strong> user if running IIS, or the <em>System</em> account or <em>apache user</em> if running Apache. </p>
 <h1>4. Delete any unused Admin accounts </h1>
 <p><span class="filename">Admin-&gt;Tools-&gt;Admin Settings</span><br />
 In your admin area, open the <strong>Tools </strong>menu, and choose <strong>Admin Settings</strong><br />
@@ -150,7 +154,7 @@ During initial installation, you are advised to set your images folder to read/w
 <br>
 However, leaving the images (or any other) folder in read/write mode means that hackers might be able to put malicious files in this (or other) folder(s) and thus create access points from which to attempt nasty exploits. <br>
 <br>
-Thus, once your site is built and your images have been created/loaded, you should drop the security down from read/write to read. ie: change from CHMOD 777 down to 644. <br>
+Thus, once your site is built and your images have been created/loaded, you should drop the security down from read/write to read. ie: change from CHMOD 777 down to 644 for files, and to 755 for folders. <br>
 <br>
 <h4>File/Folder permissions settings</h4>
 <p>On Linux/Unix hosts, generally, permission-setting recommendations for basic security are: </p>
@@ -179,10 +183,13 @@ Thus, once your site is built and your images have been created/loaded, you shou
 </li>
 </ul>
 <h1>Remove the print URL from your browser's headers </h1>
-To stop the browser from printing a URL on the invoice or any other document on the web, follow these steps:<br>
- For the Microsoft Internet Explorer           <br>
-o Click on File then Page Setup           <br>
-o At page setup, remove this two character combination: &quot;&amp;u&quot; from the header or footer text box. <br />
+<p>To stop the browser from printing a URL on the invoice or any other document on the web, follow these steps:</p>
+<p> For Internet Explorer:<br>
+o Click on File then Page Setup <br>
+o At page setup, remove this two character combination: &quot;&amp;u&quot; from the header or footer text box. </p>
+<p>For Firefox:<br>
+o Click on <em>File</em> then <em>Page Setup<br>
+o </em>On page setup window click on the tab "Margins &amp;  Header/Footer". In the "Header &amp; Footer" section set all of the  drop downs to --blank--. (Or at least remove all references to &quot;Title&quot; and &quot;URL&quot;.)</p>
 <h1>Things to Check Up on Regularly</h1>
 <ol><li>Be sure you've done all the steps listed in this document
 <li>Keep good backups of your website files and database
@@ -197,7 +204,7 @@ o At page setup, remove this two character combination: &quot;&amp;u&quot; from 
 </tr>
 </table>
 <div align="center"><br />
-<em>Copyright 2006 Zen Cart</em> <br />
+<em>Copyright 2007 Zen Cart</em> <br />
 <br />
 <br />
 </div>

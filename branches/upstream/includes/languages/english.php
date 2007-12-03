@@ -1,10 +1,10 @@
 <?php
 /**
  * @package languageDefines
- * @copyright Copyright 2003-2006 Zen Cart Development Team
+ * @copyright Copyright 2003-2007 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: english.php 5454 2006-12-29 20:10:17Z drbyte $
+ * @version $Id: english.php 7440 2007-11-17 21:51:35Z drbyte $
  */
 
 // FOLLOWING WERE moved to meta_tags.php
@@ -13,7 +13,7 @@
 //define('CUSTOM_KEYWORDS', 'ecommerce, open source, shop, online shopping');
 // END: moved to meta_tags.php
 
-  define('FOOTER_TEXT_BODY', 'Copyright &copy; ' . date('Y') . ' <a href="http://www.zen-cart.com" target="_blank">Zen Cart</a>. Powered by <a href="http://www.zen-cart.com" target="_blank">Zen Cart</a>');
+  define('FOOTER_TEXT_BODY', 'Copyright &copy; ' . date('Y') . ' <a href="' . zen_href_link(FILENAME_DEFAULT) . '" target="_blank">' . STORE_NAME . '</a>. Powered by <a href="http://www.zen-cart.com" target="_blank">Zen Cart</a>');
 
 // look in your $PATH_LOCALE/locale directory for available locales..
 // on RedHat try 'en_US'
@@ -308,10 +308,9 @@
 
   define('TEXT_REQUIRED', '<span class="errorText">Required</span>');
 
-  $warn_path = (isset($_SERVER['SCRIPT_FILENAME']) ? @dirname($_SERVER['SCRIPT_FILENAME']) : '.....');
-  define('WARNING_INSTALL_DIRECTORY_EXISTS', 'Warning: Installation directory exists at: ' . $warn_path . '/zc_install. Please remove this directory for security reasons.');
-  define('WARNING_CONFIG_FILE_WRITEABLE', 'Warning: I am able to write to the configuration file: ' . $warn_path . '/includes/configure.php. This is a potential security risk - please set the right user permissions on this file (read-only, CHMOD 644 or 444 are typical). You may need to use your webhost control panel/file-manager to change the permissions effectively. Contact your webhost for assistance.');
-  unset($warn_path);
+  define('WARNING_INSTALL_DIRECTORY_EXISTS', 'Warning: Installation directory exists at: %s. Please remove this directory for security reasons.');
+  define('WARNING_CONFIG_FILE_WRITEABLE', 'Warning: I am able to write to the configuration file: %s. This is a potential security risk - please set the right user permissions on this file (read-only, CHMOD 644 or 444 are typical). You may need to use your webhost control panel/file-manager to change the permissions effectively. Contact your webhost for assistance. <a href="http://tutorials.zen-cart.com/index.php?article=90" target="_blank">See this FAQ</a>');
+  define('ERROR_FILE_NOT_REMOVEABLE', 'Error: Could not remove the file specified. You may have to use FTP to remove the file, due to a server-permissions configuration limitation.');
   define('WARNING_SESSION_DIRECTORY_NON_EXISTENT', 'Warning: The sessions directory does not exist: ' . zen_session_save_path() . '. Sessions will not work until this directory is created.');
   define('WARNING_SESSION_DIRECTORY_NOT_WRITEABLE', 'Warning: I am not able to write to the sessions directory: ' . zen_session_save_path() . '. Sessions will not work until the right user permissions are set.');
   define('WARNING_SESSION_AUTO_START', 'Warning: session.auto_start is enabled - please disable this PHP feature in php.ini and restart the web server.');
@@ -319,7 +318,7 @@
   define('WARNING_SQL_CACHE_DIRECTORY_NON_EXISTENT', 'Warning: The SQL cache directory does not exist: ' . DIR_FS_SQL_CACHE . '. SQL caching will not work until this directory is created.');
   define('WARNING_SQL_CACHE_DIRECTORY_NOT_WRITEABLE', 'Warning: I am not able to write to the SQL cache directory: ' . DIR_FS_SQL_CACHE . '. SQL caching will not work until the right user permissions are set.');
   define('WARNING_DATABASE_VERSION_OUT_OF_DATE', 'Your database appears to need patching to a higher level. See Admin->Tools->Server Information to review patch levels.');
-
+  define('WARNING_COULD_NOT_LOCATE_LANG_FILE', 'WARNING: Could not locate language file: ');
 
   define('TEXT_CCVAL_ERROR_INVALID_DATE', 'The expiration date entered for the credit card is invalid. Please check the date and try again.');
   define('TEXT_CCVAL_ERROR_INVALID_NUMBER', 'The credit card number entered is invalid. Please check the number and try again.');
@@ -357,7 +356,7 @@
   define('TEXT_INVALID_REDEEM_COUPON', 'Invalid Coupon Code');
   define('TEXT_INVALID_REDEEM_COUPON_MINIMUM', 'You must spend at least %s to redeem this coupon');
   define('TEXT_INVALID_STARTDATE_COUPON', 'This coupon is not available yet');
-  define('TEXT_INVALID_FINISDATE_COUPON', 'This coupon has expired');
+  define('TEXT_INVALID_FINISHDATE_COUPON', 'This coupon has expired');
   define('TEXT_INVALID_USES_COUPON', 'This coupon could only be used ');
   define('TIMES', ' times.');
   define('TIME', ' time.');
@@ -455,8 +454,8 @@
   define('TEXT_INVALID_USER_INPUT', 'User Input Required<br />');
 
 // product_listing
-  define('PRODUCTS_QUANTITY_MIN_TEXT_LISTING','Min:');
-  define('PRODUCTS_QUANTITY_UNIT_TEXT_LISTING','Units:');
+  define('PRODUCTS_QUANTITY_MIN_TEXT_LISTING','Min: ');
+  define('PRODUCTS_QUANTITY_UNIT_TEXT_LISTING','Units: ');
   define('PRODUCTS_QUANTITY_IN_CART_LISTING','In cart:');
   define('PRODUCTS_QUANTITY_ADD_ADDITIONAL_LISTING','Add Additional:');
 
@@ -465,12 +464,14 @@
   define('TEXT_PRODUCTS_MIX_OFF','*Mixed OFF');
   define('TEXT_PRODUCTS_MIX_ON','*Mixed ON');
 
-  define('TEXT_PRODUCTS_MIX_OFF_SHOPPING_CART','*Mixed Options Values is OFF<br />');
+  define('TEXT_PRODUCTS_MIX_OFF_SHOPPING_CART','<br />*You can not mix the options on this item to meet the minimum quantity requirement.*<br />');
   define('TEXT_PRODUCTS_MIX_ON_SHOPPING_CART','*Mixed Option Values is ON<br />');
 
-  define('ERROR_MAXIMUM_QTY','Qty Adjusted - Maximum Qty Added to Cart ');
+  define('ERROR_MAXIMUM_QTY','The quantity added to your cart has been adjusted because of a restriction on maximum you are allowed. See this item: ');
   define('ERROR_CORRECTIONS_HEADING','Please correct the following: <br />');
-  define('ERROR_QUANTITY_ADJUSTED', 'Quantity Error Adjustment<br />');
+  define('ERROR_QUANTITY_ADJUSTED', 'The quantity added to your cart has been adjusted. The item you wanted is not available in fractional quantities. The quantity of item: ');
+  define('ERROR_QUANTITY_CHANGED_FROM', ', has been changed from: ');
+  define('ERROR_QUANTITY_CHANGED_TO', ' to ');
 
 // Downloads Controller
   define('DOWNLOADS_CONTROLLER_ON_HOLD_MSG','NOTE: Downloads are not available until payment has been confirmed');
@@ -478,16 +479,18 @@
   define('TEXT_FILESIZE_MEGS', ' MB');
 
 // shopping cart errors
-  define('ERROR_PRODUCT','Product Name: ');
+  define('ERROR_PRODUCT','The item: ');
   define('ERROR_PRODUCT_STATUS_SHOPPING_CART','<br />We are sorry but this product has been removed from our inventory at this time.<br />This item has been removed from your shopping cart.');
-  define('ERROR_PRODUCT_QUANTITY_MIN',' ... Minimum Quantity errors - ');
+  define('ERROR_PRODUCT_QUANTITY_MIN',',  ... Minimum Quantity errors - ');
   define('ERROR_PRODUCT_QUANTITY_UNITS',' ... Quantity Units errors - ');
   define('ERROR_PRODUCT_OPTION_SELECTION','<br /> ... Invalid Option Values Selected ');
   define('ERROR_PRODUCT_QUANTITY_ORDERED','<br /> You ordered a total of: ');
   define('ERROR_PRODUCT_QUANTITY_MAX',' ... Maximum Quantity errors - ');
-  define('ERROR_PRODUCT_QUANTITY_MIN_SHOPPING_CART',' ... Minimum Quantity errors - ');
+  define('ERROR_PRODUCT_QUANTITY_MIN_SHOPPING_CART',', has a minimum quantity restriction. ');
   define('ERROR_PRODUCT_QUANTITY_UNITS_SHOPPING_CART',' ... Quantity Units errors - ');
   define('ERROR_PRODUCT_QUANTITY_MAX_SHOPPING_CART',' ... Maximum Quantity errors - ');
+
+  define('WARNING_SHOPPING_CART_COMBINED', 'NOTICE: For your convenience, your current shopping cart has been combined with your shopping cart from your last visit. Please review your shopping cart before checking out.');
 
 // error on checkout when $_SESSION['customers_id' does not exist in customers table
   define('ERROR_CUSTOMERS_ID_INVALID', 'Customer information cannot be validated!<br />Please login or recreate your account ...');
@@ -498,6 +501,9 @@
   define('TABLE_HEADING_UPCOMING_PRODUCTS', 'Upcoming Products');
   define('TABLE_HEADING_DATE_EXPECTED', 'Date Expected');
   define('TABLE_HEADING_SPECIALS_INDEX', 'Monthly Specials For %s');
+
+  define('CAPTION_UPCOMING_PRODUCTS','These items will be in stock soon');
+  define('SUMMARY_TABLE_UPCOMING_PRODUCTS','table contains a list of products that are due to be in stock soon and the dates the items are expected');
 
 // meta tags special defines
   define('META_TAG_PRODUCTS_PRICE_IS_FREE_TEXT','It\'s Free!');
@@ -550,9 +556,10 @@
   define('CART_OT_SHOW','true'); // set to false if you don't want order totals
   define('CART_ITEMS','Items in Cart: ');
   define('CART_SELECT','Select');
-  define('ERROR_CART_UPDATE', 'Please update your order ...<br />');
+  define('ERROR_CART_UPDATE', '<strong>Please update your order.</strong> ');
   define('IMAGE_BUTTON_UPDATE_CART', 'Update');
   define('EMPTY_CART_TEXT_NO_QUOTE', 'Whoops! Your session has expired ... Please update your shopping cart for Shipping Quote ...');
+  define('CART_SHIPPING_QUOTE_CRITERIA', 'Shipping quotes are based on the address information you selected:');
 
 // multiple product add to cart
   define('TEXT_PRODUCT_LISTING_MULTIPLE_ADD_TO_CART', 'Add: ');
@@ -631,7 +638,7 @@
   } else {
     $template_dir_select = '';
   }
-  require(DIR_WS_LANGUAGES . $_SESSION['language'] . '/' . $template_dir_select . FILENAME_EMAIL_EXTRAS);
+  require_once(DIR_WS_LANGUAGES . $_SESSION['language'] . '/' . $template_dir_select . FILENAME_EMAIL_EXTRAS);
 
 // include template specific header defines
   if (file_exists(DIR_WS_LANGUAGES . $_SESSION['language'] . '/' . $template_dir . '/' . FILENAME_HEADER)) {
@@ -639,7 +646,7 @@
   } else {
     $template_dir_select = '';
   }
-  require(DIR_WS_LANGUAGES . $_SESSION['language'] . '/' . $template_dir_select . FILENAME_HEADER);
+  require_once(DIR_WS_LANGUAGES . $_SESSION['language'] . '/' . $template_dir_select . FILENAME_HEADER);
 
 // include template specific button name defines
   if (file_exists(DIR_WS_LANGUAGES . $_SESSION['language'] . '/' . $template_dir . '/' . FILENAME_BUTTON_NAMES)) {
@@ -647,7 +654,7 @@
   } else {
     $template_dir_select = '';
   }
-  require(DIR_WS_LANGUAGES . $_SESSION['language'] . '/' . $template_dir_select . FILENAME_BUTTON_NAMES);
+  require_once(DIR_WS_LANGUAGES . $_SESSION['language'] . '/' . $template_dir_select . FILENAME_BUTTON_NAMES);
 
 // include template specific icon name defines
   if (file_exists(DIR_WS_LANGUAGES . $_SESSION['language'] . '/' . $template_dir . '/' . FILENAME_ICON_NAMES)) {
@@ -655,7 +662,7 @@
   } else {
     $template_dir_select = '';
   }
-  require(DIR_WS_LANGUAGES . $_SESSION['language'] . '/' . $template_dir_select . FILENAME_ICON_NAMES);
+  require_once(DIR_WS_LANGUAGES . $_SESSION['language'] . '/' . $template_dir_select . FILENAME_ICON_NAMES);
 
 // include template specific other image name defines
   if (file_exists(DIR_WS_LANGUAGES . $_SESSION['language'] . '/' . $template_dir . '/' . FILENAME_OTHER_IMAGES_NAMES)) {
@@ -663,7 +670,7 @@
   } else {
     $template_dir_select = '';
   }
-  require(DIR_WS_LANGUAGES . $_SESSION['language'] . '/' . $template_dir_select . FILENAME_OTHER_IMAGES_NAMES);
+  require_once(DIR_WS_LANGUAGES . $_SESSION['language'] . '/' . $template_dir_select . FILENAME_OTHER_IMAGES_NAMES);
 
 // credit cards
   if (file_exists(DIR_WS_LANGUAGES . $_SESSION['language'] . '/' . $template_dir . '/' . FILENAME_CREDIT_CARDS)) {
@@ -671,7 +678,7 @@
   } else {
     $template_dir_select = '';
   }
-  require(DIR_WS_LANGUAGES . $_SESSION['language'] . '/' . $template_dir_select. FILENAME_CREDIT_CARDS);
+  require_once(DIR_WS_LANGUAGES . $_SESSION['language'] . '/' . $template_dir_select. FILENAME_CREDIT_CARDS);
 
 // include template specific whos_online sidebox defines
   if (file_exists(DIR_WS_LANGUAGES . $_SESSION['language'] . '/' . $template_dir . '/' . FILENAME_WHOS_ONLINE . '.php')) {
@@ -679,7 +686,7 @@
   } else {
     $template_dir_select = '';
   }
-  require(DIR_WS_LANGUAGES . $_SESSION['language'] . '/' . $template_dir_select . FILENAME_WHOS_ONLINE . '.php');
+  require_once(DIR_WS_LANGUAGES . $_SESSION['language'] . '/' . $template_dir_select . FILENAME_WHOS_ONLINE . '.php');
 
 // include template specific meta tags defines
   if (file_exists(DIR_WS_LANGUAGES . $_SESSION['language'] . '/' . $template_dir . '/meta_tags.php')) {
@@ -687,7 +694,7 @@
   } else {
     $template_dir_select = '';
   }
-  require(DIR_WS_LANGUAGES . $_SESSION['language'] . '/' . $template_dir_select . 'meta_tags.php');
+  require_once(DIR_WS_LANGUAGES . $_SESSION['language'] . '/' . $template_dir_select . 'meta_tags.php');
 
 // END OF EXTERNAL LANGUAGE LINKS
 ?>

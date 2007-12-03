@@ -1,10 +1,10 @@
 <?php
 /**
  * @package admin
- * @copyright Copyright 2003-2006 Zen Cart Development Team
+ * @copyright Copyright 2003-2007 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: gv_admin_dhtml.php 3001 2006-02-09 21:45:06Z wilt $
+ * @version $Id: gv_admin_dhtml.php 6209 2007-04-16 06:38:38Z drbyte $
  */
 if (!defined('IS_ADMIN_FLAG')) {
   die('Illegal Access');
@@ -29,12 +29,13 @@ if (MODULE_ORDER_TOTAL_GV_STATUS=='true') {
 if (!defined('MODULE_ORDER_TOTAL_COUPON_STATUS') and !defined('MODULE_ORDER_TOTAL_GV_STATUS')) {
   $za_contents[] = array('text' => NOT_INSTALLED_TEXT, 'link' => '');
 } // coupons and gift vouchers not installed
-if ($za_dir = @dir(DIR_WS_BOXES . 'gv_admin_boxes')) {
+if ($za_dir = @dir(DIR_WS_BOXES . 'extra_boxes')) {
   while ($zv_file = $za_dir->read()) {
     if (preg_match('/gv_admin_dhtml.php$/', $zv_file)) {
       require(DIR_WS_BOXES . 'extra_boxes/' . $zv_file);
     }
   }
+  $za_dir->close();
 }
 ?>
 <!-- gv_admin //-->

@@ -1,10 +1,10 @@
 <?php
 /**
  * @package admin
- * @copyright Copyright 2003-2006 Zen Cart Development Team
+ * @copyright Copyright 2003-2007 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: categories.php 4809 2006-10-22 18:53:22Z ajeh $
+ * @version $Id: categories.php 182 2007-12-02 10:04:59Z hugo13 $
  */
 
   require('includes/application_top.php');
@@ -164,22 +164,15 @@
 
         $parent_cat = $db->Execute($sql);
         if ($parent_cat->fields['parent_id'] != '0') {
-          $sql = "select product_type_id from " . TABLE_PRODUCT_TYPES_TO_CATEGORY . "
+          $sql = "select * from " . TABLE_PRODUCT_TYPES_TO_CATEGORY . "
                   where category_id = '" . $parent_cat->fields['parent_id'] . "'";
-          $parent_product_type = $db->Execute($sql);
-
-          if ($parent_product_type->RecordCount() > 0) {
-            $sql = "select * from " . TABLE_PRODUCT_TYPES_TO_CATEGORY . "
-                    where category_id = '" . $parent_cat->fields['parent_id'] . "'
-                    and product_type_id = '" . $parent_product_type->fields['product_type_id'] . "'";
-            $has_type = $db->Execute($sql);
-
-            if ($has_type->RecordCount() < 1) {
+          $has_type = $db->Execute($sql);
+          if ($has_type->RecordCount() > 0 ) {
+            while (!$has_type->EOF) {
               $insert_sql_data = array('category_id' => $categories_id,
-                                       'product_type_id' => $parent_product_type->fields['product_type_id']);
-
+                                       'product_type_id' => $has_type->fields['product_type_id']);
               zen_db_perform(TABLE_PRODUCT_TYPES_TO_CATEGORY, $insert_sql_data);
-
+              $has_type->moveNext();
             }
           }
         }
@@ -651,7 +644,7 @@ function init()
   $sql = "select type_id, type_name from " . TABLE_PRODUCT_TYPES;
   $product_types = $db->Execute($sql);
   while (!$product_types->EOF) {
-    $type_array[] = array('id' => $product_types->fields['type_id'], text => $product_types->fields['type_name']);
+    $type_array[] = array('id' => $product_types->fields['type_id'], 'text' => $product_types->fields['type_name']);
     $product_types->MoveNext();
   }
   switch ($action) {
@@ -718,6 +711,7 @@ function init()
         $dir_info[] = array('id' => $file . '/', 'text' => $file);
       }
     }
+    $dir->close();
     sort($dir_info);
     $default_directory = 'categories/';
 
@@ -772,6 +766,7 @@ function init()
         $dir_info[] = array('id' => $file . '/', 'text' => $file);
       }
     }
+    $dir->close();
     sort($dir_info);
     $default_directory = substr( $cInfo->categories_image, 0,strpos( $cInfo->categories_image, '/')+1);
 
@@ -845,20 +840,7 @@ function init()
     $category_inputs_string_metatags_description = '';
     for ($i = 0, $n = sizeof($languages); $i < $n; $i++) {
       $category_inputs_string_metatags_description .= '<br />' . zen_image(DIR_WS_CATALOG_LANGUAGES . $languages[$i]['directory'] . '/images/' . $languages[$i]['image'], $languages[$i]['name']) . '&nbsp;' ;
-      if ($_SESSION['html_editor_preference_status']=='FCKEDITOR') {
-                $oFCKeditor = new FCKeditor('metatags_description[' . $languages[$i]['id']  . ']') ;
-                $oFCKeditor->Value = zen_get_category_metatags_description($cInfo->categories_id, $languages[$i]['id']);
-                $oFCKeditor->Width  = '97%' ;
-                $oFCKeditor->Height = '200' ;
-//                $oFCKeditor->Config['ToolbarLocation'] = 'Out:xToolbar' ;
-//                $oFCKeditor->Create() ;
-                $output = $oFCKeditor->CreateHtml() ;
-        $category_inputs_string_metatags_description .= '<br />' . $output;
-//        $category_inputs_string_metatags_description .= '<IFRAME src= "' . DIR_WS_CATALOG . 'FCKeditor/fckeditor.html?FieldName=metatags_description[' . $languages[$i]['id']  . ']&Upload=false&Browse=false&Toolbar=Short" width="97%" height="200" frameborder="no" scrolling="yes"></IFRAME>';
-//        $category_inputs_string_metatags_description .= '<INPUT type="hidden" name="metatags_description[' . $languages[$i]['id']  . ']" ' . 'value=' . "'" . zen_get_category_metatags_description($cInfo->categories_id, $languages[$i]['id']) . "'>";
-      } else {
-        $category_inputs_string_metatags_description .= zen_draw_textarea_field('metatags_description[' . $languages[$i]['id'] . ']', 'soft', '100%', '20', zen_get_category_metatags_description($cInfo->categories_id, $languages[$i]['id']));
-      }
+      $category_inputs_string_metatags_description .= zen_draw_textarea_field('metatags_description[' . $languages[$i]['id'] . ']', 'soft', '100%', '20', zen_get_category_metatags_description($cInfo->categories_id, $languages[$i]['id']));
     }
     $contents[] = array('text' => '<br />' . TEXT_EDIT_CATEGORIES_META_TAGS_DESCRIPTION . $category_inputs_string_metatags_description);
 

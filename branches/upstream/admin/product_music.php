@@ -1,10 +1,10 @@
 <?php
 /**
  * @package admin
- * @copyright Copyright 2003-2006 Zen Cart Development Team
+ * @copyright Copyright 2003-2007 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: product_music.php 4279 2006-08-26 03:31:29Z drbyte $
+ * @version $Id: product_music.php 6131 2007-04-08 06:56:51Z drbyte $
  */
 
   require('includes/application_top.php');
@@ -169,6 +169,7 @@ if (typeof _editor_url == "string") HTMLArea.replaceAll();
             $dir_info[] = array('id' => $file . '/', 'text' => $file);
           }
         }
+        $dir->close();
 
         $default_directory = substr( $cInfo->categories_image, 0,strpos( $cInfo->categories_image, '/')+1);
         $contents[] = array('text' => TEXT_CATEGORIES_IMAGE_DIR . ' ' . zen_draw_pull_down_menu('img_dir', $dir_info, $default_directory));
@@ -197,6 +198,7 @@ if (typeof _editor_url == "string") HTMLArea.replaceAll();
             $dir_info[] = array('id' => $file . '/', 'text' => $file);
           }
         }
+        $dir->close();
 
         $default_directory = substr( $cInfo->categories_image, 0,strpos( $cInfo->categories_image, '/')+1);
         $contents[] = array('text' => TEXT_CATEGORIES_IMAGE_DIR . ' ' . zen_draw_pull_down_menu('img_dir', $dir_info, $default_directory));
