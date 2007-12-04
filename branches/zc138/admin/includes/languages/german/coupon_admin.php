@@ -46,6 +46,8 @@ define('TEXT_VOUCHER_IS','Die Nummer des Aktionskupons lautet');
 define('TEXT_REMEMBER','Bewahren Sie die Nummer des Aktionskupons sicher auf, damit Sie von diesem Sonderangebot profitieren k&ouml;nnen.');
 define('TEXT_VISIT','Besuchen Sie uns auf ' . HTTP_SERVER . DIR_WS_CATALOG);
 define('TEXT_ENTER_CODE', ' und geben Sie die Nummer Ihres Aktionskupons ein');
+define('TEXT_COUPON_HELP_DATE', '<p><p>The coupon is valid between %s and %s</p></p>' . ' !!!TRANSLATE!!! file: admin/includes/languages/LANGUAGE/coupon_admin.php at line 357');
+define('HTML_COUPON_HELP_DATE', '<p><p>The coupon is valid between %s and %s</p></p>' . ' !!!TRANSLATE!!! file: admin/includes/languages/LANGUAGE/coupon_admin.php at line 357');
 define('TABLE_HEADING_ACTION','Aktion');
 define('CUSTOMER_ID','Kundennummer');
 define('CUSTOMER_NAME','Kundenname');

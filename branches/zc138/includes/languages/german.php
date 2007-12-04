@@ -321,7 +321,7 @@ define('WARNING_DOWNLOAD_DIRECTORY_NON_EXISTENT', 'Warnung: Das Verzeichnis f&uu
 define('WARNING_SQL_CACHE_DIRECTORY_NON_EXISTENT', 'Warnung: Das SQL-Cache Verzeichnis existiert nicht: ' . DIR_FS_SQL_CACHE . '. SQL Abfragen k&ouml;nnen nicht zwischengespeichert werden, solange dieses Verzeichnis nicht erstellt wurde.');
 define('WARNING_SQL_CACHE_DIRECTORY_NOT_WRITEABLE', 'Warnung: In das Verzeichnis zum Zwischenspeichern von SQL Abfragen kann nicht geschrieben werden: ' . DIR_FS_SQL_CACHE . '. Bitte &auml;ndern Sie die Schreibrechte dieses Verzeichnisses, damit SQL Abfragen zwischengespeichert werden k&ouml;nnen.');
 define('WARNING_DATABASE_VERSION_OUT_OF_DATE', 'Ihre Datenbank braucht ein Update. Siehe Admin->Tools->Server Information (Patch-Level).');
-
+define('WARNING_COULD_NOT_LOCATE_LANG_FILE', 'WARNING: Could not locate language file: ' . ' !!!TRANSLATE!!! file: includes/languages/LANGUAGE.php at line 357');
 
 define('TEXT_CCVAL_ERROR_INVALID_DATE', 'Das Ablaufdatum der Kreditkarte, das Sie angegeben haben, ist nicht g&uuml;ltig. Bitte &uuml;berpr&uuml;fen Sie Ihre Angaben noch einmal und wiederholen Sie den Vorgang.');
 define('TEXT_CCVAL_ERROR_INVALID_NUMBER', 'Die Kreditkartennummer, die Sie angegeben haben, ist nicht g&uuml;ltig. Bitte &uuml;berpr&uuml;fen Sie Ihre Angaben noch einmal und wiederholen Sie den Vorgang.');
@@ -469,6 +469,8 @@ define('ERROR_MAXIMUM_QTY', 'St&uuml;ckzahl angepasst - maximale St&uuml;ckzahl 
 
 define('ERROR_CORRECTIONS_HEADING', 'Bitte korrigieren Sie folgendes: <br />');
 define('ERROR_QUANTITY_ADJUSTED', 'Fehler in der gew&auml;hlten Menge<br />');
+define('ERROR_QUANTITY_CHANGED_FROM', ', has been changed from: ' . ' !!!TRANSLATE!!! file: includes/languages/LANGUAGE.php at line 357');
+define('ERROR_QUANTITY_CHANGED_TO', ' zu ');
 
 // Downloads Controller
 define('DOWNLOADS_CONTROLLER_ON_HOLD_MSG', 'Bemerkung: Downloads werden erst nach Best&auml;tigung des Zahlungseingangs freigeschaltet.');
@@ -486,6 +488,7 @@ define('ERROR_PRODUCT_QUANTITY_MAX', '...maximale St&uuml;ckzahl &uuml;berschrit
 define('ERROR_PRODUCT_QUANTITY_MIN_SHOPPING_CART', '...minimale St&uuml;ckzahl unterschritten -');
 define('ERROR_PRODUCT_QUANTITY_UNITS_SHOPPING_CART', '...ung&uuml;ltige St&uuml;ckzahl -');
 define('ERROR_PRODUCT_QUANTITY_MAX_SHOPPING_CART', '...maximale St&uuml;ckzahl &uuml;berschritten -');
+define('WARNING_SHOPPING_CART_COMBINED', 'NOTICE: For your convenience, your current shopping cart has been combined with your shopping cart from your last visit. Please review your shopping cart before checking out.' . ' !!!TRANSLATE!!! file: includes/languages/LANGUAGE.php at line 357');
 
 // error on checkout when $_SESSION['customers_id' does not exist in customers table
 define('ERROR_CUSTOMERS_ID_INVALID', 'Die Kundeninformation konnte nicht verifiziert werden!<br />Bitte melden Sie sich an oder erstellen Sie Ihr Kundenkonto erneut ...');
@@ -496,6 +499,8 @@ define('TABLE_HEADING_NEW_PRODUCTS', 'Neue Artikel im %s');
 define('TABLE_HEADING_UPCOMING_PRODUCTS', 'Artikelank&uuml;ndigungen');
 define('TABLE_HEADING_DATE_EXPECTED', 'Eingangsdatum');
 define('TABLE_HEADING_SPECIALS_INDEX', 'Monatliche Sonderangebote im %s');
+define('CAPTION_UPCOMING_PRODUCTS','These items will be in stock soon' . ' !!!TRANSLATE!!! file: includes/languages/LANGUAGE.php at line 357');
+define('SUMMARY_TABLE_UPCOMING_PRODUCTS','table contains a list of products that are due to be in stock soon and the dates the items are expected' . ' !!!TRANSLATE!!! file: includes/languages/LANGUAGE.php at line 357');
 
 // meta tags special defines
 define('META_TAG_PRODUCTS_PRICE_IS_FREE_TEXT','Kostenlos!');
@@ -552,6 +557,7 @@ define('CART_SELECT', 'w&auml;hlen Sie');
 define('ERROR_CART_UPDATE', 'Bitte aktualisieren Sie Ihre Bestellung ...<br />');
 define('IMAGE_BUTTON_UPDATE_CART', 'aktualisieren');
 define('EMPTY_CART_TEXT_NO_QUOTE', 'Uups! Ihre Sitzung wurde unterbrochen… Aktualisieren Sie bitte Ihren Warenkorb f&uuml;r die Versandart');
+define('CART_SHIPPING_QUOTE_CRITERIA', 'Shipping quotes are based on the address information you selected:' . ' !!!TRANSLATE!!! file: includes/languages/LANGUAGE.php at line 357');
 
 // multiple product add to cart
 define('TEXT_PRODUCT_LISTING_MULTIPLE_ADD_TO_CART', 'Anzahl: ');
@@ -629,7 +635,7 @@ define('TEXT_PRODUCTS_LISTING_ALPHA_SORTER_NAMES_RESET', '-- Zur&uuml;ckstellen 
   } else {
     $template_dir_select = '';
   }
-  require(DIR_WS_LANGUAGES . $_SESSION['language'] . '/' . $template_dir_select . FILENAME_EMAIL_EXTRAS);
+  require_once(DIR_WS_LANGUAGES . $_SESSION['language'] . '/' . $template_dir_select . FILENAME_EMAIL_EXTRAS);
 
 // include template specific header defines
   if (file_exists(DIR_WS_LANGUAGES . $_SESSION['language'] . '/' . $template_dir . '/' . FILENAME_HEADER)) {
@@ -637,7 +643,7 @@ define('TEXT_PRODUCTS_LISTING_ALPHA_SORTER_NAMES_RESET', '-- Zur&uuml;ckstellen 
   } else {
     $template_dir_select = '';
   }
-  require(DIR_WS_LANGUAGES . $_SESSION['language'] . '/' . $template_dir_select . FILENAME_HEADER);
+  require_once(DIR_WS_LANGUAGES . $_SESSION['language'] . '/' . $template_dir_select . FILENAME_HEADER);
 
 // include template specific button name defines
   if (file_exists(DIR_WS_LANGUAGES . $_SESSION['language'] . '/' . $template_dir . '/' . FILENAME_BUTTON_NAMES)) {
@@ -645,7 +651,7 @@ define('TEXT_PRODUCTS_LISTING_ALPHA_SORTER_NAMES_RESET', '-- Zur&uuml;ckstellen 
   } else {
     $template_dir_select = '';
   }
-  require(DIR_WS_LANGUAGES . $_SESSION['language'] . '/' . $template_dir_select . FILENAME_BUTTON_NAMES);
+  require_once(DIR_WS_LANGUAGES . $_SESSION['language'] . '/' . $template_dir_select . FILENAME_BUTTON_NAMES);
 
 // include template specific icon name defines
   if (file_exists(DIR_WS_LANGUAGES . $_SESSION['language'] . '/' . $template_dir . '/' . FILENAME_ICON_NAMES)) {
@@ -653,7 +659,7 @@ define('TEXT_PRODUCTS_LISTING_ALPHA_SORTER_NAMES_RESET', '-- Zur&uuml;ckstellen 
   } else {
     $template_dir_select = '';
   }
-  require(DIR_WS_LANGUAGES . $_SESSION['language'] . '/' . $template_dir_select . FILENAME_ICON_NAMES);
+  require_once(DIR_WS_LANGUAGES . $_SESSION['language'] . '/' . $template_dir_select . FILENAME_ICON_NAMES);
 
 // include template specific other image name defines
   if (file_exists(DIR_WS_LANGUAGES . $_SESSION['language'] . '/' . $template_dir . '/' . FILENAME_OTHER_IMAGES_NAMES)) {
@@ -661,7 +667,7 @@ define('TEXT_PRODUCTS_LISTING_ALPHA_SORTER_NAMES_RESET', '-- Zur&uuml;ckstellen 
   } else {
     $template_dir_select = '';
   }
-  require(DIR_WS_LANGUAGES . $_SESSION['language'] . '/' . $template_dir_select . FILENAME_OTHER_IMAGES_NAMES);
+  require_once(DIR_WS_LANGUAGES . $_SESSION['language'] . '/' . $template_dir_select . FILENAME_OTHER_IMAGES_NAMES);
 
 // credit cards
   if (file_exists(DIR_WS_LANGUAGES . $_SESSION['language'] . '/' . $template_dir . '/' . FILENAME_CREDIT_CARDS)) {
@@ -669,7 +675,7 @@ define('TEXT_PRODUCTS_LISTING_ALPHA_SORTER_NAMES_RESET', '-- Zur&uuml;ckstellen 
   } else {
     $template_dir_select = '';
   }
-  require(DIR_WS_LANGUAGES . $_SESSION['language'] . '/' . $template_dir_select. FILENAME_CREDIT_CARDS);
+  require_once(DIR_WS_LANGUAGES . $_SESSION['language'] . '/' . $template_dir_select. FILENAME_CREDIT_CARDS);
 
 // include template specific whos_online sidebox defines
   if (file_exists(DIR_WS_LANGUAGES . $_SESSION['language'] . '/' . $template_dir . '/' . FILENAME_WHOS_ONLINE . '.php')) {
@@ -677,7 +683,7 @@ define('TEXT_PRODUCTS_LISTING_ALPHA_SORTER_NAMES_RESET', '-- Zur&uuml;ckstellen 
   } else {
     $template_dir_select = '';
   }
-  require(DIR_WS_LANGUAGES . $_SESSION['language'] . '/' . $template_dir_select . FILENAME_WHOS_ONLINE . '.php');
+  require_once(DIR_WS_LANGUAGES . $_SESSION['language'] . '/' . $template_dir_select . FILENAME_WHOS_ONLINE . '.php');
 
 // include template specific meta tags defines
   if (file_exists(DIR_WS_LANGUAGES . $_SESSION['language'] . '/' . $template_dir . '/meta_tags.php')) {
@@ -685,7 +691,7 @@ define('TEXT_PRODUCTS_LISTING_ALPHA_SORTER_NAMES_RESET', '-- Zur&uuml;ckstellen 
   } else {
     $template_dir_select = '';
   }
-  require(DIR_WS_LANGUAGES . $_SESSION['language'] . '/' . $template_dir_select . 'meta_tags.php');
+  require_once(DIR_WS_LANGUAGES . $_SESSION['language'] . '/' . $template_dir_select . 'meta_tags.php');
 
 // END OF EXTERNAL LANGUAGE LINKS
 ?>

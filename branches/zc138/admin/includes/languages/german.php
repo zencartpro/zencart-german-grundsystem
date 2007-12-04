@@ -393,6 +393,8 @@ define('WARNING_ADMIN_DOWN_FOR_MAINTENANCE', '<strong>WARNUNG:</strong> Der Shop
 define('WARNING_BACKUP_CFG_FILES_TO_DELETE', 'WARNUNG: Diese Dateien sollten gel&ouml;scht werden, um fremde Zugriffe zu verhindern: ');
 define('WARNING_INSTALL_DIRECTORY_EXISTS', 'Warnung: Das Installationsverzeichnis besteht noch: ' . DIR_FS_CATALOG . 'zc_install. Dieses Verzeichnis aus Sicherheitsgr&uuml;nden bitte entfernen.');
 define('WARNING_CONFIG_FILE_WRITEABLE', 'Warnung: Ihre Konfigurationsdatei: %sincludes/configure.php. Dies ist ein potenzielles Sicherheitsrisiko - &auml;ndern Sie bitte die Zugriffsrechte (Read-only, CHMOD 644 oder 444l).');
+define('WARNING_COULD_NOT_LOCATE_LANG_FILE', 'WARNING: Could not locate language file: ' . ' !!!TRANSLATE!!! file: admin/includes/languages/LANGUAGE.php at line 357');
+define('ERROR_MODULE_REMOVAL_PROHIBITED', 'ERROR: Module removal prohibited: ' . ' !!!TRANSLATE!!! file: admin/includes/languages/LANGUAGE.php at line 357');
 define('_JANUARY', 'Januar');
 define('_FEBRUARY', 'Februar');
 define('_MARCH', 'M&auml;rz');
@@ -618,6 +620,7 @@ define('WARNING_ADMIN_ACTIVITY_LOG_DATE', 'Achtung: Die Admin Protokolltabelle h
 define('WARNING_ADMIN_ACTIVITY_LOG_RECORDS', 'Achtung: Die Admin Protokolltabelle hat &uuml;ber 50000 Eintr&auml;ge und sollte deshalb geleert werden ... ');
 define('RESET_ADMIN_ACTIVITY_LOG', 'W&auml;hlen Sie Tools -> Shopmanager und leeren die Admin-Protokolltabelle');
 define('CATEGORY_HAS_SUBCATEGORIES', 'Achtung: Kategorie besitzt Unterkategorien<br />Artikel k&ouml;nnen nicht hinzugef&uuml;gt werden');
+define('WARNING_WELCOME_DISCOUNT_COUPON_EXPIRES_IN', 'WARNING! Welcome Email Discount Coupon expires in %s days' . ' !!!TRANSLATE!!! file: admin/includes/languages/LANGUAGE.php at line 357');
 
 ///////////////////////////////////////////////////////////
 // include additional files:

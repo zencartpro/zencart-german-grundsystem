@@ -3008,8 +3008,8 @@ INSERT INTO countries VALUES (237,'Zaire','ZR','ZAR','1');
 INSERT INTO countries VALUES (238,'Zambia','ZM','ZMB','1');
 INSERT INTO countries VALUES (239,'Zimbabwe','ZW','ZWE','1');
 
-INSERT INTO currencies VALUES (1,'US Dollar','USD','$','','.',',','2','1.385', now());
-INSERT INTO currencies VALUES (2,'Euro','EUR','&euro;','','.',',','2','1.000', now());
+INSERT INTO currencies VALUES (1,'Euro','EUR','&euro;','','.',',','2','1.000', now());
+INSERT INTO currencies VALUES (2,'US Dollar','USD','$','','.',',','2','1.385', now());
 INSERT INTO currencies VALUES (3,'GB Pound','GBP','&pound;','','.',',','2','0.707', now());
 INSERT INTO currencies VALUES (4,'Canadian Dollar','CAD','$','','.',',','2','1.1059', now());
 INSERT INTO currencies VALUES (5,'Australian Dollar','AUD','$','','.',',','2','1.2407', now());

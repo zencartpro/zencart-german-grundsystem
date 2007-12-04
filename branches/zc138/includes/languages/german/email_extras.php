@@ -19,15 +19,17 @@ define('OFFICE_USE', 'Nur f&uuml;r den internen Gebrauch:');
 define('OFFICE_LOGIN_NAME', 'Kontoname:');
 define('OFFICE_LOGIN_EMAIL', 'E-Mail Adresse:');
 define('OFFICE_LOGIN_PHONE', '<strong>Telephon:</strong>');
+define('OFFICE_LOGIN_FAX','<strong>Fax:</strong>');
 define('OFFICE_IP_ADDRESS', 'IP Adresse:');
 define('OFFICE_HOST_ADDRESS', 'Hostname:');
 define('OFFICE_DATE_TIME', 'Datum und Uhrzeit:');
-//  define('OFFICE_IP_TO_HOST_ADDRESS', 'OFF');
+  if (!defined('OFFICE_IP_TO_HOST_ADDRESS')) define('OFFICE_IP_TO_HOST_ADDRESS', 'OFF');
 
 // email disclaimer
 define('EMAIL_DISCLAIMER', 'Diese E-Mail Adresse wurde uns von Ihnen oder einem unserer Kunden mitgeteilt.' . "\n" . 'Sollten Sie diese Nachricht versehentlich erhalten haben, wenden Sie sich bitte an <a href="mailto:' . STORE_OWNER_EMAIL_ADDRESS . '">' . STORE_OWNER_EMAIL_ADDRESS . '</a>.<br />');
 define('EMAIL_SPAM_DISCLAIMER', '');
 define('EMAIL_FOOTER_COPYRIGHT','Copyright (c) ' . date('Y') . ' <a href="http://www.zen-cart.at" target="_blank">Zen Cart</a>. Powered by <a href="http://www.zen-cart.at" target="_blank">Zen Cart</a>');
+define('TEXT_UNSUBSCRIBE', "\n\nTo unsubscribe from future newsletter and promotional mailings, simply click on the following link: \n" . ' !!!TRANSLATE!!! file: includes/languages/LANGUAGE/email_extras.php at line 357');
 // email advisory for all emails customer generate - tell-a-friend and GV send
 define('EMAIL_ADVISORY', '-----' . "\n" . '<strong>Achtung:</strong> Aus Sicherheitsgr&uuml;nden werden alle gesendeten E-Mails zwischengespeichert.<br />Sollten Sie diesbez&uuml;glich Fragen haben, wenden Sie sich bitte an <a href="mailto:' . STORE_OWNER_EMAIL_ADDRESS . '">' . STORE_OWNER_EMAIL_ADDRESS . '</a>.<br />');
 

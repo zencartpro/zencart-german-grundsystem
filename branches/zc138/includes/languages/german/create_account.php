@@ -24,6 +24,7 @@ define('EMAIL_SEPARATOR', '--------------------');
 define('EMAIL_COUPON_INCENTIVE_HEADER', 'Herzlichen Gl&uuml;ckwunsch! Um Ihren n&auml;chsten Besuch in unserem Online Shop zu belohnen, haben wir f&uuml;r Sie einen Aktionskupon reserviert!' . "\n\n");
 // your Discount Coupon Description will be inserted before this next define
 define('EMAIL_COUPON_REDEEM', 'Diesen Aktionskupon k&ouml;nnen Sie bei Ihrem n&auml;chsten Einkauf einl&ouml;sen. Geben Sie dazu die ' . TEXT_GV_REDEEM . ':<br /> %s w&auml;hrend des Bestellvorgangs ein' . "\n\n");
+define('TEXT_COUPON_HELP_DATE', '<p>Der Gutschen ist gültig zwischen %s und %s</p>');
 define('EMAIL_GV_INCENTIVE_HEADER', 'Wenn Sie heute bei uns einkaufen, erhalten Sie den ' . TEXT_GV_NAME . ' f&uuml;r %s!' . "\n\n");
 define('EMAIL_GV_REDEEM', 'Ihr ' . TEXT_GV_NAME . ' ' . TEXT_GV_REDEEM . ' im Wert von: %s ' . "\n\n" . 'Geben Sie dazu bitte den ' . TEXT_GV_REDEEM . ' w&auml;hrend des Bestellvorgangs ein, nachdem Sie Ihre Artikel ausgesucht haben.' . "\n\n");
 define('EMAIL_GV_LINK', 'Oder l&ouml;sen Sie den Gutschein mithilfe des folgenden Links ein: ' . "\n\n");

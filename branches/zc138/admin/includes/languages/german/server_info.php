@@ -31,7 +31,15 @@ define('TITLE_ZEND_VERSION','Zend:');
 define('TITLE_DATABASE_HOST','Datenbank Host:');
 define('TITLE_DATABASE','Datenbank:');
 define('TITLE_DATABASE_DATE','Datenbank Datum:');
+define('TITLE_DATABASE_DATA_SIZE', 'Database Data Size:' . ' !!!TRANSLATE!!! file: admin/includes/languages/LANGUAGE/server_info.php at line 357');
+define('TITLE_DATABASE_INDEX_SIZE', 'Database Index Size:' . ' !!!TRANSLATE!!! file: admin/includes/languages/LANGUAGE/server_info.php at line 357');
+define('TITLE_PHP_SAFE_MODE', 'PHP Safe Mode:' . ' !!!TRANSLATE!!! file: admin/includes/languages/LANGUAGE/server_info.php at line 357');
+define('TITLE_PHP_MEMORY_LIMIT', 'PHP Memory Limit:' . ' !!!TRANSLATE!!! file: admin/includes/languages/LANGUAGE/server_info.php at line 357');
+define('TITLE_PHP_FILE_UPLOADS', 'PHP File Uploads:' . ' !!!TRANSLATE!!! file: admin/includes/languages/LANGUAGE/server_info.php at line 357');
+define('TITLE_PHP_UPLOAD_MAX', 'Max Size:' . ' !!!TRANSLATE!!! file: admin/includes/languages/LANGUAGE/server_info.php at line 357');
+define('TITLE_PHP_POST_MAX_SIZE', 'POST Max Size:' . ' !!!TRANSLATE!!! file: admin/includes/languages/LANGUAGE/server_info.php at line 357');
 define('PROJECT_DATABASE_LABEL','Datenbank Patch Level: ');
+define('TITLE_MYSQL_STRICT_MODE', '(in Strict mode)' . ' !!!TRANSLATE!!! file: admin/includes/languages/LANGUAGE/server_info.php at line 357');
 
 
 ?>

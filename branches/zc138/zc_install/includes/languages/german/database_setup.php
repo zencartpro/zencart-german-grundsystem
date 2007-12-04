@@ -28,6 +28,8 @@ define('SAVE_DATABASE_SETTINGS', 'Datenbankeinstellungen speichern');//this come
 define('TEXT_MAIN',' Geben Sie hier bitte die Informationen zu Ihrer Datenbankanbindung ein. Tragen Sie auch hier bitte jede Option sorgf&auml;ltig ein - anschlie&szlig;end klicken Sie auf <em>Datenbankeinstellungen speichern</em> und folgen Sie den Anweisungen im n&auml;chsten Schritt.');
 define('TEXT_PAGE_HEADING', 'Zen Cart Installation - Datenbankanbindung');
 define('DATABASE_INFORMATION', 'Datenbankinformationen');
+define('DATABASE_OPTIONAL_INFORMATION', 'Database - OPTIONAL Settings' . ' !!!TRANSLATE!!! file: zc_install/includes/languages/LANGUAGE/database_setup.php at line 357');
+define('DATABASE_OPTIONAL_INSTRUCTION', 'It is recommended to leave these settings as-is unless you have a specific reason for altering them.' . ' !!!TRANSLATE!!! file: zc_install/includes/languages/LANGUAGE/database_setup.php at line 357');
 define('DATABASE_TYPE', 'Datenbanktyp');
 define('DATABASE_TYPE_INSTRUCTION', 'W&auml;hlen Sie hier den Datenbanktyp aus, den Sie verwenden wollen.');
 define('DATABASE_HOST', 'Datenbank-Host');

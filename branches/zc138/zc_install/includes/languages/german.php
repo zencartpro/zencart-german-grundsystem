@@ -14,6 +14,7 @@
 define('YES', 'JA');
 define('NO', 'NEIN');
 define('REFRESH_BUTTON', 'Nochmal pr&uuml;fen');
+define('OKAY', 'Okay');
 
 // Global entries for the <html> tag
 define('HTML_PARAMS','dir="ltr" lang="de"');

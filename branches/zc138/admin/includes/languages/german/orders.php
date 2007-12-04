@@ -23,6 +23,8 @@
 define('HEADING_TITLE', 'Bestellungen');
 define('HEADING_TITLE_SEARCH', 'Bestell ID:');
 define('HEADING_TITLE_STATUS', 'Status:');
+define('HEADING_TITLE_SEARCH_DETAIL_ORDERS_PRODUCTS', 'Search by Product Name or <strong>ID:XX</strong> or Model ' . ' !!!TRANSLATE!!! file: admin/includes/languages/LANGUAGE/orders.php at line 357');
+define('TEXT_INFO_SEARCH_DETAIL_FILTER_ORDERS_PRODUCTS', 'Search Filter: ' . ' !!!TRANSLATE!!! file: admin/includes/languages/LANGUAGE/orders.php at line 357');
 define('TABLE_HEADING_PAYMENT_METHOD', 'Zahlungsart<br />Versandart');
 define('TABLE_HEADING_ORDERS_ID', 'ID');
 define('TEXT_BILLING_SHIPPING_MISMATCH', 'Rechnungs- und Versandadresse stimmen nicht &uuml;berein ');
@@ -108,6 +110,11 @@ define('TEXT_INFO_IP_ADDRESS', 'IP Adresse: ');
 define('TEXT_DELETE_CVV_FROM_DATABASE', 'L&ouml;sche CVV aus der Datenbank');
 define('TEXT_DELETE_CVV_REPLACEMENT', 'Gel&ouml;scht');
 define('TEXT_MASK_CC_NUMBER','Diese Zahl verdecken');
+define('TEXT_INFO_EXPIRED_DATE', 'Expired Date:<br />' . ' !!!TRANSLATE!!! file: admin/includes/languages/LANGUAGE/orders.php at line 357');
+define('TEXT_INFO_EXPIRED_COUNT', 'Expired Count:<br />' . ' !!!TRANSLATE!!! file: admin/includes/languages/LANGUAGE/orders.php at line 357');
+define('TABLE_HEADING_CUSTOMER_COMMENTS', 'Customer<br />Comments' . ' !!!TRANSLATE!!! file: admin/includes/languages/LANGUAGE/orders.php at line 357');
+define('TEXT_COMMENTS_YES', 'Customer Comments - YES' . ' !!!TRANSLATE!!! file: admin/includes/languages/LANGUAGE/orders.php at line 357');
+define('TEXT_COMMENTS_NO', 'Customer Comments - NO' . ' !!!TRANSLATE!!! file: admin/includes/languages/LANGUAGE/orders.php at line 357');
 
 
 ?>

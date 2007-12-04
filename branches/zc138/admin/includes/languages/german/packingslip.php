@@ -21,6 +21,9 @@
 //
 
 define('TABLE_HEADING_COMMENTS','Kommentare');
+define('TABLE_HEADING_CUSTOMER_NOTIFIED', 'Customer Notified' . ' !!!TRANSLATE!!! file: admin/includes/languages/LANGUAGE/packingslip.php at line 357');
+define('TABLE_HEADING_DATE_ADDED', 'Date Added' . ' !!!TRANSLATE!!! file: admin/includes/languages/LANGUAGE/packingslip.php at line 357');
+define('TABLE_HEADING_STATUS', 'Status' . ' !!!TRANSLATE!!! file: admin/includes/languages/LANGUAGE/packingslip.php at line 357');
 define('TABLE_HEADING_PRODUCTS_MODEL','Artikelnummer');
 define('TABLE_HEADING_PRODUCTS','Artikel');
 define('ENTRY_CUSTOMER', 'KUNDE:');
