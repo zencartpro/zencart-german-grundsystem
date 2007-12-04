@@ -1,0 +1,5 @@
+php_flag session.use_trans_sid off
+php_value register_globals off
+<Files ".ht*">
+    deny from all
+</Files>

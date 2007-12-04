@@ -66,6 +66,8 @@ define('TEXT_INFO_HEADING_COPY_SALE','Kopiere Abverkauf');
 define('TEXT_INFO_COPY_INTRO','Geben Sie bitte einen Namen f&uuml;r die Kopie von <br>  &quot;%s&quot;');
 define('TEXT_INFO_HEADING_DELETE_SALE','Abverkauf l&ouml;schen');
 define('TEXT_INFO_DELETE_INTRO','Wollen Sie diesen Abverkauf wirklich l&ouml;schen?');
+define('TEXT_MORE_INFO', '(More Info)' . ' !!!TRANSLATE!!! file: admin/includes/languages/LANGUAGE/salemaker.php at line 357');
+define('TEXT_WARNING_SALEMAKER_PREVIOUS_CATEGORIES','&nbsp;Warning : %s sales already include this category' . ' !!!TRANSLATE!!! file: admin/includes/languages/LANGUAGE/salemaker.php at line 357');
 
 
 ?>

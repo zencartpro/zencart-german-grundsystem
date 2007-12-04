@@ -40,6 +40,10 @@ define('TEXT_ONETIME_CHARGE_SYMBOL', ' *');
 define('TEXT_ONETIME_CHARGE_DESCRIPTION', ' Einmalige Geb&uuml;hren k&ouml;nnen anfallen');
 define('TEXT_ATTRIBUTES_QTY_PRICE_HELP_LINK','Mengenrabatte erh&auml;ltlich');
 define('ATTRIBUTES_QTY_PRICE_SYMBOL', zen_image(DIR_WS_TEMPLATE_ICONS . 'icon_status_green.gif', TEXT_ATTRIBUTES_QTY_PRICE_HELP_LINK, 10, 10) . '&nbsp;');
+define('ATTRIBUTES_PRICE_DELIMITER_PREFIX', ' ( ' );
+define('ATTRIBUTES_PRICE_DELIMITER_SUFFIX', ' )');
+define('ATTRIBUTES_WEIGHT_DELIMITER_PREFIX', ' (');
+define('ATTRIBUTES_WEIGHT_DELIMITER_SUFFIX', ') ');
 
 
 ?>

@@ -48,6 +48,7 @@ define('UPDATE_DATABASE_WARNING_DO_NOT_INTERRUPT','<span class="emphasis">Bitte 
 
   define('REASON_TABLE_ALREADY_EXISTS','Cannot create table %s because it already exists');
   define('REASON_TABLE_DOESNT_EXIST','Cannot drop table %s because it does not exist.');
+define('REASON_TABLE_NOT_FOUND', 'Cannot ALTER or INSERT/REPLACE into table %s because it does not exist.' . ' !!!TRANSLATE!!! file: zc_install/includes/languages/LANGUAGE/database_upgrade.php at line 357');
   define('REASON_CONFIG_KEY_ALREADY_EXISTS','Cannot insert configuration_key "%s" because it already exists');
   define('REASON_COLUMN_ALREADY_EXISTS','Cannot ADD column %s because it already exists.');
   define('REASON_COLUMN_DOESNT_EXIST_TO_DROP','Cannot DROP column %s because it does not exist.');

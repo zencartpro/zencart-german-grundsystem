@@ -24,6 +24,8 @@ define('DB_UPGRADE_BUTTON', 'Datenbank aktualisieren');
 // "Upgrade" = read old configure.php files, and write new ones using new structure. Upgrade database, instead of wiping and new install
 // "Database Upgrade" = don't write the configure.php files -- simply jump to the database-upgrade page. Only displayed if detected database version is new enough to not require configure.php file updates.
 
+define('TITLE_DOCUMENTATION', 'Documentation' . ' !!!TRANSLATE!!! file: zc_install/includes/languages/LANGUAGE/inspect.php at line 357');
+define('TEXT_DOCUMENTATION', '<h3>Have you read the Installation Instructions yet?</h3>The <a href="%s" target="_blank">Installation Instructions</a> will be a big help if you have not already read them.<br />There you will find information about permissions-levels you will need to set to various folders/files and other details about installation prerequisites, as well as things to do after you are done with installation. There are also links there to the <a href="http://tutorials.zen-cart.com/" target="_blank">online FAQs</a> and other helpful resources.' . ' !!!TRANSLATE!!! file: zc_install/includes/languages/LANGUAGE/inspect.php at line 357');
 define('TEXT_MAIN', 'Bitte nehmen Sie sich einen Augenblick Zeit f&uuml;r die Systempr&uuml;fung - diese stellt sicher, ob alle notwendigen Systemvoraussetzungen f&uuml;r eine erfolgreiche Installation von Zen Cart gegeben sind. &nbsp;Bitte beheben Sie alle Fehler oder Warnungen, bevor Sie mit der Installation fortfahren. &nbsp;Klicken Sie anschlie&szlig;end auf <em>'.INSTALL_BUTTON.'&nbsp;</em>.');
 define('SYSTEM_INSPECTION_RESULTS', 'Systempr&uuml;fung - Ergebnis');
 define('OTHER_INFORMATION', 'Sonstige Systeminformation (Nur zur Refferenz)');
@@ -60,6 +62,7 @@ define('LABEL_CURRENT_CACHE_PATH','Aktueller SQL Cache Ordner');
 define('LABEL_SUGGESTED_CACHE_PATH','Vorgeschlagener SQL Cache Ordner');
 define('LABEL_HTTP_HOST','HTTP Host');
 define('LABEL_PATH_TRANLSATED','Aufgel&ouml;ster Pfad');
+define('LABEL_REALPATH', 'Real Path' . ' !!!TRANSLATE!!! file: zc_install/includes/languages/LANGUAGE/inspect.php at line 357');
 define('LABEL_PHP_API_MODE','PHP API Modus');
 define('LABEL_PHP_MODULES','Aktive PHP Module');
 define('LABEL_PHP_EXT_SESSIONS','PHP Sessions Support');
@@ -67,7 +70,12 @@ define('LABEL_PHP_SESSION_AUTOSTART','PHP Session.AutoStart');
 define('LABEL_PHP_EXT_SAVE_PATH','PHP Sessions.Save_Path');
 define('LABEL_PHP_EXT_FTP','PHP FTP Support');
 define('LABEL_PHP_EXT_CURL','PHP cURL Support');
+define('LABEL_CURL_NONSSL','CURL NON-SSL Capability' . ' !!!TRANSLATE!!! file: zc_install/includes/languages/LANGUAGE/inspect.php at line 357');
+define('LABEL_CURL_SSL','CURL SSL Capability' . ' !!!TRANSLATE!!! file: zc_install/includes/languages/LANGUAGE/inspect.php at line 357');
+define('LABEL_CURL_NONSSL_PROXY','CURL NON-SSL Capability via Proxy' . ' !!!TRANSLATE!!! file: zc_install/includes/languages/LANGUAGE/inspect.php at line 357');
+define('LABEL_CURL_SSL_PROXY','CURL SSL Capability via Proxy' . ' !!!TRANSLATE!!! file: zc_install/includes/languages/LANGUAGE/inspect.php at line 357');
 define('LABEL_PHP_MAG_QT_RUN','PHP magic_quotes_runtime Einstellung');
+define('LABEL_PHP_MAG_QT_SYBASE','PHP magic_quotes_sybase setting' . ' !!!TRANSLATE!!! file: zc_install/includes/languages/LANGUAGE/inspect.php at line 357');
 define('LABEL_PHP_EXT_GD','PHP GD Support');
 define('LABEL_GD_VER','GD Version');
 define('LABEL_PHP_EXT_OPENSSL','PHP OpenSSL Support');
@@ -89,6 +97,7 @@ define('LABEL_RECOMMENDED','&Auml;hnliche Punkte');
 define('LABEL_OPTIONAL','Optionale Punkte');
 define('LABEL_EXPLAIN','&nbsp;F&uuml;r weitere Infos bitte hier klicken');
 define('LABEL_FOLDER_PERMISSIONS','Datei- und Ordnerberechtigungen');
+define('LABEL_WRITABLE_FILE_INFO', 'In order for the installer to store the setup information you provide in the following pages, the configure.php files shown below need to be "writable".' . ' !!!TRANSLATE!!! file: zc_install/includes/languages/LANGUAGE/inspect.php at line 357');
 define('LABEL_WRITABLE_FOLDER_INFO','Damit alle administrative und alle t&auml;glichen Aufgaben von Zen Cart korrekt funktionieren,
 ben&ouml;tigen einige Dateien/Ordner "Schreibrechte".  Im Folgendem erhalten Sie eine Liste der Dateien/Ordner, die gesonderte "Lese-/Schreibrechte" ben&ouml;tigen.
 Bitte korrigieren Sie ggf. die empfohlenen Schreibrechte f&uuml;r diese Dateien/Ordner.

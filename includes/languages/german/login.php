@@ -32,5 +32,7 @@ define('TEXT_VISITORS_CART','<strong class="note">Hinweis:</strong> Der Inhalt I
 define('TABLE_HEADING_PRIVACY_CONDITIONS','Datenschutz');
 define('TEXT_PRIVACY_CONDITIONS_DESCRIPTION','Bitte best&auml;tigen Sie unsere Datenschutzbestimmungen. Sie k&ouml;nnen diese <a href="' . zen_href_link(FILENAME_PRIVACY, '', 'SSL') . '"><u>hier</u></a> nachlesen.');
 define('TEXT_PRIVACY_CONDITIONS_CONFIRM','Ich habe die Datenschutzbestimmungen gelesen und akzeptiert.');
+define('ERROR_SECURITY_ERROR', 'There was a security error when trying to login.' . ' !!!TRANSLATE!!! file: includes/languages/LANGUAGE/login.php at line 357');
+define('TEXT_LOGIN_BANNED', 'Error: Access denied.' . ' !!!TRANSLATE!!! file: includes/languages/LANGUAGE/login.php at line 357');
 
 ?>

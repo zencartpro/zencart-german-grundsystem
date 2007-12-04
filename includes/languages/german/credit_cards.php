@@ -47,6 +47,9 @@ define('TEXT_CC_ENABLED_DINERS_CLUB','Diners Club');
 define('TEXT_CC_ENABLED_DISCOVER','Discover');
 define('TEXT_CC_ENABLED_JCB','JCB');
 define('TEXT_CC_ENABLED_AUSTRALIAN_BANKCARD','Australian Bankcard');
+define('TEXT_CC_ENABLED_SOLO','Solo');
+define('TEXT_CC_ENABLED_SWITCH','Switch');
+define('TEXT_CC_ENABLED_MAESTRO','Maestro');
 
 // for images define these as:
 // define('IMAGE_CC_ENABLED_VISA',zen_image(DIR_WS_IMAGES . 'filename.jpg');
@@ -61,6 +64,9 @@ define('IMAGE_CC_ENABLED_DINERS_CLUB', zen_image($template->get_template_dir('cc
 define('IMAGE_CC_ENABLED_DISCOVER', zen_image($template->get_template_dir('cc5.gif', DIR_WS_TEMPLATE, $current_page_base,'images/icons'). '/' . 'cc5.gif'));
 define('IMAGE_CC_ENABLED_JCB', zen_image($template->get_template_dir('cc6.gif', DIR_WS_TEMPLATE, $current_page_base,'images/icons'). '/' . 'cc6.gif'));
 define('IMAGE_CC_ENABLED_AUSTRALIAN_BANKCARD', zen_image($template->get_template_dir('cc7.gif', DIR_WS_TEMPLATE, $current_page_base,'images/icons'). '/' . 'cc7.gif'));
+define('IMAGE_CC_ENABLED_SOLO', zen_image($template->get_template_dir('cc8.gif', DIR_WS_TEMPLATE, $current_page_base,'images/icons'). '/' . 'cc8.gif'));
+define('IMAGE_CC_ENABLED_SWITCH', zen_image($template->get_template_dir('cc9.gif', DIR_WS_TEMPLATE, $current_page_base,'images/icons'). '/' . 'cc9.gif'));
+define('IMAGE_CC_ENABLED_MAESTRO', zen_image($template->get_template_dir('cc10.gif', DIR_WS_TEMPLATE, $current_page_base,'images/icons'). '/' . 'cc10.gif'));
 
 
 ?>

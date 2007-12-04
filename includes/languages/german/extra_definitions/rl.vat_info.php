@@ -25,4 +25,6 @@
 //
 define('VAT_SHOW', true);
 define('VAT_SHOW_TEXT','<span id="vatinfo"><br/>Preis inkl. UST.<br/><a href="index.php?main_page=shippinginfo" target="_self">=>zzgl.Versandkosten</a><br/></span>');
+// xxx
+
 ?>
