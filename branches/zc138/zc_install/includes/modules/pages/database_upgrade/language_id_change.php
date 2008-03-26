@@ -199,9 +199,9 @@
      $res2 = $db -> Execute($sql);
      return $res2 -> fields['languages_id'];
      }
- function zen_db_input($string){
-     return addslashes($string);
-     }
+# function zen_db_input($string){
+#     return addslashes($string);
+#     }
  function isMultiLingual($db) {
     include('../includes/database_tables.php');
     $sql = "SHOW  TABLES  LIKE  '" . TABLE_CONFIGURATION_LANGUAGE . "'";
