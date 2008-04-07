@@ -115,7 +115,7 @@ class SMTP
       $port = $this->SMTP_PORT;
     }
     //Added for Gmail support CER
-    if($this-Protocol != '') $host = $this->Protocol."://".$host; 
+    if($this->Protocol != '') $host = $this->Protocol."://".$host; 
 
     #connect to the smtp server
     $this->smtp_conn = @fsockopen($host,    # the host of the server
