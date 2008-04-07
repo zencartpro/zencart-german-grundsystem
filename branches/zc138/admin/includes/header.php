@@ -217,7 +217,8 @@ if ((basename($PHP_SELF) != FILENAME_DEFINE_LANGUAGE . '.php') and (basename($PH
     <td class="headerBarContent" align="left">
       <?php
       if (!$hide_languages) {
-        echo zen_draw_form('languages', basename($PHP_SELF), '', 'get');
+        $tmp = str_replace(DIR_WS_ADMIN, '', $PHP_SELF);     // so its possible, to have admin-tools in subdirs & language-change is OK; 
+        echo zen_draw_form('languages', $tmp, '', 'get');
         echo DEFINE_LANGUAGE . '&nbsp;&nbsp;' . (sizeof($languages) > 1 ? zen_draw_pull_down_menu('language', $languages_array, $languages_selected, 'onChange="this.form.submit();"') : '');
         echo zen_hide_session_id();
         echo '</form>';
