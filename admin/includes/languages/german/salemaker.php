@@ -5,7 +5,7 @@
 // +----------------------------------------------------------------------+
 // | Copyright (c) 2003 The zen-cart developers                           |
 // |                                                                      |
-// | http://www.zen-cart.at/index.php                                    |
+// |  http://www.zen-cart.at/index.php                                    |
 // |                                                                      |
 // | Portions Copyright (c) 2003 osCommerce                               |
 // +----------------------------------------------------------------------+
@@ -29,17 +29,15 @@ define('TABLE_HEADING_STATUS','Status');
 define('TABLE_HEADING_ACTION','Aktion');
 define('TEXT_SALEMAKER_NAME','Abverkaufsbezeichnung:');
 define('TEXT_SALEMAKER_DEDUCTION','Reduzierung:');
-define('TEXT_SALEMAKER_DEDUCTION_TYPE','     Typ:  ');
+define('TEXT_SALEMAKER_DEDUCTION_TYPE','?????Typ:??');
 define('TEXT_SALEMAKER_PRICERANGE_FROM','Artikel Preisbereich:');
-define('TEXT_SALEMAKER_PRICERANGE_TO','     bis       ');
+define('TEXT_SALEMAKER_PRICERANGE_TO','?????bis???????');
 define('TEXT_SALEMAKER_SPECIALS_CONDITION','Wenn Sonderangebot:');
 define('TEXT_SALEMAKER_DATE_START','Startdatum:');
 define('TEXT_SALEMAKER_DATE_END','Enddatum:');
 define('TEXT_SALEMAKER_CATEGORIES','<b>oder</b> &uuml;berpr&uuml;fen Sie die Kategorien f&uuml;r die dieser Abverkauf gelten soll:');
-define('TEXT_SALEMAKER_POPUP','<a href="javascript:session_win();
-"><span class="errorText"><b>Klicken Sie hier um Tipps f&uuml;r die Verwendung des Abverkaufsmanagers zu erhalten.</b></span></a>');
-define('TEXT_SALEMAKER_POPUP1','<a href="javascript:session_win1();
-"><span class="errorText"><b>(Weitere Informationen)</b></span></a>');
+define('TEXT_SALEMAKER_POPUP','<a href="javascript:session_win();"><span class="errorText"><b>Klicken Sie hier um Tipps f&uuml;r die Verwendung des Abverkaufsmanagers zu erhalten.</b></span></a>');
+define('TEXT_SALEMAKER_POPUP1','<a href="javascript:session_win1();"><span class="errorText"><b>(Weitere Informationen)</b></span></a>');
 define('TEXT_SALEMAKER_IMMEDIATELY','Sofort');
 define('TEXT_SALEMAKER_NEVER','Nie');
 define('TEXT_SALEMAKER_ENTIRE_CATALOG','Aktivieren Sie diese Box wenn Sie den Abverkauf auf <b>alle Artikel</b> anwenden wollen:');
@@ -63,7 +61,7 @@ define('DEDUCTION_TYPE_DROPDOWN_1','Prozent');
 define('DEDUCTION_TYPE_DROPDOWN_2','Neuer Preis');
 */
 define('TEXT_INFO_HEADING_COPY_SALE','Kopiere Abverkauf');
-define('TEXT_INFO_COPY_INTRO','Geben Sie bitte einen Namen f&uuml;r die Kopie von <br>  &quot;%s&quot;');
+define('TEXT_INFO_COPY_INTRO','Geben Sie bitte einen Namen f&uuml;r die Kopie von <br>??&quot;%s&quot;');
 define('TEXT_INFO_HEADING_DELETE_SALE','Abverkauf l&ouml;schen');
 define('TEXT_INFO_DELETE_INTRO','Wollen Sie diesen Abverkauf wirklich l&ouml;schen?');
 define('TEXT_MORE_INFO', '(More Info)' . ' !!!TRANSLATE!!! file: admin/includes/languages/LANGUAGE/salemaker.php at line 357');

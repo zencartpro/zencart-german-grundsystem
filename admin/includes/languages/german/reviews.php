@@ -5,7 +5,7 @@
 // +----------------------------------------------------------------------+
 // | Copyright (c) 2003 The zen-cart developers                           |
 // |                                                                      |
-// | http://www.zen-cart.at/index.php                                    |
+// |  http://www.zen-cart.at/index.php                                    |
 // |                                                                      |
 // | Portions Copyright (c) 2003 osCommerce                               |
 // +----------------------------------------------------------------------+
@@ -31,7 +31,7 @@ define('ENTRY_PRODUCT', 'Artikel:');
 define('ENTRY_FROM', 'Absender:');
 define('ENTRY_DATE', 'Datum:');
 define('ENTRY_REVIEW', 'Bewertungen:');
-define('ENTRY_REVIEW_TEXT', '<small><font color="#ff0000"><b>HINWEIS:</b></font></small> HTML wird nicht &uuml;bersetzt! ');
+define('ENTRY_REVIEW_TEXT', '<small><font color="#ff0000"><b>HINWEIS:</b></font></small>HTML wird nicht Ã¼bersetzt!?');
 define('ENTRY_RATING', 'Bewertung:');
 define('TEXT_INFO_DELETE_REVIEW_INTRO', 'Wollen Sie diesen Bericht wirklich l&ouml;schen?');
 define('TEXT_INFO_DATE_ADDED', 'Erstelldatum:');

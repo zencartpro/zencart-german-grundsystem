@@ -5,7 +5,7 @@
 // +----------------------------------------------------------------------+
 // | Copyright (c) 2003 The zen-cart developers                           |
 // |                                                                      |   
-// | http://www.zen-cart.at/index.php                                    |   
+// |  http://www.zen-cart.at/index.php                                    |   
 // |                                                                      |   
 // | Portions Copyright (c) 2003 osCommerce                               |
 // +----------------------------------------------------------------------+
