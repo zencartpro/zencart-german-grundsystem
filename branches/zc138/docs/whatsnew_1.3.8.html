@@ -337,7 +337,29 @@ upgrade your existing template by applying the new stylesheet and moving a few l
 <li>BugFix: use onKeyUp instead of onChange in coupon-redemption field (onchange is for pulldowns)</li>
 <li>BugFix: search engine spiders could trigger PHP errors in shopping_cart sidebox</li>
 <li>BugFix: techsupp.php was using php &quot;short&quot; tags in a few places. Changed to normal tags.</li>
-</ul></td>
+</ul>
+<h1>Dec 10 Update</h1>
+<p>A few bugs were fixed between the original Nov 30 2007 release and Dec 10.<br>
+As such, the following fixes affected the indicated filenames:</p>
+<ul>
+<li>SMTP email protocol typo was blocking SMTP-based emails from being delivered</li>
+<li>Database Upgrade page could sometimes give a blank screen if there was an error</li>
+<li>Authorize.net payment modules - there was confusion about MD5 issues. A notation about &quot;max length: 20&quot; was added to help clarify</li>
+<li>PayPal Website Payments Pro - UK options weren't showing clearly</li>
+<li>Installer had some problems with some IIS servers not detecting paths properly</li>
+</ul>
+<p>Affected files:</p>
+<ul>
+<li>/includes/classes/class.smtp.php</li>
+<li>/includes/modules/payment/authorizenet.php</li>
+<li>/includes/modules/payment/authorizenet_aim.php</li>
+<li>/includes/modules/payment/authorizenet_echeck.php</li>
+<li>/includes/modules/payment/paypaldp.php</li>
+<li>/includes/modules/payment/paypalwpp.php</li>
+<li>/zc_install/includes/classes/installer.php</li>
+<li>/zc_install/includes/modules/pages/system_setup/header_php.php</li>
+</ul>
+</td>
 </tr>
 </table>
 <br /><br />
