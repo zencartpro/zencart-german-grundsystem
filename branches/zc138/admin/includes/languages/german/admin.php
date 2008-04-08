@@ -5,7 +5,7 @@
 // +----------------------------------------------------------------------+
 // | Copyright (c) 2003 The zen-cart developers                           |
 // |                                                                      |
-// |  http://www.zen-cart.at/index.php                                    |
+// | http://www.zen-cart.at/index.php                                    |
 // |                                                                      |
 // | Portions Copyright (c) 2003 osCommerce                               |
 // +----------------------------------------------------------------------+
@@ -26,7 +26,7 @@ define('TABLE_HEADING_ADMINS_ID','ID');
 define('TABLE_HEADING_ADMINS_EMAIL','E-Mail');
 define('TABLE_HEADING_ACTION','Aktion');
 define('TEXT_HEADING_NEW_ADMIN','Neu');
-define('TEXT_HEADING_EDIT_ADMIN','&Auml;ndern');
+define('TEXT_HEADING_EDIT_ADMIN','Ändern');
 define('TEXT_HEADING_DELETE_ADMIN','L&ouml;schen');
 define('TEXT_HEADING_RESET_PASSWORD','Passwort l&ouml;schen');
 define('TEXT_ADMINS','Administratoren:');
