@@ -46,7 +46,8 @@
 //  $zc_install->logDetails('$_POST = ' . print_r($_POST, true) . print_r($_SESSION, true), $current_page . '-index.php', 'testing_flow');
 //  $zc_install->logDetails($zc_install->getConfigKey('*', true), $current_page . '-index.php - before header_php', 'testing_flow');
 
-
+  // lang must be loaded before the header module
+  require('includes/languages/' . $language . '/' . $current_page . '.php');
   require($page_directory . '/header_php.php');
   require(DIR_WS_INSTALL_TEMPLATE . 'common/html_header.php');
 
