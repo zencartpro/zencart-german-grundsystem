@@ -10,15 +10,16 @@
   require('includes/application_top.php');
 
 /* r.l. ajax */ 
-require_once("../ajax/xajax.inc.php");
+#require_once("../ajax/xajax.inc.php");
+require_once("../ajax/xajax5/xajax_core/xajaxAIO.inc.php");
 define ('XAJAX_DEFAULT_CHAR_ENCODING', 'windows-1251');   
 $xajax = new xajax();
 $xajax -> registerFunction("getAttrib");
 $xajax -> registerFunction("hideoptionname");
-$xajax -> processRequests();
+$xajax -> processRequest();
 #$xajax -> printJavascript('../ajax/');
-$xajax -> decodeUTF8InputOn();     
-$xajax->outputEntitiesOn();
+#$xajax -> decodeUTF8InputOn();     
+#$xajax->outputEntitiesOn();
 
                        
   // verify option names, values, products
@@ -1670,7 +1671,7 @@ if ($action == '') {
       $options_values->MoveNext();
     }
 /* r.l. ajax */ 
- $xajax -> printJavascript('../ajax/');
+ $xajax -> printJavascript('../ajax/xajax5/');
     echo zen_draw_pull_down_menu('options_id', $val_1, '', ' size="'.$si.'" id="options_id" onchange="xajax_getAttrib(xajax.getFormValues(\'attributes\'));return false; "');
 ?>
             </td>

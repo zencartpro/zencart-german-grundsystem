@@ -45,12 +45,13 @@ function getAttrib($paramArray){
          $cont = zen_draw_pull_down_menu('values_id[]', $val, '', ' multiple size="5" ');
          }
      $objResponse = new xajaxResponse();
-     $objResponse -> addAssign("values_id", "innerHTML", $cont);
-     return $objResponse -> getXML();
+     $objResponse -> assign("values_id", "innerHTML", $cont);
+     return $objResponse;
      }
 function hideoptionname($id){
-    $objResponse = new xajaxResponse();
-    $objResponse -> addAssign($id, "innerHTML", 'WEG');
-    return $objResponse -> getXML();     
+    #$objResponse = new xajaxResponse();
+    $objResponse = new xajaxResponse();   
+    $objResponse -> assign($id, "innerHTML", 'WEG');
+    return $objResponse;     
 }
 ?>
