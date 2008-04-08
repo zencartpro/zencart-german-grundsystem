@@ -1,0 +1,31 @@
+<!-- 
+/**
+ * @package map_shop
+ * @desc map_shop generates google_map entries at http://shops.zen-cart.at
+ * @copyright Copyright 2006-2007 rainer langheiter
+ * @author rainer langheiter <zen-cart@langheiter.com> <http://edv.langheiter.com/zencart/>
+ * @license http://www.gnu.org/copyleft/gpl.html     
+ * @version $Id$
+ */
+-->
+<h1>{$work}::{$version}</h1>
+
+{if $showResult eq "YESX"}   
+    <div id="rl-language-result"><table width="600px">
+      <tr>
+        <th scope="col"><span>MODELL </span></th>
+        <th scope="col">PRICE </th>
+        <th scope="col">MODIFIED </th>
+      </tr>
+    {foreach item=exp from=$export}     
+      <tr class="p20">
+        <td class="p20b">{$exp.products_model}
+        <td><span class="Stil1">{$exp.products_price}</span>
+        <td><span class="Stil1">{$exp.products_last_modified}</span>
+      </tr>
+    {/foreach}
+    </table>
+    </div> 
+{/if}
+
+{include file='map_shop2_form.tpl.html'}
