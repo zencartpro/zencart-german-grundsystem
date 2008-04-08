@@ -151,7 +151,7 @@ function makeTransAll($arg='XXX', $arg2='SHOW_PRODUCT_INFO_COLUMNS_ALSO_PURCHASE
         #writeRL2($key);
         #$objResponse2->loadXML(xajax_makeTrans('', $checked[$i]['new'][configuration_key], 43, $checked[$i]['new'][configuration_id]));
         #makeTrans2(&$objResponse, '', $checked[$i]['new'][configuration_key], 43, $checked[$i]['new'][configuration_id]);
-        makeTrans2(&$objResponse, '', $value['new'][configuration_key], 43, $value['new'][configuration_id]);
+        makeTrans2($objResponse, '', $value['new'][configuration_key], 43, $value['new'][configuration_id]);
     }
     
      $newContent = '<span class="gotit">gotIt:: '.$checked[1]['new'][configuration_key].'</span>';
