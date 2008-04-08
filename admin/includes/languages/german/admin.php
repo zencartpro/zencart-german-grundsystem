@@ -19,7 +19,7 @@
 // +----------------------------------------------------------------------+
 //  $Id: admin.php 1105 2005-04-04 22:05:35Z birdbrain $
 //
-
+// HWH
 define('HEADING_TITLE','Administratoren');
 define('TABLE_HEADING_ADMINS_NAME','Admin Name');
 define('TABLE_HEADING_ADMINS_ID','ID');
