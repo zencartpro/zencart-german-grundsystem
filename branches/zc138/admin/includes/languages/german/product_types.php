@@ -17,7 +17,7 @@
 // | to obtain it through the world-wide-web, please send a note to       |
 // | license@zen-cart.com so we can mail you a copy immediately.          |
 // +----------------------------------------------------------------------+
-//  $Id: product_types.php 1122 2005-04-05 04:37:58Z drbyte $
+//  $Id$
 //
 
 define('HEADING_TITLE', 'Artikeltypen');

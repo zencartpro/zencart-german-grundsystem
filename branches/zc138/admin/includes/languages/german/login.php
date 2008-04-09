@@ -17,7 +17,7 @@
 // | to obtain it through the world-wide-web, please send a note to       |
 // | license@zen-cart.com so we can mail you a copy immediately.          |
 // +----------------------------------------------------------------------+
-//  $Id: login.php 3146 2006-03-09 07:12:11Z birdbrain $
+//  $Id$
 //
 
 define('HEADING_TITLE', 'Admin Login');

@@ -17,7 +17,7 @@
 // | to obtain it through the world-wide-web, please send a note to       |
 // | license@zen-cart.com so we can mail you a copy immediately.          |
 // +----------------------------------------------------------------------+
-//  $Id: products_price_manager.php 543 2004-11-13 19:19:29Z wilt $
+//  $Id$
 //
 
 define('HEADING_TITLE', 'Artikelpreismanager');

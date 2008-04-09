@@ -5,7 +5,7 @@
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.at/license/2_0.txt GNU Public License V2.0
  * @translator: cyaneo/hugo13/wflohr	http://www.zen-cart.at	2007-01-03
- * @version $Id: newsletter.php 4385 2006-09-04 04:10:48Z drbyte $
+ * @version $Id$
  */
 
 define('TEXT_COUNT_CUSTOMERS', 'Kunden, die Newsletter erhalten: %s');

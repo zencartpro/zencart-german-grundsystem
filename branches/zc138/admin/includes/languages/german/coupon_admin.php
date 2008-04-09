@@ -17,7 +17,7 @@
 // | to obtain it through the world-wide-web, please send a note to       |
 // | license@zen-cart.com so we can mail you a copy immediately.          |
 // +----------------------------------------------------------------------+
-//  $Id: coupon_admin.php 4677 2006-10-04 19:33:39Z drbyte $
+//  $Id$
 //
 
 define('TOP_BAR_TITLE','Statistiken');

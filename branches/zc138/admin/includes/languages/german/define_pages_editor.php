@@ -17,7 +17,7 @@
 // | to obtain it through the world-wide-web, please send a note to       |
 // | license@zen-cart.com so we can mail you a copy immediately.          |
 // +----------------------------------------------------------------------+
-// $Id: define_pages_editor.php 1969 2005-09-13 06:57:21Z drbyte $
+// $Id$
 //
 
 define('HEADING_TITLE', 'Definiere Seiten f&uuml;r: ');

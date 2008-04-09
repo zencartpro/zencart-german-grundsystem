@@ -17,7 +17,7 @@
 // | to obtain it through the world-wide-web, please send a note to       |
 // | license@zen-cart.com so we can mail you a copy immediately.          |
 // +----------------------------------------------------------------------+
-//  $Id: media_manager.php 3092 2006-03-02 19:41:04Z drbyte $
+//  $Id$
 //
 
 define('HEADING_TITLE_MEDIA_MANAGER', 'Medienmanager');

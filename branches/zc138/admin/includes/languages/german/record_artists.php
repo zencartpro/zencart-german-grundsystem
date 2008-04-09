@@ -17,7 +17,7 @@
 // | to obtain it through the world-wide-web, please send a note to       |
 // | license@zen-cart.com so we can mail you a copy immediately.          |
 // +----------------------------------------------------------------------+
-//  $Id: record_artists.php 4810 2006-10-22 19:02:19Z ajeh $
+//  $Id$
 //
 define('HEADING_TITLE', 'K&uuml;nstler');
 define('TABLE_HEADING_RECORD_ARTISTS', 'K&uuml;nstler');

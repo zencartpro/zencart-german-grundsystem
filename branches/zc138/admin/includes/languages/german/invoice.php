@@ -17,7 +17,7 @@
 // | to obtain it through the world-wide-web, please send a note to       |
 // | license@zen-cart.com so we can mail you a copy immediately.          |
 // +----------------------------------------------------------------------+
-//  $Id: invoice.php 1109 2005-04-04 23:55:35Z drbyte $
+//  $Id$
 //
 
 define('TABLE_HEADING_COMMENTS','Kommentare');

@@ -17,7 +17,7 @@
 // | to obtain it through the world-wide-web, please send a note to       |
 // | license@zen-cart.com so we can mail you a copy immediately.          |
 // +----------------------------------------------------------------------+
-//  $Id: index.php 2539 2005-12-11 05:17:05Z ajeh $
+//  $Id$
 //
 
 define('HEADING_TITLE', 'Bitte w&auml;hlen Sie...');
