@@ -62,7 +62,7 @@ define('TEXT_INFO_META_TAGS_USAGE', '<strong>Hinweis:</strong> Site/Tagline ist 
 define('HTML_PARAMS', 'dir="ltr" lang="de"');
 
 // charset for web pages and emails
-define('CHARSET', 'iso-8859-1');
+define('CHARSET', 'utf-8');
 
 // header text in includes/header.php
 define('HEADER_TITLE_TOP', 'Startseite');
@@ -228,7 +228,7 @@ define('ENTRY_EMAIL_ADDRESS_CHECK_ERROR', '<span class="errorText">Die E-Mail Ad
 define('ENTRY_EMAIL_ADDRESS_ERROR_EXISTS', '<span class="errorText">Diese E-Mail Adresse existiert bereits!</span>');
 define('ENTRY_COMPANY', 'Firma:');
 define('ENTRY_COMPANY_ERROR', '');
-define('ENTRY_PRICING_GROUP', 'Preisermä&szlig;igungsgruppe');
+define('ENTRY_PRICING_GROUP', 'Preisermäßigungsgruppe');
 define('ENTRY_STREET_ADDRESS', 'Stra&szlig;e:');
 define('ENTRY_STREET_ADDRESS_ERROR', '<span class="errorText">mindestens ' . ENTRY_STREET_ADDRESS_MIN_LENGTH . ' Zeichen</span>');
 define('ENTRY_SUBURB', 'Zusatz:');
@@ -316,9 +316,9 @@ define('IMAGE_PRODUCTS_TO_CATEGORIES', 'Mehrfachkategorie Link Manager');
 define('IMAGE_ICON_STATUS_ON', 'Status - aktiviert');
 define('IMAGE_ICON_STATUS_OFF', 'Status - deaktiviert');
 define('IMAGE_ICON_LINKED', 'Artikel ist verlinkt');
-define('IMAGE_REMOVE_SPECIAL', 'Info f&uuml;r Preisermä&szlig;igung entfernen');
+define('IMAGE_REMOVE_SPECIAL', 'Info f&uuml;r Preisermäßigung entfernen');
 define('IMAGE_REMOVE_FEATURED', 'Info f&uuml;r ähnliche Artikel entfernen');
-define('IMAGE_INSTALL_SPECIAL', 'Info f&uuml;r Preisermä&szlig;igung hinzuf&uuml;gen');
+define('IMAGE_INSTALL_SPECIAL', 'Info f&uuml;r Preisermäßigung hinzuf&uuml;gen');
 define('IMAGE_INSTALL_FEATURED', 'Info f&uuml;r ähnliche Artikel hinzuf&uuml;gen');
 define('ICON_PRODUCTS_PRICE_MANAGER', 'Artikelpreis Manager');
 define('ICON_COPY_TO', 'Kopieren nach');
@@ -495,7 +495,7 @@ define('TEXT_VERSION_CHECK_CURRENT', 'Sie verwenden die aktuellste Version von Z
 define('TEXT_DISPLAY_NUMBER_OF_PRODUCTS_DOWNLOADS_MANAGER', 'Zeige <b>%d</b> bis <b>%d</b> (von <b>%d</b> Downloads)');
 define('BOX_CATALOG_CATEGORIES_ATTRIBUTES_DOWNLOADS_MANAGER', 'Download Manager');
 define('BOX_CATALOG_FEATURED', 'ähnliche Artikel');
-define('ERROR_NOTHING_SELECTED', 'Es wurde nichts ausgewählt ... Es wurden keine änderungen durchgef&uuml;hrt');
+define('ERROR_NOTHING_SELECTED', 'Es wurde nichts ausgewählt ... Es wurden keine Änderungen durchgef&uuml;hrt');
 define('TEXT_STATUS_WARNING', '<strong>HINWEIS:</strong> Der Status ist auf &quot;auto aktiviert/deaktiviert&quot;, wenn Datumsangaben vorliegen');
 define('TEXT_LEGEND_LINKED', 'Verlinkter Artikel');
 define('TEXT_MASTER_CATEGORIES_ID', 'Artikel Hauptkategorie:');
