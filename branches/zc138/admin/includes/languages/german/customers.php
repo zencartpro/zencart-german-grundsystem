@@ -19,7 +19,6 @@
 // +----------------------------------------------------------------------+
 //  $Id$
 //
-
 define('HEADING_TITLE', 'Kunden');
 define('TABLE_HEADING_ID', 'ID#');
 define('TABLE_HEADING_FIRSTNAME', 'Vorname');
