@@ -17,7 +17,7 @@
 // | to obtain it through the world-wide-web, please send a note to       |
 // | license@zen-cart.com so we can mail you a copy immediately.          |
 // +----------------------------------------------------------------------+
-//  $Id: coupon_restrict.php 3666 2006-05-28 21:21:37Z wilt $
+//  $Id$
 //
 
 define('HEADING_TITLE','Aktionskupon - Artikel/Kategorien Einschr&auml;nkungen');

@@ -17,7 +17,7 @@
 // | to obtain it through the world-wide-web, please send a note to       |
 // | license@zen-cart.com so we can mail you a copy immediately.          |
 // +----------------------------------------------------------------------+
-//  $Id: whos_online.php 2663 2005-12-24 02:28:51Z ajeh $
+//  $Id$
 //
 
 define('HEADING_TITLE','Wer ist online');

@@ -17,7 +17,7 @@
 // | to obtain it through the world-wide-web, please send a note to       |
 // | license@zen-cart.com so we can mail you a copy immediately.          |
 // +----------------------------------------------------------------------+
-//  $Id: option_values.php 1105 2005-04-04 22:05:35Z birdbrain $
+//  $Id$
 //
 define('HEADING_TITLE','Standard Sortierung der Attributmerkmale');
 define('TEXT_UPDATE_OPTION_VALUES','Standard Sortierung f&uuml;r Attributmerkmale aktualisieren');

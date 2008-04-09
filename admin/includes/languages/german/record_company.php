@@ -17,7 +17,7 @@
 // | to obtain it through the world-wide-web, please send a note to       |
 // | license@zen-cart.com so we can mail you a copy immediately.          |
 // +----------------------------------------------------------------------+
-//  $Id: record_company.php 4811 2006-10-22 19:07:42Z ajeh $
+//  $Id$
 //
 define('HEADING_TITLE', 'Plattenfirma');
 define('TABLE_HEADING_RECORD_COMPANY', 'Plattenfirma');

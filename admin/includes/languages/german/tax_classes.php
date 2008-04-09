@@ -17,7 +17,7 @@
 // | to obtain it through the world-wide-web, please send a note to       |
 // | license@zen-cart.com so we can mail you a copy immediately.          |
 // +----------------------------------------------------------------------+
-//  $Id: tax_classes.php 3780 2006-06-16 03:04:43Z drbyte $
+//  $Id$
 //
 
 define('HEADING_TITLE','Steuerklassen');

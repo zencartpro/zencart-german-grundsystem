@@ -5,7 +5,7 @@
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.at/license/2_0.txt GNU Public License V2.0
  * @translator: cyaneo/hugo13/wflohr	http://www.zen-cart.at	2007-01-03
- * @version $Id: linkpoint_review.php 4612 2006-09-26 08:03:05Z drbyte $
+ * @version $Id$
  */
 
 define('HEADING_TITLE', 'Kreditkarten Zusammenfassung');

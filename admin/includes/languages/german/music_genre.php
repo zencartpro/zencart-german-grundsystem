@@ -17,7 +17,7 @@
 // | to obtain it through the world-wide-web, please send a note to       |
 // | license@zen-cart.com so we can mail you a copy immediately.          |
 // +----------------------------------------------------------------------+
-//  $Id: music_genre.php 276 2004-09-10 22:35:28Z wilt $
+//  $Id$
 //
 define('HEADING_TITLE', 'Musik Genre');
 define('TABLE_HEADING_MUSIC_GENRE', 'Musik Genre');

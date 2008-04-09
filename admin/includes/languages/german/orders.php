@@ -17,7 +17,7 @@
 // | to obtain it through the world-wide-web, please send a note to       |
 // | license@zen-cart.com so we can mail you a copy immediately.          |
 // +----------------------------------------------------------------------+
-//  $Id: orders.php 2652 2005-12-22 18:30:59Z drbyte $
+//  $Id$
 //
 
 define('HEADING_TITLE', 'Bestellungen');

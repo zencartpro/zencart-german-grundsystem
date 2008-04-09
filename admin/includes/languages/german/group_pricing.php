@@ -17,7 +17,7 @@
 // | to obtain it through the world-wide-web, please send a note to       |
 // | license@zen-cart.com so we can mail you a copy immediately.          |
 // +----------------------------------------------------------------------+
-//  $Id: group_pricing.php 2770 2006-01-02 07:52:42Z drbyte $
+//  $Id$
 //
 
 define('HEADING_TITLE', 'Gruppenpreise');
