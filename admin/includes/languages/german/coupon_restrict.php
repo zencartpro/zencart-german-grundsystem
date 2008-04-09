@@ -20,9 +20,9 @@
 //  $Id$
 //
 
-define('HEADING_TITLE','Aktionskupon - Artikel/Kategorien Einschr&auml;nkungen');
-define('HEADING_TITLE_CATEGORY','Kategorieneinschr&auml;nkungen');
-define('HEADING_TITLE_PRODUCT','Artikeleinschr&auml;nkungen');
+define('HEADING_TITLE','Aktionskupon - Artikel/Kategorien Einschränkungen');
+define('HEADING_TITLE_CATEGORY','Kategorieneinschränkungen');
+define('HEADING_TITLE_PRODUCT','Artikeleinschränkungen');
 define('HEADER_COUPON_ID','Aktionskupon ID');
 define('HEADER_COUPON_NAME','Aktionskupon Name');
 define('HEADER_CATEGORY_ID','Kategorie ID');

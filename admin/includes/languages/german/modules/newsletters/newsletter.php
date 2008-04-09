@@ -11,7 +11,7 @@
 define('TEXT_COUNT_CUSTOMERS', 'Kunden, die Newsletter erhalten: %s');
 define('HEADING_TITLE', 'Newsletter Manager');
 define('TABLE_HEADING_NEWSLETTERS', 'Newsletter');
-define('TABLE_HEADING_SIZE', 'Gr&ouml;&szlig;e');
+define('TABLE_HEADING_SIZE', 'Grö&szlig;e');
 define('TABLE_HEADING_MODULE', 'Modul');
 define('TABLE_HEADING_SENT', 'Gesendet');
 define('TABLE_HEADING_STATUS', 'Status');
@@ -22,12 +22,12 @@ define('TEXT_NEWSLETTER_CONTENT', 'Nur Text <br />Inhalt:');
 define('TEXT_NEWSLETTER_CONTENT_HTML', 'HTML <br />Inhalt:');
 define('TEXT_NEWSLETTER_DATE_ADDED', 'Erstelldatum:');
 define('TEXT_NEWSLETTER_DATE_SENT', 'Gesendet am:');
-define('TEXT_INFO_DELETE_INTRO', 'Wollen Sie diesen Newsletter wirklich l&ouml;schen?');
-define('TEXT_PLEASE_SELECT_AUDIENCE', ' Bitte w&auml;hlen Sie eine Empf&auml;ngergruppe f&uuml;r diesen Newsletter: ');
+define('TEXT_INFO_DELETE_INTRO', 'Wollen Sie diesen Newsletter wirklich löschen?');
+define('TEXT_PLEASE_SELECT_AUDIENCE', ' Bitte wählen Sie eine Empfängergruppe für diesen Newsletter: ');
 define('TEXT_PLEASE_WAIT', 'Bitte warten .. sende E-Mails ..<br /><br />Bitte diesen Prozess nicht unterbrechen!');
 define('TEXT_FINISHED_SENDING_EMAILS', 'Die E-Mails wurden versendet!');
-define('ERROR_NEWSLETTER_TITLE', 'Fehler: Ein Titel wird f&uuml;r den Newsletter ben&ouml;tigt');
-define('ERROR_NEWSLETTER_MODULE', 'Fehler: Das Newsletter Modul wird ben&ouml;tigt');
+define('ERROR_NEWSLETTER_TITLE', 'Fehler: Ein Titel wird für den Newsletter benötigt');
+define('ERROR_NEWSLETTER_MODULE', 'Fehler: Das Newsletter Modul wird benötigt');
 
 
 ?>

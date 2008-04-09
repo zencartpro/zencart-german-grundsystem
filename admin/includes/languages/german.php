@@ -56,7 +56,7 @@ function zen_date_raw($date, $reverse = false){
 define('ICON_METATAGS_ON', 'Meta Tags definiert');
 define('ICON_METATAGS_OFF', 'Meta Tags nicht definiert');
 define('TEXT_LEGEND_META_TAGS', 'Meta Tags definiert:');
-define('TEXT_INFO_META_TAGS_USAGE', '<strong>Hinweis:</strong> Site/Tagline ist Ihre Einstellung f&uuml;r Ihre Seite in der Datei meta_tags.php.');
+define('TEXT_INFO_META_TAGS_USAGE', '<strong>Hinweis:</strong> Site/Tagline ist Ihre Einstellung für Ihre Seite in der Datei meta_tags.php.');
 
 // Global entries for the <html> tag
 define('HTML_PARAMS', 'dir="ltr" lang="de"');
@@ -121,12 +121,12 @@ define('BOX_CUSTOMERS_GROUP_PRICING', 'Gruppenpreise');
 define('BOX_CUSTOMERS_PAYPAL', 'PayPal');
 
 // taxes box text in includes/boxes/taxes.php
-define('BOX_HEADING_LOCATION_AND_TAXES', 'L&auml;nder &amp; Steuern');
-define('BOX_TAXES_COUNTRIES', 'L&auml;nder');
-define('BOX_TAXES_ZONES', 'Zonen / Bundesl&auml;nder');
+define('BOX_HEADING_LOCATION_AND_TAXES', 'Länder &amp; Steuern');
+define('BOX_TAXES_COUNTRIES', 'Länder');
+define('BOX_TAXES_ZONES', 'Zonen / Bundesländer');
 define('BOX_TAXES_GEO_ZONES', 'Steuerzonen');
 define('BOX_TAXES_TAX_CLASSES', 'Steuerklassen');
-define('BOX_TAXES_TAX_RATES', 'Steuers&auml;tze');
+define('BOX_TAXES_TAX_RATES', 'Steuersätze');
 
 // reports box text in includes/boxes/reports.php
 define('BOX_HEADING_REPORTS', 'Statistiken');
@@ -162,7 +162,7 @@ define('BOX_TOOLS_DEFINE_CONTACT_US', 'Kontakt');
 define('BOX_TOOLS_DEFINE_PRIVACY', 'Datenschutz');
 define('BOX_TOOLS_DEFINE_SHIPPINGINFO', 'Preise und Versand');
 define('BOX_TOOLS_DEFINE_CONDITIONS', 'AGB');
-define('BOX_TOOLS_DEFINE_CHECKOUT_SUCCESS', 'Bestellbest&auml;tigung');
+define('BOX_TOOLS_DEFINE_CHECKOUT_SUCCESS', 'Bestellbestätigung');
 define('BOX_TOOLS_DEFINE_PAGE_2', 'Seite 2');
 define('BOX_TOOLS_DEFINE_PAGE_3', 'Seite 3');
 define('BOX_TOOLS_DEFINE_PAGE_4', 'Seite 4');
@@ -170,7 +170,7 @@ define('BOX_TOOLS_DEFINE_PAGE_4', 'Seite 4');
 
 // localizaion box text in includes/boxes/localization.php
 define('BOX_HEADING_LOCALIZATION', 'Lokalisation');
-define('BOX_LOCALIZATION_CURRENCIES', 'W&auml;hrungen');
+define('BOX_LOCALIZATION_CURRENCIES', 'Währungen');
 define('BOX_LOCALIZATION_LANGUAGES', 'Sprachen');
 define('BOX_LOCALIZATION_ORDERS_STATUS', 'Bestellstatus');
 
@@ -183,7 +183,7 @@ define('BOX_COUPON_ADMIN', 'Administration');
 define('IMAGE_RELEASE', 'Einl&ouml;sen ' . TEXT_GV_NAME);
 
 // javascript messages
-define('JS_ERROR', 'Achtung! Es ist ein Fehler aufgetreten.!\nBitte &auml;ndern Sie folgendes:\n\n');
+define('JS_ERROR', 'Achtung! Es ist ein Fehler aufgetreten.!\nBitte ändern Sie folgendes:\n\n');
 define('JS_OPTIONS_VALUE_PRICE', '* Das neue Artikelattribut ben&ouml;tigt eine Preisangabe\n');
 define('JS_OPTIONS_VALUE_PRICE_PREFIX', '* Das neue Artikelattribut ben&ouml;tigt eine Preisangabe\n');
 define('JS_PRODUCTS_NAME', '* Bitte tragen Sie einen Artikelnamen ein');
@@ -194,7 +194,7 @@ define('JS_PRODUCTS_QUANTITY', '* Bitte tragen Sie die Anzahl ein');
 define('JS_PRODUCTS_MODEL', '* Bitte tragen Sie die Artikelnummer ein');
 define('JS_PRODUCTS_IMAGE', '* Der neue Artikel ben&ouml;tigt ein Bild');
 define('JS_SPECIALS_PRODUCTS_PRICE', '* Der neue Artikel ben&ouml;tigt einen Preis\n');
-define('JS_GENDER', '* Das \'Geschlecht\' muss ausgew&auml;hlt werden.\n');
+define('JS_GENDER', '* Das \'Geschlecht\' muss ausgewählt werden.\n');
 define('JS_FIRST_NAME', '* Der \'Vorname\' muss aus mindestens  ' . ENTRY_FIRST_NAME_MIN_LENGTH . ' Zeichen bestehen.\n');
 define('JS_LAST_NAME', '* Der  \'Nachname\' muss aus mindestens ' . ENTRY_LAST_NAME_MIN_LENGTH . ' Zeichen bestehen.\n');
 define('JS_DOB', '* Das \'Geburtsdatum\' muss wie folgt aussehen: xx/xx/xxxx (Tag/Monat/Jahr).\n');
@@ -203,9 +203,9 @@ define('JS_ADDRESS', '* Die \'Anschrift\' muss aus mindestens ' . ENTRY_STREET_A
 define('JS_POST_CODE', '* Die \'Postleizahl\' muss aus mindestens  ' . ENTRY_POSTCODE_MIN_LENGTH . ' Zeichen bestehen.\n');
 define('JS_CITY', '* Die \'Stadt\' muss mindestens  ' . ENTRY_CITY_MIN_LENGTH . ' Zeichen haben.\n');
 define('JS_STATE', '* Das \'Bundesland\' muss eingetragen sein.\n');
-define('JS_STATE_SELECT', '-- Bitte w&auml;hlen Sie --');
-define('JS_ZONE', '* Das \'Land\' muss ausgew&auml;hlt sein.');
-define('JS_COUNTRY', '* Das \'Land\' muss ausgew&auml;hlt sein.\n');
+define('JS_STATE_SELECT', '-- Bitte wählen Sie --');
+define('JS_ZONE', '* Das \'Land\' muss ausgewählt sein.');
+define('JS_COUNTRY', '* Das \'Land\' muss ausgewählt sein.\n');
 define('JS_TELEPHONE', '* Die \'Telefonnummer\' muss aus mindestens  ' . ENTRY_TELEPHONE_MIN_LENGTH . ' Zeichen bestehen.\n');
 define('JS_PASSWORD', '* Das \'Passwort\' muss aus mindestens  ' . ENTRY_PASSWORD_MIN_LENGTH . ' Zeichen bestehen.\n');
 define('JS_ORDER_DOES_NOT_EXIST', 'Diese Bestellnummer %s existiert nicht!');
@@ -215,34 +215,34 @@ define('CATEGORY_CONTACT', 'Telefon');
 define('CATEGORY_COMPANY', 'Firma');
 define('CATEGORY_OPTIONS', 'Zusatz');
 define('ENTRY_GENDER', 'Geschlecht:');
-define('ENTRY_GENDER_ERROR', '�<span class="errorText">ben&ouml;tigt</span>');
+define('ENTRY_GENDER_ERROR', '<span class="errorText">ben&ouml;tigt</span>');
 define('ENTRY_FIRST_NAME', 'Vorname:');
-define('ENTRY_FIRST_NAME_ERROR', '�<span class="errorText">mindestens ' . ENTRY_FIRST_NAME_MIN_LENGTH . ' Zeichen</span>');
+define('ENTRY_FIRST_NAME_ERROR', '<span class="errorText">mindestens ' . ENTRY_FIRST_NAME_MIN_LENGTH . ' Zeichen</span>');
 define('ENTRY_LAST_NAME', 'Nachname:');
-define('ENTRY_LAST_NAME_ERROR', '�<span class="errorText">mindestens ' . ENTRY_LAST_NAME_MIN_LENGTH . ' Zeichen</span>');
+define('ENTRY_LAST_NAME_ERROR', '<span class="errorText">mindestens ' . ENTRY_LAST_NAME_MIN_LENGTH . ' Zeichen</span>');
 define('ENTRY_DATE_OF_BIRTH', 'Geburtsdatum:');
-define('ENTRY_DATE_OF_BIRTH_ERROR', '�<span class="errorText">Ihr Geburtsdatum muss folgene Form haben: TT.MM.JJJJ (z.B. 21.02.1970)</span>');
+define('ENTRY_DATE_OF_BIRTH_ERROR', '<span class="errorText">Ihr Geburtsdatum muss folgene Form haben: TT.MM.JJJJ (z.B. 21.02.1970)</span>');
 define('ENTRY_EMAIL_ADDRESS', 'E-Mail Adresse:');
-define('ENTRY_EMAIL_ADDRESS_ERROR', '�<span class="errorText">mindestens ' . ENTRY_EMAIL_ADDRESS_MIN_LENGTH . ' Zeichen</span>');
-define('ENTRY_EMAIL_ADDRESS_CHECK_ERROR', '�<span class="errorText">Die E-Mail Adresse scheint nicht korrekt zu sein!</span>');
-define('ENTRY_EMAIL_ADDRESS_ERROR_EXISTS', '�<span class="errorText">Diese E-Mail Adresse existiert bereits!</span>');
+define('ENTRY_EMAIL_ADDRESS_ERROR', '<span class="errorText">mindestens ' . ENTRY_EMAIL_ADDRESS_MIN_LENGTH . ' Zeichen</span>');
+define('ENTRY_EMAIL_ADDRESS_CHECK_ERROR', '<span class="errorText">Die E-Mail Adresse scheint nicht korrekt zu sein!</span>');
+define('ENTRY_EMAIL_ADDRESS_ERROR_EXISTS', '<span class="errorText">Diese E-Mail Adresse existiert bereits!</span>');
 define('ENTRY_COMPANY', 'Firma:');
 define('ENTRY_COMPANY_ERROR', '');
-define('ENTRY_PRICING_GROUP', 'Preiserm&auml;&szlig;igungsgruppe');
+define('ENTRY_PRICING_GROUP', 'Preisermä&szlig;igungsgruppe');
 define('ENTRY_STREET_ADDRESS', 'Stra&szlig;e:');
-define('ENTRY_STREET_ADDRESS_ERROR', '�<span class="errorText">mindestens ' . ENTRY_STREET_ADDRESS_MIN_LENGTH . ' Zeichen</span>');
+define('ENTRY_STREET_ADDRESS_ERROR', '<span class="errorText">mindestens ' . ENTRY_STREET_ADDRESS_MIN_LENGTH . ' Zeichen</span>');
 define('ENTRY_SUBURB', 'Zusatz:');
 define('ENTRY_SUBURB_ERROR', '');
 define('ENTRY_POST_CODE', 'Postleitzahl:');
-define('ENTRY_POST_CODE_ERROR', '�<span class="errorText">mindestens ' . ENTRY_POSTCODE_MIN_LENGTH . ' Zeichen</span>');
+define('ENTRY_POST_CODE_ERROR', '<span class="errorText">mindestens ' . ENTRY_POSTCODE_MIN_LENGTH . ' Zeichen</span>');
 define('ENTRY_CITY', 'Ort:');
-define('ENTRY_CITY_ERROR', '�<span class="errorText">mindestens ' . ENTRY_CITY_MIN_LENGTH . ' Zeichen</span>');
+define('ENTRY_CITY_ERROR', '<span class="errorText">mindestens ' . ENTRY_CITY_MIN_LENGTH . ' Zeichen</span>');
 define('ENTRY_STATE', 'Stadt:');
-define('ENTRY_STATE_ERROR', '�<span class="errorText">ben&ouml;tigt</span>');
+define('ENTRY_STATE_ERROR', '<span class="errorText">ben&ouml;tigt</span>');
 define('ENTRY_COUNTRY', 'Land:');
 define('ENTRY_COUNTRY_ERROR', '');
 define('ENTRY_TELEPHONE_NUMBER', 'Telefonnummer:');
-define('ENTRY_TELEPHONE_NUMBER_ERROR', '�<span class="errorText">mindestens ' . ENTRY_TELEPHONE_MIN_LENGTH . ' Zeichen</span>');
+define('ENTRY_TELEPHONE_NUMBER_ERROR', '<span class="errorText">mindestens ' . ENTRY_TELEPHONE_MIN_LENGTH . ' Zeichen</span>');
 define('ENTRY_FAX_NUMBER', 'Faxnummer:');
 define('ENTRY_FAX_NUMBER_ERROR', '');
 define('ENTRY_NEWSLETTER', 'Newsletter:');
@@ -255,7 +255,7 @@ define('ENTRY_NEWSLETTER_ERROR', '');
 define('IMAGE_BACK', 'Zur&uuml;ck');
 define('IMAGE_BACKUP', 'Sichern');
 define('IMAGE_CANCEL', 'Abbrechen');
-define('IMAGE_CONFIRM', 'Best&auml;tigen');
+define('IMAGE_CONFIRM', 'Bestätigen');
 define('IMAGE_COPY', 'Kopieren');
 define('IMAGE_COPY_TO', 'Kopieren nach');
 define('IMAGE_DETAILS', 'Details');
@@ -278,7 +278,7 @@ define('IMAGE_MOVE', 'Verschieben');
 define('IMAGE_NEW_BANNER', 'Neuer Banner');
 define('IMAGE_NEW_CATEGORY', 'Neue Kategorie');
 define('IMAGE_NEW_COUNTRY', 'Neues Land');
-define('IMAGE_NEW_CURRENCY', 'Neue W&auml;hrung');
+define('IMAGE_NEW_CURRENCY', 'Neue Währung');
 define('IMAGE_NEW_FILE', 'Neue Datei');
 define('IMAGE_NEW_FOLDER', 'Neuer Ordner');
 define('IMAGE_NEW_LANGUAGE', 'Neue Sprache');
@@ -299,7 +299,7 @@ define('IMAGE_RESTORE', 'Wiederherstellen');
 define('IMAGE_RESET', 'Zur&uuml;cksetzen');
 define('IMAGE_SAVE', 'Speichern');
 define('IMAGE_SEARCH', 'Suchen');
-define('IMAGE_SELECT', 'Ausw&auml;hlen');
+define('IMAGE_SELECT', 'Auswählen');
 define('IMAGE_SEND', 'Senden');
 define('IMAGE_SEND_EMAIL', 'E-Mail senden');
 define('IMAGE_UNLOCK', 'Freigeben');
@@ -309,17 +309,17 @@ define('IMAGE_UPLOAD', 'Upload');
 define('IMAGE_TAX_RATES', 'Steuersatz');
 define('IMAGE_DEFINE_ZONES', 'Zone');
 define('IMAGE_PRODUCTS_PRICE_MANAGER', 'Artikelpreis Manager');
-define('IMAGE_UPDATE_PRICE_CHANGES', 'Preis&auml;nderung aktualisieren');
+define('IMAGE_UPDATE_PRICE_CHANGES', 'Preisänderung aktualisieren');
 define('IMAGE_ADD_BLANK_DISCOUNTS', 'Hinzuf&uuml;gen ' . DISCOUNT_QTY_ADD . ' Leerer Mengenrabatt');
 define('IMAGE_CHECK_VERSION', 'Auf neue Version von Zen Cart pr&uuml;fen');
 define('IMAGE_PRODUCTS_TO_CATEGORIES', 'Mehrfachkategorie Link Manager');
 define('IMAGE_ICON_STATUS_ON', 'Status - aktiviert');
 define('IMAGE_ICON_STATUS_OFF', 'Status - deaktiviert');
 define('IMAGE_ICON_LINKED', 'Artikel ist verlinkt');
-define('IMAGE_REMOVE_SPECIAL', 'Info f&uuml;r Preiserm&auml;&szlig;igung entfernen');
-define('IMAGE_REMOVE_FEATURED', 'Info f&uuml;r &auml;hnliche Artikel entfernen');
-define('IMAGE_INSTALL_SPECIAL', 'Info f&uuml;r Preiserm&auml;&szlig;igung hinzuf&uuml;gen');
-define('IMAGE_INSTALL_FEATURED', 'Info f&uuml;r &auml;hnliche Artikel hinzuf&uuml;gen');
+define('IMAGE_REMOVE_SPECIAL', 'Info f&uuml;r Preisermä&szlig;igung entfernen');
+define('IMAGE_REMOVE_FEATURED', 'Info f&uuml;r ähnliche Artikel entfernen');
+define('IMAGE_INSTALL_SPECIAL', 'Info f&uuml;r Preisermä&szlig;igung hinzuf&uuml;gen');
+define('IMAGE_INSTALL_FEATURED', 'Info f&uuml;r ähnliche Artikel hinzuf&uuml;gen');
 define('ICON_PRODUCTS_PRICE_MANAGER', 'Artikelpreis Manager');
 define('ICON_COPY_TO', 'Kopieren nach');
 define('ICON_CROSS', 'Falsch');
@@ -346,9 +346,9 @@ define('TEXT_RESULT_PAGE', 'Seite %s von %d');
 define('TEXT_DISPLAY_NUMBER_OF_ADMINS', 'Zeige <b>%d</b> bis <b>%d</b> (von <b>%d</b> Administratoren)');
 define('TEXT_DISPLAY_NUMBER_OF_BANNERS', 'Zeige <b>%d</b> bis <b>%d</b> (von <b>%d</b> Banner)');
 define('TEXT_DISPLAY_NUMBER_OF_CATEGORIES', 'Zeige <b>%d</b> bis <b>%d</b> (von <b>%d</b> Kategorien)');
-define('TEXT_DISPLAY_NUMBER_OF_COUNTRIES', 'Zeige <b>%d</b> bis <b>%d</b> (von <b>%d</b> L&auml;nder)');
+define('TEXT_DISPLAY_NUMBER_OF_COUNTRIES', 'Zeige <b>%d</b> bis <b>%d</b> (von <b>%d</b> Länder)');
 define('TEXT_DISPLAY_NUMBER_OF_CUSTOMERS', 'Zeige <b>%d</b> bis <b>%d</b> (von <b>%d</b> Kunden)');
-define('TEXT_DISPLAY_NUMBER_OF_CURRENCIES', 'Zeige <b>%d</b> bis <b>%d</b> (von <b>%d</b> W&auml;hrungen)');
+define('TEXT_DISPLAY_NUMBER_OF_CURRENCIES', 'Zeige <b>%d</b> bis <b>%d</b> (von <b>%d</b> Währungen)');
 define('TEXT_DISPLAY_NUMBER_OF_FEATURED', 'Zeigen von <b>%d</b> bis <b>%d</b> (von <b>%d</b> gekennzeichneten Produkten)');
 define('TEXT_DISPLAY_NUMBER_OF_LANGUAGES', 'Zeige <b>%d</b> bis <b>%d</b> (von <b>%d</b> Sprachen)');
 define('TEXT_DISPLAY_NUMBER_OF_MANUFACTURERS', 'Zeige <b>%d</b> bis <b>%d</b> (von <b>%d</b> Hersteller)');
@@ -360,22 +360,22 @@ define('TEXT_DISPLAY_NUMBER_OF_PRODUCTS', 'Zeige <b>%d</b> bis <b>%d</b> (von <b
 define('TEXT_DISPLAY_NUMBER_OF_PRODUCT_TYPES', 'Zeige <b>%d</b> bis <b>%d</b> (von <b>%d</b> Artikeltypen)');
 define('TEXT_DISPLAY_NUMBER_OF_PRODUCTS_EXPECTED', 'Zeige <b>%d</b> bis <b>%d</b> (von <b>%d</b> erwartete Artikel)');
 define('TEXT_DISPLAY_NUMBER_OF_REVIEWS', 'Zeige <b>%d</b> bis <b>%d</b> (von <b>%d</b> Bewertungen)');
-define('TEXT_DISPLAY_NUMBER_OF_SALES', 'Zeige <b>%d</b> bis <b>%d</b> (von <b>%d</b> Abverk&auml;ufe)');
+define('TEXT_DISPLAY_NUMBER_OF_SALES', 'Zeige <b>%d</b> bis <b>%d</b> (von <b>%d</b> Abverkäufe)');
 define('TEXT_DISPLAY_NUMBER_OF_SPECIALS', 'Zeige <b>%d</b> bis <b>%d</b> (von <b>%d</b> Sonderangeboten)');
 define('TEXT_DISPLAY_NUMBER_OF_TAX_CLASSES', 'Zeige <b>%d</b> bis <b>%d</b> (von <b>%d</b> Steuerklassen)');
 define('TEXT_DISPLAY_NUMBER_OF_TEMPLATES', 'Zeige <b>%d</b> bis <b>%d</b> (von <b>%d</b> Vorlage Zuordnungen)');
 define('TEXT_DISPLAY_NUMBER_OF_TAX_ZONES', 'Zeige <b>%d</b> bis <b>%d</b> (von <b>%d</b> Steuerzonen)');
-define('TEXT_DISPLAY_NUMBER_OF_TAX_RATES', 'Zeige <b>%d</b> bis <b>%d</b> (von <b>%d</b> Steuers&auml;tze)');
+define('TEXT_DISPLAY_NUMBER_OF_TAX_RATES', 'Zeige <b>%d</b> bis <b>%d</b> (von <b>%d</b> Steuersätze)');
 define('TEXT_DISPLAY_NUMBER_OF_ZONES', 'Zeige <b>%d</b> bis <b>%d</b> (von <b>%d</b> Zonen)');
 define('PREVNEXT_BUTTON_PREV', '&lt;&lt;');
 define('PREVNEXT_BUTTON_NEXT', '&gt;&gt;');
 define('TEXT_DEFAULT', 'Standard');
 define('TEXT_SET_DEFAULT', 'Als Standard definieren');
-define('TEXT_FIELD_REQUIRED', '�<span class="Feld">* ben&ouml;tigt</span>');
-define('ERROR_NO_DEFAULT_CURRENCY_DEFINED', 'Fehler: Es wurde keine Standardw&auml;hrung definiert. Sie k&ouml;nnen diese im Admin Men&uuml; unter Lokalisationt->W&auml;hrungen definieren.');
+define('TEXT_FIELD_REQUIRED', '<span class="Feld">* ben&ouml;tigt</span>');
+define('ERROR_NO_DEFAULT_CURRENCY_DEFINED', 'Fehler: Es wurde keine Standardwährung definiert. Sie k&ouml;nnen diese im Admin Men&uuml; unter Lokalisationt->Währungen definieren.');
 define('TEXT_CACHE_CATEGORIES', 'Kategorien');
 define('TEXT_CACHE_MANUFACTURERS', 'Hersteller');
-define('TEXT_CACHE_ALSO_PURCHASED', 'Verkaufsf&ouml;rderung / &Auml;hnliche Artikel');
+define('TEXT_CACHE_ALSO_PURCHASED', 'Verkaufsf&ouml;rderung / ähnliche Artikel');
 define('TEXT_NONE', '--kein--');
 define('TEXT_TOP', 'Top');
 define('ERROR_DESTINATION_DOES_NOT_EXIST', 'Fehler: Zielverzeichnis %s existiert nicht');
@@ -385,19 +385,19 @@ define('ERROR_FILETYPE_NOT_ALLOWED', 'Fehler: Dateityp %s ist nicht erlaubt');
 define('SUCCESS_FILE_SAVED_SUCCESSFULLY', 'Erfolgreich: Dateiupload %s wurde gespeichert');
 define('WARNING_NO_FILE_UPLOADED', 'Warnung: Keine Datei hochgeladen.');
 define('WARNING_FILE_UPLOADS_DISABLED', 'Warnung: Die Option &quot;Dateiupload&quot; ist in der php.ini deaktiviert.');
-define('ERROR_ADMIN_SECURITY_WARNING', 'Warnung: Ihr Admin Login ist nicht sicher ... entweder noch Standard-Login-Einstellungen: Admin admin oder nicht entfernt: demo demoonly<br />Login(s) sollten zur Sicherheit so schnell als m&ouml;glich ge&auml;ndert werden.<br />F&uuml;r zus&auml;tzliche Sicherheitshinweise siehe auch Verzeichnis /docs');
+define('ERROR_ADMIN_SECURITY_WARNING', 'Warnung: Ihr Admin Login ist nicht sicher ... entweder noch Standard-Login-Einstellungen: Admin admin oder nicht entfernt: demo demoonly<br />Login(s) sollten zur Sicherheit so schnell als m&ouml;glich geändert werden.<br />F&uuml;r zusätzliche Sicherheitshinweise siehe auch Verzeichnis /docs');
 define('WARNING_DATABASE_VERSION_OUT_OF_DATE', 'Ihre Datenbank scheint einen Patch zu ben&ouml;tigen. Siehe auch Tools->Server Information um die Patchlevels zu betrachten.');
 define('WARN_DATABASE_VERSION_PROBLEM','true');
 //set to false to turn off warnings about database version mismatches
 define('WARNING_ADMIN_DOWN_FOR_MAINTENANCE', '<strong>WARNUNG:</strong> Der Shop ist z.Zt. wegen Wartung geschlossen ...<br />ANMERKUNG: Sie k&ouml;nnen die meisten Zahlungs- und Versand-Module im Wartungszustand nicht pr&uuml;fen');
 define('WARNING_BACKUP_CFG_FILES_TO_DELETE', 'WARNUNG: Diese Dateien sollten gel&ouml;scht werden, um fremde Zugriffe zu verhindern: ');
 define('WARNING_INSTALL_DIRECTORY_EXISTS', 'Warnung: Das Installationsverzeichnis besteht noch: ' . DIR_FS_CATALOG . 'zc_install. Dieses Verzeichnis aus Sicherheitsgr&uuml;nden bitte entfernen.');
-define('WARNING_CONFIG_FILE_WRITEABLE', 'Warnung: Ihre Konfigurationsdatei: %sincludes/configure.php. Dies ist ein potenzielles Sicherheitsrisiko - &auml;ndern Sie bitte die Zugriffsrechte (Read-only, CHMOD 644 oder 444l).');
+define('WARNING_CONFIG_FILE_WRITEABLE', 'Warnung: Ihre Konfigurationsdatei: %sincludes/configure.php. Dies ist ein potenzielles Sicherheitsrisiko - ändern Sie bitte die Zugriffsrechte (Read-only, CHMOD 644 oder 444l).');
 define('WARNING_COULD_NOT_LOCATE_LANG_FILE', 'WARNING: Could not locate language file: ' . ' !!!TRANSLATE!!! file: admin/includes/languages/LANGUAGE.php at line 357');
 define('ERROR_MODULE_REMOVAL_PROHIBITED', 'ERROR: Module removal prohibited: ' . ' !!!TRANSLATE!!! file: admin/includes/languages/LANGUAGE.php at line 357');
 define('_JANUARY', 'Januar');
 define('_FEBRUARY', 'Februar');
-define('_MARCH', 'M&auml;rz');
+define('_MARCH', 'März');
 define('_APRIL', 'April');
 define('_MAY', 'Mai');
 define('_JUNE', 'Juni');
@@ -416,9 +416,9 @@ define('TEXT_VALID_PRODUCTS_MODEL', 'Artikelnummer');
 define('TEXT_VALID_CATEGORIES_LIST', 'Kategorienliste');
 define('TEXT_VALID_CATEGORIES_ID', 'Kategorie ID');
 define('TEXT_VALID_CATEGORIES_NAME', 'Kategoriename');
-define('DEFINE_LANGUAGE', 'Sprache w&auml;hlen:');
-define('BOX_ENTRY_COUNTER_DATE', 'Besucherz&auml;hler gestartet:');
-define('BOX_ENTRY_COUNTER', 'Besucherz&auml;hler:');
+define('DEFINE_LANGUAGE', 'Sprache wählen:');
+define('BOX_ENTRY_COUNTER_DATE', 'Besucherzähler gestartet:');
+define('BOX_ENTRY_COUNTER', 'Besucherzähler:');
 
 // not installed
 define('NOT_INSTALLED_TEXT', 'Nicht installiert');
@@ -494,15 +494,15 @@ define('TEXT_VERSION_CHECK_CURRENT', 'Sie verwenden die aktuellste Version von Z
 // downloads manager
 define('TEXT_DISPLAY_NUMBER_OF_PRODUCTS_DOWNLOADS_MANAGER', 'Zeige <b>%d</b> bis <b>%d</b> (von <b>%d</b> Downloads)');
 define('BOX_CATALOG_CATEGORIES_ATTRIBUTES_DOWNLOADS_MANAGER', 'Download Manager');
-define('BOX_CATALOG_FEATURED', '&Auml;hnliche Artikel');
-define('ERROR_NOTHING_SELECTED', 'Es wurde nichts ausgew&auml;hlt ... Es wurden keine &Auml;nderungen durchgef&uuml;hrt');
+define('BOX_CATALOG_FEATURED', 'ähnliche Artikel');
+define('ERROR_NOTHING_SELECTED', 'Es wurde nichts ausgewählt ... Es wurden keine änderungen durchgef&uuml;hrt');
 define('TEXT_STATUS_WARNING', '<strong>HINWEIS:</strong> Der Status ist auf &quot;auto aktiviert/deaktiviert&quot;, wenn Datumsangaben vorliegen');
 define('TEXT_LEGEND_LINKED', 'Verlinkter Artikel');
 define('TEXT_MASTER_CATEGORIES_ID', 'Artikel Hauptkategorie:');
 define('TEXT_LEGEND', 'LEGENDE: ');
 define('TEXT_LEGEND_STATUS_OFF', 'Status AUS ');
 define('TEXT_LEGEND_STATUS_ON', 'Status AN ');
-define('TEXT_INFO_MASTER_CATEGORIES_ID', '<strong>HINWEIS: Die Hauptkategorie wird f&uuml;r die Bepreisung verwendet, wo<br />Artikelkategorien Preise bei verlinkten Artikel beeinflussen, z.B. bei Abverk&auml;ufen</strong>');
+define('TEXT_INFO_MASTER_CATEGORIES_ID', '<strong>HINWEIS: Die Hauptkategorie wird f&uuml;r die Bepreisung verwendet, wo<br />Artikelkategorien Preise bei verlinkten Artikel beeinflussen, z.B. bei Abverkäufen</strong>');
 define('TEXT_YES', 'Ja');
 define('TEXT_NO', 'Nein');
 
@@ -511,8 +511,8 @@ define('ERROR_SHIPPING_CONFIGURATION', '<strong>Fehler in der Versandkonfigurati
 define('ERROR_SHIPPING_ORIGIN_ZIP', '<strong>Warnung:</strong> Die Postleitzahl des Webshops ist nicht definiert. (Einstellungen in Konfiguration -> Versandoptionen)');
 define('ERROR_ORDER_WEIGHT_ZERO_STATUS', '<strong>Warnung:</strong> 0kg Gewicht ist f&uuml;r kostenfreien Versand konfiguriert und das Modul <strong>versandkostenfrei</strong> ist deaktiviert');
 define('ERROR_USPS_STATUS', '<strong>Warnung:</strong> Bei USPS fehlt entweder der Benutzername und/oder das Passwort, oder ... ist auf TEST gesetzt und arbeitet nicht im PRODUKTIONSMODUS<br />Wenn Sie weiterhin keine Werte erhalten, kontaktieren Sie bitte USPS und aktivieren dort Ihren Account');
-define('ERROR_SHIPPING_MODULES_NOT_DEFINED', 'ANMERKUNG: Sie haben keine Versandmodule aktiviert. Bitte &auml;ndern Sie das bei Module->Versandarten.');
-define('ERROR_PAYMENT_MODULES_NOT_DEFINED', 'ANMERKUNG: Sie haben keine Zahlungsmodule aktiviert. Bitte &auml;ndern Sie das in Module->Zahlungsarten.');
+define('ERROR_SHIPPING_MODULES_NOT_DEFINED', 'ANMERKUNG: Sie haben keine Versandmodule aktiviert. Bitte ändern Sie das bei Module->Versandarten.');
+define('ERROR_PAYMENT_MODULES_NOT_DEFINED', 'ANMERKUNG: Sie haben keine Zahlungsmodule aktiviert. Bitte ändern Sie das in Module->Zahlungsarten.');
 
 // text pricing
 define('TEXT_CHARGES_WORD', 'Berechnete Geb&uuml;hren:');
@@ -527,8 +527,8 @@ define('TEXT_ATTRIBUTES_QTY_PRICES_HELP', 'Option f&uuml;r Mengenrabatte');
 define('TABLE_ATTRIBUTES_QTY_PRICE_QTY', 'Stk.');
 define('TABLE_ATTRIBUTES_QTY_PRICE_PRICE', 'Preis');
 define('TEXT_ATTRIBUTES_QTY_PRICES_ONETIME_HELP', 'Option f&uuml;r einmalige Geb&uuml;hren bei Mengenrabatten');
-define('TEXT_CATEGORIES_PRODUCTS', 'W&auml;hlen Sie eine Kategorie mit Artikel ...');
-define('TEXT_PRODUCT_TO_VIEW', 'W&auml;hlen Sie einen Artikel und klicken Sie auf anzeigen ...');
+define('TEXT_CATEGORIES_PRODUCTS', 'Wählen Sie eine Kategorie mit Artikel ...');
+define('TEXT_PRODUCT_TO_VIEW', 'Wählen Sie einen Artikel und klicken Sie auf anzeigen ...');
 define('TEXT_INFO_SET_MASTER_CATEGORIES_ID', 'Ung&uuml;ltige Master Category ID');
 define('TEXT_INFO_ID', ' ID# ');
 define('TEXT_INFO_SET_MASTER_CATEGORIES_ID_WARNING', '<strong>Achtung:</strong> Dieser Artikel ist mit mehreren Kategorien verlinkt, aber die Masterkategorie wurde nicht eingestellt!');
@@ -552,7 +552,7 @@ define('TEXT_WARNING_HTML_DISABLED', '<span class = "main">Hinweis: Sie verwende
 define('TEXT_WARNING_CANT_DISPLAY_HTML', '<span class = "main">Hinweis: Sie verwenden &quot;nur-TEXT&quot; als E-Mail Versandmethode. Wenn Sie E-Mails als HTML versenden wollen, m&uuml;ssen Sie &quot;Verwende MIME HTML&quot; in den E-Mail Optionen aktivieren</span>');
 define('TEXT_EMAIL_CLIENT_CANT_DISPLAY_HTML', 'Sie k&ouml;nnen diesen Text lesen, weil wir Ihnen eine E-Mail im HTML Format zugesendet haben. Ihr E-Mail Programm kann jedoch keine Nachrichten im HTML Format anzeigen.');
 define('ENTRY_EMAIL_PREFERENCE', 'E-Mail Formateinstellungen:');
-define('ENTRY_EMAIL_FORMAT_COMMENTS', 'Die Auswahl &quot;Nie&quot; oder &quot;W&uuml;nscht keine Newsletter&quot; deaktiviert ALLE E-Mails, inklusive der Bestellbest&auml;tigungen');
+define('ENTRY_EMAIL_FORMAT_COMMENTS', 'Die Auswahl &quot;Nie&quot; oder &quot;W&uuml;nscht keine Newsletter&quot; deaktiviert ALLE E-Mails, inklusive der Bestellbestätigungen');
 define('ENTRY_EMAIL_HTML_DISPLAY', 'HTML');
 define('ENTRY_EMAIL_TEXT_DISPLAY', 'Nur-TEXT');
 define('ENTRY_EMAIL_NONE_DISPLAY', 'Nie');
@@ -561,7 +561,7 @@ define('ENTRY_NOTHING_TO_SEND', 'Ihre Nachricht hat keinen Inhalt');
 define('EMAIL_SEND_FAILED', 'Fehler: Senden der E-Mail an: &quot;%s&quot; <%s> mit Betreff: &quot;%s&quot; fehlgeschlagen');
 define('EDITOR_NONE', 'Normaler Text');
 define('TEXT_EDITOR_INFO', 'Interner HTML-Editor');
-define('ERROR_EDITORS_FOLDER_NOT_FOUND', 'Sie haben den internen HTML-Editor vorgew&auml;hlt in Konfiguration -> Mein Shop. Der Ordner kann nicht lokalisiert werden. Bitte pr&uuml;fen Sie, ob der Ordner verschoben wurde oder deaktivieren Sie die getroffene Einstellung  \''.DIR_WS_CATALOG.'editor/\' Ordner');
+define('ERROR_EDITORS_FOLDER_NOT_FOUND', 'Sie haben den internen HTML-Editor vorgewählt in Konfiguration -> Mein Shop. Der Ordner kann nicht lokalisiert werden. Bitte pr&uuml;fen Sie, ob der Ordner verschoben wurde oder deaktivieren Sie die getroffene Einstellung  \''.DIR_WS_CATALOG.'editor/\' Ordner');
 define('TEXT_CATEGORIES_PRODUCTS_SORT_ORDER_INFO', 'Artikelsortierung: ');
 define('TEXT_SORT_PRODUCTS_SORT_ORDER_PRODUCTS_NAME', 'Artikelsortierung, Artikelname');
 define('TEXT_SORT_PRODUCTS_NAME', 'Artikelname');
@@ -574,7 +574,7 @@ define('TEXT_SORT_CATEGORIES_SORT_ORDER_PRODUCTS_NAME', 'Kategorie Sortierung, K
 define('TEXT_SORT_CATEGORIES_NAME', 'Kategoriename');
 define('TABLE_HEADING_YES', 'Ja');
 define('TABLE_HEADING_NO', 'Nein');
-define('TEXT_PRODUCTS_IMAGE_MANUAL', '<br /><strong>Oder w&auml;hlen Sie ein bestehendes Bild vom Server, Dateiname:</strong>');
+define('TEXT_PRODUCTS_IMAGE_MANUAL', '<br /><strong>Oder wählen Sie ein bestehendes Bild vom Server, Dateiname:</strong>');
 define('TEXT_IMAGES_OVERWRITE', 'Bestehendes Bild &uuml;berschreiben? Verwenden Sie &quot;Nein&quot; bei manuell eingegebenem Namen');
 define('TEXT_IMAGE_OVERWRITE_WARNING', 'WARNUNG: DATEINAME wurde aktualisiert aber nicht &uuml;berschrieben ');
 define('TEXT_IMAGES_DELETE', 'Bild l&ouml;schen?<br />Bild wurde nicht vom Server entfernt:');
@@ -586,7 +586,7 @@ define('ERROR_DEFINE_PRODUCTS_MASTER_CATEGORIES_ID', 'Warnung: Diesem Produkt is
 define('BUTTON_ADD_PRODUCT_TYPES_SUBCATEGORIES_ON', 'Hinzuf&uuml;gen inklusive Unterkategorien');
 define('BUTTON_ADD_PRODUCT_TYPES_SUBCATEGORIES_OFF', 'Hinzuf&uuml;gen ohne Unterkategorien');
 define('BUTTON_PREVIOUS_ALT', 'Vorheriger Artikel');
-define('BUTTON_NEXT_ALT', 'N&auml;chster Artikel');
+define('BUTTON_NEXT_ALT', 'Nächster Artikel');
 define('BUTTON_PRODUCTS_TO_CATEGORIES', 'Mehrfachkategorie Link Manager');
 define('BUTTON_PRODUCTS_TO_CATEGORIES_ALT', 'Kopiere Artikel in mehrere Kategorien');
 define('TEXT_INFO_OPTION_NAMES_VALUES_COPIER_STATUS', 'Alle globalen Kopier-, Hinzuf&uuml;gen- und L&ouml;scheigenschaften sind z.Zt. AUS');
@@ -599,7 +599,7 @@ define('ERROR_CATALOG_IMAGE_DIRECTORY_NOT_WRITEABLE', 'Fehler: Bilderverzeichnis
 define('ERROR_CATALOG_IMAGE_DIRECTORY_DOES_NOT_EXIST', 'Error: Bilderverzeichnis existiert nicht: ' . DIR_FS_CATALOG_IMAGES);
 define('ERROR_CANNOT_MOVE_CATEGORY_TO_PARENT', 'Fehler: Kategorie kann nicht in eine Unterkategorie verschoben werden.');
 define('ERROR_CANNOT_MOVE_PRODUCT_TO_CATEGORY_SELF', 'Fehler: Produkt existiert bereits in dieser Kategorie.');
-define('ERROR_CATEGORY_HAS_PRODUCTS', 'Fehler: Kategorie enth&auml;lt Produkte!<br /><br />Diese Aktion ist tempor&auml;r zul&auml;ssig w&auml;hrend Sie Kategorien neu anordnen. Dennoch gilt der Grundsatz: Eine Kategorie kann entweder andere Kategorien oder Produkte enthalten aber <strong>niemals</strong>beides!');
+define('ERROR_CATEGORY_HAS_PRODUCTS', 'Fehler: Kategorie enthält Produkte!<br /><br />Diese Aktion ist temporär zulässig während Sie Kategorien neu anordnen. Dennoch gilt der Grundsatz: Eine Kategorie kann entweder andere Kategorien oder Produkte enthalten aber <strong>niemals</strong>beides!');
 define('SUCCESS_CATEGORY_MOVED', 'Erfolgreich! Kategorie erfolgreich verschoben ...');
 define('ERROR_CANNOT_MOVE_CATEGORY_TO_CATEGORY_SELF', 'Fehler: Kategorie kann nicht in sich selbst verschoben werden! ID#');
 
@@ -616,9 +616,9 @@ define('TEXT_FREE_SHIPPING_PREVIEW','Achtung: Virtueller Artikel - Versandkosten
 define('TEXT_FREE_SHIPPING_EDIT','Achtung: Virtueller Artikel - Versandkostenfrei &amp; keine Versandadresse notwendig!<br />Das Versandarten Modul &quot;Immer versandkostenfrei&quot; muss installiert sein wenn alle Artikel einer Bestellung versandkostenfrei sind');
 
 // admin activity log warnings
-define('WARNING_ADMIN_ACTIVITY_LOG_DATE', 'Achtung: Die Admin Protokolltabelle hat Eintr&auml;ge die &auml;lter sind als 2 Monate und sollte deshalb geleert werden ... ');
-define('WARNING_ADMIN_ACTIVITY_LOG_RECORDS', 'Achtung: Die Admin Protokolltabelle hat &uuml;ber 50000 Eintr&auml;ge und sollte deshalb geleert werden ... ');
-define('RESET_ADMIN_ACTIVITY_LOG', 'W&auml;hlen Sie Tools -> Shopmanager und leeren die Admin-Protokolltabelle');
+define('WARNING_ADMIN_ACTIVITY_LOG_DATE', 'Achtung: Die Admin Protokolltabelle hat Einträge die älter sind als 2 Monate und sollte deshalb geleert werden ... ');
+define('WARNING_ADMIN_ACTIVITY_LOG_RECORDS', 'Achtung: Die Admin Protokolltabelle hat &uuml;ber 50000 Einträge und sollte deshalb geleert werden ... ');
+define('RESET_ADMIN_ACTIVITY_LOG', 'Wählen Sie Tools -> Shopmanager und leeren die Admin-Protokolltabelle');
 define('CATEGORY_HAS_SUBCATEGORIES', 'Achtung: Kategorie besitzt Unterkategorien<br />Artikel k&ouml;nnen nicht hinzugef&uuml;gt werden');
 define('WARNING_WELCOME_DISCOUNT_COUPON_EXPIRES_IN', 'WARNING! Welcome Email Discount Coupon expires in %s days' . ' !!!TRANSLATE!!! file: admin/includes/languages/LANGUAGE.php at line 357');
 
@@ -628,8 +628,6 @@ define('WARNING_WELCOME_DISCOUNT_COUPON_EXPIRES_IN', 'WARNING! Welcome Email Dis
   include(zen_get_file_directory(DIR_FS_CATALOG_LANGUAGES . $_SESSION['language'] . '/', FILENAME_OTHER_IMAGES_NAMES, 'false'));
 
 // Additional Localisation - Languages - Phone Country Code
-define('TEXT_INFO_LANGUAGE_ID', 'Geben Sie den Telefon L&auml;ndercode OHNE 0 ein<br />(english MUSS 1 sein, deutsch MUSS 43 sein):');
+define('TEXT_INFO_LANGUAGE_ID', 'Geben Sie den Telefon Ländercode OHNE 0 ein<br />(english MUSS 1 sein, deutsch MUSS 43 sein):');
 define('TEXT_INFO_LANGUAGE_CODE', 'Code:<br />(en = englisch, de = deutsch)');
 
-
-?>
