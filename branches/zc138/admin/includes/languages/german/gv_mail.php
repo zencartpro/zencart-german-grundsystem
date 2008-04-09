@@ -1,24 +1,12 @@
 <?php
-//
-// +----------------------------------------------------------------------+
-// |zen-cart Open Source E-commerce                                       |
-// +----------------------------------------------------------------------+
-// | Copyright (c) 2003 The zen-cart developers                           |
-// |                                                                      |
-// |  http://www.zen-cart.at/index.php                                    |
-// |                                                                      |
-// | Portions Copyright (c) 2003 osCommerce                               |
-// +----------------------------------------------------------------------+
-// | This source file is subject to version 2.0 of the GPL license,       |
-// | that is bundled with this package in the file LICENSE, and is        |
-// | available through the world-wide-web at the following url:           |
-// | http://www.zen-cart.at/license/2_0.txt.                             |
-// | If you did not receive a copy of the zen-cart license and are unable |
-// | to obtain it through the world-wide-web, please send a note to       |
-// | license@zen-cart.com so we can mail you a copy immediately.          |
-// +----------------------------------------------------------------------+
-//  $Id$
-//
+/**
+ * @package languageDefines
+ * @copyright Copyright 2003-2008 Zen Cart Development Team
+ * @copyright Portions Copyright 2003 osCommerce
+ * @license http://www.zen-cart.at/license/2_0.txt GNU Public License V2.0
+ * @translator: cyaneo/hugo13/wflohr    http://www.zen-cart.at    
+ * @version $Id$
+ */
 
 define('HEADING_TITLE', TEXT_GV_NAME . ' an Kunden versenden');
 define('TEXT_CUSTOMER', 'Kunde:');
@@ -29,28 +17,25 @@ define('TEXT_AMOUNT', 'Betrag');
 define('TEXT_MESSAGE', 'Nur-Text <br />Nachricht:');
 define('TEXT_RICH_TEXT_MESSAGE', 'Rich-Text <br />Nachricht:');
 define('TEXT_SINGLE_EMAIL', '<span class="smallText">Verwenden Sie dieses Feld, um eine einzelne E-Mail zu senden</span>');
-define('TEXT_SELECT_CUSTOMER', 'Kunde w&auml;hlen');
+define('TEXT_SELECT_CUSTOMER', 'Kunde wählen');
 define('TEXT_ALL_CUSTOMERS', 'Alle Kunden');
 define('TEXT_NEWSLETTER_CUSTOMERS', 'An alle Newsletter Abonnementen');
 define('NOTICE_EMAIL_SENT_TO', 'Hinweis: E-Mail wurde versendet an: %s');
-define('ERROR_NO_CUSTOMER_SELECTED', 'Fehler: Es wurde kein Kunde ausgew&auml;hlt.');
-define('ERROR_NO_AMOUNT_SELECTED', 'Fehler: Kein Betrag gew&auml;hlt.');
+define('ERROR_NO_CUSTOMER_SELECTED', 'Fehler: Es wurde kein Kunde ausgewählt.');
+define('ERROR_NO_AMOUNT_SELECTED', 'Fehler: Kein Betrag gewählt.');
 define('ERROR_NO_SUBJECT', 'Fehler: Es wurde kein Betreff angegeben.');
 define('ERROR_GV_AMOUNT', 'Bitte den Wert ohne Symbole angeben. Beispiel: 25.00');
-define('TEXT_GV_ANNOUNCE', '<font color="#0000ff">Wir freuen uns, Ihnen einen ' . TEXT_GV_NAME . ' schenken zu k&ouml;nnen</font>');
+define('TEXT_GV_ANNOUNCE', '<font color="#0000ff">Wir freuen uns, Ihnen einen ' . TEXT_GV_NAME . ' schenken zu können</font>');
 define('TEXT_GV_WORTH', 'Der ' . TEXT_GV_NAME . ' hat einen Wert von ');
-define('TEXT_TO_REDEEM', 'Um den ' . TEXT_GV_NAME . ', einl&ouml;sen zu k&ouml;nnen, klicken Sie bitte auf nachstehenden Link.');
-define('TEXT_WHICH_IS', ' notieren Sie sich hierf&uuml;r bitte diese Gutscheinnummer: ');
+define('TEXT_TO_REDEEM', 'Um den ' . TEXT_GV_NAME . ', einlösen zu können, klicken Sie bitte auf nachstehenden Link.');
+define('TEXT_WHICH_IS', ' notieren Sie sich hierfür bitte diese Gutscheinnummer: ');
 define('TEXT_IN_CASE', ' Klicken Sie nun auf den nachstehenden Link: ');
-define('TEXT_OR_VISIT', 'Alternativ dazu k&ouml;nne Sie uns auf ');
-define('TEXT_ENTER_CODE', ' besuchen und tragen die Gutscheinnummer w&auml;hrend Ihres Bestellvorgangs ein.');
-define('TEXT_CLICK_TO_REDEEM', 'Zum Einl&ouml;sen bitte hier klicken');
+define('TEXT_OR_VISIT', 'Alternativ dazu könne Sie uns auf ');
+define('TEXT_ENTER_CODE', ' besuchen und tragen die Gutscheinnummer während Ihres Bestellvorgangs ein.');
+define('TEXT_CLICK_TO_REDEEM', 'Zum Einlösen bitte hier klicken');
 
-define ('TEXT_REDEEM_COUPON_MESSAGE_HEADER', 'Sie haben einen ' . TEXT_GV_NAME . ' erworben. Aus Sicherheitsgr&uuml;nden wurde der Betrag des ' . TEXT_GV_NAME . 's nicht sofort freigegeben. Der Shop Inhaber hat diesen Betrag nun freigegeben.');
+define ('TEXT_REDEEM_COUPON_MESSAGE_HEADER', 'Sie haben einen ' . TEXT_GV_NAME . ' erworben. Aus Sicherheitsgründen wurde der Betrag des ' . TEXT_GV_NAME . 's nicht sofort freigegeben. Der Shop Inhaber hat diesen Betrag nun freigegeben.');
 define ('TEXT_REDEEM_COUPON_MESSAGE_AMOUNT', "\n\n" . 'Der Betrag des  ' . TEXT_GV_NAME . 's war %s');
-define ('TEXT_REDEEM_COUPON_MESSAGE_BODY', "\n\n" . 'Sie k&ouml;nnen nun unseren Shop besuchen, sich anmelden und den Betrag des   ' . TEXT_GV_NAME . 's weiterverschicken.');
+define ('TEXT_REDEEM_COUPON_MESSAGE_BODY', "\n\n" . 'Sie können nun unseren Shop besuchen, sich anmelden und den Betrag des   ' . TEXT_GV_NAME . 's weiterverschicken.');
 define ('TEXT_REDEEM_COUPON_MESSAGE_FOOTER', "\n\n");
 
-
-
-?>

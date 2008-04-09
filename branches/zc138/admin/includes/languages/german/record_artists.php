@@ -1,46 +1,32 @@
 <?php
-//
-// +----------------------------------------------------------------------+
-// |zen-cart Open Source E-commerce                                       |
-// +----------------------------------------------------------------------+
-// | Copyright (c) 2003 The zen-cart developers                           |
-// |                                                                      |
-// |  http://www.zen-cart.at/index.php                                    |
-// |                                                                      |
-// | Portions Copyright (c) 2003 osCommerce                               |
-// +----------------------------------------------------------------------+
-// | This source file is subject to version 2.0 of the GPL license,       |
-// | that is bundled with this package in the file LICENSE, and is        |
-// | available through the world-wide-web at the following url:           |
-// | http://www.zen-cart.at/license/2_0.txt.                             |
-// | If you did not receive a copy of the zen-cart license and are unable |
-// | to obtain it through the world-wide-web, please send a note to       |
-// | license@zen-cart.com so we can mail you a copy immediately.          |
-// +----------------------------------------------------------------------+
-//  $Id$
-//
-define('HEADING_TITLE', 'K&uuml;nstler');
-define('TABLE_HEADING_RECORD_ARTISTS', 'K&uuml;nstler');
+/**
+ * @package languageDefines
+ * @copyright Copyright 2003-2008 Zen Cart Development Team
+ * @copyright Portions Copyright 2003 osCommerce
+ * @license http://www.zen-cart.at/license/2_0.txt GNU Public License V2.0
+ * @translator: cyaneo/hugo13/wflohr    http://www.zen-cart.at    
+ * @version $Id$
+ */
+define('HEADING_TITLE', 'Künstler');
+define('TABLE_HEADING_RECORD_ARTISTS', 'Künstler');
 define('TABLE_HEADING_ACTION', 'Aktion');
-define('TEXT_NEW_INTRO', 'Geben Sie bitte unten die Informationen f&uuml;r den neue K&uuml;nstler an.');
-define('TEXT_EDIT_INTRO', 'Bearbeiten Sie bitte unten die Informationen des K&uuml;nstlers.');
-define('TEXT_DELETE_INTRO', 'Sind Sie sicher, dass Sie diesen K&uuml;nstler l&ouml;schen wollen?');
-define('TEXT_DELETE_IMAGE', 'Bild l&ouml;schen?.');
-define('TEXT_RECORD_ARTIST_NAME', 'K&uuml;nstlername');
-define('TEXT_RECORD_ARTIST_IMAGE', 'K&uuml;nstlerbild');
-define('TEXT_RECORD_ARTIST_URL', 'Webseite des K&uuml;nstlers');
+define('TEXT_NEW_INTRO', 'Geben Sie bitte unten die Informationen für den neue Künstler an.');
+define('TEXT_EDIT_INTRO', 'Bearbeiten Sie bitte unten die Informationen des Künstlers.');
+define('TEXT_DELETE_INTRO', 'Sind Sie sicher, dass Sie diesen Künstler löschen wollen?');
+define('TEXT_DELETE_IMAGE', 'Bild löschen?.');
+define('TEXT_RECORD_ARTIST_NAME', 'Künstlername');
+define('TEXT_RECORD_ARTIST_IMAGE', 'Künstlerbild');
+define('TEXT_RECORD_ARTIST_URL', 'Webseite des Künstlers');
 define('TEXT_ARTISTS_IMAGE_DIR', 'Bildverzeichnis&nbsp;');
-define('TEXT_ARTISTS_IMAGE_MANUAL', '<strong>Oder w&auml;hlen Sie ein bestehendes Bild vom Server, Dateiname:</strong>');
-define('TEXT_HEADING_NEW_RECORD_ARTIST', 'Neuer K&uuml;nstler');
-define('TEXT_HEADING_EDIT_RECORD_ARTIST', 'K&uuml;nstler bearbeiten');
-define('TEXT_HEADING_DELETE_RECORD_ARTIST', 'K&uuml;nstler l&ouml;schen');
+define('TEXT_ARTISTS_IMAGE_MANUAL', '<strong>Oder wählen Sie ein bestehendes Bild vom Server, Dateiname:</strong>');
+define('TEXT_HEADING_NEW_RECORD_ARTIST', 'Neuer Künstler');
+define('TEXT_HEADING_EDIT_RECORD_ARTIST', 'Künstler bearbeiten');
+define('TEXT_HEADING_DELETE_RECORD_ARTIST', 'Künstler löschen');
 define('TEXT_DATE_ADDED', 'Erstelldatum');
-define('TEXT_LAST_MODIFIED', 'Letzte &Auml;nderung');
+define('TEXT_LAST_MODIFIED', 'Letzte änderung');
 define('TEXT_IMAGE_NONEXISTENT', 'Das Bild existiert nicht');
 define('TEXT_PRODUCTS', 'Verlinkte Artikel');
-define('TEXT_DISPLAY_NUMBER_OF_ARTISTS', 'Zeige <strong>%d</strong> bis <strong>%d</strong> (von <strong>%d</strong> K&uuml;nstlern)');
-define('TEXT_DELETE_PRODUCTS', 'Soll dieser K&uuml;nstler und alle Verlinkungen zu diesem K&uuml;nstler gel&ouml;scht werden?');
-define('TEXT_DELETE_WARNING_PRODUCTS', '<b>WARNUNG:</b> Es gibt %s Verlinkungen zu diesem K&uuml;nstler!');
+define('TEXT_DISPLAY_NUMBER_OF_ARTISTS', 'Zeige <strong>%d</strong> bis <strong>%d</strong> (von <strong>%d</strong> Künstlern)');
+define('TEXT_DELETE_PRODUCTS', 'Soll dieser Künstler und alle Verlinkungen zu diesem Künstler gelöscht werden?');
+define('TEXT_DELETE_WARNING_PRODUCTS', '<b>WARNUNG:</b> Es gibt %s Verlinkungen zu diesem Künstler!');
 
-
-?>

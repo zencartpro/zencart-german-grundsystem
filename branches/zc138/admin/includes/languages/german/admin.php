@@ -18,9 +18,7 @@
 // | license@zen-cart.com so we can mail you a copy immediately.          |
 // +----------------------------------------------------------------------+
 //  $Id$
-// $Id$ xx        xx
 
-// HWH
 define('HEADING_TITLE','Administratoren');
 define('TABLE_HEADING_ADMINS_NAME','Admin Name');
 define('TABLE_HEADING_ADMINS_ID','ID');
