@@ -6,7 +6,7 @@
  * @copyright Portions Copyright 2003 Jason LeBaron 
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
  * @translator: cyaneo/hugo13/wflohr	http://www.zen-cart.at	2006-11-02
- * @version $Id: linkpoint_api.php 4657 2006-10-02 01:46:39Z drbyte $
+ * @version $Id$
  */
  
 define('MODULE_PAYMENT_LINKPOINT_API_TEXT_ADMIN_TITLE', 'Linkpoint/YourPay API');

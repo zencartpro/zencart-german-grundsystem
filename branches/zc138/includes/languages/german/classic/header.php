@@ -4,7 +4,7 @@
 * @copyright Copyright 2003-2005 Zen Cart Development Team
 * @copyright Portions Copyright 2003 osCommerce
 * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
-* @version $Id: header.php 2 2006-03-31 09:55:33Z rainer $
+* @version $Id$
 */
 
 // header text in includes/header.php

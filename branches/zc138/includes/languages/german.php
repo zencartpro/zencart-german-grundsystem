@@ -5,7 +5,7 @@
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
  * @translator: cyaneo/hugo13/wflohr/maleborg	http://www.zen-cart.at	2007-01-03
- * @version $Id: english.php 5454 2006-12-29 20:10:17Z drbyte $
+ * @version $Id$
  */
 
 // FOLLOWING WERE moved to meta_tags.php

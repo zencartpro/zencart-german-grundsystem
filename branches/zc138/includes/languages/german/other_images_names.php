@@ -5,7 +5,7 @@
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
  * @translator: cyaneo/hugo13/wflohr	http://www.zen-cart.at	2006-11-02
- * @version $Id: other_images_names.php 3056 2006-02-21 06:41:36Z birdbrain $
+ * @version $Id$
  */
 
 /*

@@ -17,7 +17,7 @@
 // | to obtain it through the world-wide-web, please send a note to       |
 // | license@zen-cart.com so we can mail you a copy immediately.          |
 // +----------------------------------------------------------------------+
-// $Id: whos_online.php 1969 2005-09-13 06:57:21Z drbyte $
+// $Id$
 //
 define('BOX_HEADING_WHOS_ONLINE', 'Who\'s Online');
 define('BOX_WHOS_ONLINE_THEREIS', 'There currently is');

@@ -21,7 +21,7 @@
 // | Date of Translation:  31.03.06                                       |
 // | Homepage:             www.zen-cart.at                                |
 // +----------------------------------------------------------------------+
-// $Id: document_general.php 68 2006-11-30 11:33:05Z rainer $
+// $Id$
 //
 
 DEFINE('BOX_HEADING_DOCUMENT_CATEGORIES', 'Dokumente');

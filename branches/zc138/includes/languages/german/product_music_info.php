@@ -5,7 +5,7 @@
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
  * @translator: cyaneo/hugo13/wflohr	http://www.zen-cart.at	2006-11-02
- * @version $Id: product_music_info.php 4336 2006-09-01 20:04:54Z drbyte $
+ * @version $Id$
  */
 
 define('TEXT_PRODUCT_NOT_FOUND', 'Entschuldigen Sie bitte, aber der gew&uuml;nschte Artikel konnte nicht gefunden werden.');

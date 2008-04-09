@@ -17,7 +17,7 @@
 // | to obtain it through the world-wide-web, please send a note to       |
 // | license@zen-cart.com so we can mail you a copy immediately.          |
 // +----------------------------------------------------------------------+
-// $Id:$
+// $Id$
 //
 define('VAT_SHOW', true);
 define('VAT_SHOW_TEXT','<span id="vatinfo"><br/>Price incl. VAT.<br/><a href="index.php?main_page=shippinginfo" target="_self">plus forwarding expenses</a><br/></span>');

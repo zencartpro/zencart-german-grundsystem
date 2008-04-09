@@ -4,7 +4,7 @@
  * @copyright Copyright 2003-2007 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: cc.php 6361 2007-05-24 21:17:14Z drbyte $
+ * @version $Id$
  */
  
   define('MODULE_PAYMENT_CC_TEXT_ADMIN_TITLE', 'Credit Card - Offline Processing');

@@ -21,7 +21,7 @@
 // | Date of Translation:  31.03.06                                       |
 // | Homepage:             www.zen-cart.at                                |
 // +----------------------------------------------------------------------+
-// $Id: product_free_shipping.php 68 2006-11-30 11:33:05Z rainer $
+// $Id$
 //
 // defined as an image, text or a combination for Always Free Shipping
 // comment out the ones you do not which to use

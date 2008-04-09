@@ -5,7 +5,7 @@
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
  * @translator: cyaneo/hugo13/wflohr	http://www.zen-cart.at	2006-11-02
- * @version $Id: icon_names.php 4224 2006-08-24 01:41:50Z drbyte $
+ * @version $Id$
  */
 
 // define the icon images used in the project

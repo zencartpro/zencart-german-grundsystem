@@ -17,7 +17,7 @@
 // | to obtain it through the world-wide-web, please send a note to       |
 // | license@zen-cart.com so we can mail you a copy immediately.          |
 // +----------------------------------------------------------------------+
-// $Id: popup_shipping_estimator.php 2642 2005-12-21 15:35:44Z ajeh $
+// $Id$
 //
 define('HEADING_SEARCH_HELP', 'Voraussichtliche Versandkosten:');
 define('TEXT_TOTAL_ITEMS', 'Gesamtst&uuml;ckzahl: ');

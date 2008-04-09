@@ -5,7 +5,7 @@
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
  * @translator: cyaneo/hugo13/wflohr	http://www.zen-cart.at	2006-11-02
- * @version $Id: account_notifications.php 3007 2006-02-11 09:17:12Z drbyte $
+ * @version $Id$
  */
 
 define('NAVBAR_TITLE_1','Mein Konto');

@@ -17,7 +17,7 @@
 // | to obtain it through the world-wide-web, please send a note to       |
 // | license@zen-cart.com so we can mail you a copy immediately.          |
 // +----------------------------------------------------------------------+
-// $Id: cc.php 4027 2006-07-26 05:27:41Z drbyte $
+// $Id$
 //
 
 define('MODULE_PAYMENT_CC_TEXT_TITLE','Kreditkarte');

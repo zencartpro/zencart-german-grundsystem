@@ -4,7 +4,7 @@
  * @copyright Copyright 2003-2005 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: address_book_process.php 2315 2005-11-07 08:41:46Z drbyte $
+ * @version $Id$
  */
 
 define('NAVBAR_TITLE_1', 'My Account');

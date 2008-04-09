@@ -7,7 +7,7 @@
  * @copyright Modified by Jim Keebaugh for OsCommerce
  * @copyright Adapted for Zen Cart
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: unsubscribe.php 3159 2006-03-11 01:35:04Z drbyte $
+ * @version $Id$
  */
 
 define('NAVBAR_TITLE', 'Unsubscribe');
