@@ -17,7 +17,7 @@
 // | to obtain it through the world-wide-web, please send a note to       |
 // | license@zen-cart.com so we can mail you a copy immediately.          |
 // +----------------------------------------------------------------------+
-//  $Id: salemaker.php 6369 2007-05-25 03:03:42Z ajeh $
+//  $Id$
 //
 
 define('HEADING_TITLE', 'SaleMaker');

@@ -3,7 +3,7 @@
  * @package htmleditors
  * @copyright Copyright 2003-2006 Zen Cart Development Team
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: editors_list.php 4245 2006-08-24 14:07:50Z drbyte $
+ * @version $Id$
  */
 
 /**

@@ -17,7 +17,7 @@
 // | to obtain it through the world-wide-web, please send a note to       |
 // | license@zen-cart.com so we can mail you a copy immediately.          |
 // +----------------------------------------------------------------------+
-//  $Id: featured.php 4533 2006-09-17 17:21:10Z ajeh $
+//  $Id$
 //
 
 define('HEADING_TITLE', 'Featured Products');

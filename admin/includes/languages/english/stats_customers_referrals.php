@@ -17,7 +17,7 @@
 // | to obtain it through the world-wide-web, please send a note to       |
 // | license@zen-cart.com so we can mail you a copy immediately.          |
 // +----------------------------------------------------------------------+
-//  $Id: stats_customers_referrals.php 838 2004-12-17 14:38:38Z wilt $
+//  $Id$
 //
 
   define('HEADING_TITLE', 'Customers Referral Report');

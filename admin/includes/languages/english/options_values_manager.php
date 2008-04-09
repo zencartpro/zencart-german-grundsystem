@@ -17,7 +17,7 @@
 // | to obtain it through the world-wide-web, please send a note to       |
 // | license@zen-cart.com so we can mail you a copy immediately.          |
 // +----------------------------------------------------------------------+
-//  $Id: options_values_manager.php 1148 2005-04-07 19:24:10Z drbyte $
+//  $Id$
 //
 
 define('HEADING_TITLE_OPT', 'Product Options');

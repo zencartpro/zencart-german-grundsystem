@@ -5,7 +5,7 @@
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
  * @translator: cyaneo/hugo13/wflohr	http://www.zen-cart.at	2007-01-03
- * @version $Id: english.php 4804 2006-10-21 16:19:59Z ajeh $
+ * @version $Id$
  */
 
 // added defines for header alt and text

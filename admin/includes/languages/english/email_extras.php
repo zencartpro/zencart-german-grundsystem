@@ -17,7 +17,7 @@
 // | to obtain it through the world-wide-web, please send a note to       |
 // | license@zen-cart.com so we can mail you a copy immediately.          |
 // +----------------------------------------------------------------------+
-// $Id: email_extras.php 5454 2006-12-29 20:10:17Z drbyte $
+// $Id$
 //
 
 // office use only
