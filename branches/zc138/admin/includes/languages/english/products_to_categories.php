@@ -17,7 +17,7 @@
 // | to obtain it through the world-wide-web, please send a note to       |
 // | license@zen-cart.com so we can mail you a copy immediately.          |
 // +----------------------------------------------------------------------+
-//  $Id: products_to_categories.php 2909 2006-01-29 21:29:35Z ajeh $
+//  $Id$
 //
 
 define('HEADING_TITLE','Products to Multiple Categories Link Manager ...');

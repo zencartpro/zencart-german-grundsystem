@@ -17,7 +17,7 @@
 // | to obtain it through the world-wide-web, please send a note to       |
 // | license@zen-cart.com so we can mail you a copy immediately.          |
 // +----------------------------------------------------------------------+
-//  $Id: ezpages.php 2827 2006-01-08 19:46:40Z ajeh $
+//  $Id$
 //
 define('HEADING_TITLE', 'EZ-Pages');
 define('TABLE_HEADING_PAGES', 'Page Title');

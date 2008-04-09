@@ -17,7 +17,7 @@
 // | to obtain it through the world-wide-web, please send a note to       |
 // | license@zen-cart.com so we can mail you a copy immediately.          |
 // +----------------------------------------------------------------------+
-//  $Id: modules.php 4366 2006-09-03 19:27:34Z ajeh $
+//  $Id$
 //
 
 define('HEADING_TITLE_MODULES_PAYMENT', 'Payment Modules');

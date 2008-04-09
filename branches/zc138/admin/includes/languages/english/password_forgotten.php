@@ -17,7 +17,7 @@
 // | to obtain it through the world-wide-web, please send a note to       |
 // | license@zen-cart.com so we can mail you a copy immediately.          |
 // +----------------------------------------------------------------------+
-// $Id: password_forgotten.php 4820 2006-10-23 07:19:46Z drbyte $
+// $Id$
 //
 
 define('HEADING_TITLE', 'Resend Password');

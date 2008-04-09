@@ -17,7 +17,7 @@
 // | to obtain it through the world-wide-web, please send a note to       |
 // | license@zen-cart.com so we can mail you a copy immediately.          |
 // +----------------------------------------------------------------------+
-//  $Id: gv_sent.php 2388 2005-11-18 00:18:35Z ajeh $
+//  $Id$
 //
 
 define('HEADING_TITLE', 'Gift Voucher\'s Sent');
