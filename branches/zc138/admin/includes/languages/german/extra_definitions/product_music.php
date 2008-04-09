@@ -21,7 +21,7 @@
 // | Date of Translation:  31.03.06                                       |
 // | Homepage:             www.zen-cart.at                                |
 // +----------------------------------------------------------------------+
-//  $Id: product_music.php 4 2006-03-31 16:38:40Z hugo13 $
+//  $Id$
 //
 define('BOX_CATALOG_RECORD_ARTISTS', 'K&uuml;nstler');
 define('BOX_CATALOG_RECORD_COMPANY', 'Plattenfirma');
