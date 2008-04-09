@@ -17,3 +17,4 @@ define('TEXT_CACHE_DIRECTORY','Cache Verzeichnis:');
 define('ERROR_CACHE_DIRECTORY_DOES_NOT_EXIST','Achtung! Das Cacheverzeichnis existiert nicht.');
 define('ERROR_CACHE_DIRECTORY_NOT_WRITEABLE','Achtung! Das Cacheverzeichnis ist nicht beschreibbar.');
 
+?>
