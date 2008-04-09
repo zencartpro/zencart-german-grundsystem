@@ -17,7 +17,7 @@
 // | to obtain it through the world-wide-web, please send a note to       |
 // | license@zen-cart.com so we can mail you a copy immediately.          |
 // +----------------------------------------------------------------------+
-// $Id: popup_search_help.php 2471 2005-11-29 01:14:18Z drbyte $
+// $Id$
 //
 
 define('HEADING_SEARCH_HELP', 'Search Help');

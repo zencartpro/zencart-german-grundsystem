@@ -17,7 +17,7 @@
 // | to obtain it through the world-wide-web, please send a note to       |
 // | license@zen-cart.com so we can mail you a copy immediately.          |
 // +----------------------------------------------------------------------+
-// $Id: table.php 1969 2005-09-13 06:57:21Z drbyte $
+// $Id$
 //
 
 define('MODULE_SHIPPING_TABLE_TEXT_TITLE', 'Table Rate');

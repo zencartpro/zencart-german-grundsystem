@@ -5,7 +5,7 @@
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
  * @translator: cyaneo/hugo13/wflohr	http://www.zen-cart.at	2006-11-02
- * @version $Id: shopping_cart.php 3183 2006-03-14 07:58:59Z birdbrain $
+ * @version $Id$
  */
 
 define('NAVBAR_TITLE','Warenkorb');

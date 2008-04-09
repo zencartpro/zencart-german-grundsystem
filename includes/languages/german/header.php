@@ -5,7 +5,7 @@
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
  * @translator: cyaneo/hugo13/wflohr	http://www.zen-cart.at	2006-11-02
- * @version $Id: header.php 2940 2006-02-02 04:29:05Z drbyte $
+ * @version $Id$
  */
 
 // header text in includes/header.php

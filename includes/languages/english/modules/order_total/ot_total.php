@@ -17,7 +17,7 @@
 // | to obtain it through the world-wide-web, please send a note to       |
 // | license@zen-cart.com so we can mail you a copy immediately.          |
 // +----------------------------------------------------------------------+
-// $Id: ot_total.php 1969 2005-09-13 06:57:21Z drbyte $
+// $Id$
 //
 
   define('MODULE_ORDER_TOTAL_TOTAL_TITLE', 'Total');

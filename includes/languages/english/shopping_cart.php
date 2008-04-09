@@ -4,7 +4,7 @@
  * @copyright Copyright 2003-2006 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: shopping_cart.php 3183 2006-03-14 07:58:59Z birdbrain $
+ * @version $Id$
  */
 
 define('NAVBAR_TITLE', 'The Shopping Cart');

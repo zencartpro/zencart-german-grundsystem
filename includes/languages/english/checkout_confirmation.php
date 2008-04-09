@@ -4,7 +4,7 @@
  * @copyright Copyright 2003-2006 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: checkout_confirmation.php 4067 2006-08-06 07:26:21Z drbyte $
+ * @version $Id$
  */
 
 define('NAVBAR_TITLE_1', 'Checkout');

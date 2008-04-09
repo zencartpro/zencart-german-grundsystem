@@ -17,7 +17,7 @@
 // | to obtain it through the world-wide-web, please send a note to       |
 // | license@zen-cart.com so we can mail you a copy immediately.          |
 // +----------------------------------------------------------------------+
-// $Id: gv_redeem.php 4155 2006-08-16 17:14:52Z ajeh $
+// $Id$
 //
 
 define('NAVBAR_TITLE', TEXT_GV_NAME .' einl&ouml;sen ');

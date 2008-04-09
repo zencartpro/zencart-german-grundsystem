@@ -17,7 +17,7 @@
 // | to obtain it through the world-wide-web, please send a note to       |
 // | license@zen-cart.com so we can mail you a copy immediately.          |
 // +----------------------------------------------------------------------+
-// $Id: account_edit.php 1969 2005-09-13 06:57:21Z drbyte $
+// $Id$
 //
 
 define('NAVBAR_TITLE_1', 'My Account');

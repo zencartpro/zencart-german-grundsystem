@@ -17,7 +17,7 @@
 // | to obtain it through the world-wide-web, please send a note to       |
 // | license@zen-cart.com so we can mail you a copy immediately.          |
 // +----------------------------------------------------------------------+
-// $Id: freecharger.php 1969 2005-09-13 06:57:21Z drbyte $
+// $Id$
 //
 
   define('MODULE_PAYMENT_FREECHARGER_TEXT_TITLE', 'The Zen Cart FREE CHARGE CARD');

@@ -5,7 +5,7 @@
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
  * @translator: cyaneo/hugo13/wflohr	http://www.zen-cart.at	2006-11-02
- * @version $Id: checkout_shipping.php 4042 2006-07-30 23:05:39Z drbyte $
+ * @version $Id$
  */
 
 define('NAVBAR_TITLE_1','Versandart');

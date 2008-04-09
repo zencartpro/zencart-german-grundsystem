@@ -17,7 +17,7 @@
 // | to obtain it through the world-wide-web, please send a note to       |
 // | license@zen-cart.com so we can mail you a copy immediately.          |
 // +----------------------------------------------------------------------+
-// $Id: product_free_shipping.php 1969 2005-09-13 06:57:21Z drbyte $
+// $Id$
 //
 // defined as an image, text or a combination for Always Free Shipping
 // comment out the ones you do not which to use

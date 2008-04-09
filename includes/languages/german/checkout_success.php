@@ -5,7 +5,7 @@
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
  * @translator: cyaneo/hugo13/wflohr/maleborg	http://www.zen-cart.at	2007-01-03
- * @version $Id: checkout_success.php 5407 2006-12-27 01:35:37Z drbyte $
+ * @version $Id$
  */
 
 define('NAVBAR_TITLE_1','Bestellbest&auml;tigung');

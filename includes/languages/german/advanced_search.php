@@ -5,7 +5,7 @@
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
  * @translator: cyaneo/hugo13/wflohr	http://www.zen-cart.at	2006-11-02
- * @version $Id: advanced_search.php 3253 2006-03-25 17:26:14Z birdbrain $
+ * @version $Id$
  */
 
 define('NAVBAR_TITLE_1','Erweiterte Suche');
