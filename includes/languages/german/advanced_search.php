@@ -35,15 +35,15 @@ define('TABLE_HEADING_PRICE','Preis');
 define('TABLE_HEADING_WEIGHT','Gewicht');
 define('TABLE_HEADING_BUY_NOW','Jetzt kaufen');
 define('TEXT_NO_PRODUCTS','Es wurde kein Artikel gefunden, der Ihren Suchkriterien entspricht.');
-define('KEYWORD_FORMAT_STRING', 'Schl&uuml;sselwort');
+define('KEYWORD_FORMAT_STRING', 'Schlüsselwort');
 define('ERROR_AT_LEAST_ONE_INPUT','Es muss wenigstens eine Auswahl getroffen werden.');
 define('ERROR_INVALID_FROM_DATE','Fehler bei');
 define('ERROR_INVALID_TO_DATE','Fehler bei');
-define('ERROR_TO_DATE_LESS_THAN_FROM_DATE','&quot;Eintrag bis&quot; muss sp&auml;ter als Eintrag &quot;vom&quot; sein.');
-define('ERROR_PRICE_FROM_MUST_BE_NUM', '&quot;Preis von&quot; muss eine Zahl sein.');
-define('ERROR_PRICE_TO_MUST_BE_NUM', '&quot;Preis vis&quot; muss eine Zahl sein.');
-define('ERROR_PRICE_TO_LESS_THAN_PRICE_FROM','&quot;Preis bis&quot; muss gr&ouml;&szlig;er sein als &quot;Preis von&quot;.');
-define('ERROR_INVALID_KEYWORDS','Falsche Suchw&ouml;rter.');
+define('ERROR_TO_DATE_LESS_THAN_FROM_DATE','"Eintrag bis" muss später als Eintrag "vom" sein.');
+define('ERROR_PRICE_FROM_MUST_BE_NUM', '"Preis von" muss eine Zahl sein.');
+define('ERROR_PRICE_TO_MUST_BE_NUM', '"Preis vis" muss eine Zahl sein.');
+define('ERROR_PRICE_TO_LESS_THAN_PRICE_FROM','"Preis bis" muss größer sein als "Preis von".');
+define('ERROR_INVALID_KEYWORDS','Falsche Suchwörter.');
 
 
 

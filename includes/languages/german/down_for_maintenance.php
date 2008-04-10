@@ -21,12 +21,12 @@
 // $Id$
 //
 
-define('NAVBAR_TITLE','Unser Shop ist wegen Wartungsarbeiten vor&uuml;bergehend geschlossen.');
-define('HEADING_TITLE','Wegen Wartungsarbeiten vor&uuml;bergehend geschlossen ...');
-define('DOWN_FOR_MAINTENANCE_TEXT_INFORMATION','Dieser Shop ist derzeit wegen Wartungsarbeiten vor&uuml;bergehend geschlossen. Bitte versuchen Sie es zu einem sp&auml;teren Zeitpunkt noch einmal.<br />Wir bitten um Ihr Verst&auml;ndnis.');
+define('NAVBAR_TITLE','Unser Shop ist wegen Wartungsarbeiten vorübergehend geschlossen.');
+define('HEADING_TITLE','Wegen Wartungsarbeiten vorübergehend geschlossen ...');
+define('DOWN_FOR_MAINTENANCE_TEXT_INFORMATION','Dieser Shop ist derzeit wegen Wartungsarbeiten vorübergehend geschlossen. Bitte versuchen Sie es zu einem späteren Zeitpunkt noch einmal.<br />Wir bitten um Ihr Verständnis.');
 define('TEXT_MAINTENANCE_ON_AT_TIME','Der Administrator / Webmaster hat mit den Wartungsarbeiten begonnen am:');
 define('TEXT_MAINTENANCE_PERIOD','Die Wartungsarbeiten dauern voraussichtlich bis:');
-define('DOWN_FOR_MAINTENANCE_STATUS_TEXT','F&uuml;r eine Statusabfrage... klicken Sie bitte hier:');
+define('DOWN_FOR_MAINTENANCE_STATUS_TEXT','Für eine Statusabfrage... klicken Sie bitte hier:');
 
 
 ?>

@@ -21,7 +21,7 @@
 //
 
 define('NAVBAR_TITLE_1','Mein Konto');
-define('NAVBAR_TITLE_2','Mein Konto &auml;ndern');
+define('NAVBAR_TITLE_2','Mein Konto ändern');
 define('HEADING_TITLE','Meine Kontoinformationen');
 define('SUCCESS_ACCOUNT_UPDATED','Ihr Konto wurde erfolgreich aktualisiert.');
 ?>

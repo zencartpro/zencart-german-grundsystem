@@ -21,9 +21,9 @@
 //
 
 define('NAVBAR_TITLE_1','Mein Konto');
-define('NAVBAR_TITLE_2','Mein Passwort &auml;ndern');
+define('NAVBAR_TITLE_2','Mein Passwort ändern');
 define('HEADING_TITLE','Mein Passwort');
 define('MY_PASSWORD_TITLE','Mein Passwort');
-define('SUCCESS_PASSWORD_UPDATED','Ihr Passwort wurde ge&auml;ndert.');
-define('ERROR_CURRENT_PASSWORD_NOT_MATCHING','Ihr eingegebenes Passwort stimmt nicht mit dem Passwort in unserer Datenbank &uuml;berein. Versuchen Sie es bitte noch einmal.');
+define('SUCCESS_PASSWORD_UPDATED','Ihr Passwort wurde geändert.');
+define('ERROR_CURRENT_PASSWORD_NOT_MATCHING','Ihr eingegebenes Passwort stimmt nicht mit dem Passwort in unserer Datenbank überein. Versuchen Sie es bitte noch einmal.');
 ?>

@@ -26,7 +26,7 @@ define('TEXT_RETURNING_CUSTOMER_SPLIT', 'In order to continue, please login to y
 define('TEXT_PASSWORD_FORGOTTEN', 'Forgot your password?');
 
 define('TEXT_LOGIN_ERROR', 'Error: Sorry, there is no match for that email address and/or password.');
-define('TEXT_VISITORS_CART', '<strong>Note:</strong> Your &quot;Visitors Cart&quot; contents will be merged with your &quot;Members Cart&quot; contents once you have logged on. <a href="javascript:session_win();">[More Info]</a>');
+define('TEXT_VISITORS_CART', '<strong>Note:</strong> Your "Visitors Cart" contents will be merged with your "Members Cart" contents once you have logged on. <a href="javascript:session_win();">[More Info]</a>');
 
 define('TABLE_HEADING_PRIVACY_CONDITIONS', '<span class="privacyconditions">Privacy Statement</span>');
 define('TEXT_PRIVACY_CONDITIONS_DESCRIPTION', '<span class="privacydescription">Please acknowledge you agree with our privacy statement by ticking the following box. The privacy statement can be read</span> <a href="' . zen_href_link(FILENAME_PRIVACY, '', 'SSL') . '"><span class="pseudolink">here</span></a>.');

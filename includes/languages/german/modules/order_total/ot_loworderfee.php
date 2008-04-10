@@ -20,8 +20,8 @@
 // $Id$
 //
 
-define('MODULE_ORDER_TOTAL_LOWORDERFEE_TITLE', 'Zuschlag f&uuml;r Minderbestellungen');
-define('MODULE_ORDER_TOTAL_LOWORDERFEE_DESCRIPTION', 'Hier k&ouml;nnen Sie einen Zuschlag f&uuml;r Bestellungen unter einem bestimmten Bestellwert festlegen.');
+define('MODULE_ORDER_TOTAL_LOWORDERFEE_TITLE', 'Zuschlag für Minderbestellungen');
+define('MODULE_ORDER_TOTAL_LOWORDERFEE_DESCRIPTION', 'Hier können Sie einen Zuschlag für Bestellungen unter einem bestimmten Bestellwert festlegen.');
 
 
 ?>

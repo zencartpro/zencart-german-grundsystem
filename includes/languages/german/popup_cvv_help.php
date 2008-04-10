@@ -22,16 +22,16 @@
 
 define('HEADING_CVV','Was ist ein Kreditkarten Verifizierungscode (CVV)?');
 define('TEXT_CVV_HELP1','Visa und Mastercard verwenden einen 3-Stelligen Verifizierungscode<br /><br />
-                    Wir ben&ouml;tigen zu Ihrer Sicherheit die Eingabe des 3-Stelligen Verifizierungscodes Ihrer Visa oder Mastercard.<br /><br />
-                    Dieser Verifizierungscode ist eine 3-Stellige Nummer auf der R&uuml;ckseite Ihrer Kreditkarte
+                    Wir benötigen zu Ihrer Sicherheit die Eingabe des 3-Stelligen Verifizierungscodes Ihrer Visa oder Mastercard.<br /><br />
+                    Dieser Verifizierungscode ist eine 3-Stellige Nummer auf der Rückseite Ihrer Kreditkarte
                     und befindet sich auf dem Unterschriftsstreifen oben rechts.<br />' .
                     zen_image(DIR_WS_TEMPLATE_ICONS . 'cvv2visa.gif'));
 define('TEXT_CVV_HELP2', 'American Express verwendet einen 4-Stelligen Verifizierungscode<br /><br />
-                    Wir ben&ouml;tigen zu Ihrer Sicherheit die Eingabe der 4-Stelligen Verifizierungscodes Ihrer American Express Karte.<br /><br />
+                    Wir benötigen zu Ihrer Sicherheit die Eingabe der 4-Stelligen Verifizierungscodes Ihrer American Express Karte.<br /><br />
                     Der American Express Verifizierungscode ist ein 4-Stelliger Sicherheitscode auf der Vorderseite Ihrer Kreditkarte
                     und befindet sich nach und oberhalb Ihrer Kreditkartennummer.<br />' .
                     zen_image(DIR_WS_TEMPLATE_ICONS . 'cvv2amex.gif'));
-define('TEXT_CLOSE_CVV_WINDOW', 'Fenster schlie&szlig;en [x]');
+define('TEXT_CLOSE_CVV_WINDOW', 'Fenster schließen [x]');
 
 
 ?>

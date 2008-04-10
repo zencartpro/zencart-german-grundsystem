@@ -20,8 +20,8 @@
 // $Id$
 //
 
-define('MODULE_ORDER_TOTAL_GROUP_PRICING_TITLE', 'Gruppenerm&auml;&szlig;igung');
-define('MODULE_ORDER_TOTAL_GROUP_PRICING_DESCRIPTION', 'Gruppenerm&auml;&szlig;igung');
+define('MODULE_ORDER_TOTAL_GROUP_PRICING_TITLE', 'Gruppenermäßigung');
+define('MODULE_ORDER_TOTAL_GROUP_PRICING_DESCRIPTION', 'Gruppenermäßigung');
 
 
 ?>

@@ -22,7 +22,7 @@
 
 define('NAVBAR_TITLE', 'Seite 4');
 define('HEADING_TITLE', 'Seite 4');
-define('TEXT_INFORMATION', 'Der Inhalt f&uuml;r die Seite 4 kommt hier hinein. Diesen Text, den Seitenheader und den Link-Text k&ouml;nnen Sie in <strong>includes/languages/german/page_4.php</strong> editieren');
+define('TEXT_INFORMATION', 'Der Inhalt für die Seite 4 kommt hier hinein. Diesen Text, den Seitenheader und den Link-Text können Sie in <strong>includes/languages/german/page_4.php</strong> editieren');
 
 
 ?>

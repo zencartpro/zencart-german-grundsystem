@@ -15,7 +15,7 @@ define('OFFICE_EMAIL', 'E-Mail:');
 define('OFFICE_SENT_TO', 'An:');
 define('OFFICE_EMAIL_TO', 'An E-Mail:');
 
-define('OFFICE_USE', 'Nur f&uuml;r den internen Gebrauch:');
+define('OFFICE_USE', 'Nur für den internen Gebrauch:');
 define('OFFICE_LOGIN_NAME', 'Kontoname:');
 define('OFFICE_LOGIN_EMAIL', 'E-Mail Adresse:');
 define('OFFICE_LOGIN_PHONE', '<strong>Telephon:</strong>');
@@ -31,7 +31,7 @@ define('EMAIL_SPAM_DISCLAIMER', '');
 define('EMAIL_FOOTER_COPYRIGHT','Copyright (c) ' . date('Y') . ' <a href="http://www.zen-cart.at" target="_blank">Zen Cart</a>. Powered by <a href="http://www.zen-cart.at" target="_blank">Zen Cart</a>');
 define('TEXT_UNSUBSCRIBE', "\n\nTo unsubscribe from future newsletter and promotional mailings, simply click on the following link: \n" . ' !!!TRANSLATE!!! file: includes/languages/LANGUAGE/email_extras.php at line 357');
 // email advisory for all emails customer generate - tell-a-friend and GV send
-define('EMAIL_ADVISORY', '-----' . "\n" . '<strong>Achtung:</strong> Aus Sicherheitsgr&uuml;nden werden alle gesendeten E-Mails zwischengespeichert.<br />Sollten Sie diesbez&uuml;glich Fragen haben, wenden Sie sich bitte an <a href="mailto:' . STORE_OWNER_EMAIL_ADDRESS . '">' . STORE_OWNER_EMAIL_ADDRESS . '</a>.<br />');
+define('EMAIL_ADVISORY', '-----' . "\n" . '<strong>Achtung:</strong> Aus Sicherheitsgründen werden alle gesendeten E-Mails zwischengespeichert.<br />Sollten Sie diesbezüglich Fragen haben, wenden Sie sich bitte an <a href="mailto:' . STORE_OWNER_EMAIL_ADDRESS . '">' . STORE_OWNER_EMAIL_ADDRESS . '</a>.<br />');
 
 // email advisory included warning for all emails customer generate - tell-a-friend and GV send
 define('EMAIL_ADVISORY_INCLUDED_WARNING', '<strong>Diese Nachricht ist in allen E-Mails dieser Seite enthalten:</strong>');
