@@ -78,7 +78,7 @@ require($template->get_template_dir('/tpl_products_next_previous.php',DIR_WS_TEM
 <?php } ?>
 <!--eof free ship icon  -->
 
- <!--bof Product description -->
+ <!--bof Product description 1-->
 <?php if ($products_description != '') { ?>
 <div id="productDescription" class="productGeneral biggerText"><?php echo stripslashes($products_description); ?></div>
 <?php } ?>

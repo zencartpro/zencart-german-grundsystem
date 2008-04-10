@@ -38,7 +38,7 @@ if (!defined('IS_ADMIN_FLAG')) {
       } elseif ($this->debug==true) {
         echo "phpBB connection disabled in Admin<br>";
       }
-      if ($this->debug==true) echo '<br /><br /><strong>YOU CAN IGNORE THE FOLLOWING "Cannot send session cache limited - headers already sent..." errors, as they are a result of the above debug output.</strong><br><br>';
+      if ($this->debug==true) echo '<br /><br /><strong>YOU CAN IGNORE THE FOLLOWING "Cannot send session cache limited - headers already sent..." errors, as they are a result of the above debug output.</strong><br /><br />';
     }
 
     function get_phpBB_info() {
@@ -52,7 +52,7 @@ if (!defined('IS_ADMIN_FLAG')) {
       $this->dir_phpbb = str_replace(array('\\', '//'), '/', DIR_WS_PHPBB ); // convert slashes
 
       if (substr($this->dir_phpbb,-1)!='/') $this->dir_phpbb .= '/'; // ensure has a trailing slash
-      if ($this->debug==true) echo 'dir='.$this->dir_phpbb.'<br>';
+      if ($this->debug==true) echo 'dir='.$this->dir_phpbb.'<br />';
 
       //check if file exists
       if (@file_exists($this->dir_phpbb . 'config.php')) {
@@ -60,13 +60,13 @@ if (!defined('IS_ADMIN_FLAG')) {
         if ($this->debug==true) echo "files_installed = true<br>";
         // if exists, also store it for future use
         $this->phpBB['phpbb_path'] = $this->dir_phpbb;
-        if ($this->debug==true) echo 'phpbb_path='. $this->dir_phpbb . '<br><br>';
+        if ($this->debug==true) echo 'phpbb_path='. $this->dir_phpbb . '<br /><br />';
 
        // find phpbb table prefix without including file:
         $lines = array();
         $lines = @file($this->phpBB['phpbb_path']. 'config.php');
         foreach($lines as $line) { // read the configure.php file for specific variables
-          if ($this->debug==true && strlen($line)>3 && substr($line,0,2)!='//' && !strstr($line,'$dbpasswd')) echo 'CONFIG.PHP-->'.$line.'<br>';
+          if ($this->debug==true && strlen($line)>3 && substr($line,0,2)!='//' && !strstr($line,'$dbpasswd')) echo 'CONFIG.PHP-->'.$line.'<br />';
           if (substr($line,0,1)!='$') continue;
           if (substr_count($line,'"')>1) $delim='"';
           if (substr_count($line,"'")>1) $delim="'"; // determine whether single or double quotes used in this line.
@@ -85,7 +85,7 @@ if (!defined('IS_ADMIN_FLAG')) {
           if (is_array($lines)) {
             foreach($lines as $line) { // read the configure.php file for specific variables
               if (substr_count($line,'define(')<1) continue;
-              if ($this->debug==true && strlen($line)>3 && substr($line,0,1)!='/') echo 'CONSTANTS.PHP-->'.$line.'<br>';
+              if ($this->debug==true && strlen($line)>3 && substr($line,0,1)!='/') echo 'CONSTANTS.PHP-->'.$line.'<br />';
               if (substr_count($line,'"')>1) $delim='"';
               if (substr_count($line,"'")>1) $delim="'"; // determine whether single or double quotes used in this line.
               $def_string=array();
@@ -100,15 +100,15 @@ if (!defined('IS_ADMIN_FLAG')) {
           $this->phpBB['files_installed'] = false;
         }
         if ($this->debug==true) {
-          echo 'prefix='.$this->phpBB['table_prefix'].'<br>';
-          echo 'dbname='.$this->phpBB['dbname'].'<br>';
-          echo 'dbuser='.$this->phpBB['dbuser'].'<br>';
-          echo 'dbhost='.$this->phpBB['dbhost'].'<br>';
-          echo 'dbpasswd='.$this->phpBB['dbpasswd'].'<br>';
-          echo 'users_table='.$this->phpBB['users_table'].'<br>';
-          echo 'user_group_table='.$this->phpBB['user_group_table'].'<br>';
-          echo 'groups_table='.$this->phpBB['groups_table'].'<br>';
-          echo 'config_table='.$this->phpBB['config_table'].'<br>';
+          echo 'prefix='.$this->phpBB['table_prefix'].'<br />';
+          echo 'dbname='.$this->phpBB['dbname'].'<br />';
+          echo 'dbuser='.$this->phpBB['dbuser'].'<br />';
+          echo 'dbhost='.$this->phpBB['dbhost'].'<br />';
+          echo 'dbpasswd='.$this->phpBB['dbpasswd'].'<br />';
+          echo 'users_table='.$this->phpBB['users_table'].'<br />';
+          echo 'user_group_table='.$this->phpBB['user_group_table'].'<br />';
+          echo 'groups_table='.$this->phpBB['groups_table'].'<br />';
+          echo 'config_table='.$this->phpBB['config_table'].'<br />';
         }
 
       }//endif @file_exists
@@ -120,11 +120,11 @@ if (!defined('IS_ADMIN_FLAG')) {
           if ($this->dbname == DB_DATABASE) {
             $this->phpBB['db_installed'] = $this->table_exists_zen($this->phpBB['users_table']);
             $this->phpBB['db_installed_config'] = $this->table_exists_zen($this->phpBB['config_table']);
-            if ($this->debug==true) echo "db_installed -- in ZC Database = ".$this->phpBB['db_installed']."<br>";
+            if ($this->debug==true) echo "db_installed -- in ZC Database = ".$this->phpBB['db_installed']."<br />";
             } else {
             $this->phpBB['db_installed'] = $this->table_exists_phpbb($this->phpBB['users_table']);
             $this->phpBB['db_installed_config'] = $this->table_exists_phpbb($this->phpBB['config_table']);
-            if ($this->debug==true) echo "db_installed -- in separate database = ".$this->phpBB['db_installed']."<br>";
+            if ($this->debug==true) echo "db_installed -- in separate database = ".$this->phpBB['db_installed']."<br />";
           }
         }
     }
@@ -135,20 +135,20 @@ if (!defined('IS_ADMIN_FLAG')) {
       if (empty($script_filename)) $script_filename = $_SERVER['SCRIPT_FILENAME'];
       $script_filename = str_replace(array('\\', '//'), '/', $script_filename);  //convert slashes
 
-      if ($this->debug==true) echo "script-filename=".$script_filename.'<br>';
-      if ($this->debug==true) echo "link_enabled_admin_status=".PHPBB_LINKS_ENABLED.'<br>';
+      if ($this->debug==true) echo "script-filename=".$script_filename.'<br />';
+      if ($this->debug==true) echo "link_enabled_admin_status=".PHPBB_LINKS_ENABLED.'<br />';
 
       if ( ($this->phpBB['db_installed']) && ($this->phpBB['files_installed'])  && (PHPBB_LINKS_ENABLED=='true')) {
        //good so far. now let's check for relative path access so we can successfully "include" the config.php file when needed.
         if ($this->debug==true) echo "ok, now let's check relative paths<br>";
-        if ($this->debug==true) echo 'docroot='.$_SERVER['DOCUMENT_ROOT'].'<br>';
-        if ($this->debug==true) echo 'phpself='.$_SERVER['PHP_SELF'].'<br>';
+        if ($this->debug==true) echo 'docroot='.$_SERVER['DOCUMENT_ROOT'].'<br />';
+        if ($this->debug==true) echo 'phpself='.$_SERVER['PHP_SELF'].'<br />';
         $this->phpBB['phpbb_url'] = str_replace(array($_SERVER['DOCUMENT_ROOT'],substr($script_filename,0,strpos($script_filename,$_SERVER['PHP_SELF']))),'',$this->phpBB['phpbb_path']);
         $this->phpBB['installed'] = true;
-        if ($this->debug==true) echo 'URL='.$this->phpBB['phpbb_url'].'<br>';
+        if ($this->debug==true) echo 'URL='.$this->phpBB['phpbb_url'].'<br />';
         //if neither of the relative paths validate, the function still returns false for 'installed'.
       }
-      if ($this->debug==true && $this->phpBB['installed']==false) echo "FAILURE: phpBB NOT activated<br><br>";
+      if ($this->debug==true && $this->phpBB['installed']==false) echo "FAILURE: phpBB NOT activated<br><br />";
      // will use $phpBB->phpBB['installed'] to check for suitability of calling phpBB in the future.
     }
 
@@ -158,7 +158,7 @@ if (!defined('IS_ADMIN_FLAG')) {
     // Check to see if the requested Zen Cart table exists
       $sql = "SHOW TABLES like '".$table_name."'";
       $tables = $db->Execute($sql);
-//echo 'tables_found = '. $tables->RecordCount() .'<br>';
+//echo 'tables_found = '. $tables->RecordCount() .'<br />';
       if ($tables->RecordCount() > 0) {
         $found_table = true;
       }
@@ -168,7 +168,7 @@ if (!defined('IS_ADMIN_FLAG')) {
     // Check to see if the requested PHPBB table exists, regardless of which database it's set to use
       $sql = "SHOW TABLES like '".$table_name."'";
       $tables = $this->db_phpbb->Execute($sql);
-      //echo 'tables_found = '. $tables->RecordCount() .'<br>';
+      //echo 'tables_found = '. $tables->RecordCount() .'<br />';
       if ($tables->RecordCount() > 0) {
         $found_table = true;
       }

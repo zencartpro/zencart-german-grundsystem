@@ -736,7 +736,7 @@ $qty = $this->adjust_quantity($qty, $products_id, 'shopping_cart');
     $this->free_shipping_price += $qty * zen_add_tax( ($new_attributes_price), $products_tax);
 //die('I SEE B ' . $this->free_shipping_price);
   }
-//  echo 'I SEE ' . $this->total . ' vs ' . $this->free_shipping_price . ' items: ' . $this->free_shipping_item. '<br>';
+//  echo 'I SEE ' . $this->total . ' vs ' . $this->free_shipping_price . ' items: ' . $this->free_shipping_item. '<br />';
 
             ////////////////////////////////////////////////
             // calculate additional attribute charges
@@ -1528,7 +1528,7 @@ $qty = $this->adjust_quantity($qty, $products_id, 'shopping_cart');
         $cart_qty = $this->in_cart_mixed($_POST['products_id']);
         $new_qty = $_POST['cart_quantity'][$i];
 
-//echo 'I SEE actionUpdateProduct: ' . $_POST['products_id'] . ' ' . $_POST['products_id'][$i] . '<br>';
+//echo 'I SEE actionUpdateProduct: ' . $_POST['products_id'] . ' ' . $_POST['products_id'][$i] . '<br />';
      $new_qty = $this->adjust_quantity($new_qty, $_POST['products_id'][$i], 'shopping_cart');
 
 //die('I see Update Cart: ' . $_POST['products_id'][$i] . ' add qty: ' . $add_max . ' - cart qty: ' . $cart_qty . ' - newqty: ' . $new_qty);
@@ -1584,7 +1584,7 @@ $qty = $this->adjust_quantity($qty, $products_id, 'shopping_cart');
       $cart_qty = $this->in_cart_mixed($_POST['products_id']);
       $new_qty = $_POST['cart_quantity'];
 
-//echo 'I SEE actionAddProduct: ' . $_POST['products_id'] . '<br>';
+//echo 'I SEE actionAddProduct: ' . $_POST['products_id'] . '<br />';
 $new_qty = $this->adjust_quantity($new_qty, $_POST['products_id'], 'shopping_cart');
 
       if (($add_max == 1 and $cart_qty == 1)) {
@@ -1725,7 +1725,7 @@ $new_qty = $this->adjust_quantity($new_qty, $_POST['products_id'], 'shopping_car
           $add_max = zen_get_products_quantity_order_max($prodId);
           $cart_qty = $this->in_cart_mixed($prodId);
 //        $new_qty = $qty;
-//echo 'I SEE actionMultipleAddProduct: ' . $prodId . '<br>';
+//echo 'I SEE actionMultipleAddProduct: ' . $prodId . '<br />';
           $new_qty = $this->adjust_quantity($qty, $prodId, 'shopping_cart');
 
           if (($add_max == 1 and $cart_qty == 1)) {

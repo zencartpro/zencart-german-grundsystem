@@ -25,7 +25,7 @@ if (isset($cPath_array) && isset($cPath)) {
                            and language_id = '" . (int)$_SESSION['languages_id'] . "'";
 
     $categories = $db->Execute($categories_query);
-//echo 'I SEE ' . (int)$cPath_array[$i] . '<br>';
+//echo 'I SEE ' . (int)$cPath_array[$i] . '<br />';
     if ($categories->RecordCount() > 0) {
       $breadcrumb->add($categories->fields['categories_name'], zen_href_link(FILENAME_DEFAULT, 'cPath=' . implode('_', array_slice($cPath_array, 0, ($i+1)))));
     } else {

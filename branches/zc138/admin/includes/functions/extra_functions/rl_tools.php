@@ -132,7 +132,7 @@ function writeRL($somecontent, $filename = "temp/debug.txt", $att='a+'){
              exit;
              }
 
-         // Schreibe $somecontent in die geöffnete Datei.
+         // Schreibe $somecontent in die geÃ¶ffnete Datei.
         if (!fwrite($handle, $somecontent)){
              print "Kann in die Datei $filename nicht schreiben";
              exit;
@@ -150,5 +150,3 @@ function writeMenu($somecontent, $file){
     }
     writeRL($somecontent, $file, 'w');
 }
-
-?>

@@ -19,17 +19,17 @@ if ($debug_on == '1') {
   echo 'Discount Calc ' . zen_get_discount_calc((int)$_GET['products_id']) . '<br />';
   echo 'Discount Calc Attr $100 $75 $50 $25 ' . zen_get_discount_calc((int)$_GET['products_id'], true, 100) . ' | ' . zen_get_discount_calc((int)$_GET['products_id'], true, 75) . ' | ' . zen_get_discount_calc((int)$_GET['products_id'], true, 50) . ' | ' . zen_get_discount_calc((int)$_GET['products_id'], true, 25) . '<br />';
 
-  echo '<br> Start of page - product <br>' .
-  zen_get_show_product_switch($products_id_current, 'weight') . '<br>' .
-  zen_get_show_product_switch($products_id_current, 'weight_attributes') . '<br>' .
-  zen_get_show_product_switch($products_id_current, 'date_added') . '<br>' .
-  zen_get_show_product_switch($products_id_current, 'quantity') . '<br>' .
-  zen_get_show_product_switch($products_id_current, 'model') . '<br>' .
-  SHOW_PRODUCT_INFO_WEIGHT_ATTRIBUTES . '<br>' .
-  SHOW_PRODUCT_INFO_WEIGHT . '<br>' .
-  SHOW_PRODUCT_INFO_MANUFACTURER . '<br>' .
-  SHOW_PRODUCT_INFO_QUANTITY . '<br>' .
-  '<br>';
+  echo '<br /> Start of page - product <br />' .
+  zen_get_show_product_switch($products_id_current, 'weight') . '<br />' .
+  zen_get_show_product_switch($products_id_current, 'weight_attributes') . '<br />' .
+  zen_get_show_product_switch($products_id_current, 'date_added') . '<br />' .
+  zen_get_show_product_switch($products_id_current, 'quantity') . '<br />' .
+  zen_get_show_product_switch($products_id_current, 'model') . '<br />' .
+  SHOW_PRODUCT_INFO_WEIGHT_ATTRIBUTES . '<br />' .
+  SHOW_PRODUCT_INFO_WEIGHT . '<br />' .
+  SHOW_PRODUCT_INFO_MANUFACTURER . '<br />' .
+  SHOW_PRODUCT_INFO_QUANTITY . '<br />' .
+  '<br />';
 }
 ?>
 <?php

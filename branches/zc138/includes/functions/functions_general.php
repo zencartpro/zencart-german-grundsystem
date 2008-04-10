@@ -1247,7 +1247,7 @@ if (!defined('IS_ADMIN_FLAG')) {
     $clean_it= nl2br($clean_it);
 
 // update breaks with a space for text displays in all listings with descriptions
-    while (strstr($clean_it, '<br>'))   $clean_it = str_replace('<br>',   ' ', $clean_it);
+    while (strstr($clean_it, '<br />'))   $clean_it = str_replace('<br />',   ' ', $clean_it);
     while (strstr($clean_it, '<br />')) $clean_it = str_replace('<br />', ' ', $clean_it);
     while (strstr($clean_it, '<br/>'))  $clean_it = str_replace('<br/>',  ' ', $clean_it);
     while (strstr($clean_it, '<p>'))    $clean_it = str_replace('<p>',    ' ', $clean_it);
