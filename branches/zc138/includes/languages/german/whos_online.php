@@ -23,7 +23,7 @@ define('BOX_HEADING_WHOS_ONLINE','Wer ist online');
 define('BOX_WHOS_ONLINE_THEREIS', 'Zur Zeit ist');
 define('BOX_WHOS_ONLINE_THEREARE', 'Zur Zeit sind');
 define('BOX_WHOS_ONLINE_GUEST', 'Gast');
-define('BOX_WHOS_ONLINE_GUESTS', 'G&auml;ste');
+define('BOX_WHOS_ONLINE_GUESTS', 'Gäste');
 define('BOX_WHOS_ONLINE_AND', 'und');
 define('BOX_WHOS_ONLINE_MEMBER', 'Kunde');
 define('BOX_WHOS_ONLINE_MEMBERS', 'Kunden');

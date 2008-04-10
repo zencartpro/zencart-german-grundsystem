@@ -38,8 +38,8 @@ define('TEXT_SEARCH_HELP_LINK', 'Hilfe [?]');
 define('TEXT_ALL_CATEGORIES', 'Alle Kategorien');
 define('TEXT_ALL_MANUFACTURERS', 'Alle Hersteller');
 define('HEADING_SEARCH_HELP', 'Hilfe zur Suche');
-define('TEXT_SEARCH_HELP', 'Suchbegriffe k&ouml;nnen mit Hilfe von UND oder ODER benutzt werden.<br /><br />Beispiel: mit Microsoft UND Maus werden Begriffe mit beiden W&ouml;rtern gefunden. Wohingegen mit Microsoft ODER Maus Begriffe gefunden werden, die entweder Microsoft oder Maus beinhalten.');
-define('TEXT_CLOSE_WINDOW', 'Fenster schlie&szlig;en [x]');
+define('TEXT_SEARCH_HELP', 'Suchbegriffe können mit Hilfe von UND oder ODER benutzt werden.<br /><br />Beispiel: mit Microsoft UND Maus werden Begriffe mit beiden Wörtern gefunden. Wohingegen mit Microsoft ODER Maus Begriffe gefunden werden, die entweder Microsoft oder Maus beinhalten.');
+define('TEXT_CLOSE_WINDOW', 'Fenster schließen [x]');
 define('TABLE_HEADING_IMAGE', 'Artikelbild');
 define('TABLE_HEADING_MODEL', 'Artikelnummer');
 define('TABLE_HEADING_PRODUCTS', 'Artikelname');
@@ -52,9 +52,9 @@ define('TEXT_NO_PRODUCTS', 'Es wurden keine Artikel gefunden, die Ihren Suchkrit
 define('ERROR_AT_LEAST_ONE_INPUT', 'Es muss mindestens eine Auswahl getroffen werden.');
 define('ERROR_INVALID_FROM_DATE', 'Fehler bei');
 define('ERROR_INVALID_TO_DATE', 'Fehler bei');
-define('ERROR_TO_DATE_LESS_THAN_FROM_DATE', '&quot;Eintrag bis&quot; mus sp&auml;ter sein als &quot;Eintrag vom&quot;.');
-define('ERROR_PRICE_FROM_MUST_BE_NUM', '&quot;Preis von&quot; muss eine Zahl sein.');
-define('ERROR_PRICE_TO_MUST_BE_NUM', '&quot;Preis bis&quot; muss eine Zahl sein.');
-define('ERROR_PRICE_TO_LESS_THAN_PRICE_FROM', '&quot;Preis bis&quot; muss gr&ouml;&szlig;er sein als &quot;Preis von&quot;.');
-define('ERROR_INVALID_KEYWORDS', 'Unzul&auml;ssige Schl&uuml;sselw&ouml;rter');
+define('ERROR_TO_DATE_LESS_THAN_FROM_DATE', '"Eintrag bis" mus später sein als "Eintrag vom".');
+define('ERROR_PRICE_FROM_MUST_BE_NUM', '"Preis von" muss eine Zahl sein.');
+define('ERROR_PRICE_TO_MUST_BE_NUM', '"Preis bis" muss eine Zahl sein.');
+define('ERROR_PRICE_TO_LESS_THAN_PRICE_FROM', '"Preis bis" muss größer sein als "Preis von".');
+define('ERROR_INVALID_KEYWORDS', 'Unzulässige Schlüsselwörter');
 ?>

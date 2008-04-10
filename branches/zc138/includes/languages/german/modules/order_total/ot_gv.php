@@ -15,9 +15,9 @@ define('SHIPPING_NOT_INCLUDED', ' [Versandkosten nicht enthalten]');
 define('TAX_NOT_INCLUDED', ' [Steuern nicht enthalten]');
 define('MODULE_ORDER_TOTAL_GV_USER_PROMPT', 'Ausgleich anwenden ->&nbsp;');
 define('MODULE_ORDER_TOTAL_GV_TEXT_ENTER_CODE', TEXT_GV_REDEEM);
-define('TEXT_INVALID_REDEEM_AMOUNT', 'Falscher Betrag f&uuml;r Ausgleich verwendet');
-define('MODULE_ORDER_TOTAL_GV_USER_BALANCE', 'Verf&uuml;gbarer Ausgleich: ');
-define('MODULE_ORDER_TOTAL_GV_REDEEM_INSTRUCTIONS', '<p>Wurde der Gutscheinwert bereits Ihrem Konto gutgeschrieben, dann geben Sie im Feld &quot;Ausgleich anwenden&quot; den Betrag ein, den Sie einl&ouml;sen m&ouml;chten.</p><p>Haben Sie den Gutschein noch nicht eingel&ouml;st, dann geben Sie im Feld &quot;Gutscheinnummer&quot; den Gutscheincode ein und dr&uuml;cken die Schaltfl&auml;che &quot;Weiter einkaufen&quot; und geben danach den Betrag ein, den Sie einl&ouml;sen m&ouml;chten.</p>');
+define('TEXT_INVALID_REDEEM_AMOUNT', 'Falscher Betrag für Ausgleich verwendet');
+define('MODULE_ORDER_TOTAL_GV_USER_BALANCE', 'Verfügbarer Ausgleich: ');
+define('MODULE_ORDER_TOTAL_GV_REDEEM_INSTRUCTIONS', '<p>Wurde der Gutscheinwert bereits Ihrem Konto gutgeschrieben, dann geben Sie im Feld "Ausgleich anwenden" den Betrag ein, den Sie einlösen möchten.</p><p>Haben Sie den Gutschein noch nicht eingelöst, dann geben Sie im Feld "Gutscheinnummer" den Gutscheincode ein und drücken die Schaltfläche "Weiter einkaufen" und geben danach den Betrag ein, den Sie einlösen möchten.</p>');
 define('MODULE_ORDER_TOTAL_GV_INCLUDE_ERROR', ' Setting Include tax = true, should only happen when recalculate = None' . ' !!!TRANSLATE!!! file: includes/languages/LANGUAGE/modules/order_total/ot_gv.php at line 357');
 
 

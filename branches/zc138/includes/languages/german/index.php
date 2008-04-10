@@ -8,17 +8,17 @@
  * @version $Id$
  */
 
-define('TEXT_MAIN','Definieren Sie hier Ihren pers&ouml;nlichen Text. Diesen Text k&ouml;nnen Sie in <strong>/includes/languages/german/index.php (Zeile 27)</strong> editieren.');
+define('TEXT_MAIN','Definieren Sie hier Ihren persönlichen Text. Diesen Text können Sie in <strong>/includes/languages/german/index.php (Zeile 27)</strong> editieren.');
 
 // Showcase vs Store
 if (STORE_STATUS == '0') {
   define('TEXT_GREETING_GUEST', 'Willkommen <span class="greetUser">Gast!</span> Wollen Sie sich <a href="%s">anmelden</a>?');
 } else {
-	define('TEXT_GREETING_GUEST', 'Willkommen! Bitte genie&szlig;en Sie unseren Schauraum.');
+	define('TEXT_GREETING_GUEST', 'Willkommen! Bitte genießen Sie unseren Schauraum.');
 }
 
 define('TEXT_GREETING_PERSONAL', 'Willkommen <span class="greetUser">%s</span>! Wollen Sie sehen, was es <a href="%s">Neues</a> bei uns gibt?');
-define('TEXT_INFORMATION', 'Definieren Sie hier Ihren pers&ouml;nlichen Text. Diesen Text k&ouml;nnen Sie in <strong>/includes/languages/german/index.php (Zeile 21)</strong> editieren.');
+define('TEXT_INFORMATION', 'Definieren Sie hier Ihren persönlichen Text. Diesen Text können Sie in <strong>/includes/languages/german/index.php (Zeile 21)</strong> editieren.');
 
 //moved to english
 //define('TABLE_HEADING_FEATURED_PRODUCTS','Featured Products');
@@ -39,7 +39,7 @@ define('TABLE_HEADING_PRICE','Preis');
 define('TABLE_HEADING_WEIGHT','Gewicht');
 define('TABLE_HEADING_BUY_NOW','Jetzt kaufen');
 define('TEXT_NO_PRODUCTS','In dieser Kategorie gibt es derzeit keine Artikel.');
-define('TEXT_NO_PRODUCTS2','Von diesem Hersteller ist kein Artikel verf&uuml;gbar.');
+define('TEXT_NO_PRODUCTS2','Von diesem Hersteller ist kein Artikel verfügbar.');
 define('TEXT_NUMBER_OF_PRODUCTS','Anzahl der Artikel:');
 define('TEXT_SHOW','<strong>Filter:</strong>');
 define('TEXT_BUY','Kaufe 1 ');
