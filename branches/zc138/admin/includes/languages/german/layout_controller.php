@@ -28,7 +28,7 @@ define('TABLE_HEADING_LAYOUT_BOX_LOCATION','Links oder Rechts<br />Status');
 define('TABLE_HEADING_LAYOUT_BOX_SORT_ORDER','Linke/Rechte Box<br />Sortierung');
 define('TABLE_HEADING_LAYOUT_BOX_SORT_ORDER_SINGLE','Einzelne Box<br />Sortierung');
 define('TABLE_HEADING_ACTION','Aktion');
-define('TEXT_INFO_EDIT_INTRO','Führen Sie hier bitte die notwendigen änderungen durch');
+define('TEXT_INFO_EDIT_INTRO','Führen Sie hier bitte die notwendigen Änderungen durch');
 define('TEXT_INFO_LAYOUT_BOX','Ausgewählte Box:');
 define('TEXT_INFO_LAYOUT_BOX_NAME','Name der Box:');
 define('TEXT_INFO_LAYOUT_BOX_LOCATION','Lokation: (Einzelne Boxen ignorieren diese Einstellung)');
@@ -55,7 +55,7 @@ define('TABLE_HEADING_LAYOUT_TITLE','Titel');
 define('TABLE_HEADING_LAYOUT_VALUE','Wert');
 define('TEXT_MODULE_DIRECTORY','Verzeichnis des Seitenlayouts:');
 define('TEXT_INFO_DATE_ADDED','Erstelldatum:');
-define('TEXT_INFO_LAST_MODIFIED','Letzte änderung:');
+define('TEXT_INFO_LAST_MODIFIED','Letzte Änderung:');
 
 // layout box text in includes/boxes/layout.php
 define('BOX_HEADING_LAYOUT','Layout');

@@ -26,10 +26,10 @@ define('TABLE_HEADING_ACTION', 'Aktion');
 define('TEXT_HEADING_NEW_MEDIA_COLLECTION', 'Neue Medienkollektion');
 define('TEXT_NEW_INTRO', 'Bitte tragen Sie die notwendigen Details für die neue Medienkollektion ein');
 define('TEXT_MEDIA_COLLECTION_NAME', 'Name der Medienkollektion');
-define('TEXT_MEDIA_EDIT_INSTRUCTIONS', 'Zum ändern des Namens der Medienkollektion verwenden Sie bitte die obere Sektion. Klicken Sie anschlie&szlig;end auf &quot;Speichern&quot;.<br /><br />
+define('TEXT_MEDIA_EDIT_INSTRUCTIONS', 'Zum Ändern des Namens der Medienkollektion verwenden Sie bitte die obere Sektion. Klicken Sie anschließend auf "Speichern".<br /><br />
                                         Verwenden Sie die untere Sektion, um Medien zur Medienkollektion hinzuzufügen oder von dieser zu entfernen.');
 define('TEXT_DATE_ADDED', 'Erstelldatum:');
-define('TEXT_LAST_MODIFIED', 'Letzte änderung:');
+define('TEXT_LAST_MODIFIED', 'Letzte Änderung:');
 define('TEXT_PRODUCTS', 'Verlinkte Artikel:');
 define('TEXT_CLIPS', 'Verbundene Clips :');
 define('TEXT_NO_PRODUCTS', 'Keine Artikel in dieser Kategorie');

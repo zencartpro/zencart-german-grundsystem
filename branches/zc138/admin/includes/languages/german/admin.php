@@ -18,7 +18,9 @@
 // | license@zen-cart.com so we can mail you a copy immediately.          |
 // +----------------------------------------------------------------------+
 //  $Id$
+// $Id$ xx        xx
 
+// HWH
 define('HEADING_TITLE','Administratoren');
 define('TABLE_HEADING_ADMINS_NAME','Admin Name');
 define('TABLE_HEADING_ADMINS_ID','ID');
@@ -41,7 +43,7 @@ define('ENTRY_PASSWORD_NEW_ERROR','Ihr neues Passwort muss mindestens ' . ENTRY_
 define('ENTRY_PASSWORD_NEW_ERROR_NOT_MATCHING','Die Passwörter stimmen nicht überein!');
 define('TEXT_ADMINS_LEVEL','Admin Level dieser Anmeldung:');
 define('TEXT_ADMIN_LEVEL_INSTRUCTIONS','Die Änderung des Admin Levels auf  Level "1" erlaubt das Überschreiben der Einstellungen, die durch dem "Demo" Admin getätigt wurden. Nur Admins mit Level 1 können die Admin Anmeldung sowie Passwörter ändern.');
-define('TEXT_ADMIN_DEMO','Der Modus &quot;Demo Admin&quot; reduziert die Rechte eines Administrators in den wichtigsten Einstellungen auf "nur lesen". Somit können "Demo Admins" den vollen Funktionsumfang einsehen und kennen lernen, jedoch keine Systemrelevanten Einstellungen ändern.<br />Bitte stellen Sie sicher, dass Sie den Demo Admin auf Level "0" gesetzt haben, bevor Sie diesen aktivieren.');
+define('TEXT_ADMIN_DEMO','Der Modus "Demo Admin" reduziert die Rechte eines Administrators in den wichtigsten Einstellungen auf "nur lesen". Somit können "Demo Admins" den vollen Funktionsumfang einsehen und kennen lernen, jedoch keine Systemrelevanten Einstellungen ändern.<br />Bitte stellen Sie sicher, dass Sie den Demo Admin auf Level "0" gesetzt haben, bevor Sie diesen aktivieren.');
 define('TEXT_DEMO_STATUS','Derzeitiges Level des Demo Admins:');
 define('TEXT_DEMO_OFF','Aus');
 define('TEXT_DEMO_ON','Ein');

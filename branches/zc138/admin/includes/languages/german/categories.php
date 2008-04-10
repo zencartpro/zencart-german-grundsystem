@@ -1,12 +1,15 @@
 <?php
 /**
- * @package languageDefines
- * @copyright Copyright 2003-2008 Zen Cart Development Team
+ * @package linkpoint_api_payment_module
+ * @copyright Copyright 2003-2006 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.at/license/2_0.txt GNU Public License V2.0
- * @translator: cyaneo/hugo13/wflohr    http://www.zen-cart.at    
+ * @translator: cyaneo/hugo13/wflohr    http://www.zen-cart.at    2007-01-03
  * @version $Id$
  */
+
+//  $Id$
+//
 
 define('HEADING_TITLE', 'Kategorien &amp; Artikel');
 define('HEADING_TITLE_GOTO', 'Gehe zu:');
@@ -25,36 +28,36 @@ define('TEXT_PRODUCTS_TAX_CLASS', 'Steuersatz:');
 define('TEXT_PRODUCTS_AVERAGE_RATING', 'Durchschnittliche Bewertung:');
 define('TEXT_PRODUCTS_QUANTITY_INFO', 'Anzahl:');
 define('TEXT_DATE_ADDED', 'Erstelldatum:');
-define('TEXT_DATE_AVAILABLE', 'Erhältlich ab:');
-define('TEXT_LAST_MODIFIED', 'Letzte änderung:');
+define('TEXT_DATE_AVAILABLE', 'ErhÃ¤ltlich ab:');
+define('TEXT_LAST_MODIFIED', 'Letzte Ã„nderung:');
 define('TEXT_IMAGE_NONEXISTENT', 'Bild existiert nicht');
-define('TEXT_NO_CHILD_CATEGORIES_OR_PRODUCTS', 'Bitte fügen Sie eine neue Kategorie oder einen neuen Artikel in dieser Ebene ein.');
-define('TEXT_PRODUCT_MORE_INFORMATION', 'Für weitere Informationen besuchen Sie bitte diese Artikel  <a href="http://%s" target="blank">Website</a>.');
-define('TEXT_PRODUCT_DATE_ADDED', 'Dieser Artikel wurde am %s hinzugefügt.');
-define('TEXT_PRODUCT_DATE_AVAILABLE', 'Dieser Artikel ist am %s wieder verfügbar.');
-define('TEXT_EDIT_INTRO', 'Bitte führen Sie hier die notwendigen änderungen durch');
+define('TEXT_NO_CHILD_CATEGORIES_OR_PRODUCTS', 'Bitte fÃ¼gen Sie eine neue Kategorie oder einen neuen Artikel in dieser Ebene ein.');
+define('TEXT_PRODUCT_MORE_INFORMATION', 'FÃ¼r weitere Informationen besuchen Sie bitte diese Artikel  <a href="http://%s" target="blank">Website</a>.');
+define('TEXT_PRODUCT_DATE_ADDED', 'Dieser Artikel wurde am %s hinzugefÃ¼gt.');
+define('TEXT_PRODUCT_DATE_AVAILABLE', 'Dieser Artikel ist am %s wieder verfÃ¼gbar.');
+define('TEXT_EDIT_INTRO', 'Bitte fÃ¼hren Sie hier die notwendigen Ã„nderungen durch');
 define('TEXT_EDIT_CATEGORIES_ID', 'Kategorie ID:');
 define('TEXT_EDIT_CATEGORIES_NAME', 'Kategoriename:');
 define('TEXT_EDIT_CATEGORIES_IMAGE', 'Kategoriebild:');
 define('TEXT_EDIT_SORT_ORDER', 'Sortierung:');
-define('TEXT_INFO_COPY_TO_INTRO', 'Bitte wählen Sie die neue Kategorie aus, in die Sie diesen Artikel kopieren möchten');
+define('TEXT_INFO_COPY_TO_INTRO', 'Bitte wÃ¤hlen Sie die neue Kategorie aus, in die Sie diesen Artikel kopieren mÃ¶chten');
 define('TEXT_INFO_CURRENT_CATEGORIES', 'Kategorie:');
 define('TEXT_INFO_HEADING_NEW_CATEGORY', 'Neue Kategorie');
-define('TEXT_INFO_HEADING_EDIT_CATEGORY', 'Kategorie ändern');
-define('TEXT_INFO_HEADING_DELETE_CATEGORY', 'Kategorie löschen');
+define('TEXT_INFO_HEADING_EDIT_CATEGORY', 'Kategorie Ã¤ndern');
+define('TEXT_INFO_HEADING_DELETE_CATEGORY', 'Kategorie lÃ¶schen');
 define('TEXT_INFO_HEADING_MOVE_CATEGORY', 'Kategorie verschieben');
-define('TEXT_INFO_HEADING_DELETE_PRODUCT', 'Artikel löschen');
+define('TEXT_INFO_HEADING_DELETE_PRODUCT', 'Artikel lÃ¶schen');
 define('TEXT_INFO_HEADING_MOVE_PRODUCT', 'Artikel verschieben');
 define('TEXT_INFO_HEADING_COPY_TO', 'Kopieren nach');
-define('TEXT_DELETE_CATEGORY_INTRO', 'Wollen Sie diese Kategorie wirklich löschen?');
-define('TEXT_DELETE_CATEGORY_INTRO_LINKED_PRODUCTS', '<strong>Warnung:</strong> Verbundene Produkte, deren Vorlagenkategorie gelöscht wird, setzen nicht den richtigen Preis fest. Vor dem Entfernen einer Kategorie sollten Sie zuerst sicherstellen, da&szlig; die zu löschende Kategorie keine verbundenen Produkte enthält. Noch enthaltene verbundene Produkte sollten einer anderen Hauptkategorie zugeordnet werden');
-define('TEXT_DELETE_PRODUCT_INTRO', 'Sind Sie sicher, dass Sie diesen Artikel löschen wollen?');
+define('TEXT_DELETE_CATEGORY_INTRO', 'Wollen Sie diese Kategorie wirklich lÃ¶schen?');
+define('TEXT_DELETE_CATEGORY_INTRO_LINKED_PRODUCTS', '<strong>Warnung:</strong> Verbundene Produkte, deren Vorlagenkategorie gelÃ¶scht wird, setzen nicht den richtigen Preis fest. Vor dem Entfernen einer Kategorie sollten Sie zuerst sicherstellen, daÃŸ die zu lÃ¶schende Kategorie keine verbundenen Produkte enthÃ¤lt. Noch enthaltene verbundene Produkte sollten einer anderen Hauptkategorie zugeordnet werden');
+define('TEXT_DELETE_PRODUCT_INTRO', 'Sind Sie sicher, dass Sie diesen Artikel lÃ¶schen wollen?');
 define('TEXT_DELETE_WARNING_CHILDS', '<b>ACHTUNG:</b> Es sind bereits %s (Unter-)Kategorien mit dieser Kategorie verlinkt!');
 define('TEXT_DELETE_WARNING_PRODUCTS', '<b>ACHTUNG:</b> Es sind bereits %s Artikel mit dieser Kategorie verlinkt!');
-define('TEXT_MOVE_PRODUCTS_INTRO', 'Bitte Kategorie auswählen, in die Sie <b>%s</b> verschieben wollen');
-define('TEXT_MOVE_CATEGORIES_INTRO', 'Bitte Kategorie auswählen, in die Sie <b>%s</b> verschieben wollen');
+define('TEXT_MOVE_PRODUCTS_INTRO', 'Bitte Kategorie auswÃ¤hlen, in die Sie <b>%s</b> verschieben wollen');
+define('TEXT_MOVE_CATEGORIES_INTRO', 'Bitte Kategorie auswÃ¤hlen, in die Sie <b>%s</b> verschieben wollen');
 define('TEXT_MOVE', 'Verschiebe <b>%s</b> nach:');
-define('TEXT_NEW_CATEGORY_INTRO', 'Geben Sie folgende Informationen für die neue Kategorie an');
+define('TEXT_NEW_CATEGORY_INTRO', 'Geben Sie folgende Informationen fÃ¼r die neue Kategorie an');
 define('TEXT_CATEGORIES_NAME', 'Kategoriename:');
 define('TEXT_CATEGORIES_IMAGE', 'Kategoriebild:');
 define('TEXT_SORT_ORDER', 'Sortierung:');
@@ -79,7 +82,7 @@ define('TEXT_PRODUCTS_MODEL', 'Artikelnummer:');
 define('TEXT_PRODUCTS_IMAGE', 'Artikelbild:');
 define('TEXT_PRODUCTS_IMAGE_DIR', 'Uploadverzeichnis:');
 define('TEXT_PRODUCTS_URL', 'Herstellerlink:');
-define('TEXT_PRODUCTS_URL_WITHOUT_HTTP', '<small>(Ohne führendes http://)</small>');
+define('TEXT_PRODUCTS_URL_WITHOUT_HTTP', '<small>(Ohne fÃ¼hrendes http://)</small>');
 define('TEXT_PRODUCTS_PRICE_NET', 'Nettopreis:');
 define('TEXT_PRODUCTS_PRICE_GROSS', 'Bruttopreis:');
 define('TEXT_PRODUCTS_WEIGHT', 'Gewicht:');
@@ -87,45 +90,45 @@ define('EMPTY_CATEGORY', 'Leere Kategorie');
 define('TEXT_HOW_TO_COPY', 'Kopiermethode:');
 define('TEXT_COPY_AS_LINK', 'Artikellink');
 define('TEXT_COPY_AS_DUPLICATE', 'Doppelter Artikel');
-define('TEXT_RESTRICT_PRODUCT_TYPE', 'Auf Artikeltyp beschränken');
-define('TEXT_CATEGORY_HAS_RESTRICTIONS', 'Diese Kategorie wurde auf diese Artikeltypen beschränkt');
-define('ERROR_CANNOT_ADD_PRODUCT_TYPE', 'Der gewählte Artikel kann dieser Kategorie nicht hinzugefügt werden. überprüfen Sie die Einschränkungen der Kategorie.');
+define('TEXT_RESTRICT_PRODUCT_TYPE', 'Auf Artikeltyp beschrÃ¤nken');
+define('TEXT_CATEGORY_HAS_RESTRICTIONS', 'Diese Kategorie wurde auf diese Artikeltypen beschrÃ¤nkt');
+define('ERROR_CANNOT_ADD_PRODUCT_TYPE', 'Der gewÃ¤hlte Artikel kann dieser Kategorie nicht hinzugefÃ¼gt werden. ÃœberprÃ¼fen Sie die EinschrÃ¤nkungen der Kategorie.');
 
 // Products and Attribute Copy Options
-define('TEXT_COPY_ATTRIBUTES_ONLY', 'wird nur für doppelte Artikel verwendet ...');
+define('TEXT_COPY_ATTRIBUTES_ONLY', 'wird nur fÃ¼r doppelte Artikel verwendet ...');
 define('TEXT_COPY_ATTRIBUTES', 'Artikelattribute zum Duplikat kopieren?');
 define('TEXT_COPY_ATTRIBUTES_YES', 'Ja');
 define('TEXT_COPY_ATTRIBUTES_NO', 'Nein');
 define('TEXT_INFO_CURRENT_PRODUCT', 'Aktueller Artikel:');
 define('TABLE_HEADING_MODEL', 'Artikelnummer');
-define('TEXT_INFO_HEADING_ATTRIBUTE_FEATURES', 'Attribute für Artikel ID# geändert');
-define('TEXT_INFO_ATTRIBUTES_FEATURES_DELETE', 'Lösche <strong>ALLE</strong> Artikelattribute für:<br />');
+define('TEXT_INFO_HEADING_ATTRIBUTE_FEATURES', 'Attribute fÃ¼r Artikel ID# geÃ¤ndert');
+define('TEXT_INFO_ATTRIBUTES_FEATURES_DELETE', 'LÃ¶sche <strong>ALLE</strong> Artikelattribute fÃ¼r:<br />');
 define('TEXT_INFO_ATTRIBUTES_FEATURES_COPY_TO', 'Kopiere Attribute zu einem anderen Artikel oder einer ganzen Kategorie von:<br />');
 define('TEXT_INFO_ATTRIBUTES_FEATURES_COPY_TO_PRODUCT', 'Kopiere Attribute zu einem anderen <strong>Artikel</strong> von:<br />');
 define('TEXT_INFO_ATTRIBUTES_FEATURES_COPY_TO_CATEGORY', 'Kopiere Attribute zu einer anderen <strong>Kategorie</strong> von:<br />');
 define('TEXT_COPY_ATTRIBUTES_CONDITIONS', '<strong>Wie sollen existierende Artikelattribute behandelt werden?</strong>');
-define('TEXT_COPY_ATTRIBUTES_DELETE', 'Bitte zuerst <strong>löschen</strong> bevor Sie neue Attribute kopieren');
-define('TEXT_COPY_ATTRIBUTES_UPDATE', '<strong>Aktualisieren</strong> Sie die neuen Einstellungen/Preise, bevor Sie neue hinzufügen');
-define('TEXT_COPY_ATTRIBUTES_IGNORE', '<strong>Ignorieren</strong> und nur neue Attribute hinzufügen');
-define('SUCCESS_ATTRIBUTES_DELETED', 'Die Attribute wurden gelöscht');
+define('TEXT_COPY_ATTRIBUTES_DELETE', 'Bitte zuerst <strong>lÃ¶schen</strong> bevor Sie neue Attribute kopieren');
+define('TEXT_COPY_ATTRIBUTES_UPDATE', '<strong>Aktualisieren</strong> Sie die neuen Einstellungen/Preise, bevor Sie neue hinzufÃ¼gen');
+define('TEXT_COPY_ATTRIBUTES_IGNORE', '<strong>Ignorieren</strong> und nur neue Attribute hinzufÃ¼gen');
+define('SUCCESS_ATTRIBUTES_DELETED', 'Die Attribute wurden gelÃ¶scht');
 define('SUCCESS_ATTRIBUTES_UPDATE', 'Die Attribute wurden aktualisiert');
 define('ICON_ATTRIBUTES', 'Attributmerkmale');
 define('TEXT_CATEGORIES_IMAGE_DIR', 'In Verzeichnis hochladen:');
-define('TEXT_CATEGORIES_IMAGE_MANUAL', '<strong>Oder wählen Sie ein bestehendes Bild vom Server, Dateiname:</strong>');
+define('TEXT_CATEGORIES_IMAGE_MANUAL', '<strong>Oder wÃ¤hlen Sie ein bestehendes Bild vom Server, Dateiname:</strong>');
 define('TEXT_VIRTUAL_PREVIEW', 'Achtung: Dieser Artikel ist als versandkostenfrei markiert und ignoriert Versandadressen');
 define('TEXT_VIRTUAL_EDIT', 'Achtung: Dieser Artikel ist als versandkostenfrei markiert und ignoriert Versandadressen');
-define('TEXT_FREE_SHIPPING_PREVIEW', 'Achtung: Dieser Artikel ist als versandkostenfrei markiert und benötigt eine Versandadresse');
-define('TEXT_FREE_SHIPPING_EDIT', 'Achtung: Mit &quot;Ja&quot; kennzeichnen Sie diesen Artikel als versandkostenfrei - eine Versandadresse wird benötigt');
-define('TEXT_PRODUCTS_QTY_BOX_STATUS_PREVIEW', 'Warnung: Ohne Anzeige der Lager-Stückzahl ist der Standardwert 1');
-define('TEXT_PRODUCTS_QTY_BOX_STATUS_EDIT', 'Warnung: Ohne Anzeige der Lager-Stückzahl ist der Standardwert 1');
-define('TEXT_PRODUCT_OPTIONS', '<strong>Bitte wählen Sie:</strong>');
-define('TEXT_PRODUCTS_ATTRIBUTES_INFO', 'Attributwert für:');
+define('TEXT_FREE_SHIPPING_PREVIEW', 'Achtung: Dieser Artikel ist als versandkostenfrei markiert und benÃ¶tigt eine Versandadresse');
+define('TEXT_FREE_SHIPPING_EDIT', 'Achtung: Mit "Ja" kennzeichnen Sie diesen Artikel als versandkostenfrei - eine Versandadresse wird benÃ¶tigt');
+define('TEXT_PRODUCTS_QTY_BOX_STATUS_PREVIEW', 'Warnung: Ohne Anzeige der Lager-StÃ¼ckzahl ist der Standardwert 1');
+define('TEXT_PRODUCTS_QTY_BOX_STATUS_EDIT', 'Warnung: Ohne Anzeige der Lager-StÃ¼ckzahl ist der Standardwert 1');
+define('TEXT_PRODUCT_OPTIONS', '<strong>Bitte wÃ¤hlen Sie:</strong>');
+define('TEXT_PRODUCTS_ATTRIBUTES_INFO', 'Attributwert fÃ¼r:');
 define('TEXT_PRODUCT_ATTRIBUTES_DOWNLOADS', 'Downloads:');
 define('TEXT_PRODUCTS_PRICED_BY_ATTRIBUTES', 'Preis durch Attribute festgelegt:');
 define('TEXT_PRODUCT_IS_PRICED_BY_ATTRIBUTE', 'Ja');
 define('TEXT_PRODUCT_NOT_PRICED_BY_ATTRIBUTE', 'Nein');
-define('TEXT_PRODUCTS_PRICED_BY_ATTRIBUTES_PREVIEW', '*Der Ausstellungspreis wird die niedrigsten Gruppenattributspreise plus Preis mit einschlie&szlig;en');
-define('TEXT_PRODUCTS_PRICED_BY_ATTRIBUTES_EDIT', '*Der Ausstellungspreis wird die niedrigsten Gruppenattributspreise plus Preis mit einschlie&szlig;en');
+define('TEXT_PRODUCTS_PRICED_BY_ATTRIBUTES_PREVIEW', '*Der Ausstellungspreis wird die niedrigsten Gruppenattributspreise plus Preis mit einschlieÃŸen');
+define('TEXT_PRODUCTS_PRICED_BY_ATTRIBUTES_EDIT', '*Der Ausstellungspreis wird die niedrigsten Gruppenattributspreise plus Preis mit einschlieÃŸen');
 define('TEXT_PRODUCTS_QUANTITY_MIN_RETAIL', 'Artikel Mindestabnahme:');
 define('TEXT_PRODUCTS_QUANTITY_UNITS_RETAIL', 'Abnahmeeinheit:');
 define('TEXT_PRODUCTS_QUANTITY_MAX_RETAIL', 'Artikel Maximalabnahme:');
@@ -135,33 +138,33 @@ define('PRODUCTS_PRICE_IS_FREE_TEXT', 'Artikel ist kostenlos');
 define('TEXT_PRODUCT_IS_FREE', 'Artikel ist kostenlos:');
 define('TEXT_PRODUCTS_IS_FREE_PREVIEW', '*Artikel ist als kostenlos markiert');
 define('TEXT_PRODUCTS_IS_FREE_EDIT', '*Artikel ist als kostenlos markiert');
-define('TEXT_PRODUCT_IS_CALL', 'Artikel ist &quot;Preis bitte anfragen&quot;:');
-define('TEXT_PRODUCTS_IS_CALL_PREVIEW', '*Artikel ist mit &quot;Preis bitte anfragen&quot; gekennzeichnet');
-define('TEXT_PRODUCTS_IS_CALL_EDIT', '*Artikel ist mit &quot;Preis bitte anfragen&quot; gekennzeichnet');
-define('TEXT_ATTRIBUTE_COPY_SKIPPING', '<strong>überspringe neue Attribute </strong>');
-define('TEXT_ATTRIBUTE_COPY_INSERTING', '<strong>Einfügen neuer Attribute von</strong>');
+define('TEXT_PRODUCT_IS_CALL', 'Artikel ist "Preis bitte anfragen":');
+define('TEXT_PRODUCTS_IS_CALL_PREVIEW', '*Artikel ist mit "Preis bitte anfragen" gekennzeichnet');
+define('TEXT_PRODUCTS_IS_CALL_EDIT', '*Artikel ist mit "Preis bitte anfragen" gekennzeichnet');
+define('TEXT_ATTRIBUTE_COPY_SKIPPING', '<strong>Ãœberspringe neue Attribute </strong>');
+define('TEXT_ATTRIBUTE_COPY_INSERTING', '<strong>EinfÃ¼gen neuer Attribute von</strong>');
 define('TEXT_ATTRIBUTE_COPY_UPDATING', '<strong>Aktualisieren von Attribut </strong>');
 define('TEXT_SHIPPING_INFO',
-     '<strong>Virtuelle Artikel</strong> sind versandkostenfrei und benötigen <strong>keine</strong> Lieferadresse, z.B. Artikel wie ' . TEXT_GV_NAMES . ', etc.<br />' .
-     'Artikel, die als <strong>Immer versandkostenfrei</strong> gekennzeichnet sind, sind versandkostenfrei, <strong>benötigen</strong> jedoch eine Lieferadresse<br />' .
-     '<strong>Download-Artikel</strong> sind <strong>versandkostenfrei</strong> und benötigen <strong>keine</strong> Lieferadresse<br />');
+     '<strong>Virtuelle Artikel</strong> sind versandkostenfrei und benÃ¶tigen <strong>keine</strong> Lieferadresse, z.B. Artikel wie ' . TEXT_GV_NAMES . ', etc.<br />' .
+     'Artikel, die als <strong>Immer versandkostenfrei</strong> gekennzeichnet sind, sind versandkostenfrei, <strong>benÃ¶tigen</strong> jedoch eine Lieferadresse<br />' .
+     '<strong>Download-Artikel</strong> sind <strong>versandkostenfrei</strong> und benÃ¶tigen <strong>keine</strong> Lieferadresse<br />');
 define('TEXT_ANY_TYPE', 'Jeder Typ');
 define('TABLE_HEADING_PRODUCT_TYPES', 'Artikeltyp(en)');
 
 // categories status
-define('TEXT_INFO_HEADING_STATUS_CATEGORY', 'Kategoriestatus ändern für:');
-define('TEXT_CATEGORIES_STATUS_INTRO', 'Kategoriestatus ändern nach: ');
+define('TEXT_INFO_HEADING_STATUS_CATEGORY', 'Kategoriestatus Ã¤ndern fÃ¼r:');
+define('TEXT_CATEGORIES_STATUS_INTRO', 'Kategoriestatus Ã¤ndern nach: ');
 define('TEXT_CATEGORIES_STATUS_OFF', 'AUS');
 define('TEXT_CATEGORIES_STATUS_ON', 'EIN');
-define('TEXT_PRODUCTS_STATUS_INFO', 'JEDEN Artikelstatus ändern nach: ');
+define('TEXT_PRODUCTS_STATUS_INFO', 'JEDEN Artikelstatus Ã¤ndern nach: ');
 define('TEXT_PRODUCTS_STATUS_OFF', 'AUS');
 define('TEXT_PRODUCTS_STATUS_ON', 'EIN');
-define('TEXT_PRODUCTS_STATUS_NOCHANGE', 'Unverändert');
+define('TEXT_PRODUCTS_STATUS_NOCHANGE', 'UnverÃ¤ndert');
 define('TEXT_CATEGORIES_STATUS_WARNING', '<strong>WARNUNG ...</strong><br />Hinweis: Wenn Sie eine Kategorie deaktivieren, deaktivieren Sie auch ALLE Artikel, die in dieser Kategorie enthalten sind. Verlinkte Artikel in dieser Kategorie, welche mit anderen Kategorien verlinkt sind, werden dadurch ebenfalls deaktiviert.');
 define('TEXT_PRODUCTS_STATUS_ON_OF', ' von ');
 define('TEXT_PRODUCTS_STATUS_ACTIVE', ' aktiv ');
 define('TEXT_CATEGORIES_DESCRIPTION', 'Kategoriebeschreibung:');
-define('PRODUCTS_PRICE_IS_CALL_FOR_PRICE_TEXT', 'Artikel ist &quot;Preis bitte anfragen.&quot;');
+define('PRODUCTS_PRICE_IS_CALL_FOR_PRICE_TEXT', 'Artikel ist "Preis bitte anfragen."');
 
 // Metatags
 define('TEXT_INFO_HEADING_EDIT_CATEGORY_META_TAGS', 'Kategorien Meta Tags Definitionen');
@@ -171,3 +174,7 @@ define('TEXT_EDIT_CATEGORIES_META_TAGS_KEYWORDS', 'Schlagwort:');
 define('TEXT_EDIT_CATEGORIES_META_TAGS_DESCRIPTION', 'Beschreibung');
 define('WARNING_PRODUCTS_IN_TOP_INFO', 'WARNUNG: Sie haben Produkte in der Hauptkategorie. Dadurch werden die Preise im Katalog nicht richtig zugeordnet. Folgende Produkte wurden gefunden: ');
 
+
+
+
+?>

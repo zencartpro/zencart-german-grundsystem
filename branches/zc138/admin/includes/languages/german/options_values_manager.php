@@ -1,12 +1,15 @@
 <?php
 /**
- * @package languageDefines
- * @copyright Copyright 2003-2008 Zen Cart Development Team
+ * @package linkpoint_api_payment_module
+ * @copyright Copyright 2003-2006 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.at/license/2_0.txt GNU Public License V2.0
- * @translator: cyaneo/hugo13/wflohr    http://www.zen-cart.at    
+ * @translator: cyaneo/hugo13/wflohr    http://www.zen-cart.at    2007-01-03
  * @version $Id$
  */
+
+//  $Id$
+//
 
 define('HEADING_TITLE_OPT', 'Artikeloptionen');
 define('HEADING_TITLE_VAL', 'Attributmerkmale');
@@ -26,10 +29,10 @@ define('TEXT_WARNING_OF_DELETE', 'Diese Option ist Artikel und Optionen zugewies
 define('TEXT_OK_TO_DELETE', 'Diese Option ist keinen Artikeln und keinen Optionen zugewiesen und kann gelöscht werden.');
 define('TEXT_OPTION_ID', 'Option ID');
 define('TEXT_OPTION_NAME', 'Attributname');
-define('TABLE_HEADING_OPT_DISCOUNTED', 'Ermä&szlig;igt');
+define('TABLE_HEADING_OPT_DISCOUNTED', 'Ermäßigt');
 define('ATTRIBUTE_WARNING_DUPLICATE', 'Hinzufügen nicht möglich - Attribut ist bereits vorhanden');
 // attributes duplicate warning
-define('ATTRIBUTE_WARNING_DUPLICATE_UPDATE', 'änderung nicht möglich - Attribut ist bereits vorhanden');
+define('ATTRIBUTE_WARNING_DUPLICATE_UPDATE', 'Änderung nicht möglich - Attribut ist bereits vorhanden');
 // attributes duplicate warning
 define('ATTRIBUTE_WARNING_INVALID_MATCH', 'Attribut konnte nicht erstellt werden - Attributoption und Attributmerkmal stimmen nicht überein');
 // miss matched option and options value
@@ -42,9 +45,9 @@ define('ATTRIBUTE_POSSIBLE_OPTIONS_VALUE_WARNING_DUPLICATE', 'Möglicherweise wu
 
 define('PRODUCTS_ATTRIBUTES_EDITING', 'BEARBEITE');
 // title
-define('PRODUCTS_ATTRIBUTES_DELETE', 'LöSCHE');
+define('PRODUCTS_ATTRIBUTES_DELETE', 'LÖSCHE');
 // title
-define('PRODUCTS_ATTRIBUTES_ADDING', 'FüGE NEUES ATTRIBUT HINZU');
+define('PRODUCTS_ATTRIBUTES_ADDING', 'FÜGE NEUES ATTRIBUT HINZU');
 // title
 define('TEXT_DOWNLOADS_DISABLED', 'Hinweis: Downloads sind deaktiviert');
 define('TABLE_TEXT_MAX_DAYS_SHORT', 'Tage:');
@@ -60,19 +63,19 @@ define('TABLE_HEADING_YES', 'Ja');
 define('TABLE_HEADING_NO', 'Nein');
 define('TABLE_HEADING_OPT_TYPE', 'Optionsart');
 //CLR 031203 add option type column
-define('TABLE_HEADING_OPTION_VALUE_SIZE', 'Grö&szlig;e');
+define('TABLE_HEADING_OPTION_VALUE_SIZE', 'Größe');
 define('TABLE_HEADING_OPTION_VALUE_MAX', 'Maximal');
 define('TABLE_HEADING_OPTION_VALUE_ROWS', 'Reihen');
 define('TABLE_HEADING_OPTION_VALUE_COMMENTS', 'Kommentare');
 define('TEXT_OPTION_VALUE_COMMENTS', 'Kommentare:');
-define('TEXT_OPTION_VALUE_SIZE', 'Darstellungsgrö&szlig;e:');
+define('TEXT_OPTION_VALUE_SIZE', 'Darstellungsgröße:');
 define('TEXT_OPTION_VALUE_MAX', 'Maximale Länge:');
 define('TEXT_ATTRIBUTES_IMAGE', 'Muster des Attributsbildes:');
 define('TEXT_ATTRIBUTES_IMAGE_DIR', 'Verzeichnis des Attributsbildes:');
 define('TEXT_ATTRIBUTES_FLAGS', 'Attributs-<br />kennzeichen:');
 define('TEXT_ATTRIBUTES_DISPLAY_ONLY', 'Nur zur<br />Darstellung benötigt:');
 define('TEXT_ATTRIBUTES_IS_FREE', 'Attribut ist kostenlos<br />wenn der Artikel kostenlos ist:');
-define('TEXT_ATTRIBUTES_DEFAULT', 'Attribut, welches standardmä&szlig;ig<br />markiert werden soll:');
+define('TEXT_ATTRIBUTES_DEFAULT', 'Attribut, welches standardmäßig<br />markiert werden soll:');
 define('TEXT_ATTRIBUTE_IS_DISCOUNTED', 'Rabatte verwenden die vom<br />Artikel verwendet werden:');
 define('TEXT_ATTRIBUTE_PRICE_BASE_INCLUDED', 'Inklusive Grundpreis<br />wenn Preis durch Attribute bestimmt wird:');
 define('TEXT_PRODUCT_OPTIONS_INFO', 'Für weitere Einstellungen bitte Artikeloptionen bearbeiten');
@@ -116,3 +119,4 @@ define('ERROR_OPTION_VALUES_DELETE_MISMATCH', 'Fehler: Ausgewählter Optionsname
 define('SUCCESS_OPTION_VALUES_DELETE', 'Erfolgreich gelöscht: ');
 
 
+?>

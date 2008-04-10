@@ -1,12 +1,15 @@
 <?php
 /**
- * @package languageDefines
- * @copyright Copyright 2003-2008 Zen Cart Development Team
+ * @package linkpoint_api_payment_module
+ * @copyright Copyright 2003-2006 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.at/license/2_0.txt GNU Public License V2.0
- * @translator: cyaneo/hugo13/wflohr    http://www.zen-cart.at    
+ * @translator: cyaneo/hugo13/wflohr    http://www.zen-cart.at    2007-01-03
  * @version $Id$
  */
+
+//  $Id$
+//
 
 define('TABLE_HEADING_COMMENTS','Kommentare');
 define('TABLE_HEADING_CUSTOMER_NOTIFIED', 'Customer Notified' . ' !!!TRANSLATE!!! file: admin/includes/languages/LANGUAGE/invoice.php at line 357');
@@ -32,3 +35,5 @@ define('ENTRY_DATE_PURCHASED', 'Bestelldatum:');
 define('ENTRY_ORDER_ID', 'Rechnungsnummer: ');
 define('TEXT_INFO_ATTRIBUTE_FREE', '&nbsp;-&nbsp;KOSTENLOS');
 
+
+?>

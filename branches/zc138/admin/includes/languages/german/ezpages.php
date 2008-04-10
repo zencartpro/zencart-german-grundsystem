@@ -1,12 +1,15 @@
 <?php
 /**
- * @package languageDefines
- * @copyright Copyright 2003-2008 Zen Cart Development Team
+ * @package linkpoint_api_payment_module
+ * @copyright Copyright 2003-2006 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.at/license/2_0.txt GNU Public License V2.0
- * @translator: cyaneo/hugo13/wflohr    http://www.zen-cart.at    
+ * @translator: cyaneo/hugo13/wflohr    http://www.zen-cart.at    2007-01-03
  * @version $Id$
  */
+
+//  $Id$
+// $Id$
 //
 define('HEADING_TITLE', 'EZ-Pages');
 define('TABLE_HEADING_PAGES', 'Seitentitel');
@@ -31,7 +34,7 @@ define('TABLE_HEADING_STATUS_SIDEBOX', 'Sidebox:');
 define('TABLE_HEADING_STATUS_FOOTER', 'Fusszeile:');
 define('TABLE_HEADING_STATUS_TOC', 'Inhaltsverzeichnis:');
 define('TABLE_HEADING_CHAPTER', 'Kapitel:');
-define('TABLE_HEADING_PAGE_OPEN_NEW_WINDOW', 'öffne neues Fenster:');
+define('TABLE_HEADING_PAGE_OPEN_NEW_WINDOW', 'Öffne neues Fenster:');
 define('TABLE_HEADING_PAGE_IS_SSL', 'Seite ist SSL:');
 define('TEXT_DISPLAY_NUMBER_OF_PAGES', 'Zeige <b>%d</b> bis <b>%d</b> (von <b>%d</b> Seiten)');
 define('IMAGE_NEW_PAGE', 'Neue Seite');
@@ -63,3 +66,4 @@ define('TEXT_SORT_PAGE_TITLE', 'Seitentitel');
 define('TEXT_SORT_PAGE_ID_TITLE', 'Seiten ID, Title');
 define('TEXT_PAGE_TITLE', 'Titel:');
 define('TEXT_WARNING_MULTIPLE_SETTINGS', '<strong>WARNUNG: Multiple Link Definition</strong>');
+?>

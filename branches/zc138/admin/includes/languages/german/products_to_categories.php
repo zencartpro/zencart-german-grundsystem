@@ -1,12 +1,15 @@
 <?php
 /**
- * @package languageDefines
- * @copyright Copyright 2003-2008 Zen Cart Development Team
+ * @package linkpoint_api_payment_module
+ * @copyright Copyright 2003-2006 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.at/license/2_0.txt GNU Public License V2.0
- * @translator: cyaneo/hugo13/wflohr    http://www.zen-cart.at    
+ * @translator: cyaneo/hugo13/wflohr    http://www.zen-cart.at    2007-01-03
  * @version $Id$
  */
+
+//  $Id$
+//
 
 define('HEADING_TITLE', 'Artikel in mehrere Kategorien anzeigen - Link Manager ...');
 define('HEADING_TITLE2', 'Kategorien / Artikel');
@@ -27,11 +30,11 @@ define('TEXT_INFO_LINKED_TO_COUNT', '&nbsp;&nbsp;Aktuelle Anzahl verlinkter Kate
 define('TEXT_INFO_PRODUCTS_TO_CATEGORIES_LINKER_INTRO',
     'Artikel in mehrere Kategorien anzeigen - Link Manager wurde entwickelt um schnell einen Artikel mit ein oder mehreren anderen Kategorien verlinken zu können.<br />Es können auch alle Artikel einer Kategorie mit einer anderen Kategorie verlinkt werden. Selbstverständlich können bestehende Links mit dieses Tool wieder gelöscht werden. (siehe Information nächster Punkt)');
 define('TEXT_INFO_PRODUCTS_TO_CATEGORIES_LINKER',
-    'Zur Preisberechnung muss jeder Artikel einer Hauptkategorie zugewiesen sein, unabhängig davon mit wievielen anderen Kategorien dieser verlinkt ist. Verwenden Sie dazu das Dropdown Feld &quot;Hauptkategorie&quot;.<br />
+    'Zur Preisberechnung muss jeder Artikel einer Hauptkategorie zugewiesen sein, unabhängig davon mit wievielen anderen Kategorien dieser verlinkt ist. Verwenden Sie dazu das Dropdown Feld "Hauptkategorie".<br />
 Der Artikel ist aktuell folgenden Kategorien zugewiesen (siehe Checkbox). Einfach Checkbox neben Kategorienamen selektieren bzw. deselektiern um Verlinkung hinzu zu fügen bzw. zu löschen.<br />
 Zum Speichern den Button ' . BUTTON_UPDATE_CATEGORY_LINKS . ' drücken.<br />'
     );
-define('HEADER_CATEGORIES_GLOBAL_CHANGES', 'Globale Kategorie-Link änderungen und Hauptkategorie-ID Reset');
+define('HEADER_CATEGORIES_GLOBAL_CHANGES', 'Globale Kategorie-Link Änderungen und Hauptkategorie-ID Reset');
 define('TEXT_SET_MASTER_CATEGORIES_ID', '<strong>ACHTUNG:</strong> Hauptkategorie-ID änderen bevor verlinkte Kategorien verändert werden!');
 
 // copy category to category linked
@@ -43,11 +46,11 @@ define('WARNING_PRODUCTS_LINK_TO_CATEGORY_REMOVED', 'WARNUNG: Artikel wurde zur�
 define('WARNING_COPY_LINKED', 'WARNUNG: ');
 define('WARNING_COPY_ALL_PRODUCTS_TO_CATEGORY_FROM_LINKED', 'Falsche Kategorie um Artikel aus Kategorie zu verlinken: ');
 define('WARNING_COPY_ALL_PRODUCTS_TO_CATEGORY_TO_LINKED', 'Falsche Kategorie um Artikel in Kategorie zu verlinken: ');
-define('WARNING_NO_CATEGORIES_ID', 'Warnung: Keine Kategorie ausgewählt ... keine änderung gemacht');
+define('WARNING_NO_CATEGORIES_ID', 'Warnung: Keine Kategorie ausgewählt ... keine Änderung gemacht');
 define('SUCCESS_COPY_LINKED', 'Erfolgreiche Aktualisierung der verlinkten Artikel ... ');
 define('SUCCESS_COPY_ALL_PRODUCTS_TO_CATEGORY_FROM_LINKED', 'Artikel aus folgender Kategorie verlinken: ');
 define('SUCCESS_COPY_ALL_PRODUCTS_TO_CATEGORY_TO_LINKED', 'Artikel in folgende Kategorie verlinken: ');
-define('WARNING_COPY_FROM_IN_TO_LINKED', '<strong>WARNUNG: Keine änderungen durchgeführt - Artikel bereits verlinkt ... </strong>');
+define('WARNING_COPY_FROM_IN_TO_LINKED', '<strong>WARNUNG: Keine Änderungen durchgeführt - Artikel bereits verlinkt ... </strong>');
 
 // remove category to category linked
 define('TEXT_INFO_REMOVE_ALL_PRODUCTS_TO_CATEGORY_LINKED', '<strong>Entferne ALLE VERLINKTEN Artikel einer Kategorie ...</strong><br />z.B. Bei 8 und 22 werden ALLE Artikel-Links zu Kategorie 22 in Kategorie 8 entfernt');
@@ -60,7 +63,7 @@ define('WARNING_REMOVE_ALL_PRODUCTS_TO_CATEGORY_TO_LINKED', 'Nicht möglich Arti
 define('SUCCESS_REMOVE_LINKED', 'Verlinkte Artikel erfolgreich entfernt ... ');
 define('SUCCESS_REMOVE_ALL_PRODUCTS_TO_CATEGORY_FROM_LINKED', 'Verlinkte Artikel aus Kategorie löschen: ');
 define('SUCCESS_REMOVE_ALL_PRODUCTS_TO_CATEGORY_TO_LINKED', 'Verlinkte Artikel in diese Kategorie löschen: ');
-define('WARNING_REMOVE_FROM_IN_TO_LINKED', '<strong>WARNUNG: Keine änderungen gemacht, keine Artikel verlinkt ... </strong>');
+define('WARNING_REMOVE_FROM_IN_TO_LINKED', '<strong>WARNUNG: Keine Änderungen gemacht, keine Artikel verlinkt ... </strong>');
 define('WARNING_MASTER_CATEGORIES_ID_CONFLICT', '<strong>ACHTUNG: HAUPTKATEGORIE-ID KONFLIKT!! </strong>');
 define('TEXT_INFO_MASTER_CATEGORIES_ID_CONFLICT', '<strong>Hauptkategorie ID ist: </strong>');
 define('TEXT_INFO_MASTER_CATEGORIES_ID_PURPOSE', 'Anmerkung: Die Hauptkategorie wird zur Preisberechnung bei verlinkten Artikeln verwendet. z.B. Sonderangebote <br />');
@@ -69,7 +72,7 @@ define('TEXT_MASTER_CATEGORIES_ID_CONFLICT_FROM', ' Widersprüchliche  Quellkate
 define('TEXT_MASTER_CATEGORIES_ID_CONFLICT_TO', ' Widersprüchliche  Zielkategorie: ');
 define('SUCCESS_MASTER_CATEGORIES_ID', 'Erfolgreiche Aktualisierung Artikel zu Kategorie Links ...');
 define('WARNING_MASTER_CATEGORIES_ID', 'WARNUNG: Keine Hauptkategorie gesetzt!');
-define('TEXT_PRODUCTS_ID_INVALID', 'WARNUNG: UNGüLTIGE ARTIKEL-ID ODER KEIN ARTIKEL AUSGEWäHLT');
+define('TEXT_PRODUCTS_ID_INVALID', 'WARNUNG: UNGÜLTIGE ARTIKEL-ID ODER KEIN ARTIKEL AUSGEWÄHLT');
 define('TEXT_PRODUCTS_ID_NOT_REQUIRED', 'Anmerkung: Eine Artikel-ID wird nicht unbedingt benötigt um alle Artikel einer Kategorie in eine andere Kategorie zu linken.<br />Allerdings werden bei gesetzter Artikel ID alle verfügbaren Kategorien und deren ID angezeigt.');
 
 // reset all products to new master_categories_id
@@ -79,3 +82,7 @@ define('TEXT_INFO_RESET_ALL_PRODUCTS_TO_CATEGORY_FROM_MASTER', 'Rücksetzen der 
 define('BUTTON_RESET_CATEGORY_MASTER', 'Hauptkategorie-ID zurücksetzen');
 define('WARNING_RESET_ALL_PRODUCTS_TO_CATEGORY_FROM_MASTER', 'WARNUNG: Unzulässige Kategorie ausgewählt ...');
 define('SUCCESS_RESET_ALL_PRODUCTS_TO_CATEGORY_FROM_MASTER', 'Erfolgreiche Aktualisierung der Hauptkategorie-ID für alle Artikel der Kategorie: ');
+
+
+
+?>

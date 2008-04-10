@@ -1,12 +1,15 @@
 <?php
 /**
- * @package languageDefines
- * @copyright Copyright 2003-2008 Zen Cart Development Team
+ * @package linkpoint_api_payment_module
+ * @copyright Copyright 2003-2006 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.at/license/2_0.txt GNU Public License V2.0
- * @translator: cyaneo/hugo13/wflohr    http://www.zen-cart.at    
+ * @translator: cyaneo/hugo13/wflohr    http://www.zen-cart.at    2007-01-03
  * @version $Id$
  */
+
+//  $Id$
+//
 define('HEADING_TITLE', 'Plattenfirma');
 define('TABLE_HEADING_RECORD_COMPANY', 'Plattenfirma');
 define('TABLE_HEADING_ACTION', 'Aktion');
@@ -23,7 +26,7 @@ define('TEXT_HEADING_NEW_RECORD_COMPANY', 'Neue Plattenfirma');
 define('TEXT_HEADING_EDIT_RECORD_COMPANY', 'Plattenfirma bearbeiten');
 define('TEXT_HEADING_DELETE_RECORD_COMPANY', 'Plattenfirma löschen');
 define('TEXT_DATE_ADDED', 'Erstelldatum');
-define('TEXT_LAST_MODIFIED', 'Letzte änderung');
+define('TEXT_LAST_MODIFIED', 'Letzte Änderung');
 define('TEXT_IMAGE_NONEXISTENT', 'Das Bild existiert nicht');
 define('TEXT_PRODUCTS', 'Verlinkte Artikel');
 define('TEXT_DISPLAY_NUMBER_OF_RECORD_COMPANIES', 'Zeige <strong>%d</strong> bis <strong>%d</strong> (von <strong>%d</strong> Plattenfirmen)');
@@ -31,3 +34,4 @@ define('TEXT_DELETE_PRODUCTS', 'Löschen Sie diese Plattenfirma und alle zugeorn
 define('TEXT_DELETE_WARNING_PRODUCTS', '<b>WARNING:</b>  Es gibt %s Einzelteile, die noch mit dieser Plattenfirma verbunden sind!');
 
 
+?>

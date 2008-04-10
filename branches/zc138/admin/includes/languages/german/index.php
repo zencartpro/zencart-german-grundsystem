@@ -1,12 +1,15 @@
 <?php
 /**
- * @package languageDefines
- * @copyright Copyright 2003-2008 Zen Cart Development Team
+ * @package linkpoint_api_payment_module
+ * @copyright Copyright 2003-2006 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.at/license/2_0.txt GNU Public License V2.0
- * @translator: cyaneo/hugo13/wflohr    http://www.zen-cart.at    
+ * @translator: cyaneo/hugo13/wflohr    http://www.zen-cart.at    2007-01-03
  * @version $Id$
  */
+
+//  $Id$
+//
 
 define('HEADING_TITLE', 'Bitte wählen Sie...');
 define('BOX_TITLE_ORDERS', 'Bestellungen');
@@ -34,8 +37,8 @@ define('BOX_ENTRY_CUSTOMERS', 'Kunden:');
 define('BOX_ENTRY_NEWSLETTERS', 'Newsletter Abonnementen:');
 define('BOX_ENTRY_PRODUCTS', 'Artikel:');
 define('BOX_ENTRY_PRODUCTS_OFF', 'Deaktivierte Artikel:');
-define('BOX_ENTRY_REVIEWS', 'überprüfungen:');
-define('BOX_ENTRY_REVIEWS_PENDING', 'Ausstehende überprüfungen:');
+define('BOX_ENTRY_REVIEWS', 'Überprüfungen:');
+define('BOX_ENTRY_REVIEWS_PENDING', 'Ausstehende Überprüfungen:');
 define('BOX_ENTRY_NEW_CUSTOMERS', 'Neue Kunden:');
 define('BOX_ENTRY_NEW_ORDERS', 'Neue Bestellungen:');
 define('BOX_ENTRY_SPECIALS_EXPIRED', 'Abgelaufene Sonderpreise');
@@ -48,3 +51,5 @@ define('LAST_10_DAYS', 'Counter Historie für die letzten %s Tage');
 define('SESSION', 'Session');
 define('TOTAL', 'Gesamt');
 
+
+?>

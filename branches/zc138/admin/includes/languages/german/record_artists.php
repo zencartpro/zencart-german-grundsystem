@@ -1,12 +1,15 @@
 <?php
 /**
- * @package languageDefines
- * @copyright Copyright 2003-2008 Zen Cart Development Team
+ * @package linkpoint_api_payment_module
+ * @copyright Copyright 2003-2006 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.at/license/2_0.txt GNU Public License V2.0
- * @translator: cyaneo/hugo13/wflohr    http://www.zen-cart.at    
+ * @translator: cyaneo/hugo13/wflohr    http://www.zen-cart.at    2007-01-03
  * @version $Id$
  */
+
+//  $Id$
+//
 define('HEADING_TITLE', 'Künstler');
 define('TABLE_HEADING_RECORD_ARTISTS', 'Künstler');
 define('TABLE_HEADING_ACTION', 'Aktion');
@@ -23,10 +26,12 @@ define('TEXT_HEADING_NEW_RECORD_ARTIST', 'Neuer Künstler');
 define('TEXT_HEADING_EDIT_RECORD_ARTIST', 'Künstler bearbeiten');
 define('TEXT_HEADING_DELETE_RECORD_ARTIST', 'Künstler löschen');
 define('TEXT_DATE_ADDED', 'Erstelldatum');
-define('TEXT_LAST_MODIFIED', 'Letzte änderung');
+define('TEXT_LAST_MODIFIED', 'Letzte Änderung');
 define('TEXT_IMAGE_NONEXISTENT', 'Das Bild existiert nicht');
 define('TEXT_PRODUCTS', 'Verlinkte Artikel');
 define('TEXT_DISPLAY_NUMBER_OF_ARTISTS', 'Zeige <strong>%d</strong> bis <strong>%d</strong> (von <strong>%d</strong> Künstlern)');
 define('TEXT_DELETE_PRODUCTS', 'Soll dieser Künstler und alle Verlinkungen zu diesem Künstler gelöscht werden?');
 define('TEXT_DELETE_WARNING_PRODUCTS', '<b>WARNUNG:</b> Es gibt %s Verlinkungen zu diesem Künstler!');
 
+
+?>

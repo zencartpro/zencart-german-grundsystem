@@ -27,7 +27,7 @@ define('ERROR_CONFIGURATION_KEY_NOT_ENTERED', '<strong>Fehler:</strong> Kein Kon
 define('TEXT_INFO_PRODUCTS_PRICE_SORTER_UPDATE', '<strong>Aktualisiere ALLE Artikelpreis Sortierungen</strong><br />damit nach angezeigtem Preis sortiert wird: ');
 define('TEXT_CONFIGURATION_CONSTANT', '<strong>KONSTANTEN und LANGUAGE Definition suchen</strong>');
 define('TEXT_CONFIGURATION_KEY', 'Schlüssel oder Name:');
-define('TEXT_INFO_CONFIGURATION_UPDATE', '<strong>Anmerkung:</strong> KONSTANTEN gro&szlig; schreiben!<br />Dateien werden erst durchsucht wenn nichts in der Datenbank gefunden werden konnte');
+define('TEXT_INFO_CONFIGURATION_UPDATE', '<strong>Anmerkung:</strong> KONSTANTEN groß schreiben!<br />Dateien werden erst durchsucht wenn nichts in der Datenbank gefunden werden konnte');
 define('TABLE_TITLE_KEY', '<strong>Schlüssel:</strong>');
 define('TABLE_TITLE_TITLE', '<strong>Titel:</strong>');
 define('TABLE_TITLE_DESCRIPTION', '<strong>Beschreibung:</strong>');

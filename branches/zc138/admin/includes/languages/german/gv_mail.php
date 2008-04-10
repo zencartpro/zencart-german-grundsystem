@@ -1,12 +1,15 @@
 <?php
 /**
- * @package languageDefines
- * @copyright Copyright 2003-2008 Zen Cart Development Team
+ * @package linkpoint_api_payment_module
+ * @copyright Copyright 2003-2006 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.at/license/2_0.txt GNU Public License V2.0
- * @translator: cyaneo/hugo13/wflohr    http://www.zen-cart.at    
+ * @translator: cyaneo/hugo13/wflohr    http://www.zen-cart.at    2007-01-03
  * @version $Id$
  */
+
+//  $Id$
+//
 
 define('HEADING_TITLE', TEXT_GV_NAME . ' an Kunden versenden');
 define('TEXT_CUSTOMER', 'Kunde:');
@@ -39,3 +42,6 @@ define ('TEXT_REDEEM_COUPON_MESSAGE_AMOUNT', "\n\n" . 'Der Betrag des  ' . TEXT_
 define ('TEXT_REDEEM_COUPON_MESSAGE_BODY', "\n\n" . 'Sie können nun unseren Shop besuchen, sich anmelden und den Betrag des   ' . TEXT_GV_NAME . 's weiterverschicken.');
 define ('TEXT_REDEEM_COUPON_MESSAGE_FOOTER', "\n\n");
 
+
+
+?>

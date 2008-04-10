@@ -1,12 +1,15 @@
 <?php
 /**
- * @package languageDefines
- * @copyright Copyright 2003-2008 Zen Cart Development Team
+ * @package linkpoint_api_payment_module
+ * @copyright Copyright 2003-2006 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.at/license/2_0.txt GNU Public License V2.0
- * @translator: cyaneo/hugo13/wflohr    http://www.zen-cart.at    
+ * @translator: cyaneo/hugo13/wflohr    http://www.zen-cart.at    2007-01-03
  * @version $Id$
  */
+
+//  $Id$
+//
 
 define('HEADING_TITLE', 'Bannermanager');
 define('TABLE_HEADING_BANNERS', 'Bannerwerbungen');
@@ -34,8 +37,8 @@ define('TEXT_BANNERS_OR_AT', ', oder nach');
 define('TEXT_BANNERS_IMPRESSIONS', 'Einblendungen automatisch deaktiviert.');
 define('TEXT_BANNERS_SCHEDULED_AT', 'Geplant für:');
 define('TEXT_BANNERS_BANNER_NOTE', '<b>Banner Hinweis:</b><ul><li>Benutzen Sie entweder ein Bild oder einen HTML Text ,aber nicht beides.</li><li>HTML Text hat eine höhere Priorität als ein Bild</li></ul>');
-define('TEXT_BANNERS_INSERT_NOTE', '<b>Bildhinweis:</b><ul><li>Sie müssen Schreibrechte auf das Uploadverzeichnis haben!</li><li>Wenn Sie kein Bild auf den Server laden wollen, lassen Sie das Eingabefeld &quot;Speichern unter&quot; leer (z.B. wenn Sie ein lokales Bild (serverseitig) verwenden.</li><li>Im Eingabefeld &quot;Speichern unter&quot; muss ein bereits existierendes Verzeichnis und ein abschlie&szlig;ender &quot;Slash&quot; eingetragen werden (z.B.: banners/).</li></ul>');
-define('TEXT_BANNERS_EXPIRCY_NOTE', '<b>&quot;Banner wird angezeigt bis&quot; Hinweis:</b><ul><li>Nur eines der beiden Felder sollte ausgefüllt werden werden</li><li>Wenn der Banner zeitlich nicht automatisch enden soll, lassen Sie diese Felder leer</li></ul>');
+define('TEXT_BANNERS_INSERT_NOTE', '<b>Bildhinweis:</b><ul><li>Sie müssen Schreibrechte auf das Uploadverzeichnis haben!</li><li>Wenn Sie kein Bild auf den Server laden wollen, lassen Sie das Eingabefeld "Speichern unter" leer (z.B. wenn Sie ein lokales Bild (serverseitig) verwenden.</li><li>Im Eingabefeld "Speichern unter" muss ein bereits existierendes Verzeichnis und ein abschließender "Slash" eingetragen werden (z.B.: banners/).</li></ul>');
+define('TEXT_BANNERS_EXPIRCY_NOTE', '<b>"Banner wird angezeigt bis" Hinweis:</b><ul><li>Nur eines der beiden Felder sollte ausgefüllt werden werden</li><li>Wenn der Banner zeitlich nicht automatisch enden soll, lassen Sie diese Felder leer</li></ul>');
 define('TEXT_BANNERS_SCHEDULE_NOTE', '<b>Zeitplan Hinweis:</b><ul><li>Wenn ein Zeitplan erstellt wurde, wird der Banner mit diesem Datum aktiviert.</li><li>Alle geplanten Banner sind bis zum erstellten Zeitplan als inaktiv markiert. Danach werden sie automatisch aktiviert</li></ul>');
 define('TEXT_BANNERS_STATUS', 'Bannerstatus:');
 define('TEXT_BANNERS_ACTIVE', 'Aktiv');
@@ -78,5 +81,8 @@ define('IMAGE_ICON_BANNER_OPEN_NEW_WINDOWS_ON', 'Neues Fenster öffnen - EIN');
 define('IMAGE_ICON_BANNER_OPEN_NEW_WINDOWS_OFF', 'Neues Fenster öffnen - AUS');
 define('IMAGE_ICON_BANNER_ON_SSL_ON', 'Auf SSL Seiten darstellen - EIN');
 define('IMAGE_ICON_BANNER_ON_SSL_OFF', 'Auf SSL Seiten darstellen - AUS');
-define('SUCCESS_BANNER_OPEN_NEW_WINDOW_UPDATED', 'Erfolg: Der Status des Banners zum öffnen in einem neuen Fenster ist aktualisiert worden .');
+define('SUCCESS_BANNER_OPEN_NEW_WINDOW_UPDATED', 'Erfolg: Der Status des Banners zum Öffnen in einem neuen Fenster ist aktualisiert worden .');
 define('SUCCESS_BANNER_ON_SSL_UPDATED', 'Erfolg: Der Status des Banners zum Darstellen auf SSL Seiten ist aktualisiert worden .');
+
+
+?>

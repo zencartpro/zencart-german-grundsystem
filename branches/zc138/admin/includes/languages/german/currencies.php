@@ -1,19 +1,22 @@
 <?php
 /**
- * @package languageDefines
- * @copyright Copyright 2003-2008 Zen Cart Development Team
+ * @package linkpoint_api_payment_module
+ * @copyright Copyright 2003-2006 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.at/license/2_0.txt GNU Public License V2.0
- * @translator: cyaneo/hugo13/wflohr    http://www.zen-cart.at    
+ * @translator: cyaneo/hugo13/wflohr    http://www.zen-cart.at    2007-01-03
  * @version $Id$
  */
+
+//  $Id$
+//
 
 define('HEADING_TITLE','Währungen');
 define('TABLE_HEADING_CURRENCY_NAME','Währung');
 define('TABLE_HEADING_CURRENCY_CODES','Code');
 define('TABLE_HEADING_CURRENCY_VALUE','Einstellung');
 define('TABLE_HEADING_ACTION','Aktion');
-define('TEXT_INFO_EDIT_INTRO','Führen Sie hier bitte die notwendigen änderungen durch');
+define('TEXT_INFO_EDIT_INTRO','Führen Sie hier bitte die notwendigen Änderungen durch');
 define('TEXT_INFO_CURRENCY_TITLE','Titel:');
 define('TEXT_INFO_CURRENCY_CODE','Code:');
 define('TEXT_INFO_CURRENCY_SYMBOL_LEFT','Währungssymbol links:');
@@ -35,3 +38,5 @@ define('ERROR_REMOVE_DEFAULT_CURRENCY','Fehler: Die Standardwährung kann nicht 
 define('ERROR_CURRENCY_INVALID','Fehler: Der Umrechnungskurs für %s (%s) konnte mit %s nicht aktualisiert werden. Haben Sie den richtigen Währungs-Code eingeben?');
 define('WARNING_PRIMARY_SERVER_FAILED','Warnung: Der primäre Aktualisierungs-Server (%s) konnte nach %s (%s) Versuchen nicht erreicht werden - Es wird versucht, die Aktualisierung über den sekundären Server durchzuführen.');
 
+
+?>

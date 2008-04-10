@@ -1,12 +1,15 @@
 <?php
 /**
- * @package languageDefines
- * @copyright Copyright 2003-2008 Zen Cart Development Team
+ * @package linkpoint_api_payment_module
+ * @copyright Copyright 2003-2006 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.at/license/2_0.txt GNU Public License V2.0
- * @translator: cyaneo/hugo13/wflohr    http://www.zen-cart.at    
+ * @translator: cyaneo/hugo13/wflohr    http://www.zen-cart.at    2007-01-03
  * @version $Id$
  */
+
+//  $Id$
+//
 
 define('HEADING_TITLE','Abverkaufsmanager');
 define('TABLE_HEADING_SALE_NAME','Abverkaufsbezeichnung');
@@ -31,7 +34,7 @@ define('TEXT_SALEMAKER_NEVER','Nie');
 define('TEXT_SALEMAKER_ENTIRE_CATALOG','Aktivieren Sie diese Box wenn Sie den Abverkauf auf <b>alle Artikel</b> anwenden wollen:');
 define('TEXT_SALEMAKER_TOP','Kompletter Katalog');
 define('TEXT_INFO_DATE_ADDED','Erstelldatum:');
-define('TEXT_INFO_DATE_MODIFIED','Letzte änderung:');
+define('TEXT_INFO_DATE_MODIFIED','Letzte Änderung:');
 define('TEXT_INFO_DATE_STATUS_CHANGE','Letzte Statusänderung:');
 define('TEXT_INFO_SPECIALS_CONDITION','Sonderkonditionen:');
 define('TEXT_INFO_DEDUCTION','Reduzierung:');
@@ -49,9 +52,11 @@ define('DEDUCTION_TYPE_DROPDOWN_1','Prozent');
 define('DEDUCTION_TYPE_DROPDOWN_2','Neuer Preis');
 */
 define('TEXT_INFO_HEADING_COPY_SALE','Kopiere Abverkauf');
-define('TEXT_INFO_COPY_INTRO','Geben Sie bitte einen Namen für die Kopie von <br>??&quot;%s&quot;');
+define('TEXT_INFO_COPY_INTRO','Geben Sie bitte einen Namen für die Kopie von <br>??"%s"');
 define('TEXT_INFO_HEADING_DELETE_SALE','Abverkauf löschen');
 define('TEXT_INFO_DELETE_INTRO','Wollen Sie diesen Abverkauf wirklich löschen?');
 define('TEXT_MORE_INFO', '(More Info)' . ' !!!TRANSLATE!!! file: admin/includes/languages/LANGUAGE/salemaker.php at line 357');
 define('TEXT_WARNING_SALEMAKER_PREVIOUS_CATEGORIES','&nbsp;Warning : %s sales already include this category' . ' !!!TRANSLATE!!! file: admin/includes/languages/LANGUAGE/salemaker.php at line 357');
 
+
+?>
