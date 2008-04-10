@@ -24,7 +24,7 @@ if ($products_image != '') {
   // if in a subdirectory
   if (strrpos($products_image, '/')) {
     $products_image_match = substr($products_image, strrpos($products_image, '/')+1);
-    //echo 'TEST 1: I match ' . $products_image_match . ' - ' . $file . ' -  base ' . $products_image_base . '<br>';
+    //echo 'TEST 1: I match ' . $products_image_match . ' - ' . $file . ' -  base ' . $products_image_base . '<br />';
     $products_image_match = str_replace($products_image_extension, '', $products_image_match) . '_';
     $products_image_base = $products_image_match;
   }
@@ -47,10 +47,10 @@ if ($products_image != '') {
           if(preg_match("/" . $products_image_base . "/i", $file) == 1) {
             if ($file != $products_image) {
               if ($products_image_base . str_replace($products_image_base, '', $file) == $file) {
-                //  echo 'I AM A MATCH ' . $file . '<br>';
+                //  echo 'I AM A MATCH ' . $file . '<br />';
                 $images_array[] = $file;
               } else {
-                //  echo 'I AM NOT A MATCH ' . $file . '<br>';
+                //  echo 'I AM NOT A MATCH ' . $file . '<br />';
               }
             }
           }

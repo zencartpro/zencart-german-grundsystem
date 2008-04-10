@@ -19,7 +19,7 @@ define('TABLE_HEADING_LOGIN', 'Letzte Anmeldung');
 define('TABLE_HEADING_ACTION', 'Aktion');
 define('TABLE_HEADING_PRICING_GROUP', 'Preisgruppe');
 define('TABLE_HEADING_AUTHORIZATION_APPROVAL', 'Authorisiert');
-define('TABLE_HEADING_GV_AMOUNT', 'GV Balance' . ' !!!TRANSLATE!!! file: admin/includes/languages/LANGUAGE/customers.php at line 357');
+define('TABLE_HEADING_GV_AMOUNT', 'GV Balance' . ' !!!TRANSLATE!!!');
 define('TEXT_DATE_ACCOUNT_CREATED', 'Konto erstellt:');
 define('TEXT_DATE_ACCOUNT_LAST_MODIFIED', 'Letzte Änderung:');
 define('TEXT_INFO_DATE_LAST_LOGON', 'Letzte Anmeldung:');
@@ -35,7 +35,7 @@ define('TEXT_INFO_NUMBER_OF_ORDERS', 'Anzahl der Bestellungen:');
 define('TEXT_INFO_LAST_ORDER', 'Letzte Bestellung:');
 define('TEXT_INFO_ORDERS_TOTAL', 'Summe:');
 define('CUSTOMERS_REFERRAL', 'Kundenverweis (Referal)<br />Erster Aktionskupon');
-define('TEXT_INFO_GV_AMOUNT', 'GV Balance' . ' !!!TRANSLATE!!! file: admin/includes/languages/LANGUAGE/customers.php at line 357');
+define('TEXT_INFO_GV_AMOUNT', 'GV Balance' . ' !!!TRANSLATE!!!');
 define('ENTRY_NONE', 'Kein');
 define('TABLE_HEADING_COMPANY', 'Firma');
 define('CUSTOMERS_AUTHORIZATION', 'Kunden - Authorisierungsstatus');
@@ -43,15 +43,15 @@ define('CUSTOMERS_AUTHORIZATION_0', 'Geprüft');
 define('CUSTOMERS_AUTHORIZATION_1', 'Anstehende Authorisierung - Muss zum Browsen im Shop authorisiert sein');
 define('CUSTOMERS_AUTHORIZATION_2', 'Anstehende Authorisierung - Darf im Shop browsen, aber keine Preise sehen');
 define('CUSTOMERS_AUTHORIZATION_3', 'Anstehende Authorisierung - Darf im Shop browsen und Preise sehen, aber nicht kaufen');
-define('CUSTOMERS_AUTHORIZATION_4', 'Banned - Not allowed to login or shop' . ' !!!TRANSLATE!!! file: admin/includes/languages/LANGUAGE/customers.php at line 357');
+define('CUSTOMERS_AUTHORIZATION_4', 'Banned - Not allowed to login or shop' . ' !!!TRANSLATE!!! file: admin/includes/languages/LANGUAGE/customers.php at line 46');
 define('ERROR_CUSTOMER_APPROVAL_CORRECTION1', 'Warnung: Ihr Shop ist auf "Autorisierung ohne Browsen" eingestellt. Der Kunde wurde auf "Anstehende Authorisierung - Muss zum Browsen im Shop authorisiert sein" gesetzt');
 define('ERROR_CUSTOMER_APPROVAL_CORRECTION2', 'Warnung: Ihr Shop ist auf "Autorisierung mit browsen ohne Preisanzeige" eingestellt. Der Kunde wurde auf "Anstehende Authorisierung - Darf im Shop browsen, aber keine Preise sehen" gesetzt');
 define('EMAIL_CUSTOMER_STATUS_CHANGE_MESSAGE', 'Ihr Kundenstatus wurde aktualisiert. Vielen Dank für Ihren Einkauf! Wir freuen uns auf Ihren nächsten Besuch.');
 define('EMAIL_CUSTOMER_STATUS_CHANGE_SUBJECT', 'Kundenstatus ist aktualisiert');
-define('ADDRESS_BOOK_TITLE', 'Address Book Entries' . ' !!!TRANSLATE!!! file: admin/includes/languages/LANGUAGE/customers.php at line 357');
-define('PRIMARY_ADDRESS', '(primary address)' . ' !!!TRANSLATE!!! file: admin/includes/languages/LANGUAGE/customers.php at line 357');
-define('TEXT_MAXIMUM_ENTRIES', '<span class="coming"><strong>NOTE:</strong></span> A maximum of %s address book entries allowed.' . ' !!!TRANSLATE!!! file: admin/includes/languages/LANGUAGE/customers.php at line 357');
-define('TEXT_INFO_ADDRESS_BOOK_COUNT', ' | 1 of  ' . ' !!!TRANSLATE!!! file: admin/includes/languages/LANGUAGE/customers.php at line 357');
+define('ADDRESS_BOOK_TITLE', 'Address Book Entries' . ' !!!TRANSLATE!!! file: admin/includes/languages/LANGUAGE/customers.php at line 51');
+define('PRIMARY_ADDRESS', '(primary address)' . ' !!!TRANSLATE!!! file: admin/includes/languages/LANGUAGE/customers.php at line 52');
+define('TEXT_MAXIMUM_ENTRIES', '<span class="coming"><strong>NOTE:</strong></span> A maximum of %s address book entries allowed.' . ' !!!TRANSLATE!!! file: admin/includes/languages/LANGUAGE/customers.php at line 53');
+define('TEXT_INFO_ADDRESS_BOOK_COUNT', ' | 1 von  ');
 
 
 ?>

@@ -564,7 +564,7 @@
 //        $calculated_category_path_string .= $calculated_category_path[$i][$j]['text'] . '&nbsp;&gt;&nbsp;';
         $calculated_category_path_string = $calculated_category_path[$i][$j]['text'] . '&nbsp;&gt;&nbsp;' . $calculated_category_path_string;
       }
-      $calculated_category_path_string = substr($calculated_category_path_string, 0, -16) . '<br>';
+      $calculated_category_path_string = substr($calculated_category_path_string, 0, -16) . '<br />';
     }
     $calculated_category_path_string = substr($calculated_category_path_string, 0, -4);
 
@@ -581,7 +581,7 @@
       for ($j=0, $k=sizeof($calculated_category_path[$i]); $j<$k; $j++) {
         $calculated_category_path_string .= $calculated_category_path[$i][$j]['id'] . '_';
       }
-      $calculated_category_path_string = substr($calculated_category_path_string, 0, -1) . '<br>';
+      $calculated_category_path_string = substr($calculated_category_path_string, 0, -1) . '<br />';
     }
     $calculated_category_path_string = substr($calculated_category_path_string, 0, -4);
 

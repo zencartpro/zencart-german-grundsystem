@@ -15,13 +15,13 @@ if(!defined('SOAPSERVER')){
     }
 
 require('includes/application_top.php');
-require_once("../ajax/xajax.inc.php");
+require_once("../ajax/xajax5/xajax_core/xajaxAIO.inc.php");
 
 $xajax = new xajax();
 $xajax -> registerFunction("makeTrans");
 $xajax -> registerFunction("makeTransAll");
 
-$xajax -> processRequests();
+$xajax -> processRequest();
 
 /*
 

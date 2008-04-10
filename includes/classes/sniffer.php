@@ -33,7 +33,7 @@ class sniffer extends base {
     // Check to see if the requested Zen Cart table exists
     $sql = "SHOW TABLES like '".$table_name."'";
     $tables = $db->Execute($sql);
-    //echo 'tables_found = '. $tables->RecordCount() .'<br>';
+    //echo 'tables_found = '. $tables->RecordCount() .'<br />';
     if ($tables->RecordCount() > 0) {
       $found_table = true;
     }

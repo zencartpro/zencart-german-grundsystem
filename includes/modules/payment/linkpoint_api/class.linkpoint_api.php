@@ -53,7 +53,7 @@ class lphp
 				# print out incoming hash
 				if ($webspace)	// use html-friendly output
 				{
-					echo "at process, incoming data: <br>";
+					echo "at process, incoming data: <br />";
 
 					while (list($key, $value) = each($data))
 						 echo htmlspecialchars($key) . " = " . htmlspecialchars($value) . "<BR>\n";
@@ -102,7 +102,7 @@ class lphp
 		if ($this->debugging)
 		{
 			if ($webspace)
-				echo "<br>sending xml string:<br>" . htmlspecialchars($xml) . "<br><br>";
+				echo "<br>sending xml string:<br />" . htmlspecialchars($xml) . "<br /><br />";
 			else
 				echo "\nsending xml string:\n$xml\n\n";
 		}
@@ -117,7 +117,7 @@ class lphp
 		if ($this->debugging)
 		{
 			if ($this->webspace)	// we're web space
-				echo "<br>server responds:<br>" . htmlspecialchars($retstg) . "<br><br>";
+				echo "<br>server responds:<br />" . htmlspecialchars($retstg) . "<br /><br />";
 			else						// not html output
 				echo "\nserver responds:\n $retstg\n\n";
 		}
@@ -168,7 +168,7 @@ class lphp
 				# print out incoming hash
 				if ($webspace)	// use html-friendly output
 				{
-					echo "at curl_process, incoming data: <br>";
+					echo "at curl_process, incoming data: <br />";
 
 					while (list($key, $value) = each($data))
 						 echo htmlspecialchars($key) . " = " . htmlspecialchars($value) . "<BR>\n";
@@ -209,7 +209,7 @@ class lphp
 		if ($this->debugging)
 		{
 			if ($webspace)
-				echo "<br>sending xml string:<br>" . htmlspecialchars($xml) . "<br><br>";
+				echo "<br>sending xml string:<br />" . htmlspecialchars($xml) . "<br /><br />";
 			else
 				echo "\nsending xml string:\n$xml\n\n";
 				$this->xmlString .= "\nsending xml string:\n$xml\n\n";
@@ -273,7 +273,7 @@ class lphp
 				if ($this->debugging)
 				{
 					if ($this->webspace)
-						echo "<br>server responds:<br>" . htmlspecialchars($result) . "<br><br>";
+						echo "<br />server responds:<br />" . htmlspecialchars($result) . "<br /><br />";
 					else						// non html output
 						echo "\nserver responds:\n $result\n\n";
 				}
@@ -325,7 +325,7 @@ class lphp
       if ($this->debugging)
       {
         if ($webspace)	// html-friendly output
-        echo "<br>server responds:<br>" . htmlspecialchars(curl_error($ch)). ' <br>ErrNo#: ' . curl_errno($ch) . "<br><br>";
+        echo "<br>server responds:<br />" . htmlspecialchars(curl_error($ch)). ' <br>ErrNo#: ' . curl_errno($ch) . "<br /><br />";
         else
         echo "\nserver responds:\n". curl_error($ch). " \nErrNo:" . curl_errno($ch)."\n\n";
       }
@@ -337,7 +337,7 @@ class lphp
       if ($this->debugging)
       {
         if ($webspace)	// html-friendly output
-        echo "<br>server responds:<br>" . htmlspecialchars($result) . "<br><br>";
+        echo "<br>server responds:<br />" . htmlspecialchars($result) . "<br /><br />";
         else
         echo "\nserver responds:\n $result\n\n";
 				$this->serverResponse .= "\nCould Not Connect:\n $result\n\n";
@@ -348,7 +348,7 @@ class lphp
 			if ($this->debugging)
 			{
 				if ($webspace)	// html-friendly output
-					echo "<br>server responds:<br>" . htmlspecialchars($result) . "<br><br>";
+					echo "<br>server responds:<br />" . htmlspecialchars($result) . "<br /><br />";
 				else
 					echo "\nserver responds:\n $result\n\n";
 					$this->serverResponse .= "\nserver responds:\n $result\n\n";
@@ -408,7 +408,7 @@ class lphp
 	{
 
 //		while (list($key, $value) = each($pdata))
-//			 echo htmlspecialchars($key) . " = " . htmlspecialchars($value) . "<br>\n";
+//			 echo htmlspecialchars($key) . " = " . htmlspecialchars($value) . "<br />\n";
 
 
 		### ORDEROPTIONS NODE ###

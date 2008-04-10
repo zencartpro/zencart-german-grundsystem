@@ -5,7 +5,7 @@
  * @package orderTotal
  * @copyright Copyright 2003-2006 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
- * @copyright Portions Copyright (c) 2002 Thomas Pl‰nkers http://www.oscommerce.at
+ * @copyright Portions Copyright (c) 2002 Thomas Pl–¥nkers http://www.oscommerce.at
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
  * @version $Id: ot_cod_fee.php 4553 2006-09-18 00:30:40Z ajeh $
  */
