@@ -1,12 +1,15 @@
 <?php
 /**
- * @package languageDefines
- * @copyright Copyright 2003-2008 Zen Cart Development Team
+ * @package linkpoint_api_payment_module
+ * @copyright Copyright 2003-2006 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.at/license/2_0.txt GNU Public License V2.0
- * @translator: cyaneo/hugo13/wflohr    http://www.zen-cart.at    
+ * @translator: cyaneo/hugo13/wflohr    http://www.zen-cart.at    2007-01-03
  * @version $Id$
  */
+
+//  $Id$
+//
 
 define('TOP_BAR_TITLE','Statistiken');
 define('HEADING_TITLE','Aktionkupons');
@@ -28,7 +31,7 @@ define('TEXT_NEWSLETTER_CUSTOMERS','An alle Newsletter Abonnementen');
 define('TEXT_CONFIRM_DELETE','Wollen Sie diesen Aktionskupon wirklich löschen?');
 define('TEXT_SEE_RESTRICT','Verwendungseinschränkung:');
 define('TEXT_COUPON_ANNOUNCE', 'Wir erlauben uns, Ihnen einen Aktionskupon anzubieten');
-define('TEXT_TO_REDEEM','Sie können diesen Aktionskupon während des Bestellvorgangs einlösen. Sie brauchen nur die Nummer des Aktionskupons in das entsprechende Eingabefeld eingeben und abschlie&szlig;end auf &quot;Einlösen&quot; klicken.');
+define('TEXT_TO_REDEEM','Sie können diesen Aktionskupon während des Bestellvorgangs einlösen. Sie brauchen nur die Nummer des Aktionskupons in das entsprechende Eingabefeld eingeben und abschließend auf "Einlösen" klicken.');
 define('TEXT_IN_CASE','falls Sie irgendeine Probleme haben.');
 define('TEXT_VOUCHER_IS','Die Nummer des Aktionskupons lautet');
 define('TEXT_REMEMBER','Bewahren Sie die Nummer des Aktionskupons sicher auf, damit Sie von diesem Sonderangebot profitieren können.');
@@ -89,9 +92,12 @@ define('COUPON_BUTTON_BACK', 'Zurück');
 define('COUPON_ACTIVE', 'Status');
 define('COUPON_START_DATE', 'Startdatum');
 define('COUPON_EXPIRE_DATE', 'Ablaufdatum');
-define('ERROR_DISCOUNT_COUPON_WELCOME', 'Aktionskupon kann nicht deaktiviert werden, da es sich um den Aktionskupon &quot;Willkommensgeschenk&quot; handelt<br /><br />Verwenden Sie einen anderen Aktionskupon als Willkommensgeschenk, damit dieser gelöscht werden kann.');
+define('ERROR_DISCOUNT_COUPON_WELCOME', 'Aktionskupon kann nicht deaktiviert werden, da es sich um den Aktionskupon "Willkommensgeschenk" handelt<br /><br />Verwenden Sie einen anderen Aktionskupon als Willkommensgeschenk, damit dieser gelöscht werden kann.');
 define('SUCCESS_COUPON_DISABLED', 'Gutschein deaktiviert! ...');
 define('TEXT_COUPON_NEW', 'Verwenden Sie folgenden Aktionskuponnummer:');
 define('ERROR_DISCOUNT_COUPON_DUPLICATE', 'ACHTUNG! Doppelter Aktionskupon existiert ... Kopiervorgang abgebrochen für: ');
 define('TEXT_CONFIRM_COPY', 'Wollen Sie diesen Aktionskupon kopieren?');
 define('SUCCESS_COUPON_DUPLICATE', 'Aktionskupon erfolgreich kopiert ...<br /><br />Bitte Name und Datum überprüfen ...');
+
+
+?>

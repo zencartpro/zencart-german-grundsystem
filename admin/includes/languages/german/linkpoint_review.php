@@ -18,7 +18,7 @@ define('TABLE_HEADING_ACTION', 'Aktion');
 define('TABLE_HEADING_PRICING_GROUP', 'Kundengruppe');
 define('TABLE_HEADING_AUTHORIZATION_APPROVAL', 'Autorisiert');
 define('TEXT_DATE_ACCOUNT_CREATED', 'Konto erstellt:');
-define('TEXT_DATE_ACCOUNT_LAST_MODIFIED', 'Letzte änderung:');
+define('TEXT_DATE_ACCOUNT_LAST_MODIFIED', 'Letzte Änderung:');
 define('TEXT_INFO_DATE_LAST_LOGON', 'Zuletzt angemeldet:');
 define('TEXT_INFO_NUMBER_OF_LOGONS', 'Anzahl der Anmeldungen:');
 define('TYPE_BELOW', 'Schreiben Sie unten');

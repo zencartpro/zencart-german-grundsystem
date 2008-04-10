@@ -1,12 +1,15 @@
 <?php
 /**
- * @package languageDefines
- * @copyright Copyright 2003-2008 Zen Cart Development Team
+ * @package linkpoint_api_payment_module
+ * @copyright Copyright 2003-2006 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.at/license/2_0.txt GNU Public License V2.0
- * @translator: cyaneo/hugo13/wflohr    http://www.zen-cart.at    
+ * @translator: cyaneo/hugo13/wflohr    http://www.zen-cart.at    2007-01-03
  * @version $Id$
  */
+
+//  $Id$
+//
 
 define('HEADING_TITLE','Serverinformation');
 define('TITLE_SERVER_HOST','Server Host:');
@@ -28,3 +31,6 @@ define('TITLE_PHP_UPLOAD_MAX', 'Max Size:' . ' !!!TRANSLATE!!! file: admin/inclu
 define('TITLE_PHP_POST_MAX_SIZE', 'POST Max Size:' . ' !!!TRANSLATE!!! file: admin/includes/languages/LANGUAGE/server_info.php at line 357');
 define('PROJECT_DATABASE_LABEL','Datenbank Patch Level: ');
 define('TITLE_MYSQL_STRICT_MODE', '(in Strict mode)' . ' !!!TRANSLATE!!! file: admin/includes/languages/LANGUAGE/server_info.php at line 357');
+
+
+?>

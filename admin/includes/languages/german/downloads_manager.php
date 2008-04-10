@@ -1,12 +1,15 @@
 <?php
 /**
- * @package languageDefines
- * @copyright Copyright 2003-2008 Zen Cart Development Team
+ * @package linkpoint_api_payment_module
+ * @copyright Copyright 2003-2006 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.at/license/2_0.txt GNU Public License V2.0
- * @translator: cyaneo/hugo13/wflohr    http://www.zen-cart.at    
+ * @translator: cyaneo/hugo13/wflohr    http://www.zen-cart.at    2007-01-03
  * @version $Id$
  */
+
+//  $Id$
+//
 
 define('HEADING_TITLE', 'Downloadmanager');
 define('TABLE_HEADING_ATTRIBUTES_ID', 'Attribut ID');
@@ -20,16 +23,18 @@ define('TABLE_TEXT_MAX_DAYS', 'Tage');
 define('TABLE_TEXT_MAX_COUNT', 'Downloads');
 define('TABLE_HEADING_ACTION', 'Aktion');
 define('TABLE_HEADING_OPT_PRICE', 'Preis');
-define('TABLE_HEADING_OPT_PRICE_PREFIX', 'Präfix');
+define('TABLE_HEADING_OPT_PRICE_PREFIX', 'PrÃ¤fix');
 define('TEXT_PRODUCTS_NAME', 'Artikel: ');
 define('TEXT_PRODUCTS_MODEL', 'Artikelnummer: ');
 define('TEXT_INFO_HEADING_EDIT_PRODUCTS_DOWNLOAD', 'BEARBEITE DOWNLOAD INFORMATION');
-define('TEXT_INFO_HEADING_DELETE_PRODUCTS_DOWNLOAD', 'BESTäTIGE LöSCHEN DES DOWNLOADS');
+define('TEXT_INFO_HEADING_DELETE_PRODUCTS_DOWNLOAD', 'BESTÃ„TIGE LÃ–SCHEN DES DOWNLOADS');
 define('TEXT_INFO_EDIT_INTRO', 'Bearbeite Downloadinformation:');
-define('TEXT_DELETE_INTRO', 'Der folgende Dateiname wird aus der Datenbank entfernt. Die Datei wird jedoch nicht vom Server gelöscht:');
+define('TEXT_DELETE_INTRO', 'Der folgende Dateiname wird aus der Datenbank entfernt. Die Datei wird jedoch nicht vom Server gelÃ¶scht:');
 define('TEXT_INFO_FILENAME', 'Dateiname: ');
 define('TEXT_INFO_MAX_DAYS', 'Maximale Tage: ');
 define('TEXT_INFO_MAX_COUNT', 'Maximale Downloads: ');
 define('TEXT_INFO_FILENAME_MISSING', '&nbsp;Vermisse Dateiname');
-define('TEXT_INFO_FILENAME_GOOD', '&nbsp;Gültiger Dateiname');
+define('TEXT_INFO_FILENAME_GOOD', '&nbsp;GÃ¼ltiger Dateiname');
 
+
+?>

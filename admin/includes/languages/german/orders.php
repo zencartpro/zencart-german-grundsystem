@@ -1,12 +1,15 @@
 <?php
 /**
- * @package languageDefines
- * @copyright Copyright 2003-2008 Zen Cart Development Team
+ * @package linkpoint_api_payment_module
+ * @copyright Copyright 2003-2006 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.at/license/2_0.txt GNU Public License V2.0
- * @translator: cyaneo/hugo13/wflohr    http://www.zen-cart.at    
+ * @translator: cyaneo/hugo13/wflohr    http://www.zen-cart.at    2007-01-03
  * @version $Id$
  */
+
+//  $Id$
+//
 
 define('HEADING_TITLE', 'Bestellungen');
 define('HEADING_TITLE_SEARCH', 'Bestell ID:');
@@ -60,7 +63,7 @@ define('TEXT_INFO_HEADING_DELETE_ORDER', 'Bestellung löschen');
 define('TEXT_INFO_DELETE_INTRO', 'Wollen Sie diese Bestellung wirklich löschen?');
 define('TEXT_INFO_RESTOCK_PRODUCT_QUANTITY', 'Lagerbestand wieder auffüllen');
 define('TEXT_DATE_ORDER_CREATED', 'Erstelldatum:');
-define('TEXT_DATE_ORDER_LAST_MODIFIED', 'Letzte änderung:');
+define('TEXT_DATE_ORDER_LAST_MODIFIED', 'Letzte Änderung:');
 define('TEXT_INFO_PAYMENT_METHOD', 'Zahlungsart:');
 define('TEXT_PAID', 'Bezahlt');
 define('TEXT_UNPAID', 'Unbezahlt');
@@ -77,7 +80,7 @@ define('EMAIL_TEXT_STATUS_LABEL', '<strong>Neuer Status:</strong> %s' . "\n\n");
 define('EMAIL_TEXT_STATUS_PLEASE_REPLY', 'Wenn Sie noch Fragen haben, wenden Sie sich bitte an diese E-Mail Adresse <a href="mailto:' . STORE_OWNER_EMAIL_ADDRESS . '">' . STORE_OWNER_EMAIL_ADDRESS . '</a>.<br />' . "\n");
 define('ERROR_ORDER_DOES_NOT_EXIST', 'Fehler: Die Bestellung existiert nicht.');
 define('SUCCESS_ORDER_UPDATED', 'Die Bestellung wurde aktualisiert.');
-define('WARNING_ORDER_NOT_UPDATED', 'Warnung: Keine änderung festgestellt. Die Rechnung wurde nicht aktualisiert.');
+define('WARNING_ORDER_NOT_UPDATED', 'Warnung: Keine Änderung festgestellt. Die Rechnung wurde nicht aktualisiert.');
 define('ENTRY_ORDER_ID', 'Rechnungsnummer');
 define('TEXT_INFO_ATTRIBUTE_FREE', '&nbsp;-&nbsp;<span class="alert">KOSTENLOS</span>');
 define('TEXT_DOWNLOAD_TITLE', 'Download Status');
@@ -105,3 +108,4 @@ define('TEXT_COMMENTS_YES', 'Customer Comments - YES' . ' !!!TRANSLATE!!! file: 
 define('TEXT_COMMENTS_NO', 'Customer Comments - NO' . ' !!!TRANSLATE!!! file: admin/includes/languages/LANGUAGE/orders.php at line 357');
 
 
+?>

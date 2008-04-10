@@ -1,19 +1,22 @@
 <?php
 /**
- * @package languageDefines
- * @copyright Copyright 2003-2008 Zen Cart Development Team
+ * @package linkpoint_api_payment_module
+ * @copyright Copyright 2003-2006 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.at/license/2_0.txt GNU Public License V2.0
- * @translator: cyaneo/hugo13/wflohr    http://www.zen-cart.at    
+ * @translator: cyaneo/hugo13/wflohr    http://www.zen-cart.at    2007-01-03
  * @version $Id$
  */
+
+//  $Id$
+//
 
 define('HEADING_TITLE','Zonen/Bundesländer');
 define('TABLE_HEADING_COUNTRY_NAME','Land');
 define('TABLE_HEADING_ZONE_NAME','Zone/Bundesland');
 define('TABLE_HEADING_ZONE_CODE','Kürzel');
 define('TABLE_HEADING_ACTION','Aktion');
-define('TEXT_INFO_EDIT_INTRO','Führen Sie hier bitte die notwendigen änderungen durch');
+define('TEXT_INFO_EDIT_INTRO','Führen Sie hier bitte die notwendigen Änderungen durch');
 define('TEXT_INFO_ZONES_NAME','Zone/Bundesland:');
 define('TEXT_INFO_ZONES_CODE','Zone/Bundesland Kürzel:');
 define('TEXT_INFO_COUNTRY_NAME','Land:');
@@ -23,3 +26,5 @@ define('TEXT_INFO_HEADING_NEW_ZONE','Neue Zone');
 define('TEXT_INFO_HEADING_EDIT_ZONE','Zone bearbeiten');
 define('TEXT_INFO_HEADING_DELETE_ZONE','Zone löschen');
 
+
+?>

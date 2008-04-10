@@ -10,7 +10,7 @@
 
 define('HEADING_TITLE','Newsletter Manager');
 define('TABLE_HEADING_NEWSLETTERS','Newsletter');
-define('TABLE_HEADING_SIZE','Grö&szlig;e');
+define('TABLE_HEADING_SIZE','Größe');
 define('TABLE_HEADING_MODULE','Module');
 define('TABLE_HEADING_SENT','Gesendet');
 define('TABLE_HEADING_STATUS','Status');
