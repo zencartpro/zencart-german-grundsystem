@@ -21,7 +21,7 @@
 //
 
 define('NAVBAR_TITLE_1', 'Erweiterte Suche');
-define('NAVBAR_TIT7LE_2','Suchergebnisse');
+define('NAVBAR_TITLE_2','Suchergebnisse');
 
 //define('HEADING_TITLE_1', 'Advanced Search');
 define('HEADING_TITLE', 'Erweiterte Suche');
