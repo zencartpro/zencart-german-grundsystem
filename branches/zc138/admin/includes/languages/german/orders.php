@@ -14,8 +14,8 @@
 define('HEADING_TITLE', 'Bestellungen');
 define('HEADING_TITLE_SEARCH', 'Bestell ID:');
 define('HEADING_TITLE_STATUS', 'Status:');
-define('HEADING_TITLE_SEARCH_DETAIL_ORDERS_PRODUCTS', 'Search by Product Name or <strong>ID:XX</strong> or Model ' . ' !!!TRANSLATE!!! file: admin/includes/languages/LANGUAGE/orders.php at line 357');
-define('TEXT_INFO_SEARCH_DETAIL_FILTER_ORDERS_PRODUCTS', 'Search Filter: ' . ' !!!TRANSLATE!!! file: admin/includes/languages/LANGUAGE/orders.php at line 357');
+define('HEADING_TITLE_SEARCH_DETAIL_ORDERS_PRODUCTS', 'Suche nach Artikelname oder <strong>ID:XX</strong> or Artikelnummer ');
+define('TEXT_INFO_SEARCH_DETAIL_FILTER_ORDERS_PRODUCTS', 'Suchfilter: ');
 define('TABLE_HEADING_PAYMENT_METHOD', 'Zahlungsart<br />Versandart');
 define('TABLE_HEADING_ORDERS_ID', 'ID');
 define('TEXT_BILLING_SHIPPING_MISMATCH', 'Rechnungs- und Versandadresse stimmen nicht überein ');
@@ -31,10 +31,10 @@ define('TABLE_HEADING_PRODUCTS_MODEL', 'Artikelnummer');
 define('TABLE_HEADING_PRODUCTS', 'Artikel');
 define('TABLE_HEADING_TAX', 'MwSt');
 define('TABLE_HEADING_TOTAL', 'Summe');
-define('TABLE_HEADING_PRICE_EXCLUDING_TAX', 'Preis (exkl. MwSt)');
-define('TABLE_HEADING_PRICE_INCLUDING_TAX', 'Preis (inkl. MwSt)');
-define('TABLE_HEADING_TOTAL_EXCLUDING_TAX', 'Summe (exkl. MwSt)');
-define('TABLE_HEADING_TOTAL_INCLUDING_TAX', 'Summe (inkl. MwSt)');
+define('TABLE_HEADING_PRICE_EXCLUDING_TAX', 'Preis (exkl. MwSt.)');
+define('TABLE_HEADING_PRICE_INCLUDING_TAX', 'Preis (inkl. MwSt.)');
+define('TABLE_HEADING_TOTAL_EXCLUDING_TAX', 'Summe (exkl. MwSt.)');
+define('TABLE_HEADING_TOTAL_INCLUDING_TAX', 'Summe (inkl. MwSt.)');
 define('TABLE_HEADING_CUSTOMER_NOTIFIED', 'Der Kunde wurde benachrichtigt');
 define('TABLE_HEADING_DATE_ADDED', 'Erstelldatum');
 define('ENTRY_CUSTOMER', 'Kunde:');
@@ -103,9 +103,6 @@ define('TEXT_DELETE_CVV_REPLACEMENT', 'Gelöscht');
 define('TEXT_MASK_CC_NUMBER','Diese Zahl verdecken');
 define('TEXT_INFO_EXPIRED_DATE', 'Expired Date:<br />' . ' !!!TRANSLATE!!! file: admin/includes/languages/LANGUAGE/orders.php at line 357');
 define('TEXT_INFO_EXPIRED_COUNT', 'Expired Count:<br />' . ' !!!TRANSLATE!!! file: admin/includes/languages/LANGUAGE/orders.php at line 357');
-define('TABLE_HEADING_CUSTOMER_COMMENTS', 'Customer<br />Comments' . ' !!!TRANSLATE!!! file: admin/includes/languages/LANGUAGE/orders.php at line 357');
-define('TEXT_COMMENTS_YES', 'Customer Comments - YES' . ' !!!TRANSLATE!!! file: admin/includes/languages/LANGUAGE/orders.php at line 357');
-define('TEXT_COMMENTS_NO', 'Customer Comments - NO' . ' !!!TRANSLATE!!! file: admin/includes/languages/LANGUAGE/orders.php at line 357');
-
-
-?>
+define('TABLE_HEADING_CUSTOMER_COMMENTS', 'Kunden<br />Kommentare');
+define('TEXT_COMMENTS_YES', 'Kundenkommentare - JA');
+define('TEXT_COMMENTS_NO', 'Kundenkommentare - NEIN');

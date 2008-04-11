@@ -25,10 +25,7 @@ define('TEXT_SELECT_ATTACHMENT', 'Anhang<br />auf dem Server: ');
 define('TEXT_SELECT_ATTACHMENT_TO_UPLOAD', 'Anhang<br />hochzuladen<br />&amp; anhängen: ');
 define('TEXT_ATTACHMENTS_DIR', 'Ordner für Upload: ');
 define('NOTICE_EMAIL_SENT_TO','Hinweis: E-Mail wurde versendet an: %s');
-define('NOTICE_EMAIL_FAILED_SEND', 'Notice: FAILED to send Email to all recipients: %s' . ' !!!TRANSLATE!!! file: admin/includes/languages/LANGUAGE/mail.php at line 357');
+define('NOTICE_EMAIL_FAILED_SEND', 'Hinweis: Die E-Mail konnte nicht an alle Empfänger verschickt werden: %s');
 define('ERROR_NO_CUSTOMER_SELECTED','Fehler: Es wurde kein Kunde ausgewählt.');
 define('ERROR_NO_SUBJECT', 'Fehler: Es wurde kein Betreff angegeben.');
 define('ERROR_ATTACHMENTS', 'Fehler: Sie können nicht beides - UPLOAD und HINZUFÜGEN - auswählen. Bitte wählen Sie nur eine von beiden Optionen.');
-
-
-?>

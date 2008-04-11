@@ -17,10 +17,10 @@ define('MODULE_PAYMENT_PAYPAL_TEXT_DESCRIPTION', '<strong>PayPal</strong>');
   }
   // to show the PayPal logo as the payment option name, use this:  https://www.paypal.com/en_US/i/logo/PayPal_mark_37x23.gif
   // to show CC icons with PayPal, use this instead:  https://www.paypal.com/en_US/i/bnr/horizontal_solution_PPeCheck.gif
-define('MODULE_PAYMENT_PAYPALWPP_MARK_BUTTON_IMG', 'https://www.paypal.com/en_US/i/logo/PayPal_mark_37x23.gif' . ' !!!TRANSLATE!!! file: includes/languages/LANGUAGE/modules/payment/paypal.php at line 357');
-define('MODULE_PAYMENT_PAYPALWPP_MARK_BUTTON_ALT', 'Checkout with PayPal' . ' !!!TRANSLATE!!! file: includes/languages/LANGUAGE/modules/payment/paypal.php at line 357');
-define('MODULE_PAYMENT_PAYPAL_ACCEPTANCE_MARK_TEXT', 'Save time. Check out securely. <br />Pay without sharing your financial information.' . ' !!!TRANSLATE!!! file: includes/languages/LANGUAGE/modules/payment/paypal.php at line 357');
-define('MODULE_PAYMENT_PAYPAL_TEXT_CATALOG_LOGO', '<img src="' . MODULE_PAYMENT_PAYPALWPP_MARK_BUTTON_IMG . '" alt="' . MODULE_PAYMENT_PAYPALWPP_MARK_BUTTON_ALT . '" title="' . MODULE_PAYMENT_PAYPALWPP_MARK_BUTTON_ALT . '" /> &nbsp;' .  '<span class="smallText">' . MODULE_PAYMENT_PAYPAL_ACCEPTANCE_MARK_TEXT . '</span>' . ' !!!TRANSLATE!!! file: includes/languages/LANGUAGE/modules/payment/paypal.php at line 357');
+define('MODULE_PAYMENT_PAYPALWPP_MARK_BUTTON_IMG', 'https://www.paypal.com/de_DE/i/logo/PayPal_mark_37x23.gif');
+define('MODULE_PAYMENT_PAYPALWPP_MARK_BUTTON_ALT', 'Einkaufen mit PayPal');
+define('MODULE_PAYMENT_PAYPAL_ACCEPTANCE_MARK_TEXT', 'Sparen Sie Zeit. Kaufen Sie sicher ein. <br />Bezahlen Sie ohne ihre Kontoinformationen öffentlich preiszugeben.');
+define('MODULE_PAYMENT_PAYPAL_TEXT_CATALOG_LOGO', '<img src="' . MODULE_PAYMENT_PAYPALWPP_MARK_BUTTON_IMG . '" alt="' . MODULE_PAYMENT_PAYPALWPP_MARK_BUTTON_ALT . '" title="' . MODULE_PAYMENT_PAYPALWPP_MARK_BUTTON_ALT . '" /> &nbsp;' .  '<span class="smallText">' . MODULE_PAYMENT_PAYPAL_ACCEPTANCE_MARK_TEXT . '</span>');
 define('MODULE_PAYMENT_PAYPAL_ENTRY_FIRST_NAME', 'Vorname:');
 define('MODULE_PAYMENT_PAYPAL_ENTRY_LAST_NAME', 'Nachname:');
 define('MODULE_PAYMENT_PAYPAL_ENTRY_BUSINESS_NAME', 'Firmenname:');
@@ -30,7 +30,7 @@ define('MODULE_PAYMENT_PAYPAL_ENTRY_ADDRESS_CITY', 'Stadt:');
 define('MODULE_PAYMENT_PAYPAL_ENTRY_ADDRESS_STATE', 'Bundesland:');
 define('MODULE_PAYMENT_PAYPAL_ENTRY_ADDRESS_ZIP', 'Postleitzahl:');
 define('MODULE_PAYMENT_PAYPAL_ENTRY_ADDRESS_COUNTRY', 'Land:');
-define('MODULE_PAYMENT_PAYPAL_ENTRY_EMAIL_ADDRESS', 'Payer Email:');
+define('MODULE_PAYMENT_PAYPAL_ENTRY_EMAIL_ADDRESS', 'Payer E-Mail:');
 define('MODULE_PAYMENT_PAYPAL_ENTRY_EBAY_ID', 'Ebay ID:');
 define('MODULE_PAYMENT_PAYPAL_ENTRY_PAYER_ID', 'Bezahler- ID:');
 define('MODULE_PAYMENT_PAYPAL_ENTRY_PAYER_STATUS', 'Bezahlerstatus:');
@@ -38,7 +38,7 @@ define('MODULE_PAYMENT_PAYPAL_ENTRY_ADDRESS_STATUS', 'Adress- Status:');
 define('MODULE_PAYMENT_PAYPAL_ENTRY_PAYMENT_TYPE', 'Zahlungstyp:');
 define('MODULE_PAYMENT_PAYPAL_ENTRY_PAYMENT_STATUS', 'Zahlungsstatus:');
 define('MODULE_PAYMENT_PAYPAL_ENTRY_PENDING_REASON', 'In Warteschleife - Ursache:');
-define('MODULE_PAYMENT_PAYPAL_ENTRY_INVOICE', 'rechnung:');
+define('MODULE_PAYMENT_PAYPAL_ENTRY_INVOICE', 'Rechnung:');
 define('MODULE_PAYMENT_PAYPAL_ENTRY_PAYMENT_DATE', 'Zahlungsdatum:');
 define('MODULE_PAYMENT_PAYPAL_ENTRY_CURRENCY', 'Währung:');
 define('MODULE_PAYMENT_PAYPAL_ENTRY_GROSS_AMOUNT', 'Bruttobetrag:');
@@ -50,7 +50,3 @@ define('MODULE_PAYMENT_PAYPAL_ENTRY_TXN_ID', 'Trans. ID:');
 define('MODULE_PAYMENT_PAYPAL_ENTRY_PARENT_TXN_ID', 'Parent Trans. ID:');
 define('MODULE_PAYMENT_PAYPAL_PURCHASE_DECRIPTION_TITLE', STORE_NAME . ' Einkauf');
 define('MODULE_PAYMENT_PAYPAL_PURCHASE_DESCRIPTION_ITEMNUM', 'Store Receipt' . ' !!!TRANSLATE!!! file: includes/languages/LANGUAGE/modules/payment/paypal.php at line 357');
-
-
-
-?>

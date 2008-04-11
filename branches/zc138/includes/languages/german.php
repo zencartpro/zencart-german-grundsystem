@@ -321,7 +321,7 @@ define('WARNING_DOWNLOAD_DIRECTORY_NON_EXISTENT', 'Warnung: Das Verzeichnis für
 define('WARNING_SQL_CACHE_DIRECTORY_NON_EXISTENT', 'Warnung: Das SQL-Cache Verzeichnis existiert nicht: ' . DIR_FS_SQL_CACHE . '. SQL Abfragen können nicht zwischengespeichert werden, solange dieses Verzeichnis nicht erstellt wurde.');
 define('WARNING_SQL_CACHE_DIRECTORY_NOT_WRITEABLE', 'Warnung: In das Verzeichnis zum Zwischenspeichern von SQL Abfragen kann nicht geschrieben werden: ' . DIR_FS_SQL_CACHE . '. Bitte ändern Sie die Schreibrechte dieses Verzeichnisses, damit SQL Abfragen zwischengespeichert werden können.');
 define('WARNING_DATABASE_VERSION_OUT_OF_DATE', 'Ihre Datenbank braucht ein Update. Siehe Admin->Tools->Server Information (Patch-Level).');
-define('WARNING_COULD_NOT_LOCATE_LANG_FILE', 'WARNING: Could not locate language file: ' . ' !!!TRANSLATE!!! file: includes/languages/LANGUAGE.php at line 357');
+define('WARNING_COULD_NOT_LOCATE_LANG_FILE', 'Warnung: Die Sprachdatei konnte nicht gefunden werden: ');
 
 define('TEXT_CCVAL_ERROR_INVALID_DATE', 'Das Ablaufdatum der Kreditkarte, das Sie angegeben haben, ist nicht gültig. Bitte überprüfen Sie Ihre Angaben noch einmal und wiederholen Sie den Vorgang.');
 define('TEXT_CCVAL_ERROR_INVALID_NUMBER', 'Die Kreditkartennummer, die Sie angegeben haben, ist nicht gültig. Bitte überprüfen Sie Ihre Angaben noch einmal und wiederholen Sie den Vorgang.');
@@ -469,7 +469,7 @@ define('ERROR_MAXIMUM_QTY', 'Stückzahl angepasst - maximale Stückzahl wurde in
 
 define('ERROR_CORRECTIONS_HEADING', 'Bitte korrigieren Sie folgendes: <br />');
 define('ERROR_QUANTITY_ADJUSTED', 'Fehler in der gewählten Menge<br />');
-define('ERROR_QUANTITY_CHANGED_FROM', ', has been changed from: ' . ' !!!TRANSLATE!!! file: includes/languages/LANGUAGE.php at line 357');
+define('ERROR_QUANTITY_CHANGED_FROM', ', wurde geändert von: ');
 define('ERROR_QUANTITY_CHANGED_TO', ' zu ');
 
 // Downloads Controller
@@ -488,7 +488,7 @@ define('ERROR_PRODUCT_QUANTITY_MAX', '...maximale Stückzahl überschritten -');
 define('ERROR_PRODUCT_QUANTITY_MIN_SHOPPING_CART', '...minimale Stückzahl unterschritten -');
 define('ERROR_PRODUCT_QUANTITY_UNITS_SHOPPING_CART', '...ungültige Stückzahl -');
 define('ERROR_PRODUCT_QUANTITY_MAX_SHOPPING_CART', '...maximale Stückzahl überschritten -');
-define('WARNING_SHOPPING_CART_COMBINED', 'NOTICE: For your convenience, your current shopping cart has been combined with your shopping cart from your last visit. Please review your shopping cart before checking out.' . ' !!!TRANSLATE!!! file: includes/languages/LANGUAGE.php at line 357');
+define('WARNING_SHOPPING_CART_COMBINED', 'Achtung: Ihr aktueller Warenkorb wurde mit dem Warenkorb Ihres letzten Besuchs zusammengelegt. Bitte überprüfen Sie den Inhalt Ihres Warenkorbs, bevor Sie ihre Bestellung abschließen.');
 
 // error on checkout when $_SESSION['customers_id' does not exist in customers table
 define('ERROR_CUSTOMERS_ID_INVALID', 'Die Kundeninformation konnte nicht verifiziert werden!<br />Bitte melden Sie sich an oder erstellen Sie Ihr Kundenkonto erneut ...');
@@ -499,8 +499,8 @@ define('TABLE_HEADING_NEW_PRODUCTS', 'Neue Artikel im %s');
 define('TABLE_HEADING_UPCOMING_PRODUCTS', 'Artikelankündigungen');
 define('TABLE_HEADING_DATE_EXPECTED', 'Eingangsdatum');
 define('TABLE_HEADING_SPECIALS_INDEX', 'Monatliche Sonderangebote im %s');
-define('CAPTION_UPCOMING_PRODUCTS','These items will be in stock soon' . ' !!!TRANSLATE!!! file: includes/languages/LANGUAGE.php at line 357');
-define('SUMMARY_TABLE_UPCOMING_PRODUCTS','table contains a list of products that are due to be in stock soon and the dates the items are expected' . ' !!!TRANSLATE!!! file: includes/languages/LANGUAGE.php at line 357');
+define('CAPTION_UPCOMING_PRODUCTS','Diese Artikel sind in Kürze lieferbar');
+define('SUMMARY_TABLE_UPCOMING_PRODUCTS','Die Tabelle enthält eine Liste von Artikeln, die in Kürze lieferbar sind sowie das jeweilige Erscheinungsdatum');
 
 // meta tags special defines
 define('META_TAG_PRODUCTS_PRICE_IS_FREE_TEXT','Kostenlos!');
@@ -557,7 +557,7 @@ define('CART_SELECT', 'wählen Sie');
 define('ERROR_CART_UPDATE', 'Bitte aktualisieren Sie Ihre Bestellung ...<br />');
 define('IMAGE_BUTTON_UPDATE_CART', 'aktualisieren');
 define('EMPTY_CART_TEXT_NO_QUOTE', 'Uups! Ihre Sitzung wurde unterbrochen? Aktualisieren Sie bitte Ihren Warenkorb für die Versandart');
-define('CART_SHIPPING_QUOTE_CRITERIA', 'Shipping quotes are based on the address information you selected:' . ' !!!TRANSLATE!!! file: includes/languages/LANGUAGE.php at line 357');
+define('CART_SHIPPING_QUOTE_CRITERIA', 'Die Versandkosten werden aufgrund der ausgewählten Adresse berechnet:');
 
 // multiple product add to cart
 define('TEXT_PRODUCT_LISTING_MULTIPLE_ADD_TO_CART', 'Anzahl: ');
@@ -694,4 +694,3 @@ define('TEXT_PRODUCTS_LISTING_ALPHA_SORTER_NAMES_RESET', '-- Zurückstellen --')
   require_once(DIR_WS_LANGUAGES . $_SESSION['language'] . '/' . $template_dir_select . 'meta_tags.php');
 
 // END OF EXTERNAL LANGUAGE LINKS
-?>

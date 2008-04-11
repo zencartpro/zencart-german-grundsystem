@@ -19,7 +19,4 @@ define('MODULE_ORDER_TOTAL_COUPON_REDEEM_INSTRUCTIONS', '<p>Geben Sie bitte die 
 define('MODULE_ORDER_TOTAL_COUPON_TEXT_CURRENT_CODE', 'Ihr aktueller Aktionskupon: ');
 define('MODULE_ORDER_TOTAL_COUPON_REMOVE_INSTRUCTIONS', '<p>Um den Aktionskupon wieder zu entfernen geben Sie bitte den Text REMOVE ein</p>');
 define('TEXT_REMOVE_REDEEM_COUPON', 'Der Aktionskupon wurde entfernt!');
-define('MODULE_ORDER_TOTAL_COUPON_INCLUDE_ERROR', ' Setting Include tax = true, should only happen when recalculate = None' . ' !!!TRANSLATE!!! file: includes/languages/LANGUAGE/modules/order_total/ot_coupon.php at line 357');
-
-
-?>
+define('MODULE_ORDER_TOTAL_COUPON_INCLUDE_ERROR', ' Die Einstellung Include Tax = True sollte nur dann aktiviert sein, wenn die Einstellung für Recalculate = None ist.');

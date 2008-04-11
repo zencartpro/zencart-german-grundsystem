@@ -393,8 +393,8 @@ define('WARNING_ADMIN_DOWN_FOR_MAINTENANCE', '<strong>WARNUNG:</strong> Der Shop
 define('WARNING_BACKUP_CFG_FILES_TO_DELETE', 'WARNUNG: Diese Dateien sollten gelöscht werden, um fremde Zugriffe zu verhindern: ');
 define('WARNING_INSTALL_DIRECTORY_EXISTS', 'Warnung: Das Installationsverzeichnis besteht noch: ' . DIR_FS_CATALOG . 'zc_install. Dieses Verzeichnis aus Sicherheitsgründen bitte entfernen.');
 define('WARNING_CONFIG_FILE_WRITEABLE', 'Warnung: Ihre Konfigurationsdatei: %sincludes/configure.php. Dies ist ein potenzielles Sicherheitsrisiko - ändern Sie bitte die Zugriffsrechte (Read-only, CHMOD 644 oder 444l).');
-define('WARNING_COULD_NOT_LOCATE_LANG_FILE', 'WARNING: Could not locate language file: ' . ' !!!TRANSLATE!!! file: admin/includes/languages/LANGUAGE.php at line 357');
-define('ERROR_MODULE_REMOVAL_PROHIBITED', 'ERROR: Module removal prohibited: ' . ' !!!TRANSLATE!!! file: admin/includes/languages/LANGUAGE.php at line 357');
+define('WARNING_COULD_NOT_LOCATE_LANG_FILE', 'Warnung: Die Sprachdatei konnte nicht gefunden werden:');
+define('ERROR_MODULE_REMOVAL_PROHIBITED', 'FEHLER: Diese Modul kann nicht entfernt werden: ');
 define('_JANUARY', 'Januar');
 define('_FEBRUARY', 'Februar');
 define('_MARCH', 'März');
@@ -620,7 +620,7 @@ define('WARNING_ADMIN_ACTIVITY_LOG_DATE', 'Achtung: Die Admin Protokolltabelle h
 define('WARNING_ADMIN_ACTIVITY_LOG_RECORDS', 'Achtung: Die Admin Protokolltabelle hat über 50000 Einträge und sollte deshalb geleert werden ... ');
 define('RESET_ADMIN_ACTIVITY_LOG', 'Wählen Sie Tools -> Shopmanager und leeren die Admin-Protokolltabelle');
 define('CATEGORY_HAS_SUBCATEGORIES', 'Achtung: Kategorie besitzt Unterkategorien<br />Artikel können nicht hinzugefügt werden');
-define('WARNING_WELCOME_DISCOUNT_COUPON_EXPIRES_IN', 'WARNING! Welcome Email Discount Coupon expires in %s days' . ' !!!TRANSLATE!!! file: admin/includes/languages/LANGUAGE.php at line 357');
+define('WARNING_WELCOME_DISCOUNT_COUPON_EXPIRES_IN', 'Warnung! Der Aktionskupon "Willkommensgeschenk" läuft in %s Tagen ab.');
 
 ///////////////////////////////////////////////////////////
 // include additional files:
@@ -630,4 +630,3 @@ define('WARNING_WELCOME_DISCOUNT_COUPON_EXPIRES_IN', 'WARNING! Welcome Email Dis
 // Additional Localisation - Languages - Phone Country Code
 define('TEXT_INFO_LANGUAGE_ID', 'Geben Sie den Telefon Ländercode OHNE 0 ein<br />(english MUSS 1 sein, deutsch MUSS 43 sein):');
 define('TEXT_INFO_LANGUAGE_CODE', 'Code:<br />(en = englisch, de = deutsch)');
-

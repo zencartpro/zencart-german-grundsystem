@@ -25,8 +25,5 @@ define('TEXT_INFO_DELETE_INTRO','Wollen Sie diese Steuerklasse wirklich löschen
 define('TEXT_INFO_HEADING_NEW_TAX_CLASS','Neue Steuerklasse');
 define('TEXT_INFO_HEADING_EDIT_TAX_CLASS','Steuerklasse bearbeiten');
 define('TEXT_INFO_HEADING_DELETE_TAX_CLASS','Steuerklasse löschen');
-define('ERROR_TAX_RATE_EXISTS_FOR_CLASS', 'ERROR: Cannot delete this Tax Class -- Tax Rates are currently linked to this Tax Class.' . ' !!!TRANSLATE!!! file: admin/includes/languages/LANGUAGE/tax_classes.php at line 357');
-define('ERROR_TAX_RATE_EXISTS_FOR_PRODUCTS', 'ERROR: Cannot delete this Tax Class -- There are %s products linked to this Tax Class.' . ' !!!TRANSLATE!!! file: admin/includes/languages/LANGUAGE/tax_classes.php at line 357');
-
-
-?>
+define('ERROR_TAX_RATE_EXISTS_FOR_CLASS', 'FEHLER: Diese Steuerklasse kann nicht gelöscht werden -- Es wurden bereits Steuersätze für diese Steuerklasse angelegt.');
+define('ERROR_TAX_RATE_EXISTS_FOR_PRODUCTS', 'FEHLER: Diese Steuerklasse kann nicht gelöscht werden -- Es wurden bereits %s Artikel mit dieser Steuerklasse angelegt.');

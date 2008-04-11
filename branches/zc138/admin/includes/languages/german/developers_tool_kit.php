@@ -67,8 +67,5 @@ define('TEXT_ALL_FILES_LOOKUP_CURRENT_CATALOG', 'Alle Dateien - Webshop');
 define('TEXT_ALL_FILES_LOOKUP_CURRENT_ADMIN', 'Alle Dateien - Admin');
 define('TEXT_INFO_NO_EDIT_AVAILABLE', 'Editieren nicht verfügbar');
 define('TEXT_INFO_CONFIGURATION_HIDDEN', ' oder, versteckt');
-define('TEXT_SEARCH_ALL_FILES', 'Search ALL files for: ' . ' !!!TRANSLATE!!! file: admin/includes/languages/LANGUAGE/developers_tool_kit.php at line 357');
-define('TEXT_SEARCH_DATABASE_TABLES', 'Search database configuration tables for: ' . ' !!!TRANSLATE!!! file: admin/includes/languages/LANGUAGE/developers_tool_kit.php at line 357');
-
-
-?>
+define('TEXT_SEARCH_ALL_FILES', 'Durchsuche ALLE Dateien nach: ');
+define('TEXT_SEARCH_DATABASE_TABLES', 'Durchsuche die Konfigurationstabellen in der Datenbank nach: ');

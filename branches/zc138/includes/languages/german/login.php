@@ -11,7 +11,7 @@
 define('NAVBAR_TITLE','Anmelden');
 define('HEADING_TITLE','Willkommen, bitte melden Sie sich an.');
 
-define('HEADING_NEW_CUSTOMER','Sie sind neu hier? Dann erstellen Sie bitte Kundenkonto erstellen:');
+define('HEADING_NEW_CUSTOMER','Sie sind neu hier? Dann erstellen Sie bitte ein Kundenkonto:');
 define('HEADING_NEW_CUSTOMER_SPLIT', 'Neue Kunden');
 
 define('TEXT_NEW_CUSTOMER_INTRODUCTION','Ein Kundenkonto bei ' . STORE_NAME . ' ermöglicht Ihnen z.B. komfortabel einzukaufen, sich Ihre aktuellen und bisherigen Bestellungen anzusehen u.v.m.');
@@ -32,7 +32,5 @@ define('TEXT_VISITORS_CART','<strong class="note">Hinweis:</strong> Der Inhalt I
 define('TABLE_HEADING_PRIVACY_CONDITIONS','Datenschutz');
 define('TEXT_PRIVACY_CONDITIONS_DESCRIPTION','Bitte bestätigen Sie unsere Datenschutzbestimmungen. Sie können diese <a href="' . zen_href_link(FILENAME_PRIVACY, '', 'SSL') . '"><u>hier</u></a> nachlesen.');
 define('TEXT_PRIVACY_CONDITIONS_CONFIRM','Ich habe die Datenschutzbestimmungen gelesen und akzeptiert.');
-define('ERROR_SECURITY_ERROR', 'There was a security error when trying to login.' . ' !!!TRANSLATE!!! file: includes/languages/LANGUAGE/login.php at line 357');
-define('TEXT_LOGIN_BANNED', 'Error: Access denied.' . ' !!!TRANSLATE!!! file: includes/languages/LANGUAGE/login.php at line 357');
-
-?>
+define('ERROR_SECURITY_ERROR', 'Es gab einen Sicherheitsfehler, als Sie versucht haben sich anzumelden.');
+define('TEXT_LOGIN_BANNED', 'FEHLER: Zugriff verweigert.');
