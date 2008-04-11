@@ -29,7 +29,7 @@ define('OFFICE_DATE_TIME', 'Datum und Uhrzeit:');
 define('EMAIL_DISCLAIMER', 'Diese E-Mail Adresse wurde uns von Ihnen oder einem unserer Kunden mitgeteilt.' . "\n" . 'Sollten Sie diese Nachricht versehentlich erhalten haben, wenden Sie sich bitte an <a href="mailto:' . STORE_OWNER_EMAIL_ADDRESS . '">' . STORE_OWNER_EMAIL_ADDRESS . '</a>.<br />');
 define('EMAIL_SPAM_DISCLAIMER', '');
 define('EMAIL_FOOTER_COPYRIGHT','Copyright (c) ' . date('Y') . ' <a href="http://www.zen-cart.at" target="_blank">Zen Cart</a>. Powered by <a href="http://www.zen-cart.at" target="_blank">Zen Cart</a>');
-define('TEXT_UNSUBSCRIBE', "\n\nTo unsubscribe from future newsletter and promotional mailings, simply click on the following link: \n" . ' !!!TRANSLATE!!! file: includes/languages/LANGUAGE/email_extras.php at line 357');
+define('TEXT_UNSUBSCRIBE', "\n\n" . 'Um diesen Newsletter abzubestellen, klicken Sie bitte auf folgenden Link: ' . "\n");
 // email advisory for all emails customer generate - tell-a-friend and GV send
 define('EMAIL_ADVISORY', '-----' . "\n" . '<strong>Achtung:</strong> Aus Sicherheitsgründen werden alle gesendeten E-Mails zwischengespeichert.<br />Sollten Sie diesbezüglich Fragen haben, wenden Sie sich bitte an <a href="mailto:' . STORE_OWNER_EMAIL_ADDRESS . '">' . STORE_OWNER_EMAIL_ADDRESS . '</a>.<br />');
 
@@ -50,4 +50,3 @@ define('SEND_EXTRA_LOW_STOCK_EMAIL_TITLE', 'Lagerbestandsbericht: ');
 
 // for when gethost is off
 define('OFFICE_IP_TO_HOST_ADDRESS', 'Deaktiviert');
-?>
