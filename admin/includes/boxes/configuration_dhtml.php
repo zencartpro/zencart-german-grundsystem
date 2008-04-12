@@ -22,7 +22,7 @@ if (!defined('IS_ADMIN_FLAG')) {
                      'link'  => zen_href_link(basename($PHP_SELF), zen_get_all_get_params(array('selected_box')) . 'selected_box=configuration'));
   if (1 == 1) {
     $cfg_groups = '';
-    # r.l. added language_id
+    /* r.l. multilanguage  added language_id */
     $configuration_groups = $db->Execute("select configuration_group_id as cgID,
                                                        configuration_group_title as cgTitle
                                                 from " . TABLE_CONFIGURATION_GROUP . "

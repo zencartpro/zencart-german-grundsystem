@@ -8,7 +8,7 @@
  */
 
   require('includes/application_top.php');
-//r.l.: merge module languages
+/* r.l. multilanguage : merge module languages */
   function getModuleLanguage($module_keys, $mKeys) {
     global $db;
     $keys = "'" . implode("','", $module_keys) . "'";
@@ -217,7 +217,7 @@
           $keys_extra[$module_keys[$j]]['use_function'] = $key_value->fields['use_function'];
           $keys_extra[$module_keys[$j]]['set_function'] = $key_value->fields['set_function'];
         }
-        //r.l.: merge module languages
+        /* r.l. multilanguage : merge module languages */
         $keys_extraL = getModuleLanguage($module_keys, $keys_extra);
         #rldp($keys_extraL, '$keys_extraL');
         $module_info['keys'] = $keys_extraL;

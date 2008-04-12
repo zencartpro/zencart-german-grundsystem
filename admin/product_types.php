@@ -222,7 +222,7 @@ if ($_GET['action'] == 'layout' || $_GET['action'] == 'layout_edit') {
       $cfgValue = $configuration->fields['configuration_value'];
     }
 
-    /*r.l. multilanguage */
+    /* r.l. multilanguage */
     if(MULTILANG_TYPE=='YES'){
         $lang = getProdTypeLangArr($configuration->fields);
         $configuration->fields['configuration_title'] = $lang['configuration_title'];
