@@ -24,10 +24,9 @@
 // $Id: license.php 64 2006-09-05 11:19:25Z wflohr $
 //
 
-define('TEXT_MAIN', 'Willkommen im Installationsprogramm von Zen Cart v' . PROJECT_VERSION_MAJOR .'.'.PROJECT_VERSION_MINOR. '. <br />Nehmen Sie sich bitte Zeit und lesen sie die Lizenzbedingungen.<br /><br />Um mit der Installation fortfahren zu k&ouml;nnen, m&uuml;ssen Sie die Lizenzbedingungen akzeptieren.');
-define('TEXT_PAGE_HEADING', 'Zen Cart Installation - Lizenzbest&auml;tigung');
+define('TEXT_MAIN', 'Willkommen im Installationsprogramm von Zen Cart v' . PROJECT_VERSION_MAJOR .'.'.PROJECT_VERSION_MINOR. '. <br />Nehmen Sie sich bitte Zeit und lesen Sie die Lizenzbedingungen.<br /><br />Um mit der Installation fortfahren zu können, müssen Sie die Lizenzbedingungen akzeptieren.');
+define('TEXT_PAGE_HEADING', 'Zen Cart Installation - Lizenzbestätigung');
 define('INSTALL', 'Weiter');
 
 define('AGREE', 'Ich habe die Lizenzbedingungen gelesen und akzeptiert.');
 define('DISAGREE', 'Ich habe die Lizenzbedingungen gelesen und akzeptiere diese nicht.');
-?>
