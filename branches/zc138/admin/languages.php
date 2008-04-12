@@ -24,7 +24,7 @@
   if (zen_not_null($action)) {
     switch ($action) {
       case 'insert':
-        // r.l.: added languages_id
+        /* r.l. multilanguage : added languages_id */
         $language_id = zen_db_prepare_input($_POST['languages_id']);
         $name = zen_db_prepare_input($_POST['name']);
         $code = zen_db_prepare_input($_POST['code']);
@@ -216,7 +216,7 @@
       case 'save':
         //prepare/sanitize inputs
         $lIDW = (int)zen_db_prepare_input($_GET['lID']);
-        // r.l.: get the real languages_id
+        /* r.l. multilanguage : get the real languages_id */
         $lID = (int)zen_db_prepare_input($_POST['languages_id']);
         $name = zen_db_prepare_input($_POST['name']);
         $code = zen_db_prepare_input($_POST['code']);

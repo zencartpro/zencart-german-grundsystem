@@ -20,10 +20,11 @@
 //  $Id: configuration.php 3993 2006-07-20 21:46:55Z drbyte $
 //
 
-/*
+/* r.l. multilanguage 
  helper-function for language-configuration-values
- r.l. 20040812
+ 20040812
  */
+ 
 function getConfigLanguage($cKey){
      global $db;
      $languages_id = $_SESSION['languages_id'];
@@ -175,7 +176,7 @@ if ($gID == 7) {
       $cfgValue = $configuration->fields['configuration_value'];
     }
 
-    # r.l. language 20040812
+    /* r.l. multilanguage */
     $configLang = getConfigLanguage($configuration -> fields);
     if ((!isset($_GET['cID']) || (isset($_GET['cID']) && ($_GET['cID'] == $configuration->fields['configuration_id']))) && !isset($cInfo) && (substr($action, 0, 3) != 'new')) {
       $cfg_extra = $db->Execute("select configuration_key, configuration_description, date_added,
@@ -183,7 +184,7 @@ if ($gID == 7) {
                                  from " . TABLE_CONFIGURATION . "
                                  where configuration_id = '" . (int)$configuration->fields['configuration_id'] . "'");
       $cInfo_array1 = array_merge($configuration->fields, $cfg_extra->fields);
-      # r.l. language 20040812 merge a second time to get the language text
+      /* r.l. multilanguage  20040812 merge a second time to get the language text */
       $cInfo_array = array_merge($cInfo_array1, $configLang);  
       $cInfo = new objectInfo($cInfo_array);
     }
@@ -193,7 +194,7 @@ if ($gID == 7) {
     } else {
       echo '                  <tr class="dataTableRow" onmouseover="rowOverEffect(this)" onmouseout="rowOutEffect(this)" onclick="document.location.href=\'' . zen_href_link(FILENAME_CONFIGURATION, 'gID=' . $_GET['gID'] . '&cID=' . $configuration->fields['configuration_id'] . '&action=edit') . '\'">' . "\n";
     }
-    // r.l.: language 20040812 use $configLang['configuration_title']
+    /* r.l. multilanguage 20040812 use $configLang['configuration_title'] */
 ?>
 
 <td class="dataTableContent"><?php echo $configLang['configuration_title']; ?></td>
