@@ -38,7 +38,7 @@ $docsPath = (file_exists('docs/index.html')) ? 'docs/index.html' : (file_exists(
 <div>
 <img src="<?php echo $relPath; ?>includes/templates/template_default/images/logo.gif" alt="Zen Cart&trade;" title=" Zen Cart&trade; " width="192" height="64" border="0" />
 </div>
-<h1>Hello. Thank you for loading Zen Cart&trade;.</h1>
+<h1>!!!TRANSLATE!! Hello. Thank you for loading Zen Cart&trade;.</h1>
 <h2>You are seeing this page for one or more reasons:</h2>
 <ol>
 <li>This is your <strong>first time using Zen Cart&trade;</strong> and you haven't yet completed the normal Installation procedure.<br />
