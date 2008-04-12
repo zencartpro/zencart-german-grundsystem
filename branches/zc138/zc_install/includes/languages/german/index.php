@@ -24,7 +24,6 @@
 // $Id: index.php 64 2006-09-05 11:19:25Z wflohr $
 //
 
-define('TEXT_MAIN', 'Willkommen im Installationsprogramm f&uuml;r Zen Cart v' . PROJECT_VERSION_MAJOR .'.'.PROJECT_VERSION_MINOR. '. Dieses Programm f&uuml;hrt Sie durch die notwendigen Schritte f&uuml;r eine erfolgreiche Installation von Zen Cart.');
+define('TEXT_MAIN', 'Willkommen im Installationsprogramm für Zen Cart v' . PROJECT_VERSION_MAJOR .'.'.PROJECT_VERSION_MINOR. '. Dieses Programm führt Sie durch die notwendigen Schritte für eine erfolgreiche Installation von Zen Cart.');
 define('TEXT_PAGE_HEADING', 'Zen Cart Installation - Willkommen');
 define('INSTALL', 'Weiter');
-?>
