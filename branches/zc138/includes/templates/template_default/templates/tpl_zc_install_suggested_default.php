@@ -17,7 +17,7 @@ $docsPath = (file_exists('docs/index.html')) ? 'docs/index.html' : (file_exists(
 <html xmlns="http://www.w3.org/1999/xhtml" dir="ltr" lang="de">
 <head>
 <title>System Setup Required</title>
-<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<meta http-equiv="Content-Type" content="text/html; utf-8" />
 <meta name="keywords" content="" />
 <meta name="description" content="" />
 <meta http-equiv="imagetoolbar" content="no" />
