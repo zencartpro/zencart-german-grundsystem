@@ -20,7 +20,7 @@ define('OKAY', 'Okay');
 define('HTML_PARAMS','dir="ltr" lang="de"');
 
 // charset for web pages and emails
-define('CHARSET', 'ISO-8859-1');
+define('CHARSET', 'utf-8');
 
 // META TAG TITLE
 define('META_TAG_TITLE', 'Zen Cart&trade; Installationsprogramm');

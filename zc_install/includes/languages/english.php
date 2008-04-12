@@ -20,7 +20,7 @@
   define('HTML_PARAMS','dir="ltr" lang="en"');
 
   // charset for web pages and emails
-  define('CHARSET', 'iso-8859-1');
+  define('CHARSET', 'utf-8');
 
   // META TAG TITLE
   define('META_TAG_TITLE', (defined('TEXT_PAGE_HEADING') ? TEXT_PAGE_HEADING : 'Zen Cart&trade; Installer'));
