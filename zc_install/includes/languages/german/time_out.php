@@ -5,7 +5,7 @@
  * @copyright Copyright 2003-2007 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: time_out.php 185 2007-12-03 08:47:08Z hugo13 $
+ * @version $Id$
  */
 /**
  * defining language components for the page

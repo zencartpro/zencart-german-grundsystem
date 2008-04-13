@@ -6,7 +6,7 @@
  * @copyright Copyright 2003-2007 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: index.php 7404 2007-11-11 04:09:50Z drbyte $
+ * @version $Id$
  */
 
   define('IS_ADMIN_FLAG',false);

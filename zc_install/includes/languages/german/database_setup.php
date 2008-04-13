@@ -21,7 +21,7 @@
 // | Date of Translation:  16.08.04                                       |
 // | Homepage:             www.zen-cart.at                                |
 // +----------------------------------------------------------------------+
-// $Id: database_setup.php 94 2006-09-18 18:42:45Z wflohr $
+// $Id$
 //
   
   define('SAVE_DATABASE_SETTINGS', 'Datenbankeinstellungen speichern');//this comes before TEXT_MAIN

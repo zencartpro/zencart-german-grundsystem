@@ -5,7 +5,7 @@
  * @copyright Copyright 2003-2007 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: application_top.php 7413 2007-11-11 06:17:36Z drbyte $
+ * @version $Id$
  */
 /**
  * ensure odd settings are disabled and set required defaults

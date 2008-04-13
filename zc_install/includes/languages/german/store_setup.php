@@ -21,7 +21,7 @@
 // | Date of Translation:  16.08.04                                       |
 // | Homepage:             www.zen-cart.at                                |
 // +----------------------------------------------------------------------+
-// $Id: store_setup.php 76 2006-09-15 04:31:49Z wflohr $
+// $Id$
 //
   
 define('SAVE_STORE_SETTINGS', 'Shopeinstellungen speichern');//this comes before TEXT_MAIN
