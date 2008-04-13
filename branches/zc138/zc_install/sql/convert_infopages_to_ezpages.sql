@@ -1,6 +1,6 @@
 # This SQL script upgrades converts pages entered for the "infopages" mod into the new EZ-Pages format for Zen Cart v1.3.0
 #
-# $Id: convert_infopages_to_ezpages.sql 4243 2006-08-24 10:55:28Z drbyte $
+# $Id$
 
 ## Add EZ-Pages table:
 CREATE TABLE ezpages (

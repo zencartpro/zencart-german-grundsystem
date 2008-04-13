@@ -1,6 +1,6 @@
 # This SQL script upgrades the core Zen Cart database structure from v1.2.1 to v1.2.2
 #
-# $Id: mysql_upgrade_zencart_121_to_122.sql 4243 2006-08-24 10:55:28Z drbyte $
+# $Id$
 #
 
 ## CONFIGURATION TABLE

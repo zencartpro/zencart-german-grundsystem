@@ -1,6 +1,6 @@
 # The following commands are used to upgrade the Zen Cart v1.1.0 database structure to v1.1.1 format.
 #
-# $Id: mysql_upgrade_zencart_110_to_111.sql 4243 2006-08-24 10:55:28Z drbyte $
+# $Id$
 #
 
 

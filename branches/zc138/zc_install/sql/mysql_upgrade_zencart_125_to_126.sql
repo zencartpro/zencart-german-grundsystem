@@ -1,6 +1,6 @@
 # This SQL script upgrades the core Zen Cart database structure from v1.2.5 to v1.2.6
 #
-# $Id: mysql_upgrade_zencart_125_to_126.sql 4243 2006-08-24 10:55:28Z drbyte $
+# $Id$
 #
 
 DELETE FROM admin where admin_name = 'demo' and admin_pass = '23ce1aad0e04a3d2334c7aef2f8ade83:58';

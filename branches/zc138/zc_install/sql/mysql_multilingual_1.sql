@@ -1,6 +1,6 @@
 # This SQL script upgrades the core Zen Cart database structure from v1.2.1 to v1.2.2
 #
-# $Id: mysql_multilingual_1.sql 47 2006-08-18 04:51:35Z wflohr $
+# $Id$
 #
 
 #################################################################
