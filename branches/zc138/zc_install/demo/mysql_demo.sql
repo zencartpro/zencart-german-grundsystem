@@ -1,6 +1,6 @@
 # MySQL file for Zen Cart Demo Products load
 #
-# $Id: mysql_demo.sql 6409 2007-05-30 14:30:28Z ajeh $
+# $Id$
 #
 
 # Configuration Settings:

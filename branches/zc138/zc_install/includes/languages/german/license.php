@@ -21,7 +21,7 @@
 // | Date of Translation:  16.08.04                                       |
 // | Homepage:             www.zen-cart.at                                |
 // +----------------------------------------------------------------------+
-// $Id: license.php 64 2006-09-05 11:19:25Z wflohr $
+// $Id$
 //
 
 define('TEXT_MAIN', 'Willkommen im Installationsprogramm von Zen Cart v' . PROJECT_VERSION_MAJOR .'.'.PROJECT_VERSION_MINOR. '. <br />Nehmen Sie sich bitte Zeit und lesen Sie die Lizenzbedingungen.<br /><br />Um mit der Installation fortfahren zu können, müssen Sie die Lizenzbedingungen akzeptieren.');

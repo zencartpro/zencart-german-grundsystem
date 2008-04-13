@@ -23,7 +23,7 @@ $myemail ="YOUR_EMAIL_ADDRESS_GOES_HERE";
 // * will report system info, but will skip the Zen Cart specific items.
 // *
 // * Contributed by: DrByte 
-// * @version $Id: techsupp.php 7096 2007-09-24 20:18:00Z drbyte $
+// * @version $Id$
 // *****************************************************************
 // * v1.2i- added realpath() to output
 // * v1.2h- added SCRIPT_URI to the list of reported data
@@ -46,7 +46,7 @@ $myemail ="YOUR_EMAIL_ADDRESS_GOES_HERE";
 ?>
 <html><head>
 <title>Technical Support  -- System Specs</title>
-<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <style type="text/css">
 <!--
 h1 {

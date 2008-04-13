@@ -5,7 +5,7 @@
  * @copyright Copyright 2003-2007 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: header_php.php 7415 2007-11-11 06:19:40Z drbyte $
+ * @version $Id$
  */
 
   if (!isset($_POST['admin_username'])) $_POST['admin_username'] = '';

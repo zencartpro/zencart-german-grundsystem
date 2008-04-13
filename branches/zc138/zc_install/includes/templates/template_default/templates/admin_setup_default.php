@@ -5,7 +5,7 @@
  * @copyright Copyright 2003-2007 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: admin_setup_default.php 7180 2007-10-05 12:24:30Z drbyte $
+ * @version $Id$
  */
 
   if ($zc_install->error) include(DIR_WS_INSTALL_TEMPLATE . 'templates/display_errors.php');

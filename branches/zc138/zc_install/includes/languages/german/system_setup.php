@@ -6,7 +6,7 @@
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
  * @translator: cyaneo/hugo13/wflohr	http://www.zen-cart.at	2007-01-03
- * @version $Id: system_setup.php 4707 2006-10-08 08:52:12Z drbyte $
+ * @version $Id$
  */
 /**
  * defining language components for the page

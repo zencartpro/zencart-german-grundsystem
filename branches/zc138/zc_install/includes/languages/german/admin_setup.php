@@ -21,7 +21,7 @@
 // | Date of Translation:  16.08.04                                       |
 // | Homepage:             www.zen-cart.at                                |
 // +----------------------------------------------------------------------+
-// $Id: admin_setup.php 75 2006-09-14 11:42:56Z wflohr $
+// $Id$
 //
   
 define('TEXT_PAGE_HEADING', 'Zen Cart Installation - Administrationszugang');

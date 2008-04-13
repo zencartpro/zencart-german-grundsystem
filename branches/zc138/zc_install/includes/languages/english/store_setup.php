@@ -5,7 +5,7 @@
  * @copyright Copyright 2003-2005 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: store_setup.php 7411 2007-11-11 05:47:10Z drbyte $
+ * @version $Id$
  */
 /**
  * defining language components for the page

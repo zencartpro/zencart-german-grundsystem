@@ -17,7 +17,7 @@
 // | to obtain it through the world-wide-web, please send a note to       |
 // | license@zen-cart.com so we can mail you a copy immediately.          |
 // +----------------------------------------------------------------------+
-// $Id: language_id_change.php 64 2006-09-05 11:19:25Z wflohr $
+// $Id$
 //
 
  function changeLanguageID($dbx, $from, $fromS, $to, $create = true){

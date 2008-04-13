@@ -5,7 +5,7 @@
  * @copyright Copyright 2003-2007 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: header_php.php 7412 2007-11-11 05:47:50Z drbyte $
+ * @version $Id$
  */
 
 $write_config_files_only = ((isset($_POST['submit']) && $_POST['submit']==ONLY_UPDATE_CONFIG_FILES) || (isset($_POST['configfile']) && zen_not_null($_POST['configfile'])) || (isset($_GET['configfile']) && zen_not_null($_GET['configfile'])) || ZC_UPG_DEBUG3 != false) ? true : false;

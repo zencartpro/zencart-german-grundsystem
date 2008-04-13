@@ -21,7 +21,7 @@
 // | Date of Translation:  16.08.04                                       |
 // | Homepage:             www.zen-cart.at                                |
 // +----------------------------------------------------------------------+
-// $Id: phpbb_setup.php 64 2006-09-05 11:19:25Z wflohr $
+// $Id$
 //
   
 define('SAVE_PHPBB_SETTINGS', 'Speichern & fortfahren'); //this comes before TEXT_MAIN

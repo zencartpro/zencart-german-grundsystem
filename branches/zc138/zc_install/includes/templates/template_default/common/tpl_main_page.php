@@ -5,7 +5,7 @@
  * @copyright Copyright 2003-2007 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: tpl_main_page.php 7064 2007-09-20 10:31:48Z drbyte $
+ * @version $Id$
  */
 
   $header_template = 'tpl_header.php';

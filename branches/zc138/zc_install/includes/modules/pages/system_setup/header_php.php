@@ -5,7 +5,7 @@
  * @copyright Copyright 2003-2007 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: header_php.php 7040 2007-09-18 05:54:25Z drbyte $
+ * @version $Id$
  * @TODO: If SSL is selected, switch into SSL mode to prove that it works.
  */
 
