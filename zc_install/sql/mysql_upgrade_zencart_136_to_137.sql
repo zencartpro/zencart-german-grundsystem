@@ -6,7 +6,7 @@
 # * @copyright Copyright 2003-2006 Zen Cart Development Team
 # * @copyright Portions Copyright 2003 osCommerce
 # * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
-# * @version $Id: mysql_upgrade_zencart_136_to_137.sql 5618 2007-01-19 00:15:46Z ajeh $
+# * @version $Id$
 #
 
 ############ IMPORTANT INSTRUCTIONS ###############

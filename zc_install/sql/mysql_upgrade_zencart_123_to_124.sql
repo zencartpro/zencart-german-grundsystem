@@ -1,6 +1,6 @@
 # This SQL script upgrades the core Zen Cart database structure from v1.2.3 to v1.2.4
 #
-# $Id: mysql_upgrade_zencart_123_to_124.sql 4243 2006-08-24 10:55:28Z drbyte $
+# $Id$
 #
 ## CONFIGURATION TABLE
 INSERT INTO configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) VALUES ('Manufacturers List - Verify Product Exist', 'PRODUCTS_MANUFACTURERS_STATUS', '1', 'Verify that at least 1 product exists and is active for the manufacturer name to show<br /><br />Note: When this feature is ON it can produce slower results on sites with a large number of products and/or manufacturers<br />0= off 1= on', 3, 7, 'zen_cfg_select_option(array(\'0\', \'1\'), ', now());

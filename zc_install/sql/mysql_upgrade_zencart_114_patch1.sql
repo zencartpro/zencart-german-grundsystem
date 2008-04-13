@@ -1,6 +1,6 @@
 # The following commands are used to upgrade the Zen Cart v1.1.4 database structure to v1.1.4-PATCH1 format.
 #
-# $Id: mysql_upgrade_zencart_114_patch1.sql 4243 2006-08-24 10:55:28Z drbyte $
+# $Id$
 #
 
 Update configuration set configuration_title = 'Package Tare Small to Medium - added percentage:weight' where configuration_key= 'SHIPPING_BOX_WEIGHT';

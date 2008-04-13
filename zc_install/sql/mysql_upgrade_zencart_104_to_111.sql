@@ -1,6 +1,6 @@
 #
 # The following commands are used to upgrade the Zen Cart v1.0.4 database structure to v1.1.1 format.
-# $Id: mysql_upgrade_zencart_104_to_111.sql 4243 2006-08-24 10:55:28Z drbyte $
+# $Id$
 #
 
 CREATE TABLE files_uploaded (files_uploaded_id int(11) NOT NULL auto_increment, sesskey varchar(32) NULL DEFAULT NULL, customers_id int(11) NULL DEFAULT NULL,files_uploaded_name varchar(64) NOT NULL DEFAULT '', PRIMARY KEY (files_uploaded_id)) TYPE=MyISAM;

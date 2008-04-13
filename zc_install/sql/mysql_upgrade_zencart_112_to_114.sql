@@ -1,6 +1,6 @@
 #
 # The following commands are used to upgrade the Zen Cart v1.1.2 or v1.1.3 database structure to v1.1.4 format.
-# $Id: mysql_upgrade_zencart_112_to_114.sql 4243 2006-08-24 10:55:28Z drbyte $
+# $Id$
 #
 
 ALTER TABLE customers_basket_attributes CHANGE COLUMN products_options_sort_order products_options_sort_order TEXT NOT NULL;
