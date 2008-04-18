@@ -1,0 +1,1536 @@
+<html><head>
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<style>
+/* Default heading font (outside of tables) */
+body { font-family: sans-serif; font-size: 11pt; }
+
+td { vertical-align: top; padding-left: 4px; padding-right: 4px; }
+
+/* File Difference Report styles - Color */
+table.fc { border-top: 1px solid Black; border-left: 1px solid Black; width: 100%; font-family: monospace; font-size: 10pt; }
+
+tr.secBegin td { border-left: none; border-top: none; border-right: 1px solid Black; }
+tr.secMiddle td { border-left: none; border-top: none; border-right: 1px solid Black; }
+tr.secEnd td { border-left: none; border-top: none; border-bottom: 1px solid Black; border-right: 1px solid Black; }
+tr.secAll td { border-left: none; border-top: none; border-bottom: 1px solid Black; border-right: 1px solid Black; }
+tr.secSubEnd td { border-left: none; border-top: none; border-bottom: 1px solid Gray; border-right: 1px solid Black; }
+tr.secSubAll td { border-left: none; border-top: none; border-bottom: 1px solid Gray; border-right: 1px solid Black; }
+tr.secGap td { font-size: 4px; border-left: none; border-top: none; border-bottom: 1px solid Black; border-right: 1px solid Black; }
+
+td.LineNum { text-align: right; }
+td.LineRange { font-family: sans-serif; }
+td.SubLineRange { font-family: sans-serif; border-bottom: none; }
+
+td.AlignLeft { text-align: left; }
+td.AlignRight { text-align: right; }
+td.AlignCenter { text-align: center; }
+td.Caption { text-align: left; background-color: #E7E7E7; padding-top: 8px; }
+
+td.Normal { }
+td.HasSimilar { background-color: #F0F0FF; }
+td.HasMismatch { background-color: #FFF0F0; }
+td.HasOrphan { background-color: #FFF0F0; }
+td.Added { background-color: #FFF0F0; }
+td.Deleted { background-color: #FFF0F0; text-decoration: line-through; }
+td.UAdded { background-color: #F0F0FF; }
+td.UDeleted { background-color: #F0F0FF; text-decoration: line-through; }
+
+.ttSigDiff { color: #FF0000; }
+.ttInsigDiff { color: #0000FF; }
+.ttAdded { color: #FF0000; }
+.ttDeleted { text-decoration: line-through; }
+
+/* Directory Comparison Report styles - Color */
+table.dc { border-top: 1px solid Black; border-left: 1px solid Black; width: 100%; font-family: sans-serif; font-size: 10pt; }
+
+table.dc tr.secBegin td { border-bottom: 1px solid Silver; }
+table.dc tr.secMiddle td { border-bottom: 1px solid Silver; }
+
+.ttNewer { color: #FF0000; }
+.ttOlder { color: #808080; }
+.ttOrphan { color: #0000FF; }
+.ttGhosted { color: #008080; }
+</style>
+</head><body>
+FILE COMPARISON<br />
+Produced: 12.04.2008 11:32:28<br />
+&nbsp; &nbsp;
+<br />
+Mode:&nbsp; Differences with Context &nbsp;
+<br />
+Left base folder: W:\zencart-german\tags\zc_138.EN\admin &nbsp;
+<br />
+Right base folder: P:\zencart_module_rai\multi_language_admin\admin &nbsp;
+<br />
+&nbsp; &nbsp;
+<br />
+File: includes\boxes\configuration_dhtml.php &nbsp;
+<br />
+<table class="fc" cellspacing="0" cellpadding="0">
+<tr class="secBegin">
+<td class="Normal">&nbsp; $contents = array();</td>
+<td class="AlignCenter">=</td>
+<td class="Normal">&nbsp; $contents = array();</td>
+</tr>
+<tr class="secMiddle">
+<td class="Normal">&nbsp; $heading[] = array('text'&nbsp; =&gt; BOX_HEADING_CONFIGURATION,</td>
+<td class="AlignCenter">&nbsp;</td>
+<td class="Normal">&nbsp; $heading[] = array('text'&nbsp; =&gt; BOX_HEADING_CONFIGURATION,</td>
+</tr>
+<tr class="secMiddle">
+<td class="Normal">&nbsp;</td>
+<td class="AlignCenter">&nbsp;</td>
+<td class="Normal">&nbsp;</td>
+</tr>
+<tr class="secMiddle">
+<td class="Normal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 'link'&nbsp; =&gt; zen_href_link(basename($PHP_SELF), zen_get_all_get_params(array('selected_box')) . 'selected_box=configuration'));</td>
+<td class="AlignCenter">&nbsp;</td>
+<td class="Normal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 'link'&nbsp; =&gt; zen_href_link(basename($PHP_SELF), zen_get_all_get_params(array('selected_box')) . 'selected_box=configuration'));</td>
+</tr>
+<tr class="secMiddle">
+<td class="Normal">&nbsp; if (1 == 1) {</td>
+<td class="AlignCenter">&nbsp;</td>
+<td class="Normal">&nbsp; if (1 == 1) {</td>
+</tr>
+<tr class="secEnd">
+<td class="Normal">&nbsp;&nbsp;&nbsp; $cfg_groups = '';</td>
+<td class="AlignCenter">&nbsp;</td>
+<td class="Normal">&nbsp;&nbsp;&nbsp; $cfg_groups = '';</td>
+</tr>
+<tr class="secBegin">
+<td class="HasOrphan">&nbsp;</td>
+<td class="AlignCenter">&lt;&gt;</td>
+<td class="HasOrphan"><span class="ttSigDiff">&nbsp;&nbsp;&nbsp; /* r.l. multilanguage&nbsp; added language_id */</span></td>
+</tr>
+<tr class="secMiddle">
+<td class="HasMismatch">&nbsp;&nbsp;&nbsp; $configuration_groups = $db-&gt;Execute(&quot;select configuration_group_id as cgID,<span class="ttSigDiff"> </span></td>
+<td class="AlignCenter">&nbsp;</td>
+<td class="HasMismatch">&nbsp;&nbsp;&nbsp; $configuration_groups = $db-&gt;Execute(&quot;select configuration_group_id as cgID,</td>
+</tr>
+<tr class="secMiddle">
+<td class="HasMismatch">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; configuration_group_title as cgTitle<span class="ttSigDiff"> </span></td>
+<td class="AlignCenter">&nbsp;</td>
+<td class="HasMismatch">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; configuration_group_title as cgTitle</td>
+</tr>
+<tr class="secMiddle">
+<td class="HasMismatch">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; from &quot; . TABLE_CONFIGURATION_GROUP . &quot;<span class="ttSigDiff"> </span></td>
+<td class="AlignCenter">&nbsp;</td>
+<td class="HasMismatch">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; from &quot; . TABLE_CONFIGURATION_GROUP . &quot;</td>
+</tr>
+<tr class="secMiddle">
+<td class="HasMismatch">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span class="ttSigDiff">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>where visible = '1' <span class="ttSigDiff">or</span>d<span class="ttSigDiff">er</span> <span class="ttSigDiff">by</span> s<span class="ttSigDiff">ort_</span>o<span class="ttSigDiff">rd</span>e<span class="ttSigDiff">r</span>&quot;<span class="ttSigDiff">)</span><span class="ttSigDiff">;</span></td>
+<td class="AlignCenter">&nbsp;</td>
+<td class="HasMismatch">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; where visible = '1' <span class="ttSigDiff">AND language</span><span class="ttSigDiff">_i</span>d<span class="ttSigDiff"> =</span> <span class="ttSigDiff">'&quot;</span> <span class="ttSigDiff">. $_</span>S<span class="ttSigDiff">ESSI</span>O<span class="ttSigDiff">N['langu</span><span class="ttSigDiff">ag</span>e<span class="ttSigDiff">s_id'] .</span><span class="ttSigDiff"> </span>&quot;<span class="ttSigDiff">'</span></td>
+</tr>
+<tr class="secEnd">
+<td class="HasOrphan">&nbsp;</td>
+<td class="AlignCenter">&nbsp;</td>
+<td class="HasOrphan"><span class="ttSigDiff">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; order by sort_order&quot;);</span></td>
+</tr>
+<tr class="secBegin">
+<td class="Normal">&nbsp;</td>
+<td class="AlignCenter">=</td>
+<td class="Normal">&nbsp;</td>
+</tr>
+<tr class="secMiddle">
+<td class="Normal">&nbsp;&nbsp;&nbsp; while (!$configuration_groups-&gt;EOF) {</td>
+<td class="AlignCenter">&nbsp;</td>
+<td class="Normal">&nbsp;&nbsp;&nbsp; while (!$configuration_groups-&gt;EOF) {</td>
+</tr>
+<tr class="secMiddle">
+<td class="Normal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; $cfg_groups .= '&lt;li&gt;&lt;a href=&quot;' . zen_href_link(FILENAME_CONFIGURATION, 'gID=' . $configuration_groups-&gt;fields['cgID'], 'NONSSL') . '&quot;&gt;' . $configuration_groups-&gt;fields['cgTitle'] . '&lt;/a&gt;&lt;/li&gt;' . &quot;\n&quot;;</td>
+<td class="AlignCenter">&nbsp;</td>
+<td class="Normal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; $cfg_groups .= '&lt;li&gt;&lt;a href=&quot;' . zen_href_link(FILENAME_CONFIGURATION, 'gID=' . $configuration_groups-&gt;fields['cgID'], 'NONSSL') . '&quot;&gt;' . $configuration_groups-&gt;fields['cgTitle'] . '&lt;/a&gt;&lt;/li&gt;' . &quot;\n&quot;;</td>
+</tr>
+<tr class="secMiddle">
+<td class="Normal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; $configuration_groups-&gt;MoveNext();</td>
+<td class="AlignCenter">&nbsp;</td>
+<td class="Normal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; $configuration_groups-&gt;MoveNext();</td>
+</tr>
+<tr class="secMiddle">
+<td class="Normal">&nbsp;&nbsp;&nbsp; }</td>
+<td class="AlignCenter">&nbsp;</td>
+<td class="Normal">&nbsp;&nbsp;&nbsp; }</td>
+</tr>
+<tr class="secMiddle">
+<td class="Normal">&nbsp; }</td>
+<td class="AlignCenter">&nbsp;</td>
+<td class="Normal">&nbsp; }</td>
+</tr>
+<tr class="secMiddle">
+<td class="Normal">echo $cfg_groups;</td>
+<td class="AlignCenter">&nbsp;</td>
+<td class="Normal">echo $cfg_groups;</td>
+</tr>
+<tr class="secMiddle">
+<td class="Normal">?&gt;</td>
+<td class="AlignCenter">&nbsp;</td>
+<td class="Normal">?&gt;</td>
+</tr>
+<tr class="secMiddle">
+<td class="Normal">&lt;/ul&gt;</td>
+<td class="AlignCenter">&nbsp;</td>
+<td class="Normal">&lt;/ul&gt;</td>
+</tr>
+<tr class="secMiddle">
+<td class="Normal">&lt;/li&gt;</td>
+<td class="AlignCenter">&nbsp;</td>
+<td class="Normal">&lt;/li&gt;</td>
+</tr>
+<tr class="secEnd">
+<td class="Normal">&lt;!-- configuration_eof //--&gt;</td>
+<td class="AlignCenter">&nbsp;</td>
+<td class="Normal">&lt;!-- configuration_eof //--&gt;</td>
+</tr>
+</table>
+&nbsp; &nbsp;
+<br />
+File: configuration.php &nbsp;
+<br />
+<table class="fc" cellspacing="0" cellpadding="0">
+<tr class="secBegin">
+<td class="Normal">// | to obtain it through the world-wide-web, please send a note to&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |</td>
+<td class="AlignCenter">=</td>
+<td class="Normal">// | to obtain it through the world-wide-web, please send a note to&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |</td>
+</tr>
+<tr class="secMiddle">
+<td class="Normal">// | license@zen-cart.com so we can mail you a copy immediately.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |</td>
+<td class="AlignCenter">&nbsp;</td>
+<td class="Normal">// | license@zen-cart.com so we can mail you a copy immediately.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |</td>
+</tr>
+<tr class="secMiddle">
+<td class="Normal">// +----------------------------------------------------------------------+</td>
+<td class="AlignCenter">&nbsp;</td>
+<td class="Normal">// +----------------------------------------------------------------------+</td>
+</tr>
+<tr class="secMiddle">
+<td class="Normal">//&nbsp; $Id$</td>
+<td class="AlignCenter">&nbsp;</td>
+<td class="Normal">//&nbsp; $Id$</td>
+</tr>
+<tr class="secMiddle">
+<td class="Normal">//</td>
+<td class="AlignCenter">&nbsp;</td>
+<td class="Normal">//</td>
+</tr>
+<tr class="secEnd">
+<td class="Normal">&nbsp;</td>
+<td class="AlignCenter">&nbsp;</td>
+<td class="Normal">&nbsp;</td>
+</tr>
+<tr class="secBegin">
+<td class="HasOrphan">&nbsp;</td>
+<td class="AlignCenter">-+</td>
+<td class="HasOrphan"><span class="ttSigDiff">/* r.l. multilanguage </span></td>
+</tr>
+<tr class="secMiddle">
+<td class="HasOrphan">&nbsp;</td>
+<td class="AlignCenter">&nbsp;</td>
+<td class="HasOrphan"><span class="ttSigDiff"> helper-function for language-configuration-values</span></td>
+</tr>
+<tr class="secMiddle">
+<td class="HasOrphan">&nbsp;</td>
+<td class="AlignCenter">&nbsp;</td>
+<td class="HasOrphan"><span class="ttSigDiff"> 20040812</span></td>
+</tr>
+<tr class="secMiddle">
+<td class="HasOrphan">&nbsp;</td>
+<td class="AlignCenter">&nbsp;</td>
+<td class="HasOrphan"><span class="ttSigDiff"> */</span></td>
+</tr>
+<tr class="secMiddle">
+<td class="HasOrphan">&nbsp;</td>
+<td class="AlignCenter">&nbsp;</td>
+<td class="HasOrphan"><span class="ttSigDiff"> </span></td>
+</tr>
+<tr class="secMiddle">
+<td class="HasOrphan">&nbsp;</td>
+<td class="AlignCenter">&nbsp;</td>
+<td class="HasOrphan"><span class="ttSigDiff">function getConfigLanguage($cKey){</span></td>
+</tr>
+<tr class="secMiddle">
+<td class="HasOrphan">&nbsp;</td>
+<td class="AlignCenter">&nbsp;</td>
+<td class="HasOrphan"><span class="ttSigDiff">&nbsp;&nbsp;&nbsp;&nbsp; global $db;</span></td>
+</tr>
+<tr class="secMiddle">
+<td class="HasOrphan">&nbsp;</td>
+<td class="AlignCenter">&nbsp;</td>
+<td class="HasOrphan"><span class="ttSigDiff">&nbsp;&nbsp;&nbsp;&nbsp; $languages_id = $_SESSION['languages_id'];</span></td>
+</tr>
+<tr class="secMiddle">
+<td class="HasOrphan">&nbsp;</td>
+<td class="AlignCenter">&nbsp;</td>
+<td class="HasOrphan"><span class="ttSigDiff">&nbsp;&nbsp;&nbsp;&nbsp; if($languages_id == 1){</span></td>
+</tr>
+<tr class="secMiddle">
+<td class="HasOrphan">&nbsp;</td>
+<td class="AlignCenter">&nbsp;</td>
+<td class="HasOrphan"><span class="ttSigDiff">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return $cKey;</span></td>
+</tr>
+<tr class="secMiddle">
+<td class="HasOrphan">&nbsp;</td>
+<td class="AlignCenter">&nbsp;</td>
+<td class="HasOrphan"><span class="ttSigDiff">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }</span></td>
+</tr>
+<tr class="secMiddle">
+<td class="HasOrphan">&nbsp;</td>
+<td class="AlignCenter">&nbsp;</td>
+<td class="HasOrphan"><span class="ttSigDiff">&nbsp;&nbsp;&nbsp;&nbsp; $query = &quot;SELECT configuration_title, configuration_description FROM &quot; . DB_PREFIX . &quot;configuration_language WHERE configuration_key='&quot; . $cKey['configuration_key'] . &quot;' AND configuration_language_id=&quot; . $languages_id;</span></td>
+</tr>
+<tr class="secMiddle">
+<td class="HasOrphan">&nbsp;</td>
+<td class="AlignCenter">&nbsp;</td>
+<td class="HasOrphan"><span class="ttSigDiff">&nbsp;&nbsp;&nbsp;&nbsp; $config = $db -&gt; Execute($query);</span></td>
+</tr>
+<tr class="secMiddle">
+<td class="HasOrphan">&nbsp;</td>
+<td class="AlignCenter">&nbsp;</td>
+<td class="HasOrphan"><span class="ttSigDiff">&nbsp;&nbsp;&nbsp;&nbsp; if($config -&gt; EOF){</span></td>
+</tr>
+<tr class="secMiddle">
+<td class="HasOrphan">&nbsp;</td>
+<td class="AlignCenter">&nbsp;</td>
+<td class="HasOrphan"><span class="ttSigDiff">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return $cKey;</span></td>
+</tr>
+<tr class="secMiddle">
+<td class="HasOrphan">&nbsp;</td>
+<td class="AlignCenter">&nbsp;</td>
+<td class="HasOrphan"><span class="ttSigDiff">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }</span></td>
+</tr>
+<tr class="secMiddle">
+<td class="HasOrphan">&nbsp;</td>
+<td class="AlignCenter">&nbsp;</td>
+<td class="HasOrphan"><span class="ttSigDiff">&nbsp;&nbsp;&nbsp;&nbsp; $ckeyM = array_merge($cKey, $config -&gt; fields);</span></td>
+</tr>
+<tr class="secMiddle">
+<td class="HasOrphan">&nbsp;</td>
+<td class="AlignCenter">&nbsp;</td>
+<td class="HasOrphan"><span class="ttSigDiff">&nbsp;&nbsp;&nbsp;&nbsp; return $ckeyM;</span></td>
+</tr>
+<tr class="secEnd">
+<td class="HasOrphan">&nbsp;</td>
+<td class="AlignCenter">&nbsp;</td>
+<td class="HasOrphan"><span class="ttSigDiff">&nbsp;&nbsp;&nbsp;&nbsp; }</span></td>
+</tr>
+<tr class="secBegin">
+<td class="Normal">&nbsp;</td>
+<td class="AlignCenter">=</td>
+<td class="Normal">&nbsp;</td>
+</tr>
+<tr class="secMiddle">
+<td class="Normal">&nbsp;</td>
+<td class="AlignCenter">&nbsp;</td>
+<td class="Normal">&nbsp;</td>
+</tr>
+<tr class="secMiddle">
+<td class="Normal">&nbsp; require('includes/application_top.php');</td>
+<td class="AlignCenter">&nbsp;</td>
+<td class="Normal">&nbsp; require('includes/application_top.php');</td>
+</tr>
+<tr class="secMiddle">
+<td class="Normal">&nbsp;</td>
+<td class="AlignCenter">&nbsp;</td>
+<td class="Normal">&nbsp;</td>
+</tr>
+<tr class="secMiddle">
+<td class="Normal">&nbsp; $action = (isset($_GET['action']) ? $_GET['action'] : '');</td>
+<td class="AlignCenter">&nbsp;</td>
+<td class="Normal">&nbsp; $action = (isset($_GET['action']) ? $_GET['action'] : '');</td>
+</tr>
+<tr class="secEnd">
+<td class="Normal">&nbsp;</td>
+<td class="AlignCenter">&nbsp;</td>
+<td class="Normal">&nbsp;</td>
+</tr>
+<tr class="secGap"><td colspan="3">&nbsp;</td></tr>
+<tr class="secBegin">
+<td class="Normal">&nbsp; }</td>
+<td class="AlignCenter">=</td>
+<td class="Normal">&nbsp; }</td>
+</tr>
+<tr class="secMiddle">
+<td class="Normal">&nbsp;</td>
+<td class="AlignCenter">&nbsp;</td>
+<td class="Normal">&nbsp;</td>
+</tr>
+<tr class="secMiddle">
+<td class="Normal">&nbsp; $gID = (isset($_GET['gID'])) ? $_GET['gID'] : 1;</td>
+<td class="AlignCenter">&nbsp;</td>
+<td class="Normal">&nbsp; $gID = (isset($_GET['gID'])) ? $_GET['gID'] : 1;</td>
+</tr>
+<tr class="secMiddle">
+<td class="Normal">&nbsp; $_GET['gID'] = $gID;</td>
+<td class="AlignCenter">&nbsp;</td>
+<td class="Normal">&nbsp; $_GET['gID'] = $gID;</td>
+</tr>
+<tr class="secMiddle">
+<td class="Normal">&nbsp; $cfg_group = $db-&gt;Execute(&quot;select configuration_group_title</td>
+<td class="AlignCenter">&nbsp;</td>
+<td class="Normal">&nbsp; $cfg_group = $db-&gt;Execute(&quot;select configuration_group_title</td>
+</tr>
+<tr class="secEnd">
+<td class="Normal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; from &quot; . TABLE_CONFIGURATION_GROUP . &quot;</td>
+<td class="AlignCenter">&nbsp;</td>
+<td class="Normal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; from &quot; . TABLE_CONFIGURATION_GROUP . &quot;</td>
+</tr>
+<tr class="secAll">
+<td class="HasMismatch">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; where configuration_group_id = '&quot; . (int)$gID . &quot;'&quot;);</td>
+<td class="AlignCenter">&lt;&gt;</td>
+<td class="HasMismatch">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; where configuration_group_id = '&quot; . (int)$gID . &quot;'<span class="ttSigDiff"> AND language_id=</span>&quot;<span class="ttSigDiff"> . $_SESSION['languages_id']</span>);</td>
+</tr>
+<tr class="secBegin">
+<td class="Normal">&nbsp;</td>
+<td class="AlignCenter">=</td>
+<td class="Normal">&nbsp;</td>
+</tr>
+<tr class="secMiddle">
+<td class="Normal">if ($gID == 7) {</td>
+<td class="AlignCenter">&nbsp;</td>
+<td class="Normal">if ($gID == 7) {</td>
+</tr>
+<tr class="secMiddle">
+<td class="Normal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; $shipping_errors = '';</td>
+<td class="AlignCenter">&nbsp;</td>
+<td class="Normal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; $shipping_errors = '';</td>
+</tr>
+<tr class="secMiddle">
+<td class="Normal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (zen_get_configuration_key_value('SHIPPING_ORIGIN_ZIP') == 'NONE' or zen_get_configuration_key_value('SHIPPING_ORIGIN_ZIP') == '') {</td>
+<td class="AlignCenter">&nbsp;</td>
+<td class="Normal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (zen_get_configuration_key_value('SHIPPING_ORIGIN_ZIP') == 'NONE' or zen_get_configuration_key_value('SHIPPING_ORIGIN_ZIP') == '') {</td>
+</tr>
+<tr class="secMiddle">
+<td class="Normal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; $shipping_errors .= '&lt;br /&gt;' . ERROR_SHIPPING_ORIGIN_ZIP;</td>
+<td class="AlignCenter">&nbsp;</td>
+<td class="Normal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; $shipping_errors .= '&lt;br /&gt;' . ERROR_SHIPPING_ORIGIN_ZIP;</td>
+</tr>
+<tr class="secEnd">
+<td class="Normal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }</td>
+<td class="AlignCenter">&nbsp;</td>
+<td class="Normal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }</td>
+</tr>
+<tr class="secGap"><td colspan="3">&nbsp;</td></tr>
+<tr class="secBegin">
+<td class="Normal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; $cfgValue = zen_call_function($use_function, $configuration-&gt;fields['configuration_value']);</td>
+<td class="AlignCenter">=</td>
+<td class="Normal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; $cfgValue = zen_call_function($use_function, $configuration-&gt;fields['configuration_value']);</td>
+</tr>
+<tr class="secMiddle">
+<td class="Normal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }</td>
+<td class="AlignCenter">&nbsp;</td>
+<td class="Normal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }</td>
+</tr>
+<tr class="secMiddle">
+<td class="Normal">&nbsp;&nbsp;&nbsp; } else {</td>
+<td class="AlignCenter">&nbsp;</td>
+<td class="Normal">&nbsp;&nbsp;&nbsp; } else {</td>
+</tr>
+<tr class="secMiddle">
+<td class="Normal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; $cfgValue = $configuration-&gt;fields['configuration_value'];</td>
+<td class="AlignCenter">&nbsp;</td>
+<td class="Normal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; $cfgValue = $configuration-&gt;fields['configuration_value'];</td>
+</tr>
+<tr class="secMiddle">
+<td class="Normal">&nbsp;&nbsp;&nbsp; }</td>
+<td class="AlignCenter">&nbsp;</td>
+<td class="Normal">&nbsp;&nbsp;&nbsp; }</td>
+</tr>
+<tr class="secEnd">
+<td class="Normal">&nbsp;</td>
+<td class="AlignCenter">&nbsp;</td>
+<td class="Normal">&nbsp;</td>
+</tr>
+<tr class="secBegin">
+<td class="HasOrphan">&nbsp;</td>
+<td class="AlignCenter">-+</td>
+<td class="HasOrphan"><span class="ttSigDiff">&nbsp;&nbsp;&nbsp; /* r.l. multilanguage */</span></td>
+</tr>
+<tr class="secEnd">
+<td class="HasOrphan">&nbsp;</td>
+<td class="AlignCenter">&nbsp;</td>
+<td class="HasOrphan"><span class="ttSigDiff">&nbsp;&nbsp;&nbsp; $configLang = getConfigLanguage($configuration -&gt; fields);</span></td>
+</tr>
+<tr class="secBegin">
+<td class="Normal">&nbsp;&nbsp;&nbsp; if ((!isset($_GET['cID']) || (isset($_GET['cID']) &amp;&amp; ($_GET['cID'] == $configuration-&gt;fields['configuration_id']))) &amp;&amp; !isset($cInfo) &amp;&amp; (substr($action, 0, 3) != 'new')) {</td>
+<td class="AlignCenter">=</td>
+<td class="Normal">&nbsp;&nbsp;&nbsp; if ((!isset($_GET['cID']) || (isset($_GET['cID']) &amp;&amp; ($_GET['cID'] == $configuration-&gt;fields['configuration_id']))) &amp;&amp; !isset($cInfo) &amp;&amp; (substr($action, 0, 3) != 'new')) {</td>
+</tr>
+<tr class="secMiddle">
+<td class="Normal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; $cfg_extra = $db-&gt;Execute(&quot;select configuration_key, configuration_description, date_added,</td>
+<td class="AlignCenter">&nbsp;</td>
+<td class="Normal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; $cfg_extra = $db-&gt;Execute(&quot;select configuration_key, configuration_description, date_added,</td>
+</tr>
+<tr class="secMiddle">
+<td class="Normal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; last_modified, use_function, set_function</td>
+<td class="AlignCenter">&nbsp;</td>
+<td class="Normal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; last_modified, use_function, set_function</td>
+</tr>
+<tr class="secMiddle">
+<td class="Normal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; from &quot; . TABLE_CONFIGURATION . &quot;</td>
+<td class="AlignCenter">&nbsp;</td>
+<td class="Normal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; from &quot; . TABLE_CONFIGURATION . &quot;</td>
+</tr>
+<tr class="secEnd">
+<td class="Normal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; where configuration_id = '&quot; . (int)$configuration-&gt;fields['configuration_id'] . &quot;'&quot;);</td>
+<td class="AlignCenter">&nbsp;</td>
+<td class="Normal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; where configuration_id = '&quot; . (int)$configuration-&gt;fields['configuration_id'] . &quot;'&quot;);</td>
+</tr>
+<tr class="secBegin">
+<td class="HasMismatch">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; $cInfo_array = array_merge($configuration-&gt;fields, $cfg_extra-&gt;fields);</td>
+<td class="AlignCenter">&lt;&gt;</td>
+<td class="HasMismatch">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; $cInfo_array<span class="ttSigDiff">1</span> = array_merge($configuration-&gt;fields, $cfg_extra-&gt;fields);</td>
+</tr>
+<tr class="secMiddle">
+<td class="HasOrphan">&nbsp;</td>
+<td class="AlignCenter">&nbsp;</td>
+<td class="HasOrphan"><span class="ttSigDiff">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; /* r.l. multilanguage&nbsp; 20040812 merge a second time to get the language text */</span></td>
+</tr>
+<tr class="secEnd">
+<td class="HasOrphan">&nbsp;</td>
+<td class="AlignCenter">&nbsp;</td>
+<td class="HasOrphan"><span class="ttSigDiff">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; $cInfo_array = array_merge($cInfo_array1, $configLang);&nbsp; </span></td>
+</tr>
+<tr class="secBegin">
+<td class="Normal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; $cInfo = new objectInfo($cInfo_array);</td>
+<td class="AlignCenter">=</td>
+<td class="Normal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; $cInfo = new objectInfo($cInfo_array);</td>
+</tr>
+<tr class="secMiddle">
+<td class="Normal">&nbsp;&nbsp;&nbsp; }</td>
+<td class="AlignCenter">&nbsp;</td>
+<td class="Normal">&nbsp;&nbsp;&nbsp; }</td>
+</tr>
+<tr class="secMiddle">
+<td class="Normal">&nbsp;</td>
+<td class="AlignCenter">&nbsp;</td>
+<td class="Normal">&nbsp;</td>
+</tr>
+<tr class="secMiddle">
+<td class="Normal">&nbsp;&nbsp;&nbsp; if ( (isset($cInfo) &amp;&amp; is_object($cInfo)) &amp;&amp; ($configuration-&gt;fields['configuration_id'] == $cInfo-&gt;configuration_id) ) {</td>
+<td class="AlignCenter">&nbsp;</td>
+<td class="Normal">&nbsp;&nbsp;&nbsp; if ( (isset($cInfo) &amp;&amp; is_object($cInfo)) &amp;&amp; ($configuration-&gt;fields['configuration_id'] == $cInfo-&gt;configuration_id) ) {</td>
+</tr>
+<tr class="secMiddle">
+<td class="Normal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; echo '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;tr id=&quot;defaultSelected&quot; class=&quot;dataTableRowSelected&quot; onmouseover=&quot;rowOverEffect(this)&quot; onmouseout=&quot;rowOutEffect(this)&quot; onclick=&quot;document.location.href=\'' . zen_href_link(FILENAME_CONFIGURATION, 'gID=' . $_GET['gID'] . '&amp;cID=' . $cInfo-&gt;configuration_id . '&amp;action=edit') . '\'&quot;&gt;' . &quot;\n&quot;;</td>
+<td class="AlignCenter">&nbsp;</td>
+<td class="Normal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; echo '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;tr id=&quot;defaultSelected&quot; class=&quot;dataTableRowSelected&quot; onmouseover=&quot;rowOverEffect(this)&quot; onmouseout=&quot;rowOutEffect(this)&quot; onclick=&quot;document.location.href=\'' . zen_href_link(FILENAME_CONFIGURATION, 'gID=' . $_GET['gID'] . '&amp;cID=' . $cInfo-&gt;configuration_id . '&amp;action=edit') . '\'&quot;&gt;' . &quot;\n&quot;;</td>
+</tr>
+<tr class="secMiddle">
+<td class="Normal">&nbsp;&nbsp;&nbsp; } else {</td>
+<td class="AlignCenter">&nbsp;</td>
+<td class="Normal">&nbsp;&nbsp;&nbsp; } else {</td>
+</tr>
+<tr class="secMiddle">
+<td class="Normal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; echo '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;tr class=&quot;dataTableRow&quot; onmouseover=&quot;rowOverEffect(this)&quot; onmouseout=&quot;rowOutEffect(this)&quot; onclick=&quot;document.location.href=\'' . zen_href_link(FILENAME_CONFIGURATION, 'gID=' . $_GET['gID'] . '&amp;cID=' . $configuration-&gt;fields['configuration_id'] . '&amp;action=edit') . '\'&quot;&gt;' . &quot;\n&quot;;</td>
+<td class="AlignCenter">&nbsp;</td>
+<td class="Normal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; echo '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;tr class=&quot;dataTableRow&quot; onmouseover=&quot;rowOverEffect(this)&quot; onmouseout=&quot;rowOutEffect(this)&quot; onclick=&quot;document.location.href=\'' . zen_href_link(FILENAME_CONFIGURATION, 'gID=' . $_GET['gID'] . '&amp;cID=' . $configuration-&gt;fields['configuration_id'] . '&amp;action=edit') . '\'&quot;&gt;' . &quot;\n&quot;;</td>
+</tr>
+<tr class="secEnd">
+<td class="Normal">&nbsp;&nbsp;&nbsp; }</td>
+<td class="AlignCenter">&nbsp;</td>
+<td class="Normal">&nbsp;&nbsp;&nbsp; }</td>
+</tr>
+<tr class="secAll">
+<td class="HasOrphan">&nbsp;</td>
+<td class="AlignCenter">-+</td>
+<td class="HasOrphan"><span class="ttSigDiff">&nbsp;&nbsp;&nbsp; /* r.l. multilanguage 20040812 use $configLang['configuration_title'] */</span></td>
+</tr>
+<tr class="secAll">
+<td class="Normal">?&gt;</td>
+<td class="AlignCenter">=</td>
+<td class="Normal">?&gt;</td>
+</tr>
+<tr class="secBegin">
+<td class="HasMismatch"><span class="ttSigDiff">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;td class=&quot;dataTableContent&quot;&gt;&lt;?php echo $configuration-&gt;fields['configuration_title']; ?&gt;&lt;/td&gt;</span></td>
+<td class="AlignCenter">&lt;&gt;</td>
+<td class="HasMismatch">&nbsp;</td>
+</tr>
+<tr class="secEnd">
+<td class="HasOrphan">&nbsp;</td>
+<td class="AlignCenter">&nbsp;</td>
+<td class="HasOrphan"><span class="ttSigDiff">&lt;td class=&quot;dataTableContent&quot;&gt;&lt;?php echo $configLang['configuration_title']; ?&gt;&lt;/td&gt;</span></td>
+</tr>
+<tr class="secBegin">
+<td class="Normal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;td class=&quot;dataTableContent&quot;&gt;&lt;?php echo htmlspecialchars($cfgValue); ?&gt;&lt;/td&gt;</td>
+<td class="AlignCenter">=</td>
+<td class="Normal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;td class=&quot;dataTableContent&quot;&gt;&lt;?php echo htmlspecialchars($cfgValue); ?&gt;&lt;/td&gt;</td>
+</tr>
+<tr class="secMiddle">
+<td class="Normal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;td class=&quot;dataTableContent&quot; align=&quot;right&quot;&gt;&lt;?php if ( (isset($cInfo) &amp;&amp; is_object($cInfo)) &amp;&amp; ($configuration-&gt;fields['configuration_id'] == $cInfo-&gt;configuration_id) ) { echo zen_image(DIR_WS_IMAGES . 'icon_arrow_right.gif', ''); } else { echo '&lt;a href=&quot;' . zen_href_link(FILENAME_CONFIGURATION, 'gID=' . $_GET['gID'] . '&amp;cID=' . $configuration-&gt;fields['configuration_id']) . '&quot;&gt;' . zen_image(DIR_WS_IMAGES . 'icon_info.gif', IMAGE_ICON_INFO) . '&lt;/a&gt;'; } ?&gt;&amp;nbsp;&lt;/td&gt;</td>
+<td class="AlignCenter">&nbsp;</td>
+<td class="Normal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;td class=&quot;dataTableContent&quot; align=&quot;right&quot;&gt;&lt;?php if ( (isset($cInfo) &amp;&amp; is_object($cInfo)) &amp;&amp; ($configuration-&gt;fields['configuration_id'] == $cInfo-&gt;configuration_id) ) { echo zen_image(DIR_WS_IMAGES . 'icon_arrow_right.gif', ''); } else { echo '&lt;a href=&quot;' . zen_href_link(FILENAME_CONFIGURATION, 'gID=' . $_GET['gID'] . '&amp;cID=' . $configuration-&gt;fields['configuration_id']) . '&quot;&gt;' . zen_image(DIR_WS_IMAGES . 'icon_info.gif', IMAGE_ICON_INFO) . '&lt;/a&gt;'; } ?&gt;&amp;nbsp;&lt;/td&gt;</td>
+</tr>
+<tr class="secMiddle">
+<td class="Normal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;/tr&gt;</td>
+<td class="AlignCenter">&nbsp;</td>
+<td class="Normal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;/tr&gt;</td>
+</tr>
+<tr class="secMiddle">
+<td class="Normal">&lt;?php</td>
+<td class="AlignCenter">&nbsp;</td>
+<td class="Normal">&lt;?php</td>
+</tr>
+<tr class="secMiddle">
+<td class="Normal">&nbsp;&nbsp;&nbsp; $configuration-&gt;MoveNext();</td>
+<td class="AlignCenter">&nbsp;</td>
+<td class="Normal">&nbsp;&nbsp;&nbsp; $configuration-&gt;MoveNext();</td>
+</tr>
+<tr class="secEnd">
+<td class="Normal">&nbsp; }</td>
+<td class="AlignCenter">&nbsp;</td>
+<td class="Normal">&nbsp; }</td>
+</tr>
+</table>
+&nbsp; &nbsp;
+<br />
+File: languages.php &nbsp;
+<br />
+<table class="fc" cellspacing="0" cellpadding="0">
+<tr class="secBegin">
+<td class="Normal">&nbsp;</td>
+<td class="AlignCenter">=</td>
+<td class="Normal">&nbsp;</td>
+</tr>
+<tr class="secMiddle">
+<td class="Normal">&nbsp; require('includes/application_top.php');</td>
+<td class="AlignCenter">&nbsp;</td>
+<td class="Normal">&nbsp; require('includes/application_top.php');</td>
+</tr>
+<tr class="secMiddle">
+<td class="Normal">&nbsp; $action = (isset($_GET['action']) ? $_GET['action'] : '');</td>
+<td class="AlignCenter">&nbsp;</td>
+<td class="Normal">&nbsp; $action = (isset($_GET['action']) ? $_GET['action'] : '');</td>
+</tr>
+<tr class="secMiddle">
+<td class="Normal">&nbsp; if (zen_not_null($action)) {</td>
+<td class="AlignCenter">&nbsp;</td>
+<td class="Normal">&nbsp; if (zen_not_null($action)) {</td>
+</tr>
+<tr class="secMiddle">
+<td class="Normal">&nbsp;&nbsp;&nbsp; switch ($action) {</td>
+<td class="AlignCenter">&nbsp;</td>
+<td class="Normal">&nbsp;&nbsp;&nbsp; switch ($action) {</td>
+</tr>
+<tr class="secEnd">
+<td class="Normal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; case 'insert':</td>
+<td class="AlignCenter">&nbsp;</td>
+<td class="Normal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; case 'insert':</td>
+</tr>
+<tr class="secBegin">
+<td class="HasOrphan">&nbsp;</td>
+<td class="AlignCenter">-+</td>
+<td class="HasOrphan"><span class="ttSigDiff">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; /* r.l. multilanguage : added languages_id */</span></td>
+</tr>
+<tr class="secEnd">
+<td class="HasOrphan">&nbsp;</td>
+<td class="AlignCenter">&nbsp;</td>
+<td class="HasOrphan"><span class="ttSigDiff">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; $language_id = zen_db_prepare_input($_POST['languages_id']);</span></td>
+</tr>
+<tr class="secBegin">
+<td class="Normal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; $name = zen_db_prepare_input($_POST['name']);</td>
+<td class="AlignCenter">=</td>
+<td class="Normal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; $name = zen_db_prepare_input($_POST['name']);</td>
+</tr>
+<tr class="secMiddle">
+<td class="Normal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; $code = zen_db_prepare_input($_POST['code']);</td>
+<td class="AlignCenter">&nbsp;</td>
+<td class="Normal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; $code = zen_db_prepare_input($_POST['code']);</td>
+</tr>
+<tr class="secMiddle">
+<td class="Normal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; $image = zen_db_prepare_input($_POST['image']);</td>
+<td class="AlignCenter">&nbsp;</td>
+<td class="Normal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; $image = zen_db_prepare_input($_POST['image']);</td>
+</tr>
+<tr class="secMiddle">
+<td class="Normal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; $directory = zen_db_prepare_input($_POST['directory']);</td>
+<td class="AlignCenter">&nbsp;</td>
+<td class="Normal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; $directory = zen_db_prepare_input($_POST['directory']);</td>
+</tr>
+<tr class="secMiddle">
+<td class="Normal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; $sort_order = zen_db_prepare_input((int)$_POST['sort_order']);</td>
+<td class="AlignCenter">&nbsp;</td>
+<td class="Normal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; $sort_order = zen_db_prepare_input((int)$_POST['sort_order']);</td>
+</tr>
+<tr class="secMiddle">
+<td class="Normal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; $check = $db-&gt;Execute(&quot;select * from &quot; . TABLE_LANGUAGES . &quot; where code = '&quot; . $code . &quot;'&quot;);</td>
+<td class="AlignCenter">&nbsp;</td>
+<td class="Normal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; $check = $db-&gt;Execute(&quot;select * from &quot; . TABLE_LANGUAGES . &quot; where code = '&quot; . $code . &quot;'&quot;);</td>
+</tr>
+<tr class="secMiddle">
+<td class="Normal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if ($check-&gt;RecordCount() &gt; 0) {</td>
+<td class="AlignCenter">&nbsp;</td>
+<td class="Normal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if ($check-&gt;RecordCount() &gt; 0) {</td>
+</tr>
+<tr class="secMiddle">
+<td class="Normal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; $messageStack-&gt;add(ERROR_DUPLICATE_LANGUAGE_CODE, 'error');</td>
+<td class="AlignCenter">&nbsp;</td>
+<td class="Normal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; $messageStack-&gt;add(ERROR_DUPLICATE_LANGUAGE_CODE, 'error');</td>
+</tr>
+<tr class="secMiddle">
+<td class="Normal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; } else {</td>
+<td class="AlignCenter">&nbsp;</td>
+<td class="Normal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; } else {</td>
+</tr>
+<tr class="secMiddle">
+<td class="Normal">&nbsp;</td>
+<td class="AlignCenter">&nbsp;</td>
+<td class="Normal">&nbsp;</td>
+</tr>
+<tr class="secEnd">
+<td class="Normal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; $db-&gt;Execute(&quot;insert into &quot; . TABLE_LANGUAGES . &quot;</td>
+<td class="AlignCenter">&nbsp;</td>
+<td class="Normal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; $db-&gt;Execute(&quot;insert into &quot; . TABLE_LANGUAGES . &quot;</td>
+</tr>
+<tr class="secBegin">
+<td class="HasMismatch">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; (name, code, image, directory, sort_order)</td>
+<td class="AlignCenter">&lt;&gt;</td>
+<td class="HasMismatch">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; (<span class="ttSigDiff">languages_id, </span>name, code, image, directory, sort_order)</td>
+</tr>
+<tr class="secEnd">
+<td class="HasMismatch">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; values ('&quot; . zen_db_input($name) . &quot;', '&quot; . zen_db_input($code) . &quot;',</td>
+<td class="AlignCenter">&nbsp;</td>
+<td class="HasMismatch">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; values ('&quot; . zen_db_input($<span class="ttSigDiff">language_id) . &quot;', '&quot; . zen_db_input($</span>name) . &quot;', '&quot; . zen_db_input($code) . &quot;',</td>
+</tr>
+<tr class="secBegin">
+<td class="Normal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; '&quot; . zen_db_input($image) . &quot;', '&quot; . zen_db_input($directory) . &quot;',</td>
+<td class="AlignCenter">=</td>
+<td class="Normal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; '&quot; . zen_db_input($image) . &quot;', '&quot; . zen_db_input($directory) . &quot;',</td>
+</tr>
+<tr class="secMiddle">
+<td class="Normal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; '&quot; . zen_db_input($sort_order) . &quot;')&quot;);</td>
+<td class="AlignCenter">&nbsp;</td>
+<td class="Normal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; '&quot; . zen_db_input($sort_order) . &quot;')&quot;);</td>
+</tr>
+<tr class="secMiddle">
+<td class="Normal">&nbsp;</td>
+<td class="AlignCenter">&nbsp;</td>
+<td class="Normal">&nbsp;</td>
+</tr>
+<tr class="secMiddle">
+<td class="Normal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; $insert_id = $db-&gt;Insert_ID();</td>
+<td class="AlignCenter">&nbsp;</td>
+<td class="Normal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; $insert_id = $db-&gt;Insert_ID();</td>
+</tr>
+<tr class="secMiddle">
+<td class="Normal">&nbsp;</td>
+<td class="AlignCenter">&nbsp;</td>
+<td class="Normal">&nbsp;</td>
+</tr>
+<tr class="secEnd">
+<td class="Normal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // set default, if selected</td>
+<td class="AlignCenter">&nbsp;</td>
+<td class="Normal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // set default, if selected</td>
+</tr>
+<tr class="secGap"><td colspan="3">&nbsp;</td></tr>
+<tr class="secBegin">
+<td class="Normal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; zen_redirect(zen_href_link(FILENAME_LANGUAGES, (isset($_GET['page']) ? 'page=' . $_GET['page'] . '&amp;' : '') . 'lID=' . $insert_id));</td>
+<td class="AlignCenter">=</td>
+<td class="Normal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; zen_redirect(zen_href_link(FILENAME_LANGUAGES, (isset($_GET['page']) ? 'page=' . $_GET['page'] . '&amp;' : '') . 'lID=' . $insert_id));</td>
+</tr>
+<tr class="secMiddle">
+<td class="Normal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }</td>
+<td class="AlignCenter">&nbsp;</td>
+<td class="Normal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }</td>
+</tr>
+<tr class="secMiddle">
+<td class="Normal">&nbsp;</td>
+<td class="AlignCenter">&nbsp;</td>
+<td class="Normal">&nbsp;</td>
+</tr>
+<tr class="secMiddle">
+<td class="Normal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; break;</td>
+<td class="AlignCenter">&nbsp;</td>
+<td class="Normal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; break;</td>
+</tr>
+<tr class="secMiddle">
+<td class="Normal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; case 'save':</td>
+<td class="AlignCenter">&nbsp;</td>
+<td class="Normal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; case 'save':</td>
+</tr>
+<tr class="secEnd">
+<td class="Normal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; //prepare/sanitize inputs</td>
+<td class="AlignCenter">&nbsp;</td>
+<td class="Normal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; //prepare/sanitize inputs</td>
+</tr>
+<tr class="secBegin">
+<td class="HasMismatch">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; $lID = zen_db_prepare_input($_GET['lID']);</td>
+<td class="AlignCenter">&lt;&gt;</td>
+<td class="HasMismatch">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; $lID<span class="ttSigDiff">W</span> = <span class="ttSigDiff">(int)</span>zen_db_prepare_input($_GET['lID']);</td>
+</tr>
+<tr class="secMiddle">
+<td class="HasOrphan">&nbsp;</td>
+<td class="AlignCenter">&nbsp;</td>
+<td class="HasOrphan"><span class="ttSigDiff">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; /* r.l. multilanguage : get the real languages_id */</span></td>
+</tr>
+<tr class="secEnd">
+<td class="HasOrphan">&nbsp;</td>
+<td class="AlignCenter">&nbsp;</td>
+<td class="HasOrphan"><span class="ttSigDiff">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; $lID = (int)zen_db_prepare_input($_POST['languages_id']);</span></td>
+</tr>
+<tr class="secBegin">
+<td class="Normal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; $name = zen_db_prepare_input($_POST['name']);</td>
+<td class="AlignCenter">=</td>
+<td class="Normal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; $name = zen_db_prepare_input($_POST['name']);</td>
+</tr>
+<tr class="secMiddle">
+<td class="Normal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; $code = zen_db_prepare_input($_POST['code']);</td>
+<td class="AlignCenter">&nbsp;</td>
+<td class="Normal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; $code = zen_db_prepare_input($_POST['code']);</td>
+</tr>
+<tr class="secMiddle">
+<td class="Normal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; $image = zen_db_prepare_input($_POST['image']);</td>
+<td class="AlignCenter">&nbsp;</td>
+<td class="Normal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; $image = zen_db_prepare_input($_POST['image']);</td>
+</tr>
+<tr class="secMiddle">
+<td class="Normal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; $directory = zen_db_prepare_input($_POST['directory']);</td>
+<td class="AlignCenter">&nbsp;</td>
+<td class="Normal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; $directory = zen_db_prepare_input($_POST['directory']);</td>
+</tr>
+<tr class="secEnd">
+<td class="Normal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; $sort_order = zen_db_prepare_input($_POST['sort_order']);</td>
+<td class="AlignCenter">&nbsp;</td>
+<td class="Normal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; $sort_order = zen_db_prepare_input($_POST['sort_order']);</td>
+</tr>
+<tr class="secAll">
+<td class="HasMismatch">&nbsp;</td>
+<td class="AlignCenter">&lt;&gt;</td>
+<td class="HasMismatch"><span class="ttSigDiff">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; $query = &quot;update &quot; . TABLE_LANGUAGES . &quot; set languages_id = '&quot; . $lID . &quot;', name = '&quot; . zen_db_input($name) . &quot;', code = '&quot; . zen_db_input($code) . &quot;', image = '&quot; . zen_db_input($image) . &quot;', directory = '&quot; . zen_db_input($directory) . &quot;', sort_order = '&quot; . zen_db_input($sort_order) . &quot;' where languages_id = '&quot; . (int)$lID . &quot;'&quot;;</span></td>
+</tr>
+<tr class="secBegin">
+<td class="Normal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // check if the spelling of the name for the default language has just been changed (thus meaning we need to change the spelling of DEFAULT_LANGUAGE to match it)</td>
+<td class="AlignCenter">=</td>
+<td class="Normal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // check if the spelling of the name for the default language has just been changed (thus meaning we need to change the spelling of DEFAULT_LANGUAGE to match it)</td>
+</tr>
+<tr class="secMiddle">
+<td class="Normal">// get &quot;code&quot; for the language we just updated</td>
+<td class="AlignCenter">&nbsp;</td>
+<td class="Normal">// get &quot;code&quot; for the language we just updated</td>
+</tr>
+<tr class="secMiddle">
+<td class="Normal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; $result = $db-&gt;Execute(&quot;select code from &quot; . TABLE_LANGUAGES . &quot; where languages_id = '&quot; . (int)$lID . &quot;'&quot;);</td>
+<td class="AlignCenter">&nbsp;</td>
+<td class="Normal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; $result = $db-&gt;Execute(&quot;select code from &quot; . TABLE_LANGUAGES . &quot; where languages_id = '&quot; . (int)$lID . &quot;'&quot;);</td>
+</tr>
+<tr class="secMiddle">
+<td class="Normal">// compare &quot;code&quot; vs DEFAULT_LANGUAGE</td>
+<td class="AlignCenter">&nbsp;</td>
+<td class="Normal">// compare &quot;code&quot; vs DEFAULT_LANGUAGE</td>
+</tr>
+<tr class="secMiddle">
+<td class="Normal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; $changing_default_lang = (DEFAULT_LANGUAGE == $result-&gt;fields['code']) ? true : false;</td>
+<td class="AlignCenter">&nbsp;</td>
+<td class="Normal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; $changing_default_lang = (DEFAULT_LANGUAGE == $result-&gt;fields['code']) ? true : false;</td>
+</tr>
+<tr class="secMiddle">
+<td class="Normal">// compare whether &quot;code&quot; matches $code (which was just submitted in the edit form</td>
+<td class="AlignCenter">&nbsp;</td>
+<td class="Normal">// compare whether &quot;code&quot; matches $code (which was just submitted in the edit form</td>
+</tr>
+<tr class="secMiddle">
+<td class="Normal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; $default_needs_an_update = (DEFAULT_LANGUAGE == $code) ? false : true;</td>
+<td class="AlignCenter">&nbsp;</td>
+<td class="Normal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; $default_needs_an_update = (DEFAULT_LANGUAGE == $code) ? false : true;</td>
+</tr>
+<tr class="secMiddle">
+<td class="Normal">// if we just edited the default language id's name, then we need to update the database with the new name for default</td>
+<td class="AlignCenter">&nbsp;</td>
+<td class="Normal">// if we just edited the default language id's name, then we need to update the database with the new name for default</td>
+</tr>
+<tr class="secMiddle">
+<td class="Normal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; $default_lang_change_flag = ($default_needs_an_update &amp;&amp; $changing_default_lang) ? true : false;</td>
+<td class="AlignCenter">&nbsp;</td>
+<td class="Normal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; $default_lang_change_flag = ($default_needs_an_update &amp;&amp; $changing_default_lang) ? true : false;</td>
+</tr>
+<tr class="secMiddle">
+<td class="Normal">&nbsp;</td>
+<td class="AlignCenter">&nbsp;</td>
+<td class="Normal">&nbsp;</td>
+</tr>
+<tr class="secMiddle">
+<td class="Normal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // save new language settings</td>
+<td class="AlignCenter">&nbsp;</td>
+<td class="Normal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // save new language settings</td>
+</tr>
+<tr class="secEnd">
+<td class="Normal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; $db-&gt;Execute(&quot;update &quot; . TABLE_LANGUAGES . &quot;</td>
+<td class="AlignCenter">&nbsp;</td>
+<td class="Normal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; $db-&gt;Execute(&quot;update &quot; . TABLE_LANGUAGES . &quot;</td>
+</tr>
+<tr class="secAll">
+<td class="HasMismatch">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; set name = '&quot; . zen_db_input($name) . &quot;', code = '&quot; . zen_db_input($code) . &quot;',</td>
+<td class="AlignCenter">&lt;&gt;</td>
+<td class="HasMismatch">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; set <span class="ttSigDiff">languages_id = '&quot; . $lID . &quot;', </span>name = '&quot; . zen_db_input($name) . &quot;', code = '&quot; . zen_db_input($code) . &quot;',<span class="ttSigDiff"> </span></td>
+</tr>
+<tr class="secBegin">
+<td class="Normal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; image = '&quot; . zen_db_input($image) . &quot;', directory = '&quot; . zen_db_input($directory) . &quot;',</td>
+<td class="AlignCenter">=</td>
+<td class="Normal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; image = '&quot; . zen_db_input($image) . &quot;', directory = '&quot; . zen_db_input($directory) . &quot;',</td>
+</tr>
+<tr class="secMiddle">
+<td class="Normal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; sort_order = '&quot; . zen_db_input($sort_order) . &quot;'</td>
+<td class="AlignCenter">&nbsp;</td>
+<td class="Normal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; sort_order = '&quot; . zen_db_input($sort_order) . &quot;'</td>
+</tr>
+<tr class="secEnd">
+<td class="Normal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; where languages_id = '&quot; . (int)$lID . &quot;'&quot;);</td>
+<td class="AlignCenter">&nbsp;</td>
+<td class="Normal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; where languages_id = '&quot; . (int)$lID . &quot;'&quot;);</td>
+</tr>
+<tr class="secAll">
+<td class="HasOrphan">&nbsp;</td>
+<td class="AlignCenter">-+</td>
+<td class="HasOrphan"><span class="ttSigDiff">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; $db-&gt;Execute($query);</span></td>
+</tr>
+<tr class="secBegin">
+<td class="Normal">&nbsp;</td>
+<td class="AlignCenter">=</td>
+<td class="Normal">&nbsp;</td>
+</tr>
+<tr class="secMiddle">
+<td class="Normal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // update default language setting</td>
+<td class="AlignCenter">&nbsp;</td>
+<td class="Normal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // update default language setting</td>
+</tr>
+<tr class="secMiddle">
+<td class="Normal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if ((isset($_POST['default']) &amp;&amp; $_POST['default'] == 'on') || $default_lang_change_flag == true) {</td>
+<td class="AlignCenter">&nbsp;</td>
+<td class="Normal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if ((isset($_POST['default']) &amp;&amp; $_POST['default'] == 'on') || $default_lang_change_flag == true) {</td>
+</tr>
+<tr class="secMiddle">
+<td class="Normal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; $db-&gt;Execute(&quot;update &quot; . TABLE_CONFIGURATION . &quot;</td>
+<td class="AlignCenter">&nbsp;</td>
+<td class="Normal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; $db-&gt;Execute(&quot;update &quot; . TABLE_CONFIGURATION . &quot;</td>
+</tr>
+<tr class="secMiddle">
+<td class="Normal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; set configuration_value = '&quot; . zen_db_input(substr($code,0,2)) . &quot;'</td>
+<td class="AlignCenter">&nbsp;</td>
+<td class="Normal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; set configuration_value = '&quot; . zen_db_input(substr($code,0,2)) . &quot;'</td>
+</tr>
+<tr class="secEnd">
+<td class="Normal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; where configuration_key = 'DEFAULT_LANGUAGE'&quot;);</td>
+<td class="AlignCenter">&nbsp;</td>
+<td class="Normal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; where configuration_key = 'DEFAULT_LANGUAGE'&quot;);</td>
+</tr>
+<tr class="secGap"><td colspan="3">&nbsp;</td></tr>
+<tr class="secBegin">
+<td class="Normal">&nbsp; $contents = array();</td>
+<td class="AlignCenter">=</td>
+<td class="Normal">&nbsp; $contents = array();</td>
+</tr>
+<tr class="secMiddle">
+<td class="Normal">&nbsp; switch ($action) {</td>
+<td class="AlignCenter">&nbsp;</td>
+<td class="Normal">&nbsp; switch ($action) {</td>
+</tr>
+<tr class="secMiddle">
+<td class="Normal">&nbsp;&nbsp;&nbsp; case 'new':</td>
+<td class="AlignCenter">&nbsp;</td>
+<td class="Normal">&nbsp;&nbsp;&nbsp; case 'new':</td>
+</tr>
+<tr class="secMiddle">
+<td class="Normal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; $heading[] = array('text' =&gt; '&lt;b&gt;' . TEXT_INFO_HEADING_NEW_LANGUAGE . '&lt;/b&gt;');</td>
+<td class="AlignCenter">&nbsp;</td>
+<td class="Normal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; $heading[] = array('text' =&gt; '&lt;b&gt;' . TEXT_INFO_HEADING_NEW_LANGUAGE . '&lt;/b&gt;');</td>
+</tr>
+<tr class="secMiddle">
+<td class="Normal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; $contents = array('form' =&gt; zen_draw_form('languages', FILENAME_LANGUAGES, 'action=insert'));</td>
+<td class="AlignCenter">&nbsp;</td>
+<td class="Normal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; $contents = array('form' =&gt; zen_draw_form('languages', FILENAME_LANGUAGES, 'action=insert'));</td>
+</tr>
+<tr class="secEnd">
+<td class="Normal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; $contents[] = array('text' =&gt; TEXT_INFO_INSERT_INTRO);</td>
+<td class="AlignCenter">&nbsp;</td>
+<td class="Normal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; $contents[] = array('text' =&gt; TEXT_INFO_INSERT_INTRO);</td>
+</tr>
+<tr class="secAll">
+<td class="HasOrphan">&nbsp;</td>
+<td class="AlignCenter">-+</td>
+<td class="HasOrphan"><span class="ttSigDiff">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; $contents[] = array('text' =&gt; '&lt;br&gt;' . TEXT_INFO_LANGUAGE_ID . '&lt;br&gt;' . zen_draw_input_field('languages_id'));</span></td>
+</tr>
+<tr class="secBegin">
+<td class="Normal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; $contents[] = array('text' =&gt; '&lt;br&gt;' . TEXT_INFO_LANGUAGE_NAME . '&lt;br&gt;' . zen_draw_input_field('name'));</td>
+<td class="AlignCenter">=</td>
+<td class="Normal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; $contents[] = array('text' =&gt; '&lt;br&gt;' . TEXT_INFO_LANGUAGE_NAME . '&lt;br&gt;' . zen_draw_input_field('name'));</td>
+</tr>
+<tr class="secMiddle">
+<td class="Normal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; $contents[] = array('text' =&gt; '&lt;br&gt;' . TEXT_INFO_LANGUAGE_CODE . '&lt;br&gt;' . zen_draw_input_field('code', '', 'maxlength=&quot;2&quot; size=&quot;4&quot;'));</td>
+<td class="AlignCenter">&nbsp;</td>
+<td class="Normal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; $contents[] = array('text' =&gt; '&lt;br&gt;' . TEXT_INFO_LANGUAGE_CODE . '&lt;br&gt;' . zen_draw_input_field('code', '', 'maxlength=&quot;2&quot; size=&quot;4&quot;'));</td>
+</tr>
+<tr class="secMiddle">
+<td class="Normal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; $contents[] = array('text' =&gt; '&lt;br&gt;' . TEXT_INFO_LANGUAGE_IMAGE . '&lt;br&gt;' . zen_draw_input_field('image', 'icon.gif'));</td>
+<td class="AlignCenter">&nbsp;</td>
+<td class="Normal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; $contents[] = array('text' =&gt; '&lt;br&gt;' . TEXT_INFO_LANGUAGE_IMAGE . '&lt;br&gt;' . zen_draw_input_field('image', 'icon.gif'));</td>
+</tr>
+<tr class="secMiddle">
+<td class="Normal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; $contents[] = array('text' =&gt; '&lt;br&gt;' . TEXT_INFO_LANGUAGE_DIRECTORY . '&lt;br&gt;' . zen_draw_input_field('directory'));</td>
+<td class="AlignCenter">&nbsp;</td>
+<td class="Normal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; $contents[] = array('text' =&gt; '&lt;br&gt;' . TEXT_INFO_LANGUAGE_DIRECTORY . '&lt;br&gt;' . zen_draw_input_field('directory'));</td>
+</tr>
+<tr class="secMiddle">
+<td class="Normal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; $contents[] = array('text' =&gt; '&lt;br&gt;' . TEXT_INFO_LANGUAGE_SORT_ORDER . '&lt;br&gt;' . zen_draw_input_field('sort_order'));</td>
+<td class="AlignCenter">&nbsp;</td>
+<td class="Normal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; $contents[] = array('text' =&gt; '&lt;br&gt;' . TEXT_INFO_LANGUAGE_SORT_ORDER . '&lt;br&gt;' . zen_draw_input_field('sort_order'));</td>
+</tr>
+<tr class="secMiddle">
+<td class="Normal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; $contents[] = array('text' =&gt; '&lt;br&gt;' . zen_draw_checkbox_field('default') . ' ' . TEXT_SET_DEFAULT);</td>
+<td class="AlignCenter">&nbsp;</td>
+<td class="Normal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; $contents[] = array('text' =&gt; '&lt;br&gt;' . zen_draw_checkbox_field('default') . ' ' . TEXT_SET_DEFAULT);</td>
+</tr>
+<tr class="secMiddle">
+<td class="Normal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; $contents[] = array('align' =&gt; 'center', 'text' =&gt; '&lt;br&gt;' . zen_image_submit('button_insert.gif', IMAGE_INSERT) . ' &lt;a href=&quot;' . zen_href_link(FILENAME_LANGUAGES, 'page=' . $_GET['page'] . '&amp;lID=' . $_GET['lID']) . '&quot;&gt;' . zen_image_button('button_cancel.gif', IMAGE_CANCEL) . '&lt;/a&gt;');</td>
+<td class="AlignCenter">&nbsp;</td>
+<td class="Normal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; $contents[] = array('align' =&gt; 'center', 'text' =&gt; '&lt;br&gt;' . zen_image_submit('button_insert.gif', IMAGE_INSERT) . ' &lt;a href=&quot;' . zen_href_link(FILENAME_LANGUAGES, 'page=' . $_GET['page'] . '&amp;lID=' . $_GET['lID']) . '&quot;&gt;' . zen_image_button('button_cancel.gif', IMAGE_CANCEL) . '&lt;/a&gt;');</td>
+</tr>
+<tr class="secMiddle">
+<td class="Normal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; break;</td>
+<td class="AlignCenter">&nbsp;</td>
+<td class="Normal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; break;</td>
+</tr>
+<tr class="secMiddle">
+<td class="Normal">&nbsp;&nbsp;&nbsp; case 'edit':</td>
+<td class="AlignCenter">&nbsp;</td>
+<td class="Normal">&nbsp;&nbsp;&nbsp; case 'edit':</td>
+</tr>
+<tr class="secMiddle">
+<td class="Normal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; $heading[] = array('text' =&gt; '&lt;b&gt;' . TEXT_INFO_HEADING_EDIT_LANGUAGE . '&lt;/b&gt;');</td>
+<td class="AlignCenter">&nbsp;</td>
+<td class="Normal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; $heading[] = array('text' =&gt; '&lt;b&gt;' . TEXT_INFO_HEADING_EDIT_LANGUAGE . '&lt;/b&gt;');</td>
+</tr>
+<tr class="secMiddle">
+<td class="Normal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; $contents = array('form' =&gt; zen_draw_form('languages', FILENAME_LANGUAGES, 'page=' . $_GET['page'] . '&amp;lID=' . $lInfo-&gt;languages_id . '&amp;action=save'));</td>
+<td class="AlignCenter">&nbsp;</td>
+<td class="Normal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; $contents = array('form' =&gt; zen_draw_form('languages', FILENAME_LANGUAGES, 'page=' . $_GET['page'] . '&amp;lID=' . $lInfo-&gt;languages_id . '&amp;action=save'));</td>
+</tr>
+<tr class="secEnd">
+<td class="Normal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; $contents[] = array('text' =&gt; TEXT_INFO_EDIT_INTRO);</td>
+<td class="AlignCenter">&nbsp;</td>
+<td class="Normal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; $contents[] = array('text' =&gt; TEXT_INFO_EDIT_INTRO);</td>
+</tr>
+<tr class="secAll">
+<td class="HasOrphan">&nbsp;</td>
+<td class="AlignCenter">-+</td>
+<td class="HasOrphan"><span class="ttSigDiff">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; $contents[] = array('text' =&gt; '&lt;br&gt;' . TEXT_INFO_LANGUAGE_ID . '&lt;br&gt;' . zen_draw_input_field('languages_id', $lInfo-&gt;languages_id,'','','',false));</span></td>
+</tr>
+<tr class="secBegin">
+<td class="Normal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; $contents[] = array('text' =&gt; '&lt;br&gt;' . TEXT_INFO_LANGUAGE_NAME . '&lt;br&gt;' . zen_draw_input_field('name', $lInfo-&gt;name));</td>
+<td class="AlignCenter">=</td>
+<td class="Normal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; $contents[] = array('text' =&gt; '&lt;br&gt;' . TEXT_INFO_LANGUAGE_NAME . '&lt;br&gt;' . zen_draw_input_field('name', $lInfo-&gt;name));</td>
+</tr>
+<tr class="secMiddle">
+<td class="Normal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; $contents[] = array('text' =&gt; '&lt;br&gt;' . TEXT_INFO_LANGUAGE_CODE . '&lt;br&gt;' . zen_draw_input_field('code', $lInfo-&gt;code, 'maxlength=&quot;2&quot; size=&quot;4&quot;'));</td>
+<td class="AlignCenter">&nbsp;</td>
+<td class="Normal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; $contents[] = array('text' =&gt; '&lt;br&gt;' . TEXT_INFO_LANGUAGE_CODE . '&lt;br&gt;' . zen_draw_input_field('code', $lInfo-&gt;code, 'maxlength=&quot;2&quot; size=&quot;4&quot;'));</td>
+</tr>
+<tr class="secMiddle">
+<td class="Normal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; $contents[] = array('text' =&gt; '&lt;br&gt;' . TEXT_INFO_LANGUAGE_IMAGE . '&lt;br&gt;' . zen_draw_input_field('image', $lInfo-&gt;image));</td>
+<td class="AlignCenter">&nbsp;</td>
+<td class="Normal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; $contents[] = array('text' =&gt; '&lt;br&gt;' . TEXT_INFO_LANGUAGE_IMAGE . '&lt;br&gt;' . zen_draw_input_field('image', $lInfo-&gt;image));</td>
+</tr>
+<tr class="secMiddle">
+<td class="Normal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; $contents[] = array('text' =&gt; '&lt;br&gt;' . TEXT_INFO_LANGUAGE_DIRECTORY . '&lt;br&gt;' . zen_draw_input_field('directory', $lInfo-&gt;directory));</td>
+<td class="AlignCenter">&nbsp;</td>
+<td class="Normal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; $contents[] = array('text' =&gt; '&lt;br&gt;' . TEXT_INFO_LANGUAGE_DIRECTORY . '&lt;br&gt;' . zen_draw_input_field('directory', $lInfo-&gt;directory));</td>
+</tr>
+<tr class="secMiddle">
+<td class="Normal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; $contents[] = array('text' =&gt; '&lt;br&gt;' . TEXT_INFO_LANGUAGE_SORT_ORDER . '&lt;br&gt;' . zen_draw_input_field('sort_order', $lInfo-&gt;sort_order));</td>
+<td class="AlignCenter">&nbsp;</td>
+<td class="Normal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; $contents[] = array('text' =&gt; '&lt;br&gt;' . TEXT_INFO_LANGUAGE_SORT_ORDER . '&lt;br&gt;' . zen_draw_input_field('sort_order', $lInfo-&gt;sort_order));</td>
+</tr>
+<tr class="secEnd">
+<td class="Normal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (DEFAULT_LANGUAGE != $lInfo-&gt;code) $contents[] = array('text' =&gt; '&lt;br&gt;' . zen_draw_checkbox_field('default') . ' ' . TEXT_SET_DEFAULT);</td>
+<td class="AlignCenter">&nbsp;</td>
+<td class="Normal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (DEFAULT_LANGUAGE != $lInfo-&gt;code) $contents[] = array('text' =&gt; '&lt;br&gt;' . zen_draw_checkbox_field('default') . ' ' . TEXT_SET_DEFAULT);</td>
+</tr>
+</table>
+&nbsp; &nbsp;
+<br />
+File: modules.php &nbsp;
+<br />
+<table class="fc" cellspacing="0" cellpadding="0">
+<tr class="secBegin">
+<td class="Normal"> * @copyright Portions Copyright 2003 osCommerce</td>
+<td class="AlignCenter">=</td>
+<td class="Normal"> * @copyright Portions Copyright 2003 osCommerce</td>
+</tr>
+<tr class="secMiddle">
+<td class="Normal"> * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0</td>
+<td class="AlignCenter">&nbsp;</td>
+<td class="Normal"> * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0</td>
+</tr>
+<tr class="secMiddle">
+<td class="Normal"> * @version $Id$</td>
+<td class="AlignCenter">&nbsp;</td>
+<td class="Normal"> * @version $Id$</td>
+</tr>
+<tr class="secMiddle">
+<td class="Normal"> */</td>
+<td class="AlignCenter">&nbsp;</td>
+<td class="Normal"> */</td>
+</tr>
+<tr class="secMiddle">
+<td class="Normal">&nbsp;</td>
+<td class="AlignCenter">&nbsp;</td>
+<td class="Normal">&nbsp;</td>
+</tr>
+<tr class="secEnd">
+<td class="Normal">&nbsp; require('includes/application_top.php');</td>
+<td class="AlignCenter">&nbsp;</td>
+<td class="Normal">&nbsp; require('includes/application_top.php');</td>
+</tr>
+<tr class="secBegin">
+<td class="HasOrphan">&nbsp;</td>
+<td class="AlignCenter">-+</td>
+<td class="HasOrphan"><span class="ttSigDiff">/* r.l. multilanguage : merge module languages */</span></td>
+</tr>
+<tr class="secMiddle">
+<td class="HasOrphan">&nbsp;</td>
+<td class="AlignCenter">&nbsp;</td>
+<td class="HasOrphan"><span class="ttSigDiff">&nbsp; function getModuleLanguage($module_keys, $mKeys) {</span></td>
+</tr>
+<tr class="secMiddle">
+<td class="HasOrphan">&nbsp;</td>
+<td class="AlignCenter">&nbsp;</td>
+<td class="HasOrphan"><span class="ttSigDiff">&nbsp;&nbsp;&nbsp; global $db;</span></td>
+</tr>
+<tr class="secMiddle">
+<td class="HasOrphan">&nbsp;</td>
+<td class="AlignCenter">&nbsp;</td>
+<td class="HasOrphan"><span class="ttSigDiff">&nbsp;&nbsp;&nbsp; $keys = &quot;'&quot; . implode(&quot;','&quot;, $module_keys) . &quot;'&quot;;</span></td>
+</tr>
+<tr class="secMiddle">
+<td class="HasOrphan">&nbsp;</td>
+<td class="AlignCenter">&nbsp;</td>
+<td class="HasOrphan"><span class="ttSigDiff">&nbsp;&nbsp;&nbsp; $query = &quot;SELECT * FROM &quot;.TABLE_CONFIGURATION_LANGUAGE . &quot; WHERE configuration_language_id=&quot;. $_SESSION['languages_id'] . &quot; AND configuration_key IN (&quot;.$keys . &quot;)&quot;;</span></td>
+</tr>
+<tr class="secMiddle">
+<td class="HasOrphan">&nbsp;</td>
+<td class="AlignCenter">&nbsp;</td>
+<td class="HasOrphan"><span class="ttSigDiff">&nbsp;&nbsp;&nbsp; $conf = $db-&gt;Execute($query);</span></td>
+</tr>
+<tr class="secMiddle">
+<td class="HasOrphan">&nbsp;</td>
+<td class="AlignCenter">&nbsp;</td>
+<td class="HasOrphan"><span class="ttSigDiff">&nbsp;&nbsp;&nbsp; while (!$conf-&gt;EOF) {</span></td>
+</tr>
+<tr class="secMiddle">
+<td class="HasOrphan">&nbsp;</td>
+<td class="AlignCenter">&nbsp;</td>
+<td class="HasOrphan"><span class="ttSigDiff">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; $mKeys[$conf-&gt;fields['configuration_key']]['title'] = $conf-&gt;fields['configuration_title'];</span></td>
+</tr>
+<tr class="secMiddle">
+<td class="HasOrphan">&nbsp;</td>
+<td class="AlignCenter">&nbsp;</td>
+<td class="HasOrphan"><span class="ttSigDiff">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; $mKeys[$conf-&gt;fields['configuration_key']]['description'] = $conf-&gt;fields['configuration_description'];</span></td>
+</tr>
+<tr class="secMiddle">
+<td class="HasOrphan">&nbsp;</td>
+<td class="AlignCenter">&nbsp;</td>
+<td class="HasOrphan"><span class="ttSigDiff">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; $conf-&gt;MoveNext();</span></td>
+</tr>
+<tr class="secMiddle">
+<td class="HasOrphan">&nbsp;</td>
+<td class="AlignCenter">&nbsp;</td>
+<td class="HasOrphan"><span class="ttSigDiff">&nbsp;&nbsp;&nbsp; }</span></td>
+</tr>
+<tr class="secMiddle">
+<td class="HasOrphan">&nbsp;</td>
+<td class="AlignCenter">&nbsp;</td>
+<td class="HasOrphan"><span class="ttSigDiff">&nbsp;&nbsp;&nbsp; return $mKeys;</span></td>
+</tr>
+<tr class="secEnd">
+<td class="HasOrphan">&nbsp;</td>
+<td class="AlignCenter">&nbsp;</td>
+<td class="HasOrphan"><span class="ttSigDiff">&nbsp; }</span></td>
+</tr>
+<tr class="secBegin">
+<td class="Normal">&nbsp;</td>
+<td class="AlignCenter">=</td>
+<td class="Normal">&nbsp;</td>
+</tr>
+<tr class="secMiddle">
+<td class="Normal">&nbsp; $set = (isset($_GET['set']) ? $_GET['set'] : '');</td>
+<td class="AlignCenter">&nbsp;</td>
+<td class="Normal">&nbsp; $set = (isset($_GET['set']) ? $_GET['set'] : '');</td>
+</tr>
+<tr class="secMiddle">
+<td class="Normal">&nbsp;</td>
+<td class="AlignCenter">&nbsp;</td>
+<td class="Normal">&nbsp;</td>
+</tr>
+<tr class="secMiddle">
+<td class="Normal">&nbsp; if (zen_not_null($set)) {</td>
+<td class="AlignCenter">&nbsp;</td>
+<td class="Normal">&nbsp; if (zen_not_null($set)) {</td>
+</tr>
+<tr class="secMiddle">
+<td class="Normal">&nbsp;&nbsp;&nbsp; switch ($set) {</td>
+<td class="AlignCenter">&nbsp;</td>
+<td class="Normal">&nbsp;&nbsp;&nbsp; switch ($set) {</td>
+</tr>
+<tr class="secEnd">
+<td class="Normal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; case 'shipping':</td>
+<td class="AlignCenter">&nbsp;</td>
+<td class="Normal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; case 'shipping':</td>
+</tr>
+<tr class="secGap"><td colspan="3">&nbsp;</td></tr>
+<tr class="secBegin">
+<td class="Normal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; $keys_extra[$module_keys[$j]]['title'] = $key_value-&gt;fields['configuration_title'];</td>
+<td class="AlignCenter">=</td>
+<td class="Normal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; $keys_extra[$module_keys[$j]]['title'] = $key_value-&gt;fields['configuration_title'];</td>
+</tr>
+<tr class="secMiddle">
+<td class="Normal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; $keys_extra[$module_keys[$j]]['value'] = $key_value-&gt;fields['configuration_value'];</td>
+<td class="AlignCenter">&nbsp;</td>
+<td class="Normal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; $keys_extra[$module_keys[$j]]['value'] = $key_value-&gt;fields['configuration_value'];</td>
+</tr>
+<tr class="secMiddle">
+<td class="Normal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; $keys_extra[$module_keys[$j]]['description'] = $key_value-&gt;fields['configuration_description'];</td>
+<td class="AlignCenter">&nbsp;</td>
+<td class="Normal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; $keys_extra[$module_keys[$j]]['description'] = $key_value-&gt;fields['configuration_description'];</td>
+</tr>
+<tr class="secMiddle">
+<td class="Normal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; $keys_extra[$module_keys[$j]]['use_function'] = $key_value-&gt;fields['use_function'];</td>
+<td class="AlignCenter">&nbsp;</td>
+<td class="Normal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; $keys_extra[$module_keys[$j]]['use_function'] = $key_value-&gt;fields['use_function'];</td>
+</tr>
+<tr class="secMiddle">
+<td class="Normal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; $keys_extra[$module_keys[$j]]['set_function'] = $key_value-&gt;fields['set_function'];</td>
+<td class="AlignCenter">&nbsp;</td>
+<td class="Normal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; $keys_extra[$module_keys[$j]]['set_function'] = $key_value-&gt;fields['set_function'];</td>
+</tr>
+<tr class="secEnd">
+<td class="Normal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }</td>
+<td class="AlignCenter">&nbsp;</td>
+<td class="Normal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }</td>
+</tr>
+<tr class="secBegin">
+<td class="HasOrphan">&nbsp;</td>
+<td class="AlignCenter">&lt;&gt;</td>
+<td class="HasOrphan"><span class="ttSigDiff">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; /* r.l. multilanguage : merge module languages */</span></td>
+</tr>
+<tr class="secMiddle">
+<td class="HasOrphan">&nbsp;</td>
+<td class="AlignCenter">&nbsp;</td>
+<td class="HasOrphan"><span class="ttSigDiff">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; $keys_extraL = getModuleLanguage($module_keys, $keys_extra);</span></td>
+</tr>
+<tr class="secMiddle">
+<td class="HasOrphan">&nbsp;</td>
+<td class="AlignCenter">&nbsp;</td>
+<td class="HasOrphan"><span class="ttSigDiff">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; #rldp($keys_extraL, '$keys_extraL');</span></td>
+</tr>
+<tr class="secMiddle">
+<td class="HasMismatch">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; $module_info['keys'] = $keys_extra;</td>
+<td class="AlignCenter">&nbsp;</td>
+<td class="HasMismatch">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; $module_info['keys'] = $keys_extra<span class="ttSigDiff">L</span>;</td>
+</tr>
+<tr class="secEnd">
+<td class="HasOrphan">&nbsp;</td>
+<td class="AlignCenter">&nbsp;</td>
+<td class="HasOrphan"><span class="ttSigDiff">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; #rldp($module_info['keys']);</span></td>
+</tr>
+<tr class="secBegin">
+<td class="Normal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; $mInfo = new objectInfo($module_info);</td>
+<td class="AlignCenter">=</td>
+<td class="Normal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; $mInfo = new objectInfo($module_info);</td>
+</tr>
+<tr class="secMiddle">
+<td class="Normal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }</td>
+<td class="AlignCenter">&nbsp;</td>
+<td class="Normal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }</td>
+</tr>
+<tr class="secMiddle">
+<td class="Normal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (isset($mInfo) &amp;&amp; is_object($mInfo) &amp;&amp; ($class == $mInfo-&gt;code) ) {</td>
+<td class="AlignCenter">&nbsp;</td>
+<td class="Normal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (isset($mInfo) &amp;&amp; is_object($mInfo) &amp;&amp; ($class == $mInfo-&gt;code) ) {</td>
+</tr>
+<tr class="secMiddle">
+<td class="Normal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if ($module-&gt;check() &gt; 0) {</td>
+<td class="AlignCenter">&nbsp;</td>
+<td class="Normal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if ($module-&gt;check() &gt; 0) {</td>
+</tr>
+<tr class="secMiddle">
+<td class="Normal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; echo '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;tr id=&quot;defaultSelected&quot; class=&quot;dataTableRowSelected&quot; onmouseover=&quot;rowOverEffect(this)&quot; onmouseout=&quot;rowOutEffect(this)&quot; onclick=&quot;document.location.href=\'' . zen_href_link(FILENAME_MODULES, 'set=' . $set . '&amp;module=' . $class . '&amp;action=edit', 'NONSSL') . '\'&quot;&gt;' . &quot;\n&quot;;</td>
+<td class="AlignCenter">&nbsp;</td>
+<td class="Normal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; echo '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;tr id=&quot;defaultSelected&quot; class=&quot;dataTableRowSelected&quot; onmouseover=&quot;rowOverEffect(this)&quot; onmouseout=&quot;rowOutEffect(this)&quot; onclick=&quot;document.location.href=\'' . zen_href_link(FILENAME_MODULES, 'set=' . $set . '&amp;module=' . $class . '&amp;action=edit', 'NONSSL') . '\'&quot;&gt;' . &quot;\n&quot;;</td>
+</tr>
+<tr class="secEnd">
+<td class="Normal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; } else {</td>
+<td class="AlignCenter">&nbsp;</td>
+<td class="Normal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; } else {</td>
+</tr>
+</table>
+&nbsp; &nbsp;
+<br />
+File: product_types.php &nbsp;
+<br />
+<table class="fc" cellspacing="0" cellpadding="0">
+<tr class="secBegin">
+<td class="Normal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;tr class=&quot;dataTableHeadingRow&quot;&gt;</td>
+<td class="AlignCenter">=</td>
+<td class="Normal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;tr class=&quot;dataTableHeadingRow&quot;&gt;</td>
+</tr>
+<tr class="secMiddle">
+<td class="Normal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;td class=&quot;dataTableHeadingContent&quot; width=&quot;55%&quot;&gt;&lt;?php echo TABLE_HEADING_CONFIGURATION_TITLE; ?&gt;&lt;/td&gt;</td>
+<td class="AlignCenter">&nbsp;</td>
+<td class="Normal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;td class=&quot;dataTableHeadingContent&quot; width=&quot;55%&quot;&gt;&lt;?php echo TABLE_HEADING_CONFIGURATION_TITLE; ?&gt;&lt;/td&gt;</td>
+</tr>
+<tr class="secMiddle">
+<td class="Normal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;td class=&quot;dataTableHeadingContent&quot;&gt;&lt;?php echo TABLE_HEADING_CONFIGURATION_VALUE; ?&gt;&lt;/td&gt;</td>
+<td class="AlignCenter">&nbsp;</td>
+<td class="Normal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;td class=&quot;dataTableHeadingContent&quot;&gt;&lt;?php echo TABLE_HEADING_CONFIGURATION_VALUE; ?&gt;&lt;/td&gt;</td>
+</tr>
+<tr class="secMiddle">
+<td class="Normal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;td class=&quot;dataTableHeadingContent&quot; align=&quot;right&quot;&gt;&lt;?php echo TABLE_HEADING_ACTION; ?&gt;&amp;nbsp;&lt;/td&gt;</td>
+<td class="AlignCenter">&nbsp;</td>
+<td class="Normal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;td class=&quot;dataTableHeadingContent&quot; align=&quot;right&quot;&gt;&lt;?php echo TABLE_HEADING_ACTION; ?&gt;&amp;nbsp;&lt;/td&gt;</td>
+</tr>
+<tr class="secMiddle">
+<td class="Normal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;/tr&gt;</td>
+<td class="AlignCenter">&nbsp;</td>
+<td class="Normal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;/tr&gt;</td>
+</tr>
+<tr class="secEnd">
+<td class="Normal">&lt;?php</td>
+<td class="AlignCenter">&nbsp;</td>
+<td class="Normal">&lt;?php</td>
+</tr>
+<tr class="secAll">
+<td class="HasMismatch">&nbsp; $<span class="ttSigDiff">configura</span><span class="ttSigDiff">tion</span> = <span class="ttSigDiff">$db-&gt;Execute(</span>&quot;select configuration_id, configuration_title, configuration_value, configuration_key,</td>
+<td class="AlignCenter">&lt;&gt;</td>
+<td class="HasMismatch">&nbsp; $<span class="ttSigDiff">sql2</span> = &quot;select configuration_id, configuration_title, configuration_value, configuration_key,</td>
+</tr>
+<tr class="secBegin">
+<td class="Normal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; use_function from &quot; . TABLE_PRODUCT_TYPE_LAYOUT . &quot;</td>
+<td class="AlignCenter">=</td>
+<td class="Normal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; use_function from &quot; . TABLE_PRODUCT_TYPE_LAYOUT . &quot;</td>
+</tr>
+<tr class="secEnd">
+<td class="Normal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; where product_type_id = '&quot; . (int)$_GET['ptID'] . &quot;'</td>
+<td class="AlignCenter">&nbsp;</td>
+<td class="Normal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; where product_type_id = '&quot; . (int)$_GET['ptID'] . &quot;'</td>
+</tr>
+<tr class="secBegin">
+<td class="HasMismatch">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; order by sort_order&quot;<span class="ttSigDiff">)</span>;</td>
+<td class="AlignCenter">&lt;&gt;</td>
+<td class="HasMismatch">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; order by sort_order&quot;;</td>
+</tr>
+<tr class="secMiddle">
+<td class="HasOrphan">&nbsp;</td>
+<td class="AlignCenter">&nbsp;</td>
+<td class="HasOrphan"><span class="ttSigDiff">&nbsp; $configuration = $db-&gt;Execute($sql2);</span></td>
+</tr>
+<tr class="secMiddle">
+<td class="HasOrphan">&nbsp;</td>
+<td class="AlignCenter">&nbsp;</td>
+<td class="HasOrphan"><span class="ttSigDiff">&nbsp; </span></td>
+</tr>
+<tr class="secMiddle">
+<td class="HasOrphan">&nbsp;</td>
+<td class="AlignCenter">&nbsp;</td>
+<td class="HasOrphan"><span class="ttSigDiff">&nbsp; /* r.l. multilanguage */</span></td>
+</tr>
+<tr class="secMiddle">
+<td class="HasOrphan">&nbsp;</td>
+<td class="AlignCenter">&nbsp;</td>
+<td class="HasOrphan"><span class="ttSigDiff">&nbsp; if(!defined('TABLE_PRODUCT_TYPE_LAYOUT_LANGUAGE')){</span></td>
+</tr>
+<tr class="secMiddle">
+<td class="HasOrphan">&nbsp;</td>
+<td class="AlignCenter">&nbsp;</td>
+<td class="HasOrphan"><span class="ttSigDiff">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; define('TABLE_PRODUCT_TYPE_LAYOUT_LANGUAGE', DB_PREFIX . 'product_type_layout_language');</span></td>
+</tr>
+<tr class="secMiddle">
+<td class="HasOrphan">&nbsp;</td>
+<td class="AlignCenter">&nbsp;</td>
+<td class="HasOrphan"><span class="ttSigDiff">&nbsp;&nbsp;&nbsp; }</span></td>
+</tr>
+<tr class="secMiddle">
+<td class="HasOrphan">&nbsp;</td>
+<td class="AlignCenter">&nbsp;</td>
+<td class="HasOrphan"><span class="ttSigDiff">&nbsp; if(existTable(TABLE_PRODUCT_TYPE_LAYOUT_LANGUAGE)){</span></td>
+</tr>
+<tr class="secMiddle">
+<td class="HasOrphan">&nbsp;</td>
+<td class="AlignCenter">&nbsp;</td>
+<td class="HasOrphan"><span class="ttSigDiff">&nbsp;&nbsp;&nbsp; define('MULTILANG_TYPE', 'YES');</span></td>
+</tr>
+<tr class="secEnd">
+<td class="HasOrphan">&nbsp;</td>
+<td class="AlignCenter">&nbsp;</td>
+<td class="HasOrphan"><span class="ttSigDiff">&nbsp; }</span></td>
+</tr>
+<tr class="secBegin">
+<td class="Normal">&nbsp;</td>
+<td class="AlignCenter">=</td>
+<td class="Normal">&nbsp;</td>
+</tr>
+<tr class="secMiddle">
+<td class="Normal">&nbsp; while (!$configuration-&gt;EOF) {</td>
+<td class="AlignCenter">&nbsp;</td>
+<td class="Normal">&nbsp; while (!$configuration-&gt;EOF) {</td>
+</tr>
+<tr class="secMiddle">
+<td class="Normal">&nbsp;&nbsp;&nbsp; if (zen_not_null($configuration-&gt;fields['use_function'])) {</td>
+<td class="AlignCenter">&nbsp;</td>
+<td class="Normal">&nbsp;&nbsp;&nbsp; if (zen_not_null($configuration-&gt;fields['use_function'])) {</td>
+</tr>
+<tr class="secMiddle">
+<td class="Normal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; $use_function = $configuration-&gt;fields['use_function'];</td>
+<td class="AlignCenter">&nbsp;</td>
+<td class="Normal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; $use_function = $configuration-&gt;fields['use_function'];</td>
+</tr>
+<tr class="secMiddle">
+<td class="Normal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (ereg('-&gt;', $use_function)) {</td>
+<td class="AlignCenter">&nbsp;</td>
+<td class="Normal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (ereg('-&gt;', $use_function)) {</td>
+</tr>
+<tr class="secEnd">
+<td class="Normal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; $class_method = explode('-&gt;', $use_function);</td>
+<td class="AlignCenter">&nbsp;</td>
+<td class="Normal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; $class_method = explode('-&gt;', $use_function);</td>
+</tr>
+<tr class="secGap"><td colspan="3">&nbsp;</td></tr>
+<tr class="secBegin">
+<td class="Normal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; $cfgValue = zen_call_function($use_function, $configuration-&gt;fields['configuration_value']);</td>
+<td class="AlignCenter">=</td>
+<td class="Normal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; $cfgValue = zen_call_function($use_function, $configuration-&gt;fields['configuration_value']);</td>
+</tr>
+<tr class="secMiddle">
+<td class="Normal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }</td>
+<td class="AlignCenter">&nbsp;</td>
+<td class="Normal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }</td>
+</tr>
+<tr class="secMiddle">
+<td class="Normal">&nbsp;&nbsp;&nbsp; } else {</td>
+<td class="AlignCenter">&nbsp;</td>
+<td class="Normal">&nbsp;&nbsp;&nbsp; } else {</td>
+</tr>
+<tr class="secMiddle">
+<td class="Normal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; $cfgValue = $configuration-&gt;fields['configuration_value'];</td>
+<td class="AlignCenter">&nbsp;</td>
+<td class="Normal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; $cfgValue = $configuration-&gt;fields['configuration_value'];</td>
+</tr>
+<tr class="secMiddle">
+<td class="Normal">&nbsp;&nbsp;&nbsp; }</td>
+<td class="AlignCenter">&nbsp;</td>
+<td class="Normal">&nbsp;&nbsp;&nbsp; }</td>
+</tr>
+<tr class="secEnd">
+<td class="Normal">&nbsp;</td>
+<td class="AlignCenter">&nbsp;</td>
+<td class="Normal">&nbsp;</td>
+</tr>
+<tr class="secBegin">
+<td class="HasOrphan">&nbsp;</td>
+<td class="AlignCenter">-+</td>
+<td class="HasOrphan"><span class="ttSigDiff">&nbsp;&nbsp;&nbsp; /* r.l. multilanguage */</span></td>
+</tr>
+<tr class="secMiddle">
+<td class="HasOrphan">&nbsp;</td>
+<td class="AlignCenter">&nbsp;</td>
+<td class="HasOrphan"><span class="ttSigDiff">&nbsp;&nbsp;&nbsp; if(MULTILANG_TYPE=='YES'){</span></td>
+</tr>
+<tr class="secMiddle">
+<td class="HasOrphan">&nbsp;</td>
+<td class="AlignCenter">&nbsp;</td>
+<td class="HasOrphan"><span class="ttSigDiff">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; $lang = getProdTypeLangArr($configuration-&gt;fields);</span></td>
+</tr>
+<tr class="secMiddle">
+<td class="HasOrphan">&nbsp;</td>
+<td class="AlignCenter">&nbsp;</td>
+<td class="HasOrphan"><span class="ttSigDiff">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; $configuration-&gt;fields['configuration_title'] = $lang['configuration_title'];</span></td>
+</tr>
+<tr class="secMiddle">
+<td class="HasOrphan">&nbsp;</td>
+<td class="AlignCenter">&nbsp;</td>
+<td class="HasOrphan"><span class="ttSigDiff">&nbsp;&nbsp;&nbsp; }</span></td>
+</tr>
+<tr class="secEnd">
+<td class="HasOrphan">&nbsp;</td>
+<td class="AlignCenter">&nbsp;</td>
+<td class="HasOrphan"><span class="ttSigDiff">&nbsp;&nbsp;&nbsp; </span></td>
+</tr>
+<tr class="secBegin">
+<td class="Normal">&nbsp;&nbsp;&nbsp; if ((!isset($_GET['cID']) || (isset($_GET['cID']) &amp;&amp; ($_GET['cID'] == $configuration-&gt;fields['configuration_id']))) &amp;&amp; !isset($cInfo) &amp;&amp; (substr($action, 0, 3) != 'new')) {</td>
+<td class="AlignCenter">=</td>
+<td class="Normal">&nbsp;&nbsp;&nbsp; if ((!isset($_GET['cID']) || (isset($_GET['cID']) &amp;&amp; ($_GET['cID'] == $configuration-&gt;fields['configuration_id']))) &amp;&amp; !isset($cInfo) &amp;&amp; (substr($action, 0, 3) != 'new')) {</td>
+</tr>
+<tr class="secMiddle">
+<td class="Normal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; $cfg_extra = $db-&gt;Execute(&quot;select configuration_key, configuration_description, date_added,</td>
+<td class="AlignCenter">&nbsp;</td>
+<td class="Normal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; $cfg_extra = $db-&gt;Execute(&quot;select configuration_key, configuration_description, date_added,</td>
+</tr>
+<tr class="secMiddle">
+<td class="Normal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; last_modified, use_function, set_function</td>
+<td class="AlignCenter">&nbsp;</td>
+<td class="Normal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; last_modified, use_function, set_function</td>
+</tr>
+<tr class="secEnd">
+<td class="Normal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; from &quot; . TABLE_PRODUCT_TYPE_LAYOUT . &quot;</td>
+<td class="AlignCenter">&nbsp;</td>
+<td class="Normal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; from &quot; . TABLE_PRODUCT_TYPE_LAYOUT . &quot;</td>
+</tr>
+<tr class="secAll">
+<td class="HasMismatch">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; where configuration_id = '&quot; . (int)$configuration-&gt;fields['configuration_id'] . &quot;'&quot;);</td>
+<td class="AlignCenter">&lt;&gt;</td>
+<td class="HasMismatch">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; where configuration_id = '&quot; . (int)$configuration-&gt;fields['configuration_id'] . &quot;'&quot;);<span class="ttSigDiff">&nbsp;&nbsp;&nbsp;&nbsp; </span></td>
+</tr>
+<tr class="secAll">
+<td class="Normal">&nbsp;</td>
+<td class="AlignCenter">=</td>
+<td class="Normal">&nbsp;</td>
+</tr>
+<tr class="secBegin">
+<td class="HasMismatch">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; $cInfo_array = array_merge($configuration-&gt;fields, $cfg_extra-&gt;fields);</td>
+<td class="AlignCenter">&lt;&gt;</td>
+<td class="HasMismatch">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; $cInfo_array = array_merge($configuration-&gt;fields, $cfg_extra-&gt;fields);<span class="ttSigDiff">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></td>
+</tr>
+<tr class="secMiddle">
+<td class="HasOrphan">&nbsp;</td>
+<td class="AlignCenter">&nbsp;</td>
+<td class="HasOrphan"><span class="ttSigDiff">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if(MULTILANG_TYPE=='YES'){</span></td>
+</tr>
+<tr class="secMiddle">
+<td class="HasOrphan">&nbsp;</td>
+<td class="AlignCenter">&nbsp;</td>
+<td class="HasOrphan"><span class="ttSigDiff">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; $cInfo_array = array_merge($cInfo_array, $lang);</span></td>
+</tr>
+<tr class="secEnd">
+<td class="HasOrphan">&nbsp;</td>
+<td class="AlignCenter">&nbsp;</td>
+<td class="HasOrphan"><span class="ttSigDiff">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }</span></td>
+</tr>
+<tr class="secBegin">
+<td class="Normal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; $cInfo = new objectInfo($cInfo_array);</td>
+<td class="AlignCenter">=</td>
+<td class="Normal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; $cInfo = new objectInfo($cInfo_array);</td>
+</tr>
+<tr class="secMiddle">
+<td class="Normal">&nbsp;&nbsp;&nbsp; }</td>
+<td class="AlignCenter">&nbsp;</td>
+<td class="Normal">&nbsp;&nbsp;&nbsp; }</td>
+</tr>
+<tr class="secMiddle">
+<td class="Normal">&nbsp;</td>
+<td class="AlignCenter">&nbsp;</td>
+<td class="Normal">&nbsp;</td>
+</tr>
+<tr class="secMiddle">
+<td class="Normal">&nbsp;&nbsp;&nbsp; if ( (isset($cInfo) &amp;&amp; is_object($cInfo)) &amp;&amp; ($configuration-&gt;fields['configuration_id'] == $cInfo-&gt;configuration_id) ) {</td>
+<td class="AlignCenter">&nbsp;</td>
+<td class="Normal">&nbsp;&nbsp;&nbsp; if ( (isset($cInfo) &amp;&amp; is_object($cInfo)) &amp;&amp; ($configuration-&gt;fields['configuration_id'] == $cInfo-&gt;configuration_id) ) {</td>
+</tr>
+<tr class="secMiddle">
+<td class="Normal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; echo '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;tr id=&quot;defaultSelected&quot; class=&quot;dataTableRowSelected&quot; onmouseover=&quot;rowOverEffect(this)&quot; onmouseout=&quot;rowOutEffect(this)&quot; onclick=&quot;document.location.href=\'' . zen_href_link(FILENAME_PRODUCT_TYPES, 'ptID=' . $_GET['ptID'] . '&amp;cID=' . $cInfo-&gt;configuration_id . '&amp;action=layout_edit') . '\'&quot;&gt;' . &quot;\n&quot;;</td>
+<td class="AlignCenter">&nbsp;</td>
+<td class="Normal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; echo '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;tr id=&quot;defaultSelected&quot; class=&quot;dataTableRowSelected&quot; onmouseover=&quot;rowOverEffect(this)&quot; onmouseout=&quot;rowOutEffect(this)&quot; onclick=&quot;document.location.href=\'' . zen_href_link(FILENAME_PRODUCT_TYPES, 'ptID=' . $_GET['ptID'] . '&amp;cID=' . $cInfo-&gt;configuration_id . '&amp;action=layout_edit') . '\'&quot;&gt;' . &quot;\n&quot;;</td>
+</tr>
+<tr class="secEnd">
+<td class="Normal">&nbsp;&nbsp;&nbsp; } else {</td>
+<td class="AlignCenter">&nbsp;</td>
+<td class="Normal">&nbsp;&nbsp;&nbsp; } else {</td>
+</tr>
+</table>
+</body></html>
