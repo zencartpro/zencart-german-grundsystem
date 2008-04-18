@@ -645,10 +645,10 @@
         $this->dbActivate();
         $result = $this->db->Execute($sql);
         if ($admin_name != $result->fields['admin_name']) {
-          $zc_install->setError(ERROR_TEXT_ADMIN_PWD_REQUIRED, ERROR_CODE_ADMIN_PWD_REQUIRED, true);
+          $this->setError(ERROR_TEXT_ADMIN_PWD_REQUIRED, ERROR_CODE_ADMIN_PWD_REQUIRED, true);
         }
         if (!zen_validate_password($admin_pass, $result->fields['admin_pass'])) {
-          $zc_install->setError(ERROR_TEXT_ADMIN_PWD_REQUIRED, ERROR_CODE_ADMIN_PWD_REQUIRED, true);
+          $this->setError(ERROR_TEXT_ADMIN_PWD_REQUIRED, ERROR_CODE_ADMIN_PWD_REQUIRED, true);
         }
         $this->db->Close();
       }
