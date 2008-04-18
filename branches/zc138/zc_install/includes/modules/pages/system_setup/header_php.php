@@ -78,7 +78,7 @@ if ($is_upgrade) {
 
   if (isset($_POST['submit'])) {
     $zc_install->isEmpty($_POST['physical_path'], ERROR_TEXT_PHYSICAL_PATH_ISEMPTY, ERROR_CODE_PHYSICAL_PATH_ISEMPTY);
-    $zc_install->fileExists($_POST['physical_path'], ERROR_TEXT_PHYSICAL_PATH_INCORRECT, ERROR_CODE_PHYSICAL_PATH_INCORRECT);  
+    $zc_install->fileExists($zc_install->trimTrailingSlash($_POST['physical_path']) . '/index.php', ERROR_TEXT_PHYSICAL_PATH_INCORRECT, ERROR_CODE_PHYSICAL_PATH_INCORRECT);  
     $zc_install->isEmpty($_POST['virtual_http_path'], ERROR_TEXT_VIRTUAL_HTTP_ISEMPTY, ERROR_CODE_VIRTUAL_HTTP_ISEMPTY);
     if ($_POST['enable_ssl'] == 'true' || $_POST['enable_ssl_admin'] == 'true') {
       // @TODO: actually *test* the HTTPS URL if supplied, to determine whether it's actually valid or not.
