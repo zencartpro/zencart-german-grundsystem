@@ -461,6 +461,7 @@ if (false) { // DISABLED THIS CODEBLOCK FOR NOW....
   foreach (array('cache'=>'777 read/write/execute',
                  'images'=>'777 read/write/execute (INCLUDE SUBDIRECTORIES TOO)',
                  'includes/languages/english/html_includes'=>'777 read/write (INCLUDE SUBDIRECTORIES TOO)',
+                 'includes/languages/german/html_includes'=>'777 read/write (INCLUDE SUBDIRECTORIES TOO)',
                  'media'=>'777 read/write/execute',
                  'pub'=>'777 read/write/execute',
                  'admin/backups'=>'777 read/write',

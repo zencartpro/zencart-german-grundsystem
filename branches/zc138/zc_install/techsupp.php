@@ -262,6 +262,7 @@ echo '<span class=green><em>{if you wish to enable email-testing support, please
 foreach (array('cache'=>'777 read/write/execute',
                'images'=>'777 read/write/execute (INCLUDE SUBDIRECTORIES TOO)',
                'includes/languages/english/html_includes'=>'777 read/write (INCLUDE SUBDIRECTORIES TOO)',
+               'includes/languages/german/html_includes'=>'777 read/write (INCLUDE SUBDIRECTORIES TOO)',
                'pub'=>'777 read/write/execute',
                'admin/backups'=>'777 read/write',
                'admin/images/graphs'=>'777 read/write/execute')
