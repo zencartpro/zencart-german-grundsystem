@@ -139,7 +139,7 @@ define('TEXT_ATTRIBUTE_COPY_UPDATING','<strong>Aktualisiere vorhandenes Attribut
 define('TEXT_ATTRIBUTES_PREVIEW','ATTRIBUTE VORSCHAU');
 define('TEXT_ATTRIBUTES_PREVIEW_DISPLAY','VORSCHAU DER ATTRIBUTE ANZEIGEN FÜR ID#');
 define('TEXT_PRODUCT_OPTIONS','<strong>Bitte wählen Sie:</strong>');
-define('TEXT_ATTRIBUTES_INSERT_INFO','<strong>Definieren Sie die Attributeinstellungen, anschließend klicken Sie auf "Einfügen" um die Änderungen zu speichern</strong>');
+define('TEXT_ATTRIBUTES_INSERT_INFO','<strong>Definieren Sie die Attributeinstellungen, anschließend klicken Sie auf "Einfügen" um die Änderungen zu speichern</strong> (es dürfen auch mehrere Attributmerkmale markiert werden)');
 define('TEXT_PRICED_BY_ATTRIBUTES','Preis durch Attribute festgelegt');
 define('TEXT_PRODUCTS_PRICE','Artikelpreis:');
 define('TEXT_SPECIAL_PRICE','Sonderpreis:');
