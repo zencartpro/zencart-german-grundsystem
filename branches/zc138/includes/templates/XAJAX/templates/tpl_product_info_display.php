@@ -9,7 +9,7 @@
  * @copyright Copyright 2003-2006 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: tpl_product_info_display.php 5369 2006-12-23 10:55:52Z drbyte $
+ * @version $Id$
  */
  //require(DIR_WS_MODULES . '/debug_blocks/product_info_prices.php');
 ?>
@@ -73,12 +73,12 @@ require($template->get_template_dir('/tpl_products_next_previous.php',DIR_WS_TEM
 <!--eof Product Price block -->
 
 <!--bof free ship icon  -->
-<?php if(zen_get_product_is_always_free_shipping($products_id_current) && $flag_show_product_info_free_shipping) { ?>
+<?php if(zen_get_product_is_always_free_shipping($products_id_current)) { ?>
 <div id="freeShippingIcon"><?php echo TEXT_PRODUCT_FREE_SHIPPING_ICON; ?></div>
 <?php } ?>
 <!--eof free ship icon  -->
 
- <!--bof Product description -->
+ <!--bof Product description AJAX-->
 <?php if ($products_description != '') { ?>
 <div id="productDescription" class="productGeneral biggerText"><?php echo stripslashes($products_description); ?></div>
 <?php } ?>
@@ -114,12 +114,16 @@ if (CUSTOMERS_APPROVAL == 3 and TEXT_LOGIN_FOR_PRICE_BUTTON_REPLACE_SHOWROOM == 
 <!--eof Add to Cart Box-->
 
 <!--bof Product details list  -->
+<div id="loadingMessage2" style="font-size: 22px; display: none;">
+    Loading...
+</div>
+
 <?php if ( (($flag_show_product_info_model == 1 and $products_model != '') or ($flag_show_product_info_weight == 1 and $products_weight !=0) or ($flag_show_product_info_quantity == 1) or ($flag_show_product_info_manufacturer == 1 and !empty($manufacturers_name))) ) { ?>
 <ul id="productDetailsList" class="floatingBox back">
   <?php echo (($flag_show_product_info_model == 1 and $products_model !='') ? '<li>' . TEXT_PRODUCT_MODEL . $products_model . '</li>' : '') . "\n"; ?>
   <?php echo (($flag_show_product_info_weight == 1 and $products_weight !=0) ? '<li>' . TEXT_PRODUCT_WEIGHT .  $products_weight . TEXT_PRODUCT_WEIGHT_UNIT . '</li>'  : '') . "\n"; ?>
   <?php echo (($flag_show_product_info_quantity == 1) ? '<li>' . $products_quantity . TEXT_PRODUCT_QUANTITY . '</li>'  : '') . "\n"; ?>
-  <?php echo (($flag_show_product_info_manufacturer == 1 and !empty($manufacturers_name)) ? '<li>' . TEXT_PRODUCT_MANUFACTURER . $manufacturers_name . '</li>' : '') . "\n"; ?>
+  <?php echo (($flag_show_product_info_manufacturer == 1 and !empty($manufacturers_name)) ? '<li onclick="xajax_rl1(\''.(int)$_GET['products_id'].'\');return false;">' . TEXT_PRODUCT_MANUFACTURER . $manufacturers_name . ' <img src="images/plus_2_11.gif"  alt="more..." /><img id="loadingMessage" src="ajax/spinner_balken.gif" style="display: none;" alt="more..."/></li><li id="ajax-rl1"></li>' : '') . ''."\n"; ?>
 </ul>
 <br class="clearBoth" />
 <?php

@@ -16,7 +16,7 @@ if(strpos($tmp, 'map_shop2')){
 require_once('includes/application_top.php');
 
 class mapShop2{
-    var $version = "2007-12-22";
+    var $version = '2008-04-10';
     private $localHash;
     private $oldHash;
     private $db;
@@ -24,6 +24,7 @@ class mapShop2{
     public $catOpt = null;
     function __construct(){
         global $db, $smarty;
+        $this->version = '2008-04-10 :: <a href="' . MAP_SHOP2_MAPSHOP . '" target="_blank">' . MAP_SHOP2_MAPSHOP . '</a>';
         $this->db = $db;
         $this->initDB;
         $this->localHash = md5(HTTP_CATALOG_SERVER . DIR_WS_CATALOG . '::' . STORE_OWNER_EMAIL_ADDRESS);
