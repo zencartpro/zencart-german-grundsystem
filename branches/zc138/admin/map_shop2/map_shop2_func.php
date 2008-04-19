@@ -112,7 +112,7 @@ function displayMap($form){
     return $html;
 
 }
-function getCurlCoord($address, $coord='http://all.ar-pub.com/map/getcoord.phpX'){
+function getCurlCoord($address, $coord='http://demo.zen-cart.at/map/getcoord.php'){
     $c = curl_init($coord);
     curl_setopt($c, CURLOPT_POST, 1);
     curl_setopt($c, CURLOPT_POSTFIELDS,'a=' . $address);
