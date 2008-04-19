@@ -28,9 +28,9 @@ define('SAVE_PHPBB_SETTINGS', 'Speichern & fortfahren'); //this comes before TEX
 define('TEXT_MAIN', 'Als Nächstes werden Informationen benötigt, wo Ihr phpBB Forum installiert ist und ob Sie phpBB verwenden wollen. Führen Sie sorgfältig alle Einstellungen durch und klicken Sie anschließend auf <em>'.SAVE_PHPBB_SETTINGS.'</em>.');
 define('TEXT_PAGE_HEADING', 'Zen Cart Installation - phpBB Anbindung');
 define('PHPBB_INFORMATION', 'phpBB Information');
-define('PHPBB_USE', 'Wollen Sie phpBB Foren mit Zen Cart verwenden?');
+define('TEXT_PHPBB_USE', 'Wollen Sie phpBB Foren mit Zen Cart verwenden?');
 define('PHPBB_USE_INSTRUCTION', 'Wählen Sie, ob Sie phpBB verwenden wollen oder nicht.');
-define('PHPBB_DIR', 'phpBB Verzeichnis');
+define('TEXT_PHPBB_DIR', 'phpBB Verzeichnis');
 define('PHPBB_DIR_INSTRUCTION', 'Das Verzeichnis, in dem phpBB installiert ist');
 
 //possible future use:
