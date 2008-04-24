@@ -7,7 +7,7 @@
  * @copyright Copyright 2003-2007 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: query_factory.php 5741 2007-01-31 20:37:46Z wilt $
+ * @version $Id$
  */
 if (!defined('IS_ADMIN_FLAG')) {
   die('Illegal Access');
@@ -36,6 +36,12 @@ class queryFactory extends base {
     if ($this->link) {
       if (@mysql_select_db($zf_database, $this->link)) {
         $this->db_connected = true;
+        /** set utf-8 database connection
+            look at: http://dev.mysql.com/doc/refman/5.0/en/charset-connection.html
+            look at: http://www.adviesenzo.nl/examples/php_mysql_charset_fix/
+        */
+        $sql = "SET NAMES utf8";
+        $this->Execute($sql);
         return true;
       } else {
         $this->set_error(mysql_errno(),mysql_error(), $zp_real);
