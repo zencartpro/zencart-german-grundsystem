@@ -38,9 +38,13 @@ class queryFactory extends base {
         $this->db_connected = true;
         /** set utf-8 database connection
             look at: http://dev.mysql.com/doc/refman/5.0/en/charset-connection.html
-            look at: http://www.adviesenzo.nl/examples/php_mysql_charset_fix/
+            &&: http://www.adviesenzo.nl/examples/php_mysql_charset_fix/
+            &&: http://de.php.net/manual/en/function.mysql-set-charset.php
         */
-        $sql = "SET NAMES utf8";
+        $sql = "SHOW VARIABLES LIKE 'character_set_database'";
+        $res = $this->Execute($sql);
+        $charset = $res->fields['Value'];
+        $sql = "SET NAMES $charset";
         $this->Execute($sql);
         return true;
       } else {
