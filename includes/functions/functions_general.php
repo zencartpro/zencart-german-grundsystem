@@ -993,15 +993,15 @@ if (!defined('IS_ADMIN_FLAG')) {
       $back = sizeof($_SESSION['navigation']->path)-2;
       $link = '<a href="' . zen_href_link($_SESSION['navigation']->path[$back]['page'], zen_array_to_string($_SESSION['navigation']->path[$back]['get'], array('action')), $_SESSION['navigation']->path[$back]['mode']) . '">';
     } else {
-      if (isset($_SERVER['HTTP_REFERER']) && strstr(HTTP_SERVER, $_SERVER['HTTP_REFERER'])) {
-        $link= $_SERVER['HTTP_REFERER'];
+      if (isset($_SERVER['HTTP_REFERER']) && strstr($_SERVER['HTTP_REFERER'], HTTP_SERVER)) {
+        $link= '<a href="' . $_SERVER['HTTP_REFERER'].'">';
       } else {
         $link = '<a href="' . zen_href_link(FILENAME_DEFAULT) . '">';
       }
       $_SESSION['navigation'] = new navigationHistory;
     }
     return $link;
-  }
+  }  
 
 
 ////

@@ -143,9 +143,9 @@
               $error = true;
               $entry_date_of_birth_error = true;
             }
-          } else {
-            $customers_dob = '0001-01-01 00:00:00';
           }
+        } else {
+          $customers_dob = '0001-01-01 00:00:00';
         }
 
         if (strlen($customers_email_address) < ENTRY_EMAIL_ADDRESS_MIN_LENGTH) {

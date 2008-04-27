@@ -291,13 +291,13 @@ class ot_gv {
           $ratio_tax = $tax_deduct/$order->info['tax'];
         }
         $tax_deduct = 0;
-        if ($this->include_tax) {
-          reset($order->info['tax_groups']);
-          foreach ($order->info['tax_groups'] as $key=>$value) {
-            $od_amount['tax_groups'][$key] = $order->info['tax_groups'][$key] * $ratio_tax;
-            $tax_deduct += $od_amount['tax_groups'][$key];
-          }
-        }
+//        if ($this->include_tax) {
+//          reset($order->info['tax_groups']);
+//          foreach ($order->info['tax_groups'] as $key=>$value) {
+//            $od_amount['tax_groups'][$key] = $order->info['tax_groups'][$key] * $ratio_tax;
+//            $tax_deduct += $od_amount['tax_groups'][$key];
+//          }
+//       }
       $od_amount['tax'] = $tax_deduct;
       break;
       case 'Standard':

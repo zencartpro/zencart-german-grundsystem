@@ -165,6 +165,14 @@ if (!defined('IS_ADMIN_FLAG')) {
       $saveSession = $_SESSION;
       $oldSessID = session_id();
       session_regenerate_id();
+      if(!version_compare(phpversion(),"4.3.3",">=")){
+         setcookie(
+            session_name(),
+            session_id(),
+            ini_get("session.cookie_lifetime"),
+            "/"
+         );
+      }      
       $newSessID = session_id();
       session_id($oldSessID);
       session_id($newSessID);

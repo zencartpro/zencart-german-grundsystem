@@ -1,7 +1,7 @@
 <?php
 /**
  * @package paymentMethod
- * @copyright Copyright 2003-2007 Zen Cart Development Team
+ * @copyright Copyright 2003-2008 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @copyright Portions Copyright 2003 Jason LeBaron
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
@@ -262,7 +262,7 @@ class linkpoint_api {
    * Prepare and submit the authorization to the gateway
    */
   function before_process() {
-    global $order, $db, $messageStack, $lp_avs, $lp_trans_num;
+    global $order, $db, $messageStack, $lp_avs, $lp_trans_num, $order_totals;
     $myorder = array();
 
     //if ($this->code_debug) $order->info['cc_number'] = $_POST['cc_number'];
@@ -291,7 +291,7 @@ class linkpoint_api {
     $myorder["ponumber"]    = "";
     $myorder["subtotal"]    = $order->info['subtotal'];
     $myorder["tax"]         = $order->info['tax'];
-    $myorder["shipping"]    = $order->info['shipping_cost'];
+    $myorder["shipping"]    = ($order->info['shipping_cost'] == 'f') ? 0 : $order->info['shipping_cost'];
     $myorder["chargetotal"] = $order->info['total'];
 
     // CARD INFO
@@ -331,17 +331,51 @@ class linkpoint_api {
     // $myorder["referred"] = "";
 
     // itemized contents
+    $num_line_items = 0;
     for ($i=0, $n=sizeof($order->products); $i<$n; $i++) {   
-      $myorder["items"][$i]['id']          = $order->products[$i]['id'];
-      $myorder["items"][$i]['description'] = substr(htmlentities($order->products[$i]['name'], ENT_QUOTES, 'UTF-8'), 0, 100);
-      $myorder["items"][$i]['quantity']    = $order->products[$i]['qty'];
-      $myorder["items"][$i]['price']       = number_format($order->products[$i]['price'], 2, '.', '');
+      $num_line_items++;
+      $myorder["items"][$num_line_items]['id']          = $order->products[$i]['id'];
+      $myorder["items"][$num_line_items]['description'] = substr(htmlentities($order->products[$i]['name'], ENT_QUOTES, 'UTF-8'), 0, 100);
+      $myorder["items"][$num_line_items]['quantity']    = $order->products[$i]['qty'];
+      $myorder["items"][$num_line_items]['price']       = number_format($order->products[$i]['final_price'], 2, '.', '');
       if (isset($order->products[$i]['attributes'])) {
         for ($j=0, $m=sizeof($order->products[$i]['attributes']); $j<$m; $j++) {
-          $myorder["items"][$i]['options' . $j]['name'] = $order->products[$i]['attributes'][$j]['option'];
-          $myorder["items"][$i]['options' . $j]['value'] = $order->products[$i]['attributes'][$j]['value'];
+          $myorder["items"][$num_line_items]['options' . $j]['name'] = $order->products[$i]['attributes'][$j]['option'];
+          $myorder["items"][$num_line_items]['options' . $j]['value'] = $order->products[$i]['attributes'][$j]['value'];
         }
       }
+      // track one-time charges
+      if ($order->products[$i]['onetime_charges'] != 0 ) {
+        $num_line_items++;
+        $myorder["items"][$num_line_items]['id']          = 'OTC';
+        $myorder["items"][$num_line_items]['description'] = 'One Time Charges';
+        $myorder["items"][$num_line_items]['quantity']    = 1;
+        $myorder["items"][$num_line_items]['price']       = number_format($order->products[$i]['onetime_charges'], 2, '.', '');
+      }
+    }
+
+    // check subtotals
+    global $order_totals;
+    reset($order_totals);
+    for ($i=0, $n=sizeof($order_totals); $i<$n; $i++) {
+      if (in_array($order_totals[$i]['code'], array('ot_subtotal', 'ot_tax', 'ot_shipping', 'ot_total'))) continue;
+      // deal with discounts
+      if (substr($order_totals[$i]['text'], 0, 1) == '-') {
+        $credits_applied_so_skip_subtotal = true;
+      } else {
+//      if ($order_totals[$i]['code'] == 'ot_loworderfee') {
+      // deal with surcharges/fees
+        $num_line_items++;
+        $myorder["items"][$num_line_items]['id']          = 'Surcharge';
+        $myorder["items"][$num_line_items]['description'] = $order_totals[$i]['title'];
+        $myorder["items"][$num_line_items]['quantity']    = 1;
+        $myorder["items"][$num_line_items]['price']       = number_format($order_totals[$i]['value'], 2, '.', '');
+        $myorder["subtotal"] = ($myorder["subtotal"] + $order_totals[$i]['value']);
+      }
+    }
+    // if discounts apply, do not send subtotal, otherwise validation error occurs
+    if ($credits_applied_so_skip_subtotal) {
+      unset($myorder["subtotal"]);
     }
 
     $myorder["ordertype"]  = (MODULE_PAYMENT_LINKPOINT_API_AUTHORIZATION_MODE == 'Authorize Only' ? 'PREAUTH': 'SALE');
@@ -433,6 +467,7 @@ class linkpoint_api {
       if (substr($result['r_error'],0,10) == 'SGS-005000') $messageStack->add_session('checkout_payment', MODULE_PAYMENT_LINKPOINT_API_TEXT_GENERAL_ERROR . '<br />' . $result['r_error'], 'error'); // The server encountered a database error
       if (substr($result['r_error'],0,10) == 'SGS-000001' || strstr($result['r_error'], 'D:Declined') || strstr($result['r_error'], 'R:Referral')) $messageStack->add_session('checkout_payment', MODULE_PAYMENT_LINKPOINT_API_TEXT_DECLINED_MESSAGE . '<br />' . $result['r_error'], 'error');
       if (substr($result['r_error'],0,10) == 'SGS-005005' || strstr($result['r_error'], 'Duplicate transaction')) $messageStack->add_session('checkout_payment', MODULE_PAYMENT_LINKPOINT_API_TEXT_DUPLICATE_MESSAGE . '<br />' . $result['r_error'], 'error');
+      if (substr($result['r_error'],0,10) == 'SGS-002301') $messageStack->add_session('checkout_payment', 'Subtotal miscalculation. Please notify the storeowner.' . '<br />' . $result['r_error'], 'error');
     }
   //  End specific error conditions
 

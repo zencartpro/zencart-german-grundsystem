@@ -218,20 +218,18 @@
 
 ////
 // Output a form input field
-  function zen_draw_input_field($name, $value = '', $parameters = '', $required = false, $type = 'text', $reinsert_value = true) {
+  function zen_draw_input_field($name, $value = '~*~*#', $parameters = '', $required = false, $type = 'text', $reinsert_value = true) {
     $field = '<input type="' . zen_output_string($type) . '" name="' . zen_output_string($name) . '"';
 
-    if (isset($GLOBALS[$name]) && ($reinsert_value == true) && is_string($GLOBALS[$name])) {
+    if ( $value == '~*~*#' && (isset($GLOBALS[$name]) && is_string($GLOBALS[$name])) && ($reinsert_value == true) ) {
       $field .= ' value="' . zen_output_string(stripslashes($GLOBALS[$name])) . '"';
-    } elseif (zen_not_null($value)) {
+    } elseif ($value != '~*~*#' && zen_not_null($value)) {
       $field .= ' value="' . zen_output_string($value) . '"';
     }
 
     if (zen_not_null($parameters)) $field .= ' ' . $parameters;
 
-    $field .= '>';
-
-    if ($required == true) $field .= TEXT_FIELD_REQUIRED;
+    $field .= ' />';
 
     return $field;
   }
@@ -259,13 +257,13 @@
 
     if (zen_not_null($value)) $selection .= ' value="' . zen_output_string($value) . '"';
 
-    if ( ($checked == true) || (isset($GLOBALS[$name]) && is_string($GLOBALS[$name]) && ($GLOBALS[$name] == 'on')) || (isset($value) && isset($GLOBALS[$name]) && (stripslashes($GLOBALS[$name]) == $value)) || (zen_not_null($value) && zen_not_null($compare) && ($value == $compare)) ) {
-      $selection .= ' CHECKED';
+    if ( ($checked == true) || (isset($GLOBALS[$name]) && is_string($GLOBALS[$name]) && ($GLOBALS[$name] == 'on')) || (isset($value) && isset($GLOBALS[$name]) && is_string($GLOBALS[$name]) && (stripslashes($GLOBALS[$name]) == $value)) || (zen_not_null($value) && zen_not_null($compare) && ($value == $compare)) ) {
+      $selection .= ' checked="checked"';
     }
 
     if (zen_not_null($parameters)) $selection .= ' ' . $parameters;
 
-    $selection .= '>';
+    $selection .= ' />';
 
     return $selection;
   }
@@ -284,16 +282,16 @@
 
 ////
 // Output a form textarea field
-  function zen_draw_textarea_field($name, $wrap, $width, $height, $text = '', $parameters = '', $reinsert_value = true) {
+  function zen_draw_textarea_field($name, $wrap, $width, $height, $text = '~*~*#', $parameters = '', $reinsert_value = true) {
     $field = '<textarea name="' . zen_output_string($name) . '" wrap="' . zen_output_string($wrap) . '" cols="' . zen_output_string($width) . '" rows="' . zen_output_string($height) . '"';
 
     if (zen_not_null($parameters)) $field .= ' ' . $parameters;
 
     $field .= '>';
 
-    if ( (isset($GLOBALS[$name])) && ($reinsert_value == true) ) {
+    if ($text == '~*~*#' && (isset($GLOBALS[$name]) && is_string($GLOBALS[$name])) && ($reinsert_value == true) ) {
       $field .= stripslashes($GLOBALS[$name]);
-    } elseif (zen_not_null($text)) {
+    } elseif ($text != '~*~*#' && zen_not_null($text)) {
       $field .= $text;
     }
 
@@ -315,7 +313,7 @@
 
     if (zen_not_null($parameters)) $field .= ' ' . $parameters;
 
-    $field .= '>';
+    $field .= ' />';
 
     return $field;
   }
@@ -328,19 +326,19 @@
 
     if (zen_not_null($parameters)) $field .= ' ' . $parameters;
 
-    $field .= '>';
+    $field .= '>' . "\n";
 
-    if (empty($default) && isset($GLOBALS[$name])) $default = stripslashes($GLOBALS[$name]);
+    if (empty($default) && isset($GLOBALS[$name]) && is_string($GLOBALS[$name]) ) $default = stripslashes($GLOBALS[$name]);
 
     for ($i=0, $n=sizeof($values); $i<$n; $i++) {
-      $field .= '<option value="' . zen_output_string($values[$i]['id']) . '"';
+      $field .= '  <option value="' . zen_output_string($values[$i]['id']) . '"';
       if ($default == $values[$i]['id']) {
-        $field .= ' SELECTED';
+        $field .= ' selected="selected"';
       }
 
-      $field .= '>' . zen_output_string($values[$i]['text'], array('"' => '&quot;', '\'' => '&#039;', '<' => '&lt;', '>' => '&gt;')) . '</option>';
+      $field .= '>' . zen_output_string($values[$i]['text'], array('"' => '&quot;', '\'' => '&#039;', '<' => '&lt;', '>' => '&gt;')) . '</option>' . "\n";
     }
-    $field .= '</select>';
+    $field .= '</select>' . "\n";
 
     if ($required == true) $field .= TEXT_FIELD_REQUIRED;
 

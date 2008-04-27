@@ -43,10 +43,11 @@ if ( (($manufacturers_id > 0 && $_GET['filter_id'] == 0) || $_GET['music_genre_i
     $expected_query = "select p.products_id, pd.products_name, products_date_available as date_expected, p.master_categories_id
                        from " . TABLE_PRODUCTS . " p, " . TABLE_PRODUCTS_DESCRIPTION . " pd
                        where p.products_id = pd.products_id
+                       and p.products_status = 1
                        and p.products_id in (" . $list_of_products . ")
                        and pd.language_id = '" . (int)$_SESSION['languages_id'] . "' " .
                        $display_limit .
-                       $limit_clause;
+                       $limit_clause;  
   }
 }
 

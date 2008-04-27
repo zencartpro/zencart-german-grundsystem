@@ -42,7 +42,8 @@ if ( (($manufacturers_id > 0 && $_GET['filter_id'] == 0) || $_GET['music_genre_i
                            from " . TABLE_PRODUCTS . " p, " . TABLE_PRODUCTS_DESCRIPTION . " pd
                            where p.products_id = pd.products_id
                            and pd.language_id = '" . (int)$_SESSION['languages_id'] . "'
-                           and p.products_id in (" . $list_of_products . ")";
+                           and p.products_status = 1
+                           and p.products_id in (" . $list_of_products . ")";  
   }
 }
 
