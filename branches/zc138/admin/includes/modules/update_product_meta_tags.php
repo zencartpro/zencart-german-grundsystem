@@ -61,9 +61,15 @@ if (!defined('IS_ADMIN_FLAG')) {
 
               zen_db_perform(TABLE_META_TAGS_PRODUCTS_DESCRIPTION, $sql_data_array);
             } elseif ($action == 'update_product_meta_tags') {
-              zen_db_perform(TABLE_META_TAGS_PRODUCTS_DESCRIPTION, $sql_data_array, 'update', "products_id = '" . (int)$products_id . "' and language_id = '" . (int)$language_id . "'");
+              if (empty($_POST['metatags_title'][$language_id]) && empty($_POST['metatags_keywords'][$language_id]) && empty($_POST['metatags_description'][$language_id])) {
+                $remove_products_metatag = "DELETE from " . TABLE_META_TAGS_PRODUCTS_DESCRIPTION . " WHERE products_id = '" . (int)$products_id . "' and language_id = '" . (int)$language_id . "'";
+                $db->Execute($remove_products_metatag);
+              } else {
+
+                zen_db_perform(TABLE_META_TAGS_PRODUCTS_DESCRIPTION, $sql_data_array, 'update', "products_id = '" . (int)$products_id . "' and language_id = '" . (int)$language_id . "'");
+              }
             }
           }
           zen_redirect(zen_href_link(FILENAME_CATEGORIES, 'cPath=' . $cPath . '&pID=' . $products_id . (isset($_GET['page']) ? '&page=' . $_GET['page'] : '')));
-        }
+        } 
 ?>

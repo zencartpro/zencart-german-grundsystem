@@ -67,6 +67,7 @@ class ot_group_pricing {
   function calculate_deductions($order_total) {
     global $db, $order;
     $od_amount = array();
+    if ($order_total == 0) return $od_amount;
     $orderTotal = $this->get_order_total();
     $orderTotalTax = $orderTotal['tax'];
     $group_query = $db->Execute("select customers_group_pricing from " . TABLE_CUSTOMERS . " where customers_id = '" . (int)$_SESSION['customer_id'] . "'");

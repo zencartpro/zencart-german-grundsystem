@@ -4,10 +4,10 @@
  * HTML-generating functions used throughout the core
  *
  * @package functions
- * @copyright Copyright 2003-2007 Zen Cart Development Team
+ * @copyright Copyright 2003-2008 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: html_output.php 6726 2007-08-19 03:49:38Z drbyte $
+ * @version $Id: html_output.php 6726b-modified 2008-01-09 drbyte $
  */
 
 /*
@@ -366,12 +366,12 @@
 /*
  *  Output a form input field
  */
-  function zen_draw_input_field($name, $value = '', $parameters = '', $type = 'text', $reinsert_value = true) {
+  function zen_draw_input_field($name, $value = '~*~*#', $parameters = '', $type = 'text', $reinsert_value = true) {
     $field = '<input type="' . zen_output_string($type) . '" name="' . zen_output_string($name) . '"';
 
-    if ( (isset($GLOBALS[$name])) && ($reinsert_value == true) ) {
+    if ( $value == '~*~*#' && (isset($GLOBALS[$name]) && is_string($GLOBALS[$name])) && ($reinsert_value == true) ) {
       $field .= ' value="' . zen_output_string(stripslashes($GLOBALS[$name])) . '"';
-    } elseif (zen_not_null($value)) {
+    } elseif ($value != '~*~*#' && zen_not_null($value)) {
       $field .= ' value="' . zen_output_string($value) . '"';
     }
 
@@ -425,16 +425,16 @@
 /*
  *  Output a form textarea field
  */
-  function zen_draw_textarea_field($name, $width, $height, $text = '', $parameters = '', $reinsert_value = true) {
+  function zen_draw_textarea_field($name, $width, $height, $text = '~*~*#', $parameters = '', $reinsert_value = true) {
     $field = '<textarea name="' . zen_output_string($name) . '" cols="' . zen_output_string($width) . '" rows="' . zen_output_string($height) . '"';
 
     if (zen_not_null($parameters)) $field .= ' ' . $parameters;
 
     $field .= '>';
 
-    if ( (isset($GLOBALS[$name])) && ($reinsert_value == true) ) {
+    if ($text == '~*~*#' && (isset($GLOBALS[$name]) && is_string($GLOBALS[$name])) && ($reinsert_value == true) ) {
       $field .= stripslashes($GLOBALS[$name]);
-    } elseif (zen_not_null($text)) {
+    } elseif ($text != '~*~*#' && zen_not_null($text)) {
       $field .= $text;
     }
 
@@ -451,7 +451,7 @@
 
     if (zen_not_null($value)) {
       $field .= ' value="' . zen_output_string($value) . '"';
-    } elseif (isset($GLOBALS[$name])) {
+    } elseif (isset($GLOBALS[$name]) && is_string($GLOBALS[$name])) {
       $field .= ' value="' . zen_output_string(stripslashes($GLOBALS[$name])) . '"';
     }
 
@@ -495,7 +495,7 @@
 
     $field .= '>' . "\n";
 
-    if (empty($default) && isset($GLOBALS[$name])) $default = stripslashes($GLOBALS[$name]);
+    if (empty($default) && isset($GLOBALS[$name]) && is_string($GLOBALS[$name]) ) $default = stripslashes($GLOBALS[$name]);
 
     for ($i=0, $n=sizeof($values); $i<$n; $i++) {
       $field .= '  <option value="' . zen_output_string($values[$i]['id']) . '"';

@@ -41,4 +41,3 @@ if(is_array($lines)){
 }
 #rldp($lines);
 #rldp($_SESSION, 'SESS');
-?>

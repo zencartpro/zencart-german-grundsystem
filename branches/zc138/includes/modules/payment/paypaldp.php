@@ -517,7 +517,7 @@ class paypaldp extends base {
       }
 
       // if State is not supplied, repeat the city so that it's not blank, otherwise PayPal croaks
-      if (!isset($optionsShip['SHIPTOSTATE']) || trim($optionsShip['SHIPTOSTATE']) == '') $optionsShip['SHIPTOSTATE'] = $optionsShip['SHIPTOCITY'];
+      if ((!isset($optionsShip['SHIPTOSTATE']) || trim($optionsShip['SHIPTOSTATE']) == '') && isset($optionsShip['SHIPTOCITY'])) $optionsShip['SHIPTOSTATE'] = $optionsShip['SHIPTOCITY'];
       if ($optionsAll['STREET2'] == '') unset($optionsAll['STREET2']);
       if ($optionsShip['SHIPTOSTREET2'] == '') unset($optionsShip['SHIPTOSTREET2']);
 

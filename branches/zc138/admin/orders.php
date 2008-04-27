@@ -716,8 +716,8 @@ function couponpopupWindow(url) {
       $cID = zen_db_prepare_input($_GET['cID']);
       $orders_query_raw =   "select o.orders_id, o.customers_id, o.customers_name, o.payment_method, o.shipping_method, o.date_purchased, o.last_modified, o.currency, o.currency_value, s.orders_status_name, ot.text as order_total" .
                             $new_fields . "
-                            from (" . TABLE_ORDERS . " o, " .
-                            TABLE_ORDERS_STATUS . " s " .
+                            from (" . TABLE_ORDERS_STATUS . " s, " .
+                            TABLE_ORDERS . " o " .
                             $new_table . ")
                             left join " . TABLE_ORDERS_TOTAL . " ot on (o.orders_id = ot.orders_id) " . "
                             where o.customers_id = '" . (int)$cID . "' and o.orders_status = s.orders_status_id and s.language_id = '" . (int)$_SESSION['languages_id'] . "' and ot.class = 'ot_total' order by orders_id DESC";
@@ -728,8 +728,8 @@ function couponpopupWindow(url) {
       $status = zen_db_prepare_input($_GET['status']);
       $orders_query_raw = "select o.orders_id, o.customers_id, o.customers_name, o.payment_method, o.shipping_method, o.date_purchased, o.last_modified, o.currency, o.currency_value, s.orders_status_name, ot.text as order_total" .
                           $new_fields . "
-                          from (" . TABLE_ORDERS . " o, " .
-                          TABLE_ORDERS_STATUS . " s " .
+                          from (" . TABLE_ORDERS_STATUS . " s, " .
+                          TABLE_ORDERS . " o " .
                           $new_table . ")
                           left join " . TABLE_ORDERS_TOTAL . " ot on (o.orders_id = ot.orders_id) " . "
                           where o.orders_status = s.orders_status_id and s.language_id = '" . (int)$_SESSION['languages_id'] . "' and s.orders_status_id = '" . (int)$status . "' and ot.class = 'ot_total'  " .
@@ -740,8 +740,8 @@ function couponpopupWindow(url) {
     } else {
       $orders_query_raw = "select " . $search_distinct . " o.orders_id, o.customers_id, o.customers_name, o.payment_method, o.shipping_method, o.date_purchased, o.last_modified, o.currency, o.currency_value, s.orders_status_name, ot.text as order_total" .
                           $new_fields . "
-                          from (" . TABLE_ORDERS . " o, " .
-                          TABLE_ORDERS_STATUS . " s " .
+                          from (" . TABLE_ORDERS_STATUS . " s, " .
+                          TABLE_ORDERS . " o " .
                           $new_table . ")
                           left join " . TABLE_ORDERS_TOTAL . " ot on (o.orders_id = ot.orders_id) " . "
                           where (o.orders_status = s.orders_status_id and s.language_id = '" . (int)$_SESSION['languages_id'] . "' and ot.class = 'ot_total')  " .

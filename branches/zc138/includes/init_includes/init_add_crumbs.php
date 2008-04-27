@@ -28,7 +28,7 @@ if (isset($cPath_array) && isset($cPath)) {
 //echo 'I SEE ' . (int)$cPath_array[$i] . '<br />';
     if ($categories->RecordCount() > 0) {
       $breadcrumb->add($categories->fields['categories_name'], zen_href_link(FILENAME_DEFAULT, 'cPath=' . implode('_', array_slice($cPath_array, 0, ($i+1)))));
-    } else {
+    } elseif(SHOW_CATEGORIES_ALWAYS == 0) {
       // if invalid, set the robots noindex/nofollow for this page
       $robotsNoIndex = true;
       break;
