@@ -204,7 +204,7 @@ define('JS_POST_CODE', '* Die \'Postleizahl\' muss aus mindestens  ' . ENTRY_POS
 define('JS_CITY', '* Die \'Stadt\' muss mindestens  ' . ENTRY_CITY_MIN_LENGTH . ' Zeichen haben.\n');
 define('JS_STATE', '* Das \'Bundesland\' muss eingetragen sein.\n');
 define('JS_STATE_SELECT', '-- Bitte wählen Sie --');
-define('JS_ZONE', '* Das \'Land\' muss ausgewählt sein.');
+define('JS_ZONE', '* Das \'Bundesland\' muss ausgewählt sein.');
 define('JS_COUNTRY', '* Das \'Land\' muss ausgewählt sein.\n');
 define('JS_TELEPHONE', '* Die \'Telefonnummer\' muss aus mindestens  ' . ENTRY_TELEPHONE_MIN_LENGTH . ' Zeichen bestehen.\n');
 define('JS_PASSWORD', '* Das \'Passwort\' muss aus mindestens  ' . ENTRY_PASSWORD_MIN_LENGTH . ' Zeichen bestehen.\n');
