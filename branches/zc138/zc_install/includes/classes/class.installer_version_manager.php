@@ -77,6 +77,7 @@
       $this->version136 = $this->check_version_136();
       $this->version137 = $this->check_version_137();
       $this->version138 = $this->check_version_138();
+      $this->version138multi2 = $this->check_version_138multi2();
 
 //        if ($this->version103 == true)  $retVal = '1.0.3';
 //        if ($this->version104 == true)  $retVal = '1.0.4';
@@ -100,6 +101,7 @@
         if ($this->version136 == true) $retVal = '1.3.6';
         if ($this->version137 == true) $retVal = '1.3.7';
         if ($this->version138 == true) $retVal = '1.3.8';
+        if ($this->version138multi2 == true) $retVal = '1.3.8multi2';
 
       return $retVal;
     }
@@ -690,6 +692,28 @@
       }
       return $got_v1_3_8;
     } //end of 1.3.8 check
+
+    function check_version_138multi2() {
+      global $db_test;
+      $got_v1_3_8multi2 = false;
+      //1st check for v1.3.8
+      $sql = "select configuration_title from " . DB_PREFIX . "configuration_language where configuration_key = 'LANGUAGE_VERSION'";
+      $result = $db_test->Execute($sql);
+      if (ZC_UPG_DEBUG==true) echo "138a-configtitle_check LANGUAGE_VERSION =" . $result->fields['configuration_title'] . '<br>';
+      if  ($result->fields['configuration_title'] == 'LANGUAGE_VERSION 20080427') {
+        $got_v1_3_8multi2 = true;
+      }
+
+      if (ZC_UPG_DEBUG==true) {
+        echo '1.3.8multi2=' . $got_v1_3_8multi2 .'<br>';
+      }
+      // evaluate all 1.3.8 checks
+      if ($got_v1_3_8multi2) {
+        $got_v1_3_8multi2 = true;
+        if (ZC_UPG_DEBUG==true) echo '<br>Got 1.3.8multi2<br>';
+      }
+      return $got_v1_3_8multi2;
+    } //end of 1.3.8multi2 check
 
 
 

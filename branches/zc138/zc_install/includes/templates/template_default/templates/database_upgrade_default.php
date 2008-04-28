@@ -126,7 +126,11 @@
     </div>
     <div class="input">
       <input <?php if ($needs_multilingual) {echo "checked";} ?> name="version[]" type="checkbox" id="checkbox15" value="multilingual" tabindex="15" />
-      <label for="checkbox15">Upgrade DB to Multilingual</label>
+      <label for="checkbox15">Upgrade DB to Multilingual 1</label>
+    </div>
+    <div class="input">
+      <input <?php if ($needs_v1_3_8multi2) {echo "checked";} ?> name="version[]" type="checkbox" id="checkbox21" value="1.3.8multi2" tabindex="21" />
+      <label for="checkbox21">Upgrade DB to Multilingual 2</label>
     </div>
     </fieldset>
     <br />
