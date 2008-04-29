@@ -20,16 +20,16 @@
 // $Id$
 //
 
-define('MODULE_SHIPPING_UPS_TEXT_TITLE', '!!!TRANSLATE !!! United Parcel Service');
+define('MODULE_SHIPPING_UPS_TEXT_TITLE', 'United Parcel Service');
 define('MODULE_SHIPPING_UPS_TEXT_DESCRIPTION', 'United Parcel Service');
-define('MODULE_SHIPPING_UPS_TEXT_OPT_GND', 'UPS Ground');
-define('MODULE_SHIPPING_UPS_TEXT_OPT_1DM', 'Next Day Air Early AM');
-define('MODULE_SHIPPING_UPS_TEXT_OPT_1DA', 'Next Day Air');
-define('MODULE_SHIPPING_UPS_TEXT_OPT_1DP', 'Next Day Air Saver');
-define('MODULE_SHIPPING_UPS_TEXT_OPT_2DM', '2nd Day Air Early AM');
-define('MODULE_SHIPPING_UPS_TEXT_OPT_3DS', '3 Day Select');
+define('MODULE_SHIPPING_UPS_TEXT_OPT_GND', 'UPS Bodenbeförderung');
+define('MODULE_SHIPPING_UPS_TEXT_OPT_1DM', 'Nächsten vormittag');
+define('MODULE_SHIPPING_UPS_TEXT_OPT_1DA', 'Nächster Tag Luftpost');
+define('MODULE_SHIPPING_UPS_TEXT_OPT_1DP', 'Nächster Tag Luftpost Economy Tarif');
+define('MODULE_SHIPPING_UPS_TEXT_OPT_2DM', 'Übernächster Tag Luftpost');
+define('MODULE_SHIPPING_UPS_TEXT_OPT_3DS', 'In 3 Tagen');
 define('MODULE_SHIPPING_UPS_TEXT_OPT_STD', 'Canada Standard');
-define('MODULE_SHIPPING_UPS_TEXT_OPT_XPR', 'Worldwide Express');
-define('MODULE_SHIPPING_UPS_TEXT_OPT_XDM', 'Worldwide Express Plus');
-define('MODULE_SHIPPING_UPS_TEXT_OPT_XPD', 'Worldwide Expedited');
+define('MODULE_SHIPPING_UPS_TEXT_OPT_XPR', 'Weltweit Express');
+define('MODULE_SHIPPING_UPS_TEXT_OPT_XDM', 'Weltweit Express Plus');
+define('MODULE_SHIPPING_UPS_TEXT_OPT_XPD', 'Weltweit Express-Dienst');
 ?>
