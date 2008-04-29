@@ -7,23 +7,23 @@
  * @version $Id$
  */
 
-define('MODULE_SHIPPING_USPS_TEXT_TITLE', '!!!TRANSLATE!!! United States Postal Service');
-define('MODULE_SHIPPING_USPS_TEXT_DESCRIPTION', 'United States Postal Service<br /><br />You will need to have registered a Web Tools account with USPS at <a href="http://www.usps.com/webtools/" target="_blank">their website</a> to use this module.<br /><br />USPS expects you to <strong>use pounds as weight measure</strong> for your products.' . ((MODULE_SHIPPING_USPS_USERID == 'NONE' || MODULE_SHIPPING_USPS_USERID == '' || MODULE_SHIPPING_USPS_SERVER == 'test') ? '<br /><br /><strong>Creating a customer account for USPS realtime shipping quotes</strong><br />
-1. <a href="http://www.usps.com/webtools/rate.htm" target="_blank">Info on USPS and Rate Quotes</a><br />
-2. <a href="https://secure.shippingapis.com/registration/" target="_blank">Create a USPS Web Tools account</a><br />
-3. Fill in your customer information details and click Submit<br />
-4. You will receive an email containing your USPS rate-quote Web Tools User ID<br />
-5. Insert the Web Tools User ID in the Zen Cart USPS shipping module.<br />
-6. Telephone USPS 1-800-344-7779 and ask them to move your account to the Production Server or email them at icustomercare@usps.com, quoting your Web Tools User ID.<br />
-7. They will send another confirmation email. Set the Zen Cart module into Production mode (instead of Test mode) to finish activation.': ''));
-define('MODULE_SHIPPING_USPS_TEXT_OPT_PP', 'Parcel Post');
-define('MODULE_SHIPPING_USPS_TEXT_OPT_PM', 'Priority Mail');
-define('MODULE_SHIPPING_USPS_TEXT_OPT_EX', 'Express Mail');
-define('MODULE_SHIPPING_USPS_TEXT_ERROR', 'We are unable to find a USPS shipping quote suitable for your mailing address and the shipping methods we typically use.<br />If you prefer to use USPS as your shipping method, please contact us for assistance.<br />(Please check that your Zip Code is entered correctly.)');
-define('MODULE_SHIPPING_USPS_TEXT_SERVER_ERROR', 'An error occurred in obtaining USPS shipping quotes.<br />If you prefer to use USPS as your shipping method, please contact the store owner.');
-define('MODULE_SHIPPING_USPS_TEXT_DAY', 'day');
-define('MODULE_SHIPPING_USPS_TEXT_DAYS', 'days');
-define('MODULE_SHIPPING_USPS_TEXT_WEEKS', 'weeks');
-define('MODULE_SHIPPING_USPS_TEXT_TEST_MODE_NOTICE', '<br /><span class="alert">Your account is in TEST MODE. Do not expect to see usable rate quotes until your USPS account is moved to the production server (1-800-344-7779) and you have set the module to production mode in Zen Cart admin.</span>');
+define('MODULE_SHIPPING_USPS_TEXT_TITLE', 'USA Post Service');
+define('MODULE_SHIPPING_USPS_TEXT_DESCRIPTION', 'USA Post Service<br /><br />Sie müssen ein Web Tools Konto bei USPS at <a href="http://www.usps.com/webtools/" target="_blank">Webseite</a> haben um dieses Modul zu nutzen.<br /><br />USPS erwartet <strong>pounds als Gewichtseinheit</strong> für Ihre Produkte.' . ((MODULE_SHIPPING_USPS_USERID == 'NONE' || MODULE_SHIPPING_USPS_USERID == '' || MODULE_SHIPPING_USPS_SERVER == 'test') ? '<br /><br /><strong>Für USPS realtime Versandberechung registrieren</strong><br />
+1. <a href="http://www.usps.com/webtools/rate.htm" target="_blank">Information über USPS und Versandkosten</a><br />
+2. <a href="https://secure.shippingapis.com/registration/" target="_blank">Erstellen Sie ein USPS Web Tools Konto</a><br />
+3. Komplettieren Sie Ihre persönlichen Angaben und klicken Sie auf Submit<br />
+4. Sie werden ein EßMail mit Ihren USPS Gebühren und Web Tools User ID erhalten<br />
+5. Fügen Sie Ihre Web Tools User ID in das Zen Cart USPS Versand Modul ein.<br />
+6. Rufen Sie USPS 1-800-344-7779 und bitten Sie, Ihr Konto auf den Production Server zu aktivieren oder schicken Sie eine email an icustomercare@usps.com und geben Sie Ihre Web Tools User ID an.<br />
+7. Sie werden eine weitere Bestätigungs-Mail erhalten. Aktivieren Sie im Zen Cart das Modul in Production mode (anstatt von Test mode) um die Aktivierung zu vervollständigen.': ''));
+define('MODULE_SHIPPING_USPS_TEXT_OPT_PP', 'Postpäckchen');
+define('MODULE_SHIPPING_USPS_TEXT_OPT_PM', 'Priority Postsendung');
+define('MODULE_SHIPPING_USPS_TEXT_OPT_EX', 'Express Postsendung');
+define('MODULE_SHIPPING_USPS_TEXT_ERROR', 'Leider können wir keine passende USPS Versandkosten für die von Ihnen verwendete Versandadresse ermitteln.<br />Falls Sie USPS Landbeförderung als Versandmethode verwenden wollen, bitte kontaktieren Sie uns für Ihr Angebot.<br />(Bitte stellen Sie sicher, daß die Postleitzahl richtig ist.)');
+define('MODULE_SHIPPING_USPS_TEXT_SERVER_ERROR', 'Es ist ein Fehler bei der Ermittlung der USPS Versandkosten aufgetreten.<br />Falls Sie USPS Landbeförderung als Versandmethode verwenden möchten, nehmen Sie bitte Kontakt mit den Online Shop auf.');
+define('MODULE_SHIPPING_USPS_TEXT_DAY', 'Tage');
+define('MODULE_SHIPPING_USPS_TEXT_DAYS', 'Tage');
+define('MODULE_SHIPPING_USPS_TEXT_WEEKS', 'Wochen');
+define('MODULE_SHIPPING_USPS_TEXT_TEST_MODE_NOTICE', '<br /><span class="alert">Ihr Konto ist noch in TEST MODE. Bitte erwarten Sie keine USPS Versandkostenermittlung bis Ihr Konto auf dem Production Server läuft (1-800-344-7779) und Sie das Modul im Zen Cart admin in Real Mode aktiviert haben.</span>');
 
 ?>
