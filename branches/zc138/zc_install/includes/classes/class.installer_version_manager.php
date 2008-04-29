@@ -697,10 +697,10 @@
       global $db_test;
       $got_v1_3_8multi2 = false;
       //1st check for v1.3.8
-      $sql = "select configuration_title from " . DB_PREFIX . "configuration_language where configuration_key = 'LANGUAGE_VERSION'";
+      $sql = "select configuration_title from " . DB_PREFIX . "product_type_layout_language where configuration_key = 'LANGUAGE_VERSION'";
       $result = $db_test->Execute($sql);
       if (ZC_UPG_DEBUG==true) echo "138a-configtitle_check LANGUAGE_VERSION =" . $result->fields['configuration_title'] . '<br>';
-      if  ($result->fields['configuration_title'] == 'LANGUAGE_VERSION 20080427') {
+      if  ($result->fields['configuration_title'] == 'LANGUAGE_VERSION 20080429') {
         $got_v1_3_8multi2 = true;
       }
 
