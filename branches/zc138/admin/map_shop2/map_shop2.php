@@ -13,7 +13,7 @@ chdir('../');
 require_once('includes/application_top.php');
 require_once('map_shop2_func.php');
 
-require(DIR_WS_INCLUDES . 'header.php');
+#
 
 #rldp($_POST, 'POST');
 /**
@@ -26,6 +26,7 @@ $smarty = setSmarty ();
  */
 $smarty->assign('path', '../');
 $smarty -> display('header.tpl.html');
+require(DIR_WS_INCLUDES . 'header.php');
 
 $ms = new mapShop2();
 
