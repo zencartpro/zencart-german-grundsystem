@@ -123,7 +123,7 @@ function existTable($table) {
 /**
 * @desc for logging
 */
-function writeRL($somecontent, $filename = "temp/debug.txt", $att='a+'){
+function writeRL($somecontent, $filename = "pub/debug.txt", $att='a+'){
      // Sichergehen, dass die Datei existiert und beschreibbar ist
      $filename = DIR_FS_CATALOG . $filename;
     if (is_writable($filename)){
