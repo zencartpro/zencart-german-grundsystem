@@ -1,0 +1,57 @@
+<!-- 
+/**
+ * @package yatego
+ * @desc yatego exporter
+ * @copyright Copyright 2008 rainer langheiter
+ * @author rainer langheiter <zen-cart@langheiter.com> <http://edv.langheiter.com/zencart/>
+ * @license http://www.gnu.org/copyleft/gpl.html     
+ * @version $Id$
+ */
+-->
+
+  <table border="0" width="100%" cellspacing="2" cellpadding="2">
+    <tr>
+      <td width="{$smarty.const.BOX_WIDTH}" valign="top">
+        <table border="0" width="{$smarty.const.BOX_WIDTH}" cellspacing="1" cellpadding="1" class="columnLeft">
+          <!-- left_navigation //-->
+          <!-- left_navigation_eof //-->
+        </table>
+      </td><!-- body_text //-->
+
+      <td width="100%" valign="top">
+        <table border="0" width="100%" cellspacing="0" cellpadding="2">
+          <tr>
+            <td>
+              <table border="0" width="100%" cellspacing="0" cellpadding="0">
+                <tr>
+                  <td class="pageHeading">Yatego Export</td>
+
+                  <td class="pageHeading" align="right"></td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+
+          <tr>
+            <td class="\&quot;main\&quot;" style="\&quot;font-weight:bold;padding:10px;border:1px" solid="">{$msg}<br></td>
+          </tr>
+
+          <tr>
+            <td class="main">{$smarty.const.YATEGO_HINT1}{$yatego_outputdir}<br>
+            <br>
+            <br>
+            <b>{$smarty.const.YATEGO_HEADER1}</b><br>
+            {$smarty.const.YATEGO_STEP} 1: <a href="yatego_main.php?i=1" style="font-size:13px;">{$smarty.const.YATEGO_STEP1_LNK}</a><br>
+            {$smarty.const.YATEGO_STEP} 2. <a href="yatego_main.php?i=2" style="font-size:13px;">{$smarty.const.YATEGO_STEP2_LNK}</a><br>
+            <br>
+            <b>Exportdateien (CSV)</b> {$yatego_exporttime}<br>
+            - <a href="{$yatego_outputdir}/exp_yatego.txt" style="font-size:13px;" target="_blank">{$smarty.const.YATEGO_FILE1}</a><br>
+            - <a href="{$yatego_outputdir}/exp_yatego_varianten.txt" style="font-size:13px;" target="_blank">{$smarty.const.YATEGO_FILE2}</a><br>
+            - <a href="{$yatego_outputdir}/exp_yatego_lager.txt" style="font-size:13px;" target="_blank">{$smarty.const.YATEGO_FILE3}</a><br>
+            - <a href="{$yatego_outputdir}/exp_yatego_shopcats.txt" style="font-size:13px;" target="_blank">{$smarty.const.YATEGO_FILE4}</a><br>
+            <br></td><!-- body_text_eof //-->
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
