@@ -1,0 +1,12 @@
+$Id$
+
+YATEGO export
+
+die ordner-struktur 1:1 kopieren; es werden keine dateien überschrieben
+
+unter admin > extras > yatego ist die exportschnittstelle zu finden
+
+support: http://www.zen-cart.at/index.php?name=MDForum&file=viewtopic&t=5328
+
+
+
