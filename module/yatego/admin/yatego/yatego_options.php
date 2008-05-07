@@ -1,12 +1,15 @@
-<?php
+ <?php
 /*
-  $Id: yatego_main.php,
+  $Id$
 
-  Yatego Export for OSC
+  Yatego Export for Zen-Cart
   by www.pocketbit.net 05/2007. All rights reserved
+  converted from OSC to ZenCart by 
+    JeffClay 
+    Hugo13 (http://edv.langheiter.com/zencart/ )
 
 */
-
+chdir('../');
 require('includes/application_top.php');
 
 if ($_GET_['action'] == 'anlegen') {

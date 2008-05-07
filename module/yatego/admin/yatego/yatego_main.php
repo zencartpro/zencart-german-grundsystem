@@ -12,7 +12,6 @@
 chdir('../');
 require('includes/application_top.php');
 
-#rldp($_POST, 'POST');
 /**
  * init smarty environment
  */
@@ -23,33 +22,12 @@ $smarty = setSmarty ();
  */
 $smarty->assign('path', '../');
 $smarty -> display('header.tpl.html');
-#require(DIR_WS_INCLUDES . 'header.php');
-
 
 $msg = '';
 $version = "100";
 $salesmanager = "0";
 
-/*
-  $del_query = "DROP TABLE yategoowncats";
-  $query = tep_db_query($del_query);
 
-  $del_query = "DROP TABLE yategoexport";
-  $query = tep_db_query($del_query);
-
-  $del_query = "DROP TABLE yategoexportvarianten";
-  $query = tep_db_query($del_query);
-
-  $del_query = "DROP TABLE yategoexportvarianten2";
-  $query = tep_db_query($del_query);
-
-  $del_query = "DROP TABLE yategoexportlager";
-  $query = tep_db_query($del_query);
-
-  $del_query = "DROP TABLE yategooptions";
-  $query = tep_db_query($del_query);
-*/
-// functions
 function getfilestat ($file) {
     @$fp = fopen($file, "r");
     @$fstat = fstat($fp);
@@ -62,8 +40,6 @@ function search_cat($cat) {
     $sql = "SELECT parent_id FROM categories WHERE categories_id ='" . $cat . "'";
     $query = "SELECT parent_id FROM categories WHERE categories_id ='" . $cat . "'";
     $cat = $db->Execute($sql);
-    // $query = tep_db_query($sql);
-    // $cat = tep_db_fetch_array($query);
     $sql2 = "SELECT foreign_id_l, shop_catid FROM yategoowncats WHERE substring(foreign_id_l,4) = '" . $cat->fields['parent_id'] . "'";
 
     $query2 = $db->Execute($sql2);
@@ -71,7 +47,6 @@ function search_cat($cat) {
         $rcat = $db->Execute($sql2);
     } else {
         $i++;
-
         if ($i > 10)
             return;
         search_cat($cat->fields['parent_id']);
@@ -83,8 +58,6 @@ function zen_get_products_special_price_os($product_id) {
     global $db;
     $product = $db->Execute("select specials_new_products_price from specials where products_id = '" . (int)$product_id . "'");
     $product_query = $db->Execute("select specials_new_products_price from specials where products_id = '" . (int)$product_id . "'");
-    // $product = tep_db_fetch_array($product_query);//
-    // Salesmanager
     if ($salesmanager == '1') {
         $product_query = $db->Execute("select products_price, products_model from products where products_id = '" . $product_id . "'");
     }
@@ -96,10 +69,8 @@ function zen_get_products_special_price_os($product_id) {
     }
 
     $product_to_categories = $db->Execute("select categories_id from products_to_categories where products_id = '" . $product_id . "'");
-    // $product_to_categories = tep_db_fetch_array($product_to_categories_query);//
     $category = $product_to_categories->fields['categories_id'];
     $sale_query = $db->Execute("select sale_specials_condition, sale_deduction_value, sale_deduction_type from salemaker_sales where sale_categories_all like '%," . $category . ",%' and sale_status = '1' and (sale_date_start <= now() or sale_date_start = '0000-00-00') and (sale_date_end >= now() or sale_date_end = '0000-00-00') and (sale_pricerange_from <= '" . $product_price . "' or sale_pricerange_from = '0') and (sale_pricerange_to >= '" . $product_price . "' or sale_pricerange_to = '0')");
-    // echo "select sale_specials_condition, sale_deduction_value, sale_deduction_type from " . TABLE_SALEMAKER_SALES . " where sale_categories_all like '%," . $category . ",%' and sale_status = '1' and (sale_date_start <= now() or sale_date_start = '0000-00-00') and (sale_date_end >= now() or sale_date_end = '0000-00-00') and (sale_pricerange_from <= '" . $product_price . "' or sale_pricerange_from = '0') and (sale_pricerange_to >= '" . $product_price . "' or sale_pricerange_to = '0')";
     if ($sale_query->RecordCount()) {
         $sale = $db->Execute("select sale_specials_condition, sale_deduction_value, sale_deduction_type from salemaker_sales where sale_categories_all like '%," . $category . ",%' and sale_status = '1' and (sale_date_start <= now() or sale_date_start = '0000-00-00') and (sale_date_end >= now() or sale_date_end = '0000-00-00') and (sale_pricerange_from <= '" . $product_price . "' or sale_pricerange_from = '0') and (sale_pricerange_to >= '" . $product_price . "' or sale_pricerange_to = '0')");
     } else {
@@ -151,9 +122,6 @@ function zen_get_products_special_price_os($product_id) {
                     return number_format($product['specials_new_products_price'], 4, '.', '');
                 else
                     return number_format($productp['products_price'], 4, '.', '');
-                // return number_format($product['specials_new_products_price'], 4, '.', '');
-                // return $sale_product_price;
-                // return number_format($sale_product_price, 4, '.', '');
                 break;
 
             case 2:
@@ -167,20 +135,14 @@ function zen_get_products_special_price_os($product_id) {
     }
     // End Salesmanager
 }
-/*else {
-    return $product['specials_new_products_price'];
-  }
-*/
 
 function zen_get_yatego_nummer($cID) {
     global $db;
     $sql_query = "select yategocategories_id from categories_to_yatego where categories_id= '" . $cID . "'";
     $yatego = $db->Execute($sql_query);
-    // $yatego = tep_db_fetch_array($sql_query);//
     return $yatego->fields['yategocategories_id'];
 }
 // #################################################
-// hier gehts los?
 if (!existTable('yategoexport')) {
     $sql = "CREATE TABLE yategoexport (
                id int(11) NOT NULL auto_increment,
@@ -304,7 +266,6 @@ if (!existTable('categories_to_yatego')) {
 // Version prüfen
 // Optionen
 $options = $db->Execute("select deleteproducts, footer, language_id, outputdir from yategooptions");
-// $options = tep_db_fetch_array($query);
 $backup = $options->fields['outputdir'];
 
 require(DIR_WS_CLASSES . 'currencies.php');
@@ -332,13 +293,11 @@ if ($_GET['i'] == '1') {
     $query = $db->Execute($del_query);
     // Kategorien erzeugen
     $cat_query = "select c.categories_id, c.parent_id, cd.categories_name from categories c INNER JOIN categories_description cd ON c.categories_id=cd.categories_id WHERE cd.language_id='" . $options->fields['language_id'] . "' AND c.parent_id = '0'";
-    // $query = $db->Execute($cat_query);
     $cats = $db->Execute($cat_query);
 
     while (!$cats->EOF) {
         // Main categories
         $sql = "INSERT INTO yategoowncats (shop_catid, foreign_id_h,title_h) VALUES ('" . $cats->fields['categories_id'] . "','YAT" . $cats->fields['categories_id'] . "','" . zen_db_prepare_input(strip_tags($cats->fields['categories_name'])) . "')";
-        // tep_db_query($sql);
         $sql_data_array = array('shop_catid' => $cats->fields['categories_id'],
             'foreign_id_h' => 'YAT' . $cats->fields['categories_id'],
             'title_h' => zen_db_prepare_input(strip_tags($cats->fields['categories_name'])));
@@ -353,8 +312,6 @@ if ($_GET['i'] == '1') {
         $cat_query2 = "select c.categories_id, c.parent_id, cd.categories_name from categories c INNER JOIN categories_description cd ON c.categories_id=cd.categories_id WHERE cd.language_id='" . $options->fields['language_id'] . "' AND c.parent_id = '" . $cats->fields['shop_catid'] . "'";
         $cats2 = $db->Execute($cat_query2);
         while (!$cats2->EOF) {
-            // $sql = "INSERT INTO yategoowncats (shop_catid, foreign_id_h,foreign_id_m, title_h, title_m) VALUES ('".$cats2[categories_id]."','".$cats[foreign_id_h]."','YAT".$cats2[categories_id]."','".$cats[title_h]."','".$cats2[categories_name]."')";
-            // tep_db_query($sql);
             $sql_data_array = array('shop_catid' => $cats2->fields['categories_id'],
                 'foreign_id_h' => $cats->fields['foreign_id_h'],
                 'foreign_id_m' => 'YAT' . $cats2->fields['categories_id'],
@@ -374,7 +331,6 @@ if ($_GET['i'] == '1') {
         $cats2 = $db->Execute($cat_query2);
         while (!$cats2->EOF) {
             $sql = "INSERT INTO yategoowncats (shop_catid, foreign_id_h,foreign_id_m, foreign_id_l, title_h, title_m, title_l) VALUES ('" . $cats2->fields['categories_id'] . "','" . $cats->fields['foreign_id_h'] . "','" . $cats->fields['foreign_id_m'] . "','YAT" . $cats2->fields['categories_id'] . "','" . $cats->fields['title_h'] . "','" . $cats->fields['title_m'] . "','" . $cats2->fields['categories_name'] . "')";
-            // tep_db_query($sql);
             $sql_data_array = array('shop_catid' => $cats2->fields['categories_id'],
                 'foreign_id_h' => $cats->fields['foreign_id_h'],
                 'foreign_id_m' => $cats->fields['foreign_id_m'],
@@ -759,79 +715,4 @@ if ($r[atime] > 0) {
 }
 
 $smarty -> display('yatego_main.tpl.html');
-
-exit();
-?>
-<!-- header_eof //-->
-
-<!-- body //-->
-<table border="0" width="100%" cellspacing="2" cellpadding="2">
-  <tr>
-    <td width="<?php echo BOX_WIDTH;
-
-?>" valign="top"><table border="0" width="<?php echo BOX_WIDTH;
-
-?>" cellspacing="1" cellpadding="1" class="columnLeft">
-<!-- left_navigation //-->
-
-<!-- left_navigation_eof //-->
-        </table></td>
-<!-- body_text //-->
-    <td width="100%" valign="top"><table border="0" width="100%" cellspacing="0" cellpadding="2">
-      <tr>
-        <td><table border="0" width="100%" cellspacing="0" cellpadding="0">
-          <tr>
-            <td class="pageHeading"><?php echo 'Yatego Export';
-
-?></td>
-            <td class="pageHeading" align="right"><?php #echo zen_draw_separator('pixel_trans.gif', HEADING_IMAGE_WIDTH, HEADING_IMAGE_HEIGHT);
-
-?></td>
-          </tr>
-        </table></td>
-      </tr>
-       <?php
-if (strlen($msg) > 5)
-    echo "<tr><td  class=\"main\" style=\"font-weight:bold;padding:10px;border:1px solid #0C7E02;\">$msg<br/></td></tr>";
-
-?>
-
-
-      <tr>
-        <td class="main">{$smarty.const.MAP_SHOP2_FSTORE_NAME}
-
-<br>
-        <br/>
-       <b>Daten exportieren</b>
-       <br/>
-        Schritt 1: <a href="yatego_main.php?i=1" style="font-size:13px;">Export vorbereiten</a><br/>
-        Schritte 2. <a href="yatego_main.php?i=2" style="font-size:13px;">Export der Dateien als CSV</a><br/><br/>
-       <b>Exportdateien (CSV)</b><?php $r = (getfilestat($options->fields['outputdir'] . "/exp_yatego.txt"));
-if ($r[atime] > 0)
-    echo " (" . date("j. F Y, g:i", $r[atime]) . ") ";
-
-?>
-       <br/>
-        - <a href="<?php echo '../' . $options->fields['outputdir']?>/exp_yatego.txt" style="font-size:13px;" target=_blank>Artikeldaten </a><br>
-        - <a href="<?php echo '../' . $options->fields['outputdir']?>/exp_yatego_varianten.txt" style="font-size:13px;" target=_blank>Varianten</a><br/>
-        - <a href="<?php echo '../' . $options->fields['outputdir']?>/exp_yatego_lager.txt" style="font-size:13px;" target=_blank>Lagerdaten</a><br/>
-        - <a href="<?php echo '../' . $options->fields['outputdir']?>/exp_yatego_shopcats.txt" style="font-size:13px;" target=_blank>Eigene Kategorien</a><br/>
-<br/>
-        </td>
-<!-- body_text_eof //-->
-  </tr>
-</table>
-<!-- body_eof //-->
-
-<!-- footer //-->
-<?php require(DIR_WS_INCLUDES . 'footer.php');
-
-?>
-<!-- footer_eof //-->
-</body>
-</html>
-<?php require(DIR_WS_INCLUDES . 'application_bottom.php');
-
-?>
-
 
