@@ -1,0 +1,99 @@
+<!-- 
+/**
+ * @package yatego
+ * @desc yatego exporter
+ * @copyright Copyright 2008 rainer langheiter
+ * @author rainer langheiter <zen-cart@langheiter.com> <http://edv.langheiter.com/zencart/>
+ * @license http://www.gnu.org/copyleft/gpl.html     
+ * @version $Id$
+ */
+-->
+<table border="0" width="100%" cellspacing="2" cellpadding="2">
+<tr>
+  <td width="{$smarty.const.BOX_WIDTH} valign=">
+    <table border="0" width="{$smarty.const.BOX_WIDTH}" cellspacing="1" cellpadding="1" class="columnLeft">
+      <!-- left_navigation //-->
+      <!-- left_navigation_eof //-->
+    </table>
+  </td><!-- body_text //-->
+
+  <td width="100%" valign="top">
+    {$yatego_cat_form}
+
+      <table border="0" width="100%" cellspacing="0" cellpadding="2">
+        <tr>
+          <td>
+            <table border="0" width="100%" cellspacing="0" cellpadding="0">
+              <tr>
+                <td class="pageHeading">Zuordnung Yatego-Kategorien</td>
+
+                <td class="pageHeading" align="right"></td>
+              </tr>
+
+              <tr>
+                <td>{include file="yatego_menu.tpl.html"}</td>
+
+                <td class="pageHeading" align="right"></td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+
+        <tr>
+          <td>
+            <table border="0" width="100%" cellspacing="0" cellpadding="2">
+              <tr>
+                <td valign="top">
+                  <table border="0" width="100%" cellspacing="0" cellpadding="2">
+                    <tr>
+                      <td class="main" colspan="2"><br>
+                      Nehmen Sie hier die Zuordnung ihrer Shopkategorien zu den Yategokategorien vor.<br>
+                      Sie können auch mehrere Yategokategorien wählen. Diese sind dann durch Komma zu trennen.<br>
+                      Klicken Sie auf <b>sichern</b>, wenn Sie die Zuordnung vorgenommen haben.<br>
+                      <br>
+                      Die aktuelle Liste der Nummer für die Yategokategorien erhalten Sie auf der Yatego.</td>
+                    </tr>
+
+                    <tr class="dataTableHeadingRow">
+                      <td class="dataTableHeadingContent">Shopkategorie</td>
+
+                      <td class="dataTableHeadingContent">Yategokategorie</td>
+
+                      <td class="dataTableHeadingContent" align="right"></td>
+                    </tr>
+
+                    <tr>
+                      <td class="main" style="width:40%;background:#00FF00"><br>
+                      {$yatego_cat_btnsave}<br>
+                      <br></td>
+
+                      <td class="main" colspan="2"></td>
+                    </tr>
+
+                    {foreach key=cid item=con from=$cat}
+                    <tr>
+                      <td class="main">{$con.text}</td>
+                      <td class="main">
+                        <input type="hidden" name="yatego_id[]" value="{$con.id}" />
+                        <input type="hidden" name="fill[{$con.id}]" value="1" />
+                        <input type="text" name="categories_yatego_id[]" class="yatego-input" value="{$con.r}" />
+                      </td>
+                      <td class="main" colspan="1"></td>
+                    </tr>    
+                    {/foreach}   
+                    
+                  </table>
+                </td>
+              </tr>
+
+              <tr>
+                <td colspan="3"></td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+      </table>
+    </form>
+  </td><!-- body_text_eof //-->
+</tr>
+</table>

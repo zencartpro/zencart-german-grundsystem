@@ -715,4 +715,9 @@ if ($r[atime] > 0) {
 }
 
 $smarty -> display('yatego_main.tpl.html');
+/**
+ * footer stuff
+ */
+require(DIR_WS_INCLUDES . 'footer.php');
+
 

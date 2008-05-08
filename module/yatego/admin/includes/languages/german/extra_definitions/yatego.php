@@ -34,3 +34,9 @@ define('YATEGO_FILE1', 'Artikeldaten');
 define('YATEGO_FILE2', 'Varianten');
 define('YATEGO_FILE3', 'Lagerdaten');
 define('YATEGO_FILE4', 'Eigene Kategorien');
+
+define('YATEGO_MENU1', 'Eigene Kategorien');
+define('YATEGO_MENU2', 'Hauptmenü');
+define('YATEGO_MENU3', 'Optionen');
+define('YATEGO_MENU4', 'Top Kategorien');
+

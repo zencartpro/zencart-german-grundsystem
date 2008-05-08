@@ -12,6 +12,19 @@
 chdir('../');
 require('includes/application_top.php');
 
+/**
+ * init smarty environment
+ */
+$smarty = setSmarty ();
+
+/**
+ * header stuff
+ */
+$smarty->assign('path', '../');
+$smarty -> display('header.tpl.html');
+require(DIR_WS_INCLUDES . 'header.php');
+
+
 require(DIR_WS_CLASSES . 'currencies.php');
 $currencies = new currencies();
 
@@ -106,6 +119,21 @@ if (zen_not_null($action)) {
     }
 }
 
+$smarty->assign('msg', $msg);
+$x = zen_draw_form('yatego_anlegen', 'yatego/yatego_cat.php', '&action=anlegen', 'post', 'enctype="multipart/form-data"');
+$smarty->assign('yatego_cat_form', zen_draw_form('yatego_anlegen', 'yatego/yatego_cat.php', '&action=anlegen', 'post', 'enctype="multipart/form-data"'));
+$smarty->assign('yatego_cat_btnsave', str_replace('includes/languages', '../includes/languages', zen_image_submit('button_save.gif', IMAGE_INSERT)));
+
+$smarty->assign('cat', $hv);
+$smarty -> display('yatego_top.tpl.html');
+
+/**
+ * footer stuff
+ */
+require(DIR_WS_INCLUDES . 'footer.php');
+
+exit();
+######################
 ?>
 <!doctype html public "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html <?php echo HTML_PARAMS;
@@ -138,9 +166,7 @@ if (($action == 'new') || ($action == 'edit')) {
 <!-- body //-->
 <table border="0" width="100%" cellspacing="2" cellpadding="2">
   <tr>
-    <td width="<?php echo {$smarty.const.BOX_WIDTH};
-?>" valign="top"><table border="0" width="<?php echo {$smarty.const.BOX_WIDTH};
-?>" cellspacing="1" cellpadding="1" class="columnLeft">
+    <td width="999" valign="top"><table border="0" width="999" cellspacing="1" cellpadding="1" class="columnLeft">
 <!-- left_navigation //-->
 
 <!-- left_navigation_eof //-->
