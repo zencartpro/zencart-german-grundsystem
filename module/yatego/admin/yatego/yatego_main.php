@@ -358,7 +358,7 @@ if ($_GET['i'] == '1') {
         $var_set = $db->Execute("SELECT pov.products_options_values_id, pov.products_options_values_name, povtp.products_options_id FROM products_options_values pov INNER JOIN products_options_values_to_products_options povtp ON  pov.products_options_values_id=povtp.products_options_values_id where pov.language_id = '" . (int)$languages_id . "'");
 
         while (!$var_set->EOF) {
-            $sql = "INSERT INTO yategoexportvarianten2 (foreign_id, variantensatz_id, description) VALUES ('YAT_" . $varset->fields['products_options_id'] . "','YATVS_" . $varset->fields['products_options_values_id'] . "','" . $varset->fields['products_options_values_name'] . "')";
+            $sql = "INSERT INTO yategoexportvarianten2 (foreign_id, variantensatz_id, description) VALUES ('YAT_" . $var_set->fields['products_options_id'] . "','YATVS_" . $var_set->fields['products_options_values_id'] . "','" . $var_set->fields['products_options_values_name'] . "')";
 
             $db->Execute($sql);
             $var_set->MoveNext();
@@ -377,8 +377,8 @@ if ($_GET['i'] == '1') {
 
         if ($var_set->RecordCount() > 0) {
             while (!$var_set->EOF) {
-                if ($varset['price_prefix'] == '-') {
-                    $p = $varset->fields['price_prefix'] . $var_set->fields['options_values_price'];
+                if ($var_set->fields['price_prefix'] == '-') {
+                    $p = $var_set->fields['price_prefix'] . $var_set->fields['options_values_price'];
                 } else {
                     $p = $var_set->fields['options_values_price'];
                 }
