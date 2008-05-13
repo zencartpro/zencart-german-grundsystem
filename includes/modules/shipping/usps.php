@@ -1,7 +1,9 @@
 <?php
 /**
+ * USPS Module for Zen Cart v1.3.x, revised May 12, 2008 for new USPS rates effective May 12, 2008
+ * 
  * @package shippingMethod
- * @copyright Copyright 2003-2007 Zen Cart Development Team
+ * @copyright Copyright 2003-2008 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
  * @version $Id$
@@ -100,13 +102,19 @@ class usps extends base {
         'Global Express' => 'Global Express Guaranteed',
         'Global Express Non-Doc Rect' => 'Global Express Guaranteed Non-Document Rectangular',
         'Global Express Non-Doc Non-Rect' => 'Global Express Guaranteed Non-Document Non-Rectangular',
+        'Global Express Envelopes' => 'USPS GXG Envelopes',
         'Express Mail Int' => 'Express Mail International (EMS)',
-        'Express Mail Int Flat Rate Env' => 'Express Mail International (EMS) Flat Rate Envelope',
+        'Express Mail Int Flat Rate Env' => 'Express Mail International (EMS) Flat-Rate Envelope',
         'Priority Mail International' => 'Priority Mail International',
-        'Priority Mail Int Flat Rate Env' => 'Priority Mail International Flat Rate Envelope',
-        'Priority Mail Int Flat Rate Box' => 'Priority Mail International Flat Rate Box',
-        'First-Class Mail Int' => 'First-Class Mail International'
-         );
+        'Priority Mail Int Flat Rate Env' => 'Priority Mail International Flat-Rate Envelope',
+        'Priority Mail Int Flat Rate Box' => 'Priority Mail International Flat-Rate Box',
+        'Priority Mail Int Flat Rate Lrg Box' => 'Priority Mail International Large Flat Rate Box',
+        'First Class Mail Int Lrg Env' => 'First Class Mail International Large Envelope',
+        'First Class Mail Int Package' => 'First Class Mail International Package',
+        'First Class Mail Int Letters' => 'First Class Mail International Letters',
+        'First Class Mail Int Flats' => 'First Class Mail International Flats',
+        'First Class Mail Int Parcels' => 'First Class Mail International Parcels'
+        );
 
 
     $this->countries = $this->country_list();
@@ -251,7 +259,7 @@ class usps extends base {
     $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) values ('Sort Order', 'MODULE_SHIPPING_USPS_SORT_ORDER', '0', 'Sort order of display.', '6', '0', now())");
     // BOF: UPS USPS
     $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) values ('Domestic Shipping Methods', 'MODULE_SHIPPING_USPS_TYPES', 'EXPRESS, PRIORITY, FIRST CLASS, PARCEL, MEDIA, BPM, LIBRARY', 'Select the domestic services to be offered:', '6', '14', 'zen_cfg_select_multioption(array(\'EXPRESS\', \'PRIORITY\', \'FIRST CLASS\', \'PARCEL\', \'MEDIA\', \'BPM\', \'LIBRARY\'), ',  now())");
-    $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) values ('International Shipping Methods', 'MODULE_SHIPPING_USPS_TYPES_INTL', 'Global Express, Global Express Non-Doc Rect, Global Express Non-Doc Non-Rect, Express Mail Int, Express Mail Int Flat Rate Env, Priority Mail International, Priority Mail Int Flat Rate Env, Priority Mail Int Flat Rate Box, First-Class Mail Int', 'Select the international services to be offered:', '6', '15', 'zen_cfg_select_multioption(array(\'Global Express\', \'Global Express Non-Doc Rect\', \'Global Express Non-Doc Non-Rect\', \'Express Mail Int\', \'Express Mail Int Flat Rate Env\', \'Priority Mail International\', \'Priority Mail Int Flat Rate Env\', \'Priority Mail Int Flat Rate Box\', \'First-Class Mail Int\'), ',  now())");
+    $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) values ('International Shipping Methods', 'MODULE_SHIPPING_USPS_TYPES_INTL', 'Global Express, Global Express Non-Doc Rect, Global Express Non-Doc Non-Rect, Global Express Envelopes, Express Mail Int, Express Mail Int Flat Rate Env, Priority Mail International, Priority Mail Int Flat Rate Env, Priority Mail Int Flat Rate Box, First Class Mail Int Lrg Env, First Class Mail Int Package, First Class Mail Int Letters, First Class Mail Int Flats, First Class Mail Int Parcels', 'Select the international services to be offered:', '6', '15', 'zen_cfg_select_multioption(array(\'Global Express\', \'Global Express Non-Doc Rect\', \'Global Express Non-Doc Non-Rect\', \'Express Mail Int\', \'Express Mail Int Flat Rate Env\', \'Priority Mail International\', \'Priority Mail Int Flat Rate Env\', \'Priority Mail Int Flat Rate Box\', \'First Class Mail Int Lrg Env\', \'First Class Mail Int Package\', \'First Class Mail Int Letters\', \'First Class Mail Int Flats\', \'First Class Mail Int Parcels\'), ',  now())");
     $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) values ('USPS Options', 'MODULE_SHIPPING_USPS_OPTIONS', 'Display weight, Display transit time', 'Select from the following the USPS options.', '6', '16', 'zen_cfg_select_multioption(array(\'Display weight\', \'Display transit time\'), ',  now())");
     // EOF: UPS USPS
     $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) values ('Debug Mode', 'MODULE_SHIPPING_USPS_DEBUG_MODE', 'Off', 'Would you like to enable debug mode?  A complete detailed log of USPS quote results may be emailed to the store owner.', '6', '0', 'zen_cfg_select_option(array(\'Off\', \'Email\'), ', now())");
