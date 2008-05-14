@@ -76,7 +76,6 @@ if ($_GET['action'] == 'anlegen') {
 
 
 $smarty->assign('msg', $msg);
-$x = zen_draw_form('yatego_anlegen', 'yatego/yatego_cat.php', '&action=anlegen', 'post', 'enctype="multipart/form-data"');
 $smarty->assign('yatego_cat_form', zen_draw_form('yatego_anlegen', 'yatego/yatego_cat.php', '&action=anlegen', 'post', 'enctype="multipart/form-data"'));
 $smarty->assign('yatego_cat_btnsave', str_replace('includes/languages', '../includes/languages', zen_image_submit('button_save.gif', IMAGE_INSERT)));
 $hv = zen_get_category_tree();     
