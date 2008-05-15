@@ -9,6 +9,7 @@
     Hugo13 (http://edv.langheiter.com/zencart/ )
 
 */
+error_reporting(E_ALL);
 chdir('../');
 require('includes/application_top.php');
 
@@ -81,6 +82,11 @@ $smarty->assign('yatego_cat_btnsave', str_replace('includes/languages', '../incl
 $hv = zen_get_category_tree();     
 foreach ($hv as $key => $value) {
     $hv[$key]['r'] = zen_get_yatego_nummer($value['id']);
+    if($hv[$key]['r'] == null){
+        $hv[$key]['h'] = 0;
+    } else {
+        $hv[$key]['h'] = 1;
+    }
 }
 
 $smarty->assign('cat', $hv);
