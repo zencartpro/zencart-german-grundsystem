@@ -68,7 +68,7 @@ if ($_GET['action'] == 'anlegen') {
     for ($i = 0; $i < sizeof($_POST['yatego_id']);$i++) {
         if ($_POST['fill'][$_POST['yatego_id'][$i]] == '1') {
             $db->Execute("update categories_to_yatego SET yategocategories_id = '" . $_POST['categories_yatego_id'][$i] . "' where categories_id = '" . $_POST['yatego_id'][$i] . "'");
-        } else if (!isset($_POST['fill'][$_POST['yatego_id'][$i]]) && strlen($_POST['categories_yatego_id'][$i]) > 0) {
+        } else if (strlen($_POST['categories_yatego_id'][$i]) > 0) {
             $db->Execute("INSERT INTO categories_to_yatego (yategocategories_id, categories_id) VALUES ('" . $_POST['categories_yatego_id'][$i] . "','" . $_POST['yatego_id'][$i] . "')");
         }
     }
