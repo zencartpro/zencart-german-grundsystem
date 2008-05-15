@@ -25,7 +25,7 @@ $smarty -> display('header.tpl.html');
 require(DIR_WS_INCLUDES . 'header.php');
 
 
-if ($_GET_['action'] == 'anlegen') {
+if ($_GET['action'] == 'anlegen') {
     if (!isset($_POST['delete_products'])) {
         $_POST['delete_products'] = '0';
     }
@@ -34,12 +34,19 @@ if ($_GET_['action'] == 'anlegen') {
 
     $msg = "Die Einstellungen wurden gespeichert";
 }
+
+$query = "select outputdir, language_id, deleteproducts, footer from yategooptions";
+$res = $db->Execute($query);
+$options = $res->fields;
+
+
 $smarty->assign('$yatego_options_msg', $msg);
-$smarty->assign('yatego_options_form', zen_draw_form('yatego_anlegen', 'yatego_options.php', '&action=anlegen', 'post', 'enctype="multipart/form-data"'));
+$smarty->assign('yatego_options_form', zen_draw_form('yatego_anlegen', 'yatego/yatego_options.php', '&action=anlegen', 'post', 'enctype="multipart/form-data"'));
 $smarty->assign('yatego_options_input_1', zen_draw_input_field('language_id', $options[language_id]));
 $smarty->assign('yatego_options_input_2', zen_draw_input_field('outputdir', $options[outputdir]));
 $smarty->assign('yatego_options_input_3', zen_draw_checkbox_field('delete_products', '1', $options[deleteproducts]));
 $smarty->assign('yatego_options_input_3', zen_draw_checkbox_field('delete_products', '1', $options[deleteproducts]));
+$smarty->assign('yatego_options_input_4', zen_draw_textarea_field('products_footer', '', '60', '10', $options[footer], ''));
 
 
 $smarty->assign('yatego_cat_btnsave', str_replace('includes/languages', '../includes/languages', zen_image_submit('button_save.gif', IMAGE_INSERT)));
