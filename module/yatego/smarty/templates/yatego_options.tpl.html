@@ -8,73 +8,81 @@
  * @version $Id$
  */
 -->
-<!-- body //-->
-<table border="0" width="100%" cellspacing="2" cellpadding="2">
-  <tr>
-    <td width="{$smarty.const.BOX_WIDTH}" valign="top"><table border="0" width="{$smarty.const.BOX_WIDTH}" cellspacing="1" cellpadding="1" class="columnLeft">
-<!-- left_navigation //-->
 
-<!-- left_navigation_eof //-->
-        </table></td>
-<!-- body_text //-->
-    <td width="100%" valign="top">
-    {$yatego_options_form}
-    <table border="0" width="100%" cellspacing="0" cellpadding="2">
-      <tr>
-        <td><table border="0" width="100%" cellspacing="0" cellpadding="0">
-          <tr>
-            <td class="pageHeading">Einstellungen</td>
-            <td class="pageHeading" align="right"></td>              
-          </tr>
-          <tr><td>{include file="yatego_menu.tpl.html"}</td></tr>
-        </table></td>
-      </tr>
-      <tr>
-        <td><table border="0" width="100%" cellspacing="0" cellpadding="2">
-          <tr>
-            <td valign="top"><table border="0" width="100%" cellspacing="0" cellpadding="2">
-    <tr><td  colspan=\"2\" class=\"main\" style=\"font-weight:bold;padding:10px;border:1px solid #0C7E02;\">{$yatego_options_msg}<br/></td></tr>
-<tr>
-     <td class="main" colspan="2">
-     <br/>Sie k&ouml;nnen hier Einstellungen vornehmen.</td>
-          </td>
-        </tr>
-        <tr>
-          <td class="main">Language-ID (Sprache)</td>
-          <td class="main" colspan="1" >{$yatego_options_input_1}</td>
-          <td class="main" colspan="1" ></td>
-        </tr>
-        <tr>
-          <td class="main">Ausgabepfad (relativ zum Administrationsverzeichnis) </td>
-          <td class="main" colspan="1" >{$yatego_options_input_2}</td>
-          <td class="main" colspan="1" ></td>
-        </tr>
+  {$yatego_options_form}
 
-        <tr>
-          <td class="main">L&ouml;schmarkierung f&uuml;r Produkte</td>
-          <td class="main" colspan="1" >{$yatego_options_input_3}</td>
-          <td class="main" colspan="1" ></td>
-        </tr>
-        <tr>
-          <td class="main">Fusstext Produkte</td>
-          <td class="main" colspan="1" >{$yatego_options_input_4}</td>
-          <td class="main" colspan="1" ></td>
-        </tr>
-   <tr>
-     <td class="main"><br/>{$yatego_cat_btnsave}<br/><br></td>
-          <td class="main" colspan="2">
-          </td>
-        </tr>
+  <table border="0" width="100%" cellspacing="2" cellpadding="2">
+    <tr>
+      <td width="{$smarty.const.BOX_WIDTH}" valign="top">
+        <table border="0" width="{$smarty.const.BOX_WIDTH}" cellspacing="1" cellpadding="1" class="columnLeft"></table>
+      </td>
 
-            </table></td>
-          </tr>
+      <td width="100%" valign="top">
+        <table border="0" width="100%" cellspacing="0" cellpadding="2">
           <tr>
-            <td colspan="3"></td>
+            <td>
+              <table border="0" width="100%" cellspacing="0" cellpadding="0">
+                <tr>
+                  <td class="pageHeading">Einstellungen</td>
+                  <td class="pageHeading" align="right"></td>
+                </tr>
+                <tr>
+                  <td>{include file="yatego_menu.tpl.html"}</td>
+                </tr>
+              </table>
+            </td>
           </tr>
-        </table></td>
-      </tr>
-    </table></td>
-<!-- body_text_eof //-->
-  </tr>
- </form>
-</table>
+
+          <tr>
+            <td>
+              <table border="0" width="100%" cellspacing="0" cellpadding="2">
+                <tr>
+                  <td valign="top">
+                    <table border="0" width="100%" cellspacing="0" cellpadding="2">
+                      <tr>
+                        <td colspan="\&quot;2\&quot;" class="\&quot;main\&quot;" style="\&quot;font-weight:bold;padding:10px;border:1px" solid="">{$yatego_options_msg}<br></td>
+                      </tr>
+                      <tr>
+                        <td class="main" colspan="2"><br>
+                        Sie können hier Einstellungen vornehmen.</td>
+                      </tr>
+                      <tr>
+                        <td class="main">Language-ID (Sprache)</td>
+                        <td class="main" colspan="1">{$yatego_options_input_1}</td>
+                        <td class="main" colspan="1"></td>
+                      </tr>
+                      <tr>
+                        <td class="main">Ausgabepfad (relativ zum Administrationsverzeichnis)</td>
+                        <td class="main" colspan="1">{$yatego_options_input_2}</td>
+                        <td class="main" colspan="1"></td>
+                      </tr>
+                      <tr>
+                        <td class="main">Löschmarkierung für Produkte</td>
+                        <td class="main" colspan="1">{$yatego_options_input_3}</td>
+                        <td class="main" colspan="1"></td>
+                      </tr>
+                      <tr>
+                        <td class="main">Fusstext Produkte</td>
+                        <td class="main" colspan="1">{$yatego_options_input_4}</td>
+                        <td class="main" colspan="1"></td>
+                      </tr>
+                      <tr>
+                        <td class="main"><br>
+                        {$yatego_cat_btnsave}<br>
+                        <br></td>
+                        <td class="main" colspan="2"></td>
+                      </tr>
+                    </table>
+                  </td>
+                </tr>
+                <tr>
+                  <td colspan="3"></td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
+</form>
