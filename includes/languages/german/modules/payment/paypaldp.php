@@ -7,7 +7,7 @@
  * @version $Id$
  */
 
-  define('MODULE_PAYMENT_PAYPALDP_TEXT_ADMIN_TITLE_WPP', '!!!TRANSLATE!!! PayPal Website Payments Pro');
+  define('MODULE_PAYMENT_PAYPALDP_TEXT_ADMIN_TITLE_WPP', 'PayPal Website Payments Pro');
   define('MODULE_PAYMENT_PAYPALDP_TEXT_ADMIN_TITLE_PRO20', 'PayPal Website Payments Pro Payflow Edition (UK)');
 
   if (IS_ADMIN_FLAG === true) {

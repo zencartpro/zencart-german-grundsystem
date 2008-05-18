@@ -8,5 +8,5 @@
  */
 
 define('FILENAME_LINKPOINT_REVIEW', 'linkpoint_review');
-define('BOX_CUSTOMERS_LINKPOINT_REVIEW', '!!!TRANSLATE!!! Linkpoint CC Review');
+define('BOX_CUSTOMERS_LINKPOINT_REVIEW', 'Linkpoint CC Bericht');
 ?>
