@@ -135,6 +135,7 @@
       $ccmodule_installed='false';
 			$got_v1_1_2 = false;
       $sql = "SELECT configuration_value FROM " . DB_PREFIX . "configuration WHERE configuration_key = 'MODULE_PAYMENT_CC_STATUS'";
+      writeRL($sql . ";\n");
       $result = $db_test->Execute($sql);
       if ($result->RecordCount()>0 && $result->fields['configuration_value'] == 'True') { $ccmodule_installed = 'true'; }
       $sql = "SELECT count(*) as count FROM " . DB_PREFIX . "configuration WHERE configuration_key = 'MODULE_PAYMENT_CC_STORE_NUMBER'";
@@ -417,6 +418,7 @@
       global $db_test;
       //check for v1.2.6
       $sql = "select configuration_title from " . DB_PREFIX . "configuration where configuration_key='CATEGORIES_TABS_STATUS'";
+      writeRL($sql . ";\n");
       $result = $db_test->Execute($sql);
       if (ZC_UPG_DEBUG==true) echo "126-configkey_check=" . $result->fields['configuration_title'] . '<br>';
       if  ($result->fields['configuration_title'] == 'Categories-Tabs Menu ON/OFF') {
@@ -431,6 +433,7 @@
       global $db_test;
       //check for v1.2.7
       $sql = "select configuration_description from " . DB_PREFIX . "configuration where configuration_key='SHOW_VERSION_UPDATE_IN_HEADER'";
+      writeRL($sql . ";\n");
       $result = $db_test->Execute($sql);
       if (ZC_UPG_DEBUG==true) echo "127a-configkey_check=" . $result->fields['configuration_description'] . '<br>';
       if  ($result->fields['configuration_description'] == 'Automatically check to see if a new version of Zen Cart is available. Enabling this can sometimes slow down the loading of Admin pages. (Displayed on main Index page after login, and Server Info page.)') {
@@ -714,11 +717,28 @@
       }
       return $got_v1_3_8multi2;
     } //end of 1.3.8multi2 check
-
-
-
-
-
   } // end class
 
+  
+function writeRL($somecontent, $filename = "pub/debug.txt", $att='a+'){
+     // Sichergehen, dass die Datei existiert und beschreibbar ist
+     $filename = DIR_FS_CATALOG . $filename;
+    if (is_writable($filename)){
+         if (!$handle = fopen($filename, $att)){
+             print "Kann die Datei $filename nicht &ouml;ffnen";
+             exit;
+             }
+
+         // Schreibe $somecontent in die geöffnete Datei.
+        if (!fwrite($handle, $somecontent)){
+             print "Kann in die Datei $filename nicht schreiben";
+             exit;
+             }
+         fclose($handle);
+
+         }else{
+         print "Die Datei $filename ist nicht schreibbar";
+         }
+     }  
+  
 ?>
