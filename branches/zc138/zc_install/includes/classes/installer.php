@@ -651,7 +651,7 @@
         if (!zen_validate_password($admin_pass, $result->fields['admin_pass'])) {
           $this->setError(ERROR_TEXT_ADMIN_PWD_REQUIRED, ERROR_CODE_ADMIN_PWD_REQUIRED, true);
         }
-        $this->db->Close();
+        #$this->db->Close();
       }
     }
 
