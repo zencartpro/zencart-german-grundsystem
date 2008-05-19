@@ -1,0 +1,41 @@
+# table_name	fieldname	headername	language_id	defaultvalue
+# column-delimeter == tabulator
+# language-id: see zen_languages
+############################################################################################
+categories	categories_image	categories_image		null.gif
+categories	parent_id	parent_id		0
+categories	sort_order	sort_order		0
+categories	categories_status	categories_status		1
+categories_description	categories_name	categories_name_en	1	XXXX
+categories_description	categories_name	categories_name_de	2	XXX_DE
+categories_description	categories_description	categories_description_en	1	CatDescrEN
+categories_description	categories_description	categories_description_de	2	CatDescrDE
+products	manufacturers_id	manufacturers_id		22
+products 	product_is_always_free_shipping	product_is_always_free_shipping		0
+products 	product_is_call	product_is_call		0
+products 	product_is_free	product_is_free		0
+products 	products_date_added	products_date_added		
+products 	products_date_available	products_date_available		
+products 	products_image	products_image	0	categories/Wasserlilien.jpg
+products 	products_last_modified	products_last_modified		
+products 	products_model	products_model		
+products 	products_ordered	products_ordered		1000
+products 	products_price	products_price		999
+products 	products_priced_by_attribute	products_priced_by_attribute		0
+products 	products_qty_box_status	products_qty_box_status		1
+products 	products_quantity	products_quantity		1000
+products 	products_quantity_mixed	products_quantity_mixed		0
+products 	products_quantity_order_max	products_quantity_order_max		0
+products 	products_quantity_order_min	products_quantity_order_min		0
+products 	products_quantity_order_units	products_quantity_order_units		1
+products 	products_status	products_status		1
+products 	products_tax_class_id	products_tax_class_id		1
+products 	products_virtual	products_virtual		0
+products 	products_weight	products_weight		100
+products_description 	products_description	description_en	1
+products_description 	products_description	description_de	2
+products_description 	products_name	name_en	1	only german
+products_description 	products_name	name_de	2	nur englisch
+products_description 	products_url	products_url
+products_description 	products_viewed	products_viewed		0
+products_to_categories	dummy	dummy		dont delete this line 
