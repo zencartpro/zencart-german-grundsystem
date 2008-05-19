@@ -6,10 +6,10 @@ categories	categories_image	categories_image		null.gif
 categories	parent_id	parent_id		0
 categories	sort_order	sort_order		0
 categories	categories_status	categories_status		1
-categories_description	categories_name	categories_name_en	1	XXXX
-categories_description	categories_name	categories_name_de	2	XXX_DE
+categories_description	categories_name	categories_name_en	1	XXX_EN
+categories_description	categories_name	categories_name_de	43	XXX_DE
 categories_description	categories_description	categories_description_en	1	CatDescrEN
-categories_description	categories_description	categories_description_de	2	CatDescrDE
+categories_description	categories_description	categories_description_de	43	CatDescrDE
 products	manufacturers_id	manufacturers_id		22
 products 	product_is_always_free_shipping	product_is_always_free_shipping		0
 products 	product_is_call	product_is_call		0
@@ -33,9 +33,9 @@ products 	products_tax_class_id	products_tax_class_id		1
 products 	products_virtual	products_virtual		0
 products 	products_weight	products_weight		100
 products_description 	products_description	description_en	1
-products_description 	products_description	description_de	2
+products_description 	products_description	description_de	43
 products_description 	products_name	name_en	1	only german
-products_description 	products_name	name_de	2	nur englisch
+products_description 	products_name	name_de	43	nur englisch
 products_description 	products_url	products_url
 products_description 	products_viewed	products_viewed		0
 products_to_categories	dummy	dummy		dont delete this line 

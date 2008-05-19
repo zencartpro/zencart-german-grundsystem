@@ -1,14 +1,14 @@
-products_image	products_model	name_en	description_en	products_price	categories_name_en
-dean/2550.png	2550	4 Wheel Drive & Sports Utility	12	15.95	Sports
-dean/42502.png	42502	4-Wheel ATV Action	12	19.98	Off road
-dean/1920.png	1920	5.0 Mustang	12	18	Automotive
-dean/40528.png	40528	ABC Soaps in Depth (6 months)	12	19.95	Computer
-dean/42169.png	42169	Access VB SQL Advisor	12	99	Sports
-dean/3158.png	3158	Acoustic Guitar	12	29.95	Off road
-dean/1108.png	1108	Action Comics Superman	12	15	Automotive
-dean/40029.png	40029	Action Pursuit Games	12	24.5	Computer
-dean/40026.png	40026	Adirondack Life	8	21.95	Sports
-dean/42170.png	42170	Adoptive Families	6	24.95	Off road
-dean/42673.png	42673	Adventure Sports	10	24.97	Automotive
-dean/40030.png	40030	Advocate	26	39.97	Computer
-dean/1653.png	1653	Adweek	51	149	Sports
+products_image	products_model	products_quantity	name_de	description_de	products_price	categories_name_en
+dean/2550.png	2550	3.899082569	4 Wheel Drive & Sports Utility	4 Wheel Drive & Sports Utility ArtNr: 2550  Kat: Sports  Preis:15.95	15.95	Sports
+dean/42502.png	42502	64.98776758	4-Wheel ATV Action	4-Wheel ATV Action ArtNr: 42502  Kat: Off road  Preis:19.98	19.98	Off road
+dean/1920.png	1920	2.935779817	5.0 Mustang	5.0 Mustang ArtNr: 1920  Kat: Automotive  Preis:18	18	Automotive
+dean/40528.png	40528	61.96941896	ABC Soaps in Depth (6 months)	ABC Soaps in Depth (6 months) ArtNr: 40528  Kat: Computer  Preis:19.95	19.95	Computer
+dean/42169.png	42169	64.47859327	Access VB SQL Advisor	Access VB SQL Advisor ArtNr: 42169  Kat: Sports  Preis:99	99	Sports
+dean/3158.png	3158	4.828746177	Acoustic Guitar	Acoustic Guitar ArtNr: 3158  Kat: Off road  Preis:29.95	29.95	Off road
+dean/1108.png	1108	1.694189602	Action Comics Superman	Action Comics Superman ArtNr: 1108  Kat: Automotive  Preis:15	15	Automotive
+dean/40029.png	40029	61.20642202	Action Pursuit Games	Action Pursuit Games ArtNr: 40029  Kat: Computer  Preis:24.5	24.5	Computer
+dean/40026.png	40026	61.20183486	Adirondack Life	Adirondack Life ArtNr: 40026  Kat: Sports  Preis:21.95	21.95	Sports
+dean/42170.png	42170	64.48012232	Adoptive Families	Adoptive Families ArtNr: 42170  Kat: Off road  Preis:24.95	24.95	Off road
+dean/42673.png	42673	65.24923547	Adventure Sports	Adventure Sports ArtNr: 42673  Kat: Automotive  Preis:24.97	24.97	Automotive
+dean/40030.png	40030	61.20795107	Advocate	Advocate ArtNr: 40030  Kat: Computer  Preis:39.97	39.97	Computer
+dean/1653.png	1653	2.527522936	Adweek	Adweek ArtNr: 1653  Kat: Sports  Preis:149	149	Sports
