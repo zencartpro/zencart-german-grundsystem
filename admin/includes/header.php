@@ -18,8 +18,9 @@ if ((basename($PHP_SELF) != FILENAME_DEFINE_LANGUAGE . '.php') and (basename($PH
   $languages = zen_get_languages();
   if (sizeof($languages) > 1) {
     $languages_array = array();
-    $languages_selected = $_GET['language'];
+    $languages_selected = $_SESSION['language'];
     $missing_languages='';
+    $count = 0;
     for ($i = 0, $n = sizeof($languages); $i < $n; $i++) {
       $test_directory= DIR_WS_LANGUAGES . $languages[$i]['directory'];
       $test_file= DIR_WS_LANGUAGES . $languages[$i]['directory'] . '.php';
