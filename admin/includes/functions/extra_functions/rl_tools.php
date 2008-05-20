@@ -123,12 +123,12 @@ function existTable($table) {
 /**
 * @desc for logging
 */
-function writeRL($somecontent, $filename = "pub/debug.txt", $att='a+'){
+function writeRL($somecontent, $folder = '../pub/', $filename = "debug.txt", $att='a'){
      // Sichergehen, dass die Datei existiert und beschreibbar ist
-     $filename = DIR_FS_CATALOG . $filename;
-    if (is_writable($filename)){
-         if (!$handle = fopen($filename, $att)){
-             print "Kann die Datei $filename nicht &ouml;ffnen";
+     $foldFile = $folder . $filename;
+    if (is_writable($folder)){
+         if (!$handle = fopen($foldFile, $att)){
+             print "Kann die Datei $filename nicht öffnen";
              exit;
              }
 

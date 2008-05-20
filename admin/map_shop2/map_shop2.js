@@ -63,8 +63,14 @@ $(document).ready(function() {
 function showResponse(responseText, statusText){
     $('#MAP_SHOP2_LAT').val(responseText.lat);
     $('#MAP_SHOP2_LNG').val(responseText.lng);
+    if(responseText.lng == ''){
+        $('#MAP_SHOP2_LAT').val('NULL');
+        $('#MAP_SHOP2_LNG').val('NULL');
+        alert('konnte deine adresse nicht finden');  
+    }
     $('#MAP_SHOP2_DESCRIPTION').val(responseText.post);
-    //alert(responseText.lat);
+    //$('#MAP_SHOP2_DESCRIPTION').val('hugio');
+    // alert(responseText.lat);
 }
 function showMap(responseText, statusText){
     //alert(responseText);
