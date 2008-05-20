@@ -2,7 +2,7 @@
 #include_once()
 #define('SOAPSERVER', 'http://localhost/kzen/zc130/docs/soap/soap/scalar2.php');
 #define('SOAPSERVER', 'http://all.ar-pub.com/kzen/zc130/docs/soap/soap/scalar2.php');
-$SS = 'SS::'.SOAPSERVER;
+#$SS = 'SS::'. SOAPSERVER;
 
 function getMenuList($mail='test@xx.yy'){
      require_once(DIR_FS_CATALOG . 'soap/nusoap.php');
