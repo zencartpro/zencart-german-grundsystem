@@ -14,8 +14,8 @@ ALTER TABLE configuration_group ADD language_id INT( 11 ) DEFAULT '1' NOT NULL A
 ALTER TABLE configuration_group DROP PRIMARY KEY ,
 ADD PRIMARY KEY ( configuration_group_id , language_id );
 
-ALTER TABLE products_options_values ADD UNIQUE XYZ ( products_options_values_id , language_id );
-REPLACE INTO products_options_values (products_options_values_id, language_id, products_options_values_name, products_options_values_sort_order) VALUES (0, 43, 'TEXT_XYZ', 0);
+#ALTER TABLE products_options_values ADD UNIQUE XYZ ( products_options_values_id , language_id );
+#REPLACE INTO products_options_values (products_options_values_id, language_id, products_options_values_name, products_options_values_sort_order) VALUES (0, 43, 'TEXT_XYZ', 0);
 
 CREATE TABLE IF NOT EXISTS configuration_language(
   configuration_id int(11) NOT NULL auto_increment,
