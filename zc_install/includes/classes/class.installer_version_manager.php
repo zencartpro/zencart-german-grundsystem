@@ -21,7 +21,8 @@
 ////     ii) add another IF statement to set the displayed version text ($retVal)
 ////  c. add a new check_versionXXXX() function to the end of the class (BEFORE the closing } in the file)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
-
+#error_reporting(E_ALL);
+require_once('../admin/includes/functions/extra_functions/rl_tools.php');
   class versionManager extends base{
     var $latest_version, $found_version, $zdb_configuration_table_found;
 
@@ -700,45 +701,37 @@
       global $db_test;
       $got_v1_3_8multi2 = false;
       //1st check for v1.3.8
-      $sql = "select configuration_title from " . DB_PREFIX . "product_type_layout_language where configuration_key = 'LANGUAGE_VERSION'";
-      $result = $db_test->Execute($sql);
-      if (ZC_UPG_DEBUG==true) echo "138a-configtitle_check LANGUAGE_VERSION =" . $result->fields['configuration_title'] . '<br>';
-      if  ($result->fields['configuration_title'] == 'LANGUAGE_VERSION 20080429') {
-        $got_v1_3_8multi2 = true;
-      }
+      if(isMultiLingual2($db_test)){
+          if (ZC_UPG_DEBUG==true) echo "138a-configtitle_check LANGUAGE_VERSION =" . $result->fields['configuration_title'] . '<br>';
+            $got_v1_3_8multi2 = true;
 
-      if (ZC_UPG_DEBUG==true) {
-        echo '1.3.8multi2=' . $got_v1_3_8multi2 .'<br>';
-      }
-      // evaluate all 1.3.8 checks
-      if ($got_v1_3_8multi2) {
-        $got_v1_3_8multi2 = true;
-        if (ZC_UPG_DEBUG==true) echo '<br>Got 1.3.8multi2<br>';
+          if (ZC_UPG_DEBUG==true) {
+            echo '1.3.8multi2=' . $got_v1_3_8multi2 .'<br>';
+          }
+          // evaluate all 1.3.8 checks
+          if ($got_v1_3_8multi2) {
+            $got_v1_3_8multi2 = true;
+            if (ZC_UPG_DEBUG==true) echo '<br>Got 1.3.8multi2<br>';
+          }
       }
       return $got_v1_3_8multi2;
     } //end of 1.3.8multi2 check
   } // end class
 
   
-function writeRL($somecontent, $filename = "pub/debug.txt", $att='a+'){
-     // Sichergehen, dass die Datei existiert und beschreibbar ist
-     $filename = DIR_FS_CATALOG . $filename;
-    if (is_writable($filename)){
-         if (!$handle = fopen($filename, $att)){
-             print "Kann die Datei $filename nicht &ouml;ffnen";
-             exit;
-             }
-
-         // Schreibe $somecontent in die geöffnete Datei.
-        if (!fwrite($handle, $somecontent)){
-             print "Kann in die Datei $filename nicht schreiben";
-             exit;
-             }
-         fclose($handle);
-
-         }else{
-         print "Die Datei $filename ist nicht schreibbar";
-         }
-     }  
-  
-?>
+ function isMultiLingual2($db) {
+    include('../includes/database_tables.php');
+    $sql = "SHOW  TABLES  LIKE  '" . TABLE_PRODUCT_TYPE_LAYOUT_LANGUAGE . "'";
+    $res = $db -> Execute($sql);
+    if($res -> RecordCount() == 0 ){
+        return false;
+    } else {
+        $sql = "select configuration_title from " . DB_PREFIX . "product_type_layout_language where configuration_key = 'LANGUAGE_VERSION'";
+        $result = $db->Execute($sql);
+        if  ($result->fields['configuration_title'] == 'LANGUAGE_VERSION 20080520'){
+            return true;
+        } else {
+            return false;
+        }
+    }
+ }
