@@ -1,0 +1,229 @@
+<?xml version="1.0"?>
+<wsdl:definitions xmlns="http://schemas.xmlsoap.org/wsdl/"
+xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+xmlns:SOAP-ENC="http://schemas.xmlsoap.org/soap/encoding/"
+xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+xmlns:tns="http://schema.example.com"
+targetNamespace="http://schema.example.com">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://schema.example.com">
+      <xsd:complexType name="ZenCartCategoriesListArray">
+        <xsd:complexContent>
+          <xsd:restriction base="SOAP-ENC:Array">
+            <xsd:attribute ref="SOAP-ENC:arrayType"
+            wsdl:arrayType="tns:ZenCartCategoriesList[]" />
+          </xsd:restriction>
+        </xsd:complexContent>
+      </xsd:complexType>
+      <xsd:complexType name="ZenCartCategoriesList">
+        <xsd:all>
+          <xsd:element name="categories_id" type="xsd:int" />
+          <xsd:element name="categories_name" type="xsd:string" />
+        </xsd:all>
+      </xsd:complexType>
+      <xsd:complexType name="ZenCartProduct">
+        <xsd:all>
+          <xsd:element name="products_description"
+          type="xsd:string" />
+          <xsd:element name="products_id" type="xsd:int" />
+          <xsd:element name="products_image" type="xsd:string" />
+          <xsd:element name="products_model" type="xsd:string" />
+          <xsd:element name="products_name" type="xsd:string" />
+          <xsd:element name="products_pic_large"
+          type="xsd:string" />
+          <xsd:element name="products_pic_medium"
+          type="xsd:string" />
+          <xsd:element name="products_pic_smal"
+          type="xsd:string" />
+          <xsd:element name="products_price" type="xsd:string" />
+          <xsd:element name="products_price_format"
+          type="xsd:string" />
+          <xsd:element name="tax_rate" type="xsd:float" />
+        </xsd:all>
+      </xsd:complexType>
+      <xsd:complexType name="ZenCartProductArray">
+        <xsd:complexContent>
+          <xsd:restriction base="SOAP-ENC:Array">
+            <xsd:attribute ref="SOAP-ENC:arrayType"
+            wsdl:arrayType="tns:ZenCartProduct[]" />
+          </xsd:restriction>
+        </xsd:complexContent>
+      </xsd:complexType>
+    </xsd:schema>
+  </wsdl:types>
+  <message name="__constructRequest" />
+  <message name="getCategoriesListRequest">
+    <part name="languages" type="xsd:string" />
+  </message>
+  <message name="getCategoriesListResponse">
+    <part name="getCategoriesListReturn"
+    type="tns:ZenCartCategoriesListArray" />
+  </message>
+  <message name="getCategoriesListJSONRequest">
+    <part name="languages" type="xsd:string" />
+  </message>
+  <message name="getCategoriesListJSONResponse">
+    <part name="getCategoriesListJSONReturn" type="xsd:string" />
+  </message>
+  <message name="getProductRequest">
+    <part name="products_id" type="xsd:int" />
+    <part name="languages" type="xsd:string" />
+  </message>
+  <message name="getProductResponse">
+    <part name="getProductReturn" type="tns:ZenCartProduct" />
+  </message>
+  <message name="getProductsRequest">
+    <part name="categories_id" type="xsd:string" />
+    <part name="max_ds" type="xsd:int" />
+    <part name="languages" type="xsd:string" />
+  </message>
+  <message name="getProductsResponse">
+    <part name="getProductsReturn"
+    type="tns:ZenCartProductArray" />
+  </message>
+  <message name="intoShoppingCartRequest">
+    <part name="serialData" type="xsd:string" />
+  </message>
+  <message name="intoShoppingCartResponse">
+    <part name="intoShoppingCartReturn" type="xsd:int" />
+  </message>
+  <message name="saveGoogleMapRequest">
+    <part name="serialData" type="xsd:string" />
+  </message>
+  <message name="saveGoogleMapResponse">
+    <part name="saveGoogleMapReturn" type="xsd:int" />
+  </message>
+  <wsdl:portType name="ZenCartPortType">
+    <wsdl:operation name="__construct">
+      <wsdl:input message="tns:__constructRequest" />
+    </wsdl:operation>
+    <wsdl:operation name="getCategoriesList">
+      <wsdl:input message="tns:getCategoriesListRequest" />
+      <wsdl:output message="tns:getCategoriesListResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="getCategoriesListJSON">
+      <wsdl:input message="tns:getCategoriesListJSONRequest" />
+      <wsdl:output message="tns:getCategoriesListJSONResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="getProduct">
+      <wsdl:input message="tns:getProductRequest" />
+      <wsdl:output message="tns:getProductResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="getProducts">
+      <wsdl:input message="tns:getProductsRequest" />
+      <wsdl:output message="tns:getProductsResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="intoShoppingCart">
+      <wsdl:input message="tns:intoShoppingCartRequest" />
+      <wsdl:output message="tns:intoShoppingCartResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="saveGoogleMap">
+      <wsdl:input message="tns:saveGoogleMapRequest" />
+      <wsdl:output message="tns:saveGoogleMapResponse" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <binding name="ZenCartBinding" type="tns:ZenCartPortType">
+    <soap:binding style="rpc"
+    transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="__construct">
+      <soap:operation soapAction="http://redt.ar-pub.com/zc136/soap.server.php"
+      style="rpc" />
+      <wsdl:input>
+        <soap:body use="encoded"
+        namespace="http://schema.example.com"
+        encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:input>
+    </wsdl:operation>
+    <wsdl:operation name="getCategoriesList">
+      <soap:operation soapAction="http://redt.ar-pub.com/zc136/soap.server.php"
+      style="rpc" />
+      <wsdl:input>
+        <soap:body use="encoded"
+        namespace="http://schema.example.com"
+        encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded"
+        namespace="http://schema.example.com"
+        encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getCategoriesListJSON">
+      <soap:operation soapAction="http://redt.ar-pub.com/zc136/soap.server.php"
+      style="rpc" />
+      <wsdl:input>
+        <soap:body use="encoded"
+        namespace="http://schema.example.com"
+        encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded"
+        namespace="http://schema.example.com"
+        encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getProduct">
+      <soap:operation soapAction="http://redt.ar-pub.com/zc136/soap.server.php"
+      style="rpc" />
+      <wsdl:input>
+        <soap:body use="encoded"
+        namespace="http://schema.example.com"
+        encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded"
+        namespace="http://schema.example.com"
+        encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getProducts">
+      <soap:operation soapAction="http://redt.ar-pub.com/zc136/soap.server.php"
+      style="rpc" />
+      <wsdl:input>
+        <soap:body use="encoded"
+        namespace="http://schema.example.com"
+        encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded"
+        namespace="http://schema.example.com"
+        encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="intoShoppingCart">
+      <soap:operation soapAction="http://redt.ar-pub.com/zc136/soap.server.php"
+      style="rpc" />
+      <wsdl:input>
+        <soap:body use="encoded"
+        namespace="http://schema.example.com"
+        encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded"
+        namespace="http://schema.example.com"
+        encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="saveGoogleMap">
+      <soap:operation soapAction="http://redt.ar-pub.com/zc136/soap.server.php"
+      style="rpc" />
+      <wsdl:input>
+        <soap:body use="encoded"
+        namespace="http://schema.example.com"
+        encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded"
+        namespace="http://schema.example.com"
+        encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+  </binding>
+  <wsdl:service name="ZenCart">
+    <wsdl:port name="ZenCartPort" binding="tns:ZenCartBinding">
+      <soap:address location="http://redt.ar-pub.com/zc136/soap.server.php" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
+

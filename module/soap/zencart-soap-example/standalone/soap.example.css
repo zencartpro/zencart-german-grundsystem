@@ -1,0 +1,35 @@
+html {
+    font-family:Verdana, Arial, Helvetica, sans-serif;
+    font-size: .9em;
+}
+#info, #menu, #footer {
+    text-align:center;
+}
+#wrap {
+	text-align:left;
+	margin:auto;
+	border: 1px solid green;
+	width: 960px;
+    width: 95%;
+    height: 100%;
+}
+#output {
+	border: 1px solid orange;
+    height: 100%:
+	
+}
+
+#out1, #out2, #out3{
+    Afont-family:"Courier New", Courier, mono;
+    font-size:11px;
+    width: 25%
+}
+#out3{width: 50%}
+table, tr, td{
+    border: 0px solid gray;
+    padding-right: 19px;
+    Aborder-right: 2px solid black;
+}
+a {
+    text-decoration: none;
+}
