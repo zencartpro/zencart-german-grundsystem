@@ -69,8 +69,7 @@ function showResponse(responseText, statusText){
         alert('konnte deine adresse nicht finden');  
     }
     $('#MAP_SHOP2_DESCRIPTION').val(responseText.post);
-    //$('#MAP_SHOP2_DESCRIPTION').val('hugio');
-    // alert(responseText.lat);
+    //alert(responseText.lat);
 }
 function showMap(responseText, statusText){
     //alert(responseText);

@@ -76,14 +76,12 @@ class mapShop2{
         }
         $r['ms_hash'] = $this->localHash;
         $r['h'] = $this->oldHash;
-        $x = http_build_query($r);
+        $x = http_build_query($r, NULL, '&');
         $s = (serialize($r));
         
         $c = curl_init(MAP_SHOP2_SAVEREMOTE);
         curl_setopt($c, CURLOPT_POST, 1);
-        #curl_setopt($c, CURLOPT_POSTFIELDS,'h=' . $this->oldHash . '&p='.$s);
         curl_setopt($c, CURLOPT_POSTFIELDS, $x);
-        #writeRL($s);
         curl_setopt($c, CURLOPT_RETURNTRANSFER,1);
         $page = curl_exec($c);
         curl_close($c);
@@ -151,5 +149,3 @@ switch ($ac) {
         echo '';
      break;
 }
-
-?>
