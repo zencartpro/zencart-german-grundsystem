@@ -212,3 +212,11 @@ TR.tableHeading {
 hr {
 	border-bottom-color: #660000;
 }
+#navEZPagesTop a {
+  color: white;
+}
+
+#navEZPagesTop a:hover {
+  color: yellow;
+  text-decoration:none;
+}
