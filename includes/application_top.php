@@ -12,6 +12,22 @@
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
  * @version $Id: application_top.php 7470 2007-11-24 20:54:50Z drbyte $
  */
+/**
+ * prevent hack attempts which waste CPU cycles
+ */
+$paramsToCheck = array('main_page', 'cPath', 'products_id', 'language', 'currency', 'action', 'manufacturers_id', 'pID', 'pid', 'reviews_id', 'filter_id', 'zenid', 'sort', 'number_of_uploads', 'notify', 'page_holder', 'chapter', 'alpha_filter_id', 'typefilter', 'disp_order', 'id', 'key', 'music_genre_id', 'record_company_id', 'set_session_login', 'faq_item', 'edit', 'delete', 'search_in_description', 'dfrom', 'pfrom', 'dto', 'pto', 'inc_subcat', 'payment_error', 'order', 'gv_no', 'pos', 'addr', 'error', 'count', 'error_message', 'info_message', 'cID', 'page');
+$contaminated = false;
+foreach($paramsToCheck as $key) {
+  if (isset($_GET[$key]) && substr($_GET[$key], 0, 4) == 'http') {
+    $contaminated = true;
+    break;
+  }
+}
+if ($contaminated || isset($_GET['autoLoadConfig']) || isset($_GET['mosConfig_absolute_path']) || isset($_FILES['GLOBALS']) || isset($_REQUEST['GLOBALS']) )
+{
+  header('HTTP/1.1 406 Not Acceptable');
+  exit(0);
+}
 /*
  * turn off magic-quotes support, for both runtime and sybase, as both will cause problems if enabled
  */
