@@ -53,9 +53,11 @@ require(DIR_WS_MODULES . zen_get_module_directory('meta_tags.php'));
   $manufacturers_id = (isset($_GET['manufacturers_id'])) ? $_GET['manufacturers_id'] : '';
   $tmp_products_id = (isset($_GET['products_id'])) ? (int)$_GET['products_id'] : '';
   $tmp_pagename = ($this_is_home_page) ? 'index_home' : $current_page_base;
+  $cp = zen_parse_category_path($cPath);
   $sheets_array = array('/' . $_SESSION['language'] . '_stylesheet', 
                         '/' . $tmp_pagename, 
                         '/' . $_SESSION['language'] . '_' . $tmp_pagename, 
+                        '/c_' . $cp[0] . '_',
                         '/c_' . $cPath,
                         '/' . $_SESSION['language'] . '_c_' . $cPath,
                         '/m_' . $manufacturers_id,

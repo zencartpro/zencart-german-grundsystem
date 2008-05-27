@@ -75,7 +75,7 @@ define('FEMALE_ADDRESS', 'Frau');
 define('DOB_FORMAT_STRING', 'tt/mm/jjjj');
 
 //text for sidebox heading links
-define('BOX_HEADING_LINKS', '??[mehr]');
+define('BOX_HEADING_LINKS', ' [mehr]');
 
 // categories box text in sideboxes/categories.php
 define('BOX_HEADING_CATEGORIES', 'Kategorien');
@@ -118,7 +118,7 @@ define('BOX_HEADING_CUSTOMER_ORDERS', 'Bestellte Artikel');
 
 // best_sellers box text in sideboxes/best_sellers.php
 define('BOX_HEADING_BESTSELLERS', 'Top Artikel');
-define('BOX_HEADING_BESTSELLERS_IN', 'Top Artikel in<br />??');
+define('BOX_HEADING_BESTSELLERS_IN', 'Top Artikel in<br /> ');
 
 // notifications box text in sideboxes/products_notifications.php
 define('BOX_HEADING_NOTIFICATIONS', 'Benachrichtigung');
@@ -185,7 +185,7 @@ define('ERROR_PRIVACY_STATEMENT_NOT_ACCEPTED', 'Bitte bestätigen Sie unsere AGB
 define('CATEGORY_COMPANY', 'Firma');
 define('CATEGORY_PERSONAL', 'Ihre persönlichen Angaben');
 define('CATEGORY_ADDRESS', 'Anschrift');
-define('CATEGORY_CONTACT', 'Wie erreichen wir Sie?');
+define('CATEGORY_CONTACT', 'Wie erreichen wir Sie ');
 define('CATEGORY_OPTIONS', 'Zusatz');
 define('CATEGORY_PASSWORD', 'Ihr Passwort');
 define('CATEGORY_LOGIN', 'Anmelden');
@@ -226,7 +226,7 @@ define('ENTRY_POST_CODE', 'Postleitzahl:');
 define('ENTRY_POST_CODE_ERROR', 'Die Postleitzahl muss aus mindestens ' . ENTRY_POSTCODE_MIN_LENGTH . ' Zeichen bestehen.');
 define('ENTRY_POST_CODE_TEXT', '*');
 define('ENTRY_CITY', 'Ort:');
-define('ENTRY_CUSTOMERS_REFERRAL', 'Wie wurden Sie auf uns aufmerksam?');
+define('ENTRY_CUSTOMERS_REFERRAL', 'Wie wurden Sie auf uns aufmerksam ');
 
 define('ENTRY_CITY_ERROR', 'Die Stadt muss aus mindestens ' . ENTRY_CITY_MIN_LENGTH . ' Zeichen bestehen.');
 define('ENTRY_CITY_TEXT', '*');
@@ -285,8 +285,8 @@ define('PREVNEXT_TITLE_PAGE_NO', 'Seite %d');
 define('PREVNEXT_TITLE_PREV_SET_OF_NO_PAGE', 'Vorherige %d Seiten');
 define('PREVNEXT_TITLE_NEXT_SET_OF_NO_PAGE', 'Nächsten %d Seiten');
 define('PREVNEXT_BUTTON_FIRST', '<<Erste');
-define('PREVNEXT_BUTTON_PREV', '[<<?Vorherige]');
-define('PREVNEXT_BUTTON_NEXT', '[Nächste?>>]');
+define('PREVNEXT_BUTTON_PREV', '[<< Vorherige]');
+define('PREVNEXT_BUTTON_NEXT', '[Nächste >>]');
 define('PREVNEXT_BUTTON_LAST', 'Letzte>>');
 
 define('TEXT_BASE_PRICE', 'ab ');
@@ -397,9 +397,9 @@ define('TEXT_SHIPPING_WEIGHT','kg');
 define('TEXT_SHIPPING_BOXES', 'Pakete');
 
 // Discount Savings
-define('PRODUCT_PRICE_DISCOUNT_PREFIX', 'Sie sparen?');
+define('PRODUCT_PRICE_DISCOUNT_PREFIX', 'Sie sparen ');
 define('PRODUCT_PRICE_DISCOUNT_PERCENTAGE', '% !');
-define('PRODUCT_PRICE_DISCOUNT_AMOUNT', '?weniger');
+define('PRODUCT_PRICE_DISCOUNT_AMOUNT', ' weniger');
 
 // Sale Maker Sale Price
 define('PRODUCT_PRICE_SALE', 'Jetzt nur noch ');
@@ -556,7 +556,7 @@ define('CART_ITEMS', 'im Warenkorb: ');
 define('CART_SELECT', 'wählen Sie');
 define('ERROR_CART_UPDATE', 'Bitte aktualisieren Sie Ihre Bestellung ...<br />');
 define('IMAGE_BUTTON_UPDATE_CART', 'aktualisieren');
-define('EMPTY_CART_TEXT_NO_QUOTE', 'Uups! Ihre Sitzung wurde unterbrochen? Aktualisieren Sie bitte Ihren Warenkorb für die Versandart');
+define('EMPTY_CART_TEXT_NO_QUOTE', 'Uups! Ihre Sitzung wurde unterbrochen! Aktualisieren Sie bitte Ihren Warenkorb für die Versandart');
 define('CART_SHIPPING_QUOTE_CRITERIA', 'Die Versandkosten werden aufgrund der ausgewählten Adresse berechnet:');
 
 // multiple product add to cart
