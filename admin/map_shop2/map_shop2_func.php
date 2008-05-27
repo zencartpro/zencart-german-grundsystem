@@ -87,8 +87,26 @@ class mapShop2{
         curl_close($c);
     }
     
+    function get_content($url)
+    {
+        $ch = curl_init();
+
+        curl_setopt ($ch, CURLOPT_URL, $url);
+        curl_setopt ($ch, CURLOPT_HEADER, 0);
+
+        ob_start();
+
+        curl_exec ($ch);
+        curl_close ($ch);
+        $string = ob_get_contents();
+
+        ob_end_clean();
+       
+        return $string;    
+    }
+
     function getSel($opt = 'NIX'){
-        $tmp = file_get_contents(MAP_SHOP2_SEL);
+        $tmp = $this->get_content(MAP_SHOP2_SEL);
         if('NIX' != $opt){
             $tmp = str_replace('<option value="' . $opt . '">', '<option value="' . $opt . '" selected>', $tmp);
         }

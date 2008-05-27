@@ -9,5 +9,21 @@
  */
 ?>
 <?php
-    $za_contents[] = array('text' => MAP_SHOP2_MENU, 'link' => zen_href_link('map_shop2/'.MAP_SHOP2_FILENAME, '', 'NONSSL'));
-?>
+
+if (!defined('IS_ADMIN_FLAG')) {
+  die('Illegal Access');
+}
+
+$options = array( array('box' => MAP_SHOP2_MENU, 'page' => 'map_shop2/'.MAP_SHOP2_FILENAME),
+                );
+
+foreach ($options as $key => $value) {
+    if (!function_exists('page_allowed')) {
+        $za_contents[] = array('text' => $value['box'], 'link' => zen_href_link($value['page'], '', 'NONSSL'));
+    }
+    if (function_exists('page_allowed') && page_allowed($value['page'])=='true') {
+        $za_contents[] = array('text' => $value['box'], 'link' => zen_href_link($value['page'], '', 'NONSSL'));
+    }
+    
+    
+}
