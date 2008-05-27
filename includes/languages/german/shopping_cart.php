@@ -22,8 +22,8 @@ define('SUB_TITLE_TOTAL','Gesamt:');
 define('OUT_OF_STOCK_CANT_CHECKOUT','Artikel, die markiert sind, ' . STOCK_MARK_PRODUCT_OUT_OF_STOCK . ' sind zurzeit leider nicht auf Lager.');
 define('OUT_OF_STOCK_CAN_CHECKOUT','Artikel, die markiert sind, ' . STOCK_MARK_PRODUCT_OUT_OF_STOCK . ' sind zurzeit leider nicht auf Lager.');
 define('TEXT_TOTAL_ITEMS','Summe Artikel:&nbsp;');
-define('TEXT_TOTAL_WEIGHT','??Gewicht:&nbsp;');
-define('TEXT_TOTAL_AMOUNT','??Betrag:&nbsp;');
+define('TEXT_TOTAL_WEIGHT',' Gewicht:&nbsp;');
+define('TEXT_TOTAL_AMOUNT',' Betrag:&nbsp;');
 define('TEXT_VISITORS_CART', '<a href="javascript:session_win();">[Hilfe (?)]</a>');
 define('TEXT_OPTION_DIVIDER', '&nbsp;-&nbsp;');
 

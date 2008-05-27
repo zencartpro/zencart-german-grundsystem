@@ -71,6 +71,7 @@ define('TABLE_PAYPAL_TESTING', DB_PREFIX . 'paypal_testing');
 define('TABLE_PRODUCTS', DB_PREFIX . 'products');
 define('TABLE_PRODUCT_TYPES', DB_PREFIX . 'product_types');
 define('TABLE_PRODUCT_TYPE_LAYOUT', DB_PREFIX . 'product_type_layout');
+define('TABLE_PRODUCT_TYPE_LAYOUT_LANGUAGE', DB_PREFIX . 'product_type_layout_language');
 define('TABLE_PRODUCT_TYPES_TO_CATEGORY', DB_PREFIX . 'product_types_to_category');
 define('TABLE_PRODUCTS_ATTRIBUTES', DB_PREFIX . 'products_attributes');
 define('TABLE_PRODUCTS_ATTRIBUTES_DOWNLOAD', DB_PREFIX . 'products_attributes_download');
