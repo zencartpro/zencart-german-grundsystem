@@ -75,7 +75,7 @@ require($template->get_template_dir('/tpl_products_next_previous.php',DIR_WS_TEM
 
   // for VAT info display :: hugo13
   if(VAT_SHOW){
-    echo VAT_SHOW_TEXT;
+    #echo VAT_SHOW_TEXT;
   }
 ?></h2>
 <!--eof Product Price block -->
