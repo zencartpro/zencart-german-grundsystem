@@ -33,13 +33,13 @@ switch ($_GET['faq_item']) {
   case '1':
 define('SUB_HEADING_TITLE','Wie bestelle ich ' . TEXT_GV_NAMES);
 define('SUB_HEADING_TEXT', TEXT_GV_NAMES . ' können Sie ganz normal wie andere Artikel unseres Shops bestellen. Bezahlen können Sie bei uns mit den herkömmlichen Bezahlarten.
-  Ist die Bestellung eines ' . TEXT_GV_NAME . ' abgeschlossen, wird der Wert Ihrem persönlichen
+  Ist die Bestellung eines ' . TEXT_GV_NAME . 's abgeschlossen, wird der Wert Ihrem persönlichen
    ' . TEXT_GV_NAME . 'konto gutgeschrieben. In Ihrem persönlichen Warenkorb erscheint der eingelöste Betrag Ihres ' . TEXT_GV_NAME . 'kontos. Zusätzlich erscheint ein Link Ihres ' . TEXT_GV_NAME . 's, den Sie dann an Freunde und Bekannte per E-Mail weiterleiten können.');
   break;
   case '2':
 define('SUB_HEADING_TITLE','Wie versende ich ' . TEXT_GV_NAMES);
 define('SUB_HEADING_TEXT','Um einen ' . TEXT_GV_NAME . ' zu versenden, brauchen Sie nur auf unsere ' . TEXT_GV_NAME . ' - Versandseite zu gehen. Den Link hierfür finden Sie in Ihrem persönlichen Warenkorb.
-  Beim Versenden eines ' . TEXT_GV_NAME . ', müssen Sie folgende Daten angeben:<br />
+  Beim Versenden eines ' . TEXT_GV_NAME . 's müssen Sie folgende Daten angeben:<br />
   Den <strong>Namen</strong> der Person, der Sie den ' . TEXT_GV_NAME . ' senden möchten.<br />
   Die <strong>E-Mail Adresse</strong> der Person, der Sie den ' . TEXT_GV_NAME . ' senden möchten.<br />
   Den <strong>Betrag</strong>, den Sie versenden möchten.<br /> (Hinweis: Sie müssen nicht den gesamten Betrag des ' . TEXT_GV_NAME . 'kontos verwenden.)<br /><br />
@@ -57,10 +57,10 @@ define('SUB_HEADING_TEXT','Wenn Ihr ' . TEXT_GV_NAME . 'konto Guthaben aufweist,
   break;
   case '4':
 define('SUB_HEADING_TITLE','Einlösen von ' . TEXT_GV_NAMES);
-define('SUB_HEADING_TEXT','Beim Erhalt eines ' . TEXT_GV_NAME . ' per E-Mail werden Ihnen darin der Absender, der Wert des ' . TEXT_GV_NAME . ', sowie eine kurze Nachricht des Absenders mitgeteilt. Die
+define('SUB_HEADING_TEXT','Beim Erhalt eines ' . TEXT_GV_NAME . ' per E-Mail werden Ihnen darin der Absender, der Wert des ' . TEXT_GV_NAME . 's, sowie eine kurze Nachricht des Absenders mitgeteilt. Die
 E-Mail beinhaltet auch noch den ' . TEXT_GV_NAME . ' mit dem ' . TEXT_GV_REDEEM . '. Wir empfehlen Ihnen, sich Ihren ' . TEXT_GV_NAME . ' für den späteren Gebrauch auszudrucken.<br /><br /><u>Sie können Ihren ' . TEXT_GV_NAME . ' nun auf
   zwei Arten einlösen:</u><br /><br />
-  1. Durch klicken auf den mitgesendeten Link der E-Mail,
+  1. Durch Klicken auf den mitgesendeten Link der E-Mail,
   der Sie direkt auf die  ' . TEXT_GV_NAME . 'seite bringen wird. Damit dieser ' . TEXT_GV_NAME . ' gültig wird, müssen Sie - sofern Sie noch keines besitzen - ein Konto in unserem Shop erstellen.
   Nach erfolgreicher Anmeldung wird Ihnen das Guthaben dieses Gutscheins auf Ihr <br /><br /><center><strong>persönliches ' . TEXT_GV_NAME . 'konto</strong></center><br /> gutgeschrieben. Ab sofort können sie nun dieses Guthaben für Ihre Zwecke verwenden.<br /><br />
   2. Während des Bestellvorgangs können Sie auf der Seite, auf der Sie Ihre <strong>Zahlungsweise</strong> angeben, auch den ' . TEXT_GV_REDEEM . ' eingeben. Geben Sie Ihren persönlichen ' . TEXT_GV_REDEEM . ' ein und
@@ -80,8 +80,5 @@ define('SUB_HEADING_TEXT','Bitte wählen Sie Ihr Thema, zudem Sie Fragen haben.'
 
   }
 
-define('TEXT_GV_REDEEM_INFO', 'Bitte geben Sie Ihren  ' . TEXT_GV_NAME . ' Gutscheincode ein: ');
+define('TEXT_GV_REDEEM_INFO', 'Bitte geben Sie Ihren  ' . TEXT_GV_NAME . ' Code ein: ');
 define('TEXT_GV_REDEEM_ID', 'Gutscheincode:');
-
-
-?>

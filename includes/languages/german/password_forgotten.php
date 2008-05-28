@@ -16,6 +16,3 @@ define('TEXT_NO_EMAIL_ADDRESS_FOUND','Achtung! Die E-Mail Adresse wurde nicht in
 define('EMAIL_PASSWORD_REMINDER_SUBJECT',STORE_NAME . ' - Neues Passwort');
 define('EMAIL_PASSWORD_REMINDER_BODY','Ein neues Passwort wurde angefordert von ' . $_SERVER['REMOTE_ADDR']  . '.' . "\n\n" . 'Ihr neues Passwort für \'' . STORE_NAME . '\' lautet:' . "\n\n" . '   %s' . "\n\n");
 define('SUCCESS_PASSWORD_SENT', 'Erfolgreich! Ein neues Passwort wurde an Ihre E-Mail Adresse versandt.');
-
-
-?>

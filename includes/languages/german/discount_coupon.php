@@ -26,7 +26,7 @@ define('TEXT_INFORMATION', '');
 define('TEXT_COUPON_FAILED', '<span class="alert important">%s</span> scheint kein gültiger Aktionskupon zu sein. Bitte überprüfen Sie die Nummer auf Ihrem Aktionskupon und geben Sie diese nochmals ein.');
 define('HEADING_COUPON_HELP', 'Aktionskupon Hilfe');
 define('TEXT_CLOSE_WINDOW', 'Fenster schließen [x]');
-define('TEXT_COUPON_HELP_HEADER', '<p class="bold">Der eingegebene Code gehört zu Aktionskupon: ');
+define('TEXT_COUPON_HELP_HEADER', '<p class="bold">Der eingegebene Code gehört zu ');
 define('TEXT_COUPON_HELP_NAME', '\'%s\'. </p>');
 define('TEXT_COUPON_HELP_FIXED', '');
 define('TEXT_COUPON_HELP_MINORDER', '');
@@ -46,10 +46,8 @@ define('TEXT_PROD_ALLOWED', ' (Gültig für diesen Artikel)');
 define('TEXT_PROD_DENIED', ' (Nicht gültig für diesen Artikel)');
 // gift certificates cannot be purchased with Discount Coupons
 define('TEXT_COUPON_GV_RESTRICTION','<p class="smallText">Aktionskupons können nicht zum Kauf von ' . TEXT_GV_NAMES . ' verwendet werden. Limit: 1 Aktionskupon pro Bestellung.</p>');
+
 define('TEXT_DISCOUNT_COUPON_ID_INFO', 'Aktionskupon einlösen ');
-define('TEXT_DISCOUNT_COUPON_ID', 'Kuponnummer: ');
+define('TEXT_DISCOUNT_COUPON_ID', 'Aktionskuponnummer: ');
+
 define('TEXT_COUPON_GV_RESTRICTION_ZONES', 'Mit dieser Rechnungsadresse können keine Aktionkupons eingelöst werden.');
-
-
-
-?>

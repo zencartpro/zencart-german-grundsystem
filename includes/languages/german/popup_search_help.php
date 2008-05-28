@@ -40,7 +40,3 @@ define('TEXT_SEARCH_HELP','
   <br />
   Es sind natürlich auch Kombinationen möglich (Zen OR Cart OR "zen cart")</p>');
 define('TEXT_CLOSE_WINDOW','<u>Fenster schließen</u> [x]');
-
-
-
-?>

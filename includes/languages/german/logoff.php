@@ -11,7 +11,3 @@
 define('HEADING_TITLE','Abgemeldet');
 define('NAVBAR_TITLE','Abgemeldet');
 define('TEXT_MAIN','Sie sind nun abgemeldet. Vielen Dank für Ihren Besuch.<br /><br />Der Inhalt Ihres Warenkorbs wurde gespeichert und steht Ihnen bei Ihrem nächsten Besuch wieder zur Verfügung.');
-
-
-
-?>

@@ -8,7 +8,7 @@
  * @version $Id$
  */
 
-define('TEXT_MAIN','Definieren Sie hier Ihren persönlichen Text. Diesen Text können Sie in <strong>/includes/languages/german/index.php (Zeile 27)</strong> editieren.');
+define('TEXT_MAIN','Definieren Sie hier Ihren persönlichen Text. Diesen Text können Sie in <strong>/includes/languages/german/index.php</strong> editieren.');
 
 // Showcase vs Store
 if (STORE_STATUS == '0') {
@@ -18,7 +18,7 @@ if (STORE_STATUS == '0') {
 }
 
 define('TEXT_GREETING_PERSONAL', 'Willkommen <span class="greetUser">%s</span>! Wollen Sie sehen, was es <a href="%s">Neues</a> bei uns gibt?');
-define('TEXT_INFORMATION', 'Definieren Sie hier Ihren persönlichen Text. Diesen Text können Sie in <strong>/includes/languages/german/index.php (Zeile 21)</strong> editieren.');
+define('TEXT_INFORMATION', 'Definieren Sie hier Ihren persönlichen Text. Diesen Text können Sie in <strong>/includes/languages/german/index.php</strong> editieren.');
 
 //moved to english
 //define('TABLE_HEADING_FEATURED_PRODUCTS','Featured Products');
@@ -55,4 +55,3 @@ define('HEADING_TITLE', 'Willkommen in unserem Online Shop!');
   /*Replace this line with the headline you would like for your shop. For example: 'Welcome to My SHOP!'*/
 define('HEADING_TITLE', 'Willkommen in unserem Online Shop!');
 }
-?>

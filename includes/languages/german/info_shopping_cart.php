@@ -28,6 +28,3 @@ define('SUB_HEADING_TEXT_1','Jeder Besucher unseres Shops bekommt einen sogenann
 define('SUB_HEADING_TEXT_2','Jeder Kunde, der sich auf unserem Shop anmeldet, bekommt einen sogenannten \'Kunden Warenkorb\'. Dies ermöglicht unseren Kunden, sich Artikel in den Warenkorb zu legen, die bis zu einem späteren Besuch im Warenkorb verbleiben. Diese Artikel verbleiben so lange im \'Kunden Warenkorb\' bis der Kunde sie kauft oder diese wieder aus dem Warenkorb entfernt.');
 define('SUB_HEADING_TEXT_3','Wenn ein Kunde sich Artikel in den \'Besucher Warenkorb\' legt und sich während dieser Sitzung anmeldet, werden diese Artikel in dessen \'Kunden Warenkorb\' verschoben.');
 define('TEXT_CLOSE_WINDOW','[ Fenster schließen ]');
-
-
-?>

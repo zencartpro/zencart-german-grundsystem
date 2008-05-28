@@ -20,9 +20,6 @@
 // $Id$
 //
 
-define('NAVBAR_TITLE','Datenschutz');
-define('HEADING_TITLE','Datenschutz');
-define('TEXT_INFORMATION', 'Datenschutz');
-
-
-?>
+define('NAVBAR_TITLE','Datenschutzbestimmungen');
+define('HEADING_TITLE','Datenschutzbestimmungen');
+define('TEXT_INFORMATION', 'Ihre Datenschutzbestimmungen sollten auf dieser Seite stehen');

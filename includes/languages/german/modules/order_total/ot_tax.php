@@ -22,6 +22,3 @@
 
 define('MODULE_ORDER_TOTAL_TAX_TITLE', 'Steuern');
 define('MODULE_ORDER_TOTAL_TAX_DESCRIPTION', 'Enthaltene Steuern der Bestellung');
-
-
-?>

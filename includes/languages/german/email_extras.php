@@ -9,20 +9,20 @@
  */
 
 // office use only
-define('OFFICE_FROM', 'Absender:');
-define('OFFICE_EMAIL', 'E-Mail:');
+define('OFFICE_FROM', '<strong>Absender:</strong>');
+define('OFFICE_EMAIL', '<strong>E-Mail:</strong>');
 
-define('OFFICE_SENT_TO', 'An:');
-define('OFFICE_EMAIL_TO', 'An E-Mail:');
+define('OFFICE_SENT_TO', '<strong>An:</strong>');
+define('OFFICE_EMAIL_TO', '<strong>An E-Mail:</strong>');
 
-define('OFFICE_USE', 'Nur für den internen Gebrauch:');
-define('OFFICE_LOGIN_NAME', 'Kontoname:');
-define('OFFICE_LOGIN_EMAIL', 'E-Mail Adresse:');
-define('OFFICE_LOGIN_PHONE', '<strong>Telephon:</strong>');
+define('OFFICE_USE', '<strong>Nur für den internen Gebrauch:</strong>');
+define('OFFICE_LOGIN_NAME', '<strong>Kontoname:</strong>');
+define('OFFICE_LOGIN_EMAIL', '<strong>E-Mail Adresse</strong>:');
+define('OFFICE_LOGIN_PHONE', '<strong>Telefon:</strong>');
 define('OFFICE_LOGIN_FAX','<strong>Fax:</strong>');
-define('OFFICE_IP_ADDRESS', 'IP Adresse:');
-define('OFFICE_HOST_ADDRESS', 'Hostname:');
-define('OFFICE_DATE_TIME', 'Datum und Uhrzeit:');
+define('OFFICE_IP_ADDRESS', '<strong>IP Adresse:</strong>');
+define('OFFICE_HOST_ADDRESS', '<strong>Hostname:</strong>');
+define('OFFICE_DATE_TIME', '<strong>Datum und Uhrzeit:</strong>');
   if (!defined('OFFICE_IP_TO_HOST_ADDRESS')) define('OFFICE_IP_TO_HOST_ADDRESS', 'OFF');
 
 // email disclaimer
@@ -42,7 +42,7 @@ define('SEND_EXTRA_CREATE_ACCOUNT_EMAILS_TO_SUBJECT', '[NEUES KUNDENKONTO]');
 define('SEND_EXTRA_TELL_A_FRIEND_EMAILS_TO_SUBJECT', '[EMPFEHLUNG]');
 define('SEND_EXTRA_GV_CUSTOMER_EMAILS_TO_SUBJECT', '[GUTSCHEIN]');
 define('SEND_EXTRA_NEW_ORDERS_EMAILS_TO_SUBJECT', '[NEUE BESTELLUNG]');
-define('SEND_EXTRA_CC_EMAILS_TO_SUBJECT', '[EXTRA CC BESTELLINFO] #');
+define('SEND_EXTRA_CC_EMAILS_TO_SUBJECT', '[EXTRA KREDITKARTEN BESTELLINFO] #');
 
 // Low Stock Emails
 define('EMAIL_TEXT_SUBJECT_LOWSTOCK', 'Warnung: Lagermindestbestand unterschritten');

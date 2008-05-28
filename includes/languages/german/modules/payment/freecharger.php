@@ -22,7 +22,4 @@
 
 define('MODULE_PAYMENT_FREECHARGER_TEXT_TITLE', 'Gratis');
 define('MODULE_PAYMENT_FREECHARGER_TEXT_DESCRIPTION', 'Zur Verwendung bei kostenlosen Artikel');
-define('MODULE_PAYMENT_FREECHARGER_TEXT_EMAIL_FOOTER', '');
-
-
-?>
+define('MODULE_PAYMENT_FREECHARGER_TEXT_EMAIL_FOOTER', 'Zur Verwendung bei kostenlosen Artikel');

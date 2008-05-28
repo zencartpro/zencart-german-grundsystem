@@ -23,6 +23,3 @@ define('HEADING_SEARCH_HELP', 'Voraussichtliche Versandkosten:');
 define('TEXT_TOTAL_ITEMS', 'Gesamtstückzahl: ');
 define('TEXT_TOTAL_WEIGHT', '&nbsp;&nbsp;Gewicht: ');
 define('TEXT_TOTAL_AMOUNT', '&nbsp;&nbsp;Preis: ');
-
-
-?>

@@ -9,10 +9,12 @@
  */
 
 define('NAVBAR_TITLE_1','Mein Konto');
-define('NAVBAR_TITLE_2','Newsletter Abonnement');
-define('HEADING_TITLE','Newsletter Abonnement');
+define('NAVBAR_TITLE_2','Newsletter Abonnements');
+
+define('HEADING_TITLE','Newsletter Abonnements');
+
 define('MY_NEWSLETTERS_TITLE','Meine Newsletter Abonnements');
 define('MY_NEWSLETTERS_GENERAL_NEWSLETTER', 'Standard Newsletter');
 define('MY_NEWSLETTERS_GENERAL_NEWSLETTER_DESCRIPTION','Beinhaltet Informationen zum Shop, Artikel und Neuerungen. Informiert Sie über Neuheiten, Sonderangebote und wichtige Neuerungen.');
+
 define('SUCCESS_NEWSLETTER_UPDATED','Ihre Newsletter Abonnements wurden erfolgreich aktualisiert.');
-?>

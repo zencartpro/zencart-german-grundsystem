@@ -26,6 +26,7 @@ define('SECONDARY_MESSAGE', 'Liebe(r)) %s,<br /><br />' . 'Du hast einen ' . TEX
 define('PERSONAL_MESSAGE','%s schreibt:');
 define('TEXT_SUCCESS','Herzlichen Glückwunsch, der ' . TEXT_GV_NAME . ' wurde erfolgreich versendet.');
 define('TEXT_SEND_ANOTHER', 'Wollen Sie einen weiteren ' . TEXT_GV_NAME . ' versenden?');
+
 define('TEXT_AVAILABLE_BALANCE','Ihr derzeitiges Guthaben beträgt ');
 define('EMAIL_GV_TEXT_SUBJECT','Ein Geschenk von %s');
 define('EMAIL_SEPARATOR','-------------------------------------------------------------------------------------------------');
@@ -39,6 +40,3 @@ define('EMAIL_GV_VISIT','oder besuchen Sie');
 define('EMAIL_GV_ENTER','und geben die ' . TEXT_GV_REDEEM . ' ein');
 define('EMAIL_GV_FIXED_FOOTER','Sollten Sie Probleme mit dem Einlösen des ' . TEXT_GV_NAME . ' über diesen Link haben,<br />können Sie den ' . TEXT_GV_REDEEM . ' Ihres ' . TEXT_GV_NAME . ' während des Bestellvorgangs eingeben.<br /><br />');
 define('EMAIL_GV_SHOP_FOOTER', 'Vielen Dank!<br /><br />Mit freundlichen Grüssen<br />Ihr ' . STORE_NAME . ' Team');
-
-
-?>

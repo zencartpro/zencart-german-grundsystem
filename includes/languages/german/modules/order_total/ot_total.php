@@ -20,8 +20,5 @@
 // $Id$
 //
 
-define('MODULE_ORDER_TOTAL_TOTAL_TITLE', 'Summe');
-define('MODULE_ORDER_TOTAL_TOTAL_DESCRIPTION', 'Bestellsumme');
-
-
-?>
+define('MODULE_ORDER_TOTAL_TOTAL_TITLE', 'Endsumme');
+define('MODULE_ORDER_TOTAL_TOTAL_DESCRIPTION', 'Endsumme der Bestellung');

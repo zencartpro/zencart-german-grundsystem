@@ -22,13 +22,10 @@
 
 define('NAVBAR_TITLE','Neue Artikel');
 define('HEADING_TITLE','Neue Artikel');
-define('TEXT_DATE_ADDED','Erstelldatum:');
+define('TEXT_DATE_ADDED','Hinzugefügt am:');
 define('TEXT_MANUFACTURER','Hersteller:');
 define('TEXT_PRICE','Preis:');
 define('TEXT_PRODUCTS_MODEL','Artikelnummer: ');
 define('TEXT_PRODUCTS_WEIGHT','Gewicht: ');
 define('TEXT_PRODUCTS_QUANTITY','Im Lager: ');
 define('TEXT_OUT_OF_STOCK','Nicht lagernd');
-
-
-?>

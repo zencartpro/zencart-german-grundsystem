@@ -14,8 +14,4 @@ Als Anzeigebedingung können Gewicht, Artikelanzahl, Rechnungsbetrag verwendet w
 Dieses Modul wird bei gleichzeitiger Verwendung mit dem Modul "Immer Versandkostenfrei" nicht angezeigt.<br /><br />
 Gibt man im Feld "Ab Bestellsumme" den Wert 0.00 ein und lässt man das Feld "Bis Bestellsumme" leer, wird das Modul immer angezeigt, außer das Modul "Immer Versandkostenfrei" ist aktiviert.<br /><br />
 Anmerkung: Werden die Eingabefelder Gewicht, Summe, Stückzahl leer gelassen, dann wird dieses Modul deaktiviert.');
-define('MODULE_SHIPPING_FREEOPTIONS_TEXT_WAY', 'Versandkostenfrei mit Optionen');
-
-
-
-?>
+define('MODULE_SHIPPING_FREEOPTIONS_TEXT_WAY', 'Versandkostenfrei');

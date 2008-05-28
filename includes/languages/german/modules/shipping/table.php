@@ -25,4 +25,4 @@ define('MODULE_SHIPPING_TABLE_TEXT_DESCRIPTION','Tabellarische Versandkosten');
 define('MODULE_SHIPPING_TABLE_TEXT_WAY','Standard');
 define('MODULE_SHIPPING_TABLE_TEXT_WEIGHT','Gewicht');
 define('MODULE_SHIPPING_TABLE_TEXT_AMOUNT','Betrag');
-?>
+

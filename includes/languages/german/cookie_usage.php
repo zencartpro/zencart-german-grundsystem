@@ -29,6 +29,3 @@ define('TEXT_INFORMATION_4','Wir haben diese Option zugunsten Ihrer und unserer 
 define('TEXT_INFORMATION_5','Sollten Sie Fragen haben, kontaktieren Sie bitte den Shopbetreiber.');
 define('BOX_INFORMATION_HEADING','<strong>Cookies - Datenschutz und Sicherheit</strong>');
 define('BOX_INFORMATION','Die Verwendung von Cookies muss aktiviert sein, um Online in diesen Shop einzukaufen und um Ihre Privatsphäre und Ihre Sicherheit zu schützen.<br /><br />Durch die Aktivierung von Cookies auf Ihrem Browser wird eine zuverlässige Kommunikation zwischen Ihnen und diesem Shopsystem gewährleistet.');
-
-
-?>

@@ -20,10 +20,6 @@ define('ICON_IMAGE_TINYCART', 'cart.gif');
 define('ICON_ERROR_ALT', 'Fehler');
 define('ICON_SUCCESS_ALT', 'Erfolgreich');
 define('ICON_WARNING_ALT', 'Warnung');
-define('ICON_TRASH_ALT', 'Artikel löschen');
+define('ICON_TRASH_ALT', 'Artikel aus dem Warenkorb löschen');
 define('ICON_UPDATE_ALT', 'Warenkorb aktualisieren');
 define('ICON_TINYCART_ALT', 'Artikel in Warenkorb legen');
-
-
-
-?>

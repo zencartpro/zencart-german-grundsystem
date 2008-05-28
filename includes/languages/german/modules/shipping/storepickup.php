@@ -23,4 +23,4 @@
 define('MODULE_SHIPPING_STOREPICKUP_TEXT_TITLE','Selbstabholer');
 define('MODULE_SHIPPING_STOREPICKUP_TEXT_DESCRIPTION','Selbstabholer');
 define('MODULE_SHIPPING_STOREPICKUP_TEXT_WAY','Sie holen die Ware in unserem Hause ab');
-?>
+

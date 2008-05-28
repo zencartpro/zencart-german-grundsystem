@@ -10,9 +10,9 @@
 
 define('TEXT_PRODUCT_NOT_FOUND', 'Entschuldigen Sie bitte, aber der gewünschte Artikel konnte nicht gefunden werden.');
 define('TEXT_CURRENT_REVIEWS','Bewertungen:');
-define('TEXT_MORE_INFORMATION','Für weitere Informationen besuchen Sie unsere <a href="%s" target="_blank">Homepage</a>.');
-define('TEXT_DATE_ADDED','Dieser Artikel wurde am  %s eingetragen.');
-define('TEXT_DATE_AVAILABLE','<font color="#ff0000">Dieser Artikel wird vorraussichtlich am %s auf Lager sein.</font>');
+define('TEXT_MORE_INFORMATION','Für weitere Informationen besuchen Sie diese <a href="%s" target="_blank">Webseite</a>.');
+define('TEXT_DATE_ADDED','Dieser Artikel wurde am  %s im Shop aufgenommen.');
+define('TEXT_DATE_AVAILABLE','Dieser Artikel wird vorraussichtlich am %s auf Lager sein.');
 define('TEXT_ALSO_PURCHASED_PRODUCTS','Kunden die dieses Artikel gekauft haben, haben auch diese Artikel gekauft...');
 define('TEXT_PRODUCT_OPTIONS','<strong>Bitte wählen Sie:</strong>');
 define('TEXT_PRODUCT_MANUFACTURER','Hergestellt von: ');
@@ -24,7 +24,7 @@ define('TEXT_PRODUCT_MODEL','Artikelnummer: ');
 
 // previous next product
 define('PREV_NEXT_PRODUCT','Artikel ');
-define('PREV_NEXT_FROM','vom');
+define('PREV_NEXT_FROM','von');
 define('IMAGE_BUTTON_PREVIOUS','Vorheriger Artikel');
 define('IMAGE_BUTTON_NEXT','Nächster Artikel');
 define('IMAGE_BUTTON_RETURN_TO_PRODUCT_LIST','Zurück zur Artikelliste');
@@ -44,6 +44,3 @@ define('ATTRIBUTES_PRICE_DELIMITER_PREFIX', ' ( ' );
 define('ATTRIBUTES_PRICE_DELIMITER_SUFFIX', ' )' );
 define('ATTRIBUTES_WEIGHT_DELIMITER_PREFIX', ' (' );
 define('ATTRIBUTES_WEIGHT_DELIMITER_SUFFIX', ') ' );
-
-
-?>

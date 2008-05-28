@@ -22,13 +22,12 @@
 
 define('NAVBAR_TITLE', 'Ähnliche Artikel');
 define('HEADING_TITLE', 'Ähnliche Artikel');
-define('TEXT_DATE_ADDED', 'Erstelldatum:');
+
+define('TEXT_DATE_ADDED', 'Hinzugefügt am:');
 define('TEXT_MANUFACTURER', 'Hersteller:');
 define('TEXT_PRICE', 'Preis:');
+
 define('TEXT_PRODUCTS_MODEL','Artikelnummer: ');
 define('TEXT_PRODUCTS_WEIGHT','Gewicht: ');
 define('TEXT_PRODUCTS_QUANTITY','Auf Lager: ');
 define('TEXT_OUT_OF_STOCK','Nicht lagernd');
-
-
-?>

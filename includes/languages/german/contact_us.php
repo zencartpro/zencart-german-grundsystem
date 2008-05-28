@@ -19,6 +19,3 @@ define('SEND_TO_TEXT','E-Mail senden an:');
 define('ENTRY_EMAIL_NAME_CHECK_ERROR', 'Entschuldigung, ist Ihr Name richtig? Unser System erfordert ein Minimum von ' . ENTRY_FIRST_NAME_MIN_LENGTH . ' Buchstaben. Bitte versuchen Sie es nochmals.');
 define('ENTRY_EMAIL_CONTENT_CHECK_ERROR', 'Vergaßen Sie Ihre Nachricht?  Wir möchten von Ihnen hören. Sie können Ihre Anmerkungen im Textbereich unten schreiben. ');
 define('NOT_LOGGED_IN_TEXT', 'Nicht angemeldet');
-
-
-?>

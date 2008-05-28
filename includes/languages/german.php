@@ -20,7 +20,8 @@ define('FOOTER_TEXT_BODY', 'Copyright &copy; ' . date('Y') . ' <a href="http://w
 // on RedHat try 'en_US'
 // on FreeBSD try 'en_US.ISO_8859-1'
 // on Windows try 'en', or 'English'
-@setlocale(LC_TIME, 'de_DE.ISO_8859-1');
+// @setlocale(LC_TIME, 'de_DE.ISO_8859-1'); geändert von MaleBorg
+@setlocale(LC_TIME, 'de_DE.ISO_8859-1','de_DE@euro', 'de_DE', 'de', 'ge'); 
 define('DATE_FORMAT_SHORT', '%d.%m %Y'); // this is used for strftime()
 define('DATE_FORMAT_LONG', '%A, %d. %B %Y'); // this is used for strftime()
 define('DATE_FORMAT', 'd.m.Y'); // this is used for date()
@@ -85,14 +86,14 @@ define('BOX_HEADING_MANUFACTURERS', 'Hersteller');
 
 // whats_new box text in sideboxes/whats_new.php
 define('BOX_HEADING_WHATS_NEW', 'Neue Artikel');
-define('CATEGORIES_BOX_HEADING_WHATS_NEW', 'Neue Artikel...');
+define('CATEGORIES_BOX_HEADING_WHATS_NEW', 'Neue Artikel ...');
 
 define('TEXT_NO_FEATURED_PRODUCTS', 'Weitere ähnliche Artikel erscheinen in Kürze. Bitte besuchen Sie unseren Shop regelmäßig wieder.');
 define('BOX_HEADING_FEATURED_PRODUCTS', 'Ähnliche Artikel');
-define('CATEGORIES_BOX_HEADING_FEATURED_PRODUCTS', 'Ähnliche Artikel...');
+define('CATEGORIES_BOX_HEADING_FEATURED_PRODUCTS', 'Ähnliche Artikel ...');
 
 define('TEXT_NO_ALL_PRODUCTS', 'Weitere Artikel erscheinen in Kürze. Bitte besuchen Sie unseren Shop regelmäßig wieder.');
-define('CATEGORIES_BOX_HEADING_PRODUCTS_ALL', 'Alle Artikel...');
+define('CATEGORIES_BOX_HEADING_PRODUCTS_ALL', 'Alle Artikel ...');
 
 // quick_find box text in sideboxes/quick_find.php
 define('BOX_HEADING_SEARCH', 'Suche');
@@ -100,7 +101,7 @@ define('BOX_SEARCH_ADVANCED_SEARCH', 'Erweiterte Suche');
 
 // specials box text in sideboxes/specials.php
 define('BOX_HEADING_SPECIALS', 'Sonderangebote');
-define('CATEGORIES_BOX_HEADING_SPECIALS', 'Sonderangebote...');
+define('CATEGORIES_BOX_HEADING_SPECIALS', 'Sonderangebote ...');
 
 // reviews box text in sideboxes/reviews.php
 define('BOX_HEADING_REVIEWS', 'Bewertungen');
@@ -121,12 +122,12 @@ define('BOX_HEADING_BESTSELLERS', 'Top Artikel');
 define('BOX_HEADING_BESTSELLERS_IN', 'Top Artikel in<br /> ');
 
 // notifications box text in sideboxes/products_notifications.php
-define('BOX_HEADING_NOTIFICATIONS', 'Benachrichtigung');
-define('BOX_NOTIFICATIONS_NOTIFY', 'Benachrichtigen Sie mich über <strong>%s</strong>');
-define('BOX_NOTIFICATIONS_NOTIFY_REMOVE', 'Benachrichtigen Sie mich nicht mehr über <strong>%s</strong>');
+define('BOX_HEADING_NOTIFICATIONS', 'Benachrichtigungen');
+define('BOX_NOTIFICATIONS_NOTIFY', 'Benachrichtigen Sie mich über Updates zu <strong>%s</strong>');
+define('BOX_NOTIFICATIONS_NOTIFY_REMOVE', 'Benachrichtigen Sie mich nicht mehr über Updates zu <strong>%s</strong>');
 
 // manufacturer box text
-define('BOX_HEADING_MANUFACTURER_INFO', 'Herstellerinformation');
+define('BOX_HEADING_MANUFACTURER_INFO', 'Herstellerinformationen');
 define('BOX_MANUFACTURER_INFO_HOMEPAGE', '%s Homepage');
 define('BOX_MANUFACTURER_INFO_OTHER_PRODUCTS', 'Weitere Artikel');
 
@@ -155,24 +156,24 @@ define('BOX_INFORMATION_PAGE_4', 'Seite 4');
 
 // tell a friend box text in sideboxes/tell_a_friend.php
 define('BOX_HEADING_TELL_A_FRIEND', 'Weiterempfehlung');
-define('BOX_TELL_A_FRIEND_TEXT', 'Empfehlen Sie unsere Artikel weiter.');
+define('BOX_TELL_A_FRIEND_TEXT', 'Empfehlen Sie diesen Artikel einem Freund.');
 
 // wishlist box text in includes/boxes/wishlist.php
-define('BOX_HEADING_CUSTOMER_WISHLIST', 'Wunschzettel');
+define('BOX_HEADING_CUSTOMER_WISHLIST', 'Mein Wunschzettel');
 define('BOX_WISHLIST_EMPTY', 'Ihr Wunschzettel ist leer');
 define('IMAGE_BUTTON_ADD_WISHLIST', 'auf meinen Wunschzettel');
-define('TEXT_WISHLIST_COUNT', 'Derzeit sind %s Positionen in Ihrem Wunschzettel.');
+define('TEXT_WISHLIST_COUNT', 'Derzeit sind %s Positionen auf Ihrem Wunschzettel.');
 define('TEXT_DISPLAY_NUMBER_OF_WISHLIST', 'Zeige <strong>%d</strong> bis <strong>%d</strong> (von <strong>%d</strong> Positionen Ihres Wunschzettels)');
 
 //New billing address text
-define('SET_AS_PRIMARY', 'Als Hauptanschrift verwenden');
+define('SET_AS_PRIMARY', 'Als Standardadresse verwenden');
 define('NEW_ADDRESS_TITLE', 'Rechnungsadresse');
 
 // javascript messages
 define('JS_ERROR', 'Es sind Fehler aufgetreten.\n\n Bitte ändern Sie folgendes:\n\n');
 
-define('JS_REVIEW_TEXT', '* Ihre Texteingabe im Bericht muss mindestens ' . REVIEW_TEXT_MIN_LENGTH . ' Zeichen haben.');
-define('JS_REVIEW_RATING', '* Um einen Bericht schreiben zu können, müssen Sie den Artikel erst bewerten.');
+define('JS_REVIEW_TEXT', '* Ihre Texteingabe in der Artikelbewertung muss mindestens ' . REVIEW_TEXT_MIN_LENGTH . ' Zeichen haben.');
+define('JS_REVIEW_RATING', '* Bitte wählen Sie ein Rating für diesen Artikel.');
 
 define('JS_ERROR_NO_PAYMENT_MODULE_SELECTED', '* Bitte wählen Sie eine Zahlungsart aus.');
 
@@ -180,7 +181,7 @@ define('JS_ERROR_SUBMITTED', 'Die Seite wurde bereits übertragen. Klicken Sie a
 
 define('ERROR_NO_PAYMENT_MODULE_SELECTED', 'Bitte wählen Sie eine Zahlungsart aus.');
 define('ERROR_CONDITIONS_NOT_ACCEPTED', 'Bitte bestätigen Sie unsere AGB!');
-define('ERROR_PRIVACY_STATEMENT_NOT_ACCEPTED', 'Bitte bestätigen Sie unsere AGB!');
+define('ERROR_PRIVACY_STATEMENT_NOT_ACCEPTED', 'Bitte bestätigen Sie unsere Datenschutzbestimmungen!');
 
 define('CATEGORY_COMPANY', 'Firma');
 define('CATEGORY_PERSONAL', 'Ihre persönlichen Angaben');
@@ -191,11 +192,12 @@ define('CATEGORY_PASSWORD', 'Ihr Passwort');
 define('CATEGORY_LOGIN', 'Anmelden');
 define('PULL_DOWN_DEFAULT', 'Bitte wählen Sie Ihr Land');
 define('PLEASE_SELECT', 'Bitte wählen Sie ...');
-define('TYPE_BELOW', 'Bitte wählen Sie unter ...');
+define('TYPE_BELOW', 'Bitte wählen Sie unten ...');
+
 define('ENTRY_COMPANY', 'Firma:');
 define('ENTRY_COMPANY_ERROR', 'Bitte geben Sie einen Firmennamen ein.');
 define('ENTRY_COMPANY_TEXT', '');
-define('ENTRY_GENDER', 'Geschlecht:');
+define('ENTRY_GENDER', 'Anrede:');
 define('ENTRY_GENDER_ERROR', 'Bitte wählen Sie Ihre Anrede.');
 define('ENTRY_GENDER_TEXT', '*');
 define('ENTRY_FIRST_NAME', 'Vorname:');
@@ -205,8 +207,8 @@ define('ENTRY_LAST_NAME', 'Nachname:');
 define('ENTRY_LAST_NAME_ERROR', 'Ihr Nachname muss mindestens ' . ENTRY_LAST_NAME_MIN_LENGTH . ' Zeichen haben.');
 define('ENTRY_LAST_NAME_TEXT', '*');
 define('ENTRY_DATE_OF_BIRTH', 'Geburtsdatum:');
-define('ENTRY_DATE_OF_BIRTH_ERROR', 'Ihr Geburtsdatum muss folgende Form haben: TT.MM.JJJJ (z. B. 21.02.1970)');
-define('ENTRY_DATE_OF_BIRTH_TEXT', '* (z. B. 21.02.1970)');
+define('ENTRY_DATE_OF_BIRTH_ERROR', 'Ihr Geburtsdatum muss folgende Form haben: TT.MM.JJJJ (z.B. 21.02.1970)');
+define('ENTRY_DATE_OF_BIRTH_TEXT', '* (z.B. 21.02.1970)');
 define('ENTRY_EMAIL_ADDRESS', 'E-Mail Adresse:');
 define('ENTRY_EMAIL_ADDRESS_ERROR', 'Ihre E-Mail Adresse muss mindestens ' . ENTRY_EMAIL_ADDRESS_MIN_LENGTH . ' Zeichen haben.');
 define('ENTRY_EMAIL_ADDRESS_CHECK_ERROR', 'Ihre E-Mail Adresse scheint nicht korrekt zu sein. Bitte ändern Sie diese.');
@@ -269,13 +271,13 @@ define('ENTRY_REQUIRED_SYMBOL', '*');
 
   // constants for use in zen_prev_next_display function
 define('TEXT_RESULT_PAGE', '');
-define('TEXT_DISPLAY_NUMBER_OF_PRODUCTS', 'Zeige <strong>%d</strong> bis <strong>%d</strong> (von <strong>%d</strong> Artikel)');
+define('TEXT_DISPLAY_NUMBER_OF_PRODUCTS', 'Zeige <strong>%d</strong> bis <strong>%d</strong> (von <strong>%d</strong> Artikeln)');
 define('TEXT_DISPLAY_NUMBER_OF_ORDERS', 'Zeige <strong>%d</strong> bis <strong>%d</strong> (von <strong>%d</strong> Bestellungen)');
 define('TEXT_DISPLAY_NUMBER_OF_REVIEWS', 'Zeige <strong>%d</strong> bis <strong>%d</strong> (von <strong>%d</strong> Bewertungen)');
 define('TEXT_DISPLAY_NUMBER_OF_PRODUCTS_NEW', 'Zeige <strong>%d</strong> bis <strong>%d</strong> (von <strong>%d</strong> neuen Produkten)');
 define('TEXT_DISPLAY_NUMBER_OF_SPECIALS', 'Zeige <strong>%d</strong> bis <strong>%d</strong> (von <strong>%d</strong> Sonderangeboten)');
-define('TEXT_DISPLAY_NUMBER_OF_PRODUCTS_FEATURED_PRODUCTS', 'Zeige <strong>%d</strong> bis <strong>%d</strong> (von <strong>%d</strong> ähnlichen Artikel)');
-define('TEXT_DISPLAY_NUMBER_OF_PRODUCTS_ALL', 'Zeige <strong>%d</strong> bis <strong>%d</strong> (von <strong>%d</strong> Artikel)');
+define('TEXT_DISPLAY_NUMBER_OF_PRODUCTS_FEATURED_PRODUCTS', 'Zeige <strong>%d</strong> bis <strong>%d</strong> (von <strong>%d</strong> ähnlichen Artikeln)');
+define('TEXT_DISPLAY_NUMBER_OF_PRODUCTS_ALL', 'Zeige <strong>%d</strong> bis <strong>%d</strong> (von <strong>%d</strong> Artikeln)');
 
 define('PREVNEXT_TITLE_FIRST_PAGE', 'Erste Seite');
 define('PREVNEXT_TITLE_PREVIOUS_PAGE', 'Vorherige Seite');
@@ -332,8 +334,8 @@ define('VOUCHER_BALANCE', TEXT_GV_NAME . ' Konto: ');
 define('BOX_HEADING_GIFT_VOUCHER', TEXT_GV_NAME . ' Konto');
 define('GV_FAQ', TEXT_GV_NAME . ' FAQ');
 define('ERROR_REDEEMED_AMOUNT', 'Herzlichen Glückwunsch!<br />Sie haben Ihren Gutschein erfolgreich eingelöst.<br />Betrag: ');
-define('ERROR_NO_REDEEM_CODE', 'Sie haben keinen ' . TEXT_GV_REDEEM . ' eingegeben.');
-define('ERROR_NO_INVALID_REDEEM_GV', 'Falscher ' . TEXT_GV_NAME . ' oder ' . TEXT_GV_REDEEM);
+define('ERROR_NO_REDEEM_CODE', 'Sie haben keine ' . TEXT_GV_REDEEM . ' eingegeben.');
+define('ERROR_NO_INVALID_REDEEM_GV', 'Ungültiger ' . TEXT_GV_NAME . ' oder ' . TEXT_GV_REDEEM);
 define('TABLE_HEADING_CREDIT', 'Guthaben verfügbar');
 define('GV_HAS_VOUCHERA', 'Sie haben Guthaben auf Ihrem ' . TEXT_GV_NAME . 'konto. Wenn Sie möchten <br />können Sie dieses Guthaben per <a class="pageResults" href="');
 
@@ -342,11 +344,11 @@ define('ENTRY_AMOUNT_CHECK_ERROR', 'Sie haben nicht mehr genug Guthaben auf Ihre
 define('BOX_SEND_TO_FRIEND', TEXT_GV_NAME . ' versenden >>');
 
 define('VOUCHER_REDEEMED', TEXT_GV_NAME . ' einlösen');
-define('CART_COUPON', 'Gutschein:');
-define('CART_COUPON_INFO', 'Gutscheininfos');
+define('CART_COUPON', 'Aktionskupon:');
+define('CART_COUPON_INFO', 'weitere Informationen');
 define('TEXT_SEND_OR_SPEND','Sie haben Guthaben auf Ihrem ' . TEXT_GV_NAME . 'konto. Wenn Sie möchten <br />können Sie dieses Guthaben durch Klick auf untenstehende Schaltfläche an eine andere Person senden.');
 define('TEXT_BALANCE_IS', 'Ihr Guthaben beträgt: ');
-define('TEXT_AVAILABLE_BALANCE', 'Ihr ' . TEXT_GV_NAME . ' Guthaben');
+define('TEXT_AVAILABLE_BALANCE', 'Ihr ' . TEXT_GV_NAME . ' Konto');
 
 // payment method is GV/Discount
 define('PAYMENT_METHOD_GV', 'Geschenkgutschein /Aktionskupon');
@@ -356,14 +358,14 @@ define('TABLE_HEADING_CREDIT_PAYMENT', 'Guthaben verfügbar');
 
 define('TEXT_INVALID_REDEEM_COUPON', 'Ungültiger Aktionscode');
 define('TEXT_INVALID_REDEEM_COUPON_MINIMUM', 'Der Mindestbestellwert für diesen Aktionskupon liegt bei %s');
-define('TEXT_INVALID_STARTDATE_COUPON', 'Dieser Aktionskupon ist zurzeit nicht erhältlich');
+define('TEXT_INVALID_STARTDATE_COUPON', 'Dieser Aktionskupon ist zurzeit nicht verfügbar');
 define('TEXT_INVALID_FINISDATE_COUPON', 'Dieser Aktionskupon ist abgelaufen');
 define('TEXT_INVALID_USES_COUPON', 'Dieser Aktionskupon kann nur');
 define('TIMES', 'mal eingelöst werden');
 define('TIME', 'mal eingelöst werden.');
-define('TEXT_INVALID_USES_USER_COUPON', 'der Aktionskupon hat die maximale Einlöseanzahl pro Kunde erreicht.');
-define('REDEEMED_COUPON', 'Aktionskupon einlösen');
-define('REDEEMED_MIN_ORDER', 'bei Bestellungen über');
+define('TEXT_INVALID_USES_USER_COUPON', 'Sie haben den Aktionskupon %s benutzt. Dieser Aktionskupon hat die maximale Einlöseanzahl pro Kunde erreicht.');
+define('REDEEMED_COUPON', 'einen Aktionskupon im Wert von ');
+define('REDEEMED_MIN_ORDER', 'bei Bestellungen über ');
 define('REDEEMED_RESTRICTIONS', '[Artikelkategorie Einschränkung angewendet]');
 define('TEXT_ERROR', 'Es ist ein Fehler aufgetreten.');
 define('TEXT_INVALID_COUPON_PRODUCT', 'Dieser Aktionskupon ist für keinen der im Warenkorb befindlichen Artikel gültig');
@@ -380,7 +382,7 @@ define('TEXT_YOUR_IP_ADDRESS', 'Aus Sicherheitsgründen werden bei jeder Bestell
 define('HEADING_ADDRESS_INFORMATION', 'Adressinformation');
 
 // cart contents
-define('PRODUCTS_ORDER_QTY_TEXT_IN_CART', 'Stück im Warenkorb:');
+define('PRODUCTS_ORDER_QTY_TEXT_IN_CART', 'Stück im Warenkorb: ');
 define('PRODUCTS_ORDER_QTY_TEXT', 'Anzahl: ');
 
 // success messages for added to cart when display cart is off
@@ -421,7 +423,7 @@ define('TEXT_BANNER_BOX_ALL', 'Besuchen Sie auch unsere Partner ...');
 
 // boxes defines
 define('PULL_DOWN_ALL', 'Bitte auswählen');
-define('PULL_DOWN_MANUFACTURERS', 'Alle Hersteller');
+define('PULL_DOWN_MANUFACTURERS', '- Zurücksetzen -');
 // shipping estimator
 define('PULL_DOWN_SHIPPING_ESTIMATOR_SELECT', 'Bitte wählen');
 
@@ -457,7 +459,7 @@ define('TEXT_INVALID_USER_INPUT', 'Benutzereingabe benötigt<br />');
 define('PRODUCTS_QUANTITY_MIN_TEXT_LISTING', 'Minimum:');
 define('PRODUCTS_QUANTITY_UNIT_TEXT_LISTING', 'Stück:');
 define('PRODUCTS_QUANTITY_IN_CART_LISTING', 'Im Warenkorb:');
-define('PRODUCTS_QUANTITY_ADD_ADDITIONAL_LISTING', 'weitere hinzufügen:');
+define('PRODUCTS_QUANTITY_ADD_ADDITIONAL_LISTING', 'Weitere hinzufügen:');
 
 define('PRODUCTS_QUANTITY_MAX_TEXT_LISTING', 'Maximal:');
 
@@ -470,7 +472,7 @@ define('ERROR_MAXIMUM_QTY', 'Stückzahl angepasst - maximale Stückzahl wurde in
 define('ERROR_CORRECTIONS_HEADING', 'Bitte korrigieren Sie folgendes: <br />');
 define('ERROR_QUANTITY_ADJUSTED', 'Fehler in der gewählten Menge<br />');
 define('ERROR_QUANTITY_CHANGED_FROM', ', wurde geändert von: ');
-define('ERROR_QUANTITY_CHANGED_TO', ' zu ');
+define('ERROR_QUANTITY_CHANGED_TO', ' in ');
 
 // Downloads Controller
 define('DOWNLOADS_CONTROLLER_ON_HOLD_MSG', 'Bemerkung: Downloads werden erst nach Bestätigung des Zahlungseingangs freigeschaltet.');
@@ -480,14 +482,14 @@ define('TEXT_FILESIZE_MEGS', ' MB');
 // shopping cart errors
 define('ERROR_PRODUCT', 'Artikel:');
 define('ERROR_PRODUCT_STATUS_SHOPPING_CART','<br />Leider ist dieses Produkt derzeit nicht in unserem Warenbestand.<br />Das Produkt wurde aus dem Warenkorb entfernt.');
-define('ERROR_PRODUCT_QUANTITY_MIN', '...minimale Stückzahl unterschritten -');
-define('ERROR_PRODUCT_QUANTITY_UNITS', '...ungültige Stückzahl -');
-define('ERROR_PRODUCT_OPTION_SELECTION', '...ungültige Attributmerkmale gewählt -');
+define('ERROR_PRODUCT_QUANTITY_MIN', '... minimale Stückzahl unterschritten -');
+define('ERROR_PRODUCT_QUANTITY_UNITS', '... ungültige Stückzahl -');
+define('ERROR_PRODUCT_OPTION_SELECTION', '... ungültige Attributmerkmale gewählt -');
 define('ERROR_PRODUCT_QUANTITY_ORDERED', 'Die Summe Ihrer Bestellung:');
-define('ERROR_PRODUCT_QUANTITY_MAX', '...maximale Stückzahl überschritten -');
-define('ERROR_PRODUCT_QUANTITY_MIN_SHOPPING_CART', '...minimale Stückzahl unterschritten -');
-define('ERROR_PRODUCT_QUANTITY_UNITS_SHOPPING_CART', '...ungültige Stückzahl -');
-define('ERROR_PRODUCT_QUANTITY_MAX_SHOPPING_CART', '...maximale Stückzahl überschritten -');
+define('ERROR_PRODUCT_QUANTITY_MAX', '... maximale Stückzahl überschritten -');
+define('ERROR_PRODUCT_QUANTITY_MIN_SHOPPING_CART', '... minimale Stückzahl unterschritten -');
+define('ERROR_PRODUCT_QUANTITY_UNITS_SHOPPING_CART', '... ungültige Stückzahl -');
+define('ERROR_PRODUCT_QUANTITY_MAX_SHOPPING_CART', '... maximale Stückzahl überschritten -');
 define('WARNING_SHOPPING_CART_COMBINED', 'Achtung: Ihr aktueller Warenkorb wurde mit dem Warenkorb Ihres letzten Besuchs zusammengelegt. Bitte überprüfen Sie den Inhalt Ihres Warenkorbs, bevor Sie ihre Bestellung abschließen.');
 
 // error on checkout when $_SESSION['customers_id' does not exist in customers table
@@ -497,7 +499,7 @@ define('TABLE_HEADING_FEATURED_PRODUCTS','Ähnliche Artikel');
 
 define('TABLE_HEADING_NEW_PRODUCTS', 'Neue Artikel im %s');
 define('TABLE_HEADING_UPCOMING_PRODUCTS', 'Artikelankündigungen');
-define('TABLE_HEADING_DATE_EXPECTED', 'Eingangsdatum');
+define('TABLE_HEADING_DATE_EXPECTED', 'Erscheinungsdatum');
 define('TABLE_HEADING_SPECIALS_INDEX', 'Monatliche Sonderangebote im %s');
 define('CAPTION_UPCOMING_PRODUCTS','Diese Artikel sind in Kürze lieferbar');
 define('SUMMARY_TABLE_UPCOMING_PRODUCTS','Die Tabelle enthält eine Liste von Artikeln, die in Kürze lieferbar sind sowie das jeweilige Erscheinungsdatum');
@@ -508,14 +510,14 @@ define('META_TAG_PRODUCTS_PRICE_IS_FREE_TEXT','Kostenlos!');
 // customer login
 define('TEXT_SHOWCASE_ONLY', 'Kontakt');
 // set for login for prices
-define('TEXT_LOGIN_FOR_PRICE_PRICE', 'Preis nicht erhältlich');
+define('TEXT_LOGIN_FOR_PRICE_PRICE', 'Preis nicht verfügbar');
 define('TEXT_LOGIN_FOR_PRICE_BUTTON_REPLACE', 'Für Preis bitte anmelden');
 // set for show room only
 define('TEXT_LOGIN_FOR_PRICE_PRICE_SHOWROOM', '');// blank for prices or enter your own text
 define('TEXT_LOGIN_FOR_PRICE_BUTTON_REPLACE_SHOWROOM', 'Nur Schauraum');
 
 // authorization pending
-define('TEXT_AUTHORIZATION_PENDING_PRICE', 'Preis nicht erhältlich');
+define('TEXT_AUTHORIZATION_PENDING_PRICE', 'Preis nicht verfügbar');
 define('TEXT_AUTHORIZATION_PENDING_BUTTON_REPLACE', 'ÜBERPRÜFUNG LÄUFT');
 define('TEXT_LOGIN_TO_SHOP_BUTTON_REPLACE','Im Shop anmelden');
 
@@ -541,8 +543,8 @@ define('TEXT_REMAINING','restliche');
 // Shipping Estimator
 define('CART_SHIPPING_OPTIONS', 'Voraussichtlicher Versand:');
 define('CART_SHIPPING_OPTIONS_LOGIN', 'Bitte melden Sie sich <a href="' . zen_href_link(FILENAME_LOGIN, '', 'SSL') . '"><u>hier</u></a> an, um Ihre persönlichen Versandkosten anzuzeigen.');
-define('CART_SHIPPING_METHOD_TEXT', 'Versandarten:');
-define('CART_SHIPPING_METHOD_RATES', 'Sätze:');
+define('CART_SHIPPING_METHOD_TEXT', 'Verfügbare Versandarten');
+define('CART_SHIPPING_METHOD_RATES', 'Kosten:');
 define('CART_SHIPPING_METHOD_TO', 'Versand an: ');
 define('CART_SHIPPING_METHOD_TO_NOLOGIN', 'Versand an: <a href="' . zen_href_link(FILENAME_LOGIN, '', 'SSL') . '"><u>anmelden</u></a>');
 define('CART_SHIPPING_METHOD_FREE_TEXT', 'kostenloser Versand');
@@ -553,10 +555,10 @@ define('CART_SHIPPING_METHOD_ADDRESS', 'Adresse:');
 define('CART_OT', 'Voraussichtliche Versandkosten:');
 define('CART_OT_SHOW', 'true'); // set to false if you don't want order totals
 define('CART_ITEMS', 'im Warenkorb: ');
-define('CART_SELECT', 'wählen Sie');
+define('CART_SELECT', 'Wählen Sie');
 define('ERROR_CART_UPDATE', 'Bitte aktualisieren Sie Ihre Bestellung ...<br />');
-define('IMAGE_BUTTON_UPDATE_CART', 'aktualisieren');
-define('EMPTY_CART_TEXT_NO_QUOTE', 'Uups! Ihre Sitzung wurde unterbrochen! Aktualisieren Sie bitte Ihren Warenkorb für die Versandart');
+define('IMAGE_BUTTON_UPDATE_CART', 'Aktualisieren');
+define('EMPTY_CART_TEXT_NO_QUOTE', 'Uups! Ihre Sitzung ist abgelaufen ... Aktualisieren Sie bitte Ihren Warenkorb für die Versandkosten');
 define('CART_SHIPPING_QUOTE_CRITERIA', 'Die Versandkosten werden aufgrund der ausgewählten Adresse berechnet:');
 
 // multiple product add to cart
@@ -574,7 +576,7 @@ define('TEXT_FOOTER_DISCOUNT_QUANTITIES', '* Rabatte können abhängig von den u
 define('TEXT_HEADER_DISCOUNTS_OFF', 'Keine Rabatte möglich ...');
 
 // sort order titles for dropdowns
-define('PULL_DOWN_ALL_RESET','- ZURÜCKSTELLEN - ');
+define('PULL_DOWN_ALL_RESET','- Zurücksetzen - ');
 define('TEXT_INFO_SORT_BY_PRODUCTS_NAME', 'Artikelname');
 define('TEXT_INFO_SORT_BY_PRODUCTS_NAME_DESC', 'Artikelname - absteigend');
 define('TEXT_INFO_SORT_BY_PRODUCTS_PRICE', 'Preis - aufsteigend');
@@ -585,8 +587,8 @@ define('TEXT_INFO_SORT_BY_PRODUCTS_DATE', 'Erstelldatum - absteigend');
 define('TEXT_INFO_SORT_BY_PRODUCTS_SORT_ORDER', 'Standardansicht');
 
 // downloads module defines
-define('TABLE_HEADING_DOWNLOAD_DATE', 'gültig bis');
-define('TABLE_HEADING_DOWNLOAD_COUNT', 'verbleibend');
+define('TABLE_HEADING_DOWNLOAD_DATE', 'Link gültig bis');
+define('TABLE_HEADING_DOWNLOAD_COUNT', 'Verbleibend');
 define('HEADING_DOWNLOAD', 'Um Ihre Dateien herunterzuladen, klicken Sie bitte auf den Download Button und wählen Sie "Ziel speichern unter".');
 define('TABLE_HEADING_DOWNLOAD_FILENAME','Dateiname');
 define('TABLE_HEADING_PRODUCT_NAME','Artikel');
@@ -603,8 +605,8 @@ define('TABLE_HEADING_PRODUCTS', 'Artikelname');
 define('TABLE_HEADING_TOTAL', 'Summe');
 
 // create account - login shared
-define('TABLE_HEADING_PRIVACY_CONDITIONS', 'Datenschutz');
-define('TEXT_PRIVACY_CONDITIONS_DESCRIPTION', 'Bitte bestätigen Sie Ihr Einverständniss mit unseren Datenschutzbestimmungen, indem Sie die Checkbox aktivieren. Die Datenschutzbestimmungen können Sie <a href="' . zen_href_link(FILENAME_PRIVACY, '', 'SSL') . '"><span class="pseudolink">hier</span></a> nachesen.');
+define('TABLE_HEADING_PRIVACY_CONDITIONS', 'Datenschutzbestimmungen');
+define('TEXT_PRIVACY_CONDITIONS_DESCRIPTION', 'Bitte bestätigen Sie Ihr Einverständnis mit unseren Datenschutzbestimmungen, indem Sie die Checkbox aktivieren. Die Datenschutzbestimmungen können Sie <a href="' . zen_href_link(FILENAME_PRIVACY, '', 'SSL') . '"><span class="pseudolink">hier</span></a> nachlesen.');
 define('TEXT_PRIVACY_CONDITIONS_CONFIRM', 'Ich habe die Datenschutzbestimmungen gelesen und akzeptiert.');
 define('TABLE_HEADING_ADDRESS_DETAILS', 'Bitte tragen Sie Ihre Adressangaben ein');
 define('TABLE_HEADING_PHONE_FAX_DETAILS', 'Wie kann man Sie erreichen?');
@@ -626,7 +628,7 @@ define('TEXT_EZPAGES_STATUS_SIDEBOX_ADMIN', 'WARNING: EZ-PAGES SIDEBOX - Darf nu
 // extra product listing sorter
 define('TEXT_PRODUCTS_LISTING_ALPHA_SORTER', '');
 define('TEXT_PRODUCTS_LISTING_ALPHA_SORTER_NAMES', 'Artikelname, beginnend mit...');
-define('TEXT_PRODUCTS_LISTING_ALPHA_SORTER_NAMES_RESET', '-- Zurückstellen --');
+define('TEXT_PRODUCTS_LISTING_ALPHA_SORTER_NAMES_RESET', '-- Zurücksetzen --');
 
 ///////////////////////////////////////////////////////////
 // include email extras

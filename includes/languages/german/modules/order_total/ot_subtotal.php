@@ -20,8 +20,5 @@
 // $Id$
 //
 
-define('MODULE_ORDER_TOTAL_SUBTOTAL_TITLE', 'Summe Artikel (netto)');
+define('MODULE_ORDER_TOTAL_SUBTOTAL_TITLE', 'Zwischensumme');
 define('MODULE_ORDER_TOTAL_SUBTOTAL_DESCRIPTION', 'Zwischensumme der Bestellung');
-
-
-?>
