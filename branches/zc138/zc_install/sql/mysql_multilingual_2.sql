@@ -40,7 +40,7 @@ REPLACE INTO configuration_group (configuration_group_id, language_id, configura
 (30, 43, 'EZ-Pages Einstellungen', 'EZ-Pages Einstellungen', 30, 1);
 
 
-REPLACE INTO `configuration_language` (`configuration_title`, `configuration_key`, `configuration_language_id`, `configuration_description`, `last_modified`, `date_added`) VALUES
+REPLACE INTO configuration_language (configuration_title, configuration_key, configuration_language_id, configuration_description, last_modified, date_added) VALUES
 ('Willkommenstext auf Startseite zeigen?', 'SHOW_CUSTOMER_GREETING', 43, 'Willkommenstext auf Startseite zeigen?<br />0= AUS<br />1= EIN', '2008-04-12 00:00:00', '2006-07-14 00:00:00'),
 ('Überspringe Kategorien mit einem Artikel', 'SKIP_SINGLE_PRODUCT_CATEGORIES', 43, 'Überspringe Kategorien mit einem Artikel<br />Wenn true dann wird bei Klick auf die Kategorie gleich direkt die Artikelansicht angezeigt.<br />Standard: True', '2008-04-12 00:00:00', '2006-07-14 00:00:00'),
 ('Sitemap - Link für "Mein Konto" anzeigen', 'SHOW_ACCOUNT_LINKS_ON_SITE_MAP', 43, 'Soll ein Link für "Mein Konto" in der Sitemap generiert werden?<br /><br />Standard: false', '2008-04-12 00:00:00', '2006-07-14 00:00:00'),
@@ -610,21 +610,21 @@ UPDATE configuration SET configuration_value = 'de' WHERE configuration_key = 'D
 
 ###########################################################################################################
 
-CREATE TABLE IF NOT EXISTS `product_type_layout_language` (
-  `configuration_id` int(11) NOT NULL auto_increment,
-  `configuration_title` text NOT NULL,
-  `configuration_key` varchar(255) NOT NULL default '',
-  `languages_id` int(11) NOT NULL default '1',
-  `configuration_description` text NOT NULL,
-  `last_modified` datetime default NULL,
-  `date_added` datetime NOT NULL default '0001-01-01 00:00:00',
-  PRIMARY KEY  (`configuration_id`),
-  UNIQUE KEY `config_lang` (`configuration_key`,`languages_id`)
+CREATE TABLE IF NOT EXISTS product_type_layout_language (
+  configuration_id int(11) NOT NULL auto_increment,
+  configuration_title text NOT NULL,
+  configuration_key varchar(255) NOT NULL default '',
+  languages_id int(11) NOT NULL default '1',
+  configuration_description text NOT NULL,
+  last_modified datetime default NULL,
+  date_added datetime NOT NULL default '0001-01-01 00:00:00',
+  PRIMARY KEY  (configuration_id),
+  UNIQUE KEY config_lang (configuration_key,languages_id)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=144 ;
 #
 # Daten für Tabelle product_type_layout_language
 #
-REPLACE INTO `product_type_layout_language` (`configuration_title`, `configuration_key`, `languages_id`, `configuration_description`, `last_modified`, `date_added`) VALUES
+REPLACE INTO product_type_layout_language (configuration_title, configuration_key, languages_id, configuration_description, last_modified, date_added) VALUES
 ('Artikelnummer anzeigen', 'SHOW_PRODUCT_INFO_MODEL', 43, 'Soll die Artikelnummer auf der Produktinfoseite angezeigt werden?<br/> 0= AUS 1= AN', '2008-05-20 00:00:00', '2008-05-20 00:00:00'),
 ('Gewicht anzeigen', 'SHOW_PRODUCT_INFO_WEIGHT', 43, 'Soll das Gewicht auf der Produktinfoseite angezeigt werden<br/> 0= AUS 1= AN', '2008-05-20 00:00:00', '2008-05-20 00:00:00'),
 ('Attribut Gewicht anzeigen', 'SHOW_PRODUCT_INFO_WEIGHT_ATTRIBUTES', 43, 'Soll das Attribut Gewicht auf der Produktinfoseite angezeigt werden?<br/> 0= AUS 1= AN', '2008-05-20 00:00:00', '2008-05-20 00:00:00'),
