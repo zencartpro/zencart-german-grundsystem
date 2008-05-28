@@ -1,0 +1,75 @@
+.top, #logoWrapper {
+    vertical-align:top;
+}
+
+#headerWrapper {
+    background-color: #434343;
+}
+
+/*
+.main_div {
+    width:756px;
+    text-align:left;
+    vertical-align:top;
+}
+.table {
+    width:766px;
+    min-height:auto;
+    display:table;
+}
+
+*/
+
+.table_row {
+    width:970px;
+    display:table-row;
+}
+.left {
+    width:100px;
+    vertical-align:top;
+    text-align: left;
+    display:table-cell;
+}
+.sub_logo {
+    vertical-align:top;
+    padding:5px 5px 5px 5px;
+}
+.right {
+    width:570px;
+    vertical-align:top;
+    display:table-cell;
+}
+.sub_topmenu {
+    vertical-align:top;
+    padding:30px 28px 13px 0px;
+    color:#A1A1A1;
+    text-align:right;
+    font-family:Tahoma, Arial;
+}
+
+.normal A {
+    font-size: 133%;
+    font-weight: bold;
+}
+
+       .left {float:left;}
+.right {float:left;}
+.left2 {float:left;}
+.cent2 {float:left;}
+.right2 {float:right;}
+.left3 {float:left;}
+.right3 {float:left;}
+.left4 {float:left;}
+.right4 {float:left;}
+.cont_left {float:left;}
+.cont_center {float:left;}
+.cont_right {float:right;}
+.prod_left{float:left;}
+.prod_right    {float:right;}
+.main_left {float:left;}
+.main_cent{float:left;}
+.main_right{float:right;}
+.top_ban{float:left;}
+.top_1{float:left;}
+.pl {float:left;}
+.top_block{float:right;}
