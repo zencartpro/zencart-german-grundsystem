@@ -23,6 +23,3 @@
 define('NAVBAR_TITLE','Preise und Versand');
 define('HEADING_TITLE','Preise und Versand');
 define('TEXT_INFORMATION', 'Preise und Versand Informationen sollten in diese Datei!');
-
-
-?>

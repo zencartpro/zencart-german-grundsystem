@@ -74,13 +74,13 @@ define('BUTTON_BACK_ALT', 'Zurück');
 define('BUTTON_BUY_NOW_ALT', 'Jetzt kaufen');
 define('BUTTON_CANCEL_ALT', 'Abbrechen');
 define('BUTTON_CHANGE_ADDRESS_ALT', 'Adresse ändern');
-define('BUTTON_CHECKOUT_ALT', 'Zur Bestellung');
+define('BUTTON_CHECKOUT_ALT', 'Zur Kasse');
 define('BUTTON_CONFIRM_SEND_ALT', 'Gutschein senden');
 define('BUTTON_CONFIRM_ORDER_ALT', 'Bestellung bestätigen');
 define('BUTTON_CONTINUE_ALT', 'Weiter');
 define('BUTTON_CONTINUE_SHOPPING_ALT', 'Weiter einkaufen');
 define('BUTTON_DELETE_ALT', 'Löschen');
-define('BUTTON_DELETE_SMALL_ALT', 'Loeschen');
+define('BUTTON_DELETE_SMALL_ALT', 'Löschen');
 define('BUTTON_DOWNLOAD_ALT', 'Download');
 define('BUTTON_EDIT_SMALL_ALT', 'Bearbeiten');
 define('BUTTON_IN_CART_ALT', 'In den Warenkorb ');
@@ -104,9 +104,6 @@ define('BUTTON_UNSUBSCRIBE', 'Abbestellen');
 define('BUTTON_UPDATE_ALT', 'Aktualisieren');
 define('BUTTON_VIEW_SMALL_ALT', 'Anzeigen');
 define('BUTTON_WRITE_REVIEW_ALT', 'Bewertung schreiben');
-define('BUTTON_READ_REVIEWS_ALT', 'Die Bewertung lesen');
+define('BUTTON_READ_REVIEWS_ALT', 'Bewertung lesen');
 define('BUTTON_GOTO_PROD_DETAILS_ALT', 'Lesen Sie die detailierte Produktbeschreibung');
 define('BUTTON_MORE_REVIEWS_ALT', 'Lesen Sie weitere Bewertungen');
-
-
-?>

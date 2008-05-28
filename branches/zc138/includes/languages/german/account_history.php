@@ -9,8 +9,10 @@
  */
 
 define('NAVBAR_TITLE_1','Mein Konto');
-define('NAVBAR_TITLE_2','Historie');
+define('NAVBAR_TITLE_2','Bestellverlauf');
+
 define('HEADING_TITLE','Meine bisherigen Bestellungen ansehen');
+
 define('TEXT_ORDER_NUMBER','Bestellnummer:');
 define('TEXT_ORDER_STATUS','Bestellstatus:');
 define('TEXT_ORDER_DATE','Bestelldatum:');
@@ -19,5 +21,5 @@ define('TEXT_ORDER_BILLED_TO','Rechnung an:');
 define('TEXT_ORDER_PRODUCTS','Artikel:');
 define('TEXT_ORDER_COST','Bestellsumme:');
 define('TEXT_VIEW_ORDER','Bestellung ansehen');
-define('TEXT_NO_PURCHASES','Sie haben noch nichts bestellt.');
-?>
+
+define('TEXT_NO_PURCHASES','Sie haben bisher noch nichts bestellt.');

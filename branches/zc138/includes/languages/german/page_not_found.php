@@ -8,8 +8,8 @@
  * @version $Id$
  */
 
-define('NAVBAR_TITLE', '404 ERROR - Seite nicht gefunden');
-define('HEADING_TITLE', '404 ERROR - Seite nicht gefunden');
+define('NAVBAR_TITLE', 'ERROR 404 - Seite nicht gefunden');
+define('HEADING_TITLE', 'ERROR 404 - Seite nicht gefunden');
 define('TEXT_INFORMATION', '');
 define('PAGE_ACCOUNT', 'Mein Konto');
 define('PAGE_ACCOUNT_EDIT', 'Kontoinformation');
@@ -22,6 +22,3 @@ define('PAGE_ADVANCED_SEARCH', 'Erweiterte Suche');
 define('PAGE_PRODUCTS_NEW', 'Neue Artikel');
 define('PAGE_SPECIALS', 'Sonderangebote');
 define('PAGE_REVIEWS', 'Bewertungen');
-
-
-?>

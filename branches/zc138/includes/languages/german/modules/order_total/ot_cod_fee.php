@@ -8,7 +8,7 @@
 // | http://www.zen-cart.com/index.php                                    |
 // |                                                                      |
 // | Portions Copyright (c) 2003 osCommerce                               |
-// | Portions Copyright (c) 2002 Thomas Pl?nkers                          |
+// | Portions Copyright (c) 2002 Thomas Plänkers                          |
 // |                             http://www.oscommerce.at                 |
 // +----------------------------------------------------------------------+
 // | This source file is subject to version 2.0 of the GPL license,       |
@@ -25,6 +25,3 @@
 define('MODULE_ORDER_TOTAL_COD_TITLE', 'Nachnahmegebühr');
 define('MODULE_ORDER_TOTAL_COD_DESCRIPTION', 'Nachnahmegebühr');
 define('TEXT_INFO_COD_FEES', '<strong>Hinweis:</strong> Nachnahmegebühren können ggf. anfallen');
-
-
-?>

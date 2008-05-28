@@ -21,9 +21,6 @@
 //
 
 define('MODULE_ORDER_TOTAL_SHIPPING_TITLE', 'Versandkosten');
-define('MODULE_ORDER_TOTAL_SHIPPING_DESCRIPTION', 'Dieses Modul muss zwingend aktiviert sein, damit die aktuellen Versandkosten ausgegeben werden!<br/>Hier können Sie weiterhin festlegen, ob und ab welchen Betrag eine versandkostenfrei Lieferung erfolgt.');
+define('MODULE_ORDER_TOTAL_SHIPPING_DESCRIPTION', 'Dieses Modul muss zwingend aktiviert sein, damit die aktuellen Versandkosten ausgegeben werden!<br/>Hier können Sie weiterhin festlegen, ob und ab welchen Betrag eine versandkostenfreie Lieferung erfolgt.');
 define('FREE_SHIPPING_TITLE', 'Versandkostenfrei');
 define('FREE_SHIPPING_DESCRIPTION', 'Versandkostenfrei ab %s');
-
-
-?>

@@ -19,12 +19,11 @@
   define('MODULE_PAYMENT_NOCHEX_ENTRY_TO_EMAIL', 'Zahlung an');
   define('MODULE_PAYMENT_NOCHEX_ENTRY_FROM_EMAIL', 'Zahlung von');
   define('MODULE_PAYMENT_NOCHEX_ENTRY_ORDER_ID', 'Bestell-Nr.');
-  define('MODULE_PAYMENT_NOCHEX_ENTRY_CUSTOM', 'kundenspezifisches Feld');
+  define('MODULE_PAYMENT_NOCHEX_ENTRY_CUSTOM', 'Kundenspezifisches Feld');
   define('MODULE_PAYMENT_NOCHEX_ENTRY_AMOUNT', 'Betrag bezahlt');
   define('MODULE_PAYMENT_NOCHEX_ENTRY_SECURITY_KEY', 'Sicherheitsschlüssel');
   define('MODULE_PAYMENT_NOCHEX_ENTRY_STATUS', 'Zahlungsstatus');
   define('MODULE_PAYMENT_NOCHEX_ENTRY_NOCHEX_RESPONSE', 'Nochex Antwort');
   define('MODULE_PAYMENT_NOCHEX_PURCHASE_DECRIPTION_TITLE', STORE_NAME . ' Einkauf');
 
-  define('MODULE_PAYMENT_NOCHEX_NOT_CONFIGURED_MERCHANT_ID', ' <span class="alert"> (nicht konfiguriert - Verkäufer ID wird benötigt)</span>');
-?>
+  define('MODULE_PAYMENT_NOCHEX_NOT_CONFIGURED_MERCHANT_ID', ' <span class="alert"> (nicht konfiguriert - Händler ID wird benötigt)</span>');

@@ -9,7 +9,9 @@
  */
 
 define('NAVBAR_TITLE', 'Neues Konto erstellen');
+
 define('HEADING_TITLE', 'Meine Kontoinformationen');
+
 define('TEXT_ORIGIN_LOGIN', '<strong class="note">Achtung:</strong> Sollten Sie bereits bei uns registriert sind, melden Sie sich bitte <a href="%s">hier an</a>.');
 
 // greeting salutation
@@ -24,13 +26,15 @@ define('EMAIL_SEPARATOR', '--------------------');
 define('EMAIL_COUPON_INCENTIVE_HEADER', 'Herzlichen Glückwunsch! Um Ihren nächsten Besuch in unserem Online Shop zu belohnen, haben wir für Sie einen Aktionskupon reserviert!' . "\n\n");
 // your Discount Coupon Description will be inserted before this next define
 define('EMAIL_COUPON_REDEEM', 'Diesen Aktionskupon können Sie bei Ihrem nächsten Einkauf einlösen. Geben Sie dazu die ' . TEXT_GV_REDEEM . ':<br /> %s während des Bestellvorgangs ein' . "\n\n");
-define('TEXT_COUPON_HELP_DATE', '<p>Der Gutschen ist g?ltig zwischen %s und %s</p>');
+define('TEXT_COUPON_HELP_DATE', '<p>Der Gutschen ist gültig zwischen %s und %s</p>');
+
 define('EMAIL_GV_INCENTIVE_HEADER', 'Wenn Sie heute bei uns einkaufen, erhalten Sie den ' . TEXT_GV_NAME . ' für %s!' . "\n\n");
 define('EMAIL_GV_REDEEM', 'Ihr ' . TEXT_GV_NAME . ' ' . TEXT_GV_REDEEM . ' im Wert von: %s ' . "\n\n" . 'Geben Sie dazu bitte den ' . TEXT_GV_REDEEM . ' während des Bestellvorgangs ein, nachdem Sie Ihre Artikel ausgesucht haben.' . "\n\n");
 define('EMAIL_GV_LINK', 'Oder lösen Sie den Gutschein mithilfe des folgenden Links ein: ' . "\n\n");
 // GV link will automatically be included before this line
 
 define('EMAIL_GV_LINK_OTHER', 'Einmal angegeben, können Sie den ' . TEXT_GV_NAME . ' verwenden. Oder machen Sie mit dem ' . TEXT_GV_NAME . ' doch anderen eine Freude und schenken Ihn an Ihre Freunde weiter!' . "\n\n");
+
 define('EMAIL_TEXT', 'Sie können ab sofort unsere umfangreichen Dienstleistungen in Anspruch nehmen, die wir für Sie bereit gestellt haben.' . "\n\n" . '
 Einige unserer Highlights:' . "\n\n" . '
 <strong>Ihr permanenter Warenkorb:' . "\n" . '</strong>Artikel, die Sie in Ihren Warenkorb gelegt haben, bleiben so lange darin erhalten,' . "\n" . 'bis Sie diese kaufen oder wieder aus dem Warenkorb entfernen.' . "\n\n" . '
@@ -42,7 +46,7 @@ define('EMAIL_CONTACT', 'Sollten Sie einmal Hilfe zu unseren Diensten und Artike
 define('EMAIL_GV_CLOSURE', 'Mit freundlichen Grüssen,' . "\n\n" . STORE_OWNER . "\nShopinhaber\n\n" . '<a href="' . HTTP_SERVER . DIR_WS_CATALOG . '">' . HTTP_SERVER . DIR_WS_CATALOG . "</a>\n\n");
 
 // email disclaimer - this disclaimer is separate from all other email disclaimers
-define('EMAIL_DISCLAIMER_NEW_CUSTOMER', 'Diese e-Mail Adresse haben wir von Ihnen oder einer unserer Kunden erhalten. Sollten Sie diese Nachricht zu Unrecht erhalten haben, kontaktieren Sie uns bitte unter %s');
+define('EMAIL_DISCLAIMER_NEW_CUSTOMER', 'Diese E-Mail Adresse haben wir von Ihnen oder einer unserer Kunden erhalten. Sollten Sie diese Nachricht zu Unrecht erhalten haben, kontaktieren Sie uns bitte unter %s');
 
 //moved definitions to english.php
 //define('TABLE_HEADING_PRIVACY_CONDITIONS', 'Privacy Statement');
@@ -53,4 +57,3 @@ define('EMAIL_DISCLAIMER_NEW_CUSTOMER', 'Diese e-Mail Adresse haben wir von Ihne
 //define('TABLE_HEADING_DATE_OF_BIRTH', 'Verify Your Age');
 //define('TABLE_HEADING_LOGIN_DETAILS', 'Login Details');
 //define('TABLE_HEADING_REFERRAL_DETAILS', 'Were You Referred to Us?');
-?>

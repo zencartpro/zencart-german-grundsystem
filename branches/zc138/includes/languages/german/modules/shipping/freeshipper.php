@@ -23,4 +23,3 @@
 define('MODULE_SHIPPING_FREESHIPPER_TEXT_TITLE','Immer Versandkostenfrei');
 define('MODULE_SHIPPING_FREESHIPPER_TEXT_DESCRIPTION','Immer Versandkostenfrei');
 define('MODULE_SHIPPING_FREESHIPPER_TEXT_WAY','Versandkostenfrei');
-?>

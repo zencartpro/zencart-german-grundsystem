@@ -23,4 +23,4 @@
 define('MODULE_SHIPPING_ITEM_TEXT_TITLE','Versandkosten pro Stück');
 define('MODULE_SHIPPING_ITEM_TEXT_DESCRIPTION','Pro Stück');
 define('MODULE_SHIPPING_ITEM_TEXT_WAY','Standard');
-?>
+

@@ -24,6 +24,3 @@ define('NAVBAR_TITLE', 'Kontoaktivierung erforderlich');
 define('HEADING_TITLE', 'Bitte haben Sie noch etwas Geduld.<br />Ihr Konto wird in Kürze aktiviert.');
 define('CUSTOMERS_AUTHORIZATION_TEXT_INFORMATION', 'Vielen Dank für Ihr Interesse an unserem Shop.<br /><br />Wir werden Sie so rasch wie möglich kontaktieren.');
 define('CUSTOMERS_AUTHORIZATION_STATUS_TEXT', 'Klicken Sie bitte auf <em>Weiter</em>, um den Status Ihrer Berechtigung zu überprüfen:');
-
-
-?>

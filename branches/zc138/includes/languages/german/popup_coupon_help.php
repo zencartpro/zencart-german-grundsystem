@@ -40,7 +40,3 @@ define('TEXT_DENIED', ' (nicht erlaubt)');
 // gift certificates cannot be purchased with Discount Coupons
 define('TEXT_COUPON_GV_RESTRICTION','Aktionskupons können nicht zum Kauf von ' . TEXT_GV_NAMES . ' verwendet werden.');
 define('TEXT_COUPON_GV_RESTRICTION_ZONES', 'Mit dieser Rechnungsadresse können keine Aktionskupons eingelöst werden.');
-
-
-
-?>

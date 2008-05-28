@@ -26,4 +26,3 @@ define('MODULE_SHIPPING_ZONES_TEXT_WAY','Versand an');
 define('MODULE_SHIPPING_ZONES_TEXT_UNITS','kg');
 define('MODULE_SHIPPING_ZONES_INVALID_ZONE','In dieses Land können wir leider keinen Versand anbieten.');
 define('MODULE_SHIPPING_ZONES_UNDEFINED_RATE','Die Versandkosten können zur Zeit nicht berechnet werden.');
-?>

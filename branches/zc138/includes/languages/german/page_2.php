@@ -23,6 +23,3 @@
 define('NAVBAR_TITLE', 'Seite 2');
 define('HEADING_TITLE', 'Seite 2');
 define('TEXT_INFORMATION', 'Der Inhalt für die Seite 2 kommt hier hinein. Diesen Text, den Seitenheader und den Link-Text können Sie in <strong>includes/languages/german/page_2.php</strong> editieren');
-
-
-?>

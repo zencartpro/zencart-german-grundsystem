@@ -9,7 +9,7 @@
  */
 
 define('MODULE_ORDER_TOTAL_GV_TITLE', TEXT_GV_NAMES);
-define('MODULE_ORDER_TOTAL_GV_HEADER', TEXT_GV_NAMES . '/Geschenkgutscheine');
+define('MODULE_ORDER_TOTAL_GV_HEADER', TEXT_GV_NAMES . '/Aktionkupons');
 define('MODULE_ORDER_TOTAL_GV_DESCRIPTION', TEXT_GV_NAMES);
 define('SHIPPING_NOT_INCLUDED', ' [Versandkosten nicht enthalten]');
 define('TAX_NOT_INCLUDED', ' [Steuern nicht enthalten]');

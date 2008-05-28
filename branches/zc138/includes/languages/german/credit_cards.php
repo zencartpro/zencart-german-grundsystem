@@ -67,6 +67,3 @@ define('IMAGE_CC_ENABLED_AUSTRALIAN_BANKCARD', zen_image($template->get_template
 define('IMAGE_CC_ENABLED_SOLO', zen_image($template->get_template_dir('cc8.gif', DIR_WS_TEMPLATE, $current_page_base,'images/icons'). '/' . 'cc8.gif'));
 define('IMAGE_CC_ENABLED_SWITCH', zen_image($template->get_template_dir('cc9.gif', DIR_WS_TEMPLATE, $current_page_base,'images/icons'). '/' . 'cc9.gif'));
 define('IMAGE_CC_ENABLED_MAESTRO', zen_image($template->get_template_dir('cc10.gif', DIR_WS_TEMPLATE, $current_page_base,'images/icons'). '/' . 'cc10.gif'));
-
-
-?>

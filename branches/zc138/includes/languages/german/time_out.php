@@ -9,7 +9,7 @@
  */
 
 define('NAVBAR_TITLE','Anmeldezeit überschritten');
-define('HEADING_TITLE','Anmeldezeit überschritten');
+define('HEADING_TITLE','Ups! Ihre Session ist abgelaufen.');
 define('HEADING_TITLE_LOGGED_IN', 'Entschuldigen Sie bitte, aber Sie dürfen diese Tätigkeit nicht ausführen. ');
 define('TEXT_INFORMATION','Es tut uns leid, aber aus Sicherheitsgründen mussten wir Ihre Verbindung unterbrechen,
 um Unbefugten nicht die Möglichkeit zu bieten, an Ihre Zugangsdaten zu gelangen.
@@ -20,6 +20,3 @@ um Unbefugten nicht die Möglichkeit zu bieten, an Ihre Zugangsdaten zu gelangen
 define('TEXT_INFORMATION_LOGGED_IN', 'Sie sind bei Ihrem Konto angemeldet und können nun weiter einkaufen. Wählen Sie einen Menüpunkt aus.');
 define('HEADING_RETURNING_CUSTOMER', 'Anmelden');
 define('TEXT_PASSWORD_FORGOTTEN', 'Password vergessen?');
-
-
-?>

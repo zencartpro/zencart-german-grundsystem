@@ -11,6 +11,7 @@
 define('NAVBAR_TITLE', 'Site Map');
 define('HEADING_TITLE', 'Site Map');
 define('TEXT_INFORMATION','');
+
 define('PAGE_ACCOUNT', 'Mein Konto');
 define('PAGE_ACCOUNT_EDIT', 'Kontoinformation');
 define('PAGE_ADDRESS_BOOK', 'Adressbuch');
@@ -22,6 +23,3 @@ define('PAGE_ADVANCED_SEARCH', 'Erweiterte Suche');
 define('PAGE_PRODUCTS_NEW', 'Neue Produkte');
 define('PAGE_SPECIALS', 'Sonderangebote');
 define('PAGE_REVIEWS', 'Bewertungen');
-
-
-?>

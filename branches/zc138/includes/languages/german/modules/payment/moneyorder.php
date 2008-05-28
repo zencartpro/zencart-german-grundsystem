@@ -23,4 +23,4 @@
 define('MODULE_PAYMENT_MONEYORDER_TEXT_TITLE', 'Vorkasse/Überweisung');
 define('MODULE_PAYMENT_MONEYORDER_TEXT_DESCRIPTION', 'Bitte Überweisen Sie den Betrag auf unser Konto:<br />' . MODULE_PAYMENT_MONEYORDER_PAYTO . '<br /><br />' . 'Ihre Bestellung wird versendet, sobald wir den Betrag erhalten haben.');
 define('MODULE_PAYMENT_MONEYORDER_TEXT_EMAIL_FOOTER', 'Bitte überweisen Sie den Betrag auf unser Konto: ' . MODULE_PAYMENT_MONEYORDER_PAYTO . "\n\n" . 'Ihre Bestellung wird versendet, sobald wir den Betrag erhalten haben.');
-?>
+

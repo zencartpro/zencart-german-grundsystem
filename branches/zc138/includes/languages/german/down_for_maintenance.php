@@ -27,6 +27,3 @@ define('DOWN_FOR_MAINTENANCE_TEXT_INFORMATION','Dieser Shop ist derzeit wegen Wa
 define('TEXT_MAINTENANCE_ON_AT_TIME','Der Administrator / Webmaster hat mit den Wartungsarbeiten begonnen am:');
 define('TEXT_MAINTENANCE_PERIOD','Die Wartungsarbeiten dauern voraussichtlich bis:');
 define('DOWN_FOR_MAINTENANCE_STATUS_TEXT','Für eine Statusabfrage... klicken Sie bitte hier:');
-
-
-?>

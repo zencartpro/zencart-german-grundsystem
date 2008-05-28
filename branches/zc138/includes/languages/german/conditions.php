@@ -9,9 +9,6 @@
  */
 
 
-define('NAVBAR_TITLE','Allgemeine Geschäfstbedingungen');
-define('HEADING_TITLE','Allgemeine Geschäfstbedingungen');
-define('TEXT_INFORMATION', 'Ihre Allgemeine Geschäfstbedingungen sollten hier eingetragen werden!');
-
-
-?>
+define('NAVBAR_TITLE','Allgemeine Geschäftsbedingungen');
+define('HEADING_TITLE','Allgemeine Geschäftsbedingungen');
+define('TEXT_INFORMATION', 'Ihre Allgemeine Geschäftsbedingungen sollten hier eingetragen werden!');

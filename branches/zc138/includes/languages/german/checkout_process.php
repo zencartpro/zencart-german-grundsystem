@@ -26,12 +26,12 @@ define('EMAIL_TEXT_FROM', ' von '); //added to the EMAIL_TEXT_HEADER, above on t
 define('EMAIL_THANKS_FOR_SHOPPING', 'Vielen Dank für Ihren Einkauf!');
 define('EMAIL_DETAILS_FOLLOW', 'Im Nachfolgenden sehen Sie die Details Ihrer Bestellung.');
 define('EMAIL_TEXT_ORDER_NUMBER', 'Bestellnummer:');
-define('EMAIL_TEXT_INVOICE_URL', 'Details:');
+define('EMAIL_TEXT_INVOICE_URL', 'Detaillierte Rechnung:');
 define('EMAIL_TEXT_INVOICE_URL_CLICK', 'Für eine detaillierte Rechnung bitte hier klicken');
 define('EMAIL_TEXT_DATE_ORDERED', 'Bestelldatum:');
 define('EMAIL_TEXT_PRODUCTS', 'Artikel');
-define('EMAIL_TEXT_SUBTOTAL', 'Summe Artikel (netto):');
-define('EMAIL_TEXT_TAX', 'MwSt:');
+define('EMAIL_TEXT_SUBTOTAL', 'Zwischensumme:');
+define('EMAIL_TEXT_TAX', 'MwSt.:');
 define('EMAIL_TEXT_SHIPPING', 'Versandkosten:');
 define('EMAIL_TEXT_TOTAL', 'Gesamt:');
 define('EMAIL_TEXT_DELIVERY_ADDRESS', 'Lieferanschrift');
@@ -44,6 +44,3 @@ define('TEXT_EMAIL_VIA', 'via');
 define('EMAIL_ORDER_NUMBER_SUBJECT', ' Bestellnummer ');
 define('HEADING_ADDRESS_INFORMATION', 'Adressinformationen');
 define('HEADING_SHIPPING_METHOD', 'Versandart');
-
-
-?>
