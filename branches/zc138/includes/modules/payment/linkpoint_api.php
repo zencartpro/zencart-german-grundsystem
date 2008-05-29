@@ -331,17 +331,33 @@ class linkpoint_api {
     // $myorder["referred"] = "";
 
     // itemized contents
+    $skip_line_items_flag = false;
     $num_line_items = 0;
     for ($i=0, $n=sizeof($order->products); $i<$n; $i++) {   
       $num_line_items++;
+
+      // check for fractional quantities, which cannot be submitted as line-item details
+      $q = $order->products[$i]['qty'];
+      $q1 = strval($q);
+      $q2 = (int)$q;
+      $q3 = strval($q2);
+      if ($q1 != $q3) $skip_line_items_flag = true;
+ 
       $myorder["items"][$num_line_items]['id']          = $order->products[$i]['id'];
-      $myorder["items"][$num_line_items]['description'] = substr(htmlentities($order->products[$i]['name'], ENT_QUOTES, 'UTF-8'), 0, 100);
+      $myorder["items"][$num_line_items]['description'] = substr(htmlentities($order->products[$i]['name'], ENT_QUOTES, 'UTF-8'), 0, 128);
       $myorder["items"][$num_line_items]['quantity']    = $order->products[$i]['qty'];
       $myorder["items"][$num_line_items]['price']       = number_format($order->products[$i]['final_price'], 2, '.', '');
+
       if (isset($order->products[$i]['attributes'])) {
+        $options_text_length = 0;
         for ($j=0, $m=sizeof($order->products[$i]['attributes']); $j<$m; $j++) {
-          $myorder["items"][$num_line_items]['options' . $j]['name'] = $order->products[$i]['attributes'][$j]['option'];
-          $myorder["items"][$num_line_items]['options' . $j]['value'] = $order->products[$i]['attributes'][$j]['value'];
+          $options_text_length += strlen($order->products[$i]['attributes'][$j]['option'] . $order->products[$i]['attributes'][$j]['value']);
+        }
+        if ($options_text_length < 128) {
+          for ($j=0, $m=sizeof($order->products[$i]['attributes']); $j<$m; $j++) {
+            $myorder["items"][$num_line_items]['options' . $j]['name'] = $order->products[$i]['attributes'][$j]['option'];
+            $myorder["items"][$num_line_items]['options' . $j]['value'] = $order->products[$i]['attributes'][$j]['value'];
+          }
         }
       }
       // track one-time charges
@@ -376,6 +392,11 @@ class linkpoint_api {
     // if discounts apply, do not send subtotal, otherwise validation error occurs
     if ($credits_applied_so_skip_subtotal) {
       unset($myorder["subtotal"]);
+    }
+
+    // if partial quantities apply, or other problems with line-item details exist, do not send line-item details, otherwise validation error occurs
+    if ($skip_line_items_flag) {
+      unset($myorder["items"]);
     }
 
     $myorder["ordertype"]  = (MODULE_PAYMENT_LINKPOINT_API_AUTHORIZATION_MODE == 'Authorize Only' ? 'PREAUTH': 'SALE');
@@ -466,7 +487,7 @@ class linkpoint_api {
       if (substr($result['r_error'],0,10) == 'SGS-020005') $messageStack->add_session('checkout_payment', $result['r_error'], 'error');  // Error (Merchant config file is missing, empty or cannot be read)
       if (substr($result['r_error'],0,10) == 'SGS-005000') $messageStack->add_session('checkout_payment', MODULE_PAYMENT_LINKPOINT_API_TEXT_GENERAL_ERROR . '<br />' . $result['r_error'], 'error'); // The server encountered a database error
       if (substr($result['r_error'],0,10) == 'SGS-000001' || strstr($result['r_error'], 'D:Declined') || strstr($result['r_error'], 'R:Referral')) $messageStack->add_session('checkout_payment', MODULE_PAYMENT_LINKPOINT_API_TEXT_DECLINED_MESSAGE . '<br />' . $result['r_error'], 'error');
-      if (substr($result['r_error'],0,10) == 'SGS-005005' || strstr($result['r_error'], 'Duplicate transaction')) $messageStack->add_session('checkout_payment', MODULE_PAYMENT_LINKPOINT_API_TEXT_DUPLICATE_MESSAGE . '<br />' . $result['r_error'], 'error');
+      if (substr($result['r_error'],0,10) == 'SGS-005005' || strstr($result['r_error'], 'Duplicate transaction')) $messageStack->add_session('checkout_payment', 'This appears to be a duplicate transaction, and we do not want to double-charge your card! Perhaps you resubmitted your order by mistake? If not, please try again in 5 minutes, or contact the storeowner for additional assistance. Sorry for the inconvenience.' . '<br />' . $result['r_error'], 'error');
       if (substr($result['r_error'],0,10) == 'SGS-002301') $messageStack->add_session('checkout_payment', 'Subtotal miscalculation. Please notify the storeowner.' . '<br />' . $result['r_error'], 'error');
     }
   //  End specific error conditions
