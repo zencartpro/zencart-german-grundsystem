@@ -14,6 +14,3 @@
 define('HEADING_TITLE','Sprache definieren');
 define('TEXT_FILE_DOES_NOT_EXIST','Datei existiert nicht.');
 define('ERROR_FILE_NOT_WRITEABLE','Fehler: In die Datei kann nicht geschrieben werden. Setzten Sie bitte die entsprechenden Rechte: %s');
-
-
-?>

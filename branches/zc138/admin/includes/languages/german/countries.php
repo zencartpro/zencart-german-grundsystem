@@ -25,6 +25,3 @@ define('TEXT_INFO_DELETE_INTRO','Wollen Sie dieses Land wirklich löschen?');
 define('TEXT_INFO_HEADING_NEW_COUNTRY','Neues Land');
 define('TEXT_INFO_HEADING_EDIT_COUNTRY','Land bearbeiten');
 define('TEXT_INFO_HEADING_DELETE_COUNTRY','Land löschen');
-
-
-?>

@@ -17,7 +17,7 @@ define('TABLE_HEADING_PRODUCTS_ID', 'Artikel ID');
 define('TABLE_HEADING_PRODUCT', 'Artikelname');
 define('TABLE_HEADING_MODEL', 'Artikelnummer');
 define('TABLE_HEADING_OPT_NAME', 'Attributname');
-define('TABLE_HEADING_OPT_VALUE', 'Attributmerkmal Name');
+define('TABLE_HEADING_OPT_VALUE', 'Attributmerkmal');
 define('TABLE_TEXT_FILENAME', 'Dateiname');
 define('TABLE_TEXT_MAX_DAYS', 'Tage');
 define('TABLE_TEXT_MAX_COUNT', 'Downloads');
@@ -33,8 +33,5 @@ define('TEXT_DELETE_INTRO', 'Der folgende Dateiname wird aus der Datenbank entfe
 define('TEXT_INFO_FILENAME', 'Dateiname: ');
 define('TEXT_INFO_MAX_DAYS', 'Maximale Tage: ');
 define('TEXT_INFO_MAX_COUNT', 'Maximale Downloads: ');
-define('TEXT_INFO_FILENAME_MISSING', '&nbsp;Vermisse Dateiname');
+define('TEXT_INFO_FILENAME_MISSING', '&nbsp;Dateiname fehlt');
 define('TEXT_INFO_FILENAME_GOOD', '&nbsp;Gültiger Dateiname');
-
-
-?>

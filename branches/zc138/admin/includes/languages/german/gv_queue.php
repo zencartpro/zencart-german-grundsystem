@@ -27,6 +27,3 @@ define('TEXT_REDEEM_GV_SUBJECT', TEXT_GV_NAME . ' bestellen');
 define('TEXT_REDEEM_GV_SUBJECT_ORDER', ' Bestell #');
 define('TEXT_EDIT_ORDER','Bestell ID# bearbeiten');
 define('TEXT_GV_NONE','Kein ' . TEXT_GV_NAME . ' zur Veröffentlichung vorhanden');
-
-
-?>

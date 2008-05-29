@@ -19,7 +19,7 @@
   define('MAP_SHOP2_FSTORE_NAME', 'Name des Shops');
   define('MAP_SHOP2_HINT_STORE_NAME', 'Eintrag bearbeiten');
 
-  define('MAP_SHOP2_FSTORE_NAME_ADDRESS', 'die Shop Adresse');
+  define('MAP_SHOP2_FSTORE_NAME_ADDRESS', 'Die Shop Adresse');
   define('MAP_SHOP2_HINT_STORE_NAME_ADDRESS', 'Eintrag bearbeiten');
 
   define('MAP_SHOP2_FCATEGORY', 'Kategorie');
@@ -29,7 +29,7 @@
   define('MAP_SHOP2_HINT_HTML', 'Zum Bearbeiten: admin/includes/configure.php ändern');
 
   define('MAP_SHOP2_FDESCRIPTION', 'Beschreibung');
-  define('MAP_SHOP2_HINT_DESCRIPTION', 'Beschreibe Sie Ihren Shop');
+  define('MAP_SHOP2_HINT_DESCRIPTION', 'Beschreiben Sie Ihren Shop');
   
   define('MAP_SHOP2_FCOUNTRY', 'Land');
   define('MAP_SHOP2_HINT_COUNTRY', 'Eintrag bearbeiten');
@@ -37,7 +37,7 @@
   define('MAP_SHOP2_FZIP', 'PLZ');
   define('MAP_SHOP2_HINT_ZIP', 'Die PLZ eintragen');
   
-  define('MAP_SHOP2_FIMAGE', 'Link zu Logo');
+  define('MAP_SHOP2_FIMAGE', 'Link zum Logo');
   define('MAP_SHOP2_HINT_IMAGE', 'Der Link zu Ihrem Logo inkl. http://');
   
   define('MAP_SHOP2_FSTREET', 'Strasse');
