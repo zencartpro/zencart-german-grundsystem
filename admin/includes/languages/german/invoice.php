@@ -13,11 +13,11 @@
 
 define('TABLE_HEADING_COMMENTS','Kommentare');
 define('TABLE_HEADING_CUSTOMER_NOTIFIED', 'Kunde benachrichtigt');
-define('TABLE_HEADING_DATE_ADDED', 'Hinzugefügt am');
+define('TABLE_HEADING_DATE_ADDED', 'Erstellt am');
 define('TABLE_HEADING_STATUS', 'Status');
 define('TABLE_HEADING_PRODUCTS_MODEL','Artikelnummer');
 define('TABLE_HEADING_PRODUCTS','Artikel');
-define('TABLE_HEADING_TAX','MwSt');
+define('TABLE_HEADING_TAX','MwSt.');
 define('TABLE_HEADING_TOTAL','Summe');
 define('TABLE_HEADING_PRICE_EXCLUDING_TAX','Preis (exkl. MwSt.)');
 define('TABLE_HEADING_PRICE_INCLUDING_TAX','Preis (inkl. MwSt.)');
@@ -27,7 +27,7 @@ define('ENTRY_CUSTOMER', 'KUNDE:');
 define('ENTRY_SOLD_TO','Verkauft an:');
 define('ENTRY_SHIP_TO','Versendet an:');
 define('ENTRY_PAYMENT_METHOD','Zahlungsarten:');
-define('ENTRY_SUB_TOTAL','Summe Artikel (netto):');
+define('ENTRY_SUB_TOTAL','Zwischensumme:');
 define('ENTRY_TAX','MwSt.:');
 define('ENTRY_SHIPPING','Versandkosten:');
 define('ENTRY_TOTAL','Endsumme:');

@@ -23,7 +23,7 @@ define('HEADING_TITLE', 'Developers Tool Kit');
 define('TABLE_CONFIGURATION_TABLE', 'KONSTANTEN Definition suchen');
 define('SUCCESS_PRODUCT_UPDATE_PRODUCTS_PRICE_SORTER', '<strong>Erfolgreiche</strong> Aktualisierung der Artikelpreis Sortierung');
 define('ERROR_CONFIGURATION_KEY_NOT_FOUND', '<strong>Fehler:</strong> Keine passenden Konfigurationsschlüssel gefunden ...');
-define('ERROR_CONFIGURATION_KEY_NOT_ENTERED', '<strong>Fehler:</strong> Kein Konfigurationsschlüssel Key oder Text eingegeben ... Suche abgebrochen');
+define('ERROR_CONFIGURATION_KEY_NOT_ENTERED', '<strong>Fehler:</strong> Kein Konfigurationsschlüssel oder Text eingegeben ... Suche abgebrochen');
 define('TEXT_INFO_PRODUCTS_PRICE_SORTER_UPDATE', '<strong>Aktualisiere ALLE Artikelpreis Sortierungen</strong><br />damit nach angezeigtem Preis sortiert wird: ');
 define('TEXT_CONFIGURATION_CONSTANT', '<strong>KONSTANTEN und LANGUAGE Definition suchen</strong>');
 define('TEXT_CONFIGURATION_KEY', 'Schlüssel oder Name:');

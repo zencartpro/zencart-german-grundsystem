@@ -11,16 +11,18 @@
 //  $Id$
 //
 define('HEADING_TITLE', 'Kunden');
-define('TABLE_HEADING_ID', 'ID#');
+
+define('TABLE_HEADING_ID', 'ID');
 define('TABLE_HEADING_FIRSTNAME', 'Vorname');
 define('TABLE_HEADING_LASTNAME', 'Nachname');
-define('TABLE_HEADING_ACCOUNT_CREATED', 'Konto erstellt');
+define('TABLE_HEADING_ACCOUNT_CREATED', 'Konto erstellt am');
 define('TABLE_HEADING_LOGIN', 'Letzte Anmeldung');
 define('TABLE_HEADING_ACTION', 'Aktion');
 define('TABLE_HEADING_PRICING_GROUP', 'Preisgruppe');
 define('TABLE_HEADING_AUTHORIZATION_APPROVAL', 'Authorisiert');
 define('TABLE_HEADING_GV_AMOUNT', 'Gutschein Guthaben');
-define('TEXT_DATE_ACCOUNT_CREATED', 'Konto erstellt:');
+
+define('TEXT_DATE_ACCOUNT_CREATED', 'Konto erstellt am:');
 define('TEXT_DATE_ACCOUNT_LAST_MODIFIED', 'Letzte Änderung:');
 define('TEXT_INFO_DATE_LAST_LOGON', 'Letzte Anmeldung:');
 define('TEXT_INFO_NUMBER_OF_LOGONS', 'Anzahl der Anmeldungen:');

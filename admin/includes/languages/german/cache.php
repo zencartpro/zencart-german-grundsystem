@@ -13,12 +13,9 @@
 
 define('HEADING_TITLE','Cache (Zwischenspeicher)Management');
 define('TABLE_HEADING_CACHE','Cache Blöcke');
-define('TABLE_HEADING_DATE_CREATED','Erstellungsdatum');
+define('TABLE_HEADING_DATE_CREATED','Erstellt am');
 define('TABLE_HEADING_ACTION','Aktion');
 define('TEXT_FILE_DOES_NOT_EXIST','Die Datei existiert nicht');
 define('TEXT_CACHE_DIRECTORY','Cache Verzeichnis:');
 define('ERROR_CACHE_DIRECTORY_DOES_NOT_EXIST','Achtung! Das Cacheverzeichnis existiert nicht.');
 define('ERROR_CACHE_DIRECTORY_NOT_WRITEABLE','Achtung! Das Cacheverzeichnis ist nicht beschreibbar.');
-
-
-?>

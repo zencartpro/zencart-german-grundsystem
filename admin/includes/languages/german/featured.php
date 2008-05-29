@@ -23,7 +23,7 @@ define('TABLE_HEADING_ACTION', 'Aktion');
 define('TEXT_FEATURED_PRODUCT', 'Artikel:');
 define('TEXT_FEATURED_EXPIRES_DATE', 'Ablaufdatum:');
 define('TEXT_FEATURED_AVAILABLE_DATE', 'Verfügbar ab:');
-define('TEXT_INFO_DATE_ADDED', 'Erstelldatum:');
+define('TEXT_INFO_DATE_ADDED', 'Erstellt am:');
 define('TEXT_INFO_LAST_MODIFIED', 'Letzte Änderung:');
 define('TEXT_INFO_NEW_PRICE', 'Neuer Preis:');
 define('TEXT_INFO_ORIGINAL_PRICE', 'Originalpreis:');
@@ -31,17 +31,14 @@ define('TEXT_INFO_PERCENTAGE', 'Prozentsatz:');
 define('TEXT_INFO_AVAILABLE_DATE', 'Verfügbar ab:');
 define('TEXT_INFO_EXPIRES_DATE', 'Ablaufdatum:');
 define('TEXT_INFO_STATUS_CHANGE', 'Letzte Status Änderung:');
-define('TEXT_IMAGE_NONEXISTENT', 'Bild existiert nicht');
+define('TEXT_IMAGE_NONEXISTENT', 'Kein Bild vorhanden');
 define('TEXT_INFO_HEADING_DELETE_FEATURED', 'Lösche ähnlichen Artikel');
 define('TEXT_INFO_DELETE_INTRO', 'Wollen Sie den ähnlichen Artikel wirklich löschen?');
 define('SUCCESS_FEATURED_PRE_ADD', 'Erfolgreich: Ähnlicher Artikel wurde hinzugefügt ... Aktualisieren Sie bitte die Daten ...');
-define('WARNING_FEATURED_PRE_ADD_EMPTY', 'Warnung: Kein Produkt angegeben ... nichts wurde hinzugefügt ...');
-define('WARNING_FEATURED_PRE_ADD_DUPLICATE', 'Warnung: Produkt ID bereits als Sonderangebot ... nichts wurde hinzugefügt ...');
-define('WARNING_FEATURED_PRE_ADD_BAD_PRODUCTS_ID', 'Warnung: Produkt ID ist ungültig ... nichts wurde hinzugefügt ...');
-define('TEXT_INFO_HEADING_PRE_ADD_FEATURED', 'Neue Artikel manuell hinzufügen mit Produkt ID');
-define('TEXT_INFO_PRE_ADD_INTRO', 'Auf großen Datenbanken kann man Artikel manuell per Angabe der Produkt ID hinzufügen.<br /><br />Dies wird dann angewandt, wenn die Seite zu lang zum übertragen braucht und der Versuch, ein Produkt per Dropdownfeld zu wählen wegen zu vielen Produkten zu schwierig wird.');
-define('TEXT_PRE_ADD_PRODUCTS_ID', 'Bitte geben Sie die Produkt ID vor dem hinzufügen ein: ');
-define('TEXT_INFO_MANUAL', 'Produkt ID manuell hinzugefügt');
-
-
-?>
+define('WARNING_FEATURED_PRE_ADD_EMPTY', 'Warnung: Keine Artikel ID angegeben ... nichts wurde hinzugefügt ...');
+define('WARNING_FEATURED_PRE_ADD_DUPLICATE', 'Warnung: Artikel ID ist bereits als Sonderangebot definiert ... nichts wurde hinzugefügt ...');
+define('WARNING_FEATURED_PRE_ADD_BAD_PRODUCTS_ID', 'Warnung: Artikel ID ist ungültig ... nichts wurde hinzugefügt ...');
+define('TEXT_INFO_HEADING_PRE_ADD_FEATURED', 'Neue Artikel manuell hinzufügen per Artikel ID');
+define('TEXT_INFO_PRE_ADD_INTRO', 'Bei großen Datenbanken kann man Artikel manuell per Angabe der Artikel ID hinzufügen.<br /><br />Dies wird dann angewandt, wenn die Seite zu lang zum übertragen braucht und der Versuch, ein Produkt per Dropdownfeld zu wählen wegen zu vielen Produkten zu schwierig wird.');
+define('TEXT_PRE_ADD_PRODUCTS_ID', 'Bitte geben Sie die Artikel ID ein: ');
+define('TEXT_INFO_MANUAL', 'Artikel ID manuell als ähnlichen Artikel hinzufügen');

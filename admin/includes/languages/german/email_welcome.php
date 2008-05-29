@@ -14,7 +14,3 @@
 define('HEADING_TITLE', 'Willkommensnachricht - Beispiel / Vorschau');
 define('HEADING_SUBTITLE', 'Hinweis: Die Qualität der Darstellung dieser Vorschau ist vom jeweils verwendeten Browser abhängig und spiegelt nicht unbedingt die aktuelle Darstellung aller E-Mail Clients wieder. <br />Bitte NICHT versenden, bevor Sie die korrekte Darstellung auf allen E-Mail Clients, die Sie unterstützen wollen, eingehend getestet haben.');
 define('TEXT_SUBJECT', 'Betreff:');
-
-
-
-?>

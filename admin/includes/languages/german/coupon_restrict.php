@@ -36,6 +36,3 @@ define('IMAGE_ALLOW','Erlauben');
 define('IMAGE_DENY','Nicht erlauben');
 define('IMAGE_REMOVE','Entfernen');
 define('TEXT_ALL_CATEGORIES', 'Alle Kategorien');
-
-
-?>

@@ -25,8 +25,5 @@ define('TEXT_INFO_VOUCHER_CODE', ':');
 define('TEXT_INFO_EMAIL_ADDRESS', 'E-Mail Adresse:');
 define('TEXT_INFO_DATE_REDEEMED', 'Einlösedatum:');
 define('TEXT_INFO_IP_ADDRESS', 'IP Adresse:');
-define('TEXT_INFO_CUSTOMERS_ID', 'Kundennummer:');
+define('TEXT_INFO_CUSTOMERS_ID', 'Kunden ID:');
 define('TEXT_INFO_NOT_REDEEMED', 'Nicht eingelöst');
-
-
-?>
