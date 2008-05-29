@@ -21,7 +21,7 @@ define('FOOTER_TEXT_BODY', 'Copyright &copy; ' . date('Y') . ' <a href="http://w
 // on FreeBSD try 'en_US.ISO_8859-1'
 // on Windows try 'en', or 'English'
 // @setlocale(LC_TIME, 'de_DE.ISO_8859-1'); geändert von MaleBorg
-@setlocale(LC_TIME, 'de_DE.ISO_8859-1','de_DE@euro', 'de_DE', 'de', 'ge'); 
+@setlocale(LC_TIME, 'de_DE.UTF-8', 'de_AT.UTF-8', 'de_CH.UTF-8', 'de_DE.ISO_8859-1','de_DE@euro', 'de_DE', 'de', 'ge', 'deu.deu'); 
 define('DATE_FORMAT_SHORT', '%d.%m %Y'); // this is used for strftime()
 define('DATE_FORMAT_LONG', '%A, %d. %B %Y'); // this is used for strftime()
 define('DATE_FORMAT', 'd.m.Y'); // this is used for date()
