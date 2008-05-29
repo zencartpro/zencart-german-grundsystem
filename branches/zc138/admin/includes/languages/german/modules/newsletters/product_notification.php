@@ -11,15 +11,14 @@
 //  $Id$
 //
 
-define('TEXT_COUNT_CUSTOMERS','Kunden, die Newsletter erhalten: %s');
+define('TEXT_COUNT_CUSTOMERS','Kunden, die Artikelbenachrichtigungen erhalten: %s');
 define('TEXT_PRODUCTS','Artikel');
 define('TEXT_SELECTED_PRODUCTS','Ausgewählte Artikel');
+
 define('JS_PLEASE_SELECT_PRODUCTS','Bitte wählen Sie einige Artikel.');
+
 define('BUTTON_GLOBAL','Global');
 define('BUTTON_SELECT','>>>');
 define('BUTTON_UNSELECT','<<<');
 define('BUTTON_SUBMIT','Senden');
 define('BUTTON_CANCEL','Abbrechen');
-
-
-?>
