@@ -14,34 +14,31 @@
   define('MAP_SHOP2_BTN_GOOGLE', 'lat/lng ermitteln');
   define('MAP_SHOP2_BTN_GOOGLEMAP', 'GoogleMap anzeigen');
   
-  define('MAP_SHOP2_INFO1', 'letzter export & hingeschoben zur map_shop');
+  define('MAP_SHOP2_INFO1', 'Letzter Export & hingeschoben zur map_shop');
   
   define('MAP_SHOP2_FSTORE_NAME', 'Name des Shops');
-  define('MAP_SHOP2_HINT_STORE_NAME', 'zum bearbeiten');
+  define('MAP_SHOP2_HINT_STORE_NAME', 'Eintrag bearbeiten');
 
-  define('MAP_SHOP2_FSTORE_NAME_ADDRESS', 'die ShopAdresse');
-  define('MAP_SHOP2_HINT_STORE_NAME_ADDRESS', 'zum bearbeiten');
+  define('MAP_SHOP2_FSTORE_NAME_ADDRESS', 'die Shop Adresse');
+  define('MAP_SHOP2_HINT_STORE_NAME_ADDRESS', 'Eintrag bearbeiten');
 
   define('MAP_SHOP2_FCATEGORY', 'Kategorie');
-  define('MAP_SHOP2_HINT_CATEGORY', 'die Hauptkategorie auswählen');
+  define('MAP_SHOP2_HINT_CATEGORY', 'Die Hauptkategorie auswählen');
 
-  define('MAP_SHOP2_FHTML', 'web-adresse des shops');
-  define('MAP_SHOP2_HINT_HTML', 'zum bearbeiten: admin/includes/configure.php aendern');
+  define('MAP_SHOP2_FHTML', 'Web Adresse des Shops');
+  define('MAP_SHOP2_HINT_HTML', 'Zum Bearbeiten: admin/includes/configure.php ändern');
 
   define('MAP_SHOP2_FDESCRIPTION', 'Beschreibung');
-  define('MAP_SHOP2_HINT_DESCRIPTION', 'beschreibe deinen shop');
+  define('MAP_SHOP2_HINT_DESCRIPTION', 'Beschreibe Sie Ihren Shop');
   
   define('MAP_SHOP2_FCOUNTRY', 'Land');
-  define('MAP_SHOP2_HINT_COUNTRY', 'zum bearbeiten');
+  define('MAP_SHOP2_HINT_COUNTRY', 'Eintrag bearbeiten');
   
   define('MAP_SHOP2_FZIP', 'PLZ');
-  define('MAP_SHOP2_HINT_ZIP', 'die PLZ eintragen');
+  define('MAP_SHOP2_HINT_ZIP', 'Die PLZ eintragen');
   
-  define('MAP_SHOP2_FIMAGE', 'link zu logo');
-  define('MAP_SHOP2_HINT_IMAGE', 'link zu logo eintragen, inkl. http://');
+  define('MAP_SHOP2_FIMAGE', 'Link zu Logo');
+  define('MAP_SHOP2_HINT_IMAGE', 'Der Link zu Ihrem Logo inkl. http://');
   
   define('MAP_SHOP2_FSTREET', 'Strasse');
-  define('MAP_SHOP2_HINT_STREET', 'die Strasse inkl. Hausnummer eintragen');
-  
-
-?>
+  define('MAP_SHOP2_HINT_STREET', 'Die Strasse inkl. Hausnummer eintragen');

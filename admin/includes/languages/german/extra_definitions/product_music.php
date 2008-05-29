@@ -28,4 +28,3 @@ define('BOX_CATALOG_RECORD_COMPANY', 'Plattenfirma');
 define('BOX_CATALOG_MUSIC_GENRE', 'Musik Genre');
 define('BOX_CATALOG_MEDIA_MANAGER', 'Medienmanager');
 define('BOX_CATALOG_MEDIA_TYPES', 'Medientypen');
-?>

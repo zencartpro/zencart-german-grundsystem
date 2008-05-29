@@ -8,5 +8,4 @@
  */
 
 define('FILENAME_LINKPOINT_REVIEW', 'linkpoint_review');
-define('BOX_CUSTOMERS_LINKPOINT_REVIEW', 'Linkpoint CC Bericht');
-?>
+define('BOX_CUSTOMERS_LINKPOINT_REVIEW', 'Linkpoint Kreditkarten Bericht');

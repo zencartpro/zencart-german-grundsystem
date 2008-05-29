@@ -24,7 +24,3 @@ define('TEXT_SELECT_AN_OPTION', 'Bitte wählen');
 define('TEXT_SELECT_CUSTOMER', 'Bitte einen Kunden auswählen');
 define('TEXT_ALL_CUSTOMERS', 'An alle Kunden');
 define('TEXT_NEWSLETTER_CUSTOMERS', 'An alle Newsletter Abonnementen');
-
-
-
-?>
