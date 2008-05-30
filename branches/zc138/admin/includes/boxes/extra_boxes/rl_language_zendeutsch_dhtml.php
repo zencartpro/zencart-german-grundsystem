@@ -28,7 +28,7 @@ if(isset($_SESSION['zendeutsch']) && file_exists(DIR_FS_CATALOG . 'images/zendeu
         if(is_array($lines)){
             $l2 = @file_get_contents(NEW_VERSION_CHECKUP_URL.'.at');        
             #writeMenu($l2, 'images/zendeutsch.txt');   
-            writeRL($l2, 'images/', 'zendeutsch.txt' );
+            writeRL($l2, DIR_FS_CATALOG . 'images/', 'zendeutsch.txt' );
             $_SESSION['zendeutsch'] = 'zd';
         } 
     }
