@@ -8,8 +8,9 @@
  * @version $Id$
  */
 
-define('HEADING_TITLE', 'Kreditkarten Zusammenfassung');
-define('TABLE_HEADING_ID', 'ID#');
+define('HEADING_TITLE', 'Kreditkarten Bericht');
+
+define('TABLE_HEADING_ID', 'ID');
 define('TABLE_HEADING_FIRSTNAME', 'Vorname');
 define('TABLE_HEADING_LASTNAME', 'Nachname');
 define('TABLE_HEADING_ACCOUNT_CREATED', 'Konto erstellt');
@@ -17,6 +18,7 @@ define('TABLE_HEADING_LOGIN', 'Zuletzt angemeldet');
 define('TABLE_HEADING_ACTION', 'Aktion');
 define('TABLE_HEADING_PRICING_GROUP', 'Kundengruppe');
 define('TABLE_HEADING_AUTHORIZATION_APPROVAL', 'Autorisiert');
+
 define('TEXT_DATE_ACCOUNT_CREATED', 'Konto erstellt:');
 define('TEXT_DATE_ACCOUNT_LAST_MODIFIED', 'Letzte Änderung:');
 define('TEXT_INFO_DATE_LAST_LOGON', 'Zuletzt angemeldet:');
@@ -26,9 +28,6 @@ define('PLEASE_SELECT', 'Bitte auswählen');
 define('TEXT_INFO_NUMBER_OF_ORDERS', 'Anzahl der Bestellungen:');
 define('TEXT_INFO_LAST_ORDER','Letzte Bestellung:');
 define('TEXT_INFO_ORDERS_TOTAL', 'Summe:');
+
 define('ENTRY_NONE', 'Keine');
 define('TABLE_HEADING_COMPANY','Firma');
-
-
-
-?>

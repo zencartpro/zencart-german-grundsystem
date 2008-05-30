@@ -20,10 +20,10 @@
 //  $Id$
 //
 
-define('HEADING_TITLE', 'Kategorien &amp; Artikel');
+define('HEADING_TITLE', 'Kategorien / Artikel');
 define('HEADING_TITLE_GOTO', 'Gehe zu:');
 define('TABLE_HEADING_ID', 'ID');
-define('TABLE_HEADING_CATEGORIES_PRODUCTS', 'Kategorien &amp; Artikel');
+define('TABLE_HEADING_CATEGORIES_PRODUCTS', 'Kategorien / Artikel');
 define('TABLE_HEADING_CATEGORIES_SORT_ORDER', 'Sortierung');
 define('TABLE_HEADING_PRICE', 'Preis | Sonderpreis | Abverkauf');
 define('TABLE_HEADING_QUANTITY', 'Stückzahl');
@@ -34,10 +34,10 @@ define('TEXT_SUBCATEGORIES', 'Unterkategorien:');
 define('TEXT_PRODUCTS', 'Artikel:');
 define('TEXT_PRODUCTS_PRICE_INFO', 'Preis:');
 define('TEXT_PRODUCTS_TAX_CLASS', 'Steuerklasse:');
-define('TEXT_PRODUCTS_AVERAGE_RATING', 'Durchschnittliche Bewertung:');
+define('TEXT_PRODUCTS_AVERAGE_RATING', 'Durchschnittliches Rating:');
 define('TEXT_PRODUCTS_QUANTITY_INFO', 'Stückzahl:');
-define('TEXT_DATE_ADDED', 'Erstelldatum:');
-define('TEXT_DATE_AVAILABLE', 'verfügbar ab:');
+define('TEXT_DATE_ADDED', 'Erstellt am:');
+define('TEXT_DATE_AVAILABLE', 'Verfügbar ab:');
 define('TEXT_LAST_MODIFIED', 'Letzte Änderung:');
 define('TEXT_IMAGE_NONEXISTENT', 'BILD EXISTIERT NICHT');
 define('TEXT_NO_CHILD_CATEGORIES_OR_PRODUCTS', 'Bitte fügen Sie eine neue Kategorie oder einen neuen Artikel in dieser Ebene ein.');

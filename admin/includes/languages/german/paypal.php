@@ -33,7 +33,7 @@ define('TEXT_PAYMENT_AMOUNT_DESC', 'Bestellsumme (hoch - niedrig)');
 define('TEXT_PAYMENT_AMOUNT', 'Bestellsumme (niedrig - hoch)');
 
   //begin ADMIN text
-define('HEADING_ADMIN_TITLE', 'PayPal sofortige Zahlungsnotifikationen');
+define('HEADING_ADMIN_TITLE', 'PayPal sofortige Zahlungsbenachrichtigungen');
 define('HEADING_PAYMENT_STATUS', 'Bezahlstatus');
 define('TEXT_ALL_IPNS', 'Alle');
 define('TABLE_HEADING_ORDER_NUMBER', 'Bestellnummer');
@@ -42,16 +42,16 @@ define('TABLE_HEADING_TXN_TYPE', 'Transaktionstyp');
 define('TABLE_HEADING_PAYMENT_STATUS', 'Zahlungsstatus');
 define('TABLE_HEADING_PAYMENT_AMOUNT', 'Betrag');
 define('TABLE_HEADING_ACTION', 'Aktion');
-define('TABLE_HEADING_DATE_ADDED', 'Hinzugefügt am');
+define('TABLE_HEADING_DATE_ADDED', 'Erstellt am');
 define('TABLE_HEADING_NUM_HISTORY_ENTRIES', 'Anzahl Einträge in der Statushistorie');
 define('TABLE_HEADING_ENTRY_NUM', 'Anfangsnummer');
 define('TABLE_HEADING_TRANS_ID', 'Trans. ID');
-define('TEXT_INFO_PAYPAL_IPN_HEADING', 'PayPal');
+define('TEXT_INFO_PAYPAL_IPN_HEADING', 'PayPal IPN');
 define('TEXT_DISPLAY_NUMBER_OF_TRANSACTIONS', 'Zeige <strong>%d</strong> bis <strong>%d</strong> (von <strong>%d</strong> IPN\'s)');
 
   //Details section
 define('HEADING_DEATILS_CUSTOMER_REGISTRATION_TITLE', 'PayPal Kundenregistrierungsdetails');
-define('HEADING_DETAILS_REGISTRATION_TITLE', 'PayPal sofortige Zahlungsnotifikation');
+define('HEADING_DETAILS_REGISTRATION_TITLE', 'PayPal sofortige Zahlungsbenachrichtigung');
 define('TEXT_INFO_ENTRY_ADDRESS', 'Adresse');
 define('TEXT_INFO_ORDER_NUMBER', 'Bestellnummer');
 define('TEXT_INFO_TXN_TYPE', 'Transaktionstyp');
@@ -86,4 +86,3 @@ define('ENTRY_CUSTOMER_COMMENTS', 'Kundenkommentare');
 define('TEXT_NO_IPN_HISTORY', 'Keine IPN Historie erhältlich');
 define('TEXT_TXN_SIGNATURE', 'Transaktions Signatur');
   //end ADMIN text
-?>

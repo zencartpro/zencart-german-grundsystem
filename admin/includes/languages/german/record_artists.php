@@ -20,18 +20,15 @@ define('TEXT_DELETE_IMAGE', 'Bild löschen?.');
 define('TEXT_RECORD_ARTIST_NAME', 'Künstlername');
 define('TEXT_RECORD_ARTIST_IMAGE', 'Künstlerbild');
 define('TEXT_RECORD_ARTIST_URL', 'Webseite des Künstlers');
-define('TEXT_ARTISTS_IMAGE_DIR', 'Bildverzeichnis&nbsp;');
+define('TEXT_ARTISTS_IMAGE_DIR', 'Bildverzeichnis ');
 define('TEXT_ARTISTS_IMAGE_MANUAL', '<strong>Oder wählen Sie ein bestehendes Bild vom Server, Dateiname:</strong>');
 define('TEXT_HEADING_NEW_RECORD_ARTIST', 'Neuer Künstler');
 define('TEXT_HEADING_EDIT_RECORD_ARTIST', 'Künstler bearbeiten');
 define('TEXT_HEADING_DELETE_RECORD_ARTIST', 'Künstler löschen');
-define('TEXT_DATE_ADDED', 'Erstelldatum');
+define('TEXT_DATE_ADDED', 'Erstellt am');
 define('TEXT_LAST_MODIFIED', 'Letzte Änderung');
 define('TEXT_IMAGE_NONEXISTENT', 'Das Bild existiert nicht');
 define('TEXT_PRODUCTS', 'Verlinkte Artikel');
 define('TEXT_DISPLAY_NUMBER_OF_ARTISTS', 'Zeige <strong>%d</strong> bis <strong>%d</strong> (von <strong>%d</strong> Künstlern)');
 define('TEXT_DELETE_PRODUCTS', 'Soll dieser Künstler und alle Verlinkungen zu diesem Künstler gelöscht werden?');
 define('TEXT_DELETE_WARNING_PRODUCTS', '<b>WARNUNG:</b> Es gibt %s Verlinkungen zu diesem Künstler!');
-
-
-?>

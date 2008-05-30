@@ -22,6 +22,3 @@ define('TABLE_HEADING_SALE_DATE_START','Startdatum');
 define('TABLE_HEADING_SALE_DATE_END','Enddatum');
 define('TABLE_HEADING_STATUS','Status');
 define('TABLE_HEADING_ACTION','Aktion');
-
-
-?>
