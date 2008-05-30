@@ -20,11 +20,8 @@ define('TEXT_INFO_EDIT_INTRO','Führen Sie hier bitte die notwendigen Änderunge
 define('TEXT_INFO_ZONES_NAME','Zone/Bundesland:');
 define('TEXT_INFO_ZONES_CODE','Zone/Bundesland Kürzel:');
 define('TEXT_INFO_COUNTRY_NAME','Land:');
-define('TEXT_INFO_INSERT_INTRO','Tragen Sie bitte die neue Zone mit den notwendigen Daten ein');
-define('TEXT_INFO_DELETE_INTRO','Wollen Sie diese Zone wirklich löschen?');
-define('TEXT_INFO_HEADING_NEW_ZONE','Neue Zone');
-define('TEXT_INFO_HEADING_EDIT_ZONE','Zone bearbeiten');
-define('TEXT_INFO_HEADING_DELETE_ZONE','Zone löschen');
-
-
-?>
+define('TEXT_INFO_INSERT_INTRO','Tragen Sie bitte die neue Zone/Bundesland mit den notwendigen Daten ein');
+define('TEXT_INFO_DELETE_INTRO','Wollen Sie diese Zone/Bundesland wirklich löschen?');
+define('TEXT_INFO_HEADING_NEW_ZONE','Neue Zone/Bundesland');
+define('TEXT_INFO_HEADING_EDIT_ZONE','Zone/Bundesland bearbeiten');
+define('TEXT_INFO_HEADING_DELETE_ZONE','Zone/Bundesland löschen');

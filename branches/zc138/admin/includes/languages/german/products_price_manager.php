@@ -12,7 +12,7 @@
 //
 
 define('HEADING_TITLE', 'Artikelpreismanager');
-define('HEADING_TITLE_PRODUCT_SELECT','Wählen Sie bitte einen Artikel aus, um die Preisinformationen anzuzeigen ...');
+define('HEADING_TITLE_PRODUCT_SELECT','Wählen Sie bitte eine Kategorie mit Artikeln aus, um die Preisinformationen anzuzeigen von ...');
 define('TABLE_HEADING_PRODUCTS', 'Artikel');
 define('TABLE_HEADING_PRODUCTS_MODEL','Artikelnummer');
 define('TABLE_HEADING_PRODUCTS_PRICE', 'Preis | Sonderpreis | Abverkauf');
@@ -61,9 +61,9 @@ define('TEXT_SPECIALS_PRODUCT_INFO', 'Sonderpreis Info:');
 define('TEXT_SPECIALS_PRODUCTS_STATUS', 'Sonderangebot Status:');
 define('TEXT_SPECIALS_PRODUCT_AVAILABLE', 'Aktiv');
 define('TEXT_SPECIALS_PRODUCT_NOT_AVAILABLE', 'Inaktiv');
-define('TEXT_SPECIALS_NO_GIFTS','Keine Sonderangebote im GV');
+define('TEXT_SPECIALS_NO_GIFTS','Keine Sonderangebote durch Gutscheine');
 define('TEXT_SPECIAL_DISABLED', '<strong>HINWEIS: "Sonderangebot" Info ist deaktiviert, abgelaufen oder derzeit nicht aktiv</strong>');
-define('TEXT_INFO_DATE_ADDED', 'Erstelldatum:');
+define('TEXT_INFO_DATE_ADDED', 'Erstellt am:');
 define('TEXT_INFO_LAST_MODIFIED', 'Letzte Änderung:');
 define('TEXT_INFO_NEW_PRICE', 'Neuer Preis:');
 define('TEXT_INFO_ORIGINAL_PRICE', 'Originalpreis:');
@@ -81,7 +81,7 @@ define('TEXT_SPECIAL_PRICE', 'Sonderpreis: ');
 define('TEXT_SALE_PRICE', 'Abverkaufspreis: ');
 define('TEXT_FREE', 'KOSTENLOS');
 define('TEXT_CALL_FOR_PRICE', 'Preis bitte anfragen');
-define('TEXT_ADD_ADDITIONAL_DISCOUNT', 'hinzufügen ' . DISCOUNT_QTY_ADD . ' Mengenrabatt leeren:');
+define('TEXT_ADD_ADDITIONAL_DISCOUNT', DISCOUNT_QTY_ADD . ' leere Mengenrabatt hinzufügen:');
 define('TEXT_BLANKS_INFO','Alle 0 Stückzahlreduktionen werden bei der Aktualisierung entfernt');
 define('TEXT_INFO_NO_DISCOUNTS', 'Es wurden keine Stückzahlreduktionen definiert');
 define('TEXT_PRODUCTS_DISCOUNT_QTY_TITLE', 'Mengenrabatt-Stufe');
@@ -106,15 +106,12 @@ define('DISCOUNT_TYPE_FROM_DROPDOWN_0','Preis');
 define('DISCOUNT_TYPE_FROM_DROPDOWN_1','Sonderpreis');
 define('TEXT_UPDATE_COMMIT','Aktualisiere alle Änderungen in der aktuellen Ansicht');
 define('TEXT_PRODUCTS_TAX_CLASS', 'Steuerklasse:');
-define('TEXT_INFO_MASTER_CATEGORIES_ID_WARNING', '<strong>Warnung:</strong> Die ID# %s der Artikelhauptkategorie stimmt nicht mit der aktuellen Kategorie ID# %s überein und Artikel sind nicht verlinkt!');
-define('TEXT_INFO_MASTER_CATEGORIES_CURRENT', ' Die aktuelle Kategorie ID# %s stimmt mit der Hauptkategorie ID# %s überein');
-define('TEXT_INFO_MASTER_CATEGORIES_ID_UPDATE_TO_CURRENT', 'Aktualisiere Hauptkategorie-ID# %s, um eine Übereinstimmung mit der aktuellen Kategorie ID# %s zu erhalten');
+define('TEXT_INFO_MASTER_CATEGORIES_ID_WARNING', '<strong>Warnung:</strong> Die ID %s der Artikelhauptkategorie stimmt nicht mit der aktuellen Kategorie ID %s überein und Artikel sind nicht verlinkt!');
+define('TEXT_INFO_MASTER_CATEGORIES_CURRENT', ' Die aktuelle Kategorie ID %s stimmt mit der Hauptkategorie ID %s überein');
+define('TEXT_INFO_MASTER_CATEGORIES_ID_UPDATE_TO_CURRENT', 'Aktualisiere Hauptkategorie-ID %s, um eine Übereinstimmung mit der aktuellen Kategorie ID %s zu erhalten');
 define('PRODUCT_WARNING_UPDATE', 'Bitte machen Sie Ihre Änderungen und klicken Sie zum Speichern anschließend auf Aktualisieren');
 define('PRODUCT_UPDATE_SUCCESS', 'Die Artikeländerungen wurden erfolgreich aktualisiert!');
 define('PRODUCT_WARNING_UPDATE_CANCEL', 'Die Änderungen wurden nicht gespeichert und verworfen ...');
 define('TEXT_INFO_EDIT_CAUTION', '<strong>Klicken Sie hier, um mit der Bearbeitung zu beginnen ...</strong>');
 define('TEXT_INFO_PREVIEW_ONLY', 'NUR Vorschau ... aktuelle Preiseinstellungen ... NUR Vorschau');
 define('TEXT_INFO_UPDATE_REMINDER', '<strong>Bearbeiten Sie die Artikelinformationen und klicken Sie zum Speichern anschließend auf Aktualisieren</strong>');
-
-
-?>

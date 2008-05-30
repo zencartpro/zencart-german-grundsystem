@@ -11,17 +11,14 @@
 //  $Id$
 //
 
-define('HEADING_TITLE','Die Meistverkauften Artikel (Bestseller)');
-define('TABLE_HEADING_NUMBER','Nr.');
+define('HEADING_TITLE','Die meistverkauften Artikel (Bestseller)');
+define('TABLE_HEADING_NUMBER','ID');
 define('TABLE_HEADING_PRODUCTS','Artikel');
-define('TABLE_HEADING_PURCHASED','Bestellt');
-define('TABLE_HEADING_CUSTOMERS_ID', 'Kunden-<br />nummer');
+define('TABLE_HEADING_PURCHASED','Gekauft');
+define('TABLE_HEADING_CUSTOMERS_ID', 'Kunden<br />ID');
 define('TABLE_HEADING_ORDERS_ID', 'Bestell-<br />nummer');
-define('TABLE_HEADING_ORDERS_DATE_PURCHASED', 'Datum');
+define('TABLE_HEADING_ORDERS_DATE_PURCHASED', 'Kaufdatum');
 define('TABLE_HEADING_CUSTOMERS_INFO', 'Kunde');
 define('TABLE_HEADING_PRODUCTS_QUANTITY', 'Menge');
 define('TABLE_HEADING_PRODUCTS_NAME', 'Artikel');
 define('TABLE_HEADING_PRODUCTS_MODEL', 'Artikelnummer');
-
-
-?>

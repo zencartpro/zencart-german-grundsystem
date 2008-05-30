@@ -16,6 +16,3 @@ define('TEXT_INFO_SELECT_REFERRAL','Wählen Sie den Verweis/Aktionskuponnummer')
 define('TEXT_REFERRAL_UNKNOWN', 'Unbekannt');
 define('TEXT_INFO_START_DATE', 'Von');
 define('TEXT_INFO_END_DATE', 'bis');
-
-
-?>

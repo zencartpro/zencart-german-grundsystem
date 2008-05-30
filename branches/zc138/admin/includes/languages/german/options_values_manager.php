@@ -117,6 +117,3 @@ define('TEXT_SELECT_DELETE_OPTION_FROM', 'Abzugleichender Optionsname:');
 define('TEXT_SELECT_DELETE_OPTION_VALUES_FROM', 'Abzugleichender Optionswert:');
 define('ERROR_OPTION_VALUES_DELETE_MISMATCH', 'Fehler: Ausgewählter Optionsname und Optionswert stimmen nicht überein');
 define('SUCCESS_OPTION_VALUES_DELETE', 'Erfolgreich gelöscht: ');
-
-
-?>

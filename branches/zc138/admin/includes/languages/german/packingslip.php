@@ -22,7 +22,7 @@
 
 define('TABLE_HEADING_COMMENTS','Kommentare');
 define('TABLE_HEADING_CUSTOMER_NOTIFIED', 'Kunde benachrichtigt');
-define('TABLE_HEADING_DATE_ADDED', 'Hinzugefügt am');
+define('TABLE_HEADING_DATE_ADDED', 'Erstellt am');
 define('TABLE_HEADING_STATUS', 'Status');
 define('TABLE_HEADING_PRODUCTS_MODEL','Artikelnummer');
 define('TABLE_HEADING_PRODUCTS','Artikel');

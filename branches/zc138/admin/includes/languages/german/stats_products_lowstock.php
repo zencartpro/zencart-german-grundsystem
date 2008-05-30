@@ -12,9 +12,6 @@
 //
 
 define('HEADING_TITLE', 'Artikelbestandsbericht');
-define('TABLE_HEADING_NUMBER', 'ID#');
+define('TABLE_HEADING_NUMBER', 'ID');
 define('TABLE_HEADING_PRODUCTS', 'Artikel');
 define('TABLE_HEADING_VIEWED', 'Stückzahl');
-
-
-?>

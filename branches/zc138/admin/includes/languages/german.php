@@ -102,7 +102,7 @@ define('BOX_MODULES_PRODUCT_TYPES', 'Artikeltypen');
 
 // categories box text in includes/boxes/catalog.php
 define('BOX_HEADING_CATALOG', 'Webshop');
-define('BOX_CATALOG_CATEGORIES_PRODUCTS', 'Kategorien &amp; Artikel');
+define('BOX_CATALOG_CATEGORIES_PRODUCTS', 'Kategorien & Artikel');
 define('BOX_CATALOG_PRODUCT_TYPES', 'Artikeltypen');
 define('BOX_CATALOG_CATEGORIES_OPTIONS_NAME_MANAGER', 'Attributnamen');
 define('BOX_CATALOG_CATEGORIES_OPTIONS_VALUES_MANAGER', 'Attributmerkmale');
@@ -118,10 +118,10 @@ define('BOX_HEADING_CUSTOMERS', 'Kunden');
 define('BOX_CUSTOMERS_CUSTOMERS', 'Kunden');
 define('BOX_CUSTOMERS_ORDERS', 'Bestellungen');
 define('BOX_CUSTOMERS_GROUP_PRICING', 'Gruppenpreise');
-define('BOX_CUSTOMERS_PAYPAL', 'PayPal');
+define('BOX_CUSTOMERS_PAYPAL', 'PayPal IPN');
 
 // taxes box text in includes/boxes/taxes.php
-define('BOX_HEADING_LOCATION_AND_TAXES', 'Länder &amp; Steuern');
+define('BOX_HEADING_LOCATION_AND_TAXES', 'Länder & Steuern');
 define('BOX_TAXES_COUNTRIES', 'Länder');
 define('BOX_TAXES_ZONES', 'Zonen / Bundesländer');
 define('BOX_TAXES_GEO_ZONES', 'Steuerzonen');
@@ -159,7 +159,7 @@ define('BOX_HEADING_EXTRAS', 'Extras');
 define('BOX_TOOLS_DEFINE_PAGES_EDITOR', 'Seiteneditor');
 define('BOX_TOOLS_DEFINE_MAIN_PAGE', 'Startseite');
 define('BOX_TOOLS_DEFINE_CONTACT_US', 'Kontakt');
-define('BOX_TOOLS_DEFINE_PRIVACY', 'Datenschutz');
+define('BOX_TOOLS_DEFINE_PRIVACY', 'Datenschutzbestimmungen');
 define('BOX_TOOLS_DEFINE_SHIPPINGINFO', 'Preise und Versand');
 define('BOX_TOOLS_DEFINE_CONDITIONS', 'AGB');
 define('BOX_TOOLS_DEFINE_CHECKOUT_SUCCESS', 'Bestellbestätigung');
@@ -175,11 +175,11 @@ define('BOX_LOCALIZATION_LANGUAGES', 'Sprachen');
 define('BOX_LOCALIZATION_ORDERS_STATUS', 'Bestellstatus');
 
 // gift vouchers box text in includes/boxes/gv_admin.php
-define('BOX_HEADING_GV_ADMIN', TEXT_GV_NAMES . ' &amp; Aktionskupons');
-define('BOX_GV_ADMIN_QUEUE', 'In Warteschleife');
+define('BOX_HEADING_GV_ADMIN', TEXT_GV_NAMES . ' & Aktionskupons');
+define('BOX_GV_ADMIN_QUEUE', 'TEXT_GV_NAMES . Warteschleife');
 define('BOX_GV_ADMIN_MAIL', TEXT_GV_NAME . ' senden ');
 define('BOX_GV_ADMIN_SENT', 'Bereits gesendet ');
-define('BOX_COUPON_ADMIN', 'Administration');
+define('BOX_COUPON_ADMIN', 'Aktionskupon Admin');
 define('IMAGE_RELEASE', 'Einlösen ' . TEXT_GV_NAME);
 
 // javascript messages
@@ -310,7 +310,7 @@ define('IMAGE_TAX_RATES', 'Steuersatz');
 define('IMAGE_DEFINE_ZONES', 'Zone');
 define('IMAGE_PRODUCTS_PRICE_MANAGER', 'Artikelpreis Manager');
 define('IMAGE_UPDATE_PRICE_CHANGES', 'Preisänderung aktualisieren');
-define('IMAGE_ADD_BLANK_DISCOUNTS', 'Hinzufügen ' . DISCOUNT_QTY_ADD . ' Leerer Mengenrabatt');
+define('IMAGE_ADD_BLANK_DISCOUNTS', 'Hinzufügen von ' . DISCOUNT_QTY_ADD . ' leeren Mengenrabatten');
 define('IMAGE_CHECK_VERSION', 'Auf neue Version von Zen Cart prüfen');
 define('IMAGE_PRODUCTS_TO_CATEGORIES', 'Mehrfachkategorie Link Manager');
 define('IMAGE_ICON_STATUS_ON', 'Status - aktiviert');
@@ -408,7 +408,7 @@ define('_OCTOBER', 'Oktober');
 define('_NOVEMBER', 'November');
 define('_DECEMBER', 'Dezember');
 define('TEXT_DISPLAY_NUMBER_OF_GIFT_VOUCHERS', 'Zeige <b>%d</b> bis <b>%d</b> (von <b>%d</b> Gutscheinen)');
-define('TEXT_DISPLAY_NUMBER_OF_COUPONS', 'Zeige <b>%d</b> bis <b>%d</b> (von <b>%d</b> Kupons)');
+define('TEXT_DISPLAY_NUMBER_OF_COUPONS', 'Zeige <b>%d</b> bis <b>%d</b> (von <b>%d</b> Aktionkupons)');
 define('TEXT_VALID_PRODUCTS_LIST', 'Artikelliste');
 define('TEXT_VALID_PRODUCTS_ID', 'Artikel ID');
 define('TEXT_VALID_PRODUCTS_NAME', 'Artikelbezeichnung');
@@ -464,7 +464,7 @@ define('DEDUCTION_TYPE_DROPDOWN_2', 'Neuer Preis');
 
 // Min and Units
 define('PRODUCTS_QUANTITY_MIN_TEXT_LISTING', 'Minimum:');
-define('PRODUCTS_QUANTITY_UNIT_TEXT_LISTING', 'Anzahl:');
+define('PRODUCTS_QUANTITY_UNIT_TEXT_LISTING', 'Einheit:');
 define('PRODUCTS_QUANTITY_IN_CART_LISTING', 'Im Warenkorb:');
 define('PRODUCTS_QUANTITY_ADD_ADDITIONAL_LISTING', 'Weitere hinzufügen:');
 define('TEXT_PRODUCTS_MIX_OFF', '*Keine gemischte Optionen');
@@ -530,7 +530,7 @@ define('TEXT_ATTRIBUTES_QTY_PRICES_ONETIME_HELP', 'Option für einmalige Gebühr
 define('TEXT_CATEGORIES_PRODUCTS', 'Wählen Sie eine Kategorie mit Artikel ...');
 define('TEXT_PRODUCT_TO_VIEW', 'Wählen Sie einen Artikel und klicken Sie auf anzeigen ...');
 define('TEXT_INFO_SET_MASTER_CATEGORIES_ID', 'Ungültige Master Category ID');
-define('TEXT_INFO_ID', ' ID# ');
+define('TEXT_INFO_ID', ' ID ');
 define('TEXT_INFO_SET_MASTER_CATEGORIES_ID_WARNING', '<strong>Achtung:</strong> Dieser Artikel ist mit mehreren Kategorien verlinkt, aber die Masterkategorie wurde nicht eingestellt!');
 define('PRODUCTS_PRICE_IS_CALL_FOR_PRICE_TEXT', 'Preis auf Anfrage');
 define('PRODUCTS_PRICE_IS_FREE_TEXT', 'Artikel ist kostenlos');

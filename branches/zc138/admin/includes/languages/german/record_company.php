@@ -20,18 +20,15 @@ define('TEXT_DELETE_IMAGE', 'Bild löschen?.');
 define('TEXT_RECORD_COMPANY_NAME', 'Name der Plattenfirma');
 define('TEXT_RECORD_COMPANY_IMAGE', 'Plattenfirmenbild');
 define('TEXT_RECORD_COMPANY_URL', 'Webseite der Plattenfirma');
-define('TEXT_RECORD_COMPANY_IMAGE_DIR', 'Bildverzeichnis&nbsp;');
+define('TEXT_RECORD_COMPANY_IMAGE_DIR', 'Bildverzeichnis ');
 define('TEXT_RECORD_COMPANY_IMAGE_MANUAL', '<strong>Oder wählen Sie ein bestehendes Bild vom Server, Dateiname:</strong>');
 define('TEXT_HEADING_NEW_RECORD_COMPANY', 'Neue Plattenfirma');
 define('TEXT_HEADING_EDIT_RECORD_COMPANY', 'Plattenfirma bearbeiten');
 define('TEXT_HEADING_DELETE_RECORD_COMPANY', 'Plattenfirma löschen');
-define('TEXT_DATE_ADDED', 'Erstelldatum');
+define('TEXT_DATE_ADDED', 'Erstellt am');
 define('TEXT_LAST_MODIFIED', 'Letzte Änderung');
 define('TEXT_IMAGE_NONEXISTENT', 'Das Bild existiert nicht');
 define('TEXT_PRODUCTS', 'Verlinkte Artikel');
 define('TEXT_DISPLAY_NUMBER_OF_RECORD_COMPANIES', 'Zeige <strong>%d</strong> bis <strong>%d</strong> (von <strong>%d</strong> Plattenfirmen)');
-define('TEXT_DELETE_PRODUCTS', 'Löschen Sie diese Plattenfirma und alle zugeorneten Einzelteile ?');
-define('TEXT_DELETE_WARNING_PRODUCTS', '<b>WARNING:</b>  Es gibt %s Einzelteile, die noch mit dieser Plattenfirma verbunden sind!');
-
-
-?>
+define('TEXT_DELETE_PRODUCTS', 'Diese Plattenfirma und alle verlinkte Artikel löschen?');
+define('TEXT_DELETE_WARNING_PRODUCTS', '<b>WARNING:</b>  Es gibt noch %s Artikel, die mit dieser Plattenfirma verlinkt sind!');

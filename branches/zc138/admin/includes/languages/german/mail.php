@@ -13,7 +13,7 @@
 
 define('HEADING_TITLE','Rundschreiben versenden');
 define('TEXT_CUSTOMER','Kunde:');
-define('TEXT_SUBJECT','Thema:');
+define('TEXT_SUBJECT','Betreff:');
 define('TEXT_FROM','Absender:');
 define('TEXT_MESSAGE','Nur-Text <br />Nachricht:');
 define('TEXT_MESSAGE_HTML', 'Rich-Text <br />Nachricht:');

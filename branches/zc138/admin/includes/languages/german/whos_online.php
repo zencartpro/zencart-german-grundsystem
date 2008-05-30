@@ -53,6 +53,3 @@ define('TEXT_SESSION_ID', '<strong>Session ID:</strong> ');
 define('TEXT_HOST', '<strong>Host:</strong> ');
 define('TEXT_USER_AGENT', '<strong>User Agent:</strong> ');
 define('TEXT_EMPTY_CART', '<strong>Leerer Warenkorb</strong>');
-
-
-?>

@@ -12,9 +12,6 @@
 //
 
 define('HEADING_TITLE','Die umsatzstärksten Kunden');
-define('TABLE_HEADING_NUMBER','Nr.');
+define('TABLE_HEADING_NUMBER','ID');
 define('TABLE_HEADING_CUSTOMERS','Kunden');
 define('TABLE_HEADING_TOTAL_PURCHASED','Summe der Bestellungen');
-
-
-?>

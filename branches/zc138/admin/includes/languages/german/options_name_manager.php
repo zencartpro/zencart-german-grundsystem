@@ -123,6 +123,3 @@ define('TEXT_OPTION_ATTRIBUTE_IMAGES_STYLE_2', '2= Elemente, Bilder und Attribut
 define('TEXT_OPTION_ATTRIBUTE_IMAGES_STYLE_3', '3= Attributname unterhalb von Elementen und Bildern');
 define('TEXT_OPTION_ATTRIBUTE_IMAGES_STYLE_4', '4= Elemente unterhalb der Bilder und Attributnamen');
 define('TEXT_OPTION_ATTRIBUTE_IMAGES_STYLE_5', '5= Elemente über den Bildern und Attributnamen');
-
-
-?>

@@ -20,13 +20,13 @@
 //  $Id$
 //
 
-define('HEADING_TITLE', 'Kategorien &amp; Artikel');
+define('HEADING_TITLE', 'Kategorien / Artikel');
 define('HEADING_TITLE_GOTO', 'Gehe zu:');
 define('TABLE_HEADING_ID', 'ID');
-define('TABLE_HEADING_CATEGORIES_PRODUCTS', 'Kategorien &amp; Artikel');
+define('TABLE_HEADING_CATEGORIES_PRODUCTS', 'Kategorien / Artikel');
 define('TABLE_HEADING_CATEGORIES_SORT_ORDER', 'Sortierung');
 define('TABLE_HEADING_PRICE', 'Preis | Sonderpreis | Abverkauf');
-define('TABLE_HEADING_QUANTITY', 'Anzahl');
+define('TABLE_HEADING_QUANTITY', 'Lagermenge');
 define('TABLE_HEADING_ACTION', 'Aktion');
 define('TABLE_HEADING_STATUS', 'Status');
 define('TEXT_CATEGORIES', 'Kategorien:');
@@ -34,14 +34,14 @@ define('TEXT_SUBCATEGORIES', 'Unterkategorien:');
 define('TEXT_PRODUCTS', 'Artikel:');
 define('TEXT_PRODUCTS_PRICE_INFO', 'Preis:');
 define('TEXT_PRODUCTS_TAX_CLASS', 'Steuersatz:');
-define('TEXT_PRODUCTS_AVERAGE_RATING', 'Durchschnittliche Bewertung:');
-define('TEXT_PRODUCTS_QUANTITY_INFO', 'Anzahl:');
-define('TEXT_DATE_ADDED', 'Erstelldatum:');
+define('TEXT_PRODUCTS_AVERAGE_RATING', 'Durchschnittliches Rating:');
+define('TEXT_PRODUCTS_QUANTITY_INFO', 'Lagermenge:');
+define('TEXT_DATE_ADDED', 'Erstellt am:');
 define('TEXT_DATE_AVAILABLE', 'Erhältlich ab:');
 define('TEXT_LAST_MODIFIED', 'Letzte Änderung:');
 define('TEXT_IMAGE_NONEXISTENT', 'Bild existiert nicht');
 define('TEXT_NO_CHILD_CATEGORIES_OR_PRODUCTS', 'Bitte fügen Sie eine neue Kategorie oder einen neuen Artikel in dieser Ebene ein.');
-define('TEXT_PRODUCT_MORE_INFORMATION', 'Für weitere Informationen besuchen Sie bitte unsere  <a href="http://%s" target="blank">Homepage</a>.');
+define('TEXT_PRODUCT_MORE_INFORMATION', 'Für weitere Informationen besuchen Sie bitte diese <a href="http://%s" target="blank">Webseite</a>.');
 define('TEXT_PRODUCT_DATE_ADDED', 'Dieser Artikel wurde am %s hinzugefügt.');
 define('TEXT_PRODUCT_DATE_AVAILABLE', 'Artikel wird ab %s wieder angeboten.');
 define('TEXT_EDIT_INTRO', 'Bitte führen Sie hier die notwendigen Änderungen durch');
@@ -98,8 +98,8 @@ define('TEXT_PRODUCTS_PRICE_GROSS', 'Bruttopreis:');
 define('TEXT_PRODUCTS_WEIGHT', 'Gewicht:');
 define('EMPTY_CATEGORY', 'Leere Kategorie');
 define('TEXT_HOW_TO_COPY', 'Kopiermethode:');
-define('TEXT_COPY_AS_LINK', 'Artikellink');
-define('TEXT_COPY_AS_DUPLICATE', 'Doppelter Artikel');
+define('TEXT_COPY_AS_LINK', 'Artikel verlinken');
+define('TEXT_COPY_AS_DUPLICATE', 'Artikel kopieren');
 
 // Products and Attribute Copy Options
 define('TEXT_COPY_ATTRIBUTES_ONLY', 'Wird nur für doppelte Artikel verwendet ...');
@@ -114,7 +114,7 @@ define('TEXT_COPY_DISCOUNTS_YES', 'Ja');
 define('TEXT_COPY_DISCOUNTS_NO', 'Nein');
 define('TEXT_INFO_CURRENT_PRODUCT', 'Aktueller Artikel:');
 define('TABLE_HEADING_MODEL', 'Artikelnummer');
-define('TEXT_INFO_HEADING_ATTRIBUTE_FEATURES', 'Attribute für Artikel ID# geändert');
+define('TEXT_INFO_HEADING_ATTRIBUTE_FEATURES', 'Attribute geändert für Artikel ID t');
 define('TEXT_INFO_ATTRIBUTES_FEATURES_DELETE', 'Lösche <strong>ALLE</strong> Artikelattribute für:<br />');
 define('TEXT_INFO_ATTRIBUTES_FEATURES_COPY_TO', 'Kopiere Attribute zu einem anderen Artikel oder einer ganzen Kategorie von:<br />');
 define('TEXT_INFO_ATTRIBUTES_FEATURES_COPY_TO_PRODUCT', 'Kopiere Attribute zu einem anderen <strong>Artikel</strong> von:<br />');
@@ -127,8 +127,8 @@ define('SUCCESS_ATTRIBUTES_DELETED', 'Die Attribute wurden gelöscht');
 define('SUCCESS_ATTRIBUTES_UPDATE', 'Die Attribute wurden aktualisiert');
 define('ICON_ATTRIBUTES', 'Attributmerkmale');
 define('TEXT_CATEGORIES_IMAGE_DIR', 'In Verzeichnis hochladen:');
-define('TEXT_PRODUCTS_QTY_BOX_STATUS_PREVIEW', 'Warnung: Ohne Anzeige der Lager-Stückzahl ist der Standardwert 1');
-define('TEXT_PRODUCTS_QTY_BOX_STATUS_EDIT', 'Warnung: Ohne Anzeige der Lager-Stückzahl ist der Standardwert 1');
+define('TEXT_PRODUCTS_QTY_BOX_STATUS_PREVIEW', 'Warnung: Ohne Anzeige der Box für die Stückzahl ist der Standardwert 1');
+define('TEXT_PRODUCTS_QTY_BOX_STATUS_EDIT', 'Warnung: Ohne Anzeige der Box für die Stückzahl ist der Standardwert 1');
 define('TEXT_PRODUCT_OPTIONS', '<strong>Bitte wählen Sie:</strong>');
 define('TEXT_PRODUCTS_ATTRIBUTES_INFO', 'Attributwert für:');
 define('TEXT_PRODUCT_ATTRIBUTES_DOWNLOADS', 'Downloads:');
@@ -164,7 +164,3 @@ define('TEXT_META_TAGS_TITLE', '<strong>Meta Tag Titel:</strong>');
 define('TEXT_META_TAGS_KEYWORDS', '<strong>Meta Tag Schlüsselwörter:</strong>');
 define('TEXT_META_TAGS_DESCRIPTION', '<strong>Meta Tag Beschreibung:</strong>');
 define('TEXT_META_EXCLUDED', '<span class="alert">AUSGESCHLOSSEN</span>');
-
-
-
-?>

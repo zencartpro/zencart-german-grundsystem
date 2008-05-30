@@ -17,8 +17,5 @@ define('TEXT_SORT_ORDER','Sortierung');
 define('TEXT_OPTION_ID','Option ID');
 define('TEXT_OPTION_TYPE','Typ');
 define('TEXT_OPTION_NAME','Attributname');
-define('TEXT_SELECTED_LANGUAGE','Sprache wählen:');
-define('SUCCESS_OPTION_SORT_ORDER','Die Sortierung der Attributnamen wurde aktualisiert');
-
-
-?>
+define('TEXT_SELECTED_LANGUAGE','Ausgewählte Sprache:');
+define('SUCCESS_OPTION_SORT_ORDER','Die Sortierung der Attributnamen wurde erfolgreich aktualisiert');

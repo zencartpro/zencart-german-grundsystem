@@ -28,8 +28,4 @@ define('TEXT_INFO_TEMPLATE_DESCRIPTION','Template Beschreibung');
 define('TEXT_INFO_TEMPLATE_INSTALLED','Installierte Templates');
 define('TEXT_INFO_HEADING_NEW_TEMPLATE','Template mit Sprache verknüpfen');
 define('TEXT_INFO_INSERT_INTRO','Bitte wählen Sie unten die Sprache mit der Sie dieses Template verknüpfen wollen');
-define('IMAGE_NEW_TEMPLATE','Es wurde eine neue Template Sprachverknüpfung erstellt');
-
-
-
-?>
+define('IMAGE_NEW_TEMPLATE','Es wird eine neue Template Sprachverknüpfung erstellt');

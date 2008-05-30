@@ -29,7 +29,7 @@ define('INFO_TEXT','<ul>
                         alle Artikel von &euro; 50.00 bis &euro; 150.00)
                       </li>
                       <li>
-                        Wählen Sie diese Aktion, wenn ein Artikel ein Sonderangebot ist <i>und</i> Subjekt dieses Abverkaufs ist:
+                        Wählen Sie diese Aktion, wenn ein Artikel ein Sonderangebot ist <i>und</i> von dem angelegten Abverkauf betroffen ist:
                                                 <ul>
                           <li>
                             <strong>Sonderpreis ignorieren - Aktualisiere Artikelpreis und ersetze Sonderpreis durch den Abverkaufspreis</strong><br>
@@ -62,6 +62,3 @@ define('INFO_TEXT','<ul>
                       </li>
                     </ul>');
 define('TEXT_CLOSE_WINDOW','[ Fenster schließen ]');
-
-
-?>
