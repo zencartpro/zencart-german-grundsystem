@@ -18,7 +18,7 @@ define('HEADER_LOGO_IMAGE', 'logo.gif');
 // on RedHat6.0 I used 'en_US'
 // on FreeBSD 4.0 I use 'en_US.ISO_8859-1'
 // this may not work under win32 environments..
-setlocale(LC_TIME, 'de_DE.ISO_8859-15');
+@setlocale(LC_TIME, 'de_DE.UTF-8', 'de_AT.UTF-8', 'de_CH.UTF-8', 'de_DE.ISO_8859-1','de_DE@euro', 'de_DE', 'de', 'ge', 'deu.deu');
 define('DATE_FORMAT_SHORT', '%d.%m.%Y'); // this is used for strftime()
 define('DATE_FORMAT_LONG', '%A, %d. %B %Y'); // this is used for strftime()
 define('DATE_FORMAT', 'd.m.Y'); // this is used for date()
