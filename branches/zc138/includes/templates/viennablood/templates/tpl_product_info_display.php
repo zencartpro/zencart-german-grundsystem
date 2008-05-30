@@ -73,10 +73,6 @@ require($template->get_template_dir('/tpl_products_next_previous.php',DIR_WS_TEM
   }
   echo $one_time . ((zen_has_product_attributes_values((int)$_GET['products_id']) and $flag_show_product_info_starting_at == 1) ? TEXT_BASE_PRICE : '') . zen_get_products_display_price((int)$_GET['products_id']);
 
-  // for VAT info display :: hugo13
-  if(VAT_SHOW){
-    #echo VAT_SHOW_TEXT;
-  }
 ?></h2>
 <!--eof Product Price block -->
 
