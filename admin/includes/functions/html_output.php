@@ -147,7 +147,7 @@
   function zen_image_button($image, $alt = '', $params = '') {
     global $language;
 
-    return zen_image(DIR_WS_LANGUAGES . $_SESSION['language'] . '/images/buttons/' . $image, $alt, '', '', $params);
+    return zen_image(DIR_WS_HTTPS_ADMIN .  DIR_WS_LANGUAGES . $_SESSION['language'] . '/images/buttons/' . $image, $alt, '', '', $params);
   }
 
 ////
