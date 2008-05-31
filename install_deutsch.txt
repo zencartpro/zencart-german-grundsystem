@@ -50,4 +50,4 @@ viel spaß mit der neuen version
 wünscht ihnen das team
 von zen-cart.at
 
-(Document Revision: $Id: INSTALL.TXT 4833 2006-10-25 03:02:02Z drbyte $)
+(Document Revision: $Id$)
