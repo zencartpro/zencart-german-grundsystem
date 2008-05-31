@@ -39,6 +39,8 @@ ________________________________________________________________________________
 
 Unterschiede zur englischsprachigen Version:
 - eindeutschung des Shops und der Adminoberfläche
+- Umstellung Zeichensatz von iso auf UTF-8
+    + !!! Datenbankanpassung ev. von nöten 
 - zusätzliche Templates
     + Viennablood :: css-basierend
     + hugo13_orange :: smarty-basierend /experimentell)
