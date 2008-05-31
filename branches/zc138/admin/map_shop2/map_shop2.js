@@ -39,7 +39,7 @@ $(document).ready(function() {
     var options = { 
         success:       showResponse,  // post-submit callback 
         url: 'map_shop2_func.php?ac=d', 
-        type:      'post',        // 'get' or 'post', override for form's 'method' attribute 
+        type:      'post'        // 'get' or 'post', override for form's 'method' attribute 
         //dataType:  null        // 'xml', 'script', or 'json' (expected server response type) 
         //clearForm: true        // clear all form fields after successful submit 
         //resetForm: true        // reset the form after successful submit 
