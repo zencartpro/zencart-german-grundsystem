@@ -1,4 +1,4 @@
-Zen Cart(tm) - The Art of E-Commerce
+﻿Zen Cart(tm) - The Art of E-Commerce
 willkommen bei Zen Cart(tm) E-Commerce
 Version 1.3.8de
 
@@ -41,6 +41,7 @@ Unterschiede zur englischsprachigen Version:
 - eindeutschung des Shops und der Adminoberfläche
 - Umstellung Zeichensatz von iso auf UTF-8
     + !!! Datenbankanpassung ev. von nöten 
+- ez-pages mehrsprachig
 - zusätzliche Templates
     + Viennablood :: css-basierend
     + hugo13_orange :: smarty-basierend /experimentell)
