@@ -6,6 +6,7 @@
 * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
 *
 * Title: PAYONE
+* $Id$
 */
 
   require('includes/application_top.php');

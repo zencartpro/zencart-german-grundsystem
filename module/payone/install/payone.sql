@@ -1,3 +1,4 @@
+# $Id$
 
 
 CREATE TABLE IF NOT EXISTS `po_transactions` (

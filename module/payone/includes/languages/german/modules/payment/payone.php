@@ -1,4 +1,5 @@
 <?php
+// $Id$
 
   define('MODULE_PAYMENT_PAYONE_TEXT_TITLE', 'Sichere Zahlung mit PAYONE');
   define('MODULE_PAYMENT_PAYONE_TEXT_DESCRIPTION', 'PAYONE Zahlungsmodul');
