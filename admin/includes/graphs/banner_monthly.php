@@ -38,7 +38,7 @@ if (!defined('IS_ADMIN_FLAG')) {
 
   $graph->SetPlotBorderType('left');
   $graph->SetTitleFontSize('4');
-  $graph->SetTitle(sprintf(TEXT_BANNERS_MONTHLY_STATISTICS, $banner['banners_title'], $year));
+  $graph->SetTitle(sprintf(TEXT_BANNERS_MONTHLY_STATISTICS, $banner->fields['banners_title'], $year));
 
   $graph->SetBackgroundColor('white');
 
