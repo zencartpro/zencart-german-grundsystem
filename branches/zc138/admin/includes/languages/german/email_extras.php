@@ -26,7 +26,7 @@ define('OFFICE_DATE_TIME','Datum und Uhrzeit:');
 
 // email disclaimer
 define('EMAIL_DISCLAIMER','Diese E-Mail Adresse wurde uns von Ihnen oder einer unserer Kunden mitgeteilt. Sollten Sie diese Nachricht versehentlich erhalten haben, wenden Sie sich bitte an %s');
-define('EMAIL_SPAM_DISCLAIMER', '');
+define('EMAIL_SPAM_DISCLAIMER', '-');
 define('EMAIL_FOOTER_COPYRIGHT', 'Copyright (c) ' . date('Y') . ' <a href="http://www.zen-cart.at" target="_blank">Zen Cart</a>. Powered by <a href="http://www.zen-cart.at" target="_blank">Zen Cart</a>');
 define('SEND_EXTRA_GV_ADMIN_EMAILS_TO_SUBJECT','[GUTSCHEIN ADMIN GESENDET]');
 define('SEND_EXTRA_DISCOUNT_COUPON_ADMIN_EMAILS_TO_SUBJECT','[AKTIONSKUPON]');
