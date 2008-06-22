@@ -1,0 +1,17 @@
+$Id$
+TODO DER CONTRIBS
+
+
+2008-06-22
+checked in stock by attribute
+
+
+
+
+##############
+einchecken & german-tauglich machen von
+- stock by attribute
+- super orders
+- admin rechte
+- tabed products plus
+-
