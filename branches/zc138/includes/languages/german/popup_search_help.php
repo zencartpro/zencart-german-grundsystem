@@ -30,7 +30,7 @@ define('TEXT_SEARCH_HELP','
   Sie geben als Suchbegriff <strong>Zen Cart</strong> ein und erhalten als Ergebnis Begriffe mit entweder <strong>Zen</strong>, <strong>Cart</strong> oder <strong>Zen Cart</strong>.<br />
   <br />
   <strong>Die "UND" Suche:</strong> <br />
-  Sie geben als Suchbegriff <strong>Zen AND Cart</strong> ein - Sie erhalten nur Ergebnisse, deren Begriffe nur <strong>Zen Card</strong> - <u>also nur beide Wörter</u> - beinhalten.<br />
+  Sie geben als Suchbegriff <strong>Zen AND Cart</strong> ein - Sie erhalten nur Ergebnisse, deren Begriffe nur <strong>Zen Cart</strong> - <u>also nur beide Wörter</u> - beinhalten.<br />
   <br />
   <strong>Die "ODER" Suche:</strong><br />
   Sie geben als Suchbegriff <strong>Zen OR Cart</strong> ein - das Ergebnis werden Begriffe mit <strong>nur Zen</strong> oder <strong>nur Cart</strong> sein. <br />
