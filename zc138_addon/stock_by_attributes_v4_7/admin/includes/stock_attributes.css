@@ -1,0 +1,39 @@
+/* CSS Document 
+ * This version 2006-10-15 by kuroi
+ */
+
+#mainProductTable {
+	width:98%;
+	text-align:left;
+}
+#mainProductTable tr.productRow {
+	background-color:#ccc;
+}
+
+.stockAttributesTable {
+	width:100%;
+	text-align:center;
+	padding:5px 10px;
+	display:inline-block;
+}
+.stockAttributesHeadingStockId,
+.stockAttributesHeadingVariant,
+.stockAttributesHeadingQuantity,
+.stockAttributesHeadingEdit,
+.stockAttributesHeadingDelete {
+	border-bottom: 1px solid #ccc;
+	width:18%;
+}
+.stockAttributesCellStockId,
+.stockAttributesCellVariant,
+.stockAttributesCellQuantity,
+.stockAttributesCellEdit,
+.stockAttributesCellDelete {
+	border-bottom: 1px dotted #ccc;
+}
+.stockAttributesHeadingVariant,
+.stockAttributesCellVariant {
+	text-align:left;
+	padding-left:20px;
+	width:28%;
+}
