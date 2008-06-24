@@ -16,8 +16,11 @@ class payone {
     function payone() {
         global $db, $order;
         $this->code = 'payone';
-        $this->poDebug = MODULE_PAYMENT_PAYONE_DEBUG;
-        #$this->poDebug = 0;
+        if(!defined('MODULE_PAYMENT_PAYONE_DEBUG')){
+            $this->poDebug = 0;
+        } else {
+            $this->poDebug = MODULE_PAYMENT_PAYONE_DEBUG;
+        }
         
         $this->db = $db;
         $this->order = $order;
