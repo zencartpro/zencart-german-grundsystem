@@ -1,6 +1,11 @@
 $Id$
 TODO DER CONTRIBS
 
+2008-06-27
+- IM2
+- fual_slimbox.v0.1.5
+- template ADD_ON erstellt, wo all die neuen dinge hinkommen
+- testseite: http://all.ar-pub.com/zc138_addon/index.php?main_page=product_info&cPath=1_4&products_id=1
 
 2008-06-22
 checked in stock by attribute
@@ -14,4 +19,5 @@ einchecken & german-tauglich machen von
 - super orders
 - admin rechte
 - tabed products plus
--
+- fual_slimbox.v0.1.5
+- IM2
