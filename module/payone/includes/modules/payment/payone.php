@@ -34,9 +34,6 @@ class payone {
         }
         if (is_object($this->order)) $this->update_status();
         $this->form_action_url = 'https://www.payone.de/frontend/';
-        $this->rlWriteLog(__FILE__, __FUNCTION__ . ' :: ' . __LINE__);
-        $s = print_r($_SESSION, true);
-        $s .= print_r($_POST, true);
         if (isset($_SESSION['payone_clearingtype'])) {
             $this->title = MODULE_PAYMENT_PAYONE_TEXT_TITLE . " ({$_SESSION['payone_clearingtype']})";
         }

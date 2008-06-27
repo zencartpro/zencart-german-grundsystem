@@ -9,11 +9,11 @@
 * $Id$
 */
 
-class payone_vor {
+class payone_cc {
     var $code, $title, $description, $enabled, $poDebug;
-    function payone_vor() {
+    function payone_cc() {
         global $db, $order;
-        $this->code = 'payone_vor';
+        $this->code = 'payone_cc';
         if (!defined('MODULE_PAYMENT_PAYONE_DEBUG')) {
             $this->poDebug = 0;
         } else {
@@ -22,22 +22,22 @@ class payone_vor {
 
         $this->db = $db;
         $this->order = $order;
-        $this->title = MODULE_PAYMENT_PAYONE_VOR_TEXT_TITLE;
-        $this->description = MODULE_PAYMENT_PAYONE_VOR_TEXT_DESCRIPTION;
-        $this->sort_order = MODULE_PAYMENT_PAYONE_VOR_SORT_ORDER;
-        $this->enabled = ((MODULE_PAYMENT_PAYONE_VOR_STATUS == 'True') ? true : false);
+        $this->title = MODULE_PAYMENT_PAYONE_CC_TEXT_TITLE;
+        $this->description = MODULE_PAYMENT_PAYONE_CC_TEXT_DESCRIPTION;
+        $this->sort_order = MODULE_PAYMENT_PAYONE_CC_SORT_ORDER;
+        $this->enabled = ((MODULE_PAYMENT_PAYONE_CC_STATUS == 'True') ? true : false);
 
-        if ((int)MODULE_PAYMENT_PAYONE_VOR_ORDER_STATUS_ID > 0) {
-            $this->order_status = MODULE_PAYMENT_PAYONE_VOR_ORDER_STATUS_ID;
+        if ((int)MODULE_PAYMENT_PAYONE_CC_ORDER_STATUS_ID > 0) {
+            $this->order_status = MODULE_PAYMENT_PAYONE_CC_ORDER_STATUS_ID;
         } 
         if (is_object($this->order)) $this->update_status();
         $this->form_action_url = 'https://www.payone.de/frontend/';
     } 
 
     function update_status() {
-        if (($this->enabled == true) && ((int)MODULE_PAYMENT_PAYONE_VOR_ZONE > 0)) {
+        if (($this->enabled == true) && ((int)MODULE_PAYMENT_PAYONE_CC_ZONE > 0)) {
             $check_flag = false;
-            $check_query = $this->db->Execute("select zone_id from " . TABLE_ZONES_TO_GEO_ZONES . " where geo_zone_id = '" . MODULE_PAYMENT_PAYONE_VOR_ZONE . "' and zone_country_id = '" . $this->order->billing['country']['id'] . "' order by zone_id");
+            $check_query = $this->db->Execute("select zone_id from " . TABLE_ZONES_TO_GEO_ZONES . " where geo_zone_id = '" . MODULE_PAYMENT_PAYONE_CC_ZONE . "' and zone_country_id = '" . $this->order->billing['country']['id'] . "' order by zone_id");
             while ($check = zen_db_fetch_array($check_query)) {
                 if ($check['zone_id'] < 1) {
                     $check_flag = true;
@@ -69,7 +69,7 @@ class payone_vor {
     } 
 
     function get_error() {
-        $error = array('title' => MODULE_PAYMENT_PAYONE_VOR_ERROR_HEADING,
+        $error = array('title' => MODULE_PAYMENT_PAYONE_CC_ERROR_HEADING,
             'error' => stripslashes(urldecode($_GET['error'])));
         return $error;
     } 
@@ -111,17 +111,17 @@ class payone_vor {
             $product_query .= zen_draw_hidden_field('va[' . $pid . ']', "0");
             $hsh_string .= "9999" . "1" . intval($TotalAmount - $OrderAmount) . "0";
         } 
-        $hsh = md5($hsh_string . $this->order->info['currency'] . MODULE_PAYMENT_PAYONE_VOR_KEY);
+        $hsh = md5($hsh_string . $this->order->info['currency'] . MODULE_PAYMENT_PAYONE_CC_KEY);
         $process_button_string .= " <!-- hsh:'" . $hsh_string . $this->order->info['currency'] . "' --> ";
         $process_button_string =
-        zen_draw_hidden_field('portalid', MODULE_PAYMENT_PAYONE_VOR_PORTALID) .
-        zen_draw_hidden_field('aid', MODULE_PAYMENT_PAYONE_VOR_AID) .
-        zen_draw_hidden_field('request', MODULE_PAYMENT_PAYONE_VOR_REQUEST) .
-        zen_draw_hidden_field('display_name', MODULE_PAYMENT_PAYONE_VOR_DISPLAY_NAME) .
-        zen_draw_hidden_field('display_address', MODULE_PAYMENT_PAYONE_VOR_DISPLAY_ADDRESS) .
+        zen_draw_hidden_field('portalid', MODULE_PAYMENT_PAYONE_CC_PORTALID) .
+        zen_draw_hidden_field('aid', MODULE_PAYMENT_PAYONE_CC_AID) .
+        zen_draw_hidden_field('request', MODULE_PAYMENT_PAYONE_CC_REQUEST) .
+        zen_draw_hidden_field('display_name', MODULE_PAYMENT_PAYONE_CC_DISPLAY_NAME) .
+        zen_draw_hidden_field('display_address', MODULE_PAYMENT_PAYONE_CC_DISPLAY_ADDRESS) .
         zen_draw_hidden_field('reference', time()) .
-        zen_draw_hidden_field('clearingtype', 'vor') .
-        zen_draw_hidden_field('mode', MODULE_PAYMENT_PAYONE_VOR_MODE) .
+        zen_draw_hidden_field('clearingtype', 'cc') .
+        zen_draw_hidden_field('mode', MODULE_PAYMENT_PAYONE_CC_MODE) .
         zen_draw_hidden_field('hsh', $hsh) .
         zen_draw_hidden_field('param', zen_session_id()) .
         zen_draw_hidden_field('currency', $this->order->info['currency']) .
@@ -129,7 +129,7 @@ class payone_vor {
 
         $language_code = $_SESSION['languages_code'];
         $process_button_string .=
-        zen_draw_hidden_field('testMode', MODULE_PAYMENT_PAYONE_VOR_MODE) .
+        zen_draw_hidden_field('testMode', MODULE_PAYMENT_PAYONE_CC_MODE) .
         zen_draw_hidden_field('firstname', $this->order->customer['firstname']) .
         zen_draw_hidden_field('lastname', $this->order->customer['lastname']) .
         zen_draw_hidden_field('street', $this->order->customer['street_address']) .
@@ -172,7 +172,7 @@ class payone_vor {
 
     function check() {
         if (!isset($this->_check)) {
-            $check_query = $this->db->Execute("select configuration_value from " . TABLE_CONFIGURATION . " where configuration_key = 'MODULE_PAYMENT_PAYONE_VOR_STATUS'");
+            $check_query = $this->db->Execute("select configuration_value from " . TABLE_CONFIGURATION . " where configuration_key = 'MODULE_PAYMENT_PAYONE_CC_STATUS'");
             $this->_check = $check_query->RecordCount();
         } 
         return $this->_check;
@@ -181,19 +181,19 @@ class payone_vor {
     function install() {
         global $poLang, $poTables;
 
-        $this->db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) values ('Enable PAYONE Module', 'MODULE_PAYMENT_PAYONE_VOR_STATUS', 'True', 'Do you want to accept PAYONE payments?', '6', '1', 'zen_cfg_select_option(array(\'True\', \'False\'), ', now())");
-        $this->db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, use_function, set_function, date_added) values ('Payment Zone', 'MODULE_PAYMENT_PAYONE_VOR_ZONE', '0', 'If a zone is selected, only enable this payment method for that zone.', '6', '2', 'zen_get_zone_class_title', 'zen_cfg_pull_down_zone_classes(', now())");
-        $this->db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) values ('PAYONE PortalID', 'MODULE_PAYMENT_PAYONE_VOR_PORTALID', '0000000', 'Your PortalID at PAYONE', '6', '2', now())");
-        $this->db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) values ('PAYONE AID', 'MODULE_PAYMENT_PAYONE_VOR_AID', '00000', 'Your AccountID at PAYONE', '6', '2', now())");
-        $this->db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) values ('Merchant key', 'MODULE_PAYMENT_PAYONE_VOR_KEY', '', 'Your own Merchant Key', '6', '2', now())");
-        $this->db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) values ('Request', 'MODULE_PAYMENT_PAYONE_VOR_REQUEST', 'authorization', 'authorization:   Forderung wird sofort eingezogen (Vorgabe) <br />preauthorization:  Forderung wird später eingezogen (per API oder PMI)', '6', '1', 'zen_cfg_select_option(array(\'authorization\', \'preauthorization\'), ', now())");
-        $this->db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) values ('Mode', 'MODULE_PAYMENT_PAYONE_VOR_MODE', 'test', 'The mode you are working in (test = Test Mode, live = Live Payment', '6', '5', now())");
-        $this->db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, use_function, date_added) values ('Set Order Status', 'MODULE_PAYMENT_PAYONE_VOR_ORDER_STATUS_ID', '0', 'Set the status of orders made with this payment module to this value', '6', '0', 'zen_cfg_pull_down_order_statuses(', 'zen_get_order_status_name', now())");
-        $this->db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) values ('Display Name', 'MODULE_PAYMENT_PAYONE_VOR_DISPLAY_NAME', 'yes', 'Show the customers name in the payment window again?', '6', '1', 'zen_cfg_select_option(array(\'yes\', \'no\'), ', now())");
-        $this->db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) values ('Display address', 'MODULE_PAYMENT_PAYONE_VOR_DISPLAY_ADDRESS', 'yes', 'Show the customers address in the payment window again?', '6', '1', 'zen_cfg_select_option(array(\'yes\', \'no\'), ', now())");
-        $this->db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) values ('Sort order of display.', 'MODULE_PAYMENT_PAYONE_VOR_SORT_ORDER', '0', 'Sort order of display. Lowest is displayed first.', '6', '0', now())");
-        $this->db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) values ('Payment methods', 'MODULE_PAYMENT_PAYONE_VOR_CLEARINGTYPES', 'elv', 'Select allowed payment methods (f.e. \"cc;elv\")', '6', '1', now())");
-        $this->db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) values ('MODULE_PAYMENT_PAYONE_VOR_DEBUG', 'MODULE_PAYMENT_PAYONE_VOR_DEBUG', '0', 'MODULE_PAYMENT_PAYONE_VOR_DEBUG', '6', '1', 'zen_cfg_select_option(array(\'0\', \'1\'), ', now())");
+        $this->db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) values ('Enable PAYONE Module', 'MODULE_PAYMENT_PAYONE_CC_STATUS', 'True', 'Do you want to accept PAYONE payments?', '6', '1', 'zen_cfg_select_option(array(\'True\', \'False\'), ', now())");
+        $this->db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, use_function, set_function, date_added) values ('Payment Zone', 'MODULE_PAYMENT_PAYONE_CC_ZONE', '0', 'If a zone is selected, only enable this payment method for that zone.', '6', '2', 'zen_get_zone_class_title', 'zen_cfg_pull_down_zone_classes(', now())");
+        $this->db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) values ('PAYONE PortalID', 'MODULE_PAYMENT_PAYONE_CC_PORTALID', '0000000', 'Your PortalID at PAYONE', '6', '2', now())");
+        $this->db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) values ('PAYONE AID', 'MODULE_PAYMENT_PAYONE_CC_AID', '00000', 'Your AccountID at PAYONE', '6', '2', now())");
+        $this->db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) values ('Merchant key', 'MODULE_PAYMENT_PAYONE_CC_KEY', '', 'Your own Merchant Key', '6', '2', now())");
+        $this->db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) values ('Request', 'MODULE_PAYMENT_PAYONE_CC_REQUEST', 'authorization', 'authorization:   Forderung wird sofort eingezogen (Vorgabe) <br />preauthorization:  Forderung wird später eingezogen (per API oder PMI)', '6', '1', 'zen_cfg_select_option(array(\'authorization\', \'preauthorization\'), ', now())");
+        $this->db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) values ('Mode', 'MODULE_PAYMENT_PAYONE_CC_MODE', 'test', 'The mode you are working in (test = Test Mode, live = Live Payment', '6', '5', now())");
+        $this->db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, use_function, date_added) values ('Set Order Status', 'MODULE_PAYMENT_PAYONE_CC_ORDER_STATUS_ID', '0', 'Set the status of orders made with this payment module to this value', '6', '0', 'zen_cfg_pull_down_order_statuses(', 'zen_get_order_status_name', now())");
+        $this->db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) values ('Display Name', 'MODULE_PAYMENT_PAYONE_CC_DISPLAY_NAME', 'yes', 'Show the customers name in the payment window again?', '6', '1', 'zen_cfg_select_option(array(\'yes\', \'no\'), ', now())");
+        $this->db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) values ('Display address', 'MODULE_PAYMENT_PAYONE_CC_DISPLAY_ADDRESS', 'yes', 'Show the customers address in the payment window again?', '6', '1', 'zen_cfg_select_option(array(\'yes\', \'no\'), ', now())");
+        $this->db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) values ('Sort order of display.', 'MODULE_PAYMENT_PAYONE_CC_SORT_ORDER', '0', 'Sort order of display. Lowest is displayed first.', '6', '0', now())");
+        $this->db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) values ('Payment methods', 'MODULE_PAYMENT_PAYONE_CC_CLEARINGTYPES', 'elv', 'Select allowed payment methods (f.e. \"cc;elv\")', '6', '1', now())");
+        $this->db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) values ('MODULE_PAYMENT_PAYONE_CC_DEBUG', 'MODULE_PAYMENT_PAYONE_CC_DEBUG', '0', 'MODULE_PAYMENT_PAYONE_CC_DEBUG', '6', '1', 'zen_cfg_select_option(array(\'0\', \'1\'), ', now())");
         if (!existTable('rl_log')) {
             $this->db->execute($poTables['log']);
         } 
@@ -204,7 +204,7 @@ class payone_vor {
             $sql = "INSERT INTO " . TABLE_CONFIGURATION_LANGUAGE . " (`configuration_key`, `configuration_language_id`, `configuration_title`, `configuration_description`) VALUES ";
             foreach ($poLang as $langID => $language) {
                 foreach ($language as $key => $value) {
-                    $k2 = str_replace('MODULE_PAYMENT_PAYONE_', 'MODULE_PAYMENT_PAYONE_VOR_', $key);
+                    $k2 = str_replace('MODULE_PAYMENT_PAYONE_', 'MODULE_PAYMENT_PAYONE_CC_', $key);
                     $sql .= "('{$k2}', {$langID}, '{$value[0]}', '{$value[1]}'),";
                 } 
             } 
@@ -221,7 +221,7 @@ class payone_vor {
     } 
 
     function keys() {
-        return array('MODULE_PAYMENT_PAYONE_VOR_STATUS', 'MODULE_PAYMENT_PAYONE_VOR_ZONE', 'MODULE_PAYMENT_PAYONE_VOR_PORTALID', 'MODULE_PAYMENT_PAYONE_VOR_AID', 'MODULE_PAYMENT_PAYONE_VOR_KEY', 'MODULE_PAYMENT_PAYONE_VOR_REQUEST', 'MODULE_PAYMENT_PAYONE_VOR_MODE', 'MODULE_PAYMENT_PAYONE_VOR_ORDER_STATUS_ID', 'MODULE_PAYMENT_PAYONE_VOR_DISPLAY_NAME', 'MODULE_PAYMENT_PAYONE_VOR_DISPLAY_ADDRESS', 'MODULE_PAYMENT_PAYONE_VOR_SORT_ORDER', 'MODULE_PAYMENT_PAYONE_VOR_CLEARINGTYPES', 'MODULE_PAYMENT_PAYONE_VOR_DEBUG');
+        return array('MODULE_PAYMENT_PAYONE_CC_STATUS', 'MODULE_PAYMENT_PAYONE_CC_ZONE', 'MODULE_PAYMENT_PAYONE_CC_PORTALID', 'MODULE_PAYMENT_PAYONE_CC_AID', 'MODULE_PAYMENT_PAYONE_CC_KEY', 'MODULE_PAYMENT_PAYONE_CC_REQUEST', 'MODULE_PAYMENT_PAYONE_CC_MODE', 'MODULE_PAYMENT_PAYONE_CC_ORDER_STATUS_ID', 'MODULE_PAYMENT_PAYONE_CC_DISPLAY_NAME', 'MODULE_PAYMENT_PAYONE_CC_DISPLAY_ADDRESS', 'MODULE_PAYMENT_PAYONE_CC_SORT_ORDER', 'MODULE_PAYMENT_PAYONE_CC_CLEARINGTYPES', 'MODULE_PAYMENT_PAYONE_CC_DEBUG');
     } 
     function rlWriteLog($filename, $comment) {
         if ($this->poDebug) {
