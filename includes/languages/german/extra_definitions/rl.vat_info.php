@@ -17,14 +17,11 @@
 // | to obtain it through the world-wide-web, please send a note to       |
 // | license@zen-cart.com so we can mail you a copy immediately.          |
 // +----------------------------------------------------------------------+
-// | Translator:           cyaneo                                         |
-// | Date of Translation:  13.08.04                                       |
-// | Homepage:             www.zen-cart.at                                |
-// +----------------------------------------------------------------------+
 // $Id$
 //
 define('VAT_SHOW', true);
-define('VAT_SHOW_TEXT','<span id="vatinfo"><br/>Preis inkl. UST.<br/><a href="index.php?main_page=shippinginfo" target="_self">=>zzgl.Versandkosten</a><br/></span>');
-// xxx
+#define('ADD_VATADDON', 'NONE');
+define('ADD_VATADDON', 'ALL');
+#define('ADD_VATADDON', 'product_info|products_new'); // only display at productDetail & new Products
 
-?>
+define('VAT_SHOW_TEXT','<h2 class="taxAddon">inkl. %s MwSt.<br/> zzgl. <a href="' . zen_href_link(FILENAME_SHIPPING) . '">Versandkosten</a></h2>');

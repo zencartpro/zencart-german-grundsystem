@@ -20,5 +20,8 @@
 // $Id$
 //
 define('VAT_SHOW', true);
-define('VAT_SHOW_TEXT','<span id="vatinfo"><br/>Price incl. VAT.<br/><a href="index.php?main_page=shippinginfo" target="_self">plus forwarding expenses</a><br/></span>');
-?>
+#define('ADD_VATADDON', 'NONE');
+define('ADD_VATADDON', 'ALL');
+#define('ADD_VATADDON', 'product_info|products_new'); // only display at productDetail & new Products
+
+define('VAT_SHOW_TEXT','<h2 class="taxAddon">Price incl. %s VAT.<br/> plus <a href="' . zen_href_link(FILENAME_SHIPPING) . '">shipping and handling</a></h2>');
