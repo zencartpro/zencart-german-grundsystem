@@ -1,0 +1,99 @@
+========================================================================
+Ultimate SEO URLs 2.105 für Zen Cart 1.3.7 und 1.3.8 (deutsche Version)
+========================================================================
+
+deutsche Übersetzung/Anpassung des Moduls Ultimate SEO URLs von
+http://www.zen-cart.com/index.php?main_page=product_contrib_info&products_id=231
+
+April 2008
+
+Autor:
+webchills
+www.webchills.at
+
+
+
+================= WICHTIG =====================================
+Diese Version ist nur für eine deutsche Zen-Cart Version!
+Die Configuration Group ist auf 43 eingestellt. 
+===============================================================
+
+
+=========
+FEATURES
+=========
+
+kompatibel mit Zen-Cart 1.3.7 und 1.3.8 (deutsch)
+kompatibel mit MYSQL 5.0 und PHP 5.0
+
+Via Admin kann eingestellt werden, welche Seiten umgeschrieben werden sollen 
+Defaultmäßig sind bereits die wichtigsten Seiten eingestellt (Kategorien, Artikel, statische Seiten). Wenn alle Seiten umgeschrieben werden sollen, einfach die Einträge im Admin löschen.
+
+Beispiele für URL Umwandlungen:
+
+Von: http://yoursite.com/index.php?main_page=product_info&products_id=24
+Zu: http://yoursite.com/disciples-sacred-lands-linked-p-24.html
+
+Von: http://yoursite.com/index.php?main_page=index&cPath=2_20
+Zu: http://yoursite.com/software-strategy-c-2_20.html
+
+Von: http://yoursite.com/index.php?main_page=contact_us
+Zu: http://yoursite.com/contact_us.html
+
+
+================= WICHTIG =====================
+Vor dem Einbau dieser Änderungen:
+BACKUP von Shop und Datenbank machen! 
+Keine Haftung, Verwendung auf eigene Gefahr!
+BACKUP gemacht? Ok, dann weiterlesen...
+=================================================
+
+===============================
+INSTALLATION FÜR ZEN-CART 1.3.7
+===============================
+
+1. Dateien aus dem Ordner "zen-cart" in die Zen-Cart Installation kopieren. Dabei werden keine bestehenden Dateien überschrieben.
+2. Dateien aus dem Ordner 137spezifisch in die Zen-Cart Installation kopieren. Dabei werden bestehende Dateien überschrieben. Falls also bereits Änderungen an diesen Dateien in der Zen-Cart Installation gemacht wurden, mit WinMerge die Dateien vergleichen und nur die Änderungen in die bestehenden Dateien übernehmen.
+3. Die Datei htaccess_sample aus dem Verzeichnis htaccess mit einem Texteditor öffnen und folgenden Eintrag an das verwendete Zen-Cart Verzeichnis anpassen:
+   RewriteBase /shop/
+   Läuft der Shop im Verzeichnis www.meinedomain.at/shop muss nichts geändert werden.
+   Läuft er unter www.meinedomain.at ändern auf:
+   RewriteBase /
+   Abspeichern als .htaccess und ins Shopverzeichnis hochladen. 
+   Sollte dort schon eine .htaccess sein, den Inhalt der geänderten htaccess_sample hineinkopieren.
+4. Shop aufrufen, dabei werden die Datenbankänderungen automatisch vorgenommen (durch die includes/classes/seo.install.php)
+5. Im Admin erscheint nun unter Konfiguration der Punkt SEO URLs
+
+===============================
+INSTALLATION FÜR ZEN-CART 1.3.8
+===============================
+
+1. Dateien aus dem Ordner "zen-cart" in die Zen-Cart Installation kopieren. Dabei werden keine bestehenden Dateien überschrieben.
+2. Dateien aus dem Ordner 138spezifisch in die Zen-Cart Installation kopieren. Dabei werden bestehende Dateien überschrieben. Falls also bereits Änderungen an diesen Dateien in der Zen-Cart Installation gemacht wurden, mit WinMerge die Dateien vergleichen und nur die Änderungen in die bestehenden Dateien übernehmen.
+3. Die Datei htaccess_sample aus dem Verzeichnis htaccess mit einem Texteditor öffnen und folgenden Eintrag an das verwendete Zen-Cart Verzeichnis anpassen:
+   RewriteBase /shop/
+   Läuft der Shop im Verzeichnis www.meinedomain.at/shop muss nichts geändert werden.
+   Läuft er unter www.meinedomain.at ändern auf:
+   RewriteBase /
+   Abspeichern als .htaccess und ins Shopverzeichnis hochladen. 
+   Sollte dort schon eine .htaccess sein, den Inhalt der geänderten htaccess_sample hineinkopieren.
+4. Shop aufrufen, dabei werden die Datenbankänderungen automatisch vorgenommen (durch die includes/classes/seo.install.php)
+5. Im Admin erscheint nun unter Konfiguration der Punkt SEO URLs
+
+=============
+KONFIGURATION
+=============
+
+Die meisten Einstellungen unter Konfiguration SEO URLs sind selbsterklärend.
+Wichtig ist die Einstellungen für die Umlaute.
+Hier z.B. Folgendes eintragen:
+ä=>ae,ö=>oe,ü=>ue,ß=>ss
+Nach jeder solchen Änderung muss der SEO URL Cache geleert werden
+>> SEO URL Cache leeren auf true stellen und speichern, setzt sich dann automatisch wieder auf false
+
+
+=======
+FRAGEN?
+=======
+Posten im Forum von www.zen-cart.at in folgendem Thread:
+http://www.zen-cart.at/index.php?name=MDForum&file=viewtopic&t=5385
