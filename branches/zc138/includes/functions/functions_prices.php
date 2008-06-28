@@ -6,7 +6,7 @@
  * @copyright Copyright 2003-2007 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: functions_prices.php 6905 2007-09-01 20:05:11Z ajeh $
+ * @version $Id: functions_prices.php 334 2008-06-27 12:42:43Z hugo13 $
  */
 
 ////
