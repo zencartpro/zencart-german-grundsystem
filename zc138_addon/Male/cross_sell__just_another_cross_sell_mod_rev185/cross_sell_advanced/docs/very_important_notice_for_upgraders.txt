@@ -1,0 +1,13 @@
+Starting from rev 185, this module now makes use of the module_manager.
+If you have a previous version of the xsell module, you have to do this:
+1. Back up, back up your database please!
+2. Make sure you install the module manager first. Make sure it runs properly first!!!!
+3. Use zencart sql patch tool to run this:
+INSERT INTO module_version_tracker (module_code, patch_level, version_name) VALUES ('ri_jaxs', 2, 'Revision 185');
+
+Now you can safely install this new version ^_^.
+
+NOTE: You need to do this only ONCE. Say if you installed rev185, then later install rev200 (when it comes out), you dont need to go through this again.
+But if your current version is one that doesnt use module manager (any version ealier than rev185), you need this.
+
+If you want to check which version you are using, simply go to admin\includes\module_installation and see if there is a folder called "ri_jaxs", if it's not there you need to follow the instruction above.

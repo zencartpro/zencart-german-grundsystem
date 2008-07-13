@@ -1,0 +1,557 @@
+SUPER ORDERS
+Version 2.0
+By Frank Koehl (PM: BlindSide)
+
+Code development sponsored by Destination ImagiNation, Inc.
+www.destinationimagination.org
+www.idodi.org
+
+This script is distributed in the hope that it will be useful, but WITHOUT
+ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
+FITNESS FOR A PARTICULAR PURPOSE.
+
+Released under the General Public License (see LICENSE.txt)
+
+Always backup your shop and database before making changes.
+
+
+=============================================================================
+  IF YOU CURRENTLY USE SUPER ORDERS 1.0 OR 1.2, PLEASE READ UPGRADE.TXT
+  for instructions on how to upgrade your Super Orders payment data to 2.0.
+=============================================================================
+
+
+=====================================
+  Find a bug?  Have a feature idea?
+=====================================
+LET ME KNOW!
+All questions, comments, concerns, and wisecracks are welcome.
+
+Zen Cart Forum PM: BlindSide
+http://www.zen-cart.com/forum/showthread.php?t=44668
+
+
+====================
+  DESCRIPTION
+====================
+Super Orders is exactly what its name implies:
+Zen Cart order management on steroids.
+
+It's more in all the areas I always see Zen users asking for more:
+more navigation options, more order control, more thorough data, and more
+detailed reports.
+
+But it's NOT more than you can handle.  The system was designed for data
+entry clerks in my office (some of the least-technically inclined people
+on the planet).  You're a Zen user.  You can handle it. :-)
+
+Ready to get started?  Just follow the installation instructions below;
+note that the system uses *no* overwrites and you only make small changes
+to three pre-existing files!
+
+Any questions, just hit the forums:
+http://www.zen-cart.com/modules/ipb/index.php?showtopic=18717
+
+Enjoy!
+
+--
+Frank
+
+
+=======================
+  !!READ EVERYTHING!!
+=======================
+I very strongly recommend you read through the *entire* FEATURES
+section beneath the installation instructions.  There you will find out
+exactly what Super Orders can do.  There are some cool tricks that you
+won't know about if you don't read them!
+
+
+====================
+  INSTALLATION
+====================
+ UPLOAD DATA AND SQL
+-----------------------
+1. Unzip this package to a temp directory
+
+2. FTP the contents of [temp directory]/catalog into the root of your Zen Cart
+   installation (i.e. your "/catalog" folder). The files are already
+   arranged and there are no overwrites (but there are a few edits, see below).
+
+3. Run the super_orders_sql.sql file on your database.  Will work with
+   the "SQL Query Executor" tool in the Admin (Tools > Install SQL Patches).
+
+ SET ADMIN CONFIGURATIONS
+----------------------------
+4. Configure Phone and Fax Numbers
+   The SQL file added new defines for your store's phone and fax numbers,
+   so that we can display them without the address. Go into the admin and
+   browse to Configuration > My Store > Store Phone and add your phone number.
+
+   You'll find the line to add the fax number directly beneath it.
+   Configuration > My Store > Store Fax
+
+   TIP: Super Orders uses these configs on the invoice, but you can use them
+   anywhere you want!  Just use the define STORE_PHONE or STORE_FAX in
+   your own customizations.
+
+5. Customize Super Order Payment System
+   If you used the old version of Super Orders, you'll recall all the little
+   configurations I had stored as defines.  Well that crap is out the window!
+   Go to Admin > Configuration > Super Orders, you'll find all the configurable
+   options in there, with explanations and instructions.
+
+6. Install "Purchase Order" Payment Module
+   The PO tracking system and attached reports won't work without this!  Go
+   to Admin > Modules > Payment, you should find "Purchase Order" at the
+   bottom.  It should look familiar when you install and configure it,
+   since it mimics the "Check/Money Order" module.
+
+ REQUIRED FILE EDITS
+------------------------
+7. Edit the order.php class (catalog side)
+   The new payment system includes tracking credit cards payments, so we have
+   to get that data into the proper place.  So unless you want to reenter each
+   CC payment manually, we need to get in on the order creation process.
+
+   As the order class in the admin handles recalling order data (we'll get to
+   that in a minute), the catalog version takes care of creating the order.
+   All we have to do is add a bit of code to grab the CC data once it's
+   defined.  Open includes/classes/order.php, then find this line:
+
+        $insert_id = $db->Insert_ID();
+
+   Immediately after it, add the following code:
+
+        // BEGIN Super Orders edit
+        // add CC data as a line item to SO payment system
+        if (zen_not_null($this->info['cc_type']) || zen_not_null($this->info['cc_owner']) || zen_not_null($this->info['cc_number'])) {
+          require(DIR_WS_CLASSES . 'super_order.php');
+          $so = new super_order($insert_id);
+          $so->cc_line_item();
+        }
+        // END Super Orders edit
+
+   The comments will ensure you know what this is for the next time you need to upgrade.
+
+8. Edit the order.php class (admin side)
+   ** This is only required for Zen Cart versions prior to 1.3.6. **
+   The order class does a great job of collecting everything you need for an
+   order...almost.  The class completely lacks any ID numbers for the
+   information it represents, which is really useful information to have.
+   Super Orders uses the customers_id and products_id in a few places, so we
+   need to add them to the order class.
+
+   a. Open admin/includes/classes/order.php, find the line that reads as follows:
+
+        $orders_products = $db->Execute("select orders_products_id, products_name, products_model,
+
+   b. Add "products_id" to the list of selected fields, so it should look
+      something like this:
+
+        $orders_products = $db->Execute("select orders_products_id, products_id, products_name, products_model,
+
+   c. Now go down to the following line:
+
+        $this->products[$index] = array('qty' => $new_qty,
+
+   d. Start a new line directly underneath it, and add the following:
+
+        'id' => $orders_products->fields['products_id'],
+
+   e. That will add the products_id to the array.  Now let's do the same thing
+      for the customers_id.  Find this line:
+
+        $order = $db->Execute("select cc_cvv, customers_name, customers_company, customers_street_address,
+
+   f. Add "customers_id" anywhere in here, as described in step b.
+
+   g. Find this line:
+
+        $this->customer = array('name' => $order->fields['customers_name'],
+
+   h. Create a new line and add the following:
+
+        'id' => $order->fields['customers_id'],
+
+   Your done, nice work!  Now the customers_id will display on the data
+   sheet, and the products_id is used to display the model number on the
+   packing slip.  See each of those files to confirm your handiwork.
+
+9. Edit general.js
+   You know that nice highlight effect you get when your mouse goes over an order line?  The
+   Super Orders payment lines can have that as well.  All you need to do is tweak the javascript
+   functions that control the effect.
+
+   Open admin/includes/general.js, and go to the rowOverEffect and rowOutEffect functions:
+
+        function rowOverEffect(object) {
+          if (object.className == 'dataTableRow') object.className = 'dataTableRowOver';
+        }
+
+        function rowOutEffect(object) {
+          if (object.className == 'dataTableRowOver') object.className = 'dataTableRow';
+        }
+
+   Replace these functions with the ones below.  They will include the new classes for the
+   Super Order payment lines, allowing the rollover effect:
+
+        function rowOverEffect(object) {
+          if (object.className == 'dataTableRow') object.className = 'dataTableRowOver';
+          if (object.className == 'paymentRow') object.className = 'paymentRowOver';
+          if (object.className == 'purchaseOrderRow') object.className = 'purchaseOrderRowOver';
+          if (object.className == 'refundRow') object.className = 'refundRowOver';
+        }
+
+        function rowOutEffect(object) {
+          if (object.className == 'dataTableRowOver') object.className = 'dataTableRow';
+          if (object.className == 'paymentRowOver') object.className = 'paymentRow';
+          if (object.className == 'purchaseOrderRowOver') object.className = 'purchaseOrderRow';
+          if (object.className == 'refundRowOver') object.className = 'refundRow';
+        }
+
+   You can test this by adding a new payment to an order.  If the line changes color
+   when you roll over it with your mouse, you're good to go.
+
+
+ OPTIONAL FILE EDITS
+------------------------
+After testing the Super Orders system, you can do the following to
+integrate Super Orders more fully...
+
+1. Edit the "Customers" Admin Box
+   super_orders.php does everything orders.php can do and more, so you
+   really don't need the original "orders" in the admin box anymore.  I
+   don't recommend removing it entirely in case something does go wrong
+   in the future, plus a Zen Cart upgrade will just put it back in there.
+
+   Open admin/includes/boxes/customers_dhtml.php and comment out the line
+   for orders.php by adding two slashes "//" at the beginning.  It should
+   look like this:
+
+        $za_contents[] = array('text' => BOX_CUSTOMERS_ORDERS, 'link' => zen_href_link(FILENAME_ORDERS, '', 'NONSSL'));
+
+   Now you'll just see the "Super Orders" nav link in the dropdown menu.
+
+2. Change Filename Defines
+   There are still parts of the admin that point to the original
+   orders.php, invoice.php and packingslip.php, like the Customers page
+   (Admin > Customers > Customers).  You may also have other mods that
+   point to these files.  They all can easily utilize the Super Orders
+   system by changing the filename defines for the original files.
+
+   Open includes/filenames.php and change the defines for
+   FILENAME_ORDERS, FILENAME_ORDERS_INVOICE, AND FILENAME_ORDERS_PACKINGSLIP
+   to read as I have them below:
+
+        // BEGIN Super Orders Filename Edits
+        //define('FILENAME_ORDERS', 'orders');
+        //define('FILENAME_ORDERS_INVOICE', 'invoice');
+        //define('FILENAME_ORDERS_PACKINGSLIP', 'packingslip');
+
+        define('FILENAME_ORDERS', 'super_orders');
+        define('FILENAME_ORDERS_INVOICE', 'super_invoice');
+        define('FILENAME_ORDERS_PACKINGSLIP', 'super_packingslip');
+        // END Super Orders Filename Edits
+
+   Now anytime those files are called, they will pull up the Super Orders
+   versions instead (again, the comments make them instantly recognizable for
+   the next time you upgrade).
+
+3. Store last 4 digits of credit card number (Authorize.net AIM module)
+   Ok, it doesn't apply directly, but this can be really helpful!  Proper
+   security protocals state that you really shouldn't store a person's
+   full credit card number without a darn good reason.  I don't store it,
+   but then the CC number field would always come up blank on the detail
+   screen.  Would the last four digits be useful?  Of course!
+
+   a. Open includes/modules/payment/authorizenet_aim.php, then find this
+      block of code:
+
+        function before_process() {
+          global $_POST, $response, $db, $order;
+
+          if (MODULE_PAYMENT_AUTHORIZENET_AIM_STORE_NUMBER == 'True') {
+            $order->info['cc_number'] = $_POST['cc_number'];
+          }
+          ...
+        }
+
+   b. Edit the contents of the "if" statement to read as follows:
+
+        if (MODULE_PAYMENT_AUTHORIZENET_AIM_STORE_NUMBER == 'True') {
+          $cc_number = $_POST['cc_number'];
+          $length = strlen($cc_number);
+          $saved_digits = substr($cc_number, -4);
+          $stored_cc = str_pad($saved_digits, $length, "X", STR_PAD_LEFT);
+          $order->info['cc_number'] = $stored_cc;
+        }
+
+      This will replace all but the last 4 digits of the number with X's.  It
+      could also be easily adjusted to display just the last four digits and no
+      X's at all...
+
+        if (MODULE_PAYMENT_AUTHORIZENET_AIM_STORE_NUMBER == 'True') {
+          $cc_number = $_POST['cc_number'];
+          $stored_cc = substr($cc_number, -4);
+          $order->info['cc_number'] = $stored_cc;
+        }
+
+   c. Enable storing the CC number in the Zen Cart Admin for this payment module:
+        Admin > Modules > Payment > [edit "Authorize.net (AIM)"]
+
+
+   This can be adapted to other modules that allow you to store a CC
+   number.  Just open the module file for your payment module, and
+   look for a line like the following:
+   "$order->info['cc_number'] = $_POST['cc_number'];"
+
+
+====================
+  FEATURES
+====================
+Super Orders is a collection of customizations mixed with new features.
+Each heading below reflects a different ability of the Super Orders system.
+
+Each feature description begins with a new line.  All features are in
+addition to the original files; nothing was removed.
+
+
+ Order Management
+----------------------
+Location: Admin > Customers > Super Orders
+
+The orders listing screen now has shortcut buttons on each order line that
+match the buttons that appear in the sidebox, saving an extra click.
+
+Added customer shortcuts, one to find all orders by the customer, another
+to pull up their profile edit screen.
+
+The original "edit" button in the sidebox has been replaced with "details,"
+to more accurately reflect the page's purpose.
+
+The detail screen (again, used to be the "edit" button) includes
+shortcuts to edit the order, pull up the invoice and packing slip, and a
+quick navigation system to pull up the detail screen for any other order.
+
+
+ Order Editing
+------------------
+Location: Admin > Customers > Super Orders > "detail" button
+
+Completely rebuilt the order editing features.  The code that processes
+the edits has also been cleaned up and streamlined (too detailed for
+explanation here).  I never felt comfortable with all those editable text
+boxes on a single screen, so the single edit button has been replaced with
+multiple edit links that prompt for editing specific parts of the order data.
+
+You'll find four links placed around the page, each handling a specific
+set of data.  Those groupings are:
+        > contact/address data
+        > products
+        > order totals
+        > order status history.
+
+Each brings up a popup window to edit
+the specified information.  Submitting and closing the window will
+refresh the page to display your changes.
+
+NOTE: The product-edit button will be the eventual home for editing product
+details.  Unfortunately, as I have said in the forums, that functionality
+is a major undertaking, and will have to wait for a future release.  For
+now, the page offers the ability to split an order as in earlier versions.
+
+
+ Order Payment Tracking
+---------------------------
+The vast majority of effort was put into the ability to enter and track
+payment data.  The system is completely new from the original (see
+UPGRADE.txt for instructions on how to move data from the old format to
+the new).  Now, the Super Orders payment system can track all of the
+following scenarios:
+        > Multiple PO's
+        > Multiple payments
+        > Multiple payments per PO
+        > Multiple refunds per payment
+        > Multiple refunds per order
+
+Opening the details screen for any order will display the payment system.
+There you'll find buttons to add the three types of payment data:
+Purchase Orders, Payments, and Refunds.  Clicking any one will bring up
+a pop-up window to enter the details for that particular entry type.
+When you are done, the popup will close and return you to the original
+page, refreshing it to display your new entry.
+
+Buttons to edit and delete payments are on the line listing the payment.
+Click the corresponding button to modify the entry or remove it entirely.
+I think it's pretty self-explanatory, but please post on the forum
+thread if you have problems or questions.
+
+
+ Payment Types
+------------------
+The payment system now also allows the user to specify the type of payment
+being entered.  For instance, if the payment is cash, simply select "Cash"
+from the dropdown; if it's a credit card payment, select the proper Credit
+Card company, or just choose "Credit Card" for lesser known providers.
+
+Furthermore, the system allows the user to add/edit/delete the available
+payment types to suit his or her needs.  Go to:
+        Admin > Localization > Payment Types
+
+There you will find an interface similar to the order status page.
+From here you may create whatever payment methods you want, as well as
+edit/delete those you already have.  As described above, the system
+comes with a good list of payment types that should cover most stores,
+people, and situations.
+
+NOTE: This system was built in English and hasn't been thoroughly tested
+in the Zen Cart language system.  Please be aware that languages other
+than English may experience issues.  Of course, if you do see anything
+unusual, please let me know and I'll get it corrected.
+
+=============================================================================
+  Though already stated, it bears repeating:
+  IF YOU CURRENTLY USE SUPER ORDERS 1.0 OR 1.2, PLEASE READ UPGRADE.TXT
+  for instructions on how to upgrade your Super Orders payment data to 2.0.
+=============================================================================
+
+
+ Shipping Label
+-------------------
+Location: Admin > Customers > Super Orders > "shipping label" button
+This is taken directly from the "Basic Shipping Label" contrib available
+in the Zen Cart downloads section.  I changed a filename, added some
+defines for language interoperability, and recreated the button label so
+that it matches the others, otherwise it's exactly the same.
+
+If it doesn't fit your requirements exactly, the label is super-easy to
+modify. Just edit admin/super_shipping_label.php; the entire thing is HTML
+except for the address data displayed.  Adjust to suit your needs.
+
+Ack: I can't credit the author because there is none listed in the file!
+     If you wrote this and want a mention here, PM me!
+
+
+ Invoice
+------------
+Location: Admin > Customers > Super Orders > "invoice" button
+
+If the order payment is a PO, the PO details will appear next to the
+address information after the PO number has been entered.  The order must
+be placed using the purchase order module included with this contrib.  The
+details appear regardless of whether a PO number was entered or not, but
+the number will be included once you have entered it.
+
+Added the word "Invoice" to the header (P.O. users typically require this)
+
+Put the billing address in better position for a windowed envelope.
+
+Displays the Federal Tax ID and removes the tax lines, if applicable.
+        Admin > Configuration > Super Orders > Federal Tax Exempt Number
+
+Clipped the shipping text to remove the details in parentheses.
+
+Added "Amount Paid" and "Balance Due" lines.  Values reflect order total
+and applied payments/refunds of the payment system.
+
+
+ Packing Slip
+-----------------
+Location: Admin > Customers > Super Orders > "packing slip" button
+
+Now displays the shipping method with other order info (in case different
+shipping methods have different priorities, e.g. Rush shipping).
+
+Added the word "Packing Slip" to the header.
+
+Put the shipping address in position for a windowed envelope (I know, a
+packing slip usually goes *in* the box, but you never know).
+
+If there are 4 or less products on an order, the packing slip will
+include the product image. The 3-product limit prevents the packing slip
+from unnecessarily covering more than 1 page.  NOTE: You must complete
+step 8 in the "EDIT EXISTING FILES" section of the installation for this
+to work.
+
+
+ Batch Form Printing
+------------------------
+Location: Admin > Customers > Batch Form Print
+
+Ack: super_batch_forms.php is based on "easy-batch-printing"
+     written by PandA.nl (Forum PM: paulm)
+
+This file allows you to print invoices and packing slips in bulk. It was
+ported from OSC, but the original code remains largely in-tact,
+as it works perfectly in the latest versions of Zen. The Super Orders
+version simply integrates the code more seamlessly into the admin, and adds
+a few more printing options.
+
+It relies on a browser's tendency to print frames on separate pages (they
+all do it at this point, most by default).  You select the form you want,
+for which orders, and the number of copies, and the code spits out a new
+window with the right numbers, each one split into a different frame.
+Then just press print on your browser.  No PDF formatting (a planned
+future feature), and a lot less clicks than the normal, manual method.
+
+
+ Batch Status Updating
+--------------------------
+Location: Admin > Customers > Batch Status Update
+
+This file allows you to update the status of multiple orders at once.
+Search options have been increased from the initial version.  You can
+now search by any of the following criteria: date of order, current status,
+ordered product, customer, payment method, order total, and the usual text
+search.
+
+Select the new status, add your comments, and whether or not to
+notify the customer (set to "off" by default to avoid unintentional mass
+mailings) and you're all set!
+
+
+ Outstanding Payments
+-------------------------
+Location: Admin > Reports > Orders Awaiting Payment
+
+This report displays all your outstanding payment paperwork.  Each radio
+button will search for orders that are missing the indicated transaction
+piece (e.g. searching "Purchase Orders" will display orders in which the
+customer chose to pay via PO but has not submitted a PO yet).
+
+By default it will look for orders older than 30 days without the specified
+information (typical timeframe to define a payment as "late"), but you can
+include orders within 30 days by clicking the indicated box.
+
+The print format is just as its name implies, prints nicely on 8.5" x 11"
+paper.  You can click the title in the print format to return to the
+regular admin display.
+
+The front end has not changed much from v1.2, but the backend is completely
+overhauled for the new payment system.
+
+
+ Cash Flow
+--------------
+Location: Admin > Reports > Cash Report
+
+Similar to the "Awaiting Payment" report, the Cash Report displays all
+the actual monetary transactions entered into the payment system.
+
+Your options are payments (income), refunds (loss), or both.  PO's are
+not an option because they are merely a promise to pay, not actual cash.
+Payments attached to PO's are included in the "Payments" search.
+
+The date range search reflects the date upon which the payment or refund
+was entered, NOT the order date, date of a particular status, etc.  This date
+is displayed on the order detail page on the payment line item under the
+heading "Date Posted".
+
+Like the Awaiting Payment report, the print format displays a nice print
+layout.  You can also click the title in the print format to return to the
+regular admin display.
+
+
+~fin
+$Id: README.txt 44 2006-08-29 22:25:43Z BlindSide $

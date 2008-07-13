@@ -1,0 +1,44 @@
+*******************************************************
+* Modul Zahlungsart                                   *
+* Rechnung ab xter Bestellung 1.2                    *
+*                                                     *
+* Angepasst an Zen-Cart 1.3.7 von Hugo 13             *
+* Anleitung und Bugfix von MaleBorg & triparcus       *
+*******************************************************
+
+Was macht diese Erweiterung ?
+------------------------------
+
+Sie erlaubt die Zahlung auf Rechnung nach x verschickten Bestellungen.
+Der Wert X kann im Adminbereich konfiguriert werden.
+
+
+Installation
+-------------
+
+Es werden keine Original Files ï¿½berschrieben und auch keine Modifikationen in der Datenbank vorgenommen.
+
+1. Kopiert einfach den Ordner includes in euer Zen-Cart Verzeichnis
+2. Danach müsst ihr im Adminbereich unter Modules --> Zahlungsarten das Modul Rechnung installieren und konfigurieren
+3. Fertig
+
+
+Bei Fragen schaut einfach im Forum unter www.zen-cart.at vorbei.
+
+
+********  Changelog  **********
+Version 1.0
+Angepasst fï¿½r Zen-Cart by MultimediArts am 14.10.2005
+
+Version 1.1
+Angepasst fï¿½r Zen-Cart 1.3.7 by Hugo13 am 20.04.2007
+
+Version 1.1b
+Bugfix - Die Abfrage für die Gültigkeitszonen war fehlerhaft und wurde korrigiert.
+
+Version 1.2
+Neu: Angabe einer Bankverbindung, die in der Bestätigungsmail angezeigt wird.
+
+Version 1.3
+Neu: Angabe eines Zahlungsziels (zahlbar bis ....)
+

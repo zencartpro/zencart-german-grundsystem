@@ -1,0 +1,339 @@
+/////////////////////////////////////////////
+// Lieferampel Version 1.2                 //
+// Erstellt von MaleBorg <maleborg@gmx.de> //
+//                                         //
+// getestet mit ZC 1.3.5 - 1.3.8           //
+/////////////////////////////////////////////
+
+Was macht diese Erweiterung?
+----------------------------
+
+Ihr erhaltet auf der Product_Info_Page oberhalb des "In den Warenkorb" Buttons eine Anzeige, ob der Artikel lieferbar ist. (Siehe beiliegendem Screenshot)
+
+Die Anzeige kann frei plaziert werden und besteht aus einer Grafik und einem Text.
+Beides kann an die eigenen Bedürfnisse angepasst werden.
+Der Text kann ebenfalls für mehrere Sprachen im Shop hinterlegt werden.
+
+
+(Optional) In der Artikelliste in den einzelnen Kategorien kann jetzt ebenfalls die Lieferampel angezeigt werden.
+Dieses kann über den Adminbereich eingestellt werden.
+
+
+Installation
+-------------
+
+ACHTUNG!! Es werden Originaldateien verändert. Bitte VORHER ein Backup machen!
+
+Folgende Dateien werden verändert:
+includes/functions/functions_general.php
+includes/templates/template_default/templates/tpl_product_info_display.php
+includes/languages/german.php 
+
+1. Kopiert den Ordner images in euren Zen-Cart Ordner.
+2. Öffnet die DAtei includes/functions/functions_general.php
+   Scrollt an das Ende der Datei und fügt VOR
+
+   ?>
+
+   folgendes ein:
+   
+   /////////////////////////////////////////////
+   ////
+   // call additional function files
+   // prices and quantities
+
+   // START Lieferampel/Lageranzeige 
+   function picto_qty($quantity) { 
+   if      ($quantity <=-900 ) { $picto = zen_image(DIR_WS_IMAGES . '/qicons/' . 'nicht_mehr_lieferbar.gif', TEXT_STOCK_STATUS_6).'<br>'. TEXT_STOCK_STATUS_6 ;
+   }
+   elseif (($quantity <= -500 ) and ($quantity >= -599 )) {  $picto = zen_image(DIR_WS_IMAGES . '/qicons/' . 'neuheit.gif', TEXT_STOCK_STATUS_5 ).'<br>'. TEXT_STOCK_STATUS_5 ;
+   } 
+   elseif (($quantity <= -300 )   and ($quantity >= -399 )) {  $picto = zen_image(DIR_WS_IMAGES . '/qicons/' . 'auf_anfrage.gif', TEXT_STOCK_STATUS_4).'<br>'. TEXT_STOCK_STATUS_4 ;
+   }
+   elseif (($quantity >= -10 )    and ($quantity <= 0 ))    {  $picto = zen_image(DIR_WS_IMAGES . '/qicons/' . 'Ampel_rot.gif', TEXT_STOCK_STATUS_3).'<br>'. TEXT_STOCK_STATUS_3 ;
+   }
+   elseif (($quantity >= 1 )    and ($quantity < 10 ))     {  $picto = zen_image(DIR_WS_IMAGES . '/qicons/' . 'Ampel_gelb.gif', TEXT_STOCK_STATUS_2).'<br>'. TEXT_STOCK_STATUS_2 ;
+   }
+   elseif ($quantity >=10)   { $picto = zen_image(DIR_WS_IMAGES . '/qicons/' . 'Ampel_gruen.gif', TEXT_STOCK_STATUS_1) . '<br>' . TEXT_STOCK_STATUS_1 ; 
+   } 
+   return $picto; 
+   } 
+   // ENDE Lieferampel/Lageranzeige
+
+   Speichert die Datei
+
+3. öffnet die Datei includes/languages/german.php
+   Scrollt an das Ende der Datei und fügt VOR
+   
+   ?>
+
+   folgendes ein:
+
+   // Lieferampel/Lageranzeige
+   define('TEXT_STOCK_STATUS_1', 'Artikel ist vorr&auml;tig');
+   define('TEXT_STOCK_STATUS_2', 'Nur noch wenige Artikel vorr&auml;tig');
+   define('TEXT_STOCK_STATUS_3', 'Artikel in K&uuml;rze wieder verf&uuml;gbar'); 
+   define('TEXT_STOCK_STATUS_4', 'Auf Anfrage lieferbar'); 
+   define('TEXT_STOCK_STATUS_5', 'Neuheit<br>Artikel erscheint demn&auml;chst'); 
+   define('TEXT_STOCK_STATUS_6', 'Artikel ist nicht mehr lieferbar'); 
+
+   Speichert die Datei
+
+   Für weitere Sprachen müsst ihr diese Einträge entsprechend Einfügen und ändern.
+
+
+4. Öffnet die Datei includes/templates/template_default/templates/tpl_product_info_display.php
+   Solltet ihr ein eigenes Template angelegt haben öffnet die Datei entsprechend in eurem Template
+
+   Sucht die Zeile 
+
+   <!--eof Add to Cart Box-->
+
+
+   Etwas oberhalb davon findet ihr die Zeilen
+
+   echo $display_qty;
+   echo $display_button;
+
+
+   Fügt oberhalb von
+
+   echo $display_button;
+
+   die Zeile
+
+   echo picto_qty($products_quantity) . '<br /><br />';
+   
+   ein
+
+
+   Es sollte nun wie folgt ausschauen
+
+   echo $display_qty;
+   echo picto_qty($products_quantity) . '<br /><br />';
+   echo $display_button;
+
+   Speichert die Datei
+
+
+5. Fertig!
+
+
+Anwendung
+---------
+
+Arbeitet ihr mit einem Lagerbestand, der sich auch verändert, dann ändert sich auch dynamisch die Lageranzeige.
+Ab 10 Artikel erscheint eine grüne Ampel, von 1-9 eine gelbe Ampel und darunter eine rote Ampel
+
+Solltet ihr die Lagerverwaltung deaktiviert haben, müßt ihr per Eingabe des entsprechenden Bestands die jeweilige Anzeige selber aktivieren
+Bestand ab 10    Grüne Ampel
+Bestand 1-9      Gelbe Ampel
+Bestand -299 - 0 Rote Ampel
+
+
+Außerdem habt ihr die Möglichkeit, durch Angabe eines hohen Minusbestandes folgende Texte aufzurufen
+-300 bis -399 Artikel auf Anfrage
+-500 bis -599 Neuheit
+-900          Artikel ist nicht mehr lieferbar
+
+
+Diese Anzeige ist beliebig erweiterbar.
+Dazu müsst ihr die If Abfrage in der functions_general.php sowie die entsprechenden Texte in der german.php anlegen.
+
+
+____________________________________________________________________________________________
+
+(OPTIONAL) Anzeige der Lieferampel in der Artikelliste in den einzelnen Kategorien:
+------------------------------------------------------------------------------------
+
+Es werden einige Dateien und die Datenbank verändert. 
+Also unbedingt VORHER ein BACKUP machen!
+
+___________________________________________________________________________
+
+1. Datenbank Felder einfügen:
+
+Im Adminbereich --> Tools --> SQL Patches installieren folgendes einfügen und auf SENDEN klicken.
+
+
+INSERT INTO `configuration` ( `configuration_id` , `configuration_title` , `configuration_key` , `configuration_value` , `configuration_description` , `configuration_group_id` , `sort_order` , `last_modified` , `date_added` , `use_function` , `set_function` )
+VALUES (
+'', 'Display stock image', 'PRODUCT_LIST_QUANTITY_IMAGE', '0', 'Do you want to display the stock image?', '8', '7', now() , now(), NULL , NULL);
+
+
+INSERT INTO `configuration_language` ( `configuration_id` , `configuration_title` , `configuration_key` , `configuration_language_id` , `configuration_description` , `last_modified` , `date_added` )
+VALUES (
+'', 'Lieferampel anzeigen', 'PRODUCT_LIST_QUANTITY_IMAGE', '43', 'Wollen Sie die Lieferampel in der Artikelliste anzeigen?', now(), now()); 
+
+___________________________________________________________________________
+
+2. Datei öffnen /includes/languages/german/index.php
+
+Suchen nach
+
+define('TABLE_HEADING_WEIGHT','Gewicht');
+
+Direkt darunter einfügen
+
+define('TABLE_HEADING_QUANTITY_IMAGE','Lieferstatus');
+
+!!! Wenn ihr mehrere Sprachen im Shop verwendet muss es ebenfalls in den anderen Sprachen angelegt werden !!!
+
+___________________________________________________________________________
+
+3. Datei öffnen includes/index_filters/default_filter.php
+   und suchen nach         
+
+        case 'PRODUCT_LIST_WEIGHT':
+          $listing_sql .= "p.products_weight " . ($sort_order == 'd' ? 'desc' : '') . ", pd.products_name";
+        break;
+
+   Direkt danach folgendes einfügen
+
+        case 'PRODUCT_LIST_QUANTITY_IMAGE':
+          $listing_sql .= "p.products_quantity " . ($sort_order == 'd' ? 'desc' : '') . ", pd.products_name";
+        break;
+
+___________________________________________________________________________
+
+4. Datei öffnen includes/modules/pages/index/main_template_vars.php
+   und suchen nach
+
+   'PRODUCT_LIST_WEIGHT' => PRODUCT_LIST_WEIGHT,
+
+    Direkt dahinter folgendes einfügen
+
+   'PRODUCT_LIST_QUANTITY_IMAGE' => PRODUCT_LIST_QUANTITY_IMAGE,
+
+
+   Suchen nach
+
+      case 'PRODUCT_LIST_WEIGHT':
+      $select_column_list .= 'p.products_weight, ';
+      break;
+
+   und direkt dahinter einfügen
+
+      case 'PRODUCT_LIST_QUANTITY_IMAGE':
+      $select_column_list .= 'p.products_quantity, ';
+      break;
+
+___________________________________________________________________________
+
+5. Datei öffnen includes/modules/product_listing.php
+   und suchen nach
+
+    case 'PRODUCT_LIST_WEIGHT':
+    $lc_text = TABLE_HEADING_WEIGHT;
+    $lc_align = 'right';
+    $zc_col_count_description++;
+    break;
+
+   Direkt dahinter folgendes einfügen
+
+    case 'PRODUCT_LIST_QUANTITY_IMAGE':
+	$lc_text = TABLE_HEADING_QUANTITY_IMAGE;
+    $lc_align = 'center';
+    $zc_col_count_description++;
+    break;
+
+
+   Suchen nach (ca. Zeile 161)
+
+        case 'PRODUCT_LIST_WEIGHT':
+        $lc_align = 'right';
+        $lc_text = $listing->fields['products_weight'];
+        break;
+
+   Direkt dahinter einfügen
+
+        case 'PRODUCT_LIST_QUANTITY_IMAGE':
+        $lc_align = 'center';
+        $lc_text = '<div id="products_quantity_image" class="productGeneral">' . picto_qty($listing->fields['products_quantity']) . '</div>';
+        break;
+
+___________________________________________________________________________
+
+6. Um eine Spalte mit der Lieferampel in der Artikelliste anzuzeigen müsst ihr im
+   Adminbereich --> Konfiguration --> Artikelliste --> Lieferampel anzeigen eine Zahl größer 0 eingeben.
+
+   Die Zahl gibt die Spalte an, in der die Lieferampel auftauchen soll.
+
+   Ein Beispiel: 
+   Ihr habt im Produktlisting 3 Spalten für Bild (Spalte 1), Name + Beschreibung (Spalte 2) und Preis (Spalte 3). 
+   Diese haben in der Konfiguration die Nummern 1,2 und 3.
+   
+   Jetzt soll die Spalte Lieferampel zwischen Name + Beschreibung und Preis angezeigt werden.
+   Dazu müsst ihr dem Preis die Nummer 4 geben und der Spalte Lieferampel die Nummer 3.
+   Dann sollte das wie gewünscht angezeigt werden.
+
+___________________________________________________________________________
+
+
+(OPTIONAL 2) Anzeige der Lieferampel im Suchergebnis (entwickelt von JeffClay):
+------------------------------------------------------------------------------------
+
+Es werden einige Dateien verändert. 
+Also unbedingt VORHER ein BACKUP machen!
+
+___________________________________________________________________________
+
+1. Datei öffnen /includes/modules/pages/advanced_search_result/header_php.php
+   und suchen nach
+
+    'PRODUCT_LIST_WEIGHT' => PRODUCT_LIST_WEIGHT, 
+
+   Direkt dahinter folgendes einfügen
+
+    'PRODUCT_LIST_QUANTITY_IMAGE' => PRODUCT_LIST_QUANTITY_IMAGE, 
+
+
+   Suchen nach
+
+    case 'PRODUCT_LIST_WEIGHT':
+    $select_column_list .= 'p.products_weight';
+    break;
+
+   und direkt dahinter einfügen
+
+    case 'PRODUCT_LIST_QUANTITY_IMAGE':
+    $select_column_list .= 'p.products_quantity';
+    break; 
+ 
+
+   Suchen nach
+
+    case 'PRODUCT_LIST_WEIGHT':
+    $order_str .= "p.products_weight " . ($sort_order == 'd' ? "desc" : "") . ", pd.products_name";
+    break; 
+
+   und direkt dahinter einfügen
+
+    case 'PRODUCT_LIST_QUANTITY_IMAGE':
+    $order_str .= "p.products_quantity " . ($sort_order == 'd' ? 'desc' : '') . ", pd.products_name";
+    break; 
+
+_____________________________________________________________________________
+
+2. Datei öffnen /includes/languages/german/advanced_search_result.php
+   und ganz unten einfügen
+
+    define('TABLE_HEADING_QUANTITY_IMAGE','Lieferstatus'); 
+
+
+Bei Fragen bitte eine kurze eMail an maleborg@gmx.de oder postet ins Forum www.zen-cart.at
+
+
+Changelog:
+----------
+Version 1.0
+Grundversion
+
+Version 1.0b
+Bugfix in der Anleitung der zu leichten Missverständnissen geführt hat.
+
+Version 1.1
+Anzeige in der Artikelliste hinzugefügt (Einstellbar über den Adminbereich)
+
+Version 1.2
+Den Tipp von JeffClay hinzugefügt. Jetzt wird die Lieferampel auch im Suchergebnis angezeigt.

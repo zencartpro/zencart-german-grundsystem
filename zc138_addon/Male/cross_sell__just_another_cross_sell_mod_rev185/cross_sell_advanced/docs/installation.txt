@@ -1,0 +1,55 @@
+Module name:	Cross sell
+Authors:		This module came from 2 separated modules (CrossSell and Advanced CrossSell). It was developed by many coders and users including Merlin and Absolute.
+				I merely join the 2 modules togther, re-wrote most of the admin functions and add some more features.
+
+All feedback appreciated! - Just contact me or post a message in the support thread.
+
+
+=========================
+INSTALLATION INSTRUCTIONS
+=========================
+
+    BACK UP BACK UP BACK UP
+    
+1. This module needs another module called module_manager to operate properly.
+http://code.google.com/p/zencart-module-manager/downloads/list
+
+2. Make sure to change the name of the following directories (from the ZIP) to match your template name:
+    /includes/modules/YOUR_TEMPLATE 
+    /includes/templates/YOUR_TEMPLATE 
+    /includes/languages/english/YOUR_TEMPLATE
+
+3. Upload all supplied files in their approporiate folder structure... EXCEPT for the following:
+    /includes/templates/YOUR_TEMPLATE/templates/SAMPLE_ADDITION_TO_tpl_product_info_display_TEMPLATE_FILE.php
+    /includes/languages/english/YOUR_TEMPLATE/SAMPLE_ADDITIONS_TO_product_info_LANGUAGE_FILE.php
+   If you upload these example files, you may encounter template error messages due to the way overrides grab files.
+
+   (Do not upload the install.txt or products_xsell.sql files, as they are not needed on the server.)
+
+4. Open includes/languages/english/product_info.php 
+   or includes/languages/english/YOUR_TEMPLATE/product_info.php 
+   and add:
+        define('TEXT_XSELL_PRODUCTS', 'We Also Recommend :');
+   just above the final ?> and save it into includes/languages/english/YOUR_TEMPLATE/product_info.php 
+   
+   The SAMPLE_ADDITIONS_TO_product_info_LANGUAGE_FILE.php can be used for this by copying its contents into product_info.php
+
+4.b. - Repeat step 4 for each of the other product types you intend to use (ie: product_music_info, document_general_info, etc).
+
+5. Now edit your product-info template file (tpl_product_info_display.php) and insert the following code 
+   at the point where you wish the Cross-Sell box to appear. Usually best at the end of the file:
+   ---------------------------------
+<?php
+      require($template->get_template_dir('tpl_modules_xsell_products.php', DIR_WS_TEMPLATE, $current_page_base,'templates'). '/' . 'tpl_modules_xsell_products.php');
+?>
+   -------------------------------
+   The SAMPLE_ADDITION_TO_tpl_product_info_display_TEMPLATE_FILE.php contains this same code, and you can copy/paste
+   from that file into your customized tpl_product_info_display.php 
+   
+5.b. Repeat step 5 for any other product types for which you wish to enable cross-sell display.
+     (ie: tpl_product_music_info_display.php, etc)
+
+6. Upload your changes from step 4 / 4.b  and step 5 / 5.b to your server.   
+
+
+Installation done.

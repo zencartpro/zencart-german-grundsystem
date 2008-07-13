@@ -1,0 +1,49 @@
+Easypopulate 2.76d-mod4 für ZenCart 1.3.x
+
+Geändert: Neue Anpassung für PHP register_globals = OFF (Funktioniert aber auch mit register_globals=ON)
+BUGFIX: Attribute wurden nicht importiert
+          attributes_price_prefix          
+          attributes_weight_prefix
+          attributes_sort_order 
+
+Easypopulate 2.76d-mod3b für ZenCart 1.3.x
+
+BUGFIX: Fehler beim Import behoben - es wurden keine Artikel importiert
+INFO: Funktioniert anscheinend auch mit PHP5 (bitte Rückmeldungen)
+
+Easypopulate 2.76d-mod3a für ZenCart 1.3.x
+
+NEU in dieser Version: 
+Angepasst für PHP register_globals = OFF (Funktioniert aber auch mit register_globals=ON)
+Import/Export von products_priced_by_attribute
+Bugfixes bei OSC Code
+
+Anpassung einer OSC-Contribution für Zen-Cart Version 1.3.x
+
+Neue Funktionen der OSC-Contribution:
+Export als Downloadstream On-the-Fly, dadurch größe Exporte möglich (geringe Serverlast)
+Umfangreiche Exportfilter zur Auswahl, damit sind spezielle Exportdateien erstellbar
+
+Zusätzlich hinzugefügt für Import/Export:
+sort_order, 
+attributes_weight, 
+attributes_weight_prefix (in seperater Spalte)
+attributes_sort_order
+attributes_values_default
+attributes_price_prefix (in seperater Spalte)
+
+Angepasst für mehrere Sprachen inkl. deutsche Übersetzungen
+
+Fragen, Anregungen, Bugs bitte hier posten:
+http://www.zen-cart.at/name-MDForum-viewtopic-t-3274.htm
+
+
+
+
+
+
+
+
+
+
+

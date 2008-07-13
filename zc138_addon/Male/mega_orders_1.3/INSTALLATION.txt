@@ -1,0 +1,121 @@
+MEGA ORDERS V1.3
+von triparcus
+
+Dieses Modul es eher eine Sammlung. Es enthält folgende angepasste vier Einzelmodule:
+Super Orders v2.0 (Zahlungsverfolgung)
+Rechnung ab x Order v1.3 (erlaubt es Kunden nach x Bestellungen mit Rechnung zu bezahlen)
+Edit Orders v1.5 (zum Ändern einer Bestellung)
+und PDF-Rechnung v0.7 (zur Erstellung einer Rechnung als PDF-Datei)
+
+Änderungen 1.2 zu 1.3
+---------------------
+Super-Orders: * bei der Änderung des Bestellstatus und Information des Kunden, wird nun korrekt ein Häkchen gesetzt
+PDF-Rechnung: * nimmt nun den final_price statt price der Produkte für die Erstellung der Rechnung
+Edit-Orders:  * die Statusänderungsmails werden jetzt auch als HTML-Mails versandt. Dazu wird die Vorlage im
+                email-Verzeichnis benutzt (oder die neue Vorlage benutzen)
+              * es kann jetzt auch eine neue Rechnung verschickt werden (noch beta!)
+                Achtung! Nachdem ein Produkt hinzugefügt/gelöscht oder der Preis geändert wurde, muss man erst auf aktualisieren klicken, damit die Rechnung stimmt und eine neue Rechnung versandt werden kann!
+              * der Shopbetreiber erhält eine Kopie der Statusänderungsmails und Rechnungsmails
+Rechnung ab x Order: * fehlende Anzeige des EMail-Footers für Rechnungen in den Bestätigungsmails behoben
+
+Änderungen 1.1 zu 1.2
+---------------------
+PDF-Rechnung: * kleiner Bugfix wenn DB in UTF-8 (Umlaute: Nachnahmegebühr, Gruppenermäßigung u.andere)
+              * Mengenrabatt, Gutscheine, Kupons und Gruppenermäßigung jetzt mit '-' Zeichen auf der Rechnung
+              * Wichtig! Template für Artikel und Summentabelle umbenannt: es gibt jetzt col_templ_1, col_templ_2, col_templ_3 all bzw. options_templ_1, options_templ_2 und all
+              * ein paar neue Fonts
+              * Bugfix Adobe-Fehlermeldung: "In der Schrift meineSchrift ist der Wert für /BBox fehlerhaft."
+Edit-Orders:  * MwSt-Berechnung nun hoffentlich komplett (Nachnahmegebühr, Aktionskupon, Gutschein, Gruppenermäßigung, ...)
+              * zusätzlich die neuen gefixten ot_coupon, ot_group_pricing und ot_quantity_discount (falsche DB-Einträge)
+              * neuer Button PDF-Rechnung
+Super-Orders: * ein neuer Button
+
+
+Änderungen 1.0b zu 1.1
+----------------------
+PDF-Rechnung: * auf der Rechnung sthet jetzt die Rechnungadresse und eventuell eine abweichende Lieferadresse statt vorher
+              Kundenadresse und eventuell Lieferadresse
+Super-Orders: * zusätzlicher Link zu PDF-Rechnung
+              * Änderungen in den Sprachdateien (Umlaute)
+              * kleiner unerheblicher Bugfix in der super_batch_status ("$ Wert" wurde nicht angezeigt)
+Edit-Orders: * Änderungen in der Rechnungsadresse werden jetzt in die DB übernommen
+             * komplett von Netto auf Brutto umgestellt (bei Preisänderungen müssen/können jetzt BRUTTO-Preise angegeben werden!)
+             * Bugfixes bei Artikel hinzufügen und löschen
+             * Bei weiteren Rechnungszuschlägen (z.B. Nachnahme) oder Abschlägen (Rabatte, Gutschriften), also alles was in den Feldern unter der Zwischensumme zusätzlich zu den Versandkosten drin steht bzw. hinzugefügt wird, wird jetzt bei der MwSt. berücksichtigt. Es gilt der MwSt-Satz der Versandkosten.
+             * Artikel-Attribute bei neu hinzugefügten Artikeln werden weiterhin nicht angezeigt, können aber nun nachträglich eingetragen werden
+             * bei Änderung der Bestellung zeigte PDF-Rechnung die Summe auf der Rechnung nicht mehr in Fettschrift an
+             * Eindeutschungen vervollständigt
+
+Achtung!
+Nachdem ein Artikel hinzugefügt wurde, darf man nicht vergessen auf AKTUALISIEREN zu klicken, damit alle Änderungen vollständig in die DB übertragen werden!
+
+Bemerkung zur Klarstellung:
+der MwSt-Satz für die Versandkosten werden in der admin/edit_orders.php in der Zeile 87
+$AddShippingTax = "19.0"; // e.g. shipping tax of 17.5% is "17.5"
+angegeben und gilt nur für die Versandkosten.
+Die MwSt-Sätze für die einzelnen Artikel holt sich Edit-Orders aus der DB. Unterschiedliche Artikel können somit unterschiedliche MWSt-Sätze haben (z.B. 19%, 7% oder gar MwSt-frei). Die enthaltene MwSt. der Summe wird trotzdem korrekt berechnet.
+(Falls es da Unklarheiten gab)
+
+Änderungen:
+Rechnung ab x Order
+-------------------
+* in der Bestätigungs-Mail wird zusätzlich als Zahlungsziel 14 Tage und die Bankverbindung genannt
+* Angabe eines Zahlungsziels (zahlbar bis ....)
+
+PDF-Rechnung:
+-------------
+* Logo am rechtem Rand
+* die Summe des Rechnungsbetrages in Fettschrift
+* die Zahlungsart wird mit angegeben
+* kann mit einer DB in UTF-8 umgehen: Anschrift, Datum, Bestelldatum, Artikelbezeichnung und Attribute werden von UTF-8 nach ISO8859-1 umgewandelt (für westeuropäische Sprachen sollte es reichen)
+
+Beispiel-Layout (Konfiguration -> PDF-Rechnung):
+
+1. Zeile nach Logo: eigene Anschrift|10|145|740
+2. Zeile nach Logo: Rechnung|20|0|680
+3. Zeile nach Logo: bezahlt am 23.02.2008|10|0|400 #Die 400 hinten je nach Größe der Tabelle anpassen
+Y-Position der 1. Zeile nach der Adresse: 250|30
+Y-Position der Adresse: 180
+Schriftarten für Rechnung und Artikel: ../fonts/arial.afm|../fonts/Helvetica.afm
+
+Edit Orders:
+------------
+* die MwSt-Berechnung ist nun korrekt / MwSt. wird auch von den Verasndkosten berechnet
+* der MwSt-Satz beträgt 19% für alle Artikel
+* die Zwischensumme wird nun korrekt incl. der MwSt angezeigt
+Zum löschen eines Artikels einfach die Artikelmenge auf 0 setzen.
+Nachträgliche Preisänderungen sind möglich, indem man im Einzelpreis den neuen NETTO-Preis angibt.
+
+Achtung!
+Nachdem ein Produkt hinzugefügt wurde, muss man auf aktualisieren klicken, damit die Rechnung stimmt!
+Bei weiteren Rechnungszuschlägen (z.B. Nachnahme) wird keine MwSt. berechnet!
+
+MwSt.Satz ändern: admin/edit_orders.php Zeile 87
+$AddShippingTax = "19.0"; // e.g. shipping tax of 17.5% is "17.5"
+
+Super Orders:
+-------------
+* weitere Eindeutschungen
+* diese Erweiterung ist bereits drin:
+        admin/includes/boxes/customers_dhtml.php
+        $za_contents[] = array('text' => BOX_CUSTOMERS_ORDERS, 'link' => zen_href_link(FILENAME_ORDERS, '', 'NONSSL'));
+
+Installation
+------------
+BACKUP! BACKUP!
+Die Verzeichnisse unter catalog auf dem Server kopieren.
+Dateien werden keine überschrieben.
+Unter Admin->Tools->SQL Patches super_orders_german.sql und rl_invoice.sql installieren.
+
+Upgrade von 1.0b auf 1.1
+------------------------
+Die Verzeichnisse unter catalog auf dem Server kopieren.
+
+Update von 1.2 auf 1.3
+----------------------
+Kopieren und überschreiben folgender Dateien:
+catalog/includes/modules/payment/invoice.php
+catalog/admin/edit_orders.php
+catalog/admin/rl_invoice.php
+catalog/admin/super_orders.php
+catalog/admin/includes/languages/german/edit_orders.php

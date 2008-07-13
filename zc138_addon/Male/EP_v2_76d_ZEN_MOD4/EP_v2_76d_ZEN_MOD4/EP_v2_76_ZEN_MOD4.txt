@@ -1,0 +1,67 @@
+Easy Populate
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+Version: EP_v2_76d_ZEN_MOD4 by rpa-com
+-----------------------------------------------------------------------------------
+Changes
+
+    New Support register_globals= OFF
+
+Bugfix
+  
+    Attributes were not imported:
+        attribute_price_prefix
+        attribute_weight_prefix
+	attribute_sort_order
+		
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+Version: EP_v2_76d_ZEN_MOD3b by rpa-com
+-----------------------------------------------------------------------------------
+INFO: Funktioniert auch mit PHP5 (ohne Gewähr)
+Bugfix: Fehler beim Import behoben (es wurden keine Artikel importiert)
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+Version: EP_v2_76d_ZEN_MOD3a by rpa-com
+-----------------------------------------------------------------------------------
+Changes
+
+ Support register_globals= OFF
+ Added import/export products_priced_by_attribute
+
+-----------------------------------------------------------------------------------
+Bugfix 
+ OSC-Code
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+Version: EP_v2_76d_ZEN_MOD2
+
+Transformed from OSC-Contribution EP_v2.76d and modified by rpa-com
+-----------------------------------------------------------------------------------
+Changes
+ 
+ Added multilangual support
+ Added import/export sort_order
+ Added import/export Attributes: 
+   attribute_weight, 
+   attribute_weight_prefix (in seperate field), 
+   attribute_sort_order, 
+   attribute_values_default,
+   attribute_price_prefix (in seperate field),
+   
+ Custom Export:
+  Added sort order, attribute weight, attribute sort order
+-----------------------------------------------------------------------------------   
+Bugfix
+ Drop-Down-Menu by Import from Temp-Dir
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
+
+
+
+ 
+ 
+ 
+ 
+

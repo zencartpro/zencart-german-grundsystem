@@ -1,0 +1,55 @@
+NAME:
+=====
+Edit Orders
+
+VERSION:
+========
+1.2.6 11/12/2007 12:45:59 numinix $
+
+AUTHORS:
+========
+Kathleen
+Igor Couto
+Scot http://www.ecdiscounts.com
+Josh Beauregard http://www.sanguisdevelopment.com
+Numinix Technology http://www.numinix.com
+
+DESCRIPTION:
+============
+Edit Orders is an Admin modification that allows store owners to add or remove products from a customer's order.
+
+INSTALLATION:
+=============
+1. Upload files to your store directory;
+
+
+USE:
+====
+In ADMIN->CUSTOMERS->ORDERS->EDIT make necessary changes to customers' order (i.e. to delete a product, change quantity to 0) and then click UPDATE.
+
+VERSION HISTORY:
+================
+v 1.0.0 01/07/2007 - Kathleen
+1. Ported from OSC for Zen Cart v1.2
+v 1.1.0 02/16/2007 - Igor Couto
+1. Bug fix;
+2. Updated readme.txt;
+v 1.2.0 10/01/2007 - Chris Barnhill
+1. Added additional payment options;
+2. Updated how credit card numbers are displayed;
+v 1.2.5 10/15/2007 - san
+1. Bug fix;
+2. Removed functions;
+3. Code optimization;
+v 1.2.6 11/12/2007 - numinix
+1. Re-added functions (required);
+2. Re-added missing installation instructions;
+3. Re-wrote readme.txt;
+v 1.3 - triparcus
+1. Korrekte MwSt-Berechnung (wurde ohne Versandkosten berechnet)
+2. Zwischensumme brutto statt netto
+3. MwSt_satz auf 19% festgelegt
+
+
+
+

@@ -1,0 +1,63 @@
+Ultimate SEO URLs 2.106 para Zen Cart 1.3.8
+==========================================
+
+COMPATIBLE con Zen cart 1.3.8
+COMPATIBLE con MYSQL 5.0 y PHP 5.0
+
+
+Nueva opción de configuración para seleccionar las páginas que deberan ser reescritas y redireccionadas
+Por defecto, esta opción contiene las páginas SEO más importantes (categorías, productos, páginas estáticas) y omite el resto de páginas. Usted puede desactivar esta opción dejandola en blanco.
+
+Ahora esta contribución puede ser utilizada de forma segura en cualquier web y con cualquier método de compra
+
+------------------------
+
+Envié sus errores y sugerencias a: http://dev.imaginacolombia.com
+Esta persona prometió que trataría de actualizar periódicamente esta contribución.
+
+La extensión ha sido modificada por Anant Bhatia (antz.bin@gmail.com), para que funcione correctamente con la versión 1.3.8 de Zen Cart. Esta modificación fusiona algunos de los ficheros proporcionados por la extensión Ultimate SEO URLs 2.105 con los ficheros existentes en la versión 1.3.8 de Zen Cart.
+
+
+Ejemplo de transformación de direcciones (URLs):
+
+De: http://suweb.com/index.php?main_page=product_info&products_id=24
+A: http://suweb.com/disciples-sacred-lands-linked-p-24.html
+
+De: http://suweb.com/index.php?main_page=index&cPath=2_20
+A: http://suweb.com/software-strategy-c-2_20.html
+
+De: http://suweb.com/index.php?main_page=contact_us
+A: http://suweb.com/contact_us.html
+
+
+=================================
+INSTRUCCIONES PARA LA INSTALACIÓN
+=================================
+
+1. Copiar los ficheros del directorio `_zen_cart_folder` a su directorio principal de Zen Cart
+2. Copiar (o fusionar, si usted ha realizado cambios) los ficheros del directorio `v138-specific-files` a su directorio principal de Zen Cart
+3. Se ha incluido un ejemplo para el fichero .htaccess. Simplemente renombre el fichero htaccess_sample a .htaccess y edite el parámetro RewriteBase, cambiando el valor /shop/ por el más adecuado para su web (ejemplo: http://www.suweb.com/aqui/tengo/mitienda/ -> cambiaremos /shop/ por /aqui/tengo/mitienda/)
+4. Acceda a la administración de su tienda y configure el módulo entrando en Configuración (Configuration) -> SEO URLs.
+
+
+===================================
+INSTRUCCIONES PARA LA ACTUALIZACIÓN
+===================================
+No existen instrucciones adicionales. Actualización automática. Se restablecerá la configuración de la contribución.
+
+
+================
+RECOMENDACIONES
+================
+Si su web es nueva vaya a la configuración y cambie el valor de la opción: "Activar las redirecciones automáticas" a false.
+
+==========
+HISTORIAL
+==========
+
+2008-04-28 - Version 2.106 - Traducción al castellano (www.miescaparate.com)
+2008-01-22 - Version 2.106 - COMPATIBLE con Zen cart 1.3.8
+2007-07-25 - Version 2.105 - Nueva opción de configuración para seleccionar las páginas que deberan ser reescritas y redireccionadas. Ahora esta contribución puede ser utilizada de forma segura en cualquier web y con cualquier método de compra. (http://www.imaginacolombia.com)
+2007-07-07 - Version 2.104 - COMPATIBLE con Zen cart 1.3.7 - MYSQL 5.0 y PHP 5.0 - $nosefu array para evitar el sistema SEO en determinadas páginas (http://www.imaginacolombia.com)
+2006-09-04 - Version 2.103 - COMPATIBLE con Zen cart 1.3.5 (DrByte)
+2005-07-22 - Version 2.100 - VERSIÓN ORIGINAL http://www.dream-scape.com/pub/zencart/Ultimate_SEO_URLs/

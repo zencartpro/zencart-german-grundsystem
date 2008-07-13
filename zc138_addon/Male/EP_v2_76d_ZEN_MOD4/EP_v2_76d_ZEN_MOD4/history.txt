@@ -1,0 +1,249 @@
+ 
+//*******************************
+//*******************************
+// E D I T   H I S T O R Y
+//*******************************
+//*******************************
+Easy Populate
+
+The point of easy populate is to let someone use an excel file exported to
+a tab delimited file to set up their entire store:
+categories, products, manufacturers, quantities, and prices.
+
+-----------------------------------
+Modified by Tim Wasson - Wasson65 (wasson65@nc.rr.com) to:
+ accept category/subcategory names
+ allow reordering of columns in csv file
+ accept manufacturer name or id
+ some minor code simplification
+ accept and set status of the product if desired
+ changed all # to // comment markers so KDE's Kate will syntax highlight correctly
+ added support for default images for products, categories, and categories.
+ added support for exporting a csv file that can be modified and sent back in.
+-----------------------------------
+1.1 Changes
+ Fixed a stupid bug, I didn't change the references to easypopulate.php from excel.php
+ Added note in the docs that if the Excel import is already done, don't need to do the alter table
+ Removed the extra semicolon on the end of the line in the csv download.  It prevented you from exporting and importing a file.
+-----------------------------------
+1.2 Fixes
+More bugs fixed
+___________________________________
+1.3 Fixes
+Added another link to put csv file in temp file for access via tools->files, for some windows machines that refuse to dl right...
+-----------------------------------
+1.4 Fixes
+Switchted to tabs for delimiters
+Strip cr's and tab's from strings before exporting
+Added explicit end of row field
+Added ability to split a big file into smaller files in the temp dir
+Preserve double quotes, single quotes, and apostrophes and commas
+Removed references to category_root, it's no longer required
+------------------------------------
+1.5 Fixes
+Changed --EOR-- to EOREOR for better excel usability.
+Made script accept "EOREOR" or EOREOR without the quotes.
+If inserting a new product, delete any product_descriptions with that product_id to avoid an error if old data was still present.
+------------------------------------
+1.6 Fixes
+Ooops, manufacturer_id variable misspellings meant that mfg wasn't getting set or updated
+Whe I re-arranged the code, I left out the call to actually put the data into the products table.  Ooops again...
+------------------------------------
+1.61 Fixes
+One more manufacturer id name fix.
+------------------------------------
+Skipped to 2.0 because of the big jump in functionality
+------------------------------------
+2.0
+Made EP handle magic-quotes
+Thanks to Joshua Dechant aka dreamscape, for this fix
+Rewrote the categories part to handle any number of categories
+------------------------------------
+2.1
+Fix split files not splitting.
+Change from "file" to "fgets" to read the file to be split to avoid out of memory problems... hopefully
+------------------------------------
+2.2
+Added multi-language support. - thanks to elari, who wrote all the code around handling all active langs in OSC
+Added category names assumed to be in default language - thanks to elari again!  who wrote all that code as well
+Fixed bug where files wouldn't split because the check for EOREOR was too specific.
+Added separate file for functions tep_get_uploaded_file and friends so that older snapshots will have it and work.
+Finally updated the docs since they sucked
+Moved product_model field to the start of each row because sometimes, if the image name was empty, the parsing would get confused
+------------------------------------
+2.3
+Thanks to these sponsors - their financial support made this release possible!
+Support for more than one output file format with variable numbers of columns
+	Sponsored by Ted Joffs
+
+Support for Separate Price per Customer mod
+	Sponsored by Alan Pace
+
+Support for Linda's Header Controller v2.0
+	Sponsored by Stewart MacKenzie
+
+Removed quotes around all the fields on export.
+Added configuration variable so you can turn off the qoutes -> control codes replacement
+Merged Elari's changes to not hardcode language id's
+------------------------------------
+2.31
+Bugfix for single language non-english name/desc not being put into the output file.
+The code was still checking for product_name_1 instead of product_name_$langid.
+------------------------------------
+2.32 - never released into the wild
+Added config var $zero_qty_inactive, defaulted to true.
+This will make zero qty items inactive by default.
+---- STILL NEED TO DEBUG THIS! ----
+------------------------------------
+2.4
+Support for Froogle downloads to EP.
+	Sponsored by Ted Joffs
+Changed comments - it's not Multiple Price per Product, it's
+Separate Price per Customer.
+------------------------------------
+2.41beta
+Fixed bugs with Froogle:
+1. Category not getting built right
+2. Strip HTML from name/description
+3. Handle SearchEngineFriendly URL's
+
+Adding "Delete" capability via EP. -- NOT COMPLETE
+Fixed bug - the Model/Category would give SQL errors
+Fixed bug - Items with no manufacturer were getting a man of '' (empty string)
+Fixed bug - When trying to import, all items gave a "Deleting product" message but no db changes
+	This was because I'd tried inserting the delete functionality and didn't finish it.
+	Commented it out for now.
+Added Date_added, fixed Date_available
+Fixed active/inactive status settings
+Fixed bug with misnamed item for Linda's Header Controller support
+Fixed bug with SQL syntax error with new products
+These following 3 fixes thanks to Yassen Yotov
+	Fixed bug where the default image name vars weren't declared global in function walk()
+	Added set_time_limit call, it won't cover all cases, but hopefully many. commented out to avoid
+		complaints with safe mode servers
+	Fixed hardcoded catalog/temp/ in output string for splitting files
+------------------------------------
+2.5
+DJZeon found a bug where product URL was getting lost because I always deleted and inserted the product description info - fixed
+Same bug also was causing times viewed to be reset to zero because I always deleted and inserted the product descriiption.
+Added the multi-image lines from Debbie and Nickie - Thanks!
+Changed the output file name to make more sense, now it looks like EP2003Mar20-09:45.txt
+------------------------------------
+2.51
+No code changes, bump version because I forgot to update the docs about the high-to-low category order
+------------------------------------
+2.53
+Bug fixes?
+------------------------------------
+2.60
+Fix froogle categories in reverse order bug
+Comment out mimage lines that were causing problems for people in 2.53
+Added separator configuration variable so you can pick the separator character to use.
+Made Froogle download look for an applicable specials price
+Froogle downloads have "froogle" at the start of the file name
+You can now specify a file in the temp directory and it will upload that instead of uploading via the browser
+------------------------------------
+2.61-MS2
+Bug fixes thanks to frozenlightning.com
+Replaced tep_array_merge with array_merge to bring up to MS2 Standards.
+Modified by Deborah Carney, inspired by the Think Tank to be included in the CRE Loaded 6
+New support will be found at http://phesis.co.uk in the forums, as well as at forums.oscommerce.com in the Contributions section.  This script was/is written by volunteers, please don't email or PM them, more answers are available in the forums if you search.  If you want EP to do something, someone else probably already asked....
+Known issue:  html in the product description gets messed up, not sure how to fix it.  
+------------------------------------
+2.62-MS2
+Modified by Karlheinz Meier on 08.August.2003
+As some people happen to have something like DIFFERENT_Prefix_TABLES in their databases,
+normally there is a file called /admin/includes/database_tables.php
+which defines nice varibales for them; you can for example make prefixed_databases, or live backups or so.
+As some programmers did use DIRECT table names, this was changed.
+And now if you use the "separte price..."-module and have an article where there is NO special price,
+the import process won't die
+------------------------------------
+2.71-MS2 (with attributes)
+
+Modified by Vijay Immanuel (vj@vjdom.com)
+Released on November 27, 2003
+
+This release includes ability to handle product attributes. This should theoretically work for any number of product attribute options and values, as well as languages. 
+------------------------------------
+2.72-MS2 (with attributes)
+
+Modified by Vijay Immanuel (vj@vjdom.com)
+Released on December 28, 2003
+
+Added feature to turn off product attribute data when downloading tab-delimited file. 
+------------------------------------
+
+2.73-MS2 (with attributes)Alfred Raphael - 
+
+Fixed the problem of using 'max(product_id)' in easypopulate.php. This Has been replaced by 'SHOW TABLE STATUS LIKE tablename' and fetching 'Auto_increment'.
+
+------------------------------------
+
+2.74-MS2 (with attributes)Modified by Rob Woodgate on 3rd May 2004
+
+Fixed rounding issues with when using prices with tax
+Fixed price with tax in Model/Price/Quantity download
+Modified Date Available code to set Null if left empty (instead of setting current timestamp)
+
+------------------------------------
+
+2.76-MS2 (with attributes) Modified by ManMachine on 15 April 2005
+
+Added attributes stocks options for QT Pro Version 4 users.
+
+------------------------------------
+
+2.76d-MS2 (with attributes) Modified by Surfalot mtholforty(at)surfalot(dot)com on 24 Oct 2006
+
++ unlike many other versions, this is still compatible with unmodified shops.
++ Added missing end php ?> tag to easypopulate_functions.php
++ Added Custom File Builder. Adds checkbox menu to select needed export fields.
+  Helps those with extremely large databases to select product sub-sets for export.
+  Allows sub-set selection by category, manufacturer, and status. (maybe should 
+  add by language in the future).
++ Added on-the-fly downloads. Along with the Custom File Builder this helps those
+  with extremely large databases to actively stream the export and avoid time-outs.
+  All other types of export and temp dir file generators in this contribution builds
+  the entire download in server memory before sending to the export location. 
+  On-the-fly downloads output the file as it is created saving server memory. 
+  8000 products = over 50 meg file. As in previous versions, this still pulls 
+  the entire product catalog in one SQL query for a complete download. Maybe 
+  look for a more conservative approach to this in the future.
++ Added excel safe export/import option which will actually export and import the 
+  osCommerce test database without problems. This also permits preserving and proper 
+  handling of double and single quotes, tabs, and carriage returns in CSV files.
+  Export file can be directly opened with Excel, saved and reimported with ease.
++ moved files for other contributions to separate directory to avoid confusion.
++ Added visible settings display so when we export, we know what we're getting.
++ moved hardcoded DIR_FS_DOCUMENT_ROOT through-out script to the temp directory
+  setting at the page top so that it may be set to a location below the doc root
+  so non-public temp directories may be used.
+
++ These new features were only added to base v2.76c files and not carried over to 
+  additional contribution files that existed in the v2.76c package.
+
+SUPPORT
+I will be watching this thread for support. I will be supporting this version only.
+Due to time constraints I will help find problems with this version as I uploaded it.
+I will not be helping integrate other contributions, sorry.
+http://forums.oscommerce.com/index.php?showtopic=162244
+
+------------------------------------
+
+
+
+
+Derived from the Excel Import 1.51 by:
+
+ukrainianshop.net
+
+  Copyright (c) 2002-2003 Tim Wasson
+  Released under the GNU General Public License
+*/
+//*******************************
+//*******************************
+// E N D
+// E D I T   H I S T O R Y
+//*******************************
+//*******************************

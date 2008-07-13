@@ -1,0 +1,21 @@
+<?php
+//
+// +----------------------------------------------------------------------+
+// | Live Help 1.1 for Zen Cart                                           |
+// +----------------------------------------------------------------------+
+// | Copyright (c) 2006 Bao Bao E-commerce                                |
+// |                                                                      |
+// | http://www.buybaobao.com                                             |
+// |                                                                      |
+// | Portions Copyright (c) 2006 Bao Bao E-commerce                       |
+// +----------------------------------------------------------------------+
+//
+
+  define('BOX_HEADING_LH_TITLE', 'ÔÚÏß°ïÖú');
+  define('BOX_SKYPE_TITLE', 'SKYPE');
+  define('BOX_YAHOO_TITLE', 'ÑÅ»¢Í¨');
+  define('BOX_YAHOO_LANGUAGE', 'cn');
+  define('BOX_QQ_TITLE', 'ÌÚÑ¶QQ');
+  define('BOX_WANGWANG_TITLE', 'ÌÔ±¦ÍúÍú');
+
+?>

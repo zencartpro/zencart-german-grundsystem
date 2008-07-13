@@ -1,0 +1,78 @@
+Upgrade Notes to move to Admin Profiles v.1.0.7 from version 1.0.3 or later
+===========================================================================
+
+Step 1:
+-------
+
+The is no need to patch your database. Have a cup of tea instead.
+
+Step 2:
+-------
+
+If you have installed or upgraded to Zen Cart 1.3.8 and have NOT made changes to admin\admin.php or admin\includes\languages\english.php, and have NOT since installation/upgrade applied any other add-ons that affect these files, then you may use the pre-patched files in the folder named "extras - patched files for ZC1.3.8". Otherwise you will need to apply the following patches manually.
+
+Patch One
+---
+In admin\admin.php find the line containing the constant ICON_RESET (line 203 in 1.3.0.2 or line 193 in 1.3.6). Insert a new line immediately afterwards containing the following ...
+<?php echo '<a href="' . zen_href_link(FILENAME_ADMIN_CONTROL, 'adminID=' . $admins->fields['admin_id']) . '">' . zen_image(DIR_WS_IMAGES . 'icon_permissions.gif', ICON_PERMISSIONS) . '</a>'; ?>
+---
+
+Patch Two
+---
+For 1.3.0.2: in admin\admin.php find the 2nd line containing the constant IMAGE_DELETE (line 427 in a clean install of ZC 1.3 with the above patch installed). Insert a new line immediately afterwards containing the following ... <br /><a href="' . zen_href_link(FILENAME_ADMIN_CONTROL, 'adminID=' . $adminInfo->admin_id) . '">' . zen_image_button('button_edit_permissions.gif', IMAGE_PERMISSIONS) . '</a>
+For 1.3.6: replace the line 315 that begins 'text' => '<a href="' . zen_href_link(FILENAME_ADMIN
+with ...
+'text' => '<a href="' . zen_href_link(FILENAME_ADMIN, 'page=' . $_GET['page'] . '&adminID=' . $adminInfo->admin_id . '&action=edit') . '">' . zen_image_button('button_edit.gif', IMAGE_EDIT) . '</a><a href="' . zen_href_link(FILENAME_ADMIN, 'page=' . $_GET['page'] . '&adminID=' . $adminInfo->admin_id . '&action=resetpassword') . '">' . zen_image_button('button_reset_pwd.gif', IMAGE_RESET) . '</a><a href="' . zen_href_link(FILENAME_ADMIN, 'page=' . $_GET['page'] . '&adminID=' . $adminInfo->admin_id . '&action=delete') . '">' . zen_image_button('button_delete.gif', IMAGE_DELETE) . '</a><br /><a href="' . zen_href_link(FILENAME_ADMIN_CONTROL, 'adminID=' . $adminInfo->admin_id) . '">' . zen_image_button('button_edit_permissions.gif', IMAGE_PERMISSIONS) . '</a>');
+---
+
+Patch Three
+---
+In admin/includes/languages/english.php insert the two lines below. They can go virtually anywhere, but for maintainability I recommend that you preserve the documents categorisation and alphabetising. Thus the first would go after line 312 (1.3.0.2) or 303 (1.3.6) and the second after line 354 (1.3.0.2) or 345 (1.3.6).
+  define('IMAGE_PERMISSIONS', 'Edit Permissions');
+  define('ICON_PERMISSIONS', 'Permissions');
+---
+
+
+Step 3:
+-------
+
+Overwrite the existing Admin Profiles files with the new ones.
+
+
+
+Upgrade Notes to move to Admin Profiles v.1.0.8 from version 1.0.2 or earlier
+=============================================================================
+
+Step 1:
+-------
+
+Run the upgrade_admin_profiles.sql file using Zen Cart's Admin > Tools > Install SQL Patch facility.
+
+(This will update the admin_menu_headers table in a non-destructive way. All other Zen Cart and Admin Profiles data will remain intact.
+
+
+Step 2 onwards
+--------------
+
+Follow the instructions in the install.txt file for steps 2 onwards.
+
+
+_____________________________________________________________________________
+
+Zen Cart Open Source E-commerce - Admin Profiles
+
+Copyright (c) 2006-2008 kuroi Ltd  http://www.kuroi.co.uk
+Portions Copyright (c) 2004 Jonathan Kontuk  http://www.nextstepcomputing.com
+Portions Copyright (c) 2003 osCommerce, 2003 Zen Cart
+
+This contribution is subject to version 2.0 of the GPL license,
+that is bundled with this package in the file LICENSE, and is
+available through the world-wide-web at the following url:
+http://www.zen-cart.com/license/2_0.txt.
+If you did not receive a copy of the Zen Cart license and are unable
+to obtain it through the world-wide-web, please send a note to
+license@zen-cart.com so we can mail you a copy immediately.
+
+These files submitted for public distribution to Zen Cart
+http://www.zen-cart.com/modules/ipb/index....showtopic=46954
+_____________________________________________________________________________

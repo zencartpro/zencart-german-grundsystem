@@ -1,6 +1,10 @@
 $Id$
 TODO DER CONTRIBS
 
+2008-07-13
+- Ordner Male angelegt und fehlende Contribs geuppt
+- ToDo Text Update
+
 2008-06-27
 - all_sql angelegt, da kommen die nötigen sql rein
 - Dynamic Price Updater multilanguage
@@ -17,10 +21,24 @@ checked in stock by attribute
 
 ##############
 einchecken & german-tauglich machen von
-- stock by attribute
+- stock by attribute 4.7a (Neue Version im Ordner Male)
+- dynamic drop down for stock by attributes
 - super orders
-- admin rechte
+- admin profiles 1.0.7
 - tabed products plus
 - fual_slimbox.v0.1.5
 - IM2
 - Dynamic Price Updater multilanguage
+- Better Together
+- Cross Sell
+- Edit Orders 1.51 oder Mega Orders
+- Live Help Sidebox 1.1
+- Sales Report Rev 104
+- Ultimate Seo Urls 1.206 (neue Version im Ordner Male)
+- User Tracking 1.3.6.2
+
+einbauen in vorhanden Version
+- Ablaufdatum 1.1 multi
+- Easy Populate 2.76 Mod4
+- Lieferampel 1.2 oder Lieferstatus 1.1
+- Mega Orders 1.3

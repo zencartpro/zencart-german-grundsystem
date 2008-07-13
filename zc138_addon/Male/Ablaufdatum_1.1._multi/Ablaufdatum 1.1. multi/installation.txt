@@ -1,0 +1,137 @@
+//////////////////////////////////////////////////////
+// Ablaufdatum für Abverkäufe & Sonderangebote 1.1b //
+// erstellt von MaleBorg <maleborg@gmx.de> 
+// Mehrsprachigkeit erstellt von mhbdata            //
+//                                                  //
+// getestet auf Zen-Cart 1.3.7                      //
+//////////////////////////////////////////////////////
+
+
+
+
+
+
+
+Was macht diese Erweiterung?
+----------------------------
+
+Allen aktiven Abverkäufen & Sonderangeboten wird ein Ablaufdatum der Aktion hinzugefügt.
+Das Datum erscheint in allen Ansichten (Neue Artikel, Artikelliste, Artikelinfo usw.)
+
+Sollte kein Ablaufdatum angegeben sein, wird selbstverständlich auch keins angezeigt.
+
+
+Installation
+------------
+
+Es wird die Datei includes/functions/functions_prices.php verändert.
+Deshalb unbedingt VORHER ein BACKUP von dieser Datei machen!
+
+Für die Version 1.3.5 & 1.3.6 habe ich dieser Zip Datei bereits eine veränderte Datei beigefügt.
+Einfach in den entsprechenden Zencart Ordner wechseln und das includes Verzeichnis in euer Zen-Cart Verzeichnis kopieren.
+
+
+
+Solltet ihr bereits in dieser Datei Veränderungen vorgenommen haben bzw. eine andere Version haben, dann müsst ihr die folgenden Anweisungen ausführen:
+
+1. Datei includes/functions/functions_prices.php öffnen und nach folgenden Text suchen:
+
+  function zen_get_products_display_price($products_id) {
+    global $db, $currencies;
+
+
+2. Darunter folgenden Text einfügen:
+
+        $enddatum = '';
+
+	$product_to_categories = $db->Execute("select master_categories_id from " . TABLE_PRODUCTS . " where products_id = '" . (int)$products_id . "'");
+    $category = $product_to_categories->fields['master_categories_id'];
+	  
+	$abvkorsp = $db->Execute("select sale_specials_condition from " . TABLE_SALEMAKER_SALES . " where sale_categories_all like '%," . $category . ",%' and sale_status = '1'");
+	$istsp = $db->Execute("select status from " . TABLE_SPECIALS . " where products_id = '" . (int)$products_id . "' and status='1'");
+	$angebotsende = $db->Execute("select expires_date from " . TABLE_SPECIALS . " where products_id = '" . (int)$products_id . "' and status='1'");
+	$angebotsende2 = $db->Execute("select sale_date_end from " . TABLE_SALEMAKER_SALES . " where sale_categories_all like '%," . $category . ",%' and sale_status = '1'");
+
+	if ($abvkorsp->fields['sale_specials_condition'] == '0') {
+		if ($angebotsende2->fields['sale_date_end'] != '0001-01-01') {
+			setlocale(LC_TIME, "de_DE");
+			$enddatum = ' bis zum ' . strftime("%A, %d. %B %Y", strtotime($angebotsende2->fields['sale_date_end'])-86400); 
+		}
+	} elseif ($abvkorsp->fields['sale_specials_condition'] == '1') {
+		if ($istsp->fields['status'] == '1') {
+			if ($angebotsende->fields['expires_date'] != '0001-01-01') {
+				setlocale(LC_TIME, "de_DE");
+				$enddatum = ' bis zum ' . strftime("%A, %d. %B %Y", strtotime($angebotsende->fields['expires_date'])-86400); 
+			}
+		} else {
+			if ($angebotsende2->fields['sale_date_end'] != '0001-01-01') {
+				setlocale(LC_TIME, "de_DE");
+				$enddatum = ' bis zum ' . strftime("%A, %d. %B %Y", strtotime($angebotsende2->fields['sale_date_end'])-86400); 
+			}
+		}
+	} elseif ($abvkorsp->fields['sale_specials_condition'] == '2') {
+		if ($angebotsende2->fields['sale_date_end'] != '0001-01-01') {
+			setlocale(LC_TIME, "de_DE");
+			$enddatum = ' bis zum ' . strftime("%A, %d. %B %Y", strtotime($angebotsende2->fields['sale_date_end'])-86400);
+		}
+	}
+
+	
+	if ($istsp->fields['status'] == '1' && $abvkorsp->fields['sale_specials_condition'] != '0' && $abvkorsp->fields['sale_specials_condition'] != '1' && $abvkorsp->fields['sale_specials_condition'] != '2') {
+		if ($angebotsende->fields['expires_date'] != '0001-01-01') {
+			setlocale(LC_TIME, "de_DE");
+			$enddatum = ' bis zum ' . strftime("%A, %d. %B %Y", strtotime($angebotsende->fields['expires_date'])-86400); 
+		}
+	}
+
+
+3. Folgenden Text suchen:
+
+          $show_sale_discount = '<span class="productPriceDiscount">' . '<br />' . PRODUCT_PRICE_DISCOUNT_PREFIX . $show_discount_amount . PRODUCT_PRICE_DISCOUNT_PERCENTAGE . '</span>';
+
+        } else {
+          $show_sale_discount = '<span class="productPriceDiscount">' . '<br />' . PRODUCT_PRICE_DISCOUNT_PREFIX . $currencies->display_price(($display_normal_price - $display_sale_price), zen_get_tax_rate($product_check->fields['products_tax_class_id'])) . PRODUCT_PRICE_DISCOUNT_AMOUNT . '</span>';
+        }
+      } else {
+        if (SHOW_SALE_DISCOUNT == 1) {
+          $show_sale_discount = '<span class="productPriceDiscount">' . '<br />' . PRODUCT_PRICE_DISCOUNT_PREFIX . number_format(100 - (($display_special_price / $display_normal_price) * 100),SHOW_SALE_DISCOUNT_DECIMALS) . PRODUCT_PRICE_DISCOUNT_PERCENTAGE . '</span>';
+        } else {
+          $show_sale_discount = '<span class="productPriceDiscount">' . '<br />' . PRODUCT_PRICE_DISCOUNT_PREFIX . $currencies->display_price(($display_normal_price - $display_special_price), zen_get_tax_rate($product_check->fields['products_tax_class_id'])) . PRODUCT_PRICE_DISCOUNT_AMOUNT . '</span>';
+
+
+und ERSETZEN DURCH:
+
+          $show_sale_discount = '<span class="productPriceDiscount">' . '<br />' . PRODUCT_PRICE_DISCOUNT_PREFIX . $show_discount_amount . PRODUCT_PRICE_DISCOUNT_PERCENTAGE . $enddatum . '</span>';
+
+        } else {
+          $show_sale_discount = '<span class="productPriceDiscount">' . '<br />' . PRODUCT_PRICE_DISCOUNT_PREFIX . $currencies->display_price(($display_normal_price - $display_sale_price), zen_get_tax_rate($product_check->fields['products_tax_class_id'])) . PRODUCT_PRICE_DISCOUNT_AMOUNT . $enddatum . '</span>';
+        }
+      } else {
+        if (SHOW_SALE_DISCOUNT == 1) {
+          $show_sale_discount = '<span class="productPriceDiscount">' . '<br />' . PRODUCT_PRICE_DISCOUNT_PREFIX . number_format(100 - (($display_special_price / $display_normal_price) * 100),SHOW_SALE_DISCOUNT_DECIMALS) . PRODUCT_PRICE_DISCOUNT_PERCENTAGE . $enddatum . '</span>';
+        } else {
+          $show_sale_discount = '<span class="productPriceDiscount">' . '<br />' . PRODUCT_PRICE_DISCOUNT_PREFIX . $currencies->display_price(($display_normal_price - $display_special_price), zen_get_tax_rate($product_check->fields['products_tax_class_id'])) . PRODUCT_PRICE_DISCOUNT_AMOUNT . $enddatum . '</span>';  
+
+
+4. Fertig!
+
+
+
+Ich habe soweit mir möglich war alle Kombinationen getestet und keine Fehler gefunden.
+Bei Fehler, Fragen oder Anregungen bitte eine kurze Mail an mich oder postet ins Forum von www.zen-cart.at
+
+
+
+Changelog:
+----------
+Version 1.0 Erste Version
+
+Version 1.1
+Version 1.0 funktionierte nur solange korrekt, wie es nur einen Abverkauf gab.
+Bei mehreren nahm er das falsche Datum. Wurde in dieser Version behoben.
+
+Version 1.1b
+Ein Weiterer Bug wurde ausgemerzt. Jetzt sollte auch bei reinen Sonderpreisangeboten das Datum angezeigt werden.
+
+Version 1.1b multi 
+Diese Kontribution enthält nun ein Sprachfile und benutzt gleichzeitig das in den Sprachdateien definierte Datumsformat - Hier für Deutsch und Englisch 

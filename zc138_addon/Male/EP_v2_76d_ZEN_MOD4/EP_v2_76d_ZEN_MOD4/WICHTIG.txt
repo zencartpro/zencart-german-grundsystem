@@ -1,0 +1,20 @@
+INSTALLATION:
+
+Einfach die Ordner/Dateien aus dem catalog-Verzeichnis in das Shopverzeichnis kopieren.
+
+Die Rechte des temp-Verzeichnis auf cmod 777 setzen (voller Schreib-und Lesezugriff)
+
+FUNKTION ÜBERPRÜFEN:
+Datenbank sichern
+Einen kompletten Export ausführen, Exportdatei speichern
+Kategorien/Artikel löschen
+Die Exportdatei wieder importieren
+Kategorien/Artikel überprüfen
+
+Anregungen/Fehler bitte hier posten:
+
+http://www.zen-cart.at/index.php?name=MDForum&file=viewtopic&t=3274
+
+Bei Fehlern bitte Provider, MySQL-Version und PHP-Version angeben
+
+Bitte Rückmeldung wenn es mit PHP5 funktioniert!

@@ -1,0 +1,145 @@
+Easypopulate Attributes Optimization update by jackie Edwards
+06/22/2005
+
+I had a database of 1600 products with over 250,000 different attributes, 
+and originally it would take up to 18 minutes (if the script didnt timeout first)
+
+Now it takes about 20 seconds. ---sweet
+(Times may vary for you based on your server)
+
+All this optimization does is first load the entire attributes and options tables
+into an arrays.  Then while its going product by product, it no longer makes
+a seperate mysql query calls, it just grabs the data from the existing array.
+
+
+//---------------------------------------------------------------
+// The only file to edit is cataolg/admin/easypopulate.php
+//---------------------------------------------------------------
+
+
+	
+//--------------------------------------------------
+//FIND  (around line 282)
+//--------------------------------------------------
+
+	$result = tep_db_query($filelayout_sql);
+	$row =  tep_db_fetch_array($result);
+
+
+//--------------------------------------------------
+//PUT BELOW
+//--------------------------------------------------
+
+
+//SETUP ATTRIBUTES ARRAY
+
+$attribute_values_sql = "select  products_id, options_id, options_values_id, options_values_price, price_prefix from " . TABLE_PRODUCTS_ATTRIBUTES . " ORDER BY products_attributes_id";
+$attributes_query= tep_db_query($attribute_values_sql);
+
+$attributes_array=array();
+while($row_attributes= tep_db_fetch_array($attributes_query)){
+$attributes_array[$row_attributes["products_id"]."_".$row_attributes["options_id"]."_".$row_attributes["options_values_id"]]=array("products_id"=>$row_attributes["products_id"],
+																						"options_id"=>$row_attributes["options_id"],
+																						"options_values_id"=>$row_attributes["options_values_id"],
+																						"options_values_price"=>$row_attributes["options_values_price"],
+																						"price_prefix"=>$row_attributes["price_prefix"]
+																						);
+}
+
+$attributes_values_sql= "select products_options_values_id, products_options_values_name, language_id from " . TABLE_PRODUCTS_OPTIONS_VALUES;
+$attributes_values_query = tep_db_query($attributes_values_sql);
+$attributes_values_array=array();
+while($row_attributes_values= tep_db_fetch_array($attributes_values_query)){
+$attributes_values_array[$row_attributes_values["products_options_values_id"]."_".$row_attributes_values["language_id"]]=array("products_options_values_id"=>$row_attributes_values["products_options_values_id"],
+																						"products_options_values_name"=>$row_attributes_values["products_options_values_name"]
+																						);
+}
+
+$attribute_options_lang_sql= "select products_options_id, products_options_name, language_id from " . TABLE_PRODUCTS_OPTIONS;
+$attribute_options_lang_query = tep_db_query($attribute_options_lang_sql);
+$attribute_options_lang_array=array();
+while($row_attributes_lang= tep_db_fetch_array($attribute_options_lang_query)){
+$attribute_options_lang_array[$row_attributes_lang["products_options_id"]."_".$row_attributes_lang["language_id"]]=array("products_options_id"=>$row_attributes_lang["products_options_id"],
+																						"products_options_name"=>$row_attributes_lang["products_options_name"]
+																						);
+}
+
+
+// END SETUP ATTRIBUTES ARRAY
+
+
+//--------------------------------------------------
+//FIND (around line 499)
+//--------------------------------------------------
+					
+					$attribute_values_price_query = "select options_values_price, price_prefix from " . TABLE_PRODUCTS_ATTRIBUTES . " where products_id = '" . (int)$row['v_products_id'] . "' and options_id = '" . (int)$attribute_options['products_options_id'] . "' and options_values_id = '" . (int)$attribute_values['products_options_values_id'] . "'";
+
+					$attribute_values_price_values = tep_db_query($attribute_values_price_query);
+
+					$attribute_values_price = tep_db_fetch_array($attribute_values_price_values);
+
+
+//--------------------------------------------------
+//REPLACE WITH
+//--------------------------------------------------
+
+					//$attribute_values_price_query = "select options_values_price, price_prefix from " . TABLE_PRODUCTS_ATTRIBUTES . " where products_id = '" . (int)$row['v_products_id'] . "' and options_id = '" . (int)$attribute_options['products_options_id'] . "' and options_values_id = '" . (int)$attribute_values['products_options_values_id'] . "'";
+					//$attribute_values_price_values = tep_db_query($attribute_values_price_query);
+					//$attribute_values_price = tep_db_fetch_array($attribute_values_price_values);
+
+					$attribute_values_price=$attributes_array[(int)$row['v_products_id']."_".(int)$attribute_options['products_options_id']."_".(int)$attribute_values['products_options_values_id']];
+
+
+
+
+
+
+
+//--------------------------------------------------
+//FIND (around Line 482)
+//--------------------------------------------------
+
+					$attribute_options_languages_query = "select products_options_name from " . TABLE_PRODUCTS_OPTIONS . " where products_options_id = '" . (int)$attribute_options['products_options_id'] . "' and language_id = '" . (int)$lid . "'";
+
+					$attribute_options_languages_values = tep_db_query($attribute_options_languages_query);
+
+					$attribute_options_languages = tep_db_fetch_array($attribute_options_languages_values);
+
+
+//--------------------------------------------------
+//Replace With
+//--------------------------------------------------
+
+					//$attribute_options_languages_query = "select products_options_name from " . TABLE_PRODUCTS_OPTIONS . " where products_options_id = '" . (int)$attribute_options['products_options_id'] . "' and language_id = '" . (int)$lid . "'";
+					//$attribute_options_languages_values = tep_db_query($attribute_options_languages_query);
+					//$attribute_options_languages = tep_db_fetch_array($attribute_options_languages_values);
+					$attribute_options_languages=$attribute_options_lang_array[(int)$attribute_options['products_options_id']."_".(int)$lid];
+
+
+
+
+//--------------------------------------------------
+//FIND (around line 522)
+//--------------------------------------------------
+						$attribute_values_languages_query = "select products_options_values_name from " . TABLE_PRODUCTS_OPTIONS_VALUES . " where products_options_values_id = '" . (int)$attribute_values['products_options_values_id'] . "' and language_id = '" . (int)$lid . "'";
+
+						$attribute_values_languages_values = tep_db_query($attribute_values_languages_query);
+
+						$attribute_values_languages = tep_db_fetch_array($attribute_values_languages_values);
+
+//--------------------------------------------------
+//REPLACE WITH
+//--------------------------------------------------
+
+
+						//$attribute_values_languages_query = "select products_options_values_name from " . TABLE_PRODUCTS_OPTIONS_VALUES . " where products_options_values_id = '" . (int)$attribute_values['products_options_values_id'] . "' and language_id = '" . (int)$lid . "'";
+						//$attribute_values_languages_values = tep_db_query($attribute_values_languages_query);
+						//$attribute_values_languages = tep_db_fetch_array($attribute_values_languages_values);
+						
+						$attribute_values_languages=$attributes_values_array[(int)$attribute_values['products_options_values_id']."_".(int)$lid];
+
+
+//--------------------------------------------------
+//That's all folks!
+//--------------------------------------------------
+

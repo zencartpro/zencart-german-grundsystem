@@ -1,0 +1,49 @@
+Probably the trickiest part of using Admin Profiles is editing box files to accommodate third party contributions. The good news ... it's really very easy. Once you've done it once, you will have mastered it.
+
+Step 1: Find the box file
+-------------------------
+
+The third party contribution that you have installed should contain a file in admin/includes/boxes/extra_boxes called something like mod_name_dhtml.php e.g. the Image Handler 2 package includes image_handler_tools_dhtml.php.
+
+Step 2: Make a note of the information you need
+-----------------------------------------------
+
+Open the box file found in step 1 and make a note of the name of all pairs of constants (which should be in uppercase) starting BOX_ and FILENAME_. In Image Handler 2 there is only one pair, BOX_TOOLS_IMAGE_HANDLER and FILENAME_IMAGE_HANDLER.
+
+Step 3: Prepare you own version of the box file
+-----------------------------------------------
+
+Make a copy of the product_music_extras_dhtml.php file and rename it to be that of the mod's _dhtml.php that you found in step 1, that's right, you overwrite it.
+
+Step 4: Insert the information
+------------------------------
+
+Edit this new file by inserting each BOX_ and FILENAME_ pair that you noted in step 2 into the $options array replacing those already there.
+
+Step 5: Check your syntax
+-------------------------
+
+Please take special note of the commas in the $options array, every line except the last one ends in a comma. If you only have one line, no comma. Thus your code for Image Handler (with the comment block removed) would look like this
+
+  <?php
+  if (!defined('IS_ADMIN_FLAG')) {
+   die('Illegal Access');
+  }
+
+  $options = array( array('box' => BOX_TOOLS_IMAGE_HANDLER, 'page' => FILENAME_IMAGE_HANDLER)
+     );
+
+  foreach ($options as $key => $value)
+  if (page_allowed($value['page'])=='true')
+    $za_contents[] = array('text' => $value['box'], 'link' => zen_href_link($value['page'], '', 'NONSSL'));
+  ?>
+
+Step 6: Update the comment box (optional)
+-----------------------------------------
+
+It's good practice to keep the comment box at the top of your new file up-to-date, but I won't tell if you don't do it.
+ 
+Step 7: Save the file
+---------------------
+
+Save your updated file, doublechecking that it has the same name as the file you identified in step 1 and is in the same place so that the original box file is completely gone. 

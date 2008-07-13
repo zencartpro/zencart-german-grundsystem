@@ -1,0 +1,108 @@
+Install Notes for Admin Profiles v1.0.7
+These notes can look daunting, but follow them step by step and they're really not too bad :-) You can also visit the Admin Profiles Wiki for common problems: http://www.zen-cart.com/wiki/index.php/Contribution:Admin_Profiles and the Admin Profiles Support thread to ask questions not answered in the Wiki: http://www.zen-cart.com/forum/showthread.php?t=35911
+
+Installation
+============
+
+Step 1:
+-------
+
+Run the install_admin_profiles.sql file using Zen Cart's Admin > Tools > Install SQL Patch facility
+
+
+Step 2:
+-------
+
+Copy included files to appropriate places in admin. They already have the correct folder structure so a single drag and drag and drop of the "Admin" folder into the root directory for your store will put the files in the correct locations if you are using a good FTP client (e.g. FileZilla).
+
+  admin\admin_control.php
+  admin\denied.php
+  admin\images\icon_permissions.gif
+  admin\includes\admin_profiles.css
+  admin\includes\auto_loaders\config.admin_profiles.php
+  admin\includes\boxes\*
+  admin\includes\extra_datafiles\admin_profiles_data.php
+  admin\includes\functions\admin_profiles.php
+  admin\includes\init_includes\overrides\init_admin_auth.php
+  admin\includes\languages\english\images\buttons\button_edit_permissions.gif
+
+
+Step 3: (To allow you to assign permissions to admin users)
+-----------------------------------------------------------
+
+Code patches:
+If you have installed or upgraded to Zen Cart 1.3.8 and have NOT made changes to admin\admin.php or admin\includes\languages\english.php, and have NOT since installation/upgrade applied any other add-ons that affect these files, then you may use the pre-patched files in the folder named "extras - patched files for ZC1.3.8".
+
+Otherwise you will need to apply the following patches manually.
+
+Patch One
+---
+In admin\admin.php find the line containing the constant ICON_RESET. Insert a new line immediately afterwards containing the following ...
+<?php echo '<a href="' . zen_href_link(FILENAME_ADMIN_CONTROL, 'adminID=' . $admins->fields['admin_id']) . '">' . zen_image(DIR_WS_IMAGES . 'icon_permissions.gif', ICON_PERMISSIONS) . '</a>'; ?>
+---
+
+Patch Two
+---
+Also in admin/admin.php, replace the line that begins 'text' => '<a href="' . zen_href_link(FILENAME_ADMIN
+with ...
+'text' => '<a href="' . zen_href_link(FILENAME_ADMIN, 'page=' . $_GET['page'] . '&adminID=' . $adminInfo->admin_id . '&action=edit') . '">' . zen_image_button('button_edit.gif', IMAGE_EDIT) . '</a><a href="' . zen_href_link(FILENAME_ADMIN, 'page=' . $_GET['page'] . '&adminID=' . $adminInfo->admin_id . '&action=resetpassword') . '">' . zen_image_button('button_reset_pwd.gif', IMAGE_RESET) . '</a><a href="' . zen_href_link(FILENAME_ADMIN, 'page=' . $_GET['page'] . '&adminID=' . $adminInfo->admin_id . '&action=delete') . '">' . zen_image_button('button_delete.gif', IMAGE_DELETE) . '</a><br /><a href="' . zen_href_link(FILENAME_ADMIN_CONTROL, 'adminID=' . $adminInfo->admin_id) . '">' . zen_image_button('button_edit_permissions.gif', IMAGE_PERMISSIONS) . '</a>');
+---
+
+Patch Three
+---
+In admin/includes/languages/english.php insert the two lines below. They can go virtually anywhere, but for maintainability I recommend that you preserve the documents categorisation and alphabetical order.
+  define('IMAGE_PERMISSIONS', 'Edit Permissions');
+  define('ICON_PERMISSIONS', 'Permissions');
+---
+
+
+Step 4: (To view admin pages that are not part of the standard Zen Cart installation)
+** This step is only necessary if you have added your own pages to admin or use third party contributions **
+------------------------------------------------------------------------------------------------------------
+
+A well constructed contribution will either add to or provide a "box" file (located under admin\includes\boxes or admin\includes\boxes\extra_boxes). You will need to manually edit the relevant file, following the existing pattern. A step-by-step guide to this can be found in the file updating_box_files.txt including in this release package.
+
+When additional pages for third party mods are encountered, they will be added to 'admin_files' table and will appear in the third party mods section at the bottom of the Admin Profiles page.
+
+
+Step 5: (To make chosen pages available to all users)
+** This step is very rarely needed or appropriate **
+----------------------------------------------------
+
+Pages that everyone should be able to view i.e those of the same level of criticality as index, login, logoff, etc, should be added to the lines in admin\includes\init_includes\overrides\init_admin_auth.php that reads (lines 13-20):
+
+
+Step 6: (To manage user permissions)
+------------------------------------
+
+Log in to admin (if it is your first time in, you will need to be the user with admin_id =1).
+
+Go to Admin > Tools > Admin Settings
+
+Click on Permissions icon (white p in an orange circle) for the user whose permissions you want to edit. There are two levels of control, menu headers (e.g. configuration, catalog, modules, and individual pages).
+
+You can make menu headers visible or invisible by clicking on the check box next to their name and saving the change. Do this on your own account and you will immediately see the result. However, this does not control whether the underlying pages are accessible or not, just whether the user can see them. They could still be accessed by a knowledgeable user entering a URL directly, or by any custom admin page that you choose to build for them.
+
+Pages can be turned on or off by checking or unchecking the check box next to each page description and saving the change(s). This controls absolutely whether or not the user can access them. Again, do this on your own account and you will immediately see results.
+
+As an aside, turning off the tools menu on your own account, or the admin function it, are both strongly discouraged unless you know what you are doing, as the next time you log on you will find that you can no longer maintain your or anybody else's profile!
+
+_____________________________________________________________________________
+
+Zen Cart Open Source E-commerce - Admin Profiles
+
+Copyright (c) 2006-2008 kuroi Ltd  http://www.kuroi.co.uk
+Portions Copyright (c) 2004 Jonathan Kontuk  http://www.nextstepcomputing.com
+Portions Copyright (c) 2003 osCommerce, 2003 Zen Cart
+
+This contribution is subject to version 2.0 of the GPL license,
+that is bundled with this package in the file LICENSE, and is
+available through the world-wide-web at the following url:
+http://www.zen-cart.com/license/2_0.txt.
+If you did not receive a copy of the Zen Cart license and are unable
+to obtain it through the world-wide-web, please send a note to
+license@zen-cart.com so we can mail you a copy immediately.
+
+These files submitted for public distribution to Zen Cart
+http://www.zen-cart.com/index.php?main_page=product_contrib_info&cPath=40_41&products_id=86
+_____________________________________________________________________________

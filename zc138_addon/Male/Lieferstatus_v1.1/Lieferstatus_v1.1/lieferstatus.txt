@@ -1,0 +1,196 @@
+
+zuerst Backup !!!!!!
+Ordner "images" bzw. die darin enthaltenen Dateien in images/ hochladen.
+
+Entweder die Dateien im includes Ordner hochladen oder falls Ihr die Dateien:
+
+includes/templates/DEIN_TEMPLATE/templates/tpl_product_info_display.php
+includes/languages/german/product_info.php
+includes/templates/DEIN_TEMPLATE/templates/tpl_modules_products_new_listing.php
+includes/templates/DEIN_TEMPLATE/templates/tpl_modules_products_all_listing.php
+includes/languages/german/product_new.php
+includes/languages/german/product_all.php
+
+schon modifiziert habt, dann einfach die hier angebenen Codes einfügen/ersetzen.
+
+************************************************************************************************
+
+Beim erstellen eines Artikels ist hierbei die Stückzahlangabe geändert.
+Bei der Eingabe von 1 wird Lieferstatus 1 angezeigt.
+Hierbei ist zu beachten das im Admin eingestellt werden muß, daß vom Lagerbestand nichts abgezogen wird...
+-> Konfiguration->Lagerverwaltung-> "Lagerbestand prüfen" und "Bestellungen vom Lagerbestand abziehen" auf "false"
+
+**************************************************************************************************
+
+includes/templates/DEIN_TEMPLATE/templates/tpl_product_info_display.php
+--- ca. Zeile 122 ---
+
+ersetze:
+
+<?php echo ((SHOW_PRODUCT_INFO_QUANTITY == '1') ? $products_quantity . TEXT_PRODUCT_QUANTITY : '&nbsp;'); ?>
+
+mit:
+<?php $lieferstatus = $products_quantity;
+switch ($lieferstatus) {
+case 1: //Liefercode 1
+print '<br><left>&nbsp;';
+echo TEXT_LIEFERSTATUS_1;
+break;
+case 2: //Liefercode 2
+print '<br><left>&nbsp;';
+echo TEXT_LIEFERSTATUS_2;
+break;
+case 3: //Liefercode 3
+print '<br><left>&nbsp;';
+echo TEXT_LIEFERSTATUS_3;
+break;
+case 4: //Liefercode 4
+print '<br><left>&nbsp;';
+echo TEXT_LIEFERSTATUS_4;
+break;
+case 5: //Liefercode 5
+print '<br><left>&nbsp;';
+echo TEXT_LIEFERSTATUS_5;
+break;
+case 6: //Liefercode 6
+print '<br><left>&nbsp;';
+echo TEXT_LIEFERSTATUS_6;
+break;
+case 7: //Liefercode 7
+print '<br><left>&nbsp;';
+echo TEXT_LIEFERSTATUS_7;
+break;
+}?>
+
+************************************************************************************************
+
+includes/languages/german/product_info.php
+--- vor ?> einfügen ---
+
+define('TEXT_LIEFERSTATUS_1', '<font color=#FF0000 ><h4><li>Versandfertig: Lieferzeit nicht bekannt</li></h4></font>');
+define('TEXT_LIEFERSTATUS_2', '<font color=#FFFF00 ><h4><li>Versandfertig: innerhalb 5-7 Werktagen</li></h4></font>');
+define('TEXT_LIEFERSTATUS_3', '<font color=#FFFF00 ><h4><li>Versandfertig: innerhalb 3-5 Werktagen</li></h4></font>');
+define('TEXT_LIEFERSTATUS_4', '<font color=#333399 ><h4><li>Versandfertig: innerhalb 2-3 Werktagen</li></h4></font>');
+define('TEXT_LIEFERSTATUS_5', '<font color=#029202 ><h4><li>Versandfertig: innerhalb 1-2 Werktagen</li></h4></font>');
+define('TEXT_LIEFERSTATUS_6', '<font color=#00FF00 ><h4><li>Versandfertig: sofort</li></h4></font>');
+define('TEXT_LIEFERSTATUS_7', '<font color=#FF0000 ><h4><li>Versandfertig: auf Anfrage</li></h4></font>');
+
+**************************************************************************************************
+
+und für eine Anzeige mit Ampel über dem Warenkorb  
+includes/templates/DEIN_TEMPLATE/templates/tpl_product_info_display.php
+--- ca. Zeile 107 ---
+vor:
+
+echo $display_qty;
+echo $display_button;
+
+einfügen:
+
+$lieferstatus = $products_quantity;
+switch ($lieferstatus) {
+case 1: //Liefercode 1
+print '<img src="images/ampel_rot.gif"><br><br>';
+break;
+case 2: //Liefercode 2
+print '<img src="images/ampel_gelb.gif"><br><br>';
+break;
+case 3: //Liefercode 3
+print '<img src="images/ampel_gelb.gif"><br><br>';
+break;
+case 4: //Liefercode 4
+print '<img src="images/ampel_gruen.gif"><br><br>';
+break;
+case 5: //Liefercode 5
+print '<img src="images/ampel_gruen.gif"><br>&<br>';
+break;
+case 6: //Liefercode 6
+print '<img src="images/ampel_gruen.gif"><br><br>';
+break;
+case 7: //Liefercode 7
+print '<img src="images/auf_anfrage.gif"><br><br>';
+break;
+}
+
+**************************************************************************************************
+
+Text in der Listenanzeige für Neue Artikel und Alle Artikel 
+includes/templates/DEIN_TEMPLATE/templates/tpl_modules_products_new_listing.php
+--- ca. Zeile 55 ---
+
+ersetze:
+if ($products_new->fields['products_quantity'] <= 0) {
+  $display_products_quantity = TEXT_OUT_OF_STOCK . str_repeat('<br clear="all" />', substr(PRODUCT_NEW_LIST_QUANTITY, 3, 1));
+  } else {
+  $display_products_quantity = TEXT_PRODUCTS_QUANTITY . $products_new->fields['products_quantity'] . str_repeat('<br clear="all" />', substr(PRODUCT_NEW_LIST_QUANTITY, 3, 1));
+  }
+
+mit:
+if ($products_new->fields['products_quantity'] == 0) {
+  $display_products_quantity = TEXT_OUT_OF_STOCK . str_repeat('<br clear="all" />', substr(PRODUCT_NEW_LIST_QUANTITY, 3, 1));
+  } elseif ($products_new->fields['products_quantity'] == 1) {
+  $display_products_quantity = TEXT_LIEFERSTATUS_1 . str_repeat('<br clear="all" />', substr(PRODUCT_NEW_LIST_QUANTITY, 3, 1));
+  } elseif ($products_new->fields['products_quantity'] == 2) {
+  $display_products_quantity = TEXT_LIEFERSTATUS_2 . str_repeat('<br clear="all" />', substr(PRODUCT_NEW_LIST_QUANTITY, 3, 1));
+  } elseif ($products_new->fields['products_quantity'] == 3) {
+  $display_products_quantity = TEXT_LIEFERSTATUS_3 . str_repeat('<br clear="all" />', substr(PRODUCT_NEW_LIST_QUANTITY, 3, 1));
+  } elseif ($products_new->fields['products_quantity'] == 4) {
+  $display_products_quantity = TEXT_LIEFERSTATUS_4 . str_repeat('<br clear="all" />', substr(PRODUCT_NEW_LIST_QUANTITY, 3, 1));
+  } elseif ($products_new->fields['products_quantity'] == 5) {
+  $display_products_quantity = TEXT_LIEFERSTATUS_5 . str_repeat('<br clear="all" />', substr(PRODUCT_NEW_LIST_QUANTITY, 3, 1));
+  } elseif ($products_new->fields['products_quantity'] == 6) {
+  $display_products_quantity = TEXT_LIEFERSTATUS_6 . str_repeat('<br clear="all" />', substr(PRODUCT_NEW_LIST_QUANTITY, 3, 1));
+  } elseif ($products_new->fields['products_quantity'] == 7) {
+  $display_products_quantity = TEXT_LIEFERSTATUS_7 . str_repeat('<br clear="all" />', substr(PRODUCT_NEW_LIST_QUANTITY, 3, 1));
+  }
+
+und
+includes/templates/DEIN_TEMPLATE/templates/tpl_modules_products_all_listing.php
+--- ca. Zeile 55 ---
+
+ersetze:
+if ($products_all->fields['products_quantity'] <= 0) {
+  $display_products_quantity = TEXT_OUT_OF_STOCK . str_repeat('<br clear="all" />', substr(PRODUCT_ALL_LIST_QUANTITY, 3, 1));
+  } else {
+  $display_products_quantity = TEXT_PRODUCTS_QUANTITY . $products_all->fields['products_quantity'] . str_repeat('<br clear="all" />', substr(PRODUCT_ALL_LIST_QUANTITY, 3, 1));
+  }
+
+mit:
+if ($products_all->fields['products_quantity'] == 0) {
+  $display_products_quantity = TEXT_OUT_OF_STOCK . str_repeat('<br clear="all" />', substr(PRODUCT_ALL_LIST_QUANTITY, 3, 1));
+  } elseif ($products_all->fields['products_quantity'] == 1) {
+  $display_products_quantity = TEXT_LIEFERSTATUS_1 . str_repeat('<br clear="all" />', substr(PRODUCT_NEW_LIST_QUANTITY, 3, 1));
+  } elseif ($products_all->fields['products_quantity'] == 2) {
+  $display_products_quantity = TEXT_LIEFERSTATUS_2 . str_repeat('<br clear="all" />', substr(PRODUCT_NEW_LIST_QUANTITY, 3, 1));
+  } elseif ($products_all->fields['products_quantity'] == 3) {
+  $display_products_quantity = TEXT_LIEFERSTATUS_3 . str_repeat('<br clear="all" />', substr(PRODUCT_NEW_LIST_QUANTITY, 3, 1));
+  } elseif ($products_all->fields['products_quantity'] == 4) {
+  $display_products_quantity = TEXT_LIEFERSTATUS_4 . str_repeat('<br clear="all" />', substr(PRODUCT_NEW_LIST_QUANTITY, 3, 1));
+  } elseif ($products_all->fields['products_quantity'] == 5) {
+  $display_products_quantity = TEXT_LIEFERSTATUS_5 . str_repeat('<br clear="all" />', substr(PRODUCT_NEW_LIST_QUANTITY, 3, 1));
+  } elseif ($products_all->fields['products_quantity'] == 6) {
+  $display_products_quantity = TEXT_LIEFERSTATUS_6 . str_repeat('<br clear="all" />', substr(PRODUCT_NEW_LIST_QUANTITY, 3, 1));
+  } elseif ($products_all->fields['products_quantity'] == 7) {
+  $display_products_quantity = TEXT_LIEFERSTATUS_7 . str_repeat('<br clear="all" />', substr(PRODUCT_NEW_LIST_QUANTITY, 3, 1));
+  }
+
+*************************************************************************************************
+
+includes/languages/german/product_new.php
+und
+includes/languages/german/product_all.php
+--- vor ?> einfügen ---
+
+define('TEXT_LIEFERSTATUS_1', '<font color=#FF0000 ><b>Versandfertig: Lieferzeit nicht bekannt</b></font>');
+define('TEXT_LIEFERSTATUS_2', '<font color=#FFFF00 ><b>Versandfertig: innerhalb 5-7 Werktagen</b></font>');
+define('TEXT_LIEFERSTATUS_3', '<font color=#FFFF00 ><b>Versandfertig: innerhalb 3-5 Werktagen</b></font>');
+define('TEXT_LIEFERSTATUS_4', '<font color=#333399 ><b>Versandfertig: innerhalb 2-3 Werktagen</b></font>');
+define('TEXT_LIEFERSTATUS_5', '<font color=#029202 ><b>Versandfertig: innerhalb 1-2 Werktagen</b></font>');
+define('TEXT_LIEFERSTATUS_6', '<font color=#00FF00 ><b>Versandfertig: sofort</b></font>');
+define('TEXT_LIEFERSTATUS_7', '<font color=#FF0000 ><b>Versandfertig: auf Anfrage</b></font>');
+
+*************************************************************************************************
+
+
+Fragen an : admin@kew-shop.de
+

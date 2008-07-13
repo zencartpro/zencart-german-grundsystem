@@ -1,0 +1,54 @@
+JUST ANOTHER CROSS SELL MOD
+
+Changes in this version:
+1. No longer loads and displays all current xsells by default (improve loading speed)
+2. Includes the original Xsell package now.
+3. Most core functions are moved out of the template file.
+4. Use a different approach to input new xsells.
+5. Added a switch in the admin panel that let you display xsell products randomly (in the store)
+6. Many minor changes to code.
+
+
+Features:
+1. Allow unlimited number of product fields instead of only 5.
+2. Accept product id or model as input value.
+3. Clean up table.
+4. Given a list of n products, the mod will go through and cross-sell EACH pair together.
+IMPORTANT: This is the VERY different from the way the old cross-sell mod work! As a seller, I realize that when I cross-sell A and B I want the customers to see the product B while they are viewing B and VICE VERSA.
+With the old cross-sell and the Advanced Cross-Sell mod I had to add A to B then B to A, which is lots of work.
+
+With this mod, if you give it 3 products: A - B - C, it will cross-sell:
+A to B, B to A
+A to C, C to A
+B to C, C to B
+
+
+HOW TO USE THIS MOD:
+A. CONFIGURATION:
+XSell config can be found here: Admin->configuration->cross sell
+
+I. "Input type to be used in form"
+1. If you set this to "id":
+When you use the cross-sell form at Admin->Catalog->Advanced Cross-Sell, you have to use the product ID when you search/insert new cross-sell
+2. If you set this to "model":
+You have to use the product Model when you search/insert new cross-sell.
+WARNING: if you use "model", your products should have unique models.
+
+II. "XSell Sort Order"
+By default, xsell products displayed on the store are sorted by their sort_orders. 
+However, there are certain cases that you may want to display them randomly, you can set it here.
+
+B. USUAGE:
+Enter and check current xsell products at: Admin->Catalog->Advanced Cross-Sell
+I. To cross-sell 2 ways (A to B, A to C, B to A, B to C, C to A, C to B):
+Just enter product ids or models (depends on which option you set at Admin->configuration->cross sell), SEPARATED by comma 
+(you can set your own separator at Admin->configuration->cross sell)
+
+I. To cross-sell 1 way (B to A, C to A. In other words, when customer views A they will see B and C but not vice versa):
+Check the box "Cross sell 1 way only?"
+Using our example above, A should be entered in the upper box amd B,C should be entered in the lower box.
+
+
+Special note: 
+For xsells listed in the table on the right hand side: when you choose "Delete", only the xsell list of that specific product is deleted, if that product is on some other products xsell lists, 
+it will still be displayed when customers view those products.

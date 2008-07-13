@@ -1,0 +1,35 @@
+##################################################################################################################
+# RL_INVOICE v0.5 // 20050408                                                                                 #
+#                                                                                                                #
+# Modul zum Erstellen und Speichern von PDF-Rechnungen                                                           #
+#----------------------------------------------------------------------------------------------------------------#
+# Die aktuellste Version gibt es auf http://edv.langheiter.com/545/?tx_ttnews%5Btt_news%5D=21                    #
+# oder bei www.zen-cart.at                                                                                       #
+# rainer AT langheiter DOT com // http://www.filosofisch.com                                                     #
+# 20041005                                                                                                       #
+#----------------------------------------------------------------------------------------------------------------#
+# Versionshistorie:                                                                                              #
+# 0.3                                                                                                            #
+# city/date: Kirchberg, am @DATE@ ==> $dat = str_replace('@DATE@', strftime(DATE_FORMAT_LONG), RL_INVOICE_CITY); #
+#                                                                                                                #
+# 0.4                                                                                                            #
+# corrected paypal-ipn; little changes in rl_invoice.sql. added admin-muli-language.sql-files                    #
+# admin-muli-language == an overlaysytem to handle multiple language in admin => configuration & groups          #
+# corrected paypal-ipn; little changes in rl_invoice.sql. added                                                  #
+# look at:   http://zc123lang.ar-pub.com/                                                                        #
+# 																		     #
+# 0.5                															     #
+# die texte/summen wurden html_entity_decoded, dh: "html-chars" (&nbsp; ...) werden umgewandelt (" ")            #
+# das &euro; () ist ein problem: es erolgt keine umwandlung bzw beim tabellencounten wird das  nicht 	     #
+# mitgerechnet & der text pickt ganz am rand; am beten EUR anstatt  in der w�rungsdef verwenden		     #
+#                                                                                                                #
+##################################################################################################################
+
+INSTALLATION für Zen Cart ab Version 1.2.2d_de:
+
+1) SICHERN !!! SICHERN !!! SICHERN !!! Dateien + Datenbank !!!
+
+2) Zip Datei entpacken
+
+3) alles im Ordner "zencart" ins Zen Cart Rootverzeichnis kopieren
+ 
