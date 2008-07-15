@@ -7,6 +7,10 @@
  * @version $Id$
  */
 
+if (!defined('IS_ADMIN_FLAG')) {
+  die('Illegal Access');
+}
+ 
 // added defines for header alt and text
 define('HEADER_ALT_TEXT', 'Admin Powered by Zen Cart :: The Art of E-Commerce');
 define('HEADER_LOGO_WIDTH', '200px');
