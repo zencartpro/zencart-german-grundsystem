@@ -11,7 +11,12 @@
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
  * @version $Id$
  */
-$base_dir = DIR_WS_INCLUDES . 'auto_loaders/';
+
+if (!defined('IS_ADMIN_FLAG')) {
+  die('Illegal Access');
+}
+ 
+ $base_dir = DIR_WS_INCLUDES . 'auto_loaders/';
 if (file_exists(DIR_WS_INCLUDES . 'auto_loaders/overrides/' . $loader_file)) {
   $base_dir = DIR_WS_INCLUDES . 'auto_loaders/overrides/';
 }
