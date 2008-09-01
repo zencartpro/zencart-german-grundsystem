@@ -300,6 +300,7 @@ $qty = $this->adjust_quantity($qty, $products_id, 'shopping_cart');
               if (is_array($value) ) {
                 reset($value);
                 while (list($opt, $val) = each($value)) {
+                  $val = (int)$val;
                   $products_options_sort_order= zen_get_attributes_options_sort_order(zen_get_prid($products_id), $option, $opt);
                   $sql = "insert into " . TABLE_CUSTOMERS_BASKET_ATTRIBUTES . "
                                         (customers_id, products_id, products_options_id, products_options_value_id, products_options_sort_order)
@@ -312,6 +313,7 @@ $qty = $this->adjust_quantity($qty, $products_id, 'shopping_cart');
                 if ($attr_value) {
                   $attr_value = zen_db_input($attr_value);
                 }
+                $value = (int)$value;
                 $products_options_sort_order= zen_get_attributes_options_sort_order(zen_get_prid($products_id), $option, $value);
                 $sql = "insert into " . TABLE_CUSTOMERS_BASKET_ATTRIBUTES . "
                                       (customers_id, products_id, products_options_id, products_options_value_id, products_options_value_text, products_options_sort_order)
@@ -400,6 +402,7 @@ $qty = $this->adjust_quantity($qty, $products_id, 'shopping_cart');
           if (is_array($value) ) {
             reset($value);
             while (list($opt, $val) = each($value)) {
+              $val = (int)$val;
               $products_options_sort_order= zen_get_attributes_options_sort_order(zen_get_prid($products_id), $option, $opt);
               $sql = "update " . TABLE_CUSTOMERS_BASKET_ATTRIBUTES . "
                         set products_options_value_id = '" . $val . "'
@@ -411,6 +414,7 @@ $qty = $this->adjust_quantity($qty, $products_id, 'shopping_cart');
             }
           } else {
             if (isset($_SESSION['customer_id'])) {
+              $value = (int)$value;
               $sql = "update " . TABLE_CUSTOMERS_BASKET_ATTRIBUTES . "
                         set products_options_value_id = '" . $value . "', products_options_value_text = '" . $attr_value . "'
                         where customers_id = '" . (int)$_SESSION['customer_id'] . "'
@@ -1720,7 +1724,7 @@ $new_qty = $this->adjust_quantity($new_qty, $_POST['products_id'], 'shopping_car
 //      while ( list( $key, $val ) = each($_POST['products_id']) ) {
         if ($val > 0) {
           $adjust_max = false;
-          $prodId = $key;
+          $prodId = ereg_replace('[^0-9a-f:]', '', $key);
           $qty = $val;
           $add_max = zen_get_products_quantity_order_max($prodId);
           $cart_qty = $this->in_cart_mixed($prodId);
