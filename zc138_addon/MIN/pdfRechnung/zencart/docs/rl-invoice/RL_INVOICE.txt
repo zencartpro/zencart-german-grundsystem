@@ -1,0 +1,32 @@
+'RL_INVOICE: InvoiceLogo','RL_INVOICE_LOGO_SHOP_IMAGE','logo_shop2.jpg','InvoiceLogo admin/images/logo_shop.jpg
+',1,4010,
+'RL_INVOICE: defines the margins
+','RL_INVOICE_MARGIN','30|30|30|60','defines the margines:<br />
+top | right | bottom | left<br />
+1inch == 72pt<br />
+1inch == 2.54cm<br />
+1cm == 28,35pt<br />',1,4020,
+'RL_INVOICE: Paper Size/Oriantation','RL_INVOICE_PAPER','A4|portrait','1. papersize == all iso-defined (A4, A5,..) + us (legal, ...) look at doku
+2. portrait OR landscape
+',1,4030,
+'RL_INVOICE: templates for products_table & total_table','RL_INVOICE_TABLE_TEMPLATE','col_templ_1|options_templ_1|total_col_1|total_opt_1','templates for products_table & total_table; this is defined in rl_invoice_def.php; see also: readme_ezpdf.pdf
+',1,4040,
+'RL_INVOICE: Invoice_Store_Row_1','RL_INVOICE_ROW1','Row1 Row1 Row1 Row1 Row1 Row1 Row1Row1 Row1 Row1 Row1 Row1 Row1 Row1|8','1.Row after Logo<br />text|fontSize|x|y
+',1,4050,'zen_cfg_textarea('
+'RL_INVOICE: Invoice_Store_Row_2','RL_INVOICE_ROW2','Row2 Row2 Row2 Row2 Row2 Row2 Row2 Row2 Row2 Row2 Row2 Row2 Row2 Row2 Row2 Row2 Row2 Row2 Row2 Row2 Row2 |8','2.Row after Logo',1,4060,'zen_cfg_textarea('
+'RL_INVOICE: Invoice_Store_Row_3','RL_INVOICE_ROW3','Row3 Row3 <b>Row3 Row3 Row3 Row3 Row3 </b>AAA ...|14|168|734','3.Row after Logo',1,4070,'zen_cfg_textarea('
+'RL_INVOICE: Y-position of first line after address','RL_INVOICE_ADDRESS_AFTER','216|30','first value: y-absolute position
+sec value: min delta; if y-pos + delta < y-pos 
+',1,4080,
+'RL_INVOICE: Y-position of address position','RL_INVOICE_ADDRESS_TOP','144','Y-position of address position
+144 == 2inch',1,4090,
+'RL_INVOICE: City ','RL_INVOICE_CITY','Wien, am 
+','City, 27.9.2004',1,4100,
+'RL_INVOICE: last invoice-line','RL_INVOICE_FOOTER','Alle Waren bleiben bis zur vollständigen Bezahlung Eigentum der Fa. FiloSoFisch. Bankverbindung: BankAustria-Creditanstalt: BLZ 12000, KtoNr: 52014 127 901 UID: ATU55705801|8|#|25','last invoice-line',1,4110,'zen_cfg_textarea('
+'RL_INVOICE: prefix for OrderNo','RL_INVOICE_ORDER_ID_PREFIX',': FsF/2004/','prefix for OrderNo',1,4120,
+'RL_INVOICE: fonts for invoice|products','RL_INVOICE_FONTS','../fonts/arial.afm|../fonts/Courier.afm','fonts for <br />1. invoice in general <br >2. products & total-table
+',1,4130,
+'RL_INVOICE:logo link','RL_INVOICE_LOGO_LINK','http://www.FiloSoFisch.com/','logo link',1,4140,
+'RL_INVOICE: path to store the pdf-file','RL_INVOICE_PDF_PATH','../pdf/|1
+
+','1. path to store the pdf-file<br />2. save the pdf==1, 0==dont save',1,4150,

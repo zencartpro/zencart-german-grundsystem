@@ -1,0 +1,53 @@
+##################################################################################################################
+# RL_INVOICE v0.4 // 20041229                                                                                    #
+#                                                                                                                #
+# Module for creadte / save PDF-invoices                                                                         #
+#----------------------------------------------------------------------------------------------------------------#
+# get the newes version at http://edv.langheiter.com/545/?tx_ttnews%5Btt_news%5D=21                              #
+# or at www.zen-cart.at                                                                                          #
+# rainer AT langheiter DOT com // http://www.filosofisch.com                                                     #
+# 20041005                                                                                                       #
+#----------------------------------------------------------------------------------------------------------------#
+# Changelog:                                                                                                     #
+# 0.3                                                                                                            #
+# city/date: Kirchberg, am @DATE@ ==> $dat = str_replace('@DATE@', strftime(DATE_FORMAT_LONG), RL_INVOICE_CITY); #
+#                                                                                                                #
+# 0.4                                                                                                            #
+# corrected paypal-ipn; little changes in rl_invoice.sql. added admin-muli-language.sql-files                    #
+# admin-muli-language == an overlaysytem to handle multiple language in admin => configuration & groups          #
+# corrected paypal-ipn; little changes in rl_invoice.sql. added                                                  #
+# look at:   http://zc123lang.ar-pub.com/                                                                        #
+#                                                                                                                #
+# 0.5                															     #
+# die texte/summen wurden html_entity_decoded, dh: "html-chars" (&nbsp; ...) werden umgewandelt (" ")            #
+# das &euro; (€) ist ein problem: es erolgt keine umwandlung bzw beim tabellencounten wird das € nicht 	     #
+# mitgerechnet & der text pickt ganz am rand; am beten EUR anstatt € in der währungsdef verwenden		     #
+#                                                                                                                #
+##################################################################################################################
+
+INSTALL ON ZEN CART 1.2.2d DE and newer:
+1) backup !! source + database !!
+
+2) extract zip-file
+
+3) copy all files/folders in folder "zencart" to your zen-cart root
+
+4) edit admin/orders.php
+find (near line 665)
+        $contents[] = array('align' => 'center', 'text' => '<a href="' . zen_href_link(FILENAME_ORDERS_INVOICE, 'oID=' . $oInfo->orders_id) . '" TARGET="_blank">' . zen_image_button('button_invoice.gif', IMAGE_ORDERS_INVOICE) . '</a> <a href="' . zen_href_link(FILENAME_ORDERS_PACKINGSLIP, 'oID=' . $oInfo->orders_id) . '" TARGET="_blank">' . zen_image_button('button_packingslip.gif', IMAGE_ORDERS_PACKINGSLIP) . '</a>');
+insert after
+        $contents[] = array('align' => 'center', 'text' => '<a href="' . zen_href_link(FILENAME_RL_INVOICE, 'oID=' . $oInfo -> orders_id) . '" TARGET="_blank">' . zen_image_button('button_rl_invoice.gif', IMAGE_RL_INVOICE) );
+
+5) insert rl_invoice.sql to your database
+
+done!
+
+---------------------------------------------------------------------------------
+INSTALL ON ZEN CART 1.2.1d US/DE and earlier:
+Step 1 to 4 are the same as for Zen Cart 1.2.2d DE and newer
+
+5) insert rl_invoice_us.sql to your database
+
+done!
+
+Now in your admin-menu at "configuration" is a new link called "pdf-invoice"
