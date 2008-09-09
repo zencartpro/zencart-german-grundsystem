@@ -6,6 +6,9 @@ TODO DER CONTRIBS
 - ToDo Text Update
 
 2008-06-27
+- payone: hier hab ich versucht eine optimale möglichkeit für multi-lang install zu schaffen, sie als beispiel:
+	\includes\modules\payment\payone_vor.php && \admin\includes\extra_datafiles\payone.php
+	es darf darüber diskutiert werden ;)
 - all_sql angelegt, da kommen die nötigen sql rein
 - Dynamic Price Updater multilanguage
 - fual_slimbox.v0.1.5
