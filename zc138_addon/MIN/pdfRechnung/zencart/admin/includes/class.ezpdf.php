@@ -604,7 +604,7 @@ function ezPrvtGetTextWidth($size,$text){
 
 // ------------------------------------------------------------------------------
 
-function ezTable(&$data,$cols='',$title='',$options=''){
+function ezTable(&$data,$cols='',$title='',$options='',$utf8decode=true){ 
   // add a table of information to the pdf document
   // $data is a two dimensional array
   // $cols (optional) is an associative array, the keys are the names of the columns from $data
@@ -1055,6 +1055,7 @@ function ezTable(&$data,$cols='',$title='',$options=''){
         $this->y -= $options['rowGap'];
         foreach ($lines as $line){
           $line = $this->ezProcessText($line);
+          if($utf8decode)$line=utf8_decode($line); 
           $start=1;
 
           while (strlen($line) || $start){
