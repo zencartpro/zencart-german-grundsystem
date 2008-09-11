@@ -48,4 +48,7 @@ define('ENTRY_DATE_PURCHASED', 'Bestelldatum:');
 
 define('ENTRY_ORDER_ID', 'Rechnungsnummer');
 define('TEXT_INFO_ATTRIBUTE_FREE', '&nbsp;-&nbsp;FREI');
-?>
+
+define('LIEFERADRESSE', 'Lieferadresse');
+define('RECHNUNGSADRESSE', 'Rechnungsadresse');
+
