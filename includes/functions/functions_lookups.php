@@ -793,9 +793,10 @@
     if (empty($language)) $language = $_SESSION['languages_id'];
 
     $category_lookup = $db->Execute("select " . $what_field . " as lookup_field
-                              from " . TABLE_CATEGORIES . " c, " . TABLE_CATEGORIES_DESCRIPTION . " cd
-                              where c.categories_id ='" . (int)$categories_id . "'
-                              and cd.language_id = '" . (int)$language . "'");
+                                from " . TABLE_CATEGORIES . " c, " . TABLE_CATEGORIES_DESCRIPTION . " cd
+                                where c.categories_id ='" . (int)$categories_id . "'
+                                and c.categories_id = cd.categories_id 
+                                and cd.language_id = '" . (int)$language . "'");
 
     $return_field = $category_lookup->fields['lookup_field'];
 
