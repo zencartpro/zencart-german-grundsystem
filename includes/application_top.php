@@ -64,10 +64,10 @@ if (file_exists('includes/local/configure.php')) {
  * note for strict error reporting we also turn on show_errors as this may be disabled<br />
  * in php.ini. Otherwise we respect the php.ini setting 
  * 
- */
+ */                                                     
 if (defined('STRICT_ERROR_REPORTING') && STRICT_ERROR_REPORTING == true) {
   @ini_set('display_errors', '1');
-  error_reporting(E_ALL);
+  error_reporting(E_ALL);        
 } else {
   error_reporting(0);
 }
@@ -127,8 +127,10 @@ require('includes/autoload_func.php');
 /**
  * load the counter code
 **/
+if ($spider_flag == false) {
 // counter and counter history
   require(DIR_WS_INCLUDES . 'counter.php');
+}
 
 // get customers unique IP that paypal does not touch
 $customers_ip_address = $_SERVER['REMOTE_ADDR'];
