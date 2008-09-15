@@ -473,6 +473,7 @@
       $this->isEmpty($data['db_name'], ERROR_TEXT_DB_NAME_ISEMPTY, ERROR_CODE_DB_NAME_ISEMPTY);
 
       $this->fileExists('sql/' . $data['db_type'] . '_zencart.sql', ERROR_TEXT_DB_SQL_NOTEXIST, ERROR_CODE_DB_SQL_NOTEXIST);
+      $this->fileExists('sql/' . $data['db_type'] . '_multilingual_2.sql', ERROR_TEXT_DB_SQL_NOTEXIST . '<br /> (sql/' . $data['db_type'] . '_multilingual_2.sql) ', ERROR_CODE_DB_SQL_NOTEXIST);
       $this->functionExists($data['db_type'], ERROR_TEXT_DB_NOTSUPPORTED, ERROR_CODE_DB_NOTSUPPORTED);
       $this->dbConnect($data['db_type'], $data['db_host'], $data['db_name'], $data['db_username'], $data['db_pass'], ERROR_TEXT_DB_CONNECTION_FAILED, ERROR_CODE_DB_CONNECTION_FAILED,ERROR_TEXT_DB_NOTEXIST, ERROR_CODE_DB_NOTEXIST);
       $this->dbExists(false, $data['db_type'], $data['db_host'], $data['db_username'], $data['db_pass'], $data['db_name'], ERROR_TEXT_DB_NOTEXIST, ERROR_CODE_DB_NOTEXIST);
@@ -508,6 +509,7 @@
       global $db;
       $db = $this->db;
       executeSql('sql/' . $this->getConfigKey('DB_TYPE') . '_zencart.sql', $this->getConfigKey('DB_DATABASE'), $this->getConfigKey('DB_PREFIX'));
+      executeSql('sql/' . $this->getConfigKey('DB_TYPE') . '_multilingual_2.sql', $this->getConfigKey('DB_DATABASE'), $this->getConfigKey('DB_PREFIX'));
 
       //update the cache folder setting:
       $this->dbAfterLoadActions();
