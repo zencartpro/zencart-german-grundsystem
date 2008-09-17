@@ -14,9 +14,9 @@ define('NAVBAR_TITLE_ADD_ENTRY', 'New Entry');
 define('NAVBAR_TITLE_MODIFY_ENTRY', 'Update Entry');
 define('NAVBAR_TITLE_DELETE_ENTRY', 'Delete Entry');
 
-define('HEADING_TITLE_ADD_ENTRY', '<h1>New Address Book Entry</h1>');
-define('HEADING_TITLE_MODIFY_ENTRY', '<h1>Update Address Book Entry</h1>');
-define('HEADING_TITLE_DELETE_ENTRY', '<h1>Delete Address Book Entry</h1>');
+define('HEADING_TITLE_ADD_ENTRY', 'New Address Book Entry');
+define('HEADING_TITLE_MODIFY_ENTRY', 'Update Address Book Entry');
+define('HEADING_TITLE_DELETE_ENTRY', 'Delete Address Book Entry');
 define('HEADING_TITLE', 'Address Details');
 
 define('DELETE_ADDRESS_TITLE', 'Delete Address');

@@ -15,9 +15,9 @@ define('NAVBAR_TITLE_ADD_ENTRY','Neuer Eintrag');
 define('NAVBAR_TITLE_MODIFY_ENTRY','Eintrag aktualisieren');
 define('NAVBAR_TITLE_DELETE_ENTRY','Eintrag löschen');
 
-define('HEADING_TITLE_ADD_ENTRY','<h1>Neuer Eintrag ins Adressbuch</h1>');
-define('HEADING_TITLE_MODIFY_ENTRY','<h1>Eintrag im Adressbuch aktualisieren</h1>');
-define('HEADING_TITLE_DELETE_ENTRY','<h1>Eintrag im Adressbuch löschen</h1>');
+define('HEADING_TITLE_ADD_ENTRY','Neuer Eintrag ins Adressbuch');
+define('HEADING_TITLE_MODIFY_ENTRY','Eintrag im Adressbuch aktualisieren');
+define('HEADING_TITLE_DELETE_ENTRY','Eintrag im Adressbuch löschen');
 define('HEADING_TITLE', 'Adress Details');
 
 define('DELETE_ADDRESS_TITLE','Anschrift löschen');
