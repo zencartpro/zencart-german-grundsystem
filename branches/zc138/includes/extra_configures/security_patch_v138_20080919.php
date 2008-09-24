@@ -32,7 +32,16 @@ function securityPatchSanitizePostVariableId ($arrayToSanitize)
   {
     {
       if (is_integer($key))
-        $arrayToSanitize[$key] = (int) $variableToSanitize;
+      {
+        if (is_array($arrayToSanitize[$key]))
+        {
+          $arrayToSanitize[$key] = securityPatchSanitizePostVariableId($arrayToSanitize[$key]);
+        }
+        else 
+        {
+          $arrayToSanitize[$key] = (int) $variableToSanitize;
+        }
+      }
     }
     if (ereg_replace('[0-9a-zA-z:_]', '', $key) != '')
       unset($arrayToSanitize[$key]);
@@ -44,11 +53,10 @@ function securityPatchSanitizePostVariableProductsId ($arrayToSanitize)
   foreach ($arrayToSanitize as $key => $variableToSanitize)
   {
     {
-      $arrayToSanitize[$key] = ereg_replace('[^0-9a-fA-F:]', '', $variableToSanitize);
+      $arrayToSanitize[$key] = ereg_replace('[^0-9a-fA-F:.]', '', $variableToSanitize);
     }
     if (ereg_replace('[0-9a-zA-z_]', '', $key) != '')
       unset($arrayToSanitize[$key]);
   }
   return $arrayToSanitize;
 }
-  
