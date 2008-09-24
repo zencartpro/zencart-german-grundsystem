@@ -1724,7 +1724,7 @@ $new_qty = $this->adjust_quantity($new_qty, $_POST['products_id'], 'shopping_car
 //      while ( list( $key, $val ) = each($_POST['products_id']) ) {
         if ($val > 0) {
           $adjust_max = false;
-          $prodId = ereg_replace('[^0-9a-f:]', '', $key);
+          $prodId = ereg_replace('[^0-9a-f:.]', '', $key);
           $qty = $val;
           $add_max = zen_get_products_quantity_order_max($prodId);
           $cart_qty = $this->in_cart_mixed($prodId);
