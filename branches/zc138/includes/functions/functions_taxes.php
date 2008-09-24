@@ -161,7 +161,12 @@
     global $currencies;
 
     if ( (DISPLAY_PRICE_WITH_TAX == 'true') && ($tax > 0) ) {
-      return zen_round($price, $currencies->currencies[DEFAULT_CURRENCY]['decimal_places']) + zen_calculate_tax($price, $tax);
+        $tax = $price * $tax / 100;
+        $priceInclTax = $price + $tax;
+        $priceInclTaxFormatted = zen_round($priceInclTax, $currencies->currencies[DEFAULT_CURRENCY]['decimal_places']);
+        return $priceInclTaxFormatted;  
+        
+        return zen_round($price, $currencies->currencies[DEFAULT_CURRENCY]['decimal_places']) + zen_calculate_tax($price, $tax);
     } else {
       return zen_round($price, $currencies->currencies[DEFAULT_CURRENCY]['decimal_places']);
     }
