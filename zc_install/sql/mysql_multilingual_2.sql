@@ -418,7 +418,7 @@ REPLACE INTO configuration_language (configuration_title, configuration_key, con
 ('Land', 'ACCOUNT_STATE', 43, 'Soll das Feld "Land" in der Kontoerstellung und in den Kontoinformationen angezeigt werden?', '2008-04-12 00:00:00', '2004-11-20 11:14:04'),
 ('Geburtsdatum', 'ACCOUNT_DOB', 43, 'Soll das Feld "Geburtsdatum" in der Kontoerstellung und in den Kontoinformationen angezeigt werden?', '2008-04-12 00:00:00', '2004-11-20 11:14:04'),
 ('Firma', 'ACCOUNT_COMPANY', 43, 'Soll das Feld "Firma" in der Kontoerstellung und in den Kontoinformationen angezeigt werden?', '2008-04-12 00:00:00', '2004-11-20 11:14:04'),
-('Begrüßungsnachricht', 'ACCOUNT_GENDER', 43, 'Zeigt eine Begrüßungsnachricht bei der Kontoerstellung und in den Kontodetails', '2008-04-12 00:00:00', '2004-11-20 11:14:04'),
+('Anrede', 'ACCOUNT_GENDER', 43, 'Auswahl der Anrede <br /> Diese wird bei Erstellung des Kundenkontos abgefragt und dann in allen eMails benutzt.<br /><br />Wenn diese Option auf FALSE gestellt wird, wird der Kunde stets mit Hallo VORNAME angesprochen.', '2008-04-12 00:00:00', '2004-11-20 11:14:04'),
 ('Wenn kein Bild: verwendetes Bild', 'PRODUCTS_IMAGE_NO_IMAGE', 43, 'Welches Bild soll als Eratzbild verwendet werden, wenn kein Bild dem Artikel hinzugefügt wurde?<br />Standard = no_picture.gif', '2008-04-12 00:00:00', '2004-11-20 11:14:04'),
 ('Ähnliche Artikel: Höhe der Artikelbilder in der Liste', 'IMAGE_FEATURED_PRODUCTS_LISTING_HEIGHT', 43, 'Standard = 80', '2008-04-12 00:00:00', '2004-11-20 11:14:04'),
 ('Alle Artikel: Breite der Artikelbilder in der Liste', 'IMAGE_PRODUCT_ALL_LISTING_WIDTH', 43, 'Standard = 100', '2008-04-12 00:00:00', '2004-11-20 11:14:04'),
