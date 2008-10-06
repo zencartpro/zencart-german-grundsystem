@@ -22,21 +22,16 @@ require_once(DIR_FS_CATALOG . DIR_WS_INCLUDES . 'classes/class.rl_invoice3.php')
 
 if($_GET['test'] == 'PDF'){
     $pdfT = new rl_invoice3($_GET['oID'], 'L', $paper['unit'], $paper['format']);
+    $pdfT->pdf->setY(30);
+    $pdfT->makeHC("combination from rl_invoice_def.php defintions\n\n");
     foreach($pdfT->optionsP as $key => $val){
         foreach($pdfT->colsP as $key2 => $val2){
-            #$pdfT->addPage('L');
             $pdfT->setTemplate($val2, $val);
-            #$pdfT->setY($pdfT->getY()+90);
-            #$pdfT -> makeAddr();
-            #$pdfT -> makeInvoiceNumber();
-            $pdfT->write(12, $key2 . ' :: ' . $key); 
             $pdfT -> makeProducts();
-            $pdfT->write(12, $key2 . ' :: ' . $key);  
-            #$pdfT -> makeTotal();
-
-            #$pdfT -> writePDF();        
+            $pdfT->makeHC("colsP: $key2   //  optionsP: $key");
         }
     }
+    $pdfT->makeHC("combination from rl_invoice_def.php defintions");
     $pdfT -> writePDF();      
     exit();
 }
@@ -45,12 +40,5 @@ if($_GET['test'] == 'PDF'){
 
 $pdfT = new rl_invoice3($_GET['oID'], $paper['orientation'], $paper['unit'], $paper['format']);
 
-
-
-$pdfT -> makeAddr();
-$pdfT -> makeInvoiceNumber();
-$pdfT -> makeProducts();
-$pdfT -> makeTotal();
-
-$pdfT -> writePDF();
-
+$pdfT->createPdfFile();
+    

@@ -401,7 +401,12 @@ class rl_invoice3 extends fpdi{
         // table-header
         $this->pdf->SetFillColor(199);
         foreach ($this->t1Col as $key => $value){
-            $this->pdf->Cell($this -> t1Opt['cols'][$key]['width'], $this -> t1Opt['fontSize'] / 2, $value , '1', 0 , $this -> t1Opt['cols'][$key]['justification'], 1);
+                if(is_null($this -> t1Opt['cols'][$key]['width'])){
+                    $wi = 10;
+                } else {
+                    $wi = $this -> t1Opt['cols'][$key]['width'];
+                }
+            $this->pdf->Cell($wi, $this -> t1Opt['fontSize'] / 2, $value , '1', 0 , $this -> t1Opt['cols'][$key]['justification'], 1);
             }
         
         $this->pdf->SetFont($this -> fonts2['general']);
@@ -420,7 +425,11 @@ class rl_invoice3 extends fpdi{
             $mValue = array();
             $width = array();
             foreach ($this -> t1Col as $key => $value){
-                $width[] = $this -> t1Opt['cols'][$key]['width'];
+                if(is_null($this -> t1Opt['cols'][$key]['width'])){
+                    $width[] = 10;
+                } else {
+                    $width[] = $this -> t1Opt['cols'][$key]['width'];
+                }
                 $mValue[] = $pValue[$key];
                 }
             $this -> SetWidths($width);
@@ -428,6 +437,9 @@ class rl_invoice3 extends fpdi{
         }
         }
     
+    function makeHC($txt){
+        $this->pdf->Cell(122, 8, $txt, 0);  
+    }
     
     function makeTotal(){
         $totalData = $this -> getTotalData();
