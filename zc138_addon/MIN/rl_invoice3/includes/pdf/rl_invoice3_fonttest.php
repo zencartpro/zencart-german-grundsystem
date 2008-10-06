@@ -1,8 +1,20 @@
 ﻿<?php
-error_reporting(E_ALL);
-require('fpdi.php');
-define('FPDF_FONTPATH','/var/www/html/freitter/includes/pdf/font/');
+/**
+ * @package pdf_invoice3
+ * @copyright Copyright 2003-2007 Zen Cart Development Team
+ * @copyright Portions Copyright 2003 osCommerce
+ * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
+ * @version $Id: rl_invoice3.php 15 2007-06-05 09:11:58Z rainer langheiter $
+ * 
+ * version: 3.0.0 // 20081006
+ * 
+ * @author rainer AT langheiter DOT com // http://www.filosofisch.com // http://edv.langheiter.com
+ * generates a rl_invoice3_fontest.pdf file with all available fonts
+ */
 
+require('fpdi.php');
+require('../configure.php');
+define('FPDF_FONTPATH', DIR_FS_CATALOG . DIR_WS_INCLUDES . 'pdf/font/');
 
 $pdf = new FPDI();
 
@@ -21,24 +33,11 @@ $fonts = array('dejavusansbi',  'dejavusansb',  'dejavusanscondensedbi',  'dejav
                 );
 print_r($fonts);
 
-#$fonts = file('fonts/f.txt');
-#print_r($fonts);
-
 $pdf->SetTitle("UFPDF is Cool.\näöüßƒ ıš ČŏōĹ");
 $pdf->SetAuthor('hugo13');
-#$pdf->AddFont('courier', '', 'courier.php');
-#$pdf->AddFont('facette', '', 'facette.php');
-#$pdf->SetFont('facette', '', 14);
-/*
-$pdf->setxy(99, 99);
-$pdf->Write(12, "UFPDF is Cool.\n");
-$pdf->Write(12, "äöüßÄÖÜ");
-$pdf->SetFont('freeserif', '', 14);  
-$pdf->Write(12, "ıš ČŏōĹ.\n");
+$pdf->setLeftMargin(20);
 
-*/
-
-$pdf->setxy(10, 40);
+$pdf->sety(40);
 foreach ($fonts as $key => $value) {
     echo $value;
     $pdf->AddFont($value, '', $value . '.php');       

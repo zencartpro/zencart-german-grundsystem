@@ -374,8 +374,8 @@ class rl_invoice3 extends fpdi{
             $data[$i]['sumI'] = $this->mr(html_entity_decode($this -> currencies -> format($val['qty'] * ($val['price'] + $val['price'] * $val['tax'] / 100) + ($val['onetime_charges'] + $val['tax'] * $val['onetime_charges'] / 100), true, $this -> order -> info['currency'], $this -> order -> info['currency_value'])));
             $i++;
             }
-            rldp($data, 'DATA');
-            die();
+            #rldp($data, 'DATA');
+            #die();
         return $data;
         }
     
@@ -436,24 +436,33 @@ class rl_invoice3 extends fpdi{
         $this->pdf->SetFillColor(199);
         $this->pdf->SetX($this -> margin['left']);
         
+        $w = 0;
+        foreach ($this->widths as $value) {
+            $w += $value;
+        }
+        $leftR = $w + $this->pdf->lMargin;
+        $leftL = $w + $this->pdf->lMargin;
+        
         $i = 0;
         $m = 1;
+        
         foreach ($totalData as $key => $value){
             $y = $i % 2;
             $x = round($this->pdf->GetStringWidth($value['title']), 1);
             $m = max($m, $x);
+            $leftL = $leftR - 20 - $m;
             if($value['class']=='ot_total'){
                 $this->pdf->SetLineWidth(1);
-                $this->pdf->line(20 + 180-20 - $m, $this->pdf->GetY(), 200, $this->pdf->GetY());
+                $this->pdf->line($leftL, $this->pdf->GetY(), $leftR, $this->pdf->GetY());
                 $this->pdf->setY($this->pdf->GetY() + 0.8);
             }
-            $this->pdf->Cell(160, $this -> t1Opt['fontSize'] / 2, $value['title'] , '0', 0 , 'R', $y);
+            $this->pdf->Cell(160.5, $this -> t1Opt['fontSize'] / 2, $value['title'] , '0', 0 , 'R', $y);
             $this->pdf->Cell(20, $this -> t1Opt['fontSize'] / 2, $value['text'] , '0', 0 , 'R', $y);
             $this->pdf->SetXY($this -> margin['left'], $this->pdf->GetY() + $this -> t1Opt['fontSize'] / 2);
             $i++;
             }
         $this->pdf->SetLineWidth(1.3);
-        $this->pdf->line(20 + 180-20 - $m, $this->pdf->GetY(), 200, $this->pdf->GetY());
+        $this->pdf->line($leftL, $this->pdf->GetY(), $leftR, $this->pdf->GetY());
         }
     
     function isMultiLingual(){

@@ -19,7 +19,7 @@ $colsP['col_templ_1'] = array(
      'sumI' => TABLE_HEADING_TOTAL_INCLUDING_TAX,
     );
 $colsP['all'] = array(
-    'qty' => TABLE_HEADING_QTY,
+     'qty' => TABLE_HEADING_QTY,
      'model' => TABLE_HEADING_PRODUCTS_MODEL,
      'name' => TABLE_HEADING_PRODUCTS,
      'qty_name' => TABLE_HEADING_PRODUCTS,
@@ -28,6 +28,7 @@ $colsP['all'] = array(
      'singleE' => TABLE_HEADING_PRICE_EXCLUDING_TAX,
      'singleI' => TABLE_HEADING_PRICE_INCLUDING_TAX,
      'extraI' => TABLE_HEADING_EXTRA,
+     'extraE' => TABLE_HEADING_EXTRA,
      'sumE' => TABLE_HEADING_TOTAL_EXCLUDING_TAX,
      'sumI' => TABLE_HEADING_TOTAL_INCLUDING_TAX,
     );
@@ -54,7 +55,7 @@ $colsP['templ3'] = array(
  */
 $optionsP['options_templ_1'] = array("fontSize" => 8, 'showHeadings' => 1, 'shaded' => 1, 'xPos' => 'left', 'xOrientation' => 'right', 'width' => $realPW-35,
      'cols' => array(
-        'qty' => array("justification" => "L", "width" => 15),
+         'qty' => array("justification" => "L", "width" => 15),
          'tax' => array("justification" => "R", "width" => 10),
          'model' => array("justification" => "L", "width" => 25),
          'name' => array('justification' => 'L', "width" => 60),
@@ -64,32 +65,23 @@ $optionsP['options_templ_1'] = array("fontSize" => 8, 'showHeadings' => 1, 'shad
          'sumI' => array('justification' => 'R', "width" => 25),
         )
     );
-$optionsP['templ2'] = array("fontSize" => 8, 'showHeadings' => 1, 'shaded' => 1, 'xPos' => 'left', 'xOrientation' => 'right', 'width' => $realPW-35,
+$optionsP['all'] = array("fontSize" => 7, 'showHeadings' => 1, 'shaded' => 1, 'xPos' => 'left', 'xOrientation' => 'right', 'width' => $realPW-35 + 235,
      'cols' => array(
-        'qty' => array("justification" => "left", "width" => 40),
-         'tax' => array("justification" => "right", "width" => 50),
-         'model' => array("justification" => "left", "width" => 60),
-         'name' => array('justification' => 'left'),
-         'singleI' => array('justification' => 'right', "width" => 60),
-         'singleE' => array('justification' => 'right', "width" => 60),
-         'extraI' => array('justification' => 'right', "width" => 60),
-         'sumI' => array('justification' => 'right', "width" => 60),
+         'qty' => array("justification" => "L", "width" => 10),
+         'model' => array("justification" => "L", "width" => 15),
+         'name' => array('justification' => 'L', "width" => 30),
+         'qty_name' => array('justification' => 'L', "width" => 30),
+         'qty_name_model' => array('justification' => 'L', "width" => 40),
+         'tax' => array("justification" => "R", "width" => 10),
+         'singleE' => array('justification' => 'R', "width" => 35),
+         'singleI' => array('justification' => 'R', "width" => 20),
+         'extraI' => array('justification' => 'R', "width" => 15),
+         'extraE' => array('justification' => 'R', "width" => 15),
+         'sumE' => array('justification' => 'R', "width" => 25),
+         'sumI' => array('justification' => 'R', "width" => 15),
         )
     );
-$optionsP['all'] = array("fontSize" => 8, 'showHeadings' => 1, 'shaded' => 1, 'xPos' => 'left', 'xOrientation' => 'right', 'width' => $realPW-35 + 235,
-     'cols' => array(
-        'qty' => array("justification" => "left"),
-         'tax' => array("justification" => "right"),
-         'model' => array("justification" => "left"),
-         'name' => array('justification' => 'left'),
-         'singleI' => array('justification' => 'right'),
-         'singleE' => array('justification' => 'right'),
-         'extraE' => array('justification' => 'right'),
-         'extraI' => array('justification' => 'right'),
-         'sumI' => array('justification' => 'right'),
-        )
-    );
-
+    
 
 /**
  * TOTALS
@@ -107,4 +99,3 @@ $optionsP['all'] = array("fontSize" => 8, 'showHeadings' => 1, 'shaded' => 1, 'x
         )
     );
 
-?>
