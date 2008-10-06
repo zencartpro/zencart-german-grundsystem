@@ -391,7 +391,8 @@ if (isset($_POST['action']) && ($_POST['action'] == 'process')) {
     // add in regular email welcome text
     $email_text .= "\n\n" . EMAIL_TEXT . EMAIL_CONTACT . EMAIL_GV_CLOSURE;
 
-    $html_msg['EMAIL_MESSAGE_HTML']  = str_replace('\n','',EMAIL_TEXT);
+    $html_msg['EMAIL_MESSAGE_HTML']  = nl2br(EMAIL_TEXT);
+	//$html_msg['EMAIL_MESSAGE_HTML']  = str_replace('\n','',EMAIL_TEXT);
     $html_msg['EMAIL_CONTACT_OWNER'] = str_replace('\n','',EMAIL_CONTACT);
     $html_msg['EMAIL_CLOSURE']       = nl2br(EMAIL_GV_CLOSURE);
 
