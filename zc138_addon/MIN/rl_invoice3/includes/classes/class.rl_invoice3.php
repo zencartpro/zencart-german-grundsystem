@@ -67,7 +67,7 @@ class rl_invoice3 extends fpdi{
         $this -> fonts2 = $this -> getDefaultCheck(RL_INVOICE3_FONTS, array('general' => 'dejavusanscondensed', 'table' => 'freemono'));
         $this->pdf->AddFont($this->fonts2['general']);
         $this->pdf->AddFont($this->fonts2['table']);
-        $this -> pdfPath = $this -> getDefault(RL_INVOICE3_PDF_PATH, array('path' => DIR_FS_CATALOG . DIR_WS_INCLUDES . 'pdf/', 'save' => '1'));
+        $this -> pdfPath = $this -> getDefault(RL_INVOICE3_PDF_PATH, array('path' => DIR_FS_CATALOG . 'pdf/', 'save' => '1'));
         $this -> delta = $this -> getDefault(RL_INVOICE3_DELTA, array('addrInvoice' => '20', 'invoiceProducts' => '30'));
         $this -> debug = $this -> getDefault(RL_INVOICE3_DEBUG, array('debug' => 0));
         $this -> fontsOk = $this -> checkFonts();
@@ -103,7 +103,7 @@ class rl_invoice3 extends fpdi{
     
     function checkInstall(){
         global $db;
-        if(!defined('RL_INVOICE3_WITHOUTINVOICE')){
+        if(!defined('RL_INVOICE3_NOT_NULL_INVOICE')){
             if(rl_invoice3::isMultiLingual()){
                 $multi = true;
             } else {
@@ -135,8 +135,9 @@ class rl_invoice3 extends fpdi{
                                 ('RL_INVOICE3_ORDER_ID_PREFIX', 43, 'Präfix für Rechnungsnummer in der Rechnung', 'Präfix für Rechnungsnummer in der Rechnung<br />Beispiel: : FsF/2008/<br />'),
                                 ('RL_INVOICE3_FONTS', 43, 'Schriftarten für Rechnung und Artikel', 'Welche Schriftarten wollen Sie verwenden? <br />1. Für Rechnungstexte <br >2. Für Artikel & Summe<br /><br />Standart: dejavusanscondensed|freemono<br />(Pfad/und Schriftart für Rechnung|Pfad/und Schriftart für Artikel+Summe<br />'),
                                 ('RL_INVOICE3_WITHOUTINVOICE', 43, 'Rechnungsadresse nicht drucken', 'Rechnungsadresse nicht drucken'),
-                                ('RL_INVOICE3_PDF_PATH', 43, 'Speicherort und -Name der PDF-Datei', '1. Wo sollen PDF-Dateien gespeichert werden?<br />2. speichern ja|nein (1|0)<br />Standard: " . DIR_FS_CATALOG . DIR_WS_INCLUDES . "pdf/|1<br />'),
+                                ('RL_INVOICE3_PDF_PATH', 43, 'Speicherort und -Name der PDF-Datei', '1. Wo sollen PDF-Dateien gespeichert werden (!! muss beschreibbar sein !!)?<br />2. speichern ja|nein (1|0)<br />Standard: " . DIR_FS_CATALOG . DIR_WS_INCLUDES . "pdf/|1<br />'),
                                 ('RL_INVOICE3_SEND_PDF', 43, 'Rechnung bei Bestellung', 'soll Rechnung bei Bestellung gesendet werden'),
+                                ('RL_INVOICE3_NOT_NULL_INVOICE', 43, 'Rechnung bei Gratisprodukt', 'soll Rechnung bei Gratisprodukt dem Mail hinzugefügt werden'),
                                 ('RL_INVOICE3_SEND_ATTACH', 43, 'Anhänge', 'welche PDFs sollen noch angehängt werden; bei mehreren dateien | (pipe) als trenner verwenden)')
                                 ;";
             }
@@ -157,8 +158,9 @@ class rl_invoice3 extends fpdi{
                         ('prefix for OrderNo', 'RL_INVOICE3_ORDER_ID_PREFIX', ': FsF/2008/', 'prefix for OrderNo<br />', $group, 110, NULL),
                         ('fonts for invoice|products', 'RL_INVOICE3_FONTS', 'dejavusanscondensed|freemono', 'fonts for <br />1. invoice in general <br >2. products & total-table<br />', $group, 120, NULL),
                         ('do not print invoice address', 'RL_INVOICE3_WITHOUTINVOICE', 'false', 'do not print invoice address', $group, 160, \"zen_cfg_select_option(array('true', 'false'), \"),
-                        ('filename and path to store the pdf-file', 'RL_INVOICE3_PDF_PATH', '" . DIR_FS_CATALOG . DIR_WS_INCLUDES . "pdf/|1', '1. path to store the pdf-file<br />Default: ../pdf/|1<br />', $group, 130, NULL),
+                        ('filename and path to store the pdf-file', 'RL_INVOICE3_PDF_PATH', '" . DIR_FS_CATALOG . "pdf/|1', '1. path to store the pdf-file (!!must be writeable !!)<br />Default: ../pdf/|1<br />', $group, 130, NULL),
                         ('RL_INVOICE3_SEND_PDF', 'RL_INVOICE3_SEND_PDF', '1', 'RL_INVOICE3_SEND_PDF', $group, 130, NULL),
+                        ('Accounting for free product', 'RL_INVOICE3_NOT_NULL_INVOICE', '0', 'Accounting for free product: send e-mail invoice', $group, 130, NULL),
                         ('additional attachements', 'RL_INVOICE3_SEND_ATTACH', 'agb.pdf|widerruf.pdf', 'RL_INVOICE3_SEND_PDF', $group, 130, NULL)
                         ;";
             foreach ($sqlA as $key => $value) {

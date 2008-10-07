@@ -998,12 +998,14 @@ class order extends base {
     $zco_notifier->notify('NOTIFY_ORDER_INVOICE_CONTENT_READY_TO_SEND', array('zf_insert_id' => $zf_insert_id, 'text_email' => $email_order, 'html_email' => $html_msg));
 
     if(RL_INVOICE3_SEND_PDF=='1'){
-        require_once(DIR_WS_INCLUDES . 'classes/class.rl_invoice3.php');
-        
-        $pdfT = new rl_invoice3($zf_insert_id, $paper['orientation'], $paper['unit'], $paper['format']);
-        $x = $pdfT->getPDFFileName();
-        $pdfT -> createPdfFile(true);
-        $this->attachArray[] = array('file'=>$x, 'mime_type'=>'pdf');
+        if(!(0==$this->total_cost && RL_INVOICE3_NOT_NULL_INVOICE==0)){     
+            require_once(DIR_WS_INCLUDES . 'classes/class.rl_invoice3.php');
+            
+            $pdfT = new rl_invoice3($zf_insert_id, $paper['orientation'], $paper['unit'], $paper['format']);
+            $this->attachArray = $pdfT->getPDFAttachments();
+            $pdfT -> createPdfFile(true);
+            #$this->attachArray[] = array('file'=>$x, 'mime_type'=>'pdf');
+        }
     }
     zen_mail($this->customer['firstname'] . ' ' . $this->customer['lastname'], $this->customer['email_address'], EMAIL_TEXT_SUBJECT . EMAIL_ORDER_NUMBER_SUBJECT . $zf_insert_id, $email_order, STORE_NAME, EMAIL_FROM, $html_msg, 'checkout', $this->attachArray);
 
