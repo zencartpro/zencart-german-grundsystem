@@ -1,16 +1,43 @@
-*Module Name:  Gruppenpreise pro Artikel
-*ORIGINAL AUTHOR: Jeremiah Peterson
-*MODIFIED BY: Alex Svteos <alex.svetos@gmail.com>
-*DEUTSCHE ÜBERSETZUNG: waldelfe, Okt. 2008
-*FUNCTION:  schafft im Admin die Möglichkeit, für jedes Produkt im Shop bis zu vier verschiedene Preisgruppen zu definieren. Diese Preise werden automatisch verbunden mit vier benannten Kundengruppen – Kunden, die einer bestimmten Gruppe angehören, wird der Preis ihrer Gruppe angezeigt. 
+========================================================
+Gruppenpreise pro Artikel 1.3 für Zen-Cart 1.3.8 deutsch
+========================================================
 
-*DATE: March 2008
-*UPDATE VERSION: 1.3
-*VERSION COMPATIBILITY:  getestet mit Standardinstallation von Zen-Cart 1.3.7 und 1.3.8
+Deutsche Version des Moduls Group Pricing per Item von:
+http://www.zen-cart.com/index.php?main_page=product_contrib_info&products_id=256
 
-*Modifikationen: 
-  20. Februar , 2007 : fixed admin/includes/modules/products/collect_info.php hard coded table name in query (Zeile 78)
-  March 2008 : erweitert für Kompatibilität mit v1.3.8, geänderte Tabellennamen um Systemkonstanten zu verwenden, so dass  Präfix Umbenennung nicht mehr nötig ist, Fehlerbehebungen, einfachere Installation
+Original Autor: Jeremiah Peterson
+geändert von: Alex Svteos
+Deutsche Übersetzung: waldelfe, Oktober 2008
+
+=======================
+Was macht dieses Modul?
+=======================
+Gruppenpreise pro Artikel schafft im Admin die Möglichkeit, für jedes Produkt im Shop bis zu vier verschiedene Preisgruppen zu definieren.
+Diese Preise werden automatisch verbunden mit vier benannten Kundengruppen.
+Kunden, die einer bestimmten Gruppe angehören, wird der Preis ihrer Gruppe angezeigt. 
+
+==============
+Kompatibilität
+==============
+
+getestet mit Standardinstallation von Zen-Cart 1.3.8 deutsch
+
+
+=========
+CHANGELOG
+=========
+Modifikationen zu früheren Versionen
+
+Februar 2007
+- Bugfix in admin/includes/modules/products/collect_info.php: hard coded Tabellenname in Zeile 78 entfernt
+März 2008
+- erweitert für Kompatibilität mit Zen-Cart 1.3.8
+- geänderte Tabellennamen um Systemkonstanten zu verwenden, so dass Präfix Umbenennung nicht mehr nötig ist
+- Fehlerbehebungen
+- einfachere Installation
+Oktober 2008:
+- deutsche Übersetzung
+- Sprachfiles für 1.3.8 deutsch utf-8 kodiert
 
 
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
@@ -21,7 +48,8 @@ BITTE EIN BACKUP VOM GANZEN SHOP UND DER DATENBANK MACHEN!
 -----------------------------------------
 1) DATENBANK ÄNDERUNGEN
 -----------------------------------------
-Die sql Anleitung, die sich in der Datei “group_pricing.sql” befindet, muss angewandt werden. Dies kann über den Admin-Bereich gemacht werden – oder, falls du ein sachverständiger Datenbankadministrator bist, kannst du dazu auch dein bevorzugtes SQL-Datenbank Administrationstool verwenden. 
+Der SQL Patch, der sich in der Datei “group_pricing.sql” befindet, muss angewandt werden. Dies kann über den Admin-Bereich gemacht werden – oder, falls du ein sachverständiger Datenbankadministrator bist, kannst du dazu auch dein bevorzugtes SQL-Datenbank Administrationstool verwenden. 
+Dann allerdings das Präfix entsprechend anpassen.
 
 Um den Patch im Admintool zu verwenden, öffne als erstes die Datei "group_pricing.sql" in einem Texteditor und kopiere seinen gesamten Inhalt.
 Gehe nun ins Admin-Panel zu Tools -> Install SQL Patches und füge den Inhalt dort in das Feld ein. Klicke auf "Senden".
@@ -33,7 +61,7 @@ Wenn alles gut verlief, solltest nun oben auf der Seite eine Bestätigungsmitteil
 -----------------------------------------
 Für jene, die die Änderungen von Hand machen müssen gebe ich eine Liste aller Dateien an, wo Änderungen nötig sind: 
 
-Wenn du möchtest, kannst du die Namen "Group A", "Group B", "Group C" & "Group D" ersetzen:
+Wenn du möchtest, kannst du die Namen "Gruppe A", "Gruppe B", "Gruppe C" & "Gruppe D" ersetzen:
 Wenn du dies nicht tust, werden die vier Preisgruppen "Group A", "Group B", "Group C" & "Group D" genannt. Wenn diese Namen für dich passen, kannst du diesen Schritt überspringen. Wenn du aber die Gruppen umbenennen willst, mußt du alle Einträge in 2 Dateien ändern, wo die Benennung auftritt. Um eigene Bezeichnungen zu verwenden, ersetze also alle Gruppenpreisnamen in den betreffenden Dateien, die da wären: 
     * /includes/extra_datafiles/group_price_per_item.php
     * /admin/includes/extra_datafiles/group_price_per_item.php
@@ -56,7 +84,7 @@ Lade alle Dateien mit einem FTP-Programm deiner Wahl in dein ZenCart-Shop-Verzei
 
 Wenn du irgendwelche andere Module installiert hast, für die du bereits Änderungen an diesen Dateien vornehmen musstest, kannst du ein Programm wie WinMerge benutzen um die Dateien zu vergleichen und anzupassen bevor du die neuen Dateien hochlädst – sonst würden alle zuvor gemachten Anpassungen verloren gehen.
 
-Falls du später einmal nicht mehr das Group Pricing Per Item Modul verwenden möchtest, stele einfach die überschriebenen Dateien wieder her, indem du dein Backup benutzt – du hast doch ein Backup erstellt, oder? 
+Falls du später einmal nicht mehr das Group Pricing Per Item Modul verwenden möchtest, stelle einfach die überschriebenen Dateien wieder her, indem du dein Backup benutzt – du hast doch ein Backup erstellt, oder? 
 
 -----------------------------------------
 4) IM ADMIN-PANEL PREISGRUPPEN ERSTELLEN
@@ -85,17 +113,11 @@ Wenn du dieses Modul nicht mehr benutzen möchtest, kannst du es ganz einfach wie
 2) verwende den Datenbank-Entfernungspatch in "group_pricing_remove.sql"
 
 
------------------------------------------
-HAST DU DIESES MODUL VERÄNDERT?
------------------------------------------
-wenn du dieses Modul verändert oder verbessert hast, bitte informiere die Zen Cart community unter: http://www.zen-cart.com/forum.
 
+----------------------
+FRAGEN ZU DIESEM MODUL
+----------------------
+Bitte posten ins passende Unterforum bei "Module und Erweiterungen" im Forum von www.zen-cart.at/zcvb
 
------------------------------------------
-DANK
------------------------------------------
-wenn du dich für dieses Modul bedanken möchtest, unterstütze die ZenCart-Community mit einer Spende via:  paypal@zen-cart.com
 
 Besten Dank und viel Spass!
-
-
