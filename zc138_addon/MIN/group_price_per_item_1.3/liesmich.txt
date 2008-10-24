@@ -1,0 +1,101 @@
+*Module Name:  Gruppenpreise pro Artikel
+*ORIGINAL AUTHOR: Jeremiah Peterson
+*MODIFIED BY: Alex Svteos <alex.svetos@gmail.com>
+*DEUTSCHE ÜBERSETZUNG: waldelfe, Okt. 2008
+*FUNCTION:  schafft im Admin die Möglichkeit, für jedes Produkt im Shop bis zu vier verschiedene Preisgruppen zu definieren. Diese Preise werden automatisch verbunden mit vier benannten Kundengruppen – Kunden, die einer bestimmten Gruppe angehören, wird der Preis ihrer Gruppe angezeigt. 
+
+*DATE: March 2008
+*UPDATE VERSION: 1.3
+*VERSION COMPATIBILITY:  getestet mit Standardinstallation von Zen-Cart 1.3.7 und 1.3.8
+
+*Modifikationen: 
+  20. Februar , 2007 : fixed admin/includes/modules/products/collect_info.php hard coded table name in query (Zeile 78)
+  March 2008 : erweitert für Kompatibilität mit v1.3.8, geänderte Tabellennamen um Systemkonstanten zu verwenden, so dass  Präfix Umbenennung nicht mehr nötig ist, Fehlerbehebungen, einfachere Installation
+
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+BITTE DIE GANZE ANLEITUNG LESEN. VOR DER INSTALLATION DES MODULS
+BITTE EIN BACKUP VOM GANZEN SHOP UND DER DATENBANK MACHEN!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+-----------------------------------------
+1) DATENBANK ÄNDERUNGEN
+-----------------------------------------
+Die sql Anleitung, die sich in der Datei “group_pricing.sql” befindet, muss angewandt werden. Dies kann über den Admin-Bereich gemacht werden – oder, falls du ein sachverständiger Datenbankadministrator bist, kannst du dazu auch dein bevorzugtes SQL-Datenbank Administrationstool verwenden. 
+
+Um den Patch im Admintool zu verwenden, öffne als erstes die Datei "group_pricing.sql" in einem Texteditor und kopiere seinen gesamten Inhalt.
+Gehe nun ins Admin-Panel zu Tools -> Install SQL Patches und füge den Inhalt dort in das Feld ein. Klicke auf "Senden".
+
+Wenn alles gut verlief, solltest nun oben auf der Seite eine Bestätigungsmitteilung erscheinen, die heisst "1 statement processed."
+
+-----------------------------------------
+2) MODULE FILES ANPASSEN
+-----------------------------------------
+Für jene, die die Änderungen von Hand machen müssen gebe ich eine Liste aller Dateien an, wo Änderungen nötig sind: 
+
+Wenn du möchtest, kannst du die Namen "Group A", "Group B", "Group C" & "Group D" ersetzen:
+Wenn du dies nicht tust, werden die vier Preisgruppen "Group A", "Group B", "Group C" & "Group D" genannt. Wenn diese Namen für dich passen, kannst du diesen Schritt überspringen. Wenn du aber die Gruppen umbenennen willst, mußt du alle Einträge in 2 Dateien ändern, wo die Benennung auftritt. Um eigene Bezeichnungen zu verwenden, ersetze also alle Gruppenpreisnamen in den betreffenden Dateien, die da wären: 
+    * /includes/extra_datafiles/group_price_per_item.php
+    * /admin/includes/extra_datafiles/group_price_per_item.php
+
+Folgende Einträge müssen geändert werden:
+
+  define('GROUP_PRICE_PER_ITEM1', 'Gruppe A');
+  define('GROUP_PRICE_PER_ITEM2', 'Gruppe B');
+  define('GROUP_PRICE_PER_ITEM3', 'Gruppe C');
+  define('GROUP_PRICE_PER_ITEM4', 'Gruppe D');
+
+WENN DU ÄNDERUNGEN MACHST, VERSICHERE DICH DASS DU DIE ÄNDERUNGEN IN **BEIDEN** DATEIEN VORGENOMMEN HAST !!!
+
+-----------------------------------------
+3) HERAUFLADEN UND ÜBERSCHREIBEN DER EXISTIERENDEN DATEIEN
+-----------------------------------------
+!!! BEVOR DU DIESEN SCHRITT MACHST, VERSICHERE DICH, DASS DU EIN BACKUP VON DEINEM SHOP UND DER DATENBANK ERSTELLT HAST !!!
+
+Lade alle Dateien mit einem FTP-Programm deiner Wahl in dein ZenCart-Shop-Verzeichnis hoch. Diverse Dateien im Verzeichnis müssen dabei überschrieben werden. 
+
+Wenn du irgendwelche andere Module installiert hast, für die du bereits Änderungen an diesen Dateien vornehmen musstest, kannst du ein Programm wie WinMerge benutzen um die Dateien zu vergleichen und anzupassen bevor du die neuen Dateien hochlädst – sonst würden alle zuvor gemachten Anpassungen verloren gehen.
+
+Falls du später einmal nicht mehr das Group Pricing Per Item Modul verwenden möchtest, stele einfach die überschriebenen Dateien wieder her, indem du dein Backup benutzt – du hast doch ein Backup erstellt, oder? 
+
+-----------------------------------------
+4) IM ADMIN-PANEL PREISGRUPPEN ERSTELLEN
+-----------------------------------------
+Gehe schliesslich im Admin Panel bei den Kunden zu den Gruppenpreisen und erstelle die gewünschten Gruppen, indem du die Gruppenpreisnamen verwendest, die du in Schritt 2 erstellt hast. Du mußt die Gruppen genau so benennen, wie du sie in der Datei benannt hast (beispielsweise "Gruppe A", "Gruppe B", usw). Das Feld "Preisnachlass in Prozent" läßt du leer.
+
+Wenn du einen der Namen, die du in Schritt 2 erstellt hast, benutzt - unter der Zeile "Preisnachlass in Prozent" sollte jetzt stehen "Pro Artikel". Sobald du ein Produkt in deinem Shop bearbeitest, wirst du sehen, daß du nun für jede erstellte Preisgruppe zwei unterschiedliche Preisfelder hast.
+
+MERKE: du kannst noch immer “automatische” Preisgruppen bilden, die über eine Ermässigung von x% verfügen, wie dies in der Standard-Installation von ZenCart vorgesehen ist. Um eine solche Gruppe zu erstellen, benutze dazu einfach einen Namen, der NICHT im Schritt 2 dieser Anleitung verwendet wurde. Wenn du einen anderen Namen benutzt, kannst du einen Rabatt in Prozenten vorsehen, der genau wie der originale Gruppenpreismanager von ZenCart funktioniert.
+
+
+-----------------------------------------
+5) EINEM KUNDEN EINE PREISGRUPPE ZUTEILEN!
+-----------------------------------------
+Kunden sehen normalerweise die Standardpreise. Um ihnen ihren spezifischen Gruppenpreis anzeigen zu lassen, muß das Programm wissen, zu welcher Gruppe ein Kunde gehört. Gehe dazu ins Admin Panel zu Kunden ->Kunden. Wähle den betreffenden Kunden aus der Liste aus, und klicke auf "bearbeiten". 
+
+Ganz unten auf der Kundenkonto-Detailseite erscheint unter "Zusatz" das Preisermässigunsgruppen-Menu. Wähle nun die passende Preisgruppe für diesen Kunden oder belasse den Eintrag auf "--kein--" um Standardpreise anzuzeigen. Diese Gruppe bestimmt nun, welche Preise der Kunde im ganzen Shop angezeigt bekommt..
+
+
+-----------------------------------------
+DEINSTALLIEREN
+-----------------------------------------
+Wenn du dieses Modul nicht mehr benutzen möchtest, kannst du es ganz einfach wieder entfernen – vorausgesetzt, du hast noch dein ursprüngliches BACKUP!:
+
+1) lade die Originaldatei von deinem Backup hoch und lösche die group_price_per_item.php Dateien in den Verzeichnissen /includes/extra_datafiles und /admin/includes/extra_datafiles.
+2) verwende den Datenbank-Entfernungspatch in "group_pricing_remove.sql"
+
+
+-----------------------------------------
+HAST DU DIESES MODUL VERÄNDERT?
+-----------------------------------------
+wenn du dieses Modul verändert oder verbessert hast, bitte informiere die Zen Cart community unter: http://www.zen-cart.com/forum.
+
+
+-----------------------------------------
+DANK
+-----------------------------------------
+wenn du dich für dieses Modul bedanken möchtest, unterstütze die ZenCart-Community mit einer Spende via:  paypal@zen-cart.com
+
+Besten Dank und viel Spass!
+
+
