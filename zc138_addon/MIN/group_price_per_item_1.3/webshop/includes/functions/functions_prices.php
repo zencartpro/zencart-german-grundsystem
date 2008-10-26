@@ -7,6 +7,7 @@
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
  * @version $Id: functions_prices.php 6905 2007-09-01 20:05:11Z ajeh $
+ * @modified for group price per item with vataddon 2008-10-26 19:02:00Z webchills $
  */
 
 ////
@@ -313,7 +314,7 @@
       }
     }
 
-    return $final_display_price . $free_tag . $call_tag;
+    return $final_display_price . vatAddOn($product_check) . $free_tag . $call_tag; 
   }
 
 ////
