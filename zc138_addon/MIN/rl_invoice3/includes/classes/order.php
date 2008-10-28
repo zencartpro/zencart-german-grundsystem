@@ -998,7 +998,7 @@ class order extends base {
     $zco_notifier->notify('NOTIFY_ORDER_INVOICE_CONTENT_READY_TO_SEND', array('zf_insert_id' => $zf_insert_id, 'text_email' => $email_order, 'html_email' => $html_msg));
 
     if(RL_INVOICE3_SEND_PDF=='1'){
-        if(!(0==$this->total_cost && RL_INVOICE3_NOT_NULL_INVOICE==0)){     
+        if(!(0==$this->info['total'] && RL_INVOICE3_NOT_NULL_INVOICE==0)){     
             require_once(DIR_WS_INCLUDES . 'classes/class.rl_invoice3.php');
             
             $pdfT = new rl_invoice3($zf_insert_id, $paper['orientation'], $paper['unit'], $paper['format']);

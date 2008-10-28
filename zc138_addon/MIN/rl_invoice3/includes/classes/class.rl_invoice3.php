@@ -124,7 +124,7 @@ class rl_invoice3 extends fpdi{
                 $sqlA[3] = "INSERT INTO " . TABLE_CONFIGURATION_LANGUAGE ." (configuration_key, configuration_language_id, configuration_title, configuration_description) VALUES 
                                 ('RL_INVOICE3_PAPER', 43, 'papiergroesse|einheit|orientierung', '1. papiergroesse = A3|A4|A5|Letter|Legal <br />2. einheit: pt|mm|cm|inch <br />3. orientierung: L|P<br />'),
                                 ('RL_INVOICE3_MARGIN', 43, 'Rändereinstellungen', 'Format: oben|rechts|unten|links<br />(Hinweis: 1inch = 72pt / 2.54cm; 1cm = 28,35pt)<br />Standard: 30|30|30|60<br />'),
-                                ('RL_INVOICE3_TABLE_TEMPLATE', 43, 'Template für Artikel- und Summentabelle', 'Template für Artikel- und Summentabelle<br />Definition ist in rl_invoice_def.php<br />Standard: 30|30|30|60<br />Standard: col_templ_1|options_templ_1|total_col_1|total_opt_1<br />'),
+                                ('RL_INVOICE3_TABLE_TEMPLATE', 43, 'Template für Artikel- und Summentabelle', 'Template für Artikel- und Summentabelle<br />Definition ist in rl_invoice3_def.php<br />Standard: 30|30|30|60<br />Standard: col_templ_1|options_templ_1|total_col_1|total_opt_1<br />'),
                                 ('RL_INVOICE3_ADDRESS1_POS', 43, 'XY-postion der adresse1', 'XY-postion der adresse1; es ist das delta zu den raendern einzugeben<br />Standard: 0|30'),
                                 ('RL_INVOICE3_ADDRESS_WIDTH', 43, 'breite von adressfeld1|2', '<br />standard: 80|60'),
                                 ('RL_INVOICE3_DELTA', 43, 'deltas', 'abstand adresse::rechnungsnummer | abstand rechnungsnummer:produktliste<br />Standard: 20|20<br />'),
@@ -153,7 +153,7 @@ class rl_invoice3 extends fpdi{
                         ('pdf background file', 'RL_INVOICE3_PDF_BACKGROUND', '" . DIR_FS_CATALOG . DIR_WS_INCLUDES . "pdf/rl_invoice3_bg.pdf', 'pdf background file: " . DIR_FS_CATALOG . DIR_WS_INCLUDES . "pdf/rl_invoice3_bg.pdf<br />', $group, 60, NULL),
                         ('border Address1|2', 'RL_INVOICE3_ADDRESS_BORDER', 'LTRB|LTRB', 'border Address1|2: LTRB (Left Top Right Bottom)<br />', $group, 70, NULL),
                         ('XY-position of address2 position', 'RL_INVOICE3_ADDRESS2_POS', '90|36', 'XY-position of address; its the margin delta <br />Default: 80|30', $group, 80, NULL),
-                        ('Templates for products table & total table', 'RL_INVOICE3_TABLE_TEMPLATE', 'col_templ_1|options_templ_1|total_col_1|total_opt_1', 'templates for products_table & total_table; this is defined in rl_invoice_def.php; see also: docs/rl_invoice/readme_ezpdf.pdf<br />', $group, 90, NULL),
+                        ('Templates for products table & total table', 'RL_INVOICE3_TABLE_TEMPLATE', 'col_templ_1|options_templ_1|total_col_1|total_opt_1', 'templates for products_table & total_table; this is defined in rl_invoice3_def.php; see also: docs/rl_invoice/readme_ezpdf.pdf<br />', $group, 90, NULL),
                         ('City ', 'RL_INVOICE3_CITY', 'Wien, am @DATE@', 'City, 27.9.2004', $group, 100, NULL),
                         ('prefix for OrderNo', 'RL_INVOICE3_ORDER_ID_PREFIX', ': FsF/2008/', 'prefix for OrderNo<br />', $group, 110, NULL),
                         ('fonts for invoice|products', 'RL_INVOICE3_FONTS', 'dejavusanscondensed|freemono', 'fonts for <br />1. invoice in general <br >2. products & total-table<br />', $group, 120, NULL),
