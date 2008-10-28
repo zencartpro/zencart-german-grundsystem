@@ -27,7 +27,7 @@ REPLACE INTO configuration_group (configuration_group_id, language_id, configura
 (13, 43, 'Attributeinstellungen', 'Konfiguration für die Einstellungen der Artikeloptionen', 13, 1),
 (14, 43, 'GZip Komprimierung', 'Konfiguration der GZip Komprimierung', 14, 1),
 (15, 43, 'Sitzungen/Sessions', 'Konfiguration der Sitzungsoptionen', 15, 1),
-(16, 43, 'Gutscheine & Aktionskupons', 'Konfiguration der Gutscheine und Aktionskupons', 16, 1),
+(16, 43, 'Gutscheine & Aktionskupons', 'Konfiguration der Gutsycheine und Aktionskupons', 16, 1),
 (17, 43, 'Kreditkarten', 'Konfiguration der zu verwendeten Kreditkarten', 17, 1),
 (18, 43, 'Artikeldetails', 'Konfiguration für die Anzeige von Artikeldetails', 18, 1),
 (19, 43, 'Layouteinstellungen', 'Layouteinstellungen', 19, 1),
@@ -769,7 +769,6 @@ REPLACE INTO product_type_layout_language (configuration_title, configuration_ke
 ('PRODUCT FREE SHIPPING Attribut Gewicht Präfix - Standardeinstellung', 'DEFAULT_PRODUCT_FREE_SHIPPING_PRODUCTS_ATTRIBUTES_WEIGHT_PREFIX', 43, 'PRODUCT FREE SHIPPING Attribut Gewicht Präfix<br />Standard Gewicht Präfix<br />Leer, + oder -', '2008-05-20 00:00:00', '2008-05-20 00:00:00'),
 ('Anzahl der Artikelbewertungen anzeigen', 'SHOW_DOCUMENT_GENERAL_INFO_REVIEWS_COUNT', 43, 'Soll die Anzehl der Artikelbewertungen auf der Produktinfoseite angezeigt werden?<br/> 0= AUS 1= AN', '2008-05-20 00:00:00', '2008-05-20 00:00:00');
 
-REPLACE INTO product_type_layout_language (configuration_title , configuration_key , languages_id)
-VALUES ('LANGUAGE_VERSION 20080520', 'LANGUAGE_VERSION', '43');
-
+REPLACE INTO product_type_layout_language (configuration_title , configuration_key , languages_id, configuration_description)
+VALUES ('LANGUAGE_VERSION 20081028', 'LANGUAGE_VERSION', '43', 'Deutsch');
 #####  END OF UPGRADE SCRIPT
