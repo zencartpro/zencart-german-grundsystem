@@ -1404,6 +1404,7 @@ $qty = $this->adjust_quantity($qty, $products_id, 'shopping_cart');
 
     // reset($this->contents); // breaks cart
     $check_contents = $this->contents;
+    reset($check_contents);
     while (list($products_id, ) = each($check_contents)) {
       $test_id = zen_get_prid($products_id);
       if ($test_id == $chk_products_id) {
@@ -1438,6 +1439,7 @@ $qty = $this->adjust_quantity($qty, $products_id, 'shopping_cart');
 
     // reset($this->contents); // breaks cart
     $check_contents = $this->contents;
+    reset($check_contents);
     while (list($products_id, ) = each($check_contents)) {
       $test_id = zen_get_prid($products_id);
       if ($test_id == $chk_products_id) {
