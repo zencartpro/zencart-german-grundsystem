@@ -25,7 +25,7 @@ $tplidx = $pdf->importPage(1);
 $pdf->addPage();
 $pdf->useTemplate($tplidx, 0, 0);
 
-$fonts = array('dejavusansbi',  'dejavusansb',  'dejavusanscondensedbi',  'dejavusanscondensedb',  'dejavusanscondensedi',  
+$fonts = array( 'dejavusansb',  'dejavusanscondensedbi',  'dejavusanscondensedb',  'dejavusanscondensedi',  
                 'dejavusanscondensed',  'dejavusans-extralight',  'dejavusansi',  'dejavusansmonobi',  'dejavusansmonob',  'dejavusansmonoi', 
                 'dejavusansmono',  'dejavusans',  'dejavuserifbi',  'dejavuserifb',  'dejavuserifcondensedbi',  'dejavuserifcondensedb',  
                 'dejavuserifcondensedi',  'dejavuserifcondensed',  'dejavuserifi',  'dejavuserif',  'freemonobi',  'freemonob',  'freemonoi',  

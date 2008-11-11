@@ -693,6 +693,7 @@ function Cell($w, $h=0, $txt='', $border=0, $ln=0, $align='', $fill=false, $link
 
 function MultiCell($w, $h, $txt, $border=0, $align='J', $fill=false)
 {
+    $h1 = $this->GetY();
 	//Output text with automatic or explicit line breaks
 	$cw=&$this->CurrentFont['cw'];
 	if($w==0)
@@ -757,6 +758,7 @@ function MultiCell($w, $h, $txt, $border=0, $align='J', $fill=false)
 			$ns++;
 		}
 		$l+=$cw[$c];
+		$l+=$cw[ord($c)];
 		if($l>$wmax)
 		{
 			//Automatic line break
@@ -779,6 +781,7 @@ function MultiCell($w, $h, $txt, $border=0, $align='J', $fill=false)
 					$this->_out(sprintf('%.3F Tw',$this->ws*$this->k));
 				}
 				$this->Cell($w,$h,substr($s,$j,$sep-$j),$b,2,$align,$fill);
+                #$this->Cell($w,$h,'782'.substr($s,$j,1),$b,2,$align,$fill);
 				$i=$sep+1;
 			}
 			$sep=-1;
@@ -801,7 +804,10 @@ function MultiCell($w, $h, $txt, $border=0, $align='J', $fill=false)
 	if($border && strpos($border,'B')!==false)
 		$b.='B';
 	$this->Cell($w,$h,substr($s,$j,$i-$j),$b,2,$align,$fill);
+	#$this->Cell($w,$h,'805'.substr($s,$j,1),$b,2,$align,$fill);
 	$this->x=$this->lMargin;
+    $h2 = $this->GetY();
+    return array($h1, $h2);    
 }
 
 function Write($h, $txt, $link='')

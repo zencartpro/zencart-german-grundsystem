@@ -4,7 +4,7 @@
  * @copyright Copyright 2003-2007 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: rl_invoice3.php 15 2007-06-05 09:11:58Z rainer langheiter $
+ * @version $Id: class.rl_invoice3.php 38 2008-11-11 20:09:41Z hugo13 $
  * 
  * version: 3.0.0 // 20081006
  * 
@@ -69,9 +69,14 @@ class rl_invoice3 extends fpdi{
         $this->pdf->AddFont($this->fonts2['table']);
         $this -> pdfPath = $this -> getDefault(RL_INVOICE3_PDF_PATH, array('path' => DIR_FS_CATALOG . 'pdf/', 'save' => '1'));
         $this -> delta = $this -> getDefault(RL_INVOICE3_DELTA, array('addrInvoice' => '20', 'invoiceProducts' => '30'));
+        
         $this -> debug = $this -> getDefault(RL_INVOICE3_DEBUG, array('debug' => 0));
+        $this -> lineHeight = $this -> getDefault(RL_INVOICE3_LINE_HEIGT, '1.25');
+        $this -> lineThick  = $this -> getDefault(RL_INVOICE3_LINE_THICK , '0.5');
+        
         $this -> fontsOk = $this -> checkFonts();
         $this->bgPDF = $this -> getDefault(RL_INVOICE3_PDF_BACKGROUND, array('file' => DIR_FS_CATALOG . DIR_WS_INCLUDES . 'pdf/rl_invoice3_bg.pdf')); ;
+        
         $realPW = 999;
         include(DIR_FS_CATALOG . DIR_WS_INCLUDES . 'pdf/rl_invoice3_def.php');
         $this->colsP = $colsP;
@@ -103,12 +108,12 @@ class rl_invoice3 extends fpdi{
     
     function checkInstall(){
         global $db;
-        if(!defined('RL_INVOICE3_NOT_NULL_INVOICE')){
+        if(!defined('RL_INVOICE3_LINE_HEIGT')){
             if(rl_invoice3::isMultiLingual()){
                 $multi = true;
             } else {
                 $multi = false;
-            }
+            } 
             $sqlA = array(0=>1,1=>2,2=>2);  
             $sql = "DELETE FROM " . TABLE_CONFIGURATION_GROUP ." WHERE configuration_group_title LIKE 'PDF Invoice3' OR configuration_group_title LIKE 'PDF Rechnung3'";
             $db->Execute($sql);   
@@ -138,6 +143,8 @@ class rl_invoice3 extends fpdi{
                                 ('RL_INVOICE3_PDF_PATH', 43, 'Speicherort und -Name der PDF-Datei', '1. Wo sollen PDF-Dateien gespeichert werden (!! muss beschreibbar sein !!)?<br />2. speichern ja|nein (1|0)<br />Standard: " . DIR_FS_CATALOG . DIR_WS_INCLUDES . "pdf/|1<br />'),
                                 ('RL_INVOICE3_SEND_PDF', 43, 'Rechnung bei Bestellung', 'soll Rechnung bei Bestellung gesendet werden'),
                                 ('RL_INVOICE3_NOT_NULL_INVOICE', 43, 'Rechnung bei Gratisprodukt', 'soll Rechnung bei Gratisprodukt dem Mail hinzugefügt werden'),
+                                ('RL_INVOICE3_LINE_HEIGT', 43, 'Zeilenhöhe', 'soll Rechnung bei Gratisprodukt dem Mail hinzugefügt werden'),
+                                ('RL_INVOICE3_LINE_THICK', 43, 'dicke der TotalStriche', 'wie dick soll der Strich bei der Gesamtsumme sein'),
                                 ('RL_INVOICE3_SEND_ATTACH', 43, 'Anhänge', 'welche PDFs sollen noch angehängt werden; bei mehreren dateien | (pipe) als trenner verwenden)')
                                 ;";
             }
@@ -161,6 +168,8 @@ class rl_invoice3 extends fpdi{
                         ('filename and path to store the pdf-file', 'RL_INVOICE3_PDF_PATH', '" . DIR_FS_CATALOG . "pdf/|1', '1. path to store the pdf-file (!!must be writeable !!)<br />Default: ../pdf/|1<br />', $group, 130, NULL),
                         ('RL_INVOICE3_SEND_PDF', 'RL_INVOICE3_SEND_PDF', '1', 'RL_INVOICE3_SEND_PDF', $group, 130, NULL),
                         ('Accounting for free product', 'RL_INVOICE3_NOT_NULL_INVOICE', '0', 'Accounting for free product: send e-mail invoice', $group, 130, NULL),
+                        ('Line Height', 'RL_INVOICE3_LINE_HEIGT', '1.25', 'Line Height', $group, 130, NULL),
+                        ('Line Total Thickness', 'RL_INVOICE3_LINE_THICK', '0.5', 'thickness off total-line', $group, 130, NULL),
                         ('additional attachements', 'RL_INVOICE3_SEND_ATTACH', 'agb.pdf|widerruf.pdf', 'RL_INVOICE3_SEND_PDF', $group, 130, NULL)
                         ;";
             foreach ($sqlA as $key => $value) {
@@ -193,6 +202,7 @@ class rl_invoice3 extends fpdi{
     function Row($data)
     {
         // Calculate the height of the row
+        $y1 = $this->pdf->getY();
         $nb = 0;
         for($i = 0;$i < count($data);$i++)
         $nb = max($nb, $this -> NbLines($this -> widths[$i], $data[$i]));
@@ -208,12 +218,22 @@ class rl_invoice3 extends fpdi{
             $x = $this->pdf->GetX();
             $y = $this->pdf->GetY();
             // Draw the border
-            $this->pdf->Rect($x, $y, $w, $h);
+            ###$this->pdf->Rect($x, $y, $w, $h);
+            $recArr[] = array('x'=>$x, 'y'=>$y, 'w'=>$w);
             // Print the text         
-            $this->pdf->MultiCell($w, 3, $this->mr($data[$i]), 0, $a);
+            $mc = $this->pdf->MultiCell($w, $this->pdf->FontSize*$this->lineHeight[0], $this->mr($data[$i]), 0, $a);
+            $h1[] = $mc[0];
+            $h2[] = $mc[1];
+            #$this->pdf->MultiCell($w, 3, $this->mr($data[$i]), 'LR', $a);
+            
             // Put the position to the right of the cell
             $this->pdf->SetXY($x + $w, $y);
             }
+        $y2 = $this->pdf->getY();
+        $h = max($h2) - min($h1);
+        foreach ($recArr as $key => $v) {
+            $this->pdf->Rect($v['x'], $v['y'], $v['w'], $h);
+        }
         // Go to the next line
         $this->pdf->Ln($h);
         }
@@ -293,13 +313,20 @@ class rl_invoice3 extends fpdi{
         return $ok;
         }
     function getDefault($var = 'NIX', $def, $exp = '|'){
+        $def = (array) $def;
         $tmp = explode($exp, trim($var));
+        if(is_array($def)){
         $i = 0;
         foreach($def as $key => $val){
             if(isset($tmp[$i]) && $tmp[$i] != '' && $tmp[$i] != '#'){
                 $def[$key] = $tmp[$i];
                 }
             $i++;
+                }
+            } 
+            $c = count($def);
+            if($count = 1){
+                #$def = $def[0];
             }
         return $def;
         }
@@ -462,22 +489,23 @@ class rl_invoice3 extends fpdi{
         $i = 0;
         $m = 1;
         
+        $lineWidth = $this->lineThick[0];
         foreach ($totalData as $key => $value){
             $y = $i % 2;
             $x = round($this->pdf->GetStringWidth($value['title']), 1);
             $m = max($m, $x);
             $leftL = $leftR - 20 - $m;
             if($value['class']=='ot_total'){
-                $this->pdf->SetLineWidth(1);
+                $this->pdf->SetLineWidth($lineWidth );
                 $this->pdf->line($leftL, $this->pdf->GetY(), $leftR, $this->pdf->GetY());
-                $this->pdf->setY($this->pdf->GetY() + 0.8);
+                $this->pdf->setY($this->pdf->GetY() + $lineWidth );
             }
             $this->pdf->Cell(160.5, $this -> t1Opt['fontSize'] / 2, $value['title'] , '0', 0 , 'R', $y);
             $this->pdf->Cell(20, $this -> t1Opt['fontSize'] / 2, $value['text'] , '0', 0 , 'R', $y);
             $this->pdf->SetXY($this -> margin['left'], $this->pdf->GetY() + $this -> t1Opt['fontSize'] / 2);
             $i++;
             }
-        $this->pdf->SetLineWidth(1.3);
+        $this->pdf->SetLineWidth($lineWidth);
         $this->pdf->line($leftL, $this->pdf->GetY(), $leftR, $this->pdf->GetY());
         }
     
@@ -505,14 +533,16 @@ class rl_invoice3 extends fpdi{
         return $this->pdfPath['path'] . $pdfName;
     }
     
-    function getPDFAttachments(){
+    function getPDFAttachments($param = 'ALL'){
         $attachArray = array();
         $attachArray[] = array('file'=>$this->getPDFFileName(), 'mime_type'=>'pdf');      
-        $attachements = explode('|', RL_INVOICE3_SEND_ATTACH);
-        foreach ($attachements as $value) {
-            $file = DIR_FS_CATALOG . DIR_WS_INCLUDES . 'pdf/' . $value;
-            if(file_exists($file)){
-                $attachArray[] = array('file'=>$file, 'mime_type'=>'pdf');
+        if($param=='ALL'){
+            $attachements = explode('|', RL_INVOICE3_SEND_ATTACH);
+            foreach ($attachements as $value) {
+                $file = DIR_FS_CATALOG . DIR_WS_INCLUDES . 'pdf/' . $value;
+                if(file_exists($file)){
+                    $attachArray[] = array('file'=>$file, 'mime_type'=>'pdf');
+                }
             }
         }
         return $attachArray;
