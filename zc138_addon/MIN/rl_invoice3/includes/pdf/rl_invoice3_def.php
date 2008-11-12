@@ -56,9 +56,9 @@ $colsP['templ3'] = array(
 $optionsP['options_templ_1'] = array("fontSize" => 8, 'showHeadings' => 1, 'shaded' => 1, 'xPos' => 'left', 'xOrientation' => 'right', 'width' => $realPW-35,
      'cols' => array(
          'qty' => array("justification" => "L", "width" => 15),
-         'tax' => array("justification" => "R", "width" => 10),
+         'tax' => array("justification" => "R", "width" => 15),
          'model' => array("justification" => "L", "width" => 25),
-         'name' => array('justification' => 'L', "width" => 60),
+         'name' => array('justification' => 'L', "width" => 55),
          'singleI' => array('justification' => 'R', "width" => 25),
          'singleE' => array('justification' => 'R', "width" => 25),
          'extraI' => array('justification' => 'R', "width" => 20),

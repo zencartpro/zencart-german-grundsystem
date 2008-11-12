@@ -52,3 +52,6 @@ define('TEXT_INFO_ATTRIBUTE_FREE', '&nbsp;-&nbsp;FREI');
 define('LIEFERADRESSE', 'Lieferadresse');
 define('RECHNUNGSADRESSE', 'Rechnungsadresse');
 
+define('RL_INVOICE3_INVLINK', 'PDF-Rechnung');
+define('RL_INVOICE3_INVLINK_TEXT', 'Herunterladen:');
+

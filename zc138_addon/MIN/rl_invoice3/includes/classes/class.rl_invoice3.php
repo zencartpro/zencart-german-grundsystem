@@ -397,12 +397,12 @@ class rl_invoice3 extends fpdi{
                     $data[$i]['qty_name_model'] .= "\n\t" . $val2['option'] . ': ' . $val2['value'];
                     }
                 }
-            $data[$i]['singleE'] = $this->mr(html_entity_decode($this -> currencies -> format($val['price'], true, $this -> order -> info['currency'], $this -> order -> info['currency_value'])));
-            $data[$i]['singleI'] = $this->mr(html_entity_decode($this -> currencies -> format($val['price'] + $val['price'] * $val['tax'] / 100, true, $this -> order -> info['currency'], $this -> order -> info['currency_value'])));
+            $data[$i]['singleE'] = $this->mr(html_entity_decode($this -> currencies -> format($val['final_price'], true, $this -> order -> info['currency'], $this -> order -> info['currency_value'])));
+            $data[$i]['singleI'] = $this->mr(html_entity_decode($this -> currencies -> format($val['final_price'] + $val['final_price'] * $val['tax'] / 100, true, $this -> order -> info['currency'], $this -> order -> info['currency_value'])));
             $data[$i]['extraE'] = $this->mr(html_entity_decode($this -> currencies -> format($val['onetime_charges'], true, $this -> order -> info['currency'], $this -> order -> info['currency_value'])));
             $data[$i]['extraI'] = $this->mr(html_entity_decode($this -> currencies -> format($val['onetime_charges'] + $val['tax'] * $val['onetime_charges'] / 100, true, $this -> order -> info['currency'], $this -> order -> info['currency_value'])));
-            $data[$i]['sumE'] = $this->mr(html_entity_decode($this -> currencies -> format($val['qty'] * ($val['price']) + $val['onetime_charges'], true, $this -> order -> info['currency'], $this -> order -> info['currency_value'])));
-            $data[$i]['sumI'] = $this->mr(html_entity_decode($this -> currencies -> format($val['qty'] * ($val['price'] + $val['price'] * $val['tax'] / 100) + ($val['onetime_charges'] + $val['tax'] * $val['onetime_charges'] / 100), true, $this -> order -> info['currency'], $this -> order -> info['currency_value'])));
+            $data[$i]['sumE'] = $this->mr(html_entity_decode($this -> currencies -> format($val['qty'] * ($val['final_price']) + $val['onetime_charges'], true, $this -> order -> info['currency'], $this -> order -> info['currency_value'])));
+            $data[$i]['sumI'] = $this->mr(html_entity_decode($this -> currencies -> format($val['qty'] * ($val['final_price'] + $val['final_price'] * $val['tax'] / 100) + ($val['onetime_charges'] + $val['tax'] * $val['onetime_charges'] / 100), true, $this -> order -> info['currency'], $this -> order -> info['currency_value'])));
             $i++;
             }
             #rldp($data, 'DATA');
@@ -534,14 +534,15 @@ class rl_invoice3 extends fpdi{
     }
     
     function getPDFAttachments($param = 'ALL'){
+        
         $attachArray = array();
-        $attachArray[] = array('file'=>$this->getPDFFileName(), 'mime_type'=>'pdf');      
+        $attachArray[] = array('file'=>$this->getPDFFileName(), 'mime_type'=>'pdf', 'name'=>RL_INVOICE3_INVLINK);      
         if($param=='ALL'){
             $attachements = explode('|', RL_INVOICE3_SEND_ATTACH);
             foreach ($attachements as $value) {
                 $file = DIR_FS_CATALOG . DIR_WS_INCLUDES . 'pdf/' . $value;
                 if(file_exists($file)){
-                    $attachArray[] = array('file'=>$file, 'mime_type'=>'pdf');
+                    $attachArray[] = array('file'=>$file, 'mime_type'=>'pdf', 'name'=>$value);
                 }
             }
         }
