@@ -3,7 +3,7 @@
  * @copyright Copyright 2003-2007 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: rl_invoice2.php 353 2008-09-11 11:49:20Z hugo13 $
+ * @version $Id$
  * 
  * @author rainer AT langheiter DOT com // http://www.filosofisch.com // http://edv.langheiter.com
  */
