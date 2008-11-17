@@ -1,0 +1,16 @@
+Installation:
+
+1) Admin > Tools > SQL Patches
+Im Ordner SQL erst Inhalt von banktransfer_blz_split1.sql ins Eingabefeld kopieren und absenden.
+Nach Erfolgsmeldung dasselbe mit der banktransfer_blz_split2.sql machen
+
+2) Dateien im Ordner zencart in den Shop einspielen:
+Vorsicht:
+Folgende Dateien werden überschrieben:
+admin/includes/languages/german/orders.php
+admin/includes/languages/english/orders.php
+Besser ist, die bestehenden Dateien mit den zusätzlichen Sprachdefinitionen (begin germanbanktransfer...) zu ergänzen
+
+3) Im Admin unter Module > Zahlungsmodule das Modul Lastschrift installieren, dadurch wird die benötigte neue Tabelle banktransfer angelegt
+
+4) Bei den Einstellungen umstellen auf BLZ Suche in der Datenbank
