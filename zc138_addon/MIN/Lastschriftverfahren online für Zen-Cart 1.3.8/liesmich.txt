@@ -1,16 +1,109 @@
-Installation:
+===== Lastschriftverfahren online 2.0 für Zen-Cart 1.3.8 ===
 
-1) Admin > Tools > SQL Patches
-Im Ordner SQL erst Inhalt von banktransfer_blz_split1.sql ins Eingabefeld kopieren und absenden.
-Nach Erfolgsmeldung dasselbe mit der banktransfer_blz_split2.sql machen
 
-2) Dateien im Ordner zencart in den Shop einspielen:
+Update der Version 1.0 des Moduls Lastschrift (c) cyberflohr 2006 
+Modifikationen November 2008 von webchills und hugo13
+
+
+
+===== Was macht dieses Modul? ===
+
+Dieses Modul ermöglicht die Zahlungsart Lastschrift (Bankeinzug).
+Kunden können im Bestellvorgang ihre Bankdaten eintragen und erteilen online eine Einzugsermächtigung.
+WICHTIG: NUR FÜR GIROKONTEN IN DEUTSCHLAND!!!!
+Die aktuellen Bankleitzahlen mit Namen der Banken werden in der Datenbank hinterlegt.
+Alternativ kann man auch eine csv Datei am Server nutzen.
+Falls sich Bankleitzahlen ändern ist die Aktualisierung der Daten allerdings in der Datenbank wesentlich einfacher, daher wird die Nutzung der Datenbankabfrage empfohlen!
+Wenn der Kunde Bankleitzahl und Kontonummer eingibt wird überprüft, ob es diese Bankleitzahl gibt und wenn ja wird der Name der Bank ausgelesen.
+Der Kunde muss also nur Bankleitzahl und Kontonummer eingeben.
+Das Modul führt eine Plausibilitätsprüfung zwischen BLZ und Kontonummer durch. Es kann nicht garantieren, dass das angegebene Konto tatsächlich existiert, dass dieses Konto dem angegebenen Kontoinhaber zugeordnet ist und ob dieses Konto ausreichend Deckung aufweist.
+Die häufigsten Fehler (Zahlendreher, Verständnisprobleme bei der Übermittlung der Bankverbindung oder falschen Kundenangaben) können auf diese Art relativ zuverlässig vermieden werden.
+Die Bankdaten werden nicht per Email übermittelt, sondern sind ähnlich wie beim Kreditkartenmodul im Admin bei der Bestellung ersichtlich.
+Optional kann man dem Kunden auch anbieten, seine Bankdaten nicht online einzutragen, sondern sich eine HTML Seite auszudrucken und dann ein Fax zu senden.
+
+
+===== Unterstützte Versionen ===
+
+nur für Zen-Cart 1.3.8 deutsch!
+
+
+================= WICHTIG =====================
+Vor dem Einbau dieser Änderungen:
+BACKUP von Shop und Datenbank machen! 
+Keine Haftung, Verwendung auf eigene Gefahr!
+BACKUP gemacht? Ok, dann weiterlesen...
+=================================================
+
+
+===== INSTALLATION ===
+
+1)
+Importieren der deutschen Bankleitzahlen
+Im Ordner SQL die install_banktransfer_blz.sql mit einem Texteditor öffnen
+Inhalt in Admin > Tools > SQL Patches ins Eingabefeld kopieren und absenden. Dadurch wird die Tabelle banktransfer_blz angelegt.
+Nun in phpMyAdmin in diese Tabelle wechseln und auf Importieren. Hier die cpp_backend_blz.csv importieren (Einstellen: Dateityp csv, Format utf-8).
+
+2) 
+Dateien im Ordner zencart in den Shop einspielen:
 Vorsicht:
 Folgende Dateien werden überschrieben:
 admin/includes/languages/german/orders.php
 admin/includes/languages/english/orders.php
-Besser ist, die bestehenden Dateien mit den zusätzlichen Sprachdefinitionen (begin germanbanktransfer...) zu ergänzen
+admin/orders.php
+Besser ist, die bestehenden Sprachdateien mit den zusätzlichen Sprachdefinitionen (gekennzeichnet mit begin germanbanktransfer...) zu ergänzen.
+Sollte die admin/orders.php bereits einmal geändert worden sein, nicht einfach überschreiben, sondern die bestehende orders.php ergänzen.
+In ca. Zeile 442 wird ein echo displayGermanBanktransfer(); eingefügt
 
-3) Im Admin unter Module > Zahlungsmodule das Modul Lastschrift installieren, dadurch wird die benötigte neue Tabelle banktransfer angelegt
+Hinweis:
+Die Datei includes/data/blz.csv ist nicht nötig, wenn im Schritt 1 die Bankleitzahlen in die Datenbank importiert wurden.
+Wenn man die datenbankbasierte Bankleitzahlenabfrage einsetzen will (empfohlen!), kann man sich das Hochladen dieser Datei sparen.
 
-4) Bei den Einstellungen umstellen auf BLZ Suche in der Datenbank
+3)
+Im Admin unter Module > Zahlungsmodule das Modul Lastschriftverfahren installieren, dadurch wird die benötigte neue Tabelle banktransfer angelegt.
+Voreingestellt ist, dass die Abfrage der Bankleitzahlen aus der Datenbank verwendet werden soll.
+Nach Aktivierung des Moduls noch die Sortierreihenfolge einstellen und weitere mögliche Einstellungen vornehmen.
+Da nur Bankkonten in Deutschland unterstützt werden, ist es ratsam eine Zahlungszone für Deutschland zu konfigurieren und in den Moduleinstellungen die Zahlungszone auf Deutschland zu beschränken,
+damit die Zahlungsart Kunden aus anderen Ländern nicht angeboten wird.
+Wer die Faxvariante nutzen will, muss die mitgelieferte fax.html entsprechend anpassen und dann im Admin "Daten per Fax erlauben" auf true stellen.
+
+
+===== Derzeit mit diesem Modul nicht möglich ===
+- Speicherung der Bankdaten zusätzlich beim Kunden, so dass bei späteren Bestellungen gleich die jeweiligen Bankdaten vorausgefüllt sind
+Ist für eine kommende Version geplant
+- Übermittlung der Bankdaten via Email
+Wird aus Sicherheitsgründen nicht implementiert!
+
+
+===== Bankleitzahlen aktuell halten ===
+Infos dazu im Ordner SQL in der liesmich.txt
+
+
+===== Erläuterungen der Fehlercodes ===
+Falls Im Admin bei der Bestellung ein Fehlercode aufscheint, hier die Bedeutungen
+
+1 
+Kontonummer und BLZ passen nicht
+
+2 
+Für diese Kontonummer ist kein Prüfziffernverfahren definiert
+
+3 
+Dieses Prüfziffernverfahren ist noch nicht implementiert
+
+4
+Diese Kontonummer ist technisch nicht prüfbar
+
+5 
+BLZ nicht gefunden
+
+8
+Keine BLZ übergeben oder BLZ zu kurz
+
+9
+Keine Kontonummer übergeben
+
+
+
+
+===== Fragen, Bugs, Probleme? ===
+Bitte auf zen-cart.at ins Unterforum Module und Erweiterungen > Zahlungsmodule posten

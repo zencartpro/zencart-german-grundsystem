@@ -1,0 +1,10 @@
+Die mitgelieferten Bankleitzahlen sind gültig vom 08.09.2008 bis 07.12.2008 
+
+Installation der Bankleitzahlen:
+
+1) Inhalt der install_banktransfer_blz.sql in Admin > Tools > SQL Patches ins Eingabefeld kopieren und absenden. Dadurch wird die Tabelle banktransfer_blz angelegt.
+
+2) in phpMyAdmin in diese Tabelle wechseln und auf Importieren. Hier die cpp_backend_blz.csv importieren (Dateityp csv, Format utf-8).
+
+Sollten sich die Bankleitzahlen ändern, findet man hier immer eine aktuelle Version der cpp_backend_blz.csv:
+http://www.payguard.de/cppfe/-cppPage-3.html
