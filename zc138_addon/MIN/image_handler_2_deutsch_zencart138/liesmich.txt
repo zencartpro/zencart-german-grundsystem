@@ -1,0 +1,147 @@
+Image Handler 2.0 für Zen-Cart 1.3.8 deutsch
+
+**by Tim Kroeger (www.breakmyzencart.com)**
+Übersetzung ins Deutsche von waldelfe (ohne Gewähr)
+
+Übersicht
+
+Diese Erweiterung ermöglicht dir, GD libraries oder ImageMagick (falls diese auf deinem Server installiert sind) zu verwenden, um während des Heraufladens eines einzelnen Bildes kleine, mittlere und grosse Bilder spontan zu erstellen oder anzupassen sowie Verzeichnisse für mittlere und grosse Bilder zu verwenden. Ausserdem ermöglicht diese Erweiterung, deine Bilder mit Wasserzeichen zu versehen (ein zweites, spezifisches Bild überlagert das erste Bild) sowie mittlere Bilder in einem Popup-Fenster zu öffnen, sobald du deine Maus über ein kleines Bild bewegst.
+Dieses Modul enthält eine Administrations-Oberfläche, um deine Artikel wie mit dem Attributmanager durchzusehen und zusätzliche Bilder hochzuladen, hinzuzufügen oder zu bearbeiten ohne dazu ein FTP-Programm benutzen zu müssen. Image Handler 2 funktioniert sehr gut in Verbindung mit vielen Erweiterungsfunktionen wie EzPopulate.
+
+Support
+
+Die neueste Version dieses Moduls ist erhältlich unter http://breakmyzencart.com.
+Die aktuelle Version dieser Anleitung (in englischer Sprache) findest du unter http://breakmyzencart.com/ih-doc.
+Support (englisch) ist verfügbar im folgenden Forenbeitrag von zen-cart.com
+http://www.zen-cart.com/modules/ipb/...howtopic=46701
+Support (deutsch) im zen-cart.at Forum in folgendem Unterforum:
+http://www.zen-cart.at/zcvb/forum/forumdisplay.php?f=46
+
+Haftungsausschluss
+
+**Achtung:** Das Modul befindet sich noch in Arbeit. Image Handler wurde bis zu einem gewissen Grad getestet und funktioniert in der Regel problemlos. Dennoch kann er Fehler enthalten. Bevor du diese Erweiterung auf einer aktiven Seite verwendest, solltest du sie in einem sicheren Rahmen testen. Ich rate dir dringend, von deiner Datenbank ein Backup zu erstellen. Erstelle ein Backup von deinem ganzen Shop-System, bevor du Image Handler in deine ZenCart-Verzeichnisse installierst.
+Ich lehne die Verantwortung ab für jeglichen Schaden, der dem Anwender aus dem Gebrauch oder Nichtgebrauch dieser Erweiterung am Betriebssystem, der ZenCart-Installation oder seiner Webseite entstehen kann.
+
+Installation
+
+**Vorsichtsmassnahme: Erstelle ein Backup deines Shops und der dazugehörigen Datenbank.**
+
+Anforderungen
+
+Um Bilder und ihre Grösse anzupassen, muss zusätzlich zu Image Handler 2 entweder GD libraries (ab Version 2) oder ImageMagick (ab Version 6) installiert sein. Um herauszufinden, ob deine PHP-Version GD libraries anbietet, suche im Admin unter Tools -> Server Info nach "GD". Ob eine ImageMagick-Installation vorhanden ist, erfährst du von deinem Hostinganbieter. Wenn du gif Bilder verwenden willst, muß mindestens GD libraries Version 2.0.28 (oder eine neuere Version) installiert sein.
+
+Kurzanleitung (nicht zum Gebrauch in eime Liveshop empfohlen)
+
+Kopiere die folgenden Verzeichnisse in dein ZenCart-Verzeichnis.
+* admin
+* bmz_cache
+* images
+* includes
+
+Stelle sicher, dass das Verzeichnis "bmz_cache" dieselbe Berechtigung besitzt wie dein images-Verzeichnis (z.B. chmod 777, 775 oder 755).
+Gehe im Admin unter Tools -> Image Handler 2 zu Admin und wähle "Install Image Handler" aus.
+Wenn du ein eigenes Template verwendest, kopiere den Inhalt von
+includes/templates/templates-custom in dein eigenes Tempalte-Verzeichnis oder, falls du die Zieldaten bereits angepasst hast, lade die Dateien hoch.
+
+Detaillierte Anleitung (In einem Liveshop unbedingt so vorgehen!)
+
+Kläre ab, ob diese Erweiterung beim Hochladen auf den Server irgendwelche von dir veränderte Dateien überschreiben würde. Dazu musst du den Inhalt der abgeänderten Verzeichnisse mit den Verzeichnissen dieser Erweiterung vergleichen. Dabei handelt es sich um folgende Verzeichnisse:
+* admin
+* bmz_cache
+* images
+* includes
+Stelle sicher, dass das Verzeichnis "bmz_cache" dieselbe Berechtigung besitzt wie dein images-Verzeichnis (z.B. chmod 777, 775 oder 755).
+Wenn alles zufriedenstellend verlief, befindet sich nun ein neuer Eintrag namens "Image Handler 2" im Tools-Menu des ZenCart-Adminbereichs. Wähle diesen Eintrag aus, um die Image Handler-Administrationsoberfläche aufzurufen. Wenn du von den vier Punkten auf dieser Seite den Punkt "Admin" auswählst, werden verschiedene Optionen von Image Handler 2 angezeigt. Wähle jetzt "Install Image Handler" um die Installation abzuschliessen.
+Wenn du ein eigenes Template verwendest, kopiere den Inhalt von
+includes/templates/templates-custom in dein eigenes Template-Verzeichnis. Falls du irgendwelche Dateien des Verzeichnisses includes/templates/template_custom dieser Erweiterung verändert hast, müssen diese Dateien denjenigen deines eigenen Templates angepasst werden (vor allem popup_image_additional/tpl_main_page.php).
+
+Konfiguration
+
+Der Image Handler 2 funktioniert sofort nach seiner Installation. Wenn du mit den Voreinstellungen zufrieden bist, braucht nichts verändert zu werden. Wenn du die Art, wie Image Handler 2 mit deinen Bildern verfährt ändern möchtest, gibt es zwei Orte, wo du dies einstellen kannst:
+
+    * Die Konfigurations-Datei
+    * Die images Konfigurations-Seite
+
+
+
+Konfigurations-Datei
+
+Da gibt es nun diese admin/includes/extra_configures/bmz_image_handler_conf.php Datei. Dort solltest du allerdings nichts verändern, es sei denn, du kennst dich damit gut aus. In dieser Datei sind die Parameter erklärt.
+
+Images Konfigurations-Seite
+
+Es handelt sich um die bekannte Funktion Admin -> Konfiguration -> Images in deiner Administrationsoberfläche.
+Einige Parameter sind hinzugefügt worden, wo du nun alles zu deiner Zufriedenheit optimieren kannst. Die Parameter sind praktisch selbsterklärend und bieten zusätzliche Erklärungen, wenn du sie aufrufst. Damit kannst du folgendes einstellen:
+
+    * gewünschte Dateiformate
+    * Druckqualität
+    * Hintergrundfarbe
+    * Wasserzeichen
+    * Zoomen (fancy hover effect)
+    * die Positionierung von Wasserzeichen- und Overlayzeichen
+
+Die Angaben um Bildgrössen festzulegen wurden erweitert, so dass nun nicht nur numerische Werte akzeptiert werden, sondern auch Parameter mit einem angefügten „!“ (Ausrufezeichen), was einen force canvas size Modus anzeigt. Die Bildgrösse wird damit angepasst und zentriert im vorgegebenen Bereich positioniert, anstatt das Bild an nur eine der Dimensionen anzupassen sobald es nicht das selbe Seitenverhältnis wie die Grundeinstellung aufweist. Das klingt zu kompliziert? Glaube mir, das ist es nicht. Probier es selber aus: Erstelle einen hübschen, bunten Hintergrund und teste beide Werte mit und ohne das angefügte Ausrufezeichen. Mehr dazu im Abschnitt Bilddimensionen.
+
+Gewünschte Dateitypen
+
+Du kannst für jede Bildgröße wählen zwischen .png, .jpg, .gif oder no_change (keine Änderung). Heraufgeladene Bilder werden so belassen wie sie sind, aber die generierten Dateien simulieren den Dateitypus, den du hier angibst. GIF ist gut für kleine Vorschaubilder geeignet und kann Transparenz simulieren. Mit JPG ist keine Transparenz möglich, es bietet jedoch ein sehr gutes Dateiqualität/Druck Verhältnis, insbesondere für Fotografien. Für größere und mittlere Bilder ist dieser Dateityp am ehesten geeignet. PNG Dateien simulieren alpha Transparenz und ebenso viele Farben wie jpg, haben jedoch eine größere Dateigröße als jpg und gif. Internet Explorer hat noch immer Schwierigkeiten, alpha Transparenz anzuzeigen, so daß du besser mit gif arbeitest, sofern du Transparenz benötigst.
+
+Druckqualität
+
+Du kannst die Qualität für die Ausgabe als jpg für kleine, mittlere und große Bilder vorgeben. Diese Einstellung ist auf einer Skala von 0 bis 100 für alle drei Bildgrössen auf 85 festgesetzt und ist sehr gut, außer wenn du entweder außerordentlich genauen Druck oder extrem kleine Bilder benötigst. Ein höherer Wert bringt bessere Qualität größerer Dateien.
+
+Hintergrundfarbe
+
+Du kannst die Hintergrundfarbe jeder Bildgrösse durch Eingabe der RGB-Farbwerte aller drei Farbkomponenten (rot, grün und blau), getrennt durch Doppelpunkte, festlegen. Die Werte der Farbkomponenten bewegen sich zwischen 0 und 255. Die folgenden Beispiele sollen zeigen, wie die Hintergrundfarbe eingestellt werden kann:
+
+    * 255:255:255 (weiss)
+    * 255:0:0 (rot)
+    * 255:200:200 (hellrot)
+    * 0:255:0 (grün)
+    * 0:0:255 (blau)
+    * 255:0:255 (violett)
+    * 255:255:0 (gelb)
+
+Wenn du die Transparenz eines hochgeladenen Bildes beibehalten möchtest, musst du den Wert der Hintergrundfarbe auf transparent stellen.
+Mit gif Bildern kannst du beispielsweise transparent 255:255:255 anstelle von absoluter Transparenz festlegen, so daß die halbdurchsichtigen Bildpunkte mit der angegebenen Hintergrundfarbe verbunden werden. Bildpunkte mit einer Transparenz-Schwelle von mehr als 90% (dies ist der Standard) werden volltransparent dargestellt. Wenn du die besagte Farbe auf den Wert der Hintergrundfarbe deiner Webseite einstellst, erhöht dies infolge einer Reduktion des „Treppeneffekts“ die sichtbare Qualität der gifs beträchtlich.
+
+Wasserzeichen
+
+Damit die Markierung mit Wasserzeichen für alle Bildgrößen funktioniert, müssen die gewünschten passenden Wasserzeichen-Bilder verfügbar sein. Zu diesem Zweck müssen die betreffenden Dateien in die folgenden Verzeichnisse hochgeladen werden:
+
+    * images/watermark.png
+    * images/medium/watermark_MED.png (or your specified MEDIUM_IMAGE_SUFFIX)
+    * images/large/watermark_LRG.png (or your specified LARGE_IMAGE_SUFFIX)
+
+Ich habe einige Demo-Wasserzeichen-Bilder für kleine, mittlere und grosse Bilder angefügt, die ein leicht modifiziertes ZenCart-Logo für den Sofortgebrauch enthalten. Es gibt nicht mehr zu tun, als sie nach deinen Bedürfnissen ein- oder auszuschalten. Image Handler paßt auf, dass die Bilder richtig angezeigt werden. Du kannst festlegen, an welcher Stelle des Bildes das Wasserzeichen eingefügt werden soll, indem du NorthWest, North, NorthEast, West, Center, East, SouthWest, South oder SouthEast für die Wasserzeichen-Positionierung auswählst.
+
+Zoomen (fancy hover effect)
+
+Wenn diese Anwendung für kleine Bilder ausgewählt wird, öffnet sich in einem Popupfenster ein mittleres Bild, sobald man mit der Maus über das kleine Bild fährt. Diese Bilder sind mit einem Zeichen, ähnliche einem Wasserzeichen, versehen und lassen so die Möglichkeit einer vergrößerten Darstellung erkennen. Du kannst eine Datei in images/zoom.png hochladen, um sie auf deine Bilder zu legen. Ein kleines Bild ist für den Sofortgebrauch angefügt. Wenn du das Zeichen nicht angezeigt haben willst, aber dennoch den Effekt haben möchtest, dann lösche einfach das Overlay-Bild.
+Du kannst die Positionierung des Overlay-Bildes genau gleich wie die Wasserzeichen-Positionierung festlegen. Zusätzlich kannst du noch bestimmen, ob das Overlay sich wie eine Hotzone verhalten soll. Dies bedeutet, daß das Popup-Fenster sich nur öffnet, wenn du die Maus genau über das Overlay-Bild (Hotzone) bewegst. Ansonsten gilt das gesamte Bild als Hotzone.
+
+Merke: es ist noch nicht möglich, mittlere Bilder vergrößert anzeigen zu lassen.
+
+Bild Dimensionen
+
+Es gibt verschiedene Vorgehensweisen, um die Dimensionen von Bildern festzulegen.
+Du kannst dies auf dem üblichen Weg tun und einfach Breite (width) und Höhe (hight) in Pixels angeben. Setze beispielsweise width auf 100 und hight auf 80. Wenn dein Bild Abmessungen von 200x200 Pixel hat, wird es auf 80x80 Pixel verkleinert, da die Höhe ja 80 Pixel nicht übersteigen darf.
+Du kannst auch nur entweder die Breite oder die Höhe angeben, beispielsweise mit 100, und die andere Dimension leer lassen (oder auf 0 stellen). Nun hast du eine Breite oder Höhe festgelegt, in der das Bild angezeigt werden soll. Dabei wird das Seitenverhältnis beibehalten.
+Du kannst die Abmessungen auch wie im ersten Beispiel angeben, jedoch ein „!“ (Ausrufezeichen) an eine der Dimensionen anhängen (beispielsweise 80! für die Höhe kleiner Bilder). Die angepaßten Bilder werden auf einem Feld, das genau über die angegebenen Masse verfügt, mittig angezeigt. Wenn du also 100x80! festgelegt hast, wird dein 200x200 Pixel Bild von vorhin auf 80x80 Pixel reduziert und zentriert in einem 100x80 Pixel Feld mit der angegebenen Hintergrundfarbe angezeigt. Betrachte es als eine Art erzwungene Bildgrösse ohne durcheinandergebrachte Seitenverhältnisse.
+
+Benutzen von Image Handler
+
+Da Image Handler meistens im Hintergrund arbeitet, ohne dass ihn jemand bemerkt, gibt es nicht viel dazu zu sagen. Du kannst Image Handler auf zwei Arten aufrufen:
+Admin ? Webshop ? Kategorien&Produkte
+Admin ? Tools ? Image Handler 2
+
+Wenn du die Kategorien und Produkte mit der Kategorien&Produkte-Funktion anzeigen lässt, kannst du auf das kleine Icon zwischen dem copy- und dem Attribute-icon klicken, um den manager pager von Image Handler für das ausgewählte Produkt aufzurufen. Wenn du Image Handler 2 direkt über Admin ->Tools -> Image Handler 2 aufrufst, kannst du dessen eigene Benutzeroberfläche verwenden, um Kategorien und Produkte anzuzeigen. Mit Image Handler gibt’s verschiedene Alternativen.
+Natürlich kannst du noch immer Artikelbilder über die Produktinfoseiten hochladen. Image Handler trägt Sorge zu den Bildern.
+
+Beispiel
+
+Ein kleines Beispiel: du hast mit deiner neuen Digitalkamera ein Bild von einem netten Produkt geschossen und den Hintergrund mit deinem Lieblings-Fotoprogramm (ich hoffe Gimp) entfernt. Du speicherst diese Datei als Portable Network Graphic (png), um den alpha channel beizubehalten, der die transparenten Zonen festlegt, durch die hindurch du deine Webseite betrachten willst. Nehmen wir an, das Bild ist 600 Pixel breit und 800 Pixel hoch (600x800). Für deine kleinen Bilder hast du einen Wert von 100x80 eingegeben und für die mittleren 150x120.
+Da die Produktliste-Ansicht verschiedene Farben für die Anzeigereihen hat, möchtest du wenigstens für die kleinen Bilder die Transparenz erhalten. Internet Explorer kann noch immer nicht png Bilder mit Transparenz anzeigen, also bist du auf gifs angewiesen. Du wählst also .gif als Dateityp für kleine Bilder und transparent für den Hintergrund der kleinen Bilder.
+Nun denkst du an deine mittleren und großen Bilder. Du möchtest sie nicht im gif Format haben, da sie nicht sehr gut gedruckt werden, und du möchtest auch gerne mehr als nur 256 Farben in deinen hochauflösenden Bildern zur Verfügung haben. Ausserdem brauchst du keine Transparenz, da du nur eine Hintergrundfarbe auf den Produkt-Infoseiten und im Popup-Fenster hast, also benutzt du .jpg. Dieses Format wählst du also für deine mittleren und großen Bilder aus. Nehmen wir an, du hast sowohl auf den Produkt-Infoseiten als auch im Popup-Fenster einen weißen Hintergrund, deshalb geben wir 255:255:255 in die Felder für den Hintergrund der mittleren und großen Bilder ein.
+
+Viel Spass!
