@@ -8,5 +8,4 @@
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
  * @version $Id$
  */
-define('PWA_STOCK_AVAILABLE', 'verfügbarer Lagerbestand: ');
-?>
+define('PWA_STOCK_AVAILABLE', 'Verfügbarer Lagerbestand: ');

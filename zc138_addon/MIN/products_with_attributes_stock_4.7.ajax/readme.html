@@ -5,7 +5,7 @@
 <title>Readme for Stock by Attribute Mod</title>
 <style type="text/css">
 <!--
-body {font:100% Verdana, Arial, Helvetica, sans-serif; text-align:center; color:#333; margin:0; padding:0}
+body {font:80% Verdana, Arial, Helvetica, sans-serif; text-align:center; color:#333; margin:0; padding:0}
 #header {font:300% Georgia, "Times New Roman", Times, serif; background-color:#000; border-bottom: 5px solid #85c285}
 #header a {color: #fff; text-decoration:none}
 #header a:hover {color: #85c285}
@@ -21,50 +21,68 @@ code {background:#eee; margin:.5em 2em; padding: .5em; font-family:"Courier New"
 <div id="wrapper">
 
 <h1 align="center">Stock by Attributes v4.7ajax</h1>
-<p>This add-on is based on a Zen Cart contribution by dafonz (products_with_attributes_stock), which was adapted by danielcor for Zen Cart 1.3 and further adapted by kuroi for 1.3.5+.<br>
+<p><center>Übersetzung von MaleBorg</center></p>
+<p>Diese Erweiterung basiert auf der Zen-Cart Contrib von dafonz (products_with_attributes_stock), welche von danielcor für Zen Cart Version 1.3 angepasst wurde. Weitere Anpassungen für Zen-Cart 1.3.5 und höher wurden von kuroi vorgenommen. Hugo13 hat dann der aktuellen Version Ajax Funktionalität hinzugefügt.<br>
 <br>
-<font style="color: red; font-weight: bold;">NOTE: This is a simple modification to version 4.7 that allow multiple attribute combinations to be added at the same time.</font>  </p>
-<p><font style="color: red; font-weight: bold;">NOTE2: A little bit of ajax functions.</font>
-  <br>
-    <br>
-  This current version (4.7a) is designed specifically to work correctly in version 1.3.8 of Zen Cart and is unlikely to work with earlier versions. If you are running Zen Cart 1.2.5-1.2.7d, please use the "products_with_attributes_stock" add-on by dafonz. If you are using versions 1.3.0 - 1.3.0.2 please use "Stock Attributes by danielcor". If you are using version 1.3.5, please use version 4.2 of this mod, for 1.3.6 use version 4.3 of this mod. Versions 4.4, 4.5 and 4.6 should be compatible with versions 1.3.7 and 1.3.7.1 of Zen Cart (though obviously the latter versions of Zen Cart and this add-on are recommended).</p>
-<h2>What This Module Does</h2>
+<font style="color: red; font-weight: bold;">Anmerkung: In der 4.7 wurde lediglich eine kleine Modifikation vorgenommen. Diese erlaubt das gleichzeitige Anlegen von Lagerbeständen für mehrere Attributkombinationen.</font><br><br>  
+<font style="color: red; font-weight: bold;">Anmerkung2: In der vorliegenden Version 4.7ajax wurden Ajax Funktionen hinzugefügt.</font><br><br>
+<font style="color: red; font-weight: bold;">Diese Version 4.7ajax ist speziell für die Zen-Cart Version 1.3.8 angepasst und sollte daher nicht für andere Versioenn benutzt werden.</font></p>
+
+<p> Für die Zen-Cart Version 1.2.5 - 1.2.7d nutzen Sie bitte die Contrib "products_with_attributes_stock" von dafonz. <br>
+Für die Zen-Cart Version 1.3.0 - 1.3.0.2 nutzen Sie bitte die Contrib "Stock Attributes by danielcor". <br>
+Für die Zen-Cart Versionen 1.3.5 nutzen Sie bitte die Version 4.2 von dieser Erweiterung, <br>
+für Zen-Cart Version 1.3.6 nutzen Sie bitte die Version 4.3 von dieser Erweiterung. <br>
+Die Versionen 4.4, 4.5 und 4.6 dieser Erweiterung sind mit der Zen-Cart Version 1.3.7 und 1.3.7.1 kompatibel.  
+  </p>
+<h2>Was macht diese Erweiterung?</h2>
 <p>
-This add-on allows a store owner to set a stock value for each variant of a product. For example, if you have three sizes, large, medium and small, this module will allow you to keep track of all the different quantities. It will work for a virtually unlimited number of amount of attribute combinations. For example, if you offered cotton or polyester shirts in green, red or blue and small medium or large sizes, this add-on would allow you to enter and maintain a separate stock level for each of the 18 possible combinations.</p>
-<h2>What This Version of the Module Does</h2>
-<p>Previous versions of the module insisted that once installed you maintained stock at attribute level for products with attributes (otherwise the products would be treated as being out of stock). This version (4.6) gives you the choice of managing stock at a product or an attribute level on a product-by-product basis.</p>
-<p> If you enter stock for any combination of product attributes (product variants), stock calculations will done using attribute level data. Any attributions that have not been set up will be treated as having zero stock. However, if you have no product variants set up, or delete them all, stock for that product will be calculated based on its overall product quantity.</p>
+Diese Erweiterung ermöglicht Ihnen einen Lagerbestand für jede Artikel-Attribut Kombination zu hinterlegen. <br><br>
+Zum Beispiel: Artikel X bieten Sie in den Größen S, M und L an. Bisher konnten Sie in der Lagerverwaltung nur entnehmen, welche Menge von Artikel X im Lager ist, aber nicht welche Menge von welcher Größe vorhanden ist.<br>
+Dank dieser Erweiterung ist das nun möglich. Sie können ebenfalls für Kombinationen aus mehreren Attributen Lagerbestände hinterlegen.<br>
+Zum Beispiel: Artikel Y bieten Sie in den Größen S, M und L und in den Farben Grün, Rot und Blau an. Sie können nun für alle möglichen 18 Kombinationen von diesen Attributen Lagerbestände hinterlegen.
+</p>
+<h2>Unterschiede zu vorherigen Versionen dieser Erweiterung</h2>
+<p>Vorherige Versionen dieser Erweiterung zwangen Sie nach der Installation dazu, das der Lagerbestand des Artikels mindestens so groß war wie der Lagerbestand des Attributs. Ansonsten wurde Artikel auf "OUT OF STOCK" gestellt. Ab Version 4.6 dieser Erweiterung haben Sie jetzt für jeden Artikel die Möglichkeit die Lagerverwaltung auf den Artikellagerbestand oder den Lagerbestand der Artikel-Attribut Kombination reagieren zu lassen. </p>
+<p> Wenn Sie einen Lagerbestand für eine Artikel-Attribut Kombination eingeben, werden alle Lagerbestandsberechnungen aufgrund dieses Lagerbestands durchgeführt. Attribute für den keine Lagerbestand hinterlegt wurde, werden so behandelt, als hätten Sie einen Lagerbestand von 0. Wenn Sie keinen Lagerbestand für die Attribute angelegt haben, oder Sie löschen die angelegten Lagerbestände für die Attribute, dann wird bei der Lagerbestandverwaltung wieder auf den Gesamtlagerbestand des Artikels zurückgegriffen.<p>
+
+<p>Es wurden Ajax Funktionen hinzugefügt.</p>
+<ul>
+  <li>Der Suchfilter &quot;%ma&quot; filtert alle Artikel mit &quot;ma&quot; im Artikelnamen oder der Artikelnummer; das Suchergebnis wird in einem Cookie gespeichert.</li>
+  <li>Ein Klick auf den &quot;Lagerbestandswert&quot; erstellt ein Eingabefeld in das Sie den neuen Wert eingeben können; der STORE Button speichert alle Änderungen ab.</li>
+  </ul>
 <h2>Installation</h2>
-<p> Create a new database table and a new configuration switch by running the 'stock_attribute.sql'
-  
-  via Admin->Tools->Install SQL Patches. If you prefer to use another method to create this table, you will need to edit the file if you use a prefix such as &quot;zen_&quot; for your tables. <br>
+<p><font style="color: red; font-weight: bold;">Wie bei jeder Installation einer Erweiterung sollten Sie unbedingt VORHER ein Backup machen.</font></p>
+<p>Spielen Sie als Erstes die beiliegende SQL Datei 'stock_attribute_german.sql' ein. Dazu gehen Sie in den Adminbereich --> Tools --> SQL Patches installieren. Dort können Sie die Datei entweder uploaden oder Sie kopieren den Inhalt der SQL Datei in das Textfeld und klicken auf senden.
+Sollten Sie eine andere Methode für das Ausführen von SQL Dateien bevorzugen, denken Sie bitte daran, das ein evtl. benutztes Präfix in der SQL Datei einzutragen.<br>
     <br>
-  Prepare the package for upload to your server by renaming the following folders to match your template name: includes/modules/YOUR_TEMPLATE and includes/templates/YOUR_TEMPLATE.</p>
-<p>If you are installing onto a new install or upgrade of Zen Cart 1.3.5 or later then with most good FTP programs (such as FileZilla) you can simply drag and drop the admin and includes directories into the root directory of your site. The files are already arranged in their directory structure. </p>
-<p>There are six core Zen Cart files modified by this add-on. If you have installed other add-ons or customised your cart since your Zen Cart installation or upgrade, you will need to check whether they have changed any of the following files:
-<ul><li>admin/includes/stylesheet.css
-  </li>
+Bereiten Sie den Upload der Ordner und Dateien für Ihren Server vor. Dazu müssen Sie in folgenden Ordnern (includes/modules/YOUR_TEMPLATE und includes/templates/YOUR_TEMPLATE) YOUR_TEMPLATE durch den Namen von ihrem zur Zeit benutzten Template ersetzen.</p>
+<p>Sollten Sie bisher keine Veränderungen an Ihrer Zen-Cart Version vorgenommen haben, dann können Sie die Ordner (admin, includes, ajax) per FTP Programm (z.B. FileZilla) in Ihr Zen-Cart Hauptverzeichnis hochladen.</p>
+<p>Es werden dabei sechs Zen-Cart Dateien überschrieben. Sollten Sie bereits andere Erweiterungen installiert haben oder Ihr Zen-Cart bereits selber verändert haben, sollten sie überprüfen, ob bereits die folgenden Dateien verändert wurden:
+
+<ul>
+  <li>admin/includes/stylesheet.css</li>
   <li>admin/orders.php</li>
   <li>includes/classes/order.php</li>
   <li>includes/functions/functions_lookups.php</li>
   <li>includes/modules/pages/checkout_shipping/header_php.php</li>
   <li>includes/modules/pages/shopping_cart/header_php.php</li>
 </ul>
-<p>In addition, one file is over-ridden</p>
-<ul>
-  <li>includes/templates/template_default/templates/tpl_shopping_cart_default.php</li>
-</ul>
-<p>If you, or any mods that you have installed, have changed any of these files (or over-ridden the last one), then you will need to merge the any changes into the relevant file.</p>
-<h2>Upgrade from earlier versions</h2>
-<p>To upgrade from any version 4.x to 4.7a, it is easiest to overwrite all the files. No changes are needed to your database. If you are upgrading from version 4.0 - 4.4 you should also delete the following file To upgrade from versions 4.0 - 4.4, it is easiest to overwrite all the files and then delete the following file (unless you have made other changes to it):</p>
+<p>Falls Sie oder irgendwelche Erweiterungen diese Dateien bereits verändert haben, dann müssen Sie die notwendigen Änderungen in diesen Dateien selber durchführen. Hilfreich sind dabei Dateivergleichsprogramme wie WinMerge.</p>
+<h2>Upgrade von vorherigen Versionen</h2>
+<p>Um von Version 4.x auf Version 4.7ajax upzugraden ist es am einfachsten, alle Dateien zu überschreiben. Es müssen keine Änderungen an der Datenbank durchgeführt werden. Wenn Sie von Version 4.0-4.4 upgraden wollen, dann ist am einfachsten alle Dateien zu überschreiben und diese Datei zu löschen (außer Sie haben noch eigene Veränderungen daran vorgenommen):</p>
 <ul>
   <li>includes/modules/YOUR_TEMPLATE/attributes.php</li>
 </ul>
-<h2>How to Use Stock by Attributes</h2>
-<p> To use, log into the admin area, click on Catalog-&gt;Products with Attributes Stock to modify inventory levels of your products by attributes. 
-  You will also want to consider the settings in Configuration-&gt;Stock. The settings here will determine things such as whether or not a customer will be allowed to checkout when insufficient stock is on hand. As well as controlling the new feature that allows you display the amount of stock available on the shopping cart page if a customer tries to buy more than the recorded stock.</p>
-<h2>Adapting Stock by Attributes for languages other than English</h2>
-<p>Many of the changes made to this add-on from its previous incarnation were to support proper language support in the Admin functions and an additional &quot;stock available + quantity&quot; message in the shopping cart. To take advantage of these facilities three files need to be created. As a guide, I have included my translations of these files into French in the release pack. If you are using a language other than French, edit the directory paths from &quot;french&quot; to your language and similarly edit the three files.</p>
+<h2>Wie benutze ich diese Erweiterung</h2>
+<p> Gehen Sie in Ihren Adminbereich --> Webshop --> Lagerbestand für Artikel mit Attributen, dort können Sie nun die entsprechenden Lagerbestände anlegen.
+Ebenso sollten Sie unter Konfiguration --> Lagerverwaltung Ihre Einstellungen überprüfen. Dort finden Sie auch eine neue Option die es Ihnen ermöglicht, dem Kunden den verfügbaren Lagerbestand anzeigen zu lassen, sollte er mehr Artikel als verfügbar bestellen.  </p>
+<h2>Sprachliche Anpassungen dieser Erweiterung</h2>
+<p>Dieser Erweiterung liegen bereits die Sprachen Deutsch, Englisch und Französisch bei. Sollten Sie noch weitere Sprachen in Ihrem Shop verwenden, gehen Sie bitte wie folgt vor:<br><br>
+Kopieren Sie den Ordner german der Erweiterung aus dem Verzeichis admin/includes/languages und benennen Sie anschließend diese Kopie entsprechend Ihrer Sprache um (z.B. spanish). Danach öffnen Sie alle enthaltenen Dateien und verändern die entsprechenden Texte.<br>
+Das Wiederholen Sie bitte für den Ordner includes/languages/german/. Abschließend spielen Sie dann diese beiden Ordner in die entsprechenden Ordner auf Ihrem Webspace ein.</p>
+<p>Bei Fragen oder Problemen erreichen Sie uns unter <a href="http://www.zen-cart.at/zcvb/">www.zen-cart.at</a></p>
+<br>
+<h2>Changelog (in english belassen) </h2>
 <h2>Amendments from v3 (Stock Attributes by danielcor) </h2>
 <p>1.  Removed zen_ prefix from table creation SQL allowing it to be run by Admin &gt;  Tools &gt; Install SQL Patches (bug fix)</p>
 <p>2.  Changed quantity field to float in products with attributes table allowing  fractional stock quantities (bug fix)</p>
@@ -145,10 +163,10 @@ This add-on allows a store owner to set a stock value for each variant of a prod
   <li>includes/templates/YOUR_TEMPLATE/templates/tpl_shopping_cart.php</li>
 </ul>
 <p>There are no functional enhancements.</p>
-<h2>Amendments from 4.7 to 4.7ajax</h2>
+<h2>Amendments from 4.7 to 4.7ajax (made bei hugo13)</h2>
 <p>added ajax functionality</p>
 <ul>
-  <li>search filter: &quot;%ma&quot; filters all produchts with &quot;ma&quot; in products-name or in products-model; the search value will be stored in a cookie</li>
+  <li>search filter: &quot;%ma&quot; filters all products with &quot;ma&quot; in products-name or in products-model; the search value will be stored in a cookie</li>
   <li>a click at the &quot;quantity in stock&quot; value adds an input-field &amp; you can enter the new value; the store button saves all changed values</li>
   <li>added files in /ajax folder</li>
   <li>changed products_with_attributes_stock.php</li>
@@ -157,7 +175,7 @@ This add-on allows a store owner to set a stock value for each variant of a prod
 <p>&nbsp;</p>
 <h2>License &amp; Copyright</h2>
 <p>Zen Cart Open Source E-commerce - Stock by Attributes</p>
-<p>Copyright (c) 2008 edv-lösungen langheiter (<a href="http://www.kuroiwebdesign.com">edv.langheiter.com</a>)<br />
+<p>Copyright (c) 2008 edv-lösungen langheiter (<a href="http://edv.langheiter.com">edv.langheiter.com</a>)<br />
   Copyright (c) 2006-2007 kuroi Ltd  (<a href="http://www.kuroiwebdesign.com">www.kuroiwebdesign.com</a>)<br>
   Portions Copyright (c) 2005 dafonz, 2006 danielcor <br>
 Portions Copyright (c) 2003 osCommerce, 2003-2007 Zen Cart<p>This contribution is subject to version 2.0 of the GPL license, 
