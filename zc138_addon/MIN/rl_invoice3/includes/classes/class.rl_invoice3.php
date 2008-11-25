@@ -536,7 +536,10 @@ class rl_invoice3 extends fpdi{
     function getPDFAttachments($param = 'ALL'){
         
         $attachArray = array();
-        $attachArray[] = array('file'=>$this->getPDFFileName(), 'mime_type'=>'pdf', 'name'=>RL_INVOICE3_INVLINK);      
+        $tmp = $this->getPDFFileName();
+        if(file_exists($tmp)){  
+            $attachArray[] = array('file'=>$this->getPDFFileName(), 'mime_type'=>'pdf', 'name'=>RL_INVOICE3_INVLINK);      
+        }
         if($param=='ALL'){
             $attachements = explode('|', RL_INVOICE3_SEND_ATTACH);
             foreach ($attachements as $value) {
