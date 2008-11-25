@@ -141,14 +141,20 @@ if (sizeof($statusArray)) {
 
 <h4><?php echo HEADING_PAYMENT_METHOD; ?></h4>
 <div><?php echo $order->info['payment_method']; ?></div>
+</div>
+<br class="clearBoth" />
+
 <?php
     require_once(DIR_WS_INCLUDES . 'classes/class.rl_invoice3.php');
     $pdfT = new rl_invoice3($_GET['order_id'], $paper['orientation'], $paper['unit'], $paper['format']);
-    $a = $pdfT->getPDFAttachments('NO');
-    $t = print_r($a, true);
-    
-    echo '<a href="' . str_replace(DIR_FS_CATALOG, '', $a[0]['file']) . '">PDF-Invoice</a>';
+    // use $pdfT->getPDFAttachments('NO') if only the invoice should be shown
+    $a = $pdfT->getPDFAttachments('ALL');
+    $tmp1 = '<div class="rl-invoice3-hlink"><span class="rl-invoice3-hlink-text">'. RL_INVOICE3_INVLINK_TEXT . '</span>';
+    $tmp = '';
+    foreach ($a as $key => $v) {
+        $tmp .=  '| <a href="' . str_replace(DIR_FS_CATALOG, '', $v['file']) . '">'. $v['name'] . '</a>';
+    }
+    $tmp .= '</div>';
+    echo $tmp1 . substr($tmp, 1);
 ?>
-</div>
-<br class="clearBoth" />
-</div>
+</div> 
