@@ -1,0 +1,154 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>pdf Rechnung 3 - FAQ</title>
+<style type="text/css">
+<!--
+body,td,th {
+	font-family: Arial, Helvetica, sans-serif;
+	color: #000000;
+	font-size: 12px;
+}
+body {
+	background-color: #FFFFFF;
+}
+a:link {
+	color: #006600;
+}
+a:visited {
+	color: #009900;
+}
+a:hover {
+	color: #003300;
+}
+a:active {
+	color: #0000FF;
+}
+.Stil1 {
+	font-size: 14px
+}
+-->
+</style></head>
+
+<body>
+<p align="center" class="Stil1"><strong>pdf Rechnung 3</strong><br />
+  <a href="index.html">Übersicht</a> | <a href="installation.html">Installation</a> |  FAQ</p>
+<p><strong>FAQ</strong></p>
+<p>1) 
+  Wie kann ich eigene Schriftarten verwenden?<br />
+</p>
+<p>2) Wie kann ich die Schriftgröße und die Breite der Spalten verändern?</p>
+<p>3) Wie kann ich dem Kunden bei einer Bestellung automatisch Rechnung, AGB und Infos zum Widerruf mitsenden?</p>
+<p><hr /></p>
+<p><strong>1) Wie kann ich eigene Schriftarten verwenden?</strong></p>
+<p><br />
+  Die pdf Rechnung liefert etliche Schriftarten mit im  Verzeichnis (includes/pdf/font).<br />
+  Will man andere Schriftarten verwenden, müssen Schriften  erst nach folgender Anleitung konvertiert werden (getestet unter Windows Vista,  geht aber auch mit Windows XP oder Windows 2000)</p>
+<p>1)<br />
+  Das Tool ufpdf unter folgendem Link herunterladen:<br />
+  <a href="http://www.webchills.at/zen/ufpdf.zip" target="_blank">http://www.webchills.at/zen/ufpdf.zip</a></p>
+<p>2)<br />
+  Entpacken in irgendeinen Ordner auf der Festplatte, am  besten in:<br />
+  C:\ufpdf</p>
+<p>3)<br />
+  Die Schriftart, die konvertiert werden soll MUSS als True  Type Font vorliegen (.ttf)<br />
+  In diesem Beispiel konvertieren wir Myriad, es wird also die  Datei myriad.ttf benötigt (z.B. aus dem Verzeichnis C:\Windows\Fonts</p>
+<p>4)<br />
+  Die myriad.ttf in C:\ufpdf\font kopieren</p>
+<p>5)<br />
+  Command Prompt (Eingabeaufforderung) öffnen und in  C:\ufpdf\tools wechseln</p>
+<p>6)<br />
+  Folgenden Befehl eingeben:<br />
+  ttf2ufm -a -F ..\font\myriad.ttf<br />
+  Nach Bestätigung mit Enter sollte eine Meldung in dieser Art  erscheinen:<br />
+<img width="524" height="201" src="graphics/ufpdf1.jpg" alt="ufpdf1.jpg" /></p>
+<p>7)<br />
+  Im Ordner C:\ufpdf\font sind danach 3 zusätzliche Dateien  vorhanden:<br />
+  <br />
+  <img width="336" height="183" src="graphics/ufpdf2.jpg" alt="ufpdf2.jpg" /><br />
+  <br />
+  myriad.afm<br />
+  myriad.t1a<br />
+  myriad.ufm<br />
+  Diese drei Dateien benötigen wir nun für den nächsten  Schritt.</p>
+<p>8)<br />
+  In einem Texteditor eine Datei mit folgendem Inhalt  erstellen:<br />
+  <br />
+&lt;?php<br />
+  error_reporting(E_ALL);<br />
+  require_once(&quot;makefontuni.php&quot;);<br />
+  MakeFont(&quot;myriad.ttf&quot;,&quot;myriad.ufm&quot;);<br />
+  ?&gt;<br />
+  <br />
+Datei abspeichern als make.php</p>
+<p>9)<br />
+  Am Server irgendein Verzeichnis anlegen, z.B. font. Das kann  irgendein Verzeichnis sein, hat nichts mit Zen-Cart zu tun<br />
+  In dieses Verzeichnis nun die erstellte make.php hochladen.<br />
+  Im Ordner C:\ufpdf\tools liegt eine makefontuni.php<br />
+  Diese makefontuni.php ebenfalls in das Verzeichnis font  hochladen.<br />
+  Nun noch alle Myriad Fontdateien aus C:\ufpdf\font ebenfalls  in dieses Verzeichnis hochladen, also:<br />
+  myriad.ttf<br />
+  myriad.afm<br />
+  myriad.t1a<br />
+  myriad.ufm</p>
+<p>10)<br />
+  Im Browser <a href="http://meinedomain.de/font/make.php">http://meinedomain.de/font/make.php</a> aufrufen<br />
+  Danach sind im Verzeichnis font die 3 Dateien vorhanden, die  nun für die pdf Rechnung benötigt werden:<br />
+  myriad.php<br />
+  myriad.z<br />
+  myriad.ctg.z</p>
+<p>11)<br />
+  Diese drei Dateien nun in Zen-Cart in folgendes Verzeichnis  hochladen:<br />
+  includes/pdf/font</p>
+<p>12)<br />
+  Um die Schriftart Myriad nun in der pdf Rechnung zu  aktivieren, im Zen-Cart Admin unter Konfiguration &gt; pdfRechnung3 &gt;  Schriftarten für Rechnungen und Artikel dejavusanscondensed auf myriad ändern.<br />
+  Nach demselben Muster kann eine weitere Schriftart  konvertiert und in der pdf Rechnung aktiviert werden. Dazu nur in der make.php  den Namen der Schrift ändern. Soll z.B. verdana.ttf konvertiert werden, müsste  die make.php so aussehen:<br />
+  <br />
+  &lt;?php<br />
+  error_reporting(E_ALL);<br />
+  require_once(&quot;makefontuni.php&quot;);<br />
+  MakeFont(&quot;verdana.ttf&quot;,&quot;verdana.ufm&quot;);<br />
+  ?&gt;</p>
+<p><hr /></p>
+<p><strong>2) Wie kann ich die Schriftgröße und die Breite der Spalten verändern?</strong></p>
+<p>Generell sollten alle Einstellungen im Zen-Cart Admin unter Konfiguration &gt; pdf Rechnung 3 vorgenommen werden. Wem diese Einstellungsmöglichkeiten nicht reichen, der kann zusätzlich Änderungen in folgender Datei vornehmen:</p>
+<p>includes/pdf/rl_invoice3_def.php</p>
+<p>In dieser Konfigurationsdatei sind verschiedene Templates definiert. Standardmäßig ist unter Konfiguration &gt; pdf Rechnung 3 &gt; Template für Artikel- und Summentabelle Folgendes aktiv:</p>
+<p>col_templ_1|options_templ_1|total_col_1|total_opt_1</p>
+<p>Wenn hier etwas geändert werden soll, istalso nur der entsprechende Abschnitt in der rl_invoice3_def.php relevant:</p>
+<p>$optionsP['options_templ_1'] = array(&quot;fontSize&quot; =&gt; 8, 'showHeadings' =&gt; 1, 'shaded' =&gt; 1, 'xPos' =&gt; 'left', 'xOrientation' =&gt; 'right', 'width' =&gt; $realPW-35,<br />
+'cols' =&gt; array(<br />
+'qty' =&gt; array(&quot;justification&quot; =&gt; &quot;L&quot;, &quot;width&quot; =&gt; 15),<br />
+'tax' =&gt; array(&quot;justification&quot; =&gt; &quot;R&quot;, &quot;width&quot; =&gt; 10),<br />
+'model' =&gt; array(&quot;justification&quot; =&gt; &quot;L&quot;, &quot;width&quot; =&gt; 25),<br />
+'name' =&gt; array('justification' =&gt; 'L', &quot;width&quot; =&gt; 60),<br />
+'singleI' =&gt; array('justification' =&gt; 'R', &quot;width&quot; =&gt; 25),<br />
+'singleE' =&gt; array('justification' =&gt; 'R', &quot;width&quot; =&gt; 25),<br />
+'extraI' =&gt; array('justification' =&gt; 'R', &quot;width&quot; =&gt; 20),<br />
+'sumI' =&gt; array('justification' =&gt; 'R', &quot;width&quot; =&gt; 25),<br />
+)<br />
+);</p>
+<p>Hier könnte man z.B. den fontSize statt 8 auf 7 stellen, um die Schrift kleiner zu machen.<br />
+Oder die Breite der einzelen Spalten unter width verändern</p>
+<p><hr/></p>
+<p><br />
+    <strong>3) Wie kann ich dem Kunden bei einer Bestellung automatisch Rechnung, AGB und Infos zum Widerruf mitsenden?</strong></p>
+<p>Admin &gt; Konfiguration &gt; pdf Rechnung 3<br />
+  Rechnung bei Bestellung auf 1 stellen.<br />
+  Dadurch wird im Bestellbestätigungsemail automatisch die Rechnung als pdf angehängt.<br />
+    <br />
+  Um zusätzlich die AGB mitzusenden, ein pdf mit den AGB erstellen und z.B. als agb.pdf abspeichern.<br />
+  Die agb.pdf in folgendes Verzeichnis in Zen-Cart hochladen:<br />
+  includes/pdf<br />
+  Dann unter Konfiguration &gt; pdf Rechnung 3 &gt; Anhänge folgendes eintragen:<br />
+agb.pdf</p>
+<p>Um zusätzlich auch noch eine Info zum Widerruf mitzusenden, ein pdf mit der Widerrufsinfo erstellen und z.B. als widerruf.pdf abspeichern.<br />
+  widerruf.pdf in folgendes Verzeichnis in Zen-Cart hochladen:<br />
+includes/pdf<br />
+Dann unter Konfiguration &gt; pdf Rechnung 3 &gt; Anhänge folgendes eintragen:<br />
+agb.pdf | widerruf.pdf</p>
+<p><hr />
+</p>
+</body>
+</html>
