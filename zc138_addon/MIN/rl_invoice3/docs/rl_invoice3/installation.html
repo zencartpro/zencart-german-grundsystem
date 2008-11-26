@@ -7,9 +7,30 @@
 </head>
 
 <body>
-<p align="center" class="Stil1"><strong>pdf Rechnung 3</strong><br />
-  <a href="index.html">Übersicht</a> | Installation |  <a href="faq.html">FAQ</a></p>
-<p><strong>INSTALLATION</strong></p>
-<p>&nbsp;</p>
+<div id="header">
+pdf Rechnung 3<br />
+ <a href="index.html">Übersicht</a> | Installation | <a href="konfiguration.html">Konfiguration</a> | <a href="faq.html">FAQ</a></div>
+  <div id="wrapper">
+  <div class="content">
+<h1>Installation</h1>
+<p>1) Im Ordner includes/templates den Ordner YOURTEMPLATE auf das im Shop verwendete Template umbennen (z.B. viennablood, classic, ...)</p>
+<p>2) Alle Dateien im Ordner includes in der vorgegebenen Struktur in die Zen-Cart Installation hochladen. Dabei wird folgende bestehende Datei überschrieben:</p>
+<p>includes/classes/order.php</p>
+<p>Sollten in dieser Datei bereits einmal Änderungen vorgenommen worden sein, vorher unbedingt den Inhalt vergleichen und die Änderungen manuell eintragen. Gut geeignet dazu ist das Tool <a href="http://winmerge.org/" target="_blank">Winmerge</a>.</p>
+<p>3) Alle Dateien im Ordner admin in der vorgegebenen Struktur in die Zen-Cart Installation hochladen. Dabei wird folgende Datei überschrieben:</p>
+<p>admin/orders.php</p>
+<p>Sollten in dieser Datei bereits einmal Änderungen vorgenommen worden sein, vorher unbedingt den Inhalt vergleichen und die Änderungen manuell eintragen. Gut geeignet dazu ist das Tool <a href="http://winmerge.org/" target="_blank">Winmerge</a>.</p>
+<p>4) Den Ordner pdf ins Hauptverzeichnis des Shops hochladen und diesem Ordner chmod 777 geben. In diesem Ordner werden später die pdf Rechnungen gespeichert, daher sind Schreibrechte nötig.</p>
+<p>5) Wenn alle Dateien hochgeladen sind, in die Zen-Cart Administration einsteigen und Kunden &gt; Bestellungen aufrufen.<br />
+Dort ist jetzt rechts bei jeder Bestellung ein neuer Button &quot;PDF-Rechnung&quot;:<br />
+  <br />
+  <img src="graphics/button.jpg" alt="pdf Rechnung Button" width="314" height="104" /></p>
+<p>5) Bei irgendeiner Bestellung auf diesen Button clicken, dadurch werden die nötigen Einträge in der Datenbank vorgenommen und es geht der neue Menüpunkt Konfiguration &gt; pdf Rechnung 3 auf. Befüllt ist die Konfiguration bereits mit funktionierenden Standardwerten. Diese Werte kann man dann später auf seine Bedürfnisse anpassen, mehr dazu unter &quot;<a href="konfiguration.html">Konfiguration</a>&quot;.</p>
+<p>6) Die Installation ist damit abgeschlossen. Jetzt am besten mal das Erzeugen einer pdf Rechnung ausprobieren und nochmal unter Kunden &gt; Bestellungen eine Bestellung auswählen und den Button &quot;PDF-Rechnung&quot; anclicken. Wenn dann ein pdf aufgeht mit dem Namen xxx.pdf (xxx=Bestellnummer) ist alles ok und das Modul ist einsatzbereit.</p>
+<p>7) Jetzt kannst Du das Modul an Deine Bedürfnisse anpassen und bei &quot;<a href="konfiguration.html">Konfiguration</a>&quot; weiterlesen.</p>
+<br/>
+  </div>
+</div>
+<div id="footer"><a href="#">top of page</a></div>
 </body>
 </html>
