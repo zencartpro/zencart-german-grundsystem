@@ -1003,8 +1003,8 @@ class order extends base {
             require_once(DIR_WS_INCLUDES . 'classes/class.rl_invoice3.php');
             
             $pdfT = new rl_invoice3($zf_insert_id, $paper['orientation'], $paper['unit'], $paper['format']);
-            $this->attachArray = $pdfT->getPDFAttachments();
             $pdfT -> createPdfFile(true);
+            $this->attachArray = $pdfT->getPDFAttachments();
             #$this->attachArray[] = array('file'=>$x, 'mime_type'=>'pdf');
         }
     }
