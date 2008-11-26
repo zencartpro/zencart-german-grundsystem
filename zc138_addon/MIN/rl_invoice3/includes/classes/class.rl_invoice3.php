@@ -414,7 +414,7 @@ class rl_invoice3 extends fpdi{
         $data = array();
         $i = 0;
         foreach($this -> order -> totals as $key => $val){
-            $data[$i]['title'] = html_entity_decode($val['title']);
+            $data[$i]['title'] = strip_tags(html_entity_decode($val['title']));
             $data[$i]['text'] = $this->mr(html_entity_decode($val['text']));
             $data[$i]['class'] = $val['class'];
             $i++;
