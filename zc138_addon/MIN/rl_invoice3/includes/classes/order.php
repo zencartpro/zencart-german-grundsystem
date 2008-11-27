@@ -1021,7 +1021,7 @@ class order extends base {
         $html_msg['EMAIL_TEXT_HEADER'] = nl2br($pmt_details) . $html_msg['EMAIL_TEXT_HEADER'];
       }
 
-      if(function_exists('getPDFAttachments')){
+      if(method_exists($pdfT, "getPDFAttachments")){
         $this->attachArray = $pdfT->getPDFAttachments('NO');
       }
       zen_mail('', SEND_EXTRA_ORDER_EMAILS_TO, SEND_EXTRA_NEW_ORDERS_EMAILS_TO_SUBJECT . ' ' . EMAIL_TEXT_SUBJECT . EMAIL_ORDER_NUMBER_SUBJECT . $zf_insert_id,
