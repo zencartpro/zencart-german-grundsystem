@@ -21,7 +21,6 @@
 //
 
 define('TABLE_HEADING_COMMENTS','Kommentare');
-define('TABLE_HEADING_PRODUCTS_MODEL','Artikelnr.');
 define('TABLE_HEADING_PRODUCTS_MODEL','Artikelnummer');
 define('TABLE_HEADING_PRODUCTS','Artikel');
 define('TABLE_HEADING_TAX','UST');
@@ -29,10 +28,8 @@ define('TABLE_HEADING_TOTAL','Summe');
 define('TABLE_HEADING_EXTRA','Extra');
 define('TABLE_HEADING_QTY','Anzahl');
 define('TABLE_HEADING_PRICE_EXCLUDING_TAX','Einzelpreis (exkl. UST)');
-define('TABLE_HEADING_PRICE_INCLUDING_TAX','Einzelpreis');
 define('TABLE_HEADING_PRICE_INCLUDING_TAX','Einzelpreis (inkl. UST)');
 define('TABLE_HEADING_TOTAL_EXCLUDING_TAX','Summe (exkl. UST)');
-define('TABLE_HEADING_TOTAL_INCLUDING_TAX','Summe');
 define('TABLE_HEADING_TOTAL_INCLUDING_TAX','Summe (inkl. UST)');
 
 define('ENTRY_CUSTOMER', 'KUNDE:');
@@ -47,7 +44,7 @@ define('ENTRY_TOTAL','Endsumme:');
 define('ENTRY_DATE_PURCHASED', 'Bestelldatum:');
 
 define('ENTRY_ORDER_ID', 'Rechnungsnummer');
-define('TEXT_INFO_ATTRIBUTE_FREE', '&nbsp;-&nbsp;FREI');
+define('TEXT_INFO_ATTRIBUTE_FREE', '&nbsp;-&nbsp;KOSTENLOS');
 
 define('LIEFERADRESSE', 'Lieferadresse');
 define('RECHNUNGSADRESSE', 'Rechnungsadresse');
