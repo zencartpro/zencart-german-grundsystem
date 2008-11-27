@@ -123,7 +123,7 @@ echo zen_draw_form('cart_quantity', zen_href_link(zen_get_info_page($_GET['produ
 /**
  * display the category icons
  */
- echo $template->get_template_dir('/tpl_modules_category_icon_display.php',DIR_WS_TEMPLATE, $current_page_base,'templates'). '/tpl_modules_category_icon_display.php';
+
 require($template->get_template_dir('/tpl_modules_category_icon_display.php',DIR_WS_TEMPLATE, $current_page_base,'templates'). '/tpl_modules_category_icon_display.php'); ?>
 <?php } ?>
 <!--eof Category Icon -->
