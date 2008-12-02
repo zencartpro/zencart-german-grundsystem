@@ -1,8 +1,9 @@
-===== Lastschriftverfahren online 2.0 für Zen-Cart 1.3.8 ===
+===== Lastschriftverfahren online 2.1 für Zen-Cart 1.3.8 ===
 
 
 Update der Version 1.0 des Moduls Lastschrift (c) cyberflohr 2006 
 Modifikationen November 2008 von webchills und hugo13
+Bugfix Dezember 2008 von MaleBorg
 
 
 

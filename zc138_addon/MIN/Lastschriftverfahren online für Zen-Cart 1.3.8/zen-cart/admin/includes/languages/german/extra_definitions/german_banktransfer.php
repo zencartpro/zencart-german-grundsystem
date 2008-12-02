@@ -5,11 +5,9 @@
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.at/license/2_0.txt GNU Public License V2.0
  * @translator: cyaneo/hugo13/wflohr    http://www.zen-cart.at    2007-01-03
- * @version $Id: orders.php 302 2008-05-30 19:49:12Z maleborg $
+ * @version $Id: orders.php 391 2008-11-17 17:00:12Z webchills $
  */
 
-//  $Id: orders.php 302 2008-05-30 19:49:12Z maleborg $
-//
 
 define('HEADING_TITLE', 'Bestellungen');
 define('HEADING_TITLE_SEARCH', 'Bestell ID:');
@@ -129,6 +127,7 @@ define('TEXT_GERMANBT_OWNER', 'Kontoinhaber:');
 define('TEXT_GERMANBT_NUMBER', 'Kontonummer:');
 define('TEXT_GERMANBT_BLZ', 'BLZ:');
 define('TEXT_GERMANBT_NAME', 'Bank:');
+define('TEXT_GERMANBT_BIC', 'BIC:');
 define('TEXT_GERMANBT_FAX', 'Einzugsermächtigung wird per Fax bestätigt');
 define('TEXT_GERMANBT_STATUS', 'Prüfstatus:');
 define('TEXT_GERMANBT_PRZ', 'Prüfverfahren:');

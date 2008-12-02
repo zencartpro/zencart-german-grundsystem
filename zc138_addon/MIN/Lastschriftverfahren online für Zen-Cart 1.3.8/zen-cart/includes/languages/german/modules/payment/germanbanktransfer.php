@@ -1,7 +1,7 @@
 <?php
 /*
   $Id: germanbanktransfer.php 157 2005-04-07 20:33:35Z dogu $
-  modified for Zen-Cart 1.3.8 2008-11-09 webchills
+  modified for Zen-Cart 1.3.8 2008-11-18 webchills
   OSC German Banktransfer
   (http://www.oscommerce.com/community/contributions,826)
 
@@ -24,6 +24,7 @@
   define('MODULE_PAYMENT_GERMANBT_TEXT_BANK_NUMBER', 'Kontonummer: ');
   define('MODULE_PAYMENT_GERMANBT_TEXT_BANK_BLZ', 'BLZ: ');
   define('MODULE_PAYMENT_GERMANBT_TEXT_BANK_NAME', 'Bank: ');
+  define('MODULE_PAYMENT_GERMANBT_TEXT_BANK_BIC', 'BIC: ');
   define('MODULE_PAYMENT_GERMANBT_TEXT_BANK_FAX', 'Einzugsermächtigung wird per Fax bestätigt');
 
   define('MODULE_PAYMENT_GERMANBT_TEXT_BANK_ERROR', 'FEHLER: ');

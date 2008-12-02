@@ -51,33 +51,36 @@ var $PRZ; //Enthält die Prüfziffer
                         'prz' => $data[2]);
       }
     }
-    return $cdata;
+	return $cdata;
   }
 
 ////
 // Diese function gibt die Bankinformationen aus der Datenbank zurück*/
   function db_query($blz) {
-    if (defined(MODULE_PAYMENT_BANKTRANSFER_DATABASE_BLZ)){
+  global $db;
+    if (MODULE_PAYMENT_GERMANBT_DATABASE_BLZ == 'true') {
       $blz_query = $db->Execute("SELECT * from " . TABLE_GERMANBT_BLZ . " WHERE blz = '" . $blz . "'");
-    } else {
-      $blz_query = $db->Execute("SELECT * from banktransfer WHERE blz = '" . $blz . "'");
     }
-//1    if (tep_db_num_rows($blz_query)){
-	if ($blz_query->RecordCount() < 1) {
-      $data = tep_db_fetch_array ($blz_query);
-    }else
+
+	if ($blz_query->RecordCount() > 0) {
+	$data = array (	'blz' => $blz_query->fields['blz'],
+					'bankname' => $blz_query->fields['bankname'],
+					'prz' => $blz_query->fields['prz']);
+    } else {
       $data = -1;
-    return $data;
+    }
+	return $data;
   }
 
 ////
 // Diese function gibt die Bankinformationen aus der Datenbank zurück*/
   function query($blz) {
-    if (defined(MODULE_PAYMENT_BANKTRANSFER_DATABASE_BLZ) && MODULE_PAYMENT_BANKTRANSFER_DATABASE_BLZ == 'true')
+    if (MODULE_PAYMENT_GERMANBT_DATABASE_BLZ == 'true'){
       $data = $this->db_query($blz);
-    else
+    } else {
       $data = $this->csv_query($blz);
-    return $data;
+    } 
+	return $data;
   }
 
 ////
