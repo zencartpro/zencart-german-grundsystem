@@ -1,0 +1,44 @@
+#slidetabsmenu {
+  float:left;
+  width:100%;
+  font-size:98%;
+  border-bottom: 1px solid #9FB1BC;
+  line-height:normal;
+  }
+#slidetabsmenu ul {
+  margin:0;
+  padding:10px 10px 10px 10px;
+  list-style:none;
+  }
+#slidetabsmenu li {
+  display:inline;
+  margin:0;
+  padding:0;
+  font-weight: bold;
+  }
+#slidetabsmenu a {
+  float:left;
+  margin:0;
+  padding:0 0 5px 4px;
+  text-decoration:none;
+  }
+#slidetabsmenu a span {
+  float:left;
+  display:block;
+  padding:5px 12px 4px 6px;
+  color:#666;
+  }
+
+#slidetabsmenu a:hover , a.current {
+  background:url("../../images/tpp/tabcenter35.gif") no-repeat bottom center;
+  }
+
+.tabcontent{
+  clear:both;
+  float: left;
+  width: 100%;
+  border-bottom: 1px solid;
+  background: white;
+  color: black;
+  display:none;
+  }

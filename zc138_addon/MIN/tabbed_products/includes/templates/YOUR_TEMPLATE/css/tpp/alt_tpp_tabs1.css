@@ -1,0 +1,57 @@
+#slidetabsmenu {
+  float:left;
+  width:100%;
+  font-size:93%;
+  border-bottom:1px solid #BCD2E6;
+  line-height:normal;
+  }
+#slidetabsmenu ul {
+  margin:0;
+  padding:10px 10px 10px 10px;
+  list-style:none;
+  }
+#slidetabsmenu li {
+  display:inline;
+  margin:0;
+  padding:0;
+  font-weight: bold;
+  }
+#slidetabsmenu a {
+  float:left;
+  background:url("../../images/tpp/tableft1.gif") no-repeat left top;
+  margin:0;
+  padding:0 0 0 4px;
+  text-decoration:none;
+  }
+#slidetabsmenu a span {
+  float:left;
+  display:block;
+  background:url("../../images/tpp/tabright1.gif") no-repeat right top;
+  padding:5px 12px 4px 6px;
+  color:#627EB7;
+  }
+/* Commented Backslash Hack hides rule from IE5-Mac \*/
+#slidetabsmenu a span {float:none;}
+/* End IE5-Mac hack */
+#slidetabsmenu a:hover {
+  background-position:0% -42px;
+  }
+#slidetabsmenu a:hover span {
+  color:#627EB7;
+  background-position:100% -42px;
+  }
+#slidetabsmenu a.current {
+	  background-position:0% -42px;
+  }
+#slidetabsmenu a.current span {
+	  background-position:100% -42px;
+  }
+.tabcontent{
+  clear: both;
+  float:left;
+  width:100%;
+  border-bottom: 1px solid;
+  background: white;
+  color: black;
+  display:none;
+  }
