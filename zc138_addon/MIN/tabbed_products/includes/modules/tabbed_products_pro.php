@@ -141,7 +141,7 @@ if ($proddata != "") {
 
 		$FindEnd 	= explode("<!--@EndTabs@-->", $proddata); 	// Find where the EndTabs override is reached
 		$CstmTags 	= explode("<!--%", $FindEnd[0]);			// Parse Custom Tags up to the EndTabs tag
-		$ZenTags 	= explode("<!--#", $FindEnd[0]);			// Parse Zen Tags up to the EndTabs tag
+        $ZenTags     = explode("<!--#", $FindEnd[0]);            // Parse Zen Tags up to the EndTabs tag
 
 		if ($CstmTags[0] != "") { // check for text before the tabs
 			$tabstrip = '<div id="productDescription" class="productGeneral biggerText">' . $CstmTags[0] . '</div>' . "\n\n";
