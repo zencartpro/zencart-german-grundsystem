@@ -1,0 +1,16 @@
+.alignright {
+  display:inline;
+  float:right;
+  margin-bottom:4px;
+  margin-left:10px;
+  overflow:hidden;
+  border: 1px solid black;
+}
+
+.alignleft {
+  display:inline;
+  float:left;
+  margin-bottom:4px;
+  margin-right:10px;
+  overflow:hidden;
+}
