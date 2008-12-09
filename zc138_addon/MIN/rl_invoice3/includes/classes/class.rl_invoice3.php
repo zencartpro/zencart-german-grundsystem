@@ -115,8 +115,10 @@ class rl_invoice3 extends fpdi {
             if($res->EOF){
                 $sql = "INSERT INTO " . TABLE_ORDERS_STATUS . " (orders_status_id, language_id, orders_status_name) VALUES ('100', '1', 'Resend Invoice')";
                 $db->Execute($sql);
-                $sql = "INSERT INTO " . TABLE_ORDERS_STATUS . " (orders_status_id, language_id, orders_status_name) VALUES ('100', '43', 'Rechnung versenden')";
-                $db->Execute($sql);
+                if($multi){
+                    $sql = "INSERT INTO " . TABLE_ORDERS_STATUS . " (orders_status_id, language_id, orders_status_name) VALUES ('100', '43', 'Rechnung versenden')";
+                    $db->Execute($sql);
+                }
             }
             // rl_invoive3 config-parameter
             $confArr = array('RL_INVOICE3_ADDRESS1_POS', 'RL_INVOICE3_ADDRESS2_POS', 'RL_INVOICE3_ADDRESS_BORDER', 'RL_INVOICE3_ADDRESS_WIDTH', 
