@@ -4,6 +4,9 @@ $Revision$
 $copyright$
 $ccc$
 $yyy$
+$svn:ccc$
+$svn:yyy$
+$cr$
 
 ADDONS:
 OFF: SEO
