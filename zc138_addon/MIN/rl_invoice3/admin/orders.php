@@ -91,6 +91,18 @@
                                       date_purchased from " . TABLE_ORDERS . "
                                       where orders_id = '" . (int)$oID . "'");
 
+        // BOF rl_incoice3                                       
+        $rlStat = explode('|', RL_INVOICE3_SEND_ORDERSTATUS_CHANGE);
+        $rl_invoice3_send = in_array($status, $rlStat);
+        if ( ($check_status->fields['orders_status'] != $status  && $status==RL_INVOICE3_ORDERSTATUS)  || ($rl_invoice3_send == true)){
+            require_once (DIR_FS_CATALOG . DIR_WS_INCLUDES . 'classes/class.rl_invoice3.php');     
+            $pdfT = new rl_invoice3($oID, $paper['orientation'], $paper['unit'], $paper['format']);
+            $pdfT->createPdfFile(true);
+            $attach = $pdfT->getPDFAttachments('ONLY');
+        } else {
+            $attach = null;
+        }
+        // EOF rl_incoice3
         if ( ($check_status->fields['orders_status'] != $status) || zen_not_null($comments)) {
           $db->Execute("update " . TABLE_ORDERS . "
                         set orders_status = '" . zen_db_input($status) . "', last_modified = now()
@@ -121,12 +133,13 @@
 
           $customer_notified = '0';
           if (isset($_POST['notify']) && ($_POST['notify'] == 'on')) {
-            zen_mail($check_status->fields['customers_name'], $check_status->fields['customers_email_address'], EMAIL_TEXT_SUBJECT . ' #' . $oID, $message, STORE_NAME, EMAIL_FROM, $html_msg, 'order_status');
+            zen_mail($check_status->fields['customers_name'], $check_status->fields['customers_email_address'], EMAIL_TEXT_SUBJECT . ' #' . $oID, $message, STORE_NAME, EMAIL_FROM, $html_msg, 'order_status', $attach);
+            #zen_mail($this->customer['firstname'] . ' ' . $this->customer['lastname'], $this->customer['email_address'], EMAIL_TEXT_SUBJECT . EMAIL_ORDER_NUMBER_SUBJECT . $zf_insert_id, $email_order, STORE_NAME, EMAIL_FROM, $html_msg, 'checkout', $this->attachArray);
             $customer_notified = '1';
 
             //send extra emails
             if (SEND_EXTRA_ORDERS_STATUS_ADMIN_EMAILS_TO_STATUS == '1' and SEND_EXTRA_ORDERS_STATUS_ADMIN_EMAILS_TO != '') {
-              zen_mail('', SEND_EXTRA_ORDERS_STATUS_ADMIN_EMAILS_TO, SEND_EXTRA_ORDERS_STATUS_ADMIN_EMAILS_TO_SUBJECT . ' ' . EMAIL_TEXT_SUBJECT . ' #' . $oID, $message, STORE_NAME, EMAIL_FROM, $html_msg, 'order_status_extra');
+              zen_mail('', SEND_EXTRA_ORDERS_STATUS_ADMIN_EMAILS_TO, SEND_EXTRA_ORDERS_STATUS_ADMIN_EMAILS_TO_SUBJECT . ' ' . EMAIL_TEXT_SUBJECT . ' #' . $oID, $message, STORE_NAME, EMAIL_FROM, $html_msg, 'order_status_extra', $attach);
             }
           }
 

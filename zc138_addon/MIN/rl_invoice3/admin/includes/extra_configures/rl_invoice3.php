@@ -17,6 +17,6 @@
 // | to obtain it through the world-wide-web, please send a note to       |
 // | license@zen-cart.com so we can mail you a copy immediately.          |
 // +----------------------------------------------------------------------+
-//  $Id: rl_invoice2.php 5 2007-05-31 15:59:32Z rainer langheiter $
+//  $Id: rl_invoice3.php 40 2008-11-11 20:14:45Z hugo13 $
 //
   define('FILENAME_RL_INVOICE3', 'rl_invoice3.php');

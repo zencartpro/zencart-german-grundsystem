@@ -1,11 +1,11 @@
 <?php
 // +----------------------------------------------------------------------+
-//  $Id: rl_invoice3_def.php 4 2007-05-31 15:50:23Z rainer langheiter $
+//  $Id: rl_invoice3_def.php 40 2008-11-11 20:14:45Z hugo13 $
 //
 /**
  * COLUMNS   #####
  */
- // $Id: rl_invoice3_def.php 4 2007-05-31 15:50:23Z rainer langheiter $
+
  
 $realPW = 210;
 

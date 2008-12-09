@@ -997,6 +997,7 @@ class order extends base {
     $html_msg['EXTRA_INFO'] = '';
     $zco_notifier->notify('NOTIFY_ORDER_INVOICE_CONTENT_READY_TO_SEND', array('zf_insert_id' => $zf_insert_id, 'text_email' => $email_order, 'html_email' => $html_msg));
 
+    // BOF rl_invoice3
     $this->attachArray = array();
     if(RL_INVOICE3_SEND_PDF=='1'){
         if(!(0==$this->info['total'] && RL_INVOICE3_NOT_NULL_INVOICE==0)){     
@@ -1011,7 +1012,8 @@ class order extends base {
         }
     }
     zen_mail($this->customer['firstname'] . ' ' . $this->customer['lastname'], $this->customer['email_address'], EMAIL_TEXT_SUBJECT . EMAIL_ORDER_NUMBER_SUBJECT . $zf_insert_id, $email_order, STORE_NAME, EMAIL_FROM, $html_msg, 'checkout', $this->attachArray);
-
+    // EOF rl_invoice3
+    
     // send additional emails
     if (SEND_EXTRA_ORDER_EMAILS_TO != '') {
       $extra_info=email_collect_extra_info('','', $this->customer['firstname'] . ' ' . $this->customer['lastname'], $this->customer['email_address'], $this->customer['telephone']);
