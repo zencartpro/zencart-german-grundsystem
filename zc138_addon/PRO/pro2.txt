@@ -2,6 +2,8 @@ $Id$
 $Date$
 $Revision$
 $copyright$
+$ccc$
+$yyy$
 
 ADDONS:
 OFF: SEO
