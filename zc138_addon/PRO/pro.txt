@@ -6,7 +6,7 @@ ERL: rl_invoice3
 ERL: TPP
 OFF:
 OFF:
-
+DIS: Dynamic Price Updater multilanguage
 
 
 2008-12-10: 
