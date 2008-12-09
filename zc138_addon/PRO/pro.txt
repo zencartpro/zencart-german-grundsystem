@@ -1,4 +1,6 @@
 $Id$
+$Date$
+$Revision$
 
 ADDONS:
 OFF: SEO
