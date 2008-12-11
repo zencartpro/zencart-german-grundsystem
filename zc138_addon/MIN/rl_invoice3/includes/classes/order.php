@@ -1001,7 +1001,7 @@ class order extends base {
     $this->attachArray = array();
     if(RL_INVOICE3_SEND_PDF=='1'){
         if(!(0==$this->info['total'] && RL_INVOICE3_NOT_NULL_INVOICE==0)){     
-            if( (defined(RL_INVOICE3_ORDERSTATUS)) && ($this->info['order_status'] >= RL_INVOICE3_ORDERSTATUS)) {
+            if( (defined('RL_INVOICE3_ORDERSTATUS')) && ($this->info['order_status'] >= RL_INVOICE3_ORDERSTATUS)) {
                 require_once(DIR_WS_INCLUDES . 'classes/class.rl_invoice3.php');
                 
                 $pdfT = new rl_invoice3($zf_insert_id, $paper['orientation'], $paper['unit'], $paper['format']);
