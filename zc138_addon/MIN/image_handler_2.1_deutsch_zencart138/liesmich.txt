@@ -1,0 +1,48 @@
+Image Handler 2.1 für Zen-Cart 1.3.8 deutsch
+
+Originalversion:
+by Tim Kroeger (www.breakmyzencart.com)
+
+Anpassung für Zen-Cart 1.3.8 deutsch
+Dezember 2008 by webchills (www.webchills.at)
+
+deutsche Konfigurationsanleitung
+Oktober 2008 by waldelfe
+
+
+
+================= WAS MACHT DIESES MODUL ? ================= 
+
+Diese Erweiterung ermöglicht dir, GD libraries oder ImageMagick (falls diese auf deinem Server installiert sind) zu verwenden, um während des Heraufladens eines einzelnen Bildes kleine, mittlere und grosse Bilder spontan zu erstellen oder anzupassen sowie Verzeichnisse für mittlere und grosse Bilder zu verwenden. 
+Ebenso können zu einem Artikel zusätzliche Bilder hochgeladen werden.
+Ausserdem ermöglicht diese Erweiterung, deine Bilder mit Wasserzeichen zu versehen (ein zweites, spezifisches Bild überlagert das erste Bild) sowie mittlere Bilder in einem Popup-Fenster zu öffnen, sobald du deine Maus über ein kleines Bild bewegst.
+Dieses Modul enthält eine Administrations-Oberfläche, um deine Artikel wie mit dem Attributmanager durchzusehen und zusätzliche Bilder hochzuladen, hinzuzufügen oder zu bearbeiten ohne dazu ein FTP-Programm benutzen zu müssen.
+
+
+================= ÄNDERUNGEN IN VERSION 2.1 ================= 
+
+Die englische Originalversion 2.0 ist länger nicht mehr weiterentwickelt worden und macht in der deutschen Zen-Cart 1.3.8 Version oft Schwierigkeiten.
+Diese Version 2.1 ist auf die deutsche 1.3.8 abgestimmt. Alle Einstellungsmöglichkeiten im Admin sind nun auf deutsch.
+
+
+
+================= WICHTIG =====================
+Nur geeignet für Zen-Cart 1.3.8 deutsch!
+Vor dem Einbau dieser Änderungen:
+BACKUP von Shop und Datenbank machen! 
+Keine Haftung, Verwendung auf eigene Gefahr!
+BACKUP gemacht? Ok, dann weiterlesen...
+=================================================
+
+
+===================================
+NEUINSTALLATION FÜR ZEN-CART 1.3.8
+===================================
+
+fehlt noch
+
+==============================================
+UPDATE FALLS IMAGE HANDLER SCHON INSTALLIERT IST
+==============================================
+
+fehlt noch
