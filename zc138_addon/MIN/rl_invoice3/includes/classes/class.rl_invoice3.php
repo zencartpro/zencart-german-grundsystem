@@ -21,7 +21,7 @@ class rl_invoice3 extends fpdi {
     var $aligns;
     function rl_invoice3($oID, $orientation, $unit, $format) {
         $this->pdf = new FPDI();
-        parent::fpdi($orientation, $unit, $format);
+        #parent::fpdi($orientation, $unit, $format);
         global $db;
         $this->db = $db;
         $this->oID = $oID;
@@ -70,6 +70,8 @@ class rl_invoice3 extends fpdi {
         $this->options = $options;
         $this->t1Col = $colsP[$this->templates['pCols']];
         $this->t1Opt = $optionsP[$this->templates['pOptions']];
+        $this->subtotal = 0;
+        $this->subtotalColumn = $this->getSubtotalColumn();
         $pagecount = $this->pdf->setSourceFile($this->bgPDF['file']);
         $tplidx2 = $this->pdf->ImportPage(1);
         $this->pdf->addPage($this->paper['orientation']);
@@ -80,6 +82,15 @@ class rl_invoice3 extends fpdi {
             $this->debugInfo = rldp($this, 'DebugInfo');
         }
     }
+    function getSubtotalColumn(){
+        $i = 0;
+        foreach ($this->t1Opt['cols'] as $key => $value) {
+            if($key == $this->t1Opt['subtotal']){
+                return $i;
+            }
+            $i++;
+        }
+    }
     function setTemplate($cp, $op) {
         #rldp($this->colsP, '$this->colsP');
         $this->t1Col = $cp;
@@ -88,8 +99,9 @@ class rl_invoice3 extends fpdi {
     function checkInstall() {
         global $db;
         // link to invoice
-        #$link = HTTP_SERVER . DIR_WS_ADMIN . 'rl_invoice3.php?oID=' . zen_db_prepare_input($_GET['oID']);
-        if (!defined('RL_INVOICE3_SEND_ORDERSTATUS_CHANGE')) {
+        $link = HTTP_SERVER . DIR_WS_ADMIN . 'rl_invoice3.php?oID=' . zen_db_prepare_input($_GET['oID']);
+        #if (!defined('RL_INVOICE3_SEND_ORDERSTATUS_CHANGE')) {
+        if (!defined('RL_INVOICE3_MARGIN')) {
             // check multilingual installation
             if (rl_invoice3::isMultiLingual()) {
                 $multi = true;
@@ -97,17 +109,32 @@ class rl_invoice3 extends fpdi {
                 $multi = false;
             }
             // rewrite group info
-            $sql = "DELETE FROM " . TABLE_CONFIGURATION_GROUP . " WHERE configuration_group_title LIKE 'PDF Invoice3' OR configuration_group_title LIKE 'PDF Rechnung3'";
-            $db->Execute($sql);
-            $group = getNextConfigGroupID();
-            if (!$multi) {
-                $sql = "INSERT INTO " . TABLE_CONFIGURATION_GROUP . " (configuration_group_id, configuration_group_title, configuration_group_description, sort_order, visible) VALUES ($group, 'PDF Invoice3', 'PDF3', 726, 1)";
+            $sql = "SELECT configuration_group_id FROM " . TABLE_CONFIGURATION_GROUP . " WHERE configuration_group_title LIKE 'PDF_INVOICE3'" ;
+            $res = $db->Execute($sql);
+            if($res->RecordCount()>1){
+                $sql = 'DELETE ' . TABLE_CONFIGURATION_LANGUAGE . '
+                            FROM ' . TABLE_CONFIGURATION . ' INNER JOIN ' . TABLE_CONFIGURATION_LANGUAGE . ' ON ' . TABLE_CONFIGURATION . '.configuration_key = ' . TABLE_CONFIGURATION_LANGUAGE . '.configuration_key 
+                            WHERE ' . TABLE_CONFIGURATION . '.configuration_group_id=' . $res->fields['configuration_group_id'];
                 $db->Execute($sql);
+                $sql = 'DELETE ' . TABLE_CONFIGURATION . ' FROM ' . TABLE_CONFIGURATION . ' WHERE ' . TABLE_CONFIGURATION . '.configuration_group_id=' . $res->fields['configuration_group_id'];
+                $db->Execute($sql);
+                $sql = "DELETE FROM " . TABLE_CONFIGURATION_GROUP . " WHERE configuration_group_id=" . $res->fields['configuration_group_id'];
+                $db->Execute($sql);
+                zen_redirect($link);
+            }
+            if($res->RecordCount()==0){
+                $group = getNextConfigGroupID();
+                if (!$multi) {
+                    $sql = "INSERT INTO " . TABLE_CONFIGURATION_GROUP . " (configuration_group_id, configuration_group_title, configuration_group_description, sort_order, visible) VALUES ($group, 'PDF Invoice3', 'PDF3', 726, 1)";
+                    $db->Execute($sql);
+                } else {
+                    $sql = "INSERT INTO " . TABLE_CONFIGURATION_GROUP . " (configuration_group_id, language_id, configuration_group_title, configuration_group_description, sort_order, visible) VALUES ($group, 1, 'PDF Invoice3', 'PDF3', 726, 1)";
+                    $db->Execute($sql);
+                    $sql = "INSERT INTO " . TABLE_CONFIGURATION_GROUP . " (configuration_group_id, language_id, configuration_group_title, configuration_group_description, sort_order, visible) VALUES ($group, 43, 'PDF Rechnung3', 'PDF3', 726, 1)";
+                    $db->Execute($sql);
+                }
             } else {
-                $sql = "INSERT INTO " . TABLE_CONFIGURATION_GROUP . " (configuration_group_id, language_id, configuration_group_title, configuration_group_description, sort_order, visible) VALUES ($group, 1, 'PDF Invoice3', 'PDF3', 726, 1)";
-                $db->Execute($sql);
-                $sql = "INSERT INTO " . TABLE_CONFIGURATION_GROUP . " (configuration_group_id, language_id, configuration_group_title, configuration_group_description, sort_order, visible) VALUES ($group, 43, 'PDF Rechnung3', 'PDF3', 726, 1)";
-                $db->Execute($sql);
+                $group = $res->fields['configuration_group_id'];
             }
             // orders_status insert resend invoice
             $sql = "SELECT * FROM " . TABLE_ORDERS_STATUS . " WHERE orders_status_id=100";
@@ -157,7 +184,7 @@ class rl_invoice3 extends fpdi {
                                 'RL_INVOICE3_FONTS' => "('fonts for invoice|products', 'RL_INVOICE3_FONTS', 'dejavusanscondensed|freemono', 'fonts for <br />1. invoice in general <br >2. products & total-table<br />', $group, 120, NULL)", 
                                 'RL_INVOICE3_LINE_HEIGT' => "('Line Height', 'RL_INVOICE3_LINE_HEIGT', '1.25', 'Line Height', $group, 130, NULL)", 
                                 'RL_INVOICE3_LINE_THICK' => "('Line Total Thickness', 'RL_INVOICE3_LINE_THICK', '0.5', 'thickness off total-line', $group, 130, NULL)", 
-                                'RL_INVOICE3_MARGIN' => "('defines the margins', 'RL_INVOICE3_MARGIN', '25|10|10|20', 'defines the margines:<br />top|right|bottom|left<br />(Note: 1inch = 72pt / 2.54cm; 1cm = 28,35pt)<br />', $group, 20, NULL)", 
+                                'RL_INVOICE3_MARGIN' => "('defines the margins', 'RL_INVOICE3_MARGIN', '25|10|30|20', 'defines the margines:<br />top|right|bottom|left<br />(Note: 1inch = 72pt / 2.54cm; 1cm = 28,35pt)<br />', $group, 20, NULL)", 
                                 'RL_INVOICE3_NOT_NULL_INVOICE' => "('Accounting for free product', 'RL_INVOICE3_NOT_NULL_INVOICE', '0', 'Accounting for free product: send e-mail invoice', $group, 130, NULL)", 
                                 'RL_INVOICE3_ORDERSTATUS' =>  "('send by orderstatus greater/equal than ', 'RL_INVOICE3_ORDERSTATUS', '3', 'only send invoice if orders_status greater or equal than', $group, 130, NULL)", 
                                 'RL_INVOICE3_ORDER_ID_PREFIX' => "('prefix for OrderNo', 'RL_INVOICE3_ORDER_ID_PREFIX', ': FsF/2008/', 'prefix for OrderNo<br />', $group, 110, NULL)", 
@@ -167,7 +194,7 @@ class rl_invoice3 extends fpdi {
                                 'RL_INVOICE3_SEND_ATTACH' => "('additional attachements', 'RL_INVOICE3_SEND_ATTACH', 'agb.pdf|widerruf.pdf', 'RL_INVOICE3_SEND_PDF', $group, 130, NULL)", 
                                 'RL_INVOICE3_SEND_ORDERSTATUS_CHANGE' =>  "('[RE]send order', 'RL_INVOICE3_SEND_ORDERSTATUS_CHANGE', '3|100', '[RE]send invoice, if orderstatus changed to', $group, 130, NULL)", 
                                 'RL_INVOICE3_SEND_PDF' => "('RL_INVOICE3_SEND_PDF', 'RL_INVOICE3_SEND_PDF', '1', 'RL_INVOICE3_SEND_PDF', $group, 130, NULL)", 
-                                'RL_INVOICE3_TABLE_TEMPLATE' => "('Templates for products table & total table', 'RL_INVOICE3_TABLE_TEMPLATE', 'col_templ_1|options_templ_1|total_col_1|total_opt_1', 'templates for products_table & total_table; this is defined in rl_invoice3_def.php; see also: docs/rl_invoice/readme_ezpdf.pdf<br />', $group, 90, NULL)",
+                                'RL_INVOICE3_TABLE_TEMPLATE' => "('Templates for products table & total table', 'RL_INVOICE3_TABLE_TEMPLATE', 'amazon|amazon_templ|total_col_1|total_opt_1', 'templates for products_table & total_table; this is defined in rl_invoice3_def.php; see also: docs/rl_invoice/readme_ezpdf.pdf<br />', $group, 90, NULL)",
                                 'RL_INVOICE3_WITHOUTINVOICE' => "('do not print invoice address', 'RL_INVOICE3_WITHOUTINVOICE', 'false', 'do not print invoice address', $group, 160, \"zen_cfg_select_option(array('true', 'false'), \")",
                                 );
             foreach ($confDiffAdd as $value) {
@@ -226,9 +253,12 @@ class rl_invoice3 extends fpdi {
     }
     function Row($data) {
         // Calculate the height of the row
+        $this->xyz = $data[0] . ' :: ' . $data[1] . ' :: ' . $data[2];
         $y1 = $this->pdf->getY();
         $nb = 0;
-        for ($i = 0;$i < count($data);$i++) $nb = max($nb, $this->NbLines($this->widths[$i], $data[$i]));
+        for ($i = 0;$i < count($data);$i++) {
+            $nb = max($nb, $this->NbLines($this->widths[$i], $data[$i]));
+        }
         $h = 3 * $nb;
         // Issue a page break first if needed
         $this->CheckPageBreak($h);
@@ -239,16 +269,18 @@ class rl_invoice3 extends fpdi {
             // Save the current position
             $x = $this->pdf->GetX();
             $y = $this->pdf->GetY();
-            // Draw the border
-            ###$this->pdf->Rect($x, $y, $w, $h);
-            $recArr[] = array('x' => $x, 'y' => $y, 'w' => $w);
-            // Print the text
-            $mc = $this->pdf->MultiCell($w, $this->pdf->FontSize * $this->lineHeight[0], $this->mr($data[$i]), 0, $a);
-            $h1[] = $mc[0];
-            $h2[] = $mc[1];
-            #$this->pdf->MultiCell($w, 3, $this->mr($data[$i]), 'LR', $a);
-            // Put the position to the right of the cell
-            $this->pdf->SetXY($x + $w, $y);
+            if($w > 0){
+                // Draw the border
+                ###$this->pdf->Rect($x, $y, $w, $h);
+                $recArr[] = array('x' => $x, 'y' => $y, 'w' => $w);
+                // Print the text
+                $mc = $this->pdf->MultiCell($w, $this->pdf->FontSize * $this->lineHeight[0], $this->mr($data[$i]), 0, $a);
+                $h1[] = $mc[0];
+                $h2[] = $mc[1];
+                #$this->pdf->MultiCell($w, 3, $this->mr($data[$i]), 'LR', $a);
+                // Put the position to the right of the cell
+                $this->pdf->SetXY($x + $w, $y);
+            }
         }
         $y2 = $this->pdf->getY();
         $h = max($h2) - min($h1);
@@ -256,11 +288,22 @@ class rl_invoice3 extends fpdi {
             $this->pdf->Rect($v['x'], $v['y'], $v['w'], $h);
         }
         // Go to the next line
+        $this->CheckPageBreak($h);
         $this->pdf->Ln($h);
     }
     function CheckPageBreak($h) {
         // If the height h would cause an overflow, add a new page immediately
-        if ($this->pdf->GetY() + $h > $this->PageBreakTrigger) $this->pdf->addPage($this->CurOrientation);
+        if (($this->pdf->GetY() + $h + 12) > $this->pdf->PageBreakTrigger) {
+            $this->pdf->SetXY($this->margin['left'], $this->pdf->GetY() + $this->t1Opt['fontSize'] / 2);
+            $this->pdf->Cell(155, 6, 'Zwischensumme:', '', 0, 'R');
+            $subT = $this->mr(html_entity_decode($this->currencies->format($this->subtotal, true, $this->order->info['currency'], $this->order->info['currency_value'])));
+            $this->pdf->Cell(25, 6, $subT, '', 2, 'R');
+            
+            $this->pdf->addPage($this->CurOrientation);
+            
+            $this->pdf->Cell(155, 6, 'Übertrag:', '', 0, 'R');
+            $this->pdf->Cell(25, 6, $subT, '', 2, 'R');
+        }
     }
     function NbLines($w, $txt) {
         // Computes the number of lines a MultiCell of width w will take
@@ -389,12 +432,15 @@ class rl_invoice3 extends fpdi {
                     $data[$i]['qty_name_model'].= "\n\t" . $val2['option'] . ': ' . $val2['value'];
                 }
             }
-            $data[$i]['singleE'] = $this->mr(html_entity_decode($this->currencies->format($val['final_price'], true, $this->order->info['currency'], $this->order->info['currency_value'])));
-            $data[$i]['singleI'] = $this->mr(html_entity_decode($this->currencies->format($val['final_price'] + $val['final_price'] * $val['tax'] / 100, true, $this->order->info['currency'], $this->order->info['currency_value'])));
-            $data[$i]['extraE'] = $this->mr(html_entity_decode($this->currencies->format($val['onetime_charges'], true, $this->order->info['currency'], $this->order->info['currency_value'])));
-            $data[$i]['extraI'] = $this->mr(html_entity_decode($this->currencies->format($val['onetime_charges'] + $val['tax'] * $val['onetime_charges'] / 100, true, $this->order->info['currency'], $this->order->info['currency_value'])));
-            $data[$i]['sumE'] = $this->mr(html_entity_decode($this->currencies->format($val['qty'] * ($val['final_price']) + $val['onetime_charges'], true, $this->order->info['currency'], $this->order->info['currency_value'])));
-            $data[$i]['sumI'] = $this->mr(html_entity_decode($this->currencies->format($val['qty'] * ($val['final_price'] + $val['final_price'] * $val['tax'] / 100) + ($val['onetime_charges'] + $val['tax'] * $val['onetime_charges'] / 100), true, $this->order->info['currency'], $this->order->info['currency_value'])));
+            $data[$i]['singleE']    = $this->mr(html_entity_decode($this->currencies->format($val['final_price'], true, $this->order->info['currency'], $this->order->info['currency_value'])));
+            $data[$i]['singleI']    = $this->mr(html_entity_decode($this->currencies->format($val['final_price'] + $val['final_price'] * $val['tax'] / 100, true, $this->order->info['currency'], $this->order->info['currency_value'])));
+            $data[$i]['extraE']     = $this->mr(html_entity_decode($this->currencies->format($val['onetime_charges'], true, $this->order->info['currency'], $this->order->info['currency_value'])));
+            $data[$i]['extraI']     = $this->mr(html_entity_decode($this->currencies->format($val['onetime_charges'] + $val['tax'] * $val['onetime_charges'] / 100, true, $this->order->info['currency'], $this->order->info['currency_value'])));
+            $data[$i]['sumE']       = $this->mr(html_entity_decode($this->currencies->format($val['qty'] * ($val['final_price']) + $val['onetime_charges'], true, $this->order->info['currency'], $this->order->info['currency_value'])));
+            $data[$i]['sumI']       = $this->mr(html_entity_decode($this->currencies->format($val['qty'] * ($val['final_price'] + $val['final_price'] * $val['tax'] / 100) + ($val['onetime_charges'] + $val['tax'] * $val['onetime_charges'] / 100), true, $this->order->info['currency'], $this->order->info['currency_value'])));
+            $data[$i]['subtotalE']  = $val['qty'] * ($val['final_price']) + $val['onetime_charges'];
+            $data[$i]['subtotalI']  = $val['qty'] * ($val['final_price'] + $val['final_price'] * $val['tax'] / 100) + ($val['onetime_charges'] + $val['tax'] * $val['onetime_charges'] / 100);
+            #$data[$i]['subtotalE'] = '***';
             $i++;
         }
         #rldp($data, 'DATA');
@@ -426,7 +472,9 @@ class rl_invoice3 extends fpdi {
             } else {
                 $wi = $this->t1Opt['cols'][$key]['width'];
             }
-            $this->pdf->Cell($wi, $this->t1Opt['fontSize'] / 2, $value, '1', 0, $this->t1Opt['cols'][$key]['justification'], 1);
+            if($wi > 0){
+                $this->pdf->Cell($wi, $this->t1Opt['fontSize'] / 2, $value, '1', 0, $this->t1Opt['cols'][$key]['justification'], 1);
+            }
         }
         $this->pdf->SetFont($this->fonts2['general']);
         $this->pdf->SetXY($this->margin['left'], $this->pdf->GetY() + $this->t1Opt['fontSize'] / 2);
@@ -450,6 +498,7 @@ class rl_invoice3 extends fpdi {
                 $mValue[] = $pValue[$key];
             }
             $this->SetWidths($width);
+            $this->subtotal += $mValue[$this->subtotalColumn];
             $this->Row($mValue);
         }
     }

@@ -9,6 +9,15 @@
  
 $realPW = 210;
 
+$colsP['amazon'] = array(
+    'qty' => TABLE_HEADING_QTY,
+     'model' => TABLE_HEADING_PRODUCTS_MODEL,
+     'name' => TABLE_HEADING_PRODUCTS,
+     'singleE' => TABLE_HEADING_PRICE_EXCLUDING_TAX_AMAZON,
+     'tax' => TABLE_HEADING_TAX,
+     'sumE' => TABLE_HEADING_TOTAL_EXCLUDING_TAX_AMAZON,
+     'subtotalE' => '...',
+    );
 $colsP['col_templ_1'] = array(
     'qty' => TABLE_HEADING_QTY,
      'model' => TABLE_HEADING_PRODUCTS_MODEL,
@@ -53,6 +62,17 @@ $colsP['templ3'] = array(
 /**
  * OPTIONS
  */
+$optionsP['amazon_templ'] = array("subtotal"=>'subtotalE', "fontSize" => 8, 'showHeadings' => 1, 'shaded' => 1, 'xPos' => 'left', 'xOrientation' => 'right', 'width' => $realPW-35,
+     'cols' => array(
+         'qty' => array("justification" => "L", "width" => 15),
+         'tax' => array("justification" => "R", "width" => 15),
+         'model' => array("justification" => "L", "width" => 25),
+         'name' => array('justification' => 'L', "width" => 75),
+         'singleE' => array('justification' => 'R', "width" => 25),
+         'sumE' => array('justification' => 'R', "width" => 25),
+         'subtotalE' => array('justification' => 'R', "width" => 0),
+        )
+    );
 $optionsP['options_templ_1'] = array("fontSize" => 8, 'showHeadings' => 1, 'shaded' => 1, 'xPos' => 'left', 'xOrientation' => 'right', 'width' => $realPW-35,
      'cols' => array(
          'qty' => array("justification" => "L", "width" => 15),

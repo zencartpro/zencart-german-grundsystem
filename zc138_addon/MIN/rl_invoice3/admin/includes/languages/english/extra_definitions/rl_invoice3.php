@@ -22,16 +22,18 @@
 
 define('TABLE_HEADING_COMMENTS', 'Comments');
 define('TABLE_HEADING_PRODUCTS_MODEL', 'Model');
-define('TABLE_HEADING_PRODUCTS_MODEL','Artikelnummer');
+
 define('TABLE_HEADING_PRODUCTS', 'Products');
 define('TABLE_HEADING_TAX', 'Tax');
 define('TABLE_HEADING_TOTAL', 'Total');
 define('TABLE_HEADING_EXTRA','Extra');
-define('TABLE_HEADING_QTY','Anzahl');
+define('TABLE_HEADING_QTY','Quantity');
 define('TABLE_HEADING_PRICE_EXCLUDING_TAX', 'Price (ex)');
+define('TABLE_HEADING_PRICE_EXCLUDING_TAX_AMAZON', 'Price (ex)');
 define('TABLE_HEADING_PRICE_INCLUDING_TAX', 'Price (inc)');
 define('TABLE_HEADING_PRICE_INCLUDING_TAX','Einzelpreis (inkl. UST)');
 define('TABLE_HEADING_TOTAL_EXCLUDING_TAX', 'Total (ex)');
+define('TABLE_HEADING_TOTAL_EXCLUDING_TAX_AMAZON','Total (ex)');
 define('TABLE_HEADING_TOTAL_INCLUDING_TAX','Summe');
 define('TABLE_HEADING_TOTAL_INCLUDING_TAX', 'Total (inc)');
 
