@@ -15,6 +15,8 @@ require ('includes/application_top.php');
 require (DIR_WS_CLASSES . 'currencies.php');
 include (DIR_WS_CLASSES . 'order.php');
 require_once (DIR_FS_CATALOG . DIR_WS_INCLUDES . 'classes/class.rl_invoice3.php');
+require_once ('../' . DIR_WS_LANGUAGES . $_SESSION['language'] . '/extra_definitions/rl_invoice3.php');
+
 if ($_GET['test'] == 'PDF') {
     $pdfT = new rl_invoice3($_GET['oID'], 'L', $paper['unit'], $paper['format']);
     $pdfT->pdf->setY(30);
@@ -30,5 +32,6 @@ if ($_GET['test'] == 'PDF') {
     $pdfT->writePDF();
     exit();
 }
+$paper = rl_invoice3::getDefault(RL_INVOICE3_PAPER, array('format' => 'A4', 'unit' => 'mm', 'orientation' => 'P'));
 $pdfT = new rl_invoice3($_GET['oID'], $paper['orientation'], $paper['unit'], $paper['format']);
 $pdfT->createPdfFile();

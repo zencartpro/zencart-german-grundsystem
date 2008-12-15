@@ -20,11 +20,12 @@ class rl_invoice3 extends fpdi {
     var $widths;
     var $aligns;
     function rl_invoice3($oID, $orientation, $unit, $format) {
-        $this->pdf = new FPDI();
-        #parent::fpdi($orientation, $unit, $format);
         global $db;
         $this->db = $db;
         $this->oID = $oID;
+        $this->checkInstall();
+        $this->pdf = new FPDI();
+        #parent::fpdi($orientation, $unit, $format);
         $this->currencies = new currencies();
         $this->order = new order($this->oID);
         $this->order_check = $this->db->Execute("select cc_cvv, customers_name, customers_company, customers_street_address,
@@ -91,17 +92,25 @@ class rl_invoice3 extends fpdi {
             $i++;
         }
     }
+    function deleteConfGroup($gID){
+        $sql = 'DELETE ' . TABLE_CONFIGURATION_LANGUAGE . '
+                    FROM ' . TABLE_CONFIGURATION . ' INNER JOIN ' . TABLE_CONFIGURATION_LANGUAGE . ' ON ' . TABLE_CONFIGURATION . '.configuration_key = ' . TABLE_CONFIGURATION_LANGUAGE . '.configuration_key 
+                    WHERE ' . TABLE_CONFIGURATION . '.configuration_group_id=' . $gID;
+        $this->db->Execute($sql);
+        $sql = 'DELETE ' . TABLE_CONFIGURATION . ' FROM ' . TABLE_CONFIGURATION . ' WHERE ' . TABLE_CONFIGURATION . '.configuration_group_id=' . $gID;
+        $this->db->Execute($sql);
+        $sql = "DELETE FROM " . TABLE_CONFIGURATION_GROUP . " WHERE configuration_group_id=" . $gID;
+        $this->db->Execute($sql);
+    }
     function setTemplate($cp, $op) {
         #rldp($this->colsP, '$this->colsP');
         $this->t1Col = $cp;
         $this->t1Opt = $op;
     }
     function checkInstall() {
-        global $db;
         // link to invoice
         $link = HTTP_SERVER . DIR_WS_ADMIN . 'rl_invoice3.php?oID=' . zen_db_prepare_input($_GET['oID']);
-        #if (!defined('RL_INVOICE3_SEND_ORDERSTATUS_CHANGE')) {
-        if (!defined('RL_INVOICE3_MARGIN')) {
+        if (!defined('RL_INVOICE3_SEND_ORDERSTATUS_CHANGE')) {
             // check multilingual installation
             if (rl_invoice3::isMultiLingual()) {
                 $multi = true;
@@ -109,42 +118,42 @@ class rl_invoice3 extends fpdi {
                 $multi = false;
             }
             // rewrite group info
+            $sql = "SELECT configuration_group_id FROM " . TABLE_CONFIGURATION_GROUP . " WHERE configuration_group_title LIKE 'PDF_INVOICE'" ;
+            $res = $this->db->Execute($sql);
+            while (!$res->EOF){
+                $this->deleteConfGroup($res->fields['configuration_group_id']);
+                $res->MoveNext();
+            }
+
             $sql = "SELECT configuration_group_id FROM " . TABLE_CONFIGURATION_GROUP . " WHERE configuration_group_title LIKE 'PDF_INVOICE3'" ;
-            $res = $db->Execute($sql);
+            $res = $this->db->Execute($sql);
             if($res->RecordCount()>1){
-                $sql = 'DELETE ' . TABLE_CONFIGURATION_LANGUAGE . '
-                            FROM ' . TABLE_CONFIGURATION . ' INNER JOIN ' . TABLE_CONFIGURATION_LANGUAGE . ' ON ' . TABLE_CONFIGURATION . '.configuration_key = ' . TABLE_CONFIGURATION_LANGUAGE . '.configuration_key 
-                            WHERE ' . TABLE_CONFIGURATION . '.configuration_group_id=' . $res->fields['configuration_group_id'];
-                $db->Execute($sql);
-                $sql = 'DELETE ' . TABLE_CONFIGURATION . ' FROM ' . TABLE_CONFIGURATION . ' WHERE ' . TABLE_CONFIGURATION . '.configuration_group_id=' . $res->fields['configuration_group_id'];
-                $db->Execute($sql);
-                $sql = "DELETE FROM " . TABLE_CONFIGURATION_GROUP . " WHERE configuration_group_id=" . $res->fields['configuration_group_id'];
-                $db->Execute($sql);
+                $this->deleteConfGroup($res->fields['configuration_group_id']);
                 zen_redirect($link);
             }
             if($res->RecordCount()==0){
                 $group = getNextConfigGroupID();
                 if (!$multi) {
                     $sql = "INSERT INTO " . TABLE_CONFIGURATION_GROUP . " (configuration_group_id, configuration_group_title, configuration_group_description, sort_order, visible) VALUES ($group, 'PDF Invoice3', 'PDF3', 726, 1)";
-                    $db->Execute($sql);
+                    $this->db->Execute($sql);
                 } else {
                     $sql = "INSERT INTO " . TABLE_CONFIGURATION_GROUP . " (configuration_group_id, language_id, configuration_group_title, configuration_group_description, sort_order, visible) VALUES ($group, 1, 'PDF Invoice3', 'PDF3', 726, 1)";
-                    $db->Execute($sql);
+                    $this->db->Execute($sql);
                     $sql = "INSERT INTO " . TABLE_CONFIGURATION_GROUP . " (configuration_group_id, language_id, configuration_group_title, configuration_group_description, sort_order, visible) VALUES ($group, 43, 'PDF Rechnung3', 'PDF3', 726, 1)";
-                    $db->Execute($sql);
+                    $this->db->Execute($sql);
                 }
             } else {
                 $group = $res->fields['configuration_group_id'];
             }
             // orders_status insert resend invoice
             $sql = "SELECT * FROM " . TABLE_ORDERS_STATUS . " WHERE orders_status_id=100";
-            $res = $db->Execute($sql);
+            $res = $this->db->Execute($sql);
             if($res->EOF){
                 $sql = "INSERT INTO " . TABLE_ORDERS_STATUS . " (orders_status_id, language_id, orders_status_name) VALUES ('100', '1', 'Resend Invoice')";
-                $db->Execute($sql);
+                $this->db->Execute($sql);
                 if($multi){
                     $sql = "INSERT INTO " . TABLE_ORDERS_STATUS . " (orders_status_id, language_id, orders_status_name) VALUES ('100', '43', 'Rechnung versenden')";
-                    $db->Execute($sql);
+                    $this->db->Execute($sql);
                 }
             }
             // rl_invoive3 config-parameter
@@ -154,7 +163,7 @@ class rl_invoice3 extends fpdi {
                             'RL_INVOICE3_PAPER', 'RL_INVOICE3_PDF_BACKGROUND', 'RL_INVOICE3_PDF_PATH', 'RL_INVOICE3_SEND_ATTACH', 
                             'RL_INVOICE3_SEND_ORDERSTATUS_CHANGE', 'RL_INVOICE3_SEND_PDF', 'RL_INVOICE3_TABLE_TEMPLATE', 'RL_INVOICE3_WITHOUTINVOICE');
             $sql = ' SELECT configuration_key FROM ' . TABLE_CONFIGURATION . " WHERE configuration_key LIKE 'RL_INVOICE3%'";
-            $res = $db->Execute($sql);
+            $res = $this->db->Execute($sql);
             $confArrAct = array();
             while (!$res->EOF) {
                 $confArrAct[] = $res->fields['configuration_key'];
@@ -166,10 +175,10 @@ class rl_invoice3 extends fpdi {
             if (!empty($confDiffDEL)) {
                 $where = "'" . implode("', '", $confDiffDEL) . "'";
                 $sql = "DELETE FROM " . TABLE_CONFIGURATION . " WHERE configuration_key IN ($where)";
-                $db->Execute($sql);
+                $this->db->Execute($sql);
                 if ($multi) {
                     $sql = "DELETE FROM " . TABLE_CONFIGURATION_LANGUAGE . " WHERE configuration_key IN ($where)";
-                    $db->Execute($sql);
+                    $this->db->Execute($sql);
                 }
             }
             // only insert new params; let the old ones live    
@@ -199,7 +208,7 @@ class rl_invoice3 extends fpdi {
                                 );
             foreach ($confDiffAdd as $value) {
                $sql = $ins . $confArrAdd[$value];
-               $db->Execute($sql);
+               $this->db->Execute($sql);
             }
             if ($multi) {
                $ins = "INSERT INTO " . TABLE_CONFIGURATION_LANGUAGE . " (configuration_key, configuration_language_id, configuration_title, configuration_description) VALUES ";
@@ -228,7 +237,7 @@ class rl_invoice3 extends fpdi {
                                     );
                foreach ($confDiffAdd as $value) {
                    $sql = $ins . $confArrMultiAdd[$value];
-                   $db->Execute($sql);
+                   $this->db->Execute($sql);
                }
             }
             // link to config if new values added
@@ -303,6 +312,7 @@ class rl_invoice3 extends fpdi {
             
             $this->pdf->Cell(155, 6, 'Übertrag:', '', 0, 'R');
             $this->pdf->Cell(25, 6, $subT, '', 2, 'R');
+            $this->pdf->SetXY($this->margin['left'], $this->pdf->GetY() + $this->t1Opt['fontSize'] / 2);
         }
     }
     function NbLines($w, $txt) {
@@ -421,7 +431,7 @@ class rl_invoice3 extends fpdi {
         foreach($this->order->products as $key => $val) {
             $data[$i]['qty'] = $val['qty'];
             $data[$i]['model'] = $val['model'];
-            $data[$i]['name'] = $val['name'];
+            $data[$i]['name'] = strip_tags($val['name']);
             $data[$i]['qty_name'] = $val['qty'] . '* ' . $val['name'];
             $data[$i]['qty_name_model'] = $val['qty'] . '* ' . $val['name'] . ' (' . $val['model'] . ')';
             $data[$i]['tax'] = zen_display_tax_value($val['tax']) . '%';
@@ -600,5 +610,3 @@ class rl_invoice3 extends fpdi {
     }
 }
 ################
-rl_invoice3::checkInstall();
-$paper = rl_invoice3::getDefault(RL_INVOICE3_PAPER, array('format' => 'A4', 'unit' => 'mm', 'orientation' => 'P'));
