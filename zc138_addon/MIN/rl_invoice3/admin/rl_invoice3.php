@@ -4,7 +4,7 @@
  * @copyright Copyright 2003-2007 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: rl_invoice3.php 40 2008-11-11 20:14:45Z hugo13 $
+ * @version $Id$
  *
  * version: 2.0.0 // 20070531
  *

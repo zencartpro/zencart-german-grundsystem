@@ -5,7 +5,7 @@
  * @package classes
  * @copyright Copyright 2003-2007 Zen Cart Development Team
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: order.php 7129 2007-09-29 03:03:04Z drbyte $
+ * @version $Id$
  */
 /**
  * order class

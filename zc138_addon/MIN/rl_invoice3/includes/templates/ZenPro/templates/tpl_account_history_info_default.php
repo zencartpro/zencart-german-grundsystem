@@ -9,7 +9,7 @@
  * @copyright Copyright 2003-2006 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: tpl_account_history_info_default.php 6247 2007-04-21 21:34:47Z wilt $
+ * @version $Id$
  */
 ?>
 <div class="centerColumn" id="accountHistInfo">
