@@ -97,18 +97,36 @@ Weitere Infos zum Tool ufpdf auf:<br />
 <p>Generell sollten alle Einstellungen im Zen-Cart Admin unter Konfiguration &gt; pdf Rechnung 3 vorgenommen werden. Wem diese Einstellungsmöglichkeiten nicht reichen, der kann zusätzlich Änderungen in folgender Datei vornehmen:</p>
 <p>includes/pdf/rl_invoice3_def.php</p>
 <p>In dieser Konfigurationsdatei sind verschiedene Templates definiert. Standardmäßig ist unter Konfiguration &gt; pdf Rechnung 3 &gt; Template für Artikel- und Summentabelle Folgendes aktiv:</p>
-<p>col_templ_1|options_templ_1|total_col_1|total_opt_1</p>
+<p>amazon|amazon_templ|total_col_1|total_opt_1</p>
 <p>Wenn hier etwas geändert werden soll, ist also nur der entsprechende Abschnitt in der rl_invoice3_def.php relevant:</p>
-<code>$optionsP['options_templ_1'] = array(&quot;fontSize&quot; =&gt; 8, 'showHeadings' =&gt; 1, 'shaded' =&gt; 1, 'xPos' =&gt; 'left', 'xOrientation' =&gt; 'right', 'width' =&gt; $realPW-35,<br />
+<code>// amazon|amazon_templ|total_col_1|total_opt_1 <br />
+$colsP['amazon'] = array(<br />
+'subtotalI' =&gt; '...',<br />
+'subtotalE' =&gt; '...',<br />
+'qty' =&gt; TABLE_HEADING_QTY,<br />
+'model' =&gt; TABLE_HEADING_PRODUCTS_MODEL,<br />
+'name' =&gt; TABLE_HEADING_PRODUCTS,<br />
+'singleE' =&gt; TABLE_HEADING_PRICE_EXCLUDING_TAX_AMAZON,<br />
+'tax' =&gt; TABLE_HEADING_TAX,<br />
+'sumE' =&gt; TABLE_HEADING_TOTAL_EXCLUDING_TAX_AMAZON,<br />
+);<br />
+$optionsP['amazon_templ'] = array(&quot;subtotal&quot;=&gt;'subtotalE', <br />
+&quot;paperOriantation&quot;=&gt;&quot;P&quot;, <br />
+&quot;fontSize&quot; =&gt; 8, <br />
+'showHeadings' =&gt; 1, <br />
+'shaded' =&gt; 1, <br />
+'xPos' =&gt; 'left', <br />
+'xOrientation' =&gt; 'right', <br />
+'width' =&gt; $realPW-35,<br />
 'cols' =&gt; array(<br />
+'subtotalI' =&gt; array('justification' =&gt; 'R', &quot;width&quot; =&gt; 0),<br />
+'subtotalE' =&gt; array('justification' =&gt; 'R', &quot;width&quot; =&gt; 0),<br />
 'qty' =&gt; array(&quot;justification&quot; =&gt; &quot;L&quot;, &quot;width&quot; =&gt; 15),<br />
-'tax' =&gt; array(&quot;justification&quot; =&gt; &quot;R&quot;, &quot;width&quot; =&gt; 10),<br />
 'model' =&gt; array(&quot;justification&quot; =&gt; &quot;L&quot;, &quot;width&quot; =&gt; 25),<br />
-'name' =&gt; array('justification' =&gt; 'L', &quot;width&quot; =&gt; 60),<br />
-'singleI' =&gt; array('justification' =&gt; 'R', &quot;width&quot; =&gt; 25),<br />
+'name' =&gt; array('justification' =&gt; 'L', &quot;width&quot; =&gt; 75),<br />
 'singleE' =&gt; array('justification' =&gt; 'R', &quot;width&quot; =&gt; 25),<br />
-'extraI' =&gt; array('justification' =&gt; 'R', &quot;width&quot; =&gt; 20),<br />
-'sumI' =&gt; array('justification' =&gt; 'R', &quot;width&quot; =&gt; 25),<br />
+'tax' =&gt; array(&quot;justification&quot; =&gt; &quot;R&quot;, &quot;width&quot; =&gt; 15),<br />
+'sumE' =&gt; array('justification' =&gt; 'R', &quot;width&quot; =&gt; 25),<br />
 )<br />
 );</code>
 <p>Hier könnte man z.B. den fontSize statt 8 auf 7 stellen, um die Schrift kleiner zu machen.<br />

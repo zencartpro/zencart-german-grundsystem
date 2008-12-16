@@ -64,8 +64,23 @@ agb.pdf</p>
   Restliche Einstellungen vornehmen</strong></p>
 <p>Die übrigen Konfigurationsmöglichkeiten unter Konfiguration &gt; PDF Rechnung 3 sind immer erklärt, wenn Du auf Bearbeiten clickst:</p>
 <p><img src="graphics/admin.jpg" alt="pdf Rechnung im Admin" width="760" height="422" /></p>
-<br/>
-</div>
+<p>Hier ein paar Erläuterungen zu den wichtigsten Möglichkeiten:</p>
+<p><strong>Rechnungsneuversand</strong><br/>
+Hier kannst Du einen Bestellstatus oder mehrere Bestellstati einstellen, bei denen die pdf Rechnung nach Aktualisieren der Bestellung erneut versendet werden soll. Voreingestellt ist 3 (das ist normalerweise der Status &quot;versendet&quot;) und 100 (ein eigener Bestellstatus, der vom Modul mitgeliefert wird). Überprüfe unter &quot;Lokalisation&quot; &gt; &quot;Bestelllstatus&quot; welche Werte die Bestellstati in Deinem Shop haben und stelle dann hier die gewünschten Werte ein.</p>
+<p><strong>Rechnungsversand bei Bestellstatus</strong><br />
+  Hier wird definiert, bei welchem Bestellstatus die pdf Rechnung automatisch gemailt wird. Wenn die Rechnung gleich bei der Bestellung mitgemailt werden soll, muss hier auf 1 umgestellt werden (1 ist normalerweise der Status &quot;Wartet&quot;). Auch hier vorher  unter &quot;Lokalisation&quot; &gt; &quot;Bestelllstatus&quot; unbedingt überprüfen, welche Werte in Deinem Shop wirklich aktiv sind.</p>
+<p><strong>Speicherort und -name der PDF-Datei</strong><br/>
+Hier wird eingestellt, ob die pdf Rechnung überhaupt am Server gespeichert werden soll. Und wenn ja in welchem Ordner. Voreingestellt ist der Ordner pdf im Shophauptverzeichnis. Wenn dieser Ordner verwendet wird, unbedingt sicherstellen, dass der Inhalt nicht einfach mit www.meinshop.de/pdf aufgelistet wird. Also entweder eine leere index.html in diesen Ordner legen. Oder per .htaccess das Auflisten des Ordnerinhalts unterbinden. Dazu eine Datei mit folgendem Inhalt erstellen:<br/>
+<code>Options -Indexes</code></p>
+<p>Als .htaccess abspeichern und ins pdf Verzeichnis legen. Möglicherweise ist aber serverseitig bereits eingestellt, dass der Verzeichnisinhalt bei fehlender index Datei nicht angezeigt wird.</p>
+<p>Aus Sicherheitsgründen werden die erstellten pdf Rechnungen nicht einfach nur mit der Rechnungsnummer als Dateiname sondern mit einem langen Dateinamen abgespeichert (z.B. 8_070599b1ec86ca75deac4696ca5f37eb.pdf)</p>
+<p>Eine noch bessere Absicherung der Rechnungen ist - falls das serverseitig möglich ist - als Speicherort einen Ordner unterhalb des Root Verzeichnis zu verwenden. Ein solcher Ordner kann zwar vom Webserver gelesen werden, ist aber per www nicht erreichbar.<br/>
+  Wenn ein solcher Ordner verwendet werden soll, den Pfad entsprechend anpassen.</p>
+<p><strong>Template für Artikel- und Summentabelle</strong><br/>
+  Definiert sind die Templates in folgender Datei:<br />
+  includes/pdf/rl_invoice3_def.php
+</p>
+  </div>
 </div>
 <div id="footer"><a href="#">top of page</a></div>
 </body>
