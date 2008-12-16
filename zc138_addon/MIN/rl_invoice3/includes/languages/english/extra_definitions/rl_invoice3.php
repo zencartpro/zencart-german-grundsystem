@@ -51,3 +51,5 @@ define('RECHNUNGSADRESSE', 'Billing Address ');
 
 define('RL_INVOICE3_INVLINK', 'Invoice.pdf');
 define('RL_INVOICE3_INVLINK_TEXT', 'download:');
+define('RL_INVOICE3_SUBTOTAL', 'Subtotal: ');
+define('RL_INVOICE3_BALANCE', 'Balance: ');

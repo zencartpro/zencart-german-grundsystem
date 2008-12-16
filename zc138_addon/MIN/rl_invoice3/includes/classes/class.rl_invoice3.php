@@ -62,7 +62,8 @@ class rl_invoice3 extends fpdi {
         $this->lineHeight = $this->getDefault(RL_INVOICE3_LINE_HEIGT, '1.25');
         $this->lineThick = $this->getDefault(RL_INVOICE3_LINE_THICK, '0.5');
         $this->fontsOk = $this->checkFonts();
-        $this->bgPDF = $this->getDefault(RL_INVOICE3_PDF_BACKGROUND, array('file' => DIR_FS_CATALOG . DIR_WS_INCLUDES . 'pdf/rl_invoice3_bg.pdf'));;
+        $this->bgPDF = $this->getDefault(RL_INVOICE3_PDF_BACKGROUND, array('file' => DIR_FS_CATALOG . DIR_WS_INCLUDES . 'pdf/rl_invoice3_bg.pdf'));
+        
         $realPW = 999;
         include (DIR_FS_CATALOG . DIR_WS_INCLUDES . 'pdf/rl_invoice3_def.php');
         $this->colsP = $colsP;
@@ -71,6 +72,12 @@ class rl_invoice3 extends fpdi {
         $this->options = $options;
         $this->t1Col = $colsP[$this->templates['pCols']];
         $this->t1Opt = $optionsP[$this->templates['pOptions']];
+        if(isset($this->t1Opt['paperOriantation'])){
+            $this->paper['orientation'] = $this->t1Opt['paperOriantation'];
+        }
+        if(isset($this->t1Opt['bgPDF'])){
+            $this->bgPDF['file'] = $this->t1Opt['bgPDF'];
+        }
         $this->subtotal = 0;
         $this->subtotalColumn = $this->getSubtotalColumn();
         $pagecount = $this->pdf->setSourceFile($this->bgPDF['file']);
@@ -250,6 +257,10 @@ class rl_invoice3 extends fpdi {
     function SetWidths($w) {
         // Set the array of column widths
         $this->widths = $w;
+        $this->widthSum = 0;
+        foreach ($w as $value) {
+            $this->widthSum += $value;
+        }
     }
     function SetAligns($a) {
         // Set the array of column alignments
@@ -304,14 +315,14 @@ class rl_invoice3 extends fpdi {
         // If the height h would cause an overflow, add a new page immediately
         if (($this->pdf->GetY() + $h + 12) > $this->pdf->PageBreakTrigger) {
             $this->pdf->SetXY($this->margin['left'], $this->pdf->GetY() + $this->t1Opt['fontSize'] / 2);
-            $this->pdf->Cell(155, 6, 'Zwischensumme:', '', 0, 'R');
+            $this->pdf->Cell($this->widthSum-20, 6, RL_INVOICE3_SUBTOTAL, '', 0, 'R');
             $subT = $this->mr(html_entity_decode($this->currencies->format($this->subtotal, true, $this->order->info['currency'], $this->order->info['currency_value'])));
-            $this->pdf->Cell(25, 6, $subT, '', 2, 'R');
+            $this->pdf->Cell(20, 6, $subT, '', 2, 'R');
             
-            $this->pdf->addPage($this->CurOrientation);
+            $this->pdf->addPage($this->pdf->CurOrientation);
             
-            $this->pdf->Cell(155, 6, 'Übertrag:', '', 0, 'R');
-            $this->pdf->Cell(25, 6, $subT, '', 2, 'R');
+            $this->pdf->Cell($this->widthSum-20, 6, RL_INVOICE3_BALANCE, '', 0, 'R');
+            $this->pdf->Cell(20, 6, $subT, '', 2, 'R');
             $this->pdf->SetXY($this->margin['left'], $this->pdf->GetY() + $this->t1Opt['fontSize'] / 2);
         }
     }
@@ -432,8 +443,8 @@ class rl_invoice3 extends fpdi {
             $data[$i]['qty'] = $val['qty'];
             $data[$i]['model'] = $val['model'];
             $data[$i]['name'] = strip_tags($val['name']);
-            $data[$i]['qty_name'] = $val['qty'] . '* ' . $val['name'];
-            $data[$i]['qty_name_model'] = $val['qty'] . '* ' . $val['name'] . ' (' . $val['model'] . ')';
+            $data[$i]['qty_name'] = strip_tags($val['qty'] . '* ' . $val['name']);
+            $data[$i]['qty_name_model'] = strip_tags($val['qty'] . '* ' . $val['name'] . ' (' . $val['model'] . ')');
             $data[$i]['tax'] = zen_display_tax_value($val['tax']) . '%';
             if (isset($val['attributes'])) {
                 foreach($val['attributes'] as $key2 => $val2) {
@@ -540,11 +551,13 @@ class rl_invoice3 extends fpdi {
                 $this->pdf->line($leftL, $this->pdf->GetY(), $leftR, $this->pdf->GetY());
                 $this->pdf->setY($this->pdf->GetY() + $lineWidth);
             }
-            $this->pdf->Cell(160.5, $this->t1Opt['fontSize'] / 2, $value['title'], '0', 0, 'R', $y);
+            #$this->pdf->Cell(160.5, $this->t1Opt['fontSize'] / 2, $value['title'], '0', 0, 'R', $y);
+            $this->pdf->Cell($this->widthSum-20, $this->t1Opt['fontSize'] / 2, $value['title'], '0', 0, 'R', $y);
             $this->pdf->Cell(20, $this->t1Opt['fontSize'] / 2, $value['text'], '0', 0, 'R', $y);
             $this->pdf->SetXY($this->margin['left'], $this->pdf->GetY() + $this->t1Opt['fontSize'] / 2);
             $i++;
         }
+        // paint lines
         $this->pdf->SetLineWidth($lineWidth);
         $this->pdf->line($leftL, $this->pdf->GetY(), $leftR, $this->pdf->GetY());
     }

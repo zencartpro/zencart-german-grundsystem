@@ -6,28 +6,74 @@
  * COLUMNS   #####
  */
 
+ // amazon|amazon_templ|total_col_1|total_opt_1
+ // col_templ_1|options_templ_1|total_col_1|total_opt_1
+ 
  
 $realPW = 210;
 
+// amazon|amazon_templ|total_col_1|total_opt_1 
 $colsP['amazon'] = array(
-    'qty' => TABLE_HEADING_QTY,
+     'subtotalI' => '...',
+     'subtotalE' => '...',
+     'qty' => TABLE_HEADING_QTY,
      'model' => TABLE_HEADING_PRODUCTS_MODEL,
      'name' => TABLE_HEADING_PRODUCTS,
      'singleE' => TABLE_HEADING_PRICE_EXCLUDING_TAX_AMAZON,
      'tax' => TABLE_HEADING_TAX,
      'sumE' => TABLE_HEADING_TOTAL_EXCLUDING_TAX_AMAZON,
-     'subtotalE' => '...',
     );
-$colsP['col_templ_1'] = array(
-    'qty' => TABLE_HEADING_QTY,
+$optionsP['amazon_templ'] = array("subtotal"=>'subtotalE', 
+                                    "paperOriantation"=>"P", 
+                                    "fontSize" => 8, 
+                                    'showHeadings' => 1, 
+                                    'shaded' => 1, 
+                                    'xPos' => 'left', 
+                                    'xOrientation' => 'right', 
+                                    'width' => $realPW-35,
+     'cols' => array(
+         'subtotalI' => array('justification' => 'R', "width" => 0),
+         'subtotalE' => array('justification' => 'R', "width" => 0),
+         'qty' => array("justification" => "L", "width" => 15),
+         'model' => array("justification" => "L", "width" => 25),
+         'name' => array('justification' => 'L', "width" => 75),
+         'singleE' => array('justification' => 'R', "width" => 25),
+         'tax' => array("justification" => "R", "width" => 15),
+         'sumE' => array('justification' => 'R', "width" => 25),
+        )
+    );
+
+// T1|T1_options|total_col_1|total_opt_1    
+$colsP['T1'] = array(
+     'subtotalI' => '...',
+     'subtotalE' => '...',
+     'qty' => TABLE_HEADING_QTY,
      'model' => TABLE_HEADING_PRODUCTS_MODEL,
      'name' => TABLE_HEADING_PRODUCTS,
      'tax' => TABLE_HEADING_TAX,
      'singleI' => TABLE_HEADING_PRICE_INCLUDING_TAX,
      'extraI' => TABLE_HEADING_EXTRA,
      'sumI' => TABLE_HEADING_TOTAL_INCLUDING_TAX,
+    );    
+$optionsP['T1_options'] = array("subtotal"=>'subtotalE', "fontSize" => 8, 'showHeadings' => 1, 'shaded' => 1, 'xPos' => 'left', 'xOrientation' => 'right', 'width' => $realPW-35,
+     'cols' => array(
+         'subtotalI' => array('justification' => 'R', "width" => 0),
+         'subtotalE' => array('justification' => 'R', "width" => 0),
+         'qty' => array("justification" => "L", "width" => 15),
+         'model' => array("justification" => "L", "width" => 25),
+         'name' => array('justification' => 'L', "width" => 55),
+         'tax' => array("justification" => "R", "width" => 15),
+         'singleI' => array('justification' => 'R', "width" => 25),
+         'extraI' => array('justification' => 'R', "width" => 20),
+         'sumI' => array('justification' => 'R', "width" => 25),
+        )
     );
+    
+    
+// all|all_options|total_col_1|total_opt_1        
 $colsP['all'] = array(
+     'subtotalI' => '...',
+     'subtotalE' => '...',
      'qty' => TABLE_HEADING_QTY,
      'model' => TABLE_HEADING_PRODUCTS_MODEL,
      'name' => TABLE_HEADING_PRODUCTS,
@@ -41,8 +87,31 @@ $colsP['all'] = array(
      'sumE' => TABLE_HEADING_TOTAL_EXCLUDING_TAX,
      'sumI' => TABLE_HEADING_TOTAL_INCLUDING_TAX,
     );
-$colsP['templ2'] = array(
-    'qty_name' => TABLE_HEADING_PRODUCTS,
+$optionsP['all_options'] = array("subtotal"=>'subtotalE', "paperOriantation"=>"L", "bgPDF"=>"/var/www/html/zencart_clean/zc138/includes/pdf/rl_invoice3_bgL.pdf", "fontSize" => 5, 'showHeadings' => 1, 'shaded' => 1, 'xPos' => 'left', 'xOrientation' => 'right', 'width' => $realPW-35 + 235,
+     'cols' => array(
+         'subtotalI' => array('justification' => 'R', "width" => 0),
+         'subtotalE' => array('justification' => 'R', "width" => 0),
+         'qty' => array("justification" => "L", "width" => 6),
+         'model' => array("justification" => "L", "width" => 15),
+         'name' => array('justification' => 'L', "width" => 40),
+         'qty_name' => array('justification' => 'L', "width" => 40),
+         'qty_name_model' => array('justification' => 'L', "width" => 54),
+         'tax' => array("justification" => "R", "width" => 7),
+         'singleE' => array('justification' => 'R', "width" => 15),
+         'singleI' => array('justification' => 'R', "width" => 15),
+         'extraI' => array('justification' => 'R', "width" => 15),
+         'extraE' => array('justification' => 'R', "width" => 15),
+         'sumE' => array('justification' => 'R', "width" => 15),
+         'sumI' => array('justification' => 'R', "width" => 15),
+        )
+    );
+    
+    
+// T2|T2_options|total_col_1|total_opt_1 
+$colsP['T2'] = array(
+     'subtotalI' => '...',
+     'subtotalE' => '...',
+     'qty_name' => TABLE_HEADING_PRODUCTS,
      'model' => TABLE_HEADING_PRODUCTS_MODEL,
      'tax' => TABLE_HEADING_TAX,
      'singleE' => TABLE_HEADING_PRICE_EXCLUDING_TAX,
@@ -50,59 +119,43 @@ $colsP['templ2'] = array(
      'sumE' => TABLE_HEADING_TOTAL_EXCLUDING_TAX,
      'sumI' => TABLE_HEADING_TOTAL_INCLUDING_TAX,
     );
-$colsP['templ3'] = array(
-    'qty_name_model' => TABLE_HEADING_PRODUCTS,
-     'tax' => TABLE_HEADING_TAX,
-     'singleE' => TABLE_HEADING_PRICE_EXCLUDING_TAX,
-     'singleI' => TABLE_HEADING_PRICE_INCLUDING_TAX,
-     'sumE' => TABLE_HEADING_TOTAL_EXCLUDING_TAX,
-     'sumI' => TABLE_HEADING_TOTAL_INCLUDING_TAX,
-    );
-
-/**
- * OPTIONS
- */
-$optionsP['amazon_templ'] = array("subtotal"=>'subtotalE', "fontSize" => 8, 'showHeadings' => 1, 'shaded' => 1, 'xPos' => 'left', 'xOrientation' => 'right', 'width' => $realPW-35,
+$optionsP['T2_options'] = array("subtotal"=>'subtotalE', "fontSize" => 7, 'showHeadings' => 1, 'shaded' => 1, 'xPos' => 'left', 'xOrientation' => 'right', 'width' => $realPW-35 + 235,
      'cols' => array(
-         'qty' => array("justification" => "L", "width" => 15),
-         'tax' => array("justification" => "R", "width" => 15),
-         'model' => array("justification" => "L", "width" => 25),
-         'name' => array('justification' => 'L', "width" => 75),
-         'singleE' => array('justification' => 'R', "width" => 25),
-         'sumE' => array('justification' => 'R', "width" => 25),
+         'subtotalI' => array('justification' => 'R', "width" => 0),
          'subtotalE' => array('justification' => 'R', "width" => 0),
-        )
-    );
-$optionsP['options_templ_1'] = array("fontSize" => 8, 'showHeadings' => 1, 'shaded' => 1, 'xPos' => 'left', 'xOrientation' => 'right', 'width' => $realPW-35,
-     'cols' => array(
-         'qty' => array("justification" => "L", "width" => 15),
-         'tax' => array("justification" => "R", "width" => 15),
-         'model' => array("justification" => "L", "width" => 25),
-         'name' => array('justification' => 'L', "width" => 55),
-         'singleI' => array('justification' => 'R', "width" => 25),
-         'singleE' => array('justification' => 'R', "width" => 25),
-         'extraI' => array('justification' => 'R', "width" => 20),
-         'sumI' => array('justification' => 'R', "width" => 25),
-        )
-    );
-$optionsP['all'] = array("fontSize" => 7, 'showHeadings' => 1, 'shaded' => 1, 'xPos' => 'left', 'xOrientation' => 'right', 'width' => $realPW-35 + 235,
-     'cols' => array(
-         'qty' => array("justification" => "L", "width" => 10),
-         'model' => array("justification" => "L", "width" => 15),
-         'name' => array('justification' => 'L', "width" => 30),
          'qty_name' => array('justification' => 'L', "width" => 30),
-         'qty_name_model' => array('justification' => 'L', "width" => 40),
+         'model' => array("justification" => "L", "width" => 15),
          'tax' => array("justification" => "R", "width" => 10),
          'singleE' => array('justification' => 'R', "width" => 35),
          'singleI' => array('justification' => 'R', "width" => 20),
-         'extraI' => array('justification' => 'R', "width" => 15),
-         'extraE' => array('justification' => 'R', "width" => 15),
          'sumE' => array('justification' => 'R', "width" => 25),
          'sumI' => array('justification' => 'R', "width" => 15),
         )
     );
-    
+        
 
+// T3|T3_templ|total_col_1|total_opt_1 
+$colsP['T3'] = array(
+     'subtotalI' => '...',
+     'subtotalE' => '...',
+     'qty_name_model' => TABLE_HEADING_PRODUCTS,
+     'singleE' => TABLE_HEADING_PRICE_EXCLUDING_TAX_AMAZON,
+     'tax' => TABLE_HEADING_TAX,
+     'sumE' => TABLE_HEADING_TOTAL_EXCLUDING_TAX_AMAZON,
+    );
+$optionsP['T3_templ'] = array("subtotal"=>'subtotalE', "fontSize" => 8, 'showHeadings' => 1, 'shaded' => 1, 'xPos' => 'left', 'xOrientation' => 'right', 'width' => $realPW-35,
+     'cols' => array(
+         'subtotalI' => array('justification' => 'R', "width" => 0),
+         'subtotalE' => array('justification' => 'R', "width" => 0),
+         'qty_name_model' => array('justification' => 'L', "width" => 115),
+         'singleE' => array('justification' => 'R', "width" => 25),
+         'tax' => array("justification" => "R", "width" => 15),
+         'sumE' => array('justification' => 'R', "width" => 25),
+        )
+    );
+        
+
+        
 /**
  * TOTALS
  * COLUMNS
