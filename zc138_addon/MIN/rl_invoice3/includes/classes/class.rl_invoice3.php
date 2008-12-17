@@ -81,9 +81,9 @@ class rl_invoice3 extends fpdi {
         $this->subtotal = 0;
         $this->subtotalColumn = $this->getSubtotalColumn();
         $pagecount = $this->pdf->setSourceFile($this->bgPDF['file']);
-        $tplidx2 = $this->pdf->ImportPage(1);
+        $this->tplidx2 = $this->pdf->ImportPage(1);
         $this->pdf->addPage($this->paper['orientation']);
-        $this->pdf->useTemplate($tplidx2);
+        $this->pdf->useTemplate($this->tplidx2);
         $this->pdf->SetMargins($this->margin['left'], $this->margin['top'], $this->margin['right']);
         $this->pdf->SetAutoPageBreak(true, $this->margin['bottom']);
         if ($this->debug['debug'] == 1) {
@@ -117,7 +117,7 @@ class rl_invoice3 extends fpdi {
     function checkInstall() {
         // link to invoice
         $link = HTTP_SERVER . DIR_WS_ADMIN . 'rl_invoice3.php?oID=' . zen_db_prepare_input($_GET['oID']);
-        if (!defined('RL_INVOICE3_SEND_ORDERSTATUS_CHANGE')) {
+        if (!defined('RL_INVOICE3_TEMPLATE_ONLY_FIRST_PAGE')) {
             // check multilingual installation
             if (rl_invoice3::isMultiLingual()) {
                 $multi = true;
@@ -168,7 +168,8 @@ class rl_invoice3 extends fpdi {
                             'RL_INVOICE3_CITY', 'RL_INVOICE3_DELTA', 'RL_INVOICE3_FONTS', 'RL_INVOICE3_LINE_HEIGT', 'RL_INVOICE3_LINE_THICK', 
                             'RL_INVOICE3_MARGIN', 'RL_INVOICE3_NOT_NULL_INVOICE', 'RL_INVOICE3_ORDERSTATUS', 'RL_INVOICE3_ORDER_ID_PREFIX', 
                             'RL_INVOICE3_PAPER', 'RL_INVOICE3_PDF_BACKGROUND', 'RL_INVOICE3_PDF_PATH', 'RL_INVOICE3_SEND_ATTACH', 
-                            'RL_INVOICE3_SEND_ORDERSTATUS_CHANGE', 'RL_INVOICE3_SEND_PDF', 'RL_INVOICE3_TABLE_TEMPLATE', 'RL_INVOICE3_WITHOUTINVOICE');
+                            'RL_INVOICE3_SEND_ORDERSTATUS_CHANGE', 'RL_INVOICE3_SEND_PDF', 'RL_INVOICE3_TABLE_TEMPLATE', 
+                            'RL_INVOICE3_WITHOUTINVOICE', 'RL_INVOICE3_TEMPLATE_ONLY_FIRST_PAGE');
             $sql = ' SELECT configuration_key FROM ' . TABLE_CONFIGURATION . " WHERE configuration_key LIKE 'RL_INVOICE3%'";
             $res = $this->db->Execute($sql);
             $confArrAct = array();
@@ -212,6 +213,7 @@ class rl_invoice3 extends fpdi {
                                 'RL_INVOICE3_SEND_PDF' => "('RL_INVOICE3_SEND_PDF', 'RL_INVOICE3_SEND_PDF', '1', 'RL_INVOICE3_SEND_PDF', $group, 130, NULL)", 
                                 'RL_INVOICE3_TABLE_TEMPLATE' => "('Templates for products table & total table', 'RL_INVOICE3_TABLE_TEMPLATE', 'amazon|amazon_templ|total_col_1|total_opt_1', 'templates for products_table & total_table; this is defined in rl_invoice3_def.php; see also: docs/rl_invoice/readme_ezpdf.pdf<br />', $group, 90, NULL)",
                                 'RL_INVOICE3_WITHOUTINVOICE' => "('do not print invoice address', 'RL_INVOICE3_WITHOUTINVOICE', 'false', 'do not print invoice address', $group, 160, \"zen_cfg_select_option(array('true', 'false'), \")",
+                            'RL_INVOICE3_TEMPLATE_ONLY_FIRST_PAGE' => "('PDF-template on first page', 'RL_INVOICE3_TEMPLATE_ONLY_FIRST_PAGE', 'false', 'print pdf-background-template omly on the fisrst page', $group, 160, \"zen_cfg_select_option(array('true', 'false'), \")",
                                 );
             foreach ($confDiffAdd as $value) {
                $sql = $ins . $confArrAdd[$value];
@@ -241,6 +243,7 @@ class rl_invoice3 extends fpdi {
                                     'RL_INVOICE3_SEND_PDF' => "('RL_INVOICE3_SEND_PDF', 43, 'Rechnung bei Bestellung', 'Soll die Rechnung gleich bei der Bestellung gesendet werden?')", 
                                     'RL_INVOICE3_TABLE_TEMPLATE' => "('RL_INVOICE3_TABLE_TEMPLATE', 43, 'Template für Artikel- und Summentabelle', 'Template für Artikel- und Summentabelle<br />Definition ist in includes/pdf/rl_invoice3_def.php<br />Standard: 30|30|30|60<br />Standard: amazon|amazon_templ|total_col_1|total_opt_1<br />')",
                                     'RL_INVOICE3_WITHOUTINVOICE' => "('RL_INVOICE3_WITHOUTINVOICE', 43, 'Rechnungsadresse nicht drucken', 'Rechnungsadresse nicht drucken')",
+                                    'RL_INVOICE3_TEMPLATE_ONLY_FIRST_PAGE' => "('RL_INVOICE3_TEMPLATE_ONLY_FIRST_PAGE', 43, 'PDF-Template auf 1.Seite', 'PDF-Template nur auf 1.Seite drucken')",
                                     );
                foreach ($confDiffAdd as $value) {
                    $sql = $ins . $confArrMultiAdd[$value];
@@ -320,6 +323,10 @@ class rl_invoice3 extends fpdi {
             $this->pdf->Cell(20, 6, $subT, '', 2, 'R');
             
             $this->pdf->addPage($this->pdf->CurOrientation);
+            if(RL_INVOICE3_TEMPLATE_ONLY_FIRST_PAGE=='false'){
+                $this->pdf->useTemplate($this->tplidx2); 
+            }
+            
             
             $this->pdf->Cell($this->widthSum-20, 6, RL_INVOICE3_BALANCE, '', 0, 'R');
             $this->pdf->Cell(20, 6, $subT, '', 2, 'R');
@@ -461,7 +468,6 @@ class rl_invoice3 extends fpdi {
             $data[$i]['sumI']       = $this->mr(html_entity_decode($this->currencies->format($val['qty'] * ($val['final_price'] + $val['final_price'] * $val['tax'] / 100) + ($val['onetime_charges'] + $val['tax'] * $val['onetime_charges'] / 100), true, $this->order->info['currency'], $this->order->info['currency_value'])));
             $data[$i]['subtotalE']  = $val['qty'] * ($val['final_price']) + $val['onetime_charges'];
             $data[$i]['subtotalI']  = $val['qty'] * ($val['final_price'] + $val['final_price'] * $val['tax'] / 100) + ($val['onetime_charges'] + $val['tax'] * $val['onetime_charges'] / 100);
-            #$data[$i]['subtotalE'] = '***';
             $i++;
         }
         #rldp($data, 'DATA');
@@ -613,7 +619,6 @@ class rl_invoice3 extends fpdi {
     function createPdfFile($onlyFile = false) {
         if (file_exists($this->getPDFFileName())) {
             #$onlyFile =
-            
         }
         $this->makeAddr();
         $this->makeInvoiceNumber();
@@ -622,4 +627,3 @@ class rl_invoice3 extends fpdi {
         $this->writePDF($onlyFile);
     }
 }
-################

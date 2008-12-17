@@ -17,21 +17,31 @@ include (DIR_WS_CLASSES . 'order.php');
 require_once (DIR_FS_CATALOG . DIR_WS_INCLUDES . 'classes/class.rl_invoice3.php');
 require_once ('../' . DIR_WS_LANGUAGES . $_SESSION['language'] . '/extra_definitions/rl_invoice3.php');
 
+$paper = rl_invoice3::getDefault(RL_INVOICE3_PAPER, array('format' => 'A4', 'unit' => 'mm', 'orientation' => 'P'));
+$pdfT = new rl_invoice3($_GET['oID'], $paper['orientation'], $paper['unit'], $paper['format']);
+
 if ($_GET['test'] == 'PDF') {
-    $pdfT = new rl_invoice3($_GET['oID'], 'L', $paper['unit'], $paper['format']);
-    $pdfT->pdf->setY(30);
-    $pdfT->makeHC("combination from rl_invoice_def.php defintions\n\n");
-    foreach($pdfT->optionsP as $key => $val) {
-        foreach($pdfT->colsP as $key2 => $val2) {
-            $pdfT->setTemplate($val2, $val);
-            $pdfT->makeProducts();
-            $pdfT->makeHC("colsP: $key2   //  optionsP: $key");
-        }
+    $pdfT->pdf->SetFont($pdfT->fonts2['general'], '', 12);
+    $pdfT->pdf->setXY(30, 75);
+    $pdfT->pdf->SetFontSize(18);
+    $pdfT->makeHC("TEMPLATES from: rl_invoice_def.php ");
+    $pdfT->pdf->SetFontSize($pdfT->t1Opt['fontSize']);
+    $opt =array();
+    $tpl =array();
+    foreach ($pdfT->optionsP as $key => $value) {
+        $tpl[] = $key;
     }
-    $pdfT->makeHC("combination from rl_invoice_def.php defintions");
+    foreach ($pdfT->colsP as $key => $value) {
+        $opt[] = $key;
+    }
+    foreach ($opt as $key => $value) {
+        $pdfT->pdf->addPage('L'); 
+        $pdfT->setTemplate($pdfT->colsP[$value], $pdfT->optionsP[$tpl[$key]]);
+        $pdfT->makeProducts();
+        $pdfT->makeHC("colsP: {}   //  optionsP: $value");
+    }
     $pdfT->writePDF();
     exit();
 }
-$paper = rl_invoice3::getDefault(RL_INVOICE3_PAPER, array('format' => 'A4', 'unit' => 'mm', 'orientation' => 'P'));
-$pdfT = new rl_invoice3($_GET['oID'], $paper['orientation'], $paper['unit'], $paper['format']);
+
 $pdfT->createPdfFile();
