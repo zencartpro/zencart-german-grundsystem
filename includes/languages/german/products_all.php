@@ -22,7 +22,7 @@
 
 define('NAVBAR_TITLE', 'Alle Artikel');
 define('HEADING_TITLE', 'Alle Artikel');
-define('TEXT_DATE_ADDED', 'Hinzugefügt am:');
+define('TEXT_DATE_ADDED', 'HinzugefÃ¼gt am:');
 define('TEXT_MANUFACTURER', 'Hersteller:');
 define('TEXT_PRICE', 'Preis:');
 define('TEXT_PRODUCTS_MODEL','Artikelnummer: ');
