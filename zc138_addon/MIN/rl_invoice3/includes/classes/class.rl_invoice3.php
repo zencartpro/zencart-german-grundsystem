@@ -55,7 +55,9 @@ class rl_invoice3 extends fpdi {
         $this->templates = $this->getDefault(RL_INVOICE3_TABLE_TEMPLATE, array('pCols' => 'col_templ_1', 'pOptions' => 'options_templ_1', 'tCols' => 'total_col_1', 'tOptions' => 'total_opt_1'));
         $this->fonts2 = $this->getDefaultCheck(RL_INVOICE3_FONTS, array('general' => 'dejavusanscondensed', 'table' => 'freemono'));
         $this->pdf->AddFont($this->fonts2['general']);
-        $this->pdf->AddFont($this->fonts2['table']);
+        if($this->fonts2['general'] != $this->fonts2['table']){
+            $this->pdf->AddFont($this->fonts2['table']);
+        }
         $this->pdfPath = $this->getDefault(RL_INVOICE3_PDF_PATH, array('path' => DIR_FS_CATALOG . 'pdf/', 'save' => '1'));
         $this->delta = $this->getDefault(RL_INVOICE3_DELTA, array('addrInvoice' => '20', 'invoiceProducts' => '30'));
         $this->debug = $this->getDefault(RL_INVOICE3_DEBUG, array('debug' => 0));
@@ -213,7 +215,7 @@ class rl_invoice3 extends fpdi {
                                 'RL_INVOICE3_SEND_PDF' => "('RL_INVOICE3_SEND_PDF', 'RL_INVOICE3_SEND_PDF', '1', 'RL_INVOICE3_SEND_PDF', $group, 130, NULL)", 
                                 'RL_INVOICE3_TABLE_TEMPLATE' => "('Templates for products table & total table', 'RL_INVOICE3_TABLE_TEMPLATE', 'amazon|amazon_templ|total_col_1|total_opt_1', 'templates for products_table & total_table; this is defined in rl_invoice3_def.php; see also: docs/rl_invoice/readme_ezpdf.pdf<br />', $group, 90, NULL)",
                                 'RL_INVOICE3_WITHOUTINVOICE' => "('do not print invoice address', 'RL_INVOICE3_WITHOUTINVOICE', 'false', 'do not print invoice address', $group, 160, \"zen_cfg_select_option(array('true', 'false'), \")",
-                            'RL_INVOICE3_TEMPLATE_ONLY_FIRST_PAGE' => "('PDF-template on first page', 'RL_INVOICE3_TEMPLATE_ONLY_FIRST_PAGE', 'false', 'print pdf-background-template omly on the fisrst page', $group, 160, \"zen_cfg_select_option(array('true', 'false'), \")",
+                                'RL_INVOICE3_TEMPLATE_ONLY_FIRST_PAGE' => "('PDF-template on first page', 'RL_INVOICE3_TEMPLATE_ONLY_FIRST_PAGE', 'false', 'print pdf-background-template omly on the fisrst page', $group, 160, \"zen_cfg_select_option(array('true', 'false'), \")",
                                 );
             foreach ($confDiffAdd as $value) {
                $sql = $ins . $confArrAdd[$value];
@@ -593,7 +595,8 @@ class rl_invoice3 extends fpdi {
         $attachArray = array();
         $tmp = $this->getPDFFileName();
         if (file_exists($tmp)) {
-            $attachArray[] = array('file' => $this->getPDFFileName(), 'mime_type' => 'pdf', 'name' => RL_INVOICE3_INVLINK);
+            $ft = str_replace($this->pdfPath['path'], '', $tmp);
+            $attachArray[] = array('file' => $this->getPDFFileName(), 'mime_type' => 'pdf', 'name' => RL_INVOICE3_INVLINK, 'fn' => $ft);
         }
         if ($param == 'ALL') {
             $attachements = explode('|', RL_INVOICE3_SEND_ATTACH);
