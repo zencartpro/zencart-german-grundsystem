@@ -152,7 +152,12 @@ if (sizeof($statusArray)) {
     $tmp1 = '<div class="rl-invoice3-hlink"><span class="rl-invoice3-hlink-text">'. RL_INVOICE3_INVLINK_TEXT . '</span>';
     $tmp = '';
     foreach ($a as $key => $v) {
-        $tmp .=  '| <a href="' . str_replace(DIR_FS_CATALOG, '', $v['file']) . '">'. $v['name'] . '</a>';
+        if(isset($v['fn'])){
+            $pa = zen_href_link('rl_invoice3', '', 'SSL') . '&fn=' . $v['fn'] . '&order=' . $_GET['order_id'];
+            $tmp .=  '| <a href="' . $pa . '">'. $v['name'] . '</a>';
+        } else {
+            $tmp .=  '| <a href="' . str_replace(DIR_FS_CATALOG, '', $v['file']) . '">'. $v['name'] . '</a>';
+        }
     }
     $tmp .= '</div>';
     echo $tmp1 . substr($tmp, 1);
