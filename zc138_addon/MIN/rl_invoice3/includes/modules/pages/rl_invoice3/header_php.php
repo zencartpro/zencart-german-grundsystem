@@ -64,19 +64,21 @@ function zen_unlink_temp_dir($dir)
 
 // determine filename for download
 $origin_filename = $pdfName;
-$browser_filename = 'rechnung.pdf';
+$browser_filename = RL_INVOICE3_INVLINK;
 
 // Now send the file with header() magic
 // the "must-revalidate" and expiry times are used to prevent caching and fraudulent re-acquiring of files w/o redownloading.
-header("Expires: Mon, 26 Nov 1962 00:00:00 GMT");
-header("Last-Modified: " . gmdate("D,d M Y H:i:s") . " GMT");
-header("Cache-Control: no-cache, must-revalidate");
-header("Pragma: no-cache");
-header("Content-Type: Application/octet-stream");
-header("Content-disposition: attachment; filename=" . $browser_filename);
-header("Content-Transfer-Encoding: binary");
-
 $zv_filesize = filesize($origin_filename);
+header("Pragma: public");
+header("Expires: 0");
+header("Cache-Control: must-revalidate, post-check=0, pre-check=0");
+header("Cache-Control: public");
+header("Content-Description: File Transfer");
+header("Content-Type: application/pdf");
+header("Content-Disposition: attachment; filename=\"$browser_filename\"");
+header("Content-Transfer-Encoding: binary");
+header("Content-Length: " . $zv_filesize);
+
 
 if (DOWNLOAD_BY_REDIRECT == 'true') {
   // This will work only on Unix/Linux hosts
