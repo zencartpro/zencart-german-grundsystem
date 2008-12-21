@@ -219,10 +219,10 @@ class rl_invoice3 extends fpdi {
                                 'RL_INVOICE3_PDF_PATH' => "('filename and path to store the pdf-file', 'RL_INVOICE3_PDF_PATH', '" . DIR_FS_CATALOG . "pdf/|1', '1. path to store the pdf-file (!!must be writeable !!)<br />Default: ../pdf/|1<br />', $group, 130, NULL)", 
                                 'RL_INVOICE3_SEND_ATTACH' => "('additional attachements', 'RL_INVOICE3_SEND_ATTACH', 'agb.pdf|widerruf.pdf', 'RL_INVOICE3_SEND_PDF', $group, 130, NULL)", 
                                 'RL_INVOICE3_SEND_ORDERSTATUS_CHANGE' =>  "('[RE]send order', 'RL_INVOICE3_SEND_ORDERSTATUS_CHANGE', '3|100', '[RE]send invoice, if orderstatus changed to', $group, 130, NULL)", 
-                                'RL_INVOICE3_SEND_PDF' => "('RL_INVOICE3_SEND_PDF', 'RL_INVOICE3_SEND_PDF', '1', 'RL_INVOICE3_SEND_PDF', $group, 130, NULL)", 
+                                'RL_INVOICE3_SEND_PDF' => "('send pdf invoice with order', 'RL_INVOICE3_SEND_PDF', '1', 'Do you want to send the invoice with an order?', $group, 130, NULL)", 
                                 'RL_INVOICE3_TABLE_TEMPLATE' => "('Templates for products table & total table', 'RL_INVOICE3_TABLE_TEMPLATE', 'amazon|amazon_templ|total_col_1|total_opt_1', 'templates for products_table & total_table; this is defined in rl_invoice3_def.php; see also: docs/rl_invoice/readme_ezpdf.pdf<br />', $group, 90, NULL)",
                                 'RL_INVOICE3_WITHOUTINVOICE' => "('do not print invoice address', 'RL_INVOICE3_WITHOUTINVOICE', 'false', 'do not print invoice address', $group, 160, \"zen_cfg_select_option(array('true', 'false'), \")",
-                                'RL_INVOICE3_TEMPLATE_ONLY_FIRST_PAGE' => "('PDF-template on first page', 'RL_INVOICE3_TEMPLATE_ONLY_FIRST_PAGE', 'false', 'print pdf-background-template omly on the fisrst page', $group, 160, \"zen_cfg_select_option(array('true', 'false'), \")",
+                                'RL_INVOICE3_TEMPLATE_ONLY_FIRST_PAGE' => "('PDF-template on first page', 'RL_INVOICE3_TEMPLATE_ONLY_FIRST_PAGE', 'false', 'print pdf-background-template omly on the first page', $group, 160, \"zen_cfg_select_option(array('true', 'false'), \")",
                                 );
             foreach ($confDiffAdd as $value) {
                $sql = $ins . $confArrAdd[$value];

@@ -63,24 +63,76 @@ agb.pdf</p>
 <p><strong>4)<br /> 
   Restliche Einstellungen vornehmen</strong></p>
 <p>Die übrigen Konfigurationsmöglichkeiten unter Konfiguration &gt; PDF Rechnung 3 sind immer erklärt, wenn Du auf Bearbeiten clickst:</p>
-<p><img src="graphics/admin.jpg" alt="pdf Rechnung im Admin" width="760" height="422" /></p>
+<p><img src="graphics/admin.jpg" alt="pdf Rechnung im Admin" width="760" height="406" /></p>
 <p>Hier ein paar Erläuterungen zu den wichtigsten Möglichkeiten:</p>
 <p><strong>Rechnungsneuversand</strong><br/>
-Hier kannst Du einen Bestellstatus oder mehrere Bestellstati einstellen, bei denen die pdf Rechnung nach Aktualisieren der Bestellung erneut versendet werden soll. Voreingestellt ist 3 (das ist normalerweise der Status &quot;versendet&quot;) und 100 (ein eigener Bestellstatus, der vom Modul mitgeliefert wird). Überprüfe unter &quot;Lokalisation&quot; &gt; &quot;Bestelllstatus&quot; welche Werte die Bestellstati in Deinem Shop haben und stelle dann hier die gewünschten Werte ein.</p>
+Hier kannst Du einen Bestellstatus oder mehrere Bestellstati einstellen, bei denen die pdf Rechnung nach Aktualisieren der Bestellung erneut versendet werden soll. Voreingestellt ist 3 (das ist normalerweise der Status &quot;versendet&quot;) und 100 (ein eigener Bestellstatus, der vom Modul mitgeliefert wird). Überprüfe unter &quot;Lokalisation&quot; &gt; &quot;Bestellstatus&quot; welche Werte die Bestellstati in Deinem Shop haben und stelle dann hier die gewünschten Werte ein.</p>
 <p><strong>Rechnungsversand bei Bestellstatus</strong><br />
-  Hier wird definiert, bei welchem Bestellstatus die pdf Rechnung automatisch gemailt wird. Wenn die Rechnung gleich bei der Bestellung mitgemailt werden soll, muss hier auf 1 umgestellt werden (1 ist normalerweise der Status &quot;Wartet&quot;). Auch hier vorher  unter &quot;Lokalisation&quot; &gt; &quot;Bestelllstatus&quot; unbedingt überprüfen, welche Werte in Deinem Shop wirklich aktiv sind.</p>
+  Hier wird definiert, bei welchem Bestellstatus die pdf Rechnung automatisch gemailt wird. Wenn die Rechnung gleich bei der Bestellung mitgemailt werden soll, muss hier auf 1 umgestellt werden (1 ist normalerweise der Status &quot;Wartet&quot;). Status 3 (versendet) ist für Shops interessant, die Downloadartikel anbieten und die gleich nach der Bezahlung freigeben. Auch hier vorher  unter &quot;Lokalisation&quot; &gt; &quot;Bestelllstatus&quot; unbedingt überprüfen, welche Werte in Deinem Shop wirklich aktiv sind. Und auch überprüfen welche Bestellstati bei den angebotenen Zahlungsarten zugeordnet sind.</p>
+<p><strong>Rechnung bei Bestellung</strong><br />
+  Das ist die globale Einstellung. Wird sie auf 0 gestellt, wird nie automatisch eine Rechnung mitgemailt, egal was bei Rechnungsversand bei Bestellstatus eingestellt ist.
+</p>
 <p><strong>Speicherort und -name der PDF-Datei</strong><br/>
 Hier wird eingestellt, ob die pdf Rechnung überhaupt am Server gespeichert werden soll. Und wenn ja in welchem Ordner. Voreingestellt ist der Ordner pdf im Shophauptverzeichnis. Wenn dieser Ordner verwendet wird, unbedingt sicherstellen, dass der Inhalt nicht einfach mit www.meinshop.de/pdf aufgelistet wird. Also entweder eine leere index.html in diesen Ordner legen. Oder per .htaccess das Auflisten des Ordnerinhalts unterbinden. Dazu eine Datei mit folgendem Inhalt erstellen:<br/>
 <code>Options -Indexes</code></p>
-<p>Als .htaccess abspeichern und ins pdf Verzeichnis legen. Möglicherweise ist aber serverseitig bereits eingestellt, dass der Verzeichnisinhalt bei fehlender index Datei nicht angezeigt wird.</p>
-<p>Aus Sicherheitsgründen werden die erstellten pdf Rechnungen nicht einfach nur mit der Rechnungsnummer als Dateiname sondern mit einem langen Dateinamen abgespeichert (z.B. 8_070599b1ec86ca75deac4696ca5f37eb.pdf)</p>
+<p>Als .htaccess abspeichern und ins pdf Verzeichnis legen. Möglicherweise ist aber serverseitig bereits eingestellt, dass der Verzeichnisinhalt bei fehlender index Datei nicht angezeigt wird. Der Ordner für die Rechnungen muss beschreibbar sein (chmod 777)</p>
+<p>Aus Sicherheitsgründen werden die erstellten pdf Rechnungen nicht einfach nur mit der Rechnungsnummer als Dateiname sondern mit einem langen zufällig generierten Dateinamen abgespeichert (z.B. 8_070599b1ec86ca75deac4696ca5f37eb.pdf)</p>
 <p>Eine noch bessere Absicherung der Rechnungen ist - falls das serverseitig möglich ist - als Speicherort einen Ordner unterhalb des Root Verzeichnis zu verwenden. Ein solcher Ordner kann zwar vom Webserver gelesen werden, ist aber per www nicht erreichbar.<br/>
-  Wenn ein solcher Ordner verwendet werden soll, den Pfad entsprechend anpassen.</p>
+  Wenn ein solcher Ordner verwendet werden soll, den Pfad entsprechend anpassen.<br />
+  Wenn z.B. der normale Pfad zum pdf Ordner innerhalb des Shopverzeichnisses (Voreinstellung) so lautet:<br />
+  /home/user/www.meinshop.de/shop/pdf<br />
+  umstellen auf:<br />
+  /home/user/pdf<br />
+  Auch ein solcher Ordner muss natürlich vom Webserver beschreibbar sein (chmod 777)
+  <br />
+  <br />
+  Die Rechnung kann dann trotzdem vom Kunden in seiner Bestellhistory heruntergeladen werden. Wichtig ist, dass unter Konfiguration &gt; GZip Komprimierung die gZip Komprimierung NICHT eingeschaltet ist!</p>
+<p><strong>PDF Template auf erster Seite</strong><br />
+Wenn zahlreiche Artikel bestellt werden und die auf der Rechnung nicht auf einer Seite Platz haben, erfolgt ein Seitenumbruch mit Berechnung einer Zwischensumme und Übertrags auf die zweite Seite. Hier kannst Du einstellen, ob der Rechnungsfooter auch auf der zweiten Seite erscheinen soll.</p>
 <p><strong>Template für Artikel- und Summentabelle</strong><br/>
   Definiert sind die Templates in folgender Datei:<br />
   includes/pdf/rl_invoice3_def.php
 </p>
-  </div>
+<p>Voreingestellt ist: amazon|amazon_templ|total_col_1|total_opt_1<br />
+  In der Datei sind also folgende Werte für das Aussehen verantwortlich:<br/>
+<code>$colsP['amazon'] = array(<br />
+'subtotalI' =&gt; '...',<br />
+'subtotalE' =&gt; '...',<br />
+'qty' =&gt; TABLE_HEADING_QTY,<br />
+'model' =&gt; TABLE_HEADING_PRODUCTS_MODEL,<br />
+'name' =&gt; TABLE_HEADING_PRODUCTS,<br />
+'singleE' =&gt; TABLE_HEADING_PRICE_EXCLUDING_TAX_AMAZON,<br />
+'tax' =&gt; TABLE_HEADING_TAX,<br />
+'sumE' =&gt; TABLE_HEADING_TOTAL_EXCLUDING_TAX_AMAZON,<br />
+);<br />
+$optionsP['amazon_templ'] = array(&quot;subtotal&quot;=&gt;'subtotalE', <br />
+&quot;paperOriantation&quot;=&gt;&quot;P&quot;, <br />
+&quot;fontSize&quot; =&gt; 8, <br />
+'showHeadings' =&gt; 1, <br />
+'shaded' =&gt; 1, <br />
+'xPos' =&gt; 'left', <br />
+'xOrientation' =&gt; 'right', <br />
+'width' =&gt; $realPW-35,<br />
+'cols' =&gt; array(<br />
+'subtotalI' =&gt; array('justification' =&gt; 'R', &quot;width&quot; =&gt; 0),<br />
+'subtotalE' =&gt; array('justification' =&gt; 'R', &quot;width&quot; =&gt; 0),<br />
+'qty' =&gt; array(&quot;justification&quot; =&gt; &quot;L&quot;, &quot;width&quot; =&gt; 15),<br />
+'model' =&gt; array(&quot;justification&quot; =&gt; &quot;L&quot;, &quot;width&quot; =&gt; 25),<br />
+'name' =&gt; array('justification' =&gt; 'L', &quot;width&quot; =&gt; 75),<br />
+'singleE' =&gt; array('justification' =&gt; 'R', &quot;width&quot; =&gt; 25),<br />
+'tax' =&gt; array(&quot;justification&quot; =&gt; &quot;R&quot;, &quot;width&quot; =&gt; 15),<br />
+'sumE' =&gt; array('justification' =&gt; 'R', &quot;width&quot; =&gt; 25),<br />
+)<br />
+);</code></p>
+  <p>Um z.B. die Schriftgröße zu verkleinern den fontSize auf 7 stellen. <br />
+    Um die Breite der einzelnen Spalten zu ändern die Werte bei width entsprechend anpassen.
+</p>
+  <p>Sollten andere Inhalte in den Spalten gewünscht sein, ein anderes Template auswählen oder sich ein eigenes Template nach dem vorgegebenen Muster zusammenstellen.<br />
+    Eine Vorschau der verschiedenen vordefinierten Spaltendefinitionen bekommst Du durch Aufruf des folgenden Links:<br />
+    admin/rl_invoice3.php?oID=3&amp;test=PDF<br />
+    Es wird dann eine Testrechnung mit allen verschiedenen Templates  produziert (ohne Summen).
+  </p>
+</div>
 </div>
 <div id="footer"><a href="#">top of page</a></div>
 </body>

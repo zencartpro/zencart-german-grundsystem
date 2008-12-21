@@ -18,7 +18,8 @@
   Wie kann ich eigene Schriftarten verwenden?</a><br />
 </p>
 <p><a href="#2">2) Wie kann ich die Schriftgröße und die Breite der Spalten verändern?</a></p>
-<p>3<a href="#4">) Meine Frage wird hier nicht beantwortet?</a></p>
+<p><a href="#3">3) Wie kann ich das Aussehen der Downloadlinks in der Kundenhistory verändern?</a></p>
+<p>4<a href="#4">) Meine Frage wird hier nicht beantwortet?</a></p>
 <hr />
 <p><strong>1) Wie kann ich eigene Schriftarten verwenden?</strong><a name="1" id="1"></a></p>
 <p>  Die pdf-Rechnung liefert etliche Schriftarten mit im  Verzeichnis (includes/pdf/font).<br />
@@ -98,9 +99,8 @@ Weitere Infos zum Tool ufpdf auf:<br />
 <p>includes/pdf/rl_invoice3_def.php</p>
 <p>In dieser Konfigurationsdatei sind verschiedene Templates definiert. Standardmäßig ist unter Konfiguration &gt; pdf Rechnung 3 &gt; Template für Artikel- und Summentabelle Folgendes aktiv:</p>
 <p>amazon|amazon_templ|total_col_1|total_opt_1</p>
-<p>Wenn hier etwas geändert werden soll, ist also nur der entsprechende Abschnitt in der rl_invoice3_def.php relevant:</p>
-<code>// amazon|amazon_templ|total_col_1|total_opt_1 <br />
-$colsP['amazon'] = array(<br />
+<p>Wenn hier etwas geändert werden soll, ist also nur der entsprechende Abschnitt in der rl_invoice3_def.php relevant:
+<code>$colsP['amazon'] = array(<br />
 'subtotalI' =&gt; '...',<br />
 'subtotalE' =&gt; '...',<br />
 'qty' =&gt; TABLE_HEADING_QTY,<br />
@@ -128,9 +128,16 @@ $optionsP['amazon_templ'] = array(&quot;subtotal&quot;=&gt;'subtotalE', <br />
 'tax' =&gt; array(&quot;justification&quot; =&gt; &quot;R&quot;, &quot;width&quot; =&gt; 15),<br />
 'sumE' =&gt; array('justification' =&gt; 'R', &quot;width&quot; =&gt; 25),<br />
 )<br />
-);</code>
+);</code></p>
 <p>Hier könnte man z.B. den fontSize statt 8 auf 7 stellen, um die Schrift kleiner zu machen.<br />
-Oder die Breite der einzelen Spalten unter width verändern.</p>
+Oder die Breite der einzelnen Spalten unter width verändern.</p>
+<hr/>
+</p><strong>3) Wie kann ich das Aussehen der Downloadlinks in der Kundenhistory verändern?</strong><a name="3" id="3"></a>
+<p>Verantwortlich ist folgendes Stylesheet:<br />
+  includes/templates/DEINTEMPLATE/stylesheet_rl_invoice3.css<br />
+  Darin Farbe/Hintergrundfarbe/Linkdefinitionen entsprechend anpassen oder neu eintragen.
+<a href="http://www.zen-cart.at/zcvb/forum" target="_blank"></a></p>
+<p>&nbsp;</p>
 <hr/>
 </p><strong>3) Meine Frage wird hier nicht beantwortet?</strong><a name="4" id="4"></a>
 <p>Schau mal hier:<br />
