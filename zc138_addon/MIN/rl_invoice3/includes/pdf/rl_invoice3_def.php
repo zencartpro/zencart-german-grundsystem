@@ -31,6 +31,9 @@ $optionsP['amazon_templ'] = array("subtotal"=>'subtotalE',
                                     'xPos' => 'left', 
                                     'xOrientation' => 'right', 
                                     'width' => $realPW-35,
+                                    'bgPDFLang' => array('43' => '/var/www/zencart_clean/zc138/includes/pdf/rl_invoice3_bg.pdf',
+                                                         '1'  => '/var/www/zencart_clean/zc138/includes/pdf/rl_invoice3_bg_en.pdf',
+                                    ),
      'cols' => array(
          'subtotalI' => array('justification' => 'R', "width" => 0),
          'subtotalE' => array('justification' => 'R', "width" => 0),
@@ -87,7 +90,18 @@ $colsP['all'] = array(
      'sumE' => TABLE_HEADING_TOTAL_EXCLUDING_TAX,
      'sumI' => TABLE_HEADING_TOTAL_INCLUDING_TAX,
     );
-$optionsP['all_options'] = array("subtotal"=>'subtotalE', "paperOriantation"=>"L", "bgPDF"=>"/var/www/html/zencart_clean/zc138/includes/pdf/rl_invoice3_bgL.pdf", "fontSize" => 5, 'showHeadings' => 1, 'shaded' => 1, 'xPos' => 'left', 'xOrientation' => 'right', 'width' => $realPW-35 + 235,
+$optionsP['all_options'] = array("subtotal"=>'subtotalE', 
+                                "paperOriantation"=>"L", 
+                                'bgPDFLang' => array('DE' => '/var/www/html/zencart_clean/zc138/includes/pdf/rl_invoice3_bgL.pdf',
+                                                     'EN' => '/var/www/html/zencart_clean/zc138/includes/pdf/rl_invoice3_bgL_EN.pdf',
+                                                    
+                                ),
+                                "fontSize" => 5, 
+                                'showHeadings' => 1, 
+                                'shaded' => 1, 'xPos' => 
+                                'left', 
+                                'xOrientation' => 'right', 
+                                'width' => $realPW-35 + 235,
      'cols' => array(
          'subtotalI' => array('justification' => 'R', "width" => 0),
          'subtotalE' => array('justification' => 'R', "width" => 0),

@@ -80,6 +80,13 @@ class rl_invoice3 extends fpdi {
         if(isset($this->t1Opt['bgPDF'])){
             $this->bgPDF['file'] = $this->t1Opt['bgPDF'];
         }
+        if(isset($this->t1Opt['bgPDFLang'])){
+            if (isset($this->t1Opt['bgPDFLang'][$_SESSION['languages_id']])){
+                if(file_exists($this->t1Opt['bgPDFLang'][$_SESSION['languages_id']])){
+                    $this->bgPDF['file'] = $this->t1Opt['bgPDFLang'][$_SESSION['languages_id']];
+                }
+            }
+        }
         $this->subtotal = 0;
         $this->subtotalColumn = $this->getSubtotalColumn();
         $pagecount = $this->pdf->setSourceFile($this->bgPDF['file']);
