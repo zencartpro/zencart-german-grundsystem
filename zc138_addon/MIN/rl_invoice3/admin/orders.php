@@ -96,6 +96,7 @@
         $rl_invoice3_send = in_array($status, $rlStat);
         if ( ($check_status->fields['orders_status'] != $status  && $status==RL_INVOICE3_ORDERSTATUS)  || ($rl_invoice3_send == true)){
             require_once (DIR_FS_CATALOG . DIR_WS_INCLUDES . 'classes/class.rl_invoice3.php');     
+            require_once ('../' . DIR_WS_LANGUAGES . $_SESSION['language'] . '/extra_definitions/rl_invoice3.php');
             $pdfT = new rl_invoice3($oID, $paper['orientation'], $paper['unit'], $paper['format']);
             $pdfT->createPdfFile(true);
             $attach = $pdfT->getPDFAttachments('ONLY');

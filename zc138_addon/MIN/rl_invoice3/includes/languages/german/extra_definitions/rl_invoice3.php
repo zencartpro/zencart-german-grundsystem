@@ -58,5 +58,3 @@ define('RL_INVOICE3_INVLINK_TEXT', 'Herunterladen:');
 
 define('RL_INVOICE3_SUBTOTAL', 'Zwischensumme: ');
 define('RL_INVOICE3_BALANCE', 'Übertrag: ');
-
-

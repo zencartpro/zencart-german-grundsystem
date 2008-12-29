@@ -28,9 +28,13 @@ define('TABLE_HEADING_TOTAL', 'Total');
 define('TABLE_HEADING_EXTRA','Extra');
 define('TABLE_HEADING_QTY','Anzahl');
 define('TABLE_HEADING_PRICE_EXCLUDING_TAX', 'Price (ex)');
+define('TABLE_HEADING_PRICE_EXCLUDING_TAX_AMAZON', 'Price (ex)');
 define('TABLE_HEADING_PRICE_INCLUDING_TAX', 'Price (inc)');
+
 define('TABLE_HEADING_TOTAL_EXCLUDING_TAX', 'Total (ex)');
+define('TABLE_HEADING_TOTAL_EXCLUDING_TAX_AMAZON','Gesamt(netto)');
 define('TABLE_HEADING_TOTAL_INCLUDING_TAX', 'Total (inc)');
+
 
 define('ENTRY_CUSTOMER', 'CUSTOMER:');
 
@@ -51,5 +55,6 @@ define('RECHNUNGSADRESSE', 'Billing Address ');
 
 define('RL_INVOICE3_INVLINK', 'Invoice.pdf');
 define('RL_INVOICE3_INVLINK_TEXT', 'download:');
+
 define('RL_INVOICE3_SUBTOTAL', 'Subtotal: ');
 define('RL_INVOICE3_BALANCE', 'Balance: ');
