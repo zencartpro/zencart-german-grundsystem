@@ -215,6 +215,8 @@ if (!isset($_SESSION['display_categories_dropdown'])) {
 
     $products_count = 0;
     if (isset($_GET['search'])) {
+// fix duplicates and force search to use master_categories_id
+
       $products_query_raw = ("select p.products_type, p.products_id, pd.products_name, p.products_quantity,
                                        p.products_image, p.products_price, p.products_date_added,
                                        p.products_last_modified, p.products_date_available,
@@ -222,12 +224,14 @@ if (!isset($_SESSION['display_categories_dropdown'])) {
                                        p.products_model,
                                        p.products_quantity_order_min, p.products_quantity_order_units, p.products_priced_by_attribute,
                                        p.product_is_free, p.product_is_call, p.products_quantity_mixed, p.product_is_always_free_shipping,
-                                       p.products_quantity_order_max, p.products_sort_order
+                                       p.products_quantity_order_max, p.products_sort_order,
+                                       p.master_categories_id
                                 from " . TABLE_PRODUCTS . " p, " . TABLE_PRODUCTS_DESCRIPTION . " pd, "
                                        . TABLE_PRODUCTS_TO_CATEGORIES . " p2c
                                 where p.products_id = pd.products_id
                                 and pd.language_id = '" . (int)$_SESSION['languages_id'] . "'
-                                and p.products_id = p2c.products_id
+                                and (p.products_id = p2c.products_id
+                                and p.master_categories_id = p2c.categories_id)
                                 and (
                                 pd.products_name like '%" . zen_db_input($_GET['search']) . "%'
                                 or pd.products_description like '%" . zen_db_input($_GET['search']) . "%'
@@ -324,7 +328,9 @@ if (($_GET['page'] == '1' or $_GET['page'] == '') and $_GET['pID'] != '') {
         <?php echo '<a href="' . zen_href_link($type_handler, 'cPath=' . $cPath . '&product_type=' . $products->fields['products_type'] . '&pID=' . $products->fields['products_id'] . '&action=delete_product') . '">' . zen_image(DIR_WS_IMAGES . 'icon_delete.gif', ICON_DELETE) . '</a>'; ?>
         <?php echo '<a href="' . zen_href_link($type_handler, 'cPath=' . $cPath . '&product_type=' . $products->fields['products_type'] . '&pID=' . $products->fields['products_id'] . '&action=move_product') . '">' . zen_image(DIR_WS_IMAGES . 'icon_move.gif', ICON_MOVE) . '</a>'; ?>
         <?php echo '<a href="' . zen_href_link($type_handler, 'cPath=' . $cPath . '&product_type=' . $products->fields['products_type'] . '&pID=' . $products->fields['products_id'] .'&action=copy_to' ) . '">' . zen_image(DIR_WS_IMAGES . 'icon_copy_to.gif', ICON_COPY_TO) . '</a>'; ?>
+	// BOF IH2
         <?php echo '<a href="' . zen_href_link(FILENAME_IMAGE_HANDLER, 'products_filter=' . $products->fields['products_id'] . '&current_category_id=' . $current_category_id) . '">' . zen_image(DIR_WS_IMAGES . 'icon_image_handler.gif', ICON_IMAGE_HANDLER) . '</a>'; ?>
+	// EOF IH2
 <?php
 // BOF: Attribute commands
 //if (!empty($products->fields['products_id']) && zen_has_product_attributes($products->fields['products_id'], 'false')) {
