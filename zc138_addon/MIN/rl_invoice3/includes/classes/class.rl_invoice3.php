@@ -610,8 +610,18 @@ class rl_invoice3 extends fpdi {
             $attachArray[] = array('file' => $this->getPDFFileName(), 'mime_type' => 'pdf', 'name' => RL_INVOICE3_INVLINK, 'fn' => $ft);
         }
         if ($param == 'ALL') {
-            $attachements = explode('|', RL_INVOICE3_SEND_ATTACH);
+            if (isset($this->t1Opt['attachLang'][$_SESSION['languages_id']])){
+                foreach ($this->t1Opt['attachLang'][$_SESSION['languages_id']] as $value) {
+                    $attachements[] = $value;
+                }
+            } else {
+                $attachements = explode('|', RL_INVOICE3_SEND_ATTACH);
+            }
             foreach($attachements as $value) {
+                if (file_exists($value)) {
+                    $attachArray[] = array('file' => $file, 'mime_type' => 'pdf', 'name' => $value);
+                    continue;
+                }
                 $file = DIR_FS_CATALOG . DIR_WS_INCLUDES . 'pdf/' . $value;
                 if (file_exists($file)) {
                     $attachArray[] = array('file' => $file, 'mime_type' => 'pdf', 'name' => $value);
