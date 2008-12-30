@@ -31,6 +31,19 @@ color: #EEEEEE;
 text-decoration:none;
 }
 
+#flags {
+	float:left;
+	padding:10px;
+}
+
+.de {
+	padding-right:10px;
+}
+
+img a {
+	border:none;
+}
+
 .menu {
 	font-size:90%;
 }
