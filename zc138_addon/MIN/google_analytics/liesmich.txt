@@ -1,0 +1,82 @@
+**************************************************************
+Google Analytics/Conversion Tracking 1.3 für Zen-Cart 1.3.x
+**************************************************************
+
+deutsche Übersetzung/Anpassung des Moduls Simple Google Analytics 1.2.2 von
+http://www.zen-cart.com/index.php?main_page=product_contrib_info&products_id=412
+Copyright 2008 Eric Leuenberger (http://www.zencartoptimization.com)
+
+Dezember 2008
+Autor:
+webchills
+
+
+************************************************************
+Was macht dieses Modul?
+**************************************************************
+
+Mit diesem Modul kann der Google Analytics Code in den Shop integriert werden. 
+Falls auch Google Adwords verwendet wird, kann optional das Conversion Tracking aktiviert werden.
+Die Eingabe der Codes erfolgt via Zen-Cart Admin, es ist dadurch nicht mehr nötig, die Google Tracking Javascripts in Header- Footer-, oder Checkout-Success-Templates einzubauen.
+Sollte Google-Analytics bereits im Shop integriert sein, müssen die Javascripts vor Einbau des Moduls natürlich aus den jeweiligen Templates entfernt werden.
+
+Geeignet für alle deutschen Zen-Cart 1.3.x Versionen
+Getestet mit 1.3.7 und 1.3.8
+
+
+================= WICHTIG =====================
+Vor dem Einbau dieser Änderungen:
+BACKUP von Shop und Datenbank machen! 
+Keine Haftung, Verwendung auf eigene Gefahr!
+BACKUP gemacht? Ok, dann weiterlesen...
+=================================================
+
+
+================= INSTALLATION =====================
+
+1.
+Im Ordner zencart dieses Downloads den Ordner DEINTEMPLATE (includes/templates/DEINTEMPLATE) auf das im Shop aktuell verwendete Template umbenennen (z.B. classic, viennablood, ...)
+
+2.
+Dann die Ordner includes und admin im Ordner zencart in der vorgegebenen Struktur ins Zen-Cart Verzeichnis hochladen. Dabei werden keine bestehenden Dateien überschrieben.
+
+3. 
+Folgende Datei aus der bestehenden Zen-Cart Installation vom Server herunterladen:
+includes/templates/DEINTEMPLATE/common/tpl_main_page.php
+Sollte im eigenen Templateverzeichnis keine common/tpl_main_page.php vorhanden sein, folgende Datei verwenden:
+includes/templates/template_default/common/tpl_main_page.php
+Datei mit einem Texteditor öffnen und ganz am Ende vor dem </body> folgenden Code einfügen:
+
+<?php
+require($template->get_template_dir('.php',DIR_WS_TEMPLATE, $current_page_base,'google_analytics') . '/google_analytics.php');
+?>
+
+Datei abspeichern und hochladen
+
+4.
+In der Zen-Cart Administration auf Tools > SQL Patches installieren.
+Im Ordner SQL die Datei install.sql mit einem Texteditor öffnen und den Inhalt ins Eingabefeld kopieren und absenden.
+Dadurch werden die nötigen Datenbankeinträge angelegt.
+
+5.
+Unter Konfiguration ist nun ein neuer Menüpunkt namens Google Analytics Einstellungen vorhanden.
+Dort nun die gewünschten Einstellungen vornehmen. Alle Einstellungen sind dort jeweils erläutert.
+
+
+
+================= DEINSTALLATION =====================
+
+Um das Modul komplett zu entfernen:
+Folgende Dateien wieder vom Server löschen:
+admin/includes/extra_datafiles/google_analytics_database_names.php
+admin/includes/functions/extra_functions/google_analytics_functions.php
+Folgenden Ordner samt Inhalt löschen:
+includes/templates/DEINTEMPLATE/google_analytics
+In der includes/templates/DEINTEMPLATE/commeon/tpl_main_page.php den zuvor vor dem </body> Tag eingefügten Code entfernen und die Originaldatei wieder hochladen
+Im Ordner SQL befindet sich eine uninstall.sql. Inhalt unter Admin > Tools > SQL Patches installieren ins Eingabefeld kopieren und absenden. Dadurch werden sämtliche Datenbankeinträge des Moduls gelöscht.
+
+
+================= FRAGEN ZU DIESEM MODUL? =====================
+
+Bitte ins zen-Cart.at Forum unter Module und Erweiterungen > Admin Tools posten:
+http://www.zen-cart.at/zcvb/forum/forumdisplay.php?f=36
