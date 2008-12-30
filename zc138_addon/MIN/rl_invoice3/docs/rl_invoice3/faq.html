@@ -102,36 +102,7 @@ Weitere Infos zum Tool ufpdf auf:<br />
 <p>includes/pdf/rl_invoice3_def.php</p>
 <p>In dieser Konfigurationsdatei sind verschiedene Templates definiert. Standardmäßig ist unter Konfiguration &gt; pdf Rechnung 3 &gt; Template für Artikel- und Summentabelle Folgendes aktiv:</p>
 <p>amazon|amazon_templ|total_col_1|total_opt_1</p>
-<p>Wenn hier etwas geändert werden soll, ist also nur der entsprechende Abschnitt in der rl_invoice3_def.php relevant:
-<code>$colsP['amazon'] = array(<br />
-'subtotalI' =&gt; '...',<br />
-'subtotalE' =&gt; '...',<br />
-'qty' =&gt; TABLE_HEADING_QTY,<br />
-'model' =&gt; TABLE_HEADING_PRODUCTS_MODEL,<br />
-'name' =&gt; TABLE_HEADING_PRODUCTS,<br />
-'singleE' =&gt; TABLE_HEADING_PRICE_EXCLUDING_TAX_AMAZON,<br />
-'tax' =&gt; TABLE_HEADING_TAX,<br />
-'sumE' =&gt; TABLE_HEADING_TOTAL_EXCLUDING_TAX_AMAZON,<br />
-);<br />
-$optionsP['amazon_templ'] = array(&quot;subtotal&quot;=&gt;'subtotalE', <br />
-&quot;paperOriantation&quot;=&gt;&quot;P&quot;, <br />
-&quot;fontSize&quot; =&gt; 8, <br />
-'showHeadings' =&gt; 1, <br />
-'shaded' =&gt; 1, <br />
-'xPos' =&gt; 'left', <br />
-'xOrientation' =&gt; 'right', <br />
-'width' =&gt; $realPW-35,<br />
-'cols' =&gt; array(<br />
-'subtotalI' =&gt; array('justification' =&gt; 'R', &quot;width&quot; =&gt; 0),<br />
-'subtotalE' =&gt; array('justification' =&gt; 'R', &quot;width&quot; =&gt; 0),<br />
-'qty' =&gt; array(&quot;justification&quot; =&gt; &quot;L&quot;, &quot;width&quot; =&gt; 15),<br />
-'model' =&gt; array(&quot;justification&quot; =&gt; &quot;L&quot;, &quot;width&quot; =&gt; 25),<br />
-'name' =&gt; array('justification' =&gt; 'L', &quot;width&quot; =&gt; 75),<br />
-'singleE' =&gt; array('justification' =&gt; 'R', &quot;width&quot; =&gt; 25),<br />
-'tax' =&gt; array(&quot;justification&quot; =&gt; &quot;R&quot;, &quot;width&quot; =&gt; 15),<br />
-'sumE' =&gt; array('justification' =&gt; 'R', &quot;width&quot; =&gt; 25),<br />
-)<br />
-);</code></p>
+<p>Wenn hier etwas geändert werden soll, ist also nur der entsprechende Abschnitt in der rl_invoice3_def.php relevant:</p><img src="graphics/def.jpg" alt="rl_invoice3_def.php" border="1" />
 <p>Hier könnte man z.B. den fontSize statt 8 auf 7 stellen, um die Schrift kleiner zu machen.<br />
 Oder die Breite der einzelnen Spalten unter width verändern.</p>
 <hr/>
