@@ -456,9 +456,42 @@ class rl_invoice3 extends fpdi {
         $this->pdf->SetX(20);
         $this->pdf->Cell($this->maxWidth, 6, $dat, '', 2, 'R');
     }
-    function getProductData() {
+    
+
+
+    function getUniqueCode($prefix = 'product_', $length = 25){
+        $code = uniqid($prefix);
+        $code = substr($code, 0, $length);
+        return $code;
+    }
+
+    function createRandomInt($min = 1, $max = 9999){
+        return rand($min, $max);
+    }
+    
+    function makeProductTestData($count = 50){
+        $productData = array();
+        for($i=0; $i<=$count; $i++){
+            $tmp['qty'] = $this->createRandomInt(1, 100);
+            $tmp['id'] =$this->getUniqueCode('', 3);
+            $tmp['name'] =$this->getUniqueCode();
+            $tmp['model'] =$this->getUniqueCode('MO_', 10);
+            $tmp['tax'] = $this->createRandomInt(5, 30);
+            $tmp['price'] = $this->createRandomInt(30) / 100;
+            $tmp['onetime_charges'] = $this->createRandomInt(0,10);
+            $tmp['final_price'] = $this->createRandomInt(30) / 100;
+            $tmp['product_is_free'] = $this->createRandomInt(0, 1);
+            $productData[] = $tmp;
+        }
+        return $productData;
+    }
+    
+    function getProductData($p = false) {
         $data = array();
         $i = 0;
+        if($p) {
+            $this->order->products = $p;
+        }
         foreach($this->order->products as $key => $val) {
             $data[$i]['qty'] = $val['qty'];
             $data[$i]['model'] = $val['model'];
@@ -498,8 +531,8 @@ class rl_invoice3 extends fpdi {
         }
         return $data;
     }
-    function makeProducts() {
-        $productData = $this->getProductData();
+    function makeProducts($p = null) {
+        $productData = $this->getProductData($p);
         $this->pdf->SetFont($this->fonts2['table'], '');
         $this->pdf->SetFontSize($this->t1Opt['fontSize']);
         $this->pdf->SetY($this->delta['invoiceProducts'] + $this->pdf->GetY());
@@ -627,18 +660,27 @@ class rl_invoice3 extends fpdi {
                     $attachArray[] = array('file' => $file, 'mime_type' => 'pdf', 'name' => $value);
                 }
             }
+            #rldp($attachArray, '$attachArray');
+            #die('$attachArray');
         }
         return $attachArray;
     }
-    function writePDF($onlyFile = false) {
+    function writePDF($onlyFile = false, $test = false) {
         $pdfName = $this->oID . ".pdf";
         if (!$onlyFile) {
             $this->pdf->Output($pdfName, "I");
         }
         if ($this->pdfPath['save'] == 1) {
-            $this->pdf->Output($this->getPDFFileName(), "F");
+            if($test){
+                $fn = DIR_WS_ADMIN . DIR_WS_IMAGES . 'TestInvoice.pdf';
+                $fnn = DIR_FS_ADMIN . DIR_WS_IMAGES . 'TestInvoice.pdf';
+                $this->pdf->Output($fnn, "F");
+            } else {
+                $this->pdf->Output($this->getPDFFileName(), "F");
+            }
         }
         $this->pdf->_closeParsers();
+        return $fn;
     }
     function createPdfFile($onlyFile = false) {
         if (file_exists($this->getPDFFileName())) {
