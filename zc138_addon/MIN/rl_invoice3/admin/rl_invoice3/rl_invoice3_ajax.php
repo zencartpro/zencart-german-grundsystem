@@ -15,13 +15,30 @@ $current_page_base = 'paypalipn';
 $loaderPrefix = 'ajax';
 chdir('../');
 require_once ('includes/application_top.php');
-define('FPDF_FONTPATH', DIR_FS_CATALOG . DIR_WS_INCLUDES . 'pdf/font/');
+require (DIR_WS_CLASSES . 'currencies.php');
+include (DIR_WS_CLASSES . 'order.php');
+require_once ('../includes/classes/class.rl_invoice3.php');
+$paper = rl_invoice3::getDefault(RL_INVOICE3_PAPER, array('format' => 'A4', 'unit' => 'mm', 'orientation' => 'P'));
+$sql = 'SELECT MAX(orders_id) as oid FROM '. TABLE_ORDERS;
+$res = $db->Execute($sql);
+$oID = intval($res->fields['oid']);
+if($oID < 1){
+    echo 'noch keine bestellung vorhanden';
+    exit();
+}
+$pdfT = new rl_invoice3($oID, $paper['orientation'], $paper['unit'], $paper['format']); 
+#$pdfT->checkInstall();
+
 $param = zen_sanitize_string($_GET['p']);
+
 class rl_invoice3_ajax {
     private $param;
     public $content;
+    private $db;
     function __construct($param) {
         $this->param = $param;
+        global $db;
+        $this->db = $db;
         $findFunc = 'get' . ucfirst($this->param);
         if(method_exists($this, $findFunc)){    
             $this->content = $this->$findFunc();   
@@ -151,16 +168,26 @@ class rl_invoice3_ajax {
     }
     
     function getRestore(){
-        $tmp = file_get_contents('rl_invoice3/rl_invoice3_ajax.php');
-        $tmpA = file('rl_invoice3/rl_invoice3_ajax.php');
-        $c = count($tmpA);
-        for($i=0;$i<=$c;$i++){
-            $g = strpos($tmpA[$i], '<ul>');
-            if($g){
-                echo $i+1 . ' :: ' . strpos($tmpA[$i], '<ul>')  . '<br>';
-            }
-        }
+        $this->getRemove();
+        $this->getInstall();
+        return 'rl_invoice database restored to default values';
+    }
+    function getInstall(){
+        global $pdfT;
+        $pdfT->checkInstall();
+        return 'rl_invoice3 installed !';
+    }
+    
+    function getRemove(){
+        $sql = "SELECT configuration_group_id FROM " . TABLE_CONFIGURATION_GROUP . " WHERE configuration_group_title LIKE 'PDF_INVOICE%'" ;
+        $res = $this->db->Execute($sql);
+        global $pdfT;
         
+        while (!$res->EOF){
+            $pdfT->deleteConfGroup($res->fields['configuration_group_id']);
+            $res->MoveNext();
+        }
+        return 'rl_invoice3 database entries removed';
     }
     
 }
