@@ -1,0 +1,127 @@
+  /* general headline setup */
+  h1, h2, h3, h4, h5 {
+     color: #000000;
+     font-family: Georgia,"Times New Roman",serif;
+     font-weight: bold;
+     letter-spacing: 0.1em;
+     word-spacing: 0.2em;
+     margin: 0 0 0 0;
+     padding: 0 0 0 0;
+     clear: left
+  }
+  
+  .logo h1 {margin: 0; padding: 11px 0 0 0; font-size: 30px; color:#CCCCCC}
+  h1 {font-size: 180%}
+  h2 {font-size: 160%}
+  h3 {font-size: 140%}
+  h4 {font-size: 120%}
+  h5 {font-size: 100%}
+
+  h1 a, h2 a, h3 a, h4 a, h5 a {
+     font-family: Georgia,"Times New Roman",serif;
+     font-weight: bold;
+     letter-spacing: 0.1em;
+     word-spacing: 0.2em;
+  }
+  
+  input[type="text"], input[type="submit"], input[type="file"], select {
+    border: 1px solid #CCCCCC;
+    background-color: #FFFFFF;
+  }
+  
+  div.adminbox {
+    padding: 0px 0px;
+  }
+
+  div.aboutbox {
+    margin: 0 auto;
+    width: 60%;
+    text-align:center;
+    padding: 10px;
+  }
+  
+  .aboutbox p {
+    text-align: justify;
+  }
+  
+  div.managerbox {
+    clear: both;
+  }
+  
+  div.donationbox {
+    display: inline;
+    float: right;
+    padding: 8px;
+    border: 1px solid #CCCCCC;
+    background-color: #F5F5F5;
+    text-align: left;
+    margin: 10px;
+  }
+  
+  .donationbox label {
+    display: inline;
+    font-weight: normal;
+  }
+  
+  .donationbox input[type=text], .donationbox input[type=submit], .donationbox select {
+    display: inline;
+    border: 1px solid #CCCCCC;
+    background-color: #FFFFFF;
+  }
+  
+  .donationbox input[type=submit] {margin-bottom: 5px; cursor: pointer}
+  
+  div.donationbox h2 {
+    font-size: 100%;
+    z-index:10;
+  }
+
+  a.wikilink1:link    { color:#009900; text-decoration:none }
+  a.wikilink1:visited { color:#009900; text-decoration:none }
+  a.wikilink1:hover   { color:#009900; text-decoration:underline }
+
+#extraDiv2 {
+    background-image: url(bottom.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    height: 200px;
+    width: 100%;
+    position: fixed;
+    bottom: 0px;
+    z-index: 5;
+}
+#content {
+    position:absolute;
+    padding: 10px;
+    margin-bottom:10px;
+    left: 10px;
+    top: 185px;
+    height: 777px;
+    width: 70%;
+    z-index:80;
+}
+.dl {
+    background-color: yellow;
+    font-size: 125%;
+}
+
+#loading {
+    position:absolute;
+    top: 118px;
+    left: 333px;
+    background-color: yellow;
+    color: blue;
+    padding: 2px 13px;
+    display: none;
+}
+
+.makemenu, .makemenu1 {
+    display:inline; 
+    padding: 2px 2px;     
+}
+.rladmin {
+  Afloat: left;
+  Alist-style: none;
+  padding-right : 10px;
+  
+}

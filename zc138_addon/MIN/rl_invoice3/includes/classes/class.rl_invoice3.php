@@ -1,16 +1,15 @@
 <?php
 /**
- * @package pdf_invoice3
- * @copyright Copyright 2003-2007 Zen Cart Development Team
- * @copyright Portions Copyright 2003 osCommerce
+ * @package rl_invoice3
+ * @copyright Copyright 2005-2009 langheiter.com 
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id$
- *
- * version: 3.0.0 // 20081006
  *
  * @author rainer AT langheiter DOT com // http://www.filosofisch.com // http://edv.langheiter.com
- * generates pdf-invoices; please read: readme_rl_invoice.pdf|txt
+ * generates pdf-invoices; please read: http://demo.zen-cart.at/docs/rl_invoice3/
+ * 
+ * @version $Id$
  */
+ 
 define('FPDF_FONTPATH', DIR_FS_CATALOG . DIR_WS_INCLUDES . 'pdf/font/');
 include_once (DIR_FS_CATALOG . DIR_WS_INCLUDES . 'pdf/fpdi.php');
 function ExtractNumberX($number) {

@@ -1,0 +1,30 @@
+@charset "utf-8";
+ul {
+	font-size: 1.2em;
+	Ccolor: green;
+}
+
+ul li {
+	font-size: 1.1em;
+}
+ul li ul{
+	font-size: 1.0em;
+}
+
+ul li ul li {
+	font-size: 0.9em;
+}
+
+
+.adm-err {
+	color:#FF0000;
+	font-weight:bold;
+}
+.adm-ok {
+	color:#339900;
+	font-weight:bold;
+}
+
+#results {
+	color:#000033;
+}

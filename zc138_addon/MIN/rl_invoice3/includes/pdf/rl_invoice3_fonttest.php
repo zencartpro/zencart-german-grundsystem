@@ -12,6 +12,10 @@
  * generates a rl_invoice3_fontest.pdf file with all available fonts
  */
 
+  @ini_set('display_errors', '0');
+  error_reporting(0);  
+
+
 require('fpdi.php');
 require('../configure.php');
 define('FPDF_FONTPATH', DIR_FS_CATALOG . DIR_WS_INCLUDES . 'pdf/font/');
@@ -23,7 +27,7 @@ $tplidx = $pdf->importPage(1);
 
 
 $pdf->addPage();
-$pdf->useTemplate($tplidx, 0, 0);
+$pdf->useTemplate($tplidx, 0, 0);    
 
 $fonts = array( 'dejavusansb',  'dejavusanscondensedbi',  'dejavusanscondensedb',  'dejavusanscondensedi',  
                 'dejavusanscondensed',  'dejavusans-extralight',  'dejavusansi',  'dejavusansmonobi',  'dejavusansmonob',  'dejavusansmonoi', 
@@ -31,7 +35,7 @@ $fonts = array( 'dejavusansb',  'dejavusanscondensedbi',  'dejavusanscondensedb'
                 'dejavuserifcondensedi',  'dejavuserifcondensed',  'dejavuserifi',  'dejavuserif',  'freemonobi',  'freemonob',  'freemonoi',  
                 'freemono',  'freesansbi',  'freesansb',  'freesansi',  'freesans',  'freeserifbi',  'freeserifb',  'freeserifi',  'freeserif',  
                 );
-print_r($fonts);
+#print_r($fonts);
 
 $pdf->SetTitle("UFPDF is Cool.\näöüßƒ ıš ČŏōĹ");
 $pdf->SetAuthor('hugo13');
@@ -39,7 +43,7 @@ $pdf->setLeftMargin(20);
 
 $pdf->sety(40);
 foreach ($fonts as $key => $value) {
-    echo $value;
+#    echo $value;
     $pdf->AddFont($value, '', $value . '.php');       
     
     for($i=8; $i<=14; $i=$i+2){
@@ -48,7 +52,11 @@ foreach ($fonts as $key => $value) {
     }
     $pdf->Write($i, "\n");
 
-    echo ' :: OK<br>';
+#    echo ' :: OK<br>';
 }
 
-$pdf->Output('rl_invoice3_fontest.pdf', 'F');
+//$pdf->Output('rl_invoice3_fontest.pdf', 'F');
+#$pdf->Output('rl_invoice3_fontest.pdf', 'I');
+//echo '<a class="dl" href="../../includes/pdf/rl_invoice3_fontest.pdf">Download FontTest</a><script language="javascript" src="../../ajax/jquery.media.js"></script><a class="fonttest" href="../../includes/pdf/rl_invoice3_fontest.pdf">FontTest</a>';
+echo '<a class="dl" href="../../includes/pdf/rl_invoice3_fontest.pdf">Download FontTest</a><a class="fonttest" href="../../includes/pdf/rl_invoice3_fontest.pdf">FontTest</a>';
+#echo '<a class="fonttest" href="../../includes/pdf/rl_invoice3_fontest.pdf">FontTest DL</a>';
