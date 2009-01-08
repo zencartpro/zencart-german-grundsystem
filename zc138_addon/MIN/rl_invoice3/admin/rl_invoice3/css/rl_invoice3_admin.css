@@ -1,30 +1,36 @@
 @charset "utf-8";
-ul {
-	font-size: 1.2em;
-	Ccolor: green;
+#results ul {
+    font-size: 1.0em;
+    Ccolor: green;
 }
 
-ul li {
-	font-size: 1.1em;
+#results ul li {
+    font-size: 1.1em;
 }
-ul li ul{
-	font-size: 1.0em;
-}
-
-ul li ul li {
-	font-size: 0.9em;
+#results ul li ul{
+    font-size: 1.0em;
 }
 
-
-.adm-err {
-	color:#FF0000;
-	font-weight:bold;
+#results ul li ul li {
+    font-size: 0.9em;
 }
-.adm-ok {
-	color:#339900;
-	font-weight:bold;
+
+#results ul li ul li ul li{
+    font-size: 0.8em;
+}
+
+
+#results .adm-err {
+    color:#FF0000;
+    font-weight:bold;
+	font-size: 1em;
+}
+#results .adm-ok {
+    color:#339900;
+    font-weight:bold;
+	font-size: 1em;
 }
 
 #results {
-	color:#000033;
+    color:#000033;
 }
