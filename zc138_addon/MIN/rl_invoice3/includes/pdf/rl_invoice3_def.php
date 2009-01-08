@@ -25,7 +25,7 @@ $colsP['amazon'] = array(
     );
 $optionsP['amazon_templ'] = array(
     "subtotal"=>'subtotalE', 
-    "paperOriantation"=>"P", 
+    //"paperOriantation"=>"P", 
     "fontSize" => 8, 
     'showHeadings' => 1, 
     'shaded' => 1, 

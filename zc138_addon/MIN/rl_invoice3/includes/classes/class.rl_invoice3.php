@@ -23,7 +23,7 @@ class rl_invoice3 extends fpdi {
         $this->db = $db;
         $this->oID = $oID;
         $this->checkInstall();
-        $this->pdf = new FPDI();
+        $this->pdf = new FPDI($orientation, $unit, $format);
         #parent::fpdi($orientation, $unit, $format);
         $this->currencies = new currencies();
         $this->order = new order($this->oID);

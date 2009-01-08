@@ -189,6 +189,24 @@ class rl_invoice3_ajax {
         return 'rl_invoice3 database entries removed';
     }
     
+    function getFormsave(){
+        $updateArray = array('RL_INVOICE3_ADDRESS1_POS', 'RL_INVOICE3_ADDRESS2_POS', 'RL_INVOICE3_DELTA',
+                        'RL_INVOICE3_MARGIN', 'RL_INVOICE3_PAPER', 'RL_INVOICE3_DELTA_2PAGE', 'RL_INVOICE3_ADDRESS_WIDTH',
+                        'paperformat', 'oriantation');
+        rldp($updateArray, '$updateArray');
+        rldp($_GET, 'GET');
+        rldp($_POST, 'POST');
+        
+        foreach ($updateArray as $value) {
+            $sql = "UPDATE RL_INVOICE3 SET configuration_value = '" . $_POST[$value] . "' WHERE configuration_key = '$value'";
+            #echo "$sql\n";
+            $this->db->Execute($sql);
+        }
+        
+        
+        
+    }
+    
 }
 $rl = new rl_invoice3_ajax($param);
 echo $rl->getContent();

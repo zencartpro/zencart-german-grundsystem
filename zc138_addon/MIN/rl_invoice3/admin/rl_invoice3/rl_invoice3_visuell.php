@@ -4,7 +4,7 @@ echo <<<BEG
 <link href="css/rl_invoice3_dialog.css" rel="stylesheet" type="text/css" />
 <div id="header"><span id="result">RESULT</span></div>
 <div id="form1">
-  <form id="form2" name="form2" method="post" action="">
+  <form id="form2" name="form2" method="post" action="rl_invoice3_ajax.php?p=formsave">
     <label  for="label">RL_INVOICE3_ADDRESS1_POS</label>
     <input class="xxx" name="RL_INVOICE3_ADDRESS1_POS" type="text" id="RL_INVOICE3_ADDRESS1_POS" value="0|30" />
     <br />
@@ -36,6 +36,9 @@ echo <<<BEG
     <input name="oriantation" type="radio" class="paper-format" value="0" checked="checked" />
     <input name="oriantation" type="radio" class="paper-format" value="1" />
     <br />
+      <br/>
+      <input type="submit" name="save" id="rl-save" value="Senden" />
+      <br/>
   </form>
 </div>
 <div id="papercontainer">
@@ -67,7 +70,8 @@ echo <<<BEG
   </div>
 </div>
 
-<script src="../../ajax/rl_invoice3.js" type="text/javascript"></script>
+<script src="../../ajax/jquery.form.js" type="text/javascript"></script>
+<script src="../../ajax/rl_invoice3_template.js" type="text/javascript"></script>
 <div id="extraDiv2"></div>
 BEG;
 #sleep(1);
