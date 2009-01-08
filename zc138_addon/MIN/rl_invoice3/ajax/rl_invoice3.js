@@ -287,13 +287,13 @@ $(document).ready(function() {
                     
         $("#fonttest").click(function() { 
             $.ajax({
-              url: "../../includes/pdf/rl_invoice3_fonttest.php",
+              url: "./rl_invoice3_fonttest.php",
               cache: true,
               success: function(html){
                 $("#content").html(html);
                 //$("#content").append('<a id="fonttest" href="../../includes/pdf/rl_invoice3_fontest.pdf">   FontTest !!!</a>');
                 //$("#fonttest").media( { width: '100%', height: 800} ); 
-                $(".fonttest").media( { width: '100%', height: 800, src: '../../includes/pdf/rl_invoice3_fontest.pdf'} ); 
+                $(".fonttest").media( { width: '100%', height: 800, src: '../../pdf/rl_invoice3_fontest.pdf'} ); 
               }
             });            
         });
