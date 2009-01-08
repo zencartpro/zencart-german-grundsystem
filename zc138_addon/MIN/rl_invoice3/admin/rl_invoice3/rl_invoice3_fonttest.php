@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 /**
  * @package pdf_invoice3
  * @copyright Copyright 2003-2007 Zen Cart Development Team
@@ -15,14 +15,18 @@
   @ini_set('display_errors', '0');
   error_reporting(0);  
 
+$loaderPrefix = 'ajax';
+chdir('../');
+require_once ('includes/application_top.php');
+                            
 
-require('fpdi.php');
-require('../configure.php');
-define('FPDF_FONTPATH', DIR_FS_CATALOG . DIR_WS_INCLUDES . 'pdf/font/');
+$pP = DIR_FS_CATALOG . DIR_WS_INCLUDES . 'pdf/';                                                     
+require($pP . 'fpdi.php');
+define('FPDF_FONTPATH', $pP . 'font/');
 
 $pdf = new FPDI();
 
-$pagecount = $pdf->setSourceFile('rl_invoice3_bg.pdf');
+$pagecount = $pdf->setSourceFile($pP . 'rl_invoice3_bg.pdf');
 $tplidx = $pdf->importPage(1);
 
 
@@ -55,8 +59,14 @@ foreach ($fonts as $key => $value) {
 #    echo ' :: OK<br>';
 }
 
-//$pdf->Output('rl_invoice3_fontest.pdf', 'F');
+$tmp = explode('|', RL_INVOICE3_PDF_PATH);
+$savePath = $tmp[0];
+
+
+
+$pdf->Output($savePath . 'rl_invoice3_fontest.pdf', 'F');
+$savePath = str_replace(DIR_FS_CATALOG, DIR_WS_CATALOG, $savePath);
 #$pdf->Output('rl_invoice3_fontest.pdf', 'I');
 //echo '<a class="dl" href="../../includes/pdf/rl_invoice3_fontest.pdf">Download FontTest</a><script language="javascript" src="../../ajax/jquery.media.js"></script><a class="fonttest" href="../../includes/pdf/rl_invoice3_fontest.pdf">FontTest</a>';
-echo '<a class="dl" href="../../includes/pdf/rl_invoice3_fontest.pdf">Download FontTest</a><a class="fonttest" href="../../includes/pdf/rl_invoice3_fontest.pdf">FontTest</a>';
+echo '<a class="dl" href="' .$savePath . 'rl_invoice3_fontest.pdf">Download FontTest</a><a class="fonttest" href="' . $savePath . 'rl_invoice3_fontest.pdf">FontTest</a>';
 #echo '<a class="fonttest" href="../../includes/pdf/rl_invoice3_fontest.pdf">FontTest DL</a>';
