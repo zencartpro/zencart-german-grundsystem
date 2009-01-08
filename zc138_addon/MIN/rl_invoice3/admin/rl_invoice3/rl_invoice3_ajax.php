@@ -163,7 +163,6 @@ class rl_invoice3_ajax {
         
         $cont .= '</ul>';
         ############
-        writeRL($cont, './rl_invoice3/', 'test.html', 'w+');
         return $cont;
     }
     

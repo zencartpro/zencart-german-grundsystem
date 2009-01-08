@@ -68,8 +68,8 @@ echo <<<TXT
 TXT;
 
 echo RL_INVOICE3_HEADING_TITLE . '<span id="loading"></span></h1>';
-if (defined('IH_VERSION')) {
-    echo IH_VERSION_VERSION . ':&nbsp;' . RL_INVOICE3_VERSION . '<br />';
+if (defined('RL_INVOICE3_VERSION')) {
+    echo 'Version: ' . RL_INVOICE3_VERSION . '<br />';
 } else {
     echo IH_VERSION_NOT_FOUND . '<br />';
 }
