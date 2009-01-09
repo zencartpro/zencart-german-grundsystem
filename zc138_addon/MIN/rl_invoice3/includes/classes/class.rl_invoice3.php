@@ -23,7 +23,12 @@ class rl_invoice3 extends fpdi {
         $this->db = $db;
         $this->oID = $oID;
         $this->checkInstall();
-        $this->pdf = new FPDI($orientation, $unit, $format);
+        if(is_null($unit)){
+            $paper = $this->getDefault(RL_INVOICE3_PAPER, array('format' => 'A4', 'unit' => 'mm', 'orientation' => 'P'));  
+            $this->pdf = new FPDI($paper['orientation'], $paper['unit'], $paper['format']);
+        } else {
+            $this->pdf = new FPDI($orientation, $unit, $format);
+        }
         #parent::fpdi($orientation, $unit, $format);
         $this->currencies = new currencies();
         $this->order = new order($this->oID);
@@ -651,7 +656,7 @@ class rl_invoice3 extends fpdi {
             }
             foreach($attachements as $value) {
                 if (file_exists($value)) {
-                    $attachArray[] = array('file' => $file, 'mime_type' => 'pdf', 'name' => $value);
+                    $attachArray[] = array('file' => $value, 'mime_type' => 'pdf', 'name' => basename($value));
                     continue;
                 }
                 $file = DIR_FS_CATALOG . DIR_WS_INCLUDES . 'pdf/' . $value;
