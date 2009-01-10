@@ -54,7 +54,7 @@ class rl_invoice3_ajax {
     }
     public function getCheckpath(){
         #$cont = '<link href="css/rl_invoice3_admin.css" rel="stylesheet" type="text/css" />';
-        $cont .= '<hr><h1>CheckPaths</h1><span class="adm-ok">green==good  </span><span class="adm-err">red==bad  </span><ul>';
+        $cont .= '<h1>CheckPaths</h1><span class="adm-ok">green==good  </span><span class="adm-err">red==bad  </span><ul>';
         include (DIR_FS_CATALOG . DIR_WS_INCLUDES . 'pdf/rl_invoice3_def.php'); 
         
         $defPath = DIR_FS_CATALOG . DIR_WS_INCLUDES . 'pdf/';

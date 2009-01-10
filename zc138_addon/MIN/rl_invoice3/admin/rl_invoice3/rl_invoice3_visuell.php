@@ -3,7 +3,7 @@
 echo <<<BEG
 <link href="css/rl_invoice3_dialog.css" rel="stylesheet" type="text/css" />
 <div id="header"><span id="result">RESULT</span></div>
-<div id="form1">
+<div class="form1">
   <form id="form2" name="form2" method="post" action="rl_invoice3_ajax.php?p=formsave">
     <label  for="label">RL_INVOICE3_ADDRESS1_POS</label>
     <input class="xxx" name="RL_INVOICE3_ADDRESS1_POS" type="text" id="RL_INVOICE3_ADDRESS1_POS" value="0|30" />

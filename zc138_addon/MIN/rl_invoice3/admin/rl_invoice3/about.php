@@ -1,13 +1,13 @@
 <?php
 echo <<<BEG
-<div class="aboutbox" style="border: 3px solid green;">
-  <p>
+<div id="aboutbox">
+  
   <h2>PDF-INVOICE3</h2>
-  by<br />
+  <p>by<br />
   <a href="http://zencart.filosofisch.com/">zencart.filosofisch.com</a><br />
   (<a href="mailto:zencart@filosofisch.com">rainer@filosofisch.com</a>)<br />
   </p>
-  <p> Donations help me divert more time from other projects to breakmyzencart, 
+  <p> Donations help me divert more time from other projects to Zen-Cart, 
     which means you get the great new Zen-Cart contributions, maintenance of 
     current releases for your ease of use and this informational website stays 
     up-to-date. </p>
@@ -16,6 +16,6 @@ echo <<<BEG
     you can. Every little bit helps!<br />
     Thank you! </p>
 </div>
-<div id="extraDiv2"></div>
+
 BEG;
 #sleep(1);

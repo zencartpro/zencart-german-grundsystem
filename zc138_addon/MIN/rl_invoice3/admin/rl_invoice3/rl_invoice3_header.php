@@ -63,7 +63,7 @@ require(DIR_WS_INCLUDES . 'header.php');
 
 echo <<<TXT
 <div>
-<div style="float:left; padding: 8px 5px;">
+<div id="admintitle">
 <h1>
 TXT;
 
@@ -76,19 +76,18 @@ if (defined('RL_INVOICE3_VERSION')) {
 
 ?>
 </div>
-<div style="clear:both">
-
-<ul style="background-color:#F5F5F5; border: solid #CCCCCC; border-width: 1px 0px;">
-  
-  <li class="makemenu1"><a class="makemenu" id="admin" href="<?php echo zen_href_link(RL_INVOICE3_ADMIN_FILENAME, 'page=admin') ?>"><?php echo RL_INVOICE3_ADMIN_ADMIN; ?></a></li>
-  <li class="makemenu1"><a class="makemenu" id="template" href="<?php echo '#' ?>"><?php echo RL_INVOICE3_ADMIN_TEMPLATE; ?></a>  </li>
-  <li class="makemenu1"><a class="makemenu" id="fonttest" href="<?php echo '#' ?>"><?php echo RL_INVOICE3_ADMIN_FONT ; ?></a>  </li>
-  <li class="makemenu1"><a class="makemenu" id="testinvoice" href="<?php echo '#' ?>"><?php echo RL_INVOICE3_ADMIN_INVOICETEST; ?></a>  </li>
-  <li class="makemenu1"><a class="makemenu" id="about" href="<?php echo '#' ?>"><?php echo RL_INVOICE3_ADMIN_ABOUT; ?></a></li>
-    
+<div id="adminbox1">
+<ul>
+  <li><a id="admin" href="<?php echo zen_href_link(RL_INVOICE3_ADMIN_FILENAME, 'page=admin') ?>"><?php echo RL_INVOICE3_ADMIN_ADMIN; ?></a></li>
+  <li><a id="template" href="<?php echo '#' ?>"><?php echo RL_INVOICE3_ADMIN_TEMPLATE; ?></a>  </li>
+  <li><a id="fonttest" href="<?php echo '#' ?>"><?php echo RL_INVOICE3_ADMIN_FONT ; ?></a>  </li>
+  <li><a id="testinvoice" href="<?php echo '#' ?>"><?php echo RL_INVOICE3_ADMIN_INVOICETEST; ?></a>  </li>
+  <li><a id="about" href="<?php echo '#' ?>"><?php echo RL_INVOICE3_ADMIN_ABOUT; ?></a></li>
+ 
 </ul>
+</div>
 
-<div class="donationbox">
+<div id="donationbox">
 <form class="contrib" action="https://www.paypal.com/cgi-bin/webscr" method="post">
   <input type="hidden" name="business" value="zencart@filosofisch.com" />
   <input type="hidden" name="item_name" value="filosofisch donation" />

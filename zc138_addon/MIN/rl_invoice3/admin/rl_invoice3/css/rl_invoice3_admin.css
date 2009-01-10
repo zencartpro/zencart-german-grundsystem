@@ -1,36 +1,41 @@
 @charset "utf-8";
 #results ul {
-    font-size: 1.0em;
-    Ccolor: green;
+    font-size: 11px;
+    color: green;
 }
 
 #results ul li {
-    font-size: 1.1em;
+    font-size: 13px;
 }
 #results ul li ul{
-    font-size: 1.0em;
+    font-size: 12px;
 }
 
 #results ul li ul li {
-    font-size: 0.9em;
+    font-size: 10px;
 }
 
 #results ul li ul li ul li{
-    font-size: 0.8em;
+    font-size: 10px;
 }
 
 
 #results .adm-err {
     color:#FF0000;
     font-weight:bold;
-	font-size: 1em;
+	font-size: 12px;
 }
 #results .adm-ok {
     color:#339900;
     font-weight:bold;
-	font-size: 1em;
+	font-size: 12px;
 }
 
 #results {
     color:#000033;
+}
+
+#results h1 {
+	font-size:14px;
+	font-weight:bold;
 }

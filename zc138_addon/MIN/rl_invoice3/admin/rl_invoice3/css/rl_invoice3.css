@@ -1,7 +1,7 @@
   /* general headline setup */
   h1, h2, h3, h4, h5 {
      color: #000000;
-     font-family: Georgia,"Times New Roman",serif;
+     font-family: Arial, Verdana, sans-serif;
      font-weight: bold;
      letter-spacing: 0.1em;
      word-spacing: 0.2em;
@@ -18,7 +18,7 @@
   h5 {font-size: 100%}
 
   h1 a, h2 a, h3 a, h4 a, h5 a {
-     font-family: Georgia,"Times New Roman",serif;
+     font-family: Arial, Verdana, sans-serif;
      font-weight: bold;
      letter-spacing: 0.1em;
      word-spacing: 0.2em;
@@ -29,18 +29,67 @@
     background-color: #FFFFFF;
   }
   
-  div.adminbox {
-    padding: 0px 0px;
+  
+  
+  #admintitle {
+  	text-align:left;
+	padding:2px;	
   }
+  
+  #admintitle h1 {
+  	font-size:13px;
+	font-weight:bold;
+  }
+  
+  #adminbox1 {
+  	padding: 0px 0px;
+	background:#F5F5F5; 
+	border: 1px solid #CCCCCC;
+  }
+  
+  #adminbox1 ul {
+  	margin-left:0;
+	margin-right:0;	
+	display:inline;
+	
+	  }
+#adminbox1 ul li {
+	display:inline;
+	list-style:none;
+	padding: 2px 15px;
 
-  div.aboutbox {
+}
+  
+  #adminbox2 {
+  	margin:0;
+	padding: 0px 0px;
+	background:#F5F5F5; 
+	border: 1px solid #CCCCCC;
+	width: 400px;
+  }
+  
+  #adminbox2 ul {
+  	margin-left:0;
+	margin-right:0;	
+	display:inline;
+	
+	  }
+#adminbox2 ul li {
+	display:inline;
+	list-style:none;
+	padding: 2px 15px;
+
+}
+
+ #aboutbox {
     margin: 0 auto;
     width: 60%;
     text-align:center;
     padding: 10px;
+	 border:2px solid green;
   }
   
-  .aboutbox p {
+  #aboutbox p {
     text-align: justify;
   }
   
@@ -48,7 +97,7 @@
     clear: both;
   }
   
-  div.donationbox {
+  #donationbox {
     display: inline;
     float: right;
     padding: 8px;
@@ -58,20 +107,20 @@
     margin: 10px;
   }
   
-  .donationbox label {
+  #donationbox label {
     display: inline;
     font-weight: normal;
   }
   
-  .donationbox input[type=text], .donationbox input[type=submit], .donationbox select {
+  #donationbox input[type=text], .donationbox input[type=submit], .donationbox select {
     display: inline;
     border: 1px solid #CCCCCC;
     background-color: #FFFFFF;
   }
   
-  .donationbox input[type=submit] {margin-bottom: 5px; cursor: pointer}
+  #donationbox input[type=submit] {margin-bottom: 5px; cursor: pointer}
   
-  div.donationbox h2 {
+  #donationbox h2 {
     font-size: 100%;
     z-index:10;
   }
@@ -107,21 +156,17 @@
 
 #loading {
     position:absolute;
-    top: 118px;
-    left: 333px;
+    top: 115px;
+    left: 350px;
     background-color: yellow;
     color: blue;
     padding: 2px 13px;
     display: none;
 }
 
-.makemenu, .makemenu1 {
-    display:inline; 
-    padding: 2px 2px;     
-}
+
 .rladmin {
-  Afloat: left;
-  Alist-style: none;
-  padding-right : 10px;
+  margin:0;
+  text-align:left; 
   
 }

@@ -10,16 +10,16 @@ label {
 }
 
 
-#content label, input { /* Alle Labels UND Formularelemente ausw√§hlen */
+#contentvisuell label, input { /* Alle Labels UND Formularelemente ausw‰hlen */
   display: block;
   float: left;
   width: 185px; /* Breite.*/
 }
-#content input { /* Alle Labels UND Formularelemente ausw√§hlen */
-  Awidth: 180px; /* Breite.*/
+#contentvisuell input { /* Alle Labels UND Formularelemente ausw‰hlen */
+  width: 180px; /* Breite.*/
 }
 
-form br { /* Alle Zeilenumbr√ºche in Formularen ausw√§hlen */
+form br { /* Alle Zeilenumbr¸che in Formularen ausw‰hlen */
   clear: left; /* das floating der labels und inputs aufheben */
 }
 
@@ -42,10 +42,10 @@ input#submit { /* den Submit-Button */
 }
 
 #form2 {
-	width: 400px;
+	width: 300px;
 	position:absolute;
 	top: 8px;
-	left: 597px;
+	left: 697px;
 }
 #res {
 	font-family:"Courier New", Courier, monospace;
@@ -56,15 +56,19 @@ input#submit { /* den Submit-Button */
 	padding: 10px;
 	border: 2px double red;
 	margin-bottom:10px;
-	left: 573px;
-	top: 674px;
-	height: 50px;
+	left: 697px;
+	top: 400px;
+	height: 80px;
+	width:300px;
+	color:#FFFFFF;
+	font-size:12px;
+	font-family:Arial, Verdana, sans-serif;
 }
-#Apapercontainer {
+#papercontainer {
 	border: 0px dotted #660000;
 	position: absolute;
 	top: 0px;
-	Tleft: 2px;
+	left: 2px;
 	width:666px;
 	height: 800px;
 }
@@ -155,9 +159,7 @@ input#submit { /* den Submit-Button */
 .cl {
 	clear:both;
 }
-.paper {
-	Abackground-image:url(../images/rl_invoice3_bgL420.jpg)
-}
+
 .writing {
 	position: absolute;
 	left: 50px;
@@ -206,8 +208,9 @@ y {
 }
 
 
-div.donationbox {
-    Xdisplay:none;
+#donationbox {
+    display:none;
+	 visibility:hidden;
 }
 
 
@@ -218,7 +221,7 @@ div.donationbox {
     border: 2px solid red;
     margin-bottom:10px;
     left: 10px;
-    Xtop: 200px;
+    top: 180px;
     height: 777px;
     width: 95%;
     z-index:80;
@@ -226,7 +229,5 @@ div.donationbox {
 
 
 
-#header {
-	width:540px;
-}
+
 

@@ -10,7 +10,7 @@ $(document).ready(function() {
               cache: false,
               success: function(html){
                 $("#content").html(html);
-                $('.donationbox').show();
+                $('#donationbox').show();
               }
             });   
 //            return false;          
@@ -22,7 +22,7 @@ $(document).ready(function() {
               cache: false,
               success: function(html){
                 $("#content").html(html);
-                $('.donationbox').show();
+                $('#donationbox').show();
               }
             });            
             
@@ -34,7 +34,7 @@ $(document).ready(function() {
               cache: false,
               success: function(html){
                 $("#content").html(html);
-                $('.donationbox').hide();
+                $('#donationbox').hide();
               }
             });   
         });
