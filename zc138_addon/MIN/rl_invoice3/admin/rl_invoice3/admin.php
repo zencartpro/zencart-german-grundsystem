@@ -4,12 +4,12 @@ echo
 
 <div id="adminbox2">
   <ul>
-    <li><a class="rladmin {param: 'install'}"   href="#">install</a></li>
-    <li><a class="rladmin {param: 'remove'}"    href="#">remove</a></li>
-    <li><a class="rladmin {param: 'checkpath'}" href="#">check paths</a></li>
+    <li class="makemenu1"><a class="rladmin {param: 'install'}"   href="#">install</a></li>
+    <li class="makemenu1"><a class="rladmin {param: 'remove'}"    href="#">remove</a></li>
+    <li class="makemenu1"><a class="rladmin {param: 'checkpath'}" href="#">check paths</a></li>
   </ul>
 </div>
-<div id="results">RESULTS</div>
+<div id="results"> </div>
 
 <script type="text/javascript">
 $(document).ready(function() {
@@ -25,9 +25,6 @@ $(document).ready(function() {
               }
             });            
                         
-            
-            
-            
             
         });  
       });

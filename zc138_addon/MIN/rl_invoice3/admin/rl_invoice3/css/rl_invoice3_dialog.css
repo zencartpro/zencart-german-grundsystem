@@ -3,20 +3,25 @@
 $Id$
 */
 
-label {
+#form2 {
+	Xwidth: 362px;
+	position:absolute;
+	top: 8px;
+	left: 697px;
+}
+
+#form2 label { /* Alle Labels UND Formularelemente auswählen */
 	font-weight:bold;
-	width: 200px;
 	color:#000066;
+	display: block;
+	float: left;
+	width: 190px; /* Breite.*/
 }
-
-
-#contentvisuell label, input { /* Alle Labels UND Formularelemente auswählen */
-  display: block;
-  float: left;
-  width: 185px; /* Breite.*/
+#form2 input { /* Alle Labels UND Formularelemente auswählen */
+  width: 40px; /* Breite.*/
 }
-#contentvisuell input { /* Alle Labels UND Formularelemente auswählen */
-  width: 180px; /* Breite.*/
+#content input#rl-save {
+	width: 150px;
 }
 
 form br { /* Alle Zeilenumbrüche in Formularen auswählen */
@@ -41,12 +46,7 @@ input#submit { /* den Submit-Button */
   padding:.5em;
 }
 
-#form2 {
-	width: 300px;
-	position:absolute;
-	top: 8px;
-	left: 697px;
-}
+
 #res {
 	font-family:"Courier New", Courier, monospace;
 }
@@ -226,8 +226,3 @@ y {
     width: 95%;
     z-index:80;
 }
-
-
-
-
-

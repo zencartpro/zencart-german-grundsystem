@@ -164,7 +164,10 @@
     display: none;
 }
 
-
+.makemenu, .makemenu1 {
+    display:inline; 
+    padding: 2px 2px;     
+}
 .rladmin {
   margin:0;
   text-align:left; 

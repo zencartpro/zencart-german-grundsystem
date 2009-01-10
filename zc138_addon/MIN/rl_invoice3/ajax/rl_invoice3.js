@@ -67,7 +67,7 @@ $(document).ready(function() {
     $("#loading").ajaxStart(function(r,s){
         //$("#loading").append('<img src="../images/ajax-loader.gif">loading...');
        $(this).show();
-       $("#loading").html('<img src="../images/ajax-loader.gif">loading...');
+       $("#loading").html('<img src="../../ajax/img/spinner_balken.gif">loading...');
        
     });
     $("#loading").ajaxStop(function(r,s){

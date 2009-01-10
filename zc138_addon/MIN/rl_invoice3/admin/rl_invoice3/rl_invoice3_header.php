@@ -35,6 +35,8 @@ echo <<<END
 <script language="javascript" src="../../ajax/rl_invoice3.js"></script>
 <script language="javascript" src="../../ajax/jquery.media.js"></script>
 <script language="javascript" src="../../ajax/jquery.metadata.min.js"></script>
+<script language="javascript" src="../../ajax/jquery.form.js"></script>
+<script language="javascript" src="../../ajax/jquery.spin.js"></script>
 
 <script type="text/javascript">
   <!--
@@ -78,12 +80,12 @@ if (defined('RL_INVOICE3_VERSION')) {
 </div>
 <div id="adminbox1">
 <ul>
-  <li><a id="admin" href="<?php echo zen_href_link(RL_INVOICE3_ADMIN_FILENAME, 'page=admin') ?>"><?php echo RL_INVOICE3_ADMIN_ADMIN; ?></a></li>
-  <li><a id="template" href="<?php echo '#' ?>"><?php echo RL_INVOICE3_ADMIN_TEMPLATE; ?></a>  </li>
-  <li><a id="fonttest" href="<?php echo '#' ?>"><?php echo RL_INVOICE3_ADMIN_FONT ; ?></a>  </li>
-  <li><a id="testinvoice" href="<?php echo '#' ?>"><?php echo RL_INVOICE3_ADMIN_INVOICETEST; ?></a>  </li>
-  <li><a id="about" href="<?php echo '#' ?>"><?php echo RL_INVOICE3_ADMIN_ABOUT; ?></a></li>
- 
+  <li class="makemenu1"><a class="makemenu" id="admin" href="<?php echo zen_href_link(RL_INVOICE3_ADMIN_FILENAME, 'page=admin') ?>"><?php echo RL_INVOICE3_ADMIN_ADMIN; ?></a></li>
+  <li class="makemenu1"><a class="makemenu" id="template" href="<?php echo '#' ?>"><?php echo RL_INVOICE3_ADMIN_TEMPLATE; ?></a>  </li>
+  <li class="makemenu1"><a class="makemenu" id="fonttest" href="<?php echo '#' ?>"><?php echo RL_INVOICE3_ADMIN_FONT ; ?></a>  </li>
+  <li class="makemenu1"><a class="makemenu" id="testinvoice" href="<?php echo '#' ?>"><?php echo RL_INVOICE3_ADMIN_INVOICETEST; ?></a>  </li>
+  <li class="makemenu1"><a class="makemenu" id="about" href="<?php echo '#' ?>"><?php echo RL_INVOICE3_ADMIN_ABOUT; ?></a></li>
+    
 </ul>
 </div>
 
