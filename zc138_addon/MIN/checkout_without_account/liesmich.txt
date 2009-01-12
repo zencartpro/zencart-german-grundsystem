@@ -1,0 +1,185 @@
+**************************************************************
+Checkout Without Account (COWOA) für Zen-Cart 1.3.8 deutsch
+**************************************************************
+
+deutsche Übersetzung/Anpassung des Moduls Integrated Checkout Without Account von
+http://www.zen-cart.com/wiki/index.php/Contribution:Integrated_Checkout_Without_Account
+Copyright 2007-2008 KGZotU & craftzombie
+
+Januar 2009
+Autor:
+webchills
+
+
+************************************************************
+Was macht dieses Modul?
+*************************************************************
+
+Wenn ein Besucher etwas in seinen Warenkorb legt und zur Kasse geht, bekommt er zusätzlich zu den beiden normalen Möglichkeiten (Login für bestehende Kunden oder Neuregistrierung) ein dritte Option angeboten:
+Bestellen ohne Kundenkonto
+Der Kunde kann also einkaufen, ohne ein Kundenkonto zu erstellen.
+Im Hintergrund wird trotzdem ein Kundenkonto angelegt, damit die Bestellung abgewickelt werden kann und die Kundendaten/Bestelldaten auch im Admin ersichtlich sind.
+Ein solcher COWOA Account ist eingeschränkt, folgende Funktionen stehen solchen "Kunden" nicht zur Verfügung:
+- Geburtsdatum
+- phpBB Integration
+- Newsletter bestellen/abbestellen
+- Passwort zusenden (es gibt ja kein Passwort)
+- Bestellhistory
+Sollte der Kunde später einmal ein Kundenkonto anlegen wollen, ist das möglich, dazu kann auch dieselbe Emailadresse verwendet werden, die bei der Bestellung ohen Registrierung angegeben wurde.
+Umgekehrt nicht:
+Hat ein Kunde einmal ein Kundenkonto angelegt, kann er nicht mehr COWOA nutzen (macht ja auch wenig Sinn).
+
+
+
+================= WICHTIG =====================
+Vor dem Einbau dieser Änderungen:
+BACKUP von Shop und Datenbank machen! 
+Keine Haftung, Verwendung auf eigene Gefahr!
+BACKUP gemacht? Ok, dann weiterlesen...
+=================================================
+
+
+
+**************************************************************
+INSTALLATION
+**************************************************************
+
+Nur für Zen-Cart 1.3.8 geeignet!
+Es werden zahlreiche Originaldateien verändert. Teste diese Erweiterung erst in einem Testsystem! Nicht sofort in einem Liveshop einbauen!
+Voraussetzung: Im Shop wird die geteilte Anmeldeseite verwendet (Split Login) > Konfiguration > Layouteinstellungen > Anmeldeseite geteilt anzeigen
+
+
+1)
+Im Ordner SQL die install.sql mit einem Texteditor öffnen und den Inhalt ins Eingabefeld kopieren unter Admin > Tools > SQL Patches installieren
+Absenden
+Dadurch werden die nötigen Datenbankeinträge vorgenommen
+
+2)
+Einspielen neuer Dateien
+Im Verzeichnis zencart dieses Downloads alle Unterordner namens DEINTEMPLATE auf das aktuell im Shop verwendete Template umbenennen (z.B. classic, viennablood,...).
+Nach dem Umbenennen den gesamten includes Ordner samt Unterordnern per FTP in das Zen-Cart Verzeichnis am Server spielen. Dabei werden keine bestehenden Dateien überschrieben.
+
+3)
+Ändern bestehender Dateien
+
+Folgende Originaldateien aus Zen-Cart müssen geändert werden:
+/includes/languages/german/DEINTEMPLATE/login.php
+/includes/languages/german/DEINTEMPLATE/logoff.php
+/includes/languages/german/DEINTEMPLATE/checkout_confirmation.php
+/includes/languages/german/DEINTEMPLATE/checkout_payment.php
+/includes/languages/german/DEINTEMPLATE/checkout_shipping.php
+/includes/languages/german/DEINTEMPLATE/gv_redeem.php
+/includes/languages/english/DEINTEMPLATE/login.php
+/includes/languages/english/DEINTEMPLATE/logoff.php
+/includes/languages/english/DEINTEMPLATE/checkout_confirmation.php
+/includes/languages/english/DEINTEMPLATE/checkout_payment.php
+/includes/languages/english/DEINTEMPLATE/checkout_shipping.php
+/includes/languages/english/DEINTEMPLATE/gv_redeem.php
+/includes/modules/DEINTEMPLATE/create_account.php
+/includes/templates/DEINTEMPLATE/templates/tpl_login_default.php
+/includes/templates/DEINTEMPLATE/templates/tpl_checkout_success_default.php
+/includes/templates/DEINTEMPLATE/templates/tpl_checkout_payment_default.php
+/includes/templates/DEINTEMPLATE/common/tpl_header.php
+/includes/classes/order.php
+/includes/modules/pages/gv_redeem/header_php.php
+/includes/modules/pages/password_forgotten/header_php.php
+/includes/modules/pages/login/header_php.php
+/admin/orders.php
+
+================= WICHTIG =====================
+Es ist dringend empfohlen, die Änderungen in all diesen Dateien manuell vorzunehmen!
+Nur bei einem neu installierten unveränderten Shop, wo als erstes dieses Modul eingebaut werden soll, kannst Du auf die manuelle Änderung verzichten und die mitglieferten bereits angepassten Dateien verwenden.
+Diese Dateien liegen im Ordner BEISPIELE.
+Du kannst also dann auch in diesem Ordner alle Unterordner namens DEINTEMPLATE auf das im Shop aktive Template umbenennen (z.B. classic, viennablod, ...) und dann die Dateien hochladen und Deine bestehenden Dateien dabei überschreiben.
+
+================= NOCHMALS =====================
+Die Dateien im Ordner BEISPIELE nur verwenden, wenn Zen-Cart gerade neu installiert wurde und noch keinerlei Änderungen an den Dateien vorgenommen oder Erweiterungen installiert wurden!
+
+Im Normalfall hast Du den Shop bereits in Betrieb, hast schonmal andere Erweiterungen installiert oder bereits einmal Änderungen an den Sprachdateien oder Templates vorgenommen.
+Jetzt geht es also weiter mit den manuellen Änderungen.
+Alle Codeabschnitte für die verschiedenen zu ändernden Dateien findest Du im Ordner MANUELL in der Datei aenderungen.txt
+Arbeite die Dateien Schritt für Schritt wie in der aenderungen.txt beschrieben durch.
+Wenn Du alle Dateien entsprechend geändert hast, lade sie in Dein Zen-Cart Verzeichnis hoch und überschreibe die bestehenden damit.
+
+Die Installation ist damit abgeschlossen. Lege etwas in den Warenkorb, gehe zur Kasse und überprüfe, ob die neue COWOA Option korrekt angeboten wird.
+Führe dann eine Testbestellung durch.
+
+
+**************************************************************
+Optionale Änderungen nach erfolgreicher Installation
+**************************************************************
+
+1) Ausblenden der Auswahlmöglichkeit Text/HTML
+Es ist nicht unbedingt sinnvoll, den Kunden ohne Kundenkonto die Auswahlmöglichkeit zwischen Text- und HTML Emails anzubieten, wie es normalen Kunden angeboten wird.
+Um diese Auswahlmöglichkeit auszublenden:
+
+/includes/templates/DEINTEMPLATE/templates/tpl_modules_no_account.php
+---------------------------------------------------
+
+SUCHE
+-
+
+<br class="clearBoth" />
+<?php echo zen_draw_radio_field('email_format', 'HTML', ($email_format == 'HTML' ? true : false),'id="email-format-html"') . '<label class="radioButtonLabel" for="email-format-html">' . ENTRY_EMAIL_HTML_DISPLAY . '</label>' .  zen_draw_radio_field('email_format', 'TEXT', ($email_format == 'TEXT' ? true : false), 'id="email-format-text"') . '<label class="radioButtonLabel" for="email-format-text">' . ENTRY_EMAIL_TEXT_DISPLAY . '</label>'; ?>
+
+-
+
+ERSETZE MIT
+-
+
+<input type="hidden" name="email_format" value="TEXT" checked="checked" id="email-format-text" />
+
+-
+
+
+2) Automatisches Ausloggen eines COWOA Kunden
+Mit dieser Änderung wird der COWOA Kunde nach Abschluss der Bestellung automatisch ausgeloggt.
+
+/includes/templates/DEINTEMPLATE/templates/tpl_checkout_success_default.php
+---------------------------------------------------
+
+SUCHE
+-
+
+<!--bof logoff-->
+<div id="checkoutSuccessLogoff">
+<?php
+  if (isset($_SESSION['customer_guest_id'])) {
+    echo TEXT_CHECKOUT_LOGOFF_GUEST;
+  } elseif (isset($_SESSION['customer_id'])) {
+    echo TEXT_CHECKOUT_LOGOFF_CUSTOMER;
+  }
+?>
+<div class="buttonRow forward"><a href="<?php echo zen_href_link(FILENAME_LOGOFF, '', 'SSL'); ?>"><?php echo zen_image_button(BUTTON_IMAGE_LOG_OFF , BUTTON_LOG_OFF_ALT); ?></a></div>
+</div>
+<!--eof logoff-->
+
+-
+
+ERSETZE MIT
+-
+
+<!--bof logoff-->
+<div id="checkoutSuccessLogoff">
+<?php
+if ($_SESSION['COWOA']) {
+  zen_session_destroy();
+} else {
+  if (isset($_SESSION['customer_guest_id'])) {
+    echo TEXT_CHECKOUT_LOGOFF_GUEST;
+  } elseif (isset($_SESSION['customer_id'])) {
+    echo TEXT_CHECKOUT_LOGOFF_CUSTOMER;
+  } ?>
+<div class="buttonRow forward"><a href="<?php echo zen_href_link(FILENAME_LOGOFF, '', 'SSL'); ?>"><?php echo zen_image_button(BUTTON_IMAGE_LOG_OFF , BUTTON_LOG_OFF_ALT); ?></a></div>
+<?php } ?>
+</div>
+<!--eof logoff-->
+
+-
+
+
+************************************************************
+Fragen, Bugs, Probleme?
+*************************************************************
+
+Ins Forum von zen-cart.at posten

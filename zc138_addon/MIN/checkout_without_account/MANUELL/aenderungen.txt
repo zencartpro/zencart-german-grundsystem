@@ -1,0 +1,767 @@
+Anleitung zum Einfügen der Änderungen in bestehende Zen-Cart Dateien
+
+Hinweise:
+Hier wird konsequent das Override System benutzt.
+DEINTEMPLATE steht für das aktuell im Shop verwendete Template (z.B. viennablood oder classic)
+Solltest Du die Sprachdateien nicht in einem eigenen Templateverzeichnis finden, dann hast Du keinen Override Ordner für die Sprachdateien angelegt.
+z.B.
+/includes/languages/german/DEINTEMPLATE/gv_redeem.php
+ist dann bei Dir
+/includes/languages/german/gv_redeem.php
+Ändere in diesem Fall diese Datei und speichere sie aber dann ab als
+/includes/languages/german/DEINTEMPLATE/gv_redeem.php
+Bei Änderungen in Sprachdateien ist es immer empfehlenswert, solch einen eigenen Templateordner zu verwenden.
+Gleiches gilt für die Verzeichnisse includes/templates und includes/modules.
+Geänderte Templates gehören nicht in includes/templates/template_default, sondern in includes/templates/DEINTEMPLATE.
+Und geänderte Dateen aus includes/modules gehören am besten in includes/modules/DEINTEMPLATE.
+Zen-Cart sucht die benötigten Dateien immer erst in diesen eigenen Templateordnern. Ist dort keine vorhanden wird die entsprechende Standarddatei verwendet.
+Achte darauf, dass Du die deutschen Sprachdateien nach den Änderungen im Format utf-8 ohne BOM abspeicherst!
+Die Änderungen führst Du am besten mit einem guten Texteditor durch, der dieses Format beherrscht (z.B. Notepad++ oder UltraEdit)
+Wenn Du im Shop keine englische Sprache anbietest, kannst Du Dir natürlich das ändern der includes/languages/english/... Dateien sparen.
+
+Arbeite die Dateien Schritt für Schritt durch.
+Wenn Du alle Dateien entsprechend geändert hast, lade sie in Dein Zen-Cart Verzeichnis hoch und überschreibe die bestehenden damit.
+
+
+/includes/languages/german/DEINTEMPLATE/gv_redeem.php
+====================================================================
+
+SUCHE:
+-
+
+define('TEXT_VALID_GV', 'Herzlichen Glückwunsch, Sie haben einen ' . TEXT_GV_NAME . ' im Wert von %s eingelöst.');
+
+-
+
+FÜGE DANACH EIN:
+-
+
+define('ERROR_GV_CREATE_ACCOUNT', 'Um einen Geschenkgutschein einzulösen, müssen Sie eine Bestellung tätigen.');
+
+-
+
+
+
+
+/includes/languages/english/DEINTEMPLATE/checkout_confirmation.php
+====================================================================
+
+SUCHE:
+-
+
+define('HEADING_TITLE','Schritt 3 von 3 , Bestellung bestätigen');
+
+-
+
+ERSETZE MIT:
+-
+
+if($_SESSION['COWOA']) $COWOA=TRUE;
+
+if($COWOA)
+	define('HEADING_TITLE', 'Schritt 4 von 4 , Bestellung bestätigen');
+else
+	define('HEADING_TITLE', 'Schritt 3 von 3 , Bestellung bestätigen');
+
+-
+
+/includes/languages/german/DEINTEMPLATE/checkout_shipping.php
+====================================================================
+
+SUCHE:
+-
+
+define('HEADING_TITLE', 'Schritt 1 von 3 , Lieferinformationen');
+
+-
+
+ERSETZE MIT:
+-
+
+if($_SESSION['COWOA']) $COWOA=TRUE;
+
+if($COWOA)
+define('HEADING_TITLE', 'Schritt 2 von 4 , Lieferinformationen');
+else
+define('HEADING_TITLE', 'Schritt 1 von 3 , Lieferinformationen');
+
+-
+
+SUCHE:
+-
+
+define('TITLE_CONTINUE_CHECKOUT_PROCEDURE', 'Weiter zu Schritt 2');
+
+-
+
+ERSETZE MIT:
+-
+
+if($COWOA)
+define('TITLE_CONTINUE_CHECKOUT_PROCEDURE', 'Weiter zu Schritt 3');
+else
+define('TITLE_CONTINUE_CHECKOUT_PROCEDURE', 'Weiter zu Schritt 2');
+
+-
+
+/includes/languages/german/DEINTEMPLATE/checkout_payment.php
+====================================================================
+
+SUCHE:
+-
+
+define('HEADING_TITLE', 'Schritt 2 von 3 , Zahlungsinformationen');
+
+-
+
+ERSETZE MIT:
+-
+
+if($_SESSION['COWOA']) $COWOA=TRUE;
+
+if($COWOA)
+define('HEADING_TITLE', 'Schritt 3 von 4 , Zahlungsinformationen');
+else
+define('HEADING_TITLE', 'Schritt 2 von 3 , Zahlungsinformationen');
+
+-
+
+SUCHE:
+-
+
+define('TITLE_CONTINUE_CHECKOUT_PROCEDURE', '<strong>Weiter zu Schritt 3</strong>');
+
+-
+
+ERSETZE MIT:
+-
+
+if($COWOA)
+define('TITLE_CONTINUE_CHECKOUT_PROCEDURE', '<strong>Weiter zu Schritt 4</strong>');
+else
+define('TITLE_CONTINUE_CHECKOUT_PROCEDURE', '<strong>Weiter zu Schritt 3</strong>');
+
+-
+
+
+/includes/languages/german/DEINTEMPLATE/login.php
+====================================================================
+
+SUCHE:
+-
+
+define('HEADING_RETURNING_CUSTOMER', 'Stammkunden: Bitte melden Sie sich an');
+define('HEADING_RETURNING_CUSTOMER_SPLIT', 'Stammkunden');
+
+-
+
+FÜGE DANACH EIN:
+-
+
+define('TEXT_HEADING_COWOA', 'Bestellen ohne Kundenkonto');
+define('TEXT_RATHER_COWOA', 'Möchten Sie ohne Kundenkonto bei uns bestellen? Gerne! Klicken Sie dazu auf den folgenden Button.<br />');
+
+-
+
+/includes/languages/german/DEINTEMPLATE/logoff.php
+====================================================================
+
+SUCHE:
+-
+
+define('TEXT_MAIN', 'Sie sind nun abgemeldet. Vielen Dank für Ihren Besuch.<br /><br />Der Inhalt Ihres Warenkorbs wurde gespeichert und steht Ihnen bei Ihrem nächsten Besuch wieder zur Verfügung.');
+
+-
+
+ERSETZE MIT:
+-
+
+define('TEXT_MAIN', 'Sie sind nun abgemeldet. Vielen Dank für Ihren Besuch.<br /><br />Wenn Sie zuvor ein Kundenkonto angelegt und Artikel in Ihrem Warenkorb hatten, wurde der Inhalt des Warenkorbs gespeichert und steht Ihnen bei Ihrem nächsten Besuch wieder zur Verfügung.');
+
+-
+
+
+
+/includes/languages/english/DEINTEMPLATE/gv_redeem.php
+====================================================================
+
+SUCHE:
+-
+
+define('TEXT_VALID_GV', 'Congratulations, you have redeemed a ' . TEXT_GV_NAME . ' worth %s.');
+
+-
+
+FÜGE DANACH EIN:
+-
+
+define('ERROR_GV_CREATE_ACCOUNT', 'To redeem a Gift Voucher you must create an account.');
+
+-
+
+
+
+
+/includes/languages/english/DEINTEMPLATE/checkout_confirmation.php
+====================================================================
+
+SUCHE:
+-
+
+define('HEADING_TITLE', 'Step 3 of 3 - Order Confirmation');
+
+-
+
+ERSETZE MIT:
+-
+
+if($_SESSION['COWOA']) $COWOA=TRUE;
+
+if($COWOA)
+	define('HEADING_TITLE', 'Step 4 of 4 - Order Confirmation');
+else
+	define('HEADING_TITLE', 'Step 3 of 3 - Order Confirmation');
+
+-
+
+/includes/languages/english/DEINTEMPLATE/checkout_shipping.php
+====================================================================
+
+SUCHE:
+-
+
+define('HEADING_TITLE', 'Step 1 of 3 - Delivery Information');
+
+-
+
+ERSETZE MIT:
+-
+
+if($_SESSION['COWOA']) $COWOA=TRUE;
+
+if($COWOA)
+define('HEADING_TITLE', 'Step 2 of 4 - Delivery Information');
+else
+define('HEADING_TITLE', 'Step 1 of 3 - Delivery Information');
+
+-
+
+SUCHE:
+-
+
+define('TITLE_CONTINUE_CHECKOUT_PROCEDURE', 'Continue to Step 2');
+
+-
+
+ERSETZE MIT:
+-
+
+if($COWOA)
+define('TITLE_CONTINUE_CHECKOUT_PROCEDURE', 'Continue to Step 3');
+else
+define('TITLE_CONTINUE_CHECKOUT_PROCEDURE', 'Continue to Step 2');
+
+-
+
+/includes/languages/english/DEINTEMPLATE/checkout_payment.php
+====================================================================
+
+SUCHE:
+-
+
+define('HEADING_TITLE', 'Step 2 of 3 - Payment Information');
+
+-
+
+ERSETZE MIT:
+-
+
+if($_SESSION['COWOA']) $COWOA=TRUE;
+
+if($COWOA)
+define('HEADING_TITLE', 'Step 3 of 4 - Payment Information');
+else
+define('HEADING_TITLE', 'Step 2 of 3 - Payment Information');
+
+-
+
+SUCHE:
+-
+
+define('TITLE_CONTINUE_CHECKOUT_PROCEDURE', '<strong>Continue to Step 3</strong>');
+
+-
+
+ERSETZE MIT:
+-
+
+if($COWOA)
+define('TITLE_CONTINUE_CHECKOUT_PROCEDURE', '<strong>Continue to Step 4</strong>');
+else
+define('TITLE_CONTINUE_CHECKOUT_PROCEDURE', '<strong>Continue to Step 3</strong>');
+
+-
+
+
+/includes/languages/english/DEINTEMPLATE/login.php
+====================================================================
+
+SUCHE:
+-
+
+define('HEADING_RETURNING_CUSTOMER', 'Returning Customers: Please Log In');
+define('HEADING_RETURNING_CUSTOMER_SPLIT', 'Returning Customers');
+
+-
+
+FÜGE DANACH EIN:
+-
+
+define('TEXT_HEADING_COWOA', 'Checkout Without An Account');
+define('TEXT_RATHER_COWOA', 'Would you rather check out without an account?  Click the button below to do so.<br />');
+
+-
+
+/includes/languages/english/DEINTEMPLATE/logoff.php
+====================================================================
+
+SUCHE:
+-
+
+define('TEXT_MAIN', 'You have been logged off your account. It is now safe to leave the computer.<br /><br />If you had items in your cart, they have been saved. The items inside it will be restored when you log back into your account.');
+
+-
+
+ERSETZE MIT:
+-
+
+define('TEXT_MAIN', 'You have been logged out. It is now safe to leave the computer.<br /><br />If you created an account and you had items in your cart, they have been saved. The items inside it will be restored when you log back into your account.');
+
+-
+
+
+
+
+/includes/templates/DEINTEMPLATE/templates/tpl_login_default.php
+====================================================================
+
+-
+
+SUCHE:
+-
+
+<label class="inputLabel" for="login-password"><?php echo ENTRY_PASSWORD; ?></label>
+<?php echo zen_draw_password_field('password', '', 'size="18" id="login-password"'); ?>
+<?php echo zen_draw_hidden_field('securityToken', $_SESSION['securityToken']); ?>
+<br class="clearBoth" />
+
+<div class="buttonRow forward"><?php echo zen_image_submit(BUTTON_IMAGE_LOGIN, BUTTON_LOGIN_ALT); ?></div>
+<div class="buttonRow back important"><?php echo '<a href="' . zen_href_link(FILENAME_PASSWORD_FORGOTTEN, '', 'SSL') . '">' . TEXT_PASSWORD_FORGOTTEN . '</a>'; ?></div>
+</form>
+</fieldset>
+<br class="clearBoth" />
+
+-
+
+FÜGE DANACH EIN:
+-
+
+<?php
+  if ($_SESSION['cart']->count_contents() > 0) { ?>
+    <fieldset>
+    <legend>Checkout Without Account</legend>
+    <?php echo TEXT_RATHER_COWOA; ?>
+    <div class="buttonRow forward">
+    <?php echo "<a href=\"" . zen_href_link(FILENAME_NO_ACCOUNT, '', 'SSL') . "\">"; ?>
+    <?php echo zen_image_button(BUTTON_IMAGE_CONTINUE, BUTTON_CONTINUE_ALT); ?></a></div>
+    <br class="clearBoth" />
+    </fieldset>
+<?php } ?>
+
+-
+
+
+
+
+
+
+/includes/templates/DEINTEMPLATE/common/tpl_header.php
+====================================================================
+
+SUCHE:
+-
+
+<li><a href="<?php echo zen_href_link(FILENAME_ACCOUNT, '', 'SSL'); ?>"><?php echo HEADER_TITLE_MY_ACCOUNT; ?></a></li>
+
+
+-
+
+ERSETZE MIT:
+-
+
+<?php if (!($_SESSION['COWOA'])) { ?>
+    <li><a href="<?php echo zen_href_link(FILENAME_ACCOUNT, '', 'SSL'); ?>"><?php echo HEADER_TITLE_MY_ACCOUNT; ?></a></li><?php } ?>
+
+-
+
+
+/includes/templates/DEINTEMPLATE/templates/tpl_checkout_success_default.php
+====================================================================
+
+SUCHE:
+-
+
+    if ($flag_show_products_notification == true) {
+
+-
+
+ERSETZE MIT:
+-
+
+    if ($flag_show_products_notification == true && !($_SESSION['COWOA'])) {
+
+-
+
+SUCHE:
+-
+
+<div id="checkoutSuccessOrderLink"><?php echo TEXT_SEE_ORDERS;?></div>
+
+-
+
+ERSETZE MIT:
+-
+
+<?php if(!($_SESSION['COWOA'])) { ?> <div id="checkoutSuccessOrderLink"><?php echo TEXT_SEE_ORDERS;?></div> <?php } ?>
+
+-
+
+
+/includes/templates/DEINTEMPLATE/templates/tpl_checkout_payment_default.php
+====================================================================
+
+SUCHE:
+-
+
+<?php
+      }
+      for ($j=0, $n2=sizeof($selection[$i]['fields']); $j<$n2; $j++) {
+?>
+<fieldset>
+<legend><?php echo $selection[$i]['module']; ?></legend>
+<?php echo $selection[$i]['redeem_instructions']; ?>
+<div class="gvBal larger"><?php echo $selection[$i]['checkbox']; ?></div>
+<label class="inputLabel"<?php echo ($selection[$i]['fields'][$j]['tag']) ? ' for="'.$selection[$i]['fields'][$j]['tag'].'"': ''; ?>><?php echo $selection[$i]['fields'][$j]['title']; ?></label>
+<?php echo $selection[$i]['fields'][$j]['field']; ?>
+</fieldset>
+<?php
+      }
+    }
+?>
+
+-
+
+ERSETZE MIT:
+-
+
+<?php
+      }
+      for ($j=0, $n2=sizeof($selection[$i]['fields']); $j<$n2; $j++) {
+?>
+<?php if(!($COWOA && $selection[$i]['module']==MODULE_ORDER_TOTAL_GV_TITLE)) {?>
+  <fieldset>
+  <legend><?php echo $selection[$i]['module']; ?></legend>
+  <?php echo $selection[$i]['redeem_instructions']; ?>
+  <div class="gvBal larger"><?php echo $selection[$i]['checkbox']; ?></div>
+  <label class="inputLabel"<?php echo ($selection[$i]['fields'][$j]['tag']) ? ' for="'.$selection[$i]['fields'][$j]['tag'].'"': ''; ?>><?php echo $selection[$i]['fields'][$j]['title']; ?></label>
+  <?php echo $selection[$i]['fields'][$j]['field']; ?>
+  </fieldset>
+  <?php } ?>
+<?php
+      }
+    }
+?>
+
+-
+
+
+
+
+/includes/classes/order.php
+====================================================================
+
+
+SUCHE:
+-
+
+
+                            'order_total' => $this->info['total'],
+                            'order_tax' => $this->info['tax'],
+                            'currency' => $this->info['currency'],
+                            'currency_value' => $this->info['currency_value'],
+                            'ip_address' => $_SESSION['customers_ip_address'] . ' - ' . $_SERVER['REMOTE_ADDR']
+                            );
+
+-
+
+FÜGE DANACH EIN:
+-
+
+    if ($_SESSION['COWOA'])
+      $sql_data_array[COWOA_order] = 1;
+
+-
+
+
+SUCHE:
+-
+
+//intro area
+    $email_order = EMAIL_TEXT_HEADER . EMAIL_TEXT_FROM . STORE_NAME . "\n\n" .
+    $this->customer['firstname'] . ' ' . $this->customer['lastname'] . "\n\n" .
+    EMAIL_THANKS_FOR_SHOPPING . "\n" . EMAIL_DETAILS_FOLLOW . "\n" .
+    EMAIL_SEPARATOR . "\n" .
+    EMAIL_TEXT_ORDER_NUMBER . ' ' . $zf_insert_id . "\n" .
+    EMAIL_TEXT_DATE_ORDERED . ' ' . strftime(DATE_FORMAT_LONG) . "\n" .
+    EMAIL_TEXT_INVOICE_URL . ' ' . zen_href_link(FILENAME_ACCOUNT_HISTORY_INFO, 'order_id=' . $zf_insert_id, 'SSL', false) . "\n\n";
+    $html_msg['EMAIL_TEXT_HEADER']     = EMAIL_TEXT_HEADER;
+    $html_msg['EMAIL_TEXT_FROM']       = EMAIL_TEXT_FROM;
+    $html_msg['INTRO_STORE_NAME']      = STORE_NAME;
+    $html_msg['EMAIL_THANKS_FOR_SHOPPING'] = EMAIL_THANKS_FOR_SHOPPING;
+    $html_msg['EMAIL_DETAILS_FOLLOW']  = EMAIL_DETAILS_FOLLOW;
+    $html_msg['INTRO_ORDER_NUM_TITLE'] = EMAIL_TEXT_ORDER_NUMBER;
+    $html_msg['INTRO_ORDER_NUMBER']    = $zf_insert_id;
+    $html_msg['INTRO_DATE_TITLE']      = EMAIL_TEXT_DATE_ORDERED;
+    $html_msg['INTRO_DATE_ORDERED']    = strftime(DATE_FORMAT_LONG);
+    $html_msg['INTRO_URL_TEXT']        = EMAIL_TEXT_INVOICE_URL_CLICK;
+    $html_msg['INTRO_URL_VALUE']       = zen_href_link(FILENAME_ACCOUNT_HISTORY_INFO, 'order_id=' . $zf_insert_id, 'SSL', false);
+
+-
+
+ERSETZE MIT:
+-
+
+ // COWOA Conditional
+    if ($_SESSION['COWOA'])
+    {
+	$invoiceInfo="";
+	$htmlInvoiceURL="";
+	$htmlInvoiceValue="";
+    }
+    else
+    {
+      $invoiceInfo=EMAIL_TEXT_INVOICE_URL . ' ' . zen_href_link(FILENAME_ACCOUNT_HISTORY_INFO, 'order_id=' . $zf_insert_id, 'SSL', false) . "\n\n";
+	$htmlInvoiceURL=EMAIL_TEXT_INVOICE_URL_CLICK;;
+	$htmlInvoiceValue=zen_href_link(FILENAME_ACCOUNT_HISTORY_INFO, 'order_id=' . $zf_insert_id, 'SSL', false);
+    }
+    //intro area
+    $email_order = EMAIL_TEXT_HEADER . EMAIL_TEXT_FROM . STORE_NAME . "\n\n" .
+    $this->customer['firstname'] . ' ' . $this->customer['lastname'] . "\n\n" .
+    EMAIL_THANKS_FOR_SHOPPING . "\n" . EMAIL_DETAILS_FOLLOW . "\n" .
+    EMAIL_SEPARATOR . "\n" .
+    EMAIL_TEXT_ORDER_NUMBER . ' ' . $zf_insert_id . "\n" .
+    EMAIL_TEXT_DATE_ORDERED . ' ' . strftime(DATE_FORMAT_LONG) . "\n" . $invoiceInfo;
+    $html_msg['EMAIL_TEXT_HEADER']     = EMAIL_TEXT_HEADER;
+    $html_msg['EMAIL_TEXT_FROM']       = EMAIL_TEXT_FROM;
+    $html_msg['INTRO_STORE_NAME']      = STORE_NAME;
+    $html_msg['EMAIL_THANKS_FOR_SHOPPING'] = EMAIL_THANKS_FOR_SHOPPING;
+    $html_msg['EMAIL_DETAILS_FOLLOW']  = EMAIL_DETAILS_FOLLOW;
+    $html_msg['INTRO_ORDER_NUM_TITLE'] = EMAIL_TEXT_ORDER_NUMBER;
+    $html_msg['INTRO_ORDER_NUMBER']    = $zf_insert_id;
+    $html_msg['INTRO_DATE_TITLE']      = EMAIL_TEXT_DATE_ORDERED;
+    $html_msg['INTRO_DATE_ORDERED']    = strftime(DATE_FORMAT_LONG);
+    $html_msg['INTRO_URL_TEXT']        = $htmlInvoiceURL;
+    $html_msg['INTRO_URL_VALUE']       = $htmlInvoiceValue;
+
+-
+
+
+/admin/orders.php
+====================================================================
+
+SUCHE:
+-
+
+$check_status = $db->Execute("select customers_name, customers_email_address, orders_status,
+                                      date_purchased from " . TABLE_ORDERS . "
+                                      where orders_id = '" . $_GET['oID'] . "'");
+
+-
+
+ERSETZE MIT:
+-
+
+$check_status = $db->Execute("select customers_name, customers_email_address, orders_status,
+                                      date_purchased, COWOA_order from " . TABLE_ORDERS . "
+                                      where orders_id = '" . $_GET['oID'] . "'");
+
+-
+
+
+
+SUCHE:
+-
+
+//send emails
+      $message = STORE_NAME . "\n" . EMAIL_SEPARATOR . "\n" .
+      EMAIL_TEXT_ORDER_NUMBER . ' ' . $oID . "\n\n" .
+      EMAIL_TEXT_INVOICE_URL . ' ' . zen_catalog_href_link(FILENAME_CATALOG_ACCOUNT_HISTORY_INFO, 'order_id=' . $oID, 'SSL') . "\n\n" .
+      EMAIL_TEXT_DATE_ORDERED . ' ' . zen_date_long($check_status->fields['date_purchased']) . "\n\n" .
+      strip_tags($notify_comments) .
+      EMAIL_TEXT_STATUS_UPDATED . sprintf(EMAIL_TEXT_STATUS_LABEL, $orders_status_array[$status] ) .
+      EMAIL_TEXT_STATUS_PLEASE_REPLY;
+-
+
+ERSETZE MIT:
+-
+
+//send emails
+      $message = STORE_NAME . "\n" . EMAIL_SEPARATOR . "\n" .
+      EMAIL_TEXT_ORDER_NUMBER . ' ' . $oID . "\n\n";
+      if(!$check_status->fields['COWOA_order']) {
+      $message .= EMAIL_TEXT_INVOICE_URL . ' ' . zen_catalog_href_link(FILENAME_CATALOG_ACCOUNT_HISTORY_INFO, 'order_id=' . $oID, 'SSL') . "\n\n";
+      }
+      $message .= EMAIL_TEXT_DATE_ORDERED . ' ' . zen_date_long($check_status->fields['date_purchased']) . "\n\n" .
+      strip_tags($notify_comments) .
+      EMAIL_TEXT_STATUS_UPDATED . sprintf(EMAIL_TEXT_STATUS_LABEL, $orders_status_array[$status] ) .
+      EMAIL_TEXT_STATUS_PLEASE_REPLY;
+
+-
+
+
+
+/includes/modules/pages/gv_redeem/header_php.php
+====================================================================
+
+SUCHE:
+-
+
+// if the customer is not logged on, redirect them to the login page
+if (!$_SESSION['customer_id']) {
+  $_SESSION['navigation']->set_snapshot();
+  zen_redirect(zen_href_link(FILENAME_LOGIN, '', 'SSL'));
+}
+
+-
+
+ERSETZE MIT:
+-
+
+require(DIR_WS_MODULES . zen_get_module_directory('require_languages.php'));
+// if the customer is not logged on, redirect them to the login page
+if (!$_SESSION['customer_id']) {
+  $_SESSION['navigation']->set_snapshot();
+  $messageStack->add_session('login', ERROR_GV_CREATE_ACCOUNT, 'error');
+  zen_redirect(zen_href_link(FILENAME_LOGIN, '', 'SSL'));
+}
+if ($_SESSION['COWOA']) {
+  $_SESSION['navigation']->set_snapshot();
+  $_SESSION['customer_id']=NULL;
+  $_SESSION['COWOA']=NULL;
+  $messageStack->add_session('login', ERROR_GV_CREATE_ACCOUNT, 'error');
+  zen_redirect(zen_href_link(FILENAME_LOGIN, '', 'SSL'));
+}
+
+-
+
+SUCHE:
+-
+
+require(DIR_WS_MODULES . zen_get_module_directory('require_languages.php'));
+$breadcrumb->add(NAVBAR_TITLE);
+
+-
+
+ERSETZE MIT:
+-
+
+//require(DIR_WS_MODULES . zen_get_module_directory('require_languages.php')); //moved to top
+$breadcrumb->add(NAVBAR_TITLE);
+
+-
+
+
+/includes/modules/pages/password_forgotten/header_php.php
+====================================================================
+
+SUCHE:
+-
+
+  $check_customer_query = "SELECT customers_firstname, customers_lastname, customers_password, customers_id 
+                           FROM " . TABLE_CUSTOMERS . "
+                           WHERE customers_email_address = :emailAddress";
+
+-
+
+ERSETZE MIT:
+-
+
+  $check_customer_query = "SELECT customers_firstname, customers_lastname, customers_password, customers_id 
+                           FROM " . TABLE_CUSTOMERS . "
+                           WHERE customers_email_address = :emailAddress
+                           AND COWOA_account != 1";
+
+-
+
+/includes/modules/pages/login/header_php.php
+====================================================================
+
+SUCHE:
+-
+
+  $check_customer_query = "SELECT customers_id, customers_firstname, customers_password,
+
+                                    customers_email_address, customers_default_address_id,
+
+                                    customers_authorization, customers_referral
+
+                           FROM " . TABLE_CUSTOMERS . "
+
+                           WHERE customers_email_address = :email";
+
+-
+
+ERSETZE MIT:
+-
+
+  $check_customer_query = "SELECT customers_id, customers_firstname, customers_password,
+
+                                    customers_email_address, customers_default_address_id,
+
+                                    customers_authorization, customers_referral
+
+                           FROM " . TABLE_CUSTOMERS . "
+
+                           WHERE customers_email_address = :email
+                           AND COWOA_account != 1";
+
+-
+
+
+
+
+
+
+
+/includes/modules/DEINTEMPLATE/create_account.php
+====================================================================
+
+SUCHE:
+-
+
+$check_email_query = "select count(*) as total
+                            from " . TABLE_CUSTOMERS . "
+                            where customers_email_address = '" . zen_db_input($email_address) . "'";
+
+-
+
+ERSETZE MIT:
+-
+
+    $check_email_query = "select count(*) as total
+                            from " . TABLE_CUSTOMERS . "
+                            where customers_email_address = '" . zen_db_input($email_address) . "'
+                            and COWOA_account != 1";
+
+-
+
