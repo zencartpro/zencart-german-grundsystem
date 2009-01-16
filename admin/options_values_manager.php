@@ -4,7 +4,7 @@
  * @copyright Copyright 2003-2007 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: options_values_manager.php 6952 2007-09-03 16:17:05Z drbyte $
+ * @version $Id: options_values_manager.php 6953 2009-01-16 19:58:05Z webchills/web28 $
  */
 
   require('includes/application_top.php');
@@ -638,7 +638,10 @@ function go_option() {
 <?php
     $per_page = MAX_ROW_LISTS_OPTIONS;
 //    $values = "select pov.products_options_values_id, pov.products_options_values_name, pov2po.products_options_id, pov.products_options_values_sort_order from " . TABLE_PRODUCTS_OPTIONS_VALUES . " pov left join " . TABLE_PRODUCTS_OPTIONS_VALUES_TO_PRODUCTS_OPTIONS . " pov2po on pov.products_options_values_id = pov2po.products_options_values_id where pov.language_id = '" . (int)$_SESSION['languages_id'] . "' and pov2po.products_options_values_id !='" . PRODUCTS_OPTIONS_VALUES_TEXT_ID . "' order by LPAD(pov2po.products_options_id,11,'0'), LPAD(pov.products_options_values_sort_order,11,'0'), pov.products_options_values_name";
-    $values = "select pov.products_options_values_id, pov.products_options_values_name, pov2po.products_options_id, pov.products_options_values_sort_order from " . TABLE_PRODUCTS_OPTIONS_VALUES . " pov left join " . TABLE_PRODUCTS_OPTIONS_VALUES_TO_PRODUCTS_OPTIONS . " pov2po on pov.products_options_values_id = pov2po.products_options_values_id     left join " . TABLE_PRODUCTS_OPTIONS . " po on pov2po.products_options_id = po.products_options_id where pov.language_id = '" . (int)$_SESSION['languages_id'] . "' and pov2po.products_options_values_id !='" . PRODUCTS_OPTIONS_VALUES_TEXT_ID . "' order by  po.products_options_name, LPAD(pov.products_options_values_sort_order,11,'0'), pov.products_options_values_name";
+    //$values = "select pov.products_options_values_id, pov.products_options_values_name, pov2po.products_options_id, pov.products_options_values_sort_order from " . TABLE_PRODUCTS_OPTIONS_VALUES . " pov left join " . TABLE_PRODUCTS_OPTIONS_VALUES_TO_PRODUCTS_OPTIONS . " pov2po on pov.products_options_values_id = pov2po.products_options_values_id     left join " . TABLE_PRODUCTS_OPTIONS . " po on pov2po.products_options_id = po.products_options_id where pov.language_id = '" . (int)$_SESSION['languages_id'] . "' and pov2po.products_options_values_id !='" . PRODUCTS_OPTIONS_VALUES_TEXT_ID . "' order by  po.products_options_name, LPAD(pov.products_options_values_sort_order,11,'0'), pov.products_options_values_name";
+	//NEW Bugfix duplicate listings
+    $values = "select pov.products_options_values_id, pov.products_options_values_name, pov2po.products_options_id, pov.products_options_values_sort_order from " . TABLE_PRODUCTS_OPTIONS_VALUES . " pov left join " . TABLE_PRODUCTS_OPTIONS_VALUES_TO_PRODUCTS_OPTIONS . " pov2po on pov.products_options_values_id = pov2po.products_options_values_id     left join " . TABLE_PRODUCTS_OPTIONS . " po on pov2po.products_options_id = po.products_options_id where pov.language_id = '" . (int)$_SESSION['languages_id'] . "' and pov.language_id = po.language_id and pov2po.products_options_values_id !='" . PRODUCTS_OPTIONS_VALUES_TEXT_ID . "' order by  po.products_options_name, LPAD(pov.products_options_values_sort_order,11,'0'), pov.products_options_values_name";
+
     if (!isset($_GET['value_page'])) {
       $_GET['value_page'] = 1;
     }
