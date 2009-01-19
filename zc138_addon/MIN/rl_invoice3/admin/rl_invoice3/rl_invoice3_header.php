@@ -21,9 +21,7 @@ echo <<<END
 <meta http-equiv="Content-Type" content="text/html; charset=$v2">
 <title>$v3></title>
 <link rel="stylesheet" type="text/css" href="../includes/stylesheet.css">
-<link rel="stylesheet" type="text/css" href="./css/rl_invoice3.css">
-<link rel="stylesheet" type="text/css" href="./css/rl_invoice3_dialogX.css">
-<link rel="stylesheet" type="text/css" href="./css/rl_invoice3_admin.css">
+<link rel="stylesheet" type="text/css" href="./css/rl_invoice3_ges.css">
 
 <link rel="stylesheet" type="text/css" href="../includes/cssjsmenuhover.css" media="all" id="hoverJS">
 <script language="javascript" src="../includes/menu.js"></script>

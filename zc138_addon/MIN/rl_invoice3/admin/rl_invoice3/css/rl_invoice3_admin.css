@@ -23,12 +23,12 @@
 #results .adm-err {
     color:#FF0000;
     font-weight:bold;
-	font-size: 12px;
+    font-size: 12px;
 }
 #results .adm-ok {
     color:#339900;
     font-weight:bold;
-	font-size: 12px;
+    font-size: 12px;
 }
 
 #results {
@@ -36,6 +36,6 @@
 }
 
 #results h1 {
-	font-size:14px;
-	font-weight:bold;
+    font-size:14px;
+    font-weight:bold;
 }

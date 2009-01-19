@@ -29,6 +29,7 @@ $(document).ready(function() {
         });
         
         $("#template").click(function() { 
+            $('#donationbox').css('display', 'none');
             $.ajax({
               url: "rl_invoice3_visuell.php",
               cache: false,
@@ -40,6 +41,7 @@ $(document).ready(function() {
         });
                     
         $("#fonttest").click(function() { 
+            $('#donationbox').css('display', 'none');
             $.ajax({
               url: "./rl_invoice3_fonttest.php",
               cache: true,
@@ -53,6 +55,7 @@ $(document).ready(function() {
         });
 
         $("#testinvoice").click(function() { 
+            $('#donationbox').css('display', 'none');
             $.ajax({
               url: "../rl_invoice3.php?test=PDF&oID=1",
               cache: true,
