@@ -112,6 +112,13 @@ if (!defined('IS_ADMIN_FLAG')) {
  * 
  */
 /**
+ * Breakpoint 150.
+ * 
+ * require('includes/init_includes/init_admin_auth.php');
+ * 
+ */
+/** 
+/**
  * Breakpoint 170.
  * 
  * require('includes/languages/english/checkout_process.php');

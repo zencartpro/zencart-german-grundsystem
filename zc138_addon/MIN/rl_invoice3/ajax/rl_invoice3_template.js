@@ -329,7 +329,7 @@ $(document).ready(function() {
     }
     
     function getDBValues(){
-        $.getJSON("/zencart_clean/zc138/admin/rl_invoice3/rl_invoice3_ajax.php?p=Defaultvalues", function(json){
+        $.getJSON("rl_invoice3_ajax.php?p=Defaultvalues", function(json){
             var xxx = json;
             var out = '<h3 style="color:#FF0000; background-color: #DDEE22;">Database values</h3>';
             jQuery.each(json, function(i, val) {

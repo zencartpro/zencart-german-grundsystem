@@ -15,6 +15,13 @@ $current_page_base = 'paypalipn';
 $loaderPrefix = 'ajax';
 chdir('../');
 require_once ('includes/application_top.php');
+  if (!(basename($PHP_SELF) == FILENAME_LOGIN . '.php')) {
+    if (!isset($_SESSION['admin_id'])) {
+      if (!(basename($PHP_SELF) == FILENAME_PASSWORD_FORGOTTEN . '.php')) {
+        zen_redirect(zen_href_link(FILENAME_LOGIN, '', 'SSL'));
+      }
+    }
+  }
 require (DIR_WS_CLASSES . 'currencies.php');
 include (DIR_WS_CLASSES . 'order.php');
 require_once ('../includes/classes/class.rl_invoice3.php');

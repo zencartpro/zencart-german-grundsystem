@@ -14,7 +14,7 @@ echo <<<BEG
     </div>
   </div>
   <div id="form1">
-    <form id="form2" name="form2" method="post" action="/zencart_clean/zc138/admin/rl_invoice3/rl_invoice3_ajax.php?p=formsave" >
+    <form id="form2" name="form2" method="post" action="rl_invoice3_ajax.php?p=formsave" >
       <div class="row1">
         <label  for="RL_INVOICE3_ADDRESS1_POS_X">RL_INVOICE3_ADDRESS1_POS</label>
         <input name="RL_INVOICE3_ADDRESS1_POS_X" type="text" id="RL_INVOICE3_ADDRESS1_POS_X" class="x adr1" value="99" />
