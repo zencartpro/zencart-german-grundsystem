@@ -171,4 +171,3 @@ $diff='';
 $file='freemono.z';
 $ctg='freemono.ctg.z';
 $originalsize=289856;
-?>

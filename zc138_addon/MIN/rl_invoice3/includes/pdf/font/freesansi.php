@@ -101,4 +101,3 @@ $diff='';
 $file='freesansi.z';
 $ctg='freesansi.ctg.z';
 $originalsize=267956;
-?>

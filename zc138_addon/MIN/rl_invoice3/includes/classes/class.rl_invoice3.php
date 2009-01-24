@@ -434,11 +434,11 @@ class rl_invoice3 extends fpdi {
     }
     function makeAddr() {
         #echo rldp($this->order, 'ADR');
-        $x['delivery'] = str_replace('<br>', "\n", zen_address_format($this->order->delivery['format_id'], $this->order->delivery, 1, '', '<br>'));
+        $x['delivery'] = htmlspecialchars_decode(str_replace('<br>', "\n", zen_address_format($this->order->delivery['format_id'], $this->order->delivery, 1, '', '<br>')));
         if (strlen($x['delivery']) < 9) {
-            $x['delivery'] = str_replace('<br>', "\n", zen_address_format($this->order->customer['format_id'], $this->order->customer, 1, '', '<br>'));
+            $x['delivery'] = htmlspecialchars_decode(str_replace('<br>', "\n", zen_address_format($this->order->customer['format_id'], $this->order->customer, 1, '', '<br>')));
         }
-        $x['billing'] = str_replace('<br>', "\n", zen_address_format($this->order->billing['format_id'], $this->order->billing, 1, '', '<br>'));
+        $x['billing'] = htmlspecialchars_decode(str_replace('<br>', "\n", zen_address_format($this->order->billing['format_id'], $this->order->billing, 1, '', '<br>')));
         $this->pdf->SetFont($this->fonts2['general'], '', 12);
         $this->pdf->SetXY($this->address1Pos['X'], $this->address1Pos['Y']);
         $this->pdf->Cell($this->addressWidth['addr1'], 6, LIEFERADRESSE, $this->addressBorder['addr1'], 2, 'L');

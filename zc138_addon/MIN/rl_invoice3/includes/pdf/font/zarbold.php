@@ -43,4 +43,3 @@ $diff='';
 $file='zarbold.z';
 $ctg='zarbold.ctg.z';
 $originalsize=73296;
-?>

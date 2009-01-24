@@ -290,4 +290,3 @@ $diff='';
 $file='dejavusanscondensedi.z';
 $ctg='dejavusanscondensedi.ctg.z';
 $originalsize=473456;
-?>

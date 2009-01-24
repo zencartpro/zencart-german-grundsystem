@@ -1,4 +1,9 @@
-  /* general headline setup */
+@charset "utf-8";
+/* CSS Document 
+$Id$
+*/
+
+/* general headline setup */
   h1, h2, h3, h4, h5 {
      color: #000000;
      font-family: Arial, Verdana, sans-serif;

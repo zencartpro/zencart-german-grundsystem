@@ -149,4 +149,3 @@ $diff='';
 $file='dejavusansmonobi.z';
 $ctg='dejavusansmonobi.ctg.z';
 $originalsize=211948;
-?>
