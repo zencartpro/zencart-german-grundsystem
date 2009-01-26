@@ -32,16 +32,16 @@ $optionsP['amazon_templ'] = array(
     'xPos' => 'left', 
     'xOrientation' => 'right', 
     'width' => $realPW-35,
-    'bgPDFLang' => array('43' => '/var/www/zencart_clean/zc138/includes/pdf/rl_invoice3_bg.pdf',
-                         '1'  => '/var/www/zencart_clean/zc138/includes/pdf/rl_invoice3_bg_en.pdf',
+    'bgPDFLang' => array('43' => 'rl_invoice3_bg.pdf',
+                         '1'  => 'rl_invoice3_bg_en.pdf',
     ),
     'attachLang' => 
-        array('43' => array('/var/www/zencart_clean/zc138/includes/pdf/agb.pdf',
+        array('43' => array('agb.pdf',
                             'widerruf.pdf',
                             ),
            ),
-        array('1'  => array('/var/www/zencart_clean/zc138/includes/pdf/agb_1.pdf',
-                            '/var/www/zencart_clean/zc138/includes/pdf/widerruf_1.pdf',
+        array('1'  => array('agb_1.pdf',
+                            'widerruf_1.pdf',
                             ),
         ),
      'cols' => array(
@@ -102,8 +102,8 @@ $colsP['all'] = array(
     );
 $optionsP['all_options'] = array("subtotal"=>'subtotalE', 
                                 "paperOriantation"=>"L", 
-                                'bgPDFLang' => array('DE' => '/var/www/zencart_clean/zc138/includes/pdf/rl_invoice3_bgL.pdf',
-                                                     'EN' => '/var/www/zencart_clean/zc138/includes/pdf/rl_invoice3_bgL_en.pdf',
+                                'bgPDFLang' => array('DE' => 'rl_invoice3_bgL.pdf',
+                                                     'EN' => 'rl_invoice3_bgL_en.pdf',
                                                     
                                 ),
                                 "fontSize" => 5, 
