@@ -61,10 +61,10 @@ agb.pdf</p>
     Erstelle dann wieder eine pdf Rechnung und prüfe das Ergebnis.</p>
 <p>Falls Dir keine der Schriften zusagt, ist es möglich eigene Schriftarten zu verwenden. Das ist allerdings nur für versierte User empfohlen, da die Schriften zuerst in mehreren Verfahren konvertiert werden müssen. Ein Anleitung dazu ist in den <a href="faq.html">FAQ </a>zu finden.<br />
 </p>
-<p><strong>4)<br /> 
-  Restliche Einstellungen vornehmen</strong></p>
+<p><b>4)<br /> 
+  Restliche Einstellungen vornehmen</strong> unter Konfiguration &gt; PDF Rechnung 3</b></p>
 <p>Die übrigen Konfigurationsmöglichkeiten unter Konfiguration &gt; PDF Rechnung 3 sind immer erklärt, wenn Du auf Bearbeiten clickst:</p>
-<p><img src="graphics/admin.jpg" alt="pdf Rechnung im Admin" width="760" height="406" /></p>
+<p><img src="graphics/admin.jpg" alt="pdf Rechnung im Admin" width="760" height="473" /></p>
 <p>Hier ein paar Erläuterungen zu den wichtigsten Möglichkeiten:</p>
 <p><strong>PDF Hintergrunddatei</strong><br/> 
   Falls Du den Dateinamen Deiner Vorlage geändert hast, musst Du hier von rl_invoice3_bg.pdf aud Deinen Dateinamen für die Rechnungsvorlage ändern. Es ist der absolute Pfad zur Vorlage anzugeben. Die pdf Rechnung unterstützt unterschiedliche Vorlagen für deutsch und englisch. Wenn Du englisch im Shop aktiv hast und für englischsprachige Kunden eine eigene Vorlage verwenden willst, wechsle in den englischen Admin und trage dann hier den Pfad zu Deiner englischen Vorlage ein. Als Beispiel wird die includes/pdf/rl_invoice3_bg_en.pdf mitgeliefert.
@@ -93,6 +93,9 @@ Hier wird eingestellt, ob die pdf Rechnung überhaupt am Server gespeichert werd
   Die Rechnung kann dann trotzdem vom Kunden in seiner Bestellhistory heruntergeladen werden. Wichtig ist, dass unter Konfiguration &gt; GZip Komprimierung die gZip Komprimierung NICHT eingeschaltet ist!</p>
 <p><strong>PDF Template auf erster Seite</strong><br />
 Wenn zahlreiche Artikel bestellt werden und die auf der Rechnung nicht auf einer Seite Platz haben, erfolgt ein Seitenumbruch mit Berechnung einer Zwischensumme und Übertrags auf die zweite Seite. Hier kannst Du einstellen, ob der Rechnungsfooter auch auf der zweiten Seite erscheinen soll.</p>
+<p><strong>Abstand 2.Seite</strong><br/> 
+  Hier kannst Du für die Anzeige des Übertrags auf der zweiten Seite einen zusätzlichen Abstand einstellen.
+</p>
 <p><strong>Template für Artikel- und Summentabelle</strong><br/>
   Definiert sind die Templates in folgender Datei:<br />
   includes/pdf/rl_invoice3_def.php
@@ -136,7 +139,19 @@ $optionsP['amazon_templ'] = array(&quot;subtotal&quot;=&gt;'subtotalE', <br />
     admin/rl_invoice3.php?oID=3&amp;test=PDF<br />
     Es wird dann eine Testrechnung mit allen verschiedenen Templates  produziert (ohne Summen).
   </p>
-</div>
+  <p><b>5) Weitere Möglichkeiten unter Tools &gt; PDF Rechnung 3</b></p>
+   <p>Einige mächtige Tools sind im Admin unter Tools &gt; PDF Rechnung 3 verfügbar:<br />
+     <br />
+     Click auf Admin liefert 3 Optionen:<br />
+     <br />
+     <img src="graphics/tools_admin.jpg" width="525" height="100" alt="Tools &gt; PDF Rechnung 3 &gt; Admin" /><br />
+     Ähnlich wie beim Image Handler können mit &quot;<b>remove</b>&quot; alle Einträge der PDF Rechnung aus der Datenbank entfernt werden. Mit &quot;<b>install</b>&quot; werden sie wieder hinzugefügt.<br />
+     <br />
+     Mit &quot;<b>check paths</b>&quot; lässt sich überprüfen, ob die in der Datenbank gesetzten Pfadangaben mit den Pfadangaben, die eventuell in der includes/pdf/rl_invoice3_def.php bei den einzelnen Templates gemacht wurden, übereinstimmen
+   </p>
+   <p>Unter "<b>Rechnungsvorlage</b>" hat man einen visuellen Editor zur Gestaltung seiner Rechnung zur Verfügung. Die aktuellen unter Konfiguration &gt; pdf Rechnung 3 eingestellten Werte werden ausgelesen und können durch Ziehen der Felder mit der Maus verändert und visualisiert werden. Änderungen werden dann mit dem Button &quot;Senden&quot; übernommen.</p>
+   <p>&quot;<b>Schrifttest</b>&quot; liefert ein Beispiel-PDF mit den verschiedenen verfügbaren Schriftarten. Und mit &quot;<b>Rechnungstest</b>&quot; erhält man eine Vorschau der verschiedenen Spaltendefinitionen in den verschiedenen Rechnungstemplates.</p>
+  </div>
 </div>
 <div id="footer"><a href="#">top of page</a></div>
 </body>
