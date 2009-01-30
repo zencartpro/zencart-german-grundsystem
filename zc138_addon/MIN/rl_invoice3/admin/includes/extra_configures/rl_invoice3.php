@@ -21,4 +21,4 @@
 //
   define('FILENAME_RL_INVOICE3', 'rl_invoice3.php');
   define('RL_INVOICE3_ADMIN_FILENAME', 'rl_invoice3/rl_invoice3_admin.php');
-  define('RL_INVOICE3_VERSION', '3.0.466REV > ==admin experimentell '); 
+  define('RL_INVOICE3_VERSION', '3.0.491'); 

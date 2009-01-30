@@ -455,10 +455,14 @@ class rl_invoice3 extends fpdi {
         $tmp = ENTRY_ORDER_ID . sprintf("%s%05d", RL_INVOICE3_ORDER_ID_PREFIX, $this->oID);
         $link = HTTP_SERVER . DIR_WS_CATALOG . 'index.php?main_page=account_history_info&order_id=' . $this->oID;
         $this->pdf->Cell($this->maxWidth, 6, $tmp, '', 1, 'L', 0, $link);
+        
         $tmp = ENTRY_DATE_PURCHASED . " " . zen_date_short($this->order->info['date_purchased']);
         $this->pdf->Cell($this->maxWidth, 6, $tmp, '', 0, 'L');
         $this->pdf->SetX(20);
         $this->pdf->Cell($this->maxWidth, 6, $dat, '', 2, 'R');
+
+        $tmp = RL_INVOICE3_PAYMENT_METHOD . " " . $this->order_check->fields['payment_method'];
+        $this->pdf->Cell($this->maxWidth, 6, $tmp, '', 0, 'L');
     }
     
 

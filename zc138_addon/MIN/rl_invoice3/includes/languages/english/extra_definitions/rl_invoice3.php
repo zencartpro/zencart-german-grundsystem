@@ -58,3 +58,4 @@ define('RL_INVOICE3_INVLINK_TEXT', 'download:');
 
 define('RL_INVOICE3_SUBTOTAL', 'Subtotal: ');
 define('RL_INVOICE3_BALANCE', 'Balance: ');
+define('RL_INVOICE3_PAYMENT_METHOD','Payment Method:');
