@@ -461,6 +461,7 @@ class rl_invoice3 extends fpdi {
         $this->pdf->SetX(20);
         $this->pdf->Cell($this->maxWidth, 6, $dat, '', 2, 'R');
 
+	  $this->pdf->SetX($this->margin['left']);
         $tmp = RL_INVOICE3_PAYMENT_METHOD . " " . $this->order_check->fields['payment_method'];
         $this->pdf->Cell($this->maxWidth, 6, $tmp, '', 0, 'L');
     }
