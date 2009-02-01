@@ -22,11 +22,17 @@
   <br />
 Create a pdf the way you want it. As an orientation aid, look at the file which was supplied:<br />
 <em>includes/pdf/rl_invoice3_bg.pdf</em><br />
-Save this pdf under a name of your choice (e.g. mycompany_invoicetemplate.pdf)<br />
-Upload your pdf into includes/pdf.<br />
-Now also change the file name of the pdf background file in Admin under configuration &gt; pdfinvoice3:</p>
-<p>For example to:<br />
+Save this pdf as rl_invoice3_bg.pdf and upload it into includes/pdf overwriting the exisiting example file.<br />
+<br />
+Note:<br />
+If you save your pdf
+under a name of your choice (e.g. mycompany_invoicetemplate.pdf), you have to change this filename in Admin &gt; configuration &gt; pdfinvoice 3 and in includes/pdf/rl_invoice3_def.php as well:<br />
+So change the file name of the pdf background file in Admin under configuration &gt; pdfinvoice3:<br />
+For example to:<br />
   /var/www/html/xxxx/html/shop/includes/pdf/mycompany_invoicetemplate.pdf<br />
+  Then open
+  includes/pdf/rl_invoice3_def.php and change all instances of rl_invoice3_bg.pdf to mycompany_invoicetemplate.pdf.<br />
+  <br />
   Then create a pdf invoice to try out how the bill now looks with your new background.</p>
 <p><strong>2)<br /> 
   Create your own pdfs for Terms and Conditions and cancellation</strong><br />

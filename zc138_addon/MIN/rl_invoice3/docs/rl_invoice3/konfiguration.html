@@ -22,12 +22,17 @@ Falls Du das Modul gleich in einem Liveshop eingebaut hast (tzzz tzzz tzzz), ste
   <br />
 Erstelle ein pdf so wie Du es haben willst. Als Orientierung schau Dir die Datei an, die mitgeliefert wurde:<br />
 <em>includes/pdf/rl_invoice3_bg.pdf</em><br />
-Speichere dieses pdf unter einem Namen Deiner Wahl ab (z.B. meinefirma_rechnungsvorlage.pdf)<br />
-Lade Dein pdf in includes/pdf hoch.<br />
-  Nun noch im Admin unter Konfiguration &gt; pdfRechnung3 den Dateinamen ändern bei:<br />
+Speichere dieses pdf als <em>rl_invoice3_bg.pdf</em> ab und lade es in includes/pdf hoch und ersetze das bestehende Beispiel-pdf damit.<br />
+<br />
+Hinweis:<br />
+Falls Du Deiner Vorlage einen eigenen Namen gibst (z.B. meinefirma_rechnungsvorlage.pdf), muss der Dateiname in der Administration und in der includes/pdf/rl_invoice3_def.php entsprechend geändert werden:<br />
+  Im Admin unter Konfiguration &gt; pdfRechnung3 den Dateinamen ändern bei:<br />
     pdf Hintergrunddatei<br />
       Also z.B. auf:<br />
       /var/www/html/xxxx/html/shop/includes/pdf/meinefirma_rechnungsvorlage.pdf<br />
+      Dann in der 
+      includes/pdf/rl_invoice3_def.php alle rl_invoice3_bg.pdf auf meinefirma_rechnungsvorlage.pdf umbenennen.<br />
+      <br />
       Erstelle danach probeweise eine pdf Rechnung, um zu sehen, wie die Rechnung nun mit Deinem neuen Hintergrund aussieht.<br />
 </p>
 <p><strong>2)<br /> 
@@ -67,7 +72,7 @@ agb.pdf</p>
 <p><img src="graphics/admin.jpg" alt="pdf Rechnung im Admin" width="760" height="473" /></p>
 <p>Hier ein paar Erläuterungen zu den wichtigsten Möglichkeiten:</p>
 <p><strong>PDF Hintergrunddatei</strong><br/> 
-  Falls Du den Dateinamen Deiner Vorlage geändert hast, musst Du hier von rl_invoice3_bg.pdf aud Deinen Dateinamen für die Rechnungsvorlage ändern. Es ist der absolute Pfad zur Vorlage anzugeben. Die pdf Rechnung unterstützt unterschiedliche Vorlagen für deutsch und englisch. Wenn Du englisch im Shop aktiv hast und für englischsprachige Kunden eine eigene Vorlage verwenden willst, wechsle in den englischen Admin und trage dann hier den Pfad zu Deiner englischen Vorlage ein. Als Beispiel wird die includes/pdf/rl_invoice3_bg_en.pdf mitgeliefert.
+  Falls Du den Dateinamen Deiner Vorlage geändert hast, musst Du hier von rl_invoice3_bg.pdf auf Deinen Dateinamen für die Rechnungsvorlage ändern. Es ist der absolute Pfad zur Vorlage anzugeben. Die pdf Rechnung unterstützt unterschiedliche Vorlagen für deutsch und englisch. Wenn Du englisch im Shop aktiv hast und für englischsprachige Kunden eine eigene Vorlage verwenden willst, wechsle in den englischen Admin und trage dann hier den Pfad zu Deiner englischen Vorlage ein. Als Beispiel wird die includes/pdf/rl_invoice3_bg_en.pdf mitgeliefert. Falls Du den Dateinamen für die englische Vorlage auf einen Deiner Wahl geändert hast, muss der Dateiname auch in der includes/pdf/rl_invoice3_def.php geändert werden.
 </p>
 <p><strong>Rechnungsneuversand</strong><br/>
   Hier kannst Du einen Bestellstatus oder mehrere Bestellstati einstellen, bei denen die pdf Rechnung nach Aktualisieren der Bestellung erneut versendet werden soll. Voreingestellt ist 3 (das ist normalerweise der Status &quot;versendet&quot;) und 100 (ein eigener Bestellstatus, der vom Modul mitgeliefert wird). Überprüfe unter &quot;Lokalisation&quot; &gt; &quot;Bestellstatus&quot; welche Werte die Bestellstati in Deinem Shop haben und stelle dann hier die gewünschten Werte ein.</p>
@@ -90,7 +95,9 @@ Hier wird eingestellt, ob die pdf Rechnung überhaupt am Server gespeichert werd
   Auch ein solcher Ordner muss natürlich vom Webserver beschreibbar sein (chmod 777)
   <br />
   <br />
-  Die Rechnung kann dann trotzdem vom Kunden in seiner Bestellhistory heruntergeladen werden. Wichtig ist, dass unter Konfiguration &gt; GZip Komprimierung die gZip Komprimierung NICHT eingeschaltet ist!</p>
+  Die Rechnung kann dann trotzdem vom Kunden in seiner Bestellhistory heruntergeladen werden. Wichtig ist, dass unter Konfiguration &gt; GZip Komprimierung die gZip Komprimierung NICHT eingeschaltet ist!<br />
+  Generell erfolgt der Rechnungsdownload aus der Bestellhistory nach denselben Regeln wie bei Downloadartikeln im Shop. Es kommt also die Einstellung zum Tragen, die unter Konfiguration &gt; Attributeinstellungen &gt; Downloads über Weiterleitung eingestellt ist. Bei lokalen XAMPP Testinstallationen und auch bei sehr vielen Providern sind Downloads über Redirect nicht möglich. Schlägt der Download der Rechnung aus der Bestellhistory fehl, also unbedingt dieses Setting auf false stellen.
+</p>
 <p><strong>PDF Template auf erster Seite</strong><br />
 Wenn zahlreiche Artikel bestellt werden und die auf der Rechnung nicht auf einer Seite Platz haben, erfolgt ein Seitenumbruch mit Berechnung einer Zwischensumme und Übertrags auf die zweite Seite. Hier kannst Du einstellen, ob der Rechnungsfooter auch auf der zweiten Seite erscheinen soll.</p>
 <p><strong>Abstand 2.Seite</strong><br/> 
