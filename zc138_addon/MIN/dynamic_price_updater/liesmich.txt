@@ -1,0 +1,97 @@
+﻿===== DYNAMIC PRICE UPDATER MULTILANGUAGE ===
+
+
+Modifikation des Moduls Dynamic Price Updater von
+(c) D Parry (Chrome) 2007 (dan@virtuawebtech.co.uk)
+Originalthread:
+http://www.zen-cart.com/forum/showthread.php?t=70577
+
+Modifikationen Februar 2009 von:
+web28 - rpa-com.de
+
+Modifikationen Juni 2008 von:
+Curio
+und
+webchills
+www.webchills.at
+
+
+===== Was macht dieses Modul? ===
+
+Der Dynamic Price Updater ist dann geeignet, wenn man Attribute verwendet, die den Preis des Artikels verändern (z.B. Schuhe Größe 40 kosten 80,- Euro, Schuhe Größe 44 kosten 90,- Euro).
+Zen-Cart zeigt in der Standardversion nur im Dropdown der Attribute die Preisdifferenz an, der Preis selbst bleibt im Bestellvorgang unverändert, wenn der Kunde ein Attribut mit höherem Preis auswählt.
+Mit dem Price Updater ist es möglich, dem Kunden den geänderten Preis direkt anzuzeigen.
+Unter 1.3.7 ist es mit diesem Modul auch möglich zusätzlich eine Sidebox mit der Preisberechnung anzeigen zu lassen.
+
+
+== Änderungen in der modifizierten Version 0.93
+
+- FIX Probleme bei Benutzung von Attributbildern
+- FIX Probleme mit taxAddon (inkl. MwSt. zzgl. Versandkosten) beseitigt
+- FIX Probleme mit Währungssymbol beseitigt
+- NEW Neuer Programmcode zum Finden des angezeigten Produktpreises
+
+SIDEBOX:
+Keine Unterstützung mit dieser Modifikation
+
+HINWEISE: 
+Bei ZC 1.3.8 German Edition wird mit dem taxAddon ein ungültiger html Code erzeugt (verschachtelter <h2> tag beim Artikelpreis)
+Die korrigierte Sprachdatei liegt diesem Paket bei (rl.vat_info.php)
+
+ATTRIBUT BILDER (RADIO UND CHECKBOXES):
+Die Anzeigeart der Attributbilder kann man bei den Attributoptionen einstellen. Die Preisanpassung unterstüzt die Anzeigeoptionen 0,1,2,3,5
+
+RADIO UND CHECKBOXES:
+Preise mit 0.00 EUR werden bei radio oder checkboxes nicht angezeigt und deshalb funktioniert die Preisanpassung nicht 
+Lösung: Den Preis für die Option auf 0.0001 mit dem gewünschten Vorzeichen setzen und die Preisanpassung funktioniert.   
+
+UNTERSTÜTZE ZEN-CART VERSIONEN: 
+
+ab Zen-Cart 1.3.5 mit oder ohne taxaddon Erweiterung
+
+
+
+== Änderungen in dieser modifizierten Version ==
+
+- Unterstützung mehrerer Sprachen
+- Unterstützung mehrerer Währungen
+- Unterstützung von Komma als Währungstrennzeichen
+- vorkonfiguriert für die Verwendung mit der Lightbox
+
+
+===== Unterstützte Versionen ===
+
+Zen-Cart 1.3.7 und 1.3.8
+(Unter 1.3.8 keine zusätzliche Sidebox möglich)
+
+
+================= WICHTIG =====================
+Vor dem Einbau dieser Änderungen:
+BACKUP von Shop und Datenbank machen! 
+Keine Haftung, Verwendung auf eigene Gefahr!
+BACKUP gemacht? Ok, dann weiterlesen...
+=================================================
+
+
+
+===== KONFIGURATION UND INSTALLATION ===
+
+HINWEIS: Es werden keinen Shopdateien überschrieben, deshalb ist die Installation kinderleicht
+FÜR ZC 1.3.8 liegen modifizierte Sprachdateien für das taxaddon bei, diese werden überschrieben!
+
+
+1) Konfiguration durch Anpassen der Werte in der includes/modules/pages/product_info/jscript_updater.php
+Werte, die man anpassen kann, sind mit deutschen Kommentaren versehen. Alles andere nicht ändern!
+
+2) Hochladen der angepassten jscript_updater.php in folgenden Ordner:
+includes/modules/pages/product_info.php
+
+3) Hochladen der Sprachdateien in die entsprechenden Ordner 
+
+
+
+===== Support ===
+
+Fragen zu diesem Modul bitte ins Zen-Cart Forum in folgenden Thread posten:
+http://www.zen-cart.at/zcvb/forum/forumdisplay.php?f=51
+
