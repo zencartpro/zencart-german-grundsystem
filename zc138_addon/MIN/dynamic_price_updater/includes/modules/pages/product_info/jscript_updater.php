@@ -1,5 +1,5 @@
 <?php
-// Dynamic Price Updater Vers. 0.93 - 03.02.2009 by rpa-com.de
+// Dynamic Price Updater Vers. 0.94 - 04.02.2009 by rpa-com.de
 
 // Small module to dynamically update main price when the product has price altering attributes
 
@@ -9,7 +9,8 @@
 // Alterations are permitted but please let me know of any changes you make, specifically where incompatibility is concerned
 
 //modified by rpa-com: 
-//NEW filter for TEXT_BASE_PRICE
+//NEW: USE ZENCART CURRENCIES FORMAT
+//NEW: USE ZENCART DEFAULT  Decimal_Point, Thousands_Point
 
 //FIX: ATTRIBUTE PICTURES by rpa-com.de
 // if attribute pictures used , Dynamic Price Updater don't find the label with attribut prices
@@ -32,12 +33,13 @@ Image Styles:
 // some contstant declarations
 // text files declarations:  includes/languages/YOURLANGUAGE/jscript_updater.php
 ?>
+
 <script language="javascript" type="text/javascript">
 // <![CDATA[
 
 var objPrice, origPrice;
-var defaultCurrencyLeft, defaultCurrencyRight;
-defaultCurrencyLeft = defaultCurrencyRight = '';
+var defaultCurrencyLeft, defaultCurrencyRight, defaultDecimal_Point, defaultThousands_Point;
+defaultCurrencyLeft = defaultCurrencyRight = defaultDecimal_Point = defaultThousands_Point = '';
 var quantity = false; // do not alter this // NICHT ÄNDERN
 var showQuantity = false; // show the quantity the customer has requested in the main price header // Soll hinter dem geänderten Preis in Klammern die Anzahl der ausgewählten Artikel angezeigt werden? Mögliche Werte: true oder false
 var showQuantitySB = false; // show the quantity the customer has requested in the sidebox // Falls Sidebox aktiv: Soll hinter dem geänderten Preis in der Sidebox in Klammern die Anzahl der ausgewählten Artikel angezeigt werden? Mögliche Werte: true oder false
@@ -55,17 +57,20 @@ var objSB = false; // this holds the sidebox object
 // Second price setting // Soll ein zusätzlicher zweiter Preis angezeigt werden? 
 // the following settings allow a second price to be displayed... if a page is very long this allows you to add another price display
 // thanks to Ryk on the Zen Cart forums for the idea and pointing out the issue
-var _secondPrice = 'cartAdd'; // set this to either false for disabled or supply the ID of an element for the price to appear BEFORE... for example, cartAdd // Mögliche Werte: false - keine zusätzliche Anzeige // oder die ID eines Elements vor dem der Zusatzpreis angezeigt werden soll, z.B. cartAdd
+var _secondPrice = false; //'cartAdd'; // set this to either false for disabled or supply the ID of an element for the price to appear BEFORE... for example, cartAdd // Mögliche Werte: false - keine zusätzliche Anzeige // oder die ID eines Elements vor dem der Zusatzpreis angezeigt werden soll, z.B. cartAdd
 var _SPDisplay = 'update'; // governs the behaviour of the second... 'always' permanently displays and 'update' shows the second price only when an attribute is selected // Soll der Zusatzpreis immer angezeigt werden oder nur bei Auswahl eines Attributs? Mögliche Werte: always - immer anzeigen // oder update - nur bei Attributauswahl
 
 var objSP = false; // please don't adjust this // NICHT ÄNDERN
 
 // debug settings // Gibt Fehlermeldungen zum Troubleshooting aus
-var _debug = true; // set to false to disable debug output // Mögliche Werte: true oder false
+var _debug = false; //true; // set to false to disable debug output // Mögliche Werte: true oder false
 var _db = '';
 var _dbdiv = false;
 
+//ONLY FOR GERMAN SHOPS // NUR FÜR DEUTSCHE SHOPS:
 var germantaxaddon = true; //SUPPORT FOR GERMAN TAX ADDON - set to false to disable // NUR FÜR DEUTSCHE SHOPS MIT TAXADDON  - sonst auf false setzen
+
+var taxaddon_class ='taxAddon' //NAME OF CLASS // Name der Spanklasse, bei Bedarf anpassen
 
 var taxaddon = ''; // please don't adjust this // NICHT ÄNDERN
 
@@ -138,16 +143,18 @@ function init() { // discover the selects that are required to adjust the main p
 				}
 			}
 			//GERMAN TAXADDON	
-			if((!products_price) && germantaxaddon) { 
+			if(germantaxaddon) { 
 				for (var i=0; temp[i]; i++) {
-					if (temp[i].className == 'taxAddon'){ 			    				    
+					if (temp[i].className == taxaddon_class){ 			    				    
 						regdb('Find taxAddon', temp[i].innerHTML);
 						var mwst = temp[i].innerHTML.match(/\d+\.?\d*/gi)[0]; //Extrahiert Mwst Wert
 						taxaddon = '<?echo(VAT_SHOW_TEXT);?>';						
 						taxaddon = taxaddon.replace('%s', mwst + "%");
 						regdb('Show span class taxaddon', taxaddon);
-						var products_price = displayed_price.innerHTML.replace(temp[i].innerHTML,'');
-						regdb('Price without taxaddon', products_price);
+						if (!products_price) {
+							var products_price = displayed_price.innerHTML.replace(temp[i].innerHTML,'');
+							regdb('Price without taxaddon', products_price);
+						}
 					}
 				}
 			}
@@ -167,14 +174,30 @@ function init() { // discover the selects that are required to adjust the main p
 			regdb('Onload base price', db);
 		}
 
-		// try and find the default currency symbols		
-		var temp = products_price.replace(/<?echo(TEXT_BASE_PRICE);?>/g,''); //NEW filter for TEXT_BASE_PRICE by rpa-com		
+		// Find the default currency symbols		
+		var temp = '<? echo $currencies->format(1000.00);?>'; //NEW: USE ZENCART CURRENCIES FORMAT
+        regdb('Currencies Format', tempdp);
 		temp= products_price.match(/s*([^0-9 ]*)([0-9.,]+)(.*)/); //OLD: origHTML.match(/.*:\s*([^0-9 ]*)([0-9.,]+)(.*)/);	
 		defaultCurrencyLeft = temp[1];
 		db = 'Left: ' + defaultCurrencyLeft;
 		defaultCurrencyRight = temp[3];
 		db += ' - Right: ' + defaultCurrencyRight;        	
-		regdb('Onload default currency locator', db);
+		regdb('Onload default currency locator', db);	
+		
+		//NEW: FIND defaultDecimal_Point		
+		var tempdp = '<? echo $currencies->format(0.00);?>';		
+		tempdp = tempdp.match(/([0-9,.]+)/g)[0]; 	
+		regdb('Price Format', tempdp);
+		defaultDecimal_Point = tempdp.match(/([,.]+)/g)[0];
+		regdb('defaultDecimal_Point', defaultDecimal_Point);
+		
+		//NEW: FIND defaultThousands_Point		
+		var temptp = '<? echo $currencies->format(1000);?>';		
+		temptp = temptp.match(/([0-9,.]+)/g)[0]; 	
+		regdb('Price Format', temptp);
+		defaultThousands_Point = temptp.match(/([,.]+)/g)[0];
+		regdb('defaultThousands_Point', defaultThousands_Point);
+			
 	}
 
 	for (var i=0; objSel[i]; i++) {
@@ -456,17 +479,17 @@ function updateSB() { // update the contents of the sidebox with the updated inf
 	objSB.getElementsByTagName('DIV')[0].innerHTML = hText + newText;
 }
 
-function addCommas(nStr)
+function addCommas(nStr) //modified by rpa-com.de  - use defaultDecimal_Point, defaultThousands_Point
 { // this function can be found at http://www.mredkj.com/javascript/numberFormat.html#addcommas
 	nStr += '';
 	var x = nStr.split('.');
 	var x1 = x[0];
-	var x2 = x.length > 1 ? '.' + x[1] : '';
+	var x2 = x.length > 1 ? defaultDecimal_Point + x[1] : ''; //NEW by rpa-com.de //'.'
 	var rgx = /(\d+)(\d{3})/;
 	while (rgx.test(x1)) {
-		x1 = x1.replace(rgx, '$1' + ',' + '$2');
-	}
-	return x1 + x2;
+		x1 = x1.replace(rgx, '$1' + defaultThousands_Point + '$2'); // NEW by rpa-com.de //','
+	}	
+	return x1 + x2;	
 }
 
 function createdb () {
