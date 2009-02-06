@@ -1,5 +1,5 @@
 <?php
-// Dynamic Price Updater Vers. 0.94 - 04.02.2009 by rpa-com.de
+// Dynamic Price Updater Vers. 0.96 - 04.02.2009 by rpa-com.de
 
 // Small module to dynamically update main price when the product has price altering attributes
 
@@ -8,7 +8,9 @@
 
 // Alterations are permitted but please let me know of any changes you make, specifically where incompatibility is concerned
 
-//modified by rpa-com: 
+//modified by rpa-com:
+//FIX RADIO AND CHECKBOX OPTION PRICE =  0,00 by rpa-com.de
+
 //NEW: USE ZENCART CURRENCIES FORMAT
 //NEW: USE ZENCART DEFAULT  Decimal_Point, Thousands_Point
 
@@ -86,7 +88,7 @@ function find_label(objlab) { //FIX: ATTRIBUTE PICTURES by rpa-com.de
 		Zaehler++;
 	}
 	if (Zaehler == 3) {
-	    //alert ('- label not find');
+	    alert ('- label not find');
 		return ''; //'- label not find';
 	} else {
         return objlab;
@@ -142,23 +144,23 @@ function init() { // discover the selects that are required to adjust the main p
 					var products_price = temp[i].innerHTML;					
 				}
 			}
+			
+			//if there is no "productSpecialPrice", but a Span Container, then take "displayed_price.innerHTML"
+			if (!products_price) products_price= displayed_price.innerHTML;	
+
 			//GERMAN TAXADDON	
-			if(germantaxaddon) { 
+			if(germantaxaddon) {
 				for (var i=0; temp[i]; i++) {
 					if (temp[i].className == taxaddon_class){ 			    				    
 						regdb('Find taxAddon', temp[i].innerHTML);
 						var mwst = temp[i].innerHTML.match(/\d+\.?\d*/gi)[0]; //Extrahiert Mwst Wert
-						taxaddon = '<?echo(VAT_SHOW_TEXT);?>';						
-						taxaddon = taxaddon.replace('%s', mwst + "%");
-						regdb('Show span class taxaddon', taxaddon);
-						if (!products_price) {
-							var products_price = displayed_price.innerHTML.replace(temp[i].innerHTML,'');
-							regdb('Price without taxaddon', products_price);
-						}
+						taxaddon ='<?echo(VAT_SHOW_TEXT);?>'
+						if (mwst) taxaddon = taxaddon.replace('%s', mwst + "%");
+						regdb('Show span class taxaddon', taxaddon);						
 					}
 				}
 			}
-			//END GERMAN TAXADDON				
+			//END GERMAN TAXADDON			
 		}
 		
 		
@@ -176,8 +178,8 @@ function init() { // discover the selects that are required to adjust the main p
 
 		// Find the default currency symbols		
 		var temp = '<? echo $currencies->format(1000.00);?>'; //NEW: USE ZENCART CURRENCIES FORMAT
-        regdb('Currencies Format', tempdp);
-		temp= products_price.match(/s*([^0-9 ]*)([0-9.,]+)(.*)/); //OLD: origHTML.match(/.*:\s*([^0-9 ]*)([0-9.,]+)(.*)/);	
+        regdb('Currencies Format', temp);
+		temp= temp.match(/s*([^0-9 ]*)([0-9.,]+)(.*)/); //OLD: origHTML.match(/.*:\s*([^0-9 ]*)([0-9.,]+)(.*)/);	
 		defaultCurrencyLeft = temp[1];
 		db = 'Left: ' + defaultCurrencyLeft;
 		defaultCurrencyRight = temp[3];
@@ -228,9 +230,9 @@ function init() { // discover the selects that are required to adjust the main p
 		if (objInp[i].type == 'radio' || objInp[i].type == 'checkbox') { // make sure we're dealing with radio boxes
 			db = 'Name - ' + objInp[i].name + ' : ID - ' + objInp[i].id;			     		
 			var temp = find_label(objInp[i]); //FIND THE LABEL by rpa-com.de		
-			matches = temp.innerHTML.match(seeker);	//matches = objInp[i].nextSibling.innerHTML.match(seeker);
+			//matches = temp.innerHTML.match(seeker);	//matches = objInp[i].nextSibling.innerHTML.match(seeker);
 			//db += matches;
-			if (matches) {
+			if (temp) {
 				db += ' : Adjusted!';
 				objInp[i].onclick = function () { updateR(this); }
 				if (objInp[i].checked)	updateR(objInp[i]);
@@ -293,8 +295,8 @@ function adjQuan(objInp) {
 }
 
 function updateR(objInp) {
-    var temp = find_label(objInp); //FIND THE LABEL by rpa-com.de			
-	var matches = temp.innerHTML.match(seeker);
+    var temp = find_label(objInp); //FIND THE LABEL by rpa-com.de    
+	var matches = temp.innerHTML.match(seeker);	
 	//var matches = objInp.nextSibling.innerHTML.match(seeker);
 	var priceAdj, totalAdj = 0;
 	var flag = false;
@@ -303,10 +305,13 @@ function updateR(objInp) {
 	if (matches) { // make sure this attribute is price-adjust-worthy
 		db += '*Adj* - ';
 		//priceAdj = Number(matches[3].replace(/,/g, '')); // Number(matches[0].match(/[0-9.]+/)[0]);
-		priceAdj = Number(matches[3].replace(/,/g, '').replace(/\./g, '')); // Number(matches[0].match(/[0-9.]+/)[0]);
+		priceAdj = Number(matches[3].replace(/,/g, '').replace(/\./g, '')); // Number(matches[0].match(/[0-9.]+/)[0]);		
 	} else {
 		db += '*No adj* - ';
 		priceAdj = 0;
+		//FIX RADIO AND CHECKBOX OPTION PRICE =  0,00 by rpa-com.de
+		var matches = new Array();		
+		matches[1]= '+';        	
 	}
 
 	if (objInp.type == 'radio') {
@@ -354,7 +359,7 @@ function updatePrice(objSel) { // update the main price from the value extracted
 		priceAdj = Number(matches[3].replace(/,/g, '').replace(/\./g, '')); 
 	} else {
 		db = '*No adj* - ';
-		priceAdj = 0;
+		priceAdj = 0;		
 	}
 
 	if (matches)	{
@@ -383,7 +388,7 @@ function updatePriceNow() { // update the price display
 	for (var i in prArr) {
 		if (prArr[i]=='') { //if (prArr[i] !== null) {
 			l = (prArr[i]['l'] == '' || typeof(prArr[i]['l']) == 'undefined' ? defaultCurrencyLeft : prArr[i]['l']);
-			r = (prArr[i]['r'] == '' ? defaultCurrencyRight : prArr[i]['r']);
+			r = (prArr[i]['r'] == '' || typeof(prArr[i]['r']) == 'undefined' ? defaultCurrencyRight : prArr[i]['r']);
 			db = 'Item: ' + prArr[i]['n'] + ' - ';
 			switch (true) { // adjust the price according to its given mode
 				case prArr[i]['m'] == '+': // add the attribute price to the base price
