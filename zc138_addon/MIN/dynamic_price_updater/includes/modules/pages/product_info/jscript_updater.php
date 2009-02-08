@@ -1,5 +1,5 @@
 <?php
-// Dynamic Price Updater Vers. 0.96 - 04.02.2009 by rpa-com.de
+// Dynamic Price Updater Vers. 0.96a - 04.02.2009 by rpa-com.de
 
 // Small module to dynamically update main price when the product has price altering attributes
 
@@ -9,6 +9,9 @@
 // Alterations are permitted but please let me know of any changes you make, specifically where incompatibility is concerned
 
 //modified by rpa-com:
+//Image Styles:
+//4= Element Below Image and Option Name #WORK!!!
+
 //FIX RADIO AND CHECKBOX OPTION PRICE =  0,00 by rpa-com.de
 
 //NEW: USE ZENCART CURRENCIES FORMAT
@@ -38,60 +41,81 @@ Image Styles:
 
 <script language="javascript" type="text/javascript">
 // <![CDATA[
-
+// v.0.96a
 var objPrice, origPrice;
 var defaultCurrencyLeft, defaultCurrencyRight, defaultDecimal_Point, defaultThousands_Point;
 defaultCurrencyLeft = defaultCurrencyRight = defaultDecimal_Point = defaultThousands_Point = '';
-var quantity = false; // do not alter this // NICHT ƒNDERN
-var showQuantity = false; // show the quantity the customer has requested in the main price header // Soll hinter dem ge‰nderten Preis in Klammern die Anzahl der ausgew‰hlten Artikel angezeigt werden? Mˆgliche Werte: true oder false
-var showQuantitySB = false; // show the quantity the customer has requested in the sidebox // Falls Sidebox aktiv: Soll hinter dem ge‰nderten Preis in der Sidebox in Klammern die Anzahl der ausgew‰hlten Artikel angezeigt werden? Mˆgliche Werte: true oder false
+var quantity = false; // do not alter this // NICHT √ÑNDERN
+var showQuantity = false; // show the quantity the customer has requested in the main price header // Soll hinter dem ge√§nderten Preis in Klammern die Anzahl der ausgew√§hlten Artikel angezeigt werden? M√∂gliche Werte: true oder false
+var showQuantitySB = false; // show the quantity the customer has requested in the sidebox // Falls Sidebox aktiv: Soll hinter dem ge√§nderten Preis in der Sidebox in Klammern die Anzahl der ausgew√§hlten Artikel angezeigt werden? M√∂gliche Werte: true oder false
 var prArr = nameArr = new Array(); // holds an array of prices to be adjusted (for multiple price adjustments)
-var _oflag = false; // do not alter this // NICHT ƒNDERN
+var _oflag = false; // do not alter this // NICHT √ÑNDERN
 
 //var seeker = new RegExp(/\(\s*([+-]?)([^0-9]*)([0-9,]+\.[0-9]+)([^0-9)]*)\s*\)/);
 var seeker = new RegExp(/\(\s*([+-]?)([^0-9.,]*)([0-9]+[.,]?[0-9]*)\s*([^0-9)]*)\s*\)/);
 
-// Updater sidebox settings - Falls die zus‰tzliche Sidebox verwendet werden soll (nur mit Zen-Cart 1.3.7 mˆglich!)
+// Updater sidebox settings - Falls die zus√§tzliche Sidebox verwendet werden soll (nur mit Zen-Cart 1.3.7 m√∂glich!)
 //var _sidebox = 'manufacturers'; // set this to: false - don't use or the ID of the sidebox you want the display to insert above (must be exact)
-var _sidebox = false; // Mˆgliche Werte: false - keine Sidebox // oder ID der Sidebox, ¸ber der die Preisberechnungsbox erscheinen soll, z.B. information oder categories
+var _sidebox = false; // M√∂gliche Werte: false - keine Sidebox // oder ID der Sidebox, √ºber der die Preisberechnungsbox erscheinen soll, z.B. information oder categories
 var objSB = false; // this holds the sidebox object
 
-// Second price setting // Soll ein zus‰tzlicher zweiter Preis angezeigt werden? 
+// Second price setting // Soll ein zus√§tzlicher zweiter Preis angezeigt werden? 
 // the following settings allow a second price to be displayed... if a page is very long this allows you to add another price display
 // thanks to Ryk on the Zen Cart forums for the idea and pointing out the issue
-var _secondPrice = false; //'cartAdd'; // set this to either false for disabled or supply the ID of an element for the price to appear BEFORE... for example, cartAdd // Mˆgliche Werte: false - keine zus‰tzliche Anzeige // oder die ID eines Elements vor dem der Zusatzpreis angezeigt werden soll, z.B. cartAdd
-var _SPDisplay = 'update'; // governs the behaviour of the second... 'always' permanently displays and 'update' shows the second price only when an attribute is selected // Soll der Zusatzpreis immer angezeigt werden oder nur bei Auswahl eines Attributs? Mˆgliche Werte: always - immer anzeigen // oder update - nur bei Attributauswahl
+var _secondPrice = false; //'cartAdd'; // set this to either false for disabled or supply the ID of an element for the price to appear BEFORE... for example, cartAdd // M√∂gliche Werte: false - keine zus√§tzliche Anzeige // oder die ID eines Elements vor dem der Zusatzpreis angezeigt werden soll, z.B. cartAdd
+var _SPDisplay = 'update'; // governs the behaviour of the second... 'always' permanently displays and 'update' shows the second price only when an attribute is selected // Soll der Zusatzpreis immer angezeigt werden oder nur bei Auswahl eines Attributs? M√∂gliche Werte: always - immer anzeigen // oder update - nur bei Attributauswahl
 
-var objSP = false; // please don't adjust this // NICHT ƒNDERN
+var objSP = false; // please don't adjust this // NICHT √ÑNDERN
 
 // debug settings // Gibt Fehlermeldungen zum Troubleshooting aus
-var _debug = false; //true; // set to false to disable debug output // Mˆgliche Werte: true oder false
+var _debug = false; //true; // set to false to disable debug output // M√∂gliche Werte: true oder false
 var _db = '';
 var _dbdiv = false;
 
-//ONLY FOR GERMAN SHOPS // NUR F‹R DEUTSCHE SHOPS:
-var germantaxaddon = true; //SUPPORT FOR GERMAN TAX ADDON - set to false to disable // NUR F‹R DEUTSCHE SHOPS MIT TAXADDON  - sonst auf false setzen
+//ONLY FOR GERMAN SHOPS // NUR F√úR DEUTSCHE SHOPS:
+var germantaxaddon = true; //SUPPORT FOR GERMAN TAX ADDON - set to false to disable // NUR F√úR DEUTSCHE SHOPS MIT TAXADDON  - sonst auf false setzen
 
 var taxaddon_class ='taxAddon' //NAME OF CLASS // Name der Spanklasse, bei Bedarf anpassen
 
-var taxaddon = ''; // please don't adjust this // NICHT ƒNDERN
+var taxaddon = ''; // please don't adjust this // NICHT √ÑNDERN
 
 //###################################################
-//FROM HERE NOTHING MORE CHANGE! // AB HIER NICHTS MEHR ƒNDERN!
+//FROM HERE NOTHING MORE CHANGE! // AB HIER NICHTS MEHR √ÑNDERN!
 //###################################################
 
 function find_label(objlab) { //FIX: ATTRIBUTE PICTURES by rpa-com.de
-	var Zaehler = 1;
+	var attribid = objlab.getAttribute("id");
+	var tmp = objlab;
+	//alert ('objekt attribut: ' + attribid);	
 	objlab = objlab.nextSibling;
-	while (objlab.nodeName != "LABEL" && Zaehler <= 3) {
-		objlab = objlab.nextSibling;				
-		Zaehler++;
-	}
-	if (Zaehler == 3) {
-	    alert ('- label not find');
-		return ''; //'- label not find';
-	} else {
-        return objlab;
+	if(objlab){
+	    var Zaehler = 1;
+		while (objlab.nodeName != "LABEL" && Zaehler <= 3) {
+			objlab = objlab.nextSibling;			
+			Zaehler++;
+		}
+		//alert (Zaehler);
+		if (Zaehler > 3) {
+		    //alert ('- label not found');
+			return ''; //'- label not find';
+		} else {
+		    //alert ('labelattribut: ' + objlab.getAttribute("for"));	
+			return objlab;			
+		}
+	} else { //R√ºckw√§rtssuche: Label befindet sich vor dem Input
+	    objlab = tmp.previousSibling;
+		var Zaehler = 1;
+		while (objlab.nodeName != "LABEL" && Zaehler <= 3) {
+			objlab = objlab.previousSibling;			
+			Zaehler++;
+		}
+		if (Zaehler > 3) {
+		    //alert ('- label not found');
+			return ''; //'- label not find';
+		} else {
+		    //alert ('labelattribut: ' + objlab.getAttribute("for"));				
+			return objlab;					
+		}	
 	}
 }
 
