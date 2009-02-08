@@ -7,7 +7,7 @@ Originalthread:
 http://www.zen-cart.com/forum/showthread.php?t=70577
 
 Modifikationen Februar 2009 von:
-web28 - rpa-com.de
+web28 - www.rpa-com.de
 
 Modifikationen Juni 2008 von:
 Curio
@@ -24,10 +24,10 @@ Mit dem Price Updater ist es möglich, dem Kunden den geänderten Preis direkt a
 Unter 1.3.7 ist es mit diesem Modul auch möglich zusätzlich eine Sidebox mit der Preisberechnung anzeigen zu lassen.
 
 
-== Änderungen in der modifizierten Version 0.94
+== Änderungen in der modifizierten Version 0.97 ==
 
-- FIX Probleme bei Benutzung von Attributbildern
-- FIX Probleme mit taxAddon (inkl. MwSt. zzgl. Versandkosten) beseitigt
+- FIX Probleme mit Attributpreisen = 0,00 bei Radiobutton und Checkboxen beseitigt
+- FIX Probleme bei Benutzung von Attributbildern beseitigt, es werden jetz alle Anzeigeoptionen von 0 bis 5 unterstützt
 - FIX Probleme mit Währungssymbol beseitigt
 - NEW Neuer Programmcode zum Finden des angezeigten Produktpreises
 - NEW Preisanzeige mit den im Shop definierten Tausender- und Dezimaltrennzeichen
@@ -40,15 +40,11 @@ Bei ZC 1.3.8 German Edition wird mit dem taxAddon ein ungültiger html Code erze
 Die korrigierte Sprachdatei liegt diesem Paket bei (rl.vat_info.php)
 
 ATTRIBUT BILDER (RADIO UND CHECKBOXES):
-Die Anzeigeart der Attributbilder kann man bei den Attributoptionen einstellen. Die Preisanpassung unterstüzt die Anzeigeoptionen 0,1,2,3,5
-
-RADIO UND CHECKBOXES:
-Preise mit 0.00 EUR werden bei radio oder checkboxes nicht angezeigt und deshalb funktioniert die Preisanpassung nicht 
-Lösung: Den Preis für die Option auf 0.0001 mit dem gewünschten Vorzeichen setzen und die Preisanpassung funktioniert.   
+Die Anzeigeart der Attributbilder kann man bei den Attributoptionen einstellen. Die Preisanpassung unterstüzt jetzt alle Anzeigeoptionen (0,1,2,3,4,5)
 
 UNTERSTÜTZTE ZEN-CART VERSIONEN: 
 
-ab Zen-Cart 1.3.7 mit oder ohne taxaddon Erweiterung
+ab Zen-Cart 1.3.5 mit oder ohne TaxAddon 1.0b Erweiterung
 
 
 
@@ -77,8 +73,10 @@ BACKUP gemacht? Ok, dann weiterlesen...
 
 ===== KONFIGURATION UND INSTALLATION ===
 
-HINWEIS: Es werden keinen Shopdateien überschrieben, deshalb ist die Installation kinderleicht
-FÜR ZC 1.3.8 liegen modifizierte Sprachdateien für das taxaddon bei, diese werden überschrieben!
+Es werden keinen Shopdateien überschrieben, deshalb ist die Installation kinderleicht.
+
+HINWEIS:
+FÜR ZC 1.3.8 oder Shops mit installierten TaxAddon 1.0b liegen modifizierte Sprachdateien für das taxaddon bei, diese werden überschrieben!
 
 
 1) Konfiguration durch Anpassen der Werte in der includes/modules/pages/product_info/jscript_updater.php
@@ -87,12 +85,11 @@ Werte, die man anpassen kann, sind mit deutschen Kommentaren versehen. Alles and
 2) Hochladen der angepassten jscript_updater.php in folgenden Ordner:
 includes/modules/pages/product_info.php
 
-3) Hochladen der Sprachdateien in die entsprechenden Ordner 
-
+3) Hochladen der Sprachdateien in die entsprechenden Ordner
 
 
 ===== Support ===
 
 Fragen zu diesem Modul bitte ins Zen-Cart Forum in folgenden Thread posten:
-http://www.zen-cart.at/zcvb/forum/forumdisplay.php?f=51
+http://www.zen-cart.at/index.php?name=MDForum&file=viewtopic&t=5644
 
