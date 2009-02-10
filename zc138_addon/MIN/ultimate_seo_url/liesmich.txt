@@ -1,14 +1,18 @@
 ===================================================
-Ultimate SEO URLs 2.106 für Zen Cart 1.3.8 deutsch
+Ultimate SEO URLs 2.107 für Zen Cart 1.3.8 deutsch
 ===================================================
 
 deutsche Übersetzung/Anpassung des Moduls Ultimate SEO URLs von
 http://www.zen-cart.com/index.php?main_page=product_contrib_info&products_id=231
 
-Oktober 2008
+Februar 2008
 
 Autor:
 webchills
+
+Bugfix in 2.107
+seo.install.php führte bei manchen MySQL Versionen/Konfigurationen zu 1366 Incorrect integer value
+'' im Installer mit NULL ersetzt
 
 
 
@@ -24,7 +28,7 @@ FEATURES
 =========
 
 kompatibel mit Zen-Cart 1.3.8 (deutsch)
-kompatibel mit MYSQL 5.0 und PHP 5.0
+
 
 Via Admin kann eingestellt werden, welche Seiten umgeschrieben werden sollen 
 Defaultmäßig sind bereits die wichtigsten Seiten eingestellt (Kategorien, Artikel, statische Seiten). Wenn alle Seiten umgeschrieben werden sollen, einfach die Einträge im Admin löschen.

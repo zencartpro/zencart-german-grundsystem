@@ -36,104 +36,104 @@
 
 			$this->default_config['SEO_ENABLED'] = array(
 				'DEFAULT' => 'true',
-				'QUERY' => "INSERT INTO `".TABLE_CONFIGURATION."` VALUES ('', 'SEO URLs aktivieren?', 'SEO_ENABLED', 'true', 'SEO URLs aktivieren? Generelle Einstellung zum kompletten Abschalten.', GROUP_INSERT_ID, ".$x.", NOW(), NOW(), NULL, 'zen_cfg_select_option(array(''true'', ''false''),')"
+				'QUERY' => "INSERT INTO `".TABLE_CONFIGURATION."` VALUES (NULL, 'SEO URLs aktivieren?', 'SEO_ENABLED', 'true', 'SEO URLs aktivieren? Generelle Einstellung zum kompletten Abschalten.', GROUP_INSERT_ID, ".$x.", NOW(), NOW(), NULL, 'zen_cfg_select_option(array(''true'', ''false''),')"
 			);
 			$x++;
 
 			$this->default_config['SEO_ADD_CPATH_TO_PRODUCT_URLS'] = array(
 				'DEFAULT' => 'false',
-				'QUERY' => "INSERT INTO `".TABLE_CONFIGURATION."` VALUES ('', 'Kategorienummer als cPath an die Produktlinks anhängen?', 'SEO_ADD_CPATH_TO_PRODUCT_URLS', 'false', 'Kategorienummer wird als cPath angehängt (z.B. - some-product-p-1.html?cPath=xx).', GROUP_INSERT_ID, ".$x.", NOW(), NOW(), NULL, 'zen_cfg_select_option(array(''true'', ''false''),')"
+				'QUERY' => "INSERT INTO `".TABLE_CONFIGURATION."` VALUES (NULL, 'Kategorienummer als cPath an die Produktlinks anhÃ¤ngen?', 'SEO_ADD_CPATH_TO_PRODUCT_URLS', 'false', 'Kategorienummer wird als cPath angehÃ¤ngt (z.B. - some-product-p-1.html?cPath=xx).', GROUP_INSERT_ID, ".$x.", NOW(), NOW(), NULL, 'zen_cfg_select_option(array(''true'', ''false''),')"
 			);
 			$x++;
 
 			$this->default_config['SEO_ADD_CAT_PARENT'] = array(
 				'DEFAULT' => 'true',
-				'QUERY' => "INSERT INTO `".TABLE_CONFIGURATION."` VALUES ('', 'Oberkategorienamen am Anfang der Kategorielinks anzeigen?', 'SEO_ADD_CAT_PARENT', 'true', 'Übergeordnete Kategorie wird in Kategorielinks angezeigt (z.B. - parent-category-c-1.html).', GROUP_INSERT_ID, ".$x.", NOW(), NOW(), NULL, 'zen_cfg_select_option(array(''true'', ''false''),')"
+				'QUERY' => "INSERT INTO `".TABLE_CONFIGURATION."` VALUES (NULL, 'Oberkategorienamen am Anfang der Kategorielinks anzeigen?', 'SEO_ADD_CAT_PARENT', 'true', 'Ãœbergeordnete Kategorie wird in Kategorielinks angezeigt (z.B. - parent-category-c-1.html).', GROUP_INSERT_ID, ".$x.", NOW(), NOW(), NULL, 'zen_cfg_select_option(array(''true'', ''false''),')"
 			);
 			$x++;
 
 			$this->default_config['SEO_URLS_FILTER_SHORT_WORDS'] = array(
 				'DEFAULT' => '0',
-				'QUERY' => "INSERT INTO `".TABLE_CONFIGURATION."` VALUES ('', 'Kurze Worte ausfiltern', 'SEO_URLS_FILTER_SHORT_WORDS', '0', 'Worte mit weniger oder gleich viel Buchstaben wie hier eingestellt werden aus der URL entfernt.', GROUP_INSERT_ID, ".$x.", NOW(), NOW(), NULL, NULL)"
+				'QUERY' => "INSERT INTO `".TABLE_CONFIGURATION."` VALUES (NULL, 'Kurze Worte ausfiltern', 'SEO_URLS_FILTER_SHORT_WORDS', '0', 'Worte mit weniger oder gleich viel Buchstaben wie hier eingestellt werden aus der URL entfernt.', GROUP_INSERT_ID, ".$x.", NOW(), NOW(), NULL, NULL)"
 			);
 			$x++;
 
 			$this->default_config['SEO_URLS_USE_W3C_VALID'] = array(
 				'DEFAULT' => 'true',
-				'QUERY' => "INSERT INTO `".TABLE_CONFIGURATION."` VALUES ('', 'W3C valide URLs ausgeben?', 'SEO_URLS_USE_W3C_VALID', 'true', 'Die ausgegebenen URLs sind W3C konform.', GROUP_INSERT_ID, ".$x.", NOW(), NOW(), NULL, 'zen_cfg_select_option(array(''true'', ''false''),')"
+				'QUERY' => "INSERT INTO `".TABLE_CONFIGURATION."` VALUES (NULL, 'W3C valide URLs ausgeben?', 'SEO_URLS_USE_W3C_VALID', 'true', 'Die ausgegebenen URLs sind W3C konform.', GROUP_INSERT_ID, ".$x.", NOW(), NOW(), NULL, 'zen_cfg_select_option(array(''true'', ''false''),')"
 			);
 			$x++;
 
 			$this->default_config['USE_SEO_CACHE_GLOBAL'] = array(
 				'DEFAULT' => 'true',
-				'QUERY' => "INSERT INTO `".TABLE_CONFIGURATION."` VALUES ('', 'SEO Cache aktivieren?', 'USE_SEO_CACHE_GLOBAL', 'true', 'Generelle Einstellung, die den Cache komplett abschaltet.', GROUP_INSERT_ID, ".$x.", NOW(), NOW(), NULL, 'zen_cfg_select_option(array(''true'', ''false''),')"
+				'QUERY' => "INSERT INTO `".TABLE_CONFIGURATION."` VALUES (NULL, 'SEO Cache aktivieren?', 'USE_SEO_CACHE_GLOBAL', 'true', 'Generelle Einstellung, die den Cache komplett abschaltet.', GROUP_INSERT_ID, ".$x.", NOW(), NOW(), NULL, 'zen_cfg_select_option(array(''true'', ''false''),')"
 			);
 			$x++;
 
 			$this->default_config['USE_SEO_CACHE_PRODUCTS'] = array(
 				'DEFAULT' => 'true',
-				'QUERY' => "INSERT INTO `".TABLE_CONFIGURATION."` VALUES ('', 'Produkt Cache aktivieren?', 'USE_SEO_CACHE_PRODUCTS', 'true', 'Produktcache aktivieren?', GROUP_INSERT_ID, ".$x.", NOW(), NOW(), NULL, 'zen_cfg_select_option(array(''true'', ''false''),')"
+				'QUERY' => "INSERT INTO `".TABLE_CONFIGURATION."` VALUES (NULL, 'Produkt Cache aktivieren?', 'USE_SEO_CACHE_PRODUCTS', 'true', 'Produktcache aktivieren?', GROUP_INSERT_ID, ".$x.", NOW(), NOW(), NULL, 'zen_cfg_select_option(array(''true'', ''false''),')"
 				);
 			$x++;
 
 			$this->default_config['USE_SEO_CACHE_CATEGORIES'] = array(
 				'DEFAULT' => 'true',
-				'QUERY' => "INSERT INTO `".TABLE_CONFIGURATION."` VALUES ('', 'Kategorie Cache aktivieren?', 'USE_SEO_CACHE_CATEGORIES', 'true', 'Kategoriecache aktivieren?', GROUP_INSERT_ID, ".$x.", NOW(), NOW(), NULL, 'zen_cfg_select_option(array(''true'', ''false''),')"
+				'QUERY' => "INSERT INTO `".TABLE_CONFIGURATION."` VALUES (NULL, 'Kategorie Cache aktivieren?', 'USE_SEO_CACHE_CATEGORIES', 'true', 'Kategoriecache aktivieren?', GROUP_INSERT_ID, ".$x.", NOW(), NOW(), NULL, 'zen_cfg_select_option(array(''true'', ''false''),')"
 			);
 			$x++;
 
 			$this->default_config['USE_SEO_CACHE_MANUFACTURERS'] = array(
 				'DEFAULT' => 'true',
-				'QUERY' => "INSERT INTO `".TABLE_CONFIGURATION."` VALUES ('', 'Hersteller Cache aktivieren?', 'USE_SEO_CACHE_MANUFACTURERS', 'true', 'Herstellercache aktivieren?', GROUP_INSERT_ID, ".$x.", NOW(), NOW(), NULL, 'zen_cfg_select_option(array(''true'', ''false''),')"
+				'QUERY' => "INSERT INTO `".TABLE_CONFIGURATION."` VALUES (NULL, 'Hersteller Cache aktivieren?', 'USE_SEO_CACHE_MANUFACTURERS', 'true', 'Herstellercache aktivieren?', GROUP_INSERT_ID, ".$x.", NOW(), NOW(), NULL, 'zen_cfg_select_option(array(''true'', ''false''),')"
 			);
 			$x++;
 
 			$this->default_config['USE_SEO_CACHE_ARTICLES'] = array(
 				'DEFAULT' => 'true',
-				'QUERY' => "INSERT INTO `".TABLE_CONFIGURATION."` VALUES ('', 'Artikel Cache?', 'USE_SEO_CACHE_ARTICLES', 'true', 'Artikelcache aktivieren?', GROUP_INSERT_ID, ".$x.", NOW(), NOW(), NULL, 'zen_cfg_select_option(array(''true'', ''false''),')"
+				'QUERY' => "INSERT INTO `".TABLE_CONFIGURATION."` VALUES (NULL, 'Artikel Cache?', 'USE_SEO_CACHE_ARTICLES', 'true', 'Artikelcache aktivieren?', GROUP_INSERT_ID, ".$x.", NOW(), NOW(), NULL, 'zen_cfg_select_option(array(''true'', ''false''),')"
 			);
 			$x++;
 
 			$this->default_config['USE_SEO_CACHE_INFO_PAGES'] = array(
 				'DEFAULT' => 'true',
-				'QUERY' => "INSERT INTO `".TABLE_CONFIGURATION."` VALUES ('', 'Infoseiten Cache aktivieren?', 'USE_SEO_CACHE_INFO_PAGES', 'true', 'Infoseitencache aktivieren?', GROUP_INSERT_ID, ".$x.", NOW(), NOW(), NULL, 'zen_cfg_select_option(array(''true'', ''false''),')"
+				'QUERY' => "INSERT INTO `".TABLE_CONFIGURATION."` VALUES (NULL, 'Infoseiten Cache aktivieren?', 'USE_SEO_CACHE_INFO_PAGES', 'true', 'Infoseitencache aktivieren?', GROUP_INSERT_ID, ".$x.", NOW(), NOW(), NULL, 'zen_cfg_select_option(array(''true'', ''false''),')"
 			);
 			$x++;
 
 			$this->default_config['USE_SEO_REDIRECT'] = array(
 				'DEFAULT' => 'true',
-				'QUERY' => "INSERT INTO `".TABLE_CONFIGURATION."` VALUES ('', 'Automatische Redirects aktivieren?', 'USE_SEO_REDIRECT', 'true', 'Automatischen Redirect aktivieren? 301 Header wird für alte an neue URLs uebermittelt.', GROUP_INSERT_ID, ".$x.", NOW(), NOW(), NULL, 'zen_cfg_select_option(array(''true'', ''false''),')"
+				'QUERY' => "INSERT INTO `".TABLE_CONFIGURATION."` VALUES (NULL, 'Automatische Redirects aktivieren?', 'USE_SEO_REDIRECT', 'true', 'Automatischen Redirect aktivieren? 301 Header wird fÃ¼r alte an neue URLs uebermittelt.', GROUP_INSERT_ID, ".$x.", NOW(), NOW(), NULL, 'zen_cfg_select_option(array(''true'', ''false''),')"
 			);
 			$x++;
 
 			$this->default_config['SEO_REWRITE_TYPE'] = array(
 				'DEFAULT' => 'Rewrite',
-				'QUERY' => "INSERT INTO `".TABLE_CONFIGURATION."` VALUES ('', 'URL Rewrite Typ festlegen', 'SEO_REWRITE_TYPE', 'Rewrite', 'Welches SEO URL Format soll genutzt werden? (Derzeit wird nur Rewrite unterstützt!)', GROUP_INSERT_ID, ".$x.", NOW(), NOW(), NULL, 'zen_cfg_select_option(array(''Rewrite''),')"
+				'QUERY' => "INSERT INTO `".TABLE_CONFIGURATION."` VALUES (NULL, 'URL Rewrite Typ festlegen', 'SEO_REWRITE_TYPE', 'Rewrite', 'Welches SEO URL Format soll genutzt werden? (Derzeit wird nur Rewrite unterstÃ¼tzt!)', GROUP_INSERT_ID, ".$x.", NOW(), NOW(), NULL, 'zen_cfg_select_option(array(''Rewrite''),')"
 			);
 			$x++;
 
 			$this->default_config['SEO_CHAR_CONVERT_SET'] = array(
 				'DEFAULT' => '',
-				'QUERY' => "INSERT INTO `".TABLE_CONFIGURATION."` VALUES ('', 'Umlaute umschreiben', 'SEO_CHAR_CONVERT_SET', '', 'Umlaute sollte man umschreiben lassen.<br><br>Das Format <b>MUSS</b> so sein: <b>zeichen1=>wunschzeichen1,zeichen2=>wunschzeichen2</b>', GROUP_INSERT_ID, ".$x.", NOW(), NOW(), NULL, NULL)"
+				'QUERY' => "INSERT INTO `".TABLE_CONFIGURATION."` VALUES (NULL, 'Umlaute umschreiben', 'SEO_CHAR_CONVERT_SET', '', 'Umlaute sollte man umschreiben lassen.<br><br>Das Format <b>MUSS</b> so sein: <b>zeichen1=>wunschzeichen1,zeichen2=>wunschzeichen2</b>', GROUP_INSERT_ID, ".$x.", NOW(), NOW(), NULL, NULL)"
 			);
 			$x++;
 
 			$this->default_config['SEO_REMOVE_ALL_SPEC_CHARS'] = array(
 				'DEFAULT' => 'false',
-				'QUERY' => "INSERT INTO `".TABLE_CONFIGURATION."` VALUES ('', 'Nicht alphanumerische Zeichen entfernen?', 'SEO_REMOVE_ALL_SPEC_CHARS', 'false', 'Entfernt Zeichen, die keine Buchstaben oder Ziffern sind.', GROUP_INSERT_ID, ".$x.", NOW(), NOW(), NULL, 'zen_cfg_select_option(array(''true'', ''false''),')"
+				'QUERY' => "INSERT INTO `".TABLE_CONFIGURATION."` VALUES (NULL, 'Nicht alphanumerische Zeichen entfernen?', 'SEO_REMOVE_ALL_SPEC_CHARS', 'false', 'Entfernt Zeichen, die keine Buchstaben oder Ziffern sind.', GROUP_INSERT_ID, ".$x.", NOW(), NOW(), NULL, 'zen_cfg_select_option(array(''true'', ''false''),')"
 			);
 			$x++;
 
 			$this->default_config['SEO_URLS_CACHE_RESET'] = array(
 				'DEFAULT' => 'false',
-				'QUERY' => "INSERT INTO `".TABLE_CONFIGURATION."` VALUES ('', 'SEO URLs Cache leeren', 'SEO_URLS_CACHE_RESET', 'false', 'Setzt den SEO URL Cache zurueck', GROUP_INSERT_ID, ".$x.", NOW(), NOW(), 'zen_reset_cache_data_seo_urls', 'zen_cfg_select_option(array(''reset'', ''false''),')"
+				'QUERY' => "INSERT INTO `".TABLE_CONFIGURATION."` VALUES (NULL, 'SEO URLs Cache leeren', 'SEO_URLS_CACHE_RESET', 'false', 'Setzt den SEO URL Cache zurueck', GROUP_INSERT_ID, ".$x.", NOW(), NOW(), 'zen_reset_cache_data_seo_urls', 'zen_cfg_select_option(array(''reset'', ''false''),')"
 			);
 			$x++;
 
 			//IMAGINADW.COM
 			$this->default_config['SEO_URLS_ONLY_IN'] = array(
 				'DEFAULT' => 'index, product_info, products_new, products_all, featured_products, specials, contact_us, conditions, privacy, reviews, shippinginfo, faqs_all, site_map, gv_faq, discount_coupon, page, page_2, page_3, page_4',
-				'QUERY' => "INSERT INTO `".TABLE_CONFIGURATION."` VALUES ('', 'Seiten eingeben, die umgeschrieben werden sollen', 'SEO_URLS_ONLY_IN', 'index, product_info, products_new, products_all, featured_products, specials, contact_us, conditions, privacy, reviews, shippinginfo, faqs_all, site_map, gv_faq, discount_coupon, page, page_2, page_3, page_4', 'Dieses Setting erlaubt den Rewrite nur fuer die angegebenen Seiten. Wird hier alles rausgeloescht, werden alle Seiten umgeschrieben. <br><br>Das Format <b>MUSS</b> sein: <b>page1,page2,page3</b>', GROUP_INSERT_ID, ".$x.", NOW(), NOW(), NULL, NULL)"
+				'QUERY' => "INSERT INTO `".TABLE_CONFIGURATION."` VALUES (NULL, 'Seiten eingeben, die umgeschrieben werden sollen', 'SEO_URLS_ONLY_IN', 'index, product_info, products_new, products_all, featured_products, specials, contact_us, conditions, privacy, reviews, shippinginfo, faqs_all, site_map, gv_faq, discount_coupon, page, page_2, page_3, page_4', 'Dieses Setting erlaubt den Rewrite nur fuer die angegebenen Seiten. Wird hier alles rausgeloescht, werden alle Seiten umgeschrieben. <br><br>Das Format <b>MUSS</b> sein: <b>page1,page2,page3</b>', GROUP_INSERT_ID, ".$x.", NOW(), NOW(), NULL, NULL)"
 			);
 			$x++;
 
@@ -203,7 +203,7 @@
 		$sort_order_query = "SELECT MAX(sort_order) as max_sort FROM `".TABLE_CONFIGURATION_GROUP."`";
 		$sort = $this->db->Execute($sort_order_query);
 		$next_sort = $sort->fields['max_sort'] + 1;
-		$insert_group = "INSERT INTO `".TABLE_CONFIGURATION_GROUP."` VALUES ('','43', 'SEO URLs', 'Einstellungen fuer Ultimate SEO URLs', '".$next_sort."', '1')";
+		$insert_group = "INSERT INTO `".TABLE_CONFIGURATION_GROUP."` VALUES (NULL,'43', 'SEO URLs', 'Einstellungen fuer Ultimate SEO URLs', '".$next_sort."', '1')";
 		$this->db->Execute($insert_group);
 		$group_id = $this->db->insert_ID();
 
@@ -230,4 +230,4 @@
 		$this->db->Execute($insert_cache_table);
 	} # end function	
 } # end class
-?>
+?> 
