@@ -328,9 +328,9 @@ if (($_GET['page'] == '1' or $_GET['page'] == '') and $_GET['pID'] != '') {
         <?php echo '<a href="' . zen_href_link($type_handler, 'cPath=' . $cPath . '&product_type=' . $products->fields['products_type'] . '&pID=' . $products->fields['products_id'] . '&action=delete_product') . '">' . zen_image(DIR_WS_IMAGES . 'icon_delete.gif', ICON_DELETE) . '</a>'; ?>
         <?php echo '<a href="' . zen_href_link($type_handler, 'cPath=' . $cPath . '&product_type=' . $products->fields['products_type'] . '&pID=' . $products->fields['products_id'] . '&action=move_product') . '">' . zen_image(DIR_WS_IMAGES . 'icon_move.gif', ICON_MOVE) . '</a>'; ?>
         <?php echo '<a href="' . zen_href_link($type_handler, 'cPath=' . $cPath . '&product_type=' . $products->fields['products_type'] . '&pID=' . $products->fields['products_id'] .'&action=copy_to' ) . '">' . zen_image(DIR_WS_IMAGES . 'icon_copy_to.gif', ICON_COPY_TO) . '</a>'; ?>
-	// BOF IH2
+	<!-- BOF IH2 -->
         <?php echo '<a href="' . zen_href_link(FILENAME_IMAGE_HANDLER, 'products_filter=' . $products->fields['products_id'] . '&current_category_id=' . $current_category_id) . '">' . zen_image(DIR_WS_IMAGES . 'icon_image_handler.gif', ICON_IMAGE_HANDLER) . '</a>'; ?>
-	// EOF IH2
+	<!-- EOF IH2 -->
 <?php
 // BOF: Attribute commands
 //if (!empty($products->fields['products_id']) && zen_has_product_attributes($products->fields['products_id'], 'false')) {
