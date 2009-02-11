@@ -54,11 +54,31 @@ var showQuantitySB = false;
 
 All total prices displayed will take the quantity specified into account and will display the relevant price regardless of whether the quantities are displayed or not
 
+OnLoad Feature
+--------------
+Price header update on loading page can now set to true/false
 
 Installation
 ------------
 
 Upload the file to includes/modules/pages/product_info/ (directory structure included)
+
+Uploas the language files
+
+Check includes/templates/YOURTEMPLATE/templates/tpl_product_info_display.php for correct code:
+
+<!--bof Product Price block -->
+<h2 id="productPrices" class="productGeneral">
+<?php
+// base price
+  if ($show_onetime_charges_description == 'true') {
+    $one_time = '<span >' . TEXT_ONETIME_CHARGE_SYMBOL . TEXT_ONETIME_CHARGE_DESCRIPTION . '</span><br />';
+  } else {
+    $one_time = '';
+  }
+  echo $one_time . ((zen_has_product_attributes_values((int)$_GET['products_id']) and $flag_show_product_info_starting_at == 1) ? TEXT_BASE_PRICE : '') . zen_get_products_display_price((int)$_GET['products_id']);
+?></h2>
+<!--eof Product Price block -->
 
 (c) D Parry (Chrome) 2007
 
@@ -76,12 +96,14 @@ dan@virtuawebtech.co.uk
 
 Changelog
 =========
-08/02/2009 - NEW MODIFICATIONS by web28 - www.rpa-com.de
-	- FIX: Problems if used attributes pictures with option=4
-        - FIX: Problems with Option Price = 0.00 and using Radiobutton and Checkboxes
+10/02/2009 - NEW MODIFICATIONS by web28 - www.rpa-com.de
+	- NEW: NO INIT BY PRICE IS CALL, PRICE IS FREE
+	- NEW: SUPPORT FOR SPECIAL PRICES
+	- FIX: Problems by using attributes pictures with option=4
+    - FIX: Problems with Option Price = 0.00 by using Radiobutton and Checkboxes
 	- NEW: USE ZENCART CURRENCIES FORMAT
 	- NEW: USE ZENCART DEFAULT  Decimal_Point, Thousands_Point
-        - DELETE: GERMAN taxAddon 
+    - DELETE: GERMAN taxAddon 
 
 02/02/2009 - NEW MODIFICATIONS by web28 - www.rpa-com.de
 	- FIX Problems if used attributes pictures

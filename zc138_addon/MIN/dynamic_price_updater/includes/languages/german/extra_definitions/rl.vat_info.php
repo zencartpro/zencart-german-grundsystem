@@ -28,6 +28,6 @@ define('ADD_VATADDON', 'ALL');
 //define('VAT_SHOW_TEXT','<br/><span class="taxAddon">inkl. %s MwSt.<br/> zzgl. <a href="' . zen_href_link(FILENAME_SHIPPING) . '">Versandkosten</a></span>');
 
 //Optimiert für Price Updater
-define('VAT_SHOW_TEXT','</h2><h2 class="taxAddon">inkl. %s MwSt.<br/> zzgl. <a href="' . zen_href_link(FILENAME_SHIPPING) . '">Versandkosten</a></h2>');
+define('VAT_SHOW_TEXT','</h2><h2 class="taxAddon">inkl. %s MwSt.<br/> zzgl. <a href="' . zen_href_link(FILENAME_SHIPPING) . '">Versandkosten</a>');
 //define('VAT_SHOW_TEXT','<br/><span class="taxAddon">zzgl. <a href="' . zen_href_link(FILENAME_SHIPPING) . '">Versandkosten</a></span>');
 ?>

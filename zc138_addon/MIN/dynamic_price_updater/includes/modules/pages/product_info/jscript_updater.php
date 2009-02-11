@@ -1,5 +1,5 @@
 <?php
-// Dynamic Price Updater Vers. 0.97 - 08.02.2009 by rpa-com.de
+// Dynamic Price Updater Vers. 0.98 - 10.02.2009 by rpa-com.de
 
 // Small module to dynamically update main price when the product has price altering attributes
 
@@ -9,7 +9,9 @@
 // Alterations are permitted but please let me know of any changes you make, specifically where incompatibility is concerned
 
 //modified by web28 - www.rpa-com:
-//FIX RADIO AND CHECKBOX OPTION PRICE =  0,00 
+//NEW: NO INIT BY PRICE IS CALL, PRICE IS FREE
+//NEW: SUPPORT FOR SPECIAL PRICES
+//FIX: RADIO AND CHECKBOX OPTION PRICE =  0,00 
 //NEW: USE ZENCART CURRENCIES FORMAT
 //NEW: USE ZENCART DEFAULT  Decimal_Point, Thousands_Point
 //FIX: ATTRIBUTE PICTURES 
@@ -35,41 +37,65 @@ Image Styles:
 // text files declarations:  includes/languages/YOURLANGUAGE/jscript_updater.php
 ?>
 
+<? //NEW QUERY FOR TESTING product_is_free, product_is_call
+$sqlnew = "select p.product_is_free, p.product_is_call
+          from " . TABLE_PRODUCTS . " p
+          where p.products_id = '" . (int)$_GET['products_id'] . "'";
+
+$resnew = $db->Execute($sql);
+$isFree =  $resnew->fields['product_is_free'];
+$isCall =  $resnew->fields['product_is_call'];
+if ($isFree or $isCall) {$iscallfree= 1;} else {$iscallfree= 0;}
+//Echo 'TEST: ' . $iscallfree;
+?>
+
 <script language="javascript" type="text/javascript">
 // <![CDATA[
-// v.0.97 by web28 - www.rpa-com.de
-var objPrice, origPrice;
+// v.0.98 by web28 - www.rpa-com.de
+var objPrice, origPrice, normalPrice;
 var defaultCurrencyLeft, defaultCurrencyRight, defaultDecimal_Point, defaultThousands_Point;
 defaultCurrencyLeft = defaultCurrencyRight = defaultDecimal_Point = defaultThousands_Point = '';
-var quantity = false; // do not alter this // NICHT ÄNDERN
-var showQuantity = false; // show the quantity the customer has requested in the main price header // Soll hinter dem geänderten Preis in Klammern die Anzahl der ausgewählten Artikel angezeigt werden? Mögliche Werte: true oder false
-var showQuantitySB = false; // show the quantity the customer has requested in the sidebox // Falls Sidebox aktiv: Soll hinter dem geänderten Preis in der Sidebox in Klammern die Anzahl der ausgewählten Artikel angezeigt werden? Mögliche Werte: true oder false
+var quantity = false; // do not alter this // NICHT Ã„NDERN
+var showQuantity = false; // show the quantity the customer has requested in the main price header // Soll hinter dem geÃ¤nderten Preis in Klammern die Anzahl der ausgewÃ¤hlten Artikel angezeigt werden? MÃ¶gliche Werte: true oder false
+var showQuantitySB = false; // show the quantity the customer has requested in the sidebox // Falls Sidebox aktiv: Soll hinter dem geÃ¤nderten Preis in der Sidebox in Klammern die Anzahl der ausgewÃ¤hlten Artikel angezeigt werden? MÃ¶gliche Werte: true oder false
 var prArr = nameArr = new Array(); // holds an array of prices to be adjusted (for multiple price adjustments)
-var _oflag = false; // do not alter this // NICHT ÄNDERN
+var _oflag = false; // do not alter this // NICHT Ã„NDERN
+
+var onloadPriceUpdate = false; //price header update on loading page //Soll der angezeigte Preis direkt beim Seitenaufruf aktuallisiert werden? ja: true / nein: false
+
+//SUPPORT FOR SPECIAL PRICES
+var classSpecialPrice = false; // do not alter this // NICHT Ã„NDERN
+var classNormalPrice = false; // do not alter this // NICHT Ã„NDERN
+var classPriceDiscount = false; // do not alter this // NICHT Ã„NDERN
+var PriceDiscountHTML;
+
 
 //var seeker = new RegExp(/\(\s*([+-]?)([^0-9]*)([0-9,]+\.[0-9]+)([^0-9)]*)\s*\)/);
 var seeker = new RegExp(/\(\s*([+-]?)([^0-9.,]*)([0-9]+[.,]?[0-9]*)\s*([^0-9)]*)\s*\)/);
 
-// Updater sidebox settings - Falls die zusätzliche Sidebox verwendet werden soll (nur mit Zen-Cart 1.3.7 möglich!)
+// Updater sidebox settings - Falls die zusÃ¤tzliche Sidebox verwendet werden soll (nur mit Zen-Cart 1.3.7 mÃ¶glich!)
 //var _sidebox = 'manufacturers'; // set this to: false - don't use or the ID of the sidebox you want the display to insert above (must be exact)
-var _sidebox = false; // Mögliche Werte: false - keine Sidebox // oder ID der Sidebox, über der die Preisberechnungsbox erscheinen soll, z.B. information oder categories
+var _sidebox = false; // MÃ¶gliche Werte: false - keine Sidebox // oder ID der Sidebox, Ã¼ber der die Preisberechnungsbox erscheinen soll, z.B. information oder categories
 var objSB = false; // this holds the sidebox object
 
-// Second price setting // Soll ein zusätzlicher zweiter Preis angezeigt werden? 
+// Second price setting // Soll ein zusÃ¤tzlicher zweiter Preis angezeigt werden? 
 // the following settings allow a second price to be displayed... if a page is very long this allows you to add another price display
 // thanks to Ryk on the Zen Cart forums for the idea and pointing out the issue
-var _secondPrice = false; //'cartAdd'; // set this to either false for disabled or supply the ID of an element for the price to appear BEFORE... for example, cartAdd // Mögliche Werte: false - keine zusätzliche Anzeige // oder die ID eines Elements vor dem der Zusatzpreis angezeigt werden soll, z.B. cartAdd
-var _SPDisplay = 'update'; // governs the behaviour of the second... 'always' permanently displays and 'update' shows the second price only when an attribute is selected // Soll der Zusatzpreis immer angezeigt werden oder nur bei Auswahl eines Attributs? Mögliche Werte: always - immer anzeigen // oder update - nur bei Attributauswahl
+var _secondPrice = false; //'cartAdd'; // set this to either false for disabled or supply the ID of an element for the price to appear BEFORE... for example, cartAdd // MÃ¶gliche Werte: false - keine zusÃ¤tzliche Anzeige // oder die ID eines Elements vor dem der Zusatzpreis angezeigt werden soll, z.B. cartAdd
+var _SPDisplay = 'update'; // governs the behaviour of the second... 'always' permanently displays and 'update' shows the second price only when an attribute is selected // Soll der Zusatzpreis immer angezeigt werden oder nur bei Auswahl eines Attributs? MÃ¶gliche Werte: always - immer anzeigen // oder update - nur bei Attributauswahl
 
-var objSP = false; // please don't adjust this // NICHT ÄNDERN
+var objSP = false; // please don't adjust this // NICHT Ã„NDERN
 
 // debug settings // Gibt Fehlermeldungen zum Troubleshooting aus
-var _debug = false; //true; // set to false to disable debug output // Mögliche Werte: true oder false
+var _debug = false; //true; // set to false to disable debug output // MÃ¶gliche Werte: true oder false
 var _db = '';
 var _dbdiv = false;
 
+//NEW: Init price updater only  when not iscallfree
+var iscallfree= '<?php echo $iscallfree; ?>';
+ 
 //###################################################
-//FROM HERE NOTHING MORE CHANGE! // AB HIER NICHTS MEHR ÄNDERN!
+//FROM HERE NOTHING MORE CHANGE! // AB HIER NICHTS MEHR Ã„NDERN!
 //###################################################
 
 function find_label(objlab) { //FIX: ATTRIBUTE PICTURES by web28 - www.rpa-com
@@ -90,7 +116,7 @@ function find_label(objlab) { //FIX: ATTRIBUTE PICTURES by web28 - www.rpa-com
 		    //alert ('labelattribut: ' + objlab.getAttribute("for"));	
 			return objtmp;			
 		}
-	} else { //Rückwärtssuche: Label befindet sich vor dem Input
+	} else { //RÃ¼ckwÃ¤rtssuche: Label befindet sich vor dem Input
 	    objtmp = objlab.previousSibling;
 		var Zaehler = 1;
 		while (objtmp.nodeName != "LABEL" && Zaehler <= 3) {
@@ -107,13 +133,14 @@ function find_label(objlab) { //FIX: ATTRIBUTE PICTURES by web28 - www.rpa-com
 	}
 }
 
-function init() { // discover the selects that are required to adjust the main price
+function init() { // discover the selects that are required to adjust the main price    
+    if (iscallfree == 1) return; //NEW: Init price updater only  when not iscallfree
 	var centre = document.getElementById('productGeneral');
 	var objSel = centre.getElementsByTagName('SELECT');
 	var objInp = centre.getElementsByTagName('INPUT');
 	var db = '';
-	var _flag = false; // flag to decide if a load of attribute information is needed
-
+	var _flag = false; // flag to decide if a load of attribute information is needed	
+	
 	if (!_oflag)	{ // get the base price and the quantity box (if it exists)
 		// firstly find out if debug messages should be shown
 		if (_debug === true) { // build the div that will hold debug messages
@@ -153,7 +180,16 @@ function init() { // discover the selects that are required to adjust the main p
 			var temp = displayed_price.getElementsByTagName('SPAN');
 			for (var i=0; temp[i]; i++) {				
 				if (temp[i].className == 'productSpecialPrice'){
-					var priceHTML = temp[i].innerHTML;					
+					var priceHTML = temp[i].innerHTML;
+					classSpecialPrice = true;					
+				}
+				if (temp[i].className == 'normalprice') {
+				    normalPrice = Number(temp[i].innerHTML.match(/([0-9,.]+)/g)[0].replace(/,/g, '').replace(/\./g, ''));
+					classNormalPrice = true;
+				}
+				if (temp[i].className == 'productPriceDiscount') {
+				    PriceDiscountHTML = temp[i].innerHTML;					
+					classPriceDiscount = true;
 				}
 			}
 			
@@ -163,7 +199,7 @@ function init() { // discover the selects that are required to adjust the main p
 		
 		
 		// IF WE FOUND A PRODUCTS_PRICE,  FILTER THE NUMBER
-		if (priceHTML) origPrice = Number(priceHTML.match(/([0-9,.]+)/g)[0].replace(/,/g, '').replace(/\./g, ''));
+		if (priceHTML) origPrice = Number(priceHTML.match(/([0-9,.]+)/g)[0].replace(/,/g, '').replace(/\./g, ''));		
 		var db = '';
 		if (!origPrice) {
 			db = 'Price not found!';
@@ -199,47 +235,53 @@ function init() { // discover the selects that are required to adjust the main p
 		regdb('defaultThousands_Point', defaultThousands_Point);
 			
 	}
+	
+	if (!_oflag) {
+		for (var i=0; objSel[i]; i++) {
+			var _this = objSel[i];
 
-	for (var i=0; objSel[i]; i++) {
-		var _this = objSel[i];
+			objSel[i].onchange = function () { updatePrice(this); }
+			db = 'Name - ' + objSel[i].name + ' : ID - ' + objSel[i].id;
 
-		objSel[i].onchange = function () { updatePrice(this); }
-		db = 'Name - ' + objSel[i].name + ' : ID - ' + objSel[i].id;
+			// scan the attributes to find out if any adjustments are needed
+			var matches = objSel[i][objSel[i].selectedIndex].text.match(seeker);
 
-		// scan the attributes to find out if any adjustments are needed
-		var matches = objSel[i][objSel[i].selectedIndex].text.match(seeker);
-
-		if (matches) { // yep
-			db += ' - Adjusted!';
-			prArr[objSel[i].id] = new Array();
-			//prArr[objSel[i].id]['p'] = Number(matches[3].replace(/,/, '')); // push the value onto the stack
-			prArr[objSel[i].id]['p'] = Number(matches[3].replace(/,/, '').replace(/\./, '')); 
-			prArr[objSel[i].id]['n'] = objSel[i][objSel[i].selectedIndex].text.replace(seeker, '');
-			prArr[objSel[i].id]['m'] = matches[1]; // mode indicator
-			prArr[objSel[i].id]['l'] = matches[2]; // left side currency indeicator
-			prArr[objSel[i].id]['r'] = matches[4]; // the right side currency indicator
-			_flag = true;
-		}
-
-		regdb ('Onload SELECT', db);
-	}
-
-	for (var i=0; objInp[i]; i++) {
-	    //regdb('objinp', i);
-		if (objInp[i].type == 'radio' || objInp[i].type == 'checkbox') { // make sure we're dealing with radio boxes
-			db = 'Name - ' + objInp[i].name + ' : ID - ' + objInp[i].id;			     		
-			var temp = find_label(objInp[i]); //FIND THE LABEL by rpa-com.de		
-			//matches = temp.innerHTML.match(seeker);	//matches = objInp[i].nextSibling.innerHTML.match(seeker);
-			//db += matches;
-			if (temp) {
-				db += ' : Adjusted!';
-				objInp[i].onclick = function () { updateR(this); }
-				if (objInp[i].checked)	updateR(objInp[i]);
+			if (matches) { // yep
+				db += ' - Adjusted!';
+				prArr[objSel[i].id] = new Array();
+				//prArr[objSel[i].id]['p'] = Number(matches[3].replace(/,/, '')); // push the value onto the stack
+				prArr[objSel[i].id]['p'] = Number(matches[3].replace(/,/, '').replace(/\./, '')); 
+				prArr[objSel[i].id]['n'] = objSel[i][objSel[i].selectedIndex].text.replace(seeker, '');
+				prArr[objSel[i].id]['m'] = matches[1]; // mode indicator
+				prArr[objSel[i].id]['l'] = matches[2]; // left side currency indeicator
+				prArr[objSel[i].id]['r'] = matches[4]; // the right side currency indicator
+				if (onloadPriceUpdate) _flag = true; //Onload Price Update
 			}
-		}
-		regdb('Onload RAD/CH', db);
-	}
 
+			regdb ('Onload SELECT', db);
+		}
+	}
+	
+	if (!_oflag) {
+		for (var i=0; objInp[i]; i++) {
+		    //regdb('objinp', i);
+			db= '';
+			if (objInp[i].type == 'radio' || objInp[i].type == 'checkbox') { // make sure we're dealing with radio boxes
+				db = 'Name - ' + objInp[i].name + ' : ID - ' + objInp[i].id;			     		
+				var temp = find_label(objInp[i]); //FIND THE LABEL by rpa-com.de		
+				//matches = temp.innerHTML.match(seeker);	//matches = objInp[i].nextSibling.innerHTML.match(seeker);
+				//db += matches;
+				if (temp) {
+					db += ' : Adjusted!';
+					objInp[i].onclick = function () { updateR(this); }
+					if (onloadPriceUpdate) if (objInp[i].checked)	updateR(objInp[i]); //Onload Price Update
+				}
+				
+			}
+			if (db != '') regdb('Onload RAD/CH', db);	
+		}
+    }
+	
 	if (_flag  && !_oflag)	{
 		updatePriceNow();
 	}
@@ -385,6 +427,7 @@ function updatePriceNow() { // update the price display
 	var db = '';
 	var l = defaultCurrencyLeft;
 	var r = defaultCurrencyRight;
+	var flagM= false;
 
 	for (var i in prArr) {
 		if (prArr[i]=='') { //if (prArr[i] !== null) {
@@ -406,15 +449,38 @@ function updatePriceNow() { // update the price display
 					db += 'Mode: Base';
 					db += ' - Altering base to ' + prArr[i]['p'];
 					origPrice = prArr[i]['p'];
+					if (origPrice > 0) var flagM = true;
 					break;
 			}
 			regdb('updatePriceNow', db);
 		}
 		
 	}
-
+	
 	var newPrice = ((origPrice + totalAdj) * quantity / 100).toFixed(2);
-	document.getElementById('productPrices').innerHTML = '<?php echo UPDATER_PREFIX_TEXT; ?>' + l + addCommas(newPrice) + r + (showQuantity ? ' (' + quantity + ')' : '');
+	
+	//SUPPORT FOR SPECIAL PRICES
+	if (classSpecialPrice) {
+		var specialPriceHTML= '<span class="productSpecialPrice">' + l + addCommas(newPrice) + r + (showQuantity ? ' (' + quantity + ')' : '') + '</span>';
+		if (classNormalPrice) {
+			var nPrice = ((normalPrice + totalAdj) * quantity / 100).toFixed(2);
+			var normalPriceHTML= '<span class="normalprice">' + l + addCommas(nPrice) + r + ' </span>&nbsp;';			
+		}
+		if (classPriceDiscount) {
+			if (totalAdj > 0) {
+			   var sparpreis= (nPrice - newPrice).toFixed(2);
+			   var DiscountHTML= '<span class="productPriceDiscount">' + '<?php echo UPDATER_DISCOUNT; ?>' + l + addCommas(sparpreis) + r + '</span>';			   
+			} else var DiscountHTML= '<span class="productPriceDiscount">' + PriceDiscountHTML + '</span>';
+		}
+		if (flagM) {
+			normalPriceHTML= '<?php echo UPDATER_PREFIX_TEXT; ?>';
+			DiscountHTML= '<span class="productPriceDiscount">' + PriceDiscountHTML + '</span>';
+		}
+		document.getElementById('productPrices').innerHTML = normalPriceHTML + specialPriceHTML + DiscountHTML;
+	} else {   
+		document.getElementById('productPrices').innerHTML = '<?php echo UPDATER_PREFIX_TEXT; ?>' + l + addCommas(newPrice) + r + (showQuantity ? ' (' + quantity + ')' : '');
+	}
+	
 	if (_sidebox !== false && objSB === false)	createSB();
 	if (objSB !== false)	updateSB(); // update the sidebox
 	updSP();
