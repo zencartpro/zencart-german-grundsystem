@@ -212,7 +212,7 @@ function init() { // discover the selects that are required to adjust the main p
 		}
 
 		// Find the default currency symbols		
-		var temp = '<? echo $currencies->format(1000.00);?>'; //NEW: USE ZENCART CURRENCIES FORMAT
+		var temp = '<?php  echo $currencies->format(1000.00);?>'; //NEW: USE ZENCART CURRENCIES FORMAT
         regdb('Currencies Format', temp);
 		temp= temp.match(/s*([^0-9 ]*)([0-9.,]+)(.*)/); //OLD: origHTML.match(/.*:\s*([^0-9 ]*)([0-9.,]+)(.*)/);	
 		defaultCurrencyLeft = temp[1];
@@ -222,14 +222,14 @@ function init() { // discover the selects that are required to adjust the main p
 		regdb('Onload default currency locator', db);	
 		
 		//NEW: FIND defaultDecimal_Point		
-		var tempdp = '<? echo $currencies->format(0.00);?>';		
+		var tempdp = '<?php  echo $currencies->format(0.00);?>';		
 		tempdp = tempdp.match(/([0-9,.]+)/g)[0]; 	
 		regdb('Price Format', tempdp);
 		defaultDecimal_Point = tempdp.match(/([,.]+)/g)[0];
 		regdb('defaultDecimal_Point', defaultDecimal_Point);
 		
 		//NEW: FIND defaultThousands_Point		
-		var temptp = '<? echo $currencies->format(1000);?>';		
+		var temptp = '<?php echo $currencies->format(1000);?>';		
 		temptp = temptp.match(/([0-9,.]+)/g)[0]; 	
 		regdb('Price Format', temptp);
 		defaultThousands_Point = temptp.match(/([,.]+)/g)[0];
