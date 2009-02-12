@@ -37,7 +37,8 @@ Image Styles:
 // text files declarations:  includes/languages/YOURLANGUAGE/jscript_updater.php
 ?>
 
-<? //NEW QUERY FOR TESTING product_is_free, product_is_call
+<?php
+ //NEW QUERY FOR TESTING product_is_free, product_is_call
 $sqlnew = "select p.product_is_free, p.product_is_call
           from " . TABLE_PRODUCTS . " p
           where p.products_id = '" . (int)$_GET['products_id'] . "'";
