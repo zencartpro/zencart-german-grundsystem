@@ -1,0 +1,44 @@
+===== Rabatt für Zahlungsart 2.0 ===
+
+für Zen-Cart 1.3.7 deutsch und 1.3.8 deutsch
+
+2009-02-12
+webchills
+
+
+===== Was macht dieses Modul? ===
+
+Mit diesem Modul ist es möglich, dem Kunden einen prozentuellen Rabatt zu geben, wenn er eine bestimmte Zahlungsart wählt.
+
+
+
+================= WICHTIG =====================
+Vor dem Einbau dieser Änderungen:
+BACKUP von Shop und Datenbank machen! 
+Keine Haftung, Verwendung auf eigene Gefahr!
+BACKUP gemacht? Ok, dann weiterlesen...
+=================================================
+
+
+===== INSTALLATION ===
+
+
+Installation:
+Es werden keine bestehenden Dateien überschrieben
+
+für Zen-Cart 1.3.7
+Ordner includes aus dem Verzeichnis zencart137 hochladen
+
+für Zen-Cart 1.3.8
+Ordner includes aus dem Verzeichnis zencart138 hochladen
+
+Danach im Admin unter Module > Zusammenfassung das Modul aktivieren und die Werte wie gewünscht anpassen.
+
+Es ist nur ein prozentueller Rabatt möglich.
+
+
+
+===== FRAGEN, FEEDBACK, BUGS? ===
+
+Posten ins Forum auf zen-cart.at
+http://www.zen-cart.at/zcvb/forum/forumdisplay.php?f=36
