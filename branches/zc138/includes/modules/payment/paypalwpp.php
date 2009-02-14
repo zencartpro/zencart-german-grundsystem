@@ -1,12 +1,12 @@
 <?php
 /**
  * paypalwpp.php payment module class for Paypal Express Checkout / Website Payments Pro / Payflow Pro payment methods
- *
+ * includes fix for 10413 error (see http://www.zen-cart.com/forum/showthread.php?t=105971&page=4)
  * @package paymentMethod
  * @copyright Copyright 2003-2007 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: paypalwpp.php 7554 2007-11-30 17:18:05Z drbyte $
+ * @version $Id: paypalwpp.php 7555 2009-02-05 12:43:05Z webchills $
  */
 
 /**
@@ -1508,11 +1508,19 @@ class paypalwpp extends base {
       if (strstr($key, 'AMT')) $optionsLI[$key] = abs(strval($value));
     }
 
-    // subtotals have to add up to AMT
-    // Thus, if there is a discrepancy, make adjustment to HANDLINGAMT:
-    $st = $optionsST['ITEMAMT'] + $optionsST['TAXAMT'] + $optionsST['SHIPPINGAMT'] + $optionsST['HANDLINGAMT'];
-    if ($st != $optionsST['AMT']) $optionsST['HANDLINGAMT'] += strval($optionsST['AMT'] - $st);
+// begin 10413 fix (see http://www.zen-cart.com/forum/showthread.php?t=105971&page=4)
 
+   if( DISPLAY_PRICE_WITH_TAX=='true' ) unset($optionsST['TAXAMT']);
+ 
+// subtotals have to add up to AMT
+// Thus, if there is a discrepancy, make adjustment to HANDLINGAMT:
+$st = $optionsST['ITEMAMT'] + $optionsST['TAXAMT'] + $optionsST['SHIPPINGAMT'] + $optionsST['HANDLINGAMT'];
+if ($st != $optionsST['AMT']) $optionsST['HANDLINGAMT'] += strval($optionsST['AMT'] - $st);
+ 
+// ensure handlingamt is not negative
+$optionsST['HANDLINGAMT'] = abs(strval($optionsST['HANDLINGAMT']));  
+
+// end 10413 fix
 
 /*  //PayPal API spec contradicts itself ... and apparently neither of these "requirements" are enforced. 
     //Thus skipping this section for now:
