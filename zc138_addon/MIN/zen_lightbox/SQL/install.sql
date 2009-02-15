@@ -1,5 +1,5 @@
 #####################################################################
-# Zen Lightbox 1.5 Multilanguage Install - 2008-12-30 - webchills
+# Zen Lightbox 1.5.1 Multilanguage Install - 2009-02-12 - webchills
 #####################################################################
 
 SET @gid=0;
@@ -59,24 +59,24 @@ INSERT INTO configuration_group (configuration_group_id, language_id, configurat
 
 
 REPLACE INTO configuration_language (configuration_title, configuration_key, configuration_description, configuration_language_id) VALUES
-('LB - Zen Lightbox aktivieren?', 'ZEN_LIGHTBOX_STATUS', 'Wenn auf true werden alle Produktbilder beim Click darauf innerhalb einer Lightbox angezeigt auf folgenden Seiten: <br /><br />- document_general_info<br />- document_product_info<br />- page (EZ-Pages)<br />- product_free_shipping_info<br />- product_info<br />- product_music_info<br />- product_reviews<br />- product_reviews_info<br />- product_reviews_write<br /><br />Voreinstellung: true',	43),
-('LB - Overlay Transparenz', 'ZEN_LIGHTBOX_OVERLAY_OPACITY', '<br />Steuert die Transparenz des Overlays<br /><br />Voreinstellung: 0.8',	43),
-('LB - Overlay Fade Dauer', 'ZEN_LIGHTBOX_OVERLAY_FADE_DURATION', 'Steuert die Dauer des Fade Effekts des Overlays. Angegeben in Millisekunden.<br /><br />Voreinstellung: 400',	43),
-('LB - Resize Dauer', 'ZEN_LIGHTBOX_RESIZE_DURATION', 'Geschwindigkeit der Bildvergrößerung. Angegeben in Millisekunden.<br /><br />Voreinstellung: 400',	43),
-('LB - Resize Übergangseffekt</b>', 'ZEN_LIGHTBOX_RESIZE_TRANSITION', 'Benutzerdefinierte Steuerung des Vergrößerungseffekts<br/><br/>Voreinstellung: false',	43),
-('LB - Anfangsbreite', 'ZEN_LIGHTBOX_INITIAL_WIDTH', 'Zen Lightbox aktivieren?',	43),
-('LB - Anfangshöhe', 'ZEN_LIGHTBOX_INITIAL_HEIGHT', 'Zen Lightbox aktivieren?',	43),
-('LB - Dauer des Fade Effekts', 'ZEN_LIGHTBOX_IMAGE_FADE_DURATION', 'Zen Lightbox aktivieren?',	43),
-('LB - Dauer des Caption Effekts', 'ZEN_LIGHTBOX_CAPTION_ANIMATION_DURATION', 'Zen Lightbox aktivieren?',	43),
-('LB - Bildzähler anzeigen', 'ZEN_LIGHTBOX_COUNTER', 'Zen Lightbox aktivieren?',	43),
-('LB - Lightbox beim Anclicken des Bildes schliessen?', 'ZEN_LIGHTBOX_CLOSE_IMAGE', 'Wenn auf true gestellt, schliesst sich die Lightbox wenn aufs Bild geklickt wird.<br /><br />Voreinstellung: false',	43),
-('LB - Lightbox beim Klick aufs Overlay schliessen?', 'ZEN_LIGHTBOX_CLOSE_OVERLAY', 'Wenn auf true gestellt, schliesst sich die Lightbox wenn aufs Overlay geklickt wird.<br /><br />Voreinstellung: false',	43),
-('LB - Tastatur Navigation', 'ZEN_LIGHTBOX_KEYBOARD_NAVIGATION', 'Sollen Tastaturbefehle die Lightbox steuern können?<br/><br/>Voreinstellung: true',	43),
-('LB - Lightbox schliessen', 'ZEN_LIGHTBOX_ESCAPE_KEYS',	'Zen Lightbox aktivieren?',	43),
-('LB - Vorheriges Bild', 'ZEN_LIGHTBOX_PREVIOUS_KEYS', 'Zen Lightbox aktivieren?',	43),
-('LB - Nächstes Bild', 'ZEN_LIGHTBOX_NEXT_KEYS', 'Zen Lightbox aktivieren?',	43),
-('LB - Galerie Modus', 'ZEN_LIGHTBOX_GALLERY_MODE', 'Sollen die zusätzlichen Artikelbilder in der Lightbox Galerie angezeigt werden?<br/><br/>Voreinstellung: true', 43),
-('LB - Hauptbild in der Galerie anzeigen', 'ZEN_LIGHTBOX_GALLERY_MAIN_IMAGE', 'Soll das Hauptbild in der Galerie enthalten sein?<br/><br/>Voreinstellung: true',	43),
-('LB - Lightbox auf EZ Pages', 'ZEN_LIGHTBOX_EZPAGES', 'Soll die Lightbox auch bei Bildern auf EZ-Pages angewandt werden?<br/><br/>Voreinstellung: true',	43),
-('LB - Dateitypen', 'ZEN_LIGHTBOX_FILE_TYPES', 'Auf EZ Pages wird der Lightbox Effekt auf alle Bilder mit den hier eingestellten Dateitypen angewandt.<br/><br/>Voreinstellung: jpg,gif,png',	43);
+('LB - Zen Lightbox aktivieren?', 'ZEN_LIGHTBOX_STATUS', 'Wenn auf true werden alle Produktbilder beim Click darauf innerhalb einer Lightbox angezeigt auf folgenden Seiten: <br /><br />- document_general_info<br />- document_product_info<br />- page (EZ-Pages)<br />- product_free_shipping_info<br />- product_info<br />- product_music_info<br />- product_reviews<br />- product_reviews_info<br />- product_reviews_write<br /><br /><b>Voreinstellung: true</b><br />',	43),
+('LB - Overlay Transparenz', 'ZEN_LIGHTBOX_OVERLAY_OPACITY', '<br />Steuert die Transparenz des Overlays<br /><br /><b>Voreinstellung: 0.8</b><br />',	43),
+('LB - Overlay Fade Dauer', 'ZEN_LIGHTBOX_OVERLAY_FADE_DURATION', 'Steuert die Dauer des Fade Effekts des Overlays. Angegeben in Millisekunden.<br /><br /><b>Voreinstellung: 400</b><br />',	43),
+('LB - Resize Dauer', 'ZEN_LIGHTBOX_RESIZE_DURATION', 'Geschwindigkeit der Bildvergrößerung. Angegeben in Millisekunden.<br /><br /><b>Voreinstellung: 400</b><br />',	43),
+('LB - Resize Übergangseffekt</b>', 'ZEN_LIGHTBOX_RESIZE_TRANSITION', 'Benutzerdefinierte Steuerung des Vergrößerungseffekts<br/><br/><b>Voreinstellung: false</b><br />',	43),
+('LB - Anfangsbreite', 'ZEN_LIGHTBOX_INITIAL_WIDTH', '<br />Wenn der Resize Effekt aktiv ist, startet die Lightbox mit der hier eingestellten Breite.<br /><br />Hinweis: Dieser Wert ist in Pixel anzugeben.<br /><br /><b>Voreinstellung: 250</b><br />',	43),
+('LB - Anfangshöhe', 'ZEN_LIGHTBOX_INITIAL_HEIGHT', '<br />Wenn der Resize Effekt aktiv ist, startet die Lightbox mit der hier eingestellten Höhe.<br /><br />Hinweis: Dieser Wert ist in Pixel anzugeben.<br /><br /><b>Voreinstellung: 250</b><br />',	43),
+('LB - Dauer des Fade Effekts', 'ZEN_LIGHTBOX_IMAGE_FADE_DURATION', '<br />Stellen Sie hier die Dauer des Fade Effekts eins.<br /><br />Hinweis: Dieser Wert ist in Millisekunden anzugeben.<br /><br /><b>Voreinstellung: 400</b><br />',	43),
+('LB - Dauer des Caption Effekts', 'ZEN_LIGHTBOX_CAPTION_ANIMATION_DURATION', '<br />Stellen Sie hier die Dauer der Caption Animation ein.<br /><br />Hinweis: Dieser Wert ist in Millisekunden anzugeben.<br /><br /><b>Voreinstellung: 400</b><br />',	43),
+('LB - Bildzähler anzeigen', 'ZEN_LIGHTBOX_COUNTER', '<br />Wenn auf true wird bei mehreren Bildern unterhalb des Bilds in der Lightboxein Bildzähler angezeigt.<br /><br /><b>Voreingestellt: true</b><br/>',	43),
+('LB - Lightbox beim Anclicken des Bildes schliessen?', 'ZEN_LIGHTBOX_CLOSE_IMAGE', 'Wenn auf true gestellt, schliesst sich die Lightbox wenn aufs Bild geklickt wird.<br /><br /><b>Voreinstellung: false</b><br />',	43),
+('LB - Lightbox beim Klick aufs Overlay schliessen?', 'ZEN_LIGHTBOX_CLOSE_OVERLAY', 'Wenn auf true gestellt, schliesst sich die Lightbox wenn aufs Overlay geklickt wird.<br /><br /><b>Voreinstellung: false</b><br />',	43),
+('LB - Tastatur Navigation', 'ZEN_LIGHTBOX_KEYBOARD_NAVIGATION', 'Sollen Tastaturbefehle die Lightbox steuern können?<br/><br/><b>Voreinstellung: true</b><br />',	43),
+('LB - Lightbox schliessen', 'ZEN_LIGHTBOX_ESCAPE_KEYS',	'<br />Die Lightbox wird geschlossen, wenn eine dieser Tasten gedrückt wird.<br /><br />Hinweis: Nur <a href="http://en.wikipedia.org/wiki/ASCII" target="_blank">ASCII</a> dezimale Werte dürfen verwendet werden, mit Komma getrennt (falls Sie mehrere Werte angeben).<br /><br /><b>Voreinstellung: 27,88,67</b><br />',	43),
+('LB - Vorheriges Bild', 'ZEN_LIGHTBOX_PREVIOUS_KEYS', '<br />Die Lightbox zeigt das vorherige Bild - falls verfügbar -, wenn eine dieser Tasten gedrückt wird.<br /><br />Hinweis: Nur <a href="http://en.wikipedia.org/wiki/ASCII" target="_blank">ASCII</a> dezimale Werte dürfen verwendet werden, mit Komma getrennt (falls Sie mehrere Werte angeben).<br /><br /><b>Voreinstellung: 37,80</b><br />',	43),
+('LB - Nächstes Bild', 'ZEN_LIGHTBOX_NEXT_KEYS', '<br />Die Lightbox zeigt das nächste Bild - falls verügbar -, wenn eine dieser Tasten gedrückt wird.<br /><br />Hinweis: Nur <a href="http://en.wikipedia.org/wiki/ASCII" target="_blank">ASCII</a> dezimale Werte dürfen verwendet werden, mit Komma getrennt (falls Sie mehrere Werte angeben).<br /><br /><b>Voreinstellung: 39,78</b><br />',	43),
+('LB - Galerie Modus', 'ZEN_LIGHTBOX_GALLERY_MODE', 'Sollen die zusätzlichen Artikelbilder in der Lightbox Galerie angezeigt werden?<br/><br/><b>Voreinstellung: true</b><br />', 43),
+('LB - Hauptbild in der Galerie anzeigen', 'ZEN_LIGHTBOX_GALLERY_MAIN_IMAGE', 'Soll das Hauptbild in der Galerie enthalten sein?<br/><br/><b>Voreinstellung: true</b><br />',	43),
+('LB - Lightbox auf EZ Pages', 'ZEN_LIGHTBOX_EZPAGES', 'Soll die Lightbox auch bei Bildern auf EZ-Pages angewandt werden?<br/><br/><b>Voreinstellung: true</b><br />',	43),
+('LB - Dateitypen', 'ZEN_LIGHTBOX_FILE_TYPES', 'Auf EZ Pages wird der Lightbox Effekt auf alle Bilder mit den hier eingestellten Dateitypen angewandt.<br/><br/><b>Voreinstellung: jpg,gif,png</b><br />',	43);
 
