@@ -100,7 +100,7 @@
             $paper = rl_invoice3::getDefault(RL_INVOICE3_PAPER, array('format' => 'A4', 'unit' => 'mm', 'orientation' => 'P'));
             $pdfT = new rl_invoice3($oID, $paper['orientation'], $paper['unit'], $paper['format']);
             $pdfT->createPdfFile(true);
-            $attach = $pdfT->getPDFAttachments('ONLY');
+            $attach = $pdfT->getPDFAttachments('ALL');
         } else {
             $attach = null;
         }
