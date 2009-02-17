@@ -12,7 +12,7 @@
  * second part == name of called function; param: products_id  ( <!--###getWPTag###--> )
  */
 
-define ('ABSPATH','/var/www/zc138/wordpress/');
+define ('ABSPATH','/var/www/zc138/wordpress/');   // abs-path to wp
 if (file_exists(ABSPATH.'wp-config.php')) {
     require_once(ABSPATH.'wp-config.php');
     $wpinstall = true;
