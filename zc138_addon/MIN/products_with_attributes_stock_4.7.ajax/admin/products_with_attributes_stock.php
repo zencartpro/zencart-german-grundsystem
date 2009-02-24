@@ -188,7 +188,7 @@ switch($action)
 		if(($_POST['add_edit'] == 'add') || ($_GET['add_edit'] == 'add')) //s_mack:noconfirm
 		{
 			if (preg_match("/\|/", $attributes)) {
-				echo "att: $attributes<bR>\n";
+
 				$arrTemp = preg_split("/\,/", $attributes);
 				$arrMain = array();
 				$intCount = 0;
@@ -445,13 +445,13 @@ break;
 <?php 	
 break;
 	default:
+    $rows = $stock->displayFilteredRows();
     echo '<div id="hugo1" style="background-color: green; padding: 2px 10px;"></div>';    
-    #echo '<form method="get" action="' . $_SERVER['PHP_SELF'] . '" id="pwas-search" name="pwas-search">Suchen:  <input id="pwas-filter" type="text" name="search"/></form><hr>';
-    echo '<form method="get" action="products_with_attributes_stock_ajax.php" id="pwas-search" name="pwas-search">Suchen:  <input id="pwas-filter" type="text" name="search"/></form>';
-    echo '<form method="post" action="products_with_attributes_stock_ajax.php?save=1" id="store" name="store"><input type="submit" value="store" id="store" name="store"/>';
-    echo '<span id="loading" style="display: none;"><img src="../images/ajax-loader2.gif" alt="" /> Loading...</span><hr>';
-    echo '<div id="pwa-table"';
-    echo $stock->displayFilteredRows();
+    echo '<form method="get" action="products_with_attributes_stock_ajax.php" id="pwas-search" name="pwas-search">Suchen:  <input id="pwas-filter" value="' . $stock->search . '" type="text" name="search"/></form>';
+    echo '<form method="post" action="products_with_attributes_stock_ajax.php?save=1" id="store" name="store"><input type="submit" value="' . CATALOG_PRODUCTS_WITH_ATTRIBUTES_STOCK_STATUS_BTN . '" id="store" name="store"/>';
+    echo '<span id="loading" style="display: none; width: 230px;"><img src="./images/ajax-loader.gif" alt="" /> ...</span><hr>';
+    echo '<div id="pwa-table">';
+    echo $rows;
     echo '</div>';
 break;
 }

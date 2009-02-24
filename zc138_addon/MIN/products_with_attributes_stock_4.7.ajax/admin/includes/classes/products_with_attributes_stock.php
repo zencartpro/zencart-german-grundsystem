@@ -1,4 +1,6 @@
 <?php
+// $Id$
+
 	class products_with_attributes_stock
 	{	
 		function get_products_attributes($products_id, $languageId=1)
@@ -87,6 +89,7 @@
             $w = ''; 
             if(!isset($_GET['search'])){
                 $s = $_SESSION['searchfilter'];
+                $this->search = $s;
                 $w = "(products.products_id = '$s' OR description.products_name LIKE '$s%' OR products.products_model LIKE '$s%') AND  " ;
             }
         }
@@ -177,21 +180,33 @@
         }
         $html .= '</table>';
         $html .= '</form>'."\n";
+        return '<div style="border:1px solid green; width:100%;">'.$html.'</div>';
         return $html;
     }
     function saveAttrib(){
         global $db;
+        $sync = array();   
         $i = 0;
         foreach ($_POST as $key => $value) {
             $id = intval(str_replace('stockid-', '', $key));
             if($id > 0){
                 $sql = "UPDATE products_with_attributes_stock SET quantity = '$value' WHERE products_with_attributes_stock.stock_id =$id LIMIT 1";
                 $db->execute($sql);
+                $sync[$id] = $id;  
                 $i++;
             }
         }
+        if($i > 0){
+            $sql = 'SELECT DISTINCTROW products_id FROM ' . TABLE_PRODUCTS_WITH_ATTRIBUTES_STOCK . ' WHERE stock_id IN (' . implode(',', $sync) . ')';
+            $ret = $db->Execute($sql);
+            while (!$ret->EOF){
+                $this->update_parent_products_stock($ret->fields['products_id']);
+                $ret->MoveNext();
+            }
+        }
         $html = print_r($_POST, true);
-        $html = "$i DS SAVED";
+        
+        $html = "$i " . CATALOG_PRODUCTS_WITH_ATTRIBUTES_STOCK_STATUS;
         return $html;  
     }
         

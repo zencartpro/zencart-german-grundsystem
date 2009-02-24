@@ -89,5 +89,6 @@ function addEvent() {
         );
 }
 function saved(responseText, statusText)  { 
-    alert('status: ' + statusText + '\n\nresponseText: \n' + responseText ); 
+    //alert('status: ' + statusText + '\n\nresponseText: \n' + responseText ); 
+    //alert(responseText ); 
 }

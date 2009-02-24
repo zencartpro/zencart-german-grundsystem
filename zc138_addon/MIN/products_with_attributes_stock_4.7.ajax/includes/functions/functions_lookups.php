@@ -7,7 +7,7 @@
  * @copyright Copyright 2003-2007 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: functions_lookups.php 0000 2007-12-02 00:00:00Z kuroi $
+ * @version $Id: functions_lookups.php 6485 2007-06-12 06:46:08Z ajeh $
  */
 
 
@@ -160,7 +160,7 @@
  *
  * @param int The product id of the product who's stock we want
 */
-/*  function zen_get_products_stock($products_id) {
+  function zen_get_products_stock($products_id) {
     global $db;
     $products_id = zen_get_prid($products_id);
     $stock_query = "select products_quantity
@@ -170,57 +170,6 @@
     $stock_values = $db->Execute($stock_query);
 
     return $stock_values->fields['products_quantity'];
-  }
-*/
-  function zen_get_products_stock($products_id, $attributes = '') {
-    global $db;
-    $products_id = zen_get_prid($products_id);
-
-    // get product level stock quantity
-	  $stock_query = "select products_quantity from " . TABLE_PRODUCTS . " where products_id = '" . (int)$products_id . "'"; 
-
-    // check if there attributes for this product
-    if(is_array($attributes) and sizeof($attributes) > 0){
-
-      // check if any attribute stock values have been set for the product
-			// (only of there is will we continue, otherwise we'll use product level data)
-			$attribute_stock = $db->Execute("select stock_id from " . TABLE_PRODUCTS_WITH_ATTRIBUTES_STOCK . " where products_id = '" . (int)$products_id . "'");
-      if ($attribute_stock->RecordCount() > 0) {
-
-  		  // prepare to search for details for the particular attribute combination passed as a parameter
-	  	  if(sizeof($attributes) > 1){
-          $first_search = 'where options_values_id in ("'.implode('","',$attributes).'")';
-		    } else {
-			    foreach($attributes as $attribute){
-				    $first_search = 'where options_values_id="'.$attribute.'"';
-          }
-        }
-
-        // obtain the attribute ids
-  		  $query = 'select products_attributes_id from '.TABLE_PRODUCTS_ATTRIBUTES.' '.$first_search.' and products_id="'.$products_id.'" order by products_attributes_id';
-	  	  $attributes_new = $db->Execute($query);
-
-  		  while(!$attributes_new->EOF){
-	  		  $stock_attributes[] = $attributes_new->fields['products_attributes_id'];	
-		  	  $attributes_new->MoveNext();
-		    }
-  		  if(sizeof($stock_attributes) > 1){
-	  		  $stock_attributes = implode(',',$stock_attributes);
-		    } else {
-			    $stock_attributes = $stock_attributes[0];
-		    }
-		
-		    // create the query to find attribute stock 	
-		    $stock_query = 'select quantity as products_quantity from '.TABLE_PRODUCTS_WITH_ATTRIBUTES_STOCK.' where products_id = "'.(int)$products_id.'" and stock_attributes="'.$stock_attributes.'"';
-
-			}
-
-    }
-
-    // get the stock value for the product or attribute combination
-		$stock_values = $db->Execute($stock_query); 		
-    return $stock_values->fields['products_quantity'];
-
   }
 
 /**
@@ -233,7 +182,7 @@
  *
  * @TODO naughty html in a function
 */
-/*  function zen_check_stock($products_id, $products_quantity) {
+  function zen_check_stock($products_id, $products_quantity) {
     $stock_left = zen_get_products_stock($products_id) - $products_quantity;
     $out_of_stock = '';
 
@@ -243,25 +192,6 @@
 
     return $out_of_stock;
   }
-*/
-
-  // modified to include attributes
-  function zen_check_stock($products_id, $products_quantity, $attributes = '') {
-
-    $stock_left = zen_get_products_stock($products_id, $attributes) - $products_quantity;
-    $out_of_stock = '';
-
-    if ($stock_left < 0 && !is_array($attributes)) {
-      $out_of_stock = '<span class="markProductOutOfStock">' . STOCK_MARK_PRODUCT_OUT_OF_STOCK . '</span>';
-    }
-    elseif ($stock_left < 0 && is_array($attributes)) {
-      $out_of_stock = '<span class="markProductOutOfStock">' . STOCK_MARK_PRODUCT_OUT_OF_STOCK . '</span>';
-    }
-
-    return $out_of_stock;
-  }
-
-
 
 /*
  * List manufacturers (returned in an array)
@@ -863,9 +793,10 @@
     if (empty($language)) $language = $_SESSION['languages_id'];
 
     $category_lookup = $db->Execute("select " . $what_field . " as lookup_field
-                              from " . TABLE_CATEGORIES . " c, " . TABLE_CATEGORIES_DESCRIPTION . " cd
-                              where c.categories_id ='" . (int)$categories_id . "'
-                              and cd.language_id = '" . (int)$language . "'");
+                                from " . TABLE_CATEGORIES . " c, " . TABLE_CATEGORIES_DESCRIPTION . " cd
+                                where c.categories_id ='" . (int)$categories_id . "'
+                                and c.categories_id = cd.categories_id 
+                                and cd.language_id = '" . (int)$language . "'");
 
     $return_field = $category_lookup->fields['lookup_field'];
 
@@ -959,11 +890,11 @@
     return $valid_downloads;
   }
 
-// build date range for new products
-  function zen_get_new_date_range($time_limit = false) {
-    if ($time_limit == false) {
-      $time_limit = SHOW_NEW_PRODUCTS_LIMIT;
-    }
+// build date range for new products 
+  function zen_get_new_date_range($time_limit = false) { 
+    if ($time_limit == false) { 
+      $time_limit = SHOW_NEW_PRODUCTS_LIMIT; 
+    } 
     // 120 days; 24 hours; 60 mins; 60secs
     $date_range = time() - ($time_limit * 24 * 60 * 60);
     $upcoming_mask_range = time();
@@ -992,7 +923,6 @@
     }
     return $new_range;
   }
-
 
 // build date range for upcoming products
   function zen_get_upcoming_date_range() {

@@ -23,14 +23,19 @@ $stock = new products_with_attributes_stock;
 
 function saveAttrib(){
     global $db;
+    $sync = array();
     foreach ($_POST as $key => $value) {
         $id = intval(str_replace('stockid-', '', $key));
         if($id > 0){
             $sql = "UPDATE products_with_attributes_stock SET quantity = '$value' WHERE products_with_attributes_stock.stock_id =$id LIMIT 1";
             $db->execute($sql);
+            $sync[$id] = $id;
         }
+        
     
     }
-    return 'OK';  
+    $ret = print_r($sync, true);
+    echo $ret;
+    return $ret;  
 }
     
