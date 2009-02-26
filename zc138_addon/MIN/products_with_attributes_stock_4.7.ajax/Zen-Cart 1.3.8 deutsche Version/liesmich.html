@@ -1,0 +1,174 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Readme for Stock by Attribute Mod</title>
+<style type="text/css">
+<!--
+body {font:100% Verdana, Arial, Helvetica, sans-serif; text-align:center; color:#333; margin:0; padding:0}
+#header {font:300% Georgia, "Times New Roman", Times, serif; background-color:#000; border-bottom: 5px solid #85c285}
+#header a {color: #fff; text-decoration:none}
+#header a:hover {color: #85c285}
+#wrapper {width: 780px; margin: 0 auto; text-align: left}
+h1 {font:200% Georgia, "Times New Roman", Times, serif; color:#000}
+h2 {font:italic 140% Georgia, "Times New Roman", Times, serif; color:#000}
+.filename {font:90% "Courier New", Courier, monospace; color:#660000}
+code {background:#eee; margin:.5em 2em; padding: .5em; font-family:"Courier New", Courier, monospace; display:block}
+-->
+</style>
+<body>
+<div id="header"><a href="http://www.kuroi.co.uk" target="_blank">Kuroi Web Design</a></div>
+<div id="wrapper">
+
+<h1 align="center">Lagerbestand für Artikel mit Attributen <br />
+  Version 
+  4.7 Ajax </h1>
+<p>This add-on is based on a Zen Cart contribution by dafonz (products_with_attributes_stock), which was adapted by danielcor for Zen Cart 1.3 and further adapted by kuroi for 1.3.5+.<br>
+<br>
+<font style="color: red; font-weight: bold;">NOTE: This is a simple modification to version 4.7 that allow multiple attribute combinations to be added at the same time.</font>  </p>
+<p><font style="color: red; font-weight: bold;">NOTE2: A little bit of ajax functions.</font>
+  <br>
+    <br>
+  This current version (4.7a) is designed specifically to work correctly in version 1.3.8 of Zen Cart and is unlikely to work with earlier versions. If you are running Zen Cart 1.2.5-1.2.7d, please use the "products_with_attributes_stock" add-on by dafonz. If you are using versions 1.3.0 - 1.3.0.2 please use "Stock Attributes by danielcor". If you are using version 1.3.5, please use version 4.2 of this mod, for 1.3.6 use version 4.3 of this mod. Versions 4.4, 4.5 and 4.6 should be compatible with versions 1.3.7 and 1.3.7.1 of Zen Cart (though obviously the latter versions of Zen Cart and this add-on are recommended).</p>
+<h2>Was macht dieses Modul</h2>
+<p>
+Diese Erweiterung erlaubt es den Shopbetreiber, für jede Attributvariante einen eigenen Lagerbestand zu hinterlegen. Wenn Sie z.B. einen Artikel in den Größen Large, Medium und Small verkaufen, können Sie Lagerbestände für diese 3 Größen hinterlegen. Die Anzahl der möglichen Attributkombinationen ist unbegrenzt. Wenn Sie z.B. Shirts aus Baumwolle oder Polyester in den Farben Grün, Rot und Blau und in den Größen Small, Medium und Large verkaufen, können Sie mit diesem Modul einen eigenen Lagerbestand für jede der möglichen 18 Kombinationen hinterlegen und aktuell halten.</p>
+<h2>What This Version of the Module Does</h2>
+<p>Previous versions of the module insisted that once installed you maintained stock at attribute level for products with attributes (otherwise the products would be treated as being out of stock). This version (4.6) gives you the choice of managing stock at a product or an attribute level on a product-by-product basis.</p>
+<p> If you enter stock for any combination of product attributes (product variants), stock calculations will done using attribute level data. Any attributions that have not been set up will be treated as having zero stock. However, if you have no product variants set up, or delete them all, stock for that product will be calculated based on its overall product quantity.</p>
+<h2>Installation</h2>
+<p> Die Datei stock_attribute_german.sql im Ordner SQL mit einem Texteditor öffnen und den Inhalt ins Eingabefeld unter Admin->Tools-> SQL Patches installieren kopieren und absenden. Dadurch werden die nötigen Datenbankeinträge vorgenommen. Es wird eine eigene Tabelle für Stock by Attributes angelegt. Wenn Sie das lieber über phpMyAdmin durchführen, achten Sie darauf, dass Sie in der Datei das Präfix auf das von Ihnen verwendete anpassen.<br>
+    <br>
+  Benennen Sie den Ordner includes/templates/DEINTEMPLATE auf das in Ihrem Shop verwendete Template um (z.B. classic, viennablood, ...)</p>
+<p>Von diesem Modul werden 6  Zen Cart Corefiles geändert. Wenn Sie eine der folgenden Dateien bereits einmal geändert haben (z.B. durch Installation einer anderen Erweiterung), laden Sie die dateien nicht einfach hoch, sondern nehmen Sie die Änderungen manuell vor. Die Programme WinMerge oder BeyondCompare sind für das Mergen solcher Änderungen gut geeignet.</p>
+<ul>
+<li>admin/includes/stylesheet.css
+  </li>
+  <li>admin/orders.php</li>
+  <li>includes/classes/order.php</li>
+  <li>includes/functions/functions_lookups.php</li>
+  <li>includes/modules/pages/checkout_shipping/header_php.php</li>
+  <li>includes/modules/pages/shopping_cart/header_php.php</li>
+</ul>
+<p>Zusätzlich wird folgende Datei überschrieben</p>
+<ul>
+  <li>includes/templates/DEINTEMPLATE/templates/tpl_shopping_cart_default.php</li>
+</ul>
+<p>Auch hier gilt:<br />
+  Sollten Sie dieses Template schon einmal geändert haben, führen Sie die Änderungen manuell durch.</p>
+<p>Laden Sie nun die Dateien in der vorgebenenen Struktur hoch und das Modul ist einsatzbereit.</p>
+<h2>Update von älteren Versionen</h2>
+<p>To upgrade from any version 4.x to 4.7a, it is easiest to overwrite all the files. No changes are needed to your database. If you are upgrading from version 4.0 - 4.4 you should also delete the following file To upgrade from versions 4.0 - 4.4, it is easiest to overwrite all the files and then delete the following file (unless you have made other changes to it):</p>
+<ul>
+  <li>includes/modules/YOUR_TEMPLATE/attributes.php</li>
+</ul>
+<h2>Verwendung des Moduls</h2>
+<p> To use, log into the admin area, click on Catalog-&gt;Products with Attributes Stock to modify inventory levels of your products by attributes. 
+  You will also want to consider the settings in Configuration-&gt;Stock. The settings here will determine things such as whether or not a customer will be allowed to checkout when insufficient stock is on hand. As well as controlling the new feature that allows you display the amount of stock available on the shopping cart page if a customer tries to buy more than the recorded stock.</p>
+<h2>Changelog </h2>
+<h2>Amendments from v3 (Stock Attributes by danielcor) </h2>
+<p>1.  Removed zen_ prefix from table creation SQL allowing it to be run by Admin &gt;  Tools &gt; Install SQL Patches (bug fix)</p>
+<p>2.  Changed quantity field to float in products with attributes table allowing  fractional stock quantities (bug fix)</p>
+<p>3.  admin/orders.php updated for compatibility with Zen Cart 1.3.5</p>
+<p>4.  admin/products_with_attributes_stock.php updated to pass a languages_id to  functions get_products_attributes and get_attributes_name each time they are  called (bug fix) </p>
+<p>5.  includes/functions/functions_lookups.php updated for compatibility with Zen  Cart 1.3.5</p>
+<p>6.  products_with_attributes_catalog_dhtml.php file created so that  catalog_dhtml.php no longer needs to be over-written (new feature)</p>
+<p>7.  Language file for Admin is now used, which together with earlier bug fix should  allow full integration with carts whose Admin is not in English (new feature)</p>
+<p>8. Multiple changes to allow all data and add-on generated text to correctly reflect Admin language.</p>
+<p>9.  Re-enabled check stock and disable checkout feature for all products (bug fix)</p>
+<p>10.  Fixed &quot;Out of Stock&quot; indicators in Shopping Cart for products with  attributes (bug fix)</p>
+<p>11.  Added &quot;Stock Available&quot; to shopping cart page for display when stock  is low. This can be turned on and off via the Admin &gt; Stock menu (new  feature)</p>
+<p>12.  Low stock email now triggered by low stock on an attribute, even if overall  stock for product remains above stock reorder level (new feature)</p>
+<p>13. Removed all uses of the &lt;? shortform php tag (best practice)</p>
+<p>14. Moved the inline styling on the Products with Attributes Stock page to a stylesheet (best practice)</p>
+<p>15. Added model to Products with Attributes Stock page (new feature)</p>
+<p>16. Fixed occasional corruption of product variants on stock page (bug fix)</p>
+<h2>Amendments from 4.0 to 4.1</h2>
+<p>Incorporated two Zen Cart bug fixes in the files used by this mod.</p>
+<p>Corrected a missing double quote in the SQL patch  file</p>
+<p>Removed a stray diagnostic line</p>
+<h2>Amendments from 4.1 to 4.2</h2>
+<p>Corrected the &quot;invalid argument supplied for foreach()&quot; in order.php</p>
+<p>Corrected the problem with product variants sometimes not showing on the stock screen (actually a database corruption)</p>
+<p>Improved the layout of the stock page by adding some extra CSS.</p>
+<p>To upgrade from 4.1, just replace all the files. </p>
+<h2>Amendments from 4.2 to 4.3</h2>
+<p>Multiple small changes in accordance with the security patches incorporated in Zen Cart 1.3.6</p>
+<p>Minor change to define statements to eliminate a hard-coded English-language &quot;Quantity&quot; missed in previous releases.</p>
+<p>To upgrade from 4.1 or 4.2, just replace all the files.</p>
+<h2>Amendments from 4.3 to 4.4</h2>
+<p>Minor changes to the following files to keep them in line with the new functionality in Zen Cart 1.3.7 and avoid a duplicate include of the http_client class: </p>
+<ul>
+  <li>admin/orders.php</li>
+  <li>includes/classes/order.php</li>
+  <li>includes/modules/pages/checkout_shipping/header_php.php</li>
+</ul>
+<p>To upgrade from 4.1 or 4.2, just replace all the files To upgrade from 4.3, replace the three files above.</p>
+<h2>Amendments from 4.4 to 4.5</h2>
+<p>Two Zen Cart security patches from 1.3.7.1:</p>
+<ul>
+  <li>admin/orders.php</li>
+  <li>includes/modules/pages/checkout_shipping/header_php.php</li>
+</ul>
+<p>A minor change to make the HTML generated for orders easier to read. This is a Zen Cart 1.3.7.1 change that will make debugging and maintenance easier, but not affect functionality:</p>
+<ul>
+  <li>includes/classes/order.php</li>
+</ul>
+<p>Allowance for recent Zen Cart changes for paypal in the shopping cart:</p>
+<ul>
+  <li>includes/templates/YOUR_TEMPLATE/templates/tpl_shopping_cart_default.php</li>
+</ul>
+<p>Removes the attributes.php file from the includes folder. The only thing that this file was doing was blocking a small Zen Cart enhancement introduced in version 1.3.5.</p>
+<ul>
+  <li>includes/modules/attributes.php</li>
+</ul>
+<p>Additional styling for the input labels in the Admin - just makes the world a slightly nicer place:</p>
+<ul>
+  <li>admin/includes/stylesheet.css </li>
+</ul>
+<p>Slight change to the low stock message switch wording to make clear that this for showing stock levels in cart when there is insufficent to meet the customer's order</p>
+<ul>
+  <li>stock_attribute.sql</li>
+  </ul>
+<h2>Amendments from 4.5 to 4.6</h2>
+<p>Re-working (and commenting) of the function that obtains stock values</p>
+<ul>
+  <li>includes/functions/functions_lookups.php</li>
+  </ul>
+<h2>Amendments from 4.6 to 4.7</h2>
+<p>Integration of  changes in Zen Cart 1.3.8 into the following files:</p>
+<ul>
+  <li>admin/orders.php</li>
+  <li>includes/classes/order.php</li>
+  <li>includes/functions/functions_lookups.php</li>
+  <li>includes/modules/pages/checkout_shipping/header_php.php</li>
+  <li>includes/modules/pages/shopping_cart/header_php.php</li>
+  <li>includes/templates/YOUR_TEMPLATE/templates/tpl_shopping_cart.php</li>
+</ul>
+<p>There are no functional enhancements.</p>
+<h2>Amendments from 4.7 to 4.7ajax</h2>
+<p>added ajax functionality</p>
+<ul>
+  <li>search filter: &quot;%ma&quot; filters all produchts with &quot;ma&quot; in products-name or in products-model; the search value will be stored in a cookie</li>
+  <li>a click at the &quot;quantity in stock&quot; value adds an input-field &amp; you can enter the new value; the store button saves all changed values</li>
+  <li>added files in /ajax folder</li>
+  <li>changed products_with_attributes_stock.php</li>
+  <li>added products_with_attributes_stock_ajax.php</li>
+  </ul>
+<p>&nbsp;</p>
+<h2>License &amp; Copyright</h2>
+<p>Zen Cart Open Source E-commerce - Stock by Attributes</p>
+<p>Copyright (c) 2008 edv-lösungen langheiter (<a href="http://www.kuroiwebdesign.com">edv.langheiter.com</a>)<br />
+  Copyright (c) 2006-2007 kuroi Ltd  (<a href="http://www.kuroiwebdesign.com">www.kuroiwebdesign.com</a>)<br>
+  Portions Copyright (c) 2005 dafonz, 2006 danielcor <br>
+Portions Copyright (c) 2003 osCommerce, 2003-2007 Zen Cart<p>This contribution is subject to version 2.0 of the GPL license, 
+  that is bundled with this package in the file LICENSE, and is 
+  available through the world-wide-web at the following url: 
+  <a href="http://www.zen-cart.com/license/2_0.txt">http://www.zen-cart.com/license/2_0.txt</a>. 
+  If you did not receive a copy of the Zen Cart license and are unable 
+  to obtain it through the world-wide-web, please send a note to 
+license@zen-cart.com.</p>
+
+</div>
+</body>
+</html>
