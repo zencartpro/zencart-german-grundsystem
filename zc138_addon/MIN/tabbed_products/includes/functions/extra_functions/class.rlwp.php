@@ -55,4 +55,3 @@ function getWPTag($tag = 'zen-cart'){
     $wp = new rlWP();
     return $wp->getWPTag($tag);
 }
-
