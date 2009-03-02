@@ -548,7 +548,11 @@ function getPDF($pid = 1){
     <br>
     example: &lt;!--%PDFs%--&gt;&lt;!--###getPDF###--&gt;<br>
   
-  <p>this syntax creates a tab called <em>PDF</em>, calls a function with the name <em>getPDF</em> with the parameter products_id. the function list the file images/PDF/pid.pdf AND all files in images/PDF/pid/*.*</p>
+  <p>this syntax creates a tab called <em>PDF</em>, calls a function with the name <em>getPDF</em> with the parameter products_id. <br>
+  the function list the file <br>
+  images/PDF/products_id.pdf AND all files in images/PDF/products_id/*.*<br>
+  AND<br>
+  images/PDF/products_model.pdf AND all files in images/PDF/products_model/*.*</p>
   <p>you can find the code in includes/functions/extra_functions/class.rlpdf.php</p>
   <p>here you can see it in action :: <a href="http://demo.zen-cart.at/index.php?main_page=product_info&cPath=69&products_id=192&template_switch_id=viennablood" target="_blank">demo.zen-cart.at</a><br>
   </p>
