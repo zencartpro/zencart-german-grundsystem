@@ -1,4 +1,4 @@
-<?php
+<?php
 /**
  * @package TPP
  * @copyright Copyright 2003-2007 Zen Cart Development Team
