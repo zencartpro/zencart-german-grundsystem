@@ -8,6 +8,8 @@
  * 
  * @author rainer AT langheiter DOT com // http://www.filosofisch.com // http://edv.langheiter.com
  * example: <!--%PDF%--><!--###getPDF###-->
+ * 
+ * 
  * first part == name of tab ( <!--%PDF%--> )
  * second part == name of called function; param: products_id  ( <!--###getPDF###--> )
  */
