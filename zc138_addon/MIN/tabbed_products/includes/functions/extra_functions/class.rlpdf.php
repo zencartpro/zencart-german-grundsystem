@@ -1,4 +1,4 @@
-<?php
+<?php
 /**
  * @package TPP
  * @copyright Copyright 2003-2007 Zen Cart Development Team
@@ -17,14 +17,12 @@ class rlPDF {
     public $wpinstall;
     private $pid;
     
-    function __construct(){
-
+    function __construct($pid = 1){
+        $this->pid = $pid;
     }
     
-    public function getPDFLink($pid = 'zen-cart'){
+    public function getPDFLink(){
         $content = '';
-        $this->pid = $pid;
-        
         $files = array();
         $path = DIR_WS_IMAGES . 'PDF/';
         // check single file
@@ -57,8 +55,8 @@ class rlPDF {
 }
 
 
-function getPDF($pid = 'zen-cart'){
-    $wp = new rlPDF();
-    return $wp->getPDFLink($pid);
+function getPDF($pid = 1){
+    $pdf = new rlPDF($pid);
+    return $pdf->getPDFLink();
 }
 

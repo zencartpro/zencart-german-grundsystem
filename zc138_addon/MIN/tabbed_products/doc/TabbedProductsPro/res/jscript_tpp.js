@@ -6,7 +6,7 @@
 
 //Set tab to intially be selected when page loads:
 //[which tab (1=first tab), ID of tab content to display]:
-var initialtab=[1, "sc1"]
+var initialtab=[7, "sc7"]
 
 //Turn menu into single level image tabs (completely hides 2nd level)?
 var turntosingle=0 //0 for no (default), 1 for yes
