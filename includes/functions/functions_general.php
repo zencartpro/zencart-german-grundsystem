@@ -227,9 +227,17 @@ if (!defined('IS_ADMIN_FLAG')) {
   }
 
 ////
+function strtolower_utf8($inputString) {
+    // http://de.php.net/manual/de/function.strtolower.php#78560
+    $outputString    = utf8_decode($inputString);
+    $outputString    = strtolower($outputString);
+    $outputString    = utf8_encode($outputString);
+    return $outputString;
+}
 // Parse search string into indivual objects
   function zen_parse_search_string($search_str = '', &$objects) {
-    $search_str = trim(strtolower($search_str));
+    //$search_str = trim(strtolower_utf8($search_str));
+    $search_str = trim(($search_str));
 
 // Break up $search_str on whitespace; quoted string will be reconstructed later
     $pieces = split('[[:space:]]+', $search_str);
