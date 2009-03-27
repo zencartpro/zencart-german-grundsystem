@@ -883,8 +883,8 @@ class paypaldp extends base {
                                         'partner'=> trim(MODULE_PAYMENT_PAYPALWPP_PFPARTNER),
                                         'pwd' =>    trim(MODULE_PAYMENT_PAYPALWPP_PFPASSWORD),
                                         'server' => MODULE_PAYMENT_PAYPALDP_SERVER));
-      $doPayPal->_endpoints = array('live'    => 'https://payflowpro.verisign.com/transaction',
-                                    'sandbox' => 'https://pilot-payflowpro.verisign.com/transaction');
+      $doPayPal->_endpoints = array('live'    => 'https://payflowpro.paypal.com/transaction',
+                                    'sandbox' => 'https://pilot-payflowpro.paypal.com/transaction');
     } else {
       $doPayPal = new paypal_curl(array('mode' => 'nvp',
                                         'user' => trim(MODULE_PAYMENT_PAYPALWPP_APIUSERNAME),
