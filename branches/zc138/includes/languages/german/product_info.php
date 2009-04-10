@@ -1,7 +1,7 @@
 <?php
 /**
  * @package languageDefines
- * @copyright Copyright 2003-2006 Zen Cart Development Team
+ * @copyright Copyright 2003-2009 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
  * @translator: cyaneo/hugo13/wflohr	http://www.zen-cart.at	2006-11-02
@@ -13,7 +13,7 @@ define('TEXT_CURRENT_REVIEWS','Bewertungen:');
 define('TEXT_MORE_INFORMATION','Für weitere Informationen besuchen Sie diese <a href="%s" target="_blank">Webseite</a>.');
 define('TEXT_DATE_ADDED','Dieser Artikel wurde am  %s im Shop aufgenommen.');
 define('TEXT_DATE_AVAILABLE','Dieser Artikel wird vorraussichtlich am %s auf Lager sein.');
-define('TEXT_ALSO_PURCHASED_PRODUCTS','Kunden die dieses Artikel gekauft haben, haben auch diese Artikel gekauft...');
+define('TEXT_ALSO_PURCHASED_PRODUCTS','Kunden die diesen Artikel gekauft haben, haben auch diese Artikel gekauft...');
 define('TEXT_PRODUCT_OPTIONS','<strong>Bitte wählen Sie:</strong>');
 define('TEXT_PRODUCT_MANUFACTURER','Hergestellt von: ');
 define('TEXT_PRODUCT_WEIGHT','Gewicht: ');
