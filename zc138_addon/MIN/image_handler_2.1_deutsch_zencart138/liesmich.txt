@@ -1,10 +1,12 @@
+==============================================
 Image Handler 2.1 für Zen-Cart 1.3.8 deutsch
+==============================================
 
 Originalversion:
 by Tim Kroeger (www.breakmyzencart.com)
 
 Anpassung für Zen-Cart 1.3.8 deutsch
-Dezember 2008 by webchills (www.webchills.at)
+April 2009 by webchills (www.webchills.at)
 
 deutsche Konfigurationsanleitung
 Oktober 2008 by waldelfe
@@ -39,10 +41,57 @@ BACKUP gemacht? Ok, dann weiterlesen...
 NEUINSTALLATION FÜR ZEN-CART 1.3.8
 ===================================
 
-fehlt noch
+1.
+Folgende Ordner auf das im Shop aktive Template umbenennen (z.B. viennablood, classic,...)
+zen-cart/includes/templates/DEINTEMPLATE
+zen-cart/includes/modules/DEINTEMPLATE
+Dann alle Ordner/Dateien im Ordner zen-cart in der vorgegebenen Struktur hochladen.
+Achtung:
+Dabei werden bestehende Dateien überschrieben!
+Sollte an den bestehenden Dateien bereits einmal etwas geändert worden sein, ist es besser, die Dateien mit einem Tool wie WinMerge oder BeyondCompare zu vergleichen und die Imagehandler-spezifischen Änderungen manuell vorzunehmen.
 
-==============================================
+2.
+Dem Ordner bmz_cache die Berechtigung chmod777 geben
+
+3.
+Im Zen-Cart Admin ist jetzt unter Tools der Menüpunkt Image Handler vorhanden. Dort auf Administration und auf "Image Handler installieren"
+Dadurch werden die nötigen datenbankeinträge vorgenommen.
+Danach sind unter Konfiguration > Bilder zusätzliche Einstellungsmöglichkeiten für den Image-Handler vorhanden.
+
+
+==================================================
 UPDATE FALLS IMAGE HANDLER SCHON INSTALLIERT IST
-==============================================
+==================================================
 
-fehlt noch
+Hinweis:
+Wer bereits den englischen Image Handler 2.0 unter Zen-Cart 1.3.8 erfolgreich im Einsatz hat und mit der Funktionalität zufrieden ist, muss nicht unbedingt auf diese Version updaten.
+2.1 bringt keine neuen Funktionalitäten mit!
+
+1.
+Vor der Installation dieser deutschsprachigen Version 2.1. erst unbedingt die bestehenden Datenbankeinträge der alten Image-Handler Version entfernen.
+Dazu im Zen-Cart Admin auf Tools > Image Handler
+Und dann unter Admin "Image Handler aus der Datenbank entfernen"
+
+2.
+Alle alten Image Handler Dateien löschen.
+Dazu am besten erneut die alte Version, die bisher verwendet wurde (z.B. von breakmyzencart.com) herunterladen und im Download nachsehen, welche Dateien enthalten waren.
+Alle neuen Dateien löschen und Dateien, die damals überschrieben wurden, mit den Original 1.3.8 Dateien ersetzen.
+
+3.
+Überprüfen ob der Shop jetzt sauber ohne den Image Handler läuft.
+Erst dann die Version 2.1 wie unter Neuinstallation beschrieben installieren.
+
+==================================================
+KONFIGURATION
+==================================================
+
+Eine ausführliche Konfigurationsanleitung ist im Ordner DOCS zu finden.
+Die bezieht sich zwar auf die englische Version 2.0, ist aber auch auf die deutsche Version 2.1 anwendbar.
+
+==================================================
+FRAGEN, BUGS, PROBLEME?
+==================================================
+
+Ins Image Handler Forum auf zen-cart.at posten:
+http://www.zen-cart.at/zcvb/forum/forumdisplay.php?f=46
+
