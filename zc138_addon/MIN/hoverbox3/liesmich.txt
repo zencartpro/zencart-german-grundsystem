@@ -1,0 +1,80 @@
+===================================================
+HOVERBOX 3 für Zen Cart 1.3.8 deutsch
+===================================================
+
+deutsche Übersetzung/Anpassung des Moduls HoverBox 3 von iChoze Internet Solutions
+http://zen-cart-templates.ichoze.net/index.php?main_page=product_info&cPath=66&products_id=188
+
+April 2009
+Autor:
+webchills
+
+
+===================================
+Was macht dieses Modul?
+===================================
+
+Ähnlich wie bei der Zen Lightbox werden die Artikelbilder beim Anclicken in einer HoverBox angezeigt.
+Im Vergleich zur Lightbox bietet dieses Modul allerdings einige andere interessante Funktionen.
+
+Features:
+- W3C Web Standard konform - valides CSS und (x)HTML
+- Web 2.0 Effekte - Slideshow möglich
+- Automatische Größenänderung - Das Overlay wird automatisch angepasst
+- Einfache Installation
+- umfangreiche Einstellungsmöglichkeiten via Zen-Cart Admin
+- abgerundete Ecken sind möglich
+- Smart Resizing: Bilder werden angepasst, falls sie zu groß sind
+
+
+
+================= WICHTIG =====================
+Vor dem Einbau dieser Änderungen:
+BACKUP von Shop und Datenbank machen! 
+Keine Haftung, Verwendung auf eigene Gefahr!
+BACKUP gemacht? Ok, dann weiterlesen...
+=================================================
+
+
+===================================
+NEUINSTALLATION FÜR ZEN-CART 1.3.8
+===================================
+
+1.
+install.sql aus dem Ordner SQL mit einem Texteditor öffnen.
+Inhalt ins Eingabefeld unter Admin > Tools > SQL Patches installieren kopieren und absenden.
+Dadurch werden die nötigen Datenbankeinträge für die Konfiguration der HoverBox angelegt.
+
+2.
+Im Ordner zencart folgende Ordner von DEINTEMPLATE auf den Namen des aktuell verwendeten Templates umbenennen (z.B. classic, viennablood,...)
+includes/templates/DEINTEMPLATE
+includes/modules/DEINTEMPLATE
+Dann den Inhalt des Ordners zen-cart in der vorgegebenen Struktur hochladen
+
+3. 
+In der Zen-Cart Administration ist nun unter Konfiguration ein neuer Menüpunkt names HoverBox vorhanden. Dort sind alle Einstellungsmöglichkeiten erklärt.
+
+
+===================================
+ANPASSUNGSMÖGLICHKEITEN
+===================================
+
+Die verwendeten Buttons befinden sich im Ordner includes/templates/DEINTEMPLATE/images/hoverbox
+Um eigene Buttons zu verwenden, welche erstellen und einfach ersetzen.
+Im Ordner BONUS befinden sich zwei Photoshop-Dateien für den Vergrößerungs- und Close Button als Vorlage.
+
+
+===================================
+DEINSTALLATION
+===================================
+
+Um das Modul komplett zu entfernen:
+
+1.
+uninstall.sql aus dem Ordner SQL mit einem Texteditor öffnen.
+Inhalt ins Eingabefeld unter Admin > Tools > SQL Patches installieren kopieren und absenden.
+Dadurch werden alle Datenbankeinträge der HoverBox entfernt.
+
+2.
+Alle hochgeladenen Dateien aus dem HoverBox Download vom Server löschen.
+Originaldateien, die überschrieben wurden wieder einspielen (vor der Installation hast Du ja ein Backup gemacht oder?)
