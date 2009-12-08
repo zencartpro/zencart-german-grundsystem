@@ -4,7 +4,7 @@
  * @copyright Copyright 2003-2007 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: customers.php 182 2007-12-02 10:04:59Z hugo13 $
+ * @version $Id: customers.php 2009-12-08 15:19:59Z webchills $
  */
 
   require('includes/application_top.php');
@@ -1170,7 +1170,8 @@ if (($_GET['page'] == '' or $_GET['page'] == '1') and $_GET['cID'] != '') {
       break;
     default:
       if (isset($cInfo) && is_object($cInfo)) {
-        $customers_orders = $db->Execute("select o.orders_id, o.date_purchased, o.order_total, o.currency, o.currency_value,
+     	if (isset($_GET['search'])) $_GET['search'] = zen_output_string_protected($_GET['search']);
+      $customers_orders = $db->Execute("select o.orders_id, o.date_purchased, o.order_total, o.currency, o.currency_value,
                                           cgc.amount
                                           from " . TABLE_ORDERS . " o
                                           left join " . TABLE_COUPON_GV_CUSTOMER . " cgc on o.customers_id = cgc.customer_id
