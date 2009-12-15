@@ -3,7 +3,7 @@
  * functions used by payment module class for Paypal IPN payment method
  *
  * @package paymentMethod
- * @copyright Copyright 2003-2007 Zen Cart Development Team
+ * @copyright Copyright 2003-2009 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @copyright Portions Copyright 2004 DevosC.com
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
@@ -282,12 +282,12 @@
                           'receiver_id' => $_POST['receiver_id'],
                           'txn_id' => $_POST['txn_id'],
                           'parent_txn_id' => $_POST['parent_txn_id'],
-                          'num_cart_items' => $_POST['num_cart_items'],
+                          'num_cart_items' => (int)$_POST['num_cart_items'],
                           'mc_gross' => $_POST['mc_gross'],
                           'mc_fee' => $_POST['mc_fee'],
-                          'settle_amount' => $_POST['settle_amount'],
+                          'settle_amount' => (isset($_POST['settle_amount']) && $_POST['settle_amount'] != '' ? $_POST['settle_amount'] : 0),
                           'settle_currency' => $_POST['settle_currency'],
-                          'exchange_rate' => $_POST['exchange_rate'],
+                          'exchange_rate' => (isset($_POST['exchange_rate']) && $_POST['exchange_rate'] != '' ? $_POST['exchange_rate'] : 1),
                           'notify_version' => $_POST['notify_version'],
                           'verify_sign' => $_POST['verify_sign'],
                           'date_added' => 'now()',
@@ -536,7 +536,7 @@
  */
     if ($txn_type=='echeck-cleared' || $txn_type == 'express-checkout-cleared' || substr($txn_type,0,8) == 'cleared-') {
       $check_status = $db->Execute("select date_purchased from " . TABLE_ORDERS . " where orders_id = '" . (int)$ordersID . "'");
-      $zc_max_days = date_diff($check_status->fields['date_purchased'], date('Y-m-d H:i:s', time())) + (int)DOWNLOAD_MAX_DAYS;
+      $zc_max_days = zen_date_diff($check_status->fields['date_purchased'], date('Y-m-d H:i:s', time())) + (int)DOWNLOAD_MAX_DAYS;
       ipn_debug_email('IPN NOTICE :: Updating order #' . (int)$ordersID . ' downloads.  New max days: ' . (int)$zc_max_days . ', New count: ' . (int)DOWNLOAD_MAX_COUNT);
       $update_downloads_query = "update " . TABLE_ORDERS_PRODUCTS_DOWNLOAD . " set download_maxdays='" . (int)$zc_max_days . "', download_count='" . (int)DOWNLOAD_MAX_COUNT . "' where orders_id='" . (int)$ordersID . "'";
       $db->Execute($update_downloads_query);

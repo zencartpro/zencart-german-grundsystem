@@ -28,15 +28,7 @@ if ($contaminated || isset($_GET['autoLoadConfig']) || isset($_GET['mosConfig_ab
   header('HTTP/1.1 406 Not Acceptable');
   exit(0);
 }
-/*
- * turn off magic-quotes support, for both runtime and sybase, as both will cause problems if enabled
- */
-set_magic_quotes_runtime(0);
-if (@ini_get('magic_quotes_sybase') != 0) @ini_set('magic_quotes_sybase', 0);
-/**
- * boolean if true the autoloader scripts will be parsed and their output shown. For debugging purposes only.
- */
-define('DEBUG_AUTOLOAD', false);
+
 /**
  * boolean used to see if we are in the admin script, obviously set to false here.
  */
@@ -57,6 +49,10 @@ if (file_exists('includes/local/configure.php')) {
   include('includes/local/configure.php');
 }
 /**
+ * boolean if true the autoloader scripts will be parsed and their output shown. For debugging purposes only.
+ */
+define('DEBUG_AUTOLOAD', false);
+/**
  * set the level of error reporting
  * 
  * Note STRICT_ERROR_REPORTING should never be set to true on a production site. <br />
@@ -64,13 +60,18 @@ if (file_exists('includes/local/configure.php')) {
  * note for strict error reporting we also turn on show_errors as this may be disabled<br />
  * in php.ini. Otherwise we respect the php.ini setting 
  * 
- */                                                     
+ */
 if (defined('STRICT_ERROR_REPORTING') && STRICT_ERROR_REPORTING == true) {
-  @ini_set('display_errors', '1');
-  error_reporting(E_ALL);        
+  @ini_set('display_errors', TRUE);
+  error_reporting(version_compare(PHP_VERSION, 5.3, '>=') ? E_ALL & ~E_DEPRECATED & ~E_NOTICE : E_ALL & ~E_NOTICE);
 } else {
   error_reporting(0);
 }
+/*
+ * turn off magic-quotes support, for both runtime and sybase, as both will cause problems if enabled
+ */
+if (function_exists('set_magic_quotes_runtime')) set_magic_quotes_runtime(0);
+if (@ini_get('magic_quotes_sybase') != 0) @ini_set('magic_quotes_sybase', 0);
 /**
  * check for and include load application parameters
  */
@@ -137,4 +138,3 @@ $customers_ip_address = $_SERVER['REMOTE_ADDR'];
 if (!isset($_SESSION['customers_ip_address'])) {
   $_SESSION['customers_ip_address'] = $customers_ip_address;
 }
-?>
