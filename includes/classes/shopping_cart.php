@@ -300,12 +300,11 @@ $qty = $this->adjust_quantity($qty, $products_id, 'shopping_cart');
               if (is_array($value) ) {
                 reset($value);
                 while (list($opt, $val) = each($value)) {
-                  $val = (int)$val;
                   $products_options_sort_order= zen_get_attributes_options_sort_order(zen_get_prid($products_id), $option, $opt);
                   $sql = "insert into " . TABLE_CUSTOMERS_BASKET_ATTRIBUTES . "
                                         (customers_id, products_id, products_options_id, products_options_value_id, products_options_sort_order)
                                         values ('" . (int)$_SESSION['customer_id'] . "', '" . zen_db_input($products_id) . "', '" .
-                                        (int)$option.'_chk'.$val . "', '" . $val . "',  '" . $products_options_sort_order . "')";
+                                        (int)$option.'_chk'. (int)$val . "', '" . (int)$val . "',  '" . $products_options_sort_order . "')";
 
                                         $db->Execute($sql);
                 }
@@ -313,12 +312,11 @@ $qty = $this->adjust_quantity($qty, $products_id, 'shopping_cart');
                 if ($attr_value) {
                   $attr_value = zen_db_input($attr_value);
                 }
-                $value = (int)$value;
                 $products_options_sort_order= zen_get_attributes_options_sort_order(zen_get_prid($products_id), $option, $value);
                 $sql = "insert into " . TABLE_CUSTOMERS_BASKET_ATTRIBUTES . "
                                       (customers_id, products_id, products_options_id, products_options_value_id, products_options_value_text, products_options_sort_order)
                                       values ('" . (int)$_SESSION['customer_id'] . "', '" . zen_db_input($products_id) . "', '" .
-                                      (int)$option . "', '" . $value . "', '" . $attr_value . "', '" . $products_options_sort_order . "')";
+                                      (int)$option . "', '" . (int)$value . "', '" . $attr_value . "', '" . $products_options_sort_order . "')";
 
                                       $db->Execute($sql);
               }
@@ -402,21 +400,19 @@ $qty = $this->adjust_quantity($qty, $products_id, 'shopping_cart');
           if (is_array($value) ) {
             reset($value);
             while (list($opt, $val) = each($value)) {
-              $val = (int)$val;
               $products_options_sort_order= zen_get_attributes_options_sort_order(zen_get_prid($products_id), $option, $opt);
               $sql = "update " . TABLE_CUSTOMERS_BASKET_ATTRIBUTES . "
-                        set products_options_value_id = '" . $val . "'
+                        set products_options_value_id = '" . (int)$val . "'
                         where customers_id = '" . (int)$_SESSION['customer_id'] . "'
                         and products_id = '" . zen_db_input($products_id) . "'
-                        and products_options_id = '" . (int)$option.'_chk'.$val . "'";
+                        and products_options_id = '" . (int)$option.'_chk'.(int)$val . "'";
 
               $db->Execute($sql);
             }
           } else {
             if (isset($_SESSION['customer_id'])) {
-              $value = (int)$value;
               $sql = "update " . TABLE_CUSTOMERS_BASKET_ATTRIBUTES . "
-                        set products_options_value_id = '" . $value . "', products_options_value_text = '" . $attr_value . "'
+                        set products_options_value_id = '" . (int)$value . "', products_options_value_text = '" . $attr_value . "'
                         where customers_id = '" . (int)$_SESSION['customer_id'] . "'
                         and products_id = '" . zen_db_input($products_id) . "'
                         and products_options_id = '" . (int)$option . "'";

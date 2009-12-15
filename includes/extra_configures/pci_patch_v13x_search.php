@@ -1,4 +1,13 @@
 <?php
+/** 
+ * PCI Scan patch for search issues showing database error messages
+ * 
+ * @package initSystem
+ * @copyright Copyright 2003-2009 Zen Cart Development Team
+ * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
+ * @version $Id$
+ */
+
 if (isset($_GET['keyword']) && $_GET['keyword'] != '')
 {
   $count =  substr_count($_GET['keyword'], '"');

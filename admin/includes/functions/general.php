@@ -2980,7 +2980,7 @@ function zen_copy_products_attributes($products_id_from, $products_id_to) {
 
 ////
 // compute the days between two dates
-  function date_diff($date1, $date2) {
+  function zen_date_diff($date1, $date2) {
   //$date1  today, or any other day
   //$date2  date to check against
 

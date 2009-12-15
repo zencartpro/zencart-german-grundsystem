@@ -9,7 +9,7 @@
  * Security Patch v138 20090619
  * @package patches
  */ 
-if (basename ( $PHP_SELF ) == FILENAME_PASSWORD_FORGOTTEN . '.php' && substr_count ( $PHP_SELF, '.php' ) > 1)
+if (strtolower(basename ( $PHP_SELF )) == strtolower(FILENAME_PASSWORD_FORGOTTEN . '.php') && substr_count ( strtolower($PHP_SELF), '.php' ) > 1)
 {
   zen_redirect ( zen_href_link ( FILENAME_LOGIN, '', 'SSL' ) );
 }

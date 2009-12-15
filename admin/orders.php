@@ -53,7 +53,7 @@
           $check_status = $db->Execute("select customers_name, customers_email_address, orders_status,
                                       date_purchased from " . TABLE_ORDERS . "
                                       where orders_id = '" . $_GET['oID'] . "'");
-          $zc_max_days = date_diff($check_status->fields['date_purchased'], date('Y-m-d H:i:s', time())) + DOWNLOAD_MAX_DAYS;
+          $zc_max_days = zen_date_diff($check_status->fields['date_purchased'], date('Y-m-d H:i:s', time())) + DOWNLOAD_MAX_DAYS;
 
           $update_downloads_query = "update " . TABLE_ORDERS_PRODUCTS_DOWNLOAD . " set download_maxdays='" . $zc_max_days . "', download_count='" . DOWNLOAD_MAX_COUNT . "' where orders_id='" . $_GET['oID'] . "' and orders_products_download_id='" . $_GET['download_reset_on'] . "'";
           $db->Execute($update_downloads_query);
@@ -143,7 +143,7 @@
         if ($order_updated == true) {
          if ($status == DOWNLOADS_ORDERS_STATUS_UPDATED_VALUE) {
             // adjust download_maxdays based on current date
-            $zc_max_days = date_diff($check_status->fields['date_purchased'], date('Y-m-d H:i:s', time())) + DOWNLOAD_MAX_DAYS;
+            $zc_max_days = zen_date_diff($check_status->fields['date_purchased'], date('Y-m-d H:i:s', time())) + DOWNLOAD_MAX_DAYS;
 
             $update_downloads_query = "update " . TABLE_ORDERS_PRODUCTS_DOWNLOAD . " set download_maxdays='" . $zc_max_days . "', download_count='" . DOWNLOAD_MAX_COUNT . "' where orders_id='" . (int)$oID . "'";
             $db->Execute($update_downloads_query);
@@ -716,8 +716,8 @@ function couponpopupWindow(url) {
       $cID = zen_db_prepare_input($_GET['cID']);
       $orders_query_raw =   "select o.orders_id, o.customers_id, o.customers_name, o.payment_method, o.shipping_method, o.date_purchased, o.last_modified, o.currency, o.currency_value, s.orders_status_name, ot.text as order_total" .
                             $new_fields . "
-                            from (" . TABLE_ORDERS_STATUS . " s, " .
-                            TABLE_ORDERS . " o " .
+                            from (" . TABLE_ORDERS . " o, " .
+                            TABLE_ORDERS_STATUS . " s " .
                             $new_table . ")
                             left join " . TABLE_ORDERS_TOTAL . " ot on (o.orders_id = ot.orders_id) " . "
                             where o.customers_id = '" . (int)$cID . "' and o.orders_status = s.orders_status_id and s.language_id = '" . (int)$_SESSION['languages_id'] . "' and ot.class = 'ot_total' order by orders_id DESC";
@@ -728,8 +728,8 @@ function couponpopupWindow(url) {
       $status = zen_db_prepare_input($_GET['status']);
       $orders_query_raw = "select o.orders_id, o.customers_id, o.customers_name, o.payment_method, o.shipping_method, o.date_purchased, o.last_modified, o.currency, o.currency_value, s.orders_status_name, ot.text as order_total" .
                           $new_fields . "
-                          from (" . TABLE_ORDERS_STATUS . " s, " .
-                          TABLE_ORDERS . " o " .
+                          from (" . TABLE_ORDERS . " o, " .
+                          TABLE_ORDERS_STATUS . " s " .
                           $new_table . ")
                           left join " . TABLE_ORDERS_TOTAL . " ot on (o.orders_id = ot.orders_id) " . "
                           where o.orders_status = s.orders_status_id and s.language_id = '" . (int)$_SESSION['languages_id'] . "' and s.orders_status_id = '" . (int)$status . "' and ot.class = 'ot_total'  " .
@@ -740,8 +740,8 @@ function couponpopupWindow(url) {
     } else {
       $orders_query_raw = "select " . $search_distinct . " o.orders_id, o.customers_id, o.customers_name, o.payment_method, o.shipping_method, o.date_purchased, o.last_modified, o.currency, o.currency_value, s.orders_status_name, ot.text as order_total" .
                           $new_fields . "
-                          from (" . TABLE_ORDERS_STATUS . " s, " .
-                          TABLE_ORDERS . " o " .
+                          from (" . TABLE_ORDERS . " o, " .
+                          TABLE_ORDERS_STATUS . " s " .
                           $new_table . ")
                           left join " . TABLE_ORDERS_TOTAL . " ot on (o.orders_id = ot.orders_id) " . "
                           where (o.orders_status = s.orders_status_id and s.language_id = '" . (int)$_SESSION['languages_id'] . "' and ot.class = 'ot_total')  " .

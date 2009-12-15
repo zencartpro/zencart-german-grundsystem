@@ -72,7 +72,7 @@ if ((basename($PHP_SELF) != FILENAME_DEFINE_LANGUAGE . '.php') and (basename($PH
     if (NEW_SIGNUP_DISCOUNT_COUPON > 0) {
       $zc_welcome_check = $db->Execute("SELECT coupon_expire_date from " . TABLE_COUPONS . " WHERE coupon_id=" . (int)NEW_SIGNUP_DISCOUNT_COUPON);
       $zc_current_date = date('Y-m-d');
-      $zc_days_to_expire = date_diff($zc_current_date, $zc_welcome_check->fields['coupon_expire_date']);
+      $zc_days_to_expire = zen_date_diff($zc_current_date, $zc_welcome_check->fields['coupon_expire_date']);
       if ($zc_days_to_expire <= 21) {
         $zc_caution_warning = ($zc_days_to_expire <= 5 ? 'warning' : 'caution');
         $messageStack->add(sprintf(WARNING_WELCOME_DISCOUNT_COUPON_EXPIRES_IN, $zc_days_to_expire), $zc_caution_warning);

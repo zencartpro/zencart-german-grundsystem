@@ -1,7 +1,7 @@
 <?php
 /*
  * @package general
- * @copyright Copyright 2003-2007 Zen Cart Development Team
+ * @copyright Copyright 2003-2009 Zen Cart Development Team
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
  * @version $Id$
  */
@@ -10,7 +10,7 @@
   $defaultURL = "http://www.zen-cart.com/testcurl.php";
   $useSSL = (isset($_GET['ssl']) && (strtolower($_GET['ssl']) == 'yes' || $_GET['ssl'] == 1)) ? true : false;
   if ($useSSL) $defaultURL = "https://www.zen-cart.com/testcurl.php";
-  $url = (isset($_GET['url'])) ? urldecode($_GET['url']) : $defaultURL;
+  $url = $defaultURL;
   $data = (isset($_GET['postdata'])) ? $_GET['postdata'] : "field1=This is a test&statuskey=ready";
   $proxy = (isset($_GET['proxy'])) ? true : false;
   $proxyAddress = (isset($_GET['proxyaddress'])) ? $_GET['proxyaddress'] : 'proxy.shr.secureserver.net:3128';
@@ -55,5 +55,3 @@
   if ($url == $defaultURL) echo $result;
   echo '<pre>' . print_r($commInfo, true) . '</pre><br /><br />';
   if ($url != $defaultURL) echo $result . 'EOF';
-
-?>

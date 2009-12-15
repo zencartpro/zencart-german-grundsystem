@@ -160,7 +160,6 @@
   function zen_get_products_display_price($products_id) {
     global $db, $currencies;
 
-    if (false) {
 // 0 = normal shopping
 // 1 = Login to shop
 // 2 = Can browse but no prices
@@ -178,14 +177,13 @@
         // proceed normally
         break;
       }
-    }
 
 // show case only
     if (STORE_STATUS != '0') {
       if (STORE_STATUS == '1') {
         return '';
       }
-    } 
+    }
 
     // $new_fields = ', product_is_free, product_is_call, product_is_showroom_only';
     $product_check = $db->Execute("select products_tax_class_id, products_price, products_priced_by_attribute, product_is_free, product_is_call from " . TABLE_PRODUCTS . " where products_id = '" . $products_id . "'" . " limit 1");

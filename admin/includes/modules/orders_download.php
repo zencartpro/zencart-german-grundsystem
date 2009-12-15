@@ -37,7 +37,7 @@ if (!defined('IS_ADMIN_FLAG')) {
     while (!$orders_download->EOF) {
       // $order->info['date_purchased'] . ' vs ' . (date_diff($order->info['date_purchased'], date('Y-m-d')) > $orders_download->fields['download_maxdays'] ? 'NO' : 'YES') . ' vs ' .
       switch (true) {
-        case ($orders_download->fields['download_maxdays'] != 0 && (date_diff($order->info['date_purchased'], date('Y-m-d')) > $orders_download->fields['download_maxdays'])):
+        case ($orders_download->fields['download_maxdays'] != 0 && (zen_date_diff($order->info['date_purchased'], date('Y-m-d')) > $orders_download->fields['download_maxdays'])):
           $zc_file_status = TEXT_INFO_EXPIRED_DATE . '<a href="' . zen_href_link(FILENAME_ORDERS, zen_get_all_get_params(array('oID', 'action')) . 'oID=' . $_GET['oID'] . '&action=edit&download_reset_on=' . $orders_download->fields['orders_products_download_id'], 'NONSSL') . '">' . zen_image(DIR_WS_IMAGES . 'icon_yellow_on.gif', IMAGE_ICON_STATUS_EXPIRED) . '</a>';
           break;
         case ($orders_download->fields['download_maxdays'] == 0):

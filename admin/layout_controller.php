@@ -17,7 +17,7 @@
 // | to obtain it through the world-wide-web, please send a note to       |
 // | license@zen-cart.com so we can mail you a copy immediately.          |
 // +----------------------------------------------------------------------+
-//  $Id: layout_controller.php 2981 2006-02-07 04:59:30Z ajeh $
+//  $Id: layout_controller.php 5 2009-12-04 09:28:08Z root $
 //
 define('TEXT_INFO_SET_AS_DEFAULT','Save %s setting as default');
 define('SUCCESS_BOX_SET_DEFAULTS','Successfully updated defaults to settings for ');
@@ -134,39 +134,27 @@ define('SUCCESS_BOX_SET_DEFAULTS','Successfully updated defaults to settings for
         zen_redirect(zen_href_link(FILENAME_LAYOUT_CONTROLLER, 'page=' . $_GET['page']));
         break;
       case 'reset_defaults':
-	 	$reset_boxes = $db->Execute("select * from " . TABLE_LAYOUT_BOXES . " where layout_template= 'default_template_settings'");
-        while (!$reset_boxes->EOF) {
-          $db->Execute("update " . TABLE_LAYOUT_BOXES . " 
-		  	set layout_box_status= '" . $reset_boxes->fields['layout_box_status'] . "', 
-				layout_box_location= '" . $reset_boxes->fields['layout_box_location'] . "', 
-				layout_box_sort_order='" . $reset_boxes->fields['layout_box_sort_order'] . "', 
-				layout_box_sort_order_single='" . $reset_boxes->fields['layout_box_sort_order_single'] . "', 
-				layout_box_status_single='" . $reset_boxes->fields['layout_box_status_single'] . "' 
-			where layout_box_name='" . $reset_boxes->fields['layout_box_name'] . "' 
-			and layout_template='" . $template_dir . "'");
-			
-         $reset_boxes->MoveNext();
-        }
-
+        $sql = "REPLACE INTO layout_boxes ( layout_template, layout_box_name, layout_box_status, layout_box_location, layout_box_sort_order, layout_box_sort_order_single, layout_box_status_single )
+                SELECT '$template_dir' AS TD, layout_boxes.layout_box_name, layout_boxes.layout_box_status, layout_boxes.layout_box_location, layout_boxes.layout_box_sort_order, layout_boxes.layout_box_sort_order_single, layout_boxes.layout_box_status_single
+                FROM layout_boxes
+                WHERE layout_boxes.layout_template='template_default'";
+        $db->Execute($sql);
+        
+        
+        
         $messageStack->add_session(SUCCESS_BOX_RESET . $template_dir, 'success');
         zen_redirect(zen_href_link(FILENAME_LAYOUT_CONTROLLER, 'page=' . $_GET['page']));
         break;
-		
-	case 'save_defaults':
-	
-	    $db->Execute("
-			update " . TABLE_LAYOUT_BOXES . " def, " . TABLE_LAYOUT_BOXES . " curr
-			set	def.layout_box_status 		= curr.layout_box_status,
-				def.layout_box_location 	= curr.layout_box_location,
-				def.layout_box_sort_order  	= curr.layout_box_sort_order,
-				def.layout_box_sort_order_single = curr.layout_box_sort_order_single,
-				def.layout_box_status_single 	= curr.layout_box_status_single
-			where 	def.layout_template 	= 'default_template_settings'
-			and 	curr.layout_template 	= '" . $template_dir . "'
-			and 	def.layout_box_name 	= curr.layout_box_name");
-	
+        
+    case 'save_defaults':
+        $sql = "REPLACE INTO layout_boxes ( layout_template, layout_box_name, layout_box_status, layout_box_location, layout_box_sort_order, layout_box_sort_order_single, layout_box_status_single )
+                SELECT 'template_default' AS TD, layout_boxes.layout_box_name, layout_boxes.layout_box_status, layout_boxes.layout_box_location, layout_boxes.layout_box_sort_order, layout_boxes.layout_box_sort_order_single, layout_boxes.layout_box_status_single
+                FROM layout_boxes
+                WHERE (((layout_boxes.layout_template)='$template_dir'));";
+        $db->Execute($sql);
+    
 
-		$messageStack->add_session(SUCCESS_BOX_SET_DEFAULTS . '<strong>' . $template_dir . '</strong>', 'success');
+        $messageStack->add_session(SUCCESS_BOX_SET_DEFAULTS . '<strong>' . $template_dir . '</strong>', 'success');
         zen_redirect(zen_href_link(FILENAME_LAYOUT_CONTROLLER, 'page=' . $_GET['page']));
         break;
     }
@@ -415,7 +403,7 @@ if ($warning_new_box) {
     <td><table align="center">
       <tr>
         <td class="main" align="left">
-		
+        
           <?php printf ( '<br />' . TEXT_INFO_SET_AS_DEFAULT , '<strong>' . $template_dir . '</strong>'); ?>
 
         </td>
