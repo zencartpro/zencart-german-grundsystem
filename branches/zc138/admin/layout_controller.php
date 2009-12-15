@@ -133,28 +133,36 @@ define('SUCCESS_BOX_SET_DEFAULTS','Successfully updated defaults to settings for
         $messageStack->add_session(SUCCESS_BOX_DELETED . $_GET['layout_box_name'], 'success');
         zen_redirect(zen_href_link(FILENAME_LAYOUT_CONTROLLER, 'page=' . $_GET['page']));
         break;
-      case 'reset_defaults':
-        $sql = "REPLACE INTO layout_boxes ( layout_template, layout_box_name, layout_box_status, layout_box_location, layout_box_sort_order, layout_box_sort_order_single, layout_box_status_single )
-                SELECT '$template_dir' AS TD, layout_boxes.layout_box_name, layout_boxes.layout_box_status, layout_boxes.layout_box_location, layout_boxes.layout_box_sort_order, layout_boxes.layout_box_sort_order_single, layout_boxes.layout_box_status_single
-                FROM layout_boxes
-                WHERE layout_boxes.layout_template='template_default'";
-        $db->Execute($sql);
-        
-        
-        
+          case 'reset_defaults':
+         $reset_boxes = $db->Execute("select * from " . TABLE_LAYOUT_BOXES . " where layout_template= 'default_template_settings'");
+        while (!$reset_boxes->EOF) {
+          $db->Execute("update " . TABLE_LAYOUT_BOXES . " 
+              set layout_box_status= '" . $reset_boxes->fields['layout_box_status'] . "', 
+                layout_box_location= '" . $reset_boxes->fields['layout_box_location'] . "', 
+                layout_box_sort_order='" . $reset_boxes->fields['layout_box_sort_order'] . "', 
+                layout_box_sort_order_single='" . $reset_boxes->fields['layout_box_sort_order_single'] . "', 
+                layout_box_status_single='" . $reset_boxes->fields['layout_box_status_single'] . "' 
+            where layout_box_name='" . $reset_boxes->fields['layout_box_name'] . "' 
+            and layout_template='" . $template_dir . "'");
+            
+         $reset_boxes->MoveNext();
+        }
+
         $messageStack->add_session(SUCCESS_BOX_RESET . $template_dir, 'success');
         zen_redirect(zen_href_link(FILENAME_LAYOUT_CONTROLLER, 'page=' . $_GET['page']));
         break;
-        
-    case 'save_defaults':
-        $sql = "REPLACE INTO layout_boxes ( layout_template, layout_box_name, layout_box_status, layout_box_location, layout_box_sort_order, layout_box_sort_order_single, layout_box_status_single )
-                SELECT 'template_default' AS TD, layout_boxes.layout_box_name, layout_boxes.layout_box_status, layout_boxes.layout_box_location, layout_boxes.layout_box_sort_order, layout_boxes.layout_box_sort_order_single, layout_boxes.layout_box_status_single
+		
+	case 'save_defaults':
+        $sql = "DELETE  FROM " . TABLE_LAYOUT_BOXES . " WHERE layout_template = 'default_template_settings'  ";
+        $db->Execute($sql);
+        $sql = "INSERT INTO " . TABLE_LAYOUT_BOXES . " ( layout_template, layout_box_name, layout_box_status, layout_box_location, layout_box_sort_order, layout_box_sort_order_single, layout_box_status_single )
+                SELECT 'default_template_settings' AS TD, layout_boxes.layout_box_name, layout_boxes.layout_box_status, layout_boxes.layout_box_location, layout_boxes.layout_box_sort_order, layout_boxes.layout_box_sort_order_single, layout_boxes.layout_box_status_single
                 FROM layout_boxes
                 WHERE (((layout_boxes.layout_template)='$template_dir'));";
-        $db->Execute($sql);
-    
+	    $db->Execute($sql);
+	
 
-        $messageStack->add_session(SUCCESS_BOX_SET_DEFAULTS . '<strong>' . $template_dir . '</strong>', 'success');
+		$messageStack->add_session(SUCCESS_BOX_SET_DEFAULTS . '<strong>' . $template_dir . '</strong>', 'success');
         zen_redirect(zen_href_link(FILENAME_LAYOUT_CONTROLLER, 'page=' . $_GET['page']));
         break;
     }
@@ -403,7 +411,7 @@ if ($warning_new_box) {
     <td><table align="center">
       <tr>
         <td class="main" align="left">
-        
+		
           <?php printf ( '<br />' . TEXT_INFO_SET_AS_DEFAULT , '<strong>' . $template_dir . '</strong>'); ?>
 
         </td>
