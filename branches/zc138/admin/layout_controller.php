@@ -17,7 +17,7 @@
 // | to obtain it through the world-wide-web, please send a note to       |
 // | license@zen-cart.com so we can mail you a copy immediately.          |
 // +----------------------------------------------------------------------+
-//  $Id: layout_controller.php 5 2009-12-04 09:28:08Z root $
+//  $Id$
 //
 define('TEXT_INFO_SET_AS_DEFAULT','Save %s setting as default');
 define('SUCCESS_BOX_SET_DEFAULTS','Successfully updated defaults to settings for ');
