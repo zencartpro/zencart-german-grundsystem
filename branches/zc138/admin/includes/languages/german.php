@@ -180,7 +180,7 @@ define('BOX_LOCALIZATION_ORDERS_STATUS', 'Bestellstatus');
 
 // gift vouchers box text in includes/boxes/gv_admin.php
 define('BOX_HEADING_GV_ADMIN', TEXT_GV_NAMES . ' & Aktionskupons');
-define('BOX_GV_ADMIN_QUEUE', 'TEXT_GV_NAMES . Warteschleife');
+define('BOX_GV_ADMIN_QUEUE', TEXT_GV_NAMES . ' Warteschleife');
 define('BOX_GV_ADMIN_MAIL', TEXT_GV_NAME . ' senden ');
 define('BOX_GV_ADMIN_SENT', 'Bereits gesendet ');
 define('BOX_COUPON_ADMIN', 'Aktionskupon Admin');
