@@ -6,7 +6,7 @@
  * @copyright Copyright 2003-2007 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: ot_coupon.php 7203 2007-10-07 12:29:53Z drbyte $
+ * @version $Id: ot_coupon.php 538 2010-03-13 09:29:53Z webchills $
  */
 /**
  * Order Total class  to handle discount coupons
@@ -266,7 +266,7 @@ class ot_coupon {
                                                customer_id = '" . (int)$_SESSION['customer_id'] . "'");
 
         if ($coupon_count->RecordCount() >= $coupon_result->fields['uses_per_coupon'] && $coupon_result->fields['uses_per_coupon'] > 0) {
-          $messageStack->add_session('redemptions', TEXT_INVALID_USES_COUPON . $coupon_result->fields['uses_per_coupon'] . TIMES ,'caution');
+         $messageStack->add_session('redemptions', sprintf(TEXT_INVALID_USES_USER_COUPON, $dc_check) . " " . TEXT_INVALID_USES_COUPON . " " . $coupon_result->fields['uses_per_user'] . ($coupon_result->fields['uses_per_user'] == 1 ? TIME : TIMES) ,'caution');  
           $this->clear_posts();
           zen_redirect(zen_href_link(FILENAME_CHECKOUT_PAYMENT, '', 'SSL', true, false));
         }
