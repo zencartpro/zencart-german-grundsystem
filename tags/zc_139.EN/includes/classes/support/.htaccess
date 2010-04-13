@@ -1,0 +1,8 @@
+# $Id: .htaccess 15826 2010-04-05 12:15:27Z drbyte $
+
+#NOBODY SHOULD BE SNOOPING HERE
+
+<Limit GET POST PUT>
+Order Allow,Deny
+Deny from All
+</Limit>

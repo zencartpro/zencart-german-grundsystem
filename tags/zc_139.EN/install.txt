@@ -1,0 +1,30 @@
+Zen Cart(tm) - The Art of E-Commerce
+
+Welcome to Zen Cart(tm) E-Commerce
+
+THE FOLLOWING IS A VERY SIMPLIFIED INSTALLATION DOCUMENT.
+WE SUGGEST YOU USE THE HTML VERSIONS IN THE /docs FOLDER FOR MORE DETAILED INSTRUCTIONS.
+
+ALL OF OUR README DOCUMENTS ARE IN THE /docs FOLDER OF THIS DISTRIBUTION.
+
+
+You can find online documentation at: http://tutorials.zen-cart.com
+
+
+Zen Cart has a built-in automatic installation system. However to use this you must first unpack and upload the code to a compatible web server:
+
+1. Extract the Zen Cart(tm) ZIP file (and tell the unzip utility to *retain* folder structures)
+2. Upload the Zen Cart files and folders to your server using your FTP program
+3. You'll need to make some folders writable. The details are in the HTML-formatted documentation in the /docs/ folder
+4. Point your browser to your website where you uploaded the files, specifically to the /zc_install/index.php file.
+5. Follow the instructions. You'll need MySQL database credentials, etc to complete installation.
+
+For more detailed installation instructions, please see the /docs/1.readme_installation.html document in this distribution.
+
+
+
+
+
+
+(Document Revision: $Id: install.txt 14956 2009-11-28 07:53:53Z drbyte $)
+((c)Copyright 2003-2009, Zen Cart(tm). All rights reserved.)
