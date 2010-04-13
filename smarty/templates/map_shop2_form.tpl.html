@@ -1,0 +1,145 @@
+<!-- 
+/**
+ * @package map_shop
+ * @desc map_shop generates google_map entries at http://shops.zen-cart.at
+ * @copyright Copyright 2006-2007 rainer langheiter
+ * @author rainer langheiter <zen-cart@langheiter.com> <http://edv.langheiter.com/zencart/>
+ * @license http://www.gnu.org/copyleft/gpl.html     
+ * @version $Id$
+ */
+-->
+{literal}
+<style type="text/css">
+<!--
+.small {
+    font-size: 80%;
+}
+#tab1{
+    border: solid gray 1px;
+    margin: 15px;
+}
+.f1 {
+    width: 380px;
+    border: 1px solid #D40000;
+}
+.f2 {
+    width: 180px;
+    border: 1px solid #D40000;
+}
+
+#loading {
+    background: white;
+    padding: 20px;
+    border: 2px solid green;
+    display: none; /* hidden */
+    position: absolute;    
+    left: 50%;
+    margin-left: -100px;
+    top: 25%;
+    width: 200px;
+    /*height: 100px;*/
+        /*margin-top: -50;*/
+    font-weight: bold;
+    font-size: large;
+    }
+
+-->
+</style>
+<script type="text/javascript">
+    //<![CDATA[
+    function getMaplatlng(xx){
+        xx = document.getElementById("mapframe");
+        xx = window.frames['mapframe'].document.getElementById('maplatlng');
+        alert(xx);
+    
+    }
+    //]]>
+    </script>
+{/literal}
+<div id="loading"><img src="images/ajax-loader2.gif" alt="" /> Loading...</div>
+<form id="f1" action="" method="post" enctype="application/x-www-form-urlencoded" name="collectdata" lang="hr">
+
+<input id="MAP_SHOP2_GETCOORD" type="hidden" value="{$conf.MAP_SHOP2_GETCOORD}">
+<input id="MAP_SHOP2_GOOGLEMAP" type="hidden" value="{$conf.MAP_SHOP2_GOOGLEMAP}">
+
+<table id="tab1">
+  <tr>
+    <th scope="row">{$smarty.const.MAP_SHOP2_FSTORE_NAME}</th>
+    <td>{$conf.MAP_SHOP2_STORE_NAME}<input name="MAP_SHOP2_STORE_NAME" type="hidden" value="{$conf.MAP_SHOP2_STORE_NAME}"></td>
+    <td class="small">*) <a href="../configuration.php?gID=1&cID=1&action=edit">{$smarty.const.MAP_SHOP2_HINT_STORE_NAME}</a> </td>
+  </tr>
+  <tr>
+    <th scope="row">{$smarty.const.MAP_SHOP2_FHTML}</th>
+    <td>{$conf.MAP_SHOP2_HTML}<input name="MAP_SHOP2_HTML" type="hidden" value="{$conf.MAP_SHOP2_HTML}"></td>
+    <td class="small">*) {$smarty.const.MAP_SHOP2_HINT_HTML}</td>
+  </tr>
+  <tr>
+    <th scope="row">{$smarty.const.MAP_SHOP2_FCOUNTRY}</th>
+    <td>{$conf.MAP_SHOP2_COUNTRY}<input name="MAP_SHOP2_COUNTRY" id="MAP_SHOP2_COUNTRY" type="hidden" value="{$conf.MAP_SHOP2_COUNTRY}"></td>
+    <td class="small">*) <a href="../configuration.php?gID=7&cID=202&action=edit">{$smarty.const.MAP_SHOP2_HINT_COUNTRY}</a></td>
+  </tr>
+  <tr>
+    <th scope="row">{$smarty.const.MAP_SHOP2_FZIP}</th>
+    <td><input name="MAP_SHOP2_ZIP" type="text" class="f2 ftext" id="MAP_SHOP2_ZIP" value="{$conf.MAP_SHOP2_ZIP}"></td>
+    <td class="small">*) {$smarty.const.MAP_SHOP2_HINT_ZIP}</td>
+  </tr>
+  <tr>
+    <th scope="row">{$smarty.const.MAP_SHOP2_FSTREET}</th>
+    <td><input name="MAP_SHOP2_STREET" type="text" class="f2 ftext" id="MAP_SHOP2_STREET" value="{$conf.MAP_SHOP2_STREET}"></td>
+    <td class="small">*) {$smarty.const.MAP_SHOP2_HINT_STREET}</td>
+  </tr>
+    <th scope="row">{$smarty.const.MAP_SHOP2_FSTORE_NAME_ADDRESS}</th>
+    <td>{$conf.MAP_SHOP2_STORE_NAME_ADDRESS}<input name="MAP_SHOP2_STORE_NAME_ADDRESS" type="hidden" value="{$conf.MAP_SHOP2_STORE_NAME_ADDRESS}"></td>
+    <td class="small">*) <a href="../configuration.php?gID=1&cID=12&action=edit">{$smarty.const.MAP_SHOP2_HINT_STORE_NAME_ADDRESS}</a></td>
+  </tr>
+  <tr>
+    <th scope="row">{$smarty.const.MAP_SHOP2_FCATEGORY}</th>
+    <td><select name="MAP_SHOP2_CATEGORY" id="MAP_SHOP2_CATEGORY" class="f1 ftext">
+		{$catOpt}
+      </select></td>
+    <td class="small">*) {$smarty.const.MAP_SHOP2_HINT_CATEGORY}</td>
+  </tr>
+
+  <tr>
+    <th scope="row">{$smarty.const.MAP_SHOP2_FDESCRIPTION}</th>
+    <td><textarea name="MAP_SHOP2_DESCRIPTION" cols="50" rows="7" class="f1 ftext" id="MAP_SHOP2_DESCRIPTION">{$conf.MAP_SHOP2_DESCRIPTION}</textarea></td>
+    <td class="small">*) {$smarty.const.MAP_SHOP2_HINT_DESCRIPTION}</td>
+  </tr>
+  <tr>
+    <th scope="row">{$smarty.const.MAP_SHOP2_FIMAGE}</th>
+    <td><input name="MAP_SHOP2_IMAGE" type="text" class="f1 ftext" id="MAP_SHOP2_IMAGE" value="{$conf.MAP_SHOP2_IMAGE}"></td>
+    <td class="small">*) {$smarty.const.MAP_SHOP2_HINT_IMAGE}</td>
+  </tr>
+  <tr>
+    <th scope="row">lat</th>
+    <td><input name="MAP_SHOP2_LAT" type="text" class="f2 ftext" id="MAP_SHOP2_LAT" value="{$conf.MAP_SHOP2_LAT}">   
+    <input id="getLL" type="submit" name="coord" value="{$smarty.const.MAP_SHOP2_BTN_GOOGLE}"></td>
+    <td class="small">*) geo breite </td>
+  </tr>
+  <tr>
+    <th scope="row">lng</th>
+    <td><input name="MAP_SHOP2_LNG" type="text" class="f2 ftext" id="MAP_SHOP2_LNG" value="{$conf.MAP_SHOP2_LNG}"></td>
+    <td class="small">*) geo l&auml;nge </td>
+  </tr>
+  <tr>
+    <th scope="row">hash</th>
+    <td>{$conf.MAP_SHOP2_HASH}<input name="MAP_SHOP2_HASH" type="hidden" value="{$conf.MAP_SHOP2_HASH}"></td>
+    <td class="small">*) for internal use only </td>
+  </tr>
+  <tr>
+    <th scope="row">&nbsp;</th>
+    <td><input id="MAP_SHOP2_BTN_UPDATE" type="submit" name="Submit" value="{$smarty.const.MAP_SHOP2_BTN_UPDATE}"></td>
+    <td class="small">
+        
+        <input type="submit" id="GOOGLEMAP" name="map" value="{$smarty.const.MAP_SHOP2_BTN_GOOGLEMAP}">
+    </td>
+  </tr>             
+</table>
+</form>
+<hr>
+<div id="map"></div>
+<!-- Hello -->
+<!--
+<iframe id="mapframe" width="560" height="480" frameborder="2" scrolling="no" marginheight="0" marginwidth="3" 
+src="http://shops.zen-cart.at/map/m2b.php?p={$conf.MAP_SHOP2_ZIP},{$conf.MAP_SHOP2_COUNTRY},{$conf.MAP_SHOP2_STREET}"></iframe>
+-->

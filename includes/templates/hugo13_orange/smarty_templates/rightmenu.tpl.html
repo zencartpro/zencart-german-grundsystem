@@ -1,0 +1,13 @@
+<!-- $Id$ --> 
+<a href="{$val.linkLogo}index.php">Home</a> &nbsp;&nbsp;|&nbsp;&nbsp; 
+{if $val.account}
+    <a href="{$val.linkLogoff}">{$val.textLogoff}</a> &nbsp;&nbsp;|&nbsp;&nbsp; 
+    <a href="{$val.linkAccount}">{$val.textAccount}</a> &nbsp;&nbsp;|&nbsp;&nbsp;
+{else} 
+    <a href="{$val.linkLogin}">{$val.textLogin}</a> &nbsp;&nbsp;|&nbsp;&nbsp; 
+{/if}
+{if $val.cart}
+    <a href="{$val.linkCart}">{$val.textCart}</a> &nbsp;&nbsp;|&nbsp;&nbsp; 
+    <a href="{$val.linkCheckout}">{$val.textCheckout}</a> &nbsp;&nbsp;|&nbsp;&nbsp;
+{/if}
+

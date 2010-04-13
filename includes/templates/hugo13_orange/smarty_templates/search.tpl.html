@@ -1,0 +1,12 @@
+<!-- $Id$ -->
+<!-- SEARCH FORM -->&nbsp;
+<form class="search_form" name="quick_find_header" action="{$val.search.action}" method="get"> 
+  <input type="hidden" name="main_page" value="{$val.search.main_page}" /> 
+  <input type="hidden" name="search_in_description" value="1" /> 
+  {$val.search.session}
+  <input class="bot" type="text" name="keyword" size="6" maxlength="30" style="width: 100px" value="{$val.search.search_text}" onfocus="if (this.value == '{$val.search.search_text}') this.value = '';" onblur="if (this.value == '') this.value = '{$val.search.search_text}';" /> 
+  <input class="bot" name="imageField" type="image" src="{$val.search.search_button_grafik}" alt="submit"  border="0">
+</form> 
+  
+<!-- END SEARCH FORM --> 
+

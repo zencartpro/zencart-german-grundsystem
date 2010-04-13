@@ -1,0 +1,201 @@
+<!--
+/**
+ * @package documentation
+ * @copyright Copyright 2003-2006 Zen Cart Development Team
+ * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
+ * @version $Id: 2.readme_how_to_upgrade.html 5461 2006-12-30 00:28:54Z drbyte $
+ */
+//-->
+<html>
+<style type="text/css">
+<!--
+body, table{ font-family:Verdana, Arial, Helvetica, sans-serif; font-size:14px; }
+table.intro {border-color:C96E29; }
+td.intro{background-color:#EEEEEE ; border-color:5778ce; font-size:10px; }
+td.plainbox, div.callout {border: 1px dashed; border-color: C96E29; margin:5 40 5 40;}
+.heading {background-color:5778CE; font-weight:bold; font-size:14px; width: 100%; }
+.title1 {color:C96E29; font-weight:bold; font-size:22px; }
+.title2 {color:C96E29; font-weight:bold; font-size:13px; }
+.small {font-size:10px ;}
+.error {color:FF0000; }
+.filename {font-family: mono, "Courier New", Courier ; font-size:14px; color: c96e29;}
+.pseudolink {text-decoration:underline; color:5778CE;}
+h1.intro { color: #ffffff; border:1px solid #aca893; background-color: #c96e29;  font-size: 22px;   padding: 4px;}
+h1 { color: #ffffff;    border:1px solid #aca893;   background-color: #5778ce;   font-size: 20px;   padding: 4px;}
+h2 { color: #c96e29; font-size: 18px;}
+h3 { color: #5778ce; font-size: 16px; margin-bottom:0px;}
+h4 { color: #c96e29; font-size: 14px;}
+.style2 {color: FF0000; font-weight: bold; }
+td.intro1 {background-color:#EEEEEE ; border-color:5778ce; font-size:14px; }
+-->
+</style>
+<title>Upgrading Zen Cart(tm) in 3 Easy Steps!</title><body>
+<table class="intro" cellspacing="4" cellpadding="6" border="3" width="748px" align="center">
+  <tr>
+    <td class="intro1"><center>
+      <h1 class="intro">Willkommen bei Zen Cart&trade; ...</h1>
+    </center>
+        <br />
+      Die Zen Cart&trade; Software wird Ihnen kostenlos unter Einhaltung der Bestimmungen der  GNU General Public License zur Verf&uuml;gung gestellt. <br />
+      <br />
+      Obwohl wir f&uuml;r diese Software kein Geld verlangen, sind Spenden herzlich Willkommen und hoch gesch&auml;tzt. Diese Spenden helfen uns, die Instandhaltungskosten, den kostenlosen Support und die kontinuierliche Weiterentwicklung dieses e-Commerce Systems zu sichern.<br />
+      <br />
+      Spenden k&ouml;nnen Sie auf dieser Seite: <a href="http://www.zen-cart.com/modules/freecontent/index.php?id=6" target="_blank">Zen Cart&trade; Team Page</a> <br />
+      <br />
+      Wir sch&auml;tzen Ihren Support.<br />
+      <em>Ihr Zen Cart&trade; Team</em><br />
+      <br />
+      <center>
+        <span class="small"> Zen Cart&trade; is derived from: Copyright &copy;  2003 osCommerce<br />
+          This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;<br />
+          without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE<br />
+          and is redistributable under the GNU General Public License<br />
+          <br />
+        </span>
+      </center></td>
+  </tr>
+</table>
+<br />
+<table border="3" width="748px" align="center" cellpadding="6">
+  <tr>
+<td align="center"><img src="osi-certified-120x100.png" /><br />
+This software is OSI Certified Open Source Software.<br />
+OSI Certified is a certification mark of the Open Source Initiative.
+</td></tr></table>
+<br />
+<table border="3" width="748px" align="center" cellpadding="6">
+  <tr>
+<td>
+<center>
+  <h1 class="intro">3 einfache Schritte zum Upgrade von Zen Cart&trade;</h1>
+</center>
+<div>
+<h1>Paypal IPN  HINWEIS </h1>
+</div>
+<span class="error">Wenn Sie das  PayPal IPN Zahlungsmodul in Verwendung haben, m&uuml;ssen Sie dieses &uuml;ber Admin-&gt;Modules-&gt;Payment-&gt; entfernen und erneut installieren, da in diesem Modul mehrere Fehler behoben wurden.</span>
+<h1>Einleitung... </h1>
+Dieses Dokument ist eine Basisanleitung f&uuml;r das Upgrade von Zen Cart&trade;.  Wenn Sie Zen Cart&trade; bisher noch nicht installiert haben, dann lesen Sie bitte die Installationsanleitung <a href="1.readme_installation.html">readme_installation.html</a> durch.<br> 
+<br /> 
+Um Ihre vorhandene Zen Cart&trade; Installation zu aktualisieren, ben&ouml;tigen Sie dieselben Tools wie bei der Erstinstallation von Zen Cart&trade;:  Ein FTP Programm, einen Texteditor, der zum bearbeiten von HTML/PHP Dateien geeignet ist, phpMyAdmin oder vergleichbaren Zugriff zu Ihrer MySQL Datenbank und ein Verwaltungstool zum Bearbeiten Ihres Webspace.<br />
+<br />
+Zus&auml;tzlich kann ein Programm zum Vergleichen von Dateien, wie z. B. <a href="http://winmerge.sf.net" target="_blank">WinMerge</a>, <a href="http://www.scootersoftware.com/" target="_blank">Beyond Compare</a> oder ExamDiff (Linux) sehr hilfreich sein. (F&uuml;r Mac gibt es z.B. <a href="http://www.barebones.com" target="_blank">BBedit</a>)<br />
+<br />
+Die Aktualisierung erfolgt in 3 einfachen Schritten. Nehmen Sie sich bitte Zeit und studieren Sie die einzelnen Schritte und Methoden sorgf&auml;ltig.
+&Uuml;berst&uuml;rzen Sie nichts!<br>
+Und wie immer: VOR Beginn eine Sicherung aller relevanten Daten durchf&uuml;hren!!!<br><br />
+Wir empfehlen Ihnen, besonderes Augenmerk auf die Demodaten zu legen, um sich mit den neuen Features der neuen Version von Zen Cart&trade; vertraut zu machen.
+<div>
+<h1>1. Vorbereitung </h1>
+Entpacken Sie alle Dateien der neuen  Version von Zen Cart&trade;, laden Sie diese auf Ihren Webserver in ein "<span class="filename">demo</span>" Verzeichnis und installieren Sie die neue Version - mit den Demodaten - in eine eigene Datenbank.
+Diese Installation soll als Referenz dienen und Sie k&ouml;nnen sich mit den neuen Funktionen vertraut machen. Diese Installation k&ouml;nnen Sie nach der Konvertierung wieder l&ouml;schen. <br />
+<br />
+Studieren Sie die neuen Funktionen, die dokumentierten &Auml;nderungen der Template Struktur und ebenso die Datei "changelog.txt".  Verwenden Sie die Demodateien im Demoshop als Beispielvorlage und lesen alle Supportdokumente dieser neuen Zen Cart&trade; Version.<br />
+<br />
+Erstellen Sie eine komplette Sicherung Ihrer Datenbank (SQL Dateidump). Speichern Sie diese Datei auf Ihrem PC. <br />
+<br />
+Erstellen Sie eine komplette Sicherung Ihres Webordners via FTP auf Ihrem PC und packen Sie diese dann zus&auml;tzlich in eine ZIP Datei.<br />
+
+Heben Sie die Sicherung auf Ihrem PC gut auf - sie wird in den weiteren Schritten der Aktualisierung noch ben&ouml;tigt. Eventuell benennen Sie diesen Sicherungsordner in &quot;<span class="filename">\zen_backup</span>&quot; um.<br />
+
+<br />
+<br />
+Lassen Sie uns nun die Unterschiede und notwendigen Anpassungen zwischen Ihre Installation und den originalen Zen Cart&trade; Dateien herausfinden.<br />
+<br />
+
+Entpacken sie eine Kopie Ihrer urspr&uuml;nglich installierten bzw. aktualisierten Zen Cart&trade; Version  (z.B. Zen Cart&trade; v1.2.7 oder auch v1.3.7) in ein eigenes Arbeitsverzeichnis  (z.B. &quot;<span class="filename">\zen_orig</span>&quot;).<br />
+<br />
+Machen Sie sich zur sp&auml;teren Verwendung eine Liste Ihrer installierten Module und Add-Ons.<br />
+<br /> 
+Vergleichen Sie nun mit einem Programm wie z.B.
+<a href="http://winmerge.sf.net">WinMerge</a> o.&auml;. Ihre "originalen" Zen Cart&trade; Dateien des Ordners &quot;<span class="filename">\zen_orig</span>&quot; mit den Dateien Ihres Sicherungsordners &quot;<span class="filename">\zen_backup</span>&quot;.<br /> 
+Sie werden feststellen m&uuml;ssen, dass alle Dateien
+"unterschiedlich" sind. Doppelklicken Sie in WinMerge auf jede Datei und stellen Sie die jeweiligen Unterschiede fest.  <br />
+In den Unterschieden sind nur Sprachdateien f&uuml;r die Anzeige der Texte, welche leicht zu &uuml;bertragen sind.<br />
+In den Unterschieden sind auch aktuelle Programmier- und Code &Auml;nderungen, die Sie sich zum &Uuml;bertragen auf die neue Version detailliert notieren m&uuml;ssen.<br />
+<br>
+HINWEIS: Eigene Modifikationen, Module und Add-Ons, die Sie bisher installiert haben, k&ouml;nnen m&ouml;glicherweise nicht mehr mit der neuen Zen Cart&trade; Version kompatibel sein.<br />
+<br />
+Ihre Liste der installierten Module und Add-Ons kann Ihnen helfen, die Anzahl der gefundenen Unterschiede zu schm&auml;lern. Ebenso kann es vorkommen, dass Sie diese Module und Add-Ons noch einmal herunter laden m&uuml;ssen, um sich deren Readme- Datei bzw. den Code durchzusehen. Eventuell m&uuml;ssen Sie die Autoren der Module bez&uuml;glich einer Aktualisierung des Codes kontaktieren.<br />
+<br />
+<br />
+Genau so wie Sie es bei der Liste der Add-Ons gemacht haben, kann es sein, dass Sie einige Dinge in der Zen Cart&trade; Template Struktur &auml;ndern m&uuml;ssen, wenn Sie dies  bereits noch nicht gemacht haben sollten. Hilfe hierzu erhalten Sie auf unserer <a href="http://www.zen-cart.com">Zen Cart&trade; Webseite</a> in den  FAQ's f&uuml;r das Template System. <br />
+</div>
+<div>
+  <h1>2. Durchf&uuml;hrung </h1>
+Laden Sie sich die neueste Version von  Zen Cart&trade; auf Ihren PC herunter.  Speicher Sie diese in ein eigenes, drittes Verzeichnis (z.B. &quot;<span class="filename">\zen_neu</span>&quot;).<br />
+<br />
+Nehmen Sie Ihre erstellte Liste der ge&auml;nderten Dateien, arbeiten Sie diese Schritt f&uuml;r Schritt durch und &uuml;bertragen Sie Ihre &Auml;nderungen von der alten Version auf die neue Version.<br />
+Einfache &Auml;nderungen Ihrer Sprachdateien k&ouml;nnen Sie &uuml;ber &quot;kopieren-und-einf&uuml;gen&quot; leicht &uuml;bertragen.<br />
+&Auml;nderungen, die Sie im Programmcode durchgef&uuml;hrt haben, sich mit Bedacht zu &uuml;bertragen und ben&ouml;tigen ausf&uuml;hrliche Tests.<br />
+das Programm WinMerge kann Ihnen hierbei sehr hilfreich sein. Wie auch immer - Sie werden viele zus&auml;tzliche Unterschiede feststellen, die nichts mit Ihren Modifikationen zu tun haben. Seien Sie bitte sehr vorsichtig bei Ihren Anpassungen des Codes, sie k&ouml;nnten sonst zu erheblichen Konflikten f&uuml;hren.<br />
+<br />
+Beachten Sie bitte, dass Sie eventuell noch &Auml;nderungen Ihres selbst erstellten Templates durchf&uuml;hren m&uuml;ssen. Vergleichen Sie  deshalb bitte im Bedarfsfall die Dateien Ihres Template Ordners <span class="filename">/includes/templates/MEINTEMPLATE/*</span> mit <span class="filename">/includes/template/template_default/*</span> ... dasselbe gilt auch f&uuml;r Dateien der Sprachfiles, Sideboxen etc.<br />
+</div>
+<div>
+<h1><strong>3. Testen</strong></h1>
+Erstellen Sie eine NEUE Datenbank f&uuml;r die Installation Ihrer neuen Version von  Zen Cart&trade;. <br />
+<br />
+HINWEIS: Stellen Sie sicher, dass Ihre vorhandene Sicherung der Datenbank die aktuellsten Daten enth&auml;lt, ansonsten f&uuml;hren Sie jetzt erneut eine aktuelle Sicherung Ihrer Datenbank durch.<br>
+<br />
+F&uuml;hren Sie nun eine Wiederherstellung der aktuellen Sicherung der Datenbank, die Sie vorher in Schritt 1 erstellt haben, in Ihrer NEUEN Datenbank durch.<br />
+<br />
+Wenn in Ihren Ordner <span class="filename">/zen_new</span> keine Dateien "<span class="filename">/includes/configure.php</span>" und "<span class="filename">/admin/includes/configure.php</span>" sind, kopieren Sie diese aus den alten Ordner &quot;<span class="filename">\zen_backup</span>&quot;.<br />
+<br />
+BEARBEITEN sie nun die Datei "<span class="filename">/zen_new/includes/configure.php</span>" und stellen Sie sicher, dass der Eintrag DATABASE_NAME mit Ihrer NEUEN Datenbank &uuml;bereinstimmt. verifizieren Sie ebenso den Benutzernamen und das Passwort der Datenbank, sollten sich diese ge&auml;ndert haben.  Speichern Sie die Datei und stellen Sie sicher, dass Sie diese in n&auml;chsten Schritt mit hoch laden:<br />
+<br />
+Laden Sie die Dateien Ihrer modifizierten "neuen Version" (in Schritt 2 erstellt) auf Ihren Server in einen alternativen Ordner - z.B "<span class="filename">/shop_neu</span>" - hoch.<br>
+<br>
+Stellen Sie sicher, dass Sie den Ordner  "<span class="filename">/zen_new/zc_install</span>" auf Ihren Server hochgeladen haben.<br />
+<br />
+Starten Sie <span class="filename">/zc_install/index.php</span> und w&auml;hlen Sie die Option "<em>Upgrade</em>" (W&auml;hlen Sie keinesfalls "installieren", ansonsten wir Ihre Datenbank &uuml;berschrieben!).<br>
+(Sollte die Option &quot;Upgrade&quot; nicht zur Verf&uuml;gung stehen, konnte das Installationsprogramm keine Verbindung zu Ihrer Datenbank herstellen. &Uuml;berpr&uuml;fen Sie in diesem Fall Ihre Einstellungen in der Datei configure.php.)<br />
+<br />
+Testen Sie Ihre Anpassungen, bearbeiten Sie diese ggf. und vergleichen Sie Ihre &quot;Testinstallation&quot; mit der Installation Ihrer neuen Version. <br />
+Wenn Sie zufrieden feststellen, dass alles OK ist, k&ouml;nnen Sie online gehen.<br>
+<br />
+Sollte seit Ihrer letzten Datenbanksicherung bereits eine  signifikante Zeit vergangen sein, k&ouml;nnen Sie die Schritte im Punkt &quot;Testen&quot; mit einer neueren, aktuelleren Datenbanksicherung wiederholen. Sie brauchen nicht noch einmal alle Dateien auf Ihren Webserver hoch laden... Eine einfache Wiederherstellung der Datenbank gen&uuml;gt. Anschlie&szlig;end starten Sie das Installationsprogramm mit der Option &quot;Upgrade&quot; erneut. <br />
+<br />
+Wenn Sie mit Ihrem neuen Shop nun online gehen, versetzten sie diesen - &uuml;ber das Administrationsmen&uuml; - in den Modus &quot;Wegen Wartungsarbeiten geschlossen&quot;. Stellen Sie sicher, dass Ihre aktuelle IP Adresse in der Liste der erlaubten IP Adresse eingetragen ist.<br>
+<br />
+Wenn alle Punkte korrekt durchgef&uuml;hrt wurden, benennen sie auf Ihrem Webserver das Verzeichnis Shop "<span class="filename">shop_neu</span>" in "<span class="filename">shop</span>" um  (vorher m&uuml;ssen Sie noch Ihr altes Verzeichnis &quot;shop&quot; in irgendetwas Anderes umbenennen).<br />
+
+<br>
+Kontrollieren Sie, ob alle Dinge wie gew&uuml;nscht funktionieren. Wenn Sie kleinere Probleme zu beheben haben, schalten Sie den Modus &quot;Wegen Wartungsarbeiten geschlossen&quot; nach Bedarf ein oder aus.
+</p>
+</div>
+<div>
+<h1>Hilfe und Support</h1>
+Hilfe und Support erhalten Sie in unserer <strong>FAQ Sektion </strong> und in unseren<strong> Support Foren</strong> auf der <a href="http://www.zen-cart.at">Zen Cart&trade; Webseite</a>
+<br />
+<br />
+<em>Viel Gl&uuml;ck mit Ihrem Upgrade.  Wir hoffen, dass Sie das  Zen Cart&trade; Erlebnis genie&szlig;en!</em>
+<hr />
+</div>
+<div>
+<h1 align="center" class="intro">Spezielle Upgrade Schritte<br>
+  spezifischer Zen Cart&trade; Versionen </h1>
+<h1>Aktualisierung auf v1.3.5+ von &auml;lteren 1.3.x Versionen </h1>
+<span class="style2">HINWEIS: Besonderheiten f&uuml;r Benutzer von HTMLarea</span>
+<ul>
+  <li>Das Verzeichnis <span class="filename"> /htmlarea </span>wurde nach<span class="filename">  /editors/htmlarea </span>VERSCHOBEN</li>
+  <li>Sie sollten Ihre alten Dateien in den neuen Speicherplatz vor der Bearbeitung verschieben, damit die Aktualisierung sauber verl&auml;uft. Beachten Sie bitte, dass sich etliche Dateien im Verzeichnis von htmlarea auf Grund der Pfadanpassung ge&auml;ndert haben. </li>
+</ul>
+<h1>Aktivierung des  <em>PayPal IPN </em>Zahlungsmoduls </h1>
+In fast allen Versionen wurde das  <strong>PayPal IPN </strong>Modul general&uuml;berholt. Wenn Sie das Modul in Verwendung haben, m&uuml;ssen Sie dieses nach der Aktualisierung von Zen Cart erneut aktivieren.<br />
+Gehen Sie hierf&uuml;r folgenderma&szlig;en vor:<br>
+Unter  <span class="filename"> Admin | Modules | Payment</span> &quot;Entfernen&quot; Sie das Modul und &quot;aktivieren&quot; Sie das Modul dann wieder.<br />
+<br />
+Notieren Sie sich bitte die e-Mail Adressen und alle Einstellungen des PayPal Moduls -  diese Daten ben&ouml;tigen Sie nach der Reaktivierung, da diese wieder neu eingegeben werden m&uuml;ssen.<br />
+<h1>Andere Zahlungsmodule  </h1>
+Das Modul  <strong>Authorize.net AIM</strong> wurde in der v1.3.7 etwas ver&auml;ndert. <br />
+Wenn Sie das Modul in Verwendung haben, m&uuml;ssen Sie dieses nach der Aktualisierung von Zen Cart erneut aktivieren.<br />
+Gehen Sie hierf&uuml;r folgenderma&szlig;en vor:<br>
+Unter <span class="filename"> Admin | Modules | Payment</span> &quot;Entfernen&quot; Sie das Modul und &quot;aktivieren&quot; Sie das Modul dann wieder.<br />
+<br />
+Notieren Sie sich bitte  Login ID, transaction key und andere Einstellungen-  diese Daten ben&ouml;tigen Sie nach der Reaktivierung, da diese wieder neu eingegeben werden m&uuml;ssen.</div></td>
+</tr>
+</table>
+<br /><br />
+<p align="center"><em>Zen Cart&trade; Copyright 2006</em></p>
+</body>
+</html>
