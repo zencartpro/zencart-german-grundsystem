@@ -1,0 +1,28 @@
+<!-- $Id$ -->
+<!-- <p class="demo-notice"><span>{$smarty.const.DEMO_NOTICE}</span></p> -->
+<div id="header"> 
+  <div id="headerinner"> 
+    <div class="spacer" style="clear: both;"></div> 
+    <div class="float"><a href="{$val.linkLogo}"><img align="top" alt="{$val.altLogo}" src="{$val.textLogo}"/></a></div> 
+    <div id="rechts" class="floatr"> 
+      <div class="rightmenu">
+                {insert name="rightMenu"}
+                <a href="{$val.linkPrivacy}">{$val.textPrivacy}</a> &nbsp;&nbsp;|&nbsp;&nbsp; 
+                <a href="{$val.linkShipping}">{$val.textShipping}</a>       
+      </div> 
+      <div class="rightmenu" style="vertical-align:top;">
+              <!-- Languages --> 
+              {$val.languages}
+              <!-- End Languages --> 
+              
+              <!-- Currencies --> 
+              {$val.curriencies}     
+              <!-- End Currencies --> 
+              
+              {include file=$tmpl.search}
+      </div> 
+    </div> 
+    <div class="spacer" style="clear: both;"></div> 
+  </div> 
+</div>
+                                                                                               

@@ -1,0 +1,281 @@
+<!--
+/**
+ * @package documentation
+ * @copyright Copyright 2003-2006 Zen Cart Development Team
+ * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
+ * @version $Id: whatsnew_1.3.5.html 4387 2006-09-04 13:54:28Z drbyte $
+ */
+//-->
+<html>
+<style type="text/css">
+<!--
+body, table{ font-family:Verdana, Arial, Helvetica, sans-serif; font-size:14px; }
+table.intro {border-color:C96E29; }
+td.intro{background-color:#EEEEEE ; border-color:5778ce; font-size:11px; }
+td.plainbox, div.callout {border: 1px dashed; border-color: C96E29; margin:5 40 5 40;}
+.heading {background-color:5778CE; font-weight:bold; font-size:14px;	width: 100%; }
+
+.title1 {color:C96E29; font-weight:bold; font-size:22px; }
+.title2 {color:C96E29; font-weight:bold; font-size:13px; }
+.small {font-size:10px ;}
+.error {color:FF0000; }
+.filename {font-family: mono, "Courier New", Courier ; font-size:14px; color: c96e29;}
+.pseudolink {text-decoration:underline; color:5778CE;}
+h1.intro { color: #ffffff; border:1px solid #aca893; background-color: #c96e29;  font-size: 22px;   padding: 4px;}
+h1 { color: #ffffff;    border:1px solid #aca893;   background-color: #5778ce;   font-size: 20px;   padding: 4px;}
+h2 { color: #c96e29; 	font-size: 18px;}
+h3 { color: #5778ce;	font-size: 16px; margin-bottom:0px;}
+h4 { color: #c96e29;	font-size: 14px;}
+h5 { color: #5778ce;	font-size: 16px; margin-bottom:0px; margin-top:0px; }
+.style1 {
+	font-size: 18px;
+	font-weight: bold;
+}
+.style3 {color: FF0000; font-weight: bold; }
+
+
+-->
+</style>
+<title>What's New in Zen Cart(tm) v1.3.0</title><body>
+
+<table class="intro" cellspacing="4" cellpadding="6" border="3" width="748px" align="center">
+<tr><td class="intro">
+<center><h1 class="intro">Welcome to Zen Cart&trade; ...</h1></center>
+<br />
+The Zen Cart&trade; software is made available to you for use, additions, changes, modifications, etc. without charge, under the GNU General Public License.
+<br />
+<br />
+While we do not charge for this software, donations are greatly appreciated each time you download a new version, to help cover the expenses of maintenance, upgrades, updates, the free support forum and the continued development of this software for your online e-commerce store.
+<br />
+<br />
+Donations can be made at:
+<a href="http://www.zen-cart.com/index.php?main_page=infopages&pages_id=14" target="_blank">The Zen Cart&trade; Team Page</a>
+<br />
+<br />
+We appreciate your support.<br />
+<em>The Zen Cart&trade; Team</em><br />
+<br />
+
+<center>
+<span class="small">
+Zen Cart&trade; is derived from: Copyright  2003 osCommerce<br />
+This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;<br />
+without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE<br />
+and is redistributable under the GNU General Public License<br /><br />
+</span>
+</center>
+</td></tr></table>
+
+<br />
+<table border="3" width="748px" align="center" cellpadding="6">
+  <tr>
+<td align="center"><img src="osi-certified-120x100.png" /><br />
+This software is OSI Certified Open Source Software.<br />
+OSI Certified is a certification mark of the Open Source Initiative.
+</td></tr></table>
+<br />
+
+<table border="3" width="748px" align="center" cellpadding="6">
+  <tr>
+<td>
+<h1>Upgrade Instructions from v1.3.0.2 to 1.3.5</h1>
+<p>If you are upgrading <strong><u>from Zen Cart v1.3.0.2</u></strong>, the process is simple:<br>
+  - compare all the changed files with the files on your own site... and re-apply your customizations to the new files<br>
+  - upload the new files (with your customizations added) to your site<br>
+  - upload the <span class="filename">zc_install</span> folder to your server, and run <span class="filename">zc_install/index.php</span> <br>
+  ... select <strong>Database Upgrade</strong> from the System Inspection screen. Apply the required updates. </p>
+<p>If you are upgrading <strong><u>from a version prior to v1.3.0.2</u></strong>, please follow the instructions in the &quot;<a href="2.readme_how_to_upgrade.html">how to upgrade</a>&quot; documentation in the /docs folder. </p>
+<h1>IMPORTANT NOTES </h1>
+<ul>
+<li><span class="style1">SECURITY:</span><span class="error"> Please be sure to review and apply the <a href="./important_site_security_recommendations.html" target="_blank">Site Security Recommendations</a> to your site prior to taking your shop &quot;live&quot;.</span> If you are uncertain about how site security applies to you, talk to your web host to ensure that you have proper measures in place. <br>
+  <br>
+  </li>
+<li><span class="style1">CSS-per-page</span> coding changes may affect your stylesheet naming conventions. The naming for category pages now properly uses cPath, like: <span class="filename">c_3_10.css</span>, <span class="filename">c_31_52_88.css</span>, etc <br>
+  <br>
+  </li>
+<li><span class="style1">Stylesheet Change:</span> CSS selector<span class="filename"> #cartAttribsList </span>changed to <span class="filename">.cartAttribsList</span> <br> 
+  You may need to adjust some templates to accommodate the change. <br>
+  NOTE: There are other stylesheet changes/additions. Please review the changes using WinMerge <br>
+  <br>
+</li>
+<li><span class="error"><span class="style1">NOTE TO &quot;CLASSIC&quot; TEMPLATE USERS:</span> IF YOUR SITE IS BASED ON the older &quot;Classic&quot; template, please note that the New Classic is very different. <strong>The new tableless &quot;Classic Contemporary Green&quot; replaces the old table-based &quot;Classic&quot; template.</strong> The folder is STILL named &quot;classic&quot;... so if your site is using a template named &quot;classic&quot;, you will want to either skip upgrading this folder, or be VERY careful to not overwrite your changes.</span><br>
+  This is likely a good time to build your own custom template, using a name other than 'Classic'.
+<br>
+  <br>
+</li>
+<li><span class="style1">Company Minimum Value:</span> If you have never altered your &quot;Minimum Value&quot; for &quot;<span class="filename">Company</span>&quot; in <span class="filename">Admin-&gt;Configuration-&gt; Minimum Values</span> you may wish to double-check it. The default value for this used to be '2', and in v1.3.5, this minimum is actually validated. Thus, if you don't update this to 0, then you may find customers complaining that they have to enter a company name even for personal registrations. <br>
+  <br>
+</li>
+<li><span class="style1 error">PayPal Users:</span> <span class="error">If you are using the PayPal payment module, you will need to Remove and re-Install the PayPal module in Admin-&gt;Modules-&gt;Payment-&gt;PayPal in order to take advantage of the bugfixes in the module.</span><br>
+  <br>
+</li>
+<li><span class="style1 error">NOTE: for HTMLarea users:</span>
+  <ul>
+    <li>The<span class="filename"> /htmlarea </span>folder has been MOVED into<span class="filename"> /editors/htmlarea </span></li>
+    <li>You should move your old files to the new location before editing, as this will make things go a little smoother. Note that a couple files have changed in the htmlarea folder to accomodate the new folder path. </li>
+    <li>This change opens the door to allow for other editors to be integrated. Plugins are available in the downloads area for FCKeditor and TinyMCE editors. <br>
+      <br>
+    </li>
+    </ul>
+</li>
+<li><span class="style1">phpBB file rename.</span>  The file <span class="filename">class.phpBB.php</span> was renamed to lowercase for consistency across webserver platforms. If you fail to rename yours during the upgrade, you will encounter error messages saying that the file cannot be found. <br>
+  <br>
+</li>
+<li><span class="style1">Got a BIG database?</span> Several new indexes are added during the upgrade process. We suggest testing the upgrade after busy hours if you are upgrading a database with large &quot;products&quot; or &quot;orders&quot; tables. </li>
+</ul>
+<h1>UPGRADING YOUR TEMPLATES </h1>
+Since version 1.2, Zen Cart&trade; has had a major overhaul of the templating system for v1.3.  As such, you have two options:
+<ul>
+<li>
+upgrade your existing template by applying the new stylesheet and moving a few lines of code around; or</li>
+<li><strong>the best way </strong>to have almost-tableless and much tidier template code, is to make a new template (based on template_default or the new &quot;green&quot; classic introduced in v1.3.5) and carefully re-apply your own customizations to the new template system.</li>
+</ul>
+
+
+<p>For further information on template upgrading, see the support-forum discussion on this topic. </p>
+
+
+<h1>CHANGELOG - List of Changed Files </h1>
+<p>For a list of files that have been changed since v1.3.0.2, see the <a href="changelog-v1-3-5.html" target="_blank">changelog-v1-3-5.html</a> </p>
+<h1>Whats New ... </h1>
+<h3><strong>The following Improvements and bugfixes are included in v1.3.5: </strong></h3>
+<ul>
+  <li class="error"><strong>SECURITY UPDATES. Numerous <em>IMPORTANT</em> security updates have been included in this release to prevent hack attempts and other exploitation of your site.<br>
+<strong class="style1 error">YOU SHOULD PREPARE TO UPGRADE ASAP</strong></strong><br><br>
+</li>
+  <li><span class="style3">NEW CLASSIC TEMPLATE </span>with tableless design. Uses only the stylesheet to make tableless layout look the same as the old v1.2 Classic Template (but with an added color change). <br><br>
+</li>
+  <li><strong>State/Country pulldown menus now work cooperatively</strong><br>
+</li>
+  <li><strong>Speed performance enhanced with improvements in database indexing</strong></li>
+  <li><strong>Resolved Slow Query problem with new and upcoming products </strong></li>
+  <li><strong>Attributes ... while shopping, if a customer makes an error and fails to choose a required attribute, their previous selections for pulldowns were not remembered. This is now fixed.</strong></li>
+<br>
+
+        <li>Added:  Optional alpha sorter pulldown menu in product listing and search  results. Can be enabled in Admin-&gt;Configuration&gt;Product Listing</li>
+        <li>Added: Store Manager now has an optional button to use for optimizing database tables</li>
+        <li>Added: metatags can now have a user-selected divider, rather than just "space" (ie: comma)</li>
+        <li>Added: new notifiers added to password, address-book, checkout-process, checkout-shipping</li>
+        <li>Added: Product Listing now has option to display category image or not</li>
+        <li>Added: Site Map now enables/disables options using same settings as information sidebox</li>
+        <li>Added: search input fields now reinstate the default text if user clicks away from the field</li>
+        <li>Added: Admin-&gt;Customers-&gt;Orders page now has "edit" navigation button</li>
+        <li>Added: legend on/off indicators for payment/shipping/ot modules for clarity</li>
+        <li>Added: customer email notification upon customer status change from customer-listing screen</li>
+        <li>Added: Zones Definitions description now shows in admin geozones listing</li>
+        <li>Added: completed-order details available to checkout_success template for use by affiliate-tracking systems</li>
+        <li>Added: Email footer now contains CC type if CC was used for payment</li>
+        <li>Added:  Checkout-Shipping page now explains that no options are available if no  available options exist, rather than just leaving the selection area  blank and confusing the customer</li>
+        <li>Added: style classes added for images on product listing to allow option for borders etc</li>
+        <li>Added: down-for-maintenance sends HTML 503 header so spiders return later and don't index the "down" page</li>
+        <li>Added:  Checkout-payment page now explains that no options are available for  customer's region if zones have restricted modules from display, or  none are available for other reasons </li>
+        <br>
+        <li>Change: currency-updater now suppresses errors and also attempts to use cURL if normal attempts fail to retrieve currency data</li>
+        <li>Change: CSS-per-page was grabbing too many wildcard matches. Logic improved.</li>
+        <li>Change: renamed class.phpBB.php to lowercase for consistency</li>
+        <li>Change: stylesheet selector #cartAttribsList changed to .cartAttribsList so that the ID wasn't used repeatedly within a loop</li>
+        <li>Change: USPS module no longer uses obsolete password field. Updated help text for clarity.</li>
+        <li>Change: individual add-to-cart buttons and qty box now available on product-listing</li>
+        <li>Change: reinstated alternating-colors for all-products listing page</li>
+        <li>Change: add style support for odd/even rows on checkout-confirmation page</li>
+        <li>Change: admin configuration editor allows click on labels, not just radio buttons</li>
+        <li>Change: admin user edit screen no longer displays unused level/demo options</li>
+        <li>Change: POST data removed from navigation class</li>
+        <li>Change: Updated descriptions and helptext in various payment/shipping modules for clarity</li>
+        <li>Change: default image folders are now set for categories and manufacturers</li>
+        <li>Change: attributes using radio buttons, if only 1 option in gang ... are auto-selected for cust</li>
+        <li>Change: Shipping modules: Zones and Tables now can do Price or Weight or Items </li>
+        <li>Change: newsletter-manager module no longer requires lock/unlock </li>
+        <br>
+        <li>PayPal: downloadable items paid by eCheck are now activated upon eCheck clearing</li>
+        <li>PayPal: multi-currency translator support repaired for currencies not handled natively by PayPal</li>
+        <li>PayPal: debug logging support added</li>
+        <li>PayPal: PayPal store-name display override added to language file. default: "store name purchase" </li>
+        <br>
+        <li>Bugfix: Deleting Images from admin for products, changed to work with recent browser updates: Added checkbox to handle removal.</li>
+        <li>Bugfix: Nick Name labels for forum now consistently displayed, and "*required" shows correctly</li>
+        <li>Bugfix: Zone problems related to adding addresses during checkout resolved</li>
+        <li>Bugfix: Zone problems where grabbing similar zones would ignore selected entry resolved</li>
+        <li>Bugfix: resolved display problem of "referral source" field in My Account-&gt;Edit</li>
+        <li>Bugfix: File Upload status messages now show when using upload attributes</li>
+        <li>Bugfix: table-cell alignment fix in tpl_tabular_display</li>
+        <li>Bugfix: My Account display of order information uninitialized array repaired</li>
+        <li>Bugfix: My Account display of newsletter/notifications now turns off properly via admin switch</li>
+        <li>Bugfix: Admin-&gt;Customers wasn't showing linked customer reviews stats properly</li>
+        <li>Bugfix: Shopping Cart sidebox had display blocks misaligned within loops</li>
+        <li>Bugfix: fixed problem with duplicates in whos_online display</li>
+        <li>Bugfix: shopping cart qty box no longer drops too many products when clicking update</li>
+        <li>Bugfix: prev/next now displays properly when "always show cat" is set to 1</li>
+        <li>Bugfix: when logging out, customer-selected language is retained until session expires</li>
+        <li>Bugfix: duplicate status indicators removed from order status html-email notices</li>
+        <li>Bugfix: email option for "sendmail-f" reinstated</li>
+        <li>Bugfix: fixed html syntax error on checkout-shipping-address page</li>
+        <li>Bugfix: CC module no longer stores full CC numbers</li>
+        <li>Bugfix: admin legends with red icons displayed inconsistent ALT texts</li>
+        <li>Bugfix: Breadcrumb issues with "Categories Always Show" switch set to a specific category</li>
+        <li>Bugfix: separated featured/specials properly in Admin-&gt;Catalog-&gt;Featured</li>
+        <li>Bugfix: phpBB link sometimes didn't detect properly if phpBB only partially existed.</li>
+        <li>Bugfix: error in FILENAME_FEATURED_PRODUCTS when multiple-add-to-cart was turned off</li>
+        <li>Bugfix: fixed attributes display of "Please Choose:" when READONLY are used</li>
+        <li>Bugfix: cPath problems on searches and filters resolved</li>
+        <li>Bugfix: reinstate functionality of admin switch for Minimum Value of Also Purchased Products</li>
+        <li>Bugfix: reinstate out-of-stock indicators on checkout_confirmation page</li>
+        <li>Bugfix: metatags handles manufacturer filters correctly</li>
+        <li>Bugfix: metatags handles unknown page correctly</li>
+        <li>Bugfix: also-purchased-products centerbox no longer queries the database if disabled</li>
+        <li>Bugfix: checkout restrictions fixed where gift certificate/coupon used and payment module not properly selected</li>
+        <li>Bugfix: adding a new admin was logging into new admin's account immediately (RG problem)</li>
+        <li>Bugfix: admin product-type listing now goes to edit layout mode upon clicking</li>
+        <li>Bugfix: ez-pages listing includes navigation buttons</li>
+        <li>Bugfix: languages_code setting for some admin areas wasn't set properly including editor</li>
+        <li>Bugfix: checkout_confirmation page has SSL link to shopping-cart to retain session for edits</li>
+        <li>Bugfix: fixed XHTML error on contact-us page</li>
+        <li>Bugfix: fixed line-spacing problems on support files for phpMailer. Added .htaccess to folder.</li>
+        <li>Bugfix: repaired pulldown form in customers-edit screen</li>
+        <li>Bugfix: HTML Emails were inserting @CRLF incorrectly for BR and P tags</li>
+        <li>Bugfix: restored linefeed-handler setting for emails</li>
+        <li>Bugfix: style added to handle "order_history" sidebox content so UL wasn't misaligned</li>
+        <li>Bugfix: upcoming-products page was showing disabled products</li>
+        <li>Bugfix: zones shipping module wasn't honoring tax-basis setting properly</li>
+        <li>Bugfix: phpBB link in information sidebox builds smarter based on 1.3 syntax change</li>
+        <li>Bugfix: SMTP server port setting reinstated</li>
+        <li>Bugfix: checkout cart-contents areas have a CSS selector</li>
+        <li>Bugfix: Page Not Found page now sends HTML 404 header</li>
+        <li>Bugfix: table shipping module now works with total, weight, and items</li>
+        <li>Bugfix: free shipping enhanced to work with item/weight/price on shipping modules</li>
+        <li>Bugfix: group-pricing module wasn't working with tax classes properly</li>
+        <li>Bugfix: Default Order Status was being set too early for zero-balance orders</li>
+        <li>Bugfix: redemption of Gift Certificate from GV-FAQ page fixed</li>
+        <li>Bugfix: phpBB error of duplicate email upon editing customer name resolved</li>
+        <li>Bugfix: product+download combo items excluded from free-shipping price or item</li>
+        <li>Bugfix: shipping modules were not consistently handling weights &lt; 1</li>
+        <li>Bugfix: product-status was being set to off incorrectly if quantity was &lt;1 instead of &lt;=0</li>
+        <li>Bugfix: Version Info listing of database-upgrade history was sorted incorrectly and displayed some duplicates.</li>
+        <li>Bugfix: footer bar logic changed for ez-pages listing to remove a DIV that caused troubles</li>
+        <li>Bugfix: company field-validation on create-account wasn't happening</li>
+        <li>Bugfix: qty boxes weren't hiding properly using pulldown filter sideboxes</li>
+        <li>Bugfix: SQLPatch no longer mistakenly displays debug results of processed SQL statements</li>
+        <li>Bugfix: some "extra_" folders were loading non-php files mistakenly</li>
+        <li>Bugfix:  More MySQL5 fixes implemented to prevent datatype errors requiring  STRICT_TRANS_TABLES disabled. These fixes are not exhaustive. Still not  MySQL5-certified</li>
+        <li>Bugfix: group-pricing and coupons order-total  modules not calculating taxes correctly. Structurally improved to be  full credit-class modules.</li>
+        <li>Bugfix: improved garbage-collection routines for session-handling</li>
+        <li>Bugfix: Shipping estimator page was not properly nesting table components</li>
+        <li>Bugfix:  Admin... when editing customer records, customer's "zone" would be  busted and replaced with the 2-letter state abbreviation, resulting in  broken tax calcs in next checkout</li>
+        <li>Bugfix: Shipping Estimator now remembers more information about customer in popup unless a timeout occurs</li>
+        <li>Bugfix: product_music template was not showing genre and artist information</li>
+        <li>Bugfix: address-book restrictions less than 2 was still showing "change address" on checkout</li>
+        <li>Bugfix: sort order problem on modules in admin was preventing some modules from triggering if sort orders were the same</li>
+        <li>Bugfix: Admin password-forgotten is now treated as an SSL page</li>
+        <li>Bugfix: the category icon display on product-info pages now allows image option on/off</li>
+        <li>Bugfix: fixed stylesheet problem with category tabs in Opera</li>
+        <li>Bugfix: more reliable logic for stripping non-numeric characters from gv/coupon inputs</li>
+        <li>Bugfix: removed empty &lt;div&gt; when banner is blank and no tagline defined for tpl_header </li>
+  </ul>
+</td>
+</tr>
+</table>
+<br /><br />
+<p align="center"><em>Zen Cart&trade; Copyright 2006</em></p>
+<br /><br />
+</body>
+</html>

@@ -1,0 +1,56 @@
+﻿Zen Cart(tm) - The Art of E-Commerce
+willkommen bei Zen Cart(tm) E-Commerce
+Version 1.3.8de
+
+
+Im Folgenden finden Sie eine sehr vereinfachte Installationsanleitung.
+
+Wir schlagen vor, Sie verwenden die HTML-Version im /docs Ordner für detailliertere Anweisungen.
+Alle unsere README-Dokumente sind im Verzeichnis /docs Ordner dieser Version.
+
+Hier finden Sie Online-Dokumentation unter: 
+http://www.zen-cart.at/index.php?module=CMpro&func=listsubjects
+http://tutorials.zen-cart.com
+
+Zen Cart verfügt über eine integrierte automatische Installation im System. Um diese nutzen zu können, müssen Sie zuerst den Code auf einem Web-Server entpacken
+
+Der Web-Server kann entweder auf Ihrem lokalen Computer oder auf einer Internet-Host sein.
+
+Entpacken sie die Zen Cart(tm) ZIP-Datei. Nach dem entpacken, haben Sie ein Verzeichnis mit den Zen Cart(tm)-Skripten.
+
+Der Inhalt dieses Verzeichnis muss auf Ihrem Webserver, und zwar entweder durch Kopieren in das Verzeichnis oder mittels eines FTP-Programms.
+
+Sie müssen nun das Installationsscript starten.
+Um dies zu tun, müssen Sie einen Browser öffnen und die entsprechende URL eingeben.
+
+Wenn Sie auf einem eigenen Computer sind, wird dies
+
+    http://localhost/(Zen-Cart-Verzeichnis)/zc_install/
+
+sein, oder wenn sie auf einem Live-Server sind:
+
+    http://{www.mydomain.com}/zc_install/
+
+Sie brauchen dann nur den Anweisungen zur Installation von Zen Cart (tm) zu folgen.
+
+Eine weitere detailliertere Installationsanleitung fnden sie in der /docs/1.readme_installation.html Datei.
+
+____________________________________________________________________________________________________________
+
+Unterschiede zur englischsprachigen Version:
+- eindeutschung des Shops und der Adminoberfläche
+- Umstellung Zeichensatz von iso auf UTF-8
+    + !!! Datenbankanpassung ev. von nöten 
+- ez-pages mehrsprachig
+- zusätzliche Templates
+    + Viennablood :: css-basierend
+    + hugo13_orange :: smarty-basierend /experimentell)
+- Attributmanager ajax-basierende auswahl
+- tools/MapShop :: Showcase Eintragung für ihren Shop
+
+
+viel spaß mit der neuen version
+wünscht ihnen das team
+von zen-cart.at
+
+(Document Revision: $Id$)
