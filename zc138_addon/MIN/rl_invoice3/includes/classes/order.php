@@ -1,5 +1,5 @@
 <?php
-/**
+/** STEVE got pdf invoice at the bottom, and shipping telephone number line 140
  * File contains the order-processing class ("order")
  *
  * @package classes
@@ -345,9 +345,11 @@ class order extends base {
                         'shipping_method' => $_SESSION['shipping']['title'],
                         'shipping_module_code' => $_SESSION['shipping']['id'],
                         'shipping_cost' => $_SESSION['shipping']['cost'],
-                        'subtotal' => 0,
-                        'tax' => 0,
-                        'total' => 0,
+//BUGFIX next four lines changed as per http://www.zen-cart.com/forum/showthread.php?p=687972#post687972
+                        'subtotal' => 0, 
+                       'shipping_tax'=>0, 
+                        'tax' => 0, 
+                        'total' => 0, 
                         'tax_groups' => array(),
                         'comments' => (isset($_SESSION['comments']) ? $_SESSION['comments'] : ''),
                         'ip_address' => $_SESSION['customers_ip_address'] . ' - ' . $_SERVER['REMOTE_ADDR']

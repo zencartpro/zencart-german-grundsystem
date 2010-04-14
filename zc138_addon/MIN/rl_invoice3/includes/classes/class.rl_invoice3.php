@@ -56,7 +56,8 @@ class rl_invoice3 extends fpdi {
         $this->addressWidth = $this->getDefault(RL_INVOICE3_ADDRESS_WIDTH, array('addr1' => '80', 'addr2' => '80'));
         $this->addressBorder = $this->getDefault(RL_INVOICE3_ADDRESS_BORDER, array('addr1' => '', 'addr2' => ''));
         $this->paper = $this->getDefault(RL_INVOICE3_PAPER, array('format' => 'A4', 'unit' => 'mm', 'orientation' => 'P'));
-        $this->templates = $this->getDefault(RL_INVOICE3_TABLE_TEMPLATE, array('pCols' => 'col_templ_1', 'pOptions' => 'options_templ_1', 'tCols' => 'total_col_1', 'tOptions' => 'total_opt_1'));
+        ##$this->templates = $this->getDefault(RL_INVOICE3_TABLE_TEMPLATE, array('pCols' => 'col_templ_1', 'pOptions' => 'options_templ_1', 'tCols' => 'total_col_1', 'tOptions' => 'total_opt_1'));
+        $this->templates = $this->getDefault(RL_INVOICE3_TABLE_TEMPLATE, array('pCols' => 'amazon', 'pOptions' => 'amazon_templ'));
         $this->fonts2 = $this->getDefaultCheck(RL_INVOICE3_FONTS, array('general' => 'dejavusanscondensed', 'table' => 'freemono'));
         $this->pdf->AddFont($this->fonts2['general']);
         if($this->fonts2['general'] != $this->fonts2['table']){
@@ -79,6 +80,13 @@ class rl_invoice3 extends fpdi {
         $this->options = $options;
         $this->t1Col = $colsP[$this->templates['pCols']];
         $this->t1Opt = $optionsP[$this->templates['pOptions']];
+        if(!isset($this->t1Opt['fontSizeProducts'])){
+            $this->t1Opt['fontSizeProducts'] = $this->t1Opt['fontSize'];
+        }
+        if(!isset($this->t1Opt['fontSizeTotal'])){
+            $this->t1Opt['fontSizeTotal'] = $this->t1Opt['fontSize'];
+            die('fST');
+        }
         if(isset($this->t1Opt['paperOriantation'])){
             $this->paper['orientation'] = $this->t1Opt['paperOriantation'];
         }
@@ -124,14 +132,13 @@ class rl_invoice3 extends fpdi {
         $this->db->Execute($sql);
     }
     function setTemplate($cp, $op) {
-        #rldp($this->colsP, '$this->colsP');
         $this->t1Col = $cp;
         $this->t1Opt = $op;
     }
     function checkInstall() {
         // link to invoice
         $link = HTTP_SERVER . DIR_WS_ADMIN . 'rl_invoice3.php?oID=' . zen_db_prepare_input($_GET['oID']);
-        if (!defined('RL_INVOICE3_DELTA_2PAGE')) {
+        if (!defined('RL_INVOICE3_ALLWAYSINVOICE')) {
             // check multilingual installation
             if (rl_invoice3::isMultiLingual()) {
                 $multi = true;
@@ -183,7 +190,8 @@ class rl_invoice3 extends fpdi {
                             'RL_INVOICE3_MARGIN', 'RL_INVOICE3_NOT_NULL_INVOICE', 'RL_INVOICE3_ORDERSTATUS', 'RL_INVOICE3_ORDER_ID_PREFIX', 
                             'RL_INVOICE3_PAPER', 'RL_INVOICE3_PDF_BACKGROUND', 'RL_INVOICE3_PDF_PATH', 'RL_INVOICE3_SEND_ATTACH', 
                             'RL_INVOICE3_SEND_ORDERSTATUS_CHANGE', 'RL_INVOICE3_SEND_PDF', 'RL_INVOICE3_TABLE_TEMPLATE', 
-                            'RL_INVOICE3_WITHOUTINVOICE', 'RL_INVOICE3_TEMPLATE_ONLY_FIRST_PAGE', 'RL_INVOICE3_DELTA_2PAGE');
+                            'RL_INVOICE3_WITHOUTINVOICE', 'RL_INVOICE3_TEMPLATE_ONLY_FIRST_PAGE', 'RL_INVOICE3_DELTA_2PAGE', 
+                            'RL_INVOICE3_ALLWAYSINVOICE');
             $sql = ' SELECT configuration_key FROM ' . TABLE_CONFIGURATION . " WHERE configuration_key LIKE 'RL_INVOICE3%'";
             $res = $this->db->Execute($sql);
             $confArrAct = array();
@@ -208,7 +216,7 @@ class rl_invoice3 extends fpdi {
             $confArrAdd = array(
                                 'RL_INVOICE3_ADDRESS1_POS' => "('XY-position of address1 position', 'RL_INVOICE3_ADDRESS1_POS', '0|30', 'XY-position of address; its the margin delta <br />Default: 0|30', $group, 30, NULL)", 
                                 'RL_INVOICE3_ADDRESS2_POS' => "('XY-position of address2 position', 'RL_INVOICE3_ADDRESS2_POS', '90|36', 'XY-position of address; its the margin delta <br />Default: 80|30', $group, 80, NULL)",
-                                'RL_INVOICE3_ADDRESS_BORDER' => "('border Address1|2', 'RL_INVOICE3_ADDRESS_BORDER', 'LTRB|LTRB', 'border Address1|2: LTRB (Left Top Right Bottom)<br />', $group, 70, NULL)", 
+                                'RL_INVOICE3_ADDRESS_BORDER' => "('Border Address1|2', 'RL_INVOICE3_ADDRESS_BORDER', 'LTRB|LTRB', 'border Address1|2: LTRB (Left Top Right Bottom)<br />', $group, 70, NULL)", 
                                 'RL_INVOICE3_ADDRESS_WIDTH' => "('width Address1|2', 'RL_INVOICE3_ADDRESS_WIDTH', '80|60', 'width Address1|2: 60|60<br />', $group, 40, NULL)", 
                                 'RL_INVOICE3_CITY' => "('City ', 'RL_INVOICE3_CITY', 'Wien, am @DATE@', 'City, 27.9.2004', $group, 100, NULL)", 
                                 'RL_INVOICE3_DELTA' => "('deltas', 'RL_INVOICE3_DELTA', '20|20', 'delta address invoice|delta invoice products: 20|30<br />', $group, 50, NULL)", 
@@ -219,16 +227,17 @@ class rl_invoice3 extends fpdi {
                                 'RL_INVOICE3_NOT_NULL_INVOICE' => "('Accounting for free product', 'RL_INVOICE3_NOT_NULL_INVOICE', '0', 'Accounting for free product: send e-mail invoice', $group, 130, NULL)", 
                                 'RL_INVOICE3_ORDERSTATUS' =>  "('send by orderstatus greater/equal than ', 'RL_INVOICE3_ORDERSTATUS', '3', 'only send invoice if orders_status greater or equal than', $group, 130, NULL)", 
                                 'RL_INVOICE3_ORDER_ID_PREFIX' => "('prefix for OrderNo', 'RL_INVOICE3_ORDER_ID_PREFIX', ': FsF/2008/', 'prefix for OrderNo<br />', $group, 110, NULL)", 
-                                'RL_INVOICE3_PAPER' => "('Paper Size/Units/Oriantation', 'RL_INVOICE3_PAPER', 'A4|mm|P', '1. papersize = A3|A4|A5|Letter|Legal <br />2. units: pt|mm|cm|inch <br />3. Oriantation: L|P<br />', $group, 10, NULL)", 
+                                'RL_INVOICE3_PAPER' => "('Paper Size/Units/Orientation', 'RL_INVOICE3_PAPER', 'A4|mm|P', '1. papersize = A3|A4|A5|Letter|Legal <br />2. units: pt|mm|cm|inch <br />3. Orientation: L|P<br />', $group, 10, NULL)", 
                                 'RL_INVOICE3_PDF_BACKGROUND' => "('pdf background file', 'RL_INVOICE3_PDF_BACKGROUND', '" . DIR_FS_CATALOG . DIR_WS_INCLUDES . "pdf/rl_invoice3_bg.pdf', 'pdf background file: " . DIR_FS_CATALOG . DIR_WS_INCLUDES . "pdf/rl_invoice3_bg.pdf<br />', $group, 60, NULL)", 
                                 'RL_INVOICE3_PDF_PATH' => "('filename and path to store the pdf-file', 'RL_INVOICE3_PDF_PATH', '" . DIR_FS_CATALOG . "pdf/|1', '1. path to store the pdf-file (!!must be writeable !!)<br />Default: ../pdf/|1<br />', $group, 130, NULL)", 
-                                'RL_INVOICE3_SEND_ATTACH' => "('additional attachements', 'RL_INVOICE3_SEND_ATTACH', 'agb.pdf|widerruf.pdf', 'RL_INVOICE3_SEND_PDF', $group, 130, NULL)", 
+                                'RL_INVOICE3_SEND_ATTACH' => "('additional attachments', 'RL_INVOICE3_SEND_ATTACH', 'agb.pdf|widerruf.pdf', 'RL_INVOICE3_SEND_PDF', $group, 130, NULL)", 
                                 'RL_INVOICE3_SEND_ORDERSTATUS_CHANGE' =>  "('[RE]send order', 'RL_INVOICE3_SEND_ORDERSTATUS_CHANGE', '3|100', '[RE]send invoice, if orderstatus changed to', $group, 130, NULL)", 
                                 'RL_INVOICE3_SEND_PDF' => "('send pdf invoice with order', 'RL_INVOICE3_SEND_PDF', '1', 'Do you want to send the invoice with an order?', $group, 130, NULL)", 
                                 'RL_INVOICE3_TABLE_TEMPLATE' => "('Templates for products table & total table', 'RL_INVOICE3_TABLE_TEMPLATE', 'amazon|amazon_templ|total_col_1|total_opt_1', 'templates for products_table & total_table; this is defined in rl_invoice3_def.php; see also: docs/rl_invoice/readme_ezpdf.pdf<br />', $group, 90, NULL)",
                                 'RL_INVOICE3_WITHOUTINVOICE' => "('do not print invoice address', 'RL_INVOICE3_WITHOUTINVOICE', 'false', 'do not print invoice address', $group, 160, \"zen_cfg_select_option(array('true', 'false'), \")",
-                                'RL_INVOICE3_TEMPLATE_ONLY_FIRST_PAGE' => "('PDF-template on first page', 'RL_INVOICE3_TEMPLATE_ONLY_FIRST_PAGE', 'false', 'print pdf-background-template omly on the first page', $group, 160, \"zen_cfg_select_option(array('true', 'false'), \")",
+                                'RL_INVOICE3_TEMPLATE_ONLY_FIRST_PAGE' => "('PDF-template on first page', 'RL_INVOICE3_TEMPLATE_ONLY_FIRST_PAGE', 'false', 'print pdf-background-template only on the first page', $group, 160, \"zen_cfg_select_option(array('true', 'false'), \")",
                                 'RL_INVOICE3_DELTA_2PAGE' => "('Delta 2.Page', 'RL_INVOICE3_DELTA_2PAGE', '15', 'Delta 2.Page', $group, 160, \"\")",
+                                'RL_INVOICE3_ALLWAYSINVOICE' => "('Allways print Billingaddress', 'RL_INVOICE3_ALLWAYSINVOICE', 'false', 'Allways print Billingaddress', $group, 180, \"zen_cfg_select_option(array('true', 'false'), \")",
                                 );
             foreach ($confDiffAdd as $value) {
                $sql = $ins . $confArrAdd[$value];
@@ -260,6 +269,7 @@ class rl_invoice3 extends fpdi {
                                     'RL_INVOICE3_WITHOUTINVOICE' => "('RL_INVOICE3_WITHOUTINVOICE', 43, 'Rechnungsadresse nicht drucken', 'Rechnungsadresse nicht drucken')",
                                     'RL_INVOICE3_TEMPLATE_ONLY_FIRST_PAGE' => "('RL_INVOICE3_TEMPLATE_ONLY_FIRST_PAGE', 43, 'PDF-Template auf 1.Seite', 'PDF-Template nur auf 1.Seite drucken')",
                                     'RL_INVOICE3_DELTA_2PAGE' => "('RL_INVOICE3_DELTA_2PAGE', 43, 'Abstand 2.Seite', 'Zusätzlicher Abstand auf 2. Seite')",
+                                    'RL_INVOICE3_ALLWAYSINVOICE' => "('RL_INVOICE3_ALLWAYSINVOICE', 43, 'Rechnungsadresse', 'Rechnungsadresse immer drucken')",
                                     );
                foreach ($confDiffAdd as $value) {
                    $sql = $ins . $confArrMultiAdd[$value];
@@ -443,7 +453,7 @@ class rl_invoice3 extends fpdi {
         $this->pdf->SetXY($this->address1Pos['X'], $this->address1Pos['Y']);
         $this->pdf->Cell($this->addressWidth['addr1'], 6, LIEFERADRESSE, $this->addressBorder['addr1'], 2, 'L');
         $this->pdf->MultiCell($this->addressWidth['addr1'], 6, $x['delivery'], $this->addressBorder['addr1'], 1, 'L');
-        if ((RL_INVOICE3_WITHOUTINVOICE == 'false') && ($x['delivery'] != $x['billing'])) {
+        if (((RL_INVOICE3_WITHOUTINVOICE == 'false') && ($x['delivery'] != $x['billing'])) || (RL_INVOICE3_ALLWAYSINVOICE=='true')) {
             $this->pdf->SetXY($this->address2Pos['X'], $this->address2Pos['Y']);
             $this->pdf->Cell($this->addressWidth['addr2'], 6, RECHNUNGSADRESSE, $this->addressBorder['addr2'], 2, 'L');
             $this->pdf->MultiCell($this->addressWidth['addr2'], 6, $x['billing'], $this->addressBorder['addr2'], 1, 'L');
@@ -461,7 +471,7 @@ class rl_invoice3 extends fpdi {
         $this->pdf->SetX(20);
         $this->pdf->Cell($this->maxWidth, 6, $dat, '', 2, 'R');
 
-	  $this->pdf->SetX($this->margin['left']);
+      $this->pdf->SetX($this->margin['left']);
         $tmp = RL_INVOICE3_PAYMENT_METHOD . " " . $this->order_check->fields['payment_method'];
         $this->pdf->Cell($this->maxWidth, 6, $tmp, '', 0, 'L');
     }
@@ -533,8 +543,8 @@ class rl_invoice3 extends fpdi {
         $data = array();
         $i = 0;
         foreach($this->order->totals as $key => $val) {
-            $data[$i]['title'] = strip_tags(html_entity_decode($val['title']));
-            $data[$i]['text'] = $this->mr(html_entity_decode($val['text']));
+            $data[$i]['title'] = strip_tags(html_entity_decode($val['title'],ENT_QUOTES, "utf-8"));//STEVE html_entity_decode was in wrong format
+			$data[$i]['text'] = $this->mr(html_entity_decode($val['text'],ENT_QUOTES, "utf-8"));
             $data[$i]['class'] = $val['class'];
             $i++;
         }
@@ -543,8 +553,8 @@ class rl_invoice3 extends fpdi {
     function makeProducts($p = null) {
         $productData = $this->getProductData($p);
         $this->pdf->SetFont($this->fonts2['table'], '');
-        $this->pdf->SetFontSize($this->t1Opt['fontSize']);
-        $this->pdf->SetY($this->delta['invoiceProducts'] + $this->pdf->GetY());
+        $this->pdf->SetFontSize($this->t1Opt['fontSizeProducts']);
+		$this->pdf->SetY('10'+ $this->pdf->GetY());
         $this->pdf->SetX($this->margin['left']);
         // table-header
         $this->pdf->SetFillColor(199);
@@ -555,7 +565,7 @@ class rl_invoice3 extends fpdi {
                 $wi = $this->t1Opt['cols'][$key]['width'];
             }
             if($wi > 0){
-                $this->pdf->Cell($wi, $this->t1Opt['fontSize'] / 2, $value, '1', 0, $this->t1Opt['cols'][$key]['justification'], 1);
+                $this->pdf->Cell($wi, $this->t1Opt['fontSizeProducts'] / 2, $value, '1', 0, $this->t1Opt['cols'][$key]['justification'], 1);
             }
         }
         $this->pdf->SetFont($this->fonts2['general']);
@@ -590,7 +600,7 @@ class rl_invoice3 extends fpdi {
     function makeTotal() {
         $totalData = $this->getTotalData();
         $this->pdf->SetFont($this->fonts2['general'], '');
-        $this->pdf->SetFontSize($this->t1Opt['fontSize']);
+        $this->pdf->SetFontSize($this->t1Opt['fontSizeTotal']);
         $this->pdf->SetFillColor(199);
         $this->pdf->SetX($this->margin['left']);
         $w = 0;
@@ -612,10 +622,10 @@ class rl_invoice3 extends fpdi {
                 $this->pdf->line($leftL, $this->pdf->GetY(), $leftR, $this->pdf->GetY());
                 $this->pdf->setY($this->pdf->GetY() + $lineWidth);
             }
-            #$this->pdf->Cell(160.5, $this->t1Opt['fontSize'] / 2, $value['title'], '0', 0, 'R', $y);
-            $this->pdf->Cell($this->widthSum-20, $this->t1Opt['fontSize'] / 2, $value['title'], '0', 0, 'R', $y);
-            $this->pdf->Cell(20, $this->t1Opt['fontSize'] / 2, $value['text'], '0', 0, 'R', $y);
-            $this->pdf->SetXY($this->margin['left'], $this->pdf->GetY() + $this->t1Opt['fontSize'] / 2);
+            #$this->pdf->Cell(160.5, $this->t1Opt['fontSizeProducts'] / 2, $value['title'], '0', 0, 'R', $y);
+            $this->pdf->Cell($this->widthSum-20, $this->t1Opt['fontSizeProducts'] / 2, $value['title'], '0', 0, 'R', $y);
+            $this->pdf->Cell(20, $this->t1Opt['fontSizeProducts'] / 2, $value['text'], '0', 0, 'R', $y);
+            $this->pdf->SetXY($this->margin['left'], $this->pdf->GetY() + $this->t1Opt['fontSizeProducts'] / 2);
             $i++;
         }
         // paint lines
@@ -669,8 +679,6 @@ class rl_invoice3 extends fpdi {
                     $attachArray[] = array('file' => $file, 'mime_type' => 'pdf', 'name' => $value);
                 }
             }
-            #rldp($attachArray, '$attachArray');
-            #die('$attachArray');
         }
         return $attachArray;
     }

@@ -4,160 +4,149 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>pdf Rechnung 3 - Konfiguration</title>
 <meta name="author" content="webchills | www.webchills.at" />
-<link href="rl_invoice3.css" rel="stylesheet" type="text/css">
+<link href="rl_invoice3.css" rel="stylesheet" type="text/css" />
 </head>
-
 <body>
 <div id="header">
-<h2>pdf Rechnung 3 für Zen-Cart 1.3.8</h2>
- <a href="index.html">Übersicht</a> | <a href="installation.html">Installation</a> | Konfiguration | <a href="faq.html">FAQ</a></div>
- <div id="flags"><img src="graphics/de.gif" alt="deutsch" width="24" height="15" border="0" class="de" /><a href="configuration_en.html"><img src="graphics/en.gif" alt="english" width="24" height="15" border="0" /></a></div>
-  <div id="wrapper">
+  <h2>pdf Rechnung 3 für Zen-Cart 1.3.8</h2>
+  <a href="index.html">Übersicht</a> | <a href="installation.html">Installation</a> | Konfiguration | <a href="faq.html">FAQ</a></div>
+<div id="flags"><img src="graphics/de.gif" alt="deutsch" width="24" height="15" border="0" class="de" /><a href="configuration_en.html"><img src="graphics/en.gif" alt="english" width="24" height="15" border="0" /></a></div>
+<div id="wrapper">
   <div class="content">
-<h1>Konfiguration und Anpassung</h1>
-<p>Jetzt wo das Modul einsatzbereit ist, kannst Du daran gehen, Deine eigenen Vorlagen und Texte zu verwenden.<br />
-Falls Du das Modul gleich in einem Liveshop eingebaut hast (tzzz tzzz tzzz), stelle unbedingt unter Konfiguration &gt; pdf Rechnung 3 &gt; Rechnung bei Bestellung auf Null.</p>
-<p><strong>1) <br />
-  Eigene Rechnungsvorlage erstellen</strong><br />
-  <br />
-Erstelle ein pdf so wie Du es haben willst. Als Orientierung schau Dir die Datei an, die mitgeliefert wurde:<br />
-<em>includes/pdf/rl_invoice3_bg.pdf</em><br />
-Speichere dieses pdf als <em>rl_invoice3_bg.pdf</em> ab und lade es in includes/pdf hoch und ersetze das bestehende Beispiel-pdf damit.<br />
-<br />
-Hinweis:<br />
-Falls Du Deiner Vorlage einen eigenen Namen gibst (z.B. meinefirma_rechnungsvorlage.pdf), muss der Dateiname in der Administration und in der includes/pdf/rl_invoice3_def.php entsprechend geändert werden:<br />
-  Im Admin unter Konfiguration &gt; pdfRechnung3 den Dateinamen ändern bei:<br />
-    pdf Hintergrunddatei<br />
-      Also z.B. auf:<br />
-      /var/www/html/xxxx/html/shop/includes/pdf/meinefirma_rechnungsvorlage.pdf<br />
-      Dann in der 
-      includes/pdf/rl_invoice3_def.php alle rl_invoice3_bg.pdf auf meinefirma_rechnungsvorlage.pdf umbenennen.<br />
-      <br />
-      Erstelle danach probeweise eine pdf Rechnung, um zu sehen, wie die Rechnung nun mit Deinem neuen Hintergrund aussieht.<br />
-</p>
-<p><strong>2)<br /> 
-  Eigene pdfs für AGB und Widerruf erstellen</strong><br />
-  <br />
-Falls Du das Mitsenden von AGB und Widerruf nutzen willst, erstelle auch dafür
-2 eigene pdf Dateien:<br />
-<br />
-Um zusätzlich die AGB mitzusenden, ein pdf mit den AGB erstellen und z.B. als agb.pdf abspeichern.<br />
-Die agb.pdf in folgendes Verzeichnis in Zen-Cart hochladen:<br />
-includes/pdf<br />
-Dadurch wird das mitgelieferte AGB-Beispiel überschrieben<br />
-Dann unter Konfiguration &gt; pdf Rechnung 3 &gt; Anhänge folgendes eintragen:<br />
-agb.pdf</p>
-<p>Um zusätzlich auch noch eine Info zum Widerruf mitzusenden, ein pdf mit der Widerrufsinfo erstellen und z.B. als widerruf.pdf abspeichern.<br />
-  widerruf.pdf in folgendes Verzeichnis in Zen-Cart hochladen:<br />
-  includes/pdf<br />
-  Dadurch wird das mitgelieferte Widerrufsbeispiel überschrieben<br />
-  Dann unter Konfiguration &gt; pdf Rechnung 3 &gt; Anhänge folgendes eintragen:<br />
-  agb.pdf | widerruf.pdf</p>
-<p><strong>3)<br /> 
-  Mit den mitgelieferten Schriftarten experimentieren</strong></p>
-<p>Das Aussehen der verschiedenen mitgelieferten Schriften kannst Du in folgender Datei ansehen:<br />
-  <em>includes/pdf/font/font_example.pdf</em><br />
-    Voreingestellt in der Konfiguration sind die Schriftarten Dejavu Sans Condensed
-    für die Rechnungstexte und Freemono für die Artikeltexte und die Summen.<br />
-      Alle verfügbaren Schriften findest Du im Ordner includes/pdf/font<br />
-      Um nun andere der mitgelieferten Schriftarten zu verwenden, stelle unter
-      Schriftarten für Rechnung und Artikel zwei andere ein, z.B.<br />
-      dejavuserif | freeserif<br />
-    Erstelle dann wieder eine pdf Rechnung und prüfe das Ergebnis.</p>
-<p>Falls Dir keine der Schriften zusagt, ist es möglich eigene Schriftarten zu verwenden. Das ist allerdings nur für versierte User empfohlen, da die Schriften zuerst in mehreren Verfahren konvertiert werden müssen. Ein Anleitung dazu ist in den <a href="faq.html">FAQ </a>zu finden.<br />
-</p>
-<p><b>4)<br /> 
-  Restliche Einstellungen vornehmen</strong> unter Konfiguration &gt; PDF Rechnung 3</b></p>
-<p>Die übrigen Konfigurationsmöglichkeiten unter Konfiguration &gt; PDF Rechnung 3 sind immer erklärt, wenn Du auf Bearbeiten clickst:</p>
-<p><img src="graphics/admin.jpg" alt="pdf Rechnung im Admin" width="760" height="473" /></p>
-<p>Hier ein paar Erläuterungen zu den wichtigsten Möglichkeiten:</p>
-<p><strong>PDF Hintergrunddatei</strong><br/> 
-  Falls Du den Dateinamen Deiner Vorlage geändert hast, musst Du hier von rl_invoice3_bg.pdf auf Deinen Dateinamen für die Rechnungsvorlage ändern. Es ist der absolute Pfad zur Vorlage anzugeben. Die pdf Rechnung unterstützt unterschiedliche Vorlagen für deutsch und englisch. Wenn Du englisch im Shop aktiv hast und für englischsprachige Kunden eine eigene Vorlage verwenden willst, wechsle in den englischen Admin und trage dann hier den Pfad zu Deiner englischen Vorlage ein. Als Beispiel wird die includes/pdf/rl_invoice3_bg_en.pdf mitgeliefert. Falls Du den Dateinamen für die englische Vorlage auf einen Deiner Wahl geändert hast, muss der Dateiname auch in der includes/pdf/rl_invoice3_def.php geändert werden.
-</p>
-<p><strong>Rechnungsneuversand</strong><br/>
-  Hier kannst Du einen Bestellstatus oder mehrere Bestellstati einstellen, bei denen die pdf Rechnung nach Aktualisieren der Bestellung erneut versendet werden soll. Voreingestellt ist 3 (das ist normalerweise der Status &quot;versendet&quot;) und 100 (ein eigener Bestellstatus, der vom Modul mitgeliefert wird). Überprüfe unter &quot;Lokalisation&quot; &gt; &quot;Bestellstatus&quot; welche Werte die Bestellstati in Deinem Shop haben und stelle dann hier die gewünschten Werte ein.</p>
-<p><strong>Rechnungsversand bei Bestellstatus</strong><br />
-  Hier wird definiert, bei welchem Bestellstatus die pdf Rechnung automatisch gemailt wird. Wenn die Rechnung gleich bei der Bestellung mitgemailt werden soll, muss hier auf 1 umgestellt werden (1 ist normalerweise der Status &quot;Wartet&quot;). Status 3 (versendet) ist für Shops interessant, die Downloadartikel anbieten und die gleich nach der Bezahlung freigeben. Auch hier vorher  unter &quot;Lokalisation&quot; &gt; &quot;Bestelllstatus&quot; unbedingt überprüfen, welche Werte in Deinem Shop wirklich aktiv sind. Und auch überprüfen welche Bestellstati bei den angebotenen Zahlungsarten zugeordnet sind.</p>
-<p><strong>Rechnung bei Bestellung</strong><br />
-  Das ist die globale Einstellung. Wird sie auf 0 gestellt, wird nie automatisch eine Rechnung mitgemailt, egal was bei Rechnungsversand bei Bestellstatus eingestellt ist.
-</p>
-<p><strong>Speicherort und -name der PDF-Datei</strong><br/>
-Hier wird eingestellt, ob die pdf Rechnung überhaupt am Server gespeichert werden soll. Und wenn ja in welchem Ordner. Voreingestellt ist der Ordner pdf im Shophauptverzeichnis. Wenn dieser Ordner verwendet wird, unbedingt sicherstellen, dass der Inhalt nicht einfach mit www.meinshop.de/pdf aufgelistet wird. Also entweder eine leere index.html in diesen Ordner legen. Oder per .htaccess das Auflisten des Ordnerinhalts unterbinden. Dazu eine Datei mit folgendem Inhalt erstellen:<br/>
-<code>Options -Indexes</code></p>
-<p>Als .htaccess abspeichern und ins pdf Verzeichnis legen. Möglicherweise ist aber serverseitig bereits eingestellt, dass der Verzeichnisinhalt bei fehlender index Datei nicht angezeigt wird. Der Ordner für die Rechnungen muss beschreibbar sein (chmod 777)</p>
-<p>Aus Sicherheitsgründen werden die erstellten pdf Rechnungen nicht einfach nur mit der Rechnungsnummer als Dateiname sondern mit einem langen zufällig generierten Dateinamen abgespeichert (z.B. 8_070599b1ec86ca75deac4696ca5f37eb.pdf)</p>
-<p>Eine noch bessere Absicherung der Rechnungen ist - falls das serverseitig möglich ist - als Speicherort einen Ordner unterhalb des Root Verzeichnis zu verwenden. Ein solcher Ordner kann zwar vom Webserver gelesen werden, ist aber per www nicht erreichbar.<br/>
-  Wenn ein solcher Ordner verwendet werden soll, den Pfad entsprechend anpassen.<br />
-  Wenn z.B. der normale Pfad zum pdf Ordner innerhalb des Shopverzeichnisses (Voreinstellung) so lautet:<br />
-  /home/user/www.meinshop.de/shop/pdf<br />
-  umstellen auf:<br />
-  /home/user/pdf<br />
-  Auch ein solcher Ordner muss natürlich vom Webserver beschreibbar sein (chmod 777)
-  <br />
-  <br />
-  Die Rechnung kann dann trotzdem vom Kunden in seiner Bestellhistory heruntergeladen werden. Wichtig ist, dass unter Konfiguration &gt; GZip Komprimierung die gZip Komprimierung NICHT eingeschaltet ist!<br />
-  Generell erfolgt der Rechnungsdownload aus der Bestellhistory nach denselben Regeln wie bei Downloadartikeln im Shop. Es kommt also die Einstellung zum Tragen, die unter Konfiguration &gt; Attributeinstellungen &gt; Downloads über Weiterleitung eingestellt ist. Bei lokalen XAMPP Testinstallationen und auch bei sehr vielen Providern sind Downloads über Redirect nicht möglich. Schlägt der Download der Rechnung aus der Bestellhistory fehl, also unbedingt dieses Setting auf false stellen.
-</p>
-<p><strong>PDF Template auf erster Seite</strong><br />
-Wenn zahlreiche Artikel bestellt werden und die auf der Rechnung nicht auf einer Seite Platz haben, erfolgt ein Seitenumbruch mit Berechnung einer Zwischensumme und Übertrags auf die zweite Seite. Hier kannst Du einstellen, ob der Rechnungsfooter auch auf der zweiten Seite erscheinen soll.</p>
-<p><strong>Abstand 2.Seite</strong><br/> 
-  Hier kannst Du für die Anzeige des Übertrags auf der zweiten Seite einen zusätzlichen Abstand einstellen.
-</p>
-<p><strong>Template für Artikel- und Summentabelle</strong><br/>
-  Definiert sind die Templates in folgender Datei:<br />
-  includes/pdf/rl_invoice3_def.php
-</p>
-<p>Voreingestellt ist: amazon|amazon_templ|total_col_1|total_opt_1<br />
-  In der Datei sind also folgende Werte für das Aussehen verantwortlich:<br/>
-<code>$colsP['amazon'] = array(<br />
-'subtotalI' =&gt; '...',<br />
-'subtotalE' =&gt; '...',<br />
-'qty' =&gt; TABLE_HEADING_QTY,<br />
-'model' =&gt; TABLE_HEADING_PRODUCTS_MODEL,<br />
-'name' =&gt; TABLE_HEADING_PRODUCTS,<br />
-'singleE' =&gt; TABLE_HEADING_PRICE_EXCLUDING_TAX_AMAZON,<br />
-'tax' =&gt; TABLE_HEADING_TAX,<br />
-'sumE' =&gt; TABLE_HEADING_TOTAL_EXCLUDING_TAX_AMAZON,<br />
-);<br />
-$optionsP['amazon_templ'] = array(&quot;subtotal&quot;=&gt;'subtotalE', <br />
-&quot;paperOriantation&quot;=&gt;&quot;P&quot;, <br />
-&quot;fontSize&quot; =&gt; 8, <br />
-'showHeadings' =&gt; 1, <br />
-'shaded' =&gt; 1, <br />
-'xPos' =&gt; 'left', <br />
-'xOrientation' =&gt; 'right', <br />
-'width' =&gt; $realPW-35,<br />
-'cols' =&gt; array(<br />
-'subtotalI' =&gt; array('justification' =&gt; 'R', &quot;width&quot; =&gt; 0),<br />
-'subtotalE' =&gt; array('justification' =&gt; 'R', &quot;width&quot; =&gt; 0),<br />
-'qty' =&gt; array(&quot;justification&quot; =&gt; &quot;L&quot;, &quot;width&quot; =&gt; 15),<br />
-'model' =&gt; array(&quot;justification&quot; =&gt; &quot;L&quot;, &quot;width&quot; =&gt; 25),<br />
-'name' =&gt; array('justification' =&gt; 'L', &quot;width&quot; =&gt; 75),<br />
-'singleE' =&gt; array('justification' =&gt; 'R', &quot;width&quot; =&gt; 25),<br />
-'tax' =&gt; array(&quot;justification&quot; =&gt; &quot;R&quot;, &quot;width&quot; =&gt; 15),<br />
-'sumE' =&gt; array('justification' =&gt; 'R', &quot;width&quot; =&gt; 25),<br />
-)<br />
-);</code></p>
-  <p>Um z.B. die Schriftgröße zu verkleinern den fontSize auf 7 stellen. <br />
-    Um die Breite der einzelnen Spalten zu ändern die Werte bei width entsprechend anpassen.
-</p>
-  <p>Sollten andere Inhalte in den Spalten gewünscht sein, ein anderes Template auswählen oder sich ein eigenes Template nach dem vorgegebenen Muster zusammenstellen.<br />
-    Eine Vorschau der verschiedenen vordefinierten Spaltendefinitionen bekommst Du durch Aufruf des folgenden Links:<br />
-    admin/rl_invoice3.php?oID=3&amp;test=PDF<br />
-    Es wird dann eine Testrechnung mit allen verschiedenen Templates  produziert (ohne Summen).
-  </p>
-  <p><b>5) Weitere Möglichkeiten unter Tools &gt; PDF Rechnung 3</b></p>
-   <p>Einige mächtige Tools sind im Admin unter Tools &gt; PDF Rechnung 3 verfügbar:<br />
-     <br />
-     Click auf Admin liefert 3 Optionen:<br />
-     <br />
-     <img src="graphics/tools_admin.jpg" width="525" height="100" alt="Tools &gt; PDF Rechnung 3 &gt; Admin" /><br />
-     Ähnlich wie beim Image Handler können mit &quot;<b>remove</b>&quot; alle Einträge der PDF Rechnung aus der Datenbank entfernt werden. Mit &quot;<b>install</b>&quot; werden sie wieder hinzugefügt.<br />
-     <br />
-     Mit &quot;<b>check paths</b>&quot; lässt sich überprüfen, ob die in der Datenbank gesetzten Pfadangaben mit den Pfadangaben, die eventuell in der includes/pdf/rl_invoice3_def.php bei den einzelnen Templates gemacht wurden, übereinstimmen
-   </p>
-   <p>Unter "<b>Rechnungsvorlage</b>" hat man einen visuellen Editor zur Gestaltung seiner Rechnung zur Verfügung. Die aktuellen unter Konfiguration &gt; pdf Rechnung 3 eingestellten Werte werden ausgelesen und können durch Ziehen der Felder mit der Maus verändert und visualisiert werden. Änderungen werden dann mit dem Button &quot;Senden&quot; übernommen.</p>
-   <p>&quot;<b>Schrifttest</b>&quot; liefert ein Beispiel-PDF mit den verschiedenen verfügbaren Schriftarten. Und mit &quot;<b>Rechnungstest</b>&quot; erhält man eine Vorschau der verschiedenen Spaltendefinitionen in den verschiedenen Rechnungstemplates.</p>
+    <h1>Konfiguration und Anpassung</h1>
+    <p>Jetzt wo das Modul einsatzbereit ist, kannst Du daran gehen, Deine eigenen Vorlagen und Texte zu verwenden.<br />
+      Falls Du das Modul gleich in einem Liveshop eingebaut hast (tzzz tzzz tzzz), stelle unbedingt unter Konfiguration &gt; pdf Rechnung 3 &gt; Rechnung bei Bestellung auf Null.</p>
+    <ol>
+      <li><strong>Eigene Rechnungsvorlage erstellen</strong><br />
+        Erstelle ein pdf so wie Du es haben willst. Als Orientierung schau Dir die Datei an, die mitgeliefert wurde:<br />
+        <em>includes/pdf/rl_invoice3_bg.pdf</em><br />
+        Speichere dieses pdf als <em>rl_invoice3_bg.pdf</em> ab und lade es in includes/pdf hoch und ersetze das bestehende Beispiel-pdf damit.<br />
+        <br />
+        Hinweis:<br />
+        Falls Du Deiner Vorlage einen eigenen Namen gibst (z.B. meinefirma_rechnungsvorlage.pdf), muss der Dateiname in der Administration und in der includes/pdf/rl_invoice3_def.php entsprechend geändert werden:<br />
+        Im Admin unter Konfiguration &gt; pdfRechnung3 den Dateinamen ändern bei:<br />
+        pdf Hintergrunddatei<br />
+        Also z.B. auf:<br />
+        /var/www/html/xxxx/html/shop/includes/pdf/meinefirma_rechnungsvorlage.pdf<br />
+        Dann in der 
+        includes/pdf/rl_invoice3_def.php alle rl_invoice3_bg.pdf auf meinefirma_rechnungsvorlage.pdf umbenennen.<br />
+        <br />
+        Erstelle danach probeweise eine pdf Rechnung, um zu sehen, wie die Rechnung nun mit Deinem neuen Hintergrund aussieht.<br />
+        <br />
+      </li>
+      <li><strong> Eigene pdfs für AGB und Widerruf erstellen</strong><br />
+        <br />
+        Falls Du das Mitsenden von AGB und Widerruf nutzen willst, erstelle auch dafür
+        2 eigene pdf Dateien:<br />
+        <br />
+        Um zusätzlich die AGB mitzusenden, ein pdf mit den AGB erstellen und z.B. als agb.pdf abspeichern.<br />
+        Die agb.pdf in folgendes Verzeichnis in Zen-Cart hochladen:<br />
+        includes/pdf<br />
+        Dadurch wird das mitgelieferte AGB-Beispiel überschrieben<br />
+        Dann unter Konfiguration &gt; pdf Rechnung 3 &gt; Anhänge folgendes eintragen:<br />
+        agb.pdf</li>
+      <p>Um zusätzlich auch noch eine Info zum Widerruf mitzusenden, ein pdf mit der Widerrufsinfo erstellen und z.B. als widerruf.pdf abspeichern.<br />
+        widerruf.pdf in folgendes Verzeichnis in Zen-Cart hochladen:<br />
+        includes/pdf<br />
+        Dadurch wird das mitgelieferte Widerrufsbeispiel überschrieben<br />
+        Dann unter Konfiguration &gt; pdf Rechnung 3 &gt; Anhänge folgendes eintragen:<br />
+        agb.pdf | widerruf.pdf</p>
+      <li><strong> Mit den mitgelieferten Schriftarten experimentieren</strong></li>
+      <p>Das Aussehen der verschiedenen mitgelieferten Schriften kannst Du in folgender Datei ansehen:<br />
+        <em>includes/pdf/font/font_example.pdf</em><br />
+        Voreingestellt in der Konfiguration sind die Schriftarten Dejavu Sans Condensed
+        für die Rechnungstexte und Freemono für die Artikeltexte und die Summen.<br />
+        Alle verfügbaren Schriften findest Du im Ordner includes/pdf/font<br />
+        Um nun andere der mitgelieferten Schriftarten zu verwenden, stelle unter
+        Schriftarten für Rechnung und Artikel zwei andere ein, z.B.<br />
+        dejavuserif | freeserif<br />
+        Erstelle dann wieder eine pdf Rechnung und prüfe das Ergebnis.</p>
+      <p>Falls Dir keine der Schriften zusagt, ist es möglich eigene Schriftarten zu verwenden. Das ist allerdings nur für versierte User empfohlen, da die Schriften zuerst in mehreren Verfahren konvertiert werden müssen. Ein Anleitung dazu ist in den <a href="faq.html">FAQ </a>zu finden.<br />
+        </li>
+      </p>
+      <li><b>        Restliche Einstellungen vornehmen</strong> unter Konfiguration &gt; PDF Rechnung 3</b></li>
+      <p>Die übrigen Konfigurationsmöglichkeiten unter Konfiguration &gt; PDF Rechnung 3 sind immer erklärt, wenn Du auf Bearbeiten clickst:</p>
+      <p><img src="graphics/admin.jpg" alt="pdf Rechnung im Admin" width="760" height="473" /></p>
+      <p>Hier ein paar Erläuterungen zu den wichtigsten Möglichkeiten:</p>
+      <p><strong>PDF Hintergrunddatei</strong><br/>
+        Falls Du den Dateinamen Deiner Vorlage geändert hast, musst Du hier von rl_invoice3_bg.pdf auf Deinen Dateinamen für die Rechnungsvorlage ändern. Es ist der absolute Pfad zur Vorlage anzugeben. Die pdf Rechnung unterstützt unterschiedliche Vorlagen für deutsch und englisch. Wenn Du englisch im Shop aktiv hast und für englischsprachige Kunden eine eigene Vorlage verwenden willst, wechsle in den englischen Admin und trage dann hier den Pfad zu Deiner englischen Vorlage ein. Als Beispiel wird die includes/pdf/rl_invoice3_bg_en.pdf mitgeliefert. Falls Du den Dateinamen für die englische Vorlage auf einen Deiner Wahl geändert hast, muss der Dateiname auch in der includes/pdf/rl_invoice3_def.php geändert werden. </p>
+      <p><strong>Rechnungsneuversand</strong><br/>
+        Hier kannst Du einen Bestellstatus oder mehrere Bestellstati einstellen, bei denen die pdf Rechnung nach Aktualisieren der Bestellung erneut versendet werden soll. Voreingestellt ist 3 (das ist normalerweise der Status &quot;versendet&quot;) und 100 (ein eigener Bestellstatus, der vom Modul mitgeliefert wird). Überprüfe unter &quot;Lokalisation&quot; &gt; &quot;Bestellstatus&quot; welche Werte die Bestellstati in Deinem Shop haben und stelle dann hier die gewünschten Werte ein.</p>
+      <p><strong>Rechnungsversand bei Bestellstatus</strong><br />
+        Hier wird definiert, bei welchem Bestellstatus die pdf Rechnung automatisch gemailt wird. Wenn die Rechnung gleich bei der Bestellung mitgemailt werden soll, muss hier auf 1 umgestellt werden (1 ist normalerweise der Status &quot;Wartet&quot;). Status 3 (versendet) ist für Shops interessant, die Downloadartikel anbieten und die gleich nach der Bezahlung freigeben. Auch hier vorher  unter &quot;Lokalisation&quot; &gt; &quot;Bestelllstatus&quot; unbedingt überprüfen, welche Werte in Deinem Shop wirklich aktiv sind. Und auch überprüfen welche Bestellstati bei den angebotenen Zahlungsarten zugeordnet sind.</p>
+      <p><strong>Rechnung bei Bestellung</strong><br />
+        Das ist die globale Einstellung. Wird sie auf 0 gestellt, wird nie automatisch eine Rechnung mitgemailt, egal was bei Rechnungsversand bei Bestellstatus eingestellt ist. </p>
+      <p><strong>Speicherort und -name der PDF-Datei</strong><br/>
+        Hier wird eingestellt, ob die pdf Rechnung überhaupt am Server gespeichert werden soll. Und wenn ja in welchem Ordner. Voreingestellt ist der Ordner pdf im Shophauptverzeichnis. Wenn dieser Ordner verwendet wird, unbedingt sicherstellen, dass der Inhalt nicht einfach mit www.meinshop.de/pdf aufgelistet wird. Also entweder eine leere index.html in diesen Ordner legen. Oder per .htaccess das Auflisten des Ordnerinhalts unterbinden. Dazu eine Datei mit folgendem Inhalt erstellen:<br/>
+        <code>Options -Indexes</code></p>
+      <p>Als .htaccess abspeichern und ins pdf Verzeichnis legen. Möglicherweise ist aber serverseitig bereits eingestellt, dass der Verzeichnisinhalt bei fehlender index Datei nicht angezeigt wird. Der Ordner für die Rechnungen muss beschreibbar sein (chmod 777)</p>
+      <p>Aus Sicherheitsgründen werden die erstellten pdf Rechnungen nicht einfach nur mit der Rechnungsnummer als Dateiname sondern mit einem langen zufällig generierten Dateinamen abgespeichert (z.B. 8_070599b1ec86ca75deac4696ca5f37eb.pdf)</p>
+      <p>Eine noch bessere Absicherung der Rechnungen ist - falls das serverseitig möglich ist - als Speicherort einen Ordner unterhalb des Root Verzeichnis zu verwenden. Ein solcher Ordner kann zwar vom Webserver gelesen werden, ist aber per www nicht erreichbar.<br/>
+        Wenn ein solcher Ordner verwendet werden soll, den Pfad entsprechend anpassen.<br />
+        Wenn z.B. der normale Pfad zum pdf Ordner innerhalb des Shopverzeichnisses (Voreinstellung) so lautet:<br />
+        /home/user/www.meinshop.de/shop/pdf<br />
+        umstellen auf:<br />
+        /home/user/pdf<br />
+        Auch ein solcher Ordner muss natürlich vom Webserver beschreibbar sein (chmod 777) <br />
+        <br />
+        Die Rechnung kann dann trotzdem vom Kunden in seiner Bestellhistory heruntergeladen werden. Wichtig ist, dass unter Konfiguration &gt; GZip Komprimierung die gZip Komprimierung NICHT eingeschaltet ist!<br />
+        Generell erfolgt der Rechnungsdownload aus der Bestellhistory nach denselben Regeln wie bei Downloadartikeln im Shop. Es kommt also die Einstellung zum Tragen, die unter Konfiguration &gt; Attributeinstellungen &gt; Downloads über Weiterleitung eingestellt ist. Bei lokalen XAMPP Testinstallationen und auch bei sehr vielen Providern sind Downloads über Redirect nicht möglich. Schlägt der Download der Rechnung aus der Bestellhistory fehl, also unbedingt dieses Setting auf false stellen. </p>
+      <p><strong>PDF Template auf erster Seite</strong><br />
+        Wenn zahlreiche Artikel bestellt werden und die auf der Rechnung nicht auf einer Seite Platz haben, erfolgt ein Seitenumbruch mit Berechnung einer Zwischensumme und Übertrags auf die zweite Seite. Hier kannst Du einstellen, ob der Rechnungsfooter auch auf der zweiten Seite erscheinen soll.</p>
+      <p><strong>Abstand 2.Seite</strong><br/>
+        Hier kannst Du für die Anzeige des Übertrags auf der zweiten Seite einen zusätzlichen Abstand einstellen. </p>
+      <p><strong>Template für Artikel- und Summentabelle</strong><br/>
+        Definiert sind die Templates in folgender Datei:<br />
+        includes/pdf/rl_invoice3_def.php </p>
+      <p>Voreingestellt ist: amazon|amazon_templ|total_col_1|total_opt_1<br />
+        In der Datei sind also folgende Werte für das Aussehen verantwortlich:<br/>
+        <code>$colsP['amazon'] = array(<br />
+        'subtotalI' =&gt; '...',<br />
+        'subtotalE' =&gt; '...',<br />
+        'qty' =&gt; TABLE_HEADING_QTY,<br />
+        'model' =&gt; TABLE_HEADING_PRODUCTS_MODEL,<br />
+        'name' =&gt; TABLE_HEADING_PRODUCTS,<br />
+        'singleE' =&gt; TABLE_HEADING_PRICE_EXCLUDING_TAX_AMAZON,<br />
+        'tax' =&gt; TABLE_HEADING_TAX,<br />
+        'sumE' =&gt; TABLE_HEADING_TOTAL_EXCLUDING_TAX_AMAZON,<br />
+        );<br />
+        $optionsP['amazon_templ'] = array(&quot;subtotal&quot;=&gt;'subtotalE', <br />
+        &quot;paperOriantation&quot;=&gt;&quot;P&quot;, <br />
+        &quot;fontSize&quot; =&gt; 8, <br />
+        'showHeadings' =&gt; 1, <br />
+        'shaded' =&gt; 1, <br />
+        'xPos' =&gt; 'left', <br />
+        'xOrientation' =&gt; 'right', <br />
+        'width' =&gt; $realPW-35,<br />
+        'cols' =&gt; array(<br />
+        'subtotalI' =&gt; array('justification' =&gt; 'R', &quot;width&quot; =&gt; 0),<br />
+        'subtotalE' =&gt; array('justification' =&gt; 'R', &quot;width&quot; =&gt; 0),<br />
+        'qty' =&gt; array(&quot;justification&quot; =&gt; &quot;L&quot;, &quot;width&quot; =&gt; 15),<br />
+        'model' =&gt; array(&quot;justification&quot; =&gt; &quot;L&quot;, &quot;width&quot; =&gt; 25),<br />
+        'name' =&gt; array('justification' =&gt; 'L', &quot;width&quot; =&gt; 75),<br />
+        'singleE' =&gt; array('justification' =&gt; 'R', &quot;width&quot; =&gt; 25),<br />
+        'tax' =&gt; array(&quot;justification&quot; =&gt; &quot;R&quot;, &quot;width&quot; =&gt; 15),<br />
+        'sumE' =&gt; array('justification' =&gt; 'R', &quot;width&quot; =&gt; 25),<br />
+        )<br />
+        );</code></p>
+      <p>Um z.B. die Schriftgröße zu verkleinern den fontSize auf 7 stellen. <br />
+        Um die Breite der einzelnen Spalten zu ändern die Werte bei width entsprechend anpassen. </p>
+      <p>Sollten andere Inhalte in den Spalten gewünscht sein, ein anderes Template auswählen oder sich ein eigenes Template nach dem vorgegebenen Muster zusammenstellen.<br />
+        Eine Vorschau der verschiedenen vordefinierten Spaltendefinitionen bekommst Du durch Aufruf des folgenden Links:<br />
+        admin/rl_invoice3.php?oID=3&amp;test=PDF<br />
+        Es wird dann eine Testrechnung mit allen verschiedenen Templates  produziert (ohne Summen). </p>
+      <li><b> Weitere Möglichkeiten unter Tools &gt; PDF Rechnung 3</b></li>
+      <p>Einige mächtige Tools sind im Admin unter Tools &gt; PDF Rechnung 3 verfügbar:<br />
+        <br />
+        Click auf Admin liefert 3 Optionen:<br />
+        <br />
+        <img src="graphics/tools_admin.jpg" width="525" height="100" alt="Tools &gt; PDF Rechnung 3 &gt; Admin" /><br />
+        Ähnlich wie beim Image Handler können mit &quot;<b>remove</b>&quot; alle Einträge der PDF Rechnung aus der Datenbank entfernt werden. Mit &quot;<b>install</b>&quot; werden sie wieder hinzugefügt.<br />
+        <br />
+        Mit &quot;<b>check paths</b>&quot; lässt sich überprüfen, ob die in der Datenbank gesetzten Pfadangaben mit den Pfadangaben, die eventuell in der includes/pdf/rl_invoice3_def.php bei den einzelnen Templates gemacht wurden, übereinstimmen </p>
+      <p>Unter &quot;<b>Rechnungsvorlage</b>&quot; hat man einen visuellen Editor zur Gestaltung seiner Rechnung zur Verfügung. Die aktuellen unter Konfiguration &gt; pdf Rechnung 3 eingestellten Werte werden ausgelesen und können durch Ziehen der Felder mit der Maus verändert und visualisiert werden. Änderungen werden dann mit dem Button &quot;Senden&quot; übernommen.</p>
+      <p>&quot;<b>Schrifttest</b>&quot; liefert ein Beispiel-PDF mit den verschiedenen verfügbaren Schriftarten. Und mit &quot;<b>Rechnungstest</b>&quot; erhält man eine Vorschau der verschiedenen Spaltendefinitionen in den verschiedenen Rechnungstemplates.</p>
+    </ol>
   </div>
 </div>
 <div id="footer"><a href="#">top of page</a></div>

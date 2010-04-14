@@ -5,8 +5,8 @@
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
  * @version $Id$
- *
-  * @author rainer AT langheiter DOT com // http://www.filosofisch.com // http://edv.langheiter.com
+ * EDITED BY STEVE for magic quotes, language-independant error message, 
+ * @author rainer AT langheiter DOT com // http://www.filosofisch.com // http://edv.langheiter.com
  * generates pdf-invoices; please read: readme_rl_invoice.pdf|txt
  */
 $zco_notifier->notify('NOTIFY_HEADER_START_DOWNLOAD');
@@ -22,7 +22,7 @@ require_once(DIR_WS_INCLUDES . 'classes/class.rl_invoice3.php');
 $pdfT = new rl_invoice3($_GET['order'], $paper['orientation'], $paper['unit'], $paper['format']);
 $pdfName = $pdfT->getPDFFileName();
 
-if (!file_exists($pdfName)) die('Sorry. File not found. Please contact the webmaster to report this error.<br />c/f: ' . $downloads->fields['orders_products_filename']);
+if (!file_exists($pdfName)) die(RL_INVOICE3_FILE_MISSING . $downloads->fields['orders_products_filename']);
 
 function zen_random_name()
 {
@@ -63,8 +63,21 @@ function zen_unlink_temp_dir($dir)
 @ini_set('zlib.output_compression', 'Off');
 
 // determine filename for download
+
 $origin_filename = $pdfName;
 $browser_filename = RL_INVOICE3_INVLINK;
+
+//BOF code to change filename for download to invoice_order number.pdf
+$invoice_name=(pathinfo($browser_filename));//dissect standard filename
+$pdf_name=(pathinfo($pdfName));//dissect filename of the already-created pdf
+$pdf_filename = $pdf_name[filename];//extract the filename without path or extension
+if (($pos = strpos($pdf_filename, '_')) !== false) {
+    $stripped = substr($pdf_filename, 0, $pos);//remove the zen_id
+}; 
+$browser_filename = RL_INVOICE3_INVLINK_PRE . $invoice_name[filename].'_'.$stripped . '.'. $pdf_name[extension];//make your_shop_name_invoice_ordernumber.pdf
+//echo '$browser_filename = '.$browser_filename;//check it!
+//EOF
+//die;
 
 // Now send the file with header() magic
 // the "must-revalidate" and expiry times are used to prevent caching and fraudulent re-acquiring of files w/o redownloading.
@@ -75,7 +88,7 @@ header("Cache-Control: must-revalidate, post-check=0, pre-check=0");
 header("Cache-Control: public");
 header("Content-Description: File Transfer");
 header("Content-Type: application/pdf");
-header("Content-Disposition: attachment; filename=\"$browser_filename\"");
+header("Content-Disposition: attachment; filename=" . $browser_filename);
 header("Content-Transfer-Encoding: binary");
 header("Content-Length: " . $zv_filesize);
 

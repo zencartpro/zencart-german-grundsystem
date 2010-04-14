@@ -26,47 +26,43 @@ Please contact us directly to report this error.
 Thank You<br />
 <c/f: ');
 
-define('TABLE_HEADING_COMMENTS','Kommentare');
-define('TABLE_HEADING_PRODUCTS_MODEL','Artikelnummer');
-define('TABLE_HEADING_PRODUCTS','Artikel');
-define('TABLE_HEADING_TAX3','UST');
-define('TABLE_HEADING_TOTAL','Summe');
+define('TABLE_HEADING_COMMENTS', 'Commenti');
+define('TABLE_HEADING_PRODUCTS_MODEL', 'Modello');
+define('TABLE_HEADING_PRODUCTS', 'Prodotti');
+define('TABLE_HEADING_TAX3', 'Tassa');
+define('TABLE_HEADING_TOTAL', 'Totale');
 define('TABLE_HEADING_EXTRA','Extra');
-define('TABLE_HEADING_QTY','Menge');
-define('TABLE_HEADING_PRICE_EXCLUDING_TAX','Einzelpreis (exkl. UST)');
-define('TABLE_HEADING_PRICE_EXCLUDING_TAX_AMAZON','Preis(netto)');
-define('TABLE_HEADING_PRICE_INCLUDING_TAX','Einzelpreis');
+define('TABLE_HEADING_QTY','Qu.');
+define('TABLE_HEADING_PRICE_EXCLUDING_TAX', 'Prezzo (netto)');
+define('TABLE_HEADING_PRICE_EXCLUDING_TAX_AMAZON', 'Prezzo (netto)');
+define('TABLE_HEADING_PRICE_INCLUDING_TAX', 'Prezzo (ivato)');
 
-define('TABLE_HEADING_TOTAL_EXCLUDING_TAX','Summe (exkl. UST)');
-define('TABLE_HEADING_TOTAL_EXCLUDING_TAX_AMAZON','Gesamt(netto)');
-define('TABLE_HEADING_TOTAL_INCLUDING_TAX','Summe');
+define('TABLE_HEADING_TOTAL_EXCLUDING_TAX', 'Totale (netto)');
+define('TABLE_HEADING_TOTAL_EXCLUDING_TAX_AMAZON','Totale(netto)');
+define('TABLE_HEADING_TOTAL_INCLUDING_TAX', 'Totale (ivato)');
 
+define('ENTRY_CUSTOMER', 'CLIENTE:');
 
-define('ENTRY_CUSTOMER', 'KUNDE:');
+define('ENTRY_SOLD_TO', 'FATTURARE A:');
+define('ENTRY_SHIP_TO', 'SPEDIRE A:');
+define('ENTRY_PAYMENT_METHOD', 'Metodo di pagamento:');
+define('ENTRY_SUB_TOTAL', 'Sub-Totale:');
+define('ENTRY_TAX', 'Tassa:');
+define('ENTRY_SHIPPING', 'Spedizione:');
+define('ENTRY_TOTAL', 'Totale:');
+define('ENTRY_DATE_PURCHASED', 'Data Ordine:');
 
-define('ENTRY_SOLD_TO','Verkauft an:');
-define('ENTRY_SHIP_TO','Versendet an:');
-define('ENTRY_PAYMENT_METHOD','Zahlungsarten:');
-define('ENTRY_SUB_TOTAL','Zwischensumme:');
-define('ENTRY_TAX','UST.:');
-define('ENTRY_SHIPPING','Versandkosten:');
-define('ENTRY_TOTAL','Endsumme:');
-define('ENTRY_DATE_PURCHASED', 'Bestelldatum:');
-define('ENTRY_NAME', 'Name:');
-define('ENTRY_EMAIL_ADDRESS','Email:');
+define('ENTRY_ORDER_ID','Fattura #');
+define('TEXT_INFO_ATTRIBUTE_FREE', '&nbsp;-&nbsp;Gratis');
 
-define('ENTRY_ORDER_ID', 'Rechnungsnummer');
-define('TEXT_INFO_ATTRIBUTE_FREE', '&nbsp;-&nbsp;KOSTENLOS');
+define('LIEFERADRESSE', 'Indirizzo spedizione ');
+define('RECHNUNGSADRESSE', 'Indirizzo fatturazione ');
 
-define('LIEFERADRESSE', 'Lieferadresse');
-define('RECHNUNGSADRESSE', 'Rechnungsadresse');
+define('RL_INVOICE3_INVLINK', 'Invoice.pdf');
+define('RL_INVOICE3_INVLINK_TEXT', 'download:');
 
-define('RL_INVOICE3_INVLINK_PRE', 'hugo13_');
-define('RL_INVOICE3_INVLINK', 'rechnung.pdf');
-define('RL_INVOICE3_INVLINK_TEXT', 'Herunterladen:');
-
-define('RL_INVOICE3_SUBTOTAL', 'Zwischensumme: ');
-define('RL_INVOICE3_BALANCE', 'Übertrag: ');
-define('RL_INVOICE3_PAYMENT_METHOD','Zahlungsart:');
+define('RL_INVOICE3_SUBTOTAL', 'Subtotale: ');
+define('RL_INVOICE3_BALANCE', 'Balancio: ');
+define('RL_INVOICE3_PAYMENT_METHOD','Metodo pagamento:');
 //added by Steve
 define('RL_INVOICE3_SHIPPING_METHOD','Versandart:');

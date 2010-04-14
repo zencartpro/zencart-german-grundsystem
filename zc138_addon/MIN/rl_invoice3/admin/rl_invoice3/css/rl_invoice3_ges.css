@@ -86,7 +86,7 @@ input[type="text"], input[type="submit"], input[type="file"], select {
 }
 #aboutbox {
 	margin : 0 auto;
-	width : 60%;
+	width : 40%;
 	text-align : center;
 	padding : 10px;
 	border : 2px solid green;
@@ -105,6 +105,7 @@ div.managerbox {
 	background-color : #f5f5f5;
 	text-align : left;
 	margin : 10px;
+    z-index: 5;
 }
 #donationbox label {
 	display : inline;
@@ -121,7 +122,7 @@ div.managerbox {
 }
 #donationbox h2 {
 	font-size : 100%;
-	z-index : 10;
+	Az-index : 10;
 }
 a.wikilink1:link {
 	color : #009900;
@@ -168,13 +169,15 @@ a.wikilink1:hover {
 #content {
 	position: relative;
 	color : #000000;
-	padding : 10px;
+	padding : 2px;
 	border : 0px solid red;
 	margin-bottom : 10px;
-	left : 10px;
-	top : 10px;
+	Xleft : 1px;
+	Xtop : 1px;
+    padding:10px;
+    margin:10px;
 	height : 777px;
-	width : 95%;
+    width : 95%;
 	z-index : 10;
 }
 #papercontainer {
@@ -439,4 +442,13 @@ div.growlUI h1, div.growlUI h2 {
 #results h1 {
 	font-size:14px;
 	font-weight:bold;
+}
+
+#apDiv1, #donationbox {
+    position:relative;
+    width:306px;
+    height:338px;
+    z-index:11;
+    right: 6px;
+    top: 10px;
 }

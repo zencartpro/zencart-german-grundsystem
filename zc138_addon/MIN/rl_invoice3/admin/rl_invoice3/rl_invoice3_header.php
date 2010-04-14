@@ -89,9 +89,9 @@ if (defined('RL_INVOICE3_VERSION')) {
 
 <div id="donationbox">
 <form class="contrib" action="https://www.paypal.com/cgi-bin/webscr" method="post">
-  <input type="hidden" name="business" value="zencart@filosofisch.com" />
-  <input type="hidden" name="item_name" value="filosofisch donation" />
-  <input type="hidden" name="item_number" value="DONATE ZenCart" />
+  <input type="hidden" name="business" value="zencart@hugo13.com" />
+  <input type="hidden" name="item_name" value="pdf-invoice3 donation" />
+  <input type="hidden" name="item_number" value="pdf-invoice3" />
   <input type="hidden" name="no_note" value="0" />
   <input type="hidden" name="cmd" value="_xclick" />
   <input type="hidden" name="lc" value="en" />
@@ -100,10 +100,10 @@ if (defined('RL_INVOICE3_VERSION')) {
   <input type="hidden" name="no_shipping" value="1" />
   <input type="hidden" name="tax" value="0" />
   
-  <input type="hidden" name="return" value="http://zencart.filosofisch.com/thanks.php" />
-  <input type="hidden" name="cancel_return" value="http://zencart.filosofisch.com/canceled.php" /> 
+  <input type="hidden" name="return" value="http://zencart.hugo13.com/thanks.php" />
+  <input type="hidden" name="cancel_return" value="http://zencart.hugo13.com/canceled.php" /> 
 
-  <h2>Please donate. <a class="wikilink1" href="http://zencart.filosofisch.com/donate.php" title="Why donate">Why?</a></h2> 
+  <h2>Please donate. <a class="wikilink1" href="http://zencart.hugo13.com/donate.php" title="Why donate">Why?</a></h2> 
   <p>
   <label for="don-amount">One time gift of</label>
   <input type="text" name="amount" id="don-amount" maxlength="30" size="5" />
@@ -124,7 +124,7 @@ if (defined('RL_INVOICE3_VERSION')) {
   <input type="text" size="25" name="os1" id="os1" maxlength="200" />
   </p>
   <p>
-  <a class="wikilink1" href="http://zencart.filosofisch.com/donors_list.php" title="Donors' list'">Donors&rsquo; list</a><br />
+  <a class="wikilink1" href="http://zencart.hugo13.com/donors_list.php" title="Donors' list'">Donors&rsquo; list</a><br />
   <input type="radio" name="os0" id="name-yes" value="Mention my name" />
   <label for="name-yes">List my name</label>
   <br />
@@ -134,7 +134,7 @@ if (defined('RL_INVOICE3_VERSION')) {
 
   <input type="submit" value="Donate Now!" />
   <br />
-  <img src="../images/cc.gif" alt="Visa, MasterCard, Discover, American Express, eCheck" />
+  <img src="./images/cc.gif" alt="Visa, MasterCard, Discover, American Express, eCheck" />
   </p>
 </form>
 </div>
@@ -143,3 +143,4 @@ if (defined('RL_INVOICE3_VERSION')) {
     Loading...
 </div>
 <div id="content"></div>
+
