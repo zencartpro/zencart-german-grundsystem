@@ -1,24 +1,11 @@
 <?php
-//
-// +----------------------------------------------------------------------+
-// |zen-cart Open Source E-commerce                                       |
-// +----------------------------------------------------------------------+
-// | Copyright (c) 2003 The zen-cart developers                           |
-// |                                                                      |
-// | http://www.zen-cart.com/index.php                                    |
-// |                                                                      |
-// | Portions Copyright (c) 2003 osCommerce                               |
-// +----------------------------------------------------------------------+
-// | This source file is subject to version 2.0 of the GPL license,       |
-// | that is bundled with this package in the file LICENSE, and is        |
-// | available through the world-wide-web at the following url:           |
-// | http://www.zen-cart.com/license/2_0.txt.                             |
-// | If you did not receive a copy of the zen-cart license and are unable |
-// | to obtain it through the world-wide-web, please send a note to       |
-// | license@zen-cart.com so we can mail you a copy immediately.          |
-// +----------------------------------------------------------------------+
-//  $Id: stats_customers_referrals.php 2688 2005-12-25 22:09:25Z wilt $
-//
+/**
+ * @package admin
+ * @copyright Copyright 2003-2009 Zen Cart Development Team
+ * @copyright Portions Copyright 2003 osCommerce
+ * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
+ * @version $Id: stats_customers_referrals.php 14139 2009-08-10 13:46:02Z wilt $
+ */
   require('includes/application_top.php');
 
   require(DIR_WS_CLASSES . 'currencies.php');
@@ -125,11 +112,11 @@
 
     $date2 = explode("-", $_GET['end_date']);
     $m2 = $date2[0];
-    $d2 = $date2[1]+1;
+    $d2 = $date2[1];
     $y2 = $date2[2];
 
-    $sd = $y1 . '-' . $m1 . '-' . $d1;
-    $ed = $y2. '-' . $m2 . '-' . $d2;
+    $sd = $y1 . '-' . $m1 . '-' . $d1 . ' 00:00:00';
+    $ed = $y2. '-' . $m2 . '-' . $d2 .  ' 23:59:59';
 
 //  $sd = $_GET['start_date'];
 //  $ed = $_GET['end_date'];

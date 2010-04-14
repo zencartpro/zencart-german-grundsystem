@@ -1,24 +1,11 @@
 <?php
-//
-// +----------------------------------------------------------------------+
-// |zen-cart Open Source E-commerce                                       |
-// +----------------------------------------------------------------------+
-// | Copyright (c) 2003 The zen-cart developers                           |
-// |                                                                      |
-// | http://www.zen-cart.com/index.php                                    |
-// |                                                                      |
-// | Portions Copyright (c) 2003 osCommerce                               |
-// +----------------------------------------------------------------------+
-// | This source file is subject to version 2.0 of the GPL license,       |
-// | that is bundled with this package in the file LICENSE, and is        |
-// | available through the world-wide-web at the following url:           |
-// | http://www.zen-cart.com/license/2_0.txt.                             |
-// | If you did not receive a copy of the zen-cart license and are unable |
-// | to obtain it through the world-wide-web, please send a note to       |
-// | license@zen-cart.com so we can mail you a copy immediately.          |
-// +----------------------------------------------------------------------+
-//  $Id: stats_products_purchased.php 4790 2006-10-18 22:57:46Z ajeh $
-//
+/**
+ * @package admin
+ * @copyright Copyright 2003-2009 Zen Cart Development Team
+ * @copyright Portions Copyright 2003 osCommerce
+ * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
+ * @version $Id: stats_products_purchased.php 15014 2009-12-01 21:24:50Z drbyte $
+ */
 
   require('includes/application_top.php');
 
@@ -79,9 +66,8 @@
     }
     if (isset($products_filter) && zen_not_null($products_filter)) {
       echo '<br/ >' . '<a href="' . zen_href_link(FILENAME_STATS_PRODUCTS_PURCHASED, '', 'NONSSL') . '">' . zen_image_button('button_reset.gif', IMAGE_RESET) . '</a>&nbsp;&nbsp;';
-    } else {
-      echo '</form>';
     }
+    echo '</form>';
 
 // show reset search
     echo zen_draw_form('search', FILENAME_STATS_PRODUCTS_PURCHASED, '', 'get', '', true);
@@ -92,9 +78,8 @@
     }
     if (isset($products_filter_name_model) && zen_not_null($products_filter_name_model)) {
       echo '<br/ >' . '<a href="' . zen_href_link(FILENAME_STATS_PRODUCTS_PURCHASED, '', 'NONSSL') . '">' . zen_image_button('button_reset.gif', IMAGE_RESET) . '</a>&nbsp;&nbsp;';
-    } else {
-      echo '</form>';
     }
+    echo '</form>';
 ?>
             </td>
           </tr>

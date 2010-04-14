@@ -1,24 +1,11 @@
 <?php
-//
-// +----------------------------------------------------------------------+
-// |zen-cart Open Source E-commerce                                       |
-// +----------------------------------------------------------------------+
-// | Copyright (c) 2003 The zen-cart developers                           |
-// |                                                                      |
-// | http://www.zen-cart.com/index.php                                    |
-// |                                                                      |
-// | Portions Copyright (c) 2003 osCommerce                               |
-// +----------------------------------------------------------------------+
-// | This source file is subject to version 2.0 of the GPL license,       |
-// | that is bundled with this package in the file LICENSE, and is        |
-// | available through the world-wide-web at the following url:           |
-// | http://www.zen-cart.com/license/2_0.txt.                             |
-// | If you did not receive a copy of the zen-cart license and are unable |
-// | to obtain it through the world-wide-web, please send a note to       |
-// | license@zen-cart.com so we can mail you a copy immediately.          |
-// +----------------------------------------------------------------------+
-//  $Id: countries.php 1969 2005-09-13 06:57:21Z drbyte $
-//
+/**
+ * @package admin
+ * @copyright Copyright 2003-2009 Zen Cart Development Team
+ * @copyright Portions Copyright 2003 osCommerce
+ * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
+ * @version $Id: countries.php 14139 2009-08-10 13:46:02Z wilt $
+ */
 
   require('includes/application_top.php');
 
@@ -65,9 +52,15 @@
           zen_redirect(zen_href_link(FILENAME_COUNTRIES, 'page=' . $_GET['page']));
         }
         $countries_id = zen_db_prepare_input($_GET['cID']);
-
-        $db->Execute("delete from " . TABLE_COUNTRIES . "
-                      where countries_id = '" . (int)$countries_id . "'");
+        $sql = "select entry_country_id from " . TABLE_ADDRESS_BOOK . " where entry_country_id = :countryID: LIMIT 1";
+        $sql = $db->bindVars($sql, ':countryID:', $countries_id, 'integer');
+        $result = $db->Execute($sql);
+        if ($result->recordCount() == 0) {
+          $db->Execute("delete from " . TABLE_COUNTRIES . "
+                        where countries_id = '" . (int)$countries_id . "'");
+        } else {
+          $messageStack->add_session(ERROR_COUNTRY_IN_USE, 'error');
+        }
 
         zen_redirect(zen_href_link(FILENAME_COUNTRIES, 'page=' . $_GET['page']));
         break;

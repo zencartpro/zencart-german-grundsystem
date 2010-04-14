@@ -1,10 +1,10 @@
 <?php
 /**
  * @package admin
- * @copyright Copyright 2003-2006 Zen Cart Development Team
+ * @copyright Copyright 2003-2010 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: message_stack.php 3001 2006-02-09 21:45:06Z wilt $
+ * @version $Id: message_stack.php 15250 2010-01-13 16:43:56Z drbyte $
  */
 if (!defined('IS_ADMIN_FLAG')) {
   die('Illegal Access');
@@ -26,7 +26,7 @@ if (!defined('IS_ADMIN_FLAG')) {
 
       $this->errors = array();
 
-      if ($_SESSION['messageToStack']) {
+      if (isset($_SESSION['messageToStack']) && is_array($_SESSION['messageToStack'])) {
         for ($i = 0, $n = sizeof($_SESSION['messageToStack']); $i < $n; $i++) {
           $this->add($_SESSION['messageToStack'][$i]['text'], $_SESSION['messageToStack'][$i]['type']);
         }
@@ -70,4 +70,3 @@ if (!defined('IS_ADMIN_FLAG')) {
       return $this->tableBlock($this->errors);
     }
   }
-?>

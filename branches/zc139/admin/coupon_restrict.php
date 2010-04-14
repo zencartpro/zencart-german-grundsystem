@@ -1,29 +1,18 @@
 <?php
-//
-// +----------------------------------------------------------------------+
-// |zen-cart Open Source E-commerce                                       |
-// +----------------------------------------------------------------------+
-// | Copyright (c) 2003 The zen-cart developers                           |
-// |                                                                      |
-// | http://www.zen-cart.com/index.php                                    |
-// |                                                                      |
-// | Portions Copyright (c) 2003 osCommerce                               |
-// +----------------------------------------------------------------------+
-// | This source file is subject to version 2.0 of the GPL license,       |
-// | that is bundled with this package in the file LICENSE, and is        |
-// | available through the world-wide-web at the following url:           |
-// | http://www.zen-cart.com/license/2_0.txt.                             |
-// | If you did not receive a copy of the zen-cart license and are unable |
-// | to obtain it through the world-wide-web, please send a note to       |
-// | license@zen-cart.com so we can mail you a copy immediately.          |
-// +----------------------------------------------------------------------+
-//  $Id: coupon_restrict.php 182 2007-12-02 10:04:59Z hugo13 $
-//
-  define('MAX_DISPLAY_RESTRICT_ENTRIES', 5);
+/**
+ * @package admin
+ * @copyright Copyright 2003-2010 Zen Cart Development Team
+ * @copyright Portions Copyright 2003 osCommerce
+ * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
+ * @version $Id: coupon_restrict.php 15881 2010-04-11 16:32:39Z wilt $
+ */
+  //define('MAX_DISPLAY_RESTRICT_ENTRIES', 10);
   require('includes/application_top.php');
   $restrict_array = array();
   $restrict_array[] = array('id'=>'Deny', text=>'Deny');
   $restrict_array[] = array('id'=>'Allow', text=>'Allow');
+
+  $the_path = $_POST['cPath'];
   if ($_GET['action']=='switch_status') {
     $status = $db->Execute("select coupon_restrict
                             from " . TABLE_COUPON_RESTRICT . "
@@ -47,16 +36,70 @@
       $db->Execute("insert into " . TABLE_COUPON_RESTRICT . "
                   (coupon_id, category_id, coupon_restrict)
                   values ('" . $_GET['cid'] . "', '" . $_POST['cPath'] . "', '" . $status . "')");
+    } else {
+      // message that nothing is done
+      $messageStack->add(ERROR_DISCOUNT_COUPON_DEFINED_CATEGORY . ' ' . $_POST['cPath'], 'caution');
     }
   }
+
+
+// from products dropdown selection
   if ($_GET['action']=='add_product' && $_POST['products_drop']) {
     $test_query=$db->Execute("select * from " . TABLE_COUPON_RESTRICT . " where coupon_id = '" . $_GET['cid'] . "' and product_id = '" . $_POST['products_drop'] . "'");
     if ($test_query->RecordCount() < 1) {
       $status = 'N';
       if ($_POST['restrict_status']=='Deny') $status = 'Y';
+
+// ==================================
+// bof: ALL ADD/DELETE of Products in one Category
+        if ($_POST['products_drop'] < 0) {
+        // adding new records
+          if ($_POST['products_drop'] == -1) {
+          // to insert new products from a given categories_id for a coupon_code that are not already in the table
+          // products in the table from the catategories_id are skipped
+            $new_products_query = "select products_id from products_to_categories where categories_id = '" . $_GET['build_cat'] . "' and products_id not in (select product_id from coupon_restrict where coupon_id = '" . $_GET['cid'] . "')";
+            $new_products = $db->Execute($new_products_query);
+          }
+
+          if ($_POST['products_drop'] == -2) {
+          // to delete existing products from a given categories_id for a coupon_code that are already in the table
+          // products in the table from the catategories_id are skipped
+            $new_products_query = "select products_id from products_to_categories where categories_id = '" . $_GET['build_cat'] . "' and products_id in (select product_id from coupon_restrict where coupon_restrict = '" . $status . "' and coupon_id = '" . $_GET['cid'] . "')";
+            $new_products = $db->Execute($new_products_query);
+          }
+
+          // nothing to be done
+          if ($new_products->RecordCount() == 0) {
+            $messageStack->add(ERROR_DISCOUNT_COUPON_DEFINED_CATEGORY . ' ' . $_POST['cPath'], 'caution');
+          }
+          while(!$new_products->EOF) {
+            // product passed and needs to be added/deleted
+            // add all products from select category for each product not already defined in coupons_restrict
+            if ($_POST['products_drop'] == -1) {
+              $db->Execute("insert into " . TABLE_COUPON_RESTRICT . "
+                          (coupon_id, product_id, coupon_restrict)
+                          values ('" . $_GET['cid'] . "', '" . $new_products->fields['products_id'] . "', '" . $status . "')");
+            } else {
+            // removed as defined in coupons_restrict for either DENY or ALLOW
+              $db->Execute("delete from " . TABLE_COUPON_RESTRICT . "
+                            WHERE coupon_id = '" . $_GET['cid'] . "'
+                            and product_id = '" . $new_products->fields['products_id'] . "'
+                            and coupon_restrict = '" . $status . "'");
+            }
+
+            $new_products->MoveNext();
+          }
+// eof: ALL ADD/DELETE of Products in one Category
+// ==================================
+
+      } else {
+// normal insert of product one by one allow/deny to coupon
       $db->Execute("insert into " . TABLE_COUPON_RESTRICT . "
                   (coupon_id, product_id, coupon_restrict)
                   values ('" . $_GET['cid'] . "', '" . $_POST['products_drop'] . "', '" . $status . "')");
+      } // not all deny allow
+    } else {
+      $messageStack->add(ERROR_DISCOUNT_COUPON_DEFINED_PRODUCT . ' ' . $_POST['products_drop'], 'caution');
     }
   }
   if ($_GET['action']=='remove' && $_GET['info']) {
@@ -239,7 +282,7 @@
                 <td class="dataTableContent"><?php echo $_GET['cid']; ?></td>
                 <td class="dataTableContent" align="center"><?php echo $coupon->fields['coupon_name']; ?></td>
                 <td class="dataTableContent" align="center"><?php echo $pr_list->fields['product_id']; ?></td>
-                <td class="dataTableContent" align="center"><?php echo $product_name; ?></td>
+                <td class="dataTableContent" align="left"><?php echo '<strong>' . $product_name . '</strong><br />' . TEXT_CATEGORY . zen_get_categories_name_from_product($pr_list->fields['product_id']) . '<br />' . TEXT_MANUFACTURER . zen_get_products_manufacturers_name($pr_list->fields['product_id']); ?></td>
 <?php
 		if ($pr_list->fields['coupon_restrict']=='N') {
 		  echo '<td class="dataTableContent" align="center"><a href="' . zen_href_link('coupon_restrict.php', zen_get_all_get_params(array('info', 'action', 'x', 'y')) . 'action=switch_status&info=' . $pr_list->fields['restrict_id'], 'NONSSL') . '">' . zen_image(DIR_WS_IMAGES . 'icon_status_green.gif', IMAGE_ALLOW) . '</a></td>';
@@ -271,8 +314,20 @@
                   <tr>
 <?php
       if (isset($_POST['cPath_prod'])) $current_category_id = $_POST['cPath_prod'];
-      $products = $db->Execute("select p.products_id, pd.products_name from " . TABLE_PRODUCTS . " p, " . TABLE_PRODUCTS_DESCRIPTION . " pd, " . TABLE_PRODUCTS_TO_CATEGORIES . " p2c where p.products_id = pd.products_id and pd.language_id = '" . $_SESSION['languages_id'] . "' and p.products_id = p2c.products_id and p2c.categories_id = '" . $_POST['cPath_prod'] . "' order by pd.products_name");
+      $products = $db->Execute("select p.products_id, pd.products_name from " .
+      TABLE_PRODUCTS . " p, " . TABLE_PRODUCTS_DESCRIPTION . " pd, " . TABLE_PRODUCTS_TO_CATEGORIES . " p2c
+      where p.products_id = pd.products_id and pd.language_id = '" . $_SESSION['languages_id'] . "'
+      and p.products_id = p2c.products_id and p2c.categories_id = '" . $_POST['cPath_prod'] . "'
+      order by pd.products_name");
       $products_array = array();
+
+      if (!$products->EOF) {
+        $products_array[] = array('id' => '-1',
+                                   'text' => TEXT_ALL_PRODUCTS_ADD);
+        $products_array[] = array('id' => '-2',
+                                   'text' => TEXT_ALL_PRODUCTS_REMOVE);
+      }
+
       while (!$products->EOF) {
         $products_array[] = array('id'=>$products->fields['products_id'],
                                    'text'=>$products->fields['products_name']);
@@ -284,16 +339,19 @@
                     <?php echo zen_hide_session_id(); ?>
                     <td class="smallText" align="left"><?php echo zen_draw_pull_down_menu('cPath_prod', zen_get_category_tree(), $current_category_id, 'onChange="this.form.submit();"'); ?></td></form>
 <?php if (sizeof($products_array) > 0) { ?>
-                    <form name="restrict_category" method="post" action="<?php echo zen_href_link('coupon_restrict.php', zen_get_all_get_params(array('info', 'action', 'x', 'y')) . 'action=add_product&info=' . $cInfo->restrict_id, 'NONSSL'); ?>">
+                    <form name="restrict_category" method="post" action="<?php echo zen_href_link('coupon_restrict.php', zen_get_all_get_params(array('info', 'action', 'x', 'y')) . 'action=add_product&info=' . $cInfo->restrict_id . '&build_cat=' . $current_category_id, 'NONSSL'); ?>">
                     <td class="smallText" valign="top"><?php echo HEADER_PRODUCT_NAME; ?></td>
                     <td class="smallText" align="left"><?php echo zen_draw_pull_down_menu('products_drop', $products_array, $current_category_id); ?></td>
                     <td class="smallText" align="left"><?php echo zen_draw_pull_down_menu('restrict_status', $restrict_array); ?></td>
-                    <td class="smallText" align="left"><input type="submit" name="add" value="Add"></td>
+                    <td class="smallText" align="left"><input type="submit" name="add" value="Update"></td>
                     <td class="smallText" align="left">&nbsp;</td>
                     <td class="smallText" align="left">&nbsp;</td>
 <?php } else { ?>
                     <td class="smallText" align="left" colspan="6">&nbsp;</td>
 <?php } ?>
+                  </tr>
+                  <tr>
+                    <td class="smallText" align="left" colspan = "9"><?php echo TEXT_INFO_ADD_DENY_ALL; ?></td>
                   </tr>
                 </table></td>
               </tr></form>

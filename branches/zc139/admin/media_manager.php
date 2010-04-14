@@ -1,10 +1,10 @@
 <?php
 /**
  * @package admin
- * @copyright Copyright 2003-2007 Zen Cart Development Team
+ * @copyright Copyright 2003-2009 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: media_manager.php 7059 2007-09-20 01:50:42Z ajeh $
+ * @version $Id: media_manager.php 13954 2009-07-22 12:21:08Z wilt $
  */
 
   require('includes/application_top.php');
@@ -48,7 +48,7 @@
           if ($clip_name) {
             $media_type = $_POST['media_type'];
             $ext = $db->Execute("select type_ext from " . TABLE_MEDIA_TYPES . " where type_id = '" . $_POST['media_type'] . "'");
-            if (ereg($ext->fields['type_ext'], $clip_name)) {
+            if (preg_match('/'.$ext->fields['type_ext'] . '/', $clip_name)) {
 
               if ($media_upload = new upload('clip_filename')) {
                 $media_upload->set_destination(DIR_FS_CATALOG_MEDIA . $_POST['media_dir']);
@@ -106,6 +106,10 @@
 
         $db->Execute("delete from " . TABLE_MEDIA_MANAGER . "
                       where media_id = '" . (int)$media_id . "'");
+        $db->Execute("delete from " . TABLE_MEDIA_TO_PRODUCTS . "
+                      where media_id = '" . (int)$media_id . "'");
+        $db->Execute("delete from " . TABLE_MEDIA_CLIPS . "
+                      where media_id = '" . (int)$media_id . "'");
 
         if (isset($_POST['delete_products']) && ($_POST['delete_products'] == 'on')) {
 
@@ -113,10 +117,6 @@
 //            zen_remove_product($products->fields['products_id']);
 //            $products->MoveNext();
 //          }
-        } else {
-//          $db->Execute("update " . TABLE_PRODUCTS . "
-//                        set manufacturers_id = ''
-//                        where manufacturers_id = '" . (int)$manufacturers_id . "'");
         }
 
         zen_redirect(zen_href_link(FILENAME_MEDIA_MANAGER, 'page=' . $_GET['page']));
@@ -247,7 +247,7 @@
       $dir = @dir(DIR_FS_CATALOG_MEDIA);
       $dir_info[] = array('id' => '', 'text' => "Main Directory");
       while ($file = $dir->read()) {
-        if (@is_dir(DIR_FS_CATALOG_MEDIA . $file) && strtoupper($file) != 'CVS' && $file != "." && $file != "..") {
+        if (@is_dir(DIR_FS_CATALOG_MEDIA . $file) && strtoupper($file) != 'CVS' && $file != "." && $file != ".." && $file != '.svn') {
           $dir_info[] = array('id' => $file . '/', 'text' => $file);
         }
       }
@@ -262,9 +262,10 @@
       }
       $contents[] = array('text' => TEXT_MEDIA_CLIP_TYPE . ' ' . zen_draw_pull_down_menu('media_type', $media_types_array));
 
-      $contents[] = array('text' => '<input type="submit" name="add_clip" value="' . TEXT_ADD . '">');
+      $contents[] = array('text' => '<input type="submit" name="add_clip" value="' . TEXT_ADD . '">', 'align' => 'center');
       $clip_query = "select * from " . TABLE_MEDIA_CLIPS . " where media_id = '" . $mInfo->media_id . "'";
       $clips = $db->Execute($clip_query);
+      if ($clips->RecordCount() > 0) $contents[] = array('text' => '<hr />');
       while (!$clips->EOF) {
         $contents[] = array('text' => '<a href="' . zen_href_link(FILENAME_MEDIA_MANAGER, 'action=remove_clip&mID='.$mInfo->media_id.'&clip_id='.$clips->fields['clip_id']) . '">' . zen_image_button('button_delete.gif', IMAGE_DELETE) . '</a>&nbsp;' . $clips->fields['clip_filename'] . '<br />');
         $clips->MoveNext();
@@ -304,6 +305,7 @@
       $products_linked_query = "select * from " . TABLE_MEDIA_TO_PRODUCTS . "
                                 where media_id = '" . $mInfo->media_id . "'";
       $products_linked = $db->Execute($products_linked_query);
+      if ($products_linked->RecordCount() > 0) $contents[] = array('text' => '<hr />');
       while (!$products_linked->EOF) {
         $contents[] = array('text' => '<a href="' . zen_href_link(FILENAME_MEDIA_MANAGER, 'action=remove_product&mID='.$mInfo->media_id . '&page=' . $_GET['page'] . '&product_id='. $products_linked->fields['product_id']) . '">' . zen_image_button('button_delete.gif', IMAGE_DELETE) . '</a>&nbsp;' . $zc_products->products_name($products_linked->fields['product_id']) . '<br />');
         $products_linked->MoveNext();

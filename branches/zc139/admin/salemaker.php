@@ -1,10 +1,10 @@
 <?php
 /**
  * @package admin
- * @copyright Copyright 2003-2007 Zen Cart Development Team
+ * @copyright Copyright 2003-2009 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: salemaker.php 6369 2007-05-25 03:03:42Z ajeh $
+ * @version $Id: salemaker.php 14073 2009-08-05 11:20:01Z wilt $
  */
 //
 define('AUTOCHECK', 'False');
@@ -78,7 +78,7 @@ define('AUTOCHECK', 'False');
                                             'sale_date_end' => ((zen_db_prepare_input($_POST['end']) == '') ? '0001-01-01' : zen_date_raw($_POST['end'])));
 
         if ($action == 'insert') {
-          $salemaker_sales['sale_status'] = 0;
+          $salemaker_sales_data_array['sale_status'] = 1;
           $salemaker_sales_data_array['sale_date_added'] = 'now()';
           $salemaker_sales_data_array['sale_date_last_modified'] = '0001-01-01';
           $salemaker_sales_data_array['sale_date_status_change'] = '0001-01-01';
@@ -298,7 +298,7 @@ function SetCategories() {
 var StartDate = new ctlSpiffyCalendarBox("StartDate", "sale_form", "start", "btnDate1","<?php echo (($sInfo->sale_date_start == '0001-01-01') ? '' : zen_date_short($sInfo->sale_date_start)); ?>",scBTNMODE_CUSTOMBLUE);
 var EndDate = new ctlSpiffyCalendarBox("EndDate", "sale_form", "end", "btnDate2","<?php echo (($sInfo->sale_date_end == '0001-01-01') ? '' : zen_date_short($sInfo->sale_date_end)); ?>",scBTNMODE_CUSTOMBLUE);
 </script>
-      <tr><form name="sale_form" <?php echo 'action="' . zen_href_link(FILENAME_SALEMAKER, zen_get_all_get_params(array('action', 'info', 'sID')) . 'action=' . $form_action, 'NONSSL') . '"'; ?> method="post"><?php if ($form_action == 'update') echo zen_draw_hidden_field('sID', $_GET['sID']); ?>
+      <tr><?php echo zen_draw_form("sale_form", FILENAME_SALEMAKER, zen_get_all_get_params(array('action', 'info', 'sID')) . 'action=' . $form_action); ?><?php if ($form_action == 'update') echo zen_draw_hidden_field('sID', $_GET['sID']); ?>
         <td><table border="0" width="100%" cellspacing="0" cellpadding="2">
           <tr>
             <td class="main"><?php echo TEXT_SALEMAKER_POPUP; ?></td>
@@ -372,12 +372,20 @@ var EndDate = new ctlSpiffyCalendarBox("EndDate", "sale_form", "end", "btnDate2"
     }
     $prev_sales->MoveNext();
   }
+
+// set Entire Catalog when set
+  if (empty($sInfo->sale_categories_selected) AND !empty($sInfo->sale_categories_all)) {
+    $zc_check_all_cats = 1;
+  } else {
+    $zc_check_all_cats = 0;
+  }
+
     echo "      <tr>\n";
     echo '        <td valign="bottom" class="main">' . zen_draw_separator('pixel_trans.gif', '4', '1') . zen_image(DIR_WS_IMAGES . 'icon_arrow_right.gif') . "</td>\n";
     echo '        <td class="main" colspan="2"><br>' . TEXT_SALEMAKER_ENTIRE_CATALOG . "</td>\n";
     echo "      </tr>\n";
     echo '      <tr onClick="RowClick(\'0\')">' . "\n";
-    echo '        <td width="10" class="main">' . zen_draw_checkbox_field('categories[]', '0', $selected) . "</td>\n";
+    echo '        <td width="10" class="main">' . zen_draw_checkbox_field('categories[]', '0', $zc_check_all_cats) . "</td>\n";
     echo '        <td class="main" colspan="2">' . TEXT_SALEMAKER_TOP . "</td>\n";
     echo "      </tr>\n";
     echo "      <tr>\n";

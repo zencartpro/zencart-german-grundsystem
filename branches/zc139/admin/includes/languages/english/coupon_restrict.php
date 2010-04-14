@@ -1,24 +1,11 @@
 <?php
-//
-// +----------------------------------------------------------------------+
-// |zen-cart Open Source E-commerce                                       |
-// +----------------------------------------------------------------------+
-// | Copyright (c) 2003 The zen-cart developers                           |
-// |                                                                      |   
-// | http://www.zen-cart.com/index.php                                    |   
-// |                                                                      |   
-// | Portions Copyright (c) 2003 osCommerce                               |
-// +----------------------------------------------------------------------+
-// | This source file is subject to version 2.0 of the GPL license,       |
-// | that is bundled with this package in the file LICENSE, and is        |
-// | available through the world-wide-web at the following url:           |
-// | http://www.zen-cart.com/license/2_0.txt.                             |
-// | If you did not receive a copy of the zen-cart license and are unable |
-// | to obtain it through the world-wide-web, please send a note to       |
-// | license@zen-cart.com so we can mail you a copy immediately.          |
-// +----------------------------------------------------------------------+
-//  $Id$
-//
+/**
+ * @package admin
+ * @copyright Copyright 2003-2010 Zen Cart Development Team
+ * @copyright Portions Copyright 2003 osCommerce
+ * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
+ * @version $Id$
+ */
 
 define('HEADING_TITLE', 'Discount Coupons Product/Category Restrictions');
 define('HEADING_TITLE_CATEGORY', 'Category Restrictions');
@@ -37,4 +24,14 @@ define('IMAGE_ALLOW', 'Allow');
 define('IMAGE_DENY', 'Deny');
 define('IMAGE_REMOVE', 'Remove');
 define('TEXT_ALL_CATEGORIES', 'All Categories');
-?>
+
+define('MAX_DISPLAY_RESTRICT_ENTRIES', 20);
+define(TEXT_ALL_PRODUCTS_ADD, 'Add All Category Products');
+define(TEXT_ALL_PRODUCTS_REMOVE, 'Remove All Category Products');
+define('TEXT_INFO_ADD_DENY_ALL', '<strong>For Add all Category Products, only Products not already set for restrictions will be added.<br />
+                    For Delete all Category Products, only Products that are specified Deny or Allow will be removed.</strong>');
+
+define('TEXT_MANUFACTURER', 'Manufacturer: ');
+define('TEXT_CATEGORY', 'Category: ');
+define('ERROR_DISCOUNT_COUPON_DEFINED_CATEGORY', 'Category Not Completed');
+define('ERROR_DISCOUNT_COUPON_DEFINED_PRODUCT', 'Product Not Completed');

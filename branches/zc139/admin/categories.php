@@ -1,10 +1,10 @@
 <?php
 /**
  * @package admin
- * @copyright Copyright 2003-2007 Zen Cart Development Team
+ * @copyright Copyright 2003-2010 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: categories.php 182 2007-12-02 10:04:59Z hugo13 $
+ * @version $Id: categories.php 15880 2010-04-11 16:24:30Z wilt $
  */
 
   require('includes/application_top.php');
@@ -254,6 +254,9 @@
         } else {
           $action = 'insert_categories_meta_tags';
         }
+        if (empty($_POST['metatags_title'][$language_id]) && empty($_POST['metatags_keywords'][$language_id]) && empty($_POST['metatags_description'][$language_id])) {
+          $action = 'delete_category_meta_tags';
+        }
 
         $sql_data_array = array('metatags_title' => zen_db_prepare_input($_POST['metatags_title'][$language_id]),
                                 'metatags_keywords' => zen_db_prepare_input($_POST['metatags_keywords'][$language_id]),
@@ -266,12 +269,10 @@
 
           zen_db_perform(TABLE_METATAGS_CATEGORIES_DESCRIPTION, $sql_data_array);
         } elseif ($action == 'update_category_meta_tags') {
-          if (empty($_POST['metatags_title'][$language_id]) && empty($_POST['metatags_keywords'][$language_id]) && empty($_POST['metatags_description'][$language_id])) {
-            $remove_categories_metatag = "DELETE from " . TABLE_METATAGS_CATEGORIES_DESCRIPTION . " WHERE categories_id = '" . (int)$categories_id . "' and language_id = '" . (int)$language_id . "'";
-            $db->Execute($remove_categories_metatag);
-          } else {
-            zen_db_perform(TABLE_METATAGS_CATEGORIES_DESCRIPTION, $sql_data_array, 'update', "categories_id = '" . (int)$categories_id . "' and language_id = '" . (int)$language_id . "'");
-          }
+          zen_db_perform(TABLE_METATAGS_CATEGORIES_DESCRIPTION, $sql_data_array, 'update', "categories_id = '" . (int)$categories_id . "' and language_id = '" . (int)$language_id . "'");
+        } elseif ($action == 'delete_category_meta_tags') {
+          $remove_categories_metatag = "DELETE from " . TABLE_METATAGS_CATEGORIES_DESCRIPTION . " WHERE categories_id = '" . (int)$categories_id . "' and language_id = '" . (int)$language_id . "'";
+          $db->Execute($remove_categories_metatag);
         }
       }
 
@@ -358,7 +359,7 @@
       }
 
       // delete category and products
-      if (isset($_POST['categories_id'])) {
+      if (isset($_POST['categories_id']) && $_POST['categories_id'] != '' && is_numeric($_POST['categories_id']) && $_POST['categories_id'] != 0) {
         $categories_id = zen_db_prepare_input($_POST['categories_id']);
 
         // create list of any subcategories in the selected category,
@@ -652,6 +653,11 @@ function init()
     $type_array[] = array('id' => $product_types->fields['type_id'], 'text' => $product_types->fields['type_name']);
     $product_types->MoveNext();
   }
+
+  if (isset($_GET['cPath'])) {
+    $cPath = $_GET['cPath'];
+  }
+
   switch ($action) {
     case 'setflag_categories':
     $heading[] = array('text' => '<b>' . TEXT_INFO_HEADING_STATUS_CATEGORY . '</b>');

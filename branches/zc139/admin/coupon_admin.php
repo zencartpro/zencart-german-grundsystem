@@ -1,10 +1,10 @@
 <?php
 /**
  * @package admin
- * @copyright Copyright 2003-2007 Zen Cart Development Team
+ * @copyright Copyright 2003-2009 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: coupon_admin.php 182 2007-12-02 10:04:59Z hugo13 $
+ * @version $Id: coupon_admin.php 14139 2009-08-10 13:46:02Z wilt $
  */
 
   require('includes/application_top.php');
@@ -71,11 +71,11 @@
       zen_mail($mail->fields['customers_firstname'] . ' ' . $mail->fields['customers_lastname'], $mail->fields['customers_email_address'], $subject , $message, '',$from, $html_msg, 'coupon');
 
       $recip_count++;
+      // send copy to Admin if enabled
+      if (SEND_EXTRA_DISCOUNT_COUPON_ADMIN_EMAILS_TO_STATUS== '1' and SEND_EXTRA_DISCOUNT_COUPON_ADMIN_EMAILS_TO != '') {
+        zen_mail('', SEND_EXTRA_DISCOUNT_COUPON_ADMIN_EMAILS_TO, SEND_EXTRA_DISCOUNT_COUPON_ADMIN_EMAILS_TO_SUBJECT . ' ' . $subject , $message, '',$from, $html_msg, 'coupon_extra');
+      }
       $mail->MoveNext();
-    }
-    // send one to Admin if enabled
-    if (SEND_EXTRA_DISCOUNT_COUPON_ADMIN_EMAILS_TO_STATUS== '1' and SEND_EXTRA_DISCOUNT_COUPON_ADMIN_EMAILS_TO != '') {
-      zen_mail('', SEND_EXTRA_DISCOUNT_COUPON_ADMIN_EMAILS_TO, SEND_EXTRA_DISCOUNT_COUPON_ADMIN_EMAILS_TO_SUBJECT . ' ' . $subject , $message, '',$from, $html_msg, 'coupon_extra');
     }
     zen_redirect(zen_href_link(FILENAME_COUPON_ADMIN, 'mail_sent_to=' . urlencode($mail_sent_to) . '&recip_count='. $recip_count ));
   }
@@ -925,15 +925,15 @@ $customer = $db->Execute("select customers_firstname, customers_lastname
       <tr>
 <?php
     if (!$_POST['coupon_startdate']) {
-      $coupon_startdate = split("[-]", date('Y-m-d'));
+      $coupon_startdate = preg_split("/[-]/", date('Y-m-d'));
     } else {
-      $coupon_startdate = split("[-]", $_POST['coupon_startdate']);
+      $coupon_startdate = preg_split("/[-]/", $_POST['coupon_startdate']);
     }
     if (!$_POST['coupon_finishdate']) {
-      $coupon_finishdate = split("[-]", date('Y-m-d'));
+      $coupon_finishdate = preg_split("/[-]/", date('Y-m-d'));
       $coupon_finishdate[0] = $coupon_finishdate[0] + 1;
     } else {
-      $coupon_finishdate = split("[-]", $_POST['coupon_finishdate']);
+      $coupon_finishdate = preg_split("/[-]/", $_POST['coupon_finishdate']);
     }
 ?>
         <td align="left" class="main"><?php echo COUPON_STARTDATE; ?></td>
@@ -1068,7 +1068,7 @@ $customer = $db->Execute("select customers_firstname, customers_lastname
               </tr>
 
               <tr>
-                <td align="right" colspan="2" class="smallText"><?php echo '<a href="' . zen_href_link(FILENAME_COUPON_ADMIN, 'page=' . $_GET['page'] . '&cid=' . $cInfo->coupon_id . '&action=new') . '">' . zen_image_button('button_insert.gif', IMAGE_INSERT) . '</a>'; ?></td>
+                <td align="right" colspan="2" class="smallText"><?php echo '<a name="couponInsert" href="' . zen_href_link(FILENAME_COUPON_ADMIN, 'page=' . $_GET['page'] . '&cid=' . $cInfo->coupon_id . '&action=new') . '">' . zen_image_button('button_insert.gif', IMAGE_INSERT) . '</a>'; ?></td>
               </tr>
             </table></td>
           </tr>

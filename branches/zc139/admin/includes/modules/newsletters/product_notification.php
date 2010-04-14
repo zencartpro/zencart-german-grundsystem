@@ -1,10 +1,10 @@
 <?php
 /**
  * @package admin
- * @copyright Copyright 2003-2006 Zen Cart Development Team
+ * @copyright Copyright 2003-2009 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: product_notification.php 3009 2006-02-11 15:41:10Z wilt $
+ * @version $Id: product_notification.php 14780 2009-11-11 03:32:33Z drbyte $
  */
 if (!defined('IS_ADMIN_FLAG')) {
   die('Illegal Access');
@@ -216,7 +216,7 @@ function selectAll(FormName, SelectBox) {
         while (!$customers->EOF) {
           $audience[$customers->fields['customers_id']] = array('firstname' => $customers->fields['customers_firstname'],
                                                         'lastname' => $customers->fields['customers_lastname'],
-                                                        'email_address' => $customers['customers_email_address']);
+                                                        'email_address' => $customers->fields['customers_email_address']);
           $customers->MoveNext();
         }
       } else {  //not global==true; instead, process all selected products
@@ -275,4 +275,3 @@ function selectAll(FormName, SelectBox) {
      return $i;  //return number of records processed whether successful or not
     }
   }
-?>

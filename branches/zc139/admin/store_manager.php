@@ -1,10 +1,10 @@
 <?php
 /**
  * @package admin
- * @copyright Copyright 2003-2007 Zen Cart Development Team
+ * @copyright Copyright 2003-2009 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: store_manager.php 6019 2007-03-16 20:34:05Z drbyte $
+ * @version $Id: store_manager.php 13812 2009-07-08 17:21:05Z drbyte $
  */
 
   require('includes/application_top.php');
@@ -97,10 +97,10 @@
 
     case ('optimize_db'):
     // clean out unused space in database
-    $sql = "SHOW TABLE STATUS FROM " . DB_DATABASE;
+    $sql = "SHOW TABLE STATUS FROM `" . DB_DATABASE ."`";
     $tables = $db->Execute($sql);
     while(!$tables->EOF) {
-      $db->Execute("OPTIMIZE TABLE " . $tables->fields['Name']);
+      $db->Execute("OPTIMIZE TABLE `" . $tables->fields['Name'] . "`");
       $i++;
       $tables->MoveNext();
     }

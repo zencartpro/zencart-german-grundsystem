@@ -1,24 +1,11 @@
 <?php
-//
-// +----------------------------------------------------------------------+
-// |zen-cart Open Source E-commerce                                       |
-// +----------------------------------------------------------------------+
-// | Copyright (c) 2003 The zen-cart developers                           |
-// |                                                                      |
-// | http://www.zen-cart.com/index.php                                    |
-// |                                                                      |
-// | Portions Copyright (c) 2003 osCommerce                               |
-// +----------------------------------------------------------------------+
-// | This source file is subject to version 2.0 of the GPL license,       |
-// | that is bundled with this package in the file LICENSE, and is        |
-// | available through the world-wide-web at the following url:           |
-// | http://www.zen-cart.com/license/2_0.txt.                             |
-// | If you did not receive a copy of the zen-cart license and are unable |
-// | to obtain it through the world-wide-web, please send a note to       |
-// | license@zen-cart.com so we can mail you a copy immediately.          |
-// +----------------------------------------------------------------------+
-//  $Id$
-//
+/**
+ * @package admin
+ * @copyright Copyright 2003-2010 Zen Cart Development Team
+ * @copyright Portions Copyright 2003 osCommerce
+ * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
+ * @version $Id$
+ */
 
 define('HEADING_TITLE_OPT', 'Product Options');
 define('HEADING_TITLE_VAL', 'Option Values');
@@ -111,7 +98,7 @@ define('TABLE_TEXT_MAX_COUNT_SHORT', 'Max:');
   define('TEXT_SELECT_OPTION_FROM_ADD', 'Option Name to add:');
   define('TEXT_SELECT_OPTION_VALUES_FROM_ADD', 'Option Value to add:');
   define('TEXT_SELECT_OPTION_FROM_PRODUCTS_ID', 'Default New Attribute Values from Product ID# or leave blank for no default values:');
-  define('TEXT_COPY_ATTRIBUTES_CONDITIONS','<strong>How should existing product attributes should be handled?</strong>');
+  define('TEXT_COPY_ATTRIBUTES_CONDITIONS','<strong>How should existing product attributes be handled?</strong>');
   define('TEXT_COPY_ATTRIBUTES_DELETE','<strong>Delete</strong> first, then copy new attributes');
   define('TEXT_COPY_ATTRIBUTES_UPDATE','<strong>Update</strong> existing attributes with new settings/prices');
   define('TEXT_COPY_ATTRIBUTES_IGNORE','<strong>Ignore</strong> existing attributes and add only new attributes');
@@ -132,4 +119,4 @@ define('TABLE_TEXT_MAX_COUNT_SHORT', 'Max:');
   define('ERROR_OPTION_VALUES_DELETE_MISMATCH', 'Error: Mismatched Option Name and Option Value selected');
 
   define('SUCCESS_OPTION_VALUES_DELETE', 'Successful: Deletion of: ');
-?>
+  
