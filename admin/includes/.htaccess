@@ -1,14 +1,29 @@
-# $Id: .htaccess 2996 2006-02-09 00:42:17Z drbyte $
+# $Id: .htaccess 15835 2010-04-05 20:57:09Z drbyte $
 #
 # This is used with Apache WebServers
-# The following blocks direct HTTP requests in this directory recursively
 #
-# This does not affect PHP include/require functions
+# The following blocks direct HTTP requests to all filetypes in this directory recursively, except certain approved exceptions
+# It also prevents the ability of any scripts to run. No type of script, be it PHP, PERL or whatever, can normally be executed if ExecCGI is disabled.
+# Will also prevent people from seeing what is in the dir. and any sub-directories
 #
-# Example: direct access to http://server/admin/includes/application_top.php will not work with the following installed
+# For this to work, you must include either 'All' or all of these: 'Limit Options Indexes' parameters to the AllowOverride configuration in your apache/conf/httpd.conf file
+# Example:
+#<Directory "/usr/local/apache/htdocs">
+#  AllowOverride Limit Options Indexes
+#</Directory>
+###############################
 
-<Files *.php>
-Order Deny,Allow
+# deny *everything*
+<FilesMatch ".*">
+Order Allow,Deny
 Deny from all
-Allow from localhost
-</Files>
+</FilesMatch>
+
+# but now allow just *certain* necessary files:
+<FilesMatch ".*\.(js|css|jpg|gif|png)$">
+Order Allow,Deny
+Allow from all
+</FilesMatch>
+
+OPTIONS -Indexes -ExecCGI
+IndexIgnore */*

@@ -1,47 +1,58 @@
 <?php
 /**
  * @package admin
- * @copyright Copyright 2003-2009 Zen Cart Development Team
+ * @copyright Copyright 2003-2010 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: application_top.php 14753 2009-11-07 19:58:13Z drbyte $
+ * @version $Id: application_top.php 15766 2010-03-31 20:17:56Z drbyte $
  */
 /**
  * File contains just application_top code
- * 
+ *
  * Initializes common classes & methods. Controlled by an array which describes
  * the elements to be initialised and the order in which that happens.
  *
  * @package admin
- * @copyright Copyright 2003-2007 Zen Cart Development Team
+ * @copyright Copyright 2003-2010 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  */
 /**
  * boolean if true the autoloader scripts will be parsed and their output shown. For debugging purposes only.
  */
 define('DEBUG_AUTOLOAD', false);
-/** 
+/**
  * boolean used to see if we are in the admin script, obviously set to false here.
  * DO NOT REMOVE THE define BELOW. WILL BREAK ADMIN
  */
 define('IS_ADMIN_FLAG', true);
-/** 
+/**
  * integer saves the time at which the script started.
  */
 // Start the clock for the page parse time log
 define('PAGE_PARSE_START_TIME', microtime());
 /**
  * set the level of error reporting
+ *
+ * Note STRICT_ERROR_REPORTING should never be set to true on a production site. <br />
+ * It is mainly there to show php warnings during testing/bug fixing phases.<br />
+ * note for strict error reporting we also turn on show_errors as this may be disabled<br />
+ * in php.ini. Otherwise we respect the php.ini setting
+ *
  */
-error_reporting(version_compare(PHP_VERSION, 5.3, '>=') ? E_ALL & ~E_DEPRECATED & ~E_NOTICE : version_compare(PHP_VERSION, 6.0, '>=') ? E_ALL & ~E_DEPRECATED & ~E_NOTICE & ~E_STRICT : E_ALL & ~E_NOTICE);
-
+if (defined('STRICT_ERROR_REPORTING') && STRICT_ERROR_REPORTING == true) {
+  @ini_set('display_errors', TRUE);
+  error_reporting(version_compare(PHP_VERSION, 5.3, '>=') ? E_ALL & ~E_DEPRECATED & ~E_NOTICE : version_compare(PHP_VERSION, 6.0, '>=') ? E_ALL & ~E_DEPRECATED & ~E_NOTICE & ~E_STRICT : E_ALL & ~E_NOTICE);
+} else {
+  error_reporting(0);
+}
 /*
  * turn off magic-quotes support, for both runtime and sybase, as both will cause problems if enabled
  */
-if (function_exists('set_magic_quotes_runtime')) set_magic_quotes_runtime(0);
+if (function_exists('set_magic_quotes_runtime') && version_compare(PHP_VERSION, 5.3, '<')) set_magic_quotes_runtime(0);
 if (@ini_get('magic_quotes_sybase') != 0) @ini_set('magic_quotes_sybase', 0);
 // set php_self in the local scope
 if (!isset($PHP_SELF)) $PHP_SELF = $_SERVER['PHP_SELF'];
+
 /**
  * Set the local configuration parameters - mainly for developers
  */
@@ -74,9 +85,11 @@ if (!defined('DIR_FS_CATALOG') || !is_dir(DIR_FS_CATALOG.'/includes/classes') ||
  * ignore version-check if INI file setting has been set
  */
 if (file_exists(DIR_FS_ADMIN . 'includes/local/skip_version_check.ini')) {
-  $lines=@file(DIR_FS_ADMIN . 'includes/local/skip_version_check.ini');
-  foreach($lines as $line) {
-    if (substr($line,0,14)=='admin_configure_php_check=') $check_cfg=substr(trim(strtolower(str_replace('admin_configure_php_check=','',$line))),0,3);
+  $lines = @file(DIR_FS_ADMIN . 'includes/local/skip_version_check.ini');
+  if (is_array($lines)) {
+    foreach($lines as $line) {
+      if (substr($line,0,14)=='admin_configure_php_check=') $check_cfg=substr(trim(strtolower(str_replace('admin_configure_php_check=','',$line))),0,3);
+    }
   }
 }
 /*
@@ -114,18 +127,23 @@ if ($za_dir = @dir(DIR_WS_INCLUDES . 'extra_configures')) {
   $za_dir->close();
 }
 /**
- * if main configure file doesn't contain valid info (ie: is dummy or doesn't match filestructure, display assistance page to suggest running the installer)
+ * init some vars
  */
+$template_dir = '';
+define('DIR_WS_TEMPLATES', DIR_WS_INCLUDES . 'templates/');
+/**
+ * Prepare init-system
+ */
+unset($loaderPrefix); // admin doesn't need this override
 $autoLoadConfig = array();
 if (isset($loaderPrefix)) {
- $loaderPrefix = preg_replace('/[a-z_]^/', '', $loaderPrefix); 
+ $loaderPrefix = preg_replace('/[a-z_]^/', '', $loaderPrefix);
 } else {
   $loaderPrefix = 'config';
 }
 $loader_file = $loaderPrefix . '.core.php';
 require('includes/initsystem.php');
-/** 
+/**
  * load the autoloader interpreter code.
  */
   require(DIR_FS_CATALOG . 'includes/autoload_func.php');
-?>

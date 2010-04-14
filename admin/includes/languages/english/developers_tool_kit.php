@@ -1,24 +1,11 @@
 <?php
-//
-// +----------------------------------------------------------------------+
-// |zen-cart Open Source E-commerce                                       |
-// +----------------------------------------------------------------------+
-// | Copyright (c) 2004 The zen-cart developers                           |
-// |                                                                      |
-// | http://www.zen-cart.com/index.php                                    |
-// |                                                                      |
-// | Portions Copyright (c) 2003 osCommerce                               |
-// +----------------------------------------------------------------------+
-// | This source file is subject to version 2.0 of the GPL license,       |
-// | that is bundled with this package in the file LICENSE, and is        |
-// | available through the world-wide-web at the following url:           |
-// | http://www.zen-cart.com/license/2_0.txt.                             |
-// | If you did not receive a copy of the zen-cart license and are unable |
-// | to obtain it through the world-wide-web, please send a note to       |
-// | license@zen-cart.com so we can mail you a copy immediately.          |
-// +----------------------------------------------------------------------+
-//  $Id$
-//
+/**
+ * @package admin
+ * @copyright Copyright 2003-2009 Zen Cart Development Team
+ * @copyright Portions Copyright 2003 osCommerce
+ * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
+ * @version $Id$
+ */
   define('HEADING_TITLE', 'Developers Tool Kit');
   define('TABLE_CONFIGURATION_TABLE', 'Lookup CONSTANT Definitions');
 
@@ -43,6 +30,7 @@
   define('TEXT_INFO_SEARCHING', 'Searching ');
   define('TEXT_INFO_FILES_FOR', ' files ... for: ');
   define('TEXT_INFO_MATCHES_FOUND', 'Match Lines found: ');
+  define('TEXT_INFO_FILENAME', 'FILENAME: ');
 
   define('TEXT_LANGUAGE_LOOKUPS', 'Language File Look-ups:');
   define('TEXT_LANGUAGE_LOOKUP_CURRENT_LANGUAGE', 'All Language Files for ' . strtoupper($_SESSION['language']) . ' - Catalog/Admin');
@@ -82,4 +70,13 @@
 
   define('TEXT_SEARCH_ALL_FILES', 'Search ALL files for: ');
   define('TEXT_SEARCH_DATABASE_TABLES', 'Search database configuration tables for: ');
+
+  define('TEXT_ALL_FILESTYPE_LOOKUPS', 'File type');
+  define('TEXT_ALL_FILES_LOOKUP_PHP', '.php only');
+  define('TEXT_ALL_FILES_LOOKUP_PHPCSS', '.php and .css');
+  define('TEXT_ALL_FILES_LOOKUP_CSS', '.css only');
+  define('TEXT_ALL_FILES_LOOKUP_HTMLTXT', '.html and .txt');
+
+  define('TEXT_CASE_SENSITIVE', 'Case Sensitive?');
+
 ?>

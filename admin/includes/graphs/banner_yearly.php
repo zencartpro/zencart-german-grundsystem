@@ -1,10 +1,10 @@
 <?php
 /**
  * @package admin
- * @copyright Copyright 2003-2006 Zen Cart Development Team
+ * @copyright Copyright 2003-2008 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: banner_yearly.php 3001 2006-02-09 21:45:06Z wilt $
+ * @version $Id: banner_yearly.php 8744 2008-06-28 02:20:51Z drbyte $
  */
 if (!defined('IS_ADMIN_FLAG')) {
   die('Illegal Access');
@@ -36,7 +36,7 @@ if (!defined('IS_ADMIN_FLAG')) {
 
   $graph->SetPlotBorderType('left');
   $graph->SetTitleFontSize('4');
-  $graph->SetTitle(sprintf(TEXT_BANNERS_YEARLY_STATISTICS, $banner['banners_title']));
+  $graph->SetTitle(sprintf(TEXT_BANNERS_YEARLY_STATISTICS, $banner->fields['banners_title']));
 
   $graph->SetBackgroundColor('white');
 

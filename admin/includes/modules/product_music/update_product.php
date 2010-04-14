@@ -1,18 +1,18 @@
 <?php
 /**
  * @package admin
- * @copyright Copyright 2003-2006 Zen Cart Development Team
+ * @copyright Copyright 2003-2010 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: update_product.php 5974 2007-03-04 01:17:35Z ajeh $
+ * @version $Id: update_product.php 15636 2010-03-07 07:00:40Z drbyte $
  */
   if (!defined('IS_ADMIN_FLAG')) {
     die('Illegal Access');
   }
+  if (isset($_GET['pID'])) $products_id = zen_db_prepare_input($_GET['pID']);
   if (isset($_POST['edit_x']) || isset($_POST['edit_y'])) {
     $action = 'new_product';
-  } else {
-    if (isset($_GET['pID'])) $products_id = zen_db_prepare_input($_GET['pID']);
+  } elseif ($_POST['products_model'] . $_POST['products_url'] . $_POST['products_name'] . $_POST['products_description'] != '') {
     $products_date_available = zen_db_prepare_input($_POST['products_date_available']);
 
     $products_date_available = (date('Y-m-d') < $products_date_available) ? $products_date_available : 'null';
@@ -33,17 +33,17 @@
                             'products_price' => $products_price,
                             'products_date_available' => $products_date_available,
                             'products_weight' => $products_weight,
-                            'products_status' => zen_db_prepare_input($_POST['products_status']),
-                            'products_virtual' => zen_db_prepare_input($_POST['products_virtual']),
-                            'products_tax_class_id' => zen_db_prepare_input($_POST['products_tax_class_id']),
+                            'products_status' => zen_db_prepare_input((int)$_POST['products_status']),
+                            'products_virtual' => zen_db_prepare_input((int)$_POST['products_virtual']),
+                            'products_tax_class_id' => zen_db_prepare_input((int)$_POST['products_tax_class_id']),
   //                          'manufacturers_id' => $manufacturers_id,
                             'products_quantity_order_min' => zen_db_prepare_input($_POST['products_quantity_order_min']),
                             'products_quantity_order_units' => zen_db_prepare_input($_POST['products_quantity_order_units']),
                             'products_priced_by_attribute' => zen_db_prepare_input($_POST['products_priced_by_attribute']),
-                            'product_is_free' => zen_db_prepare_input($_POST['product_is_free']),
-                            'product_is_call' => zen_db_prepare_input($_POST['product_is_call']),
+                            'product_is_free' => zen_db_prepare_input((int)$_POST['product_is_free']),
+                            'product_is_call' => zen_db_prepare_input((int)$_POST['product_is_call']),
                             'products_quantity_mixed' => zen_db_prepare_input($_POST['products_quantity_mixed']),
-                            'product_is_always_free_shipping' => zen_db_prepare_input($_POST['product_is_always_free_shipping']),
+                            'product_is_always_free_shipping' => zen_db_prepare_input((int)$_POST['product_is_always_free_shipping']),
                             'products_qty_box_status' => zen_db_prepare_input($_POST['products_qty_box_status']),
                             'products_quantity_order_max' => zen_db_prepare_input($_POST['products_quantity_order_max']),
                             'products_sort_order' => (int)zen_db_prepare_input($_POST['products_sort_order']),
@@ -199,7 +199,7 @@
 
       $products_image = zen_get_products_image((int)$products_id);
       $products_image_extension = substr($products_image, strrpos($products_image, '.'));
-      $products_image_base = ereg_replace($products_image_extension, '', $products_image);
+      $products_image_base = preg_replace('/'.$products_image_extension.'/', '', $products_image);
 
       $filename_medium = DIR_FS_CATALOG . DIR_WS_IMAGES . 'medium/' . $products_image_base . IMAGE_SUFFIX_MEDIUM . '.' . $fname[2];
       $filename_large = DIR_FS_CATALOG . DIR_WS_IMAGES . 'large/' . $products_image_base . IMAGE_SUFFIX_LARGE . '.' . $fname[2];
@@ -214,6 +214,8 @@
       }
     }
 
-    zen_redirect(zen_href_link(FILENAME_CATEGORIES, 'cPath=' . $cPath . '&pID=' . $products_id . (isset($_GET['page']) ? '&page=' . $_GET['page'] : '')));
+    zen_redirect(zen_href_link(FILENAME_CATEGORIES, 'cPath=' . $cPath . '&pID=' . $products_id . (isset($_GET['page']) ? '&page=' . $_GET['page'] : '') . (isset($_POST['search']) ? '&search=' . $_POST['search'] : '') ));
+  } else {
+    $messageStack->add_session(ERROR_NO_DATA_TO_SAVE, 'error');
+    zen_redirect(zen_href_link(FILENAME_CATEGORIES, 'cPath=' . $cPath . '&pID=' . $products_id . (isset($_GET['page']) ? '&page=' . $_GET['page'] : '') . (isset($_POST['search']) ? '&search=' . $_POST['search'] : '') ));
   }
-?>

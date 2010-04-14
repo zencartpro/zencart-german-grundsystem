@@ -1,10 +1,10 @@
 <?php
 /**
  * @package admin
- * @copyright Copyright 2003-2007 Zen Cart Development Team
+ * @copyright Copyright 2003-2008 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: manufacturers.php 6131 2007-04-08 06:56:51Z drbyte $
+ * @version $Id: manufacturers.php 10991 2008-11-15 05:32:16Z drbyte $
  */
 
   require('includes/application_top.php');
@@ -115,7 +115,7 @@
           }
         } else {
           $db->Execute("update " . TABLE_PRODUCTS . "
-                        set manufacturers_id = ''
+                        set manufacturers_id = 0
                         where manufacturers_id = '" . (int)$manufacturers_id . "'");
         }
 

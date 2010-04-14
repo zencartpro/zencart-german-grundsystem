@@ -63,7 +63,6 @@
   require(DIR_WS_BOXES . 'gv_admin_dhtml.php');
   require(DIR_WS_BOXES . 'extras_dhtml.php');
 
-
 ?>
 </body>
 </html>

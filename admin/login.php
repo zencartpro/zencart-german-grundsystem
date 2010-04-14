@@ -1,46 +1,50 @@
 <?php
-//
-// +----------------------------------------------------------------------+
-// |zen-cart Open Source E-commerce                                       |
-// +----------------------------------------------------------------------+
-// | Copyright (c) 2003 The zen-cart developers                           |
-// |                                                                      |
-// | http://www.zen-cart.com/index.php                                    |
-// |                                                                      |
-// | Portions Copyright (c) 2003 osCommerce                               |
-// +----------------------------------------------------------------------+
-// | This source file is subject to version 2.0 of the GPL license,       |
-// | that is bundled with this package in the file LICENSE, and is        |
-// | available through the world-wide-web at the following url:           |
-// | http://www.zen-cart.com/license/2_0.txt.                             |
-// | If you did not receive a copy of the zen-cart license and are unable |
-// | to obtain it through the world-wide-web, please send a note to       |
-// | license@zen-cart.com so we can mail you a copy immediately.          |
-// +----------------------------------------------------------------------+
-//  $Id: login.php 6522 2007-06-20 23:34:31Z wilt $
-//
+/**
+ * @package admin
+ * @copyright Copyright 2003-2010 Zen Cart Development Team
+ * @copyright Portions Copyright 2003 osCommerce
+ * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
+ * @version $Id: login.php 15548 2010-02-21 06:07:12Z drbyte $
+ */
 
   require('includes/application_top.php');
 
+  $admin_name = "";
+  $admin_pass = "";
+  $pass_message = "";
   $message = false;
   if (isset($_POST['submit'])) {
     $admin_name = zen_db_prepare_input($_POST['admin_name']);
     $admin_pass = zen_db_prepare_input($_POST['admin_pass']);
+    if ($admin_name == '' && $admin_pass == '') sleep(4);
     $sql = "select admin_id, admin_name, admin_pass from " . TABLE_ADMIN . " where admin_name = '" . zen_db_input($admin_name) . "'";
     $result = $db->Execute($sql);
     if ((!isset($_SESSION['securityToken']) || !isset($_POST['securityToken'])) || ($_SESSION['securityToken'] !== $_POST['securityToken'])) {
-     $message = true;
-      $pass_message = ERROR_SECURITY_ERROR;      
+      $message = true;
+      $pass_message = ERROR_SECURITY_ERROR;
     }
-    if (!($admin_name == $result->fields['admin_name'])) {
+    if (!isset($result->fields) || !($admin_name == $result->fields['admin_name'])) {
       $message = true;
       $pass_message = ERROR_WRONG_LOGIN;
     }
-    if (!zen_validate_password($admin_pass, $result->fields['admin_pass'])) {
+    if (!isset($result->fields) || !zen_validate_password($admin_pass, $result->fields['admin_pass'])) {
       $message = true;
       $pass_message = ERROR_WRONG_LOGIN;
     }
+    // BEGIN LOGIN SLAM PREVENTION
+    if ($message == TRUE) {
+      if (!isset($_SESSION['login_attempt'])) $_SESSION['login_attempt'] = 0;
+      $_SESSION['login_attempt']++;
+      if ($_SESSION['login_attempt'] > 6) {
+        zen_session_destroy();
+        sleep(15);
+        zen_redirect(zen_href_link(FILENAME_DEFAULT, '', 'SSL'));
+      } else {
+        sleep(4);
+      }
+    }   // END CC SLAM PREVENTION
     if ($message == false) {
+      unset($_SESSION['login_attempt']);
       $_SESSION['admin_id'] = $result->fields['admin_id'];
       if (SESSION_RECREATE == 'True') {
         zen_session_recreate();
@@ -55,9 +59,10 @@
 <meta http-equiv="Content-Type" content="text/html; charset=<?php echo CHARSET; ?>">
 <title><?php echo TITLE; ?></title>
 <link href="includes/stylesheet.css" rel="stylesheet" type="text/css" />
+<meta name="robot" content="noindex, nofollow" />
 </head>
 <body id="login" onload="document.getElementById('admin_name').focus()">
-<form name="login" action="<?php echo zen_href_link(FILENAME_LOGIN, '', 'SSL'); ?>" method = "POST">
+<form name="login" action="<?php echo zen_href_link(FILENAME_LOGIN, '', 'SSL'); ?>" method="post">
   <fieldset>
     <legend><?php echo HEADING_TITLE; ?></legend>
     <label class="loginLabel" for="admin_name"><?php echo TEXT_ADMIN_NAME; ?></label>

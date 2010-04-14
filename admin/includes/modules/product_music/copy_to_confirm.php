@@ -1,15 +1,14 @@
 <?php
 /**
  * @package admin
- * @copyright Copyright 2003-2006 Zen Cart Development Team
+ * @copyright Copyright 2003-2010 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: copy_to_confirm.php 3009 2006-02-11 15:41:10Z wilt $
+ * @version $Id: copy_to_confirm.php 15591 2010-02-28 05:41:49Z ajeh $
  */
 if (!defined('IS_ADMIN_FLAG')) {
   die('Illegal Access');
 }
-
         if (isset($_POST['products_id']) && isset($_POST['categories_id'])) {
           $products_id = zen_db_prepare_input($_POST['products_id']);
           $categories_id = zen_db_prepare_input($_POST['categories_id']);
@@ -43,6 +42,13 @@ if (!defined('IS_ADMIN_FLAG')) {
                                      from " . TABLE_PRODUCTS . "
                                      where products_id = '" . (int)$products_id . "'");
 
+            $tmp_value = zen_db_input($product->fields['products_quantity']);
+            $products_quantity = (!zen_not_null($tmp_value) || $tmp_value=='' || $tmp_value == 0) ? 0 : $tmp_value;
+            $tmp_value = zen_db_input($product->fields['products_price']);
+            $products_price = (!zen_not_null($tmp_value) || $tmp_value=='' || $tmp_value == 0) ? 0 : $tmp_value;
+            $tmp_value = zen_db_input($product->fields['products_weight']);
+            $products_weight = (!zen_not_null($tmp_value) || $tmp_value=='' || $tmp_value == 0) ? 0 : $tmp_value;
+
             $db->Execute("insert into " . TABLE_PRODUCTS . "
                                       (products_type, products_quantity, products_model, products_image,
                                        products_price, products_virtual, products_date_added, products_date_available,
@@ -54,14 +60,14 @@ if (!defined('IS_ADMIN_FLAG')) {
                                        products_price_sorter, master_categories_id
                                        )
                           values ('" . zen_db_input($product->fields['products_type']) . "',
-                '" . zen_db_input($product->fields['products_quantity']) . "',
+                                  '" . $products_quantity . "',
                                   '" . zen_db_input($product->fields['products_model']) . "',
                                   '" . zen_db_input($product->fields['products_image']) . "',
-                                  '" . zen_db_input($product->fields['products_price']) . "',
+                                  '" . $products_price . "',
                                   '" . zen_db_input($product->fields['products_virtual']) . "',
                                   now(),
-                                  '" . zen_db_input($product->fields['products_date_available']) . "',
-                                  '" . zen_db_input($product->fields['products_weight']) . "', '0',
+                                  '" . (zen_not_null(zen_db_input($product->fields['products_date_available'])) ? zen_db_input($product->fields['products_date_available']) : '0001-01-01 00:00:00') . "',
+                                  '" . $products_weight . "', '0',
                                   '" . (int)$product->fields['products_tax_class_id'] . "',
                                   '" . (int)$product->fields['manufacturers_id'] . "',
                                   '" . zen_db_input($product->fields['products_quantity_order_min']) . "',
@@ -75,7 +81,7 @@ if (!defined('IS_ADMIN_FLAG')) {
                                   '" . zen_db_input($product->fields['products_quantity_order_max']) . "',
                                   '" . zen_db_input($product->fields['products_sort_order']) . "',
                                   '" . zen_db_input($product->fields['products_price_sorter']) . "',
-                                  '" . zen_db_input($product->fields['master_categories_id']) .
+                                  '" . zen_db_input($categories_id) .
                                   "')");
 
             $dup_products_id = $db->Insert_ID();
@@ -121,7 +127,7 @@ if (!defined('IS_ADMIN_FLAG')) {
             }
 
             $db->Execute("insert into " . TABLE_PRODUCTS_TO_CATEGORIES . "
-                                      (products_id, categories_id)
+                          (products_id, categories_id)
                           values ('" . (int)$dup_products_id . "', '" . (int)$categories_id . "')");
             $products_id = $dup_products_id;
             $description->MoveNext();
@@ -153,7 +159,9 @@ if ( $_POST['copy_attributes']=='copy_attributes_yes' and $_POST['copy_as'] == '
 /////////////////////////////////////////////////////////////////////
 
             // copy product discounts to duplicate
-            zen_copy_discounts_to_product($old_products_id, (int)$dup_products_id);
+            if ($_POST['copy_discounts'] == 'copy_discounts_yes') {
+              zen_copy_discounts_to_product($old_products_id, (int)$dup_products_id);
+            }
 
           }
 
@@ -162,4 +170,3 @@ if ( $_POST['copy_attributes']=='copy_attributes_yes' and $_POST['copy_as'] == '
 
         }
         zen_redirect(zen_href_link(FILENAME_CATEGORIES, 'cPath=' . $categories_id . '&pID=' . $products_id . (isset($_GET['page']) ? '&page=' . $_GET['page'] : '')));
-?>

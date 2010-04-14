@@ -1,24 +1,11 @@
 <?php
-//
-// +----------------------------------------------------------------------+
-// |zen-cart Open Source E-commerce                                       |
-// +----------------------------------------------------------------------+
-// | Copyright (c) 2003 The zen-cart developers                           |
-// |                                                                      |
-// | http://www.zen-cart.com/index.php                                    |
-// |                                                                      |
-// | Portions Copyright (c) 2003 osCommerce                               |
-// +----------------------------------------------------------------------+
-// | This source file is subject to version 2.0 of the GPL license,       |
-// | that is bundled with this package in the file LICENSE, and is        |
-// | available through the world-wide-web at the following url:           |
-// | http://www.zen-cart.com/license/2_0.txt.                             |
-// | If you did not receive a copy of the zen-cart license and are unable |
-// | to obtain it through the world-wide-web, please send a note to       |
-// | license@zen-cart.com so we can mail you a copy immediately.          |
-// +----------------------------------------------------------------------+
-//  $Id: currencies.php 4691 2006-10-07 08:52:05Z drbyte $
-//
+/**
+ * @package admin
+ * @copyright Copyright 2003-2009 Zen Cart Development Team
+ * @copyright Portions Copyright 2003 osCommerce
+ * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
+ * @version $Id: currencies.php 15074 2009-12-10 03:04:31Z drbyte $
+ */
 
   require('includes/application_top.php');
 
@@ -40,6 +27,12 @@
         $thousands_point = zen_db_prepare_input($_POST['thousands_point']);
         $decimal_places = zen_db_prepare_input($_POST['decimal_places']);
         $value = zen_db_prepare_input((float)$_POST['value']);
+
+        // special handling for JPY, which always uses whole numbers, never decimals
+        if ($code == 'JPY') {
+          $value = (int)$value;
+          $decimal_places = 0;
+        }
 
         $sql_data_array = array('title' => $title,
                                 'code' => $code,
@@ -90,7 +83,7 @@
 
         zen_redirect(zen_href_link(FILENAME_CURRENCIES, 'page=' . $_GET['page']));
         break;
-      case 'update':
+      case 'update_currencies':
         $server_used = CURRENCY_SERVER_PRIMARY;
         zen_set_time_limit(600);
         $currency = $db->Execute("select currencies_id, code, title from " . TABLE_CURRENCIES);
@@ -107,11 +100,16 @@
           }
 
           /* Add currency uplift */
-          if ($rate != 1 && defined('CURRENCY_UPLIFT_RATIO')) {
+          if ($rate != 1 && defined('CURRENCY_UPLIFT_RATIO') && (int)CURRENCY_UPLIFT_RATIO != 0) {
             $rate = (string)((float)$rate * (float)CURRENCY_UPLIFT_RATIO);
           }
 
-          if (zen_not_null($rate)) {
+          // special handling for JPY, which always uses whole numbers, never decimals
+          if ($code == 'JPY') {
+            $rate = (int)$rate;
+          }
+
+          if (zen_not_null($rate) && $rate > 0) {
             $db->Execute("update " . TABLE_CURRENCIES . "
                           set value = '" . $rate . "', last_updated = now()
                           where currencies_id = '" . (int)$currency->fields['currencies_id'] . "'");
@@ -236,7 +234,7 @@
   if (empty($action)) {
 ?>
                   <tr>
-                    <td><?php if (CURRENCY_SERVER_PRIMARY) { echo '<a href="' . zen_href_link(FILENAME_CURRENCIES, 'page=' . $_GET['page'] . '&cID=' . $cInfo->currencies_id . '&action=update') . '">' . zen_image_button('button_update_currencies.gif', IMAGE_UPDATE_CURRENCIES) . '</a>'; } ?></td>
+                    <td><?php if (CURRENCY_SERVER_PRIMARY) { echo '<a href="' . zen_href_link(FILENAME_CURRENCIES, 'page=' . $_GET['page'] . '&cID=' . $cInfo->currencies_id . '&action=update_currencies') . '">' . zen_image_button('button_update_currencies.gif', IMAGE_UPDATE_CURRENCIES) . '</a>'; } ?></td>
                     <td align="right"><?php echo '<a href="' . zen_href_link(FILENAME_CURRENCIES, 'page=' . $_GET['page'] . '&cID=' . $cInfo->currencies_id . '&action=new') . '">' . zen_image_button('button_new_currency.gif', IMAGE_NEW_CURRENCY) . '</a>'; ?></td>
                   </tr>
 <?php
@@ -284,10 +282,11 @@
       break;
     case 'delete':
       $heading[] = array('text' => '<b>' . TEXT_INFO_HEADING_DELETE_CURRENCY . '</b>');
-
+      $contents = array('form'=>zen_draw_form('delete', FILENAME_CURRENCIES, 'page=' . $_GET['page'] . '&cID=' . $cInfo->currencies_id . '&action=deleteconfirm', 'post'));
       $contents[] = array('text' => TEXT_INFO_DELETE_INTRO);
+      $contents[] = array('text'=> (($remove_currency) ? zen_image_submit('button_delete.gif', IMAGE_DELETE) : '') . ' <a href="' . zen_href_link(FILENAME_CURRENCIES, 'page=' . $_GET['page'] . '&cID=' . $_GET['cID']) . '">' . zen_image_button('button_cancel.gif', IMAGE_CANCEL) . '</a>', 'align'=>'center');
       $contents[] = array('text' => '<br><b>' . $cInfo->title . '</b>');
-      $contents[] = array('align' => 'center', 'text' => '<br>' . (($remove_currency) ? '<a href="' . zen_href_link(FILENAME_CURRENCIES, 'page=' . $_GET['page'] . '&cID=' . $cInfo->currencies_id . '&action=deleteconfirm') . '">' . zen_image_button('button_delete.gif', IMAGE_DELETE) . '</a>' : '') . ' <a href="' . zen_href_link(FILENAME_CURRENCIES, 'page=' . $_GET['page'] . '&cID=' . $cInfo->currencies_id) . '">' . zen_image_button('button_cancel.gif', IMAGE_CANCEL) . '</a>');
+//      $contents[] = array('align' => 'center', 'text' => '<br>' . (($remove_currency) ? '<a href="' . zen_href_link(FILENAME_CURRENCIES, 'page=' . $_GET['page'] . '&cID=' . $cInfo->currencies_id . '&action=deleteconfirm') . '">' . zen_image_button('button_delete.gif', IMAGE_DELETE) . '</a>' : '') . ' <a href="' . zen_href_link(FILENAME_CURRENCIES, 'page=' . $_GET['page'] . '&cID=' . $cInfo->currencies_id) . '">' . zen_image_button('button_cancel.gif', IMAGE_CANCEL) . '</a>');
       break;
     default:
       if (is_object($cInfo)) {

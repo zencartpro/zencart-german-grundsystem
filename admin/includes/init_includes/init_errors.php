@@ -1,10 +1,10 @@
 <?php
 /**
  * @package admin
- * @copyright Copyright 2003-2006 Zen Cart Development Team
+ * @copyright Copyright 2003-2009 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: init_errors.php 3399 2006-04-09 19:20:47Z drbyte $
+ * @version $Id: init_errors.php 13797 2009-07-07 21:54:54Z drbyte $
  */
 if (!defined('IS_ADMIN_FLAG')) {
   die('Illegal Access');
@@ -32,7 +32,19 @@ if (!defined('IS_ADMIN_FLAG')) {
     }
   }
 
-// this will let the admin know that the website is DOWN FOR MAINTENANCE to the public
+  // admin folder rename recommended
+  if (!defined('ADMIN_RENAME_WARNING_OVERRIDE') || ADMIN_RENAME_WARNING_OVERRIDE == '') {
+    if (substr(DIR_WS_ADMIN, -7) == '/admin/' || substr(DIR_WS_HTTPS_ADMIN, -7) == '/admin/') {
+      $messageStack->add(WARNING_ADMIN_FOLDERNAME_VULNERABLE, 'caution');
+    }
+  }
+
+  // check if email subsystem has been disabled
+  if (SEND_EMAILS != 'true') {
+    $messageStack->add(WARNING_EMAIL_SYSTEM_DISABLED, 'error');
+  }
+
+  // this will let the admin know that the website is DOWN FOR MAINTENANCE to the public
   if (DOWN_FOR_MAINTENANCE == 'true') {
     $messageStack->add(WARNING_ADMIN_DOWN_FOR_MAINTENANCE,'caution');
   }

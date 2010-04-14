@@ -1,10 +1,10 @@
 <?php
 /**
  * @package admin
- * @copyright Copyright 2003-2007 Zen Cart Development Team
+ * @copyright Copyright 2003-2010 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: options_name_manager.php 6895 2007-08-31 15:34:44Z drbyte $
+ * @version $Id: options_name_manager.php 15500 2010-02-17 02:06:12Z ajeh $
  */
 
   require('includes/application_top.php');
@@ -613,9 +613,9 @@ function go_option() {
                                        where products_options_id = '" . $options_values->fields['products_options_id'] . "'
                                        and language_id = '" . $languages[$i]['id'] . "'");
 
-          $inputs .= $languages[$i]['code'] . ':&nbsp;<input type="text" name="option_name[' . $languages[$i]['id'] . ']" ' . zen_set_field_length(TABLE_PRODUCTS_OPTIONS, 'products_options_name', 20) . ' value="' . $option_name->fields['products_options_name'] . '">' . TEXT_SORT . '<input type="text" name="products_options_sort_order[' . $languages[$i]['id'] . ']" size="3" value="' . $option_name->fields['products_options_sort_order'] . '">&nbsp;<br />';
+          $inputs .= $languages[$i]['code'] . ':&nbsp;<input type="text" name="option_name[' . $languages[$i]['id'] . ']" ' . zen_set_field_length(TABLE_PRODUCTS_OPTIONS, 'products_options_name', 40) . ' value="' . zen_output_string($option_name->fields['products_options_name']) . '">' . TEXT_SORT . '<input type="text" name="products_options_sort_order[' . $languages[$i]['id'] . ']" size="3" value="' . $option_name->fields['products_options_sort_order'] . '">&nbsp;<br />';
           $inputs2 .= $languages[$i]['code'] . ':&nbsp; ' .
-                   '&nbsp;' . TEXT_OPTION_VALUE_COMMENTS . '<input type="text" name="products_options_comment[' . $languages[$i]['id'] . ']" size="50" value="' . $option_name->fields['products_options_comment'] . '">' .
+                   '&nbsp;' . TEXT_OPTION_VALUE_COMMENTS . '<input type="text" name="products_options_comment[' . $languages[$i]['id'] . ']" size="50" value="' . zen_output_string($option_name->fields['products_options_comment']) . '">' .
                    '<br /><br />' . TEXT_OPTION_VALUE_ROWS . '<input type="text" name="products_options_rows[' . $languages[$i]['id'] . ']" size="3" value="' . $option_name->fields['products_options_rows'] . '">' .
                    '&nbsp;' . TEXT_OPTION_VALUE_SIZE . '<input type="text" name="products_options_size[' . $languages[$i]['id'] . ']" size="3" value="' . $option_name->fields['products_options_size'] . '">' .
                    '&nbsp;' . TEXT_OPTION_VALUE_MAX . '<input type="text" name="products_options_length[' . $languages[$i]['id'] . ']" size="3" value="' . $option_name->fields['products_options_length'] . '">' .
@@ -704,7 +704,7 @@ function go_option() {
       echo '<form name="options" action="' . zen_href_link(FILENAME_OPTIONS_NAME_MANAGER, 'action=add_product_options' . (isset($_GET['option_page']) ? '&option_page=' . $_GET['option_page'] . '&' : '') . (isset($_GET['value_page']) ? '&value_page=' . $_GET['value_page'] . '&' : '') . (isset($_GET['attribute_page']) ? '&attribute_page=' . $_GET['attribute_page'] : '') . '&option_order_by=' . $option_order_by ) . '" method="post"><input type="hidden" name="products_options_id" value="' . $next_id . '">';
       $inputs = '';
       for ($i = 0, $n = sizeof($languages); $i < $n; $i ++) {
-        $inputs .= $languages[$i]['code'] . ':&nbsp;<input type="text" name="option_name[' . $languages[$i]['id'] . ']" ' . zen_set_field_length(TABLE_PRODUCTS_OPTIONS, 'products_options_name', 25) . '>' . TEXT_SORT . '<input type="text" name="products_options_sort_order[' . $languages[$i]['id'] . ']" size="3">' . '&nbsp;<br />';
+        $inputs .= $languages[$i]['code'] . ':&nbsp;<input type="text" name="option_name[' . $languages[$i]['id'] . ']" ' . zen_set_field_length(TABLE_PRODUCTS_OPTIONS, 'products_options_name', 40) . '>' . TEXT_SORT . '<input type="text" name="products_options_sort_order[' . $languages[$i]['id'] . ']" size="3">' . '&nbsp;<br />';
       }
 //CLR 030212 - Add column for option type
 ?>

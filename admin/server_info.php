@@ -1,10 +1,10 @@
 <?php
 /**
  * @package admin
- * @copyright Copyright 2003-2006 Zen Cart Development Team
+ * @copyright Copyright 2003-2009 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: server_info.php 6498 2007-06-16 06:30:49Z drbyte $
+ * @version $Id: server_info.php 13982 2009-07-25 15:49:38Z drbyte $
  */
 
   require('includes/application_top.php');
@@ -125,10 +125,10 @@ hr {display: none; font-size: 11px;}
     phpinfo();
     $phpinfo = ob_get_contents();
     ob_end_clean();
-
+    $regs = '';
     $phpinfo = str_replace('border: 1px', '', $phpinfo);
     $phpinfo = str_replace('width="600"', 'width="700"', $phpinfo);
-    ereg('<body>(.*)</body>', $phpinfo, $regs);
+    preg_match('/<body>(.*)<\/body>/msi', $phpinfo, $regs);
     echo $sinfo;
     echo $regs[1];
   } else {

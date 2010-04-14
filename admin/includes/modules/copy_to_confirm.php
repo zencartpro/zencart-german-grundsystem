@@ -1,10 +1,10 @@
 <?php
 /**
  * @package admin
- * @copyright Copyright 2003-2006 Zen Cart Development Team
+ * @copyright Copyright 2003-2009 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: copy_to_confirm.php 4861 2006-10-29 17:15:42Z drbyte $
+ * @version $Id: copy_to_confirm.php 14139 2009-08-10 13:46:02Z wilt $
  */
 if (!defined('IS_ADMIN_FLAG')) {
   die('Illegal Access');
@@ -135,7 +135,10 @@ if ( $_POST['copy_attributes']=='copy_attributes_yes' and $_POST['copy_as'] == '
 /////////////////////////////////////////////////////////////////////
 
             // copy product discounts to duplicate
-            zen_copy_discounts_to_product($old_products_id, (int)$dup_products_id);
+            if ($_POST['copy_discounts'] == 'copy_discounts_yes') {
+              zen_copy_discounts_to_product($old_products_id, (int)$dup_products_id);
+            }
+
           }
 
           // reset products_price_sorter for searches etc.
@@ -143,4 +146,3 @@ if ( $_POST['copy_attributes']=='copy_attributes_yes' and $_POST['copy_as'] == '
 
         }
         zen_redirect(zen_href_link(FILENAME_CATEGORIES, 'cPath=' . $categories_id . '&pID=' . $products_id . (isset($_GET['page']) ? '&page=' . $_GET['page'] : '')));
-?>

@@ -1,10 +1,10 @@
 <?php
 /**
  * @package admin
- * @copyright Copyright 2003-2006 Zen Cart Development Team
+ * @copyright Copyright 2003-2009 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: sqlpatch.php 2009-12-08 15:20:46Z webchills $
+ * @version $Id: sqlpatch.php 15097 2009-12-16 03:21:30Z drbyte $
  */
 
   require('includes/application_top.php');
@@ -26,7 +26,7 @@
                               'The commands entered or uploaded may only begin with the following statements, and MUST be in UPPERCASE:'.
                               '<br /><ul><li>DROP TABLE IF EXISTS</li><li>CREATE TABLE</li><li>INSERT INTO</li><li>INSERT IGNORE INTO</li><li>ALTER TABLE</li>' .
                               '<li>UPDATE (just a single table)</li><li>UPDATE IGNORE (just a single table)</li><li>DELETE FROM</li><li>DROP INDEX</li><li>CREATE INDEX</li>' .
-                              '<br /><li>SELECT </li></ul>' . 
+                              '<br /><li>SELECT </li></ul>' .
 '<h2>Advanced Methods</h2>The following methods can be used to issue more complex statements as necessary:<br />
 To run some blocks of code together so that they are treated as one command by MySQL, you need the "<code>#NEXT_X_ROWS_AS_ONE_COMMAND:xxx</code>" value set.  The parser will then treat X number of commands as one.<br />
 If you are running this file thru phpMyAdmin or equivalent, the "#NEXT..." comment is ignored, and the script will process fine.<br />
@@ -162,7 +162,7 @@ if ($_GET['debug']=='ON') echo $line . '<br />';
             //check to see if table prefix is going to match
             if (!$tbl_exists = zen_table_exists($param[2])) $result=sprintf(REASON_TABLE_NOT_FOUND,$param[2]).' CHECK PREFIXES!';
             // check to see if INSERT command may be safely executed for "configuration" or "product_type_layout" tables
-            if (($param[2]=='configuration'       && ($result=zen_check_config_key($line))) or 
+            if (($param[2]=='configuration'       && ($result=zen_check_config_key($line))) or
                 ($param[2]=='product_type_layout' && ($result=zen_check_product_type_layout_key($line))) or
                 (!$tbl_exists)    ) {
               zen_write_to_upgrade_exceptions_table($line, $result, $sql_file);
@@ -176,7 +176,7 @@ if ($_GET['debug']=='ON') echo $line . '<br />';
             //check to see if table prefix is going to match
             if (!$tbl_exists = zen_table_exists($param[2])) $result=sprintf(REASON_TABLE_NOT_FOUND,$param[2]).' CHECK PREFIXES!';
             // check to see if INSERT command may be safely executed for "configuration" or "product_type_layout" tables
-            if (($param[2]=='configuration'       && ($result=zen_check_config_key($line))) or 
+            if (($param[2]=='configuration'       && ($result=zen_check_config_key($line))) or
                 ($param[2]=='product_type_layout' && ($result=zen_check_product_type_layout_key($line))) or
                 (!$tbl_exists)    ) {
               zen_write_to_upgrade_exceptions_table($line, $result, $sql_file);
@@ -265,7 +265,7 @@ if ($_GET['debug']=='ON') echo $line . '<br />';
               }
             }
             break;
-          case (substr($line_upper, 0, 8) == 'SELECT (' && substr_count($line,'FROM ')>0):
+          case (substr($line_upper, 0, 7) == 'SELECT ' && substr_count($line,'FROM ')>0):
             $line = str_replace('FROM ','FROM '. $table_prefix, $line);
             break;
           case (substr($line_upper, 0, 10) == 'LEFT JOIN '):
@@ -280,7 +280,7 @@ if ($_GET['debug']=='ON') echo $line . '<br />';
               } //end foreach
               if (substr($line,-1)==',') $line = substr($line,0,(strlen($line)-1)); // remove trailing ','
             } else { //didn't have a comma, but starts with "FROM ", so insert table prefix
-              $line = str_replace('FROM ', 'FROM '.$table_prefix, $line); 
+              $line = str_replace('FROM ', 'FROM '.$table_prefix, $line);
             }//endif substr_count(,)
             break;
           default:
@@ -291,8 +291,8 @@ if ($_GET['debug']=='ON') echo $line . '<br />';
 
         if ( substr($line,-1) ==  ';') {
           //found a semicolon, so treat it as a full command, incrementing counter of rows to process at once
-          if (substr($newline,-1)==' ') $newline = substr($newline,0,(strlen($newline)-1)); 
-          $lines_to_keep_together_counter++; 
+          if (substr($newline,-1)==' ') $newline = substr($newline,0,(strlen($newline)-1));
+          $lines_to_keep_together_counter++;
           if ($lines_to_keep_together_counter == $keep_together) { // if all grouped rows have been loaded, go to execute.
             $complete_line = true;
             $lines_to_keep_together_counter=0;
@@ -344,7 +344,7 @@ if ($_GET['debug']=='ON') echo $line . '<br />';
       return true;
     } else {
       return false;
-    }   
+    }
   }
 
   function zen_check_database_privs($priv='',$table='',$show_privs=false) {
@@ -357,7 +357,7 @@ if ($_GET['debug']=='ON') echo $line . '<br />';
     //Display permissions, or check for suitable permissions to carry out a particular task
       //possible outputs:
       //GRANT ALL PRIVILEGES ON *.* TO 'xyz'@'localhost' WITH GRANT OPTION
-      //GRANT SELECT, INSERT, UPDATE, DELETE, CREATE, DROP, FILE, INDEX, ALTER ON *.* TO 'xyz'@'localhost' IDENTIFIED BY PASSWORD '2344'	
+      //GRANT SELECT, INSERT, UPDATE, DELETE, CREATE, DROP, FILE, INDEX, ALTER ON *.* TO 'xyz'@'localhost' IDENTIFIED BY PASSWORD '2344'
       //GRANT SELECT, INSERT, UPDATE, DELETE, CREATE, DROP, INDEX, ALTER ON `db1`.* TO 'xyz'@'localhost'
       //GRANT SELECT (id) ON db1.tablename TO 'xyz'@'localhost
     global $db;
@@ -446,7 +446,7 @@ if ($_GET['debug']=='ON') echo $line . '<br />';
     }
 /*
  * @TODO: verify that individual columns exist, by parsing the index_col_name parameters list
- *        Structure is (colname(len)), 
+ *        Structure is (colname(len)),
  *                  or (colname),
  */
   }
@@ -520,8 +520,8 @@ if ($_GET['debug']=='ON') echo $line . '<br />';
             }
             $result->MoveNext();
           }
-/* 
- * @TODO -- add check for FIRST parameter, to check that the FIRST colname specified actually exists 
+/*
+ * @TODO -- add check for FIRST parameter, to check that the FIRST colname specified actually exists
  */
         }
         break;
@@ -589,9 +589,9 @@ if ($_GET['debug']=='ON') echo $line . '<br />';
         // if we get here, then the column didn't exist
         return sprintf(REASON_COLUMN_DOESNT_EXIST_TO_CHANGE,$colname);
         break;
-      default: 
+      default:
         // if we get here, then we're processing an ALTER command other than what we're checking for, so let it be processed.
-        return; 
+        return;
         break;
     } //end switch
   }
@@ -642,7 +642,7 @@ if ($_GET['debug']=='ON') echo $line . '<br />';
 
   function zen_create_exceptions_table() {
     global $db;
-    if (!zen_table_exists(TABLE_UPGRADE_EXCEPTIONS)) {  
+    if (!zen_table_exists(TABLE_UPGRADE_EXCEPTIONS)) {
       $result = $db->Execute("CREATE TABLE " . DB_PREFIX . TABLE_UPGRADE_EXCEPTIONS ." (
             upgrade_exception_id smallint(5) NOT NULL auto_increment,
             sql_file varchar(50) default NULL,
@@ -834,7 +834,7 @@ if ($_GET['debug']=='ON') echo $line . '<br />';
 <?php require(DIR_WS_INCLUDES . 'application_bottom.php'); ?>
 
 <?php } elseif ($action == 'help') { // endif $action != 'help' ?>
-<!doctype html public "-//W3C//DTD HTML 4.01 Transitional//EN">
+<?php echo '<!doctype html public "-//W3C//DTD HTML 4.01 Transitional//EN">'; ?>
 <html  <?php echo HTML_PARAMS; ?>>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=<?php echo CHARSET; ?>" />

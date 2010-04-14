@@ -1,10 +1,10 @@
 <?php
 /**
  * @package admin
- * @copyright Copyright 2003-2006 Zen Cart Development Team
+ * @copyright Copyright 2003-2009 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: init_category_path.php 3001 2006-02-09 21:45:06Z wilt $
+ * @version $Id: init_category_path.php 14887 2009-11-21 21:18:00Z wilt $
  */
 if (!defined('IS_ADMIN_FLAG')) {
   die('Illegal Access');
@@ -25,11 +25,10 @@ if (!defined('IS_ADMIN_FLAG')) {
   }
 
 // default open navigation box
-  if (!$_SESSION['selected_box']) {
+  if (!isset($_SESSION['selected_box'])) {
     $_SESSION['selected_box'] = 'configuration';
   }
 
   if (isset($_GET['selected_box'])) {
     $_SESSION['selected_box'] = $_GET['selected_box'];
   }
-?>
