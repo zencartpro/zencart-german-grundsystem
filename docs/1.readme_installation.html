@@ -1,12 +1,15 @@
 <!--
 /**
  * @package documentation
- * @copyright Copyright 2003-2007 Zen Cart Development Team
+ * @copyright Copyright 2003-2008 Zen Cart Development Team
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: 1.readme_installation.html 6664 2007-08-15 05:40:03Z drbyte $
+ * @version $Id: 1.readme_installation.html 12650 2009-03-20 09:46:22Z drbyte $
  */
 //-->
 <html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
 <style type="text/css">
 <!--
 body, table{ font-family:Verdana, Arial, Helvetica, sans-serif; font-size:14px; }
@@ -29,7 +32,9 @@ h4 { color: #c96e29;	font-size: 14px;}
 
 -->
 </style>
-<title>Installing Zen Cart(tm)</title><body>
+<title>Installing Zen Cart(tm)</title>
+</head>
+<body>
 
 <table class="intro" cellspacing="4" cellpadding="6" border="3" width="748px" align="center">
 <tr><td class="intro">
@@ -106,7 +111,7 @@ OSI Certified is a certification mark of the Open Source Initiative.
 </span><br />
 <em>(We will use &quot;<span class="filename">/catalog</span>&quot; as an example here. You can choose &quot;no&quot; foldername, or something else if you prefer, such as &quot;<span class="filename">/zencart</span>&quot;, or &quot;<span class="filename">/store</span>&quot; etc)</em> <br />
 <br />
-<em>NOTE: As you upload your files, make sure that your FTP program and your webserver allow &quot;<span class="error">long filenames</span>&quot;. For example, in some cases some FTP software connected to servers running the MAC OS have been known to not maintain long filenames, thus you'd need to modify settings to allow this.</em> </p>
+<em>NOTE: As you upload your files, make sure that your FTP program and your webserver allow &quot;<span class="error">long filenames</span>&quot;. Some old FTP software used to shorten names longer than 11 letters, and that would cause a problem with uploading Zen Cart files.</em> </p>
 <h3>What folder do I upload into?</h3>
 Each web host has his/her own preference in naming folders for use in running a website.<br>
 You can have many files that don't even get shown to the public. The ones that are available for access via a browser are usually in a folder called something like:
@@ -116,7 +121,9 @@ or<br>
 or<br>
 - /usr/accounts/a/b/YOURNAME/httpd<br>
 etc, etc, etc</p>
-<p>If it's unclear where the publicly-accessible files are to be uploaded, talk to your webhost for assistance.</p>
+<p>Basically, in your FTP area look for a &quot;www&quot; or &quot;public_html&quot; or &quot;htdocs&quot; or &quot;httpdocs&quot; or &quot;wwwroot&quot; folder. These are the common folder names for what is referred to as the &quot;webroot&quot;, which is where all website content is served from.</p>
+<p>Your Zen Cart files (or *any* files to run your website, for that matter) need to be under that folder. If they're not, then you're going to get &quot;not found&quot; errors ... because the content is not found!</p>
+<p>If it's unclear where the publicly-accessible files are to be uploaded, ask your hosting company for assistance in determining what your &quot;webroot&quot; folder should be.</p>
 </div>
 
 <div>
@@ -300,7 +307,7 @@ NOTE: use a <em>different name</em> than <span class="filename">zc_install_compl
 </div></td>
 </tr>
 </table>
-<p align="center"><em>Zen Cart&trade; Copyright 2003 - 2007</em></p>
+<p align="center"><em>Zen Cart&trade; Copyright 2003 - 2009</em></p>
 <br /><br />
 </body>
 </html>
