@@ -23,10 +23,16 @@
   if (false) {
     if ($argc > 0) {
       for ($i=1;$i<$argc;$i++) {
-        $it = split("=",$argv[$i]);
+        $it = preg_split("/=/",$argv[$i]);
         $_GET[$it[0]] = $it[1];
         // parse_str($argv[$i],$tmp);
         // $_REQUEST = array_merge($_REQUEST, $tmp);
+      }
+    }
+if (!isset($_GET) && isset($_SERVER["argc"]) && $_SERVER["argc"] > 1) {
+  for($i=1;$i<$_SERVER["argc"];$i++) {
+    list($key, $val) = explode('=', $_SERVER["argv"][$i]);
+    $_GET[$key] = $_REQUEST[$key] = $val;
       }
     }
   }

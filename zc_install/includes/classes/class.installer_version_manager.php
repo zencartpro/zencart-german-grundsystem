@@ -30,7 +30,7 @@ require_once('../admin/includes/functions/extra_functions/rl_tools.php');
       /**
        * The version that this edition of the installer is designed to support
        */
-      $this->latest_version = '1.3.8';
+      $this->latest_version = '1.3.9';
 
       /**
        * Check to see if the configuration table can be found...thus validating the installation, in part.
@@ -78,6 +78,7 @@ require_once('../admin/includes/functions/extra_functions/rl_tools.php');
       $this->version136 = $this->check_version_136();
       $this->version137 = $this->check_version_137();
       $this->version138 = $this->check_version_138();
+      $this->version139 = $this->check_version_139();
       $this->version138multi2 = $this->check_version_138multi2();
 
 //        if ($this->version103 == true)  $retVal = '1.0.3';
@@ -102,6 +103,7 @@ require_once('../admin/includes/functions/extra_functions/rl_tools.php');
         if ($this->version136 == true) $retVal = '1.3.6';
         if ($this->version137 == true) $retVal = '1.3.7';
         if ($this->version138 == true) $retVal = '1.3.8';
+        if ($this->version139 == true) $retVal = '1.3.9';
         if ($this->version138multi2 == true) $retVal = '1.3.8multi2';
 
       return $retVal;
@@ -272,6 +274,8 @@ require_once('../admin/includes/functions/extra_functions/rl_tools.php');
 
     function check_version_121() {
       global $db_test;
+      $got_v1_2_1a = false;
+      $got_v1_2_1b = false;
       // test to see if the v1.2.0->v1.2.1 upgrade has been completed
       $tables = $db_test->Execute("SHOW TABLES like '" . DB_PREFIX . "project_version'");
       if ($tables->RecordCount() > 0) {
@@ -283,6 +287,8 @@ require_once('../admin/includes/functions/extra_functions/rl_tools.php');
       }
 
       //2nd check for v1.2.1
+      $tables = $db_test->Execute("SHOW TABLES like '" . DB_PREFIX . "products_discount_quantity'");
+      if ($tables->RecordCount() > 0) {
       $sql = "show fields from " . DB_PREFIX . "products_discount_quantity";
       $result = $db_test->Execute($sql);
       while (!$result->EOF) {
@@ -293,6 +299,7 @@ require_once('../admin/includes/functions/extra_functions/rl_tools.php');
           }
         }
       $result->MoveNext();
+        }
       }
 
       if (ZC_UPG_DEBUG==true) {
@@ -697,6 +704,44 @@ require_once('../admin/includes/functions/extra_functions/rl_tools.php');
       return $got_v1_3_8;
     } //end of 1.3.8 check
 
+    function check_version_139() {
+      global $db_test;
+      $got_v1_3_9 = false;
+      $got_v1_3_9a = false;
+      $got_v1_3_9b = false;
+      //1st check for v1.3.9
+      $sql = "select configuration_title from " . DB_PREFIX . "configuration where configuration_key = 'SHOW_SPLIT_TAX_CHECKOUT'";
+      $result = $db_test->Execute($sql);
+      if (ZC_UPG_DEBUG==true) echo "139a-configtitle_check SHOW_SPLIT_TAX_CHECKOUT =" . $result->fields['configuration_title'] . '<br>';
+      if  ($result->fields['configuration_title'] == 'Show Split Tax Lines') {
+        $got_v1_3_9a = true;
+      }
+      //2nd check for v1.3.9
+      $sql = "show fields from " . DB_PREFIX . "authorizenet";
+      $result = $db_test->Execute($sql);
+      while (!$result->EOF) {
+        if (ZC_UPG_DEBUG==true) echo "139b-fields-'transaction_id'->bigint=" . $result->fields['Field'] . '->' . $result->fields['Type'] . '<br>';
+        if  ($result->fields['Field'] == 'transaction_id') {
+          if (strstr(strtoupper($result->fields['Type']),'BIGINT'))  {
+            $got_v1_3_9b = true;
+          }
+        }
+      $result->MoveNext();
+      }
+
+      if (ZC_UPG_DEBUG==true) {
+        echo '1.3.9a='.$got_v1_3_9a.'<br>';
+        echo '1.3.9b='.$got_v1_3_9b.'<br>';
+      }
+      // evaluate all 1.3.9 checks
+      if ($got_v1_3_9a && $got_v1_3_9b ) {
+        $got_v1_3_9 = true;
+        if (ZC_UPG_DEBUG==true) echo '<br>Got 1.3.9<br>';
+      }
+      return $got_v1_3_9;
+    } //end of 1.3.9 check
+    
+    
     function check_version_138multi2() {
       global $db_test;
       $got_v1_3_8multi2 = false;

@@ -214,9 +214,27 @@ function executeSql($sql_file, $database, $table_prefix = '', $isupgrade=false) 
             break;
           case (substr($line_upper, 0, 13) == 'RENAME TABLE '):
             // RENAME TABLE command cannot be parsed to insert table prefixes, so skip if zen is using prefixes
-            if (zen_not_null(DB_PREFIX)) {
-              zen_write_to_upgrade_exceptions_table($line, 'RENAME TABLE command not supported by upgrader. Please use phpMyAdmin instead.', $sql_file);
+            if (isset($param[3]) && $param[3] != '') {
+              zen_write_to_upgrade_exceptions_table($line, 'RENAME TABLE command must be split onto 2 rows for proper parsing.  Or use phpMyAdmin instead.', $sql_file);
+              $result=sprintf('RENAME TABLE [%s] command must be split onto 2 rows for proper parsing.',$param[2]).' CHECK PREFIXES!';
               $ignore_line=true;
+            }
+            if (!$tbl_exists = zen_table_exists($param[2])) {
+              zen_write_to_upgrade_exceptions_table($line, sprintf(REASON_TABLE_NOT_FOUND,$param[2]).' CHECK PREFIXES!', $sql_file);
+              $result=sprintf('RENAME TABLE problem: ' . REASON_TABLE_NOT_FOUND,$param[2]).' CHECK PREFIXES!';
+              $ignore_line=true;
+              break;
+            } else {
+              $line = 'RENAME TABLE ' . $table_prefix . substr($line, 13);
+            }
+            break;
+          case (substr($line_upper, 0, 3) == 'TO '):
+            if (!isset($param[1]) || $param[1] == '') {
+              zen_write_to_upgrade_exceptions_table($line, 'RENAME TABLE command must be split onto 2 rows (with TO clause on 2nd line) for proper parsing.  Or use phpMyAdmin instead.', $sql_file);
+              $result=sprintf('RENAME TABLE problem: %s' ,$param[1]).' CHECK PREFIXES!';
+              $ignore_line=true;
+            } else {
+              $line = 'TO ' . $table_prefix . substr($line, 3);
             }
             break;
           case (substr($line_upper, 0, 7) == 'UPDATE '):
@@ -268,7 +286,7 @@ function executeSql($sql_file, $database, $table_prefix = '', $isupgrade=false) 
               }
             }
             break;
-          case (substr($line_upper, 0, 8) == 'SELECT (' && substr_count($line,'FROM ')>0):
+          case (substr($line_upper, 0, 7) == 'SELECT ' && substr_count($line,'FROM ')>0):
             $line = str_replace('FROM ','FROM '. $table_prefix, $line);
             break;
           case (substr($line_upper, 0, 10) == 'LEFT JOIN '):
@@ -354,7 +372,7 @@ function executeSql($sql_file, $database, $table_prefix = '', $isupgrade=false) 
   }
 
   function zen_sanitize_string($string) {
-    $string = ereg_replace(' +', ' ', $string);
+    $string = preg_replace('/ +/', ' ', $string);
     return preg_replace("/[<>]/", '_', $string);
   }
 
@@ -371,15 +389,15 @@ function executeSql($sql_file, $database, $table_prefix = '', $isupgrade=false) 
 	$space_check = '[ ]';
 
 // strip beginning and ending quotes, if and only if both present
-	if( (ereg('^["]', $user) && ereg('["]$', $user)) ){
-		$user = ereg_replace ( '^["]', '', $user );
-		$user = ereg_replace ( '["]$', '', $user );
-		$user = ereg_replace ( $space_check, '', $user ); //spaces in quoted addresses OK per RFC (?)
+  if( (preg_match('/^["]/', $user) && preg_match('/["]$/', $user)) ){
+    $user = preg_replace ( '/^["]/', '', $user );
+    $user = preg_replace ( '/["]$/', '', $user );
+    $user = preg_replace ( '/'.$space_check.'/', '', $user ); //spaces in quoted addresses OK per RFC (?)
 		$email = $user."@".$domain; // contine with stripped quotes for remainder
 	}
 
 // if e-mail domain part is an IP address, check each part for a value under 256
-	if (ereg($valid_ip_form, $domain)) {
+  if (preg_match('/'.$valid_ip_form.'/', $domain)) {
 	  $digit = explode( ".", $domain );
 	  for($i=0; $i<4; $i++) {
 		if ($digit[$i] > 255) {
@@ -396,8 +414,8 @@ function executeSql($sql_file, $database, $table_prefix = '', $isupgrade=false) 
 	  }
 	}
 
-	if (!ereg($space_check, $email)) { // trap for spaces in
-	  if ( eregi($valid_email_pattern, $email)) { // validate against valid e-mail patterns
+  if (!preg_match('/'.$space_check.'/', $email)) { // trap for spaces in
+    if ( preg_match('/'.$valid_email_pattern.'/i', $email)) { // validate against valid e-mail patterns
 		$valid_address = true;
 	  } else {
 		$valid_address = false;
@@ -478,7 +496,7 @@ function executeSql($sql_file, $database, $table_prefix = '', $isupgrade=false) 
      //echo $filename . '!<br>';
      $lines = file($filename);
      foreach($lines as $line) { // read the configure.php file for specific variables
-       if (substr($line,0,2) == '//') continue;
+       if (substr(trim($line),0,2) == '//') continue;
        $def_string=array();
        $def_string=explode("'",$line);
        //define('CONSTANT','value');
@@ -865,4 +883,3 @@ function executeSql($sql_file, $database, $table_prefix = '', $isupgrade=false) 
   }
 
 
-?>

@@ -155,7 +155,7 @@
   $status_check[] = array('Importance' => 'Optional', 'Title' => LABEL_PHP_OS, 'Status' => PHP_OS, 'Class' => 'NA', 'HelpURL' =>'', 'HelpLabel'=>'');
   
   //PHP mode (module, cgi, etc)
-  $status_check[] = array('Importance' => 'Info', 'Title' => LABEL_PHP_API_MODE, 'Status' => @php_sapi_name(), 'Class' => (@strstr(php_sapi_name(),'cgi') ? 'WARN' : 'NA'), 'HelpURL' =>ERROR_CODE_PHP_AS_CGI, 'HelpLabel'=>ERROR_TEXT_PHP_AS_CGI);
+  $status_check[] = array('Importance' => 'Info', 'Title' => LABEL_PHP_API_MODE, 'Status' => @php_sapi_name(), 'Class' => (/*@strstr(php_sapi_name(),'cgi') ? 'WARN' :*/ 'NA'), 'HelpURL' =>ERROR_CODE_PHP_AS_CGI, 'HelpLabel'=>ERROR_TEXT_PHP_AS_CGI);
   
   //Set Time Limit setting
   $set_time_limit = ini_get("max_execution_time");
@@ -182,7 +182,7 @@
   $mysql_version = ($mysql_version == '') ? UNKNOWN : $mysql_version ;
   //if (is_object($db_test)) $mysql_qry=$db_test->get_server_info();
   $mysql_ver_class = ($mysql_version<'3.23.00') ? 'FAIL' : 'OK';
-  $mysql_ver_class = ($mysql_version == UNKNOWN || $mysql_version > '5.0') ? 'WARN' : $mysql_ver_class;
+  $mysql_ver_class = ($mysql_version == UNKNOWN || $mysql_version > '5.2') ? 'WARN' : $mysql_ver_class;
   
   $status_check[] = array('Importance' => 'Critical', 'Title' => LABEL_MYSQL_AVAILABLE, 'Status' => $mysql_support, 'Class' => ($mysql_support==ON) ? 'OK' : 'FAIL', 'HelpURL' =>ERROR_CODE_DB_NOTSUPPORTED, 'HelpLabel'=>ERROR_TEXT_DB_NOTSUPPORTED);
   if ($mysql_version != UNKNOWN || ($mysql_version == UNKNOWN && $advanced_mode)) $status_check[] = array('Importance' => 'Info', 'Title' => LABEL_MYSQL_VER, 'Status' => $mysql_version, 'Class' => $mysql_ver_class, 'HelpURL' =>($mysql_version > '5.0' ? ERROR_CODE_DB_MYSQL5 : ERROR_CODE_DB_VER_UNKNOWN), 'HelpLabel'=>($mysql_version > '5.0' ? ERROR_TEXT_DB_MYSQL5 : ERROR_TEXT_DB_VER_UNKNOWN) );
@@ -333,7 +333,7 @@ if (false) { // DISABLED THIS CODEBLOCK FOR NOW....
   $curl_ssl_test = $zc_install->test_curl('SSL');
   $status_check[] = array('Importance' => 'Optional', 'Title' => LABEL_CURL_NONSSL, 'Status' => $curl_nonssl_test, 'Class' => ($curl_nonssl_test == OKAY) ? 'OK' : 'WARN', 'HelpURL' =>ERROR_CODE_CURL_SUPPORT, 'HelpLabel'=>ERROR_TEXT_CURL_SUPPORT);
   $status_check[] = array('Importance' => 'Optional', 'Title' => LABEL_CURL_SSL, 'Status' => $curl_ssl_test, 'Class' => ($curl_ssl_test == OKAY) ? 'OK' : 'WARN', 'HelpURL' =>ERROR_CODE_CURL_SSL_PROBLEM, 'HelpLabel'=>ERROR_TEXT_CURL_SSL_PROBLEM);
-  if ($curl_nonssl_test != OKAY || $curl_ssl_test != OKAY) {
+  if (FALSE && $curl_nonssl_test != OKAY || $curl_ssl_test != OKAY) {
     $curl_nonssl_proxy_test = $zc_install->test_curl('NONSSL', true);
     $curl_ssl_proxy_test = $zc_install->test_curl('SSL', true);
     $status_check[] = array('Importance' => 'Optional', 'Title' => LABEL_CURL_NONSSL_PROXY, 'Status' => $curl_nonssl_proxy_test, 'Class' => ($curl_nonssl_proxy_test == OKAY) ? 'OK' : 'WARN', 'HelpURL' =>ERROR_CODE_CURL_SUPPORT, 'HelpLabel'=>ERROR_TEXT_CURL_SUPPORT);
@@ -358,8 +358,6 @@ if (false) { // DISABLED THIS CODEBLOCK FOR NOW....
   if ($php_ext_ftp == ON) $status_check2[] = array('Importance' => 'Optional', 'Title' => LABEL_PHP_EXT_FTP, 'Status' => $php_ext_ftp, 'Class' => ($php_ext_ftp==ON)?'OK':'WARN', 'HelpURL' =>'', 'HelpLabel'=>'');
   
   //Check for pfpro support in PHP for Verisign Payflow Pro payment gateway (Verisign SDK required)
-  $php_ext_pfpro =    (@extension_loaded('pfpro'))   ? ON : OFF;
-  if ($php_ext_pfpro==ON) $status_check2[] = array('Importance' => 'Optional', 'Title' => LABEL_PHP_EXT_PFPRO, 'Status' => $php_ext_pfpro, 'Class' => ($php_ext_pfpro==ON)?'OK':'WARN', 'HelpURL' =>'', 'HelpLabel'=>'');
   
   // PHP output buffering (GZip) (PHP configuration)
   $php_buffer = (@ini_get("output_buffering"))   ? ON : OFF;

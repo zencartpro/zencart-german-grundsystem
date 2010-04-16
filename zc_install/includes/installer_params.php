@@ -17,4 +17,3 @@
 
   define('STRICT_ERROR_REPORTING', false);
 
-?>

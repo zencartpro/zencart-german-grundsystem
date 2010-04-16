@@ -113,7 +113,7 @@
     }
 
     function isEmpty($zp_test, $zp_error_text, $zp_error_code) {
-      if (!$zp_test || $zp_test=='http://' || $zp_test=='https://' ) {
+      if ($zp_test == '' || $zp_test=='http://' || $zp_test=='https://' ) {
         $this->setError($zp_error_text, $zp_error_code, true);
       }
       return $zp_test;
@@ -162,13 +162,14 @@
     function dbConnect($zp_type, $zp_host, $zp_database, $zp_username, $zp_pass, $zp_error_text, $zp_error_code, $zp_error_text2=ERROR_TEXT_DB_NOTEXIST, $zp_error_code2=ERROR_CODE_DB_NOTEXIST) {
       if ($this->error == false) {
         if ($zp_type == 'mysql') {
-          if (@mysql_connect($zp_host, $zp_username, $zp_pass) == false ) {
+          $link = @mysql_connect($zp_host, $zp_username, $zp_pass);
+          if ($link == false ) {
             $this->setError($zp_error_text.'<br />'.@mysql_error(), $zp_error_code, true);
           } else {
-            if (!@mysql_select_db($zp_database)) {
+            if (!@mysql_select_db($zp_database, $link)) {
               $this->setError($zp_error_text2.'<br />'.@mysql_error(), $zp_error_code2, true);
             } else {
-              @mysql_close();
+              @mysql_close($link);
             }
           }
         }
@@ -187,8 +188,8 @@
       //    echo $zp_create;
       if ($zp_create != 'true' && $this->error == false) {
         if ($zp_type == 'mysql') {
-          @mysql_connect($zp_host, $zp_username, $zp_pass);
-          if (@mysql_select_db($zp_name) == false) {
+          $link = @mysql_connect($zp_host, $zp_username, $zp_pass);
+          if (@mysql_select_db($zp_name, $link) == false) {
             $this->setError($zp_error_text.'<br />'.@mysql_error(), $zp_error_code, true);
           }
           @mysql_close();
@@ -223,7 +224,7 @@
    * returns string
    */
     function test_curl($mode='NONSSL', $proxy = false, $proxyAddress = '') {
-      if (!function_exists('curl_init')) {
+      if (!function_exists('curl_init') || !function_exists('curl_exec') || stristr(ini_get('disable_functions'), array('curl_exec', 'curl_init')) ) {
         $this->setError(ERROR_TEXT_CURL_NOT_COMPILED, ERROR_CODE_CURL_SUPPORT, false);
         return ERROR_TEXT_CURL_NOT_COMPILED;
       }
@@ -413,9 +414,9 @@
       $https_server = $this->getConfigKey('virtual_https_server');
       $https_catalog = $this->getConfigKey('virtual_https_path');
       //if the https:// entries were left blank, use non-SSL versions instead of blank
-      if ($https_server=='' || $https_server=='https://' || $https_server=='://') $https_server=$http_server;
-      if ($https_catalog=='') $https_catalog=$http_catalog;
-      $https_catalog_path = ereg_replace($https_server,'',$https_catalog) . '/';
+      if ($https_server == '' || trim($https_server) == '' || $https_server == 'https://' || $https_server == '://') $https_server = $http_server;
+      if (trim($https_catalog) == '') $https_catalog = $http_catalog;
+      $https_catalog_path = preg_replace('/' . preg_quote($https_server, '/') . '/', '', $https_catalog) . '/';
       $https_catalog = $https_catalog_path;
 
       //now let's write the files
@@ -426,7 +427,7 @@
       if ($fp) {
         fputs($fp, $file_contents);
         fclose($fp);
-        @chmod($this->getConfigKey('DIR_FS_CATALOG') . '/includes/configure.php', 0644);
+        @chmod($this->getConfigKey('DIR_FS_CATALOG') . '/includes/configure.php', 0444);
       }
       // now Admin version:
       require('includes/admin_configure.php');
@@ -435,7 +436,7 @@
       if ($fp) {
         fputs($fp, $file_contents);
         fclose($fp);
-        @chmod($this->getConfigKey('DIR_FS_CATALOG') . '/admin/includes/configure.php', 0644);
+        @chmod($this->getConfigKey('DIR_FS_CATALOG') . '/admin/includes/configure.php', 0444);
       }
 
       $this->configFiles = array('catalog' => $config_file_contents_catalog, 'admin' => $config_file_contents_admin);
@@ -467,7 +468,7 @@
         $this->isWriteable($data['sql_cache_dir'],  ERROR_TEXT_CACHE_DIR_ISWRITEABLE, ERROR_CODE_CACHE_DIR_ISWRITEABLE);
       }
       //$this->checkPrefix($data['db_prefix'], ERROR_TEXT_DB_PREFIX_NODOTS, ERROR_CODE_DB_PREFIX_NODOTS);
-      $data['db_prefix'] == preg_replace('/[^0-9a-zA-Z_]/', '_', $data['db_prefix']);
+      $data['db_prefix'] == preg_replace('/[^0-9a-zA-Z_]/', '_', trim($data['db_prefix']));
       $this->isEmpty($data['db_host'], ERROR_TEXT_DB_HOST_ISEMPTY, ERROR_CODE_DB_HOST_ISEMPTY);
       $this->isEmpty($data['db_username'], ERROR_TEXT_DB_USERNAME_ISEMPTY, ERROR_CODE_DB_USERNAME_ISEMPTY);
       $this->isEmpty($data['db_name'], ERROR_TEXT_DB_NAME_ISEMPTY, ERROR_CODE_DB_NAME_ISEMPTY);
@@ -581,7 +582,10 @@
       $this->configInfo['store_owner_email'] = $this->isEmpty(zen_db_prepare_input($data['store_owner_email']), ERROR_TEXT_STORE_OWNER_EMAIL_NOTEMAIL, ERROR_CODE_STORE_OWNER_EMAIL_NOTEMAIL);
       $this->configInfo['store_address'] = $this->isEmpty(zen_db_prepare_input($data['store_address']), ERROR_TEXT_STORE_ADDRESS_ISEMPTY, ERROR_CODE_STORE_ADDRESS_ISEMPTY);
       $this->configInfo['store_country'] = zen_db_prepare_input($data['store_country']);
-      $this->configInfo['store_zone'] = zen_db_prepare_input($data['store_zone']);
+      $selectedStoreZone = zen_db_prepare_input($data['store_zone']);
+      if ($selectedStoreZone == '-1' && $selectedStoreZone != '0') $data['store_zone'] = '';
+      $this->configInfo['store_zone'] = $this->isEmpty(zen_db_prepare_input($data['store_zone']), ERROR_TEXT_STORE_ZONE_NEEDS_SELECTION, ERROR_CODE_STORE_ZONE_NEEDS_SELECTION);
+      if ($this->configInfo['store_zone'] == '0') $this->configInfo['store_zone'] = '';
       $this->configInfo['store_default_language'] = zen_db_prepare_input($data['store_default_language']);
       $this->configInfo['store_default_currency'] = zen_db_prepare_input($data['store_default_currency']);
     }
@@ -609,6 +613,19 @@
       $this->db->Execute($sql);
     }
 
+    function updateAdminIpList() {
+      if (isset($_SERVER['REMOTE_ADDR']) && strlen($_SERVER['REMOTE_ADDR']) > 4) {
+        $checkip = $_SERVER['REMOTE_ADDR'];
+        $this->dbActivate();
+        $sql = "select configuration_value from " . DB_PREFIX . "configuration where configuration_key = 'EXCLUDE_ADMIN_IP_FOR_MAINTENANCE'";
+        $result = $this->db->Execute($sql);
+        if (!strstr($result->fields['configuration_value'], $checkip)) {
+          $newip = $result->fields['configuration_value'] . ',' . $checkip;
+          $sql = "update " . DB_PREFIX . "configuration set configuration_value = '" . $this->db->prepare_input($newip) . "' where configuration_key = 'EXCLUDE_ADMIN_IP_FOR_MAINTENANCE'";
+          $this->db->Execute($sql);
+        }
+      }
+    }
 
     function validateAdminSetup($data) {
       $this->dbActivate();
@@ -636,15 +653,19 @@
     }
 
 
-    function verifyAdminCredentials($admin_name, $admin_pass) {
+    function verifyAdminCredentials($admin_name, $admin_pass, $prefix = '^^^') {
       // security check
       if ($admin_name == '' || $admin_name == 'demo' || $admin_pass == '') {
         $this->setError(ERROR_TEXT_ADMIN_PWD_REQUIRED, ERROR_CODE_ADMIN_PWD_REQUIRED, true);
       } else {
+        if ($prefix == '^^^') $prefix = DB_PREFIX;
         $admin_name = zen_db_prepare_input($admin_name);
         $admin_pass = zen_db_prepare_input($admin_pass);
-        $sql = "select admin_id, admin_name, admin_pass from " . DB_PREFIX . "admin where admin_name = '" . $admin_name . "'";
+        $sql = "select admin_id, admin_name, admin_pass from " . $prefix . "admin where admin_name = '" . $admin_name . "'";
         //open database connection to run queries against it
+        $this->dbActivate();
+        $this->db->Close();
+        unset($this->db);
         $this->dbActivate();
         $result = $this->db->Execute($sql);
         if ($admin_name != $result->fields['admin_name']) {
@@ -653,7 +674,7 @@
         if (!zen_validate_password($admin_pass, $result->fields['admin_pass'])) {
           $this->setError(ERROR_TEXT_ADMIN_PWD_REQUIRED, ERROR_CODE_ADMIN_PWD_REQUIRED, true);
         }
-        #$this->db->Close();
+        $this->db->Close();
       }
     }
 
@@ -669,13 +690,16 @@
       if ((!isset($_POST['adminid']) && !isset($_POST['adminpwd'])) || $_POST['adminid']=='' || $_POST['adminid']=='demo') {
         $this->setError(ERROR_TEXT_ADMIN_PWD_REQUIRED, ERROR_CODE_ADMIN_PWD_REQUIRED, true);
       } else {
-        $this->verifyAdminCredentials($_POST['adminid'], $_POST['adminpwd']);
+        $this->verifyAdminCredentials($_POST['adminid'], $_POST['adminpwd'], $db_prefix_rename_from);
       }
       // end admin verification
 
       if (ZC_UPG_DEBUG2==true) echo 'Processing prefix updates...<br />';
       if ($this->error == false && $nothing_to_process==false) {
 
+        $this->dbActivate();
+        $this->db->Close();
+        unset($this->db);
         $this->dbActivate();
         $tables = $this->db->Execute("SHOW TABLES"); // get a list of tables to compare against
         $tables_list = array();
@@ -762,4 +786,3 @@
 
   } // end class
 
-?>
