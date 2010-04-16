@@ -4,7 +4,7 @@
  * @copyright Copyright 2003-2010 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: functions_prices.php 15884 2010-04-11 16:45:00Z wilt $
+ * @version $Id: functions_prices.php 15932 2010-04-13 12:28:11Z drbyte $
  */
 ////
 //get specials price or sale price
@@ -118,7 +118,7 @@
       $products_price = $product_check->fields['products_price'];
 
       // do not select display only attributes and attributes_price_base_included is true
-      $product_att_query = $db->Execute("select options_id, price_prefix, options_values_price, attributes_display_only, attributes_price_base_included, cast(concat(price_prefix, options_values_price) as decimal(9,5)) as value from " . TABLE_PRODUCTS_ATTRIBUTES . " where products_id = '" . (int)$products_id . "' and attributes_display_only != '1' and attributes_price_base_included='1'". " order by options_id, value");
+      $product_att_query = $db->Execute("select options_id, price_prefix, options_values_price, attributes_display_only, attributes_price_base_included, round(concat(price_prefix, options_values_price), 5) as value from " . TABLE_PRODUCTS_ATTRIBUTES . " where products_id = '" . (int)$products_id . "' and attributes_display_only != '1' and attributes_price_base_included='1'". " order by options_id, value");
 
       $the_options_id= 'x';
       $the_base_price= 0;
