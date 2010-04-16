@@ -13,16 +13,16 @@
 
 /**
  * PHPMailer - PHP email transport class
- * 
+ *
  * @package classes
  * @author Brent R. Matzelle
  * @copyright 2001 - 2003 Brent R. Matzelle
- * @version (within Zen Cart) $Id: class.phpmailer.php 7175 2007-10-05 10:43:27Z drbyte $
+ * @version (within Zen Cart) $Id: class.phpmailer.php 14225 2009-08-24 01:04:37Z drbyte $
  * @version Modified for Zen Cart added protocols to enable use with Gmail 2007-09-30 Chuck Redman
  */
 /**
  * PHPMailer - PHP email transport class
- * 
+ *
  * @package classes
  */
 class PHPMailer
@@ -104,7 +104,7 @@ class PHPMailer
   var $AltBody           = "";
 
   /**
-     * Sets word wrapping on the body of the message to a given number of 
+     * Sets word wrapping on the body of the message to a given number of
      * characters.
      * @var int
      */
@@ -123,8 +123,8 @@ class PHPMailer
   var $Sendmail          = "/usr/sbin/sendmail";
 
   /**
-     * Path to PHPMailer plugins.  This is now only useful if the SMTP class 
-     * is in a different directory than the PHP include path.  
+     * Path to PHPMailer plugins.  This is now only useful if the SMTP class
+     * is in a different directory than the PHP include path.
      * @var string
      */
   var $PluginDir         = "";
@@ -201,7 +201,7 @@ class PHPMailer
   var $Password     = "";
 
   /**
-     *  Sets the SMTP server timeout in seconds. This function will not 
+     *  Sets the SMTP server timeout in seconds. This function will not
      *  work with the win32 version.
      *  @var int
      */
@@ -214,9 +214,9 @@ class PHPMailer
   var $SMTPDebug    = false;
 
   /**
-     * Prevents the SMTP connection from being closed after each mail 
-     * sending.  If this is set to true then to close the connection 
-     * requires an explicit call to SmtpClose(). 
+     * Prevents the SMTP connection from being closed after each mail
+     * sending.  If this is set to true then to close the connection
+     * requires an explicit call to SmtpClose().
      * @var bool
      */
   var $SMTPKeepAlive = false;
@@ -243,7 +243,7 @@ class PHPMailer
   /////////////////////////////////////////////////
 
   /**
-     * Sets message type to HTML.  
+     * Sets message type to HTML.
      * @param bool $bool
      * @return void
      */
@@ -279,7 +279,7 @@ class PHPMailer
   }
 
   /**
-     * Sets Mailer to send message using the qmail MTA. 
+     * Sets Mailer to send message using the qmail MTA.
      * @return void
      */
   function IsQmail() {
@@ -293,7 +293,7 @@ class PHPMailer
   /////////////////////////////////////////////////
 
   /**
-     * Adds a "To" address.  
+     * Adds a "To" address.
      * @param string $address
      * @param string $name
      * @return void
@@ -307,7 +307,7 @@ class PHPMailer
   /**
      * Adds a "Cc" address. Note: this function works
      * with the SMTP mailer on win32, not with the "mail"
-     * mailer.  
+     * mailer.
      * @param string $address
      * @param string $name
      * @return void
@@ -321,7 +321,7 @@ class PHPMailer
   /**
      * Adds a "Bcc" address. Note: this function works
      * with the SMTP mailer on win32, not with the "mail"
-     * mailer.  
+     * mailer.
      * @param string $address
      * @param string $name
      * @return void
@@ -333,7 +333,7 @@ class PHPMailer
   }
 
   /**
-     * Adds a "Reply-to" address.  
+     * Adds a "Reply-to" address.
      * @param string $address
      * @param string $name
      * @return void
@@ -352,7 +352,7 @@ class PHPMailer
   /**
      * Creates message and assigns Mailer. If the message is
      * not sent successfully then it returns false.  Use the ErrorInfo
-     * variable to view description of the error.  
+     * variable to view description of the error.
      * @return bool
      */
   function Send() {
@@ -399,7 +399,7 @@ class PHPMailer
   }
 
   /**
-     * Sends mail using the $Sendmail program.  
+     * Sends mail using the $Sendmail program.
      * @access private
      * @return bool
      */
@@ -429,7 +429,7 @@ class PHPMailer
   }
 
   /**
-     * Sends mail using the PHP mail() function.  
+     * Sends mail using the PHP mail() function.
      * @access private
      * @return bool
      */
@@ -533,7 +533,7 @@ class PHPMailer
   }
 
   /**
-     * Initiates a connection to an SMTP server.  Returns false if the 
+     * Initiates a connection to an SMTP server.  Returns false if the
      * operation failed.
      * @access private
      * @return bool
@@ -603,7 +603,7 @@ class PHPMailer
   }
 
   /**
-     * Sets the language for all class error messages.  Returns false 
+     * Sets the language for all class error messages.  Returns false
      * if it cannot load the language file.  The default language type
      * is English.
      * @param string $lang_type Type of language (e.g. Portuguese: "br")
@@ -631,7 +631,7 @@ class PHPMailer
   /////////////////////////////////////////////////
 
   /**
-     * Creates recipient headers.  
+     * Creates recipient headers.
      * @access private
      * @return string
      */
@@ -649,7 +649,7 @@ class PHPMailer
   }
 
   /**
-     * Formats an address correctly. 
+     * Formats an address correctly.
      * @access private
      * @return string
      */
@@ -668,7 +668,7 @@ class PHPMailer
   /**
      * Wraps message for use with mailers that do not
      * automatically perform wrapping and for quoted-printable.
-     * Original written by philippe.  
+     * Original written by philippe.
      * @access private
      * @return string
      */
@@ -768,7 +768,7 @@ class PHPMailer
   }
 
   /**
-     * Assembles message header.  
+     * Assembles message header.
      * @access private
      * @return string
      */
@@ -1106,12 +1106,11 @@ class PHPMailer
       return "";
     }
     $magic_quotes = get_magic_quotes_runtime();
-    set_magic_quotes_runtime(0);
+    if (function_exists('set_magic_quotes_runtime')) set_magic_quotes_runtime(0);
     $file_buffer = fread($fd, filesize($path));
     $file_buffer = $this->EncodeString($file_buffer, $encoding);
     fclose($fd);
-    set_magic_quotes_runtime($magic_quotes);
-
+    if (function_exists('set_magic_quotes_runtime')) @set_magic_quotes_runtime($magic_quotes);
     return $file_buffer;
   }
 
@@ -1148,7 +1147,7 @@ class PHPMailer
   }
 
   /**
-     * Encode a header string to best of Q, B, quoted or none.  
+     * Encode a header string to best of Q, B, quoted or none.
      * @access private
      * @return string
      */
@@ -1201,7 +1200,7 @@ class PHPMailer
   }
 
   /**
-     * Encode string to quoted-printable.  
+     * Encode string to quoted-printable.
      * @access private
      * @return string
      */
@@ -1224,7 +1223,7 @@ class PHPMailer
   }
 
   /**
-     * Encode string to q encoding.  
+     * Encode string to q encoding.
      * @access private
      * @return string
      */
@@ -1277,16 +1276,16 @@ class PHPMailer
   }
 
   /**
-     * Adds an embedded attachment.  This can include images, sounds, and 
-     * just about any other document.  Make sure to set the $type to an 
-     * image type.  For JPEG images use "image/jpeg" and for GIF images 
+     * Adds an embedded attachment.  This can include images, sounds, and
+     * just about any other document.  Make sure to set the $type to an
+     * image type.  For JPEG images use "image/jpeg" and for GIF images
      * use "image/gif".
      * @param string $path Path to the attachment.
-     * @param string $cid Content ID of the attachment.  Use this to identify 
+     * @param string $cid Content ID of the attachment.  Use this to identify
      *        the Id for accessing the image in an HTML form.
      * @param string $name Overrides the attachment name.
      * @param string $encoding File encoding (see $Encoding).
-     * @param string $type File extension (MIME) type.  
+     * @param string $type File extension (MIME) type.
      * @return bool
      */
   function AddEmbeddedImage($path, $cid, $name = "", $encoding = "base64",
@@ -1416,7 +1415,7 @@ class PHPMailer
   }
 
   /**
-     * Returns the proper RFC 822 formatted date. 
+     * Returns the proper RFC 822 formatted date.
      * @access private
      * @return string
      */
@@ -1431,8 +1430,8 @@ class PHPMailer
   }
 
   /**
-     * Returns the appropriate server variable.  Should work with both 
-     * PHP 4.1.0+ as well as older versions.  Returns an empty string 
+     * Returns the appropriate server variable.  Should work with both
+     * PHP 4.1.0+ as well as older versions.  Returns an empty string
      * if nothing is found.
      * @access private
      * @return mixed
@@ -1494,7 +1493,7 @@ class PHPMailer
   }
 
   /**
-     * Changes every end of line from CR or LF to CRLF.  
+     * Changes every end of line from CR or LF to CRLF.
      * @access private
      * @return string
      */
@@ -1506,7 +1505,7 @@ class PHPMailer
   }
 
   /**
-     * Adds a custom header. 
+     * Adds a custom header.
      * @return void
      */
   function AddCustomHeader($custom_header) {
@@ -1514,4 +1513,3 @@ class PHPMailer
   }
 }
 
-?>

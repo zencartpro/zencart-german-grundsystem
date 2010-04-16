@@ -3,10 +3,10 @@
  * Payment Class.
  *
  * @package classes
- * @copyright Copyright 2003-2007 Zen Cart Development Team
+ * @copyright Copyright 2003-2009 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: payment.php 6276 2007-05-02 11:50:10Z drbyte $
+ * @version $Id: payment.php 14718 2009-10-30 16:18:26Z drbyte $
  */
 if (!defined('IS_ADMIN_FLAG')) {
   die('Illegal Access');
@@ -14,7 +14,7 @@ if (!defined('IS_ADMIN_FLAG')) {
 /**
  * Payment Class.
  * This class interfaces with various payment modules
- * 
+ *
  * @package classes
  */
 class payment extends base {
@@ -63,22 +63,26 @@ class payment extends base {
         if (@file_exists($lang_file)) {
           include_once($lang_file);
         } else {
-          if (IS_ADMIN_FLAG === false) {
-            $messageStack->add(WARNING_COULD_NOT_LOCATE_LANG_FILE . $lang_file, 'caution');
+          if (IS_ADMIN_FLAG === false && is_object($messageStack)) {
+            $messageStack->add('checkout_payment', WARNING_COULD_NOT_LOCATE_LANG_FILE . $lang_file, 'caution');
           } else {
             $messageStack->add_session(WARNING_COULD_NOT_LOCATE_LANG_FILE . $lang_file, 'caution');
           }
         }
         include_once(DIR_WS_MODULES . 'payment/' . $include_modules[$i]['file']);
 
-        $GLOBALS[$include_modules[$i]['class']] = new $include_modules[$i]['class'];
+        $this->paymentClass = new $include_modules[$i]['class'];
+        $this->notify('NOTIFY_PAYMENT_MODULE_ENABLE');
+        if ($this->paymentClass->enabled)
+        {
+          $GLOBALS[$include_modules[$i]['class']] = $this->paymentClass;
+        }
       }
-
       // if there is only one payment method, select it as default because in
       // checkout_confirmation.php the $payment variable is being assigned the
       // $_POST['payment'] value which will be empty (no radio button selection possible)
       if ( (zen_count_payment_modules() == 1) && (!isset($_SESSION['payment']) || (isset($_SESSION['payment']) && !is_object($_SESSION['payment']))) ) {
-        if (!$credit_covers) $_SESSION['payment'] = $include_modules[0]['class'];
+        if (!isset($credit_covers) || $credit_covers == FALSE) $_SESSION['payment'] = $include_modules[0]['class'];
       }
 
       if ( (zen_not_null($module)) && (in_array($module, $this->modules)) && (isset($GLOBALS[$module]->form_action_url)) ) {
@@ -253,4 +257,3 @@ class payment extends base {
     }
   }
 }
-?>

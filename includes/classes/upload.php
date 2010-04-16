@@ -3,10 +3,10 @@
  * upload Class.
  *
  * @package classes
- * @copyright Copyright 2003-2006 Zen Cart Development Team
+ * @copyright Copyright 2003-2010 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: upload.php 4806 2006-10-22 04:07:35Z ajeh $
+ * @version $Id: upload.php 15838 2010-04-06 17:21:09Z ajeh $
  */
 if (!defined('IS_ADMIN_FLAG')) {
   die('Illegal Access');
@@ -20,7 +20,7 @@ if (!defined('IS_ADMIN_FLAG')) {
 class upload extends base {
   var $file, $filename, $destination, $permissions, $extensions, $tmp_filename, $message_location;
 
-  function upload($file = '', $destination = '', $permissions = '666', $extensions = array() ) {
+  function upload($file = '', $destination = '', $permissions = '644', $extensions = array() ) {
     $this->set_file($file);
     $this->set_destination($destination);
     $this->set_permissions($permissions);
@@ -133,7 +133,7 @@ class upload extends base {
 
     if (substr($this->destination, -1) != '/') $this->destination .= '/';
 
-    if (move_uploaded_file($this->file['tmp_name'], $this->destination . $this->filename)) {
+    if (@move_uploaded_file($this->file['tmp_name'], $this->destination . $this->filename)) {
       chmod($this->destination . $this->filename, $this->permissions);
 
       if ($this->message_location == 'direct') {
@@ -222,4 +222,3 @@ class upload extends base {
     }
   }
 }
-?>

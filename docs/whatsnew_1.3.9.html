@@ -1,0 +1,371 @@
+<!--   latest update: r15936
+/**
+ * @package documentation
+ * @copyright Copyright 2003-2010 Zen Cart Development Team
+ * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
+ * @version $Id: whatsnew_1.3.9.html 15944 2010-04-14 19:56:57Z drbyte $
+ */
+//-->
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+<!--
+body, table{ font-family:Verdana, Arial, Helvetica, sans-serif; font-size:14px; }
+table.intro {border-color:#C96E29; }
+td.intro{background-color:#EEEEEE; border-color:#5778ce; font-size:11px; }
+td.plainbox, div.callout {border: 1px dashed;border-color: #C96E29;margin:5px 40px 5px 40px;}
+.heading {background-color:#5778CE; font-weight:bold; font-size:14px;	width: 100%; }
+.title1 {color:#C96E29; font-weight:bold; font-size:22px; }
+.title2 {color:#C96E29; font-weight:bold; font-size:13px; }
+.small {font-size:10px ;}
+.error {color:#FF0000; }
+.filename {font-family: mono, "Courier New", Courier ; font-size:14px; color:#c96e29;}
+.pseudolink {text-decoration:underline; color:#5778CE;}
+h1.intro { color: #ffffff; border:1px solid #aca893; background-color: #c96e29;  font-size: 22px;   padding: 4px;}
+h1 { color: #ffffff;    border:1px solid #aca893;   background-color: #5778ce;   font-size: 20px;   padding: 4px;}
+h2 { color: #c96e29; 	font-size: 18px;}
+h3 { color: #5778ce;	font-size: 16px; margin-bottom:0px;}
+h4 { color: #c96e29;	font-size: 14px;}
+h5 { color: #5778ce;	font-size: 16px; margin-bottom:0px; margin-top:0px; }
+.style1 {
+  font-size: 18px;
+  font-weight: bold;
+}
+.emphasize {
+  color: #336600;
+}
+
+
+-->
+</style>
+<title>What's New in Zen Cart(tm) v1.3.9</title>
+</head>
+<body>
+
+<table class="intro" cellspacing="4" cellpadding="6" border="3" width="748px" align="center">
+<tr><td class="intro">
+<center><h1 class="intro">Welcome to Zen Cart&trade; ...</h1></center>
+<br />
+The Zen Cart&trade; software is made available to you for use, additions, changes, modifications, etc. without charge, under the GNU General Public License.
+<br />
+<br />
+While we do not charge for this software, donations are greatly appreciated each time you download a new version, to help cover the expenses of maintenance, upgrades, updates, the free support forum and the continued development of this software for your online e-commerce store.
+<br />
+<br />
+Donations can be made at:
+<a href="http://www.zen-cart.com/donate" target="_blank">The Zen Cart&trade; Team Page</a>
+<br />
+<br />
+We appreciate your support.<br />
+<em>The Zen Cart&trade; Team</em><br />
+<br />
+
+<center>
+<span class="small">
+Zen Cart&trade; is derived from: Copyright  2003 osCommerce<br />
+This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;<br />
+without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE<br />
+and is redistributable under the GNU General Public License<br /><br />
+</span>
+</center>
+</td></tr></table>
+
+<br />
+<table border="3" width="748px" align="center" cellpadding="6">
+  <tr>
+<td align="center"><img src="osi-certified-120x100.png" /><br />
+This software is OSI Certified Open Source Software.<br />
+OSI Certified is a certification mark of the Open Source Initiative.
+</td></tr></table>
+<br />
+
+<table border="3" width="748px" align="center" cellpadding="6">
+  <tr>
+<td>
+<h1>CHANGELOG - List of Changed Files </h1>
+<p>For a list of files that have been changed since v1.3.8, see the <a href="changelog-v1-3-9.html" target="_blank">changelog-v1-3-9.html</a> </p>
+<h1>*** SECURITY REQUIREMENT ***</h1>
+<p>For added security, Zen Cart&trade; comes with several .htaccess files already included in various folders to help provide protection against unwanted visitors 
+and even against mis-use of your site in the unfortunate situation of your site being hacked. These protections prevent hackers from using your site as phishing sources.</p>
+<p>However, for these built-in protections to work, your web hosting server administrator MUST set the AllowOverride directive 
+in the server's apache configuration (the server's master httpd.conf file)  to "All" or at least ensure it includes these parameters: 'Limit Options Indexes'.<br />
+<pre>ie:&nbsp;&nbsp;&nbsp;&nbsp;AllowOverride All<br />
+or: &nbsp;&nbsp;&nbsp;AllowOverride Limit Options Indexes</pre><br />
+Without these settings, you will likely encounter "<strong>500 Internal Server Error</strong>" messages when attempting to access various parts of your site, including perhaps the zc_install installer script.
+ </p>
+<p>Storeowners hosting on Windows Servers using IIS instead of Apache may need to remove the .htaccess files and rework them into suitable equivalents within your IIS configuration. See Microsoft's IIS website for specific assistance.</p>
+<h1>Zen Cart&trade; Minimum Requirements</h1>
+<p>PHP 4.3.2 or higher, Apache 1.3.30 and MySQL 3.23.x or higher.</p>
+
+<h1>Upgrade Instructions from v1.3.8 to 1.3.9</h1>
+<p>If you are upgrading <strong><u>from Zen Cart v1.3.8</u></strong>, the process is simple:<br>
+  - compare all the changed files with the files on your own site... and re-apply your customizations to the new files<br>
+  - upload the new files (with your customizations added) to your site<br>
+  - upload the <span class="filename">zc_install</span> folder to your server, and run <span class="filename">zc_install/index.php</span> <br>
+  ... select <strong>Database Upgrade</strong> from the System Inspection screen. Apply the required updates. </p>
+<p>If you are upgrading <strong><u>from a version prior to v1.3.8</u></strong>, please follow the instructions in the &quot;<a href="2.readme_how_to_upgrade.html">how to upgrade</a>&quot; documentation in the /docs folder. </p>
+<h1>IMPORTANT NOTES </h1>
+<ul>
+<li><span class="style1">SECURITY:</span><span class="error"> Please be sure to review and apply the <a href="./important_site_security_recommendations.html" target="_blank">Site Security Recommendations</a> to your site prior to taking your shop &quot;live&quot;.</span> If you are uncertain about how site security applies to you, talk to your web host to ensure that you have proper measures in place. <br>
+<br>
+</li>
+  <li><span class="style1">PAYMENT MODULES:</span> <span class="error">Many changes have been made to the Authorize.net (SIM/AIM/eCheck), PayPal (IPN/Standard/Pro/Express), Linkpoint/FirstData payment modules. <strong> If you are using any of these modules</strong>, you will need to Remove and re-Install the modules via Admin-&gt;Modules-&gt;Payment in order for them to work properly.</span> (Write down your settings first, for easier re-configuration!) <br>
+        <em>If you don't remove+reinstall them, you will have some blank spaces in your configuration settings when you attempt to edit them next.</em> <br>
+<br>
+ALSO: NOCHEX and Offline CC Module have been removed from core for PCI/PA-DSS reasons.
+</li><br />
+<li><strong class="style1">SHIPPING MODULES</strong> All the built-in shipping modules have been updated. <br /><span class="error">For EACH one that you're using, you will need to Remove and re-Install the module in Admin-&gt;Modules-&gt;Shipping in order to make them work properly.</span> (Write down your settings first, for easier re-configuration!) <br>
+<br>
+</li>
+<li><strong class="style1">ORDER TOTAL modules</strong> ...<span class="error">All the OT modules have been updated with fixes.<br>You will need to Remove and re-Install each module in Admin-&gt;Modules-&gt;Order Total in order to make them work properly.</span> (Write down your settings first, for easier re-configuration!) <br>
+<br>
+</li>
+</ul>
+<h1>UPGRADING YOUR TEMPLATES </h1>
+Since version 1.2, Zen Cart&trade; has had a major overhaul of the templating system for v1.3.  As such, you have two options:
+<ul>
+<li>upgrade your existing template by applying the new stylesheet and moving a few lines of code around; or</li>
+<li><strong>the best way </strong>to have almost-tableless and much tidier template code, is to <strong>make a new template</strong> (based on template_default or the new &quot;green&quot; classic introduced in v1.3.5) and carefully re-apply your own customizations to the new template system.</li>
+</ul>
+
+
+<p>For further information on template upgrading, see the support-forum discussion on this topic. </p>
+<br />
+<p><strong>1.3.9 Template changes</strong> (since 1.3.8) have been minimal. Simply merge the changes with any of your override versions.</p>
+
+<h1>Whats New ... </h1>
+<h3><strong>The following improvements and bugfixes are included in v1.3.9 since v1.3.8: </strong></h3>
+<ul>
+<li>PHP 5.3.x compatibility
+<li>PCI scan improvements to prevent commonly-reported false-positives
+<li>SSL-detection improvements
+<li>Session Handling improvements for shared-SSL configurations to deal with IE-specific quirks</li>
+<li>Session-Handler improvements: closing when done, removed redundant start, etc</li>
+<li>Search improvements
+<li>Hack-attempt detection improvements
+<li>Add .htaccess for /images/ folder, and security updates to many others as well</li>
+<li>Canonical URL support added for product pages and product listings. See /includes/init_includes/init_canonical.php</li>
+<li>Developer Toolkit Improvements (smarter searches, case-sensitive options, etc)
+<li>USPS module updated to RateV3 API and includes all updates posted to March 2010
+<li>PayPal UK - 3D-Secure support added</li>
+<li>PayPal micropayments support added</li>
+<li>Added CURL processing for PayPal IPN handling in case fsockopen() is disabled or failing
+<li>Various updates to PayPal, Linkpoint (now renamed to FirstData) and Authnet Payment modules
+<li>Split tax line support integrated
+<li>Added per-EZ-page stylesheet support
+<li>Fix ISO country/currency errors in default SQL file (old countries removed, etc)
+<li>Fixes/updates/additions of various notifier calls
+<li>MySQL 6-alpha preliminary compatibility
+<li>Updates to spiders.txt file for stronger efficiency and more up-to-date data
+<li>Improvements to configure.php file read-only detection (automatically sets to read-only if found writable, and permissions allow it)
+<li>Various performance improvements, including freeing up wasted memory to make things run more lean
+<li>PHP error logging automatically enabled by default, since errors are not displayed to the browser (for security reasons)
+<li>Turn off autocomplete on cc-number fields so browsers don't store/retrieve that information </li>
+<li>Spam slamming via tell-a-friend is now throttled</li>
+<li>Admin-login-slamming protection - added delays to prevent brute-force password attacks</li>
+<li>Add safety to payment modules to prevent attempt to re-install once already installed, since that has always thrown ugly (although harmless) SQL errors on the screen</li>
+<li>Authorize.net system change required alteration of transaction_id field size (details posted on forum months ago)
+<li>Include PayPal rename from verisign.com to paypal.com for all services using the old service which was obsoleted in Sept 2009. (Details for fix also posted on forum)
+ <br>
+  <br>
+  <br>
+</li>
+</ul>
+<h3>Bugfixes</h3>
+<ul>
+<li>Posted bugfixes for v1.3.8 (see forum: http://www.zen-cart.com/forum/showthread.php?t=82619 and http://www.zen-cart.com/forum/forumdisplay.php?f=140 )
+<li>Posted (on forum) security fixes
+<li>BUGSFORUM-168 Added stronger detection of suhosin usage: now disables certain features which are incompatible with suhosin, instead of throwing errors in places like whos_online
+<li>"Catchable fatal error" fixes
+<li>Tax calculation fixes in various places
+<li>Fix division-by-zero errors in ot_coupon.php and ot_group_pricing.php
+<li>Various fixes to Gift Certificate, Coupon, Group Discount, etc order-total modules
+<li>Customer DOB was getting erased if admin edited customer data and min DOB length was set to 0
+<li>Error when deleting ALL attributes
+<li>Tell-A-Friend was sending wrong URL if product used alternate product-type
+<li>Category metatags could not be removed once added
+<li>Unknown column "o.orders_id in 'on clause' when using admin order search
+<li>Back button navigation tweaks
+<li>TEXTAREA attributes with character limit could delete typed text when limit reached
+<li>queryFactoryResult errors addressed
+<li>Can no longer delete categoryID=0 ... which could happen in limited cases, thus deleting all products and categories unexpectedly.
+<li>Spiders could occasionally trigger PHP server errors if they attempted to add-to-cart
+<li>Spiders list updated and pruned</li>
+<li>Session handling improvements including wiser parsing of tld
+<li>Fixes to email handling
+<li>IE8 fix to admin UI
+<li>Fix for credit-covers issues when using loworder-fee type modules
+<li>Fix some secure/nonsecure warning triggers
+<li>Fix Discount Coupons to allow for:<br />
+- Add All Products in 1 Cat<br />
+- Remove All Products in 1 Cat<br />
+- NOTE: you specify DENY or ALLOW and that is how you ADD or REMOVE<br />
+- Allow Links to Products or Categories in ordered list plus popup help<br />
+</li>
+<li>Various multiple-language bugs
+<li>Added ability to define DB_CHARSET to automatically trigger a mysql SET NAMES statement if needed for things like UTF8 support, preventing the need to edit the db class 
+<li>various banner-manager date fixes
+<li>various fixes to media-collection components such as media-manager, sort-orders of clips, etc
+<li>Fix GV balance display on side panel when customer has a balance but no order and was displaying as $0.00
+<li>bug in admin reviews pagination
+<li>Prevent display of HOME_PAGE_META_KEYWORDS etc if people mistakenly skip that part of their upgrade. Defaults to normal content as if define was set to blank.
+<li>Various admin page fixes to javascript validation code
+<li>fix bug which prevented admin from getting copies of "all" coupon emails sent out (was only getting a copy of the last email sent)
+<li>eliminate secure warnings when Customer is not logged in and adds to cart then hits checkout and merge carts happen and return to shopping_cart and hit submits to update cart etc.
+<li>Shipping Estimator is displayed open on shopping_cart vs being a button
+<li>fix incorrect display of tax rate when deleting tax rates
+<li>Fix category look up to use master_categories_id
+<li>Fixes SaleMaker Priced by Attribute
+<li>Fixes Admin Display of Product Category from displaying "something" on Linked Products
+<li>Fix categories name lookup based on product master_categories_id vs random categories_id from products_to_categories
+<li>Fix navigation on add/cancel featured/specials from products_price_manager and back
+<li>Fix breadcrumbs not to include products_name when on listing and Display Cart is off and does not break Reviews
+<li>Fix salemaker bug on Entire Catalog not being selected on edit when set
+<li>fix broken reviews where reviews are stuck on same product and work like specials and new products
+<li>fix for dropped connections on timeouts due to slow external methods
+<li>Fix function free_shipping_weights value on Product weight and Attribute weight in shopping cart
+<li>Added noindex,nofollow to admin pages to aid in reducing admin indexing if logins are bypassed somehow
+<li>force use of SSLv3 in authorize.net modules (system requirement by authnet)
+<li>fix to prevent countries from being deleted if currently assigned to address_book records
+<li>zones shipping module: Auto build additional Zones when $this->num_zones is changed and already installed
+<li>Add SSL-detection support for Zeus SSL Accelerator/Load-balancer by detecting HTTP_SSLSESSIONID
+<li>fix small logic bug in sqlpatch tool
+<li>Admin specials: Prevent GIFT from being put on Special in Manual entry just like in regular entry
+<li>fix: Storage of email_html in email_archive table problematic
+<li>incorporate forum-suggested change to accommodate upper-case characters in phpbb usernames
+<li>Fix bug on duplicate Discount Coupon success message
+<li>regex fixes on cc validation class for better detection of card types
+<li>fix order-status pulldown on admin orders page for consistency
+<li>switch the whois lookup in whos_online to domaintools site instead of dnsstuff
+<li>PayPal Express Checkout now uses default email-format when creating an account
+<li>add additional port support for gmail
+<li>search page was showing slashes in some cases if search result came up with no records found
+<li>added warning to admin to indicate if /admin/ folder hasn't been renamed
+<li>fix address-format inconsistency bug (if multiple address-book entries are shown and include different formats, page was only observing the format of the *last* item in the list, not honoring each individual address's proper format code)
+<li>BUGSFORUM-798 - fix store-manager bug which croaks when using Optimize DB if database name has hyphens in it
+<li>fix credit covers problems in coupon
+<li>fix rounding error and ensure $cost is a number not a string
+<li>fix zone restriction problems in some shipping modules
+<li>BUGSFORUM-801 - fix newsletter signup box bug where checkbox is auto-selected and user deselects it
+<li>BUGSFORUM-809 - language typo
+<li>BUGSFORUM-442 - quick fix for strict data-typing in 1.3.9 for product update pages in admin.   (v2.0 uses proper bindvars approach)
+<li>add robots_example.txt to help minimize some confusion on the matter
+<li>Set up 301-Redirect if a spider attempts to visit a URL that contains a ZENID, in effect removing the zenid from the spider's database
+<li>BUGSFORUM-546: 111219: Paypal IPN orders not recorded if order-total addons are missing language files
+<li>BUGSFORUM-632: 117422: PayPal Shipping Labels Not Sync'ing
+<li>Workaround to accommodate BUGSFORUM-281: 90799: function replace_accents(), Japanese, PayPal
+<li>Partial fix to various PayPal bugs where IPNs weren't allowing proper creation of orders due to MySQL Strict Data typing issues.
+<li>add stock check before Express Checkout commences, preventing checkouts if stock-checks would normally prohibit
+<li>PayPal updates - safer handling for PaymentReview transactions
+<li>PayPal - can now enable address-override switch if store model requires it</li>
+<li>PayPal website payments pro now asks merchant to choose which country their PayPal account is located in, since this more accurately drives how the module should be communicating
+<li>PayPal - fix bug causing wrong order-status to be set on refunds, resulting in them disappearing from orders list
+<li>add paypal language defines for auto-added descriptions in line-item calcs
+<li>rudimentary PayPal FMF support to prevent throwing of errors
+<li>authorize.net modules: fix missing $messageStack references
+<li>Skip sending first 4 digits of CC number in order-confirmation email (security requirement)
+<li>fix missing Refund option for Express Checkout
+<li>add notifier to shipping/payment classes, to allow contribs to hook in and disable
+<li>add additional notifiers to order class
+<li>fix broken notifier functionality in PayPal IPN</li>
+<li>change ereg* functions to equivalent preg functions for PHP 5.3 and PHP 6 compatibility
+<li>Fix wrong order of info on order-status-update emails
+<li>Fix text to use correct text for each review when set to greater than 1
+<li>Fix image or missing image on reviews edits and previews
+<li>Fix bug to Prevent Password Forgotten from being sent as blank when set to 0 length
+<li>Fix mismatched functions on building path to wrong category when Linked Products exist
+<li>Disable the storing of auth_code details as part of customer comments and customer order-confirmation emails, for fraud-prevention reasons
+<li>Options Values Manager - Bring sort order input field into vertical alignment with header and other column contents
+<li>referrals report - Fix broken dates and times months don't have 32 days and days are 24 hours
+<li>BUGSFORUM-820 - error in tax_basis determination for ot_shipping
+<li>UPS/USPS - Fix minimum weights when 0 to be 1 ounce (.0625 pounds)
+<li>USPS - Add missing Priority Mail International Regular/Medium Flat-Rate Boxes/Priority Mail International Small Flat-Rate Box
+<li>USPS - Fixing codes to make USPS happy with changes to ISO and expected country names
+<li>USPS/UPS - quick cheap hack to pass expected codes back and forth between _getQuote() and quote().
+<li>fix missing backslashes in usps which was breaking intl quotes
+<li>Fix bug where Discount Quanties get copied on Copy Product to Duplicate when marked not to be copied
+<li>order class - pass on the ID values from cart to order for easier parsing during order processing
+<li>ot_coupon - fix restrictions - Base zone restrictions on Delivery for Free Shipping or Billing for Amount or Percentage
+<li>Bugfix - prevent duplicate messageStack entries
+<li>some template updates, added bindvars to guard against sql injection
+<li>fix for cart class breaking on update where there is an upload and a checkbox involved
+<li>backport support for embedded image attachments in emails which was supposed to be in 1.3.8 and got missed somehow
+<li>email html checkout template was inserting store name in duplicate
+<li>fix race condition when updating counter history
+<li>add ability to set certain countries to show at top of pulldown list, defaulting to store's default country
+<li>Fix Discount Quantities to recognize the Discount Type: NONE to properly disable Discount Quantities and not break calculations
+<li>trap errors that occur when users fail to properly upload lang file with modules
+<li>Fix Per Unit to not require change to Maximum 5000
+<li>Fix wording on % amount of Order Total on Zones and Table Rate - can mix/match dollar/percentage
+<li>Fix Handling Fee per Box/Order mismatch and add a choice for Weight oriented shipping methods
+<li>packing slip and invoices - Fix format_id for billing address
+<li>IPN updates to identify EC transactions more easily, as long as core code doesn't get changed by end-users
+<li>fix for lack of proper static  properties in php4, also fixes problems with notifiers in ad hoc instantiated classes, ie order class
+<li>Fix missing restrictions limit on coupons
+<li>show tax desc in tax-rates window to more easily spot empty descriptions which can be confusing
+<li>prevent admin-side edits from mangling &amp; into & when editing ez-pages
+<li>Fix missing manufacturers filter for displaying Manufacturers with Products to match sidebox setting from Maximum Values
+<li>Fix image to load on all attributes on multiple select of Option Values
+<li>option values manager - Fix for multiple languages showing multiple records for same value when multiple languages
+<li>remove redundant code in index_filters
+<li>Fix ceil error where amounts are less than 0, such as ceil(.6/.2)
+<li>ot_coupon Fix for Minimum Amount to be based on Product totals based on the Restrictions not the full Total Order
+<li>BUGSFORUM-980 - If customer changes spelling of CITY on PayPal end, the change wasn't reflected in the customer's/order's address details.
+<li>zc_install no longer checks CURL over proxy if regular CURL test fails
+<li>BUGSFORUM-982 - Fix minor bug where messageStack alert not being shown, due to syntax error, with payment/shipping modules missing language files.
+<li>Fix bold cheapest bug in shipping estimator to match checkout_shipping
+<li>Fix problems caused by using double-quotes in attribute option names/values</li>
+<li>add additional notifiers for tare/shipping/quote/cheapest to shipping control class</li>
+<li>Fix bug with virtual-content-cart sending customers back thru checkout-payment and confirmation screens a second time after returning from paypal express checkout</li>
+<li>BUGSFORUM-1008 - fix issue with newsletters not sending properly due to queryFactoryObject error caused by typo</li>
+<li>BUGSFORUM-1005 - fix typo in shipping estimator parameter, which was causing duplicate "name" attributes on input field, thus causing validation error</li>
+<li>BUGSFORUM-1014 - fix bad ID problem in shipping methods selector in checkout_shipping template</li>
+<li>Add note to USPS debug emails to tell the recipient how to turn them off, since so many are confused by it.</li>
+<li>Updates to linkpoint-api (firstdata) payment module</li>
+<li>Fixed order-of-operations problem with cached data</li>
+<li>BUGSFORUM-1022 - fix problem with PCI false-positive when invalid $_GET['sort'] parameter is injected on URL (PCI patch posted in Nov)</li>
+<li>BUGSFORUM-1034 - Remove security vulnerability from the CURLTEST.PHP script, and removed other dev-use-only files</li>
+<li>CURLTEST.PHP renamed </li>
+<li>BUGSFORUM-514 - Storage of email_html in email_archive table problematic
+<li>Reduce a loop of lookup queries on top-level cat display in admin</li>
+<li>Fix potential XSS vulnerabilities in various admin files</li>
+<li>BUGSFORUM-1041 - fix broken forms which prevented search from working properly in products-purchased admin report</li>
+<li>BUGSFORUM-1036 - prevent ability for 'free_free' to be set by POST contamination on the shipping page</li>
+<li>BUGSFORUM-1027 - state selection incorrect in address book edits when pulldown enabled</li>
+<li>stop storing CC EXPDATE in orders table for gateway modules, for PA-DSS reasons</li>
+<li>BUGSFORUM-1044 - JPY currency adjustments in EC module</li>
+<li>BUGSFORUM-610 - Incorrect decimal value 'f' when free-shipping selected</li>
+<li>Fix ot_coupon bug on minimum values where comparison is a string and not a value</li>
+<li>Fix broken search in admin product screens where Search is broken as soon as editing is done and search is lost
+<li>Fix admin Add New Product when Search is set, cannot add a new product as no known category is set to assign to new product
+<li>fix installer to properly ignore commented lines in configure.php files when reading prior settings as part of an upgrade</li>
+<li>fix admin categories navigation glitches</li>
+<li>Installer update: no longer raises warning-flag if "cgi" version of PHP is in use.</li>
+<li>admin comments in order status history which are set to -1 will not be shown to customers
+<li>fix group pricing/discount coupon bug
+<li>BUGSFORUM-1082 - linkpoint_api payment module fixed array vs string error
+<li>fix bad SQL joins in music_genre filter and record_company filter code</li>
+<li>fix alpha sort functionality with music_genre and record_company filters</li>
+<li>BUGSFORUM-191 Fix bug preventing address-book-process from properly updating the State field when no zones exist for selected country, caused by not properly validating the $_POST input which is blank when page is first drawn.</li>
+<li>fix problem of order-confirmation submit button allowing multiple submits/clicks, resulting in duplicate orders</li>
+<li>fix broken rounding problem when calculating number of boxes for shipping quotes</li>
+<li>Fix banners not activating based on date NULL needed to be 'NULL'</li>
+<li>Fix banners dates for midnight or they do not expire or start on right day</li>
+<li>Fix admin customers report: Report was combining people with same name, changed to customers_id </li>
+<li>music products - Fix wrong categories_id for copy and fix methods update fields to match formats in product_general</li>
+<li>BUGSFORUM-288 - trim spaces from contact-us email address to prevent being rejected</li>
+<li>BUGSFORUM-904 - Admin product preview screen - Added check to make sure key POST fields actually contain data. If not, do error trapping, instead of saving blanks. </li>
+<li>BUGSFORUM-1156 - fix priced-by-attrib problem with negative values
+<li>"last login" date for customers logging in with new accounts is now set correctly</li>
+<li>changed default permissions set on uploaded files to 644 from 777</li>
+<li>fix wrong header response on some pages during down-for-maintenance</li>
+</ul>
+</td>
+</tr>
+</table>
+<br /><br />
+<p align="center"><em>Zen Cart&trade; Copyright 2003-2010</em></p>
+<br /><br />
+</body>
+</html>

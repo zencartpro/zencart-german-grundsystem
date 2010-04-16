@@ -3,9 +3,9 @@
  * template_func Class.
  *
  * @package classes
- * @copyright Copyright 2003-2007 Zen Cart Development Team
+ * @copyright Copyright 2003-2009 Zen Cart Development Team
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: template_func.php 6023 2007-03-19 06:40:13Z drbyte $
+ * @version $Id: template_func.php 14141 2009-08-10 19:34:47Z wilt $
  */
 if (!defined('IS_ADMIN_FLAG')) {
   die('Illegal Access');
@@ -43,9 +43,9 @@ class template_func extends base {
     //	echo 'template_default/' . $template_dir . '=' . $template_code;
     if ($this->file_exists($current_template . $current_page, $template_code)) {
       return $current_template . $current_page . '/';
-    } elseif ($this->file_exists(DIR_WS_TEMPLATES . 'template_default/' . $current_page, ereg_replace('/', '', $template_code), $debug)) {
+    } elseif ($this->file_exists(DIR_WS_TEMPLATES . 'template_default/' . $current_page, preg_replace('/\//', '', $template_code), $debug)) {
       return DIR_WS_TEMPLATES . 'template_default/' . $current_page;
-    } elseif ($this->file_exists($current_template . $template_dir, ereg_replace('/', '', $template_code), $debug)) {
+    } elseif ($this->file_exists($current_template . $template_dir, preg_replace('/\//', '', $template_code), $debug)) {
       return $current_template . $template_dir;
     } else {
       return DIR_WS_TEMPLATES . 'template_default/' . $template_dir;

@@ -3,9 +3,9 @@
  * File contains just the base class
  *
  * @package classes
- * @copyright Copyright 2003-2005 Zen Cart Development Team
+ * @copyright Copyright 2003-2009 Zen Cart Development Team
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: class.base.php 3041 2006-02-15 21:56:45Z wilt $
+ * @version $Id: class.base.php 14535 2009-10-07 22:16:19Z wilt $
  */
 /**
  * abstract class base
@@ -15,11 +15,6 @@
  * @package classes
  */
 class base {
-  /**
-   * array to hold the list of observer classes
-   * @var array
-   */
-  var $observers = array();
   /**
    * method used to an attach an observer to the notifier object
    * 
@@ -34,7 +29,7 @@ class base {
   function attach(&$observer, $eventIDArray) {
     foreach($eventIDArray as $eventID) {
       $nameHash = md5(get_class($observer).$eventID);
-      $this->observers[$nameHash] = array('obs'=>&$observer, 'eventID'=>$eventID);
+      base::setStaticObserver($nameHash, array('obs'=>&$observer, 'eventID'=>$eventID));
     }
   }
   /**
@@ -45,7 +40,7 @@ class base {
   function detach($observer, $eventIDArray) {
     foreach($eventIDArray as $eventID) {    
       $nameHash = md5(get_class($observer).$eventID);
-      unset($this->observers[$nameHash]);
+      base::unsetStaticObserver($nameHash);
     }
   }
   /**
@@ -55,11 +50,32 @@ class base {
    * @param array paramters to pass to the observer, useful for passing stuff which is outside of the 'scope' of the observed class.
    */
   function notify($eventID, $paramArray = array()) {
-    foreach($this->observers as $key=>$obs) {
-      if ($obs['eventID'] == $eventID) {
-        $obs['obs']->update($this, $eventID, $paramArray);
+    $observers = & base::getStaticObserver();
+    if (!is_null($observers))
+    {
+      foreach($observers as $key=>$obs) {
+        if ($obs['eventID'] == $eventID) {
+          $obs['obs']->update($this, $eventID, $paramArray);
+        }
       }
     }
   }
+  function & getStaticProperty($var)
+  {
+    static $staticProperty;
+    return $staticProperty;
+  }
+  function & getStaticObserver() {
+    return base::getStaticProperty('observer');
+  }
+  function & setStaticObserver($element, $value)
+  {
+    $observer =  & base::getStaticObserver();
+    $observer[$element] = $value;
+  }
+  function & unsetStaticObserver($element)
+  {
+    $observer =  & base::getStaticObserver();
+    unset($observer[$element]);
+  }
 }
-?>
