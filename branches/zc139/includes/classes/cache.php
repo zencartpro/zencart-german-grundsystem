@@ -3,10 +3,10 @@
  * cache Class.
  *
  * @package classes
- * @copyright Copyright 2003-2007 Zen Cart Development Team
+ * @copyright Copyright 2003-2009 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: cache.php 6338 2007-05-19 20:02:26Z drbyte $
+ * @version $Id: cache.php 14864 2009-11-18 16:22:05Z wilt $
  */
 if (!defined('IS_ADMIN_FLAG')) {
   die('Illegal Access');
@@ -124,7 +124,7 @@ class cache extends base {
       if ($zp_cache_exists->RecordCount() > 0) {
         return true;
       }
-      $result_serialize = $db->prepare_input(serialize($zf_result_array));
+      $result_serialize = $db->prepare_input(base64_encode(serialize($zf_result_array)));
       $sql = "insert into " . TABLE_DB_CACHE . " set cache_entry_name = '" . $zp_cache_name . "',
 	                                               cache_data = '" . $result_serialize . "',
 						       cache_entry_created = '" . time() . "'";
@@ -153,7 +153,7 @@ class cache extends base {
       case 'database':
       $sql = "select * from " . TABLE_DB_CACHE . " where cache_entry_name = '" . $zp_cache_name . "'";
       $zp_cache_result = $db->Execute($sql);
-      $zp_result_array = unserialize($zp_cache_result->fields['cache_data']);
+      $zp_result_array = unserialize(base64_decode($zp_cache_result->fields['cache_data']));
       return $zp_result_array;
       break;
       case 'memory':
@@ -213,4 +213,3 @@ class cache extends base {
     }
   }
 }
-?>

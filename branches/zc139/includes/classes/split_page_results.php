@@ -3,17 +3,17 @@
  * split_page_results Class.
  *
  * @package classes
- * @copyright Copyright 2003-2006 Zen Cart Development Team
+ * @copyright Copyright 2003-2009 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: split_page_results.php 3041 2006-02-15 21:56:45Z wilt $
+ * @version $Id: split_page_results.php 13998 2009-07-28 16:06:06Z drbyte $
  */
 if (!defined('IS_ADMIN_FLAG')) {
   die('Illegal Access');
 }
 /**
  * Split Page Result Class
- * 
+ *
  * An sql paging class, that allows for sql reslt to be shown over a number of pages using  simple navigation system
  * Overhaul scheduled for subsequent release
  *
@@ -25,7 +25,7 @@ class splitPageResults extends base {
   /* class constructor */
   function splitPageResults($query, $max_rows, $count_key = '*', $page_holder = 'page', $debug = false) {
     global $db;
-
+    $max_rows = ($max_rows == '' || $max_rows == 0) ? 20 : $max_rows;
     $this->sql_query = $query;
     $this->page_name = $page_holder;
 
@@ -82,9 +82,9 @@ class splitPageResults extends base {
     $offset = ($this->number_of_rows_per_page * ($this->current_page_number - 1));
 
     // fix offset error on some versions
-    if ($offset < 0) { $offset = 0; }
+    if ($offset <= 0) { $offset = 0; }
 
-    $this->sql_query .= " limit " . $offset . ", " . $this->number_of_rows_per_page;
+    $this->sql_query .= " limit " . ($offset > 0 ? $offset . ", " : '') . $this->number_of_rows_per_page;
   }
 
   /* class functions */

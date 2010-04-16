@@ -3,10 +3,10 @@
  * File contains the order-totals-processing class ("order-total")
  *
  * @package classes
- * @copyright Copyright 2003-2007 Zen Cart Development Team
+ * @copyright Copyright 2003-2010 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: order_total.php 7543 2007-11-29 01:46:56Z drbyte $
+ * @version $Id: order_total.php 15368 2010-01-28 23:29:02Z wilt $
  */
 /**
  * order-total class
@@ -34,8 +34,8 @@ class order_total extends base {
         if (@file_exists($lang_file)) {
           include_once($lang_file);
         } else {
-          if (IS_ADMIN_FLAG === false) {
-            $messageStack->add(WARNING_COULD_NOT_LOCATE_LANG_FILE . $lang_file, 'caution');
+          if (IS_ADMIN_FLAG === false && is_object($messageStack)) {
+            $messageStack->add('header', WARNING_COULD_NOT_LOCATE_LANG_FILE . $lang_file, 'caution');
           } else {
             $messageStack->add_session(WARNING_COULD_NOT_LOCATE_LANG_FILE . $lang_file, 'caution');
           }
@@ -58,7 +58,7 @@ class order_total extends base {
       reset($this->modules);
       while (list(, $value) = each($this->modules)) {
         $class = substr($value, 0, strrpos($value, '.'));
-        if (!isset($GLOBALS[$class])) continue; 
+        if (!isset($GLOBALS[$class])) continue;
         $GLOBALS[$class]->process();
         for ($i=0, $n=sizeof($GLOBALS[$class]->output); $i<$n; $i++) {
           if (zen_not_null($GLOBALS[$class]->output[$i]['title']) && zen_not_null($GLOBALS[$class]->output[$i]['text'])) {
@@ -175,14 +175,27 @@ class order_total extends base {
     if (MODULE_ORDER_TOTAL_INSTALLED) {
       $total_deductions  = 0;
       reset($this->modules);
+      $orderInfoSaved = $order->info;
       while (list(, $value) = each($this->modules)) {
         $class = substr($value, 0, strrpos($value, '.'));
         if ( $GLOBALS[$class]->credit_class ) {
           $order_total = $GLOBALS[$class]->get_order_total();
           if (is_array($order_total)) $order_total = $order_total['total'];
-          $total_deductions = $total_deductions + $GLOBALS[$class]->pre_confirmation_check($order_total);
+          $deduction = $GLOBALS[$class]->pre_confirmation_check($order_total);
+          $total_deductions = $total_deductions + $deduction;
+//        echo 'class = ' . $class . "<br>";
+//        echo 'order-total = ' . $order_total . "<br>";
+//        echo 'deduction = ' .  $deduction . "<br>";
+        }
+        else
+        {
+          $GLOBALS[$class]->process();
+          $GLOBALS[$class]->output = array();
         }
       }
+      $order->info = $orderInfoSaved;
+//      echo "orderTotal = {$order->info['total']}";
+//      echo "TotalDeductions = {$total_deductions}";
       $difference = $order->info['total'] - $total_deductions;
       if ( $difference <= 0.009 ) {
         $credit_covers = true;
@@ -230,4 +243,3 @@ class order_total extends base {
     return $order_total;
   }
 }
-?>

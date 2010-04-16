@@ -1,10 +1,10 @@
 <?php
-/** 
+/**
  * MySQL query_factory Class.
  * Class used for database abstraction to MySQL
  *
  * @package classes
- * @copyright Copyright 2003-2007 Zen Cart Development Team
+ * @copyright Copyright 2003-2010 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
  * @version $Id$
@@ -17,6 +17,7 @@ if (!defined('IS_ADMIN_FLAG')) {
  *
  */
 class queryFactory extends base {
+  var $link, $count_queries, $total_query_time;
 
   function queryFactory() {
     $this->count_queries = 0;
@@ -24,28 +25,30 @@ class queryFactory extends base {
   }
 
   function connect($zf_host, $zf_user, $zf_password, $zf_database, $zf_pconnect = 'false', $zp_real = false) {
-//@TODO error class required to virtualise & centralise all error reporting/logging/debugging
     $this->database = $zf_database;
+    $this->user = $zf_user;
+    $this->host = $zf_host;
+    $this->password = $zf_password;
+    $this->pConnect = $zf_pconnect;
+    $this->real = $zp_real;
     if (!function_exists('mysql_connect')) die ('Call to undefined function: mysql_connect().  Please install the MySQL Connector for PHP');
-    if ($zf_pconnect != 'false') {
+    $connectionRetry = 10;
+    while (!isset($this->link) || ($this->link == FALSE && $connectionRetry !=0) )
+    {
       $this->link = @mysql_connect($zf_host, $zf_user, $zf_password, true);
-    } else {
-    // pconnect disabled ... leaving it as "connect" here instead of "pconnect"
-      $this->link = @mysql_connect($zf_host, $zf_user, $zf_password, true);
+      $connectionRetry--;
     }
     if ($this->link) {
       if (@mysql_select_db($zf_database, $this->link)) {
+        if (defined('DB_CHARSET') && version_compare(@mysql_get_server_info(), '4.1.0', '>=')) {
+          @mysql_query("SET NAMES '" . DB_CHARSET . "'", $this->link);
+          if (function_exists('mysql_set_charset')) {
+            @mysql_set_charset(DB_CHARSET, $this->link);
+          } else {
+            @mysql_query("SET CHARACTER SET '" . DB_CHARSET . "'", $this->link);
+          }
+        }
         $this->db_connected = true;
-        /** set utf-8 database connection
-            look at: http://dev.mysql.com/doc/refman/5.0/en/charset-connection.html
-            &&: http://www.adviesenzo.nl/examples/php_mysql_charset_fix/
-            &&: http://de.php.net/manual/en/function.mysql-set-charset.php
-        $sql = "SHOW VARIABLES LIKE 'character_set_database'";
-        $res = $this->Execute($sql);
-        $charset = $res->fields['Value'];
-        */
-        $sql = "SET NAMES utf8";
-        $this->Execute($sql);
         return true;
       } else {
         $this->set_error(mysql_errno(),mysql_error(), $zp_real);
@@ -63,9 +66,9 @@ class queryFactory extends base {
 
   function prepare_input($zp_string) {
     if (function_exists('mysql_real_escape_string')) {
-      return mysql_real_escape_string($zp_string);
+      return mysql_real_escape_string($zp_string, $this->link);
     } elseif (function_exists('mysql_escape_string')) {
-      return mysql_escape_string($zp_string);
+      return mysql_escape_string($zp_string, $this->link);
     } else {
       return addslashes($zp_string);
     }
@@ -133,20 +136,28 @@ class queryFactory extends base {
       $time_start = explode(' ', microtime());
       $obj = new queryFactoryResult;
       $obj->sql_query = $zf_sql;
-      if (!$this->db_connected) $this->set_error('0', DB_ERROR_NOT_CONNECTED);
+      if (!$this->db_connected)
+      {
+        if (!$this->connect($this->host, $this->user, $this->password, $this->database, $this->pConnect, $this->real))
+        $this->set_error('0', DB_ERROR_NOT_CONNECTED);
+      }
       $zp_db_resource = @mysql_query($zf_sql, $this->link);
       if (!$zp_db_resource) $this->set_error(@mysql_errno(),@mysql_error());
+      if(!is_resource($zp_db_resource)){
+        $obj = null;
+        return true;
+      }
       $obj->resource = $zp_db_resource;
       $obj->cursor = 0;
       $obj->is_cached = true;
       if ($obj->RecordCount() > 0) {
         $obj->EOF = false;
         $zp_ii = 0;
-	while (!$obj->EOF) {
+        while (!$obj->EOF) {
           $zp_result_array = @mysql_fetch_array($zp_db_resource);
           if ($zp_result_array) {
             while (list($key, $value) = each($zp_result_array)) {
-              if (!ereg('^[0-9]', $key)) {
+              if (!preg_match('/^[0-9]/', $key)) {
                 $obj->result[$zp_ii][$key] = $value;
               }
             }
@@ -155,15 +166,15 @@ class queryFactory extends base {
             $obj->EOF = true;
           }
           $zp_ii++;
-	}
+        }
         while (list($key, $value) = each($obj->result[$obj->cursor])) {
-          if (!ereg('^[0-9]', $key)) {
+          if (!preg_match('/^[0-9]/', $key)) {
             $obj->fields[$key] = $value;
-	  }
+          }
         }
         $obj->EOF = false;
       } else {
-	$obj->EOF = true;
+        $obj->EOF = true;
       }
       $zc_cache->sql_cache_store($zf_sql, $obj->result);
       $time_end = explode (' ', microtime());
@@ -174,9 +185,17 @@ class queryFactory extends base {
     } else {
       $time_start = explode(' ', microtime());
       $obj = new queryFactoryResult;
-      if (!$this->db_connected) $this->set_error('0', DB_ERROR_NOT_CONNECTED);
+      if (!$this->db_connected)
+      {
+        if (!$this->connect($this->host, $this->user, $this->password, $this->database, $this->pConnect, $this->real))
+        $this->set_error('0', DB_ERROR_NOT_CONNECTED);
+      }
       $zp_db_resource = @mysql_query($zf_sql, $this->link);
       if (!$zp_db_resource) $this->set_error(@mysql_errno($this->link),@mysql_error($this->link));
+      if(!is_resource($zp_db_resource)){
+        $obj = null;
+        return true;
+      }
       $obj->resource = $zp_db_resource;
       $obj->cursor = 0;
       if ($obj->RecordCount() > 0) {
@@ -184,7 +203,7 @@ class queryFactory extends base {
         $zp_result_array = @mysql_fetch_array($zp_db_resource);
         if ($zp_result_array) {
           while (list($key, $value) = each($zp_result_array)) {
-            if (!ereg('^[0-9]', $key)) {
+            if (!preg_match('/^[0-9]/', $key)) {
               $obj->fields[$key] = $value;
             }
           }
@@ -209,9 +228,17 @@ class queryFactory extends base {
     $time_start = explode(' ', microtime());
     $obj = new queryFactoryResult;
     $obj->result = array();
-    if (!$this->db_connected) $this->set_error('0', DB_ERROR_NOT_CONNECTED);
+    if (!$this->db_connected)
+    {
+      if (!$this->connect($this->host, $this->user, $this->password, $this->database, $this->pConnect, $this->real))
+      $this->set_error('0', DB_ERROR_NOT_CONNECTED);
+    }
     $zp_db_resource = @mysql_query($zf_sql, $this->link);
     if (!$zp_db_resource) $this->set_error(mysql_errno(),mysql_error());
+    if(!is_resource($zp_db_resource)){
+      $obj = null;
+      return true;
+    }
     $obj->resource = $zp_db_resource;
     $obj->cursor = 0;
     $obj->Limit = $zf_limit;
@@ -244,9 +271,9 @@ class queryFactory extends base {
         $zp_ptr = $obj->result_random;
       }
       while (list($key, $value) = each($obj->result[$zp_ptr])) {
-        if (!ereg('^[0-9]', $key)) {
+        if (!preg_match('/^[0-9]/', $key)) {
           $obj->fields[$key] = $value;
-	}
+        }
       }
       $obj->EOF = false;
     } else {
@@ -272,7 +299,6 @@ class queryFactory extends base {
      $obj[strtoupper(@mysql_field_name($res, $i))] = new queryFactoryMeta($i, $res);
     }
     return $obj;
-
   }
 
   function get_server_info() {
@@ -290,6 +316,7 @@ class queryFactory extends base {
   function queryTime() {
     return $this->total_query_time;
   }
+
   function perform ($tableName, $tableData, $performType='INSERT', $performFilter='', $debug=false) {
     switch (strtolower($performType)) {
       case 'insert':
@@ -300,17 +327,17 @@ class queryFactory extends base {
           echo $value['fieldName'] . '#';
         }
         $insertString .= $value['fieldName'] . ", ";
-      }      
+      }
       $insertString = substr($insertString, 0, strlen($insertString)-2) . ') VALUES (';
       reset($tableData);
       foreach ($tableData as $key => $value) {
         $bindVarValue = $this->getBindVarValue($value['value'], $value['type']);
         $insertString .= $bindVarValue . ", ";
-      }  
-      $insertString = substr($insertString, 0, strlen($insertString)-2) . ')';   
+      }
+      $insertString = substr($insertString, 0, strlen($insertString)-2) . ')';
       if ($debug === true) {
         echo $insertString;
-        die(); 
+        die();
       } else {
         $this->execute($insertString);
       }
@@ -320,7 +347,7 @@ class queryFactory extends base {
       $updateString = 'UPDATE ' . $tableName . ' SET ';
       foreach ($tableData as $key => $value) {
         $bindVarValue = $this->getBindVarValue($value['value'], $value['type']);
-        $updateString .= $value['fieldName'] . '=' . $bindVarValue . ', ';  
+        $updateString .= $value['fieldName'] . '=' . $bindVarValue . ', ';
       }
       $updateString = substr($updateString, 0, strlen($updateString)-2);
       if ($performFilter != '') {
@@ -328,7 +355,7 @@ class queryFactory extends base {
       }
       if ($debug === true) {
         echo $updateString;
-        die(); 
+        die();
       } else {
         $this->execute($updateString);
       }
@@ -381,7 +408,7 @@ class queryFactory extends base {
       die('var-type undefined: ' . $type . '('.$value.')');
     }
   }
-/** 
+/**
  * method to do bind variables to a query
 **/
   function bindVars($sql, $bindVarString, $bindVarValue, $bindVarType, $debug = false) {
@@ -389,10 +416,10 @@ class queryFactory extends base {
     $sqlNew = $this->getBindVarValue($bindVarValue, $bindVarType);
     $sqlNew = str_replace($bindVarString, $sqlNew, $sql);
     return $sqlNew;
-  }  
-  
+  }
+
   function prepareInput($string) {
-    return @mysql_real_escape_string($string);
+    return $this->prepare_input($string);
   }
 }
 
@@ -410,8 +437,8 @@ class queryFactoryResult {
         $this->EOF = true;
       } else {
         while(list($key, $value) = each($this->result[$this->cursor])) {
-	  $this->fields[$key] = $value;
-	}
+          $this->fields[$key] = $value;
+        }
       }
     } else {
       $zp_result_array = @mysql_fetch_array($this->resource);
@@ -419,7 +446,7 @@ class queryFactoryResult {
         $this->EOF = true;
       } else {
         while (list($key, $value) = each($zp_result_array)) {
-          if (!ereg('^[0-9]', $key)) {
+          if (!preg_match('/^[0-9]/', $key)) {
             $this->fields[$key] = $value;
           }
         }
@@ -432,16 +459,16 @@ class queryFactoryResult {
     if ($this->cursor < $this->Limit) {
       $zp_result_array = $this->result[$this->result_random[$this->cursor]];
       while (list($key, $value) = each($zp_result_array)) {
-        if (!ereg('^[0-9]', $key)) {
+        if (!preg_match('/^[0-9]/', $key)) {
           $this->fields[$key] = $value;
-	}
+        }
       }
     } else {
       $this->EOF = true;
     }
   }
 
-    function RecordCount() {
+  function RecordCount() {
     return @mysql_num_rows($this->resource);
   }
 
@@ -469,4 +496,3 @@ class queryFactoryMeta {
     $this->max_length = @mysql_field_len($zp_res, $zp_field);
   }
 }
-?>

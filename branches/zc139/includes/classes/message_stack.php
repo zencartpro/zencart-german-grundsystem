@@ -3,10 +3,10 @@
  * messageStack Class.
  *
  * @package classes
- * @copyright Copyright 2003-2006 Zen Cart Development Team
+ * @copyright Copyright 2003-2009 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: message_stack.php 5384 2006-12-24 19:38:39Z drbyte $
+ * @version $Id: message_stack.php 14169 2009-08-15 23:58:05Z drbyte $
  */
 if (!defined('IS_ADMIN_FLAG')) {
   die('Illegal Access');
@@ -33,23 +33,27 @@ class messageStack extends base {
     }
   }
 
-  // class methods
   function add($class, $message, $type = 'error') {
     global $template, $current_page_base;
-
     $message = trim($message);
+    $duplicate = false;
     if (strlen($message) > 0) {
       if ($type == 'error') {
-        $this->messages[] = array('params' => 'class="messageStackError larger"', 'class' => $class, 'text' => zen_image($template->get_template_dir(ICON_IMAGE_ERROR, DIR_WS_TEMPLATE, $current_page_base,'images/icons'). '/' . ICON_IMAGE_ERROR, ICON_ERROR_ALT) . '  ' . $message);
+        $theAlert = array('params' => 'class="messageStackError larger"', 'class' => $class, 'text' => zen_image($template->get_template_dir(ICON_IMAGE_ERROR, DIR_WS_TEMPLATE, $current_page_base,'images/icons'). '/' . ICON_IMAGE_ERROR, ICON_ERROR_ALT) . '  ' . $message);
       } elseif ($type == 'warning') {
-        $this->messages[] = array('params' => 'class="messageStackWarning larger"', 'class' => $class, 'text' => zen_image($template->get_template_dir(ICON_IMAGE_WARNING, DIR_WS_TEMPLATE, $current_page_base,'images/icons'). '/' . ICON_IMAGE_WARNING, ICON_WARNING_ALT) . '  ' . $message);
+        $theAlert = array('params' => 'class="messageStackWarning larger"', 'class' => $class, 'text' => zen_image($template->get_template_dir(ICON_IMAGE_WARNING, DIR_WS_TEMPLATE, $current_page_base,'images/icons'). '/' . ICON_IMAGE_WARNING, ICON_WARNING_ALT) . '  ' . $message);
       } elseif ($type == 'success') {
-        $this->messages[] = array('params' => 'class="messageStackSuccess larger"', 'class' => $class, 'text' => zen_image($template->get_template_dir(ICON_IMAGE_SUCCESS, DIR_WS_TEMPLATE, $current_page_base,'images/icons'). '/' . ICON_IMAGE_SUCCESS, ICON_SUCCESS_ALT) . '  ' . $message);
+        $theAlert = array('params' => 'class="messageStackSuccess larger"', 'class' => $class, 'text' => zen_image($template->get_template_dir(ICON_IMAGE_SUCCESS, DIR_WS_TEMPLATE, $current_page_base,'images/icons'). '/' . ICON_IMAGE_SUCCESS, ICON_SUCCESS_ALT) . '  ' . $message);
       } elseif ($type == 'caution') {
-        $this->messages[] = array('params' => 'class="messageStackCaution larger"', 'class' => $class, 'text' => zen_image($template->get_template_dir(ICON_IMAGE_WARNING, DIR_WS_TEMPLATE, $current_page_base,'images/icons'). '/' . ICON_IMAGE_WARNING, ICON_WARNING_ALT) . '  ' . $message);
+        $theAlert = array('params' => 'class="messageStackCaution larger"', 'class' => $class, 'text' => zen_image($template->get_template_dir(ICON_IMAGE_WARNING, DIR_WS_TEMPLATE, $current_page_base,'images/icons'). '/' . ICON_IMAGE_WARNING, ICON_WARNING_ALT) . '  ' . $message);
       } else {
-        $this->messages[] = array('params' => 'class="messageStackError larger"', 'class' => $class, 'text' => $message);
+        $theAlert = array('params' => 'class="messageStackError larger"', 'class' => $class, 'text' => $message);
       }
+
+      for ($i=0, $n=sizeof($this->messages); $i<$n; $i++) {
+        if ($theAlert['text'] == $this->messages[$i]['text'] && $theAlert['class'] == $this->messages[$i]['class']) $duplicate = true;
+      }
+      if (!$duplicate) $this->messages[] = $theAlert;
     }
   }
 
@@ -81,7 +85,7 @@ class messageStack extends base {
     }
 
     // remove duplicates before displaying
-//    $output = array_values(array_unique($output)); 
+//    $output = array_values(array_unique($output));
 
     require($template->get_template_dir('tpl_message_stack_default.php',DIR_WS_TEMPLATE, $current_page_base,'templates'). '/tpl_message_stack_default.php');
   }
