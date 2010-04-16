@@ -63,6 +63,8 @@
   $sql = "select zone_id, zone_name from " . DB_PREFIX . "zones";  // order by zone_country_id, zone_name
   $zone = $db->Execute($sql);
   $zone_string = '';
+  $zone_string .= '<option value="-1"' . setSelected('-1', $_POST['store_zone']) . '>' . '-- Please Select --' . '</option>';
+  $zone_string .= '<option value="0"' . setSelected('0', $_POST['store_zone']) . '>' . '-None-' . '</option>';
   while (!$zone->EOF) {
     $zone_string .= '<option value="' . $zone->fields['zone_id'] . '"' . setSelected($zone->fields['zone_id'], $_POST['store_zone']) . '>' . $zone->fields['zone_name'] . '</option>';
     $zone->MoveNext();
@@ -95,4 +97,3 @@
 // this sets the first field to email address on login - setting in /common/tpl_main_page.php
   $zc_first_field= 'onload="document.getElementById(\'store_name\').focus()"';
 
-?>
