@@ -4,10 +4,10 @@
  * Functions related to processing Gift Vouchers/Certificates and coupons
  *
  * @package functions
- * @copyright Copyright 2003-2006 Zen Cart Development Team
+ * @copyright Copyright 2003-2008 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: functions_gvcoupons.php 4135 2006-08-14 04:25:02Z drbyte $
+ * @version $Id: functions_gvcoupons.php 8844 2008-07-05 03:47:09Z drbyte $
  */
 
 ////
@@ -64,10 +64,10 @@
 
   function zen_create_coupon_code($salt="secret", $length = SECURITY_CODE_LENGTH) {
     global $db;
-    $ccid = md5(uniqid("","salt"));
-    $ccid .= md5(uniqid("","salt"));
-    $ccid .= md5(uniqid("","salt"));
-    $ccid .= md5(uniqid("","salt"));
+    $ccid = md5(uniqid("", $salt));
+    $ccid .= md5(uniqid("", $salt));
+    $ccid .= md5(uniqid("", $salt));
+    $ccid .= md5(uniqid("", $salt));
     srand((double)microtime()*1000000); // seed the random number generator
     $random_start = @rand(0, (128-$length));
     $good_result = 0;

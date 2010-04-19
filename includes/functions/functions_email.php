@@ -1,14 +1,14 @@
 <?php
 /**
  * functions_email.php
- * Processes all email activities from Zen Cart
+ * Processes all outbound email from Zen Cart
  * Hooks into phpMailer class for actual email encoding and sending
  *
  * @package functions
- * @copyright Copyright 2003-2007 Zen Cart Development Team
+ * @copyright Copyright 2003-2010 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: functions_email.php 7336 2007-10-31 12:35:12Z drbyte $
+ * @version $Id: functions_email.php 15691 2010-03-16 22:32:17Z drbyte $
  * 2007-09-30 added encryption support for Gmail Chuck Redman
  */
 
@@ -23,8 +23,15 @@
  */
   if (!defined('EMAIL_SYSTEM_DEBUG')) define('EMAIL_SYSTEM_DEBUG','0');
   if (!defined('EMAIL_ATTACHMENTS_ENABLED')) define('EMAIL_ATTACHMENTS_ENABLED', true);
+/**
+ * enable embedded image support
+ */
+  if (!defined('EMAIL_ATTACH_EMBEDDED_IMAGES')) define('EMAIL_ATTACH_EMBEDDED_IMAGES', 'Yes');
 
-  // Gmail transport to use - to enable set to ssl or tls
+/**
+ * If using authentication protocol, enter appropriate option here: 'ssl' or 'tls' or 'starttls'
+ * If using 'starttls', you must add a define for 'SMTPAUTH_EMAIL_CERTIFICATE_CONTEXT' in the extra_datafiles folder to supply your certificate-context
+ */
   if (!defined('SMTPAUTH_EMAIL_PROTOCOL')) define('SMTPAUTH_EMAIL_PROTOCOL', 'none');
 
 /**
@@ -44,25 +51,25 @@
 **/
   function zen_mail($to_name, $to_address, $email_subject, $email_text, $from_email_name, $from_email_address, $block=array(), $module='default', $attachments_list='' ) {
     global $db, $messageStack, $zco_notifier;
-    if (!defined('DEVELOPER_OVERRIDE_EMAIL_STATUS') || (defined('DEVELOPER_OVERRIDE_EMAIL_STATUS') && DEVELOPER_OVERRIDE_EMAIL_STATUS == 'site')) 
+    if (!defined('DEVELOPER_OVERRIDE_EMAIL_STATUS') || (defined('DEVELOPER_OVERRIDE_EMAIL_STATUS') && DEVELOPER_OVERRIDE_EMAIL_STATUS == 'site'))
       if (SEND_EMAILS != 'true') return false;  // if sending email is disabled in Admin, just exit
 
     if (defined('DEVELOPER_OVERRIDE_EMAIL_ADDRESS') && DEVELOPER_OVERRIDE_EMAIL_ADDRESS != '') $to_address = DEVELOPER_OVERRIDE_EMAIL_ADDRESS;
-    
+
     // ignore sending emails for any of the following pages
     // (The EMAIL_MODULES_TO_SKIP constant can be defined in a new file in the "extra_configures" folder)
     if (defined('EMAIL_MODULES_TO_SKIP') && in_array($module,explode(",",constant('EMAIL_MODULES_TO_SKIP')))) return false;
 
     // check for injection attempts. If new-line characters found in header fields, simply fail to send the message
     foreach(array($from_email_address, $to_address, $from_email_name, $to_name, $email_subject) as $key=>$value) {
-      if (eregi("\r",$value) || eregi("\n",$value)) return false;
+      if (preg_match("/\r/i",$value) || preg_match("/\n/i",$value)) return false;
     }
 
     // if no text or html-msg supplied, exit
     if (trim($email_text) == '' && (!zen_not_null($block) || (isset($block['EMAIL_MESSAGE_HTML']) && $block['EMAIL_MESSAGE_HTML'] == '')) ) return false;
 
     // Parse "from" addresses for "name" <email@address.com> structure, and supply name/address info from it.
-    if (eregi(" *([^<]*) *<([^>]*)> *",$from_email_address,$regs)) {
+    if (preg_match("/ *([^<]*) *<([^>]*)> */i",$from_email_address,$regs)) {
       $from_email_name = trim($regs[1]);
       $from_email_address = $regs[2];
     }
@@ -71,27 +78,28 @@
 
     // loop thru multiple email recipients if more than one listed  --- (esp for the admin's "Extra" emails)...
     foreach(explode(',',$to_address) as $key=>$value) {
-      if (eregi(" *([^<]*) *<([^>]*)> *",$value,$regs)) {
+      if (preg_match("/ *([^<]*) *<([^>]*)> */i",$value,$regs)) {
         $to_name = str_replace('"', '', trim($regs[1]));
         $to_email_address = $regs[2];
-      } elseif (eregi(" *([^ ]*) *",$value,$regs)) {
+      } elseif (preg_match("/ *([^ ]*) */i",$value,$regs)) {
         $to_email_address = trim($regs[1]);
       }
-      if (!isset($to_email_address)) $to_email_address=$to_address; //if not more than one, just use the main one.
+      if (!isset($to_email_address)) $to_email_address=trim($to_address); //if not more than one, just use the main one.
 
       //define some additional html message blocks available to templates, then build the html portion.
-      if ($block['EMAIL_TO_NAME']=='')      $block['EMAIL_TO_NAME'] = $to_name;
-      if ($block['EMAIL_TO_ADDRESS']=='')   $block['EMAIL_TO_ADDRESS'] = $to_email_address;
-      if ($block['EMAIL_SUBJECT']=='')      $block['EMAIL_SUBJECT'] = $email_subject;
-      if ($block['EMAIL_FROM_NAME']=='')    $block['EMAIL_FROM_NAME'] = $from_email_name;
-      if ($block['EMAIL_FROM_ADDRESS']=='') $block['EMAIL_FROM_ADDRESS'] = $from_email_address;
-      $email_html = zen_build_html_email_from_template($module, $block);
+      //define some additional html message blocks available to templates, then build the html portion.
+      if (!isset($block['EMAIL_TO_NAME']) || $block['EMAIL_TO_NAME'] == '')       $block['EMAIL_TO_NAME'] = $to_name;
+      if (!isset($block['EMAIL_TO_ADDRESS']) || $block['EMAIL_TO_ADDRESS'] == '') $block['EMAIL_TO_ADDRESS'] = $to_email_address;
+      if (!isset($block['EMAIL_SUBJECT']) || $block['EMAIL_SUBJECT'] == '')       $block['EMAIL_SUBJECT'] = $email_subject;
+      if (!isset($block['EMAIL_FROM_NAME']) || $block['EMAIL_FROM_NAME'] == '')   $block['EMAIL_FROM_NAME'] = $from_email_name;
+      if (!isset($block['EMAIL_FROM_ADDRESS']) || $block['EMAIL_FROM_ADDRESS'] == '') $block['EMAIL_FROM_ADDRESS'] = $from_email_address;
+      $email_html = (!is_array($block) && substr($block, 0, 6) == '<html>') ? $block : zen_build_html_email_from_template($module, $block);
       if (!is_array($block) && $block == '' || $block == 'none') $email_html = '';
 
       // Build the email based on whether customer has selected HTML or TEXT, and whether we have supplied HTML or TEXT-only components
       // special handling for XML content
       if ($email_text == '') {
-        $email_text = str_replace(array('<br />','<br />'), "<br />\n", $block['EMAIL_MESSAGE_HTML']);
+        $email_text = str_replace(array('<br>','<br />'), "<br />\n", $block['EMAIL_MESSAGE_HTML']);
         $email_text = str_replace('</p>', "</p>\n", $email_text);
         $email_text = ($module != 'xml_record') ? htmlspecialchars(stripslashes(strip_tags($email_text))) : $email_text;
       } else {
@@ -100,7 +108,7 @@
 
       if ($module != 'xml_record') {
         if (!strstr($email_text, sprintf(EMAIL_DISCLAIMER, STORE_OWNER_EMAIL_ADDRESS)) && $to_email_address != STORE_OWNER_EMAIL_ADDRESS && !defined('EMAIL_DISCLAIMER_NEW_CUSTOMER')) $email_text .= "\n" . sprintf(EMAIL_DISCLAIMER, STORE_OWNER_EMAIL_ADDRESS);
-        if (!strstr($email_text, EMAIL_SPAM_DISCLAIMER) && $to_email_address != STORE_OWNER_EMAIL_ADDRESS) $email_text .= "\n" . EMAIL_SPAM_DISCLAIMER;
+        if (defined('EMAIL_SPAM_DISCLAIMER') && EMAIL_SPAM_DISCLAIMER != '' && !strstr($email_text, EMAIL_SPAM_DISCLAIMER) && $to_email_address != STORE_OWNER_EMAIL_ADDRESS) $email_text .= "\n" . EMAIL_SPAM_DISCLAIMER;
       }
 
       // bof: body of the email clean-up
@@ -110,7 +118,7 @@
       while (strstr($email_text, '&&')) $email_text = str_replace('&&', '&', $email_text);
 
       // clean up currencies for text emails
-      $zen_fix_currencies = split("[:,]" , CURRENCIES_TRANSLATIONS);
+      $zen_fix_currencies = preg_split("/[:,]/" , CURRENCIES_TRANSLATIONS);
       $size = sizeof($zen_fix_currencies);
       for ($i=0, $n=$size; $i<$n; $i+=2) {
         $zen_fix_current = $zen_fix_currencies[$i];

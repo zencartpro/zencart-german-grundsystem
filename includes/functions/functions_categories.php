@@ -3,10 +3,10 @@
  * functions_categories.php
  *
  * @package functions
- * @copyright Copyright 2003-2007 Zen Cart Development Team
+ * @copyright Copyright 2003-2009 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: functions_categories.php 6424 2007-05-31 05:59:21Z ajeh $
+ * @version $Id: functions_categories.php 14141 2009-08-10 19:34:47Z wilt $
  */
 
 ////
@@ -196,25 +196,24 @@
     global $db;
     $cPath = '';
 
-    $category_query = "select p2c.categories_id
-                       from " . TABLE_PRODUCTS . " p, " . TABLE_PRODUCTS_TO_CATEGORIES . " p2c
-                       where p.products_id = '" . (int)$products_id . "'
-                       and p.products_status = '1'
-                       and p.products_id = p2c.products_id limit 1";
+    $category_query = "select p.products_id, p.master_categories_id
+                       from " . TABLE_PRODUCTS . " p
+                       where p.products_id = '" . (int)$products_id . "' limit 1";
+
 
     $category = $db->Execute($category_query);
 
     if ($category->RecordCount() > 0) {
 
       $categories = array();
-      zen_get_parent_categories($categories, $category->fields['categories_id']);
+      zen_get_parent_categories($categories, $category->fields['master_categories_id']);
 
       $categories = array_reverse($categories);
 
       $cPath = implode('_', $categories);
 
       if (zen_not_null($cPath)) $cPath .= '_';
-      $cPath .= $category->fields['categories_id'];
+      $cPath .= $category->fields['master_categories_id'];
     }
 
     return $cPath;
@@ -279,7 +278,7 @@
       $parent_categories = $db->Execute($parent_categories_query);
 
       while (!$parent_categories->EOF) {
-        if ($parent_categories->fields['parent_id'] !=0 && !$incat) {
+        if ($parent_categories->fields['parent_id'] !=0 && !$in_cat) {
           $in_cat = zen_product_in_parent_category($product_id, $cat_id, $parent_categories->fields['parent_id']);
         }
         $parent_categories->MoveNext();
@@ -468,7 +467,7 @@
     $lookup_query = "select parent_id from " . TABLE_CATEGORIES . " where categories_id='" . (int)$categories_id . "'";
     $lookup = $db->Execute($lookup_query);
 
-    $lookup_query = "select categories_name from " . TABLE_CATEGORIES_DESCRIPTION . " where categories_id='" . (int)$lookup->fields['parent_id'] . "'";
+    $lookup_query = "select categories_name from " . TABLE_CATEGORIES_DESCRIPTION . " where categories_id='" . (int)$lookup->fields['parent_id'] . "' and language_id= " . $_SESSION['languages_id'];
     $lookup = $db->Execute($lookup_query);
 
     return $lookup->fields['categories_name'];
@@ -564,7 +563,7 @@
 //        $calculated_category_path_string .= $calculated_category_path[$i][$j]['text'] . '&nbsp;&gt;&nbsp;';
         $calculated_category_path_string = $calculated_category_path[$i][$j]['text'] . '&nbsp;&gt;&nbsp;' . $calculated_category_path_string;
       }
-      $calculated_category_path_string = substr($calculated_category_path_string, 0, -16) . '<br />';
+      $calculated_category_path_string = substr($calculated_category_path_string, 0, -16) . '<br>';
     }
     $calculated_category_path_string = substr($calculated_category_path_string, 0, -4);
 
@@ -581,7 +580,7 @@
       for ($j=0, $k=sizeof($calculated_category_path[$i]); $j<$k; $j++) {
         $calculated_category_path_string .= $calculated_category_path[$i][$j]['id'] . '_';
       }
-      $calculated_category_path_string = substr($calculated_category_path_string, 0, -1) . '<br />';
+      $calculated_category_path_string = substr($calculated_category_path_string, 0, -1) . '<br>';
     }
     $calculated_category_path_string = substr($calculated_category_path_string, 0, -4);
 
