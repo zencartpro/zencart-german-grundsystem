@@ -1,9 +1,9 @@
-<!--   LAST UPDATE:   r15919
+<!--   LAST UPDATE:   r15976
 /**
  * @package documentation
  * @copyright Copyright 2003-2010 Zen Cart Development Team
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: changelog-v1-3-9.html 15927 2010-04-13 00:28:31Z drbyte $
+ * @version $Id: changelog-v1-3-9.html 15976 2010-04-17 01:48:44Z drbyte $
  */
 //-->
 <html>
@@ -97,6 +97,7 @@ s
 <li>/admin/developers_tool_kit.php</li>
 <li>/admin/ezpages.php</li>
 <li>/admin/featured.php</li>
+<li>/admin/gv_mail.php</li>
 <li>/admin/includes/.htaccess</li>
 <li>/admin/includes/application_top.php</li>
 <li>/admin/includes/attributes_preview.php</li>
@@ -140,6 +141,7 @@ s
 <li>/admin/includes/languages/english/product_music.php</li>
 <li>/admin/includes/languages/english/product.php</li>
 <li>/admin/includes/languages/english/reviews.php</li>
+<li>/admin/includes/languages/english/store_manager.php</li>
 <li>/admin/includes/languages/english.php</li>
 <li>/admin/includes/modules/category_product_listing.php</li>
 <li>/admin/includes/modules/copy_to_confirm.php</li>
@@ -231,6 +233,7 @@ s
 <li>/includes/database_tables.php</li>
 <li>/includes/filenames.php</li>
 <li>/includes/functions/banner.php</li>
+<li>/includes/functions/featured.php</li>
 <li>/includes/functions/functions_categories.php</li>
 <li>/includes/functions/functions_email.php</li>
 <li>/includes/functions/functions_general.php</li>
@@ -239,7 +242,9 @@ s
 <li>/includes/functions/functions_prices.php</li>
 <li>/includes/functions/functions_taxes.php</li>
 <li>/includes/functions/html_output.php</li>
+<li>/includes/functions/salemaker.php</li>
 <li>/includes/functions/sessions.php</li>
+<li>/includes/functions/specials.php</li>
 <li>/includes/index_filters/default_filter.php</li>
 <li>/includes/index_filters/music_genre_filter.php</li>
 <li>/includes/index_filters/record_company_filter.php</li>
@@ -397,8 +402,8 @@ The following files which were included in patches for 1.3.8/a are no longer nee
 </ul>
 <em>(There are files by this name inside the 1.3.9 zip, but they are essentially blank, so if you use them to overwrite the older ones on your old site, 
 that will prevent duplication if you forget to delete them from the server. But, it's better to clean up instead of leaving a mess behind.)</em>
-<h1>New Files (since  release of v1.3.8)</h1>
-<ul>
+
+<h1>New Files (since  release of v1.3.8)</h1><ul>
 <li>/admin/includes/extra_configures/enable_error_logging.php</li>
 <li>/admin/includes/languages/english/extra_definitions/onlyFor139.php</li>
 <li>/docs/.htaccess</li>

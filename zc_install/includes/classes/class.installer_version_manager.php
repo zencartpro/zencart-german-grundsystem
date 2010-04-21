@@ -21,7 +21,7 @@
 ////     ii) add another IF statement to set the displayed version text ($retVal)
 ////  c. add a new check_versionXXXX() function to the end of the class (BEFORE the closing } in the file)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
-#error_reporting(E_ALL);
+
 require_once('../admin/includes/functions/extra_functions/rl_tools.php');
   class versionManager extends base{
     var $latest_version, $found_version, $zdb_configuration_table_found;
@@ -78,7 +78,11 @@ require_once('../admin/includes/functions/extra_functions/rl_tools.php');
       $this->version136 = $this->check_version_136();
       $this->version137 = $this->check_version_137();
       $this->version138 = $this->check_version_138();
+<<<<<<< .mine
+	  $this->version139 = $this->check_version_139();
+=======
       $this->version139 = $this->check_version_139();
+>>>>>>> .r559
       $this->version138multi2 = $this->check_version_138multi2();
 
 //        if ($this->version103 == true)  $retVal = '1.0.3';
@@ -103,7 +107,11 @@ require_once('../admin/includes/functions/extra_functions/rl_tools.php');
         if ($this->version136 == true) $retVal = '1.3.6';
         if ($this->version137 == true) $retVal = '1.3.7';
         if ($this->version138 == true) $retVal = '1.3.8';
+<<<<<<< .mine
+		if ($this->version139 == true) $retVal = '1.3.9';
+=======
         if ($this->version139 == true) $retVal = '1.3.9';
+>>>>>>> .r559
         if ($this->version138multi2 == true) $retVal = '1.3.8multi2';
 
       return $retVal;
@@ -138,7 +146,6 @@ require_once('../admin/includes/functions/extra_functions/rl_tools.php');
       $ccmodule_installed='false';
 			$got_v1_1_2 = false;
       $sql = "SELECT configuration_value FROM " . DB_PREFIX . "configuration WHERE configuration_key = 'MODULE_PAYMENT_CC_STATUS'";
-      #writeRL($sql . ";\n");
       $result = $db_test->Execute($sql);
       if ($result->RecordCount()>0 && $result->fields['configuration_value'] == 'True') { $ccmodule_installed = 'true'; }
       $sql = "SELECT count(*) as count FROM " . DB_PREFIX . "configuration WHERE configuration_key = 'MODULE_PAYMENT_CC_STORE_NUMBER'";
@@ -274,8 +281,14 @@ require_once('../admin/includes/functions/extra_functions/rl_tools.php');
 
     function check_version_121() {
       global $db_test;
+<<<<<<< .mine
       $got_v1_2_1a = false;
       $got_v1_2_1b = false;
+
+=======
+      $got_v1_2_1a = false;
+      $got_v1_2_1b = false;
+>>>>>>> .r559
       // test to see if the v1.2.0->v1.2.1 upgrade has been completed
       $tables = $db_test->Execute("SHOW TABLES like '" . DB_PREFIX . "project_version'");
       if ($tables->RecordCount() > 0) {
@@ -287,6 +300,18 @@ require_once('../admin/includes/functions/extra_functions/rl_tools.php');
       }
 
       //2nd check for v1.2.1
+<<<<<<< .mine
+      $tables = $db_test->Execute("SHOW TABLES like '" . DB_PREFIX . "products_discount_quantity'");
+      if ($tables->RecordCount() > 0) {
+        $sql = "show fields from " . DB_PREFIX . "products_discount_quantity";
+        $result = $db_test->Execute($sql);
+        while (!$result->EOF) {
+          if (ZC_UPG_DEBUG==true) echo "121b-fields-'discount_qty'->FLOAT=" . $result->fields['Field'] . '->' . $result->fields['Type'] . '<br>';
+          if  ($result->fields['Field'] == 'discount_qty') {
+            if (strtoupper($result->fields['Type']) == 'FLOAT')  {
+              $got_v1_2_1b = true;
+            }
+=======
       $tables = $db_test->Execute("SHOW TABLES like '" . DB_PREFIX . "products_discount_quantity'");
       if ($tables->RecordCount() > 0) {
       $sql = "show fields from " . DB_PREFIX . "products_discount_quantity";
@@ -296,9 +321,10 @@ require_once('../admin/includes/functions/extra_functions/rl_tools.php');
         if  ($result->fields['Field'] == 'discount_qty') {
           if (strtoupper($result->fields['Type']) == 'FLOAT')  {
             $got_v1_2_1b = true;
+>>>>>>> .r559
           }
+          $result->MoveNext();
         }
-      $result->MoveNext();
         }
       }
 
@@ -426,7 +452,6 @@ require_once('../admin/includes/functions/extra_functions/rl_tools.php');
       global $db_test;
       //check for v1.2.6
       $sql = "select configuration_title from " . DB_PREFIX . "configuration where configuration_key='CATEGORIES_TABS_STATUS'";
-      #writeRL($sql . ";\n");
       $result = $db_test->Execute($sql);
       if (ZC_UPG_DEBUG==true) echo "126-configkey_check=" . $result->fields['configuration_title'] . '<br>';
       if  ($result->fields['configuration_title'] == 'Categories-Tabs Menu ON/OFF') {
@@ -441,7 +466,6 @@ require_once('../admin/includes/functions/extra_functions/rl_tools.php');
       global $db_test;
       //check for v1.2.7
       $sql = "select configuration_description from " . DB_PREFIX . "configuration where configuration_key='SHOW_VERSION_UPDATE_IN_HEADER'";
-      #writeRL($sql . ";\n");
       $result = $db_test->Execute($sql);
       if (ZC_UPG_DEBUG==true) echo "127a-configkey_check=" . $result->fields['configuration_description'] . '<br>';
       if  ($result->fields['configuration_description'] == 'Automatically check to see if a new version of Zen Cart is available. Enabling this can sometimes slow down the loading of Admin pages. (Displayed on main Index page after login, and Server Info page.)') {
@@ -704,6 +728,47 @@ require_once('../admin/includes/functions/extra_functions/rl_tools.php');
       return $got_v1_3_8;
     } //end of 1.3.8 check
 
+<<<<<<< .mine
+
+
+    function check_version_139() {
+      global $db_test;
+      $got_v1_3_9 = false;
+      $got_v1_3_9a = false;
+      $got_v1_3_9b = false;
+      //1st check for v1.3.9
+      $sql = "select configuration_title from " . DB_PREFIX . "configuration where configuration_key = 'SHOW_SPLIT_TAX_CHECKOUT'";
+      $result = $db_test->Execute($sql);
+      if (ZC_UPG_DEBUG==true) echo "139a-configtitle_check SHOW_SPLIT_TAX_CHECKOUT =" . $result->fields['configuration_title'] . '<br>';
+      if  ($result->fields['configuration_title'] == 'Show Split Tax Lines') {
+        $got_v1_3_9a = true;
+      }
+      //2nd check for v1.3.9
+      $sql = "show fields from " . DB_PREFIX . "authorizenet";
+      $result = $db_test->Execute($sql);
+      while (!$result->EOF) {
+        if (ZC_UPG_DEBUG==true) echo "139b-fields-'transaction_id'->bigint=" . $result->fields['Field'] . '->' . $result->fields['Type'] . '<br>';
+        if  ($result->fields['Field'] == 'transaction_id') {
+          if (strstr(strtoupper($result->fields['Type']),'BIGINT'))  {
+            $got_v1_3_9b = true;
+          }
+        }
+      $result->MoveNext();
+      }
+
+      if (ZC_UPG_DEBUG==true) {
+        echo '1.3.9a='.$got_v1_3_9a.'<br>';
+        echo '1.3.9b='.$got_v1_3_9b.'<br>';
+      }
+      // evaluate all 1.3.9 checks
+      if ($got_v1_3_9a && $got_v1_3_9b ) {
+        $got_v1_3_9 = true;
+        if (ZC_UPG_DEBUG==true) echo '<br>Got 1.3.9<br>';
+      }
+      return $got_v1_3_9;
+    } //end of 1.3.9 check
+
+=======
     function check_version_139() {
       global $db_test;
       $got_v1_3_9 = false;
@@ -742,6 +807,7 @@ require_once('../admin/includes/functions/extra_functions/rl_tools.php');
     } //end of 1.3.9 check
     
     
+>>>>>>> .r559
     function check_version_138multi2() {
       global $db_test;
       $got_v1_3_8multi2 = false;
