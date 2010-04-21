@@ -1,4 +1,7 @@
-# $Id: .htaccess 15945 2010-04-15 14:31:11Z drbyte $
+#
+# @copyright Copyright 2003-2010 Zen Cart Development Team
+# @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
+# @version $Id: .htaccess 15992 2010-04-19 06:02:20Z drbyte $
 #
 # This is used with Apache WebServers
 #
@@ -12,18 +15,21 @@
 #  AllowOverride Limit Options Indexes
 #</Directory>
 ###############################
+
 DirectoryIndex index.php
+
 # prevents inappropriate browsing 
 <FilesMatch ".*\..*">
-Order Allow,Deny
-Deny from all
+  Order Allow,Deny
+  Deny from all
 </FilesMatch>
 <FilesMatch "(^$|^favicon.ico$|.*\.(php|js|css|jpg|gif|png|html)$)">
-Order Allow,Deny
-Allow from all
+  Order Allow,Deny
+  Allow from all
 </FilesMatch>
-OPTIONS -Indexes -ExecCGI
+
 IndexIgnore */*
+
 
 # The following disables mod_security in apache, which may be necessary during installation
 # This file should only be used INSIDE the zc_install folder. Using the following directive elsewhere can
@@ -38,3 +44,4 @@ IndexIgnore */*
 ## following lines:
 #SecFilterEngine off
 #SecFilterScanPOST Off
+

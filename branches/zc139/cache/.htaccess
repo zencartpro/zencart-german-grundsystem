@@ -1,4 +1,7 @@
-# $Id: .htaccess 15835 2010-04-05 20:57:09Z drbyte $
+#
+# @copyright Copyright 2003-2010 Zen Cart Development Team
+# @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
+# @version $Id: .htaccess 15992 2010-04-19 06:02:20Z drbyte $
 #
 # This is used with Apache WebServers
 #
@@ -14,14 +17,18 @@
 ###############################
 
 <Limit GET POST PUT>
-Order Allow,Deny
-Deny from All
+  Order Allow,Deny
+  Deny from All
 </Limit>
+
 #NOBODY SHOULD BE SNOOPING HERE
+
 # deny *everything*
 <FilesMatch ".*">
-Order Allow,Deny
-Deny from all
+  Order Allow,Deny
+  Deny from all
 </FilesMatch>
-OPTIONS -Indexes -ExecCGI
+
 IndexIgnore */*
+
+OPTIONS -Indexes -ExecCGI

@@ -2,7 +2,7 @@
 # * Main Zen Cart SQL Load for MySQL databases
 # * @package Installer
 # * @access private
-# * @copyright Copyright 2003-2007 Zen Cart Development Team
+# * @copyright Copyright 2003-2010 Zen Cart Development Team
 # * @copyright Portions Copyright 2003 osCommerce
 # * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
 # * @version $Id$
@@ -34,7 +34,7 @@ CREATE TABLE upgrade_exceptions (
   errordate datetime default '0001-01-01 00:00:00',
   sqlstatement text,
   PRIMARY KEY  (upgrade_exception_id)
-) TYPE=MyISAM;
+) ENGINE=MyISAM;
 
 
 # --------------------------------------------------------
@@ -59,7 +59,7 @@ CREATE TABLE address_book (
   entry_zone_id int(11) NOT NULL default '0',
   PRIMARY KEY  (address_book_id),
   KEY idx_address_book_customers_id_zen (customers_id)
-) TYPE=MyISAM;
+) ENGINE=MyISAM;
 
 # --------------------------------------------------------
 
@@ -73,7 +73,7 @@ CREATE TABLE address_format (
   address_format varchar(128) NOT NULL default '',
   address_summary varchar(48) NOT NULL default '',
   PRIMARY KEY  (address_format_id)
-) TYPE=MyISAM;
+) ENGINE=MyISAM;
 
 # --------------------------------------------------------
 
@@ -91,7 +91,7 @@ CREATE TABLE admin (
   PRIMARY KEY  (admin_id),
   KEY idx_admin_name_zen (admin_name),
   KEY idx_admin_email_zen (admin_email)
-) TYPE=MyISAM;
+) ENGINE=MyISAM;
 
 # --------------------------------------------------------
 
@@ -111,7 +111,7 @@ CREATE TABLE admin_activity_log (
   KEY idx_page_accessed_zen (page_accessed),
   KEY idx_access_date_zen (access_date),
   KEY idx_ip_zen (ip_address)
-) TYPE=MyISAM;
+) ENGINE=MyISAM;
 
 
 # --------------------------------------------------------
@@ -127,13 +127,13 @@ CREATE TABLE authorizenet (
   response_code int(1) NOT NULL default '0',
   response_text varchar(255) NOT NULL default '',
   authorization_type varchar(50) NOT NULL default '',
-  transaction_id int(15) NOT NULL default '0',
+  transaction_id bigint default NULL,
   sent longtext NOT NULL,
   received longtext NOT NULL,
   time varchar(50) NOT NULL default '',
   session_id varchar(255) NOT NULL default '',
   PRIMARY KEY  (id)
-) TYPE=MyISAM;
+) ENGINE=MyISAM;
 
 # --------------------------------------------------------
 
@@ -162,7 +162,7 @@ CREATE TABLE banners (
   KEY idx_status_group_zen (status,banners_group),
   KEY idx_expires_date_zen (expires_date),
   KEY idx_date_scheduled_zen (date_scheduled)
-) TYPE=MyISAM;
+) ENGINE=MyISAM;
 
 
 # --------------------------------------------------------
@@ -180,7 +180,7 @@ CREATE TABLE banners_history (
   banners_history_date datetime NOT NULL default '0001-01-01 00:00:00',
   PRIMARY KEY  (banners_history_id),
   KEY idx_banners_id_zen (banners_id)
-) TYPE=MyISAM;
+) ENGINE=MyISAM;
 
 # --------------------------------------------------------
 
@@ -201,7 +201,7 @@ CREATE TABLE categories (
   KEY idx_parent_id_cat_id_zen (parent_id,categories_id),
   KEY idx_status_zen (categories_status),
   KEY idx_sort_order_zen (sort_order)
-) TYPE=MyISAM;
+) ENGINE=MyISAM;
 
 # --------------------------------------------------------
 
@@ -217,7 +217,7 @@ CREATE TABLE categories_description (
   categories_description text NOT NULL,
   PRIMARY KEY  (categories_id,language_id),
   KEY idx_categories_name_zen (categories_name)
-) TYPE=MyISAM;
+) ENGINE=MyISAM;
 
 # --------------------------------------------------------
 
@@ -242,7 +242,7 @@ CREATE TABLE configuration (
   UNIQUE KEY unq_config_key_zen (configuration_key),
   KEY idx_key_value_zen (configuration_key,configuration_value(10)),
   KEY idx_cfg_grp_id_zen (configuration_group_id)
-) TYPE=MyISAM;
+) ENGINE=MyISAM;
 
 # --------------------------------------------------------
 
@@ -259,7 +259,7 @@ CREATE TABLE configuration_group (
   visible int(1) default '1',
   PRIMARY KEY  (configuration_group_id),
   KEY idx_visible_zen (visible)
-) TYPE=MyISAM;
+) ENGINE=MyISAM;
 
 # --------------------------------------------------------
 
@@ -271,7 +271,7 @@ DROP TABLE IF EXISTS counter;
 CREATE TABLE counter (
   startdate char(8) default NULL,
   counter int(12) default NULL
-) TYPE=MyISAM;
+) ENGINE=MyISAM;
 
 # --------------------------------------------------------
 
@@ -283,8 +283,9 @@ DROP TABLE IF EXISTS counter_history;
 CREATE TABLE counter_history (
   startdate char(8) default NULL,
   counter int(12) default NULL,
-  session_counter int(12) default NULL
-) TYPE=MyISAM;
+  session_counter int(12) default NULL,
+  PRIMARY KEY  (startdate)
+) ENGINE=MyISAM;
 
 # --------------------------------------------------------
 
@@ -304,7 +305,7 @@ CREATE TABLE countries (
   KEY idx_address_format_id_zen (address_format_id),
   KEY idx_iso_2_zen (countries_iso_code_2),
   KEY idx_iso_3_zen (countries_iso_code_3)
-) TYPE=MyISAM;
+) ENGINE=MyISAM;
 
 # --------------------------------------------------------
 
@@ -323,7 +324,7 @@ CREATE TABLE coupon_email_track (
   date_sent datetime NOT NULL default '0001-01-01 00:00:00',
   PRIMARY KEY  (unique_id),
   KEY idx_coupon_id_zen (coupon_id)
-) TYPE=MyISAM;
+) ENGINE=MyISAM;
 
 # --------------------------------------------------------
 
@@ -336,7 +337,7 @@ CREATE TABLE coupon_gv_customer (
   customer_id int(5) NOT NULL default '0',
   amount decimal(15,4) NOT NULL default '0.0000',
   PRIMARY KEY  (customer_id)
-) TYPE=MyISAM;
+) ENGINE=MyISAM;
 
 # --------------------------------------------------------
 
@@ -356,7 +357,7 @@ CREATE TABLE coupon_gv_queue (
   PRIMARY KEY  (unique_id),
   KEY idx_cust_id_order_id_zen (customer_id,order_id),
   KEY idx_release_flag_zen (release_flag)
-) TYPE=MyISAM;
+) ENGINE=MyISAM;
 
 # --------------------------------------------------------
 
@@ -374,7 +375,7 @@ CREATE TABLE coupon_redeem_track (
   order_id int(11) NOT NULL default '0',
   PRIMARY KEY  (unique_id),
   KEY idx_coupon_id_zen (coupon_id)
-) TYPE=MyISAM;
+) ENGINE=MyISAM;
 
 # --------------------------------------------------------
 
@@ -391,7 +392,7 @@ CREATE TABLE coupon_restrict (
   coupon_restrict char(1) NOT NULL default 'N',
   PRIMARY KEY  (restrict_id),
   KEY idx_coup_id_prod_id_zen (coupon_id,product_id)
-) TYPE=MyISAM;
+) ENGINE=MyISAM;
 
 # --------------------------------------------------------
 
@@ -421,7 +422,7 @@ CREATE TABLE coupons (
   KEY idx_active_type_zen (coupon_active,coupon_type),
   KEY idx_coupon_code_zen (coupon_code),
   KEY idx_coupon_type_zen (coupon_type)
-) TYPE=MyISAM;
+) ENGINE=MyISAM;
 
 # --------------------------------------------------------
 
@@ -436,7 +437,7 @@ CREATE TABLE coupons_description (
   coupon_name varchar(32) NOT NULL default '',
   coupon_description text,
   PRIMARY KEY (coupon_id,language_id)
-) TYPE=MyISAM;
+) ENGINE=MyISAM;
 
 # --------------------------------------------------------
 
@@ -457,7 +458,7 @@ CREATE TABLE currencies (
   value float(13,8) default NULL,
   last_updated datetime default NULL,
   PRIMARY KEY  (currencies_id)
-) TYPE=MyISAM;
+) ENGINE=MyISAM;
 
 # --------------------------------------------------------
 
@@ -491,7 +492,7 @@ CREATE TABLE customers (
   KEY idx_grp_pricing_zen (customers_group_pricing),
   KEY idx_nick_zen (customers_nick),
   KEY idx_newsletter_zen (customers_newsletter)
-) TYPE=MyISAM;
+) ENGINE=MyISAM;
 
 # --------------------------------------------------------
 
@@ -509,7 +510,7 @@ CREATE TABLE customers_basket (
   customers_basket_date_added varchar(8) default NULL,
   PRIMARY KEY  (customers_basket_id),
   KEY idx_customers_id_zen (customers_id)
-) TYPE=MyISAM;
+) ENGINE=MyISAM;
 
 # --------------------------------------------------------
 
@@ -528,7 +529,7 @@ CREATE TABLE customers_basket_attributes (
   products_options_sort_order text NOT NULL,
   PRIMARY KEY  (customers_basket_attributes_id),
   KEY idx_cust_id_prod_id_zen (customers_id,products_id(36))
-) TYPE=MyISAM;
+) ENGINE=MyISAM;
 
 # --------------------------------------------------------
 
@@ -545,7 +546,7 @@ CREATE TABLE customers_info (
   customers_info_date_account_last_modified datetime default NULL,
   global_product_notifications int(1) default '0',
   PRIMARY KEY  (customers_info_id)
-) TYPE=MyISAM;
+) ENGINE=MyISAM;
 
 # --------------------------------------------------------
 
@@ -558,7 +559,7 @@ CREATE TABLE db_cache (
   cache_data mediumblob,
   cache_entry_created int(15) default NULL,
   PRIMARY KEY  (cache_entry_name)
-) TYPE=MyISAM;
+) ENGINE=MyISAM;
 
 
 
@@ -583,7 +584,7 @@ CREATE TABLE email_archive (
   PRIMARY KEY  (archive_id),
   KEY idx_email_to_address_zen (email_to_address),
   KEY idx_module_zen (module)
-) TYPE=MyISAM;
+) ENGINE=MyISAM;
 
 
 # --------------------------------------------------------
@@ -617,7 +618,7 @@ CREATE TABLE ezpages (
   KEY idx_ezp_status_sidebox_zen (status_sidebox),
   KEY idx_ezp_status_footer_zen (status_footer),
   KEY idx_ezp_status_toc_zen (status_toc)
-) TYPE=MyISAM;
+) ENGINE=MyISAM;
 
 # --------------------------------------------------------
 
@@ -640,7 +641,7 @@ CREATE TABLE featured (
   KEY idx_products_id_zen (products_id),
   KEY idx_date_avail_zen (featured_date_available),
   KEY idx_expires_date_zen (expires_date)
-) TYPE=MyISAM;
+) ENGINE=MyISAM;
 
 # --------------------------------------------------------
 
@@ -656,7 +657,7 @@ CREATE TABLE files_uploaded (
   files_uploaded_name varchar(64) NOT NULL default '',
   PRIMARY KEY  (files_uploaded_id),
   KEY idx_customers_id_zen (customers_id)
-) TYPE=MyISAM COMMENT='Must always have either a sesskey or customers_id';
+) ENGINE=MyISAM COMMENT='Must always have either a sesskey or customers_id';
 
 # --------------------------------------------------------
 
@@ -672,7 +673,7 @@ CREATE TABLE geo_zones (
   last_modified datetime default NULL,
   date_added datetime NOT NULL default '0001-01-01 00:00:00',
   PRIMARY KEY  (geo_zone_id)
-) TYPE=MyISAM;
+) ENGINE=MyISAM;
 
 # --------------------------------------------------------
 
@@ -685,7 +686,7 @@ CREATE TABLE get_terms_to_filter (
   get_term_table varchar(64) NOT NULL,
   get_term_name_field varchar(64) NOT NULL,
   PRIMARY KEY  (get_term_name)
-) TYPE=MyISAM;
+) ENGINE=MyISAM;
 
 # --------------------------------------------------------
 
@@ -701,7 +702,7 @@ CREATE TABLE group_pricing (
   last_modified datetime default NULL,
   date_added datetime NOT NULL default '0001-01-01 00:00:00',
   PRIMARY KEY  (group_id)
-) TYPE=MyISAM;
+) ENGINE=MyISAM;
 
 # --------------------------------------------------------
 
@@ -719,7 +720,7 @@ CREATE TABLE languages (
   sort_order int(3) default NULL,
   PRIMARY KEY  (languages_id),
   KEY idx_languages_name_zen (name)
-) TYPE=MyISAM;
+) ENGINE=MyISAM;
 
 # --------------------------------------------------------
 
@@ -741,7 +742,7 @@ CREATE TABLE layout_boxes (
   KEY idx_name_template_zen (layout_template,layout_box_name),
   KEY idx_layout_box_status_zen (layout_box_status),
   KEY idx_layout_box_sort_order_zen (layout_box_sort_order)
-) TYPE=MyISAM;
+) ENGINE=MyISAM;
 
 # --------------------------------------------------------
 
@@ -758,7 +759,7 @@ CREATE TABLE manufacturers (
   last_modified datetime default NULL,
   PRIMARY KEY  (manufacturers_id),
   KEY idx_mfg_name_zen (manufacturers_name)
-) TYPE=MyISAM;
+) ENGINE=MyISAM;
 
 # --------------------------------------------------------
 
@@ -774,7 +775,7 @@ CREATE TABLE manufacturers_info (
   url_clicked int(5) NOT NULL default '0',
   date_last_click datetime default NULL,
   PRIMARY KEY  (manufacturers_id,languages_id)
-) TYPE=MyISAM;
+) ENGINE=MyISAM;
 
 # --------------------------------------------------------
 
@@ -793,7 +794,7 @@ CREATE TABLE media_clips (
   PRIMARY KEY  (clip_id),
   KEY idx_media_id_zen (media_id),
   KEY idx_clip_type_zen (clip_type)
-) TYPE=MyISAM;
+) ENGINE=MyISAM;
 
 # --------------------------------------------------------
 
@@ -809,7 +810,7 @@ CREATE TABLE media_manager (
   date_added datetime NOT NULL default '0001-01-01 00:00:00',
   PRIMARY KEY  (media_id),
   KEY idx_media_name_zen (media_name)
-) TYPE=MyISAM;
+) ENGINE=MyISAM;
 
 # --------------------------------------------------------
 
@@ -822,7 +823,7 @@ CREATE TABLE media_to_products (
   media_id int(11) NOT NULL default '0',
   product_id int(11) NOT NULL default '0',
   KEY idx_media_product_zen (media_id,product_id)
-) TYPE=MyISAM;
+) ENGINE=MyISAM;
 
 # --------------------------------------------------------
 
@@ -837,7 +838,7 @@ CREATE TABLE media_types (
   type_ext varchar(8) NOT NULL default '',
   PRIMARY KEY  (type_id),
   KEY idx_type_name_zen (type_name)
-) TYPE=MyISAM;
+) ENGINE=MyISAM;
 
 INSERT INTO media_types (type_name, type_ext) VALUES ('MP3','.mp3');
 
@@ -855,7 +856,7 @@ CREATE TABLE meta_tags_categories_description (
   metatags_keywords text,
   metatags_description text,
   PRIMARY KEY  (categories_id,language_id)
-) TYPE=MyISAM;
+) ENGINE=MyISAM;
 
 # --------------------------------------------------------
 
@@ -871,7 +872,7 @@ CREATE TABLE meta_tags_products_description (
   metatags_keywords text,
   metatags_description text,
   PRIMARY KEY  (products_id,language_id)
-) TYPE=MyISAM;
+) ENGINE=MyISAM;
 
 # --------------------------------------------------------
 
@@ -887,7 +888,7 @@ CREATE TABLE music_genre (
   last_modified datetime default NULL,
   PRIMARY KEY  (music_genre_id),
   KEY idx_music_genre_name_zen (music_genre_name)
-) TYPE=MyISAM;
+) ENGINE=MyISAM;
 
 # --------------------------------------------------------
 
@@ -907,50 +908,13 @@ CREATE TABLE newsletters (
   status int(1) default NULL,
   locked int(1) default '0',
   PRIMARY KEY  (newsletters_id)
-) TYPE=MyISAM;
+) ENGINE=MyISAM;
 
-# --------------------------------------------------------
 
-#
-# Table structure for table 'nochex_apc_transactions'
-#
 
-DROP TABLE IF EXISTS nochex_apc_transactions;
-CREATE TABLE nochex_apc_transactions (
-  nochex_apc_id int(11) unsigned NOT NULL auto_increment,
-  order_id int(11) unsigned NOT NULL default 0,
-  nc_transaction_id varchar(30) NOT NULL,
-  nc_transaction_date varchar(100) NOT NULL,
-  nc_to_email varchar(255) NOT NULL,
-  nc_from_email varchar(255) NOT NULL,
-  nc_order_id varchar(255) NOT NULL,
-  nc_custom varchar(255) NOT NULL,
-  nc_amount decimal(9,2) NOT NULL,
-  nc_security_key varchar(255) NOT NULL,
-  nc_status varchar(15) NOT NULL,
-  nochex_response varchar(255) NOT NULL,
-  last_modified datetime NOT NULL default '0001-01-01 00:00:00',
-  date_added datetime NOT NULL default '0001-01-01 00:00:00',
-  memo text,
-  PRIMARY KEY  (nochex_apc_id),
-  KEY idx_order_id_zen (order_id)
-);
 
-# --------------------------------------------------------
 
-#
-# Table structure for table 'nochex_sessions'
-#
 
-DROP TABLE IF EXISTS nochex_sessions;
-CREATE TABLE nochex_sessions (
-  unique_id int(11) NOT NULL auto_increment,
-  session_id text NOT NULL,
-  saved_session mediumblob NOT NULL,
-  expiry int(17) NOT NULL default '0',
-  PRIMARY KEY  (unique_id),
-  KEY idx_session_id_zen (session_id(36))
-);
 
 
 # --------------------------------------------------------
@@ -1014,8 +978,9 @@ CREATE TABLE orders (
   ip_address varchar(96) NOT NULL default '',
   PRIMARY KEY  (orders_id),
   KEY idx_status_orders_cust_zen (orders_status,orders_id,customers_id),
-  KEY idx_date_purchased_zen (date_purchased)
-) TYPE=MyISAM;
+  KEY idx_date_purchased_zen (date_purchased),
+  KEY idx_cust_id_orders_id_zen (customers_id,orders_id)
+) ENGINE=MyISAM;
 
 
 # --------------------------------------------------------
@@ -1042,8 +1007,9 @@ CREATE TABLE orders_products (
   products_discount_type_from tinyint(1) NOT NULL default '0',
   products_prid tinytext NOT NULL,
   PRIMARY KEY  (orders_products_id),
-  KEY idx_orders_id_prod_id_zen (orders_id,products_id)
-) TYPE=MyISAM;
+  KEY idx_orders_id_prod_id_zen (orders_id,products_id),
+  KEY idx_prod_id_orders_id_zen (products_id,orders_id)
+) ENGINE=MyISAM;
 
 
 # --------------------------------------------------------
@@ -1082,7 +1048,7 @@ CREATE TABLE orders_products_attributes (
   products_prid tinytext NOT NULL,
   PRIMARY KEY  (orders_products_attributes_id),
   KEY idx_orders_id_prod_id_zen (orders_id,orders_products_id)
-) TYPE=MyISAM;
+) ENGINE=MyISAM;
 
 # --------------------------------------------------------
 
@@ -1102,7 +1068,7 @@ CREATE TABLE orders_products_download (
   PRIMARY KEY  (orders_products_download_id),
   KEY idx_orders_id_zen (orders_id),
   KEY idx_orders_products_id_zen (orders_products_id)
-) TYPE=MyISAM;
+) ENGINE=MyISAM;
 
 # --------------------------------------------------------
 
@@ -1117,7 +1083,7 @@ CREATE TABLE orders_status (
   orders_status_name varchar(32) NOT NULL default '',
   PRIMARY KEY  (orders_status_id,language_id),
   KEY idx_orders_status_name_zen (orders_status_name)
-) TYPE=MyISAM;
+) ENGINE=MyISAM;
 
 # --------------------------------------------------------
 
@@ -1135,7 +1101,7 @@ CREATE TABLE orders_status_history (
   comments text,
   PRIMARY KEY  (orders_status_history_id),
   KEY idx_orders_id_status_id_zen (orders_id,orders_status_id)
-) TYPE=MyISAM;
+) ENGINE=MyISAM;
 
 # --------------------------------------------------------
 
@@ -1155,7 +1121,7 @@ CREATE TABLE orders_total (
   PRIMARY KEY  (orders_total_id),
   KEY idx_ot_orders_id_zen (orders_id),
   KEY idx_ot_class_zen (class)
-) TYPE=MyISAM;
+) ENGINE=MyISAM;
 
 # --------------------------------------------------------
 
@@ -1203,14 +1169,14 @@ CREATE TABLE paypal (
   settle_amount decimal(7,2) default NULL,
   settle_currency char(3) default NULL,
   exchange_rate decimal(4,2) default NULL,
-  notify_version decimal(2,1) NOT NULL default '0.0',
+  notify_version varchar(6) NOT NULL default '',
   verify_sign varchar(128) NOT NULL default '',
   last_modified datetime NOT NULL default '0001-01-01 00:00:00',
   date_added datetime NOT NULL default '0001-01-01 00:00:00',
   memo text,
   PRIMARY KEY (paypal_ipn_id,txn_id),
   KEY idx_order_id_zen (order_id)
-) TYPE=MyISAM;
+) ENGINE=MyISAM;
 
 # --------------------------------------------------------
 
@@ -1223,7 +1189,7 @@ CREATE TABLE paypal_payment_status (
   payment_status_id int(11) NOT NULL auto_increment,
   payment_status_name varchar(64) NOT NULL default '',
   PRIMARY KEY (payment_status_id)
-) TYPE=MyISAM;
+) ENGINE=MyISAM;
 
 #
 # Dumping data for table 'paypal_payment_status'
@@ -1254,7 +1220,7 @@ CREATE TABLE paypal_payment_status_history (
   date_added datetime NOT NULL default '0001-01-01 00:00:00',
   PRIMARY KEY (payment_status_history_id),
   KEY idx_paypal_ipn_id_zen (paypal_ipn_id)
-) TYPE=MyISAM;
+) ENGINE=MyISAM;
 
 # --------------------------------------------------------
 
@@ -1270,7 +1236,7 @@ CREATE TABLE paypal_session (
   expiry int(17) NOT NULL default '0',
   PRIMARY KEY  (unique_id),
   KEY idx_session_id_zen (session_id(36))
-) TYPE=MyISAM;
+) ENGINE=MyISAM;
 
 # --------------------------------------------------------
 
@@ -1326,7 +1292,7 @@ CREATE TABLE paypal_testing (
   memo text,
   PRIMARY KEY  (paypal_ipn_id,txn_id),
   KEY idx_order_id_zen (order_id)
-) TYPE=MyISAM;
+) ENGINE=MyISAM;
 
 # --------------------------------------------------------
 
@@ -1344,7 +1310,7 @@ CREATE TABLE product_music_extra (
   KEY idx_music_genre_id_zen (music_genre_id),
   KEY idx_artists_id_zen (artists_id),
   KEY idx_record_company_id_zen (record_company_id)
-) TYPE=MyISAM;
+) ENGINE=MyISAM;
 
 
 # --------------------------------------------------------
@@ -1369,7 +1335,7 @@ CREATE TABLE product_type_layout (
   UNIQUE KEY unq_config_key_zen (configuration_key),
   KEY idx_key_value_zen (configuration_key,configuration_value(10)),
   KEY idx_type_id_sort_order_zen (product_type_id,sort_order)
-) TYPE=MyISAM;
+) ENGINE=MyISAM;
 
 # --------------------------------------------------------
 
@@ -1389,7 +1355,7 @@ CREATE TABLE product_types (
   last_modified datetime NOT NULL default '0001-01-01 00:00:00',
   PRIMARY KEY  (type_id),
   KEY idx_type_master_type_zen (type_master_type)
-) TYPE=MyISAM;
+) ENGINE=MyISAM;
 
 # --------------------------------------------------------
 
@@ -1403,7 +1369,7 @@ CREATE TABLE product_types_to_category (
   category_id int(11) NOT NULL default '0',
   KEY idx_category_id_zen (category_id),
   KEY idx_product_type_id_zen (product_type_id)
-) TYPE=MyISAM;
+) ENGINE=MyISAM;
 
 
 # --------------------------------------------------------
@@ -1459,7 +1425,7 @@ CREATE TABLE products (
   KEY idx_master_categories_id_zen (master_categories_id),
   KEY idx_products_sort_order_zen (products_sort_order),
   KEY idx_manufacturers_id_zen (manufacturers_id)
-) TYPE=MyISAM;
+) ENGINE=MyISAM;
 # --------------------------------------------------------
 
 #
@@ -1498,7 +1464,7 @@ CREATE TABLE products_attributes (
   PRIMARY KEY  (products_attributes_id),
   KEY idx_id_options_id_values_zen (products_id,options_id,options_values_id),
   KEY idx_opt_sort_order_zen (products_options_sort_order)
-) TYPE=MyISAM;
+) ENGINE=MyISAM;
 
 # --------------------------------------------------------
 
@@ -1513,7 +1479,7 @@ CREATE TABLE products_attributes_download (
   products_attributes_maxdays int(2) default '0',
   products_attributes_maxcount int(2) default '0',
   PRIMARY KEY  (products_attributes_id)
-) TYPE=MyISAM;
+) ENGINE=MyISAM;
 
 # --------------------------------------------------------
 
@@ -1531,7 +1497,7 @@ CREATE TABLE products_description (
   products_viewed int(5) default '0',
   PRIMARY KEY  (products_id,language_id),
   KEY idx_products_name_zen (products_name)
-) TYPE=MyISAM;
+) ENGINE=MyISAM;
 
 # --------------------------------------------------------
 
@@ -1545,7 +1511,7 @@ CREATE TABLE products_discount_quantity (
   discount_qty float NOT NULL default '0',
   discount_price decimal(15,4) NOT NULL default '0.0000',
   KEY idx_id_qty_zen (products_id,discount_qty)
-) TYPE=MyISAM;
+) ENGINE=MyISAM;
 
 # --------------------------------------------------------
 
@@ -1559,7 +1525,7 @@ CREATE TABLE products_notifications (
   customers_id int(11) NOT NULL default '0',
   date_added datetime NOT NULL default '0001-01-01 00:00:00',
   PRIMARY KEY  (products_id,customers_id)
-) TYPE=MyISAM;
+) ENGINE=MyISAM;
 
 # --------------------------------------------------------
 
@@ -1584,7 +1550,7 @@ CREATE TABLE products_options (
   KEY idx_lang_id_zen (language_id),
   KEY idx_products_options_sort_order_zen (products_options_sort_order),
   KEY idx_products_options_name_zen (products_options_name)
-) TYPE=MyISAM;
+) ENGINE=MyISAM;
 
 # --------------------------------------------------------
 
@@ -1597,7 +1563,7 @@ CREATE TABLE products_options_types (
   products_options_types_id int(11) NOT NULL default '0',
   products_options_types_name varchar(32) default NULL,
   PRIMARY KEY  (products_options_types_id)
-) TYPE=MyISAM COMMENT='Track products_options_types';
+) ENGINE=MyISAM COMMENT='Track products_options_types';
 
 # --------------------------------------------------------
 
@@ -1614,7 +1580,7 @@ CREATE TABLE products_options_values (
   PRIMARY KEY (products_options_values_id,language_id),
   KEY idx_products_options_values_name_zen (products_options_values_name),
   KEY idx_products_options_values_sort_order_zen (products_options_values_sort_order)
-) TYPE=MyISAM;
+) ENGINE=MyISAM;
 
 # --------------------------------------------------------
 
@@ -1630,7 +1596,7 @@ CREATE TABLE products_options_values_to_products_options (
   PRIMARY KEY  (products_options_values_to_products_options_id),
   KEY idx_products_options_id_zen (products_options_id),
   KEY idx_products_options_values_id_zen (products_options_values_id)
-) TYPE=MyISAM;
+) ENGINE=MyISAM;
 
 # --------------------------------------------------------
 
@@ -1644,7 +1610,7 @@ CREATE TABLE products_to_categories (
   categories_id int(11) NOT NULL default '0',
   PRIMARY KEY  (products_id,categories_id),
   KEY idx_cat_prod_id_zen (categories_id,products_id)
-) TYPE=MyISAM;
+) ENGINE=MyISAM;
 
 # --------------------------------------------------------
 
@@ -1666,7 +1632,7 @@ CREATE TABLE project_version (
   project_version_date_applied datetime NOT NULL default '0001-01-01 01:01:01',
   PRIMARY KEY  (project_version_id),
   UNIQUE KEY idx_project_version_key_zen (project_version_key)
-) TYPE=MyISAM COMMENT='Database Version Tracking';
+) ENGINE=MyISAM COMMENT='Database Version Tracking';
 
 
 # --------------------------------------------------------
@@ -1684,7 +1650,7 @@ CREATE TABLE project_version_history (
   project_version_comment varchar(250) NOT NULL default '',
   project_version_date_applied datetime NOT NULL default '0001-01-01 01:01:01',
   PRIMARY KEY  (project_version_id)
-) TYPE=MyISAM COMMENT='Database Version Tracking History';
+) ENGINE=MyISAM COMMENT='Database Version Tracking History';
 
 # --------------------------------------------------------
 
@@ -1702,7 +1668,7 @@ CREATE TABLE query_builder (
   query_keys_list TEXT NOT NULL,
   PRIMARY KEY  (query_id),
   UNIQUE KEY query_name (query_name)
-) TYPE=MyISAM COMMENT='Stores queries for re-use in Admin email and report modules';
+) ENGINE=MyISAM COMMENT='Stores queries for re-use in Admin email and report modules';
 
 # --------------------------------------------------------
 
@@ -1719,7 +1685,7 @@ CREATE TABLE record_artists (
   last_modified datetime default NULL,
   PRIMARY KEY  (artists_id),
   KEY idx_rec_artists_name_zen (artists_name)
-) TYPE=MyISAM;
+) ENGINE=MyISAM;
 
 # --------------------------------------------------------
 
@@ -1735,7 +1701,7 @@ CREATE TABLE record_artists_info (
   url_clicked int(5) NOT NULL default '0',
   date_last_click datetime default NULL,
   PRIMARY KEY  (artists_id,languages_id)
-) TYPE=MyISAM;
+) ENGINE=MyISAM;
 
 # --------------------------------------------------------
 
@@ -1752,7 +1718,7 @@ CREATE TABLE record_company (
   last_modified datetime default NULL,
   PRIMARY KEY  (record_company_id),
   KEY idx_rec_company_name_zen (record_company_name)
-) TYPE=MyISAM;
+) ENGINE=MyISAM;
 
 # --------------------------------------------------------
 
@@ -1768,7 +1734,7 @@ CREATE TABLE record_company_info (
   url_clicked int(5) NOT NULL default '0',
   date_last_click datetime default NULL,
   PRIMARY KEY  (record_company_id,languages_id)
-) TYPE=MyISAM;
+) ENGINE=MyISAM;
 
 # --------------------------------------------------------
 
@@ -1792,7 +1758,7 @@ CREATE TABLE reviews (
   KEY idx_customers_id_zen (customers_id),
   KEY idx_status_zen (status),
   KEY idx_date_added_zen (date_added)
-) TYPE=MyISAM;
+) ENGINE=MyISAM;
 
 # --------------------------------------------------------
 
@@ -1806,7 +1772,7 @@ CREATE TABLE reviews_description (
   languages_id int(11) NOT NULL default '0',
   reviews_text text NOT NULL,
   PRIMARY KEY  (reviews_id,languages_id)
-) TYPE=MyISAM;
+) ENGINE=MyISAM;
 
 # --------------------------------------------------------
 
@@ -1835,7 +1801,7 @@ CREATE TABLE salemaker_sales (
   KEY idx_sale_status_zen (sale_status),
   KEY idx_sale_date_start_zen (sale_date_start),
   KEY idx_sale_date_end_zen (sale_date_end)
-) TYPE=MyISAM;
+) ENGINE=MyISAM;
 
 # --------------------------------------------------------
 
@@ -1849,7 +1815,7 @@ CREATE TABLE sessions (
   expiry int(11) unsigned NOT NULL default '0',
   value mediumblob NOT NULL,
   PRIMARY KEY  (sesskey)
-) TYPE=MyISAM;
+) ENGINE=MyISAM;
 
 # --------------------------------------------------------
 
@@ -1873,7 +1839,7 @@ CREATE TABLE specials (
   KEY idx_products_id_zen (products_id),
   KEY idx_date_avail_zen (specials_date_available),
   KEY idx_expires_date_zen (expires_date)
-) TYPE=MyISAM;
+) ENGINE=MyISAM;
 
 # --------------------------------------------------------
 
@@ -1889,7 +1855,7 @@ CREATE TABLE tax_class (
   last_modified datetime default NULL,
   date_added datetime NOT NULL default '0001-01-01 00:00:00',
   PRIMARY KEY  (tax_class_id)
-) TYPE=MyISAM;
+) ENGINE=MyISAM;
 
 # --------------------------------------------------------
 
@@ -1910,7 +1876,7 @@ CREATE TABLE tax_rates (
   PRIMARY KEY  (tax_rates_id),
   KEY idx_tax_zone_id_zen (tax_zone_id),
   KEY idx_tax_class_id_zen (tax_class_id)
-) TYPE=MyISAM;
+) ENGINE=MyISAM;
 
 # --------------------------------------------------------
 
@@ -1925,7 +1891,7 @@ CREATE TABLE template_select (
   template_language varchar(64) NOT NULL default '0',
   PRIMARY KEY  (template_id),
   KEY idx_tpl_lang_zen (template_language)
-) TYPE=MyISAM;
+) ENGINE=MyISAM;
 
 # --------------------------------------------------------
 
@@ -1951,7 +1917,7 @@ CREATE TABLE whos_online (
   KEY idx_time_entry_zen (time_entry),
   KEY idx_time_last_click_zen (time_last_click),
   KEY idx_last_page_url_zen (last_page_url)
-) TYPE=MyISAM;
+) ENGINE=MyISAM;
 
 # --------------------------------------------------------
 
@@ -1968,7 +1934,7 @@ CREATE TABLE zones (
   PRIMARY KEY  (zone_id),
   KEY idx_zone_country_id_zen (zone_country_id),
   KEY idx_zone_code_zen (zone_code)
-) TYPE=MyISAM;
+) ENGINE=MyISAM;
 
 # --------------------------------------------------------
 
@@ -1986,7 +1952,7 @@ CREATE TABLE zones_to_geo_zones (
   date_added datetime NOT NULL default '0001-01-01 00:00:00',
   PRIMARY KEY  (association_id),
   KEY idx_zones_zen (geo_zone_id,zone_country_id,zone_id)
-) TYPE=MyISAM;
+) ENGINE=MyISAM;
 
 
 #
@@ -2003,7 +1969,7 @@ CREATE TABLE customers_wishlist (
   final_price decimal(8,2) NOT NULL default '0.00',
   products_quantity int(2) NOT NULL default '0',
   wishlist_name varchar(64) default NULL
-) TYPE=MyISAM;
+) ENGINE=MyISAM;
 
 
 
@@ -2023,7 +1989,7 @@ CREATE TABLE customers_wishlist (
 
 
 # data
-INSERT INTO template_select VALUES (1, 'viennablood', '0');
+INSERT INTO template_select VALUES (1, 'classic', '0');
 
 # 1 - Default, 2 - USA, 3 - Spain, 4 - Singapore, 5 - Germany, 6 - UK/GB
 INSERT INTO address_format VALUES (1, '$firstname $lastname$cr$streets$cr$city, $postcode$cr$statecomma$country','$city / $country');
@@ -2039,10 +2005,8 @@ INSERT INTO banners (banners_title, banners_url, banners_image, banners_group, b
 INSERT INTO banners (banners_title, banners_url, banners_image, banners_group, banners_html_text, expires_impressions, expires_date, date_scheduled, date_added, date_status_change, status, banners_open_new_windows, banners_on_ssl, banners_sort_order) VALUES ('Zen Cart the art of e-commerce', 'http://www.zen-cart.com', 'banners/125zen_logo.gif', 'SideBox-Banners', '', 0, NULL, NULL, '2004-01-11 20:59:12', NULL, 1, 1, 1, 0);
 INSERT INTO banners (banners_title, banners_url, banners_image, banners_group, banners_html_text, expires_impressions, expires_date, date_scheduled, date_added, date_status_change, status, banners_open_new_windows, banners_on_ssl, banners_sort_order) VALUES ('Zen Cart the art of e-commerce', 'http://www.zen-cart.com', 'banners/125x125_zen_logo.gif', 'SideBox-Banners', '', 0, NULL, NULL, '2004-01-11 20:59:12', NULL, 1, 1, 1, 0);
 INSERT INTO banners (banners_title, banners_url, banners_image, banners_group, banners_html_text, expires_impressions, expires_date, date_scheduled, date_added, date_status_change, status, banners_open_new_windows, banners_on_ssl, banners_sort_order) VALUES ('if you have to think ... you haven''t been Zenned!', 'http://www.zen-cart.com', 'banners/think_anim.gif', 'Wide-Banners', '', 0, NULL, NULL, '2004-01-12 20:53:18', NULL, 1, 1, 1, 0);
-#INSERT INTO banners (banners_title, banners_url, banners_image, banners_group, banners_html_text, expires_impressions, expires_date, date_scheduled, date_added, date_status_change, status, banners_open_new_windows, banners_on_ssl, banners_sort_order) VALUES ('Sashbox.net - the ultimate e-commerce hosting solution', 'http://www.sashbox.net/zencart/', 'banners/sashbox_125x50.jpg', 'BannersAll', '', 0, NULL, NULL, '2005-05-13 10:53:50', NULL, 1, 1, 1, 20);
 INSERT INTO banners (banners_title, banners_url, banners_image, banners_group, banners_html_text, expires_impressions, expires_date, date_scheduled, date_added, date_status_change, status, banners_open_new_windows, banners_on_ssl, banners_sort_order) VALUES ('Zen Cart the art of e-commerce', 'http://www.zen-cart.com', 'banners/bw_zen_88wide.gif', 'BannersAll', '', 0, NULL, NULL, '2005-05-13 10:54:38', NULL, 1, 1, 1, 10);
-#INSERT INTO banners (banners_title, banners_url, banners_image, banners_group, banners_html_text, expires_impressions, expires_date, date_scheduled, date_added, date_status_change, status, banners_open_new_windows, banners_on_ssl, banners_sort_order) VALUES ('Sashbox.net - the ultimate e-commerce hosting solution', 'http://www.sashbox.net/zencart/', 'banners/sashbox_468x60.jpg', 'Wide-Banners', '', 0, NULL, NULL, '2005-05-13 10:55:11', NULL, 1, 1, 1, 0);
-INSERT INTO banners (banners_title, banners_url, banners_image, banners_group, banners_html_text, expires_impressions, expires_date, date_scheduled, date_added, date_status_change, status, banners_open_new_windows, banners_on_ssl, banners_sort_order) VALUES ('Start Accepting Credit Cards For Your Business Today!', 'http://www.zen-cart.com/index.php?main_page=infopages&pages_id=30', 'banners/cardsvcs_468x60.gif', 'Wide-Banners', '', 0, NULL, NULL, '2006-03-13 11:02:43', NULL, 1, 1, 1, 0);
+INSERT INTO banners (banners_title, banners_url, banners_image, banners_group, banners_html_text, expires_impressions, expires_date, date_scheduled, date_added, date_status_change, status, banners_open_new_windows, banners_on_ssl, banners_sort_order) VALUES ('Start Accepting Credit Cards For Your Business Today!', 'http://www.zen-cart.com/partners/payment', 'banners/cardsvcs_468x60.gif', 'Wide-Banners', '', 0, NULL, NULL, '2006-03-13 11:02:43', NULL, 1, 1, 1, 0);
 INSERT INTO banners (banners_title, banners_url, banners_image, banners_group, banners_html_text, expires_impressions, expires_date, date_scheduled, date_added, date_status_change, status, banners_open_new_windows, banners_on_ssl, banners_sort_order) VALUES ('eStart Your Web Store with Zen Cart(tm)', 'http://www.lulu.com/content/466605', 'banners/big-book-ad.gif', 'Wide-Banners', '', '0', NULL, NULL, '2007-02-10 00:00:00',NULL,'1','1','1','1');
 INSERT INTO banners (banners_title, banners_url, banners_image, banners_group, banners_html_text, expires_impressions, expires_date, date_scheduled, date_added, date_status_change, status, banners_open_new_windows, banners_on_ssl, banners_sort_order) VALUES ('eStart Your Web Store with Zen Cart(tm)', 'http://www.lulu.com/content/466605', 'banners/tall-book.gif', 'SideBox-Banners', '', '0', NULL, NULL, '2007-02-10 00:00:00',NULL,'1','1','1','1');
 INSERT INTO banners (banners_title, banners_url, banners_image, banners_group, banners_html_text, expires_impressions, expires_date, date_scheduled, date_added, date_status_change, status, banners_open_new_windows, banners_on_ssl, banners_sort_order) VALUES ('eStart Your Web Store with Zen Cart(tm)', 'http://www.lulu.com/content/466605', 'banners/tall-book.gif', 'BannersAll', '', '0', NULL, NULL, '2007-02-10 00:00:00',NULL,'1','1','1','15');
@@ -2069,6 +2033,7 @@ INSERT INTO configuration (configuration_title, configuration_key, configuration
 INSERT INTO configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) VALUES ('Basis of Product Tax', 'STORE_PRODUCT_TAX_BASIS', 'Shipping', 'On what basis is Product Tax calculated. Options are<br />Shipping - Based on customers Shipping Address<br />Billing Based on customers Billing address<br />Store - Based on Store address if Billing/Shipping Zone equals Store zone', '1', '21', 'zen_cfg_select_option(array(\'Shipping\', \'Billing\', \'Store\'), ', now());
 INSERT INTO configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) VALUES ('Basis of Shipping Tax', 'STORE_SHIPPING_TAX_BASIS', 'Shipping', 'On what basis is Shipping Tax calculated. Options are<br />Shipping - Based on customers Shipping Address<br />Billing Based on customers Billing address<br />Store - Based on Store address if Billing/Shipping Zone equals Store zone - Can be overriden by correctly written Shipping Module', '1', '21', 'zen_cfg_select_option(array(\'Shipping\', \'Billing\', \'Store\'), ', now());
 INSERT INTO configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) VALUES ('Sales Tax Display Status', 'STORE_TAX_DISPLAY_STATUS', '0', 'Always show Sales Tax even when amount is $0.00?<br />0= Off<br />1= On', '1', '21', 'zen_cfg_select_option(array(\'0\', \'1\'), ', now());
+INSERT INTO configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) VALUES ('Show Split Tax Lines', 'SHOW_SPLIT_TAX_CHECKOUT', 'false', 'If multiple tax rates apply, show each rate as a separate line at checkout', '1', '22', 'zen_cfg_select_option(array(\'true\', \'false\'), ', now());
 
 INSERT INTO configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, last_modified, date_added, use_function, set_function) VALUES ('Admin Session Time Out in Seconds', 'SESSION_TIMEOUT_ADMIN', '3600', 'Enter the time in seconds. Default=3600<br />Example: 3600= 1 hour<br /><br />Note: Too few seconds can result in timeout issues when adding/editing products', 1, 40, NULL, now(), NULL, NULL);
 INSERT INTO configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, last_modified, date_added, use_function, set_function) VALUES ('Admin Set max_execution_time for processes', 'GLOBAL_SET_TIME_LIMIT', '60', 'Enter the time in seconds for how long the max_execution_time of processes should be. Default=60<br />Example: 60= 1 minute<br /><br />Note: Changing the time limit is only needed if you are having problems with the execution time of a process', 1, 42, NULL, now(), NULL, NULL);
@@ -2234,17 +2199,10 @@ INSERT INTO configuration (configuration_title, configuration_key, configuration
 
 INSERT INTO configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) VALUES ('Customers Referral Status', 'CUSTOMERS_REFERRAL_STATUS', '0', 'Customers Referral Code is created from<br />0= Off<br />1= 1st Discount Coupon Code used<br />2= Customer can add during create account or edit if blank<br /><br />NOTE: Once the Customers Referral Code has been set it can only be changed in the Admin Customer', '5', '80', 'zen_cfg_select_option(array(\'0\', \'1\', \'2\'), ', now());
 
-INSERT INTO configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) VALUES ('Installed Modules', 'MODULE_PAYMENT_INSTALLED', 'cc.php;freecharger.php;moneyorder.php', 'List of payment module filenames separated by a semi-colon. This is automatically updated. No need to edit. (Example: cc.php;cod.php;paypal.php)', '6', '0', now());
+INSERT INTO configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) VALUES ('Installed Modules', 'MODULE_PAYMENT_INSTALLED', 'freecharger.php;moneyorder.php', 'List of payment module filenames separated by a semi-colon. This is automatically updated. No need to edit. (Example: freecharger.php;cod.php;paypal.php)', '6', '0', now());
 INSERT INTO configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) VALUES ('Installed Modules', 'MODULE_ORDER_TOTAL_INSTALLED', 'ot_subtotal.php;ot_shipping.php;ot_coupon.php;ot_group_pricing.php;ot_tax.php;ot_loworderfee.php;ot_gv.php;ot_total.php', 'List of order_total module filenames separated by a semi-colon. This is automatically updated. No need to edit. (Example: ot_subtotal.php;ot_tax.php;ot_shipping.php;ot_total.php)', '6', '0', now());
 INSERT INTO configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) VALUES ('Installed Modules', 'MODULE_SHIPPING_INSTALLED', 'flat.php;freeshipper.php;item.php;storepickup.php', 'List of shipping module filenames separated by a semi-colon. This is automatically updated. No need to edit. (Example: ups.php;flat.php;item.php)', '6', '0', now());
 
-INSERT INTO configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) VALUES ('Enable Credit Card Module', 'MODULE_PAYMENT_CC_STATUS', 'True', 'Do you want to accept credit card payments?', '6', '0', 'zen_cfg_select_option(array(\'True\', \'False\'), ', now());
-INSERT INTO configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) VALUES ('Split Credit Card E-Mail Address', 'MODULE_PAYMENT_CC_EMAIL', '', 'If an e-mail address is entered, the middle digits of the credit card number will be sent to the e-mail address (the outside digits are stored in the database with the middle digits censored)', '6', '0', now());
-INSERT INTO configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, last_modified, date_added, use_function, set_function) VALUES ('Collect & store the CVV number', 'MODULE_PAYMENT_CC_COLLECT_CVV', 'False', 'Do you want to collect the CVV number. Note: If you do the CVV number will be stored in the database in an encoded format.', 6, 0, NULL, '2004-01-11 22:55:51', NULL, 'zen_cfg_select_option(array(\'True\', \'False\'),');
-INSERT INTO configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, last_modified, date_added, use_function, set_function) VALUES ('Store the Credit Card Number', 'MODULE_PAYMENT_CC_STORE_NUMBER', 'False', 'Do you want to store the Credit Card Number. Note: The Credit Card Number will be stored unenecrypted, and as such may represent a security problem', 6, 0, NULL, now(), NULL, 'zen_cfg_select_option(array(\'True\', \'False\'),');
-INSERT INTO configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) VALUES ('Sort order of display.', 'MODULE_PAYMENT_CC_SORT_ORDER', '0', 'Sort order of display. Lowest is displayed first.', '6', '0' , now());
-INSERT INTO configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, use_function, set_function, date_added) VALUES ('Payment Zone', 'MODULE_PAYMENT_CC_ZONE', '0', 'If a zone is selected, only enable this payment method for that zone.', '6', '2', 'zen_get_zone_class_title', 'zen_cfg_pull_down_zone_classes(', now());
-INSERT INTO configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, use_function, date_added) VALUES ('Set Order Status', 'MODULE_PAYMENT_CC_ORDER_STATUS_ID', '0', 'Set the status of orders made with this payment module to this value', '6', '0', 'zen_cfg_pull_down_order_statuses(', 'zen_get_order_status_name', now());
 
 INSERT INTO configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added, use_function, set_function) VALUES ('Enable Free Shipping', 'MODULE_SHIPPING_FREESHIPPER_STATUS', 'True', 'Do you want to offer Free shipping?', 6, 0, now(), NULL, 'zen_cfg_select_option(array(\'True\', \'False\'), ');
 INSERT INTO configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added, use_function, set_function) VALUES ('Free Shipping Cost', 'MODULE_SHIPPING_FREESHIPPER_COST', '0.00', 'What is the Shipping cost?', 6, 6, now(), NULL, NULL);
@@ -2828,7 +2786,7 @@ INSERT INTO countries VALUES (57,'Denmark','DK','DNK','1');
 INSERT INTO countries VALUES (58,'Djibouti','DJ','DJI','1');
 INSERT INTO countries VALUES (59,'Dominica','DM','DMA','1');
 INSERT INTO countries VALUES (60,'Dominican Republic','DO','DOM','1');
-INSERT INTO countries VALUES (61,'East Timor','TP','TMP','1');
+INSERT INTO countries VALUES (61,'Timor-Leste','TL','TLS','1');
 INSERT INTO countries VALUES (62,'Ecuador','EC','ECU','1');
 INSERT INTO countries VALUES (63,'Egypt','EG','EGY','1');
 INSERT INTO countries VALUES (64,'El Salvador','SV','SLV','1');
@@ -2841,7 +2799,6 @@ INSERT INTO countries VALUES (70,'Faroe Islands','FO','FRO','1');
 INSERT INTO countries VALUES (71,'Fiji','FJ','FJI','1');
 INSERT INTO countries VALUES (72,'Finland','FI','FIN','1');
 INSERT INTO countries VALUES (73,'France','FR','FRA','1');
-INSERT INTO countries VALUES (74,'France, Metropolitan','FX','FXX','1');
 INSERT INTO countries VALUES (75,'French Guiana','GF','GUF','1');
 INSERT INTO countries VALUES (76,'French Polynesia','PF','PYF','1');
 INSERT INTO countries VALUES (77,'French Southern Territories','TF','ATF','1');
@@ -2892,7 +2849,7 @@ INSERT INTO countries VALUES (121,'Libyan Arab Jamahiriya','LY','LBY','1');
 INSERT INTO countries VALUES (122,'Liechtenstein','LI','LIE','1');
 INSERT INTO countries VALUES (123,'Lithuania','LT','LTU','1');
 INSERT INTO countries VALUES (124,'Luxembourg','LU','LUX','1');
-INSERT INTO countries VALUES (125,'Macau','MO','MAC','1');
+INSERT INTO countries VALUES (125,'Macao','MO','MAC','1');
 INSERT INTO countries VALUES (126,'Macedonia, The Former Yugoslav Republic of','MK','MKD','1');
 INSERT INTO countries VALUES (127,'Madagascar','MG','MDG','1');
 INSERT INTO countries VALUES (128,'Malawi','MW','MWI','1');
@@ -2907,7 +2864,7 @@ INSERT INTO countries VALUES (136,'Mauritius','MU','MUS','1');
 INSERT INTO countries VALUES (137,'Mayotte','YT','MYT','1');
 INSERT INTO countries VALUES (138,'Mexico','MX','MEX','1');
 INSERT INTO countries VALUES (139,'Micronesia, Federated States of','FM','FSM','1');
-INSERT INTO countries VALUES (140,'Moldova, Republic of','MD','MDA','1');
+INSERT INTO countries VALUES (140,'Moldova','MD','MDA','1');
 INSERT INTO countries VALUES (141,'Monaco','MC','MCO','1');
 INSERT INTO countries VALUES (142,'Mongolia','MN','MNG','1');
 INSERT INTO countries VALUES (143,'Montserrat','MS','MSR','1');
@@ -2942,7 +2899,7 @@ INSERT INTO countries VALUES (171,'Portugal','PT','PRT','1');
 INSERT INTO countries VALUES (172,'Puerto Rico','PR','PRI','1');
 INSERT INTO countries VALUES (173,'Qatar','QA','QAT','1');
 INSERT INTO countries VALUES (174,'Reunion','RE','REU','1');
-INSERT INTO countries VALUES (175,'Romania','RO','ROM','1');
+INSERT INTO countries VALUES (175,'Romania','RO','ROU','1');
 INSERT INTO countries VALUES (176,'Russian Federation','RU','RUS','1');
 INSERT INTO countries VALUES (177,'Rwanda','RW','RWA','1');
 INSERT INTO countries VALUES (178,'Saint Kitts and Nevis','KN','KNA','1');
@@ -3003,8 +2960,7 @@ INSERT INTO countries VALUES (232,'Virgin Islands (U.S.)','VI','VIR','1');
 INSERT INTO countries VALUES (233,'Wallis and Futuna Islands','WF','WLF','1');
 INSERT INTO countries VALUES (234,'Western Sahara','EH','ESH','1');
 INSERT INTO countries VALUES (235,'Yemen','YE','YEM','1');
-INSERT INTO countries VALUES (236,'Yugoslavia','YU','YUG','1');
-INSERT INTO countries VALUES (237,'Zaire','ZR','ZAR','1');
+INSERT INTO countries VALUES (236,'Serbia','RS','SRB','1');
 INSERT INTO countries VALUES (238,'Zambia','ZM','ZMB','1');
 INSERT INTO countries VALUES (239,'Zimbabwe','ZW','ZWE','1');
 
@@ -3542,7 +3498,7 @@ INSERT INTO product_type_layout (configuration_title, configuration_key, configu
 
 
 ## Insert the default queries for "all customers" and "all newsletter subscribers"
-INSERT INTO query_builder ( query_id , query_category , query_name , query_description , query_string , query_keys_list ) VALUES ( '1', 'email', 'All Customers', 'Returns all customers name and email address for sending mass emails (ie: for newsletters, coupons, GV\'s, messages, etc).', 'select customers_email_address, customers_firstname, customers_lastname from TABLE_CUSTOMERS order by customers_lastname, customers_firstname, customers_email_address', '');
+INSERT INTO query_builder ( query_id , query_category , query_name , query_description , query_string , query_keys_list ) VALUES ( '1', 'email', 'All Customers', 'Returns all customers name and email address for sending mass emails (ie: for newsletters, coupons, GVs, messages, etc).', 'select customers_email_address, customers_firstname, customers_lastname from TABLE_CUSTOMERS order by customers_lastname, customers_firstname, customers_email_address', '');
 INSERT INTO query_builder ( query_id , query_category , query_name , query_description , query_string , query_keys_list ) VALUES ( '2', 'email,newsletters', 'All Newsletter Subscribers', 'Returns name and email address of newsletter subscribers', 'select customers_firstname, customers_lastname, customers_email_address from TABLE_CUSTOMERS where customers_newsletter = \'1\'', '');
 INSERT INTO query_builder ( query_id , query_category , query_name , query_description , query_string , query_keys_list ) VALUES ( '3', 'email,newsletters', 'Dormant Customers (>3months) (Subscribers)', 'Subscribers who HAVE purchased something, but have NOT purchased for at least three months.', 'select o.date_purchased, c.customers_email_address, c.customers_lastname, c.customers_firstname from TABLE_CUSTOMERS c, TABLE_ORDERS o WHERE c.customers_id = o.customers_id AND c.customers_newsletter = 1 GROUP BY c.customers_email_address HAVING max(o.date_purchased) <= subdate(now(),INTERVAL 3 MONTH) ORDER BY c.customers_lastname, c.customers_firstname ASC', '');
 INSERT INTO query_builder ( query_id , query_category , query_name , query_description , query_string , query_keys_list ) VALUES ( '4', 'email,newsletters', 'Active customers in past 3 months (Subscribers)', 'Newsletter subscribers who are also active customers (purchased something) in last 3 months.', 'select c.customers_email_address, c.customers_lastname, c.customers_firstname from TABLE_CUSTOMERS c, TABLE_ORDERS o where c.customers_newsletter = \'1\' AND c.customers_id = o.customers_id and o.date_purchased > subdate(now(),INTERVAL 3 MONTH) GROUP BY c.customers_email_address order by c.customers_lastname, c.customers_firstname ASC', '');
@@ -3566,10 +3522,10 @@ INSERT INTO get_terms_to_filter VALUES ('record_company_id', 'TABLE_RECORD_COMPA
 # Dumping data for table project_version
 #
 
-INSERT INTO project_version (project_version_id, project_version_key, project_version_major, project_version_minor, project_version_patch1, project_version_patch1_source, project_version_patch2, project_version_patch2_source, project_version_comment, project_version_date_applied) VALUES (1, 'Zen-Cart Main', '1', '3.8', '', '', '', '', 'Fresh Installation', now());
-INSERT INTO project_version (project_version_id, project_version_key, project_version_major, project_version_minor, project_version_patch1, project_version_patch1_source, project_version_patch2, project_version_patch2_source, project_version_comment, project_version_date_applied) VALUES (2, 'Zen-Cart Database', '1', '3.8', '', '', '', '', 'Fresh Installation', now());
-INSERT INTO project_version_history (project_version_id, project_version_key, project_version_major, project_version_minor, project_version_patch, project_version_comment, project_version_date_applied) VALUES (1, 'Zen-Cart Main', '1', '3.8', '', 'Fresh Installation', now());
-INSERT INTO project_version_history (project_version_id, project_version_key, project_version_major, project_version_minor, project_version_patch, project_version_comment, project_version_date_applied) VALUES (2, 'Zen-Cart Database', '1', '3.8', '', 'Fresh Installation', now());
+INSERT INTO project_version (project_version_id, project_version_key, project_version_major, project_version_minor, project_version_patch1, project_version_patch1_source, project_version_patch2, project_version_patch2_source, project_version_comment, project_version_date_applied) VALUES (1, 'Zen-Cart Main', '1', '3.9a', '', '', '', '', 'Fresh Installation', now());
+INSERT INTO project_version (project_version_id, project_version_key, project_version_major, project_version_minor, project_version_patch1, project_version_patch1_source, project_version_patch2, project_version_patch2_source, project_version_comment, project_version_date_applied) VALUES (2, 'Zen-Cart Database', '1', '3.9a', '', '', '', '', 'Fresh Installation', now());
+INSERT INTO project_version_history (project_version_id, project_version_key, project_version_major, project_version_minor, project_version_patch, project_version_comment, project_version_date_applied) VALUES (1, 'Zen-Cart Main', '1', '3.9a', '', 'Fresh Installation', now());
+INSERT INTO project_version_history (project_version_id, project_version_key, project_version_major, project_version_minor, project_version_patch, project_version_comment, project_version_date_applied) VALUES (2, 'Zen-Cart Database', '1', '3.9a', '', 'Fresh Installation', now());
 
 CREATE TABLE IF NOT EXISTS configuration_language(
   configuration_id int(11) NOT NULL auto_increment,

@@ -1,9 +1,9 @@
-<!--   latest update: r15936
+<!--   latest update: r15996
 /**
  * @package documentation
  * @copyright Copyright 2003-2010 Zen Cart Development Team
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: whatsnew_1.3.9.html 15944 2010-04-14 19:56:57Z drbyte $
+ * @version $Id: whatsnew_1.3.9.html 15997 2010-04-19 18:23:32Z drbyte $
  */
 //-->
 <html>
@@ -261,14 +261,14 @@ Since version 1.2, Zen Cart&trade; has had a major overhaul of the templating sy
 <li>PayPal - can now enable address-override switch if store model requires it</li>
 <li>PayPal website payments pro now asks merchant to choose which country their PayPal account is located in, since this more accurately drives how the module should be communicating
 <li>PayPal - fix bug causing wrong order-status to be set on refunds, resulting in them disappearing from orders list
-<li>add paypal language defines for auto-added descriptions in line-item calcs
-<li>rudimentary PayPal FMF support to prevent throwing of errors
+<li>Add paypal language defines for auto-added descriptions in line-item calcs
+<li>Rudimentary PayPal FMF support to prevent throwing of errors
 <li>authorize.net modules: fix missing $messageStack references
 <li>Skip sending first 4 digits of CC number in order-confirmation email (security requirement)
-<li>fix missing Refund option for Express Checkout
-<li>add notifier to shipping/payment classes, to allow contribs to hook in and disable
-<li>add additional notifiers to order class
-<li>fix broken notifier functionality in PayPal IPN</li>
+<li>Fix missing Refund option for Express Checkout
+<li>Add notifier to shipping/payment classes, to allow contribs to hook in and disable
+<li>Add additional notifiers to order class
+<li>Fix broken notifier functionality in PayPal IPN</li>
 <li>change ereg* functions to equivalent preg functions for PHP 5.3 and PHP 6 compatibility
 <li>Fix wrong order of info on order-status-update emails
 <li>Fix text to use correct text for each review when set to greater than 1
@@ -283,32 +283,32 @@ Since version 1.2, Zen Cart&trade; has had a major overhaul of the templating sy
 <li>USPS - Add missing Priority Mail International Regular/Medium Flat-Rate Boxes/Priority Mail International Small Flat-Rate Box
 <li>USPS - Fixing codes to make USPS happy with changes to ISO and expected country names
 <li>USPS/UPS - quick cheap hack to pass expected codes back and forth between _getQuote() and quote().
-<li>fix missing backslashes in usps which was breaking intl quotes
+<li>Fix missing backslashes in usps which was breaking intl quotes
 <li>Fix bug where Discount Quanties get copied on Copy Product to Duplicate when marked not to be copied
-<li>order class - pass on the ID values from cart to order for easier parsing during order processing
+<li>Order class - pass on the ID values from cart to order for easier parsing during order processing
 <li>ot_coupon - fix restrictions - Base zone restrictions on Delivery for Free Shipping or Billing for Amount or Percentage
 <li>Bugfix - prevent duplicate messageStack entries
-<li>some template updates, added bindvars to guard against sql injection
-<li>fix for cart class breaking on update where there is an upload and a checkbox involved
-<li>backport support for embedded image attachments in emails which was supposed to be in 1.3.8 and got missed somehow
-<li>email html checkout template was inserting store name in duplicate
-<li>fix race condition when updating counter history
-<li>add ability to set certain countries to show at top of pulldown list, defaulting to store's default country
+<li>Some template updates, added bindvars to guard against sql injection
+<li>Fix for cart class breaking on update where there is an upload and a checkbox involved
+<li>Backport support for embedded image attachments in emails which was supposed to be in 1.3.8 and got missed somehow
+<li>Email html checkout template was inserting store name in duplicate
+<li>Fix race condition when updating counter history
+<li>Add ability to set certain countries to show at top of pulldown list, defaulting to store's default country
 <li>Fix Discount Quantities to recognize the Discount Type: NONE to properly disable Discount Quantities and not break calculations
-<li>trap errors that occur when users fail to properly upload lang file with modules
+<li>Trap errors that occur when users fail to properly upload lang file with modules
 <li>Fix Per Unit to not require change to Maximum 5000
 <li>Fix wording on % amount of Order Total on Zones and Table Rate - can mix/match dollar/percentage
 <li>Fix Handling Fee per Box/Order mismatch and add a choice for Weight oriented shipping methods
-<li>packing slip and invoices - Fix format_id for billing address
+<li>Packing slip and invoices - Fix format_id for billing address
 <li>IPN updates to identify EC transactions more easily, as long as core code doesn't get changed by end-users
-<li>fix for lack of proper static  properties in php4, also fixes problems with notifiers in ad hoc instantiated classes, ie order class
+<li>Fix for lack of proper static  properties in php4, also fixes problems with notifiers in ad hoc instantiated classes, ie order class
 <li>Fix missing restrictions limit on coupons
-<li>show tax desc in tax-rates window to more easily spot empty descriptions which can be confusing
-<li>prevent admin-side edits from mangling &amp; into & when editing ez-pages
+<li>Show tax desc in tax-rates window to more easily spot empty descriptions which can be confusing
+<li>Prevent admin-side edits from mangling &amp; into & when editing ez-pages
 <li>Fix missing manufacturers filter for displaying Manufacturers with Products to match sidebox setting from Maximum Values
 <li>Fix image to load on all attributes on multiple select of Option Values
 <li>option values manager - Fix for multiple languages showing multiple records for same value when multiple languages
-<li>remove redundant code in index_filters
+<li>Remove redundant code in index_filters, improving performance
 <li>Fix ceil error where amounts are less than 0, such as ceil(.6/.2)
 <li>ot_coupon Fix for Minimum Amount to be based on Product totals based on the Restrictions not the full Total Order
 <li>BUGSFORUM-980 - If customer changes spelling of CITY on PayPal end, the change wasn't reflected in the customer's/order's address details.
@@ -316,7 +316,7 @@ Since version 1.2, Zen Cart&trade; has had a major overhaul of the templating sy
 <li>BUGSFORUM-982 - Fix minor bug where messageStack alert not being shown, due to syntax error, with payment/shipping modules missing language files.
 <li>Fix bold cheapest bug in shipping estimator to match checkout_shipping
 <li>Fix problems caused by using double-quotes in attribute option names/values</li>
-<li>add additional notifiers for tare/shipping/quote/cheapest to shipping control class</li>
+<li>Add additional notifiers for tare/shipping/quote/cheapest to shipping control class</li>
 <li>Fix bug with virtual-content-cart sending customers back thru checkout-payment and confirmation screens a second time after returning from paypal express checkout</li>
 <li>BUGSFORUM-1008 - fix issue with newsletters not sending properly due to queryFactoryObject error caused by typo</li>
 <li>BUGSFORUM-1005 - fix typo in shipping estimator parameter, which was causing duplicate "name" attributes on input field, thus causing validation error</li>
@@ -333,33 +333,36 @@ Since version 1.2, Zen Cart&trade; has had a major overhaul of the templating sy
 <li>BUGSFORUM-1041 - fix broken forms which prevented search from working properly in products-purchased admin report</li>
 <li>BUGSFORUM-1036 - prevent ability for 'free_free' to be set by POST contamination on the shipping page</li>
 <li>BUGSFORUM-1027 - state selection incorrect in address book edits when pulldown enabled</li>
-<li>stop storing CC EXPDATE in orders table for gateway modules, for PA-DSS reasons</li>
+<li>Stop storing CC EXPDATE in orders table for gateway modules, for PA-DSS reasons</li>
 <li>BUGSFORUM-1044 - JPY currency adjustments in EC module</li>
 <li>BUGSFORUM-610 - Incorrect decimal value 'f' when free-shipping selected</li>
 <li>Fix ot_coupon bug on minimum values where comparison is a string and not a value</li>
 <li>Fix broken search in admin product screens where Search is broken as soon as editing is done and search is lost
 <li>Fix admin Add New Product when Search is set, cannot add a new product as no known category is set to assign to new product
-<li>fix installer to properly ignore commented lines in configure.php files when reading prior settings as part of an upgrade</li>
-<li>fix admin categories navigation glitches</li>
+<li>Fix installer to properly ignore commented lines in configure.php files when reading prior settings as part of an upgrade</li>
+<li>Fix admin categories navigation glitches</li>
 <li>Installer update: no longer raises warning-flag if "cgi" version of PHP is in use.</li>
-<li>admin comments in order status history which are set to -1 will not be shown to customers
-<li>fix group pricing/discount coupon bug
+<li>Admin comments in order status history which are set to -1 will not be shown to customers
+<li>Fix group pricing/discount coupon bug
 <li>BUGSFORUM-1082 - linkpoint_api payment module fixed array vs string error
-<li>fix bad SQL joins in music_genre filter and record_company filter code</li>
-<li>fix alpha sort functionality with music_genre and record_company filters</li>
+<li>Fix bad SQL joins in music_genre filter and record_company filter code</li>
+<li>Fix alpha sort functionality with music_genre and record_company filters</li>
 <li>BUGSFORUM-191 Fix bug preventing address-book-process from properly updating the State field when no zones exist for selected country, caused by not properly validating the $_POST input which is blank when page is first drawn.</li>
-<li>fix problem of order-confirmation submit button allowing multiple submits/clicks, resulting in duplicate orders</li>
-<li>fix broken rounding problem when calculating number of boxes for shipping quotes</li>
+<li>Fix problem of order-confirmation submit button allowing multiple submits/clicks, resulting in duplicate orders</li>
+<li>Fix broken rounding problem when calculating number of boxes for shipping quotes</li>
 <li>Fix banners not activating based on date NULL needed to be 'NULL'</li>
 <li>Fix banners dates for midnight or they do not expire or start on right day</li>
 <li>Fix admin customers report: Report was combining people with same name, changed to customers_id </li>
-<li>music products - Fix wrong categories_id for copy and fix methods update fields to match formats in product_general</li>
+<li>Music products - Fix wrong categories_id for copy and fix methods update fields to match formats in product_general</li>
 <li>BUGSFORUM-288 - trim spaces from contact-us email address to prevent being rejected</li>
 <li>BUGSFORUM-904 - Admin product preview screen - Added check to make sure key POST fields actually contain data. If not, do error trapping, instead of saving blanks. </li>
 <li>BUGSFORUM-1156 - fix priced-by-attrib problem with negative values
 <li>"last login" date for customers logging in with new accounts is now set correctly</li>
-<li>changed default permissions set on uploaded files to 644 from 777</li>
-<li>fix wrong header response on some pages during down-for-maintenance</li>
+<li>Changed default permissions set on uploaded files to 644 from 777</li>
+<li>Fix wrong header response on some pages during down-for-maintenance</li>
+<li>Fix double mention of GV amount in emails</li>
+<li>BUGSFORUM-603 - Salemaker expiry performance problems for sales starting and ending on same day</li>
+<li>admin metatags picks up defines from custom template if set</li>
 </ul>
 </td>
 </tr>
