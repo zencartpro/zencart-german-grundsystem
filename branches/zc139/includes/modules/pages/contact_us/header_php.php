@@ -3,10 +3,10 @@
  * Contact Us Page
  *
  * @package page
- * @copyright Copyright 2003-2007 Zen Cart Development Team
+ * @copyright Copyright 2003-2010 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: header_php.php 6202 2007-04-12 22:56:10Z drbyte $
+ * @version $Id: header_php.php 15637 2010-03-07 07:41:50Z drbyte $
  */
 require(DIR_WS_MODULES . zen_get_module_directory('require_languages.php'));
 
@@ -21,10 +21,10 @@ if (isset($_GET['action']) && ($_GET['action'] == 'send')) {
   if ($zc_validate_email and !empty($enquiry) and !empty($name)) {
     // auto complete when logged in
     if($_SESSION['customer_id']) {
-      $sql = "SELECT customers_id, customers_firstname, customers_lastname, customers_password, customers_email_address, customers_default_address_id 
-              FROM " . TABLE_CUSTOMERS . " 
+      $sql = "SELECT customers_id, customers_firstname, customers_lastname, customers_password, customers_email_address, customers_default_address_id
+              FROM " . TABLE_CUSTOMERS . "
               WHERE customers_id = :customersID";
-      
+
       $sql = $db->bindVars($sql, ':customersID', $_SESSION['customer_id'], 'integer');
       $check_customer = $db->Execute($sql);
       $customer_email= $check_customer->fields['customers_email_address'];
@@ -38,12 +38,12 @@ if (isset($_GET['action']) && ($_GET['action'] == 'send')) {
     if (CONTACT_US_LIST !=''){
       $send_to_array=explode("," ,CONTACT_US_LIST);
       preg_match('/\<[^>]+\>/', $send_to_array[$_POST['send_to']], $send_email_array);
-      $send_to_email= eregi_replace (">", "", $send_email_array[0]);
-      $send_to_email= eregi_replace ("<", "", $send_to_email);
-      $send_to_name = preg_replace('/\<[^*]*/', '', $send_to_array[$_POST['send_to']]);
+      $send_to_email= preg_replace ("/>/", "", $send_email_array[0]);
+      $send_to_email= trim(preg_replace("/</", "", $send_to_email));
+      $send_to_name = trim(preg_replace('/\<[^*]*/', '', $send_to_array[$_POST['send_to']]));
     } else {  //otherwise default to EMAIL_FROM and store name
-    $send_to_email = EMAIL_FROM;
-    $send_to_name =  STORE_NAME;
+    $send_to_email = trim(EMAIL_FROM);
+    $send_to_name =  trim(STORE_NAME);
     }
 
     // Prepare extra-info details
@@ -79,10 +79,10 @@ if (isset($_GET['action']) && ($_GET['action'] == 'send')) {
 
 // default email and name if customer is logged in
 if($_SESSION['customer_id']) {
-  $sql = "SELECT customers_id, customers_firstname, customers_lastname, customers_password, customers_email_address, customers_default_address_id 
-          FROM " . TABLE_CUSTOMERS . " 
+  $sql = "SELECT customers_id, customers_firstname, customers_lastname, customers_password, customers_email_address, customers_default_address_id
+          FROM " . TABLE_CUSTOMERS . "
           WHERE customers_id = :customersID";
-  
+
   $sql = $db->bindVars($sql, ':customersID', $_SESSION['customer_id'], 'integer');
   $check_customer = $db->Execute($sql);
   $email= $check_customer->fields['customers_email_address'];

@@ -3,10 +3,10 @@
  * shopping_cart header_php.php
  *
  * @package page
- * @copyright Copyright 2003-2007 Zen Cart Development Team
+ * @copyright Copyright 2003-2010 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: header_php.php 7171 2007-10-05 08:42:24Z drbyte $
+ * @version $Id: header_php.php 15880 2010-04-11 16:24:30Z wilt $
  */
 
 // This should be first line of the script:
@@ -138,9 +138,13 @@ for ($i=0, $n=sizeof($products); $i<$n; $i++) {
   $showMinUnits = zen_get_products_quantity_min_units_display($products[$i]['id']);
   $quantityField = zen_draw_input_field('cart_quantity[]', $products[$i]['quantity'], 'size="4"');
   $buttonUpdate = ((SHOW_SHOPPING_CART_UPDATE == 1 or SHOW_SHOPPING_CART_UPDATE == 3) ? zen_image_submit(ICON_IMAGE_UPDATE, ICON_UPDATE_ALT) : '') . zen_draw_hidden_field('products_id[]', $products[$i]['id']);
-  $productsPrice = $currencies->display_price($products[$i]['final_price'], zen_get_tax_rate($products[$i]['tax_class_id']), $products[$i]['quantity']) . ($products[$i]['onetime_charges'] != 0 ? '<br />' . $currencies->display_price($products[$i]['onetime_charges'], zen_get_tax_rate($products[$i]['tax_class_id']), 1) : '');
+  $tmp =  zen_add_tax($products[$i]['final_price'],zen_get_tax_rate($products[$i]['tax_class_id']));
+//  $productsPriceEach = $currencies->rateAdjusted($tmp);
+//  $productsPriceTotal = $productsPriceEach * $products[$i]['quantity'];
+  $productsPriceTotal = $currencies->display_price($products[$i]['final_price'], zen_get_tax_rate($products[$i]['tax_class_id']), $products[$i]['quantity']) . ($products[$i]['onetime_charges'] != 0 ? '<br />' . $currencies->display_price($products[$i]['onetime_charges'], zen_get_tax_rate($products[$i]['tax_class_id']), 1) : '');
   $productsPriceEach = $currencies->display_price($products[$i]['final_price'], zen_get_tax_rate($products[$i]['tax_class_id']), 1) . ($products[$i]['onetime_charges'] != 0 ? '<br />' . $currencies->display_price($products[$i]['onetime_charges'], zen_get_tax_rate($products[$i]['tax_class_id']), 1) : '');
-	$oneTimeCharge = $products[$i]['onetime_charges'];   
+//  $productsPriceTotal = $currencies->display_price($products[$i]['final_price'], zen_get_tax_rate($products[$i]['tax_class_id']), $products[$i]['quantity']) . ($products[$i]['onetime_charges'] != 0 ? '<br />' . $currencies->display_price($products[$i]['onetime_charges'], zen_get_tax_rate($products[$i]['tax_class_id']), 1) : '');
+//  echo  $currencies->rateAdjusted($tmp);
   $productArray[$i] = array('attributeHiddenField'=>$attributeHiddenField,
                             'flagStockCheck'=>$flagStockCheck,
                             'flagShowFixedQuantity'=>$showFixedQuantity,
@@ -153,13 +157,12 @@ for ($i=0, $n=sizeof($products); $i<$n; $i++) {
                             'showMinUnits'=>$showMinUnits,
                             'quantityField'=>$quantityField,
                             'buttonUpdate'=>$buttonUpdate,
-                            'productsPrice'=>$productsPrice,
+                            'productsPrice'=>$productsPriceTotal,
                             'productsPriceEach'=>$productsPriceEach,
                             'rowClass'=>$rowClass,
                             'buttonDelete'=>$buttonDelete,
                             'checkBoxDelete'=>$checkBoxDelete,
                             'id'=>$products[$i]['id'],
-                            'oneTimeCharge'=>$oneTimeCharge, 
                             'attributes'=>$attrArray);
 } // end FOR loop
 

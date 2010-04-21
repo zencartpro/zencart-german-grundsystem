@@ -4,10 +4,10 @@
  * General functions used throughout Zen Cart
  *
  * @package functions
- * @copyright Copyright 2003-2007 Zen Cart Development Team
+ * @copyright Copyright 2003-2010 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: functions_general.php 7125 2007-09-29 00:03:01Z ajeh $
+ * @version $Id: functions_general.php 15831 2010-04-05 16:38:55Z wilt $
  */
 if (!defined('IS_ADMIN_FLAG')) {
   die('Illegal Access');
@@ -24,7 +24,7 @@ if (!defined('IS_ADMIN_FLAG')) {
  * Redirect to another page or site
  * @param string The url to redirect to
 */
-  function zen_redirect($url) {
+  function zen_redirect($url, $httpResponseCode = '') {
     global $request_type;
     // Are we loading an SSL page?
     if ( (ENABLE_SSL == true) && ($request_type == 'SSL') ) {
@@ -41,9 +41,15 @@ if (!defined('IS_ADMIN_FLAG')) {
     // header locates should not have the &amp; in the address it breaks things
     while (strstr($url, '&amp;')) $url = str_replace('&amp;', '&', $url);
 
-    header('Location: ' . $url);
+    if ($httpResponseCode == '') {
+      header('Location: ' . $url);
+      session_write_close();
+    } else {
+      header('Location: ' . $url, TRUE, (int)$httpResponseCode);
+      session_write_close();
+    }
 
-    zen_exit();
+    exit();
   }
 
 /**
@@ -95,7 +101,7 @@ if (!defined('IS_ADMIN_FLAG')) {
 */
 
   function zen_sanitize_string($string) {
-    $string = ereg_replace(' +', ' ', $string);
+    $string = preg_replace('/ +/', ' ', $string);
     return preg_replace("/[<>]/", '_', $string);
   }
 
@@ -171,11 +177,10 @@ if (!defined('IS_ADMIN_FLAG')) {
 
 ////
 // Wrapper function for round()
-  function zen_round($number, $precision) {
-/// fix rounding error on GVs etc.
-    $number = round($number, $precision);
-
-    return $number;
+  function zen_round($value, $precision) {
+    $value =  round($value *pow(10,$precision),0);
+    $value = $value/pow(10,$precision);
+    return $value;
   }
 
 
@@ -222,25 +227,17 @@ if (!defined('IS_ADMIN_FLAG')) {
     if ($year != 1969 && @date('Y', mktime($hour, $minute, $second, $month, $day, $year)) == $year) {
       return date(DATE_FORMAT, mktime($hour, $minute, $second, $month, $day, $year));
     } else {
-      return ereg_replace('2037' . '$', $year, date(DATE_FORMAT, mktime($hour, $minute, $second, $month, $day, 2037)));
+      return preg_replace('/2037$/', $year, date(DATE_FORMAT, mktime($hour, $minute, $second, $month, $day, 2037)));
     }
   }
 
 ////
-function strtolower_utf8($inputString) {
-    // http://de.php.net/manual/de/function.strtolower.php#78560
-    $outputString    = utf8_decode($inputString);
-    $outputString    = strtolower($outputString);
-    $outputString    = utf8_encode($outputString);
-    return $outputString;
-}
 // Parse search string into indivual objects
   function zen_parse_search_string($search_str = '', &$objects) {
-    //$search_str = trim(strtolower_utf8($search_str));
-    $search_str = trim(($search_str));
+    $search_str = trim(strtolower($search_str));
 
 // Break up $search_str on whitespace; quoted string will be reconstructed later
-    $pieces = split('[[:space:]]+', $search_str);
+    $pieces = preg_split('/[[:space:]]+/', $search_str);
     $objects = array();
     $tmpstring = '';
     $flag = '';
@@ -281,7 +278,7 @@ function strtolower_utf8($inputString) {
 */
 
 // Add this word to the $tmpstring, starting the $tmpstring
-        $tmpstring = trim(ereg_replace('"', ' ', $pieces[$k]));
+        $tmpstring = trim(preg_replace('/"/', ' ', $pieces[$k]));
 
 // Check for one possible exception to the rule. That there is a single quoted word.
         if (substr($pieces[$k], -1 ) == '"') {
@@ -331,7 +328,7 @@ function strtolower_utf8($inputString) {
    $piece onto the tail of the string, push the $tmpstring onto the $haves,
    kill the $tmpstring, turn the $flag "off", and return.
 */
-            $tmpstring .= ' ' . trim(ereg_replace('"', ' ', $pieces[$k]));
+            $tmpstring .= ' ' . trim(preg_replace('/"/', ' ', $pieces[$k]));
 
 // Push the $tmpstring onto the array of stuff to search for
             $objects[] = trim($tmpstring);
@@ -548,12 +545,11 @@ function strtolower_utf8($inputString) {
           while (list($opt, $val) = each($value)) {
             $uprid = $uprid . '{' . $option . '}' . trim($opt);
           }
-          break;
-        }
+        } else {
         //CLR 030714 Add processing around $value. This is needed for text attributes.
-        $uprid = $uprid . '{' . $option . '}' . trim($value);
-      }
-    //CLR 030228 Add else stmt to process product ids passed in by other routines.
+            $uprid = $uprid . '{' . $option . '}' . trim($value);
+        }
+      }      //CLR 030228 Add else stmt to process product ids passed in by other routines.
       $md_uprid = '';
 
       $md_uprid = md5($uprid);
@@ -577,7 +573,7 @@ function strtolower_utf8($inputString) {
 ////
 // Get the number of times a word/character is present in a string
   function zen_word_count($string, $needle) {
-    $temp_array = split($needle, $string);
+    $temp_array = preg_split('/'.$needle.'/', $string);
 
     return sizeof($temp_array);
   }
@@ -589,7 +585,7 @@ function strtolower_utf8($inputString) {
 
     if (empty($modules)) return $count;
 
-    $modules_array = split(';', $modules);
+    $modules_array = preg_split('/;/', $modules);
 
     for ($i=0, $n=sizeof($modules_array); $i<$n; $i++) {
       $class = substr($modules_array[$i], 0, strrpos($modules_array[$i], '.'));
@@ -626,11 +622,11 @@ function strtolower_utf8($inputString) {
         $char = chr(zen_rand(0,255));
       }
       if ($type == 'mixed') {
-        if (eregi('^[a-z0-9]$', $char)) $rand_value .= $char;
+        if (preg_match('/^[a-z0-9]$/i', $char)) $rand_value .= $char;
       } elseif ($type == 'chars') {
-        if (eregi('^[a-z]$', $char)) $rand_value .= $char;
+        if (preg_match('/^[a-z]$/i', $char)) $rand_value .= $char;
       } elseif ($type == 'digits') {
-        if (ereg('^[0-9]$', $char)) $rand_value .= $char;
+        if (preg_match('/^[0-9]$/', $char)) $rand_value .= $char;
       }
     }
 
@@ -745,11 +741,12 @@ function strtolower_utf8($inputString) {
       if (is_numeric($domain_array[$domain_size-2]) && is_numeric($domain_array[$domain_size-1])) {
         return false;
       } else {
-        if ($domain_size > 3) {
-          return $domain_array[$domain_size-3] . '.' . $domain_array[$domain_size-2] . '.' . $domain_array[$domain_size-1];
-        } else {
-          return $domain_array[$domain_size-2] . '.' . $domain_array[$domain_size-1];
+        $tld = "";
+        foreach ($domain_array as $dPart)
+        {
+          if ($dPart != "www") $tld = $tld . "." . $dPart;
         }
+        return substr($tld, 1);
       }
     } else {
       return false;
@@ -788,7 +785,7 @@ function strtolower_utf8($inputString) {
 // nl2br() prior PHP 4.2.0 did not convert linefeeds on all OSs (it only converted \n)
   function zen_convert_linefeeds($from, $to, $string) {
     if ((PHP_VERSION < "4.0.5") && is_array($from)) {
-      return ereg_replace('(' . implode('|', $from) . ')', $to, $string);
+      return preg_replace('/(' . implode('|', $from) . ')/', $to, $string);
     } else {
       return str_replace($from, $to, $string);
     }
@@ -809,7 +806,7 @@ function strtolower_utf8($inputString) {
 
     $product = $db->Execute($product_query);
 
-    if (ereg('^GIFT', $product->fields['products_model'])) {
+    if (preg_match('/^GIFT/', $product->fields['products_model'])) {
       return false;
     }
 
@@ -855,7 +852,8 @@ function strtolower_utf8($inputString) {
     $sql = "SELECT count(*) AS total
             FROM " . TABLE_COUPON_RESTRICT . "
             WHERE category_id = -1
-            AND coupon_restrict = 'Y'";
+            AND coupon_restrict = 'Y'
+            AND coupon_id = " . (int)$coupon_id . " LIMIT 1";
     $checkQuery = $db->execute($sql);
     foreach ($catPathArray as $catPath) {
       $sql = "SELECT * FROM " . TABLE_COUPON_RESTRICT . "
@@ -996,30 +994,13 @@ function strtolower_utf8($inputString) {
 
 ////
 // Set back button
-  function zen_back_link() {
-    if (sizeof($_SESSION['navigation']->path)-2 > 0) {
-      $back = sizeof($_SESSION['navigation']->path)-2;
-      $link = '<a href="' . zen_href_link($_SESSION['navigation']->path[$back]['page'], zen_array_to_string($_SESSION['navigation']->path[$back]['get'], array('action')), $_SESSION['navigation']->path[$back]['mode']) . '">';
-    } else {
-      if (isset($_SERVER['HTTP_REFERER']) && strstr($_SERVER['HTTP_REFERER'], HTTP_SERVER)) {
-        $link= '<a href="' . $_SERVER['HTTP_REFERER'].'">';
-      } else {
-        $link = '<a href="' . zen_href_link(FILENAME_DEFAULT) . '">';
-      }
-      $_SESSION['navigation'] = new navigationHistory;
-    }
-    return $link;
-  }  
-
-
-////
-// Set back link only
-  function zen_back_link_only($link_only = false) {
-    if (sizeof($_SESSION['navigation']->path)-2 > 0) {
+  function zen_back_link($link_only = false) {
+    if (sizeof($_SESSION['navigation']->path)-2 >= 0) {
       $back = sizeof($_SESSION['navigation']->path)-2;
       $link = zen_href_link($_SESSION['navigation']->path[$back]['page'], zen_array_to_string($_SESSION['navigation']->path[$back]['get'], array('action')), $_SESSION['navigation']->path[$back]['mode']);
     } else {
-      if (strstr(HTTP_SERVER, $_SERVER['HTTP_REFERER'])) {
+      if (isset($_SERVER['HTTP_REFERER']) && preg_match("~^".HTTP_SERVER."~i", $_SERVER['HTTP_REFERER']) ) {
+      //if (isset($_SERVER['HTTP_REFERER']) && strstr($_SERVER['HTTP_REFERER'], str_replace(array('http://', 'https://'), '', HTTP_SERVER) ) ) {
         $link= $_SERVER['HTTP_REFERER'];
       } else {
         $link = zen_href_link(FILENAME_DEFAULT);
@@ -1033,6 +1014,7 @@ function strtolower_utf8($inputString) {
       return '<a href="' . $link . '">';
     }
   }
+
 
 ////
 // Return a random row from a database query
@@ -1255,7 +1237,7 @@ function strtolower_utf8($inputString) {
     $clean_it= nl2br($clean_it);
 
 // update breaks with a space for text displays in all listings with descriptions
-    while (strstr($clean_it, '<br />'))   $clean_it = str_replace('<br />',   ' ', $clean_it);
+    while (strstr($clean_it, '<br>'))   $clean_it = str_replace('<br>',   ' ', $clean_it);
     while (strstr($clean_it, '<br />')) $clean_it = str_replace('<br />', ' ', $clean_it);
     while (strstr($clean_it, '<br/>'))  $clean_it = str_replace('<br/>',  ' ', $clean_it);
     while (strstr($clean_it, '<p>'))    $clean_it = str_replace('<p>',    ' ', $clean_it);
@@ -1463,7 +1445,7 @@ function strtolower_utf8($inputString) {
 
 ////
 // compute the days between two dates
-  function date_diff($date1, $date2) {
+  function zen_date_diff($date1, $date2) {
   //$date1  today, or any other day
   //$date2  date to check against
 
@@ -1488,8 +1470,11 @@ function strtolower_utf8($inputString) {
  * strip out accented characters to reasonable approximations of english equivalents
  */
   function replace_accents($s) {
+    $skipPreg = (defined('OVERRIDE_REPLACE_ACCENTS_WITH_HTMLENTITIES') && OVERRIDE_REPLACE_ACCENTS_WITH_HTMLENTITIES == 'TRUE') ? TRUE : FALSE;
     $s = htmlentities($s);
-    $s = preg_replace ('/&([a-zA-Z])(uml|acute|elig|grave|circ|tilde|cedil|ring|quest|slash|caron);/', '$1', $s);
+    if ($skipPreg == FALSE) {
+      $s = preg_replace ('/&([a-zA-Z])(uml|acute|elig|grave|circ|tilde|cedil|ring|quest|slash|caron);/', '$1', $s);
+    }
     $s = html_entity_decode($s);
     return $s;
   }
@@ -1502,16 +1487,53 @@ function strtolower_utf8($inputString) {
  * @var string
  * @return boolean
  */
-  function is__writeable($filepath) {
+  function is__writeable($filepath, $make_unwritable = true) {
     if (is_dir($filepath)) return is_writable($filepath);
     $fp = @fopen($filepath, 'a');
     if ($fp) {
       @fclose($fp);
-      return true;
+      if ($make_unwritable) set_unwritable($filepath);
+      $fp = @fopen($filepath, 'a');
+      if ($fp) {
+        @fclose($fp);
+        return true;
+      }
     }
     return false;
   }
+/**
+ * attempts to make the specified file read-only
+ *
+ * @var string
+ * @return boolean
+ */
+  function set_unwritable($filepath) {
+    return @chmod($filepath, 0444);
+  }
+/**
+ * convert supplied string to UTF-8, dropping any symbols which cannot be translated easily
+ * useful for submitting cleaned-up data to payment gateways or other external services, esp if the data was copy+pasted from windows docs via windows browser to store in database
+ *
+ * @param string $string
+ */
+  function charsetConvertWinToUtf8($string) {
+    if (function_exists('iconv')) $string = iconv("Windows-1252", "ISO-8859-1//IGNORE", $string);
+    $string = htmlentities($string, ENT_QUOTES, 'UTF-8');
+    return $string;
+  }
 
+/**
+ * Convert supplied string to/from entities between charsets, to sanitize data from payment gateway
+ * @param $string
+ * @return string
+ */
+  function charsetClean($string) {
+    if (CHARSET == 'UTF-8') return $string;
+    if (function_exists('iconv')) $string = iconv("Windows-1252", CHARSET . "//IGNORE", $string);
+    $string = htmlentities($string, ENT_QUOTES, 'UTF-8');
+    $string = html_entity_decode($string, ENT_QUOTES, CHARSET);
+    return $string;
+  }
 
 /////////////////////////////////////////////
 ////
@@ -1531,4 +1553,3 @@ function strtolower_utf8($inputString) {
 ////
 /////////////////////////////////////////////
 
-?>

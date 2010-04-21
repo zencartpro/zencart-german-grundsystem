@@ -6,10 +6,10 @@
  * Displays confirmation details after order has been successfully processed.
  *
  * @package templateSystem
- * @copyright Copyright 2003-2006 Zen Cart Development Team
+ * @copyright Copyright 2003-2010 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: tpl_checkout_success_default.php 5407 2006-12-27 01:35:37Z drbyte $
+ * @version $Id: tpl_checkout_success_default.php 15874 2010-04-11 04:47:44Z drbyte $
  */
 ?>
 <div class="centerColumn" id="checkoutSuccess">
@@ -39,6 +39,17 @@
 ?>
 </div>
 <?php } ?>
+<!-- bof payment-method-alerts -->
+<?php
+if (isset($_SESSION['payment_method_messages']) && $_SESSION['payment_method_messages'] != '') {
+?>
+  <div class="content">
+  <?php echo $_SESSION['payment_method_messages']; ?>
+  </div>
+<?php
+}
+?>
+<!-- eof payment-method-alerts -->
 <!--bof logoff-->
 <div id="checkoutSuccessLogoff">
 <?php

@@ -3,10 +3,10 @@
  * ot_shipping order-total module
  *
  * @package orderTotal
- * @copyright Copyright 2003-2007 Zen Cart Development Team
+ * @copyright Copyright 2003-2009 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: ot_shipping.php 6507 2007-06-16 21:05:25Z wilt $
+ * @version $Id: ot_shipping.php 15075 2009-12-10 21:21:02Z drbyte $
  */
 
   class ot_shipping {
@@ -41,12 +41,12 @@
       $module = substr($_SESSION['shipping']['id'], 0, strpos($_SESSION['shipping']['id'], '_'));
       if (zen_not_null($order->info['shipping_method'])) {
         if ($GLOBALS[$module]->tax_class > 0) {
-          if (!defined($GLOBALS[$module]->tax_basis)) {
+          if (!isset($GLOBALS[$module]->tax_basis)) {
             $shipping_tax_basis = STORE_SHIPPING_TAX_BASIS;
           } else {
             $shipping_tax_basis = $GLOBALS[$module]->tax_basis;
           }
-            
+
           if ($shipping_tax_basis == 'Billing') {
             $shipping_tax = zen_get_tax_rate($GLOBALS[$module]->tax_class, $order->billing['country']['id'], $order->billing['zone_id']);
             $shipping_tax_description = zen_get_tax_description($GLOBALS[$module]->tax_class, $order->billing['country']['id'], $order->billing['zone_id']);
@@ -65,6 +65,7 @@
             }
           }
           $shipping_tax_amount = zen_calculate_tax($order->info['shipping_cost'], $shipping_tax);
+          $order->info['shipping_tax'] += $shipping_tax_amount;
           $order->info['tax'] += $shipping_tax_amount;
           $order->info['tax_groups']["$shipping_tax_description"] += zen_calculate_tax($order->info['shipping_cost'], $shipping_tax);
           $order->info['total'] += zen_calculate_tax($order->info['shipping_cost'], $shipping_tax);
@@ -73,7 +74,10 @@
           if (DISPLAY_PRICE_WITH_TAX == 'true') $order->info['shipping_cost'] += zen_calculate_tax($order->info['shipping_cost'], $shipping_tax);
         }
 
-        if ($_SESSION['shipping'] == 'free_free') $order->info['shipping_method'] = FREE_SHIPPING_TITLE;
+        if ($_SESSION['shipping'] == 'free_free') {
+          $order->info['shipping_method'] = FREE_SHIPPING_TITLE;
+          $order->info['shipping_cost'] = 0;
+        }
 
       }
     }
@@ -114,4 +118,3 @@
       $db->Execute("delete from " . TABLE_CONFIGURATION . " where configuration_key in ('" . implode("', '", $this->keys()) . "')");
     }
   }
-?>

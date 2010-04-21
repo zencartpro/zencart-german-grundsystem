@@ -166,7 +166,7 @@
       $zco_notifier->notify('NOTIFY_EMAIL_AFTER_EMAIL_FORMAT_DETERMINED');
 
       // now lets build the mail object with the phpmailer class
-      $mail = & new PHPMailer();
+      $mail = new PHPMailer();
       $lang_code = strtolower(($_SESSION['languages_code'] == '' ? 'en' : $_SESSION['languages_code'] ));
       $mail->SetLanguage($lang_code, DIR_FS_CATALOG . DIR_WS_CLASSES . 'support/');
       $mail->CharSet =  (defined('CHARSET')) ? CHARSET : "iso-8859-1";
@@ -191,13 +191,13 @@
           $mail->Host = trim(EMAIL_SMTPAUTH_MAIL_SERVER);
           if (EMAIL_SMTPAUTH_MAIL_SERVER_PORT != '25' && EMAIL_SMTPAUTH_MAIL_SERVER_PORT != '') $mail->Port = trim(EMAIL_SMTPAUTH_MAIL_SERVER_PORT);
           $mail->LE = "\r\n";
-          //set encryption protocol to allow support for Gmail
-          if (EMAIL_SMTPAUTH_MAIL_SERVER_PORT == '465' && EMAIL_SMTPAUTH_MAIL_SERVER == 'smtp.gmail.com') $mail->Protocol = 'ssl';
-          if (defined('SMTPAUTH_EMAIL_PROTOCOL') && SMTPAUTH_EMAIL_PROTOCOL != 'none') {
+          //set encryption protocol to allow support for Gmail or other secured email protocols
+          if (EMAIL_SMTPAUTH_MAIL_SERVER_PORT == '465' || EMAIL_SMTPAUTH_MAIL_SERVER_PORT == '587' || EMAIL_SMTPAUTH_MAIL_SERVER == 'smtp.gmail.com') $mail->Protocol = 'ssl';
+          if (defined('SMTPAUTH_EMAIL_PROTOCOL') && SMTPAUTH_EMAIL_PROTOCOL != 'none' && SMTPAUTH_EMAIL_PROTOCOL != '') {
             $mail->Protocol = SMTPAUTH_EMAIL_PROTOCOL;
-            if (SMTPAUTH_EMAIL_PROTOCOL == 'starttls'){
+            if (SMTPAUTH_EMAIL_PROTOCOL == 'starttls' && defined('SMTPAUTH_EMAIL_CERTIFICATE_CONTEXT')) {
               $mail->Starttls = true;
-              $mail->Context = $Email_Certificate_Context;
+              $mail->Context = SMTPAUTH_EMAIL_CERTIFICATE_CONTEXT;
             }
           }
           break;
@@ -220,12 +220,13 @@
       $mail->From     = $from_email_address;
       $mail->FromName = $from_email_name;
       $mail->AddAddress($to_email_address, $to_name);
-      //    $mail->AddAddress($to_email_address);    // (alternate format if no name, since name is optional)
+      //$mail->AddAddress($to_email_address);    // (alternate format if no name, since name is optional)
+      //$mail->AddBCC(STORE_NAME, STORE_OWNER_EMAIL_ADDRESS);
 
       // set the reply-to address.  If none set yet, then use Store's default email name/address.
       // If sending from contact-us or tell-a-friend page, use the supplied info
-      $email_reply_to_address = ($email_reply_to_address) ? $email_reply_to_address : (in_array($module, array('contact_us',  'tell_a_friend')) ? $from_email_address : EMAIL_FROM);
-      $email_reply_to_name    = ($email_reply_to_name)    ? $email_reply_to_name    : (in_array($module, array('contact_us',  'tell_a_friend')) ? $from_email_name    : STORE_NAME);
+      $email_reply_to_address = (isset($email_reply_to_address) && $email_reply_to_address != '') ? $email_reply_to_address : (in_array($module, array('contact_us',  'tell_a_friend')) ? $from_email_address : EMAIL_FROM);
+      $email_reply_to_name    = (isset($email_reply_to_name) && $email_reply_to_name != '')    ? $email_reply_to_name    : (in_array($module, array('contact_us',  'tell_a_friend')) ? $from_email_name    : STORE_NAME);
       $mail->AddReplyTo($email_reply_to_address, $email_reply_to_name);
 
       // if mailserver requires that all outgoing mail must go "from" an email address matching domain on server, set it to store address
@@ -234,6 +235,8 @@
       if (EMAIL_TRANSPORT=='sendmail-f' || EMAIL_SEND_MUST_BE_STORE=='Yes') {
         $mail->Sender = EMAIL_FROM;
       }
+
+      if (EMAIL_USE_HTML == 'true') $email_html = processEmbeddedImages($email_html, $mail);
 
       // PROCESS FILE ATTACHMENTS
       if ($attachments_list == '') $attachments_list = array();
@@ -246,7 +249,9 @@
           $attachments_list = array();
         }
       }
-      $zco_notifier->notify('NOTIFY_EMAIL_BEFORE_PROCESS_ATTACHMENTS', $attachments_list);
+      global $newAttachmentsList;
+      $zco_notifier->notify('NOTIFY_EMAIL_BEFORE_PROCESS_ATTACHMENTS', array('attachments'=>$attachments_list, 'module'=>$module));
+      if (isset($newAttachmentsList) && is_array($newAttachmentsList)) $attachments_list = $newAttachmentsList;
       if (defined('EMAIL_ATTACHMENTS_ENABLED') && EMAIL_ATTACHMENTS_ENABLED && is_array($attachments_list) && sizeof($attachments_list) > 0) {
         foreach($attachments_list as $key => $val) {
           $fname = (isset($val['name']) ? $val['name'] : null);
@@ -260,7 +265,7 @@
                 $mail->AddStringAttachment($fdata, $fname);
               }
               break;
-            case (file_exists($val['file'])): //'file' portion must contain the full path to the file to be attached
+            case (isset($val['file']) && file_exists($val['file'])): //'file' portion must contain the full path to the file to be attached
               $fdata = $val['file'];
               if ($mimeType != '') {
                 $mail->AddAttachment($fdata, $fname, "base64", $mimeType);
@@ -410,13 +415,13 @@
       } elseif (file_exists($template_filename_base . 'default' . '.html')) {
         $template_filename = $template_filename_base . 'default' . '.html';
       } else {
-        $messageStack->add('header','ERROR: The email template file for (' . $template_filename_base . ') or (' . $template_filename . ') cannot be found.','caution');
+        if(isset($messageStack)) $messageStack->add('header','ERROR: The email template file for (' . $template_filename_base . ') or (' . $template_filename . ') cannot be found.','caution');
         return ''; // couldn't find template file, so return an empty string for html message.
       }
     }
 
     if (!$fh = fopen($template_filename, 'rb')) {   // note: the 'b' is for compatibility with Windows systems
-      $messageStack->add('header','ERROR: The email template file (' . $template_filename_base . ') or (' . $template_filename . ') cannot be opened', 'caution');
+      if (isset($messageStack)) $messageStack->add('header','ERROR: The email template file (' . $template_filename_base . ') or (' . $template_filename . ') cannot be opened', 'caution');
     }
 
     $file_holder = fread($fh, filesize($template_filename));
@@ -429,28 +434,28 @@
 
     if (!defined('HTTP_CATALOG_SERVER')) define('HTTP_CATALOG_SERVER', HTTP_SERVER);
     //check for some specifics that need to be included with all messages
-    if ($block['EMAIL_STORE_NAME']=='')       $block['EMAIL_STORE_NAME']       = STORE_NAME;
-    if ($block['EMAIL_STORE_URL']=='')        $block['EMAIL_STORE_URL']        = '<a href="'.HTTP_CATALOG_SERVER . DIR_WS_CATALOG.'">'.STORE_NAME.'</a>';
-    if ($block['EMAIL_STORE_OWNER']=='')      $block['EMAIL_STORE_OWNER']      = STORE_OWNER;
-    if ($block['EMAIL_FOOTER_COPYRIGHT']=='') $block['EMAIL_FOOTER_COPYRIGHT'] = EMAIL_FOOTER_COPYRIGHT;
-    if ($block['EMAIL_DISCLAIMER']=='')       $block['EMAIL_DISCLAIMER']       = sprintf(EMAIL_DISCLAIMER, '<a href="mailto:' . STORE_OWNER_EMAIL_ADDRESS . '">'. STORE_OWNER_EMAIL_ADDRESS .' </a>');
-    if ($block['EMAIL_SPAM_DISCLAIMER']=='')  $block['EMAIL_SPAM_DISCLAIMER']  = EMAIL_SPAM_DISCLAIMER;
-    if ($block['BASE_HREF']=='')              $block['BASE_HREF']              = HTTP_SERVER . DIR_WS_CATALOG;
-    if ($block['EMAIL_DATE_SHORT']=='')       $block['EMAIL_DATE_SHORT']       = zen_date_short(date("Y-m-d"));
-    if ($block['EMAIL_DATE_LONG']=='')        $block['EMAIL_DATE_LONG']        = zen_date_long(date("Y-m-d"));
-    if ($block['CHARSET']=='')                $block['CHARSET']                = CHARSET;
-    //  if ($block['EMAIL_STYLESHEET']=='')       $block['EMAIL_STYLESHEET']       = str_replace(array("\r\n", "\n", "\r"), "",@file_get_contents(DIR_FS_EMAIL_TEMPLATES.'stylesheet.css'));
+    if (!isset($block['EMAIL_STORE_NAME']) || $block['EMAIL_STORE_NAME'] == '')     $block['EMAIL_STORE_NAME']  = STORE_NAME;
+    if (!isset($block['EMAIL_STORE_URL']) || $block['EMAIL_STORE_URL'] == '')       $block['EMAIL_STORE_URL']   = '<a href="'.HTTP_CATALOG_SERVER . DIR_WS_CATALOG.'">'.STORE_NAME.'</a>';
+    if (!isset($block['EMAIL_STORE_OWNER']) || $block['EMAIL_STORE_OWNER'] == '')   $block['EMAIL_STORE_OWNER'] = STORE_OWNER;
+    if (!isset($block['EMAIL_FOOTER_COPYRIGHT']) || $block['EMAIL_FOOTER_COPYRIGHT'] == '') $block['EMAIL_FOOTER_COPYRIGHT'] = EMAIL_FOOTER_COPYRIGHT;
+    if (!isset($block['EMAIL_DISCLAIMER']) || $block['EMAIL_DISCLAIMER'] == '')     $block['EMAIL_DISCLAIMER']  = sprintf(EMAIL_DISCLAIMER, '<a href="mailto:' . STORE_OWNER_EMAIL_ADDRESS . '">'. STORE_OWNER_EMAIL_ADDRESS .' </a>');
+    if (!isset($block['EMAIL_SPAM_DISCLAIMER']) || $block['EMAIL_SPAM_DISCLAIMER'] == '')   $block['EMAIL_SPAM_DISCLAIMER']  = EMAIL_SPAM_DISCLAIMER;
+    if (!isset($block['EMAIL_DATE_SHORT']) || $block['EMAIL_DATE_SHORT'] == '')     $block['EMAIL_DATE_SHORT']  = zen_date_short(date("Y-m-d"));
+    if (!isset($block['EMAIL_DATE_LONG']) || $block['EMAIL_DATE_LONG'] == '')       $block['EMAIL_DATE_LONG']   = zen_date_long(date("Y-m-d"));
+    if (!isset($block['BASE_HREF']) || $block['BASE_HREF'] == '') $block['BASE_HREF'] = HTTP_SERVER . DIR_WS_CATALOG;
+    if (!isset($block['CHARSET']) || $block['CHARSET'] == '') $block['CHARSET'] = CHARSET;
+    //  if (!isset($block['EMAIL_STYLESHEET']) || $block['EMAIL_STYLESHEET'] == '')      $block['EMAIL_STYLESHEET']       = str_replace(array("\r\n", "\n", "\r"), "",@file_get_contents(DIR_FS_EMAIL_TEMPLATES.'stylesheet.css'));
 
     if (!isset($block['EXTRA_INFO']))  $block['EXTRA_INFO']  = '';
     if (substr($module,-6) != '_extra' && $module != 'contact_us')  $block['EXTRA_INFO']  = '';
 
     $block['COUPON_BLOCK'] = '';
-    if ($block['COUPON_TEXT_VOUCHER_IS'] && $block['COUPON_TEXT_TO_REDEEM']) {
+    if (isset($block['COUPON_TEXT_VOUCHER_IS']) && $block['COUPON_TEXT_VOUCHER_IS'] != '' && isset($block['COUPON_TEXT_TO_REDEEM']) && $block['COUPON_TEXT_TO_REDEEM'] != '') {
       $block['COUPON_BLOCK'] = '<div class="coupon-block">' . $block['COUPON_TEXT_VOUCHER_IS'] . $block['COUPON_DESCRIPTION'] . '<br />' . $block['COUPON_TEXT_TO_REDEEM'] . '<span class="coupon-code">' . $block['COUPON_CODE'] . '</span></div>';
     }
 
     $block['GV_BLOCK'] = '';
-    if ($block['GV_WORTH'] && $block['GV_REDEEM'] && $block['GV_CODE_URL']) {
+    if (isset($block['GV_WORTH']) && $block['GV_WORTH'] != '' && isset($block['GV_REDEEM']) && $block['GV_REDEEM'] != '' && isset($block['GV_CODE_URL']) && $block['GV_CODE_URL'] != '') {
       $block['GV_BLOCK'] = '<div class="gv-block">' . $block['GV_WORTH'] . '<br />' . $block['GV_REDEEM'] . $block['GV_CODE_URL'] . '<br />' . $block['GV_LINK_OTHER'] . '</div>';
     }
 
@@ -518,9 +523,6 @@
   }
 
 
-
-
-
 /**
  * validates an email address
  *
@@ -544,7 +546,7 @@
  * @return booloean true if valid else false
 **/
   function zen_validate_email($email) {
-    $valid_address = true;
+    $valid_address = TRUE;
 
     // fail if contains no @ symbol or more than one @ symbol
     if (substr_count($email,'@') != 1) return false;
@@ -554,15 +556,13 @@
     list( $user, $domain ) = explode( "@", $email );
     $valid_ip_form = '[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}';
     $valid_email_pattern = '^[a-z0-9]+[a-z0-9_\.\'\-]*@[a-z0-9]+[a-z0-9\.\-]*\.(([a-z]{2,6})|([0-9]{1,3}))$';
-    //preg_match('/^([a-zA-Z0-9])+([a-zA-Z0-9\._-])*@([a-zA-Z0-9_-])+(\.[a-zA-Z0-9\._-]+)+$/', $email))
-    //preg_match('/^[a-z0-9&\'\.\-_\+]+@[a-z0-9\-]+\.([a-z0-9\-]+\.)*?[a-z]+$/is');
     $space_check = '[ ]';
 
     // strip beginning and ending quotes, if and only if both present
-    if( (ereg('^["]', $user) && ereg('["]$', $user)) ){
-      $user = ereg_replace ( '^["]', '', $user );
-      $user = ereg_replace ( '["]$', '', $user );
-      $user = ereg_replace ( $space_check, '', $user ); //spaces in quoted addresses OK per RFC (?)
+    if( (preg_match('/^["]/', $user) && preg_match('/["]$/', $user)) ){
+      $user = preg_replace ( '/^["]/', '', $user );
+      $user = preg_replace ( '/["]$/', '', $user );
+      $user = preg_replace ( '/'.$space_check.'/', '', $user ); //spaces in quoted addresses OK per RFC (?)
       $email = $user."@".$domain; // contine with stripped quotes for remainder
     }
 
@@ -570,7 +570,7 @@
     if (strstr($domain,' ')) return false;
 
     // if email domain part is an IP address, check each part for a value under 256
-    if (ereg($valid_ip_form, $domain)) {
+    if (preg_match('/'.$valid_ip_form.'/', $domain)) {
       $digit = explode( ".", $domain );
       for($i=0; $i<4; $i++) {
         if ($digit[$i] > 255) {
@@ -587,10 +587,8 @@
       }
     }
 
-    if (!ereg($space_check, $email)) { // trap for spaces in
-      if ( eregi($valid_email_pattern, $email)) { // validate against valid email patterns
-        $valid_address = true;
-      } else {
+    if (rfc_validate_email($email) == FALSE) { // do RFC validation, using old method as fallback if it fails
+      if (!preg_match('/'.$valid_email_pattern.'/i', $email)) { // validate against valid email patterns
         $valid_address = false;
         return $valid_address;
         exit;
@@ -598,6 +596,156 @@
     }
     return $valid_address;
   }
+  /**
+   * RFC validation
+   * @copyright Portions copyright Chris Corbyn
+   *
+   * @param string $address
+   * @return boolean
+   */
+  function rfc_validate_email($address)
+  {
+    $rfcValidEmailPattern = '(?:(?:(?:(?:(?:(?:(?:[ \t]*(?:\r\n))?[ \t])?(\((?:(?:(?:[ \t]*(?:\r\n))?[ \t])' .
+                            '|(?:(?:[\x01-\x08\x0B\x0C\x0E-\x19\x7F]' .
+                            '|[\x21-\x27\x2A-\x5B\x5D-\x7E])' .
+                            '|(?:\\[\x00-\x08\x0B\x0C\x0E-\x7F])' .
+                            '|(?1)))*(?:(?:[ \t]*(?:\r\n))?[ \t])?\)))*(?:(?:(?:(?:[ \t]*(?:\r\n))?[ \t])?(\((?:(?:(?:[ \t]*(?:\r\n))?[ \t])' .
+                            '|(?:(?:[\x01-\x08\x0B\x0C\x0E-\x19\x7F]' .
+                            '|[\x21-\x27\x2A-\x5B\x5D-\x7E])' .
+                            '|(?:\\[\x00-\x08\x0B\x0C\x0E-\x7F])' .
+                            '|(?1)))*(?:(?:[ \t]*(?:\r\n))?[ \t])?\)))' .
+                            '|(?:(?:[ \t]*(?:\r\n))?[ \t])))?(?:[a-zA-Z0-9!#\$%&\'\*\+\-\/=\?\^_`\{\}\|~]+(\.[a-zA-Z0-9!#\$%&\'\*\+\-\/=\?\^_`\{\}\|~]+)*)+(?:(?:(?:(?:[ \t]*(?:\r\n))?[ \t])?(\((?:(?:(?:[ \t]*(?:\r\n))?[ \t])' .
+                            '|(?:(?:[\x01-\x08\x0B\x0C\x0E-\x19\x7F]' .
+                            '|[\x21-\x27\x2A-\x5B\x5D-\x7E])' .
+                            '|(?:\\[\x00-\x08\x0B\x0C\x0E-\x7F])' .
+                            '|(?1)))*(?:(?:[ \t]*(?:\r\n))?[ \t])?\)))*(?:(?:(?:(?:[ \t]*(?:\r\n))?[ \t])?(\((?:(?:(?:[ \t]*(?:\r\n))?[ \t])' .
+                            '|(?:(?:[\x01-\x08\x0B\x0C\x0E-\x19\x7F]' .
+                            '|[\x21-\x27\x2A-\x5B\x5D-\x7E])' .
+                            '|(?:\\[\x00-\x08\x0B\x0C\x0E-\x7F])' .
+                            '|(?1)))*(?:(?:[ \t]*(?:\r\n))?[ \t])?\)))' .
+                            '|(?:(?:[ \t]*(?:\r\n))?[ \t])))?)' .
+                            '|(?:(?:(?:(?:(?:[ \t]*(?:\r\n))?[ \t])?(\((?:(?:(?:[ \t]*(?:\r\n))?[ \t])' .
+                            '|(?:(?:[\x01-\x08\x0B\x0C\x0E-\x19\x7F]' .
+                            '|[\x21-\x27\x2A-\x5B\x5D-\x7E])' .
+                            '|(?:\\[\x00-\x08\x0B\x0C\x0E-\x7F])' .
+                            '|(?1)))*(?:(?:[ \t]*(?:\r\n))?[ \t])?\)))*(?:(?:(?:(?:[ \t]*(?:\r\n))?[ \t])?(\((?:(?:(?:[ \t]*(?:\r\n))?[ \t])' .
+                            '|(?:(?:[\x01-\x08\x0B\x0C\x0E-\x19\x7F]' .
+                            '|[\x21-\x27\x2A-\x5B\x5D-\x7E])' .
+                            '|(?:\\[\x00-\x08\x0B\x0C\x0E-\x7F])' .
+                            '|(?1)))*(?:(?:[ \t]*(?:\r\n))?[ \t])?\)))' .
+                            '|(?:(?:[ \t]*(?:\r\n))?[ \t])))?"((?:(?:[ \t]*(?:\r\n))?[ \t])?(?:(?:[\x01-\x08\x0B\x0C\x0E-\x19\x7F]' .
+                            '|[\x21\x23-\x5B\x5D-\x7E])' .
+                            '|(?:\\[\x00-\x08\x0B\x0C\x0E-\x7F])))*(?:(?:[ \t]*(?:\r\n))?[ \t])?"(?:(?:(?:(?:[ \t]*(?:\r\n))?[ \t])?(\((?:(?:(?:[ \t]*(?:\r\n))?[ \t])' .
+                            '|(?:(?:[\x01-\x08\x0B\x0C\x0E-\x19\x7F]' .
+                            '|[\x21-\x27\x2A-\x5B\x5D-\x7E])' .
+                            '|(?:\\[\x00-\x08\x0B\x0C\x0E-\x7F])' .
+                            '|(?1)))*(?:(?:[ \t]*(?:\r\n))?[ \t])?\)))*(?:(?:(?:(?:[ \t]*(?:\r\n))?[ \t])?(\((?:(?:(?:[ \t]*(?:\r\n))?[ \t])' .
+                            '|(?:(?:[\x01-\x08\x0B\x0C\x0E-\x19\x7F]' .
+                            '|[\x21-\x27\x2A-\x5B\x5D-\x7E])' .
+                            '|(?:\\[\x00-\x08\x0B\x0C\x0E-\x7F])' .
+                            '|(?1)))*(?:(?:[ \t]*(?:\r\n))?[ \t])?\)))' .
+                            '|(?:(?:[ \t]*(?:\r\n))?[ \t])))?))@(?:(?:(?:(?:(?:(?:[ \t]*(?:\r\n))?[ \t])?(\((?:(?:(?:[ \t]*(?:\r\n))?[ \t])' .
+                            '|(?:(?:[\x01-\x08\x0B\x0C\x0E-\x19\x7F]' .
+                            '|[\x21-\x27\x2A-\x5B\x5D-\x7E])' .
+                            '|(?:\\[\x00-\x08\x0B\x0C\x0E-\x7F])' .
+                            '|(?1)))*(?:(?:[ \t]*(?:\r\n))?[ \t])?\)))*(?:(?:(?:(?:[ \t]*(?:\r\n))?[ \t])?(\((?:(?:(?:[ \t]*(?:\r\n))?[ \t])' .
+                            '|(?:(?:[\x01-\x08\x0B\x0C\x0E-\x19\x7F]' .
+                            '|[\x21-\x27\x2A-\x5B\x5D-\x7E])' .
+                            '|(?:\\[\x00-\x08\x0B\x0C\x0E-\x7F])' .
+                            '|(?1)))*(?:(?:[ \t]*(?:\r\n))?[ \t])?\)))' .
+                            '|(?:(?:[ \t]*(?:\r\n))?[ \t])))?(?:[a-zA-Z0-9!#\$%&\'\*\+\-\/=\?\^_`\{\}\|~]+(\.[a-zA-Z0-9!#\$%&\'\*\+\-\/=\?\^_`\{\}\|~]+)*)+(?:(?:(?:(?:[ \t]*(?:\r\n))?[ \t])?(\((?:(?:(?:[ \t]*(?:\r\n))?[ \t])' .
+                            '|(?:(?:[\x01-\x08\x0B\x0C\x0E-\x19\x7F]' .
+                            '|[\x21-\x27\x2A-\x5B\x5D-\x7E])' .
+                            '|(?:\\[\x00-\x08\x0B\x0C\x0E-\x7F])' .
+                            '|(?1)))*(?:(?:[ \t]*(?:\r\n))?[ \t])?\)))*(?:(?:(?:(?:[ \t]*(?:\r\n))?[ \t])?(\((?:(?:(?:[ \t]*(?:\r\n))?[ \t])' .
+                            '|(?:(?:[\x01-\x08\x0B\x0C\x0E-\x19\x7F]' .
+                            '|[\x21-\x27\x2A-\x5B\x5D-\x7E])' .
+                            '|(?:\\[\x00-\x08\x0B\x0C\x0E-\x7F])' .
+                            '|(?1)))*(?:(?:[ \t]*(?:\r\n))?[ \t])?\)))' .
+                            '|(?:(?:[ \t]*(?:\r\n))?[ \t])))?)' .
+                            '|(?:(?:(?:(?:(?:[ \t]*(?:\r\n))?[ \t])?(\((?:(?:(?:[ \t]*(?:\r\n))?[ \t])' .
+                            '|(?:(?:[\x01-\x08\x0B\x0C\x0E-\x19\x7F]' .
+                            '|[\x21-\x27\x2A-\x5B\x5D-\x7E])' .
+                            '|(?:\\[\x00-\x08\x0B\x0C\x0E-\x7F])' .
+                            '|(?1)))*(?:(?:[ \t]*(?:\r\n))?[ \t])?\)))*(?:(?:(?:(?:[ \t]*(?:\r\n))?[ \t])?(\((?:(?:(?:[ \t]*(?:\r\n))?[ \t])' .
+                            '|(?:(?:[\x01-\x08\x0B\x0C\x0E-\x19\x7F]' .
+                            '|[\x21-\x27\x2A-\x5B\x5D-\x7E])' .
+                            '|(?:\\[\x00-\x08\x0B\x0C\x0E-\x7F])' .
+                            '|(?1)))*(?:(?:[ \t]*(?:\r\n))?[ \t])?\)))' .
+                            '|(?:(?:[ \t]*(?:\r\n))?[ \t])))?\[((?:(?:[ \t]*(?:\r\n))?[ \t])?(?:(?:[\x01-\x08\x0B\x0C\x0E-\x19\x7F]' .
+                            '|[\x21-\x5A\x5E-\x7E])' .
+                            '|(?:\\[\x00-\x08\x0B\x0C\x0E-\x7F])))*?(?:(?:[ \t]*(?:\r\n))?[ \t])?\](?:(?:(?:(?:[ \t]*(?:\r\n))?[ \t])?(\((?:(?:(?:[ \t]*(?:\r\n))?[ \t])' .
+                            '|(?:(?:[\x01-\x08\x0B\x0C\x0E-\x19\x7F]' .
+                            '|[\x21-\x27\x2A-\x5B\x5D-\x7E])' .
+                            '|(?:\\[\x00-\x08\x0B\x0C\x0E-\x7F])' .
+                            '|(?1)))*(?:(?:[ \t]*(?:\r\n))?[ \t])?\)))*(?:(?:(?:(?:[ \t]*(?:\r\n))?[ \t])?(\((?:(?:(?:[ \t]*(?:\r\n))?[ \t])' .
+                            '|(?:(?:[\x01-\x08\x0B\x0C\x0E-\x19\x7F]' .
+                            '|[\x21-\x27\x2A-\x5B\x5D-\x7E])' .
+                            '|(?:\\[\x00-\x08\x0B\x0C\x0E-\x7F])' .
+                            '|(?1)))*(?:(?:[ \t]*(?:\r\n))?[ \t])?\)))' .
+                            '|(?:(?:[ \t]*(?:\r\n))?[ \t])))?)))';
 
+    if (!preg_match('/^' . $rfcValidEmailPattern . '$/D', $address))
+    {
+      return FALSE;
+    } else {
+      return TRUE;
+    }
+  }
 
-?>
+  /**
+   * PROCESS EMBEDDED IMAGES
+   * attach and properly embed any embedded images marked as 'embed="yes"'
+   *
+   * @param string $email_html
+   * return string
+   */
+  function processEmbeddedImages ($email_html, & $mail)
+  {
+    if (defined('EMAIL_ATTACH_EMBEDDED_IMAGES') && EMAIL_ATTACH_EMBEDDED_IMAGES == 'Yes')
+    {
+      $imageFiles = array();
+      $imagesToProcess = array();
+      if (preg_match_all('#<img.*src=\"(.*?)\".*?\/>#', $email_html, $imagesToProcess))
+      {
+        for ($i = 0, $n = count($imagesToProcess[0]); $i < $n; $i ++)
+        {
+          $exists = strpos($imagesToProcess[0][$i], 'embed="yes"');
+          if ($exists !== false)
+          {
+            // prevent duplicate attachments - if already processed, remember it
+            if (array_key_exists($imagesToProcess[1][$i], $imageFiles))
+            {
+              $substitute = $imageFiles[$imagesToProcess[1][$i]];
+
+              // if not a duplicate, and file can be located on filesystem, add it as an attachment, and replace its SRC attribute with the embedded code
+            } elseif (file_exists(DIR_FS_CATALOG . $imagesToProcess[1][$i]))
+            {
+              $rpos = strrpos($imagesToProcess[1][$i], '.');
+              $ext = substr($imagesToProcess[1][$i], $rpos + 1);
+              $name = basename($imagesToProcess[1][$i], '.'.$ext);
+              switch (strtolower($ext)) {
+                case 'gif':
+                  $mimetype = 'image/gif';
+                  break;
+                case 'jpg':
+                case 'jpeg':
+                  $mimetype = 'image/jpeg';
+                  break;
+                case 'png':
+                default:
+                  $mimetype = 'image/png';
+                  break;
+              }
+              $substitute = $name . $i;
+              $mail->AddEmbeddedImage(DIR_FS_CATALOG . $imagesToProcess[1][$i], $substitute, $name . '.' . $ext, "base64", $mimetype);
+              $imageFiles[$imagesToProcess[1][$i]] = $substitute;
+            }
+            $email_html = str_replace($imagesToProcess[1][$i], 'cid:'.$substitute, $email_html);
+          }
+        }
+      }
+    }
+    return $email_html;
+  }
+

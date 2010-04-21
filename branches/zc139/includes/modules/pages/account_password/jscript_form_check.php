@@ -1,10 +1,10 @@
 <?php
 /**
  * @package page
- * @copyright Copyright 2003-2006 Zen Cart Development Team
+ * @copyright Copyright 2003-2008 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: jscript_form_check.php 4238 2006-08-24 10:01:04Z drbyte $
+ * @version $Id: jscript_form_check.php 8748 2008-06-28 02:49:12Z drbyte $
  */
 ?>
 <script language="javascript" type="text/javascript"><!--
@@ -76,7 +76,7 @@ function check_password_new(field_name_1, field_name_2, field_name_3, field_size
     var password_new = form.elements[field_name_2].value;
     var password_confirmation = form.elements[field_name_3].value;
 
-    if (password_current == '' || password_current.length < field_size) {
+    if (password_current == '' ) {
       error_message = error_message + "* " + message_1 + "\n";
       error = true;
     } else if (password_new == '' || password_new.length < field_size) {

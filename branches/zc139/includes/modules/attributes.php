@@ -6,10 +6,10 @@
  * Prepares HTML for input fields with required uniqueness so template can display them as needed and keep collected data in proper fields
  *
  * @package modules
- * @copyright Copyright 2003-2007 Zen Cart Development Team
+ * @copyright Copyright 2003-2009 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: attributes.php 6371 2007-05-25 19:55:59Z ajeh $
+ * @version $Id: attributes.php 14141 2009-08-10 19:34:47Z wilt $
  */
 if (!defined('IS_ADMIN_FLAG')) {
   die('Illegal Access');
@@ -392,12 +392,12 @@ $sql = "select count(*) as total
                     if ($_POST['id']) {
                       reset($_POST['id']);
                       foreach ($_POST['id'] as $key => $value) {
-                        //echo ereg_replace('txt_', '', $key) . '#';
+                        //echo preg_replace('/txt_/', '', $key) . '#';
                         //print_r($_POST['id']);
                         //echo $products_options_names->fields['products_options_id'].'|';
                         //echo $value.'|';
                         //echo $products_options->fields['products_options_values_id'].'#';
-                        if ((ereg_replace('txt_', '', $key) == $products_options_names->fields['products_options_id'])) {
+                        if ((preg_replace('/txt_/', '', $key) == $products_options_names->fields['products_options_id'])) {
                           // use text area or input box based on setting of products_options_rows in the products_options table
                           if ( $products_options_names->fields['products_options_rows'] > 1) {
                             $tmp_html = '  <input disabled="disabled" type="text" name="remaining' . TEXT_PREFIX . $products_options_names->fields['products_options_id'] . '" size="3" maxlength="3" value="' . $products_options_names->fields['products_options_length'] . '" /> ' . TEXT_MAXIMUM_CHARACTERS_ALLOWED . '<br />';

@@ -3,10 +3,10 @@
  * header code, mainly concerned with adding to messagestack when certain warnings are applicable
  *
  * @package templateStructure
- * @copyright Copyright 2003-2007 Zen Cart Development Team
+ * @copyright Copyright 2003-2010 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: init_header.php 6990 2007-09-12 21:45:57Z drbyte $
+ * @version $Id: init_header.php 15921 2010-04-12 22:08:10Z drbyte $
  */
 if (!defined('IS_ADMIN_FLAG')) {
   die('Illegal Access');
@@ -139,4 +139,9 @@ if (EZPAGES_STATUS_SIDEBOX == '2' && (strstr(EXCLUDE_ADMIN_IP_FOR_MAINTENANCE, $
 if (defined('STRICT_ERROR_REPORTING') && STRICT_ERROR_REPORTING == true) {
   $messageStack->add('header', 'STRICT ERROR REPORTING IS ON', 'warning');
 }
-?>
+
+
+// if down for maintenance, prevent indexing
+if ((DOWN_FOR_MAINTENANCE == 'true')) {
+  header("HTTP/1.1 503 Service Unavailable");
+}

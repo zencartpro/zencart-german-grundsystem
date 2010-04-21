@@ -6,10 +6,10 @@
  * Displays shopping-cart contents
  *
  * @package templateSystem
- * @copyright Copyright 2003-2007 Zen Cart Development Team
+ * @copyright Copyright 2003-2010 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: tpl_shopping_cart_default.php 5554 2007-01-07 02:45:29Z drbyte $
+ * @version $Id: tpl_shopping_cart_default.php 15881 2010-04-11 16:32:39Z wilt $
  */
 ?>
 <div class="centerColumn" id="shoppingCartDefault">
@@ -29,7 +29,7 @@
 
 <?php if ($messageStack->size('shopping_cart') > 0) echo $messageStack->output('shopping_cart'); ?>
 
-<?php echo zen_draw_form('cart_quantity', zen_href_link(FILENAME_SHOPPING_CART, 'action=update_product')); ?>
+<?php echo zen_draw_form('cart_quantity', zen_href_link(FILENAME_SHOPPING_CART, 'action=update_product', $request_type)); ?>
 <div id="cartInstructionsDisplay" class="content"><?php echo TEXT_INFORMATION; ?></div>
 
 <?php if (!empty($totalsDisplay)) { ?>
@@ -82,9 +82,7 @@
 ?>
        </td>
        <td class="cartProductDisplay">
-<?php
-	// WFH 030806: add comment for onetime charges 
-	echo $product['productsImage'] ? '<div id="cartImage" class="back">' . $product['productsImage'] . '</div>' : ""; ?><div id="cartProdTitle"><a href="<?php echo $product['linkProductsName']; ?>"><?php echo $product['productsName'] . '<span class="alert bold">' . $product['flagStockCheck'] . '</span></a>' . ($product['oneTimeCharge'] ? "<br/><span class='oneTimeCharge'>" . TEXT_ONETIME_CHARGES_BASKET . "</span></div>" : "</div>"); ?>
+<a href="<?php echo $product['linkProductsName']; ?>"><span id="cartImage" class="back"><?php echo $product['productsImage']; ?></span><span id="cartProdTitle"><?php echo $product['productsName'] . '<span class="alert bold">' . $product['flagStockCheck'] . '</span>'; ?></span></a>
 <br class="clearBoth" />
 
 

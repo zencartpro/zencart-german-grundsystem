@@ -4,10 +4,10 @@
  * Defines the database table names used in the project
  *
  * @package initSystem
- * @copyright Copyright 2003-2007 Zen Cart Development Team
+ * @copyright Copyright 2003-2010 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: database_tables.php 5924 2007-02-28 08:25:15Z drbyte $
+ * @version $Id: database_tables.php 15508 2010-02-18 05:24:31Z drbyte $
  * @private
  */
 
@@ -53,8 +53,6 @@ define('TABLE_MANUFACTURERS_INFO', DB_PREFIX . 'manufacturers_info');
 define('TABLE_META_TAGS_PRODUCTS_DESCRIPTION', DB_PREFIX . 'meta_tags_products_description');
 define('TABLE_METATAGS_CATEGORIES_DESCRIPTION', DB_PREFIX . 'meta_tags_categories_description');
 define('TABLE_NEWSLETTERS', DB_PREFIX . 'newsletters');
-define('TABLE_NOCHEX', DB_PREFIX . 'nochex_apc_transactions');
-define('TABLE_NOCHEX_SESSION', DB_PREFIX . 'nochex_sessions');
 define('TABLE_ORDERS', DB_PREFIX . 'orders');
 define('TABLE_ORDERS_PRODUCTS', DB_PREFIX . 'orders_products');
 define('TABLE_ORDERS_PRODUCTS_ATTRIBUTES', DB_PREFIX . 'orders_products_attributes');
@@ -67,7 +65,6 @@ define('TABLE_PAYPAL', DB_PREFIX . 'paypal');
 define('TABLE_PAYPAL_SESSION', DB_PREFIX . 'paypal_session');
 define('TABLE_PAYPAL_PAYMENT_STATUS', DB_PREFIX . 'paypal_payment_status');
 define('TABLE_PAYPAL_PAYMENT_STATUS_HISTORY', DB_PREFIX . 'paypal_payment_status_history');
-define('TABLE_PAYPAL_TESTING', DB_PREFIX . 'paypal_testing');
 define('TABLE_PRODUCTS', DB_PREFIX . 'products');
 define('TABLE_PRODUCT_TYPES', DB_PREFIX . 'product_types');
 define('TABLE_PRODUCT_TYPE_LAYOUT', DB_PREFIX . 'product_type_layout');
@@ -100,5 +97,3 @@ define('TABLE_UPGRADE_EXCEPTIONS', DB_PREFIX . 'upgrade_exceptions');
 define('TABLE_WISHLIST', DB_PREFIX . 'customers_wishlist');
 define('TABLE_WHOS_ONLINE', DB_PREFIX . 'whos_online');
 define('TABLE_ZONES', DB_PREFIX . 'zones');
-
-?>

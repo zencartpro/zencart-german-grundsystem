@@ -3,13 +3,17 @@
  * Tell a Friend
  *
  * @package page
- * @copyright Copyright 2003-2006 Zen Cart Development Team
+ * @copyright Copyright 2003-2010 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: header_php.php 3000 2006-02-09 21:11:37Z wilt $
+ * @version $Id: header_php.php 15769 2010-04-01 09:37:18Z drbyte $
  */
 
-//
+// spam deterrents
+define('TELL_A_FRIEND_SPAM_THROTTLE_TIMER', 90); // can't send tell-a-friend messages more frequently than this many seconds
+define('TELL_A_FRIEND_SPAM_BOOT_THRESHOLD', 5); // can't send more than this many tell-a-friend messages before being logged out
+
+
 if (!$_SESSION['customer_id'] && (ALLOW_GUEST_TO_TELL_A_FRIEND == 'false')) {
   $_SESSION['navigation']->set_snapshot();
   zen_redirect(zen_href_link(FILENAME_LOGIN, '', 'SSL'));
@@ -41,6 +45,8 @@ require(DIR_WS_MODULES . zen_get_module_directory('require_languages.php'));
 
 if (isset($_GET['action']) && ($_GET['action'] == 'process')) {
   $error = false;
+
+  if (isset($_SESSION['tell_friend_timeout']) && ((int)$_SESSION['tell_friend_timeout'] + TELL_A_FRIEND_SPAM_THROTTLE_TIMER) > time()) $error = TRUE;
 
   $to_email_address = zen_db_prepare_input($_POST['to_email_address']);
   $to_name = zen_db_prepare_input($_POST['to_name']);
@@ -102,6 +108,10 @@ if (isset($_GET['action']) && ($_GET['action'] == 'process')) {
     //send the email
     zen_mail($to_name, $to_email_address, $email_subject, $email_body, $from_name, $from_email_address, $html_msg, 'tell_a_friend');
 
+    // limit spam/slamming
+    $_SESSION['tell_friend_timeout'] = time();
+    $_SESSION['tell_friend_boot']++;
+
     // send additional emails
     if (SEND_EXTRA_TELL_A_FRIEND_EMAILS_TO_STATUS == '1' and SEND_EXTRA_TELL_A_FRIEND_EMAILS_TO !='') {
       if ($_SESSION['customer_id']) {
@@ -120,6 +130,11 @@ if (isset($_GET['action']) && ($_GET['action'] == 'process')) {
     }
 
     $messageStack->add_session('header', sprintf(TEXT_EMAIL_SUCCESSFUL_SENT, $product_info->fields['products_name'], zen_output_string_protected($to_name)), 'success');
+    if ($_SESSION['tell_friend_boot'] > TELL_A_FRIEND_SPAM_BOOT_THRESHOLD) {
+      sleep(28);
+      zen_session_destroy();
+      zen_redirect(zen_href_link(FILENAME_LOGOFF));
+    }
 
     zen_redirect(zen_href_link(zen_get_info_page($_GET['products_id']), 'products_id=' . $_GET['products_id']));
   }
@@ -136,4 +151,3 @@ if (isset($_GET['action']) && ($_GET['action'] == 'process')) {
 }
 
 $breadcrumb->add(NAVBAR_TITLE);
-?>

@@ -3,7 +3,7 @@
  * authorize.net echeck payment method class
  *
  * @package paymentMethod
- * @copyright Copyright 2003-2007 Zen Cart Development Team
+ * @copyright Copyright 2003-2010 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
  * @version $Id$
@@ -72,18 +72,21 @@ class authorizenet_echeck extends base {
    * @return authorizenet_echeck
    */
   function authorizenet_echeck() {
-    global $order;
+    global $order, $messageStack;
     $this->code = 'authorizenet_echeck';
     $this->enabled = ((MODULE_PAYMENT_AUTHORIZENET_ECHECK_STATUS == 'True') ? true : false); // Whether the module is installed or not
     if (IS_ADMIN_FLAG === true) {
       // Payment module title in Admin
       $this->title = MODULE_PAYMENT_AUTHORIZENET_ECHECK_TEXT_ADMIN_TITLE;
-      if (MODULE_PAYMENT_AUTHORIZENET_ECHECK_STATUS == 'True' && (MODULE_PAYMENT_AUTHORIZENET_ECHECK_LOGIN == 'testing' || MODULE_PAYMENT_AUTHORIZENET_ECHECK_TXNKEY == 'Test')) {
-        $this->title .=  '<span class="alert"> (Not Configured)</span>'; 
-      } elseif (MODULE_PAYMENT_AUTHORIZENET_ECHECK_TESTMODE == 'Test') {
-        $this->title .= '<span class="alert"> (in Testing mode)</span>';
+      if ($this->enabled) {
+        if (MODULE_PAYMENT_AUTHORIZENET_ECHECK_STATUS == 'True' && (MODULE_PAYMENT_AUTHORIZENET_ECHECK_LOGIN == 'testing' || MODULE_PAYMENT_AUTHORIZENET_ECHECK_TXNKEY == 'Test')) {
+          $this->title .=  '<span class="alert"> (Not Configured)</span>';
+        } elseif (MODULE_PAYMENT_AUTHORIZENET_ECHECK_TESTMODE == 'Test') {
+          $this->title .= '<span class="alert"> (in Testing mode)</span>';
+        }
+        if ($this->enabled && !function_exists('curl_init')) $messageStack->add_session(MODULE_PAYMENT_AUTHORIZENET_AIM_TEXT_ERROR_CURL_NOT_FOUND, 'error');
+        if (strlen(MODULE_PAYMENT_AUTHORIZENET_ECHECK_MD5HASH) > 20) $this->title .= '<span class="alert"> (NOTE: MD5 Hash key too long)</span>';
       }
-      if ($this->enabled && !function_exists('curl_init')) $messageStack->add_session(MODULE_PAYMENT_AUTHORIZENET_AIM_TEXT_ERROR_CURL_NOT_FOUND, 'error');
     } else {
       $this->title = MODULE_PAYMENT_AUTHORIZENET_ECHECK_TEXT_CATALOG_TITLE; // Payment module title in Catalog
     }
@@ -98,6 +101,9 @@ class authorizenet_echeck extends base {
     $this->_logDir = DIR_FS_SQL_CACHE;
 
     if (is_object($order)) $this->update_status();
+
+    // verify table structure
+    if (IS_ADMIN_FLAG === true) $this->tableCheckup();
   }
   /**
    * calculate zone matches and flag settings to determine whether this module should display to customers or not
@@ -184,19 +190,19 @@ class authorizenet_echeck extends base {
                        'module' => MODULE_PAYMENT_AUTHORIZENET_ECHECK_TEXT_CATALOG_TITLE,
                        'fields' => array(
                                          array('title' => MODULE_PAYMENT_AUTHORIZENET_ECHECK_TEXT_BANK_ROUTING_CODE,
-                                               'field' => zen_draw_input_field('authorizenet_echeck_bank_aba_code', '', 'maxlength="9" id="'.$this->code.'-echeck-routing-code"' . $onFocus),
+                                               'field' => zen_draw_input_field('authorizenet_echeck_bank_aba_code', '', 'maxlength="9" id="'.$this->code.'-echeck-routing-code"' . $onFocus . ' autocomplete="off"'),
                                                'tag' => $this->code.'-echeck-routing-code'),
                                          array('title' => MODULE_PAYMENT_AUTHORIZENET_ECHECK_TEXT_BANK_ACCOUNT_NUM,
-                                               'field' => zen_draw_input_field('authorizenet_echeck_bank_acct_num', '', 'maxlength="20" id="'.$this->code.'-echeck-bank-acct-num"'. $onFocus),
+                                               'field' => zen_draw_input_field('authorizenet_echeck_bank_acct_num', '', 'maxlength="20" id="'.$this->code.'-echeck-bank-acct-num"'. $onFocus . ' autocomplete="off"'),
                                                'tag' => $this->code.'-echeck-bank-acct-num'),
                                          array('title' => MODULE_PAYMENT_AUTHORIZENET_ECHECK_TEXT_BANK_NAME,
-                                               'field' => zen_draw_input_field('authorizenet_echeck_bank_name', '', 'maxlength="50" id="'.$this->code.'-echeck-bank-name"' . $onFocus),
+                                               'field' => zen_draw_input_field('authorizenet_echeck_bank_name', '', 'maxlength="50" id="'.$this->code.'-echeck-bank-name"' . $onFocus . ' autocomplete="off"'),
                                                'tag' => $this->code.'-echeck-bank-name'),
                                          array('title' => MODULE_PAYMENT_AUTHORIZENET_ECHECK_TEXT_BANK_ACCOUNT_TYPE,
-                                               'field' => zen_draw_pull_down_menu('authorizenet_echeck_bank_acct_type', $bank_acct_types, '', 'id="'.$this->code.'-echeck-bank-acct-type"' . $onFocus),
+                                               'field' => zen_draw_pull_down_menu('authorizenet_echeck_bank_acct_type', $bank_acct_types, '', 'id="'.$this->code.'-echeck-bank-acct-type"' . $onFocus . ' autocomplete="off"'),
                                                'tag' => $this->code.'-echeck-bank-acct-type'),
                                          array('title' => MODULE_PAYMENT_AUTHORIZENET_ECHECK_TEXT_BANK_ACCOUNTHOLDER,
-                                               'field' => zen_draw_input_field('authorizenet_echeck_bank_accountholder', $order->billing['firstname'] . ' ' . $order->billing['lastname'], 'maxlength="100" id="'.$this->code.'-echeck-bank-acctholder"' . $onFocus),
+                                               'field' => zen_draw_input_field('authorizenet_echeck_bank_accountholder', $order->billing['firstname'] . ' ' . $order->billing['lastname'], 'maxlength="100" id="'.$this->code.'-echeck-bank-acctholder"' . $onFocus . ' autocomplete="off"'),
                                                'tag' => $this->code.'-echeck-bank-acctholder')  ));
 
     if (MODULE_PAYMENT_AUTHORIZENET_ECHECK_WFSS_ENABLED == 'True') {
@@ -214,19 +220,19 @@ class authorizenet_echeck extends base {
       }
       $selection['fields'] = array_merge($selection['fields'], array(
                                      array('title' => MODULE_PAYMENT_AUTHORIZENET_ECHECK_TEXT_CUST_TYPE,
-                                           'field' => zen_draw_pull_down_menu('echeck_customer_type', $echeck_customer_types, '', 'id="'.$this->code.'-echeck-cust-type"' . $onFocus),
+                                           'field' => zen_draw_pull_down_menu('echeck_customer_type', $echeck_customer_types, '', 'id="'.$this->code.'-echeck-cust-type"' . $onFocus . ' autocomplete="off"'),
                                            'tag' => $this->code.'-echeck-cust-type'),
                                      array('title' => MODULE_PAYMENT_AUTHORIZENET_ECHECK_TEXT_CUST_TAX_ID,
-                                           'field' => zen_draw_input_field('echeck_customer_tax_id', '', 'maxlength="9" id="'.$this->code.'-echeck-tax-id"' . $onFocus),
+                                           'field' => zen_draw_input_field('echeck_customer_tax_id', '', 'maxlength="9" id="'.$this->code.'-echeck-tax-id"' . $onFocus . ' autocomplete="off"'),
                                            'tag' => $this->code.'-echeck-tax-id'),
                                      array('title' => MODULE_PAYMENT_AUTHORIZENET_ECHECK_TEXT_DL_NUMBER,
-                                           'field' => zen_draw_input_field('echeck_dl_num', '', 'maxlength="50" id="'.$this->code.'-echeck-dl-num"' . $onFocus),
+                                           'field' => zen_draw_input_field('echeck_dl_num', '', 'maxlength="50" id="'.$this->code.'-echeck-dl-num"' . $onFocus . ' autocomplete="off"'),
                                            'tag' => $this->code.'-echeck-dl-num'),
                                      array('title' => MODULE_PAYMENT_AUTHORIZENET_ECHECK_TEXT_DL_STATE,
-                                           'field' => zen_draw_pull_down_menu('echeck_dl_state', $dl_states, '', 'id="'.$this->code.'-echeck-dl-state"' . $onFocus),
+                                           'field' => zen_draw_pull_down_menu('echeck_dl_state', $dl_states, '', 'id="'.$this->code.'-echeck-dl-state"' . $onFocus . ' autocomplete="off"'),
                                            'tag' => $this->code.'-echeck-dl-state'),
                                      array('title' => MODULE_PAYMENT_AUTHORIZENET_ECHECK_TEXT_DL_DOB_TEXT,
-                                           'field' => zen_draw_input_field('echeck_dl_dob', '', 'maxlength="11" id="'.$this->code.'-echeck-dl-dob"' . $onFocus) . ' ' . MODULE_PAYMENT_AUTHORIZENET_ECHECK_TEXT_DL_DOB_FORMAT,
+                                           'field' => zen_draw_input_field('echeck_dl_dob', '', 'maxlength="11" id="'.$this->code.'-echeck-dl-dob"' . $onFocus . ' autocomplete="off"') . ' ' . MODULE_PAYMENT_AUTHORIZENET_ECHECK_TEXT_DL_DOB_FORMAT,
                                            'tag' => $this->code.'-echeck-dl-dob') ));
     }
     return $selection;
@@ -319,7 +325,7 @@ class authorizenet_echeck extends base {
     // Populate an array that contains all of the data to be sent to Authorize.net
     $submit_data = array(
                          'x_login' => trim(MODULE_PAYMENT_AUTHORIZENET_ECHECK_LOGIN),
-                         'x_tran_key' => trim(MODULE_PAYMENT_AUTHORIZENET_ECHECK_TXNKEY),  
+                         'x_tran_key' => trim(MODULE_PAYMENT_AUTHORIZENET_ECHECK_TXNKEY),
                          'x_relay_response' => 'FALSE', // AIM uses direct response, not relay response
                          'x_delim_data' => 'TRUE',
                          'x_delim_char' => $this->delimiter,  // The default delimiter is a comma
@@ -375,7 +381,7 @@ class authorizenet_echeck extends base {
       if (zen_db_prepare_input($_POST['echeck_customer_tax_id']) != '') {
         $submit_data['x_customer_tax_id'] = zen_db_prepare_input($_POST['echeck_customer_tax_id']);
       } else {
-        $submit_data = array_merge($submit_data, 
+        $submit_data = array_merge($submit_data,
                    array('x_drivers_license_num' => zen_db_prepare_input($_POST['echeck_dl_num']),
                          'x_drivers_license_state' => zen_db_prepare_input($_POST['echeck_dl_state']),
                          'x_drivers_license_dob' => zen_db_prepare_input($_POST['echeck_dl_dob'])  ));
@@ -396,7 +402,7 @@ class authorizenet_echeck extends base {
 
     // If the MD5 hash doesn't match, then this transaction's authenticity cannot be verified.
     // Thus, order will be placed in Pending status
-    if ($response['HashMatchStatus'] != 'PASS') {
+    if ($response['HashMatchStatus'] != 'PASS' && defined('MODULE_PAYMENT_AUTHORIZENET_ECHECK_MD5HASH') && MODULE_PAYMENT_AUTHORIZENET_ECHECK_MD5HASH != '') {
       $this->order_status = 1;
       $messageStack->add_session('header', MODULE_PAYMENT_AUTHORIZENET_ECHECK_TEXT_AUTHENTICITY_WARNING, 'caution');
     }
@@ -462,11 +468,16 @@ class authorizenet_echeck extends base {
    *
    */
   function install() {
-    global $db;
+    global $db, $messageStack;
+    if (defined('MODULE_PAYMENT_AUTHORIZENET_ECHECK_STATUS')) {
+      $messageStack->add_session('Authorize.net (eCheck) module already installed.', 'error');
+      zen_redirect(zen_href_link(FILENAME_MODULES, 'set=payment&module=authorizenet_echeck', 'NONSSL'));
+      return 'failed';
+    }
     $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) values ('Enable Authorize.net (eCheck) Module', 'MODULE_PAYMENT_AUTHORIZENET_ECHECK_STATUS', 'True', 'Do you want to accept eCheck payments via Authorize.net?', '6', '0', 'zen_cfg_select_option(array(\'True\', \'False\'), ', now())");
     $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) values ('Login ID', 'MODULE_PAYMENT_AUTHORIZENET_ECHECK_LOGIN', 'testing', 'The API Login ID used for the Authorize.net service', '6', '0', now())");
-    $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added, use_function) values ('Transaction Key', 'MODULE_PAYMENT_AUTHORIZENET_ECHECK_TXNKEY', 'Test', 'Transaction Key used for encrypting TP data<br />(See your Authorizenet Account->Security Settings->API Login ID and Transaction Key for details.)', '6', '0', now(), 'zen_cfg_password_display')"); 
-    $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added, use_function) values ('MD5 Hash', 'MODULE_PAYMENT_AUTHORIZENET_ECHECK_MD5HASH', '*Set A Hash Value at AuthNet Admin*', 'Encryption key used for validating received transaction data (MAX 20 CHARACTERS)', '6', '0', now(), 'zen_cfg_password_display')");
+    $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added, use_function) values ('Transaction Key', 'MODULE_PAYMENT_AUTHORIZENET_ECHECK_TXNKEY', 'Test', 'Transaction Key used for encrypting TP data<br />(See your Authorizenet Account->Security Settings->API Login ID and Transaction Key for details.)', '6', '0', now(), 'zen_cfg_password_display')");
+    $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added, use_function) values ('MD5 Hash', 'MODULE_PAYMENT_AUTHORIZENET_ECHECK_MD5HASH', '*Set A Hash Value at AuthNet Admin*', 'Encryption key used for validating received transaction data (MAX 20 CHARACTERS, exactly as you entered in Authorize.net account settings). Or leave blank.', '6', '0', now(), 'zen_cfg_password_display')");
     $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) values ('Transaction Mode', 'MODULE_PAYMENT_AUTHORIZENET_ECHECK_TESTMODE', 'Test', 'Transaction mode used for processing orders', '6', '0', 'zen_cfg_select_option(array(\'Test\', \'Production\'), ', now())");
     $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) values ('Authorization Type', 'MODULE_PAYMENT_AUTHORIZENET_ECHECK_AUTHORIZATION_TYPE', 'Authorize', 'Do you want submitted credit card transactions to be authorized only, or authorized and captured?', '6', '0', 'zen_cfg_select_option(array(\'Authorize\', \'Authorize+Capture\'), ', now())");
     $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) values ('Enable Database Storage', 'MODULE_PAYMENT_AUTHORIZENET_ECHECK_STORE_DATA', 'True', 'Do you want to save the gateway communications data to the database?', '6', '0', 'zen_cfg_select_option(array(\'True\', \'False\'), ', now())");
@@ -502,7 +513,7 @@ class authorizenet_echeck extends base {
     // Populate an array that contains all of the data to be sent to Authorize.net
     $submit_data = array_merge(array(
                          'x_login' => trim(MODULE_PAYMENT_AUTHORIZENET_ECHECK_LOGIN),
-                         'x_tran_key' => trim(MODULE_PAYMENT_AUTHORIZENET_ECHECK_TXNKEY),  
+                         'x_tran_key' => trim(MODULE_PAYMENT_AUTHORIZENET_ECHECK_TXNKEY),
                          'x_relay_response' => 'FALSE',
                          'x_delim_data' => 'TRUE',
                          'x_delim_char' => $this->delimiter,  // The default delimiter is a comma
@@ -516,14 +527,18 @@ class authorizenet_echeck extends base {
 
     // set URL
     $url = 'https://secure.authorize.net/gateway/transact.dll';
+    $devurl = 'https://test.authorize.net/gateway/transact.dll';
+    $dumpurl = 'https://developer.authorize.net/param_dump.asp';
+    $certurl = 'https://certification.authorize.net/gateway/transact.dll';
     if (defined('AUTHORIZENET_DEVELOPER_MODE')) {
-      if (AUTHORIZENET_DEVELOPER_MODE == 'on') $url = 'https://test.authorize.net/gateway/transact.dll';
-      if (AUTHORIZENET_DEVELOPER_MODE == 'echo' || MODULE_PAYMENT_AUTHORIZENET_ECHECK_DEBUGGING == 'echo') $url = 'https://developer.authorize.net/param_dump.asp';
-      if (AUTHORIZENET_DEVELOPER_MODE == 'certify') $url = 'https://certification.authorize.net/gateway/transact.dll';
+      if (AUTHORIZENET_DEVELOPER_MODE == 'on') $url = $devurl;
+      if (AUTHORIZENET_DEVELOPER_MODE == 'echo' || MODULE_PAYMENT_AUTHORIZENET_ECHECK_DEBUGGING == 'echo') $url = $dumpurl;
+      if (AUTHORIZENET_DEVELOPER_MODE == 'certify') $url = $certurl;
     }
-    if (MODULE_PAYMENT_AUTHORIZENET_ECHECK_DEBUGGING == 'echo') $url = 'https://developer.authorize.net/param_dump.asp';
+    if (MODULE_PAYMENT_AUTHORIZENET_ECHECK_DEBUGGING == 'echo') $url = $dumpurl;
 
     // concatenate the submission data into $data variable after sanitizing to protect delimiters
+    $data = '';
     while(list($key, $value) = each($submit_data)) {
       if ($key != 'x_delim_char' && $key != 'x_encap_char') {
         $value = str_replace(array($this->delimiter, $this->encapChar,'"',"'",'&amp;','&', '='), '', $value);
@@ -543,16 +558,20 @@ class authorizenet_echeck extends base {
     $this->reportable_submit_data['url'] = $url;
 
 
-    // Post order info data to Authorize.net via CURL - Requires that PHP has cURL support installed
+    // Post order info data to Authorize.net via CURL - Requires that PHP has CURL support installed
 
     // Send CURL communication
     $ch = curl_init();
     curl_setopt($ch, CURLOPT_URL, $url);
+    curl_setopt($ch, CURLOPT_REFERER, ($request_type == 'SSL' ? HTTPS_SERVER . DIR_WS_HTTPS_CATALOG : HTTP_SERVER . DIR_WS_CATALOG ));
+    curl_setopt($ch, CURLOPT_FRESH_CONNECT, 1);
+    curl_setopt($ch, CURLOPT_HEADER, 0);
     curl_setopt($ch, CURLOPT_VERBOSE, 0);
     curl_setopt($ch, CURLOPT_POST, 1);
     curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
     curl_setopt($ch, CURLOPT_TIMEOUT, 15);
+    curl_setopt($ch, CURLOPT_SSLVERSION, 3);
     curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, FALSE); /* compatibility for SSL communications on some Windows servers (IIS 5.0+) */
     if (CURL_PROXY_REQUIRED == 'True') {
       $this->proxy_tunnel_flag = (defined('CURL_PROXY_TUNNEL_FLAG') && strtoupper(CURL_PROXY_TUNNEL_FLAG) == 'FALSE') ? false : true;
@@ -594,7 +613,7 @@ class authorizenet_echeck extends base {
    * Used to do any debug logging / tracking / storage as required.
    */
   function _debugActions($response, $order_time= '', $sessID = '') {
-    global $db, $messageStack;
+    global $db;
     if ($order_time == '') $order_time = date("F j, Y, g:i a");
     // convert output to 1-based array for easier understanding:
     $resp_output = array_reverse($response);
@@ -602,24 +621,25 @@ class authorizenet_echeck extends base {
     $resp_output = array_reverse($resp_output);
 
     // DEBUG LOGGING
-      $errorMessage = date('M-d-Y h:i:s') . 
-                      "\n=================================\n\n" . 
-                      ($this->commError !='' ? 'Comm results: ' . $this->commErrNo . ' ' . $this->commError . "\n\n" : '') . 
-                      'Response Code: ' . $response[0] . ".\nResponse Text: " . $response[3] . "\n\n" . 
-                      'Sending to Authorizenet: ' . print_r($this->reportable_submit_data, true) . "\n\n" . 
-                      'Results Received back from Authorizenet: ' . print_r($resp_output, true) . "\n\n" . 
+      $errorMessage = date('M-d-Y h:i:s') .
+                      "\n=================================\n\n" .
+                      ($this->commError !='' ? 'Comm results: ' . $this->commErrNo . ' ' . $this->commError . "\n\n" : '') .
+                      'Response Code: ' . $response[0] . ".\nResponse Text: " . $response[3] . "\n\n" .
+                      'Sending to Authorizenet: ' . print_r($this->reportable_submit_data, true) . "\n\n" .
+                      'Results Received back from Authorizenet: ' . print_r($resp_output, true) . "\n\n" .
                       'CURL communication info: ' . print_r($this->commInfo, true) . "\n";
-      if (CURL_PROXY_REQUIRED == 'True') 
+      if (CURL_PROXY_REQUIRED == 'True')
         $errorMessage .= 'Using CURL Proxy: [' . CURL_PROXY_SERVER_DETAILS . ']  with Proxy Tunnel: ' .($this->proxy_tunnel_flag ? 'On' : 'Off') . "\n";
       $errorMessage .= "\nRAW data received: \n" . $this->authorize . "\n\n";
 
       if (strstr(MODULE_PAYMENT_AUTHORIZENET_ECHECK_DEBUGGING, 'Log') || strstr(MODULE_PAYMENT_AUTHORIZENET_ECHECK_DEBUGGING, 'All') || (defined('AUTHORIZENET_DEVELOPER_MODE') && in_array(AUTHORIZENET_DEVELOPER_MODE, array('on', 'certify'))) || true) {
         $key = $response[6] . '_' . time() . '_' . zen_create_random_value(4);
         $file = $this->_logDir . '/' . 'AuthNetECheck_Debug_' . $key . '.log';
-        $fp = @fopen($file, 'a');
-        @fwrite($fp, $errorMessage);
-        @fclose($fp);
-      }
+        if ($fp = @fopen($file, 'a')) {
+          fwrite($fp, $errorMessage);
+          fclose($fp);
+        }
+     }
       if (($response[0] != '1' && stristr(MODULE_PAYMENT_AUTHORIZENET_ECHECK_DEBUGGING, 'Alerts')) || strstr(MODULE_PAYMENT_AUTHORIZENET_ECHECK_DEBUGGING, 'Email')) {
         zen_mail(STORE_NAME, STORE_OWNER_EMAIL_ADDRESS, 'Authorizenet-eCheck Alert ' . $response[7] . ' ' . date('M-d-Y h:i:s') . ' ' . $response[6], $errorMessage, STORE_OWNER, STORE_OWNER_EMAIL_ADDRESS, array('EMAIL_MESSAGE_HTML'=>nl2br($errorMessage)), 'debug');
       }
@@ -646,6 +666,16 @@ class authorizenet_echeck extends base {
       $sql = $db->bindVars($sql, ':orderTime', $order_time, 'string');
       $sql = $db->bindVars($sql, ':sessID', $sessID, 'string');
       $db->Execute($sql);
+    }
+  }
+  /**
+   * Check and fix table structure if appropriate
+   */
+  function tableCheckup() {
+    global $db, $sniffer;
+    $fieldOkay1 = (method_exists($sniffer, 'field_type')) ? $sniffer->field_type(TABLE_AUTHORIZENET, 'transaction_id', 'bigint', true) : -1;
+    if ($fieldOkay1 !== true) {
+      $db->Execute("ALTER TABLE " . TABLE_AUTHORIZENET . " CHANGE transaction_id transaction_id bigint default NULL");
     }
   }
   /**
@@ -848,4 +878,3 @@ class authorizenet_echeck extends base {
   }
 
 }
-?>

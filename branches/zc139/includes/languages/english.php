@@ -1,7 +1,7 @@
 <?php
 /**
  * @package languageDefines
- * @copyright Copyright 2003-2007 Zen Cart Development Team
+ * @copyright Copyright 2003-2010 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
  * @version $Id$
@@ -531,7 +531,6 @@
   define('TEXT_LETTERS_FREE',' Letter(s) free ');
   define('TEXT_ONETIME_CHARGES','*onetime charges = ');
   define('TEXT_ONETIME_CHARGES_EMAIL',"\t" . '*onetime charges = ');
-  define('TEXT_ONETIME_CHARGES_BASKET' , "-&nbsp;onetime charges");
   define('TEXT_ATTRIBUTES_QTY_PRICES_HELP', 'Option Quantity Discounts');
   define('TABLE_ATTRIBUTES_QTY_PRICE_QTY','QTY');
   define('TABLE_ATTRIBUTES_QTY_PRICE_PRICE','PRICE');
@@ -622,7 +621,7 @@
 
   define('DB_ERROR_NOT_CONNECTED', 'Error - Could not connect to Database');
 
-// EZ-PAGES Alerts
+  // EZ-PAGES Alerts
   define('TEXT_EZPAGES_STATUS_HEADER_ADMIN', 'WARNING: EZ-PAGES HEADER - On for Admin IP Only');
   define('TEXT_EZPAGES_STATUS_FOOTER_ADMIN', 'WARNING: EZ-PAGES FOOTER - On for Admin IP Only');
   define('TEXT_EZPAGES_STATUS_SIDEBOX_ADMIN', 'WARNING: EZ-PAGES SIDEBOX - On for Admin IP Only');
@@ -698,4 +697,3 @@
   require_once(DIR_WS_LANGUAGES . $_SESSION['language'] . '/' . $template_dir_select . 'meta_tags.php');
 
 // END OF EXTERNAL LANGUAGE LINKS
-?>

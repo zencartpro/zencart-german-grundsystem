@@ -3,10 +3,10 @@
  * product-specials functions
  *
  * @package functions
- * @copyright Copyright 2003-2005 Zen Cart Development Team
+ * @copyright Copyright 2003-2010 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: specials.php 6345 2007-05-20 01:51:25Z ajeh $
+ * @version $Id: specials.php 15974 2010-04-17 00:29:17Z ajeh $
  */
 
 ////
@@ -57,9 +57,9 @@
     $specials_query = "select specials_id, products_id
                        from " . TABLE_SPECIALS . "
                        where status = '0'
-                       and (((specials_date_available <= " . $zc_specials_date . " and specials_date_available != '0001-01-01') and (expires_date >= " . $zc_specials_date . "))
+                       and (((specials_date_available <= " . $zc_specials_date . " and specials_date_available != '0001-01-01') and (expires_date > " . $zc_specials_date . "))
                        or ((specials_date_available <= " . $zc_specials_date . " and specials_date_available != '0001-01-01') and (expires_date = '0001-01-01'))
-                       or (specials_date_available = '0001-01-01' and expires_date >= " . $zc_specials_date . "))
+                       or (specials_date_available = '0001-01-01' and expires_date > " . $zc_specials_date . "))
                        ";
 
     $specials = $db->Execute($specials_query);

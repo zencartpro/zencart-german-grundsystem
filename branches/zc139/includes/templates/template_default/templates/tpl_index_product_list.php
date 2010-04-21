@@ -6,10 +6,10 @@
  * Displays product-listing when a particular category/subcategory is selected for browsing
  *
  * @package templateSystem
- * @copyright Copyright 2003-2007 Zen Cart Development Team
+ * @copyright Copyright 2003-2010 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: tpl_index_product_list.php 6009 2007-03-13 23:56:45Z ajeh $
+ * @version $Id: tpl_index_product_list.php 15589 2010-02-27 15:03:49Z ajeh $
  */
 ?>
 <div class="centerColumn" id="indexProductList">
@@ -55,6 +55,12 @@ if (PRODUCT_LIST_CATEGORIES_IMAGE_STATUS == 'true') {
     // draw manufacturers_id
     echo zen_draw_hidden_field($get_option_variable, $_GET[$get_option_variable]);
   }
+
+  // draw music_genre_id
+  if (isset($_GET['music_genre_id']) && $_GET['music_genre_id'] != '') echo zen_draw_hidden_field('music_genre_id', $_GET['music_genre_id']);
+
+  // draw record_company_id
+  if (isset($_GET['record_company_id']) && $_GET['record_company_id'] != '') echo zen_draw_hidden_field('record_company_id', $_GET['record_company_id']);
 
   // draw typefilter
   if (isset($_GET['typefilter']) && $_GET['typefilter'] != '') echo zen_draw_hidden_field('typefilter', $_GET['typefilter']);

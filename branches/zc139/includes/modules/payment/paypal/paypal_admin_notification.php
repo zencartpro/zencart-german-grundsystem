@@ -1,27 +1,14 @@
 <?php
-//
-// +----------------------------------------------------------------------+
-// |zen-cart Open Source E-commerce                                       |
-// +----------------------------------------------------------------------+
-// | Copyright (c) 2003 The zen-cart developers                           |
-// |                                                                      |
-// | http://www.zen-cart.com/index.php                                    |
-// |                                                                      |
-// | Portions Copyright (c) 2003 osCommerce                               |
-// |                                                                      |
-// |   DevosC, Developing open source Code                                |
-// |   Copyright (c) 2004 DevosC.com                                      |
-// +----------------------------------------------------------------------+
-// | This source file is subject to version 2.0 of the GPL license,       |
-// | that is bundled with this package in the file LICENSE, and is        |
-// | available through the world-wide-web at the following url:           |
-// | http://www.zen-cart.com/license/2_0.txt.                             |
-// | If you did not receive a copy of the zen-cart license and are unable |
-// | to obtain it through the world-wide-web, please send a note to       |
-// | license@zen-cart.com so we can mail you a copy immediately.          |
-// +----------------------------------------------------------------------+
-//  $Id: paypal_admin_notification.php 1113 2005-04-05 02:23:26Z drbyte $
-//
+/**
+ * admin subtemplate for Paypal Website Payments Standard payment method
+ *
+ * @package paymentMethod
+ * @copyright Copyright 2003-2010 Zen Cart Development Team
+ * @copyright Portions Copyright 2003 osCommerce
+ * @copyright Portions Copyright 2004 DevosC.com
+ * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
+ * @version $Id: paypal_admin_notification.php 15560 2010-02-22 07:50:28Z drbyte $
+ */
 
 // strip slashes in case they were added to handle apostrophes:
   foreach ($ipn->fields as $key=>$value){
@@ -39,13 +26,13 @@
           $output .= '</td><td class="main">'."\n";
           $output .= $ipn->fields['first_name']."\n";
           $output .= '</td></tr>'."\n";
-          
+
           $output .= '<tr><td class="main">'."\n";
           $output .= MODULE_PAYMENT_PAYPAL_ENTRY_LAST_NAME."\n";
           $output .= '</td><td class="main">'."\n";
           $output .= $ipn->fields['last_name']."\n";
           $output .= '</td></tr>'."\n";
-          
+
           $output .= '<tr><td class="main">'."\n";
           $output .= MODULE_PAYMENT_PAYPAL_ENTRY_BUSINESS_NAME."\n";
           $output .= '</td><td class="main">'."\n";
@@ -87,13 +74,13 @@
           $output .= '</td><td class="main">'."\n";
           $output .= $ipn->fields['payer_email']."\n";
           $output .= '</td></tr>'."\n";
-          
+
           $output .= '<tr><td class="main">'."\n";
           $output .= MODULE_PAYMENT_PAYPAL_ENTRY_EBAY_ID."\n";
           $output .= '</td><td class="main">'."\n";
           $output .= $ipn->fields['ebay_address_id']."\n";
           $output .= '</td></tr>'."\n";
-          
+
           $output .= '<tr><td class="main">'."\n";
           $output .= MODULE_PAYMENT_PAYPAL_ENTRY_PAYER_ID."\n";
           $output .= '</td><td class="main">'."\n";
@@ -121,7 +108,7 @@
           $output .= '<tr><td class="main">'."\n";
           $output .= MODULE_PAYMENT_PAYPAL_ENTRY_TXN_ID."\n";
           $output .= '</td><td class="main">'."\n";
-          $output .= $ipn->fields['txn_id']."\n";
+          $output .= '<a href="https://www.paypal.com/us/cgi-bin/webscr?cmd=_view-a-trans&id=' . $ipn->fields['txn_id'] . '" target="_blank">' . $ipn->fields['txn_id'] . '</a>' ."\n";
           $output .= '</td></tr>'."\n";
 
           $output .= '<tr><td class="main">'."\n";
@@ -139,13 +126,13 @@
           $output .= '</td><td class="main">'."\n";
           $output .= $ipn->fields['payment_type']."\n";
           $output .= '</td></tr>'."\n";
-          
+
           $output .= '<tr><td class="main">'."\n";
           $output .= MODULE_PAYMENT_PAYPAL_ENTRY_PAYMENT_STATUS."\n";
           $output .= '</td><td class="main">'."\n";
           $output .= $ipn->fields['payment_status']."\n";
           $output .= '</td></tr>'."\n";
-          
+
           $output .= '<tr><td class="main">'."\n";
           $output .= MODULE_PAYMENT_PAYPAL_ENTRY_PENDING_REASON."\n";
           $output .= '</td><td class="main">'."\n";
@@ -173,13 +160,13 @@
           $output .= '</td><td class="main">'."\n";
           $output .= $ipn->fields['mc_currency']."\n";
           $output .= '</td></tr>'."\n";
-          
+
           $output .= '<tr><td class="main">'."\n";
           $output .= MODULE_PAYMENT_PAYPAL_ENTRY_GROSS_AMOUNT."\n";
           $output .= '</td><td class="main">'."\n";
           $output .= $ipn->fields['mc_gross']."\n";
           $output .= '</td></tr>'."\n";
-          
+
           $output .= '<tr><td class="main">'."\n";
           $output .= MODULE_PAYMENT_PAYPAL_ENTRY_PAYMENT_FEE."\n";
           $output .= '</td><td class="main">'."\n";
@@ -201,5 +188,15 @@
           $output .= '</table></td>'."\n";
 
           $output .= '</tr>'."\n";
+        if ($ipn->fields['memo'] != '') {
+          $output .= '<tr style="background-color : #cccccc; border-style : dotted;">'."\n";
+          $output .= '<td valign="top" colspan="4" ><table>'."\n";
+          $output .= '<tr><td valign="top" class="main">'."\n";
+          $output .= MODULE_PAYMENT_PAYPAL_ENTRY_COMMENTS."\n";
+          $output .= '</td><td valign="top" class="main">'."\n";
+          $output .= nl2br($ipn->fields['memo'])."\n";
+          $output .= '</td></tr>'."\n";
+          $output .= '</table></td>'."\n";
+        }
+          $output .= '</tr>'."\n";
           $output .='</table></td>'."\n";
-?>

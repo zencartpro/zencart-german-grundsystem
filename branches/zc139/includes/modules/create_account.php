@@ -3,10 +3,10 @@
  * create_account header_php.php
  *
  * @package modules
- * @copyright Copyright 2003-2007 Zen Cart Development Team
+ * @copyright Copyright 2003-2010 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: create_account.php 6772 2007-08-21 12:33:29Z drbyte $
+ * @version $Id: create_account.php 15767 2010-04-01 08:52:11Z drbyte $
  */
 // This should be first line of the script:
 $zco_notifier->notify('NOTIFY_MODULE_START_CREATE_ACCOUNT');
@@ -25,7 +25,7 @@ if (!defined('IS_ADMIN_FLAG')) {
   $zone_id = 0;
   $error = false;
   $email_format = (ACCOUNT_EMAIL_PREFERENCE == '1' ? 'HTML' : 'TEXT');
-  $newsletter = (ACCOUNT_NEWSLETTER_STATUS == '1' ? false : true);
+  $newsletter = (ACCOUNT_NEWSLETTER_STATUS == '1' || ACCOUNT_NEWSLETTER_STATUS == '0' ? false : true);
 
 /**
  * Process form contents
@@ -46,10 +46,10 @@ if (isset($_POST['action']) && ($_POST['action'] == 'process')) {
   }
 
   if (ACCOUNT_COMPANY == 'true') $company = zen_db_prepare_input($_POST['company']);
-  $firstname = zen_db_prepare_input($_POST['firstname']);
-  $lastname = zen_db_prepare_input($_POST['lastname']);
+  $firstname = zen_db_prepare_input(zen_sanitize_string($_POST['firstname']));
+  $lastname = zen_db_prepare_input(zen_sanitize_string($_POST['lastname']));
   $nick = zen_db_prepare_input($_POST['nick']);
-  if (ACCOUNT_DOB == 'true') $dob = (empty($_POST['dob']) ? zen_db_prepare_input('0001-01-01 00:00:00') : zen_db_prepare_input($_POST['dob']));
+  if (ACCOUNT_DOB == 'true') $dob = zen_db_prepare_input($_POST['dob']);
   $email_address = zen_db_prepare_input($_POST['email_address']);
   $street_address = zen_db_prepare_input($_POST['street_address']);
   if (ACCOUNT_SUBURB == 'true') $suburb = zen_db_prepare_input($_POST['suburb']);
@@ -69,8 +69,11 @@ if (isset($_POST['action']) && ($_POST['action'] == 'process')) {
   $customers_authorization = CUSTOMERS_APPROVAL_AUTHORIZATION;
   $customers_referral = zen_db_prepare_input($_POST['customers_referral']);
 
-  if (isset($_POST['newsletter'])) {
-    $newsletter = zen_db_prepare_input($_POST['newsletter']);
+  if (ACCOUNT_NEWSLETTER_STATUS == '1' || ACCOUNT_NEWSLETTER_STATUS == '2') {
+    $newsletter = 0;
+    if (isset($_POST['newsletter'])) {
+      $newsletter = zen_db_prepare_input($_POST['newsletter']);
+    }
   }
 
   $password = zen_db_prepare_input($_POST['password']);
@@ -303,8 +306,8 @@ if (isset($_POST['action']) && ($_POST['action'] == 'process')) {
 
     $sql = "insert into " . TABLE_CUSTOMERS_INFO . "
                           (customers_info_id, customers_info_number_of_logons,
-                           customers_info_date_account_created)
-              values ('" . (int)$_SESSION['customer_id'] . "', '0', now())";
+                           customers_info_date_account_created, customers_info_date_of_last_logon)
+              values ('" . (int)$_SESSION['customer_id'] . "', '1', now(), now())";
 
     $db->Execute($sql);
 
@@ -391,8 +394,7 @@ if (isset($_POST['action']) && ($_POST['action'] == 'process')) {
     // add in regular email welcome text
     $email_text .= "\n\n" . EMAIL_TEXT . EMAIL_CONTACT . EMAIL_GV_CLOSURE;
 
-    $html_msg['EMAIL_MESSAGE_HTML']  = nl2br(EMAIL_TEXT);
-	//$html_msg['EMAIL_MESSAGE_HTML']  = str_replace('\n','',EMAIL_TEXT);
+    $html_msg['EMAIL_MESSAGE_HTML']  = str_replace('\n','',EMAIL_TEXT);
     $html_msg['EMAIL_CONTACT_OWNER'] = str_replace('\n','',EMAIL_CONTACT);
     $html_msg['EMAIL_CLOSURE']       = nl2br(EMAIL_GV_CLOSURE);
 
@@ -401,7 +403,7 @@ if (isset($_POST['action']) && ($_POST['action'] == 'process')) {
     $html_msg['EMAIL_DISCLAIMER'] = sprintf(EMAIL_DISCLAIMER_NEW_CUSTOMER, '<a href="mailto:' . STORE_OWNER_EMAIL_ADDRESS . '">'. STORE_OWNER_EMAIL_ADDRESS .' </a>');
 
     // send welcome email
-    zen_mail($name, $email_address, EMAIL_SUBJECT, $email_text, STORE_NAME, EMAIL_FROM, $html_msg, 'welcome');
+    if (trim(EMAIL_SUBJECT) != 'n/a') zen_mail($name, $email_address, EMAIL_SUBJECT, $email_text, STORE_NAME, EMAIL_FROM, $html_msg, 'welcome');
 
     // send additional emails
     if (SEND_EXTRA_CREATE_ACCOUNT_EMAILS_TO_STATUS == '1' and SEND_EXTRA_CREATE_ACCOUNT_EMAILS_TO !='') {
@@ -415,7 +417,7 @@ if (isset($_POST['action']) && ($_POST['action'] == 'process')) {
 
       $extra_info=email_collect_extra_info($name,$email_address, $account->fields['customers_firstname'] . ' ' . $account->fields['customers_lastname'], $account->fields['customers_email_address'], $account->fields['customers_telephone'], $account->fields['customers_fax']);
       $html_msg['EXTRA_INFO'] = $extra_info['HTML'];
-      zen_mail('', SEND_EXTRA_CREATE_ACCOUNT_EMAILS_TO, SEND_EXTRA_CREATE_ACCOUNT_EMAILS_TO_SUBJECT . ' ' . EMAIL_SUBJECT,
+      if (trim(SEND_EXTRA_CREATE_ACCOUNT_EMAILS_TO_SUBJECT) != 'n/a') zen_mail('', SEND_EXTRA_CREATE_ACCOUNT_EMAILS_TO, SEND_EXTRA_CREATE_ACCOUNT_EMAILS_TO_SUBJECT . ' ' . EMAIL_SUBJECT,
       $email_text . $extra_info['TEXT'], STORE_NAME, EMAIL_FROM, $html_msg, 'welcome_extra');
     } //endif send extra emails
 
@@ -435,4 +437,3 @@ if (isset($_POST['action']) && ($_POST['action'] == 'process')) {
 
 // This should be last line of the script:
 $zco_notifier->notify('NOTIFY_MODULE_END_CREATE_ACCOUNT');
-?>

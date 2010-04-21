@@ -6,20 +6,20 @@
  * Displays options fields upon which a product search will be run
  *
  * @package templateSystem
- * @copyright Copyright 2003-2006 Zen Cart Development Team
+ * @copyright Copyright 2003-2009 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: tpl_advanced_search_default.php 4673 2006-10-03 01:37:07Z drbyte $
+ * @version $Id: tpl_advanced_search_default.php 14545 2009-10-09 15:04:33Z ajeh $
  */
 ?>
 <div class="centerColumn" id="advSearchDefault">
 
 <?php echo zen_draw_form('advanced_search', zen_href_link(FILENAME_ADVANCED_SEARCH_RESULT, '', 'NONSSL', false), 'get', 'onsubmit="return check_form(this);"') . zen_hide_session_id(); ?>
 <?php echo zen_draw_hidden_field('main_page', FILENAME_ADVANCED_SEARCH_RESULT); ?>
-    
+
 <h1 id="advSearchDefaultHeading"><?php echo HEADING_TITLE_1; ?></h1>
-  
-<?php if ($messageStack->size('search') > 0) echo $messageStack->output('search'); ?>  
+
+<?php if ($messageStack->size('search') > 0) echo $messageStack->output('search'); ?>
 
 <fieldset>
 <legend><?php echo HEADING_SEARCH_CRITERIA; ?></legend>
@@ -38,7 +38,7 @@
 
 <fieldset class="floatingBox forward">
     <legend><?php echo ENTRY_MANUFACTURERS; ?></legend>
-    <?php echo zen_draw_pull_down_menu('manufacturers_id', zen_get_manufacturers(array(array('id' => '', 'text' => TEXT_ALL_MANUFACTURERS))), $sData['manufacturers_id']); ?>
+    <?php echo zen_draw_pull_down_menu('manufacturers_id', zen_get_manufacturers(array(array('id' => '', 'text' => TEXT_ALL_MANUFACTURERS)), PRODUCTS_MANUFACTURERS_STATUS), $sData['manufacturers_id']); ?>
 <br class="clearBoth" />
 </fieldset>
 <br class="clearBoth" />
@@ -53,19 +53,19 @@
     <legend><?php echo ENTRY_PRICE_TO; ?></legend>
     <?php echo zen_draw_input_field('pto', $sData['pto']); ?>
 </fieldset>
-</fieldset> 
+</fieldset>
 
-<fieldset class="floatingBox forward"> 
+<fieldset class="floatingBox forward">
 <legend><?php echo ENTRY_DATE_RANGE; ?></legend>
 <fieldset class="floatLeft">
     <legend><?php echo ENTRY_DATE_FROM; ?></legend>
     <?php echo zen_draw_input_field('dfrom', $sData['dfrom'], 'onfocus="RemoveFormatString(this, \'' . DOB_FORMAT_STRING . '\')"'); ?>
-</fieldset> 
+</fieldset>
 <fieldset class="floatLeft">
     <legend><?php echo ENTRY_DATE_TO; ?></legend>
     <?php echo zen_draw_input_field('dto', $sData['dto'], 'onfocus="RemoveFormatString(this, \'' . DOB_FORMAT_STRING . '\')"'); ?>
-</fieldset> 
-</fieldset> 
+</fieldset>
+</fieldset>
 <br class="clearBoth" />
 
 

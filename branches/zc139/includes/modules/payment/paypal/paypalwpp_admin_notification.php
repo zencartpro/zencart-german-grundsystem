@@ -3,11 +3,11 @@
  * paypalwpp_admin_notification.php admin display component
  *
  * @package paymentMethod
- * @copyright Copyright 2003-2007 Zen Cart Development Team
+ * @copyright Copyright 2003-2010 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @copyright Portions Copyright 2004 DevosC.com
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: paypalwpp_admin_notification.php 7425 2007-11-11 19:58:48Z drbyte $
+ * @version $Id: paypalwpp_admin_notification.php 15870 2010-04-11 02:18:43Z drbyte $
  */
 
   $outputStartBlock = '';
@@ -41,13 +41,13 @@
     $outputPFmain .= '</td><td class="main">'."\n";
     $outputPFmain .= $response['AUTHCODE'] ."\n";
     $outputPFmain .= '</td></tr>'."\n";
-    
+
     $outputPFmain .= '<tr><td class="main">'."\n";
     $outputPFmain .= MODULE_PAYMENT_PAYPAL_ENTRY_PAYMENT_STATUS."\n";
     $outputPFmain .= '</td><td class="main">'."\n";
     $outputPFmain .= $response['RESPMSG'] ."\n";
     $outputPFmain .= '</td></tr>'."\n";
-    
+
 
     $outputPFmain .= '<tr><td class="main">'."\n";
     $outputPFmain .= MODULE_PAYMENT_PAYPAL_ENTRY_AVSADDR."\n";
@@ -102,13 +102,13 @@
       $outputPFmain .= '</td><td class="main">'."\n";
       $outputPFmain .= $ipn->fields['mc_currency'] ."\n";
       $outputPFmain .= '</td></tr>'."\n";
-    
+
       $outputPFmain .= '<tr><td class="main">'."\n";
       $outputPFmain .= MODULE_PAYMENT_PAYPAL_ENTRY_GROSS_AMOUNT."\n";
       $outputPFmain .= '</td><td class="main">'."\n";
       $outputPFmain .= $ipn->fields['mc_gross']."\n";
       $outputPFmain .= '</td></tr>'."\n";
-    
+
       $outputPFmain .= '<tr><td class="main">'."\n";
       $outputPFmain .= MODULE_PAYMENT_PAYPAL_ENTRY_PAYMENT_FEE."\n";
       $outputPFmain .= '</td><td class="main">'."\n";
@@ -139,13 +139,13 @@
     $outputPayPal .= '</td><td class="main">'."\n";
     $outputPayPal .= urldecode($response['FIRSTNAME']) ."\n";
     $outputPayPal .= '</td></tr>'."\n";
-    
+
     $outputPayPal .= '<tr><td class="main">'."\n";
     $outputPayPal .= MODULE_PAYMENT_PAYPAL_ENTRY_LAST_NAME."\n";
     $outputPayPal .= '</td><td class="main">'."\n";
     $outputPayPal .= urldecode($response['LASTNAME']) ."\n";
     $outputPayPal .= '</td></tr>'."\n";
-    
+
     $outputPayPal .= '<tr><td class="main">'."\n";
     $outputPayPal .= MODULE_PAYMENT_PAYPAL_ENTRY_BUSINESS_NAME."\n";
     $outputPayPal .= '</td><td class="main">'."\n";
@@ -187,13 +187,13 @@
     $outputPayPal .= '</td><td class="main">'."\n";
     $outputPayPal .= urldecode($response['EMAIL']) ."\n";
     $outputPayPal .= '</td></tr>'."\n";
-    
+
     $outputPayPal .= '<tr><td class="main">'."\n";
     $outputPayPal .= MODULE_PAYMENT_PAYPAL_ENTRY_EBAY_ID."\n";
     $outputPayPal .= '</td><td class="main">'."\n";
     $outputPayPal .= urldecode($response['BUYERID']) ."\n";
     $outputPayPal .= '</td></tr>'."\n";
-    
+
     $outputPayPal .= '<tr><td class="main">'."\n";
     $outputPayPal .= MODULE_PAYMENT_PAYPAL_ENTRY_PAYER_ID."\n";
     $outputPayPal .= '</td><td class="main">'."\n";
@@ -215,7 +215,7 @@
     $outputPayPal .= '<tr><td class="main">'."\n";
     $outputPayPal .= MODULE_PAYMENT_PAYPAL_ENTRY_TXN_ID."\n";
     $outputPayPal .= '</td><td class="main">'."\n";
-    $outputPayPal .= urldecode($response['TRANSACTIONID']) ."\n";
+    $outputPayPal .= '<a href="https://www.paypal.com/us/cgi-bin/webscr?cmd=_view-a-trans&id=' . urldecode($response['TRANSACTIONID']) . '" target="_blank">' . urldecode($response['TRANSACTIONID']) . '</a>' ."\n";
     $outputPayPal .= '</td></tr>'."\n";
 
     $outputPayPal .= '<tr><td class="main">'."\n";
@@ -223,6 +223,20 @@
     $outputPayPal .= '</td><td class="main">'."\n";
     $outputPayPal .= urldecode($response['PARENTTRANSACTIONID']) ."\n";
     $outputPayPal .= '</td></tr>'."\n";
+  if (defined('MODULE_PAYMENT_PAYPALWPP_ENTRY_PROTECTIONELIG') && isset($response['PROTECTIONELIGIBILITY']) && $response['PROTECTIONELIGIBILITY'] != '') {
+    $outputPayPal .= '<tr><td class="main">'."\n";
+    $outputPayPal .= MODULE_PAYMENT_PAYPALWPP_ENTRY_PROTECTIONELIG."\n";
+    $outputPayPal .= '</td><td class="main">'."\n";
+    $outputPayPal .= $response['PROTECTIONELIGIBILITY']."\n";
+    $outputPayPal .= '</td></tr>'."\n";
+  }
+  if (defined('MODULE_PAYMENT_PAYPAL_ENTRY_COMMENTS') && $ipn->fields['memo'] != '') {
+    $outputPayPal .= '<tr><td class="main">'."\n";
+    $outputPayPal .= MODULE_PAYMENT_PAYPAL_ENTRY_COMMENTS."\n";
+    $outputPayPal .= '</td><td class="main">'."\n";
+    $outputPayPal .= $ipn->fields['memo']."\n";
+    $outputPayPal .= '</td></tr>'."\n";
+  }
 
     $outputPayPal .= '</table></td>'."\n";
 
@@ -239,13 +253,13 @@
     $outputPayPal .= '</td><td class="main">'."\n";
     $outputPayPal .= urldecode($response['PAYMENTTYPE']) ."\n";
     $outputPayPal .= '</td></tr>'."\n";
-    
+
     $outputPayPal .= '<tr><td class="main">'."\n";
     $outputPayPal .= MODULE_PAYMENT_PAYPAL_ENTRY_PAYMENT_STATUS."\n";
     $outputPayPal .= '</td><td class="main">'."\n";
     $outputPayPal .= urldecode($response['PAYMENTSTATUS']) ."\n";
     $outputPayPal .= '</td></tr>'."\n";
-    
+
     $outputPayPal .= '<tr><td class="main">'."\n";
     $outputPayPal .= MODULE_PAYMENT_PAYPAL_ENTRY_PENDING_REASON."\n";
     $outputPayPal .= '</td><td class="main">'."\n";
@@ -255,7 +269,7 @@
     $outputPayPal .= '<tr><td class="main">'."\n";
     $outputPayPal .= MODULE_PAYMENT_PAYPAL_ENTRY_INVOICE."\n";
     $outputPayPal .= '</td><td class="main">'."\n";
-    $outputPayPal .= $ipn->fields['invoice'] . $response['INVNUM'] ."\n";
+    $outputPayPal .= urldecode($ipn->fields['invoice']) . (urldecode($ipn->fields['invoice']) != urldecode($response['INVNUM']) ? '<br />' . urldecode($response['INVNUM']) : '') ."\n";
     $outputPayPal .= '</td></tr>'."\n";
 
     $outputPayPal .= '<tr><td class="main">'."\n";
@@ -273,13 +287,13 @@
     $outputPayPal .= '</td><td class="main">'."\n";
     $outputPayPal .= $ipn->fields['mc_currency'] . ' ' . urldecode($response['CURRENCY']) ."\n";
     $outputPayPal .= '</td></tr>'."\n";
-    
+
     $outputPayPal .= '<tr><td class="main">'."\n";
     $outputPayPal .= MODULE_PAYMENT_PAYPAL_ENTRY_GROSS_AMOUNT."\n";
     $outputPayPal .= '</td><td class="main">'."\n";
     $outputPayPal .= urldecode($response['AMT']) ."\n";
     $outputPayPal .= '</td></tr>'."\n";
-    
+
     $outputPayPal .= '<tr><td class="main">'."\n";
     $outputPayPal .= MODULE_PAYMENT_PAYPAL_ENTRY_PAYMENT_FEE."\n";
     $outputPayPal .= '</td><td class="main">'."\n";
@@ -309,7 +323,7 @@
     if (!isset($response['RESPMSG'])) {
     // full refund (only for PayPal transactions, not Payflow)
       $outputRefund .= MODULE_PAYMENT_PAYPAL_ENTRY_REFUND_FULL;
-      $outputRefund .= '<input type="submit" name="fullrefund" value="' . MODULE_PAYMENT_PAYPAL_ENTRY_REFUND_BUTTON_TEXT_FULL . '" title="' . MODULE_PAYMENT_PAYPAL_ENTRY_REFUND_BUTTON_TEXT_FULL . '" />' . ' ' . MODULE_PAYMENT_PAYPALWPP_TEXT_REFUND_FULL_CONFIRM_CHECK . zen_draw_checkbox_field('reffullconfirm', '', false) . '<br />';
+      $outputRefund .= '<br /><input type="submit" name="fullrefund" value="' . MODULE_PAYMENT_PAYPAL_ENTRY_REFUND_BUTTON_TEXT_FULL . '" title="' . MODULE_PAYMENT_PAYPAL_ENTRY_REFUND_BUTTON_TEXT_FULL . '" />' . ' ' . MODULE_PAYMENT_PAYPALWPP_TEXT_REFUND_FULL_CONFIRM_CHECK . zen_draw_checkbox_field('reffullconfirm', '', false) . '<br />';
       $outputRefund .= MODULE_PAYMENT_PAYPAL_ENTRY_REFUND_TEXT_FULL_OR;
     } else {
       $outputRefund .= MODULE_PAYMENT_PAYPAL_ENTRY_REFUND_PAYFLOW_TEXT;
@@ -381,29 +395,30 @@
 //debug
 //$output .= '<pre>' . print_r($response, true) . '</pre>';
 
-  if (isset($response['RESPMSG'])) { // payflow
+  if (isset($response['RESPMSG']) || defined('MODULE_PAYMENT_PAYFLOW_STATUS')) { // payflow
     $output .= $outputPFmain;
     if (method_exists($this, '_doVoid') && (MODULE_PAYMENT_PAYPALDP_TRANSACTION_MODE == 'Auth Only' || MODULE_PAYMENT_PAYFLOW_TRANSACTION_MODE == 'Auth Only' || (isset($_GET['authcapt']) && $_GET['authcapt']=='on'))) $output .= $outputVoid;
     if (method_exists($this, '_doCapt') && (MODULE_PAYMENT_PAYPALDP_TRANSACTION_MODE == 'Auth Only' || MODULE_PAYMENT_PAYFLOW_TRANSACTION_MODE == 'Auth Only' || (isset($_GET['authcapt']) && $_GET['authcapt']=='on'))) $output .= $outputCapt;
     if (method_exists($this, '_doRefund')) $output .= $outputRefund;
   } else {  // PayPal
     $output .= $outputPayPal;
-    if ($response['TRANSACTION_TYPE'] == 'Authorization' || ($response['TRANSACTIONTYPE'] == 'cart' && $response['PAYMENTTYPE'] == 'instant' && $response['PENDINGREASON'] == 'authorization') || (isset($_GET['authcapt']) && $_GET['authcapt']=='on')) {
+
+    if (defined('MODULE_PAYMENT_PAYPALWPP_STATUS') || defined('MODULE_PAYMENT_PAYPALDP_STATUS')) {
       $output .= $outputEndBlock;
       $output .= $outputEndBlock;
       $output .= $outputStartBlock;
       $output .= $outputStartBlock;
-      if (method_exists($this, '_doRefund') && ($response['PAYMENTTYPE'] != 'instant' || $module == 'paypaldp')) $output .= $outputRefund;
-      if (method_exists($this, '_doAuth') && MODULE_PAYMENT_PAYPALDP_TRANSACTION_MODE == 'Auth Only') $output .= $outputAuth;
-      if (method_exists($this, '_doCapt') && MODULE_PAYMENT_PAYPALDP_TRANSACTION_MODE == 'Auth Only') $output .= $outputCapt;
-      if (method_exists($this, '_doVoid')) $output .= $outputVoid;
-    } else {
-      if (method_exists($this, '_doRefund') && ($response['PAYMENTTYPE'] != 'instant' || $module == 'paypaldp')) $output .= $outputRefund;
-      if (method_exists($this, '_doVoid') && $response['PAYMENTTYPE'] == 'instant' && $response['PAYMENTSTATUS'] != 'Voided' && $module != 'paypaldp') $output .= $outputVoid;
+      if ($response['TRANSACTION_TYPE'] == 'Authorization' || (in_array($response['TRANSACTIONTYPE'], array('cart','expresscheckout','webaccept') ) && $response['PAYMENTTYPE'] == 'instant' && $response['PENDINGREASON'] == 'authorization') || (isset($_GET['authcapt']) && $_GET['authcapt']=='on')) {
+        if (method_exists($this, '_doRefund') && ($response['PAYMENTTYPE'] != 'instant' || $module == 'paypaldp')) $output .= $outputRefund;
+        if (method_exists($this, '_doAuth') && (MODULE_PAYMENT_PAYPALWPP_TRANSACTION_MODE == 'Auth Only' || MODULE_PAYMENT_PAYPALDP_TRANSACTION_MODE == 'Auth Only')) $output .= $outputAuth;
+        if (method_exists($this, '_doCapt') && (MODULE_PAYMENT_PAYPALWPP_TRANSACTION_MODE == 'Auth Only' || MODULE_PAYMENT_PAYPALDP_TRANSACTION_MODE == 'Auth Only')) $output .= $outputCapt;
+        if (method_exists($this, '_doVoid')) $output .= $outputVoid;
+      } else {
+        if (method_exists($this, '_doRefund') /* && ($response['PAYMENTTYPE'] != 'instant' || $module == 'paypaldp') */) $output .= $outputRefund;
+        if (method_exists($this, '_doVoid') && $response['PAYMENTTYPE'] == 'instant' && $response['PAYMENTSTATUS'] != 'Voided' && $module != 'paypaldp') $output .= $outputVoid;
+      }
     }
   }
   $output .= $outputEndBlock;
   $output .= $outputEndBlock;
   $output .= '<!-- EOF: pp admin transaction processing tools -->';
-
-?>

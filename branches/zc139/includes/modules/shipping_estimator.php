@@ -7,11 +7,11 @@
  * - Shows Free Shipping on Virtual products
  *
  * @package modules
- * @copyright Copyright 2003-2007 Zen Cart Development Team
+ * @copyright Copyright 2003-2009 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * portions Copyright (c) 2003 Edwin Bekaert (edwin@ednique.com)
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: shipping_estimator.php 6996 2007-09-13 22:36:54Z ajeh $
+ * @version $Id: shipping_estimator.php 14728 2009-11-01 15:40:59Z ajeh $
  */
 if (!defined('IS_ADMIN_FLAG')) {
   die('Illegal Access');
@@ -176,7 +176,7 @@ if ($_SESSION['cart']->count_contents() > 0) {
     if (zen_not_null($module)){
       $selected_quote = $shipping_modules->quote($method, $module);
       if($selected_quote[0]['error'] || !zen_not_null($selected_quote[0]['methods'][0]['cost'])){
-        $selected_shipping = $shipping_modules->cheapest();
+//        $selected_shipping = $shipping_modules->cheapest();
         $order->info['shipping_method'] = $selected_shipping['title'];
         $order->info['shipping_cost'] = $selected_shipping['cost'];
         $order->info['total']+= $selected_shipping['cost'];
@@ -189,7 +189,7 @@ if ($_SESSION['cart']->count_contents() > 0) {
         $selected_shipping['id'] = $selected_quote[0]['id'].'_'.$selected_quote[0]['methods'][0]['id'];
       }
     }else{
-      $selected_shipping = $shipping_modules->cheapest();
+//      $selected_shipping = $shipping_modules->cheapest();
       $order->info['shipping_method'] = $selected_shipping['title'];
       $order->info['shipping_cost'] = $selected_shipping['cost'];
       $order->info['total']+= $selected_shipping['cost'];
@@ -204,6 +204,9 @@ if ($_SESSION['cart']->count_contents() > 0) {
     $order->info['shipping_method'] = MODULE_ORDER_TOTAL_SHIPPING_TITLE;
     $order->info['shipping_cost'] = 0;
   }
+
+// set cheapest last
+  $selected_shipping = $shipping_modules->cheapest();
   $shipping=$selected_shipping;
   if (SHOW_SHIPPING_ESTIMATOR_BUTTON == '1') {
     $show_in = FILENAME_POPUP_SHIPPING_ESTIMATOR;

@@ -3,10 +3,10 @@
  * unsubscribe header_php.php 
  *
  * @package page
- * @copyright Copyright 2003-2006 Zen Cart Development Team
+ * @copyright Copyright 2003-2009 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: header_php.php 3000 2006-02-09 21:11:37Z wilt $
+ * @version $Id: header_php.php 14141 2009-08-10 19:34:47Z wilt $
  */
 
 // This should be first line of the script:
@@ -16,7 +16,7 @@ require(DIR_WS_MODULES . zen_get_module_directory('require_languages.php'));
 
 //present the option to unsubscribe, with a confirm button/link
 if (isset($_GET['addr'])) {
-  $unsubscribe_address = ereg_replace('[^0-9A-Za-z@._-]', '', $_GET['addr']);
+  $unsubscribe_address = preg_replace('/[^0-9A-Za-z@._-]/', '', $_GET['addr']);
   if ($unsubscribe_address=='')  zen_redirect(zen_href_link(FILENAME_ACCOUNT_NEWSLETTERS));
 } else {
   $unsubscribe_address = '';

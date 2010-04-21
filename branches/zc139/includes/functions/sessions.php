@@ -4,10 +4,10 @@
  * Session functions
  *
  * @package functions
- * @copyright Copyright 2003-2007 Zen Cart Development Team
+ * @copyright Copyright 2003-2009 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: sessions.php 6662 2007-08-12 21:37:17Z wilt $
+ * @version $Id: sessions.php 14882 2009-11-21 19:11:22Z wilt $
  */
 if (!defined('IS_ADMIN_FLAG')) {
   die('Illegal Access');
@@ -41,6 +41,7 @@ if (!defined('IS_ADMIN_FLAG')) {
       $value = $db->Execute($qid);
 
       if (isset($value->fields['value']) && $value->fields['value']) {
+        $value->fields['value'] = base64_decode($value->fields['value']);
         return $value->fields['value'];
       }
 
@@ -50,15 +51,15 @@ if (!defined('IS_ADMIN_FLAG')) {
     function _sess_write($key, $val) {
       global $db;
       if (!is_object($db)) {
-        //PHP 5.2.0 bug workaround ... 
+        //PHP 5.2.0 bug workaround ...
         $db = new queryFactory();
         $db->connect(DB_SERVER, DB_SERVER_USERNAME, DB_SERVER_PASSWORD, DB_DATABASE, USE_PCONNECT, false);
       }
+      $val = base64_encode($val);
 
       global $SESS_LIFE;
 
       $expiry = time() + $SESS_LIFE;
-      $value = $val;
 
       $qid = "select count(*) as total
               from " . TABLE_SESSIONS . "
@@ -68,19 +69,20 @@ if (!defined('IS_ADMIN_FLAG')) {
 
       if ($total->fields['total'] > 0) {
         $sql = "update " . TABLE_SESSIONS . "
-                set expiry = '" . zen_db_input($expiry) . "', value = '" . zen_db_input($value) . "'
+                set expiry = '" . zen_db_input($expiry) . "', value = '" . zen_db_input($val) . "'
                 where sesskey = '" . zen_db_input($key) . "'";
 
-        return $db->Execute($sql);
+        $result = $db->Execute($sql);
 
       } else {
         $sql = "insert into " . TABLE_SESSIONS . "
                 values ('" . zen_db_input($key) . "', '" . zen_db_input($expiry) . "', '" .
-                         zen_db_input($value) . "')";
+                         zen_db_input($val) . "')";
 
-        return $db->Execute($sql);
+        $result = $db->Execute($sql);
 
       }
+	  return (!empty($result) && !empty($result->resource));
     }
 
     function _sess_destroy($key) {
@@ -109,7 +111,7 @@ if (!defined('IS_ADMIN_FLAG')) {
     if (!isset($_SESSION['securityToken'])) {
       $_SESSION['securityToken'] = md5(uniqid(rand(), true));
     }
-  	if (ereg_replace('[a-zA-Z0-9]', '', session_id()) != '') session_regenerate_id();
+  	if (preg_replace('/[a-zA-Z0-9]/', '', session_id()) != '') session_regenerate_id();
     return $temp;
   }
 
@@ -165,21 +167,13 @@ if (!defined('IS_ADMIN_FLAG')) {
       $saveSession = $_SESSION;
       $oldSessID = session_id();
       session_regenerate_id();
-      if(!version_compare(phpversion(),"4.3.3",">=")){
-         setcookie(
-            session_name(),
-            session_id(),
-            ini_get("session.cookie_lifetime"),
-            "/"
-         );
-      }      
       $newSessID = session_id();
       session_id($oldSessID);
       session_id($newSessID);
       if (STORE_SESSIONS == 'db') {
         session_set_save_handler('_sess_open', '_sess_close', '_sess_read', '_sess_write', '_sess_destroy', '_sess_gc');
       }
-      session_start();
+//      session_start();
       $_SESSION = $saveSession;
       if (IS_ADMIN_FLAG !== true) {
         whos_online_session_recreate($oldSessID, $newSessID);
@@ -205,4 +199,3 @@ if (!defined('IS_ADMIN_FLAG')) {
       */
     }
   }
-?>

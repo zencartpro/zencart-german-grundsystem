@@ -4,14 +4,22 @@
  * see {@link  http://www.zen-cart.com/wiki/index.php/Developers_API_Tutorials#InitSystem wikitutorials} for more details.
  *
  * @package initSystem
- * @copyright Copyright 2003-2005 Zen Cart Development Team
+ * @copyright Copyright 2003-2010 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: init_sessions.php 5164 2006-12-10 19:01:25Z drbyte $
+ * @version $Id: init_sessions.php 15784 2010-04-02 08:38:40Z drbyte $
  */
 if (!defined('IS_ADMIN_FLAG')) {
   die('Illegal Access');
 }
+/**
+ * sanity check in case zenid has been incorrectly supplied as an htmlencoded param name
+ */
+if (!isset($_GET['zenid']) && isset($_GET['amp;zenid'])) {
+  $_GET['zenid'] = $_GET['amp;zenid'];
+  unset($_GET['amp;zenid']);
+}
+
 /**
  * require the session handling functions
  */
@@ -24,7 +32,9 @@ zen_session_save_path(SESSION_WRITE_DIRECTORY);
 /**
  * set the session cookie parameters
  */
-session_set_cookie_params(0, '/', (zen_not_null($current_domain) ? $current_domain : ''));
+$path = dirname($_SERVER['SCRIPT_NAME']);
+session_set_cookie_params(0, $path, (zen_not_null($current_domain) ? '.' . $current_domain : ''));
+//session_set_cookie_params(0, '/', (zen_not_null($current_domain) ? $current_domain : ''), $request_type == 'SSL');
 /**
  * set the session ID if it exists
  */
@@ -57,7 +67,7 @@ if (SESSION_FORCE_COOKIE_USE == 'True') {
   if (zen_not_null($user_agent)) {
     $spiders = file(DIR_WS_INCLUDES . 'spiders.txt');
     for ($i=0, $n=sizeof($spiders); $i<$n; $i++) {
-      if (zen_not_null($spiders[$i])) {
+      if (zen_not_null($spiders[$i]) && substr($spiders[$i], 0, 4) != '$Id:') {
         if (is_integer(strpos($user_agent, trim($spiders[$i])))) {
           $spider_flag = true;
           break;
@@ -68,11 +78,20 @@ if (SESSION_FORCE_COOKIE_USE == 'True') {
   if ($spider_flag == false) {
     zen_session_start();
     $session_started = true;
+  } else {
+    if (isset($_GET['zenid']) && $_GET['zenid'] != '') {
+      $tmp = (isset($_GET['main_page']) && $_GET['main_page'] != '') ? $_GET['main_page'] : FILENAME_DEFAULT;
+      @header("HTTP/1.1 301 Moved Permanently");
+      @zen_redirect(@zen_href_link($tmp, @zen_get_all_get_params(array('zenid')), $request_type, FALSE));
+      unset($tmp);
+      die();
+    }
   }
 } else {
   zen_session_start();
   $session_started = true;
 }
+unset($spiders);
 /**
  * set host_address once per session to reduce load on server
  */
@@ -122,4 +141,3 @@ if (SESSION_CHECK_IP_ADDRESS == 'True') {
     zen_redirect(zen_href_link(FILENAME_LOGIN));
   }
 }
-?>

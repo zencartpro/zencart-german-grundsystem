@@ -6,16 +6,19 @@
  * show the products of a specified manufacturer
  *
  * @package productTypes
- * @copyright Copyright 2003-2007 Zen Cart Development Team
+ * @copyright Copyright 2003-2009 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @todo Need to add/fine-tune ability to override or insert entry-points on a per-product-type basis
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: default_filter.php 6912 2007-09-02 02:23:45Z drbyte $
+ * @version $Id: default_filter.php 14870 2009-11-19 22:36:24Z drbyte $
  */
 if (!defined('IS_ADMIN_FLAG')) {
   die('Illegal Access');
 }
-  if (isset($_GET['alpha_filter_id']) && (int)$_GET['alpha_filter_id'] > 0) {
+if (isset($_GET['sort']) && strlen($_GET['sort']) > 3) {
+  $_GET['sort'] = substr($_GET['sort'], 0, 3);
+}
+if (isset($_GET['alpha_filter_id']) && (int)$_GET['alpha_filter_id'] > 0) {
     $alpha_sort = " and pd.products_name LIKE '" . chr((int)$_GET['alpha_filter_id']) . "%' ";
   } else {
     $alpha_sort = '';
@@ -89,7 +92,7 @@ if (!defined('IS_ADMIN_FLAG')) {
   }
 
   if (isset($column_list)) {
-    if ((!isset($_GET['sort'])) || (isset($_GET['sort']) && !ereg('[1-8][ad]', $_GET['sort'])) || (substr($_GET['sort'], 0, 1) > sizeof($column_list)) ) {
+    if ((!isset($_GET['sort'])) || (isset($_GET['sort']) && !preg_match('/[1-8][ad]/', $_GET['sort'])) || (substr($_GET['sort'], 0, 1) > sizeof($column_list)) ) {
       for ($i=0, $n=sizeof($column_list); $i<$n; $i++) {
         if (isset($column_list[$i]) && $column_list[$i] == 'PRODUCT_LIST_NAME') {
           $_GET['sort'] = $i+1 . 'a';
@@ -110,29 +113,27 @@ if (!defined('IS_ADMIN_FLAG')) {
     } else {
       $sort_col = substr($_GET['sort'], 0 , 1);
       $sort_order = substr($_GET['sort'], 1);
-      $listing_sql .= ' order by ';
       switch ($column_list[$sort_col-1]) {
         case 'PRODUCT_LIST_MODEL':
-          $listing_sql .= "p.products_model " . ($sort_order == 'd' ? 'desc' : '') . ", pd.products_name";
+          $listing_sql .= " order by p.products_model " . ($sort_order == 'd' ? 'desc' : '') . ", pd.products_name";
           break;
         case 'PRODUCT_LIST_NAME':
-          $listing_sql .= "pd.products_name " . ($sort_order == 'd' ? 'desc' : '');
+          $listing_sql .= " order by pd.products_name " . ($sort_order == 'd' ? 'desc' : '');
           break;
         case 'PRODUCT_LIST_MANUFACTURER':
-          $listing_sql .= "m.manufacturers_name " . ($sort_order == 'd' ? 'desc' : '') . ", pd.products_name";
+          $listing_sql .= " order by m.manufacturers_name " . ($sort_order == 'd' ? 'desc' : '') . ", pd.products_name";
           break;
         case 'PRODUCT_LIST_QUANTITY':
-          $listing_sql .= "p.products_quantity " . ($sort_order == 'd' ? 'desc' : '') . ", pd.products_name";
+          $listing_sql .= " order by p.products_quantity " . ($sort_order == 'd' ? 'desc' : '') . ", pd.products_name";
           break;
         case 'PRODUCT_LIST_IMAGE':
-          $listing_sql .= "pd.products_name";
+          $listing_sql .= " order by pd.products_name";
           break;
         case 'PRODUCT_LIST_WEIGHT':
-          $listing_sql .= "p.products_weight " . ($sort_order == 'd' ? 'desc' : '') . ", pd.products_name";
+          $listing_sql .= " order by p.products_weight " . ($sort_order == 'd' ? 'desc' : '') . ", pd.products_name";
           break;
         case 'PRODUCT_LIST_PRICE':
-//          $listing_sql .= "final_price " . ($sort_order == 'd' ? 'desc' : '') . ", pd.products_name";
-          $listing_sql .= "p.products_price_sorter " . ($sort_order == 'd' ? 'desc' : '') . ", pd.products_name";
+          $listing_sql .= " order by p.products_price_sorter " . ($sort_order == 'd' ? 'desc' : '') . ", pd.products_name";
           break;
       }
     }
@@ -180,23 +181,3 @@ if (!defined('IS_ADMIN_FLAG')) {
       }
     }
   }
-
-// Get the right image for the top-right
-  $image = DIR_WS_TEMPLATE_IMAGES . 'table_background_list.gif';
-  if (isset($_GET['manufacturers_id'])) {
-    $sql = "select manufacturers_image
-              from   " . TABLE_MANUFACTURERS . "
-              where      manufacturers_id = '" . (int)$_GET['manufacturers_id'] . "'";
-
-    $image_name = $db->Execute($sql);
-    $image = $image_name->fields['manufacturers_image'];
-
-  } elseif ($current_category_id) {
-
-    $sql = "select categories_image from " . TABLE_CATEGORIES . "
-            where  categories_id = '" . (int)$current_category_id . "'";
-
-    $image_name = $db->Execute($sql);
-    $image = $image_name->fields['categories_image'];
-  }
-?>

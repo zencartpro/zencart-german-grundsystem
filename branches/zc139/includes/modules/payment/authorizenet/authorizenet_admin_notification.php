@@ -3,7 +3,7 @@
  * authorizenet_admin_notification.php admin display component
  *
  * @package paymentMethod
- * @copyright Copyright 2003-2007 Zen Cart Development Team
+ * @copyright Copyright 2003-2010 Zen Cart Development Team
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
  * @version $Id$
  */
@@ -90,9 +90,9 @@
 
 
 // prepare output based on suitable content components
+if (defined('MODULE_PAYMENT_AUTHORIZENET_AIM_STATUS') && MODULE_PAYMENT_AUTHORIZENET_AIM_STATUS != '') {
   $output = '<!-- BOF: aim admin transaction processing tools -->';
   $output .= $outputStartBlock;
-
   if (MODULE_PAYMENT_AUTHORIZENET_AIM_AUTHORIZATION_TYPE == 'Authorize' || (isset($_GET['authcapt']) && $_GET['authcapt']=='on')) {
     if (method_exists($this, '_doRefund')) $output .= $outputRefund;
     if (method_exists($this, '_doCapt')) $output .= $outputCapt;
@@ -103,5 +103,4 @@
   }
   $output .= $outputEndBlock;
   $output .= '<!-- EOF: aim admin transaction processing tools -->';
-
-?>
+}

@@ -3,10 +3,10 @@
  * Page Template
  *
  * @package templateSystem
- * @copyright Copyright 2003-2007 Zen Cart Development Team
+ * @copyright Copyright 2003-2010 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: tpl_login_default.php 5926 2007-02-28 18:15:39Z drbyte $
+ * @version $Id: tpl_login_default.php 15881 2010-04-11 16:32:39Z wilt $
  */
 ?>
 <div class="centerColumn" id="loginDefault">
@@ -32,7 +32,7 @@
 <div class="information"><?php echo TEXT_NEW_CUSTOMER_POST_INTRODUCTION_SPLIT; ?></div>
 
 <?php echo zen_draw_form('create', zen_href_link(FILENAME_CREATE_ACCOUNT, '', 'SSL')); ?>
-<div class="buttonRow forward"><?php echo zen_image_submit(BUTTON_IMAGE_CREATE_ACCOUNT, BUTTON_CREATE_ACCOUNT_ALT); ?></div>
+<div class="buttonRow forward"><?php echo zen_image_submit(BUTTON_IMAGE_CREATE_ACCOUNT, BUTTON_CREATE_ACCOUNT_ALT, 'name="registrationButton"'); ?></div>
 </form>
 </fieldset>
 
@@ -40,7 +40,7 @@
 <legend><?php echo HEADING_RETURNING_CUSTOMER_SPLIT; ?></legend>
 <div class="information"><?php echo TEXT_RETURNING_CUSTOMER_SPLIT; ?></div>
 
-<?php echo zen_draw_form('login', zen_href_link(FILENAME_LOGIN, 'action=process', 'SSL')); ?>
+<?php echo zen_draw_form('login', zen_href_link(FILENAME_LOGIN, 'action=process', 'SSL'), 'post', 'id="loginForm"'); ?>
 <label class="inputLabel" for="login-email-address"><?php echo ENTRY_EMAIL_ADDRESS; ?></label>
 <?php echo zen_draw_input_field('email_address', '', 'size="18" id="login-email-address"'); ?>
 <br class="clearBoth" />
@@ -65,7 +65,7 @@
 <?php
   }
 ?>
-<?php echo zen_draw_form('login', zen_href_link(FILENAME_LOGIN, 'action=process', 'SSL')); ?>
+<?php echo zen_draw_form('login', zen_href_link(FILENAME_LOGIN, 'action=process', 'SSL'), 'post', 'id="loginForm"'); ?>
 <fieldset>
 <legend><?php echo HEADING_RETURNING_CUSTOMER; ?></legend>
 
@@ -74,7 +74,7 @@
 <br class="clearBoth" />
 
 <label class="inputLabel" for="login-password"><?php echo ENTRY_PASSWORD; ?></label>
-<?php echo zen_draw_password_field('password', '', zen_set_field_length(TABLE_CUSTOMERS, 'customers_password', '40') . ' id="login-password"'); ?>
+<?php echo zen_draw_password_field('password', '', zen_set_field_length(TABLE_CUSTOMERS, 'customers_password') . ' id="login-password"'); ?>
 <br class="clearBoth" />
 <?php echo zen_draw_hidden_field('securityToken', $_SESSION['securityToken']); ?>
 </fieldset>
@@ -84,7 +84,7 @@
 </form>
 <br class="clearBoth" />
 
-<?php echo zen_draw_form('create_account', zen_href_link(FILENAME_CREATE_ACCOUNT, '', 'SSL'), 'post', 'onsubmit="return check_form(create_account);"') . zen_draw_hidden_field('action', 'process') . zen_draw_hidden_field('email_pref_html', 'email_format'); ?>
+<?php echo zen_draw_form('create_account', zen_href_link(FILENAME_CREATE_ACCOUNT, '', 'SSL'), 'post', 'onsubmit="return check_form(create_account);" id="createAccountForm"') . zen_draw_hidden_field('action', 'process') . zen_draw_hidden_field('email_pref_html', 'email_format'); ?>
 <fieldset>
 <legend><?php echo HEADING_NEW_CUSTOMER; ?></legend>
 

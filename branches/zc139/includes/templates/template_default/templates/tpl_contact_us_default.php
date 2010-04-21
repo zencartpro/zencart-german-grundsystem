@@ -6,10 +6,10 @@
  * Displays contact us page form.
  *
  * @package templateSystem
- * @copyright Copyright 2003-2006 Zen Cart Development Team
+ * @copyright Copyright 2003-2009 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: tpl_contact_us_default.php 4272 2006-08-26 03:10:49Z drbyte $
+ * @version $Id: tpl_contact_us_default.php 14141 2009-08-10 19:34:47Z wilt $
  */
 ?>
 <div class="centerColumn" id="contactUsDefault">
@@ -66,7 +66,7 @@
 <br class="clearBoth" />
 
 <label class="inputLabel" for="email-address"><?php echo ENTRY_EMAIL; ?></label>
-<?php echo zen_draw_input_field('email', ($error ? $_POST['email'] : $email), ' size="40" id="email-address"') . '<span class="alert">' . ENTRY_REQUIRED_SYMBOL . '</span>'; ?>
+<?php echo zen_draw_input_field('email', ($error ? $email_address : $email), ' size="40" id="email-address"') . '<span class="alert">' . ENTRY_REQUIRED_SYMBOL . '</span>'; ?>
 <br class="clearBoth" />
 
 <label for="enquiry"><?php echo ENTRY_ENQUIRY . '<span class="alert">' . ENTRY_REQUIRED_SYMBOL . '</span>'; ?></label>

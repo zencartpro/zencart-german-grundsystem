@@ -3,12 +3,12 @@
  * Common Template
  *
  * outputs the html header. i,e, everything that comes before the \</head\> tag <br />
- * 
+ *
  * @package templateSystem
- * @copyright Copyright 2003-2006 Zen Cart Development Team
+ * @copyright Copyright 2003-2010 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: html_header.php 6948 2007-09-02 23:30:49Z drbyte $
+ * @version $Id: html_header.php 15761 2010-03-31 19:31:27Z drbyte $
  */
 /**
  * load the module for generating page meta-tags
@@ -37,9 +37,11 @@ require(DIR_WS_MODULES . zen_get_module_directory('meta_tags.php'));
 <?php } //endif FAVICON ?>
 
 <base href="<?php echo (($request_type == 'SSL') ? HTTPS_SERVER . DIR_WS_HTTPS_CATALOG : HTTP_SERVER . DIR_WS_CATALOG ); ?>" />
+<?php if (isset($canonicalLink) && $canonicalLink != '') { ?>
+<link rel="canonical" href="<?php echo $canonicalLink; ?>" />
+<?php } ?>
 
 <?php
-
 /**
  * load all template-specific stylesheets, named like "style*.css", alphabetically
  */
@@ -53,15 +55,14 @@ require(DIR_WS_MODULES . zen_get_module_directory('meta_tags.php'));
   $manufacturers_id = (isset($_GET['manufacturers_id'])) ? $_GET['manufacturers_id'] : '';
   $tmp_products_id = (isset($_GET['products_id'])) ? (int)$_GET['products_id'] : '';
   $tmp_pagename = ($this_is_home_page) ? 'index_home' : $current_page_base;
-  $cp = zen_parse_category_path($cPath);
-  $sheets_array = array('/' . $_SESSION['language'] . '_stylesheet', 
-                        '/' . $tmp_pagename, 
-                        '/' . $_SESSION['language'] . '_' . $tmp_pagename, 
-                        '/c_' . $cp[0] . '_',
+  if ($current_page_base == 'page' && isset($ezpage_id)) $tmp_pagename = $current_page_base . (int)$ezpage_id;
+  $sheets_array = array('/' . $_SESSION['language'] . '_stylesheet',
+                        '/' . $tmp_pagename,
+                        '/' . $_SESSION['language'] . '_' . $tmp_pagename,
                         '/c_' . $cPath,
                         '/' . $_SESSION['language'] . '_c_' . $cPath,
                         '/m_' . $manufacturers_id,
-                        '/' . $_SESSION['language'] . '_m_' . (int)$manufacturers_id, 
+                        '/' . $_SESSION['language'] . '_m_' . (int)$manufacturers_id,
                         '/p_' . $tmp_products_id,
                         '/' . $_SESSION['language'] . '_p_' . $tmp_products_id
                         );
@@ -119,7 +120,9 @@ require(DIR_WS_MODULES . zen_get_module_directory('meta_tags.php'));
     require($page_directory . '/' . $value); echo "\n";
   }
 
-//DEBUG: echo '<!-- I SEE cat: ' . $current_category_id . ' || vs cpath: ' . $cPath . ' || page: ' . $current_page . ' || template: ' . $current_template . ' || main = ' . ($this_is_home_page ? 'YES' : 'NO') . ' -->';
+// DEBUG: echo '<!-- I SEE cat: ' . $current_category_id . ' || vs cpath: ' . $cPath . ' || page: ' . $current_page . ' || template: ' . $current_template . ' || main = ' . ($this_is_home_page ? 'YES' : 'NO') . ' -->';
+
+
 ?>
 </head>
 <?php // NOTE: Blank line following is intended: ?>

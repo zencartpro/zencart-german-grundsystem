@@ -3,10 +3,10 @@
  * ot_group_pricing order-total module
  *
  * @package orderTotal
- * @copyright Copyright 2003-2007 Zen Cart Development Team
+ * @copyright Copyright 2003-2010 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: ot_group_pricing.php 6773 2007-08-21 12:34:05Z drbyte $
+ * @version $Id: ot_group_pricing.php 15368 2010-01-28 23:29:02Z wilt $
  */
 
 class ot_group_pricing {
@@ -55,13 +55,20 @@ class ot_group_pricing {
   }
   function get_order_total() {
     global  $order;
+//    print_r($order->info);
     $order_total_tax = $order->info['tax'];
     $order_total = $order->info['total'];
+//    echo "order total = $order_total<br>";
+//    echo "order total shipping = {$order->info['shipping_cost']}<br>";
+//    echo "order total tax = {$order->info['tax']}<br>";
     if ($this->include_shipping != 'true') $order_total -= $order->info['shipping_cost'];
+    if ($this->include_shipping != 'true') $order_total_tax -= $order->info['shipping_tax'];
     if ($this->include_tax != 'true') $order_total -= $order->info['tax'];
+//    if ($this->include_tax != "true" && $this->include_shipping != 'true') $order_total += $order->info['shipping_tax'];
     $orderTotalFull = $order_total;
+//    if (DISPLAY_PRICE_WITH_TAX != 'true') $order_total += $order_total_tax;
+//    echo "order total* = $order_total<br>";
     $order_total = array('totalFull'=>$orderTotalFull, 'total'=>$order_total, 'tax'=>$order_total_tax);
-
     return $order_total;
   }
   function calculate_deductions($order_total) {
@@ -75,7 +82,8 @@ class ot_group_pricing {
       $group_discount = $db->Execute("select group_name, group_percentage from " . TABLE_GROUP_PRICING . "
                                       where group_id = '" . (int)$group_query->fields['customers_group_pricing'] . "'");
       $gift_vouchers = $_SESSION['cart']->gv_only();
-      $discount = ($order_total - $gift_vouchers) * $group_discount->fields['group_percentage'] / 100;
+      $discount = ($orderTotal['total'] - $gift_vouchers) * $group_discount->fields['group_percentage'] / 100;
+//      echo "discout = $discount<br>";
       $od_amount['total'] = round($discount, 2);
       $ratio = $od_amount['total']/$order_total;
       /**
@@ -118,7 +126,11 @@ class ot_group_pricing {
   function pre_confirmation_check($order_total) {
     global $order;
     $od_amount = $this->calculate_deductions($order_total);
-    return $od_amount['total'] + $od_amount['tax'];
+    $order->info['total'] = $order->info['total'] - $od_amount['total'];
+    if (DISPLAY_PRICE_WITH_TAX != 'true') {
+      $order->info['total'] -= $tax;
+    }
+    return $od_amount['total'] + (DISPLAY_PRICE_WITH_TAX == 'true' ? 0 : $od_amount['tax']);
   }
 
   function credit_selection() {
@@ -168,4 +180,3 @@ class ot_group_pricing {
     $db->Execute("delete from " . TABLE_CONFIGURATION . " where configuration_key in ('" . implode("', '", $this->keys()) . "')");
   }
 }
-?>

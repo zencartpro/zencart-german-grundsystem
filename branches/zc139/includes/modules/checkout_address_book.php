@@ -1,12 +1,12 @@
 <?php
 /**
- * checkout_new_address.php
+ * checkout_address_book.php
  *
  * @package modules
- * @copyright Copyright 2003-2006 Zen Cart Development Team
+ * @copyright Copyright 2003-2009 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: checkout_address_book.php 3012 2006-02-11 16:34:02Z wilt $
+ * @version $Id: checkout_address_book.php 13799 2009-07-08 02:08:33Z drbyte $
  */
 if (!defined('IS_ADMIN_FLAG')) {
   die('Illegal Access');
@@ -22,12 +22,5 @@ $addresses_query = "select address_book_id, entry_firstname as firstname, entry_
                           where customers_id = '" . (int)$_SESSION['customer_id'] . "'";
 
 $addresses = $db->Execute($addresses_query);
-
-while (!$addresses->EOF) {
-  $format_id = zen_get_address_format_id($addresses->fields['country_id']);
-  $radio_buttons++;
-  $addresses->MoveNext();
-}
-// run again so available for listing loop
-$addresses = $db->Execute($addresses_query);
+if (!$addresses->EOF) $radio_buttons = $addresses->recordCount();
 ?>

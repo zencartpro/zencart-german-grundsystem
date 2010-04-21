@@ -1,10 +1,10 @@
 <?php
 /**
  * @package shippingMethod
- * @copyright Copyright 2003-2006 Zen Cart Development Team
+ * @copyright Copyright 2003-2009 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: freeoptions.php 4238 2006-08-24 10:01:04Z drbyte $
+ * @version $Id: freeoptions.php 14498 2009-10-01 20:16:16Z ajeh $
  */
 
   class freeoptions extends base {
@@ -165,10 +165,10 @@
       }
 
 /*
-echo 'I see count: ' . $_SESSION['cart']->count_contents() . ' free count: ' . $_SESSION['cart']->free_shipping_items() . '<br />' .
-'I see weight: ' . $_SESSION['cart']->show_weight() . '<br />' .
-'I see total: ' . $_SESSION['cart']->show_total() . ' free price: ' . $_SESSION['cart']->free_shipping_prices() . '<br />' .
-'Final check ' . ($this->ck_freeoptions_total ? 'T: YES ' : 'T: NO ') . ($this->ck_freeoptions_weight ? 'W: YES ' : 'W: NO ') . ($this->ck_freeoptions_items ? 'I: YES ' : 'I: NO ') . '<br />';
+echo 'I see count: ' . $_SESSION['cart']->count_contents() . ' free count: ' . $_SESSION['cart']->free_shipping_items() . '<br>' .
+'I see weight: ' . $_SESSION['cart']->show_weight() . '<br>' .
+'I see total: ' . $_SESSION['cart']->show_total() . ' free price: ' . $_SESSION['cart']->free_shipping_prices() . '<br>' .
+'Final check ' . ($this->ck_freeoptions_total ? 'T: YES ' : 'T: NO ') . ($this->ck_freeoptions_weight ? 'W: YES ' : 'W: NO ') . ($this->ck_freeoptions_items ? 'I: YES ' : 'I: NO ') . '<br>';
 */
 
 // final check for display of Free Options
@@ -184,13 +184,13 @@ echo 'I see count: ' . $_SESSION['cart']->count_contents() . ' free count: ' . $
                               'methods' => array(array('id' => $this->code,
                                                        'title' => MODULE_SHIPPING_FREEOPTIONS_TEXT_WAY,
                                                        'cost'  => MODULE_SHIPPING_FREEOPTIONS_COST + MODULE_SHIPPING_FREEOPTIONS_HANDLING)));
-      }
 
-      if ($this->tax_class > 0) {
-        $this->quotes['tax'] = zen_get_tax_rate($this->tax_class, $order->delivery['country']['id'], $order->delivery['zone_id']);
-      }
+        if ($this->tax_class > 0) {
+          $this->quotes['tax'] = zen_get_tax_rate($this->tax_class, $order->delivery['country']['id'], $order->delivery['zone_id']);
+        }
 
-      if (zen_not_null($this->icon)) $this->quotes['icon'] = zen_image($this->icon, $this->title);
+        if (zen_not_null($this->icon)) $this->quotes['icon'] = zen_image($this->icon, $this->title);
+      }
 
       return $this->quotes;
     }
@@ -233,7 +233,7 @@ See: freeshipper<br /><br />Do you want to offer per freeoptions rate shipping?'
 
    function remove() {
      global $db;
-     $db->Execute("delete from " . TABLE_CONFIGURATION . " where configuration_key LIKE  'MODULE_SHIPPING_FREEOPTIONS_%'");
+     $db->Execute("delete from " . TABLE_CONFIGURATION . " where configuration_key LIKE  'MODULE\_SHIPPING\_FREEOPTIONS\_%'");
    }
 
     function keys() {
