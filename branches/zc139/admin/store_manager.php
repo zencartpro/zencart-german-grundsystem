@@ -4,7 +4,7 @@
  * @copyright Copyright 2003-2009 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: store_manager.php 13812 2009-07-08 17:21:05Z drbyte $
+ * @version $Id: store_manager.php 15954 2010-04-15 16:56:44Z drbyte $
  */
 
   require('includes/application_top.php');
@@ -107,6 +107,25 @@
     $messageStack->add_session(SUCCESS_DB_OPTIMIZE . ' ' . $i, 'success');
     $action='';
     zen_redirect(zen_href_link(FILENAME_STORE_MANAGER));
+    break;
+
+// clean out old DEBUG logfiles
+    case 'clean_debug_files':
+      $purgeFolder = rtrim(DIR_FS_SQL_CACHE, '/');
+      $dir = dir($purgeFolder);
+      while ($file = $dir->read()) {
+        if ( ($file != '.') && ($file != '..') && substr($file, 0, 1) != '.') {
+          if (preg_match('/^(myDEBUG-|AIM_Debug_|SIM_Debug_|FirstData_Debug_|Linkpoint_Debug_|Paypal|paypal|ipn_|zcInstall).*\.log$/', $file)) {
+            if (is_writeable($purgeFolder . '/' . $file)) {
+              zen_remove($purgeFolder . '/' . $file);
+            }
+          }
+        }
+      }
+      $dir->close();
+      unset($dir);
+      $messageStack->add_session(SUCCESS_CLEAN_DEBUG_FILES, 'success');
+      zen_redirect(zen_href_link(FILENAME_STORE_MANAGER));
     break;
 
     case ('update_all_master_categories_id'):
@@ -510,7 +529,7 @@ if ($show_configuration_info == 'true') {
       </tr>
 <!-- eof: reset all master_categories_id -->
 
-<!-- bof: resrt test order to new order number -->
+<!-- bof: reset test order to new order number -->
       <tr>
         <td colspan="2"><br /><table border="0" cellspacing="0" cellpadding="2">
           <tr><form name = "update_orders" action="<?php echo zen_href_link(FILENAME_STORE_MANAGER, 'action=update_orders_id', 'NONSSL'); ?>" method="post">
@@ -590,6 +609,17 @@ if ($show_configuration_info == 'true') {
       </tr>
 <!-- eof: database table-optimize -->
 
+
+<!-- bof: clean_debug_files -->
+      <tr>
+        <td colspan="2"><br /><br /><table border="0" cellspacing="0" cellpadding="2">
+          <tr>
+            <td class="main" align="left" valign="top"><?php echo TEXT_INFO_PURGE_DEBUG_LOG_FILES; ?></td>
+            <td class="main" align="right" valign="middle"><?php echo zen_draw_form('clean_debug_files', FILENAME_STORE_MANAGER, 'action=clean_debug_files', 'post') . zen_image_submit('button_confirm.gif', IMAGE_UPDATE) . '</form>'; ?>
+          </tr>
+        </table></td>
+      </tr>
+<!-- eof: clean_debug_files -->
 
 <?php
 } // eof configure

@@ -25,7 +25,7 @@
  * Default value is: DIR_FS_SQL_CACHE . '/myDEBUG-999999-00000000.log'
  * ... which puts it in the /cache/ folder:   /cache/myDEBUG-999999-00000000.log  (where 999999 is a random number, and 00000000 is the server's timestamp)
  */
-  $debug_logfile_path = DIR_FS_SQL_CACHE . '/myDEBUG-' . mt_rand(1000,999999) . '-' . time() . '.log';
+  $debug_logfile_path = DIR_FS_SQL_CACHE . '/myDEBUG-adm-' . mt_rand(1000,999999) . '-' . time() . '.log';
 
 /**
  * Error reporting level to log

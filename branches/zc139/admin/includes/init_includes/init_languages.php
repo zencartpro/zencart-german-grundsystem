@@ -4,7 +4,7 @@
  * @copyright Copyright 2003-2010 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: init_languages.php 15882 2010-04-11 16:37:54Z wilt $
+ * @version $Id: init_languages.php 15995 2010-04-19 17:41:54Z drbyte $
  */
 if (!defined('IS_ADMIN_FLAG')) {
   die('Illegal Access');
@@ -27,6 +27,10 @@ if (!defined('IS_ADMIN_FLAG')) {
     $_SESSION['languages_code'] = (zen_not_null($lng->language['code']) ? $lng->language['code'] : 'en');
   }
 
+// temporary patch for lang override chicken/egg quirk
+  $template_query = $db->Execute("select template_dir from " . TABLE_TEMPLATE_SELECT . " where template_language in (" . (int)$_SESSION['languages_id'] . ', 0' . ") order by template_language DESC");
+  $template_dir = $template_query->fields['template_dir'];
+
 // include the language translations
   require(DIR_WS_LANGUAGES . $_SESSION['language'] . '.php');
   $current_page = basename($PHP_SELF);
@@ -42,4 +46,3 @@ if (!defined('IS_ADMIN_FLAG')) {
     }
     $za_dir->close();
   }
-?>
