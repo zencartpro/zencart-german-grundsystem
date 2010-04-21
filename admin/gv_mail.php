@@ -1,26 +1,26 @@
 <?php
 /**
  * @package admin
- * @copyright Copyright 2003-2006 Zen Cart Development Team
+ * @copyright Copyright 2003-2010 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: gv_mail.php 4375 2006-09-03 20:36:38Z drbyte $
+ * @version $Id: gv_mail.php 15976 2010-04-17 01:48:44Z drbyte $
  */
-  
+
   require('includes/application_top.php');
-  
+
   require(DIR_WS_CLASSES . 'currencies.php');
   $currencies = new currencies();
 
   $_POST['amount'] = preg_replace('/[^0-9.%]/', '', $_POST['amount']);
   $_POST['amount'] = abs($_POST['amount']);
-  
+
   if ($_GET['action'] == 'set_editor') {
     // Reset will be done by init_html_editor.php. Now we simply redirect to refresh page properly.
     $action='';
     zen_redirect(zen_href_link(FILENAME_GV_MAIL));
   }
-  
+
   if ( ($_GET['action'] == 'send_email_to_user') && ($_POST['customers_email_address'] || $_POST['email_to']) && (!$_POST['back_x']) ) {
     $audience_select = get_audience_sql_query($_POST['customers_email_address'], 'email');
     $mail = $db->Execute($audience_select['query_string']);
@@ -28,7 +28,7 @@
     if ($_POST['email_to']) {
       $mail_sent_to = $_POST['email_to'];
     }
-  
+
     // demo active test
     if (zen_admin_demo()) {
       $_GET['action']= '';
@@ -38,34 +38,34 @@
     $from = zen_db_prepare_input($_POST['from']);
     $subject = zen_db_prepare_input($_POST['subject']);
     $recip_count=0;
-  
+
     // set time-limit for processing to 5 minutes... if allowed by PHP configuration
     zen_set_time_limit(600);
-  
+
     while (!$mail->EOF) {
-  
+
       $id1 = create_coupon_code($mail->fields['customers_email_address']);
       $insert_query = $db->Execute("insert into " . TABLE_COUPONS . "
                                     (coupon_code, coupon_type, coupon_amount, date_created)
                                     values ('" . $id1 . "', 'G', '" . $_POST['amount'] . "', now())");
-  
+
       $insert_id = $db->Insert_ID();
-  
+
       $db->Execute("insert into " . TABLE_COUPON_EMAIL_TRACK . "
                     (coupon_id, customer_id_sent, sent_firstname, emailed_to, date_sent)
                     values ('" . $insert_id ."', '0', 'Admin',
                             '" . $mail->fields['customers_email_address'] . "', now() )");
-  
+
       $message = $_POST['message'];
       $html_msg['EMAIL_MESSAGE_HTML'] = zen_db_prepare_input($_POST['message_html']);
       $message .= "\n\n" . TEXT_GV_WORTH  . $currencies->format($_POST['amount']) . "\n\n";
       $message .= TEXT_TO_REDEEM;
       $message .= TEXT_WHICH_IS . ' ' . $id1 . ' ' . TEXT_IN_CASE . "\n\n";
-  
+
       $html_msg['GV_WORTH']  = TEXT_GV_WORTH;
       $html_msg['GV_AMOUNT']  = $currencies->format($_POST['amount']);
       $html_msg['GV_REDEEM'] = TEXT_TO_REDEEM . TEXT_WHICH_IS . ' <strong>' . $id1 . '</strong> ' . TEXT_IN_CASE;
-  
+
       if (SEARCH_ENGINE_FRIENDLY_URLS == 'true') {
         $message .= HTTP_SERVER  . DIR_WS_CATALOG . 'index.php/gv_redeem/gv_no/'.$id1 . "\n\n";
         $html_msg['GV_CODE_URL'] = '<a href="'.HTTP_SERVER  . DIR_WS_CATALOG . 'index.php/gv_redeem/gv_no/'.$id1.'">' .TEXT_CLICK_TO_REDEEM . '</a>'. "&nbsp;";
@@ -73,35 +73,36 @@
         $message .= HTTP_SERVER  . DIR_WS_CATALOG . 'index.php?main_page=gv_redeem&gv_no='.$id1 . "\n\n";
         $html_msg['GV_CODE_URL'] =  '<a href="'. HTTP_SERVER  . DIR_WS_CATALOG . 'index.php?main_page=gv_redeem&gv_no='.$id1 .'">' .TEXT_CLICK_TO_REDEEM . '</a>' . "&nbsp;";
       }
-  
+
       $message .= TEXT_OR_VISIT . HTTP_SERVER  . DIR_WS_CATALOG . TEXT_ENTER_CODE . "\n\n";
       $html_msg['GV_CODE_URL'] .= TEXT_OR_VISIT .  '<a href="'.HTTP_SERVER  . DIR_WS_CATALOG.'">' . STORE_NAME . '</a>' . TEXT_ENTER_CODE;
       $html_msg['EMAIL_FIRST_NAME'] = $mail->fields['customers_firstname'];
       $html_msg['EMAIL_LAST_NAME']  = $mail->fields['customers_lastname'];
-  
+
       // disclaimer
       $message .= "\n-----\n" . sprintf(EMAIL_DISCLAIMER, STORE_OWNER_EMAIL_ADDRESS) . "\n\n";
-  
+
       zen_mail($mail->fields['customers_firstname'] . ' ' . $mail->fields['customers_lastname'], $mail->fields['customers_email_address'], $subject , $message, $from, $from, $html_msg, 'gv_mail');
       $recip_count++;
       if (SEND_EXTRA_DISCOUNT_COUPON_ADMIN_EMAILS_TO_STATUS== '1' and SEND_EXTRA_DISCOUNT_COUPON_ADMIN_EMAILS_TO != '') {
         zen_mail('', SEND_EXTRA_DISCOUNT_COUPON_ADMIN_EMAILS_TO, SEND_EXTRA_DISCOUNT_COUPON_ADMIN_EMAILS_TO_SUBJECT . ' ' . $subject, $message, $from, $from, $html_msg, 'gv_mail_extra');
       }
-  
+
       // Now create the coupon main and email entry
       $mail->MoveNext();
     }
-  
+
     if ($_POST['email_to']) {
       $id1 = create_coupon_code($_POST['email_to']);
       $message = zen_db_prepare_input($_POST['message']);
       $message .= "\n\n" . TEXT_GV_WORTH  . $currencies->format($_POST['amount']) . "\n\n";
       $message .= TEXT_TO_REDEEM;
       $message .= TEXT_WHICH_IS . ' ' . $id1 . ' ' . TEXT_IN_CASE . "\n\n";
-  
-      $html_msg['GV_WORTH']  = TEXT_GV_WORTH  . $currencies->format($_POST['amount']) .'<br />';
+
+      $html_msg['GV_WORTH']  = TEXT_GV_WORTH;
+      $html_msg['GV_AMOUNT']  = $currencies->format($_POST['amount']);
       $html_msg['GV_REDEEM'] = TEXT_TO_REDEEM . TEXT_WHICH_IS . ' <strong>' . $id1 . '</strong> ' . TEXT_IN_CASE . "\n\n";
-  
+
       if (SEARCH_ENGINE_FRIENDLY_URLS == 'true') {
         $message .= HTTP_SERVER  . DIR_WS_CATALOG . 'index.php/gv_redeem/gv_no/'.$id1 . "\n\n";
         $html_msg['GV_CODE_URL']  = '<a href="'.HTTP_SERVER  . DIR_WS_CATALOG . 'index.php/gv_redeem/gv_no/'.$id1.'">' .TEXT_CLICK_TO_REDEEM . '</a>'. "&nbsp;";
@@ -111,48 +112,48 @@
       }
       $message .= TEXT_OR_VISIT . HTTP_SERVER  . DIR_WS_CATALOG  . TEXT_ENTER_CODE . "\n\n";
       $html_msg['GV_CODE_URL']  .= TEXT_OR_VISIT .  '<a href="'.HTTP_SERVER  . DIR_WS_CATALOG.'">' . STORE_NAME . '</a>' . TEXT_ENTER_CODE;
-  
+
       $html_msg['EMAIL_MESSAGE_HTML'] = zen_db_prepare_input($_POST['message_html']);
       $html_msg['EMAIL_FIRST_NAME'] = ''; // unknown, since only an email address was supplied
       $html_msg['EMAIL_LAST_NAME']  = ''; // unknown, since only an email address was supplied
-  
+
       // disclaimer
       $message .= "\n-----\n" . sprintf(EMAIL_DISCLAIMER, STORE_OWNER_EMAIL_ADDRESS) . "\n\n";
-  
+
       //Send the emails
       zen_mail('Friend', $_POST['email_to'], $subject , $message, $from, $from, $html_msg, 'gv_mail');
       $recip_count++;
       if (SEND_EXTRA_DISCOUNT_COUPON_ADMIN_EMAILS_TO_STATUS== '1' and SEND_EXTRA_DISCOUNT_COUPON_ADMIN_EMAILS_TO != '') {
         zen_mail('', SEND_EXTRA_DISCOUNT_COUPON_ADMIN_EMAILS_TO, SEND_EXTRA_DISCOUNT_COUPON_ADMIN_EMAILS_TO_SUBJECT . ' ' . $subject, $message, $from, $from, $html_msg, 'gv_mail_extra');
       }
-  
+
       // Now create the coupon main entry
       $insert_query = $db->Execute("insert into " . TABLE_COUPONS . "
                                     (coupon_code, coupon_type, coupon_amount, date_created)
                                     values ('" . $id1 . "', 'G', '" . $_POST['amount'] . "', now())");
-  
+
       $insert_id = $db->Insert_id();
-  
+
       $insert_query = $db->Execute("insert into " . TABLE_COUPON_EMAIL_TRACK . "
                                     (coupon_id, customer_id_sent, sent_firstname, emailed_to, date_sent)
                                     values ('" . $insert_id ."', '0', 'Admin',
                                             '" . $_POST['email_to'] . "', now() )");
-  
+
     }
     zen_redirect(zen_href_link(FILENAME_GV_MAIL, 'mail_sent_to=' . urlencode($mail_sent_to) . '&recip_count='. $recip_count ));
   }
-  
+
   if ( ($_GET['action'] == 'preview') && (!$_POST['customers_email_address']) && (!$_POST['email_to']) ) {
     $messageStack->add(ERROR_NO_CUSTOMER_SELECTED, 'error');
   }
-  
+
   if ( ($_GET['action'] == 'preview') && (!$_POST['subject']) ) {
     $messageStack->add(ERROR_NO_SUBJECT, 'error');
   }
   if ( ($_GET['action'] == 'preview') && ($_POST['amount'] <= 0) ) {
     $messageStack->add(ERROR_NO_AMOUNT_SELECTED, 'error');
   }
-  
+
   if ($_GET['mail_sent_to']) {
     $messageStack->add(sprintf(NOTICE_EMAIL_SENT_TO, $_GET['mail_sent_to']. '(' . $_GET['recip_count'] . ')'), 'success');
   }
@@ -272,7 +273,7 @@ function check_form(form_name) {
 <?php
 // toggle switch for editor
         echo TEXT_EDITOR_INFO . zen_draw_form('set_editor_form', FILENAME_GV_MAIL, '', 'get') . '&nbsp;&nbsp;' . zen_draw_pull_down_menu('reset_editor', $editors_pulldown, $current_editor_key, 'onChange="this.form.submit();"') .
-        zen_hide_session_id() . 
+        zen_hide_session_id() .
         zen_draw_hidden_field('action', 'set_editor') .
         '</form>';
 ?>

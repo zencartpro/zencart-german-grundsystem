@@ -4,7 +4,7 @@
  * @copyright Copyright 2003-2010 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: orders.php 15788 2010-04-02 10:44:40Z drbyte $
+ * @version $Id: orders.php 15994 2010-04-19 17:17:51Z ajeh $
  */
 
   require('includes/application_top.php');
@@ -40,7 +40,8 @@
     $order_exists = true;
     if ($orders->RecordCount() <= 0) {
       $order_exists = false;
-      if ($action != '') $messageStack->add(sprintf(ERROR_ORDER_DOES_NOT_EXIST, $oID), 'error');
+      if ($action != '') $messageStack->add_session(ERROR_ORDER_DOES_NOT_EXIST . ' ' . $oID, 'error');
+      zen_redirect(zen_href_link(FILENAME_ORDERS, zen_get_all_get_params(array('oID', 'action')), 'NONSSL'));
     }
   }
 

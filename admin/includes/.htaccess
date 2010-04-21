@@ -1,4 +1,7 @@
-# $Id: .htaccess 15945 2010-04-15 14:31:11Z drbyte $
+#
+# @copyright Copyright 2003-2010 Zen Cart Development Team
+# @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
+# @version $Id: .htaccess 15992 2010-04-19 06:02:20Z drbyte $
 #
 # This is used with Apache WebServers
 #
@@ -15,15 +18,14 @@
 
 # deny *everything*
 <FilesMatch ".*">
-Order Allow,Deny
-Deny from all
+  Order Allow,Deny
+  Deny from all
 </FilesMatch>
 
 # but now allow just *certain* necessary files:
 <FilesMatch ".*\.(js|css|jpg|JPG|gif|GIF|png|PNG)$">
-Order Allow,Deny
-Allow from all
+  Order Allow,Deny
+  Allow from all
 </FilesMatch>
 
-OPTIONS -Indexes -ExecCGI
 IndexIgnore */*
