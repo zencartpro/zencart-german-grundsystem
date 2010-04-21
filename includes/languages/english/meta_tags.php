@@ -1,7 +1,7 @@
 <?php
 /**
  * @package languageDefines
- * @copyright Copyright 2003-2007 Zen Cart Development Team
+ * @copyright Copyright 2003-2008 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
  * @version $Id$
@@ -25,7 +25,7 @@ define('CUSTOM_KEYWORDS', 'ecommerce, open source, shop, online shopping');
 
 
 // EZ-Pages meta-tags.  Follow this pattern for all ez-pages for which you desire custom metatags. Replace the # with ezpage id.
-// If you wish to use defaults for any of the 3 items for a given page, simply do not define it. 
+// If you wish to use defaults for any of the 3 items for a given page, simply do not define it.
 // (ie: the Title tag is best not set, so that site-wide defaults can be used.)
 // repeat pattern as necessary
   define('META_TAG_DESCRIPTION_EZPAGE_#','');
@@ -36,8 +36,8 @@ define('CUSTOM_KEYWORDS', 'ecommerce, open source, shop, online shopping');
 // replace "page_name" with the UPPERCASE name of your main_page= value, such as ABOUT_US or SHIPPINGINFO etc.
 // repeat pattern as necessary
   define('META_TAG_DESCRIPTION_page_name','');
-  define('META_TAG_KEYWORDS_PAGE_page_name','');
-  define('META_TAG_TITLE_PAGE_page_name', '');
+  define('META_TAG_KEYWORDS_page_name','');
+  define('META_TAG_TITLE_page_name', '');
 
 // Review Page can have a lead in:
   define('META_TAGS_REVIEW', 'Reviews: ');

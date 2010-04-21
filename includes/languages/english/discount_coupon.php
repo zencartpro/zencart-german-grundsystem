@@ -1,24 +1,11 @@
 <?php
-//
-// +----------------------------------------------------------------------+
-// |zen-cart Open Source E-commerce                                       |
-// +----------------------------------------------------------------------+
-// | Copyright (c) 2003 The zen-cart developers                           |
-// |                                                                      |
-// | http://www.zen-cart.com/index.php                                    |
-// |                                                                      |
-// | Portions Copyright (c) 2003 osCommerce                               |
-// +----------------------------------------------------------------------+
-// | This source file is subject to version 2.0 of the GPL license,       |
-// | that is bundled with this package in the file LICENSE, and is        |
-// | available through the world-wide-web at the following url:           |
-// | http://www.zen-cart.com/license/2_0.txt.                             |
-// | If you did not receive a copy of the zen-cart license and are unable |
-// | to obtain it through the world-wide-web, please send a note to       |
-// | license@zen-cart.com so we can mail you a copy immediately.          |
-// +----------------------------------------------------------------------+
-// $Id$
-//
+/**
+ * @package languageDefines
+ * @copyright Copyright 2003-2009 Zen Cart Development Team
+ * @copyright Portions Copyright 2003 osCommerce
+ * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
+ * $Id$
+ */
 
 define('NAVBAR_TITLE', 'Discount Coupon');
 define('HEADING_TITLE', 'Discount Coupon');
@@ -31,7 +18,7 @@ define('TEXT_CLOSE_WINDOW', 'Close Window [x]');
 define('TEXT_COUPON_HELP_HEADER', '<p class="bold">The Discount Coupon Redemption Code you have entered is for ');
 define('TEXT_COUPON_HELP_NAME', '\'%s\'. </p>');
 define('TEXT_COUPON_HELP_FIXED', '');
-define('TEXT_COUPON_HELP_MINORDER', '');
+define('TEXT_COUPON_HELP_MINORDER', '<p>You need to spend %s to use this coupon, on qualifying products.</p>');
 define('TEXT_COUPON_HELP_FREESHIP', '');
 define('TEXT_COUPON_HELP_DESC', '<p><span class="bold">Discount Offer:</span> %s</p><p class="smallText">Certain other restrictions may apply. Please see below for other details.</p>');
 define('TEXT_COUPON_HELP_DATE', '<p>The coupon is valid between %s and %s</p>');

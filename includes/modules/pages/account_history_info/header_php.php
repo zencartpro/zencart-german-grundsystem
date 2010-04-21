@@ -3,10 +3,10 @@
  * Header code file for the Account History Information/Details page (which displays details for a single specific order)
  *
  * @package page
- * @copyright Copyright 2003-2005 Zen Cart Development Team
+ * @copyright Copyright 2003-2010 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: header_php.php 2943 2006-02-02 15:56:09Z wilt $
+ * @version $Id: header_php.php 15788 2010-04-02 10:44:40Z drbyte $
  */
 // This should be first line of the script:
 $zco_notifier->notify('NOTIFY_HEADER_START_ACCOUNT_HISTORY_INFO');
@@ -36,6 +36,7 @@ $statuses_query = "SELECT os.orders_status_name, osh.date_added, osh.comments
                    WHERE      osh.orders_id = :ordersID
                    AND        osh.orders_status_id = os.orders_status_id
                    AND        os.language_id = :languagesID
+                   AND        osh.customer_notified >= 0
                    ORDER BY   osh.date_added";
 
 $statuses_query = $db->bindVars($statuses_query, ':ordersID', $_GET['order_id'], 'integer');
@@ -62,4 +63,3 @@ $order = new order($_GET['order_id']);
 
 // This should be last line of the script:
 $zco_notifier->notify('NOTIFY_HEADER_END_ACCOUNT_HISTORY_INFO');
-?>

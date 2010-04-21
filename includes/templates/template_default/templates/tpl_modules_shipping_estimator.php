@@ -3,14 +3,14 @@
  * Module Template - for shipping-estimator display
  *
  * @package templateSystem
- * @copyright Copyright 2003-2007 Zen Cart Development Team
+ * @copyright Copyright 2003-2010 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: tpl_modules_shipping_estimator.php 5853 2007-02-20 05:49:48Z drbyte $
+ * @version $Id: tpl_modules_shipping_estimator.php 15881 2010-04-11 16:32:39Z wilt $
  */
 ?>
 <div id="shippingEstimatorContent">
-<?php echo zen_draw_form('estimator', zen_href_link($show_in, '', 'NONSSL'), 'post'); ?>
+<?php echo zen_draw_form('estimator', zen_href_link($show_in, '', $request_type), 'post'); ?>
 <?php echo zen_draw_hidden_field('scid', $selected_shipping['id']); ?>
 <?php
   if($_SESSION['cart']->count_contents()) {
@@ -28,7 +28,7 @@
       if ($addresses->RecordCount() > 1){
 ?>
 <label class="inputLabel" for="seAddressPulldown"><?php echo CART_SHIPPING_METHOD_ADDRESS; ?></label>
-<?php echo zen_draw_pull_down_menu('address_id', $addresses_array, $selected_address, 'onchange="return shipincart_submit();" name="seAddressPulldown"'); ?>
+<?php echo zen_draw_pull_down_menu('address_id', $addresses_array, $selected_address, 'onchange="return shipincart_submit();" id="seAddressPulldown"'); ?>
 <?php
       }
 ?>

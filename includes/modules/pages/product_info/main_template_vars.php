@@ -3,10 +3,10 @@
  *  product_info main_template_vars.php
  *
  * @package productTypes
- * @copyright Copyright 2003-2007 Zen Cart Development Team
+ * @copyright Copyright 2003-2010 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: main_template_vars.php 6275 2007-05-02 11:46:37Z drbyte $
+ * @version $Id: main_template_vars.php 15948 2010-04-15 15:50:49Z drbyte $
  */
 /*
  * Extracts and constructs the data to be used in the product-type template tpl_TYPEHANDLER_info_display.php
@@ -98,7 +98,8 @@
 
   $products_name = $product_info->fields['products_name'];
   $products_model = $product_info->fields['products_model'];
-  $products_description = $product_info->fields['products_description'];
+  // if no common markup tags in description, add line breaks for readability:
+  $products_description = (!preg_match('/(<br|<p|<div|<dd|<li|<span)/i', $product_info->fields['products_description']) ? nl2br($product_info->fields['products_description']) : $product_info->fields['products_description']);
 
   if ($product_info->fields['products_image'] == '' and PRODUCTS_IMAGE_NO_IMAGE_STATUS == '1') {
     $products_image = PRODUCTS_IMAGE_NO_IMAGE;
@@ -186,4 +187,3 @@
 
   // This should be last line of the script:
   $zco_notifier->notify('NOTIFY_MAIN_TEMPLATE_VARS_END_PRODUCT_INFO');
-?>

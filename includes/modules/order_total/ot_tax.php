@@ -3,10 +3,10 @@
  * ot_tax order-total module
  *
  * @package orderTotal
- * @copyright Copyright 2003-2007 Zen Cart Development Team
+ * @copyright Copyright 2003-2009 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: ot_tax.php 6101 2007-04-01 10:30:22Z wilt $
+ * @version $Id: ot_tax.php 14141 2009-08-10 19:34:47Z wilt $
  */
   class ot_tax {
     var $title, $output;
@@ -24,12 +24,31 @@
       global $order, $currencies;
 
       reset($order->info['tax_groups']);
+      $taxDescription = '';
+      $taxValue = 0;
       while (list($key, $value) = each($order->info['tax_groups'])) {
-        if ($value > 0 or STORE_TAX_DISPLAY_STATUS == 1) {
-          $this->output[] = array('title' => $key . ':',
-                                  'text' => $currencies->format($value, true, $order->info['currency'], $order->info['currency_value']),
-                                  'value' => $value);
+        if (SHOW_SPLIT_TAX_CHECKOUT == 'true')
+        {
+          if ($value > 0 or STORE_TAX_DISPLAY_STATUS == 1) {
+            $this->output[] = array('title' => $key . ':',
+                                    'text' => $currencies->format($value, true, $order->info['currency'], $order->info['currency_value']),
+                                    'value' => $value);
+          }
+        } else 
+        {
+          if ($value > 0)
+          {
+            $taxDescription .= $key . ' + ';
+            $taxValue += $value;
+          }
         }
+      }
+      if (SHOW_SPLIT_TAX_CHECKOUT != 'true' && ($taxValue > 0 or STORE_TAX_DISPLAY_STATUS == 1))
+      {
+        $this->output[] = array(
+                        'title' => substr($taxDescription, 0 , strlen($taxDescription)-3) . ':' , 
+                        'text' => $currencies->format($taxValue, true, $order->info['currency'], $order->info['currency_value']) , 
+                        'value' => $taxValue);
       }
     }
 

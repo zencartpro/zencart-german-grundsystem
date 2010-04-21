@@ -3,10 +3,10 @@
  * Override Template for common/tpl_main_page.php
  *
  * @package templateSystem
- * @copyright Copyright 2003-2005 Zen Cart Development Team
+ * @copyright Copyright 2003-2009 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: tpl_main_page.php 2870 2006-01-21 21:36:02Z birdbrain $
+ * @version $Id: tpl_main_page.php 14283 2009-08-29 01:43:10Z drbyte $
  */
 ?>
 <body id="popupAtrribsQuantityPricesHelp">
@@ -18,9 +18,6 @@
       </tr>
       <tr>
         <td class="pageHeading"><?php echo TEXT_ATTRIBUTES_QTY_PRICES_HELP ?></td>
-      </tr>
-      <tr>
-        <td class="main">This is a paragraph of text in the window to see what it does to the size. The current size is pretty small and hard to read</td>
       </tr>
       <tr>
         <td>
@@ -72,7 +69,7 @@ $show_onetime= 'false';
           if ($products_options_lookup->fields['attributes_qty_prices'] != '') {
             $attribute_quantity= '';
             $attribute_quantity_price= '';
-            $attribute_table_cost = split("[:,]" , $products_options_lookup->fields['attributes_qty_prices']);
+            $attribute_table_cost = preg_split("/[:,]/" , $products_options_lookup->fields['attributes_qty_prices']);
             $size = sizeof($attribute_table_cost);
             for ($i=0, $n=$size; $i<$n; $i+=2) {
 //                $attribute_quantity .= '<td align="center">' . (($i <= 1 and $attribute_table_cost[$i] != 1) ? '1-' . $attribute_table_cost[$i] : $attribute_table_cost[$i] . '+') . '</td>';
@@ -168,7 +165,7 @@ $show_onetime= 'false';
           if ($products_options_lookup->fields['attributes_qty_prices_onetime'] != '') {
             $attribute_quantity= '';
             $attribute_quantity_price= '';
-            $attribute_table_cost = split("[:,]" , $products_options_lookup->fields['attributes_qty_prices_onetime']);
+            $attribute_table_cost = preg_split("/[:,]/" , $products_options_lookup->fields['attributes_qty_prices_onetime']);
             $size = sizeof($attribute_table_cost);
             for ($i=0, $n=$size; $i<$n; $i+=2) {
                 $attribute_quantity .= '<td align="center">' . $attribute_table_cost[$i] . '</td>';

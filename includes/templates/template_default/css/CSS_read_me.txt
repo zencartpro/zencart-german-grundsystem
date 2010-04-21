@@ -12,6 +12,7 @@ language_stylesheet.css   // changes to ALL pages, when that language is used
                p_??.css   // changes to a product's info page
       language_p_??.css   // changes to a product's info page, when that language is used
              print*.css   // printer-friendly global usage site-wide changes for printing-only
+             page##.css   // EZ-Page -- css specific to a numbered EZ-page ... ie:  page21.css would be for EZ-Page number 21 ... ie: for the URL index.php?main_page=page&id=21
 
 The 'stylesheet.css' always loads first and should contain the bulk of your CSS selectors. Each file loaded takes priority over previously loaded file(s). To save loading time, only new selectors or selectors whose properties you wish to change should be in the optional CSS files. You can have different overrides for the same page, in different languages, because the two would never be called at the same time.
 

@@ -1,25 +1,28 @@
 <?php
 /**
- * paypal.php payment module class for Paypal IPN payment method
+ * paypal.php payment module class for PayPal Website Payments Standard (IPN) method
  *
  * @package paymentMethod
- * @copyright Copyright 2003-2007 Zen Cart Development Team
+ * @copyright Copyright 2003-2010 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: paypal.php 7508 2007-11-28 17:05:16Z drbyte $
+ * @version $Id: paypal.php 15735 2010-03-29 07:13:53Z drbyte $
  */
 
 define('MODULE_PAYMENT_PAYPAL_TAX_OVERRIDE', 'true');
 
-// ensure dependencies are loaded
-  include_once((IS_ADMIN_FLAG === true ? DIR_FS_CATALOG_MODULES : DIR_WS_MODULES) . 'payment/paypal/paypal_functions.php');
 /**
- * paypal IPN payment method class
+ *  ensure dependencies are loaded
+ */
+  include_once((IS_ADMIN_FLAG === true ? DIR_FS_CATALOG_MODULES : DIR_WS_MODULES) . 'payment/paypal/paypal_functions.php');
+
+/**
+ * paypal.php payment module class for PayPal Website Payments Standard (IPN) method
  *
  */
 class paypal extends base {
   /**
-   * string repesenting the payment method
+   * string representing the payment method
    *
    * @var string
    */
@@ -51,7 +54,7 @@ class paypal extends base {
   function paypal($paypal_ipn_id = '') {
     global $order, $messageStack;
     $this->code = 'paypal';
-    $this->codeVersion = '1.3.8a';
+    $this->codeVersion = '1.3.9';
     if (IS_ADMIN_FLAG === true) {
       $this->title = MODULE_PAYMENT_PAYPAL_TEXT_ADMIN_TITLE; // Payment Module title in Admin
       if (IS_ADMIN_FLAG === true && defined('MODULE_PAYMENT_PAYPAL_IPN_DEBUG') && MODULE_PAYMENT_PAYPAL_IPN_DEBUG != 'Off') $this->title .= '<span class="alert"> (debug mode active)</span>';
@@ -66,17 +69,9 @@ class paypal extends base {
       $this->order_status = MODULE_PAYMENT_PAYPAL_ORDER_STATUS_ID;
     }
     if (is_object($order)) $this->update_status();
-    if (MODULE_PAYMENT_PAYPAL_TESTING == 'Test') {
-      if (!file_exists(DIR_WS_CATALOG . 'ipn_test.php')) {
-        $messageStack->add('header', 'WARNING: PayPal TEST mode enabled but ipn_test*.php files not found. Thus, module has been disabled in storefront.', 'caution');
-        if (IS_ADMIN_FLAG === false) $this->enabled = false;
-      }
-      $this->form_action_url = DIR_WS_CATALOG . 'ipn_test.php';
-    } else {
-      $this->form_action_url = 'https://' . MODULE_PAYMENT_PAYPAL_HANDLER;
-    }
+    $this->form_action_url = 'https://' . MODULE_PAYMENT_PAYPAL_HANDLER;
 
-    if (PROJECT_VERSION_MAJOR != '1' && substr(PROJECT_VERSION_MINOR, 0, 3) != '3.8') $this->enabled = false;
+    if (PROJECT_VERSION_MAJOR != '1' && substr(PROJECT_VERSION_MINOR, 0, 3) != '3.9') $this->enabled = false;
 
     // verify table structure
     if (IS_ADMIN_FLAG === true) $this->tableCheckup();
@@ -198,8 +193,9 @@ class paypal extends base {
     }
 
     $optionsCore = array(
+                   'lc' => $this->getLanguageCode(),
+//                   'lc' => $order->customer['country']['iso_code_2'],
                    'charset' => CHARSET,
-                   'lc' => $order->customer['country']['iso_code_2'],
                    'page_style' => MODULE_PAYMENT_PAYPAL_PAGE_STYLE,
                    'custom' => zen_session_name() . '=' . zen_session_id(),
                    'business' => MODULE_PAYMENT_PAYPAL_BUSINESS_ID,
@@ -207,37 +203,40 @@ class paypal extends base {
                    'cancel_return' => zen_href_link(FILENAME_CHECKOUT_PAYMENT, '', 'SSL'),
                    'shopping_url' => zen_href_link(FILENAME_SHOPPING_CART, '', 'SSL'),
                    'notify_url' => zen_href_link('ipn_main_handler.php', '', 'SSL',false,false,true),
-                   'redirect_cmd' => '_xclick',
-                   'rm' => 2,
-                   'bn' => 'zencart',
-                   'mrb' => 'R-6C7952342H795591R',
-                   'pal' => '9E82WJBKKGPLQ',
+                   'redirect_cmd' => '_xclick','rm' => 2,'bn' => 'zencart','mrb' => 'R-6C7952342H795591R','pal' => '9E82WJBKKGPLQ',
                    );
     $optionsCust = array(
                    'first_name' => replace_accents($order->customer['firstname']),
                    'last_name' => replace_accents($order->customer['lastname']),
                    'address1' => replace_accents($order->customer['street_address']),
                    'city' => replace_accents($order->customer['city']),
-                   'state' => zen_get_zone_code($order->customer['country']['id'], $order->customer['zone_id'], $order->customer['zone_id']),
+                   'state' => zen_get_zone_code($order->customer['country']['id'], $order->customer['zone_id'], $order->customer['state']),
                    'zip' => $order->customer['postcode'],
                    'country' => $order->customer['country']['iso_code_2'],
                    'email' => $order->customer['email_address'],
                    );
+    // address line 2 is optional
     if ($order->customer['suburb'] != '') $optionsCust['address2'] = $order->customer['suburb'];
-    if (MODULE_PAYMENT_PAYPAL_ADDRESS_REQUIRED == 2) $optionsCust = array(
-                   'address_name' => replace_accents($order->customer['firstname'] . ' ' . $order->customer['lastname']),
-                   'address_street' => replace_accents($order->customer['street_address']),
-                   'address_city' => replace_accents($order->customer['city']),
-                   'address_state' => zen_get_zone_code($order->customer['country']['id'], $order->customer['zone_id'], $order->customer['zone_id']),
-                   'address_zip' => $order->customer['postcode'],
-                   'address_country' => $order->customer['country']['title'],
-                   'address_country_code' => $order->customer['country']['iso_code_2'],
-                   'payer_email' => $order->customer['email_address'],
+    // different format for Japanese address layout:
+    if ($order->customer['country']['iso_code_2'] == 'JP') $optionsCust['zip'] = substr($order->customer['postcode'], 0, 3) . '-' . substr($order->customer['postcode'], 3);
+    if (MODULE_PAYMENT_PAYPAL_ADDRESS_REQUIRED == 2) {
+      $optionsCust = array(
+                   'first_name' => replace_accents($order->delivery['firstname'] != '' ? $order->delivery['firstname'] : $order->billing['firstname']),
+                   'last_name' => replace_accents($order->delivery['lastname'] != '' ? $order->delivery['lastname'] : $order->billing['lastname']),
+                   'address1' => replace_accents($order->delivery['street_address'] != '' ? $order->delivery['street_address'] : $order->billing['street_address']),
+                   'city' => replace_accents($order->delivery['city'] != '' ? $order->delivery['city'] : $order->billing['city']),
+                   'state' => ($order->delivery['country']['id'] != '' ? zen_get_zone_code($order->delivery['country']['id'], $order->delivery['zone_id'], $order->delivery['state']) : zen_get_zone_code($order->billing['country']['id'], $order->billing['zone_id'], $order->billing['state'])),
+                   'zip' => ($order->delivery['postcode'] != '' ? $order->delivery['postcode'] : $order->billing['postcode']),
+                   'country' => ($order->delivery['country']['title'] != '' ? $order->delivery['country']['title'] : $order->billing['country']['title']),
+                   'country_code' => ($order->delivery['country']['iso_code_2'] != '' ? $order->delivery['country']['iso_code_2'] : $order->billing['country']['iso_code_2']),
+                   'email' => $order->customer['email_address'],
                    );
-    $optionsShip = array(
-                   //'address_override' => MODULE_PAYMENT_PAYPAL_ADDRESS_OVERRIDE,
-                   'no_shipping' => MODULE_PAYMENT_PAYPAL_ADDRESS_REQUIRED,
-                   );
+      if ($order->delivery['suburb'] != '') $optionsCust['address2'] = $order->delivery['suburb'];
+      if ($order->delivery['country']['iso_code_2'] == 'JP') $optionsCust['zip'] = substr($order->delivery['postcode'], 0, 3) . '-' . substr($order->delivery['postcode'], 3);
+    }
+    $optionsShip['no_shipping'] = MODULE_PAYMENT_PAYPAL_ADDRESS_REQUIRED;
+    if (MODULE_PAYMENT_PAYPAL_ADDRESS_OVERRIDE == '1') $optionsShip['address_override'] = MODULE_PAYMENT_PAYPAL_ADDRESS_OVERRIDE;
+    // prepare cart contents details where possible
     if (MODULE_PAYMENT_PAYPAL_DETAILED_CART == 'Yes') $optionsLineItems = ipn_getLineItemDetails();
     if (sizeof($optionsLineItems) > 0) {
       $optionsLineItems['cmd'] = '_cart';
@@ -246,15 +245,13 @@ class paypal extends base {
         $optionsLineItems['shipping_1'] = $optionsLineItems['shipping'];
         unset($optionsLineItems['shipping']);
       }
-      if (isset($optionsLineItems['handling'])) {
-        $optionsLineItems['handling_1'] = $optionsLineItems['handling'];
-        unset($optionsLineItems['handling']);
-      }
       unset($optionsLineItems['subtotal']);
       // if line-item details couldn't be kept due to calculation mismatches or discounts etc, default to aggregate mode
-      if (!isset($optionsLineItems['item_name_1'])) $optionsLineItems = array();
+      if (!isset($optionsLineItems['item_name_1']) || $optionsLineItems['creditsExist'] == TRUE) $optionsLineItems = array();
       //if ($optionsLineItems['amount'] != $this->transaction_amount) $optionsLineItems = array();
-      ipn_debug_email('Line Item Details (if blank, this means there was a data mismatch, and thus bypassed): ' . "\n" . print_r($optionsLineItems, true));
+      // debug:
+      //ipn_debug_email('Line Item Details (if blank, this means there was a data mismatch or credits applied, and thus bypassed): ' . "\n" . print_r($optionsLineItems, true));
+      unset($optionsLineItems['creditsExist']);
     }
     $optionsAggregate = array(
                    'cmd' => '_ext-enter',
@@ -279,7 +276,8 @@ class paypal extends base {
 
     // prepare submission
     $options = array_merge($optionsCore, $optionsCust, $optionsPhone, $optionsShip, $optionsTrans, $optionsAggregate);
-    ipn_debug_email('Keys for submission: ' . print_r($options, true));
+    //ipn_debug_email('Keys for submission: ' . print_r($options, true));
+
     // build the button fields
     foreach ($options as $name => $value) {
       // remove quotation marks
@@ -300,6 +298,25 @@ class paypal extends base {
     return $process_button_string;
   }
   /**
+   * Determine the language to use when visiting the PayPal site
+   */
+  function getLanguageCode() {
+    global $order;
+    $lang_code = '';
+    $orderISO = zen_get_countries($order->customer['country']['id'], true);
+    $storeISO = zen_get_countries(STORE_COUNTRY, true);
+    if (in_array(strtoupper($orderISO['countries_iso_code_2']), array('US', 'AU', 'DE', 'FR', 'IT', 'GB', 'ES', 'AT', 'BE', 'CA', 'CH', 'CN', 'NL', 'PL'))) {
+      $lang_code = strtoupper($orderISO['countries_iso_code_2']);
+    } elseif (in_array(strtoupper($storeISO['countries_iso_code_2']), array('US', 'AU', 'DE', 'FR', 'IT', 'GB', 'ES', 'AT', 'BE', 'CA', 'CH', 'CN', 'NL', 'PL'))) {
+      $lang_code = strtoupper($storeISO['countries_iso_code_2']);
+    } elseif (in_array(strtoupper($_SESSION['languages_code']), array('EN', 'US', 'AU', 'DE', 'FR', 'IT', 'GB', 'ES', 'AT', 'BE', 'CA', 'CH', 'CN', 'NL', 'PL'))) {
+      $lang_code = $_SESSION['languages_code'];
+      if (strtoupper($lang_code) == 'EN') $lang_code = 'US';
+    }
+    //return $orderISO['countries_iso_code_2'];
+    return strtoupper($lang_code);
+  }
+  /**
    * Store transaction info to the order and process any results that come back from the payment gateway
    */
   function before_process() {
@@ -308,12 +325,8 @@ class paypal extends base {
     unset($_SESSION['paypal_transaction_info']);
     if (isset($_GET['referer']) && $_GET['referer'] == 'paypal') {
       $this->notify('NOTIFY_PAYMENT_PAYPAL_RETURN_TO_STORE');
-      if (MODULE_PAYMENT_PAYPAL_TESTING == 'Test') {
-        // simulate call to ipn_handler.php here
-        ipn_simulate_ipn_handler((int)$_GET['count']);
-      }
-      if (defined('MODULE_PAYMENT_PAYPAL_PDTTOKEN') && MODULE_PAYMENT_PAYPAL_PDTTOKEN != '') {
-        $pdtStatus = $this->_getPDTresults($this->transaction_amount, $this->transaction_currency);
+      if (defined('MODULE_PAYMENT_PAYPAL_PDTTOKEN') && MODULE_PAYMENT_PAYPAL_PDTTOKEN != '' && isset($_GET['tx']) && $_GET['tx'] != '') {
+        $pdtStatus = $this->_getPDTresults($this->transaction_amount, $this->transaction_currency, $_GET['tx']);
       } else {
         $pdtStatus = false;
       }
@@ -370,7 +383,7 @@ class paypal extends base {
    * @return boolean
     */
   function after_process() {
-    global $insert_id, $db;
+    global $insert_id, $db, $order;
     if ($_SESSION['paypal_transaction_PDT_passed'] != true) {
       $_SESSION['order_created'] = '';
       unset($_SESSION['paypal_transaction_PDT_passed']);
@@ -409,7 +422,7 @@ class paypal extends base {
                           'payer_email' => $this->pdtData['payer_email'],
                           'payer_id' => $this->pdtData['payer_id'],
                           'payer_status' => $this->pdtData['payer_status'],
-                          'payment_date' => trim(preg_replace('/[^0-9-:]/', ' ', $this->pdtData['payment_date'])),
+                          'payment_date' => datetime_to_sql_format($this->pdtData['payment_date']),
                           'business' => $this->pdtData['business'],
                           'receiver_email' => $this->pdtData['receiver_email'],
                           'receiver_id' => $this->pdtData['receiver_id'],
@@ -427,7 +440,9 @@ class paypal extends base {
                           'date_added' => 'now()',
                           'memo' => '{Successful PDT Confirmation - Record auto-generated by payment module}'
                          );
+//TODO: $db->perform vs zen_db_perform
       zen_db_perform(TABLE_PAYPAL, $sql_data_array);
+      ipn_debug_email('PDT NOTICE :: paypal table updated: ' . print_r($sql_data_array, true));
     }
   }
   /**
@@ -460,27 +475,34 @@ class paypal extends base {
     *
     */
   function install() {
-    global $db;
+    global $db, $messageStack;
+    if (defined('MODULE_PAYMENT_PAYPAL_STATUS')) {
+      $messageStack->add_session('PayPal Website Payments Standard module already installed.', 'error');
+      zen_redirect(zen_href_link(FILENAME_MODULES, 'set=payment&module=paypal', 'NONSSL'));
+      return 'failed';
+    }
+    if (defined('MODULE_PAYMENT_PAYPALWPP_STATUS')) {
+      $messageStack->add_session('NOTE: PayPal Express Checkout module already installed. You don\'t need Standard if you have Express installed.', 'error');
+      zen_redirect(zen_href_link(FILENAME_MODULES, 'set=payment&module=paypalwpp', 'NONSSL'));
+      return 'failed';
+    }
     $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) values ('Enable PayPal Module', 'MODULE_PAYMENT_PAYPAL_STATUS', 'True', 'Do you want to accept PayPal payments?', '6', '0', 'zen_cfg_select_option(array(\'True\', \'False\'), ', now())");
     $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) values ('Business ID', 'MODULE_PAYMENT_PAYPAL_BUSINESS_ID','".STORE_OWNER_EMAIL_ADDRESS."', 'Primary email address for your PayPal account.<br />NOTE: This must match <strong>EXACTLY </strong>the primary email address on your PayPal account settings.  It <strong>IS case-sensitive</strong>, so please check your PayPal profile preferences at paypal.com and be sure to enter the EXACT same primary email address here.', '6', '2', now())");
-    $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) values ('Transaction Currency', 'MODULE_PAYMENT_PAYPAL_CURRENCY', 'Selected Currency', 'Which currency should the order be sent to PayPal as? <br />NOTE: if an unsupported currency is sent to PayPal, it will be auto-converted to USD.', '6', '3', 'zen_cfg_select_option(array(\'Selected Currency\', \'Only USD\', \'Only AUD\', \'Only CAD\', \'Only EUR\', \'Only GBP\', \'Only CHF\', \'Only CZK\', \'Only DKK\', \'Only HKD\', \'Only HUF\', \'Only JPY\', \'Only NOK\', \'Only NZD\', \'Only PLN\', \'Only SEK\', \'Only SGD\', \'Only THB\'), ', now())");
+    $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) values ('Transaction Currency', 'MODULE_PAYMENT_PAYPAL_CURRENCY', 'Selected Currency', 'Which currency should the order be sent to PayPal as? <br />NOTE: if an unsupported currency is sent to PayPal, it will be auto-converted to USD.', '6', '3', 'zen_cfg_select_option(array(\'Selected Currency\', \'Only USD\', \'Only AUD\', \'Only CAD\', \'Only EUR\', \'Only GBP\', \'Only CHF\', \'Only CZK\', \'Only DKK\', \'Only HKD\', \'Only HUF\', \'Only JPY\', \'Only NOK\', \'Only NZD\', \'Only PLN\', \'Only SEK\', \'Only SGD\', \'Only THB\', \'Only MXN\', \'Only ILS\', \'Only PHP\', \'Only TWD\', \'Only BRL\', \'Only MYR\'), ', now())");
     $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, use_function, set_function, date_added) values ('Payment Zone', 'MODULE_PAYMENT_PAYPAL_ZONE', '0', 'If a zone is selected, only enable this payment method for that zone.', '6', '4', 'zen_get_zone_class_title', 'zen_cfg_pull_down_zone_classes(', now())");
     $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, use_function, date_added) values ('Set Pending Notification Status', 'MODULE_PAYMENT_PAYPAL_PROCESSING_STATUS_ID', '" . DEFAULT_ORDERS_STATUS_ID .  "', 'Set the status of orders made with this payment module that are not yet completed to this value<br />(\'Pending\' recommended)', '6', '5', 'zen_cfg_pull_down_order_statuses(', 'zen_get_order_status_name', now())");
     $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, use_function, date_added) values ('Set Order Status', 'MODULE_PAYMENT_PAYPAL_ORDER_STATUS_ID', '2', 'Set the status of orders made with this payment module that have completed payment to this value<br />(\'Processing\' recommended)', '6', '6', 'zen_cfg_pull_down_order_statuses(', 'zen_get_order_status_name', now())");
     $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, use_function, date_added) values ('Set Refund Order Status', 'MODULE_PAYMENT_PAYPAL_REFUND_ORDER_STATUS_ID', '1', 'Set the status of orders that have been refunded made with this payment module to this value<br />(\'Pending\' recommended)', '6', '7', 'zen_cfg_pull_down_order_statuses(', 'zen_get_order_status_name', now())");
     $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) values ('Sort order of display.', 'MODULE_PAYMENT_PAYPAL_SORT_ORDER', '0', 'Sort order of display. Lowest is displayed first.', '6', '8', now())");
-    //     $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) values ('Handling Charge', 'MODULE_PAYMENT_PAYPAL_HANDLING', '0', 'The cost of handling. This is not quantity specific. The same handling will be charged regardless of the number of items purchased. If omitted or 0, no handling charges will be assessed.', '6', '15', now())");
-    $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) values ('Address override', 'MODULE_PAYMENT_PAYPAL_ADDRESS_OVERRIDE', '', 'If set to 1 the address passed in via Zen Cart will override the customer PayPal-stored address. The customer will be shown their address from Zen Cart, but will not be able to edit it. If the address is not valid (i.e. missing required fields, including country) or not included, then no address will be shown.<br />Empty=No Override<br />1=Passed-in Address overrides customers PayPal-stored address', '6', '18', 'zen_cfg_select_option(array(\'\',\'1\'), ', now())");
-    $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) values ('Shipping Address Options', 'MODULE_PAYMENT_PAYPAL_ADDRESS_REQUIRED', '1', 'The buyers shipping address. If set to 0 your customer will be prompted to include a shipping address. If set to 1 your customer will not be asked for a shipping address. If set to 2 your customer will be required to provide a shipping address.<br />0=Prompt<br />1=Not Asked<br />2=Required<br /><br /><strong>NOTE: If you allow your customers to enter their own shipping address, then MAKE SURE you verify the PayPal confirmation details to verify the proper address when filling orders. Zen Cart does not know if they choose an alternate shipping address compared to the one entered when placing an order.</strong>', '6', '20', 'zen_cfg_select_option(array(\'0\',\'1\',\'2\'), ', now())");
+    $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) values ('Address Override', 'MODULE_PAYMENT_PAYPAL_ADDRESS_OVERRIDE', '1', 'If set to 1, the customer shipping address selected in Zen Cart will override the customer PayPal-stored address book. The customer will see their address from Zen Cart, but will NOT be able to edit it at PayPal.<br />(An invalid address will be treated by PayPal as not-supplied, or override=0)<br />0=No Override<br />1=ZC address overrides PayPal address choices', '6', '18', 'zen_cfg_select_option(array(\'0\',\'1\'), ', now())");
+    $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) values ('Shipping Address Requirements?', 'MODULE_PAYMENT_PAYPAL_ADDRESS_REQUIRED', '2', 'The buyers shipping address. If set to 0 your customer will be prompted to include a shipping address. If set to 1 your customer will not be asked for a shipping address. If set to 2 your customer will be required to provide a shipping address.<br />0=Prompt<br />1=Not Asked<br />2=Required<br /><br /><strong>NOTE: If you allow your customers to enter their own shipping address, then MAKE SURE you PERSONALLY manually verify the PayPal confirmation details to verify the proper address when filling orders. When using Website Payments Standard (IPN), Zen Cart does not know if they choose an alternate shipping address at PayPal vs the one entered when placing an order.</strong>', '6', '20', 'zen_cfg_select_option(array(\'0\',\'1\',\'2\'), ', now())");
     $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) values ('Detailed Line Items in Cart', 'MODULE_PAYMENT_PAYPAL_DETAILED_CART', 'No', 'Do you want to give line-item details to PayPal?  If set to True, line-item details will be shared with PayPal if no discounts apply and if tax and shipping are simple. Otherwise an Aggregate cart summary will be sent.', '6', '22', 'zen_cfg_select_option(array(\'No\',\'Yes\'), ', now())");
     $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) values ('Page Style', 'MODULE_PAYMENT_PAYPAL_PAGE_STYLE', 'Primary', 'Sets the Custom Payment Page Style for payment pages. The value of page_style is the same as the Page Style Name you chose when adding or editing the page style. You can add and edit Custom Payment Page Styles from the Profile subtab of the My Account tab on the PayPal site. If you would like to always reference your Primary style, set this to \"primary.\" If you would like to reference the default PayPal page style, set this to \"paypal\".', '6', '25', now())");
     $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) values ('Mode for PayPal web services<br /><br />Default:<br /><code>www.paypal.com/cgi-bin/webscr</code><br />or<br /><code>www.paypal.com/us/cgi-bin/webscr</code><br />or for the UK,<br /><code>www.paypal.com/uk/cgi-bin/webscr</code>', 'MODULE_PAYMENT_PAYPAL_HANDLER', 'www.paypal.com/cgi-bin/webscr', 'Choose the URL for PayPal live processing', '6', '73', '', now())");
 // sandbox:  www.sandbox.paypal.com/cgi-bin/webscr
     $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added, use_function) values ('PDT Token (Payment Data Transfer)', 'MODULE_PAYMENT_PAYPAL_PDTTOKEN', '', 'Enter your PDT Token value here in order to activate transactions immediately after processing (if they pass validation).', '6', '25', now(), 'zen_cfg_password_display')");
-
-    // Paypal testing options go here
-    $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) values ('Debug Mode', 'MODULE_PAYMENT_PAYPAL_IPN_DEBUG', 'Off', 'Enable debug logging? <br />NOTE: This can REALLY clutter your email inbox!<br />Logging goes to the /includes/modules/payment/paypal/logs folder<br />Email goes to the store-owner address.<br /><strong>Leave OFF for normal operation.</strong>', '6', '71', 'zen_cfg_select_option(array(\'Off\',\'Log File\',\'Log and Email\'), ', now())");
-    $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) values ('Status Live/Testing', 'MODULE_PAYMENT_PAYPAL_TESTING', 'Live', 'Set PayPal module to Live or Test', '6', '1', 'zen_cfg_select_option(array(\'Live\', \'Test\'), ', now())");
+    // Paypal testing options here
+    $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) values ('Debug Mode', 'MODULE_PAYMENT_PAYPAL_IPN_DEBUG', 'Off', 'Enable debug logging? <br />NOTE: This can REALLY clutter your email inbox!<br />Logging goes to the /includes/modules/payment/paypal/logs folder<br />Email goes to the store-owner address.<br />Email option NOT recommended.<br /><strong>Leave OFF for normal operation.</strong>', '6', '71', 'zen_cfg_select_option(array(\'Off\',\'Log File\',\'Log and Email\'), ', now())");
     $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) values ('Debug Email Address', 'MODULE_PAYMENT_PAYPAL_DEBUG_EMAIL_ADDRESS','".STORE_OWNER_EMAIL_ADDRESS."', 'The email address to use for PayPal debugging', '6', '72', now())");
 
     $this->notify('NOTIFY_PAYMENT_PAYPAL_INSTALLED');
@@ -510,31 +532,26 @@ class paypal extends base {
                        'MODULE_PAYMENT_PAYPAL_ORDER_STATUS_ID',
                        'MODULE_PAYMENT_PAYPAL_REFUND_ORDER_STATUS_ID',
                        'MODULE_PAYMENT_PAYPAL_SORT_ORDER',
-                       //         'MODULE_PAYMENT_PAYPAL_DETAILED_CART',
-                       //         'MODULE_PAYMENT_PAYPAL_ADDRESS_OVERRIDE' ,
-                       //         'MODULE_PAYMENT_PAYPAL_ADDRESS_REQUIRED' ,
+                       'MODULE_PAYMENT_PAYPAL_DETAILED_CART',
+                       'MODULE_PAYMENT_PAYPAL_ADDRESS_OVERRIDE' ,
+                       'MODULE_PAYMENT_PAYPAL_ADDRESS_REQUIRED' ,
                        'MODULE_PAYMENT_PAYPAL_PAGE_STYLE' ,
                        'MODULE_PAYMENT_PAYPAL_HANDLER',
+                       'MODULE_PAYMENT_PAYPAL_IPN_DEBUG',
                         );
 
     // Paypal testing/debug options go here:
-    $keys_list[]='MODULE_PAYMENT_PAYPAL_IPN_DEBUG';
     if (IS_ADMIN_FLAG === true) {
       if (isset($_GET['debug']) && $_GET['debug']=='on') {
         $keys_list[]='MODULE_PAYMENT_PAYPAL_DEBUG_EMAIL_ADDRESS';  /* this defaults to store-owner-email-address */
-        $keys_list[]='MODULE_PAYMENT_PAYPAL_TESTING';  /* this is for ipn_test tools, for developers only */
-      }
-      // to enable detailed cart contents --- BETA MODE
-      if (isset($_GET['beta']) && $_GET['beta']=='details') {
-        $keys_list[]='MODULE_PAYMENT_PAYPAL_DETAILED_CART';
       }
     }
     return $keys_list;
   }
 
-  function _getPDTresults($orderAmount, $my_currency) {
+  function _getPDTresults($orderAmount, $my_currency, $pdtTX) {
     global $db;
-    $ipnData  = ipn_postback('PDT');
+    $ipnData  = ipn_postback('PDT', $pdtTX);
     $respdata = $ipnData['info'];
 
     // parse the data
@@ -546,7 +563,12 @@ class paypal extends base {
       $this->pdtData[urldecode($key)] = urldecode($val);
     }
 
-    ipn_debug_email('PDT Returned Data ' . print_r($this->pdtData, true));
+    if ($this->pdtData['txn_id'] == '' || $this->pdtData['payment_status'] == '') {
+      ipn_debug_email('PDT Returned INVALID Data. Must wait for IPN to process instead. ' . "\n" . print_r($this->pdtData, true));
+      return FALSE;
+    } else {
+      ipn_debug_email('PDT Returned Data ' . print_r($this->pdtData, true));
+    }
 
     $_POST['mc_gross'] = $this->pdtData['mc_gross'];
     $_POST['mc_currency'] = $this->pdtData['mc_currency'];
@@ -554,18 +576,17 @@ class paypal extends base {
     $_POST['receiver_email'] = $this->pdtData['receiver_email'];
 
     $PDTstatus = (ipn_validate_transaction($respdata, $this->pdtData, 'PDT') && valid_payment($orderAmount, $my_currency, 'PDT') && $this->pdtData['payment_status'] == 'Completed');
-    if ($this->pdtData['payment_status'] != 'Completed') {
+    if ($this->pdtData['payment_status'] != '' && $this->pdtData['payment_status'] != 'Completed') {
       ipn_debug_email('PDT WARNING :: Order not marked as "Completed".  Check for Pending reasons or wait for IPN to complete.' . "\n" . '[payment_status] => ' . $this->pdtData['payment_status'] . "\n" . '[pending_reason] => ' . $this->pdtData['pending_reason']);
     }
 
-    $useTable = (MODULE_PAYMENT_PAYPAL_TESTING == 'Test') ? TABLE_PAYPAL_TESTING : TABLE_PAYPAL;
     $sql = "SELECT order_id, paypal_ipn_id, payment_status, txn_type, pending_reason
-                FROM " . $useTable . "
+                FROM " . TABLE_PAYPAL . "
                 WHERE txn_id = :transactionID OR parent_txn_id = :transactionID
                 ORDER BY order_id DESC  ";
     $sql = $db->bindVars($sql, ':transactionID', $this->pdtData['txn_id'], 'string');
     $ipn_id = $db->Execute($sql);
-    if($ipn_id->RecordCount() != 0) {
+    if ($ipn_id->RecordCount() != 0) {
       ipn_debug_email('PDT WARNING :: Transaction already exists. Perhaps IPN already added it.  PDT processing ended.');
       $pdtTXN_is_unique = false;
     } else {
@@ -601,7 +622,7 @@ class paypal extends base {
     }
 
     if ($fieldOkay1 !== true) {
-      // temporary fix to table structure for v1.3.7.x -- will remove in later release
+      // temporary fix to table structure for v1.3.7.x -- may remove in later release
       $db->Execute("ALTER TABLE " . TABLE_PAYPAL . " CHANGE payment_type payment_type varchar(40) NOT NULL default ''");
       $db->Execute("ALTER TABLE " . TABLE_PAYPAL . " CHANGE txn_type txn_type varchar(40) NOT NULL default ''");
       $db->Execute("ALTER TABLE " . TABLE_PAYPAL . " CHANGE payment_status payment_status varchar(32) NOT NULL default ''");
@@ -629,4 +650,3 @@ class paypal extends base {
   }
 
 }
-?>

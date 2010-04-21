@@ -1,7 +1,9 @@
 <?php
 /**
+ * FirstData/Linkpoint/Yourpay API Payment Module
+ *
  * @package paymentMethod
- * @copyright Copyright 2003-2008 Zen Cart Development Team
+ * @copyright Copyright 2003-2010 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @copyright Portions Copyright 2003 Jason LeBaron
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
@@ -134,16 +136,16 @@ class linkpoint_api {
     $selection = array('id' => $this->code,
                        'module' => $this->title,
                        'fields' => array(array('title' => MODULE_PAYMENT_LINKPOINT_API_TEXT_CREDIT_CARD_OWNER,
-                                               'field' => zen_draw_input_field('linkpoint_api_cc_owner', $order->billing['firstname'] . ' ' . $order->billing['lastname'], 'id="'.$this->code.'-cc-owner"'. $onFocus),
+                                               'field' => zen_draw_input_field('linkpoint_api_cc_owner', $order->billing['firstname'] . ' ' . $order->billing['lastname'], 'id="'.$this->code.'-cc-owner"'. $onFocus . ' autocomplete="off"'),
                                                  'tag' => $this->code.'-cc-owner'),
                                          array('title' => MODULE_PAYMENT_LINKPOINT_API_TEXT_CREDIT_CARD_NUMBER,
-                                               'field' => zen_draw_input_field('linkpoint_api_cc_number', $ccnum, 'id="'.$this->code.'-cc-number"' . $onFocus),
+                                               'field' => zen_draw_input_field('linkpoint_api_cc_number', $ccnum, 'id="'.$this->code.'-cc-number"' . $onFocus . ' autocomplete="off"'),
                                                  'tag' => $this->code.'-cc-number'),
                                          array('title' => MODULE_PAYMENT_LINKPOINT_API_TEXT_CREDIT_CARD_EXPIRES,
-                                               'field' => zen_draw_pull_down_menu('linkpoint_api_cc_expires_month', $expires_month, '', 'id="'.$this->code.'-cc-expires-month"' . $onFocus) . '&nbsp;' . zen_draw_pull_down_menu('linkpoint_api_cc_expires_year', $expires_year, '', 'id="'.$this->code.'-cc-expires-year"' . $onFocus),
+                                               'field' => zen_draw_pull_down_menu('linkpoint_api_cc_expires_month', $expires_month, strftime('%m'), 'id="'.$this->code.'-cc-expires-month"' . $onFocus) . '&nbsp;' . zen_draw_pull_down_menu('linkpoint_api_cc_expires_year', $expires_year, '', 'id="'.$this->code.'-cc-expires-year"' . $onFocus),
                                                  'tag' => $this->code.'-cc-expires-month'),
                                          array('title' => MODULE_PAYMENT_LINKPOINT_API_TEXT_CVV,
-                                               'field' => zen_draw_input_field('linkpoint_api_cc_cvv', '', 'size="4" maxlength="4"'. ' id="'.$this->code.'-cc-cvv"' . $onFocus) . ' ' . '<a href="javascript:popupWindow(\'' . zen_href_link(FILENAME_POPUP_CVV_HELP) . '\')">' . MODULE_PAYMENT_LINKPOINT_API_TEXT_POPUP_CVV_LINK . '</a>',
+                                               'field' => zen_draw_input_field('linkpoint_api_cc_cvv', '', 'size="4" maxlength="4"'. ' id="'.$this->code.'-cc-cvv"' . $onFocus . ' autocomplete="off"') . ' ' . '<a href="javascript:popupWindow(\'' . zen_href_link(FILENAME_POPUP_CVV_HELP) . '\')">' . MODULE_PAYMENT_LINKPOINT_API_TEXT_POPUP_CVV_LINK . '</a>',
                                                  'tag' => $this->code.'-cc-cvv')));
 
     return $selection;
@@ -173,7 +175,7 @@ class linkpoint_api {
         break;
     }
 
-// save errors which occur during checkout_payment validation phase but haven't been sent to gateway yet
+    // save record of errors which occur during checkout_payment validation phase but haven't been sent to gateway yet
     if ( ($result == false) || ($result < 1) ) {
       $payment_error_return = 'payment_error=' . $this->code ;
       $error_info2 = '&error=' . urlencode($error) . '&linkpoint_api_cc_owner=' . urlencode($_POST['linkpoint_api_cc_owner']) . '&linkpoint_api_cc_expires_month=' . $_POST['linkpoint_api_cc_expires_month'] . '&linkpoint_api_cc_expires_year=' . $_POST['linkpoint_api_cc_expires_year'];
@@ -220,7 +222,7 @@ class linkpoint_api {
                                array('fieldName'=>'date_added', 'value'=>'now()', 'type'=>'noquotestring'));
         $db->perform(TABLE_LINKPOINT_API, $sql_data_array);
       }
-      zen_redirect(zen_href_link(FILENAME_CHECKOUT_PAYMENT, $payment_error_return, 'SSL', true, false));
+      zen_redirect(zen_href_link(FILENAME_CHECKOUT_PAYMENT, '', 'SSL', true, false));
     }
 
     // if no error, continue with validated data:
@@ -258,14 +260,13 @@ class linkpoint_api {
 
     return $process_button_string;
   }
+
   /**
    * Prepare and submit the authorization to the gateway
    */
   function before_process() {
-    global $order, $db, $messageStack, $lp_avs, $lp_trans_num, $order_totals;
+    global $order, $order_totals, $db, $messageStack, $lp_avs, $lp_trans_num;
     $myorder = array();
-
-    //if ($this->code_debug) $order->info['cc_number'] = $_POST['cc_number'];
 
     // Calculate the next expected order id
     $last_order_id = $db->Execute("select * from " . TABLE_ORDERS . " order by orders_id desc limit 1");
@@ -273,8 +274,6 @@ class linkpoint_api {
     $new_order_id = ($new_order_id + 1);
     // add randomized suffix to order id to produce uniqueness ... since it's unwise to submit the same order-number twice to the gateway
     $new_order_id = (string)$new_order_id . '-' . zen_create_random_value(6);
-    // Create a unique order id
-    //$oid = zen_create_random_value(16, 'digits'); // Create a UID for the order
 
     // Build Info to send to Gateway
     $myorder["result"] = "LIVE";
@@ -285,14 +284,94 @@ class linkpoint_api {
     }
 
     // "oid" - Order ID number must be unique. If not set, gateway will assign one.
+    //$oid = zen_create_random_value(16, 'digits'); // Create a UID for the order
     $myorder["oid"] = $new_order_id; //"";    // time(); ????
-    $myorder["ip"]  = zen_get_ip_address();
 
+    // prepare totals for submission
+    $surcharges = 0;
+    $creditsApplied = 0;
+    global $order_totals;
+    reset($order_totals);
+    for ($i=0, $n=sizeof($order_totals); $i<$n; $i++) {
+      if ($order_totals[$i]['code'] == 'ot_subtotal') $myorder["subtotal"]    = round($order_totals[$i]['value'],2);
+      if ($order_totals[$i]['code'] == 'ot_tax')      $myorder["tax"]         = round($order_totals[$i]['value'],2);
+      if ($order_totals[$i]['code'] == 'ot_shipping') $myorder["shipping"]    = round($order_totals[$i]['value'],2);
+      if ($order_totals[$i]['code'] == 'ot_total')    $myorder["chargetotal"] = round($order_totals[$i]['value'],2);
+      global $$order_totals[$i]['code'];
+      if (substr($order_totals[$i]['text'], 0, 1) == '-' || (isset($$order_totals[$i]['code']->credit_class) && $$order_totals[$i]['code']->credit_class == true)) {
+        $creditsApplied += round($order_totals[$i]['value'],2);
+      } elseif (!in_array($order_totals[$i]['code'], array('ot_total','ot_subtotal','ot_tax','ot_shipping'))) {
+        $surcharges += $order_totals[$i]['value'];
+/*
+        // deal with surcharges/fees
+        $num_line_items++;
+        $myorder["items"][$num_line_items]['id']          = 'Surcharge';
+        $myorder["items"][$num_line_items]['description'] = $order_totals[$i]['title'];
+        $myorder["items"][$num_line_items]['quantity']    = 1;
+        $myorder["items"][$num_line_items]['price']       = number_format($order_totals[$i]['value'], 2, '.', '');
+        $myorder["subtotal"] += $surcharges;
+*/
+      }
+    }
+    foreach(array('subtotal', 'tax', 'chargetotal', 'shipping') as $i) {
+      if (isset($myorder[$i])) $myorder[$i] = number_format($myorder[$i], 2, '.', '');
+    }
+
+    if ($surcharges == 0 && $creditsApplied == 0 && $order->info['total'] > $order->info['subtotal'] && sizeof($order->products) <= 20) {
+    // itemized contents
+      $partial_quantities_flag = FALSE;
+      $num_line_items = 0;
+      reset($order->products);
+      for ($i=0, $n=sizeof($order->products); $i<$n && $partial_quantities_flag === FALSE; $i++) {
+      $num_line_items++;
+
+      // check for fractional quantities, which cannot be submitted as line-item details
+      $q = $order->products[$i]['qty'];
+      $q1 = strval($q);
+      $q2 = (int)$q;
+      $q3 = strval($q2);
+        if ($q1 != $q3) {
+          $partial_quantities_flag = true;
+          continue;
+        }
+
+      $myorder["items"][$num_line_items]['id']          = $order->products[$i]['id'];
+      $myorder["items"][$num_line_items]['description'] = substr(htmlentities($order->products[$i]['name'], ENT_QUOTES, 'UTF-8'), 0, 128);
+      $myorder["items"][$num_line_items]['quantity']    = $order->products[$i]['qty'];
+      $myorder["items"][$num_line_items]['price']       = number_format($order->products[$i]['final_price'], 2, '.', '');
+
+      if (isset($order->products[$i]['attributes'])) {
+        $options_text_length = 0;
+        for ($j=0, $m=sizeof($order->products[$i]['attributes']); $j<$m; $j++) {
+          $options_text_length += strlen($order->products[$i]['attributes'][$j]['option'] . $order->products[$i]['attributes'][$j]['value']);
+        }
+        if ($options_text_length < 128) {
+          for ($j=0, $m=sizeof($order->products[$i]['attributes']); $j<$m; $j++) {
+            $myorder["items"][$num_line_items]['options' . $j]['name'] = substr(htmlentities($order->products[$i]['attributes'][$j]['option'], ENT_QUOTES, 'UTF-8'), 0, 128);
+            $myorder["items"][$num_line_items]['options' . $j]['value'] = substr(htmlentities($order->products[$i]['attributes'][$j]['value'], ENT_QUOTES, 'UTF-8'), 0, 128);
+          }
+        }
+      }
+      // track one-time charges
+      if ($order->products[$i]['onetime_charges'] != 0 ) {
+        $num_line_items++;
+        $myorder["items"][$num_line_items]['id']          = 'OTC';
+        $myorder["items"][$num_line_items]['description'] = 'One Time Charges';
+        $myorder["items"][$num_line_items]['quantity']    = 1;
+        $myorder["items"][$num_line_items]['price']       = number_format($order->products[$i]['onetime_charges'], 2, '.', '');
+      }
+    }
+
+     // if partial quantities apply, discounts are used, or other problems with line-item details exist, do not send line-item details, otherwise validation error occurs
+      if ($partial_quantities_flag || $i > 20) {
+        unset($myorder["items"]);
+      }
+    } else {
+      unset($myorder['subtotal'], $myorder['tax'], $myorder['shipping']);
+    }
+
+    $myorder["ip"]  = zen_get_ip_address();
     $myorder["ponumber"]    = "";
-    $myorder["subtotal"]    = $order->info['subtotal'];
-    $myorder["tax"]         = $order->info['tax'];
-    $myorder["shipping"]    = ($order->info['shipping_cost'] == 'f') ? 0 : $order->info['shipping_cost'];
-    $myorder["chargetotal"] = $order->info['total'];
 
     // CARD INFO
     $myorder["cardnumber"]   = $_POST['cc_number'];
@@ -329,76 +408,6 @@ class linkpoint_api {
     // MISC
     $myorder["comments"] = "Website Order";
     // $myorder["referred"] = "";
-
-    // itemized contents
-    $skip_line_items_flag = false;
-    $num_line_items = 0;
-    for ($i=0, $n=sizeof($order->products); $i<$n; $i++) {   
-      $num_line_items++;
-
-      // check for fractional quantities, which cannot be submitted as line-item details
-      $q = $order->products[$i]['qty'];
-      $q1 = strval($q);
-      $q2 = (int)$q;
-      $q3 = strval($q2);
-      if ($q1 != $q3) $skip_line_items_flag = true;
- 
-      $myorder["items"][$num_line_items]['id']          = $order->products[$i]['id'];
-      $myorder["items"][$num_line_items]['description'] = substr(htmlentities($order->products[$i]['name'], ENT_QUOTES, 'UTF-8'), 0, 128);
-      $myorder["items"][$num_line_items]['quantity']    = $order->products[$i]['qty'];
-      $myorder["items"][$num_line_items]['price']       = number_format($order->products[$i]['final_price'], 2, '.', '');
-
-      if (isset($order->products[$i]['attributes'])) {
-        $options_text_length = 0;
-        for ($j=0, $m=sizeof($order->products[$i]['attributes']); $j<$m; $j++) {
-          $options_text_length += strlen($order->products[$i]['attributes'][$j]['option'] . $order->products[$i]['attributes'][$j]['value']);
-        }
-        if ($options_text_length < 128) {
-          for ($j=0, $m=sizeof($order->products[$i]['attributes']); $j<$m; $j++) {
-            $myorder["items"][$num_line_items]['options' . $j]['name'] = $order->products[$i]['attributes'][$j]['option'];
-            $myorder["items"][$num_line_items]['options' . $j]['value'] = $order->products[$i]['attributes'][$j]['value'];
-          }
-        }
-      }
-      // track one-time charges
-      if ($order->products[$i]['onetime_charges'] != 0 ) {
-        $num_line_items++;
-        $myorder["items"][$num_line_items]['id']          = 'OTC';
-        $myorder["items"][$num_line_items]['description'] = 'One Time Charges';
-        $myorder["items"][$num_line_items]['quantity']    = 1;
-        $myorder["items"][$num_line_items]['price']       = number_format($order->products[$i]['onetime_charges'], 2, '.', '');
-      }
-    }
-
-    // check subtotals
-    global $order_totals;
-    reset($order_totals);
-    for ($i=0, $n=sizeof($order_totals); $i<$n; $i++) {
-      if (in_array($order_totals[$i]['code'], array('ot_subtotal', 'ot_tax', 'ot_shipping', 'ot_total'))) continue;
-      // deal with discounts
-      if (substr($order_totals[$i]['text'], 0, 1) == '-') {
-        $credits_applied_so_skip_subtotal = true;
-      } else {
-//      if ($order_totals[$i]['code'] == 'ot_loworderfee') {
-      // deal with surcharges/fees
-        $num_line_items++;
-        $myorder["items"][$num_line_items]['id']          = 'Surcharge';
-        $myorder["items"][$num_line_items]['description'] = $order_totals[$i]['title'];
-        $myorder["items"][$num_line_items]['quantity']    = 1;
-        $myorder["items"][$num_line_items]['price']       = number_format($order_totals[$i]['value'], 2, '.', '');
-        $myorder["subtotal"] = ($myorder["subtotal"] + $order_totals[$i]['value']);
-      }
-    }
-    // if discounts apply, do not send subtotal, otherwise validation error occurs
-    if ($credits_applied_so_skip_subtotal) {
-      unset($myorder["subtotal"]);
-    }
-
-    // if partial quantities apply, or other problems with line-item details exist, do not send line-item details, otherwise validation error occurs
-    if ($skip_line_items_flag) {
-      unset($myorder["items"]);
-    }
-
     $myorder["ordertype"]  = (MODULE_PAYMENT_LINKPOINT_API_AUTHORIZATION_MODE == 'Authorize Only' ? 'PREAUTH': 'SALE');
     $this->payment_status = $myorder["ordertype"];
 
@@ -406,9 +415,25 @@ class linkpoint_api {
     $result = $this->_sendRequest($myorder);
 
     // alert to customer if communication failure
-    if (trim($result) == '<r_approved>FAILURE</r_approved><r_error>Could not connect.</r_error>' || !is_array($result)) {
+    if (!is_array($result)) {
       $messageStack->add_session('checkout_payment', MODULE_PAYMENT_LINKPOINT_API_TEXT_FAILURE_MESSAGE, 'error');
       zen_redirect(zen_href_link(FILENAME_CHECKOUT_PAYMENT, '', 'SSL', true, false));
+    }
+
+    // resubmit without subtotals if subtotal error occurs
+    if ($result["r_approved"] != "APPROVED" && !($result["r_approved"] == "SUBMITTED" && $result["r_message"] == 'APPROVED')) {
+      if (substr($result['r_error'],0,10) == 'SGS-002301') {
+        foreach(array('items', 'subtotal', 'tax', 'shipping') as $i) {
+          if (isset($myorder[$i])) unset($myorder[$i]);
+        }
+        $myorder["oid"] .= '-b';
+        $myorder["chargetotal"] = ($myorder["chargetotal"] - 0.01);
+        $result = $this->_sendRequest($myorder);
+        if (!is_array($result)) {
+          $messageStack->add_session('checkout_payment', MODULE_PAYMENT_LINKPOINT_API_TEXT_FAILURE_MESSAGE, 'error');
+          zen_redirect(zen_href_link(FILENAME_CHECKOUT_PAYMENT, '', 'SSL', true, false));
+        }
+      }
     }
 
 // PARSE Results
@@ -420,7 +445,7 @@ class linkpoint_api {
 
     $chargetotal = $myorder["chargetotal"];
 
-// prepare transaction info
+// prepare transaction logging info
     $cust_info = '';
     $cc_number = substr($myorder["cardnumber"], 0, 4) . str_repeat('X', abs(strlen($myorder["cardnumber"]) - 8)) . substr($myorder["cardnumber"], -4);
     foreach($myorder as $key=>$value) {
@@ -437,17 +462,15 @@ class linkpoint_api {
         $cust_info .= ' ' .$key . '=' . $cc_number . ';';
       }
     }
-
     // store last 4 digits of CC number
-    //$order->info['cc_number'] = str_repeat('X', (strlen($myorder["cardnumber"]) - 4)) . substr($myorder["cardnumber"], -4);
-
+//    $order->info['cc_number'] = str_repeat('X', (strlen($myorder["cardnumber"]) - 4)) . substr($myorder["cardnumber"], -4);
     // store first and last 4 digits of CC number ... which is the Visa-standards-compliant approach, same as observed by Linkpoint's services
     $order->info['cc_number'] = $cc_number;
 
-    $order->info['cc_expires'] = $_POST['cc_expires'];
     $order->info['cc_type'] = $_POST['cc_type'];
     $order->info['cc_owner'] = $_POST['cc_owner'];
     $order->info['cc_cvv'] = '***'; // $_POST['cc_cvv'];
+    $order->info['cc_expires'] = '';// $_POST['cc_expires'];
 
 
     $lp_trans_num = $result['r_ordernum'];
@@ -483,11 +506,11 @@ class linkpoint_api {
     }
 
   //  Begin check of specific error conditions
-    if ($result["r_approved"] != "APPROVED") {
+    if ($result["r_approved"] != "APPROVED" && !($result["r_approved"] == "SUBMITTED" && $result["r_message"] == 'APPROVED')) {
       if (substr($result['r_error'],0,10) == 'SGS-020005') $messageStack->add_session('checkout_payment', $result['r_error'], 'error');  // Error (Merchant config file is missing, empty or cannot be read)
       if (substr($result['r_error'],0,10) == 'SGS-005000') $messageStack->add_session('checkout_payment', MODULE_PAYMENT_LINKPOINT_API_TEXT_GENERAL_ERROR . '<br />' . $result['r_error'], 'error'); // The server encountered a database error
       if (substr($result['r_error'],0,10) == 'SGS-000001' || strstr($result['r_error'], 'D:Declined') || strstr($result['r_error'], 'R:Referral')) $messageStack->add_session('checkout_payment', MODULE_PAYMENT_LINKPOINT_API_TEXT_DECLINED_MESSAGE . '<br />' . $result['r_error'], 'error');
-      if (substr($result['r_error'],0,10) == 'SGS-005005' || strstr($result['r_error'], 'Duplicate transaction')) $messageStack->add_session('checkout_payment', 'This appears to be a duplicate transaction, and we do not want to double-charge your card! Perhaps you resubmitted your order by mistake? If not, please try again in 5 minutes, or contact the storeowner for additional assistance. Sorry for the inconvenience.' . '<br />' . $result['r_error'], 'error');
+      if (substr($result['r_error'],0,10) == 'SGS-005005' || strstr($result['r_error'], 'Duplicate transaction')) $messageStack->add_session('checkout_payment', MODULE_PAYMENT_LINKPOINT_API_TEXT_DUPLICATE_MESSAGE . '<br />' . $result['r_error'], 'error');
       if (substr($result['r_error'],0,10) == 'SGS-002301') $messageStack->add_session('checkout_payment', 'Subtotal miscalculation. Please notify the storeowner.' . '<br />' . $result['r_error'], 'error');
     }
   //  End specific error conditions
@@ -553,7 +576,13 @@ class linkpoint_api {
       case "TESTING: Decline": $comments .= ' ' . ALERT_LINKPOINT_API_TEST_FORCED_DECLINED; break;
     }
 
-    $db->Execute("insert into " . TABLE_ORDERS_STATUS_HISTORY . " (comments, orders_id, orders_status_id, date_added) values ('Credit Card payment.  " . $comments . " " . $this->cc_card_type . " AUTH: " . $this->auth_code . ". TransID: " . $this->transaction_id . "' , '". (int)$insert_id . "','" . $this->order_status . "', now() )");
+    if ($this->auth_code && $this->transaction_id) $comments .= " " . $this->cc_card_type . " AUTH: " . $this->auth_code . ". TransID: " . $this->transaction_id;
+
+    $sql = "insert into " . TABLE_ORDERS_STATUS_HISTORY . " (comments, orders_id, orders_status_id, customer_notified, date_added) values (:orderComments, :orderID, :orderStatus, -1, now() )";
+    $sql = $db->bindVars($sql, ':orderComments', 'Credit Card payment. ' . $comments, 'string');
+    $sql = $db->bindVars($sql, ':orderID', $insert_id, 'integer');
+    $sql = $db->bindVars($sql, ':orderStatus', $this->order_status, 'integer');
+    $db->Execute($sql);
     return false;
   }
 
@@ -597,10 +626,15 @@ class linkpoint_api {
   }
 
   function install() {
-    global $db;
-    $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) values ('Enable Linkpoint Module', 'MODULE_PAYMENT_LINKPOINT_API_STATUS', 'True', 'Do you want to accept Linkpoint credit card payments?', '6', 121, 'zen_cfg_select_option(array(\'True\', \'False\'), ', now())");
-    $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) values ('Linkpoint/YourPay Merchant ID', 'MODULE_PAYMENT_LINKPOINT_API_LOGIN', 'EnterYourStoreNumber', 'Please enter your Linkpoint/YourPay Merchant ID.<br />This is the same as the number in the PEM digital certificate filename for your account.', '6', 121, now())");
-    $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) values ('LinkPoint Transaction Mode Response', 'MODULE_PAYMENT_LINKPOINT_API_TRANSACTION_MODE_RESPONSE', 'LIVE: Production', '<strong>Production:</strong> Use this for live stores.<br />or, select these options if you wish to test the module:<br /><strong>Successful:</strong> Use to TEST by forcing a Successful transaction<br /><strong>Decline:</strong> Use to TEST forcing a Failed transaction', '6', 121, 'zen_cfg_select_option(array(\'LIVE: Production\', \'TESTING: Successful\', \'TESTING: Decline\'), ', now())");
+    global $db, $messageStack;
+    if (defined('MODULE_PAYMENT_LINKPOINT_API_STATUS')) {
+      $messageStack->add_session('FirstData/Linkpoint module already installed.', 'error');
+      zen_redirect(zen_href_link(FILENAME_MODULES, 'set=payment&module=linkpoint_api', 'NONSSL'));
+      return 'failed';
+    }
+    $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) values ('Enable FirstData/Linkpoint Module', 'MODULE_PAYMENT_LINKPOINT_API_STATUS', 'True', 'Do you want to accept FirstData/Linkpoint credit card payments?', '6', 121, 'zen_cfg_select_option(array(\'True\', \'False\'), ', now())");
+    $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) values ('FirstData/Linkpoint/YourPay Merchant ID', 'MODULE_PAYMENT_LINKPOINT_API_LOGIN', 'EnterYourStoreNumber', 'Please enter your FirstData/Linkpoint/YourPay Merchant ID.<br />This is the same as the number in the PEM digital certificate filename for your account.', '6', 121, now())");
+    $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) values ('FirstData/LinkPoint Transaction Mode Response', 'MODULE_PAYMENT_LINKPOINT_API_TRANSACTION_MODE_RESPONSE', 'LIVE: Production', '<strong>Production:</strong> Use this for live stores.<br />or, select these options if you wish to test the module:<br /><strong>Successful:</strong> Use to TEST by forcing a Successful transaction<br /><strong>Decline:</strong> Use to TEST forcing a Failed transaction', '6', 121, 'zen_cfg_select_option(array(\'LIVE: Production\', \'TESTING: Successful\', \'TESTING: Decline\'), ', now())");
     $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) values ('Authorization Type', 'MODULE_PAYMENT_LINKPOINT_API_AUTHORIZATION_MODE', 'Authorize Only', 'Do you want submitted credit card transactions to be authorized only, or immediately charged/captured?<br />In most cases you will want to do an <strong>Immediate Charge</strong> to capture payment immediately. In some situations, you may prefer to simply <strong>Authorize</strong> transactions, and then manually use your Merchant Terminal to formally capture the payments (esp if payment amounts may fluctuate between placing the order and shipping it)', '6', 121, 'zen_cfg_select_option(array(\'Authorize Only\', \'Immediate Charge/Capture\'), ', now())");
     $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, use_function, date_added) values ('Set Order Status', 'MODULE_PAYMENT_LINKPOINT_API_ORDER_STATUS_ID', 2, 'Set the status of orders made with this payment module to this value<br />(this affects all Captured / Charged / Approved orders)<br />Recommended: <strong>Processing</strong>', '6', 121, 'zen_cfg_pull_down_order_statuses(', 'zen_get_order_status_name', now())");
     $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, use_function, date_added) values ('PREAUTH Order Status', 'MODULE_PAYMENT_LINKPOINT_API_PREAUTH_ORDER_STATUS_ID', 1, 'When this module is set to PREAUTH mode (Authorization), which order-status do you want the purchase to be set to?<br />Recommended: <strong>Pending</strong>', '6', 121, 'zen_cfg_pull_down_order_statuses(', 'zen_get_order_status_name', now())");
@@ -608,7 +642,7 @@ class linkpoint_api {
     $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) values ('Sort order of display.', 'MODULE_PAYMENT_LINKPOINT_API_SORT_ORDER', '0', 'Any value greater than zero will cause this payment method to appear in the specified sort order on the checkout-payment page.', '6', 121, now())");
     $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, use_function, set_function, date_added) values ('Payment Zone (restrict to)', 'MODULE_PAYMENT_LINKPOINT_API_ZONE', '0', 'If you want only customers from a particular zone to be able to use this payment module, select that zone here.', '6', 121, 'zen_get_zone_class_title', 'zen_cfg_pull_down_zone_classes(', now())");
     $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) values ('Fraud Alerts', 'MODULE_PAYMENT_LINKPOINT_API_FRAUD_ALERT', 'Yes', 'Do you want to be notified by email of suspected fraudulent Credit Card activity?<br />(sends to Store Owner Email Address)', '6', 121, 'zen_cfg_select_option(array(\'Yes\', \'No\'), ', now())");
-    $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) values ('Enable Database Storage', 'MODULE_PAYMENT_LINKPOINT_API_STORE_DATA', 'True', 'If you enable this option, extended details of each transaction will be stored, enabling you to more effectively conduct audits of fraudulent activity or even track/match order information between Zen Cart and your LinkPoint records. You can view this data in Admin->Customers->Linkpoint CC Review.', '6', 121, 'zen_cfg_select_option(array(\'True\', \'False\'), ', now())");
+    $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) values ('Enable Database Storage', 'MODULE_PAYMENT_LINKPOINT_API_STORE_DATA', 'True', 'If you enable this option, extended details of each transaction will be stored, enabling you to more effectively conduct audits of fraudulent activity or even track/match order information between Zen Cart and your FirstData/LinkPoint records. You can view this data in Admin->Customers->Linkpoint CC Review.', '6', 121, 'zen_cfg_select_option(array(\'True\', \'False\'), ', now())");
     $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) values ('Debug Mode', 'MODULE_PAYMENT_LINKPOINT_API_DEBUG', 'Off', 'Would you like to enable debug mode?  Choosing Alert mode will email logs of failed transactions to the store owner.', '6', '0', 'zen_cfg_select_option(array(\'Off\', \'Failure Alerts Only\', \'Log File\', \'Log and Email\'), ', now())");
     $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) values ('Transaction Mode', 'MODULE_PAYMENT_LINKPOINT_API_TRANSACTION_MODE', 'Production', 'Transaction mode used for processing orders', '6', 121, 'zen_cfg_select_option(array(\'Production\',\'DevelopersTest\'), ', now())");
 
@@ -740,14 +774,15 @@ class linkpoint_api {
     $result = $mylphp->curl_process($myorder);
 
     // do debug output
-    $errorMessage = date('M-d-Y h:i:s') . "\n=================================\n\n" . ($mylphp->commError !='' ? $mylphp->commError . "\n\n" : '') . 'Response Code: ' . $result["r_approved"] . "\n\n" . 'Sending to Gateway: ' . "\n" . $mylphp->sendData . "\n\n" . 'Result: ' . substr(print_r($result, true), 5) . "\n\n";
+    $errorMessage = date('M-d-Y h:i:s') . "\n=================================\n\n" . ($mylphp->commError !='' ? $mylphp->commError . "\n\n" : '') . 'Response Code: ' . $result["r_approved"] . ' ' . $result["r_error"] . "\n\n=================================\n\n" . 'Sending to Gateway: ' . "\n" . $mylphp->sendData . "\n\n" . 'Result: ' . substr(print_r($result, true), 5) . "\n\n";
     if ($mylphp->commError != '') $errorMessage .= $mylphp->commError . "\n" . 'CURL info: ' . print_r($mylphp->commInfo, true) . "\n";
     if (CURL_PROXY_REQUIRED == 'True') $errorMessage .= 'Using CURL Proxy: [' . CURL_PROXY_SERVER_DETAILS . ']  with Proxy Tunnel: ' .($proxy_tunnel_flag ? 'On' : 'Off') . "\n";
-    $failure = (trim($result) == '<r_approved>FAILURE</r_approved><r_error>Could not connect.</r_error>' || !is_array($result) || $result["r_approved"] != "APPROVED") ? true : false;
+    $failure = (!is_array($result) || $result["r_approved"] != "APPROVED") ? true : false;
 
     // handle logging
     if (strstr(MODULE_PAYMENT_LINKPOINT_API_DEBUG, 'Log')) {
       $this->_log($errorMessage, $myorder["oid"] . ($failure ? '_FAILED' : ''));
+//      $this->_log($errorMessage . print_r($myorder, true) . print_r($mylphp->xmlString, true), $myorder["oid"] . ($failure ? '_FAILED' : ''));
     }
     if (strstr(MODULE_PAYMENT_LINKPOINT_API_DEBUG, 'Email') || ($failure && strstr(MODULE_PAYMENT_LINKPOINT_API_DEBUG, 'Alert'))) {
       zen_mail(STORE_NAME, STORE_OWNER_EMAIL_ADDRESS, 'Linkpoint Debug Data' . ($failure ? ' - FAILURE' : ''), $errorMessage, STORE_OWNER, STORE_OWNER_EMAIL_ADDRESS, array('EMAIL_MESSAGE_HTML'=>nl2br($errorMessage)), 'debug');
@@ -944,6 +979,4 @@ class linkpoint_api {
     }
     return false;
   }
-//error_log( ' ' . print_r($this,TRUE) . "\n", 3, DIR_FS_SQL_CACHE . "/debug.log");
 }
-?>

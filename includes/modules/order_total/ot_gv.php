@@ -3,10 +3,10 @@
  * ot_gv order-total module
  *
  * @package orderTotal
- * @copyright Copyright 2003-2007 Zen Cart Development Team
+ * @copyright Copyright 2003-2010 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: ot_gv.php 7203 2007-10-07 12:29:53Z drbyte $
+ * @version $Id: ot_gv.php 15800 2010-04-03 15:43:16Z drbyte $
  */
 /**
  * Enter description here...
@@ -110,7 +110,7 @@ class ot_gv {
 
     if ($_SESSION['cot_gv'] > 0) {
       // if cot_gv value contains any nonvalid characters, throw error
-      if (ereg('[^0-9/.]', trim($_SESSION['cot_gv']))) {
+      if (preg_match('/[^0-9\.]/', trim($_SESSION['cot_gv']))) {
         $messageStack->add_session('checkout_payment', TEXT_INVALID_REDEEM_AMOUNT, error);
         zen_redirect(zen_href_link(FILENAME_CHECKOUT_PAYMENT, '', 'SSL'));
       }
@@ -120,6 +120,10 @@ class ot_gv {
         zen_redirect(zen_href_link(FILENAME_CHECKOUT_PAYMENT, '', 'SSL'));
       }
       $od_amount = $this->calculate_deductions($order_total);
+      $order->info['total'] = $order->info['total'] - $od_amount['total'];
+      if (DISPLAY_PRICE_WITH_TAX != 'true') {
+        $order->info['total'] -= $tax;
+      }
       return $od_amount['total'] + $od_amount['tax'];
     }
     return 0;
@@ -139,7 +143,7 @@ class ot_gv {
   function update_credit_account($i) {
     global $db, $order, $insert_id;
     // only act on newly-purchased gift certificates
-    if (ereg('^GIFT', addslashes($order->products[$i]['model']))) {
+    if (preg_match('/^GIFT/', addslashes($order->products[$i]['model']))) {
       // determine how much GV was purchased
       $gv_order_amount = ($order->products[$i]['final_price'] * $order->products[$i]['qty']);
       // if tax is to be calculated on purchased GVs, calculate it
@@ -217,6 +221,7 @@ class ot_gv {
     // if we have a GV redemption code submitted, process it
     if ($_POST['gv_redeem_code']) {
       // check for validity
+      $_POST['gv_redeem_code'] = preg_replace('/[^0-9a-zA-Z]/', '', $_POST['gv_redeem_code']);
       $gv_result = $db->Execute("select coupon_id, coupon_type, coupon_amount from " . TABLE_COUPONS . " where coupon_code = '" . zen_db_prepare_input($_POST['gv_redeem_code']) . "'");
       if ($gv_result->RecordCount() > 0) {
         $redeem_query = $db->Execute("select * from " . TABLE_COUPON_REDEEM_TRACK . " where coupon_id = '" . (int)$gv_result->fields['coupon_id'] . "'");
@@ -291,13 +296,15 @@ class ot_gv {
           $ratio_tax = $tax_deduct/$order->info['tax'];
         }
         $tax_deduct = 0;
-//        if ($this->include_tax) {
-//          reset($order->info['tax_groups']);
-//          foreach ($order->info['tax_groups'] as $key=>$value) {
-//            $od_amount['tax_groups'][$key] = $order->info['tax_groups'][$key] * $ratio_tax;
-//            $tax_deduct += $od_amount['tax_groups'][$key];
-//          }
-//       }
+/*
+        if ($this->include_tax) {
+          reset($order->info['tax_groups']);
+          foreach ($order->info['tax_groups'] as $key=>$value) {
+            $od_amount['tax_groups'][$key] = $order->info['tax_groups'][$key] * $ratio_tax;
+            $tax_deduct += $od_amount['tax_groups'][$key];
+          }
+        }
+*/
       $od_amount['tax'] = $tax_deduct;
       break;
       case 'Standard':
@@ -397,4 +404,3 @@ class ot_gv {
     $db->Execute("delete from " . TABLE_CONFIGURATION . " where configuration_key in ('" . implode("', '", $this->keys()) . "')");
   }
 }
-?>

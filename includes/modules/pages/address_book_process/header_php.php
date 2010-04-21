@@ -3,10 +3,10 @@
  * Header code file for the Address Book Process page
  *
  * @package page
- * @copyright Copyright 2003-2007 Zen Cart Development Team
+ * @copyright Copyright 2003-2010 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: header_php.php 6772 2007-08-21 12:33:29Z drbyte $
+ * @version $Id: header_php.php 15534 2010-02-20 05:23:11Z drbyte $
  */
 // This should be first line of the script:
 $zco_notifier->notify('NOTIFY_HEADER_START_ADDRESS_BOOK_PROCESS');
@@ -23,7 +23,7 @@ require(DIR_WS_MODULES . zen_get_module_directory('require_languages.php'));
  */
 if (isset($_GET['action']) && ($_GET['action'] == 'deleteconfirm') && isset($_GET['delete']) && is_numeric($_GET['delete'])) {
   $sql = "DELETE FROM " . TABLE_ADDRESS_BOOK . "
-          WHERE  address_book_id = :delete 
+          WHERE  address_book_id = :delete
           AND    customers_id = :customersID";
 
   $sql = $db->bindVars($sql, ':customersID', $_SESSION['customer_id'], 'integer');
@@ -55,8 +55,8 @@ if (isset($_POST['action']) && (($_POST['action'] == 'process') || ($_POST['acti
 
   if (ACCOUNT_GENDER == 'true') $gender = zen_db_prepare_input($_POST['gender']);
   if (ACCOUNT_COMPANY == 'true') $company = zen_db_prepare_input($_POST['company']);
-  $firstname = zen_db_prepare_input($_POST['firstname']);
-  $lastname = zen_db_prepare_input($_POST['lastname']);
+  $firstname = zen_db_prepare_input(zen_sanitize_string($_POST['firstname']));
+  $lastname = zen_db_prepare_input(zen_sanitize_string($_POST['lastname']));
   $street_address = zen_db_prepare_input($_POST['street_address']);
   if (ACCOUNT_SUBURB == 'true') $suburb = zen_db_prepare_input($_POST['suburb']);
   $postcode = zen_db_prepare_input($_POST['postcode']);
@@ -64,10 +64,10 @@ if (isset($_POST['action']) && (($_POST['action'] == 'process') || ($_POST['acti
 
 
   /**
-	 * error checking when updating or adding an entry
-	 */
+   * error checking when updating or adding an entry
+   */
   if (ACCOUNT_STATE == 'true') {
-    $state = zen_db_prepare_input($_POST['state']);
+    $state = (isset($_POST['state'])) ? zen_db_prepare_input($_POST['state']) : FALSE;
     if (isset($_POST['zone_id'])) {
       $zone_id = zen_db_prepare_input($_POST['zone_id']);
     } else {
@@ -115,7 +115,7 @@ if (isset($_POST['action']) && (($_POST['action'] == 'process') || ($_POST['acti
       $zone_query = "SELECT distinct zone_id, zone_name, zone_code
                      FROM " . TABLE_ZONES . "
                      WHERE zone_country_id = :zoneCountryID
-                     AND " . 
+                     AND " .
                      ((trim($state) != '' && $zone_id == 0) ? "(upper(zone_name) like ':zoneState%' OR upper(zone_code) like '%:zoneState%') OR " : "") .
                     "zone_id = :zoneID
                      ORDER BY zone_code ASC, zone_name";
@@ -219,19 +219,19 @@ if (isset($_POST['action']) && (($_POST['action'] == 'process') || ($_POST['acti
       $zco_notifier->notify('NOTIFY_MODULE_ADDRESS_BOOK_ADDED_ADDRESS_BOOK_RECORD', array_merge(array('address_id' => $new_address_book_id), $sql_data_array));
 
 
-      // reregister session variables
+      // register session variables
       if (isset($_POST['primary']) && ($_POST['primary'] == 'on')) {
         $_SESSION['customer_first_name'] = $firstname;
         $_SESSION['customer_country_id'] = $country;
         $_SESSION['customer_zone_id'] = (($zone_id > 0) ? (int)$zone_id : '0');
-        //if (isset($_POST['primary']) && ($_POST['primary'] == 'on')) 
+        //if (isset($_POST['primary']) && ($_POST['primary'] == 'on'))
         $_SESSION['customer_default_address_id'] = $new_address_book_id;
 
         $sql_data_array = array(array('fieldName'=>'customers_firstname', 'value'=>$firstname, 'type'=>'string'),
                                 array('fieldName'=>'customers_lastname', 'value'=>$lastname, 'type'=>'string'));
 
         if (ACCOUNT_GENDER == 'true') $sql_data_array[] = array('fieldName'=>'customers_gender', 'value'=>$gender, 'type'=>'string');
-        //if (isset($_POST['primary']) && ($_POST['primary'] == 'on')) 
+        //if (isset($_POST['primary']) && ($_POST['primary'] == 'on'))
         $sql_data_array[] = array('fieldName'=>'customers_default_address_id', 'value'=>$new_address_book_id, 'type'=>'integer');
 
         $where_clause = "customers_id = :customersID";
@@ -301,10 +301,14 @@ if (isset($_GET['edit']) && is_numeric($_GET['edit'])) {
 /*
  * Set flags for template use:
  */
-  $selected_country = (isset($_POST['zone_country_id']) && $_POST['zone_country_id'] != '') ? $country : SHOW_CREATE_ACCOUNT_DEFAULT_COUNTRY;
-  if ($process == true) $entry->fields['entry_country_id'] = $selected_country; 
+  if ($process == false) {
+    $selected_country = $entry->fields['entry_country_id'];
+  } else {
+    $selected_country = (isset($_POST['zone_country_id']) && $_POST['zone_country_id'] != '') ? $country : SHOW_CREATE_ACCOUNT_DEFAULT_COUNTRY;
+    $entry->fields['entry_country_id'] = $selected_country;
+  }
   $flag_show_pulldown_states = ((($process == true || $entry_state_has_zones == true) && $zone_name == '') || ACCOUNT_STATE_DRAW_INITIAL_DROPDOWN == 'true' || $error_state_input) ? true : false;
-  $state = ($flag_show_pulldown_states) ? $state : $zone_name;
+  $state = ($flag_show_pulldown_states && $state != FALSE) ? $state : $zone_name;
   $state_field_label = ($flag_show_pulldown_states) ? '' : ENTRY_STATE;
 
 
@@ -329,4 +333,3 @@ if (isset($_GET['edit']) && is_numeric($_GET['edit'])) {
 
 // This should be last line of the script:
 $zco_notifier->notify('NOTIFY_HEADER_END_ADDRESS_BOOK_PROCESS');
-?>

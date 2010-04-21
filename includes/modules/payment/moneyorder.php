@@ -1,12 +1,13 @@
 <?php
 /**
  * @package money order payment module
- * @copyright Copyright 2003-2006 Zen Cart Development Team
+ *
+ * @package paymentMethod
+ * @copyright Copyright 2003-2010 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: moneyorder.php 4960 2006-11-20 01:46:46Z drbyte $
+ * @version $Id: moneyorder.php 15420 2010-02-04 21:27:05Z drbyte $
  */
-
   class moneyorder {
     var $code, $title, $description, $enabled;
 
@@ -26,7 +27,7 @@
       }
 
       if (is_object($order)) $this->update_status();
-    
+
       $this->email_footer = MODULE_PAYMENT_MONEYORDER_TEXT_EMAIL_FOOTER;
     }
 
@@ -97,7 +98,12 @@
     }
 
     function install() {
-      global $db;
+      global $db, $messageStack;
+      if (defined('MODULE_PAYMENT_MONEYORDER_STATUS')) {
+        $messageStack->add_session('MoneyOrder module already installed.', 'error');
+        zen_redirect(zen_href_link(FILENAME_MODULES, 'set=payment&module=moneyorder', 'NONSSL'));
+        return 'failed';
+      }
       $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) values ('Enable Check/Money Order Module', 'MODULE_PAYMENT_MONEYORDER_STATUS', 'True', 'Do you want to accept Check/Money Order payments?', '6', '1', 'zen_cfg_select_option(array(\'True\', \'False\'), ', now());");
       $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) values ('Make Payable to:', 'MODULE_PAYMENT_MONEYORDER_PAYTO', 'the Store Owner/Website Name', 'Who should payments be made payable to?', '6', '1', now());");
       $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) values ('Sort order of display.', 'MODULE_PAYMENT_MONEYORDER_SORT_ORDER', '0', 'Sort order of display. Lowest is displayed first.', '6', '0', now())");
@@ -114,4 +120,3 @@
       return array('MODULE_PAYMENT_MONEYORDER_STATUS', 'MODULE_PAYMENT_MONEYORDER_ZONE', 'MODULE_PAYMENT_MONEYORDER_ORDER_STATUS_ID', 'MODULE_PAYMENT_MONEYORDER_SORT_ORDER', 'MODULE_PAYMENT_MONEYORDER_PAYTO');
     }
   }
-?>

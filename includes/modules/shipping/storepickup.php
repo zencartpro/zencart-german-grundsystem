@@ -1,10 +1,10 @@
 <?php
 /**
  * @package shippingMethod
- * @copyright Copyright 2003-2006 Zen Cart Development Team
+ * @copyright Copyright 2003-2009 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: storepickup.php 4821 2006-10-23 10:54:15Z drbyte $
+ * @version $Id: storepickup.php 14498 2009-10-01 20:16:16Z ajeh $
  */
 /**
  * Store-Pickup / Will-Call shipping method
@@ -135,7 +135,7 @@ class storepickup extends base {
    */
   function remove() {
     global $db;
-    $db->Execute("delete from " . TABLE_CONFIGURATION . " where configuration_key in ('" . implode("', '", $this->keys()) . "')");
+    $db->Execute("delete from " . TABLE_CONFIGURATION . " where configuration_key like 'MODULE\_SHIPPING\_STOREPICKUP\_%'");
   }
   /**
    * Internal list of configuration keys used for configuration of the module

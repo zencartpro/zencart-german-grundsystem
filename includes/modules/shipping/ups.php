@@ -1,7 +1,7 @@
 <?php
 /**
  * @package shippingMethod
- * @copyright Copyright 2003-2007 Zen Cart Development Team
+ * @copyright Copyright 2003-2009 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
  * @version $Id$
@@ -53,7 +53,7 @@ class ups extends base {
    * @return ups
    */
   function ups() {
-    global $order, $db, $template;
+    global $order, $db, $template, $current_page_base;
 
     $this->code = 'ups';
     $this->title = MODULE_SHIPPING_UPS_TEXT_TITLE;
@@ -66,6 +66,14 @@ class ups extends base {
     // disable only when entire cart is free shipping
     if (zen_get_shipping_enabled($this->code)) {
       $this->enabled = ((MODULE_SHIPPING_UPS_STATUS == 'True') ? true : false);
+    }
+
+    if ($this->enabled) {
+      // check MODULE_SHIPPING_UPS_HANDLING_METHOD is in
+      $check_query = $db->Execute("select configuration_value from " . TABLE_CONFIGURATION . " where configuration_key = 'MODULE_SHIPPING_UPS_HANDLING_METHOD'");
+      if ($check_query->EOF) {
+        $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) values ('Handling Per Order or Per Box', 'MODULE_SHIPPING_UPS_HANDLING_METHOD', 'Box', 'Do you want to charge Handling Fee Per Order or Per Box?', '6', '0', 'zen_cfg_select_option(array(\'Order\', \'Box\'), ', now())");
+      }
     }
 
     if ( ($this->enabled == true) && ((int)MODULE_SHIPPING_UPS_ZONE > 0) ) {
@@ -104,7 +112,7 @@ class ups extends base {
                          'GNDRES' => 'Ground Residential',
                          'STD' => 'Canada Standard',
                          'XPR' => 'Worldwide Express',
-                         'XPRL' => 'worldwide Express Letter',
+                         'XPRL' => 'Worldwide Express Letter',
                          'XDM' => 'Worldwide Express Plus',
                          'XDML' => 'Worldwide Express Plus Letter',
                          'XPD' => 'Worldwide Expedited',
@@ -133,7 +141,8 @@ class ups extends base {
 
     $this->_upsProduct($prod);
 
-    $ups_shipping_weight = ($shipping_weight < 0.1 ? 0.1 : $shipping_weight);
+    // ups doesnt accept zero weight send 1 ounce (0.0625) minimum
+    $ups_shipping_weight = ($shipping_weight <= 0 ? 0.0625 : $shipping_weight);
 
     $country_name = zen_get_countries(SHIPPING_ORIGIN_COUNTRY, true);
     $this->_upsOrigin(SHIPPING_ORIGIN_ZIP, $country_name['countries_iso_code_2']);
@@ -177,9 +186,10 @@ class ups extends base {
         }
         if (!in_array($type, $allowed_methods)) continue;
         // EOF: UPS USPS
+        $cost = preg_replace('/[^0-9.]/', '',  $cost);
         $methods[] = array('id' => $type,
                            'title' => $this->types[$type],
-                           'cost' => ($cost + MODULE_SHIPPING_UPS_HANDLING) * $shipping_num_boxes);
+                           'cost' => ($cost * $shipping_num_boxes) + (MODULE_SHIPPING_UPS_HANDLING_METHOD == 'Box' ? MODULE_SHIPPING_UPS_HANDLING * $shipping_num_boxes : MODULE_SHIPPING_UPS_HANDLING) );
       }
 
       $this->quotes['methods'] = $methods;
@@ -220,6 +230,9 @@ class ups extends base {
     $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) values ('UPS Packaging?', 'MODULE_SHIPPING_UPS_PACKAGE', 'CP', 'CP - Your Packaging, ULE - UPS Letter, UT - UPS Tube, UBE - UPS Express Box', '6', '0', now())");
     $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) values ('Residential Delivery?', 'MODULE_SHIPPING_UPS_RES', 'RES', 'Quote for Residential (RES) or Commercial Delivery (COM)', '6', '0', now())");
     $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) values ('Handling Fee', 'MODULE_SHIPPING_UPS_HANDLING', '0', 'Handling fee for this shipping method.', '6', '0', now())");
+
+    $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) values ('Handling Per Order or Per Box', 'MODULE_SHIPPING_UPS_HANDLING_METHOD', 'Box', 'Do you want to charge Handling Fee Per Order or Per Box?', '6', '0', 'zen_cfg_select_option(array(\'Order\', \'Box\'), ', now())");
+
     $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, use_function, set_function, date_added) values ('Tax Class', 'MODULE_SHIPPING_UPS_TAX_CLASS', '0', 'Use the following tax class on the shipping fee.', '6', '0', 'zen_get_tax_class_title', 'zen_cfg_pull_down_tax_classes(', now())");
     $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) values ('Tax Basis', 'MODULE_SHIPPING_UPS_TAX_BASIS', 'Shipping', 'On what basis is Shipping Tax calculated. Options are<br />Shipping - Based on customers Shipping Address<br />Billing Based on customers Billing address<br />Store - Based on Store address if Billing/Shipping Zone equals Store zone', '6', '0', 'zen_cfg_select_option(array(\'Shipping\', \'Billing\', \'Store\'), ', now())");
     $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, use_function, set_function, date_added) values ('Shipping Zone', 'MODULE_SHIPPING_UPS_ZONE', '0', 'If a zone is selected, only enable this shipping method for that zone.', '6', '0', 'zen_get_zone_class_title', 'zen_cfg_pull_down_zone_classes(', now())");
@@ -235,7 +248,7 @@ class ups extends base {
    */
   function remove() {
     global $db;
-    $db->Execute("delete from " . TABLE_CONFIGURATION . " where configuration_key like 'MODULE_SHIPPING_UPS_%' ");
+    $db->Execute("delete from " . TABLE_CONFIGURATION . " where configuration_key like 'MODULE\_SHIPPING\_UPS\_%' ");
   }
   /**
    * Build array of keys used for installing/managing this module
@@ -243,7 +256,7 @@ class ups extends base {
    * @return array
    */
   function keys() {
-    return array('MODULE_SHIPPING_UPS_STATUS', 'MODULE_SHIPPING_UPS_PICKUP', 'MODULE_SHIPPING_UPS_PACKAGE', 'MODULE_SHIPPING_UPS_RES', 'MODULE_SHIPPING_UPS_HANDLING', 'MODULE_SHIPPING_UPS_TAX_CLASS', 'MODULE_SHIPPING_UPS_TAX_BASIS', 'MODULE_SHIPPING_UPS_ZONE', 'MODULE_SHIPPING_UPS_SORT_ORDER', 'MODULE_SHIPPING_UPS_TYPES');
+    return array('MODULE_SHIPPING_UPS_STATUS', 'MODULE_SHIPPING_UPS_PICKUP', 'MODULE_SHIPPING_UPS_PACKAGE', 'MODULE_SHIPPING_UPS_RES', 'MODULE_SHIPPING_UPS_HANDLING', 'MODULE_SHIPPING_UPS_HANDLING_METHOD', 'MODULE_SHIPPING_UPS_TAX_CLASS', 'MODULE_SHIPPING_UPS_TAX_BASIS', 'MODULE_SHIPPING_UPS_ZONE', 'MODULE_SHIPPING_UPS_SORT_ORDER', 'MODULE_SHIPPING_UPS_TYPES');
   }
   /**
    * Set UPS Product Code
@@ -406,11 +419,11 @@ class ups extends base {
     a origin that UPS recognizes.
 
     If you STILL don't get any quotes, here is a way to find out exactly what UPS is sending
-    back in response to rate quote request, you can uncomment the following mail() line and 
+    back in response to rate quote request, you can uncomment the following mail() line and
     then check your email after visiting the shipping page in checkout ...
     */
     //mail(STORE_OWNER_EMAIL_ADDRESS, 'UPS response', $body, 'From: <'.STORE_OWNER_EMAIL_ADDRESS.'>');
-    
+
     // EOF: UPS USPS
 
     $body_array = explode("\n", $body);

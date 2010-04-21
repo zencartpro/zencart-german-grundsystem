@@ -7,10 +7,10 @@
  * see {@link http://www.zen-cart.com/wiki/index.php/Developers_API_Tutorials#InitSystem} for more details.
  *
  * @package initSystem
- * @copyright Copyright 2003-2007 Zen Cart Development Team
+ * @copyright Copyright 2003-2009 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: autoload_func.php 6559 2007-07-05 06:42:51Z drbyte $
+ * @version $Id: autoload_func.php 14141 2009-08-10 19:34:47Z wilt $
  */
 if (!defined('IS_ADMIN_FLAG')) {
   die('Illegal Access');
@@ -45,8 +45,8 @@ foreach ($autoLoadConfig as $actionPoint => $row) {
       /**
        * include an init_script as specified by autoloader array
        */
-      if (file_exists($baseDir . $entry['loadFile'])) include($baseDir . $entry['loadFile']); else $debugOutput .= 'FAILED: ';
-      $debugOutput .= 'include(\'' . $baseDir . $entry['loadFile'] . '\');' . '<br />';
+      require($baseDir . $entry['loadFile']);
+      $debugOutput .= 'require(\'' . $baseDir . $entry['loadFile'] . '\');' . '<br />';
       break;
       case 'class':
       if (isset($entry['classPath'])) {
@@ -95,4 +95,3 @@ foreach ($autoLoadConfig as $actionPoint => $row) {
     if (DEBUG_AUTOLOAD === true) echo $debugOutput;
   }
 }
-?>

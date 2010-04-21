@@ -3,10 +3,10 @@
  * module to process a completed checkout
  *
  * @package procedureCheckout
- * @copyright Copyright 2003-2007 Zen Cart Development Team
+ * @copyright Copyright 2003-2010 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: checkout_process.php 6491 2007-06-15 07:00:52Z drbyte $
+ * @version $Id: checkout_process.php 15879 2010-04-11 14:44:20Z wilt $
  */
 if (!defined('IS_ADMIN_FLAG')) {
   die('Illegal Access');
@@ -31,6 +31,17 @@ if (!strstr($_SERVER['HTTP_REFERER'], FILENAME_CHECKOUT_CONFIRMATION)) {
   //    zen_redirect(zen_href_link(FILENAME_CHECKOUT_PAYMENT,'','SSL'));
 }
 
+// BEGIN CC SLAM PREVENTION
+if (!isset($_SESSION['payment_attempt'])) $_SESSION['payment_attempt'] = 0;
+$_SESSION['payment_attempt']++;
+if ($_SESSION['payment_attempt'] > 6) {
+  zen_session_destroy();
+  zen_redirect(zen_href_link(FILENAME_TIME_OUT));
+}
+// END CC SLAM PREVENTION
+
+if (!isset($credit_covers)) $credit_covers = FALSE;
+
 // load selected payment module
 require(DIR_WS_CLASSES . 'payment.php');
 $payment_modules = new payment($_SESSION['payment']);
@@ -50,14 +61,18 @@ require(DIR_WS_CLASSES . 'order_total.php');
 $order_total_modules = new order_total;
 
 $zco_notifier->notify('NOTIFY_CHECKOUT_PROCESS_BEFORE_ORDER_TOTALS_PRE_CONFIRMATION_CHECK');
-
-$order_totals = $order_total_modules->pre_confirmation_check();
-
+if (strpos($GLOBALS[$_SESSION['payment']]->code, 'paypal') !== 0) {
+  $order_totals = $order_total_modules->pre_confirmation_check();
+}
+if ($credit_covers === TRUE) 
+{
+	$order->info['payment_method'] = $order->info['payment_module_code'] = '';
+}
 $zco_notifier->notify('NOTIFY_CHECKOUT_PROCESS_BEFORE_ORDER_TOTALS_PROCESS');
 $order_totals = $order_total_modules->process();
 $zco_notifier->notify('NOTIFY_CHECKOUT_PROCESS_AFTER_ORDER_TOTALS_PROCESS');
 
-if (!isset($_SESSION['payment']) && !$credit_covers) {
+if (!isset($_SESSION['payment']) && $credit_covers === FALSE) {
   zen_redirect(zen_href_link(FILENAME_DEFAULT));
 }
 
@@ -82,7 +97,7 @@ $zco_notifier->notify('NOTIFY_CHECKOUT_PROCESS_AFTER_SEND_ORDER_EMAIL');
  * Calculate order amount for display purposes on checkout-success page as well as adword campaigns etc
  * Takes the product subtotal and subtracts all credits from it
  */
-  $credits_applied = 0;
+  $ototal = $order_subtotal = $credits_applied = 0;
   for ($i=0, $n=sizeof($order_totals); $i<$n; $i++) {
     if ($order_totals[$i]['code'] == 'ot_subtotal') $order_subtotal = $order_totals[$i]['value'];
     if ($$order_totals[$i]['code']->credit_class == true) $credits_applied += $order_totals[$i]['value'];
@@ -99,4 +114,3 @@ $zco_notifier->notify('NOTIFY_CHECKOUT_PROCESS_AFTER_SEND_ORDER_EMAIL');
   $_SESSION['order_summary']['coupon_code'] = $order->info['coupon_code'];
   $zco_notifier->notify('NOTIFY_CHECKOUT_PROCESS_HANDLE_AFFILIATES');
 
-?>

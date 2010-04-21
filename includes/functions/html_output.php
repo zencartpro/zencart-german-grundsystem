@@ -4,10 +4,10 @@
  * HTML-generating functions used throughout the core
  *
  * @package functions
- * @copyright Copyright 2003-2008 Zen Cart Development Team
+ * @copyright Copyright 2003-2009 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: html_output.php 6726b-modified 2008-01-09 drbyte $
+ * @version $Id: html_output.php 14294 2009-08-29 20:11:25Z drbyte $
  */
 
 /*
@@ -91,7 +91,7 @@
 // clean up the link after processing
     while (strstr($link, '&amp;&amp;')) $link = str_replace('&amp;&amp;', '&amp;', $link);
 
-    $link = ereg_replace('&', '&amp;', $link);
+    $link = preg_replace('/&/', '&amp;', $link);
     return $link;
   }
 
@@ -185,7 +185,7 @@
     // hook for handle_image() function such as Image Handler etc
     if (function_exists('handle_image')) {
       $newimg = handle_image($src, $alt, $width, $height, $parameters);
-      list($src, $alt, $width, $height, $parameters) = $newimg; 
+      list($src, $alt, $width, $height, $parameters) = $newimg;
     }
 
     // Convert width/height to int for proper validation.
@@ -366,12 +366,11 @@
 /*
  *  Output a form input field
  */
-  function zen_draw_input_field($name, $value = '~*~*#', $parameters = '', $type = 'text', $reinsert_value = true) {
+  function zen_draw_input_field($name, $value = '', $parameters = '', $type = 'text', $reinsert_value = true) {
     $field = '<input type="' . zen_output_string($type) . '" name="' . zen_output_string($name) . '"';
-
-    if ( $value == '~*~*#' && (isset($GLOBALS[$name]) && is_string($GLOBALS[$name])) && ($reinsert_value == true) ) {
+    if ( (isset($GLOBALS[$name]) && is_string($GLOBALS[$name])) && ($reinsert_value == true) ) {
       $field .= ' value="' . zen_output_string(stripslashes($GLOBALS[$name])) . '"';
-    } elseif ($value != '~*~*#' && zen_not_null($value)) {
+    } elseif (zen_not_null($value)) {
       $field .= ' value="' . zen_output_string($value) . '"';
     }
 
@@ -516,16 +515,38 @@
  * Creates a pull-down list of countries
  */
   function zen_get_country_list($name, $selected = '', $parameters = '') {
+    $countriesAtTopOfList = array();
     $countries_array = array(array('id' => '', 'text' => PULL_DOWN_DEFAULT));
     $countries = zen_get_countries();
 
+    // Set some default entries at top of list:
+    if (STORE_COUNTRY != SHOW_CREATE_ACCOUNT_DEFAULT_COUNTRY) $countriesAtTopOfList[] = SHOW_CREATE_ACCOUNT_DEFAULT_COUNTRY;
+    $countriesAtTopOfList[] = STORE_COUNTRY;
+    // IF YOU WANT TO ADD MORE DEFAULTS TO THE TOP OF THIS LIST, SIMPLY ENTER THEIR NUMBERS HERE.
+    // Duplicate more lines as needed
+    // Example: Canada is 108, so use 108 as shown:
+    //$countriesAtTopOfList[] = 108;
+
+    //process array of top-of-list entries:
+    foreach ($countriesAtTopOfList as $key=>$val) {
+      $countries_array[] = array('id' => $val, 'text' => zen_get_country_name($val));
+    }
+    // now add anything not in the defaults list:
     for ($i=0, $n=sizeof($countries); $i<$n; $i++) {
-      $countries_array[] = array('id' => $countries[$i]['countries_id'], 'text' => $countries[$i]['countries_name']);
+      $alreadyInList = FALSE;
+      foreach($countriesAtTopOfList as $key=>$val) {
+        if ($countries[$i]['countries_id'] == $val)
+        {
+          // If you don't want to exclude entries already at the top of the list, comment out this next line:
+          $alreadyInList = TRUE;
+          continue;
+        }
+      }
+      if (!$alreadyInList) $countries_array[] = array('id' => $countries[$i]['countries_id'], 'text' => $countries[$i]['countries_name']);
     }
 
     return zen_draw_pull_down_menu($name, $countries_array, $selected, $parameters);
   }
-
 /*
  * Assesses suitability for additional parameters such as rel=nofollow etc
  */
@@ -535,7 +556,7 @@
     // if nofollow has already been set, ignore this function
     if (stristr($parameters, 'nofollow')) return $parameters;
     // if list of skippable pages has been set in meta_tags.php lang file (is by default), use that to add rel=nofollow params
-    if (defined('ROBOTS_PAGES_TO_SKIP') && in_array($page, explode(",", constant('ROBOTS_PAGES_TO_SKIP'))) 
+    if (defined('ROBOTS_PAGES_TO_SKIP') && in_array($page, explode(",", constant('ROBOTS_PAGES_TO_SKIP')))
         || $current_page_base=='down_for_maintenance') $addparms = 'rel="nofollow"';
     return ($parameters == '' ? $addparms : $parameters . ' ' . $addparms);
   }

@@ -1,15 +1,15 @@
 <?php
 /**
- * paypal_curl.php communications class for Paypal Express Checkout / Website Payments Pro / Payflow Pro payment methods
+ * paypal_curl.php communications class for PayPal Express Checkout / Website Payments Pro / Payflow Pro payment methods
  *
  * @package paymentMethod
- * @copyright Copyright 2003-2007 Zen Cart Development Team
+ * @copyright Copyright 2003-2010 Zen Cart Development Team
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: paypal_curl.php 7558 2007-11-30 17:54:43Z drbyte $
+ * @version $Id: paypal_curl.php 15787 2010-04-02 09:32:44Z drbyte $
  */
 
 /**
- * PayPal NVP (v3.2) and Payflow Pro (v4 HTTP API) implementation via cURL.
+ * PayPal NVP (v60) and Payflow Pro (v4 HTTP API) implementation via cURL.
  */
 class paypal_curl extends base {
 
@@ -51,13 +51,15 @@ class paypal_curl extends base {
    * Options for cURL. Defaults to preferred (constant) options.
    */
   var $_curlOptions = array(CURLOPT_HEADER => 0,
-                            CURLOPT_RETURNTRANSFER => 1,
+                            CURLOPT_RETURNTRANSFER => TRUE,
                             CURLOPT_TIMEOUT => 60,
-                            CURLOPT_FOLLOWLOCATION => 0,
-                            CURLOPT_SSL_VERIFYPEER => 0,
+                            CURLOPT_FOLLOWLOCATION => FALSE,
+                            CURLOPT_SSL_VERIFYPEER => FALSE,
                             CURLOPT_SSL_VERIFYHOST => 2,
-                            CURLOPT_FORBID_REUSE => true,
-                            CURLOPT_POST => 1,
+                            CURLOPT_SSLVERSION => 3,
+                            CURLOPT_FORBID_REUSE => TRUE,
+                            CURLOPT_FRESH_CONNECT => TRUE,
+                            CURLOPT_POST => TRUE,
                             );
 
   /**
@@ -80,6 +82,7 @@ class paypal_curl extends base {
    * Sales or authorizations? For the U.K. this will always be 'S'
    * (Sale) because of Switch and Solo cards which don't support
    * authorizations. The other option is 'A' for Authorization.
+   * NOTE: 'A' is not supported for pre-signup-EC-boarding.
    */
   var $_trxtype = 'S';
 
@@ -92,7 +95,6 @@ class paypal_curl extends base {
    * Store the last-generated headers for debugging.
    */
   var $lastHeaders = null;
-
   /**
    * Constructor. Sets up communication infrastructure.
    */
@@ -105,15 +107,14 @@ class paypal_curl extends base {
   /**
    * SetExpressCheckout
    *
-   * Prepares to send customer to PayPal site so they can 
+   * Prepares to send customer to PayPal site so they can
    * log in and choose their funding source and shipping address.
-   * 
-   * The token returned to this function is passed to PayPal in 
+   *
+   * The token returned to this function is passed to PayPal in
    * order to link their PayPal selections to their cart actions.
    */
-  function SetExpressCheckout($amount, $returnUrl, $cancelUrl, $optional = array()) {
-    $values = array_merge($optional, array('AMT'       => $amount,
-                                           'RETURNURL' => urlencode($returnUrl),
+  function SetExpressCheckout($returnUrl, $cancelUrl, $options = array()) {
+    $values = array_merge($options, array('RETURNURL' => urlencode($returnUrl),
                                            'CANCELURL' => urlencode($cancelUrl)));
     if ($this->_mode == 'payflow') {
       $values = array_merge($values, array('ACTION'  => 'S', /* ACTION=S denotes SetExpressCheckout */
@@ -122,7 +123,16 @@ class paypal_curl extends base {
                                            'RETURNURL' => $returnUrl,
                                            'CANCELURL' => $cancelUrl));
     } elseif ($this->_mode == 'nvp') {
-      if (!isset($values['PAYMENTACTION'])) $values['PAYMENTACTION'] = ($this->_trxtype == 'S' ? 'Sale' : 'Authorization');
+      if (!isset($values['PAYMENTACTION']) || ($this->checkHasApiCredentials() === FALSE)) $values['PAYMENTACTION'] = ($this->_trxtype == 'S' || ($this->checkHasApiCredentials() === FALSE) ? 'Sale' : 'Authorization');
+    }
+
+    // convert country code key to proper key name for paypal 2.0 (needed when sending express checkout via payflow gateway, due to PayPal field naming inconsistency)
+    if ($this->_mode == 'payflow') {
+      if (!isset($values['SHIPTOCOUNTRY']) && isset($values['SHIPTOCOUNTRYCODE'])) {
+        $values['SHIPTOCOUNTRY'] = $values['SHIPTOCOUNTRYCODE'];
+        unset($values['SHIPTOCOUNTRYCODE']);
+      }
+      //if (isset($values['AMT'])) unset($values['AMT']);
     }
 
     // allow page-styling support -- see language file for definitions
@@ -131,6 +141,8 @@ class paypal_curl extends base {
     if (defined('MODULE_PAYMENT_PAYPALWPP_PAGECOLOR'))    $values['PAYFLOWCOLOR'] = MODULE_PAYMENT_PAYPALWPP_PAGECOLOR;
     if (defined('MODULE_PAYMENT_PAYPALWPP_HEADER_BORDER_COLOR')) $values['HDRBORDERCOLOR'] = MODULE_PAYMENT_PAYPALWPP_HEADER_BORDER_COLOR;
     if (defined('MODULE_PAYMENT_PAYPALWPP_HEADER_BACK_COLOR')) $values['HDRBACKCOLOR'] = MODULE_PAYMENT_PAYPALWPP_HEADER_BACK_COLOR;
+
+    if (PAYPAL_DEV_MODE == 'true') $this->log('SetExpressCheckout - breakpoint 1 - [' . print_r($values, true) .']');
 
     return $this->_request($values, 'SetExpressCheckout');
   }
@@ -157,56 +169,51 @@ class paypal_curl extends base {
    *
    * Completes the sale using PayPal as payment choice
    */
-  function DoExpressCheckoutPayment($token, $payerId, $amount, $optional = array()) {
-    $values = array_merge($optional, array('TOKEN'   => $token,
-                                           'PAYERID' => $payerId,
-                                           'AMT'     => $amount));
-    if (PAYPAL_DEV_MODE == 'true') $this->log('DoExpressCheckout - breakpoint 1 - ['.$token  . ' ' . $payerId . ' ' . $amount . "]\n\n[" . print_r($values, true) .']', $token);
+  function DoExpressCheckoutPayment($token, $payerId, $options = array()) {
+    $values = array_merge($options, array('TOKEN'   => $token,
+                                          'PAYERID' => $payerId));
+    if (PAYPAL_DEV_MODE == 'true') $this->log('DoExpressCheckout - breakpoint 1 - ['.$token  . ' ' . $payerId . ' ' . "]\n\n[" . print_r($values, true) .']', $token);
 
     if ($this->_mode == 'payflow') {
       $values = array_merge($values, array('ACTION'  => 'D', /* ACTION=D denotes DoExpressCheckoutPayment */
                                            'TENDER'  => 'P',
                                            'TRXTYPE' => $this->_trxtype));
     } elseif ($this->_mode == 'nvp') {
-      if (!isset($values['PAYMENTACTION'])) $values['PAYMENTACTION'] = ($this->_trxtype == 'S' ? 'Sale' : 'Authorization');
-      $values['NOTIFYURL'] = urlencode(zen_href_link('ipn_main_handler.php', '', 'SSL',false,false,true));
+      if (!isset($values['PAYMENTACTION']) || $this->checkHasApiCredentials() === FALSE) $values['PAYMENTACTION'] = ($this->_trxtype == 'S' || ($this->checkHasApiCredentials() === FALSE) ? 'Sale' : 'Authorization');
     }
+    $values['NOTIFYURL'] = urlencode(zen_href_link('ipn_main_handler.php', '', 'SSL',false,false,true));
     if (PAYPAL_DEV_MODE == 'true') $this->log('DoExpressCheckout - breakpoint 2 '.print_r($values, true), $token);
     return $this->_request($values, 'DoExpressCheckoutPayment');
   }
 
   /**
    * DoDirectPayment
-   * Sends CC information to gateway for processing.  
+   * Sends CC information to gateway for processing.
    *
    * Requires Website Payments Pro or Payflow Pro as merchant gateway.
    *
    * PAYMENTACTION = Authorization (auth/capt) or Sale (final)
    */
-  function DoDirectPayment($amount, $cc, $cvv2 = '', $exp, $fname = null, $lname = null, $cc_type, $options = array(), $nvp = array() ) {
+  function DoDirectPayment($cc, $cvv2 = '', $exp, $fname = null, $lname = null, $cc_type, $options = array(), $nvp = array() ) {
     $values = $options;
-		$values['AMT'] = $amount;
-		$values['ACCT'] = $cc;
+    $values['ACCT'] = $cc;
     if ($cvv2 != '') $values['CVV2'] = $cvv2;
+    $values['FIRSTNAME'] = $fname;
+    $values['LASTNAME'] = $lname;
+    if (isset($values['NAME'])) unset ($values['NAME']);
 
     if ($this->_mode == 'payflow') {
       $values['EXPDATE'] = $exp;
       $values['TENDER'] = 'C';
       $values['TRXTYPE'] = $this->_trxtype;
       $values['VERBOSITY'] = 'MEDIUM';
-      if (($fname . $lname) !== null && !isset($values['NAME'])) {
-          $values['NAME'] = $fname . ' ' . $lname;
-      }
     } elseif ($this->_mode == 'nvp') {
       $values = array_merge($values, $nvp);
       $values['CREDITCARDTYPE'] = ($cc_type == 'American Express') ? 'Amex' : $cc_type;
-      $values['FIRSTNAME'] = $fname;
-      $values['LASTNAME'] = $lname;
       $values['NOTIFYURL'] = urlencode(zen_href_link('ipn_main_handler.php', '', 'SSL',false,false,true));
       if (!isset($values['PAYMENTACTION'])) $values['PAYMENTACTION'] = ($this->_trxtype == 'S' ? 'Sale' : 'Authorization');
 
       if (isset($values['COUNTRY'])) unset ($values['COUNTRY']);
-      if (isset($values['NAME'])) unset ($values['NAME']);
       if (isset($values['COMMENT1'])) unset ($values['COMMENT1']);
       if (isset($values['COMMENT2'])) unset ($values['COMMENT2']);
       if (isset($values['CUSTREF'])) unset ($values['CUSTREF']);
@@ -230,7 +237,7 @@ class paypal_curl extends base {
       if ($note != '') $values['COMMENT2'] = $note;
     } elseif ($this->_mode == 'nvp') {
       $values['TRANSACTIONID'] = $txnID;
-      if ($amount != 'Full' && (float)$amount > 0) {  
+      if ($amount != 'Full' && (float)$amount > 0) {
         $values['REFUNDTYPE'] = 'Partial';
         $values['AMT'] = number_format((float)$amount, 2);
       } else {
@@ -308,6 +315,17 @@ class paypal_curl extends base {
   }
 
   /**
+   * ManagePendingTransactionStatus
+   *
+   * Accept/Deny pending FMF transactions
+   */
+  function ManagePendingTransactionStatus($txnID, $action) {
+    if (!in_array($action, array('Accept', 'Deny'))) return FALSE;
+    $values['TRANSACTIONID'] = $txnID;
+    $values['ACTION'] = $action;
+    return $this->_request($values, 'ManagePendingTransactionStatus');
+  }
+  /**
    * GetTransactionDetails
    *
    * Used to read data from PayPal for a given transaction
@@ -351,7 +369,7 @@ class paypal_curl extends base {
   }
 
   /**
-   * Set cURL options.
+   * Set CURL options.
    */
   function setCurlOption($name, $value) {
     $this->_curlOptions[$name] = $value;
@@ -361,6 +379,14 @@ class paypal_curl extends base {
    * Send a request to endpoint.
    */
   function _request($values, $operation, $requestId = null) {
+    if ($this->_mode == 'NOTCONFIGURED') {
+      return array('RESULT' => 'PayPal credentials not set. Cannot proceed.');
+      die('NOTCONFIGURED');
+    }
+    if ($this->checkHasApiCredentials() === FALSE && (!in_array($operation, array('SetExpressCheckout','GetExpressCheckoutDetails', 'DoExpressCheckoutPayment')))) {
+      return array('RESULT' => 'Unauthorized: Unilateral');
+    }
+
     if (PAYPAL_DEV_MODE == 'true') $this->log('_request - breakpoint 1 - ' . $operation . "\n" . print_r($values, true));
     $start = $this->_getMicroseconds();
 
@@ -387,21 +413,17 @@ class paypal_curl extends base {
     $headers[] = 'X-VPS-Timeout: 45';
     $headers[] = "X-VPS-VIT-Client-Type: PHP/cURL";
     if ($this->_mode == 'payflow') {
-      $headers[] = 'X-VPS-VIT-Integration-Product: PHP::Zen Cart - Payflow Pro';
+      $headers[] = 'X-VPS-VIT-Integration-Product: PHP::Zen Cart(tm) - PayPal/Payflow Pro';
     } elseif ($this->_mode == 'nvp') {
-      $headers[] = 'X-VPS-VIT-Integration-Product: PHP::Zen Cart - WPP-NVP';
+      $headers[] = 'X-VPS-VIT-Integration-Product: PHP::Zen Cart(tm) - PayPal/NVP';
     }
-    $headers[] = 'X-VPS-VIT-Integration-Version: 1.3.8a';
+    $headers[] = 'X-VPS-VIT-Integration-Version: 1.3.9';
     $this->lastHeaders = $headers;
-
-    if (PAYPAL_DEV_MODE == 'true') $this->log('_request - breakpoint 2 - server: ' . $this->_endpoints[$this->_server] . "\nheaders: " . print_r($headers, true) . "\nvalues: " . print_r($values, true));
 
     $ch = curl_init();
     curl_setopt($ch, CURLOPT_URL, $this->_endpoints[$this->_server]);
     curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
     curl_setopt($ch, CURLOPT_POSTFIELDS, $this->_buildNameValueList($values));
-    if (PAYPAL_DEV_MODE == 'true') $this->log('_request - breakpoint 2.5 - postfields: ' . $this->_buildNameValueList($values));
-
     foreach ($this->_curlOptions as $name => $value) {
       curl_setopt($ch, $name, $value);
     }
@@ -414,17 +436,12 @@ class paypal_curl extends base {
     curl_close($ch);
 
     $rawdata = "CURL raw data:\n" . $response . "CURL RESULTS: (" . $commErrNo . ') ' . $commError . "\n" . print_r($commInfo, true) . "\nEOF";
-    if (PAYPAL_DEV_MODE == 'true') $this->log($rawdata, 'RAW'.microtime());
 
     $errors = ($commErrNo != 0 ? "\n(" . $commErrNo . ') ' . $commError : '');
     $response .= '&CURL_ERRORS=' . ($commErrNo != 0 ? urlencode('(' . $commErrNo . ') ' . $commError) : '') ;
-//    $response .=  ($commErrNo != 0 ? '&CURL_INFO=' . urlencode($commInfo) : '');
-
-    if (PAYPAL_DEV_MODE == 'true') $this->log('_request - breakpoint 3 - response: ' . $response . $errors);
 
     // do debug/logging
-    if ((in_array($operation, array('GetTransactionDetails','TransactionSearch')) && !strstr($response, '&ACK=Success')) || (!in_array($operation, array('GetTransactionDetails','TransactionSearch'))) ) $this->_logTransaction($operation, $this->_getElapsed($start), $response, $errors . ($commErrNo != 0 ? "\n" . print_r($commInfo, true) : ''));
-    //if ($operation=='DoExpressCheckoutPayment') die('<PRE>' . urldecode($response) . '</PRE>');
+    if ((!in_array($operation, array('GetTransactionDetails','TransactionSearch'))) || (in_array($operation, array('GetTransactionDetails','TransactionSearch')) && !strstr($response, '&ACK=Success')) ) $this->_logTransaction($operation, $this->_getElapsed($start), $response, $errors . ($commErrNo != 0 ? "\n" . print_r($commInfo, true) : ''));
 
     if ($response) {
       return $this->_parseNameValueList($response);
@@ -459,9 +476,36 @@ class paypal_curl extends base {
     if ($this->_version != '')   $commpairs['VERSION'] = trim($this->_version);
     if ($this->_signature != '') $commpairs['SIGNATURE'] = trim($this->_signature);
 
-    $pairs = array_merge($pairs, $commpairs);
+    // Use sandbox credentials if defined and sandbox selected
+    if ($this->_server == 'sandbox'
+        && defined('MODULE_PAYMENT_PAYPALWPP_SANDBOX_APIUSERNAME') && MODULE_PAYMENT_PAYPALWPP_SANDBOX_APIUSERNAME != ''
+        && defined('MODULE_PAYMENT_PAYPALWPP_SANDBOX_APIPASSWORD') && MODULE_PAYMENT_PAYPALWPP_SANDBOX_APIPASSWORD != ''
+        && defined('MODULE_PAYMENT_PAYPALWPP_SANDBOX_APISIGNATURE') && MODULE_PAYMENT_PAYPALWPP_SANDBOX_APISIGNATURE != '') {
+      $commpairs['USER'] = str_replace('+', '%2B', trim(MODULE_PAYMENT_PAYPALWPP_SANDBOX_APIPASSWORD));
+      $commpairs['PWD'] = trim(MODULE_PAYMENT_PAYPALWPP_SANDBOX_APIPASSWORD);
+      $commpairs['SIGNATURE'] = trim(MODULE_PAYMENT_PAYPALWPP_SANDBOX_APISIGNATURE);
+    }
 
-    if (PAYPAL_DEV_MODE == 'true') $this->log('_buildNameValueList - breakpoint 1 - pairs+commpairs: ' . print_r($pairs, true));
+    // Adjustments if Micropayments account profile details have been set
+    if (defined('MODULE_PAYMENT_PAYPALWPP_MICROPAY_THRESHOLD') && MODULE_PAYMENT_PAYPALWPP_MICROPAY_THRESHOLD != ''
+        && $pairs['AMT'] < strval(MODULE_PAYMENT_PAYPALWPP_MICROPAY_THRESHOLD)
+        && defined('MODULE_PAYMENT_PAYPALWPP_MICROPAY_APIUSERNAME') && MODULE_PAYMENT_PAYPALWPP_MICROPAY_APIUSERNAME != ''
+        && defined('MODULE_PAYMENT_PAYPALWPP_MICROPAY_APIPASSWORD') && MODULE_PAYMENT_PAYPALWPP_MICROPAY_APIPASSWORD != ''
+        && defined('MODULE_PAYMENT_PAYPALWPP_MICROPAY_APISIGNATURE') && MODULE_PAYMENT_PAYPALWPP_MICROPAY_APISIGNATURE != '') {
+      $commpairs['USER'] = str_replace('+', '%2B', trim(MODULE_PAYMENT_PAYPALWPP_MICROPAY_APIUSERNAME));
+      $commpairs['PWD'] = trim(MODULE_PAYMENT_PAYPALWPP_MICROPAY_APIPASSWORD);
+      $commpairs['SIGNATURE'] = trim(MODULE_PAYMENT_PAYPALWPP_MICROPAY_APISIGNATURE);
+    }
+
+    // Accelerated/Unilateral Boarding support:
+    if ($this->checkHasApiCredentials() == FALSE) {
+      $commpairs['SUBJECT'] = STORE_OWNER_EMAIL_ADDRESS;
+      $commpairs['USER'] = '';
+      $commpairs['PWD'] = '';
+      $commpairs['SIGNATURE'] = '';
+    }
+
+    $pairs = array_merge($pairs, $commpairs);
 
     $string = array();
     foreach ($pairs as $name => $value) {
@@ -513,7 +557,8 @@ class paypal_curl extends base {
    */
   function _logTransaction($operation, $elapsed, $response, $errors) {
     $values = $this->_parseNameValueList($response);
-    $token = preg_replace('/[^0-9.A-Z\-]/', '', urldecode($values['TOKEN']));
+    $token = isset($values['TOKEN']) ? $values['TOKEN'] : '';
+    $token = preg_replace('/[^0-9.A-Z\-]/', '', urldecode($token));
     switch ($this->_logLevel) {
     case PEAR_LOG_DEBUG:
       $message =   date('Y-m-d h:i:s') . "\n-------------------\n";
@@ -530,7 +575,7 @@ class paypal_curl extends base {
     case PEAR_LOG_INFO:
       $success = false;
       if ($response) {
-        if ((isset($values['RESULT']) && $values['RESULT'] == 0) || strstr($values['ACK'],'Success')) {
+        if ((isset($values['RESULT']) && $values['RESULT'] == 0) || strstr($values['ACK'],'Success') || strstr($values['ACK'],'SuccessWithWarning')) {
           $success = true;
         }
       }
@@ -593,6 +638,15 @@ class paypal_curl extends base {
     }
   }
   /**
+   * Check whether API credentials are supplied, or if is blank
+   *
+   * @return boolean
+   */
+  function checkHasApiCredentials()
+  {
+    return ($this->_mode == 'nvp' && ($this->_user == '' || $this->_pwd == '')) ? FALSE : TRUE;
+  }
+  /**
    * Return the current time including microseconds.
    *
    * @access protected
@@ -617,5 +671,11 @@ class paypal_curl extends base {
     return $this->_getMicroseconds() - $start;
   }
 }
-
-?>
+/**
+ * Convert HTML comments to readable text
+ * @param string $string
+ * @return string
+ */
+function zen_uncomment($string) {
+  return str_replace(array('<!-- ', ' -->'), array('[', ']'), $string);
+}

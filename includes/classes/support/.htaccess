@@ -1,5 +1,8 @@
-# $Id: .htaccess 15826 2010-04-05 12:15:27Z drbyte $
-
+#
+# @copyright Copyright 2003-2010 Zen Cart Development Team
+# @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
+# @version $Id: .htaccess 15992 2010-04-19 06:02:20Z drbyte $
+#
 #NOBODY SHOULD BE SNOOPING HERE
 
 <Limit GET POST PUT>

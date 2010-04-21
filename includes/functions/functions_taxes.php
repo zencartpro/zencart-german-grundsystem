@@ -3,10 +3,10 @@
  * functions_taxes
  *
  * @package functions
- * @copyright Copyright 2003-2006 Zen Cart Development Team
+ * @copyright Copyright 2003-2010 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: functions_taxes.php 6789 2007-08-24 15:46:37Z drbyte $
+ * @version $Id: functions_taxes.php 15943 2010-04-14 17:03:39Z wilt $
  */
 
 ////
@@ -154,34 +154,23 @@
     }
     return $rates_array;
   }
-
 ////
 // Add tax to a products price based on whether we are displaying tax "in" the price
   function zen_add_tax($price, $tax) {
     global $currencies;
 
     if ( (DISPLAY_PRICE_WITH_TAX == 'true') && ($tax > 0) ) {
-        $tax = $price * $tax / 100;
-        $priceInclTax = $price + $tax;
-        $priceInclTaxFormatted = zen_round($priceInclTax, $currencies->currencies[DEFAULT_CURRENCY]['decimal_places']);
-        return $priceInclTaxFormatted;  
-        
-        return zen_round($price, $currencies->currencies[DEFAULT_CURRENCY]['decimal_places']) + zen_calculate_tax($price, $tax);
+      return $price + zen_calculate_tax($price, $tax);
     } else {
-      return zen_round($price, $currencies->currencies[DEFAULT_CURRENCY]['decimal_places']);
+      return $price;
     }
   }
 
-// Calculates Tax rounding the result
+ // Calculates Tax rounding the result
   function zen_calculate_tax($price, $tax) {
     global $currencies;
-//    $result = bcmul($price, $tax, $currencies->currencies[DEFAULT_CURRENCY]['decimal_places']);
-//    $result = bcdiv($result, 100, $currencies->currencies[DEFAULT_CURRENCY]['decimal_places']);
-//    return $result;
-    return zen_round($price * $tax / 100, $currencies->currencies[DEFAULT_CURRENCY]['decimal_places']);
+    return $price * $tax / 100;
   }
-
-
 ////
 // Output the tax percentage with optional padded decimals
   function zen_display_tax_value($value, $padding = TAX_DECIMAL_PLACES) {

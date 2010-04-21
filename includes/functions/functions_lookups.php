@@ -4,10 +4,10 @@
  * Lookup Functions for various Zen Cart activities such as countries, prices, products, product types, etc
  *
  * @package functions
- * @copyright Copyright 2003-2007 Zen Cart Development Team
+ * @copyright Copyright 2003-2009 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: functions_lookups.php 6485 2007-06-12 06:46:08Z ajeh $
+ * @version $Id: functions_lookups.php 14141 2009-08-10 19:34:47Z wilt $
  */
 
 
@@ -306,11 +306,12 @@
   function zen_get_products_category_id($products_id) {
     global $db;
 
-    $the_products_category_query = "select products_id, categories_id from " . TABLE_PRODUCTS_TO_CATEGORIES . " where products_id = '" . (int)$products_id . "'" . " order by products_id,categories_id";
+    $the_products_category_query = "select products_id, master_categories_id from " . TABLE_PRODUCTS . " where products_id = '" . (int)$products_id . "'";
     $the_products_category = $db->Execute($the_products_category_query);
 
-    return $the_products_category->fields['categories_id'];
+    return $the_products_category->fields['master_categories_id'];
   }
+
 
 /*
  * Return category's image
@@ -409,11 +410,12 @@
  *  return attributes products_options_sort_order
  *  TABLES: PRODUCTS_OPTIONS, PRODUCTS_ATTRIBUTES
  */
-  function zen_get_attributes_options_sort_order($products_id, $options_id, $options_values_id) {
+  function zen_get_attributes_options_sort_order($products_id, $options_id, $options_values_id, $lang_num = '') {
     global $db;
+      if ($lang_num == '') $lang_num = (int)$_SESSION['languages_id'];
       $check = $db->Execute("select products_options_sort_order
                              from " . TABLE_PRODUCTS_OPTIONS . "
-                             where products_options_id = '" . (int)$options_id . "' limit 1");
+                             where products_options_id = '" . (int)$options_id . "' and language_id = '" . $lang_num . "' limit 1");
 
       $check_options_id = $db->Execute("select products_id, options_id, options_values_id, products_options_sort_order
                              from " . TABLE_PRODUCTS_ATTRIBUTES . "
@@ -442,8 +444,8 @@
     }
 
 // text required validation
-    if (ereg('^txt_', $option)) {
-      $check_attributes = $db->Execute("select attributes_display_only, attributes_required from " . TABLE_PRODUCTS_ATTRIBUTES . " where products_id='" . (int)$product_id . "' and options_id='" . (int)ereg_replace('txt_', '', $option) . "' and options_values_id='0'");
+    if (preg_match('/^txt_/', $option)) {
+      $check_attributes = $db->Execute("select attributes_display_only, attributes_required from " . TABLE_PRODUCTS_ATTRIBUTES . " where products_id='" . (int)$product_id . "' and options_id='" . (int)preg_replace('/txt_/', '', $option) . "' and options_values_id='0'");
 // text cannot be blank
       if ($check_attributes->fields['attributes_required'] == '1' and empty($value)) {
         $check_valid = false;
@@ -571,18 +573,18 @@
     return $cc_check_accepted;
   }
 
-/*
- * Return Category Name from product ID
- * TABLES: categories_name
- */
+////
+// TABLES: categories_name from products_id
   function zen_get_categories_name_from_product($product_id) {
     global $db;
 
-    $check_products_category= $db->Execute("select products_id, categories_id from " . TABLE_PRODUCTS_TO_CATEGORIES . " where products_id='" . (int)$product_id . "' limit 1");
-    $the_categories_name= $db->Execute("select categories_name from " . TABLE_CATEGORIES_DESCRIPTION . " where categories_id= '" . (int)$check_products_category->fields['categories_id'] . "' and language_id= '" . (int)$_SESSION['languages_id'] . "'");
+//    $check_products_category= $db->Execute("select products_id, categories_id from " . TABLE_PRODUCTS_TO_CATEGORIES . " where products_id='" . $product_id . "' limit 1");
+    $check_products_category = $db->Execute("select products_id, master_categories_id from " . TABLE_PRODUCTS . " where products_id = '" . (int)$product_id . "'");
+    $the_categories_name= $db->Execute("select categories_name from " . TABLE_CATEGORIES_DESCRIPTION . " where categories_id= '" . $check_products_category->fields['master_categories_id'] . "' and language_id= '" . $_SESSION['languages_id'] . "'");
 
     return $the_categories_name->fields['categories_name'];
   }
+
 
 /*
  * configuration key value lookup in TABLE_PRODUCT_TYPE_LAYOUT
@@ -776,6 +778,7 @@
     $product_lookup = $db->Execute("select " . $what_field . " as lookup_field
                               from " . TABLE_PRODUCTS . " p, " . TABLE_PRODUCTS_DESCRIPTION . " pd
                               where p.products_id ='" . (int)$product_id . "'
+                              and pd.products_id = p.products_id
                               and pd.language_id = '" . (int)$language . "'");
 
     $return_field = $product_lookup->fields['lookup_field'];
@@ -793,10 +796,10 @@
     if (empty($language)) $language = $_SESSION['languages_id'];
 
     $category_lookup = $db->Execute("select " . $what_field . " as lookup_field
-                                from " . TABLE_CATEGORIES . " c, " . TABLE_CATEGORIES_DESCRIPTION . " cd
-                                where c.categories_id ='" . (int)$categories_id . "'
-                                and c.categories_id = cd.categories_id 
-                                and cd.language_id = '" . (int)$language . "'");
+                              from " . TABLE_CATEGORIES . " c, " . TABLE_CATEGORIES_DESCRIPTION . " cd
+                              where c.categories_id ='" . (int)$categories_id . "'
+                              and c.categories_id = cd.categories_id
+                              and cd.language_id = '" . (int)$language . "'");
 
     $return_field = $category_lookup->fields['lookup_field'];
 
@@ -890,11 +893,11 @@
     return $valid_downloads;
   }
 
-// build date range for new products 
-  function zen_get_new_date_range($time_limit = false) { 
-    if ($time_limit == false) { 
-      $time_limit = SHOW_NEW_PRODUCTS_LIMIT; 
-    } 
+// build date range for new products
+  function zen_get_new_date_range($time_limit = false) {
+    if ($time_limit == false) {
+      $time_limit = SHOW_NEW_PRODUCTS_LIMIT;
+    }
     // 120 days; 24 hours; 60 mins; 60secs
     $date_range = time() - ($time_limit * 24 * 60 * 60);
     $upcoming_mask_range = time();
@@ -923,6 +926,7 @@
     }
     return $new_range;
   }
+
 
 // build date range for upcoming products
   function zen_get_upcoming_date_range() {

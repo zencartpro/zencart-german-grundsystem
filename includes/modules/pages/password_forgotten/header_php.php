@@ -1,12 +1,12 @@
 <?php
 /**
  * Password Forgotten
- * 
+ *
  * @package page
- * @copyright Copyright 2003-2006 Zen Cart Development Team
+ * @copyright Copyright 2003-2009 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: header_php.php 2982 2006-02-07 07:56:41Z birdbrain $
+ * @version $Id: header_php.php 14010 2009-07-31 18:28:45Z ajeh $
  */
 
 // This should be first line of the script:
@@ -21,7 +21,7 @@ $_SESSION['navigation']->remove_current_page();
 if (isset($_GET['action']) && ($_GET['action'] == 'process')) {
   $email_address = zen_db_prepare_input($_POST['email_address']);
 
-  $check_customer_query = "SELECT customers_firstname, customers_lastname, customers_password, customers_id 
+  $check_customer_query = "SELECT customers_firstname, customers_lastname, customers_password, customers_id
                            FROM " . TABLE_CUSTOMERS . "
                            WHERE customers_email_address = :emailAddress";
 
@@ -30,7 +30,7 @@ if (isset($_GET['action']) && ($_GET['action'] == 'process')) {
 
   if ($check_customer->RecordCount() > 0) {
 
-    $new_password = zen_create_random_value(ENTRY_PASSWORD_MIN_LENGTH);
+    $new_password = zen_create_random_value( (ENTRY_PASSWORD_MIN_LENGTH > 0 ? ENTRY_PASSWORD_MIN_LENGTH : 5) );
     $crypted_password = zen_encrypt_password($new_password);
 
     $sql = "UPDATE " . TABLE_CUSTOMERS . "
@@ -38,7 +38,7 @@ if (isset($_GET['action']) && ($_GET['action'] == 'process')) {
             WHERE customers_id = :customersID";
 
     $sql = $db->bindVars($sql, ':password', $crypted_password, 'string');
-    $sql = $db->bindVars($sql, ':customersID', $check_customer->fields['customers_id'], 'integer');    
+    $sql = $db->bindVars($sql, ':customersID', $check_customer->fields['customers_id'], 'integer');
     $db->Execute($sql);
 
     $html_msg['EMAIL_CUSTOMERS_NAME'] = $check_customer->fields['customers_firstname'] . ' ' . $check_customer->fields['customers_lastname'];

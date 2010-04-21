@@ -1,10 +1,10 @@
 <?php
 /**
  * @package linkpoint_api_payment_module
- * @copyright Copyright 2003-2007 Zen Cart Development Team
+ * @copyright Copyright 2003-2010 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
- * @copyright Portions Copyright 2003 Jason LeBaron 
- * @copyright Portions Copyright 2004 DevosC.com 
+ * @copyright Portions Copyright 2003 Jason LeBaron
+ * @copyright Portions Copyright 2004 DevosC.com
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
  * @version $Id$
  */
@@ -140,6 +140,7 @@
 
 
 // prepare output based on suitable content components
+if (defined('MODULE_PAYMENT_LINKPOINT_API_STATUS') && MODULE_PAYMENT_LINKPOINT_API_STATUS != '') {
   $output = '<!-- BOF: lpapi admin transaction processing tools -->';
   $output .= $outputStartBlock;
 //debug
@@ -160,5 +161,4 @@
   $output .= $outputEndBlock;
   $output .= $outputEndBlock;
   $output .= '<!-- EOF: lpapi admin transaction processing tools -->';
-
-?>
+}
