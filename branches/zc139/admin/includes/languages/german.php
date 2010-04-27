@@ -1,10 +1,10 @@
 <?php
 /**
  * @package admin
- * @copyright Copyright 2003-2006 Zen Cart Development Team
+ * @copyright Copyright 2003-2010 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @translator: cyaneo/hugo13/wflohr	http://www.zen-cart.at	2007-01-03
+ * @translator: cyaneo/hugo13/wflohr/maleborg/webchills	http://www.zen-cart.at	2010-04-27
  * @version $Id$
  */
 
@@ -180,7 +180,7 @@ define('BOX_LOCALIZATION_ORDERS_STATUS', 'Bestellstatus');
 
 // gift vouchers box text in includes/boxes/gv_admin.php
 define('BOX_HEADING_GV_ADMIN', TEXT_GV_NAMES . ' & Aktionskupons');
-define('BOX_GV_ADMIN_QUEUE', 'TEXT_GV_NAMES . Warteschleife');
+define('BOX_GV_ADMIN_QUEUE', TEXT_GV_NAMES . ' Warteschleife');
 define('BOX_GV_ADMIN_MAIL', TEXT_GV_NAME . ' senden ');
 define('BOX_GV_ADMIN_SENT', 'Bereits gesendet ');
 define('BOX_COUPON_ADMIN', 'Aktionskupon Admin');
