@@ -16,12 +16,12 @@ if (!defined('IS_ADMIN_FLAG'))
   die('Illegal Access');
 }
 
-define('WARNING_ADMIN_FOLDERNAME_VULNERABLE', '!!!TRANSLATE!!! CAUTION: <a href="http://tutorials.zen-cart.com/index.php?article=33" target="_blank">Your /admin/ foldername should be renamed to something less common</a>, to prevent unauthorized access.');
-define('WARNING_EMAIL_SYSTEM_DISABLED', 'WARNING: The email subsystem is turned off. No emails will be sent until it is re-enabled in Admin->Configuration->Email Options.');
-define('TEXT_CURRENT_VER_IS', 'You are presently using: ');
-define('ERROR_NO_DATA_TO_SAVE', 'ERROR: The data you submitted was found to be empty. YOUR CHANGES HAVE *NOT* BEEN SAVED. You may have a problem with your browser or your internet connection.');
-define('TEXT_HIDDEN', 'Hidden');
-define('TEXT_VISIBLE', 'Visible');
-define('TEXT_HIDE', 'Hide');
+define('WARNING_ADMIN_FOLDERNAME_VULNERABLE', 'ACHTUNG: Benennen Sie unbedingt Ihr admin Verzeichnis um! <a href="http://www.zen-cart.at/zcvb/forum/vbglossar.php?do=showentry&id=6" target="_blank">Anleitung und weitere Informationen dazu hier</a>');
+define('WARNING_EMAIL_SYSTEM_DISABLED', 'WARNUNG: Das Emailsystem ist abgeschaltet. Es werden keine Emails vom Shop versendet, bevor Sie das nicht unter Admin->Konfiguration->Email Optionen aktivieren.');
+define('TEXT_CURRENT_VER_IS', 'Derzeit nutzen Sie: ');
+define('ERROR_NO_DATA_TO_SAVE', 'FEHLER: Ihre eingegebenen Daten waren leer. IHRE DNDERUNGEN WURDEN *NICHT* GESPEICHERT. Mvglicherweise haben Sie ein Problem mit Ihrem Browser oder Ihrer Internetverbindung.');
+define('TEXT_HIDDEN', 'Versteckt');
+define('TEXT_VISIBLE', 'Sichtbar');
+define('TEXT_HIDE', 'Verstecke');
 define('TEXT_EMAIL', 'Email');
-define('TEXT_NOEMAIL', '!!!TRANSLATE!!! No Email');
+define('TEXT_NOEMAIL', 'Keine Email');
