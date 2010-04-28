@@ -10,7 +10,7 @@
 /**
  * defining language components for the page
  */
-  define('PAGE_HEADING', 'Zen Cart Setup - Datenbankupdate');
+  define('TEXT_PAGE_HEADING', 'Zen Cart Setup - Datenbankupdate');
   define('UPDATE_DATABASE_NOW','Datenbank jetzt updaten');//this comes before TEXT_MAIN
 
   define('TEXT_MAIN', '<em>Warnung: </em> Dieses Update ist nur für Aktualisierungen innerhalb des Datenbankschemas für die angeführten Versionen.<br /><br /><span class="emphasis"><strong>Es ist SEHR EMPFEHLENSWERT, VOR der Aktualisierung eine Sicherung der Datenbank durchzuführen!</strong></span>');

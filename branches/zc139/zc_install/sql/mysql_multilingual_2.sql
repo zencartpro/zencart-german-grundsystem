@@ -770,5 +770,5 @@ REPLACE INTO product_type_layout_language (configuration_title, configuration_ke
 ('Anzahl der Artikelbewertungen anzeigen', 'SHOW_DOCUMENT_GENERAL_INFO_REVIEWS_COUNT', 43, 'Soll die Anzehl der Artikelbewertungen auf der Produktinfoseite angezeigt werden?<br/> 0= AUS 1= AN', '2008-05-20 00:00:00', '2008-05-20 00:00:00');
 
 REPLACE INTO product_type_layout_language (configuration_title , configuration_key , languages_id, configuration_description)
-VALUES ('LANGUAGE_VERSION 20081028', 'LANGUAGE_VERSION', '43', 'Deutsch');
+VALUES ('LANGUAGE_VERSION 20100428', 'LANGUAGE_VERSION', '43', 'Deutsch');
 #####  END OF UPGRADE SCRIPT

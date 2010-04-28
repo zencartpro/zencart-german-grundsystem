@@ -771,7 +771,7 @@ require_once('../admin/includes/functions/extra_functions/rl_tools.php');
     } else {
         $sql = "select configuration_title from " . TABLE_PRODUCT_TYPE_LAYOUT_LANGUAGE . " where configuration_key = 'LANGUAGE_VERSION'";
         $result = $db->Execute($sql);
-        if  ($result->fields['configuration_title'] == 'LANGUAGE_VERSION 20080520'){
+        if  ($result->fields['configuration_title'] == 'LANGUAGE_VERSION 20100428'){
             return true;
         } else {
             return false;
