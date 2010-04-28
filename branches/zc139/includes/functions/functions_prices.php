@@ -6,7 +6,7 @@
  * @copyright Copyright 2003-2010 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: functions_prices.php 15932 2010-04-13 12:28:11Z drbyte $
+ * @version $Id: functions_prices.php 568 2010-04-27 05:42:43Z hugo13 $
  */
 
 ////
@@ -282,8 +282,7 @@
         $call_tag = '<br />' . zen_image(DIR_WS_TEMPLATE_IMAGES . OTHER_IMAGE_CALL_FOR_PRICE, PRODUCTS_PRICE_IS_CALL_FOR_PRICE_TEXT);
       }
     }
-
-    return $final_display_price . $free_tag . $call_tag;
+    return $final_display_price . vatAddOn($product_check) . $free_tag . $call_tag;     
   }
 
 ////

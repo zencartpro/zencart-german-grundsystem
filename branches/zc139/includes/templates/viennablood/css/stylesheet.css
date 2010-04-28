@@ -580,3 +580,8 @@ table #orderHistoryDetailedOrder, table #orderHistoryStatus {
 #accountHistInfo tr {
 	vertical-align:top;
 }
+
+.taxAddon{
+	font-weight:normal;
+	font-size:10px;
+}
