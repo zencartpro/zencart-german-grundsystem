@@ -668,5 +668,13 @@ switch ($error_code) {
     define('POPUP_ERROR_HEADING','cURL Unterstützung nicht gefunden');
     define('POPUP_ERROR_TEXT','Einige Zahlungs- sowie Versand-Module von Drittanbietern benötigen cURL um mit externen Servern kommunizieren zu können. <br /><br />Es scheint, dass Ihr Server cURL-Support nicht konfiguriert hat oder dies für Ihren Account nicht aktiviert ist. Sind Sie auf diese Module angewiesen, müssen Sie Ihren Webhoster bitten cURL auf Ihrem Server zu installieren.');
   break;
+  case ('94'):
+    define('POPUP_ERROR_HEADING', 'NOTE: PHP "magic_quotes_sybase" is active');
+    define('POPUP_ERROR_TEXT', 'It is best to have "magic_quotes_sybase" disabled. When enabled, it can cause unexpected 1064 SQL errors, and other code-execution problems.<br /><br />If you cannot disable it for the whole server, it may be possible to disable via .htaccess or your own php.ini file in your private webspace.  Talk to your hosting company for assistance.');
+  break;
+  case ('95'):
+    define('POPUP_ERROR_HEADING','CURL requires SSL support. Please notify webmaster or hosting company.');
+    define('POPUP_ERROR_TEXT','Zen Cart&trade; uses CURL and SSL to communicate with some payment and shipping service providers.<br />The installer has just tested your CURL SSL support and found that it failed.<br /><br />You will not be able to use PayPal or Authorize.net or FirstData/Linkpoint payment modules, and possibly other third-party contributed payment/shipping modules until you enable SSL support in CURL and PHP.<br /><br />More information on CURL can be found at the <a href="http://curl.haxx.se" target="_blank">CURL website</a>');
+  break;
 
 }
