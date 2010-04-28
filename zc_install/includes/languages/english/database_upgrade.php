@@ -12,10 +12,8 @@
  */
   define('TEXT_PAGE_HEADING', 'Zen Cart&trade; Setup - Database Upgrade');
   define('UPDATE_DATABASE_NOW','Update Database Now');//this comes before TEXT_MAIN
-  define('TEXT_MAIN', '<em>Warning: </em> This script should ONLY be used to upgrade your Zen Cart&trade; database schema through the versions listed below.  ' .
-                      '<span class="emphasis"><strong>We HIGHLY RECOMMEND doing a full backup of your database prior to performing any upgrades on it!</strong></span>');
-  define('TEXT_MAIN_2','<span class="emphasis">Please check the details below very carefully</span>. This information is taken from your configure.php settings.<br />' .
-                      'Do not proceed unless you\'re sure they\'re correct, or else you risk corruption to your database.');
+  define('TEXT_MAIN', '<em>Warning: </em> This script should ONLY be used to upgrade your Zen Cart&trade; database schema through the versions listed below.  ' . '<span class="emphasis"><strong>We HIGHLY RECOMMEND doing a full backup of your database prior to performing any upgrades on it!</strong></span>');
+  define('TEXT_MAIN_2','<span class="emphasis">Please check the details below very carefully</span>. This information is taken from your configure.php settings.<br />' . 'Do not proceed unless you\'re sure they\'re correct, or else you risk corruption to your database.');
 
   define('DATABASE_INFORMATION', 'Database Information');
   define('DATABASE_TYPE', 'Database Type');

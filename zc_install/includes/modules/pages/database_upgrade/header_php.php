@@ -82,12 +82,12 @@ $sniffer_text = '';
 
 //display options based on what was found -- THESE SHOULD BE PROCESSED IN REVERSE ORDER, NEWEST VERSION FIRST... !
 //that way only the "earliest-required" upgrade is suggested first.
-    $needs_v1_3_9=false;
+    $needs_v1_3_8multi2=false;
     if (!$dbinfo->version138multi2) {
-      $sniffer_text =  ' upgrade v1.3.7 to v1.3.8multi2';
+      $sniffer_text =  ' upgrade v1.3.9 to v1.3.8multi2';
       $needs_v1_3_8multi2=true;
     }
-    
+    $needs_v1_3_9=false;
     if (!$dbinfo->version139) {
       $sniffer_text =  ' upgrade v1.3.8 to v1.3.9';
       $needs_v1_3_9=true;
