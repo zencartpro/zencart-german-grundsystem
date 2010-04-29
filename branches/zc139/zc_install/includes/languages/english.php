@@ -90,8 +90,8 @@ See the Apache documentation for more information.');
   define('ERROR_TEXT_DB_CONNECTION_FAILED', 'Connection to Database failed');
   define('ERROR_CODE_DB_CONNECTION_FAILED', '28');
 
-  define('ERROR_TEXT_DB_CREATE_FAILED', 'Could not create database');
-  define('ERROR_CODE_DB_CREATE_FAILED', '29');
+  define('ERROR_TEXT_STORE_ZONE_NEEDS_SELECTION', 'Store Zone must be specified.');
+  define('ERROR_CODE_STORE_ZONE_NEEDS_SELECTION', '29');
 
   define('ERROR_TEXT_DB_NOTEXIST', 'Database does not exist');
   define('ERROR_CODE_DB_NOTEXIST', '30');
@@ -374,8 +374,8 @@ You may also have given the wrong database name (<strong>Does it exist?</strong>
 
   break;
   case ('29'):
-    define('POPUP_ERROR_HEADING', 'Could not create database');
-    define('POPUP_ERROR_TEXT', 'You do not appear to have permission to create a blank database. You may need to contact your host to do this for you. Alternatavely you may need to use cpanel or phpMyAdmin to create a blank database. Once you create the database manually, DESELECT the \'Create Database\' option in the Zen Cart&trade; Installer in order to proceed.');
+    define('POPUP_ERROR_HEADING', 'Store Zone must be seleected');
+    define('POPUP_ERROR_TEXT', 'Please select a zone from the Store Zones list. This information is used for tax and shipping calculations. You can always change it at a later date via Admin->Configuration->My Store.');
 
   break;
   case ('30'):
