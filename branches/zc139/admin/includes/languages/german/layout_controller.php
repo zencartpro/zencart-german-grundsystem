@@ -49,6 +49,8 @@ define('TEXT_INFO_DELETE_MISSING_LAYOUT_BOX_NOTE','HINWEIS: Dieser Vorgang lösc
 define('TEXT_INFO_RESET_TEMPLATE_SORT_ORDER','Setze die Sortierung aller Boxen für dieses Template auf die STANDARDWERTE zurück:');
 define('TEXT_INFO_RESET_TEMPLATE_SORT_ORDER_NOTE','Dieser Vorgang löscht keine dieser Boxen. Es wird nur die aktuellen Sortierung zurückgesetzt');
 define('TEXT_INFO_BOX_DETAILS','Boxdetails:');
+define('TEXT_INFO_SET_AS_DEFAULT','Die Boxdetails als Defaultwert speichern ');
+define('SUCCESS_BOX_SET_DEFAULTS','Die Boxdetails wurden gespeichert: ');
 
 ////////////////
 

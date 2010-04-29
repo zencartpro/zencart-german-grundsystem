@@ -133,9 +133,15 @@ if ((basename($PHP_SELF) != FILENAME_DEFINE_LANGUAGE . '.php') and (basename($PH
   if (file_exists(DIR_FS_ADMIN . 'includes/local/skip_version_check.ini')) {
     $lines=@file(DIR_FS_ADMIN . 'includes/local/skip_version_check.ini');
     foreach($lines as $line) {
-      if (substr(trim($line),0,14)=='version_check=') $version_from_ini=substr(trim(strtolower(str_replace('version_check=','',$line))),0,3);
-      if (substr(trim($line),0,41)=='display_update_link_only_on_sysinfo_page=') $version_ini_sysinfo=trim(strtolower(str_replace('display_update_link_only_on_sysinfo_page=','',$line)));
-      if (substr(trim($line),0,46)=='display_update_link_on_index_and_sysinfo_page=') $version_ini_index_sysinfo=trim(strtolower(str_replace('display_update_link_only_on_sysinfo_page=','',$line)));
+      if (substr(trim($line),0,14)=='version_check=') {
+          $version_from_ini = substr(trim(strtolower(str_replace('version_check=','',$line))),0,3);
+      }
+      if (substr(trim($line),0,41)=='display_update_link_only_on_sysinfo_page=') {
+        $version_ini_sysinfo=trim(strtolower(str_replace('display_update_link_only_on_sysinfo_page=','',$line)));
+      }
+      if (substr(trim($line),0,46)=='display_update_link_on_index_and_sysinfo_page=') {
+        $version_ini_index_sysinfo = trim(strtolower(str_replace('display_update_link_on_index_and_sysinfo_page=','',$line)));
+      }
     }
   }
   // ignore version check if not enabled or if not on main page or sysinfo page
