@@ -143,7 +143,8 @@ HR {
 /*wrappers - page or section containers*/
 #mainWrapper {
 	text-align: left;
-	width: 770px;
+    width: 770px;
+    width: 95%;
 	vertical-align: top;
 	}
 
@@ -153,7 +154,8 @@ HR {
 	}
 
 #logoWrapper {
-	width:770px;
+    width:770px;
+    width:95%;
 	height:110px;
 	}
 
