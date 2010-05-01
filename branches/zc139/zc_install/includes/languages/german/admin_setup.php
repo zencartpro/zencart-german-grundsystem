@@ -3,7 +3,7 @@
 // +----------------------------------------------------------------------+
 // |zen-cart Open Source E-commerce                                       |
 // +----------------------------------------------------------------------+
-// | Copyright (c) 2004 The zen-cart developers                           |
+// | Copyright (c) 2010 The zen-cart developers                           |
 // |                                                                      |
 // | http://www.zen-cart.com/index.php                                    |
 // |                                                                      |
@@ -17,8 +17,8 @@
 // | to obtain it through the world-wide-web, please send a note to       |
 // | license@zen-cart.com so we can mail you a copy immediately.          |
 // +----------------------------------------------------------------------+
-// | Translator:           cyaneo                                         |
-// | Date of Translation:  16.08.04                                       |
+// | Translators:          cyaneo/hugo13/maleborg/webchills                                         |
+// | Date of Translation:  01.05.10                                       |
 // | Homepage:             www.zen-cart.at                                |
 // +----------------------------------------------------------------------+
 // $Id$
@@ -33,9 +33,9 @@ define('ADMIN_USERNAME_INSTRUCTION', 'Tragen Sie hier den gewünschten Benutzern
 define('ADMIN_PASS', 'Passwort des Administrators');
 define('ADMIN_PASS_INSTRUCTION', 'Tragen Sie hier das gewünschte Passwort für die Anmeldung im Adminbereich ein.');
 define('ADMIN_PASS_CONFIRM', 'Passwortbestätigung');
-define('ADMIN_PASS_CONFIRM_INSTRUCTION', 'Bitte bestätigen Sie das Passwort (um Tippfehlern zu vermeiden).');
+define('ADMIN_PASS_CONFIRM_INSTRUCTION', 'Bitte bestätigen Sie das Passwort (um Tippfehler zu vermeiden).');
 define('ADMIN_EMAIL', 'E-Mail Adresse des Administrators');
 define('ADMIN_EMAIL_INSTRUCTION', 'Geben Sie hier eine gültige E-Mail Adresse ein. Diese wird zwingend benötigt, damit Sie sich ein vergessenes Passwort für den Adminbereich erneut zusenden lassen können.');
 define('UPGRADE_DETECTION','Prüfung auf neuere Zen-Cart Versionen');
 define('UPGRADE_INSTRUCTION_TITLE','Bei jeder Anmeldung im Admin Bereich auf Aktualisierungen prüfen');
-define('UPGRADE_INSTRUCTION_TEXT','Lassen Sie diese Option aktiviert, wenn Sie bei jeder Anmeldung im Admin Bereich eine Echtzeitabfrage am Zen Cart&trade; Versions-Server auf neuere Versionen, Patches etc. durchführen wollen.<br />Sollten neuere Aktualisierungen vorhanden sein, wir Ihnen dies als Mitteilung im Header des Admin Bereichs angezeigt.<br />Es werden dabei KEINE automatische Aktualisierungen durchgeführt, es dient lediglich der Information.<br />Sie können diese Option jederzeit im Admin Bereich unter "Admin->Konfiguration->Mein Shop->Auf neuere Version prüfen" deaktivieren oder aktivieren.');
+define('UPGRADE_INSTRUCTION_TEXT','Lassen Sie diese Option aktiviert, wenn Sie bei jeder Anmeldung im Admin Bereich eine Echtzeitabfrage am Zen Cart&trade; Versions-Server auf neuere Versionen, Patches etc. durchführen wollen.<br />Sollten neuere Aktualisierungen vorhanden sein, wird Ihnen dies als Mitteilung im Header des Admin Bereichs angezeigt.<br />Es werden dabei KEINE automatische Aktualisierungen durchgeführt, es dient lediglich der Information.<br />Sie können diese Option jederzeit im Admin Bereich unter "Admin->Konfiguration->Mein Shop->Auf neuere Version prüfen" deaktivieren oder aktivieren.');

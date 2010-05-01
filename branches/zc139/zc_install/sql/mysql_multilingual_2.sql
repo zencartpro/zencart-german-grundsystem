@@ -586,11 +586,16 @@ REPLACE INTO configuration_language (configuration_title, configuration_key, con
 ('Sortierung', 'MODULE_PAYMENT_FREECHARGER_SORT_ORDER', 43, 'Bestimmt die Sortierung der angezeigten Zahlungsarten.', '2008-04-12 00:00:00', '2007-12-04 08:43:11'),
 ('Zahlungszone', 'MODULE_PAYMENT_FREECHARGER_ZONE', 43, 'Für welche Länder soll diese Zahlungsart angeboten werden?<br/>Die auswählbaren Zahlungszonen entsprechen den angelegten Steuerzonen und den dort hinterlegten Ländern.', '2008-04-12 00:00:00', '2007-12-04 08:43:11'),
 ('Bestellstatus', 'MODULE_PAYMENT_FREECHARGER_ORDER_STATUS_ID', 43, 'Legt den Bestellstatus für diese Zahlungsart fest.', '2008-04-12 00:00:00', '2007-12-04 08:43:11'),
-('Vorkasse/Überweisung aktivieren', 'MODULE_PAYMENT_MONEYORDER_STATUS', 43, 'Akzeptieren Sie Zahlungen per Vorkasse/Überweisung?', '2008-04-12 00:00:00', '2007-12-04 08:43:11'),
-('Make Payable to:', 'MODULE_PAYMENT_MONEYORDER_PAYTO', 43, '!!!TRANSLATE!!! Who should payments be made payable to?', '2008-04-12 00:00:00', '2007-12-04 08:43:11'),
-('Sortierung', 'MODULE_PAYMENT_MONEYORDER_SORT_ORDER', 43, 'Bestimmt die Sortierung der angezeigten Zahlungsarten.', '2008-04-12 00:00:00', '2007-12-04 08:43:11'),
-('Zahlungszone', 'MODULE_PAYMENT_MONEYORDER_ZONE', 43, 'Für welche Länder soll diese Zahlungsart angeboten werden?<br/>Die auswählbaren Zahlungszonen entsprechen den angelegten Steuerzonen und den dort hinterlegten Ländern.', '2008-04-12 00:00:00', '2007-12-04 08:43:11'),
-('Bestellstatus', 'MODULE_PAYMENT_MONEYORDER_ORDER_STATUS_ID', 43, 'Legt den Bestellstatus für diese Zahlungsart fest.', '2008-04-12 00:00:00', '2007-12-04 08:43:11'),
+('Vorkasse/Überweisung aktivieren', 'MODULE_PAYMENT_EUTRANSFER_STATUS', 43, 'Akzeptieren Sie Zahlungen per Vorkasse/Überweisung?', '2008-04-12 00:00:00', '2007-12-04 08:43:11'),
+('Bank Name:', 'MODULE_PAYMENT_EUTRANSFER_BANKNAM', 43, 'Tragen Sie hier den Namen Ihrer Bank ein.', '2008-04-12 00:00:00', '2007-12-04 08:43:11'),
+('Kontoinhaber:', 'MODULE_PAYMENT_EUTRANSFER_ACCNAM', 43, 'Tragen Sie hier den Namen des Kontoinhabers ein.', '2008-04-12 00:00:00', '2007-12-04 08:43:11'),
+('Kontonummer:', 'MODULE_PAYMENT_EUTRANSFER_ACCNUM', 43, 'Tragen Sie hier Ihre Kontonummer ein.', '2008-04-12 00:00:00', '2007-12-04 08:43:11'),
+('Bankleitzahl:', 'MODULE_PAYMENT_EUTRANSFER_BLZ', 43, 'Tragen Sie hier die Bankleitzahl ein.', '2008-04-12 00:00:00', '2007-12-04 08:43:11'),
+('IBAN:', 'MODULE_PAYMENT_EUTRANSFER_ACCIBAN', 43, 'Tragen Sie hier Ihre IBAN ein.', '2008-04-12 00:00:00', '2007-12-04 08:43:11'),
+('BIC/SWIFT:', 'MODULE_PAYMENT_EUTRANSFER_BANKBIC', 43, 'Tragen Sie hier Ihren BIC/SWIFT Code ein.', '2008-04-12 00:00:00', '2007-12-04 08:43:11'),
+('Sortierreihenfolge', 'MODULE_PAYMENT_EUTRANSFER_SORT_ORDER', 43, 'Anzeigereigenfolge für dieses Modul. Der niedrigste Wert wird zuerst angezeigt.', '2008-04-12 00:00:00', '2007-12-04 08:43:11'),
+('Zahlungszone', 'MODULE_PAYMENT_EUTRANSFER_ZONE', 43, 'Wenn Sie hier eine Zone angeben, ist Banküberweisung nur für Kunden mit Rechnungsadresse in dieser Zone möglich. Es empfiehlt sich dafür eine Zone anzulegen, die nur die Länder mit EURO enthält.', '2008-04-12 00:00:00', '2007-12-04 08:43:11'),
+('Bestellstatus', 'MODULE_PAYMENT_EUTRANSFER_ORDER_STATUS_ID', 43, 'Welchen Bestellstatus sollen Bestellungen bekommen, die mit Banküberweisung bezahlt werden?', '2008-04-12 00:00:00', '2007-12-04 08:43:11'),
 ('Inklusive MwSt.', 'MODULE_ORDER_TOTAL_GROUP_PRICING_INC_TAX', 43, 'Der Rabattbetrag enthält die MwSt.', '2008-04-12 00:00:00', '2007-12-04 08:43:11'),
 ('Gruppenermäßigung aktivieren', 'MODULE_ORDER_TOTAL_GROUP_PRICING_STATUS', 43, 'Bieten Sie eine Ermäißung für bestimmte Kundengruppen an?', '2008-04-12 00:00:00', '2007-12-04 08:43:11'),
 ('Sortierung', 'MODULE_ORDER_TOTAL_GROUP_PRICING_SORT_ORDER', 43, 'Bestimmt die Sortierung in der Bestellzusammenfassung', '2008-04-12 00:00:00', '2007-12-04 08:43:11'),
@@ -601,7 +606,7 @@ REPLACE INTO configuration_language (configuration_title, configuration_key, con
 ('Zeige Bestellkommentare auf dem Admin Lieferschein an', 'ORDER_COMMENTS_PACKING_SLIP', 43, 'Sollen Bestellkommentare auf dem Admin Lieferschein angezeigt werden?<br />0= AUS<br />1= Nur der erste Kommentar des Kunden<br />2= Alle Kommentare der Bestellung', '2008-04-12 00:00:00', '2007-12-04 08:43:11'),
 ('Zeige Hinweis beim Login über den zusammengelegten Warenkorb an', 'SHOW_SHOPPING_CART_COMBINED', 43, 'Sobald ein Kunde sich anmeldet und von der letzten Anmeldung noch Artikel im Warenkorb hat, werden die aktuell im Warenkorb vorhandenen Artikel mit dem Warenkorb der letzten Anmeldung kombiniert.<br /><br />Soll der Kunde auf diesen Vorgang hingewiesen werden?<br /><br />0= NEIN, zeige keinen Hinweis an<br />1= JA, und gehe automatisch zum Warenkorb<br />2= JA, aber gehe nicht automatisch zum Warenkorb', '2008-04-12 00:00:00', '2007-12-04 08:43:11'),
 ('Bestellstatus', 'MODULE_ORDER_TOTAL_GV_ORDER_STATUS_ID', 43, 'Legt den Bestellstatus fest, wenn der komplette Auftrag mit einem Gutschein vollständig bezahlt wurde.', '2008-04-12 00:00:00', '2007-12-04 08:43:11'),
-('', 'MAP_SHOP2_SHOP', 43, '!!!TRANSLATE!!! ', '2008-04-12 00:00:00', '1901-01-01 00:00:00');
+('MapShop', 'MAP_SHOP2_SHOP', 43, 'Showcase Eintragung für ihren Shop', '2008-04-12 00:00:00', '1901-01-01 00:00:00');
 
 #####################################################################################################
 UPDATE configuration SET configuration_value = 'de' WHERE configuration_key = 'DEFAULT_LANGUAGE' LIMIT 1 ;

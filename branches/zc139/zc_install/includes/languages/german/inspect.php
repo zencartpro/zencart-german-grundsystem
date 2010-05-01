@@ -2,10 +2,10 @@
 /**
  * @package Installer
  * @access private
- * @copyright Copyright 2003-2005 Zen Cart Development Team
+ * @copyright Copyright 2003-2010 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @translator: cyaneo/hugo13/wflohr	http://www.zen-cart.at	2007-01-03
+ * @translator: cyaneo/hugo13/wflohr/hugo13/maleborg/webchills	http://www.zen-cart.at	2010-05-01
  * @version $Id$
  */
 /**
@@ -24,8 +24,8 @@ define('DB_UPGRADE_BUTTON', 'Datenbank aktualisieren');
 // "Upgrade" = read old configure.php files, and write new ones using new structure. Upgrade database, instead of wiping and new install
 // "Database Upgrade" = don't write the configure.php files -- simply jump to the database-upgrade page. Only displayed if detected database version is new enough to not require configure.php file updates.
 
-define('TITLE_DOCUMENTATION', 'DoKumentation');
-define('TEXT_DOCUMENTATION', '<h3>Haben Sie die Installationsanleitung bereits gelesen?</h3>Die <a href="%s" target="_blank">Installationsanleitung</a> sind meist eine große Hilfe und sollte vorab gelesen werden, wenn nicht bereits geschehen.<br />In dieser finden Sie u.A. Angaben über die zu setzenden CHMOD Level einzelner Dateien und Ordner sowie weiter Angaben über mögliche Einstellungen nach Abschluss der Installation. Weiterhin enthält diese Links zur <a href="http://tutorials.zen-cart.com/" target="_blank">Online FAQs</a> und anderen helfenden Informationen.');
+define('TITLE_DOCUMENTATION', 'Dokumentation');
+define('TEXT_DOCUMENTATION', '<h3>Haben Sie die Installationsanleitung bereits gelesen?</h3>Die <a href="http://www.zen-cart.at/zcvb/forum/vbglossar.php?do=showcat&catid=6" target="_blank">Installationsanleitung</a> ist meist eine große Hilfe und sollte vorab gelesen werden, wenn nicht bereits geschehen.<br />Die Anleitung finden Sie auch im Ordner docs.<br/>In dieser finden Sie unter anderem Angaben über die zu setzenden CHMOD Level einzelner Dateien und Ordner sowie weitere Angaben über mögliche Einstellungen nach Abschluss der Installation. Weiterhin enthält diese Links zur <a href="http://www.zen-cart.at/zcvb/forum/vbglossar.php" target="_blank">Online FAQs</a> und anderen hilfreichen Informationen.');
 define('TEXT_MAIN', 'Bitte nehmen Sie sich einen Augenblick Zeit für die Systemprüfung - diese stellt sicher, ob alle notwendigen Systemvoraussetzungen für eine erfolgreiche Installation von Zen Cart gegeben sind. Bitte beheben Sie alle Fehler oder Warnungen, bevor Sie mit der Installation fortfahren. Klicken Sie anschließend auf <em>'.INSTALL_BUTTON.'&nbsp;</em>.');
 define('SYSTEM_INSPECTION_RESULTS', 'Systemprüfung - Ergebnis');
 define('OTHER_INFORMATION', 'Sonstige Systeminformation (Nur zur Referenz)');
@@ -97,5 +97,5 @@ define('LABEL_RECOMMENDED','Ähnliche Punkte');
 define('LABEL_OPTIONAL','Optionale Punkte');
 define('LABEL_EXPLAIN','Für weitere Infos bitte hier klicken');
 define('LABEL_FOLDER_PERMISSIONS','Datei- und Ordnerberechtigungen');
-define('LABEL_WRITABLE_FILE_INFO', 'Damit das Installationsprogramm die Informationen, die sie auf den folgenden Seiten eingeben, ordnungsgemäß in die configure.php Dateien schreiben kann, sollten die die unten angezeigten Dateien "beschreibbar" sein');
-define('LABEL_WRITABLE_FOLDER_INFO','Damit alle administrative und alle täglichen Aufgaben von Zen Cart korrekt funktionieren, benötigen einige Dateien/Ordner "Schreibrechte". Im Folgendem erhalten Sie eine Liste der Dateien/Ordner, die gesonderte "Lese-/Schreibrechte" benötigen. Bitte korrigieren Sie ggf. die empfohlenen Schreibrechte für diese Dateien/Ordner. Für eine erneute Prüfung aktualisieren Sie bitte diese Seite in Ihrem Browser.<br /><br >Auf einigen Hosts ist eine Einstellung auf CHMOD 777 nicht erlaubt, aber CHMOD 666 ist in den meisten Fällen möglich. Beginnen Sie mit der höheren Einstellung und - falls notwendig - versuchen Sie dann erst die niedrigere Einstellung.');
+define('LABEL_WRITABLE_FILE_INFO', 'Damit das Installationsprogramm die Informationen, die Sie auf den folgenden Seiten eingeben, ordnungsgemäß in die configure.php Dateien schreiben kann, sollten die unten angezeigten Dateien "beschreibbar" sein');
+define('LABEL_WRITABLE_FOLDER_INFO','Damit alle administrativen und alle täglichen Aufgaben von Zen Cart korrekt funktionieren, benötigen einige Dateien/Ordner "Schreibrechte". Im Folgendem erhalten Sie eine Liste der Dateien/Ordner, die gesonderte "Lese-/Schreibrechte" benötigen. Bitte korrigieren Sie ggf. die empfohlenen Schreibrechte für diese Dateien/Ordner. Für eine erneute Prüfung aktualisieren Sie bitte diese Seite in Ihrem Browser.<br /><br >Auf einigen Hosts ist eine Einstellung auf CHMOD 777 nicht erlaubt, aber CHMOD 666 ist in den meisten Fällen möglich. Beginnen Sie mit der höheren Einstellung und - falls notwendig - versuchen Sie dann erst die niedrigere Einstellung.');
