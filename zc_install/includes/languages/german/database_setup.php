@@ -17,8 +17,8 @@
 // | to obtain it through the world-wide-web, please send a note to       |
 // | license@zen-cart.com so we can mail you a copy immediately.          |
 // +----------------------------------------------------------------------+
-// | Translator:           cyaneo                                         |
-// | Date of Translation:  16.08.04                                       |
+// | Translator:           cyaneo/hugo13/maleborg/webchills                                         |
+// | Date of Translation:  01.05.10                                       |
 // | Homepage:             www.zen-cart.at                                |
 // +----------------------------------------------------------------------+
 // $Id$
@@ -51,7 +51,7 @@
   define('CACHE_TYPE', 'SQL Cache Methode');
   define('CACHE_TYPE_INSTRUCTION', 'Wählen Sie eine Methoden zum Zwischenspeichern (cachen) von SQL Abfragen.');
   define('SQL_CACHE', 'Sitzungs/SQL Cache Verzeichnis');
-  define('SQL_CACHE_INSTRUCTION', 'Geben Sie das Verzeichnis zum Dateibasierten Speichern von SQL Abfragen.');
+  define('SQL_CACHE_INSTRUCTION', 'Geben Sie das Verzeichnis zum dateibasierten Speichern von SQL Abfragen an.');
   define('ONLY_UPDATE_CONFIG_FILES','Nur Konfigurationsdateien aktualisieren');
 
 
