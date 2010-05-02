@@ -1,0 +1,164 @@
+===================================================
+Ultimate SEO URLs 2.107 für Zen Cart 1.3.9 deutsch
+===================================================
+
+deutsche Übersetzung/Anpassung des Moduls Ultimate SEO URLs von
+http://www.zen-cart.com/index.php?main_page=product_contrib_info&products_id=231
+
+Mai 2010
+
+Autor:
+webchills
+(www.webchills.at)
+
+Änderungen zur Version 2.106:
+- keine funktionellen Änderungen
+- Die zu ändernden Dateien wurden auf die neueste 1.3.9 Version angepasst
+
+
+
+================= WICHTIG ========================================================
+Diese Version ist nur für eine deutsche Zen-Cart 1.3.9 Version!
+Nicht verwenden für Zen-Cart 1.3.7 oder 1.3.8, dafür gibt es ein eigenes Modul!
+==================================================================================
+
+
+=========
+FEATURES
+=========
+
+kompatibel mit Zen-Cart 1.3.9 (deutsch)
+
+Via Admin kann eingestellt werden, welche Seiten umgeschrieben werden sollen 
+Defaultmäßig sind bereits die wichtigsten Seiten eingestellt (Kategorien, Artikel, statische Seiten). Wenn alle Seiten umgeschrieben werden sollen, einfach die Einträge im Admin löschen.
+
+Beispiele für URL Umwandlungen:
+
+Von: http://yoursite.com/index.php?main_page=product_info&products_id=24
+Zu: http://yoursite.com/disciples-sacred-lands-linked-p-24.html
+
+Von: http://yoursite.com/index.php?main_page=index&cPath=2_20
+Zu: http://yoursite.com/software-strategy-c-2_20.html
+
+Von: http://yoursite.com/index.php?main_page=contact_us
+Zu: http://yoursite.com/contact_us.html
+
+Das Umschreiben von EZ-Pages ist nicht möglich.
+Auch Artikel vom Typ Dokumente werden nicht umgeschrieben
+
+
+================= WICHTIG =====================
+Vor dem Einbau dieser Änderungen:
+BACKUP von Shop und Datenbank machen! 
+Keine Haftung, Verwendung auf eigene Gefahr!
+BACKUP gemacht? Ok, dann weiterlesen...
+=================================================
+
+
+===================================
+NEUINSTALLATION FÜR ZEN-CART 1.3.9
+===================================
+
+Voraussetzung:
+Aktuelle deutsche Zen-Cart 1.3.9 Version
+
+
+1.
+Im Order NEUEDATEIEN den Ordner DEINADMINVERZEICHNIS auf den Namen Ihres admin Verzeichnisses umbenennen.
+Dann die Ordner/Dateien in der vorgegebenen Struktur in Ihr Zen-Cart Verzeichnis hochladen. Dabei werden keine bestehenden Dateien überschrieben.
+
+2.
+Im Ordner GEAENDERTE DATEIEN den Ordner DEINTEMPLATE (im Ordner includes/templates) in den Namen des aktuell verwendeten Templates umbenennen (z.B. classic, viennablood,...)
+Den Ordner DEINADMINVERZEICHNIS auf den Namen Ihres admin Verzeichnisses umbenennen.
+Achtung:
+Beim Hochladen dieser Dateien werden bestehende Dateien überschrieben!
+Daher:
+Falls bereits einmal Änderungen an diesen Dateien in der Zen-Cart Installation gemacht wurden, mit WinMerge oder BeyondCompare die Dateien vergleichen und nur die Änderungen in die bestehenden Dateien übernehmen.
+Wurden noch keine Änderungen gemacht (Zen-Cart wurde z.B. gerade erst frisch installiert), die Ordner/Dateien aus dem Ordner GEAENDERTE DATEIEN einfach in der vorgegebenen Struktur in Ihr Zen-Cart Verzeichnis hochladen.
+
+3. 
+Die Datei .htaccess aus dem Verzeichnis HTACCESS mit einem Texteditor öffnen und folgenden Eintrag an das verwendete Zen-Cart Verzeichnis anpassen:
+RewriteBase /shop/
+Läuft der Shop im Verzeichnis www.meinedomain.at/shop muss nichts geändert werden.
+Läuft er unter www.meinedomain.at ändern auf:
+RewriteBase /
+Abspeichern als .htaccess und ins Shopverzeichnis hochladen. 
+Sollte dort schon eine .htaccess sein, den Inhalt der geänderten .htaccess hineinkopieren.
+
+4.
+Shop aufrufen, dabei werden die Datenbankänderungen automatisch vorgenommen (durch die includes/classes/seo.install.php)
+
+5.
+Im Admin erscheint nun unter Konfiguration der Punkt SEO URLs
+
+
+=============================================
+UPDATE VON ÄLTEREN ULTIMATE SEO URL VERSIONEN
+=============================================
+
+Erst die bestehende Ultimate SEO URL Version komplett entfernen.
+Eine Anleitung dazu befindet sich im Ordner SQL/uninstall
+Danach so vorgehen wie unter Neuinstallation beschrieben
+
+
+=============
+KONFIGURATION
+=============
+
+Die meisten Einstellungen unter Konfiguration SEO URLs sind selbsterklärend.
+Wichtig ist die Einstellungen für die Umlaute.
+Hier z.B. Folgendes eintragen:
+ä=>ae,ö=>oe,ü=>ue,ß=>ss,é=>e,Ö=>Oe,Ä=>ae,è=>e
+Nach jeder solchen Änderung muss der SEO URL Cache geleert werden
+>> SEO URL Cache leeren auf true stellen und speichern, setzt sich dann automatisch wieder auf false
+
+
+=============
+FAQ
+=============
+
+1) Nach der Installation bekomme ich beim Aufruf meiner Produkte im Shop Fehler 404 Seite nicht gefunden?
+.htaccess überprüfen
+Was ist unter RewriteBase / eingetragen
+Ausgegangen wird hier immer vom Root Verzeichnis und eingetragen werden muss das Hauptverzeichnis des Shops
+Läuft der Shop direkt unter www.meinshop.de:
+RewriteBase /
+Läuft der Shop unter www.meinshop.de/shop
+RewriteBase /shop/
+Läuft der Shop unter www.meinshop.de/test/webshop
+RewriteBase /test/webshop/
+Keine absoluten Serverpfade angeben (z.B. /var/xxx/html/)!
+Einfach immer vom Rootverzeichnis ausgehen
+
+2) Alles stimmt und es wird trotzdem nichts umgeschrieben?
+Überprüfen, ob der Provider mod_rewrite überhaupt unterstützt bzw. ob das in der Serverkonfiguration aktiv ist
+Test ist folgendermaßen möglich:
+Eine Datei mit folgendem Inhalt in einem Texteditor erstellen:
+
+Options +FollowSymLinks
+RewriteEngine On
+
+Abspeichern als .htaccess
+
+Am Server irgendein Testverzeichnis anlegen, z.B. test
+In diese Verzeichnis die .htaccess hineinlegen und dann aufrufen:
+http://www.meinshop.de/test
+
+Kommt dann ein Internal Server Error 500 ist entweder mod_rewrite nicht aktiviert oder bei Ihrem Provider ist folgender Eintrag nicht erlaubt:
+Options +FollowSymLinks
+Entfernen Sie diesen Eintrag aus der .htaccess und versuchen Sie es erneut.
+Sollte es dann funktionieren entfernen Sie Options +FollowSymLinks auch aus der .htaccess im Shopverzeichnis.
+
+3) Meine EZ-Pages werden nicht umgeschrieben?
+Das ist leider mit diesem Modul nicht möglich
+
+4) Artikel vom Produkttyp Dokument werden nicht richtig umgeschrieben, schaut so ähnlich aus wie:
+document_product_info.html?products_id=xxx
+Anders lassen sich diese Produktlinks leider mit diesem Modul nicht umschreiben
+
+
+=======
+FRAGEN?
+=======
+Posten im Forum von www.zen-cart.at
+http://www.zen-cart.at/zcvb/forum

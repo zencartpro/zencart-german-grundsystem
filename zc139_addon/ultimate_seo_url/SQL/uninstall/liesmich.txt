@@ -1,0 +1,23 @@
+Ultimate SEO URL komplett entfernen
+
+
+1)
+Admin > Tools > SQL Patches
+Inhalt von uninstall.sql ins Feld kopieren und absenden
+
+2)
+Folgende Zen-Cart 1.3.8 Originaldateien wieder einspielen:
+DEINADMINVERZEICHNIS/categories.php 
+DEINADMINVERZEICHNIS/product.php
+includes/functions/html_output.php
+includes/templates/DEINTEMPLATE/template/tpl_modules_category_icon_display.php
+
+3)
+Folgende Dateien löschen:
+DEINADMINVERZEICHNIS/includes/reset_seo_cache.php
+DEINADMINVERZEICHNIS/includes/extra_datafiles/seo.php 
+DEINADMINVERZEICHNIS/includes/functions/extra_functions/seo.php
+includes/auto_loaders/config.ultimate_seo.php 
+includes/classes/seo.install.php 
+includes/classes/seo.url.php 
+includes/extra_datafiles/seo.php
