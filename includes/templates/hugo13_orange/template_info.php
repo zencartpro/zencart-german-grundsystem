@@ -9,7 +9,7 @@
  * @version $Id$
  */
 $template_name = 'hugo13_orange';
-$template_version = 'Version 1.0.2';
+$template_version = 'Version 2.0';
 $template_author = 'rainer langheiter';
 $template_description = 'css template with parts of smarty';
 $template_screenshot = 'screenshot.jpg';

@@ -58,3 +58,35 @@ div.floatr {
  	color:#FF0000;
 	color:#CCCCCC;
  }
+ 
+ 
+ 
+ .image1, #productMainImage  {
+float:right;
+padding:0 0 20px 20px;
+}
+.l1, .l2 {
+background-color:#E4E4E4;
+border:0 dotted gray;
+float:left;
+margin:5px;
+padding:19px;
+width:auto;
+}
+.l2 {
+padding:9px 19px 10px 10px;
+}
+ul#productDetailsList, ol#productDetailsList {
+list-style:none outside none;
+margin:0;
+padding:10px;
+}
+
+.taxAddon{
+    font-weight:normal;
+    font-size:10px;
+}
+.floatingBox {
+    margin: 0;
+    width: 100%;
+    }

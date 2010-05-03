@@ -44,7 +44,7 @@
   }
   
   if(!is_object($smarty)){
-    $smarty = new Smarty_Template();
+    $smarty = new rl1SmartyTemplate();
   }
 
            

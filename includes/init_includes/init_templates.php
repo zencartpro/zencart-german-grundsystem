@@ -41,7 +41,7 @@
   define('DIR_WS_TEMPLATE', DIR_WS_TEMPLATES . $template_dir . '/');
   // r.l. hook for smarty
   if('Yes' == ACTIVATE_SMARTY){
-    $smarty = new Smarty_Template();
+    $smarty = new rl1SmartyTemplate();
   }
 /**
  * The actual template images directory to use
