@@ -5,20 +5,22 @@
 */
 
 // Smarty Library Dateien laden
-require(DIR_FS_CATALOG . 'smarty/Smarty.class.php');
+#require(DIR_FS_CATALOG . 'smarty/Smarty.class.php');
+require(DIR_FS_CATALOG . 'smarty/libs/Smarty.class.php'); 
 
 // ein guter Platz um Applikations spezifische Libraries zu laden
 // require('guestbook/guestbook.lib.php');
 
-class Smarty_Template
-    extends Smarty
+class rl1SmartyTemplate extends Smarty
     {
-    function Smarty_Template($template = DIR_WS_TEMPLATE)
+    function __construct($template = DIR_WS_TEMPLATE)
         {
         // Konstruktor. Diese Werte werden f&uuml;r jede Instanz automatisch gesetzt
-
+        parent::__construct();
+        
         $this->template = $template;
-        $this->Smarty();
+        #$this->Smarty();
+        
         $path              =DIR_FS_CATALOG . $template;
 
         $this->template_dir=$path . 'smarty_templates/';

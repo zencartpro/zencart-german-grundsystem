@@ -13,7 +13,7 @@ function getMenuList($mail='test@xx.yy'){
      }
 
  function setSmarty(){
-     require(DIR_FS_CATALOG . 'smarty/Smarty.class.php');
+     require(DIR_FS_CATALOG . 'smarty/libs/Smarty.class.php');
      $smarty = new Smarty();
      $smarty -> template_dir = DIR_FS_CATALOG . 'smarty/templates';
      $smarty -> compile_dir = DIR_FS_CATALOG . 'smarty/templates_c';

@@ -18,6 +18,8 @@
 ?>
 <table border="0" width="100%" cellspacing="10" cellpadding="10">
   <tr>
-    <td align="center" class="smallText" height="100" valign="bottom"><a href="http://www.zen-cart.com" target="_blank"><img src="images/small_zen_logo.gif" alt="Zen Cart:: the art of e-commerce" border="0"></a><br /><br />E-Commerce Engine Copyright &copy; 2003-<?php echo date('Y'); ?> <a href="http://www.zen-cart.com" target="_blank">Zen Cart&trade;</a><br /><?php echo '<a href="' . zen_href_link(FILENAME_SERVER_INFO) . '">' . $current_sinfo . '</a>'; ?></td>
+    <td align="center" class="smallText" height="100" valign="bottom">
+    <?php echo '<a href="' . zen_href_link(FILENAME_DEFAULT) . '">' . zen_image(DIR_WS_ADMIN . DIR_WS_IMAGES . 'small_zen_logo.gif', HEADER_ALT_TEXT) . '</a>'; ?>
+    <br /><br />E-Commerce Engine Copyright &copy; 2003-<?php echo date('Y'); ?> <a href="http://www.zen-cart.com" target="_blank">Zen Cart&trade;</a><br /><?php echo '<a href="' . zen_href_link(FILENAME_SERVER_INFO) . '">' . $current_sinfo . '</a>'; ?></td>
   </tr>
 </table>
