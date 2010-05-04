@@ -6,7 +6,7 @@
  * @copyright Copyright 2003-2010 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: functions_taxes.php 15943 2010-04-14 17:03:39Z wilt $
+ * @version $Id: functions_taxes.php 16101 2010-04-28 21:03:48Z wilt $
  */
 
 ////
@@ -270,4 +270,17 @@
      $tax_address['country_id'] = $tax_address_result->fields['entry_country_id'];
      return $tax_address;
  }
-?>
+ function zen_get_all_tax_descriptions() 
+ {
+   global $db;
+   $sql = "SELECT * FROM " . TABLE_TAX_RATES;
+   $result = $db->Execute($sql);
+   $taxDescriptions =array();
+   while (!$result->EOF)
+   {
+     $taxDescriptions[] = $result->fields['tax_description'];
+     $result->moveNext();
+   }
+   return $taxDescriptions;
+ }
+ 

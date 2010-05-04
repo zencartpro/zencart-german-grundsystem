@@ -6,7 +6,7 @@
  * @copyright Copyright 2003-2010 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: cc_validation.php 15806 2010-04-03 21:28:48Z drbyte $
+ * @version $Id: cc_validation.php 16058 2010-04-25 03:54:54Z drbyte $
  */
 if (!defined('IS_ADMIN_FLAG')) {
   die('Illegal Access');
@@ -20,93 +20,29 @@ if (!defined('IS_ADMIN_FLAG')) {
 class cc_validation extends base {
   var $cc_type, $cc_number, $cc_expiry_month, $cc_expiry_year;
 
-    function validate($number, $expiry_m, $expiry_y, $start_m = null, $start_y = null) {
+  function validate($number, $expiry_m, $expiry_y, $start_m = null, $start_y = null) {
     $this->cc_number = preg_replace('/[^0-9]/', '', $number);
-
-      // Check specific card-types based on first 6 digits:
-      $NumberLeft6 = substr($this->cc_number, 0, 6);
-
-      /***** SWITCH *****/
-      if (( (($NumberLeft6 >= 490302) && ($NumberLeft6 <= 490309))
-                || (($NumberLeft6 >= 490335) && ($NumberLeft6 <= 490339))
-                || (($NumberLeft6 >= 490500) && ($NumberLeft6 <= 490599))
-                || (($NumberLeft6 >= 491101) && ($NumberLeft6 <= 491102))
-                || (($NumberLeft6 >= 491174) && ($NumberLeft6 <= 491182))
-                || (($NumberLeft6 >= 493600) && ($NumberLeft6 <= 493699))
-                ||  ($NumberLeft6 == 564182)
-                || (($NumberLeft6 >= 633300) && ($NumberLeft6 <= 633349))
-                || (($NumberLeft6 >= 675900) && ($NumberLeft6 <= 675999))
-                ) && (preg_match('/^([0-9]{16}|[0-9]{18}|[0-9]{19})$/', $this->cc_number))  and CC_ENABLED_SWITCH=='1') {
-          $this->cc_type = "Switch";
-      }
-
-      /***** SOLO *****/
-      elseif (( (($NumberLeft6 >= 633450) && ($NumberLeft6 <= 633460))
-                || (($NumberLeft6 >= 633462) && ($NumberLeft6 <= 633472))
-                || (($NumberLeft6 >= 633474) && ($NumberLeft6 <= 633475))
-                ||  ($NumberLeft6 == 633477)
-                || (($NumberLeft6 >= 633479) && ($NumberLeft6 <= 633480))
-                || (($NumberLeft6 >= 633482) && ($NumberLeft6 <= 633489))
-                ||  ($NumberLeft6 == 633498)
-                || (($NumberLeft6 >= 676700) && ($NumberLeft6 <= 676799))
-                ) && (preg_match('/^([0-9]{16}|[0-9]{18}|[0-9]{19})$/', $this->cc_number))  and CC_ENABLED_SOLO=='1') {
-          $this->cc_type = "Solo";
-      }
-
-      /***** JCB *****/
-      elseif (( (($NumberLeft6 >= 352800) && ($NumberLeft6 <= 358999))
-//              ||  ($NumberLeft6 == 411111)
-              )
-              && (preg_match('/^[0-9]{16}$/', $this->cc_number))  and CC_ENABLED_JCB=='1') {
-          $this->cc_type = "JCB";
-      }
-
-      /***** MAESTRO *****/
-      elseif (( (($NumberLeft6 >= 493698) && ($NumberLeft6 <= 493699))
-                ||  ($NumberLeft6 == 490303)
-                || (($NumberLeft6 >= 633302) && ($NumberLeft6 <= 633349))
-                || (($NumberLeft6 >= 675900) && ($NumberLeft6 <= 675999))
-                || (($NumberLeft6 >= 500000) && ($NumberLeft6 <= 509999))
-                || (($NumberLeft6 >= 560000) && ($NumberLeft6 <= 589999))
-                || (($NumberLeft6 >= 600000) && ($NumberLeft6 <= 699999))
-                ) && (preg_match('/^[0-9]{12}([0-9]{7})$/', $this->cc_number))  and CC_ENABLED_MAESTRO=='1') {
-          $this->cc_type = "Maestro";
-      }
-
-      /***** VISA *****/
-      elseif (( (($NumberLeft6 >= 400000) && ($NumberLeft6 <= 499999))
-                // ensure we exclude AMT only cards
-                && !( (($NumberLeft6 >= 490300) && ($NumberLeft6 <= 490301))
-                      || (($NumberLeft6 >= 490310) && ($NumberLeft6 <= 490334))
-                      || (($NumberLeft6 >= 490340) && ($NumberLeft6 <= 490399))
-                      || (($NumberLeft6 >= 490400) && ($NumberLeft6 <= 490409))
-                      ||  ($NumberLeft6 == 490419)
-                      ||  ($NumberLeft6 == 490451)
-                      ||  ($NumberLeft6 == 490459)
-                      ||  ($NumberLeft6 == 490467)
-                      || (($NumberLeft6 >= 490475) && ($NumberLeft6 <= 490478))
-                      || (($NumberLeft6 >= 490500) && ($NumberLeft6 <= 490599))
-                      || (($NumberLeft6 >= 491103) && ($NumberLeft6 <= 491173))
-                      || (($NumberLeft6 >= 491183) && ($NumberLeft6 <= 491199))
-                      || (($NumberLeft6 >= 492800) && ($NumberLeft6 <= 492899))
-                      || (($NumberLeft6 >= 498700) && ($NumberLeft6 <= 498799))
-                      )
-                ) && (preg_match('/^(4[0-9]{15}|4[0-9]{12})$/', $this->cc_number))  and CC_ENABLED_VISA=='1') {
-          $this->cc_type = 'Visa';
-
-    // traditional CC hash checks:
-    } elseif (preg_match('/^4[0-9]{12}([0-9]{3})$/', $this->cc_number) and CC_ENABLED_VISA=='1') {
+    // NOTE: We check Maestro/Switch *before* we check Visa/Mastercard, so we don't have to rule-out numerous types from V/MC matching rules.
+    if (preg_match('/^(49369[8-9]|490303|6333[0-4][0-9]|6759[0-9]{2}|5[0678][0-9]{4}|6[0-9][02-9][02-9][0-9]{2})[0-9]{6,13}?$/', $this->cc_number) && (CC_ENABLED_MAESTRO=='1' || CC_ENABLED_SWITCH=='1')) {
+      $this->cc_type = "Maestro";
+    } else if (preg_match('/^(49030[2-9]|49033[5-9]|4905[0-9]{2}|49110[1-2]|49117[4-9]|49918[0-2]|4936[0-9]{2}|564182|6333[0-4][0-9])[0-9]{10}([0-9]{2,3}?)?$/', $this->cc_number) && (CC_ENABLED_MAESTRO=='1' || CC_ENABLED_SWITCH=='1')) {
+      $this->cc_type = "Maestro"; // SWITCH is now Maestro
+    } else if (preg_match('/^(6334[5-9][0-9]|6767[0-9]{2})[0-9]{10}([0-9]{2,3}?)?$/', $this->cc_number) && CC_ENABLED_SOLO=='1') {
+      $this->cc_type = "Solo"; // is also a Maestro product
+    } elseif (preg_match('/^4[0-9]{12}([0-9]{3})?$/', $this->cc_number) && CC_ENABLED_VISA=='1') {
       $this->cc_type = 'Visa';
-    } elseif (preg_match('/^5[1-5][0-9]{14}$/', $this->cc_number) and CC_ENABLED_MC=='1') {
+    } elseif (preg_match('/^5[1-5][0-9]{14}$/', $this->cc_number) && CC_ENABLED_MC=='1') {
       $this->cc_type = 'MasterCard';
-    } elseif (preg_match('/^3[47][0-9]{13}$/', $this->cc_number) and CC_ENABLED_AMEX=='1') {
+    } elseif (preg_match('/^3[47][0-9]{13}$/', $this->cc_number) && CC_ENABLED_AMEX=='1') {
       $this->cc_type = 'American Express';
-    } elseif (preg_match('/^3(0[0-5]|[68][0-9])[0-9]{11}$/', $this->cc_number) and CC_ENABLED_DINERS_CLUB=='1') {
+    } elseif (preg_match('/^3(0[0-5]|[68][0-9])[0-9]{11}$/', $this->cc_number) && CC_ENABLED_DINERS_CLUB=='1') {
       $this->cc_type = 'Diners Club';
-    } elseif (preg_match('/^(6011[0-9]{12}|622[1-9][0-9]{12}|64[4-9][0-9]{13}|65[0-9]{14})$/', $this->cc_number) and CC_ENABLED_DISCOVER=='1') {
+    } elseif (preg_match('/^(6011[0-9]{12}|622[1-9][0-9]{12}|64[4-9][0-9]{13}|65[0-9]{14})$/', $this->cc_number) && CC_ENABLED_DISCOVER=='1') {
       $this->cc_type = 'Discover';
-    } elseif (preg_match('/^5610[0-9]{12}$/', $this->cc_number) and CC_ENABLED_AUSTRALIAN_BANKCARD=='1') {
-      $this->cc_type = 'Australian BankCard';
+    } elseif (preg_match('/^(35(28|29|[3-8][0-9])[0-9]{12}|2131[0-9]{11}|1800[0-9]{11})$/', $this->cc_number) && CC_ENABLED_JCB=='1') {
+      $this->cc_type = "JCB";
+    } elseif (preg_match('/^5610[0-9]{12}$/', $this->cc_number) && CC_ENABLED_AUSTRALIAN_BANKCARD=='1') {
+      $this->cc_type = 'Australian BankCard'; // NOTE: is now obsolete
     } else {
       return -1;
     }

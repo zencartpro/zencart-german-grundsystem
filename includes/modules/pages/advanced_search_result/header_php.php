@@ -6,7 +6,7 @@
  * @copyright Copyright 2003-2009 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: header_php.php 14141 2009-08-10 19:34:47Z wilt $
+ * @version $Id: header_php.php 16059 2010-04-25 11:18:15Z wilt $
  */
 
 // This should be first line of the script:
@@ -18,7 +18,7 @@ require(DIR_WS_MODULES . zen_get_module_directory('require_languages.php'));
 $error = false;
 $missing_one_input = false;
 
-$_GET['keyword'] = zen_output_string_protected(trim($_GET['keyword']));
+$_GET['keyword'] = trim($_GET['keyword']);
 
 if ( (isset($_GET['keyword']) && (empty($_GET['keyword']) || $_GET['keyword']==HEADER_SEARCH_DEFAULT_TEXT || $_GET['keyword'] == KEYWORD_FORMAT_STRING ) ) &&
 (isset($_GET['dfrom']) && (empty($_GET['dfrom']) || ($_GET['dfrom'] == DOB_FORMAT_STRING))) &&
@@ -443,6 +443,7 @@ if ((!isset($_GET['sort'])) || (!preg_match('/[1-8][ad]/', $_GET['sort'])) || (s
     break;
   }
 }
+$_GET['keyword'] = zen_output_string_protected($_GET['keyword']);
 
 $listing_sql = $select_str . $from_str . $where_str . $order_str;
 // Notifier Point
@@ -456,8 +457,6 @@ if ($result->number_of_rows == 0) {
   $messageStack->add_session('search', TEXT_NO_PRODUCTS, 'caution');
   zen_redirect(zen_href_link(FILENAME_ADVANCED_SEARCH, zen_get_all_get_params('action')));
 }
-
-
 // This should be last line of the script:
 $zco_notifier->notify('NOTIFY_HEADER_END_ADVANCED_SEARCH_RESULTS', $keywords);
 //EOF

@@ -128,7 +128,7 @@ class paypaldp extends base {
     global $order;
     $this->code = 'paypaldp';
     $this->codeTitle = MODULE_PAYMENT_PAYPALDP_TEXT_ADMIN_TITLE_WPP;
-    $this->codeVersion = '1.3.9';
+    $this->codeVersion = '1.3.9b';
     $this->enableDirectPayment = true;
     $this->enabled = (MODULE_PAYMENT_PAYPALDP_STATUS == 'True');
     // Set the title & description text based on the mode we're in
@@ -746,9 +746,10 @@ class paypaldp extends base {
       // Add note to track that this was an API WPP transaction:
       $optionsAll['CUSTOM'] = 'DP-' . (int)$_SESSION['customer_id'] . '-' . time();
 
-      $options['INVNUM'] = substr(STORE_NAME, 0, 100) . '-' . (int)$_SESSION['customer_id'] . '-' . time();  // (cannot send actual invoice number because it's not assigned until after payment is completed)
+      // send the store name as transaction identifier, to help distinguish payments between multiple stores:
+      $options['INVNUM'] = (int)$_SESSION['customer_id'] . '-' . time() . '-[' . substr(STORE_NAME, 0, 30) . ']';  // (cannot send actual invoice number because it's not assigned until after payment is completed)
 
-      if (MODULE_PAYMENT_PAYPALDP_MERCHANT_COUNTRY == 'UK' || MODULE_PAYMENT_PAYPALDP_PF_VENDOR != '') { // Payflow params required
+      if (MODULE_PAYMENT_PAYPALDP_MERCHANT_COUNTRY == 'UK' || (MODULE_PAYMENT_PAYPALWPP_PFVENDOR != '' && MODULE_PAYMENT_PAYPALWPP_PFPASSWORD != '')) { // Payflow params required
         if (isset($optionsAll['COUNTRYCODE'])) {
           $optionsAll['COUNTRY'] = $optionsAll['COUNTRYCODE'];
           unset($optionsAll['COUNTRYCODE']);
@@ -1029,10 +1030,10 @@ class paypaldp extends base {
     $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) values ('Debug Mode', 'MODULE_PAYMENT_PAYPALDP_DEBUGGING', 'Off', 'Would you like to enable debug mode?  A complete detailed log of failed transactions will be emailed to the store owner.', '6', '25', 'zen_cfg_select_option(array(\'Off\', \'Alerts Only\', \'Log File\', \'Log and Email\'), ', now())");
 
     // 3D-Secure
-    $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) values ('Processor Id', 'MODULE_PAYMENT_PAYPALDP_CARDINAL_PROCESSOR', 'enter value', 'The processor id for the Cardinal Centinel service. ', '6', '25', now())");
-    $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) values ('Merchant Id', 'MODULE_PAYMENT_PAYPALDP_CARDINAL_MERCHANT', 'enter value', 'The merchant id for the Cardinal Centinel service. ', '6', '25', now())");
-    $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added, set_function, use_function) values ('Transaction Password', 'MODULE_PAYMENT_PAYPALDP_CARDINAL_PASSWORD', '', 'Password to secure and verify the transaction originated from merchant represented by the transaction details.', '6', '25', now(), 'zen_cfg_password_input(', 'zen_cfg_password_display')");
-    $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) values ('Only Accept Chargeback Protected Orders', 'MODULE_PAYMENT_PAYPALDP_CARDINAL_AUTHENTICATE_REQ', 'No', 'Only proceed with authorization when the authentication result provides chargeback protection? ', '6', '25', 'zen_cfg_select_option(array(\'Yes\', \'No\'), ', now())");
+    $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) values ('Cardinal Processor ID', 'MODULE_PAYMENT_PAYPALDP_CARDINAL_PROCESSOR', '134-01', 'The processor ID for the Cardinal Centinel service. ', '6', '25', now())");
+    $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) values ('Cardinal Merchant ID', 'MODULE_PAYMENT_PAYPALDP_CARDINAL_MERCHANT', 'enter value', 'The merchant ID for the Cardinal Centinel service. ', '6', '25', now())");
+    $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added, set_function, use_function) values ('Cardinal Transaction Password', 'MODULE_PAYMENT_PAYPALDP_CARDINAL_PASSWORD', '', 'Enter your Cardinal Transaction Password from your Cardinal Merchant Admin console. This is used to secure and verify that the transaction originated from your store legitimately.', '6', '25', now(), 'zen_cfg_password_input(', 'zen_cfg_password_display')");
+    $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) values ('Only Accept Chargeback-Protected Orders via Cardinal?', 'MODULE_PAYMENT_PAYPALDP_CARDINAL_AUTHENTICATE_REQ', 'No', 'Only proceed with authorization when the Cardinal authentication result provides chargeback protection? ', '6', '25', 'zen_cfg_select_option(array(\'Yes\', \'No\'), ', now())");
 
     $this->notify('NOTIFY_PAYMENT_PAYPALDP_INSTALLED');
   }
@@ -1382,6 +1383,8 @@ class paypaldp extends base {
       case 'DE':
       case 'CH':
       $info['state'] = '';
+      break;
+      case 'GB':
       break;
       default:
       $info['state'] = '';
@@ -1785,6 +1788,7 @@ class paypaldp extends base {
       return (sizeof($this->fmfErrors)>0) ? $this->fmfErrors : FALSE;
     }
     //echo '<br />basicError='.$basicError.'<br />' . urldecode(print_r($response,true)); die('halted');
+    if (!isset($response['L_SHORTMESSAGE0']) && isset($response['RESPMSG']) && $response['RESPMSG'] != '') $response['L_SHORTMESSAGE0'] = $response['RESPMSG'];
     $errorInfo = "\n\nProblem occurred while customer " . $_SESSION['customer_id'] . ' ' . $_SESSION['customer_first_name'] . ' ' . $_SESSION['customer_last_name'] . ' was attempting checkout with PayPal Website Payments Pro.';
 
     switch($operation) {
@@ -2110,6 +2114,10 @@ class paypaldp extends base {
 
     if ($errorNo != 0) {
       $this->zcLog('Cardinal Lookup 3', '[' . zen_session_id() . '] Cardinal Centinel - cmpi_lookup error - ' . $errorNo . ' - ' . $errorDesc);
+      $errorText = 'Cardinal Lookup 3' . '[' . zen_session_id() . '] Cardinal Centinel - cmpi_lookup error - ' . $errorNo . ' - ' . $errorDesc;
+      $errorText .= "\n\n" . 'There are 3 steps to configuring your Cardinal 3D-Secure service properly: ' . "\n1-Login to the Cardinal Merchant Admin URL supplied in your welcome package (NOT the test URL), and accept the license agreement.\2-Set a transaction password.\n3-Copy your Cardinal Merchant ID and Cardinal Transaction Password into your ZC PayPal module.\n\nFor specific help, please contact implement@cardinalcommerce.com to sort out your account configuration issues.";
+      $errorText .= "\n\nProblem observed while customer " . $_SESSION['customer_id'] . ' ' . $_SESSION['customer_first_name'] . ' ' . $_SESSION['customer_last_name'] . ' was attempting checkout with 3D-Secure authentication. THEIR PURCHASE WAS NOT SUCCESSFUL. Please resolve this matter to enable future checkouts.';
+      zen_mail(STORE_NAME, STORE_OWNER_EMAIL_ADDRESS, substr($errorDesc, 0, 75) . ' (' . $errorNo . ')', $errorText, STORE_OWNER, STORE_OWNER_EMAIL_ADDRESS, array('EMAIL_MESSAGE_HTML'=>nl2br($errorText)), 'paymentalert');
     }
 
     // default the continue flag to 'N'
@@ -2434,41 +2442,37 @@ class paypaldp extends base {
     } else {
       $cardType = $info;
     }
-    if (strcasecmp("VISA", $cardType) == 0 || strcasecmp("MASTERCARD", $cardType) == 0 || strcasecmp("JCB", $cardType) == 0) {
+    if (in_array($cardType, array('VISA', 'MASTERCARD', 'JCB', 'MAESTRO'))) {
       return true;
     } else {
       return false;
     }
   }
 
-  function determineCardType($Card_Number) {
-
-    $Card_Number = trim($Card_Number);
-
-    $cardType = "UNKNOWN";  // VISA, MASTERCARD, JCB, AMEX, DISCOVER, UNKNOWN
-
-    if (strlen($Card_Number) == "16" AND strpos($Card_Number, "4") === 0) {
-      $cardType = "VISA";
-    } else if (strlen($Card_Number) == "13" AND strpos($Card_Number, "4") === 0) {
-      $cardType = "VISA";
-    } else if (strlen($Card_Number) == "13" AND strpos($Card_Number, "5") === 0) {
-      $cardType = "MASTERCARD";
-    } else if (strlen($Card_Number) == "16" AND strpos($Card_Number, "5") === 0) {
-      $cardType = "MASTERCARD";
-    } else if (strlen($Card_Number) == "15" AND strpos($Card_Number, "2131") === 0) {
+  function determineCardType($cardNumber) {
+    $cardNumber = preg_replace('/[^0-9]/', '', $cardNumber);
+    // NOTE: We check Maestro/Switch *before* we check Visa/Mastercard, so we don't have to rule-out numerous types from V/MC matching rules.
+    if (preg_match('/^(49369[8-9]|490303|6333[0-4][0-9]|6759[0-9]{2}|5[0678][0-9]{4}|6[0-9][02-9][02-9][0-9]{2})[0-9]{6,13}?$/', $cardNumber)) {
+      $cardType = "MAESTRO";
+    } else if (preg_match('/^(49030[2-9]|49033[5-9]|4905[0-9]{2}|49110[1-2]|49117[4-9]|49918[0-2]|4936[0-9]{2}|564182|6333[0-4][0-9])[0-9]{10}([0-9]{2,3}?)?$/', $cardNumber)) {
+      $cardType = "MAESTRO"; // SWITCH is now Maestro
+    } else if (preg_match('/^(6334[5-9][0-9]|6767[0-9]{2})[0-9]{10}([0-9]{2,3}?)?$/', $cardNumber)) {
+      $cardType = "SOLO";
+    } elseif (preg_match('/^4[0-9]{12}([0-9]{3})?$/', $cardNumber)) {
+      $cardType = 'VISA';
+    } elseif (preg_match('/^5[1-5][0-9]{14}$/', $cardNumber)) {
+      $cardType = 'MASTERCARD';
+    } elseif (preg_match('/^3[47][0-9]{13}$/', $cardNumber)) {
+      $cardType = 'AMEX';
+    } elseif (preg_match('/^3(0[0-5]|[68][0-9])[0-9]{11}$/', $cardNumber)) {
+      $cardType = 'DINERS CLUB';
+    } elseif (preg_match('/^(6011[0-9]{12}|622[1-9][0-9]{12}|64[4-9][0-9]{13}|65[0-9]{14})$/', $cardNumber)) {
+      $cardType = 'DISCOVER';
+    } elseif (preg_match('/^(35(28|29|[3-8][0-9])[0-9]{12}|2131[0-9]{11}|1800[0-9]{11})$/', $cardNumber)) {
       $cardType = "JCB";
-    } else if (strlen($Card_Number) == "15" AND strpos($Card_Number, "1800") === 0) {
-      $cardType = "JCB";
-    } else if (strlen($Card_Number) == "16" AND strpos($Card_Number, "3") === 0) {
-      $cardType = "JCB";
-    } else if (strlen($Card_Number) == "15" AND strpos($Card_Number, "34") === 0) {
-      $cardType = "AMEX";
-    } else if (strlen($Card_Number) == "15" AND strpos($Card_Number, "37") === 0) {
-      $cardType = "AMEX";
-    } else if (strlen($Card_Number) == "16" AND strcmp(substr($Card_Number, 0, 4), "6011") == 0) {
-      $cardType = "DISCOVER";
+    } else {
+      $cardType = "UNKNOWN";
     }
-
     return $cardType;
   }
 

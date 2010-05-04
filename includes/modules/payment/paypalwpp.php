@@ -6,7 +6,7 @@
  * @copyright Copyright 2003-2010 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: paypalwpp.php 15914 2010-04-12 20:04:43Z drbyte $
+ * @version $Id: paypalwpp.php 16164 2010-04-30 23:50:13Z drbyte $
  */
 /**
  * load the communications layer code
@@ -101,7 +101,7 @@ class paypalwpp extends base {
     global $order;
     $this->code = 'paypalwpp';
     $this->codeTitle = MODULE_PAYMENT_PAYPALWPP_TEXT_ADMIN_TITLE_EC;
-    $this->codeVersion = '1.3.9';
+    $this->codeVersion = '1.3.9b';
     $this->enableDirectPayment = FALSE;
     $this->enabled = (MODULE_PAYMENT_PAYPALWPP_STATUS == 'True');
     // Set the title & description text based on the mode we're in ... EC vs US/UK vs admin
@@ -325,7 +325,7 @@ class paypalwpp extends base {
       $options['CUSTOM'] = 'EC-' . (int)$_SESSION['customer_id'] . '-' . time();
 
       // send the store name as transaction identifier, to help distinguish payments between multiple stores:
-      $options['INVNUM'] = substr(STORE_NAME, 0, 100) . ' - ' . (int)$_SESSION['customer_id'] . '-' . time();  // (cannot send actual invoice number because it's not assigned until after payment is completed)
+      $options['INVNUM'] = (int)$_SESSION['customer_id'] . '-' . time() . '-[' . substr(STORE_NAME, 0, 30) . ']';  // (cannot send actual invoice number because it's not assigned until after payment is completed)
 
       $options['CURRENCY'] = $this->selectCurrency($order->info['currency']);
       $order_amount = $this->calc_order_amount($order->info['total'], $options['CURRENCY'], FALSE);
@@ -835,7 +835,7 @@ class paypalwpp extends base {
                                 'orders_status_id' => (int)$new_order_status,
                                 'date_added' => 'now()',
                                 'comments' => 'AUTHORIZATION ADDED. Trans ID: ' . urldecode($response['TRANSACTIONID']) . "\n" . ' Amount:' . urldecode($response['AMT']) . ' ' . $currency,
-                                'customer_notified' => 0
+                                'customer_notified' => -1
                                );
         zen_db_perform(TABLE_ORDERS_STATUS_HISTORY, $sql_data_array);
         $db->Execute("update " . TABLE_ORDERS  . "
@@ -1201,10 +1201,10 @@ class paypalwpp extends base {
     if ($surcharges > 0) {
       $numberOfLineItemsProcessed++;
       $k = $numberOfLineItemsProcessed;
-      $optionsLI["L_NAME$k"]   = MODULES_PAYMENT_PAYPALWPP_LINEITEM_TEXT_SURCHARGES_SHORT;
-      $optionsLI["L_DESC$k"]   = MODULES_PAYMENT_PAYPALWPP_LINEITEM_TEXT_SURCHARGES_LONG;
-      $optionsLI["L_AMT$k"]    = $surcharges;
-      $optionsLI["L_QTY$k"]    = 1;
+      $optionsLI["L_NAME$k"] = MODULES_PAYMENT_PAYPALWPP_LINEITEM_TEXT_SURCHARGES_SHORT;
+      $optionsLI["L_DESC$k"] = MODULES_PAYMENT_PAYPALWPP_LINEITEM_TEXT_SURCHARGES_LONG;
+      $optionsLI["L_AMT$k"]  = $surcharges;
+      $optionsLI["L_QTY$k"]  = 1;
       $subTotalLI += $surcharges;
     }
 
@@ -1420,7 +1420,7 @@ class paypalwpp extends base {
     if (MODULE_PAYMENT_PAYPALWPP_TRANSACTION_MODE == 'Order') $options['PAYMENTACTION'] = 'Order';
 
     $options['ALLOWNOTE'] = 1;  // allow customer to enter a note on the PayPal site, which will be copied to order comments upon return to store.
-    $options['SOLUTIONTYPE'] = 'Mark';  // Use 'Mark' for normal Express Checkout, 'Sole' for auctions or alternate flow
+    $options['SOLUTIONTYPE'] = 'Sole';  // Use 'Mark' for normal Express Checkout, 'Sole' for auctions or alternate flow
     $options['LANDINGPAGE'] = 'Billing';  // "Billing" or "Login" selects the style of landing page on PayPal site during checkout
 
     // Set the return URL if they click "Submit" on PayPal site
@@ -1620,6 +1620,7 @@ class paypalwpp extends base {
 
     // get the payer_id from the customer's info as returned from PayPal
     $_SESSION['paypal_ec_payer_id'] = $response['PAYERID'];
+    $this->notify('NOTIFY_PAYPAL_EXPRESS_CHECKOUT_PAYERID_DETERMINED', $response['PAYERID']);
 
     $gender = '';
     if (urldecode($response['SALUTATION'] == 'Mr')) $gender = 'm';
@@ -1766,7 +1767,7 @@ class paypalwpp extends base {
     // delivery
     if (strtoupper($_SESSION['paypal_ec_payer_info']['ship_address_status']) != 'NONE') {
       $order->delivery['name']          = $paypal_ec_payer_info['ship_name'];
-      $order->delivery['company']       = $paypal_ec_payer_info['payer_business'];
+      $order->delivery['company']       = trim($paypal_ec_payer_info['ship_name'] . ' ' . $paypal_ec_payer_info['payer_business']);
       $order->delivery['street_address']= $paypal_ec_payer_info['ship_street_1'];
       $order->delivery['suburb']        = $paypal_ec_payer_info['ship_street_2'];
       $order->delivery['city']          = $paypal_ec_payer_info['ship_city'];
@@ -1881,16 +1882,16 @@ class paypalwpp extends base {
 
         // set the customer information in the array for the table insertion
         $sql_data_array = array(
-        'customers_firstname'           => $paypal_ec_payer_info['payer_firstname'],
-        'customers_lastname'            => $paypal_ec_payer_info['payer_lastname'],
-        'customers_email_address'       => $paypal_ec_payer_info['payer_email'],
-        'customers_email_format'        => (ACCOUNT_EMAIL_PREFERENCE == '1' ? 'HTML' : 'TEXT'),
-        'customers_telephone'           => $paypal_ec_payer_info['ship_phone'],
-        'customers_fax'                 => '',
-        'customers_gender'              => $paypal_ec_payer_info['payer_gender'],
-        'customers_newsletter'          => '0',
-        'customers_password'            => zen_encrypt_password($password),
-        'customers_paypal_payerid'      => $_SESSION['paypal_ec_payer_id']);
+            'customers_firstname'           => $paypal_ec_payer_info['payer_firstname'],
+            'customers_lastname'            => $paypal_ec_payer_info['payer_lastname'],
+            'customers_email_address'       => $paypal_ec_payer_info['payer_email'],
+            'customers_email_format'        => (ACCOUNT_EMAIL_PREFERENCE == '1' ? 'HTML' : 'TEXT'),
+            'customers_telephone'           => $paypal_ec_payer_info['ship_phone'],
+            'customers_fax'                 => '',
+            'customers_gender'              => $paypal_ec_payer_info['payer_gender'],
+            'customers_newsletter'          => '0',
+            'customers_password'            => zen_encrypt_password($password),
+            'customers_paypal_payerid'      => $_SESSION['paypal_ec_payer_id']);
 
         // insert the data
         $result = zen_db_perform(TABLE_CUSTOMERS, $sql_data_array);
@@ -1903,16 +1904,19 @@ class paypalwpp extends base {
 
         // set the customer address information in the array for the table insertion
         $sql_data_array = array(
-        'customers_id'              => $customer_id,
-        'entry_gender'              => $paypal_ec_payer_info['payer_gender'],
-        'entry_firstname'           => $paypal_ec_payer_info['payer_firstname'],
-        'entry_lastname'            => $paypal_ec_payer_info['payer_lastname'],
-        'entry_street_address'      => $paypal_ec_payer_info['ship_street_1'],
-        'entry_suburb'              => $paypal_ec_payer_info['ship_street_2'],
-        'entry_city'                => $paypal_ec_payer_info['ship_city'],
-        'entry_zone_id'             => $state_id,
-        'entry_postcode'            => $paypal_ec_payer_info['ship_postal_code'],
-        'entry_country_id'          => $country_id);
+            'customers_id'              => $customer_id,
+            'entry_gender'              => $paypal_ec_payer_info['payer_gender'],
+            'entry_firstname'           => $paypal_ec_payer_info['payer_firstname'],
+            'entry_lastname'            => $paypal_ec_payer_info['payer_lastname'],
+            'entry_street_address'      => $paypal_ec_payer_info['ship_street_1'],
+            'entry_suburb'              => $paypal_ec_payer_info['ship_street_2'],
+            'entry_city'                => $paypal_ec_payer_info['ship_city'],
+            'entry_zone_id'             => $state_id,
+            'entry_postcode'            => $paypal_ec_payer_info['ship_postal_code'],
+            'entry_country_id'          => $country_id);
+        if (isset($paypal_ec_payer_info['ship_name']) && $paypal_ec_payer_info['ship_name'] != ''  && $paypal_ec_payer_info['ship_name'] != $paypal_ec_payer_info['payer_firstname'] . ' ' . $paypal_ec_payer_info['payer_lastname']) {
+          $sql_data_array['entry_company'] = $paypal_ec_payer_info['ship_name'];
+        }
         if ($state_id > 0) {
           $sql_data_array['entry_zone_id'] = $state_id;
           $sql_data_array['entry_state'] = '';
@@ -2077,7 +2081,7 @@ class paypalwpp extends base {
         }
       }
       // now grab the address from the database and set it as the overridden address
-      $sql = "SELECT entry_firstname, entry_lastname,
+      $sql = "SELECT entry_firstname, entry_lastname, entry_company,
                      entry_street_address, entry_suburb, entry_city, entry_postcode,
                      entry_country_id, entry_zone_id, entry_state
               FROM " . TABLE_ADDRESS_BOOK . "
@@ -2200,7 +2204,7 @@ class paypalwpp extends base {
     $this->zcLog('findMatchingAddressBookEntry - 1-stats', 'lookups:' . "\n" . print_r(array_merge($country->fields, array('zone_country_id' => $country_zone_check->fields['zone_id']), $zone->fields), true) . "\n" . 'check_zone: ' . $check_zone . "\n" . 'zone:' . $zone_id . "\nSubmittedAddress:".print_r($address_question_arr, TRUE));
 
     // do a match on address, street, street2, city
-    $sql = "SELECT address_book_id, entry_street_address, entry_suburb, entry_city
+    $sql = "SELECT address_book_id, entry_street_address, entry_suburb, entry_city, entry_company, entry_firstname, entry_lastname
                 FROM " . TABLE_ADDRESS_BOOK . "
                 WHERE customers_id = :customerId
                 AND entry_country_id = :countryId";
@@ -2216,6 +2220,8 @@ class paypalwpp extends base {
 
     if (!$answers_arr->EOF) {
       // build a base string to compare street+suburb+city content
+      //$matchQuestion = str_replace("\n", '', $address_question_arr['company']);
+      //$matchQuestion = str_replace("\n", '', $address_question_arr['name']);
       $matchQuestion = str_replace("\n", '', $address_question_arr['street_address']);
       $matchQuestion = trim($matchQuestion);
       $matchQuestion = $matchQuestion . str_replace("\n", '', $address_question_arr['suburb']);
@@ -2231,6 +2237,8 @@ class paypalwpp extends base {
 
         // first from the db
         $fromDb = '';
+//        $fromDb = str_replace("\n", '', $answers_arr->fields['entry_company']);
+///        $fromDb = str_replace("\n", '', $answers_arr->fields['entry_firstname'].$answers_arr->fields['entry_lastname']);
         $fromDb = str_replace("\n", '', $answers_arr->fields['entry_street_address']);
         $fromDb = trim($fromDb);
         $fromDb = $fromDb . str_replace("\n", '', $answers_arr->fields['entry_suburb']);
@@ -2350,6 +2358,7 @@ class paypalwpp extends base {
                            array('fieldName'=>'entry_postcode', 'value'=>$address_question_arr['postcode'], 'type'=>'string'),
                            array('fieldName'=>'entry_city', 'value'=>$address_question_arr['city'], 'type'=>'string'),
                            array('fieldName'=>'entry_country_id', 'value'=>$country_id, 'type'=>'integer'));
+    if ($address_question_arr['company'] != '' && $address_question_arr['company'] != $address_question_arr['name']) array('fieldName'=>'entry_company', 'value'=>$address_question_arr['company'], 'type'=>'string');
     $sql_data_array[] = array('fieldName'=>'entry_gender', 'value'=>$address_question_arr['payer_gender'], 'type'=>'enum:m|f');
     $sql_data_array[] = array('fieldName'=>'entry_suburb', 'value'=>$address_question_arr['suburb'], 'type'=>'string');
     if ($zone_id > 0) {
@@ -2435,7 +2444,7 @@ class paypalwpp extends base {
 
         // bof: not require part of contents merge notice
         // restore cart contents
-    $_SESSION['cart']->restore_contents();
+        $_SESSION['cart']->restore_contents();
         // eof: not require part of contents merge notice
 
         // check current cart contents count if required
@@ -2600,7 +2609,9 @@ class paypalwpp extends base {
       }
       return (sizeof($this->fmfErrors)>0) ? $this->fmfErrors : FALSE;
     }
+    if (!isset($response['L_SHORTMESSAGE0']) && isset($response['RESPMSG']) && $response['RESPMSG'] != '') $response['L_SHORTMESSAGE0'] = $response['RESPMSG'];
     //echo '<br />basicError='.$basicError.'<br />' . urldecode(print_r($response,true)); die('halted');
+    $errorInfo = "\n\nProblem occurred while customer " . $_SESSION['customer_id'] . ' ' . $_SESSION['customer_first_name'] . ' ' . $_SESSION['customer_last_name'] . ' was attempting checkout with PayPal Express Checkout.';
 
     switch($operation) {
       case 'SetExpressCheckout':
@@ -2621,7 +2632,7 @@ class paypalwpp extends base {
           if ($response['L_ERRORCODE0'] == 10752) $errorText = MODULE_PAYMENT_PAYPALWPP_TEXT_DECLINED;
 
           $detailedMessage = ($errorText == MODULE_PAYMENT_PAYPALWPP_TEXT_GEN_ERROR || $this->enableDebugging || $response['CURL_ERRORS'] != '' || $this->emailAlerts) ? $errorNum . ' ' . urldecode(' ' . $response['L_SHORTMESSAGE0'] . ' - ' . $response['L_LONGMESSAGE0'] . (isset($response['RESPMSG']) ? ' ' . $response['RESPMSG'] : '') . ' ' . $response['CURL_ERRORS']) : '';
-          $detailedEmailMessage = ($detailedMessage == '') ? '' : MODULE_PAYMENT_PAYPALWPP_TEXT_EMAIL_ERROR_MESSAGE . urldecode($response['L_ERRORCODE0'] . "\n" . $response['L_SHORTMESSAGE0'] . "\n" . $response['L_LONGMESSAGE0'] . $response['L_ERRORCODE1'] . "\n" . $response['L_SHORTMESSAGE1'] . "\n" . $response['L_LONGMESSAGE1'] . $response['L_ERRORCODE2'] . "\n" . $response['L_SHORTMESSAGE2'] . "\n" . $response['L_LONGMESSAGE2'] . ($response['CURL_ERRORS'] != '' ? "\n" . $response['CURL_ERRORS'] : '') . "\n\n" . 'Zen Cart message: ' . $errorText);
+          $detailedEmailMessage = ($detailedMessage == '') ? '' : MODULE_PAYMENT_PAYPALWPP_TEXT_EMAIL_ERROR_MESSAGE . urldecode($response['L_ERRORCODE0'] . "\n" . $response['L_SHORTMESSAGE0'] . "\n" . $response['L_LONGMESSAGE0'] . $response['L_ERRORCODE1'] . "\n" . $response['L_SHORTMESSAGE1'] . "\n" . $response['L_LONGMESSAGE1'] . $response['L_ERRORCODE2'] . "\n" . $response['L_SHORTMESSAGE2'] . "\n" . $response['L_LONGMESSAGE2'] . ($response['CURL_ERRORS'] != '' ? "\n" . $response['CURL_ERRORS'] : '') . "\n\n" . 'Zen Cart message: ' . $errorText) . $errorInfo;
           if ($detailedEmailMessage != '') zen_mail(STORE_NAME, STORE_OWNER_EMAIL_ADDRESS, MODULE_PAYMENT_PAYPALWPP_TEXT_EMAIL_ERROR_SUBJECT . ' (' . zen_uncomment($errorNum) . ')', zen_uncomment($detailedMessage), STORE_OWNER, STORE_OWNER_EMAIL_ADDRESS, array('EMAIL_MESSAGE_HTML'=>zen_uncomment($detailedMessage)), 'paymentalert');
           $this->terminateEC($errorText . ' (' . $errorNum . ') ' . $detailedMessage, true);
           return true;
@@ -2660,7 +2671,7 @@ class paypalwpp extends base {
           if ($response['L_ERRORCODE0'] == 10474) $errorText .= urldecode($response['L_LONGMESSAGE0']);
 
           $detailedMessage = ($errorText == MODULE_PAYMENT_PAYPALWPP_INVALID_RESPONSE || $this->enableDebugging || $response['CURL_ERRORS'] != '' || $this->emailAlerts) ? $errorNum . ' ' . urldecode(' ' . $response['L_SHORTMESSAGE0'] . ' - ' . $response['L_LONGMESSAGE0'] . $response['RESULT'] . ' ' . $response['CURL_ERRORS']) : '';
-          $detailedEmailMessage = ($detailedMessage == '') ? '' : MODULE_PAYMENT_PAYPALWPP_TEXT_EMAIL_ERROR_MESSAGE . urldecode($response['L_ERRORCODE0'] . "\n" . $response['L_SHORTMESSAGE0'] . "\n" . $response['L_LONGMESSAGE0'] . $response['L_ERRORCODE1'] . "\n" . $response['L_SHORTMESSAGE1'] . "\n" . $response['L_LONGMESSAGE1'] . $response['L_ERRORCODE2'] . "\n" . $response['L_SHORTMESSAGE2'] . "\n" . $response['L_LONGMESSAGE2'] . ($response['CURL_ERRORS'] != '' ? "\n" . $response['CURL_ERRORS'] : '') . "\n\n" . 'Zen Cart message: ' . $errorText);
+          $detailedEmailMessage = ($detailedMessage == '') ? '' : MODULE_PAYMENT_PAYPALWPP_TEXT_EMAIL_ERROR_MESSAGE . urldecode($response['L_ERRORCODE0'] . "\n" . $response['L_SHORTMESSAGE0'] . "\n" . $response['L_LONGMESSAGE0'] . $response['L_ERRORCODE1'] . "\n" . $response['L_SHORTMESSAGE1'] . "\n" . $response['L_LONGMESSAGE1'] . $response['L_ERRORCODE2'] . "\n" . $response['L_SHORTMESSAGE2'] . "\n" . $response['L_LONGMESSAGE2'] . ($response['CURL_ERRORS'] != '' ? "\n" . $response['CURL_ERRORS'] : '') . "\n\n" . 'Zen Cart message: ' . $errorText) . $errorInfo;
           if ($detailedEmailMessage != '') zen_mail(STORE_NAME, STORE_OWNER_EMAIL_ADDRESS, MODULE_PAYMENT_PAYPALWPP_TEXT_EMAIL_ERROR_SUBJECT . ' (' . zen_uncomment($errorNum) . ')', zen_uncomment($detailedMessage), STORE_OWNER, STORE_OWNER_EMAIL_ADDRESS, array('EMAIL_MESSAGE_HTML'=>zen_uncomment($detailedMessage)), 'paymentalert');
           $this->terminateEC(($detailedEmailMessage == '' ? $errorText . ' (' . urldecode($response['L_SHORTMESSAGE0'] . $response['RESULT']) . ') ' : $detailedMessage), true);
           return true;

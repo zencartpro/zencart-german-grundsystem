@@ -6,7 +6,7 @@
  * @copyright Copyright 2003-2009 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: header_php.php 15016 2009-12-02 06:10:12Z drbyte $
+ * @version $Id: header_php.php 16060 2010-04-25 15:10:05Z ajeh $
  */
 // This should be first line of the script:
   $zco_notifier->notify('NOTIFY_HEADER_START_CHECKOUT_SHIPPING');
@@ -91,6 +91,7 @@
   require(DIR_WS_CLASSES . 'shipping.php');
   $shipping_modules = new shipping;
 
+  $pass = true;
   if ( defined('MODULE_ORDER_TOTAL_SHIPPING_FREE_SHIPPING') && (MODULE_ORDER_TOTAL_SHIPPING_FREE_SHIPPING == 'true') ) {
     $pass = false;
 
@@ -138,7 +139,7 @@
         /**
          * check to be sure submitted data hasn't been tampered with
          */
-        if ($_POST['shipping'] == 'free_free' && $order->content_type != 'virtual') {
+        if ($_POST['shipping'] == 'free_free' && ($order->content_type != 'virtual' && !$pass)) {
           $quote['error'] = 'Invalid input. Please make another selection.';
         } else {
           $_SESSION['shipping'] = $_POST['shipping'];

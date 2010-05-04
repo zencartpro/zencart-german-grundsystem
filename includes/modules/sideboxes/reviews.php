@@ -3,17 +3,17 @@
  * reviews sidebox - displays a random product-review
  *
  * @package templateSystem
- * @copyright Copyright 2003-2009 Zen Cart Development Team
+ * @copyright Copyright 2003-2010 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: reviews.php 14007 2009-07-30 14:35:22Z ajeh $
+ * @version $Id: reviews.php 16044 2010-04-23 01:15:45Z drbyte $
  */
 
 // if review must be approved or disabled do not show review
   $review_status = " and r.status = 1 ";
 
   $random_review_sidebox_select = "select r.reviews_id, r.reviews_rating, p.products_id, p.products_image, pd.products_name,
-                    reviews_text
+                    substring(reviews_text, 1, 70) as reviews_text
                     from " . TABLE_REVIEWS . " r, " . TABLE_REVIEWS_DESCRIPTION . " rd, "
                            . TABLE_PRODUCTS . " p, " . TABLE_PRODUCTS_DESCRIPTION . " pd
                     where p.products_status = '1'

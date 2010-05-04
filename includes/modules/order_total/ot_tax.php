@@ -3,10 +3,10 @@
  * ot_tax order-total module
  *
  * @package orderTotal
- * @copyright Copyright 2003-2009 Zen Cart Development Team
+ * @copyright Copyright 2003-2010 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: ot_tax.php 14141 2009-08-10 19:34:47Z wilt $
+ * @version $Id: ot_tax.php 16101 2010-04-28 21:03:48Z wilt $
  */
   class ot_tax {
     var $title, $output;
@@ -26,17 +26,31 @@
       reset($order->info['tax_groups']);
       $taxDescription = '';
       $taxValue = 0;
+      if (STORE_TAX_DISPLAY_STATUS == 1)
+      {
+        $result = zen_get_all_tax_descriptions();
+        if (count($result) > 0)
+        {
+          foreach ($result as $description)
+          {
+            if (!isset($order->info['tax_groups'][$description]))
+            {
+              $order->info['tax_groups'][$description] = 0;
+            }
+          }
+        }
+      }
       while (list($key, $value) = each($order->info['tax_groups'])) {
         if (SHOW_SPLIT_TAX_CHECKOUT == 'true')
         {
-          if ($value > 0 or STORE_TAX_DISPLAY_STATUS == 1) {
+          if ($value > 0 or ($value == 0 && $key !== 0 && STORE_TAX_DISPLAY_STATUS == 1 )) {
             $this->output[] = array('title' => $key . ':',
                                     'text' => $currencies->format($value, true, $order->info['currency'], $order->info['currency_value']),
                                     'value' => $value);
           }
         } else 
         {
-          if ($value > 0)
+          if ($value > 0 || ($value == 0 && $key !== 0 && STORE_TAX_DISPLAY_STATUS == 1))
           {
             $taxDescription .= $key . ' + ';
             $taxValue += $value;

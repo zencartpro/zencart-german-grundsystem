@@ -1,10 +1,10 @@
 <?php
 /**
  * @package admin
- * @copyright Copyright 2003-2009 Zen Cart Development Team
+ * @copyright Copyright 2003-2010 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: customers.php 15005 2009-11-30 20:11:20Z drbyte $
+ * @version $Id: customers.php 16167 2010-05-01 01:48:50Z drbyte $
  */
 
   require('includes/application_top.php');
@@ -214,7 +214,7 @@
                 $entry_state_error = true;
               }
             } else {
-              if ($entry_state == false) {
+              if (strlen($entry_state) < (int)ENTRY_STATE_MIN_LENGTH) {
                 $error = true;
                 $entry_state_error = true;
               }

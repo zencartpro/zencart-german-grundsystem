@@ -4,7 +4,7 @@
  * @copyright Copyright 2003-2010 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: collect_info.php 15884 2010-04-11 16:45:00Z wilt $
+ * @version $Id: collect_info.php 16087 2010-04-27 17:13:21Z ajeh $
  */
 if (!defined('IS_ADMIN_FLAG')) {
   die('Illegal Access');
@@ -270,7 +270,7 @@ echo zen_draw_hidden_field('products_price_sorter', $pInfo->products_price_sorte
 ?>
           <tr>
             <td colspan="2" class="main" align="center"><?php echo (zen_get_categories_status($current_category_id) == '0' ? TEXT_CATEGORIES_STATUS_INFO_OFF : '') . ($out_status == true ? ' ' . TEXT_PRODUCTS_STATUS_INFO_OFF : ''); ?></td>
-          <tr>
+          </tr>
           <tr>
             <td class="main"><?php echo TEXT_PRODUCTS_STATUS; ?></td>
             <td class="main"><?php echo zen_draw_separator('pixel_trans.gif', '24', '15') . '&nbsp;' . zen_draw_radio_field('products_status', '1', $in_status) . '&nbsp;' . TEXT_PRODUCT_AVAILABLE . '&nbsp;' . zen_draw_radio_field('products_status', '0', $out_status) . '&nbsp;' . TEXT_PRODUCT_NOT_AVAILABLE; ?></td>
@@ -297,7 +297,7 @@ echo zen_draw_hidden_field('products_price_sorter', $pInfo->products_price_sorte
 ?>
           <tr>
             <td class="main"><?php if ($i == 0) echo TEXT_PRODUCTS_NAME; ?></td>
-            <td class="main"><?php echo zen_image(DIR_WS_CATALOG_LANGUAGES . $languages[$i]['directory'] . '/images/' . $languages[$i]['image'], $languages[$i]['name']) . '&nbsp;' . zen_draw_input_field('products_name[' . $languages[$i]['id'] . ']', (isset($products_name[$languages[$i]['id']]) ? stripslashes($products_name[$languages[$i]['id']]) : zen_get_products_name($pInfo->products_id, $languages[$i]['id'])), zen_set_field_length(TABLE_PRODUCTS_DESCRIPTION, 'products_name')); ?></td>
+            <td class="main"><?php echo zen_image(DIR_WS_CATALOG_LANGUAGES . $languages[$i]['directory'] . '/images/' . $languages[$i]['image'], $languages[$i]['name']) . '&nbsp;' . zen_draw_input_field('products_name[' . $languages[$i]['id'] . ']', (isset($products_name[$languages[$i]['id']]) ? htmlspecialchars($products_name[$languages[$i]['id']]) : htmlspecialchars(zen_get_products_name($pInfo->products_id, $languages[$i]['id']))), zen_set_field_length(TABLE_PRODUCTS_DESCRIPTION, 'products_name')); ?></td>
           </tr>
 <?php
     }
@@ -402,7 +402,7 @@ updateGross();
                 <td class="main" width="100%">
         <?php if ($_SESSION['html_editor_preference_status']=="FCKEDITOR") {
                 $oFCKeditor = new FCKeditor('products_description[' . $languages[$i]['id'] . ']') ;
-                $oFCKeditor->Value = (isset($products_description[$languages[$i]['id']])) ? stripslashes($products_description[$languages[$i]['id']]) : zen_get_products_description($pInfo->products_id, $languages[$i]['id']) ;
+                $oFCKeditor->Value = (isset($products_description[$languages[$i]['id']])) ? htmlspecialchars($products_description[$languages[$i]['id']]) : htmlspecialchars(zen_get_products_description($pInfo->products_id, $languages[$i]['id'])) ;
                 $oFCKeditor->Width  = '99%' ;
                 $oFCKeditor->Height = '350' ;
 //                $oFCKeditor->Config['ToolbarLocation'] = 'Out:xToolbar' ;
@@ -410,7 +410,7 @@ updateGross();
                 $output = $oFCKeditor->CreateHtml() ;  echo $output;
           } else { // using HTMLAREA or just raw "source"
 
-          echo zen_draw_textarea_field('products_description[' . $languages[$i]['id'] . ']', 'soft', '100%', '30', (isset($products_description[$languages[$i]['id']])) ? stripslashes($products_description[$languages[$i]['id']]) : zen_get_products_description($pInfo->products_id, $languages[$i]['id'])); //,'id="'.'products_description' . $languages[$i]['id'] . '"');
+          echo zen_draw_textarea_field('products_description[' . $languages[$i]['id'] . ']', 'soft', '100%', '30', (isset($products_description[$languages[$i]['id']])) ? htmlspecialchars($products_description[$languages[$i]['id']]) : htmlspecialchars(zen_get_products_description($pInfo->products_id, $languages[$i]['id']))); //,'id="'.'products_description' . $languages[$i]['id'] . '"');
           } ?>
         </td>
               </tr>

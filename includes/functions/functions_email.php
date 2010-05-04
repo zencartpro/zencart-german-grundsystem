@@ -8,7 +8,7 @@
  * @copyright Copyright 2003-2010 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: functions_email.php 15691 2010-03-16 22:32:17Z drbyte $
+ * @version $Id: functions_email.php 16108 2010-04-29 21:02:36Z drbyte $
  * 2007-09-30 added encryption support for Gmail Chuck Redman
  */
 
@@ -193,7 +193,7 @@
           $mail->LE = "\r\n";
           //set encryption protocol to allow support for Gmail or other secured email protocols
           if (EMAIL_SMTPAUTH_MAIL_SERVER_PORT == '465' || EMAIL_SMTPAUTH_MAIL_SERVER_PORT == '587' || EMAIL_SMTPAUTH_MAIL_SERVER == 'smtp.gmail.com') $mail->Protocol = 'ssl';
-          if (defined('SMTPAUTH_EMAIL_PROTOCOL') && SMTPAUTH_EMAIL_PROTOCOL != 'none' && SMTPAUTH_EMAIL_PROTOCOL != '') {
+          if (defined('SMTPAUTH_EMAIL_PROTOCOL') && SMTPAUTH_EMAIL_PROTOCOL != 'none') {
             $mail->Protocol = SMTPAUTH_EMAIL_PROTOCOL;
             if (SMTPAUTH_EMAIL_PROTOCOL == 'starttls' && defined('SMTPAUTH_EMAIL_CERTIFICATE_CONTEXT')) {
               $mail->Starttls = true;
