@@ -449,6 +449,7 @@ class rl_invoice3 extends fpdi {
     }
     function makeAddr() {
         #echo rldp($this->order, 'ADR');
+        $adrHoehe = $this->t1Opt['lineHeightInvoiceNumber'];
         $x['delivery'] = htmlspecialchars_decode(str_replace('<br>', "\n", zen_address_format($this->order->delivery['format_id'], $this->order->delivery, 1, '', '<br>')));
         if (strlen($x['delivery']) < 9) {
             $x['delivery'] = htmlspecialchars_decode(str_replace('<br>', "\n", zen_address_format($this->order->customer['format_id'], $this->order->customer, 1, '', '<br>')));
@@ -456,16 +457,16 @@ class rl_invoice3 extends fpdi {
         $x['billing'] = htmlspecialchars_decode(str_replace('<br>', "\n", zen_address_format($this->order->billing['format_id'], $this->order->billing, 1, '', '<br>')));
         $this->pdf->SetFont($this->fonts2['general'], '', 12);
         $this->pdf->SetXY($this->address1Pos['X'], $this->address1Pos['Y']);
-        $this->pdf->Cell($this->addressWidth['addr1'], 6, LIEFERADRESSE, $this->addressBorder['addr1'], 2, 'L');
-        $this->pdf->MultiCell($this->addressWidth['addr1'], 6, $x['delivery'], $this->addressBorder['addr1'], 1, 'L');
+        $this->pdf->Cell($this->addressWidth['addr1'], $adrHoehe, LIEFERADRESSE, $this->addressBorder['addr1'], 2, 'L');
+        $this->pdf->MultiCell($this->addressWidth['addr1'], $adrHoehe, $x['delivery'], $this->addressBorder['addr1'], 1, 'L');
         if (((RL_INVOICE3_WITHOUTINVOICE == 'false') && ($x['delivery'] != $x['billing'])) || (RL_INVOICE3_ALLWAYSINVOICE=='true')) {
             $this->pdf->SetXY($this->address2Pos['X'], $this->address2Pos['Y']);
-            $this->pdf->Cell($this->addressWidth['addr2'], 6, RECHNUNGSADRESSE, $this->addressBorder['addr2'], 2, 'L');
-            $this->pdf->MultiCell($this->addressWidth['addr2'], 6, $x['billing'], $this->addressBorder['addr2'], 1, 'L');
+            $this->pdf->Cell($this->addressWidth['addr2'], $adrHoehe, RECHNUNGSADRESSE, $this->addressBorder['addr2'], 2, 'L');
+            $this->pdf->MultiCell($this->addressWidth['addr2'], $adrHoehe, $x['billing'], $this->addressBorder['addr2'], 1, 'L');
         }
     }
 function makeInvoiceNumber() {
-        $hoehe=$this->t1Opt['lineHeightInvoiceNumber'];
+        $hoehe = $this->t1Opt['lineHeightInvoiceNumber'];
         $this->pdf->SetFont($this->fonts2['general'], '', $this->t1Opt['fontSizeInvoiceNumber']); 
             
         $this->pdf->SetY($this->delta['addrInvoice'] + $this->pdf->GetY());
