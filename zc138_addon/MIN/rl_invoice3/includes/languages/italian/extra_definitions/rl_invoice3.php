@@ -66,3 +66,4 @@ define('RL_INVOICE3_BALANCE', 'Balancio: ');
 define('RL_INVOICE3_PAYMENT_METHOD','Metodo pagamento:');
 //added by Steve
 define('RL_INVOICE3_SHIPPING_METHOD','Versandart:');
+define('RL_INVOICE3_ENTRY_DATE_INVOICE','Invoicedate:');

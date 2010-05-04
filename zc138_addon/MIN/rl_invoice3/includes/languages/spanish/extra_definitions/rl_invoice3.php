@@ -17,7 +17,7 @@
 // | to obtain it through the world-wide-web, please send a note to       |
 // | license@zen-cart.com so we can mail you a copy immediately.          |
 // +----------------------------------------------------------------------+
-//  $Id: rl_invoice3.php 491 2009-01-30 05:54:23Z hugo13 $
+//  $Id: rl_invoice3.php 83 2010-03-09 10:14:25Z rainer langheiter $
 //
 // added by STEVE
 define('RL_INVOICE3_FILE_MISSING', 'No se encuentra el archivo. Contáctenos directamente para informarnos del error
@@ -69,3 +69,4 @@ define('RL_INVOICE3_BALANCE', 'Saldo: ');
 define('RL_INVOICE3_PAYMENT_METHOD','Opción de Pago:');
 //added by Steve
 define('RL_INVOICE3_SHIPPING_METHOD','Opción de Envío:');
+define('RL_INVOICE3_ENTRY_DATE_INVOICE','Invoicedate:');

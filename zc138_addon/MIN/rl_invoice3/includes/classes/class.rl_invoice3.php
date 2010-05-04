@@ -95,8 +95,13 @@ class rl_invoice3 extends fpdi {
         }
         if(isset($this->t1Opt['bgPDFLang'])){
             if (isset($this->t1Opt['bgPDFLang'][$_SESSION['languages_id']])){
-                if(file_exists($this->t1Opt['bgPDFLang'][$_SESSION['languages_id']])){
-                    $this->bgPDF['file'] = $this->t1Opt['bgPDFLang'][$_SESSION['languages_id']];
+                $bgFile = $this->t1Opt['bgPDFLang'][$_SESSION['languages_id']];
+                if(file_exists($bgFile)){
+                    $this->bgPDF['file'] = $bgFile;
+                }
+                $bgFile =  DIR_FS_CATALOG . DIR_WS_INCLUDES . 'pdf/' . $bgFile;  
+                if(file_exists($bgFile)){
+                    $this->bgPDF['file'] = $bgFile;
                 }
             }
         }
@@ -459,7 +464,33 @@ class rl_invoice3 extends fpdi {
             $this->pdf->MultiCell($this->addressWidth['addr2'], 6, $x['billing'], $this->addressBorder['addr2'], 1, 'L');
         }
     }
-    function makeInvoiceNumber() {
+function makeInvoiceNumber() {
+        $hoehe=$this->t1Opt['lineHeightInvoiceNumber'];
+        $this->pdf->SetFont($this->fonts2['general'], '', $this->t1Opt['fontSizeInvoiceNumber']); 
+            
+        $this->pdf->SetY($this->delta['addrInvoice'] + $this->pdf->GetY());
+        $dat = str_replace('@DATE@', strftime(DATE_FORMAT_SHORT), RL_INVOICE3_CITY);
+        $tmp = ENTRY_ORDER_ID . sprintf("%s%05d", RL_INVOICE3_ORDER_ID_PREFIX, $this->oID);
+        $link = HTTP_SERVER . DIR_WS_CATALOG . 'index.php?main_page=account_history_info&order_id=' . $this->oID;
+        $this->pdf->Cell($this->maxWidth, $hoehe, $tmp, '', 1, 'L', 0, $link);
+        
+        $tmp = RL_INVOICE3_ENTRY_DATE_INVOICE . " " . zen_date_short(date("Y-m-d H:i", time()));
+        $this->pdf->Cell($this->maxWidth, $hoehe, $tmp, '', 0, 'L');
+        $this->pdf->SetX(20);
+        $this->pdf->Cell($this->maxWidth, $hoehe, $dat, '', 2, 'R');
+        
+      $this->pdf->SetX($this->margin['left']);
+        $tmp = ENTRY_DATE_PURCHASED . " " . zen_date_short($this->order->info['date_purchased']);
+        $this->pdf->Cell($this->maxWidth, $hoehe, $tmp, '', 0, 'L');
+        $this->pdf->SetX(20);
+        $this->pdf->Cell($this->maxWidth, $hoehe, $dat, '', 2, 'R');
+        
+      $this->pdf->SetX($this->margin['left']);
+        $tmp = RL_INVOICE3_PAYMENT_METHOD . " " . $this->order_check->fields['payment_method'];
+        $this->pdf->Cell($this->maxWidth, $hoehe, $tmp, '', 0, 'L');
+    }
+    
+    function makeInvoiceNumberXX() {
         $this->pdf->SetY($this->delta['addrInvoice'] + $this->pdf->GetY());
         $dat = str_replace('@DATE@', strftime(DATE_FORMAT_SHORT), RL_INVOICE3_CITY);
         $tmp = ENTRY_ORDER_ID . sprintf("%s%05d", RL_INVOICE3_ORDER_ID_PREFIX, $this->oID);

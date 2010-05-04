@@ -70,3 +70,4 @@ define('RL_INVOICE3_BALANCE', 'Balance: ');
 define('RL_INVOICE3_PAYMENT_METHOD','Payment Method:');
 //added by Steve
 define('RL_INVOICE3_SHIPPING_METHOD','Shipping Method:');
+define('RL_INVOICE3_ENTRY_DATE_INVOICE','Invoicedate:');
