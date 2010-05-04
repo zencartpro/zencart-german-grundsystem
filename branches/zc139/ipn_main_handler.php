@@ -6,7 +6,7 @@
  * @copyright Copyright 2003-2010 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: ipn_main_handler.php 15871 2010-04-11 04:01:31Z drbyte $
+ * @version $Id: ipn_main_handler.php 16050 2010-04-23 22:06:00Z drbyte $
  */
 
 /**
@@ -289,10 +289,14 @@ Processing...
                                 'orders_status_id' => (int)$new_status,
                                 'date_added' => 'now()',
                                 'comments' => 'PayPal status: ' . $_POST['payment_status'] . ' ' . $_POST['pending_reason']. ' @ '.$_POST['payment_date'] . (($_POST['parent_txn_id'] !='') ? "\n" . ' Parent Trans ID:' . $_POST['parent_txn_id'] : '') . "\n" . ' Trans ID:' . $_POST['txn_id'] . "\n" . ' Amount: ' . $_POST['mc_gross'] . ' ' . $_POST['mc_currency'],
-                                'customer_notified' => false
+                                'customer_notified' => 0
                                 );
-        if (MODULE_PAYMENT_PAYPAL_ADDRESS_OVERRIDE == '1') $sql_data_array['comments'] = '**** ADDRESS OVERRIDE ALERT!!! **** CHECK PAYPAL ORDER DETAILS FOR ACTUAL ADDRESS SELECTED BY CUSTOMER!!' . "\n" . $sql_data_array['comments'];
         ipn_debug_email('Breakpoint: 5j - order stat hist update:' . print_r($sql_data_array, true));
+        zen_db_perform(TABLE_ORDERS_STATUS_HISTORY, $sql_data_array);
+        if (MODULE_PAYMENT_PAYPAL_ADDRESS_OVERRIDE == '1') {
+          $sql_data_array['comments'] = '**** ADDRESS OVERRIDE ALERT!!! **** CHECK PAYPAL ORDER DETAILS FOR ACTUAL ADDRESS SELECTED BY CUSTOMER!!';
+          $sql_data_array['customer_notified'] = -1;
+        }
         zen_db_perform(TABLE_ORDERS_STATUS_HISTORY, $sql_data_array);
         ipn_debug_email('Breakpoint: 5k - OSH update done');
         $order->create_add_products($insert_id, 2);

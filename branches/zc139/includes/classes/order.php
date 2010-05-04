@@ -5,7 +5,7 @@
  * @package classes
  * @copyright Copyright 2003-2010 Zen Cart Development Team
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: order.php 15940 2010-04-14 15:41:25Z wilt $
+ * @version $Id: order.php 16080 2010-04-26 22:15:03Z drbyte $
  */
 /**
  * order class
@@ -521,7 +521,8 @@ class order extends base {
       $this->info['tax'] += $tax_add;
       foreach ($taxRates as $taxDescription=>$taxRate)
       {
-        $taxAdd = zen_calculate_tax($this->products[$index]['final_price']*$this->products[$index]['qty'], $taxRate);
+        $taxAdd = zen_calculate_tax($this->products[$index]['final_price']*$this->products[$index]['qty'], $taxRate)
+                +  zen_calculate_tax($this->products[$index]['onetime_charges'], $taxRate);
         if (isset($this->info['tax_groups'][$taxDescription]))
         {
           $this->info['tax_groups'][$taxDescription] += $taxAdd;

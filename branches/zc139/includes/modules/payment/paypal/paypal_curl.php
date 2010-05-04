@@ -5,7 +5,7 @@
  * @package paymentMethod
  * @copyright Copyright 2003-2010 Zen Cart Development Team
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: paypal_curl.php 15787 2010-04-02 09:32:44Z drbyte $
+ * @version $Id: paypal_curl.php 16103 2010-04-29 06:45:17Z drbyte $
  */
 
 /**
@@ -209,6 +209,10 @@ class paypal_curl extends base {
       $values['VERBOSITY'] = 'MEDIUM';
     } elseif ($this->_mode == 'nvp') {
       $values = array_merge($values, $nvp);
+      if (isset($values['ECI'])) {
+        $values['ECI3DS'] = $values['ECI'];
+        unset($values['ECI']);
+      }
       $values['CREDITCARDTYPE'] = ($cc_type == 'American Express') ? 'Amex' : $cc_type;
       $values['NOTIFYURL'] = urlencode(zen_href_link('ipn_main_handler.php', '', 'SSL',false,false,true));
       if (!isset($values['PAYMENTACTION'])) $values['PAYMENTACTION'] = ($this->_trxtype == 'S' ? 'Sale' : 'Authorization');
@@ -417,7 +421,7 @@ class paypal_curl extends base {
     } elseif ($this->_mode == 'nvp') {
       $headers[] = 'X-VPS-VIT-Integration-Product: PHP::Zen Cart(tm) - PayPal/NVP';
     }
-    $headers[] = 'X-VPS-VIT-Integration-Version: 1.3.9';
+    $headers[] = 'X-VPS-VIT-Integration-Version: 1.3.9b';
     $this->lastHeaders = $headers;
 
     $ch = curl_init();

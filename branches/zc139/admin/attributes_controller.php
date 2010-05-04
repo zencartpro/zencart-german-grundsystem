@@ -4,7 +4,7 @@
  * @copyright Copyright 2003-2010 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: attributes_controller.php 15603 2010-03-04 03:54:25Z ajeh $
+ * @version $Id: attributes_controller.php 16106 2010-04-29 18:08:37Z ajeh $
  */
 
   require('includes/application_top.php');
@@ -205,7 +205,7 @@
                                            and options_values_id = '" . $_POST['values_id'][$i] . "'");
           if ($check_duplicate->RecordCount() > 0) {
             // do not add duplicates -- give a warning
-            $messageStack->add_session('default', ATTRIBUTE_WARNING_DUPLICATE . ' - ' . zen_options_name($_POST['options_id']) . ' : ' . zen_values_name($_POST['values_id'][$i]), 'error');
+            $messageStack->add_session(ATTRIBUTE_WARNING_DUPLICATE . ' - ' . zen_options_name($_POST['options_id']) . ' : ' . zen_values_name($_POST['values_id'][$i]), 'error');
           } else {
 // For TEXT and FILE option types, ignore option value entered by administrator and use PRODUCTS_OPTIONS_VALUES_TEXT instead.
             $products_options_array = $db->Execute("select products_options_type from " . TABLE_PRODUCTS_OPTIONS . " where products_options_id = '" . $_POST['options_id'] . "'");
@@ -591,7 +591,7 @@ function translate_type_to_name($opt_type) {
                        AND povpo.products_options_values_id = pov.products_options_values_id
                        AND pov.language_id = po.language_id
                        AND po.language_id = " . $_SESSION['languages_id'] . "
-                       ORDER BY po.products_options_name, pov.products_options_values_name";
+                       ORDER BY po.products_options_id, po.products_options_name, pov.products_options_values_name";
 
 //           "
 //           ORDER BY po.products_options_name, pov.products_options_values_sort_order";
@@ -1256,7 +1256,12 @@ if ($action == '') {
                                      order by pov.products_options_values_name");
 
       while(!$values_values->EOF) {
-        $show_option_name= '&nbsp;&nbsp;&nbsp;[' . strtoupper(zen_get_products_options_name_from_value($values_values->fields['products_options_values_id'])) . ']';
+
+        if ($show_value_numbers == false) {
+          $show_option_name= '&nbsp;&nbsp;&nbsp;[' . strtoupper(zen_get_products_options_name_from_value($values_values->fields['products_options_values_id'])) . ' ]';
+        } else {
+          $show_option_name= ' [ #' . $values_values->fields['products_options_values_id'] . ' ] ' . '&nbsp;&nbsp;&nbsp;[' . strtoupper(zen_get_products_options_name_from_value($values_values->fields['products_options_values_id'])) . ' ]';
+        }
         if ($attributes_values->fields['options_values_id'] == $values_values->fields['products_options_values_id']) {
           echo "\n" . '<option name="' . $values_values->fields['products_options_values_name'] . '" value="' . $values_values->fields['products_options_values_id'] . '" SELECTED>' . $values_values->fields['products_options_values_name'] . $show_option_name . '</option>';
         } else {

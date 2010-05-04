@@ -813,6 +813,7 @@ class linkpoint_api {
    */
   function _doRefund($oID, $amount = 0) {
     global $db, $messageStack;
+    $_POST['refamt'] = preg_replace('/[^0-9.%]/', '', $_POST['refamt']);
     $new_order_status = (int)MODULE_PAYMENT_LINKPOINT_API_REFUNDED_ORDER_STATUS_ID;
     if ($new_order_status == 0) $new_order_status = 1;
     $proceedToRefund = true;
@@ -875,6 +876,7 @@ class linkpoint_api {
    */
   function _doCapt($oID, $amt = 0, $currency = 'USD') {
     global $db, $messageStack;
+    $_POST['captamt'] = preg_replace('/[^0-9.%]/', '', $_POST['captamt']);
 
     //@TODO: Read current order status and determine best status to set this to
     $new_order_status = (int)MODULE_PAYMENT_LINKPOINT_API_ORDER_STATUS_ID;

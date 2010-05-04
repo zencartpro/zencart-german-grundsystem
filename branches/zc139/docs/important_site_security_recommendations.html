@@ -3,7 +3,7 @@
  * @package documentation
  * @copyright Copyright 2003-2010 Zen Cart Development Team
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: important_site_security_recommendations.html 15835 2010-04-05 20:57:09Z drbyte $
+ * @version $Id: important_site_security_recommendations.html 16111 2010-04-29 22:39:02Z drbyte $
  */
 //-->
 <html>
@@ -159,7 +159,7 @@ If you delete these files, you run the risk of leaving yourself open to people s
   </span><br>
 </p>
 </div>
-<p>In order for the above suggestions to work, your host must include either 'All' or all of these: 'Limit Options Indexes' parameters to the AllowOverride configuration in the server's apache/conf/httpd.conf file</p>
+<p>In order for the above suggestions to work, your host must include either 'All' or all of these: 'Limit Options Indexes' parameters to the AllowOverride configuration in the server's apache/conf/httpd.conf file.<br />Some hosts don't like to let you use the OPTIONS directive, so you'll need to leave that line out or put a # in front of it.</p>
 <p>If your webhost configuration doesn't allow you to create/use your own <span class="filename">.htaccess</span> files, sometimes they provide an interface in your hosting admin control panel where you can set the desired <span class="filename">.htaccess</span> settings. </p>
 <p>It is recommended that you work with your host to configure these settings if this is the method they require. <span class="error">You need to choose -- and use -- the appropriate method for your server.</span> As mentioned above, it's best to work with your web hosting company to select and implement the best method for your specific server. We can't tell you what to use for your specific server, but we offer these guidelines as a starting point.</p>
 <h1>Disable &quot;Allow Guest To Tell A Friend&quot; feature </h1>

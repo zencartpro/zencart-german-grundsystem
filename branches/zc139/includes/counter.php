@@ -6,7 +6,7 @@
  * @copyright Copyright 2003-2009 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: counter.php 14288 2009-08-29 17:31:07Z wilt $
+ * @version $Id: counter.php 16091 2010-04-27 21:46:02Z wilt $
  * @private
  */
 if (!defined('IS_ADMIN_FLAG')) {
@@ -19,9 +19,21 @@ if (isset($_SESSION['session_counter']) && $_SESSION['session_counter'] == true)
   $_SESSION['session_counter'] = true;
 }
 $date_now = date('Ymd');
-$sql = "insert into " . TABLE_COUNTER_HISTORY . " (startdate, counter, session_counter) values ('" . $date_now . "', '1', '1')
-        on duplicate key update counter = counter + 1, session_counter = session_counter + " . (int)$session_counter;
+$counter_query = "select startdate, counter, session_counter from " . TABLE_COUNTER_HISTORY . " where startdate='" . $date_now . "'";
+$counter = $db->Execute($counter_query);
+$sql = "INSERT IGNORE INTO " . TABLE_COUNTER_HISTORY . " (startdate, counter, session_counter) values ('" . $date_now . "', '1', '1')";
 $db->Execute($sql);
+$sql = "SELECT * FROM "  . TABLE_COUNTER_HISTORY . " WHERE startdate = '" .  $date_now . "' AND counter = 1 AND session_counter = 1 LIMIT 1";
+$result = $db->execute($sql);
+if ($result->recordCount() <=0 || $counter->RecordCount() > 0 )
+{
+  $counter_startdate = $counter->fields['startdate'];
+  $counter_now = ($counter->fields['counter'] + 1);
+  $session_counter_now = ($counter->fields['session_counter'] + $session_counter);
+  $sql = "update " . TABLE_COUNTER_HISTORY . " set counter = '" . $counter_now . "', session_counter ='" . $session_counter_now . "' where startdate='" . $date_now . "'";
+  
+  $db->Execute($sql);
+}
 
 $counter_query = "select startdate, counter from " . TABLE_COUNTER;
 $counter = $db->Execute($counter_query);
