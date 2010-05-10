@@ -32,17 +32,7 @@ class rl_invoice3 extends fpdi {
         #parent::fpdi($orientation, $unit, $format);
         $this->currencies = new currencies();
         $this->order = new order($this->oID);
-        $this->order_check = $this->db->Execute("select cc_cvv, customers_name, customers_company, customers_street_address,
-                    customers_suburb, customers_city, customers_postcode,
-                    customers_state, customers_country, customers_telephone,
-                    customers_email_address, customers_address_format_id, delivery_name,
-                    delivery_company, delivery_street_address, delivery_suburb,
-                    delivery_city, delivery_postcode, delivery_state, delivery_country,
-                    delivery_address_format_id, billing_name, billing_company,
-                    billing_street_address, billing_suburb, billing_city, billing_postcode,
-                    billing_state, billing_country, billing_address_format_id,
-                    payment_method, cc_type, cc_owner, cc_number, cc_expires, currency,
-                    currency_value, date_purchased, orders_status, last_modified
+        $this->order_check = $this->db->Execute("select *
                     from " . TABLE_ORDERS . "
                     where orders_id = '" . (int)$this->oID . "'");
         $this->margin = $this->getDefault(RL_INVOICE3_MARGIN, array('top' => '10', 'right' => '30', 'bottom' => '30', 'left' => '60'));
@@ -455,13 +445,22 @@ class rl_invoice3 extends fpdi {
             $x['delivery'] = htmlspecialchars_decode(str_replace('<br>', "\n", zen_address_format($this->order->customer['format_id'], $this->order->customer, 1, '', '<br>')));
         }
         $x['billing'] = htmlspecialchars_decode(str_replace('<br>', "\n", zen_address_format($this->order->billing['format_id'], $this->order->billing, 1, '', '<br>')));
+        
+        $y = $x;
+        $x['delivery']  = $y['billing'];
+        $x['billing']   = $y['delivery'];
+        
         $this->pdf->SetFont($this->fonts2['general'], '', 12);
         $this->pdf->SetXY($this->address1Pos['X'], $this->address1Pos['Y']);
-        $this->pdf->Cell($this->addressWidth['addr1'], $adrHoehe, LIEFERADRESSE, $this->addressBorder['addr1'], 2, 'L');
+        
+        //$this->pdf->Cell($this->addressWidth['addr1'], $adrHoehe, LIEFERADRESSE, $this->addressBorder['addr1'], 2, 'L');
+        $this->pdf->Cell($this->addressWidth['addr1'], $adrHoehe, RECHNUNGSADRESSE, $this->addressBorder['addr1'], 2, 'L');
         $this->pdf->MultiCell($this->addressWidth['addr1'], $adrHoehe, $x['delivery'], $this->addressBorder['addr1'], 1, 'L');
+        
         if (((RL_INVOICE3_WITHOUTINVOICE == 'false') && ($x['delivery'] != $x['billing'])) || (RL_INVOICE3_ALLWAYSINVOICE=='true')) {
             $this->pdf->SetXY($this->address2Pos['X'], $this->address2Pos['Y']);
-            $this->pdf->Cell($this->addressWidth['addr2'], $adrHoehe, RECHNUNGSADRESSE, $this->addressBorder['addr2'], 2, 'L');
+            //$this->pdf->Cell($this->addressWidth['addr2'], $adrHoehe, RECHNUNGSADRESSE, $this->addressBorder['addr2'], 2, 'L');
+            $this->pdf->Cell($this->addressWidth['addr2'], $adrHoehe, LIEFERADRESSE, $this->addressBorder['addr2'], 2, 'L');
             $this->pdf->MultiCell($this->addressWidth['addr2'], $adrHoehe, $x['billing'], $this->addressBorder['addr2'], 1, 'L');
         }
     }
@@ -480,13 +479,13 @@ function makeInvoiceNumber() {
         $this->pdf->SetX(20);
         $this->pdf->Cell($this->maxWidth, $hoehe, $dat, '', 2, 'R');
         
-      $this->pdf->SetX($this->margin['left']);
+        $this->pdf->SetX($this->margin['left']);
         $tmp = ENTRY_DATE_PURCHASED . " " . zen_date_short($this->order->info['date_purchased']);
         $this->pdf->Cell($this->maxWidth, $hoehe, $tmp, '', 0, 'L');
         $this->pdf->SetX(20);
         $this->pdf->Cell($this->maxWidth, $hoehe, $dat, '', 2, 'R');
         
-      $this->pdf->SetX($this->margin['left']);
+        $this->pdf->SetX($this->margin['left']);
         $tmp = RL_INVOICE3_PAYMENT_METHOD . " " . $this->order_check->fields['payment_method'];
         $this->pdf->Cell($this->maxWidth, $hoehe, $tmp, '', 0, 'L');
     }
@@ -736,9 +735,26 @@ function makeInvoiceNumber() {
             #$onlyFile =
         }
         $this->makeAddr();
+        
+        $x = $this->pdf->GetX();
+        $y = $this->pdf->GetY();        
+        $this->makeFieldPos('1. TEST XYZ', 66, 99);
+        $this->makeFieldPos('2. TEST XYZ', 166, 199);
+        $this->makeFieldPos('3. TEST XYZ', 66, 166);
+        $this->pdf->SetXY($x, $y);  
+        
         $this->makeInvoiceNumber();
+        //
+        
         $this->makeProducts();
         $this->makeTotal();
         $this->writePDF($onlyFile);
     }
+    
+    function makeFieldPos($txt, $x, $y){
+        $this->pdf->SetFont($this->fonts2['general'], '', $this->t1Opt['fontSizeInvoiceNumber']); 
+        $this->pdf->SetXY($x, $y);
+        $this->pdf->Cell($this->maxWidth, $hoehe, $txt, '', 2, 'R');                      
+    }
+    
 }

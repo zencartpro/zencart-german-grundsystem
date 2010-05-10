@@ -22,19 +22,23 @@ echo <<<END
 <title>$v3></title>
 <link rel="stylesheet" type="text/css" href="../includes/stylesheet.css">
 <link rel="stylesheet" type="text/css" href="./css/rl_invoice3_ges.css">
+<link type="text/css" href="../../ajax/themes/ui-lightness/jquery-ui-1.8.1.custom.css" rel="stylesheet" />
 
 <link rel="stylesheet" type="text/css" href="../includes/cssjsmenuhover.css" media="all" id="hoverJS">
 <script language="javascript" src="../includes/menu.js"></script>
 <script language="javascript" src="../includes/general.js"></script>
-<script language="javascript" src="../../ajax/jquery.js"></script>
-<script language="javascript" src="../../ajax/ui.core.js"></script>
-<script language="javascript" src="../../ajax/ui.draggable.js"></script>
-<script language="javascript" src="../../ajax/ui.resizable.js"></script>
+
+<script type="text/javascript" src="http://www.google.com/jsapi"></script>
+<script type="text/javascript">
+    google.load("jquery", "1");
+    google.load("jqueryui", "1");
+</script>
+
 <script language="javascript" src="../../ajax/rl_invoice3.js"></script>
 <script language="javascript" src="../../ajax/jquery.media.js"></script>
-<script language="javascript" src="../../ajax/jquery.metadata.min.js"></script>
+<script language="javascript" src="../../ajax/jquery.metadata.js"></script>
 <script language="javascript" src="../../ajax/jquery.form.js"></script>
-<script language="javascript" src="../../ajax/jquery.spin.js"></script>
+<script language="javascript" src="../../ajax/jquery-spin.js"></script>
 
 <script type="text/javascript">
   <!--

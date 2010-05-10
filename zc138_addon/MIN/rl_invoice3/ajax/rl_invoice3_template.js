@@ -246,7 +246,7 @@ $(document).ready(function() {
 
     $(".y, .x, .w, .m").spin({max:500,min:0, interval:2, timeInterval: 150, imageBasePath:'../../ajax/img/8/'});       
     
-    $("input[@type='text']").change( function(e) {
+    $("input[type='text']").change( function(e) {
         writeDisplay(this);
     }); 
     
