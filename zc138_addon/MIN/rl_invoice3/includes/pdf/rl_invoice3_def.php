@@ -58,9 +58,17 @@ $optionsP['amazon_templ'] = array(
          'singleE' => array('justification' => 'R', 'width' => 25),
          'tax' => array('justification' => 'R', 'width' => 15),
          'sumE' => array('justification' => 'R', 'width' => 25),
+        ),
+     // if db==true then table.orders.fieldname value will be used
+     // otherwise you must use value; this can be a literal, a variable or a function
+     'addCols' => array(
+        'customers_telephone' => array('x'=> 100, 'y'=>'100', 'db'=> true),
+        'test2' => array('x'=> 110, 'y'=>'105', 'db'=> false, 'value'=>'show me / ich will angezeigt werden:: ' . date('Y-m-d')),
+        'test3' => array('x'=> 120, 'y'=>'110', 'db'=> false, 'value'=>'NextGroupID:' . getNextConfigGroupID()),
         )
     );
 
+#######################################################################################################    
 
 //STEVE added to change format of columns
 // MV1|MV1_options

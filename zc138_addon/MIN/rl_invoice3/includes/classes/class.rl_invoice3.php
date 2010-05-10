@@ -736,12 +736,7 @@ function makeInvoiceNumber() {
         }
         $this->makeAddr();
         
-        $x = $this->pdf->GetX();
-        $y = $this->pdf->GetY();        
-        $this->makeFieldPos('1. TEST XYZ', 66, 99);
-        $this->makeFieldPos('2. TEST XYZ', 166, 199);
-        $this->makeFieldPos('3. TEST XYZ', 66, 166);
-        $this->pdf->SetXY($x, $y);  
+        $this->makeAdditionalCols();
         
         $this->makeInvoiceNumber();
         //
@@ -754,7 +749,26 @@ function makeInvoiceNumber() {
     function makeFieldPos($txt, $x, $y){
         $this->pdf->SetFont($this->fonts2['general'], '', $this->t1Opt['fontSizeInvoiceNumber']); 
         $this->pdf->SetXY($x, $y);
-        $this->pdf->Cell($this->maxWidth, $hoehe, $txt, '', 2, 'R');                      
+        $this->pdf->Cell($this->maxWidth, $hoehe, $txt, '', 2, 'L');
+    }
+    function makeAdditionalCols(){
+        $x = $this->pdf->GetX();
+        $y = $this->pdf->GetY();        
+        
+        foreach ($this->t1Opt['addCols'] as $key => $value) {
+            if(true == $value['db']){
+                if(isset($this->order_check->fields[$key])){
+                    $txt = $this->order_check->fields[$key];
+                } else {
+                    $txt = "DB-field >>$key<< do not exist";
+                }
+            } else {
+                $txt = $value['value'];
+            }
+            $this->makeFieldPos($txt, $value['x'], $value['y']);
+            }
+        $this->pdf->SetXY($x, $y);  
+        
     }
     
 }
