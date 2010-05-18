@@ -8,7 +8,11 @@
 
  // amazon|amazon_templ
  // col_templ_1|options_templ_1
- 
+
+$fi = DIR_FS_CATALOG . DIR_WS_INCLUDES . 'pdf/rl_invoice3_def_functions.php';
+if(file_exists($fi)){
+    include($fi);
+}
  
 $realPW = 210;
 
@@ -65,9 +69,17 @@ $optionsP['amazon_templ'] = array(
         'customers_telephone' => array('x'=> 100, 'y'=>'100', 'db'=> true),
         'test2' => array('x'=> 110, 'y'=>'105', 'db'=> false, 'value'=>'show me / ich will angezeigt werden:: ' . date('Y-m-d')),
         'test3' => array('x'=> 120, 'y'=>'110', 'db'=> false, 'value'=>'NextGroupID:' . getNextConfigGroupID()),
+        'oDat' =>  array('x'=> 120, 'y'=>'90', 'db'=> false, 'value'=> 'wien am ' . date('d.m.Y')),
+        /*
+            function should be placed in the file rl_invoice3_def_functions.php
+            look at the file rl_invoice3_def_functions.php.txt for examples
+        */
+        'oDat2' => array('x'=> 120, 'y'=>'94', 'db'=> false, 'value'=> getOrtDatum()),
+        'oDat3' => array('x'=> 20, 'y'=>'40', 'db'=> false, 'value'=> getDBFieldValue($this->oID)),
         )
     );
 
+    
 #######################################################################################################    
 
 //STEVE added to change format of columns
