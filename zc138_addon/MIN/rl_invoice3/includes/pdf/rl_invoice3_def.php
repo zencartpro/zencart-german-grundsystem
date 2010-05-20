@@ -16,20 +16,25 @@ if(file_exists($fi)){
  
 $realPW = 210;
 
+#######################################################################################################################
 // amazon|amazon_templ
 $colsP['amazon'] = array(
      'subtotalI' => '...',
      'subtotalE' => '...',
      'qty' => TABLE_HEADING_QTY,
      'model' => TABLE_HEADING_PRODUCTS_MODEL,
+     'origin' => 'ORIGIN',  // additional field, define colsAddProd in optionsArray
+     'customs_tariff_number' => 'ZOLL',  // additional field
+     'customs_tariff_number2' => 'ZOLL2',  // additional field
      'name' => TABLE_HEADING_PRODUCTS,
      'singleE' => TABLE_HEADING_PRICE_EXCLUDING_TAX_AMAZON,
      'tax' => TABLE_HEADING_TAX3,
      'sumE' => TABLE_HEADING_TOTAL_EXCLUDING_TAX_AMAZON,
     );
+
 $optionsP['amazon_templ'] = array(
     'subtotal'=>'subtotalE', 
-    'paperOriantation'=>'P', 
+    'paperOriantation'=>'L', 
     'fontSize' => 8, 
     'fontSizeProducts' => 7,
     'fontSizeTotal' => 8,   
@@ -62,6 +67,10 @@ $optionsP['amazon_templ'] = array(
          'singleE' => array('justification' => 'R', 'width' => 25),
          'tax' => array('justification' => 'R', 'width' => 15),
          'sumE' => array('justification' => 'R', 'width' => 25),
+        ),
+     'colsAddProd' => array(
+         'origin' => array('justification' => 'L', 'width' => 5),
+         'customs_tariff_number' => array('justification' => 'L', 'width' => 5),
         ),
      // if db==true then table.orders.fieldname value will be used
      // otherwise you must use value; this can be a literal, a variable or a function
