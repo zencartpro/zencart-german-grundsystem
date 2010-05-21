@@ -606,8 +606,8 @@ REPLACE INTO configuration_language (configuration_title, configuration_key, con
 ('Zeige Bestellkommentare auf dem Admin Lieferschein an', 'ORDER_COMMENTS_PACKING_SLIP', 43, 'Sollen Bestellkommentare auf dem Admin Lieferschein angezeigt werden?<br />0= AUS<br />1= Nur der erste Kommentar des Kunden<br />2= Alle Kommentare der Bestellung', '2008-04-12 00:00:00', '2007-12-04 08:43:11'),
 ('Zeige Hinweis beim Login über den zusammengelegten Warenkorb an', 'SHOW_SHOPPING_CART_COMBINED', 43, 'Sobald ein Kunde sich anmeldet und von der letzten Anmeldung noch Artikel im Warenkorb hat, werden die aktuell im Warenkorb vorhandenen Artikel mit dem Warenkorb der letzten Anmeldung kombiniert.<br /><br />Soll der Kunde auf diesen Vorgang hingewiesen werden?<br /><br />0= NEIN, zeige keinen Hinweis an<br />1= JA, und gehe automatisch zum Warenkorb<br />2= JA, aber gehe nicht automatisch zum Warenkorb', '2008-04-12 00:00:00', '2007-12-04 08:43:11'),
 ('Bestellstatus', 'MODULE_ORDER_TOTAL_GV_ORDER_STATUS_ID', 43, 'Legt den Bestellstatus fest, wenn der komplette Auftrag mit einem Gutschein vollständig bezahlt wurde.', '2008-04-12 00:00:00', '2007-12-04 08:43:11'),
-('MapShop', 'MAP_SHOP2_SHOP', 43, 'Showcase Eintragung für ihren Shop', '2008-04-12 00:00:00', '1901-01-01 00:00:00');
-('Gesplittete Steueranzeige', 'MODULE_SHIPPING_ZONES_STATUS', 43, 'Wenn Artikel mit verschiedenen Steuersätzen bestellt werden, soll dann im Bestellvorgang jeder Steuersatz in einer eigenen Zeile ausgewiesen werden?', '2010-05-21 00:00:00', '2010-05-21 10:43:00');
+('MapShop', 'MAP_SHOP2_SHOP', 43, 'Showcase Eintragung für ihren Shop', '2008-04-12 00:00:00', '1901-01-01 00:00:00'),
+('Gesplittete Steueranzeige', 'SHOW_SPLIT_TAX_CHECKOUT', 43, 'Wenn Artikel mit verschiedenen Steuersätzen bestellt werden, soll dann im Bestellvorgang jeder Steuersatz in einer eigenen Zeile ausgewiesen werden?', '2010-05-21 00:00:00', '2010-05-21 10:43:00');
 
 #####################################################################################################
 UPDATE configuration SET configuration_value = 'de' WHERE configuration_key = 'DEFAULT_LANGUAGE' LIMIT 1 ;
