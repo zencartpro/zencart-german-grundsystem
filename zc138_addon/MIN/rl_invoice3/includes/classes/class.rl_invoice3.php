@@ -575,8 +575,10 @@ class rl_invoice3 extends fpdi {
         $data = array();
         $i = 0;
         foreach($this->order->totals as $key => $val) {
-            $data[$i]['title'] = strip_tags(html_entity_decode($val['title'], ENT_QUOTES, "utf-8")); //STEVE html_entity_decode was in wrong format
-            $data[$i]['text'] = $this->mr(html_entity_decode($val['text'], ENT_QUOTES, "utf-8"));
+            //$data[$i]['title'] = strip_tags(html_entity_decode($val['title'], ENT_QUOTES, "utf-8")); //STEVE html_entity_decode was in wrong format
+            //$data[$i]['text'] = $this->mr(html_entity_decode($val['text'], ENT_QUOTES, "utf-8"));
+            $data[$i]['title'] = strip_tags(html_entity_decode($val['title'])); 
+            $data[$i]['text'] = $this->mr(html_entity_decode($val['text']));
             $data[$i]['class'] = $val['class'];
             $i++;
         } 
