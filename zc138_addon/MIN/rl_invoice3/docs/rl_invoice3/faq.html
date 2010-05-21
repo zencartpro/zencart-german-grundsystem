@@ -22,7 +22,9 @@
 <p><a href="#3">3) Wie kann ich das Aussehen der Downloadlinks in der Kundenhistory verändern?</a></p>
 <p><a href="#4">4) Ich verwende Ultimate SEO URLs. Ist die pdf Rechnung damit kompatibel?</a></p>
 <p><a href="#5">5) Beim Download der Rechnung aus der Bestellhistorie im Frontend kommt eine Fehlermeldung?</a></p>
-<p><a href="#6">6) Meine Frage wird hier nicht beantwortet?</a></p>
+<p><a href="#6">6) Beim Erstellen der Rechnung kommt: FPDF error: Unable to find xref table - Maybe a Problem with 'auto_detect_line_endings'</a></p>
+<p><a href="#7">7) Beim Erstellen der Rechnung kommt: Fatal error: Call to undefined function: htmlspecialchars_decode()</a></p>
+<p><a href="#8">8) Meine Frage wird hier nicht beantwortet?</a></p>
 <hr />
 <p><strong>1) Wie kann ich eigene Schriftarten verwenden?</strong><a name="1" id="1"></a></p>
 <p>  Die pdf-Rechnung liefert etliche Schriftarten mit im  Verzeichnis (includes/pdf/font).<br />
@@ -123,7 +125,17 @@ Oder die Breite der einzelnen Spalten unter width verändern.</p>
 <p>Der Rechnungsdownload funktioniert nach demselben Prinzip wie das Herunterladen von Downloadartikeln in Zen-Cart. Daher greifen hier die Einstellungen unter Konfiguration &gt; Attributeinstellungen. Sollte der Download nicht möglich oder das pdf beschädigt sein, den Download über Redirect auf false stellen. Download via Redirect ist bei lokalen XAMPP Installationen und auch bei sehr vielen Providern nicht möglich. Wichtig ist auch, dass unter Konfiguration &gt; GZip Komprimierung auf aus steht.</p>
 <p>&nbsp;</p>
 <hr/>
-</p><strong>6) Meine Frage wird hier nicht beantwortet?</strong><a name="6" id="6"></a>
+<p><strong>6) Beim Erstellen der Rechnung kommt: FPDF error: Unable to find xref table - Maybe a Problem with 'auto_detect_line_endings'</strong><a name="6" id="6"></a></p>
+<p>Wenn die pdf Vorlage mit Adobe Acrobat erstellt wird, muss bei den Kompatibilitätseinstellungen für frühere Acrobat Versionen etwas Niedrigeres eingestellt werden, z.B. Acrobat 4.0 und höher.</p>
+<p>&nbsp;</p>
+<hr/>
+<p><strong>7) Beim Erstellen der Rechnung kommt: Fatal error: Call to undefined function: htmlspecialchars_decode()</strong><a name="7" id="7"></a></p>
+<p>Für die pdfRechnung3 ist PHP5 erforderlich.<br/>
+PHP4 wird bereits seit Mitte 2008 nicht mehr von php.net supportet!
+Bei vielen Providern ist PHP5 schon lange vorhanden und kann mittels .htaccess aktiviert werden. Sollte PHP5 nicht vorhanden sein, an den Provider wenden, damit der ein Update macht. Generell sind zum Betrieb von Zen-Cart 1.3.8 oder 1.3.9 dringend PHP 5.2.x und MySQL 5.x empfohlen.</p>
+<p>&nbsp;</p>
+<hr/>
+<p><strong>8) Meine Frage wird hier nicht beantwortet?</strong><a name="8" id="8"></a>
 <p>Schau mal hier:<br />
   <a href="http://www.zen-cart.at/zcvb/forum" target="_blank">http://www.zen-cart.at/zcvb/forum</a></p>
 <p>&nbsp;</p>
