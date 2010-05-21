@@ -632,7 +632,7 @@ class authorizenet_echeck extends base {
         $errorMessage .= 'Using CURL Proxy: [' . CURL_PROXY_SERVER_DETAILS . ']  with Proxy Tunnel: ' .($this->proxy_tunnel_flag ? 'On' : 'Off') . "\n";
       $errorMessage .= "\nRAW data received: \n" . $this->authorize . "\n\n";
 
-      if (strstr(MODULE_PAYMENT_AUTHORIZENET_ECHECK_DEBUGGING, 'Log') || strstr(MODULE_PAYMENT_AUTHORIZENET_ECHECK_DEBUGGING, 'All') || (defined('AUTHORIZENET_DEVELOPER_MODE') && in_array(AUTHORIZENET_DEVELOPER_MODE, array('on', 'certify'))) || true) {
+      if (strstr(MODULE_PAYMENT_AUTHORIZENET_ECHECK_DEBUGGING, 'Log') || strstr(MODULE_PAYMENT_AUTHORIZENET_ECHECK_DEBUGGING, 'All') || (defined('AUTHORIZENET_DEVELOPER_MODE') && in_array(AUTHORIZENET_DEVELOPER_MODE, array('on', 'certify')))) {
         $key = $response[6] . '_' . time() . '_' . zen_create_random_value(4);
         $file = $this->_logDir . '/' . 'AuthNetECheck_Debug_' . $key . '.log';
         if ($fp = @fopen($file, 'a')) {

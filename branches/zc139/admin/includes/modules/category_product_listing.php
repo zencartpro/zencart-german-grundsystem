@@ -4,7 +4,7 @@
  * @copyright Copyright 2003-2010 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: category_product_listing.php 15359 2010-01-28 19:52:09Z drbyte $
+ * @version $Id: category_product_listing.php 16185 2010-05-03 18:08:24Z ajeh $
  */
 if (!defined('IS_ADMIN_FLAG')) {
   die('Illegal Access');
@@ -169,7 +169,7 @@ if (!isset($_SESSION['display_categories_dropdown'])) {
                 </td>
                 <td class="dataTableContent" align="right"><?php echo $categories->fields['sort_order']; ?></td>
                 <td class="dataTableContent" align="right">
-                  <?php echo '<a href="' . zen_href_link(FILENAME_CATEGORIES, 'cPath=' . $cPath . '&cID=' . $categories->fields['categories_id'] . '&action=edit_category' . '&search=' . $_GET['search']) . '">' . zen_image(DIR_WS_IMAGES . 'icon_edit.gif', ICON_EDIT) . '</a>'; ?>
+                  <?php echo '<a href="' . zen_href_link(FILENAME_CATEGORIES, 'cPath=' . $cPath . '&cID=' . $categories->fields['categories_id'] . '&action=edit_category' . ((isset($_GET['search']) && !empty($_GET['search'])) ? '&search=' . $_GET['search'] : '')) . '">' . zen_image(DIR_WS_IMAGES . 'icon_edit.gif', ICON_EDIT) . '</a>'; ?>
                   <?php echo '<a href="' . zen_href_link(FILENAME_CATEGORIES, 'cPath=' . $cPath . '&cID=' . $categories->fields['categories_id'] . '&action=delete_category') . '">' . zen_image(DIR_WS_IMAGES . 'icon_delete.gif', ICON_DELETE) . '</a>'; ?>
                   <?php echo '<a href="' . zen_href_link(FILENAME_CATEGORIES, 'cPath=' . $cPath . '&cID=' . $categories->fields['categories_id'] . '&action=move_category') . '">' . zen_image(DIR_WS_IMAGES . 'icon_move.gif', ICON_MOVE) . '</a>'; ?>
 <?php
@@ -214,7 +214,7 @@ if (!isset($_SESSION['display_categories_dropdown'])) {
       }
 
     $products_count = 0;
-    if (isset($_GET['search'])) {
+    if (isset($_GET['search']) && !empty($_GET['search']) && $action != 'edit_category') {
 // fix duplicates and force search to use master_categories_id
 /*
       $products_query_raw = ("select p.products_type, p.products_id, pd.products_name, p.products_quantity,

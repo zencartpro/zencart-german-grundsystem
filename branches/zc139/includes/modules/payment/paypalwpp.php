@@ -6,7 +6,7 @@
  * @copyright Copyright 2003-2010 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: paypalwpp.php 16164 2010-04-30 23:50:13Z drbyte $
+ * @version $Id: paypalwpp.php 16287 2010-05-16 19:38:46Z drbyte $
  */
 /**
  * load the communications layer code
@@ -101,7 +101,7 @@ class paypalwpp extends base {
     global $order;
     $this->code = 'paypalwpp';
     $this->codeTitle = MODULE_PAYMENT_PAYPALWPP_TEXT_ADMIN_TITLE_EC;
-    $this->codeVersion = '1.3.9b';
+    $this->codeVersion = '1.3.9c';
     $this->enableDirectPayment = FALSE;
     $this->enabled = (MODULE_PAYMENT_PAYPALWPP_STATUS == 'True');
     // Set the title & description text based on the mode we're in ... EC vs US/UK vs admin
@@ -1041,6 +1041,8 @@ class paypalwpp extends base {
       case 'CH':
       $info['state'] = '';
       break;
+      case 'GB':
+      break;
       default:
       $info['state'] = '';
     }
@@ -1962,9 +1964,18 @@ class paypalwpp extends base {
           $email_text = sprintf(EMAIL_GREET_NONE, $paypal_ec_payer_info['payer_firstname']) . EMAIL_WELCOME . "\n\n" . EMAIL_TEXT;
           $email_text .= "\n\n" . EMAIL_EC_ACCOUNT_INFORMATION . "\nUsername: " . $paypal_ec_payer_info['payer_email'] . "\nPassword: " . $password . "\n\n";
           $email_text .= EMAIL_CONTACT;
+          // include create-account-specific disclaimer
+          $email_text .= "\n\n" . sprintf(EMAIL_DISCLAIMER_NEW_CUSTOMER, STORE_OWNER_EMAIL_ADDRESS). "\n\n";
+          $email_html = array();
+          $email_html['EMAIL_GREETING']      = sprintf(EMAIL_GREET_NONE, $paypal_ec_payer_info['payer_firstname']) ;
+          $email_html['EMAIL_WELCOME']       = EMAIL_WELCOME;
+          $email_html['EMAIL_MESSAGE_HTML']  = nl2br(EMAIL_TEXT . "\n\n" . EMAIL_EC_ACCOUNT_INFORMATION . "\nUsername: " . $paypal_ec_payer_info['payer_email'] . "\nPassword: " . $password . "\n\n");
+          $email_html['EMAIL_CONTACT_OWNER'] = EMAIL_CONTACT;
+          $email_html['EMAIL_CLOSURE']       = nl2br(EMAIL_GV_CLOSURE);
+          $email_html['EMAIL_DISCLAIMER']    = sprintf(EMAIL_DISCLAIMER_NEW_CUSTOMER, '<a href="mailto:' . STORE_OWNER_EMAIL_ADDRESS . '">'. STORE_OWNER_EMAIL_ADDRESS .' </a>');
 
           // send the mail
-          if (trim(EMAIL_SUBJECT) != 'n/a') zen_mail($paypal_ec_payer_info['payer_firstname'] . " " . $paypal_ec_payer_info['payer_lastname'], $paypal_ec_payer_info['payer_email'], EMAIL_SUBJECT, $email_text, STORE_OWNER, STORE_OWNER_EMAIL_ADDRESS, array('EMAIL_MESSAGE_HTML'=>nl2br($email_text)), 'welcome');
+          if (trim(EMAIL_SUBJECT) != 'n/a') zen_mail($paypal_ec_payer_info['payer_firstname'] . " " . $paypal_ec_payer_info['payer_lastname'], $paypal_ec_payer_info['payer_email'], EMAIL_SUBJECT, $email_text, STORE_OWNER, STORE_OWNER_EMAIL_ADDRESS, $email_html, 'welcome');
 
           // set the express checkout temp -- false means the account is no longer "only" for EC ... it'll be permanent
           $_SESSION['paypal_ec_temp'] = false;
@@ -2179,6 +2190,9 @@ class paypalwpp extends base {
     $country_zone_check = $db->Execute($sql);
     $check_zone = $country_zone_check->RecordCount();
 
+    $zone_id = 0;
+    $logMsg = array('zone_id' => '-not found-');
+
     // now try and find the zone_id (state/province code)
     // use the country id above
     if ($check_zone) {
@@ -2194,14 +2208,13 @@ class paypalwpp extends base {
       if (!$zone->EOF) {
         // grab the id
         $zone_id = $zone->fields['zone_id'];
+        $logMsg = $zone->fields;
       } else {
         $check_zone = false;
-        $zone_id = 0;
-        $zone->fields = array('zone_id' => '-not found-');
       }
     }
     // debug
-    $this->zcLog('findMatchingAddressBookEntry - 1-stats', 'lookups:' . "\n" . print_r(array_merge($country->fields, array('zone_country_id' => $country_zone_check->fields['zone_id']), $zone->fields), true) . "\n" . 'check_zone: ' . $check_zone . "\n" . 'zone:' . $zone_id . "\nSubmittedAddress:".print_r($address_question_arr, TRUE));
+    $this->zcLog('findMatchingAddressBookEntry - 1-stats', 'lookups:' . "\n" . print_r(array_merge($country->fields, array('zone_country_id' => $country_zone_check->fields['zone_id']), $logMsg), true) . "\n" . 'check_zone: ' . $check_zone . "\n" . 'zone:' . $zone_id . "\nSubmittedAddress:".print_r($address_question_arr, TRUE));
 
     // do a match on address, street, street2, city
     $sql = "SELECT address_book_id, entry_street_address, entry_suburb, entry_city, entry_company, entry_firstname, entry_lastname

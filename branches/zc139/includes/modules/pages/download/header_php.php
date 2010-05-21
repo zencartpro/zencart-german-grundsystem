@@ -3,10 +3,10 @@
  * download header_php.php
  *
  * @package page
- * @copyright Copyright 2003-2009 Zen Cart Development Team
+ * @copyright Copyright 2003-2010 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: header_php.php 14448 2009-09-21 18:45:09Z drbyte $
+ * @version $Id: header_php.php 16271 2010-05-15 02:32:57Z drbyte $
  */
 // This should be first line of the script:
 $zco_notifier->notify('NOTIFY_HEADER_START_DOWNLOAD');
@@ -111,8 +111,16 @@ $origin_filename = $downloads->fields['orders_products_filename'];
 $browser_filename = str_replace(' ', '_', $origin_filename);
 if (strstr($browser_filename, '/')) $browser_filename = substr($browser_filename, strrpos($browser_filename, '/')+1);
 if (strstr($browser_filename, '\\')) $browser_filename = substr($browser_filename, strrpos($browser_filename, '\\')+1);
-
-    $downloadFilesize = filesize(DIR_FS_DOWNLOAD . $originFilename);
+if (substr(DIR_FS_DOWNLOAD, -1) != '/') $origin_filename = '/' . $origin_filename;
+if (!file_exists(DIR_FS_DOWNLOAD . $origin_filename)) {
+  $msg = 'DOWNLOAD PROBLEM: Problems detected with download for ' . DIR_FS_DOWNLOAD . $origin_filename . ' because the file could not be found on the server. If the file exists, then its permissions are too low for PHP to access it. Contact your hosting company for specific help in determining correct permissions to make the file readable by PHP.';
+  zen_mail('', STORE_OWNER_EMAIL_ADDRESS, ERROR_CUSTOMER_DOWNLOAD_FAILURE, $msg, STORE_NAME, EMAIL_FROM);
+}
+$downloadFilesize = @filesize(DIR_FS_DOWNLOAD . $origin_filename);
+if (!isset($downloadFilesize) || ($downloadFilesize < 1)) {
+  $msg = 'DOWNLOAD PROBLEM: Problem detected with download for ' . DIR_FS_DOWNLOAD . $origin_filename . ' because the server is preventing PHP from reading the file size attributes, or the file is actually 0 bytes in size (which suggests the uploaded file is damaged or incomplete). Perhaps its permissions are too low for PHP to access it? Contact your hosting company for specific help in determining correct permissions to allow PHP to stat the file using the filesize() function.';
+  zen_mail('', STORE_OWNER_EMAIL_ADDRESS, ERROR_CUSTOMER_DOWNLOAD_FAILURE, $msg, STORE_NAME, EMAIL_FROM);
+}
 
 
     /**
@@ -141,7 +149,7 @@ if (strstr($browser_filename, '\\')) $browser_filename = substr($browser_filenam
      */
     $hfile = $hline = '';
     if (headers_sent($hfile, $hline)) {
-      $msg = 'DOWNLOAD PROBLEM: Cannot begin download for ' . $originFilename . ' because HTTP headers were already sent. This indicates a PHP error, probably in a language file.  Start by checking ' . $hfile . ' on line ' . $hline . '.';
+      $msg = 'DOWNLOAD PROBLEM: Cannot begin download for ' . $origin_filename . ' because HTTP headers were already sent. This indicates a PHP error, probably in a language file.  Start by checking ' . $hfile . ' on line ' . $hline . '.';
       zen_mail('', STORE_OWNER_EMAIL_ADDRESS, ERROR_CUSTOMER_DOWNLOAD_FAILURE, $msg, STORE_NAME, EMAIL_FROM);
     }
 
@@ -191,7 +199,7 @@ if (strstr($browser_filename, '\\')) $browser_filename = substr($browser_filenam
 
     header("Content-Transfer-Encoding: binary");
     header('Content-Disposition: attachment; filename="' . urlencode($browser_filename) . '"');
-    header("Content-Length: " . (string) $downloadFilesize);
+    if ($downloadFilesize > 0) header("Content-Length: " . (string) $downloadFilesize);
 
 
 // Redirect usually will work only on Unix/Linux hosts since Windows hosts can't do symlinking in PHP versions older than 5.3.0
@@ -220,7 +228,7 @@ if (DOWNLOAD_BY_REDIRECT != 'true' or $link_create_status==false ) {
   } else {
     // override PHP timeout to 25 minutes, if allowed
     @set_time_limit(1500);
-    $zc_notifier->notify('NOTIFY_DOWNLOAD_IN_CHUNKS___COMPLETED', $origin_filename);
+    $zco_notifier->notify('NOTIFY_DOWNLOAD_IN_CHUNKS___COMPLETED', $origin_filename);
     // loop with fread($fp, xxxx) to allow streaming in chunk sizes below the PHP memory_limit
     $handle = @fopen(DIR_FS_DOWNLOAD . $origin_filename, "rb");
     if ($handle) {

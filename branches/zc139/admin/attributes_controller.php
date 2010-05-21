@@ -4,7 +4,7 @@
  * @copyright Copyright 2003-2010 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: attributes_controller.php 16106 2010-04-29 18:08:37Z ajeh $
+ * @version $Id: attributes_controller.php 16260 2010-05-12 15:22:50Z drbyte $
  */
 
   require('includes/application_top.php');
@@ -1077,7 +1077,7 @@ if ($action == '') {
           <tr>
             <td colspan="10" class="smallText">
 <?php
-  $per_page = MAX_ROW_LISTS_ATTRIBUTES_CONTROLLER;
+  $per_page = (defined('MAX_ROW_LISTS_ATTRIBUTES_CONTROLLER') && (int)MAX_ROW_LISTS_ATTRIBUTES_CONTROLLER > 3) ? (int)MAX_ROW_LISTS_ATTRIBUTES_CONTROLLER : 40;
   $attributes = "select pa.*
   from (" . TABLE_PRODUCTS_ATTRIBUTES . " pa
   left join " . TABLE_PRODUCTS_DESCRIPTION . " pd

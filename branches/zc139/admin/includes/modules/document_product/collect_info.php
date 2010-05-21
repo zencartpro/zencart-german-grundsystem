@@ -4,7 +4,7 @@
  * @copyright Copyright 2003-2010 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: collect_info.php 16087 2010-04-27 17:13:21Z ajeh $
+ * @version $Id: collect_info.php 16285 2010-05-16 19:08:00Z drbyte $
  */
 if (!defined('IS_ADMIN_FLAG')) {
   die('Illegal Access');
@@ -401,7 +401,7 @@ updateGross();
                 <td class="main" width="100%">
         <?php if ($_SESSION['html_editor_preference_status']=="FCKEDITOR") {
                 $oFCKeditor = new FCKeditor('products_description[' . $languages[$i]['id'] . ']') ;
-                $oFCKeditor->Value = (isset($products_description[$languages[$i]['id']])) ? htmlspecialchars($products_description[$languages[$i]['id']]) : htmlspecialchars(zen_get_products_description($pInfo->products_id, $languages[$i]['id'])) ;
+                $oFCKeditor->Value = (isset($products_description[$languages[$i]['id']])) ? $products_description[$languages[$i]['id']] : zen_get_products_description($pInfo->products_id, $languages[$i]['id']);
                 $oFCKeditor->Width  = '99%' ;
                 $oFCKeditor->Height = '350' ;
 //                $oFCKeditor->Config['ToolbarLocation'] = 'Out:xToolbar' ;

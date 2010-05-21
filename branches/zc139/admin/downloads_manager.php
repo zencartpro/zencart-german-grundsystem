@@ -1,10 +1,10 @@
 <?php
 /**
  * @package admin
- * @copyright Copyright 2003-2007 Zen Cart Development Team
+ * @copyright Copyright 2003-2010 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: downloads_manager.php 6362 2007-05-24 21:17:53Z drbyte $
+ * @version $Id: downloads_manager.php 16249 2010-05-09 05:33:16Z ajeh $
  */
 
   require('includes/application_top.php');
@@ -236,7 +236,7 @@ function go_option() {
 
         $contents[] = array('align' => 'center', 'text' =>
           '<a href="' . zen_href_link(FILENAME_DOWNLOADS_MANAGER, zen_get_all_get_params(array('padID', 'action')) . 'padID=' . $padInfo->products_attributes_id . '&page=' . $_GET['page'].'&action=edit') . '">' . zen_image_button('button_edit.gif', IMAGE_EDIT) . '</a>' .
-          '<a href="' . zen_href_link(FILENAME_ATTRIBUTES_CONTROLLER, 'products_filter=' . $padInfo->products_id) . '">' . zen_image_button('button_edit_attribs.gif', IMAGE_EDIT_ATTRIBUTES) . '</a>'
+          '<a href="' . zen_href_link(FILENAME_ATTRIBUTES_CONTROLLER, 'products_filter=' . $padInfo->products_id . '&current_categories_id=' . $padInfo->master_categories_id) . '">' . zen_image_button('button_edit_attribs.gif', IMAGE_EDIT_ATTRIBUTES) . '</a>'
           );
         $contents[] = array('text' => '<br />' . TEXT_PRODUCTS_NAME . $padInfo->products_name);
         $contents[] = array('text' => TEXT_PRODUCTS_MODEL . $padInfo->products_model);
@@ -271,4 +271,4 @@ function go_option() {
 <!-- footer_eof //-->
 </body>
 </html>
-<?php require(DIR_WS_INCLUDES . 'application_bottom.php'); ?>  
+<?php require(DIR_WS_INCLUDES . 'application_bottom.php'); ?>
