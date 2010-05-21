@@ -4,10 +4,10 @@
  * HTML-generating functions used throughout the core
  *
  * @package functions
- * @copyright Copyright 2003-2009 Zen Cart Development Team
+ * @copyright Copyright 2003-2010 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: html_output.php 14294 2009-08-29 20:11:25Z drbyte $
+ * @version $Id: html_output.php 587 for Ultimate SEO URL and ZC139c 2010-05-21 14:14:25Z webchills $
  */
 
  //// IMAGINADW.COM

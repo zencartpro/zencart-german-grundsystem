@@ -42,13 +42,13 @@
 
 			$this->default_config['SEO_ADD_CPATH_TO_PRODUCT_URLS'] = array(
 				'DEFAULT' => 'false',
-				'QUERY' => "INSERT INTO `".TABLE_CONFIGURATION."` VALUES ('', 'Kategorienummer als cPath an die Produktlinks anh�ngen?', 'SEO_ADD_CPATH_TO_PRODUCT_URLS', 'false', 'Kategorienummer wird als cPath angeh�ngt (z.B. - some-product-p-1.html?cPath=xx).', GROUP_INSERT_ID, ".$x.", NOW(), NOW(), NULL, 'zen_cfg_select_option(array(''true'', ''false''),')"
+				'QUERY' => "INSERT INTO `".TABLE_CONFIGURATION."` VALUES ('', 'Kategorienummer als cPath an die Produktlinks anhängen?', 'SEO_ADD_CPATH_TO_PRODUCT_URLS', 'false', 'Kategorienummer wird als cPath angehängt (z.B. - some-product-p-1.html?cPath=xx).', GROUP_INSERT_ID, ".$x.", NOW(), NOW(), NULL, 'zen_cfg_select_option(array(''true'', ''false''),')"
 			);
 			$x++;
 
 			$this->default_config['SEO_ADD_CAT_PARENT'] = array(
 				'DEFAULT' => 'true',
-				'QUERY' => "INSERT INTO `".TABLE_CONFIGURATION."` VALUES ('', 'Oberkategorienamen am Anfang der Kategorielinks anzeigen?', 'SEO_ADD_CAT_PARENT', 'true', '�bergeordnete Kategorie wird in Kategorielinks angezeigt (z.B. - parent-category-c-1.html).', GROUP_INSERT_ID, ".$x.", NOW(), NOW(), NULL, 'zen_cfg_select_option(array(''true'', ''false''),')"
+				'QUERY' => "INSERT INTO `".TABLE_CONFIGURATION."` VALUES ('', 'Oberkategorienamen am Anfang der Kategorielinks anzeigen?', 'SEO_ADD_CAT_PARENT', 'true', 'Übergeordnete Kategorie wird in Kategorielinks angezeigt (z.B. - parent-category-c-1.html).', GROUP_INSERT_ID, ".$x.", NOW(), NOW(), NULL, 'zen_cfg_select_option(array(''true'', ''false''),')"
 			);
 			$x++;
 
@@ -102,19 +102,20 @@
 
 			$this->default_config['USE_SEO_REDIRECT'] = array(
 				'DEFAULT' => 'true',
-				'QUERY' => "INSERT INTO `".TABLE_CONFIGURATION."` VALUES ('', 'Automatische Redirects aktivieren?', 'USE_SEO_REDIRECT', 'true', 'Automatischen Redirect aktivieren? 301 Header wird f�r alte an neue URLs uebermittelt.', GROUP_INSERT_ID, ".$x.", NOW(), NOW(), NULL, 'zen_cfg_select_option(array(''true'', ''false''),')"
+				'QUERY' => "INSERT INTO `".TABLE_CONFIGURATION."` VALUES ('', 'Automatische Redirects aktivieren?', 'USE_SEO_REDIRECT', 'true', 'Automatischen Redirect aktivieren? 301 Header wird für alte an neue URLs übermittelt.', GROUP_INSERT_ID, ".$x.", NOW(), NOW(), NULL, 'zen_cfg_select_option(array(''true'', ''false''),')"
 			);
 			$x++;
 
 			$this->default_config['SEO_REWRITE_TYPE'] = array(
 				'DEFAULT' => 'Rewrite',
-				'QUERY' => "INSERT INTO `".TABLE_CONFIGURATION."` VALUES ('', 'URL Rewrite Typ festlegen', 'SEO_REWRITE_TYPE', 'Rewrite', 'Welches SEO URL Format soll genutzt werden? (Derzeit wird nur Rewrite unterst�tzt!)', GROUP_INSERT_ID, ".$x.", NOW(), NOW(), NULL, 'zen_cfg_select_option(array(''Rewrite''),')"
+				'QUERY' => "INSERT INTO `".TABLE_CONFIGURATION."` VALUES ('', 'URL Rewrite Typ festlegen', 'SEO_REWRITE_TYPE', 'Rewrite', 'Welches SEO URL Format soll genutzt werden? (Derzeit wird nur Rewrite unterstützt!)', GROUP_INSERT_ID, ".$x.", NOW(), NOW(), NULL, 'zen_cfg_select_option(array(''Rewrite''),')"
 			);
 			$x++;
 
 			$this->default_config['SEO_CHAR_CONVERT_SET'] = array(
 				'DEFAULT' => '',
-				'QUERY' => "INSERT INTO `".TABLE_CONFIGURATION."` VALUES ('', 'Umlaute umschreiben', 'SEO_CHAR_CONVERT_SET', '', 'Umlaute sollte man umschreiben lassen.<br><br>Das Format <b>MUSS</b> so sein: <b>zeichen1=>wunschzeichen1,zeichen2=>wunschzeichen2</b>', GROUP_INSERT_ID, ".$x.", NOW(), NOW(), NULL, NULL)"
+				'QUERY' => "INSERT INTO `".TABLE_CONFIGURATION."` VALUES ('', 'Umlaute umschreiben', 'SEO_CHAR_CONVERT_SET', '', 'Umlaute sollte man umschreiben lassen.<br><br>Das Format <b>MUSS</b> so sein: <b>zeichen1=>wunschzeichen1,zeichen2=>wunschzeichen2</b><br/>Hier ein Beispiel, das bereits die wichtigsten enthält:<br/>
+				ä=>ae,ö=>oe,ü=>ue,ß=>ss,é=>e,Ö=>Oe,Ä=>ae,Ü=>Ue,è=>e', GROUP_INSERT_ID, ".$x.", NOW(), NOW(), NULL, NULL)"
 			);
 			$x++;
 
@@ -203,7 +204,7 @@
 		$sort_order_query = "SELECT MAX(sort_order) as max_sort FROM `".TABLE_CONFIGURATION_GROUP."`";
 		$sort = $this->db->Execute($sort_order_query);
 		$next_sort = $sort->fields['max_sort'] + 1;
-		$insert_group = "INSERT INTO `".TABLE_CONFIGURATION_GROUP."` VALUES ('','43', 'SEO URLs', 'Einstellungen fuer Ultimate SEO URLs', '".$next_sort."', '1')";
+		$insert_group = "INSERT INTO `".TABLE_CONFIGURATION_GROUP."` VALUES ('','43', 'Ultimate SEO URL 2.107', 'Einstellungen fuer Ultimate SEO URLs', '".$next_sort."', '1')";
 		$this->db->Execute($insert_group);
 		$group_id = $this->db->insert_ID();
 

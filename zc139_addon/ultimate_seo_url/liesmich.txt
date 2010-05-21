@@ -106,9 +106,11 @@ KONFIGURATION
 =============
 
 Die meisten Einstellungen unter Konfiguration SEO URLs sind selbsterklärend.
-Wichtig ist die Einstellungen für die Umlaute.
-Hier z.B. Folgendes eintragen:
-ä=>ae,ö=>oe,ü=>ue,ß=>ss,é=>e,Ö=>Oe,Ä=>ae,è=>e
+Wichtig sind die Einstellungen für die Umlaute.
+Das Format MUSS so sein:
+zeichen1=>wunschzeichen1,zeichen2=>wunschzeichen2
+Hier ein Beispiel, das bereits die wichtigsten enthält:
+ä=>ae,ö=>oe,ü=>ue,ß=>ss,é=>e,Ö=>Oe,Ä=>ae,Ü=>Ue,è=>e
 Nach jeder solchen Änderung muss der SEO URL Cache geleert werden
 >> SEO URL Cache leeren auf true stellen und speichern, setzt sich dann automatisch wieder auf false
 

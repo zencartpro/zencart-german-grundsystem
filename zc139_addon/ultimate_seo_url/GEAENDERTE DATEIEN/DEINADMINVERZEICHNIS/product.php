@@ -4,7 +4,7 @@
  * @copyright Copyright 2003-2010 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: product.php 577 2010-05-02 10:56:51Z webchills $
+ * @version $Id: product.php 587 for Ultimate SEO URL and ZC139c 2010-05-21 14:12:51Z webchills $
  */
 
   require('includes/application_top.php');
