@@ -1,0 +1,21 @@
+/**
+ * Zen Lightbox
+ *
+ * @author Alex Clarke (aclarke@ansellandclarke.co.uk)
+ * @copyright Copyright 2003-2005 Zen Cart Development Team
+ * @copyright Portions Copyright 2003 osCommerce
+ * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
+ * @version $Id: stylesheet_zen_lightbox.css 2008-12-08 aclarke $
+ */
+
+#lbBottom{border:10px solid #fff;border-top-style:none;color:#666;font-family:Verdana, Arial, Geneva, Helvetica, sans-serif;font-size:10px;line-height:1.4em;text-align:left}
+#lbCaption{font-weight:700}
+#lbCaption,#lbNumber{margin-right:71px}
+#lbCenter,#lbBottomContainer{background-color:#fff;overflow:hidden;position:absolute;z-index:9999}
+#lbCloseLink{display:block;float:right;height:22px;margin:5px 0;outline:none;width:66px}
+#lbImage{background-repeat:no-repeat;border:10px solid #fff;cursor:default;left:0;position:absolute;top:0}
+#lbNextLink{right:0}
+#lbOverlay{background-color:#000;height:100%;left:0;position:fixed;top:0;width:100%;z-index:9999}
+#lbPrevLink{left:0}
+#lbPrevLink,#lbNextLink{display:block;height:32px!important;outline:none;position:absolute;top:0;width:63px}
+.lbLoading{background:#fff url(../images/zen_lightbox/loading.gif) no-repeat center}

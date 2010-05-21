@@ -1,0 +1,254 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Zen Lightbox v1.5</title>
+<style>
+#code{background-color:#CCC;border:1px solid #000;padding:5px;}
+#contentDescription{line-height:150%;margin:30px 20px;}
+#contentMenu{font-size:12px;font-weight:700;text-align:center;}
+#contentMenu ul{list-style-type:none;margin:auto;padding:20px;}
+#contentMenu ul li{display:inline;}
+#contentMenu ul li a{padding-left:10px;padding-right:10px;text-decoration:none;}
+#contentWrapper{font-size:14px;margin:auto;padding-top:15px;width:800px;}
+#copyright{font-size:11px;margin-bottom:15px;text-align:center;}
+#exampleImage{text-align:center;}
+#payPalBanner{margin:auto;text-align:center;}
+#payPalBannerBorder{border-bottom:1px solid #696969;padding-bottom:15px;}
+#payPalBannerWrapper{background-color:#FFFFE1;border-bottom:1px solid #A0A0A0;color:#000;padding-top:15px;text-decoration:none;}
+#payPalBannerWrapper:hover{background-color:#39F;color:#FFF;}
+#payPalButton2{padding:5px;text-align:center;}
+.payPalBannerDescription{font-size:12px;}
+.payPalLink{display:block;}
+a{color:#03C;}
+a img{border:none;}
+a:hover{color:#C00;}
+body{font-family:Verdana, Arial, Helvetica, sans-serif;margin:0;}
+h1{font-size:24px;}
+h2{border:1px solid #000;font-size:18px;padding:5px;}
+</style>
+</head>
+<body>
+<a name="top" id="top"></a>
+<script language="JavaScript" type="text/javascript"><!--
+document.write('<a href="javascript: document.paypal.submit()"><span id="payPalLink">');
+//--></script>
+<div id="payPalBannerWrapper">
+  <div id="payPalBannerBorder">
+    <div id="payPalBanner"><span class="payPalBannerDescription">If you find Zen Lightbox useful, please consider donating. All PayPal donations are greatly appreciated.</span><br />
+      <br />
+      <form action="https://www.paypal.com/cgi-bin/webscr" method="post" name="paypal" target="_blank" id="paypal">
+        <input type="hidden" name="cmd" value="_s-xclick">
+        <input type="image" src="file:///G|/Zen-Cart Module Webchills/Zen Lightbox 1.5 für Zen-Cart 1.3.8 deutsch/DOCS/readme_deutsch/_readme_files/x-click-but21.gif" border="0" name="submit" alt="Make payments with PayPal - it's fast, free and secure!" />
+        <input type="hidden" name="encrypted" value="-----BEGIN PKCS7-----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-----END PKCS7-----
+">
+      </form>
+    </div>
+  </div>
+</div>
+<script language="JavaScript" type="text/javascript"><!--
+	document.write('</span></a>');
+	//--></script>
+<div id="contentWrapper">
+  <h1>Zen Lightbox 1.5.2 Dokumentation</h1>
+  <div id="contentMenu">
+    <ul>
+      <li><a href="#introduction">Überblick</a></li>
+      <li><a href="#whats_new">Neue Funktionen</a></li>
+      <li><a href="#installation">Neuinstallation</a></li>
+      <li><a href="#upgrade">Update</a>
+      </li><li><a href="#version_history">History</a></li>
+      <li></li>
+      <li><a href="#support">Hilfe</a></li>
+      <li><a href="#donations">Donations</a></li>
+    </ul>
+  </div>
+  <h2><a name="introduction" id="introduction"></a>Überblick</h2>
+  <div id="contentDescription">
+    <p>Dieses Modul integriert den Lightbox Effekt in Zen-Cart. Alle großen Artikelbilder (auf der Detailseite) werden beim Anclicken in einer Lightbox angezeigt. Dadurch werden keine Popup Fenster mehr verwendet, was die Website wesentlich benutzerfreundlicher macht. Die zusätzlichen Artikelbilder werden innerhalb der Lightbox in einer Galerie angezeigt.</p>
+    <p>Mit Version 1.5.2 wird der Lightbox Effekt auf allen Seiten des Shops ermöglicht (auch auf EZ-Pages) und die Steuerung der Lightbox kann auch über Tastaturbefehle erfolgen. Der Code wurde optimiert und die Größe des Javascript-Codes um 52,23% reduziert.</p>
+    <p>Danke an <a href="http://www.digitalia.be/" target="_blank">Christophe Beyls</a> für das Javascript Lightbox JS v2, <a href="http://www.chrisboylan.com/" target="_blank">Chris Boylan</a> für die Arbeit am Image Handler 2 Support und an das <a href="http://www.zen-cart.com/index.php?main_page=infopages&amp;pages_id=9" target="_blank">Zen Cart Team</a> für das beste verfügbare Open Source Webshop-System!</p>
+   
+  </div>
+  <h2><a name="whats_new" id="whats_new"></a>Neue Funktionen</h2>
+  <div id="contentDescription">
+    <p>Version 1.5.2 für die deutsche Zen-Cart 1.3.9 Version<br />
+Release Date: 2010-05-21 (webchills)<br />
+    </p>
+    <ul>
+      <li>Anpassungen zur Verwendung in 1.3.9c deutsch</li>
+    </ul>
+    <p>Version 1.5.1 für die deutsche Zen-Cart 1.3.8 Version<br />
+      Release Date: 2009-02-15 (webchills)<br />
+    </p>
+    <ul>
+      <li>Fehler im SQL Installer behoben</li>
+      <li>SQL Installer für deutsche Zen-Cart Version angepasst und übersetzt</li>
+      <li>        deutsche Sprachfiles hinzugefügt und Struktur des Downloads geändert</li>
+      <li>deutsche Installationsanleitung erstellt</li>
+    </ul>
+    <p>Version 1.5 <br />
+Release Date: 2008-12-18 (Alex Clarke)</p>
+    <ul>
+      <li>Added Caption Animation Duration admin switch</li>
+      <li>Added Close Lightbox admin switch</li>
+      <li>Added Close on Image Click admin switch</li>
+      <li>Added Display Image Counter admin switch</li>
+      <li>Added Enable Keyboard Navigation admin switch</li>
+      <li>Added full support for multilingual stores</li>
+      <li>Added greater flexibility for Overlay Fade Duration admin switch</li>
+      <li>Added Image Fade Duration admin switch</li>
+      <li>Added Include Main Image in Gallery admin switch</li>
+      <li>Added Initial Height admin switch</li>
+      <li>Added Initial Width admin switch</li>
+      <li>Added missing &lt;/b&gt; to install.sql file</li>
+      <li>Added Next Image admin switch</li>
+      <li>Added Previous Image admin switch</li>
+      <li>Added Resize Transition admin switch</li>
+      <li>Added support for lightbox effect on any page (including EZ-Pages)</li>
+      <li>Added title attributes (similar to alt text) to lightbox buttons</li>
+      <li>Added uninstall.sql file</li>
+      <li>Removed Border Size admin switch (this is now controlled by CSS)</li>
+      <li>Removed DIV Class to Hide admin switch</li>
+      <li>Removed Enable Resize Animations admin switch</li>
+      <li>Removed header_php.php core file change</li>
+      <li>Removed Hide Flash Objects admin switch (Slimbox handles this automatically)</li>
+      <li>Updated blank entries in install.sql file to NULL</li>
+      <li>Updated invalid characters in rel attributes of links (output code is now valid XHTML)</li>
+      <li>Updated JavaScript code to classes to avoid source code duplication</li>
+      <li>Updated lightbox code to Slimbox v1.67</li>
+      <li>Updated modules to prevent JavaScript code from loading when Zen Lightbox is disabled</li>
+      <li>Updated support for Zen Cart 1.3.8a and Image Handler 2.0_for_137</li>
+      <li>Updated various configuration titles and descriptions within the admin<br />
+      </li>
+    </ul>
+  </div>
+  <h2><a name="installation" id="installation"></a>Neuinstallation</h2>
+  <div id="contentDescription">
+    <p><strong>Diese Zen Lightbox Version ist nur für eine deutsche Zen Cart 1.3.9c Version geeignet!</strong><br />
+    <strong>Sollte im Shop bereits eine ältere Lightbox Version (z.B. 1.4) aktiv sein, muss die alte Version erst komplett entfernt werden! (siehe <a href="#upgrade">Update</a>) </strong></p>
+    <p>Denke daran, ein <strong>Backup von Website und Datenbank</strong> zu machen, bevor Du weiterliest.</p>
+    <p>Um die Lightbox zu installieren, gehe folgendermaßen vor:    </p>
+    <ol>
+      <li>Benenne im includes Verzeichnis dieses Downloads folgende Ordner von DEINTEMPLATE auf das im Shop aktive Template um (z.B. classic, viennablood, ...)<br />
+        <br />
+        <strong>includes\languages\english\extra_definitions\DEINTEMPLATE<br />
+        includes\languages\german\extra_definitions\DEINTEMPLATE        <br />
+        includes\modules\DEINTEMPLATE<br />
+        includes\templates\DEINTEMPLATE</strong><br />
+        <br />
+      </li>
+      <li>Lade alle Dateien und Ordner aus dem includes Ordner in der vorgebenen Struktur in den includes Ordner Deines Shops am Server. Es wird konsequent das Override-System verwendet, daher werden keine bestehenden Dateien überschrieben.<br />
+        <br />
+      </li>
+      <li>Öffne im Ordner SQL dieses Downloads die install.sql mit einem Texteditor und kopiere den Text ins Eingabefeld unter Tools &gt; SQL Patches installieren in Deiner Zen-Cart Administration. Durch Absenden werden die nötigen Datenbankeinträge angelegt.</li>
+    </ol>
+    <p>Zen Lightbox 1.5.2 ist nun installiert und einsatzbereit</p>
+    <p>Unter Konfiguration erscheint nun eine neuer Menüpunkt Zen Lightbox, wo etliche Einstellungen vorgenommen werden können.</p>
+    <p><strong>EZ-Pages</strong></p>
+    <p>Standardmäßig ist der Lightbox Effekt für alle Links zu Bildern innerhalb von EZ-Pages bereits aktiv. In der Lightbox-Konfiguration kann das ausgeschaltet werden.<br />
+      Wenn Du also ein Bild mit Link zum größeren Bild so in eine EZ-Page einbaust:
+    </p>
+     <div id="code">&lt;a href=&quot;images/bildgross.jpg&quot;&gt;&lt;img src=&quot;images/bildklein.jpg&quot;&gt;&lt;/a&gt;</div>
+      <p>
+Dann wird das Bild beim Anclicken in einer Lightbox vergrößert.</p>
+      <p>Ebenso geht das Bild in einer Lightbox auf, wenn nur ein Link zum Bild gesetzt wird und der Link angecklickt wird:</p>
+<div id="code">&lt;a href=&quot;images/bildgross.jpg&quot;&gt;Bild&lt;/a&gt;</div>
+      <br />
+      </p>Werden innerhalb eines übergeordneten Elements mehrere Links zu Bildern gesetzt, werden all diese Bilder in der Galerieansicht dargestellt (prev - next), genauso wie bei den zusätzlichen Bildern auf der Artikeldetailseite.
+      <p>Wenn Captions benötigt werden, können sie mit dem rel=&quot;&quot; Attribut im Link angegeben werden:</p>
+<div id="code">&lt;a href=&quot;images/bildgross.jpg&quot; <span style="color: #FF0000">rel=&quot;here is my caption&quot;</span>&gt;Bild&lt;/a&gt;</div>
+    <p><strong><br />
+    Lightbox auf jeder beliebigen Seite</strong></p>
+    <p>Die Lightbox-Funktionalität kann leicht auf jede beliebige Seite in Zen-Cart ausgeweitet werden. Dazu muss die Datei <strong>jscript_zen_lightbox.php</strong> im Ordner ZUSATZ dieses Downloads in das entsprechende includes/modules/pages Verzeichnis gelegt werden.</p>
+<p>Beispiele:<br />
+  Lightbox-Effekt auf der Kontaktseite:<br />
+  Die Datei muss nach <strong>includes/modules/pages/contact_us</strong> kopiert werden.<br />
+  Lightbox-Effekt auf der Versandkostenseite:<br />
+  Die Datei muss nach 
+    <strong>includes/modules/pages/shippinginfo </strong>kopiert werden</p>
+</div>
+  <h2><a name="upgrade" id="upgrade"></a>Update von älteren Zen Lightbox Versionen</h2>
+  <div id="contentDescription">
+    <p>Code, Dateistruktur und Dateinamen haben sich mit 1.5.2 stark verändert. Daher muss eine frühere Lightbox Version erst komplett entfernt werden:</p>
+    <p><strong>Wenn von Version 1.4 auf 1.5.2 upgedated wird, unbedingt erst das Uninstall-Script ausführen, das bei 1.4 dabei war (Admin &gt; Tools &gt; SQL Patches installieren), um die alten Datenbankeinträge zu entfernen.</strong></p>
+    <ol>
+      <li>Öffne den alten Download Deiner früheren Lightbox-Version und schau nach, welche Dateien enthalten waren. Lösche dann all diese Dateien vom Server.<br />
+        <br />
+      </li>
+      <li>Folge dann der Anleitung für eine <a href="#installation">Installation</a> wie weiter oben beschrieben.</li>
+    </ol>
+  </div>
+  <h2><a name="version_history" id="version_history"></a>Version History</h2>
+  <div id="contentDescription">
+    <p>Version 1.4 - Release Date: 2007-09-23</p>
+    <ul>
+      <li>Renamed Zen Lightbox function, various files and folders</li>
+      <li>Improved use of the overrides system for JavaScript and image files</li>
+      <li>Added admin switch to enable/disable Zen Lightbox</li>
+      <li>Added admin switch to adjust the overlay opacity</li>
+      <li>Added admin switch to adjust the overlay fade duration</li>
+      <li>Added admin switch to enable/disable resize animations</li>
+      <li>Added admin switch to adjust the resize speed</li>
+      <li>Added admin switch to adjust the border size</li>
+      <li>Added admin switch to enable/disable the lightbox from closing when you click on the overlay</li>
+      <li>Added admin switch to enable/disable Flash objects from being hidden when the lightbox is displayed</li>
+      <li>Added admin switch to specify a DIV class to hide when the lightbox is displayed</li>
+      <li>Added lightbox functionality to document_general_info, document_product_info, product_free_shipping_info, product_music_info, product_reviews, products_reviews_info and product_reviews_write pages.</li>
+      <li>Updated Lightbox JS v2 code to version 2.03.3</li>
+      <li>Reverted to original CSS code (with custom fixes)</li>
+      <li>Fixed model number display error on product_reviews page</li>
+      <li>Added code to load all lightbox resources before image loading is complete</li>
+      <li>Updated support for Zen Cart 1.3.7.1 and Image Handler 2.0 v0916</li>
+      <li>Removed close link from lightbox image</li>
+    </ul>
+    <p>Version 1.3 - Release Date: 2006-10-20</p>
+    <ul>
+      <li> Added support for Image Handler 2</li>
+      <li>Fixed apostrophes error in image display code</li>
+      <li>Updated CSS file (compressed by 15.8%) using CSS Tidy at <a href="http://www.cleancss.com/" target="_blank">Clean CSS</a></li>
+      <li>Updated source formatting of various files</li>
+    </ul>
+    <p>Version 1.2 - Release Date: 2006-09-07</p>
+    <ul>
+      <li> Removed redundant images files (prev.gif and next.gif)</li>
+      <li>Fixed width of previous and next links</li>
+      <li>Added close link to lightbox image</li>
+      <li>Added Flash by-pass code to avoid overlay issues<br />
+      </li>
+    </ul>
+    <p>Version 1.1 -  Release Date: 2006-09-06</p>
+    <ul>
+      <li>Added support for additional images</li>
+    </ul>
+    <p>Version 1.0 -  Release Date: 2006-09-05</p>
+    <ul>
+      <li>Initial release</li>
+    </ul>
+  </div>
+  
+  <h2><a name="support" id="support"></a>Hilfe</h2>
+  <div id="contentDescription">
+    <p>Support-Thread für die deutsche Version 1.5.2 im Forum  auf zen-cart.at:</p>
+    <p><a href="http://www.zen-cart.at/zcvb/forum/forumdisplay.php?f=50" target="_blank">http://www.zen-cart.at/zcvb/forum/forumdisplay.php?f=50</a></p>
+</div>
+  <h2><a name="donations" id="donations"></a>Donations</h2>
+  <div id="contentDescription">
+    <p>If you find Zen Lightbox useful, please consider donating. All PayPal donations are greatly appreciated.</p>
+    <div id="payPalButton2">
+      <script language="JavaScript" type="text/javascript"><!--
+document.write('<a href="javascript: document.paypal.submit()"><img src="_readme_files/x-click-but21.gif" alt="Make payments with PayPal - it\'s fast, free and secure!" width="110" height="23" />');
+//--></script>
+      <noscript>
+      <a href="#top"><b>Please click on the 'Make a Donation' button at the top of this page.</b></a>
+      </noscript>
+    </div>
+    <script language="JavaScript" type="text/javascript"><!--
+	document.write('</span></a>');
+	//--></script>
+    <p>Donations will help me  devote more time to developing Zen Lightbox and ensure that it is compatible with all future releases of Zen Cart.</p>
+  </div>
+  <div id="copyright">&copy; <a href="mailto:aclarke@ansellandclarke.co.uk?subject=Zen Lightbox">Alex Clarke</a> 2008. All rights reserved | deutsche Modifikation &copy; <a href="http://www.webchills.at" target="_blank">webchills</a> 2010</div>
+</div>
+</body>
+</html>
