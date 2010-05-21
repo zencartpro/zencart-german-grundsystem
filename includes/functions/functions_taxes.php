@@ -6,7 +6,7 @@
  * @copyright Copyright 2003-2010 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: functions_taxes.php 16101 2010-04-28 21:03:48Z wilt $
+ * @version $Id: functions_taxes.php 16190 2010-05-03 20:18:57Z wilt $
  */
 
 ////
@@ -270,10 +270,29 @@
      $tax_address['country_id'] = $tax_address_result->fields['entry_country_id'];
      return $tax_address;
  }
- function zen_get_all_tax_descriptions() 
+ function zen_get_all_tax_descriptions($country_id = -1, $zone_id = -1) 
  {
    global $db;
-   $sql = "SELECT * FROM " . TABLE_TAX_RATES;
+    if ( ($country_id == -1) && ($zone_id == -1) ) {
+      if (isset($_SESSION['customer_id'])) {
+        $country_id = $_SESSION['customer_country_id'];
+        $zone_id = $_SESSION['customer_zone_id'];
+      } else {
+        $country_id = STORE_COUNTRY;
+        $zone_id = STORE_ZONE;
+      }
+    }
+    
+   $sql = "select tr.* 
+           from (" . TABLE_TAX_RATES . " tr
+           left join " . TABLE_ZONES_TO_GEO_ZONES . " za on (tr.tax_zone_id = za.geo_zone_id)
+           left join " . TABLE_GEO_ZONES . " tz on (tz.geo_zone_id = tr.tax_zone_id) )
+           where (za.zone_country_id is null
+           or za.zone_country_id = 0
+           or za.zone_country_id = '" . (int)$country_id . "')
+           and (za.zone_id is null
+           or za.zone_id = 0
+           or za.zone_id = '" . (int)$zone_id . "')";
    $result = $db->Execute($sql);
    $taxDescriptions =array();
    while (!$result->EOF)

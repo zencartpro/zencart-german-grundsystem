@@ -224,7 +224,7 @@
    * returns string
    */
     function test_curl($mode='NONSSL', $proxy = false, $proxyAddress = '') {
-      if (!function_exists('curl_init') || !function_exists('curl_exec') || stristr(ini_get('disable_functions'), array('curl_exec', 'curl_init')) ) {
+      if (!function_exists('curl_init') || !function_exists('curl_exec') || stristr(ini_get('disable_functions'), 'curl_exec') || stristr(ini_get('disable_functions'), 'curl_init') ) {
         $this->setError(ERROR_TEXT_CURL_NOT_COMPILED, ERROR_CODE_CURL_SUPPORT, false);
         return ERROR_TEXT_CURL_NOT_COMPILED;
       }

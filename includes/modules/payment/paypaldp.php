@@ -128,7 +128,7 @@ class paypaldp extends base {
     global $order;
     $this->code = 'paypaldp';
     $this->codeTitle = MODULE_PAYMENT_PAYPALDP_TEXT_ADMIN_TITLE_WPP;
-    $this->codeVersion = '1.3.9b';
+    $this->codeVersion = '1.3.9c';
     $this->enableDirectPayment = true;
     $this->enabled = (MODULE_PAYMENT_PAYPALDP_STATUS == 'True');
     // Set the title & description text based on the mode we're in
@@ -150,7 +150,7 @@ class paypaldp extends base {
 
     if ((!defined('PAYPAL_OVERRIDE_CURL_WARNING') || (defined('PAYPAL_OVERRIDE_CURL_WARNING') && PAYPAL_OVERRIDE_CURL_WARNING != 'True')) && !function_exists('curl_init')) $this->enabled = false;
 
-    $this->enableDebugging = true;//(MODULE_PAYMENT_PAYPALDP_DEBUGGING == 'Log File' || MODULE_PAYMENT_PAYPALDP_DEBUGGING =='Log and Email');
+    $this->enableDebugging = (MODULE_PAYMENT_PAYPALDP_DEBUGGING == 'Log File' || MODULE_PAYMENT_PAYPALDP_DEBUGGING =='Log and Email');
     $this->emailAlerts = (MODULE_PAYMENT_PAYPALDP_DEBUGGING == 'Log File' || MODULE_PAYMENT_PAYPALDP_DEBUGGING =='Log and Email' || MODULE_PAYMENT_PAYPALDP_DEBUGGING == 'Alerts Only');
     $this->sort_order = MODULE_PAYMENT_PAYPALDP_SORT_ORDER;
 
@@ -2087,6 +2087,8 @@ class paypaldp extends base {
     $data .= '<CardExpYear>' . $this->escapeXML($lookup_data_array['cc3d_exp_year']) . '</CardExpYear>';
     $data .= '<UserAgent>' . $this->escapeXML($_SERVER["HTTP_USER_AGENT"]) . '</UserAgent>';
     $data .= '<IPAddress>' . $this->escapeXML(zen_get_ip_address()) . '</IPAddress>';
+    $ipAddress = explode(',', zen_get_ip_address());
+    $data .= '<IPAddress>' . $this->escapeXML($ipAddress[0]) . '</IPAddress>';
     $data .= '<BrowserHeader>' . $this->escapeXML($_SERVER["HTTP_ACCEPT"]) . '</BrowserHeader>';
     $data .= '<OrderChannel>' . $this->escapeXML('MARK') . '</OrderChannel>';
     if (isset($lookup_data_array['merchantData'])) $data .= '<MerchantData>' . $this->escapeXML($lookup_data_array['merchantData']) . '</MerchantData>';
@@ -2451,13 +2453,13 @@ class paypaldp extends base {
 
   function determineCardType($cardNumber) {
     $cardNumber = preg_replace('/[^0-9]/', '', $cardNumber);
-    // NOTE: We check Maestro/Switch *before* we check Visa/Mastercard, so we don't have to rule-out numerous types from V/MC matching rules.
-    if (preg_match('/^(49369[8-9]|490303|6333[0-4][0-9]|6759[0-9]{2}|5[0678][0-9]{4}|6[0-9][02-9][02-9][0-9]{2})[0-9]{6,13}?$/', $cardNumber)) {
+    // NOTE: We check Solo before Maestro, and Maestro/Switch *before* we check Visa/Mastercard, so we don't have to rule-out numerous types from V/MC matching rules.
+    if (preg_match('/^(6334[5-9][0-9]|6767[0-9]{2})[0-9]{10}([0-9]{2,3}?)?$/', $cardNumber)) {
+      $cardType = "SOLO";
+    } else if (preg_match('/^(49369[8-9]|490303|6333[0-4][0-9]|6759[0-9]{2}|5[0678][0-9]{4}|6[0-9][02-9][02-9][0-9]{2})[0-9]{6,13}?$/', $cardNumber)) {
       $cardType = "MAESTRO";
     } else if (preg_match('/^(49030[2-9]|49033[5-9]|4905[0-9]{2}|49110[1-2]|49117[4-9]|49918[0-2]|4936[0-9]{2}|564182|6333[0-4][0-9])[0-9]{10}([0-9]{2,3}?)?$/', $cardNumber)) {
       $cardType = "MAESTRO"; // SWITCH is now Maestro
-    } else if (preg_match('/^(6334[5-9][0-9]|6767[0-9]{2})[0-9]{10}([0-9]{2,3}?)?$/', $cardNumber)) {
-      $cardType = "SOLO";
     } elseif (preg_match('/^4[0-9]{12}([0-9]{3})?$/', $cardNumber)) {
       $cardType = 'VISA';
     } elseif (preg_match('/^5[1-5][0-9]{14}$/', $cardNumber)) {
