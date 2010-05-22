@@ -1,10 +1,10 @@
 <?php
 /**
  * @package shippingMethod
- * @copyright Copyright 2003-2009 Zen Cart Development Team
+ * @copyright Copyright 2003-2010 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: table.php 14498 2009-10-01 20:16:16Z ajeh $
+ * @version $Id: table.php 582 2010-05-22 18:08:16Z webchills $
  */
 /**
  * Enter description here...
@@ -181,13 +181,22 @@ class table extends base {
     $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) values ('Shipping Table', 'MODULE_SHIPPING_TABLE_COST', '25:8.50,50:5.50,10000:0.00', 'The shipping cost is based on the total cost or weight of items or count of the items. Example: 25:8.50,50:5.50,etc.. Up to 25 charge 8.50, from there to 50 charge 5.50, etc<br />You can also use percentage amounts, such 25:8.50,35:5%,40:9.50,10000:7% to charge a percentage value of the Order Total', '6', '0', 'zen_cfg_textarea(', now())");
     $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) values ('Table Method', 'MODULE_SHIPPING_TABLE_MODE', 'weight', 'The shipping cost is based on the order total or the total weight of the items ordered or the total number of items orderd.', '6', '0', 'zen_cfg_select_option(array(\'weight\', \'price\', \'item\'), ', now())");
     $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) values ('Handling Fee', 'MODULE_SHIPPING_TABLE_HANDLING', '0', 'Handling fee for this shipping method.', '6', '0', now())");
-
     $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) values ('Handling Per Order or Per Box', 'MODULE_SHIPPING_TABLE_HANDLING_METHOD', 'Order', 'Do you want to charge Handling Fee Per Order or Per Box?', '6', '0', 'zen_cfg_select_option(array(\'Order\', \'Box\'), ', now())");
-
     $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, use_function, set_function, date_added) values ('Tax Class', 'MODULE_SHIPPING_TABLE_TAX_CLASS', '0', 'Use the following tax class on the shipping fee.', '6', '0', 'zen_get_tax_class_title', 'zen_cfg_pull_down_tax_classes(', now())");
     $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) values ('Tax Basis', 'MODULE_SHIPPING_TABLE_TAX_BASIS', 'Shipping', 'On what basis is Shipping Tax calculated. Options are<br />Shipping - Based on customers Shipping Address<br />Billing Based on customers Billing address<br />Store - Based on Store address if Billing/Shipping Zone equals Store zone', '6', '0', 'zen_cfg_select_option(array(\'Shipping\', \'Billing\', \'Store\'), ', now())");
     $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, use_function, set_function, date_added) values ('Shipping Zone', 'MODULE_SHIPPING_TABLE_ZONE', '0', 'If a zone is selected, only enable this shipping method for that zone.', '6', '0', 'zen_get_zone_class_title', 'zen_cfg_pull_down_zone_classes(', now())");
     $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) values ('Sort Order', 'MODULE_SHIPPING_TABLE_SORT_ORDER', '0', 'Sort order of display.', '6', '0', now())");
+  // www.zen-cart.at languages_id==43 START
+    $db->Execute("insert into " . TABLE_CONFIGURATION_LANGUAGE   . " (configuration_title, configuration_key, configuration_language_id, configuration_description, date_added) values ('Tabellarische Versandkosten anbieten?', 'MODULE_SHIPPING_TABLE_STATUS', '43', 'Wollen Sie Tabellarische Versandkosten aktivieren?', now())");
+    $db->Execute("insert into " . TABLE_CONFIGURATION_LANGUAGE   . " (configuration_title, configuration_key, configuration_language_id, configuration_description, date_added) values ('Versandkosten', 'MODULE_SHIPPING_TABLE_COST', '43', 'Die Versandkosten basieren auf den Gesamtkosten der bestellten Artikel oder dem Gesamtgewicht der bestellten Artikel oder auf der Anzahl der bestellten Artikel.<br/>Beispiel:25:8.50,50:5.50,etc.<br/>Bedeutet: Bis zu 25 werden 8.50 verrechnet, zwischen 25 und 50 werden 5.50 verrechnet usw.<br/>Sie können auch mit Prozentwerten arbeiten, um einen Prozentsatz vom Gesamtbetrag zu verrechnen, z.B.<br/>25:8.50,35:5%,40:9.50,10000:7%', now())");
+    $db->Execute("insert into " . TABLE_CONFIGURATION_LANGUAGE   . " (configuration_title, configuration_key, configuration_language_id, configuration_description, date_added) values ('Berechnungsmethode', 'MODULE_SHIPPING_TABLE_MODE', '43', 'Die Versandkosten basieren auf den Gesamtkosten der bestellten Artikel oder dem Gesamtgewicht der bestellten Artikel oder auf der Anzahl der bestellten Artikel.<br/>Wählen Sie hier die gewünschte Berechnungsmethode aus: Weight (Gewicht), Price (Preis) oder Item (Stückzahl)', now())");
+    $db->Execute("insert into " . TABLE_CONFIGURATION_LANGUAGE   . " (configuration_title, configuration_key, configuration_language_id, configuration_description, date_added) values ('Bearbeitungsgebühr', 'MODULE_SHIPPING_TABLE_HANDLING', '43', 'Bearbeitungsgebühr für diese Versandart', now())");
+    $db->Execute("insert into " . TABLE_CONFIGURATION_LANGUAGE   . " (configuration_title, configuration_key, configuration_language_id, configuration_description, date_added) values ('Bearbeitungsgebühr pro Bestellung oder pro Paket?', 'MODULE_SHIPPING_TABLE_HANDLING_METHOD', '43', 'Wollen Sie die Bearbeitungsgebühr pro Bestellung (Order) oder pro Paket (Box) verrechnen?', now())");
+    $db->Execute("insert into " . TABLE_CONFIGURATION_LANGUAGE   . " (configuration_title, configuration_key, configuration_language_id, configuration_description, date_added) values ('Steuerklasse', 'MODULE_SHIPPING_TABLE_TAX_CLASS', '43', 'Welche Steuerklasse soll auf die Versandkosten angewendet werden?', now())");
+    $db->Execute("insert into " . TABLE_CONFIGURATION_LANGUAGE   . " (configuration_title, configuration_key, configuration_language_id, configuration_description, date_added) values ('Basis der Steuern', 'MODULE_SHIPPING_TABLE_TAX_BASIS', '43', 'Auf welcher Basis soll die Steuer für die Versandkosten berechnet werden? Mögliche Werte sind.<br/>Shipping - basiert auf der Versandadresse des Kunden<br/>Billing - basiert auf der Rechnungsadresse des Kunden<br/>Store - basiert auf der Adresse des Shops wenn Versand- und Rechnungszone in derselben Zone liegen wie der Shop.', now())");
+    $db->Execute("insert into " . TABLE_CONFIGURATION_LANGUAGE   . " (configuration_title, configuration_key, configuration_language_id, configuration_description, date_added) values ('Versandzone', 'MODULE_SHIPPING_TABLE_ZONE', '43', 'Wenn Sie hier eine Zone auswählen, werden Tabellarische Versandkosten nur in dieser Zone angeboten.', now())");
+    $db->Execute("insert into " . TABLE_CONFIGURATION_LANGUAGE   . " (configuration_title, configuration_key, configuration_language_id, configuration_description, date_added) values ('Sortierreihenfolge', 'MODULE_SHIPPING_TABLE_SORT_ORDER', '43', 'Anzeigereihenfolge. Niedrigste Werte werden zuerst angezeigt.', now())");
+      // www.zen-cart.at languages_id==43  END
   }
   /**
    * Enter description here...
@@ -196,6 +205,8 @@ class table extends base {
     function remove() {
       global $db;
       $db->Execute("delete from " . TABLE_CONFIGURATION . " where configuration_key like 'MODULE\_SHIPPING\_TABLE\_%'");
+     // www.zen-cart.at languages_id == delete all
+    $db->Execute("delete from " . TABLE_CONFIGURATION_LANGUAGE . " where configuration_key in ('" . implode("', '", $this->keys()) . "')");
     }
 
   /**
