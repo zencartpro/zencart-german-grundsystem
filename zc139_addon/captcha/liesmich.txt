@@ -1,0 +1,146 @@
+CAPTCHA für Zen-Cart 1.3.9 deutsch
+Version 2.9.3
+
+deutsche Modifikation des Moduls von Andrew Berezin (http://eCommerce-Service.com)
+Mai 2010
+webchills
+
+================= WICHTIG =====================================
+Diese Version ist nur für eine deutsche Zen-Cart 1.3.9c Version!
+===============================================================
+
+==========================
+Was macht dieses Modul?
+==========================
+Das Kontaktformular von Zen-Cart wird als Spamschutz mit einem CAPTCHA Bild abgesichert.
+Das Bild wird mit der GD library und True Type Fonts (TTF) generiert.
+Zusätzlich können optional folgende Formulare mit dem Captcha versehen werden:
+- tell a friend
+- product reviews
+- create account
+
+
+===============
+Voraussetzungen
+===============
+
+- Nur für Zen-Cart 1.3.9c deutsch geeignet!
+- Am Server ist die GD library verfügbar
+
+
+================= WICHTIG =====================
+Vor dem Einbau dieser Änderungen:
+BACKUP von Shop und Datenbank machen! 
+Keine Haftung, Verwendung auf eigene Gefahr!
+BACKUP gemacht? Ok, dann weiterlesen...
+
+
+
+
+================= Installation =====================
+
+I 
+Captcha nur für das Kontaktformular verwenden
+
+1.
+Alle Dateien im Ordner NEUE DATEIEN in der bestehenden Struktur ins Zen-Cart Verzeichnis spielen. Dabei werden keine Dateien überschrieben
+
+2.
+Änderungen in folgenden Dateien der bestehenden Zen-Cart Installation vornehmen:
+/includes/modules/pages/contact_us/header_php.php
+/includes/templates/DEINTEMPLATE/templates/tpl_contact_us_default.php
+
+Beispiele der geänderten Dateien/Templates sind im Ordner GEAENDERTE DATEIEN enthalten.
+Es wird empfohlen, nicht einfach diese Dateien hochzuladen, sondern die Änderungen manuell in den entsprechenden Zen-Cart Files durchzuführen.
+Dazu diese Beispieldateien mit z.B. WinMerge oder BeyondCompare mit den im Shop aktiven Dateien vergleichen
+Die Stellen, an denen der Captcha Code eingebunden werden muss, sind jeweils mit
+// BOF CAPTCHA
+... code ...
+// EOF CAPTCHA
+gekennzeichnet
+
+Geänderte Dateien einspielen
+
+3.
+Im Ordner SQL die Datei install.sql öffnen und den Inhalt kopieren.
+
+4.
+Zen-Cart Administration öffnen und unter Tools > SQL Patches installieren den Inhalt ins Feld hineinkopieren und absenden
+
+5. 
+Im Admin erscheint nun unter Konfiguration ein neuer Punkt namens CAPTCHA, wo alle Einstellungen vorgenommen werden können.
+
+
+II Optional: Captcha auch für andere Formulare verwenden
+
+1.
+Änderungen in folgenden Dateien der bestehenden Zen-Cart Installation vornehmen:
+/includes/modules/pages/tell_a_friend/header_php.php
+/includes/modules/YOUR_TEMPLATE/create_account.php
+/includes/templates/YOUR_TEMPLATE/templates/tpl_modules_create_account.php
+/includes/templates/YOUR_TEMPLATE/templates/tpl_tell_a_friend_default.php
+
+Beispiele der geänderten Dateien/Templates sind im Ordner GEAENDERTE DATEIEN enthalten.
+Es wird empfohlen, nicht einfach diese Dateien hochzuladen, sondern die Änderungen manuell in den entsprechenden Zen-Cart Files durchzuführen.
+Dazu diese Beispieldateien mit z.B. WinMerge oder BeyondCompare mit den im Shop aktiven Dateien vergleichen
+Die Stellen, an denen der Captcha Code eingebunden werden muss, sind jeweils mit
+// BOF CAPTCHA
+... code ...
+// EOF CAPTCHA
+gekennzeichnet
+
+Geänderte Dateien einspielen
+
+
+2.
+Im Admin unter Konfiguration > CAPTCHA die gewünschten weiteren Seiten auf true setzen
+
+
+================= KONFIGURATION =====================
+
+Nach Abschluss der Installation kann man erst mal testen, ob das CAPTCHA korrekt generiert wird.
+Dazu die captcha_test.php aus dem Ordner TEST ins Zen-cart Verzeichnis spielen und dann im Browser aufrufen (z.B. www.meinshop.de/shop/captcha_test.php)
+
+WICHTIGER HINWEIS FALLS ULTIMATE SEO URLS VERWENDET WIRD
+Das Captcha wird nicht angezeigt, wenn Ultimate SEO URLs so konfiguriert ist, dass es alle Seiten umschreibt!
+Um das Captcha nutzen zu können, darf es im Admin unter Konfiguration > ULTIMATE SEO URLs > Seiten eingeben, die umgeschrieben werden sollen nicht leer sein.
+Hier müssen explizit die Seiten angegeben werden, die Ultimate SEO URL umschreiben soll, sonst wird das CAPTCHA nicht angezeigt.
+Also dort z.B. Folgendes eintragen:
+index, product_info, products_new, products_all, featured_products, specials, contact_us, conditions, privacy, reviews,  site_map, shippinginfo
+
+Die Optionen unter Konfiguration > CAPTCHA sollten selbsterklärend sein.
+Einfach probieren, wie das Bild am besten dargestellt wird, ob als png, jpg oder gif und mit den Grössenangaben experimentieren.
+
+Mitgeliefert wird der TrueTypeFont Arial.
+Um für das CAPTCHA eine andere Schriftart zu verwenden, die entsprechende Datei in den Ordner fonts spielen und die Arial.ttf löschen
+
+Um die Texte zu ändern, die entsprechenden Sprachdateien bearbeiten.
+Um andere Buttons zu verwenden, die mitgelieferten Buttons mit eigenen ersetzen.
+
+
+================= DEINSTALLATION =====================
+
+Um das Modul aus der Datenbank zu entfernen im Ordner SQL die uninstall.sql öffnen und den Inhalt kopieren.
+Zen-Cart Administration öffnen und unter Tools > SQL Patches installieren den Inhalt ins Feld hineinkopieren und absenden.
+Dann alle Dateien, die neu von diesem Modul angelegt wurden, vom Server löschen. Bei den Dateien, die geändert wurden, die Originaldateien wieder einspielen. 
+
+
+================= HILFE =====================
+
+Fragen, Probleme, Bugs bitte ins entsprechende Forum auf www.zen-cart.at posten
+
+
+================= CHANGELOG =====================
+
+
+22-05-2010
+Version 2.9.3
+- Anpassungen für Zen-Cart 1.3.9c
+- Unterstützung für links_manager entfernt
+
+27-01-2009
+Version 2.9.2
+- multilanguage SQL Installer
+- Uninstaller hinzugefügt
+- Übersetzungsfehler behoben
+ 
