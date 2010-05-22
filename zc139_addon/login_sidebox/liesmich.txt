@@ -1,0 +1,30 @@
+===============
+Login Box 1.5.2 
+===============
+
+deutsche Übersetzung der Sidebox Login Box von
+http://www.zen-cart.com/index.php?main_page=product_contrib_info&cPath=40_52&products_id=154
+
+Mai 2010
+webchills
+http://www.webchills.at
+
+
+Nur geeignet für Zen-Cart 1.3.8 deutsch oder 1.3.9 deutsch
+
+
+============
+INSTALLATION
+============
+
+Es werden keinerlei Dateien überschrieben und auch keine Änderung an der Datenbank vorgenommen.
+Alle Ordner namens DEINTEMPLATE im Verzeichnis NEUEDATEIEN erst auf das im Shop verwendete Template umbenennen (z.B. classic. viennablood,...).
+Dann alle Ordner/Dateien im Ordner NEUEDATEIEN in der vorgegebenen Struktur ins Zen-Cart Verzeichnis hochladen.
+Box im Admin unter Tools > Boxlayout aktivieren.
+Fertig
+
+
+=======
+FRAGEN?
+=======
+Posten im Forum von www.zen-cart.at
