@@ -1,0 +1,127 @@
+Grundpreisanzeige für Zen-Cart 1.3.9 deutsch
+Version 2.1
+
+Modifikation des Grundpreis Moduls 1.01 von joco@coors.de für Zen-Cart 1.3.9
+Mai 2010
+webchills
+
+Änderungen geegnüber der Version 2.0
+- angepasst für Zen-Cart 1.3.9c deutsch
+- Uninstaller hinzugefügt
+
+Änderungen gegenüber der Version 1.01:
+- angepasst für Zen-Cart 1.3.8 deutsch
+- Im Admin kann eingestellt werden, ob der Grundpreis nur auf der Artikeldetailseite oder auch in den Artikellisten angezeigt werden soll.
+- diverse Bugfixes
+
+
+================= WICHTIG =====================================
+Diese Version ist nur für eine deutsche Zen-Cart 1.3.9c Version!
+===============================================================
+
+==========================
+Was macht dieses Modul?
+==========================
+Mit der Grundpreisanzeige haben Sie die Möglichkeit in Ihrem Zen-Cart 1.3.9 Shop beim Erfassen/Ändern von Artikeln zusätzliche einen Grundpreis und die Einheit des Grundpreises (Kilogramm, Liter, was auch immer) anzugeben.
+Der Grundpreis wird dann im Shop in der Artikelliste, der Liste der neuen Artikel, der Liste aller Artikel und auf der Artikeldetailseite angezeigt.
+Sie können die Grundpreisanzeige auch auf die Artikeldetailseite beschränken.
+Ein einfaches Modul um das Grundpreisproblem in deutschen Shops zu lösen.
+
+
+===============
+Voraussetzungen
+===============
+
+- Nur für Zen-Cart 1.3.9c deutsch geeignet!
+
+
+================= WICHTIG =====================
+Vor dem Einbau dieser Änderungen:
+BACKUP von Shop und Datenbank machen! 
+Keine Haftung, Verwendung auf eigene Gefahr!
+BACKUP gemacht? Ok, dann weiterlesen...
+
+
+
+================= Installation =====================
+
+1.
+Die Datei install.sql im Ordner SQL mit einem Texteditor öffen und den Inhalt kopieren
+
+2.
+Zen-Cart Administration öffnen und unter Tools > SQL Patches installieren den Inhalt ins Feld hineinkopieren und absenden.
+Dadurch werden zwei zusätzliche Felder in der Tabelle products angelegt und die Einstellungsmöglichkeiten unter Konfiguration > Layouteinstellungen angelegt.
+
+3.
+Neue Dateien des Moduls einspielen:
+Im Ordner NEUE DATEIEN dieses Downloads im Ordner zencart den Ordner DEINADMINVERZEICHNIS auf den Namen Ihres admin Verzeichnisses umbenennen
+Dann folgende neue Dateien hochladen:
+DEINADMINVERZEICHNIS/includes/languages/english/extra_definitions/products_base_unit_price.php
+DEINADMINVERZEICHNIS/includes/languages/german/extra_definitions/products_base_unit_price.php
+Dann die neuen Dateien, die das Modul für das Frontend mitbringt einspielen:
+includes/functions/extra_functions/functions_base_unit.php
+includes/functions/index_filters/extra_products_filter.php
+includes/languages/english/extra_definitions/products_base_unit_price.php
+includes/languages/german/extra_definitions/products_base_unit_price.php
+Dadurch werden keine bestehenden Dateien überschrieben
+
+
+4.
+Geänderte Dateien des Moduls einspielen.
+Im Ordner GEAENDERTE DATEIEN dieses Downloads befinden sich im Ordner zencart die für dieses Modul notwendigen geänderten Originaldateien.
+Es wird dringend empfohlen, die bestehenden Orginaldateien nicht einfach zu überschreiben!
+Machen Sie das nur, wenn Sie Zen-Cart gerade neu installiert haben und noch keine Änderungen an Originaldateien vorgenommen haben.
+Stattdessen vergleichen Sie Ihre entsprechenden Originaldateien mit einem geeigneten Programm wie z.B. WinMerge oder Beyond Compare und nehmen die Änderungen manuell vor.
+Folgende Dateien müssen geändert werden (DEINTEMPLATE steht dabei für das im Shop aktive Template):
+Adminbereich:
+DEINADMINVERZEICHNIS/includes/modules/update_product.php
+DEINADMINVERZEICHNIS/includes/modules/product/collect_info.php
+DEINADMINVERZEICHNIS/includes/modules/product/preview_info.php
+Frontend:
+includes/index_filters/default_filter.php
+includes/modules/DEINTEMPLATE/product_listing.php
+includes/modules/pages/product_info/main_template_vars.php
+includes/modules/pages/products_all/header_php.php
+includes/modules/pages/product_new/header_php.php
+includes/templates/DEINTEMPLATE/templates/tpl_product_info_display.php
+includes/templates/DEINTEMPLATE/templates/tpl_modules_products_all_listing.php
+includes/templates/DEINTEMPLATE/templates/tpl_modules_products_new_listing.php
+
+5.
+In der Zen-Cart Administration ist nun unter Konfiguration > Layouteinstellungen ein zusätzlicher Menüpunkt namens Grundpreisanzeige vorhanden.
+Hier ist 0 eingestellt, die Grundpreisanzeige ist also deaktiviert.
+Stellen Sie nun ein, ob Sie den Grundpreis auf allen unterstützten Seiten anzeigen wollen (Artikelliste, Neue Artikel, Alle Artikel, Artikeldetailseite)
+Oder nur auf der Artikeldetailseite
+
+6.
+Wenn Sie nun einen Artikel bearbeiten, haben Sie unterhalb des Preiseingabefeldes zwei neue Eingabefelder: Grundpreis und Grundeinheit.
+Tragen Sie bei den Artikeln, wo Sie eine Grundpreisanzeige benötigen die entsprechenden Werte ein.
+Mit dem Grundpreis wird nichts berechnet, er dient nur der Anzeige!
+
+7.
+OPTIONAL
+Die Größe/Schriftart/Farbe der Grundpreisdarstellung auf der Artikeldetailseite können Sie in Ihrem Stylesheet beeinflussen, verwendet wird:
+<div id="baseunitprice">
+Im Stylesheet also z.B. definieren:
+#baseunitprice{
+	font-size:10px;
+	font-weight:bold;
+}
+
+
+================= Deinstallation =====================
+
+1.
+Die Datei uninstall.sql im Ordner SQL mit einem Texteditor öffen und den Inhalt kopieren
+
+2.
+Zen-Cart Administration öffnen und unter Tools > SQL Patches installieren den Inhalt ins Feld hineinkopieren und absenden.
+
+3.
+Alle von diesem Modul geänderten 1.3.9 Originaldateien wieder einspielen
+Alle von diesem Modul neu angelegten Dateien vom Server löschen.
+
+
+================= HILFE =====================
+
+Fragen, Probleme, Bugs bitte ins entsprechende Forum auf www.zen-cart.at posten
