@@ -1,0 +1,76 @@
+===== Bar bei Abholung 1.5 ===
+
+
+Update der Version 1.0 des Moduls Bar bei Abholung
+cyaneo 2005 
+Mai 2010 
+webchills
+
+
+
+===== Was macht dieses Modul? ===
+
+In Zen-Cart steht das Versandmodul "Selbstabholung" zur Verfügung.
+Mit dem Zahlungsmodul "Bar bei Abholung" kann man nun auch eine passende Zahlungsvariante anbieten
+
+== Änderung in Version 1.5 ==
+
+- Anpassung für Zen-Cart 1.3.9
+
+
+== Änderung in Version 1.4 ==
+
+- Zahlungsvariante Bar bei Abholung wird bei versandkostenfreien Artikeln nicht mehr angeboten. Nur falls man Versandart Selbstabholung gewählt hat.
+(thanks to gidex)
+
+
+== Änderungen in Version 1.3 ==
+
+- Zahlungsvariante Nachnahme wird bei Selbstabholung nicht mehr angeboten
+(thanks to gidex)
+
+
+== Änderungen in Version 1.2 ==
+
+Neue Funktionalität
+- Bar bei Abholung wird jetzt nur als Zahlungsart angeboten, wenn vorher auch Selbstabholung als Versandart ausgewählt wurde
+(thanks to Securix)
+
+
+== Änderungen in Version 1.1 ==
+
+Behebung zweier Bugs
+- Einschränkung auf bestimmte Zone wirkte sich nicht aus
+- Im Admin waren Sortierreihenfolge und Einschränkung auf bestimmte Zone vertauscht
+
+
+===== Unterstützte Versionen ===
+
+Zen-Cart 1.3.9c deutsch
+
+
+================= WICHTIG =====================
+Vor dem Einbau dieser Änderungen:
+BACKUP von Shop und Datenbank machen! 
+Keine Haftung, Verwendung auf eigene Gefahr!
+BACKUP gemacht? Ok, dann weiterlesen...
+=================================================
+
+
+===== INSTALLATION ===
+
+Es werden keine Dateien überschrieben.
+Also einfach den includes Ordner im Ordner NEUEDATEIEN in den includes Ordner des Shops hochladen.
+Modul im Admin unter Module >> Zahlungsarten aktivieren
+Da Selbstabholung normalerweise nur im eigenen Land angeboten wird, macht es Sinn das Zahlungsmodul auf die Zone des eigenen Landes zu beschränken
+(kann im Admin eingestellt werden). Kunden aus anderen Ländern wird diese Zahlungsart dann nicht angeboten.
+
+Falls im Shop Nachnahme angeboten wird:
+Bei Selbstabholung macht Zahlungsart Nachnahme keinen Sinn.
+Im Ordner NACHNAHME ist eine modifizierte cod.php für Zen-Cart 1.3.9
+Die einspielen in:
+includes/modules/payment
+und die bestehende
+includes/modules/payment/cod.php
+überschreiben.
+Dadurch wird Nachnahme nicht mehr angeboten, wenn als Versandart Selbstabholung ausgewählt wurde.
