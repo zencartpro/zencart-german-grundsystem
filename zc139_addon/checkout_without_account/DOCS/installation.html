@@ -1,0 +1,85 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Bestellung ohne Kundenkonto 2.0 für Zen-Cart 1.3.9 deutsch - Installation</title>
+<meta name="author" content="webchills | www.webchills.at" />
+<link href="cowoa.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+<div id="header">
+<h2>Bestellung ohne Kundenkonto 2.0 für Zen-Cart 1.3.9 deutsch</h2>
+ <a href="index.html">Übersicht</a> | Installation | <a href="faq.html">FAQ</a></div>
+ 
+  <div id="wrapper">
+  <div class="content">
+<h1>Installation</h1>
+<p><strong><br />
+  Voraussetzungen</strong><br />
+  <br />
+  Dieses Modul ist<strong> nur für Zen-Cart 1.3.9 deutsch geeignet</strong> und ändert zahlreiche für den Bestellablauf sehr wichtige Corefiles.<br />
+  Es ist kein Modul, das Sie in 2 Minuten einfach hochladen können.<br />
+  <br />
+  Für den Einbau dieses Moduls sollten Sie über folgende Werkzeuge verfügen:<br />
+  <br />
+  1) Ein guter Texteditor. <br />
+  Damit ist nicht das in Windows enthaltene Notepad oder Microsoft Word gemeint.<br />
+  Sie benötigen einen Texteditor, der utf-8 versteht und auch im Format utf-8 ohne BOM abspeichern kann.<br />
+  Meine Empfehlung: <a href="http://www.ultraedit.com/loc/de/index_de.html" target="_blank">UltraEdit</a> (kostenlose 30 Tage Testversion verfügbar)<br />
+  Ebenfalls gut geeignet ist der kostenlose Texteditor <a href="http://notepad-plus.sourceforge.net/de/site.htm" target="_blank">Notepad++ </a><br />
+  </p>
+<p>2) Ein Tool zum Vergleichen von Dateien<br />
+  Bei der Installation dieses Moduls ist es erforderlich, dass Sie den Inhalt einiger Ihrer bestehenden Zen-Cart Dateien mit dem Inhalt der neuen Moduldateien vergleichen und die Änderungen zusammenführen (&quot;mergen&quot;).<br />
+  Meine Empfehlung: <a href="http://www.scootersoftware.com/" target="_blank">BeyondCompare</a> (kostenlose 30 Tage Testversion verfügbar)<br />
+  Ebenfalls gut geeignet ist das kostenlose Programm <a href="http://winmerge.org/" target="_blank">WinMerge </a></p>
+<p><br />
+  <strong>Empfehlung:</strong><br />
+  <br />
+  Dieses Modul erst in einem Testsystem einbauen und dort konfigurieren/testen und endgültig an die eigenen Wünsche anpassen.    
+  Erst dann in einem Liveshop einsetzen! Sichern Sie unbedingt alle Dateien Ihres Shops per FTP und sichern Sie die Datenbank mit phpMyAdmin oder anderen geeigneten Tools!</p>
+<code><strong>================= WICHTIG =====================<br />
+Vor dem Einbau dieser Änderungen:<br />
+BACKUP von Shop und Datenbank machen! <br />
+Keine Haftung, Verwendung auf eigene Gefahr!<br />
+BACKUP gemacht? Ok, dann weiterlesen...<br />
+===============================================</strong></code>
+<p><br />
+  1) <br />
+  Im Ordner NEUE DATEIEN alle Ordner namens DEINTEMPLATE auf das im Shop verwendete Template umbennen (z.B. viennablood, classic, ...). Den Ordner DEINADMINVERZEICHNIS auf den Namen Ihres admin Verzeichnisses umbenennen. Ihr Adminverzeichnis haben Sie ja umbenannt oder? Falls nicht, nehmen Sie den Einbau dieses Moduls zum Anlass, das schleunigst zu tun. Eine Anleitung und weitere Informationen dazu finden Sie hier:<br />
+  http://www.zen-cart.at/zcvb/forum/vbglossar.php?do=showentry&amp;id=6</p>
+<p>2) <br />
+  Dann alle Dateien/Ordner aus dem Ordner NEUE DATEIEN in der vorgegebenen Struktur in die Zen-Cart Installation hochladen. <br />
+  Dabei werden keine bestehende Datei überschrieben.</p>
+<p>3)<br /> 
+  Im Ordner GEAENDERTE DATEIEN alle Ordner namens DEINTEMPLATE auf das im Shop verwendete Template umbennen (z.B. viennablood, classic, ...). Den Ordner DEINADMINVERZEICHNIS auf den Namen Ihres admin Verzeichnisses umbenennen.<br />
+  Wenn Sie Zen-Cart 1.3.9 gerade frisch installiert haben und noch keinerlei Änderungen an den Dateien vorgenommen haben, können Sie nun
+alle Dateien/Ordner aus dem Ordner GEAENDERTE DATEIEN in der vorgegebenen Struktur in die Zen-Cart Installation hochladen. Dabei werden dann etliche Dateien überschrieben.<br />
+Wenn Sie Zen-Cart 1.3.9 schon länger im Einsatz haben und schon einmal Änderungen an Dateien vorgenommen oder andere Module eingebaut haben, dann laden Sie die Dateien keinesfalls einfach hoch. <br />
+Vergleichen Sie alle Dateien im Ordner GEAENDERTE DATEIEN mit den entsprechenden Dateien in Ihrem Shop und nehmen Sie die Änderungen manuell per WinMerge oder BeyondCompare vor.<br />
+Dann spielen Sie die geänderten Dateien in der gezeigten Struktur ein.</p>
+<p>4)<br />
+  Im Ordner SQL die install.sql mit einem Texteditor öffnen und den Inhalt ins Eingabefeld kopieren unter Admin &gt; Tools &gt; SQL Patches installieren<br />
+  Absenden<br />
+  Dadurch werden die nötigen Datenbankeinträge vorgenommen.<br />
+</p>
+<p>5)<br />
+  Checkout without Account funktioniert nur mit der geteilten Loginseite (Split Login Page).<br />
+  Stellen Sie daher unter Admin &gt; Konfiguration &gt; Layouteinstellungen &gt; Anmeldeseite geteilt anzeigen ein. </p>
+<p>6)<br />
+  Legen Sie nun in Ihrem Shop etwas in den Warenkorb und gehen zur Kasse. Sie sollten nun die Option &quot;Bestellen ohne Kundenkonto&quot; angeboten bekommen. Führen Sie eine Bestellung mit dieser Variante durch und überprüfen Sie, ob alle Bestellschritte korrekt angezeigt werden und ob auch die Bestellbestätigungsemail korrekt versandt wird. Das Bestellbestätigungsemail enthält einen Link zur speziellen Loginseite für COWOA-Kunden. Testen Sie, ob Sie sich nach Ihrer Bestellung dort mit Bestellnummer und Emailadresse einloggen können.
+</p>
+<h1>Unterstützen Sie die Weiterentwicklung der deutschen Zen-Cart Version!</h1>
+ <p>Sie finden dieses Modul nützlich?<br/>
+ Ich freue mich über einen Espresso, Capuccino oder Irish Coffee:<br />
+ <a href="http://www.webchills.at/zencart/" target="_blank">webchills Zen-Cart Kaffeekasse</a><br />
+ <br />
+ Sie haben vom Support im Forum von zen-cart.at profitiert?<br />
+ Wir freuen uns über Spenden zur Finanzierung des Servers und der vBulletin-Lizenz:
+ <br />
+ <a href="http://www.zen-cart.at/zcvb/forum/misc.php?do=donate">zen-cart.at unterstützen </a></p>
+  </div>
+</div>
+<div id="footer"><a href="#">top of page</a></div>
+</body>
+</html>
