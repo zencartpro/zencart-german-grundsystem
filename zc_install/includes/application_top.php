@@ -141,4 +141,3 @@ define('ZC_UPG_DEBUG3', (!isset($_GET['debug3']) && !isset($_POST['debug3']) || 
 
 
 //die('test');
-?>

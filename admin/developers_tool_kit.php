@@ -1,10 +1,10 @@
 <?php
 /**
  * @package admin
- * @copyright Copyright 2003-2009 Zen Cart Development Team
+ * @copyright Copyright 2003-2010 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: developers_tool_kit.php 14974 2009-11-29 06:28:42Z ajeh $
+ * @version $Id: developers_tool_kit.php 16569 2010-06-01 11:52:37Z drbyte $
  */
 
   require('includes/application_top.php');
@@ -232,6 +232,7 @@
               break;
             case (1): // all english.php files
               $check_directory = array();
+              $check_directory[] = DIR_FS_CATALOG_LANGUAGES;
               $check_directory[] = DIR_FS_CATALOG_LANGUAGES . $_SESSION['language'] . '/';
               $check_directory[] = DIR_FS_CATALOG_LANGUAGES . $template_dir . '/' . $_SESSION['language'] . '/';
               $check_directory[] = DIR_FS_CATALOG_LANGUAGES . $_SESSION['language'] . '/' . $template_dir . '/';
@@ -241,6 +242,7 @@
               $check_directory[] = DIR_FS_CATALOG_LANGUAGES . $_SESSION['language']. '/modules/shipping/';
               $check_directory[] = DIR_FS_CATALOG_LANGUAGES . $_SESSION['language']. '/modules/order_total/';
               $check_directory[] = DIR_FS_CATALOG_LANGUAGES . $_SESSION['language']. '/modules/product_types/';
+              $check_directory[] = DIR_FS_ADMIN . DIR_WS_LANGUAGES;
               $check_directory[] = DIR_FS_ADMIN . DIR_WS_LANGUAGES . $_SESSION['language'] . '/';
               $check_directory[] = DIR_FS_ADMIN . DIR_WS_LANGUAGES . $_SESSION['language'] . '/modules/newsletters/';
               break;
@@ -663,7 +665,7 @@ if (false) {
             <td colspan="3" class="main" align="left" valign="middle"><?php echo TEXT_CONFIGURATION_CONSTANT; ?></td>
           </tr>
 
-          <tr><form name = "locate_configure" action="<?php echo zen_href_link(FILENAME_DEVELOPERS_TOOL_KIT, 'action=locate_configuration', 'NONSSL'); ?>"' method="post">
+          <tr><form name = "locate_configure" action="<?php echo zen_href_link(FILENAME_DEVELOPERS_TOOL_KIT, 'action=locate_configuration', 'NONSSL'); ?>" method="post">
             <td class="main" align="left" valign="bottom"><?php echo '<strong>' . TEXT_CONFIGURATION_KEY . '</strong>' . '<br />' . zen_draw_input_field('configuration_key', '', ' size="40" '); ?></td>
             <td class="main" align="left" valign="middle">
               <?php

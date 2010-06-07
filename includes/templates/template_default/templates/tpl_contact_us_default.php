@@ -9,7 +9,7 @@
  * @copyright Copyright 2003-2009 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: tpl_contact_us_default.php 14141 2009-08-10 19:34:47Z wilt $
+ * @version $Id: tpl_contact_us_default.php 16307 2010-05-21 21:50:06Z wilt $
  */
 ?>
 <div class="centerColumn" id="contactUsDefault">
@@ -66,11 +66,11 @@
 <br class="clearBoth" />
 
 <label class="inputLabel" for="email-address"><?php echo ENTRY_EMAIL; ?></label>
-<?php echo zen_draw_input_field('email', ($error ? $email_address : $email), ' size="40" id="email-address"') . '<span class="alert">' . ENTRY_REQUIRED_SYMBOL . '</span>'; ?>
+<?php echo zen_draw_input_field('email', ($email_address), ' size="40" id="email-address"') . '<span class="alert">' . ENTRY_REQUIRED_SYMBOL . '</span>'; ?>
 <br class="clearBoth" />
 
 <label for="enquiry"><?php echo ENTRY_ENQUIRY . '<span class="alert">' . ENTRY_REQUIRED_SYMBOL . '</span>'; ?></label>
-<?php echo zen_draw_textarea_field('enquiry', '30', '7', '', 'id="enquiry"'); ?>
+<?php echo zen_draw_textarea_field('enquiry', '30', '7', $enquiry, 'id="enquiry"'); ?>
 
 </fieldset>
 

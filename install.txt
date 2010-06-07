@@ -26,5 +26,5 @@ For more detailed installation instructions, please see the /docs/1.readme_insta
 
 
 
-(Document Revision: $Id: install.txt 14956 2009-11-28 07:53:53Z drbyte $)
-((c)Copyright 2003-2009, Zen Cart(tm). All rights reserved.)
+(Document Revision: $Id: install.txt 16602 2010-06-03 10:26:30Z wilt $)
+((c)Copyright 2003-2010, Zen Cart(tm). All rights reserved.)

@@ -128,7 +128,7 @@ class paypaldp extends base {
     global $order;
     $this->code = 'paypaldp';
     $this->codeTitle = MODULE_PAYMENT_PAYPALDP_TEXT_ADMIN_TITLE_WPP;
-    $this->codeVersion = '1.3.9c';
+    $this->codeVersion = '1.3.9d';
     $this->enableDirectPayment = true;
     $this->enabled = (MODULE_PAYMENT_PAYPALDP_STATUS == 'True');
     // Set the title & description text based on the mode we're in
@@ -747,7 +747,7 @@ class paypaldp extends base {
       $optionsAll['CUSTOM'] = 'DP-' . (int)$_SESSION['customer_id'] . '-' . time();
 
       // send the store name as transaction identifier, to help distinguish payments between multiple stores:
-      $options['INVNUM'] = (int)$_SESSION['customer_id'] . '-' . time() . '-[' . substr(STORE_NAME, 0, 30) . ']';  // (cannot send actual invoice number because it's not assigned until after payment is completed)
+      $optionsAll['INVNUM'] = (int)$_SESSION['customer_id'] . '-' . time() . '-[' . substr(preg_replace('/[^a-zA-Z0-9_]/', '', STORE_NAME), 0, 30) . ']';  // (cannot send actual invoice number because it's not assigned until after payment is completed)
 
       if (MODULE_PAYMENT_PAYPALDP_MERCHANT_COUNTRY == 'UK' || (MODULE_PAYMENT_PAYPALWPP_PFVENDOR != '' && MODULE_PAYMENT_PAYPALWPP_PFPASSWORD != '')) { // Payflow params required
         if (isset($optionsAll['COUNTRYCODE'])) {
@@ -2086,7 +2086,6 @@ class paypaldp extends base {
     $data .= '<CardExpMonth>' . $this->escapeXML($lookup_data_array['cc3d_exp_month']) . '</CardExpMonth>';
     $data .= '<CardExpYear>' . $this->escapeXML($lookup_data_array['cc3d_exp_year']) . '</CardExpYear>';
     $data .= '<UserAgent>' . $this->escapeXML($_SERVER["HTTP_USER_AGENT"]) . '</UserAgent>';
-    $data .= '<IPAddress>' . $this->escapeXML(zen_get_ip_address()) . '</IPAddress>';
     $ipAddress = explode(',', zen_get_ip_address());
     $data .= '<IPAddress>' . $this->escapeXML($ipAddress[0]) . '</IPAddress>';
     $data .= '<BrowserHeader>' . $this->escapeXML($_SERVER["HTTP_ACCEPT"]) . '</BrowserHeader>';

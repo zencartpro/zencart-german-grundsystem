@@ -1,29 +1,15 @@
 <?php
-//
-// +----------------------------------------------------------------------+
-// |zen-cart Open Source E-commerce                                       |
-// +----------------------------------------------------------------------+
-// | Copyright (c) 2006 The zen-cart developers                           |
-// |                                                                      |
-// | http://www.zen-cart.com/index.php                                    |
-// |                                                                      |
-// | Portions Copyright (c) 2003 osCommerce                               |
-// +----------------------------------------------------------------------+
-// | This source file is subject to version 2.0 of the GPL license,       |
-// | that is bundled with this package in the file LICENSE, and is        |
-// | available through the world-wide-web at the following url:           |
-// | http://www.zen-cart.com/license/2_0.txt.                             |
-// | If you did not receive a copy of the zen-cart license and are unable |
-// | to obtain it through the world-wide-web, please send a note to       |
-// | license@zen-cart.com so we can mail you a copy immediately.          |
-// +----------------------------------------------------------------------+
-// | Translator:           cyaneo/hugo13/maleborg/webchills                                         |
-// | Date of Translation:  01.05.10                                       |
-// | Homepage:             www.zen-cart.at                                |
-// +----------------------------------------------------------------------+
-// $Id$
-//
-  
+/**
+ * @package Installer
+ * @access private
+ * @copyright Copyright 2003-2010 Zen Cart Development Team
+ * @copyright Portions Copyright 2003 osCommerce
+ * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
+ * @version $Id$
+ */
+/**
+ * defining language components for the page
+ */
   define('SAVE_DATABASE_SETTINGS', 'Datenbankeinstellungen speichern');//this comes before TEXT_MAIN
   define('TEXT_MAIN',' Geben Sie hier bitte die Informationen zu Ihrer Datenbankanbindung ein. Tragen Sie auch hier bitte jede Option sorgfältig ein - anschließend klicken Sie auf <em>Datenbankeinstellungen speichern</em> und folgen den Anweisungen im nächsten Schritt.');
   define('TEXT_PAGE_HEADING', 'Zen Cart Installation - Datenbankanbindung');
@@ -32,6 +18,10 @@
   define('DATABASE_OPTIONAL_INSTRUCTION', 'Wir empfehlen, diese Einstellungen so zu lassen wie sie sind, außer Sie haben einen bestimmten Grund Sie zu ändern.');
   define('DATABASE_TYPE', 'Datenbanktyp');
   define('DATABASE_TYPE_INSTRUCTION', 'Wählen Sie hier den Datenbanktyp aus, den Sie verwenden wollen.');
+
+define('DATABASE_CHARSET', 'Database Character Set / Collation');
+define('DATABASE_CHARSET_INSTRUCTION', 'Choose the database collation to be used.');
+  
   define('DATABASE_HOST', 'Datenbank-Host');
   define('DATABASE_HOST_INSTRUCTION', 'Wie lautet der Hostname der Datenbank?<br>(z.B. \'sql.myserver.at\' oder \'192.168.0.1\' oder \'localhost\')');
   define('DATABASE_USERNAME', 'Datenbank Benutzername');

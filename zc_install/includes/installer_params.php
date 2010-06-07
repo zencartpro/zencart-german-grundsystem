@@ -17,3 +17,4 @@
 
   define('STRICT_ERROR_REPORTING', FALSE);
 
+  define('DB_CHARSET', 'latin1');  // r.l. ????

@@ -1,10 +1,10 @@
 <?php
 /**
  * @package admin
- * @copyright Copyright 2003-2009 Zen Cart Development Team
+ * @copyright Copyright 2003-2010 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- *  $Id: featured.php 14159 2009-08-14 00:49:43Z drbyte $
+ *  $Id: featured.php 16339 2010-05-24 09:57:04Z ajeh $
  */
 
   require('includes/application_top.php');
@@ -421,6 +421,9 @@ if (($_GET['page'] == '1' or $_GET['page'] == '') and $_GET['fID'] != '') {
         $contents[] = array('text' => '<br />' . TEXT_INFO_STATUS_CHANGE . ' ' . zen_date_short($fInfo->date_status_change));
         $contents[] = array('align' => 'center', 'text' => '<a href="' . zen_href_link(FILENAME_CATEGORIES, '&action=new_product' . '&cPath=' . zen_get_product_path($fInfo->products_id, 'override') . '&pID=' . $fInfo->products_id . '&product_type=' . zen_get_products_type($fInfo->products_id)) . '">' . zen_image_button('button_edit_product.gif', IMAGE_EDIT_PRODUCT) . '<br />' . '</a>');
 
+        $contents[] = array('align' => 'center', 'text' => '<a href="' . zen_href_link(FILENAME_FEATURED, 'action=pre_add' . ((isset($_GET['page']) && $_GET['page'] > 0) ? '&page=' . $_GET['page'] : '')) . '">' . zen_image_button('button_select.gif', IMAGE_SELECT) . '<br />' . TEXT_INFO_MANUAL . '</a><br /><br />');
+      } else {
+        $heading[] = array('text' => '<b>' . TEXT_NONE . '</b>');
         $contents[] = array('align' => 'center', 'text' => '<a href="' . zen_href_link(FILENAME_FEATURED, 'action=pre_add' . ((isset($_GET['page']) && $_GET['page'] > 0) ? '&page=' . $_GET['page'] : '')) . '">' . zen_image_button('button_select.gif', IMAGE_SELECT) . '<br />' . TEXT_INFO_MANUAL . '</a><br /><br />');
       }
       break;

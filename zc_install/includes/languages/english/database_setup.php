@@ -18,6 +18,8 @@
   define('DATABASE_OPTIONAL_INSTRUCTION', 'It is recommended to leave these settings as-is unless you have a specific reason for altering them.');
   define('DATABASE_TYPE', 'Database Type');
   define('DATABASE_TYPE_INSTRUCTION', 'Choose the database type to be used.');
+  define('DATABASE_CHARSET', 'Database Character Set / Collation');
+  define('DATABASE_CHARSET_INSTRUCTION', 'Choose the database collation to be used.');
   define('DATABASE_HOST', 'Database Host');
   define('DATABASE_HOST_INSTRUCTION', 'What is the database host?  The database host can be in the form of a host name, such as \'db1.myserver.com\', or as an IP-address, such as \'192.168.0.1\'.');
   define('DATABASE_USERNAME', 'Database Username');
