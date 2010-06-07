@@ -6,7 +6,7 @@
  * @copyright Copyright 2003-2007 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: header_php.php 6363 2007-05-24 21:18:22Z drbyte $
+ * @version $Id: header_php.php 16397 2010-05-26 11:21:22Z drbyte $
  */
 
 // This should be first line of the script:
@@ -31,6 +31,9 @@ if ($_SESSION['cart']->count_contents() <= 0) {
 
 // if no shipping method has been selected, redirect the customer to the shipping method selection page
 if (!$_SESSION['shipping']) {
+  zen_redirect(zen_href_link(FILENAME_CHECKOUT_SHIPPING, '', 'SSL'));
+}
+if (isset($_SESSION['shipping']['id']) && $_SESSION['shipping']['id'] == 'free_free' && defined('MODULE_ORDER_TOTAL_SHIPPING_FREE_SHIPPING_OVER') && $_SESSION['cart']->show_total() < MODULE_ORDER_TOTAL_SHIPPING_FREE_SHIPPING_OVER) {
   zen_redirect(zen_href_link(FILENAME_CHECKOUT_SHIPPING, '', 'SSL'));
 }
 

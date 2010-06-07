@@ -5,7 +5,7 @@
  * @package classes
  * @copyright Copyright 2003-2010 Zen Cart Development Team
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: order.php 16080 2010-04-26 22:15:03Z drbyte $
+ * @version $Id: order.php 16580 2010-06-02 21:12:23Z drbyte $
  */
 /**
  * order class
@@ -344,7 +344,7 @@ class order extends base {
     //                          'cc_number' => (isset($GLOBALS['cc_number']) ? $GLOBALS['cc_number'] : ''),
     //                          'cc_expires' => (isset($GLOBALS['cc_expires']) ? $GLOBALS['cc_expires'] : ''),
     //                          'cc_cvv' => (isset($GLOBALS['cc_cvv']) ? $GLOBALS['cc_cvv'] : ''),
-                        'shipping_method' => $_SESSION['shipping']['title'],
+                        'shipping_method' => (is_array($_SESSION['shipping']) ? $_SESSION['shipping']['title'] : $_SESSION['shipping']),
                         'shipping_module_code' => (isset($_SESSION['shipping']['id']) && strpos($_SESSION['shipping']['id'], '_') > 0 ? $_SESSION['shipping']['id'] : $_SESSION['shipping']),
                         'shipping_cost' => $_SESSION['shipping']['cost'],
                         'subtotal' => 0,
@@ -1033,7 +1033,7 @@ class order extends base {
       zen_mail('', SEND_EXTRA_ORDER_EMAILS_TO, SEND_EXTRA_NEW_ORDERS_EMAILS_TO_SUBJECT . ' ' . EMAIL_TEXT_SUBJECT . EMAIL_ORDER_NUMBER_SUBJECT . $zf_insert_id,
       $email_order . $extra_info['TEXT'], STORE_NAME, EMAIL_FROM, $html_msg, 'checkout_extra', $this->attachArray);
     }
-    $this->notify('NOTIFY_ORDER_AFTER_SEND_ORDER_EMAIL');
+    $this->notify('NOTIFY_ORDER_AFTER_SEND_ORDER_EMAIL', array($zf_insert_id, $email_order, $extra_info, $html_msg));
   }
 
 }

@@ -7,7 +7,7 @@
  * @copyright Copyright 2003-2010 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: functions_general.php 15831 2010-04-05 16:38:55Z wilt $
+ * @version $Id: functions_general.php 16312 2010-05-22 08:13:42Z wilt $
  */
 if (!defined('IS_ADMIN_FLAG')) {
   die('Illegal Access');
@@ -154,7 +154,7 @@ if (!defined('IS_ADMIN_FLAG')) {
 //    die ('here');
             $get_url .= $key . '/' . rawurlencode(stripslashes($value)) . '/';
           } else {
-            $get_url .= $key . '=' . rawurlencode(stripslashes($value)) . '&';
+            $get_url .= zen_sanitize_string($key) . '=' . rawurlencode(stripslashes($value)) . '&';
           }
         }
       }

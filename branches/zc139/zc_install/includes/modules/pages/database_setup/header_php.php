@@ -69,6 +69,8 @@ $is_upgrade = (int)$zc_install->getConfigKey('is_upgrade');
 
   if ($is_upgrade) { // read previous settings from configure.php
     $zdb_type       = zen_read_config_value('DB_TYPE');
+    $zdb_coll       = zen_read_config_value('DB_CHARSET');
+    if ($zdb_coll != 'utf8') $zdb_coll = 'latin1';
     $zdb_prefix     = zen_read_config_value('DB_PREFIX');
     $zdb_server     = zen_read_config_value('DB_SERVER');
     $zdb_user       = zen_read_config_value('DB_SERVER_USERNAME');
@@ -80,6 +82,7 @@ $is_upgrade = (int)$zc_install->getConfigKey('is_upgrade');
     $zdb_sessions   = (zen_read_config_value('STORE_SESSIONS')) ? 'true' : 'false';
   } else { // set defaults:
     $zdb_type       = 'MySQL';
+    $zdb_coll       = 'latin1';
     $zdb_prefix     = '';
     $zdb_server     = 'localhost';
     $zdb_user       = 'root';
@@ -101,6 +104,7 @@ $is_upgrade = (int)$zc_install->getConfigKey('is_upgrade');
   if (!isset($_POST['db_sess']))     $_POST['db_sess']    = $zdb_sessions;
   if (!isset($_POST['db_prefix']))   $_POST['db_prefix']  = $zdb_prefix;
   if (!isset($_POST['db_type']))     $_POST['db_type']    = $zdb_type;
+  if (!isset($_POST['db_coll']))     $_POST['db_coll']    = $zdb_coll;
   if (!isset($_POST['cache_type']))  $_POST['cache_type'] = $zdb_cache_type;
 
   setInputValue($_POST['db_host'],    'DATABASE_HOST_VALUE', $zdb_server);

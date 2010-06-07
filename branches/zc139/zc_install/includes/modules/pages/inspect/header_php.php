@@ -35,6 +35,8 @@
 
     $zdb_type     = zen_read_config_value('DB_TYPE');
     $zdb_prefix   = zen_read_config_value('DB_PREFIX');
+    $zdb_coll     = zen_read_config_value('DB_CHARSET');
+    if ($zdb_coll != 'utf8') $zdb_coll = 'latin1';
     $zdb_server   = zen_read_config_value('DB_SERVER');
     $zdb_user     = zen_read_config_value('DB_SERVER_USERNAME');
     $zdb_pwd      = zen_read_config_value('DB_SERVER_PASSWORD');
@@ -264,6 +266,7 @@ if (false) { // DISABLED THIS CODEBLOCK FOR NOW....
 
   //check various options for cache storage:
   //foreach (array(@ini_get("session.save_path"), '/tmp', '/var/lib/php/session', $dir_fs_www_root . '/tmp', $dir_fs_www_root . '/cache', 'c:/php/tmp', 'c:/php/sessiondata', 'c:/windows/temp', 'c:/temp') as $cache_test) {
+  $suggested_cache = '';
   foreach (array($dir_fs_www_root . '/cache') as $cache_test) {
     if (is_dir($cache_test) && @is_writable($cache_test) ) {  // does it exist?  Is is writable?
       $filename = $cache_test . '/zentest.tst';
@@ -311,9 +314,11 @@ if (false) { // DISABLED THIS CODEBLOCK FOR NOW....
   //PHP GD support check
   $php_ext_gd =       (@extension_loaded('gd'))      ? ON : OFF;
   $status_check[] = array('Importance' => 'Optional', 'Title' => LABEL_PHP_EXT_GD, 'Status' => $php_ext_gd , 'Class' => ($php_ext_gd==ON)?'OK':'WARN', 'HelpURL' =>ERROR_CODE_GD_SUPPORT, 'HelpLabel'=>ERROR_TEXT_GD_SUPPORT);
-  if (function_exists('gd_info')) $gd_info = @gd_info();
+  if ($php_ext_gd == ON) {
+    $gd_info = (function_exists('gd_info')) ? @gd_info() : array('GD Version' => 'UNKNOWN');
   $gd_ver = 'GD ' . $gd_info['GD Version'];
   $status_check[] = array('Importance' => 'Optional', 'Title' => LABEL_GD_VER, 'Status' => $gd_ver , 'Class' => ($php_ext_gd==ON && strstr($gd_ver,'2.') )?'OK':'WARN', 'HelpURL' =>ERROR_CODE_GD_SUPPORT, 'HelpLabel'=>ERROR_TEXT_GD_SUPPORT);
+  }
 
   //check for zLib Compression Support
   $php_ext_zlib =     (@extension_loaded('zlib'))    ? ON : OFF;
@@ -333,12 +338,6 @@ if (false) { // DISABLED THIS CODEBLOCK FOR NOW....
   $curl_ssl_test = $zc_install->test_curl('SSL');
   $status_check[] = array('Importance' => 'Optional', 'Title' => LABEL_CURL_NONSSL, 'Status' => $curl_nonssl_test, 'Class' => ($curl_nonssl_test == OKAY) ? 'OK' : 'WARN', 'HelpURL' =>ERROR_CODE_CURL_SUPPORT, 'HelpLabel'=>ERROR_TEXT_CURL_SUPPORT);
   $status_check[] = array('Importance' => 'Optional', 'Title' => LABEL_CURL_SSL, 'Status' => $curl_ssl_test, 'Class' => ($curl_ssl_test == OKAY) ? 'OK' : 'WARN', 'HelpURL' =>ERROR_CODE_CURL_SSL_PROBLEM, 'HelpLabel'=>ERROR_TEXT_CURL_SSL_PROBLEM);
-  if (FALSE && $curl_nonssl_test != OKAY || $curl_ssl_test != OKAY) {
-    $curl_nonssl_proxy_test = $zc_install->test_curl('NONSSL', true);
-    $curl_ssl_proxy_test = $zc_install->test_curl('SSL', true);
-    $status_check[] = array('Importance' => 'Optional', 'Title' => LABEL_CURL_NONSSL_PROXY, 'Status' => $curl_nonssl_proxy_test, 'Class' => ($curl_nonssl_proxy_test == OKAY) ? 'OK' : 'WARN', 'HelpURL' =>ERROR_CODE_CURL_SUPPORT, 'HelpLabel'=>ERROR_TEXT_CURL_SUPPORT);
-    $status_check[] = array('Importance' => 'Optional', 'Title' => LABEL_CURL_SSL_PROXY, 'Status' => $curl_ssl_proxy_test, 'Class' => ($curl_ssl_proxy_test == OKAY) ? 'OK' : 'WARN', 'HelpURL' =>ERROR_CODE_CURL_SSL_PROBLEM, 'HelpLabel'=>ERROR_TEXT_CURL_SSL_PROBLEM);
-  }
 
 
   //Check for upload support built in to PHP

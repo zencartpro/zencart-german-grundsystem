@@ -1,0 +1,142 @@
+<!--
+/**
+ * @package documentation
+ * @copyright Copyright 2003-2010 Zen Cart Development Team
+ * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
+ * @version $Id: whatsnew_1.3.9d.html 16605 2010-06-03 10:47:31Z drbyte $
+ */
+//-->
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+<!--
+body, table{ font-family:Verdana, Arial, Helvetica, sans-serif; font-size:14px; }
+table.intro {border-color:#C96E29; }
+td.intro{background-color:#EEEEEE; border-color:#5778ce; font-size:11px; }
+td.plainbox, div.callout {border: 1px dashed;border-color: #C96E29;margin:5px 40px 5px 40px;}
+.heading {background-color:#5778CE; font-weight:bold; font-size:14px;	width: 100%; }
+.title1 {color:#C96E29; font-weight:bold; font-size:22px; }
+.title2 {color:#C96E29; font-weight:bold; font-size:13px; }
+.small {font-size:10px ;}
+.error {color:#FF0000; }
+.filename {font-family: mono, "Courier New", Courier ; font-size:14px; color:#c96e29;}
+.pseudolink {text-decoration:underline; color:#5778CE;}
+h1.intro { color: #ffffff; border:1px solid #aca893; background-color: #c96e29;  font-size: 22px;   padding: 4px;}
+h1 { color: #ffffff;    border:1px solid #aca893;   background-color: #5778ce;   font-size: 20px;   padding: 4px;}
+h2 { color: #c96e29; 	font-size: 18px;}
+h3 { color: #5778ce;	font-size: 16px; margin-bottom:0px;}
+h4 { color: #c96e29;	font-size: 14px;}
+h5 { color: #5778ce;	font-size: 16px; margin-bottom:0px; margin-top:0px; }
+.style1 {
+  font-size: 18px;
+  font-weight: bold;
+}
+.emphasize {
+  color: #336600;
+}
+
+
+-->
+</style>
+<title>What's New in Zen Cart(tm) v1.3.9d</title>
+</head>
+<body>
+
+<table class="intro" cellspacing="4" cellpadding="6" border="3" width="748px" align="center">
+<tr><td class="intro">
+<center><h1 class="intro">Welcome to Zen Cart&trade; ...</h1></center>
+<br />
+The Zen Cart&trade; software is made available to you for use, additions, changes, modifications, etc. without charge, under the GNU General Public License.
+<br />
+<br />
+While we do not charge for this software, donations are greatly appreciated each time you download a new version, to help cover the expenses of maintenance, upgrades, updates, the free support forum and the continued development of this software for your online e-commerce store.
+<br />
+<br />
+Donations can be made at:
+<a href="http://www.zen-cart.com/donate" target="_blank">The Zen Cart&trade; Team Page</a>
+<br />
+<br />
+We appreciate your support.<br />
+<em>The Zen Cart&trade; Team</em><br />
+<br />
+
+<center>
+<span class="small">
+Zen Cart&trade; is derived from: Copyright  2003 osCommerce<br />
+This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;<br />
+without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE<br />
+and is redistributable under the GNU General Public License<br /><br />
+</span>
+</center>
+</td></tr></table>
+
+<br />
+<table border="3" width="748px" align="center" cellpadding="6">
+  <tr>
+<td align="center"><img src="osi-certified-120x100.png" /><br />
+This software is OSI Certified Open Source Software.<br />
+OSI Certified is a certification mark of the Open Source Initiative.
+</td></tr></table>
+<br />
+
+<table border="3" width="748px" align="center" cellpadding="6">
+  <tr>
+<td>
+<h1>CHANGELOG - List of Changed Files </h1>
+<p>For a list of files that have been changed since v1.3.9c, see the <a href="changelog-v1-3-9d.html" target="_blank">changelog-v1-3-9d.html</a> </p>
+<h1>*** SECURITY REQUIREMENT ***</h1>
+<p>For added security, Zen Cart&trade; comes with several .htaccess files already included in various folders to help provide protection against unwanted visitors 
+and even against mis-use of your site in the unfortunate situation of your site being hacked. These protections prevent hackers from using your site as phishing sources.</p>
+<p>However, for these built-in protections to work, your web hosting server administrator MUST set the AllowOverride directive 
+in the server's apache configuration (the server's master httpd.conf file)  to "All" or at least ensure it includes these parameters: 'Limit Indexes'.<br />
+<pre>ie:&nbsp;&nbsp;&nbsp;&nbsp;AllowOverride All<br />
+or: &nbsp;&nbsp;&nbsp;AllowOverride Limit Indexes&nbsp;&nbsp;&nbsp;&nbsp;</pre><br />
+<em>(NOTE: You must also add "Options" if uncommenting OPTIONS directives in your .htaccess files)</em><br /><br />
+Without these settings, you will likely encounter "<strong>500 Internal Server Error</strong>" messages when attempting to access various parts of your site, including perhaps the zc_install installer script. </p>
+<p>Storeowners hosting on Windows Servers using IIS instead of Apache may need to remove the .htaccess files and rework them into suitable equivalents within your IIS configuration. See Microsoft's IIS website for specific assistance.</p>
+<h1>ADDITIONAL NOTE ABOUT .htaccess FILES</h1>
+<p>Inside some folders is an .htaccess file that lists certain *permitted* filetypes which may be accessed. (Anything else is blocked to prevent abuse on your site).</p>
+<p>The side-effect of this is that if you choose to use media types that are not already listed in the *permitted* list, then your visitors will not be able to see those resources. </p>
+<p>Thus, if you are using product images that are not in the list of permitted types in your /images/.htaccess, you will need to add those types to the list.</p>
+<p>Similarly, if you are using certain media types in music product previews, you will need to make sure those are in your /media/.htaccess </p>
+<p>And, if you are using filetypes for downloadable products that are not already listed in your /pub/.htaccess and /download/.htaccess you will need to add those as well.</p>
+
+<h1>Zen Cart&trade; Minimum Requirements</h1>
+<p>PHP 4.3.2 or higher, Apache 1.3.30 and MySQL 3.23.x or higher.</p>
+
+<h1>Upgrade Instructions from v1.3.9a/b/c to 1.3.9d</h1>
+<p>If you are upgrading <strong><u>from Zen Cart v1.3.9a or 1.3.9b or 1.3.9c to 1.3.9d</u></strong>, the process is simple:<br>
+  - compare all the changed files with the files on your own site... and re-apply your customizations to the new files<br>
+  - upload the new files (with your customizations added) to your site<br>
+  - (there are no database-updates required between v1.3.9a to v1.3.9b or v1.3.9c or v1.3.9d)<br />
+</p>
+<p>If you are upgrading <strong><u>from a version prior to v1.3.9a</u></strong>, please follow the instructions in the &quot;<a href="2.readme_how_to_upgrade.html">how to upgrade</a>&quot; documentation in the /docs folder. </p>
+
+<h1>Whats New ... </h1>
+<h3><strong>The following improvements and bugfixes are included in v1.3.9d since v1.3.9c: </strong></h3>
+<ul>
+<li>BUGSFORUM-1271 - No numeric check for quantity update on shopping_cart page</li>
+<li>BUGSFORUM-1276 - Contact us message not persisting when errors occur</li>
+<li>Various sanitization updates to addresses new false positive pci scan reports</li>
+<li>Addressed problems with duplicate orders caused when using PayPal IPN module</li>
+<li>BUGSFORUM-1278 - Zone restrictions problem with PayPal Express Checkout</li>
+<li>Fix error: 10408 Express Checkout token is missing (when store name contains & symbol)</li>
+<li>BUGSFORUM-1013 - ALT text in template override paypalwpp.php</li>
+<li>Fix bug where add by Product ID does not show on large sites with no Featured or Specials added yet</li>
+<li>Added housekeeping step to remove old paypal sessions records when IPN is processed for WPS transactions</li>
+<li>Added more SSL detection cases</li>
+<li>BUGSFORUM-378 - shipping calculation fixes</li>
+<li>BUGSFORUM-1303 fix backslash problem when using admin back button from preview in 1.3.9b/c</li>
+<li>BUGSFORUM-1246 - extra apostrophe in developers_tool_kit.php</li>
+<li>Update order.php so that "free shipping" doesn't show as "f" as the shipping method when viewing orders in the admin</li>
+<li>Fix Free Charge Card on $0.00 orders to show on confirmation </li>
+</ul>
+</td>
+</tr>
+</table>
+<br /><br />
+<p align="center"><em>Zen Cart&trade; Copyright 2003-2010</em></p>
+<br /><br />
+</body>
+</html>

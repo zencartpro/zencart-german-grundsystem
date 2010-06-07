@@ -147,6 +147,16 @@ Processing...
 
   ipn_debug_email('Breakpoint: 4 - ' . 'Details:  txn_type=' . $txn_type . '    ordersID = '. $ordersID . '  IPN_id=' . $paypalipnID . "\n\n" . '   Relevant data from POST:' . "\n     " . 'txn_type = ' . $txn_type . "\n     " . 'parent_txn_id = ' . ($_POST['parent_txn_id'] =='' ? 'None' : $_POST['parent_txn_id']) . "\n     " . 'txn_id = ' . $_POST['txn_id']);
 
+  if (!$isECtransaction && !isset($_POST['parent_txn_id'])) {
+    if (defined('MODULE_PAYMENT_PAYPAL_PDTTOKEN') && MODULE_PAYMENT_PAYPAL_PDTTOKEN != '') {
+      ipn_debug_email('IPN NOTICE :: IPN pausing: waiting for PDT to process. Sleeping 10 seconds ...');
+      sleep(10);
+    }
+    if (ipn_get_stored_session($session_stuff) === false) {
+      ipn_debug_email('IPN ERROR :: No pending Website Payments Standard session data available.  Might be a duplicate transaction already entered via PDT.');
+      $ipnFoundSession = false;
+    }
+  }
   if ($ipnFoundSession == FALSE && !$isECtransaction && !$isDPtransaction) {
     ipn_debug_email('NOTICE: IPN Processing Aborted due to missing matching transaction data, as per earlier debug message. Perhaps this transaction was already entered via PDT? Thus there is no need to process this incoming IPN notification.');
     die();
@@ -172,6 +182,7 @@ Processing...
     case ($_POST['txn_type'] == 'send_money'):
     case ($_POST['txn_type'] == 'merch_payment'):
     case ($_POST['txn_type'] == 'new_case'):
+    case ($_POST['txn_type'] == 'masspay'):
       // these types are irrelevant to ZC transactions
       ipn_debug_email('IPN NOTICE :: Transaction txn_type not relevant to Zen Cart processing. IPN handler aborted.' . $_POST['txn_type']);
       die();
@@ -227,6 +238,7 @@ Processing...
     case (substr($txn_type,0,8) == 'pending-' && (int)$ordersID <= 0):
     case ($new_record_needed && $txn_type == 'echeck-cleared'):
     case 'unique':
+      $db->Execute("delete from " . TABLE_PAYPAL_SESSION . " where session_id = '" . zen_db_input(str_replace('zenid=', '', $_POST['custom'])) . "'");
       /**
        * require shipping class
        */

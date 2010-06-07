@@ -8,6 +8,7 @@
  * @version $Id$
  */
 
+  @define('SQL_CACHE_METHOD', 'none');
   $zc_install->error = false;
 
   if (!isset($_POST['store_name'])) $_POST['store_name'] = '';

@@ -6,7 +6,7 @@
  * @copyright Copyright 2003-2010 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: order_total.php 15368 2010-01-28 23:29:02Z wilt $
+ * @version $Id: order_total.php 16399 2010-05-26 18:06:15Z ajeh $
  */
 /**
  * order-total class
@@ -196,8 +196,9 @@ class order_total extends base {
       $order->info = $orderInfoSaved;
 //      echo "orderTotal = {$order->info['total']}";
 //      echo "TotalDeductions = {$total_deductions}";
+//      do not set when Free Charger is being used
       $difference = $order->info['total'] - $total_deductions;
-      if ( $difference <= 0.009 ) {
+      if ( $difference <= 0.009 && $_SESSION['payment'] != 'freecharger') {
         $credit_covers = true;
       }
     }

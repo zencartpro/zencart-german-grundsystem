@@ -87,6 +87,7 @@ function executeSql($sql_file, $database, $table_prefix = '', $isupgrade=false) 
   $results=0;
   $string='';
 	$result='';
+  $collateSuffix = '';
 	$errors=array();	
 
   // prepare for upgrader processing 
@@ -142,12 +143,15 @@ function executeSql($sql_file, $database, $table_prefix = '', $isupgrade=false) 
             $table = (strtoupper($param[2].' '.$param[3].' '.$param[4]) == 'IF NOT EXISTS') ? $param[5] : $param[2];
             $result=zen_table_exists($table);
             if ($result==true) {
-              zen_write_to_upgrade_exceptions_table($line, sprintf(REASON_TABLE_ALREADY_EXISTS,$table), $sql_file);
               $ignore_line=true;
+              if (strtoupper($param[2].' '.$param[3].' '.$param[4]) != 'IF NOT EXISTS') {
+                zen_write_to_upgrade_exceptions_table($line, sprintf(REASON_TABLE_ALREADY_EXISTS,$table), $sql_file);
               $result=sprintf(REASON_TABLE_ALREADY_EXISTS,$table); //duplicated here for on-screen error-reporting
+              }
               break;
             } else {
               $line = (strtoupper($param[2].' '.$param[3].' '.$param[4]) == 'IF NOT EXISTS') ? 'CREATE TABLE IF NOT EXISTS ' . $table_prefix . substr($line, 27) : 'CREATE TABLE ' . $table_prefix . substr($line, 13);
+              $collateSuffix = ' COLLATE ' . DB_CHARSET . '_general_ci';
             }
             break;
           case (substr($line_upper, 0, 13) == 'REPLACE INTO '):
@@ -189,6 +193,15 @@ function executeSql($sql_file, $database, $table_prefix = '', $isupgrade=false) 
               break;
             } else {
               $line = 'INSERT IGNORE INTO ' . $table_prefix . substr($line, 19);
+            }
+            break;
+            case (substr($line_upper, 0, 19) == 'ALTER IGNORE TABLE '):
+            if ($result=zen_check_alter_command($param)) {
+              zen_write_to_upgrade_exceptions_table($line, $result, $sql_file);
+              $ignore_line=true;
+              break;
+            } else {
+              $line = 'ALTER IGNORE TABLE ' . $table_prefix . substr($line, 19);
             }
             break;
           case (substr($line_upper, 0, 12) == 'ALTER TABLE '):
@@ -318,6 +331,10 @@ function executeSql($sql_file, $database, $table_prefix = '', $isupgrade=false) 
           if ($lines_to_keep_together_counter == $keep_together) { // if all grouped rows have been loaded, go to execute.
             $complete_line = true;
             $lines_to_keep_together_counter=0;
+            if ($collateSuffix != '') {
+              $newline = rtrim($newline, ';') . $collateSuffix . ';';
+              $collateSuffix = '';
+            }
           } else {
             $complete_line = false;
           }

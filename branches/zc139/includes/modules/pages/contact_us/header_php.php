@@ -6,7 +6,7 @@
  * @copyright Copyright 2003-2010 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: header_php.php 15637 2010-03-07 07:41:50Z drbyte $
+ * @version $Id: header_php.php 16305 2010-05-21 20:48:55Z wilt $
  */
 require(DIR_WS_MODULES . zen_get_module_directory('require_languages.php'));
 
@@ -85,7 +85,7 @@ if($_SESSION['customer_id']) {
 
   $sql = $db->bindVars($sql, ':customersID', $_SESSION['customer_id'], 'integer');
   $check_customer = $db->Execute($sql);
-  $email= $check_customer->fields['customers_email_address'];
+  $email_address = $check_customer->fields['customers_email_address'];
   $name= $check_customer->fields['customers_firstname'] . ' ' . $check_customer->fields['customers_lastname'];
 }
 
