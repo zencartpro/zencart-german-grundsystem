@@ -11,7 +11,7 @@
 $file_contents =
 '<'.'?php' . "\n" .
 '/**' . "\n" .
-' * @package Configuration Settings circa 1.3.9' . "\n" .
+' * @package Configuration Settings circa 1.3.9DD' . "\n" .
 ' * @copyright Copyright 2003-2010 Zen Cart Development Team' . "\n" .
 ' * @copyright Portions Copyright 2003 osCommerce' . "\n" .
 ' * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0' . "\n" .
@@ -22,6 +22,9 @@ $file_contents =
 '' . '/*************** NOTE: This file is similar, but DIFFERENT from the "admin" version of configure.php. ***********/' . "\n" .
 '' . '/***************       The 2 files should be kept separate and not used to overwrite each other.      ***********/' . "\n" .
 '' . "\n" .
+'// Multilingual Parameter, Timezone' . "\n" .
+'  date_default_timezone_set(\'Europe/Vienna\'); ' . "\n" .
+'  define(\'DB_CHARSET\', \'utf8\');' . "\n" .
 '// Define the webserver and path parameters' . "\n" .
 '  // HTTP_SERVER is your Main webserver: eg-http://www.your_domain.com' . "\n" .
 '  // HTTPS_SERVER is your Secure webserver: eg-https://www.your_domain.com' . "\n" .

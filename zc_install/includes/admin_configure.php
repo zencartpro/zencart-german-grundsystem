@@ -22,6 +22,9 @@ $file_contents =
 '' . '/*************** NOTE: This file is similar, but DIFFERENT from the "store" version of configure.php. ***********/' . "\n" .
 '' . '/***************       The 2 files should be kept separate and not used to overwrite each other.      ***********/' . "\n" .
 '' . "\n" .
+'// Multilingual Parameter, Timezone' . "\n" .
+'  date_default_timezone_set(\'Europe/Vienna\'); ' . "\n" .
+'  define(\'DB_CHARSET\', \'utf8\');' . "\n" .
 '// Define the webserver and path parameters' . "\n" .
 '  // Main webserver: eg-http://www.your_domain.com - ' . "\n" .
 '  // HTTP_SERVER is your Main webserver: eg-http://www.your_domain.com' . "\n" .
