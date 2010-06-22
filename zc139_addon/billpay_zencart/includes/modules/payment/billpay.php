@@ -7,7 +7,7 @@
  * @author rainer AT langheiter DOT com  http://edv.langheiter.com
  * zahlungs.....(BillPay-text)
  * 
- * @version $Id: billpay.php 582 2010-06-02 08:24:32Z hugo13 $
+ * @version $Id$
  */
 
 require_once(DIR_FS_CATALOG . 'includes/billpay/api/ipl_xml_request.php');           

@@ -7,7 +7,7 @@
  * @author jwehrs (jan.wehrs@billpay.de)
  * zahlungs.....(BillPay-text)
  * 
- * @version $Id: billpay.php 582 2010-06-02 08:24:32Z hugo13 $
+ * @version $Id$
  */
 
 include_once 'ipl_xml_request.php';
