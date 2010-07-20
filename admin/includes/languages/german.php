@@ -379,7 +379,7 @@ define('TEXT_FIELD_REQUIRED', '<span class="Feld">* benötigt</span>');
 define('ERROR_NO_DEFAULT_CURRENCY_DEFINED', 'Fehler: Es wurde keine Standardwährung definiert. Sie können diese im Admin Menü unter Lokalisationt->Währungen definieren.');
 define('TEXT_CACHE_CATEGORIES', 'Kategorien');
 define('TEXT_CACHE_MANUFACTURERS', 'Hersteller');
-define('TEXT_CACHE_ALSO_PURCHASED', 'Verkaufsförderung / Ähnliche Artikel');
+define('TEXT_CACHE_ALSO_PURCHASED', 'Verkaufsförderung / Empfohlene Artikel');
 define('TEXT_NONE', '--kein--');
 define('TEXT_TOP', 'Top');
 define('ERROR_DESTINATION_DOES_NOT_EXIST', 'Fehler: Zielverzeichnis %s existiert nicht');
@@ -498,7 +498,7 @@ define('TEXT_VERSION_CHECK_CURRENT', 'Sie verwenden die aktuellste Version von Z
 // downloads manager
 define('TEXT_DISPLAY_NUMBER_OF_PRODUCTS_DOWNLOADS_MANAGER', 'Zeige <b>%d</b> bis <b>%d</b> (von <b>%d</b> Downloads)');
 define('BOX_CATALOG_CATEGORIES_ATTRIBUTES_DOWNLOADS_MANAGER', 'Download Manager');
-define('BOX_CATALOG_FEATURED', 'Ähnliche Artikel');
+define('BOX_CATALOG_FEATURED', 'Empfohlene Artikel');
 define('ERROR_NOTHING_SELECTED', 'Es wurde nichts ausgewählt ... Es wurden keine Änderungen durchgeführt');
 define('TEXT_STATUS_WARNING', '<strong>HINWEIS:</strong> Der Status ist auf "auto aktiviert/deaktiviert", wenn Datumsangaben vorliegen');
 define('TEXT_LEGEND_LINKED', 'Verlinkter Artikel');

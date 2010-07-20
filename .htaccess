@@ -1,0 +1,6 @@
+# redirects any URL that includes: record_company.php/password_forgotten.php
+RedirectMatch Permanent ^/(.*[record_company.php]+)/(password_forgotten.php)$ /page_not_found.php
+
+# redirects any URL that includes: /images/wp- with 'wp-' being anything that ends with '.php'
+# this allows for images named such as 'wp-header.jpg' to work
+RedirectMatch Permanent ^/(.*[images]+)/(wp-.*\.php)$ /page_not_found.php

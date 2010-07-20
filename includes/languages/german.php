@@ -1,7 +1,7 @@
 <?php
 /**
  * @package languageDefines
- * @copyright Copyright 2003-2006 Zen Cart Development Team
+ * @copyright Copyright 2003-2010 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
  * @translator: cyaneo/hugo13/wflohr/maleborg	http://www.zen-cart.at	2007-01-03
@@ -88,9 +88,9 @@ define('BOX_HEADING_MANUFACTURERS', 'Hersteller');
 define('BOX_HEADING_WHATS_NEW', 'Neue Artikel');
 define('CATEGORIES_BOX_HEADING_WHATS_NEW', 'Neue Artikel ...');
 
-define('TEXT_NO_FEATURED_PRODUCTS', 'Weitere ähnliche Artikel erscheinen in Kürze. Bitte besuchen Sie unseren Shop regelmäßig wieder.');
-define('BOX_HEADING_FEATURED_PRODUCTS', 'Ähnliche Artikel');
-define('CATEGORIES_BOX_HEADING_FEATURED_PRODUCTS', 'Ähnliche Artikel ...');
+define('TEXT_NO_FEATURED_PRODUCTS', 'Weitere empfohlene Artikel erscheinen in Kürze. Bitte besuchen Sie unseren Shop regelmäßig wieder.');
+define('BOX_HEADING_FEATURED_PRODUCTS', 'Empfohlene Artikel');
+define('CATEGORIES_BOX_HEADING_FEATURED_PRODUCTS', 'Empfohlene Artikel ...');
 
 define('TEXT_NO_ALL_PRODUCTS', 'Weitere Artikel erscheinen in Kürze. Bitte besuchen Sie unseren Shop regelmäßig wieder.');
 define('CATEGORIES_BOX_HEADING_PRODUCTS_ALL', 'Alle Artikel ...');
@@ -495,7 +495,7 @@ define('WARNING_SHOPPING_CART_COMBINED', 'Achtung: Ihr aktueller Warenkorb wurde
 // error on checkout when $_SESSION['customers_id' does not exist in customers table
 define('ERROR_CUSTOMERS_ID_INVALID', 'Die Kundeninformation konnte nicht verifiziert werden!<br />Bitte melden Sie sich an oder erstellen Sie Ihr Kundenkonto erneut ...');
 
-define('TABLE_HEADING_FEATURED_PRODUCTS','Ähnliche Artikel');
+define('TABLE_HEADING_FEATURED_PRODUCTS','Empfohlene Artikel');
 
 define('TABLE_HEADING_NEW_PRODUCTS', 'Neue Artikel im %s');
 define('TABLE_HEADING_UPCOMING_PRODUCTS', 'Artikelankündigungen');
