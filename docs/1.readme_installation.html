@@ -84,14 +84,13 @@ OSI certified ist ein Zertifikat der Open Source Initiative.
 <p>Sie haben bereits ein gepacktes Zen Cart&trade; Paket herunter geladen.</p>
 <p>Bitte fragen Sie sich...</p>
 <h3>1. Habe ich bereits eine Domain und den nötigen Webspace? </h3>
-<p>Falls nicht... sehen Sie sich unsere qualifizierten <a href="http://www.zen-cart.at/zcvb/index.php?area=vbcmsarea_content&contentid=8" target="_blank">Domain und Webhosting Angebote</a> an. Dort finden Sie zuverlässige Provider, die für die Verwendung von Zen Cart&trade; geeignet sind... </p>
+<p>Falls nicht... sehen Sie sich unsere qualifizierten <a href="http://www.zen-cart.at/zcvb/forum/vbglossar.php?do=showentry&id=17" target="_blank">Domain und Webhosting Angebote</a> an. Dort finden Sie zuverlässige Provider, die für die Verwendung von Zen Cart&trade; geeignet sind... </p>
 <h3>2. Haben Sie eine zuverlässige FTP Software? </h3>
 <p>Falls nicht ... besorgen Sie sich eine zuverlässige FTP Software wie z.B. <a href="http://filezilla.sourceforge.net/" target="_blank">FileZilla</a> (kostenlos), <a href="http://www.flashfxp.com/" target="_blank">FlashFXP</a> oder eine andere FTP Software, mit der Sie Dateien auf Ihren Webserver hochladen oder auf Ihren PC herunterladen können. 
 <br /><br />
   <strong>Anmerkung:</strong> Als Webserver bezeichnet man einen Computer im Internet, auf welchem Domains gehostet werden.(Siehe 1) <br>
   <br>
-<span class="error"><strong>Anmerkung:</strong> Viele Leute klagen über Timeouts oder andere Probleme bei der Nutzung von Programmen wie SmartFTP oder CuteFTP. Wir empfehlen diese problematischen Programme nicht zu benutzen.<br>
-<br>
+<span class="error">
 <strong>Anmerkung 2:</strong> Wenn Ihnen Ihr Provider ein FTP Programm anbietet, welches in Ihrem Browser ausgeführt wird, empfehlen wir, dieses Programm nicht für große Datenmengen (wie z.B. bei Zen Cart&trade;) zu verwenden. Derartige Programme sind geeignet für den Transfer einzelner Dateien, aber unzuverlässig beim Transfer von mehreren Dateien gleichzeitig. </span></p>
 <h3>3. Haben Sie einen guten Texteditor? </h3>
 <p>Falls nicht ... benötigen Sie einen guten Texteditor wie z.B. <a href="http://ultraedit.com/" target="_blank">UltraEdit</a>, <a href="http://www.pspad.com/de/" target="_blank">PSPad</a> (kostenlos), <a href="http://notepad-plus.sourceforge.net" target="_blank">Notepad++</a> (kostenlos), <a href="http://crimsoneditor.com" target="_blank">CrimsonEditor</a> (kostenlos), <a href="http://www.barebones.com" target="_blank">BBedit</a>(Mac), Kedit (linux), oder einen anderen Texteditor zur Bearbeitung der in Zen Cart&trade; enthaltenen Dateien...</p>
@@ -226,8 +225,6 @@ Suchen Sie nun nach der Datei: <span class="filename">/catalog/admin/includes/di
 Benennen Sie diese Datei in configure.php um und ändern Sie die Rechte auf 777 (read-write-execute for all)<br />
 <br />
 Danach starten Sie die Installation erneut.<br />
-<h3>phpBB Anbindung </h3>
-In diesem Schritt werden Sie nach einer möglichen phpBB Anbindung gefragt. Wenn Sie bereits ein phpBB Forum installiert haben, geben Sie hier den Pfad zu Ihrer phpBB Installation an. Damit aktivieren Sie Links von Ihrem Shop zu Ihrem Forum und die Benutzer werden mit Zen Cart™ synchronisiert. Wenn z.B. Ihre phpBB Installation in <span class="filename">......public_html/forums</span> liegt, geben Sie nur <span class="filename">/forums</span> als Pfad an. 
 <h3>Datenbankverbindung </h3>
 
 In diesem Schritt werden Sie nach Ihren Datenbankinformationen wie MySQL Datenbank, Datenbankbenutzername oder -passwort, gefragt. Diese Informationen erhalten Sie entweder von Ihrem Provider, oder über Tools wie cPanel o. ä. Wenn Sie über keine (leere) MySQL Datenbank Installation verfügen, müssen Sie diese nun erstellen. <br />
@@ -248,7 +245,7 @@ Wenn Sie die Demo Daten installieren wollen, dann wählen Sie "Ja". <br />
 <br />
 Wir empfehlen Ihnen die Installation der Demodaten, damit Sie sich mit dem Funktionsumfang von Zen Cart™ leichter vertraut machen können. Die Demodaten enthalten umfangreiche Beispiele der enormen Funktionen, die in Zen Cart™ enthalten sind.  <br />
 <br />
-Ebenso können Sie später entscheiden, einen Testshop mit den Demodaten zu installieren UND eine Installation mit Ihren echten Shopdaten, damit Sie für Ihren "Lifeshop" auf den Testshop für Referenz Zwecke zurückgreifen können.</div> <br />
+Ebenso können Sie später entscheiden, einen Testshop mit den Demodaten zu installieren UND eine Installation mit Ihren echten Shopdaten, damit Sie für Ihren "Liveshop" auf den Testshop für Referenz Zwecke zurückgreifen können.</div> <br />
 <br />
 Nachdem Sie auf "Shopeinstellungen speichern" geklickt haben, kann es zu einer längeren Verzögerung während der Erstellung der Datenbanktabellen und der optionalen Demodaten kommen. 
 <h3>Administrationszugang </h3>
@@ -262,25 +259,27 @@ Sollten während der Installation keine Fehler aufgetreten sind, sollten Sie nun
 </div>
 <div>
 <h1>Nach der Installation </h1>
-Wenn Sie Ihren Shop betreten, erhalten Sie Sicherheitswarnungen bezüglich der Dateien <em>configure.php</em> und des Verzeichnisses <span class="filename"> /zc_install </span>. <br />
-<br />
-<br />
-<strong>Die Dateien "configure.php" </strong><br />
-Sie sollten nun die Rechte dieser Dateien auf CHMOD 444 (oder 644, abhängig vom Server) setzen.<br />
-<br />
-Diese Dateien finden Sie in: <br />
-<span class="filename">/catalog/includes/configure.php<br />
-/catalog/admin/includes/configure.php </span><br />
-<br />
-Wir empfehlen Ihnen, sich nach erfolgreicher Installation Ihres Zen Cart™ Shops, eine Sicherungskopie dieser Konfigurationsdateien auf Ihrem Computer zu speichern.  <br />
-<br />
-Wenn Fehler oder Probleme auftreten, können Sie diese leicht durch kleinere Korrekturen dieser Dateien behoben werden.  <br />
-<br />
-<br />
-<strong>Das "zc_install" Verzeichnis </strong><br />
-Löschen Sie bitte nach erfolgreicher Installation das Verzeichnis <span class="filename"> /catalog/zc_install </span><br />
-Von einem lediglichen Umbenennen des Verzeichnis raten wir ab. Dieses bietet nicht genug Schutz gegen Personen mit Böses im Sinn.<br />
-Hacker könnten sonst versuchen, Ihren Shop durch erneuten Aufruf des Installers zu zerstören. <br />
+<p>Wenn Sie Ihren Shop betreten, erhalten Sie Sicherheitswarnungen bezüglich  des Verzeichnisses <span class="filename"> /zc_install </span>und möglicherweise bezüglich der Dateien <em>configure.php</em></p>
+<p>Der Installer setzt die Rechte der configure.php Dateien in der Regel automatisch auf chmod 444 (schreibgeschützt). Sollte das aus irgendeinem Grund fehlgeschlagen sein, werden Sie einen Hinweis bekommen, dass die Konfigurationsdateien beschreibbar sind. Falls dieser Hinweis kommt, wie folgt vorgehen:<br />
+  <br />
+  <br />
+  <strong>Die Dateien "configure.php" </strong><br />
+  Sie sollten nun die Rechte dieser Dateien auf CHMOD 444 (oder 644, abhängig vom Server) setzen.<br />
+  <br />
+  Diese Dateien finden Sie in: <br />
+  <span class="filename">/catalog/includes/configure.php<br />
+    /catalog/admin/includes/configure.php </span><br />
+  <br />
+  Wir empfehlen Ihnen, sich nach erfolgreicher Installation Ihres Zen Cart™ Shops, eine Sicherungskopie dieser Konfigurationsdateien auf Ihrem Computer zu speichern.  <br />
+  <br />
+  Wenn Fehler oder Probleme auftreten, können Sie diese leicht durch kleinere Korrekturen dieser Dateien behoben werden.  <br />
+  <br />
+  <br />
+  <strong>Das "zc_install" Verzeichnis </strong><br />
+  Löschen Sie bitte nach erfolgreicher Installation das Verzeichnis <span class="filename"> /catalog/zc_install </span><br />
+  Von einem lediglichen Umbenennen des Verzeichnis raten wir ab. Dieses bietet nicht genug Schutz gegen Personen mit Böses im Sinn.<br />
+  Hacker könnten sonst versuchen, Ihren Shop durch erneuten Aufruf des Installers zu zerstören. <br />
+</p>
 </div>
 <div>
 <h1>Weitere Schritte</h1>
