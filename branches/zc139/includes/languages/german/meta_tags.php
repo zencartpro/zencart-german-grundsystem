@@ -1,10 +1,9 @@
 <?php
 /**
  * @package languageDefines
- * @copyright Copyright 2003-2005 Zen Cart Development Team
+ * @copyright Copyright 2003-2010 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @translator: cyaneo/hugo13/wflohr	http://www.zen-cart.at	2006-11-02
  * @version $Id$
  */
 
@@ -63,4 +62,4 @@ define('ROBOTS_PAGES_TO_SKIP','login,logoff,create_account,account,account_edit,
 
 // favicon setting
 // There is usually NO need to enable this unless you wish to specify a path and/or a different filename
-define('FAVICON','zc138.ico');
+// define('FAVICON','favicon.ico');
