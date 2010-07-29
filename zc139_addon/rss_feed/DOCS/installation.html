@@ -1,0 +1,121 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>RSS Feed 2.1.4 für Zen-Cart 1.3.9 deutsch - Installation</title>
+<meta name="author" content="webchills | www.webchills.at" />
+<link href="style.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+<div id="header">
+<h2>RSS Feed 2.1.4 für Zen-Cart 1.3.9 deutsch</h2>
+ <a href="index.html">Übersicht</a> | Installation</div>
+ 
+  <div id="wrapper">
+  <div class="content">
+<h1>Installation</h1>
+<p><strong><br />
+  Voraussetzungen</strong><br />
+  <br />
+  Dieses Modul ist<strong> nur für Zen-Cart 1.3.9 deutsch geeignet</strong><br />
+  <br />
+  <br />
+  <strong>Empfehlung:</strong><br />
+  <br />
+  Dieses Modul erst in einem Testsystem einbauen und dort konfigurieren/testen und endgültig an die eigenen Wünsche anpassen.    
+  Erst dann in einem Liveshop einsetzen! Sichern Sie unbedingt alle Dateien Ihres Shops per FTP und sichern Sie die Datenbank mit phpMyAdmin oder anderen geeigneten Tools!</p>
+<code><strong>================= WICHTIG =====================<br />
+Vor dem Einbau dieser Änderungen:<br />
+BACKUP von Shop und Datenbank machen! <br />
+Keine Haftung, Verwendung auf eigene Gefahr!<br />
+BACKUP gemacht? Ok, dann weiterlesen...<br />
+===============================================</strong></code>
+<p><br />
+  1.<br />
+  Die Datei install.sql im Ordner SQL mit einem Texteditor öffen und den Inhalt kopieren</p>
+<p>2.<br />
+  Zen-Cart Administration öffnen und unter Tools &gt; SQL Patches installieren den Inhalt ins Feld hineinkopieren und absenden.<br />
+  Dadurch werden die nötigen Datenbankeinträge vorgenommen und in der Zen-Cart Administration ist unter Konfiguration der neue Menüpunkt RSS verfügbar.</p>
+<p>3.<br />
+  Neue Dateien des Moduls einspielen:<br />
+  Im Ordner NEUE DATEIEN dieses Downloads im Ordner zencart den Ordner DEINTEMPLATE auf den Namen des im Shop aktiven Templates umbenenennen (z.B. classic, viennablood, ...)<br />
+  Dann in der vorgegebenen Struktur ins Zen-Cart Verzeichnis hochladen.<br />
+  Dadurch werden keine bestehenden Dateien überschrieben<br />
+</p>
+<p>4.<br />
+  In der Zen-Cart Administration unter Konfiguration &gt; RSS Feed die gewünschten Einstellungen vornehmen<br />
+  <br />
+5.<br />
+Um die passenden RSS Feeds auf den verschiedenen Seiten anzubieten, folgende Datei ändern:</p>
+<p>includes/templates/DEINTEMPLATE/common/html_header.php<br />
+  <br />
+  Sollte im eigenen Template Ordner im common Verzeichnis keine html_header.php vorhanden sein, die entsprechende aus dem template_default Ordner verwenden.
+</p>
+<p>Irgendwo zwischen im Head-Bereich zwischen &lt;head&gt; und &lt;/head&gt; folgendes eintragen:</p>
+<code>&lt;?php echo rss_feed_link_alternate(); // RSS Feed ?&gt;</code>
+</p>
+<p>6.<br />
+  OPTIONAL<br />
+  Um im Shop die Besucher sichtbar auf das RSS Feed hinzuweisen, kann z.B. im Footer ein RSS Button angeboten werden.<br />
+  Dazu in der includes/templates/DEINTEMPLATE/common/tpl_footer.php z.B. folgendes eintragen:</p>
+<p><code>&lt;!--bof RSS Feed --&gt;<br />
+  &lt;div id=&quot;RSSFeedLink&quot;&gt;&lt;?php echo rss_feed_link(RSS_ICON); ?&gt;&lt;/div&gt;<br />
+  &lt;!--eof RSS Feed --&gt;</code><br />
+  7. Konfigurationsmöglichkeiten<br />
+  <br />
+  Nach dem Einbau des Moduls und der Konfiguration der Einstellungen im Admin am besten im Quelltext ansehen, wie die RSS Feed Links generiert werden, auf der Startseite findet sich im Head z.B. folgendes:</p>
+<p><code>&lt;link rel=&quot;alternate&quot; type=&quot;application/rss+xml&quot; title=&quot;RSS Sonderangebote Feed&quot; href=&quot;http://www.xxx.com/index.php?main_page=rss_feed&amp;feed=specials&quot; /&gt;<br />
+  &lt;link rel=&quot;alternate&quot; type=&quot;application/rss+xml&quot; title=&quot;RSS Neue Produkte Feed&quot; href=&quot;http://www.xxx.com/index.php?main_page=rss_feed&amp;feed=new_products&quot; /&gt;<br />
+  &lt;link rel=&quot;alternate&quot; type=&quot;application/rss+xml&quot; title=&quot;RSS Kommende Artikel Feed&quot; href=&quot;http://www.xxx.com/index.php?main_page=rss_feed&amp;feed=upcoming&quot; /&gt;<br />
+  &lt;link rel=&quot;alternate&quot; type=&quot;application/rss+xml&quot; title=&quot;RSS Wir empfehlen Feed&quot; href=&quot;http://www.xxx.com/index.php?main_page=rss_feed&amp;feed=featured&quot; /&gt;<br />
+  &lt;link rel=&quot;alternate&quot; type=&quot;application/rss+xml&quot; title=&quot;RSS Bestseller Feed&quot; href=&quot;http://www.xxx.com/index.php?main_page=rss_feed&amp;feed=best_sellers&quot; /&gt;</code>
+  </p>
+<p>Wechselt man in eine Kategorie, gibt es zusätzlich ein Kategorie Feed:</p>
+<p><code>&lt;link rel=&quot;alternate&quot; type=&quot;application/rss+xml&quot; title=&quot;RSS Produkte Feed :: Big Unlinked&quot; href=&quot;http://www.xxx.com/index.php?main_page=rss_feed&amp;feed=products&amp;cPath=53&quot; /&gt;</code>
+  <br />
+  Hier sind also schon die wichtigsten Feed Links ersichtlich, die man nutzen kann.
+ </p>
+<p>Zusätzliche Varianten ergeben sich z.B. mit:</p>
+<p>index.php?main_page=rss_feed&amp;feed=new_products&amp;cPath=33<br />
+  &gt;&gt;&gt; Neue Artikel in Kategorie 33</p>
+<p>index.php?main_page=rss&amp;feed=best_sellers_random<br />
+&gt;&gt;&gt; Bestseller zufallsmäßig sortiert
+</p>
+<p>index.php?main_page=rss&amp;feed=upcoming_random&cPath=12<br />
+&gt;&gt;&gt; Kommende Artikel in der Kategorie 12 zufallsmäßig sortiert
+</p>
+<p>Wenn das Module News and Article Manager im Einsatz ist, lässt sich auch dazu ein RSS Feed generieren mit:<br />
+  index.php?main_page=rss_feed&amp;feed=news</p>
+<p>Für Affiliate Programme besteht die Möglichkeit, den Feed Link mit ref=xxx zu erweitern, der dann bei allen Artikeln mit übergeben wird, z.B.<br />
+  index.php?main_page=rss_feed&amp;feed=specials&amp;ref=affiliate2</p>
+<p>Für alle Feeds mit Ausnahme der Zufallsangabe kann auch zusätzlich mit dem Parameter limit gearbeitet werden, um die Anzahl der Artikel in speziellen Feeds zu begrenzen, z.B.<br />
+  index.php?main_page=rss_feed&amp;feed=specials&amp;limit=3<br />
+</p>
+<p>Es werden auch zusätzliche Google Base Tags unterstützt, eine Doku dazu findet sich auf:<br />
+  <a href="http://base.google.com/support/bin/answer.py?answer=58085" target="_blank">http://base.google.com/support/bin/answer.py?answer=58085</a><br />
+  Ebenso können Google Analytics Tags verwendet werden, Doku dazu auf:<br />
+  <a href="http://www.google.com/support/googleanalytics/bin/answer.py?answer=55518" target="_blank">http://www.google.com/support/googleanalytics/bin/answer.py?answer=55518 </a><br />
+</p>
+<p></p>
+<h1>Modul komplett deinstallieren</h1>
+  <p>1.<br />
+  Die Datei uninstall.sql im Ordner SQL mit einem Texteditor öffen und den Inhalt kopieren</p>
+<p>2.<br />
+  Zen-Cart Administration öffnen und unter Tools &gt; SQL Patches installieren den Inhalt ins Feld hineinkopieren und absenden.</p>
+<p>3.<br />
+  Alle von diesem Modul neu angelegten Dateien vom Server löschen.</p>
+<h1>Unterstützen Sie die Weiterentwicklung der deutschen Zen-Cart Version!</h1>
+ <p>Sie finden dieses Modul nützlich?<br/>
+ Ich freue mich über einen Espresso, Capuccino oder Irish Coffee:<br />
+ <a href="http://www.webchills.at/zencart/" target="_blank">webchills Zen-Cart Kaffeekasse</a><br />
+ <br />
+ Sie haben vom Support im Forum von zen-cart.at profitiert?<br />
+ Wir freuen uns über Spenden zur Finanzierung des Servers und der vBulletin-Lizenz:
+ <br />
+ <a href="http://www.zen-cart.at/zcvb/forum/misc.php?do=donate">zen-cart.at unterstützen </a></p>
+  </div>
+</div>
+<div id="footer"><a href="#">top of page</a></div>
+</body>
+</html>

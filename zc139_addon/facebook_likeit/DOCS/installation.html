@@ -1,0 +1,114 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Facebook Like It für Zen-Cart 1.3.9 deutsch - Installation</title>
+<meta name="author" content="webchills | www.webchills.at" />
+<link href="style.css" rel="stylesheet" type="text/css"/>
+</head>
+
+<body>
+<div id="header">
+<h2>Facebook Like It 1.0 für Zen-Cart 1.3.9 deutsch</h2>
+ <a href="index.html">Übersicht</a> | Installation</div>
+ 
+  <div id="wrapper">
+  <div class="content">
+<h1>Installation</h1>
+<p><strong><br />
+  Voraussetzungen</strong><br />
+  <br />
+  Dieses Modul ist<strong> nur für die deutsche Zen-Cart 1.3.9 Version geeignet</strong><br />
+  <br />
+  <strong>Sie benötigen einen Facebook API Key</strong>. <br />
+  Falls Sie noch keinen erstellt haben:<br />
+  <a href="http://www.facebook.com/developers" target="_blank">http://www.facebook.com/developers</a></p>
+<p>Für den Einbau dieses Moduls sollten Sie über folgende Werkzeuge verfügen:<br />
+  <br />
+1) Ein guter Texteditor. <br />
+Damit ist nicht das in Windows enthaltene Notepad oder Microsoft Word gemeint.<br />
+Sie benötigen einen Texteditor, der utf-8 versteht und auch im Format utf-8 ohne BOM abspeichern kann.<br />
+Meine Empfehlung: <a href="http://www.ultraedit.com/loc/de/index_de.html" target="_blank">UltraEdit</a> (kostenlose 30 Tage Testversion verfügbar)<br />
+Ebenfalls gut geeignet ist der kostenlose Texteditor <a href="http://notepad-plus.sourceforge.net/de/site.htm" target="_blank">Notepad++ </a><br />
+</p>
+<p>2) Ein Tool zum Vergleichen von Dateien<br />
+  Bei der Installation dieses Moduls ist es erforderlich, dass Sie den   Inhalt einiger Ihrer bestehenden Zen-Cart Dateien mit dem Inhalt der   neuen Moduldateien vergleichen und die Änderungen zusammenführen   (&quot;mergen&quot;).<br />
+  Meine Empfehlung: <a href="http://www.scootersoftware.com/" target="_blank">BeyondCompare</a> (kostenlose 30 Tage Testversion verfügbar)<br />
+  Ebenfalls gut geeignet ist das kostenlose Programm <a href="http://winmerge.org/" target="_blank">WinMerge </a></p>
+<p><br />
+  <strong>Empfehlung:</strong><br />
+  <br />
+  Dieses Modul erst in einem Testsystem einbauen und dort konfigurieren/testen und endgültig an die eigenen Wünsche anpassen.    
+  Erst dann in einem Liveshop einsetzen! Sichern Sie unbedingt alle Dateien Ihres Shops per FTP und sichern Sie die Datenbank mit phpMyAdmin oder anderen geeigneten Tools!</p>
+<code><strong>================= WICHTIG =====================<br />
+Vor dem Einbau dieser Änderungen:<br />
+BACKUP von Shop und Datenbank machen! <br />
+Keine Haftung, Verwendung auf eigene Gefahr!<br />
+BACKUP gemacht? Ok, dann weiterlesen...<br />
+===============================================</strong></code>
+<p><br />
+  1.<br />
+  Im Order NEUEDATEIEN im Ordner zencart die Datei likeit_de.js mit einem Texteditor öffnen und Ihren Facebook API Key eintragen:</p>
+<code>FB.init({appId: 'hierIhrenAPIKeyeintragen', status: true, cookie: true,</code>
+  <br />
+Sollte also danach etwa so aussehen:<br />
+<br />
+<code>FB.init({appId: 'ab65tcgfgdf234rfg897gftdhhjjh675rd3r', status: true, cookie: true,</code>
+<br />
+Dasselbe in der likeit_en.js machen.<br />
+<br />
+Abspeichern und dann die Dateien im Ordner zencart in der vorgebenenen Struktur ins Zen-Cart Verzeichnis hochladen.<br />
+Dabei werden keine bestehenden Dateien überschrieben.
+<br />
+<p>2.<br />
+  Im Ordner GEAENDERTE DATEIEN dieses Downloads befinden sich im Ordner   zencart die für dieses Modul notwendigen geänderten Originaldateien.<br />
+Es wird dringend empfohlen, die bestehenden Orginaldateien nicht einfach zu überschreiben!<br />
+Machen Sie das nur, wenn Sie Zen-Cart gerade neu installiert haben und   noch keine Änderungen an Originaldateien vorgenommen haben.<br />
+Stattdessen vergleichen Sie Ihre entsprechenden Originaldateien mit   einem geeigneten Programm wie z.B. WinMerge oder Beyond Compare und   nehmen die Änderungen manuell vor.<br />
+Folgende Dateien müssen geändert werden (DEINTEMPLATE steht dabei für das im Shop aktive Template):<br />
+includes/templates/DEINTEMPLATE/common/html_header.php<br />
+includes/templates/DEINTEMPLATE/common/tpl_main_page.php<br />
+Sollten diese beiden Dateien im eigenen Templateverzeichnis nicht vorhanden sein, verwenden Sie die entsprechenden aus includes/templates/template_default<br />
+Nach den Änderungen hochladen in includes/templates/DEINTEMPLATE/common<br />
+</p>
+<p>3.<br />
+  Sprachdefinitionen ergänzen<br />
+  Öffnen Sie Ihre bestehende includes/languages/german/DEINTEMPLATE/product_info.php<br />
+  und tragen Sie dort folgende neue Definition ein:
+<code>
+// facebook likeit<br />
+define('TEXT_FACEBOOKCONNECT','&lt;script type=&quot;text/javascript&quot; src=&quot;js/likeit_de.js&quot;&gt;&lt;/script&gt;'); </code></p>
+ <p>Öffnen Sie Ihre bestehende includes/languages/english/DEINTEMPLATE/product_info.php<br />
+  und tragen Sie dort folgende neue Definition ein:
+<code>
+// facebook likeit<br />
+define('TEXT_FACEBOOKCONNECT','&lt;script type=&quot;text/javascript&quot; src=&quot;js/likeit_en.js&quot;&gt;&lt;/script&gt;'); </code>
+</p>
+<p>4.<br />
+  Öffnen Sie Ihre bestehende includes/templates/DEINTEMPLATE/tpl_product_info_display.php mit einem Texteditor und fügen Sie folgenden Code an die gewünschte Stelle ein, an der Sie den Facebook Like It Button haben wollen:
+<code>&lt;!--bof likeit--&gt;<br />
+  &lt;?php if ($_SERVER['https'] != 'on') { ?&gt;<br />
+  &lt;div id=&quot;fb-root&quot;&gt;&lt;/div&gt;<br />
+  &lt;?php echo TEXT_FACEBOOKCONNECT; ?&gt;<br />
+  &lt;!-- FBML &lt;fb:like href=&quot;&lt;?php echo urlencode(zen_href_link(zen_get_info_page((int)$_GET['products_id']),'cPath='.(int)$_GET['cPath'].'&amp;products_id=' . (int)$_GET['products_id'])); ?&gt;&quot;&gt;&lt;/fb:like&gt; FBML --&gt;<br />
+  &lt;?php } ?&gt;<br />
+  &lt;!--eof likeit--&gt;</code></p>
+<br/>
+<p>Falls im Shop weitere Sprachen aktiv sind, die entsprechenden Javascripts erstellen und die entsprechenden Sprachdefinitionen auch bei den übrigen Sprachen nachtragen.</p>
+<h1>Modul komplett deinstallieren</h1>
+  <p>Um das Modul komplett zu entfernen:<br />
+    Alle oben beschriebenen Änderungen wieder rückgängig machen und die Orignaldateien wieder einspielen.</p>
+<h1>Unterstützen Sie die Weiterentwicklung der deutschen Zen-Cart Version!</h1>
+ <p>Sie finden dieses Modul nützlich?<br/>
+ Ich freue mich über einen Espresso, Capuccino oder Irish Coffee:<br />
+ <a href="http://www.webchills.at/zencart/" target="_blank">webchills Zen-Cart Kaffeekasse</a><br />
+ <br />
+ Sie haben vom Support im Forum von zen-cart.at profitiert?<br />
+ Wir freuen uns über Spenden zur Finanzierung des Servers und der vBulletin-Lizenz:
+ <br />
+ <a href="http://www.zen-cart.at/zcvb/forum/misc.php?do=donate">zen-cart.at unterstützen </a></p>
+  </div>
+</div>
+<div id="footer"><a href="#">top of page</a></div>
+</body>
+</html>
