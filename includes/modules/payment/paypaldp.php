@@ -128,7 +128,7 @@ class paypaldp extends base {
     global $order;
     $this->code = 'paypaldp';
     $this->codeTitle = MODULE_PAYMENT_PAYPALDP_TEXT_ADMIN_TITLE_WPP;
-    $this->codeVersion = '1.3.9d';
+    $this->codeVersion = '1.3.9e';
     $this->enableDirectPayment = true;
     $this->enabled = (MODULE_PAYMENT_PAYPALDP_STATUS == 'True');
     // Set the title & description text based on the mode we're in
@@ -409,8 +409,10 @@ class paypaldp extends base {
       }
       if (isset($_SESSION['3Dsecure_requires_lookup']) && $_SESSION['3Dsecure_requires_lookup'] == TRUE) {
         $_SESSION['3Dsecure_merchantData'] = serialize(array('im'=>$_POST['paypalwpp_cc_issue_month'], 'iy'=>$_POST['paypalwpp_cc_issue_year'], 'in'=>$_POST['paypalwpp_cc_issuenumber'], 'fn'=>$_POST['paypalwpp_cc_firstname'], 'ln'=>$_POST['paypalwpp_cc_lastname']));
+        global $order_total_modules;
+        $calculatedOrderTotal = $order_total_modules->pre_confirmation_check(TRUE);
         $lookup_data_array = array('currency' => $order->info['currency'],
-                                   'txn_amount' => $order->info['total'],
+                                   'txn_amount' => $calculatedOrderTotal,
                                    'order_desc' => 'Zen Cart(tm) ' . MODULE_PAYMENT_PAYPALDP_TEXT_TRANSACTION_FOR . ' ' . $_POST['paypalwpp_cc_firstname'] . ' ' . $_POST['paypalwpp_cc_lastname'],
                                    'cc3d_card_number' => $_POST['paypalwpp_cc_number'],
                                    'cc3d_checkcode' => $_POST['paypalwpp_cc_checkcode'],
@@ -457,8 +459,8 @@ class paypaldp extends base {
             $error= $this->get_authentication_error();
             if (in_array($errorNo, array('8000', '8010', '8020', '8030'))) $error = CENTINEL_PROCESSING_ERROR;
             $reason = $errorNo . ' - ' . $errorDesc;
-            $messageStack->add_session('checkout_payment', $error . '<!-- ['.$$payment_module->code.'] -->' . '<!-- result: ' . $reason . ' -->', 'error');
-            $errorText = $error . "\n\n" . $reason . "\n\nProblem occurred while customer " . $_SESSION['customer_id'] . ' ' . $_SESSION['customer_first_name'] . ' ' . $_SESSION['customer_last_name'] . ' was attempting checkout with 3D-Secure authentication.';
+            $messageStack->add_session('checkout_payment', $error . '<!-- ['.$this->code.'] -->' . '<!-- result: ' . $reason . ' -->', 'error');
+            $errorText = $error . "\n\n" . $reason . "\n(" . $this->code . ")\n\nProblem occurred while customer " . $_SESSION['customer_id'] . ' ' . $_SESSION['customer_first_name'] . ' ' . $_SESSION['customer_last_name'] . ' was attempting checkout with 3D-Secure authentication.';
             zen_mail(STORE_NAME, STORE_OWNER_EMAIL_ADDRESS, MODULE_PAYMENT_PAYPALDP_TEXT_EMAIL_ERROR_SUBJECT . ' ' . $reason, $errorText, STORE_OWNER, STORE_OWNER_EMAIL_ADDRESS, array('EMAIL_MESSAGE_HTML'=>nl2br($errorText)), 'paymentalert');
             zen_redirect(zen_href_link(FILENAME_CHECKOUT_PAYMENT, '', 'SSL', true, false));
 
@@ -854,7 +856,7 @@ class paypaldp extends base {
       // CardinalCommerce Liability Protection Status
       // Inserts 'PROTECTED' or 'NOT PROTECTED' status, ECI, CAVV values in the order status history comments
       $auth_proc_status = $this->determine3DSecureProtection($order->info['cc_type'], $_SESSION['3Dsecure_auth_eci']);
-      $commentString = "\n3D-Secure: " . $auth_proc_status . "\n" . 'ECI Value = ' . $_SESSION['3Dsecure_auth_eci'] . "\n" . 'CAVV Value = ' . $_SESSION['3Dsecure_auth_cavv'];
+      $commentString = "3D-Secure: " . $auth_proc_status . "\n" . 'ECI Value = ' . $_SESSION['3Dsecure_auth_eci'] . "\n" . 'CAVV Value = ' . $_SESSION['3Dsecure_auth_cavv'];
       $sql_data_array= array(array('fieldName'=>'orders_id', 'value'=> $insert_id, 'type'=>'integer'),
                              array('fieldName'=>'orders_status_id', 'value'=> $order->info['order_status'], 'type'=>'integer'),
                              array('fieldName'=>'date_added', 'value'=>'now()', 'type'=>'noquotestring'),
@@ -1566,9 +1568,10 @@ class paypaldp extends base {
 
     // Reformat properly
     for ($k=0, $n=$numberOfLineItemsProcessed+1; $k<$n; $k++) {
-      // Replace & and = with * if found.
-      $optionsLI["L_NAME$k"] = str_replace(array('&','='), '*', $optionsLI["L_NAME$k"]);
-      if (isset($optionsLI["L_DESC$k"])) $optionsLI["L_DESC$k"] = str_replace(array('&','='), '*', $optionsLI["L_DESC$k"]);
+      // Replace & and = and % with * if found.
+      $optionsLI["L_NAME$k"] = str_replace(array('&','=','%'), '*', $optionsLI["L_NAME$k"]);
+      if (isset($optionsLI["L_DESC$k"])) $optionsLI["L_DESC$k"] = str_replace(array('&','=','%'), '*', $optionsLI["L_DESC$k"]);
+      if (isset($optionsLI["L_NUMBER$k"])) $optionsLI["L_NUMBER$k"] = str_replace(array('&','=','%'), '*', $optionsLI["L_NUMBER$k"]);
 
       // Remove HTML markup if found
       $optionsLI["L_NAME$k"] = zen_clean_html($optionsLI["L_NAME$k"], 'strong');
@@ -2379,13 +2382,22 @@ class paypaldp extends base {
         $out = "" . $numCurr;
       }
     } else {
-      // Convert char to digit (if no convertion exists let MAPs handle error)
+      // Convert char to digit
       $curCode = Array();
       $curCode["AUD"]="036";
       $curCode["CAD"]="124";
+      $curCode["CHF"]="756";
+      $curCode["CZK"]="203";
+      $curCode["DKK"]="208";
       $curCode["EUR"]="978";
       $curCode["GBP"]="826";
+      $curCode["HUF"]="348";
       $curCode["JPY"]="392";
+      $curCode["NOK"]="578";
+      $curCode["NZD"]="554";
+      $curCode["PLN"]="985";
+      $curCode["SEK"]="752";
+      $curCode["SGD"]="702";
       $curCode["USD"]="840";
       $out = $curCode[$curr];
     }
@@ -2405,10 +2417,19 @@ class paypaldp extends base {
     $curFormat = Array();
     $curFormat["036"]=2;
     $curFormat["124"]=2;
-    $curFormat["978"]=2;
-    $curFormat["826"]=2;
+    $curFormat["203"]=2;
+    $curFormat["208"]=2;
+    $curFormat["348"]=2;
     $curFormat["392"]=0;
+    $curFormat["554"]=2;
+    $curFormat["578"]=2;
+    $curFormat["702"]=2;
+    $curFormat["752"]=2;
+    $curFormat["756"]=2;
+    $curFormat["826"]=2;
     $curFormat["840"]=2;
+    $curFormat["978"]=2;
+    $curFormat["985"]=2;
 
     $digCurr = $this->getISOCurrency("" . $curr);
     $exponent = $curFormat[$digCurr];
@@ -2443,7 +2464,7 @@ class paypaldp extends base {
     } else {
       $cardType = $info;
     }
-    if (in_array($cardType, array('VISA', 'MASTERCARD', 'JCB', 'MAESTRO'))) {
+    if (in_array(strtoupper($cardType), array('VISA', 'MASTERCARD', 'JCB', 'MAESTRO'))) {
       return true;
     } else {
       return false;

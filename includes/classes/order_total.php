@@ -6,7 +6,7 @@
  * @copyright Copyright 2003-2010 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: order_total.php 16399 2010-05-26 18:06:15Z ajeh $
+ * @version $Id: order_total.php 16811 2010-06-30 19:18:43Z drbyte $
  */
 /**
  * order-total class
@@ -170,7 +170,7 @@ class order_total extends base {
   // true. This is used to bypass the payment method. In other words if the Gift Voucher is more than the order
   // total, we don't want to go to paypal etc.
   //
-  function pre_confirmation_check() {
+  function pre_confirmation_check($returnOrderTotalOnly = FALSE) {
     global $order, $credit_covers;
     if (MODULE_ORDER_TOTAL_INSTALLED) {
       $total_deductions  = 0;
@@ -193,6 +193,7 @@ class order_total extends base {
           $GLOBALS[$class]->output = array();
         }
       }
+      $calculatedOrderTotal = $order->info['total'];
       $order->info = $orderInfoSaved;
 //      echo "orderTotal = {$order->info['total']}";
 //      echo "TotalDeductions = {$total_deductions}";
@@ -201,6 +202,7 @@ class order_total extends base {
       if ( $difference <= 0.009 && $_SESSION['payment'] != 'freecharger') {
         $credit_covers = true;
       }
+      if ($returnOrderTotalOnly == TRUE) return $calculatedOrderTotal;
     }
   }
   // this function is called in checkout process. it tests whether a decision was made at checkout payment to use

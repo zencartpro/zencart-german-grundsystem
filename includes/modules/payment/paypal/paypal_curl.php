@@ -5,7 +5,7 @@
  * @package paymentMethod
  * @copyright Copyright 2003-2010 Zen Cart Development Team
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: paypal_curl.php 16300 2010-05-20 22:46:21Z drbyte $
+ * @version $Id: paypal_curl.php 16816 2010-06-30 20:59:30Z drbyte $
  */
 
 /**
@@ -114,8 +114,7 @@ class paypal_curl extends base {
    * order to link their PayPal selections to their cart actions.
    */
   function SetExpressCheckout($returnUrl, $cancelUrl, $options = array()) {
-    $values = array_merge($options, array('RETURNURL' => urlencode($returnUrl),
-                                           'CANCELURL' => urlencode($cancelUrl)));
+    $values = $options;
     if ($this->_mode == 'payflow') {
       $values = array_merge($values, array('ACTION'  => 'S', /* ACTION=S denotes SetExpressCheckout */
                                            'TENDER'  => 'P',
@@ -124,6 +123,8 @@ class paypal_curl extends base {
                                            'CANCELURL' => $cancelUrl));
     } elseif ($this->_mode == 'nvp') {
       if (!isset($values['PAYMENTACTION']) || ($this->checkHasApiCredentials() === FALSE)) $values['PAYMENTACTION'] = ($this->_trxtype == 'S' || ($this->checkHasApiCredentials() === FALSE) ? 'Sale' : 'Authorization');
+      $values['RETURNURL'] = urlencode($returnUrl);
+      $values['CANCELURL'] = urlencode($cancelUrl);
     }
 
     // convert country code key to proper key name for paypal 2.0 (needed when sending express checkout via payflow gateway, due to PayPal field naming inconsistency)
@@ -175,13 +176,14 @@ class paypal_curl extends base {
     if (PAYPAL_DEV_MODE == 'true') $this->log('DoExpressCheckout - breakpoint 1 - ['.$token  . ' ' . $payerId . ' ' . "]\n\n[" . print_r($values, true) .']', $token);
 
     if ($this->_mode == 'payflow') {
-      $values = array_merge($values, array('ACTION'  => 'D', /* ACTION=D denotes DoExpressCheckoutPayment */
-                                           'TENDER'  => 'P',
-                                           'TRXTYPE' => $this->_trxtype));
+      $values['ACTION'] = 'D'; /* ACTION=D denotes DoExpressCheckoutPayment via Payflow */
+      $values['TENDER'] = 'P';
+      $values['TRXTYPE'] = $this->_trxtype;
+      $values['NOTIFYURL'] = zen_href_link('ipn_main_handler.php', '', 'SSL',false,false,true);
     } elseif ($this->_mode == 'nvp') {
       if (!isset($values['PAYMENTACTION']) || $this->checkHasApiCredentials() === FALSE) $values['PAYMENTACTION'] = ($this->_trxtype == 'S' || ($this->checkHasApiCredentials() === FALSE) ? 'Sale' : 'Authorization');
+      $values['NOTIFYURL'] = urlencode(zen_href_link('ipn_main_handler.php', '', 'SSL',false,false,true));
     }
-    $values['NOTIFYURL'] = urlencode(zen_href_link('ipn_main_handler.php', '', 'SSL',false,false,true));
     if (PAYPAL_DEV_MODE == 'true') $this->log('DoExpressCheckout - breakpoint 2 '.print_r($values, true), $token);
     return $this->_request($values, 'DoExpressCheckoutPayment');
   }
@@ -207,6 +209,7 @@ class paypal_curl extends base {
       $values['TENDER'] = 'C';
       $values['TRXTYPE'] = $this->_trxtype;
       $values['VERBOSITY'] = 'MEDIUM';
+      $values['NOTIFYURL'] = zen_href_link('ipn_main_handler.php', '', 'SSL',false,false,true);
     } elseif ($this->_mode == 'nvp') {
       $values = array_merge($values, $nvp);
       if (isset($values['ECI'])) {
@@ -421,7 +424,7 @@ class paypal_curl extends base {
     } elseif ($this->_mode == 'nvp') {
       $headers[] = 'X-VPS-VIT-Integration-Product: PHP::Zen Cart(tm) - PayPal/NVP';
     }
-    $headers[] = 'X-VPS-VIT-Integration-Version: 1.3.9d';
+    $headers[] = 'X-VPS-VIT-Integration-Version: 1.3.9e';
     $this->lastHeaders = $headers;
 
     $ch = curl_init();

@@ -6,7 +6,7 @@
  * @copyright Copyright 2003-2006 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.at/license/2_0.txt GNU Public License V2.0
- * @version $Id$
+ * @version $Id: german.php 570 2010-04-28 08:02:11Z hugo13 $
  */
 /**
  * defining language components for the page
@@ -546,28 +546,28 @@ switch ($error_code) {
     define('POPUP_ERROR_TEXT', 'Wenn Sie die Option Sitzungs/SQL Cache aktivieren wollen, muss ein Verzeichnis für das Speichern von SQL Abfragen und die notwendigen Lese- und Schreibrechte vorhanden sein. Stellen Sie sicher, dass das Verzeichnis vorhanden ist und der Server die notwendigen Rechte zum Schreiben für dieses Verzeichnis besitzt (Auf Unix/Linux Systemen stellen Sie CHMOD 666 oder 777 ein und auf Windows Systemen deaktivieren Sie den Schreibschutz.');
     
   break;
-//  case ('64'):
-//     define('POPUP_ERROR_HEADING', 'Wollen Sie einen Link zu einem phpBB Forum auf Ihren Shop anbieten?');
-//     define('POPUP_ERROR_TEXT', 'Wenn Sie möchten, dass Ihr Zen Cart Shop einen Link zu einem bereits existierendes phpBB Forum haben soll, wählen Sie \'ja\'.');
+  case ('64'):
+    define('POPUP_ERROR_HEADING', 'Wollen Sie einen Link zu einem phpBB Forum auf Ihren Shop anbieten?');
+    define('POPUP_ERROR_TEXT', 'Wenn Sie möchten, dass Ihr Zen Cart Shop einen Link zu einem bereits existierendes phpBB Forum haben soll, wählen Sie \'ja\'.');
     
-//   break;
-//   case ('65'):
-//     define('POPUP_ERROR_HEADING', 'phpBB Datenbank Präfix');
-//     define('POPUP_ERROR_TEXT', 'Bitte geben Sie das Präfix der Datenbanktabellen für Ihr phpBB Forum an. Normalerweise lautet dieser \'phpBB_\'');
+  break;
+  case ('65'):
+    define('POPUP_ERROR_HEADING', 'phpBB Datenbank Präfix');
+    define('POPUP_ERROR_TEXT', 'Bitte geben Sie das Präfix der Datenbanktabellen für Ihr phpBB Forum an. Normalerweise lautet dieser \'phpBB_\'');
     
-//   break;
-//   case ('66'):
-//     define('POPUP_ERROR_HEADING', 'phpBB Datenbankname');
-//     define('POPUP_ERROR_TEXT', 'Bitte geben Sie heri den Namen der Datenbank Ihres phpBB Forums bekannt.');
-//   break;
-//   case ('67'):
-//     define('POPUP_ERROR_HEADING', 'phpBB Verzeichnis');
-//     define('POPUP_ERROR_TEXT', 'Bitte geben Sie hier den vollständigen relativen Pfad zu Ihren phpBB Dateien an. Damit ermöglichen Sie Ihrem Zen Cart Shop Kunden, die auf den phpBB Link klicken, direkt zum phpBB Forum weiter zu leiten.<br /><br />Der Pfad, der hier eingegeben werden muss, ist relativ zum "Rootverzeichnis" ihres Webservers. Wenn z.B. Ihre phpBB Forum Installation in <strong>/home/users/username/public_html/phpbb </strong> liegt, dann müssen Sie <strong>/home/users/username/public_html/phpbb/ </strong>eingeben. Wenn diese in einem Unterordner liegen, so muss dieser im Pfad angegeben werden.<br /><br />Zen Cart wird versuchen, die Datei "<em>config.php</em>" in diesem Ordner zu finden.');
-//   break;
-//   case ('68'):
-//     define('POPUP_ERROR_HEADING', 'phpBB Verzeichnis');
-//     define('POPUP_ERROR_TEXT', 'Es konnte keine phpBB Konfigurationsdatei in dem von Ihnen angegebenen Verzeichnis gefunden werden. phpBB muss bereit installiert sein, wenn Sie diese automatische Konfiguration verwenden wollen. Andernfalls überspringen Sie diese Konfiguration und installieren Sie es zu einem späteren Zeitpunkt.<br /><br />Der Pfad, der hier eingegeben werden muss, ist relativ zum "Rootverzeichnis" ihres Webservers. Wenn z.B. Ihre phpBB Forum Installation in <strong>/home/users/username/public_html/phpbb </strong> liegt, dann müssen Sie <strong>/home/users/username/public_html/phpbb/ </strong>eingeben. Wenn diese in einem Unterordner liegen, so muss dieser im Pfad angegeben werden.<br /><br />Zen Cart wird versuchen, die Datei "<em>config.php</em>" in diesem Ordner zu finden.');
-//   break;
+  break;
+  case ('66'):
+    define('POPUP_ERROR_HEADING', 'phpBB Datenbankname');
+    define('POPUP_ERROR_TEXT', 'Bitte geben Sie heri den Namen der Datenbank Ihres phpBB Forums bekannt.');
+  break;
+  case ('67'):
+    define('POPUP_ERROR_HEADING', 'phpBB Verzeichnis');
+    define('POPUP_ERROR_TEXT', 'Bitte geben Sie hier den vollständigen relativen Pfad zu Ihren phpBB Dateien an. Damit ermöglichen Sie Ihrem Zen Cart Shop Kunden, die auf den phpBB Link klicken, direkt zum phpBB Forum weiter zu leiten.<br /><br />Der Pfad, der hier eingegeben werden muss, ist relativ zum "Rootverzeichnis" ihres Webservers. Wenn z.B. Ihre phpBB Forum Installation in <strong>/home/users/username/public_html/phpbb </strong> liegt, dann müssen Sie <strong>/home/users/username/public_html/phpbb/ </strong>eingeben. Wenn diese in einem Unterordner liegen, so muss dieser im Pfad angegeben werden.<br /><br />Zen Cart wird versuchen, die Datei "<em>config.php</em>" in diesem Ordner zu finden.');
+  break;
+  case ('68'):
+    define('POPUP_ERROR_HEADING', 'phpBB Verzeichnis');
+    define('POPUP_ERROR_TEXT', 'Es konnte keine phpBB Konfigurationsdatei in dem von Ihnen angegebenen Verzeichnis gefunden werden. phpBB muss bereit installiert sein, wenn Sie diese automatische Konfiguration verwenden wollen. Andernfalls überspringen Sie diese Konfiguration und installieren Sie es zu einem späteren Zeitpunkt.<br /><br />Der Pfad, der hier eingegeben werden muss, ist relativ zum "Rootverzeichnis" ihres Webservers. Wenn z.B. Ihre phpBB Forum Installation in <strong>/home/users/username/public_html/phpbb </strong> liegt, dann müssen Sie <strong>/home/users/username/public_html/phpbb/ </strong>eingeben. Wenn diese in einem Unterordner liegen, so muss dieser im Pfad angegeben werden.<br /><br />Zen Cart wird versuchen, die Datei "<em>config.php</em>" in diesem Ordner zu finden.');
+  break;
   case ('69'):
     define('POPUP_ERROR_HEADING', 'Register Globals');
     define('POPUP_ERROR_TEXT', 'Zen Cart funktioniert mit "Register Globals" ON und OFF. Jedoch bietet die Einstellung der "Register Globals" auf "OFF" mehr Sicherheit für Ihr System.');

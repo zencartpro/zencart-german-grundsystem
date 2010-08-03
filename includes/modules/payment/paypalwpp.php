@@ -6,7 +6,7 @@
  * @copyright Copyright 2003-2010 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: paypalwpp.php 16536 2010-05-30 23:42:21Z drbyte $
+ * @version $Id: paypalwpp.php 16878 2010-07-08 17:03:31Z drbyte $
  */
 /**
  * load the communications layer code
@@ -101,7 +101,7 @@ class paypalwpp extends base {
     global $order;
     $this->code = 'paypalwpp';
     $this->codeTitle = MODULE_PAYMENT_PAYPALWPP_TEXT_ADMIN_TITLE_EC;
-    $this->codeVersion = '1.3.9d';
+    $this->codeVersion = '1.3.9e';
     $this->enableDirectPayment = FALSE;
     $this->enabled = (MODULE_PAYMENT_PAYPALWPP_STATUS == 'True');
     // Set the title & description text based on the mode we're in ... EC vs US/UK vs admin
@@ -1223,9 +1223,10 @@ class paypalwpp extends base {
 
     // Reformat properly
     for ($k=0, $n=$numberOfLineItemsProcessed+1; $k<$n; $k++) {
-      // Replace & and = with * if found.
-      $optionsLI["L_NAME$k"] = str_replace(array('&','='), '*', $optionsLI["L_NAME$k"]);
-      if (isset($optionsLI["L_DESC$k"])) $optionsLI["L_DESC$k"] = str_replace(array('&','='), '*', $optionsLI["L_DESC$k"]);
+      // Replace & and = and % with * if found.
+      $optionsLI["L_NAME$k"] = str_replace(array('&','=','%'), '*', $optionsLI["L_NAME$k"]);
+      if (isset($optionsLI["L_DESC$k"])) $optionsLI["L_DESC$k"] = str_replace(array('&','=','%'), '*', $optionsLI["L_DESC$k"]);
+      if (isset($optionsLI["L_NUMBER$k"])) $optionsLI["L_NUMBER$k"] = str_replace(array('&','=','%'), '*', $optionsLI["L_NUMBER$k"]);
 
       // Remove HTML markup if found
       $optionsLI["L_NAME$k"] = zen_clean_html($optionsLI["L_NAME$k"], 'strong');
@@ -1426,9 +1427,9 @@ class paypalwpp extends base {
     $options['LANDINGPAGE'] = 'Billing';  // "Billing" or "Login" selects the style of landing page on PayPal site during checkout
 
     // Set the return URL if they click "Submit" on PayPal site
-    $return_url = zen_href_link('ipn_main_handler.php', 'type=ec', 'SSL', true, true, true);
+    $return_url = str_replace('&amp;', '&', zen_href_link('ipn_main_handler.php', 'type=ec', 'SSL', true, true, true));
     // Select the return URL if they click "cancel" on PayPal site or click to return without making payment or login
-    $cancel_url = zen_href_link(($_SESSION['customer_first_name'] != '' && $_SESSION['customer_id'] != '' ? FILENAME_CHECKOUT_SHIPPING :FILENAME_LOGIN), 'ec_cancel=1', 'SSL');
+    $cancel_url = str_replace('&amp;', '&', zen_href_link(($_SESSION['customer_first_name'] != '' && $_SESSION['customer_id'] != '' ? FILENAME_CHECKOUT_SHIPPING :FILENAME_LOGIN), 'ec_cancel=1', 'SSL'));
 
     // debug
     $val = $_SESSION; unset($val['navigation']);

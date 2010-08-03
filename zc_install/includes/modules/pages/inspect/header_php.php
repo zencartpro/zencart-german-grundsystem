@@ -521,4 +521,3 @@ if (false) { // DISABLED THIS CODEBLOCK FOR NOW....
   } else {
     $zc_install->logDetails('System Inspection Results: ' . str_replace(array('<br />', '<br>', '&nbsp;'), '', $data));
   }
-?>

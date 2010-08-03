@@ -6,7 +6,7 @@
  * @copyright Copyright 2003-2010 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: ipn_main_handler.php 16050 2010-04-23 22:06:00Z drbyte $
+ * @version $Id: ipn_main_handler.php 16723 2010-06-12 19:05:41Z drbyte $
  */
 
 /**
@@ -67,6 +67,14 @@ Processing...
    */
 
 } else {
+  /**
+   * detect odd cases of extra-url-encoded POST data coming back from PayPal
+   */
+  foreach(array('receiver_email', 'payer_email', 'business', 'txn_type', 'transaction_subject', 'custom', 'payment_date', 'item_number', 'item_name', 'first_name', 'last_name') as $key) {
+    if (isset($_POST[$key]) && strstr($_POST[$key], '%')) {
+      $_POST[$key] = urldecode($_POST[$key]);
+    }
+  }
   /**
    * detect type of transaction
    */
@@ -238,6 +246,9 @@ Processing...
     case (substr($txn_type,0,8) == 'pending-' && (int)$ordersID <= 0):
     case ($new_record_needed && $txn_type == 'echeck-cleared'):
     case 'unique':
+      /**
+       * delete IPN session from PayPal table -- housekeeping
+       */
       $db->Execute("delete from " . TABLE_PAYPAL_SESSION . " where session_id = '" . zen_db_input(str_replace('zenid=', '', $_POST['custom'])) . "'");
       /**
        * require shipping class

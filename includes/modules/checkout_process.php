@@ -6,7 +6,7 @@
  * @copyright Copyright 2003-2010 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: checkout_process.php 15879 2010-04-11 14:44:20Z wilt $
+ * @version $Id: checkout_process.php 16910 2010-07-15 20:35:27Z drbyte $
  */
 if (!defined('IS_ADMIN_FLAG')) {
   die('Illegal Access');
@@ -64,7 +64,7 @@ $zco_notifier->notify('NOTIFY_CHECKOUT_PROCESS_BEFORE_ORDER_TOTALS_PRE_CONFIRMAT
 if (strpos($GLOBALS[$_SESSION['payment']]->code, 'paypal') !== 0) {
   $order_totals = $order_total_modules->pre_confirmation_check();
 }
-if ($credit_covers === TRUE) 
+if ($credit_covers === TRUE)
 {
 	$order->info['payment_method'] = $order->info['payment_module_code'] = '';
 }
@@ -112,5 +112,11 @@ $zco_notifier->notify('NOTIFY_CHECKOUT_PROCESS_AFTER_SEND_ORDER_EMAIL');
   $_SESSION['order_summary']['commissionable_order'] = $commissionable_order;
   $_SESSION['order_summary']['commissionable_order_formatted'] = $commissionable_order_formatted;
   $_SESSION['order_summary']['coupon_code'] = $order->info['coupon_code'];
+  $_SESSION['order_summary']['currency_code'] = $order->info['currency'];
+  $_SESSION['order_summary']['currency_value'] = $order->info['currency_value'];
+  $_SESSION['order_summary']['payment_module_code'] = $order->info['payment_module_code'];
+  $_SESSION['order_summary']['shipping_method'] = $order->info['shipping_method'];
+  $_SESSION['order_summary']['orders_status'] = $order->info['orders_status'];
+  $_SESSION['order_summary']['tax'] = $order->info['tax'];
   $zco_notifier->notify('NOTIFY_CHECKOUT_PROCESS_HANDLE_AFFILIATES');
 

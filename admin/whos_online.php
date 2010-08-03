@@ -4,7 +4,7 @@
  * @copyright Copyright 2003-2010 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: whos_online.php 15576 2010-02-23 16:01:34Z ajeh $
+ * @version $Id: whos_online.php 16741 2010-06-17 04:35:58Z drbyte $
  */
 
 // highlight bots
@@ -380,12 +380,17 @@ function zen_check_minutes($the_time_last_click) {
       }
     }
 
-    if (strpos($session_data, 'cart|O') == 0) $session_data = base64_decode($session_data);
-    if (strpos($session_data, 'cart|O') == 0) $session_data = '';
-
+    $hardenedStatus = FALSE;
     $suhosinExtension = extension_loaded('suhosin');
     $suhosinSetting = strtoupper(@ini_get('suhosin.session.encrypt'));
-    $hardenedStatus = ($suhosinExtension == TRUE || $suhosinSetting == 'On' || $suhosinSetting == 1) ? TRUE : FALSE;
+
+    if (!$suhosinExtension) {
+      if (strpos($session_data, 'cart|O') == 0) $session_data = base64_decode($session_data);
+      if (strpos($session_data, 'cart|O') == 0) $session_data = '';
+    }
+
+    // uncomment the following line if you have suhosin enabled and see errors on the cart-contents sidebar
+    //$hardenedStatus = ($suhosinExtension == TRUE || $suhosinSetting == 'On' || $suhosinSetting == 1) ? TRUE : FALSE;
     if ($session_data != '' && $hardenedStatus == TRUE) $session_data = '';
 
     if ($length = strlen($session_data)) {

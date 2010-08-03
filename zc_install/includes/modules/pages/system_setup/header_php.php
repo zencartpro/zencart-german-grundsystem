@@ -2,7 +2,7 @@
 /**
  * @package Installer
  * @access private
- * @copyright Copyright 2003-2007 Zen Cart Development Team
+ * @copyright Copyright 2003-2010 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
  * @version $Id$
@@ -78,7 +78,7 @@ if ($is_upgrade) {
 
   if (isset($_POST['submit'])) {
     $zc_install->isEmpty($_POST['physical_path'], ERROR_TEXT_PHYSICAL_PATH_ISEMPTY, ERROR_CODE_PHYSICAL_PATH_ISEMPTY);
-    $zc_install->fileExists($zc_install->trimTrailingSlash($_POST['physical_path']) . '/index.php', ERROR_TEXT_PHYSICAL_PATH_INCORRECT, ERROR_CODE_PHYSICAL_PATH_INCORRECT);  
+    $zc_install->fileExists($zc_install->trimTrailingSlash($_POST['physical_path']) . '/index.php', ERROR_TEXT_PHYSICAL_PATH_INCORRECT, ERROR_CODE_PHYSICAL_PATH_INCORRECT);
     $zc_install->isEmpty($_POST['virtual_http_path'], ERROR_TEXT_VIRTUAL_HTTP_ISEMPTY, ERROR_CODE_VIRTUAL_HTTP_ISEMPTY);
     if ($_POST['enable_ssl'] == 'true' || $_POST['enable_ssl_admin'] == 'true') {
       // @TODO: actually *test* the HTTPS URL if supplied, to determine whether it's actually valid or not.
@@ -93,8 +93,7 @@ if ($is_upgrade) {
       $zc_install->setConfigKey('virtual_https_server', $zc_install->trimTrailingSlash($_POST['virtual_https_server']));
       $zc_install->setConfigKey('ENABLE_SSL', $_POST['enable_ssl']);
       $zc_install->setConfigKey('ENABLE_SSL_ADMIN', $_POST['enable_ssl_admin']);
-      header('location: index.php?main_page=phpbb_setup' . zcInstallAddSID() );
+      header('location: index.php?main_page=config_checkup&action=write' . zcInstallAddSID() );
     exit;
     }
   }
-?>

@@ -3,10 +3,10 @@
  * Header code file for the Advanced Search Results page
  *
  * @package page
- * @copyright Copyright 2003-2009 Zen Cart Development Team
+ * @copyright Copyright 2003-2010 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: header_php.php 16059 2010-04-25 11:18:15Z wilt $
+ * @version $Id: header_php.php 16990 2010-07-25 22:29:46Z drbyte $
  */
 
 // This should be first line of the script:
@@ -102,7 +102,7 @@ if ( (isset($_GET['keyword']) && (empty($_GET['keyword']) || $_GET['keyword']==H
   }
 
   if (($price_check_error == false) && is_float($pfrom) && is_float($pto)) {
-    if ($pfrom >= $pto) {
+    if ($pfrom > $pto) {
       $error = true;
 
       $messageStack->add_session('search', ERROR_PRICE_TO_LESS_THAN_PRICE_FROM);
@@ -268,9 +268,14 @@ if (isset($_GET['categories_id']) && zen_not_null($_GET['categories_id'])) {
 
     $where_str = $db->bindVars($where_str, ':categoriesID', $_GET['categories_id'], 'integer');
 
-    for ($i=0, $n=sizeof($subcategories_array); $i<$n; $i++ ) {
-      $where_str .= " OR p2c.categories_id = :categoriesID";
-      $where_str = $db->bindVars($where_str, ':categoriesID', $subcategories_array[$i], 'integer');
+    if (sizeof($subcategories_array) > 0) {
+      $where_str .= " OR p2c.categories_id in (";
+      for ($i=0, $n=sizeof($subcategories_array); $i<$n; $i++ ) {
+        $where_str .= " :categoriesID";
+        if ($i+1 < $n) $where_str .= ",";
+        $where_str = $db->bindVars($where_str, ':categoriesID', $subcategories_array[$i], 'integer');
+      }
+      $where_str .= ")";
     }
     $where_str .= ")";
   } else {

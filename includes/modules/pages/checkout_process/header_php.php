@@ -3,11 +3,11 @@
  * Checkout Process Page 
  * 
  * @package page
- * @copyright Copyright 2003-2006 Zen Cart Development Team
+ * @copyright Copyright 2003-2010 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: header_php.php 4276 2006-08-26 03:18:28Z drbyte $
- */ 
+ * @version $Id: header_php.php 16907 2010-07-15 19:38:33Z drbyte $
+ */
 // This should be first line of the script:
   $zco_notifier->notify('NOTIFY_HEADER_START_CHECKOUT_PROCESS');
 
@@ -29,7 +29,6 @@
   // This should be before the zen_redirect:
   $zco_notifier->notify('NOTIFY_HEADER_END_CHECKOUT_PROCESS');
 
-  zen_redirect(zen_href_link(FILENAME_CHECKOUT_SUCCESS, '', 'SSL'));
+  zen_redirect(zen_href_link(FILENAME_CHECKOUT_SUCCESS, (isset($_GET['action']) && $_GET['action'] == 'confirm' ? 'action=confirm' : ''), 'SSL'));
 
   require(DIR_WS_INCLUDES . 'application_bottom.php');
-?>
