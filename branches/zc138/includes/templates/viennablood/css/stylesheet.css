@@ -223,8 +223,7 @@ HR {
 
 #navMain ul li, #navSupp ul li, #navCatTabs ul li {
 	display: inline;
-	white-space: nowrap;
-	}
+		}
 
 #navMain ul li a, #navSupp ul li a, #navCatTabs ul li a {
 	text-decoration: none;
