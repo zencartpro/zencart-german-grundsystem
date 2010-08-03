@@ -2,10 +2,10 @@
  * Main CSS Stylesheet
  *
  * @package templateSystem
- * @copyright Copyright 2003-2005 Zen Cart Development Team
+ * @copyright Copyright 2003-2010 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: stylesheet.css 3215 2006-03-20 06:05:55Z birdbrain $
+ * @version $Id: stylesheet.css 620 2010-08-03 16:35:55Z webchills $
  */
 
 body {
@@ -225,7 +225,7 @@ HR {
 
 #navMain ul li, #navSupp ul li, #navCatTabs ul li {
 	display: inline;
-	white-space: nowrap;
+	
 	}
 
 #navMain ul li a, #navSupp ul li a, #navCatTabs ul li a {
