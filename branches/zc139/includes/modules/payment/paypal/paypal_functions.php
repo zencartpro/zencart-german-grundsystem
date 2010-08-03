@@ -7,7 +7,7 @@
  * @copyright Portions Copyright 2003 osCommerce
  * @copyright Portions Copyright 2004 DevosC.com
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: paypal_functions.php 15900 2010-04-12 15:19:24Z drbyte $
+ * @version $Id: paypal_functions.php 16940 2010-07-21 19:54:44Z drbyte $
  */
 
 // Functions for paypal processing
@@ -514,7 +514,7 @@
       ipn_debug_email('IPN FATAL ERROR :: Could not establish fsockopen. ' . "\n" . 'Host Details = ' . $ssl . $web['host'] . ':' . $web['port'] . ' (' . $errnum . ') ' . $errstr . "\nABORTED.");
       die();
     }
-
+    $info = array();
     fputs($fp, $header . $postback . "\r\n\r\n");
     $header_data = '';
     $headerdone = false;

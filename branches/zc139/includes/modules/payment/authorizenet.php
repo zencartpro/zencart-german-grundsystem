@@ -6,7 +6,7 @@
  * @copyright Copyright 2003-2010 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: authorizenet.php 15869 2010-04-11 01:18:29Z drbyte $
+ * @version $Id: authorizenet.php 16906 2010-07-15 01:32:50Z drbyte $
  */
 /**
  * authorize.net SIM payment method class
@@ -359,7 +359,7 @@ class authorizenet extends base {
       'x_ship_to_country' => $order->delivery['country']['title'],
       'x_Customer_IP' => zen_get_ip_address(),
       'x_relay_response' => 'TRUE',
-      'x_relay_URL' => zen_href_link(FILENAME_CHECKOUT_PROCESS, '', 'SSL', true, false),
+      'x_relay_URL' => zen_href_link(FILENAME_CHECKOUT_PROCESS, 'action=confirm', 'SSL', true, false),
       'x_invoice_num' => '',
       'x_duplicate_window' => '120',
       'x_allow_partial_Auth' => 'FALSE', // unable to accept partial authorizations at this time
@@ -375,7 +375,7 @@ class authorizenet extends base {
       'x_receipt_link_url' => zen_href_link(FILENAME_CHECKOUT_PROCESS, '', 'SSL', false)
        );
 
-//The following can be set in the authnet account admin area instead of here
+//The following can (and SHOULD) be set in the authnet account admin area instead of here
     $submit_data_extras = array(
 //      'x_header_email_receipt' => '',
 //      'x_footer_email_receipt' => '',
@@ -448,7 +448,8 @@ class authorizenet extends base {
 //       && $this->authorize['x_amount'] == $this->submit_data['x_amount']
 //       && $this->authorize['x_invoice_num'] == $this->submit_data['x_invoice_num']
 //       && $this->authorize['x_description'] == $this->submit_data['x_description']
-       && $this->authorize['x_MD5_Hash'] == $this->authorize['HashValidationValue']) {
+       && (/*MODULE_PAYMENT_AUTHORIZENET_MD5HASH == 'DANGEROUSLY-BYPASSED' || */ $this->authorize['x_MD5_Hash'] == $this->authorize['HashValidationValue'])
+     ){
       $this->auth_code = $this->authorize['x_auth_code'];
       $this->transaction_id = $this->authorize['x_trans_id'];
       return;

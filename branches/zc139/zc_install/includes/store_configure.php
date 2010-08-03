@@ -11,7 +11,7 @@
 $file_contents =
 '<'.'?php' . "\n" .
 '/**' . "\n" .
-' * @package Configuration Settings circa 1.3.9DD' . "\n" .
+' * @package Configuration Settings circa 1.3.9e' . "\n" .
 ' * @copyright Copyright 2003-2010 Zen Cart Development Team' . "\n" .
 ' * @copyright Portions Copyright 2003 osCommerce' . "\n" .
 ' * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0' . "\n" .
@@ -45,7 +45,7 @@ $file_contents =
 '  define(\'DIR_WS_LANGUAGES\', DIR_WS_INCLUDES . \'languages/\');' . "\n" .
 '  define(\'DIR_WS_DOWNLOAD_PUBLIC\', DIR_WS_CATALOG . \'pub/\');' . "\n" .
 '  define(\'DIR_WS_TEMPLATES\', DIR_WS_INCLUDES . \'templates/\');' . "\n\n" .
-'  define(\'DIR_WS_PHPBB\', \'' . $this->getConfigKey('DIR_FS_PHPBB') . '/\');' . "\n\n" .
+'  define(\'DIR_WS_PHPBB\', \'' . '' . '/\');' . "\n\n" .
 '// * DIR_FS_* = Filesystem directories (local/physical)' . "\n" .
 '  //the following path is a COMPLETE path to your Zen Cart files. eg: /var/www/vhost/accountname/public_html/store/' . "\n" .
 '  define(\'DIR_FS_CATALOG\', \'' . $this->getConfigKey('DIR_FS_CATALOG') . '/\');' . "\n\n" .

@@ -6,7 +6,7 @@
  * @copyright Copyright 2003-2010 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: shopping_cart.php 16332 2010-05-23 17:21:06Z ajeh $
+ * @version $Id: shopping_cart.php 16893 2010-07-14 18:14:17Z drbyte $
  */
 /**
  * Class for managing the Shopping Cart
@@ -1532,6 +1532,9 @@ class shoppingCart extends base {
 
     for ($i=0, $n=sizeof($_POST['products_id']); $i<$n; $i++) {
       $adjust_max= 'false';
+      if ($_POST['cart_quantity'][$i] == '') {
+        $_POST['cart_quantity'][$i] = 0;
+      }
       if (!is_numeric($_POST['cart_quantity'][$i]) || $_POST['cart_quantity'][$i] < 0) {
         $messageStack->add_session('header', ERROR_CORRECTIONS_HEADING . ERROR_PRODUCT_QUANTITY_UNITS_SHOPPING_CART . zen_get_products_name($_POST['products_id'][$i]) . ' ' . PRODUCTS_ORDER_QTY_TEXT . $_POST['cart_quantity'][$i], 'error');
         continue;
@@ -1540,7 +1543,7 @@ class shoppingCart extends base {
         $this->remove($_POST['products_id'][$i]);
       } else {
         $add_max = zen_get_products_quantity_order_max($_POST['products_id'][$i]);
-        $cart_qty = $this->in_cart_mixed($_POST['products_id']);
+        $cart_qty = $this->in_cart_mixed($_POST['products_id'][$i]);
         $new_qty = $_POST['cart_quantity'][$i];
 
 //echo 'I SEE actionUpdateProduct: ' . $_POST['products_id'] . ' ' . $_POST['products_id'][$i] . '<br>';

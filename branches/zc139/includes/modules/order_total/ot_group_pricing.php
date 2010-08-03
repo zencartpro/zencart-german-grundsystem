@@ -6,7 +6,7 @@
  * @copyright Copyright 2003-2010 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: ot_group_pricing.php 15368 2010-01-28 23:29:02Z wilt $
+ * @version $Id: ot_group_pricing.php 16874 2010-07-08 11:52:39Z wilt $
  */
 
 class ot_group_pricing {
@@ -63,12 +63,23 @@ class ot_group_pricing {
 //    echo "order total tax = {$order->info['tax']}<br>";
     if ($this->include_shipping != 'true') $order_total -= $order->info['shipping_cost'];
     if ($this->include_shipping != 'true') $order_total_tax -= $order->info['shipping_tax'];
+    $taxGroups = array();
+    foreach ($order->info['tax_groups'] as $key=>$value) {
+      if (isset($_SESSION['shipping_tax_description']) && $key == $_SESSION['shipping_tax_description'])
+      {
+        if ($this->include_shipping != 'true')
+        {
+          $value -= $order->info['shipping_tax'];
+        }
+      }
+      $taxGroups[$key] = $value;
+    }
     if ($this->include_tax != 'true') $order_total -= $order->info['tax'];
-//    if ($this->include_tax != "true" && $this->include_shipping != 'true') $order_total += $order->info['shipping_tax'];
+    if ($this->include_tax != "true" && $this->include_shipping != 'true') $order_total += $order->info['shipping_tax'];
     $orderTotalFull = $order_total;
 //    if (DISPLAY_PRICE_WITH_TAX != 'true') $order_total += $order_total_tax;
 //    echo "order total* = $order_total<br>";
-    $order_total = array('totalFull'=>$orderTotalFull, 'total'=>$order_total, 'tax'=>$order_total_tax);
+    $order_total = array('totalFull'=>$orderTotalFull, 'total'=>$order_total, 'tax'=>$order_total_tax, 'taxGroups'=>$taxGroups);
     return $order_total;
   }
   function calculate_deductions($order_total) {
@@ -77,6 +88,7 @@ class ot_group_pricing {
     if ($order_total == 0) return $od_amount;
     $orderTotal = $this->get_order_total();
     $orderTotalTax = $orderTotal['tax'];
+    $taxGroups = $orderTotal['taxGroups'];
     $group_query = $db->Execute("select customers_group_pricing from " . TABLE_CUSTOMERS . " where customers_id = '" . (int)$_SESSION['customer_id'] . "'");
     if ($group_query->fields['customers_group_pricing'] != '0') {
       $group_discount = $db->Execute("select group_name, group_percentage from " . TABLE_GROUP_PRICING . "
@@ -104,11 +116,11 @@ class ot_group_pricing {
           }
           $adjustedTax = $orderTotalTax * $ratio;
           if ($order->info['tax'] == 0) return $od_amount;
-          $ratioTax = $adjustedTax/$order->info['tax'];
+          $ratioTax = $adjustedTax/$orderTotalTax;
           reset($order->info['tax_groups']);
           $tax_deduct = 0;
-          foreach ($order->info['tax_groups'] as $key=>$value) {
-            $od_amount['tax_groups'][$key] = $order->info['tax_groups'][$key] * $ratioTax;
+          foreach ($taxGroups as $key=>$value) {
+            $od_amount['tax_groups'][$key] = $value * $ratioTax;
             $tax_deduct += $od_amount['tax_groups'][$key];
           }
           $od_amount['tax'] = $tax_deduct;

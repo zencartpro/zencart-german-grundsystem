@@ -25,13 +25,13 @@
  * Default value is: DIR_FS_SQL_CACHE . '/myDEBUG-999999-00000000.log'
  * ... which puts it in the /cache/ folder:   /cache/myDEBUG-999999-00000000.log  (where 999999 is a random number, and 00000000 is the server's timestamp)
  */
-  $debug_logfile_path = DIR_FS_SQL_CACHE . '/myDEBUG-adm-' . mt_rand(1000,999999) . '-' . time() . '.log';
+  $debug_logfile_path = DIR_FS_SQL_CACHE . '/myDEBUG-adm-' . time() . '-' . mt_rand(1000,999999) . '.log';
 
 /**
  * Error reporting level to log
  * Default: E_ALL ^E_NOTICE
  */
-  $errors_to_log = (version_compare(PHP_VERSION, 5.3, '>=') ? E_ALL ^(E_NOTICE | E_DEPRECATED): E_ALL ^E_NOTICE);
+  $errors_to_log = (version_compare(PHP_VERSION, 5.3, '>=') ? E_ALL & ~E_DEPRECATED & ~E_NOTICE : version_compare(PHP_VERSION, 6.0, '>=') ? E_ALL & ~E_DEPRECATED & ~E_NOTICE & ~E_STRICT : E_ALL & ~E_NOTICE);
 
 
 
@@ -42,6 +42,6 @@
     @ini_set('log_errors', 1);          // store to file
     @ini_set('log_errors_max_len', 0);  // unlimited length of message output
     @ini_set('display_errors', 0);      // do not output errors to screen/browser/client
-    @ini_set('error_log', $debug_logfile_path);  // the filename
-    @ini_set('error_reporting', $errors_to_log );    // log only errors of more severity than NOTICE
+    @ini_set('error_log', $debug_logfile_path);  // the filename to log errors into
+    @ini_set('error_reporting', $errors_to_log ); // log only errors according to defined rules
   }

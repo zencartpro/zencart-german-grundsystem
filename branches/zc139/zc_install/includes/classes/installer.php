@@ -571,8 +571,8 @@
       $sql = "update ". $this->getConfigKey('DB_PREFIX') ."configuration set configuration_value='". $this->getConfigKey('DIR_FS_SQL_CACHE') ."/page_parse_time.log' where configuration_key = 'STORE_PAGE_PARSE_TIME_LOG'";
       $this->db->Execute($sql);
       //update the phpbb setting:
-      $sql = "update ". $this->getConfigKey('DB_PREFIX') ."configuration set configuration_value='". $this->getConfigKey('PHPBB_ENABLE') ."' where configuration_key = 'PHPBB_LINKS_ENABLED'";
-      $this->db->Execute($sql);
+   //   $sql = "update ". $this->getConfigKey('DB_PREFIX') ."configuration set configuration_value='". $this->getConfigKey('PHPBB_ENABLE') ."' where configuration_key = 'PHPBB_LINKS_ENABLED'";
+   //   $this->db->Execute($sql);
     }
 
     function dbDemoDataInstall() {

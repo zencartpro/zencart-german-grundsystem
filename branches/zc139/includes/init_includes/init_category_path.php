@@ -4,10 +4,10 @@
  * see {@link  http://www.zen-cart.com/wiki/index.php/Developers_API_Tutorials#InitSystem wikitutorials} for more details.
  *
  * @package initSystem
- * @copyright Copyright 2003-2005 Zen Cart Development Team
+ * @copyright Copyright 2003-2010 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: init_category_path.php 4769 2006-10-17 02:59:21Z drbyte $
+ * @version $Id: init_category_path.php 16941 2010-07-21 19:59:44Z drbyte $
  */
 if (!defined('IS_ADMIN_FLAG')) {
   die('Illegal Access');
@@ -37,6 +37,4 @@ if (zen_not_null($cPath)) {
 
 // determine whether the current page is the home page or a product listing
 //$this_is_home_page = ($current_page=='index' && ((int)$cPath == 0 || $show_welcome == true));
-$this_is_home_page = ($current_page=='index' && (!isset($_GET['cPath'])) && (!isset($_GET['manufacturers_id'])) && (!isset($_GET['typefilter'])) );
-
-?>
+$this_is_home_page = ($current_page=='index' && (!isset($_GET['cPath']) || $_GET['cPath'] == '') && (!isset($_GET['manufacturers_id']) || $_GET['manufacturers_id'] == '') && (!isset($_GET['typefilter']) || $_GET['typefilter'] == '') );

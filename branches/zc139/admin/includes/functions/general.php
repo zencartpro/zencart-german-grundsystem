@@ -4,7 +4,7 @@
  * @copyright Copyright 2003-2010 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: general.php 15831 2010-04-05 16:38:55Z wilt $
+ * @version $Id: general.php 16971 2010-07-24 21:13:25Z drbyte $
  */
 
 ////
@@ -1068,15 +1068,34 @@
     }
 
     $db_query = $db->Execute("select now() as datetime");
-    list($system, $host, $kernel) = preg_split('/[\s,]+/', @exec('uname -a'), 5);
-    if ($host == '') list($system, $host, $kernel) = array('', $_SERVER['SERVER_NAME'], php_uname());
 
+    $errnum = 0;
+    $system = $host = $kernel = $output = '';
+    list($system, $host, $kernel) = array('', $_SERVER['SERVER_NAME'], php_uname());
+
+    // check to see if "exec()" is disabled in PHP -- if not, get additional info via command line
+    $php_disabled_functions = '';
+    $exec_disabled = false;
+    $php_disabled_functions = @ini_get("disable_functions");
+    if ($php_disabled_functions != '') {
+      if (in_array('exec', preg_split('/,/', str_replace(' ', '', $php_disabled_functions)))) {
+        $exec_disabled = true;
+      }
+    }
+    if (!$exec_disabled && @exec('uname -a 2>&1', $output, $errnum)) {
+      if (!$errnum == 0 && sizeof($output)) list($system, $host, $kernel) = preg_split('/[\s,]+/', $output[0], 5);
+    }
+    $output = '';
+    $uptime = 'Unchecked';
+    if (DISPLAY_SERVER_UPTIME == 'true' && !$exec_disabled && @exec('uptime 2>&1', $output, $errnum) && $errnum == 0) {
+      $uptime = $output[0];
+    }
     return array('date' => zen_datetime_short(date('Y-m-d H:i:s')),
                  'system' => $system,
                  'kernel' => $kernel,
                  'host' => $host,
                  'ip' => gethostbyname($host),
-                 'uptime' => (DISPLAY_SERVER_UPTIME == 'true' ? @exec('uptime 2>&1') : 'Unchecked'),
+                 'uptime' => $uptime,
                  'http_server' => $_SERVER['SERVER_SOFTWARE'],
                  'php' => PHP_VERSION,
                  'zend' => (function_exists('zend_version') ? zend_version() : ''),
@@ -1174,6 +1193,132 @@
   function zen_remove_category($category_id) {
     if ((int)$category_id == 0) return;
     global $db;
+
+    // delete from salemaker - sale_categories_selected
+    $chk_sale_categories_selected = $db->Execute("select * from " . TABLE_SALEMAKER_SALES . "
+    WHERE
+    sale_categories_selected = '" . (int)$category_id . "'
+    OR sale_categories_selected LIKE '%," . (int)$category_id . ",%'
+    OR sale_categories_selected LIKE '%," . (int)$category_id . "'
+    OR sale_categories_selected LIKE '" . (int)$category_id . ",%'");
+
+    // delete from salemaker - sale_categories_all
+    $chk_sale_categories_all = $db->Execute("select * from " . TABLE_SALEMAKER_SALES . "
+    WHERE
+    sale_categories_all = '" . (int)$category_id . "'
+    OR sale_categories_all LIKE '%," . (int)$category_id . ",%'
+    OR sale_categories_all LIKE '%," . (int)$category_id . "'
+    OR sale_categories_all LIKE '" . (int)$category_id . ",%'");
+
+//echo 'WORKING ON: ' . (int)$category_id . ' chk_sale_categories_selected: ' . $chk_sale_categories_selected->RecordCount() . ' chk_sale_categories_all: ' . $chk_sale_categories_all->RecordCount() . '<br>';
+while (!$chk_sale_categories_selected->EOF) {
+  $skip_cats = false; // used when deleting
+  $skip_sale_id = 0;
+//echo '<br>FIRST LOOP: sale_id ' . $chk_sale_categories_selected->fields['sale_id'] . ' sale_categories_selected: ' . $chk_sale_categories_selected->fields['sale_categories_selected'] . '<br>';
+  // 9 or ,9 or 9,
+  // delete record if sale_categories_selected = 9 and  sale_categories_all = ,9,
+  if ($chk_sale_categories_selected->fields['sale_categories_selected'] == (int)$category_id and $chk_sale_categories_selected->fields['sale_categories_all'] == ',' . (int)$category_id . ',') { // delete record
+//echo 'A: I should delete this record sale_id: ' . $chk_sale_categories_selected->fields['sale_id'] . '<br><br>';
+    $skip_cats = true;
+    $skip_sale_id = $chk_sale_categories_selected->fields['sale_id'];
+    $salemakerdelete = "DELETE from " . TABLE_SALEMAKER_SALES . " WHERE sale_id='"  . $skip_sale_id . "'";
+  }
+
+  // if in the front - remove 9,
+  //  if ($chk_sale_categories_selected->fields['sale_categories_selected'] == (int)$category_id . ',') { // front
+  if (!$skip_cats && (preg_match('/^' . (int)$category_id . ',/', $chk_sale_categories_selected->fields['sale_categories_selected'])) ) { // front
+//echo 'B: I need to remove - ' . (int)$category_id . ', - from the front of ' . $chk_sale_categories_selected->fields['sale_categories_selected'] . '<br>';
+    $new_sale_categories_selected = substr($chk_sale_categories_selected->fields['sale_categories_selected'], strlen((int)$category_id . ','));
+//echo 'B: new_sale_categories_selected: ' . $new_sale_categories_selected . '<br><br>';
+  }
+
+  // if in the middle or end - remove ,9,
+  if (!$skip_cats && (strpos($chk_sale_categories_selected->fields['sale_categories_selected'], ',' . (int)$category_id . ',')) ) { // middle or end
+//echo 'C: I need to remove - ,' . (int)$category_id . ', - from the middle or end ' . $chk_sale_categories_selected->fields['sale_categories_selected'] . '<br>';
+    $start_cat = (int)strpos($chk_sale_categories_selected->fields['sale_categories_selected'], ',' . (int)$category_id . ',') + strlen(',' . (int)$category_id . ',');
+    $end_cat = (int)strpos($chk_sale_categories_selected->fields['sale_categories_selected'], ',' . (int)$category_id . ',', $start_cat+strlen(',' . (int)$category_id . ','));
+    $new_sale_categories_selected = substr($chk_sale_categories_selected->fields['sale_categories_selected'], 0, $start_cat - (strlen(',' . (int)$category_id . ',') - 1)) . substr($chk_sale_categories_selected->fields['sale_categories_selected'], $start_cat);
+//echo 'C: new_sale_categories_selected: ' . $new_sale_categories_selected. '<br><br>';
+    $skip_cat_last = true;
+  }
+
+
+// not needed in loop 1 if middle does end
+  // if on the end - remove ,9 skip if middle cleaned it
+  if (!$skip_cats && !$skip_cat_last && (strripos($chk_sale_categories_selected->fields['sale_categories_selected'], ',' . (int)$category_id)) ) { // end
+    $start_cat = (int)strpos($chk_sale_categories_selected->fields['sale_categories_selected'], ',' . (int)$category_id) + strlen(',' . (int)$category_id);
+//echo 'D: I need to remove - ,' . (int)$category_id . ' - from the end ' . $chk_sale_categories_selected->fields['sale_categories_selected'] . '<br>';
+    $new_sale_categories_selected = substr($chk_sale_categories_selected->fields['sale_categories_selected'], 0, $start_cat - (strlen(',' . (int)$category_id . ',') - 1));
+//echo 'D: new_sale_categories_selected: ' . $new_sale_categories_selected. '<br><br>';
+  }
+
+  if (!$skip_cats) {
+    $salemakerupdate =
+    "UPDATE " . TABLE_SALEMAKER_SALES . "
+    SET sale_categories_selected='" . $new_sale_categories_selected . "'
+    WHERE sale_id = '" . $chk_sale_categories_selected->fields['sale_id'] . "'";
+//echo 'Update new_sale_categories_selected: ' . $salemakerupdate . '<br>';
+    $db->Execute($salemakerupdate);
+  } else {
+//echo 'Record was deleted sale_id ' . $skip_sale_id . '<br>' . $salemakerdelete;
+    $db->Execute($salemakerdelete);
+  }
+
+  $chk_sale_categories_selected->MoveNext();
+}
+
+while (!$chk_sale_categories_all->EOF) {
+//echo '<br><br>SECOND LOOP: sale_id ' . $chk_sale_categories_all->fields['sale_id'] . ' sale_categories_all: ' . $chk_sale_categories_all->fields['sale_categories_all'] . '<br><br>';
+  // remove ,9 if on front as ,9, - remove ,9 if in the middle as ,9, - remove ,9 if on the end as ,9,
+  // beware of ,79, or ,98, or ,99, when cleaning 9
+  // if ($chk_sale_categories_all->fields['sale_categories_all'] == ',9') { // front
+  // if (something for the middle) { // middle
+  // if (right($chk_sale_categories_all->fields['sale_categories_all']) == ',9,') { // end
+
+  $skip_cats = false;
+  if ($skip_sale_id == $chk_sale_categories_all->fields['sale_id']) { // was deleted
+//echo 'A: I should delete this record sale_id: ' . $chk_sale_categories_all->fields['sale_id'] . ' but already done' . '<br><br>';
+    $skip_cats = true;
+  }
+
+  // if in the front - remove 9,
+  //  if ($chk_sale_categories_all->fields['sale_categories_all'] == (int)$category_id . ',') { // front
+  if (!$skip_cats && (preg_match('/^' . ',' . (int)$category_id . ',/', $chk_sale_categories_all->fields['sale_categories_all'])) ) { // front
+//echo 'B: I need to remove - ' . (int)$category_id . ', - from the front of ' . $chk_sale_categories_all->fields['sale_categories_all'] . '<br>';
+    $new_sale_categories_all = substr($chk_sale_categories_all->fields['sale_categories_all'], strlen(',' . (int)$category_id));
+//echo 'B: new_sale_categories_all: ' . $new_sale_categories_all . '<br><br>';
+  }
+
+  // if in the middle or end - remove ,9,
+  if (!$skip_cats && (strpos($chk_sale_categories_all->fields['sale_categories_all'], ',' . (int)$category_id . ',')) ) { // middle
+//echo 'C: I need to remove - ,' . (int)$category_id . ', - from the middle or end ' . $chk_sale_categories_all->fields['sale_categories_all'] . '<br>';
+    $start_cat = (int)strpos($chk_sale_categories_all->fields['sale_categories_all'], ',' . (int)$category_id . ',') + strlen(',' . (int)$category_id . ',');
+    $end_cat = (int)strpos($chk_sale_categories_all->fields['sale_categories_all'], ',' . (int)$category_id . ',', $start_cat+strlen(',' . (int)$category_id . ','));
+    $new_sale_categories_all = substr($chk_sale_categories_all->fields['sale_categories_all'], 0, $start_cat - (strlen(',' . (int)$category_id . ',') - 1)) . substr($chk_sale_categories_all->fields['sale_categories_all'], $start_cat);
+//echo 'C: new_sale_categories_all: ' . $new_sale_categories_all. '<br><br>';
+  }
+
+/*
+// not needed in loop 2
+  // if on the end - remove ,9,
+  if (!$skip_cats && (strripos($chk_sale_categories_all->fields['sale_categories_all'], ',' . (int)$category_id . ',')) ) { // end
+    $start_cat = (int)strpos($chk_sale_categories_all->fields['sale_categories_all'], ',' . (int)$category_id) + strlen(',' . (int)$category_id . ',');
+    echo 'D: I need to remove from the end - ,' . (int)$category_id . ', - from the end ' . $chk_sale_categories_all->fields['sale_categories_all'] . '<br>';
+    $new_sale_categories_all = substr($chk_sale_categories_all->fields['sale_categories_all'], 0, $start_cat - (strlen(',' . (int)$category_id . ',') - 1));
+    echo 'D: new_sale_categories_all: ' . $new_sale_categories_all. '<br><br>';
+  }
+*/
+      $salemakerupdate = "UPDATE " . TABLE_SALEMAKER_SALES . " SET sale_categories_all='" . $new_sale_categories_all . "' WHERE sale_id = '" . $chk_sale_categories_all->fields['sale_id'] . "'";
+
+//echo 'Update sale_categories_all: ' . $salemakerupdate . '<br>';
+
+      $db->Execute($salemakerupdate);
+
+      $chk_sale_categories_all->MoveNext();
+}
+
+//die('DONE TESTING');
+
     $category_image = $db->Execute("select categories_image
                                     from " . TABLE_CATEGORIES . "
                                     where categories_id = '" . (int)$category_id . "'");
@@ -1199,6 +1344,11 @@
 
     $db->Execute("delete from " . TABLE_METATAGS_CATEGORIES_DESCRIPTION . "
                   where categories_id = '" . (int)$category_id . "'");
+
+    $db->Execute("delete from " . TABLE_COUPON_RESTRICT . "
+                  where category_id = '" . (int)$category_id . "'");
+
+
   }
 
   function zen_remove_product($product_id, $ptc = 'true') {
@@ -1276,6 +1426,9 @@
 
     $db->Execute("delete from " . TABLE_PRODUCTS_DISCOUNT_QUANTITY . "
                   where products_id = '" . (int)$product_id . "'");
+
+    $db->Execute("delete from " . TABLE_COUPON_RESTRICT . "
+                  where product_id = '" . (int)$product_id . "'");
 
   }
 
@@ -3288,5 +3441,3 @@ function zen_copy_products_attributes($products_id_from, $products_id_to) {
         }
         return 0;
     }
-
-?>

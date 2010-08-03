@@ -7,7 +7,7 @@
  * @copyright Copyright 2003-2010 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: init_sessions.php 16258 2010-05-11 09:52:08Z wilt $
+ * @version $Id: init_sessions.php 16689 2010-06-08 19:22:21Z wilt $
  */
 if (!defined('IS_ADMIN_FLAG')) {
   die('Illegal Access');
@@ -35,7 +35,7 @@ zen_session_save_path(SESSION_WRITE_DIRECTORY);
 $path = str_replace('\\', '/', dirname($_SERVER['SCRIPT_NAME']));
 $path = (defined('CUSTOM_COOKIE_PATH')) ? CUSTOM_COOKIE_PATH : $path;
 
-session_set_cookie_params(0, $path, (zen_not_null($cookiedomain) ? '.' . $cookiedomain : ''));
+session_set_cookie_params(0, $path, (zen_not_null($cookieDomain) ? '.' . $cookieDomain : ''));
 /**
  * set the session ID if it exists
  */

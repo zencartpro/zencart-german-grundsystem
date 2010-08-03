@@ -8,7 +8,7 @@
  * @copyright Copyright 2003-2010 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: functions_email.php 16108 2010-04-29 21:02:36Z drbyte $
+ * @version $Id: functions_email.php 16891 2010-07-14 15:17:09Z drbyte $
  * 2007-09-30 added encryption support for Gmail Chuck Redman
  */
 
@@ -159,7 +159,7 @@
       // special handling for XML content
       if ($module == 'xml_record') {
         $email_html = '';
-        $customers_email_format =='TEXT';
+        $customers_email_format ='TEXT';
       }
 
       //notifier intercept option
