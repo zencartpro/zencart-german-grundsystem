@@ -1,0 +1,86 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Google Analytics/Conversion Tracking 1.3 für Zen-Cart 1.3.x deutsch - Installation</title>
+<meta name="author" content="webchills | www.webchills.at" />
+<link href="style.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+<div id="header">
+<h2>Google Analytics/Conversion Tracking 1.3 für Zen-Cart 1.3.x deutsch</h2>
+ <a href="index.html">Übersicht</a> | Installation</div>
+ 
+  <div id="wrapper">
+  <div class="content">
+<h1>Installation</h1>
+<p><strong><br />
+  Voraussetzungen</strong><br />
+  <br />
+  Dieses Modul ist<strong> nur für die deutsche Zen-Cart Version geeignet</strong><br />
+  <br />
+  <br />
+  <strong>Empfehlung:</strong><br />
+  <br />
+  Dieses Modul erst in einem Testsystem einbauen und dort konfigurieren/testen und endgültig an die eigenen Wünsche anpassen.    
+  Erst dann in einem Liveshop einsetzen! Sichern Sie unbedingt alle Dateien Ihres Shops per FTP und sichern Sie die Datenbank mit phpMyAdmin oder anderen geeigneten Tools!</p>
+<code><strong>================= WICHTIG =====================<br />
+Vor dem Einbau dieser Änderungen:<br />
+BACKUP von Shop und Datenbank machen! <br />
+Keine Haftung, Verwendung auf eigene Gefahr!<br />
+BACKUP gemacht? Ok, dann weiterlesen...<br />
+===============================================</strong></code>
+<p><br />
+  1.<br />
+  Die Datei install.sql im Ordner SQL mit einem Texteditor öffen und den Inhalt kopieren</p>
+<p>2.<br />
+  Zen-Cart Administration öffnen und unter Tools &gt; SQL Patches installieren den Inhalt ins Feld hineinkopieren und absenden.<br />
+  Dadurch werden die nötigen Datenbankeinträge vorgenommen und in der Zen-Cart Administration ist unter Konfiguration der neue Menüpunkt Google Analytics Einstellungenverfügbar.</p>
+<p>3.<br />
+  Neue Dateien des Moduls einspielen:<br />
+  Im Ordner NEUE DATEIEN dieses Downloads im Ordner zencart den Ordner DEINTEMPLATE auf den Namen des im Shop aktiven Templates umbenenennen (z.B. classic, viennablood, ...)<br />
+  Den Ordner DEINADMINVERZEICHNIS auf den Namen Ihres admin Verzeichnisses umbenennen.
+  <br />
+  Dann in der vorgegebenen Struktur ins Zen-Cart Verzeichnis hochladen.<br />
+  Dadurch werden keine bestehenden Dateien überschrieben<br />
+</p>
+<p>4.<br />
+  In der Zen-Cart Administration unter Konfiguration &gt; Google Analytics Einstellungen die gewünschten Einstellungen vornehmen.<br />
+  <br />
+5.<br />
+ Folgende Datei aus der bestehenden Zen-Cart Installation vom Server herunterladen:<br />
+includes/templates/DEINTEMPLATE/common/tpl_main_page.php<br />
+Sollte im eigenen Templateverzeichnis keine common/tpl_main_page.php vorhanden sein, folgende Datei verwenden:<br />
+includes/templates/template_default/common/tpl_main_page.php<br />
+Datei mit einem Texteditor öffnen und ganz am Ende vor dem &lt;/body&gt; folgenden Code einfügen:</p>
+<code>&lt;?php<br />
+  require($template-&gt;get_template_dir('.php',DIR_WS_TEMPLATE, $current_page_base,'google_analytics') . '/google_analytics.php');<br />
+  ?&gt;</code>
+<p>Datei abspeichern und hochladen nach:<br />
+  includes/templates/DEINTEMPLATE/common/tpl_main_page.php
+</p>
+<br/>
+<h1>Modul komplett deinstallieren</h1>
+  <p>Um das Modul komplett zu entfernen:<br />
+    Folgende Dateien wieder vom Server löschen:<br />
+    DEINADMINVERZEICHNIS/includes/extra_datafiles/google_analytics_database_names.php<br />
+    DEINADMINVERZEICHNIS/includes/functions/extra_functions/google_analytics_functions.php<br />
+    Folgenden Ordner samt Inhalt löschen:<br />
+    includes/templates/DEINTEMPLATE/google_analytics<br />
+    In der includes/templates/DEINTEMPLATE/commeon/tpl_main_page.php den zuvor vor dem &lt;/body&gt; Tag eingefügten Code entfernen und die Originaldatei wieder hochladen<br />
+    Im Ordner SQL befindet sich eine uninstall.sql. Inhalt unter Admin &gt; Tools &gt; SQL Patches installieren ins Eingabefeld kopieren und absenden. Dadurch werden sämtliche Datenbankeinträge des Moduls gelöscht.</p>
+<h1>Unterstützen Sie die Weiterentwicklung der deutschen Zen-Cart Version!</h1>
+ <p>Sie finden dieses Modul nützlich?<br/>
+ Ich freue mich über einen Espresso, Capuccino oder Irish Coffee:<br />
+ <a href="http://www.webchills.at/zencart/" target="_blank">webchills Zen-Cart Kaffeekasse</a><br />
+ <br />
+ Sie haben vom Support im Forum von zen-cart.at profitiert?<br />
+ Wir freuen uns über Spenden zur Finanzierung des Servers und der vBulletin-Lizenz:
+ <br />
+ <a href="http://www.zen-cart.at/zcvb/forum/misc.php?do=donate">zen-cart.at unterstützen </a></p>
+  </div>
+</div>
+<div id="footer"><a href="#">top of page</a></div>
+</body>
+</html>
