@@ -7,7 +7,7 @@
  * @copyright Portions Copyright 2003 osCommerce
  * @copyright Portions Copyright 2004 DevosC.com
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: paypal_functions.php 16940 2010-07-21 19:54:44Z drbyte $
+ * @version $Id: paypal_functions.php 17026 2010-07-27 19:43:49Z drbyte $
  */
 
 // Functions for paypal processing
@@ -866,8 +866,8 @@
     $sumOfLineItems = round($sumOfLineItems, 2);
     $sumOfLineTax = round($sumOfLineTax, 2);
 
-    if ($sumofLineItems == 0) {
-      $sumofLineTax = 0;
+    if ($sumOfLineItems == 0) {
+      $sumOfLineTax = 0;
       $optionsLI = array();
       $discountProblemsFlag = TRUE;
       if ($optionsST['shipping'] == $optionsST['amount']) {

@@ -6,7 +6,7 @@
  * @copyright Copyright 2003-2010 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: header_php.php 16990 2010-07-25 22:29:46Z drbyte $
+ * @version $Id: header_php.php 17054 2010-07-29 16:08:26Z wilt $
  */
 
 // This should be first line of the script:
@@ -448,7 +448,7 @@ if ((!isset($_GET['sort'])) || (!preg_match('/[1-8][ad]/', $_GET['sort'])) || (s
     break;
   }
 }
-$_GET['keyword'] = zen_output_string_protected($_GET['keyword']);
+//$_GET['keyword'] = zen_output_string_protected($_GET['keyword']);
 
 $listing_sql = $select_str . $from_str . $where_str . $order_str;
 // Notifier Point

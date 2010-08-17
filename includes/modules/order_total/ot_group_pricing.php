@@ -6,7 +6,7 @@
  * @copyright Copyright 2003-2010 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: ot_group_pricing.php 16874 2010-07-08 11:52:39Z wilt $
+ * @version $Id: ot_group_pricing.php 17155 2010-08-05 13:33:01Z wilt $
  */
 
 class ot_group_pricing {
@@ -55,14 +55,14 @@ class ot_group_pricing {
   }
   function get_order_total() {
     global  $order;
-//    print_r($order->info);
     $order_total_tax = $order->info['tax'];
     $order_total = $order->info['total'];
-//    echo "order total = $order_total<br>";
-//    echo "order total shipping = {$order->info['shipping_cost']}<br>";
-//    echo "order total tax = {$order->info['tax']}<br>";
     if ($this->include_shipping != 'true') $order_total -= $order->info['shipping_cost'];
-    if ($this->include_shipping != 'true') $order_total_tax -= $order->info['shipping_tax'];
+    if ($this->include_tax != 'true') $order_total -= $order->info['tax'];
+    if (DISPLAY_PRICE_WITH_TAX == 'true' && $this->include_shipping != 'true')
+    {
+      $order_total += $order->info['shipping_tax'];
+    }
     $taxGroups = array();
     foreach ($order->info['tax_groups'] as $key=>$value) {
       if (isset($_SESSION['shipping_tax_description']) && $key == $_SESSION['shipping_tax_description'])
@@ -74,11 +74,7 @@ class ot_group_pricing {
       }
       $taxGroups[$key] = $value;
     }
-    if ($this->include_tax != 'true') $order_total -= $order->info['tax'];
-    if ($this->include_tax != "true" && $this->include_shipping != 'true') $order_total += $order->info['shipping_tax'];
     $orderTotalFull = $order_total;
-//    if (DISPLAY_PRICE_WITH_TAX != 'true') $order_total += $order_total_tax;
-//    echo "order total* = $order_total<br>";
     $order_total = array('totalFull'=>$orderTotalFull, 'total'=>$order_total, 'tax'=>$order_total_tax, 'taxGroups'=>$taxGroups);
     return $order_total;
   }
@@ -116,7 +112,7 @@ class ot_group_pricing {
           }
           $adjustedTax = $orderTotalTax * $ratio;
           if ($order->info['tax'] == 0) return $od_amount;
-          $ratioTax = $adjustedTax/$orderTotalTax;
+          $ratioTax = ($orderTotalTax != 0 ) ? $adjustedTax/$orderTotalTax : 0;
           reset($order->info['tax_groups']);
           $tax_deduct = 0;
           foreach ($taxGroups as $key=>$value) {
@@ -139,9 +135,6 @@ class ot_group_pricing {
     global $order;
     $od_amount = $this->calculate_deductions($order_total);
     $order->info['total'] = $order->info['total'] - $od_amount['total'];
-    if (DISPLAY_PRICE_WITH_TAX != 'true') {
-      $order->info['total'] -= $tax;
-    }
     return $od_amount['total'] + (DISPLAY_PRICE_WITH_TAX == 'true' ? 0 : $od_amount['tax']);
   }
 

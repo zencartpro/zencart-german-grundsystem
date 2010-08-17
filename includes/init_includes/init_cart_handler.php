@@ -4,10 +4,10 @@
  * see {@link  http://www.zen-cart.com/wiki/index.php/Developers_API_Tutorials#InitSystem wikitutorials} for more details.
  *
  * @package initSystem
- * @copyright Copyright 2003-2005 Zen Cart Development Team
+ * @copyright Copyright 2003-2010 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: init_cart_handler.php 4528 2006-09-16 01:12:14Z ajeh $
+ * @version $Id: init_cart_handler.php 17047 2010-07-29 06:00:38Z drbyte $
  */
 if (!defined('IS_ADMIN_FLAG')) {
   die('Illegal Access');
@@ -25,7 +25,12 @@ if (isset($_GET['action'])) {
   } else {
     $goto = $_GET['main_page'];
     if ($_GET['action'] == 'buy_now') {
-      $parameters = array('action', 'products_id');
+      if (strpos($goto, 'reviews') > 5) {
+        $parameters = array('action');
+        $goto = FILENAME_PRODUCT_REVIEWS;
+      } else {
+        $parameters = array('action', 'products_id');
+      }
     } else {
       $parameters = array('action', 'pid', 'main_page');
     }
@@ -35,4 +40,3 @@ if (isset($_GET['action'])) {
    */
   require(DIR_WS_INCLUDES . 'main_cart_actions.php');
 }
-?>

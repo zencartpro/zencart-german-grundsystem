@@ -6,7 +6,7 @@
  * @copyright Copyright 2003-2010 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: paypalwpp.php 16878 2010-07-08 17:03:31Z drbyte $
+ * @version $Id: paypalwpp.php 17043 2010-07-28 18:36:22Z drbyte $
  */
 /**
  * load the communications layer code
@@ -101,7 +101,7 @@ class paypalwpp extends base {
     global $order;
     $this->code = 'paypalwpp';
     $this->codeTitle = MODULE_PAYMENT_PAYPALWPP_TEXT_ADMIN_TITLE_EC;
-    $this->codeVersion = '1.3.9e';
+    $this->codeVersion = '1.3.9f';
     $this->enableDirectPayment = FALSE;
     $this->enabled = (MODULE_PAYMENT_PAYPALWPP_STATUS == 'True');
     // Set the title & description text based on the mode we're in ... EC vs US/UK vs admin
@@ -493,6 +493,7 @@ class paypalwpp extends base {
    * Used to read details of an existing transaction.  FOR FUTURE USE.
    */
   function _GetTransactionDetails($oID) {
+    if ($oID == '' || $oID < 1) return FALSE;
     global $db, $messageStack, $doPayPal;
     $doPayPal = $this->paypal_init();
     // look up history on this order from PayPal table
@@ -501,6 +502,7 @@ class paypalwpp extends base {
     $zc_ppHist = $db->Execute($sql);
     if ($zc_ppHist->RecordCount() == 0) return false;
     $txnID = $zc_ppHist->fields['txn_id'];
+    if ($txnID == '' || $txnID < 1) return FALSE;
     /**
      * Read data from PayPal
      */
