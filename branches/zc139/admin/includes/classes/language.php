@@ -1,10 +1,10 @@
 <?php
 /**
  * @package admin
- * @copyright Copyright 2003-2009 Zen Cart Development Team
+ * @copyright Copyright 2003-2010 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: language.php 14139 2009-08-10 13:46:02Z wilt $
+ * @version $Id: language.php 17063 2010-07-29 18:27:27Z drbyte $
  */
 if (!defined('IS_ADMIN_FLAG')) {
   die('Illegal Access');
@@ -23,7 +23,7 @@ if (!defined('IS_ADMIN_FLAG')) {
 
       $this->catalog_languages = array();
       $languages_query = "select languages_id, name, code, image, directory
-                            from " . TABLE_LANGUAGES . " 
+                            from " . TABLE_LANGUAGES . "
                             order by sort_order";
 
       $languages = $db->Execute($languages_query);
@@ -70,4 +70,3 @@ if (!defined('IS_ADMIN_FLAG')) {
       }
     }
   }
-

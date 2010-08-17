@@ -4,7 +4,7 @@
  * @copyright Copyright 2003-2010 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: general.php 16971 2010-07-24 21:13:25Z drbyte $
+ * @version $Id: general.php 17149 2010-08-04 16:49:35Z drbyte $
  */
 
 ////
@@ -1072,6 +1072,7 @@
     $errnum = 0;
     $system = $host = $kernel = $output = '';
     list($system, $host, $kernel) = array('', $_SERVER['SERVER_NAME'], php_uname());
+    $uptime = (DISPLAY_SERVER_UPTIME == 'true') ? 'Unsupported' : 'Disabled/Unavailable';
 
     // check to see if "exec()" is disabled in PHP -- if not, get additional info via command line
     $php_disabled_functions = '';
@@ -1082,13 +1083,16 @@
         $exec_disabled = true;
       }
     }
-    if (!$exec_disabled && @exec('uname -a 2>&1', $output, $errnum)) {
-      if (!$errnum == 0 && sizeof($output)) list($system, $host, $kernel) = preg_split('/[\s,]+/', $output[0], 5);
-    }
-    $output = '';
-    $uptime = 'Unchecked';
-    if (DISPLAY_SERVER_UPTIME == 'true' && !$exec_disabled && @exec('uptime 2>&1', $output, $errnum) && $errnum == 0) {
-      $uptime = $output[0];
+    if (!$exec_disabled) {
+      @exec('uname -a 2>&1', $output, $errnum);
+      if ($errnum == 0 && sizeof($output)) list($system, $host, $kernel) = preg_split('/[\s,]+/', $output[0], 5);
+      $output = '';
+      if (DISPLAY_SERVER_UPTIME == 'true') {
+        @exec('uptime 2>&1', $output, $errnum);
+        if ($errnum == 0) {
+          $uptime = $output[0];
+        }
+      }
     }
     return array('date' => zen_datetime_short(date('Y-m-d H:i:s')),
                  'system' => $system,

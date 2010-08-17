@@ -1,10 +1,10 @@
 <?php
 /**
  * @package admin
- * @copyright Copyright 2003-2006 Zen Cart Development Team
+ * @copyright Copyright 2003-2010 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: init_gzip.php 3001 2006-02-09 21:45:06Z wilt $
+ * @version $Id: init_gzip.php 17049 2010-07-29 06:19:52Z drbyte $
  */
 if (!defined('IS_ADMIN_FLAG')) {
   die('Illegal Access');
@@ -17,17 +17,10 @@ if (!defined('IS_ADMIN_FLAG')) {
 
 // GZIP for Admin
 // if gzip_compression is enabled, start to buffer the output
-  if ( (GZIP_LEVEL == '1') && ($ext_zlib_loaded = extension_loaded('zlib')) && (PHP_VERSION >= '4') ) {
+  if ( GZIP_LEVEL == '1' && $ext_zlib_loaded = extension_loaded('zlib') ) {
     if (($ini_zlib_output_compression = (int)ini_get('zlib.output_compression')) < 1) {
-      if (PHP_VERSION >= '4.0.4') {
-        ob_start('ob_gzhandler');
-      } else {
-        include(DIR_WS_FUNCTIONS . 'gzip_compression.php');
-        ob_start();
-        ob_implicit_flush();
-      }
+      ob_start('ob_gzhandler');
     } else {
       @ini_set('zlib.output_compression_level', GZIP_LEVEL);
     }
   }
-?>

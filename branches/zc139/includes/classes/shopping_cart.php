@@ -6,7 +6,7 @@
  * @copyright Copyright 2003-2010 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: shopping_cart.php 16893 2010-07-14 18:14:17Z drbyte $
+ * @version $Id: shopping_cart.php 17047 2010-07-29 06:00:38Z drbyte $
  */
 /**
  * Class for managing the Shopping Cart
@@ -1721,8 +1721,8 @@ class shoppingCart extends base {
     if (DISPLAY_CART == 'false' && $_GET['main_page'] != FILENAME_SHOPPING_CART) {
       $messageStack->add_session('header', SUCCESS_ADDED_TO_CART_PRODUCT, 'success');
     }
-//    zen_redirect(zen_href_link($goto, zen_get_all_get_params($parameters)));
-    zen_redirect(zen_href_link($goto, zen_get_all_get_params($parameters, $products_id) . ($_GET['main_page'] !='index' ? 'products_id=' . $_GET['products_id'] : '')));
+    if (is_array($parameters) && !in_array('products_id', $parameters) && !strpos($goto, 'reviews') > 5) $parameters[] = 'products_id';
+    zen_redirect(zen_href_link($goto, zen_get_all_get_params($parameters)));
   }
   /**
    * Method to handle cart Action - multiple add products

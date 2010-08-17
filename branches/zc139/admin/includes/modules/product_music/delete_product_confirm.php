@@ -1,10 +1,10 @@
 <?php
 /**
  * @package admin
- * @copyright Copyright 2003-2006 Zen Cart Development Team
+ * @copyright Copyright 2003-2010 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: delete_product_confirm.php 3345 2006-04-02 05:57:34Z drbyte $
+ * @version $Id: delete_product_confirm.php 17041 2010-07-28 18:02:44Z drbyte $
  */
 
   if (!defined('IS_ADMIN_FLAG')) {
@@ -37,34 +37,38 @@
 
   if ($do_delete_flag) {
     //--------------PRODUCT_TYPE_SPECIFIC_INSTRUCTIONS_GO__BELOW_HERE--------------------------------------------------------
+    // Delete media components, but only if the product is no longer cross-linked to another:
+    $resVal = $db->Execute("select categories_id from " . TABLE_PRODUCTS_TO_CATEGORIES . "
+                                   where products_id = '" . (int)$product_id . "'");
+    if ($resVal->RecordCount() < 2) {
+      // First we delete related records from related product-type tables:
+      //echo 'SQL=' . "select media_id from " . TABLE_MEDIA_TO_PRODUCTS . " where product_id = '" . (int)$product_id . "'<br />";
 
-    // First we delete related records from related product-type tables:
-    //echo 'SQL=' . "select media_id from " . TABLE_MEDIA_TO_PRODUCTS . " where product_id = '" . (int)$product_id . "'<br />";
+      $product_media = $db->Execute("select media_id from " . TABLE_MEDIA_TO_PRODUCTS . "
+                                     where product_id = '" . (int)$product_id . "'");
+      //echo 'media count =' . $product_media->RecordCount() . '<br />';
+      while (!$product_media->EOF) {
+        //echo 'media delete=' . $product_media->fields['media_id'] . '<br />';
+        $db->Execute("delete from " . TABLE_MEDIA_TO_PRODUCTS . "
+                      where media_id='" . (int)zen_db_input($product_media->fields['media_id']) . "'
+                      and product_id = '" . (int)$product_id . "'");
+        $product_media->MoveNext();
+      }
 
-    $product_media = $db->Execute("select media_id from " . TABLE_MEDIA_TO_PRODUCTS . "
-                                   where product_id = '" . (int)$product_id . "'");
-    //echo 'media count =' . $product_media->RecordCount() . '<br />';
-    while (!$product_media->EOF) {
-      //echo 'media delete=' . $product_media->fields['media_id'] . '<br />';
-      $db->Execute("delete from " . TABLE_MEDIA_TO_PRODUCTS . "
-                    where media_id='" . (int)zen_db_input($product_media->fields['media_id']) . "'
-                    and product_id = '" . (int)$product_id . "'");
-      $product_media->MoveNext();
-    }
-
-    //echo 'SQL=' . "select artists_id, record_company_id, music_genre_id from " . TABLE_PRODUCT_MUSIC_EXTRA . "                                 where products_id = '" . (int)$product_id . "'<br />";
-    $music_extra = $db->Execute("select artists_id, record_company_id, music_genre_id from " . TABLE_PRODUCT_MUSIC_EXTRA . "
-                                     where products_id = '" . (int)$product_id . "'");
-    //echo 'media count =' . $music_extra->RecordCount() . '<br />';
-    if ($music_extra->RecordCount()>0) {
-      //echo 'artists_id delete=' . $music_extra->fields['artists_id'] . '<br />';
-      //echo 'record_company_id delete=' . $music_extra->fields['record_company_id'] . '<br />';
-      //echo 'music_genre_id delete=' . $music_extra->fields['music_genre_id'] . '<br />';
-      $db->Execute("delete from " . TABLE_PRODUCT_MUSIC_EXTRA . "
-                    where products_id = '" . (int)$product_id . "'
-                    and artists_id = '" . zen_db_input($music_extra->fields['artists_id']) . "'
-                    and record_company_id = '" . zen_db_input($music_extra->fields['record_company_id']) . "'
-                    and music_genre_id = '" . zen_db_input($music_extra->fields['music_genre_id']) . "'");
+      //echo 'SQL=' . "select artists_id, record_company_id, music_genre_id from " . TABLE_PRODUCT_MUSIC_EXTRA . "                                 where products_id = '" . (int)$product_id . "'<br />";
+      $music_extra = $db->Execute("select artists_id, record_company_id, music_genre_id from " . TABLE_PRODUCT_MUSIC_EXTRA . "
+                                       where products_id = '" . (int)$product_id . "'");
+      //echo 'media count =' . $music_extra->RecordCount() . '<br />';
+      if ($music_extra->RecordCount()>0) {
+        //echo 'artists_id delete=' . $music_extra->fields['artists_id'] . '<br />';
+        //echo 'record_company_id delete=' . $music_extra->fields['record_company_id'] . '<br />';
+        //echo 'music_genre_id delete=' . $music_extra->fields['music_genre_id'] . '<br />';
+        $db->Execute("delete from " . TABLE_PRODUCT_MUSIC_EXTRA . "
+                      where products_id = '" . (int)$product_id . "'
+                      and artists_id = '" . zen_db_input($music_extra->fields['artists_id']) . "'
+                      and record_company_id = '" . zen_db_input($music_extra->fields['record_company_id']) . "'
+                      and music_genre_id = '" . zen_db_input($music_extra->fields['music_genre_id']) . "'");
+      }
     }
 
     //--------------PRODUCT_TYPE_SPECIFIC_INSTRUCTIONS_GO__ABOVE__HERE--------------------------------------------------------
@@ -95,4 +99,3 @@
   // if this is a single-product delete, redirect to categories page
   // if not, then this file was called by the cascading delete initiated by the category-delete process
   if ($action == 'delete_product_confirm') zen_redirect(zen_href_link(FILENAME_CATEGORIES, 'cPath=' . $cPath));
-?>

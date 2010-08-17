@@ -128,7 +128,7 @@ class paypaldp extends base {
     global $order;
     $this->code = 'paypaldp';
     $this->codeTitle = MODULE_PAYMENT_PAYPALDP_TEXT_ADMIN_TITLE_WPP;
-    $this->codeVersion = '1.3.9e';
+    $this->codeVersion = '1.3.9f';
     $this->enableDirectPayment = true;
     $this->enabled = (MODULE_PAYMENT_PAYPALDP_STATUS == 'True');
     // Set the title & description text based on the mode we're in
@@ -943,6 +943,7 @@ class paypaldp extends base {
    * Used to read details of an existing transaction.  FOR FUTURE USE.
    */
   function _GetTransactionDetails($oID) {
+    if ($oID == '' || $oID < 1) return FALSE;
     global $db, $messageStack, $doPayPal;
     $doPayPal = $this->paypal_init();
     // look up history on this order from PayPal table
@@ -951,6 +952,7 @@ class paypaldp extends base {
     $zc_ppHist = $db->Execute($sql);
     if ($zc_ppHist->RecordCount() == 0) return false;
     $txnID = $zc_ppHist->fields['txn_id'];
+    if ($txnID == '' || $txnID < 1) return FALSE;
     /**
      * Read data from PayPal
      */
