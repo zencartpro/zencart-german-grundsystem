@@ -3,7 +3,7 @@
  * Header code file for the Account Newsletters page - To change customers Newsletter options
  *
  * @package page
- * @copyright Copyright 2003-2006 Zen Cart Development Team
+ * @copyright Copyright 2003-2010 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
  * @version $Id: header_php.php 3162 2006-03-11 01:39:16Z drbyte $

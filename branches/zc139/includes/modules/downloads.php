@@ -3,7 +3,7 @@
  * downloads module - prepares information for use in downloadable files delivery
  *
  * @package modules
- * @copyright Copyright 2003-2006 Zen Cart Development Team
+ * @copyright Copyright 2003-2010 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
  * @version $Id: downloads.php 3018 2006-02-12 21:04:04Z wilt $

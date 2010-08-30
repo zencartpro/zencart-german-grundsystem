@@ -7,7 +7,7 @@
  * @copyright Copyright 2003-2010 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: filenames.php 15519 2010-02-19 11:01:58Z drbyte $
+ * @version $Id: filenames.php 628 2010-08-30 09:51:58Z webchills $
  * @private
  */
 /**
@@ -67,6 +67,7 @@ define('FILENAME_DEFINE_PRIVACY', 'define_privacy');
 define('FILENAME_DEFINE_SHIPPINGINFO', 'define_shippinginfo');
 define('FILENAME_DEFINE_SITE_MAP', 'define_site_map');
 define('FILENAME_DEFINE_LANGUAGE', 'define_language');
+define('FILENAME_DEFINE_WIDERRUFSRECHT', 'define_widerrufsrecht');
 define('FILENAME_DEVELOPERS_TOOL_KIT', 'developers_tool_kit');
 define('FILENAME_DISCOUNT_COUPON', 'discount_coupon');
 define('FILENAME_DOWNLOAD', 'download');
@@ -159,6 +160,7 @@ define('FILENAME_TELL_A_FRIEND', 'tell_a_friend');
 define('FILENAME_TEMPLATE_SELECT', 'template_select');
 define('FILENAME_TIME_OUT','time_out');
 define('FILENAME_UNSUBSCRIBE', 'unsubscribe');
+define('FILENAME_WIDERRUFSRECHT', 'widerrufsrecht');
 define('FILENAME_ZONES', 'zones');
 define('FILENAME_WHOS_ONLINE', 'whos_online');
 
