@@ -1,13 +1,13 @@
 <?php
 /**
  * @package languageDefines
- * @copyright Copyright 2003-2006 Zen Cart Development Team
+ * @copyright Copyright 2003-2010 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @copyright Originally Programmed By: Christopher Bradley (www.wizardsandwars.com) for OsCommerce
  * @copyright Modified by Jim Keebaugh for OsCommerce
  * @copyright Adapted for Zen Cart
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @translator: cyaneo/hugo13/wflohr	http://www.zen-cart.at	2006-11-02
+ * @translators: cyaneo/hugo13/wflohr/maleborg/webchills	http://www.zen-cart.at
  * @version $Id$
  */
 

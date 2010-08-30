@@ -1,10 +1,10 @@
 <?php
 /**
  * @package languageDefines
- * @copyright Copyright 2003-2006 Zen Cart Development Team
+ * @copyright Copyright 2003-2010 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @translator: cyaneo/hugo13/wflohr	http://www.zen-cart.at	2006-11-02
+ * @translators: cyaneo/hugo13/wflohr/maleborg/webchills	http://www.zen-cart.at
  * @version $Id$
  */
 
@@ -12,7 +12,7 @@ define('NAVBAR_TITLE', 'Neues Konto erstellen');
 
 define('HEADING_TITLE', 'Meine Kontoinformationen');
 
-define('TEXT_ORIGIN_LOGIN', '<strong class="note">Achtung:</strong> Sollten Sie bereits bei uns registriert sind, melden Sie sich bitte <a href="%s">hier an</a>.');
+define('TEXT_ORIGIN_LOGIN', '<strong class="note">Achtung:</strong> Sollten Sie bereits bei uns registriert sein, melden Sie sich bitte <a href="%s">hier an</a>.');
 
 // greeting salutation
 define('EMAIL_SUBJECT', 'Herzlich Willkommen bei ' . STORE_NAME . '!');

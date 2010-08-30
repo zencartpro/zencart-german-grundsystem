@@ -1,7 +1,7 @@
 <?php
 /**
  * @package htmleditors
- * @copyright Copyright 2003-2006 Zen Cart Development Team
+ * @copyright Copyright 2003-2010 Zen Cart Development Team
  * @license http://www.zen-cart.at/license/2_0.txt GNU Public License V2.0
  * @version $Id$
  */

@@ -3,7 +3,7 @@
  * index main_template_vars.php
  *
  * @package page
- * @copyright Copyright 2003-2006 Zen Cart Development Team
+ * @copyright Copyright 2003-2010 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
  * @version $Id: main_template_vars.php 6066 2007-03-25 17:51:43Z ajeh $
