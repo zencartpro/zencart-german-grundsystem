@@ -31,7 +31,7 @@ define('ERROR_NO_AMOUNT_SELECTED', 'Fehler: Kein Betrag gewählt.');
 define('ERROR_NO_SUBJECT', 'Fehler: Es wurde kein Betreff angegeben.');
 define('ERROR_GV_AMOUNT', 'Bitte den Wert ohne Symbole angeben. Beispiel: 25.00');
 
-define('TEXT_GV_ANNOUNCE', '<font color="#0000ff">Wir freuen uns, Ihnen einen ' . TEXT_GV_NAME . ' schenken zu können</font>');
+define('TEXT_GV_ANNOUNCE', '<font color="#0000ff">Wir freuen uns, Ihnen einen ' . TEXT_GV_NAME . ' schenken zu können.</font>');
 define('TEXT_GV_WORTH', 'Der ' . TEXT_GV_NAME . ' hat einen Wert von ');
 define('TEXT_TO_REDEEM', 'Um den ' . TEXT_GV_NAME . ', einlösen zu können, klicken Sie bitte auf nachstehenden Link.');
 define('TEXT_WHICH_IS', ' notieren Sie sich hierfür bitte diese Gutscheinnummer: ');
