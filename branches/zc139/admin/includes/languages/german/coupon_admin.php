@@ -31,7 +31,7 @@ define('TEXT_NEWSLETTER_CUSTOMERS','An alle Newsletter Abonnementen');
 define('TEXT_CONFIRM_DELETE','Wollen Sie diesen Aktionskupon wirklich löschen?');
 define('TEXT_SEE_RESTRICT','Verwendungseinschränkung:');
 
-define('TEXT_COUPON_ANNOUNCE', 'Wir erlauben uns, Ihnen einen Aktionskupon anzubieten');
+define('TEXT_COUPON_ANNOUNCE', 'Wir erlauben uns, Ihnen einen Aktionskupon anzubieten.');
 
 define('TEXT_TO_REDEEM','Sie können diesen Aktionskupon während des Bestellvorgangs einlösen. Sie brauchen nur die Nummer des Aktionskupons in das entsprechende Eingabefeld einzugeben und abschließend auf "Einlösen" zu klicken.');
 define('TEXT_IN_CASE','falls Sie irgendwelche Probleme haben.');
