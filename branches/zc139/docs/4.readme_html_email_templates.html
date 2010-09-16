@@ -121,7 +121,13 @@ Außerdem können Sie, wenn die den HTML Editor nicht aktiviert haben, aber den 
 </div>
 <div>
 <h1 align="center" class="intro">Wie benutze ich das HTML E-Mail Template System</h1>
-<p>Das E-Mail Template System nutzt die <span class="filename">email_*.html</span> Dateien in Ihrem <span class="filename">/email</span> Verzeichnis.</p>
+<p>Das E-Mail Template System nutzt die <span class="filename">email_*.html</span> Dateien in Ihrem <span class="filename">/email/de</span> Verzeichnis.<br>
+  Bitte beachten Sie, dass je nach Sprache unterschiedliche Templates angesprochen werden:<br>
+Die Emailtemplates direkt im Verzeichnis /email/ kommen zum Einsatz, wenn im Shop die englische Sprache verwendet wird. An Kunden, die den Shop auf englisch besucht und bestellt haben, werden also Emails mit den Vorlagen aus dem Ordner /email/ versandt.<br>
+An Kunden, die den Shop auf deutsch besucht und bestellt haben, werden Emails mit den Vorlagen aus dem Ordner /email/de/ versandt.<br>
+Sie können also je nach Sprache unterschiedliche Emailtemplates gestalten. <br>
+Sollten Sie im Shop weitere Sprachen anbieten, so müssen Sie unter /email/ ein entsprechendes Unterverzeichnis anlegen und die Emailtemplates dorthin kopieren. Für französisch würden also die Templates im Ordner /email/fr/ verwendet.
+</p>
 <h1>E-MAIL TEMPLATE STYLESHEET</h1>
 <p>Da HTML-basierende E-Mail Standards mehr Variationen haben, als es Wolkenformen am Himmel gibt, ist es unmöglich vorher zu sagen, wie Ihre HTML E-Mails von jedem verfügbaren E-Mail Programm ausgegeben werden. Daher sind per Verlinkung eingebaute CSS Dateien nicht empfehlenswert, manche E-Mail Programme verweigern sogar die Annahme von E-Mails, die solche CSS Dateiverlinkungen enthalten.</p>
 <p>Für das Modifizieren Ihrer HTML E-Mail Templates ist es am Besten, wenn Sie ihren Code gemäß HTML 3.2 and CSS1 Standards halten, um eine optimale Kompabilität für die meisten E-Mail Programme zu erhalten.</p>
