@@ -1,0 +1,95 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Image Handler 2.3 für Zen-Cart 1.3.9 deutsch - Installation</title>
+<meta name="author" content="webchills | www.webchills.at" />
+<link href="style.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+<div id="header">
+<h2>Image Handler 2.3 für Zen-Cart 1.3.9 deutsch</h2>
+ <a href="index.html">Übersicht</a> | Installation | <a href="faq.html">FAQ</a></div>
+ 
+  <div id="wrapper">
+  <div class="content">
+<h1>Installation</h1>
+<p><strong><br />
+  Voraussetzungen</strong><br />
+  <br />
+  Dieses Modul ist<strong> nur für Zen-Cart 1.3.9 deutsch geeignet</strong><br />
+  <br />
+  Für den Einbau dieses Moduls sollten Sie über folgende Werkzeuge verfügen:<br />
+  <br />
+  1) Ein guter Texteditor. <br />
+  Damit ist nicht das in Windows enthaltene Notepad oder Microsoft Word gemeint.<br />
+  Sie benötigen einen Texteditor, der utf-8 versteht und auch im Format utf-8 ohne BOM abspeichern kann.<br />
+  Meine Empfehlung: <a href="http://www.ultraedit.com/loc/de/index_de.html" target="_blank">UltraEdit</a> (kostenlose 30 Tage Testversion verfügbar)<br />
+  Ebenfalls gut geeignet ist der kostenlose Texteditor <a href="http://notepad-plus.sourceforge.net/de/site.htm" target="_blank">Notepad++ </a><br />
+  </p>
+<p>2) Ein Tool zum Vergleichen von Dateien<br />
+  Bei der Installation dieses Moduls ist es erforderlich, dass Sie den Inhalt einiger Ihrer bestehenden Zen-Cart Dateien mit dem Inhalt der neuen Moduldateien vergleichen und die Änderungen zusammenführen (&quot;mergen&quot;).<br />
+  Meine Empfehlung: <a href="http://www.scootersoftware.com/" target="_blank">BeyondCompare</a> (kostenlose 30 Tage Testversion verfügbar)<br />
+  Ebenfalls gut geeignet ist das kostenlose Programm <a href="http://winmerge.org/" target="_blank">WinMerge </a></p>
+<p><br />
+  <strong>Empfehlung:</strong><br />
+  <br />
+  Dieses Modul erst in einem Testsystem einbauen und dort konfigurieren/testen und endgültig an die eigenen Wünsche anpassen.    
+  Erst dann in einem Liveshop einsetzen! Sichern Sie unbedingt alle Dateien Ihres Shops per FTP und sichern Sie die Datenbank mit phpMyAdmin oder anderen geeigneten Tools!</p>
+<code><strong>================= WICHTIG =====================<br />
+Vor dem Einbau dieser Änderungen:<br />
+BACKUP von Shop und Datenbank machen! <br />
+Keine Haftung, Verwendung auf eigene Gefahr!<br />
+BACKUP gemacht? Ok, dann weiterlesen...<br />
+===============================================</strong></code>
+<p><br />
+  1.<br />
+  Im Order NEUEDATEIEN im Unterordner zencart den Ordner DEINADMINVERZEICHNIS auf den Namen Ihres admin Verzeichnisses umbenennen.<br />
+  Alle Ordner namens DEINTEMPLATE auf das im Shop aktive Template umbenennen (z.B. classic, viennablood,...)
+  <br />
+  Dann die Ordner/Dateien in der vorgegebenen Struktur in Ihr Zen-Cart Verzeichnis hochladen. Dabei werden keine bestehenden Dateien überschrieben.</p>
+<p>2.<br />
+  Im Ordner GEAENDERTE DATEIEN im Unterordner zencart alle Ordner namens DEINTEMPLATE  in den Namen des aktuell verwendeten Templates umbenennen (z.B. classic, viennablood,...)<br />
+  Den Ordner DEINADMINVERZEICHNIS auf den Namen Ihres admin Verzeichnisses umbenennen.<br />
+  Achtung:<br />
+  Beim Hochladen dieser Dateien werden bestehende Dateien überschrieben!<br />
+  Daher:<br />
+  Falls bereits einmal Änderungen an diesen Dateien in der Zen-Cart Installation gemacht wurden, mit WinMerge oder BeyondCompare die Dateien vergleichen und nur die Änderungen in die bestehenden Dateien übernehmen.<br />
+  Wurden noch keine Änderungen gemacht (Zen-Cart wurde z.B. gerade erst frisch installiert), die Ordner/Dateien aus dem Ordner GEAENDERTE DATEIEN einfach in der vorgegebenen Struktur in Ihr Zen-Cart Verzeichnis hochladen.<br />
+  <br />
+  3.<br />
+  Der Ordner bmz_cache, den Sie gerade in Ihr Shopverzeichnis hochgeladen haben benötigt Schreibrechte. In diesem Ordner werden später von Image Handler dynamisch generierte Bilddateien abgelegt. Geben Sie diesem Ordner daher Schreibrechte (chmod 777) </p>
+<p>4. <br />
+In der Zen-Cart Administration ist nun unter Tools der Menüpunkt Image Handler 2.3 vorhanden<br />
+Rufen Sie dieses Menü auf und clicken Sie auf dn Link &quot;Image Handler installieren&quot;.<br />
+  Dadurch werden die nötigen Datenbankeinträge vorgenommen und Sie sollten danach angezeigt bekommen:<br />
+  Version 2.3</p>
+<p>5.<br />
+  Wechseln Sie nun ins Menü Konfiguration &gt; Bilder<br />
+  Hier sind durch die Image Handler Installation neue Konfigurationsmöglichkeiten hinzugekommen.<br />
+  Stellen Sie hier Ihre gewünschten Optionen ein, Hinweise dazu finden Sie in dieser Anleitung unter <a href="konfiguration.html">Konfiguration </a></p>
+<p>&nbsp;</p>
+<h1>Update von einer älteren Image Handler Version</h1>
+<p>Erst die bestehende Ultimate SEO URL Version komplett entfernen.
+  <br />
+  Eine Anleitung dazu befindet sich im Ordner SQL/uninstall
+  <br />
+  Danach so vorgehen wie unter Installation beschrieben</p>
+  <h1>Image Handler vollständig deinstallieren</h1>
+<p>Eine Anleitung dazu befindet sich im Ordner SQL/uninstall
+  </p>
+<h1>Unterstützen Sie die Weiterentwicklung der deutschen Zen-Cart Version!</h1>
+ <p>Sie finden dieses Modul nützlich?<br/>
+ Ich freue mich über einen Espresso, Capuccino oder Irish Coffee:<br />
+ <a href="http://www.webchills.at/zencart/" target="_blank">webchills Zen-Cart Kaffeekasse</a><br />
+ <br />
+ Sie haben vom Support im Forum von zen-cart.at profitiert?<br />
+ Wir freuen uns über Spenden zur Finanzierung des Servers und der vBulletin-Lizenz:
+ <br />
+ <a href="http://www.zen-cart.at/zcvb/forum/misc.php?do=donate">zen-cart.at unterstützen </a></p>
+  </div>
+</div>
+<div id="footer"><a href="#">top of page</a></div>
+</body>
+</html>

@@ -1,0 +1,125 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Image Handler 2.3 für Zen-Cart 1.3.9 deutsch - Konfiguration</title>
+<meta name="author" content="webchills | www.webchills.at" />
+<link href="style.css" rel="stylesheet" type="text/css">  
+</head>
+
+<body>
+<div id="header">
+<h2>Image Handler 2.3 für Zen-Cart 1.3.9 deutsch</h2>
+  <a href="index.html">Übersicht</a> | <a href="installation.html">Installation</a> |  FAQ</div>
+   
+<div id="wrapper">
+<div class="content">
+<h1>Konfiguration</h1>
+<p>Unter Konfiguration &gt; Bilder können Sie nun alle Einstellungen zum Verhalten von Image Handler vornehmen.</p>
+<p>Bitte beachten Sie zunächst die generellen Zen-Cart Einstellungen unter &quot;Kleine Bilder - Höhe&quot;, &quot;Artikelliste - Höhe der Artikelbilder&quot;, usw.<br />
+  Also alle Höhenangaben für die kleinen Artikelbilder, die hier standardmäßig auf 80 gesetzt sind.<br />
+  Sie können diese Werte auf einen anderen Wert als 80 setzen, nur tun Sie das konsistent, z.B. alle auf 160.<br />
+  Nur dann wird Image Handler korrekt funktionieren<br />
+  Es ist generell nicht nötig Breite UND Höhe zu definieren.<br />
+  Entscheiden Sie sich für Breite oder Höhe, Image Handler macht den Rest. <br />
+  Falls Sie den Hover-Effekt für die kleinen Bilder nutzen wollen (IH - Kleine Bilder - Zoom steht voreingestellt auf yes), beachten Sie, dass für die Vergrößerung die Größe genommen wird, 
+  die Sie für die mittleren Artikelbilder eingestellt haben (Artikelbeschreibung: Breite der Artikelbilder bzw. Artikelbeschreibung: Höhe der Artikelbilder)<br />
+  <br />
+  <br />
+  Hier eine genauere Erläuterung zu den Optionen unter Admin &gt; Konfiguration &gt; Bilder</p>
+<table style="text-align: left; width: 780px; height: 128px;" border="1" cellpadding="2" cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top; width: 262px;">Kleine Bilder</td>
+      <td style="vertical-align: top; width: 498px;">Artikelbilder, die in den Sideboxen erscheinen (Neue Artikel, Empfohlene Artikel, usw.). Die Einstellungen für &quot;Kleine Bilder&quot; steuern auch die Größe der zusätzlichen Artikelbilder auf der Artikeldetailseite.</td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top; width: 262px;">Image - Product
+        Listing</td>
+      <td style="vertical-align: top; width: 498px;">Product images
+        which appear in
+        the product category listing pages</td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top; width: 262px;">Image - Product
+        New Listing</td>
+      <td style="vertical-align: top; width: 498px;">Product images
+        which appear in the
+        product new listing pages</td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top; width: 262px;">Image - Featured
+        Products</td>
+      <td style="vertical-align: top; width: 498px;">Product images
+        which appear in the
+        featured product&nbsp; listing pages</td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top; width: 262px;">Image - Product
+        All Listing</td>
+      <td style="vertical-align: top; width: 498px;">Product images
+        which appear in the
+        all products listing pages<br /></td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top; width: 262px;">Product Info</td>
+      <td style="vertical-align: top; width: 498px;">Product images
+        which appear on the product info page</td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top; width: 262px;">IH small image</td>
+      <td style="vertical-align: top; width: 498px;">Settings applies
+        to the product images that appear in the sideboxes, and all the
+        product listing images</td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top; width: 262px;">IH medium image</td>
+      <td style="vertical-align: top; width: 498px;">Settings applies
+        to the product image that appears on the product info page and the
+        rollover image displayed when hovering your mouse over the the small
+        images.</td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">IH large image</td>
+      <td style="vertical-align: top;">Settings applies to the the
+        large product image (the one that displays when you
+        click on the &quot;larger image&quot; link on the product info page)</td>
+    </tr>
+  </tbody>
+</table>
+<p>Tipp:<br />
+  Stellen Sie immer nur die Bildbreite ein und stellen Sie die Höhe auf 0.<br />
+  Die korrekte Höhe wird errechnet, wenn Sie folgende Einstellungen aktiv haben:<br />
+  Bildgröße berechnen: true<br />
+  Proportionale Bilder für Artikel &amp; Kategorien verwenden: 1  <br />
+ <br />
+Auch bei IH - &nbsp;Große Bilder - Maximale Breite oder Höhe stellen Sie am besten nur die Breite ein und stellen die Höhe auf 0.</p>
+<p>Außer natürlich, Sie bereiten Ihre Bilder ohnehin vorher in einem Bildbearbeitungsprogramm auf die exakt passenden proportionalen Größen vor.</p>
+<h3><b>Watermarks</b></h3>
+Wenn Sie Ihre Bilder mit einem Wasserzeichen schützen wollen, können Sie das unter Konfiguration &gt; Bilder für die kleinen, mittleren und großen Artikelbilder separat aktivieren. Benötigt werden dazu folgende Bilddateien für die Wasserzeichen:<br />
+<ul>
+  <li> images/watermark.png</li>
+  <li> images/medium/watermark_MED.png </li>
+  <li> images/large/watermark_LRG.png </li>
+</ul>
+In dieser Installation sind bereits Beispielwasserzeichen in Form eines Zen-Cart Logos enthalten. Überschreiben Sie diese Beispieldateien mit Ihrem eigenen Wasserzeichen. Die Position des Wassezeichen können Sie ebenfalls unter Konfiguration &gt; Bilder einstellen: IH - Wasserzeichen - Position. Voreingestellt ist zentriert.
+
+<p>&nbsp;</p>
+<hr/>
+<p><strong>5) Meine Frage wird hier nicht beantwortet?</strong><a name="5" id="5"></a></p>
+<p>Schau mal hier:<br />
+  <a href="http://www.zen-cart.at/zcvb/forum" target="_blank">http://www.zen-cart.at/zcvb/forum</a></p>
+<h1>Unterstützen Sie die Weiterentwicklung der deutschen Zen-Cart Version!</h1>
+ <p>Sie finden dieses Modul nützlich?<br/>
+ Ich freue mich über einen Espresso, Capuccino oder Irish Coffee:<br />
+ <a href="http://www.webchills.at/zencart/" target="_blank">webchills Zen-Cart Kaffeekasse</a><br />
+ <br />
+ Sie haben vom Support im Forum von zen-cart.at profitiert?<br />
+ Wir freuen uns über Spenden zur Finanzierung des Servers und der vBulletin-Lizenz:
+ <br />
+ <a href="http://www.zen-cart.at/zcvb/forum/misc.php?do=donate">zen-cart.at unterstützen </a></p>
+</div>
+</div>
+<div id="footer"><a href="#">top of page</a></div>
+</body>
+</html>
