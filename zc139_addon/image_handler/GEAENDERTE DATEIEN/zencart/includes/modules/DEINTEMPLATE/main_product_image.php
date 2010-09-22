@@ -4,7 +4,7 @@
  *
  * @package templateSystem
  * @copyright Copyright 2005-2006 Tim Kroeger
- * @copyright Portions Copyright 2003-2010 Zen Cart Development Team
+ * @copyright Portions Copyright 2003-2006 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
  * @version $Id: main_product_image.php,v 2.0 Rev 8 2010-05-31 23:46:5 DerManoMann Exp $
