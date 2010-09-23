@@ -42,10 +42,10 @@ define('BOX_ENTRY_REVIEWS_PENDING', 'Ausstehende Überprüfungen für Bewertunge
 define('BOX_ENTRY_NEW_CUSTOMERS', 'Neue Kunden:');
 define('BOX_ENTRY_NEW_ORDERS', 'Neue Bestellungen:');
 define('BOX_ENTRY_SPECIALS_EXPIRED', 'Abgelaufene Sonderpreise');
-define('BOX_ENTRY_FEATURED_EXPIRED', 'Abgelaufene ähnliche Artikel');
+define('BOX_ENTRY_FEATURED_EXPIRED', 'Abgelaufene empfohlene Artikel');
 define('BOX_ENTRY_SALEMAKER_EXPIRED', 'Abgelaufene Abverkäufe');
 define('BOX_ENTRY_SPECIALS_ACTIVE', 'Aktive Sonderpreise');
-define('BOX_ENTRY_FEATURED_ACTIVE', 'Aktive ähnliche Artikel');
+define('BOX_ENTRY_FEATURED_ACTIVE', 'Aktive empfohlene Artikel');
 define('BOX_ENTRY_SALEMAKER_ACTIVE', 'Aktive Abverkäufe');
 define('LAST_10_DAYS', 'Counter Historie für die letzten %s Tage');
 define('SESSION', 'Session');

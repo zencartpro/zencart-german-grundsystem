@@ -20,8 +20,8 @@
 // $Id$
 //
 
-define('NAVBAR_TITLE', 'Ähnliche Artikel');
-define('HEADING_TITLE', 'Ähnliche Artikel');
+define('NAVBAR_TITLE', 'Empfohlene Artikel');
+define('HEADING_TITLE', 'Empfohlene Artikel');
 
 define('TEXT_DATE_ADDED', 'Hinzugefügt am:');
 define('TEXT_MANUFACTURER', 'Hersteller:');
