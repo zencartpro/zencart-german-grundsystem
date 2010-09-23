@@ -11,7 +11,7 @@
 //  $Id$
 //
 
-define('HEADING_TITLE', 'Ähnliche Artikel');
+define('HEADING_TITLE', 'Empfohlene Artikel');
 define('TABLE_HEADING_PRODUCTS', 'Artikel');
 define('TABLE_HEADING_PRODUCTS_MODEL', 'Artikelnummer');
 define('TABLE_HEADING_PRODUCTS_PRICE', 'Preis | Sonderpreis | Abverkauf');
@@ -33,12 +33,12 @@ define('TEXT_INFO_EXPIRES_DATE', 'Ablaufdatum:');
 define('TEXT_INFO_STATUS_CHANGE', 'Letzte Status Änderung:');
 define('TEXT_IMAGE_NONEXISTENT', 'Kein Bild vorhanden');
 define('TEXT_INFO_HEADING_DELETE_FEATURED', 'Lösche ähnlichen Artikel');
-define('TEXT_INFO_DELETE_INTRO', 'Wollen Sie den ähnlichen Artikel wirklich löschen?');
-define('SUCCESS_FEATURED_PRE_ADD', 'Erfolgreich: Ähnlicher Artikel wurde hinzugefügt ... Aktualisieren Sie bitte die Daten ...');
+define('TEXT_INFO_DELETE_INTRO', 'Wollen Sie den empfohlenen Artikel wirklich löschen?');
+define('SUCCESS_FEATURED_PRE_ADD', 'Erfolgreich: Empfohlener Artikel wurde hinzugefügt ... Aktualisieren Sie bitte die Daten ...');
 define('WARNING_FEATURED_PRE_ADD_EMPTY', 'Warnung: Keine Artikel ID angegeben ... nichts wurde hinzugefügt ...');
 define('WARNING_FEATURED_PRE_ADD_DUPLICATE', 'Warnung: Artikel ID ist bereits als Sonderangebot definiert ... nichts wurde hinzugefügt ...');
 define('WARNING_FEATURED_PRE_ADD_BAD_PRODUCTS_ID', 'Warnung: Artikel ID ist ungültig ... nichts wurde hinzugefügt ...');
 define('TEXT_INFO_HEADING_PRE_ADD_FEATURED', 'Neue Artikel manuell hinzufügen per Artikel ID');
 define('TEXT_INFO_PRE_ADD_INTRO', 'Bei großen Datenbanken kann man Artikel manuell per Angabe der Artikel ID hinzufügen.<br /><br />Dies wird dann angewandt, wenn die Seite zu lang zum übertragen braucht und der Versuch, ein Produkt per Dropdownfeld zu wählen wegen zu vielen Produkten zu schwierig wird.');
 define('TEXT_PRE_ADD_PRODUCTS_ID', 'Bitte geben Sie die Artikel ID ein: ');
-define('TEXT_INFO_MANUAL', 'Artikel ID manuell als ähnlichen Artikel hinzufügen');
+define('TEXT_INFO_MANUAL', 'Artikel ID manuell als empfohlenen Artikel hinzufügen');

@@ -109,7 +109,7 @@ INSERT INTO categories_description (categories_id, language_id, categories_name,
 (22, 1, 'Verlinkte Artikel', 'All of these products are &quot;Linked Products&quot;.<br /><br />This means that they appear in more than one Category.<br /><br />However, you only have to maintain the product in one place.<br /><br />The Master Product is used for pricing purposes.'),
 (55, 1, 'Mengenrabatte', '<p>Discount Quantities can be set for Products or on the individual attributes.<br /><br />Discounts on the Product do NOT reflect on the attributes price.<br /><br />Only discounts based on Special and Sale Prices are applied to attribute prices.</p>'),
 (23, 1, 'Testbeispiele', ''),
-(24, 1, 'F&uuml;r Preis anfrufen', ''),
+(24, 1, 'F&uuml;r Preis anrufen', ''),
 (25, 1, 'Test 10% per Attribut', ''),
 (27, 1, '$5.00 off', ''),
 (28, 1, 'Test 10%', ''),
@@ -1563,7 +1563,7 @@ INSERT INTO categories_description (categories_id, language_id, categories_name,
 INSERT INTO categories_description (categories_id, language_id, categories_name, categories_description) VALUES (22, 43, 'Verlinkte Artikel', 'All of these products are &quot;Linked Products&quot;.<br /><br />This means that they appear in more than one Category.<br /><br />However, you only have to maintain the product in one place.<br /><br />The Master Product is used for pricing purposes.');
 INSERT INTO categories_description (categories_id, language_id, categories_name, categories_description) VALUES (55, 43, 'Mengenrabatte', '<p>Discount Quantities can be set for Products or on the individual attributes.<br /><br />Discounts on the Product do NOT reflect on the attributes price.<br /><br />Only discounts based on Special and Sale Prices are applied to attribute prices.</p>');
 INSERT INTO categories_description (categories_id, language_id, categories_name, categories_description) VALUES (23, 43, 'Testbeispiele', '');
-INSERT INTO categories_description (categories_id, language_id, categories_name, categories_description) VALUES (24, 43, 'F&uuml;r Preis anfrufen', '');
+INSERT INTO categories_description (categories_id, language_id, categories_name, categories_description) VALUES (24, 43, 'F&uuml;r Preis anrufen', '');
 INSERT INTO categories_description (categories_id, language_id, categories_name, categories_description) VALUES (25, 43, 'Test 10% per Attribut', '');
 INSERT INTO categories_description (categories_id, language_id, categories_name, categories_description) VALUES (27, 43, '$5.00 off', '');
 INSERT INTO categories_description (categories_id, language_id, categories_name, categories_description) VALUES (28, 43, 'Test 10%', '');

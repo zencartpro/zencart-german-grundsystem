@@ -88,7 +88,7 @@ define('BOX_HEADING_MANUFACTURERS', 'Hersteller');
 define('BOX_HEADING_WHATS_NEW', 'Neue Artikel');
 define('CATEGORIES_BOX_HEADING_WHATS_NEW', 'Neue Artikel ...');
 
-define('TEXT_NO_FEATURED_PRODUCTS', 'Weitere ähnliche Artikel erscheinen in Kürze. Bitte besuchen Sie unseren Shop regelmäßig wieder.');
+define('TEXT_NO_FEATURED_PRODUCTS', 'Weitere empfohlene Artikel erscheinen in Kürze. Bitte besuchen Sie unseren Shop regelmäßig wieder.');
 define('BOX_HEADING_FEATURED_PRODUCTS', 'Empfohlene Artikel');
 define('CATEGORIES_BOX_HEADING_FEATURED_PRODUCTS', 'Empfohlene Artikel ...');
 
@@ -276,7 +276,7 @@ define('TEXT_DISPLAY_NUMBER_OF_ORDERS', 'Zeige <strong>%d</strong> bis <strong>%
 define('TEXT_DISPLAY_NUMBER_OF_REVIEWS', 'Zeige <strong>%d</strong> bis <strong>%d</strong> (von <strong>%d</strong> Bewertungen)');
 define('TEXT_DISPLAY_NUMBER_OF_PRODUCTS_NEW', 'Zeige <strong>%d</strong> bis <strong>%d</strong> (von <strong>%d</strong> neuen Produkten)');
 define('TEXT_DISPLAY_NUMBER_OF_SPECIALS', 'Zeige <strong>%d</strong> bis <strong>%d</strong> (von <strong>%d</strong> Sonderangeboten)');
-define('TEXT_DISPLAY_NUMBER_OF_PRODUCTS_FEATURED_PRODUCTS', 'Zeige <strong>%d</strong> bis <strong>%d</strong> (von <strong>%d</strong> ähnlichen Artikeln)');
+define('TEXT_DISPLAY_NUMBER_OF_PRODUCTS_FEATURED_PRODUCTS', 'Zeige <strong>%d</strong> bis <strong>%d</strong> (von <strong>%d</strong> empfohlenen Artikeln)');
 define('TEXT_DISPLAY_NUMBER_OF_PRODUCTS_ALL', 'Zeige <strong>%d</strong> bis <strong>%d</strong> (von <strong>%d</strong> Artikeln)');
 
 define('PREVNEXT_TITLE_FIRST_PAGE', 'Erste Seite');

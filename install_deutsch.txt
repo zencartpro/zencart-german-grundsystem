@@ -1,6 +1,6 @@
 ﻿Zen Cart(tm) - The Art of E-Commerce
 Willkommen bei Zen Cart(tm) E-Commerce
-Version 1.3.9e de
+Version 1.3.9f de
 
 
 Im Folgenden finden Sie eine sehr vereinfachte Installationsanleitung.

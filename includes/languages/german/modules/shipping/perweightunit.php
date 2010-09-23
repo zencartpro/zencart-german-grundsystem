@@ -8,7 +8,7 @@
  * @version $Id$
  */
 
-define('MODULE_SHIPPING_PERWEIGHTUNIT_TEXT_TITLE', 'Versandkosten per Gewicht');
-define('MODULE_SHIPPING_PERWEIGHTUNIT_TEXT_DESCRIPTION', 'Per Gewicht');
+define('MODULE_SHIPPING_PERWEIGHTUNIT_TEXT_TITLE', 'Versandkosten nach Gewicht');
+define('MODULE_SHIPPING_PERWEIGHTUNIT_TEXT_DESCRIPTION', 'Nach Gewicht');
 define('MODULE_SHIPPING_PERWEIGHTUNIT_TEXT_WAY', 'Standard');
 
