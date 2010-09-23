@@ -10,7 +10,7 @@
  * Last modified by DerManoMann 2010-05-31 23:46:50 
  *
  * webchills 2010-08-08 - Added multilanguage install for Zen-Cart german.  
- * NOTE: This version is to use in the german Zen-Cart version from zen-cart.at ONLY
+ * NOTE: This version is to use in the german Zen-Cart 1.3.9 version from zen-cart.at ONLY
  * Version number changed to 2.3
  */
 
@@ -191,7 +191,7 @@ function install_image_handler() {
 					"('IH medium image filetype', 'MEDIUM_IMAGE_FILETYPE', 'no_change', 'Select one of ''jpg'', ''gif'' or ''png''. Internet Explorer has still issues displaying png-images with transparent areas. You better stick to ''gif'' for transparency or ''jpg'' for larger images. ''no_change'' is old zen-cart behavior, use the same file extension for medium images as uploaded image''s.', 4, " . ($sort_order_offset + $i++) . ", 'zen_cfg_select_option(array(''gif'', ''jpg'', ''png'', ''no_change''),', now());";
 		$db->Execute($sql_query);
 		$sql_query = "INSERT INTO " . TABLE_CONFIGURATION_LANGUAGE . " (configuration_title, configuration_key, configuration_language_id, configuration_description, last_modified, date_added) VALUES " .  
-				"('IH - Mittlere Bilder - Qualität', 'MEDIUM_IMAGE_FILETYPE', '43', 'Wählen Sie ''jpg'', ''gif'' oder ''png''. Der Internet Explorer stellt transparente png-Dateien noch immer nicht korrekt dar. Bei transparenten Bildern verwenden Sie daher besser ''gif'' oder ''jpg'' für grosse Bilder. ''no_change'' bedeutet normales Zen-Cart-Verhalten und für die mittleren Bilder wird derselbe Dateityp wie bei den hochgeladenen Bildern verwendet.', now(), now());";
+				"('IH - Mittlere Bilder - Dateityp', 'MEDIUM_IMAGE_FILETYPE', '43', 'Wählen Sie ''jpg'', ''gif'' oder ''png''. Der Internet Explorer stellt transparente png-Dateien noch immer nicht korrekt dar. Bei transparenten Bildern verwenden Sie daher besser ''gif'' oder ''jpg'' für grosse Bilder. ''no_change'' bedeutet normales Zen-Cart-Verhalten und für die mittleren Bilder wird derselbe Dateityp wie bei den hochgeladenen Bildern verwendet.', now(), now());";
 	$db->Execute($sql_query);
 		define(MEDIUM_IMAGE_FILETYPE, 'no_change');
 	}
