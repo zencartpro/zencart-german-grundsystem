@@ -63,7 +63,7 @@ require(DIR_WS_MODULES . zen_get_module_directory('meta_tags.php'));
                         '/c_' . $cPath,
                         '/' . $_SESSION['language'] . '_c_' . $cPath,
                         '/m_' . $manufacturers_id,
-                        '/' . $_SESSION['language'] . '_m_' . (int)$manufacturers_id, 
+                        '/' . $_SESSION['language'] . '_m_' . (int)$manufacturers_id,
                         '/p_' . $tmp_products_id,
                         '/' . $_SESSION['language'] . '_p_' . $tmp_products_id
                         );

@@ -9,7 +9,7 @@
  * @copyright Copyright 2003-2010 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: tpl_product_info_display.php for base unit price 2010-05-22 10:32:46Z webchills $
+ * @version $Id: tpl_product_info_display.php for base unit price ZC139 2010-09-22 20:32:46Z webchills $
  */
  //require(DIR_WS_MODULES . '/debug_blocks/product_info_prices.php');
 ?>

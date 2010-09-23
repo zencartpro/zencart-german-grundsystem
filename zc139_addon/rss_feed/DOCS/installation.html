@@ -2,14 +2,14 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>RSS Feed 2.1.4 für Zen-Cart 1.3.9 deutsch - Installation</title>
+<title>RSS Feed 2.1.4 für Zen-Cart 1.3.9/1.3.8 deutsch - Installation</title>
 <meta name="author" content="webchills | www.webchills.at" />
 <link href="style.css" rel="stylesheet" type="text/css">
 </head>
 
 <body>
 <div id="header">
-<h2>RSS Feed 2.1.4 für Zen-Cart 1.3.9 deutsch</h2>
+<h2>RSS Feed 2.1.4 für Zen-Cart 1.3.9/1.3.8 deutsch</h2>
  <a href="index.html">Übersicht</a> | Installation</div>
  
   <div id="wrapper">
@@ -18,7 +18,7 @@
 <p><strong><br />
   Voraussetzungen</strong><br />
   <br />
-  Dieses Modul ist<strong> nur für Zen-Cart 1.3.9 deutsch geeignet</strong><br />
+  Dieses Modul ist<strong> nur für Zen-Cart 1.3.9 oder 1.3.8 deutsch geeignet</strong><br />
   <br />
   <br />
   <strong>Empfehlung:</strong><br />
@@ -39,7 +39,7 @@ BACKUP gemacht? Ok, dann weiterlesen...<br />
   Dadurch werden die nötigen Datenbankeinträge vorgenommen und in der Zen-Cart Administration ist unter Konfiguration der neue Menüpunkt RSS verfügbar.</p>
 <p>3.<br />
   Neue Dateien des Moduls einspielen:<br />
-  Im Ordner NEUE DATEIEN dieses Downloads im Ordner zencart den Ordner DEINTEMPLATE auf den Namen des im Shop aktiven Templates umbenenennen (z.B. classic, viennablood, ...)<br />
+  Im Ordner NEUE DATEIEN dieses Downloads im Ordner zencart alle Ordner namens DEINTEMPLATE auf den Namen des im Shop aktiven Templates umbenenennen (z.B. classic, viennablood, ...)<br />
   Dann in der vorgegebenen Struktur ins Zen-Cart Verzeichnis hochladen.<br />
   Dadurch werden keine bestehenden Dateien überschrieben<br />
 </p>
@@ -95,7 +95,10 @@ Um die passenden RSS Feeds auf den verschiedenen Seiten anzubieten, folgende Dat
 <p>Es werden auch zusätzliche Google Base Tags unterstützt, eine Doku dazu findet sich auf:<br />
   <a href="http://base.google.com/support/bin/answer.py?answer=58085" target="_blank">http://base.google.com/support/bin/answer.py?answer=58085</a><br />
   Ebenso können Google Analytics Tags verwendet werden, Doku dazu auf:<br />
-  <a href="http://www.google.com/support/googleanalytics/bin/answer.py?answer=55518" target="_blank">http://www.google.com/support/googleanalytics/bin/answer.py?answer=55518 </a><br />
+  <a href="http://www.google.com/support/googleanalytics/bin/answer.py?answer=55518" target="_blank">http://www.google.com/support/googleanalytics/bin/answer.py?answer=55518 </a></p>
+<p>Ein RSS Feed hat nicht direkt etwas mit Google Base oder der Generierung einer XML Produktdatei zu tun. Im RSS Feed wird kein Artikelpreis angezeigt werden!<br />
+  Die Einstellungen in der Konfiguration
+  (Generiere Artikelpreis, Hersteller, Währung, usw.) werden als erweiterte Tags übergeben und wären nur in einer XML-Ausgabe des RSS Feeds ersichtlich. Ein RSS Reader kann diese Informationen aber nicht anzeigen.<br />
 </p>
 <p></p>
 <h1>Modul komplett deinstallieren</h1>

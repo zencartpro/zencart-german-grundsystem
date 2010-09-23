@@ -4,7 +4,7 @@
  * @copyright Copyright 2003-2010 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: update_product.php for base unit price 2010-05-22 10:56:04Z webchills $
+ * @version $Id: update_product.php for base unit price ZC139 2010-09-20 21:56:04Z webchills $
  */
   if (!defined('IS_ADMIN_FLAG')) {
     die('Illegal Access');

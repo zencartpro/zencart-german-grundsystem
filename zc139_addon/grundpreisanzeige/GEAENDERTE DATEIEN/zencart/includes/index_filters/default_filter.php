@@ -10,7 +10,7 @@
  * @copyright Portions Copyright 2003 osCommerce
  * @todo Need to add/fine-tune ability to override or insert entry-points on a per-product-type basis
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: default_filter.php for base unit price 2010-05-22 10:47:48Z webchills $
+ * @version $Id: default_filter.php for base unit price ZC139 2010-09-22 21:47:48Z webchills $
  */
 if (!defined('IS_ADMIN_FLAG')) {
   die('Illegal Access');

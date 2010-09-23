@@ -1,5 +1,5 @@
 ##########################################################################
-# Ultimate SEO URLs 2.107 Uninstall - 2010-05-21 - webchills
+# Ultimate SEO URLs 2.108 Uninstall - 2010-09-22 - webchills
 # NUR AUSFÜHREN WENN SIE DAS MODUL AUS DER DATENBANK ENTFERNEN WOLLEN!!!!!
 ##########################################################################
 

@@ -1,13 +1,14 @@
 <?php
 /*
 	+----------------------------------------------------------------------+
-	|	Ultimate SEO URLs For Zen Cart, version 2.100                        |
+	|	Ultimate SEO URLs For Zen Cart, version 2.108                        |
 	+----------------------------------------------------------------------+
 	|                                                                      |
-	|	Derrived from Ultimate SEO URLs v2.1 for osCommerce by Chemo         |
+	|	Derived from Ultimate SEO URLs v2.1 for osCommerce by Chemo         |
 	|                                                                      |
+	|	German installer 2010, webchills																			|
 	|	Portions Copyright 2005, Joshua Dechant                              |
-	|                                                                      |
+	|                                                                     |
 	|	Portions Copyright 2005, Bobby Easland                               |
 	|                                                                      |
 	|	Portions Copyright 2003 The zen-cart developers                      |
@@ -102,7 +103,7 @@
 
 			$this->default_config['USE_SEO_REDIRECT'] = array(
 				'DEFAULT' => 'true',
-				'QUERY' => "INSERT INTO `".TABLE_CONFIGURATION."` VALUES ('', 'Automatische Redirects aktivieren?', 'USE_SEO_REDIRECT', 'true', 'Automatischen Redirect aktivieren? 301 Header wird für alte an neue URLs übermittelt.', GROUP_INSERT_ID, ".$x.", NOW(), NOW(), NULL, 'zen_cfg_select_option(array(''true'', ''false''),')"
+				'QUERY' => "INSERT INTO `".TABLE_CONFIGURATION."` VALUES ('', 'Automatische Redirects aktivieren?', 'USE_SEO_REDIRECT', 'true', 'Automatischen Redirect aktivieren? 301 Header wird für alte an neue URLs uebermittelt.', GROUP_INSERT_ID, ".$x.", NOW(), NOW(), NULL, 'zen_cfg_select_option(array(''true'', ''false''),')"
 			);
 			$x++;
 
@@ -204,7 +205,7 @@
 		$sort_order_query = "SELECT MAX(sort_order) as max_sort FROM `".TABLE_CONFIGURATION_GROUP."`";
 		$sort = $this->db->Execute($sort_order_query);
 		$next_sort = $sort->fields['max_sort'] + 1;
-		$insert_group = "INSERT INTO `".TABLE_CONFIGURATION_GROUP."` VALUES ('','43', 'Ultimate SEO URL 2.107', 'Einstellungen fuer Ultimate SEO URLs', '".$next_sort."', '1')";
+		$insert_group = "INSERT INTO `".TABLE_CONFIGURATION_GROUP."` VALUES ('','43', 'Ultimate SEO URLs 2.108', 'Einstellungen fuer Ultimate SEO URLs', '".$next_sort."', '1')";
 		$this->db->Execute($insert_group);
 		$group_id = $this->db->insert_ID();
 

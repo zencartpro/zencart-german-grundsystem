@@ -7,7 +7,7 @@
  * @copyright Copyright 2003-2010 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: html_output.php 587 for Ultimate SEO URL and ZC139c 2010-05-21 14:14:25Z webchills $
+ * @version $Id: html_output.php 587 for Ultimate SEO URL and ZC139 2010-09-22 14:14:25Z webchills $
  */
 
  //// IMAGINADW.COM
@@ -387,7 +387,7 @@
  *  Output a form input field
  */
   function zen_draw_input_field($name, $value = '', $parameters = '', $type = 'text', $reinsert_value = true) {
-    $field = '<input type="' . zen_output_string($type) . '" name="' . zen_output_string($name) . '"';
+    $field = '<input type="' . zen_output_string($type) . '" name="' . zen_sanitize_string(zen_output_string($name)) . '"';
     if ( (isset($GLOBALS[$name]) && is_string($GLOBALS[$name])) && ($reinsert_value == true) ) {
       $field .= ' value="' . zen_output_string(stripslashes($GLOBALS[$name])) . '"';
     } elseif (zen_not_null($value)) {
@@ -466,7 +466,7 @@
  *  Output a form hidden field
  */
   function zen_draw_hidden_field($name, $value = '', $parameters = '') {
-    $field = '<input type="hidden" name="' . zen_output_string($name) . '"';
+    $field = '<input type="hidden" name="' . zen_sanitize_string(zen_output_string($name)) . '"';
 
     if (zen_not_null($value)) {
       $field .= ' value="' . zen_output_string($value) . '"';

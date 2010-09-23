@@ -1,7 +1,7 @@
 <?php
 /*
 	+----------------------------------------------------------------------+
-	|	Ultimate SEO URLs For Zen Cart, version 2.101                        |
+	|	Ultimate SEO URLs For Zen Cart, version 2.108                        |
 	+----------------------------------------------------------------------+
 	|                                                                      |
 	|	Derrived from Ultimate SEO URLs v2.1 for osCommerce by Chemo         |
@@ -62,6 +62,7 @@
 				FILENAME_POPUP_IMAGE,
 				FILENAME_PRODUCT_REVIEWS,
 				FILENAME_PRODUCT_REVIEWS_INFO,
+				FILENAME_EZPAGES,
 			);
 
 			// News & Article Manager SEO support
@@ -88,6 +89,7 @@
 				'USE_SEO_CACHE_MANUFACTURERS' => defined('USE_SEO_CACHE_MANUFACTURERS') ? USE_SEO_CACHE_MANUFACTURERS : 'false',
 				'USE_SEO_CACHE_ARTICLES' => defined('USE_SEO_CACHE_ARTICLES') ? USE_SEO_CACHE_ARTICLES : 'false',
 				'USE_SEO_CACHE_INFO_PAGES' => defined('USE_SEO_CACHE_INFO_PAGES') ? USE_SEO_CACHE_INFO_PAGES : 'false',
+				'USE_SEO_CACHE_EZ_PAGES' => defined('USE_SEO_CACHE_EZ_PAGES') ? USE_SEO_CACHE_EZ_PAGES : 'false',
 				'USE_SEO_REDIRECT' => defined('USE_SEO_REDIRECT') ? USE_SEO_REDIRECT : 'false',
 				'SEO_REWRITE_TYPE' => defined('SEO_REWRITE_TYPE') ? SEO_REWRITE_TYPE : 'false',
 				'SEO_URLS_FILTER_SHORT_WORDS' => defined('SEO_URLS_FILTER_SHORT_WORDS') ? SEO_URLS_FILTER_SHORT_WORDS : 'false',
@@ -118,6 +120,9 @@
 
 				// Info Manager (Open Operations)
 				'info_manager_page_id' => '-i-',
+
+				// EZ-Pages SEO support
+				'id' => '-ezp-',
 			);
 		
 			if ($this->attributes['USE_SEO_CACHE_GLOBAL'] == 'true'){
@@ -128,6 +133,7 @@
 				if ( $this->attributes['USE_SEO_CACHE_MANUFACTURERS'] == 'true' ) $this->generate_manufacturers_cache();
 				if ( $this->attributes['USE_SEO_CACHE_ARTICLES'] == 'true' && defined('TABLE_NEWS_ARTICLES_TEXT')) $this->generate_news_articles_cache();
 				if ( $this->attributes['USE_SEO_CACHE_INFO_PAGES'] == 'true' && defined('TABLE_INFO_MANAGER')) $this->generate_info_manager_cache();
+				if ( $this->attributes['USE_SEO_CACHE_EZ_PAGES'] == 'true' ) $this->generate_ezpages_cache();
 			}
 
 			if ($this->attributes['USE_SEO_REDIRECT'] == 'true'){
@@ -439,6 +445,16 @@
 						break;
 					} # end switch
 					break;
+				case 'id':	// EZ-Pages
+					switch(true){
+						case ($page == FILENAME_EZPAGES):
+							$url = $this->make_url($page, $this->get_ezpages_name($p2[1]), $p2[0], $p2[1], '.html', $separator);
+							break;
+						default:
+							$container[$p2[0]] = $p2[1];
+							break;
+						} # end switch
+					break;
 				default:
 					$container[$p2[0]] = $p2[1]; 
 					break;
@@ -643,8 +659,38 @@
 	} # end function
 
 /**
- * Function to retrieve full cPath from category ID 
- * @author Bobby Easland 
+ * Function to get the EZ-Pages name. Use evaluated cache, per page cache, or database query in that order of precedent.
+ * @author Bobby Easland, Ronald Crawford
+ * @version 1.0
+ * @param integer $mID
+ * @return string
+ */
+	function get_ezpages_name($ezpID){
+		switch(true){
+			case ($this->attributes['USE_SEO_CACHE_GLOBAL'] == 'true' && defined('EZPAGES_NAME_' . $ezpID)):
+				$return = constant('EZPAGES_NAME_' . $ezpID);
+				$this->cache['EZPAGES'][$ezpID] = $return;
+				break;
+			case ($this->attributes['USE_SEO_CACHE_GLOBAL'] == 'true' && isset($this->cache['EZPAGES'][$ezpID])):
+				$return = $this->cache['EZPAGES'][$ezpID];
+				break;
+			default:
+				$sql = "SELECT pages_title as ezpName
+						FROM ".TABLE_EZPAGES."
+						WHERE pages_id='".(int)$ezpID."'
+						LIMIT 1";
+				$result = $this->db->Execute($sql);
+				$ezpName = $this->strip($result->fields['ezpName']);
+				$this->cache['EZPAGES'][$ezpID] = $ezpName;
+				$return = $ezpName;
+				break;
+		} # end switch
+		return $return;
+	} # end function
+
+/**
+ * Function to retrieve full cPath from category ID
+ * @author Bobby Easland
  * @version 1.1
  * @param mixed $cID Could contain cPath or single category_id
  * @param integer $original Single category_id passed back by reference
@@ -834,6 +880,32 @@
 		  }
 		}
 	}
+
+/**
+ * Function to generate EZ-Pages cache entries
+ * @author Bobby Easland, Ronald Crawford
+ * @version 1.0
+ */
+	function generate_ezpages_cache(){
+		$this->is_cached($this->cache_file . 'ezpages', $is_cached, $is_expired);
+		if ( !$is_cached || $is_expired ) {
+		$sql = "SELECT pages_id as id, pages_title as name
+				FROM ".TABLE_EZPAGES."
+				WHERE language_id = '".(int)$this->languages_id."'";
+		$ezpages = $this->db->Execute($sql);
+		$ezpages_cache = '';
+		while (!$ezpages->EOF) {
+			$define = 'define(\'EZPAGES_NAME_' . $ezpages->fields['id'] . '\', \'' . $this->strip($ezpages->fields['name']) . '\');';
+			$ezpages_cache .= $define . "\n";
+			eval("$define");
+			$product->MoveNext();
+		}
+		$this->save_cache($this->cache_file . 'ezpages', $ezpages_cache, 'EVAL', 1 , 1);
+		unset($ezpages_cache);
+		} else {
+			$this->get_cache($this->cache_file . 'ezpages');
+		}
+	} # end function
 
 /**
  * Function to generate products cache entries 

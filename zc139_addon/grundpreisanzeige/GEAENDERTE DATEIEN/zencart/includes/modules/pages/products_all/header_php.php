@@ -6,7 +6,7 @@
  * @copyright Copyright 2003-2010 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: header_php.php for base unit price 2010-04-04 19:19:18Z webchills $
+ * @version $Id: header_php.php for base unit price ZC139 2010-09-22 20:19:18Z webchills $
  */
 
   require(DIR_WS_MODULES . zen_get_module_directory('require_languages.php'));

@@ -1,8 +1,9 @@
 ##### WICHTIG: Ersetze bei RewriteBase /shop/ mit dem Verzeichnis, in dem der Zen-Cart Shop läuft, relativ zum Root Verzeichnis angegeben.
+##### Beispiel 1: Shop läuft im Rootverzeichnis auf http://www.meinshop.de : RewriteBase /
+##### Beispiel 2: Shop läuft im Unterverzeichnis auf http://www.meinshop.de/onlineshop : RewriteBase /onlineshop/
 
-Options +FollowSymLinks
 RewriteEngine On
-RewriteBase /shop/
+RewriteBase /demo/139/
 
 # From Ultimate SEO URLs
 RewriteRule ^(.*)-p-(.*).html$ index\.php?main_page=product_info&products_id=$2&%{QUERY_STRING} [L]
@@ -11,6 +12,7 @@ RewriteRule ^(.*)-m-([0-9]+).html$ index\.php?main_page=index&manufacturers_id=$
 RewriteRule ^(.*)-pi-([0-9]+).html$ index\.php?main_page=popup_image&pID=$2&%{QUERY_STRING} [L]
 RewriteRule ^(.*)-pr-([0-9]+).html$ index\.php?main_page=product_reviews&products_id=$2&%{QUERY_STRING} [L]
 RewriteRule ^(.*)-pri-([0-9]+).html$ index\.php?main_page=product_reviews_info&products_id=$2&%{QUERY_STRING} [L]
+RewriteRule ^(.*)-ezp-([0-9]+).html$ index\.php?main_page=page&id=$2&%{QUERY_STRING} [L]
 
 # For Open Operations Info Manager
 RewriteRule ^(.*)-i-([0-9]+).html$ index\.php?main_page=info_manager&pages_id=$2&%{QUERY_STRING} [L]
