@@ -10,7 +10,7 @@
 <body>
 <div id="header">
 <h2>Image Handler 2.3 für Zen-Cart 1.3.9 deutsch</h2>
-  <a href="index.html">Übersicht</a> | <a href="installation.html">Installation</a> |  FAQ</div>
+  <a href="index.html">Übersicht</a> | <a href="installation.html">Installation</a> |  Konfiguration</div>
    
 <div id="wrapper">
 <div class="content">
@@ -24,77 +24,23 @@
   Entscheiden Sie sich für Breite oder Höhe, Image Handler macht den Rest. <br />
   Falls Sie den Hover-Effekt für die kleinen Bilder nutzen wollen (IH - Kleine Bilder - Zoom steht voreingestellt auf yes), beachten Sie, dass für die Vergrößerung die Größe genommen wird, 
   die Sie für die mittleren Artikelbilder eingestellt haben (Artikelbeschreibung: Breite der Artikelbilder bzw. Artikelbeschreibung: Höhe der Artikelbilder)<br />
+  Mittlere Artikelbilder werden nicht von einem Hover-Effekt vergrößert!
   <br />
   <br />
-  Hier eine genauere Erläuterung zu den Optionen unter Admin &gt; Konfiguration &gt; Bilder</p>
-<table style="text-align: left; width: 780px; height: 128px;" border="1" cellpadding="2" cellspacing="2">
-  <tbody>
-    <tr>
-      <td style="vertical-align: top; width: 262px;">Kleine Bilder</td>
-      <td style="vertical-align: top; width: 498px;">Artikelbilder, die in den Sideboxen erscheinen (Neue Artikel, Empfohlene Artikel, usw.). Die Einstellungen für &quot;Kleine Bilder&quot; steuern auch die Größe der zusätzlichen Artikelbilder auf der Artikeldetailseite.</td>
-    </tr>
-    <tr>
-      <td style="vertical-align: top; width: 262px;">Image - Product
-        Listing</td>
-      <td style="vertical-align: top; width: 498px;">Product images
-        which appear in
-        the product category listing pages</td>
-    </tr>
-    <tr>
-      <td style="vertical-align: top; width: 262px;">Image - Product
-        New Listing</td>
-      <td style="vertical-align: top; width: 498px;">Product images
-        which appear in the
-        product new listing pages</td>
-    </tr>
-    <tr>
-      <td style="vertical-align: top; width: 262px;">Image - Featured
-        Products</td>
-      <td style="vertical-align: top; width: 498px;">Product images
-        which appear in the
-        featured product&nbsp; listing pages</td>
-    </tr>
-    <tr>
-      <td style="vertical-align: top; width: 262px;">Image - Product
-        All Listing</td>
-      <td style="vertical-align: top; width: 498px;">Product images
-        which appear in the
-        all products listing pages<br /></td>
-    </tr>
-    <tr>
-      <td style="vertical-align: top; width: 262px;">Product Info</td>
-      <td style="vertical-align: top; width: 498px;">Product images
-        which appear on the product info page</td>
-    </tr>
-    <tr>
-      <td style="vertical-align: top; width: 262px;">IH small image</td>
-      <td style="vertical-align: top; width: 498px;">Settings applies
-        to the product images that appear in the sideboxes, and all the
-        product listing images</td>
-    </tr>
-    <tr>
-      <td style="vertical-align: top; width: 262px;">IH medium image</td>
-      <td style="vertical-align: top; width: 498px;">Settings applies
-        to the product image that appears on the product info page and the
-        rollover image displayed when hovering your mouse over the the small
-        images.</td>
-    </tr>
-    <tr>
-      <td style="vertical-align: top;">IH large image</td>
-      <td style="vertical-align: top;">Settings applies to the the
-        large product image (the one that displays when you
-        click on the &quot;larger image&quot; link on the product info page)</td>
-    </tr>
-  </tbody>
-</table>
-<p>Tipp:<br />
+Tipp:<br />
   Stellen Sie immer nur die Bildbreite ein und stellen Sie die Höhe auf 0.<br />
   Die korrekte Höhe wird errechnet, wenn Sie folgende Einstellungen aktiv haben:<br />
   Bildgröße berechnen: true<br />
   Proportionale Bilder für Artikel &amp; Kategorien verwenden: 1  <br />
  <br />
-Auch bei IH - &nbsp;Große Bilder - Maximale Breite oder Höhe stellen Sie am besten nur die Breite ein und stellen die Höhe auf 0.</p>
-<p>Außer natürlich, Sie bereiten Ihre Bilder ohnehin vorher in einem Bildbearbeitungsprogramm auf die exakt passenden proportionalen Größen vor.</p>
+Auch bei IH - &nbsp;Große Bilder - Maximale Breite oder Höhe stellen Sie am besten nur die Breite ein und stellen die Höhe auf 0.<br />
+Außer natürlich, Sie bereiten Ihre Bilder ohnehin vorher in einem Bildbearbeitungsprogramm auf die exakt passenden proportionalen Größen vor.</p>
+<h3><b>Bildgrößen</b></h3>
+<p>Es werden nicht nur numerische Werte akzeptiert, sondern auch   Parameter mit einem angefügten &bdquo;!&ldquo; (Ausrufezeichen), was einen <em>force canvas size</em> Modus anzeigt. Die Bildgrösse wird damit angepasst und zentriert im   vorgegebenen Bereich positioniert, anstatt das Bild an nur eine der   Dimensionen anzupassen sobald es nicht das selbe Seitenverhältnis wie   die Grundeinstellung aufweist. Das klingt zu kompliziert?  Probieren Sie es aus: Erstellen Sie einen hübschen, bunten   Hintergrund und testen beide Werte mit und ohne das angefügte   Ausrufezeichen. </p>
+<p>Es gibt verschiedene Vorgehensweisen, um die  Dimensionen von Bildern festzulegen.<br />
+Sie können dies auf dem üblichen Weg tun und einfach Breite (width) und   Höhe (hight) in Pixels angeben. Setzen Sie beispielsweise width auf 100 und   height auf 80. Wenn Ihr Bild Abmessungen von 200x200 Pixel hat, wird es   auf 80x80 Pixel verkleinert, da die Höhe ja 80 Pixel nicht übersteigen   darf.<br />
+Sie können auch nur entweder die Breite oder die Höhe angeben,   beispielsweise mit 100, und die andere Dimension leer lassen (oder auf 0   stellen). Nun haben Sie eine Breite oder Höhe festgelegt, in der das Bild   angezeigt werden soll. Dabei wird das Seitenverhältnis beibehalten.<br />
+Sie können die Abmessungen auch wie im ersten Beispiel angeben, jedoch   ein &bdquo;!&ldquo; (Ausrufezeichen) an eine der Dimensionen anhängen   (beispielsweise 80! für die Höhe kleiner Bilder). Die angepaßten Bilder   werden auf einem Feld, das genau über die angegebenen Masse verfügt,   mittig angezeigt. Wenn Sie also 100x80! festgelegt haben, wird Ihr   200x200 Pixel Bild von vorhin auf 80x80 Pixel reduziert und zentriert in   einem 100x80 Pixel Feld mit der angegebenen Hintergrundfarbe angezeigt.   Betrachten Sie es als eine Art erzwungene Bildgrösse ohne   durcheinandergebrachte Seitenverhältnisse. </p>
 <h3><b>Watermarks</b></h3>
 Wenn Sie Ihre Bilder mit einem Wasserzeichen schützen wollen, können Sie das unter Konfiguration &gt; Bilder für die kleinen, mittleren und großen Artikelbilder separat aktivieren. Benötigt werden dazu folgende Bilddateien für die Wasserzeichen:<br />
 <ul>
@@ -102,13 +48,53 @@ Wenn Sie Ihre Bilder mit einem Wasserzeichen schützen wollen, können Sie das u
   <li> images/medium/watermark_MED.png </li>
   <li> images/large/watermark_LRG.png </li>
 </ul>
-In dieser Installation sind bereits Beispielwasserzeichen in Form eines Zen-Cart Logos enthalten. Überschreiben Sie diese Beispieldateien mit Ihrem eigenen Wasserzeichen. Die Position des Wassezeichen können Sie ebenfalls unter Konfiguration &gt; Bilder einstellen: IH - Wasserzeichen - Position. Voreingestellt ist zentriert.
-
-<p>&nbsp;</p>
-<hr/>
-<p><strong>5) Meine Frage wird hier nicht beantwortet?</strong><a name="5" id="5"></a></p>
-<p>Schau mal hier:<br />
-  <a href="http://www.zen-cart.at/zcvb/forum" target="_blank">http://www.zen-cart.at/zcvb/forum</a></p>
+<p>In dieser Installation sind bereits Beispielwasserzeichen in Form eines Zen-Cart Logos enthalten. Überschreiben Sie diese Beispieldateien mit Ihrem eigenen Wasserzeichen. Die Position des Wassezeichen können Sie ebenfalls unter Konfiguration &gt; Bilder einstellen: IH - Wasserzeichen - Position. Voreingestellt ist zentriert.
+ </p>
+<h3><b>GD libraries und Image Magick</b></h3>
+<p>Um Bilder und ihre Grösse anzupassen, muss zusätzlich zu Image Handler 2.3   entweder GD libraries (ab Version 2) oder ImageMagick (ab Version 6)   installiert sein. Um herauszufinden, ob deine PHP-Version GD libraries   anbietet, suchen Sie im Admin unter Tools -&gt; Server Info nach &quot;GD&quot;. Ob   eine ImageMagick-Installation vorhanden ist, erfähren Sie von Ihrem   Hostinganbieter.<br />
+  Standardmäßig wird mit GD libraries gearbeitet. Wenn Sie stattdessen Image Magick verwenden wollen, dann müssen Sie in folgender Datei eine Änderung vornehmen:<br />
+  includes/extra_configures/bmz_image_handler_conf.php</p>
+<p>Hier ist standardmäßig folgender Eintrag:</p>
+<p><code>$ihConf['im_convert']           = '';</code>
+  </p>Das bedeutet, dass Image Magick nicht verwendet wird.</p>
+<p>Um ImageMagick zu verwenden, geben Sie hier den Pfad zu Image Magick an, üblicherweise ist das:</p>
+<code>$ihConf['im_convert']           = '/usr/bin/convert';</code>
+<p>Je nach Provider könnte der Pfad auch anders lauten, bitte im Zweifel mit Ihrem Webhoster abklären</p>
+<h3><b>Gewünschte Dateitypen</b></h3>
+<p>Sie können für jede Bildgröße wählen zwischen .png, .jpg, .gif oder   no_change (keine Änderung). Heraufgeladene Bilder werden so belassen wie   sie sind, aber die generierten Dateien simulieren den Dateityp, den   Sie hier angeben. GIF ist gut für kleine Vorschaubilder geeignet und kann   Transparenz simulieren. Mit JPG ist keine Transparenz möglich, es   bietet jedoch ein sehr gutes Dateiqualität/Druck Verhältnis,   insbesondere für Fotografien. Für größere und mittlere Bilder ist dieser   Dateityp am ehesten geeignet. PNG Dateien simulieren alpha Transparenz   und ebenso viele Farben wie jpg, haben jedoch eine größere Dateigröße   als jpg und gif. Internet Explorer hat in älteren Versionen Schwierigkeiten, alpha   Transparenz anzuzeigen, so daß Sie besser mit gif arbeiten, sofern Sie   Transparenz benötigen.</p>
+<h3><b>Druckqualität</b></h3>
+<p>Sie können die Qualität für die Ausgabe als jpg für kleine, mittlere und   große Bilder vorgeben. Diese Einstellung ist auf einer Skala von 0 bis   100 für alle drei Bildgrössen auf 85 festgesetzt und ist sehr gut, außer   wenn Sie entweder außerordentlich genauen Druck oder extrem kleine   Bilder benötigen. Ein höherer Wert bringt bessere Qualität größerer   Dateien.</p>
+<h3><b>Hintergrundfarbe</b></h3>
+<p>
+Sie können die Hintergrundfarbe jeder Bildgrösse durch Eingabe der  RGB-Farbwerte aller drei Farbkomponenten (rot, grün und blau), getrennt durch Doppelpunkte, festlegen. Die Werte der Farbkomponenten bewegen   sich zwischen 0 und 255. Die folgenden Beispiele sollen zeigen, wie die  Hintergrundfarbe eingestellt werden kann:
+</p>
+<ul>
+  <li>255:255:255 (weiss)</li>
+  <li>255:0:0 (rot)</li>
+  <li>255:200:200 (hellrot)</li>
+  <li>0:255:0 (grün)</li>
+  <li>0:0:255 (blau)</li>
+  <li>255:0:255 (violett)</li>
+  <li>255:255:0 (gelb)</li>
+</ul>
+<p>Wenn Sie die Transparenz eines hochgeladenen Bildes beibehalten möchten, müssen Sie den Wert der Hintergrundfarbe auf transparent   stellen.<br />
+Mit gif Bildern können Sie beispielsweise transparent 255:255:255   anstelle von absoluter Transparenz festlegen, so daß die   halbdurchsichtigen Bildpunkte mit der angegebenen Hintergrundfarbe   verbunden werden. Bildpunkte mit einer Transparenz-Schwelle von mehr als   90% (dies ist der Standard) werden volltransparent dargestellt. Wenn Sie   die besagte Farbe auf den Wert der Hintergrundfarbe Ihrer Webseite   einstellen, erhöht dies infolge einer Reduktion des &bdquo;Treppeneffekts&ldquo; die   sichtbare Qualität der gifs beträchtlich.</p>
+<h3><b>Ein Beispiel</b></h3>
+<p>Sie haben mit Ihrer Digitalkamera ein Bild   von einem netten Produkt geschossen und den Hintergrund mit Ihrem   Lieblings-Fotoprogramm entfernt. Sie speichern diese   Datei als Portable Network Graphic (png), um den alpha channel   beizubehalten, der die transparenten Zonen festlegt, durch die hindurch   Sie Ihre Webseite betrachten wollen. Nehmen wir an, das Bild ist 600   Pixel breit und 800 Pixel hoch (600x800). Für die kleinen Bilder haben Sie einen Wert von 100x80 eingegeben und für die mittleren 150x120.<br />
+Da die Produktliste-Ansicht verschiedene Farben für die Anzeigereihen   hat, möchten Sie wenigstens für die kleinen Bilder die Transparenz   erhalten. Internet Explorer kann in älteren Versionen nicht png Bilder mit   Transparenz anzeigen, also verwenden Sie besser  gifs. Sie wählen also   .gif als Dateityp für kleine Bilder und transparent für den Hintergrund   der kleinen Bilder.<br />
+Nun denken Sie an die mittleren und großen Bilder. Sie möchten sie   nicht im gif Format haben, da sie nicht sehr gut gedruckt werden, und Sie möchten auch gerne mehr als nur 256 Farben in den hochauflösenden   Bildern zur Verfügung haben. Ausserdem brauchen Sie keine Transparenz, da   Sie nur eine Hintergrundfarbe auf den Produkt-Infoseiten und im   Popup-Fenster haben, also benutzten Sie .jpg. Dieses Format wählen Sie also   für Ihre mittleren und großen Bilder aus. Nehmen wir an, Sie haben sowohl   auf den Produkt-Infoseiten als auch im Popup-Fenster einen weißen   Hintergrund, deshalb geben Sie 255:255:255 in die Felder für den   Hintergrund der mittleren und großen Bilder ein.</p>
+<h3><b>Benutzen von Image Handler</b></h3>
+<p>
+Da Image Handler meistens im Hintergrund arbeitet, ohne dass ihn jemand  bemerkt, gibt es nicht viel dazu zu sagen. Sie können Image Handler auf   zwei Arten aufrufen:<br />
+1)
+<br />
+Admin → Webshop → Kategorien &amp; Artikel<br />
+Klicken Sie beim jeweiligen Artikel auf das kleine <u><img src="clip_image008.gif" alt="" border="0" /></u> Icon zwischen dem Kopieren- und dem Attribute-Icon klicken, um die Image Handler Bildverwaltung für den jeweiligen Artikel aufzurufen.<br />
+2)<br />
+Admin → Tools → Image Handler 2.3<br />
+ Bietet eine eigene Oberfläche , um Kategorien und Artikel anzuzeigen und die Bilder hochzuladen<br />
+Natürlich  können Sie auch weiterhin Artikelbilder über die Produktinfoseiten hochladen.
+</p>
 <h1>Unterstützen Sie die Weiterentwicklung der deutschen Zen-Cart Version!</h1>
  <p>Sie finden dieses Modul nützlich?<br/>
  Ich freue mich über einen Espresso, Capuccino oder Irish Coffee:<br />
