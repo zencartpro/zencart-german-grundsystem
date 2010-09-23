@@ -3202,7 +3202,7 @@ INSERT INTO zones VALUES (78,38,'YT','Yukon Territory');
 
 # Germany
 INSERT INTO zones VALUES (79,81,'NDS','Niedersachsen');
-INSERT INTO zones VALUES (80,81,'BAW','Baden-WÃ¼rttemberg');
+INSERT INTO zones VALUES (80,81,'BAW','Baden-Württemberg');
 INSERT INTO zones VALUES (81,81,'BAY','Bayern');
 INSERT INTO zones VALUES (82,81,'BER','Berlin');
 INSERT INTO zones VALUES (83,81,'BRG','Brandenburg');
@@ -3216,14 +3216,14 @@ INSERT INTO zones VALUES (90,81,'SAR','Saarland');
 INSERT INTO zones VALUES (91,81,'SAS','Sachsen');
 INSERT INTO zones VALUES (92,81,'SAC','Sachsen-Anhalt');
 INSERT INTO zones VALUES (93,81,'SCN','Schleswig-Holstein');
-INSERT INTO zones VALUES (94,81,'THE','ThÃ¼ringen');
+INSERT INTO zones VALUES (94,81,'THE','Thüringen');
 
 # Austria
 INSERT INTO zones VALUES (95,14,'WI','Wien');
-INSERT INTO zones VALUES (96,14,'NO','NiederÃ¶sterreich');
-INSERT INTO zones VALUES (97,14,'OO','OberÃ¶sterreich');
+INSERT INTO zones VALUES (96,14,'NO','Niederösterreich');
+INSERT INTO zones VALUES (97,14,'OO','Oberösterreich');
 INSERT INTO zones VALUES (98,14,'SB','Salzburg');
-INSERT INTO zones VALUES (99,14,'KN','KÃ¤rnten');
+INSERT INTO zones VALUES (99,14,'KN','Kärnten');
 INSERT INTO zones VALUES (100,14,'ST','Steiermark');
 INSERT INTO zones VALUES (101,14,'TI','Tirol');
 INSERT INTO zones VALUES (102,14,'BL','Burgenland');
@@ -3255,7 +3255,7 @@ INSERT INTO zones VALUES (125,204,'UR','Uri');
 INSERT INTO zones VALUES (126,204,'VD','Waadt');
 INSERT INTO zones VALUES (127,204,'VS','Wallis');
 INSERT INTO zones VALUES (128,204,'ZG','Zug');
-INSERT INTO zones VALUES (129,204,'ZH','ZÃ¼rich');
+INSERT INTO zones VALUES (129,204,'ZH','Zürich');
 
 # Spain
 INSERT INTO zones (zone_country_id, zone_code, zone_name) VALUES (195,'A Corua','A Corua');
@@ -3560,5 +3560,8 @@ INSERT INTO project_version (project_version_id, project_version_key, project_ve
 INSERT INTO project_version (project_version_id, project_version_key, project_version_major, project_version_minor, project_version_patch1, project_version_patch1_source, project_version_patch2, project_version_patch2_source, project_version_comment, project_version_date_applied) VALUES (2, 'Zen-Cart Database', '1', '3.9f', '', '', '', '', 'Fresh Installation', now());
 INSERT INTO project_version_history (project_version_id, project_version_key, project_version_major, project_version_minor, project_version_patch, project_version_comment, project_version_date_applied) VALUES (1, 'Zen-Cart Main', '1', '3.9f', '', 'Fresh Installation', now());
 INSERT INTO project_version_history (project_version_id, project_version_key, project_version_major, project_version_minor, project_version_patch, project_version_comment, project_version_date_applied) VALUES (2, 'Zen-Cart Database', '1', '3.9f', '', 'Fresh Installation', now());
-
+INSERT INTO orders_status VALUES (2, 43, 'In Arbeit');
+INSERT INTO orders_status VALUES (1, 43, 'Wartet');
+INSERT INTO orders_status VALUES (3, 43, 'Verschickt');
+INSERT INTO orders_status VALUES (4, 43, 'Update');
 ##### End of SQL setup for Zen Cart.
