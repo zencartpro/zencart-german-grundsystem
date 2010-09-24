@@ -37,7 +37,7 @@ $(document).ready(function() {
         });
     });
     var options = { 
-        success:       showResponse,  // post-submit callback 
+        success:       showResponse2,  // post-submit callback 
         url: 'map_shop2_func.php?ac=d', 
         type:      'post'        // 'get' or 'post', override for form's 'method' attribute 
         //dataType:  null        // 'xml', 'script', or 'json' (expected server response type) 
@@ -68,10 +68,15 @@ function showResponse(responseText, statusText){
         $('#MAP_SHOP2_LNG').val('NULL');
         alert('konnte deine adresse nicht finden');  
     }
-    $('#MAP_SHOP2_DESCRIPTION').val(responseText.post);
+    //$('#MAP_SHOP2_DESCRIPTION').val(responseText);
     //alert(responseText.lat);
 }
 function showMap(responseText, statusText){
     //alert(responseText);
     $('#map').html(responseText);
+    alert('2');
+}
+
+function showResponse2(responseText, statusText){
+    alert(responseText);
 }
