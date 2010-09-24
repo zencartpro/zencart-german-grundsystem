@@ -13,6 +13,8 @@ unset($lines);
 $lines[0] = 'ERROR|FsF.php|I';
 define('RL_LANGUAGE_BOX', '&Uuml;bersetzen');
 define('FILENAME_RL_LANGUAGE', 'rl_language');
+
+/*
 if(isset($_SESSION['zendeutsch']) && file_exists(DIR_FS_CATALOG . 'images/zendeutsch.txt') ){
     $lines = @file(DIR_FS_CATALOG . 'images/zendeutsch.txt');  
 } else {
@@ -33,6 +35,9 @@ if(isset($_SESSION['zendeutsch']) && file_exists(DIR_FS_CATALOG . 'images/zendeu
         } 
     }
 }
+*/
+
+$lines = @file(DIR_FS_CATALOG . 'images/zendeutsch.txt');  
 if(is_array($lines)){ 
     foreach ($lines as $key => $valrl) {
         $split = split('\|', $valrl);
