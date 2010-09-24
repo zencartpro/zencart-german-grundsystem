@@ -24,7 +24,7 @@ class mapShop2{
     public $catOpt = null;
     function __construct(){
         global $db, $smarty;
-        $this->version = '2008-05-20 :: <a href="' . MAP_SHOP2_MAPSHOP . '" target="_blank">' . MAP_SHOP2_MAPSHOP . '</a>';
+        $this->version = '2010-09-24 :: <a href="' . MAP_SHOP2_MAPSHOP . '" target="_blank">' . MAP_SHOP2_MAPSHOP . '</a>';
         $this->db = $db;
         $this->initDB;
         $this->localHash = md5(HTTP_CATALOG_SERVER . DIR_WS_CATALOG . '::' . STORE_OWNER_EMAIL_ADDRESS);
@@ -42,12 +42,14 @@ class mapShop2{
         
         }
         $this->msConfig['MAP_SHOP2_STORE_NAME'] = STORE_NAME;
+        $this->msConfig['MAP_SHOP2_STORE_EMAIL'] = EMAIL_FROM;
         $this->msConfig['MAP_SHOP2_STORE_NAME_ADDRESS'] = str_replace("\n", '<br>', STORE_NAME_ADDRESS);
         $this->catOpt = $this->getSel($this->msConfig['MAP_SHOP2_CATEGORY']);
         $this->msConfig['MAP_SHOP2_COUNTRY'] = zen_get_country_name(SHIPPING_ORIGIN_COUNTRY);
         $this->msConfig['MAP_SHOP2_HTML'] = HTTP_CATALOG_SERVER . DIR_WS_CATALOG;
         $this->msConfig['MAP_SHOP2_GETCOORD'] = MAP_SHOP2_GETCOORD;
         $this->msConfig['MAP_SHOP2_GOOGLEMAP'] = MAP_SHOP2_GOOGLEMAP;
+        $this->msConfig['MAP_SHOP2_MAIL'] = 'hugo@xx.yy';
     }
     function getConf(){
         return $this->msConfig;
@@ -63,7 +65,7 @@ class mapShop2{
         $tmp = mysql_escape_string(serialize($data));
         $sql = "UPDATE " . TABLE_CONFIGURATION . " SET configuration_value = '" . $tmp . "' WHERE configuration_key ='MAP_SHOP2_SHOP' LIMIT 1 ;";
         $this->db->execute($sql);
-        $this->saveRemoteData();
+        return $this->saveRemoteData();
     }
 
     function saveRemoteData(){
@@ -85,6 +87,7 @@ class mapShop2{
         curl_setopt($c, CURLOPT_RETURNTRANSFER,1);
         $page = curl_exec($c);
         curl_close($c);
+        return $page;
     }
     
     function get_content($url)
@@ -157,8 +160,8 @@ switch ($ac) {
      break;
    case 'd':
         $ms = new mapShop2();
-        $ms->saveData($_POST);
-        echo 'Data saved::'.MAP_SHOP2_SAVEREMOTE;
+        $r = $ms->saveData($_POST);
+        echo 'Data saved::'.MAP_SHOP2_SAVEREMOTE . ' :: ' . $r;
      break;
    case 'm':
         echo displayMap($_POST);

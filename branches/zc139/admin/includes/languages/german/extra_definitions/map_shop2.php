@@ -19,6 +19,9 @@
   define('MAP_SHOP2_FSTORE_NAME', 'Name des Shops');
   define('MAP_SHOP2_HINT_STORE_NAME', 'Eintrag bearbeiten');
 
+  define('MAP_SHOP2_FSTORE_EMAIL', 'eMail des Shops');
+  define('MAP_SHOP2_HINT_STORE_EMAIL', 'Eintrag bearbeiten');
+
   define('MAP_SHOP2_FSTORE_NAME_ADDRESS', 'Die Shop Adresse');
   define('MAP_SHOP2_HINT_STORE_NAME_ADDRESS', 'Eintrag bearbeiten');
 
