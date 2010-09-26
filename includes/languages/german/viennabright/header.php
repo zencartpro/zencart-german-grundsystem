@@ -9,7 +9,7 @@
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
  * @translators: cyaneo/hugo13/wflohr/maleborg/webchills	http://www.zen-cart.at
- * @version $Id: header.php 628 2010-08-30 19:10:05Z webchills $
+ * @version $Id: header.php 653 2010-09-26 10:10:05Z webchills $
  */
 
 // header text in includes/header.php
@@ -22,6 +22,7 @@
   define('HEADER_TITLE_LOGOFF', 'Abmelden');
   define('HEADER_TITLE_LOGIN', 'Anmelden');
   define('HEADER_TITLE_REGISTER', 'Registrieren');
+  define('HEADER_TITLE_WELCOMEUSER', 'Willkommen');
   define('HEADER_OR', 'oder');
 
 // added defines for header alt and text

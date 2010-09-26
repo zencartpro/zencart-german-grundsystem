@@ -8,7 +8,7 @@
 * @copyright Copyright 2003-2010 Zen Cart Development Team
 * @copyright Portions Copyright 2003 osCommerce
 * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
-* @version $Id: tpl_top_nav.php 628 2010-08-31 09:38:54Z webchills $
+* @version $Id: tpl_top_nav.php 653 2010-09-26 10:38:54Z webchills $
 */    
 ?>
 
@@ -50,7 +50,7 @@ if ($current_page_base == 'shopping_cart') { $active = 'tab_active';
     <ul class="list-style-none inline-list">
 <?php if ($_SESSION['customer_id']) { ?>
 	<li>
-		<a href="<?php echo zen_href_link(FILENAME_ACCOUNT, '', 'SSL'); ?>"><?php echo ($_SESSION['customer_first_name'].' '.$_SESSION['customer_last_name']);?></a>
+		<?php echo HEADER_TITLE_WELCOMEUSER; ?> <?php echo $_SESSION['customer_first_name'];?> <?php echo $_SESSION['customer_last_name'];?>
 	</li>
     <li><a href="<?php echo zen_href_link(FILENAME_LOGOFF, '', 'SSL'); ?>"><?php echo HEADER_TITLE_LOGOFF; ?></a></li>
 	</ul>
