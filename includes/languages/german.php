@@ -142,7 +142,9 @@ define('BOX_HEADING_INFORMATION', 'Information');
 define('BOX_INFORMATION_PRIVACY', 'Datenschutz');
 define('BOX_INFORMATION_CONDITIONS', 'AGB');
 define('BOX_INFORMATION_SHIPPING', 'Preise und Versand');
-define('BOX_INFORMATION_CONTACT', 'Impressum &amp; Kontakt');
+define('BOX_INFORMATION_WIDERRUFSRECHT', 'Widerrufsrecht');
+define('BOX_INFORMATION_IMPRESSUM', 'Impressum');
+define('BOX_INFORMATION_CONTACT', 'Kontakt');
 define('BOX_BBINDEX', 'Forum');
 define('BOX_INFORMATION_UNSUBSCRIBE', 'Newsletter abbestellen');
 

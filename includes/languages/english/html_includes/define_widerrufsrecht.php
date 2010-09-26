@@ -1,3 +1,3 @@
 <!-- bof define_widerrufsrecht -->
-<p>Tragen Sie hier den Text zu Ihrem Widerrufsrecht ein</p>
+<p>Your page text goes here</p>
 <!-- eof define_widerrufsrecht -->

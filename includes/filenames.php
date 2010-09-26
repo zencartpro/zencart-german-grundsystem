@@ -7,7 +7,7 @@
  * @copyright Copyright 2003-2010 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: filenames.php 628 2010-08-30 09:51:58Z webchills $
+ * @version $Id: filenames.php 628 2010-09-26 08:51:58Z webchills $
  * @private
  */
 /**
@@ -86,6 +86,7 @@ define('FILENAME_GV_MAIL', 'gv_mail');
 define('FILENAME_GV_SENT', 'gv_sent');
 define('FILENAME_FEATURED','featured');
 define('FILENAME_FEATURED_PRODUCTS','featured_products');
+define('FILENAME_IMPRESSUM', 'impressum');
 define('FILENAME_INFO_SHOPPING_CART', 'info_shopping_cart');
 define('FILENAME_LANGUAGES', 'languages');
 define('FILENAME_LAYOUT_CONTROLLER','layout_controller');

@@ -9,7 +9,7 @@
  * @copyright Copyright 2003-2010 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: tpl_site_map_default.php 4340 2006-09-02 04:54:53Z drbyte $
+ * @version $Id: tpl_site_map_default.php 651 2010-09-26 09:54:53Z drbyte $
  */
 ?>
 <div class="centerColumn" id="siteMap">
@@ -54,6 +54,12 @@
 <?php } ?>
 <?php if (DEFINE_CONDITIONS_STATUS <= '1') { ?>
             <li><?php echo '<a href="' . zen_href_link(FILENAME_CONDITIONS) . '">' . BOX_INFORMATION_CONDITIONS . '</a>'; ?></li>
+<?php } ?>
+<?php if (DEFINE_WIDERRUFSRECHT_STATUS <= '1') { ?>
+            <li><?php echo '<a href="' . zen_href_link(FILENAME_WIDERRUFSRECHT) . '">' . BOX_INFORMATION_WIDERRUFSRECHT . '</a>'; ?></li>
+<?php } ?>
+<?php if (DEFINE_IMPRESSUM_STATUS <= '1') { ?>
+            <li><?php echo '<a href="' . zen_href_link(FILENAME_IMPRESSUM) . '">' . BOX_INFORMATION_IMPRESSUM . '</a>'; ?></li>
 <?php } ?>
 <?php if (DEFINE_CONTACT_US_STATUS <= '1') { ?>
             <li><?php echo '<a href="' . zen_href_link(FILENAME_CONTACT_US) . '">' . BOX_INFORMATION_CONTACT . '</a>'; ?></li>
