@@ -6,7 +6,7 @@
 # * @copyright Copyright 2003-2010 Zen Cart Development Team
 # * @copyright Portions Copyright 2003 osCommerce
 # * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
-# * @version $Id: mysql_upgrade_zencart_138_to_139.sql 17019 2010-07-27 07:29:06Z drbyte $
+# * @version $Id: mysql_upgrade_zencart_138_to_139.sql 655 2010-09-26 11:29:06Z webchills $
 #
 
 ############ IMPORTANT INSTRUCTIONS ###############
@@ -36,6 +36,12 @@ UPDATE configuration set configuration_value = 'true' where configuration_key = 
 
 # add switch for new split-tax functionality
 INSERT INTO configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) VALUES ('Show Split Tax Lines', 'SHOW_SPLIT_TAX_CHECKOUT', 'false', 'If multiple tax rates apply, show each rate as a separate line at checkout', '1', '22', 'zen_cfg_select_option(array(\'true\', \'false\'), ', now());
+
+#Impressum (new in 1.3.9 german)
+INSERT into configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, last_modified, date_added, use_function, set_function) values ('Define Imprint', 'DEFINE_IMPRESSUM_STATUS', '1', 'Enable the Defined Imprint Link/Text?<br />0= Link ON, Define Text OFF<br />1= Link ON, Define Text ON<br />2= Link OFF, Define Text ON<br />3= Link OFF, Define Text OFF', '25', '85', now(), now(), NULL, 'zen_cfg_select_option(array(\'0\', \'1\', \'2\', \'3\'),');
+#Widerrufsrecht (new in 1.3.9 german)
+INSERT into configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, last_modified, date_added, use_function, set_function) values ('Define Right of Withdrawal', 'DEFINE_WIDERRUFSRECHT_STATUS', '1', 'Enable the Defined Right of Withdrawal Link/Text?<br />0= Link ON, Define Text OFF<br />1= Link ON, Define Text ON<br />2= Link OFF, Define Text ON<br />3= Link OFF, Define Text OFF', '25', '86', now(), now(), NULL, 'zen_cfg_select_option(array(\'0\', \'1\', \'2\', \'3\'),');
+
 
 # Clear out active customer sessions
 TRUNCATE TABLE whos_online;
