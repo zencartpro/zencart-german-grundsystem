@@ -74,6 +74,10 @@ UPDATE configuration SET configuration_value = 'production' where configuration_
 ALTER TABLE authorizenet CHANGE transaction_id transaction_id bigint default NULL;
 ALTER TABLE paypal CHANGE COLUMN notify_version notify_version varchar(6) NOT NULL default '';
 
+
+#ALTER TABLE counter_history  DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
+ALTER TABLE counter_history CHANGE startdate startdate CHAR( 8 ) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL;
+
 # fix counter_history race condition
 #NEXT_X_ROWS_AS_ONE_COMMAND:5
 CREATE TABLE counter_history_clean as 
