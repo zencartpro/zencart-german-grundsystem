@@ -2,11 +2,11 @@
 /**
 * @package languageDefines
 
-* @copyright Copyright 2003-2007 Zen Cart Development Team
+* @copyright Copyright 2003-2010 Zen Cart Development Team
 * @copyright Copyright 2009-2010 12leaves.com
 * @copyright Portions Copyright 2003 osCommerce
 * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
-* @version $Id: english.php 628 2010-08-30 19:04:35Z webchills $
+* @version $Id: english.php 651 2010-09-26 09:04:35Z webchills $
 */
 
 // FOLLOWING WERE moved to meta_tags.php
@@ -146,6 +146,8 @@
   define('BOX_INFORMATION_PRIVACY', 'Privacy Notice');
   define('BOX_INFORMATION_CONDITIONS', 'Conditions of Use');
   define('BOX_INFORMATION_SHIPPING', 'Shipping &amp; Returns');
+  define('BOX_INFORMATION_WIDERRUFSRECHT', 'Right of Withdrawal');
+  define('BOX_INFORMATION_IMPRESSUM', 'Imprint');
   define('BOX_INFORMATION_CONTACT', 'Contact Us');
   define('BOX_BBINDEX', 'Forum');
   define('BOX_INFORMATION_UNSUBSCRIBE', 'Newsletter Unsubscribe');

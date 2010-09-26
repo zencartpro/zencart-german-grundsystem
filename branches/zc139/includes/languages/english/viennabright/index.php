@@ -8,10 +8,10 @@
 * @copyright Copyright 2003-2006 Zen Cart Development Team
 * @copyright Portions Copyright 2003 osCommerce
 * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
-* @version $Id: index.php 6550 2007-07-05 03:54:54Z drbyte $
+* @version $Id: index.php 651 2010-09-26 08:54:54Z webchills $
 */
 
-define('TEXT_MAIN','Since the e-commerce became an integral part of business building it is very important how your storefront looks. Well-designed website brings you a boundless opportunity to drive your online-business more efficiently, stimulate sales online and increase your success.<br /><a href="http://www.12leaves.com">12leaves.com</a> experienced team is ready to assist you with a creation of powerful, visually pleasing and user friendly e-commerce website. We offer a wide range of <a href="http://www.12leaves.com/services.html">ecommerce web design services</a>, including logo design, banner design and <a href="http://www.12leaves.com/services.html">PSD to HTML</a> services. Browse our <a href="http://www.12leaves.com/store/free-templates/free-zen-cart-templates/">free Zen Cart Templates</a>, <a href="http://www.12leaves.com/store/free-templates/free-oscommerce-templates/">free osCommerce Templates</a> and premium <a href="http://www.12leaves.com/store/">ecommerce templates</a>.<br /><br />This is the main define statement for the page for english when no template defined file exists. It is located in: <strong>/includes/languages/english/black_pure_free/index.php</strong>');
+define('TEXT_MAIN','This is the main define statement for the page for english. It is located in: <strong>/includes/languages/english/viennabright/index.php</strong>');
 
 // Showcase vs Store
 if (STORE_STATUS == '0') {

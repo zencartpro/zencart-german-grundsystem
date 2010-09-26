@@ -9,10 +9,10 @@
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
  * @translators: cyaneo/hugo13/wflohr/maleborg/webchills	http://www.zen-cart.at
- * @version $Id: index.php 628 2010-08-30 19:10:05Z webchills $
+ * @version $Id: index.php 651 2010-09-26 09:10:05Z webchills $
  */
 
-define('TEXT_MAIN','Definieren Sie hier Ihren persönlichen Text. Diesen Text können Sie in <strong>/includes/languages/german/black_pure_free/index.php</strong> editieren.');
+define('TEXT_MAIN','Definieren Sie hier Ihren persönlichen Text. Diesen Text können Sie in <strong>/includes/languages/german/viennabright/index.php</strong> editieren.');
 
 // Showcase vs Store
 if (STORE_STATUS == '0') {
