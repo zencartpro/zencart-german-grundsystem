@@ -19,6 +19,10 @@
 /**
  * boolean if true the autoloader scripts will be parsed and their output shown. For debugging purposes only.
  */
+// Multilingual Parameter, Timezone
+date_default_timezone_set('Europe/Vienna'); 
+define('DB_CHARSET', 'utf8');
+
 define('DEBUG_AUTOLOAD', false);
 /**
  * boolean used to see if we are in the admin script, obviously set to false here.
