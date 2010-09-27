@@ -7,10 +7,6 @@
  * @version $Id: index.php 14970 2009-11-29 00:56:42Z drbyte $
  */
 
-// Multilingual Parameter, Timezone
-  date_default_timezone_set('Europe/Vienna'); 
-  define('DB_CHARSET', 'utf8');
-
   $version_check_index=true;
   require('includes/application_top.php');
 
