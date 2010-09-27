@@ -28,16 +28,16 @@ class rl1SmartyTemplate extends Smarty
         $this->config_dir  =$path . 'smarty_configs/';
         $this->cache_dir   =$path . 'smarty_cache/';
         if(!file_exists($this->template_dir)){
-            mkdir($this->template_dir);
+            mkdir($this->template_dir, '777', true);
         }
         if(!file_exists($this->compile_dir)){
-            mkdir($this->compile_dir);
+            mkdir($this->compile_dir, '777', true);
         }
         if(!file_exists($this->config_dir)){
-            mkdir($this->config_dir);
+            mkdir($this->config_dir, '777', true);
         }
         if(!file_exists($this->cache_dir)){
-            mkdir($this->cache_dir);
+            mkdir($this->cache_dir, '777', true);
         }
 
         $this->caching     =true;
