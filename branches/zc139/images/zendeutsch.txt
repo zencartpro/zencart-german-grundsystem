@@ -1,10 +1,4 @@
-Forum|http://www.zen-cart.at/MDForum.htm|E
-FAQ|http://www.zen-cart.at/FAQ.htm|E
-----
-InterNetAbschalten|http://www.dasinternetabschalten.de|E
-----
-cyaneo|http://www.brainnetwork.at|E
-hugo13|http://edv.langheiter.com/zencartfaq.0.html|E
-maleborg|http://zencart.edv-service-sachs.de|E
-webchills|http://www.webchills.at|E
-
+Forum|http://www.zen-cart.at/zcvb/forum|E
+FAQ|http://www.zen-cart.at/zcvb/forum/vbglossar.php|E
+hugo13|http://edv.langheiter.com|E
+webchills|http://www.webchills.at/zencart|E

@@ -63,7 +63,7 @@ define('TEXT_INFO_META_TAGS_USAGE', '<strong>NOTE:</strong> The Site/Tagline is 
 define('HTML_PARAMS','dir="ltr" lang="en"');
 
 // charset for web pages and emails
-define('CHARSET', 'iso-8859-1');
+define('CHARSET', 'utf-8');
 
 // header text in includes/header.php
 define('HEADER_TITLE_TOP', 'Admin Home');
