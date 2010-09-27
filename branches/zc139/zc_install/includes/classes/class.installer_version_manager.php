@@ -20,7 +20,7 @@
 ////  c. add a new check_versionXXXX() function to the end of the class (BEFORE the closing } in the file)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
 #error_reporting(E_ALL);
-require_once('../admin/includes/functions/extra_functions/rl_tools.php');
+require_once(DIR_FS_CATALOG . 'includes/' . DIR_WS_INCLUDES . 'functions/extra_functions/rl_tools.php');
   class versionManager extends base{
     var $latest_version, $found_version, $zdb_configuration_table_found;
 
