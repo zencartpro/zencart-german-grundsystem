@@ -85,7 +85,7 @@ $this->enabled = false;
 
 // Deaktivieren wenn Versandart ~ Versandkosten per Gewicht
 if ($this->enabled == true) {
-if (substr_count($_SESSION['shipping']['id'], 'perwightunit') !=0) {
+if (substr_count($_SESSION['shipping']['id'], 'perweightunit') !=0) {
 $this->enabled = false;
 }
 }
