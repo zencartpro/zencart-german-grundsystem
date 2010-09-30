@@ -6,7 +6,7 @@
  * @copyright Copyright 2003-2010 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: authorizenet_aim.php 16256 2010-05-10 23:59:53Z drbyte $
+ * @version $Id: authorizenet_aim.php 17638 2010-09-28 00:23:07Z drbyte $
  */
 /**
  * Authorize.net Payment Module (AIM version)
@@ -303,7 +303,7 @@ class authorizenet_aim extends base {
     $new_order_id = ($new_order_id + 1);
 
     // add randomized suffix to order id to produce uniqueness ... since it's unwise to submit the same order-number twice to authorize.net
-    $new_order_id = (string)$new_order_id . '-' . zen_create_random_value(6);
+    $new_order_id = (string)$new_order_id . '-' . zen_create_random_value(6, 'chars');
 
 
     // Populate an array that contains all of the data to be sent to Authorize.net
@@ -370,6 +370,15 @@ class authorizenet_aim extends base {
 
     $response['Expected-MD5-Hash'] = $this->calc_md5_response($response[6], $response[9]);
     $response['HashMatchStatus'] = ($response[37] == $response['Expected-MD5-Hash']) ? 'PASS' : 'FAIL';
+
+    if ($response[0] == '3' && $response[2] == '103') $response['ErrorDetails'] = 'Invalid Transaction Key in AIM configuration.';
+    if ($response[0] == '2' && $response[2] == '44') $response['ErrorDetails'] = 'Declined due to CVV refusal by issuing bank.';
+    if ($response[0] == '2' && $response[2] == '45') $response['ErrorDetails'] = 'Declined due to AVS/CVV filters.';
+    if ($response[0] == '2' && $response[2] == '65') $response['ErrorDetails'] = 'Declined due to custom CVV filters.';
+    if ($response[0] == '3' && $response[2] == '66') $response['ErrorDetails'] = 'Transaction did not meet security guideline requirements.';
+    if ($response[0] == '3' && $response[2] == '128') $response['ErrorDetails'] = 'Refused by customers bank.';
+    if ($response[0] == '2' && $response[2] == '250') $response['ErrorDetails'] = 'Transaction submitted from a blocked IP address.';
+    if ($response[0] == '2' && $response[2] == '250') $response['ErrorDetails'] = 'Declined by Fraud Detection Suite filter.';
 
     $this->_debugActions($response, $order_time, $sessID);
 
@@ -595,7 +604,7 @@ class authorizenet_aim extends base {
     if ($order_time == '') $order_time = date("F j, Y, g:i a");
     // convert output to 1-based array for easier understanding:
     $resp_output = array_reverse($response);
-    $resp_output[] = 'Response from gateway';
+    $resp_output[] = 'Response from gateway' . (isset($response['ErrorDetails']) ? ': ' . $response['ErrorDetails'] : '');
     $resp_output = array_reverse($resp_output);
 
     // DEBUG LOGGING
@@ -626,7 +635,7 @@ class authorizenet_aim extends base {
     // Insert the send and receive response data into the database.
     // This can be used for testing or for implementation in other applications
     // This can be turned on and off if the Admin Section
-    if (MODULE_PAYMENT_AUTHORIZENET_AIM_STORE_DATA == 'True'){
+    if (MODULE_PAYMENT_AUTHORIZENET_AIM_STORE_DATA == 'True') {
       $db_response_text = $response[3] . ($this->commError !='' ? ' - Comm results: ' . $this->commErrNo . ' ' . $this->commError : '');
       $db_response_text .= ($response[0] == 2 && $response[2] == 4) ? ' NOTICE: Card should be picked up - possibly stolen ' : '';
       $db_response_text .= ($response[0] == 3 && $response[2] == 11) ? ' DUPLICATE TRANSACTION ATTEMPT ' : '';
@@ -651,9 +660,9 @@ class authorizenet_aim extends base {
    */
   function tableCheckup() {
     global $db, $sniffer;
-    $fieldOkay1 = (method_exists($sniffer, 'field_type')) ? $sniffer->field_type(TABLE_AUTHORIZENET, 'transaction_id', 'bigint', true) : -1;
+    $fieldOkay1 = (method_exists($sniffer, 'field_type')) ? $sniffer->field_type(TABLE_AUTHORIZENET, 'transaction_id', 'bigint(20)', true) : -1;
     if ($fieldOkay1 !== true) {
-      $db->Execute("ALTER TABLE " . TABLE_AUTHORIZENET . " CHANGE transaction_id transaction_id bigint default NULL");
+      $db->Execute("ALTER TABLE " . TABLE_AUTHORIZENET . " CHANGE transaction_id transaction_id bigint(20) default NULL");
     }
   }
  /**

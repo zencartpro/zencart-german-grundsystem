@@ -8,6 +8,7 @@
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
  * @version $Id$
+ * @hint: german
  */
 
 
@@ -266,7 +267,7 @@
     }
 
     function trimTrailingSlash($string) {
-      return (substr($string,-1)=='/') ? substr($string,0,(strlen($string)-1)) : $string;
+      return rtrim($string, '/');
     }
 
     function resetConfigInfo() {
@@ -353,9 +354,9 @@
 
     function throwException($details, $moreinfo = '', $location = '', $fname = '') {
       global $current_page;
-      $fname = ($fname == '') ? date('M-d-Y_h-i') : $fname;
+      if ($_SESSION['logfilename'] == '') $_SESSION['logfilename'] = ($fname == '') ? date('M-d-Y_h-i-s-') . zen_create_random_value(6) : $fname;
       $location = ($location == '') ? $current_page : $location;
-      if ($fp = @fopen(DEBUG_LOG_FOLDER . '/zcInstallExceptionDetails_' . $fname . '.log', 'a')) {
+      if ($fp = @fopen(DEBUG_LOG_FOLDER . '/zcInstallExceptionDetails_' . $_SESSION['logfilename'] . '.log', 'a')) {
         fwrite($fp, '---------------' . "\n" . date('M d Y G:i') . ' -- ' . $location . "\n" . $details . "\n\n");
         fclose($fp);
       }
@@ -363,9 +364,9 @@
 
     function logDetails($details, $location = '', $fname = '') {
       global $current_page;
-      $fname = ($fname == '') ? date('M-d-Y_h') : $fname;
+      if ($_SESSION['logfilename'] == '') $_SESSION['logfilename'] = ($fname == '') ? date('M-d-Y_h-i-s-') . zen_create_random_value(6) : $fname;
       $location = ($location == '') ? $current_page : $location;
-      if ($fp = @fopen(DEBUG_LOG_FOLDER . '/zcInstallLog_' . $fname . '.log', 'a')) {
+      if ($fp = @fopen(DEBUG_LOG_FOLDER . '/zcInstallLog_' . $_SESSION['logfilename'] . '.log', 'a')) {
         fwrite($fp, '---------------' . "\n" . date('M d Y G:i') . ' -- ' . $location . "\n" . $details . "\n\n");
         fclose($fp);
       }

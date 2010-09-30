@@ -293,24 +293,19 @@ class linkpoint_api {
     global $order_totals;
     reset($order_totals);
     for ($i=0, $n=sizeof($order_totals); $i<$n; $i++) {
-      if ($order_totals[$i]['code'] == 'ot_subtotal') $myorder["subtotal"]    = round($order_totals[$i]['value'],2);
-      if ($order_totals[$i]['code'] == 'ot_tax')      $myorder["tax"]         = round($order_totals[$i]['value'],2);
-      if ($order_totals[$i]['code'] == 'ot_shipping') $myorder["shipping"]    = round($order_totals[$i]['value'],2);
-      if ($order_totals[$i]['code'] == 'ot_total')    $myorder["chargetotal"] = round($order_totals[$i]['value'],2);
-      global $$order_totals[$i]['code'];
-      if (substr($order_totals[$i]['text'], 0, 1) == '-' || (isset($$order_totals[$i]['code']->credit_class) && $$order_totals[$i]['code']->credit_class == true)) {
-        $creditsApplied += round($order_totals[$i]['value'],2);
-      } elseif (!in_array($order_totals[$i]['code'], array('ot_total','ot_subtotal','ot_tax','ot_shipping'))) {
-        $surcharges += $order_totals[$i]['value'];
-/*
-        // deal with surcharges/fees
-        $num_line_items++;
-        $myorder["items"][$num_line_items]['id']          = 'Surcharge';
-        $myorder["items"][$num_line_items]['description'] = $order_totals[$i]['title'];
-        $myorder["items"][$num_line_items]['quantity']    = 1;
-        $myorder["items"][$num_line_items]['price']       = number_format($order_totals[$i]['value'], 2, '.', '');
-        $myorder["subtotal"] += $surcharges;
-*/
+      if ($order_totals[$i]['code'] == '') continue;
+      if (in_array($order_totals[$i]['code'], array('ot_total','ot_subtotal','ot_tax','ot_shipping'))) {
+        if ($order_totals[$i]['code'] == 'ot_subtotal') $myorder["subtotal"]    = round($order_totals[$i]['value'],2);
+        if ($order_totals[$i]['code'] == 'ot_tax')      $myorder["tax"]         = round($order_totals[$i]['value'],2);
+        if ($order_totals[$i]['code'] == 'ot_shipping') $myorder["shipping"]    = round($order_totals[$i]['value'],2);
+        if ($order_totals[$i]['code'] == 'ot_total')    $myorder["chargetotal"] = round($order_totals[$i]['value'],2);
+      } else {
+        global $$order_totals[$i]['code'];
+        if (substr($order_totals[$i]['text'], 0, 1) == '-' || (isset($$order_totals[$i]['code']->credit_class) && $$order_totals[$i]['code']->credit_class == true)) {
+          $creditsApplied += round($order_totals[$i]['value'],2);
+        } else {
+          $surcharges += $order_totals[$i]['value'];
+        }
       }
     }
     foreach(array('subtotal', 'tax', 'chargetotal', 'shipping') as $i) {
@@ -361,6 +356,15 @@ class linkpoint_api {
         $myorder["items"][$num_line_items]['price']       = number_format($order->products[$i]['onetime_charges'], 2, '.', '');
       }
     }
+/*
+        // deal with surcharges/fees
+        $num_line_items++;
+        $myorder["items"][$num_line_items]['id']          = 'Surcharge';
+        $myorder["items"][$num_line_items]['description'] = $order_totals[$i]['title'];
+        $myorder["items"][$num_line_items]['quantity']    = 1;
+        $myorder["items"][$num_line_items]['price']       = number_format($order_totals[$i]['value'], 2, '.', '');
+        $myorder["subtotal"] += $surcharges;
+*/
 
      // if partial quantities apply, discounts are used, or other problems with line-item details exist, do not send line-item details, otherwise validation error occurs
       if ($partial_quantities_flag || $i > 20) {
@@ -422,7 +426,7 @@ class linkpoint_api {
 
     // resubmit without subtotals if subtotal error occurs
     if ($result["r_approved"] != "APPROVED" && !($result["r_approved"] == "SUBMITTED" && $result["r_message"] == 'APPROVED')) {
-      if (substr($result['r_error'],0,10) == 'SGS-002301') {
+      if (in_array(substr($result['r_error'],0,10), array('SGS-002301', 'SGS-010503'))) {
         foreach(array('items', 'subtotal', 'tax', 'shipping') as $i) {
           if (isset($myorder[$i])) unset($myorder[$i]);
         }

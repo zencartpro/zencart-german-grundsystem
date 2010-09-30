@@ -5,10 +5,12 @@
  * @package paymentMethod
  * @copyright Copyright 2003-2010 Zen Cart Development Team
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: tpl_ec_button.php 16337 2010-05-24 09:52:29Z drbyte $
+ * @version $Id: tpl_ec_button.php 17642 2010-09-28 19:06:13Z drbyte $
  */
 
 $paypalec_enabled = (defined('MODULE_PAYMENT_PAYPALWPP_STATUS') && MODULE_PAYMENT_PAYPALWPP_STATUS == 'True');
+$ecs_off = (defined('MODULE_PAYMENT_PAYPALWPP_ECS_BUTTON') && MODULE_PAYMENT_PAYPALWPP_ECS_BUTTON == 'Off');
+if ($ecs_off) $paypalec_enabled = FALSE;
 
 if ($paypalec_enabled) {
   // check if logged-in customer's address is in an acceptable zone

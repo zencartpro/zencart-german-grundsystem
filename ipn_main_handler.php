@@ -6,7 +6,7 @@
  * @copyright Copyright 2003-2010 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: ipn_main_handler.php 16723 2010-06-12 19:05:41Z drbyte $
+ * @version $Id: ipn_main_handler.php 17555 2010-09-14 08:47:12Z drbyte $
  */
 
 /**
@@ -155,7 +155,7 @@ Processing...
 
   ipn_debug_email('Breakpoint: 4 - ' . 'Details:  txn_type=' . $txn_type . '    ordersID = '. $ordersID . '  IPN_id=' . $paypalipnID . "\n\n" . '   Relevant data from POST:' . "\n     " . 'txn_type = ' . $txn_type . "\n     " . 'parent_txn_id = ' . ($_POST['parent_txn_id'] =='' ? 'None' : $_POST['parent_txn_id']) . "\n     " . 'txn_id = ' . $_POST['txn_id']);
 
-  if (!$isECtransaction && !isset($_POST['parent_txn_id'])) {
+  if (!$isECtransaction && !isset($_POST['parent_txn_id']) && $txn_type != 'cleared-echeck') {
     if (defined('MODULE_PAYMENT_PAYPAL_PDTTOKEN') && MODULE_PAYMENT_PAYPAL_PDTTOKEN != '') {
       ipn_debug_email('IPN NOTICE :: IPN pausing: waiting for PDT to process. Sleeping 10 seconds ...');
       sleep(10);
@@ -165,7 +165,8 @@ Processing...
       $ipnFoundSession = false;
     }
   }
-  if ($ipnFoundSession == FALSE && !$isECtransaction && !$isDPtransaction) {
+
+  if ($ipnFoundSession == FALSE && !$isECtransaction && !$isDPtransaction && $txn_type != 'cleared-echeck') {
     ipn_debug_email('NOTICE: IPN Processing Aborted due to missing matching transaction data, as per earlier debug message. Perhaps this transaction was already entered via PDT? Thus there is no need to process this incoming IPN notification.');
     die();
   }

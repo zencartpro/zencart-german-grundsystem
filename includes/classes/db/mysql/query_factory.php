@@ -191,7 +191,16 @@ class queryFactory extends base {
         $this->set_error('0', DB_ERROR_NOT_CONNECTED);
       }
       $zp_db_resource = @mysql_query($zf_sql, $this->link);
-      if (!$zp_db_resource) $this->set_error(@mysql_errno($this->link),@mysql_error($this->link));
+      if (!$zp_db_resource) {
+        if (@mysql_errno($this->link) == 2006) {
+          $this->link = FALSE;
+          $this->connect($this->host, $this->user, $this->password, $this->database, $this->pConnect, $this->real);
+          $zp_db_resource = @mysql_query($zf_sql, $this->link);
+        }
+        if (!$zp_db_resource) {
+          $this->set_error(@mysql_errno($this->link),@mysql_error($this->link));
+        }
+      }
       if(!is_resource($zp_db_resource)){
         $obj = null;
         return true;

@@ -6,7 +6,7 @@
  * @copyright Copyright 2003-2010 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: checkout_process.php 16910 2010-07-15 20:35:27Z drbyte $
+ * @version $Id: checkout_process.php 17462 2010-09-05 06:23:35Z drbyte $
  */
 if (!defined('IS_ADMIN_FLAG')) {
   die('Illegal Access');
@@ -34,7 +34,10 @@ if (!strstr($_SERVER['HTTP_REFERER'], FILENAME_CHECKOUT_CONFIRMATION)) {
 // BEGIN CC SLAM PREVENTION
 if (!isset($_SESSION['payment_attempt'])) $_SESSION['payment_attempt'] = 0;
 $_SESSION['payment_attempt']++;
-if ($_SESSION['payment_attempt'] > 6) {
+$zco_notifier->notify('NOTIFY_CHECKOUT_SLAMMING_ALERT');
+if ($_SESSION['payment_attempt'] > 3) {
+  $zco_notifier->notify('NOTIFY_CHECKOUT_SLAMMING_LOCKOUT');
+  $_SESSION['cart']->reset(TRUE);
   zen_session_destroy();
   zen_redirect(zen_href_link(FILENAME_TIME_OUT));
 }
@@ -92,6 +95,8 @@ $zco_notifier->notify('NOTIFY_CHECKOUT_PROCESS_AFTER_ORDER_CREATE_ADD_PRODUCTS')
 $order->send_order_email($insert_id, 2);
 $zco_notifier->notify('NOTIFY_CHECKOUT_PROCESS_AFTER_SEND_ORDER_EMAIL');
 
+// clear slamming protection since payment was accepted
+if (isset($_SESSION['payment_attempt'])) unset($_SESSION['payment_attempt']);
 
 /**
  * Calculate order amount for display purposes on checkout-success page as well as adword campaigns etc
@@ -102,6 +107,8 @@ $zco_notifier->notify('NOTIFY_CHECKOUT_PROCESS_AFTER_SEND_ORDER_EMAIL');
     if ($order_totals[$i]['code'] == 'ot_subtotal') $order_subtotal = $order_totals[$i]['value'];
     if ($$order_totals[$i]['code']->credit_class == true) $credits_applied += $order_totals[$i]['value'];
     if ($order_totals[$i]['code'] == 'ot_total') $ototal = $order_totals[$i]['value'];
+    if ($order_totals[$i]['code'] == 'ot_tax') $otax = $order_totals[$i]['value'];
+    if ($order_totals[$i]['code'] == 'ot_shipping') $oshipping = $order_totals[$i]['value'];
   }
   $commissionable_order = ($order_subtotal - $credits_applied);
   $commissionable_order_formatted = $currencies->format($commissionable_order);
@@ -117,6 +124,7 @@ $zco_notifier->notify('NOTIFY_CHECKOUT_PROCESS_AFTER_SEND_ORDER_EMAIL');
   $_SESSION['order_summary']['payment_module_code'] = $order->info['payment_module_code'];
   $_SESSION['order_summary']['shipping_method'] = $order->info['shipping_method'];
   $_SESSION['order_summary']['orders_status'] = $order->info['orders_status'];
-  $_SESSION['order_summary']['tax'] = $order->info['tax'];
+  $_SESSION['order_summary']['tax'] = $otax;
+  $_SESSION['order_summary']['shipping'] = $oshipping;
   $zco_notifier->notify('NOTIFY_CHECKOUT_PROCESS_HANDLE_AFFILIATES');
 
