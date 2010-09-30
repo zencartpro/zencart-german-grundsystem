@@ -320,7 +320,7 @@ class authorizenet_echeck extends base {
     $last_order_id = $db->Execute("select * from " . TABLE_ORDERS . " order by orders_id desc limit 1");
     $new_order_id = $last_order_id->fields['orders_id'];
     $new_order_id = ($new_order_id + 1);
-    $new_order_id = (string)$new_order_id . '-' . zen_create_random_value(6);
+    $new_order_id = (string)$new_order_id . '-' . zen_create_random_value(6, 'chars');
 
     // Populate an array that contains all of the data to be sent to Authorize.net
     $submit_data = array(
@@ -673,9 +673,9 @@ class authorizenet_echeck extends base {
    */
   function tableCheckup() {
     global $db, $sniffer;
-    $fieldOkay1 = (method_exists($sniffer, 'field_type')) ? $sniffer->field_type(TABLE_AUTHORIZENET, 'transaction_id', 'bigint', true) : -1;
+    $fieldOkay1 = (method_exists($sniffer, 'field_type')) ? $sniffer->field_type(TABLE_AUTHORIZENET, 'transaction_id', 'bigint(20)', true) : -1;
     if ($fieldOkay1 !== true) {
-      $db->Execute("ALTER TABLE " . TABLE_AUTHORIZENET . " CHANGE transaction_id transaction_id bigint default NULL");
+      $db->Execute("ALTER TABLE " . TABLE_AUTHORIZENET . " CHANGE transaction_id transaction_id bigint(20) default NULL");
     }
   }
   /**

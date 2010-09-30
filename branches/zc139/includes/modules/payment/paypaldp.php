@@ -128,7 +128,7 @@ class paypaldp extends base {
     global $order;
     $this->code = 'paypaldp';
     $this->codeTitle = MODULE_PAYMENT_PAYPALDP_TEXT_ADMIN_TITLE_WPP;
-    $this->codeVersion = '1.3.9f';
+    $this->codeVersion = '1.3.9g';
     $this->enableDirectPayment = true;
     $this->enabled = (MODULE_PAYMENT_PAYPALDP_STATUS == 'True');
     // Set the title & description text based on the mode we're in
@@ -322,17 +322,15 @@ class paypaldp extends base {
                                'field' => zen_draw_input_field('paypalwpp_cc_issuenumber', $maestronum, 'size="4" maxlength="4"' . ' id="'.$this->code.'-cc-issuenumber"' . $onFocus . ' autocomplete="off"'),
                                'tag' => $this->code.'-cc-issuenumber')));
       // 3D-Secure
-      array_splice($selection['fields'], 4, 0,
-                   array(array('title' => '',
-                               'field' => '<table cellspacing="0" cellpadding="3" bgcolor="FFFFFF" id="' . $this->code.'-cc-securetext"><tr>' .
-                                     '<td width="50%" align="center"><a href="javascript:void window.open(\'vbv_learn_more.html\',\'vbv_service\',\'width=550,height=450\')">' .
-                                     zen_image(DIR_WS_IMAGES.'3ds/vbv_learn_more.gif') . '</a></td>' .
-                                     '<td width="50%" align="center"><a href="javascript:void window.open(\'mcs_learn_more.html\',\'mcsc_service\',\'width=550,height=450\')">' .
-                                     zen_image(DIR_WS_IMAGES.'3ds/mcsc_learn_more.gif') . '</a></td>' .
-                                     '</tr></table>' .
-                                     '<table cellspacing="0" cellpadding="3" bgcolor="FFFFFF">' .
-                                     '<tr><td class="smallText" valign="top">' . TEXT_3DS_CARD_MAY_BE_ENROLLED . '</td></tr></table>',
-                               'tag' => $this->code.'-cc-securetext')));
+      $selection['fields'][] = array('title' => '',
+                               'field' => '<div id="' . $this->code.'-cc-securetext"><p>' .
+                                     '<a href="javascript:void window.open(\'vbv_learn_more.html\',\'vbv_service\',\'width=550,height=450\')">' .
+                                     zen_image(DIR_WS_IMAGES.'3ds/vbv_learn_more.gif') . '</a>' .
+                                     '<a href="javascript:void window.open(\'mcs_learn_more.html\',\'mcsc_service\',\'width=550,height=450\')">' .
+                                     zen_image(DIR_WS_IMAGES.'3ds/mcsc_learn_more.gif') . '</a>' .
+                                     '</p>' .
+                                     '<p>' . TEXT_3DS_CARD_MAY_BE_ENROLLED . '</p></div>',
+                               'tag' => $this->code.'-cc-securetext');
     }
     return $selection;
   }
@@ -525,14 +523,12 @@ class paypaldp extends base {
     if ($this->requiresLookup($_POST['paypalwpp_cc_number']) == true) {
           $confirmation['fields'][count($confirmation['fields'])] = array(
               'title' => '',
-              'field' => '<table cellspacing="0" cellpadding="3" bgcolor="FFFFFF"><tr>' .
-                         '<td width="50%" align="center"><a href="javascript:void window.open(\'vbv_learn_more.html\',\'vbv_service\',\'width=550,height=450\')">' .
-                         zen_image(DIR_WS_IMAGES.'3ds/vbv_learn_more.gif') . '</a></td>' .
-                         '<td width="50%" align="center"><a href="javascript:void window.open(\'mcs_learn_more.html\',\'mcsc_service\',\'width=550,height=450\')">' .
-                         zen_image(DIR_WS_IMAGES.'3ds/mcsc_learn_more.gif') . '</a></td>' .
-                         '</tr></table>' .
-                         '<table cellspacing="0" cellpadding="3" bgcolor="FFFFFF" valign="top">' .
-                         '<tr><td class="smallText">' . TEXT_3DS_CARD_MAY_BE_ENROLLED . '</td></table>');
+              'field' => '<div id="' . $this->code.'-cc-securetext"><p>' .
+                         '<a href="javascript:void window.open(\'vbv_learn_more.html\',\'vbv_service\',\'width=550,height=450\')">' .
+                         zen_image(DIR_WS_IMAGES.'3ds/vbv_learn_more.gif') . '</a>' .
+                         '<a href="javascript:void window.open(\'mcs_learn_more.html\',\'mcsc_service\',\'width=550,height=450\')">' .
+                         zen_image(DIR_WS_IMAGES.'3ds/mcsc_learn_more.gif') . '</a></p>' .
+                         '<p>' . TEXT_3DS_CARD_MAY_BE_ENROLLED . '</p></div>');
     }
     return $confirmation;
   }
@@ -952,7 +948,7 @@ class paypaldp extends base {
     $zc_ppHist = $db->Execute($sql);
     if ($zc_ppHist->RecordCount() == 0) return false;
     $txnID = $zc_ppHist->fields['txn_id'];
-    if ($txnID == '' || $txnID < 1) return FALSE;
+    if ($txnID == '' || $txnID === 0) return FALSE;
     /**
      * Read data from PayPal
      */
@@ -1431,6 +1427,7 @@ class paypaldp extends base {
     $subTotalShipping = 0;
     $subtotalPRE = array('no data');
     $discountProblemsFlag = FALSE;
+    $flag_treat_as_partial = FALSE;
 
     if (sizeof($order_totals)) {
       // prepare subtotals
@@ -1483,7 +1480,7 @@ class paypaldp extends base {
               $shipping_tax = 0;
             }
           }
-          $taxAdjustmentForShipping = zen_calculate_tax($order->info['shipping_cost'], $shipping_tax);
+          $taxAdjustmentForShipping = zen_round(zen_calculate_tax($order->info['shipping_cost'], $shipping_tax), $currencies->currencies[$_SESSION['currency']]['decimal_places']);
           $optionsST['SHIPPINGAMT'] += $taxAdjustmentForShipping;
           $optionsST['TAXAMT'] -= $taxAdjustmentForShipping;
         }
@@ -1513,11 +1510,18 @@ class paypaldp extends base {
         } // end loop
       } // endif attribute-info
 
+      // check for rounding problems with taxes
+      $m1 = zen_round($order->products[$i]['qty'] * $order->products[$i]['final_price'], $currencies->currencies[$_SESSION['currency']]['decimal_places']);
+      $m2 = ($order->products[$i]['qty'] * zen_round($order->products[$i]['final_price'], $currencies->currencies[$_SESSION['currency']]['decimal_places']));
+      $n1 = $order->products[$i]['qty'] * zen_calculate_tax($order->products[$i]['final_price'], $order->products[$i]['tax']);
+      $n2 = zen_calculate_tax($order->products[$i]['qty'] * $order->products[$i]['final_price'], $order->products[$i]['tax']);
+      if ($m1 != $m2 || zen_round($n1, $currencies->currencies[$_SESSION['currency']]['decimal_places']) != zen_round($n2, $currencies->currencies[$_SESSION['currency']]['decimal_places'])) $flag_treat_as_partial = true;
+
       // PayPal can't handle partial-quantity values, so fudge it here
-      if ($order->products[$i]['qty'] != (int)$order->products[$i]['qty']) {
+      if ($flag_treat_as_partial || $order->products[$i]['qty'] != (int)$order->products[$i]['qty']) {
         $optionsLI["L_NAME$k"] = '('.$order->products[$i]['qty'].' x ) ' . $optionsLI["L_NAME$k"];
-        $optionsLI["L_AMT$k"] = ($order->products[$i]['qty'] * $order->products[$i]['final_price']);
-        $optionsLI["L_TAXAMT$k"] = zen_calculate_tax($order->products[$i]['qty'] * $order->products[$i]['final_price'], $order->products[$i]['tax']);
+        $optionsLI["L_AMT$k"] = zen_round($order->products[$i]['qty'] * $order->products[$i]['final_price'], $currencies->currencies[$_SESSION['currency']]['decimal_places']);
+        $optionsLI["L_TAXAMT$k"] = zen_calculate_tax(zen_round($order->products[$i]['qty'] * $order->products[$i]['final_price'], $currencies->currencies[$_SESSION['currency']]['decimal_places']), $order->products[$i]['tax']);
         $optionsLI["L_QTY$k"] = 1;
       } else {
         $optionsLI["L_AMT$k"] = $order->products[$i]['final_price'];
@@ -1607,8 +1611,8 @@ class paypaldp extends base {
     $sumOfLineItems = round($sumOfLineItems, 2);
     $sumOfLineTax = round($sumOfLineTax, 2);
 
-    if ($sumofLineItems == 0) {
-      $sumofLineTax = 0;
+    if ($sumOfLineItems == 0) {
+      $sumOfLineTax = 0;
       $optionsLI = array();
       $discountProblemsFlag = TRUE;
       if ($optionsST['SHIPPINGAMT'] == $optionsST['AMT']) {

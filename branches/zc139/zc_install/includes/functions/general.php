@@ -3,11 +3,10 @@
  * general functions used by the installer
  * @package Installer
  * @access private
- * @copyright Copyright 2003-2007 Zen Cart Development Team
+ * @copyright Copyright 2003-2010 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
  * @version $Id$
- * 
  */
 
   if (!defined('TABLE_UPGRADE_EXCEPTIONS')) define('TABLE_UPGRADE_EXCEPTIONS','upgrade_exceptions');
@@ -60,14 +59,14 @@ function setInputValue($input, $constant, $default) {
 
 function setRadioChecked($input, $constant, $default) {
   if ($input == '') {
-	$input = $default;
+  $input = $default;
   }
   if ($input == 'true') {
-	define($constant . '_FALSE', '');
-	define($constant . '_TRUE', 'checked="checked" ');
+  define($constant . '_FALSE', '');
+  define($constant . '_TRUE', 'checked="checked" ');
   } else {
-	define($constant . '_FALSE', 'checked="checked" ');
-	define($constant . '_TRUE', '');
+  define($constant . '_FALSE', 'checked="checked" ');
+  define($constant . '_TRUE', '');
   }
 }
 
@@ -86,11 +85,11 @@ function executeSql($sql_file, $database, $table_prefix = '', $isupgrade=false) 
   $ignore_line=false;
   $results=0;
   $string='';
-	$result='';
+  $result='';
   $collateSuffix = '';
-	$errors=array();	
+  $errors=array();
 
-  // prepare for upgrader processing 
+  // prepare for upgrader processing
   if ($isupgrade) zen_create_upgrader_table(); // only creates table if doesn't already exist
 
   if (!get_cfg_var('safe_mode')) {
@@ -100,7 +99,7 @@ function executeSql($sql_file, $database, $table_prefix = '', $isupgrade=false) 
   $counter = 0;
   $lines = file($sql_file);
   $newline = '';
-	$lines_to_keep_together_counter=0;
+  $lines_to_keep_together_counter=0;
 //  $saveline = '';
   foreach ($lines as $line) {
     $line = trim($line);
@@ -121,6 +120,7 @@ function executeSql($sql_file, $database, $table_prefix = '', $isupgrade=false) 
 
           $line_upper=strtoupper($line);
           switch (true) {
+          // @hint: german
           case (substr($line_upper, 0, 13) == 'REPLACE INTO '):
             $line = 'REPLACE INTO ' . $table_prefix . substr($line, 13);
             break;
@@ -146,7 +146,7 @@ function executeSql($sql_file, $database, $table_prefix = '', $isupgrade=false) 
               $ignore_line=true;
               if (strtoupper($param[2].' '.$param[3].' '.$param[4]) != 'IF NOT EXISTS') {
                 zen_write_to_upgrade_exceptions_table($line, sprintf(REASON_TABLE_ALREADY_EXISTS,$table), $sql_file);
-              $result=sprintf(REASON_TABLE_ALREADY_EXISTS,$table); //duplicated here for on-screen error-reporting
+                $result=sprintf(REASON_TABLE_ALREADY_EXISTS,$table); //duplicated here for on-screen error-reporting
               }
               break;
             } else {
@@ -158,7 +158,7 @@ function executeSql($sql_file, $database, $table_prefix = '', $isupgrade=false) 
             //check to see if table prefix is going to match
             if (!$tbl_exists = zen_table_exists($param[2])) $result=sprintf(REASON_TABLE_NOT_FOUND,$param[2]).' CHECK PREFIXES!';
             // check to see if INSERT command may be safely executed for "configuration" or "product_type_layout" tables
-            if (($param[2]=='configuration'       && ($result=zen_check_config_key($line))) or 
+            if (($param[2]=='configuration'       && ($result=zen_check_config_key($line))) or
                 ($param[2]=='product_type_layout' && ($result=zen_check_product_type_layout_key($line))) or
                 ($param[2]=='configuration_group' && ($result=zen_check_cfggroup_key($line))) or
                 (!$tbl_exists)    ) {
@@ -173,7 +173,7 @@ function executeSql($sql_file, $database, $table_prefix = '', $isupgrade=false) 
             //check to see if table prefix is going to match
             if (!$tbl_exists = zen_table_exists($param[2])) $result=sprintf(REASON_TABLE_NOT_FOUND,$param[2]).' CHECK PREFIXES!';
             // check to see if INSERT command may be safely executed for "configuration" or "product_type_layout" tables
-            if (($param[2]=='configuration'       && ($result=zen_check_config_key($line))) or 
+            if (($param[2]=='configuration'       && ($result=zen_check_config_key($line))) or
                 ($param[2]=='product_type_layout' && ($result=zen_check_product_type_layout_key($line))) or
                 ($param[2]=='configuration_group' && ($result=zen_check_cfggroup_key($line))) or
                 (!$tbl_exists)    ) {
@@ -196,6 +196,7 @@ function executeSql($sql_file, $database, $table_prefix = '', $isupgrade=false) 
             }
             break;
             case (substr($line_upper, 0, 19) == 'ALTER IGNORE TABLE '):
+            // check to see if ALTER IGNORE command may be safely executed
             if ($result=zen_check_alter_command($param)) {
               zen_write_to_upgrade_exceptions_table($line, $result, $sql_file);
               $ignore_line=true;
@@ -227,12 +228,13 @@ function executeSql($sql_file, $database, $table_prefix = '', $isupgrade=false) 
             }
             break;
           case (substr($line_upper, 0, 13) == 'RENAME TABLE '):
-            // RENAME TABLE command cannot be parsed to insert table prefixes, so skip if zen is using prefixes
+            // RENAME TABLE command cannot be parsed unless it is split into two lines
             if (isset($param[3]) && $param[3] != '') {
               zen_write_to_upgrade_exceptions_table($line, 'RENAME TABLE command must be split onto 2 rows for proper parsing.  Or use phpMyAdmin instead.', $sql_file);
               $result=sprintf('RENAME TABLE [%s] command must be split onto 2 rows for proper parsing.',$param[2]).' CHECK PREFIXES!';
               $ignore_line=true;
             }
+            //check to see if table prefix is going to match
             if (!$tbl_exists = zen_table_exists($param[2])) {
               zen_write_to_upgrade_exceptions_table($line, sprintf(REASON_TABLE_NOT_FOUND,$param[2]).' CHECK PREFIXES!', $sql_file);
               $result=sprintf('RENAME TABLE problem: ' . REASON_TABLE_NOT_FOUND,$param[2]).' CHECK PREFIXES!';
@@ -259,7 +261,7 @@ function executeSql($sql_file, $database, $table_prefix = '', $isupgrade=false) 
               $ignore_line=true;
               break;
             } else {
-            $line = 'UPDATE ' . $table_prefix . substr($line, 7);
+              $line = 'UPDATE ' . $table_prefix . substr($line, 7);
             }
             break;
           case (substr($line_upper, 0, 14) == 'UPDATE IGNORE '):
@@ -315,7 +317,7 @@ function executeSql($sql_file, $database, $table_prefix = '', $isupgrade=false) 
               } //end foreach
               if (substr($line,-1)==',') $line = substr($line,0,(strlen($line)-1)); // remove trailing ','
             } else { //didn't have a comma, but starts with "FROM ", so insert table prefix
-              $line = str_replace('FROM ', 'FROM '.$table_prefix, $line); 
+              $line = str_replace('FROM ', 'FROM '.$table_prefix, $line);
             }//endif substr_count(,)
             break;
           default:
@@ -326,12 +328,12 @@ function executeSql($sql_file, $database, $table_prefix = '', $isupgrade=false) 
 
         if ( substr($line,-1) ==  ';') {
           //found a semicolon, so treat it as a full command, incrementing counter of rows to process at once
-          if (substr($newline,-1)==' ') $newline = substr($newline,0,(strlen($newline)-1)); 
-          $lines_to_keep_together_counter++; 
+          if (substr($newline,-1)==' ') $newline = substr($newline,0,(strlen($newline)-1));
+          $lines_to_keep_together_counter++;
           if ($lines_to_keep_together_counter == $keep_together) { // if all grouped rows have been loaded, go to execute.
             $complete_line = true;
             $lines_to_keep_together_counter=0;
-            if ($collateSuffix != '') {
+            if ($collateSuffix != '' && @mysql_get_server_info() >= '4.1' && (!defined('IGNORE_DB_CHARSET') || (defined('IGNORE_DB_CHARSET') && IGNORE_DB_CHARSET != FALSE))) {
               $newline = rtrim($newline, ';') . $collateSuffix . ';';
               $collateSuffix = '';
             }
@@ -401,46 +403,46 @@ function executeSql($sql_file, $database, $table_prefix = '', $isupgrade=false) 
 // split the e-mail address into user and domain parts
 // need to update to trap for addresses in the format of "first@last"@someplace.com
 // this method will most likely break in that case
-	list( $user, $domain ) = explode( "@", $email );
-	$valid_ip_form = '[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}';
-	$valid_email_pattern = '^[a-z0-9]+[a-z0-9_\.\'\-]*@[a-z0-9]+[a-z0-9\.\-]*\.(([a-z]{2,6})|([0-9]{1,3}))$';
-	$space_check = '[ ]';
+  list( $user, $domain ) = explode( "@", $email );
+  $valid_ip_form = '[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}';
+  $valid_email_pattern = '^[a-z0-9]+[a-z0-9_\.\'\-]*@[a-z0-9]+[a-z0-9\.\-]*\.(([a-z]{2,6})|([0-9]{1,3}))$';
+  $space_check = '[ ]';
 
 // strip beginning and ending quotes, if and only if both present
   if( (preg_match('/^["]/', $user) && preg_match('/["]$/', $user)) ){
     $user = preg_replace ( '/^["]/', '', $user );
     $user = preg_replace ( '/["]$/', '', $user );
     $user = preg_replace ( '/'.$space_check.'/', '', $user ); //spaces in quoted addresses OK per RFC (?)
-		$email = $user."@".$domain; // contine with stripped quotes for remainder
-	}
+    $email = $user."@".$domain; // contine with stripped quotes for remainder
+  }
 
 // if e-mail domain part is an IP address, check each part for a value under 256
   if (preg_match('/'.$valid_ip_form.'/', $domain)) {
-	  $digit = explode( ".", $domain );
-	  for($i=0; $i<4; $i++) {
-		if ($digit[$i] > 255) {
-		  $valid_address = false;
-		  return $valid_address;
-		  exit;
-		}
+    $digit = explode( ".", $domain );
+    for($i=0; $i<4; $i++) {
+    if ($digit[$i] > 255) {
+      $valid_address = false;
+      return $valid_address;
+      exit;
+    }
 // stop crafty people from using internal IP addresses
-		if (($digit[0] == 192) || ($digit[0] == 10)) {
-		  $valid_address = false;
-		  return $valid_address;
-		  exit;
-		}
-	  }
-	}
+    if (($digit[0] == 192) || ($digit[0] == 10)) {
+      $valid_address = false;
+      return $valid_address;
+      exit;
+    }
+    }
+  }
 
   if (!preg_match('/'.$space_check.'/', $email)) { // trap for spaces in
     if ( preg_match('/'.$valid_email_pattern.'/i', $email)) { // validate against valid e-mail patterns
-		$valid_address = true;
-	  } else {
-		$valid_address = false;
-		return $valid_address;
-		exit;
-	  	}
-	  }
+    $valid_address = true;
+    } else {
+    $valid_address = false;
+    return $valid_address;
+    exit;
+      }
+    }
 
 // Verify e-mail has an associated MX and/or A record.
 // Need alternate method to deal with Verisign shenanigans and with Windows Servers
@@ -498,7 +500,7 @@ function executeSql($sql_file, $database, $table_prefix = '', $isupgrade=false) 
 
   function zen_read_config_value($value) {
     $files_array = array();
-		$string='';
+    $string='';
     $files_array[] = '../includes/configure.php';
 
     if ($za_dir = @dir('../includes/' . 'extra_configures')) {
@@ -541,7 +543,7 @@ function executeSql($sql_file, $database, $table_prefix = '', $isupgrade=false) 
       return true;
     } else {
       return false;
-    }   
+    }
   }
 
   function zen_check_database_privs($priv='',$table='',$show_privs=false) {
@@ -557,7 +559,7 @@ function executeSql($sql_file, $database, $table_prefix = '', $isupgrade=false) 
     //Display permissions, or check for suitable permissions to carry out a particular task
       //possible outputs:
       //GRANT ALL PRIVILEGES ON *.* TO 'xyz'@'localhost' WITH GRANT OPTION
-      //GRANT SELECT, INSERT, UPDATE, DELETE, CREATE, DROP, FILE, INDEX, ALTER ON *.* TO 'xyz'@'localhost' IDENTIFIED BY PASSWORD '2344'	
+      //GRANT SELECT, INSERT, UPDATE, DELETE, CREATE, DROP, FILE, INDEX, ALTER ON *.* TO 'xyz'@'localhost' IDENTIFIED BY PASSWORD '2344'
       //GRANT SELECT, INSERT, UPDATE, DELETE, CREATE, DROP, INDEX, ALTER ON `db1`.* TO 'xyz'@'localhost'
       //GRANT SELECT (id) ON db1.tablename TO 'xyz'@'localhost
     global $db;
@@ -650,7 +652,7 @@ function executeSql($sql_file, $database, $table_prefix = '', $isupgrade=false) 
     }
 /*
  * @TODO: verify that individual columns exist, by parsing the index_col_name parameters list
- *        Structure is (colname(len)), 
+ *        Structure is (colname(len)),
  *                  or (colname),
  */
   }
@@ -725,8 +727,8 @@ function executeSql($sql_file, $database, $table_prefix = '', $isupgrade=false) 
             }
             $result->MoveNext();
           }
-/* 
- * @TODO -- add check for FIRST parameter, to check that the FIRST colname specified actually exists 
+/*
+ * @TODO -- add check for FIRST parameter, to check that the FIRST colname specified actually exists
  */
         }
         break;
@@ -796,9 +798,9 @@ function executeSql($sql_file, $database, $table_prefix = '', $isupgrade=false) 
         // if we get here, then the column didn't exist
         return sprintf(REASON_COLUMN_DOESNT_EXIST_TO_CHANGE,$colname);
         break;
-      default: 
+      default:
         // if we get here, then we're processing an ALTER command other than what we're checking for, so let it be processed.
-        return; 
+        return;
         break;
     } //end switch
   }
@@ -863,7 +865,7 @@ function executeSql($sql_file, $database, $table_prefix = '', $isupgrade=false) 
 
   function zen_create_exceptions_table() {
     global $db;
-    if (!zen_table_exists(TABLE_UPGRADE_EXCEPTIONS)) {  
+    if (!zen_table_exists(TABLE_UPGRADE_EXCEPTIONS)) {
       $result = $db->Execute("CREATE TABLE " . DB_PREFIX . TABLE_UPGRADE_EXCEPTIONS ." (
             upgrade_exception_id smallint(5) NOT NULL auto_increment,
             sql_file varchar(50) default NULL,
@@ -900,4 +902,25 @@ function executeSql($sql_file, $database, $table_prefix = '', $isupgrade=false) 
     return ($sid == '') ? '' : '&' . zen_output_string($sid);
   }
 
+////
+  function zen_create_random_value($length, $type = 'mixed') {
+    if ( ($type != 'mixed') && ($type != 'chars') && ($type != 'digits')) return false;
 
+    $rand_value = '';
+    while (strlen($rand_value) < $length) {
+      if ($type == 'digits') {
+        $char = zen_rand(0,9);
+      } else {
+        $char = chr(zen_rand(0,255));
+      }
+      if ($type == 'mixed') {
+        if (preg_match('/^[a-z0-9]$/i', $char)) $rand_value .= $char;
+      } elseif ($type == 'chars') {
+        if (preg_match('/^[a-z]$/i', $char)) $rand_value .= $char;
+      } elseif ($type == 'digits') {
+        if (preg_match('/^[0-9]$/', $char)) $rand_value .= $char;
+      }
+    }
+
+    return $rand_value;
+  }

@@ -6,7 +6,7 @@
  * @copyright Copyright 2003-2010 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: paypalwpp.php 17043 2010-07-28 18:36:22Z drbyte $
+ * @version $Id: paypalwpp.php 17646 2010-09-28 20:28:21Z drbyte $
  */
 /**
  * load the communications layer code
@@ -101,7 +101,7 @@ class paypalwpp extends base {
     global $order;
     $this->code = 'paypalwpp';
     $this->codeTitle = MODULE_PAYMENT_PAYPALWPP_TEXT_ADMIN_TITLE_EC;
-    $this->codeVersion = '1.3.9f';
+    $this->codeVersion = '1.3.9g';
     $this->enableDirectPayment = FALSE;
     $this->enabled = (MODULE_PAYMENT_PAYPALWPP_STATUS == 'True');
     // Set the title & description text based on the mode we're in ... EC vs US/UK vs admin
@@ -502,7 +502,7 @@ class paypalwpp extends base {
     $zc_ppHist = $db->Execute($sql);
     if ($zc_ppHist->RecordCount() == 0) return false;
     $txnID = $zc_ppHist->fields['txn_id'];
-    if ($txnID == '' || $txnID < 1) return FALSE;
+    if ($txnID == '' || $txnID === 0) return FALSE;
     /**
      * Read data from PayPal
      */
@@ -571,7 +571,7 @@ class paypalwpp extends base {
 
     $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) values ('Enable this Payment Module', 'MODULE_PAYMENT_PAYPALWPP_STATUS', 'True', 'Do you want to enable this payment module?', '6', '25', 'zen_cfg_select_option(array(\'True\', \'False\'), ', now())");
     $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) values ('Live or Sandbox', 'MODULE_PAYMENT_PAYPALWPP_SERVER', 'live', '<strong>Live: </strong> Used to process Live transactions<br><strong>Sandbox: </strong>For developers and testing', '6', '25', 'zen_cfg_select_option(array(\'live\', \'sandbox\'), ', now())");
-
+    $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) values ('Express Checkout Shortcut Button', 'MODULE_PAYMENT_PAYPALWPP_ECS_BUTTON', 'On', 'The Express Checkout Shortcut button shows up on your shopping cart page to invite your customers to pay using PayPal without having to give all their address details on your site first before selecting shipping options.<br />It has been shown to increase sales and conversions when enabled.<br />Default: On ', '6', '25', 'zen_cfg_select_option(array(\'On\', \'Off\'), ', now())");
     $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) values ('Express Checkout: Require Confirmed Address', 'MODULE_PAYMENT_PAYPALWPP_CONFIRMED_ADDRESS', 'No', 'Do you want to require that your (not-logged-in) customers use a *confirmed* address when choosing their shipping address in PayPal?<br />(this is ignored for logged-in customers)', '6', '25',  'zen_cfg_select_option(array(\'Yes\', \'No\'), ', now())");
     $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) values ('Express Checkout: Select Cheapest Shipping Automatically', 'MODULE_PAYMENT_PAYPALWPP_AUTOSELECT_CHEAPEST_SHIPPING', 'Yes', 'When customer returns from PayPal, do we want to automatically select the Cheapest shipping method and skip the shipping page? (making it more *express*)<br />Note: enabling this means the customer does *not* have easy access to select an alternate shipping method (without going back to the Checkout-Step-1 page)', '6', '25',  'zen_cfg_select_option(array(\'Yes\', \'No\'), ', now())");
     $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) values ('Express Checkout: Skip Payment Page', 'MODULE_PAYMENT_PAYPALWPP_SKIP_PAYMENT_PAGE', 'Yes', 'If the customer is checking out with Express Checkout, do you want to skip the checkout payment page, making things more *express*? <br /><strong>(NOTE: The Payment Page will auto-display regardless of this setting if you have Coupons or Gift Certificates enabled in your store.)</strong>', '6', '25',  'zen_cfg_select_option(array(\'Yes\', \'No\'), ', now())");
@@ -602,7 +602,11 @@ class paypalwpp extends base {
   }
 
   function keys() {
-    $keys_list = array('MODULE_PAYMENT_PAYPALWPP_STATUS', 'MODULE_PAYMENT_PAYPALWPP_SORT_ORDER', 'MODULE_PAYMENT_PAYPALWPP_ZONE', 'MODULE_PAYMENT_PAYPALWPP_ORDER_STATUS_ID', 'MODULE_PAYMENT_PAYPALWPP_ORDER_PENDING_STATUS_ID', 'MODULE_PAYMENT_PAYPALWPP_REFUNDED_STATUS_ID', 'MODULE_PAYMENT_PAYPALWPP_CONFIRMED_ADDRESS', 'MODULE_PAYMENT_PAYPALWPP_AUTOSELECT_CHEAPEST_SHIPPING', 'MODULE_PAYMENT_PAYPALWPP_SKIP_PAYMENT_PAGE', 'MODULE_PAYMENT_PAYPALWPP_NEW_ACCT_NOTIFY', 'MODULE_PAYMENT_PAYPALWPP_TRANSACTION_MODE', 'MODULE_PAYMENT_PAYPALWPP_CURRENCY', 'MODULE_PAYMENT_PAYPALWPP_PAGE_STYLE', 'MODULE_PAYMENT_PAYPALWPP_APIUSERNAME', 'MODULE_PAYMENT_PAYPALWPP_APIPASSWORD', 'MODULE_PAYMENT_PAYPALWPP_APISIGNATURE', 'MODULE_PAYMENT_PAYPALWPP_MODULE_MODE', /*'MODULE_PAYMENT_PAYPALWPP_PFPARTNER', 'MODULE_PAYMENT_PAYPALWPP_PFVENDOR', 'MODULE_PAYMENT_PAYPALWPP_PFUSER', 'MODULE_PAYMENT_PAYPALWPP_PFPASSWORD', */'MODULE_PAYMENT_PAYPALWPP_SERVER', 'MODULE_PAYMENT_PAYPALWPP_DEBUGGING');
+    if (defined('MODULE_PAYMENT_PAYPALWPP_STATUS') && !defined('MODULE_PAYMENT_PAYPALWPP_ECS_BUTTON')) {
+      global $db;
+      $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) values ('Express Checkout Shortcut Button', 'MODULE_PAYMENT_PAYPALWPP_ECS_BUTTON', 'On', 'The Express Checkout Shortcut button shows up on your shopping cart page to invite your customers to pay using PayPal without having to give all their address details on your site first before selecting shipping options.<br />It has been shown to increase sales and conversions when enabled.<br />Default: On ', '6', '25', 'zen_cfg_select_option(array(\'On\', \'Off\'), ', now())");
+    }
+    $keys_list = array('MODULE_PAYMENT_PAYPALWPP_STATUS', 'MODULE_PAYMENT_PAYPALWPP_SORT_ORDER', 'MODULE_PAYMENT_PAYPALWPP_ZONE', 'MODULE_PAYMENT_PAYPALWPP_ECS_BUTTON', 'MODULE_PAYMENT_PAYPALWPP_ORDER_STATUS_ID', 'MODULE_PAYMENT_PAYPALWPP_ORDER_PENDING_STATUS_ID', 'MODULE_PAYMENT_PAYPALWPP_REFUNDED_STATUS_ID', 'MODULE_PAYMENT_PAYPALWPP_CONFIRMED_ADDRESS', 'MODULE_PAYMENT_PAYPALWPP_AUTOSELECT_CHEAPEST_SHIPPING', 'MODULE_PAYMENT_PAYPALWPP_SKIP_PAYMENT_PAGE', 'MODULE_PAYMENT_PAYPALWPP_NEW_ACCT_NOTIFY', 'MODULE_PAYMENT_PAYPALWPP_TRANSACTION_MODE', 'MODULE_PAYMENT_PAYPALWPP_CURRENCY', 'MODULE_PAYMENT_PAYPALWPP_PAGE_STYLE', 'MODULE_PAYMENT_PAYPALWPP_APIUSERNAME', 'MODULE_PAYMENT_PAYPALWPP_APIPASSWORD', 'MODULE_PAYMENT_PAYPALWPP_APISIGNATURE', 'MODULE_PAYMENT_PAYPALWPP_MODULE_MODE', 'MODULE_PAYMENT_PAYPALWPP_SERVER', 'MODULE_PAYMENT_PAYPALWPP_DEBUGGING');
     if (IS_ADMIN_FLAG === true && (PAYPAL_DEV_MODE == 'true' || strstr(MODULE_PAYMENT_PAYPALWPP_MODULE_MODE, 'Payflow'))) {
       $keys_list = array_merge($keys_list, array('MODULE_PAYMENT_PAYPALWPP_PFPARTNER', 'MODULE_PAYMENT_PAYPALWPP_PFVENDOR', 'MODULE_PAYMENT_PAYPALWPP_PFUSER', 'MODULE_PAYMENT_PAYPALWPP_PFPASSWORD'));
     }
@@ -1086,6 +1090,7 @@ class paypalwpp extends base {
     $subTotalShipping = 0;
     $subtotalPRE = array('no data');
     $discountProblemsFlag = FALSE;
+    $flag_treat_as_partial = FALSE;
 
     if (sizeof($order_totals)) {
       // prepare subtotals
@@ -1138,7 +1143,7 @@ class paypalwpp extends base {
               $shipping_tax = 0;
             }
           }
-          $taxAdjustmentForShipping = zen_calculate_tax($order->info['shipping_cost'], $shipping_tax);
+          $taxAdjustmentForShipping = zen_round(zen_calculate_tax($order->info['shipping_cost'], $shipping_tax), $currencies->currencies[$_SESSION['currency']]['decimal_places']);
           $optionsST['SHIPPINGAMT'] += $taxAdjustmentForShipping;
           $optionsST['TAXAMT'] -= $taxAdjustmentForShipping;
         }
@@ -1168,11 +1173,18 @@ class paypalwpp extends base {
         } // end loop
       } // endif attribute-info
 
+      // check for rounding problems with taxes
+      $m1 = zen_round($order->products[$i]['qty'] * $order->products[$i]['final_price'], $currencies->currencies[$_SESSION['currency']]['decimal_places']);
+      $m2 = ($order->products[$i]['qty'] * zen_round($order->products[$i]['final_price'], $currencies->currencies[$_SESSION['currency']]['decimal_places']));
+      $n1 = $order->products[$i]['qty'] * zen_calculate_tax($order->products[$i]['final_price'], $order->products[$i]['tax']);
+      $n2 = zen_calculate_tax($order->products[$i]['qty'] * $order->products[$i]['final_price'], $order->products[$i]['tax']);
+      if ($m1 != $m2 || zen_round($n1, $currencies->currencies[$_SESSION['currency']]['decimal_places']) != zen_round($n2, $currencies->currencies[$_SESSION['currency']]['decimal_places'])) $flag_treat_as_partial = true;
+
       // PayPal can't handle partial-quantity values, so fudge it here
-      if ($order->products[$i]['qty'] != (int)$order->products[$i]['qty']) {
+      if ($flag_treat_as_partial || $order->products[$i]['qty'] != (int)$order->products[$i]['qty']) {
         $optionsLI["L_NAME$k"] = '('.$order->products[$i]['qty'].' x ) ' . $optionsLI["L_NAME$k"];
-        $optionsLI["L_AMT$k"] = ($order->products[$i]['qty'] * $order->products[$i]['final_price']);
-        $optionsLI["L_TAXAMT$k"] = zen_calculate_tax($order->products[$i]['qty'] * $order->products[$i]['final_price'], $order->products[$i]['tax']);
+        $optionsLI["L_AMT$k"] = zen_round($order->products[$i]['qty'] * $order->products[$i]['final_price'], $currencies->currencies[$_SESSION['currency']]['decimal_places']);
+        $optionsLI["L_TAXAMT$k"] = zen_calculate_tax(zen_round($order->products[$i]['qty'] * $order->products[$i]['final_price'], $currencies->currencies[$_SESSION['currency']]['decimal_places']), $order->products[$i]['tax']);
         $optionsLI["L_QTY$k"] = 1;
       } else {
         $optionsLI["L_AMT$k"] = $order->products[$i]['final_price'];
@@ -1262,8 +1274,8 @@ class paypalwpp extends base {
     $sumOfLineItems = round($sumOfLineItems, 2);
     $sumOfLineTax = round($sumOfLineTax, 2);
 
-    if ($sumofLineItems == 0) {
-      $sumofLineTax = 0;
+    if ($sumOfLineItems == 0) {
+      $sumOfLineTax = 0;
       $optionsLI = array();
       $discountProblemsFlag = TRUE;
       if ($optionsST['SHIPPINGAMT'] == $optionsST['AMT']) {
@@ -1311,7 +1323,7 @@ class paypalwpp extends base {
     }
 
     // check subtotals
-    if (strval($subTotalLI) - strval($sumOfLineItems) > 0.02) {
+    if ((strval($optionsST['ITEMAMT']) > 0 && strval($subTotalLI) > 0 && strval($subTotalLI) != strval($optionsST['ITEMAMT'])) || strval($subTotalLI) - strval($sumOfLineItems) != 0) {
       $this->zcLog('getLineItemDetails 5', 'Line-item subtotals do not add up properly. Line-item-details skipped.' . "\n" . (float)$sumOfLineItems . ' ' . (float)$subTotalTax . print_r(array_merge($optionsST, $optionsLI), true));
       $optionsLI = array();
     }
@@ -1431,7 +1443,7 @@ class paypalwpp extends base {
     // Set the return URL if they click "Submit" on PayPal site
     $return_url = str_replace('&amp;', '&', zen_href_link('ipn_main_handler.php', 'type=ec', 'SSL', true, true, true));
     // Select the return URL if they click "cancel" on PayPal site or click to return without making payment or login
-    $cancel_url = str_replace('&amp;', '&', zen_href_link(($_SESSION['customer_first_name'] != '' && $_SESSION['customer_id'] != '' ? FILENAME_CHECKOUT_SHIPPING :FILENAME_LOGIN), 'ec_cancel=1', 'SSL'));
+    $cancel_url = str_replace('&amp;', '&', zen_href_link(($_SESSION['customer_first_name'] != '' && $_SESSION['customer_id'] != '' ? FILENAME_CHECKOUT_SHIPPING :FILENAME_SHOPPING_CART), 'ec_cancel=1', 'SSL'));
 
     // debug
     $val = $_SESSION; unset($val['navigation']);
@@ -1723,6 +1735,16 @@ class paypalwpp extends base {
       $country_id = $country2->fields['countries_id'];
       $country_code3 = $country2->fields['countries_iso_code_3'];
       $address_format_id = (int)$country2->fields['address_format_id'];
+    } else {
+      // if defaulting to US, make sure US is valid
+      $sql = "SELECT countries_id FROM " . TABLE_COUNTRIES . " WHERE countries_id = :countryId: LIMIT 1";
+      $sql = $db->bindVars($sql, ':countryId:', $country_id, 'integer');
+      $result = $db->Execute($sql);
+      if ($result->EOF) {
+        $this->notify('NOTIFY_PAYPAL_CUSTOMER_ATTEMPT_TO_USE_INVALID_COUNTRY_CODE');
+        $this->zcLog('ec-step2-finish - 1b', 'Cannot use address due to country restriction.');
+        $this->terminateEC(MODULE_PAYMENT_PAYPALWPP_TEXT_INVALID_ZONE_ERROR, true, FILENAME_SHOPPING_CART);
+      }
     }
     // Need to determine zone, based on zone name first, and then zone code if name fails check. Otherwise uses 0.
     $sql = "SELECT zone_id
@@ -1820,6 +1842,10 @@ class paypalwpp extends base {
         // no match, so add the record
         if (!$address_book_id) {
           $address_book_id = $this->addAddressBookEntry($_SESSION['customer_id'], (isset($order->delivery) ? $order->delivery : $order->billing), false);
+        }
+        // if couldn't add the record, perhaps due to removed country, or some other error, abort with message
+        if (!$address_book_id) {
+          $this->terminateEC(MODULE_PAYMENT_PAYPALWPP_TEXT_INVALID_ZONE_ERROR, true, FILENAME_SHOPPING_CART);
         }
 
         // set the address for use
@@ -2020,6 +2046,10 @@ class paypalwpp extends base {
         if (!$address_book_id) {
           $address_book_id = $_SESSION['customer_default_address_id'];
         }
+      }
+      // if couldn't add the record, perhaps due to removed country, or some other error, abort with message
+      if ($address_book_id == FALSE) {
+        $this->terminateEC(MODULE_PAYMENT_PAYPALWPP_TEXT_INVALID_ZONE_ERROR, true, FILENAME_SHOPPING_CART);
       }
       // set the sendto to the address
       $_SESSION['sendto'] = $address_book_id;
@@ -2333,6 +2363,16 @@ class paypalwpp extends base {
     if (!$country->EOF) {
       $country_id = $country->fields['countries_id'];
       $address_format_id = (int)$country->fields['address_format_id'];
+    } else {
+      // if defaulting to US, make sure US is valid
+      $sql = "SELECT countries_id FROM " . TABLE_COUNTRIES . " WHERE countries_id = :countryId LIMIT 1";
+      $sql = $db->bindVars($sql, ':countryId', $country_id, 'integer');
+      $result = $db->Execute($sql);
+      if ($result->EOF) {
+        $this->notify('NOTIFY_HEADER_ADDRESS_BOOK_ADD_ENTRY_INVALID_ATTEMPT');
+        $this->zcLog('addAddressBookEntry - 3', 'Failed to add address due to country restrictions');
+        return FALSE;
+      }
     }
 
     // see if the country code has a state

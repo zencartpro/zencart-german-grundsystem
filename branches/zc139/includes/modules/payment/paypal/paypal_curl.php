@@ -5,7 +5,7 @@
  * @package paymentMethod
  * @copyright Copyright 2003-2010 Zen Cart Development Team
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: paypal_curl.php 17027 2010-07-27 19:45:22Z drbyte $
+ * @version $Id: paypal_curl.php 17532 2010-09-08 14:13:38Z drbyte $
  */
 
 /**
@@ -424,7 +424,7 @@ class paypal_curl extends base {
     } elseif ($this->_mode == 'nvp') {
       $headers[] = 'X-VPS-VIT-Integration-Product: PHP::Zen Cart(tm) - PayPal/NVP';
     }
-    $headers[] = 'X-VPS-VIT-Integration-Version: 1.3.9f';
+    $headers[] = 'X-VPS-VIT-Integration-Version: 1.3.9g';
     $this->lastHeaders = $headers;
 
     $ch = curl_init();

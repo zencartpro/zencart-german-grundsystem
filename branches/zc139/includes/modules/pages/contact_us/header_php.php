@@ -6,7 +6,7 @@
  * @copyright Copyright 2003-2010 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: header_php.php 16305 2010-05-21 20:48:55Z wilt $
+ * @version $Id: header_php.php 17608 2010-09-24 14:51:46Z drbyte $
  */
 require(DIR_WS_MODULES . zen_get_module_directory('require_languages.php'));
 
@@ -89,6 +89,7 @@ if($_SESSION['customer_id']) {
   $name= $check_customer->fields['customers_firstname'] . ' ' . $check_customer->fields['customers_lastname'];
 }
 
+$send_to_array = array();
 if (CONTACT_US_LIST !=''){
   foreach(explode(",", CONTACT_US_LIST) as $k => $v) {
     $send_to_array[] = array('id' => $k, 'text' => preg_replace('/\<[^*]*/', '', $v));
@@ -99,4 +100,3 @@ if (CONTACT_US_LIST !=''){
 $define_page = zen_get_file_directory(DIR_WS_LANGUAGES . $_SESSION['language'] . '/html_includes/', FILENAME_DEFINE_CONTACT_US, 'false');
 
 $breadcrumb->add(NAVBAR_TITLE);
-?>

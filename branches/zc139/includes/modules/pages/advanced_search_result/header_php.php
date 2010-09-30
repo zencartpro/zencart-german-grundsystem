@@ -6,7 +6,7 @@
  * @copyright Copyright 2003-2010 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: header_php.php 17054 2010-07-29 16:08:26Z wilt $
+ * @version $Id: header_php.php 17600 2010-09-22 00:45:20Z drbyte $
  */
 
 // This should be first line of the script:
@@ -257,6 +257,7 @@ if (!isset($_GET['inc_subcat'])) {
 if (!isset($_GET['search_in_description'])) {
   $_GET['search_in_description'] = '0';
 }
+$_GET['search_in_description'] = (int)$_GET['search_in_description'];
 
 if (isset($_GET['categories_id']) && zen_not_null($_GET['categories_id'])) {
   if ($_GET['inc_subcat'] == '1') {

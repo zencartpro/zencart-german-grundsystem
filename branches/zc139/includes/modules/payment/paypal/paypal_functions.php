@@ -7,7 +7,7 @@
  * @copyright Portions Copyright 2003 osCommerce
  * @copyright Portions Copyright 2004 DevosC.com
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: paypal_functions.php 17026 2010-07-27 19:43:49Z drbyte $
+ * @version $Id: paypal_functions.php 17568 2010-09-16 17:35:46Z drbyte $
  */
 
 // Functions for paypal processing
@@ -694,6 +694,7 @@
     $subTotalTax = 0;
     $subTotalShipping = 0;
     $subtotalPRE = array('no data');
+    $flag_treat_as_partial = FALSE;
 
     if (sizeof($order_totals)) {
       // prepare subtotals
@@ -746,7 +747,7 @@
               $shipping_tax = 0;
             }
           }
-          $taxAdjustmentForShipping = zen_calculate_tax($order->info['shipping_cost'], $shipping_tax);
+          $taxAdjustmentForShipping = zen_round(zen_calculate_tax($order->info['shipping_cost'], $shipping_tax), $currencies->currencies[$_SESSION['currency']]['decimal_places']);
           $optionsST['shipping'] += $taxAdjustmentForShipping;
           $optionsST['tax_cart'] -= $taxAdjustmentForShipping;
         }
@@ -776,11 +777,18 @@
         } // end loop
       } // endif attribute-info
 
+      // check for rounding problems with taxes
+      $m1 = zen_round($order->products[$i]['qty'] * $order->products[$i]['final_price'], $currencies->currencies[$_SESSION['currency']]['decimal_places']);
+      $m2 = ($order->products[$i]['qty'] * zen_round($order->products[$i]['final_price'], $currencies->currencies[$_SESSION['currency']]['decimal_places']));
+      $n1 = $order->products[$i]['qty'] * zen_calculate_tax($order->products[$i]['final_price'], $order->products[$i]['tax']);
+      $n2 = zen_calculate_tax($order->products[$i]['qty'] * $order->products[$i]['final_price'], $order->products[$i]['tax']);
+      if ($m1 != $m2 || zen_round($n1, $currencies->currencies[$_SESSION['currency']]['decimal_places']) != zen_round($n2, $currencies->currencies[$_SESSION['currency']]['decimal_places'])) $flag_treat_as_partial = true;
+
       // PayPal can't handle partial-quantity values, so fudge it here
-      if ($order->products[$i]['qty'] != (int)$order->products[$i]['qty']) {
+      if ($flag_treat_as_partial || $order->products[$i]['qty'] != (int)$order->products[$i]['qty']) {
         $optionsLI["item_name_$k"] = '('.$order->products[$i]['qty'].' x ) ' . $optionsLI["item_name_$k"];
-        $optionsLI["amount_$k"] = ($order->products[$i]['qty'] * $order->products[$i]['final_price']);
-        $optionsLI["tax_$k"] = zen_calculate_tax($order->products[$i]['qty'] * $order->products[$i]['final_price'], $order->products[$i]['tax']);
+        $optionsLI["amount_$k"] = zen_round($order->products[$i]['qty'] * $order->products[$i]['final_price'], $currencies->currencies[$_SESSION['currency']]['decimal_places']);
+        $optionsLI["tax_$k"] = zen_calculate_tax(zen_round($order->products[$i]['qty'] * $order->products[$i]['final_price'], $currencies->currencies[$_SESSION['currency']]['decimal_places']), $order->products[$i]['tax']);
         $optionsLI["quantity_$k"] = 1;
       } else {
         $optionsLI["amount_$k"] = $order->products[$i]['final_price'];

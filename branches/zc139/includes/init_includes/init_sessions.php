@@ -7,7 +7,7 @@
  * @copyright Copyright 2003-2010 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: init_sessions.php 16689 2010-06-08 19:22:21Z wilt $
+ * @version $Id: init_sessions.php 17498 2010-09-06 21:47:12Z drbyte $
  */
 if (!defined('IS_ADMIN_FLAG')) {
   die('Illegal Access');
@@ -17,6 +17,8 @@ if (!defined('IS_ADMIN_FLAG')) {
  */
 if (!isset($_GET['zenid']) && isset($_GET['amp;zenid'])) {
   $_GET['zenid'] = $_GET['amp;zenid'];
+  unset($_GET['amp;zenid']);
+} else if (isset($_GET['amp;zenid'])) {
   unset($_GET['amp;zenid']);
 }
 
@@ -35,7 +37,11 @@ zen_session_save_path(SESSION_WRITE_DIRECTORY);
 $path = str_replace('\\', '/', dirname($_SERVER['SCRIPT_NAME']));
 $path = (defined('CUSTOM_COOKIE_PATH')) ? CUSTOM_COOKIE_PATH : $path;
 
-session_set_cookie_params(0, $path, (zen_not_null($cookieDomain) ? '.' . $cookieDomain : ''));
+if (PHP_VERSION >= '5.2.0') {
+  session_set_cookie_params(0, $path, (zen_not_null($cookieDomain) ? '.' . $cookieDomain : ''), FALSE, TRUE);
+} else {
+  session_set_cookie_params(0, $path, (zen_not_null($cookieDomain) ? '.' . $cookieDomain : ''));
+}
 /**
  * set the session ID if it exists
  */

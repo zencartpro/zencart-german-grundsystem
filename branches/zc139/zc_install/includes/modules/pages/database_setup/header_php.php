@@ -6,6 +6,7 @@
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
  * @version $Id$
+  * @hint: german
  */
 
 $write_config_files_only = ((isset($_POST['submit']) && $_POST['submit']==ONLY_UPDATE_CONFIG_FILES) || (isset($_POST['configfile']) && zen_not_null($_POST['configfile'])) || (isset($_GET['configfile']) && zen_not_null($_GET['configfile'])) || ZC_UPG_DEBUG3 != false) ? true : false;
@@ -17,7 +18,7 @@ $is_upgrade = (int)$zc_install->getConfigKey('is_upgrade');
     // process POSTed data
     $zc_install->validateDatabaseSetup($_POST);
 
-    $zc_install->logDetails('Installer - Page: database_setup -- collected information: ' . str_replace(array($zc_install->getConfigKey('DB_SERVER_PASSWORD'), $_POST['db_pass']), '*****', print_r($zc_install->getConfigKey(), true)), 'database_setup1');
+    $zc_install->logDetails('Installer - Page: database_setup -- collected information: ' . str_replace($_POST['db_pass'], '*****', $zc_install->getConfigKey('-', TRUE)), 'database_setup1');
     if (ZC_UPG_DEBUG !== false) $zc_install->throwException('DIAGNOSTIC: database_setup -- session vars: ' . str_replace(array($zc_install->getConfigKey('DB_SERVER_PASSWORD'), $_POST['db_pass']), '*****', print_r($_SESSION, true)), 'database_setup');
 
     if (!$zc_install->fatal_error) {
@@ -85,7 +86,7 @@ $is_upgrade = (int)$zc_install->getConfigKey('is_upgrade');
     $zdb_coll       = 'latin1';
     $zdb_prefix     = '';
     $zdb_server     = 'localhost';
-    $zdb_user       = 'root';
+    $zdb_user       = '';
     $zdb_name       = 'zencart';
     $zdb_sql_cache  = $zc_install->getConfigKey('DIR_FS_SQL_CACHE');
     $zdb_cache_type = 'none';
@@ -117,4 +118,3 @@ $is_upgrade = (int)$zc_install->getConfigKey('is_upgrade');
 
   $zc_first_field= 'onload="document.getElementById(\'db_username\').focus()"';
 
-?>
