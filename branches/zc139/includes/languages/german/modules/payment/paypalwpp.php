@@ -81,7 +81,7 @@ define('MODULE_PAYMENT_PAYPALWPP_TEXT_INVALID_ZONE_ERROR', 'Es tut uns leid, abe
 // EC buttons -- Do not change these values:
 define('MODULE_PAYMENT_PAYPALWPP_EC_BUTTON_IMG', 'https://www.paypal.com/de_DE/i/btn/btn_xpressCheckout.gif');
 define('MODULE_PAYMENT_PAYPALWPP_EC_BUTTON_SM_IMG', 'https://www.paypal.com/de_DE/i/btn/btn_xpressCheckoutsm.gif');
-define('MODULE_PAYMENT_PAYPALWPP_MARK_BUTTON_IMG', 'https://www.paypal.com/de_DE/i/logo/PayPal_mark_37x23.gif');
+define('MODULE_PAYMENT_PAYPALEC_MARK_BUTTON_IMG', 'https://www.paypal.com/de_DE/i/logo/PayPal_mark_37x23.gif');
 define('MODULE_PAYMENT_PAYPALWPP_MARK_BUTTON_TXT', 'Einkaufen mit PayPal');
 
 ////////////////////////////////////////
