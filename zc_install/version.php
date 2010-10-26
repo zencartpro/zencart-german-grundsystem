@@ -16,11 +16,11 @@
 
 define('PROJECT_VERSION_NAME', 'Zen Cart');
 define('PROJECT_VERSION_MAJOR', '1');
-define('PROJECT_VERSION_MINOR', '3.9f');
+define('PROJECT_VERSION_MINOR', '3.9g');
 define('PROJECT_VERSION_PATCH1', '');
 define('PROJECT_VERSION_PATCH2', '');
 define('PROJECT_VERSION_PATCH1_SOURCE', '');
 define('PROJECT_VERSION_PATCH2_SOURCE', '');
-define('NEW_VERSION_CHECKUP_URL','http://www.zen-cart.at/version_id.txt');
+define('NEW_VERSION_CHECKUP_URL','http://demo.zen-cart.at/version_id.txt');
 define('EXPECTED_DATABASE_VERSION_MAJOR', '1');
 define('EXPECTED_DATABASE_VERSION_MINOR', '3.9');
