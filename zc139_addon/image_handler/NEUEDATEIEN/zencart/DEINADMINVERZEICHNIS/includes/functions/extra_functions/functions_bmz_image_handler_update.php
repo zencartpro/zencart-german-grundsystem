@@ -321,7 +321,7 @@ function install_image_handler() {
 					"('IH large image maximum width', 'LARGE_IMAGE_MAX_WIDTH', '" . $large_image_max_width . "', 'Specify a maximum width for your large images. If width and height are empty or set to 0, no resizing of large images is done.', 4, " . ($sort_order_offset + $i++) . ", 'zen_cfg_textarea_small(', now())";
 		$db->Execute($sql_query);
 		$sql_query = "INSERT INTO " . TABLE_CONFIGURATION_LANGUAGE . " (configuration_title, configuration_key, configuration_language_id, configuration_description, last_modified, date_added) VALUES " .  
-				"('IH - Grosse Bilder - Maxinale Breite', 'LARGE_IMAGE_MAX_WIDTH', '43', 'Geben Sie eine maximale Breite für Ihre grossen Bilder an. Wenn Breite und Höhe leer gelassen oder auf 0 gesetzt werden, werden die grossen Bilder in ihrer Größe nicht verändert.', now(), now());";
+				"('IH - Grosse Bilder - Maximale Breite', 'LARGE_IMAGE_MAX_WIDTH', '43', 'Geben Sie eine maximale Breite für Ihre grossen Bilder an. Wenn Breite und Höhe leer gelassen oder auf 0 gesetzt werden, werden die grossen Bilder in ihrer Größe nicht verändert.', now(), now());";
 	$db->Execute($sql_query);
 		define(LARGE_IMAGE_MAX_WIDTH, $large_image_max_width);
 	}
