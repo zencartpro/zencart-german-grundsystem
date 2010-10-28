@@ -6,7 +6,7 @@
  * @copyright Copyright 2003-2010 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: header_php.php 15880 2010-04-11 16:24:30Z wilt $
+ * @version $Id: header_php.php 17948 2010-10-13 20:33:18Z drbyte $
  */
 
 // This should be first line of the script:
@@ -108,7 +108,7 @@ for ($i=0, $n=sizeof($products); $i<$n; $i++) {
       //clr 030714 determine if attribute is a text attribute and assign to $attr_value temporarily
       if ($value == PRODUCTS_OPTIONS_VALUES_TEXT_ID) {
         $attributeHiddenField .= zen_draw_hidden_field('id[' . $products[$i]['id'] . '][' . TEXT_PREFIX . $option . ']',  $products[$i]['attributes_values'][$option]);
-        $attr_value = $products[$i]['attributes_values'][$option];
+        $attr_value = htmlspecialchars($products[$i]['attributes_values'][$option], ENT_COMPAT, CHARSET, TRUE);
       } else {
         $attributeHiddenField .= zen_draw_hidden_field('id[' . $products[$i]['id'] . '][' . $option . ']', $value);
         $attr_value = $attributes_values->fields['products_options_values_name'];
@@ -116,7 +116,7 @@ for ($i=0, $n=sizeof($products); $i<$n; $i++) {
 
       $attrArray[$option]['products_options_name'] = $attributes_values->fields['products_options_name'];
       $attrArray[$option]['options_values_id'] = $value;
-      $attrArray[$option]['products_options_values_name'] = zen_output_string_protected($attr_value) ;
+      $attrArray[$option]['products_options_values_name'] = $attr_value;
       $attrArray[$option]['options_values_price'] = $attributes_values->fields['options_values_price'];
       $attrArray[$option]['price_prefix'] = $attributes_values->fields['price_prefix'];
     }

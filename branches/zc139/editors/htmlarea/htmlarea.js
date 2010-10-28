@@ -10,7 +10,7 @@
 //   http://dynarch.com/mishoo
 //
 // Zen Cart customization version info:
-// $Id: htmlarea.js 4367 2006-09-03 19:30:17Z drbyte $
+// $Id: htmlarea.js 17858 2010-10-08 04:28:34Z drbyte $
 
 if (typeof _editor_url == "string") {
 	// Leave exactly one backslash at the end of _editor_url
@@ -1790,6 +1790,7 @@ HTMLArea.agt = navigator.userAgent.toLowerCase();
 HTMLArea.is_ie	   = ((HTMLArea.agt.indexOf("msie") != -1) && (HTMLArea.agt.indexOf("opera") == -1));
 HTMLArea.is_opera  = (HTMLArea.agt.indexOf("opera") != -1);
 HTMLArea.is_mac	   = (HTMLArea.agt.indexOf("mac") != -1);
+HTMLArea.is_webkit = (HTMLArea.agt.indexOf('applewebkit') != -1);
 HTMLArea.is_mac_ie = (HTMLArea.is_ie && HTMLArea.is_mac);
 HTMLArea.is_win_ie = (HTMLArea.is_ie && !HTMLArea.is_mac);
 HTMLArea.is_gecko  = (navigator.product == "Gecko");
@@ -1820,7 +1821,7 @@ HTMLArea.cloneObject = function(obj) {
 
 // FIXME!!! this should return false for IE < 5.5
 HTMLArea.checkSupportedBrowser = function() {
-	if (HTMLArea.is_gecko) {
+	if (HTMLArea.is_gecko && !HTMLArea.is_opera && !HTMLArea.is_webkit) {
 		if (navigator.productSub < 20021201) {
 			alert("You need at least Mozilla-1.3 Alpha.\n" +
 			      "Sorry, your Gecko is not supported.");

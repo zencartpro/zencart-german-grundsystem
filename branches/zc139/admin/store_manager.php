@@ -4,7 +4,7 @@
  * @copyright Copyright 2003-2009 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: store_manager.php 15954 2010-04-15 16:56:44Z drbyte $
+ * @version $Id: store_manager.php 17906 2010-10-09 21:52:17Z wilt $
  */
 
   require('includes/application_top.php');
@@ -488,6 +488,7 @@ if ($show_configuration_info == 'true') {
       <tr>
         <td colspan="2"><br /><table border="0" cellspacing="0" cellpadding="2">
           <tr><form name = "update_counter" action="<?php echo zen_href_link(FILENAME_STORE_MANAGER, 'action=update_counter', 'NONSSL'); ?>" method="post">
+          <?php echo zen_draw_hidden_field('securityToken', $_SESSION['securityToken']); ?>
             <td class="main" align="left" valign="top"><?php echo TEXT_INFO_COUNTER_UPDATE; ?></td>
             <td class="main" align="left" valign="bottom"><?php echo zen_draw_input_field('new_counter'); ?></td>
             <td class="main" align="right" valign="middle"><?php echo zen_image_submit('button_reset.gif', IMAGE_RESET); ?></td>
@@ -533,6 +534,7 @@ if ($show_configuration_info == 'true') {
       <tr>
         <td colspan="2"><br /><table border="0" cellspacing="0" cellpadding="2">
           <tr><form name = "update_orders" action="<?php echo zen_href_link(FILENAME_STORE_MANAGER, 'action=update_orders_id', 'NONSSL'); ?>" method="post">
+          <?php echo zen_draw_hidden_field('securityToken', $_SESSION['securityToken']); ?>
             <td class="main" align="left" valign="top"><?php echo TEXT_ORDERS_ID_UPDATE; ?></td>
             <td class="main" align="left" valign="bottom">
               <?php echo TEXT_OLD_ORDERS_ID . '&nbsp;&nbsp;&nbsp;' . zen_draw_input_field('old_orders_id'); ?>
@@ -555,6 +557,7 @@ if ($show_configuration_info == 'true') {
           </tr>
 
           <tr><form name = "locate_configure_key" action="<?php echo zen_href_link(FILENAME_STORE_MANAGER, 'action=locate_configuration_key', 'NONSSL'); ?>" method="post">
+          <?php echo zen_draw_hidden_field('securityToken', $_SESSION['securityToken']); ?>
             <td class="main" align="left" valign="bottom"><?php echo '<strong>' . TEXT_CONFIGURATION_KEY . '</strong>' . '<br />' . zen_draw_input_field('configuration_key'); ?></td>
             <td class="main" align="center" valign="bottom"><?php echo zen_image_submit('button_search.gif', IMAGE_SEARCH); ?></td>
             <td class="main" width="60%">&nbsp;</td>
@@ -574,6 +577,7 @@ if ($show_configuration_info == 'true') {
           </tr>
 
           <tr><form name = "locate_configure" action="<?php echo zen_href_link(FILENAME_STORE_MANAGER, 'action=locate_configuration', 'NONSSL'); ?>" method="post">
+          <?php echo zen_draw_hidden_field('securityToken', $_SESSION['securityToken']); ?>
             <td class="main" align="left" valign="bottom"><?php echo '<strong>' . TEXT_CONFIGURATION_KEY_FILES . '</strong>' . '<br />' . zen_draw_input_field('configuration_key'); ?></td>
             <td class="main" align="left" valign="middle">
               <?php

@@ -6,7 +6,7 @@
  * @copyright Copyright 2003-2010 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: paypalwpp.php 17646 2010-09-28 20:28:21Z drbyte $
+ * @version $Id: paypalwpp.php 17993 2010-10-19 02:41:28Z drbyte $
  */
 /**
  * load the communications layer code
@@ -101,7 +101,7 @@ class paypalwpp extends base {
     global $order;
     $this->code = 'paypalwpp';
     $this->codeTitle = MODULE_PAYMENT_PAYPALWPP_TEXT_ADMIN_TITLE_EC;
-    $this->codeVersion = '1.3.9g';
+    $this->codeVersion = '1.3.9h';
     $this->enableDirectPayment = FALSE;
     $this->enabled = (MODULE_PAYMENT_PAYPALWPP_STATUS == 'True');
     // Set the title & description text based on the mode we're in ... EC vs US/UK vs admin
@@ -1499,7 +1499,7 @@ class paypalwpp extends base {
         $options['EMAIL'] = $zc_getemail->fields['customers_email_address'];
       }
       if ($zc_getemail->RecordCount() > 0 && $zc_getemail->fields['customers_telephone'] != '') {
-        $options['PHONENUM'] = $zc_getemail->fields['customers_telephone'];
+        $options['SHIPTOPHONENUM'] = $zc_getemail->fields['customers_telephone'];
       }
     }
 
@@ -1652,13 +1652,13 @@ class paypalwpp extends base {
                              'payer_status'    => $response['PAYERSTATUS'],
                              'ship_country_code'   => urldecode($response['COUNTRYCODE']),
                              'ship_address_status' => urldecode($response['ADDRESSSTATUS']),
-                             'ship_phone'      => urldecode($response['PHONENUM']),
-                             'order_comment'   => urldecode($response['NOTE']),
+                             'ship_phone'      => urldecode($response['SHIPTOPHONENUM'] != '' ? $response['SHIPTOPHONENUM'] : $response['PHONENUM']),
+                             'order_comment'   => urldecode($response['NOTETEXT']),
                              );
 
-    if (strtoupper($response['ADDRESSSTATUS']) == 'NONE') {
-      $step2_shipto = array();
-    } else {
+//    if (strtoupper($response['ADDRESSSTATUS']) == 'NONE' || !isset($response['SHIPTOSTREET']) || $response['SHIPTOSTREET'] == '') {
+//      $step2_shipto = array();
+//    } else {
       // accomodate PayPal bug which repeats 1st line of address for 2nd line if 2nd line is empty.
       if ($response['SHIPTOSTREET2'] == $response['SHIPTOSTREET1']) $response['SHIPTOSTREET2'] = '';
 
@@ -1676,7 +1676,7 @@ class paypalwpp extends base {
                             'ship_postal_code' => urldecode($response['SHIPTOZIP']),
                             'ship_country_code'  => urldecode($response['SHIPTOCOUNTRYCODE']),
                             'ship_country_name'  => (isset($response['SHIPTOCOUNTRY']) ? urldecode($response['SHIPTOCOUNTRY']) : urldecode($response['SHIPTOCOUNTRYNAME'])));
-    }
+//    }
 
     // reset all previously-selected shipping choices, because cart contents may have been changed
     if (!(isset($_SESSION['paypal_ec_markflow']) && $_SESSION['paypal_ec_markflow'] == 1)) unset($_SESSION['shipping']);
@@ -2344,6 +2344,9 @@ class paypalwpp extends base {
 
     // debug
     $this->zcLog('addAddressBookEntry - 1', 'address to add: ' . "\n" . print_r($address_question_arr, true));
+
+    // if address is blank, don't do any matching
+    if ($address_question_arr['street_address'] == '') return false;
 
     // set some defaults
     $country_id = '223';

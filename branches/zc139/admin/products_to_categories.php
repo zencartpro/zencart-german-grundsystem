@@ -4,7 +4,7 @@
  * @copyright Copyright 2003-2010 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: products_to_categories.php 15881 2010-04-11 16:32:39Z wilt $
+ * @version $Id: products_to_categories.php 17905 2010-10-09 21:49:07Z wilt $
  */
 
   require('includes/application_top.php');
@@ -698,6 +698,7 @@ if ($_GET['products_filter'] != '') {
                 <td colspan="3" valign="middle" height="10"><?php echo zen_draw_separator('pixel_black.gif', '100%', '3'); ?></td>
               </tr>
               <form name="linked_copy" method="post" action="<?php echo zen_href_link(FILENAME_PRODUCTS_TO_CATEGORIES, 'action=copy_categories_products_to_another_category_linked' . '&products_filter=' . $products_filter . '&current_category_id=' . $current_category_id, 'NONSSL'); ?>">
+              <?php echo zen_draw_hidden_field('securityToken', $_SESSION['securityToken']); ?>
               <tr class="dataTableHeadingRow">
                 <td colspan="3" class="dataTableContent"><?php echo TEXT_INFO_COPY_ALL_PRODUCTS_TO_CATEGORY_LINKED; ?></td>
               </tr>
@@ -725,6 +726,7 @@ if ($_GET['products_filter'] != '') {
                 <td colspan="3" valign="middle" height="10"><?php echo zen_draw_separator('pixel_black.gif', '100%', '3'); ?></td>
               </tr>
               <form name="linked_remove" method="post" action="<?php echo zen_href_link(FILENAME_PRODUCTS_TO_CATEGORIES, 'action=remove_categories_products_to_another_category_linked' . '&products_filter=' . $products_filter . '&current_category_id=' . $current_category_id, 'NONSSL'); ?>">
+              <?php echo zen_draw_hidden_field('securityToken', $_SESSION['securityToken']); ?>
               <tr class="dataTableHeadingRow">
                 <td colspan="3" class="dataTableContent"><?php echo TEXT_INFO_REMOVE_ALL_PRODUCTS_TO_CATEGORY_LINKED; ?></td>
               </tr>
@@ -755,6 +757,7 @@ if ($_GET['products_filter'] != '') {
                 <td colspan="3" valign="middle" height="10"><?php echo zen_draw_separator('pixel_black.gif', '100%', '3'); ?></td>
               </tr>
               <form name="master_reset" method="post" action="<?php echo zen_href_link(FILENAME_PRODUCTS_TO_CATEGORIES, 'action=reset_categories_products_to_another_category_master' . '&products_filter=' . $products_filter . '&current_category_id=' . $current_category_id, 'NONSSL'); ?>">
+              <?php echo zen_draw_hidden_field('securityToken', $_SESSION['securityToken']); ?>
               <tr class="dataTableHeadingRow">
                 <td colspan="3" class="dataTableContent"><?php echo TEXT_INFO_RESET_ALL_PRODUCTS_TO_CATEGORY_MASTER; ?></td>
               </tr>

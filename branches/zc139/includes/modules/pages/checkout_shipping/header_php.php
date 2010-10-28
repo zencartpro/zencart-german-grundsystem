@@ -6,7 +6,7 @@
  * @copyright Copyright 2003-2009 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: header_php.php 16060 2010-04-25 15:10:05Z ajeh $
+ * @version $Id: header_php.php 18007 2010-10-21 06:41:51Z drbyte $
  */
 // This should be first line of the script:
   $zco_notifier->notify('NOTIFY_HEADER_START_CHECKOUT_SHIPPING');
@@ -73,7 +73,13 @@
 
 // register a random ID in the session to check throughout the checkout procedure
 // against alterations in the shopping cart contents
-  $_SESSION['cartID'] = $_SESSION['cart']->cartID;
+if (isset($_SESSION['cart']->cartID)) {
+  if (!isset($_SESSION['cartID']) || $_SESSION['cart']->cartID != $_SESSION['cartID']) {
+    $_SESSION['cartID'] = $_SESSION['cart']->cartID;
+  }
+} else {
+  zen_redirect(zen_href_link(FILENAME_TIME_OUT));
+}
 
 // if the order contains only virtual products, forward the customer to the billing page as
 // a shipping address is not needed

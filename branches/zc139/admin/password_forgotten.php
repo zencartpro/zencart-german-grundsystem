@@ -17,7 +17,7 @@
 // | to obtain it through the world-wide-web, please send a note to       |
 // | license@zen-cart.com so we can mail you a copy immediately.          |
 // +----------------------------------------------------------------------+
-//$Id: password_forgotten.php 4639 2006-09-30 22:54:30Z wilt $
+//$Id: password_forgotten.php 17904 2010-10-09 21:24:41Z wilt $
 //
 
   require('includes/application_top.php');
@@ -78,7 +78,8 @@ if (isset($_POST['submit'])) {
 <link href="includes/stylesheet.css" rel="stylesheet" type="text/css" />
 </head>
 <body id="login">
-<form name="login" action="<?php echo zen_href_link(FILENAME_PASSWORD_FORGOTTEN, '', 'SSL'); ?>" method = "POST">
+<form name="login" action="<?php echo zen_href_link(FILENAME_PASSWORD_FORGOTTEN, 'action=update', 'SSL'); ?>" method = "post">
+<?php echo zen_draw_hidden_field('securityToken', $_SESSION['securityToken']); ?>
 <fieldset>
 <legend><?php echo HEADING_TITLE; ?></legend>
 <label for="admin_email"><?php echo TEXT_ADMIN_EMAIL; ?><input type="text" id="admin_email" name="admin_email" value="<?php echo zen_output_string($admin_email); ?>" /></label>
