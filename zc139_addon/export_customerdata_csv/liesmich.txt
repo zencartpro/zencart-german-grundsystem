@@ -1,0 +1,56 @@
+Kundendaten als csv exportieren für Zen-Cart 1.3.x
+Version 1.0
+Oktober 2010
+webchills / www.webchills.at
+
+getestet mit Zen-Cart 1.3.9 und 1.3.8 deutsch
+
+
+Was macht dieses Modul?
+
+Dieses Tool exportiert die aktuellen Kundendaten in eine csv Datei zur Übersicht oder Bearbeitung in Microsoft Excel oder Open Office.
+Exportiert werden:
+
+    * Vorname
+    * Nachname
+    * Emailadresse
+    * Firma
+    * Strasse
+    * Adresszeile 2
+    * Postleitzahl
+    * Ort
+    * Telefonnummer
+    
+================= WICHTIG =====================
+Vor dem Einbau dieser Änderungen:
+BACKUP von Shop und Datenbank machen! 
+Keine Haftung, Verwendung auf eigene Gefahr!
+BACKUP gemacht? Ok, dann weiterlesen...
+    
+=============== INSTALLATION ===================
+
+Im Ordner NEUEDATEIEN im Unterordner zencart den Ordner DEINADMINVERZEICHNIS auf den Namen Ihres admin Verzeichnisses umbenennen.
+Dann alle Ordner/Dateien im Ordner zencart in der vorgegebenen Struktur in Ihr Zen-Cart Verzeichnis hochladen.
+Dabei werden keine besteheden Dateien überschrieben.
+
+=============== VERWENDUNG ==================
+
+In der Zen-Cart Administration ist nun unter Tools der neue Menüpunkt "Kundendatenexport" vorhanden.
+Klicken Sie dort auf den Download-Button, um eine csv Datei aus dem aktuellen Datenbestand zu erzeugen und herunterzuladen.
+
+
+========= HINWEISE FÜR MICROSOFT EXCEL ==========
+
+Wenn Sie die heruntergeladene kundendaten.csv direkt mit Excel öffnen, kann es sein, dass die Spaltenzuordnung nicht korrekt ist und dass die Umlaute nicht korrekt dargestellt werden.
+Lösung:
+Excel öffnen
+>> Menü Daten >> aus Text
+>> Heruntergeladene Datei kundendaten.csv auswählen
+>> Es startet der Textkonvertierungsassistent
+>> Dateiursprung: Umstellen auf: Unicode (UTF-8)
+>> Trennzeichen: Umstellen auf: Komma
+>> Fertig stellen
+
+Links zum Thema Excel und csv/utf-8:
+http://www.computerwissen.de/thema/office/excel-und-csv.html
+http://www.rechtsmedizin.med.uni-muenchen.de/service/anleitungen_hilfe/excel_csv_utf8/index.html#excel_2010
