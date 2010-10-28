@@ -4,7 +4,7 @@
  * @copyright Copyright 2003-2010 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: attributes_controller.php 16260 2010-05-12 15:22:50Z drbyte $
+ * @version $Id: attributes_controller.php 17888 2010-10-08 21:06:31Z wilt $
  */
 
   require('includes/application_top.php');
@@ -785,7 +785,7 @@ if ($action == 'attributes_preview') {
 // remove all attributes from the product
   if ($action == 'delete_all_attributes_confirm') {
 ?>
-      <tr><form name="delete_all"<?php echo 'action="' . zen_href_link(FILENAME_ATTRIBUTES_CONTROLLER, 'action=delete_all_attributes') . '"'; ?> method="post"><?php echo zen_draw_hidden_field('products_filter', $_GET['products_filter']); ?><?php echo zen_draw_hidden_field('current_category_id', $_GET['current_category_id']); ?>
+      <tr><form name="delete_all"<?php echo 'action="' . zen_href_link(FILENAME_ATTRIBUTES_CONTROLLER, 'action=delete_all_attributes') . '"'; ?> method="post"><?php echo zen_draw_hidden_field('products_filter', $_GET['products_filter']); ?><?php echo zen_draw_hidden_field('current_category_id', $_GET['current_category_id']); ?><?php echo zen_draw_hidden_field('securityToken', $_SESSION['securityToken']); ?>
         <td colspan="2"><table border="2" cellspacing="2" cellpadding="4">
           <tr>
             <td><table border="0" cellspacing="2" cellpadding="2">
@@ -805,7 +805,7 @@ if ($action == 'attributes_preview') {
 // remove option name and all values from the product
   if ($action == 'delete_option_name_values_confirm') {
 ?>
-      <tr><form name="delete_all"<?php echo 'action="' . zen_href_link(FILENAME_ATTRIBUTES_CONTROLLER, 'action=delete_option_name_values') . '"'; ?> method="post">
+      <tr><form name="delete_all"<?php echo 'action="' . zen_href_link(FILENAME_ATTRIBUTES_CONTROLLER, 'action=delete_option_name_values') . '"'; ?> method="post"><?php echo zen_draw_hidden_field('securityToken', $_SESSION['securityToken']); ?>
         <?php echo zen_draw_hidden_field('products_filter', $_GET['products_filter']); ?>
         <?php echo zen_draw_hidden_field('current_category_id', $_GET['current_category_id']); ?>
         <?php echo zen_draw_hidden_field('products_options_id_all', $_GET['products_options_id_all']); ?>
@@ -834,7 +834,7 @@ if ($action == 'attributes_preview') {
     $products_exclude_array = array();
     $products_exclude_array[] = $products_filter;
 ?>
-      <tr><form name="product_copy_to_product"<?php echo 'action="' . zen_href_link(FILENAME_ATTRIBUTES_CONTROLLER, 'action=update_attributes_copy_to_product') . '"'; ?> method="post"><?php echo zen_draw_hidden_field('products_filter', $_GET['products_filter']) . zen_draw_hidden_field('products_id', $_GET['products_filter']) . zen_draw_hidden_field('products_update_id', $_GET['products_update_id']) . zen_draw_hidden_field('copy_attributes', $_GET['copy_attributes']); ?>
+      <tr><form name="product_copy_to_product"<?php echo 'action="' . zen_href_link(FILENAME_ATTRIBUTES_CONTROLLER, 'action=update_attributes_copy_to_product') . '"'; ?> method="post"><?php echo zen_draw_hidden_field('products_filter', $_GET['products_filter']) . zen_draw_hidden_field('products_id', $_GET['products_filter']) . zen_draw_hidden_field('products_update_id', $_GET['products_update_id']) . zen_draw_hidden_field('copy_attributes', $_GET['copy_attributes']); ?><?php echo zen_draw_hidden_field('securityToken', $_SESSION['securityToken']); ?>
         <td colspan="2"><table border="2" cellspacing="0" cellpadding="2">
           <tr>
             <td><table border="0" cellspacing="2" cellpadding="4">
@@ -857,7 +857,7 @@ if ($action == 'attributes_preview') {
 <?php
   if ($action == 'attribute_features_copy_to_category') {
 ?>
-      <tr><form name="product_copy_to_category"<?php echo 'action="' . zen_href_link(FILENAME_ATTRIBUTES_CONTROLLER, 'action=update_attributes_copy_to_category') . '"'; ?> method="post"><?php echo zen_draw_hidden_field('products_filter', $_GET['products_filter']) . zen_draw_hidden_field('products_id', $_GET['products_filter']) . zen_draw_hidden_field('products_update_id', $_GET['products_update_id']) . zen_draw_hidden_field('copy_attributes', $_GET['copy_attributes']) . zen_draw_hidden_field('current_category_id', $_GET['current_category_id']); ?>
+      <tr><form name="product_copy_to_category"<?php echo 'action="' . zen_href_link(FILENAME_ATTRIBUTES_CONTROLLER, 'action=update_attributes_copy_to_category') . '"'; ?> method="post"><?php echo zen_draw_hidden_field('products_filter', $_GET['products_filter']) . zen_draw_hidden_field('products_id', $_GET['products_filter']) . zen_draw_hidden_field('products_update_id', $_GET['products_update_id']) . zen_draw_hidden_field('copy_attributes', $_GET['copy_attributes']) . zen_draw_hidden_field('current_category_id', $_GET['current_category_id']); ?><?php echo zen_draw_hidden_field('securityToken', $_SESSION['securityToken']); ?>
         <td colspan="2"><table border="2" cellspacing="0" cellpadding="2">
           <tr>
             <td><table border="0" cellspacing="2" cellpadding="4">
@@ -1072,8 +1072,7 @@ if ($action == '') {
 // fix here border width
 ?>
       <tr>
-        <td><form name="attributes" action="<?php echo zen_href_link(FILENAME_ATTRIBUTES_CONTROLLER, 'action=' . $form_action . (isset($_GET['option_page']) ? '&option_page=' . $_GET['option_page'] . '&' : '') . (isset($_GET['value_page']) ? '&value_page=' . $_GET['value_page'] . '&' : '') . (isset($_GET['attribute_page']) ? '&attribute_page=' . $_GET['attribute_page'] : '') . '&products_filter=' . $products_filter ); ?>" method="post", enctype="multipart/form-data"><table border="0" cellspacing="0" cellpadding="2">
-
+        <td><form name="attributes" action="<?php echo zen_href_link(FILENAME_ATTRIBUTES_CONTROLLER, 'action=' . $form_action . (isset($_GET['option_page']) ? '&option_page=' . $_GET['option_page'] . '&' : '') . (isset($_GET['value_page']) ? '&value_page=' . $_GET['value_page'] . '&' : '') . (isset($_GET['attribute_page']) ? '&attribute_page=' . $_GET['attribute_page'] : '') . '&products_filter=' . $products_filter ); ?>" method="post", enctype="multipart/form-data"><?php echo zen_draw_hidden_field('securityToken', $_SESSION['securityToken']); ?><table border="0" cellspacing="0" cellpadding="2">
           <tr>
             <td colspan="10" class="smallText">
 <?php

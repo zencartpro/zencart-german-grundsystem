@@ -1,0 +1,158 @@
+<!--
+/**
+ * @package documentation
+ * @copyright Copyright 2003-2010 Zen Cart Development Team
+ * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
+ * @version $Id: changelog-v1-3-9h.html 18064 2010-10-26 22:22:18Z drbyte $
+ */
+//-->
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+<!--
+body, table{ font-family:Verdana, Arial, Helvetica, sans-serif; font-size:14px; }
+table.intro {border-color:#C96E29; }
+td.intro{background-color:#EEEEEE; border-color:#5778ce; font-size:14px; }
+td.plainbox, div.callout {border: 1px dashed; border-color: #C96E29; margin:5px 40px 5px 40px;}
+.heading {background-color:#5778CE; font-weight:bold; font-size:14px;	width: 100%; }
+.title1 {color:#C96E29; font-weight:bold; font-size:22px; }
+.title2 {color:#C96E29; font-weight:bold; font-size:13px; }
+.small {font-size:10px ;}
+.error {color:#FF0000; }
+.filename {font-family: mono, "Courier New", Courier ; font-size:14px; color: #c96e29;}
+.pseudolink {text-decoration:underline; color:#5778CE;}
+h1.intro { color: #ffffff; border:1px solid #aca893; background-color: #c96e29;  font-size: 22px;   padding: 4px;}
+h1 { color: #ffffff;    border:1px solid #aca893;   background-color: #5778ce;   font-size: 20px;   padding: 4px;}
+h2 { color: #c96e29; 	font-size: 18px;}
+h3 { color: #5778ce;	font-size: 16px; margin-bottom:0px;}
+h4 { color: #c96e29;	font-size: 14px;}
+-->
+</style>
+<title>Zen Cart(tm) Changelog</title>
+</head>
+<body>
+
+<table class="intro" cellspacing="4" cellpadding="6" border="3" width="748px" align="center">
+<tr><td class="intro">
+<center><h1 class="intro">Welcome to Zen Cart&trade; ...</h1></center>
+<br />
+The Zen Cart&trade; software is made available to you for use, additions, changes, modifications, etc. without charge, under the GNU General Public License.
+<br />
+<br />
+While we do not charge for this software, donations are greatly appreciated each time you download a new version, to help cover the expenses of maintenance, upgrades, updates, the free support forum and the continued development of this software for your online e-commerce store.
+<br />
+<br />
+Donations can be made at:
+<a href="http://www.zen-cart.com/donate" target="_blank">The Zen Cart&trade; Team Page</a>
+<br />
+<br />
+We appreciate your support.<br />
+<em>The Zen Cart&trade; Team</em><br />
+<br />
+
+<center>
+<span class="small">
+Zen Cart&trade; is derived from: Copyright  2003 osCommerce<br />
+This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;<br />
+without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE<br />
+and is redistributable under the GNU General Public License<br /><br />
+</span>
+</center>
+</td></tr></table>
+
+<br />
+<table border="3" width="748px" align="center" cellpadding="6">
+  <tr>
+<td align="center"><img src="osi-certified-120x100.png" /><br />
+This software is OSI Certified Open Source Software.<br />
+OSI Certified is a certification mark of the Open Source Initiative.
+</td></tr></table>
+<br />
+
+
+<table border="3" width="748px" align="center" cellpadding="6">
+<tr><td>
+<h1>SPECIAL NOTE ABOUT .htaccess FILES</h1>
+<p>Inside some folders is an .htaccess file that lists certain *permitted* filetypes which may be accessed. (Anything else is blocked to prevent abuse on your site).</p>
+<p>The side-effect of this is that if you choose to use media types that are not already listed in the *permitted* list, then your visitors will not be able to see those resources. </p>
+<p>Thus, if you are using product images that are not in the list of permitted types in your /images/.htaccess, you will need to add those types to the list.</p>
+<p>Similarly, if you are using certain media types in music product previews, you will need to make sure those are in your /media/.htaccess </p>
+<p>And, if you are using filetypes for downloadable products that are not already listed in your /pub/.htaccess and /download/.htaccess you will need to add those as well.</p>
+
+<h1 align="center" class="intro">Version 1.3.9h</h1>
+<p>NOTE:<br>
+  For a listing of What's New in this release, please see the <a href="whatsnew_1.3.9h.html" target="_blank">whatsnew_1.3.9h.html</a> file in the <span class="filename">/docs</span> folder. <br />
+      <a href="http://www.zen-cart.com/forum/forumdisplay.php?f=2" target="_blank">You may also see the list in the support forum here</a>. <br />
+      <br>
+      The following is a list of FILE/FOLDER changes: </p>
+<h1>Changed Files (since release of v1.3.9g)</h1>
+<ul>
+<li>/admin/attributes_controller.php</li>
+<li>/admin/coupon_restrict.php</li>
+<li>/admin/developers_toolkit.php</li>
+<li>/admin/options_name_manager.php</li>
+<li>/admin/options_values_manager.php</li>
+<li>/admin/option_name.php</li>
+<li>/admin/option_values.php</li>
+<li>/admin/password_forgotten.php</li>
+<li>/admin/products_to_categories.php</li>
+<li>/admin/specials.php</li>
+<li>/admin/store_manager.php</li>
+<li>/admin/includes/auto_loaders/config.core.php (in 1.3.9h just removes the lines added in 1.3.9g)</li>
+<li>/admin/includes/classes/upload.php</li>
+<li>/admin/includes/functions/general.php</li>
+<li>/admin/includes/functions/extra_functions/add_cookie_path_switch.php (NEW in v1.3.9h)</li>
+<li>/admin/includes/init_includes/init_sanitize.php (contents updated to explain that this file can now be deleted as of v1.3.9h)</li>
+<li>/admin/includes/init_includes/init_sessions.php</li>
+<li>/admin/includes/modules/document_general/collect_info.php</li>
+<li>/admin/includes/modules/document_product/collect_info.php</li>
+<li>/admin/includes/modules/product/collect_info.php</li>
+<li>/admin/includes/modules/product/preview_info.php</li>
+<li>/admin/includes/modules/product_free_shipping/collect_info.php</li>
+<li>/admin/includes/modules/product_free_shipping/preview_info.php</li>
+<li>/admin/includes/modules/product_music/collect_info.php</li>
+<li>/admin/includes/modules/product_music/preview_info.php</li>
+<li>/docs/ &lt;VARIOUS FILES HERE&gt;</li>
+<li>/editors/htmlarea/htmlarea.js</li>
+<li>/includes/version.php</li>
+<li>/includes/classes/shopping_cart.php</li>
+<li>/includes/init_includes/init_sessions.php</li>
+<li>/includes/modules/pages/account_password/header_php.php</li>
+<li>/includes/modules/pages/checkout_shipping/header_php.php</li>
+<li>/includes/modules/pages/shopping_cart/header_php.php</li>
+<li>/includes/modules/payment/paypal/paypal_curl.php</li>
+<li>/includes/modules/payment/authorizenet_aim.php</li>
+<li>/includes/modules/payment/linkpoint_api.php</li>
+<li>/includes/modules/payment/paypaldp.php</li>
+<li>/includes/modules/payment/paypalwpp.php</li>
+<li>/ipn_main_handler.php</li>
+<br />
+<li>/zc_install/ ... assume *all* of /zc_install/ has changed
+<br />
+<li>NOTE the deletions and additions listed below ...</li>
+</ul>
+
+<h1>Deleted Files (since release of v1.3.9a/b/c/d/e/f/g)</h1><ul>
+<li>/admin/includes/init_includes/init_sanitize.php (was added in 1.3.9g, but now can be deleted in v1.3.9h)</li>
+<li>/admin/includes/languages/english/cache.php (deleted in 1.3.9g)</li>
+<li>/admin/includes/functions/gzip_compression.php (deleted in 1.3.9f)</li>
+<li>/includes/functions/gzip_compression.php (deleted in 1.3.9f)</li>
+</ul>
+<h1>New Files (since release of v1.3.9a/b/c/d/e/f/g)</h1><ul>
+<li>/admin/alert_page.php (added in 1.3.9g)</li>
+<li>/admin/includes/functions/extra_functions/add_cookie_path_switch.php (NEW in v1.3.9h)</li>
+<li>/admin/includes/init_includes/init_sanitize.php (was added in 1.3.9g, but now can be deleted in v1.3.9h)</li>
+<li>/admin/includes/languages/english/alert_page.php (added in 1.3.9g)</li>
+</ul>
+<h1>Moved Files (since release of v1.3.9a/b/c/d/e/f)</h1><ul>
+<li>None</li>
+</ul>
+<h1>&nbsp;</h1>
+</td>
+</tr>
+</table>
+<p align="center"><em>Zen Cart&trade; Copyright 2003-2010</em></p>
+<br /><br />
+</body>
+</html>

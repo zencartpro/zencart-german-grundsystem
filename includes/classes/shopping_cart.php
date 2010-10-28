@@ -6,7 +6,7 @@
  * @copyright Copyright 2003-2010 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: shopping_cart.php 17578 2010-09-18 17:44:51Z drbyte $
+ * @version $Id: shopping_cart.php 18014 2010-10-22 03:39:17Z drbyte $
  */
 /**
  * Class for managing the Shopping Cart
@@ -177,6 +177,7 @@ class shoppingCart extends base {
       }
       $products->MoveNext();
     }
+    $this->cartID = $this->generate_cart_id();
     $this->notify('NOTIFIER_CART_RESTORE_CONTENTS_END');
     $this->cleanup();
   }
@@ -334,8 +335,8 @@ class shoppingCart extends base {
   /**
    * Method to update a cart items quantity
    *
-   * Changes the current quamtity of a certain item in the cart to
-   * a new value. Also updates the database sored cart if customer is
+   * Changes the current quantity of a certain item in the cart to
+   * a new value. Also updates the database stored cart if customer is
    * logged in.
    *
    * @param mixed product ID of item to update
@@ -423,6 +424,7 @@ class shoppingCart extends base {
         }
       }
     }
+    $this->cartID = $this->generate_cart_id();
     $this->notify('NOTIFIER_CART_UPDATE_QUANTITY_END');
   }
   /**
@@ -1879,33 +1881,40 @@ class shoppingCart extends base {
     $this->notify('NOTIFY_CART_USER_ACTION');
   }
 
-//     $qty = $this->adjust_quantity($qty, (int)$products_id, 'shopping_cart');
 
-// temporary fixed on messagestack used for check and message needs better separation
-  function adjust_quantity($check_qty, $products, $message=false) {
+/**
+ * calculate quantity adjustments based on restrictions
+ * USAGE:  $qty = $this->adjust_quantity($qty, (int)$products_id, 'shopping_cart');
+ *
+ * @param float $check_qty
+ * @param int $products
+ * @param string $message
+ */
+  function adjust_quantity($check_qty, $products, $stack = 'shopping_cart') {
     global $messageStack;
-      $old_quantity = $check_qty;
-        if (QUANTITY_DECIMALS != 0) {
-          //          $new_qty = round($new_qty, QUANTITY_DECIMALS);
-          $fix_qty = $check_qty;
-          switch (true) {
-            case (!strstr($fix_qty, '.')):
-            $new_qty = $fix_qty;
+    if ($stack == '' || $stack == FALSE) $stack = 'shopping_cart';
+    $old_quantity = $check_qty;
+      if (QUANTITY_DECIMALS != 0) {
+        //          $new_qty = round($new_qty, QUANTITY_DECIMALS);
+        $fix_qty = $check_qty;
+        switch (true) {
+          case (!strstr($fix_qty, '.')):
+          $new_qty = $fix_qty;
 //            $messageStack->add_session('shopping_cart', ERROR_QUANTITY_ADJUSTED . zen_get_products_name($products) . ' - ' . $old_quantity . ' => ' . $new_qty, 'caution');
-            break;
-            default:
-            $new_qty = preg_replace('/[0]+$/','', $check_qty);
+          break;
+          default:
+          $new_qty = preg_replace('/[0]+$/','', $check_qty);
 //            $messageStack->add_session('shopping_cart', 'A: ' . ERROR_QUANTITY_ADJUSTED . zen_get_products_name($products) . ' - ' . $old_quantity . ' => ' . $new_qty, 'caution');
-            break;
-          }
-        } else {
-          if ($check_qty != round($check_qty, QUANTITY_DECIMALS)) {
-            $new_qty = round($check_qty, QUANTITY_DECIMALS);
-            $messageStack->add_session('shopping_cart', ERROR_QUANTITY_ADJUSTED . zen_get_products_name($products) . ERROR_QUANTITY_CHANGED_FROM . $old_quantity . ERROR_QUANTITY_CHANGED_TO . $new_qty, 'caution');
-          } else {
-            $new_qty = $check_qty;
-          }
+          break;
         }
-     return $new_qty;
+      } else {
+        if ($check_qty != round($check_qty, QUANTITY_DECIMALS)) {
+          $new_qty = round($check_qty, QUANTITY_DECIMALS);
+          $messageStack->add_session($stack, ERROR_QUANTITY_ADJUSTED . zen_get_products_name($products) . ERROR_QUANTITY_CHANGED_FROM . $old_quantity . ERROR_QUANTITY_CHANGED_TO . $new_qty, 'caution');
+        } else {
+          $new_qty = $check_qty;
+        }
+      }
+    return $new_qty;
   }
 }

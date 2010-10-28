@@ -5,7 +5,7 @@
  * @package paymentMethod
  * @copyright Copyright 2003-2010 Zen Cart Development Team
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: paypal_curl.php 17532 2010-09-08 14:13:38Z drbyte $
+ * @version $Id: paypal_curl.php 17860 2010-10-08 04:31:42Z drbyte $
  */
 
 /**
@@ -96,6 +96,10 @@ class paypal_curl extends base {
    */
   var $lastHeaders = null;
   /**
+   * submission values
+   */
+  var $values = array();
+  /**
    * Constructor. Sets up communication infrastructure.
    */
   function paypal_curl($params = array()) {
@@ -144,8 +148,9 @@ class paypal_curl extends base {
     if (defined('MODULE_PAYMENT_PAYPALWPP_HEADER_BACK_COLOR')) $values['HDRBACKCOLOR'] = MODULE_PAYMENT_PAYPALWPP_HEADER_BACK_COLOR;
 
     if (PAYPAL_DEV_MODE == 'true') $this->log('SetExpressCheckout - breakpoint 1 - [' . print_r($values, true) .']');
-
-    return $this->_request($values, 'SetExpressCheckout');
+    $this->values = $values;
+    $this->notify('NOTIFY_PAYPAL_SETEXPRESSCHECKOUT');
+    return $this->_request($this->values, 'SetExpressCheckout');
   }
 
   /**
@@ -184,8 +189,10 @@ class paypal_curl extends base {
       if (!isset($values['PAYMENTACTION']) || $this->checkHasApiCredentials() === FALSE) $values['PAYMENTACTION'] = ($this->_trxtype == 'S' || ($this->checkHasApiCredentials() === FALSE) ? 'Sale' : 'Authorization');
       $values['NOTIFYURL'] = urlencode(zen_href_link('ipn_main_handler.php', '', 'SSL',false,false,true));
     }
-    if (PAYPAL_DEV_MODE == 'true') $this->log('DoExpressCheckout - breakpoint 2 '.print_r($values, true), $token);
-    return $this->_request($values, 'DoExpressCheckoutPayment');
+    $this->values = $values;
+    $this->notify('NOTIFY_PAYPAL_DOEXPRESSCHECKOUTPAYMENT');
+    if (PAYPAL_DEV_MODE == 'true') $this->log('DoExpressCheckout - breakpoint 2 '.print_r($this->values, true), $token);
+    return $this->_request($this->values, 'DoExpressCheckoutPayment');
   }
 
   /**
@@ -225,9 +232,10 @@ class paypal_curl extends base {
       if (isset($values['COMMENT2'])) unset ($values['COMMENT2']);
       if (isset($values['CUSTREF'])) unset ($values['CUSTREF']);
     }
-    ksort($values);
-
-    return $this->_request($values, 'DoDirectPayment');
+    $this->values = $values;
+    $this->notify('NOTIFY_PAYPAL_DODIRECTPAYMENT');
+    ksort($this->values);
+    return $this->_request($this->values, 'DoDirectPayment');
   }
 
   /**
@@ -424,7 +432,7 @@ class paypal_curl extends base {
     } elseif ($this->_mode == 'nvp') {
       $headers[] = 'X-VPS-VIT-Integration-Product: PHP::Zen Cart(tm) - PayPal/NVP';
     }
-    $headers[] = 'X-VPS-VIT-Integration-Version: 1.3.9g';
+    $headers[] = 'X-VPS-VIT-Integration-Version: 1.3.9h';
     $this->lastHeaders = $headers;
 
     $ch = curl_init();

@@ -128,7 +128,7 @@ class paypaldp extends base {
     global $order;
     $this->code = 'paypaldp';
     $this->codeTitle = MODULE_PAYMENT_PAYPALDP_TEXT_ADMIN_TITLE_WPP;
-    $this->codeVersion = '1.3.9g';
+    $this->codeVersion = '1.3.9h';
     $this->enableDirectPayment = true;
     $this->enabled = (MODULE_PAYMENT_PAYPALDP_STATUS == 'True');
     // Set the title & description text based on the mode we're in
@@ -276,7 +276,7 @@ class paypaldp extends base {
     }
 
     $today = getdate();
-    for ($i = $today['year']; $i < $today['year'] + 10; $i++) {
+    for ($i = $today['year']; $i < $today['year'] + 15; $i++) {
       $expires_year[] = array('id' => strftime('%y', mktime(0,0,0,1,1,$i)), 'text' => strftime('%Y',mktime(0,0,0,1,1,$i)));
     }
 
@@ -1829,6 +1829,10 @@ class paypaldp extends base {
             $errorText = MODULE_PAYMENT_PAYPALDP_TEXT_CARD_TYPE_NOT_SUPPORTED;
             $errorNum = '15012';
           }
+          if ($response['L_ERRORCODE0'] == 15005) {
+            $errorText = 'Card rejected by the bank. Your IP address has been recorded.';
+            $errorNum = '15005';
+          }
           if ($response['RESPMSG'] != '') $errorText = MODULE_PAYMENT_PAYPALDP_TEXT_DECLINED . ' ' . $errorText;
 
           $detailedMessage = ($errorText == MODULE_PAYMENT_PAYPALDP_INVALID_RESPONSE || $errorText == MODULE_PAYMENT_PAYPALDP_TEXT_DECLINED || $this->enableDebugging || $response['CURL_ERRORS'] != '' || $this->emailAlerts) ? (isset($response['RESULT']) && $response['RESULT'] != 0 ? MODULE_PAYMENT_PAYPALDP_CANNOT_BE_COMPLETED . ' (' . $errorNum . ')' : $errorNum) . ' ' . urldecode(' ' . $response['L_SHORTMESSAGE0'] . ' - ' . $response['L_LONGMESSAGE0'] . ' ' . $response['CURL_ERRORS']) : '';
@@ -2125,7 +2129,7 @@ class paypaldp extends base {
     if ($errorNo != 0) {
       $this->zcLog('Cardinal Lookup 3', '[' . zen_session_id() . '] Cardinal Centinel - cmpi_lookup error - ' . $errorNo . ' - ' . $errorDesc);
       $errorText = 'Cardinal Lookup 3' . '[' . zen_session_id() . '] Cardinal Centinel - cmpi_lookup error - ' . $errorNo . ' - ' . $errorDesc;
-      $errorText .= "\n\n" . 'There are 3 steps to configuring your Cardinal 3D-Secure service properly: ' . "\n1-Login to the Cardinal Merchant Admin URL supplied in your welcome package (NOT the test URL), and accept the license agreement.\2-Set a transaction password.\n3-Copy your Cardinal Merchant ID and Cardinal Transaction Password into your ZC PayPal module.\n\nFor specific help, please contact implement@cardinalcommerce.com to sort out your account configuration issues.";
+      $errorText .= "\n\n" . 'There are 3 steps to configuring your Cardinal 3D-Secure service properly: ' . "\n1-Login to the Cardinal Merchant Admin URL supplied in your welcome package (NOT the test URL), and accept the license agreement.\n2-Set a transaction password.\n3-Copy your Cardinal Merchant ID and Cardinal Transaction Password into your ZC PayPal module.\n\nFor specific help, please contact implement@cardinalcommerce.com to sort out your account configuration issues.";
       $errorText .= "\n\nProblem observed while customer " . $_SESSION['customer_id'] . ' ' . $_SESSION['customer_first_name'] . ' ' . $_SESSION['customer_last_name'] . ' was attempting checkout with 3D-Secure authentication. THEIR PURCHASE WAS NOT SUCCESSFUL. Please resolve this matter to enable future checkouts.';
       zen_mail(STORE_NAME, STORE_OWNER_EMAIL_ADDRESS, substr($errorDesc, 0, 75) . ' (' . $errorNo . ')', $errorText, STORE_OWNER, STORE_OWNER_EMAIL_ADDRESS, array('EMAIL_MESSAGE_HTML'=>nl2br($errorText)), 'paymentalert');
     }

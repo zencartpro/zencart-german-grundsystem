@@ -4,7 +4,7 @@
  * @copyright Copyright 2003-2010 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: general.php 17610 2010-09-24 15:16:07Z drbyte $
+ * @version $Id: general.php 17717 2010-10-03 21:45:52Z drbyte $
  */
 
 ////
@@ -36,7 +36,7 @@
 
   function zen_output_string($string, $translate = false, $protected = false) {
     if ($protected == true) {
-      return htmlspecialchars($string);
+      return htmlspecialchars($string, ENT_COMPAT, CHARSET, FALSE);
     } else {
       if ($translate == false) {
         return zen_parse_input_field_data($string, array('"' => '&quot;'));

@@ -17,7 +17,7 @@
 // | to obtain it through the world-wide-web, please send a note to       |
 // | license@zen-cart.com so we can mail you a copy immediately.          |
 // +----------------------------------------------------------------------+
-// $Id: config.core.php 3009 2006-02-11 15:41:10Z wilt $
+// $Id: config.core.php 17921 2010-10-10 11:58:15Z wilt $
 //
 /**
  * autoloader array for catalog application_top.php

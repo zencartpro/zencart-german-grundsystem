@@ -127,7 +127,7 @@ class linkpoint_api {
     }
 
     $today = getdate();
-    for ($i=$today['year']; $i < $today['year']+10; $i++) {
+    for ($i=$today['year']; $i < $today['year']+15; $i++) {
       $expires_year[] = array('id' => strftime('%y',mktime(0,0,0,1,1,$i)), 'text' => strftime('%Y',mktime(0,0,0,1,1,$i)));
     }
 
@@ -292,6 +292,7 @@ class linkpoint_api {
     $creditsApplied = 0;
     global $order_totals;
     reset($order_totals);
+    $myorder['subtotal'] = $myorder['tax'] = $myorder['shipping'] = $myorder['chargetotal'] = 0;
     for ($i=0, $n=sizeof($order_totals); $i<$n; $i++) {
       if ($order_totals[$i]['code'] == '') continue;
       if (in_array($order_totals[$i]['code'], array('ot_total','ot_subtotal','ot_tax','ot_shipping'))) {
@@ -304,7 +305,7 @@ class linkpoint_api {
         if (substr($order_totals[$i]['text'], 0, 1) == '-' || (isset($$order_totals[$i]['code']->credit_class) && $$order_totals[$i]['code']->credit_class == true)) {
           $creditsApplied += round($order_totals[$i]['value'],2);
         } else {
-          $surcharges += $order_totals[$i]['value'];
+          $surcharges += round($order_totals[$i]['value'],2);
         }
       }
     }
@@ -312,50 +313,46 @@ class linkpoint_api {
       if (isset($myorder[$i])) $myorder[$i] = number_format($myorder[$i], 2, '.', '');
     }
 
-    if ($surcharges == 0 && $creditsApplied == 0 && $order->info['total'] > $order->info['subtotal'] && sizeof($order->products) <= 20) {
+    if ($surcharges == 0 && $creditsApplied == 0 && $order->info['total'] >= $order->info['subtotal'] && sizeof($order->products) <= 20) {
     // itemized contents
-      $partial_quantities_flag = FALSE;
       $num_line_items = 0;
       reset($order->products);
-      for ($i=0, $n=sizeof($order->products); $i<$n && $partial_quantities_flag === FALSE; $i++) {
-      $num_line_items++;
+      for ($i=0, $n=sizeof($order->products); $i<$n; $i++) {
+        $num_line_items++;
+        $myorder["items"][$num_line_items]['id']          = $order->products[$i]['id'];
 
-      // check for fractional quantities, which cannot be submitted as line-item details
-      $q = $order->products[$i]['qty'];
-      $q1 = strval($q);
-      $q2 = (int)$q;
-      $q3 = strval($q2);
-        if ($q1 != $q3) {
-          $partial_quantities_flag = true;
-          continue;
+        $myorder["items"][$num_line_items]['description'] = substr(htmlentities($order->products[$i]['name'], ENT_QUOTES, 'UTF-8'), 0, 128);
+        $myorder["items"][$num_line_items]['quantity']    = $order->products[$i]['qty'];
+        $myorder["items"][$num_line_items]['price']       = number_format($order->products[$i]['final_price'], 2, '.', '');
+        // check and adjust for fractional quantities, which cannot be submitted as line-item details
+        $q = $order->products[$i]['qty']; $q1 = strval($q); $q2 = (int)$q; $q3 = strval($q2);
+        if ($q1 != $q3 || $myorder["items"][$num_line_items]['quantity'] * $myorder["items"][$num_line_items]['price'] != number_format($order->products[$i]['qty'] * $order->products[$i]['final_price'], 2, '.', '')) {
+          $myorder["items"][$num_line_items]['quantity']    = 1;
+          $myorder["items"][$num_line_items]['price']       = number_format($order->products[$i]['qty'] * $order->products[$i]['final_price'], 2, '.', '');
+          $myorder["items"][$num_line_items]['description'] = '(' . $order->products[$i]['qty'] . ' x )' . substr($myorder["items"][$num_line_items]['description'], 115);
         }
 
-      $myorder["items"][$num_line_items]['id']          = $order->products[$i]['id'];
-      $myorder["items"][$num_line_items]['description'] = substr(htmlentities($order->products[$i]['name'], ENT_QUOTES, 'UTF-8'), 0, 128);
-      $myorder["items"][$num_line_items]['quantity']    = $order->products[$i]['qty'];
-      $myorder["items"][$num_line_items]['price']       = number_format($order->products[$i]['final_price'], 2, '.', '');
-
-      if (isset($order->products[$i]['attributes'])) {
-        $options_text_length = 0;
-        for ($j=0, $m=sizeof($order->products[$i]['attributes']); $j<$m; $j++) {
-          $options_text_length += strlen($order->products[$i]['attributes'][$j]['option'] . $order->products[$i]['attributes'][$j]['value']);
-        }
-        if ($options_text_length < 128) {
+        if (isset($order->products[$i]['attributes'])) {
+          $options_text_length = 0;
           for ($j=0, $m=sizeof($order->products[$i]['attributes']); $j<$m; $j++) {
-            $myorder["items"][$num_line_items]['options' . $j]['name'] = substr(htmlentities($order->products[$i]['attributes'][$j]['option'], ENT_QUOTES, 'UTF-8'), 0, 128);
-            $myorder["items"][$num_line_items]['options' . $j]['value'] = substr(htmlentities($order->products[$i]['attributes'][$j]['value'], ENT_QUOTES, 'UTF-8'), 0, 128);
+            $options_text_length += strlen($order->products[$i]['attributes'][$j]['option'] . $order->products[$i]['attributes'][$j]['value']);
+          }
+          if ($options_text_length < 128) {
+            for ($j=0, $m=sizeof($order->products[$i]['attributes']); $j<$m; $j++) {
+              $myorder["items"][$num_line_items]['options' . $j]['name'] = substr(htmlentities($order->products[$i]['attributes'][$j]['option'], ENT_QUOTES, 'UTF-8'), 0, 128);
+              $myorder["items"][$num_line_items]['options' . $j]['value'] = substr(htmlentities($order->products[$i]['attributes'][$j]['value'], ENT_QUOTES, 'UTF-8'), 0, 128);
+            }
           }
         }
+        // track one-time charges
+        if ($order->products[$i]['onetime_charges'] != 0 ) {
+          $num_line_items++;
+          $myorder["items"][$num_line_items]['id']          = 'OTC';
+          $myorder["items"][$num_line_items]['description'] = 'One Time Charges';
+          $myorder["items"][$num_line_items]['quantity']    = 1;
+          $myorder["items"][$num_line_items]['price']       = number_format($order->products[$i]['onetime_charges'], 2, '.', '');
+        }
       }
-      // track one-time charges
-      if ($order->products[$i]['onetime_charges'] != 0 ) {
-        $num_line_items++;
-        $myorder["items"][$num_line_items]['id']          = 'OTC';
-        $myorder["items"][$num_line_items]['description'] = 'One Time Charges';
-        $myorder["items"][$num_line_items]['quantity']    = 1;
-        $myorder["items"][$num_line_items]['price']       = number_format($order->products[$i]['onetime_charges'], 2, '.', '');
-      }
-    }
 /*
         // deal with surcharges/fees
         $num_line_items++;
@@ -366,12 +363,45 @@ class linkpoint_api {
         $myorder["subtotal"] += $surcharges;
 */
 
-     // if partial quantities apply, discounts are used, or other problems with line-item details exist, do not send line-item details, otherwise validation error occurs
-      if ($partial_quantities_flag || $i > 20) {
+     // FirstData can't accept more than 20 line-item submissions per transaction
+      if ($num_line_items > 20) {
         unset($myorder["items"]);
+        $num_line_items = 0;
       }
-    } else {
-      unset($myorder['subtotal'], $myorder['tax'], $myorder['shipping']);
+      // Verify that the line-item math works
+      for ($i=1, $n=$num_line_items; $i <= $n; $i++) {
+        $sum2 += ($myorder["items"][$i]['quantity'] * $myorder["items"][$i]['price']);
+      }
+      if (strval($sum2) != strval($myorder['subtotal'])) {
+        unset($myorder['items']);
+        $num_line_items = 0;
+      }
+    }
+
+    // Subtotal Sanity Check
+    $sum1 = strval($myorder['subtotal'] + $myorder['shipping'] + $myorder['tax']);
+    if ($sum1 > $myorder['chargetotal']) {
+      foreach(array('subtotal', 'tax', 'shipping', 'items') as $i) {
+        if (isset($myorder[$i])) unset($myorder[$i]);
+      }
+    } elseif ($sum1 < $myorder['chargetotal']) {
+      if ($num_line_items > 0 && $num_line_items < 20 && isset($myorder['items'])) {
+        $num_line_items++;
+        $myorder["items"][$num_line_items]['id']          = 'Adj';
+        $myorder["items"][$num_line_items]['description'] = 'Rounding Adjustment';
+        $myorder["items"][$num_line_items]['quantity']    = 1;
+        $myorder["items"][$num_line_items]['price']       = number_format($myorder['chargetotal'] - $sum1, 2, '.', '');
+        $myorder['subtotal'] += round($myorder['chargetotal'] - $sum1, 2);
+        $myorder['subtotal'] = number_format($myorder['subtotal'], 2, '.', '');
+      } else {
+        foreach(array('subtotal', 'tax', 'shipping', 'items') as $i) {
+          if (isset($myorder[$i])) unset($myorder[$i]);
+        }
+      }
+    }
+    // clean up zeros
+    foreach(array('subtotal', 'tax', 'shipping') as $i) {
+      if (isset($myorder[$i]) && $myorder[$i] == 0) unset($myorder[$i]);
     }
 
     $myorder["ip"]  = zen_get_ip_address();
@@ -426,7 +456,7 @@ class linkpoint_api {
 
     // resubmit without subtotals if subtotal error occurs
     if ($result["r_approved"] != "APPROVED" && !($result["r_approved"] == "SUBMITTED" && $result["r_message"] == 'APPROVED')) {
-      if (in_array(substr($result['r_error'],0,10), array('SGS-002301', 'SGS-010503'))) {
+      if (in_array(substr($result['r_error'],0,10), array('SGS-002301', 'SGS-010503', 'SGS-005003'))) {
         foreach(array('items', 'subtotal', 'tax', 'shipping') as $i) {
           if (isset($myorder[$i])) unset($myorder[$i]);
         }

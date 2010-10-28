@@ -6,7 +6,7 @@
  * @copyright Copyright 2003-2010 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: authorizenet_aim.php 17638 2010-09-28 00:23:07Z drbyte $
+ * @version $Id: authorizenet_aim.php 18013 2010-10-22 03:38:29Z drbyte $
  */
 /**
  * Authorize.net Payment Module (AIM version)
@@ -176,7 +176,7 @@ class authorizenet_aim extends base {
     }
 
     $today = getdate();
-    for ($i=$today['year']; $i < $today['year']+10; $i++) {
+    for ($i=$today['year']; $i < $today['year']+15; $i++) {
       $expires_year[] = array('id' => strftime('%y',mktime(0,0,0,1,1,$i)), 'text' => strftime('%Y',mktime(0,0,0,1,1,$i)));
     }
     $onFocus = ' onfocus="methodSelect(\'pmt-' . $this->code . '\')"';
@@ -378,7 +378,12 @@ class authorizenet_aim extends base {
     if ($response[0] == '3' && $response[2] == '66') $response['ErrorDetails'] = 'Transaction did not meet security guideline requirements.';
     if ($response[0] == '3' && $response[2] == '128') $response['ErrorDetails'] = 'Refused by customers bank.';
     if ($response[0] == '2' && $response[2] == '250') $response['ErrorDetails'] = 'Transaction submitted from a blocked IP address.';
-    if ($response[0] == '2' && $response[2] == '250') $response['ErrorDetails'] = 'Declined by Fraud Detection Suite filter.';
+    if ($response[0] == '2' && $response[2] == '251') $response['ErrorDetails'] = 'Declined by Fraud Detection Suite filter.';
+    if ($response[0] == '4' && in_array($response[2], array('193', '252', '253'))) {
+      $this->order_status = 1;
+      $this->transaction_id .= ' ***NOTE: Held for review by merchant.';
+      $response['ErrorDetails'] = 'Transaction held for review by merchant or fraud detection suite.';
+    }
 
     $this->_debugActions($response, $order_time, $sessID);
 

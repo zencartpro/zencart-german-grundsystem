@@ -6,8 +6,9 @@
  * @copyright Copyright 2003-2010 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: ipn_main_handler.php 17555 2010-09-14 08:47:12Z drbyte $
+ * @version $Id: ipn_main_handler.php 18014 2010-10-22 03:39:17Z drbyte $
  */
+if (!defined('TEXT_RESELECT_SHIPPING')) define('TEXT_RESELECT_SHIPPING', 'You have changed the items in your cart since shipping was last calculated, and costs may have changed. Please verify/re-select your shipping method.');
 
 /**
  * handle Express Checkout processing:
@@ -15,6 +16,14 @@
 if (isset($_GET['type']) && $_GET['type'] == 'ec') {
   // this is an EC handler request
   require('includes/application_top.php');
+
+// Validate Cart for checkout
+  $_SESSION['valid_to_checkout'] = true;
+  $_SESSION['cart']->get_products(true);
+  if ($_SESSION['valid_to_checkout'] == false || $_SESSION['cart']->count_contents() <= 0) {
+    $messageStack->add_session('shopping_cart', ERROR_CART_UPDATE, 'error');
+    zen_redirect(zen_href_link(FILENAME_SHOPPING_CART));
+  }
 
   // Stock Check to prevent checkout if cart contents rules violations exist
   if ( STOCK_CHECK == 'true' && STOCK_ALLOW_CHECKOUT != 'true' && isset($_SESSION['cart']) ) {
@@ -26,6 +35,21 @@ if (isset($_GET['type']) && $_GET['type'] == 'ec') {
       }
     }
   }
+  // if cart contents has changed since last pass, reset
+  if (isset($_SESSION['cart']->cartID)) {
+    if (isset($_SESSION['cartID'])) {  // This will only be set if customer has been to the checkout_shipping page. Will *not* be set if starting via EC Shortcut button, so don't want to redirect in that case.
+      if ($_SESSION['cart']->cartID != $_SESSION['cartID']) {
+        if (isset($_SESSION['shipping'])) {
+          unset($_SESSION['shipping']);
+          $messageStack->add_session('checkout_shipping', TEXT_RESELECT_SHIPPING, 'error');
+          zen_redirect(zen_href_link(FILENAME_CHECKOUT_SHIPPING, '', 'SSL'));
+        }
+      }
+    }
+//  } else {
+//    zen_redirect(zen_href_link(FILENAME_TIME_OUT));
+  }
+
   require(DIR_WS_CLASSES . 'payment.php');
   // See if we were sent a request to clear the session for PayPal.
   if (isset($_GET['clearSess']) || isset($_GET['amp;clearSess']) || isset($_GET['ec_cancel']) || isset($_GET['amp;ec_cancel'])) {
