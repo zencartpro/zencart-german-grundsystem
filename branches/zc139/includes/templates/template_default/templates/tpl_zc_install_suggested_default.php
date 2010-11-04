@@ -14,10 +14,10 @@ $instPath = (file_exists('zc_install/index.php')) ? 'zc_install/index.php' : (fi
 $docsPath = (file_exists('docs/index.html')) ? 'docs/index.html' : (file_exists('../docs/index.html') ? '../docs/index.html' : '');
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" dir="ltr" lang="en">
+<html xmlns="http://www.w3.org/1999/xhtml" dir="ltr" lang="de">
 <head>
 <title>System Setup Required</title>
-<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="keywords" content="" />
 <meta name="description" content="" />
 <meta http-equiv="imagetoolbar" content="no" />
@@ -38,39 +38,39 @@ $docsPath = (file_exists('docs/index.html')) ? 'docs/index.html' : (file_exists(
 <div>
 <img src="<?php echo $relPath; ?>includes/templates/template_default/images/logo.gif" alt="Zen Cart&trade;" title=" Zen Cart&trade; " width="192" height="64" border="0" />
 </div>
-<h1>Hello. Thank you for loading Zen Cart&trade;.</h1>
-<h2>You are seeing this page for one or more reasons:</h2>
+<h1>Hallo. Danke das Sie sich für Zen Cart&trade; entschieden haben.</h1>
+<h2>Sie bekommen diese Seite aus einem oder mehreren der folgenden Gründe angezeigt:</h2>
 <ol>
-<li>This is your <strong>first time using Zen Cart&trade;</strong> and you haven't yet completed the normal Installation procedure.<br />
-If this is the case for you,
+<li>Sie benutzen <strong>Zen Cart&trade; zum ersten Mal</strong> und haben noch keine Installation durchgeführt.<br />
+Sollte das der Fall sein,
 <?php if ($instPath) { ?>
-<a href="<?php echo $instPath; ?>">Click here</a> to begin installation.
+<a href="<?php echo $instPath; ?>">dann klicken Sie hier</a>, um die Installation zu starten.
 <?php } else { ?>
-you will need to upload the "zc_install" folder using your FTP program, and then run <a href="<?php echo $instPath; ?>">zc_install/index.php</a> via your browser (or reload this page to see a link to it).
+dann laden Sie das Verzeichnis "zc_install" per FTP Programm in Ihr Shopverzeichnis hoch und gehen Sie gehen Sie dann auf <a href="<?php echo $instPath; ?>">zc_install/index.php</a> via Ihrem Browser (oder laden Sie diese Seite erneut, um einen Link dahin angezeigt zu bekommen).
 <?php } ?>
 <br /><br />
 </li>
-<li>Your <tt><strong>/includes/configure.php</strong></tt> and/or <tt><strong>/admin/includes/configure.php</strong></tt> file contains invalid <em>path information</em> and/or invalid <em>database-connection information</em>.<br />
-If you recently edited your configure.php files for any reason, or maybe moved your site to a different folder or different server, then you'll need to review and update all your settings to the correct values for your server.<br />
-See the <a href="http://tutorials.zen-cart.com" target="_blank">Online FAQ and Tutorials</a> area on the Zen Cart&trade; website for assistance.</li>
+<li>Ihre <tt><strong>/includes/configure.php</strong></tt> und/oder <tt><strong>/admin/includes/configure.php</strong></tt> Datei enthält ungültige <em>Pfadangaben</em> und/oder ungültige <em>Angaben zur Datenbankverbindung</em>.<br />
+Sollten Sie kürzlich Ihre configure.php Dateien aus irgendwelchen Gründen geändert haben, oder Ihren Shop in ein anderes Verzeichnis/anderen Server verschoben haben, dann müssen Sie die entsprechenden Angaben in den beiden Dateien anpassen.<br />
+Weitere Informationen erhalten Sie im <a href="http://www.zen-cart.at" target="_blank">deutschsprachigen Supportforum</a>.</li>
 <?php if (isset($problemString) && $problemString != '') { ?>
-<li class="errorDetails">Additional Details: <?php echo $problemString; ?></li>
+<li class="errorDetails">Zusätzliche Hinweise: <?php echo $problemString; ?></li>
 <?php } ?>
 </ol>
 <br />
-<h2>To begin installation ...</h2>
+<h2>Um die Installation zu starten ...</h2>
 <ol>
 <?php if ($docsPath) { ?>
-<li>The <a href="<?php echo $docsPath; ?>">Installation Documentation</a> can be read by clicking here: <a href="<?php echo $docsPath; ?>">Documentation</a></li>
+<li>Lesen Sie vorab die <a href="<?php echo $docsPath; ?>">Installationsanleitung</a>.</li>
 <?php } else { ?>
-<li>Installation documentation is normally found in the /docs folder of the Zen Cart&trade; distribution files/zip. You can also find documentation in the <a href="http://tutorials.zen-cart.com" target="_blank">Online FAQs</a>.</li>
+<li>Die Installation finden Sie normalerweise im Verzeichnis /docs in Ihrer Zen Cart&trade; Zip Datei.</li>
 <?php } ?>
 <?php if ($instPath) { ?>
-<li>Run <a href="<?php echo $instPath; ?>">zc_install/index.php</a> via your browser.</li>
+<li>Gehen Sie auf <a href="<?php echo $instPath; ?>">zc_install/index.php</a> via Ihrem Browser.</li>
 <?php } else { ?>
-<li>You will need to upload the "zc_install" folder using your FTP program, and then run <a href="<?php echo $instPath; ?>">zc_install/index.php</a> via your browser (or reload this page to see a link to it).</li>
+<li>Sie müssen das Verzeichnis "zc_install" per FTP in Ihr Shopverzeichnis hochladen und dann <a href="<?php echo $instPath; ?>">zc_install/index.php</a> via Ihrem Browser aufrufen (oder laden Sie diese Seite erneut, um einen Link dahin angezeigt zu bekommen).</li>
 <?php } ?>
-<li>The <a href="http://tutorials.zen-cart.com" target="_blank">Online FAQ and Tutorials</a> area on the Zen Cart&trade; website will also be of value if you run into difficulties.</li>
+<li>Das <a href="http://www.zen-cart.at" target="_blank">deutschsprachige Supportforum</a> steht Ihnen bei Problemen ebenfalls zur Verfügung.</li>
 </ol>
 
 </div>
