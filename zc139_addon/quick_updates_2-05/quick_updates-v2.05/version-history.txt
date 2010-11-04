@@ -1,0 +1,170 @@
+History:
+
+v2.05 by Francois de Wet
+Fixed quick_updates.php & includes\extra_configures\quick_updates.php to point correctly to the online catelog
+
+quick_updates.php Line 794:
+
+Changed DIR_WS_CATALOG to DIR_WS_CATALOG_IMAGES
+
+includes\extra_configures\quick_updates.php Line 12:
+
+Changed DIR_WS_CATALOG to HTTP_CATALOG_SERVER . DIR_WS_CATALOG
+
+v2.04 by Paul Mathot
+moved zen_get_category_tree from while loop (saving lots and lots of queries, depending on circumstances)
+
+open admin/quick_updates.php for editting and:
+
+replace all (2 instances?):
+zen_get_category_tree()
+
+by:
+$quick_updates_category_tree
+
+and after:
+// eof get manufacturers
+
+add:
+// bof get category_tree
+$quick_updates_category_tree = zen_get_category_tree();
+// eof get category_tree
+
+v2.03 by Paul Mathot
+
+a) Concerning the products copier and invalid (non existing) products:
+
+1)includes/functions/extra_fucntions/quick_copy.php
+Added basic protection to the quick copy function so it wont copy invalid products (exit() on invalid id)
+
+2) Changed admin/quick_updates.php 
+Now it will show an error message when trying to copy an invalid product. And if the default "Copy product" is set to an invalid products_id the copier dropdown wont show this invalid product as option anymore
+
+b) Other fixes:
+
+1) Corrected view/edit link to show correct cPath (minor issue, admin/quick_updates.php)
+2) Corrected spelling error in sql file (should have been corrected before, but somehow it slipped back??). Only use this updated sql file if the thumbnails don't show even if enabled in the quick updtes settings.
+3) Corrected sort by manufacturer (now sorts on manufacturers_name i.s.o. manufacturers_id)
+4) added QUICKUPDATES_MODIFY_PURCHASE_AND_MARGIN definition to configure file (admin/includes/extra_configures/quick_updates.php)
+
+v2.0 by Paul Mathot
+1) Renamed version to 2.0
+2) Added links to products_price_manager.php for each product
+3) Fixed several issues with "Value or rate" markup feature.
+4) Removed the need to send $_POST['update_price'][] = 'yes' on every price update
+
+Changed files (since november-27th version):
+admin\quick_updates.php
+admin\includes\stylesheet_quick_updates.css
+admin\includes\languages\english\quick_updates.php
+
+(no sql changes)
+
+v-november-27th-2006 by Paul Mathot
+1) converted all remaining <inputs> to zen_draw_input_field()'s
+2) added quotes to database input/update fields (script crashed on comma input)
+3) moved some config settings from admin/quick_updates to config files (to extra_configures/ and extra_datafiles/)
+
+Note: some configures should actually be moved to the quick_updates admin settings sql in a next version.
+
+Changed files (since the november-25th version) are:
+
+admin/quick_updates.php
+admin/includes/extra_configures/quick_updates.php
+admin/includes/extra_datafiles/quick_updates.php
+
+(so no sql changes again)
+
+v-november-19th-2006 by Paul Mathot
+1) New fix for categories issues. Added quick master_categories_id updates.
+2) Several small fixes
+3) Saves page number (in some cases)
+4) Added links to products_to_categories.php manager
+(to update overwrite your old files, no changes to the sql since previous version)
+
+v-november-16th-2006 by Paul Mathot
+1) Added column for wholesale price (= totally untested!)
+2) Added quick copy: quickly copy one or more products as new products, and one click repeated copy.
+3) Fixed multilinked categories problems and main_categories_id issue. 
+4) And added link to products_to_categories
+5) Fixed page dropdown selection
+6) Several other changes and code fixes
+(to update overwrite your old files, no changes to the sql since previous version)
+
+v-oktober18th-2006 by Paul Mathot
+Added link to shop in products_id column (does not support products_type yet)
+
+(look for QUICKUPDATES_DISPLAY_ID_INFO in code)
+
+2006-10-18: Updated by Paul Mathot
+
+1) Improved margin calculation feature (margin is updated by price ex and price inc, as well as by purchase price now).
+
+2) Added CSS popup for products description (and modified code so that the normal descriptions are hidden when the editor popup feature is enabled).
+(Tmho the descriptions do not need to be visible in that case, and displaying the descriptions clutters the screen)
+
+3) Moved CSS, and js for tax and margin calculations, to separate files.
+
+4) Added zen_update_price() function, to fix price sorting
+
+5) Made products price for products with special price editable (was disabled), and added color to the input fields as "Specials" warning.
+
+6) Colored "margin" input backgound light gray, to indicate that it's not ment for editting (disabling the field would interfere with updating it).
+
+Note: Tested in Firefox only (but I hope/think it will work fine in IE too). 
+
+v1.3.6 13.10.2006 5:03
+1. Rename files:
+/admin/includes/extra_datafiles/qucik_updates_filenames.php -> /admin/includes/extra_datafiles/quick_updates.php
+/admin/includes/languages/english/extra_definitions/quick_update_english.php -> /admin/includes/languages/english/extra_definitions/quick_update.php
+2. Add some edit features;
+3. Add sort order column.
+
+v"1.5"  Paul Mathot www.zen-cart.nl & www.beterelektro.nl
+
+1.) Added purchase price and margin (commented with "// added for products_purchase_price and margin")
+To make this products_purchase_price feature work "products_purchase_price" (i.e. DECIMAL 15,4) and "products_margin" (i.e. DECIMAL 15,2) need to be added to your products tabel.
+The margin is calculated by js, and stored to the database (enables sorting on margin).
+
+2.) Moved several inline styles and depricated styling to in document CSS
+
+3.) Several minor corrections  
+
+// bof v1.4 2006.09.21 Paul Mathot www.zen-cart.nl & www.beterelektro.nl
+
+Added code to calculate prices on price including tax (javascript upgraded for calculations on products_id by Joop Buis The Netherlands)
++Some minor corrections
+
+Also added preparations (so it is not functional yet!) for adding purchase price and margin (commented with "// add for products_purchase_price and margin")
+To make this products_purchase_price feature work at least "products_purchase_price" and "products_margin" need to be added to your products tabel, and outcommented lines in the code need to be enabled by removing the comment tags.
+// eof v1.4
+
+v1.3.3 04.09.2006 18:15 Andrew Berezin andrew@eCommerce-service.com
+Add Category Modify
+v1.3.2 31.08.2006 16:52 Andrew Berezin andrew@eCommerce-service.com
+Add:
+Display Products ID
+Display Products Trumbnail
+v1.3.1 22.08.2006 19:16 Andrew Berezin andrew@eCommerce-service.com
+
+01FEB2005 - Initial Release
+31MAR2005 - Changed to utilise Zencart 1.2.4 overrides.
+Version 1.2
+Portali - shane.gibson@portali.co.nz
+Merlin - merlin@realm-of-merlin.com
+Version 1.1
+Portali - shane.gibson@portali.co.nz
+Version 1.0
+Portali - shane.gibson@portali.co.nz
+Original osCommerce
+   v2.0 Released under the GNU General Public License
+     by GniDhal (fx@geniehalles.com)
+     from an original script contributed by Burt (burt@xwww.co.uk)
+         and by Henri Bredehoeft (hrb@nermica.net)
+   v2.1 Released under the GNU General Public License
+     by GniDhal (fx@geniehalles.com)
+   v2.2 by Mathieu (contact@mathieueylert.com)
+   v2.3 by Mathieu (contact@mathieueylert.com)
+   v2.4 by Mathieu (contact@mathieueylert.com)
+   v2.4 repack by pcwehle (info@pcwehle.de)
+   v2.5 repack by Expert (expert@imeyil.com)

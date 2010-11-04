@@ -1,0 +1,128 @@
+/*
+styles for the quick updates module
+Added by Paul Mathot
+*/
+td.smalltext {
+text-align: center;
+}
+
+#quickUpdatesProductsTable input{
+text-align: right;
+}
+.productsModel input, .productsName input, .productsDescription input{
+text-align: left;
+}
+.productsDescription a {
+position: relative;
+text-decoration: none;
+}
+#quickUpdatesProductsTable{
+width: 100%;
+}
+#quickUpdatesProductsTable a{
+margin: 0 2px;
+}
+#quickUpdatesProductsTable td {
+text-align: left;
+white-space: nowrap;
+}
+.specialPrice{
+background: #e99;
+}
+.productsPrice{
+background: #9e9;
+color: black;
+}
+.productsMargin input{
+background: #eee;
+color: black;
+}
+/* bof popup styles */
+a:hover {
+/* preventing IE hover bug */
+border: none;
+}
+.cssPopup {
+display: none;
+}
+/* added for IE6 */
+a:hover {
+text-decoration: none;
+/* I admit the line below may not be logical, but IE6 even crashes on it! */
+/* width: 10em; */
+}
+
+/* note: IE6 CSS support for this *really* sucks! I give up, better use Firefox (or IE7) */
+.productsDescription a:hover span{
+display: block;
+position: absolute;
+background: white;
+top: 5em;
+left: 2em;
+width: 70em;
+color: black;
+background: #ff9;
+padding: 1em;
+font-size: 0.9em;
+line-height: 1.5em;
+border: 1px outset black;
+z-index: 9999;
+white-space: normal;
+overflow: hidden;
+}
+
+.productsName div{
+height: 2.1em;
+position: relative;
+/* same as input (?) */
+}
+.productsName input:hover{
+text-align: left !important;
+display: block;
+width: 30em;
+position: absolute;
+padding: 0.5em 1em;
+top: -0.2em;
+left: -1em;
+z-index: 99;
+border: 1px solid red;
+background: #fff;
+color: black;
+background: white;
+}
+
+.productsImage a{
+/* 30px is the width of th thumbnails */
+width: 30px;
+display: block;
+overflow: hidden;
+}
+#quick_updates_count th{
+  text-align: right;
+}
+#quickUpdatesWrapper{
+width: 100%;
+padding: 0;
+margin: 0;
+}
+#quickUpdatesWrapper table{
+width: 100%;
+padding: 0;
+margin: 2px 0;
+}
+.quTop{
+width: 100%;
+background: #F3F9FB;
+border: 1px solid #D1E7EF;
+}
+.quFormTable{
+padding:0;
+border: 1px solid #D1E7EF;
+background: #F3F9FB;
+}
+@media print {
+/* bof printing styles */  
+  
+  
+/* eof printing styles */ 
+}
