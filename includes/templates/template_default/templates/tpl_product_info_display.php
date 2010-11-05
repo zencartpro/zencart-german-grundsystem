@@ -60,7 +60,7 @@ require($template->get_template_dir('/tpl_products_next_previous.php',DIR_WS_TEM
 <!--eof Product Name-->
 
 <!--bof Product Price block -->
-<h2 id="productPrices" class="productGeneral">
+<span id="productPrices" class="productGeneral">
 <?php
 // base price
   if ($show_onetime_charges_description == 'true') {
@@ -69,7 +69,7 @@ require($template->get_template_dir('/tpl_products_next_previous.php',DIR_WS_TEM
     $one_time = '';
   }
   echo $one_time . ((zen_has_product_attributes_values((int)$_GET['products_id']) and $flag_show_product_info_starting_at == 1) ? TEXT_BASE_PRICE : '') . zen_get_products_display_price((int)$_GET['products_id']);
-?></h2>
+?></span>
 <!--eof Product Price block -->
 
 <!--bof free ship icon  -->
