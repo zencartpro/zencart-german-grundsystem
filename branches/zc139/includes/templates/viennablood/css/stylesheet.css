@@ -586,4 +586,12 @@ table #orderHistoryDetailedOrder, table #orderHistoryStatus {
 .taxAddon{
 	font-weight:normal;
 	font-size:10px;
+    display: block;    
+}
+
+#productPrices, #reviewsInfoDefaultPrice {
+    font: bold 16px arial;
+    color: #a30101;
+    margin: 0 0 6px 0;
+    display: block;
 }

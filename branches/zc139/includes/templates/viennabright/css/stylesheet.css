@@ -1121,5 +1121,6 @@ LABEL#textAreaReviews {
 	font-weight:normal;
 	font-size:10px;
 	color:#000000;
+    display: block;        
 }
 

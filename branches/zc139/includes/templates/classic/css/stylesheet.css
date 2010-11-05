@@ -722,4 +722,5 @@ LABEL#textAreaReviews {
 .taxAddon{
 	font-weight:normal;
 	font-size:10px;
+    display: block;        
 }

@@ -1,12 +1,15 @@
 <?php
 /**
+* Template designed by 12leaves.com
+* 12leaves.com - Free ecommerce templates and design services
+
  * Page Template
  *
  * Loaded automatically by index.php?main_page=product_info.<br />
  * Displays details of a typical product
  *
  * @package templateSystem
- * @copyright Copyright 2003-2010 Zen Cart Development Team
+ * @copyright Copyright 2003-2006 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
  * @version $Id$
@@ -14,6 +17,10 @@
  //require(DIR_WS_MODULES . '/debug_blocks/product_info_prices.php');
 ?>
 <div class="centerColumn" id="productGeneral">
+
+<!--bof Product Name-->
+<h1 id="productName" class="productGeneral"><?php echo $products_name; ?></h1>
+<!--eof Product Name-->
 
 <!--bof Form start-->
 <?php echo zen_draw_form('cart_quantity', zen_href_link(zen_get_info_page($_GET['products_id']), zen_get_all_get_params(array('action')) . 'action=add_product'), 'post', 'enctype="multipart/form-data"') . "\n"; ?>
@@ -49,21 +56,14 @@ require($template->get_template_dir('/tpl_products_next_previous.php',DIR_WS_TEM
 /**
  * display the main product image
  */
-    require(DIR_WS_MODULES . zen_get_module_directory('additional_images.php'));
-    require($template->get_template_dir('/tpl_modules_main_product_image.php',DIR_WS_TEMPLATE, $current_page_base,'templates'). '/tpl_modules_main_product_image.php'); 
- ?>
-   
+   require($template->get_template_dir('/tpl_modules_main_product_image.php',DIR_WS_TEMPLATE, $current_page_base,'templates'). '/tpl_modules_main_product_image.php'); ?>
 <?php
   }
 ?>
 <!--eof Main Product Image-->
 
-<!--bof Product Name-->
-<h1 id="productName" class="productGeneral"><?php echo $products_name; ?></h1>
-<!--eof Product Name-->
-
 <!--bof Product Price block -->
-<h2 id="productPrices" class="productGeneral">
+<span id="productPrices" class="productGeneral">
 <?php
 // base price
   if ($show_onetime_charges_description == 'true') {
@@ -72,8 +72,7 @@ require($template->get_template_dir('/tpl_products_next_previous.php',DIR_WS_TEM
     $one_time = '';
   }
   echo $one_time . ((zen_has_product_attributes_values((int)$_GET['products_id']) and $flag_show_product_info_starting_at == 1) ? TEXT_BASE_PRICE : '') . zen_get_products_display_price((int)$_GET['products_id']);
-
-?></h2>
+?></span>
 <!--eof Product Price block -->
 
 <!--bof free ship icon  -->
@@ -234,7 +233,9 @@ if (CUSTOMERS_APPROVAL == 3 and TEXT_LOGIN_FOR_PRICE_BUTTON_REPLACE_SHOWROOM == 
 <!--eof Product URL -->
 
 <!--bof also purchased products module-->
-<?php require($template->get_template_dir('tpl_modules_also_purchased_products.php', DIR_WS_TEMPLATE, $current_page_base,'templates'). '/' . 'tpl_modules_also_purchased_products.php');?>
+<?php 
+require($template->get_template_dir('tpl_modules_also_purchased_products.php', DIR_WS_TEMPLATE, $current_page_base,'templates'). '/' . 'tpl_modules_also_purchased_products.php');
+?>
 <!--eof also purchased products module-->
 
 <!--bof Form close-->
