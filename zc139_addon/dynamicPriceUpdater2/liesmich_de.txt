@@ -1,0 +1,73 @@
+Dynamic Price Updater v2.0a
+-=-=-=-=-=-=-=-=-=-=-=-=-=-
+
+Danke das Sie sich für den neuen verbesserten DPU entschieden haben. Diese Erweiterung wurde komplett neu geschrieben (abgesehen von 1-2 JS Funktionen)
+
+Installation
+------------
+Achtung es werden die Dateien includes/languages/german/extra_definitions/rl.vat_info.php und includes/languages/german/extra_definitions/rl.vat_info.php überschrieben.
+Das ist notwerdig, damit die Preisanzeige weiterhin den Zusatz "inkl xx% MwSt. zzgl. Versandkosten hat. 
+
+Sollte diese Anzeige nicht erscheinen, dann kommentieren Sie den aktuellen Eintrag define .... mit // davor aus und löschen die beiden // beim unteren define Eintrag.
+
+
+Laden Sie die beiden Verzeichnisse includes und images sowie die Datei dpu_ajax.php per FTP Programm in das Hauptverzeichnis Ihres Shops hoch.
+Die Dateien liegen schon in der richtigen Ordnerstruktur vor
+
+Hinweis: Sollten Sie eine vorherige Version vom DPU installiert haben, so fügen Sie am Anfang des Dateinamens einen Unterstrich (_) ein.
+
+Update!
+-------
+
+Der DPU aktualisiert nun ebenfalls das Gewicht des Artikel, sofern das Gewicht durch die Artikelattribute verändert wird.
+Dazu erstellen Sie einfach im Template der Artikelinfo Seite ein DIV oder SPAN Element mit der ID 'productWeight'.
+
+Außerdem gibt es eine Sidebox mit rudimentären Funktionen (noch in der Entwicklungs-/Betaphase). Standardmäßig ist diese deaktiviert.
+
+Um die Sidebox zu aktivieren, gehen Sie bitte wie folgt vor:
+
+- Öffnen Sie die Datei dpu_ajax.php und gehen Sie zu Zeile 9
+- Ändern Sie define('DPU_SHOW_SIDEBOX', false); in define('DPU_SHOW_SIDEBOX', true);
+- Öffnen Sie die Datei includes/modules/pages/product_info/jscript_ajax_updater.php und gehen Sie zu Zeile 15
+- Ändern Sie define('DPU_SIDEBOX_ELEMENT_ID', 'false'); und define('DPU_SIDEBOX_ELEMENT_ID', 'MYID');
+- MYID sollte die ID eine aktivierten und ANGEZEIGTEN Sidebox (z.B. Herstelle) sein. Die DPU Sidebox erscheint darüber.
+	
+Für weitere Einstellungen der Sidebox schauen Sie in der Datei /dpu_sjax.php.
+
+Einstellungen
+--------
+
+Ich habe versucht die Einstellungen so gering und einfach wie möglich zu halten. Trotzdem gibt es ein paar notwendige Einstellungen. Diese befinden sich in den folgenden zwei Dateien:
+
+dpu_ajax.php - Die Datei enthält diverse Einstellungen unter anderem , ob das Währungssymbol angezeigt werden soll (Standard = JA), wo und ob die Stückzahl angezeigt werden soll.
+
+includes/modules/pages/product_info/jscript_ajax_updater.php - Hier sollten normalerweise keine Änderungen nötig sein. Sollte sich der Preis nicht aktualisieren können Sie hier beim Eintrag DPU_PRICE_ELEMENT_ID überprüfen, ob Sie auch das richtige Element in Ihrer Template Datei ansprechen.
+
+Support
+-------
+
+Weiteren Support erhalten Sie hier:
+
+http://www.zen-cart.com/forum/showthread.php?t=70577 (englischer Supportthread vom Author)
+http://www.zen-cart.at/ (deutsches Supportforum)
+
+Sie können mich ebenfalls per E-Mail erreichen. Anfragen oder Probleme bitte ich im englischen Supportthread zu posten, damit alles etwas davon haben.
+
+Credits
+-------
+
+Thanks to Thomas Achache to for giving me the inspiration for the mechanism
+
+Thanks to web28 for the idea of preventing loading under certain circumstances
+
+Thanks to Matt (lankeeyankee) for testing and correcting my inevitable mistakes
+
+Copyright
+---------
+
+(c) 2009-infinitum_baby! Dan Parry (Chrome)
+Email: admin@chrome.me.uk
+URL: http://chrpme.me.uk
+Other Zen Cart modules: The original Dynamic Price Updater, some image thing that never really worked properly and had a silly name ;)
+
+Out...
