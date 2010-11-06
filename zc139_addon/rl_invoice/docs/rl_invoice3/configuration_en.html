@@ -1,0 +1,81 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>pdf Invoice 3 - Configuration</title>
+<meta name="author" content="webchills | www.webchills.at" />
+<link href="rl_invoice3.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+<div id="header">
+<h2>pdf Invoice 3 for Zen-Cart 1.3.8</h2>
+ <a href="index_en.html">Overview</a> | <a href="installation_en.html">Installation</a> | Configuration | <a href="faq_en.html">FAQ</a></div>
+ <div id="flags"><a href="konfiguration.html"><img src="graphics/de.gif" alt="deutsch" width="24" height="15" border="0" class="de" /></a><img src="graphics/en.gif" alt="english" width="24" height="15" border="0" /></div>
+  <div id="wrapper">
+  <div class="content">
+<h1>Configuration and Customisation</h1>
+<p>Now that the module is ready to use, you can start using your own templates and texts.<br />
+  If you have installed the module in a liveshop straight away (tut tut), make sure you set under configuration &gt; pdf invoice 3 &gt; invoice when ordering to zero.</p>
+<ol>
+  <li><strong>  Creating your own invoice template</strong><br />
+    <br />
+    Create a pdf the way you want it. As an orientation aid, look at the file which was supplied:<br />
+    <br />
+    <em>includes/pdf/rl_invoice3_bg.pdf</em><br />
+    <br />
+    Save this pdf as rl_invoice3_bg.pdf and upload it into includes/pdf overwriting the exisiting example file.<br />
+    <br />
+    Note:<br />
+    If you save your pdf
+    under a name of your choice (e.g. mycompany_invoicetemplate.pdf), you have to change this filename in Admin &gt; configuration &gt; pdfinvoice 3 and in includes/pdf/rl_invoice3_def.php as well.<br />
+    <br />
+So for example change the file name of the pdf background file in Admin under configuration &gt; pdfinvoice3 to:<br />
+    /var/www/html/xxxx/html/shop/includes/pdf/mycompany_invoicetemplate.pdf<br />
+    then open
+    includes/pdf/rl_invoice3_def.php and change all instances of rl_invoice3_bg.pdf to mycompany_invoicetemplate.pdf.<br />
+    <br />
+    Then create a pdf invoice to try out how the bill now looks with your new background.</li>
+  <li><strong>  Create your own pdfs for Terms and Conditions and cancellation</strong><br />
+    <br />
+    If you want to use the option of sending T&amp;C and cancellation with the invoice, create a pdf for each one.<br />
+    <br />
+    In order to send the T&amp;C with the invoice, create a pdf with this information and save it as e.g. tc.pdf.<br />
+    <br />
+    Upload the tc.pdf into the following directory in Zen Cart:<br />
+    includes/pdf<br />
+    In this way the supplied terms and conditions template is overwritten.<br />
+    Then enter the following under configuration &gt; pdf invoice 3 &gt; appendices:<br />
+    tc.pdf<br />
+    <br />
+    To also send information about cancellation, create a pdf with the cancellation information and save as e.g cancellation.pdf.<br />
+    <br />
+    Upload cancellation.pdf into the following directory in Zen Cart:<br />
+    includes/pdf<br />
+    This overwrites the supplied cancellation template.<br />
+    Then enter the following under configuration &gt; pdf invoice 3 &gt; appendices:<br />
+    tc.pdf | cancellation.pdf</li>
+  <li><strong>    Experiment with the fonts supplied<br />
+    <br />
+  </strong>You can see how the supplied fonts look in the following file:<br />
+    <em>includes/pdf/font/font_example.pdf</em><br />
+    <br />
+    The font Dejavu Sans Condensed is set as default for invoice texts and Freemono is default for the article texts and the totals.<br />
+    All the available fonts can be found in the folder includes/pdf/font<br />
+    To use other supplied fonts, now insert two others for invoices and articles,e.g.<br />
+    dejavuserif | freeserif<br />
+    Then create a pdf invoice again and check the results.<br />
+    <br />
+    If you don't like any of the fonts, you can use your own fonts. However, this is only recommended for experienced users, as the fonts first have to be converted in several procedures. Instructions can be found in the <a href="faq_en.html">FAQ</a>.</li>
+  <li><strong> 
+    Complete the rest of the settings<br />
+    <br />
+  </strong>The remaining configuration options under configuration &gt; PDF invoice are explained when you click on edit:<br />
+<img src="graphics/admin_en.jpg" alt="pdf Invoice in Admin" width="760" height="319" /></li>
+  
+</ol>
+  </div>
+</div>
+<div id="footer"><a href="#">top of page</a></div>
+</body>
+</html>

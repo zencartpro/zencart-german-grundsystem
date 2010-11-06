@@ -1,0 +1,146 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>pdf Rechnung 3 - FAQ</title>
+<meta name="author" content="webchills | www.webchills.at" />
+<link href="rl_invoice3.css" rel="stylesheet" type="text/css">  
+</head>
+
+<body>
+<div id="header">
+<h2>pdf Rechnung 3 für Zen-Cart 1.3.8</h2>
+  <a href="index.html">Übersicht</a> | <a href="installation.html">Installation</a> | <a href="konfiguration.html">Konfiguration</a> |  FAQ</div>
+   <div id="flags"><img src="graphics/de.gif" alt="deutsch" width="24" height="15" border="0" class="de" /><a href="faq_en.html"><img src="graphics/en.gif" alt="english" width="24" height="15" border="0" /></a></div>
+<div id="wrapper">
+<div class="content">
+<h1>FAQ</h1>
+<p><a href="#1">1) 
+  Wie kann ich eigene Schriftarten verwenden?</a><br />
+</p>
+<p><a href="#2">2) Wie kann ich die Schriftgröße und die Breite der Spalten verändern?</a></p>
+<p><a href="#3">3) Wie kann ich das Aussehen der Downloadlinks in der Kundenhistory verändern?</a></p>
+<p><a href="#4">4) Ich verwende Ultimate SEO URLs. Ist die pdf Rechnung damit kompatibel?</a></p>
+<p><a href="#5">5) Beim Download der Rechnung aus der Bestellhistorie im Frontend kommt eine Fehlermeldung?</a></p>
+<p><a href="#6">6) Beim Erstellen der Rechnung kommt: FPDF error: Unable to find xref table - Maybe a Problem with 'auto_detect_line_endings'</a></p>
+<p><a href="#7">7) Beim Erstellen der Rechnung kommt: Fatal error: Call to undefined function: htmlspecialchars_decode()</a></p>
+<p><a href="#8">8) Meine Frage wird hier nicht beantwortet?</a></p>
+<hr />
+<p><strong>1) Wie kann ich eigene Schriftarten verwenden?</strong><a name="1" id="1"></a></p>
+<p>  Die pdf-Rechnung liefert etliche Schriftarten mit im  Verzeichnis (includes/pdf/font).<br />
+  Will man andere Schriftarten verwenden, müssen Schriften  erst nach folgender Anleitung konvertiert werden (getestet unter Windows Vista,  geht aber auch mit Windows XP oder Windows 2000)</p>
+<p>1)<br />
+  Das Tool ufpdf unter folgendem Link herunterladen:<br />
+  <a href="http://www.webchills.at/zen/ufpdf.zip" target="_blank">http://www.webchills.at/zen/ufpdf.zip</a></p>
+<p>2)<br />
+  Entpacken in irgendeinen Ordner auf der Festplatte, am  besten in:<br />
+  C:\ufpdf</p>
+<p>3)<br />
+  Die Schriftart, die konvertiert werden soll MUSS als True  Type Font vorliegen (.ttf)<br />
+  In diesem Beispiel konvertieren wir Myriad, es wird also die  Datei myriad.ttf benötigt (z.B. aus dem Verzeichnis C:\Windows\Fonts</p>
+<p>4)<br />
+  Die myriad.ttf in C:\ufpdf\font kopieren</p>
+<p>5)<br />
+  Command Prompt (Eingabeaufforderung) öffnen und in  C:\ufpdf\tools wechseln</p>
+<p>6)<br />
+  Folgenden Befehl eingeben:<br />
+  ttf2ufm -a -F ..\font\myriad.ttf<br />
+  Nach Bestätigung mit Enter sollte eine Meldung in dieser Art  erscheinen:<br />
+<img width="524" height="201" src="graphics/ufpdf1.jpg" alt="ufpdf1.jpg" /></p>
+<p>7)<br />
+    Im Ordner C:\ufpdf\font sind danach 3 zusätzliche Dateien  vorhanden:<br />
+    <br />
+    <img width="336" height="183" src="graphics/ufpdf2.jpg" alt="ufpdf2.jpg" /><br />
+    <br />
+    myriad.afm<br />
+    myriad.t1a<br />
+    myriad.ufm<br />
+    Diese drei Dateien benötigen wir nun für den nächsten  Schritt.</p>
+<p>8)<br />
+  In einem Texteditor eine Datei mit folgendem Inhalt  erstellen:</p>
+<code>
+&lt;?php<br />
+  error_reporting(E_ALL);<br />
+  require_once(&quot;makefontuni.php&quot;);<br />
+  MakeFont(&quot;myriad.ttf&quot;,&quot;myriad.ufm&quot;);<br />
+  ?&gt;</code>
+<p>
+Datei abspeichern als make.php</p>
+<p>9)<br />
+    Am Server irgendein Verzeichnis anlegen, z.B. font. Das kann  irgendein Verzeichnis sein, hat nichts mit Zen-Cart zu tun<br />
+    In dieses Verzeichnis nun die erstellte make.php hochladen.<br />
+    Im Ordner C:\ufpdf\tools liegt eine makefontuni.php<br />
+    Diese makefontuni.php ebenfalls in das Verzeichnis font  hochladen.<br />
+    Nun noch alle Myriad Fontdateien aus C:\ufpdf\font ebenfalls  in dieses Verzeichnis hochladen, also:<br />
+    myriad.ttf<br />
+    myriad.afm<br />
+    myriad.t1a<br />
+    myriad.ufm</p>
+<p>10)<br />
+  Im Browser <a href="http://meinedomain.de/font/make.php">http://meinedomain.de/font/make.php</a> aufrufen<br />
+  Danach sind im Verzeichnis font die 3 Dateien vorhanden, die  nun für die pdf Rechnung benötigt werden:<br />
+  myriad.php<br />
+  myriad.z<br />
+  myriad.ctg.z</p>
+<p>11)<br />
+  Diese drei Dateien nun in Zen-Cart in folgendes Verzeichnis  hochladen:<br />
+  includes/pdf/font</p>
+<p>12)<br />
+  Um die Schriftart Myriad nun in der pdf Rechnung zu  aktivieren, im Zen-Cart Admin unter Konfiguration &gt; pdfRechnung3 &gt;  Schriftarten für Rechnungen und Artikel dejavusanscondensed auf myriad ändern.<br />
+  Nach demselben Muster kann eine weitere Schriftart  konvertiert und in der pdf Rechnung aktiviert werden. Dazu nur in der make.php  den Namen der Schrift ändern. Soll z.B. verdana.ttf konvertiert werden, müsste  die make.php so aussehen:</p>
+  <code>
+  &lt;?php<br />
+  error_reporting(E_ALL);<br />
+  require_once(&quot;makefontuni.php&quot;);<br />
+  MakeFont(&quot;verdana.ttf&quot;,&quot;verdana.ufm&quot;);<br />
+  ?&gt;</code>
+<p><br />
+Weitere Infos zum Tool ufpdf auf:<br />
+<a href="http://acko.net/node/56" target="_blank">http://acko.net/node/56</a>
+<hr />
+</p>
+<strong>2) Wie kann ich die Schriftgröße und die Breite der Spalten verändern?</strong><a name="2" id="2"></a>
+<p>Generell sollten alle Einstellungen im Zen-Cart Admin unter Konfiguration &gt; pdf Rechnung 3 vorgenommen werden. Wem diese Einstellungsmöglichkeiten nicht reichen, der kann zusätzlich Änderungen in folgender Datei vornehmen:</p>
+<p>includes/pdf/rl_invoice3_def.php</p>
+<p>In dieser Konfigurationsdatei sind verschiedene Templates definiert. Standardmäßig ist unter Konfiguration &gt; pdf Rechnung 3 &gt; Template für Artikel- und Summentabelle Folgendes aktiv:</p>
+<p>amazon|amazon_templ|total_col_1|total_opt_1</p>
+<p>Wenn hier etwas geändert werden soll, ist also nur der entsprechende Abschnitt in der rl_invoice3_def.php relevant:</p><img src="graphics/def.jpg" alt="rl_invoice3_def.php" border="1" />
+<p>Hier könnte man z.B. den fontSize statt 8 auf 7 stellen, um die Schrift kleiner zu machen.<br />
+Oder die Breite der einzelnen Spalten unter width verändern.</p>
+<hr/>
+</p><strong>3) Wie kann ich das Aussehen der Downloadlinks in der Kundenhistory verändern?</strong><a name="3" id="3"></a>
+<p>Verantwortlich ist folgendes Stylesheet:<br />
+  includes/templates/DEINTEMPLATE/stylesheet_rl_invoice3.css<br />
+  Darin Farbe/Hintergrundfarbe/Linkdefinitionen entsprechend anpassen oder neu eintragen.
+<a href="http://www.zen-cart.at/zcvb/forum" target="_blank"></a></p>
+<p>&nbsp;</p>
+<hr/>
+</p><strong>4) Ich verwende Ultimate SEO URL. Ist die pdf Rechnung damit kompatibel?</strong><a name="4" id="4"></a>
+<p>Ja, allerdings dürfen nicht alle Seiten von Ultimate SEO URL umgeschrieben werden. Sonst funktioniert der Download der Rechnung in der Kundenhistory nicht.</p>
+<p>Im Admin unter Konfiguration &gt; SEO URLs daher<a href="http://www.zen-cart.at/zcvb/forum" target="_blank"></a> bei &quot;Seiten eingeben, die umgeschrieben werden sollen&quot; die gewünschten Seiten manuell eintragen, das Feld darf nicht leer sein. Beispiel:<br /><code>index, product_info, products_new, products_all, featured_products, specials, agb,  reviews,  site_map</code>
+</p>
+<p>&nbsp;</p>
+<hr/>
+</p><strong>5) Beim Download der Rechnung aus der Bestellhistorie im Frontend kommt eine Fehlermeldung?</strong><a name="5" id="5"></a>
+<p>Der Rechnungsdownload funktioniert nach demselben Prinzip wie das Herunterladen von Downloadartikeln in Zen-Cart. Daher greifen hier die Einstellungen unter Konfiguration &gt; Attributeinstellungen. Sollte der Download nicht möglich oder das pdf beschädigt sein, den Download über Redirect auf false stellen. Download via Redirect ist bei lokalen XAMPP Installationen und auch bei sehr vielen Providern nicht möglich. Wichtig ist auch, dass unter Konfiguration &gt; GZip Komprimierung auf aus steht.</p>
+<p>&nbsp;</p>
+<hr/>
+<p><strong>6) Beim Erstellen der Rechnung kommt: FPDF error: Unable to find xref table - Maybe a Problem with 'auto_detect_line_endings'</strong><a name="6" id="6"></a></p>
+<p>Wenn die pdf Vorlage mit Adobe Acrobat erstellt wird, muss bei den Kompatibilitätseinstellungen für frühere Acrobat Versionen etwas Niedrigeres eingestellt werden, z.B. Acrobat 4.0 und höher.</p>
+<p>&nbsp;</p>
+<hr/>
+<p><strong>7) Beim Erstellen der Rechnung kommt: Fatal error: Call to undefined function: htmlspecialchars_decode()</strong><a name="7" id="7"></a></p>
+<p>Für die pdfRechnung3 ist PHP5 erforderlich.<br/>
+PHP4 wird bereits seit Mitte 2008 nicht mehr von php.net supportet!
+Bei vielen Providern ist PHP5 schon lange vorhanden und kann mittels .htaccess aktiviert werden. Sollte PHP5 nicht vorhanden sein, an den Provider wenden, damit der ein Update macht. Generell sind zum Betrieb von Zen-Cart 1.3.8 oder 1.3.9 dringend PHP 5.2.x und MySQL 5.x empfohlen.</p>
+<p>&nbsp;</p>
+<hr/>
+<p><strong>8) Meine Frage wird hier nicht beantwortet?</strong><a name="8" id="8"></a>
+<p>Schau mal hier:<br />
+  <a href="http://www.zen-cart.at/zcvb/forum" target="_blank">http://www.zen-cart.at/zcvb/forum</a></p>
+<p>&nbsp;</p>
+</div>
+</div>
+<div id="footer"><a href="#">top of page</a></div>
+</body>
+</html>

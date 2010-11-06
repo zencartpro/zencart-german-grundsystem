@@ -1,0 +1,2 @@
+$Id: info.txt 83 2010-03-09 10:14:25Z rainer langheiter $
+chmod 777  :: must be writeable
