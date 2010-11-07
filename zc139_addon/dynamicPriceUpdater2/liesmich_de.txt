@@ -5,7 +5,7 @@ Danke das Sie sich für den neuen verbesserten DPU entschieden haben. Diese Erwei
 
 Installation
 ------------
-Achtung es werden die Dateien includes/languages/german/extra_definitions/rl.vat_info.php und includes/languages/german/extra_definitions/rl.vat_info.php überschrieben.
+Achtung es werden die Dateien includes/languages/german/extra_definitions/rl.vat_info.php und includes/languages/english/extra_definitions/rl.vat_info.php überschrieben.
 Das ist notwerdig, damit die Preisanzeige weiterhin den Zusatz "inkl xx% MwSt. zzgl. Versandkosten hat. 
 
 Sollte diese Anzeige nicht erscheinen, dann kommentieren Sie den aktuellen Eintrag define .... mit // davor aus und löschen die beiden // beim unteren define Eintrag.
@@ -30,7 +30,7 @@ Um die Sidebox zu aktivieren, gehen Sie bitte wie folgt vor:
 - Ändern Sie define('DPU_SHOW_SIDEBOX', false); in define('DPU_SHOW_SIDEBOX', true);
 - Öffnen Sie die Datei includes/modules/pages/product_info/jscript_ajax_updater.php und gehen Sie zu Zeile 15
 - Ändern Sie define('DPU_SIDEBOX_ELEMENT_ID', 'false'); und define('DPU_SIDEBOX_ELEMENT_ID', 'MYID');
-- MYID sollte die ID eine aktivierten und ANGEZEIGTEN Sidebox (z.B. Herstelle) sein. Die DPU Sidebox erscheint darüber.
+- MYID sollte die ID eine aktivierten und ANGEZEIGTEN Sidebox (z.B. Hersteller) sein. Die DPU Sidebox erscheint darüber.
 	
 Für weitere Einstellungen der Sidebox schauen Sie in der Datei /dpu_sjax.php.
 

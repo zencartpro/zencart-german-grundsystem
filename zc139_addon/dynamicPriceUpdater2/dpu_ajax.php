@@ -7,22 +7,23 @@ require('includes/application_top.php');
 require(DIR_WS_CLASSES.'dynamic_price_updater.php');
 
 
-define('DPU_SHOW_CURRENCY_SYMBOLS', true);
-define('UPDATER_PREFIX_TEXT', 'Your price1: ');
-define('DPU_SHOW_QUANTITY', true);
-define('DPU_SHOW_QUANTITY_FRAME', '&nbsp;(%s)');
-define('DPU_SHOW_SIDEBOX', false); // if the sidebox is not displayed this can be set to false to minimise network traffic
-define('DPU_SIDEBOX_QUANTITY_FRAME', '<span class="DPUSideboxQuantity">&nbsp;x&nbsp;%s</span>'); // how the weight is displayed in the sidebox.  Default is ' x 1'... set to '' for no display... %s is the quantity itself
-define('DPU_SIDEBOX_PRICE_FRAME', '&nbsp;(%s)'); // how the attribute price is displayed
-define('DPU_SIDEBOX_TOTAL_FRAME', '<hr /><span class="DPUSideboxTotalText">Total: </span><span class="DPUSideboxTotalDisplay">%s</span>'); // this is how the total should be displayed.  %s is the price itself as displayed in the
-define('DPU_SIDEBOX_FRAME', '<span class="DPUSideBoxName">%1$s</span>%3$s%2$s<br />'); // the template for the sidebox display.  Instructions below
+define('DPU_SHOW_CURRENCY_SYMBOLS', true); // Soll das Währungssymbol angezeigt werden?
+define('UPDATER_PREFIX_TEXT', 'Your price1: '); // Hat keine Funktion mehr
+define('DPU_SHOW_QUANTITY', true); // Soll die Menge hinter dem Preis angezeigt werden
+define('DPU_SHOW_QUANTITY_FRAME', '&nbsp;(%s)'); // Wie soll die Menge angezeigt werden, Standardeintrag " (xx)", wobei xx für die Menge steht.
+define('DPU_SHOW_SIDEBOX', false); // Soll die DPU Sidebox angezeigt werden
+define('DPU_SIDEBOX_QUANTITY_FRAME', '<span class="DPUSideboxQuantity">&nbsp;x&nbsp;%s</span>'); // Wie soll das Gewicht in der Sidebox angezeigt werden. (Standard ist ' x 1'...) Setzen Sie den Eintrag auf '', um kein Gewicht anzuzeigen.
+define('DPU_SIDEBOX_PRICE_FRAME', '&nbsp;(%s)'); // Wie soll der Attributpreis in der Sidebox angezeigt werden
+define('DPU_SIDEBOX_TOTAL_FRAME', '<hr /><span class="DPUSideboxTotalText">Total: </span><span class="DPUSideboxTotalDisplay">%s</span>'); // Wie soll die Gesamtsumme in der Sidebox angezeigt werden.  %s ist die Preisangabe.
+define('DPU_SIDEBOX_FRAME', '<span class="DPUSideBoxName">%1$s</span>%3$s%2$s<br />'); // Das Template für die Sidebox. Weitere Informationen finden Sie unten
 /*
-DPU_SIDEBOX_FRAME has 3 variables you can use... They are:
-%1$s - The attribute name
-%2$s - The quantity display
-%3$s - The individual price display
+DPU_SIDEBOX_FRAME hat 3 Variablen, die Sie nutzen können
+Diese sind:
+%1$s - Der Attribut Name
+%2$s - Die Stückzahlanzeige
+%3$s - Die Anzeige des individuellen Preises
 
-You can position these anywahere around the DPU_SIDEBOX_FRAME string or even remove them to prevent them from displaying
+Sie können diese Variablen innerhalb des Eintrags DPU_SIDEBOX_FRAME platzieren. Möchten Sie eine der obigen Informationen nicht angezeigt bekommen, lassen Sie die Variable einfach weg.
 */
 
 

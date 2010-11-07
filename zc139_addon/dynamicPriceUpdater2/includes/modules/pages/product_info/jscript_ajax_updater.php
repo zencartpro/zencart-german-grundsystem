@@ -8,13 +8,14 @@
 * @licence This module is free to distribute and use as long as the above copyright message is left in tact
 */
 // define some running vars
-define('DPU_PRODUCT_FORM', 'cart_quantity'); // this should never change
-define('DPU_PRICE_ELEMENT_ID', 'productPrices'); // this is the ID of the element where your price is displayed
-define('DPU_WEIGHT_ELEMENT_ID', 'productWeight'); // this is the ID where your weight is displayed
-define('DPU_SIDEBOX_TITLE', 'Price Breakdown'); // the heading that shows in the Updater sidebox
-define('DPU_SIDEBOX_ELEMENT_ID', 'whatsnew'); // set this to: 'false' - don't use or the ID of the sidebox you want the display to insert above (must be exact)
-define('DPU_SHOW_LOADING_IMAGE', true); // true to show a small loading graphic so the user knows something is happening
-define('DPU_SHOW_SIDEBOX', false); // true to show a small loading graphic so the user knows something is happening
+define('DPU_PRODUCT_FORM', 'cart_quantity'); // Dieser Eintrag sollte nicht verändert werden
+define('DPU_PRICE_ELEMENT_ID', 'productPrices'); // Dies ist die ID des Elements, die den Artikelpreis enthält. Damit wird auch festgelegt, wo der Preis angezeigt wird
+define('DPU_PRICE2_ELEMENT_ID', 'cartAdd'); // Dies ist die ID des Elements, bei der der Artikelpreis ein 2. Mal angezeigt werden soll. Der Eintrag '' anstatt von 'cartAdd' zeigt den 2. Preis nicht an
+define('DPU_WEIGHT_ELEMENT_ID', 'productWeight'); // Dies ist die ID des Elements, der das Artikelgewicht enthält. Damit wird auch festgelegt, wo das Artikelgewicht angezeigt wird.
+define('DPU_SIDEBOX_TITLE', 'Price Breakdown'); // Die Überschrift der DPU Sidebox
+define('DPU_SIDEBOX_ELEMENT_ID', 'whatsnew'); // Hier kommt der PHP Titel der Sidebox rein, über der die DPU Sidebox angezeit werden soll (Der Eintrag muss exact sein)
+define('DPU_SHOW_LOADING_IMAGE', true); // True = Die kleine Ladegrafik wird angezeigt bei de Berechnung des neuen Preises/Gewichts, so daß der Kunde sieht, dass was passiert / False = Keine Grafik
+define('DPU_SHOW_SIDEBOX', false); // True = Die kleine Ladegrafik wird angezeigt bei de Berechnung des neuen Preises/Gewichts, so daß der Kunde sieht, dass was passiert / False = Keine Grafik
 
 $load = true; // if any of the PHP conditions fail this will be set to false and DPU won't be fired up
 $pid = (!empty($_GET['products_id']) ? intval($_GET['products_id']) : 0);
@@ -34,7 +35,7 @@ if ($load) {
 var theFormName = '<?php echo DPU_PRODUCT_FORM; ?>';
 var theForm = false;
 var theURL = '<?php echo DIR_WS_CATALOG; ?>dpu_ajax.php';
-var _secondPrice = 'cartAdd';
+var _secondPrice = '<?php echo DPU_PRICE2_ELEMENT_ID; ?>';
 var objSP = false; // please don't adjust this
 var request = new Array();
 // Updater sidebox settings
@@ -208,7 +209,6 @@ objXHR.prototype.handlePrice = function () {
 function updSP() {
 	// adjust the second price display; create the div if necessary
 	var flag = false; // error tracking flag
-
 	if (_secondPrice !== false) { // second price is active
 		var centre = document.getElementById('productGeneral');
 		var temp = document.getElementById('<?php echo DPU_PRICE_ELEMENT_ID; ?>');
