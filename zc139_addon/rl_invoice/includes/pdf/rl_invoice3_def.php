@@ -79,7 +79,7 @@ $optionsP['amazon_templ'] = array(
          'qty' => array('justification' => 'R', 'width' => 13),
          'model' => array('justification' => 'L', 'width' => 24),
          'name' => array('justification' => 'L', 'width' => 45, 'backcolor' => '89, 150, 89', 'textcolor'=>'246, 225, 97'),
-         'name_only' => array('justification' => 'L', 'width' => 40, 'backcolor' => '246, 225, 97'),
+         'name_only' => array('justification' => 'L', 'width' => 40, 'textcolor' => '240, 0, 0'),
          'attrib_only' => array('justification' => 'L', 'width' => 53, 'backcolor' => '240, 0, 0'),
          'singleE' => array('justification' => 'R', 'width' => 20),
          'tax' => array('justification' => 'R', 'width' => 15),
