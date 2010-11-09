@@ -328,10 +328,15 @@ class rl_invoice3 extends fpdi {
                 #$x = array(50, 100, 150);
                 if(isset($format[$i]['backcolor'])){
                     $color = split(',', $format[$i]['backcolor']);
-                    #$this->pdf->SetFillColor(246, 225, 97);
                     $this->pdf->SetFillColor($color[0], $color[1], $color[2]);
                 } else {
                     $this->pdf->SetFillColor(255);
+                }
+                if(isset($format[$i]['textcolor'])){
+                    $color = split(',', $format[$i]['textcolor']);
+                    $this->pdf->SetTextColor($color[0], $color[1], $color[2]);
+                } else {
+                    $this->pdf->SetTextColor(0);
                 }
                 $mc = $this->pdf->MultiCell($w, $this->pdf->FontSize * $this->lineHeight[0], $this->mr($data[$i]), 0, $a, 1);
                 //                MultiCell($w, $h,                                          $txt,                 $border=0, $align='J', $fill=false)                  

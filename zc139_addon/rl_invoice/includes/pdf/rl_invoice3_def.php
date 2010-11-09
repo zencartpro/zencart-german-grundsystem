@@ -78,7 +78,7 @@ $optionsP['amazon_templ'] = array(
          'subtotalE' => array('justification' => 'R', 'width' => 0),
          'qty' => array('justification' => 'R', 'width' => 13),
          'model' => array('justification' => 'L', 'width' => 24),
-         'name' => array('justification' => 'L', 'width' => 0, 'backcolor' => '246, 225, 97'),
+         'name' => array('justification' => 'L', 'width' => 45, 'backcolor' => '89, 150, 89', 'textcolor'=>'246, 225, 97'),
          'name_only' => array('justification' => 'L', 'width' => 40, 'backcolor' => '246, 225, 97'),
          'attrib_only' => array('justification' => 'L', 'width' => 53, 'backcolor' => '240, 0, 0'),
          'singleE' => array('justification' => 'R', 'width' => 20),
@@ -89,8 +89,8 @@ $optionsP['amazon_templ'] = array(
         // x == horiz-postion, y == verti-position, 
         // if db==true, you must use the columnname from table orders
         // value == text OR a php-function which returns an ad-hoc-value
-        'z1'            => array('x'=> 14, 'y'=>'35', 'db'=> false, 'value'=> 'AUFTRAGSBESTÄTIGUNG UND RECHNUNG:', 'fs'=>14),
-        'z21_R'         => array('x'=> 14, 'y'=>'43', 'db'=> false, 'value'=> getInvNr($this->oID), 'fs'=>10),
+        'z1'            => array('x'=> 20, 'y'=>'35', 'db'=> false, 'value'=> 'AUFTRAGSBESTÄTIGUNG UND RECHNUNG:', 'fs'=>14),
+        'z21_R'         => array('x'=> 20, 'y'=>'43', 'db'=> false, 'value'=> getInvNr($this->oID), 'fs'=>10),
         //'z22_L'         => array('x'=> 85, 'y'=>'43', 'db'=> false, 'value'=> 'Lieferschein-Nr.:', 'fs'=>10),
         //'z22_R'         => array('x'=> 112, 'y'=>'43', 'db'=> false, 'value'=> '1234567890', 'fs'=>10),
         'z23_L'         => array('x'=> 155, 'y'=>'43', 'db'=> false, 'value'=> 'Lieferdatum:', 'fs'=>10),
