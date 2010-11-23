@@ -33,9 +33,7 @@ if (!defined('IS_ADMIN_FLAG')) {
 if (isset($_POST['action']) && ($_POST['action'] == 'process')) {
   $process = true;
   
-  /** COWOA - If CART Total is 0, skip all but E-Mail Checks */
   
- if ($_SESSION['cart']->show_total() != 0 || COWOA_EMAIL_ONLY == 'false') {
   
      if (ACCOUNT_GENDER == 'true') {
     if (isset($_POST['gender'])) {
@@ -43,7 +41,7 @@ if (isset($_POST['action']) && ($_POST['action'] == 'process')) {
     } else {
       $gender = false;
     }
-  }
+
 
   if (ACCOUNT_COMPANY == 'true') $company = zen_db_prepare_input($_POST['company']);
   $firstname = zen_db_prepare_input($_POST['firstname']);
@@ -186,7 +184,7 @@ if (isset($_POST['action']) && ($_POST['action'] == 'process')) {
     $error = true;
     $messageStack->add('no_account', ENTRY_TELEPHONE_NUMBER_ERROR);
   }
-/* COWOA - End of CART Totals = 0 */ 
+
  }
  
   $email_address = zen_db_prepare_input($_POST['email_address']);
@@ -210,24 +208,7 @@ if (isset($_POST['action']) && ($_POST['action'] == 'process')) {
     }
   }
   
-/* COWOA - Set all fields to No_Account for free products */
-if ($_SESSION['cart']->show_total() == 0 and COWOA_EMAIL_ONLY == 'true') {
-$company = No_Account;
-$firstname = No_Account;
-$lastname = No_Account;
-$nick = No_Account;
-$street_address = No_Account;
-$suburb = No_Account;
-$city = No_Account;
-$postcode = 33333;
-$dob = '0001-01-01 00:00:00';
-$state = Florida;
-$country = 223;
-$telephone = 5555551212;
-$fax = 5555551212;
-$customers_referrals = No_Account;
-$gender = m;
-} 
+
  
   $password=zen_create_random_value(15, 'mixed');
 
