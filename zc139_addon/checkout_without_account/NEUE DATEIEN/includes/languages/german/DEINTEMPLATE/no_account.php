@@ -1,20 +1,21 @@
 <?php
 /**
  * @package languageDefines
- * @copyright Copyright 2003-2006 Zen Cart Development Team
+ * @copyright Copyright 2003-2010 Zen Cart Development Team
  * @copyright Portions Copyright Joseph Schilz
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: webchills - 2009-01-09
+ * @version $Id: no_account.php for COWOA 2.0 ZC139 2010-10-27 09:55:39Z webchills $
  */
 
 define('NAVBAR_TITLE', 'Rechnungsinformation');
 
 define('HEADING_TITLE', 'Schritt 1 von 4 - Rechnungsinformation');
 
-define('TEXT_ORIGIN_LOGIN', 'Wenn Sie ein Kundenkonto bei uns haben, melden Sie sich <a href="%s"><u>hier</u></a> an.');
-define('TEXT_LEGEND_HEAD', 'Neuer Account');
+define('TEXT_ORIGIN_LOGIN', 'Wenn Sie bereits ein Kundenkonto bei uns haben, melden Sie sich bitte <a href="%s"><u>hier</u></a> an.');
+define('TEXT_LEGEND_HEAD', 'Neues Kundenkonto');
 define('TEXT_MORE', 'Für alle Neukunden richten wir einen Geschenk-Coupon in Höhe von 10% ein. Diesen können sie bei Ihrer Bestellung einlösen.<br /><br />Um diesen zu erhalten, melden Sie sich in unserem Shop an.');
+define('EMAIL_TEXT_COWOA', 'Pflichtfeld');
 
 // greeting salutation
 define('EMAIL_SUBJECT', 'Herzlich Willkommen bei ' . STORE_NAME);
@@ -36,12 +37,12 @@ define('EMAIL_GV_LINK', ' Oder Sie können diesen über den Link einlösen: ' . 
 
 define('EMAIL_GV_LINK_OTHER','Sobald Sie den ' . TEXT_GV_NAME . ' zu Ihrer Rechnung beigefügt haben, können Sie diesen verwenden ' . TEXT_GV_NAME . ' Für Sie selbst oder einen Freund!' . "\n\n");
 
-define('EMAIL_TEXT', 'Mit Ihrem Account, können Sie jetzt unsere <strong>Dienstleistung</strong> die wir bereit stellen nutzen. Einige dieser Dienstleistungen schließen ein:' . "\n\n" . '<li><strong>Dauerhafter Warenkorb</strong> - Ihre ausgewählten Produkte werden dort angezeigt, bis diese entfernt oder als Bestellung gesendet werden.' . "\n\n" . '<li><strong>Adressbuch</strong> - Wir können Ihre Produkte an eine andere Adresse außer Ihrem eigenen liefern. Um Geburtstag-Geschenke direkt an die Geburtstags-Person selbst zu senden.' . "\n\n" . '<li><strong>Bestell-History</strong> - Sehen Sie hier Ihre Einkäufe, die Sie bei uns getätigt haben.' . "\n\n" . '<li><strong>Produkt-Bewertung</strong> - Teilen Sie Ihre Meinung zu den Produkt für andere Kunden mit.' . "\n\n" . 'Ein Geschenk-Coupon - Als Dank das Sie sich in unserem Shop angemeldet haben, haben wir in Höhe von 10% für Sie bereit gestellt. Sie können den Gutschein einmalig für Ihre Bestellung, egal ob groß oder klein einlösen. Der Coupon-Code hierfür lautet:  \'08825bbc50\'.  Um diesen Code zu verwenden, tragen Sie diesen im entsprechenden Feld der Bestellungbestätigung ein.' . "\n\n");
-define('EMAIL_CONTACT', 'Für Hilfe unseres Online-Service senden Sie einfach eine Mail: <a href="mailto:' . STORE_OWNER_EMAIL_ADDRESS . '">'. STORE_OWNER_EMAIL_ADDRESS ." </a>\n\n");
-define('EMAIL_GV_CLOSURE','Mit freundlichen Grüßen,' . "\n\n" . STORE_OWNER . "\nStore Owner\n\n". '<a href="' . HTTP_SERVER . DIR_WS_CATALOG . '">'.HTTP_SERVER . DIR_WS_CATALOG ."</a>\n\n");
+define('EMAIL_TEXT', 'HINWEIS: Dieses Email ist nur eine Information an Sie als Admin, dass dieser Kunde soeben eine Bestellung ohne Kundenkonto gestartet hat. Der Kunde hat kein solches Willkommensemail erhalten, da er die COWOA Funktion genutzt und kein echtes Kundenkonto hat!');
+define('EMAIL_CONTACT', '-');
+define('EMAIL_GV_CLOSURE','-');
 
 // email disclaimer - this disclaimer is separate from all other email disclaimers
-define('EMAIL_DISCLAIMER_NEW_CUSTOMER', 'Diese E-Mail-Adresse wurde uns von Ihnen oder von einem unserer Kunden gegeben. Wenn Sie diese E-Mail irrtümlicherweise erhalten haben, senden Sie bitte eine E-Mail an %s ');
+define('EMAIL_DISCLAIMER_NEW_CUSTOMER', 'Im Folgenden sehen Sie die Details zu diesem COWOA Kunden:');
 
 define('TABLE_HEADING_CONTACT_DETAILS', 'Kontakt Details');
 

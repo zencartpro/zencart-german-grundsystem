@@ -4,7 +4,7 @@
  * @copyright Copyright 2003-2010 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: customers.php 16167 2010-05-01 01:48:50Z drbyte $
+ * @version $Id: customers.php for COWOA 2.0 ZC139 2010-11-22 09:48:50Z webchills $
  */
 
   require('includes/application_top.php');
@@ -349,8 +349,7 @@
                                           a.entry_country_id, c.customers_telephone, c.customers_fax,
                                           c.customers_newsletter, c.customers_default_address_id,
                                           c.customers_email_format, c.customers_group_pricing,
-										  c.COWOA_account,
-                                          c.customers_authorization, c.customers_referral
+					  c.COWOA_account, c.customers_authorization, c.customers_referral
                                   from " . TABLE_CUSTOMERS . " c left join " . TABLE_ADDRESS_BOOK . " a
                                   on c.customers_default_address_id = a.address_book_id
                                   where a.customers_id = c.customers_id
@@ -1166,6 +1165,9 @@ if (($_GET['page'] == '' or $_GET['page'] == '1') and $_GET['cID'] != '') {
                 <td class="dataTableContent" align="right"><?php echo $currencies->format($customers->fields['amount']); ?></td>
 <?php } ?>
                 <td class="dataTableContent" align="center"><?php echo ($customers->fields['customers_authorization'] == 4 ? zen_image(DIR_WS_IMAGES . 'icon_red_off.gif', IMAGE_ICON_STATUS_OFF) : ($customers->fields['customers_authorization'] == 0 ? '<a href="' . zen_href_link(FILENAME_CUSTOMERS, 'action=status&current=' . $customers->fields['customers_authorization'] . '&cID=' . $customers->fields['customers_id'] . ($_GET['page'] > 0 ? '&page=' . $_GET['page'] : ''), 'NONSSL') . '">' . zen_image(DIR_WS_IMAGES . 'icon_green_on.gif', IMAGE_ICON_STATUS_ON) . '</a>' : '<a href="' . zen_href_link(FILENAME_CUSTOMERS, 'action=status&current=' . $customers->fields['customers_authorization'] . '&cID=' . $customers->fields['customers_id'] . ($_GET['page'] > 0 ? '&page=' . $_GET['page'] : ''), 'NONSSL') . '">' . zen_image(DIR_WS_IMAGES . 'icon_red_on.gif', IMAGE_ICON_STATUS_OFF) . '</a>')); ?></td>
+<!-- COWOA+ additional field in table -->
+                <td class="dataTableContent" align="center"><?php if ($customers->fields['COWOA_account']) echo '<b>X</b>'; ?></td>
+                <!-- COWOA+ -->
                 <td class="dataTableContent" align="right"><?php if (isset($cInfo) && is_object($cInfo) && ($customers->fields['customers_id'] == $cInfo->customers_id)) { echo zen_image(DIR_WS_IMAGES . 'icon_arrow_right.gif', ''); } else { echo '<a href="' . zen_href_link(FILENAME_CUSTOMERS, zen_get_all_get_params(array('cID')) . 'cID=' . $customers->fields['customers_id'] . ($_GET['page'] > 0 ? '&page=' . $_GET['page'] : ''), 'NONSSL') . '">' . zen_image(DIR_WS_IMAGES . 'icon_info.gif', IMAGE_ICON_INFO) . '</a>'; } ?>&nbsp;</td>
               </tr>
 <?php

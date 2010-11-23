@@ -1,0 +1,71 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Bestellung ohne Kundenkonto 2.0 für Zen-Cart 1.3.9 deutsch - FAQ</title>
+<meta name="author" content="webchills | www.webchills.at" />
+<link href="style.css" rel="stylesheet" type="text/css">  
+</head>
+
+<body>
+<div id="header">
+<h2>Bestellung ohne Kundenkonto (COWOA) 2.0 für Zen-Cart 1.3.9 deutsch</h2>
+  <a href="index.html">Übersicht</a> | <a href="installation.html">Installation</a> |  Konfiguration</div>
+   
+<div id="wrapper">
+<div class="content">
+<h1>Konfiguration und Verwendung</h1>
+<h1>Einstellungsmöglichkeiten in der Zen-Cart Administration</h1>
+<p>
+  Unter Konfiguration &gt; COWOA sind 3 Optionen verfügbar:<br />
+  <strong><br />
+  COWOA - Allgemein</strong><br />
+  true oder false<br />
+  Ist nach der Installation auf false gestellt.<br />
+  Stellen Sie auf true um Bestellung ohne Kundenkonto überhaupt zu aktivieren.</p>
+<p><strong>COWOA - Bestellstatus aktivieren</strong><br />
+  true oder false<br />
+  Ist nach der Installation auf false gestellt<br />
+  Wenn Sie hier auf true stellen, bekommt ein COWOA-Kunde in der Bestellbestätigung und bei späteren Bestellstatusupdates einen Link, mit dem er den Status der Bestellung einsehen kann.<br />
+  Bei normalen Kunden heißt der Link wie immer &quot;Detaillierte Rechnung&quot; und führt zum Kundenkonto.<br />
+  COWOA-Kunden haben kein Kundenkonto, daher heißt der Link für COWOA-Kunden &quot;Bestellstatus einsehen&quot; und führt zu einer Loginmaske, die Bestellnummer und für die COWOA-Bestellung verwendete Emailadresse verlangt.</p>
+<p><strong>COWOA - Automatisches Ausloggen</strong><br />
+  true oder false<br />
+  Ist nach der Installation auf false gestellt.<br />
+  Wenn Sie hier auf true stellen, dann wird ein Kunde der ohne Kundenkonto bestellt   nach erfolgreicher Bestellung automatisch ausgeloggt. <br />
+  Achtung:<br />
+Falls der   COWOA Kunde einen Download gekauft hat, kann er diesen dann erst mittels   Link im Bestellstatusupdate-Email herunterladen</p>
+<h1>Unterscheidung zwischen &quot;normalen Kunden&quot; und COWOA-Kunden in der Zen-Cart Administration</h1>
+<p>Unter Kunden &gt; Kunden ist in der Kundenliste eine neue Spalte verfügbar, die anzeigt, ob es sich um einen voll registrierten Kunden oder einen COWOA-Kunden handelt.<br />
+  Auch auf der Einstiegsseite der Administration ist gleich ersichtlich, welche Bestellungen per COWOA getätigt wurden.</p>
+<h1>Email-Format für COWOA-Kunden</h1>
+<p>
+  Normale Kunden können bei der Registrierung angeben, ob sie Emails im HTML- oder Textformat erhalten wollen und diese Einstellung auch später in ihrem Kundenkonto ändern. COWOA-Kunden haben kein Kundenkonto, daher wird die Auswahl zwischen HTML und Textemails im Zuge der Bestellung nicht angeboten. Trotzdem muss übermittelt werden, ob Text oder HTML gesendet werden soll. Voreingestellt sind Textemails für COWOA-Kunden. <br />
+  <br />
+  Wenn Sie stattdessen standardmäßig HTML-Emails an COWOA-Kunden senden wollen, ändern Sie in:<br />
+  includes/templates/DEINTEMPLATE/templates/tpl_modules_no_account.php:<br />
+  <code>&lt;input type=&quot;hidden&quot; name=&quot;email_format&quot; value=&quot;TEXT&quot; checked=&quot;checked&quot; id=&quot;email-format-text&quot; /&gt;</code>
+  <br/>
+  auf:
+  <br/>
+   <code>&lt;input type=&quot;hidden&quot; name=&quot;email_format&quot; value=&quot;HTML&quot; checked=&quot;checked&quot; id=&quot;email-format-html&quot; /&gt;</code>
+</p>
+<h1>Split-Login</h1>
+<p>Bestellung ohne Kundenkonto funktioniert nur, wenn die geteilte Anmeldeseite aktiv ist (Split-Login). Bei der Installation wird automatisch auf Split-Login umgestellt. Sollte die Option &quot;Bestellen ohne Kundenkonto&quot; nicht angeboten werden, überprüfen Sie unter Konfiguration &gt; Layouteinstellungen, ob  <strong>Anmeldeseite geteilt anzeigen</strong> wirklich auf true steht.</p>
+<h1>Fragen, Bugs, Probleme?</h1>
+<p>Bitte posten im Supportforum:<br/>
+  <a href="http://www.zen-cart.at/zcvb/forum/forumdisplay.php?f=63" target="_blank">http://www.zen-cart.at/zcvb/forum/forumdisplay.php?f=63</a></p>
+<h1>Unterstützen Sie die Weiterentwicklung der deutschen Zen-Cart Version!</h1>
+ <p>Sie finden dieses Modul nützlich?<br/>
+ Ich freue mich über einen Espresso, Capuccino oder Irish Coffee:<br />
+ <a href="http://www.webchills.at/zencart/" target="_blank">webchills Zen-Cart Kaffeekasse</a><br />
+ <br />
+ Sie haben vom Support im Forum von zen-cart.at profitiert?<br />
+ Wir freuen uns über Spenden zur Finanzierung des Servers und der vBulletin-Lizenz:
+ <br />
+ <a href="http://www.zen-cart.at/zcvb/forum/misc.php?do=donate">zen-cart.at unterstützen </a></p>
+</div>
+</div>
+<div id="footer"><a href="#">top of page</a></div>
+</body>
+</html>

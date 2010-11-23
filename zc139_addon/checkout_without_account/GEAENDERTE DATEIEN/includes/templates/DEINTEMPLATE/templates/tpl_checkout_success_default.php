@@ -4,15 +4,13 @@
  *
  * Loaded automatically by index.php?main_page=checkout_success.<br />
  * Displays confirmation details after order has been successfully processed.
- *
- * @package templateSystem
- * @copyright Copyright 2003-2006 Zen Cart Development Team
+ * @copyright Copyright 2003-2010 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
+ * @copyright Portions Copyright 2010 JT of GTI_Custom
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: J_Schilz for Integrated COWOA - 14 April 2007
+ * @version $Id: tpl_checkout_success_default.php for COWOA 2.0 ZC139 2010-11-22 09:55:39Z webchills $
  */
 ?>
-
 <div class="centerColumn" id="checkoutSuccess">
 
 <!--bof -gift certificate- send or spend box-->
@@ -28,31 +26,8 @@
 ?>
 <!--eof -gift certificate- send or spend box-->
 
-
+<h1 id="checkoutSuccessHeading"><?php echo HEADING_TITLE; ?></h1>
 <div id="checkoutSuccessOrderNumber"><?php echo TEXT_YOUR_ORDER_NUMBER . $zv_orders_id; ?></div>
-
-<!-- bof Order Steps (tableless) -->
-<?php if($_SESSION['COWOA']) $COWOA=TRUE; ?>
-<?php if($COWOA) {?>
-    <div id="order_steps">
-            <div class="order_steps_text">
-			<span class="order_steps_text1_COWOA"><?php echo TEXT_ORDER_STEPS_BILLING; ?></span><span class="order_steps_text2_COWOA"><?php echo TEXT_ORDER_STEPS_1; ?></span><span class="order_steps_text3_COWOA"><?php echo TEXT_ORDER_STEPS_2; ?></span><span class="order_steps_text4_COWOA"><?php echo TEXT_ORDER_STEPS_3; ?></span><span id="active_step_text_COWOA"><?php echo zen_image($template->get_template_dir(ORDER_STEPS_IMAGE, DIR_WS_TEMPLATE, $current_page_base,'images'). '/' . ORDER_STEPS_IMAGE, ORDER_STEPS_IMAGE_ALT); ?><br /><?php echo TEXT_ORDER_STEPS_4; ?></span>
-            </div>
-             <div class="order_steps_line_2">
-		  <span class="progressbar_active_COWOA">&nbsp;</span><span class="progressbar_active_COWOA">&nbsp;</span><span class="progressbar_active_COWOA">&nbsp;</span><span class="progressbar_active_COWOA">&nbsp;</span><span class="progressbar_active_COWOA">&nbsp;</span>
-            </div>
-    </div>
-<?php } else {?>
-    <div id="order_steps">
-            <div class="order_steps_text">
-			<span class="order_steps_text2"><?php echo TEXT_ORDER_STEPS_1; ?></span><span class="order_steps_text3"><?php echo TEXT_ORDER_STEPS_2; ?></span><span class="order_steps_text4"><?php echo TEXT_ORDER_STEPS_3; ?></span><span id="active_step_text"><?php echo zen_image($template->get_template_dir(ORDER_STEPS_IMAGE, DIR_WS_TEMPLATE, $current_page_base,'images'). '/' . ORDER_STEPS_IMAGE, ORDER_STEPS_IMAGE_ALT); ?><br /><?php echo TEXT_ORDER_STEPS_4; ?></span>
-            </div>
-             <div class="order_steps_line_2">
-                <span class="progressbar_active">&nbsp;</span><span class="progressbar_active">&nbsp;</span><span class="progressbar_active">&nbsp;</span><span class="progressbar_active">&nbsp;</span>
-            </div>
-    </div>
-<?php } ?>
-<!-- eof Order Steps (tableless) -->
 
 
 <?php if (DEFINE_CHECKOUT_SUCCESS_STATUS >= 1 and DEFINE_CHECKOUT_SUCCESS_STATUS <= 2) { ?>
@@ -65,11 +40,24 @@
 ?>
 </div>
 <?php } ?>
-<!--We want to logout the COWOA customer automatically-->
+
+<!-- bof payment-method-alerts -->
+<?php
+if (isset($_SESSION['payment_method_messages']) && $_SESSION['payment_method_messages'] != '') {
+?>
+  <div class="content">
+  <?php echo $_SESSION['payment_method_messages']; ?>
+  </div>
+<?php
+}
+?>
+<!-- eof payment-method-alerts -->
 <!--bof logoff-->
+
+<!--Kill session if COWOA customer at checkout success-->
 <div id="checkoutSuccessLogoff">
 <?php
-if ($_SESSION['COWOA']) {
+if ($_SESSION['COWOA'] and COWOA_LOGOFF == 'true') {
   zen_session_destroy();
 } else {
   if (isset($_SESSION['customer_guest_id'])) {
@@ -80,6 +68,7 @@ if ($_SESSION['COWOA']) {
 <div class="buttonRow forward"><a href="<?php echo zen_href_link(FILENAME_LOGOFF, '', 'SSL'); ?>"><?php echo zen_image_button(BUTTON_IMAGE_LOG_OFF , BUTTON_LOG_OFF_ALT); ?></a></div>
 <?php } ?>
 </div>
+
 <!--eof logoff-->
 <br class="clearBoth" />
 <!--bof -product notifications box-->
@@ -111,7 +100,7 @@ if ($_SESSION['COWOA']) {
 
 <!--bof -product downloads module-->
 <?php
-  if (DOWNLOAD_ENABLED == 'true') require($template->get_template_dir('tpl_modules_downloads.php',DIR_WS_TEMPLATE, $current_page_base,'templates'). '/tpl_modules_downloads.php');
+  if (DOWNLOAD_ENABLED == 'true' and !($_SESSION['COWOA'])) require($template->get_template_dir('tpl_modules_downloads.php',DIR_WS_TEMPLATE, $current_page_base,'templates'). '/tpl_modules_downloads.php');
 ?>
 <!--eof -product downloads module-->
 

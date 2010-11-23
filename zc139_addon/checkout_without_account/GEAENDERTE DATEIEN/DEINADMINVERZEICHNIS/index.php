@@ -1,10 +1,10 @@
 <?php
 /**
  * @package admin
- * @copyright Copyright 2003-2009 Zen Cart Development Team
+ * @copyright Copyright 2003-2010 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: index.php 14970 2009-11-29 00:56:42Z drbyte $
+ * @version $Id: index.php for COWOA 2.0 ZC139 2010-11-22 08:56:42Z webchills $
  */
   $version_check_index=true;
   require('includes/application_top.php');
@@ -48,10 +48,6 @@
 <?php require(DIR_WS_INCLUDES . 'header.php'); ?>
 <!-- header_eof //-->
  <?php
-// COWOA only report on actual customers
-// COWOA-
-//  $customers = $db->Execute("select count(*) as count from " . TABLE_CUSTOMERS);
-// COWOA-
 // COWOA+
   $customers = $db->Execute("select count(*) as count from " . TABLE_CUSTOMERS . " WHERE COWOA_account = '0'");
 // COWOA+
@@ -86,9 +82,6 @@
 <?php
 	echo '<div class="row"><span class="left">' . BOX_ENTRY_COUNTER_DATE . '</span><span class="rigth"> ' . $counter_startdate_formatted . '</span></div>';
 	echo '<div class="row"><span class="left">' . BOX_ENTRY_COUNTER . '</span><span class="rigth"> ' . $counter->fields['counter'] . '</span></div>';
-// COWOA -
-//	echo '<div class="row"><span class="left">' . BOX_ENTRY_CUSTOMERS . '</span><span class="rigth"> ' . $customers->fields['count'] . '</span></div>';
-// COWOA -
 	echo '<div class="row"><span class="left">' . BOX_ENTRY_PRODUCTS . ' </span><span class="rigth">' . $products->fields['count'] . '</span></div>';
 	echo '<div class="row"><span class="left">' . BOX_ENTRY_PRODUCTS_OFF . ' </span><span class="rigth">' . $products_off->fields['count'] . '</span></div>';
 	echo '<div class="row"><span class="left">' . BOX_ENTRY_REVIEWS . '</span><span class="rigth">' . $reviews->fields['count']. '</span></div>';
@@ -150,10 +143,7 @@
 <div class="reportBox">
 <div class="header"><?php echo BOX_ENTRY_NEW_CUSTOMERS; ?> </div>
   <?php 
-  // in new customer section only report on actual customers with full accounts 
-  //COWOA-
-  //$customers = $db->Execute("select c.customers_id as customers_id, c.customers_firstname as customers_firstname, c.customers_lastname as customers_lastname, a.customers_info_date_account_created as customers_info_date_account_created, a.customers_info_id from " . TABLE_CUSTOMERS . " c left join " . TABLE_CUSTOMERS_INFO . " a on c.customers_id = a.customers_info_id order by a.customers_info_date_account_created DESC limit 5");
-  //COWOA-
+
   //COWOA+
   $customers = $db->Execute("select c.customers_id as customers_id, c.customers_firstname as customers_firstname, c.customers_lastname as customers_lastname, a.customers_info_date_account_created as customers_info_date_account_created, a.customers_info_id, c.COWOA_account from " . TABLE_CUSTOMERS . " c left join " . TABLE_CUSTOMERS_INFO . " a on c.customers_id = a.customers_info_id order by a.customers_info_date_account_created DESC limit 5");
   //COWOA+

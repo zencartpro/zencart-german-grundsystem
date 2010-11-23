@@ -1,11 +1,10 @@
 <?php
 /**
  * @package languageDefines
- * @copyright Copyright 2003-2006 Zen Cart Development Team
+ * @copyright Copyright 2003-2010 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @translator: cyaneo/hugo13/wflohr/maleborg	http://www.zen-cart.at	2007-01-03
- * @version $Id: login.php for COWOA 2009-01-12 18:10:40Z webchills $
+ * @version $Id: login.php for COWOA 2.0 ZC139 2010-08-23 10:10:40Z webchills $
  */
 
 define('NAVBAR_TITLE','Anmelden');

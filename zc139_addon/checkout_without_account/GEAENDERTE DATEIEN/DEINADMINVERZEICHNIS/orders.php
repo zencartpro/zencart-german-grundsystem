@@ -4,7 +4,7 @@
  * @copyright Copyright 2003-2010 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: orders.php for COWOA 1.3 2010-05-23 13:22:20Z webchills $
+ * @version $Id: orders.php for COWOA 2.0 ZC139 2010-11-22 09:17:51Z webchills $
  */
 
   require('includes/application_top.php');
@@ -51,10 +51,9 @@
       // reset single download to on
         if ($_GET['download_reset_on'] > 0) {
           // adjust download_maxdays based on current date
-         $check_status = $db->Execute("select customers_name, customers_email_address, orders_status,
+          $check_status = $db->Execute("select customers_name, customers_email_address, orders_status,
                                       date_purchased, COWOA_order from " . TABLE_ORDERS . "
                                       where orders_id = '" . $_GET['oID'] . "'");
-
           $zc_max_days = zen_date_diff($check_status->fields['date_purchased'], date('Y-m-d H:i:s', time())) + DOWNLOAD_MAX_DAYS;
 
           $update_downloads_query = "update " . TABLE_ORDERS_PRODUCTS_DOWNLOAD . " set download_maxdays='" . $zc_max_days . "', download_count='" . DOWNLOAD_MAX_COUNT . "' where orders_id='" . $_GET['oID'] . "' and orders_products_download_id='" . $_GET['download_reset_on'] . "'";
@@ -98,7 +97,7 @@
                         set orders_status = '" . zen_db_input($status) . "', last_modified = now()
                         where orders_id = '" . (int)$oID . "'");
 
-$customer_notified = '0';
+          $customer_notified = '0';
           if (isset($_POST['notify']) && ($_POST['notify'] == '1')) {
           $notify_comments = '';
           if (isset($_POST['notify_comments']) && ($_POST['notify_comments'] == 'on') && zen_not_null($comments)) {
@@ -106,12 +105,13 @@ $customer_notified = '0';
           }
 //send emails
 
-// COWOA Conditional
-    if ($check_status->fields['COWOA_order'] ==1)
-    {
+// BOF COWOA SEND ORDER_STATUS EMAIL
+if (COWOA_ORDER_STATUS == 'true') {
+    if ($check_status->fields['COWOA_order'] == 1)  {
+  
             $message =
             EMAIL_TEXT_ORDER_NUMBER . ' ' . $oID . "\n\n" .
-            EMAIL_TEXT_INVOICE_URL . ' ' . zen_catalog_href_link(FILENAME_ORDER_STATUS, 'order_id=' . $oID, 'SSL') . "\n\n" .
+            EMAIL_TEXT_COWOA_URL . ' ' . zen_catalog_href_link(FILENAME_ORDER_STATUS, 'order_id=' . $oID, 'SSL') . "\n\n" .
             EMAIL_TEXT_DATE_ORDERED . ' ' . zen_date_long($check_status->fields['date_purchased']) . "\n\n" .
       strip_tags($notify_comments) .
       EMAIL_TEXT_STATUS_UPDATED . sprintf(EMAIL_TEXT_STATUS_LABEL, $orders_status_array[$status] ) .
@@ -119,7 +119,7 @@ $customer_notified = '0';
 
           $html_msg['EMAIL_CUSTOMERS_NAME']    = $check_status->fields['customers_name'];
           $html_msg['EMAIL_TEXT_ORDER_NUMBER'] = EMAIL_TEXT_ORDER_NUMBER . ' ' . $oID;
-          $html_msg['EMAIL_TEXT_INVOICE_URL']  = '<a href="' . zen_catalog_href_link(FILENAME_ORDER_STATUS, 'order_id=' . $oID, 'SSL') .'">'.str_replace(':','',EMAIL_TEXT_INVOICE_URL).'</a>';
+          $html_msg['EMAIL_TEXT_INVOICE_URL']  = '<a href="' . zen_catalog_href_link(FILENAME_ORDER_STATUS, 'order_id=' . $oID, 'SSL') .'">'.str_replace(':','',EMAIL_TEXT_COWOA_URL).'</a>';
           $html_msg['EMAIL_TEXT_DATE_ORDERED'] = EMAIL_TEXT_DATE_ORDERED . ' ' . zen_date_long($check_status->fields['date_purchased']);
           $html_msg['EMAIL_TEXT_STATUS_COMMENTS'] = nl2br($notify_comments);
           $html_msg['EMAIL_TEXT_STATUS_UPDATED'] = str_replace('\n','', EMAIL_TEXT_STATUS_UPDATED);
@@ -129,8 +129,36 @@ $customer_notified = '0';
 
             zen_mail($check_status->fields['customers_name'], $check_status->fields['customers_email_address'], EMAIL_TEXT_SUBJECT . ' #' . $oID, $message, STORE_NAME, EMAIL_FROM, $html_msg, 'order_status');
             $customer_notified = '1';
+          }
+    } 
+if (COWOA_ORDER_STATUS == 'false') {
+      if ($check_status->fields['COWOA_order'] == 1)  {
 
-    } else {
+          $htmlInvoiceURL='';
+          $htmlInvoiceValue='';
+          $message =
+          EMAIL_TEXT_ORDER_NUMBER . ' ' . $oID . "\n\n" .
+          EMAIL_TEXT_DATE_ORDERED . ' ' . zen_date_long($check_status->fields['date_purchased']) . "\n\n" .
+          strip_tags($notify_comments) .
+          EMAIL_TEXT_STATUS_UPDATED . sprintf(EMAIL_TEXT_STATUS_LABEL, $orders_status_array[$status] ) .
+          EMAIL_TEXT_STATUS_PLEASE_REPLY;
+          $html_msg['EMAIL_CUSTOMERS_NAME']    = $check_status->fields['customers_name'];
+          $html_msg['EMAIL_TEXT_ORDER_NUMBER'] = EMAIL_TEXT_ORDER_NUMBER . ' ' . $oID;
+          $html_msg['INTRO_URL_TEXT']        = '';
+          $html_msg['INTRO_URL_VALUE']       = '';
+          $html_msg['EMAIL_TEXT_DATE_ORDERED'] = EMAIL_TEXT_DATE_ORDERED . ' ' . zen_date_long($check_status->fields['date_purchased']);
+          $html_msg['EMAIL_TEXT_STATUS_COMMENTS'] = nl2br($notify_comments);
+          $html_msg['EMAIL_TEXT_STATUS_UPDATED'] = str_replace('\n','', EMAIL_TEXT_STATUS_UPDATED);
+          $html_msg['EMAIL_TEXT_STATUS_LABEL'] = str_replace('\n','', sprintf(EMAIL_TEXT_STATUS_LABEL, $orders_status_array[$status] ));
+          $html_msg['EMAIL_TEXT_NEW_STATUS'] = $orders_status_array[$status];
+          $html_msg['EMAIL_TEXT_STATUS_PLEASE_REPLY'] = str_replace('\n','', EMAIL_TEXT_STATUS_PLEASE_REPLY);
+
+            zen_mail($check_status->fields['customers_name'], $check_status->fields['customers_email_address'], EMAIL_TEXT_SUBJECT . ' #' . $oID, $message, STORE_NAME, EMAIL_FROM, $html_msg, 'order_status');
+            $customer_notified = '1';
+          }    
+    }
+// EOF COWOA SEND ORDER_STATUS EMAIL    
+    if ($check_status->fields['COWOA_order'] != 1)  {
             $message =
             EMAIL_TEXT_ORDER_NUMBER . ' ' . $oID . "\n\n" .
             EMAIL_TEXT_INVOICE_URL . ' ' . zen_catalog_href_link(FILENAME_CATALOG_ACCOUNT_HISTORY_INFO, 'order_id=' . $oID, 'SSL') . "\n\n" .
@@ -183,7 +211,6 @@ $customer_notified = '0';
             }
           }
         }
-
         if ($order_updated == true) {
          if ($status == DOWNLOADS_ORDERS_STATUS_UPDATED_VALUE) {
             // adjust download_maxdays based on current date
@@ -195,8 +222,7 @@ $customer_notified = '0';
           $messageStack->add_session(SUCCESS_ORDER_UPDATED, 'success');
         } else {
           $messageStack->add_session(WARNING_ORDER_NOT_UPDATED, 'warning');
-        }
-
+       }
         zen_redirect(zen_href_link(FILENAME_ORDERS, zen_get_all_get_params(array('action')) . 'action=edit', 'NONSSL'));
         break;
       case 'deleteconfirm':
@@ -427,7 +453,7 @@ function couponpopupWindow(url) {
             <td valign="top"><table width="100%" border="0" cellspacing="0" cellpadding="2">
               <tr>
                 <td class="main" valign="top"><strong><?php echo ENTRY_SHIPPING_ADDRESS; ?></strong></td>
-                <td class="main"><?php echo zen_address_format($order->delivery['format_id'], $order->delivery, 1, '', '<br />'); ?></td>
+                <td class="main"><?php echo zen_address_format($order->delivery['format_id'], $order->delivery, 1, '', '<br />'); ?>
               </tr>
             </table></td>
             <td valign="top"><table width="100%" border="0" cellspacing="0" cellpadding="2">
@@ -565,7 +591,58 @@ function couponpopupWindow(url) {
           </tr>
         </table></td>
       </tr>
+<?php
+  if (MODULE_ORDER_TOTAL_DOUBLEBOX_STATUS == 'true') {
+    $orders_doublebox = $db->Execute("select orders_products_id  
+                                    from " . TABLE_ORDERS_DOUBLEBOX . "  
+                                    where orders_id = '" . zen_db_input($oID) . "' and wrap = 1");  
 
+  if ($orders_doublebox->RecordCount() > 0) {
+?>
+      <tr>
+        <td><?php echo zen_draw_separator('pixel_trans.gif', '1', '10'); ?></td>
+      </tr>
+      <tr>
+        <td class="main"><table border="1" cellspacing="0" cellpadding="5">
+          <tr>
+            <td class="smallText" align="center"><strong><?php echo DOUBLEBOX_SUMMARY_HEADING; ?></strong></td>
+          </tr>
+<?php
+       while (!$orders_doublebox->EOF) {
+          $pos = -1;
+          for ($i=0, $n=sizeof($order->products); $i<$n; $i++) {
+              if ($order->products[$i]['orders_products_id'] == 
+                  $orders_doublebox->fields['orders_products_id']) {
+                  $pos = $i; 
+                  break;
+              }
+          }
+          $orders_doublebox->MoveNext();
+          if ($pos == -1) {
+             continue; // Should never happen
+          }
+          $i = $pos; 
+          echo '<tr>';
+          echo '<td class="accountProductDisplay">' . $order->products[$i]['name'];
+          if ( (isset($order->products[$i]['attributes'])) && (sizeof($order->products[$i]['attributes']) > 0) ) {
+               echo '<br><nobr><small>';
+               for ($j=0, $n2=sizeof($order->products[$i]['attributes']); $j<$n2; $j++) {
+                       echo '&nbsp;&nbsp;- ' . $order->products[$i]['attributes'][$j]['option'] . ": " . nl2br(zen_output_string_protected($order->products[$i]['attributes'][$j]['value'])) . '<br>';
+                    }
+               echo '</small></nobr>';
+          }
+          echo '</td>'; 
+          echo '</tr>'; 
+       }
+?>
+        </table></td>
+      </tr>
+<?php
+  } else { 
+    echo '<tr><td>'. DOUBLEBOX_NO_TEXT . '</td></tr>'; 
+  }
+} 
+?>
 <?php
   // show downloads
   require(DIR_WS_MODULES . 'orders_download.php');

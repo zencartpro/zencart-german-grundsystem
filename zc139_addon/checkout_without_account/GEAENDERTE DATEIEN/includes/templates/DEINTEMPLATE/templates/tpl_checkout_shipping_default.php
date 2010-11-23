@@ -6,39 +6,20 @@
  * Displays allowed shipping modules for selection by customer.
  *
  * @package templateSystem
- * @copyright Copyright 2003-2006 Zen Cart Development Team
+ * @copyright Copyright 2003-2010 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
+ * @copyright Portions Copyright 2010 JT of GTI_Custom
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: J_Schilz for Integrated COWOA - 14 April 2007
+ * @version $Id: tpl_checkout_shipping_default.php for COWOA 2.0 ZC139 2010-11-22 09:55:39Z webchills $
  */
 ?>
 <div class="centerColumn" id="checkoutShipping">
 
 <?php echo zen_draw_form('checkout_address', zen_href_link(FILENAME_CHECKOUT_SHIPPING, '', 'SSL')) . zen_draw_hidden_field('action', 'process'); ?>
 
+<h1 id="checkoutShippingHeading"><?php echo HEADING_TITLE; ?></h1>
 <?php if ($messageStack->size('checkout_shipping') > 0) echo $messageStack->output('checkout_shipping'); ?>
 
-<!-- bof Order Steps (tableless) -->
-<?php if($COWOA) {?>
-    <div id="order_steps">
-            <div class="order_steps_text">
-			<span class="order_steps_text1_COWOA"><?php echo TEXT_ORDER_STEPS_BILLING; ?></span><span id="active_step_text_COWOA"><?php echo zen_image($template->get_template_dir(ORDER_STEPS_IMAGE, DIR_WS_TEMPLATE, $current_page_base,'images'). '/' . ORDER_STEPS_IMAGE, ORDER_STEPS_IMAGE_ALT); ?><br /><?php echo TEXT_ORDER_STEPS_1; ?></span><span class="order_steps_text2_COWOA"><?php echo TEXT_ORDER_STEPS_2; ?></span><span class="order_steps_text3_COWOA"><?php echo TEXT_ORDER_STEPS_3; ?></span><span class="order_steps_text4_COWOA"><?php echo TEXT_ORDER_STEPS_4; ?></span>
-            </div>
-            <div class="order_steps_line_2">
-		  <span class="progressbar_active_COWOA">&nbsp;</span><span class="progressbar_active_COWOA">&nbsp;</span><span class="progressbar_inactive_COWOA">&nbsp;</span><span class="progressbar_inactive_COWOA">&nbsp;</span><span class="progressbar_inactive_COWOA">&nbsp;</span>
-            </div>
-    </div>
-<?php } else {?>
-    <div id="order_steps">
-            <div class="order_steps_text">
-			<span id="active_step_text"><?php echo zen_image($template->get_template_dir(ORDER_STEPS_IMAGE, DIR_WS_TEMPLATE, $current_page_base,'images'). '/' . ORDER_STEPS_IMAGE, ORDER_STEPS_IMAGE_ALT); ?><br /><?php echo TEXT_ORDER_STEPS_1; ?></span><span class="order_steps_text2"><?php echo TEXT_ORDER_STEPS_2; ?></span><span class="order_steps_text3"><?php echo TEXT_ORDER_STEPS_3; ?></span><span class="order_steps_text4"><?php echo TEXT_ORDER_STEPS_4; ?></span>
-            </div>
-            <div class="order_steps_line_2">
-                <span class="progressbar_active">&nbsp;</span><span class="progressbar_inactive">&nbsp;</span><span class="progressbar_inactive">&nbsp;</span><span class="progressbar_inactive">&nbsp;</span>
-            </div>
-    </div>
-<?php } ?>
-<!-- eof Order Steps (tableless) -->
 
 <h2 id="checkoutShippingHeadingAddress"><?php echo TITLE_SHIPPING_ADDRESS; ?></h2>
 

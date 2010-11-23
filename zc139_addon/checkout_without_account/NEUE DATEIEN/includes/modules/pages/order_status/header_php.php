@@ -5,10 +5,14 @@
  * @copyright Copyright 2003-2005 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: J_Schilz for Integrated COWOA - 14 April 2007
+ * @copyright Portions Copyright 2007 J_Schilz
+ * @copyright Portions Copyright 2010 JT of GTI Custom
+ * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
+ * @version $Id: header_php.php for COWOA 2.0 ZC139 2010-11-22 10:19:00 webchills
+
  */
 // This should be first line of the script:
-$zco_notifier->notify('NOTIFY_HEADER_START_ACCOUNT_HISTORY_INFO');
+$zco_notifier->notify('NOTIFY_HEADER_START_ORDER_STATUS');
 
 if (!isset($_POST['order_id']) || (isset($_POST['order_id']) && !is_numeric($_POST['order_id'])))
   $errorInvalidID=TRUE;
@@ -19,18 +23,20 @@ if(!isset($_POST['query_email_address']) || zen_validate_email($_POST['query_ema
 if(!$errorInvalidID && !$errorInvalidEmail)
 {
 
-  $customer_info_query = "SELECT customers_email_address
+  $customer_info_query = "SELECT customers_email_address, customers_id
                           FROM   " . TABLE_ORDERS . "
                           WHERE  orders_id = :ordersID";
 
   $customer_info_query = $db->bindVars($customer_info_query, ':ordersID', $_POST['order_id'], 'integer');
   $customer_info = $db->Execute($customer_info_query);
 
-  if (isset($_POST['query_email_address']) && $customer_info->fields['customers_email_address'] != $_POST['query_email_address'] && $customer_info->fields['customers_email_address'] != $_POST['query_email_address'] . '.')
+  if (isset($_POST['query_email_address']) && $customer_info->fields['customers_email_address'] != $_POST['query_email_address']) {
     $errorNoMatch=TRUE;
-  else
-  {
-
+  } else {
+    $_SESSION['email_address'] = $_POST['query_email_address'];
+    $_SESSION['customer_id'] = $customer_info->fields['customers_id'];
+    $_SESSION['COWOA']= 'True';
+    $_SESSION['ORDER_STATUS'] = 'True';
     $statuses_query = "SELECT os.orders_status_name, osh.date_added, osh.comments, osh.customer_notified 
                        FROM   " . TABLE_ORDERS_STATUS . " os, " . TABLE_ORDERS_STATUS_HISTORY . " osh
                        WHERE      osh.orders_id = :ordersID
@@ -58,10 +64,8 @@ if(!$errorInvalidID && !$errorInvalidEmail)
 }
 
 require(DIR_WS_MODULES . zen_get_module_directory('require_languages.php'));
-$breadcrumb->add(NAVBAR_TITLE_1, zen_href_link(FILENAME_ACCOUNT, '', 'SSL'));
-
 
 
 // This should be last line of the script:
-$zco_notifier->notify('NOTIFY_HEADER_END_ACCOUNT_HISTORY_INFO');
+$zco_notifier->notify('NOTIFY_HEADER_END_ORDER_STATUS');
 ?>

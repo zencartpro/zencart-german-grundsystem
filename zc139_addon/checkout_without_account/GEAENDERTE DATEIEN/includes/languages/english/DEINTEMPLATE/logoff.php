@@ -10,5 +10,4 @@
 define('HEADING_TITLE', 'Log Off');
 define('NAVBAR_TITLE', 'Log Off');
 define('TEXT_MAIN', 'You have been logged out. It is now safe to leave the computer.<br /><br />If you created an account and you had items in your cart, they have been saved. The items inside it will be restored when you log back into your account.');
-
-?>
+// eof

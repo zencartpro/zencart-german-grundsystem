@@ -6,7 +6,7 @@
  * @copyright Copyright 2003-2010 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: header_php.php for COWOA 1.3 2010-05-22 19:30:41Z webchills $
+ * @header_php.php for COWOA 2.0 ZC139 2010-11-22 09:28:45Z webchills $
  */
 
 // This should be first line of the script:

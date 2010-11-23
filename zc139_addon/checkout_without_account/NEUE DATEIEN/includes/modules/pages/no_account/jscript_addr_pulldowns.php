@@ -5,10 +5,11 @@
  * handles pulldown menu dependencies for state/country selection
  *
  * @package page
- * @copyright Copyright 2003-2006 Zen Cart Development Team
+ * @copyright Copyright 2003-2010 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
+ * @copyright Portions Copyright 2007 J_Schilz
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: J_Schilz for Integrated COWOA - 14 April 2007
+ * @version $Id: jscript_addr_pulldowns.php for COWOA 2.0 ZC139 2010-11-22 10:19:00 webchills
  */
 ?>
 <script language="javascript" type="text/javascript"><!--

@@ -10,16 +10,15 @@
  * @copyright Portions Copyright 2007 Joseph Schilz
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: J_Schilz for Integrated COWOA - 14 April 20077
- * @version $Id: webchills - 2010-05-23
+ * @version $Id: tpl_modules_no_account.php for COWOA 2.0 ZC139 2010-11-22 09:55:39Z webchills $
  */
 ?>
 
 <?php if ($messageStack->size('no_account') > 0) echo $messageStack->output('no_account'); ?>
 
 <br class="clearBoth" />
-
 <?php
+
   if (DISPLAY_PRIVACY_CONDITIONS == 'true') {
 ?>
 <fieldset>
@@ -31,8 +30,21 @@
 <?php
   }
 ?>
-
+<!-- COWOA - Check Cart to see if money is owed or free products -->
 <?php
+ if ($_SESSION['cart']->show_total() == 0 and COWOA_EMAIL_ONLY == 'true') {
+?>    
+<!-- COWOA - Cart Totals are Zero, so just ask for e-mail address-->
+<fieldset>
+<legend><?php echo TABLE_HEADING_CONTACT_DETAILS; ?></legend>
+<label class="inputLabel" for="email-address"><?php echo ENTRY_EMAIL_ADDRESS; ?></label>
+<?php echo zen_draw_input_field('email_address', '', zen_set_field_length(TABLE_CUSTOMERS, 'customers_email_address', '40') . ' id="email-address"') . (zen_not_null(ENTRY_EMAIL_ADDRESS_TEXT) ? '<span class="alert">' . ENTRY_EMAIL_ADDRESS_TEXT . '' . EMAIL_TEXT_COWOA . '</span>':''); ?>
+<br class="clearBoth" />
+</fieldset>
+<input type="hidden" name="email_format" value="TEXT" checked="checked" id="email-format-text" />
+<?php
+} else {
+
   if (ACCOUNT_COMPANY == 'true') {
 ?>
 <fieldset>
@@ -78,6 +90,10 @@
   }
 ?>
 
+<label class="inputLabel" for="postcode"><?php echo ENTRY_POST_CODE; ?></label>
+<?php echo zen_draw_input_field('postcode', '', zen_set_field_length(TABLE_ADDRESS_BOOK, 'entry_postcode', '40') . ' id="postcode"') . (zen_not_null(ENTRY_POST_CODE_TEXT) ? '<span class="alert">' . ENTRY_POST_CODE_TEXT . '</span>': ''); ?>
+<br class="clearBoth" />
+
 <label class="inputLabel" for="city"><?php echo ENTRY_CITY; ?></label>
 <?php echo zen_draw_input_field('city', '', zen_set_field_length(TABLE_ADDRESS_BOOK, 'entry_city', '40') . ' id="city"') . (zen_not_null(ENTRY_CITY_TEXT) ? '<span class="alert">' . ENTRY_CITY_TEXT . '</span>': ''); ?>
 <br class="clearBoth" />
@@ -96,7 +112,7 @@
 <?php if ($flag_show_pulldown_states == true) { ?>
 <br class="clearBoth" id="stBreak" />
 <?php } ?>
-<label class="inputLabel" for="state" id="stateLabel"><?php echo $state_field_label; ?></label>
+<label class="inputLabel" for="state" id="stateLabel"><?php echo ENTRY_STATE; ?></label>
 <?php
     echo zen_draw_input_field('state', '', zen_set_field_length(TABLE_ADDRESS_BOOK, 'entry_state', '40') . ' id="state"');
     if (zen_not_null(ENTRY_STATE_TEXT)) echo '&nbsp;<span class="alert" id="stText">' . ENTRY_STATE_TEXT . '</span>';
@@ -109,9 +125,7 @@
   }
 ?>
 
-<label class="inputLabel" for="postcode"><?php echo ENTRY_POST_CODE; ?></label>
-<?php echo zen_draw_input_field('postcode', '', zen_set_field_length(TABLE_ADDRESS_BOOK, 'entry_postcode', '40') . ' id="postcode"') . (zen_not_null(ENTRY_POST_CODE_TEXT) ? '<span class="alert">' . ENTRY_POST_CODE_TEXT . '</span>': ''); ?>
-<br class="clearBoth" />
+
 
 <label class="inputLabel" for="country"><?php echo ENTRY_COUNTRY; ?></label>
 <?php echo zen_get_country_list('zone_country_id', $selected_country, 'id="country" ' . ($flag_show_pulldown_states == true ? 'onchange="update_zone(this.form);"' : '')) . (zen_not_null(ENTRY_COUNTRY_TEXT) ? '<span class="alert">' . ENTRY_COUNTRY_TEXT . '</span>': ''); ?>
@@ -122,7 +136,8 @@
 <legend><?php echo TABLE_HEADING_CONTACT_DETAILS; ?></legend>
 <label class="inputLabel" for="email-address"><?php echo ENTRY_EMAIL_ADDRESS; ?></label>
 <?php echo zen_draw_input_field('email_address', '', zen_set_field_length(TABLE_CUSTOMERS, 'customers_email_address', '40') . ' id="email-address"') . (zen_not_null(ENTRY_EMAIL_ADDRESS_TEXT) ? '<span class="alert">' . ENTRY_EMAIL_ADDRESS_TEXT . '</span>': ''); ?>
-<!-- We do not want to offer the COWOA customer the choice between TXT/HTML emails. Change to HTML if you like. -->
+
+<br class="clearBoth" />
 <input type="hidden" name="email_format" value="TEXT" checked="checked" id="email-format-text" />
 
 <br class="clearBoth" />
@@ -140,6 +155,9 @@
 ?>
 </fieldset>
 
+<fieldset>
+<input type="hidden" name="email_format" value="TEXT" checked="checked" id="email-format-text" />
+
 <?php
   if (CUSTOMERS_REFERRAL_STATUS == 2) {
 ?>
@@ -151,3 +169,7 @@
 <br class="clearBoth" />
 </fieldset>
 <?php } ?>
+
+<?php
+}
+?>

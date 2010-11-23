@@ -3,11 +3,11 @@
  * no_account.php
  *
  * @package modules
- * @copyright Copyright 2003-2006 Zen Cart Development Team
+ * @copyright Copyright 2003-2010 Zen Cart Development Team
  * @copyright Portions Copyright 2007 Joseph Schilz
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: J_Schilz for Integrated COWOA - 14 April 2007
+ * @version $Id: no_account.php for COWOA 2.0 ZC139 2010-11-22 09:10:40Z webchills $
  */
 // This should be first line of the script:
 $zco_notifier->notify('NOTIFY_MODULE_START_NO_ACCOUNT');
@@ -25,13 +25,19 @@ if (!defined('IS_ADMIN_FLAG')) {
   $state = '';
   $zone_id = 0;
   $error = false;
+  $email_format = (ACCOUNT_EMAIL_PREFERENCE == '1' ? 'HTML' : 'TEXT');
+  $newsletter = (ACCOUNT_NEWSLETTER_STATUS == '1' || ACCOUNT_NEWSLETTER_STATUS == '0' ? false : true);
 /**
  * Process form contents
  */
 if (isset($_POST['action']) && ($_POST['action'] == 'process')) {
   $process = true;
-
-  if (ACCOUNT_GENDER == 'true') {
+  
+  /** COWOA - If CART Total is 0, skip all but E-Mail Checks */
+  
+ if ($_SESSION['cart']->show_total() != 0 || COWOA_EMAIL_ONLY == 'false') {
+  
+     if (ACCOUNT_GENDER == 'true') {
     if (isset($_POST['gender'])) {
       $gender = zen_db_prepare_input($_POST['gender']);
     } else {
@@ -39,16 +45,11 @@ if (isset($_POST['action']) && ($_POST['action'] == 'process')) {
     }
   }
 
-  if (isset($_POST['email_format'])) {
-    $email_format = zen_db_prepare_input($_POST['email_format']);
-  }
-
   if (ACCOUNT_COMPANY == 'true') $company = zen_db_prepare_input($_POST['company']);
   $firstname = zen_db_prepare_input($_POST['firstname']);
   $lastname = zen_db_prepare_input($_POST['lastname']);
   $nick = zen_db_prepare_input($_POST['nick']);
   if (ACCOUNT_DOB == 'true') $dob = (empty($_POST['dob']) ? zen_db_prepare_input('0001-01-01 00:00:00') : zen_db_prepare_input($_POST['dob']));
-  $email_address = zen_db_prepare_input($_POST['email_address']);
   $street_address = zen_db_prepare_input($_POST['street_address']);
   if (ACCOUNT_SUBURB == 'true') $suburb = zen_db_prepare_input($_POST['suburb']);
   $postcode = zen_db_prepare_input($_POST['postcode']);
@@ -68,8 +69,11 @@ if (isset($_POST['action']) && ($_POST['action'] == 'process')) {
   $customers_authorization = CUSTOMERS_APPROVAL_AUTHORIZATION;
   $customers_referral = zen_db_prepare_input($_POST['customers_referral']);
 
+  if (ACCOUNT_NEWSLETTER_STATUS == '1' || ACCOUNT_NEWSLETTER_STATUS == '2') {
+    $newsletter = 0;
   if (isset($_POST['newsletter'])) {
     $newsletter = zen_db_prepare_input($_POST['newsletter']);
+    }
   }
 
   $password = zen_db_prepare_input($_POST['password']);
@@ -107,28 +111,6 @@ if (isset($_POST['action']) && ($_POST['action'] == 'process')) {
       $messageStack->add('no_account', ENTRY_COMPANY_ERROR);
     }
   }
-
-
-  if (strlen($email_address) < ENTRY_EMAIL_ADDRESS_MIN_LENGTH) {
-    $error = true;
-    $messageStack->add('no_account', ENTRY_EMAIL_ADDRESS_ERROR);
-  } elseif (zen_validate_email($email_address) == false) {
-    $error = true;
-    $messageStack->add('no_account', ENTRY_EMAIL_ADDRESS_CHECK_ERROR);
-  } else {
-    $check_email_query = "select count(*) as total
-                            from " . TABLE_CUSTOMERS . "
-                            where customers_email_address = '" . zen_db_input($email_address) . "'
-                            and COWOA_account != 1";
-    $check_email = $db->Execute($check_email_query);
-
-    if ($check_email->fields['total'] > 0) {
-      $error = true;
-      $messageStack->add('no_account', ENTRY_EMAIL_ADDRESS_ERROR_EXISTS);
-    }
-  }
-
-
 
   if (strlen($street_address) < ENTRY_STREET_ADDRESS_MIN_LENGTH) {
     $error = true;
@@ -204,6 +186,48 @@ if (isset($_POST['action']) && ($_POST['action'] == 'process')) {
     $error = true;
     $messageStack->add('no_account', ENTRY_TELEPHONE_NUMBER_ERROR);
   }
+/* COWOA - End of CART Totals = 0 */ 
+ }
+ 
+  $email_address = zen_db_prepare_input($_POST['email_address']);
+  
+  if (strlen($email_address) < ENTRY_EMAIL_ADDRESS_MIN_LENGTH) {
+    $error = true;
+    $messageStack->add('no_account', ENTRY_EMAIL_ADDRESS_ERROR);
+  } elseif (zen_validate_email($email_address) == false) {
+    $error = true;
+    $messageStack->add('no_account', ENTRY_EMAIL_ADDRESS_CHECK_ERROR);
+  } else {
+    $check_email_query = "select count(*) as total
+                            from " . TABLE_CUSTOMERS . "
+                            where customers_email_address = '" . zen_db_input($email_address) . "'
+                            and COWOA_account != 1";
+    $check_email = $db->Execute($check_email_query);
+
+    if ($check_email->fields['total'] > 0) {
+      $error = true;
+      $messageStack->add('no_account', ENTRY_EMAIL_ADDRESS_ERROR_EXISTS);
+    }
+  }
+  
+/* COWOA - Set all fields to No_Account for free products */
+if ($_SESSION['cart']->show_total() == 0 and COWOA_EMAIL_ONLY == 'true') {
+$company = No_Account;
+$firstname = No_Account;
+$lastname = No_Account;
+$nick = No_Account;
+$street_address = No_Account;
+$suburb = No_Account;
+$city = No_Account;
+$postcode = 33333;
+$dob = '0001-01-01 00:00:00';
+$state = Florida;
+$country = 223;
+$telephone = 5555551212;
+$fax = 5555551212;
+$customers_referrals = No_Account;
+$gender = m;
+} 
  
   $password=zen_create_random_value(15, 'mixed');
 
@@ -236,6 +260,7 @@ if (isset($_POST['action']) && ($_POST['action'] == 'process')) {
 
     $_SESSION['customer_id'] = $db->Insert_ID();
 
+    $zco_notifier->notify('NOTIFY_MODULE_NO_ACCOUNT_ADDED_CUSTOMER_RECORD', array_merge(array('customer_id' => $_SESSION['customer_id']), $sql_data_array));
     $sql_data_array = array('customers_id' => $_SESSION['customer_id'],
                             'entry_firstname' => $firstname,
                             'entry_lastname' => $lastname,
@@ -260,7 +285,7 @@ if (isset($_POST['action']) && ($_POST['action'] == 'process')) {
     zen_db_perform(TABLE_ADDRESS_BOOK, $sql_data_array);
 
     $address_id = $db->Insert_ID();
-
+    $zco_notifier->notify('NOTIFY_MODULE_NO_ACCOUNT_ADDED_ADDRESS_BOOK_RECORD', array_merge(array('address_id' => $address_id), $sql_data_array));
     $sql = "update " . TABLE_CUSTOMERS . "
               set customers_default_address_id = '" . (int)$address_id . "'
               where customers_id = '" . (int)$_SESSION['customer_id'] . "'";
@@ -269,16 +294,10 @@ if (isset($_POST['action']) && ($_POST['action'] == 'process')) {
 
     $sql = "insert into " . TABLE_CUSTOMERS_INFO . "
                           (customers_info_id, customers_info_number_of_logons,
-                           customers_info_date_account_created)
-              values ('" . (int)$_SESSION['customer_id'] . "', '0', now())";
+                           customers_info_date_account_created, customers_info_date_of_last_logon)
+              values ('" . (int)$_SESSION['customer_id'] . "', '1', now(), now())";
 
     $db->Execute($sql);
-
-    // phpBB create account
-    if ($phpBB->phpBB['installed'] == true) {
-      $phpBB->phpbb_create_account($nick, $password, $email_address);
-    }
-    // End phppBB create account
 
     if (SESSION_RECREATE == 'True') {
       zen_session_recreate();
@@ -295,90 +314,7 @@ if (isset($_POST['action']) && ($_POST['action'] == 'process')) {
 
     // hook notifier class
     $zco_notifier->notify('NOTIFY_LOGIN_SUCCESS_VIA_NO_ACCOUNT');
-
-    // build the message content
-    $name = $firstname . ' ' . $lastname;
-
-    if (ACCOUNT_GENDER == 'true') {
-      if ($gender == 'm') {
-        $email_text = sprintf(EMAIL_GREET_MR, $lastname);
-      } else {
-        $email_text = sprintf(EMAIL_GREET_MS, $lastname);
-      }
-    } else {
-      $email_text = sprintf(EMAIL_GREET_NONE, $firstname);
-    }
-    $html_msg['EMAIL_GREETING'] = str_replace('\n','',$email_text);
-    $html_msg['EMAIL_FIRST_NAME'] = $firstname;
-    $html_msg['EMAIL_LAST_NAME']  = $lastname;
-
-    // initial welcome
-    $email_text .=  EMAIL_WELCOME;
-    $html_msg['EMAIL_WELCOME'] = str_replace('\n','',EMAIL_WELCOME);
-
-    if (NEW_SIGNUP_DISCOUNT_COUPON != '' and NEW_SIGNUP_DISCOUNT_COUPON != '0') {
-      $coupon_id = NEW_SIGNUP_DISCOUNT_COUPON;
-      $coupon = $db->Execute("select * from " . TABLE_COUPONS . " where coupon_id = '" . $coupon_id . "'");
-      $coupon_desc = $db->Execute("select coupon_description from " . TABLE_COUPONS_DESCRIPTION . " where coupon_id = '" . $coupon_id . "' and language_id = '" . $_SESSION['languages_id'] . "'");
-      $db->Execute("insert into " . TABLE_COUPON_EMAIL_TRACK . " (coupon_id, customer_id_sent, sent_firstname, emailed_to, date_sent) values ('" . $coupon_id ."', '0', 'Admin', '" . $email_address . "', now() )");
-
-      // if on, add in Discount Coupon explanation
-      //        $email_text .= EMAIL_COUPON_INCENTIVE_HEADER .
-      $email_text .= "\n" . EMAIL_COUPON_INCENTIVE_HEADER .
-      (!empty($coupon_desc->fields['coupon_description']) ? $coupon_desc->fields['coupon_description'] . "\n\n" : '') .
-      strip_tags(sprintf(EMAIL_COUPON_REDEEM, ' ' . $coupon->fields['coupon_code'])) . EMAIL_SEPARATOR;
-
-      $html_msg['COUPON_TEXT_VOUCHER_IS'] = EMAIL_COUPON_INCENTIVE_HEADER ;
-      $html_msg['COUPON_DESCRIPTION']     = (!empty($coupon_desc->fields['coupon_description']) ? '<strong>' . $coupon_desc->fields['coupon_description'] . '</strong>' : '');
-      $html_msg['COUPON_TEXT_TO_REDEEM']  = str_replace("\n", '', sprintf(EMAIL_COUPON_REDEEM, ''));
-      $html_msg['COUPON_CODE']  = $coupon->fields['coupon_code'];
-    } //endif coupon
-
-    if (NEW_SIGNUP_GIFT_VOUCHER_AMOUNT > 0) {
-      $coupon_code = zen_create_coupon_code();
-      $insert_query = $db->Execute("insert into " . TABLE_COUPONS . " (coupon_code, coupon_type, coupon_amount, date_created) values ('" . $coupon_code . "', 'G', '" . NEW_SIGNUP_GIFT_VOUCHER_AMOUNT . "', now())");
-      $insert_id = $db->Insert_ID();
-      $db->Execute("insert into " . TABLE_COUPON_EMAIL_TRACK . " (coupon_id, customer_id_sent, sent_firstname, emailed_to, date_sent) values ('" . $insert_id ."', '0', 'Admin', '" . $email_address . "', now() )");
-
-      // if on, add in GV explanation
-      $email_text .= "\n\n" . sprintf(EMAIL_GV_INCENTIVE_HEADER, $currencies->format(NEW_SIGNUP_GIFT_VOUCHER_AMOUNT)) .
-      sprintf(EMAIL_GV_REDEEM, $coupon_code) .
-      EMAIL_GV_LINK . zen_href_link(FILENAME_GV_REDEEM, 'gv_no=' . $coupon_code, 'NONSSL', false) . "\n\n" .
-      EMAIL_GV_LINK_OTHER . EMAIL_SEPARATOR;
-      $html_msg['GV_WORTH'] = str_replace('\n','',sprintf(EMAIL_GV_INCENTIVE_HEADER, $currencies->format(NEW_SIGNUP_GIFT_VOUCHER_AMOUNT)) );
-      $html_msg['GV_REDEEM'] = str_replace('\n','',str_replace('\n\n','<br />',sprintf(EMAIL_GV_REDEEM, '<strong>' . $coupon_code . '</strong>')));
-      $html_msg['GV_CODE_NUM'] = $coupon_code;
-      $html_msg['GV_CODE_URL'] = str_replace('\n','',EMAIL_GV_LINK . '<a href="' . zen_href_link(FILENAME_GV_REDEEM, 'gv_no=' . $coupon_code, 'NONSSL', false) . '">' . TEXT_GV_NAME . ': ' . $coupon_code . '</a>');
-      $html_msg['GV_LINK_OTHER'] = EMAIL_GV_LINK_OTHER;
-    } // endif voucher
-
-    // add in regular email welcome text
-    $email_text .= "\n\n" . EMAIL_TEXT . EMAIL_CONTACT . EMAIL_GV_CLOSURE;
-
-    $html_msg['EMAIL_MESSAGE_HTML']  = str_replace('\n','',EMAIL_TEXT);
-    $html_msg['EMAIL_CONTACT_OWNER'] = str_replace('\n','',EMAIL_CONTACT);
-    $html_msg['EMAIL_CLOSURE']       = nl2br(EMAIL_GV_CLOSURE);
-
-    // include create-account-specific disclaimer
-    $email_text .= "\n\n" . sprintf(EMAIL_DISCLAIMER_NEW_CUSTOMER, STORE_OWNER_EMAIL_ADDRESS). "\n\n";
-    $html_msg['EMAIL_DISCLAIMER'] = sprintf(EMAIL_DISCLAIMER_NEW_CUSTOMER, '<a href="mailto:' . STORE_OWNER_EMAIL_ADDRESS . '">'. STORE_OWNER_EMAIL_ADDRESS .' </a>');
-
-
-    // send additional emails
-    if (SEND_EXTRA_CREATE_ACCOUNT_EMAILS_TO_STATUS == '1' and SEND_EXTRA_CREATE_ACCOUNT_EMAILS_TO !='') {
-      if ($_SESSION['customer_id']) {
-        $account_query = "select customers_firstname, customers_lastname, customers_email_address
-                            from " . TABLE_CUSTOMERS . "
-                            where customers_id = '" . (int)$_SESSION['customer_id'] . "'";
-
-        $account = $db->Execute($account_query);
-      }
-
-      $extra_info=email_collect_extra_info($name,$email_address, $account->fields['customers_firstname'] . ' ' . $account->fields['customers_lastname'] , $account->fields['customers_email_address'] );
-      $html_msg['EXTRA_INFO'] = $extra_info['HTML'];
-      zen_mail('', SEND_EXTRA_CREATE_ACCOUNT_EMAILS_TO, SEND_EXTRA_CREATE_ACCOUNT_EMAILS_TO_SUBJECT . ' ' . EMAIL_SUBJECT,
-      $email_text . $extra_info['TEXT'], STORE_NAME, EMAIL_FROM, $html_msg, 'welcome_extra');
-    } //endif send extra emails
+    
 
     if ($_SESSION['cart']->count_contents() > 0)
       zen_redirect(zen_href_link(FILENAME_CHECKOUT_SHIPPING, '', 'SSL'));
@@ -402,4 +338,3 @@ if (isset($_POST['action']) && ($_POST['action'] == 'process')) {
 
 // This should be last line of the script:
 $zco_notifier->notify('NOTIFY_MODULE_END_NO_ACCOUNT');
-?>

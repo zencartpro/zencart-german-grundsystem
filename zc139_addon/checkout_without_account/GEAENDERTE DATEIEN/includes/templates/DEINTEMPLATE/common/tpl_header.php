@@ -14,7 +14,7 @@
  * @copyright Copyright 2003-2010 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: tpl_header.php for COWOA 1.3 2010-05-22 19:35:53Z webchills $
+ * @version $Id: tpl_header.php for COWOA 2.0 ZC139 2010-11-23 05:23:53Z webchills $
  */
 ?>
 

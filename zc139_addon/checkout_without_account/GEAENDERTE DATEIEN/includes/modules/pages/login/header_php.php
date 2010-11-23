@@ -3,10 +3,10 @@
  * Login Page
  *
  * @package page
- * @copyright Copyright 2003-2007 Zen Cart Development Team
+ * @copyright Copyright 2003-2010 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: header_php.php for COWOA 1.3 2010-05-22 19:28:16Z webchills $
+ * @version $Id: header_php.php for COWOA 2.0 2010-11-22 09:16:16Z webchills $
  */
 
 // This should be first line of the script:
@@ -45,14 +45,10 @@ if (isset($_GET['action']) && ($_GET['action'] == 'process')) {
   } else {
 
     // Check if email exists
-   $check_customer_query = "SELECT customers_id, customers_firstname, customers_lastname, customers_password,
-
+    $check_customer_query = "SELECT customers_id, customers_firstname, customers_lastname, customers_password,
                                     customers_email_address, customers_default_address_id,
-
                                     customers_authorization, customers_referral
-
                            FROM " . TABLE_CUSTOMERS . "
-
                            WHERE customers_email_address = :emailAddress
                            AND COWOA_account != 1";
 

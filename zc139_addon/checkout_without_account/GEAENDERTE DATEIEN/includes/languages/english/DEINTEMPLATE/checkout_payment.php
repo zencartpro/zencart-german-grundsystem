@@ -8,8 +8,8 @@
  */
 if($_SESSION['COWOA']) $COWOA=TRUE;
 
-define('NAVBAR_TITLE_1', 'Checkout');
-define('NAVBAR_TITLE_2', 'Payment Method');
+define('NAVBAR_TITLE_1', 'Checkout - Step 1');
+define('NAVBAR_TITLE_2', 'Payment Method - Step 2');
 
 if($COWOA)
 define('HEADING_TITLE', 'Step 3 of 5 - Payment Information');

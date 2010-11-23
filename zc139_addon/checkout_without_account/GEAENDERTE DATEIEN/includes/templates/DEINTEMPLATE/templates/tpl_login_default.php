@@ -6,7 +6,7 @@
  * @copyright Copyright 2003-2010 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: tpl_login_default.php for COWOA 1.3 2010-05-22 19:38:39Z webchills $
+ * @version $Id: tpl_login_default.php for COWOA 2.0 ZC139 2010-11-22 09:55:39Z webchills $
  */
 ?>
 <div class="centerColumn" id="loginDefault">
@@ -33,6 +33,7 @@
 
 <?php echo zen_draw_form('create', zen_href_link(FILENAME_CREATE_ACCOUNT, '', 'SSL')); ?>
 <div class="buttonRow forward"><?php echo zen_image_submit(BUTTON_IMAGE_CREATE_ACCOUNT, BUTTON_CREATE_ACCOUNT_ALT, 'name="registrationButton"'); ?></div>
+
 </form>
 </fieldset>
 
@@ -42,11 +43,11 @@
 
 <?php echo zen_draw_form('login', zen_href_link(FILENAME_LOGIN, 'action=process', 'SSL'), 'post', 'id="loginForm"'); ?>
 <label class="inputLabel" for="login-email-address"><?php echo ENTRY_EMAIL_ADDRESS; ?></label>
-<?php echo zen_draw_input_field('email_address', '', 'size="18" id="login-email-address"'); ?>
+<?php echo zen_draw_input_field('email_address', '', 'size="40" id="login-email-address"'); ?>
 <br class="clearBoth" />
 
 <label class="inputLabel" for="login-password"><?php echo ENTRY_PASSWORD; ?></label>
-<?php echo zen_draw_password_field('password', '', 'size="18" id="login-password"'); ?>
+<?php echo zen_draw_password_field('password', '', 'size="40" id="login-password"'); ?>
 <?php echo zen_draw_hidden_field('securityToken', $_SESSION['securityToken']); ?>
 <br class="clearBoth" />
 
@@ -58,6 +59,8 @@
 
 <?php
   if ($_SESSION['cart']->count_contents() > 0) { ?>
+<!-- BOF COWOA -->
+<?php if (COWOA_STATUS == 'true') { ?>  
     <fieldset>
     <legend><?php echo TEXT_HEADING_COWOA; ?></legend>
     <?php echo TEXT_RATHER_COWOA; ?>
@@ -66,6 +69,8 @@
     <?php echo zen_image_button(BUTTON_IMAGE_CONTINUE, BUTTON_CONTINUE_ALT); ?></a></div>
     <br class="clearBoth" />
     </fieldset>
+  <?php } ?>
+<!-- BOF COWOA -->  
 <?php } ?>
 
 <!--EOF PPEC split login- DO NOT REMOVE-->
