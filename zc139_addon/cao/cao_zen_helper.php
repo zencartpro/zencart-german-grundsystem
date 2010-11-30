@@ -5,7 +5,7 @@
  * @copyright Copyright 2005-2010 langheiter og
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
  * @author rainer AT langheiter DOT com  http://edv.langheiter.com
- * @version $Id: 2010-06-02 08:24:32Z hugo13 $
+ * @version $Id$
  */
 
 function Xzen_products_attributes_download_delete($product_id) {

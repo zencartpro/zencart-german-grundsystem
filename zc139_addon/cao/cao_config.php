@@ -1,6 +1,6 @@
 <?php
 /**
-* $Id: cao_config.php 91 2005-11-28 08:25:51Z rainer $
+* $Id$
 */
 $debug = true;
 /* log-level == welche aktion soll geloggt werden */
