@@ -80,12 +80,12 @@ class cao {
         if (!($admin_name == $result->fields['admin_name'])) {
             $message = true;
             $pass_message = ERROR_WRONG_LOGIN;
-            writeXML('LOGIN_2', 'logon');
+            $this->writeXML('LOGIN_2', 'logon');
         }
         if ($admin_pass != $result->fields['admin_pass']) {
             $message = true;
             $pass_message = ERROR_WRONG_LOGIN;
-            writeXML('LOGIN_3', 'logon');
+            $this->writeXML('LOGIN_3', 'logon');
         }
         if ($message == false) {
             $loginOK = true;
@@ -274,17 +274,56 @@ class cao {
             $order_status = 1;
             $sql.= "and orders_status = " . $order_status;
         }
-        $orders_query = mysql_query($sql);
-        while ($orders = mysql_fetch_array($orders_query)) {
+        $orders_query = $this->db->Execute($sql);
+        while (!$orders_query->EOF) {
+            $orders = $orders_query->fields;
             // Geburtsdatum laden
             $cust_sql = "select * from " . TABLE_CUSTOMERS . " where customers_id=" . $orders['customers_id'];
-            $cust_query = mysql_query($cust_sql);
-            if ((mysql_fetch_array($cust_query)) && ($cust_data = mysql_fetch_array($cust_query))) {
-                $cust_dob = $cust_data['customers_dob'];
+            $cust_query = $this->db->Execute($cust_sql);
+            if(!$cust_query->EOF){
+                $customers = $cust_query->fields;
+                $cust_dob = $cust_query->fields['customers_dob'];
+                
             }
-            $schema.= '<ORDER_INFO>' . "\n" . '<ORDER_HEADER>' . "\n" . '<ORDER_ID>' . $orders['orders_id'] . '</ORDER_ID>' . "\n" . '<CUSTOMER_ID>' . $orders['customers_id'] . '</CUSTOMER_ID>' . "\n" . '<ORDER_DATE>' . $orders['date_purchased'] . '</ORDER_DATE>' . "\n" . '<ORDER_STATUS>' . $orders['orders_status'] . '</ORDER_STATUS>' . "\n" . '<ORDER_CURRENCY>' . htmlspecialchars($orders['currency']) . '</ORDER_CURRENCY>' . "\n" . '<ORDER_CURRENCY_VALUE>' . $orders['currency_value'] . '</ORDER_CURRENCY_VALUE>' . "\n" . '</ORDER_HEADER>' . "\n" . '<BILLING_ADDRESS>' . "\n" . '<COMPANY>' . htmlspecialchars($orders['billing_company']) . '</COMPANY>' . "\n" . '<NAME>' . htmlspecialchars($orders['billing_name']) . '</NAME>' . "\n" . '<STREET>' . htmlspecialchars($orders['billing_street_address']) . '</STREET>' . "\n" . '<ZIP>' . htmlspecialchars($orders['billing_postcode']) . '</ZIP>' . "\n" . '<CITY>' . htmlspecialchars($orders['billing_city']) . '</CITY>' . "\n" . '<SUBURB>' . htmlspecialchars($orders['billing_suburb']) . '</SUBURB>' . "\n" . '<STATE>' . htmlspecialchars($orders['billing_state']) . '</STATE>' . "\n" . '<COUNTRY>' . htmlspecialchars($orders['billing_country']) . '</COUNTRY>' . "\n" . '<TELEPHONE>' . htmlspecialchars($orders['customers_telephone']) . '</TELEPHONE>' . "\n" . // JAN
-            '<EMAIL>' . htmlspecialchars($orders['customers_email_address']) . '</EMAIL>' . "\n" . // JAN
-            '<BIRTHDAY>' . htmlspecialchars($cust_dob) . '</BIRTHDAY>' . "\n" . '</BILLING_ADDRESS>' . "\n" . '<DELIVERY_ADDRESS>' . "\n" . '<COMPANY>' . htmlspecialchars($orders['delivery_company']) . '</COMPANY>' . "\n" . '<NAME>' . htmlspecialchars($orders['delivery_name']) . '</NAME>' . "\n" . '<STREET>' . htmlspecialchars($orders['delivery_street_address']) . '</STREET>' . "\n" . '<ZIP>' . htmlspecialchars($orders['delivery_postcode']) . '</ZIP>' . "\n" . '<CITY>' . htmlspecialchars($orders['delivery_city']) . '</CITY>' . "\n" . '<SUBURB>' . htmlspecialchars($orders['delivery_suburb']) . '</SUBURB>' . "\n" . '<STATE>' . htmlspecialchars($orders['delivery_state']) . '</STATE>' . "\n" . '<COUNTRY>' . htmlspecialchars($orders['delivery_country']) . '</COUNTRY>' . "\n" . '</DELIVERY_ADDRESS>' . "\n" . '<PAYMENT>' . "\n" . '<PAYMENT_METHOD>' . htmlspecialchars($orders['payment_method']) . '</PAYMENT_METHOD>' . "\n" . '<PAYMENT_CLASS>' . htmlspecialchars($orders['payment_class']) . '</PAYMENT_CLASS>' . "\n";
+            $schema.= '<ORDER_INFO>' . "\n" . 
+                        '<ORDER_HEADER>' . "\n" . 
+                            '<ORDER_ID>' . $orders['orders_id'] . '</ORDER_ID>' . "\n" . 
+                            '<CUSTOMER_ID>' . $orders['customers_id'] . '</CUSTOMER_ID>' . "\n" . 
+                            '<ORDER_DATE>' . $orders['date_purchased'] . '</ORDER_DATE>' . "\n" . 
+                            '<ORDER_STATUS>' . $orders['orders_status'] . '</ORDER_STATUS>' . "\n" . 
+                            '<ORDER_IP>' . $orders['ip_address'] . '</ORDER_IP>' . "\n" . 
+                            '<ORDER_CURRENCY>' . htmlspecialchars($orders['currency']) . '</ORDER_CURRENCY>' . "\n" . 
+                            '<ORDER_CURRENCY_VALUE>' . $orders['currency_value'] . '</ORDER_CURRENCY_VALUE>' . "\n" . 
+                        '</ORDER_HEADER>' . "\n" . 
+                        '<BILLING_ADDRESS>' . "\n" . 
+                            '<COMPANY>' . htmlspecialchars($orders['billing_company']) . '</COMPANY>' . "\n" . 
+                            '<NAME>' . htmlspecialchars($orders['billing_name']) . '</NAME>' . "\n" . 
+                            '<FIRSTNAME>' . htmlspecialchars($customers['customers_firstname']) . '</FIRSTNAME>' . "\n" . 
+                            '<LASTNAME>' . htmlspecialchars($customers['customers_lastname']) . '</LASTNAME>' . "\n" . 
+                            '<STREET>' . htmlspecialchars($orders['billing_street_address']) . '</STREET>' . "\n" . 
+                            '<POSTCODE>' . htmlspecialchars($orders['billing_postcode']) . '299</POSTCODE>' . "\n" . 
+                            '<CITY>' . htmlspecialchars($orders['billing_city']) . '</CITY>' . "\n" . 
+                            '<SUBURB>' . htmlspecialchars($orders['billing_suburb']) . '</SUBURB>' . "\n" . 
+                            '<STATE>' . htmlspecialchars($orders['billing_state']) . '</STATE>' . "\n" . 
+                            '<COUNTRY>' . htmlspecialchars($orders['billing_country']) . '</COUNTRY>' . "\n" . 
+                            '<TELEPHONE>' . htmlspecialchars($orders['customers_telephone']) . '</TELEPHONE>' . "\n" . 
+                            '<EMAIL>' . htmlspecialchars($orders['customers_email_address']) . '</EMAIL>' . "\n" . 
+                            '<BIRTHDAY>' . htmlspecialchars($cust_dob) . '</BIRTHDAY>' . "\n" . 
+                        '</BILLING_ADDRESS>' . "\n" . 
+                        '<DELIVERY_ADDRESS>' . "\n" . 
+                            '<COMPANY>' . htmlspecialchars($orders['delivery_company']) . '</COMPANY>' . "\n" . 
+                            '<NAME>' . htmlspecialchars($orders['delivery_name']) . '</NAME>' . "\n" . 
+                            '<STREET>' . htmlspecialchars($orders['delivery_street_address']) . '</STREET>' . "\n" . 
+                            '<POSTCODE>' . htmlspecialchars($orders['delivery_postcode']) . '312</POSTCODE>' . "\n" . 
+                            '<CITY>' . htmlspecialchars($orders['delivery_city']) . '</CITY>' . "\n" . 
+                            '<SUBURB>' . htmlspecialchars($orders['delivery_suburb']) . '</SUBURB>' . "\n" . 
+                            '<STATE>' . htmlspecialchars($orders['delivery_state']) . '</STATE>' . "\n" . 
+                            '<COUNTRY>' . htmlspecialchars($orders['delivery_country']) . '</COUNTRY>' . "\n" . 
+                        '</DELIVERY_ADDRESS>' . "\n" . 
+                        '<PAYMENT>' . "\n" . 
+                            '<PAYMENT_METHOD>' . htmlspecialchars($orders['payment_method']) . '</PAYMENT_METHOD>' . "\n" . 
+
+                            '<PAYMENT_CLASS>' . htmlspecialchars($orders['payment_module_code']) . '</PAYMENT_CLASS>' . "\n";
             switch ($orders['payment_class']) {
                 case 'banktransfer':
                     // Bankverbindung laden, wenn aktiv
@@ -294,45 +333,57 @@ class cao {
                     $bank_inh = '';
                     $bank_stat = - 1;
                     $bank_sql = "select * from banktransfer where orders_id = " . $orders['orders_id'];
-                    $bank_query = mysql_query($bank_sql);
-                    if ((mysql_fetch_array($bank_query)) && ($bankdata = mysql_fetch_array($bank_query))) {
-                        $bank_name = $bankdata['banktransfer_bankname'];
-                        $bank_blz = $bankdata['banktransfer_blz'];
-                        $bank_kto = $bankdata['banktransfer_number'];
-                        $bank_inh = $bankdata['banktransfer_owner'];
-                        $bank_stat = $bankdata['banktransfer_status'];
+                    $bank_query = $this->db->Execute($bank_query);
+                    if(!$bank_query->EOF){
+                        $bank_name  = $bankdata->fields['banktransfer_bankname'];
+                        $bank_blz   = $bankdata->fields['banktransfer_blz'];
+                        $bank_kto   = $bankdata->fields['banktransfer_number'];
+                        $bank_inh   = $bankdata->fields['banktransfer_owner'];
+                        $bank_stat  = $bankdata->fields['banktransfer_status'];
                     }
                     $schema.= '<PAYMENT_BANKTRANS_BNAME>' . htmlspecialchars($bank_name) . '</PAYMENT_BANKTRANS_BNAME>' . "\n" . '<PAYMENT_BANKTRANS_BLZ>' . htmlspecialchars($bank_blz) . '</PAYMENT_BANKTRANS_BLZ>' . "\n" . '<PAYMENT_BANKTRANS_NUMBER>' . htmlspecialchars($bank_kto) . '</PAYMENT_BANKTRANS_NUMBER>' . "\n" . '<PAYMENT_BANKTRANS_OWNER>' . htmlspecialchars($bank_inh) . '</PAYMENT_BANKTRANS_OWNER>' . "\n" . '<PAYMENT_BANKTRANS_STATUS>' . htmlspecialchars($bank_stat) . '</PAYMENT_BANKTRANS_STATUS>' . "\n";
                 break;
             }
             $schema.= '</PAYMENT>' . "\n" . '<SHIPPING>' . "\n" . '<SHIPPING_METHOD>' . htmlspecialchars($orders['shipping_method']) . '</SHIPPING_METHOD>' . "\n" . '<SHIPPING_CLASS>' . htmlspecialchars($orders['shipping_class']) . '</SHIPPING_CLASS>' . "\n" . '</SHIPPING>' . "\n" . '<ORDER_PRODUCTS>' . "\n";
-            $products_query = mysql_query("select orders_products_id, products_id, products_model, products_name, final_price, products_tax, products_quantity from " . TABLE_ORDERS_PRODUCTS . " where orders_id = '" . $orders['orders_id'] . "'");
-            while ($products = mysql_fetch_array($products_query)) {
+            $sql_products = "select orders_products_id, products_id, products_model, products_name, final_price, products_tax, products_quantity from " . TABLE_ORDERS_PRODUCTS . " where orders_id = '" . $orders['orders_id'] . "'";
+            $products_query = $this->db->Execute($sql_products);
+            while (!$products_query->EOF) {
+                $products = $products_query->fields;
                 $schema.= '<PRODUCT>' . "\n" . '<PRODUCTS_ID>' . $products['products_id'] . '</PRODUCTS_ID>' . "\n" . '<PRODUCTS_QUANTITY>' . $products['products_quantity'] . '</PRODUCTS_QUANTITY>' . "\n" . '<PRODUCTS_MODEL>' . htmlspecialchars($products['products_model']) . '</PRODUCTS_MODEL>' . "\n" . '<PRODUCTS_NAME>' . htmlspecialchars($products['products_name']) . '</PRODUCTS_NAME>' . "\n" . '<PRODUCTS_PRICE>' . $products['final_price'] . '</PRODUCTS_PRICE>' . "\n" . '<PRODUCTS_TAX>' . $products['products_tax'] . '</PRODUCTS_TAX>' . "\n";
-                $attributes_query = mysql_query("select products_options, products_options_values, options_values_price, price_prefix from " . TABLE_ORDERS_PRODUCTS_ATTRIBUTES . " where orders_id = '" . $orders['orders_id'] . "' and orders_products_id = '" . $products['orders_products_id'] . "'");
-                if (mysql_num_rows($attributes_query)) {
-                    while ($attributes = mysql_fetch_array($attributes_query)) {
-                        $schema.= '<OPTION>' . "\n" . '<PRODUCTS_OPTIONS>' . htmlspecialchars($attributes['products_options']) . '</PRODUCTS_OPTIONS>' . "\n" . '<PRODUCTS_OPTIONS_VALUES>' . htmlspecialchars($attributes['products_options_values']) . '</PRODUCTS_OPTIONS_VALUES>' . "\n" . '<PRODUCTS_OPTIONS_PRICE>' . $attributes['price_prefix'] . ' ' . $attributes['options_values_price'] . '</PRODUCTS_OPTIONS_PRICE>' . "\n" . '</OPTION>' . "\n";
-                    }
+                
+                $sql_attributes = 'select products_options, products_options_values, options_values_price, price_prefix FROM ' . TABLE_ORDERS_PRODUCTS_ATTRIBUTES . " where orders_id = '" . $orders['orders_id'] . "' and orders_products_id = '" . $products['orders_products_id'] . "'";
+                $attributes_query = $this->db->Execute($sql_attributes);
+                while (!$attributes_query->EOF) {
+                    $attributes = $attributes_query->fields;
+                    $schema.= '<OPTION>' . "\n" . '<PRODUCTS_OPTIONS>' . htmlspecialchars($attributes['products_options']) . '</PRODUCTS_OPTIONS>' . "\n" . '<PRODUCTS_OPTIONS_VALUES>' . htmlspecialchars($attributes['products_options_values']) . '</PRODUCTS_OPTIONS_VALUES>' . "\n" . '<PRODUCTS_OPTIONS_PRICE>' . $attributes['price_prefix'] . ' ' . $attributes['options_values_price'] . '</PRODUCTS_OPTIONS_PRICE>' . "\n" . '</OPTION>' . "\n";
+                    $attributes_query->MoveNext();
                 }
                 $schema.= '</PRODUCT>' . "\n";
+                $products_query->MoveNext();
             }
             $schema.= '</ORDER_PRODUCTS>' . "\n";
             $schema.= '<ORDER_TOTAL>' . "\n";
-            $totals_query = mysql_query("select title, value, class, sort_order from " . TABLE_ORDERS_TOTAL . " where orders_id = '" . $orders['orders_id'] . "' order by sort_order");
-            while ($totals = mysql_fetch_array($totals_query)) {
+            
+            $sql_totals = "select title, value, class, sort_order from " . TABLE_ORDERS_TOTAL . " where orders_id = '" . $orders['orders_id'] . "' order by sort_order";
+            $totals_query = $this->db->Execute($sql_totals);
+            while (!$totals_query->EOF) {
+                $totals = $totals_query->fields;
                 $total_prefix = "";
                 $total_tax = "";
                 $total_prefix = $order_total_class[$totals['class']]['prefix'];
                 $total_tax = $order_total_class[$totals['class']]['tax'];
                 $schema.= '<TOTAL>' . "\n" . '<TOTAL_TITLE>' . htmlspecialchars($totals['title']) . '</TOTAL_TITLE>' . "\n" . '<TOTAL_VALUE>' . htmlspecialchars($totals['value']) . '</TOTAL_VALUE>' . "\n" . '<TOTAL_CLASS>' . htmlspecialchars($totals['class']) . '</TOTAL_CLASS>' . "\n" . '<TOTAL_SORT_ORDER>' . htmlspecialchars($totals['sort_order']) . '</TOTAL_SORT_ORDER>' . "\n" . '<TOTAL_PREFIX>' . htmlspecialchars($total_prefix) . '</TOTAL_PREFIX>' . "\n" . '<TOTAL_TAX>' . htmlspecialchars($total_tax) . '</TOTAL_TAX>' . "\n" . '</TOTAL>' . "\n";
+                $totals_query->MoveNext();
             }
             $schema.= '</ORDER_TOTAL>' . "\n";
-            $comments_query = mysql_query("select comments from " . TABLE_ORDERS_STATUS_HISTORY . " where orders_id = '" . $orders['orders_id'] . "' and orders_status_id = '" . $orders['orders_status'] . "' ");
-            if ($comments = mysql_fetch_array($comments_query)) {
-                $schema.= '<ORDER_COMMENTS>' . htmlspecialchars($comments['comments']) . '</ORDER_COMMENTS>' . "\n";
-            }
+            $sql_comments = "select comments from " . TABLE_ORDERS_STATUS_HISTORY . " where orders_id = '" . $orders['orders_id'] . "' and orders_status_id = '" . $orders['orders_status'] . "' ";
+            $comments_query = $this->db->Execute($sql_comments);
+            while (!$comments_query->EOF){
+                $schema.= '<ORDER_COMMENTS>' . htmlspecialchars($comments_query->fields['comments']) . '</ORDER_COMMENTS>' . "\n";
+                $comments_query->MoveNext();
+                }
             $schema.= '</ORDER_INFO>' . "\n\n";
+            $orders_query->MoveNext();
         }
         $schema.= '</ORDER>' . "\n\n";
         echo $schema;
@@ -380,7 +431,7 @@ class cao {
         } else {
             $newProductsImage = $products_image;
         }
-        writeXML("IM_1: $minModel - $l - $products_model" . $newProductsImage . ' // ' . $ex, 'im');
+        $this->writeXML("IM_1: $minModel - $l - $products_model" . $newProductsImage . ' // ' . $ex, 'im');
         if (USE_IMAGERESIZE) {
             foreach ($this->sizes as $key => $val) {
                 list($small_width, $small_height, $resize_small) = zen_calculate_image_size(DIR_FS_CATALOG_IMAGES . ORIGINAL . $newProductsImage, $val['width'], $val['height']);
@@ -390,7 +441,7 @@ class cao {
                     #zen_imagemagick_resize_image(DIR_FS_CATALOG_IMAGES . ORIGINAL . $newProductsImage, DIR_FS_CATALOG_IMAGES . $val['folder'] . $newProductsImage, 'transparent', $size);
                     $mm = zen_gd_resize_image(DIR_FS_CATALOG_IMAGES . ORIGINAL . $newProductsImage, DIR_FS_CATALOG_IMAGES . $val['folder'] . $newProductsImage, 'transparent', $small_width, $small_height);
                     #zen_gd_resize_image($source_name, $destination_name, $background, $newwidth = -1, $newheight = -1, $quality = 75)
-                    writeXML('ORI:' . $mm . DIR_FS_CATALOG_IMAGES . ORIGINAL . $newProductsImage . ' :: NEW: ' . DIR_FS_CATALOG_IMAGES . $val['folder'] . $newProductsImage, 'im');
+                    $this->writeXML('ORI:' . $mm . DIR_FS_CATALOG_IMAGES . ORIGINAL . $newProductsImage . ' :: NEW: ' . DIR_FS_CATALOG_IMAGES . $val['folder'] . $newProductsImage, 'im');
                 }
             }
         }
@@ -460,7 +511,7 @@ class cao {
         $this->SendXMLHeader();
         $manufacturers_id = zen_db_prepare_input($_POST['mID']);
         $xxx = print_r($_POST, true);
-        writeXML($xxx, 'hersteller');
+        $this->writeXML($xxx, 'hersteller');
         if (isset($manufacturers_id)) {
             // Hersteller laden
             $count_query = $db->Execute("select manufacturers_id, manufacturers_name, manufacturers_image, date_added, last_modified from " . TABLE_MANUFACTURERS . " where manufacturers_id='" . $manufacturers_id . "'");
@@ -512,7 +563,7 @@ class cao {
                 }
             }
             $xxx = print_r($sql_data_array, true);
-            writeXML($xxx);
+            $this->writeXML($xxx);
             $schema = '<?xml version="1.0" encoding="' . CHARSET . '"?>' . "\n" . '<STATUS>' . "\n" . '<STATUS_DATA>' . "\n" . '<ACTION>' . $_POST['action'] . '</ACTION>' . "\n" . '<CODE>' . '0' . '</CODE>' . "\n" . '<MESSAGE>' . 'OK' . '</MESSAGE>' . "\n" . '<MODE>' . $mode . '</MODE>' . "\n" . '<MANUFACTURERS_ID>' . $mID . '</MANUFACTURERS_ID>' . "\n" . '</STATUS_DATA>' . "\n" . '</STATUS>' . "\n\n";
             echo $schema;
             exit;
@@ -548,7 +599,7 @@ class cao {
             echo $products_image_name;
         }
         $xxx.= print_r($products_image, true);
-        writeXML($xxx, 'upload');
+        $this->writeXML($xxx, 'upload');
         #echo 'noch offen 650';
         $this->writeXML($products_image_name, __FUNCTION__);
     }
