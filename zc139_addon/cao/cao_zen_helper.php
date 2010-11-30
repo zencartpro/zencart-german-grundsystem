@@ -127,11 +127,14 @@ class cao {
             if (!isset($anz)) $anz = 1000;
             $sql.= " limit " . $from . "," . $anz;
         }
-        $orders_query = mysql_query($sql);
-        while ($products = mysql_fetch_array($orders_query)) {
+        $orders_query = $this->db->Execute($sql);
+        while (!$orders_query->EOF) {
+            $products = $orders_query->fields;
             $schema.= '<PRODUCT_INFO>' . "\n" . '<PRODUCT_DATA>' . "\n" . '<PRODUCT_ID>' . $products['products_id'] . '</PRODUCT_ID>' . "\n" . '<PRODUCT_QUANTITY>' . $products['products_quantity'] . '</PRODUCT_QUANTITY>' . "\n" . '<PRODUCT_MODEL>' . htmlspecialchars($products['products_model']) . '</PRODUCT_MODEL>' . "\n" . '<PRODUCT_IMAGE>' . htmlspecialchars($products['products_image']) . '</PRODUCT_IMAGE>' . "\n" . '<PRODUCT_PRICE>' . $products['products_price'] . '</PRODUCT_PRICE>' . "\n" . '<PRODUCT_WEIGHT>' . $products['products_weight'] . '</PRODUCT_WEIGHT>' . "\n" . '<PRODUCT_STATUS>' . $products['products_status'] . '</PRODUCT_STATUS>' . "\n" . '<PRODUCT_TAX_CLASS_ID>' . $products['products_tax_class_id'] . '</PRODUCT_TAX_CLASS_ID>' . "\n" . '<MANUFACTURERS_ID>' . $products['manufacturers_id'] . '</MANUFACTURERS_ID>' . "\n" . '<PRODUCT_DATE_ADDED>' . $products['products_date_added'] . '</PRODUCT_DATE_ADDED>' . "\n" . '<PRODUCT_LAST_MODIFIED>' . $products['products_last_modified'] . '</PRODUCT_LAST_MODIFIED>' . "\n" . '<PRODUCT_DATE_AVAILABLE>' . $products['products_date_available'] . '</PRODUCT_DATE_AVAILABLE>' . "\n" . '<PRODUCTS_ORDERED>' . $products['products_ordered'] . '</PRODUCTS_ORDERED>' . "\n";
-            $detail_query = mysql_query("select products_id, language_id, products_name, " . TABLE_PRODUCTS_DESCRIPTION . ".products_description, products_url, name as language_name, code as language_code " . "from " . TABLE_PRODUCTS_DESCRIPTION . ", " . TABLE_LANGUAGES . " where " . TABLE_PRODUCTS_DESCRIPTION . ".language_id=" . TABLE_LANGUAGES . ".languages_id " . "and " . TABLE_PRODUCTS_DESCRIPTION . ".products_id=" . $products['products_id']);
-            while ($details = mysql_fetch_array($detail_query)) {
+            $sql_detail = "select products_id, language_id, products_name, " . TABLE_PRODUCTS_DESCRIPTION . ".products_description, products_url, name as language_name, code as language_code " . "from " . TABLE_PRODUCTS_DESCRIPTION . ", " . TABLE_LANGUAGES . " where " . TABLE_PRODUCTS_DESCRIPTION . ".language_id=" . TABLE_LANGUAGES . ".languages_id " . "and " . TABLE_PRODUCTS_DESCRIPTION . ".products_id=" . $products['products_id'];
+            $detail_query = $this->db->Execute($sql_detail);
+            while (!$detail_query->EOF) {
+                $details = $detail_query->fields;
                 $schema.= "<PRODUCT_DESCRIPTION ID='" . $details["language_id"] . "' CODE='" . $details["language_code"] . "' NAME='" . $details["language_name"] . "'>\n";
                 if ($details["products_name"] != 'Array') {
                     $schema.= "<NAME>" . htmlspecialchars($details["products_name"]) . "</NAME>" . "\n";
@@ -142,10 +145,10 @@ class cao {
                     $schema.= "<DESCRIPTION>" . htmlspecialchars($prod_details) . "</DESCRIPTION>" . "\n";
                 }
                 $schema.= "</PRODUCT_DESCRIPTION>\n";
+                $detail_query->MoveNext();
             }
             $schema.= '</PRODUCT_DATA>' . "\n" . '</PRODUCT_INFO>' . "\n";
-            #echo $schema;
-            
+            $orders_query->MoveNext();
         }
         $schema.= '</PRODUCTS>' . "\n\n";
         echo $schema;
@@ -184,26 +187,28 @@ class cao {
         $this->SendXMLHeader();
         $schema = '<?xml version="1.0" encoding="' . CHARSET . '"?>' . "\n" . '<CATEGORIES>' . "\n";
         $sql = "select categories_id, categories_image, parent_id, sort_order, date_added, last_modified FROM " . TABLE_CATEGORIES . " order by parent_id, categories_id";
-        $cat_query = mysql_query("select categories_id, categories_image, parent_id, sort_order, date_added, last_modified " . " from " . TABLE_CATEGORIES . " order by parent_id, categories_id");
-        $cat_query = mysql_query($sql);
-        while ($cat = mysql_fetch_array($cat_query)) {
+        $cat_query = $this->db->Execute($sql);
+        while (!$cat_query->EOF) {
+            $cat = $cat_query->fields;
             $schema.= '<CATEGORIES_DATA>' . "\n" . '<ID>' . $cat['categories_id'] . '</ID>' . "\n" . '<PARENT_ID>' . $cat['parent_id'] . '</PARENT_ID>' . "\n" . '<IMAGE_URL>' . htmlspecialchars($cat['categories_image']) . '</IMAGE_URL>' . "\n" . '<SORT_ORDER>' . $cat['sort_order'] . '</SORT_ORDER>' . "\n" . '<DATE_ADDED>' . $cat['date_added'] . '</DATE_ADDED>' . "\n" . '<LAST_MODIFIED>' . $cat['last_modified'] . '</LAST_MODIFIED>' . "\n";
             $sql = "select categories_id, language_id, categories_name, " . TABLE_LANGUAGES . ".code as lang_code, " . TABLE_LANGUAGES . ".name as lang_name from " . TABLE_CATEGORIES_DESCRIPTION . "," . TABLE_LANGUAGES . " where " . TABLE_CATEGORIES_DESCRIPTION . ".categories_id=" . $cat['categories_id'] . " and " . TABLE_LANGUAGES . ".languages_id=" . TABLE_CATEGORIES_DESCRIPTION . ".language_id";
-            $detail_query = mysql_query($sql);
-            while ($details = mysql_fetch_array($detail_query)) {
+            $detail_query = $this->db->Execute($sql);
+            while (!$detail_query->EOF) {
+                $details = $detail_query->fields;
                 $schema.= "<CATEGORIES_DESCRIPTION ID='" . $details["language_id"] . "' CODE='" . $details["lang_code"] . "' NAME='" . $details["lang_name"] . "'>\n";
                 $schema.= "<NAME>" . htmlspecialchars($details["categories_name"]) . "</NAME>" . "\n";
                 $schema.= "</CATEGORIES_DESCRIPTION>\n";
+                $detail_query->MoveNext();
             }
             // Produkte in dieser Categorie auflisten
             $sql2 = "select categories_id, products_id from " . TABLE_PRODUCTS_TO_CATEGORIES . " where categories_id='" . $cat['categories_id'] . "'";
-            $prod2cat_query = mysql_query($sql2);
-            while ($prod2cat = mysql_fetch_array($prod2cat_query)) {
-                $schema.= "<PRODUCTS ID='" . $prod2cat["products_id"] . "'></PRODUCTS>" . "\n";
+            $prod2cat_query = $this->db->Execute($sql2);
+            while (!$prod2cat_query)) {
+                $schema.= "<PRODUCTS ID='" . $prod2cat->fields["products_id"] . "'></PRODUCTS>" . "\n";
+                $prod2cat_query->MoveNext();
             }
             $schema.= '</CATEGORIES_DATA>' . "\n";
-            // echo $schema;
-            
+            $cat_query->MoveNext();
         }
         $schema.= '</CATEGORIES>' . "\n";
         echo $schema;
