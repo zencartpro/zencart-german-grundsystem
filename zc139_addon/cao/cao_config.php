@@ -1,7 +1,13 @@
 <?php
 /**
-* $Id$
-*/
+ *
+ * @package admin tools
+ * @copyright Copyright 2005-2010 langheiter og
+ * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
+ * @author rainer AT langheiter DOT com  http://edv.langheiter.com
+ * @version $Id$
+ */
+
 $debug = true;
 /* log-level == welche aktion soll geloggt werden */
 $debug_types = array('all' => 0,

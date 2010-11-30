@@ -8,72 +8,7 @@
  * @version $Id$
  */
 
-function Xzen_products_attributes_download_delete($product_id) {
-    global $db;
-    // remove downloads if they exist
-    $remove_downloads = $db->Execute("select products_attributes_id from " . TABLE_PRODUCTS_ATTRIBUTES . " where products_id= '" . $product_id . "'");
-    while (!$remove_downloads->EOF) {
-        $db->Execute("delete from " . TABLE_PRODUCTS_ATTRIBUTES_DOWNLOAD . " where products_attributes_id= '" . $remove_downloads->fields['products_attributes_id'] . "'");
-        $remove_downloads->MoveNext();
-    }
-}
-function Xzen_remove_product($product_id, $ptc = 'true') {
-    global $db;
-    $product_image = $db->Execute("select products_image
-                                   from " . TABLE_PRODUCTS . "
-                                   where products_id = '" . (int)$product_id . "'");
-    $duplicate_image = $db->Execute("select count(*) as total
-                                     from " . TABLE_PRODUCTS . "
-                                     where products_image = '" . zen_db_input($product_image->fields['products_image']) . "'");
-    if ($duplicate_image->fields['total'] < 2 and $product_image->fields['products_image'] != '') {
-        $products_image = $product_image->fields['products_image'];
-        $products_image_extention = substr($products_image, strrpos($products_image, '.'));
-        $products_image_base = ereg_replace($products_image_extention, '', $products_image);
-        $filename_medium = 'medium/' . $products_image_base . IMAGE_SUFFIX_MEDIUM . $products_image_extention;
-        $filename_large = 'large/' . $products_image_base . IMAGE_SUFFIX_LARGE . $products_image_extention;
-        if (file_exists(DIR_FS_CATALOG_IMAGES . $product_image->fields['products_image'])) {
-            @unlink(DIR_FS_CATALOG_IMAGES . $product_image->fields['products_image']);
-        }
-        if (file_exists(DIR_FS_CATALOG_IMAGES . $filename_medium)) {
-            @unlink(DIR_FS_CATALOG_IMAGES . $filename_medium);
-        }
-        if (file_exists(DIR_FS_CATALOG_IMAGES . $filename_large)) {
-            @unlink(DIR_FS_CATALOG_IMAGES . $filename_large);
-        }
-    }
-    $db->Execute("delete from " . TABLE_SPECIALS . "
-                  where products_id = '" . (int)$product_id . "'");
-    $db->Execute("delete from " . TABLE_PRODUCTS . "
-                  where products_id = '" . (int)$product_id . "'");
-    // if ($ptc == 'true') {
-    $db->Execute("delete from " . TABLE_PRODUCTS_TO_CATEGORIES . "
-                    where products_id = '" . (int)$product_id . "'");
-    // }
-    $db->Execute("delete from " . TABLE_PRODUCTS_DESCRIPTION . "
-                  where products_id = '" . (int)$product_id . "'");
-    zen_products_attributes_download_delete($product_id);
-    $db->Execute("delete from " . TABLE_PRODUCTS_ATTRIBUTES . "
-                  where products_id = '" . (int)$product_id . "'");
-    $db->Execute("delete from " . TABLE_CUSTOMERS_BASKET . "
-                  where products_id = '" . (int)$product_id . "'");
-    $db->Execute("delete from " . TABLE_CUSTOMERS_BASKET_ATTRIBUTES . "
-                  where products_id = '" . (int)$product_id . "'");
-    $product_reviews = $db->Execute("select reviews_id
-                                     from " . TABLE_REVIEWS . "
-                                     where products_id = '" . (int)$product_id . "'");
-    while (!$product_reviews->EOF) {
-        $db->Execute("delete from " . TABLE_REVIEWS_DESCRIPTION . "
-                    where reviews_id = '" . (int)$product_reviews->fields['reviews_id'] . "'");
-        $product_reviews->MoveNext();
-    }
-    $db->Execute("delete from " . TABLE_REVIEWS . "
-                  where products_id = '" . (int)$product_id . "'");
-    $db->Execute("delete from " . TABLE_FEATURED . "
-                  where products_id = '" . (int)$product_id . "'");
-    $db->Execute("delete from " . TABLE_PRODUCTS_DISCOUNT_QUANTITY . "
-                  where products_id = '" . (int)$product_id . "'");
-}
-#############################################################################################################
+
 class cao {
     public $version_nr;
     public $version_datum;
@@ -618,6 +553,9 @@ class cao {
         $this->writeXML($products_image_name, __FUNCTION__);
     }
 }
+
+#############################################################################################################
+
 function ShowHTMLMenu() {
     global $version_nr, $version_datum, $user, $password, $PHP_SELF;
     SendHTMLHeader;
@@ -691,3 +629,70 @@ function UpdateTables() {
     }
     echo '</body></html>';
 }
+
+function Xzen_products_attributes_download_delete($product_id) {
+    global $db;
+    // remove downloads if they exist
+    $remove_downloads = $db->Execute("select products_attributes_id from " . TABLE_PRODUCTS_ATTRIBUTES . " where products_id= '" . $product_id . "'");
+    while (!$remove_downloads->EOF) {
+        $db->Execute("delete from " . TABLE_PRODUCTS_ATTRIBUTES_DOWNLOAD . " where products_attributes_id= '" . $remove_downloads->fields['products_attributes_id'] . "'");
+        $remove_downloads->MoveNext();
+    }
+}
+function Xzen_remove_product($product_id, $ptc = 'true') {
+    global $db;
+    $product_image = $db->Execute("select products_image
+                                   from " . TABLE_PRODUCTS . "
+                                   where products_id = '" . (int)$product_id . "'");
+    $duplicate_image = $db->Execute("select count(*) as total
+                                     from " . TABLE_PRODUCTS . "
+                                     where products_image = '" . zen_db_input($product_image->fields['products_image']) . "'");
+    if ($duplicate_image->fields['total'] < 2 and $product_image->fields['products_image'] != '') {
+        $products_image = $product_image->fields['products_image'];
+        $products_image_extention = substr($products_image, strrpos($products_image, '.'));
+        $products_image_base = ereg_replace($products_image_extention, '', $products_image);
+        $filename_medium = 'medium/' . $products_image_base . IMAGE_SUFFIX_MEDIUM . $products_image_extention;
+        $filename_large = 'large/' . $products_image_base . IMAGE_SUFFIX_LARGE . $products_image_extention;
+        if (file_exists(DIR_FS_CATALOG_IMAGES . $product_image->fields['products_image'])) {
+            @unlink(DIR_FS_CATALOG_IMAGES . $product_image->fields['products_image']);
+        }
+        if (file_exists(DIR_FS_CATALOG_IMAGES . $filename_medium)) {
+            @unlink(DIR_FS_CATALOG_IMAGES . $filename_medium);
+        }
+        if (file_exists(DIR_FS_CATALOG_IMAGES . $filename_large)) {
+            @unlink(DIR_FS_CATALOG_IMAGES . $filename_large);
+        }
+    }
+    $db->Execute("delete from " . TABLE_SPECIALS . "
+                  where products_id = '" . (int)$product_id . "'");
+    $db->Execute("delete from " . TABLE_PRODUCTS . "
+                  where products_id = '" . (int)$product_id . "'");
+    // if ($ptc == 'true') {
+    $db->Execute("delete from " . TABLE_PRODUCTS_TO_CATEGORIES . "
+                    where products_id = '" . (int)$product_id . "'");
+    // }
+    $db->Execute("delete from " . TABLE_PRODUCTS_DESCRIPTION . "
+                  where products_id = '" . (int)$product_id . "'");
+    zen_products_attributes_download_delete($product_id);
+    $db->Execute("delete from " . TABLE_PRODUCTS_ATTRIBUTES . "
+                  where products_id = '" . (int)$product_id . "'");
+    $db->Execute("delete from " . TABLE_CUSTOMERS_BASKET . "
+                  where products_id = '" . (int)$product_id . "'");
+    $db->Execute("delete from " . TABLE_CUSTOMERS_BASKET_ATTRIBUTES . "
+                  where products_id = '" . (int)$product_id . "'");
+    $product_reviews = $db->Execute("select reviews_id
+                                     from " . TABLE_REVIEWS . "
+                                     where products_id = '" . (int)$product_id . "'");
+    while (!$product_reviews->EOF) {
+        $db->Execute("delete from " . TABLE_REVIEWS_DESCRIPTION . "
+                    where reviews_id = '" . (int)$product_reviews->fields['reviews_id'] . "'");
+        $product_reviews->MoveNext();
+    }
+    $db->Execute("delete from " . TABLE_REVIEWS . "
+                  where products_id = '" . (int)$product_id . "'");
+    $db->Execute("delete from " . TABLE_FEATURED . "
+                  where products_id = '" . (int)$product_id . "'");
+    $db->Execute("delete from " . TABLE_PRODUCTS_DISCOUNT_QUANTITY . "
+                  where products_id = '" . (int)$product_id . "'");
+}
+

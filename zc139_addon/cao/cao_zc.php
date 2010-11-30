@@ -1,4 +1,12 @@
 <?php
+/**
+ *
+ * @package admin tools
+ * @copyright Copyright 2005-2010 langheiter og
+ * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
+ * @author rainer AT langheiter DOT com  http://edv.langheiter.com
+ * @version $Id$
+ */
 
 /**
  * CAO-Faktura für Windows Version 1.0                                                     *
