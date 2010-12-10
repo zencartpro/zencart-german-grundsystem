@@ -47,7 +47,7 @@ define('TEXT_PROD_DENIED', ' (Nicht gültig für diesen Artikel)');
 // gift certificates cannot be purchased with Discount Coupons
 define('TEXT_COUPON_GV_RESTRICTION','<p class="smallText">Aktionskupons können nicht zum Kauf von ' . TEXT_GV_NAMES . ' verwendet werden. Limit: 1 Aktionskupon pro Bestellung.</p>');
 
-define('TEXT_DISCOUNT_COUPON_ID_INFO', 'Aktionskupon einlösen ');
-define('TEXT_DISCOUNT_COUPON_ID', 'Aktionskuponnummer: ');
+define('TEXT_DISCOUNT_COUPON_ID_INFO', 'Aktionskupon Informationen abfragen ... ');
+define('TEXT_DISCOUNT_COUPON_ID', 'Ihr Code: ');
 
 define('TEXT_COUPON_GV_RESTRICTION_ZONES', 'Mit dieser Rechnungsadresse können keine Aktionkupons eingelöst werden.');
