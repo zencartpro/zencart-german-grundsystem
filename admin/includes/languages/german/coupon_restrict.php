@@ -29,10 +29,20 @@ define('HEADER_CATEGORY_ID','Kategorie ID');
 define('HEADER_CATEGORY_NAME','Kategorienname');
 define('HEADER_PRODUCT_ID','Artikel ID');
 define('HEADER_PRODUCT_NAME','Artikelname');
-define('HEADER_RESTRICT_ALLOW','Eerlauben');
+define('HEADER_RESTRICT_ALLOW','Erlauben');
 define('HEADER_RESTRICT_DENY','Nicht erlauben');
 define('HEADER_RESTRICT_REMOVE','Entfernen');
 define('IMAGE_ALLOW','Erlauben');
 define('IMAGE_DENY','Nicht erlauben');
 define('IMAGE_REMOVE','Entfernen');
 define('TEXT_ALL_CATEGORIES', 'Alle Kategorien');
+define('MAX_DISPLAY_RESTRICT_ENTRIES', 20);
+define('TEXT_ALL_PRODUCTS_ADD', 'Alle Artikel der Kategorie hinzufügen');
+define('TEXT_ALL_PRODUCTS_REMOVE', 'Alle Artikel der Kategorie entfernen');
+define('TEXT_INFO_ADD_DENY_ALL', '<strong>Bei Alle Artikel der Kategorie hinzufügen werden nur Artikel hinzugefügt, für die noch keine Einschränkungen definiert wurden.<br />
+                    Bei Alle Artikel der Kategorie entfernen werden nur Artikel entfernt, die mit Erlaubt oder Nicht erlaubt gekennzeichnet wurden.</strong>');
+
+define('TEXT_MANUFACTURER', 'Hersteller: ');
+define('TEXT_CATEGORY', 'Kategorie: ');
+define('ERROR_DISCOUNT_COUPON_DEFINED_CATEGORY', 'Kategorie nicht definiert');
+define('ERROR_DISCOUNT_COUPON_DEFINED_PRODUCT', 'Artikel nicht definiert');
