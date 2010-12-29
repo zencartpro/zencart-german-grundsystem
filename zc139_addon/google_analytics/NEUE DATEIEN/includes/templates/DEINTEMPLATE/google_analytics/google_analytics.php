@@ -6,8 +6,7 @@
 // | Portions Copyright (c) 2004 zen-cart								  |
 // | Portions Copyright (c) 2005-2006 Andrew Berezin					  |
 // | Portions Copyright (c) 2006 Dayne Larsen							  |
-// | Portions Copyright (c) 2007-2008 Eric Leuenberger					  |
-// | Portions Copyright (c) 2008 www.webchills.at					  |
+// | Portions Copyright (c) 2007-2010 Eric Leuenberger					  |
 // +----------------------------------------------------------------------+
 // | This source file is subject to version 2.0 of the GPL license,       |
 // | that is bundled with this package in the file LICENSE, and is        |
@@ -17,12 +16,13 @@
 // | to obtain it through the world-wide-web, please send a note to       |
 // | license@zen-cart.com so we can mail you a copy immediately.          |
 // +----------------------------------------------------------------------+
-// | file: google_analytics.php, 2008-12-30							  	  |
-// | Adds Google Analytics Capability to Zen Cart German						  |
-// | Version Information:  v1.2.2 2008-12-30							  |
-// | Author: webchills - http://www.webchills.at	      |
+// | file: google_analytics.php, 2010/09/10							  	  |
+// | Adds Google Analytics Capability to Zen Cart						  |
+// | Version Information:  v1.2.3 2010.09.10							  |
+// | Author: Eric Leuenberger - http://www.ZenCartOptimization.com	      |
 // +----------------------------------------------------------------------+
 //
+define('VERSION', 'Version: 1.3.2');
 if ($request_type == 'NONSSL') {
 	$google_analytics_url = "http://www.google-analytics.com/urchin.js"; // used only for old urchin tracking code. new tracking code auto detects protocol
 	$google_conversion_url = "http://www.googleadservices.com/pagead/conversion.js";
@@ -59,7 +59,7 @@ secondTracker._trackPageview();
 //echo "pageTracker._setDomainName(\"" . GOOGLE_ANALYTICS_SUBDOMAIN . "\");"; //see example to the rigbht ------> pageTracker._setDomainName("example.com");
 
 //***********************************************************************
-If (GOOGLE_ANALYTICS_URCHINTRACKING_ACTIVE == "Yes") { // Use Original Urchin Tracking Code
+If (GOOGLE_ANALYTICS_TRACKING_TYPE == "Urchin") { // Use Original Urchin Tracking Code
 //***************************Old tracking code using "urchin.js"******************************
 echo '<script src="' . $google_analytics_url . '" type="text/javascript">
 </script>
@@ -68,7 +68,7 @@ _uacct = "' . GOOGLE_ANALYTICS_UACCT . '";
 urchinTracker();
 </script>';
 //********************************************************************************************
-} else { // Default to new GA.js Tracking Code
+} elseif (GOOGLE_ANALYTICS_TRACKING_TYPE == "ga.js") { // Default to new GA.js Tracking Code
 //*****************************New ga.js Tracking Code****************************************
 echo "<script type=\"text/javascript\">
 var gaJsHost = ((\"https:\" == document.location.protocol) ? \"https://ssl.\" : \"http://www.\");
@@ -79,12 +79,49 @@ var pageTracker = _gat._getTracker(\"" . GOOGLE_ANALYTICS_UACCT . "\");
 pageTracker._initData();
 pageTracker._trackPageview();
 ";
-if($page_directory == 'includes/modules/pages/checkout_success') {
-// Do not close script because it is closed at the end of the transaction tracking section
-} else {
-// Close script as this is just a normal tracking script
-echo "</script>";
-};
+if (GOOGLE_ANALYTICS_CUSTOM_AFTER == 'Enable') { //custom tracking code should be added so add it.
+	echo GOOGLE_ANALYTICS_AFTER_CODE;
+} // end if for adding any addiitonal custom tracking code
+	if($page_directory == 'includes/modules/pages/checkout_success') {
+	// Do not close script because it is closed at the end of the transaction tracking section
+	} else {
+	// Close script as this is just a normal tracking script
+	echo "</script>";
+	};
+//********************************************************************************************
+} elseif (GOOGLE_ANALYTICS_TRACKING_TYPE == "Asynchronous") { // Default to asyncronus Tracking Code
+//*****************************Async Tracking Code****************************************
+
+echo "<script type=\"text/javascript\">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', '" . GOOGLE_ANALYTICS_UACCT . "']);
+  _gaq.push(['_trackPageview']);
+  ";
+if (GOOGLE_ANALYTICS_CUSTOM_AFTER == 'Enable') { //custom tracking code should be added so add it.
+	echo GOOGLE_ANALYTICS_AFTER_CODE;
+} // end if for adding any addiitonal custom tracking code
+/*
+echo "
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+";
+*/
+	if($page_directory == 'includes/modules/pages/checkout_success') {
+	// Do not close script because it is closed at the end of the transaction tracking section
+	} else {
+	// Close script as this is just a normal tracking script
+echo "
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+";
+	echo "</script>";
+	};
 //********************************************************************************************
 } // End if to determine whether to use new ga.js tracking or older urchin.js tracking
 
@@ -103,10 +140,11 @@ while (!$totals->EOF) {
 	$google_analytics[$totals->fields['class']] = number_format($totals->fields['value'], 2, '.', '');
 	$totals->MoveNext();
 }
-If (GOOGLE_ANALYTICS_URCHINTRACKING_ACTIVE == "Yes") {
+If (GOOGLE_ANALYTICS_TRACKING_TYPE == "Urchin") {
 //UTM:T|[order-id]|[affiliation]|[total]|[tax]|[shipping]|[city]|[state]|[country]
 $transaction = 'UTM:T|' . $order->fields['orders_id'] . '|' . GOOGLE_ANALYTICS_AFFILIATION . '|' . $google_analytics['ot_total'] . '|' . $google_analytics['ot_tax'] . '|' . $google_analytics['ot_shipping'] . '|' . $order->fields['city'] . '|' . $order->fields['state'] . '|' . $order->fields['country'];
-} else { // Default to new ga.js tracking
+
+} elseif (GOOGLE_ANALYTICS_TRACKING_TYPE == "ga.js") { // Default to new ga.js tracking
 echo "
 pageTracker._addTrans(
 \"" . $order->fields['orders_id'] . "\",
@@ -119,7 +157,23 @@ pageTracker._addTrans(
 \"". $order->fields['country']."\"
 );
 ";
-} // End if to determine if new ga.js tracking code should be used.
+
+} elseif (GOOGLE_ANALYTICS_TRACKING_TYPE == "Asynchronous") { //Use Async Tracking
+
+echo "
+_gaq.push(['_addTrans',
+\"" . $order->fields['orders_id'] . "\",
+\"". GOOGLE_ANALYTICS_AFFILIATION ."\",
+\"". $google_analytics['ot_total'] ."\",
+\"". $google_analytics['ot_tax'] ."\",
+\"". $google_analytics['ot_shipping'] ."\",
+\"". $order->fields['city'] ."\",
+\"". $order->fields['state'] ."\",
+\"". $order->fields['country']."\"
+]);
+";
+
+} // End if to determine which tracking code should be used.
 
 $products = $db->Execute("select products_id, " . GOOGLE_ANALYTICS_SKUCODE . " as skucode, products_name, final_price, products_quantity from " . TABLE_ORDERS_PRODUCTS . " where orders_id = '" . $order->fields['orders_id'] . "'");
 $items = "";
@@ -127,10 +181,11 @@ while (!$products->EOF) {
 	$category_query = "select cd.categories_name from " . TABLE_PRODUCTS_TO_CATEGORIES . " p2c left join " . TABLE_CATEGORIES_DESCRIPTION . " cd on (cd.categories_id = p2c.categories_id) where p2c.products_id = '" . $products->fields['products_id'] . "' and cd.language_id = :languagesID limit 1";
 	$category_query = $db->bindVars($category_query, ':languagesID', $_SESSION['languages_id'], 'integer');
 	$category = $db->Execute($category_query);
-If (GOOGLE_ANALYTICS_URCHINTRACKING_ACTIVE == "Yes") {
+If (GOOGLE_ANALYTICS_TRACKING_TYPE == "Urchin") {
 // UTM:I|[order-id]|[sku/code]|[productname]|[category]|[price]|[quantity]
 	$items .= ' UTM:I|' . $order->fields['orders_id'] . '|' . $products->fields['skucode'] . '|' . $products->fields['products_name'] . '|' . $category->fields['categories_name'] . '|' . number_format($products->fields['final_price'], 2, '.', '') . '|' . $products->fields['products_quantity'];
-} else { // New ga.js tracking code should be used
+
+} elseif (GOOGLE_ANALYTICS_TRACKING_TYPE == "ga.js") { // New ga.js tracking code should be used
 
 echo "
 pageTracker._addItem(
@@ -143,11 +198,24 @@ pageTracker._addItem(
 );
 ";
 
+} elseif (GOOGLE_ANALYTICS_TRACKING_TYPE == "Asynchronous") { // Asynchronous tracking code should be used
+
+echo "
+_gaq.push(['_addItem',
+\"". $order->fields['orders_id'] ."\",
+\"". $products->fields['skucode'] ."\",
+\"". $products->fields['products_name'] ."\",
+\"". $category->fields['categories_name'] ."\",
+\"". number_format($products->fields['final_price'], 2, '.', '') ."\",
+\"". $products->fields['products_quantity'] . "\"
+]);
+";
+
 } // End if to determine if new tracking code or previous "urchin" code is used.
 
 	$products->MoveNext();
 }
-If (GOOGLE_ANALYTICS_URCHINTRACKING_ACTIVE == "Yes") {
+If (GOOGLE_ANALYTICS_TRACKING_TYPE == "Urchin") {
 //echo transaction data (OLD "urchin.js" code. not used in new ga.js version)
 //echo '<body onLoad="javascript:__utmSetTrans()">';
 echo '<form style="display:none;" name="utmform">
@@ -159,18 +227,28 @@ echo '<form style="display:none;" name="utmform">
 echo '<script type="text/javascript">
 __utmSetTrans();
 </script>"';
-} else { // Default to new ga.js tracking code
+} elseif (GOOGLE_ANALYTICS_TRACKING_TYPE == "ga.js") { // Use new ga.js tracking code
 echo "pageTracker._trackTrans();";
 echo "</script>";
-} // End if to determnine which tracking code to use.
+} elseif (GOOGLE_ANALYTICS_TRACKING_TYPE == "Asynchronous") { // Use Async tracking 
+echo "_gaq.push(['_trackTrans']);";
+echo "
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+";
+echo "</script>";
+} // End if to determine which tracking code to use.
 
 
-If (GOOGLE_ANALYTICS_CONVERSION_ACTIVE == "Yes") { // Conversion Tracking is enabled and should be tracked
+If (GOOGLE_CONVERSION_ACTIVE == "Yes") { // Adwords Conversion Tracking is enabled and should be tracked
 echo '<!-- Google Code for purchase Conversion Page -->
 <script language="JavaScript" type="text/javascript">
 <!--
-var google_conversion_id = ' . GOOGLE_ANALYTICS_CONVERSION_IDNUM . ';
-var google_conversion_language = "' . GOOGLE_ANALYTICS_CONVERSION_LANG . '";
+var google_conversion_id = ' . GOOGLE_CONVERSION_IDNUM . ';
+var google_conversion_language = "' . GOOGLE_CONVERSION_LANG . '";
 var google_conversion_format = "1";
 var google_conversion_color = "FFFFFF";';
 if ($google_analytics['ot_total'] != "") { // Order total is not blank. Used to track actual revenue amounts.
@@ -192,7 +270,7 @@ echo 'var google_conversion_label = "purchase";
 <script language="JavaScript" src="' . $google_conversion_url . '">
 </script>
 <noscript>
-<img height=1 width=1 border=0 src="' . $google_conversion_image_url . '' . GOOGLE_ANALYTICS_CONVERSION_IDNUM . '/?value=';
+<img height=1 width=1 border=0 src="' . $google_conversion_image_url . '' . GOOGLE_CONVERSION_IDNUM . '/?value=';
 if ($google_analytics['ot_total'] !="") { echo $google_analytics['ot_total']; } else { echo "1"; }
 echo '&label=purchase&script=0">
 </noscript>';

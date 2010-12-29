@@ -1,5 +1,5 @@
 ##########################################################################
-# Google Analytics 1.3.1 Uninstall - 2010-05-22 - webchills
+# Google Analytics 1.3.2 Uninstall - 2010-12-27 - webchills
 # NUR AUSFÜHREN WENN SIE DAS MODUL AUS DER DATENBANK ENTFERNEN WOLLEN!!!!!
 ##########################################################################
 
