@@ -4,7 +4,7 @@
  * @copyright Copyright 2003-2009 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: html_output.php 14139 2009-08-10 13:46:02Z wilt $
+ * @version $Id: html_output.php 17361 2010-08-25 14:58:56Z wilt $
  */
 
 ////
@@ -134,7 +134,7 @@
   function zen_image_button($image, $alt = '', $params = '') {
     global $language;
 
-    return zen_image(DIR_WS_ADMIN . DIR_WS_LANGUAGES . $_SESSION['language'] . '/images/buttons/' . $image, $alt, '', '', $params);
+    return zen_image(DIR_WS_LANGUAGES . $_SESSION['language'] . '/images/buttons/' . $image, $alt, '', '', $params);
   }
 
 ////
@@ -279,7 +279,9 @@
 
     if ($text == '~*~*#' && (isset($GLOBALS[$name]) && is_string($GLOBALS[$name])) && ($reinsert_value == true) ) {
       $field .= stripslashes($GLOBALS[$name]);
+      $field = str_replace('&gt;', '>', $field); 
     } elseif ($text != '~*~*#' && zen_not_null($text)) {
+      $field = str_replace('&gt;', '>', $field); 
       $field .= $text;
     }
 
@@ -341,3 +343,4 @@
       return zen_draw_hidden_field(zen_session_name(), zen_session_id());
     }
   }
+?>

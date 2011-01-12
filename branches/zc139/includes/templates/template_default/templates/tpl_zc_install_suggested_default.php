@@ -14,7 +14,7 @@ $instPath = (file_exists('zc_install/index.php')) ? 'zc_install/index.php' : (fi
 $docsPath = (file_exists('docs/index.html')) ? 'docs/index.html' : (file_exists('../docs/index.html') ? '../docs/index.html' : '');
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" dir="ltr" lang="de">
+<html xmlns="http://www.w3.org/1999/xhtml" dir="ltr" lang="en">
 <head>
 <title>System Setup Required</title>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
