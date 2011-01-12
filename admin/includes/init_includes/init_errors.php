@@ -1,10 +1,10 @@
 <?php
 /**
  * @package admin
- * @copyright Copyright 2003-2009 Zen Cart Development Team
+ * @copyright Copyright 2003-2010 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: init_errors.php 13797 2009-07-07 21:54:54Z drbyte $
+ * @version $Id: init_errors.php 17422 2010-08-31 08:42:09Z drbyte $
  */
 if (!defined('IS_ADMIN_FLAG')) {
   die('Illegal Access');
@@ -29,13 +29,6 @@ if (!defined('IS_ADMIN_FLAG')) {
       $messageStack->add(ADMIN_DEMO_ACTIVE, 'warning');
     } else {
       $messageStack->add(ADMIN_DEMO_ACTIVE_EXCLUSION, 'warning');
-    }
-  }
-
-  // admin folder rename recommended
-  if (!defined('ADMIN_RENAME_WARNING_OVERRIDE') || ADMIN_RENAME_WARNING_OVERRIDE == '') {
-    if (substr(DIR_WS_ADMIN, -7) == '/admin/' || substr(DIR_WS_HTTPS_ADMIN, -7) == '/admin/') {
-      $messageStack->add(WARNING_ADMIN_FOLDERNAME_VULNERABLE, 'caution');
     }
   }
 
@@ -77,4 +70,14 @@ if (!defined('IS_ADMIN_FLAG')) {
       $messageStack->add(ERROR_ADMIN_SECURITY_WARNING, 'caution');
     }
   }
-?>
+
+  // log cleanup
+  if ($za_dir = @dir(DIR_FS_SQL_CACHE)) {
+    while ($zv_file = $za_dir->read()) {
+      if (preg_match('/^zcInstall.*\.log$/', $zv_file)) {
+        unlink(DIR_FS_SQL_CACHE . '/' . $zv_file);
+      }
+    }
+    $za_dir->close();
+    unset($za_dir);
+  }
