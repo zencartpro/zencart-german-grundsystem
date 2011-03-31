@@ -24,4 +24,4 @@ define('VAT_SHOW', true);
 define('ADD_VATADDON', 'ALL');
 #define('ADD_VATADDON', 'product_info|products_new'); // only display at productDetail & new Products
 
-define('VAT_SHOW_TEXT','</h2><h2 class="taxAddon">Price incl. %s VAT.<br/> plus <a href="' . zen_href_link(FILENAME_SHIPPING) . '">shipping and handling</a>');
+define('VAT_SHOW_TEXT','<br/><span class="taxAddon">incl. %s VAT.<br/> plus <a href="' . zen_href_link(FILENAME_SHIPPING) . '">shipping and handling</a></span>');
