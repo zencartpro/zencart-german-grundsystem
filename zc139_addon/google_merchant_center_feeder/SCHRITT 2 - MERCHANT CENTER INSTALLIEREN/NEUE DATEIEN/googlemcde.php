@@ -118,6 +118,8 @@
       if (GOOGLE_MCDE_ISBN == 'true') {
         $additional_attributes .= ", p.products_isbn";
         }
+     // condition
+     $additional_attributes .= ", p.products_condition";
       
       if (GOOGLE_MCDE_META_TITLE == 'true') {
         $additional_attributes .= ", mtpd.metatags_title";
@@ -222,11 +224,9 @@
                 if ($products->fields['manufacturers_name'] != '') {
                   $content["manufacturer"] = '<g:manufacturer>' . $google_mcde->google_mcde_xml_sanitizer($products->fields['manufacturers_name'], true) . '</g:manufacturer>';
                 }
-                if ($products->fields['products_condition'] != '') {
+                
                  $content["condition"] = '<g:condition>' . $products->fields['products_condition'] . '</g:condition>';
-                } else {
-                  $content["condition"] = '<g:condition>new</g:condition>';
-                }     
+                    
                 if (GOOGLE_MCDE_PRODUCT_TYPE == 'top') {
                   $top_level = array_shift($product_type);
                   $content["product_type"] = '<g:product_type>' . $google_mcde->google_mcde_xml_sanitizer($top_level, true) . '</g:product_type>';
