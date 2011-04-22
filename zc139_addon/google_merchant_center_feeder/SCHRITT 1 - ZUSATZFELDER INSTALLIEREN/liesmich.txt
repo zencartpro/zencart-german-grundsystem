@@ -1,0 +1,19 @@
+Installation:
+
+1)
+Im Ordner SQL die install.sql öffnen und Inhalt kopieren ins Eingabefeld unter Admin > Tools > SQL Patches installieren
+Absenden
+Dadurch wird die Tabelle products mit dem Feld für die EAN erweitert und es wird eine Konfigurationsmöglichkeit angelegt, die EAN auf der Artikeldetailseite anzuzeigen oder nicht anzuzeigen.
+Diese befindet sich dann unter Webshop > Artikeltypen > Product General > Layout bearbeiten und ist standardmäßig aktiv.
+
+2)
+Im Ordner GEAENDERTE DATEIEN den Ordner DEINADMINVERZEICHNIS auf den Namen Ihres Admin-Ordners umbenennen.
+Alle Ordner namens DEINTEMPLATE auf den Namen des im Shop aktiven Templates umbenennen (z.B. classic, viennabright)
+Nur dann in der vorgegebenen Struktur einfach hochladen, wenn noch nie Änderungen an den Dateien gemacht wurden (z.B. Zen-Cart 1.3.9h wurde gerade frisch installiert)
+Ansonsten unbedingt die Dateien mit einem geeigneten Programm wie WinMerge oder Beyond Compare mit Ihren Dateien vergleichen und die Änderungen mergen.
+
+3)
+Nach dem Hochladen der geänderten Dateien ist nun beim Artikel bearbeiten ein Feld für die EAN vorhanden.
+
+
+Nach demselben Muster könnten auch etliche andere Zusatzfelder für die Artikel angelegt und verwendet werden.

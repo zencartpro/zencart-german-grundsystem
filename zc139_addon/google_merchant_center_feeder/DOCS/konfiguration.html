@@ -1,0 +1,77 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Google Merchant Center Deutschland 2.0 für Zen-Cart 1.3.9 deutsch - Konfiguration</title>
+<meta name="author" content="webchills | www.webchills.at" />
+<link href="style.css" rel="stylesheet" type="text/css">  
+</head>
+
+<body>
+<div id="header">
+<h2>Google Merchant Center Deutschland 2.0 für Zen-Cart 1.3.9 deutsch</h2>
+  <a href="index.html">Übersicht</a> | <a href="installation.html">Installation</a> |  Konfiguration</div>
+   
+<div id="wrapper">
+<div class="content">
+<h1>Konfiguration und Verwendung</h1>
+<p>Dieses Modul macht nur Sinn, wenn Sie sich für das Google Merchant Center registriert haben.<br />
+  Sollten Sie noch keinen Account haben:<br />
+  <a href="http://www.google.com/merchants" target="_blank">http://www.google.com/merchants</a><br />
+  Beachten Sie bitte, dass dieses Modul ausschließlich für das Zielland Deutschland ausgelegt ist.
+</p>
+<p><strong>Einstellungen in der Zen-Cart Administration und Erzeugen des Feeds</strong><br />
+  <br />
+  Unter Konfiguration &gt; Google Merchant Center Deutschland nehmen Sie nun die nötigen Einstellungen vor, alle Einstellungsmöglichkeiten sind dort erklärt.</p>
+<p>Wichtig ist hier der Name Ihres Feeds. Geben Sie hier z.B. meinshop an, dann wird die Datei Ihres Feeds später heißen:<br />
+  meinshop_products.xml<br />
+  Diesen Dateinamen müssen Sie in Ihren Google Merchant Center Einstellungen eintragen.<br />
+  <br />
+Nachdem Sie Ihre gewünschte Konfiguration vorgenommen haben, erstellen Sie nun manuell Ihr erstes Artikelfeed unter Tools &gt; Google Merchant Center Deutschland.</p>
+<p>Lassen Sie die Felder 
+  <label for="limit">SQL Query Limit</label> 
+  und SQL Query Offset
+leer und klicken Sie einfach auf den Button &quot;bestätigen&quot;.<br />
+Es öffnet sich ein Popup, das nach kurzer Zeit die Erzeugung des Feeds bestätigt. Danach können Sie die XML Datei unter Verfügbare Produktfeeds zur Kontrolle herunterladen.<br />
+<br />
+Wenn Sie den FTP Upload nutzen wollen clicken Sie unter &quot;Aktion&quot; auf &quot;FTP-Upload&quot;. Voraussetzung: Sie haben zuvor in Ihrem Google Merchant Center einen FTP Account angelegt und Benutzernamen und Passwort in der Zen-Cart Administration des Moduls eingetragen. Bitte beachten Sie, dass es mehrere Stunden dauern kann, bis ein neu angelegter FTP Account seitens Google aktiv ist. Wenn Sie den Account also gerade erst angelegt haben, dann wird der Upload fehlschlagen.</p>
+<p>Wenn Sie den FTP-Upload nicht nutzen wollen, können Sie in Ihrem Google Merchant Center einen Zeitplan einstellen, an dem sich Google das Produktfeed automatisiert selbst holt.<br />
+  Ihr Artikelfeed befindet sich standardmäßig im Ordner feed/googlemcde<br />
+Wenn Ihre Feeddatei meinshop_products.xml heißt, dann müssten Sie also beim Zeitplan folgenden Link eintragen:<br />
+http://www.meinshop.de/feed/googlemcde/meinshop_products.xml</p>
+<p>Lassen Sie nun Google Ihr neu erstelltes Artikelfeed zukommen (egal ob per FTP oder automatisierten Zeitplan) und überprüfen Sie danach das Feed in Ihrem Google Merchant Center. </p>
+<p><strong>Artikelfeed automatisiert per Cronjob aktualisieren:</strong><br />
+  <br />
+  Legen Sie einen Cronjob an, der einmal pro Woche (oder wann immer Sie wollen) folgende Adresse aufruft:<br />
+  <br />
+  googlemcde.php.php?feed=fy_un_tp<br />
+  <br />
+  Dadurch passiert genau dasselbe wie wenn Sie das manuell unter Tools &gt; Google Merchant Center Deutschland in der Zen-Cart Administration machen würden.<br />
+  Mit diesem Kommando wird nur das Feed aktualisiert, es erfolgt kein FTP-Upload <br />
+  Wenn Sie das Feed per Zeitplan von Google abholen lassen, ist das ausreichend.<br />
+  <br />
+  Wenn Sie den Zeitplan nicht verwenden und das Feed immer per FTP hochladen, dann verwenden Sie folgenden Link in Ihrem Cronjob:<br />
+  <br />
+  googlemcde.php.php?feed=fy_uy_tp<br />
+</p>
+<p><strong>Fragen zu den Einstellungen in Ihrem Google Merchant Center:</strong><br />
+  Nutzen Sie die umfangreiche Hilfe auf:<br />
+  <a href="http://www.google.com/support/merchants/?hl=de_DE" target="_blank">http://www.google.com/support/merchants/?hl=de_DE</a></p>
+<p><strong>Probleme/Fragen mit diesem Modul:</strong><br /> 
+  Bitte im Forum auf zen-cart.at posten
+<br />
+<a href="http://www.zen-cart.at/zcvb/forum/forumdisplay.php?f=64" target="_blank">http://www.zen-cart.at/zcvb/forum/forumdisplay.php?f=64</a></p>
+<h1>Unterstützen Sie die Weiterentwicklung der deutschen Zen-Cart Version!</h1>
+ <p>Sie finden dieses Modul nützlich?<br/>
+ Ich freue mich über einen Espresso, Capuccino oder Irish Coffee:<br />
+ <a href="http://www.webchills.at/zencart/" target="_blank">webchills Zen-Cart Kaffeekasse</a><br />
+ <br />
+ Sie haben vom Support im Forum von zen-cart.at profitiert?<br />
+ Wir freuen uns über Spenden zur Finanzierung des Servers und der vBulletin-Lizenz:
+ <br />
+ <a href="http://www.zen-cart.at/zcvb/forum/misc.php?do=donate">zen-cart.at unterstützen </a></p>
+</div>
+</div>
+<div id="footer"><a href="#">top of page</a></div>
+</body>
+</html>
