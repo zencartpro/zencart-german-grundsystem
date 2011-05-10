@@ -75,3 +75,6 @@ define('TEXT_INFO_CONFIGURATION_HIDDEN', ' oder VERSTECKT');
 
 define('TEXT_INFO_DATABASE_OPTIMIZE', '<strong>Datenbank optimieren</strong> um vergeudeten Raum von gelöschten Aufzeichnungen zu entfernen.<br/>Das kann monatlich oder wöchentlich auf einer frequentierten Datenbank erforderlich sein.<br/>(Am besten während der nichtaktiven Zeiten die Optimierung laufen lassen.)');
 define('SUCCESS_DB_OPTIMIZE', 'Datenbank-Optimierung - Tabellen verarbeiten: ');
+
+define('TEXT_INFO_PURGE_DEBUG_LOG_FILES', '<strong>Lösche Debug Log Files</strong><br /><strong>ACHTUNG: </strong>Zen Cart zeichnet PHP Fehlermeldungen zu Debugging Zwecken auf. Auch einige der Zahlungsarten Module zeichnen Debug Informationen auf, um evtl. Probleme bei der Zahlung analysieren zu können. <br />Wenn Sie auf Bestätigen klicken, werden alle Debug Log Files unwiderruflich gelöscht.');
+define('SUCCESS_CLEAN_DEBUG_FILES', 'Debug Log Files Purged');
