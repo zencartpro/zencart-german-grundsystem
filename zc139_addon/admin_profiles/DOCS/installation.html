@@ -1,0 +1,128 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Admin Profiles 1.1.1 für Zen-Cart 1.3.9 deutsch - Installation</title>
+<meta name="author" content="webchills | www.webchills.at" />
+<link href="style.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+<div id="header">
+<h2>Admin Profiles 1.1.1 für Zen-Cart 1.3.9 deutsch</h2>
+ <a href="index.html">Übersicht</a> | Installation und Konfiguration</div>
+ 
+  <div id="wrapper">
+  <div class="content">
+<h1>Installation und Konfiguration</h1>
+<p><strong><br />
+  Voraussetzungen</strong><br />
+  <br />
+  Dieses Modul ist<strong> nur für Zen-Cart 1.3.9 deutsch geeignet</strong><br />
+  <br />
+  Für den Einbau dieses Moduls sollten Sie über folgende Werkzeuge verfügen:<br />
+  <br />
+  1) Ein guter Texteditor. <br />
+  Damit ist nicht das in Windows enthaltene Notepad oder Microsoft Word gemeint.<br />
+  Sie benötigen einen Texteditor, der utf-8 versteht und auch im Format utf-8 ohne BOM abspeichern kann.<br />
+  Meine Empfehlung: <a href="http://www.ultraedit.com/loc/de/index_de.html" target="_blank">UltraEdit</a> (kostenlose 30 Tage Testversion verfügbar)<br />
+  Ebenfalls gut geeignet ist der kostenlose Texteditor <a href="http://notepad-plus.sourceforge.net/de/site.htm" target="_blank">Notepad++ </a><br />
+  </p>
+<p>2) Ein Tool zum Vergleichen von Dateien<br />
+  Bei der Installation dieses Moduls ist es erforderlich, dass Sie den Inhalt einiger Ihrer bestehenden Zen-Cart Dateien mit dem Inhalt der neuen Moduldateien vergleichen und die Änderungen zusammenführen (&quot;mergen&quot;).<br />
+  Meine Empfehlung: <a href="http://www.scootersoftware.com/" target="_blank">BeyondCompare</a> (kostenlose 30 Tage Testversion verfügbar)<br />
+  Ebenfalls gut geeignet ist das kostenlose Programm <a href="http://winmerge.org/" target="_blank">WinMerge </a></p>
+<p><br />
+  <strong>Empfehlung:</strong><br />
+  <br />
+  Dieses Modul erst in einem Testsystem einbauen und dort konfigurieren/testen und endgültig an die eigenen Wünsche anpassen.    
+  Erst dann in einem Liveshop einsetzen! Sichern Sie unbedingt alle Dateien Ihres Shops per FTP und sichern Sie die Datenbank mit phpMyAdmin oder anderen geeigneten Tools!</p>
+<code><strong>================= WICHTIG =====================<br />
+Vor dem Einbau dieser Änderungen:<br />
+BACKUP von Shop und Datenbank machen! <br />
+Keine Haftung, Verwendung auf eigene Gefahr!<br />
+BACKUP gemacht? Ok, dann weiterlesen...<br />
+===============================================</strong></code>
+<p><br />
+  <strong>Wichtiger Hinweis:</strong><br />
+  Beim Einbau dieses Moduls ist es zwingend notwendig, dass Sie die Reihenfolge der im folgenden beschriebenen Installationsschritte einhalten.<br />
+Als erstes wird die Datenbankänderung eingespielt!</p>
+<p><br />
+  1.<br />
+  Im Order  SQL die Datei install.sql mit einem Texteditor öffnen und den Inhalt kopieren.<br />
+  <strong>Wichtig:</strong><br />
+  Normalerweise hat der Admin, der alle Rechte hat (Superuser) in Zen-Cart die ID 1<br />
+  Überprüfen Sie unter Tools &gt; Administratoren, ob Ihr User wirklich die ID 1 hat.<br />
+  Sollte Ihr User eine andere ID haben, dann ändern Sie folgende Zeile in der install.sql entsprechend ab:</p>
+<code>SET @superuser = 1;</code>
+<p>2.<br />
+Zen-Cart Administration öffnen und unter Tools &gt; SQL Patches installieren den Inhalt ins Feld hineinkopieren und absenden.<br />
+Dadurch werden die nötigen neuen Tabellen in der Datenbank angelegt.</p>
+<p>3.<br />
+  Im Ordner NEUE DATEIEN dieses Downloads den Ordner DEINADMIN auf den Namen Ihres Adminverzeichnisses umbenennen.<br />
+  Dann in der vorgegebenen Struktur hochladen, dabei werden keine bestehenden Dateien überschrieben.<br />
+</p>
+<p>4.<br />
+  Im Ordner GEAENDERTE DATEIEN dieses Downloads den Ordner DEINADMIN auf den Namen Ihres Adminverzeichnisses umbenennen.<br />
+  Achtung:<br />
+Beim Hochladen dieser Dateien werden bestehende Dateien überschrieben!<br />
+Daher:<br />
+Falls bereits einmal Änderungen an diesen Dateien in der Zen-Cart Installation gemacht wurden, mit WinMerge oder BeyondCompare die Dateien vergleichen und nur die Änderungen in die bestehenden Dateien übernehmen.<br />
+Wurden noch keine Änderungen gemacht (Zen-Cart wurde z.B. gerade erst frisch installiert), die Ordner/Dateien aus dem Ordner GEAENDERTE DATEIEN einfach in der vorgegebenen Struktur in Ihr Zen-Cart Verzeichnis hochladen.</p>
+<p>5.<br />
+  Loggen Sie sich nun als Admin ein. (Sollte es das erste Mal sein, dass Sie sich als Admin einloggen müssen Sie sich mit dem Adminuser einloggen, der die ID 1 hat).<br />
+  Gehe Sie auf Tools &gt; Administratoren<br />
+  Klicken Sie auf das Rechte Symbol (weißes &quot;P&quot; in einem orangenen Kreis) für den Admin, für den Sie die Rechte verwalten möchten. <br />
+  Am besten machen Sie das zuerst bei Ihrem eigenen Adminuser (der mit der ID 1), der alle Rechte haben soll.<br />
+  <br />
+  Hier finden Sie nun zwei Ebenen der Verwaltung: <br />
+  Blau unterlegt die Hauptmenüpunkte (Configuration Menu, Catalog Menu, Modules Menu, Customers Menu, usw.)<br />
+  Es werden hier immer die englischen Bezeichnungen angezeigt, da Admin Profiles leider nicht multilanguagefähig ist.<br />
+  Diese Punkte entsprechen einfach dem deutschsprachigen Hauptmenü, das Sie aus Ihrem deutschen Zen-Cart Shop gewohnt sind (Konfiguration, Webshop, Module, Kunden, usw.)
+  <br />
+  <br />
+Sie können also die Hauptmenüpunkte sichtbar oder unsichtbar machen, indem Sie die Checkbox neben dem Namen des Hauptmenüs auswählen oder deaktivieren und danach auf Speichern gehen. Versuchen Sie es an Ihrem eigenen Adminuser und Sie werden  die Änderung sofort erkennen. <br />
+Nichtsdestotrotz kontrolliert dies weder die Verfügbarkeit der Untermenüpunkte noch, dass die Benutzer diese sehen können. Diese können weiter durch die Eingabe der exakten URL von Admins erreicht werden oder auch durch jede spezifische Seite die Sie hierfür definieren.<br />
+<br />
+Die Untermenüpunkte müssen Sie also extra ein- oder ausschalten durch das Ein- oder Ausklicken der Checkbox neben jeder Seitenbeschreibung. Auch hier werden wieder - da nicht anders möglich - die englischen Beschreibungen angezeigt. <br />
+Probieren Sie auch das nun bei Ihrem eigenen Admin aus und deaktivieren Sie z.B. die Checkbox bei E-Mail Options und clicken auf Speichern. Rufen Sie dann Konfiguration &gt; E-Mail Optionen auf und Sie werden sehen, dass Sie auf diese Einstellungen keinen Zugriff mehr haben. Schalten Sie sich also gleich danach besser wieder dafür frei :-)<br />
+<br />
+Falls Sie bereits Zusatzmodule installiert haben, sollten diese ganz unten unter Third Party Mods aufscheinen.<br />
+Kreuzen Sie unbedingt alle an, damit Sie auch auf diese Konfigurationseinstellungen immer Zugriff haben!
+<br />
+<br />
+<strong>WICHTIG:<br />
+Entfernen Sie bei Ihrem eigenen Admin NIE den Hauptmenüpunkt Tools oder den Untermenüpunkt admin! Sie haben sonst keine Möglichkeit mehr, sich die Rechte wieder zu geben!</strong><br />
+<strong>Generell, sollten Sie bei Ihrem eigenen Admin darauf achten, dass immer ALLES angekreuzt und somit erlaubt ist </strong><br />
+<br /> 
+Nachdem Sie sich mit Ihrem eigenen Adminuser mit der Funktionalität vertraut gemacht haben, stellen Sie nun die Berechtigungen für Ihre weiteren Administratoren so ein, wie Sie es wünschen.</p>
+<p>6.<br />
+  <strong>Wichtiger Hinweis für zusätzliche Erweiterungen, die Sie später installieren</strong><br />
+  Sobald Sie Admin Profiles im Einsatz haben, müssen Sie darauf achten, dass Sie nach jeder späteren Installation einer Erweiterung, diese für sich selbst freigeben.<br />
+  Bsp:<br />
+  Sie installieren das Lightbox-Modul. Das legt unter Konfiguration einen Untermenüpunkt Lightbox an, in dem die Einstellungen der Lightbox zu finden sind.
+  <br />
+  In den Admin Profiles Einstellungen wird die Lightbox dann ganz unten unter Third Party Mods aufscheinen und nicht angekreuzt sein. <br />
+  Dies gilt für alle Erweiterungen, die später installiert werden: Nicht vergessen, sie immer für den eigenen Superadmin freizugeben!<br />
+</p>
+
+<h1>Admin Profiles  vollständig deinstallieren</h1>
+<p>Im Ordner SQL dieses Downloads befindet sich eine uninstall.sql<br />
+  Zen-Cart Administration öffnen und unter Tools &gt; SQL Patches installieren den Inhalt ins Feld hineinkopieren und absenden. Dadurch werden die 4 von Admin Profiles angelegten Tabellen gelöscht.<br />
+  Danach alle neuen von diesem Modul angelegten Dateien vom Server löschen.<br />
+  Alle von diesem Modul geänderten Dateien wieder mit den Originaldateien bzw. den Dateien Ihres vorher angelegten Backups ersetzen
+  </p>
+<h1>Unterstützen Sie die Weiterentwicklung der deutschen Zen-Cart Version!</h1>
+ <p>Sie finden dieses Modul nützlich?<br/>
+ Ich freue mich über einen Espresso, Capuccino oder Irish Coffee:<br />
+ <a href="http://www.webchills.at/zencart/" target="_blank">webchills Zen-Cart Kaffeekasse</a><br />
+ <br />
+ Sie haben vom Support im Forum von zen-cart.at profitiert?<br />
+ Wir freuen uns über Spenden zur Finanzierung des Servers und der vBulletin-Lizenz:
+ <br />
+ <a href="http://www.zen-cart.at/zcvb/forum/misc.php?do=donate">zen-cart.at unterstützen </a></p>
+  </div>
+</div>
+<div id="footer"><a href="#">top of page</a></div>
+</body>
+</html>
