@@ -33,8 +33,8 @@ $content .= '<div id="' . str_replace('_', '-', $box_id . 'Content') . '" class=
 if(!$_SESSION['customer_id']) {
 
    $content .=zen_draw_form('login_box', zen_href_link(FILENAME_LOGIN, 'action=process', 'SSL'), 'post', 'id="loginFormSidebox"');
-   $content .=LOGIN_BOX_EMAIL_ADDRESS . '<br />' . zen_draw_input_field('email_address', '', 'size="20"').'<br />';
-   $content .=LOGIN_BOX_PASSWORD . '<br />' . zen_draw_password_field('password', '', 'size="20"') . '<br />';
+   $content .=LOGIN_BOX_EMAIL_ADDRESS . '<br />' . zen_draw_input_field('email_address', '', 'id="loginSideBoxInput"').'<br />';
+   $content .=LOGIN_BOX_PASSWORD . '<br />' . zen_draw_password_field('password', '', 'id="loginSideBoxInput"') . '<br />';
    $content .='<a href="' . zen_href_link(FILENAME_PASSWORD_FORGOTTEN, '', 'SSL') . '">' . LOGIN_BOX_PASSWORD_FORGOTTEN . '</a>' . '<br />' . '<a href="' . zen_href_link(FILENAME_LOGIN, '', 'SSL') . '">' . LOGIN_BOX_CREATE_ACCOUNT . '</a>' . '<br />';
    $content .= zen_draw_hidden_field('securityToken', $_SESSION['securityToken']);
    $content .='<br /><div class="centeredContent">'.zen_image_submit(BUTTON_IMAGE_LOGIN, BUTTON_LOGIN_ALT).'</div>';
