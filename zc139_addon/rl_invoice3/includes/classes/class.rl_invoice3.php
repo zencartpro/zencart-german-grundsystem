@@ -6,7 +6,7 @@
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
  * @author rainer AT langheiter DOT com // http://www.filosofisch.com // http://edv.langheiter.com
 generates pdf-invoices; please read: http://demo.zen-cart.at/docs/rl_invoice3/ 
- * @version $Id: class.rl_invoice3.php 100 2010-06-08 11:53:15Z rainer langheiter $
+ * @version $Id$
  */
 
 define('FPDF_FONTPATH', DIR_FS_CATALOG . DIR_WS_INCLUDES . 'pdf/font/');
