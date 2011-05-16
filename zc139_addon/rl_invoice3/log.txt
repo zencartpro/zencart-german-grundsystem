@@ -1,0 +1,3 @@
+rl_invoice3:
+- install-sql-routine neu == es werden nur noch die fehlenden defines hinzugefuegt
+- in tabelle orders_status wird eintrag 100:rechnung versenden hinzugefuegt
