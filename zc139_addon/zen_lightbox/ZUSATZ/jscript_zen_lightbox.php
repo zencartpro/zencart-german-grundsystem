@@ -13,12 +13,11 @@ if (ZEN_LIGHTBOX_STATUS == 'true') {
   require_once(DIR_FS_CATALOG . DIR_WS_CLASSES . 'zen_lightbox/slimbox.php');
 ?>
 
-Slimbox.scanPage = function() {
-	$$(document.links).filter(function(el) {
-		return el.href && el.href.test(/\.(<?php echo str_replace(',', '|', str_replace(' ', '', ZEN_LIGHTBOX_FILE_TYPES)); ?>)$/i);
-	}).slimbox({<?php require_once(DIR_FS_CATALOG . DIR_WS_CLASSES . 'zen_lightbox/options.php'); ?>]}, null, function(el) {
-		return (this == el) || (this.parentNode && (this.parentNode == el.parentNode));
-	});
-};
-window.addEvent("domready", Slimbox.scanPage);
+jQuery(function($) {
+        $("a[rel^='lightbox']").slimbox({/* Put custom options here */}, function(el) {
+                return [el.href, el.title /* + '<br /><a href="' + el.href + '">Download this image</a>'*/];
+        }, function(el) {
+                return (this == el) || ((this.rel.length > 8) && (this.rel == el.rel));
+        });
+});
 //--></script><?php } ?>

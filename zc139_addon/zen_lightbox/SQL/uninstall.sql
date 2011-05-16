@@ -1,6 +1,6 @@
 ##########################################################################
-# Zen Lightbox 1.5.2 Uninstall - 2010-05-21 - webchills
-# NUR AUDFÜHREN WENN SIE DAS MODUL AUS DER DATENBANK ENTFERNEN WOLLEN!!!!!
+# Zen Lightbox 1.6.2 Uninstall - 2011-03-01 - webchills
+# NUR AUSFÜHREN WENN SIE DAS MODUL AUS DER DATENBANK ENTFERNEN WOLLEN!!!!!
 ##########################################################################
 
 SET @t4=0;

@@ -1,0 +1,116 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<titleZen Lightbox 1.6.2 für Zen-Cart 1.3.9 - Installation</title>
+<meta name="author" content="webchills | www.webchills.at" />
+<link href="style.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+<div id="header">
+<h2>Zen Lightbox 1.6.2 für Zen-Cart 1.3.9 deutsch</h2>
+ <a href="index.html">Übersicht</a> | Installation</div>
+ 
+  <div id="wrapper">
+  <div class="content">
+<h1>Installation</h1>
+<p><strong><br />
+  Voraussetzungen</strong><br />
+  <br />
+  Dieses Modul ist<strong> nur für Zen-Cart 1.3.9h deutsch oder 1.3.8a deutsch </strong>geeignet.<br />
+</p>
+<p>Für den Einbau dieses Moduls sollten Sie über folgende Werkzeuge verfügen:<br />
+  <br />
+1) Ein guter Texteditor. <br />
+Damit ist nicht das in Windows enthaltene Notepad oder Microsoft Word gemeint.<br />
+Sie benötigen einen Texteditor, der utf-8 versteht und auch im Format utf-8 ohne BOM abspeichern kann.<br />
+Meine Empfehlung: <a href="http://www.ultraedit.com/loc/de/index_de.html" target="_blank">UltraEdit</a> (kostenlose 30 Tage Testversion verfügbar)<br />
+Ebenfalls gut geeignet ist der kostenlose Texteditor <a href="http://notepad-plus.sourceforge.net/de/site.htm" target="_blank">Notepad++ </a><br />
+</p>
+<p>2) Ein Tool zum Vergleichen von Dateien<br />
+  Bei der Installation dieses Moduls ist es erforderlich, dass Sie den   Inhalt einiger Ihrer bestehenden Zen-Cart Dateien mit dem Inhalt der   neuen Moduldateien vergleichen und die Änderungen zusammenführen   (&quot;mergen&quot;).<br />
+  Meine Empfehlung: <a href="http://www.scootersoftware.com/" target="_blank">BeyondCompare</a> (kostenlose 30 Tage Testversion verfügbar)<br />
+  Ebenfalls gut geeignet ist das kostenlose Programm <a href="http://winmerge.org/" target="_blank">WinMerge </a></p>
+<p><br />
+  <strong>Empfehlung:</strong><br />
+  <br />
+  Dieses Modul erst in einem Testsystem einbauen und dort konfigurieren/testen und endgültig an die eigenen Wünsche anpassen.    
+  Erst dann in einem Liveshop einsetzen! Sichern Sie unbedingt alle Dateien Ihres Shops per FTP und sichern Sie die Datenbank mit phpMyAdmin oder anderen geeigneten Tools!</p>
+<code><strong>================= WICHTIG =====================<br />
+Vor dem Einbau dieser Änderungen:<br />
+BACKUP von Shop und Datenbank machen! <br />
+Keine Haftung, Verwendung auf eigene Gefahr!<br />
+BACKUP gemacht? Ok, dann weiterlesen...<br />
+===============================================</strong></code>
+<h1>Neuinstallation</h1>
+<p><br />
+  1.<br />
+  Die Datei install.sql im Ordner SQL mit einem Texteditor öffen und den Inhalt kopieren</p>
+<p>2.<br />
+  Zen-Cart Administration öffnen und unter Tools &gt; SQL Patches installieren den Inhalt ins Feld hineinkopieren und absenden.<br />
+  Dadurch werden die Konfigurationsmöglichkeiten in der Datenbank angelegt.<br />
+</p>
+<p>3.<br />
+  Neue Dateien des Moduls einspielen:<br />
+  Im Ordner NEUE DATEIEN dieses Downloads im Ordner zencart alle Ordner namens DEINTEMPLATE  auf den Namen des im Shop aktiven Templates umbenennen (z.B. classic, viennabright, etc.)<br />
+  Dann die Ordner/Dateien in der vorgegebenen Struktur ins Zen-Cart Verzeichnis hochladen.<br />
+Dadurch werden keine bestehenden Dateien überschrieben<br />
+</p>
+<p>4.<br />
+  Geänderte Dateien des Moduls einspielen.<br />
+  Im Ordner GEAENDERTE DATEIEN dieses Downloads befinden sich im Ordner zencart die für dieses Modul notwendigen geänderten Originaldateien.<br />
+  Es wird dringend empfohlen, die bestehenden Orginaldateien nicht einfach zu überschreiben!<br />
+  Machen Sie das nur, wenn Sie Zen-Cart gerade neu installiert haben und noch keine Änderungen an Originaldateien vorgenommen haben.<br />
+  Stattdessen vergleichen Sie Ihre entsprechenden Originaldateien mit einem geeigneten Programm wie z.B. WinMerge oder Beyond Compare und nehmen die Änderungen manuell vor.<br />
+  Folgende Dateien müssen geändert werden (DEINTEMPLATE steht dabei für das im Shop aktive Template):<br />
+  includes/modules/DEINTEMPLATE/additional_images.php<br />
+  includes/templates/DEINTEMPLATE/templates/tpl_modules_main_product_image.php<br />
+  Hinweis:<br />
+  Falls Sie bereits das Modul Image Handler 2.3 im Shop aktiv haben, müssen Sie die additional_images.php nicht hochladen, da sie mit der aus Image Handler 2.3 identisch ist!
+  <br />
+</p>
+<p>5.<br />
+  In der Zen-Cart Administration ist nun unter Konfiguration  ein zusätzlicher Menüpunkt namens Zen Lightbox vorhanden, wo Sie etliche Einstellungen zum Verhalten der Lightbox vornehmen können.</p>
+<h3>Erweiterte Nutzungsmöglichkeiten</h3>
+<p><strong>EZ-Pages</strong></p>
+<p>Standardmäßig ist der Lightbox Effekt für alle Links zu Bildern   innerhalb von EZ-Pages bereits aktiv. In der Lightbox-Konfiguration kann   das ausgeschaltet werden.<br />
+  Wenn Sie also ein Bild mit Link zum größeren Bild so in eine EZ-Page einbauen: </p>
+<code>&lt;a href=&quot;images/bildgross.jpg&quot;&gt;&lt;img src=&quot;images/bildklein.jpg&quot;&gt;&lt;/a&gt;</code>
+<p> Dann wird das Bild beim Anclicken in einer Lightbox vergrößert.</p>
+<p>Ebenso geht das Bild in einer Lightbox auf, wenn nur ein Link zum Bild gesetzt wird und der Link angecklickt wird:</p>
+<code>&lt;a href=&quot;images/bildgross.jpg&quot;&gt;Bild&lt;/a&gt;</code>
+<br />
+Werden innerhalb eines übergeordneten Elements mehrere Links zu   Bildern gesetzt, werden all diese Bilder in der Galerieansicht   dargestellt (prev - next), genauso wie bei den zusätzlichen Bildern auf   der Artikeldetailseite.
+<p>Wenn Captions benötigt werden, können sie mit dem rel=&quot;&quot; Attribut im Link angegeben werden:</p>
+<code>&lt;a href=&quot;images/bildgross.jpg&quot; rel=&quot;here is my caption&quot;&gt;Bild&lt;/a&gt;</code>
+<p><strong><br />
+  Lightbox auf jeder beliebigen Seite</strong></p>
+<p>Die Lightbox-Funktionalität kann leicht auf jede beliebige Seite in Zen-Cart ausgeweitet werden. Dazu muss die Datei <strong>jscript_zen_lightbox.php</strong> im Ordner ZUSATZ dieses Downloads in das entsprechende includes/modules/pages Verzeichnis gelegt werden.</p>
+<p>Beispiele:<br />
+  Lightbox-Effekt auf der Kontaktseite:<br />
+  Die Datei muss nach <strong>includes/modules/pages/contact_us</strong> kopiert werden.<br />
+  Lightbox-Effekt auf der Versandkostenseite:<br />
+  Die Datei muss nach <strong>includes/modules/pages/shippinginfo </strong>kopiert werden</p>
+<h1>Zen Lightbox 1.6.2  vollständig deinstallieren</h1>
+<p>1.<br />
+  Die Datei uninstall.sql im Ordner SQL mit einem Texteditor öffen und den Inhalt kopieren</p>
+<p>2.<br />
+  Zen-Cart Administration öffnen und unter Tools &gt; SQL Patches installieren den Inhalt ins Feld hineinkopieren und absenden.</p>
+<p>3.<br />
+  Alle von diesem Modul geänderten 1.3.9 Originaldateien wieder einspielen<br />
+  Alle von diesem Modul neu angelegten Dateien vom Server löschen.</p>
+<h1>Unterstützen Sie die Weiterentwicklung der deutschen Zen-Cart Version!</h1>
+ <p>Sie finden dieses Modul nützlich?<br/>
+ Ich freue mich über einen Espresso, Capuccino oder Irish Coffee:<br />
+ <a href="http://www.webchills.at/zencart/" target="_blank">webchills Zen-Cart Kaffeekasse</a><br />
+ <br />
+ Sie haben vom Support im Forum von zen-cart.at profitiert?<br />
+ Wir freuen uns über Spenden zur Finanzierung des Servers und der vBulletin-Lizenz:
+ <br />
+ <a href="http://www.zen-cart.at/zcvb/forum/misc.php?do=donate">zen-cart.at unterstützen </a></p>
+  </div>
+</div>
+<div id="footer"><a href="#">top of page</a></div>
+</body>
+</html>
