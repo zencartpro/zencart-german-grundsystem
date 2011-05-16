@@ -1,0 +1,9 @@
+<?php
+  function getOrtDatum(){
+      if($_SESSION['language']){
+          $ret = 'Wien, ' . date(DATE_FORMAT);
+      } else {
+          $ret = 'Vienna, ' .date(DATE_FORMAT);
+      }
+      return $ret;
+  }
