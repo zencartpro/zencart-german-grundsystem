@@ -1,25 +1,14 @@
 <?php
-//
-// +----------------------------------------------------------------------+
-// |zen-cart Open Source E-commerce                                       |
-// +----------------------------------------------------------------------+
-// | Copyright (c) 2003 The zen-cart developers                           |
-// |                                                                      |
-// | http://www.zen-cart.com/index.php                                    |
-// |                                                                      |
-// | Portions Copyright (c) 2003 osCommerce                               |
-// +----------------------------------------------------------------------+
-// | This source file is subject to version 2.0 of the GPL license,       |
-// | that is bundled with this package in the file LICENSE, and is        |
-// | available through the world-wide-web at the following url:           |
-// | http://www.zen-cart.com/license/2_0.txt.                             |
-// | If you did not receive a copy of the zen-cart license and are unable |
-// | to obtain it through the world-wide-web, please send a note to       |
-// | license@zen-cart.com so we can mail you a copy immediately.          |
-// +----------------------------------------------------------------------+
-//  $Id$
-//
-// added by STEVE
+/**
+ * 
+ * @package rl_invoice3
+ * @copyright Copyright 2005-2009 langheiter.com
+ * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
+ * @author rainer AT langheiter DOT com // http://www.filosofisch.com // http://edv.langheiter.com
+ * generates pdf-invoices; please read: http://demo.zen-cart.at/docs/rl_invoice3/ 
+ * @version $Id$
+ */
+
 define('RL_INVOICE3_FILE_MISSING', 'ERROR - Unable to find file.<br />
 Please contact us directly to report this error.
 <br />
@@ -71,3 +60,16 @@ define('RL_INVOICE3_PAYMENT_METHOD','Payment Method:');
 //added by Steve
 define('RL_INVOICE3_SHIPPING_METHOD','Shipping Method:');
 define('RL_INVOICE3_ENTRY_DATE_INVOICE','Invoicedate:');
+
+define('RL_INVOICE3_ORDERINVOICE', 'ORDER CONFIRMATION AND INVOICE:');
+define('RL_INVOICE3_INVOICEDATE', 'Invoice date:');
+define('RL_INVOICE3_CITY2','Vienna, ');
+define('RL_INVOICE3_CONTACT', 'Contakt:');
+define('RL_INVOICE3_TEL', 'Telephone:');
+define('RL_INVOICE3_MAIL', 'E-Mail:');
+define('RL_INVOICE3_ORDERFROM', 'Your order from:');
+define('RL_INVOICE3_ORDERID', 'Order ID:');
+define('RL_INVOICE3_BUYER', 'Buyer:');
+define('RL_INVOICE3_CUSTOMERNO', 'Customer Number:');
+define('RL_INVOICE3_THEEND', 'We hope you enjoy our products. We hope to see you soon back in the shop');
+

@@ -1,5 +1,5 @@
 // JavaScript Document
-// $Id: rl_invoice3.js 83 2010-03-09 10:14:25Z rainer langheiter $
+// $Id: rl_invoice3.js 18 2011-05-17 11:31:59Z hugo13 $
 
     
 $(document).ready(function() {

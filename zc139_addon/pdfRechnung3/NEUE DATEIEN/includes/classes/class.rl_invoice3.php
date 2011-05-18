@@ -5,7 +5,7 @@
  * @copyright Copyright 2005-2009 langheiter.com
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
  * @author rainer AT langheiter DOT com // http://www.filosofisch.com // http://edv.langheiter.com
-generates pdf-invoices; please read: http://demo.zen-cart.at/docs/rl_invoice3/ 
+ * generates pdf-invoices; please read: http://demo.zen-cart.at/docs/rl_invoice3/ 
  * @version $Id$
  */
 
@@ -185,9 +185,9 @@ class rl_invoice3 extends fpdi {
             } 
             // rl_invoive3 config-parameter
             $confArr = array('RL_INVOICE3_ADDRESS1_POS', 'RL_INVOICE3_ADDRESS2_POS', 'RL_INVOICE3_ADDRESS_BORDER', 'RL_INVOICE3_ADDRESS_WIDTH',
-                'RL_INVOICE3_CITY', 'RL_INVOICE3_DELTA', 'RL_INVOICE3_FONTS', 'RL_INVOICE3_LINE_HEIGT', 'RL_INVOICE3_LINE_THICK',
+                'RL_INVOICE3_DELTA', 'RL_INVOICE3_FONTS', 'RL_INVOICE3_LINE_HEIGT', 'RL_INVOICE3_LINE_THICK',
                 'RL_INVOICE3_MARGIN', 'RL_INVOICE3_NOT_NULL_INVOICE', 'RL_INVOICE3_ORDERSTATUS', 'RL_INVOICE3_ORDER_ID_PREFIX',
-                'RL_INVOICE3_PAPER', 'RL_INVOICE3_PDF_BACKGROUND', 'RL_INVOICE3_PDF_PATH', 'RL_INVOICE3_SEND_ATTACH',
+                'RL_INVOICE3_PAPER', 'RL_INVOICE3_PDF_BACKGROUND', 'RL_INVOICE3_PDF_PATH',
                 'RL_INVOICE3_SEND_ORDERSTATUS_CHANGE', 'RL_INVOICE3_SEND_PDF', 'RL_INVOICE3_TABLE_TEMPLATE',
                 'RL_INVOICE3_WITHOUTINVOICE', 'RL_INVOICE3_TEMPLATE_ONLY_FIRST_PAGE', 'RL_INVOICE3_DELTA_2PAGE',
                 'RL_INVOICE3_ALLWAYSINVOICE');
@@ -216,7 +216,6 @@ class rl_invoice3 extends fpdi {
                 'RL_INVOICE3_ADDRESS2_POS' => "('XY-position of address2 position', 'RL_INVOICE3_ADDRESS2_POS', '90|36', 'XY-position of address; its the margin delta <br />Default: 80|30', $group, 80, NULL)",
                 'RL_INVOICE3_ADDRESS_BORDER' => "('Border Address1|2', 'RL_INVOICE3_ADDRESS_BORDER', 'LTRB|LTRB', 'border Address1|2: LTRB (Left Top Right Bottom)<br />', $group, 70, NULL)",
                 'RL_INVOICE3_ADDRESS_WIDTH' => "('width Address1|2', 'RL_INVOICE3_ADDRESS_WIDTH', '80|60', 'width Address1|2: 60|60<br />', $group, 40, NULL)",
-                'RL_INVOICE3_CITY' => "('City ', 'RL_INVOICE3_CITY', 'Wien, am @DATE@', 'City, 27.9.2004', $group, 100, NULL)",
                 'RL_INVOICE3_DELTA' => "('deltas', 'RL_INVOICE3_DELTA', '20|20', 'delta address invoice|delta invoice products: 20|30<br />', $group, 50, NULL)",
                 'RL_INVOICE3_FONTS' => "('fonts for invoice|products', 'RL_INVOICE3_FONTS', 'dejavusanscondensed|freemono', 'fonts for <br />1. invoice in general <br >2. products & total-table<br />', $group, 120, NULL)",
                 'RL_INVOICE3_LINE_HEIGT' => "('Line Height', 'RL_INVOICE3_LINE_HEIGT', '1.25', 'Line Height', $group, 130, NULL)",
@@ -228,7 +227,6 @@ class rl_invoice3 extends fpdi {
                 'RL_INVOICE3_PAPER' => "('Paper Size/Units/Orientation', 'RL_INVOICE3_PAPER', 'A4|mm|P', '1. papersize = A3|A4|A5|Letter|Legal <br />2. units: pt|mm|cm|inch <br />3. Orientation: L|P<br />', $group, 10, NULL)",
                 'RL_INVOICE3_PDF_BACKGROUND' => "('pdf background file', 'RL_INVOICE3_PDF_BACKGROUND', '" . DIR_FS_CATALOG . DIR_WS_INCLUDES . "pdf/rl_invoice3_bg.pdf', 'pdf background file: " . DIR_FS_CATALOG . DIR_WS_INCLUDES . "pdf/rl_invoice3_bg.pdf<br />', $group, 60, NULL)",
                 'RL_INVOICE3_PDF_PATH' => "('filename and path to store the pdf-file', 'RL_INVOICE3_PDF_PATH', '" . DIR_FS_CATALOG . "pdf/|1', '1. path to store the pdf-file (!!must be writeable !!)<br />Default: ../pdf/|1<br />', $group, 130, NULL)",
-                'RL_INVOICE3_SEND_ATTACH' => "('additional attachments', 'RL_INVOICE3_SEND_ATTACH', 'agb.pdf|widerruf.pdf', 'RL_INVOICE3_SEND_PDF', $group, 130, NULL)",
                 'RL_INVOICE3_SEND_ORDERSTATUS_CHANGE' => "('[RE]send order', 'RL_INVOICE3_SEND_ORDERSTATUS_CHANGE', '3|100', '[RE]send invoice, if orderstatus changed to', $group, 130, NULL)",
                 'RL_INVOICE3_SEND_PDF' => "('send pdf invoice with order', 'RL_INVOICE3_SEND_PDF', '1', 'Do you want to send the invoice with an order?', $group, 130, NULL)",
                 'RL_INVOICE3_TABLE_TEMPLATE' => "('Templates for products table & total table', 'RL_INVOICE3_TABLE_TEMPLATE', 'amazon|amazon_templ|total_col_1|total_opt_1', 'templates for products_table & total_table; this is defined in rl_invoice3_def.php; see also: docs/rl_invoice/readme_ezpdf.pdf<br />', $group, 90, NULL)",
@@ -247,7 +245,6 @@ class rl_invoice3 extends fpdi {
                     'RL_INVOICE3_ADDRESS2_POS' => "('RL_INVOICE3_ADDRESS2_POS', 43, 'XY-Postion der Adresse2', 'XY-Postion der Adresse2; es ist das Delta zu den Rändern einzugeben<br />Standard: 0|30')",
                     'RL_INVOICE3_ADDRESS_BORDER' => "('RL_INVOICE3_ADDRESS_BORDER', 43, 'Rändereinstellungen für Adresse1|2', 'Rändereinstellungen für Adresse1|2<br />LTRB (Left Top Right Bottom)<br />Standard: LTRB|LTRB<br />')",
                     'RL_INVOICE3_ADDRESS_WIDTH' => "('RL_INVOICE3_ADDRESS_WIDTH', 43, 'Breite von Adressfeld1|2', '<br />standard: 80|60')",
-                    'RL_INVOICE3_CITY' => "('RL_INVOICE3_CITY', 43, 'Ort und Datum in der Rechnung', 'Beispiel: Wien, am @DATE@ (= Wien, am 06.10.2008)<br />')",
                     'RL_INVOICE3_DELTA' => "('RL_INVOICE3_DELTA', 43, 'Deltas', 'Abstand Adresse:Rechnungsnummer | Abstand Rechnungsnummer:Produktliste<br />Standard: 20|20<br />')",
                     'RL_INVOICE3_FONTS' => "('RL_INVOICE3_FONTS', 43, 'Schriftarten für Rechnung und Artikel', 'Welche Schriftarten wollen Sie verwenden? <br />1. Für Rechnungstexte <br >2. Für Artikel und Summe<br /><br />Standard: dejavusanscondensed|freemono<br />(Pfad/und Schriftart für Rechnung|Pfad/und Schriftart für Artikel und Summe<br />')",
                     'RL_INVOICE3_LINE_HEIGT' => "('RL_INVOICE3_LINE_HEIGT', 43, 'Zeilenhöhe', 'Zeilenhöhe')",
@@ -259,7 +256,6 @@ class rl_invoice3 extends fpdi {
                     'RL_INVOICE3_PAPER' => "('RL_INVOICE3_PAPER', 43, 'Papiergrösse|Einheit|Orientierung', '1. Papiergrösse = A3|A4|A5|Letter|Legal <br />2. Einheit: pt|mm|cm|inch <br />3. Orientierung: L|P<br />')",
                     'RL_INVOICE3_PDF_BACKGROUND' => "('RL_INVOICE3_PDF_BACKGROUND', 43, 'PDF Hintergrunddatei', 'PDF Hintergrunddatei<br />Standard: " . DIR_FS_CATALOG . DIR_WS_INCLUDES . "pdf/rl_invoice3_bg.pdf<br />')",
                     'RL_INVOICE3_PDF_PATH' => "('RL_INVOICE3_PDF_PATH', 43, 'Speicherort und -name der PDF-Datei', '1. Wo sollen PDF-Dateien gespeichert werden (!! muss beschreibbar sein !!)?<br />2. speichern ja|nein (1|0)<br />Standard: " . DIR_FS_CATALOG . DIR_WS_INCLUDES . "pdf/|1<br />')",
-                    'RL_INVOICE3_SEND_ATTACH' => "('RL_INVOICE3_SEND_ATTACH', 43, 'Anhänge', 'Welche PDFs sollen noch angehängt werden; bei mehreren Dateien | (pipe) als Trenner verwenden)')",
                     'RL_INVOICE3_SEND_ORDERSTATUS_CHANGE' => "('RL_INVOICE3_SEND_ORDERSTATUS_CHANGE', 43, 'Rechnungsneuversand', 'Bei welcher Änderung des Bestellstatus soll die Rechnung [nochmals] versendet werden')",
                     'RL_INVOICE3_SEND_PDF' => "('RL_INVOICE3_SEND_PDF', 43, 'Rechnung bei Bestellung', 'Soll die Rechnung gleich bei der Bestellung gesendet werden?')",
                     'RL_INVOICE3_TABLE_TEMPLATE' => "('RL_INVOICE3_TABLE_TEMPLATE', 43, 'Template für Artikel- und Summentabelle', 'Template für Artikel- und Summentabelle<br />Definition ist in includes/pdf/rl_invoice3_def.php<br />Standard: 30|30|30|60<br />Standard: amazon|amazon_templ|total_col_1|total_opt_1<br />')",
@@ -491,7 +487,7 @@ class rl_invoice3 extends fpdi {
             return;            
         }
         
-        $dat = str_replace('@DATE@', strftime(DATE_FORMAT_SHORT), RL_INVOICE3_CITY);
+        $dat = str_replace('@DATE@', strftime(DATE_FORMAT_SHORT), RL_INVOICE3_CITY2);
         $tmp = ENTRY_ORDER_ID . sprintf("%s%05d", RL_INVOICE3_ORDER_ID_PREFIX, $this->oID);
         $link = HTTP_SERVER . DIR_WS_CATALOG . 'index.php?main_page=account_history_info&order_id=' . $this->oID;
         $this->pdf->Cell($this->maxWidth, $hoehe, $tmp, '', 1, 'L', 0, $link);

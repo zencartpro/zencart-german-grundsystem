@@ -1,10 +1,21 @@
 <?php
+/**
+ * 
+ * @package rl_invoice3
+ * @copyright Copyright 2005-2009 langheiter.com
+ * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
+ * @author rainer AT langheiter DOT com // http://www.filosofisch.com // http://edv.langheiter.com
+ * generates pdf-invoices; please read: http://demo.zen-cart.at/docs/rl_invoice3/ 
+ * @version $Id$
+ */
+
   function getOrtDatum(){
       if($_SESSION['language']){
           $ret = 'Wien, ' . date(DATE_FORMAT);
       } else {
-          $ret = 'Vienna, ' .date(DATE_FORMAT);
+          $ret = 'Vienna, ' . date(DATE_FORMAT);
       }
+      $ret = RL_INVOICE3_CITY2 . date(DATE_FORMAT); 
       return $ret;
   }
   
