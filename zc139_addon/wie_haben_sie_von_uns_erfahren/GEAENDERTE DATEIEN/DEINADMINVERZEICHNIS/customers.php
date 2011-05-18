@@ -933,6 +933,15 @@ if ($processed == true) {
               case "id-asc":
               $disp_order = "ci.customers_info_date_account_created";
               break;
+              case "id-desc":
+              $disp_order = "ci.customers_info_date_account_created DESC";
+              break;
+              case "referal-asc":
+              $disp_order = "ci.customers_info_source_id";
+              break;
+              case "referal-desc":
+              $disp_order = "ci.customers_info_source_id DESC";
+              break;
               case "firstname":
               $disp_order = "c.customers_firstname";
               break;
@@ -1006,9 +1015,9 @@ if ($processed == true) {
                 </td>
                 
                 <td class="dataTableHeadingContent" align="left" valign="top">
-                  <?php echo (($_GET['list_order']=='id-asc' or $_GET['list_order']=='id-desc') ? '<span class="SortOrderHeader">' . TABLE_HEADING_REFERRED_BY . '</span>' : TABLE_HEADING_REFERRED_BY); ?><br>
-                  <a href="<?php echo zen_href_link(basename($PHP_SELF) . '?list_order=id-asc', '', 'NONSSL'); ?>"><?php echo ($_GET['list_order']=='id-asc' ? '<span class="SortOrderHeader">Asc</span>' : '<span class="SortOrderHeaderLink">Asc</b>'); ?></a>&nbsp;
-                  <a href="<?php echo zen_href_link(basename($PHP_SELF) . '?list_order=id-desc', '', 'NONSSL'); ?>"><?php echo ($_GET['list_order']=='id-desc' ? '<span class="SortOrderHeader">Desc</span>' : '<span class="SortOrderHeaderLink">Desc</b>'); ?></a>
+                  <?php echo (($_GET['list_order']=='referal-asc' or $_GET['list_order']=='referal-desc') ? '<span class="SortOrderHeader">' . TABLE_HEADING_REFERRED_BY . '</span>' : TABLE_HEADING_REFERRED_BY); ?><br>
+                  <a href="<?php echo zen_href_link(basename($PHP_SELF) . '?list_order=referal-asc', '', 'NONSSL'); ?>"><?php echo ($_GET['list_order']=='referal-asc' ? '<span class="SortOrderHeader">Asc</span>' : '<span class="SortOrderHeaderLink">Asc</b>'); ?></a>&nbsp;
+                  <a href="<?php echo zen_href_link(basename($PHP_SELF) . '?list_order=referal-desc', '', 'NONSSL'); ?>"><?php echo ($_GET['list_order']=='referal-desc' ? '<span class="SortOrderHeader">Desc</span>' : '<span class="SortOrderHeaderLink">Desc</b>'); ?></a>
                 </td>
 
                 <td class="dataTableHeadingContent" align="left" valign="top">
