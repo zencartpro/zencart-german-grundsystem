@@ -1,10 +1,10 @@
 <?php
 /**
  * @package admin
- * @copyright Copyright 2003-2010 Zen Cart Development Team
+ * @copyright Copyright 2003-2011 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: category_product_listing.php for Image Handler 2.3 ZC139 2010-09-10 09:42:5 webchills $
+ * @version $Id: category_product_listing.php for Image Handler 3.0 ZC139 2011-05-13 09:42:5 webchills $
  */
 if (!defined('IS_ADMIN_FLAG')) {
   die('Illegal Access');

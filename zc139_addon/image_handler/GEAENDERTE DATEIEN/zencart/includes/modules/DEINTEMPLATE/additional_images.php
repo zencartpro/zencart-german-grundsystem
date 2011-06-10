@@ -1,14 +1,12 @@
 <?php
 /**
- * additional_images module
- *
- * Prepares list of additional product images to be displayed in template
- *
- * @package templateSystem
- * @copyright Copyright 2003-2010 Zen Cart Development Team
+ * @package IH3
+ * @copyright Copyright 2003-2011 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
- * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: additional_images.php 639 2010-09-23 11:58:40Z hugo13 $
+ * @copyright 2005-2006 Tim Kroeger (original author)
+ * @revisited by ckosloff/DerManoMann/C Jones/Nigelt74/K Hudson/Nagelkruid
+ * @license http://www.gnu.org/licenses/gpl.txt GNU General Public License V2.0
+ * 2011-05-13 12:46:50 webchills$
  */
 if (!defined('IS_ADMIN_FLAG')) {
   die('Illegal Access');
@@ -16,7 +14,8 @@ if (!defined('IS_ADMIN_FLAG')) {
 if (!defined('IMAGE_ADDITIONAL_DISPLAY_LINK_EVEN_WHEN_NO_LARGE')) define('IMAGE_ADDITIONAL_DISPLAY_LINK_EVEN_WHEN_NO_LARGE','Yes');
 $images_array = array();
 
-if ($products_image != '') {
+// do not check for additional images when turned off
+if ($products_image != '' && $flag_show_product_info_additional_images != 0) {
   // prepare image name
   $products_image_extension = substr($products_image, strrpos($products_image, '.'));
   $products_image_base = str_replace($products_image_extension, '', $products_image);
@@ -43,14 +42,14 @@ if ($products_image != '') {
     while ($file = $dir->read()) {
       if (!is_dir($products_image_directory . $file)) {
         if (substr($file, strrpos($file, '.')) == $file_extension) {
-          //          if(preg_match("/" . $products_image_match . "/i", $file) == '1') {
+//          if(preg_match("/" . $products_image_match . "/i", $file) == '1') {
           if(preg_match("/" . $products_image_base . "/i", $file) == 1) {
             if ($file != $products_image) {
               if ($products_image_base . str_replace($products_image_base, '', $file) == $file) {
-                //  echo 'I AM A MATCH ' . $file . '<br>';
+                //echo 'I AM A MATCH ' . $file . '<br />';
                 $images_array[] = $file;
               } else {
-                //  echo 'I AM NOT A MATCH ' . $file . '<br>';
+                //  echo 'I AM NOT A MATCH ' . $file . '<br />';
               }
             }
           }
@@ -81,35 +80,26 @@ if ($num_images) {
   for ($i=0, $n=$num_images; $i<$n; $i++) {
     $file = $images_array[$i];
     $products_image_large = str_replace(DIR_WS_IMAGES, DIR_WS_IMAGES . 'large/', $products_image_directory) . str_replace($products_image_extension, '', $file) . IMAGE_SUFFIX_LARGE . $products_image_extension;
-    $flag_has_large = file_exists($products_image_large);
+//  Begin Image Handler changes 1 of 2
+//next line is commented out for Image Handler 3
+//  $flag_has_large = file_exists($products_image_large);
+    $flag_has_large = true;
+//  End Image Handler changes 1 of 2
     $products_image_large = ($flag_has_large ? $products_image_large : $products_image_directory . $file);
     $flag_display_large = (IMAGE_ADDITIONAL_DISPLAY_LINK_EVEN_WHEN_NO_LARGE == 'Yes' || $flag_has_large);
     $base_image = $products_image_directory . $file;
     $thumb_slashes = zen_image($base_image, addslashes($products_name), SMALL_IMAGE_WIDTH, SMALL_IMAGE_HEIGHT);
-    // remove additional single quotes from image attributes (important!)
+//  Begin Image Handler changes 2 of 2
+//  remove additional single quotes from image attributes (important!)
     $thumb_slashes = preg_replace("/([^\\\\])'/", '$1\\\'', $thumb_slashes);
+//  End Image Handler changes 2 of 2
     $thumb_regular = zen_image($base_image, $products_name, SMALL_IMAGE_WIDTH, SMALL_IMAGE_HEIGHT);
-    if (function_exists('handle_image')) {
-      $newimg = handle_image($base_image, $products_name, LARGE_IMAGE_MAX_WIDTH, LARGE_IMAGE_MAX_HEIGHT, NULL);
-      list($src, $alt, $width, $height, $parameters) = $newimg;
-    }
-    $thumb_large = zen_image($base_image, $products_name, LARGE_IMAGE_MAX_WIDTH, LARGE_IMAGE_MAX_HEIGHT);
     $large_link = zen_href_link(FILENAME_POPUP_IMAGE_ADDITIONAL, 'pID=' . $_GET['products_id'] . '&pic=' . $i . '&products_image_large_additional=' . $products_image_large);
-    $large_link = zen_href_link(FILENAME_POPUP_IMAGE_ADDITIONAL, 'pID=' . $_GET['products_id'] . '&pic=' . $i . '&products_image_large_additional=' . $src);
 
     // Link Preparation:
-	if (ZEN_LIGHTBOX_STATUS == 'true') {
-	  if (ZEN_LIGHTBOX_GALLERY_MODE == 'true') {
-	    $rel = 'lightbox-g';
-	  } else {
-	    $rel = 'lightbox';
-	  }
-   $script_link = '<script language="javascript" type="text/javascript"><!--' . "\n" . 'document.write(\'' . ($flag_display_large ? '<a href="' . zen_lightbox($src, addslashes($products_name), LARGE_IMAGE_WIDTH, LARGE_IMAGE_HEIGHT) . '" rel="' . $rel . '" title="' . addslashes($products_name) . '">' . $thumb_slashes . '<br />' . TEXT_CLICK_TO_ENLARGE . '</a>' : $thumb_slashes) . '\');' . "\n" . '//--></script>';
-	} else {
     $script_link = '<script language="javascript" type="text/javascript"><!--' . "\n" . 'document.write(\'' . ($flag_display_large ? '<a href="javascript:popupWindow(\\\'' . $large_link . '\\\')">' . $thumb_slashes . '<br />' . TEXT_CLICK_TO_ENLARGE . '</a>' : $thumb_slashes) . '\');' . "\n" . '//--></script>';
-	}
 
-    $noscript_link = '<noscript>' . ($flag_display_large ? '<a href="' . zen_href_link(FILENAME_POPUP_IMAGE_ADDITIONAL, 'pID=' . $_GET['products_id'] . '&pic=' . $i . '&products_image_large_additional=' . $src) . '" target="_blank">' . $thumb_regular . '<br /><span class="imgLinkAdditional">' . TEXT_CLICK_TO_ENLARGE . '</span></a>' : $thumb_regular ) . '</noscript>';
+    $noscript_link = '<noscript>' . ($flag_display_large ? '<a href="' . zen_href_link(FILENAME_POPUP_IMAGE_ADDITIONAL, 'pID=' . $_GET['products_id'] . '&pic=' . $i . '&products_image_large_additional=' . $products_image_large) . '" target="_blank">' . $thumb_regular . '<br /><span class="imgLinkAdditional">' . TEXT_CLICK_TO_ENLARGE . '</span></a>' : $thumb_regular ) . '</noscript>';
 
     //      $alternate_link = '<a href="' . $products_image_large . '" onclick="javascript:popupWindow(\''. $large_link . '\') return false;" title="' . $products_name . '" target="_blank">' . $thumb_regular . '<br />' . TEXT_CLICK_TO_ENLARGE . '</a>';
 
@@ -126,5 +116,3 @@ if ($num_images) {
     }
   } // end for loop
 } // endif
-
-?>

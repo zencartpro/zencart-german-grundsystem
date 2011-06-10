@@ -1,18 +1,16 @@
 <?php
 /**
- * bmz_image_handler.php
- * german language definitions for image handler
- *
- * @author  Tim Kroeger (original author)
- * @copyright Copyright 2005-2006
+ * @package IH3 Admin
+ * @copyright Copyright 2003-2011 Zen Cart Development Team
+ * @copyright Portions Copyright 2003 osCommerce
+ * @copyright 2005-2006 Tim Kroeger (original author)
+ * @revisited by ckosloff/DerManoMann/C Jones/Nigelt74/K Hudson/Nagelkruid
  * @license http://www.gnu.org/licenses/gpl.txt GNU General Public License V2.0
- * @version $Id: bmz_image_handler.php,v 2.0 Rev 8 2010-05-31 23:46:5 DerManoMann Exp $
- * Last modified by DerManoMann 2010-05-31 23:46:50 
- * Last modified by webchills 2010-08-08 19:46:50 
+ * 2011-05-13 12:46:50 webchills$
  */
 
-define('BOX_TOOLS_IMAGE_HANDLER', 'Image Handler 2.3');
-define('ICON_IMAGE_HANDLER','Image Handler 2.3');
+define('BOX_TOOLS_IMAGE_HANDLER', 'Image Handler<sup>3</sup>');
+define('ICON_IMAGE_HANDLER','Image Handler 3');
 define('IH_VERSION_VERSION', 'Version');
 define('IH_VERSION_NOT_FOUND', 'Keine Image Handler Versionsnummer gefunden.');
 define('IH_REMOVE', 'Image Handler aus der Datenbank entfernen');
@@ -40,7 +38,7 @@ define('IH_NEW_NAME_COPY_IMAGES', 'Neuer Bildname, zusätzliche Produktbilder mi
 define('IH_KEEP_NAME', 'Alten Bildnamen verwenden, zusätzliche Produktbilder behalten');
 define('IH_DELETE_FROM_DB_ONLY', 'Nur Bildreferenz aus der Datenbank löschen');
 
-define('IH_HEADING_TITLE', 'Image Handler 2.3');
+define('IH_HEADING_TITLE', 'Image Handler<sup>3</sup>');
 define('IH_HEADING_TITLE_PRODUCT_SELECT','Bitte wählen Sie ein Produkt aus um dessen zu Bilder bearbeiten.');
 
 define('TABLE_HEADING_PHOTO_NAME', 'Bildname');
@@ -48,6 +46,7 @@ define('TABLE_HEADING_DEFAULT_SIZE','Hauptbild');
 define('TABLE_HEADING_MEDIUM_SIZE', 'Mittleres Bild');
 define('TABLE_HEADING_LARGE_SIZE','Großes Bild');
 define('TABLE_HEADING_ACTION', 'Aktion');
+define('TABLE_HEADING_FILETYPE', 'Dateityp');
 
 define('TEXT_PRODUCT_INFO', 'Artikel');
 define('TEXT_PRODUCTS_MODEL', 'Modell');

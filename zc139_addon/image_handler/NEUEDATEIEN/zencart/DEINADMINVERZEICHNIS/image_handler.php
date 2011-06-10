@@ -1,13 +1,12 @@
 <?php
 /**
- * image_handler.php
- * IH2 admin interface
- *
- * @author  Tim Kroeger (original author)
- * @copyright Copyright 2005-2006
+ * @package IH3 Admin
+ * @copyright Copyright 2003-2011 Zen Cart Development Team
+ * @copyright Portions Copyright 2003 osCommerce
+ * @copyright 2005-2006 Tim Kroeger (original author)
+ * @revisited by ckosloff/DerManoMann/C Jones/Nigelt74/K Hudson/Nagelkruid
  * @license http://www.gnu.org/licenses/gpl.txt GNU General Public License V2.0
- * @version $Id: image_handler.php,v 2.0 Rev 8 2010-05-31 23:46:5 DerManoMann Exp $
- * Last modified by DerManoMann 2010-05-31 23:46:50 
+ * 2011-05-13 12:46:50 webchills$
  */
 
   require('includes/application_top.php');
@@ -268,7 +267,7 @@
   /* general headline setup */
   h1, h2, h3, h4, h5 {
      color: #000000;
-     font-family: Georgia,"Times New Roman",serif;
+     /*font-family: Georgia,"Times New Roman",serif;*/
      font-weight: bold;
      letter-spacing: 0.1em;
      word-spacing: 0.2em;
@@ -285,7 +284,7 @@
   h5 {font-size: 100%}
 
   h1 a, h2 a, h3 a, h4 a, h5 a {
-     font-family: Georgia,"Times New Roman",serif;
+     /*font-family: Georgia,"Times New Roman",serif;*/
      font-weight: bold;
      letter-spacing: 0.1em;
      word-spacing: 0.2em;
@@ -297,19 +296,35 @@
   }
   
   div.adminbox {
-    padding: 8px;
+    padding: 10px;
   }
 
   div.aboutbox {
-    margin: 0 auto;
-    width: 60%;
-    text-align:center;
+    /*margin: 0 auto;*/
+    width: 65%;
+    /*text-align:center;*/
   }
   
   .aboutbox p {
     text-align: justify;
   }
-  
+ 
+
+fieldset {
+	background: #f6f6f8;
+	padding: 0.5em 0.5em 0.5em 0.5em;
+	margin: 0 0 1em 0;
+	border: 1px solid #ccc;
+}
+
+legend {
+	/*font-family : arial, helvetica, sans-serif;*/
+	font-weight: bold;
+	font-size: 1.4em;
+	color: #1240b0;
+}
+
+ 
   div.managerbox {
     clear: both;
   }
@@ -342,7 +357,7 @@
 
 
 </head>
-<body onload="init()">
+<body onLoad="init()">
 <div id="spiffycalendar" class="text"></div>
 <!-- header //-->
 <?php require(DIR_WS_INCLUDES . 'header.php'); ?>
@@ -632,6 +647,7 @@ if ($products_filter == '') {
     <table border="0" width="100%" cellspacing="0" cellpadding="2">
     <tr class="dataTableHeadingRow">
       <td class="dataTableHeadingContent"><?php echo TABLE_HEADING_PHOTO_NAME; ?></td>
+      <td class="dataTableHeadingContent"><?php echo TABLE_HEADING_FILETYPE; ?></td><?php //added nigel ?>
       <td class="dataTableHeadingContent" align="center"><?php echo TABLE_HEADING_DEFAULT_SIZE; ?></td>
       <td class="dataTableHeadingContent" align="center"><?php echo TABLE_HEADING_MEDIUM_SIZE; ?></td>
       <td class="dataTableHeadingContent" align="center"><?php echo TABLE_HEADING_LARGE_SIZE; ?></td>
@@ -651,13 +667,14 @@ if ($products_filter == '') {
 ?>
 
 <?php
+	$default_extension = 'bob';
   $first = 1;
   for ($i=0; $i < $count; $i++) {
     // there are some pictures, show them!
     $splitpos = strrpos($products_image_match_array[$i], '.');
     $tmp_image_name = substr($products_image_match_array[$i], 0, $splitpos);
     $products_image_extension = substr($products_image_match_array[$i], $splitpos);
-    
+    if ($default_extension == 'bob') {$default_extension = $products_image_extension;}//added nigel
     $image_file = DIR_WS_IMAGES . $products_image_directory . $tmp_image_name . $products_image_extension;
     $image_file_medium = DIR_WS_IMAGES . 'medium/' . $products_image_directory . $tmp_image_name . IMAGE_SUFFIX_MEDIUM . $products_image_extension;
     $image_file_large  = DIR_WS_IMAGES . 'large/' . $products_image_directory . $tmp_image_name . IMAGE_SUFFIX_LARGE .  $products_image_extension;
@@ -716,6 +733,7 @@ if ($products_filter == '') {
 ?>
     
       <td class="dataTableContent"><?php echo $tmp_image_name; ?></td>
+      <td class="dataTableContent"<?php if ($products_image_extension != $default_extension){echo 'style="color:red;"';} ?>><?php echo $products_image_extension; ?></td>
       <td class="dataTableContent" align="center" valign="top">
         <?php
           $preview_image = $tmp_image_preview->get_resized_image(IMAGE_SHOPPING_CART_WIDTH, IMAGE_SHOPPING_CART_HEIGHT, 'generic');
@@ -823,10 +841,17 @@ if ($products_filter == '') {
 
     case 'layout_new':  
       
-      if ( $action != 'layout_edit' ) {
+/*      if ( $action != 'layout_edit' ) {
         $imgNameStr .= ( $no_images ) ? "&newImg=1" : '&imgBase='.$products_image_base
           . "&imgBaseDir=" . $products_image_directory 
           . "&imgExtension=" . $products_image_extension;
+        $heading[] = array('text' => '<strong>' . TEXT_INFO_NEW_PHOTO . '</strong>');
+      }
+ */     
+      if ( $action != 'layout_edit' ) {
+        $imgNameStr .= ( $no_images ) ? "&newImg=1" : '&imgBase='.$products_image_base
+          . "&imgBaseDir=" . $products_image_directory 
+          . "&imgExtension=" . $default_extension;
         $heading[] = array('text' => '<strong>' . TEXT_INFO_NEW_PHOTO . '</strong>');
       }
       
@@ -1006,17 +1031,115 @@ if ($page == 'preview') {
 if ($page == 'about') {
 ?>
 <div class="aboutbox">
+<h2>Image Handler<sup>3</sup> v3.0 for v1.3.x</h2>
+
 <p>
-  <h2>Image Handler 2.3 for Zen-Cart 1.3.9 german</h2>
+Image Handler<sup>3</sup> v3.0 for v1.3.x is based on an original contribution by Tim Kr&#246;ger.<br /></p>
+<fieldset>
+<legend>Purpose &amp; Aim</legend>
+<p>Image Handler<sup>3</sup> at the heart of it's code is really meant to ease the management of product images (particularly the management of additional product images), and to help improve page performance by
+  optimizing the product images.</p>
+<p>Image Handler<sup>3</sup> generates product images (based on your image settings) in the Image Handler<sup>3</sup> bmz_cache folder. It <strong>DOES NOT</strong> replace or modify the original images. So it's PERFECTLY safe to use on an existing store.</p>
+<p> Image Handler<sup>3</sup> enables you to use GD libraries or ImageMagick (if   installed on your server) to generate and resize small, medium and large   images on the fly on page request. You can simply upload just one image   or you can have different sources for medium and large images. Image Handler<sup>3</sup> further enables you to watermark your images (overlay a second   specific translucent image) and have medium or large images pop up when you move   your mouse over a small image (fancy hover).</p>
+<p> This contribution includes a powerful admin interface to browse your   products just like you would with the Attribute Manager and upload /   delete / add additional images without having to do this manually via <acronym title="File Transfer Protocol">FTP</acronym>. Image Handler<sup>3</sup> works fine with mass update utilities like EzPopulate. </p>
+</fieldset>
+<hr>
+<fieldset>
+<legend>Features</legend>
+<ul>
+  <li>Improve site performance (faster loading, faster display)</li>
+  <li>Professional looking images (no stair-effects, smooth edges)</li>
+  <li>Choose preferred image-types for each image size</li>
+  <li>Uploading one image automatically creates small, medium and large images on page request</li>
+  <li>Drops in and out seamlessly. No need to redo your images. All images are kept.</li>
+  <li>Easy install. One-click-database-upgrade.</li>
+  <li>Works with mass-update/-upload tools like EzPopulate.</li>
+  <li>Watermark images to prevent competitors from stealing them.</li>
+  <li>Fancy image hover functionality lets a larger image pop up whenever you move your mouse above a small image (switchable).</li>
+  <li>Choose an image background color matching to match you site's color or select a transparent background for your images.</li>
+  <li>Manage your multiple images for products easily from one page just like you do with attributes in the Products Attribute Manager.</li>
+</ul>
+<p>Image Handler<sup>3</sup> is meant to ease the work required to setup images for your store.   It works WITH default Zen Cart functionality, it does not replace it. </p>
+<p>It is very strongly recommend you read through the ENTIRE "<strong>Configuration</strong>" &amp; "<strong>Usage</strong>" sections of the Image Handler<sup>3</sup> readme file. There you will find out exactly what <strong>Image Handler<sup>3</sup></strong> can do.</p>
+</fieldset>
+
+<hr>
+
+<fieldset>
+<legend>Troubleshooting Basics</legend>
+<p>Make sure your custom template is active. (Admin &gt; Tools &gt; Template Selection)</p>
+<p>Make sure Image Handler<sup>3</sup> is installed. <strong>Admin
+&gt; Tools &gt; Image Handler<sup>3</sup> &gt; Admin</strong>.
+Set permissions in both your <strong>images</strong> and <strong>bmz_cache</strong> folders to 755 (eg: <strong>both </strong>of these folders need
+to have  the same permissions. For some webhosts you may have to set these permissions
+to 777).</p>
+<p>If Image Handler<sup>3</sup> does not work or gives you errors:</p>
+<ul>
+  <li>Make sure all files are in correct location</li>
+  <li>Make sure you uploaded ALL the Image Handler<sup>3</sup> files
+  </li>
+  <li>Make sure the files are not corrupt from bad FTP transfers</li>
+  <li>Make sure your file merge edits are correct</li>
+  <li>MAKE SURE YOU RE-READ THE CONFIGURATION AND USAGE SECTIONS!!!</li>
+  <li>Make sure that there are no javascript conflicts (this last point has been largely addressed since Rev 7)</li>
+  <li>Make sure that your main product image files names DO NOT contain any special characters (<font>non-alphanumeric characters such as / \ :
+! @ # $ % ^ &lt; &gt; , [ ] { } &amp; * ( ) + = </font>). Always use
+proper filenaming practices when naming your images - See this document as a reference: <small><a href="http://www.records.ncdcr.gov/erecords/filenaming_20080508_final.pdf" target="_blank">http://www.records.ncdcr.gov/erecords/filenaming_20080508_final.pdf\</a></small></li>
+</ul>
+</fieldset>
+
+<hr>
+
+<fieldset>
+<legend>Zen Cart and Image Management</legend>
+<p>Image Handler<sup>3</sup> is meant to ease the work required to setup images for your store..   It works WITH default Zen Cart functionality, it does not replace it..   Here's some additional FAQs which discuss how product images work in Zen   Cart.</p>
+<ul>
+  <li><a href="http://tutorials.zen-cart.com/index.php?article=224" target="_blank">Image Preparation - How-to</a></li>
+  <li><a href="http://tutorials.zen-cart.com/index.php?article=30" target="_blank">My images are distorted/fuzzy/squished, help?</a><br>
+  </li>
+</ul>
+<p>Information on how Zen Cart   identifies/manages additional product images can be found on these Zen Cart FAQs:</p>
+<ul>
+  <li><a href="http://tutorials.zen-cart.com/index.php?article=315" target="_blank">Why am I seeing images for other products on my product pages?</a></li>
+  <li><a href="http://tutorials.zen-cart.com/index.php?article=58" target="_blank">How do I add multiple images to a product?</a></li>
+  <li><a href="http://tutorials.zen-cart.com/index.php?article=202" target="_blank">How   do I add more than one image of a product?  I want to have a main image   and also one or two other images that show more parts of a particular   product. How/where do I add additional images to a product page?    Thanks!</a></li>
+</ul>
+<p>Check out these FAQs and see if they help clarify how Zen Cart works with product images.</p>
+</fieldset>
+
+<hr>
+
+<fieldset>
+<legend> Prepare Your Site for Growth</legend>
+<p>Not many users are aware that Image Handler<sup>3</sup> can manage the needs of a very large site as easily as it does a small one. When first building a site, the owner of a small site needs only to load images to the images folder. But when the site gets bigger and images multiply like rabbits, this can cause file naming confusions for Zen Cart and slow down the site. Preparing for your business to grow from the beginning will save you hours of work later on!</p>
+<p>Without Image Handler<sup>3</sup> installed, Zen Cart requires you to create, optimize, and upload three different size images for each image you want to use. You must name these images using naming suffixes, and place them in corresponding folders inside your main image folder. For example: A product called &quot;Widget&quot; requires images/widget.jpg (small image) images/medium/widget_MED.jpg (medium image) and images/large/widget_LRG.jpg. This is such a hassle, especially if many of your products have multiple images. And as your site grows, it becomes an impossible task!</p>
+<p>With Image Handler<sup>3</sup>, you no longer have to make three sizes of the same images and place them in different folders (unless you want to)! Instead, you need upload only one image in one folder and Image Handler<sup>3</sup> will do the rest! Simply upload your largest highest quality image and Image Handler<sup>3</sup> will resize and optimize your image as needed, and serve up small, medium, or large image sizes appropriate to the page loaded - all automatically and all without actually modifying your original image file in any way! Check out the Configuration Tab of this ReadMe for more info about this awesome functionality!</p>
+<p>Prepare your site for growth by simply creating sub-folders in your main images folder. For example, you may want to put all your &quot;widget&quot; images in a folder called &quot;widgets&quot; and all your doodad images in a folder called &quot;doodads&quot; , like this:<br>
 </p>
-<p>
-Image Handler 2.3 for Zen-Cart 1.3.9 german is based on Image Handler<sup>2</sup>, Rev. 8<br/>
-Image Handler<sup>2</sup>, Rev. 8 is based on an original contribution by Tim Kr&#246;ger.<br />
-Many improvements were made to it since then, which can be found on <a href="http://www.zen-cart.com/forum/showthread.php?t=35913">the IH2 support thread</a> at Zen Cart.<br />
-In no special order contributors were tophand, yellow1912, nigel74, and ckosloff, among others.<br /> 
-Rev. 8 was programmed by DerManoMann from <a href="http://www.zenmagick.org/">www.zenmagick.org</a>.<br/>
-2.3 was modified by <a href="http://www.webchills.at/">webchills</a> to use the multilanguage admin functionality in Zen-Cart 1.3.9 german
+<p>Product: Blue Widget with 3 images<br>
+  ---------------------------------- <br>
+  /images/widgets/blue_widget1.jpg (main product image for a blue widget, i.e. front view)<br>
+  /images/widgets/blue_widget2.jpg (additional product image for a blue widget, i.e. side view)<br>
+  /images/widgets/blue_widget3.jpg (additional product image for a blue widdget, i.e. rear view)</p>
+<p>&nbsp;</p>
+<p>Product: Red Widget with 1 image<br>
+  --------------------------------<br>
+  /images/widgets/red_widget.jpg (main product image for a red widget)</p>
+<p>&nbsp;</p>
+<p>Product: Gold Doodad with 2 images<br>
+  ----------------------------------<br>
+  /images/doodads/gold_doodad1.jpg (main product image for a gold doodad, i.e. view from above)<br>
+  /images/doodads/gold_doodad2.jpg (additional product image for a gold doodad, i.e. view from side)</p>
+<p>&nbsp;</p>
+<p>Product: Silver Doodad with 3 images<br>
+  ------------------------------------<br>
+  /images/doodads/silver_doodad1.jpg (main product image for a silver doodad, i.e. product)<br>
+  /images/doodads/silver_doodad2.jpg (additional product image for a silver doodad, i.e. product detail)<br>
+  /images/doodads/silver_doodad3.jpg (additional product image for a silver doodad, i.e. product's silver stamp)<br>
 </p>
+<p>Using Image Handler<sup>3</sup>, you can easily sort and manage thousands of images without confusion or hassle! When selecting the main image for a product in the Image Handler<sup>3</sup> interface, Image Handler<sup>3</sup> lets you pick the location for this image. This prompt disappears afterwards because Image Handler<sup>3</sup> knows that additional images need to be in the same folder as their main product image and handles that automatically!</p>
+</fieldset>
+
 </div>
 </div>
 <?php

@@ -1,18 +1,16 @@
 <?php
 /**
- * bmz_image_handler.php
- * english language definitions for image handler
- *
- * @author  Tim Kroeger (original author)
- * @copyright Copyright 2005-2006
+ * @package IH3 Admin
+ * @copyright Copyright 2003-2011 Zen Cart Development Team
+ * @copyright Portions Copyright 2003 osCommerce
+ * @copyright 2005-2006 Tim Kroeger (original author)
+ * @revisited by ckosloff/DerManoMann/C Jones/Nigelt74/K Hudson/Nagelkruid
  * @license http://www.gnu.org/licenses/gpl.txt GNU General Public License V2.0
- * @version $Id: bmz_image_handler.php,v 2.0 Rev 8 2010-05-31 23:46:5 DerManoMann Exp $
- * Last modified by DerManoMann 2010-05-31 23:46:50 
- * Last modified by webchills 2010-08-08 19:46:50
+ * 2011-05-13 12:46:50 webchills$
  */
 
-define('BOX_TOOLS_IMAGE_HANDLER', 'Image Handler 2.3');
-define('ICON_IMAGE_HANDLER','Image Handler 2.3');
+define('BOX_TOOLS_IMAGE_HANDLER', 'Image Handler<sup>3</sup>');
+define('ICON_IMAGE_HANDLER','Image Handler 3');
 define('IH_VERSION_VERSION', 'Version');
 define('IH_VERSION_NOT_FOUND', 'No Image Handler information found.');
 define('IH_REMOVE', 'Remove Image Handler from database');
@@ -40,7 +38,7 @@ define('IH_NEW_NAME_COPY_IMAGES', 'Use new name, copy additional images');
 define('IH_KEEP_NAME', 'Keep old name and additonal images');
 define('IH_DELETE_FROM_DB_ONLY', 'Delete image reference from database only');
 
-define('IH_HEADING_TITLE', 'Image Handler 2.3');
+define('IH_HEADING_TITLE', 'Image Handler<sup>3</sup>');
 define('IH_HEADING_TITLE_PRODUCT_SELECT','Please select a product to alter the images for.');
 
 define('TABLE_HEADING_PHOTO_NAME', 'Image name');
@@ -48,6 +46,7 @@ define('TABLE_HEADING_DEFAULT_SIZE','Default size');
 define('TABLE_HEADING_MEDIUM_SIZE', 'Medium size');
 define('TABLE_HEADING_LARGE_SIZE','Large size');
 define('TABLE_HEADING_ACTION', 'Action');
+define('TABLE_HEADING_FILETYPE', 'File Type');
 
 define('TEXT_PRODUCT_INFO', 'Product');
 define('TEXT_PRODUCTS_MODEL', 'Model');

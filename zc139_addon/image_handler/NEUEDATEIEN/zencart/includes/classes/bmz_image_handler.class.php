@@ -1,14 +1,12 @@
 <?php
 /**
- * bmz_image_handler.class.php
- * IH2 class for image manipulation
- *
- * @author  Tim Kroeger (original author)
- * @copyright Copyright 2005-2006
+ * @package IH3
+ * @copyright Copyright 2003-2011 Zen Cart Development Team
+ * @copyright Portions Copyright 2003 osCommerce
+ * @copyright 2005-2006 Tim Kroeger (original author)
+ * @revisited by ckosloff/DerManoMann/C Jones/Nigelt74/K Hudson/Nagelkruid
  * @license http://www.gnu.org/licenses/gpl.txt GNU General Public License V2.0
- * @version $Id: bmz_image_handler.class.php,v 2.0 Rev 8 2010-05-31 23:46:5 DerManoMann Exp $
- * modified by yellow1912 (rubikintegration.com)
- * Last modified by DerManoMann 2010-05-31 23:40:21
+ * 2011-05-13 12:46:50 webchills$
  */
 
 require_once('bmz_gif_info.class.php');
@@ -687,15 +685,18 @@ class ih_image{
           $this->zoom['height'] = $height;
         }
         //escape possible quotes if they're not already escapped
-        $alt = preg_replace("/([^\\\\])'/", '$1\\\'', $alt);
-        $alt = str_replace('"', '&quot;', $alt);
-        // strip potential suffixes just to be sure
+		$alt = addslashes(htmlentities($alt, ENT_COMPAT, CHARSET));  
+       // strip potential suffixes just to be sure
         $src = $this->strip_sizetype_suffix($this->src);
         // define zoom sizetype
-        $zoom_sizetype = ($this->sizetype=='small')?'medium':'large';
+        if (ZOOM_IMAGE_SIZE == 'Medium') {
+		$zoom_sizetype = ($this->sizetype=='small')?'medium':'large';	
+		} else {
+		$zoom_sizetype = ($this->sizetype=='small')?'large':'medium';
+		}
         // additional zoom functionality
         $products_image_directory = substr($src, strlen($ihConf['dir']['images']), strrpos($src, '/') - strlen($ihConf['dir']['images']) + 1);
-        $products_image_filename = substr($src, strrpos($src, '/'), strlen ($src) - strrpos ($src, '/') - strlen ($this->extension));
+        $products_image_filename = substr($src, strrpos($src, '/') + 1, strlen ($src) - (strrpos ($src, '/') + 1) - strlen ($this->extension));  
         $products_image_zoom = $ihConf['dir']['images'] . $zoom_sizetype . '/' . $products_image_directory . $products_image_filename . $ihConf[$zoom_sizetype]['suffix'] . $this->extension;
         $ih_zoom_image = new ih_image($products_image_zoom, $ihConf[$zoom_sizetype]['width'], $ihConf[$zoom_sizetype]['height']);
         $products_image_zoom = $ih_zoom_image->get_local();

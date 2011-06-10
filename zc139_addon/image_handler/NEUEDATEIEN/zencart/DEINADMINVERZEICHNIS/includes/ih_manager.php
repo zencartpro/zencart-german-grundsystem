@@ -42,12 +42,32 @@
 
     $data['imgExtension'] = substr( $_FILES['default_image']['name'], 
             strrpos($_FILES['default_image']['name'], '.'));
+    /* Nigel fix here 
+	This basically converts the extension of the uploaded file to match the main image, PROVIDED they are the same file type
+	*/
+	
+	$sm_imgExtension = strtolower($data['imgExtension']); 
+	$df_extension = strtolower($_GET['imgExtension']); // file extension of base original file
+	
+	//ugly but effective code
+	if ($sm_imgExtension == $df_extension) { // this should get rid of any capitilisation issues for files with the same extensions
+	$data['imgExtension'] = $_GET['imgExtension']; 
+	} // This deals with any jpg that have differing extensions eg jpeg and jpg
+	elseif ((($sm_imgExtension == ".jpeg") && ($df_extension == ".jpg")) || (($sm_imgExtension == ".jpg") && ($df_extension == ".jpeg")) )
+	{// this is where they don't match eg original image is a gif and additional image is a jpg or png
+	$data['imgExtension'] = $_GET['imgExtension']; 
+	} else
+	{
+	//file mismatch really should put a warning in here that the additional image won't show
+	// or a call to convert the actual image to a compatible format
+	}
 
     // Check the data
     if ((isset($_GET['newImg']) && $_GET['newImg'] == 1) || (isset($_GET['imgEdit']) && ($_GET['imgEdit'] == 1) && ($_GET['imgSuffix'] ==  '') && ($_POST['imgNaming'] != 'keep_name') && ($_FILES['default_image']['name'] != ''))) {
       // New Image Name and Base Dir
       if ( ($_POST['imgBase'] != '') ) {
         $data['imgBase'] = $_POST['imgBase'];
+			       echo "<!--  point 12 - ".$_POST['imgBase']."-->";
       } else {
         // Extract the name from the default file
         if ($_FILES['default_image']['name'] != '') {
@@ -97,7 +117,7 @@
         $array = array();
         find_additional_images($array, DIR_FS_CATALOG . DIR_WS_IMAGES . $data['imgBaseDir'], 
           $data['imgExtension'], $data['imgBase'] );
-        
+        echo "<!--  point 1".$data['imgExtension']."-->";
         $c = sizeof( $array );
         if ($c > 1) {
           sort($array);
@@ -116,6 +136,7 @@
           }
           
           $string = $data['imgBase'] . '_'. $suffixStr . $data['imgExtension'];
+		  echo "<!--  point 2".$data['imgExtension']."-->";
           $n = 0;
           for ($i=0; $i < $c; $i++) {
             if ($array[$i] == $string) {

@@ -1,13 +1,12 @@
 <?php
 /**
- * functions_bmz_io.php
- * admin filesystem functions for image handler
- *
- * @author  Tim Kroeger (original author)
- * @copyright Copyright 2005-2006
+ * @package IH3 Admin
+ * @copyright Copyright 2003-2011 Zen Cart Development Team
+ * @copyright Portions Copyright 2003 osCommerce
+ * @copyright 2005-2006 Tim Kroeger (original author)
+ * @revisited by ckosloff/DerManoMann/C Jones/Nigelt74/K Hudson/Nagelkruid
  * @license http://www.gnu.org/licenses/gpl.txt GNU General Public License V2.0
- * @version $Id: functions_bmz_io.php,v 2.0 Rev 8 2010-05-31 23:46:5 DerManoMann Exp $
- * Last modified by DerManoMann 2010-05-31 23:46:50 
+ * 2011-05-13 12:46:50 webchills$
  */
 
 require_once(DIR_FS_CATALOG . DIR_WS_FUNCTIONS . 'extra_functions/functions_bmz_io.php');
@@ -24,7 +23,7 @@ function remove_dir($dirname) {
     $dir->rewind();
     while ($file = $dir->read()) {
       //echo $dirname . '/' . $file . '<br />';
-      if (($file != ".") && ($file != "..")) {
+      if (($file != ".") && ($file != "..") && ($file != ".htaccess") && ($file != ".keep")) {
         if (is_dir($dirname . '/' . $file)) {
       	// another directory, recurse
           $error |= remove_dir($dirname . '/' . $file);

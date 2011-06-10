@@ -1,19 +1,16 @@
 <?php
 /**
- * functions_bmz_image_handler.php
- * html_output hook function and additional image referencing functions for
- * backwards compatibility, parsing of configuration settings
- *
- * @author  Tim Kroeger (original author)
- * @copyright Copyright 2005-2006
+ * @package IH3
+ * @copyright Copyright 2003-2011 Zen Cart Development Team
+ * @copyright Portions Copyright 2003 osCommerce
+ * @copyright 2005-2006 Tim Kroeger (original author)
+ * @revisited by ckosloff/DerManoMann/C Jones/Nigelt74/K Hudson/Nagelkruid
  * @license http://www.gnu.org/licenses/gpl.txt GNU General Public License V2.0
- * @version $Id: functions_bmz_image_handler.php,v 2.0 Rev 8 2010-05-31 23:46:5 DerManoMann Exp $
- * Changed version to 2.3 2010-09-10 09:56:50 webchills
- * NOTE: This version is to use in the GERMAN Zen-Cart version 1.3.9 from zen-cart.at ONLY
+ * 2011-05-13 12:46:50 webchills$
  */
 
 require_once(DIR_FS_CATALOG . DIR_WS_CLASSES . 'bmz_image_handler.class.php');
-$ihConf['version']              = '2.3';
+$ihConf['version']              = 'v3.0';
 
 $ihConf['dir']['docroot']       = DIR_FS_CATALOG;
 $ihConf['dir']['images']        = DIR_WS_IMAGES;
@@ -27,6 +24,7 @@ $ihConf['small']['bg']          = defined('SMALL_IMAGE_BACKGROUND') ? SMALL_IMAG
 $ihConf['small']['quality']     = defined('SMALL_IMAGE_QUALITY') ? intval(SMALL_IMAGE_QUALITY) : 85;
 $ihConf['small']['watermark']   = defined('WATERMARK_SMALL_IMAGES') ? (WATERMARK_SMALL_IMAGES == 'yes') : false;
 $ihConf['small']['zoom']        = defined('ZOOM_SMALL_IMAGES') ? (ZOOM_SMALL_IMAGES == 'yes') : true;
+$ihConf['small']['size']        = defined('ZOOM_IMAGE_SIZE') ? ZOOM_IMAGE_SIZE : 'Medium';
 //$ihConf['small']['hotzone']     = defined('SMALL_IMAGE_HOTZONE') ? (SMALL_IMAGE_HOTZONE == 'yes') : false;
 
 $ihConf['medium']['prefix']      = '/medium';

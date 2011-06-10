@@ -32,9 +32,14 @@
   $products_image = $products_values->fields['products_image'];
 
   $products_image_extension = substr($products_image, strrpos($products_image, '.'));
+//Begin Image Handler changes 1 of 1
+//the next three lines are commented out for Image Handler 3
+//  $products_image_base = str_replace($products_image_extension, '', $products_image);
+//  $products_image_medium = $products_image_base . IMAGE_SUFFIX_MEDIUM . $products_image_extension;
+//  $products_image_large = $products_image_base . IMAGE_SUFFIX_LARGE . $products_image_extension;
   $products_image_base = preg_replace('/'.$products_image_extension . '$/', '', $products_image);
   $products_image_medium = DIR_WS_IMAGES . 'medium/' . $products_image_base . IMAGE_SUFFIX_MEDIUM . $products_image_extension;
   $products_image_large  = DIR_WS_IMAGES . 'large/' . $products_image_base . IMAGE_SUFFIX_LARGE . $products_image_extension;
-
+//Begin Image Handler changes 1 of 1
   // This should be last line of the script:
   $zco_notifier->notify('NOTIFY_HEADER_END_POPUP_IMAGES_ADDITIONAL');
