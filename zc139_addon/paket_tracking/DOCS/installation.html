@@ -1,0 +1,191 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Paket Tracking 2.0 für Zen-Cart 1.3.9 deutsch - Installation</title>
+<meta name="author" content="webchills | www.webchills.at" />
+<link href="style.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+<div id="header">
+<h2>Paket Tracking 2.0 für Zen-Cart 1.3.9 deutsch</h2>
+ <a href="index.html">Übersicht</a> | Installation</div>
+ 
+  <div id="wrapper">
+  <div class="content">
+<h1>Neuinstallation</h1>
+<p><strong><br />
+  Voraussetzungen</strong><br />
+  <br />
+  Dieses Modul ist<strong> nur für Zen-Cart 1.3.9  deutsch geeignet</strong>
+  <br />
+  <br />
+  <strong>Wichtig:</strong><br />
+  Sollten Sie bereits Version 1.0 dieses Moduls nutzen und auf 2.0 updaten wollen, beachten Sie bitte die Hinweise weiter unten unter <a href="#update">Update von  Version 1.0</a>. </p>
+<p>Für den Einbau dieses Moduls sollten Sie über folgende Werkzeuge verfügen:<br />
+  <br />
+1) Ein guter Texteditor. <br />
+Damit ist nicht das in Windows enthaltene Notepad oder Microsoft Word gemeint.<br />
+Sie benötigen einen Texteditor, der utf-8 versteht und auch im Format utf-8 ohne BOM abspeichern kann.<br />
+Meine Empfehlung: <a href="http://www.ultraedit.com/loc/de/index_de.html" target="_blank">UltraEdit</a> (kostenlose 30 Tage Testversion verfügbar)<br />
+Ebenfalls gut geeignet ist der kostenlose Texteditor <a href="http://notepad-plus.sourceforge.net/de/site.htm" target="_blank">Notepad++ </a><br />
+</p>
+<p>2) Ein Tool zum Vergleichen von Dateien<br />
+  Bei der Installation dieses Moduls ist es erforderlich, dass Sie den   Inhalt einiger Ihrer bestehenden Zen-Cart Dateien mit dem Inhalt der   neuen Moduldateien vergleichen und die Änderungen zusammenführen   (&quot;mergen&quot;).<br />
+  Meine Empfehlung: <a href="http://www.scootersoftware.com/" target="_blank">BeyondCompare</a> (kostenlose 30 Tage Testversion verfügbar)<br />
+  Ebenfalls gut geeignet ist das kostenlose Programm <a href="http://winmerge.org/" target="_blank">WinMerge </a></p>
+<p><br />
+  <strong>Empfehlung:</strong><br />
+  <br />
+  Dieses Modul erst in einem Testsystem einbauen und dort konfigurieren/testen und endgültig an die eigenen Wünsche anpassen.    
+  Erst dann in einem Liveshop einsetzen! Sichern Sie unbedingt alle Dateien Ihres Shops per FTP und sichern Sie die Datenbank mit phpMyAdmin oder anderen geeigneten Tools!</p>
+<code><strong>================= WICHTIG =====================<br />
+Vor dem Einbau dieser Änderungen:<br />
+BACKUP von Shop und Datenbank machen! <br />
+Keine Haftung, Verwendung auf eigene Gefahr!<br />
+BACKUP gemacht? Ok, dann weiterlesen...<br />
+===============================================</strong></code>
+<p><br />
+  1.<br />
+  Die Datei install.sql im Ordner SQL mit einem Texteditor öffen und den Inhalt kopieren</p>
+<p>2.<br />
+  Zen-Cart Administration öffnen und unter Tools &gt; SQL Patches installieren den Inhalt ins Feld hineinkopieren und absenden.<br />
+  Dadurch werden die Einstellungsmöglichkeiten in die Konfiguration geschrieben und die Tabelle orders_status_history wird mit 5 zusätzlichen Feldern erweitert.</p>
+<p>3.<br />
+  Neue Dateien des Moduls einspielen:<br />
+  Im Ordner NEUE DATEIEN dieses Downloads im Ordner zencart den Ordner DEINADMINVERZEICHNIS auf den Namen Ihres admin Verzeichnisses umbenennen.<br />
+  Alle Ordner namens DEINTEMPLATE auf das im Shop aktive Template umbenennen (z.B. classic, viennabright,...)
+  <br />
+  Dann die Ordner/Dateien in der vorgegebenen Struktur ins Zen-Cart Verzeichnis hochladen.<br />
+  Dadurch werden keine bestehenden Dateien überschrieben</p>
+<p>4.<br />
+  Geänderte Dateien des Moduls einspielen:<br />
+  Im Ordner NEUE DATEIEN dieses Downloads im Ordner zencart den Ordner DEINADMINVERZEICHNIS auf den Namen Ihres admin Verzeichnisses umbenennen.<br />
+Alle Ordner namens DEINTEMPLATE auf das im Shop aktive Template umbenennen (z.B. classic, viennabright,...) <br />
+Dann die Ordner/Dateien in der vorgegebenen Struktur ins Zen-Cart Verzeichnis hochladen.<br />
+Achtung: Dabei werden bestehende Dateien überschrieben!<br />
+Daher:<br />
+Sollten Sie bereits einmal Änderungen an diesen Dateien vorgenommen haben (z.B. durch den Einbau anderer Erweiterungen), dann laden Sie diese Dateien keinesfalls einfach so hoch.<br />
+Stattdessen vergleichen Sie alle Dateien im Ordner GEAENDERTE DATEIEN mit den   entsprechenden Dateien in Ihrem Shop und nehmen Sie die Änderungen   manuell per WinMerge oder BeyondCompare vor.<br />
+Dann spielen Sie die geänderten Dateien in der gezeigten Struktur ein.<br />
+
+</p>
+<p>5.<br />
+  In der Zen-Cart Administration ist nun unter Konfiguration der neue Menüpunkt Paket Tracking vorhanden.<br />
+  Passen Sie hier die Namen und Trackinglinks auf die von Ihnen verwendeten Versandunternehmen an.<br />
+  Stellen Sie nur die auf True, die Sie auch wirklich verwenden/anbieten wollen.<br />
+  Falls Sie das Modul Super Orders 3.0 oder Edit Orders 3.0 im Einsatz haben können Sie hier auch einstellen, ob Sie später in der Administration eine Verknüpfung zum Bearbeiten von Bestellungen mit Super Orders oder Edit Orders haben wollen. Dies wird nur ab Version 3.0 dieser Module unterstützt!<br />
+  Ebenso können Sie hier einstellen, wieviele bisherige Bestellungen in der Tracking Sidebox angezeigt werden sollen.<br />
+  <br />
+  6.<br />
+  OPTIONAL<br />
+  Paket Tracking liefert eine Sidebox mit, in der eingeloggten Kunden ihre letzten Bestellungen mit Link zur Bestellhistorie angezeigt werden. Dadurch haben die Kunden schnell und einfach die Möglichkeit, auf die Tracking Links ihrer Pakete zuzugreifen und den Status ihrer Lieferung zu überprüfen.<br />
+  Wenn Sie diese Sidebox nutzen wollen, aktivieren Sie sie wie gewohnt unter Tools &gt; Boxlayout.
+  <br />
+</p>
+<p>7.<br />
+  Probieren Sie nun die Eingabe einer Trackingnummer und das Aktualisieren einer Bestellung damit aus:
+  <br />
+  Beim Bearbeiten einer Bestellung haben Sie nun ein neues Eingabefeld für die Eingabe der Tracking ID.<br />
+  <br />
+  Beispiel:<br />
+  Diese Bestellung haben Sie mit DPD ausgeliefert und die Trackingnummer ist 06210008745645A<br />
+  Tragen Sie die Trackingnummer
+  im Feld Tracking ID beim Versandunternehmen DPD ein.<br />
+  Lassen Sie die Felder &quot;Kundenbenachrichtigung&quot;  angekreuzt.<br />
+  Stellen Sie dann beim Status auf den Status um, den Sie beim Verschicken verwenden, z.B. &quot;verschickt&quot;<br />
+  Wenn Sie dann auf &quot;aktualisieren&quot; clicken bekommt der Kunde das normale Bestellstatusupdatemail, das zusätzlich die Tracking Nummer und auch einen Link
+  zum direkten Tracken dieser ID auf der DPD Website enthält:<br />
+  http://extranet.dpd.de/cgi-bin/delistrack?typ=1&amp;lang=de&amp;pknr=06210008745645A<br />
+  <br />
+  Wenn Sie das Feld &quot;Kundenbenachrichtigung&quot; nicht ankreuzen wird kein Statusupdatemail verschickt, die Trackingnummer und der Link sind aber für den Kunden in der Bestellhistorie ersichtlich.<br />
+  Wenn Sie einen speziellen Kommentar hinzufügen möchten, kreuzen Sie das Feld &quot;Kommentar hinzufügen&quot; an und schreiben wie gewohnt ins Textfeld.
+  <br />
+  <br />
+  Wichtig:<br />
+  Damit die Trackingnummer übernommen wird, müssen Sie entweder den Status auf einen anderen stellen oder etwas ins Kommentarfeld schreiben. Ansonsten bekommen Sie die Meldung &quot;Keine Änderung. Die Bestellung wurde nicht aktualisiert&quot;.
+  </p>
+<h1><a name="update" id="update"></a>Update von Version 1.0</h1>
+<p>Die neue Version 2.0 unterscheidet sich stark von älteren Versionen dieses Moduls.<br />
+  Wenn Sie bereits Version 1.0 in Ihrem 1.3.9 Shop nutzen und auf 2.0 updaten wollen, gehen Sie bitte folgendermaßen vor:<br />
+  <br />
+  1.<br />
+  Im Ordner SQL die Datei update.sql mit einem Texteditor öffnen und den Inhalt kopieren.
+</p>
+<p>2.<br />
+Zen-Cart Administration öffnen und unter Tools &gt; SQL Patches installieren den Inhalt ins Feld hineinkopieren und absenden. Dadurch werden die alten Konfigurationseinträge von Paket Tracking 1.0 entfernt. Die zusätzlichen Felder in der Tabelle orders_status_history, die die Trackingnummern bisheriger Bestellungen enthalten, bleiben erhalten!<br />
+<br />
+3.<br />
+Löschen Sie nun - falls vorhanden - folgende Dateien des alten Moduls vom Server, da sie in der neuen Version nicht mehr benötigt oder durch neue Versionen ersetzt werden:<br />
+<br />
+/DEINADMIN/tracker.php<br />
+/DEINADMIN/images/arrow_south_east.gif<br />
+/DEINADMIN/images/icon_cust_info.gif<br />
+/DEINADMIN/images/icon_cust_orders.gif<br />
+/DEINADMIN/images/icon_invoice.gif<br />
+/DEINADMIN/images/icon_packingslip.gif<br />
+/DEINADMIN/images/icon_track.gif<br />
+/DEINADMIN/includes/boxes/extra_boxes/tracker_customers_dhtml.php<br />
+/DEINADMIN/includes/extra_datafiles/tracker.php<br />
+/DEINADMIN/includes/languages/german/extra_definitions/tracker.php<br />
+/DEINADMIN/includes/languages/german/images/buttons/button_track.gif<br />
+/DEINADMIN/includes/languages/german/tracker.php<br />
+/DEINADMIN/includes/languages/english/extra_definitions/tracker.php<br />
+/DEINADMIN/includes/languages/english/images/buttons/button_track.gif<br />
+/DEINADMIN/includes/languages/english/tracker.php<br />
+<br/>
+/includes/extra_datafiles/tracker.php<br />
+/includes/languages/english/DEINTEMPLATE/tracker.php<br />
+/includes/languages/english/extra_definitions/DEINTEMPLATE/tracker.php
+/includes/languages/english/extra_definitions/DEINTEMPLATE/track_orders.php
+/includes/languages/german/DEINTEMPLATE/tracker.php<br />
+/includes/languages/german/extra_definitions/DEINTEMPLATE/tracker.php
+/includes/languages/german/extra_definitions/DEINTEMPLATE/track_orders.php
+/includes/modules/pages/tracker/header_php.php<br />
+/includes/modules/sideboxes/DEINTEMPLATE/track_orders.php<br/>
+/includes/templates/DEINTEMPLATE/templates/tpl_tracker_default.php<br />
+/includes/templates/DEINTEMPLATE/sideboxes/tpl_track_orders.php</p>
+<p>4.<br />
+  Überprüfen Sie folgende Datei:<br />
+  includes/filenames.php<br />
+  Falls Sie hier für die Version 1.0 Änderungen vorgenommen hatten, finden Sie darin folgenden Eintrag:<br />
+  <code>define('FILENAME_ACCOUNT_HISTORY_INFO', 'tracker');</code>
+  <br/>
+  Ändern Sie auf:
+  <code>define('FILENAME_ACCOUNT_HISTORY_INFO', 'account_history_info');</code>
+  <br/>
+  Falls Sie auch folgenden Eintrag finden:
+  <code>define('FILENAME_ORDERS', 'tracking');</code>
+  <br/>
+  Dann ändern Sie auf:
+  <code>define('FILENAME_ORDERS', 'orders');</code>
+  <br/>
+Änderungen speichern und die includes/filenames.php neu hochladen</p>
+<p>5.<br />
+  Nun machen Sie mit Schritt 3
+  (Neue Dateien des Moduls einspielen) weiter wie unter Neuinstallation beschrieben.<br />
+  <br />
+</p>
+<h1>Paket Tracking vollständig deinstallieren</h1>
+<p>1.<br />
+  Die Datei uninstall.sql im Ordner SQL mit einem Texteditor öffen und den Inhalt kopieren</p>
+<p>2.<br />
+  Zen-Cart Administration öffnen und unter Tools &gt; SQL Patches installieren den Inhalt ins Feld hineinkopieren und absenden.</p>
+<p>3.<br />
+  Alle von diesem Modul neu angelegten Dateien vom Server löschen.<br />
+  Alle von diesem Modul geänderten Dateien wieder mit den Originalversionen bzw. den Dteien Ihres Backups ersetzen.</p>
+<h1>Unterstützen Sie die Weiterentwicklung der deutschen Zen-Cart Version!</h1>
+ <p>Sie finden dieses Modul nützlich?<br/>
+ Ich freue mich über einen Espresso, Capuccino oder Irish Coffee:<br />
+ <a href="http://www.webchills.at/zencart/" target="_blank">webchills Zen-Cart Kaffeekasse</a><br />
+ <br />
+ Sie haben vom Support im Forum von zen-cart.at profitiert?<br />
+ Wir freuen uns über Spenden zur Finanzierung des Servers und der vBulletin-Lizenz:
+ <br />
+ <a href="http://www.zen-cart.at/zcvb/forum/misc.php?do=donate">zen-cart.at unterstützen </a></p>
+  </div>
+</div>
+<div id="footer"><a href="#">top of page</a></div>
+</body>
+</html>
