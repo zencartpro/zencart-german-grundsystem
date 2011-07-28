@@ -1,25 +1,11 @@
 <?php
-//
-// +----------------------------------------------------------------------+
-// |zen-cart Open Source E-commerce                                       |
-// +----------------------------------------------------------------------+
-// | Copyright (c) 2004 The zen-cart developers                           |
-// |                                                                      |
-// |  http://www.zen-cart.at/index.php                                    |
-// |                                                                      |
-// | Portions Copyright (c) 2003 osCommerce                                 |
-// +----------------------------------------------------------------------+
-// | This source file is subject to version 2.0 of the GPL license,       |
-// | that is bundled with this package in the file LICENSE, and is        |
-// | available through the world-wide-web at the following url:           |
-// | http://www.zen-cart.at/license/2_0.txt.                             |
-// | If you did not receive a copy of the zen-cart license and are unable |
-// | to obtain it through the world-wide-web, please send a note to       |
-// | license@zen-cart.com so we can mail you a copy immediately.          |
-// +----------------------------------------------------------------------+
-//  $Id$
-//
-//
+/**
+ * @package admin Zen-Cart Deutsch
+ * @copyright Copyright 2003-2011 Zen Cart Development Team
+ * @copyright Portions Copyright 2003 osCommerce
+ * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
+ * @version $Id$
+ */
 define('HEADING_TITLE', 'Shopmanager');
 define('TABLE_CONFIGURATION_TABLE', 'Suche KONSTANTE Definitionen');
 
@@ -76,5 +62,5 @@ define('TEXT_INFO_CONFIGURATION_HIDDEN', ' oder VERSTECKT');
 define('TEXT_INFO_DATABASE_OPTIMIZE', '<strong>Datenbank optimieren</strong> um vergeudeten Raum von gelöschten Aufzeichnungen zu entfernen.<br/>Das kann monatlich oder wöchentlich auf einer frequentierten Datenbank erforderlich sein.<br/>(Am besten während der nichtaktiven Zeiten die Optimierung laufen lassen.)');
 define('SUCCESS_DB_OPTIMIZE', 'Datenbank-Optimierung - Tabellen verarbeiten: ');
 
-define('TEXT_INFO_PURGE_DEBUG_LOG_FILES', '<strong>Lösche Debug Log Files</strong><br /><strong>ACHTUNG: </strong>Zen Cart zeichnet PHP Fehlermeldungen zu Debugging Zwecken auf. Auch einige der Zahlungsarten Module zeichnen Debug Informationen auf, um evtl. Probleme bei der Zahlung analysieren zu können. <br />Wenn Sie auf Bestätigen klicken, werden alle Debug Log Files unwiderruflich gelöscht.');
-define('SUCCESS_CLEAN_DEBUG_FILES', 'Debug Log Files Purged');
+define('TEXT_INFO_PURGE_DEBUG_LOG_FILES', '<strong>Debug Logfiles löschen</strong><br /><strong>VORSICHT: </strong>Zen-Cart schreibt PHP Fehlermeldungen zum Debuggen in den Ordner cache. Ebenso können viele Zahlungsmodule (z.B. PayPal) mit dem Schreiben von Logfiles konfiguriert sein.<br />Wenn Sie diesen Löschen Button betätigen, dann werden ALLE Debug Logfiles, die im Ordner cache oder in den cache Ordnern der jeweiligen Zahlungsmodule liegen UNWIDERRUFLICH gelöscht.');
+define('SUCCESS_CLEAN_DEBUG_FILES', 'Debug Log Files gelöscht');
