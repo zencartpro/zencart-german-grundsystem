@@ -149,7 +149,7 @@ $breadcrumb->add(NAVBAR_TITLE);
 // Check for PayPal express checkout button suitability:
 $paypalec_enabled = (defined('MODULE_PAYMENT_PAYPALWPP_STATUS') && MODULE_PAYMENT_PAYPALWPP_STATUS == 'True');
 // Check for express checkout button suitability:
-$ec_button_enabled = ($paypalec_enabled && ($_SESSION['cart']->count_contents() > 0 && $_SESSION['cart']->total > 0));
+$ec_button_enabled = ($paypalec_enabled && ($_SESSION['cart']->count_contents() > 0 && $_SESSION['cart']->total > 0) && MODULE_PAYMENT_PAYPALWPP_ECS_BUTTON == 'On');
 
 
 // This should be last line of the script:
