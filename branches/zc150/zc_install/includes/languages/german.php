@@ -151,8 +151,8 @@ define('ERROR_CODE_CACHE_DIR_ISDIR', '62');
 define('ERROR_TEXT_CACHE_DIR_ISWRITEABLE', 'Es konnte nicht in das Sitzungs-/SQL Cache Verzeichnis geschrieben werden');
 define('ERROR_CODE_CACHE_DIR_ISWRITEABLE', '63');
 
-define('ERROR_TEXT_PHPBB_CONFIG_NOTEXIST', 'Die phpBB Konfigurationsdateien existieren nicht');
-define('ERROR_CODE_PHPBB_CONFIG_NOTEXIST', '68');
+define('ERROR_TEXT_ADMIN_PASS_INSECURE', 'Passwort ist zu unsicher. Muss aus Buchstaben und Zahlen bestehen, <br>und mindestens 7 Zeichen lang sein.');
+define('ERROR_CODE_ADMIN_PASS_INSECURE', '64');
 
 define('ERROR_TEXT_REGISTER_GLOBALS_ON', 'Register Globals ist ON');
 define('ERROR_CODE_REGISTER_GLOBALS_ON', '69');
