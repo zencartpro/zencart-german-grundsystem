@@ -2,7 +2,7 @@
 /**
  * @package Installer
  * @access private
- * @copyright Copyright 2003-2011 Zen Cart Development Team
+ * @copyright Copyright 2003-2007 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
  * @version $Id$
@@ -44,7 +44,59 @@
 
     <fieldset>
     <legend><strong><?php echo CHOOSE_UPGRADES; ?></strong></legend>
-    <div class="input">
+      <div class="input">
+      <input <?php if ($needs_v1_1_0) {echo "checked";} ?> name="version[]" type="checkbox" id="checkbox1" value="1.0.4"  tabindex="1" />
+      <label for="checkbox1">Upgrade DB from 1.0.4 to 1.1.1</label>
+    </div>
+      <div class="input">
+      <input <?php if ($needs_v1_1_1) {echo "checked";} ?> name="version[]" type="checkbox" id="checkbox2" value="1.1.0" tabindex="2" />
+      <label for="checkbox2">Upgrade DB from 1.1.0 to 1.1.1</label>
+    </div>
+      <div class="input">
+      <input <?php if ($needs_v1_1_2) {echo "checked";} ?> name="version[]" type="checkbox" id="checkbox3" value="1.1.1" tabindex="3" />
+      <label for="checkbox3">Upgrade DB from 1.1.1 to 1.1.2</label>
+    </div>
+      <div class="input">
+      <input <?php if ($needs_v1_1_4) {echo "checked";} ?> name="version[]" type="checkbox" id="checkbox4" value="1.1.2-or-1.1.3" tabindex="4" />
+      <label for="checkbox4">Upgrade DB from 1.1.2 or 1.1.3 to 1.1.4</label>
+    </div>
+      <div class="input">
+      <input <?php if ($needs_v1_1_4_patch1) {echo "checked";} ?> name="version[]" type="checkbox" id="checkbox5" value="1.1.4" tabindex="5" />
+      <label for="checkbox5">Upgrade DB from 1.1.4 to 1.1.4-patch1</label>
+    </div>
+      <div class="input">
+      <input <?php if ($needs_v1_2_0) {echo "checked";} ?> name="version[]" type="checkbox" id="checkbox6" value="1.1.4u" tabindex="6" />
+      <label for="checkbox6">Upgrade DB from 1.1.4-x to 1.2.0</label>
+    </div>
+      <div class="input">
+      <input <?php if ($needs_v1_2_1) {echo "checked";} ?> name="version[]" type="checkbox" id="checkbox7" value="1.2.0" tabindex="7" />
+      <label for="checkbox7">Upgrade DB from 1.2.0 to 1.2.1</label>
+    </div>
+      <div class="input">
+      <input <?php if ($needs_v1_2_2) {echo "checked";} ?> name="version[]" type="checkbox" id="checkbox8" value="1.2.1" tabindex="8" />
+      <label for="checkbox8">Upgrade DB from 1.2.1 to 1.2.2</label>
+    </div>
+      <div class="input">
+      <input <?php if ($needs_v1_2_3) {echo "checked";} ?> name="version[]" type="checkbox" id="checkbox9" value="1.2.2" tabindex="9" />
+      <label for="checkbox9">Upgrade DB from 1.2.2 to 1.2.3</label>
+    </div>
+      <div class="input">
+      <input <?php if ($needs_v1_2_4) {echo "checked";} ?> name="version[]" type="checkbox" id="checkbox10" value="1.2.3" tabindex="10" />
+      <label for="checkbox10">Upgrade DB from 1.2.3 to 1.2.4</label>
+    </div>
+      <div class="input">
+      <input <?php if ($needs_v1_2_5) {echo "checked";} ?> name="version[]" type="checkbox" id="checkbox11" value="1.2.4" tabindex="11" />
+      <label for="checkbox11">Upgrade DB from 1.2.4 to 1.2.5</label>
+    </div>
+      <div class="input">
+      <input <?php if ($needs_v1_2_6) {echo "checked";} ?> name="version[]" type="checkbox" id="checkbox12" value="1.2.5" tabindex="12" />
+      <label for="checkbox12">Upgrade DB from 1.2.5 to 1.2.6</label>
+    </div>
+      <div class="input">
+      <input <?php if ($needs_v1_2_7) {echo "checked";} ?> name="version[]" type="checkbox" id="checkbox13" value="1.2.6" tabindex="13" />
+      <label for="checkbox13">Upgrade DB from 1.2.6 to 1.2.7</label>
+    </div>
+      <div class="input">
       <input <?php if ($needs_v1_3_0) {echo "checked";} ?> name="version[]" type="checkbox" id="checkbox14" value="1.2.7" tabindex="14" />
       <label for="checkbox14">Upgrade DB from 1.2.7 to 1.3.0</label>
     </div>
@@ -76,9 +128,13 @@
       <input <?php if ($needs_v1_3_9) {echo "checked";} ?> name="version[]" type="checkbox" id="checkbox21" value="1.3.8" tabindex="21" />
       <label for="checkbox21">Upgrade DB from 1.3.8 to 1.3.9</label>
     </div>
-      <div class="input">
-      <input <?php if ($needs_v1_5_0) {echo "checked";} ?> name="version[]" type="checkbox" id="checkbox22" value="1.3.9" tabindex="22" />
-      <label for="checkbox22">Upgrade DB from 1.3.9 to 1.5.0</label>
+    <div class="input">
+      <input <?php if ($needs_multilingual) {echo "checked";} ?> name="version[]" type="checkbox" id="checkbox22" value="multilingual" tabindex="15" />
+      <label for="checkbox15">Upgrade DB to Multilingual 1</label>
+    </div>
+    <div class="input">
+      <input <?php if ($needs_v1_3_8multi2) {echo "checked";} ?> name="version[]" type="checkbox" id="checkbox23" value="1.3.8multi2" tabindex="21" />
+      <label for="checkbox21">Upgrade DB to Multilingual 2</label>
     </div>
     </fieldset>
     <br />

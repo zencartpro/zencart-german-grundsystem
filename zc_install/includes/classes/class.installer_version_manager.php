@@ -22,6 +22,7 @@
 ////  c. add a new check_versionXXXX() function to the end of the class (BEFORE the closing } in the file)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
 
+require_once(DIR_FS_CATALOG . 'includes/' . 'functions/extra_functions/rl_tools.php');
   class versionManager extends base{
     var $latest_version, $found_version, $zdb_configuration_table_found;
 
@@ -77,6 +78,7 @@
       $this->version138 = $this->check_version_138();
       $this->version139 = $this->check_version_139();
       $this->version150 = $this->check_version_150();
+	  $this->version138multi2 = $this->check_version_138multi2();
 
         if ($this->version110 == true)  $retVal = '1.1.0';
         if ($this->version111 == true)  $retVal = '1.1.1';
@@ -100,6 +102,7 @@
         if ($this->version138 == true) $retVal = '1.3.8';
         if ($this->version139 == true) $retVal = '1.3.9';
         if ($this->version150 == true) $retVal = '1.5.0';
+		if ($this->version138multi2 == true) $retVal = '1.3.8multi2';
 
       return $retVal;
     }
@@ -726,6 +729,25 @@
       return $got_v1_3_9;
     } //end of 1.3.9 check
 
+    function check_version_138multi2() {
+      global $db_test;
+      $got_v1_3_8multi2 = false;
+      //1st check for v1.3.8
+      if(isMultiLingual2($db_test)){
+          if (ZC_UPG_DEBUG==true) echo "138a-configtitle_check LANGUAGE_VERSION =" . $result->fields['configuration_title'] . '<br>';
+            $got_v1_3_8multi2 = true;
+
+          if (ZC_UPG_DEBUG==true) {
+            echo '1.3.8multi2=' . $got_v1_3_8multi2 .'<br>';
+          }
+          // evaluate all 1.3.8 checks
+          if ($got_v1_3_8multi2) {
+            $got_v1_3_8multi2 = true;
+            if (ZC_UPG_DEBUG==true) echo '<br>Got 1.3.8multi2<br>';
+          }
+      }
+      return $got_v1_3_8multi2;
+    } //end of 1.3.8multi2 check
 
 
 
@@ -771,3 +793,19 @@
 
   } // end class
 
+ function isMultiLingual2($db) {
+    include('../includes/database_tables.php');
+    $sql = "SHOW  TABLES  LIKE  '" . TABLE_PRODUCT_TYPE_LAYOUT_LANGUAGE . "'";
+    $res = $db -> Execute($sql);
+    if($res -> RecordCount() == 0 ){
+        return false;
+    } else {
+        $sql = "select configuration_title from " . TABLE_PRODUCT_TYPE_LAYOUT_LANGUAGE . " where configuration_key = 'LANGUAGE_VERSION'";
+        $result = $db->Execute($sql);
+        if  ($result->fields['configuration_title'] == 'LANGUAGE_VERSION 20100926'){
+            return true;
+        } else {
+            return false;
+        }
+    }
+ }
