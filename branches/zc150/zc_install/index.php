@@ -48,6 +48,7 @@ if (!isset($_GET) && isset($_SERVER["argc"]) && $_SERVER["argc"] > 1) {
   require($language_page_directory . $current_page . '.php');
   require('includes/languages/' . $language . '.php');
 
+  require('includes/languages/' . $language . '/' . $current_page . '.php');
   require($page_directory . '/header_php.php');
   require(DIR_WS_INSTALL_TEMPLATE . 'common/html_header.php');
   require(DIR_WS_INSTALL_TEMPLATE . 'common/main_template_vars.php');
