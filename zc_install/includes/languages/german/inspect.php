@@ -85,6 +85,8 @@ define('LABEL_PHP_EXT_ZLIB','PHP ZLIB Kompression Unterstützung');
 define('LABEL_PHP_SESSION_TRANS_SID','PHP session.use_trans_sid');
 define('LABEL_DISK_FREE_SPACE','Freier Speicher');
 define('LABEL_XML_SUPPORT','PHP XML Unterstützung');
+  define('LABEL_HTACCESS_SUPPORT','Apache .htaccess Support');
+  define('LABEL_COULD_NOT_TEST_HTACCESS','Konnte nicht testen -  no CURL support');
 define('LABEL_OPEN_BASEDIR','PHP open_basedir Einschränkungen');
 define('LABEL_UPLOAD_TMP_DIR','PHP Upload TMP Verzeichnis');
 define('LABEL_SENDMAIL_FROM','PHP sendmail \'from\'');

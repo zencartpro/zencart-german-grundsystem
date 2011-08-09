@@ -1,29 +1,15 @@
 <?php
-//
-// +----------------------------------------------------------------------+
-// |zen-cart Open Source E-commerce                                       |
-// +----------------------------------------------------------------------+
-// | Copyright (c) 2004 The zen-cart developers                           |
-// |                                                                      |
-// | http://www.zen-cart.com/index.php                                    |
-// |                                                                      |
-// | Portions Copyright (c) 2003 osCommerce                               |
-// +----------------------------------------------------------------------+
-// | This source file is subject to version 2.0 of the GPL license,       |
-// | that is bundled with this package in the file LICENSE, and is        |
-// | available through the world-wide-web at the following url:           |
-// | http://www.zen-cart.com/license/2_0.txt.                             |
-// | If you did not receive a copy of the zen-cart license and are unable |
-// | to obtain it through the world-wide-web, please send a note to       |
-// | license@zen-cart.com so we can mail you a copy immediately.          |
-// +----------------------------------------------------------------------+
-// | Translator:           cyaneo                                         |
-// | Date of Translation:  16.08.04                                       |
-// | Homepage:             www.zen-cart.at                                |
-// +----------------------------------------------------------------------+
-// $Id$
-//
-  
+/**
+ * @package Installer
+ * @access private
+ * @copyright Copyright 2003-2005 Zen Cart Development Team
+ * @copyright Portions Copyright 2003 osCommerce
+ * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
+ * @version $Id$
+ */
+/**
+ * defining language components for the page
+ */
 define('SAVE_STORE_SETTINGS', 'Shopeinstellungen speichern');//this comes before TEXT_MAIN
 define('TEXT_MAIN', 'Diese Sektion der Zen Cart Installation hilft Ihnen bei der Festlegung Ihrer Grundeinstellungen für den Zen Cart Shop. Diese Einstellungen können später im Adminbereich geändert werden. Tragen Sie alle Optionen gewissenhaft ein und klicken Sie anschließend zum Fortfahren auf <em>'.SAVE_STORE_SETTINGS.'</em>.');
 define('TEXT_PAGE_HEADING', 'Zen Cart Installation - Installation');
