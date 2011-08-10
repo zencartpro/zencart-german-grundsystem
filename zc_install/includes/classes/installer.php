@@ -446,6 +446,8 @@
       if ($fp) {
         fputs($fp, $file_contents);
         fclose($fp);
+        rename('../admin', '../' . $newadmin_path);
+// r.l.        rename('../zc_install', '../zc_install.' . md5(date('Ymd H:s')));
 //        @chmod($this->getConfigKey('DIR_FS_CATALOG') . '/admin/includes/configure.php', 0444);
       }
 

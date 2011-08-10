@@ -11,6 +11,7 @@
   if (!isset($_POST['admin_username'])) $_POST['admin_username'] = '';
   if (!isset($_POST['admin_email'])) $_POST['admin_email'] = '';
 
+  // !!!!!!!!!!!!!!
   @require_once('../includes/configure.php');
   if (!defined('DB_TYPE') || DB_TYPE=='') {
     die('Database Type Invalid. Did your configure.php file get written correctly?');
@@ -37,8 +38,10 @@
 
     if (!$zc_install->error) {
       $zc_install->dbAdminSetup();
+      $newadmin_Path = $zc_install->getConfigKey('NEWADMIN_PATH');
       $zc_install->resetConfigKeys();
       $zc_install->resetConfigInfo();
+      $zc_install->setConfigKey('NEWADMIN_PATH', $newadmin_Path);
       header('location: index.php?main_page=finished' . zcInstallAddSID() );
       exit;
     }

@@ -29,8 +29,10 @@ if ($result == false || $action == 'write') {
 
 // if config files wrote okay, carry on to next step
 if ($result == true) {
+  $newadmin_Path = $zc_install->getConfigKey('NEWADMIN_PATH');
   $zc_install->resetConfigKeys();
   $zc_install->resetConfigInfo();
+  $zc_install->setConfigKey('NEWADMIN_PATH', $newadmin_Path);
   header('location: index.php?main_page=store_setup' /*. zcInstallAddSID()*/ );
   exit;
 } else {

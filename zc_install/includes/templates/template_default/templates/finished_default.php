@@ -10,6 +10,6 @@
 ?>
 <div class="center">
 <a class="button" href="<?php echo HTTP_SERVER . DIR_WS_CATALOG; ?>index.php" target="_blank"><?php echo STORE; ?></a>&nbsp;&nbsp;&nbsp;
-<a class="button" href="<?php echo HTTP_SERVER . DIR_WS_CATALOG; ?>admin/index.php"><?php echo ADMIN; ?></a>
+<a class="button" href="<?php echo HTTP_SERVER . DIR_WS_CATALOG . $newadmin_path; ?>/index.php"><?php echo ADMIN; ?></a>
 <br /><br />
 </div>

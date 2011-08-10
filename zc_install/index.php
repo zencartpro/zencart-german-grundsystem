@@ -44,6 +44,16 @@ if (!isset($_GET) && isset($_SERVER["argc"]) && $_SERVER["argc"] > 1) {
   if (!isset($_GET['main_page']) || !zen_not_null($_GET['main_page'])) $_GET['main_page'] = 'index';
   $current_page = $_GET['main_page'];
   $page_directory = 'includes/modules/pages/' . $current_page;
+  
+  if(($page_directory == 'includes/modules/pages/finished') AND (file_exists('../zc_install'))){
+      $nd = '../zc_install.' . md5(date('Ymd H:s'));
+      rename('../zc_install', $nd);
+      header("location: $nd/index.php?main_page=finished" . zcInstallAddSID() );
+      exit;
+  }
+  
+  
+  
   $language_page_directory = 'includes/languages/' . $language . '/';
   require($language_page_directory . $current_page . '.php');
   require('includes/languages/' . $language . '.php');
@@ -53,3 +63,4 @@ if (!isset($_GET) && isset($_SERVER["argc"]) && $_SERVER["argc"] > 1) {
   require(DIR_WS_INSTALL_TEMPLATE . 'common/html_header.php');
   require(DIR_WS_INSTALL_TEMPLATE . 'common/main_template_vars.php');
   require(DIR_WS_INSTALL_TEMPLATE . 'common/tpl_main_page.php');
+
