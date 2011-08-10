@@ -127,6 +127,20 @@
         $messageStack->add_session(SUCCESS_BOX_RESET . $template_dir, 'success');
         zen_redirect(zen_href_link(FILENAME_LAYOUT_CONTROLLER, 'page=' . $_GET['page']));
         break;
+		
+	case 'save_defaults':
+        $sql = "DELETE  FROM " . TABLE_LAYOUT_BOXES . " WHERE layout_template = 'default_template_settings'  ";
+        $db->Execute($sql);
+        $sql = "INSERT INTO " . TABLE_LAYOUT_BOXES . " ( layout_template, layout_box_name, layout_box_status, layout_box_location, layout_box_sort_order, layout_box_sort_order_single, layout_box_status_single )
+                SELECT 'default_template_settings' AS TD, layout_boxes.layout_box_name, layout_boxes.layout_box_status, layout_boxes.layout_box_location, layout_boxes.layout_box_sort_order, layout_boxes.layout_box_sort_order_single, layout_boxes.layout_box_status_single
+                FROM layout_boxes
+                WHERE (((layout_boxes.layout_template)='$template_dir'));";
+	    $db->Execute($sql);
+	
+
+		$messageStack->add_session(SUCCESS_BOX_SET_DEFAULTS . '<strong>' . $template_dir . '</strong>', 'success');
+        zen_redirect(zen_href_link(FILENAME_LAYOUT_CONTROLLER, 'page=' . $_GET['page']));
+        break;
     }
   }
 
@@ -367,6 +381,28 @@ if ($warning_new_box) {
       </tr>
     </table></td>
   </tr>
+  
+  
+  <tr>
+    <td><table align="center">
+      <tr>
+        <td class="main" align="left">
+		
+          <?php printf ( '<br />' . TEXT_INFO_SET_AS_DEFAULT , '<strong>' . $template_dir . '</strong>'); ?>
+
+        </td>
+      </tr>
+
+      <tr>
+        <td class="main" align="center">
+          <?php echo '<br /><a href="' . zen_href_link(FILENAME_LAYOUT_CONTROLLER, 'page=' . $_GET['page'] . '&cID=' . $bInfo->layout_id . '&action=save_defaults') . '">' . zen_image_button('button_save.gif', IMAGE_SAVE) . '</a>'; ?>
+        </td>
+      </tr>
+    </table></td>
+  </tr>
+  
+  
+  
   <tr valign="top">
     <td valign="top"><?php echo zen_draw_separator('pixel_trans.gif', '1', '100'); ?></td>
   </tr>
