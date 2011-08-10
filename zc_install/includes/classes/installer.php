@@ -439,6 +439,7 @@
         $http_catalog_admin = $https_catalog;
       }
       // now Admin version:
+      $newadmin_path = $this->getConfigKey('NEWADMIN_PATH');
       require('includes/admin_configure.php');
       $config_file_contents_admin = $file_contents;
       $fp = @fopen($this->getConfigKey('DIR_FS_CATALOG') . '/admin/includes/configure.php', 'w');
