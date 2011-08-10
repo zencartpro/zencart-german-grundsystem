@@ -32,6 +32,8 @@ if ($is_upgrade) {
    $enable_ssl = zen_read_config_value('ENABLE_SSL', FALSE);
    $enable_ssl_admin = zen_read_config_value('ENABLE_SSL_ADMIN', FALSE);
    $dir_fs_www_root = zen_read_config_value('DIR_FS_CATALOG', FALSE);
+   // r.l. 
+   $dir_newadmin = zen_read_config_value('DIR_WS_ADMIN', FALSE);
    $https_catalog = zen_read_config_value('DIR_WS_HTTPS_CATALOG', FALSE);
 
    $http_server = $zc_install->trimTrailingSlash($http_server);
@@ -58,10 +60,11 @@ if ($is_upgrade) {
 
   // Yahoo hosting and others may use / for physical path ... so instead of leaving it blank, offer '/'
   if ($dir_fs_www_root == '') $dir_fs_www_root = '/';
-
+  if ($dir_newadmin == '') $dir_newadmin = 'admin-' . md5(date('Ymd H:s'));
 
   // Set form input values
   if (!isset($_POST['physical_path'])) $_POST['physical_path']=$dir_fs_www_root;
+  if (!isset($_POST['newadmin_path'])) $_POST['newadmin_path'] = $dir_newadmin;
   if (!isset($_POST['virtual_http_path'])) $_POST['virtual_http_path']= 'http://' . $virtual_path;
   if (!isset($_POST['virtual_https_path'])) $_POST['virtual_https_path']='https://' . $virtual_https_path;
   if (!isset($_POST['virtual_https_server'])) $_POST['virtual_https_server']='https://' . $virtual_https_server;
@@ -70,6 +73,7 @@ if ($is_upgrade) {
 
 
   setInputValue($_POST['physical_path'], 'PHYSICAL_PATH_VALUE', $dir_fs_www_root);
+  setInputValue($_POST['newadmin_path'], 'NEWADMIN_PATH_VALUE', $dir_newadmin);
   setInputValue($_POST['virtual_http_path'], 'VIRTUAL_HTTP_PATH_VALUE', 'http://' . $virtual_path);
   setInputValue($_POST['virtual_https_path'], 'VIRTUAL_HTTPS_PATH_VALUE', 'https://' . $virtual_https_path);
   setInputValue($_POST['virtual_https_server'], 'VIRTUAL_HTTPS_SERVER_VALUE', 'https://' . $virtual_https_server);
@@ -78,6 +82,7 @@ if ($is_upgrade) {
 
   if (isset($_POST['submit'])) {
     $zc_install->isEmpty($_POST['physical_path'], ERROR_TEXT_PHYSICAL_PATH_ISEMPTY, ERROR_CODE_PHYSICAL_PATH_ISEMPTY);
+    $zc_install->isEmpty($_POST['newadmin_path'], ERROR_TEXT_NEWADMIN_PATH_ISEMPTY, ERROR_CODE_NEWADMIN_PATH_ISEMPTY);
     $zc_install->fileExists($zc_install->trimTrailingSlash($_POST['physical_path']) . '/index.php', ERROR_TEXT_PHYSICAL_PATH_INCORRECT, ERROR_CODE_PHYSICAL_PATH_INCORRECT);
     $zc_install->isEmpty($_POST['virtual_http_path'], ERROR_TEXT_VIRTUAL_HTTP_ISEMPTY, ERROR_CODE_VIRTUAL_HTTP_ISEMPTY);
     if ($_POST['enable_ssl'] == 'true' || $_POST['enable_ssl_admin'] == 'true') {
@@ -88,6 +93,7 @@ if ($is_upgrade) {
 
     if (!$zc_install->fatal_error) {
       $zc_install->setConfigKey('DIR_FS_CATALOG', $zc_install->trimTrailingSlash($_POST['physical_path']));
+      $zc_install->setConfigKey('NEWADMIN_PATH', $zc_install->trimTrailingSlash($_POST['newadmin_path']));
       $zc_install->setConfigKey('virtual_http_path', $zc_install->trimTrailingSlash($_POST['virtual_http_path']));
       $zc_install->setConfigKey('virtual_https_path', $zc_install->trimTrailingSlash($_POST['virtual_https_path']));
       $zc_install->setConfigKey('virtual_https_server', $zc_install->trimTrailingSlash($_POST['virtual_https_server']));

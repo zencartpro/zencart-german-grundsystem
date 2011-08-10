@@ -20,6 +20,11 @@
       <p><?php echo PHYSICAL_PATH_INSTRUCTION . '<a href="javascript:popupWindow(\'popup_help_screen.php?error_code=4\')"> ' . TEXT_HELP_LINK . '</a>'; ?></p>
     </div>
     <div class="section">
+      <input type="text" id="newadmin_path" name="newadmin_path" tabindex="1" value="<?php echo NEWADMIN_PATH_VALUE; ?>" size="50" />
+      <label for="newadmin_path"><?php echo NEWADMIN_PATH; ?></label>
+      <p><?php echo NEWADMIN_PATH_INSTRUCTION . '<a href="javascript:popupWindow(\'popup_help_screen.php?error_code=4\')"> ' . TEXT_HELP_LINK . '</a>'; ?></p>
+    </div>
+    <div class="section">
       <input type="text" id="virtual_http_path" name="virtual_http_path" tabindex="2" value="<?php echo VIRTUAL_HTTP_PATH_VALUE; ?>" size="50" />
       <label for="virtual_http_path"><?php echo VIRTUAL_HTTP_PATH; ?></label>
       <p><?php echo VIRTUAL_HTTP_PATH_INSTRUCTION . '<a href="javascript:popupWindow(\'popup_help_screen.php?error_code=5\')"> ' . TEXT_HELP_LINK . '</a>'; ?></p>
