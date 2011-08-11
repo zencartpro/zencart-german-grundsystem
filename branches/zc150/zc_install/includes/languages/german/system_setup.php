@@ -32,3 +32,6 @@ define('ENABLE_SSL_INSTRUCTION', 'Wollen Sie SSL (Secure Sockets Layer) im Shop 
 define('ENABLE_SSL_ADMIN', 'SSL für Adminbereich aktivieren');
 define('ENABLE_SSL_ADMIN_INSTRUCTION', 'Wollen Sie SSL (Secure Sockets Layer) für den Adminbereich aktivieren?');
 define('REDISCOVER', 'Die Standardwerte für diesen Host neu ermitteln');
+
+define('NEWADMIN_PATH', 'Adminordner Name');
+define('NEWADMIN_PATH_INSTRUCTION', 'Neuer Name für den Adminordner');

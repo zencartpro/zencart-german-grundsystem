@@ -11,7 +11,6 @@
   if (!isset($_POST['admin_username'])) $_POST['admin_username'] = '';
   if (!isset($_POST['admin_email'])) $_POST['admin_email'] = '';
 
-  // !!!!!!!!!!!!!!
   @require_once('../includes/configure.php');
   if (!defined('DB_TYPE') || DB_TYPE=='') {
     die('Database Type Invalid. Did your configure.php file get written correctly?');

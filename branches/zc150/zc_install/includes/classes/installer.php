@@ -447,7 +447,6 @@
         fputs($fp, $file_contents);
         fclose($fp);
         rename('../admin', '../' . $newadmin_path);
-// r.l.        rename('../zc_install', '../zc_install.' . md5(date('Ymd H:s')));
 //        @chmod($this->getConfigKey('DIR_FS_CATALOG') . '/admin/includes/configure.php', 0444);
       }
 
@@ -522,7 +521,8 @@
       $db = $this->db;
       // process the actual sql insertions
       executeSql('sql/' . $this->getConfigKey('DB_TYPE') . '_zencart.sql', $this->getConfigKey('DB_DATABASE'), $this->getConfigKey('DB_PREFIX'));
-	  executeSql('sql/' . $this->getConfigKey('DB_TYPE') . '_multilingual_2.sql', $this->getConfigKey('DB_DATABASE'), $this->getConfigKey('DB_PREFIX'));
+	  // hugo13 : only for a fully multilingual admin installation
+	  // executeSql('sql/' . $this->getConfigKey('DB_TYPE') . '_multilingual_2.sql', $this->getConfigKey('DB_DATABASE'), $this->getConfigKey('DB_PREFIX'));
       executeSql('sql/' . $this->getConfigKey('DB_TYPE') . '_' . $this->getConfigKey('DB_CHARSET') . '.sql', $this->getConfigKey('DB_DATABASE'), $this->getConfigKey('DB_PREFIX'));
 
       //update the cache folder setting:

@@ -28,8 +28,8 @@
   define('ENABLE_SSL', 'Enable SSL');
   define('ENABLE_SSL_INSTRUCTION', 'Would you like to enable Secure Sockets Layer in Customer area?<br />Leave this set to NO unless you\'re SURE you have SSL working.');
   define('ENABLE_SSL_ADMIN', 'Enable SSL in Admin Area');
-  define('ENABLE_SSL_ADMIN_INSTRUCTION', 'Would you like to enable Secure Sockets Layer for Admin areas?<br />
-Leave this set to NO unless you\'re SURE you have SSL working.');
+  define('ENABLE_SSL_ADMIN_INSTRUCTION', 'Would you like to enable Secure Sockets Layer for Admin areas?<br />Leave this set to NO unless you\'re SURE you have SSL working.');
   define('REDISCOVER', 'Redetect defaults for this host');
-
-?>
+  
+  define('NEWADMIN_PATH', 'AdminFolderName');
+  define('NEWADMIN_PATH_INSTRUCTION', 'New Name for AdminFolder');

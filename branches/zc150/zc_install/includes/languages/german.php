@@ -676,5 +676,9 @@ switch ($error_code) {
     define('POPUP_ERROR_HEADING','CURL requires SSL support. Please notify webmaster or hosting company.');
     define('POPUP_ERROR_TEXT','Zen Cart&trade; uses CURL and SSL to communicate with some payment and shipping service providers.<br />The installer has just tested your CURL SSL support and found that it failed.<br /><br />You will not be able to use PayPal or Authorize.net or FirstData/Linkpoint payment modules, and possibly other third-party contributed payment/shipping modules until you enable SSL support in CURL and PHP.<br /><br />More information on CURL can be found at the <a href="http://curl.haxx.se" target="_blank">CURL website</a>');
   break;
+  case ('96'):
+    define('POPUP_ERROR_HEADING','Adminordner Name');
+    define('POPUP_ERROR_TEXT','Geben Sie bitte einen neuen Namen für den AdminoOrdner an. Der Adminordner muss umbenannt werden damit das Adminsystem betreten werden kann');
+  break;
 
 }
