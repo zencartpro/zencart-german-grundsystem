@@ -8,7 +8,7 @@
  * @version $Id: attributes_controller.php 627 2010-08-30 15:05:14Z webchills $
  */
 
-define('HEADING_TITLE', 'CATEGORIES: ');
+define('HEADING_TITLE', 'Kategorien: ');
 
 define('HEADING_TITLE_OPT','Artikelattribute');
 define('HEADING_TITLE_VAL','Attributmerkmale');
