@@ -718,3 +718,9 @@ LABEL#textAreaReviews {
 #seShipTo {
 	padding: 0.2em;
 	}
+	
+.taxAddon{
+	font-weight:normal;
+	font-size:10px;
+    display: block;        
+}
