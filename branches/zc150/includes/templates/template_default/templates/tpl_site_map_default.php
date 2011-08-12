@@ -55,6 +55,12 @@
 <?php if (DEFINE_CONDITIONS_STATUS <= '1') { ?>
             <li><?php echo '<a href="' . zen_href_link(FILENAME_CONDITIONS) . '">' . BOX_INFORMATION_CONDITIONS . '</a>'; ?></li>
 <?php } ?>
+<?php if (DEFINE_WIDERRUFSRECHT_STATUS <= '1') { ?>
+            <li><?php echo '<a href="' . zen_href_link(FILENAME_WIDERRUFSRECHT) . '">' . BOX_INFORMATION_WIDERRUFSRECHT . '</a>'; ?></li>
+<?php } ?>
+<?php if (DEFINE_IMPRESSUM_STATUS <= '1') { ?>
+            <li><?php echo '<a href="' . zen_href_link(FILENAME_IMPRESSUM) . '">' . BOX_INFORMATION_IMPRESSUM . '</a>'; ?></li>
+<?php } ?>
 <?php if (DEFINE_CONTACT_US_STATUS <= '1') { ?>
             <li><?php echo '<a href="' . zen_href_link(FILENAME_CONTACT_US) . '">' . BOX_INFORMATION_CONTACT . '</a>'; ?></li>
 <?php } ?>
