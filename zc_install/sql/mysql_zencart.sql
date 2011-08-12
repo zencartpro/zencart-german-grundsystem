@@ -2037,7 +2037,7 @@ CREATE TABLE zones_to_geo_zones (
 
 # default data
 
-INSERT INTO template_select VALUES (1, 'classic', '0');
+INSERT INTO template_select VALUES (1, 'viennabright', '0');
 
 # 1 - Default, 2 - USA, 3 - Spain, 4 - Singapore, 5 - Germany, 6 - UK/GB
 INSERT INTO address_format VALUES (1, '$firstname $lastname$cr$streets$cr$city, $postcode$cr$statecomma$country','$city / $country');
@@ -2903,110 +2903,161 @@ INSERT INTO currencies VALUES (5,'Australian Dollar','AUD','$','','.',',','2','1
 INSERT INTO languages VALUES (43,'Deutsch','de','icon.gif','german',2);
 INSERT INTO languages VALUES (1,'English','en','icon.gif','english',1);
 
-INSERT INTO layout_boxes (layout_template, layout_box_name, layout_box_status, layout_box_location, layout_box_sort_order, layout_box_sort_order_single, layout_box_status_single) VALUES ('default_template_settings', 'banner_box_all.php', 1, 1, 5, 0, 0);
-INSERT INTO layout_boxes (layout_template, layout_box_name, layout_box_status, layout_box_location, layout_box_sort_order, layout_box_sort_order_single, layout_box_status_single) VALUES ('default_template_settings', 'banner_box.php', 1, 0, 300, 1, 127);
-INSERT INTO layout_boxes (layout_template, layout_box_name, layout_box_status, layout_box_location, layout_box_sort_order, layout_box_sort_order_single, layout_box_status_single) VALUES ('default_template_settings', 'banner_box2.php', 1, 1, 15, 1, 15);
-INSERT INTO layout_boxes (layout_template, layout_box_name, layout_box_status, layout_box_location, layout_box_sort_order, layout_box_sort_order_single, layout_box_status_single) VALUES ('default_template_settings', 'best_sellers.php', 1, 1, 30, 70, 1);
-INSERT INTO layout_boxes (layout_template, layout_box_name, layout_box_status, layout_box_location, layout_box_sort_order, layout_box_sort_order_single, layout_box_status_single) VALUES ('default_template_settings', 'categories.php', 1, 0, 10, 10, 1);
-INSERT INTO layout_boxes (layout_template, layout_box_name, layout_box_status, layout_box_location, layout_box_sort_order, layout_box_sort_order_single, layout_box_status_single) VALUES ('default_template_settings', 'currencies.php', 0, 1, 80, 60, 0);
-INSERT INTO layout_boxes (layout_template, layout_box_name, layout_box_status, layout_box_location, layout_box_sort_order, layout_box_sort_order_single, layout_box_status_single) VALUES ('default_template_settings', 'document_categories.php', 1, 0, 0, 0, 0);
-INSERT INTO layout_boxes (layout_template, layout_box_name, layout_box_status, layout_box_location, layout_box_sort_order, layout_box_sort_order_single, layout_box_status_single) VALUES ('default_template_settings', 'ezpages.php', 1, 1, -1, 2, 1);
-INSERT INTO layout_boxes (layout_template, layout_box_name, layout_box_status, layout_box_location, layout_box_sort_order, layout_box_sort_order_single, layout_box_status_single) VALUES ('default_template_settings', 'featured.php', 1, 0, 45, 0, 0);
-INSERT INTO layout_boxes (layout_template, layout_box_name, layout_box_status, layout_box_location, layout_box_sort_order, layout_box_sort_order_single, layout_box_status_single) VALUES ('default_template_settings', 'information.php', 1, 0, 50, 40, 1);
-INSERT INTO layout_boxes (layout_template, layout_box_name, layout_box_status, layout_box_location, layout_box_sort_order, layout_box_sort_order_single, layout_box_status_single) VALUES ('default_template_settings', 'languages.php', 0, 1, 70, 50, 0);
-INSERT INTO layout_boxes (layout_template, layout_box_name, layout_box_status, layout_box_location, layout_box_sort_order, layout_box_sort_order_single, layout_box_status_single) VALUES ('default_template_settings', 'manufacturers.php', 1, 0, 30, 20, 1);
-INSERT INTO layout_boxes (layout_template, layout_box_name, layout_box_status, layout_box_location, layout_box_sort_order, layout_box_sort_order_single, layout_box_status_single) VALUES ('default_template_settings', 'manufacturer_info.php', 1, 1, 35, 95, 1);
-INSERT INTO layout_boxes (layout_template, layout_box_name, layout_box_status, layout_box_location, layout_box_sort_order, layout_box_sort_order_single, layout_box_status_single) VALUES ('default_template_settings', 'more_information.php', 1, 0, 200, 200, 1);
-INSERT INTO layout_boxes (layout_template, layout_box_name, layout_box_status, layout_box_location, layout_box_sort_order, layout_box_sort_order_single, layout_box_status_single) VALUES ('default_template_settings', 'music_genres.php', 1, 1, 0, 0, 0);
-INSERT INTO layout_boxes (layout_template, layout_box_name, layout_box_status, layout_box_location, layout_box_sort_order, layout_box_sort_order_single, layout_box_status_single) VALUES ('default_template_settings', 'order_history.php', 1, 1, 0, 0, 0);
-INSERT INTO layout_boxes (layout_template, layout_box_name, layout_box_status, layout_box_location, layout_box_sort_order, layout_box_sort_order_single, layout_box_status_single) VALUES ('default_template_settings', 'product_notifications.php', 1, 1, 55, 85, 1);
-INSERT INTO layout_boxes (layout_template, layout_box_name, layout_box_status, layout_box_location, layout_box_sort_order, layout_box_sort_order_single, layout_box_status_single) VALUES ('default_template_settings', 'record_companies.php', 1, 1, 0, 0, 0);
-INSERT INTO layout_boxes (layout_template, layout_box_name, layout_box_status, layout_box_location, layout_box_sort_order, layout_box_sort_order_single, layout_box_status_single) VALUES ('default_template_settings', 'reviews.php', 1, 0, 40, 0, 0);
-INSERT INTO layout_boxes (layout_template, layout_box_name, layout_box_status, layout_box_location, layout_box_sort_order, layout_box_sort_order_single, layout_box_status_single) VALUES ('default_template_settings', 'search.php', 1, 1, 10, 0, 0);
-INSERT INTO layout_boxes (layout_template, layout_box_name, layout_box_status, layout_box_location, layout_box_sort_order, layout_box_sort_order_single, layout_box_status_single) VALUES ('default_template_settings', 'search_header.php', 0, 0, 0, 0, 1);
-INSERT INTO layout_boxes (layout_template, layout_box_name, layout_box_status, layout_box_location, layout_box_sort_order, layout_box_sort_order_single, layout_box_status_single) VALUES ('default_template_settings', 'shopping_cart.php', 1, 1, 20, 30, 1);
-INSERT INTO layout_boxes (layout_template, layout_box_name, layout_box_status, layout_box_location, layout_box_sort_order, layout_box_sort_order_single, layout_box_status_single) VALUES ('default_template_settings', 'specials.php', 1, 1, 45, 0, 0);
-INSERT INTO layout_boxes (layout_template, layout_box_name, layout_box_status, layout_box_location, layout_box_sort_order, layout_box_sort_order_single, layout_box_status_single) VALUES ('default_template_settings', 'tell_a_friend.php', 1, 1, 65, 0, 0);
-INSERT INTO layout_boxes (layout_template, layout_box_name, layout_box_status, layout_box_location, layout_box_sort_order, layout_box_sort_order_single, layout_box_status_single) VALUES ('default_template_settings', 'whats_new.php', 1, 0, 20, 0, 0);
-INSERT INTO layout_boxes (layout_template, layout_box_name, layout_box_status, layout_box_location, layout_box_sort_order, layout_box_sort_order_single, layout_box_status_single) VALUES ('default_template_settings', 'whos_online.php', 1, 1, 200, 200, 1);
-
-INSERT INTO layout_boxes (layout_template, layout_box_name, layout_box_status, layout_box_location, layout_box_sort_order, layout_box_sort_order_single, layout_box_status_single) VALUES ('template_default', 'banner_box_all.php', 1, 1, 5, 0, 0);
-INSERT INTO layout_boxes (layout_template, layout_box_name, layout_box_status, layout_box_location, layout_box_sort_order, layout_box_sort_order_single, layout_box_status_single) VALUES ('template_default', 'banner_box.php', 1, 0, 300, 1, 127);
-INSERT INTO layout_boxes (layout_template, layout_box_name, layout_box_status, layout_box_location, layout_box_sort_order, layout_box_sort_order_single, layout_box_status_single) VALUES ('template_default', 'banner_box2.php', 1, 1, 15, 1, 15);
-INSERT INTO layout_boxes (layout_template, layout_box_name, layout_box_status, layout_box_location, layout_box_sort_order, layout_box_sort_order_single, layout_box_status_single) VALUES ('template_default', 'best_sellers.php', 1, 1, 30, 70, 1);
-INSERT INTO layout_boxes (layout_template, layout_box_name, layout_box_status, layout_box_location, layout_box_sort_order, layout_box_sort_order_single, layout_box_status_single) VALUES ('template_default', 'categories.php', 1, 0, 10, 10, 1);
-INSERT INTO layout_boxes (layout_template, layout_box_name, layout_box_status, layout_box_location, layout_box_sort_order, layout_box_sort_order_single, layout_box_status_single) VALUES ('template_default', 'currencies.php', 0, 1, 80, 60, 0);
-INSERT INTO layout_boxes (layout_template, layout_box_name, layout_box_status, layout_box_location, layout_box_sort_order, layout_box_sort_order_single, layout_box_status_single) VALUES ('template_default', 'ezpages.php', 1, 1, -1, 2, 1);
-INSERT INTO layout_boxes (layout_template, layout_box_name, layout_box_status, layout_box_location, layout_box_sort_order, layout_box_sort_order_single, layout_box_status_single) VALUES ('template_default', 'featured.php', 1, 0, 45, 0, 0);
-INSERT INTO layout_boxes (layout_template, layout_box_name, layout_box_status, layout_box_location, layout_box_sort_order, layout_box_sort_order_single, layout_box_status_single) VALUES ('template_default', 'information.php', 1, 0, 50, 40, 1);
-INSERT INTO layout_boxes (layout_template, layout_box_name, layout_box_status, layout_box_location, layout_box_sort_order, layout_box_sort_order_single, layout_box_status_single) VALUES ('template_default', 'languages.php', 0, 1, 70, 50, 0);
-INSERT INTO layout_boxes (layout_template, layout_box_name, layout_box_status, layout_box_location, layout_box_sort_order, layout_box_sort_order_single, layout_box_status_single) VALUES ('template_default', 'manufacturers.php', 1, 0, 30, 20, 1);
-INSERT INTO layout_boxes (layout_template, layout_box_name, layout_box_status, layout_box_location, layout_box_sort_order, layout_box_sort_order_single, layout_box_status_single) VALUES ('template_default', 'manufacturer_info.php', 1, 1, 35, 95, 1);
-INSERT INTO layout_boxes (layout_template, layout_box_name, layout_box_status, layout_box_location, layout_box_sort_order, layout_box_sort_order_single, layout_box_status_single) VALUES ('template_default', 'more_information.php', 1, 0, 200, 200, 1);
-INSERT INTO layout_boxes (layout_template, layout_box_name, layout_box_status, layout_box_location, layout_box_sort_order, layout_box_sort_order_single, layout_box_status_single) VALUES ('template_default', 'my_broken_box.php', 1, 0, 0, 0, 0);
-INSERT INTO layout_boxes (layout_template, layout_box_name, layout_box_status, layout_box_location, layout_box_sort_order, layout_box_sort_order_single, layout_box_status_single) VALUES ('template_default', 'order_history.php', 1, 1, 0, 0, 0);
-INSERT INTO layout_boxes (layout_template, layout_box_name, layout_box_status, layout_box_location, layout_box_sort_order, layout_box_sort_order_single, layout_box_status_single) VALUES ('template_default', 'product_notifications.php', 1, 1, 55, 85, 1);
-INSERT INTO layout_boxes (layout_template, layout_box_name, layout_box_status, layout_box_location, layout_box_sort_order, layout_box_sort_order_single, layout_box_status_single) VALUES ('template_default', 'reviews.php', 1, 0, 40, 0, 0);
-INSERT INTO layout_boxes (layout_template, layout_box_name, layout_box_status, layout_box_location, layout_box_sort_order, layout_box_sort_order_single, layout_box_status_single) VALUES ('template_default', 'search.php', 1, 1, 10, 0, 0);
-INSERT INTO layout_boxes (layout_template, layout_box_name, layout_box_status, layout_box_location, layout_box_sort_order, layout_box_sort_order_single, layout_box_status_single) VALUES ('template_default', 'search_header.php', 0, 0, 0, 0, 1);
-INSERT INTO layout_boxes (layout_template, layout_box_name, layout_box_status, layout_box_location, layout_box_sort_order, layout_box_sort_order_single, layout_box_status_single) VALUES ('template_default', 'shopping_cart.php', 1, 1, 20, 30, 1);
-INSERT INTO layout_boxes (layout_template, layout_box_name, layout_box_status, layout_box_location, layout_box_sort_order, layout_box_sort_order_single, layout_box_status_single) VALUES ('template_default', 'specials.php', 1, 1, 45, 0, 0);
-INSERT INTO layout_boxes (layout_template, layout_box_name, layout_box_status, layout_box_location, layout_box_sort_order, layout_box_sort_order_single, layout_box_status_single) VALUES ('template_default', 'tell_a_friend.php', 1, 1, 65, 0, 0);
-INSERT INTO layout_boxes (layout_template, layout_box_name, layout_box_status, layout_box_location, layout_box_sort_order, layout_box_sort_order_single, layout_box_status_single) VALUES ('template_default', 'whats_new.php', 1, 0, 20, 0, 0);
-INSERT INTO layout_boxes (layout_template, layout_box_name, layout_box_status, layout_box_location, layout_box_sort_order, layout_box_sort_order_single, layout_box_status_single) VALUES ('template_default', 'whos_online.php', 1, 1, 200, 200, 1);
-
-INSERT INTO layout_boxes (layout_template, layout_box_name, layout_box_status, layout_box_location, layout_box_sort_order, layout_box_sort_order_single, layout_box_status_single) VALUES ('viennablood', 'banner_box.php', 1, 0, 300, 1, 127);
-INSERT INTO layout_boxes (layout_template, layout_box_name, layout_box_status, layout_box_location, layout_box_sort_order, layout_box_sort_order_single, layout_box_status_single) VALUES ('viennablood', 'banner_box2.php', 1, 1, 15, 1, 15);
-INSERT INTO layout_boxes (layout_template, layout_box_name, layout_box_status, layout_box_location, layout_box_sort_order, layout_box_sort_order_single, layout_box_status_single) VALUES ('viennablood', 'banner_box_all.php', 1, 1, 5, 0, 0);
-INSERT INTO layout_boxes (layout_template, layout_box_name, layout_box_status, layout_box_location, layout_box_sort_order, layout_box_sort_order_single, layout_box_status_single) VALUES ('viennablood', 'best_sellers.php', 1, 1, 30, 70, 1);
-INSERT INTO layout_boxes (layout_template, layout_box_name, layout_box_status, layout_box_location, layout_box_sort_order, layout_box_sort_order_single, layout_box_status_single) VALUES ('viennablood', 'categories.php', 1, 0, 10, 10, 1);
-INSERT INTO layout_boxes (layout_template, layout_box_name, layout_box_status, layout_box_location, layout_box_sort_order, layout_box_sort_order_single, layout_box_status_single) VALUES ('viennablood', 'currencies.php', 1, 1, 80, 60, 1);
-INSERT INTO layout_boxes (layout_template, layout_box_name, layout_box_status, layout_box_location, layout_box_sort_order, layout_box_sort_order_single, layout_box_status_single) VALUES ('viennablood', 'document_categories.php', 1, 0, 0, 0, 0);
-INSERT INTO layout_boxes (layout_template, layout_box_name, layout_box_status, layout_box_location, layout_box_sort_order, layout_box_sort_order_single, layout_box_status_single) VALUES ('viennablood', 'ezpages.php', 1, 1, -1, 2, 1);
-INSERT INTO layout_boxes (layout_template, layout_box_name, layout_box_status, layout_box_location, layout_box_sort_order, layout_box_sort_order_single, layout_box_status_single) VALUES ('viennablood', 'featured.php', 1, 0, 45, 0, 0);
-INSERT INTO layout_boxes (layout_template, layout_box_name, layout_box_status, layout_box_location, layout_box_sort_order, layout_box_sort_order_single, layout_box_status_single) VALUES ('viennablood', 'information.php', 1, 0, 50, 40, 1);
-INSERT INTO layout_boxes (layout_template, layout_box_name, layout_box_status, layout_box_location, layout_box_sort_order, layout_box_sort_order_single, layout_box_status_single) VALUES ('viennablood', 'languages.php', 1, 1, 70, 50, 1);
-INSERT INTO layout_boxes (layout_template, layout_box_name, layout_box_status, layout_box_location, layout_box_sort_order, layout_box_sort_order_single, layout_box_status_single) VALUES ('viennablood', 'manufacturers.php', 1, 0, 30, 20, 1);
-INSERT INTO layout_boxes (layout_template, layout_box_name, layout_box_status, layout_box_location, layout_box_sort_order, layout_box_sort_order_single, layout_box_status_single) VALUES ('viennablood', 'manufacturer_info.php', 1, 1, 35, 95, 1);
-INSERT INTO layout_boxes (layout_template, layout_box_name, layout_box_status, layout_box_location, layout_box_sort_order, layout_box_sort_order_single, layout_box_status_single) VALUES ('viennablood', 'more_information.php', 1, 0, 200, 200, 1);
-INSERT INTO layout_boxes (layout_template, layout_box_name, layout_box_status, layout_box_location, layout_box_sort_order, layout_box_sort_order_single, layout_box_status_single) VALUES ('viennablood', 'music_genres.php', 1, 1, 0, 0, 0);
-INSERT INTO layout_boxes (layout_template, layout_box_name, layout_box_status, layout_box_location, layout_box_sort_order, layout_box_sort_order_single, layout_box_status_single) VALUES ('viennablood', 'order_history.php', 1, 1, 0, 0, 0);
-INSERT INTO layout_boxes (layout_template, layout_box_name, layout_box_status, layout_box_location, layout_box_sort_order, layout_box_sort_order_single, layout_box_status_single) VALUES ('viennablood', 'product_notifications.php', 1, 1, 55, 85, 1);
-INSERT INTO layout_boxes (layout_template, layout_box_name, layout_box_status, layout_box_location, layout_box_sort_order, layout_box_sort_order_single, layout_box_status_single) VALUES ('viennablood', 'record_companies.php', 1, 1, 0, 0, 0);
-INSERT INTO layout_boxes (layout_template, layout_box_name, layout_box_status, layout_box_location, layout_box_sort_order, layout_box_sort_order_single, layout_box_status_single) VALUES ('viennablood', 'reviews.php', 1, 0, 40, 0, 0);
-INSERT INTO layout_boxes (layout_template, layout_box_name, layout_box_status, layout_box_location, layout_box_sort_order, layout_box_sort_order_single, layout_box_status_single) VALUES ('viennablood', 'search.php', 1, 1, 10, 0, 0);
-INSERT INTO layout_boxes (layout_template, layout_box_name, layout_box_status, layout_box_location, layout_box_sort_order, layout_box_sort_order_single, layout_box_status_single) VALUES ('viennablood', 'search_header.php', 0, 0, 0, 0, 1);
-INSERT INTO layout_boxes (layout_template, layout_box_name, layout_box_status, layout_box_location, layout_box_sort_order, layout_box_sort_order_single, layout_box_status_single) VALUES ('viennablood', 'shopping_cart.php', 1, 1, 20, 30, 1);
-INSERT INTO layout_boxes (layout_template, layout_box_name, layout_box_status, layout_box_location, layout_box_sort_order, layout_box_sort_order_single, layout_box_status_single) VALUES ('viennablood', 'specials.php', 1, 1, 45, 0, 0);
-INSERT INTO layout_boxes (layout_template, layout_box_name, layout_box_status, layout_box_location, layout_box_sort_order, layout_box_sort_order_single, layout_box_status_single) VALUES ('viennablood', 'tell_a_friend.php', 0, 1, 65, 0, 0);
-INSERT INTO layout_boxes (layout_template, layout_box_name, layout_box_status, layout_box_location, layout_box_sort_order, layout_box_sort_order_single, layout_box_status_single) VALUES ('viennablood', 'whats_new.php', 1, 0, 20, 0, 0);
-INSERT INTO layout_boxes (layout_template, layout_box_name, layout_box_status, layout_box_location, layout_box_sort_order, layout_box_sort_order_single, layout_box_status_single) VALUES ('viennablood', 'whos_online.php', 1, 1, 200, 200, 1);
-INSERT INTO layout_boxes (layout_template, layout_box_name, layout_box_status, layout_box_location, layout_box_sort_order, layout_box_sort_order_single, layout_box_status_single) VALUES ('classic', 'banner_box.php', 1, 0, 300, 1, 127);
-INSERT INTO layout_boxes (layout_template, layout_box_name, layout_box_status, layout_box_location, layout_box_sort_order, layout_box_sort_order_single, layout_box_status_single) VALUES ('classic', 'banner_box2.php', 1, 1, 15, 1, 15);
-INSERT INTO layout_boxes (layout_template, layout_box_name, layout_box_status, layout_box_location, layout_box_sort_order, layout_box_sort_order_single, layout_box_status_single) VALUES ('classic', 'banner_box_all.php', 1, 1, 5, 0, 0);
-INSERT INTO layout_boxes (layout_template, layout_box_name, layout_box_status, layout_box_location, layout_box_sort_order, layout_box_sort_order_single, layout_box_status_single) VALUES ('classic', 'best_sellers.php', 1, 1, 30, 70, 1);
-INSERT INTO layout_boxes (layout_template, layout_box_name, layout_box_status, layout_box_location, layout_box_sort_order, layout_box_sort_order_single, layout_box_status_single) VALUES ('classic', 'categories.php', 1, 0, 10, 10, 1);
-INSERT INTO layout_boxes (layout_template, layout_box_name, layout_box_status, layout_box_location, layout_box_sort_order, layout_box_sort_order_single, layout_box_status_single) VALUES ('classic', 'currencies.php', 0, 1, 80, 60, 0);
-INSERT INTO layout_boxes (layout_template, layout_box_name, layout_box_status, layout_box_location, layout_box_sort_order, layout_box_sort_order_single, layout_box_status_single) VALUES ('classic', 'document_categories.php', 1, 0, 0, 0, 0);
-INSERT INTO layout_boxes (layout_template, layout_box_name, layout_box_status, layout_box_location, layout_box_sort_order, layout_box_sort_order_single, layout_box_status_single) VALUES ('classic', 'ezpages.php', 1, 1, -1, 2, 1);
-INSERT INTO layout_boxes (layout_template, layout_box_name, layout_box_status, layout_box_location, layout_box_sort_order, layout_box_sort_order_single, layout_box_status_single) VALUES ('classic', 'featured.php', 1, 0, 45, 0, 0);
-INSERT INTO layout_boxes (layout_template, layout_box_name, layout_box_status, layout_box_location, layout_box_sort_order, layout_box_sort_order_single, layout_box_status_single) VALUES ('classic', 'information.php', 1, 0, 50, 40, 1);
-INSERT INTO layout_boxes (layout_template, layout_box_name, layout_box_status, layout_box_location, layout_box_sort_order, layout_box_sort_order_single, layout_box_status_single) VALUES ('classic', 'languages.php', 0, 1, 70, 50, 0);
-INSERT INTO layout_boxes (layout_template, layout_box_name, layout_box_status, layout_box_location, layout_box_sort_order, layout_box_sort_order_single, layout_box_status_single) VALUES ('classic', 'manufacturers.php', 1, 0, 30, 20, 1);
-INSERT INTO layout_boxes (layout_template, layout_box_name, layout_box_status, layout_box_location, layout_box_sort_order, layout_box_sort_order_single, layout_box_status_single) VALUES ('classic', 'manufacturer_info.php', 1, 1, 35, 95, 1);
-INSERT INTO layout_boxes (layout_template, layout_box_name, layout_box_status, layout_box_location, layout_box_sort_order, layout_box_sort_order_single, layout_box_status_single) VALUES ('classic', 'more_information.php', 1, 0, 200, 200, 1);
-INSERT INTO layout_boxes (layout_template, layout_box_name, layout_box_status, layout_box_location, layout_box_sort_order, layout_box_sort_order_single, layout_box_status_single) VALUES ('classic', 'music_genres.php', 1, 1, 0, 0, 0);
-INSERT INTO layout_boxes (layout_template, layout_box_name, layout_box_status, layout_box_location, layout_box_sort_order, layout_box_sort_order_single, layout_box_status_single) VALUES ('classic', 'order_history.php', 1, 1, 0, 0, 0);
-INSERT INTO layout_boxes (layout_template, layout_box_name, layout_box_status, layout_box_location, layout_box_sort_order, layout_box_sort_order_single, layout_box_status_single) VALUES ('classic', 'product_notifications.php', 1, 1, 55, 85, 1);
-INSERT INTO layout_boxes (layout_template, layout_box_name, layout_box_status, layout_box_location, layout_box_sort_order, layout_box_sort_order_single, layout_box_status_single) VALUES ('classic', 'record_companies.php', 1, 1, 0, 0, 0);
-INSERT INTO layout_boxes (layout_template, layout_box_name, layout_box_status, layout_box_location, layout_box_sort_order, layout_box_sort_order_single, layout_box_status_single) VALUES ('classic', 'reviews.php', 1, 0, 40, 0, 0);
-INSERT INTO layout_boxes (layout_template, layout_box_name, layout_box_status, layout_box_location, layout_box_sort_order, layout_box_sort_order_single, layout_box_status_single) VALUES ('classic', 'search.php', 1, 1, 10, 0, 0);
-INSERT INTO layout_boxes (layout_template, layout_box_name, layout_box_status, layout_box_location, layout_box_sort_order, layout_box_sort_order_single, layout_box_status_single) VALUES ('classic', 'search_header.php', 0, 0, 0, 0, 1);
-INSERT INTO layout_boxes (layout_template, layout_box_name, layout_box_status, layout_box_location, layout_box_sort_order, layout_box_sort_order_single, layout_box_status_single) VALUES ('classic', 'shopping_cart.php', 1, 1, 20, 30, 1);
-INSERT INTO layout_boxes (layout_template, layout_box_name, layout_box_status, layout_box_location, layout_box_sort_order, layout_box_sort_order_single, layout_box_status_single) VALUES ('classic', 'specials.php', 1, 1, 45, 0, 0);
-INSERT INTO layout_boxes (layout_template, layout_box_name, layout_box_status, layout_box_location, layout_box_sort_order, layout_box_sort_order_single, layout_box_status_single) VALUES ('classic', 'tell_a_friend.php', 1, 1, 65, 0, 0);
-INSERT INTO layout_boxes (layout_template, layout_box_name, layout_box_status, layout_box_location, layout_box_sort_order, layout_box_sort_order_single, layout_box_status_single) VALUES ('classic', 'whats_new.php', 1, 0, 20, 0, 0);
-INSERT INTO layout_boxes (layout_template, layout_box_name, layout_box_status, layout_box_location, layout_box_sort_order, layout_box_sort_order_single, layout_box_status_single) VALUES ('classic', 'whos_online.php', 1, 1, 200, 200, 1);
+INSERT INTO `layout_boxes` (`layout_id`, `layout_template`, `layout_box_name`, `layout_box_status`, `layout_box_location`, `layout_box_sort_order`, `layout_box_sort_order_single`, `layout_box_status_single`) VALUES
+    (171, 'default_template_settings', 'product_notifications.php', 1, 1, 55, 85, 1),
+    (172, 'default_template_settings', 'record_companies.php', 1, 1, 0, 0, 0),
+    (170, 'default_template_settings', 'order_history.php', 1, 1, 0, 0, 0),
+    (169, 'default_template_settings', 'music_genres.php', 1, 1, 0, 0, 0),
+    (168, 'default_template_settings', 'more_information.php', 1, 0, 200, 200, 1),
+    (167, 'default_template_settings', 'manufacturer_info.php', 1, 1, 35, 95, 1),
+    (166, 'default_template_settings', 'manufacturers.php', 1, 0, 30, 20, 1),
+    (165, 'default_template_settings', 'languages.php', 0, 1, 70, 50, 0),
+    (164, 'default_template_settings', 'information.php', 1, 0, 50, 40, 1),
+    (163, 'default_template_settings', 'featured.php', 1, 0, 45, 0, 0),
+    (162, 'default_template_settings', 'ezpages.php', 1, 1, -1, 2, 1),
+    (161, 'default_template_settings', 'document_categories.php', 1, 0, 0, 0, 0),
+    (160, 'default_template_settings', 'currencies.php', 0, 1, 80, 60, 0),
+    (159, 'default_template_settings', 'categories.php', 1, 0, 10, 10, 1),
+    (158, 'default_template_settings', 'best_sellers.php', 1, 1, 30, 70, 1),
+    (157, 'default_template_settings', 'banner_box_all.php', 1, 1, 5, 0, 0),
+    (156, 'default_template_settings', 'banner_box2.php', 1, 1, 15, 1, 15),
+    (155, 'default_template_settings', 'banner_box.php', 1, 0, 300, 1, 127),
+    (27, 'template_default', 'banner_box_all.php', 1, 1, 5, 0, 0),
+    (28, 'template_default', 'banner_box.php', 1, 0, 300, 1, 127),
+    (29, 'template_default', 'banner_box2.php', 1, 1, 15, 1, 15),
+    (30, 'template_default', 'best_sellers.php', 1, 1, 30, 70, 1),
+    (31, 'template_default', 'categories.php', 1, 0, 10, 10, 1),
+    (32, 'template_default', 'currencies.php', 0, 1, 80, 60, 0),
+    (33, 'template_default', 'ezpages.php', 1, 1, -1, 2, 1),
+    (34, 'template_default', 'featured.php', 1, 0, 45, 0, 0),
+    (35, 'template_default', 'information.php', 1, 0, 50, 40, 1),
+    (36, 'template_default', 'languages.php', 0, 1, 70, 50, 0),
+    (37, 'template_default', 'manufacturers.php', 1, 0, 30, 20, 1),
+    (38, 'template_default', 'manufacturer_info.php', 1, 1, 35, 95, 1),
+    (39, 'template_default', 'more_information.php', 1, 0, 200, 200, 1),
+    (40, 'template_default', 'my_broken_box.php', 1, 0, 0, 0, 0),
+    (41, 'template_default', 'order_history.php', 1, 1, 0, 0, 0),
+    (42, 'template_default', 'product_notifications.php', 1, 1, 55, 85, 1),
+    (43, 'template_default', 'reviews.php', 1, 0, 40, 0, 0),
+    (44, 'template_default', 'search.php', 1, 1, 10, 0, 0),
+    (45, 'template_default', 'search_header.php', 0, 0, 0, 0, 1),
+    (46, 'template_default', 'shopping_cart.php', 1, 1, 20, 30, 1),
+    (47, 'template_default', 'specials.php', 1, 1, 45, 0, 0),
+    (48, 'template_default', 'tell_a_friend.php', 1, 1, 65, 0, 0),
+    (49, 'template_default', 'whats_new.php', 1, 0, 20, 0, 0),
+    (50, 'template_default', 'whos_online.php', 1, 1, 200, 200, 1),
+    (51, 'viennablood', 'banner_box.php', 1, 0, 300, 1, 127),
+    (52, 'viennablood', 'banner_box2.php', 1, 1, 15, 1, 15),
+    (53, 'viennablood', 'banner_box_all.php', 1, 1, 5, 0, 0),
+    (54, 'viennablood', 'best_sellers.php', 1, 1, 30, 70, 1),
+    (55, 'viennablood', 'categories.php', 1, 0, 10, 10, 1),
+    (56, 'viennablood', 'currencies.php', 1, 1, 80, 60, 1),
+    (57, 'viennablood', 'document_categories.php', 1, 0, 0, 0, 0),
+    (58, 'viennablood', 'ezpages.php', 1, 1, -1, 2, 1),
+    (59, 'viennablood', 'featured.php', 1, 0, 45, 0, 0),
+    (60, 'viennablood', 'information.php', 1, 0, 50, 40, 1),
+    (61, 'viennablood', 'languages.php', 1, 1, 70, 50, 1),
+    (62, 'viennablood', 'manufacturers.php', 1, 0, 30, 20, 1),
+    (63, 'viennablood', 'manufacturer_info.php', 1, 1, 35, 95, 1),
+    (64, 'viennablood', 'more_information.php', 1, 0, 200, 200, 1),
+    (65, 'viennablood', 'music_genres.php', 1, 1, 0, 0, 0),
+    (66, 'viennablood', 'order_history.php', 1, 1, 0, 0, 0),
+    (67, 'viennablood', 'product_notifications.php', 1, 1, 55, 85, 1),
+    (68, 'viennablood', 'record_companies.php', 1, 1, 0, 0, 0),
+    (69, 'viennablood', 'reviews.php', 1, 0, 40, 0, 0),
+    (70, 'viennablood', 'search.php', 1, 1, 10, 0, 0),
+    (71, 'viennablood', 'search_header.php', 0, 0, 0, 0, 1),
+    (72, 'viennablood', 'shopping_cart.php', 1, 1, 20, 30, 1),
+    (73, 'viennablood', 'specials.php', 1, 1, 45, 0, 0),
+    (74, 'viennablood', 'tell_a_friend.php', 0, 1, 65, 0, 0),
+    (75, 'viennablood', 'whats_new.php', 1, 0, 20, 0, 0),
+    (76, 'viennablood', 'whos_online.php', 1, 1, 200, 200, 1),
+    (77, 'classic', 'banner_box.php', 1, 0, 300, 1, 127),
+    (78, 'classic', 'banner_box2.php', 1, 1, 15, 1, 15),
+    (79, 'classic', 'banner_box_all.php', 1, 1, 5, 0, 0),
+    (80, 'classic', 'best_sellers.php', 1, 1, 30, 70, 1),
+    (81, 'classic', 'categories.php', 1, 0, 10, 10, 1),
+    (82, 'classic', 'currencies.php', 0, 1, 80, 60, 0),
+    (83, 'classic', 'document_categories.php', 1, 0, 0, 0, 0),
+    (84, 'classic', 'ezpages.php', 1, 1, -1, 2, 1),
+    (85, 'classic', 'featured.php', 1, 0, 45, 0, 0),
+    (86, 'classic', 'information.php', 1, 0, 50, 40, 1),
+    (87, 'classic', 'languages.php', 0, 1, 70, 50, 0),
+    (88, 'classic', 'manufacturers.php', 1, 0, 30, 20, 1),
+    (89, 'classic', 'manufacturer_info.php', 1, 1, 35, 95, 1),
+    (90, 'classic', 'more_information.php', 1, 0, 200, 200, 1),
+    (91, 'classic', 'music_genres.php', 1, 1, 0, 0, 0),
+    (92, 'classic', 'order_history.php', 1, 1, 0, 0, 0),
+    (93, 'classic', 'product_notifications.php', 1, 1, 55, 85, 1),
+    (94, 'classic', 'record_companies.php', 1, 1, 0, 0, 0),
+    (95, 'classic', 'reviews.php', 1, 0, 40, 0, 0),
+    (96, 'classic', 'search.php', 1, 1, 10, 0, 0),
+    (97, 'classic', 'search_header.php', 0, 0, 0, 0, 1),
+    (98, 'classic', 'shopping_cart.php', 1, 1, 20, 30, 1),
+    (99, 'classic', 'specials.php', 1, 1, 45, 0, 0),
+    (100, 'classic', 'tell_a_friend.php', 1, 1, 65, 0, 0),
+    (101, 'classic', 'whats_new.php', 1, 0, 20, 0, 0),
+    (102, 'classic', 'whos_online.php', 1, 1, 200, 200, 1),
+    (103, 'viennabright', 'banner_box.php', 1, 0, 300, 1, 127),
+    (104, 'viennabright', 'banner_box2.php', 1, 1, 15, 1, 15),
+    (105, 'viennabright', 'banner_box_all.php', 1, 1, 5, 0, 0),
+    (106, 'viennabright', 'best_sellers.php', 1, 1, 30, 70, 1),
+    (107, 'viennabright', 'categories.php', 1, 0, 10, 10, 1),
+    (108, 'viennabright', 'currencies.php', 0, 1, 80, 60, 0),
+    (109, 'viennabright', 'document_categories.php', 1, 0, 0, 0, 0),
+    (110, 'viennabright', 'ezpages.php', 1, 1, -1, 2, 1),
+    (111, 'viennabright', 'featured.php', 1, 0, 45, 0, 0),
+    (112, 'viennabright', 'information.php', 1, 0, 50, 40, 1),
+    (113, 'viennabright', 'languages.php', 0, 1, 70, 50, 0),
+    (114, 'viennabright', 'manufacturer_info.php', 1, 1, 35, 95, 1),
+    (115, 'viennabright', 'manufacturers.php', 1, 0, 30, 20, 1),
+    (116, 'viennabright', 'more_information.php', 1, 0, 200, 200, 1),
+    (117, 'viennabright', 'music_genres.php', 1, 1, 0, 0, 0),
+    (118, 'viennabright', 'order_history.php', 1, 1, 0, 0, 0),
+    (119, 'viennabright', 'product_notifications.php', 1, 1, 55, 85, 1),
+    (120, 'viennabright', 'record_companies.php', 1, 1, 0, 0, 0),
+    (121, 'viennabright', 'reviews.php', 1, 0, 40, 0, 0),
+    (122, 'viennabright', 'search.php', 1, 1, 10, 0, 0),
+    (123, 'viennabright', 'search_header.php', 0, 0, 0, 0, 1),
+    (124, 'viennabright', 'shopping_cart.php', 1, 1, 20, 30, 1),
+    (125, 'viennabright', 'specials.php', 1, 1, 45, 0, 0),
+    (126, 'viennabright', 'tell_a_friend.php', 1, 1, 65, 0, 0),
+    (127, 'viennabright', 'whats_new.php', 1, 0, 20, 0, 0),
+    (128, 'viennabright', 'whos_online.php', 1, 1, 200, 200, 1),
+    (129, 'css', 'banner_box.php', 1, 0, 300, 1, 127),
+    (130, 'css', 'banner_box2.php', 1, 1, 15, 1, 15),
+    (131, 'css', 'banner_box_all.php', 1, 1, 5, 0, 0),
+    (132, 'css', 'best_sellers.php', 1, 1, 30, 70, 1),
+    (133, 'css', 'categories.php', 1, 0, 10, 10, 1),
+    (134, 'css', 'currencies.php', 0, 1, 80, 60, 0),
+    (135, 'css', 'document_categories.php', 1, 0, 0, 0, 0),
+    (136, 'css', 'ezpages.php', 1, 1, -1, 2, 1),
+    (137, 'css', 'featured.php', 1, 0, 45, 0, 0),
+    (138, 'css', 'information.php', 1, 0, 50, 40, 1),
+    (139, 'css', 'languages.php', 0, 1, 70, 50, 0),
+    (140, 'css', 'manufacturer_info.php', 1, 1, 35, 95, 1),
+    (141, 'css', 'manufacturers.php', 1, 0, 30, 20, 1),
+    (142, 'css', 'more_information.php', 1, 0, 200, 200, 1),
+    (143, 'css', 'music_genres.php', 1, 1, 0, 0, 0),
+    (144, 'css', 'order_history.php', 1, 1, 0, 0, 0),
+    (145, 'css', 'product_notifications.php', 1, 1, 55, 85, 1),
+    (146, 'css', 'record_companies.php', 1, 1, 0, 0, 0),
+    (147, 'css', 'reviews.php', 1, 0, 40, 0, 0),
+    (148, 'css', 'search.php', 1, 1, 10, 0, 0),
+    (149, 'css', 'search_header.php', 0, 0, 0, 0, 1),
+    (150, 'css', 'shopping_cart.php', 1, 1, 20, 30, 1),
+    (151, 'css', 'specials.php', 1, 1, 45, 0, 0),
+    (152, 'css', 'tell_a_friend.php', 1, 1, 65, 0, 0),
+    (153, 'css', 'whats_new.php', 1, 0, 20, 0, 0),
+    (154, 'css', 'whos_online.php', 1, 1, 200, 200, 1),
+    (173, 'default_template_settings', 'reviews.php', 1, 0, 40, 0, 0),
+    (174, 'default_template_settings', 'search.php', 1, 1, 10, 0, 0),
+    (175, 'default_template_settings', 'search_header.php', 0, 0, 0, 0, 1),
+    (176, 'default_template_settings', 'shopping_cart.php', 1, 1, 20, 30, 1),
+    (177, 'default_template_settings', 'specials.php', 1, 1, 45, 0, 0),
+    (178, 'default_template_settings', 'tell_a_friend.php', 1, 1, 65, 0, 0),
+    (179, 'default_template_settings', 'whats_new.php', 1, 0, 20, 0, 0),
+    (180, 'default_template_settings', 'whos_online.php', 1, 1, 200, 200, 1);
 
 INSERT INTO orders_status VALUES ( '1', '1', 'Pending');
 INSERT INTO orders_status VALUES ( '2', '1', 'Processing');
