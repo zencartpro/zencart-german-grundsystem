@@ -8,6 +8,7 @@
  * @copyright Copyright 2003-2009 Zen Cart Development Team
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
  * @version $Id$
+ * 
  */
 $relPath = (file_exists('includes/templates/template_default/images/logo.gif')) ? '' : '../';
 $instPath = (file_exists('zc_install/index.php')) ? 'zc_install/index.php' : (file_exists('../zc_install/index.php') ? '../zc_install/index.php' : '');
@@ -38,10 +39,10 @@ $docsPath = (file_exists('docs/index.html')) ? 'docs/index.html' : (file_exists(
 <div>
 <img src="<?php echo $relPath; ?>includes/templates/template_default/images/logo.gif" alt="Zen Cart&trade;" title=" Zen Cart&trade; " width="192" height="64" border="0" />
 </div>
-<h1>Hallo. Danke das Sie sich für Zen Cart&trade; entschieden haben.</h1>
-<h2>Sie bekommen diese Seite aus einem oder mehreren der folgenden Gründe angezeigt:</h2>
+<h1>Hallo. Danke das Sie sich fÃ¼r Zen Cart&trade; entschieden haben.</h1>
+<h2>Sie bekommen diese Seite aus einem oder mehreren der folgenden GrÃ¼nde angezeigt:</h2>
 <ol>
-<li>Sie benutzen <strong>Zen Cart&trade; zum ersten Mal</strong> und haben noch keine Installation durchgeführt.<br />
+<li>Sie benutzen <strong>Zen Cart&trade; zum ersten Mal</strong> und haben noch keine Installation durchgefÃ¼hrt.<br />
 Sollte das der Fall sein,
 <?php if ($instPath) { ?>
 <a href="<?php echo $instPath; ?>">dann klicken Sie hier</a>, um die Installation zu starten.
@@ -50,11 +51,11 @@ dann laden Sie das Verzeichnis "zc_install" per FTP Programm in Ihr Shopverzeich
 <?php } ?>
 <br /><br />
 </li>
-<li>Ihre <tt><strong>/includes/configure.php</strong></tt> und/oder <tt><strong>/admin/includes/configure.php</strong></tt> Datei enthält ungültige <em>Pfadangaben</em> und/oder ungültige <em>Angaben zur Datenbankverbindung</em>.<br />
-Sollten Sie kürzlich Ihre configure.php Dateien aus irgendwelchen Gründen geändert haben, oder Ihren Shop in ein anderes Verzeichnis/anderen Server verschoben haben, dann müssen Sie die entsprechenden Angaben in den beiden Dateien anpassen.<br />
+<li>Ihre <tt><strong>/includes/configure.php</strong></tt> und/oder <tt><strong>/admin/includes/configure.php</strong></tt> Datei enthÃ¤lt ungÃ¼ltige <em>Pfadangaben</em> und/oder ungÃ¼ltige <em>Angaben zur Datenbankverbindung</em>.<br />
+Sollten Sie kÃ¼rzlich Ihre configure.php Dateien aus irgendwelchen GrÃ¼nden geÃ¤ndert haben, oder Ihren Shop in ein anderes Verzeichnis/anderen Server verschoben haben, dann mÃ¼ssen Sie die entsprechenden Angaben in den beiden Dateien anpassen.<br />
 Weitere Informationen erhalten Sie im <a href="http://www.zen-cart.at" target="_blank">deutschsprachigen Supportforum</a>.</li>
 <?php if (isset($problemString) && $problemString != '') { ?>
-<li class="errorDetails">Zusätzliche Hinweise: <?php echo $problemString; ?></li>
+<li class="errorDetails">ZusÃ¤tzliche Hinweise: <?php echo $problemString; ?></li>
 <?php } ?>
 </ol>
 <br />
@@ -68,9 +69,9 @@ Weitere Informationen erhalten Sie im <a href="http://www.zen-cart.at" target="_
 <?php if ($instPath) { ?>
 <li>Gehen Sie auf <a href="<?php echo $instPath; ?>">zc_install/index.php</a> via Ihrem Browser.</li>
 <?php } else { ?>
-<li>Sie müssen das Verzeichnis "zc_install" per FTP in Ihr Shopverzeichnis hochladen und dann <a href="<?php echo $instPath; ?>">zc_install/index.php</a> via Ihrem Browser aufrufen (oder laden Sie diese Seite erneut, um einen Link dahin angezeigt zu bekommen).</li>
+<li>Sie mÃ¼ssen das Verzeichnis "zc_install" per FTP in Ihr Shopverzeichnis hochladen und dann <a href="<?php echo $instPath; ?>">zc_install/index.php</a> via Ihrem Browser aufrufen (oder laden Sie diese Seite erneut, um einen Link dahin angezeigt zu bekommen).</li>
 <?php } ?>
-<li>Das <a href="http://www.zen-cart.at" target="_blank">deutschsprachige Supportforum</a> steht Ihnen bei Problemen ebenfalls zur Verfügung.</li>
+<li>Das <a href="http://www.zen-cart.at" target="_blank">deutschsprachige Supportforum</a> steht Ihnen bei Problemen ebenfalls zur VerfÃ¼gung.</li>
 </ol>
 
 </div>
