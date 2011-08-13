@@ -39,4 +39,4 @@ define('TEXT_DATE_ADDED', 'Erstellt am:');
 define('TEXT_LAST_MODIFIED', 'Letzte Änderung:');
 define('TEXT_CUSTOMERS', 'Kunden in der Gruppe:');
 define('ERROR_GROUP_PRICING_CUSTOMERS_EXIST', 'FEHLER: In dieser Gruppe sind noch Kunden.  Bestätigen Sie bitte, daß Sie alle Mitglieder von der Gruppe entfernen und sie löschen möchten.');
-define('ERROR_MODULE_NOT_CONFIGURED', 'Anmerkung: Sie verwenden Gruppenpreise, haben jedoch nicht das Gruppenermäßigunsmodul aktiviert.<br />Gehen Sie zu Admin->Module->Zusammenfassung->Gruppenermäßigung (ot_group_pricing) und installieren/konfigurieren das Modul.');
+define('ERROR_MODULE_NOT_CONFIGURED', 'HINWEIS: Sie verwenden Gruppenpreise, haben jedoch nicht das Gruppenermäßigunsmodul aktiviert.<br />Gehen Sie zu Admin->Module->Zusammenfassung->Gruppenermäßigung (ot_group_pricing) und installieren/konfigurieren das Modul.');

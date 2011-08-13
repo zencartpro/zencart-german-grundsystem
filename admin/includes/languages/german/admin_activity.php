@@ -3,25 +3,25 @@
  * @package admin
  * @copyright Copyright 2003-2011 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
- * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
+ * @license http://www.zen-cart.at/license/2_0.txt GNU Public License V2.0
  * @version $Id: admin_activity.php 729 2011-08-09 15:49:16Z hugo13 $
  */
 
-define('HEADING_TITLE', 'Admin Activity Log Manager');
-define('HEADING_SUB1', 'Review or Export Logs');
-define('HEADING_SUB2', 'Purge Log History');
-define('TEXT_ACTIVITY_EXPORT_FORMAT', 'Export File Format:');
-define('TEXT_ACTIVITY_EXPORT_FILENAME', 'Export Filename:');
-define('TEXT_ACTIVITY_EXPORT_SAVETOFILE','Save to file on server? (otherwise will stream for download directly from this window)');
-define('TEXT_ACTIVITY_EXPORT_DEST','Destination: ');
-define('TEXT_PROCESSED', ' Processed.');
-define('SUCCESS_EXPORT_ADMIN_ACTIVITY_LOG', 'Export complete. ');
-define('FAILURE_EXPORT_ADMIN_ACTIVITY_LOG', 'ALERT: Export failed. Could not successfully write to file ');
+define('HEADING_TITLE', 'Admin Aktivitäten Log Manager');
+define('HEADING_SUB1', 'Logeinträge anzeigen oder exportieren');
+define('HEADING_SUB2', 'Log History leeren');
+define('TEXT_ACTIVITY_EXPORT_FORMAT', 'Export als:');
+define('TEXT_ACTIVITY_EXPORT_FILENAME', 'Export Dateiname:');
+define('TEXT_ACTIVITY_EXPORT_SAVETOFILE','Datei auf dem Server speichern? (ansonsten erfolgt der Download der Datei direkt aus diesem Fenster)');
+define('TEXT_ACTIVITY_EXPORT_DEST','Speicherort: ');
+define('TEXT_PROCESSED', ' Verarbeitet.');
+define('SUCCESS_EXPORT_ADMIN_ACTIVITY_LOG', 'Export abgeschlossen. ');
+define('FAILURE_EXPORT_ADMIN_ACTIVITY_LOG', 'ACHTUNG: Export fehlgeschlagen. Es konnte nicht gespeichert werden in der Datei ');
 
-define('TEXT_INSTRUCTIONS','<u>INSTRUCTIONS</u><br />You can use this page to export your Zen Cart&trade; Admin User Access Activity to a CSV file for archiving.<br />You should save this data for use in fraud investigations in case your site is compromised. This is a requirement for PCI Compliance.<br />
-<ol><li>Choose whether to display or export to a file.<li>Enter a filename.<li>Click Save to proceed.<li>Choose whether to save or open the file, depending on what your browser offers.</ol>');
+define('TEXT_INSTRUCTIONS','<u>ANLEITUNG</u><br />Sie können diese Seite dazu benutzen, um die Aktivitäten Ihrer Zen Cart&trade; Admins in einer CSV Datei für Archivierungszwecke zu speichern.<br />Sie sollten die Admin Aktivitäten stets speichern, damit Sie in bei Untersuchungen von Betrugsfällen feststellen können, ob Ihr Shop kompromittiert (gehackt) wurde. Diese Daten sind Vorraussetzung, um die PCI Compliance zu erfüllen.<br />
+<ol><li>Wählen Sie aus, ob Sie die Export Datei anzeigen lassen oder in einer Datei speichern wollen.<li>Geben Sie einen Dateinamen ein.<li>Klicken Sie auf GO.<li>Wählen Sie aus, ob Sie die Exportdatei speichern oder öffnen wollen, je nachdem was Ihnen Ihr Browser anbietet.</ol>');
 
-define('TEXT_INFO_ADMIN_ACTIVITY_LOG', '<strong>Empty Admin Activity Log table from the database<br />WARNING: BE SURE TO BACKUP YOUR DATABASE before running this update!</strong><br />The Admin Activity Log is a tracking method that records activity in the Admin. <br />Due to its nature it can become very large, very quickly and does need to be cleaned out from time to time.<br />Warnings are given at 50,000 records or 60 days, which ever happens first.<br /><span class="alert">NOTE: For PCI Compliance, you are required to retain admin actvity log history for 12 months.<br />It is best to archive your logs by choosing EXPORT TO CSV and clicking Save, above, *BEFORE* purging log data.</span>');
-define('TEXT_ADMIN_LOG_PLEASE_CONFIRM_ERASE', '<strong><span class="alert">WARNING!: You are about to DELETE *important* audit trail records from your database.</span></strong><br />You should FIRST confirm that you have a reliable BACKUP of your database before proceeding.<br />By proceeding you accept that this information will be deleted and understand your legal responsibilities regarding this data.<br /><br />I understand my responsibilities, and wish to proceed with the deletion by clicking Reset:<br />');
-define('SUCCESS_CLEAN_ADMIN_ACTIVITY_LOG', '<strong>Completed</strong> erasure of the Admin Activity log');
+define('TEXT_INFO_ADMIN_ACTIVITY_LOG', '<strong>Admin Aktivität Log Tabelle in der Datenbank leeren<br />WARNUNG: Erstellen Sie ein Datenbankbackup bevor Sie die Tabelle leeren!</strong><br />Das Admin Aktivität Log zeichnet alle Aktivitäten in Ihrem Adminbereich auf, um diese bei Bedarf nachverfolgen zu können. <br />Aufgrund dessen kann die Tabelle sehr schnell sehr groß werden und sollte daher von Zeit zu Zeit geleert werden.<br />Eine Warnung über eine zu große Tabelle wird automatisch angezeigt, wenn die Tabelle über 50.000 Einträge enthält oder Einträge enthält die älter sind als 60 Tage, je nachdem was zuerst erreicht wird.<br /><span class="alert">HINWEIS: PCI Compliance setzt zwingend voraus, dass Sie die Admin Aktivitäts Logs für 12 Monate aufbewahren.<br />Daher ist es am Besten Ihre Logs zu archivieren, indem Sie oben EXPORT TO CSV auswählen und auf GO klicken, BEVOR Sie die Logeinträge löschen.</span>');
+define('TEXT_ADMIN_LOG_PLEASE_CONFIRM_ERASE', '<strong><span class="alert">WARNUNG!: Sie sind dabei *wichtige* Log Aufzeichnungen aus Ihrer Datenbank zu löschen.</span></strong><br />Sie sollten sich VORHER versichern, dass Sie ein Backup Ihrer Datenbank haben, bevor Sie fortfahren.<br />Mit der Fortsetzung (Löschung der Daten) bestätigen Sie, dass Sie die Wichtigkeit der Daten und Ihre rechtliche Verantwortung für diese Daten verstanden haben.<br /><br />Ich bin mir meiner Verantwortung bezüglich der Daten bewußt und will diese bewußt löschen:<br />');
+define('SUCCESS_CLEAN_ADMIN_ACTIVITY_LOG', '<strong>Vollständige</strong> Leerung des Admin Aktivitäts Logs erfolgreich abgeschlossen');
 

@@ -1,6 +1,6 @@
 <?php
 /**
- * @package linkpoint_api_payment_module
+ * @package admin
  * @copyright Copyright 2003-2010 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.at/license/2_0.txt GNU Public License V2.0
@@ -52,6 +52,7 @@ define('TEXT_FEATURED_PRODUCTS_STATUS', 'Status empfohlener Artikel:');
 define('TEXT_FEATURED_PRODUCT_AVAILABLE', 'Aktiv');
 define('TEXT_FEATURED_PRODUCT_NOT_AVAILABLE', 'Inaktiv');
 define('TEXT_FEATURED_DISABLED', '<strong>HINWEIS: "Empfohlene Artikel" Info ist deaktiviert, abgelaufen oder derzeit nicht aktiv</strong>');
+define('TEXT_FEATURED_CONFIRM_DELETE', 'Bitte bestätigen Sie, dass Sie bei diesem Artikel den Status "Empfohlener Artikel" entfernen wollen');
 define('TEXT_SPECIALS_PRODUCT', 'Artikel:');
 define('TEXT_SPECIALS_SPECIAL_PRICE', 'Sonderpreis:');
 define('TEXT_SPECIALS_EXPIRES_DATE', 'Ablaufdatum:');
@@ -63,6 +64,7 @@ define('TEXT_SPECIALS_PRODUCT_AVAILABLE', 'Aktiv');
 define('TEXT_SPECIALS_PRODUCT_NOT_AVAILABLE', 'Inaktiv');
 define('TEXT_SPECIALS_NO_GIFTS','Keine Sonderangebote durch Gutscheine');
 define('TEXT_SPECIAL_DISABLED', '<strong>HINWEIS: "Sonderangebot" Info ist deaktiviert, abgelaufen oder derzeit nicht aktiv</strong>');
+define('TEXT_SPECIALS_CONFIRM_DELETE', 'Bitte bestätigen Sie, dass Sie bei diesem Artikel den Status "Sonderangebot" entfernen wollen');
 define('TEXT_INFO_DATE_ADDED', 'Erstellt am:');
 define('TEXT_INFO_LAST_MODIFIED', 'Letzte Änderung:');
 define('TEXT_INFO_NEW_PRICE', 'Neuer Preis:');

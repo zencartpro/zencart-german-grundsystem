@@ -1,6 +1,6 @@
 <?php
 /**
- * @package linkpoint_api_payment_module
+ * @package admin
  * @copyright Copyright 2003-2010 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.at/license/2_0.txt GNU Public License V2.0
@@ -24,5 +24,5 @@ define('TEXT_INFO_DELETE_INTRO','Wollen Sie dieses Land wirklich löschen?');
 define('TEXT_INFO_HEADING_NEW_COUNTRY','Neues Land');
 define('TEXT_INFO_HEADING_EDIT_COUNTRY','Land bearbeiten');
 define('TEXT_INFO_HEADING_DELETE_COUNTRY','Land löschen');
-define('ERROR_COUNTRY_IN_USE', 'ERROR: Cannot delete selected country because it is connected to customer records.');
-define('ISO_COUNTRY_CODES_LINK', '<a href="http://www.iso.org/iso/country_codes/iso_3166_code_lists.htm" target="_blank">ISO 3166 Country Codes Reference</a>');
+define('ERROR_COUNTRY_IN_USE', 'FEHLER: Das ausgewählte Land kann nicht gelöscht werden, da es mit Kundenkonten verbunden ist.');
+define('ISO_COUNTRY_CODES_LINK', '<a href="http://www.iso.org/iso/country_codes/iso_3166_code_lists.htm" target="_blank">ISO 3166 Country Codes Referenz (in englischer Sprache)</a>');

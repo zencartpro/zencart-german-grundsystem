@@ -2,7 +2,7 @@
 /**
  * @package admin
  * @copyright Copyright 2003-2010 Zen Cart Development Team
- * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
+ * @license http://www.zen-cart.at/license/2_0.txt GNU Public License V2.0
  * @version $Id: alert_page.php 699 2011-01-12 20:09:43Z webchills $
  */
 

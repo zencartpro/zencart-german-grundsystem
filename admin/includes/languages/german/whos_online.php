@@ -1,6 +1,6 @@
 <?php
 /**
- * @package linkpoint_api_payment_module
+ * @package admin
  * @copyright Copyright 2003-2010 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.at/license/2_0.txt GNU Public License V2.0
@@ -53,3 +53,11 @@ define('TEXT_SESSION_ID', '<strong>Session ID:</strong> ');
 define('TEXT_HOST', '<strong>Host:</strong> ');
 define('TEXT_USER_AGENT', '<strong>User Agent:</strong> ');
 define('TEXT_EMPTY_CART', '<strong>Leerer Warenkorb</strong>');
+define('TEXT_WHOS_ONLINE_TIMER_UPDATING', 'Aktualisiere ');
+define('TEXT_WHOS_ONLINE_TIMER_EVERY', 'alle %s Sekunden.&nbsp;&nbsp;');
+define('TEXT_WHOS_ONLINE_TIMER_DISABLED', 'Manuell');
+define('TEXT_WHOS_ONLINE_TIMER_FREQ0', 'AUS');
+define('TEXT_WHOS_ONLINE_TIMER_FREQ1', '5 sec');
+define('TEXT_WHOS_ONLINE_TIMER_FREQ2', '15 sec');
+define('TEXT_WHOS_ONLINE_TIMER_FREQ3', '30 sec');
+define('TEXT_WHOS_ONLINE_TIMER_FREQ4', '1 min');

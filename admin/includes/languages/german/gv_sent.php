@@ -1,17 +1,27 @@
 <?php
-/**
- * @package linkpoint_api_payment_module
- * @copyright Copyright 2003-2010 Zen Cart Development Team
- * @copyright Portions Copyright 2003 osCommerce
- * @license http://www.zen-cart.at/license/2_0.txt GNU Public License V2.0
- * @translators: cyaneo/hugo13/wflohr/maleborg/webchills	http://www.zen-cart.at
- * @version $Id: gv_sent.php 627 2010-08-30 15:05:14Z webchills $
- */
+//
+// +----------------------------------------------------------------------+
+// |zen-cart Open Source E-commerce                                       |
+// +----------------------------------------------------------------------+
+// | Copyright (c) 2003 The zen-cart developers                           |
+// |                                                                      |
+// | http://www.zen-cart.at/index.php                                     |
+// |                                                                      |
+// | Portions Copyright (c) 2003 osCommerce                               |
+// +----------------------------------------------------------------------+
+// | This source file is subject to version 2.0 of the GPL license,       |
+// | that is bundled with this package in the file LICENSE, and is        |
+// | available through the world-wide-web at the following url:           |
+// | http://www.zen-cart.at/license/2_0.txt.                              |
+// | If you did not receive a copy of the zen-cart license and are unable |
+// | to obtain it through the world-wide-web, please send a note to       |
+// | license@zen-cart.com so we can mail you a copy immediately.          |
+// +----------------------------------------------------------------------+
 
 //  $Id: gv_sent.php 627 2010-08-30 15:05:14Z webchills $
 //
 
-define('HEADING_TITLE', 'Gutscheine versenden');
+define('HEADING_TITLE', TEXT_GV_NAMES .' versenden');
 define('TABLE_HEADING_SENDERS_NAME', 'Name des Absenders');
 define('TABLE_HEADING_VOUCHER_VALUE', ' Betrag');
 define('TABLE_HEADING_VOUCHER_CODE', ' Eingelöst');
@@ -21,7 +31,7 @@ define('TABLE_HEADING_ACTION', 'Aktion');
 define('TEXT_INFO_SENDERS_ID', 'Absender ID:');
 define('TEXT_INFO_AMOUNT_SENT', 'Betrag gesendet:');
 define('TEXT_INFO_DATE_SENT', 'Gesendet am:');
-define('TEXT_INFO_VOUCHER_CODE', ':');
+define('TEXT_INFO_VOUCHER_CODE', TEXT_GV_REDEEM . ':');
 define('TEXT_INFO_EMAIL_ADDRESS', 'E-Mail Adresse:');
 define('TEXT_INFO_DATE_REDEEMED', 'Einlösedatum:');
 define('TEXT_INFO_IP_ADDRESS', 'IP Adresse:');
