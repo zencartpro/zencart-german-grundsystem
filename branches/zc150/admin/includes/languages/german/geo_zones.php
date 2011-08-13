@@ -17,8 +17,8 @@ define('TABLE_HEADING_TAX_ZONES_DESCRIPTION', 'Zonenbeschreibung');
 define('TABLE_HEADING_STATUS', 'Status');
 define('TABLE_HEADING_ACTION','Aktion');
 //define('TEXT_LEGEND', 'LEGEND: ');
-define('TEXT_LEGEND_TAX_AND_ZONES', ': Steuersätze &amp; -zonen definiert ');
-define('TEXT_LEGEND_ONLY_ZONES', ': Steuerzonen aber keine Steuersätze definiert ');
+define('TEXT_LEGEND_TAX_AND_ZONES', ': Steuersätze & -zonen definiert ');
+define('TEXT_LEGEND_ONLY_ZONES', ': Steuerzonen, aber keine Steuersätze definiert ');
 define('TEXT_LEGEND_NOT_CONF', ': Nicht konfiguriert ');
 
 define('TEXT_INFO_HEADING_NEW_ZONE','Neue Steuerzone');

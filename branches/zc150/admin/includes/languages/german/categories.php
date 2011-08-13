@@ -1,6 +1,6 @@
 <?php
 /**
- * @package linkpoint_api_payment_module
+ * @package admin
  * @copyright Copyright 2003-2010 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.at/license/2_0.txt GNU Public License V2.0
@@ -8,11 +8,11 @@
  * @version $Id: categories.php 627 2010-08-30 15:05:14Z webchills $
  */
 
-define('HEADING_TITLE', 'Kategorien &amp; Artikel');
+define('HEADING_TITLE', 'Kategorien & Artikel');
 define('HEADING_TITLE_GOTO', 'Gehe zu:');
 
 define('TABLE_HEADING_ID', 'ID');
-define('TABLE_HEADING_CATEGORIES_PRODUCTS', 'Kategorien &amp; Artikel');
+define('TABLE_HEADING_CATEGORIES_PRODUCTS', 'Kategorien & Artikel');
 define('TABLE_HEADING_CATEGORIES_SORT_ORDER', 'Sortierung');
 
 define('TABLE_HEADING_PRICE', 'Preis | Sonderpreis | Abverkauf');

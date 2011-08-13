@@ -1,6 +1,6 @@
 <?php
 /**
- * @package linkpoint_api_payment_module
+ * @package admin
  * @copyright Copyright 2003-2010 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.at/license/2_0.txt GNU Public License V2.0
@@ -35,3 +35,11 @@ define('TEXT_UNSUBSCRIBE', ' "\n\nWenn Sie zukünftig keine Newsletter mehr erha
 
 // for whos_online when gethost is off
 define('OFFICE_IP_TO_HOST_ADDRESS', 'Deaktiviert');
+define('TEXT_EMAIL_SUBJECT_ADMIN_USER_ADDED', 'Admin Alarm: Ein neue Admin Benutzer wurde hinzugefügt.');
+define('TEXT_EMAIL_MESSAGE_ADMIN_USER_ADDED', 'Administrativer Alarm: Der Admin Benutzer (%s) wurde Ihrem Shop hinzugefügt von %s.' . "\n\n" . 'Wenn Sie oder ein authorisierter Administrator diese Änderung nicht veranlasst haben, dann ist es empfehlenswert die Sicherheit Ihres Shop sofort zu überprüfen.');
+define('TEXT_EMAIL_SUBJECT_ADMIN_USER_DELETED', 'Admin Alarm: Ein Admin Benutzer wurde gelöscht.');
+define('TEXT_EMAIL_MESSAGE_ADMIN_USER_DELETED', 'Administrativer Alarm: Der Admin Benutzer (%s) wurde aus Ihrem Shop gelöscht von %s.' . "\n\n" . 'Wenn Sie oder ein authorisierter Administrator diese Änderung nicht veranlasst haben, dann ist es empfehlenswert die Sicherheit Ihres Shop sofort zu überprüfen.');
+define('TEXT_EMAIL_SUBJECT_ADMIN_USER_CHANGED', 'Admin Alarm: Ein Admin Benutzer wurde verändert.');
+define('TEXT_EMAIL_ALERT_ADM_EMAIL_CHANGED', 'Admin Alarm: Die E-Mail Adresse von Admin Benutzer (%s) wurde geändert von (%s) zu (%s) von (%s)');
+define('TEXT_EMAIL_ALERT_ADM_NAME_CHANGED', 'Admin Alarm: Der Benutzername von Admin Benutzer (%s) wur geändert von (%s) zu (%s) von (%s)');
+define('TEXT_EMAIL_ALERT_ADM_PROFILE_CHANGED', 'Admin Alarm: Das Berechtigungsprofil von Admin Benutzer (%s) wurde geändert von (%s) zu (%s) von (%s)');

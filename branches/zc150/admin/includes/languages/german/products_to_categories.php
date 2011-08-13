@@ -1,6 +1,6 @@
 <?php
 /**
- * @package linkpoint_api_payment_module
+ * @package admin
  * @copyright Copyright 2003-2010 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.at/license/2_0.txt GNU Public License V2.0
@@ -50,6 +50,7 @@ define('WARNING_NO_CATEGORIES_ID', 'Warnung: Keine Kategorie ausgewählt ... kei
 define('SUCCESS_COPY_LINKED', 'Erfolgreiche Aktualisierung der verlinkten Artikel ... ');
 define('SUCCESS_COPY_ALL_PRODUCTS_TO_CATEGORY_FROM_LINKED', 'Artikel aus folgender Kategorie verlinken: ');
 define('SUCCESS_COPY_ALL_PRODUCTS_TO_CATEGORY_TO_LINKED', 'Artikel in folgende Kategorie verlinken: ');
+define('WARNING_COPY_ALL_PRODUCTS_TO_CATEGORY_TO_LINKED_MISSING', 'WARNUNG: Ungültige/Fehlende Kategorie um Artikel in Kategorien zu verlinken: ');
 define('WARNING_COPY_FROM_IN_TO_LINKED', '<strong>WARNUNG: Keine Änderungen durchgeführt - Artikel bereits verlinkt ... </strong>');
 
 // remove category to category linked

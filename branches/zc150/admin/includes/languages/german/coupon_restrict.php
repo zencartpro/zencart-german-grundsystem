@@ -12,7 +12,7 @@
 // | This source file is subject to version 2.0 of the GPL license,       |
 // | that is bundled with this package in the file LICENSE, and is        |
 // | available through the world-wide-web at the following url:           |
-// | http://www.zen-cart.at/license/2_0.txt.                             |
+// | http://www.zen-cart.at/license/2_0.txt.                              |
 // | If you did not receive a copy of the zen-cart license and are unable |
 // | to obtain it through the world-wide-web, please send a note to       |
 // | license@zen-cart.com so we can mail you a copy immediately.          |
@@ -39,8 +39,8 @@ define('TEXT_ALL_CATEGORIES', 'Alle Kategorien');
 define('MAX_DISPLAY_RESTRICT_ENTRIES', 20);
 define('TEXT_ALL_PRODUCTS_ADD', 'Alle Artikel der Kategorie hinzufügen');
 define('TEXT_ALL_PRODUCTS_REMOVE', 'Alle Artikel der Kategorie entfernen');
-define('TEXT_INFO_ADD_DENY_ALL', '<strong>Bei Alle Artikel der Kategorie hinzufügen werden nur Artikel hinzugefügt, für die noch keine Einschränkungen definiert wurden.<br />
-                    Bei Alle Artikel der Kategorie entfernen werden nur Artikel entfernt, die mit Erlaubt oder Nicht erlaubt gekennzeichnet wurden.</strong>');
+define('TEXT_INFO_ADD_DENY_ALL', '<strong>Bei der Auswahl von "Alle Artikel der Kategorie hinzufügen" werden nur Artikel hinzugefügt, für die noch keine Einschränkungen definiert wurden.<br />
+                    Bei der Auswahl von "Alle Artikel der Kategorie entfernen" werden nur Artikel entfernt, die mit Erlaubt oder Nicht erlaubt gekennzeichnet wurden.</strong>');
 
 define('TEXT_MANUFACTURER', 'Hersteller: ');
 define('TEXT_CATEGORY', 'Kategorie: ');

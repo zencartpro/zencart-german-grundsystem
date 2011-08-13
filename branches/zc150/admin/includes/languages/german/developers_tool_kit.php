@@ -3,7 +3,7 @@
  * @package admin
  * @copyright Copyright 2003-2010 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
- * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
+ * @license http://www.zen-cart.at/license/2_0.txt GNU Public License V2.0
  * @version $Id: developers_tool_kit.php 616 2010-07-22 16:50:27Z webchills $
  */
 define('HEADING_TITLE', 'Developers Tool Kit');
@@ -61,4 +61,4 @@ define('TEXT_ALL_FILES_LOOKUP_PHP', 'nur .php');
 define('TEXT_ALL_FILES_LOOKUP_PHPCSS', 'nur .php und .css');
 define('TEXT_ALL_FILES_LOOKUP_CSS', 'nur .css');
 define('TEXT_ALL_FILES_LOOKUP_HTMLTXT', 'nur .html and .txt');
-define('TEXT_CASE_SENSITIVE', 'Case Sensitive?');
+define('TEXT_CASE_SENSITIVE', 'Groß-/Kleinschreibung beachten?');

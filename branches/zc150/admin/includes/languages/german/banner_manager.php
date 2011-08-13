@@ -91,8 +91,8 @@ define('IMAGE_ICON_BANNER_OPEN_NEW_WINDOWS_OFF', 'Neues Fenster öffnen - AUS');
 define('IMAGE_ICON_BANNER_ON_SSL_ON', 'Auf SSL Seiten darstellen - EIN');
 define('IMAGE_ICON_BANNER_ON_SSL_OFF', 'Auf SSL Seiten darstellen - AUS');
 
-define('SUCCESS_BANNER_OPEN_NEW_WINDOW_UPDATED', 'Erfolg: Der Status des Banners zum Öffnen in einem neuen Fenster ist aktualisiert worden .');
-define('SUCCESS_BANNER_ON_SSL_UPDATED', 'Erfolg: Der Status des Banners zum Darstellen auf SSL Seiten ist aktualisiert worden .');
+define('SUCCESS_BANNER_OPEN_NEW_WINDOW_UPDATED', 'Erfolgreich: Der Status des Banners zum Öffnen in einem neuen Fenster ist aktualisiert worden .');
+define('SUCCESS_BANNER_ON_SSL_UPDATED', 'Erfolgreich: Der Status des Banners zum Darstellen auf SSL Seiten ist aktualisiert worden .');
 
 
 ?>

@@ -7,12 +7,12 @@
 // |                                                                      |
 // |  http://www.zen-cart.at/index.php                                    |
 // |                                                                      |
-// | Portions Copyright (c) 2003 osCommerce                                 |
+// | Portions Copyright (c) 2003 osCommerce                               |
 // +----------------------------------------------------------------------+
 // | This source file is subject to version 2.0 of the GPL license,       |
 // | that is bundled with this package in the file LICENSE, and is        |
 // | available through the world-wide-web at the following url:           |
-// | http://www.zen-cart.at/license/2_0.txt.                             |
+// | http://www.zen-cart.at/license/2_0.txt.                              |
 // | If you did not receive a copy of the zen-cart license and are unable |
 // | to obtain it through the world-wide-web, please send a note to       |
 // | license@zen-cart.com so we can mail you a copy immediately.          |
@@ -25,7 +25,7 @@ define('HEADING_TITLE','Tabellenspalten');
 define('TABLE_HEADING_LAYOUT_BOX_NAME','Dateiname der Box');
 define('TABLE_HEADING_LAYOUT_BOX_STATUS','Linke/Rechte Spalte<br />Status');
 define('TABLE_HEADING_LAYOUT_BOX_STATUS_SINGLE','Einzelne Spalte<br />Status');
-define('TABLE_HEADING_LAYOUT_BOX_LOCATION','Links/Rechts<br />Status');
+define('TABLE_HEADING_LAYOUT_BOX_LOCATION','Links oder Rechts<br />Spalte');
 define('TABLE_HEADING_LAYOUT_BOX_SORT_ORDER','Linke/Rechte Spalte<br />Sortierung');
 define('TABLE_HEADING_LAYOUT_BOX_SORT_ORDER_SINGLE','Einzelne Spalte<br />Sortierung');
 define('TABLE_HEADING_ACTION','Aktion');
@@ -58,6 +58,7 @@ define('HEADING_TITLE_LAYOUT_TEMPLATE','Seitenlayout Vorlage (Template)');
 
 define('TABLE_HEADING_LAYOUT_TITLE','Titel');
 define('TABLE_HEADING_LAYOUT_VALUE','Wert');
+define('TABLE_HEADING_ACTION', 'Aktion');
 
 define('TEXT_MODULE_DIRECTORY','Verzeichnis des Seitenlayouts:');
 define('TEXT_INFO_DATE_ADDED','Erstellt am:');
@@ -77,7 +78,7 @@ define('SUCCESS_BOX_DELETED','Das Template der Box wurde entfernt:');
 define('SUCCESS_BOX_RESET','Alle Einstellungen wurden auf die Standardeinstellungen zurückgesetzt:');
 define('SUCCESS_BOX_UPDATED','Die Einstellungen der Box wurden aktualisiert:');
 
-define('TEXT_ON','EIN');
-define('TEXT_OFF','AUS');
-define('TEXT_LEFT','LINKS');
-define('TEXT_RIGHT','RECHTS');
+define('TEXT_ON','EIN ');
+define('TEXT_OFF','AUS ');
+define('TEXT_LEFT','LINKS ');
+define('TEXT_RIGHT','RECHTS ');
