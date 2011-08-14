@@ -26,6 +26,7 @@ define('TABLE_BANNERS_HISTORY', DB_PREFIX . 'banners_history');
 define('TABLE_CATEGORIES', DB_PREFIX . 'categories');
 define('TABLE_CATEGORIES_DESCRIPTION', DB_PREFIX . 'categories_description');
 define('TABLE_CONFIGURATION', DB_PREFIX . 'configuration');
+define('TABLE_CONFIGURATION_LANGUAGE' , DB_PREFIX . 'configuration_language');
 define('TABLE_CONFIGURATION_GROUP', DB_PREFIX . 'configuration_group');
 define('TABLE_COUNTER', DB_PREFIX . 'counter');
 define('TABLE_COUNTER_HISTORY', DB_PREFIX . 'counter_history');
@@ -71,6 +72,7 @@ define('TABLE_PAYPAL_PAYMENT_STATUS_HISTORY', DB_PREFIX . 'paypal_payment_status
 define('TABLE_PRODUCTS', DB_PREFIX . 'products');
 define('TABLE_PRODUCT_TYPES', DB_PREFIX . 'product_types');
 define('TABLE_PRODUCT_TYPE_LAYOUT', DB_PREFIX . 'product_type_layout');
+define('TABLE_PRODUCT_TYPE_LAYOUT_LANGUAGE', DB_PREFIX . 'product_type_layout_language');
 define('TABLE_PRODUCT_TYPES_TO_CATEGORY', DB_PREFIX . 'product_types_to_category');
 define('TABLE_PRODUCTS_ATTRIBUTES', DB_PREFIX . 'products_attributes');
 define('TABLE_PRODUCTS_ATTRIBUTES_DOWNLOAD', DB_PREFIX . 'products_attributes_download');
