@@ -32,3 +32,4 @@ define('TEXT_CONTINUE_CHECKOUT_PROCEDURE','- wählen Sie Ihre Zahlungsart ...');
 // when free shipping for orders over $XX.00 is active
 define('FREE_SHIPPING_TITLE', 'Versandkostenfreie Lieferung');
 define('FREE_SHIPPING_DESCRIPTION', 'Versandkostenfreie Lieferung für Bestellungen ab %s');
+define('ERROR_PLEASE_RESELECT_SHIPPING_METHOD', 'Die verfügbaren Versandarten haben sich geändert. Bitte wählen Sie erneut Ihre gewünschte Versandart aus.');

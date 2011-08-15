@@ -55,7 +55,7 @@ define('TEXT_DELETE_IMAGE', 'Soll das Standardbild dieser Artikeltyp wirklich ge
 define('TEXT_DELETE_PRODUCTS', 'Sollen die Artikel von diesem Artikeltyp gelöscht werden? (Beinhaltet auch Artikelbewertungen, Sonderangebote und Artikel Neuerscheinungen)');
 define('TEXT_DELETE_WARNING_PRODUCTS', '<b>WARNUNG:</b> Es sind immer noch %s Artikel zu diesem Artikeltyp verlinkt!');
 
-define('ERROR_DIRECTORY_NOT_WRITEABLE', 'Fehler: In das Verzeichnis kann nicht geschrieben werden. Bitte setzten Sie die entsprechenden Berechtigungen auf %s');
-define('ERROR_DIRECTORY_DOES_NOT_EXIST', 'Fehler: Das Verzeichnis %s existiert nicht');
+define('ERROR_DIRECTORY_NOT_WRITEABLE', 'FEHLER: In das Verzeichnis kann nicht geschrieben werden. Bitte setzten Sie die entsprechenden Berechtigungen auf %s');
+define('ERROR_DIRECTORY_DOES_NOT_EXIST', 'FEHLER: Das Verzeichnis %s existiert nicht');
 
 define('IMAGE_LAYOUT', 'Layouteinstellungen');

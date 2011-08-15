@@ -7,9 +7,6 @@
  * @translator: cyaneo/hugo13/wflohr/maleborg/webchills	http://www.zen-cart.at	2010-04-27
  * @version $Id: german.php 643 2010-09-23 22:54:04Z maleborg $
  */
- 
- // TRANSLATE!!
-
 if (!defined('IS_ADMIN_FLAG'))
 {
   die('Illegal Access');
@@ -95,30 +92,30 @@ define('DOB_FORMAT_STRING', 'dd.mm.yyyy');
 // configuration box text
 define('BOX_HEADING_CONFIGURATION', 'Konfiguration');
 define('BOX_CONFIGURATION_MY_STORE', 'Mein Shop');
-define('BOX_CONFIGURATION_MINIMUM_VALUES', 'Minimum Values');
-define('BOX_CONFIGURATION_MAXIMUM_VALUES', 'Maximum Values');
+define('BOX_CONFIGURATION_MINIMUM_VALUES', 'Minimale Werte');
+define('BOX_CONFIGURATION_MAXIMUM_VALUES', 'Maximale Werte');
 define('BOX_CONFIGURATION_IMAGES', 'Bilder');
 define('BOX_CONFIGURATION_CUSTOMER_DETAILS', 'Kundendetails');
-define('BOX_CONFIGURATION_SHIPPING_PACKAGING', 'Versand/Packaging');
-define('BOX_CONFIGURATION_PRODUCT_LISTING', 'Produktliste');
-define('BOX_CONFIGURATION_STOCK', 'Stock');
+define('BOX_CONFIGURATION_SHIPPING_PACKAGING', 'Versandoptionen');
+define('BOX_CONFIGURATION_PRODUCT_LISTING', 'Artikelliste');
+define('BOX_CONFIGURATION_STOCK', 'Lagerverwaltung');
 define('BOX_CONFIGURATION_LOGGING', 'Protokollierung');
 define('BOX_CONFIGURATION_EMAIL_OPTIONS', 'E-Mail Optionen');
-define('BOX_CONFIGURATION_ATTRIBUTE_OPTIONS', 'Attribute Settings');
-define('BOX_CONFIGURATION_GZIP_COMPRESSION', 'GZip Compression');
-define('BOX_CONFIGURATION_SESSIONS', 'Sessions');
-define('BOX_CONFIGURATION_REGULATIONS', 'Regulations');
-define('BOX_CONFIGURATION_GV_COUPONS', 'GV Coupons');
-define('BOX_CONFIGURATION_CACHE', 'Cache Verwaltung');
-define('BOX_CONFIGURATION_PRODUCT_INFO', 'Product Info');
-define('BOX_CONFIGURATION_LAYOUT_SETTINGS', 'Layout Settings');
-define('BOX_CONFIGURATION_WEBSITE_MAINTENANCE', 'Website Maintenance');
-define('BOX_CONFIGURATION_NEW_LISTING', 'New Listing');
-define('BOX_CONFIGURATION_FEATURED_LISTING', 'Featured Listing');
-define('BOX_CONFIGURATION_ALL_LISTING', 'All Listing');
-define('BOX_CONFIGURATION_INDEX_LISTING', 'Index Listing');
-define('BOX_CONFIGURATION_DEFINE_PAGE_STATUS', 'Define Page Status');
-define('BOX_CONFIGURATION_EZPAGES_SETTINGS', 'EZ-Pages Settings');
+define('BOX_CONFIGURATION_ATTRIBUTE_OPTIONS', 'Attributeinstellungen');
+define('BOX_CONFIGURATION_GZIP_COMPRESSION', 'GZip Kompression');
+define('BOX_CONFIGURATION_SESSIONS', 'Sitzungen/Sessions');
+define('BOX_CONFIGURATION_REGULATIONS', 'AGB & Datenschutz');
+define('BOX_CONFIGURATION_GV_COUPONS', 'Gutscheine & Aktionskupons');
+define('BOX_CONFIGURATION_CREDIT_CARDS', 'Kreditkarten');
+define('BOX_CONFIGURATION_PRODUCT_INFO', 'Artikeldetails');
+define('BOX_CONFIGURATION_LAYOUT_SETTINGS', 'Layouteinstellungen');
+define('BOX_CONFIGURATION_WEBSITE_MAINTENANCE', 'Shopwartung');
+define('BOX_CONFIGURATION_NEW_LISTING', 'Liste - Neue Artikel');
+define('BOX_CONFIGURATION_FEATURED_LISTING', 'Liste - Empfohle Artikel');
+define('BOX_CONFIGURATION_ALL_LISTING', 'Liste - Alle Artikel');
+define('BOX_CONFIGURATION_INDEX_LISTING', 'Liste - Artikelindex');
+define('BOX_CONFIGURATION_DEFINE_PAGE_STATUS', 'Eigene Seiten');
+define('BOX_CONFIGURATION_EZPAGES_SETTINGS', 'EZ-Pages Einstellungen');
 
 // modules box text
 define('BOX_HEADING_MODULES', 'Module');
@@ -139,8 +136,8 @@ define('BOX_CATALOG_SPECIALS', 'Sonderangebote');
 define('BOX_CATALOG_PRODUCTS_EXPECTED', 'Artikel Neuerscheinungen');
 define('BOX_CATALOG_SALEMAKER', 'Abverkaufsmanager');
 define('BOX_CATALOG_PRODUCTS_PRICE_MANAGER', 'Artikelpreis Manager');
-define('BOX_CATALOG_PRODUCT', 'Product');
-define('BOX_CATALOG_PRODUCTS_TO_CATEGORIES', 'Products to Categories');
+define('BOX_CATALOG_PRODUCT', 'Artikel');
+define('BOX_CATALOG_PRODUCTS_TO_CATEGORIES', 'Artikel in Kategorien');
 
 // customers box text in includes/boxes/customers.php
 define('BOX_HEADING_CUSTOMERS', 'Kunden');
@@ -148,8 +145,8 @@ define('BOX_CUSTOMERS_CUSTOMERS', 'Kunden');
 define('BOX_CUSTOMERS_ORDERS', 'Bestellungen');
 define('BOX_CUSTOMERS_GROUP_PRICING', 'Gruppenpreise');
 define('BOX_CUSTOMERS_PAYPAL', 'PayPal IPN');
-define('BOX_CUSTOMERS_INVOICE', 'Invoice');
-define('BOX_CUSTOMERS_PACKING_SLIP', 'Packing Slip');
+define('BOX_CUSTOMERS_INVOICE', 'Rechnung');
+define('BOX_CUSTOMERS_PACKING_SLIP', 'Packliste');
 
 // taxes box text
 define('BOX_HEADING_LOCATION_AND_TAXES', 'Länder & Steuern');
@@ -169,7 +166,6 @@ define('BOX_REPORTS_CUSTOMERS_REFERRALS', 'Herkunftsverweise (Referrals)');
 
 // tools text in includes/boxes/tools.php
 define('BOX_HEADING_TOOLS', 'Tools');
-define('BOX_TOOLS_ADMIN', 'Administratoren');
 define('BOX_TOOLS_TEMPLATE_SELECT', 'Templates');
 define('BOX_TOOLS_BACKUP', 'Datenbanksicherung');
 define('BOX_TOOLS_BANNER_MANAGER', 'Bannermanager');
@@ -177,8 +173,8 @@ define('BOX_TOOLS_CACHE', 'Cache-Kontrolle');
 define('BOX_TOOLS_DEFINE_LANGUAGE', 'Sprachen');
 define('BOX_TOOLS_FILE_MANAGER', 'Dateimanager');
 define('BOX_TOOLS_MAIL', 'Rundschreiben');
-define('BOX_TOOLS_NEWSLETTER_MANAGER', 'Newsletter Manager');
-define('BOX_TOOLS_SERVER_INFO', 'Server Info');
+define('BOX_TOOLS_NEWSLETTER_MANAGER', 'Newsletter & Artikelbenachrichtigungen Manager');
+define('BOX_TOOLS_SERVER_INFO', 'Server/Version Info');
 define('BOX_TOOLS_WHOS_ONLINE', 'Wer ist Online?');
 define('BOX_TOOLS_STORE_MANAGER', 'Shopmanager');
 define('BOX_TOOLS_DEVELOPERS_TOOL_KIT', 'Developers Tool Kit');
@@ -212,16 +208,16 @@ define('BOX_GV_ADMIN_QUEUE', TEXT_GV_NAMES . ' Warteschleife');
 define('BOX_GV_ADMIN_MAIL', TEXT_GV_NAME . ' senden ');
 define('BOX_GV_ADMIN_SENT', 'Bereits gesendet ');
 define('BOX_COUPON_ADMIN', 'Aktionskupon Admin');
-define('BOX_COUPON_RESTRICT','Coupon Restrictions');
+define('BOX_COUPON_RESTRICT','Aktionskupon Einschränkungen');
 
 // admin access box text
 define('BOX_HEADING_ADMIN_ACCESS', 'Admin Benutzerrechte');
-define('BOX_ADMIN_ACCESS_USERS',  'Admin Users');
-define('BOX_ADMIN_ACCESS_PROFILES', 'Admin Profiles');
-define('BOX_ADMIN_ACCESS_PAGE_REGISTRATION', 'Admin Page Registration');
-define('BOX_ADMIN_ACCESS_LOGS', 'Admin Activity Logs');
+define('BOX_ADMIN_ACCESS_USERS',  'Admin Benutzer');
+define('BOX_ADMIN_ACCESS_PROFILES', 'Admin Profile');
+define('BOX_ADMIN_ACCESS_PAGE_REGISTRATION', 'Admin Seiten Registrierung');
+define('BOX_ADMIN_ACCESS_LOGS', 'Admin Aktivitäten Logs');
 
-define('IMAGE_RELEASE', 'Redeem ' . TEXT_GV_NAME);
+define('IMAGE_RELEASE', TEXT_GV_NAME . ' einlösen');
 
 // javascript messages
 define('JS_ERROR', 'Achtung! Es ist ein Fehler aufgetreten.!\nBitte ändern Sie folgendes:\n\n');
@@ -297,10 +293,10 @@ define('ENTRY_NEWSLETTER_YES', 'Bestellen');
 define('ENTRY_NEWSLETTER_NO', 'Abbestellen');
 define('ENTRY_NEWSLETTER_ERROR', '');
 
-define('ERROR_PASSWORDS_NOT_MATCHING', 'Password and confirmation must match');
-define('ENTRY_PASSWORD_CHANGE_ERROR', '<strong>Sorry, your new password was rejected.</strong><br />');
-define('ERROR_PASSWORD_RULES', 'Passwords must contain both letters and numbers, must be at least %s characters long, and must not be the same as the last 4 passwords used. Passwords expire every 90 days.');
-define('ERROR_TOKEN_EXPIRED_PLEASE_RESUBMIT', 'ERROR: Sorry, there was an error processing your data. Please re-submit the information again.');
+define('ERROR_PASSWORDS_NOT_MATCHING', 'Das Passwort und die Passwortbestätigung müssen identisch sein');
+define('ENTRY_PASSWORD_CHANGE_ERROR', '<strong>Entschuldung, Ihr neues Passwort wurde abgelehnt.</strong><br />');
+define('ERROR_PASSWORD_RULES', 'Passwärter müssen sowohl Buchstaben als auch Zahlen enthalten und mindestens %s Zeichen lang sein. Außerdem darf Ihr neues Passwort nicht mit einem der letzten 4 benutzten Passwörter identisch sein. Passwörter verlieren alle 90 Tage ihre Gültigkeit.');
+define('ERROR_TOKEN_EXPIRED_PLEASE_RESUBMIT', 'FEHLER: Entschuldigung, es trat ein Fehler während der Verarbeitung Ihrer Daten auf. Bitte übermitteln Sie Ihre Daten erneut.');
 
 // images
 //define('IMAGE_ANI_SEND_EMAIL', 'Sending E-Mail');
@@ -403,7 +399,7 @@ define('ICON_WARNING', 'Warnung');
 // constants for use in zen_prev_next_display function
 define('TEXT_RESULT_PAGE', 'Seite %s von %d');
 define('TEXT_DISPLAY_NUMBER_OF_ADMINS', 'Zeige <b>%d</b> bis <b>%d</b> (von <b>%d</b> Administratoren)');
-define('TEXT_DISPLAY_NUMBER_OF_BANNERS', 'Zeige <b>%d</b> bis <b>%d</b> (von <b>%d</b> Banner)');
+define('TEXT_DISPLAY_NUMBER_OF_BANNERS', 'Zeige <b>%d</b> bis <b>%d</b> (von <b>%d</b> Bannern)');
 define('TEXT_DISPLAY_NUMBER_OF_CATEGORIES', 'Zeige <b>%d</b> bis <b>%d</b> (von <b>%d</b> Kategorien)');
 define('TEXT_DISPLAY_NUMBER_OF_COUNTRIES', 'Zeige <b>%d</b> bis <b>%d</b> (von <b>%d</b> Länder)');
 define('TEXT_DISPLAY_NUMBER_OF_CUSTOMERS', 'Zeige <b>%d</b> bis <b>%d</b> (von <b>%d</b> Kunden)');
@@ -417,7 +413,7 @@ define('TEXT_DISPLAY_NUMBER_OF_ORDERS_STATUS', 'Zeige <b>%d</b> bis <b>%d</b> (v
 define('TEXT_DISPLAY_NUMBER_OF_PRICING_GROUPS', 'Zeige <b>%d</b> bis <b>%d</b> (von <b>%d</b> Preisgruppen)');
 define('TEXT_DISPLAY_NUMBER_OF_PRODUCTS', 'Zeige <b>%d</b> bis <b>%d</b> (von <b>%d</b> Artikel)');
 define('TEXT_DISPLAY_NUMBER_OF_PRODUCT_TYPES', 'Zeige <b>%d</b> bis <b>%d</b> (von <b>%d</b> Artikeltypen)');
-define('TEXT_DISPLAY_NUMBER_OF_PRODUCTS_EXPECTED', 'Zeige <b>%d</b> bis <b>%d</b> (von <b>%d</b> erwartete Artikel)');
+define('TEXT_DISPLAY_NUMBER_OF_PRODUCTS_EXPECTED', 'Zeige <b>%d</b> bis <b>%d</b> (von <b>%d</b> erwarteten Artikel)');
 define('TEXT_DISPLAY_NUMBER_OF_REVIEWS', 'Zeige <b>%d</b> bis <b>%d</b> (von <b>%d</b> Bewertungen)');
 define('TEXT_DISPLAY_NUMBER_OF_SALES', 'Zeige <b>%d</b> bis <b>%d</b> (von <b>%d</b> Abverkäufe)');
 define('TEXT_DISPLAY_NUMBER_OF_SPECIALS', 'Zeige <b>%d</b> bis <b>%d</b> (von <b>%d</b> Sonderangeboten)');
@@ -435,7 +431,7 @@ define('TEXT_DEFAULT', 'Standard');
 define('TEXT_SET_DEFAULT', 'Als Standard definieren');
 define('TEXT_FIELD_REQUIRED', '<span class="Feld">* benötigt</span>');
 
-define('ERROR_NO_DEFAULT_CURRENCY_DEFINED', 'Fehler: Es wurde keine Standardwährung definiert. Sie können diese im Admin Menü unter Lokalisationt->Währungen definieren.');
+define('ERROR_NO_DEFAULT_CURRENCY_DEFINED', 'FEHLER: Es wurde keine Standardwährung definiert. Sie können diese im Admin Menü unter Lokalisation->Währungen definieren.');
 
 define('TEXT_CACHE_CATEGORIES', 'Kategorien');
 define('TEXT_CACHE_MANUFACTURERS', 'Hersteller');
@@ -444,23 +440,23 @@ define('TEXT_CACHE_ALSO_PURCHASED', 'Verkaufsförderung / Empfohlene Artikel');
 define('TEXT_NONE', '--kein--');
 define('TEXT_TOP', 'Top');
 
-define('ERROR_DESTINATION_DOES_NOT_EXIST', 'Fehler: Zielverzeichnis %s existiert nicht');
-define('ERROR_DESTINATION_NOT_WRITEABLE', 'Fehler: Zielverzeichnis %s ist schreibgeschützt');
-define('ERROR_FILE_NOT_SAVED', 'Fehler: Dateiupload wurde nicht gespeichert.');
-define('ERROR_FILETYPE_NOT_ALLOWED', 'Fehler: Dateityp %s ist nicht erlaubt');
+define('ERROR_DESTINATION_DOES_NOT_EXIST', 'FEHLER: Zielverzeichnis %s existiert nicht');
+define('ERROR_DESTINATION_NOT_WRITEABLE', 'FEHLER: Zielverzeichnis %s ist schreibgeschützt');
+define('ERROR_FILE_NOT_SAVED', 'FEHLER: Dateiupload wurde nicht gespeichert.');
+define('ERROR_FILETYPE_NOT_ALLOWED', 'FEHLER: Dateityp %s ist nicht erlaubt');
 define('SUCCESS_FILE_SAVED_SUCCESSFULLY', 'Erfolgreich: Dateiupload %s wurde gespeichert');
-define('WARNING_NO_FILE_UPLOADED', 'Warnung: Keine Datei hochgeladen.');
-define('WARNING_FILE_UPLOADS_DISABLED', 'Warnung: Die Option "Dateiupload" ist in der php.ini deaktiviert.');
-define('ERROR_ADMIN_SECURITY_WARNING', 'Warnung: Ihr Admin Login ist nicht sicher ... entweder noch Standard-Login-Einstellungen: Admin admin oder nicht entfernt: demo demoonly<br />Login(s) sollten zur Sicherheit so schnell als möglich geändert werden.<br />Für zusätzliche Sicherheitshinweise siehe auch Verzeichnis /docs');
+define('WARNING_NO_FILE_UPLOADED', 'WARNUNG: Keine Datei hochgeladen.');
+define('WARNING_FILE_UPLOADS_DISABLED', 'WARNUNG: Die Option "Dateiupload" ist in der php.ini deaktiviert.');
+define('ERROR_ADMIN_SECURITY_WARNING', 'WARNUNG: Ihr Admin Login ist nicht sicher ... entweder noch Standard-Login-Einstellungen: Admin admin oder nicht entfernt: demo demoonly<br />Login(s) sollten zur Sicherheit so schnell als möglich geändert werden.<br />Für zusätzliche Sicherheitshinweise siehe auch Verzeichnis /docs');
 define('WARNING_DATABASE_VERSION_OUT_OF_DATE', 'Ihre Datenbank scheint einen Patch zu benötigen. Siehe auch Tools->Server Information um die Patchlevels zu betrachten.');
 define('WARN_DATABASE_VERSION_PROBLEM','true'); //set to false to turn off warnings about database version mismatches
 define('WARNING_ADMIN_DOWN_FOR_MAINTENANCE', '<strong>WARNUNG:</strong> Der Shop ist z.Zt. wegen Wartung geschlossen ...<br />ANMERKUNG: Sie können die meisten Zahlungs- und Versand-Module im Wartungszustand nicht prüfen');
 define('WARNING_BACKUP_CFG_FILES_TO_DELETE', 'WARNUNG: Diese Dateien sollten gelöscht werden, um fremde Zugriffe zu verhindern: ');
-define('WARNING_INSTALL_DIRECTORY_EXISTS', 'Warnung: Das Installationsverzeichnis besteht noch: ' . DIR_FS_CATALOG . 'zc_install. Dieses Verzeichnis aus Sicherheitsgründen bitte entfernen.');
-define('WARNING_CONFIG_FILE_WRITEABLE', 'Warnung: Ihre Konfigurationsdatei: %sincludes/configure.php. Dies ist ein potenzielles Sicherheitsrisiko - ändern Sie bitte die Zugriffsrechte (Read-only, CHMOD 644 oder 444l).');
-define('WARNING_COULD_NOT_LOCATE_LANG_FILE', 'Warnung: Die Sprachdatei konnte nicht gefunden werden:');
+define('WARNING_INSTALL_DIRECTORY_EXISTS', 'WARNUNG: Das Installationsverzeichnis besteht noch: ' . DIR_FS_CATALOG . 'zc_install. Dieses Verzeichnis aus Sicherheitsgründen bitte entfernen.');
+define('WARNING_CONFIG_FILE_WRITEABLE', 'WARNUNG: Ihre Konfigurationsdatei: %sincludes/configure.php. Dies ist ein potenzielles Sicherheitsrisiko - ändern Sie bitte die Zugriffsrechte (Read-only, CHMOD 644 oder 444l).');
+define('WARNING_COULD_NOT_LOCATE_LANG_FILE', 'WARNUNG: Die Sprachdatei konnte nicht gefunden werden:');
 define('ERROR_MODULE_REMOVAL_PROHIBITED', 'FEHLER: Diese Modul kann nicht entfernt werden: ');
-define('WARNING_REVIEW_ROGUE_ACTIVITY', 'ALERT: Please review for possible XSS activity:');
+define('WARNING_REVIEW_ROGUE_ACTIVITY', 'ALARM: Bitte anschauen für mögliche XSS Aktivitäten:');
 
 define('_JANUARY', 'Januar');
 define('_FEBRUARY', 'Februar');
@@ -515,7 +511,7 @@ define('BOX_TOOLS_LAYOUT_CONTROLLER', 'Boxlayout');
 
 // check GV release queue and alert store owner
 define('SHOW_GV_QUEUE', true);
-define('TEXT_SHOW_GV_QUEUE', '%s wartet auf Überprüfung');
+define('TEXT_SHOW_GV_QUEUE', '%s wartet auf Freigabe');
 define('IMAGE_GIFT_QUEUE', TEXT_GV_NAME . ' Warteschleife');
 define('IMAGE_ORDER', 'Bestellung');
 
@@ -633,8 +629,8 @@ define('PRODUCT_PRICE_SALE', 'Abverkauf:&nbsp;');
 
 // Rich Text / HTML resources
 define('TEXT_HTML_EDITOR_NOT_DEFINED', 'Wenn kein HTML Editor definiert oder JavaScript deaktiviert ist, kann hier der HTML Text manuell eingegeben werden.');
-define('TEXT_WARNING_HTML_DISABLED', '<span class = "main">Hinweis: Sie verwenden "Nur-TEXT" als E-Mail Versandmethode. Wenn Sie E-Mails als HTML versenden wollen, müssen Sie "Verwende MIME HTML" in den E-Mail Optionen aktivieren</span>');
-define('TEXT_WARNING_CANT_DISPLAY_HTML', '<span class = "main">Hinweis: Sie verwenden "nur-TEXT" als E-Mail Versandmethode. Wenn Sie E-Mails als HTML versenden wollen, müssen Sie "Verwende MIME HTML" in den E-Mail Optionen aktivieren</span>');
+define('TEXT_WARNING_HTML_DISABLED', '<span class = "main">HINWEIS: Sie verwenden "Nur-TEXT" als E-Mail Versandmethode. Wenn Sie E-Mails als HTML versenden wollen, müssen Sie "Verwende MIME HTML" in den E-Mail Optionen aktivieren</span>');
+define('TEXT_WARNING_CANT_DISPLAY_HTML', '<span class = "main">HINWEIS: Sie verwenden "nur-TEXT" als E-Mail Versandmethode. Wenn Sie E-Mails als HTML versenden wollen, müssen Sie "Verwende MIME HTML" in den E-Mail Optionen aktivieren</span>');
 define('TEXT_EMAIL_CLIENT_CANT_DISPLAY_HTML', 'Sie können diesen Text lesen, weil wir Ihnen eine E-Mail im HTML Format zugesendet haben. Ihr E-Mail Programm kann jedoch keine Nachrichten im HTML Format anzeigen.');
 define('ENTRY_EMAIL_PREFERENCE', 'E-Mail Formateinstellungen:');
 define('ENTRY_EMAIL_FORMAT_COMMENTS', 'Die Auswahl "Nie" oder "Wünscht keine Newsletter" deaktiviert ALLE E-Mails, inklusive der Bestellbestätigungen');
@@ -643,7 +639,7 @@ define('ENTRY_EMAIL_TEXT_DISPLAY', 'Nur-TEXT');
 define('ENTRY_EMAIL_NONE_DISPLAY', 'Nie');
 define('ENTRY_EMAIL_OPTOUT_DISPLAY', 'Wünscht keine Newsletter');
 define('ENTRY_NOTHING_TO_SEND', 'Ihre Nachricht hat keinen Inhalt');
-define('EMAIL_SEND_FAILED', 'Fehler: Senden der E-Mail an: "%s" <%s> mit Betreff: "%s" fehlgeschlagen');
+define('EMAIL_SEND_FAILED', 'FEHLER: Senden der E-Mail an: "%s" <%s> mit Betreff: "%s" fehlgeschlagen');
 
 define('EDITOR_NONE', 'Normaler Text');
 define('TEXT_EDITOR_INFO', 'Interner HTML-Editor');
@@ -669,13 +665,13 @@ define('TEXT_IMAGE_OVERWRITE_WARNING', 'WARNUNG: DATEINAME wurde aktualisiert ab
 define('TEXT_IMAGES_DELETE', 'Bild löschen?<br />Bild wurde nicht vom Server entfernt:');
 define('TEXT_IMAGE_CURRENT', 'Bild Name: ');
 
-define('ERROR_DEFINE_OPTION_NAMES', 'Warnung: Es wurde kein Attributname definiert');
-define('ERROR_DEFINE_OPTION_VALUES', 'Warnung: Es wurde kein Optionswert definiert');
-define('ERROR_DEFINE_PRODUCTS', 'Warnung: Es wurden keine Artikel definiert');
-define('ERROR_DEFINE_PRODUCTS_MASTER_CATEGORIES_ID', 'Warnung: Diesem Produkt ist keine Kategorie zugeordnet worden');
+define('ERROR_DEFINE_OPTION_NAMES', 'WARNUNG: Es wurde kein Attributname definiert');
+define('ERROR_DEFINE_OPTION_VALUES', 'WARNUNG: Es wurde kein Optionswert definiert');
+define('ERROR_DEFINE_PRODUCTS', 'WARNUNG: Es wurden keine Artikel definiert');
+define('ERROR_DEFINE_PRODUCTS_MASTER_CATEGORIES_ID', 'WARNUNG: Diesem Produkt ist keine Kategorie zugeordnet worden');
 
-define('BUTTON_ADD_PRODUCT_TYPES_SUBCATEGORIES_ON', 'Hinzufügen inklusive Unterkategorien');
-define('BUTTON_ADD_PRODUCT_TYPES_SUBCATEGORIES_OFF', 'Hinzufügen ohne Unterkategorien');
+define('BUTTON_ADD_PRODUCT_TYPES_SUBCATEGORIES_ON', 'Inklusive Unterkategorien hinzufügen');
+define('BUTTON_ADD_PRODUCT_TYPES_SUBCATEGORIES_OFF', 'Ohne Unterkategorien hinzufügen');
 
 define('BUTTON_PREVIOUS_ALT', 'Vorheriger Artikel');
 define('BUTTON_NEXT_ALT', 'Nächster Artikel');
@@ -688,14 +684,14 @@ define('TEXT_SHOW_OPTION_NAMES_VALUES_COPIER_ON', 'Anzeige globale Eigenschaften
 define('TEXT_SHOW_OPTION_NAMES_VALUES_COPIER_OFF', 'Anzeige globale Eigenschaften - AUS');
 
 // moved from categories and all product type language files
-define('ERROR_CANNOT_LINK_TO_SAME_CATEGORY', 'Fehler: Kann Produkt nicht in selbe Kategorie verlinken.');
-define('ERROR_CATALOG_IMAGE_DIRECTORY_NOT_WRITEABLE', 'Fehler: Bilderverzeichnis hat keine Schreibrechte: ' . DIR_FS_CATALOG_IMAGES);
+define('ERROR_CANNOT_LINK_TO_SAME_CATEGORY', 'FEHLER: Kann Produkt nicht in selbe Kategorie verlinken.');
+define('ERROR_CATALOG_IMAGE_DIRECTORY_NOT_WRITEABLE', 'FEHLER: Bilderverzeichnis hat keine Schreibrechte: ' . DIR_FS_CATALOG_IMAGES);
 define('ERROR_CATALOG_IMAGE_DIRECTORY_DOES_NOT_EXIST', 'Error: Bilderverzeichnis existiert nicht: ' . DIR_FS_CATALOG_IMAGES);
-define('ERROR_CANNOT_MOVE_CATEGORY_TO_PARENT', 'Fehler: Kategorie kann nicht in eine Unterkategorie verschoben werden.');
-define('ERROR_CANNOT_MOVE_PRODUCT_TO_CATEGORY_SELF', 'Fehler: Produkt existiert bereits in dieser Kategorie.');
-define('ERROR_CATEGORY_HAS_PRODUCTS', 'Fehler: Kategorie enthält Produkte!<br /><br />Diese Aktion ist temporär zulässig während Sie Kategorien neu anordnen. Dennoch gilt der Grundsatz: Eine Kategorie kann entweder andere Kategorien oder Produkte enthalten aber <strong>niemals</strong>beides!');
+define('ERROR_CANNOT_MOVE_CATEGORY_TO_PARENT', 'FEHLER: Kategorie kann nicht in eine Unterkategorie verschoben werden.');
+define('ERROR_CANNOT_MOVE_PRODUCT_TO_CATEGORY_SELF', 'FEHLER: Produkt existiert bereits in dieser Kategorie.');
+define('ERROR_CATEGORY_HAS_PRODUCTS', 'FEHLER: Kategorie enthält Produkte!<br /><br />Diese Aktion ist temporär zulässig während Sie Kategorien neu anordnen. Dennoch gilt der Grundsatz: Eine Kategorie kann entweder andere Kategorien oder Produkte enthalten aber <strong>niemals</strong>beides!');
 define('SUCCESS_CATEGORY_MOVED', 'Erfolgreich! Kategorie erfolgreich verschoben ...');
-define('ERROR_CANNOT_MOVE_CATEGORY_TO_CATEGORY_SELF', 'Fehler: Kategorie kann nicht in sich selbst verschoben werden! ID#');
+define('ERROR_CANNOT_MOVE_CATEGORY_TO_CATEGORY_SELF', 'FEHLER: Kategorie kann nicht in sich selbst verschoben werden! ID#');
 
 // EZ-PAGES Alerts
 define('TEXT_EZPAGES_STATUS_HEADER_ADMIN', 'Achtung: EZ-PAGES HEADER - Nur für Admin IP aktiviert');
@@ -718,15 +714,15 @@ define('CATEGORY_HAS_SUBCATEGORIES', 'Achtung: Kategorie besitzt Unterkategorien
 
 define('WARNING_WELCOME_DISCOUNT_COUPON_EXPIRES_IN', 'Warnung! Der Aktionskupon "Willkommensgeschenk" läuft in %s Tagen ab.');
 
-define('WARNING_ADMIN_FOLDERNAME_VULNERABLE', 'CAUTION: <a href="http://tutorials.zen-cart.com/index.php?article=33" target="_blank">Your /admin/ foldername should be renamed to something less common</a>, to prevent unauthorized access.');
-define('WARNING_EMAIL_SYSTEM_DISABLED', 'WARNING: The email subsystem is turned off. No emails will be sent until it is re-enabled in Admin->Configuration->Email Options.');
-define('TEXT_CURRENT_VER_IS', 'You are presently using: ');
-define('ERROR_NO_DATA_TO_SAVE', 'ERROR: The data you submitted was found to be empty. YOUR CHANGES HAVE *NOT* BEEN SAVED. You may have a problem with your browser or your internet connection.');
-define('TEXT_HIDDEN', 'Hidden');
-define('TEXT_VISIBLE', 'Visible');
-define('TEXT_HIDE', 'Hide');
-define('TEXT_EMAIL', 'Email');
-define('TEXT_NOEMAIL', 'No Email');
+define('WARNING_ADMIN_FOLDERNAME_VULNERABLE', 'VORSICHT: <a href="http://www.zen-cart.at/zcvb/forum/vbglossar.php?do=showentry&id=6" target="_blank">Sie sollten den Ordner /admin/ in irgendwas weniger auffallendes umbenennen</a>, um ihn vor unbefugten Zugriffen zu schützen.');
+define('WARNING_EMAIL_SYSTEM_DISABLED', 'WARNUNG: Das Emailsystem ist abgeschaltet. Es werden keine Emails vom Shop versendet, bevor Sie das nicht unter Admin->Konfiguration->Email Optionen aktivieren..');
+define('TEXT_CURRENT_VER_IS', 'Sie benutzen gerade: ');
+define('ERROR_NO_DATA_TO_SAVE', 'FEHLER: Die übertragenen Daten waren leer. IHRE ÄNDERUNGEN WURDEN *NICHT* GESPEICHERT. Sie haben möglicherweise ein Problem mit Ihrem Browser oder Ihrer Internetverbindung.');
+define('TEXT_HIDDEN', 'Versteckt');
+define('TEXT_VISIBLE', 'Sichtbar');
+define('TEXT_HIDE', 'Verstecken');
+define('TEXT_EMAIL', 'E-Mail');
+define('TEXT_NOEMAIL', 'Keine E-Mail');
 
 
 ///////////////////////////////////////////////////////////

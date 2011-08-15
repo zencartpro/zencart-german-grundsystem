@@ -30,7 +30,7 @@ define('TEXT_BANNERS_IMAGE', 'Bild:');
 define('TEXT_BANNERS_IMAGE_LOCAL', ', oder tragen Sie unten eine lokale Datei ein');
 define('TEXT_BANNERS_IMAGE_TARGET', 'Zielverzeichnis des Bildes (Speichern unter):');
 define('TEXT_BANNER_IMAGE_TARGET_INFO', '<strong>Vorgeschlagenes Zielverzeichnis:</strong> ' . DIR_FS_CATALOG_IMAGES . 'banners/');
-define('TEXT_BANNERS_HTML_TEXT_INFO', '<strong>Hinweis: HTML-Banner zeichnen die Klicks nicht auf</strong>');
+define('TEXT_BANNERS_HTML_TEXT_INFO', '<strong>HINWEIS: HTML-Banner zeichnen die Klicks nicht auf</strong>');
 define('TEXT_BANNERS_HTML_TEXT', 'HTML Text:');
 define('TEXT_BANNERS_ALL_SORT_ORDER', 'Sortierung - banner_box_all');
 define('TEXT_BANNERS_ALL_SORT_ORDER_INFO', '<strong>Anmerkung: Die banners_box_all Sidebox zeigt die Banner in der angegebenen Sortierung an</strong>');
@@ -77,7 +77,7 @@ define('ERROR_IMAGE_DIRECTORY_NOT_WRITEABLE', 'Achtung! Das Zielverzeichnis ist 
 define('ERROR_IMAGE_DOES_NOT_EXIST', 'Achtung! Bild existiert nicht.');
 define('ERROR_IMAGE_IS_NOT_WRITEABLE', 'Achtung! Bild kann nicht entfernt werden.');
 define('ERROR_UNKNOWN_STATUS_FLAG', 'Achtung! Unbekannter Status.');
-define('ERROR_BANNER_IMAGE_REQUIRED', 'Fehler: Bild für Banner wird benötigt.');
+define('ERROR_BANNER_IMAGE_REQUIRED', 'FEHLER: Bild für Banner wird benötigt.');
 
 define('ERROR_GRAPHS_DIRECTORY_DOES_NOT_EXIST', 'Achtung! Das Grafikverzeichnis existiert nicht. Bitte erstellen Sie das Verzeichnis \'graphs\'  im Ordner \'images\'.');
 define('ERROR_GRAPHS_DIRECTORY_NOT_WRITEABLE', 'Achtung! Das Grafikverzeichnis nicht beschreibbar.');

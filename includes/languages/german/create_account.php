@@ -48,12 +48,3 @@ define('EMAIL_GV_CLOSURE', 'Mit freundlichen Grüssen,' . "\n\n" . STORE_OWNER .
 // email disclaimer - this disclaimer is separate from all other email disclaimers
 define('EMAIL_DISCLAIMER_NEW_CUSTOMER', 'Diese E-Mail Adresse haben wir von Ihnen oder einer unserer Kunden erhalten. Sollten Sie diese Nachricht zu Unrecht erhalten haben, kontaktieren Sie uns bitte unter %s');
 
-//moved definitions to english.php
-//define('TABLE_HEADING_PRIVACY_CONDITIONS', 'Privacy Statement');
-//define('TEXT_PRIVACY_CONDITIONS_DESCRIPTION', 'Please acknowledge you agree with our privacy statement by ticking the following box. The privacy statement can be read <a href="' . zen_href_link(FILENAME_PRIVACY, '', 'SSL') . '"><span class="pseudolink">here</span></a>.');
-//define('TEXT_PRIVACY_CONDITIONS_CONFIRM', 'I have read and agreed to your privacy statement.');
-//define('TABLE_HEADING_ADDRESS_DETAILS', 'Address Details');
-//define('TABLE_HEADING_PHONE_FAX_DETAILS', 'Additional Contact Details');
-//define('TABLE_HEADING_DATE_OF_BIRTH', 'Verify Your Age');
-//define('TABLE_HEADING_LOGIN_DETAILS', 'Login Details');
-//define('TABLE_HEADING_REFERRAL_DETAILS', 'Were You Referred to Us?');

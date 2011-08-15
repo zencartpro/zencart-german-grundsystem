@@ -39,4 +39,4 @@ define('TEXT_SEARCH_HELP','
   Sie geben als Suchbegriff <strong>"Zen Cart"</strong> ein - das Ergebnis werden Begriffe <u>mit exakt dieser Schreibweise</u> sein: <strong>Zen Cart (nicht zen cart) </strong><br />
   <br />
   Es sind natürlich auch Kombinationen möglich (Zen OR Cart OR "zen cart")</p>');
-define('TEXT_CLOSE_WINDOW','<u>Fenster schließen</u> [x]');
+define('TEXT_CLOSE_WINDOW','<span class="pseudolink">Fenster schließen</span> [x]');

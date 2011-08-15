@@ -20,3 +20,4 @@
 // $Id: download.php 210 2008-04-09 07:26:51Z hugo13 $
 //
 ?>
+define('ERROR_CUSTOMER_DOWNLOAD_FAILURE', 'Fehler beim Kundendownload');

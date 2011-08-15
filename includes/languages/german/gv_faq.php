@@ -42,7 +42,7 @@ define('SUB_HEADING_TEXT','Um einen ' . TEXT_GV_NAME . ' zu versenden, brauchen 
   Beim Versenden eines ' . TEXT_GV_NAME . 's müssen Sie folgende Daten angeben:<br />
   Den <strong>Namen</strong> der Person, der Sie den ' . TEXT_GV_NAME . ' senden möchten.<br />
   Die <strong>E-Mail Adresse</strong> der Person, der Sie den ' . TEXT_GV_NAME . ' senden möchten.<br />
-  Den <strong>Betrag</strong>, den Sie versenden möchten.<br /> (Hinweis: Sie müssen nicht den gesamten Betrag des ' . TEXT_GV_NAME . 'kontos verwenden.)<br /><br />
+  Den <strong>Betrag</strong>, den Sie versenden möchten.<br /> (HINWEIS: Sie müssen nicht den gesamten Betrag des ' . TEXT_GV_NAME . 'kontos verwenden.)<br /><br />
   Sie erhalten zusätzlich per E-Mail eine kurze Information.
 Um Fehler zu vermeiden, stellen Sie bitte sicher, dass Sie alle Daten korrekt eingegeben haben. Sie werden später zusätzlich noch einmal die Gelegenheit haben, Ihre Angaben zu überprüfen, bevor Sie den Gutschein versenden.');
 

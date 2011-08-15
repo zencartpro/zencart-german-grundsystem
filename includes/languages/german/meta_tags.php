@@ -36,8 +36,8 @@ define('CUSTOM_KEYWORDS', 'ecommerce, open source, shop, online shopping');
 // replace "page_name" with the UPPERCASE name of your main_page= value, such as ABOUT_US or SHIPPINGINFO etc.
 // repeat pattern as necessary
   define('META_TAG_DESCRIPTION_page_name','');
-  define('META_TAG_KEYWORDS_PAGE_page_name','');
-  define('META_TAG_TITLE_PAGE_page_name', '');
+  define('META_TAG_KEYWORDS_page_name','');
+  define('META_TAG_TITLE_page_name', '');
 
 // Review Page can have a lead in:
 define('META_TAGS_REVIEW', 'Bewertungen: ');

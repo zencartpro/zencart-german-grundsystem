@@ -47,7 +47,7 @@ define('TEXT_PRODUCTS_INTRO', 'Verwenden Sie bitte unten stehendes Formular, um 
 define('IMAGE_PRODUCTS', 'Zu Artikel zuteilen');
 define('TEXT_DELETE_PRODUCTS', 'Soll diese Medienkollektion und alle Verlinkungen zu dieser Kollektion gelöscht werden?');
 define('TEXT_DELETE_WARNING_PRODUCTS', '<b>WARNUNG:</b> Es gibt %s Verlinkungen zu dieser Medienkollektion!');
-define('TEXT_WARNING_FOLDER_UNWRITABLE', 'Hinweis: Das Verzeichnis ' . DIR_FS_CATALOG_MEDIA . ' ist nicht beschreibbar. Kann Dateien nicht hochladen.');
+define('TEXT_WARNING_FOLDER_UNWRITABLE', 'HINWEIS: Das Verzeichnis ' . DIR_FS_CATALOG_MEDIA . ' ist nicht beschreibbar. Kann Dateien nicht hochladen.');
 
 define('ERROR_UNKNOWN_DATA', 'FEHLER: Unbekannte Daten geliefert... Operation abgebrochen');
 define('TEXT_ADD', 'Hinzufügen');

@@ -142,8 +142,8 @@ define('TEXT_VIRTUAL_EDIT', 'Achtung: Dieser Artikel ist als versandkostenfrei m
 define('TEXT_FREE_SHIPPING_PREVIEW', 'Achtung: Dieser Artikel ist als versandkostenfrei markiert und benötigt eine Versandadresse');
 define('TEXT_FREE_SHIPPING_EDIT', 'Achtung: Mit "Ja" kennzeichnen Sie diesen Artikel als versandkostenfrei - eine Versandadresse wird benötigt');
 
-define('TEXT_PRODUCTS_QTY_BOX_STATUS_PREVIEW', 'Warnung: Ohne Anzeige der Box für die Stückzahl ist der Standardwert 1');
-define('TEXT_PRODUCTS_QTY_BOX_STATUS_EDIT', 'Warnung: Ohne Anzeige der Box für die Stückzahl ist der Standardwert 1');
+define('TEXT_PRODUCTS_QTY_BOX_STATUS_PREVIEW', 'WARNUNG: Ohne Anzeige der Box für die Stückzahl ist der Standardwert 1');
+define('TEXT_PRODUCTS_QTY_BOX_STATUS_EDIT', 'WARNUNG: Ohne Anzeige der Box für die Stückzahl ist der Standardwert 1');
 
 define('TEXT_PRODUCT_OPTIONS', '<strong>Bitte wählen Sie:</strong>');
 define('TEXT_PRODUCTS_ATTRIBUTES_INFO', 'Attributmerkmal für:');
@@ -193,7 +193,7 @@ define('TEXT_PRODUCTS_STATUS_INFO', 'JEDEN Artikelstatus ändern nach: ');
 define('TEXT_PRODUCTS_STATUS_OFF', 'AUS');
 define('TEXT_PRODUCTS_STATUS_ON', 'EIN');
 define('TEXT_PRODUCTS_STATUS_NOCHANGE', 'Unverändert');
-define('TEXT_CATEGORIES_STATUS_WARNING', '<strong>WARNUNG ...</strong><br />Hinweis: Wenn Sie eine Kategorie deaktivieren, deaktivieren Sie auch ALLE Artikel, die in dieser Kategorie enthalten sind. Verlinkte Artikel in dieser Kategorie, welche mit anderen Kategorien verlinkt sind, werden dadurch ebenfalls deaktiviert.');
+define('TEXT_CATEGORIES_STATUS_WARNING', '<strong>WARNUNG ...</strong><br />HINWEIS: Wenn Sie eine Kategorie deaktivieren, deaktivieren Sie auch ALLE Artikel, die in dieser Kategorie enthalten sind. Verlinkte Artikel in dieser Kategorie, welche mit anderen Kategorien verlinkt sind, werden dadurch ebenfalls deaktiviert.');
 
 define('TEXT_PRODUCTS_STATUS_ON_OF', ' von ');
 define('TEXT_PRODUCTS_STATUS_ACTIVE', ' aktiv ');

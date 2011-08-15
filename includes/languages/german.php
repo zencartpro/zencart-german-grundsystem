@@ -14,7 +14,7 @@
 //define('CUSTOM_KEYWORDS', 'ecommerce, open source, shop, online shopping');
 // END: moved to meta_tags.php
 
-define('FOOTER_TEXT_BODY', 'Copyright &copy; ' . date('Y') . ' <a href="http://www.zen-cart.at" target="_blank">Zen Cart</a>. Powered by <a href="http://www.zen-cart.at" target="_blank">Zen Cart</a>');
+  define('FOOTER_TEXT_BODY', 'Copyright &copy; ' . date('Y') . ' <a href="' . zen_href_link(FILENAME_DEFAULT) . '" target="_blank">' . STORE_NAME . '</a>. Powered by <a href="http://www.zen-cart.at" target="_blank">Zen Cart</a>');
 
 // look in your $PATH_LOCALE/locale directory for available locales..
 // on RedHat try 'en_US'
@@ -266,7 +266,7 @@ define('ENTRY_PASSWORD_NEW', 'Neues Passwort:');
 define('ENTRY_PASSWORD_NEW_TEXT', '*');
 define('ENTRY_PASSWORD_NEW_ERROR', 'Das neue Passwort muss aus mindestens ' . ENTRY_PASSWORD_MIN_LENGTH . ' Zeichen bestehen.');
 define('ENTRY_PASSWORD_NEW_ERROR_NOT_MATCHING', 'Die Passwortbestätigung stimmt nicht mit dem neu eingegebenen Passwort überein.');
-define('PASSWORD_HIDDEN', '--GEHEIM--');
+define('PASSWORD_HIDDEN', '--VERSTECKT--');
 
 define('FORM_REQUIRED_INFORMATION', '* = Pflichtfeld');
 define('ENTRY_REQUIRED_SYMBOL', '*');
@@ -276,7 +276,7 @@ define('TEXT_RESULT_PAGE', '');
 define('TEXT_DISPLAY_NUMBER_OF_PRODUCTS', 'Zeige <strong>%d</strong> bis <strong>%d</strong> (von <strong>%d</strong> Artikeln)');
 define('TEXT_DISPLAY_NUMBER_OF_ORDERS', 'Zeige <strong>%d</strong> bis <strong>%d</strong> (von <strong>%d</strong> Bestellungen)');
 define('TEXT_DISPLAY_NUMBER_OF_REVIEWS', 'Zeige <strong>%d</strong> bis <strong>%d</strong> (von <strong>%d</strong> Bewertungen)');
-define('TEXT_DISPLAY_NUMBER_OF_PRODUCTS_NEW', 'Zeige <strong>%d</strong> bis <strong>%d</strong> (von <strong>%d</strong> neuen Produkten)');
+define('TEXT_DISPLAY_NUMBER_OF_PRODUCTS_NEW', 'Zeige <strong>%d</strong> bis <strong>%d</strong> (von <strong>%d</strong> neuen Artikeln)');
 define('TEXT_DISPLAY_NUMBER_OF_SPECIALS', 'Zeige <strong>%d</strong> bis <strong>%d</strong> (von <strong>%d</strong> Sonderangeboten)');
 define('TEXT_DISPLAY_NUMBER_OF_PRODUCTS_FEATURED_PRODUCTS', 'Zeige <strong>%d</strong> bis <strong>%d</strong> (von <strong>%d</strong> empfohlenen Artikeln)');
 define('TEXT_DISPLAY_NUMBER_OF_PRODUCTS_ALL', 'Zeige <strong>%d</strong> bis <strong>%d</strong> (von <strong>%d</strong> Artikeln)');
@@ -315,17 +315,17 @@ define('TEXT_UNKNOWN_TAX_RATE', 'Unbekannter Steuersatz');
 define('TEXT_REQUIRED', '<span class="errorText">benötigt</span>');
 
   $warn_path = (isset($_SERVER['SCRIPT_FILENAME']) ? @dirname($_SERVER['SCRIPT_FILENAME']) : '.....');
-define('WARNING_INSTALL_DIRECTORY_EXISTS', 'Warnung: Das Installationsverzeichnis existiert noch: ' . dirname($_SERVER['SCRIPT_FILENAME']) . '/zc_install. Bitte entfernen Sie zu Ihrer Sicherheit dieses Verzeichnis.');
-define('WARNING_CONFIG_FILE_WRITEABLE', 'Warnung: In die Konfigurationsdatei kann geschrieben werden: ' . dirname($_SERVER['SCRIPT_FILENAME']) . '/includes/configure.php. Dies stellt ein potenzielles Sicherheitsrisiko dar - bitte ändern Sie die Schreibrechte für diese Datei.');
+define('WARNING_INSTALL_DIRECTORY_EXISTS', 'WARNUNG: Das Installationsverzeichnis existiert noch: ' . dirname($_SERVER['SCRIPT_FILENAME']) . '/zc_install. Bitte entfernen Sie zu Ihrer Sicherheit dieses Verzeichnis.');
+define('WARNING_CONFIG_FILE_WRITEABLE', 'WARNUNG: In die Konfigurationsdatei kann geschrieben werden: ' . dirname($_SERVER['SCRIPT_FILENAME']) . '/includes/configure.php. Dies stellt ein potenzielles Sicherheitsrisiko dar - bitte ändern Sie die Schreibrechte für diese Datei.');
   unset($warn_path);
-define('WARNING_SESSION_DIRECTORY_NON_EXISTENT', 'Warnung: Das Verzeichnis zum Speichern der Sitzungen (Sessions) existiert nicht: ' . zen_session_save_path() . '. Bitte erstellen Sie dieses Verzeichnis, damit Sitzungen (Sessions)gespeichert werden können.');
-define('WARNING_SESSION_DIRECTORY_NOT_WRITEABLE', 'Warnung: In das Verzeichnis zum Speichern von Sitzungen (Sessions) kann nicht geschrieben werden: ' . zen_session_save_path() . '. Bitte ändern Sie die Schreibrechte dieses Verzeichnisses.');
-define('WARNING_SESSION_AUTO_START', 'Warnung: session.auto_start ist aktiviert - bitte deaktivieren Sie dieses Feature in der php.ini und starten Sie Ihren Webserver neu.');
-define('WARNING_DOWNLOAD_DIRECTORY_NON_EXISTENT', 'Warnung: Das Verzeichnis für Downloadartikel existiert nicht: ' . DIR_FS_DOWNLOAD . '. Downloadartikel funktionieren nicht, solange dieses Verzeichnis nicht erstellt wurde.');
-define('WARNING_SQL_CACHE_DIRECTORY_NON_EXISTENT', 'Warnung: Das SQL-Cache Verzeichnis existiert nicht: ' . DIR_FS_SQL_CACHE . '. SQL Abfragen können nicht zwischengespeichert werden, solange dieses Verzeichnis nicht erstellt wurde.');
-define('WARNING_SQL_CACHE_DIRECTORY_NOT_WRITEABLE', 'Warnung: In das Verzeichnis zum Zwischenspeichern von SQL Abfragen kann nicht geschrieben werden: ' . DIR_FS_SQL_CACHE . '. Bitte ändern Sie die Schreibrechte dieses Verzeichnisses, damit SQL Abfragen zwischengespeichert werden können.');
+define('WARNING_SESSION_DIRECTORY_NON_EXISTENT', 'WARNUNG: Das Verzeichnis zum Speichern der Sitzungen (Sessions) existiert nicht: ' . zen_session_save_path() . '. Bitte erstellen Sie dieses Verzeichnis, damit Sitzungen (Sessions)gespeichert werden können.');
+define('WARNING_SESSION_DIRECTORY_NOT_WRITEABLE', 'WARNUNG: In das Verzeichnis zum Speichern von Sitzungen (Sessions) kann nicht geschrieben werden: ' . zen_session_save_path() . '. Bitte ändern Sie die Schreibrechte dieses Verzeichnisses.');
+define('WARNING_SESSION_AUTO_START', 'WARNUNG: session.auto_start ist aktiviert - bitte deaktivieren Sie dieses Feature in der php.ini und starten Sie Ihren Webserver neu.');
+define('WARNING_DOWNLOAD_DIRECTORY_NON_EXISTENT', 'WARNUNG: Das Verzeichnis für Downloadartikel existiert nicht: ' . DIR_FS_DOWNLOAD . '. Downloadartikel funktionieren nicht, solange dieses Verzeichnis nicht erstellt wurde.');
+define('WARNING_SQL_CACHE_DIRECTORY_NON_EXISTENT', 'WARNUNG: Das SQL-Cache Verzeichnis existiert nicht: ' . DIR_FS_SQL_CACHE . '. SQL Abfragen können nicht zwischengespeichert werden, solange dieses Verzeichnis nicht erstellt wurde.');
+define('WARNING_SQL_CACHE_DIRECTORY_NOT_WRITEABLE', 'WARNUNG: In das Verzeichnis zum Zwischenspeichern von SQL Abfragen kann nicht geschrieben werden: ' . DIR_FS_SQL_CACHE . '. Bitte ändern Sie die Schreibrechte dieses Verzeichnisses, damit SQL Abfragen zwischengespeichert werden können.');
 define('WARNING_DATABASE_VERSION_OUT_OF_DATE', 'Ihre Datenbank braucht ein Update. Siehe Admin->Tools->Server Information (Patch-Level).');
-define('WARNING_COULD_NOT_LOCATE_LANG_FILE', 'Warnung: Die Sprachdatei konnte nicht gefunden werden: ');
+define('WARNING_COULD_NOT_LOCATE_LANG_FILE', 'WARNUNG: Die Sprachdatei konnte nicht gefunden werden: ');
 
 define('TEXT_CCVAL_ERROR_INVALID_DATE', 'Das Ablaufdatum der Kreditkarte, das Sie angegeben haben, ist nicht gültig. Bitte überprüfen Sie Ihre Angaben noch einmal und wiederholen Sie den Vorgang.');
 define('TEXT_CCVAL_ERROR_INVALID_NUMBER', 'Die Kreditkartennummer, die Sie angegeben haben, ist nicht gültig. Bitte überprüfen Sie Ihre Angaben noch einmal und wiederholen Sie den Vorgang.');
@@ -438,17 +438,17 @@ define('TEXT_CLOSE_WINDOW', ' - zum Schließen ins Bild klicken');
 define('TEXT_CURRENT_CLOSE_WINDOW', '[ Fenster schließen ]');
 
 // iii 031104 added:  File upload error strings
-define('ERROR_FILETYPE_NOT_ALLOWED', 'Fehler: Dateityp nicht erlaubt.');
-define('WARNING_NO_FILE_UPLOADED', 'Warnung: Keine Datei hochgeladen');
+define('ERROR_FILETYPE_NOT_ALLOWED', 'FEHLER: Dateityp nicht erlaubt.');
+define('WARNING_NO_FILE_UPLOADED', 'WARNUNG: Keine Datei hochgeladen');
 define('SUCCESS_FILE_SAVED_SUCCESSFULLY', 'Die Datei wurde erfolgreich gespeichert.');
-define('ERROR_FILE_NOT_SAVED', 'Fehler: Datei nicht gespeichert.');
-define('ERROR_DESTINATION_NOT_WRITEABLE', 'Fehler: Auf das Ziel konnte nicht geschrieben werden.');
-define('ERROR_DESTINATION_DOES_NOT_EXIST', 'Fehler: Das Ziel existiert nicht.');
-define('ERROR_FILE_TOO_BIG', 'Warnung: Die Datei ist zu groß für den Upload!<br />Der Auftrag kann erteilt werden, nehmen Sie bitte mit uns Kontakt auf um den Upload erfolgreich abzuschließen.');
+define('ERROR_FILE_NOT_SAVED', 'FEHLER: Datei nicht gespeichert.');
+define('ERROR_DESTINATION_NOT_WRITEABLE', 'FEHLER: Auf das Ziel konnte nicht geschrieben werden.');
+define('ERROR_DESTINATION_DOES_NOT_EXIST', 'FEHLER: Das Ziel existiert nicht.');
+define('ERROR_FILE_TOO_BIG', 'WARNUNG: Die Datei ist zu groß für den Upload!<br />Der Auftrag kann erteilt werden, nehmen Sie bitte mit uns Kontakt auf um den Upload erfolgreich abzuschließen.');
 // End iii added
 
-define('TEXT_BEFORE_DOWN_FOR_MAINTENANCE', 'Hinweis: Unser Shop ist wegen Wartungsarbeiten geschlossen bis (dd/mm/yy) (hh-hh): ');
-define('TEXT_ADMIN_DOWN_FOR_MAINTENANCE', 'Hinweis: Unser Shop ist wegen Wartungsarbeiten geschlossen.');
+define('TEXT_BEFORE_DOWN_FOR_MAINTENANCE', 'HINWEIS: Unser Shop ist wegen Wartungsarbeiten geschlossen bis (dd/mm/yy) (hh-hh): ');
+define('TEXT_ADMIN_DOWN_FOR_MAINTENANCE', 'HINWEIS: Unser Shop ist wegen Wartungsarbeiten geschlossen.');
 
 define('PRODUCTS_PRICE_IS_FREE_TEXT', 'Kostenlos!');
 define('PRODUCTS_PRICE_IS_CALL_FOR_PRICE_TEXT', 'Für Preis anfragen');
@@ -478,7 +478,7 @@ define('ERROR_QUANTITY_CHANGED_TO', ' in ');
 
 // Downloads Controller
 define('DOWNLOADS_CONTROLLER_ON_HOLD_MSG', 'Bemerkung: Downloads werden erst nach Bestätigung des Zahlungseingangs freigeschaltet.');
-define('TEXT_FILESIZE_BYTES', ' Bytes');
+define('TEXT_FILESIZE_BYTES', ' bytes');
 define('TEXT_FILESIZE_MEGS', ' MB');
 
 // shopping cart errors
@@ -543,7 +543,7 @@ define('TEXT_MAXIMUM_CHARACTERS_ALLOWED',' maximale Buchstaben erlaubt');
 define('TEXT_REMAINING','restliche');
 
 // Shipping Estimator
-define('CART_SHIPPING_OPTIONS', 'Voraussichtlicher Versand:');
+define('CART_SHIPPING_OPTIONS', 'Voraussichtliche Versandkosten:');
 define('CART_SHIPPING_OPTIONS_LOGIN', 'Bitte melden Sie sich <a href="' . zen_href_link(FILENAME_LOGIN, '', 'SSL') . '"><u>hier</u></a> an, um Ihre persönlichen Versandkosten anzuzeigen.');
 define('CART_SHIPPING_METHOD_TEXT', 'Verfügbare Versandarten');
 define('CART_SHIPPING_METHOD_RATES', 'Kosten:');
@@ -618,9 +618,9 @@ define('TABLE_HEADING_REFERRAL_DETAILS', 'Wie wurden Sie auf unseren Shop aufmer
 define('ENTRY_EMAIL_PREFERENCE','Newsletter und E-Mail');
 define('ENTRY_EMAIL_HTML_DISPLAY','HTML');
 define('ENTRY_EMAIL_TEXT_DISPLAY','nur TEXT');
-define('EMAIL_SEND_FAILED','Fehler: E-Mail wurde nicht an: "%s" <%s> versendet. Betreff: "%s"');
+define('EMAIL_SEND_FAILED','FEHLER: E-Mail wurde nicht an: "%s" <%s> versendet. Betreff: "%s"');
 
-define('DB_ERROR_NOT_CONNECTED', 'Fehler: Es konnte keine Verbindung mit der Datenbank hergestellt werden');
+define('DB_ERROR_NOT_CONNECTED', 'FEHLER: Es konnte keine Verbindung mit der Datenbank hergestellt werden');
 
 // EZ-PAGES Alerts
 define('TEXT_EZPAGES_STATUS_HEADER_ADMIN', 'WARNING: EZ-PAGES HEADER - Darf nur vom Admin geöffnet werden ');

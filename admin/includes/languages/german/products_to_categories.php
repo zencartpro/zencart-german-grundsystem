@@ -46,7 +46,7 @@ define('WARNING_PRODUCTS_LINK_TO_CATEGORY_REMOVED', 'WARNUNG: Artikel wurde zur�
 define('WARNING_COPY_LINKED', 'WARNUNG: ');
 define('WARNING_COPY_ALL_PRODUCTS_TO_CATEGORY_FROM_LINKED', 'Ungültige Kategorie um Artikel aus Kategorie zu verlinken: ');
 define('WARNING_COPY_ALL_PRODUCTS_TO_CATEGORY_TO_LINKED', 'Ungültige Kategorie um Artikel in Kategorie zu verlinken: ');
-define('WARNING_NO_CATEGORIES_ID', 'Warnung: Keine Kategorie ausgewählt ... keine Änderung gemacht');
+define('WARNING_NO_CATEGORIES_ID', 'WARNUNG: Keine Kategorie ausgewählt ... keine Änderung gemacht');
 define('SUCCESS_COPY_LINKED', 'Erfolgreiche Aktualisierung der verlinkten Artikel ... ');
 define('SUCCESS_COPY_ALL_PRODUCTS_TO_CATEGORY_FROM_LINKED', 'Artikel aus folgender Kategorie verlinken: ');
 define('SUCCESS_COPY_ALL_PRODUCTS_TO_CATEGORY_TO_LINKED', 'Artikel in folgende Kategorie verlinken: ');

@@ -30,7 +30,7 @@ define('INSTALLATION_IN_PROGRESS','Installation läuft...');
 if (isset($_GET['main_page']) && ($_GET['main_page']== 'index' || $_GET['main_page']== 'license')) {
     define('TEXT_ERROR_WARNING', 'Hi: Es müssen nur einige Kleinigkeiten adressiert werden, bevor wir fortfahren können.');
 } else {
-    define('TEXT_ERROR_WARNING', '<span class="errors"><strong>Warnung: Es sind Probleme aufgetreten</strong></span>');
+    define('TEXT_ERROR_WARNING', '<span class="errors"><strong>WARNUNG: Es sind Probleme aufgetreten</strong></span>');
 }
 
 define('DB_ERROR_NOT_CONNECTED', 'Installationsfehler: Es konnte keine Verbindung zur Datenbank hergestellt werden');
@@ -268,7 +268,7 @@ switch ($error_code) {
   break;
   case ('8'):
     define('POPUP_ERROR_HEADING', 'SSL aktivieren');
-    define('POPUP_ERROR_TEXT', 'Diese Einstellung legt fest, ob der SSL Modus (HTTPS:) auf Ihrer Zen Cart Webseite verwendet werden soll oder nicht.<br /><br />TIPP: Jede Seite, in der persönliche Informationen eingegeben werden - z.B. Benutzerkonten, Bestellungen, Kreditkarteninformationen etc. - kann zur Verwendung mit SSL aktiviert werden. Ebenso kann der Admin Bereich damit geschützt werden.<br /><br />Sie müssen dafür Zugang zu einem SSL Server haben (erkennbar durch die Verwendung von HTTPS anstelle von HTTP). <br /><br />Wenn Sie nicht sicher sind ob Sie Zugang zu einem SSL Server haben, lassen Sie diese Option deaktiviert und fragen bei Ihrem Webhoster nach. Hinweis: Wie alle Einstellungen, können Sie diese ebenso nachträglich in der configure.php ändern.');
+    define('POPUP_ERROR_TEXT', 'Diese Einstellung legt fest, ob der SSL Modus (HTTPS:) auf Ihrer Zen Cart Webseite verwendet werden soll oder nicht.<br /><br />TIPP: Jede Seite, in der persönliche Informationen eingegeben werden - z.B. Benutzerkonten, Bestellungen, Kreditkarteninformationen etc. - kann zur Verwendung mit SSL aktiviert werden. Ebenso kann der Admin Bereich damit geschützt werden.<br /><br />Sie müssen dafür Zugang zu einem SSL Server haben (erkennbar durch die Verwendung von HTTPS anstelle von HTTP). <br /><br />Wenn Sie nicht sicher sind ob Sie Zugang zu einem SSL Server haben, lassen Sie diese Option deaktiviert und fragen bei Ihrem Webhoster nach. HINWEIS: Wie alle Einstellungen, können Sie diese ebenso nachträglich in der configure.php ändern.');
     
   break;
   case ('9'):
@@ -328,7 +328,7 @@ switch ($error_code) {
   break;
   case ('20'):
     define('POPUP_ERROR_HEADING', 'Datenbank erstellen');
-    define('POPUP_ERROR_TEXT', 'Diese Einstellung gibt an, ob das Installationsprogramm versuchen soll, eine Datenbank zu erstellen. Hinweis: Die Option \'erstellen\' hat nichts mit dem Hinzufügen von Tabellen zu tun, die Zen Cart benötigt (welche sowieso automatisch erstellt werden). Viele WEbhoster geben Ihren Benutzern nicht das Recht, Datenbanken zu \'erstellen\', bieten jedoch eine andere Möglichkeit zum Erstellen einer Datenbank (z.B. cPanel oder phpMyAdmin). Im Zweifelsfall kontaktieren Sie bitte Ihren Webhoster.');
+    define('POPUP_ERROR_TEXT', 'Diese Einstellung gibt an, ob das Installationsprogramm versuchen soll, eine Datenbank zu erstellen. HINWEIS: Die Option \'erstellen\' hat nichts mit dem Hinzufügen von Tabellen zu tun, die Zen Cart benötigt (welche sowieso automatisch erstellt werden). Viele WEbhoster geben Ihren Benutzern nicht das Recht, Datenbanken zu \'erstellen\', bieten jedoch eine andere Möglichkeit zum Erstellen einer Datenbank (z.B. cPanel oder phpMyAdmin). Im Zweifelsfall kontaktieren Sie bitte Ihren Webhoster.');
     
   break;
   case ('21'):

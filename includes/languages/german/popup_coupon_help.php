@@ -37,6 +37,9 @@ define('TEXT_DENY','verbieten');
 define('TEXT_ALLOWED', ' (erlaubt)');
 define('TEXT_DENIED', ' (nicht erlaubt)');
 
+define('TEXT_NO_CAT_RESTRICTIONS', '<p>Dieser Aktionskupon ist für alle Kategorien gültig.</p>');
+define('TEXT_NO_PROD_RESTRICTIONS', '<p>Dieser Aktionskupon ist für alle Artikel gültig.</p>');
+
 // gift certificates cannot be purchased with Discount Coupons
 define('TEXT_COUPON_GV_RESTRICTION','Aktionskupons können nicht zum Kauf von ' . TEXT_GV_NAMES . ' verwendet werden.');
 define('TEXT_COUPON_GV_RESTRICTION_ZONES', 'Mit dieser Rechnungsadresse können keine Aktionskupons eingelöst werden.');
