@@ -122,7 +122,7 @@ define('TEXT_SELECT_OPTION_TO', 'Kopiere alle Attributmerkmale zum Attributnamen
 define('SUCCESS_OPTION_VALUES_COPIED', 'Erfolgreich kopiert! ');
 define('ERROR_OPTION_VALUES_COPIED', 'Fehler - kann keine Attributmerkmale zum selben Attributnamen kopieren! ');
 define('ERROR_OPTION_VALUES_NONE', 'Fehler - Es wurden keine Attributmerkmale definiert - es wurde nichts kopiert! ');
-define('TEXT_WARNING_BACKUP', 'Warnung: Führen Sie VOR jeder globalen Änderung immer eine Sicherung der Datenbank durch');
+define('TEXT_WARNING_BACKUP', 'WARNUNG: Führen Sie VOR jeder globalen Änderung immer eine Sicherung der Datenbank durch');
 define('TEXT_OPTION_ATTRIBUTE_IMAGES_PER_ROW', 'Attributbilder pro Reihe: ');
 define('TEXT_OPTION_ATTRIBUTE_IMAGES_STYLE', 'Attributstil für Radio Buttons/Checkboxen: ');
 define('TEXT_OPTION_ATTIBUTE_MAX_LENGTH', '<strong>Maximale Länge und Anzeigegröße nur für Textattribute:</strong><br />');

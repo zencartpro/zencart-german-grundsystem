@@ -27,4 +27,3 @@ define('BOX_HEADING_MUSIC_GENRES', 'Musik Genre');
 define('BOX_HEADING_RECORD_COMPANY', 'Plattenfirmen');
 define('PULL_DOWN_RECORD_COMPANIES', '- Zurücksetzen -');
 define('PULL_DOWN_MUSIC_GENRES', '- Zurücksetzen -');
-?>

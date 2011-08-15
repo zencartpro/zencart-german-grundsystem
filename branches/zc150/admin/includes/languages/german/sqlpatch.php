@@ -26,7 +26,7 @@ define('HEADING_WARNING_INSTALLSCRIPTS', 'HINWEIS: Zen Cart Datenbank-Upgrade Sc
 define('TEXT_QUERY_RESULTS', 'Abfrageergebnisse:');
 define('TEXT_ENTER_QUERY_STRING', 'SQL-Befehl(e) ausführen:&nbsp;&nbsp;<br />(Abschliessen<br />mit ;)');
 define('TEXT_QUERY_FILENAME', '<br />oder Datei:');
-define('ERROR_NOTHING_TO_DO', 'Fehler: Kein SQL-Befehl bzw. keine Datei gewählt.');
+define('ERROR_NOTHING_TO_DO', 'FEHLER: Kein SQL-Befehl bzw. keine Datei gewählt.');
 define('TEXT_CLOSE_WINDOW', '<br />[ Fenster schliessen ]');
 define('SQLPATCH_HELP_TEXT', 'Das Tool "SQLPATCH" gibt Ihnen die Möglichkeit, SQL Codes direkt in das Textfeld einzugeben, ' .
      'oder eigene (.SQL) - Dateien hochzuladen.<br />' .

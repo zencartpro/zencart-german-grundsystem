@@ -54,7 +54,7 @@ define('TEXT_INFO_DELETE_INTRO','Wollen Sie diesen Sonderpreis wirklich löschen
 define('SUCCESS_SPECIALS_PRE_ADD', 'Erfolgreich: Sonderangebot hinzugefügt ... Bitte Preis und Datum anpassen ...');
 define('WARNING_SPECIALS_PRE_ADD_EMPTY', 'Achtung: Keine Artikel ID angegeben ... nichts hinzugefügt ...');
 define('WARNING_SPECIALS_PRE_ADD_DUPLICATE', 'Achtung: Artikel ID ist bereits ein Sonderangebot ... es wurde nichts hinzugefügt ...');
-define('WARNING_SPECIALS_PRE_ADD_BAD_PRODUCTS_ID', 'Warnung: Artikel ID ist ungültig ... es wurde nichts hinzugefügt ...');
+define('WARNING_SPECIALS_PRE_ADD_BAD_PRODUCTS_ID', 'WARNUNG: Artikel ID ist ungültig ... es wurde nichts hinzugefügt ...');
 define('TEXT_INFO_HEADING_PRE_ADD_SPECIALS', 'Sonderangebot mittels Artikel-ID hinzufügen');
 define('TEXT_INFO_PRE_ADD_INTRO', 'Bei großen Datenbanken ist es ratsam Sonderangebote direkt über die Artikel-ID hinzuzufügen.');
 define('TEXT_PRE_ADD_PRODUCTS_ID', 'Bitte Artikel-ID eingeben: ');

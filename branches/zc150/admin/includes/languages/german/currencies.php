@@ -37,7 +37,7 @@ define('TEXT_INFO_HEADING_DELETE_CURRENCY','Währung löschen');
 define('TEXT_INFO_SET_AS_DEFAULT',TEXT_SET_DEFAULT . '(Ein manuelles Update der Währungskurse ist notwendig)');
 define('TEXT_INFO_CURRENCY_UPDATED','Der Umrechnungskurs für %s (%s) wurde mit %s aktualisiert.');
 
-define('ERROR_REMOVE_DEFAULT_CURRENCY','Fehler: Die Standardwährung kann nicht gelöscht werden. Legen Sie eine andere Währung als Standard fest und versuchen Sie es noch einmal.');
-define('ERROR_CURRENCY_INVALID','Fehler: Der Umrechnungskurs für %s (%s) konnte mit %s nicht aktualisiert werden. Haben Sie den richtigen Währungs-Code eingeben?');
-define('WARNING_PRIMARY_SERVER_FAILED','Warnung: Der primäre Aktualisierungs-Server (%s) konnte nach %s (%s) Versuchen nicht erreicht werden - Es wird versucht, die Aktualisierung über den sekundären Server durchzuführen.');
+define('ERROR_REMOVE_DEFAULT_CURRENCY','FEHLER: Die Standardwährung kann nicht gelöscht werden. Legen Sie eine andere Währung als Standard fest und versuchen Sie es noch einmal.');
+define('ERROR_CURRENCY_INVALID','FEHLER: Der Umrechnungskurs für %s (%s) konnte mit %s nicht aktualisiert werden. Haben Sie den richtigen Währungs-Code eingeben?');
+define('WARNING_PRIMARY_SERVER_FAILED','WARNUNG: Der primäre Aktualisierungs-Server (%s) konnte nach %s (%s) Versuchen nicht erreicht werden - Es wird versucht, die Aktualisierung über den sekundären Server durchzuführen.');
 define('ERROR_INVALID_CURRENCY_ENTRY', 'FEHLER: Ihre Angaben sind unvollständig und wurden nicht gespeichert. Sie müssen einen Code und einen Namen angeben.');

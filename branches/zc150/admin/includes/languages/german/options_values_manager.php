@@ -49,7 +49,7 @@ define('PRODUCTS_ATTRIBUTES_DELETE', 'LÖSCHE');
 // title
 define('PRODUCTS_ATTRIBUTES_ADDING', 'FÜGE NEUES ATTRIBUT HINZU');
 // title
-define('TEXT_DOWNLOADS_DISABLED', 'Hinweis: Downloads sind deaktiviert');
+define('TEXT_DOWNLOADS_DISABLED', 'HINWEIS: Downloads sind deaktiviert');
 define('TABLE_TEXT_MAX_DAYS_SHORT', 'Tage:');
 define('TABLE_TEXT_MAX_COUNT_SHORT', 'Maximal:');
 define('TABLE_HEADING_OPTION_SORT_ORDER', 'Sortierung');
@@ -106,14 +106,14 @@ define('TEXT_COPY_ATTRIBUTES_UPDATE', 'Existierende Attribute mit neuen Werten <
 define('TEXT_COPY_ATTRIBUTES_IGNORE', 'Existierende Attribute <strong>ignorieren</strong> und neue hinzufügen');
 define('TEXT_INFO_FROM', ' von: ');
 define('TEXT_INFO_TO', ' nach: ');
-define('ERROR_OPTION_VALUES_COPIED', 'Fehler: Doppelter Optionsname und Optionswert');
-define('ERROR_OPTION_VALUES_COPIED_MISMATCH', 'Fehler: Ausgewählter Optionsname und Optionswert stimmen nicht überein');
-define('ERROR_OPTION_VALUES_NONE', 'Fehler: Nichts zum Kopieren gefunden');
+define('ERROR_OPTION_VALUES_COPIED', 'FEHLER: Doppelter Optionsname und Optionswert');
+define('ERROR_OPTION_VALUES_COPIED_MISMATCH', 'FEHLER: Ausgewählter Optionsname und Optionswert stimmen nicht überein');
+define('ERROR_OPTION_VALUES_NONE', 'FEHLER: Nichts zum Kopieren gefunden');
 define('SUCCESS_OPTION_VALUES_COPIED', 'Kopieren erfolgreich! ');
-define('ERROR_OPTION_VALUES_COPIED_MISMATCH_PRODUCTS_ID', 'Fehler: kein Optionsname/-wert für Artikel-Nr:');
+define('ERROR_OPTION_VALUES_COPIED_MISMATCH_PRODUCTS_ID', 'FEHLER: kein Optionsname/-wert für Artikel-Nr:');
 define('TEXT_OPTION_VALUE_DELETE_ALL', '<strong>ALLE Attribute löschen, bei denen Optionsname und Wert...</strong>');
 define('TEXT_INFO_OPTION_VALUE_DELETE_ALL', 'Wählen Sie einen Optionsnamen und einen Wert aus, der bereits in einem (oder mehreren Artikel) existiert, den Sie aus ALLEN Artikel bzw. aus ALLEN Artikel einer Kategorie löschen möchten');
 define('TEXT_SELECT_DELETE_OPTION_FROM', 'Abzugleichender Optionsname:');
 define('TEXT_SELECT_DELETE_OPTION_VALUES_FROM', 'Abzugleichender Optionswert:');
-define('ERROR_OPTION_VALUES_DELETE_MISMATCH', 'Fehler: Ausgewählter Optionsname und Optionswert stimmen nicht überein');
+define('ERROR_OPTION_VALUES_DELETE_MISMATCH', 'FEHLER: Ausgewählter Optionsname und Optionswert stimmen nicht überein');
 define('SUCCESS_OPTION_VALUES_DELETE', 'Erfolgreich gelöscht: ');

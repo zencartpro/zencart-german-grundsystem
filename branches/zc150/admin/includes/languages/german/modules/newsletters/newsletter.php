@@ -32,5 +32,5 @@ define('TEXT_PLEASE_SELECT_AUDIENCE', ' Bitte wählen Sie eine Empfängergruppe 
 define('TEXT_PLEASE_WAIT', 'Bitte warten .. sende E-Mails ..<br /><br />Bitte diesen Prozess nicht unterbrechen!');
 define('TEXT_FINISHED_SENDING_EMAILS', 'Die E-Mails wurden versendet!');
 
-define('ERROR_NEWSLETTER_TITLE', 'Fehler: Ein Titel wird für den Newsletter benötigt');
-define('ERROR_NEWSLETTER_MODULE', 'Fehler: Das Newsletter Modul wird benötigt');
+define('ERROR_NEWSLETTER_TITLE', 'FEHLER: Ein Titel wird für den Newsletter benötigt');
+define('ERROR_NEWSLETTER_MODULE', 'FEHLER: Das Newsletter Modul wird benötigt');

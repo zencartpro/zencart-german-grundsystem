@@ -35,6 +35,48 @@ define('MODULE_PAYMENT_AUTHORIZENET_AIM_TEXT_JS_CC_NUMBER', '* Die Kreditkartenn
 define('MODULE_PAYMENT_AUTHORIZENET_AIM_TEXT_JS_CC_CVV', '* Den 3 bzw. 4-Stelligen Sicherheitscode finden Sie auf der Rückseite Ihrer Kreditkarte.\n');
 define('MODULE_PAYMENT_AUTHORIZENET_AIM_TEXT_DECLINED_MESSAGE', 'Diese Kreditkarte wurde abgelehnt. Bitte korrigieren Sie Ihre Eingaben und versuchen Sie es noch einmal oder kontaktieren Sie uns für weitere Instruktionen.');
 define('MODULE_PAYMENT_AUTHORIZENET_AIM_TEXT_ERROR', 'Kreditkarten Fehler!');
+  define('MODULE_PAYMENT_AUTHORIZENET_AIM_TEXT_AUTHENTICITY_WARNING', 'WARNUNG: Sicherheitsproblem. Bitte kontaktieren Sie sofort den Shop Betreiber. Ihre Bestellung konnte nicht vollständig authorisiert werden.');
+
+// admin tools:
+  define('MODULE_PAYMENT_AUTHORIZENET_AIM_ENTRY_REFUND_BUTTON_TEXT', 'Rückerstattung');
+  define('MODULE_PAYMENT_AUTHORIZENET_AIM_TEXT_REFUND_CONFIRM_ERROR', 'FEHLER: Sie haben Rückerstattung beantragt, aber die Bestätigungs-Box nicht aktiviert.');
+  define('MODULE_PAYMENT_AUTHORIZENET_AIM_TEXT_INVALID_REFUND_AMOUNT', 'FEHLER: Sie haben Rückerstattung beantragt, haben aber einen ungültigen Betrag eingegeben.');
+  define('MODULE_PAYMENT_AUTHORIZENET_AIM_TEXT_CC_NUM_REQUIRED_ERROR', 'FEHLER: Sie haben Rückerstattung beantragt, habe aber die letzten 4 Stellen der Kreditkartennummer nicht eingegeben.');
+  define('MODULE_PAYMENT_AUTHORIZENET_AIM_TEXT_REFUND_INITIATED', 'Rückerstattung initialisiert. Transaktion ID: %s - Auth Code: %s');
+  define('MODULE_PAYMENT_AUTHORIZENET_AIM_TEXT_CAPTURE_CONFIRM_ERROR', 'FEHLER: Sie wollten die Rückerstattung akzeptieren, haben aber nicht die Bestätigungs-Box nicht aktiviert.');
+  define('MODULE_PAYMENT_AUTHORIZENET_AIM_ENTRY_CAPTURE_BUTTON_TEXT', 'Rückerstatten');
+  define('MODULE_PAYMENT_AUTHORIZENET_AIM_TEXT_INVALID_CAPTURE_AMOUNT', 'FEHLER: Sie haben eine Rückerstattung angefordert, haben aber nicht den Betrag eingegeben.');
+  define('MODULE_PAYMENT_AUTHORIZENET_AIM_TEXT_TRANS_ID_REQUIRED_ERROR', 'FEHLER: Bitte geben Sie die Transaktions ID ein.');
+  define('MODULE_PAYMENT_AUTHORIZENET_AIM_TEXT_CAPT_INITIATED', 'Rückerstattung gestartet. Betrag: %s.  Transaktion ID: %s - Auth Code: %s');
+  define('MODULE_PAYMENT_AUTHORIZENET_AIM_ENTRY_VOID_BUTTON_TEXT', 'Zahlung aufheben');
+  define('MODULE_PAYMENT_AUTHORIZENET_AIM_TEXT_VOID_CONFIRM_ERROR', 'FEHLER: Sie haben eine Aufhebung beantragt, aber die Bestätigungs-Box nicht aktiviert.');
+  define('MODULE_PAYMENT_AUTHORIZENET_AIM_TEXT_VOID_INITIATED', 'Aufhebung gestartet. Transaktion ID: %s - Auth Code: %s ');
 
 
-?>
+  
+  define('MODULE_PAYMENT_AUTHORIZENET_AIM_ENTRY_REFUND_TITLE', '<strong>Rückerstattung Transaktionen</strong>');
+  define('MODULE_PAYMENT_AUTHORIZENET_AIM_ENTRY_REFUND', 'Sie können hier Geld an der Zahler (Kreditkarte) zurück überweisen:');
+  define('MODULE_PAYMENT_AUTHORIZENET_AIM_TEXT_REFUND_CONFIRM_CHECK', 'Markieren Sie die Box bevor Sie Bestätigen: ');
+  define('MODULE_PAYMENT_AUTHORIZENET_AIM_ENTRY_REFUND_AMOUNT_TEXT', 'Geben Sie den Rückerstattungsbetrag ein');
+  define('MODULE_PAYMENT_AUTHORIZENET_AIM_ENTRY_REFUND_CC_NUM_TEXT', 'Geben Sie die letzten 4 Ziffern der Konto Nummer ein.');
+  define('MODULE_PAYMENT_AUTHORIZENET_AIM_ENTRY_REFUND_TRANS_ID', 'Geben Sie optional die Transaktion ID ein:');
+  define('MODULE_PAYMENT_AUTHORIZENET_AIM_ENTRY_REFUND_TEXT_COMMENTS', 'Bemerkung (Erscheint nur in der Bestell-Historie):');
+  define('MODULE_PAYMENT_AUTHORIZENET_AIM_ENTRY_REFUND_DEFAULT_MESSAGE', 'Ausgeführte Rückerstattungen');
+  define('MODULE_PAYMENT_AUTHORIZENET_AIM_ENTRY_REFUND_SUFFIX', 'Sie können ein Rückerstattung für einen Auftrag in der Höhe des ursprünglichen Betrags ausführen. Sie müssen die letzten 4 Stellen der Konto-Nr. angeben, unter der der Auftrag ausgeführt wurde.<br />Rückerstattungen können innerhalb 120 Tagen ab dem orginal Transaktionsdatum durchgeführt werden.');
+
+  define('MODULE_PAYMENT_AUTHORIZENET_AIM_ENTRY_CAPTURE_TITLE', '<strong>Transaktionen rückgängig machen</strong>');
+  define('MODULE_PAYMENT_AUTHORIZENET_AIM_ENTRY_CAPTURE', 'Hier können Sie bereits authorisierte Zahlungen rückgängig machen:');
+  define('MODULE_PAYMENT_AUTHORIZENET_AIM_ENTRY_CAPTURE_AMOUNT_TEXT', 'Geben Sie den Betrag ein: ');
+  define('MODULE_PAYMENT_AUTHORIZENET_AIM_TEXT_CAPTURE_CONFIRM_CHECK', 'Aktivieren Sie die Box um zu bestötigen: ');
+  define('MODULE_PAYMENT_AUTHORIZENET_AIM_ENTRY_CAPTURE_TRANS_ID', 'Geben sie hier die ursprüngliche Transaktion ID ein: ');
+  define('MODULE_PAYMENT_AUTHORIZENET_AIM_ENTRY_CAPTURE_TEXT_COMMENTS', 'Bemerkung (Erscheint nur in der Bestellhistorie):');
+  define('MODULE_PAYMENT_AUTHORIZENET_AIM_ENTRY_CAPTURE_DEFAULT_MESSAGE', 'Rückgängig gemachte Zahlungen.');
+  define('MODULE_PAYMENT_AUTHORIZENET_AIM_ENTRY_CAPTURE_SUFFIX', 'Zahlungen können innerhalb von 30 Tagen ab der Transaktion getätigt werden. Rückführung ist EINMALIG.<br />Stellen Sir sicher, daß der Betrag korrekt ist.<br />Original betrag wird rückgängig gemacht, wenn Sie keinen Betrag eingeben.');
+
+  define('MODULE_PAYMENT_AUTHORIZENET_AIM_ENTRY_VOID_TITLE', '<strong>Transaktionen löschen</strong>');
+  define('MODULE_PAYMENT_AUTHORIZENET_AIM_ENTRY_VOID', 'Sie können Transaktionen löschen, die bisher noch nicht beglichen wurden:');
+  define('MODULE_PAYMENT_AUTHORIZENET_AIM_TEXT_VOID_CONFIRM_CHECK', 'Aktivieren Sie die Box um zu bestätigen:');
+  define('MODULE_PAYMENT_AUTHORIZENET_AIM_ENTRY_VOID_TEXT_COMMENTS', 'Bemerkung (Erscheint nur in der Bestellhistorie):');
+  define('MODULE_PAYMENT_AUTHORIZENET_AIM_ENTRY_VOID_DEFAULT_MESSAGE', 'Transaktion gelöscht');
+  define('MODULE_PAYMENT_AUTHORIZENET_AIM_ENTRY_VOID_SUFFIX', 'Löschungen können nur täglich vorgenommen werden.');
+

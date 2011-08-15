@@ -49,5 +49,5 @@ define('TEXT_DELETE_IMAGE','Herstellerbild wirklich löschen?');
 define('TEXT_DELETE_PRODUCTS','Die Artikel diese Herstellers wirklich löschen? (Alle Daten werden gelöscht!)');
 define('TEXT_DELETE_WARNING_PRODUCTS','<b>WARNUNG:</b> Es sind noch %s Artikel mit diesem Hersteller verlinkt!');
 
-define('ERROR_DIRECTORY_NOT_WRITEABLE','Fehler: In das Verzeichnis kann nicht geschrieben werden. Setzen Sie bitte die erforderlichen Berechtigungen für: %s');
-define('ERROR_DIRECTORY_DOES_NOT_EXIST','Fehler: Das Verzeichnis existiert nicht: %s');
+define('ERROR_DIRECTORY_NOT_WRITEABLE','FEHLER: In das Verzeichnis kann nicht geschrieben werden. Setzen Sie bitte die erforderlichen Berechtigungen für: %s');
+define('ERROR_DIRECTORY_DOES_NOT_EXIST','FEHLER: Das Verzeichnis existiert nicht: %s');

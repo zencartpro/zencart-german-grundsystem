@@ -7,7 +7,7 @@
  * @version $Id: profiles.php 729 2011-08-09 15:49:16Z hugo13 $
  */
 
-define('HEADING_TITLE_ALL_PROFILES', 'Benutzerprofiles');
+define('HEADING_TITLE_ALL_PROFILES', 'Benutzer Profile');
 define('HEADING_TITLE_INDIVIDUAL_PROFILE', 'Profil für %s ');
 define('HEADING_TITLE_NEW_PROFILE', 'Neues Profile für ');
 

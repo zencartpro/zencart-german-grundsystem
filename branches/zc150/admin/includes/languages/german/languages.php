@@ -26,5 +26,5 @@ define('TEXT_INFO_DELETE_INTRO','Wollen Sie diese Sprache wirklich löschen?');
 define('TEXT_INFO_HEADING_NEW_LANGUAGE','Neue Sprache');
 define('TEXT_INFO_HEADING_EDIT_LANGUAGE','Sprache bearbeiten');
 define('TEXT_INFO_HEADING_DELETE_LANGUAGE','Sprache löschen');
-define('ERROR_REMOVE_DEFAULT_LANGUAGE','Fehler: Sie können die Standardsprache nicht löschen. Bitte legen Sie eine andere Sprache als Standard fest und versuchen Sie es noch einmal.');
-define('ERROR_DUPLICATE_LANGUAGE_CODE','Fehler: Es existiert bereits eine Sprache mit diesem Code.');
+define('ERROR_REMOVE_DEFAULT_LANGUAGE','FEHLER: Sie können die Standardsprache nicht löschen. Bitte legen Sie eine andere Sprache als Standard fest und versuchen Sie es noch einmal.');
+define('ERROR_DUPLICATE_LANGUAGE_CODE','FEHLER: Es existiert bereits eine Sprache mit diesem Code.');

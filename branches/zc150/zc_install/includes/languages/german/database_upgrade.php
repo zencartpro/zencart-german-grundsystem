@@ -13,7 +13,7 @@
   define('TEXT_PAGE_HEADING', 'Zen Cart Setup - Datenbankupdate');
   define('UPDATE_DATABASE_NOW','Datenbank jetzt updaten');//this comes before TEXT_MAIN
 
-  define('TEXT_MAIN', '<em>Warnung: </em> Dieses Update ist nur für Aktualisierungen innerhalb des Datenbankschemas für die angeführten Versionen.<br /><br /><span class="emphasis"><strong>Es ist SEHR EMPFEHLENSWERT, VOR der Aktualisierung eine Sicherung der Datenbank durchzuführen!</strong></span>');
+  define('TEXT_MAIN', '<em>WARNUNG: </em> Dieses Update ist nur für Aktualisierungen innerhalb des Datenbankschemas für die angeführten Versionen.<br /><br /><span class="emphasis"><strong>Es ist SEHR EMPFEHLENSWERT, VOR der Aktualisierung eine Sicherung der Datenbank durchzuführen!</strong></span>');
   define('TEXT_MAIN_2','<span class="emphasis">Überprüfen Sie sorgfältig die nachstehenden Informationen, die aus der Datei "configure.php" ausgelesen wurden</span>.<br />Fahren Sie erst mit der Aktualisierung fort, wenn Sie alle notwendigen Einstellungen auf ihre Richtigkeit geprüft haben - Sie riskieren sonst eine Zerstörung der Datenbank.');
 
   define('DATABASE_INFORMATION', 'Datenbank Informationen');

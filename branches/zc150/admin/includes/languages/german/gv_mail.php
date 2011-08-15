@@ -35,10 +35,10 @@ define('TEXT_SELECT_CUSTOMER', 'Kunde wählen');
 define('TEXT_ALL_CUSTOMERS', 'Alle Kunden');
 define('TEXT_NEWSLETTER_CUSTOMERS', 'An alle Newsletter Abonnementen');
 
-define('NOTICE_EMAIL_SENT_TO', 'Hinweis: E-Mail wurde versendet an: %s');
-define('ERROR_NO_CUSTOMER_SELECTED', 'Fehler: Es wurde kein Kunde ausgewählt.');
-define('ERROR_NO_AMOUNT_SELECTED', 'Fehler: Kein Betrag gewählt.');
-define('ERROR_NO_SUBJECT', 'Fehler: Es wurde kein Betreff angegeben.');
+define('NOTICE_EMAIL_SENT_TO', 'HINWEIS: E-Mail wurde versendet an: %s');
+define('ERROR_NO_CUSTOMER_SELECTED', 'FEHLER: Es wurde kein Kunde ausgewählt.');
+define('ERROR_NO_AMOUNT_SELECTED', 'FEHLER: Kein Betrag gewählt.');
+define('ERROR_NO_SUBJECT', 'FEHLER: Es wurde kein Betreff angegeben.');
 define('ERROR_GV_AMOUNT', 'Bitte den Wert ohne Symbole angeben. Beispiel: 25.00');
 
 define('TEXT_GV_ANNOUNCE', '<font color="#0000ff">Wir freuen uns, Ihnen einen ' . TEXT_GV_NAME . ' schenken zu können.</font>');

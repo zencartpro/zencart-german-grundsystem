@@ -38,7 +38,7 @@
 
   define('MODULE_PAYMENT_AUTHORIZENET_ECHECK_TEXT_DECLINED_MESSAGE', 'Ihre Transaktion ist fehlgeschlagen. Bitte überprüfen Sie Ihre Angaben und versuchen Sie es noch einmal oder kontaktieren Sie uns zur Unterstützung.');
   define('MODULE_PAYMENT_AUTHORIZENET_ECHECK_TEXT_ERROR', 'Transaktion Fehler!');
-  define('MODULE_PAYMENT_AUTHORIZENET_ECHECK_TEXT_AUTHENTICITY_WARNING', 'WARNUNG: Sicherheitsproblem. Bitte kontaktieren Sie soforth den Shop Betreiber. Ihre Bestellung konnte nicht vollständig authorisiert werden.');
+  define('MODULE_PAYMENT_AUTHORIZENET_ECHECK_TEXT_AUTHENTICITY_WARNING', 'WARNUNG: Sicherheitsproblem. Bitte kontaktieren Sie sofort den Shop Betreiber. Ihre Bestellung konnte nicht vollständig authorisiert werden.');
 
   define('MODULE_PAYMENT_AUTHORIZENET_ECHECK_TEXT_CUST_TYPE', 'Kunden Typ:');
   define('MODULE_PAYMENT_AUTHORIZENET_ECHECK_TEXT_CUST_TAX_ID', 'Kunden Steuer ID/SSN:');
@@ -54,12 +54,12 @@
   define('MODULE_PAYMENT_AUTHORIZENET_ECHECK_ENTRY_REFUND_BUTTON_TEXT', 'Rückerstattung');
   define('MODULE_PAYMENT_AUTHORIZENET_ECHECK_TEXT_REFUND_CONFIRM_ERROR', 'FEHLER: Sie haben Rückerstattung beantragt, aber die Bestätigungs-Box nicht aktiviert.');
   define('MODULE_PAYMENT_AUTHORIZENET_ECHECK_TEXT_INVALID_REFUND_AMOUNT', 'FEHLER: Sie haben Rückerstattung beantragt, haben aber einen ungültigen Betrag eingegeben.');
-  define('MODULE_PAYMENT_AUTHORIZENET_ECHECK_TEXT_CC_NUM_REQUIRED_ERROR', 'FEHLER: Sie haben Rückerstattung beantragt, habe aber die letzten 4 Stellen der Konto-Nr. nicht eingegeben.');
+  define('MODULE_PAYMENT_AUTHORIZENET_ECHECK_TEXT_CC_NUM_REQUIRED_ERROR', 'FEHLER: Sie haben Rückerstattung beantragt, habe aber die letzten 4 Stellen der Kreditkartennummer nicht eingegeben.');
   define('MODULE_PAYMENT_AUTHORIZENET_ECHECK_TEXT_REFUND_INITIATED', 'Rückerstattung initialisiert. Transaktion ID: %s - Auth Code: %s');
   define('MODULE_PAYMENT_AUTHORIZENET_ECHECK_TEXT_CAPTURE_CONFIRM_ERROR', 'FEHLER: Sie wollten die Rückerstattung akzeptieren, haben aber nicht die Bestätigungs-Box nicht aktiviert.');
   define('MODULE_PAYMENT_AUTHORIZENET_ECHECK_ENTRY_CAPTURE_BUTTON_TEXT', 'Rückerstatten');
   define('MODULE_PAYMENT_AUTHORIZENET_ECHECK_TEXT_INVALID_CAPTURE_AMOUNT', 'FEHLER: Sie haben eine Rückerstattung angefordert, haben aber nicht den Betrag eingegeben.');
-  define('MODULE_PAYMENT_AUTHORIZENET_ECHECK_TEXT_TRANS_ID_REQUIRED_ERROR', 'Fehler: Bitte geben Sie die Transaktions ID ein.');
+  define('MODULE_PAYMENT_AUTHORIZENET_ECHECK_TEXT_TRANS_ID_REQUIRED_ERROR', 'FEHLER: Bitte geben Sie die Transaktions ID ein.');
   define('MODULE_PAYMENT_AUTHORIZENET_ECHECK_TEXT_CAPT_INITIATED', 'Rückerstattung gestartet. Betrag: %s.  Transaktion ID: %s - Auth Code: %s');
   define('MODULE_PAYMENT_AUTHORIZENET_ECHECK_ENTRY_VOID_BUTTON_TEXT', 'Zahlung aufheben');
   define('MODULE_PAYMENT_AUTHORIZENET_ECHECK_TEXT_VOID_CONFIRM_ERROR', 'FEHLER: Sie haben eine Aufhebung beantragt, aber die Bestätigungs-Box nicht aktiviert.');
