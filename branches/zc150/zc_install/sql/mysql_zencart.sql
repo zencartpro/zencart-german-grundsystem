@@ -2903,7 +2903,7 @@ INSERT INTO currencies VALUES (5,'Australian Dollar','AUD','$','','.',',','2','1
 INSERT INTO languages VALUES (43,'Deutsch','de','icon.gif','german',2);
 INSERT INTO languages VALUES (1,'English','en','icon.gif','english',1);
 
-INSERT INTO `layout_boxes` (`layout_id`, `layout_template`, `layout_box_name`, `layout_box_status`, `layout_box_location`, `layout_box_sort_order`, `layout_box_sort_order_single`, `layout_box_status_single`) VALUES
+INSERT INTO layout_boxes (layout_id, layout_template, layout_box_name, layout_box_status, layout_box_location, layout_box_sort_order, layout_box_sort_order_single, layout_box_status_single) VALUES
     (171, 'default_template_settings', 'product_notifications.php', 1, 1, 55, 85, 1),
     (172, 'default_template_settings', 'record_companies.php', 1, 1, 0, 0, 0),
     (170, 'default_template_settings', 'order_history.php', 1, 1, 0, 0, 0),
