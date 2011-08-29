@@ -144,7 +144,7 @@
     } else {
     	
 ?>
-<?php echo zen_draw_hidden_field('payment', $selection[$i]['id']); ?>
+<?php echo zen_draw_hidden_field('payment', $selection[$i]['id'], 'id="pmt-'.$selection[$i]['id'].'"'); ?>
 <?php
     }
 ?>
