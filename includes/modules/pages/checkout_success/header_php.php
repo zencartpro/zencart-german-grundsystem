@@ -147,7 +147,7 @@ submit_form();
       echo zen_draw_hidden_field($key, htmlspecialchars(stripslashes($value))) . "\n";
     }
   }
-  if (!isset($_POST['securityToken'])) zen_draw_hidden_field('securityToken', $_SESSION['securtiyToken']);
+  if (!isset($_POST['securityToken'])) zen_draw_hidden_field('securityToken', $_SESSION['securityToken']);
   echo "\n" . '<input type="submit" class="submitbutton" id="submitbutton" value=" Continue " onclick="continueClick()" />' . "\n";
   echo '</form></div></body></html>';
   exit();

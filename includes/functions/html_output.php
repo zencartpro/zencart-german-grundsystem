@@ -360,7 +360,7 @@
     if (zen_not_null($parameters)) $form .= ' ' . $parameters;
 
     $form .= '>';
-    if (strtolower($method) == 'post') $form .= '<input type="hidden" name="securityToken" value="' . $_SESSION['securityToken'] . '">';
+    if (strtolower($method) == 'post') $form .= '<input type="hidden" name="securityToken" value="' . $_SESSION['securityToken'] . '" />';
     return $form;
   }
 
