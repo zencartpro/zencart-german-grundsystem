@@ -58,7 +58,6 @@ define('HEADING_TITLE_LAYOUT_TEMPLATE','Seitenlayout Vorlage (Template)');
 
 define('TABLE_HEADING_LAYOUT_TITLE','Titel');
 define('TABLE_HEADING_LAYOUT_VALUE','Wert');
-define('TABLE_HEADING_ACTION', 'Aktion');
 
 define('TEXT_MODULE_DIRECTORY','Verzeichnis des Seitenlayouts:');
 define('TEXT_INFO_DATE_ADDED','Erstellt am:');
