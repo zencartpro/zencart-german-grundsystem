@@ -1093,7 +1093,7 @@ class shoppingCart extends base {
     while (list($products_id, ) = each($this->contents)) {
       $products_query = "select p.products_id, p.master_categories_id, p.products_status, pd.products_name, p.products_model, p.products_image,
                                   p.products_price, p.products_weight, p.products_tax_class_id,
-                                  p.products_quantity_order_min, p.products_quantity_order_units,
+                                  p.products_quantity_order_min, p.products_quantity_order_units, p.products_quantity_order_max,
                                   p.product_is_free, p.products_priced_by_attribute,
                                   p.products_discount_type, p.products_discount_type_from
                            from " . TABLE_PRODUCTS . " p, " . TABLE_PRODUCTS_DESCRIPTION . " pd
@@ -1184,6 +1184,13 @@ class shoppingCart extends base {
             }
           }
 
+          if ($fix_once == 0) {
+            if ($products->fields['products_quantity_order_max'] != 0 && $check_quantity > $products->fields['products_quantity_order_max']) {
+              $fix_once ++;
+              $_SESSION['valid_to_checkout'] = false;
+              $_SESSION['cart_errors'] .= ERROR_PRODUCT . $products->fields['products_name'] . ERROR_PRODUCT_QUANTITY_MAX_SHOPPING_CART . ERROR_PRODUCT_QUANTITY_ORDERED . $check_quantity  . ' <span class="alertBlack">' . zen_get_products_quantity_min_units_display((int)$prid, false, true) . '</span> ' . '<br />';
+            }
+          }
           if ($fix_once == 0) {
             if ($check_quantity < $check_quantity_min) {
               $fix_once ++;

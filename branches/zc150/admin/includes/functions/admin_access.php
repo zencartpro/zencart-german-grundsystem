@@ -819,3 +819,25 @@ function zen_register_admin_page($page_key, $language_key, $main_page, $page_par
   $sql = $db->bindVars($sql, ':sort_order:', $sort_order, 'integer');
   $db->Execute($sql);
 }
+function zen_deregister_admin_pages($pages)
+{
+  global $db;
+  if (!empty($pages))
+  {
+    if (is_array($pages))
+    {
+      $sql = "DELETE FROM " . TABLE_ADMIN_PAGES . " WHERE page_key IN (";
+      foreach ($pages as $page)
+      {
+        $sql .= ":page_key:,";
+        $sql = $db->bindVars($sql, ':page_key:', $page, 'string');
+      }
+      $sql = substr($sql, 0, -1) . ")";
+    } else
+    {
+      $sql = "DELETE FROM " . TABLE_ADMIN_PAGES . " WHERE page_key = :page_key:";
+      $sql = $db->bindVars($sql, ':page_key:', $pages, 'string');
+    }
+    $db->Execute($sql);
+  }
+}
