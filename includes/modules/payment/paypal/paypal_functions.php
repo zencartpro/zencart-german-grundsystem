@@ -82,34 +82,6 @@
         $transType = ($ipn_id->fields['pending_reason'] == 'paymentreview') ? 'reviewed' : 'parent';
         $ordersID = $ipn_id->fields['order_id'];
         $paypalipnID = $ipn_id->fields['paypal_ipn_id'];
-        if ($ordersID > 0) {
-          global $isDPtransaction;
-          if ($isDPtransaction) {
-            switch ($postArray['pending_reason']) {
-            case 'address':
-              $transType = 'pending-address';
-            break;
-            case 'multi_currency':
-              $transType = 'pending-multicurrency';
-            break;
-            case 'echeck':
-              $transType = 'pending-echeck';
-            break;
-            case 'authorization':
-              $transType = 'pending-authorization';
-            break;
-            case 'verify':
-              $transType = 'pending-verify';
-            break;
-            case 'paymentreview':
-              $transType = 'pending-paymentreview';
-            break;
-            case 'intl':
-              $transType = 'pending-intl';
-            break;
-            }
-          }
-        }
       }
     } else {
       $ipn_id = $db->Execute($sqlTxn);

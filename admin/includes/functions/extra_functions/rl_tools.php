@@ -150,3 +150,10 @@ function writeMenu($somecontent, $file){
     }
     writeRL($somecontent, $file, 'w');
 }
+function getNextConfigGroupID(){
+    global $db;
+    $sql = 'SELECT max(configuration_group_id) as nGID FROM ' . TABLE_CONFIGURATION_GROUP;
+    $res = $db->Execute($sql);   
+    $max = intval($res->fields['nGID']) + 1; 
+    return $max;
+}
