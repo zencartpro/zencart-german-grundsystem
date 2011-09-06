@@ -2,7 +2,7 @@
 /**
  * @package Installer
  * @access private
- * @copyright Copyright 2003-2010 Zen Cart Development Team
+ * @copyright Copyright 2003-2011 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
  * @version $Id$
@@ -19,8 +19,8 @@
   define('DATABASE_TYPE', 'Datenbanktyp');
   define('DATABASE_TYPE_INSTRUCTION', 'Wählen Sie hier den Datenbanktyp aus, den Sie verwenden wollen.');
 
-define('DATABASE_CHARSET', 'Database Character Set / Collation');
-define('DATABASE_CHARSET_INSTRUCTION', 'Choose the database collation to be used.');
+define('DATABASE_CHARSET', 'Database Character Set / Kollation');
+define('DATABASE_CHARSET_INSTRUCTION', 'Lassen Sie diese Einstellung unbedingt auf utf-8!');
   
   define('DATABASE_HOST', 'Datenbank-Host');
   define('DATABASE_HOST_INSTRUCTION', 'Wie lautet der Hostname der Datenbank?<br>(z.B. \'sql.myserver.at\' oder \'192.168.0.1\' oder \'localhost\')');
