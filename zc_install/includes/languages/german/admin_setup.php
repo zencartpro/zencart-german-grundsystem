@@ -16,7 +16,7 @@ define('ADMIN_INFORMATION', 'Administrator Informationen');
 define('ADMIN_USERNAME', 'Benutzername des Administrators');
 define('ADMIN_USERNAME_INSTRUCTION', 'Tragen Sie hier den gewünschten Benutzernamen für die Anmeldung im Adminbereich ein.');
 define('ADMIN_PASS', 'Passwort des Administrators');
-define('ADMIN_PASS_INSTRUCTION', 'Tragen Sie hier das gewünschte Passwort für die Anmeldung im Adminbereich ein.');
+define('ADMIN_PASS_INSTRUCTION', 'Tragen Sie hier das gewünschte Passwort für die Anmeldung im Adminbereich ein. WICHTIG: Das Passwort muss mindestens 7 Zeichen haben und mindestens eine Ziffer enthalten. Verwenden Sie an dieser Stelle ein Übergangspasswort, z.B. demo1234. Denn Sie müssen dieses Passwort beim ersten Einloggen in den Adminbereich sofort wieder ändern.');
 define('ADMIN_PASS_CONFIRM', 'Passwortbestätigung');
 define('ADMIN_PASS_CONFIRM_INSTRUCTION', 'Bitte bestätigen Sie das Passwort (um Tippfehler zu vermeiden).');
 define('ADMIN_EMAIL', 'E-Mail Adresse des Administrators');
