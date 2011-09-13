@@ -89,6 +89,8 @@ define('FILENAME_GV_MAIL', 'gv_mail');
 define('FILENAME_GV_SENT', 'gv_sent');
 define('FILENAME_FEATURED','featured');
 define('FILENAME_FEATURED_PRODUCTS','featured_products');
+define('FILENAME_IMPRESSUM', 'impressum');
+define('FILENAME_DEFINE_IMPRESSUM', 'define_impressum');
 define('FILENAME_INFO_SHOPPING_CART', 'info_shopping_cart');
 define('FILENAME_LANGUAGES', 'languages');
 define('FILENAME_LAYOUT_CONTROLLER','layout_controller');
@@ -165,6 +167,8 @@ define('FILENAME_TEMPLATE_SELECT', 'template_select');
 define('FILENAME_TIME_OUT','time_out');
 define('FILENAME_UNSUBSCRIBE', 'unsubscribe');
 define('FILENAME_USERS', 'users');
+define('FILENAME_WIDERRUFSRECHT', 'widerrufsrecht');
+define('FILENAME_DEFINE_WIDERRUFSRECHT', 'define_widerrufsrecht');
 define('FILENAME_ZONES', 'zones');
 define('FILENAME_WHOS_ONLINE', 'whos_online');
 
