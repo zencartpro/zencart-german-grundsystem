@@ -1,0 +1,282 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<title>Zen Lightbox 1.6.3 für Zen-Cart 1.5 deutsch</title>
+<meta http-equiv="pragma" content="no-cache">
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
+<meta http-equiv="content-language" content="de">
+<meta name="description" content="Modul zur Facebook Integration für Zen-Cart 1.5 deutsch">
+<link rel="stylesheet" type="text/css" href="includes/css/stylesheet.css">  
+<script type="text/javascript" src="includes/jscript/jscript_tabs.js"></script>
+</head>
+<body>
+<div id="wrapper">
+<div id="header">
+<h1>Zen Lightbox 1.6.3 für Zen-Cart 1.5 deutsch</h1>
+</div>
+
+<div id="slidetabsmenu" style="display: none;">
+<ul>
+  <li> <a onClick="expandcontent('sc1', this)" href="javascript:void(0)"><span>Sinn und Zweck</span></a></li>
+  <li> <a onClick="expandcontent('sc2', this)" href="javascript:void(0)"><span>Installation</span></a></li>
+   <li> <a onClick="expandcontent('sc4', this)" href="javascript:void(0)"><span>Deinstallation</span></a></li>
+  <li> <a onClick="expandcontent('sc5', this)" href="javascript:void(0)"><span>Download & Support</span></a></li>
+  <li> <a onClick="expandcontent('sc6', this)" href="javascript:void(0)"><span>Unterstützen</span></a></li>
+ </ul>
+</div>
+<br style="clear: both;">
+
+<!--Begin tabcontainer-->
+<div id="tabcontentcontainer">
+
+<!--Begin sc1-->
+<div class="tabcontent" id="sc1" style="display: block;">
+<div class="textcontent">
+<div class="regularlist">
+
+<h2>Sinn und Zweck dieses Moduls</h2>
+
+  <p>Dieses Modul integriert den Lightbox Effekt in Zen-Cart. Alle großen     Artikelbilder (auf der Detailseite) werden beim Anclicken in einer   Lightbox angezeigt. Dadurch werden keine Popup Fenster mehr verwendet,     was die Website wesentlich benutzerfreundlicher macht. Die zusätzlichen     Artikelbilder werden innerhalb der Lightbox in einer Galerie   angezeigt.</p>
+  <p>Mit Version 1.6.3 wird der Lightbox Effekt auf allen Seiten des    Shops ermöglicht (auch auf EZ-Pages) und die Steuerung der Lightbox kann   auch über Tastaturbefehle erfolgen. Damit die Lightbox auch in Firefox   6, Google Chrome und Internet Explorer 9 funktioniert, wird nun statt   Mootools jQuery verwendet.</p>
+<h3>Copyright,  Lizenz</h3>
+<p>Copyright dieser deutschen Anpassung/Anleitung für Zen-Cart 1.5 deutsch<br>
+(c) 2011 webchills (<a href="http://www.webchills.at" target="_blank">www.webchills.at</a>)</p>
+<p>Originalversion 2008 by Alex Clarke:<br>
+  <a href="http://www.zen-cart.com/index.php?main_page=product_contrib_info&products_id=273" target="_blank">http://www.zen-cart.com/index.php?main_page=product_contrib_info&amp;products_id=273</a><br>
+  Weiterentwickelt von niestudio </p>
+<p><strong>Changelog</strong></p>
+<p>Version 1.6.3 für die deutsche Zen-Cart 1.5 Version<br>
+  Anpassungen für 1.5<br>
+  Bugs im SQL Installer behoben
+  <br>
+Release Date: 2011-09-07 (webchills)</p>
+<p>Version 1.6.2 für die deutsche Zen-Cart 1.3.9h Version<br>
+  Bugfixes<br>
+  Release Date: 2011-03-08 (webchills)</p>
+<p>Version 1.6.2 niestudio<br>
+  Added Always show Previous and Next buttons (when using additional images) <br>
+  Brought back close on image click feature<br>
+  Release Date: 2011-01-23</p>
+<p>Version 1.6.1 für die deutsche Zen-Cart 1.3.9h Version<br>
+  Release Date: 2011-02-03 (webchills)
+</p>
+<ul>
+  <li>jQuery statt Mootools, aktualisierte Slimbox<br>
+    (Credits to niestudio)</li>
+</ul>
+<p>Version 1.5.2 für die deutsche Zen-Cart 1.3.9 Version<br>
+  Release Date: 2010-09-22 (webchills)
+</p>
+<ul>
+  <li>Anpassungen zur Verwendung in 1.3.9 deutsch</li>
+  <li>Anleitung aktualisiert</li>
+</ul>
+<p>Version 1.5.1 für die deutsche Zen-Cart 1.3.8 Version<br>
+  Release Date: 2009-02-15 (webchills)
+</p>
+<ul>
+  <li>Fehler im SQL Installer behoben</li>
+  <li>SQL Installer für deutsche Zen-Cart Version angepasst und übersetzt</li>
+  <li> deutsche Sprachfiles hinzugefügt und Struktur des Downloads geändert</li>
+  <li>deutsche Installationsanleitung erstellt</li>
+</ul>
+<p>Version 1.5 <br>
+  Release Date: 2008-12-18 (Alex Clarke)</p>
+<ul>
+  <li>Added Caption Animation Duration admin switch</li>
+  <li>Added Close Lightbox admin switch</li>
+  <li>Added Close on Image Click admin switch</li>
+  <li>Added Display Image Counter admin switch</li>
+  <li>Added Enable Keyboard Navigation admin switch</li>
+  <li>Added full support for multilingual stores</li>
+  <li>Added greater flexibility for Overlay Fade Duration admin switch</li>
+  <li>Added Image Fade Duration admin switch</li>
+  <li>Added Include Main Image in Gallery admin switch</li>
+  <li>Added Initial Height admin switch</li>
+  <li>Added Initial Width admin switch</li>
+  <li>Added missing &lt;/b&gt; to install.sql file</li>
+  <li>Added Next Image admin switch</li>
+  <li>Added Previous Image admin switch</li>
+  <li>Added Resize Transition admin switch</li>
+  <li>Added support for lightbox effect on any page (including EZ-Pages)</li>
+  <li>Added title attributes (similar to alt text) to lightbox buttons</li>
+  <li>Added uninstall.sql file</li>
+  <li>Removed Border Size admin switch (this is now controlled by CSS)</li>
+  <li>Removed DIV Class to Hide admin switch</li>
+  <li>Removed Enable Resize Animations admin switch</li>
+  <li>Removed header_php.php core file change</li>
+  <li>Removed Hide Flash Objects admin switch (Slimbox handles this automatically)</li>
+  <li>Updated blank entries in install.sql file to NULL</li>
+  <li>Updated invalid characters in rel attributes of links (output code is now valid XHTML)</li>
+  <li>Updated JavaScript code to classes to avoid source code duplication</li>
+  <li>Updated lightbox code to Slimbox v1.67</li>
+  <li>Updated modules to prevent JavaScript code from loading when Zen Lightbox is disabled</li>
+  <li>Updated support for Zen Cart 1.3.8a and Image Handler 2.0_for_137</li>
+  <li>Updated various configuration titles and descriptions within the admin</li>
+</ul>
+<p> Portions Copyright (c) 2003 osCommerce<br>
+  Portions Copyright     (c) 2003-2010 Zen Cart</p>
+<p>This contribution is subject to version 2.0 of the GPL license available through the world-wide-web at the following url:<br>
+  <a href="http://www.zen-cart-pro.at/license/2_0.txt">http://www.zen-cart-pro.at/license/2_0.txt</a></p>
+</div>
+</div>
+</div>
+<!--End sc1-->
+
+<!--Begin sc2-->
+<div class="tabcontent" id="sc2" style="display: block;">
+<div class="textcontent">
+<div class="regularlist">
+
+<h2>Installation</h2>
+<h3>Voraussetzungen</h3>
+  <br>
+  Dieses Modul ist<strong> nur für die deutsche Zen-Cart 1.5 Version geeignet</strong></p>
+  <p><br>
+  Für den Einbau dieses Moduls sollten Sie über folgende Werkzeuge verfügen:<br>
+  <br>
+  <strong>1) Ein guter Texteditor </strong><br>
+  Damit ist nicht das in Windows enthaltene Notepad oder Microsoft Word gemeint.<br>
+  Sie benötigen einen Texteditor, der utf-8 versteht und auch im Format utf-8 ohne BOM abspeichern kann.<br>
+  Meine Empfehlung: <a href="http://www.ultraedit.com/loc/de/index_de.html" target="_blank">UltraEdit</a> (kostenlose 30 Tage Testversion verfügbar)<br>
+  Ebenfalls gut geeignet ist der kostenlose Texteditor <a href="http://notepad-plus.sourceforge.net/de/site.htm" target="_blank">Notepad++ </a><br>
+</p>
+<p><strong>2) Ein Tool zum Vergleichen von Dateien</strong><br>
+  Bei der Installation dieses Moduls ist es erforderlich, dass Sie den     Inhalt einiger Ihrer bestehenden Zen-Cart Dateien mit dem Inhalt der     neuen Moduldateien vergleichen und die Änderungen zusammenführen     ("mergen").<br>
+  Meine Empfehlung: <a href="http://www.scootersoftware.com/" target="_blank">BeyondCompare</a> (kostenlose 30 Tage Testversion verfügbar)<br>
+  Ebenfalls gut geeignet ist das kostenlose Programm <a href="http://winmerge.org/" target="_blank">WinMerge </a></p>
+<p><br>
+  <strong>Empfehlung:</strong><br>
+  <br>
+  Dieses Modul erst in einem Testsystem einbauen und dort   konfigurieren/testen und endgültig an die eigenen Wünsche anpassen.        Erst dann in einem Liveshop einsetzen! Sichern Sie unbedingt alle   Dateien Ihres Shops per FTP und sichern Sie die Datenbank mit phpMyAdmin   oder anderen geeigneten Tools!</p>
+<div id="warning"><b>WICHTIG</b><br>
+Vor dem Einbau dieser Änderungen:<br>
+BACKUP von Shop und Datenbank machen! <br>
+Keine Haftung, Verwendung auf eigene Gefahr!<br>
+BACKUP gemacht? Ok, dann weiterlesen...
+</div>
+<p>Die Installation erfolgt in folgenden Schritten. Halten Sie diesen Ablauf ein!</p>
+<p>1.<br>
+Die Datei install.sql im Ordner SQL mit einem Texteditor öffen und den Inhalt kopieren</p>
+<p>2.<br>
+  Zen-Cart Administration öffnen und unter Tools &gt; SQL Patches installieren den Inhalt ins Feld hineinkopieren und absenden.<br>
+  Dadurch werden die Konfigurationsmöglichkeiten in der Datenbank angelegt.</p>
+<p>3.<br>
+  Neue Dateien des Moduls einspielen:<br>
+  Im Ordner NEUE DATEIEN dieses Downloads  alle Ordner   namens DEINTEMPLATE  auf den Namen des im Shop aktiven Templates   umbenennen (z.B. classic, viennabright, etc.). Den Ordner DEINADMIN auf den Namen Ihres Admin-Verzeichnisses umbenennen.<br>
+  Dann die Ordner/Dateien in der vorgegebenen Struktur ins Zen-Cart Verzeichnis hochladen.<br>
+  Dadurch werden keine bestehenden Dateien überschrieben<br>
+  <br>
+  4.<br>
+  Geänderte Dateien des Moduls einspielen.<br>
+  Im Ordner GEAENDERTE DATEIEN dieses Downloads befinden sich die für dieses Modul notwendigen geänderten Originaldateien.<br>
+  Es wird dringend empfohlen, die bestehenden Orginaldateien nicht einfach zu überschreiben!<br>
+  Machen Sie das nur, wenn Sie Zen-Cart gerade neu installiert haben und   noch keine Änderungen an Originaldateien vorgenommen haben.<br>
+  Stattdessen vergleichen Sie Ihre entsprechenden Originaldateien mit   einem geeigneten Programm wie z.B. WinMerge oder Beyond Compare und   nehmen die Änderungen manuell vor.<br>
+  Folgende Dateien müssen geändert werden (DEINTEMPLATE steht dabei für das im Shop aktive Template):<br>
+  includes/modules/DEINTEMPLATE/additional_images.php<br>
+  includes/templates/DEINTEMPLATE/templates/tpl_modules_main_product_image.php<br>
+  <br>
+  5.<br>
+  In der Zen-Cart Administration ist nun unter Konfiguration  ein   zusätzlicher Menüpunkt namens Zen Lightbox vorhanden, wo Sie etliche   Einstellungen zum Verhalten der Lightbox vornehmen können.</p>
+<h3>Erweiterte Nutzungsmöglichkeiten</h3>
+<p><strong>EZ-Pages</strong></p>
+<p>Standardmäßig ist der Lightbox Effekt für alle Links zu Bildern     innerhalb von EZ-Pages bereits aktiv. In der Lightbox-Konfiguration kann     das ausgeschaltet werden.<br>
+  Wenn Sie also ein Bild mit Link zum größeren Bild so in eine EZ-Page einbauen: </p>
+<code>&lt;a href="images/bildgross.jpg"&gt;&lt;img src="images/bildklein.jpg"&gt;&lt;/a&gt;</code>
+<p> Dann wird das Bild beim Anclicken in einer Lightbox vergrößert.</p>
+<p>Ebenso geht das Bild in einer Lightbox auf, wenn nur ein Link zum Bild gesetzt wird und der Link angecklickt wird:</p>
+<code>&lt;a href="images/bildgross.jpg"&gt;Bild&lt;/a&gt;</code> <br>
+Werden innerhalb eines übergeordneten Elements mehrere Links zu     Bildern gesetzt, werden all diese Bilder in der Galerieansicht     dargestellt (prev - next), genauso wie bei den zusätzlichen Bildern auf     der Artikeldetailseite.
+<p>Wenn Captions benötigt werden, können sie mit dem rel="" Attribut im Link angegeben werden:</p>
+<code>&lt;a href="images/bildgross.jpg" rel="here is my caption"&gt;Bild&lt;/a&gt;</code>
+<p><strong><br>
+  Lightbox auf jeder beliebigen Seite</strong></p>
+<p>Die Lightbox-Funktionalität kann leicht auf jede beliebige Seite in Zen-Cart ausgeweitet werden. Dazu muss die Datei <strong>jscript_zen_lightbox.php</strong> im Ordner ZUSATZ dieses Downloads in das entsprechende includes/modules/pages Verzeichnis gelegt werden.</p>
+<p>Beispiele:<br>
+  Lightbox-Effekt auf der Kontaktseite:<br>
+  Die Datei muss nach <strong>includes/modules/pages/contact_us</strong> kopiert werden.<br>
+  Lightbox-Effekt auf der Versandkostenseite:<br>
+  Die Datei muss nach <strong>includes/modules/pages/shippinginfo </strong>kopiert werden</p>
+<h3>&nbsp;</h3>
+  </div>
+</div>
+</div>
+
+<!--End sc2-->
+
+<!--Begin sc4-->
+<div class="tabcontent" id="sc4" style="display: block;">
+<div class="textcontent">
+<div class="regularlist">
+
+<h2>DEINSTALLATION</h2>
+<p>1.<br>
+Die Datei uninstall.sql im Ordner SQL mit einem Texteditor öffen und den Inhalt kopieren</p>
+<p>2.<br>
+  Zen-Cart Administration öffnen und unter Tools &gt; SQL Patches installieren den Inhalt ins Feld hineinkopieren und absenden.</p>
+<p>3.<br>
+  Alle von diesem Modul geänderten 1.5 Originaldateien wieder einspielen<br>
+  Alle von diesem Modul neu angelegten Dateien vom Server löschen.</p>
+</div>
+</div>
+</div>
+<!--End sc4-->
+
+<!--Begin sc5-->
+<div class="tabcontent" id="sc5" style="display: block;">
+<div class="textcontent">
+<div class="regularlist">
+<h2>Download &amp; Support</h2>
+<p>Download des Moduls:</p>
+<p><a href="http://shop.zen-cart-pro.at" target="_blank">shop.zen-cart-pro.at</a></p>
+
+<p>Supportforum zum Modul:</p>
+<p><a href="http://forum.zen-cart-pro.at" target="_blank">forum.zen-cart-pro.at</a></p>
+</div>
+</div>
+</div>
+<!--End sc5-->
+
+<!--Begin sc6-->
+<div class="tabcontent" id="sc6" style="display: block;">
+<div class="textcontent">
+<div class="regularlist">
+
+<h2>Unterstützen</h2>
+<p>Sie finden dieses Modul nützlich?</p>
+<p>Sie haben vom Support im Forum auf www.zen-cart-pro.at profitiert?</p>
+<p>Unterstützen Sie die Weiterentwicklung der deutschen Zen-Cart Version.<br/>Wir freuen uns über Spenden zur Finanzierung des Servers und der vBulletin-Lizenz: </p>
+<form action="https://www.paypal.com/cgi-bin/webscr" method="post">
+<input type="hidden" name="cmd" value="_s-xclick">
+<input type="hidden" name="hosted_button_id" value="7AFFRK4FQ2EZ8">
+<input type="image" src="https://www.paypalobjects.com/de_DE/AT/i/btn/btn_donateCC_LG.gif" border="0" name="submit" alt="Jetzt einfach, schnell und sicher online bezahlen – mit PayPal.">
+<img alt="" border="0" src="https://www.paypalobjects.com/de_DE/i/scr/pixel.gif" width="1" height="1">
+</form>
+<br/><br/>
+</div>
+</div>
+</div>
+<!--End sc6-->
+</div>
+<div id="footer">
+Ein Modul von <a href="http://www.zen-cart-pro.at" target="_blank">www.zen-cart-pro.at</a> - Die deutsche Zen-Cart Version
+</div>
+</div>
+<!--end tabcontainer-->
+<script type="text/javascript">document.getElementById('sc1').style.display = 'none';</script>
+<script type="text/javascript">document.getElementById('sc2').style.display = 'none';</script>
+<script type="text/javascript">document.getElementById('sc4').style.display = 'none';</script>
+<script type="text/javascript">document.getElementById('sc5').style.display = 'none';</script>
+<script type="text/javascript">document.getElementById('sc6').style.display = 'none';</script>
+<script type="text/javascript">ShowTabs()</script>
+<script type="text/javascript">
+// We only show the tab links if JavaScript is available/active.
+<!--
+if (document.getElementById("slidetabsmenu") != null) {
+  document.getElementById('slidetabsmenu').style.display = "block";
+}
+//-->
+</script>
+
+</body></html>
