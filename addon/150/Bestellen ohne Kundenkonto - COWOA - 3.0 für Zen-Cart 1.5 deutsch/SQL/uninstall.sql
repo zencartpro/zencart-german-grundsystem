@@ -1,5 +1,5 @@
 #############################################################################################
-# Bestellung ohne Kundenkonto (COWOA) 2.0 Uninstall - 2010-11-22 - webchills
+# Bestellung ohne Kundenkonto (COWOA) 3.0 Uninstall 1.5 - 2011-09-17 - webchills
 # NUR AUSFÜHREN FALLS SIE DAS MODUL VOLLSTÄNDIG ENTFERNEN WOLLEN!!!
 #############################################################################################
 
@@ -15,3 +15,4 @@ DELETE FROM configuration_language WHERE configuration_key = 'COWOA_STATUS';
 DELETE FROM configuration_language WHERE configuration_key = 'COWOA_ORDER_STATUS';
 DELETE FROM configuration_language WHERE configuration_key = 'COWOA_LOGOFF';
 UPDATE configuration SET configuration_value = 'False' WHERE configuration_title = 'Use split-login page';
+DELETE FROM admin_pages WHERE page_key='configProdCowoa';
