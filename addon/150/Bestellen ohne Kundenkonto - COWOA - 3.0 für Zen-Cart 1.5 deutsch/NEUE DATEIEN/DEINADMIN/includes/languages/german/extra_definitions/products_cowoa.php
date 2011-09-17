@@ -8,4 +8,4 @@
  * @version $Id: products_cowoa.php 2011-09-17 10:34:05 webchills $
  */
 
-define('BOX_CONFIGURATION_PRODUCT_COWOA', 'Betsellen ohne Kundenkonto');
+define('BOX_CONFIGURATION_PRODUCT_COWOA', 'Bestellen ohne Kundenkonto');
