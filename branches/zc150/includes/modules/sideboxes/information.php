@@ -3,7 +3,7 @@
  * information sidebox - displays list of general info links, as defined in this file
  *
  * @package templateSystem
- * @copyright Copyright 2003-2006 Zen Cart Development Team
+ * @copyright Copyright 2003-2011 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
  * @version $Id$
@@ -19,6 +19,12 @@
   }
   if (DEFINE_CONDITIONS_STATUS <= 1) {
     $information[] = '<a href="' . zen_href_link(FILENAME_CONDITIONS) . '">' . BOX_INFORMATION_CONDITIONS . '</a>';
+  }
+  if (DEFINE_WIDERRUFSRECHT_STATUS <= 1) {
+    $information[] = '<a href="' . zen_href_link(FILENAME_WIDERRUFSRECHT) . '">' . BOX_INFORMATION_WIDERRUFSRECHT . '</a>';
+  }
+  if (DEFINE_IMPRESSUM_STATUS <= 1) {
+    $information[] = '<a href="' . zen_href_link(FILENAME_IMPRESSUM) . '">' . BOX_INFORMATION_IMPRESSUM . '</a>';
   }
   if (DEFINE_CONTACT_US_STATUS <= 1) {
     $information[] = '<a href="' . zen_href_link(FILENAME_CONTACT_US) . '">' . BOX_INFORMATION_CONTACT . '</a>';
