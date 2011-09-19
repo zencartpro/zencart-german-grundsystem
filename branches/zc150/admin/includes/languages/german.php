@@ -13,7 +13,7 @@ if (!defined('IS_ADMIN_FLAG'))
 }
  
 // added defines for header alt and text
-define('HEADER_ALT_TEXT', 'Admin Powered by Zen Cart :: The Art of E-Commerce');
+define('HEADER_ALT_TEXT', 'Admin powered by Zen-Cart 1.5 - deutsche Version');
 define('HEADER_LOGO_WIDTH', '200px');
 define('HEADER_LOGO_HEIGHT', '70px');
 define('HEADER_LOGO_IMAGE', 'logo.gif');
@@ -385,7 +385,7 @@ define('ICON_FILE', 'Datei');
 define('ICON_FILE_DOWNLOAD', 'Download');
 define('ICON_FOLDER', 'Ordner');
 //define('ICON_LOCKED', 'Locked');
-define('ICON_MOVE', 'mehr');
+define('ICON_MOVE', 'Verschieben');
 define('ICON_PERMISSIONS', 'Permissions');
 define('ICON_PREVIOUS_LEVEL', 'Vorherige Ebene');
 define('ICON_PREVIEW', 'Vorschau');
