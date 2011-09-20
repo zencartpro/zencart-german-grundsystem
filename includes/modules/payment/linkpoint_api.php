@@ -486,6 +486,9 @@ class linkpoint_api {
     $cc_number = substr($myorder["cardnumber"], 0, 4) . str_repeat('X', abs(strlen($myorder["cardnumber"]) - 8)) . substr($myorder["cardnumber"], -4);
     foreach($myorder as $key=>$value) {
       if ($key != 'cardnumber') {
+        if ($key == 'cvmvalue') {
+          $value = '****';
+        }
         if ($key == 'cardexpmonth') {
           $cc_month = $value;
         }

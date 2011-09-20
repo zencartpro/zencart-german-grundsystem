@@ -31,7 +31,7 @@ include('includes/installer_params.php');
 /**
  * set the level of error reporting
  */
-error_reporting(version_compare(PHP_VERSION, 5.3, '>=') ? E_ALL & ~E_DEPRECATED & ~E_NOTICE : version_compare(PHP_VERSION, 6.0, '>=') ? E_ALL & ~E_DEPRECATED & ~E_NOTICE & ~E_STRICT : E_ALL & ~E_NOTICE);
+error_reporting(version_compare(PHP_VERSION, 5.3, '>=') ? E_ALL & ~E_DEPRECATED & ~E_NOTICE : version_compare(PHP_VERSION, 5.4, '>=') ? E_ALL & ~E_DEPRECATED & ~E_NOTICE & ~E_STRICT : E_ALL & ~E_NOTICE);
 $debug_logfile_path = DEBUG_LOG_FOLDER . '/zcInstallDEBUG-' . time() . '-' . mt_rand(1000,999999) . '.log';
 @ini_set('log_errors', 1);
 @ini_set('log_errors_max_len', 0);
@@ -42,8 +42,7 @@ if (defined('STRICT_ERROR_REPORTING') && STRICT_ERROR_REPORTING == true) {
   @ini_set('display_errors', 0);
 }
 /**
- * @todo php5.3 and PHP6
- * Timezone detection
+ * Timezone problem detection
  */
 if (PHP_VERSION >= '5.3' && ini_get('date.timezone') == '')
 {
@@ -57,14 +56,15 @@ if (PHP_VERSION >= '5.3' && ini_get('date.timezone') == '')
 /*
  * check settings for, and then turn off magic-quotes support, for both runtime and sybase, as both will cause problems if enabled
  */
-$php_magic_quotes_runtime = (@get_magic_quotes_runtime() > 0) ? 'ON' : 'OFF';
-if (version_compare(PHP_VERSION, 5.3, '<') && function_exists('set_magic_quotes_runtime')) set_magic_quotes_runtime(0);
-$val = @ini_get('magic_quotes_sybase');
-if (is_string($val) && strtolower($val) == 'on') $val = 1;
-$php_magic_quotes_sybase = ((int)$val > 0) ? 'ON' :'OFF';
-if ((int)$val != 0) @ini_set('magic_quotes_sybase', 0);
-unset($val);
-
+if (version_compare(PHP_VERSION, 5.4, '<')) {
+  $php_magic_quotes_runtime = (@get_magic_quotes_runtime() > 0) ? 'ON' : 'OFF';
+  if (version_compare(PHP_VERSION, 5.3, '<') && function_exists('set_magic_quotes_runtime')) set_magic_quotes_runtime(0);
+  $val = @ini_get('magic_quotes_sybase');
+  if (is_string($val) && strtolower($val) == 'on') $val = 1;
+  $php_magic_quotes_sybase = ((int)$val > 0) ? 'ON' :'OFF';
+  if ((int)$val != 0) @ini_set('magic_quotes_sybase', 0);
+  unset($val);
+}
 /**
  * boolean used to see if we are in the admin script, obviously set to false here.
  */

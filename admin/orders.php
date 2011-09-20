@@ -36,9 +36,13 @@
   if (isset($_GET['oID']) && trim($_GET['oID']) == '') unset($_GET['oID']);
   if ($action == 'edit' && !isset($_GET['oID'])) $action = '';
 
-  if (isset($_GET['oID'])) {
+  $oID = FALSE;
+  if (isset($_POST['oID'])) {
+    $oID = zen_db_prepare_input(trim($_POST['oID']));
+  } elseif (isset($_GET['oID'])) {
     $oID = zen_db_prepare_input(trim($_GET['oID']));
-
+  }
+  if ($oID) {
     $orders = $db->Execute("select orders_id from " . TABLE_ORDERS . "
                             where orders_id = '" . (int)$oID . "'");
     $order_exists = true;

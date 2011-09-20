@@ -343,7 +343,7 @@ require (DIR_WS_INCLUDES . 'header.php');
 						<td colspan="2"><?php echo zen_draw_separator('pixel_trans.gif', '1', '10'); ?></td>
 					</tr>
 					<tr>
-						<td class="main"><strong><?php echo TEXT_ACTIVITY_EXPORT_FILENAME; ?></strong><br /><?php echo zen_draw_input_field('filename', $file, ' size="60"'); ?></td>
+						<td class="main"><strong><?php echo TEXT_ACTIVITY_EXPORT_FILENAME; ?></strong><br /><?php echo zen_draw_input_field('filename', htmlspecialchars($file, ENT_COMPAT, CHARSET, TRUE), ' size="60"'); ?></td>
 					</tr>
 					<tr>
 						<td colspan="2"><?php echo zen_draw_separator('pixel_trans.gif', '1', '10'); ?></td>

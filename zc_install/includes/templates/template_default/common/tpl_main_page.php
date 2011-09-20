@@ -37,7 +37,7 @@
   ?>
   </div>
   <div id="footer">
-    <p>Copyright &copy; 2003-<?php echo date('Y'); ?> <a href="http://www.zen-cart-pro.at" target="_blank">zen-cart-pro.at</a></p>
+    <p>Copyright &copy; 2003-<?php echo date('Y'); ?> <a href="http://www.zen-cart.at" target="_blank">zen-cart.at</a></p>
   </div>
 </div>
 <!--  <p><a href="http://validator.w3.org/check?uri=referer">Valid XHTML 1.0 Transitional</a></p>-->

@@ -416,7 +416,7 @@ class authorizenet extends base {
     $this->reportable_submit_data['x_login'] = '*******';
     if (isset($this->reportable_submit_data['x_tran_key'])) $this->reportable_submit_data['x_tran_key'] = '*******';
     if (isset($this->reportable_submit_data['x_card_num'])) $this->reportable_submit_data['x_card_num'] = str_repeat('X', strlen($this->reportable_submit_data['x_card_num'] - 4)) . substr($this->reportable_submit_data['x_card_num'], -4);
-//    if (isset($this->reportable_submit_data['x_card_code'])) $this->reportable_submit_data['x_card_code'] = '*******';
+    if (isset($this->reportable_submit_data['x_card_code'])) $this->reportable_submit_data['x_card_code'] = '*******';
     $this->reportable_submit_data['url'] = $url;
 
     $this->_debugActions($this->reportable_submit_data, 'Submit-Data', '', zen_session_id());

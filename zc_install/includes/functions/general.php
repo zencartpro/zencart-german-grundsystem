@@ -92,7 +92,7 @@ function executeSql($sql_file, $database, $table_prefix = '', $isupgrade=false) 
   // prepare for upgrader processing
   if ($isupgrade) zen_create_upgrader_table(); // only creates table if doesn't already exist
 
-  if (!get_cfg_var('safe_mode')) {
+  if (version_compare(PHP_VERSION, 5.4, '>=') || !get_cfg_var('safe_mode')) {
     @set_time_limit(1200);
   }
 
