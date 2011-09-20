@@ -1,7 +1,7 @@
 <?php
 /**
  * @package admin
- * @copyright Copyright 2003-2009 Zen Cart Development Team
+ * @copyright Copyright 2003-2011 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
  * @version $Id$
@@ -110,8 +110,7 @@ if ($gID == 7) {
 </head>
 <body marginwidth="0" marginheight="0" topmargin="0" bottommargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFFF" onLoad="init()">
 <!-- header //-->
-<?php 
-require(DIR_WS_INCLUDES . 'header.php'); ?>
+<?php require(DIR_WS_INCLUDES . 'header.php'); ?>
 <!-- header_eof //-->
 
 <!-- body //-->
@@ -197,9 +196,9 @@ require(DIR_WS_INCLUDES . 'header.php'); ?>
       $heading[] = array('text' => '<b>' . $cInfo->configuration_title . '</b>');
 
       if ($cInfo->set_function) {
-        eval('$value_field = ' . $cInfo->set_function . '"' . htmlspecialchars($cInfo->configuration_value) . '");');
+        eval('$value_field = ' . $cInfo->set_function . '"' . htmlspecialchars($cInfo->configuration_value, ENT_COMPAT, CHARSET, TRUE) . '");');
       } else {
-        $value_field = zen_draw_input_field('configuration_value', $cInfo->configuration_value, 'size="60"');
+        $value_field = zen_draw_input_field('configuration_value', htmlspecialchars($cInfo->configuration_value, ENT_COMPAT, CHARSET, TRUE), 'size="60"');
       }
 
       $contents = array('form' => zen_draw_form('configuration', FILENAME_CONFIGURATION, 'gID=' . $_GET['gID'] . '&cID=' . $cInfo->configuration_id . '&action=save'));

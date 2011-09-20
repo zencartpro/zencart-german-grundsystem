@@ -267,7 +267,7 @@ if ($_GET['action'] == 'layout' || $_GET['action'] == 'layout_edit') {
       if ($cInfo->set_function) {
         eval('$value_field = ' . $cInfo->set_function . '"' . htmlspecialchars($cInfo->configuration_value) . '");');
       } else {
-        $value_field = zen_draw_input_field('configuration_value', $cInfo->configuration_value, 'size="60"');
+        $value_field = zen_draw_input_field('configuration_value', htmlspecialchars($cInfo->configuration_value, ENT_COMPAT, CHARSET, TRUE), 'size="60"');
       }
 
       $contents = array('form' => zen_draw_form('configuration', FILENAME_PRODUCT_TYPES, 'ptID=' . $_GET['ptID'] . '&cID=' . $cInfo->configuration_id . '&action=layout_save'));

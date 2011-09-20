@@ -1,5 +1,5 @@
 #
-# @copyright Copyright 2003-2010 Zen Cart Development Team
+# @copyright Copyright 2003-2011 Zen Cart Development Team
 # @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
 # @version $Id$
 #
@@ -41,16 +41,6 @@ IndexIgnore */*
              downgrade-1.0 force-response-1.0
   </IfDefine>
 </IfModule>
-
-# Fix certain PHP values
-
-#<IfModule mod_php4.c>
-#  php_value session.use_trans_sid 0
-#  php_value register_globals 1
-#</IfModule>
-
-# to turn off register_globals
-# php_value register_globals 0
 
 #turn off X-PHP-Originating-Script header when sending emails from admin
 #uncomment to activate:

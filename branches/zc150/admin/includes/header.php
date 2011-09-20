@@ -198,7 +198,7 @@ if ((basename($PHP_SELF) != FILENAME_DEFINE_LANGUAGE . '.php') and (basename($PH
 <?php
   if (isset($_SESSION['reset_admin_activity_log']) and ($_SESSION['reset_admin_activity_log'] == true and (basename($PHP_SELF) == FILENAME_DEFAULT . '.php'))) {
 ?>
-    <td align="center" class="main" valign="top"><?php echo '<a href="' . zen_href_link(FILENAME_STORE_MANAGER) . '">' . zen_image_button('button_reset.gif', RESET_ADMIN_ACTIVITY_LOG) . '<br />' . RESET_ADMIN_ACTIVITY_LOG . '</a>'; ?></td>
+    <td align="center" class="main" valign="top"><?php echo '<a href="' . zen_href_link(FILENAME_ADMIN_ACTIVITY) . '">' . zen_image_button('button_reset.gif', RESET_ADMIN_ACTIVITY_LOG) . '<br />' . RESET_ADMIN_ACTIVITY_LOG . '</a>'; ?></td>
 <?php
   }
 ?>
@@ -238,5 +238,4 @@ if ((basename($PHP_SELF) != FILENAME_DEFINE_LANGUAGE . '.php') and (basename($PH
     </td>
   </tr>
 </table>
-<?php 
-require(DIR_WS_INCLUDES . 'header_navigation.php'); ?>
+<?php require(DIR_WS_INCLUDES . 'header_navigation.php'); ?>

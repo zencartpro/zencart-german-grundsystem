@@ -1,17 +1,17 @@
 <?php
 /**
  * @package languageDefines
- * @copyright Copyright 2003-2010 Zen Cart Development Team
+ * @copyright Copyright 2003-2011 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: meta_tags.php 618 2010-07-29 07:07:28Z webchills $
+ * @version $Id: meta_tags.php 619 2011-09-19 19:48:28Z webchills $
  */
 
 // page title
-define('TITLE', 'Zen Cart!');
+define('TITLE', 'Zen-Cart 1.5 Beta');
 
 // Site Tagline
-define('SITE_TAGLINE', 'The Art of E-commerce');
+define('SITE_TAGLINE', 'deutsche Version');
 
 // Custom Keywords
 define('CUSTOM_KEYWORDS', 'ecommerce, open source, shop, online shopping');
@@ -44,13 +44,13 @@ define('META_TAGS_REVIEW', 'Bewertungen: ');
 
 // separators for meta tag definitions
 // Define Primary Section Output
-define('PRIMARY_SECTION', ' : ');
+define('PRIMARY_SECTION', ' - ');
 
 // Define Secondary Section Output
 define('SECONDARY_SECTION', ' - ');
 
 // Define Tertiary Section Output
-define('TERTIARY_SECTION', ', ');
+define('TERTIARY_SECTION', ' - ');
 
 // Define divider ... usually just a space or a comma plus a space
 define('METATAGS_DIVIDER', ' ');

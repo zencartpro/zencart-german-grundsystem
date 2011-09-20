@@ -84,7 +84,7 @@ $linebreak = '
 // NOTE: this line break is intentional!!!!
 
  function executeSql($lines, $database, $table_prefix = '') {
-   if (!get_cfg_var('safe_mode')) {
+   if (version_compare(PHP_VERSION, 5.4, '>=') || !get_cfg_var('safe_mode')) {
      @set_time_limit(1200);
    }
    global $db, $debug, $messageStack;
@@ -116,9 +116,6 @@ if ($_GET['debug']=='ON') echo $line . '<br />';
 
           $line_upper=strtoupper($line);
           switch (true) {
-          case (substr($line_upper, 0, 13) == 'REPLACE INTO '):
-            $line = 'REPLACE INTO ' . $table_prefix . substr($line, 13);
-            break;
           case (substr($line_upper, 0, 21) == 'DROP TABLE IF EXISTS '):
 //            if (!$checkprivs = zen_check_database_privs('DROP')) return sprintf(REASON_NO_PRIVILEGES,'DROP');
             $line = 'DROP TABLE IF EXISTS ' . $table_prefix . substr($line, 21);
@@ -303,7 +300,7 @@ if ($_GET['debug']=='ON') echo $line . '<br />';
 
         if ($complete_line) {
           if ($debug==true) echo ((!$ignore_line) ? '<br />About to execute.': 'Ignoring statement. This command WILL NOT be executed.').'<br />Debug info:<br>$ line='.$line.'<br>$ complete_line='.$complete_line.'<br>$ keep_together='.$keep_together.'<br>SQL='.$newline.'<br><br>';
-          if (get_magic_quotes_runtime() > 0  && $keepslashes != true ) $newline=stripslashes($newline);
+          if (version_compare(PHP_VERSION, 5.4, '<') && @get_magic_quotes_runtime() > 0  && $keepslashes != true ) $newline=stripslashes($newline);
           if (trim(str_replace(';','',$newline)) != '' && !$ignore_line) $output=$db->Execute($newline);
           $results++;
           $string .= $newline.'<br />';
@@ -665,7 +662,7 @@ if ($_GET['debug']=='ON') echo $line . '<br />';
       case 'execute':
        if (isset($_POST['query_string']) && $_POST['query_string'] !='' ) {
          $query_string = $_POST['query_string'];
-         if (@get_magic_quotes_gpc() > 0) $query_string = stripslashes($query_string);
+         if (version_compare(PHP_VERSION, 5.4, '<') && @get_magic_quotes_gpc() > 0) $query_string = stripslashes($query_string);
          if ($debug==true) echo $query_string . '<br />';
          $query_string = explode($linebreak, ($query_string));
          $query_results = executeSql($query_string, DB_DATABASE, DB_PREFIX);
@@ -698,7 +695,7 @@ if ($_GET['debug']=='ON') echo $line . '<br />';
               $upload_query = file($_FILES['sql_file']['tmp_name']);
               $query_string  = $upload_query;
             }
-            if (@get_magic_quotes_runtime() > 0) $query_string  = zen_db_prepare_input($upload_query);
+            if (version_compare(PHP_VERSION, 5.4, '<') && @get_magic_quotes_runtime() > 0) $query_string  = zen_db_prepare_input($upload_query);
             if ($query_string !='') {
               $query_results = executeSql($query_string, DB_DATABASE, DB_PREFIX);
               if ($query_results['queries'] > 0 && $query_results['queries'] != $query_results['ignored']) {

@@ -3,7 +3,7 @@
  * redirect handler 
  *
  * @package page
- * @copyright Copyright 2003-2007 Zen Cart Development Team
+ * @copyright Copyright 2003-2011 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
  * @version $Id$
@@ -64,7 +64,7 @@ switch ($_GET['action']) {
               AND l.code = '" . DEFAULT_LANGUAGE . "'";
       
       $sql = $db->bindVars($sql, ':manufacturersID', $_GET['manufacturers_id'], 'integer');
-      $manufacturer = $db->Execute(sql);
+      $manufacturer = $db->Execute($sql);
 
       if ($manufacturer->RecordCount() > 0) {
 

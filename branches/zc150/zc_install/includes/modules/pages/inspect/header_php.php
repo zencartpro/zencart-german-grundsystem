@@ -312,11 +312,12 @@ if (false) { // DISABLED THIS CODEBLOCK FOR NOW....
   if ($zdb_sql_cache != '') $status_check[] = array('Importance' => 'Recommended', 'Title' => LABEL_CURRENT_CACHE_PATH, 'Status' => $zdb_sql_cache . '&nbsp;&nbsp;-->' . $zdb_sql_cache_writable , 'Class' => ($zdb_sql_cache_writable ==WRITABLE) ? 'OK' : 'WARN', 'HelpURL' =>ERROR_CODE_CACHE_DIR_ISWRITEABLE, 'HelpLabel'=>ERROR_TEXT_CACHE_DIR_ISWRITEABLE);
   $status_check[] = array('Importance' => 'Recommended', 'Title' => LABEL_SUGGESTED_CACHE_PATH, 'Status' => $suggested_cache, 'Class' => $sugg_cache_class, 'HelpURL' =>$sugg_cache_code, 'HelpLabel'=>$sugg_cache_text);
 
+if (version_compare(PHP_VERSION, 5.4, '<')) {
   //PHP MagicQuotesRuntime
   $status_check[] = array('Importance' => 'Recommended', 'Title' => LABEL_PHP_MAG_QT_RUN, 'Status' => $php_magic_quotes_runtime , 'Class' => ($php_magic_quotes_runtime=='OFF')?'OK':'FAIL', 'HelpURL' =>ERROR_CODE_MAGIC_QUOTES_RUNTIME, 'HelpLabel'=>ERROR_TEXT_MAGIC_QUOTES_RUNTIME);
   //PHP MagicQuotesSybase
   $status_check[] = array('Importance' => 'Recommended', 'Title' => LABEL_PHP_MAG_QT_SYBASE, 'Status' => $php_magic_quotes_sybase , 'Class' => ($php_magic_quotes_sybase=='OFF')?'OK':'FAIL', 'HelpURL' =>ERROR_CODE_MAGIC_QUOTES_SYBASE, 'HelpLabel'=>ERROR_TEXT_MAGIC_QUOTES_SYBASE);
-
+}
   //PHP GD support check
   $php_ext_gd =       (@extension_loaded('gd'))      ? ON : OFF;
   $status_check[] = array('Importance' => 'Optional', 'Title' => LABEL_PHP_EXT_GD, 'Status' => $php_ext_gd , 'Class' => ($php_ext_gd==ON)?'OK':'WARN', 'HelpURL' =>ERROR_CODE_GD_SUPPORT, 'HelpLabel'=>ERROR_TEXT_GD_SUPPORT);
