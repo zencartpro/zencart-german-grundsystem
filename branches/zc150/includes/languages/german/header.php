@@ -20,7 +20,7 @@ define('HEADER_TITLE_LOGIN','Anmelden');
 
 // added defines for header alt and text
 define('HEADER_ALT_TEXT', 'Powered by Zen Cart :: The Art of E-Commerce');
-define('HEADER_SALES_TEXT', 'ZC 1.3.8 shop :: TagLine Here');
+define('HEADER_SALES_TEXT', 'ZC 1.5.0 shop :: TagLine Here');
 define('HEADER_LOGO_WIDTH', '192px');
 define('HEADER_LOGO_HEIGHT', '64px');
 define('HEADER_LOGO_IMAGE','logo.gif');
