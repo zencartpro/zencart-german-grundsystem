@@ -9,7 +9,7 @@
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
  * @translators: cyaneo/hugo13/wflohr/maleborg/webchills	http://www.zen-cart.at
- * @version $Id: header.php 653 2010-09-26 10:10:05Z webchills $
+ * @version $Id: header.php 654 2011-09-25 08:10:05Z webchills $
  */
 
 // header text in includes/header.php
@@ -26,7 +26,7 @@
   define('HEADER_OR', 'oder');
 
 // added defines for header alt and text
-  define('HEADER_ALT_TEXT', 'powered by Zen-Cart 1.3.9');
+  define('HEADER_ALT_TEXT', 'powered by Zen-Cart 1.5');
   define('HEADER_SALES_TEXT', '');
   define('HEADER_LOGO_WIDTH', '192px');
   define('HEADER_LOGO_HEIGHT', '64px');
