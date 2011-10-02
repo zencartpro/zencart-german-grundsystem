@@ -4,7 +4,7 @@
  * @copyright Copyright 2003-2011 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: product.php for Google Merchant Center 2.0 2011-04-21 18:30:42Z webchills $
+ * @version $Id: product.php for Google Merchant Center 3.0 ZC150 2011-09-21 15:30:42Z webchills $
  */
 
 define('HEADING_TITLE', 'Categories / Products');
@@ -94,7 +94,9 @@ define('TEXT_ADDITIONAL_FIELDS_MERCHANT_CENTER', 'Additional fields for Google M
 define('TEXT_PRODUCTS_EAN', 'EAN:');
 define('TEXT_PRODUCTS_ISBN', 'ISBN:');
 define('TEXT_PRODUCTS_CONDITION', 'Condition:');
+define('TEXT_PRODUCTS_AVAILABILITY', 'Availability:');
 define('TEXT_PRODUCTS_BRAND', 'Brand:');
+define('TEXT_PRODUCTS_TAXONOMY', 'Google Product Category:');
 define('TEXT_PRODUCTS_IMAGE', 'Products Image:');
 define('TEXT_PRODUCTS_IMAGE_DIR', 'Upload to directory:');
 define('TEXT_PRODUCTS_URL', 'Products URL:');

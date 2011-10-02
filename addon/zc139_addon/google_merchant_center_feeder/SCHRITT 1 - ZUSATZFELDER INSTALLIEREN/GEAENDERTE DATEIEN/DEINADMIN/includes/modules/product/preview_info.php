@@ -4,7 +4,7 @@
  * @copyright Copyright 2003-2011 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: preview_info.php for Google Merchant Center 2.0 2011-04-21 18:29:41Z webchills $
+ * @version $Id: preview_info.php for Google Merchant Center 3.0 2011-10-01 16:29:41Z webchills $
  */
 if (!defined('IS_ADMIN_FLAG')) {
   die('Illegal Access');
@@ -17,7 +17,7 @@ if (!defined('IS_ADMIN_FLAG')) {
     } else {
       $product = $db->Execute("select p.products_id, pd.language_id, pd.products_name,
                                       pd.products_description, pd.products_url, p.products_quantity,
-                                      p.products_model, p.products_ean, p.products_isbn, p.products_condition, p.products_brand, p.products_image, p.products_price, p.products_virtual,
+                                      p.products_model, p.products_ean, p.products_isbn, p.products_condition, p.products_availability, p.products_brand, p.products_taxonomy, p.products_image, p.products_price, p.products_virtual,
                                       p.products_weight, p.products_date_added, p.products_last_modified,
                                       p.products_date_available, p.products_status, p.manufacturers_id,
                                       p.products_quantity_order_min, p.products_quantity_order_units, p.products_priced_by_attribute,
@@ -165,7 +165,7 @@ if (!defined('IS_ADMIN_FLAG')) {
           </form>
         </td>
       </tr>
-    </table>
+    </table></form>
 <?php
     }
 ?>

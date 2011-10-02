@@ -4,7 +4,7 @@
  * @copyright Copyright 2003-2011 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: product_info.php for Google Merchant Center Deutschland 2.0 2011-04-21 18:30:42Z webchills $
+ * @version $Id: product_info.php for Google Merchant Center Deutschland 3.0 2011-09-21 15:30:42Z webchills $
  */
 
 define('TEXT_PRODUCT_NOT_FOUND', 'Entschuldigen Sie bitte, aber der gewünschte Artikel konnte nicht gefunden werden.');

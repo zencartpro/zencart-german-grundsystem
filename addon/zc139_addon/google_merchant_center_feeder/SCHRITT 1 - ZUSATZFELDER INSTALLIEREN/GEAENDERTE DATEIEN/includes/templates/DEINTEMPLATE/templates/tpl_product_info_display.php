@@ -9,7 +9,7 @@
  * @copyright Copyright 2003-2011 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: tpl_product_info_display.php for Google Merchant Center Deutschland 2.0 2011-04-21 18:05:40Z webchills $
+ * @version $Id: tpl_product_info_display.php for Google Merchant Center Deutschland 3.0 2011-09-21 15:05:40Z webchills $
  */
  //require(DIR_WS_MODULES . '/debug_blocks/product_info_prices.php');
 ?>

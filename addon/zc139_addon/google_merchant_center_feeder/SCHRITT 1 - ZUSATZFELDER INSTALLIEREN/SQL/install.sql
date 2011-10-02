@@ -1,5 +1,5 @@
 ##################################################################################
-# Zusatzfelder für Google Merchant Center Deutschland 2.0 - 2011-04-21 - webchills
+# Zusatzfelder für Google Merchant Center Deutschland 3.0 - 2011-10-01 - webchills
 ##################################################################################
 
 ##############################################################################
@@ -30,9 +30,20 @@ INSERT INTO `product_type_layout_language` (`configuration_id`, `configuration_t
 ALTER TABLE products ADD products_condition ENUM( 'new', 'used', 'refurbished' ) NOT NULL DEFAULT 'new';
 
 ##############################################################################
+# availability (Verfügbarkeit)
+##############################################################################
+ALTER TABLE products ADD products_availability ENUM( 'in stock', 'available for order', 'out of stock', 'preorder' ) NOT NULL DEFAULT 'in stock';
+
+
+##############################################################################
 # brand (=Marke)
 ##############################################################################
 ALTER TABLE `products` ADD `products_brand` VARCHAR( 32 ) NOT NULL;
+
+##############################################################################
+# taxonomy
+##############################################################################
+ALTER TABLE `products` ADD `products_taxonomy` TEXT NOT NULL;
 
 INSERT INTO `product_type_layout` (`configuration_id`, `configuration_title`, `configuration_key`, `configuration_value`, `configuration_description`, `product_type_id`, `sort_order`, `last_modified`, `date_added`, `use_function`, `set_function`) VALUES
 (NULL, 'Show Brand', 'SHOW_PRODUCT_INFO_BRAND', '0', 'Display Brand on Product Info 0= off 1= on', 1, NULL, NOW(), NOW(), NULL, 'zen_cfg_select_drop_down(array(array(''id''=>''1'', ''text''=>''True''), array(''id''=>''0'', ''text''=>''False'')), ');

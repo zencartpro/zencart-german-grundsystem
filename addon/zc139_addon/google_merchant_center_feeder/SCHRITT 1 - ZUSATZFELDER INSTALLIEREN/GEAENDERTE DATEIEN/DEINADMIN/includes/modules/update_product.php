@@ -4,7 +4,7 @@
  * @copyright Copyright 2003-2011 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
-  * @version $Id: update_product.php for Google Merchant Center 2.0 2011-04-21 18:29:41Z webchills $
+  * @version $Id: update_product.php for Google Merchant Center 3.0 2011-09-21 15:29:41Z webchills $
  */
   if (!defined('IS_ADMIN_FLAG')) {
     die('Illegal Access');
@@ -33,7 +33,9 @@
                             'products_ean' => zen_db_prepare_input($_POST['products_ean']),
                             'products_isbn' => zen_db_prepare_input($_POST['products_isbn']),
                             'products_condition' => zen_db_prepare_input($_POST['products_condition']),
+							'products_availability' => zen_db_prepare_input($_POST['products_availability']),
                             'products_brand' => zen_db_prepare_input($_POST['products_brand']),
+                            'products_taxonomy' => zen_db_prepare_input($_POST['products_taxonomy']),
                             'products_price' => $products_price,
                             'products_date_available' => $products_date_available,
                             'products_weight' => $products_weight,

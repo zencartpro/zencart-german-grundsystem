@@ -2,23 +2,32 @@
 /**
  * googlemcde.php
  *
- * @package google merchant center deutschland 2.0 for Zen-Cart 1.3.9 german
+ * @package google merchant center deutschland 3.0 for Zen-Cart 1.3.9 german
  * @copyright Copyright 2007 Numinix Technology http://www.numinix.com
  * @copyright Portions Copyright 2011 webchills http://www.webchills.at
  * @copyright Portions Copyright 2003-2011 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: googlefroogle.php 43 2010-11-18 23:34:54Z numinix $
- * @version $Id: gmcde.php 2011-04-21 19:29:54Z webchills $
+ * @version $Id: googlefroogle.php 60 2011-05-31 21:18:54Z numinix $
+ * @version $Id: gmcde.php 2011-10-01 16:29:54Z webchills $
  */
+ /* configuration */
+  ini_set('max_execution_time', 900); // change to whatever time you need
+  ini_set('mysql.connect_timeout', 300); // change to whatever time you need
+  ini_set('memory_limit','128M'); // change to whatever you need
+  set_time_limit(900); // change to whatever time you need
+  $keepAlive = 100;  // perform a keep alive every x number of products
+  /* end configuration */
+  
+  
+  
   require('includes/application_top.php');
   require(DIR_WS_CLASSES . 'gmc_de.php');
   $google_mcde = new google_mcde();
-  set_time_limit(900); // change to whatever time you need
-  $keepAlive = 100;  // perform a keep alive every x number of products
+  
   
    
-  @define('GOOGLE_MCDE_EXPIRATION_DAYS', 30);
+  @define('GOOGLE_MCDE_EXPIRATION_DAYS', 29);
   @define('GOOGLE_MCDE_EXPIRATION_BASE', 'now'); // now/product
   @define('GOOGLE_MCDE_OFFER_ID', 'id'); // id/model/false
   @define('GOOGLE_MCDE_DIRECTORY', 'feed/');
@@ -36,6 +45,8 @@
   $upload = $google_mcde->get_upload($upload_parameter);
   $type_parameter = $parameters[2];
   $type = $google_mcde->get_type($type_parameter);
+  $key = $_GET['key'];
+  if ($key != GOOGLE_MCDE_KEY) exit('<p>Falscher Sicherheitskey!</p>');
   if (isset($_GET['upload_file'])) {
     $upload_file = DIR_FS_CATALOG . GOOGLE_MCDE_DIRECTORY . $_GET['upload_file'];
   } else {
@@ -119,7 +130,12 @@
         $additional_attributes .= ", p.products_isbn";
         }
      // condition
-     $additional_attributes .= ", p.products_condition";
+            $additional_attributes .= ", p.products_condition";
+     // availability   
+        $additional_attributes .= ", p.products_availability";
+		// google product taxonomy
+        $additional_attributes .= ", p.products_taxonomy";
+      
       
       if (GOOGLE_MCDE_META_TITLE == 'true') {
         $additional_attributes .= ", mtpd.metatags_title";
@@ -128,7 +144,7 @@
       
       switch($type) {
         case "products":
-          $products_query = "SELECT distinct(p.products_id), p.products_model, pd.products_name, pd.products_description, p.products_image, p.products_tax_class_id, p.products_price_sorter, p.products_priced_by_attribute, p.products_type, GREATEST(p.products_date_added, IFNULL(p.products_last_modified, 0), IFNULL(p.products_date_available, 0)) AS base_date, m.manufacturers_name, p.products_quantity, pt.type_handler, p.products_weight" . $additional_attributes . "
+          $products_query = "SELECT distinct(pd.products_name), p.products_id, p.products_model, pd.products_description, p.products_image, p.products_tax_class_id, p.products_price_sorter, p.products_priced_by_attribute, p.products_type, GREATEST(p.products_date_added, IFNULL(p.products_last_modified, 0), IFNULL(p.products_date_available, 0)) AS base_date, m.manufacturers_name, p.products_quantity, pt.type_handler, p.products_weight" . $additional_attributes . "
                              FROM " . TABLE_PRODUCTS . " p
                                LEFT JOIN " . TABLE_MANUFACTURERS . " m ON (p.manufacturers_id = m.manufacturers_id)
                                LEFT JOIN " . TABLE_PRODUCTS_DESCRIPTION . " pd ON (p.products_id = pd.products_id)
@@ -139,7 +155,7 @@
                                AND p.product_is_call <> 1
                                AND p.product_is_free <> 1
                                AND pd.language_id = " . (int)$languages->fields['languages_id'] ."
-                             GROUP BY p.products_id
+                             GROUP BY pd.products_name
                              ORDER BY p.products_id ASC" . $limit . $offset . ";";
 // debugging, comment out to disable
 //echo $products_query . '<br />';
@@ -152,7 +168,10 @@
             // reset tax array
             $tax_rate = array();
             list($categories_list, $cPath) = $google_mcde->google_mcde_get_category($products->fields['products_id']);
-            if ($google_mcde->numinix_categories_check(GOOGLE_MCDE_POS_CATEGORIES, $products->fields['products_id'], 1) == true && $google_mcde->numinix_categories_check(GOOGLE_MCDE_NEG_CATEGORIES, $products->fields['products_id'], 2) == false) { // check to see if category limits are set.  If so, only process for those categories.  
+            if (GOOGLE_MCDE_DEBUG == 'true') {
+              if (!$google_mcde->check_product($products->fields['products_id'])) echo $products->fields['products_id'] . ' skipped due to user restrictions<br />';
+            }
+            if ($google_mcde->check_product($products->fields['products_id'])) {
               if ($gb_map_enabled && $products->fields['map_enabled'] == '1') {
                 $price = $products->fields['map_price'];
               } else {
@@ -171,12 +190,17 @@
               
               $products_description = $products->fields['products_description'];
               
-              $products_description = $google_mcde->google_mcde_xml_sanitizer($products_description, true);
+              $products_description = $google_mcde->google_mcde_xml_sanitizer($products_description);
+              if ( (GOOGLE_MCDE_META_TITLE == 'true') && ($products->fields['metatags_title'] != '') ) {
+                $productstitle = $google_mcde->google_mcde_xml_sanitizer($products->fields['metatags_title']);
+              } else {
+                $productstitle = $google_mcde->google_mcde_xml_sanitizer($products->fields['products_name']); 
+              }
               if (GOOGLE_MCDE_DEBUG == 'true') {
                 $success = false;
                 echo 'id: ' . $products->fields['products_id'] . ', price: ' . round($price, 2) . ', description length: ' . strlen($products_description) . ' ';
-                if ( ($price <= 0) || (strlen($products_description) < 15) ) {
-                  echo '- skipped, price below zero or description length less than 15 chars.';
+                if ( ($price <= 0) || (strlen($products_description) < 15 || strlen($productstitle) < 3) ) {
+                  echo '- skipped, price below zero, description length less than 15 chars, or title less than 3 chars';
                 } else {
                   if ($zero_quantity == false) {
                     echo '- including';
@@ -225,19 +249,30 @@
                   $content["manufacturer"] = '<g:manufacturer>' . $google_mcde->google_mcde_xml_sanitizer($products->fields['manufacturers_name'], true) . '</g:manufacturer>';
                 }
                 
-                 $content["condition"] = '<g:condition>' . $products->fields['products_condition'] . '</g:condition>';
-                    
+                
+                  $content["condition"] = '<g:condition>' . $products->fields['products_condition'] . '</g:condition>';
+                  
+                   $content["availability"] = '<g:availability>' . $products->fields['products_availability'] . '</g:availability>';
+                
+                  
+                if (GOOGLE_MCDE_PRODUCT_TYPE == 'default') {
+                  $content["product_type"] = '<g:product_type>' . $google_mcde->google_mcde_xml_sanitizer(GOOGLE_MCDE_DEFAULT_PRODUCT_TYPE) . '</g:product_type>';
+                } else {
+                  $product_type = $google_mcde->google_mcde_get_category($products->fields['products_id']);
+                  array_pop($product_type); // removes category number from end
+                  $product_type = explode(',', $product_type[0]);
                 if (GOOGLE_MCDE_PRODUCT_TYPE == 'top') {
-                  $top_level = array_shift($product_type);
-                  $content["product_type"] = '<g:product_type>' . $google_mcde->google_mcde_xml_sanitizer($top_level, true) . '</g:product_type>';
+                    $top_level = $product_type[0];
+                  $content["product_type"] = '<g:product_type>' . $google_mcde->google_mcde_xml_sanitizer($top_level) . '</g:product_type>';
                 } elseif (GOOGLE_MCDE_PRODUCT_TYPE == 'bottom') {
                   $bottom_level = array_pop($product_type); // sets last category in array as bottom-level
                   $bottom_level = htmlentities($bottom_level);
-                  $content["product_type"] = '<g:product_type>' . $google_mcde->google_mcde_xml_sanitizer($bottom_level, true) . '</g:product_type>';
+                  $content["product_type"] = '<g:product_type>' . $google_mcde->google_mcde_xml_sanitizer($bottom_level) . '</g:product_type>';
                 } elseif (GOOGLE_MCDE_PRODUCT_TYPE == 'full') {
                   $full_path = implode(",", $product_type);
                   $full_path = htmlentities($full_path);
-                  $content["product_type"] = '<g:product_type>' . $google_mcde->google_mcde_xml_sanitizer($full_path, true) . '</g:product_type>';
+                  $content["product_type"] = '<g:product_type>' . $google_mcde->google_mcde_xml_sanitizer($full_path) . '</g:product_type>';
+                  }
                 }
                               
                 $content["expiration_date"] = '<g:expiration_date>' . $google_mcde->google_mcde_expiration_date($products->fields['base_date']) . '</g:expiration_date>';
@@ -246,9 +281,16 @@
                $content["id"] = '<g:id>' . $products->fields['products_id'] . '</g:id>';
                   
                 if ($products->fields['products_image'] != '') {
-                  $content["image_link"] = '<g:image_link>' . $google_mcde->google_mcde_image_url($google_mcde->google_mcde_xml_sanitizer($products->fields['products_image'])) . '</g:image_link>';
-                } elseif (PRODUCTS_IMAGE_NO_IMAGE_STATUS == '1') {
-                  $content["image_link"] = '<g:image_link>' . HTTP_SERVER . DIR_WS_CATALOG . DIR_WS_IMAGES . PRODUCTS_IMAGE_NO_IMAGE . '</g:image_link>';
+                  $content["image_link"] = '<g:image_link>' . $google_mcde->google_mcde_image_url($products->fields['products_image']) . '</g:image_link>';
+                  $additional_images = $google_mcde->additional_images($products->fields['products_image']);
+                  if (is_array($additional_images) && sizeof($additional_images) > 0) {
+                    $count = 0;
+                    foreach ($additional_images as $additional_image) {
+                      $count++;
+                      $content["image_link"] .= '<g:image_link>' . $additional_image . '</g:image_link>';
+                      if ($count == 9) break; // max 10 images including main image 
+                    }
+                  }
                 }
                 $content["link"] = '<link>' . $link . '</link>';
                 $content["price"] = '<g:price>' . number_format($price, 2, '.', '') . '</g:price>';
@@ -265,7 +307,13 @@
                 if (GOOGLE_MCDE_BRAND == 'true' && $products->fields['products_brand'] != '') {
                 $content["brand"] = '<g:brand>' . $google_mcde->google_mcde_sanita($products->fields['products_brand'], true) . '</g:brand>';
                 }
-                
+                if (GOOGLE_MCDE_BRAND == 'true' && $products->fields['products_brand'] == '') {
+                $content["brand"] = '<g:brand>' . $google_mcde->google_mcde_sanita($products->fields['manufacturers_name'], true) . '</g:brand>';
+                }
+                // taxonomy
+                if ($products->fields['products_taxonomy'] != '') {
+                $content["taxonomy"] = '<g:google_product_category>' . $google_mcde->google_mcde_taxonomysanita($products->fields['products_taxonomy'], true) . '</g:google_product_category>';
+                }
                 
                 
                 if (GOOGLE_MCDE_IN_STOCK == 'true') {

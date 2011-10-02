@@ -4,7 +4,7 @@
  * @copyright Copyright 2003-2011 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: collect_info.php for Google Merchant Center 2.0 2011-04-21 18:29:41Z webchills $
+ * @version $Id: collect_info.php for Google Merchant Center 3.0 2011-10-01 16:14:41Z webchills $
  */
 if (!defined('IS_ADMIN_FLAG')) {
   die('Illegal Access');
@@ -18,7 +18,9 @@ if (!defined('IS_ADMIN_FLAG')) {
                        'products_ean' => '',
                        'products_isbn' => '',
                        'products_condition' => '',
+					   'products_availability' => '',
                        'products_brand' => '',
+                       'products_taxonomy' => '',
                        'products_image' => '',
                        'products_price' => '',
                        'products_virtual' => DEFAULT_PRODUCT_PRODUCTS_VIRTUAL,
@@ -49,7 +51,7 @@ if (!defined('IS_ADMIN_FLAG')) {
 
     if (isset($_GET['pID']) && empty($_POST)) {
       $product = $db->Execute("select pd.products_name, pd.products_description, pd.products_url,
-                                      p.products_id, p.products_quantity, p.products_model, p.products_ean, p.products_isbn, p.products_condition, p.products_brand,
+                                      p.products_id, p.products_quantity, p.products_model, p.products_ean, p.products_isbn, p.products_condition, p.products_availability, p.products_brand, p.products_taxonomy,
                                       p.products_image, p.products_price, p.products_virtual, p.products_weight,
                                       p.products_date_added, p.products_last_modified,
                                       date_format(p.products_date_available, '%Y-%m-%d') as
@@ -116,6 +118,16 @@ if (!defined('IS_ADMIN_FLAG')) {
       case 'used': $is_products_condition = 'used'; break;
       case 'refurbished': $is_products_condition = 'refurbished'; break;
       default: $is_products_condition = 'new';
+    }
+	
+	// Products Availability
+    if (!isset($pInfo->products_availability)) $pInfo->products_availability = PRODUCTS_AVAILABILITY_DEFAULT;
+    switch ($pInfo->products_availability) {
+      case 'in stock': $is_products_availability = 'in stock';  break;
+      case 'available for order': $is_products_availability = 'available for order'; break;
+      case 'out of stock': $is_products_availability = 'out of stock'; break;
+	  case 'preorder': $is_products_availability = 'preorder'; break;
+      default: $is_products_availability = 'in stock';
     }
 
 // Virtual Products
@@ -462,9 +474,17 @@ updateGross();
             <td class="main"><?php echo TEXT_PRODUCTS_CONDITION; ?></td>
             <td class="main"><?php echo zen_draw_separator('pixel_trans.gif', '24', '15') . '&nbsp;' . zen_draw_radio_field('products_condition', 'new', ($is_products_condition=='new')) . '&nbsp;Neu&nbsp;&nbsp;' . zen_draw_radio_field('products_condition', 'used', ($is_products_condition=='used')) . '&nbsp;Gebraucht&nbsp;&nbsp;' . zen_draw_radio_field('products_condition', 'refurbished', ($is_products_condition=='refurbished')) . '&nbsp;Erneuert'; ?></td>
           </tr>
+		   <tr bgcolor="#DDEACC">
+            <td class="main"><?php echo TEXT_PRODUCTS_AVAILABILITY; ?></td>
+            <td class="main"><?php echo zen_draw_separator('pixel_trans.gif', '24', '15') . '&nbsp;' . zen_draw_radio_field('products_availability', 'in stock', ($is_products_availability=='in stock')) . '&nbsp;auf lager&nbsp;&nbsp;' . zen_draw_radio_field('products_availability', 'available for order', ($is_products_availability=='available for order')) . '&nbsp;bestellbar&nbsp;&nbsp;' . zen_draw_radio_field('products_availability', 'out of stock', ($is_products_availability=='out of stock')) . '&nbsp;nicht auf lager&nbsp;&nbsp;' . zen_draw_radio_field('products_availability', 'preorder', ($is_products_availability=='preorder')) . '&nbsp;vorbestellt'; ?></td>
+          </tr>
            <tr bgcolor="#DDEACC">
             <td class="main"><?php echo TEXT_PRODUCTS_BRAND; ?></td>
             <td class="main"><?php echo zen_draw_separator('pixel_trans.gif', '24', '15') . '&nbsp;' . zen_draw_input_field('products_brand', htmlspecialchars(stripslashes($pInfo->products_brand), ENT_COMPAT, CHARSET, TRUE), zen_set_field_length(TABLE_PRODUCTS, 'products_brand')); ?></td>
+          </tr>
+          <tr bgcolor="#DDEACC">
+            <td class="main"><?php echo TEXT_PRODUCTS_TAXONOMY; ?></td>
+            <td class="main"><?php echo zen_draw_separator('pixel_trans.gif', '24', '15') . '&nbsp;' . zen_draw_input_field('products_taxonomy', htmlspecialchars(stripslashes($pInfo->products_taxonomy), ENT_COMPAT, CHARSET, TRUE), zen_set_field_length(TABLE_PRODUCTS, 'products_taxonomy', '240'));  ?></td>
           </tr>
           <tr>
             <td colspan="2"><?php echo zen_draw_separator('pixel_trans.gif', '1', '10'); ?></td>

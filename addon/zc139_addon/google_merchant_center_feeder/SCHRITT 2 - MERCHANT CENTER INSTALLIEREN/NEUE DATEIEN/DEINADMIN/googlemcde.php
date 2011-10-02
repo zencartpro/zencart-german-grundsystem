@@ -2,14 +2,14 @@
 /**
  * googlemcde.php
  *
- * @package google merchant center deutschland 2.0 for Zen-Cart 1.3.9 german
+ * @package google merchant center deutschland 3.0 for Zen-Cart 1.3.9 german
  * @copyright Copyright 2007 Numinix Technology http://www.numinix.com
  * @copyright Portions Copyright 2011 webchills http://www.webchills.at
  * @copyright Portions Copyright 2003-2011 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
  * @version $Id: googlefroogle.php 35 2010-02-09 06:50:42Z numinix $
- * @version $Id: googlebase.php 2011-04-21 13:35:42Z webchills $
+ * @version $Id: googlemcde.php 2011-10-01 13:35:42Z webchills $
  */
 
   require('includes/application_top.php');
@@ -172,6 +172,7 @@ function processLoading(text) {
         <?php
           echo '<div class="buttonRow back">' . zen_image_submit('button_confirm.gif', IMAGE_CONFIRM, 'id="submitButton"') . '</div><br class="clearBoth" />'; 
         ?>
+        <input type="hidden" name="key" value="<?php echo GOOGLE_MCDE_KEY; ?>" />
       </form>
       <br />
       <h2>Verfügbare Produktfeeds</h2> 
@@ -193,7 +194,7 @@ function processLoading(text) {
                 <td><a href="<?php echo HTTP_SERVER . DIR_WS_CATALOG . GOOGLE_MCDE_DIRECTORY . $file; ?>" target="_blank"><?php echo $file;?></a></td>
                 <td>
                   <a href="<?php echo zen_href_link(FILENAME_GOOGLEMCDE, 'file='.$file.'&action=delete');?>">Löschen</a>&nbsp;
-                  <a href="#" onclick="window.open('<?php echo HTTP_SERVER . DIR_WS_CATALOG . FILENAME_GOOGLEMCDE; ?>.php?feed=fn_uy&upload_file=<?php echo $file; ?>', 'googlefrooglefeed', 'resizable=1, statusbar=5, width=600, height=400, top=0, left=50, scrollbars=yes');">FTP Upload</a>
+                  <a href="#" onclick="window.open('<?php echo HTTP_SERVER . DIR_WS_CATALOG . FILENAME_GOOGLEMCDE; ?>.php?feed=fn_uy&upload_file=<?php echo $file; ?>&key=<?php echo GOOGLE_MCDE_KEY; ?>', 'googlemcdefeed', 'resizable=1, statusbar=5, width=600, height=400, top=0, left=50, scrollbars=yes'); return false;">FTP Upload</a>
                 </td>
               </tr>
               <?php

@@ -6,7 +6,7 @@
  * @copyright Copyright 2003-2011 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: main_template_vars.php for Google Merchant Center Deutschland 2.0 2011-04-21 18:50:49Z webchills $
+ * @version $Id: main_template_vars.php for Google Merchant Center Deutschland 3.0 2011-09-21 15:50:49Z webchills $
  */
 /*
  * Extracts and constructs the data to be used in the product-type template tpl_TYPEHANDLER_info_display.php

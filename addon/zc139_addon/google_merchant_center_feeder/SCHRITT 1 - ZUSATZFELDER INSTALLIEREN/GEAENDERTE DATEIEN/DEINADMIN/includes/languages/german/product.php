@@ -4,7 +4,7 @@
  * @copyright Copyright 2003-2011 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: product.php for Google Merchant Center 2.0 2011-04-21 18:30:42Z webchills $
+ * @version $Id: product.php for Google Merchant Center 3.0 2011-09-21 15:30:42Z webchills $
   */
 
 define('HEADING_TITLE', 'Kategorien / Artikel');
@@ -78,9 +78,11 @@ define('TEXT_PRODUCTS_QUANTITY', 'Lagerbestand:');
 define('TEXT_PRODUCTS_MODEL', 'Artikelnummer:');
 define('TEXT_ADDITIONAL_FIELDS_MERCHANT_CENTER', 'Zusatzfelder für Google Merchant Center');
 define('TEXT_ADDITIONAL_FIELDS_MERCHANT_CENTER_INFO', 'Nur ausfüllen, wenn Sie das Google Merchant Center Modul nutzen');
+define('TEXT_PRODUCTS_TAXONOMY', 'Google Produktkategorie:');
 define('TEXT_PRODUCTS_EAN', 'EAN (13stellig):');
 define('TEXT_PRODUCTS_ISBN', 'ISBN (13stellig oder 10stellig):');
 define('TEXT_PRODUCTS_CONDITION', 'Zustand:');
+define('TEXT_PRODUCTS_AVAILABILITY', 'Verfügbarkeit:');
 define('TEXT_PRODUCTS_BRAND', 'Marke (nur falls anders als Hersteller):');
 define('TEXT_PRODUCTS_IMAGE', 'Artikelbild:');
 define('TEXT_PRODUCTS_IMAGE_DIR', 'Uploadverzeichnis:');
@@ -150,7 +152,7 @@ define('TEXT_ATTRIBUTE_COPY_UPDATING', '<strong>Aktualisiere Attribute von </str
 define('TEXT_META_TAG_TITLE_INCLUDES', '<strong>Wählen Sie aus, welche Informationen die Metatags des Artikels enthalten sollen:</strong>');
 define('TEXT_PRODUCTS_METATAGS_PRODUCTS_NAME_STATUS', '<strong>Artikelname:</strong>');
 define('TEXT_PRODUCTS_METATAGS_TITLE_STATUS', '<strong>Titel:</strong>');
-define('TEXT_PRODUCTS_METATAGS_MODEL_STATUS', '<strong>Bezeichnung:</strong>');
+define('TEXT_PRODUCTS_METATAGS_MODEL_STATUS', '<strong>Artikelnummer:</strong>');
 define('TEXT_PRODUCTS_METATAGS_PRICE_STATUS', '<strong>Preis:</strong>');
 define('TEXT_PRODUCTS_METATAGS_TITLE_TAGLINE_STATUS', '<strong>Titelüberschrift:</strong>');
 define('TEXT_META_TAGS_TITLE', '<strong>Meta Tag Titel:</strong>');

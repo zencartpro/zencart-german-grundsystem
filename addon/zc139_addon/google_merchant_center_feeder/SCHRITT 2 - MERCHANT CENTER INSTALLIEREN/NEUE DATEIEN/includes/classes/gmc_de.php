@@ -2,17 +2,66 @@
 /**
  * gmc_de.php
  *
- * @package google merchant center deutschland 2.0 for Zen-Cart 1.3.9 german
+ * @package google merchant center deutschland 3.0 for Zen-Cart 1.3.9 german
  * @copyright Copyright 2007 Numinix Technology http://www.numinix.com
  * @copyright Portions Copyright 2011 webchills http://www.webchills.at
  * @copyright Portions Copyright 2003-2011 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: google_mcde.php 43 2010-11-18 23:34:54Z numinix $
- * @version $Id: gmc_de.php 2011-04-18 12:29:54Z webchills $
+ * @version $Id: google_mcde.php 2011-06-02 23:57:19Z numinix $
+ * @version $Id: gmc_de.php 2011-10-02 08:48:54Z webchills $
  */
  
   class google_mcde {
+    function additional_images($products_image) {
+      if ($products_image != '') {
+        $images_array = array();
+        // prepare image name
+        $products_image_extension = substr($products_image, strrpos($products_image, '.'));
+        $products_image_base = str_replace($products_image_extension, '', $products_image);
+
+        // if in a subdirectory
+        if (strrpos($products_image, '/')) {
+          $products_image_match = substr($products_image, strrpos($products_image, '/')+1);
+          $products_image_match = str_replace($products_image_extension, '', $products_image_match) . '_';
+          $products_image_base = $products_image_match;
+        }
+
+        $products_image_directory = str_replace($products_image, '', substr($products_image, strrpos($products_image, '/')));
+        if ($products_image_directory != '') {
+          $products_image_directory = DIR_WS_IMAGES . str_replace($products_image_directory, '', $products_image) . "/";
+        } else {
+          $products_image_directory = DIR_WS_IMAGES;
+        }
+
+        // Check for additional matching images
+        $file_extension = $products_image_extension;
+        $products_image_match_array = array();
+        if ($dir = @dir($products_image_directory)) {
+          while ($file = $dir->read()) {
+            if (!is_dir($products_image_directory . $file)) {
+              if (substr($file, strrpos($file, '.')) == $file_extension) {
+                if(preg_match("/" . $products_image_base . "/i", $file) == 1) {
+                  if ($file != $products_image) {
+                    if ($products_image_base . str_replace($products_image_base, '', $file) == $file) {
+                      $images_array[] = $this->google_mcde_image_url($file);
+                      if (count($images_array) >= 8) break;
+                    } else {
+                      //  no match
+                    }
+                  }
+                }
+              }
+            }
+          }
+          $dir->close();
+        }
+        return $images_array;
+      } else {
+        // default
+        return false;
+      }
+    }
    
     // writes out the code into the feed file
     function google_mcde_fwrite($output='', $mode) {
@@ -97,14 +146,19 @@
       return $type;
     }
     
-    // check to see if a product is inside an included or excluded category
-    function numinix_categories_check($categories_list, $products_id, $charge) {
+    // performs a set of functions to see if a product is valid
+    function check_product($products_id) {
+      if ($this->included_categories_check(GOOGLE_MCDE_POS_CATEGORIES, $products_id) && !$this->excluded_categories_check(GOOGLE_MCDE_NEG_CATEGORIES, $products_id) && $this->included_manufacturers_check(GOOGLE_MCDE_POS_MANUFACTURERS, $products_id) && !$this->excluded_manufacturers_check(GOOGLE_MCDE_NEG_MANUFACTURERS, $products_id)) {
+        return true;
+      } else {
+        return false;
+      }
+    }
+    
+    // check to see if a product is inside an included category
+    function included_categories_check($categories_list, $products_id) {
       if ($categories_list == '') {
-        if ($charge == 1) {
-          return true;
-        } elseif ($charge == 2) {
-          return false;
-        }
+        return true;
       } else {
         $categories_array = split(',', $categories_list);
         $match = false;
@@ -115,6 +169,56 @@
           }
         }
         if ($match == true) {
+          return true;
+        } else {
+          return false;
+        }
+      }
+    }
+    
+    // check to see if a product is inside an excluded category
+    function excluded_categories_check($categories_list, $products_id) {
+      if ($categories_list == '') {
+        return false;
+      } else {
+        $categories_array = split(',', $categories_list);
+        $match = false;
+        foreach($categories_array as $category_id) {
+          if (zen_product_in_category($products_id, $category_id)) {
+            $match = true;
+            break;
+          }
+        }
+        if ($match == true) {
+          return true;
+        } else {
+          return false;
+        }
+      }
+    }
+    
+    // check to see if a product is from an included manufacturer
+    function included_manufacturers_check($manufacturers_list, $products_id) {
+      if ($manufacturers_list == '') {
+        return true;
+      } else {
+        $manufacturers_array = split(',', $manufacturers_list);
+        $products_manufacturers_id = zen_get_products_manufacturers_id($products_id);
+        if (in_array($products_manufacturers_id, $manufacturers_array)) {
+          return true;
+        } else {
+          return false;
+        }
+      }
+    }
+    
+    function excluded_manufacturers_check($manufacturers_list, $products_id) {
+      if ($manufacturers_list == '') {
+        return false;
+      } else {
+        $manufacturers_array = split(',', $manufacturers_list);
+        $products_manufacturers_id = zen_get_products_manufacturers_id($products_id);
+        if (in_array($products_manufacturers_id, $manufacturers_array)) {
           return true;
         } else {
           return false;
@@ -179,20 +283,48 @@
       $str = str_replace("ü", "ü", $str);
 	  $str = str_replace("ö", "ö", $str);
       // preserve &amp;
-      //if ($products->fields['products_id'] == 1523) echo '<br />' . $str . '<br />';
+      
       $str = str_replace(array("&amp;", "&"), "AMPERSAN", $str);
-      //if ($products->fields['products_id'] == 1523) echo '<br />' . $str . '<br />';
+      
       $str = preg_replace('/AMPERSAN[A-Za-z0-9#]{1,10};/', '', $str); // remove all entities, shouldn't be longer than 10 characters?
-      //if ($products->fields['products_id'] == 1523) echo '<br />' . $str . '<br />';
+      
       // readd &amp;
       $str = str_replace("AMPERSAN", "&", $str);
-      //if ($products->fields['products_id'] == 1523) die('<br />' . $str . '<br />');
+     
       $_cleaner_array = array(">" => "> ", "®" => "(r)", "™" => "(tm)", "©" => "(c)", "‘" => "'", "’" => "'", "—" => "-", "–" => "-", "&" => "&amp;", "&amp;amp;" => "&amp;", "“" => "\"", "”" => "\"", "…" => "...");
       $str = strtr($str, $_cleaner_array);
       return $str;
     }
     
+    function google_mcde_taxonomysanita($str, $rt=false) {
+      //for taxonomy
       
+      $str = str_replace(array("\t" , "\n", "\r", "&nbsp;", "<li>", "</li>", "<p>", "</p>", "<br />", "<blockquote>", "</blockquote>", "<tr>", "</tr>", "•"), ' ', $str);
+      $str = strip_tags($str);
+      $str = preg_replace('/\s\s+/', ' ', $str);
+      // if (phpversion() >= 5) $str = htmlspecialchars_decode($str);
+      // $str = htmlentities(html_entity_decode($str));
+      // keep quotes as char
+      $str = str_replace("&quot;", "\"", $str);
+      $str = str_replace("ä", "ä", $str);
+      $str = str_replace("ü", "ü", $str);
+	  $str = str_replace("ö", "ö", $str);
+      // preserve &amp;
+      
+      $str = str_replace(array("&amp;", "&"), "AMPERSAN", $str);
+      
+      $str = preg_replace('/AMPERSAN[A-Za-z0-9#]{1,10};/', '', $str); // remove all entities, shouldn't be longer than 10 characters?
+     
+      // readd &amp;
+      $str = str_replace("AMPERSAN", "&", $str);
+      
+      $_cleaner_array = array(">" => "&gt; ", "®" => "(r)", "™" => "(tm)", "©" => "(c)", "‘" => "'", "’" => "'", "—" => "-", "–" => "-", "&" => "&", "&amp;amp;" => "&amp;", "“" => "\"", "”" => "\"", "…" => "...");
+      $str = strtr($str, $_cleaner_array);
+      return $str;
+    }
+    
+    
+    
     function google_mcde_xml_sanitizer($str, $cdata = false) {
       $str = $this->google_mcde_sanita($str);
       $length = strlen($str);
@@ -205,9 +337,7 @@
         }
       }
       $str = trim($str);
-      if ($cdata) {
-        $str = '<![CDATA[' . $str . ']]>';
-      }
+     
       return $str;
     }
     
@@ -239,7 +369,7 @@
         $products_image_large = DIR_WS_IMAGES . 'large/' . $products_image_large;
       }
       if ((function_exists('handle_image')) && (GOOGLE_MCDE_IMAGE_HANDLER == 'true')) {
-        $image_ih = handle_image($products_image_large, '', '', '', '');
+        $image_ih = handle_image($products_image_large, '', LARGE_IMAGE_MAX_WIDTH, LARGE_IMAGE_MAX_HEIGHT, '');
         $retval = (HTTP_SERVER . DIR_WS_CATALOG . $image_ih[0]);
       } else {
         $retval = (HTTP_SERVER . DIR_WS_CATALOG . $products_image_large);
@@ -678,4 +808,3 @@
        return ((float)$usec + (float)$sec);
     }
   }
-?>

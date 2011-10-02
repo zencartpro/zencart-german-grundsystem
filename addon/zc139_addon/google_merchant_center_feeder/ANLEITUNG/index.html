@@ -1,0 +1,348 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<title>Google Merchant Center Deutschland 3.0 für Zen-Cart 1.3.9 deutsch</title>
+<meta http-equiv="pragma" content="no-cache">
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
+<meta http-equiv="content-language" content="de">
+<meta name="description" content="Modul zur Generierung eines Datenfeeds für das Google Merchant Center">
+<link rel="stylesheet" type="text/css" href="includes/css/stylesheet.css">  
+<script type="text/javascript" src="includes/jscript/jscript_tabs.js"></script>
+</head>
+<body>
+<div id="wrapper">
+<div id="header">
+<h1>Google Merchant Center Deutschland 3.0 für Zen-Cart 1.3.9 deutsch</h1>
+</div>
+
+<div id="slidetabsmenu" style="display: none;">
+<ul>
+  <li> <a onClick="expandcontent('sc1', this)" href="javascript:void(0)"><span>Sinn und Zweck</span></a></li>
+  <li> <a onClick="expandcontent('sc2', this)" href="javascript:void(0)"><span>Installation</span></a></li>
+   <li> <a onClick="expandcontent('sc3', this)" href="javascript:void(0)"><span>Update von 2.0</span></a></li>
+   <li> <a onClick="expandcontent('sc4', this)" href="javascript:void(0)"><span>Konfiguration</span></a></li>
+  <li> <a onClick="expandcontent('sc5', this)" href="javascript:void(0)"><span>Download & Support</span></a></li>
+  <li> <a onClick="expandcontent('sc6', this)" href="javascript:void(0)"><span>Unterstützen</span></a></li>
+ </ul>
+</div>
+<br style="clear: both;">
+
+<!--Begin tabcontainer-->
+<div id="tabcontentcontainer">
+
+<!--Begin sc1-->
+<div class="tabcontent" id="sc1" style="display: block;">
+<div class="textcontent">
+<div class="regularlist">
+
+<h2>Sinn und Zweck dieses Moduls</h2>
+
+  <p>Dieses Modul erzeugt ein XML Artikelfeed für das Google Merchant   Center anhand der aktuellen Google Merchant Center Spezifikationen für   Deutschland:<br>
+    <a href="http://www.google.com/support/merchants/bin/answer.py?answer=188494&hl=de_DE&expand=DE" target="_blank">http://www.google.com/support/merchants/bin/answer.py?answer=188494&amp;hl=de_DE&amp;expand=DE</a><br>
+Es ist nur geeignet für das Zielland Deutschland! <br>
+Das generierte Artikelfeed     kann via Zen-Cart Administration per FTP an Google übermittelt   werden. Alternativ kann man im Google Merchent Center Dashboard auch   einfach den Link zum Feed angeben und es per Zeitplan automatisiert von   Google abholen lassen.<br>
+Die Erstellung des Feeds erfolgt entweder manuell in der Zen-Cart Administration oder automatisiert per Cronjob.<br>
+<br> 
+Seit September 2011 müssen Artikelfeeds neue Pflichfelder enthalten, sonst werden die Artikel bei Google Shopping nicht mehr gelistet.<br>
+Alle Informationen dazu hier:<br>
+<a href="http://googlehaendlerblog.blogspot.com/2011/07/fur-merchant-center-nutzer-wichtige.html">http://googlehaendlerblog.blogspot.com/2011/07/fur-merchant-center-nutzer-wichtige.html</a></p>
+  <p>Daher ist es notwendig, bei den Artikeln die Felder EAN, ISBN, Marke, Verfügbarkeit und Google Produktkategorie vorzusehen, damit diese - falls befüllt - in das Artikelfeed   übernommen werden können.<br>
+    <br>
+    Dieses Modul enthält folgende Zusatzfelder, die in der Zen-Cart Administration beim Artikel anlegen/bearbeiten  neu verfügbar sind:<br>
+    - EAN<br>
+    - ISBN<br>
+    - Marke (Brand)<br>
+    - Zustand (new, used, refurbished)<br>
+    - Verfügbarkeit (availability)<br>
+    - Google Produktkategorie  </p>
+<p>Außerdem werden pro Artikel bis zu 10 zusätzliche Artikelbilder (falls vorhanden) ins Artikelfeed übernommen.<br>
+  <br>
+  <strong>Changelog Version 3.0</strong><br>
+  - Artikelfeed ist konform mit den neuen Google Richtlinien von September 2011
+  (Unterstützung der Felder availability und Google Produktkategorie)<br>
+  - Unterstützung zusätzlicher Artikelbilder<br>
+  - Generierung des Feeds ist nun mit einem Sicherheitsschlüssel abgesichert
+  <br>
+  - Einschränkung auf Artikel bestimmter Hersteller möglich
+  <br>
+  - Die neuen Zusatzfelder werden nun auch beim Kopieren eines Artikels übernommen.
+  <br>
+  - Bugfixes für das Umschreiben von Umlauten
+</p>
+<h3>Copyright,  Lizenz</h3>
+<p>Copyright dieser deutschen Anpassung/Anleitung für Zen-Cart 1.3.9 deutsch<br>
+(c) 2011 webchills (<a href="http://www.webchills.at" target="_blank">www.webchills.at</a>) <br>
+<br>
+deutsche Übersetzung/Anpassung des Moduls Google Merchant Center von Numinix<br>
+  <a href="http://www.zen-cart.com/index.php?main_page=product_contrib_info&products_id=473" target="_blank">http://www.zen-cart.com/index.php?main_page=product_contrib_info&amp;products_id=473</a><br>
+@copyright Copyright 2007 Numinix Technology <br>
+<a href="http://www.numinix.com" target="_blank">http://www.numinix.com</a></p>
+<p>Änderungen zur Originalversion:<br>
+  - alle nicht benötigten Funktionen und Admineinstellungen entfernt<br>
+  - Anpassung des Artikelfeeds an die aktuellen Google Merchent Center Spezifikationen für Deutschland:<br>
+  <a href="http://www.google.com/support/merchants/bin/answer.py?answer=188494&hl=de_DE&expand=DE" target="_blank">http://www.google.com/support/merchants/bin/answer.py?answer=188494&amp;hl=de_DE&amp;expand=DE</a><br>
+  - Vereinheitlichung der Dateinamen und Konfigurationsbezeichnungen </p>
+<p> Portions Copyright (c) 2003 osCommerce<br>
+  Portions Copyright     (c) 2003-2011 Zen Cart</p>
+<p>This contribution is subject to version 2.0 of the GPL license available through the world-wide-web at the following url:<br>
+  <a href="http://www.zen-cart.com/license/2_0.txt">http://www.zen-cart.com/license/2_0.txt</a></p>
+</div>
+</div>
+</div>
+<!--End sc1-->
+
+<!--Begin sc2-->
+<div class="tabcontent" id="sc2" style="display: block;">
+<div class="textcontent">
+<div class="regularlist">
+
+<h2>Installation</h2>
+<h3>Voraussetzungen</h3>
+  <br>
+  Dieses Modul ist<strong> nur für die deutsche Zen-Cart 1.3.9 Version geeignet</strong></p>
+  <p><br>
+  Für den Einbau dieses Moduls sollten Sie über folgende Werkzeuge verfügen:<br>
+  <br>
+  <strong>1) Ein guter Texteditor </strong><br>
+  Damit ist nicht das in Windows enthaltene Notepad oder Microsoft Word gemeint.<br>
+  Sie benötigen einen Texteditor, der utf-8 versteht und auch im Format utf-8 ohne BOM abspeichern kann.<br>
+  Meine Empfehlung: <a href="http://www.ultraedit.com/loc/de/index_de.html" target="_blank">UltraEdit</a> (kostenlose 30 Tage Testversion verfügbar)<br>
+  Ebenfalls gut geeignet ist der kostenlose Texteditor <a href="http://notepad-plus.sourceforge.net/de/site.htm" target="_blank">Notepad++ </a><br>
+</p>
+<p><strong>2) Ein Tool zum Vergleichen von Dateien</strong><br>
+  Bei der Installation dieses Moduls ist es erforderlich, dass Sie den     Inhalt einiger Ihrer bestehenden Zen-Cart Dateien mit dem Inhalt der     neuen Moduldateien vergleichen und die Änderungen zusammenführen     ("mergen").<br>
+  Meine Empfehlung: <a href="http://www.scootersoftware.com/" target="_blank">BeyondCompare</a> (kostenlose 30 Tage Testversion verfügbar)<br>
+  Ebenfalls gut geeignet ist das kostenlose Programm <a href="http://winmerge.org/" target="_blank">WinMerge </a></p>
+<p><br>
+  <strong>Empfehlung:</strong><br>
+  <br>
+  Dieses Modul erst in einem Testsystem einbauen und dort   konfigurieren/testen und endgültig an die eigenen Wünsche anpassen.        Erst dann in einem Liveshop einsetzen! Sichern Sie unbedingt alle   Dateien Ihres Shops per FTP und sichern Sie die Datenbank mit phpMyAdmin   oder anderen geeigneten Tools!</p>
+<div id="warning"><b>WICHTIG</b><br>
+Vor dem Einbau dieser Änderungen:<br>
+BACKUP von Shop und Datenbank machen! <br>
+Keine Haftung, Verwendung auf eigene Gefahr!<br>
+BACKUP gemacht? Ok, dann weiterlesen...
+</div>
+<p>Die Installation erfolgt in 2 Schritten. Zuerst installieren Sie die   neuen Datenfelder. Dann das eigentliche Google Merchant Center Modul.<br>
+  Halten Sie diesen Ablauf ein.<br>
+  <br>
+  <strong>Achtung:</strong><br>
+  Wenn Sie bereits Version 2.0 dieses Moduls im Einsatz haben, führen Sie bitte keine Neuinstallation, sondern ein Update durch! </p>
+<p><strong>SCHRITT 1: Installation der neuen Datenfelder</strong></p>
+<p>1.<br>
+  Im Order SCHRITT 1 - ZUSATZFELDER INSTALLIEREN im Ordner SQL die Datei   install.sql mit einem Texteditor öffnen und den Inhalt kopieren</p>
+<p>2.<br>
+  Zen-Cart Administration öffnen und unter Tools &gt; SQL Patches installieren den Inhalt ins Feld hineinkopieren und absenden.<br>
+  Dadurch wird die Tabelle products mit  neuen Feldern erweitert. Für die   Felder EAN, ISBN und Marke ist danach auch unter Webshop &gt;   Artikeltypen &gt; Product General &gt; Layout bearbeiten eine   Einstellungsmöglichkeit vorhanden, um diese Daten auch auf der   Artikeldetailseite anzuzeigen.</p>
+<p>3.<br>
+  Im Ordner SCHRITT 1 - ZUSATZFELDER INSTALLIEREN im Ordner GEAENDERTE   DATEIEN alle Ordner namens DEINTEMPLATE in den Namen des aktuell   verwendeten Templates umbenennen (z.B. classic, viennabright,...)<br>
+  Den Ordner DEINADMIN auf den Namen Ihres admin Verzeichnisses umbenennen.<br>
+  <strong>Achtung:</strong><br>
+  Beim Hochladen dieser Dateien werden bestehende Dateien überschrieben!<br>
+  Daher:<br>
+  Falls bereits einmal Änderungen an diesen Dateien in der Zen-Cart   Installation gemacht wurden, mit WinMerge oder BeyondCompare die Dateien   vergleichen und nur die Änderungen in die bestehenden Dateien   übernehmen.<br>
+  Wurden noch keine Änderungen gemacht (Zen-Cart wurde z.B. gerade erst   frisch installiert), die Ordner/Dateien aus dem Ordner GEAENDERTE   DATEIEN einfach in der vorgegebenen Struktur in Ihr Zen-Cart Verzeichnis   hochladen.</p>
+<p>4.<br>
+  Überprüfen Sie nun, ob Sie die neuen Felder beim Artikel bearbeiten   verfügbar haben. Bearbeiten Sie einen Artikel und geben testweise bei   EAN, ISBN, Marke, Zustand, Verfügbarkeit und Google Produktkategorie die gewünschten Daten ein. <br>
+  Schalten Sie unter Webshop &gt; Artikeltypen &gt; Product General &gt;   Layout bearbeiten die Anzeige von EAN, ISBN und Marke auf true und   überprüfen Sie ob bei Ihrem Artikel die vorhin eingegebenen Werte auf   der Artikeldetailseite angezeigt werden.</p>
+<p>Wenn alles passt, installieren Sie nun das eigentliche Google Merchant Center Modul</p>
+<p><strong>SCHRITT 2: Google Merchant Center installieren</strong></p>
+<p>1.<br>
+  Im Order SCHRITT 2 - MERCHANT CENTER INSTALLIEREN im Ordner SQL die   Datei install.sql mit einem Texteditor öffnen und den Inhalt kopieren</p>
+<p>2.<br>
+  Zen-Cart Administration öffnen und unter Tools &gt; SQL Patches installieren den Inhalt ins Feld hineinkopieren und absenden.<br>
+  Dadurch werden die Konfigurationsmöglichkeiten für das Modul in der   Datenbank hinterlegt und in der Zen-Cart Administration ist danach unter   Konfiguration der neue Menüpunkt Google Merchant Center Deutschland   vorhanden. Dieser Menüpunkt wird nur im deutschsprachigen Admin   verfügbar sein.</p>
+<p>3. <br>
+  Im Ordner SCHRITT 2 - MERCHANT CENTER INSTALLIEREN  im Ordner NEUE   DATEIEN den Ordner DEINADMIN auf den Namen Ihres admin   Verzeichnisses umbenennen.<br>
+  Dann die Dateien/Ordner in der vorgegebenen Struktur ins Zen-Cart   Verzeichnis hochladen. Dabei werden keinerlei bestehende Dateien   überschrieben.</p>
+<p>4.<br>
+  Nun können Sie unter Konfiguration &gt; Google Merchant Center   Deutschland das Modul nach Ihren Wünschen konfigurieren. Tipps dazu unter Konfiguration</p>
+
+  </div>
+</div>
+</div>
+
+<!--End sc2-->
+
+<!--Begin sc3-->
+<div class="tabcontent" id="sc3" style="display: block;">
+<div class="textcontent">
+<div class="regularlist">
+
+<h2>UPDATE VON VERSION 2.0 auf 3.0</h2>
+<p>1.<br>
+Die Datei update.sql im Ordner UPDATE VON 2.0 AUF 3.0 mit einem Texteditor öffen und den Inhalt kopieren</p>
+<p>2.<br>
+  Zen-Cart Administration öffnen und unter Tools &gt; SQL Patches installieren den Inhalt ins Feld hineinkopieren und absenden.<br>
+  Dadurch werden die Datenbankeinträge für die neuen Felder und die neuen Konfigurationseinstellungen angelegt.
+</p>
+<p>3.<br>
+  Gehen Sie jetzt genauso vor wie unter Neuinstallation beschrieben mit einem großen Unterschied: <br>
+  Das Einspielen der beiden SQL Installer NICHT DURCHFÜHREN!!!!<br>
+  Nur die Dateien hochladen und Ihre bestehenden Dateien des Moduls mit den neuen ersetzen. <br>
+  Dringend empfohlen ist ein vorheriger Vergleich der Dateien mit einem geeigneten Tool:<br>
+  Meine Empfehlung: <a href="http://www.scootersoftware.com/" target="_blank">BeyondCompare</a> (kostenlose 30 Tage Testversion verfügbar)<br>
+Ebenfalls gut geeignet ist das kostenlose Programm <a href="http://winmerge.org/" target="_blank">WinMerge </a></p>
+<p>4.<br>
+  Sollten Sie bereits einen Cronjob nutzen, müssen Sie diesen mit der Angabe des neuen Sicherheitsschlüssels erweitern (Informationen dazu unter Konfiguration)
+</p>
+</div>
+</div>
+</div>
+<!--End sc3-->
+
+<!--Begin sc4-->
+<div class="tabcontent" id="sc4" style="display: block;">
+<div class="textcontent">
+<div class="regularlist">
+
+<h2>KONFIGURATION</h2>
+<p>Dieses Modul macht nur Sinn, wenn Sie sich für das Google Merchant Center registriert haben.<br />
+  Sollten Sie noch keinen Account haben:<br />
+  <a href="http://www.google.com/merchants" target="_blank">http://www.google.com/merchants</a><br />
+  Beachten Sie bitte, dass dieses Modul ausschließlich für das Zielland Deutschland ausgelegt ist.
+</p>
+<p><strong>Befüllen der neuen Felder Verfügbarkeit und Google Produktkategorie beim Bearbeiten eines Artikels</strong><br>
+  <br>
+  Beim Bearbeiten eines Artikels stehen grün unterlegt nun die zusätzlichen Felder für das Google Merchant Center zur Verfügung.<br>
+  EAN, ISBN, Zustand und marke sollten selbsterklärend sein.<br>
+  <br>
+  Beachten Sie aber Folgendes für Verfügbarkeit und Google Produktkategorie:
+</p>
+<p>Das Feld <strong>Verfügbarkeit</strong> ist standardmäßig auf &quot;in stock&quot; voreingestellt.<br>
+  Ändern Sie das bei jedem Artikel falls erforderlich.<br>
+  Erläuterung der Werte von Google:<br>
+  Für den Verfügbarkeitsstatus gibt es nur vier zulässige Werte:</p>
+<ul>
+  <li>'auf lager' [in stock]: Geben Sie diesen Wert an, wenn Sie sicher   sind, dass der Artikel innerhalb von drei Geschäftstagen oder weniger   versendet werden kann oder sich auf dem Weg zum Kunden befindet.   Beispiel: Der Artikel befindet sich in Ihrem Lager.</li>
+  <li>'bestellbar' [available for order]: Geben Sie diesen Wert an, wenn   der Versand zum Kunden vier oder mehr Geschäftstage in Anspruch nimmt.   Beispiel: Wenn Sie den Artikel derzeit nicht in Ihrem Lager haben,   jedoch sicher sind, dass er innerhalb der nächsten Tage eintrifft.   Verwenden Sie den Wert 'vorbestellt' [preorder] für noch   unveröffentlichte Produkte.</li>
+  <li>'nicht auf lager' [out of stock]: Sie nehmen derzeit keine Bestellungen für dieses Produkt an.</li>
+  <li>'vorbestellt' [preorder]: Sie nehmen Bestellungen für dieses Produkt an, es wurde jedoch noch nicht veröffentlicht.</li>
+  </ul>
+<p><strong>Das Feld Google Produktkategorie MUSS in folgendem Format befüllt werden:</strong><br>
+  Beispiel:<br>
+  <span id="sel_csv"><strong>Medien &gt; Zeitschriften &amp; Zeitungen</strong></span>  <br>
+  Schreiben Sie das &gt; ganz genauso und das &amp; ganz genau so.<br>
+  Nur dann werden diese Zeichen korrekt ins XML File übernommen.
+  <br>
+  <br>
+  Die möglichen Kategorien finden Sie in folgendem Artikel:<br>
+  <a href="http://www.google.com/support/merchants/bin/answer.py?answer=160081" target="_blank">http://www.google.com/support/merchants/bin/answer.py?answer=160081</a><br>
+  Dort können Sie durch die Taxonomie blättern und bekommen immer die Kategorien im oben beschriebenen Format angezeigt.
+</p>
+<p><strong>Einstellungen in der Zen-Cart Administration und Erzeugen des Feeds</strong><br />
+
+  <br />
+  Unter Konfiguration &gt; Google Merchant Center Deutschland nehmen Sie nun die nötigen Einstellungen vor, alle Einstellungsmöglichkeiten sind dort erklärt.</p>
+<p>Wichtig ist hier der Name Ihres Feeds. Geben Sie hier z.B. meinshop an, dann wird die Datei Ihres Feeds später heißen:<br />
+  meinshop_products.xml<br />
+  Diesen Dateinamen müssen Sie in Ihren Google Merchant Center Einstellungen eintragen.</p>
+<p>Es wurde automatisch ein Sicherheitsschlüssel erstellt. Dieser dient dazu, dass niemand einfach durch Aufruf der googlemcde.php im Shopverzeichnis ein Artikelfeed generieren kann. Der Aufruf dieser Datei ist nur mit Übergabe des in der Konfiguration hinterlegten Sicherheitsschlüssels möglich. Sie können den vorgenerierten Schlüssel ändern, das ist aber nicht notwendig.<br />
+  <br />
+  
+  Nachdem Sie Ihre gewünschte Konfiguration vorgenommen haben, erstellen Sie nun manuell Ihr erstes Artikelfeed unter Tools &gt; Google Merchant Center Deutschland.</p>
+<p>Lassen Sie die Felder 
+  <label for="limit">SQL Query Limit</label> 
+  und SQL Query Offset
+leer und klicken Sie einfach auf den Button &quot;bestätigen&quot;.<br />
+Es öffnet sich ein Popup, das nach kurzer Zeit die Erzeugung des Feeds bestätigt. Danach können Sie die XML Datei unter Verfügbare Produktfeeds zur Kontrolle herunterladen.<br />
+<br />
+Wenn Sie den FTP Upload nutzen wollen clicken Sie unter &quot;Aktion&quot; auf &quot;FTP-Upload&quot;. Voraussetzung: Sie haben zuvor in Ihrem Google Merchant Center einen FTP Account angelegt und Benutzernamen und Passwort in der Zen-Cart Administration des Moduls eingetragen. Bitte beachten Sie, dass es mehrere Stunden dauern kann, bis ein neu angelegter FTP Account seitens Google aktiv ist. Wenn Sie den Account also gerade erst angelegt haben, dann wird der Upload fehlschlagen.</p>
+
+<p>Wenn Sie den FTP-Upload nicht nutzen wollen, können Sie in Ihrem Google Merchant Center einen Zeitplan einstellen, an dem sich Google das Produktfeed automatisiert selbst holt.<br />
+  Ihr Artikelfeed befindet sich standardmäßig im Ordner feed/googlemcde<br />
+Wenn Ihre Feeddatei meinshop_products.xml heißt, dann müssten Sie also beim Zeitplan folgenden Link eintragen:<br />
+http://www.meinshop.de/feed/googlemcde/meinshop_products.xml</p>
+<p>Lassen Sie nun Google Ihr neu erstelltes Artikelfeed zukommen (egal ob per FTP oder automatisierten Zeitplan) und überprüfen Sie danach das Feed in Ihrem Google Merchant Center. </p>
+<p><strong>Artikelfeed automatisiert per Cronjob aktualisieren:</strong><br />
+  <br />
+  Legen Sie einen Cronjob an, der einmal pro Woche (oder wann immer Sie wollen) folgende Adresse aufruft:<br />
+
+  <br />
+  googlemcde.php?feed=fy_uy_tp&amp;key=xxxxxxxxx<br>
+  <br>
+  Ersetzen Sie die xxx bei key mit dem unter Konfiguration hinterlegten Sicherheitsschlüssel
+<br />
+  <br />
+  Dadurch passiert genau dasselbe wie wenn Sie das manuell unter Tools &gt; Google Merchant Center Deutschland in der Zen-Cart Administration machen würden.<br />
+  Mit diesem Kommando wird nur das Feed aktualisiert, es erfolgt kein FTP-Upload <br />
+  Wenn Sie das Feed per Zeitplan von Google abholen lassen, ist das ausreichend.<br />
+
+  <br />
+  Wenn Sie den Zeitplan nicht verwenden und das Feed immer per FTP hochladen, dann verwenden Sie folgenden Link in Ihrem Cronjob:<br />
+  <br />
+  googlemcde.php.php?feed=fy_uy_tp&amp;key=xxxxxxxxx<br />
+</p>
+<p><strong>Fragen zu den Einstellungen in Ihrem Google Merchant Center:</strong><br />
+  Nutzen Sie die umfangreiche Hilfe auf:<br />
+  <a href="http://www.google.com/support/merchants/?hl=de_DE" target="_blank">http://www.google.com/support/merchants/?hl=de_DE</a></p>
+<p><strong>Fragen zu den Artikelfeed-Spezifikationen:</strong><br>
+  Alle wichtigen Links dazu sind in folgendem Artikel zusammengefasst:<br>
+  <a href="http://googlehaendlerblog.blogspot.com/2011/07/fur-merchant-center-nutzer-wichtige.html" target="_blank">http://googlehaendlerblog.blogspot.com/2011/07/fur-merchant-center-nutzer-wichtige.html</a><br>
+</p>
+
+</div>
+</div>
+</div>
+<!--End sc4-->
+
+<!--Begin sc5-->
+<div class="tabcontent" id="sc5" style="display: block;">
+<div class="textcontent">
+<div class="regularlist">
+<h2>Download &amp; Support</h2>
+<p>Download des Moduls:</p>
+<p><a href="http://www.zen-cart.at/zcvb/forum/downloads.php" target="_blank">http://www.zen-cart.at/zcvb/forum/downloads.php</a></p>
+
+<p>Supportforum zum Modul:</p>
+<p><a href="http://www.zen-cart.at/zcvb/forum/forumdisplay.php?f=64" target="_blank">http://www.zen-cart.at/zcvb/forum/forumdisplay.php?f=64</a></p>
+</div>
+</div>
+</div>
+<!--End sc5-->
+
+<!--Begin sc6-->
+<div class="tabcontent" id="sc6" style="display: block;">
+<div class="textcontent">
+<div class="regularlist">
+
+<h2>Unterstützen</h2>
+<p>Sie finden dieses Modul nützlich?<br>
+  Ich freue mich über einen Espresso, Capuccino oder Irish Coffee:<br>
+  <a href="http://www.webchills.at/zencart/" target="_blank">webchills Zen-Cart Kaffeekasse</a></p>
+<p>Sie haben vom Support im Forum auf www.zen-cart-pro.at profitiert?</p>
+<p>Unterstützen Sie die Weiterentwicklung der deutschen Zen-Cart Version.<br/>Wir freuen uns über Spenden zur Finanzierung des Servers und der vBulletin-Lizenz: </p>
+<form action="https://www.paypal.com/cgi-bin/webscr" method="post">
+<input type="hidden" name="cmd" value="_s-xclick">
+<input type="hidden" name="hosted_button_id" value="7AFFRK4FQ2EZ8">
+<input type="image" src="https://www.paypalobjects.com/de_DE/AT/i/btn/btn_donateCC_LG.gif" border="0" name="submit" alt="Jetzt einfach, schnell und sicher online bezahlen – mit PayPal.">
+<img alt="" border="0" src="https://www.paypalobjects.com/de_DE/i/scr/pixel.gif" width="1" height="1">
+</form>
+<br/><br/>
+</div>
+</div>
+</div>
+<!--End sc6-->
+</div>
+<div id="footer">
+Ein Modul von <a href="http://www.zen-cart.at" target="_blank">www.zen-cart.at</a> - Die deutsche Zen-Cart Version
+</div>
+</div>
+<!--end tabcontainer-->
+<script type="text/javascript">document.getElementById('sc1').style.display = 'none';</script>
+<script type="text/javascript">document.getElementById('sc2').style.display = 'none';</script>
+<script type="text/javascript">document.getElementById('sc3').style.display = 'none';</script>
+<script type="text/javascript">document.getElementById('sc4').style.display = 'none';</script>
+<script type="text/javascript">document.getElementById('sc5').style.display = 'none';</script>
+<script type="text/javascript">document.getElementById('sc6').style.display = 'none';</script>
+<script type="text/javascript">ShowTabs()</script>
+<script type="text/javascript">
+// We only show the tab links if JavaScript is available/active.
+<!--
+if (document.getElementById("slidetabsmenu") != null) {
+  document.getElementById('slidetabsmenu').style.display = "block";
+}
+//-->
+</script>
+
+</body></html>
