@@ -698,7 +698,7 @@ CREATE TABLE IF NOT EXISTS product_type_layout_language (
   date_added datetime NOT NULL default '0000-00-00 00:00:00',
   PRIMARY KEY  (configuration_id),
   UNIQUE KEY config_lang (configuration_key,languages_id)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=144 ;
+) DEFAULT CHARSET=utf8 AUTO_INCREMENT=144 ;
 #
 # Daten für Tabelle product_type_layout_language
 #
