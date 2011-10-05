@@ -259,7 +259,7 @@ http://www.meinshop.de/feed/googlemcde/meinshop_products.xml</p>
   Legen Sie einen Cronjob an, der einmal pro Woche (oder wann immer Sie wollen) folgende Adresse aufruft:<br />
 
   <br />
-  googlemcde.php?feed=fy_uy_tp&amp;key=xxxxxxxxx<br>
+  googlemcde.php?feed=fy_un_tp&amp;key=xxxxxxxxx<br>
   <br>
   Ersetzen Sie die xxx bei key mit dem unter Konfiguration hinterlegten Sicherheitsschlüssel
 <br />
@@ -271,7 +271,16 @@ http://www.meinshop.de/feed/googlemcde/meinshop_products.xml</p>
   <br />
   Wenn Sie den Zeitplan nicht verwenden und das Feed immer per FTP hochladen, dann verwenden Sie folgenden Link in Ihrem Cronjob:<br />
   <br />
-  googlemcde.php.php?feed=fy_uy_tp&amp;key=xxxxxxxxx<br />
+  googlemcde.php.php?feed=fy_uy_tp&amp;key=xxxxxxxxx<br>
+  <br>
+  Bedeutung der Werte:
+</p>
+<p>fy = feed yes = muss immer so stehen bleiben<br>
+  uy = upload yes = dann müssen die richtigen FTP Daten hinterlegt sein und das Feed wird nach der Erzeugung automatisch per FTP an Google übertragen<br>
+  un = upload no
+  = es wird nur das Feed erzeugt, kein automatische FTP-Upload = sinnvoll, wenn im Merchant Center die URL für das automatisierte Einlesen nach Zeitplan eingestellt ist<br>
+  tp = type product = muss immer so stehen bleiben
+  <br />
 </p>
 <p><strong>Fragen zu den Einstellungen in Ihrem Google Merchant Center:</strong><br />
   Nutzen Sie die umfangreiche Hilfe auf:<br />

@@ -317,8 +317,8 @@
      
       // readd &amp;
       $str = str_replace("AMPERSAN", "&", $str);
-      
-      $_cleaner_array = array(">" => "&gt; ", "®" => "(r)", "™" => "(tm)", "©" => "(c)", "‘" => "'", "’" => "'", "—" => "-", "–" => "-", "&" => "&", "&amp;amp;" => "&amp;", "“" => "\"", "”" => "\"", "…" => "...");
+      // could be finetuned in upcoming versions
+      $_cleaner_array = array(">" => "&gt; ", "®" => "(r)", "™" => "(tm)", "©" => "(c)", "‘" => "'", "’" => "'", "—" => "-", "–" => "-", "&" => "&amp;", "&amp;amp;" => "&amp;", "“" => "\"", "”" => "\"", "…" => "...");
       $str = strtr($str, $_cleaner_array);
       return $str;
     }
