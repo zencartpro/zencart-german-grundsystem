@@ -612,7 +612,7 @@
       $sql = "update " . DB_PREFIX . "configuration set configuration_value = '" . $this->db->prepare_input($this->configInfo['store_owner']) . "' where configuration_key = 'STORE_OWNER'";
       $this->db->Execute($sql);
       $sql = "update " . DB_PREFIX . "configuration set configuration_value = '" . $this->db->prepare_input($this->configInfo['store_owner_email']) . "' where configuration_key in
-               ('STORE_OWNER_EMAIL_ADDRESS', 'EMAIL_FROM', 'SEND_EXTRA_ORDER_EMAILS_TO', 'SEND_EXTRA_CREATE_ACCOUNT_EMAILS_TO', 'SEND_EXTRA_LOW_STOCK_EMAILS_TO', 'SEND_EXTRA_GV_CUSTOMER_EMAILS_TO', 'SEND_EXTRA_GV_ADMIN_EMAILS_TO', 'SEND_EXTRA_DISCOUNT_COUPON_ADMIN_EMAILS_TO', 'SEND_EXTRA_ORDERS_STATUS_ADMIN_EMAILS_TO', 'SEND_EXTRA_TELL_A_FRIEND_EMAILS_TO', 'SEND_EXTRA_REVIEW_NOTIFICATION_EMAILS_TO', 'MODULE_PAYMENT_CC_EMAIL')";
+               ('STORE_OWNER_EMAIL_ADDRESS', 'EMAIL_FROM', 'SEND_EXTRA_ORDER_EMAILS_TO', 'SEND_EXTRA_CREATE_ACCOUNT_EMAILS_TO', 'SEND_EXTRA_LOW_STOCK_EMAILS_TO', 'SEND_EXTRA_GV_CUSTOMER_EMAILS_TO', 'SEND_EXTRA_GV_ADMIN_EMAILS_TO', 'SEND_EXTRA_DISCOUNT_COUPON_ADMIN_EMAILS_TO', 'SEND_EXTRA_ORDERS_STATUS_ADMIN_EMAILS_TO', 'SEND_EXTRA_REVIEW_NOTIFICATION_EMAILS_TO', 'MODULE_PAYMENT_CC_EMAIL')";
       $this->db->Execute($sql);
       $sql = "update " . DB_PREFIX . "configuration set configuration_value = '" . $this->db->prepare_input($this->configInfo['store_country']) . "' where configuration_key in ('STORE_COUNTRY', 'SHIPPING_ORIGIN_COUNTRY')";
       $this->db->Execute($sql);

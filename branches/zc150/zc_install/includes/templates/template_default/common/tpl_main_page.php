@@ -22,7 +22,7 @@
 ?>
 <div id="wrap">
   <div id="header">
-  <img src="<?php echo DIR_WS_INSTALL_TEMPLATE; ?>images/zen_header_bg.jpg" alt="Zen Cart&trade; - The Art of eCommerce" title="Zen Cart&trade;"/>
+  <img src="<?php echo DIR_WS_INSTALL_TEMPLATE; ?>images/zen_header_bg.jpg" alt="Zen Cart&reg; - The Art of eCommerce" title="Zen Cart&reg;"/>
   </div>
   <div id="content">
   <h1>:: <?php echo TEXT_PAGE_HEADING; ?></h1>

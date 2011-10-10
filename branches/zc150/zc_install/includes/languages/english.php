@@ -23,7 +23,7 @@
   define('CHARSET', 'utf-8');
 
   // META TAG TITLE
-  define('META_TAG_TITLE', (defined('TEXT_PAGE_HEADING') ? TEXT_PAGE_HEADING : 'Zen Cart&trade; Installer'));
+  define('META_TAG_TITLE', (defined('TEXT_PAGE_HEADING') ? TEXT_PAGE_HEADING : 'Zen Cart&reg; Installer'));
 
   define('INSTALLATION_IN_PROGRESS','Installation In Progress...');
 
@@ -35,7 +35,7 @@
 
   define('DB_ERROR_NOT_CONNECTED', 'Install Error: Could not connect to the Database');
   define('SHOULD_UPGRADE','You should consider upgrading!');
-  define('MUST_UPGRADE','You need to upgrade this before installing Zen Cart&trade;');
+  define('MUST_UPGRADE','You need to upgrade this before installing Zen Cart&reg;');
 
   define('UPLOAD_SETTINGS','The Maximum upload size supported will be whichever the LOWER of these values:.<br />
 <em>upload_max_filesize</em> in php.ini %s <br />
@@ -233,27 +233,27 @@ if (isset($_GET['error_code'])) {
 switch ($error_code) {
   case ('1'):
     define('POPUP_ERROR_HEADING', 'PHP Version 4.1.2 Detected');
-    define('POPUP_ERROR_TEXT', 'Some releases of PHP Version 4.1.2 have a bug which affects super global arrays. This may result in the admin section of Zen Cart&trade; not being accessible. You are advised to upgrade your PHP version if possible.<br /><br />PHP 4.3.2 or greater is the minimum requirement for Zen Cart&trade;.<br />We STRONGLY recommend using PHP 4.3.11 or greater (in the v4.x series).');
+    define('POPUP_ERROR_TEXT', 'Some releases of PHP Version 4.1.2 have a bug which affects super global arrays. This may result in the admin section of Zen Cart&reg; not being accessible. You are advised to upgrade your PHP version if possible.<br /><br />PHP 4.3.2 or greater is the minimum requirement for Zen Cart&reg;.<br />We STRONGLY recommend using PHP 4.3.11 or greater (in the v4.x series).');
 
   break;
   case ('2'):
     define('POPUP_ERROR_HEADING', '/admin/includes/configure.php does not exist');
-    define('POPUP_ERROR_TEXT', 'The file /admin/includes/configure.php does not exist. You can create this either as a blank file or by renaming /admin/includes/dist-configure.php to configure.php.  After creating it, you need to mark it read-write or CHMOD 666 or CHMOD 777.');
+    define('POPUP_ERROR_TEXT', 'The file /admin/includes/configure.php does not exist. You can create this either as a blank file or by renaming /admin/includes/dist-configure.php to configure.php.  After creating it, you need to mark it read-write or CHMOD 666 or maybe 755 or 777 depending on your webserver configuration (ask your hosting company).');
 
   break;
   case ('3'):
     define('POPUP_ERROR_HEADING', '/includes/configure.php does not exist');
-    define('POPUP_ERROR_TEXT', 'The file /includes/configure.php does not exist. You can create this either as a blank file or by renaming /includes/dist-configure.php to configure.php.  After creating it, you need to mark it read-write or CHMOD 666 or CHMOD 777 for installation.');
+    define('POPUP_ERROR_TEXT', 'The file /includes/configure.php does not exist. You can create this either as a blank file or by renaming /includes/dist-configure.php to configure.php.  After creating it, you need to mark it read-write or CHMOD 666 or maybe 755 or 777 depending on your webserver configuration (ask your hosting company).');
 
   break;
   case ('4'):
     define('POPUP_ERROR_HEADING', 'Physical Path');
-    define('POPUP_ERROR_TEXT', 'The physiscal path is the path to the directory where your Zen Cart&trade; files are installed. For example on some linux systems the HTML files are stored in /var/www/html. If you then put your Zen Cart&trade; files in a directory called \'store\', the physical path would be /var/www/html/store. The installer usually can be trusted to guess this directory correctly.');
+    define('POPUP_ERROR_TEXT', 'The physiscal path is the path to the directory where your Zen Cart&reg; files are installed. For example on some linux systems the HTML files are stored in /var/www/html. If you then put your Zen Cart&reg; files in a directory called \'store\', the physical path would be /var/www/html/store. The installer usually can be trusted to guess this directory correctly.');
 
   break;
   case ('5'):
     define('POPUP_ERROR_HEADING', 'Virtual HTTP Path');
-    define('POPUP_ERROR_TEXT', 'This is the address you would need to put into a web browser to view your Zen Cart&trade; website. If the site is in the \'root\' of your domain, this would be \'http://www.yourdomain.com\'. If you had put the files under a directory called \'store\' then the path would be \'http://www.yourdomain.com/store\'.');
+    define('POPUP_ERROR_TEXT', 'This is the address you would need to put into a web browser to view your Zen Cart&reg; website. If the site is in the \'root\' of your domain, this would be \'http://www.yourdomain.com\'. If you had put the files under a directory called \'store\' then the path would be \'http://www.yourdomain.com/store\'.');
 
   break;
   case ('6'):
@@ -263,12 +263,12 @@ switch ($error_code) {
   break;
   case ('7'):
     define('POPUP_ERROR_HEADING', 'Virtual HTTPS Path');
-    define('POPUP_ERROR_TEXT', 'This is the address you would need to put into a web browser to view your Zen Cart&trade; website in secure/SSL mode. You are advised to read the <a href="http://tutorials.zen-cart.com/index.php?article=14" target="_blank">FAQ Entry</a> on SSL to ensure this is set correctly.');
+    define('POPUP_ERROR_TEXT', 'This is the address you would need to put into a web browser to view your Zen Cart&reg; website in secure/SSL mode. You are advised to read the <a href="http://tutorials.zen-cart.com/index.php?article=14" target="_blank">FAQ Entry</a> on SSL to ensure this is set correctly.');
 
   break;
   case ('8'):
     define('POPUP_ERROR_HEADING', 'Enable SSL');
-    define('POPUP_ERROR_TEXT', 'This setting determines whether SSL/Secure (HTTPS:) mode is used on security-vulnerable pages of your Zen Cart&trade; website.<br /><br />Any page where personal information is entered e.g. login, checkout, account details can be protected by SSL/Secure mode.  It can also be actived for the Administration area.<br /><br />You must have access to an SSL server (denoted by using HTTPS instead of HTTP). <br /><br />IF YOU ARE NOT SURE if you have an SSL server then please leave this setting set to NO for now, and check with your hosting provider. Note: As with all settings, this can be changed later by editing the appropriate configure.php file.');
+    define('POPUP_ERROR_TEXT', 'This setting determines whether SSL/Secure (HTTPS:) mode is used on security-vulnerable pages of your Zen Cart&reg; website.<br /><br />Any page where personal information is entered e.g. login, checkout, account details can be protected by SSL/Secure mode.  It can also be actived for the Administration area.<br /><br />You must have access to an SSL server (denoted by using HTTPS instead of HTTP). <br /><br />IF YOU ARE NOT SURE if you have an SSL server then please leave this setting set to NO for now, and check with your hosting provider. Note: As with all settings, this can be changed later by editing the appropriate configure.php file.');
 
   break;
   case ('9'):
@@ -278,7 +278,7 @@ switch ($error_code) {
   break;
   case ('10'):
     define('POPUP_ERROR_HEADING', 'Physical Path is incorrect');
-    define('POPUP_ERROR_TEXT', 'The entry you have made for the Physical Path does not appear to be valid. Please correct and try again.<br />Zen Cart&trade; is looking for its files in this path, including attempting to verify that an index.php file is present there. If it is missing, then you probably have one or more failures during your FTP upload, and should double-check everything to fix whatever was missed.');
+    define('POPUP_ERROR_TEXT', 'The entry you have made for the Physical Path does not appear to be valid. Please correct and try again.<br />Zen Cart&reg; is looking for its files in this path, including attempting to verify that an index.php file is present there. If it is missing, then you probably have one or more failures during your FTP upload, and should double-check everything to fix whatever was missed.');
 
   break;
   case ('11'):
@@ -298,7 +298,7 @@ switch ($error_code) {
   break;
   case ('14'):
     define('POPUP_ERROR_HEADING', 'Database Character Set / Collation');
-    define('POPUP_ERROR_TEXT', 'By default, Zen Cart&trade; uses the Latin1 character set / collation for the database and files. If you have a specific need to use UTF-8 instead of Latin1, you may choose UTF-8 here. <br /><strong>HOWEVER, TAKE NOTE</strong> that you will need to manually change ALL your language files to UTF8-without-BOM encoding if you are using any multibyte characters in your language files.');
+    define('POPUP_ERROR_TEXT', 'By default, Zen Cart&reg; uses the Latin1 character set / collation for the database and files. If you have a specific need to use UTF-8 instead of Latin1, you may choose UTF-8 here. <br /><strong>HOWEVER, TAKE NOTE</strong> that you will need to manually change ALL your language files to UTF8-without-BOM encoding if you are using any multibyte characters in your language files.');
 
   break;
   case ('15'):
@@ -318,17 +318,17 @@ switch ($error_code) {
   break;
   case ('18'):
     define('POPUP_ERROR_HEADING', 'Database Name');
-    define('POPUP_ERROR_TEXT', 'This is the name of the database that will be used for Zen Cart&trade;. If you are unsure as to what this should be, then you should contact your hosting provider for more information.<br /><br />Sometimes the name is prefixed by your webhosting account name, followed by the database-name you chose. ie: myaccount_zencartdb');
+    define('POPUP_ERROR_TEXT', 'This is the name of the database that will be used for Zen Cart&reg;. If you are unsure as to what this should be, then you should contact your hosting provider for more information.<br /><br />Sometimes the name is prefixed by your webhosting account name, followed by the database-name you chose. ie: myaccount_zencartdb');
 
   break;
   case ('19'):
     define('POPUP_ERROR_HEADING', 'Database Table-Prefix');
-    define('POPUP_ERROR_TEXT', 'Zen Cart&trade; allows you to add a prefix to the table names it uses to store its information. This is especially useful if your host only allows you one database, and you want to install other scripts on your system that share the same database, by causing the Zen Cart&trade; tables to be easily identified because of the table-prefix. <br /><br /><strong>Normally you should just leave the default setting as-is (ie: blank).</strong><br /><br />Valid characters include: numbers and letters and underscores (_).');
+    define('POPUP_ERROR_TEXT', 'Zen Cart&reg; allows you to add a prefix to the table names it uses to store its information. This is especially useful if your host only allows you one database, and you want to install other scripts on your system that share the same database, by causing the Zen Cart&reg; tables to be easily identified because of the table-prefix. <br /><br /><strong>Normally you should just leave the default setting as-is (ie: blank).</strong><br /><br />Valid characters include: numbers and letters and underscores (_).');
 
   break;
   case ('20'):
     define('POPUP_ERROR_HEADING', 'Database Create');
-    define('POPUP_ERROR_TEXT', 'This setting determines whether the installer should attempt to create the main database for Zen Cart&trade;. Note \'create\' in this context has nothing to do with adding the tables that Zen Cart&trade; needs, which will be done automatically anyway. Many hosts will not give their users \'create\' permissions, but provide another method for creating blank databases, e.g. cPanel or phpMyAdmin.');
+    define('POPUP_ERROR_TEXT', 'This setting determines whether the installer should attempt to create the main database for Zen Cart&reg;. Note \'create\' in this context has nothing to do with adding the tables that Zen Cart&reg; needs, which will be done automatically anyway. Many hosts will not give their users \'create\' permissions, but provide another method for creating blank databases, e.g. cPanel or phpMyAdmin.');
 
   break;
 //  case ('21'):
@@ -343,7 +343,7 @@ switch ($error_code) {
 //  break;
   case ('23'):
     define('POPUP_ERROR_HEADING', 'Enable SSL');
-    define('POPUP_ERROR_TEXT', 'Setting this to "true" simply turns on the switch that causes Zen Cart&trade; to ATTEMPT to operate certain pages in SSL mode.  Successful operation depends on you entering the correct HTTPS servername and path information. Your hosting provider should supply this information to you.<br />If you do not already have SSL support, you may have to purchase it. This includes a monthly charge for a dedicated IP address as well as an annual fee for the SSL certificate.');
+    define('POPUP_ERROR_TEXT', 'Setting this to "true" simply turns on the switch that causes Zen Cart&reg; to ATTEMPT to operate certain pages in SSL mode.  Successful operation depends on you entering the correct HTTPS servername and path information. Your hosting provider should supply this information to you.<br />If you do not already have SSL support, you may have to purchase it. This includes a monthly charge for a dedicated IP address as well as an annual fee for the SSL certificate.');
 
   break;
   case ('24'):
@@ -353,7 +353,7 @@ switch ($error_code) {
 
   case ('25'):
     define('POPUP_ERROR_HEADING', 'Database Name is empty');
-    define('POPUP_ERROR_TEXT', 'The entry for Database Name is empty. Please enter the name of the database you wish to use for Zen Cart&trade;.<br />This is the name of the database that will be used for Zen Cart&trade;. If you are unsure as to what this should be, then you should contact your hosting provider for more information.');
+    define('POPUP_ERROR_TEXT', 'The entry for Database Name is empty. Please enter the name of the database you wish to use for Zen Cart&reg;.<br />This is the name of the database that will be used for Zen Cart&reg;. If you are unsure as to what this should be, then you should contact your hosting provider for more information.');
 
   break;
   case ('26'):
@@ -370,7 +370,7 @@ switch ($error_code) {
     define('POPUP_ERROR_HEADING', 'Connection to Database failed');
     define('POPUP_ERROR_TEXT', 'A connection to the database could not be made. This can happen for a number of reasons. <br /><br />
 You may have given the wrong DB host name, or the user name or <em>password </em>may be incorrect. <br /><br />
-You may also have given the wrong database name (<strong>Does it exist?</strong> <strong>Did you create it?</strong> -- NOTE: Zen Cart&trade; does not create a database for you.).<br /><br />Please review all of the entries and ensure that they are correct.');
+You may also have given the wrong database name (<strong>Does it exist?</strong> <strong>Did you create it?</strong> -- NOTE: Zen Cart&reg; does not create a database for you.).<br /><br />Please review all of the entries and ensure that they are correct.');
 
   break;
   case ('29'):
@@ -380,7 +380,7 @@ You may also have given the wrong database name (<strong>Does it exist?</strong>
   break;
   case ('30'):
     define('POPUP_ERROR_HEADING', 'Database does not exist');
-    define('POPUP_ERROR_TEXT', 'The database name you have specified does not appear to exist.<br />(<strong>Did you create it?</strong> -- NOTE: Zen Cart&trade; does not create a database for you.).<br /><br />Please check your database details, then verify this entry and make corrections where necessary.<br /><br />You may need to use your webhosting control panel to create the database. While creating it, make note of the username and password, as well as the database-name used, as you will need this information to fill in the details on this installer screen.');
+    define('POPUP_ERROR_TEXT', 'The database name you have specified does not appear to exist.<br />(<strong>Did you create it?</strong> -- NOTE: Zen Cart&reg; does not create a database for you.).<br /><br />Please check your database details, then verify this entry and make corrections where necessary.<br /><br />You may need to use your webhosting control panel to create the database. While creating it, make note of the username and password, as well as the database-name used, as you will need this information to fill in the details on this installer screen.');
 
   break;
   case ('31'):
@@ -410,7 +410,7 @@ You may also have given the wrong database name (<strong>Does it exist?</strong>
   break;
   case ('36'):
     define('POPUP_ERROR_HEADING', 'Demo product SQL file does not exist');
-    define('POPUP_ERROR_TEXT', 'We were unable to locate the SQL file containing the Zen Cart&trade; demo products to load them into your store.  Please check that the /zc_install/demo/xxxxxxx_demo.sql file exists. (xxxxxxx = your database-type).');
+    define('POPUP_ERROR_TEXT', 'We were unable to locate the SQL file containing the Zen Cart&reg; demo products to load them into your store.  Please check that the /zc_install/demo/xxxxxxx_demo.sql file exists. (xxxxxxx = your database-type).');
 
   break;
   case ('37'):
@@ -445,7 +445,7 @@ You may also have given the wrong database name (<strong>Does it exist?</strong>
   break;
   case ('43'):
     define('POPUP_ERROR_HEADING', 'Store Default Language');
-    define('POPUP_ERROR_TEXT', 'The default language your store will use. Zen Cart&trade; is inherently multi-language, provided the correct language pack is loaded. At the moment Zen Cart&trade; only comes with an English Language Pack as default.  Others, donated by Zen Cart&trade; community members, can be obtained from the downloads area of the www.zen-cart.com website.');
+    define('POPUP_ERROR_TEXT', 'The default language your store will use. Zen Cart&reg; is inherently multi-language, provided the correct language pack is loaded. At the moment Zen Cart&reg; only comes with an English Language Pack as default.  Others, donated by Zen Cart&reg; community members, can be obtained from the downloads area of the www.zen-cart.com website.');
 
   break;
   case ('44'):
@@ -455,7 +455,7 @@ You may also have given the wrong database name (<strong>Does it exist?</strong>
   break;
   case ('45'):
     define('POPUP_ERROR_HEADING', 'Install Demo Products');
-    define('POPUP_ERROR_TEXT', 'Please select whether you wish to install the demo products into the database in order to preview the methods by which various features of Zen Cart&trade; operate.');
+    define('POPUP_ERROR_TEXT', 'Please select whether you wish to install the demo products into the database in order to preview the methods by which various features of Zen Cart&reg; operate.');
 
   break;
   case ('46'):
@@ -505,27 +505,27 @@ You may also have given the wrong database name (<strong>Does it exist?</strong>
   break;
   case ('55'):
     define('POPUP_ERROR_HEADING', 'PHP Version not supported');
-    define('POPUP_ERROR_TEXT', 'The PHP Version running on your webserver is not supported by Zen Cart&trade;. <br /><br />PHP 5.3.14 is the minimum requirement. <br />However, we recommend that you use at least PHP v5.3.3 or higher if possible.<br /><br />If you are trying to use older PHP versions, note that using older releases of PHP may result in the admin section of Zen Cart&trade; not being accessible, might leave your site vulnerable to hacking, and may not support some of the PHP Session code that handles keeping individual customer logins unique and separate from other customers. You are advised to upgrade your PHP version.');
+    define('POPUP_ERROR_TEXT', 'The PHP Version running on your webserver is not supported by Zen Cart&reg;. <br /><br />PHP 5.3.14 is the minimum requirement. <br />However, we recommend that you use at least PHP v5.3.3 or higher if possible.<br /><br />If you are trying to use older PHP versions, note that using older releases of PHP may result in the admin section of Zen Cart&reg; not being accessible, might leave your site vulnerable to hacking, and may not support some of the PHP Session code that handles keeping individual customer logins unique and separate from other customers. You are advised to upgrade your PHP version.');
 
   break;
   case ('56'):
     define('POPUP_ERROR_HEADING', 'Admin configure.php is not writeable');
-    define('POPUP_ERROR_TEXT', '<em><strong>Related FAQs:</strong></em><br /><a href="http://tutorials.zen-cart.com/index.php?article=9" target="_blank">How do I set permissions on files?</a><br /><a href="http://tutorials.zen-cart.com/index.php?article=148" target="_blank">What is CHMOD and what do the numbers mean?</a><br /><a href="http://tutorials.zen-cart.com/index.php?article=107#configurephp" target="_blank">How do I set permissions for configure.php files for installation?</a><br /><br />The file <strong>admin/includes/configure.php</strong> is not writeable.<br /><br />If you are using a Unix or Linux system then please CHMOD the file to 777 or 666 until the Zen Cart&trade; install is completed.  This can usually be done by way of your FTP program (right-click or edit file properties, etc).<br /><br />On a Windows desktop system it may be simply enough that the file is set to read/write.<br /><br />On a Windows Server, especially if running under IIS, you will have to right-click on the file, click on Security, and ensure that the "Internet Guest Account" or IUSR_xxxxxxx user has read and write access.<br /><br /><strong>Once installation is complete,</strong> you should set the file back to read-only again (CHMOD 644 or 444, or in Windows, uncheck the "write" options, or "check" the read-only box).');
+    define('POPUP_ERROR_TEXT', '<em><strong>Related FAQs:</strong></em><br /><a href="http://tutorials.zen-cart.com/index.php?article=9" target="_blank">How do I set permissions on files?</a><br /><a href="http://tutorials.zen-cart.com/index.php?article=148" target="_blank">What is CHMOD and what do the numbers mean?</a><br /><a href="http://tutorials.zen-cart.com/index.php?article=107#configurephp" target="_blank">How do I set permissions for configure.php files for installation?</a><br /><br />The file <strong>admin/includes/configure.php</strong> is not writeable.<br /><br />If you are using a Unix or Linux system then please CHMOD the file to 777 or 666 until the Zen Cart&reg; install is completed.  This can usually be done by way of your FTP program (right-click or edit file properties, etc).<br /><br />On a Windows desktop system it may be simply enough that the file is set to read/write.<br /><br />On a Windows Server, especially if running under IIS, you will have to right-click on the file, click on Security, and ensure that the "Internet Guest Account" or IUSR_xxxxxxx user has read and write access.<br /><br /><strong>Once installation is complete,</strong> you should set the file back to read-only again (CHMOD 644 or 444, or in Windows, uncheck the "write" options, or "check" the read-only box).');
 
   break;
   case ('57'):
     define('POPUP_ERROR_HEADING', 'Store configure.php is not writeable');
-    define('POPUP_ERROR_TEXT', '<em><strong>Related FAQs:</strong></em><br /><a href="http://tutorials.zen-cart.com/index.php?article=9" target="_blank">How do I set permissions on files?</a><br /><a href="http://tutorials.zen-cart.com/index.php?article=148" target="_blank">What is CHMOD and what do the numbers mean?</a><br /><a href="http://tutorials.zen-cart.com/index.php?article=107#configurephp" target="_blank">How do I set permissions for configure.php files for installation?</a><br /><br />The file <strong>includes/configure.php</strong> is not writeable. If you are using a Unix or Linux system then please CHMOD the file to 777 or 666 until the Zen Cart&trade; install is completed.  This can usually be done by way of your FTP program (right-click or edit file properties, etc).<br /><br />On a Windows desktop system it may be simply enough that the file is set to read/write.<br /><br />On a Windows Server, especially if running under IIS, you will have to right-click on the file, click on Security, and ensure that the "Internet Guest Account" or IUSR_xxxxxxx user has read and write access.<br /><br /><strong>Once installation is complete,</strong> you should set the file back to read-only again (CHMOD 644 or 444, or in Windows, uncheck the "write" options, or "check" the read-only box).');
+    define('POPUP_ERROR_TEXT', '<em><strong>Related FAQs:</strong></em><br /><a href="http://tutorials.zen-cart.com/index.php?article=9" target="_blank">How do I set permissions on files?</a><br /><a href="http://tutorials.zen-cart.com/index.php?article=148" target="_blank">What is CHMOD and what do the numbers mean?</a><br /><a href="http://tutorials.zen-cart.com/index.php?article=107#configurephp" target="_blank">How do I set permissions for configure.php files for installation?</a><br /><br />The file <strong>includes/configure.php</strong> is not writeable. If you are using a Unix or Linux system then please CHMOD the file to 777 or 666 until the Zen Cart&reg; install is completed.  This can usually be done by way of your FTP program (right-click or edit file properties, etc).<br /><br />On a Windows desktop system it may be simply enough that the file is set to read/write.<br /><br />On a Windows Server, especially if running under IIS, you will have to right-click on the file, click on Security, and ensure that the "Internet Guest Account" or IUSR_xxxxxxx user has read and write access.<br /><br /><strong>Once installation is complete,</strong> you should set the file back to read-only again (CHMOD 644 or 444, or in Windows, uncheck the "write" options, or "check" the read-only box).');
 
   break;
   case ('58'):
     define('POPUP_ERROR_HEADING', 'DB Table Prefix');
-    define('POPUP_ERROR_TEXT', 'Zen Cart&trade; allows you to add a prefix to the table names it uses to store its information. This is especially useful if your host only allows you one database, and you want to install other scripts on your system that use that database. <strong>Normally you should just leave the setting blank.</strong>');
+    define('POPUP_ERROR_TEXT', 'Zen Cart&reg; allows you to add a prefix to the table names it uses to store its information. This is especially useful if your host only allows you one database, and you want to install other scripts on your system that use that database. <strong>Normally you should just leave the setting blank.</strong>');
 
   break;
   case ('59'):
     define('POPUP_ERROR_HEADING', 'SQL Cache Directory');
-    define('POPUP_ERROR_TEXT', 'SQL queries can be cached either in the database, in a file on your server\'s hard disk, or not at all. If you choose to cache SQL queries to a file on your server\'s hard disk, then you must provide the directory where this information can be saved. <br /><br />The standard Zen Cart&trade; installation includes a \'cache\' folder.  You need to mark this folder read-write for your webserver (ie: apache) to access it.<br /><br />Please ensure that the directory you select exists and is writeable by the web server (CHMOD 777 or at least 666 recommended).');
+    define('POPUP_ERROR_TEXT', 'SQL queries can be cached either in the database, in a file on your server\'s hard disk, or not at all. If you choose to cache SQL queries to a file on your server\'s hard disk, then you must provide the directory where this information can be saved. <br /><br />The standard Zen Cart&reg; installation includes a \'cache\' folder.  You need to mark this folder read-write for your webserver (ie: apache) to access it.<br /><br />Please ensure that the directory you select exists and is writeable by the web server (CHMOD 777 or at least 666 recommended).');
 
   break;
   case ('60'):
@@ -572,19 +572,19 @@ You may also have given the wrong database name (<strong>Does it exist?</strong>
 //  break;
   case ('69'):
     define('POPUP_ERROR_HEADING', 'Register Globals');
-    define('POPUP_ERROR_TEXT', 'Zen Cart&trade; can work with the "Register Globals" setting on or off.  However, having it "off" leaves your system somewhat more secure.<br /><br />If you wish to disable it, and your hosting company won\'t turn it off for you, you might try adding this to an .htaccess file in the root of your shop (you may have to create the file if you don\'t already have one):<br /><br /><code>php_value session.use_trans_sid off<BR />php_value register_globals off<br />#php_value register_globals off<BR />&lt;Files ".ht*"&gt;<BR />deny from all<BR />&lt;/Files&gt;</code><br /><br />or talk to your hosting company for assistance.');
+    define('POPUP_ERROR_TEXT', 'Zen Cart&reg; can work with the "Register Globals" setting on or off.  However, having it "off" leaves your system somewhat more secure.<br /><br />If you wish to disable it, and your hosting company won\'t turn it off for you, you might try adding this to an .htaccess file in the root of your shop (you may have to create the file if you don\'t already have one):<br /><br /><code>php_value session.use_trans_sid off<BR />php_value register_globals off<br />#php_value register_globals off<BR />&lt;Files ".ht*"&gt;<BR />deny from all<BR />&lt;/Files&gt;</code><br /><br />or talk to your hosting company for assistance.');
   break;
   case ('70'):
     define('POPUP_ERROR_HEADING', 'Safe Mode is On');
-    define('POPUP_ERROR_TEXT', 'Zen Cart&trade;, being a full-service e-Commerce application, does not work well on servers running in Safe Mode.<br /><br />To run an e-Commerce system requires many advanced services often restricted on lower-cost "shared" hosting services. To run your online store in optimum fashion will require setting up a webhosting service that does not place you or your webspace in "Safe Mode".  You need your hosting company to set "SAFE_MODE=OFF" in your php.ini file.');
+    define('POPUP_ERROR_TEXT', 'Zen Cart&reg;, being a full-service e-Commerce application, does not work well on servers running in Safe Mode.<br /><br />To run an e-Commerce system requires many advanced services often restricted on lower-cost "shared" hosting services. To run your online store in optimum fashion will require setting up a webhosting service that does not place you or your webspace in "Safe Mode".  You need your hosting company to set "SAFE_MODE=OFF" in your php.ini file.');
   break;
   case ('71'):
     define('POPUP_ERROR_HEADING', 'Cache folder required to use file-based caching support');
-    define('POPUP_ERROR_TEXT', 'If you wish to use the "file-based SQL cache support" in Zen Cart&trade;, you\'ll need to set the proper permissions on the cache folder in your webspace.<br /><br />Optionally, you can choose "Database Caching" or "No Caching" if you prefer not to use the cache folder. In this case, you MAY need to disable "store sessions" as well, as the session tracker uses the file cache as well.<br /><br />To set up the cache folder properly, use your FTP program or shell access to your server to CHMOD the folder to 666 or 777 read-write permissions level.<br /><br />Most specifically, the userID of your webserver (ie: \'apache\' or \'www-user\' or maybe \'IUSR_something\' under Windows) must have all \'read-write-delete\' etc privileges to the cache folder.');
+    define('POPUP_ERROR_TEXT', 'If you wish to use the "file-based SQL cache support" in Zen Cart&reg;, you\'ll need to set the proper permissions on the cache folder in your webspace.<br /><br />Optionally, you can choose "Database Caching" or "No Caching" if you prefer not to use the cache folder. In this case, you MAY need to disable "store sessions" as well, as the session tracker uses the file cache as well.<br /><br />To set up the cache folder properly, use your FTP program or shell access to your server to CHMOD the folder to 666 or 777 read-write permissions level.<br /><br />Most specifically, the userID of your webserver (ie: \'apache\' or \'www-user\' or maybe \'IUSR_something\' under Windows) must have all \'read-write-delete\' etc privileges to the cache folder.');
   break;
   case ('72'):
     define('POPUP_ERROR_HEADING', 'ERROR: Could not update all your configure.php files with new prefix');
-    define('POPUP_ERROR_TEXT', 'While attempting to update your configure.php files after renaming tables, we encountered an error.  You will need to manually edit your /includes/configure.php and /admin/includes/configure.php files and ensure that the "define" for "DB_PREFIX" is set properly for your Zen Cart&trade; tables in your database.');
+    define('POPUP_ERROR_TEXT', 'While attempting to update your configure.php files after renaming tables, we encountered an error.  You will need to manually edit your /includes/configure.php and /admin/includes/configure.php files and ensure that the "define" for "DB_PREFIX" is set properly for your Zen Cart&reg; tables in your database.');
   break;
   case ('73'):
     define('POPUP_ERROR_HEADING', 'ERROR: Could not apply new table-prefix to all tables');
@@ -608,7 +608,7 @@ You may also have given the wrong database name (<strong>Does it exist?</strong>
   break;
   case ('78'):
     define('POPUP_ERROR_HEADING', 'ADMIN PASSWORD REQUIRED TO UPGRADE');
-    define('POPUP_ERROR_TEXT', 'The Store Administrator username and password are required in order to make changes to the database.<br /><br />Please enter a valid admin user ID and password for your Zen Cart&trade; site.');
+    define('POPUP_ERROR_TEXT', 'The Store Administrator username and password are required in order to make changes to the database.<br /><br />Please enter a valid admin user ID and password for your Zen Cart&reg; site.');
   break;
   case ('79'):
     define('POPUP_ERROR_TEXT','OpenSSL is "one" way in which a server can be configured to offer SSL (https://) support for your site.<br /><br />If this is showing as unavailable, possible causes could be:<br />(a) your webhost doesn\'t support SSL<br />(b) your webserver doesn\'t have OpenSSL installed, but MIGHT have another form of SSL services available<br />(c) your web host may not yet be aware of your SSL certificate details so that they can enable SSL support for your domain<br />(d) PHP may not be configured to know about OpenSSL yet.<br /><br />In any case, if you DO require encryption support on your web pages (SSL), you should be contacting your web hosting provider for assistance.');
@@ -632,7 +632,7 @@ You may also have given the wrong database name (<strong>Does it exist?</strong>
   break;
   case ('84'):
     define('POPUP_ERROR_HEADING','PHP Session.autostart should be disabled.');
-    define('POPUP_ERROR_TEXT','The session.auto_start setting in your server\'s PHP.INI file is set to ON. <br /><br />This could potentially cause you some problems with session handling, as Zen Cart&trade; is designed to start sessions when it\'s ready to activate session features. Having sessions start automatically can be a problem in some server configurations.<br /><br />If you wish to attempt disabling this yourself, you could try putting the following into a .htaccess file located in the root of your shop (same folder as index.php):<br /><br /><code>php_value session.auto_start 0</code><br /><br /> (You may have to create the file if you don\'t already have one.)');
+    define('POPUP_ERROR_TEXT','The session.auto_start setting in your server\'s PHP.INI file is set to ON. <br /><br />This could potentially cause you some problems with session handling, as Zen Cart&reg; is designed to start sessions when it\'s ready to activate session features. Having sessions start automatically can be a problem in some server configurations.<br /><br />If you wish to attempt disabling this yourself, you could try putting the following into a .htaccess file located in the root of your shop (same folder as index.php):<br /><br /><code>php_value session.auto_start 0</code><br /><br /> (You may have to create the file if you don\'t already have one.)');
   break;
   case ('85'):
     define('POPUP_ERROR_HEADING','Some database-upgrade SQL statements not installed.');
@@ -640,27 +640,27 @@ You may also have given the wrong database name (<strong>Does it exist?</strong>
   break;
   case ('86'):
     define('POPUP_ERROR_HEADING','PHP Session.use_trans_sid should be disabled.');
-    define('POPUP_ERROR_TEXT','The session.use_trans_sid setting in your server\'s PHP.INI file is set to ON. <br /><br />This could potentially cause you some problems with session handling and possibly even security concerns.<br /><br />You can work around this by setting an .htaccess parameter such as described here: <a href="http://www.olate.com/articles/252">http://www.olate.com/articles/252</a>, or you could disable it in your PHP.INI if you have access to it.<br /><br />For more information on the security risks it imposes, see: <a href="http://shh.thathost.com/secadv/2003-05-11-php.txt">http://shh.thathost.com/secadv/2003-05-11-php.txt</a>.<br /><br />(You may have to create the .htaccess file if you don\'t already have one.)');
+    define('POPUP_ERROR_TEXT','The session.use_trans_sid setting in your server\'s PHP.INI file is set to ON. <br /><br />That is BAD, and your hosting company should turn it off. <br><br>This could potentially cause you some problems with session handling and possibly even security concerns.<br /><br />If your hosting company staff are not capable of turning this off to protect everyone on the server, you can try to work around this by setting an .htaccess parameter such as this:<code>php_value session.use_trans_sid off</code>, or you could disable it in your PHP.INI if you have access to it.<br /><br />For more information on the security risks it imposes, see: <a href="http://shh.thathost.com/secadv/2003-05-11-php.txt">http://shh.thathost.com/secadv/2003-05-11-php.txt</a>.<br /><br />(You may have to create the .htaccess file if you don\'t already have one.)');
   break;
   case ('87'):
     define('POPUP_ERROR_HEADING','Permissions Required for Database User');
-    define('POPUP_ERROR_TEXT','Zen Cart&trade; operations require the following database-level privileges:<ul><li>ALL PRIVILEGES<br /><em>or</em></li><li>SELECT</li><li>INSERT</li><li>UPDATE</li><li>DELETE</li><li>CREATE</li><li>ALTER</li><li>INDEX</li><li>DROP</li></ul>Day-to-day activities do not normally require the "CREATE" and "DROP" privileges, but these ARE required for Installation, Upgrade, and SQLPatch activities.');
+    define('POPUP_ERROR_TEXT','Zen Cart&reg; operations require the following database-level privileges:<ul><li>ALL PRIVILEGES<br /><em>or</em></li><li>SELECT</li><li>INSERT</li><li>UPDATE</li><li>DELETE</li><li>CREATE</li><li>ALTER</li><li>INDEX</li><li>DROP</li></ul>Day-to-day activities do not normally require the "CREATE" and "DROP" privileges, but these ARE required for Installation, Upgrade, and SQLPatch activities.');
   break;
   case ('88'):
     define('POPUP_ERROR_HEADING','Error encountered while writing /includes/configure.php');
-    define('POPUP_ERROR_TEXT','While attempting to save your settings, Zen Cart&trade; Installer was unable to verify successful writing of your configure.php file settings. Please check to be sure that your webserver has full write permissions to the configure.php files shown below.<br /><br />- /includes/configure.php<br />- /admin/includes/configure.php<br /><br />You may want to also check that there is sufficient disk space (or disk quota available to you) in order to write updates to these files. <br /><br />If the files are 0-bytes in size when you encounter this error, then disk space or "available" disk space is likely the cause.<br /><br />Ideal permissions in Unix/Linux hosting is CHMOD 777 until installation is complete. Then they can be set back to 644 or 444 for security after installation is done.<br /><br />If you are running on a Windows host, you may also find it necessary to right-click on each of these files, choose "Properties", then the "Security" tab. Then click on "Add" and select "Everyone", and grant "Everyone" full read/write access until installation is complete. Then reset to read-only after installation.');
+    define('POPUP_ERROR_TEXT','While attempting to save your settings, Zen Cart&reg; Installer was unable to verify successful writing of your configure.php file settings. Please check to be sure that your webserver has full write permissions to the configure.php files shown below.<br /><br />- /includes/configure.php<br />- /admin/includes/configure.php<br /><br />You may want to also check that there is sufficient disk space (or disk quota available to you) in order to write updates to these files. <br /><br />If the files are 0-bytes in size when you encounter this error, then disk space or "available" disk space is likely the cause.<br /><br />Ideal permissions in Unix/Linux hosting is CHMOD 777 until installation is complete. Then they can be set back to 644 or 444 for security after installation is done.<br /><br />If you are running on a Windows host, you may also find it necessary to right-click on each of these files, choose "Properties", then the "Security" tab. Then click on "Add" and select "Everyone", and grant "Everyone" full read/write access until installation is complete. Then reset to read-only after installation.');
   break;
   case ('89'):
     define('POPUP_ERROR_HEADING','GD Support Details');
-    define('POPUP_ERROR_TEXT','Zen Cart&trade; uses GD support in PHP, if available, to do image management activities.  It is preferred to have at least version 2.0 available.<br /><br />If GD support is not compiled into your PHP install, you may want to ask your hosting company to do this for you.');
+    define('POPUP_ERROR_TEXT','Zen Cart&reg; uses GD support in PHP, if available, to do image management activities.  It is preferred to have at least version 2.0 available.<br /><br />If GD support is not compiled into your PHP install, you may want to ask your hosting company to do this for you.');
   break;
   case ('90'):
     define('POPUP_ERROR_HEADING','MySQL 5.7 (and higher) not fully supported in v1.5.x');
-    define('POPUP_ERROR_TEXT','NOTE: Zen Cart&trade; v2.0 and newer support MySQL 5 and PHP 5 properly.<br />But, you are presently installing v1.5.x.<br /><br />While many efforts have been spent on ensuring that database queries in Zen Cart&trade; v1.5.x are compatible with MySQL 5 releases, the newer v2.x versions are more thoroughly tested.<br /><br />You are welcome to proceed with installation; however, please note that for full compatibility you should use the newer version of Zen Cart.');
+    define('POPUP_ERROR_TEXT','NOTE: Zen Cart&reg; v2.0 and newer support MySQL 5 and PHP 5 properly.<br />But, you are presently installing v1.5.x.<br /><br />While many efforts have been spent on ensuring that database queries in Zen Cart&reg; v1.5.x are compatible with MySQL 5 releases, the newer v2.x versions are more thoroughly tested.<br /><br />You are welcome to proceed with installation; however, please note that for full compatibility you should use the newer version of Zen Cart.');
   break;
   case ('91'):
     define('POPUP_ERROR_HEADING','PHP Version Alert');
-    define('POPUP_ERROR_TEXT','Zen Cart&trade; v1.x is designed to run on PHP versions 5.3.14 and greater.<br /><br />There are several PHP functions used in Zen Cart&trade; which are not available in older PHP versions.<br /><br />You will need to upgrade your PHP version if you intend to use Zen Cart&trade; on this server.');
+    define('POPUP_ERROR_TEXT','Zen Cart&reg; v1.x is designed to run on PHP versions 5.3.14 and greater.<br /><br />There are several PHP functions used in Zen Cart&reg; which are not available in older PHP versions.<br /><br />You will need to upgrade your PHP version if you intend to use Zen Cart&reg; on this server.');
   break;
   case ('92'):
     define('POPUP_ERROR_HEADING','open_basedir restriction may cause problems');
@@ -676,7 +676,7 @@ You may also have given the wrong database name (<strong>Does it exist?</strong>
   break;
   case ('95'):
     define('POPUP_ERROR_HEADING','CURL requires SSL support. Please notify webmaster or hosting company.');
-    define('POPUP_ERROR_TEXT','Zen Cart&trade; uses CURL and SSL to communicate with some payment and shipping service providers.<br />The installer has just tested your CURL SSL support and found that it failed.<br /><br />You will not be able to use PayPal or Authorize.net or FirstData/Linkpoint payment modules, and possibly other third-party contributed payment/shipping modules until you enable SSL support in CURL and PHP.<br /><br />More information on CURL can be found at the <a href="http://curl.haxx.se" target="_blank">CURL website</a>');
+    define('POPUP_ERROR_TEXT','Zen Cart&reg; uses CURL and SSL to communicate with some payment and shipping service providers.<br />The installer has just tested your CURL SSL support and found that it failed.<br /><br />You will not be able to use PayPal or Authorize.net or FirstData/Linkpoint payment modules, and possibly other third-party contributed payment/shipping modules until you enable SSL support in CURL and PHP.<br /><br />More information on CURL can be found at the <a href="http://curl.haxx.se" target="_blank">CURL website</a>');
   break;
   case ('96'):
     define('POPUP_ERROR_HEADING','Admin-Folder-Name');
