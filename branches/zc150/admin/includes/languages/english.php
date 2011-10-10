@@ -558,7 +558,7 @@ define('NOT_INSTALLED_TEXT','Not Installed');
   define('TEXT_VERSION_CHECK_NEW_PATCH','New PATCH Available: v');
   define('TEXT_VERSION_CHECK_PATCH','patch');
   define('TEXT_VERSION_CHECK_DOWNLOAD','Download Here');
-  define('TEXT_VERSION_CHECK_CURRENT','Your version of Zen Cart&trade; appears to be current.');
+  define('TEXT_VERSION_CHECK_CURRENT','Your version of Zen Cart&reg; appears to be current.');
 
 // downloads manager
 define('TEXT_DISPLAY_NUMBER_OF_PRODUCTS_DOWNLOADS_MANAGER', 'Displaying <b>%d</b> to <b>%d</b> (of <b>%d</b> downloads)');

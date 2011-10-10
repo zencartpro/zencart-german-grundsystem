@@ -50,4 +50,3 @@
 
 // for when gethost is off
   define('OFFICE_IP_TO_HOST_ADDRESS', 'Disabled');
-?>

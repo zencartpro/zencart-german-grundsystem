@@ -11,7 +11,7 @@
 
   define('HEADING_TITLE','SQL Query Executor');
   define('HEADING_WARNING','BE SURE TO DO A FULL DATABASE BACKUP BEFORE RUNNING SCRIPTS HERE');
-  define('HEADING_WARNING2','If you are installing 3rd-party contributions, note that you do so at your own risk.<br />Zen Cart&trade; makes no warranty as to the safety of scripts supplied by 3rd-party contributors. Test before using on your live database!');
+  define('HEADING_WARNING2','If you are installing 3rd-party contributions, note that you do so at your own risk.<br />Zen Cart&reg; makes no warranty as to the safety of scripts supplied by 3rd-party contributors. Test before using on your live database!');
   define('HEADING_WARNING_INSTALLSCRIPTS', 'NOTE: Zen Cart database-upgrade scripts should NOT be run from this page.<br />Please upload the new <strong>zc_install</strong> folder and run the upgrade from there instead for better reliability.');
   define('TEXT_QUERY_RESULTS','Query Results:');
   define('TEXT_ENTER_QUERY_STRING','Enter the query <br />to be executed:&nbsp;&nbsp;<br /><br />Be sure to<br />end with ;');
@@ -838,13 +838,13 @@ if ($_GET['debug']=='ON') echo $line . '<br />';
 <html  <?php echo HTML_PARAMS; ?>>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=<?php echo CHARSET; ?>" />
-<title>HELP - <?php echo HEADING_TITLE; ?> - Zen Cart&trade;</title>
+<title>HELP - <?php echo HEADING_TITLE; ?> - Zen Cart&reg;</title>
 </head>
 <body id="popup"></body>
 <div id="popup_header">
 <h1>
 <?php
-  echo 'Zen Cart&trade; ' . HEADING_TITLE;
+  echo 'Zen Cart&reg; ' . HEADING_TITLE;
   echo '<br /><br />';
 ?>
 </h1>

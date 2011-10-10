@@ -54,7 +54,7 @@ class paypal extends base {
   function paypal($paypal_ipn_id = '') {
     global $order, $messageStack;
     $this->code = 'paypal';
-    $this->codeVersion = '1.5.0beta';
+    $this->codeVersion = '1.5.0';
     if (IS_ADMIN_FLAG === true) {
       $this->title = MODULE_PAYMENT_PAYPAL_TEXT_ADMIN_TITLE; // Payment Module title in Admin
       if (IS_ADMIN_FLAG === true && defined('MODULE_PAYMENT_PAYPAL_IPN_DEBUG') && MODULE_PAYMENT_PAYPAL_IPN_DEBUG != 'Off') $this->title .= '<span class="alert"> (debug mode active)</span>';

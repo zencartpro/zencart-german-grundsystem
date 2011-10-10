@@ -128,7 +128,7 @@ class paypaldp extends base {
     global $order;
     $this->code = 'paypaldp';
     $this->codeTitle = MODULE_PAYMENT_PAYPALDP_TEXT_ADMIN_TITLE_WPP;
-    $this->codeVersion = '1.5.0beta';
+    $this->codeVersion = '1.5.0';
     $this->enableDirectPayment = true;
     $this->enabled = (MODULE_PAYMENT_PAYPALDP_STATUS == 'True');
     // Set the title & description text based on the mode we're in
@@ -426,7 +426,7 @@ class paypaldp extends base {
         $calculatedOrderTotal = $order_total_modules->pre_confirmation_check(TRUE);
         $lookup_data_array = array('currency' => $order->info['currency'],
                                    'txn_amount' => $calculatedOrderTotal,
-                                   'order_desc' => 'Zen Cart(tm) ' . MODULE_PAYMENT_PAYPALDP_TEXT_TRANSACTION_FOR . ' ' . $_POST['paypalwpp_cc_firstname'] . ' ' . $_POST['paypalwpp_cc_lastname'],
+                                   'order_desc' => 'Zen Cart(R) ' . MODULE_PAYMENT_PAYPALDP_TEXT_TRANSACTION_FOR . ' ' . $_POST['paypalwpp_cc_firstname'] . ' ' . $_POST['paypalwpp_cc_lastname'],
                                    'cc3d_card_number' => $_POST['paypalwpp_cc_number'],
                                    'cc3d_checkcode' => $_POST['paypalwpp_cc_checkcode'],
                                    'cc3d_exp_month' => $_POST['paypalwpp_cc_expires_month'],
@@ -2079,7 +2079,7 @@ class paypaldp extends base {
    */
   function get3DSecureLookupResponse($lookup_data_array) {
     // Set some defaults
-    if (!isset($lookup_data_array['order_desc']) || $lookup_data_array['order_desc'] == '') $lookup_data_array['order_desc'] = 'Zen Cart(tm) Transaction';
+    if (!isset($lookup_data_array['order_desc']) || $lookup_data_array['order_desc'] == '') $lookup_data_array['order_desc'] = 'Zen Cart(R) Transaction';
     if (!isset($lookup_data_array['order_number']) || $lookup_data_array['order_number'] == '') $lookup_data_array['order_number'] = zen_session_id();
     // format the card expiration
     $lookup_data_array['cc3d_exp_year'] = (strlen($lookup_data_array['cc3d_exp_year']) == 2 ? '20' : '') . $lookup_data_array['cc3d_exp_year'];

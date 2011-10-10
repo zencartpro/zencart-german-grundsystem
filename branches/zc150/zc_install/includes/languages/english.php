@@ -40,7 +40,7 @@
   define('UPLOAD_SETTINGS','The Maximum upload size supported will be whichever the LOWER of these values:.<br />
 <em>upload_max_filesize</em> in php.ini %s <br />
 <em>post_max_size</em> in php.ini: %s <br />' .
-//'<em>Zen Cart&trade;</em> Upload Setting: %s <br />' .
+//'<em>Zen Cart&reg;</em> Upload Setting: %s <br />' .
 'You may find some Apache settings that prevent you from uploading files or limit your maximum file size.
 See the Apache documentation for more information.');
 
@@ -564,7 +564,7 @@ You may also have given the wrong database name (<strong>Does it exist?</strong>
 //  break;
 //  case ('67'):
 //    define('POPUP_ERROR_HEADING', 'phpBB Directory');
-//    define('POPUP_ERROR_TEXT', 'Please supply the full/complete path to where your phpBB script files are stored. This will allow Zen Cart&trade; to know what path to direct users to when they click on the phpBB link in your store.<br /><br />The path entered here is relative to the "root" of your server. So, if your phpBB installation is in <strong>/home/users/username/public_html/phpbb </strong>, then you need to enter <strong>/home/users/username/public_html/phpbb/ </strong>here. If it is under another set of subfolders, you need to list those folders in the path.<br /><br />We will look to find your "<em>config.php</em>" file in that folder.');
+//    define('POPUP_ERROR_TEXT', 'Please supply the full/complete path to where your phpBB script files are stored. This will allow Zen Cart&reg; to know what path to direct users to when they click on the phpBB link in your store.<br /><br />The path entered here is relative to the "root" of your server. So, if your phpBB installation is in <strong>/home/users/username/public_html/phpbb </strong>, then you need to enter <strong>/home/users/username/public_html/phpbb/ </strong>here. If it is under another set of subfolders, you need to list those folders in the path.<br /><br />We will look to find your "<em>config.php</em>" file in that folder.');
 //  break;
 //  case ('68'):
 //    define('POPUP_ERROR_HEADING', 'phpBB Directory');

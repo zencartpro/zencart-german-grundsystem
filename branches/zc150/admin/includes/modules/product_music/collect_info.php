@@ -9,7 +9,6 @@
 if (!defined('IS_ADMIN_FLAG')) {
   die('Illegal Access');
 }
-
     $parameters = array('products_name' => '',
                        'products_description' => '',
                        'products_url' => '',
@@ -324,7 +323,7 @@ echo zen_draw_hidden_field('products_price_sorter', $pInfo->products_price_sorte
 ?>
           <tr>
             <td class="main"><?php if ($i == 0) echo TEXT_PRODUCTS_NAME; ?></td>
-            <td class="main"><?php echo zen_image(DIR_WS_CATALOG_LANGUAGES . $languages[$i]['directory'] . '/images/' . $languages[$i]['image'], $languages[$i]['name']) . '&nbsp;' . zen_draw_input_field('products_name[' . $languages[$i]['id'] . ']', (isset($products_name[$languages[$i]['id']]) ? htmlspecialchars(stripslashes($products_name[$languages[$i]['id']]), ENT_COMPAT, CHARSET, TRUE) : htmlspecialchars(zen_get_products_name($pInfo->products_id, $languages[$i]['id']), ENT_COMPAT, CHARSET, TRUE)), zen_set_field_length(TABLE_PRODUCTS_DESCRIPTION, 'products_name')); ?></td>
+            <td class="main"><?php echo zen_image(DIR_WS_CATALOG_LANGUAGES . $languages[$i]['directory'] . '/images/' . $languages[$i]['image'], $languages[$i]['name']) . '&nbsp;' . zen_draw_input_field('products_name[' . $languages[$i]['id'] . ']', htmlspecialchars(isset($products_name[$languages[$i]['id']]) ? stripslashes($products_name[$languages[$i]['id']]) : zen_get_products_name($pInfo->products_id, $languages[$i]['id']), ENT_COMPAT, CHARSET, TRUE), zen_set_field_length(TABLE_PRODUCTS_DESCRIPTION, 'products_name')); ?></td>
           </tr>
 <?php
     }
@@ -426,7 +425,7 @@ updateGross();
             <td colspan="2"><table border="0" cellspacing="0" cellpadding="0">
               <tr>
                 <td class="main" width="25" valign="top"><?php echo zen_image(DIR_WS_CATALOG_LANGUAGES . $languages[$i]['directory'] . '/images/' . $languages[$i]['image'], $languages[$i]['name']); ?>&nbsp;</td>
-                <td class="main" width="100%"><?php echo zen_draw_textarea_field('products_description[' . $languages[$i]['id'] . ']', 'soft', '100%', '30', (isset($products_description[$languages[$i]['id']])) ? htmlspecialchars(stripslashes($products_description[$languages[$i]['id']]), ENT_COMPAT, CHARSET, TRUE) : htmlspecialchars(zen_get_products_description($pInfo->products_id, $languages[$i]['id']), ENT_COMPAT, CHARSET, TRUE)); //,'id="'.'products_description' . $languages[$i]['id'] . '"'); ?></td>
+                <td class="main" width="100%"><?php echo zen_draw_textarea_field('products_description[' . $languages[$i]['id'] . ']', 'soft', '100%', '30', htmlspecialchars((isset($products_description[$languages[$i]['id']])) ? stripslashes($products_description[$languages[$i]['id']]) : zen_get_products_description($pInfo->products_id, $languages[$i]['id']), ENT_COMPAT, CHARSET, TRUE)); //,'id="'.'products_description' . $languages[$i]['id'] . '"'); ?></td>
               </tr>
             </table></td>
           </tr>

@@ -23,7 +23,7 @@ define('HTML_PARAMS','dir="ltr" lang="de"');
 define('CHARSET', 'utf-8');
 
 // META TAG TITLE
-define('META_TAG_TITLE', 'Zen Cart&trade; Installationsprogramm');
+define('META_TAG_TITLE', 'Zen Cart&reg; Installationsprogramm');
 
 define('INSTALLATION_IN_PROGRESS','Installation läuft...');
 
@@ -646,19 +646,19 @@ switch ($error_code) {
   break;
   case ('88'):
     define('POPUP_ERROR_HEADING','Fehler beim Schreiben in /includes/configure.php');
-    define('POPUP_ERROR_TEXT','Bei dem Versuch Ihre Einstellungen in die dafür vorgesehene Datei (configure.php) zu schreiben konnte Zen Cart&trade;-Installer das erfolgreiche Schreiben der Datei nicht bestätigen. Bitte prüfen Sie die Zugriffsrechte der configure.php-Dateien.<br /><br />- /includes/configure.php<br />- /admin/includes/configure.php<br /><br />Bitte prüfen Sie ebenfalls, dass ausreichend Webspace zur Verfügung steht. <br /><br />Sollten die Dateien eine Gr&ouml;&szlig;e von 0-bytes haben, ist wahrscheinlich nicht genügend Plattenplatz vorhanden.<br /><br />Optimale Zugriffsrechte für Unix/Linux: CHMOD 777 bis Intalltion komplett, danach CHMOD 644 oder 444.<br /><br />Unter Windows sollte nach der Installation der Schreibschutz aktiviert werden.');
+    define('POPUP_ERROR_TEXT','Bei dem Versuch Ihre Einstellungen in die dafür vorgesehene Datei (configure.php) zu schreiben konnte Zen Cart&reg;-Installer das erfolgreiche Schreiben der Datei nicht bestätigen. Bitte prüfen Sie die Zugriffsrechte der configure.php-Dateien.<br /><br />- /includes/configure.php<br />- /admin/includes/configure.php<br /><br />Bitte prüfen Sie ebenfalls, dass ausreichend Webspace zur Verfügung steht. <br /><br />Sollten die Dateien eine Gr&ouml;&szlig;e von 0-bytes haben, ist wahrscheinlich nicht genügend Plattenplatz vorhanden.<br /><br />Optimale Zugriffsrechte für Unix/Linux: CHMOD 777 bis Intalltion komplett, danach CHMOD 644 oder 444.<br /><br />Unter Windows sollte nach der Installation der Schreibschutz aktiviert werden.');
   break;
   case ('89'):
     define('POPUP_ERROR_HEADING','GD Support Details');
-    define('POPUP_ERROR_TEXT','Zen Cart&trade; nutzt GD in PHP, soweit vorhanden, um Bilder zu verarbeiten. version 2.0 wird empfohlen.<br /><br />Sollte die GD-Unterstützung nicht in die PHP-Installation eincompiliert worden sein, sollten sie Ihren Webhoster um Hilfe bitten.');
+    define('POPUP_ERROR_TEXT','Zen Cart&reg; nutzt GD in PHP, soweit vorhanden, um Bilder zu verarbeiten. version 2.0 wird empfohlen.<br /><br />Sollte die GD-Unterstützung nicht in die PHP-Installation eincompiliert worden sein, sollten sie Ihren Webhoster um Hilfe bitten.');
   break;
   case ('90'):
     define('POPUP_ERROR_HEADING','MySQL 5 wird nicht vollständig unterstützt');
-    define('POPUP_ERROR_TEXT','Es wurde viel Mühe investiert um Datenbank-Abfragen in Zen Cart&trade; mit MySQL 5 kompatibel zu machen, trotzdem ist ein vollständiger Test noch nicht abgeschlossen.<br /><br />Sie können die Installation fortsetzen, sollten aber immer beachten, dass die vollständige Unterstützung noch in der Entwicklung ist.<br /><br />Sollten Sie bei der Nutzung von Zen Cart&trade; mit MySQL 5 auf SQL-Fehlermeldungen stoßen, melden Sie diese bitte in unserem Support-Forum (Bitte schauen Sie erst, ob das Problem nicht schon gemeldet wurde!), so dass wir das Problem beheben können.');
+    define('POPUP_ERROR_TEXT','Es wurde viel Mühe investiert um Datenbank-Abfragen in Zen Cart&reg; mit MySQL 5 kompatibel zu machen, trotzdem ist ein vollständiger Test noch nicht abgeschlossen.<br /><br />Sie können die Installation fortsetzen, sollten aber immer beachten, dass die vollständige Unterstützung noch in der Entwicklung ist.<br /><br />Sollten Sie bei der Nutzung von Zen Cart&reg; mit MySQL 5 auf SQL-Fehlermeldungen stoßen, melden Sie diese bitte in unserem Support-Forum (Bitte schauen Sie erst, ob das Problem nicht schon gemeldet wurde!), so dass wir das Problem beheben können.');
   break;
   case ('91'):
     define('POPUP_ERROR_HEADING','PHP-Versions Warnung');
-    define('POPUP_ERROR_TEXT','Zen Cart&trade; läuft mit PHP ab Version 4.3.2.<br /><br />Ältere PHP-Versionen besitzen einige von Zen Cart&trade; verwendete Funktionen nicht und andere sind fehlerhaft.<br /><br />Wir empfehlen dringend Ihre PHP-Version auf den aktuellsten Stand zu bringen, wenn Sie Zen Cart&trade; auf diesem Server verwenden wollen.');
+    define('POPUP_ERROR_TEXT','Zen Cart&reg; läuft mit PHP ab Version 4.3.2.<br /><br />Ältere PHP-Versionen besitzen einige von Zen Cart&reg; verwendete Funktionen nicht und andere sind fehlerhaft.<br /><br />Wir empfehlen dringend Ihre PHP-Version auf den aktuellsten Stand zu bringen, wenn Sie Zen Cart&reg; auf diesem Server verwenden wollen.');
   break;
   case ('92'):
     define('POPUP_ERROR_HEADING','open_basedir Einschränkungen können Probleme verursachen');
@@ -674,7 +674,7 @@ switch ($error_code) {
   break;
   case ('95'):
     define('POPUP_ERROR_HEADING','CURL requires SSL support. Please notify webmaster or hosting company.');
-    define('POPUP_ERROR_TEXT','Zen Cart&trade; uses CURL and SSL to communicate with some payment and shipping service providers.<br />The installer has just tested your CURL SSL support and found that it failed.<br /><br />You will not be able to use PayPal or Authorize.net or FirstData/Linkpoint payment modules, and possibly other third-party contributed payment/shipping modules until you enable SSL support in CURL and PHP.<br /><br />More information on CURL can be found at the <a href="http://curl.haxx.se" target="_blank">CURL website</a>');
+    define('POPUP_ERROR_TEXT','Zen Cart&reg; uses CURL and SSL to communicate with some payment and shipping service providers.<br />The installer has just tested your CURL SSL support and found that it failed.<br /><br />You will not be able to use PayPal or Authorize.net or FirstData/Linkpoint payment modules, and possibly other third-party contributed payment/shipping modules until you enable SSL support in CURL and PHP.<br /><br />More information on CURL can be found at the <a href="http://curl.haxx.se" target="_blank">CURL website</a>');
   break;
   case ('96'):
     define('POPUP_ERROR_HEADING','Adminordner Name');
