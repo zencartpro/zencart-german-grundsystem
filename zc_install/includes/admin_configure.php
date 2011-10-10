@@ -30,8 +30,7 @@ $file_contents =
 '  define(\'HTTPS_SERVER\', \'' . $https_server . '\');' . "\n" .
 '  define(\'HTTP_CATALOG_SERVER\', \'' . $http_server . '\');' . "\n" .
 '  define(\'HTTPS_CATALOG_SERVER\', \'' . $https_server . '\');' . "\n\n" .
-'  $t1 = parse_url(HTTP_SERVER);$p1 = $t1[\'path\'];$t2 = parse_url(HTTPS_SERVER);$p2 = $t2[\'path\'];' . "\n\n" .
-'  // secure webserver for storefront?  Valid choices are \'true\' or \'false\' (including quotes).' . "\n" .
+'  // secure webserver for admin?  Valid choices are \'true\' or \'false\' (including quotes).' . "\n" .
 '  define(\'ENABLE_SSL_ADMIN\', \'' . $this->getConfigKey('ENABLE_SSL_ADMIN') . '\');' . "\n\n" .
 '  // secure webserver for storefront?  Valid choices are \'true\' or \'false\' (including quotes).' . "\n" .
 '  define(\'ENABLE_SSL_CATALOG\', \'' . $this->getConfigKey('ENABLE_SSL') . '\');' . "\n" .
@@ -39,6 +38,7 @@ $file_contents =
 '// NOTE: be sure to leave the trailing \'/\' at the end of these lines if you make changes!' . "\n" .
 '// * DIR_WS_* = Webserver directories (virtual/URL)' . "\n" .
 '  // these paths are relative to top of your webspace ... (ie: under the public_html or httpdocs folder)' . "\n" .
+'  $t1 = parse_url(HTTP_SERVER);$p1 = $t1[\'path\'];$t2 = parse_url(HTTPS_SERVER);$p2 = $t2[\'path\'];' . "\n\n" .
 '  define(\'DIR_WS_ADMIN\', preg_replace(\'#^\' . str_replace(\'-\', \'\-\', $p1) . \'#\', \'\', dirname($_SERVER[\'SCRIPT_NAME\'])) . \'/\');' . "\n" .
 '  define(\'DIR_WS_CATALOG\', \'' . $http_catalog . '\');' . "\n" .
 '  define(\'DIR_WS_HTTPS_ADMIN\', preg_replace(\'#^\' . str_replace(\'-\', \'\-\', $p2) . \'#\', \'\', dirname($_SERVER[\'SCRIPT_NAME\'])) . \'/\');' . "\n" .
@@ -56,8 +56,8 @@ $file_contents =
 '  define(\'DIR_WS_CATALOG_LANGUAGES\', HTTP_CATALOG_SERVER . DIR_WS_CATALOG . \'includes/languages/\');' . "\n" .
 '' . "\n" .
 '// * DIR_FS_* = Filesystem directories (local/physical)' . "\n" .
+'  define(\'DIR_FS_ADMIN\', realpath(dirname(__FILE__) . \'/../\') . \'/\');' . "\n" .
 '  //the following path is a COMPLETE path to your Zen Cart files. eg: /var/www/vhost/accountname/public_html/store/' . "\n" .
-'  define(\'DIR_FS_ADMIN\', realpath(dirname(__FILE__) . \'../\'));' . "\n" .
 '  define(\'DIR_FS_CATALOG\', \'' . $this->getConfigKey('DIR_FS_CATALOG') . '/\');' . "\n\n" .
 '  define(\'DIR_FS_CATALOG_LANGUAGES\', DIR_FS_CATALOG . \'includes/languages/\');' . "\n" .
 '  define(\'DIR_FS_CATALOG_IMAGES\', DIR_FS_CATALOG . \'images/\');' . "\n" .

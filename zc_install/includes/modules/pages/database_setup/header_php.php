@@ -36,7 +36,7 @@ $is_upgrade = (int)$zc_install->getConfigKey('is_upgrade');
 <html xmlns="http://www.w3.org/1999/xhtml" dir="ltr" lang="en">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>Zen Cart&trade; Setup - Database Loading ...</title>
+<title>Zen Cart&reg; Setup - Database Loading ...</title>
 <link rel="stylesheet" type="text/css" href="includes/templates/template_default/css/stylesheet.css">
 </head>
 <div id="wrap">
