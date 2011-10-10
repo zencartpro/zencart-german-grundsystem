@@ -29,9 +29,10 @@
 
 // * DIR_WS_* = Webserver directories (virtual/URL)
   // these paths are relative to top of your webspace ... (ie: under the public_html or httpdocs folder)
-  define('DIR_WS_ADMIN', '/admin/');
+  $t1 = parse_url(HTTP_SERVER);$p1 = $t1['path'];$t2 = parse_url(HTTPS_SERVER);$p2 = $t2['path'];
+  define('DIR_WS_ADMIN', preg_replace('#^' . str_replace('-', '\-', $p1) . '#', '', dirname($_SERVER['SCRIPT_NAME'])) . '/');
   define('DIR_WS_CATALOG', '/');
-  define('DIR_WS_HTTPS_ADMIN', '/admin/');
+  define('DIR_WS_HTTPS_ADMIN', preg_replace('#^' . str_replace('-', '\-', $p2) . '#', '', dirname($_SERVER['SCRIPT_NAME'])) . '/');
   define('DIR_WS_HTTPS_CATALOG', '/');
 
   define('DIR_WS_IMAGES', 'images/');
@@ -39,7 +40,6 @@
   define('DIR_WS_CATALOG_IMAGES', HTTP_CATALOG_SERVER . DIR_WS_CATALOG . 'images/');
   define('DIR_WS_CATALOG_TEMPLATE', HTTP_CATALOG_SERVER . DIR_WS_CATALOG . 'includes/templates/');
   define('DIR_WS_INCLUDES', 'includes/');
-  define('DIR_WS_BOXES', DIR_WS_INCLUDES . 'boxes/');
   define('DIR_WS_FUNCTIONS', DIR_WS_INCLUDES . 'functions/');
   define('DIR_WS_CLASSES', DIR_WS_INCLUDES . 'classes/');
   define('DIR_WS_MODULES', DIR_WS_INCLUDES . 'modules/');
@@ -48,7 +48,7 @@
 
 // * DIR_FS_* = Filesystem directories (local/physical)
   //the following path is a COMPLETE path to your Zen Cart files. eg: /var/www/vhost/accountname/public_html/store/
-  define('DIR_FS_ADMIN', '/admin/');
+  define('DIR_FS_ADMIN', realpath(dirname(__FILE__) . '/../') . '/');
   define('DIR_FS_CATALOG', '/');
 
   define('DIR_FS_CATALOG_LANGUAGES', DIR_FS_CATALOG . 'includes/languages/');

@@ -22,8 +22,8 @@ $docsPath = (file_exists('docs/index.html')) ? 'docs/index.html' : (file_exists(
 <meta name="keywords" content="" />
 <meta name="description" content="" />
 <meta http-equiv="imagetoolbar" content="no" />
-<meta name="authors" content="The Zen Cart&trade; Team and others" />
-<meta name="generator" content="shopping cart program by Zen Cart&trade;, http://www.zen-cart.com" />
+<meta name="authors" content="The Zen Cart&reg; Team and others" />
+<meta name="generator" content="shopping cart program by Zen Cart&reg;, http://www.zen-cart.com" />
 <meta name="robots" content="noindex, nofollow" />
 <style type="text/css">
 <!--
@@ -37,12 +37,12 @@ $docsPath = (file_exists('docs/index.html')) ? 'docs/index.html' : (file_exists(
 <body style="margin: 20px">
 <div style="width: 730px; background-color: #ffffff; margin: auto; padding: 10px; border: 1px solid #cacaca;">
 <div>
-<img src="<?php echo $relPath; ?>includes/templates/template_default/images/logo.gif" alt="Zen Cart&trade;" title=" Zen Cart&trade; " width="192" height="64" border="0" />
+<img src="<?php echo $relPath; ?>includes/templates/template_default/images/logo.gif" alt="Zen Cart&reg;" title=" Zen Cart&reg; " width="192" height="64" border="0" />
 </div>
-<h1>Hallo. Danke das Sie sich für Zen Cart&trade; entschieden haben.</h1>
+<h1>Hallo. Danke das Sie sich für Zen Cart&reg; entschieden haben.</h1>
 <h2>Sie bekommen diese Seite aus einem oder mehreren der folgenden Gründe angezeigt:</h2>  
 <ol>
-<li>Sie benutzen <strong>Zen Cart&trade; zum ersten Mal</strong> und haben noch keine Installation durchgeführt.<br />
+<li>Sie benutzen <strong>Zen Cart&reg; zum ersten Mal</strong> und haben noch keine Installation durchgeführt.<br />
 Sollte das der Fall sein,
 <?php if ($instPath) { ?>
 <a href="<?php echo $instPath; ?>">dann klicken Sie hier</a>, um die Installation zu starten.
@@ -64,7 +64,7 @@ Weitere Informationen erhalten Sie im <a href="http://www.zen-cart.at" target="_
 <?php if ($docsPath) { ?>
 <li>Lesen Sie vorab die <a href="<?php echo $docsPath; ?>">Installationsanleitung</a>.</li>
 <?php } else { ?>
-<li>Die Installation finden Sie normalerweise im Verzeichnis /docs in Ihrer Zen Cart&trade; Zip Datei.</li>
+<li>Die Installation finden Sie normalerweise im Verzeichnis /docs in Ihrer Zen Cart&reg; Zip Datei.</li>
 <?php } ?>
 <?php if ($instPath) { ?>
 <li>Gehen Sie auf <a href="<?php echo $instPath; ?>">zc_install/index.php</a> via Ihrem Browser.</li>
@@ -75,5 +75,5 @@ Weitere Informationen erhalten Sie im <a href="http://www.zen-cart.at" target="_
 </ol>
 
 </div>
-    <p style="text-align: center; font-size: small;">Copyright &copy; 2003-<?php echo date('Y'); ?> <a href="http://www.zen-cart.com" target="_blank">Zen Cart&trade;</a></p>
+    <p style="text-align: center; font-size: small;">Copyright &copy; 2003-<?php echo date('Y'); ?> <a href="http://www.zen-cart.com" target="_blank">Zen Cart&reg;</a></p>
 </body></html>

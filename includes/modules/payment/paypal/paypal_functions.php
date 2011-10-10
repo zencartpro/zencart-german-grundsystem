@@ -562,7 +562,7 @@
                       CURLOPT_FORBID_REUSE => TRUE,
                       CURLOPT_FRESH_CONNECT => TRUE,
                       CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-                      CURLOPT_USERAGENT => 'Zen Cart(tm) - IPN Postback',
+                      CURLOPT_USERAGENT => 'Zen Cart(R) - IPN Postback',
                       );
     if (CURL_PROXY_REQUIRED == 'True') {
       $proxy_tunnel_flag = (defined('CURL_PROXY_TUNNEL_FLAG') && strtoupper(CURL_PROXY_TUNNEL_FLAG) == 'FALSE') ? false : true;

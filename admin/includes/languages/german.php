@@ -562,7 +562,7 @@ define('TEXT_VERSION_CHECK_NEW_VER', 'Eine neue Version ist verfügbar: v');
 define('TEXT_VERSION_CHECK_NEW_PATCH', 'Ein neuer PATCH ist verfügbar: v');
 define('TEXT_VERSION_CHECK_PATCH', 'Patch');
 define('TEXT_VERSION_CHECK_DOWNLOAD', 'Hier herunterladen');
-define('TEXT_VERSION_CHECK_CURRENT', 'Sie verwenden die aktuellste Version von Zen Cart&trade;.');
+define('TEXT_VERSION_CHECK_CURRENT', 'Sie verwenden die aktuellste Version von Zen Cart&reg;.');
 
 // downloads manager
 define('TEXT_DISPLAY_NUMBER_OF_PRODUCTS_DOWNLOADS_MANAGER', 'Zeige <b>%d</b> bis <b>%d</b> (von <b>%d</b> Downloads)');

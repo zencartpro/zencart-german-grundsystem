@@ -429,11 +429,11 @@ class paypal_curl extends base {
     $headers[] = 'X-VPS-Timeout: 90';
     $headers[] = "X-VPS-VIT-Client-Type: PHP/cURL";
     if ($this->_mode == 'payflow') {
-      $headers[] = 'X-VPS-VIT-Integration-Product: PHP::Zen Cart(tm) - PayPal/Payflow Pro';
+      $headers[] = 'X-VPS-VIT-Integration-Product: PHP::Zen Cart(R) - PayPal/Payflow Pro';
     } elseif ($this->_mode == 'nvp') {
-      $headers[] = 'X-VPS-VIT-Integration-Product: PHP::Zen Cart(tm) - PayPal/NVP';
+      $headers[] = 'X-VPS-VIT-Integration-Product: PHP::Zen Cart(R) - PayPal/NVP';
     }
-    $headers[] = 'X-VPS-VIT-Integration-Version: 1.5.0beta';
+    $headers[] = 'X-VPS-VIT-Integration-Version: 1.5.0';
     $this->lastHeaders = $headers;
 
     $ch = curl_init();

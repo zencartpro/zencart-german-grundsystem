@@ -110,7 +110,7 @@ if ( (isset($_GET['keyword']) && (empty($_GET['keyword']) || $_GET['keyword']==H
   }
 
   if (zen_not_null($keywords)) {
-    if (!zen_parse_search_string($keywords, $search_keywords)) {
+    if (!zen_parse_search_string(stripslashes($keywords), $search_keywords)) {
       $error = true;
 
       $messageStack->add_session('search', ERROR_INVALID_KEYWORDS);
