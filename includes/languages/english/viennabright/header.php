@@ -4,7 +4,7 @@
  * @copyright Copyright 2003-2011 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: header.php 730 2011-09-25 08:49:16Z webchills $
+ * @version $Id: header.php 731 2011-10-11 11:07:16Z webchills $
  */
 
 // header text in includes/header.php
@@ -16,6 +16,9 @@
   define('HEADER_TITLE_CATALOG', 'Home');
   define('HEADER_TITLE_LOGOFF', 'Log Out');
   define('HEADER_TITLE_LOGIN', 'Log In');
+  define('HEADER_TITLE_REGISTER', 'Register');
+  define('HEADER_TITLE_WELCOMEUSER', 'Welcome');
+  define('HEADER_OR', 'or');
 
 // added defines for header alt and text
   define('HEADER_ALT_TEXT', 'Powered by Zen Cart :: The Art of E-Commerce');
