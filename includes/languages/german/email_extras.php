@@ -23,7 +23,7 @@ define('OFFICE_LOGIN_FAX','<strong>Fax:</strong>');
 define('OFFICE_IP_ADDRESS', '<strong>IP Adresse:</strong>');
 define('OFFICE_HOST_ADDRESS', '<strong>Hostname:</strong>');
 define('OFFICE_DATE_TIME', '<strong>Datum und Uhrzeit:</strong>');
-  if (!defined('OFFICE_IP_TO_HOST_ADDRESS')) define('OFFICE_IP_TO_HOST_ADDRESS', 'OFF');
+  if (!defined('OFFICE_IP_TO_HOST_ADDRESS')) define('OFFICE_IP_TO_HOST_ADDRESS', 'Deaktiviert');
 
 // email disclaimer
 define('EMAIL_DISCLAIMER', 'Diese E-Mail-Adresse wurde uns von Ihnen oder einem unserer Kunden mitgeteilt. Sollten Sie diese Nachricht versehentlich erhalten haben, wenden Sie sich bitte an: ' . STORE_OWNER_EMAIL_ADDRESS);
@@ -48,5 +48,4 @@ define('SEND_EXTRA_CC_EMAILS_TO_SUBJECT', '[EXTRA KREDITKARTEN BESTELLINFO] #');
 define('EMAIL_TEXT_SUBJECT_LOWSTOCK', 'WARNUNG: Lagermindestbestand unterschritten');
 define('SEND_EXTRA_LOW_STOCK_EMAIL_TITLE', 'Lagerbestandsbericht: ');
 
-// for when gethost is off
-define('OFFICE_IP_TO_HOST_ADDRESS', 'Deaktiviert');
+
