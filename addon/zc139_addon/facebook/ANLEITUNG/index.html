@@ -1,0 +1,322 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<title>Facebook 2.1 für Zen-Cart 1.3.9 deutsch</title>
+<meta http-equiv="pragma" content="no-cache">
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
+<meta http-equiv="content-language" content="de">
+<meta name="description" content="Modul zur Facebook Integration für Zen-Cart 1.3 9 deutsch">
+<link rel="stylesheet" type="text/css" href="includes/css/stylesheet.css">  
+<script type="text/javascript" src="includes/jscript/jscript_tabs.js"></script>
+</head>
+<body>
+<div id="wrapper">
+<div id="header">
+<h1>Facebook 2.1 für Zen-Cart 1.3.9 deutsch</h1>
+</div>
+
+<div id="slidetabsmenu" style="display: none;">
+<ul>
+  <li> <a onClick="expandcontent('sc1', this)" href="javascript:void(0)"><span>Sinn und Zweck</span></a></li>
+  <li> <a onClick="expandcontent('sc2', this)" href="javascript:void(0)"><span>Installation</span></a></li>
+  <li> <a onClick="expandcontent('sc3', this)" href="javascript:void(0)"><span>Update von 2.0</span></a></li>
+   <li> <a onClick="expandcontent('sc4', this)" href="javascript:void(0)"><span>Deinstallation</span></a></li>
+  <li> <a onClick="expandcontent('sc5', this)" href="javascript:void(0)"><span>Download & Support</span></a></li>
+  <li> <a onClick="expandcontent('sc6', this)" href="javascript:void(0)"><span>Unterstützen</span></a></li>
+ </ul>
+</div>
+<br style="clear: both;">
+
+<!--Begin tabcontainer-->
+<div id="tabcontentcontainer">
+
+<!--Begin sc1-->
+<div class="tabcontent" id="sc1" style="display: block;">
+<div class="textcontent">
+<div class="regularlist">
+
+<h2>Sinn und Zweck dieses Moduls</h2>
+
+  <p>Mit diesem Modul kann der Facebook Like It Button an beliebigen Stellen des Shops eingebunden werden. <br>
+Es stehen umfangreiche Administrationsmöglichkeiten zur Verfügung.<br>
+<br>
+Voraussetzungen:</p>
+  <ul>
+    <li>ein Facebook Account</li>
+    <li>Facebook Application ID (Anwendungs ID) und den dazugehörenden Application Secret Key (Anwendungs-Geheimcode). <br>
+      Falls Sie noch keine erstellt haben:<br>
+      <a href="http://www.facebook.com/developers" target="_blank">http://www.facebook.com/developers</a></li>
+  </ul>
+<h3>Copyright, Changelog, Lizenz</h3>
+<p>Copyright<br>
+  (c) 2011 Numinix (<a href="http://www.numinix.com" target="_blank">www.numinix.com</a>) <br>
+  <br>
+  CSS/Javascript Loader<br>
+(c) yellow1912 (<a href="http://blog.rubikintegration.com/2009/08/08/zencart-css-javascript-loader-released/">www.rubikintegration.com</a>) <br>
+  <br>
+  deutsche Übersetzung, Anpassung und Anleitung für Zen-Cart 1.3.9 deutsch<br>
+  (c) 2011 webchills (<a href="http://www.webchills.at" target="_blank">www.webchills.at</a>) </p>
+<p>Changelog Version 2.1:</p>
+<ul><li> Unnötige Admineinstellungen entfernt </li>
+  <li> Unterstüzung der stored_url entfernt</li>
+  <li> Update auf neuere CJ Loader Version</li>
+  <li> Codebereinigung bei Facebook Open Graph</li>
+  <li> vollständig kompatibel mit PHP 5.3.x</li>
+</ul>
+<p> Portions Copyright (c) 2003 osCommerce<br>
+  Portions Copyright     (c) 2003-2011 Zen Cart</p>
+<p>This contribution is subject to version 2.0 of the GPL license available through the world-wide-web at the following url:<br>
+  <a href="http://www.zen-cart.com/license/2_0.txt">http://www.zen-cart.com/license/2_0.txt</a></p>
+</div>
+</div>
+</div>
+<!--End sc1-->
+
+<!--Begin sc2-->
+<div class="tabcontent" id="sc2" style="display: block;">
+<div class="textcontent">
+<div class="regularlist">
+
+<h2>Installation</h2>
+<h3>Voraussetzungen</h3>
+  <br>
+  Dieses Modul ist<strong> nur für die deutsche Zen-Cart 1.3.9 Version geeignet</strong></p>
+  <p><br>
+  <strong>Sie benötigen eine Facebook Application ID (Anwendungs ID) und den dazugehörenden Application Secret Key (Anwendungs-Geheimcode)</strong>. <br>
+  Falls Sie noch keine erstellt haben:<br>
+  <a href="http://www.facebook.com/developers" target="_blank">http://www.facebook.com/developers</a></p>
+<p>Für den Einbau dieses Moduls sollten Sie über folgende Werkzeuge verfügen:<br>
+  <br>
+  <strong>1) Ein guter Texteditor </strong><br>
+  Damit ist nicht das in Windows enthaltene Notepad oder Microsoft Word gemeint.<br>
+  Sie benötigen einen Texteditor, der utf-8 versteht und auch im Format utf-8 ohne BOM abspeichern kann.<br>
+  Meine Empfehlung: <a href="http://www.ultraedit.com/loc/de/index_de.html" target="_blank">UltraEdit</a> (kostenlose 30 Tage Testversion verfügbar)<br>
+  Ebenfalls gut geeignet ist der kostenlose Texteditor <a href="http://notepad-plus.sourceforge.net/de/site.htm" target="_blank">Notepad++ </a><br>
+</p>
+<p><strong>2) Ein Tool zum Vergleichen von Dateien</strong><br>
+  Bei der Installation dieses Moduls ist es erforderlich, dass Sie den     Inhalt einiger Ihrer bestehenden Zen-Cart Dateien mit dem Inhalt der     neuen Moduldateien vergleichen und die Änderungen zusammenführen     ("mergen").<br>
+  Meine Empfehlung: <a href="http://www.scootersoftware.com/" target="_blank">BeyondCompare</a> (kostenlose 30 Tage Testversion verfügbar)<br>
+  Ebenfalls gut geeignet ist das kostenlose Programm <a href="http://winmerge.org/" target="_blank">WinMerge </a></p>
+<p><br>
+  <strong>Empfehlung:</strong><br>
+  <br>
+  Dieses Modul erst in einem Testsystem einbauen und dort   konfigurieren/testen und endgültig an die eigenen Wünsche anpassen.        Erst dann in einem Liveshop einsetzen! Sichern Sie unbedingt alle   Dateien Ihres Shops per FTP und sichern Sie die Datenbank mit phpMyAdmin   oder anderen geeigneten Tools!</p>
+<div id="warning"><b>WICHTIG</b><br>
+Vor dem Einbau dieser Änderungen:<br>
+BACKUP von Shop und Datenbank machen! <br>
+Keine Haftung, Verwendung auf eigene Gefahr!<br>
+BACKUP gemacht? Ok, dann weiterlesen...
+</div>
+<p>Die Installation erfolgt in 3 Schritten. Halten Sie diesen Ablauf ein!</p>
+<h3>Schritt 1: Installation des CSS Javascript Loaders</h3>
+<p>1.<br>
+  Im Order SCHRITT 1 - CSS JAVASCRIPT LOADER im Ordner SQL die Datei   install.sql mit einem Texteditor öffnen und den Inhalt kopieren.<br>
+  In der Zen-Cart Administration unter Tools &gt; SQL Patches installieren ins Eingabefeld einfügen und absenden.<br>
+  Dadurch werden die nötigen Datenbankeinträge vorgenommen.<br>
+  In der Administration ist nun unter Konfiguration der neue Menüpunkt CSS/JS Loader vorhanden.<br>
+  Die Einstellungsmöglichkeiten sind bereits auf die nötigen Werte gesetzt.</p>
+<p>2.<br>
+  Im Order SCHRITT 1 - CSS JAVASCRIPT LOADER im Ordner GEAENDERTE   DATEIEN  den Ordner includes/templates/DEINTEMPLATE auf das im Shop   aktive Template umbenennen.<br>
+  Dann in der vorgegebenen Struktur ins Shopverzeichnis hochladen.<br>
+  Achtung:<br>
+  Beim Hochladen wird eine bestehende includes/templates/DEINTEMPLATE/common/html_header.php überschrieben!<br>
+  Daher:<br>
+  Falls bereits einmal Änderungen an dieser Datei in der Zen-Cart     Installation gemacht wurden, mit WinMerge oder BeyondCompare die Dateien     vergleichen und nur die Änderungen in die bestehende Datei     übernehmen.<br>
+  Wurden noch keine Änderungen gemacht (Zen-Cart wurde z.B. gerade erst     frisch installiert), die Ordner/Dateien aus dem Ordner GEAENDERTE     DATEIEN einfach in der vorgegebenen Struktur in Ihr Zen-Cart Verzeichnis     hochladen.</p>
+<p>3.<br>
+  Im Ordner SCHRITT 1 - CSS JAVASCRIPT LOADER  im Ordner NEUE   DATEIEN   den Ordner includes/DEINTEMPLATE auf den Namen des im Shop aktiven   Templates umbenennen. Den Ordner DEINADMIN auf den Namen Ihres Admin-Verzeichnisses umbenennen. Dann die Dateien/Ordner in der vorgegebenen   Struktur ins Zen-Cart   Verzeichnis hochladen. Dabei werden keinerlei   bestehende Dateien   überschrieben.</p>
+<h3>Schritt 2: Installation von Facebook Open Graph</h3>
+<p>1.<br>
+  Im Order SCHRITT 2 - FACEBOOK OPEN GRAPH im Ordner SQL die Datei   install.sql mit einem Texteditor öffnen und den Inhalt kopieren.<br>
+  In der Zen-Cart Administration unter Tools &gt; SQL Patches installieren ins Eingabefeld einfügen und absenden.<br>
+  Dadurch werden die nötigen Datenbankeinträge vorgenommen.<br>
+  In der Administration ist nun unter Konfiguration der neue Menüpunkt Facebook Open Graph vorhanden.<br>
+  Die Einstellungsmöglichkeiten sind dort alle erklärt.<br>
+  Tragen Sie nun Ihre Anwendungsnummer und Ihren Anwendungsgeheimcode ein.<br>
+</p>
+<p>2.<br>
+  Im Order SCHRITT 2 - FACEBOOK OPEN GRAPH im Ordner NEUE DATEIEN  den   Ordner includes/templates/DEINTEMPLATE auf das im Shop aktive Template   umbenennen. 
+  Dann in der vorgegebenen Struktur ins Shopverzeichnis hochladen. Dabei werden keinerlei bestehende Dateien überschrieben.</p>
+<p>3.<br>
+  Laden Sie nun folgende Dateien aus Ihrem Shopverzeichnis herunter:<br>
+  includes/languages/german.php<br>
+  und<br>
+  includes/languages/english.php<br>
+  Sollten Sie bereits ein Override-Verzeichnis angelegt haben, dann nehmen Sie  includes/languages/DEINTEMPLATE/german.php<br>
+  und<br>
+  includes/languages/DEINTEMPLATE/english.php <br>
+  <br>
+  Ändern Sie in der german.php ca. Zeile 50 von <br>
+  <br>
+<code>define('HTML_PARAMS','dir="ltr" lang="de"');</code>
+  auf:<br>
+<code>
+  define('HTML_PARAMS','dir="ltr" lang="de"   xmlns:og="http://opengraphprotocol.org/schema/"   xmlns:fb="http://www.facebook.com/2008/fbml"');</code>
+  Ändern Sie in der english.php ca. Zeile 50 von
+  <code>
+define('HTML_PARAMS','dir="ltr" lang="en"'); </code>
+auf:<br/><code>
+define('HTML_PARAMS','dir="ltr" lang="en"   xmlns:og="http://opengraphprotocol.org/schema/"   xmlns:fb="http://www.facebook.com/2008/fbml"');</code>
+<br/><br/>
+Laden Sie dann die geänderten german.php und english.php hoch und ersetzen Sie die bestehenden damit.
+</p>
+<h3>Schritt 3: Installation von Facebook Like Button</h3>
+<p>1.<br>
+  Im Ordner SCHRITT 3 - FACEBOOK LIKEIT im Ordner SQL die Datei install.sql mit einem Texteditor öffnen und den Inhalt kopieren.<br>
+  In der Zen-Cart Administration unter Tools &gt; SQL Patches installieren ins Eingabefeld einfügen und absenden.<br>
+  Dadurch werden die nötigen Datenbankeinträge vorgenommen.<br>
+  In der Administration ist nun unter Konfiguration der neue Menüpunkt Facebook Like Button vorhanden.<br>
+  Die Einstellungsmöglichkeiten sind dort alle erklärt.</p>
+<p>2.<br>
+  Im Ordner SCHRITT 3 - FACEBOOK LIKEIT im Ordner NEUE DATEIEN  den Ordner includes/templates/DEINTEMPLATE auf das im Shop aktive Template umbenennen. <br>
+  Dann in der vorgegebenen Struktur ins Shopverzeichnis hochladen. Dabei werden keinerlei bestehende Dateien überschrieben.<br>
+</p>
+<p>3.<br>
+  Sie können den Facebook Like Button anzeigen, wo immer Sie wollen. Die   Integration des nötigen Codes erfolgt mit einem Codeschnipsel.<br>
+  Öffnen Sie im Ordner SCHRITT 3 - FACEBOOK LIKEIT im Ordner BUTTON   BEISPIEL die likebutton.txt mit einem Texteditor und kopieren Sie sich   den Code </p>
+<p>Um den Button auf der Artikeldetailseite anzuzeigen, bauen Sie diesen   Code einfach an der gewünschten Stelle ein im passenden Template:   includes/templates/DEINTEMPLATE/templates/tpl_product_info_display.php<br>
+  <br>
+  Eine bereits damit ausgestattete Beispieldatei finden Sie ebenfalls in Ordner BUTTON BEISPIEL </p>
+<p>Nach demselben Prinzip können Sie den Button auch auf der   Startseite, den Kategorieseiten oder wo auch immer einbauen. Fügen Sie   einfach den Code in das entsprechende Template ein.<br>
+  <br>
+  4.<br>
+  Das Aussehen und die Funktionaliät des Buttons steuern Sie in der   Zen-Cart Administration unter Konfiguration &gt; Facebook Like Button. </p>
+  </div>
+</div>
+</div>
+
+<!--End sc2-->
+
+<!--Begin sc3-->
+<div class="tabcontent" id="sc3" style="display: block;">
+<div class="textcontent">
+<div class="regularlist">
+
+<h2>UPDATE VON 2.0 auf 2.1</h2>
+<p>Wenn Sie bereits Version 2.0 dieses Moduls verwenden und auf 2.1 updaten wollen, gehen Sie bitte folgendermaßen vor:<br>
+  <br>
+1)<br>
+Aktualisieren des CSS/Javascript Loaders<br>
+Version 2.1 enthält eine neue Version des CSS/Javascript Loaders.<br>
+Die Datenbankkonfigurationseinstellungen unter Konfiguration &gt; CSS/JS Loader bleiben gleich.<br>
+Es haben sich allerdings einige Dateien geändert und neue sind hinzugekommen.</p>
+<p>Laden Sie zuerst wie unter Neuinstallation beschrieben alle Dateien   und Ordner aus dem Ordner NEUE DATEIEN im Ordner SCHRITT 1 - CSS   JAVASCRIPT LOADER hoch (vorher den darin enthaltenen Ordner   includes/DEINTEMPLATE auf den Namen des im Shop aktiven Templates   umbenennen. Dabei werden bestehende alte Dateien des Moduls   überschrieben, das ist ok.</p>
+<p>Passen Sie nun folgende Datei aus Ihrer Zen-Cart Installation an:<br>
+  includes/templates/DEINTEMPLATE/common/html_header.php<br>
+  Diese enthält noch den alten Code zum Aufruf des CSS/Javascript Loaders.<br>
+  Vergleichen Sie die Datei mit der aus dem Ordner GEAENDERTE DATEIEN im Ordner  SCHRITT 1 - CSS JAVASCRIPT LOADER und ändern Sie Ihre Datei entsprechend ab.<br>
+  <br>
+  Entfernen Sie folgende Dateien vom Server, sie werden nun nicht mehr benötigt:<br>
+  includes/classes/browser.php<br>
+  includes/classes/class.cj_loader.php<br>
+  includes/auto_loaders/config.css_jscript_auto_loaders.php<br>
+  includes/init_includes/init_css_jscript_auto_loaders.php </p>
+<p>2)<br>
+  Aktualisierung von Facebook Open Graph<br>
+  Kopieren Sie folgenden Befehl unter Tools &gt; SQL Patches installieren ins Eingabefeld und senden ihn ab:<br>
+<code>
+  ALTER TABLE `products`  DROP `stored_url`;<br>
+  DELETE FROM configuration WHERE configuration_key = 'FACEBOOK_OPEN_GRAPH_CPATH';<br>
+  DELETE FROM configuration WHERE configuration_key = 'FACEBOOK_OPEN_GRAPH_LANGUAGE'; <br>
+  DELETE FROM configuration WHERE configuration_key = 'FACEBOOK_OPEN_GRAPH_CANONICAL';<br>
+  DELETE FROM configuration WHERE configuration_key = 'FACEBOOK_OPEN_GRAPH_STORED_URL';<br>
+  DELETE FROM configuration_language WHERE configuration_key = 'FACEBOOK_OPEN_GRAPH_CPATH';<br>
+  DELETE FROM configuration_language WHERE configuration_key = 'FACEBOOK_OPEN_GRAPH_LANGUAGE'; <br>
+  DELETE FROM configuration_language WHERE configuration_key = 'FACEBOOK_OPEN_GRAPH_CANONICAL';<br>
+  DELETE FROM configuration_language WHERE configuration_key = 'FACEBOOK_OPEN_GRAPH_STORED_URL';
+  </code>
+  <br/>
+  Dadurch   entfernen Sie die nicht mehr benötigten Konfigurationseinstellungen, alle anderen unter Konfiguration &gt; Facebook Open Graph bleiben   erhalten.<br>
+  <br>
+  Laden Sie nun die Dateien und Ordner aus NEUE DATEIEN im Ordner   SCHRITT 2 - FACEBOOK OPEN GRAPH hoch (vorher den darin enthaltenen   Ordner includes/DEINTEMPLATE auf den Namen des im Shop aktiven Templates   umbenennen. Dabei werden bestehende alte Dateien des Moduls   überschrieben, das ist ok.<br>
+  <br>
+  Fertig, Sie haben auf 2.1 aktualisiert. Es sind keine Änderungen an   den in SCHRITT 3 - FACEBOOK LIKEIT enthaltenen Dateien nötig. </p>
+
+</div>
+</div>
+</div>
+<!--End sc3-->
+
+<!--Begin sc4-->
+<div class="tabcontent" id="sc4" style="display: block;">
+<div class="textcontent">
+<div class="regularlist">
+
+<h2>DEINSTALLATION</h2>
+<p>
+ Um Facebook 2.1 vollständig zu entfernen, gehen Sie bitte wie folgt vor:
+</p>
+
+<p>
+Alle oben beschriebenen Änderungen wieder rückgängig machen und die Originaldateien wieder einspielen.</p>
+<p>Alle Datenbankeinträge durch Einspielen der entsprechenden uninstall.sql in den Ordnern SQL wieder entfernen.
+
+</p>
+
+
+
+</div>
+</div>
+</div>
+<!--End sc4-->
+
+<!--Begin sc5-->
+<div class="tabcontent" id="sc5" style="display: block;">
+<div class="textcontent">
+<div class="regularlist">
+<h2>Download &amp; Support</h2>
+<p>Download des Moduls:</p>
+<p><a href="http://www.zen-cart.at/zcvb/forum/downloads.php" target="_blank">www.zen-cart.at/zcvb/forum/downloads.php</a></p>
+
+<p>Supportforum zum Modul:</p>
+<p><a href="http://www.zen-cart.at/zcvb/forum/forumdisplay.php?f=67" target="_blank">http://www.zen-cart.at/zcvb/forum/forumdisplay.php?f=67</a></p>
+</div>
+</div>
+</div>
+<!--End sc5-->
+
+<!--Begin sc6-->
+<div class="tabcontent" id="sc6" style="display: block;">
+<div class="textcontent">
+<div class="regularlist">
+
+<h2>Unterstützen</h2>
+<p>Sie finden dieses Modul nützlich?</p>
+Ich freue mich über einen Espresso, Capuccino oder Irish Coffee:<br>
+<a href="http://www.webchills.at/zencart/" target="_blank">webchills Zen-Cart Kaffeekasse</a>
+<p>Sie haben vom Support im Forum auf www.zen-cart.at profitiert?</p>
+<p>Unterstützen Sie die Weiterentwicklung der deutschen Zen-Cart Version.<br/>Wir freuen uns über Spenden zur Finanzierung des Servers und der vBulletin-Lizenz: </p>
+<form action="https://www.paypal.com/cgi-bin/webscr" method="post">
+<input type="hidden" name="cmd" value="_s-xclick">
+<input type="hidden" name="hosted_button_id" value="7AFFRK4FQ2EZ8">
+<input type="image" src="https://www.paypalobjects.com/de_DE/AT/i/btn/btn_donateCC_LG.gif" border="0" name="submit" alt="Jetzt einfach, schnell und sicher online bezahlen – mit PayPal.">
+<img alt="" border="0" src="https://www.paypalobjects.com/de_DE/i/scr/pixel.gif" width="1" height="1">
+</form>
+<br/><br/>
+</div>
+</div>
+</div>
+<!--End sc6-->
+</div>
+<div id="footer">
+Ein Modul von <a href="http://www.zen-cart.at" target="_blank">www.zen-cart.at</a> - Die deutsche Zen-Cart Version
+</div>
+</div>
+<!--end tabcontainer-->
+<script type="text/javascript">document.getElementById('sc1').style.display = 'none';</script>
+<script type="text/javascript">document.getElementById('sc2').style.display = 'none';</script>
+<script type="text/javascript">document.getElementById('sc3').style.display = 'none';</script>
+<script type="text/javascript">document.getElementById('sc4').style.display = 'none';</script>
+<script type="text/javascript">document.getElementById('sc5').style.display = 'none';</script>
+<script type="text/javascript">document.getElementById('sc6').style.display = 'none';</script>
+<script type="text/javascript">ShowTabs()</script>
+<script type="text/javascript">
+// We only show the tab links if JavaScript is available/active.
+<!--
+if (document.getElementById("slidetabsmenu") != null) {
+  document.getElementById('slidetabsmenu').style.display = "block";
+}
+//-->
+</script>
+
+</body></html>
