@@ -101,7 +101,7 @@ class paypalwpp extends base {
     global $order;
     $this->code = 'paypalwpp';
     $this->codeTitle = MODULE_PAYMENT_PAYPALWPP_TEXT_ADMIN_TITLE_EC;
-    $this->codeVersion = '1.5.0';
+    $this->codeVersion = '1.5.0RC1';
     $this->enableDirectPayment = FALSE;
     $this->enabled = (MODULE_PAYMENT_PAYPALWPP_STATUS == 'True');
     // Set the title & description text based on the mode we're in ... EC vs US/UK vs admin
@@ -1339,14 +1339,14 @@ class paypalwpp extends base {
     }
 
     // check whether discounts are causing a problem
-    if (strval($optionsST['ITEMAMT']) < 0) {
+    if (strval($optionsST['ITEMAMT']) <= 0) {
       $pre = (array_merge($optionsST, $optionsLI));
       $optionsST['ITEMAMT'] = $optionsST['AMT'];
       $optionsLI = array();
       $optionsLI["L_NAME0"] = MODULES_PAYMENT_PAYPALWPP_AGGREGATE_CART_CONTENTS;
       $optionsLI["L_AMT0"]  = $sumOfLineItems = $subTotalLI = $optionsST['ITEMAMT'];
-      if ($optionsST['AMT'] < $optionsST['TAXAMT']) $optionsST['TAXAMT'] = 0;
-      if ($optionsST['AMT'] < $optionsST['SHIPPINGAMT']) $optionsST['SHIPPINGAMT'] = 0;
+      /*if ($optionsST['AMT'] < $optionsST['TAXAMT']) */ $optionsST['TAXAMT'] = 0;
+      /*if ($optionsST['AMT'] < $optionsST['SHIPPINGAMT']) */ $optionsST['SHIPPINGAMT'] = 0;
       $discountProblemsFlag = TRUE;
       $this->zcLog('getLineItemDetails 6', 'Discounts have caused the subtotal to calculate incorrectly. Line-item-details cannot be submitted.' . "\nBefore:" . print_r($pre, TRUE) . "\nAfter:" . print_r(array_merge($optionsST, $optionsLI), true));
     }

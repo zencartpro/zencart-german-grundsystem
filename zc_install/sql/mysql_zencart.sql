@@ -5,7 +5,7 @@
 # * @copyright Copyright 2003-2011 Zen Cart Development Team
 # * @copyright Portions Copyright 2003 osCommerce
 # * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
-# * @version $Id: mysql_zencart.sql 19323 2011-09-16 15:35:59Z webchills $
+# * @version $Id: mysql_zencart.sql 19324 2011-10-20 12:35:59Z webchills $
 #
 
 ############ IMPORTANT INSTRUCTIONS ###############
@@ -2944,7 +2944,7 @@ INSERT INTO layout_boxes (layout_id, layout_template, layout_box_name, layout_bo
     (45, 'template_default', 'search_header.php', 0, 0, 0, 0, 1),
     (46, 'template_default', 'shopping_cart.php', 1, 1, 20, 30, 1),
     (47, 'template_default', 'specials.php', 1, 1, 45, 0, 0),
-    (48, 'template_default', 'tell_a_friend.php', 1, 1, 65, 0, 0),
+   
     (49, 'template_default', 'whats_new.php', 1, 0, 20, 0, 0),
     (50, 'template_default', 'whos_online.php', 1, 1, 200, 200, 1),
     (51, 'viennablood', 'banner_box.php', 1, 0, 300, 1, 127),
@@ -2970,7 +2970,7 @@ INSERT INTO layout_boxes (layout_id, layout_template, layout_box_name, layout_bo
     (71, 'viennablood', 'search_header.php', 0, 0, 0, 0, 1),
     (72, 'viennablood', 'shopping_cart.php', 1, 1, 20, 30, 1),
     (73, 'viennablood', 'specials.php', 1, 1, 45, 0, 0),
-    (74, 'viennablood', 'tell_a_friend.php', 0, 1, 65, 0, 0),
+   
     (75, 'viennablood', 'whats_new.php', 1, 0, 20, 0, 0),
     (76, 'viennablood', 'whos_online.php', 1, 1, 200, 200, 1),
     (77, 'classic', 'banner_box.php', 1, 0, 300, 1, 127),
@@ -2996,7 +2996,7 @@ INSERT INTO layout_boxes (layout_id, layout_template, layout_box_name, layout_bo
     (97, 'classic', 'search_header.php', 0, 0, 0, 0, 1),
     (98, 'classic', 'shopping_cart.php', 1, 1, 20, 30, 1),
     (99, 'classic', 'specials.php', 1, 1, 45, 0, 0),
-    (100, 'classic', 'tell_a_friend.php', 1, 1, 65, 0, 0),
+   
     (101, 'classic', 'whats_new.php', 1, 0, 20, 0, 0),
     (102, 'classic', 'whos_online.php', 1, 1, 200, 200, 1),
     (103, 'viennabright', 'banner_box.php', 1, 0, 300, 1, 127),
@@ -3022,7 +3022,7 @@ INSERT INTO layout_boxes (layout_id, layout_template, layout_box_name, layout_bo
     (123, 'viennabright', 'search_header.php', 0, 0, 0, 0, 1),
     (124, 'viennabright', 'shopping_cart.php', 1, 1, 20, 30, 1),
     (125, 'viennabright', 'specials.php', 1, 1, 45, 0, 0),
-    (126, 'viennabright', 'tell_a_friend.php', 1, 1, 65, 0, 0),
+    
     (127, 'viennabright', 'whats_new.php', 1, 0, 20, 0, 0),
     (128, 'viennabright', 'whos_online.php', 1, 1, 200, 200, 1),
     (129, 'css', 'banner_box.php', 1, 0, 300, 1, 127),
@@ -3048,7 +3048,7 @@ INSERT INTO layout_boxes (layout_id, layout_template, layout_box_name, layout_bo
     (149, 'css', 'search_header.php', 0, 0, 0, 0, 1),
     (150, 'css', 'shopping_cart.php', 1, 1, 20, 30, 1),
     (151, 'css', 'specials.php', 1, 1, 45, 0, 0),
-    (152, 'css', 'tell_a_friend.php', 1, 1, 65, 0, 0),
+    
     (153, 'css', 'whats_new.php', 1, 0, 20, 0, 0),
     (154, 'css', 'whos_online.php', 1, 1, 200, 200, 1),
     (173, 'default_template_settings', 'reviews.php', 1, 0, 40, 0, 0),
@@ -3056,7 +3056,7 @@ INSERT INTO layout_boxes (layout_id, layout_template, layout_box_name, layout_bo
     (175, 'default_template_settings', 'search_header.php', 0, 0, 0, 0, 1),
     (176, 'default_template_settings', 'shopping_cart.php', 1, 1, 20, 30, 1),
     (177, 'default_template_settings', 'specials.php', 1, 1, 45, 0, 0),
-    (178, 'default_template_settings', 'tell_a_friend.php', 1, 1, 65, 0, 0),
+   
     (179, 'default_template_settings', 'whats_new.php', 1, 0, 20, 0, 0),
     (180, 'default_template_settings', 'whos_online.php', 1, 1, 200, 200, 1);
 
@@ -3104,7 +3104,6 @@ INSERT INTO product_type_layout (configuration_title, configuration_key, configu
 
 INSERT INTO product_type_layout (configuration_title, configuration_key, configuration_value, configuration_description, product_type_id, sort_order, set_function, date_added) VALUES ('Show Starting At text on Price', 'SHOW_PRODUCT_INFO_STARTING_AT', '1', 'Display Starting At text on products with attributes Product Info 0= off 1= on', '1', '12', 'zen_cfg_select_drop_down(array(array(\'id\'=>\'1\', \'text\'=>\'True\'), array(\'id\'=>\'0\', \'text\'=>\'False\')), ', now());
 
-INSERT INTO product_type_layout (configuration_title, configuration_key, configuration_value, configuration_description, product_type_id, sort_order, set_function, date_added) VALUES ('Show Product Tell a Friend button', 'SHOW_PRODUCT_INFO_TELL_A_FRIEND', '1', 'Display the Tell a Friend button on Product Info<br /><br />Note: Turning this setting off does not affect the Tell a Friend box in the columns and turning off the Tell a Friend box does not affect the button<br />0= off 1= on', '1', '15', 'zen_cfg_select_drop_down(array(array(\'id\'=>\'1\', \'text\'=>\'True\'), array(\'id\'=>\'0\', \'text\'=>\'False\')), ', now());
 INSERT INTO product_type_layout (configuration_title, configuration_key, configuration_value, configuration_description, product_type_id, sort_order, set_function, date_added) VALUES ('Product Free Shipping Image Status - Catalog', 'SHOW_PRODUCT_INFO_ALWAYS_FREE_SHIPPING_IMAGE_SWITCH', '0', 'Show the Free Shipping image/text in the catalog?', '1', '16', 'zen_cfg_select_drop_down(array(array(\'id\'=>\'1\', \'text\'=>\'Yes\'), array(\'id\'=>\'0\', \'text\'=>\'No\')), ', now());
 #admin defaults
 INSERT INTO product_type_layout (configuration_title, configuration_key, configuration_value, configuration_description, product_type_id, sort_order, use_function, set_function, date_added) VALUES ('Product Price Tax Class Default - When adding new products?', 'DEFAULT_PRODUCT_TAX_CLASS_ID', '0', 'What should the Product Price Tax Class Default ID be when adding new products?', '1', '100', '', '', now());
@@ -3129,7 +3128,6 @@ INSERT INTO product_type_layout (configuration_title, configuration_key, configu
 INSERT INTO product_type_layout (configuration_title, configuration_key, configuration_value, configuration_description, product_type_id, sort_order, set_function, date_added) VALUES ('Show Starting At text on Price', 'SHOW_PRODUCT_MUSIC_INFO_STARTING_AT', '1', 'Display Starting At text on products with attributes Product Info 0= off 1= on', '2', '12', 'zen_cfg_select_drop_down(array(array(\'id\'=>\'1\', \'text\'=>\'True\'), array(\'id\'=>\'0\', \'text\'=>\'False\')), ', now());
 INSERT INTO product_type_layout (configuration_title, configuration_key, configuration_value, configuration_description, product_type_id, sort_order, set_function, date_added) VALUES ('Show Product Additional Images', 'SHOW_PRODUCT_MUSIC_INFO_ADDITIONAL_IMAGES', '1', 'Display Additional Images on Product Info 0= off 1= on', '2', '13', 'zen_cfg_select_drop_down(array(array(\'id\'=>\'1\', \'text\'=>\'True\'), array(\'id\'=>\'0\', \'text\'=>\'False\')), ', now());
 
-INSERT INTO product_type_layout (configuration_title, configuration_key, configuration_value, configuration_description, product_type_id, sort_order, set_function, date_added) VALUES ('Show Product Tell a Friend button', 'SHOW_PRODUCT_MUSIC_INFO_TELL_A_FRIEND', '1', 'Display the Tell a Friend button on Product Info<br /><br />Note: Turning this setting off does not affect the Tell a Friend box in the columns and turning off the Tell a Friend box does not affect the button<br />0= off 1= on', '2', '15', 'zen_cfg_select_drop_down(array(array(\'id\'=>\'1\', \'text\'=>\'True\'), array(\'id\'=>\'0\', \'text\'=>\'False\')), ', now());
 INSERT INTO product_type_layout (configuration_title, configuration_key, configuration_value, configuration_description, product_type_id, sort_order, set_function, date_added) VALUES ('Product Free Shipping Image Status - Catalog', 'SHOW_PRODUCT_MUSIC_INFO_ALWAYS_FREE_SHIPPING_IMAGE_SWITCH', '0', 'Show the Free Shipping image/text in the catalog?', '2', '16', 'zen_cfg_select_drop_down(array(array(\'id\'=>\'1\', \'text\'=>\'Yes\'), array(\'id\'=>\'0\', \'text\'=>\'No\')), ', now());
 #admin defaults
 INSERT INTO product_type_layout (configuration_title, configuration_key, configuration_value, configuration_description, product_type_id, sort_order, use_function, set_function, date_added) VALUES ('Product Price Tax Class Default - When adding new products?', 'DEFAULT_PRODUCT_MUSIC_TAX_CLASS_ID', '0', 'What should the Product Price Tax Class Default ID be when adding new products?', '2', '100', '', '', now());
@@ -3141,7 +3139,6 @@ INSERT INTO product_type_layout (configuration_title, configuration_key, configu
 INSERT INTO product_type_layout (configuration_title, configuration_key, configuration_value, configuration_description, product_type_id, sort_order, set_function, date_added) VALUES ('Show Product Reviews Button', 'SHOW_DOCUMENT_GENERAL_INFO_REVIEWS', '1', 'Display Product Reviews Button on Product Info 0= off 1= on', '3', '8', 'zen_cfg_select_drop_down(array(array(\'id\'=>\'1\', \'text\'=>\'True\'), array(\'id\'=>\'0\', \'text\'=>\'False\')), ', now());
 INSERT INTO product_type_layout (configuration_title, configuration_key, configuration_value, configuration_description, product_type_id, sort_order, set_function, date_added) VALUES ('Show Date Available', 'SHOW_DOCUMENT_GENERAL_INFO_DATE_AVAILABLE', '1', 'Display Date Available on Product Info 0= off 1= on', '3', '9', 'zen_cfg_select_drop_down(array(array(\'id\'=>\'1\', \'text\'=>\'True\'), array(\'id\'=>\'0\', \'text\'=>\'False\')), ', now());
 INSERT INTO product_type_layout (configuration_title, configuration_key, configuration_value, configuration_description, product_type_id, sort_order, set_function, date_added) VALUES ('Show Date Added', 'SHOW_DOCUMENT_GENERAL_INFO_DATE_ADDED', '1', 'Display Date Added on Product Info 0= off 1= on', '3', '10', 'zen_cfg_select_drop_down(array(array(\'id\'=>\'1\', \'text\'=>\'True\'), array(\'id\'=>\'0\', \'text\'=>\'False\')), ', now());
-INSERT INTO product_type_layout (configuration_title, configuration_key, configuration_value, configuration_description, product_type_id, sort_order, set_function, date_added) VALUES ('Show Product Tell a Friend button', 'SHOW_DOCUMENT_GENERAL_INFO_TELL_A_FRIEND', '1', 'Display the Tell a Friend button on Product Info<br /><br />Note: Turning this setting off does not affect the Tell a Friend box in the columns and turning off the Tell a Friend box does not affect the button<br />0= off 1= on', '3', '15', 'zen_cfg_select_drop_down(array(array(\'id\'=>\'1\', \'text\'=>\'True\'), array(\'id\'=>\'0\', \'text\'=>\'False\')), ', now());
 INSERT INTO product_type_layout (configuration_title, configuration_key, configuration_value, configuration_description, product_type_id, sort_order, set_function, date_added) VALUES ('Show Product URL', 'SHOW_DOCUMENT_GENERAL_INFO_URL', '1', 'Display URL on Product Info 0= off 1= on', '3', '11', 'zen_cfg_select_drop_down(array(array(\'id\'=>\'1\', \'text\'=>\'True\'), array(\'id\'=>\'0\', \'text\'=>\'False\')), ', now());
 INSERT INTO product_type_layout (configuration_title, configuration_key, configuration_value, configuration_description, product_type_id, sort_order, set_function, date_added) VALUES ('Show Product Additional Images', 'SHOW_DOCUMENT_GENERAL_INFO_ADDITIONAL_IMAGES', '1', 'Display Additional Images on Product Info 0= off 1= on', '3', '13', 'zen_cfg_select_drop_down(array(array(\'id\'=>\'1\', \'text\'=>\'True\'), array(\'id\'=>\'0\', \'text\'=>\'False\')), ', now());
 
@@ -3164,7 +3161,6 @@ INSERT INTO product_type_layout (configuration_title, configuration_key, configu
 
 INSERT INTO product_type_layout (configuration_title, configuration_key, configuration_value, configuration_description, product_type_id, sort_order, set_function, date_added) VALUES ('Show Starting At text on Price', 'SHOW_DOCUMENT_PRODUCT_INFO_STARTING_AT', '1', 'Display Starting At text on products with attributes Product Info 0= off 1= on', '4', '12', 'zen_cfg_select_drop_down(array(array(\'id\'=>\'1\', \'text\'=>\'True\'), array(\'id\'=>\'0\', \'text\'=>\'False\')), ', now());
 
-INSERT INTO product_type_layout (configuration_title, configuration_key, configuration_value, configuration_description, product_type_id, sort_order, set_function, date_added) VALUES ('Show Product Tell a Friend button', 'SHOW_DOCUMENT_PRODUCT_INFO_TELL_A_FRIEND', '1', 'Display the Tell a Friend button on Product Info<br /><br />Note: Turning this setting off does not affect the Tell a Friend box in the columns and turning off the Tell a Friend box does not affect the button<br />0= off 1= on', '4', '15', 'zen_cfg_select_drop_down(array(array(\'id\'=>\'1\', \'text\'=>\'True\'), array(\'id\'=>\'0\', \'text\'=>\'False\')), ', now());
 INSERT INTO product_type_layout (configuration_title, configuration_key, configuration_value, configuration_description, product_type_id, sort_order, set_function, date_added) VALUES ('Product Free Shipping Image Status - Catalog', 'SHOW_DOCUMENT_PRODUCT_INFO_ALWAYS_FREE_SHIPPING_IMAGE_SWITCH', '0', 'Show the Free Shipping image/text in the catalog?', '4', '16', 'zen_cfg_select_drop_down(array(array(\'id\'=>\'1\', \'text\'=>\'Yes\'), array(\'id\'=>\'0\', \'text\'=>\'No\')), ', now());
 #admin defaults
 INSERT INTO product_type_layout (configuration_title, configuration_key, configuration_value, configuration_description, product_type_id, sort_order, use_function, set_function, date_added) VALUES ('Product Price Tax Class Default - When adding new products?', 'DEFAULT_DOCUMENT_PRODUCT_TAX_CLASS_ID', '0', 'What should the Product Price Tax Class Default ID be when adding new products?', '4', '100', '', '', now());
@@ -3187,7 +3183,6 @@ INSERT INTO product_type_layout (configuration_title, configuration_key, configu
 
 INSERT INTO product_type_layout (configuration_title, configuration_key, configuration_value, configuration_description, product_type_id, sort_order, set_function, date_added) VALUES ('Show Starting At text on Price', 'SHOW_PRODUCT_FREE_SHIPPING_INFO_STARTING_AT', '1', 'Display Starting At text on products with attributes Product Info 0= off 1= on', '5', '12', 'zen_cfg_select_drop_down(array(array(\'id\'=>\'1\', \'text\'=>\'True\'), array(\'id\'=>\'0\', \'text\'=>\'False\')), ', now());
 
-INSERT INTO product_type_layout (configuration_title, configuration_key, configuration_value, configuration_description, product_type_id, sort_order, set_function, date_added) VALUES ('Show Product Tell a Friend button', 'SHOW_PRODUCT_FREE_SHIPPING_INFO_TELL_A_FRIEND', '1', 'Display the Tell a Friend button on Product Info<br /><br />Note: Turning this setting off does not affect the Tell a Friend box in the columns and turning off the Tell a Friend box does not affect the button<br />0= off 1= on', '5', '15', 'zen_cfg_select_drop_down(array(array(\'id\'=>\'1\', \'text\'=>\'True\'), array(\'id\'=>\'0\', \'text\'=>\'False\')), ', now());
 INSERT INTO product_type_layout (configuration_title, configuration_key, configuration_value, configuration_description, product_type_id, sort_order, set_function, date_added) VALUES ('Product Free Shipping Image Status - Catalog', 'SHOW_PRODUCT_FREE_SHIPPING_INFO_ALWAYS_FREE_SHIPPING_IMAGE_SWITCH', '1', 'Show the Free Shipping image/text in the catalog?', '5', '16', 'zen_cfg_select_drop_down(array(array(\'id\'=>\'1\', \'text\'=>\'Yes\'), array(\'id\'=>\'0\', \'text\'=>\'No\')), ', now());
 #admin defaults
 INSERT INTO product_type_layout (configuration_title, configuration_key, configuration_value, configuration_description, product_type_id, sort_order, use_function, set_function, date_added) VALUES ('Product Price Tax Class Default - When adding new products?', 'DEFAULT_PRODUCT_FREE_SHIPPING_TAX_CLASS_ID', '0', 'What should the Product Price Tax Class Default ID be when adding new products?', '5', '100', '', '', now());
