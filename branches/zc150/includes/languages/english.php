@@ -149,17 +149,6 @@
   define('BOX_INFORMATION_PAGE_3', 'Page 3');
   define('BOX_INFORMATION_PAGE_4', 'Page 4');
 
-// tell a friend box text in sideboxes/tell_a_friend.php
-  define('BOX_HEADING_TELL_A_FRIEND', 'Tell A Friend');
-  define('BOX_TELL_A_FRIEND_TEXT', 'Tell someone you know about this product.');
-
-// wishlist box text in includes/boxes/wishlist.php
-  define('BOX_HEADING_CUSTOMER_WISHLIST', 'My Wishlist');
-  define('BOX_WISHLIST_EMPTY', 'You have no items on your Wishlist');
-  define('IMAGE_BUTTON_ADD_WISHLIST', 'Add to Wishlist');
-  define('TEXT_WISHLIST_COUNT', 'Currently %s items are on your Wishlist.');
-  define('TEXT_DISPLAY_NUMBER_OF_WISHLIST', 'Displaying <strong>%d</strong> to <strong>%d</strong> (of <strong>%d</strong> items on your wishlist)');
-
 //New billing address text
   define('SET_AS_PRIMARY' , 'Set as Primary Address');
   define('NEW_ADDRESS_TITLE', 'Billing Address');

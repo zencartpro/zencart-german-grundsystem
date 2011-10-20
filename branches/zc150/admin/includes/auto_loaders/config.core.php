@@ -106,6 +106,14 @@ if (!defined('USE_PCONNECT')) define('USE_PCONNECT', 'false');
                                 'className'=>'sniffer',
                                 'objectName'=>'sniffer');
 /**
+ * Breakpoint 35.
+ *
+ * require(DIR_WS_FUNCTIONS . 'admin_access.php');
+ *
+ */
+  $autoLoadConfig[35][] = array('autoType'=>'require',
+                                'loadFile'=> DIR_WS_FUNCTIONS . 'admin_access.php');
+/**
  * Breakpoint 40.
  *
  * require('includes/init_includes/init_general_funcs.php');
@@ -131,10 +139,6 @@ if (!defined('USE_PCONNECT')) define('USE_PCONNECT', 'false');
  * require('includes/init_includes/init_languages.php');
  *
  */
-  $autoLoadConfig[70][] = array('autoType'=>'require',
-                                'loadFile'=> DIR_WS_FUNCTIONS . 'admin_access.php');
-
- 
   $autoLoadConfig[70][] = array('autoType'=>'init_script',
                                 'loadFile'=> 'init_languages.php');
 /**

@@ -5,7 +5,7 @@
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
  * @translators: cyaneo/hugo13/wflohr/maleborg/webchills	http://www.zen-cart.at
- * @version $Id: german.php 652 2011-10-11 11:22:57Z webchills $
+ * @version $Id: german.php 653 2011-10-20 12:45:57Z webchills $
  */
 
 // FOLLOWING WERE moved to meta_tags.php
@@ -156,16 +156,6 @@ define('BOX_INFORMATION_PAGE_2', 'Seite 2');
 define('BOX_INFORMATION_PAGE_3', 'Seite 3');
 define('BOX_INFORMATION_PAGE_4', 'Seite 4');
 
-// tell a friend box text in sideboxes/tell_a_friend.php
-define('BOX_HEADING_TELL_A_FRIEND', 'Weiterempfehlung');
-define('BOX_TELL_A_FRIEND_TEXT', 'Empfehlen Sie diesen Artikel einem Freund.');
-
-// wishlist box text in includes/boxes/wishlist.php
-define('BOX_HEADING_CUSTOMER_WISHLIST', 'Mein Wunschzettel');
-define('BOX_WISHLIST_EMPTY', 'Ihr Wunschzettel ist leer');
-define('IMAGE_BUTTON_ADD_WISHLIST', 'auf meinen Wunschzettel');
-define('TEXT_WISHLIST_COUNT', 'Derzeit sind %s Positionen auf Ihrem Wunschzettel.');
-define('TEXT_DISPLAY_NUMBER_OF_WISHLIST', 'Zeige <strong>%d</strong> bis <strong>%d</strong> (von <strong>%d</strong> Positionen Ihres Wunschzettels)');
 
 //New billing address text
 define('SET_AS_PRIMARY', 'Als Standardadresse verwenden');
