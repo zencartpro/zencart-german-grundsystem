@@ -6,7 +6,7 @@
  * Displays widerrufsrecht page.
  *
  * @package templateSystem
- * @copyright Copyright 2003-2010 Zen Cart Development Team
+ * @copyright Copyright 2003-2011 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
  * @version $Id: tpl_widerrufsrecht_default.php 628 2010-08-30 09:49:26Z webchills $

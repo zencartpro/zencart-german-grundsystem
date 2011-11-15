@@ -1,6 +1,6 @@
 ﻿Zen Cart(tm) - The Art of E-Commerce
 Willkommen bei Zen Cart(tm) E-Commerce
-Version 1.3.9f de
+Version 1.3.9h de
 
 
 Im Folgenden finden Sie eine sehr vereinfachte Installationsanleitung.
@@ -9,7 +9,7 @@ Wir schlagen vor, Sie verwenden die HTML-Version im /docs Ordner für detaillier
 Alle unsere README-Dokumente sind im Verzeichnis /docs Ordner dieser Version.
 
 Sie finden die deutsche Online-Dokumentation unter: 
-http://www.zen-cart.at/zcvb/forum/vbglossar.php
+http://www.zen-cart-pro.at/zcvb/forum/vbglossar.php
 
 Zen Cart verfügt über eine integrierte automatische Installation im System. Um diese nutzen zu können, müssen Sie zuerst den Code auf einem Web-Server entpacken
 
@@ -50,6 +50,6 @@ Unterschiede zur englischsprachigen Version:
 
 viel spaß mit der neuen version
 wünscht ihnen das team
-von zen-cart.at
+von zen-cart-pro.at
 
 (Document Revision: $Id$)

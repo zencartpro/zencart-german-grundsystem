@@ -1,7 +1,7 @@
-ViennaBlood Template by zen-cart.at
-http://www.zen-cart.at
+ViennaBlood Template by zen-cart-pro.at
+http://www.zen-cart-pro.at
 
-info@zen-cart.at
+info@zen-cart-pro.at
 
 This template is tested for use With IE6
 and Firefox Browsers, and is for use on

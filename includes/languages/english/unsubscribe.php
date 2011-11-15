@@ -1,7 +1,7 @@
 <?php
 /**
  * @package languageDefines
- * @copyright Copyright 2003-2010 Zen Cart Development Team
+ * @copyright Copyright 2003-2011 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @copyright Originally Programmed By: Christopher Bradley (www.wizardsandwars.com) for OsCommerce
  * @copyright Modified by Jim Keebaugh for OsCommerce

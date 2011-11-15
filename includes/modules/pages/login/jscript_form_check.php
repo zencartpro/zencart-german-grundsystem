@@ -3,7 +3,7 @@
  * jscript_form_check
  *
  * @package page
- * @copyright Copyright 2003-2010 Zen Cart Development Team
+ * @copyright Copyright 2003-2011 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
  * @version $Id: jscript_form_check.php 4683 2006-10-07 06:11:53Z drbyte $

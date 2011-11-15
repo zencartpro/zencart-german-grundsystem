@@ -3,10 +3,10 @@
  * ipn_main_handler.php callback handler for PayPal IPN notifications
  *
  * @package paymentMethod
- * @copyright Copyright 2003-2010 Zen Cart Development Team
+ * @copyright Copyright 2003-2011 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: ipn_main_handler.php 18014 2010-10-22 03:39:17Z drbyte $
+ * @version $Id: ipn_main_handler.php 768 2011-08-30 06:08:29Z hugo13 $
  */
 if (!defined('TEXT_RESELECT_SHIPPING')) define('TEXT_RESELECT_SHIPPING', 'You have changed the items in your cart since shipping was last calculated, and costs may have changed. Please verify/re-select your shipping method.');
 
@@ -124,7 +124,7 @@ Processing...
     @ini_set('log_errors_max_len', 0);
     @ini_set('display_errors', 0); // do not output errors to screen/browser/client (only to log file)
     @ini_set('error_log', DIR_FS_CATALOG . $debug_logfile_path);
-    error_reporting(version_compare(PHP_VERSION, 5.3, '>=') ? E_ALL & ~E_DEPRECATED & ~E_NOTICE : version_compare(PHP_VERSION, 6.0, '>=') ? E_ALL & ~E_DEPRECATED & ~E_NOTICE & ~E_STRICT : E_ALL & ~E_NOTICE);
+    error_reporting(version_compare(PHP_VERSION, 5.3, '>=') ? E_ALL & ~E_DEPRECATED & ~E_NOTICE : version_compare(PHP_VERSION, 5.4, '>=') ? E_ALL & ~E_DEPRECATED & ~E_NOTICE & ~E_STRICT : E_ALL & ~E_NOTICE);
   }
 
   ipn_debug_email('Breakpoint: Flag Status:' . "\nisECtransaction = " . (int)$isECtransaction . "\nisDPtransaction = " . (int)$isDPtransaction);
@@ -289,7 +289,7 @@ Processing...
        * require order class
        */
       require(DIR_WS_CLASSES . 'order.php');
-      $order = new order();
+      $order = new order;
       /**
        * require order_total class
        */
@@ -344,12 +344,13 @@ Processing...
         if (MODULE_PAYMENT_PAYPAL_ADDRESS_OVERRIDE == '1') {
           $sql_data_array['comments'] = '**** ADDRESS OVERRIDE ALERT!!! **** CHECK PAYPAL ORDER DETAILS FOR ACTUAL ADDRESS SELECTED BY CUSTOMER!!';
           $sql_data_array['customer_notified'] = -1;
+          zen_db_perform(TABLE_ORDERS_STATUS_HISTORY, $sql_data_array);
         }
-        zen_db_perform(TABLE_ORDERS_STATUS_HISTORY, $sql_data_array);
         ipn_debug_email('Breakpoint: 5k - OSH update done');
         $order->create_add_products($insert_id, 2);
         ipn_debug_email('Breakpoint: 5L - adding products');
         $_SESSION['order_number_created'] = $insert_id;
+        $GLOBALS[$_SESSION['payment']]->transaction_id = $_POST['txn_id'];
         $zco_notifier->notify('NOTIFY_CHECKOUT_PROCESS_AFTER_ORDER_CREATE_ADD_PRODUCTS');
         $order->send_order_email($insert_id, 2);
         ipn_debug_email('Breakpoint: 5m - emailing customer');
@@ -404,7 +405,8 @@ Processing...
       } else {
         $sql_data_array = ipn_create_order_update_array($txn_type);
         zen_db_perform(TABLE_PAYPAL, $sql_data_array, 'update', "txn_id='" . ($txn_type == 'cleared-authorization' ? $_POST['parent_txn_id'] : $_POST['txn_id']) . "'");
-        $sql = "select paypal_ipn_id from " . TABLE_PAYPAL . " where txn_id='" . $_POST['txn_id'] . "'";
+        $sql = "select paypal_ipn_id from " . TABLE_PAYPAL . " where txn_id=:txn:";
+        $sql = $db->bindVars($sql, ':txn:', $_POST['txn_id'], 'string');
         $result = $db->Execute($sql);
         $paypalipnID = $result->fields['paypal_ipn_id'];
       }
@@ -473,3 +475,4 @@ Processing...
       break;
   }
 }
+

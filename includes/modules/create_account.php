@@ -3,7 +3,7 @@
  * create_account header_php.php
  *
  * @package modules
- * @copyright Copyright 2003-2010 Zen Cart Development Team
+ * @copyright Copyright 2003-2011 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
  * @version $Id: create_account.php 16704 2010-06-10 21:16:37Z wilt $

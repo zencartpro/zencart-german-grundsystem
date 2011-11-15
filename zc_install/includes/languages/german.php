@@ -3,9 +3,9 @@
  * Main English language file for installer *
  * @package Installer
  * @access private
- * @copyright Copyright 2003-2010 Zen Cart Development Team
+ * @copyright Copyright 2003-2011 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
- * @license http://www.zen-cart.at/license/2_0.txt GNU Public License V2.0
+ * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
  * @version $Id$
  */
 /**
@@ -23,7 +23,7 @@ define('HTML_PARAMS','dir="ltr" lang="de"');
 define('CHARSET', 'utf-8');
 
 // META TAG TITLE
-define('META_TAG_TITLE', 'Zen Cart&trade; Installationsprogramm');
+define('META_TAG_TITLE', 'Zen-Cart 1.3.9 deutsch Installationsprogramm');
 
 define('INSTALLATION_IN_PROGRESS','Installation läuft...');
 
@@ -35,7 +35,7 @@ if (isset($_GET['main_page']) && ($_GET['main_page']== 'index' || $_GET['main_pa
 
 define('DB_ERROR_NOT_CONNECTED', 'Installationsfehler: Es konnte keine Verbindung zur Datenbank hergestellt werden');
 define('SHOULD_UPGRADE','Sie sollten ein Upgrade in Betracht ziehen!');
-define('MUST_UPGRADE','Sie müssen zuerst upgraden bevor Sie Zen-Cart&trade; installieren');
+define('MUST_UPGRADE','Sie müssen zuerst upgraden bevor Sie Zen-Cart 1.3.9 deutsch installieren');
 
 define('UPLOAD_SETTINGS','Die maximale Uploadgröße muss kleiner als einer der folgenden Werte sein:.<br />
 <em>upload_max_filesize</em> in php.ini %s <br />
@@ -258,12 +258,12 @@ switch ($error_code) {
   break;
   case ('6'):
     define('POPUP_ERROR_HEADING', 'Virtueller HTTPS Server');
-    define('POPUP_ERROR_TEXT', 'Das ist die Adresse zu Ihrem sicheren SSL Server. Diese Adresse hängt von auf Ihrem Webserver installierten SSL Modus ab. Sie können auf <a href="http://www.zen-cart.at/modules/xoopsfaq/index.php?cat_id=2#46" target="_blank">Zen Cart FAQ</a> mehr zum Thema SSL erfahren.');
+    define('POPUP_ERROR_TEXT', 'Das ist die Adresse zu Ihrem sicheren SSL Server. Diese Adresse hängt von auf Ihrem Webserver installierten SSL Modus ab. Sie können auf <a href="http://www.zen-cart-pro.at/modules/xoopsfaq/index.php?cat_id=2#46" target="_blank">Zen Cart FAQ</a> mehr zum Thema SSL erfahren.');
     
   break;
   case ('7'):
     define('POPUP_ERROR_HEADING', 'Virtueller HTTPS Path');
-    define('POPUP_ERROR_TEXT', 'Das ist die Adresse, die Sie in Ihrem Browser eingeben, um auf Ihre Shopseite über eine sichere SSL Verbindung zu gelangen, z.B. \'https://www.ihredomain.at\'. Sie können auf <a href="http://www.zen-cart.at/modules/xoopsfaq/index.php?cat_id=2#46" target="_blank">Zen Cart FAQ</a> mehr zum Thema SSL erfahren.');
+    define('POPUP_ERROR_TEXT', 'Das ist die Adresse, die Sie in Ihrem Browser eingeben, um auf Ihre Shopseite über eine sichere SSL Verbindung zu gelangen, z.B. \'https://www.ihredomain.at\'. Sie können auf <a href="http://www.zen-cart-pro.at/modules/xoopsfaq/index.php?cat_id=2#46" target="_blank">Zen Cart FAQ</a> mehr zum Thema SSL erfahren.');
     
   break;
   case ('8'):
@@ -503,7 +503,7 @@ switch ($error_code) {
   break;
   case ('55'):
     define('POPUP_ERROR_HEADING', 'Die PHP Version wird nicht unterstützt');
-    define('POPUP_ERROR_TEXT', 'Ihre PHP Version wird von Zen cart nicht unterstützt. Ebenso sind in der PHP Version 4.1.2 einige Bugs enthalten, die z.B. Probleme beim Zugriff auf den Admin Bereich verursachen. Sie werden angehalten, Ihre PHP Version nach Möglichkeit zu aktualisieren.');
+    define('POPUP_ERROR_TEXT', 'Ihre PHP Version wird von Zen-Cart nicht unterstützt. Ebenso sind in der PHP Version 4.1.2 einige Bugs enthalten, die z.B. Probleme beim Zugriff auf den Admin Bereich verursachen. Sie werden angehalten, Ihre PHP Version nach Möglichkeit zu aktualisieren.');
     
   break;
   case ('56'):

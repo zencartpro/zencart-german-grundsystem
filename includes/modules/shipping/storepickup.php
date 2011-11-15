@@ -1,7 +1,7 @@
 <?php
 /**
  * @package shippingMethod
- * @copyright Copyright 2003-2010 Zen Cart Development Team
+ * @copyright Copyright 2003-2011 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
  * @version $Id: storepickup.php 582 2010-05-22 17:24:16Z webchills $
@@ -128,14 +128,14 @@ class storepickup extends base {
     $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) values ('Tax Basis', 'MODULE_SHIPPING_STOREPICKUP_TAX_BASIS', 'Shipping', 'On what basis is Shipping Tax calculated. Options are<br />Shipping - Based on customers Shipping Address<br />Billing Based on customers Billing address<br />Store - Based on Store address if Billing/Shipping Zone equals Store zone', '6', '0', 'zen_cfg_select_option(array(\'Shipping\', \'Billing\'), ', now())");
     $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, use_function, set_function, date_added) values ('Shipping Zone', 'MODULE_SHIPPING_STOREPICKUP_ZONE', '0', 'If a zone is selected, only enable this shipping method for that zone.', '6', '0', 'zen_get_zone_class_title', 'zen_cfg_pull_down_zone_classes(', now())");
     $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) values ('Sort Order', 'MODULE_SHIPPING_STOREPICKUP_SORT_ORDER', '0', 'Sort order of display.', '6', '0', now())");
-   // www.zen-cart.at languages_id==43 START
+   // www.zen-cart-pro.at languages_id==43 START
     $db->Execute("insert into " . TABLE_CONFIGURATION_LANGUAGE   . " (configuration_title, configuration_key, configuration_language_id, configuration_description, date_added) values ('Selbstabholung anbieten?', 'MODULE_SHIPPING_STOREPICKUP_STATUS', '43', 'Wollen Sie Selbstanholung aktivieren?', now())");
     $db->Execute("insert into " . TABLE_CONFIGURATION_LANGUAGE   . " (configuration_title, configuration_key, configuration_language_id, configuration_description, date_added) values ('Kosten für Selbstabholung', 'MODULE_SHIPPING_STOREPICKUP_COST', '43', 'Versandkosten für Selbstabholung', now())");
     $db->Execute("insert into " . TABLE_CONFIGURATION_LANGUAGE   . " (configuration_title, configuration_key, configuration_language_id, configuration_description, date_added) values ('Steuerklasse', 'MODULE_SHIPPING_STOREPICKUP_TAX_CLASS', '43', 'Falls Sie Versandkosten für Selbstabholung eingetragen haben, welche Steuerklasse soll auf die Versandkosten angewendet werden?', now())");
     $db->Execute("insert into " . TABLE_CONFIGURATION_LANGUAGE   . " (configuration_title, configuration_key, configuration_language_id, configuration_description, date_added) values ('Basis der Steuern', 'MODULE_SHIPPING_STOREPICKUP_TAX_BASIS', '43', 'Auf welcher Basis soll die Steuer für die Versandkosten berechnet werden? Mögliche Werte sind.<br/>Shipping - basiert auf der Versandadresse des Kunden<br/>Billing - basiert auf der Rechnungsadresse des Kunden<br/>Store - basiert auf der Adresse des Shops wenn Versand- und Rechnungszone in derselben Zone liegen wie der Shop', now())");
     $db->Execute("insert into " . TABLE_CONFIGURATION_LANGUAGE   . " (configuration_title, configuration_key, configuration_language_id, configuration_description, date_added) values ('Versandzone', 'MODULE_SHIPPING_STOREPICKUP_ZONE', '43', 'Wenn Sie hier eine Zone auswählen, wird Selbstabholung nur in dieser Zone angeboten.', now())");
     $db->Execute("insert into " . TABLE_CONFIGURATION_LANGUAGE   . " (configuration_title, configuration_key, configuration_language_id, configuration_description, date_added) values ('Sortierreihenfolge', 'MODULE_SHIPPING_STOREPICKUP_SORT_ORDER', '43', 'Anzeigereihenfolge. Niedrigste Werte werden zuerst angezeigt.', now())");
-      // www.zen-cart.at languages_id==43  END
+      // www.zen-cart-pro.at languages_id==43  END
   }
   /**
    * Remove the module and all its settings
@@ -144,7 +144,7 @@ class storepickup extends base {
   function remove() {
     global $db;
     $db->Execute("delete from " . TABLE_CONFIGURATION . " where configuration_key like 'MODULE\_SHIPPING\_STOREPICKUP\_%'");
-    // www.zen-cart.at languages_id == delete all
+    // www.zen-cart-pro.at languages_id == delete all
     $db->Execute("delete from " . TABLE_CONFIGURATION_LANGUAGE . " where configuration_key in ('" . implode("', '", $this->keys()) . "')");
   }
   /**

@@ -4,7 +4,7 @@
  * Common actions carried out at the end of each page invocation.
  *
  * @package initSystem
- * @copyright Copyright 2003-2010 Zen Cart Development Team
+ * @copyright Copyright 2003-2011 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
  * @version $Id: application_bottom.php 17049 2010-07-29 06:19:52Z drbyte $
