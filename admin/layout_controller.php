@@ -132,10 +132,10 @@
         $sql = "DELETE  FROM " . TABLE_LAYOUT_BOXES . " WHERE layout_template = 'default_template_settings'  ";
         $db->Execute($sql);
         $sql = "INSERT INTO " . TABLE_LAYOUT_BOXES . " ( layout_template, layout_box_name, layout_box_status, layout_box_location, layout_box_sort_order, layout_box_sort_order_single, layout_box_status_single )
-                SELECT 'default_template_settings' AS TD, layout_boxes.layout_box_name, layout_boxes.layout_box_status, layout_boxes.layout_box_location, layout_boxes.layout_box_sort_order, layout_boxes.layout_box_sort_order_single, layout_boxes.layout_box_status_single
-                FROM layout_boxes
-                WHERE (((layout_boxes.layout_template)='$template_dir'));";
-	    $db->Execute($sql);
+                SELECT 'default_template_settings' AS TD, " . TABLE_LAYOUT_BOXES . ".layout_box_name, " . TABLE_LAYOUT_BOXES . ".layout_box_status, " . TABLE_LAYOUT_BOXES . ".layout_box_location, " . TABLE_LAYOUT_BOXES . ".layout_box_sort_order, " . TABLE_LAYOUT_BOXES . ".layout_box_sort_order_single, " . TABLE_LAYOUT_BOXES . ".layout_box_status_single
+                FROM " . TABLE_LAYOUT_BOXES . "
+                WHERE (((" . TABLE_LAYOUT_BOXES . ".layout_template)='$template_dir'));";
+        $db->Execute($sql);
 	
 
 		$messageStack->add_session(SUCCESS_BOX_SET_DEFAULTS . '<strong>' . $template_dir . '</strong>', 'success');
