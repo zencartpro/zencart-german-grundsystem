@@ -19,7 +19,7 @@
 // +----------------------------------------------------------------------+
 // | Translators:          cyaneo/hugo13/maleborg/webchills                                         |
 // | Date of Translation:  01.05.10                                       |
-// | Homepage:             www.zen-cart.at                                |
+// | Homepage:             www.zen-cart-pro.at                                |
 // +----------------------------------------------------------------------+
 // $Id$
 //

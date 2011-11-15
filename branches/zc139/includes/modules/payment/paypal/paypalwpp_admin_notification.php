@@ -3,11 +3,11 @@
  * paypalwpp_admin_notification.php admin display component
  *
  * @package paymentMethod
- * @copyright Copyright 2003-2010 Zen Cart Development Team
+ * @copyright Copyright 2003-2011 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @copyright Portions Copyright 2004 DevosC.com
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: paypalwpp_admin_notification.php 15870 2010-04-11 02:18:43Z drbyte $
+ * @version $Id: paypalwpp_admin_notification.php 729 2011-08-09 15:49:16Z hugo13 $
  */
 
   $outputStartBlock = '';
@@ -405,7 +405,7 @@
 
     if (defined('MODULE_PAYMENT_PAYPALWPP_STATUS') || defined('MODULE_PAYMENT_PAYPALDP_STATUS')) {
       $output .= $outputEndBlock;
-      $output .= $outputEndBlock;
+      $output .= '</tr><tr>' . "\n";
       $output .= $outputStartBlock;
       $output .= $outputStartBlock;
       if ($response['TRANSACTION_TYPE'] == 'Authorization' || (in_array($response['TRANSACTIONTYPE'], array('cart','expresscheckout','webaccept') ) && $response['PAYMENTTYPE'] == 'instant' && $response['PENDINGREASON'] == 'authorization') || (isset($_GET['authcapt']) && $_GET['authcapt']=='on')) {

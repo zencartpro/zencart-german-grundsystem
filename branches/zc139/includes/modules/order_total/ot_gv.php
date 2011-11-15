@@ -3,7 +3,7 @@
  * ot_gv order-total module
  *
  * @package orderTotal
- * @copyright Copyright 2003-2010 Zen Cart Development Team
+ * @copyright Copyright 2003-2011 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
  * @version $Id: ot_gv.php 15800 2010-04-03 15:43:16Z drbyte $

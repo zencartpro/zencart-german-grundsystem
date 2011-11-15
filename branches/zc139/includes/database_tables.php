@@ -4,7 +4,7 @@
  * Defines the database table names used in the project
  *
  * @package initSystem
- * @copyright Copyright 2003-2010 Zen Cart Development Team
+ * @copyright Copyright 2003-2011 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
  * @version $Id: database_tables.php 15508 2010-02-18 05:24:31Z drbyte $

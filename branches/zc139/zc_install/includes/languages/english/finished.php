@@ -2,7 +2,7 @@
 /**
  * @package Installer
  * @access private
- * @copyright Copyright 2003-2010 Zen Cart Development Team
+ * @copyright Copyright 2003-2011 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
  * @version $Id$
@@ -14,7 +14,7 @@
   define('TEXT_MAIN',"<h2>Congratulations!</h2><h3>You have successfully installed Zen Cart&trade; on your system!</h3>
 <h2>NEXT STEPS</h2>For security, you will need to reset your <strong>configure.php</strong> files located in the <strong>/admin/includes/</strong> and <strong>/includes/</strong> folders back to read-only mode before allowing people to access your store.<br /><br />
 Additionally, you'll want to remove or rename the <strong>/zc_install</strong> folder so that someone can't re-install your shop again and wipe out your database!  Warnings will appear until the folder has been removed or renamed.
-<h2>DONATE</h2>You can show your appreciation for our free software, and can support future development by making a donation to the Zen Cart project: <a href=\"http://www.zen-cart.at/zcvb/forum/misc.php?do=donate\">Make a donation of any size by clicking here. Thanks in advance!</a>
+<h2>DONATE</h2>You can show your appreciation for our free software, and can support future development by making a donation to the Zen Cart project: <a href=\"http://www.zen-cart-pro.at/zcvb/forum/misc.php?do=donate\">Make a donation of any size by clicking here. Thanks in advance!</a>
 <h2>CONFIGURATION</h2>We encourage you to begin by <a href=\"http://tutorials.zen-cart.com\"><strong>reading the FAQ's</strong> in our online support forums</a> for useful information to assist with configuring and customizing your online shop the way you wish it to look and operate. <br />
 If you have questions, this is the first place to look! If you're stumped, feel free to post a question! We have a helpful, friendly, knowledgeable community who welcomes you.<br /><br />
 It's also <strong>important</strong> that you check out the <strong>Documentation </strong>in the <strong><a href=\"../docs\" target=\"_blank\">/docs folder</a> </strong>of your site. <a href=\"../docs\" target=\"_blank\">Click here to view a listing.</a>

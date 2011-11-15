@@ -3,11 +3,11 @@
  * functions used by payment module class for Paypal IPN payment method
  *
  * @package paymentMethod
- * @copyright Copyright 2003-2010 Zen Cart Development Team
+ * @copyright Copyright 2003-2011 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @copyright Portions Copyright 2004 DevosC.com
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: paypal_functions.php 17568 2010-09-16 17:35:46Z drbyte $
+ * @version $Id: paypal_functions.php 793 2011-10-10 06:24:50Z hugo13 $
  */
 
 // Functions for paypal processing
@@ -71,10 +71,10 @@
 
     $sql = "SELECT order_id, paypal_ipn_id, payment_status, txn_type, pending_reason
                 FROM " . TABLE_PAYPAL . "
-                WHERE txn_id = :transactionID
+                WHERE txn_id = :transactionID: OR invoice = :transactionID:
                 ORDER BY order_id DESC LIMIT 1 ";
-    $sqlParent = $db->bindVars($sql, ':transactionID', $postArray['parent_txn_id'], 'string');
-    $sqlTxn = $db->bindVars($sql, ':transactionID', $postArray['txn_id'], 'string');
+    $sqlParent = $db->bindVars($sql, ':transactionID:', $postArray['parent_txn_id'], 'string');
+    $sqlTxn = $db->bindVars($sql, ':transactionID:', $postArray['txn_id'], 'string');
     if (isset($postArray['parent_txn_id']) && trim($postArray['parent_txn_id']) != '') {
       $ipn_id = $db->Execute($sqlParent);
       if($ipn_id->RecordCount() > 0) {
@@ -562,7 +562,7 @@
                       CURLOPT_FORBID_REUSE => TRUE,
                       CURLOPT_FRESH_CONNECT => TRUE,
                       CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-                      CURLOPT_USERAGENT => 'Zen Cart(tm) - IPN Postback',
+                      CURLOPT_USERAGENT => 'Zen Cart(R) - IPN Postback',
                       );
     if (CURL_PROXY_REQUIRED == 'True') {
       $proxy_tunnel_flag = (defined('CURL_PROXY_TUNNEL_FLAG') && strtoupper(CURL_PROXY_TUNNEL_FLAG) == 'FALSE') ? false : true;
@@ -664,11 +664,11 @@
   /**
    * Prepare subtotal and line-item detail content to send to PayPal
    */
-  function ipn_getLineItemDetails() {
+  function ipn_getLineItemDetails($restrictedCurrency) {
     global $order, $currencies, $order_totals, $order_total_modules;
 
     // if not default currency, do not send subtotals or line-item details
-    if (DEFAULT_CURRENCY != $order->info['currency']) {
+    if (DEFAULT_CURRENCY != $order->info['currency'] || $restrictedCurrency != DEFAULT_CURRENCY) {
       ipn_logging('getLineItemDetails 1', 'Not using default currency. Thus, no line-item details can be submitted.');
       return array();
     }
@@ -694,6 +694,7 @@
     $subTotalTax = 0;
     $subTotalShipping = 0;
     $subtotalPRE = array('no data');
+    $discountProblemsFlag = FALSE;
     $flag_treat_as_partial = FALSE;
 
     if (sizeof($order_totals)) {
@@ -703,7 +704,7 @@
         if (in_array($order_totals[$i]['code'], array('ot_total','ot_subtotal','ot_tax','ot_shipping')) || strstr($order_totals[$i]['code'], 'insurance')) {
           if ($order_totals[$i]['code'] == 'ot_shipping') $optionsST['shipping'] = round($order_totals[$i]['value'],2);
           if ($order_totals[$i]['code'] == 'ot_total')    $optionsST['amount']   = round($order_totals[$i]['value'],2);
-          if ($order_totals[$i]['code'] == 'ot_tax')      $optionsST['tax_cart'] = round($order_totals[$i]['value'],2);
+          if ($order_totals[$i]['code'] == 'ot_tax')      $optionsST['tax_cart']+= round($order_totals[$i]['value'],2);
           if ($order_totals[$i]['code'] == 'ot_subtotal') $optionsST['subtotal'] = round($order_totals[$i]['value'],2);
         } else {
           // handle other order totals:
@@ -759,60 +760,53 @@
       $flagSubtotalsUnknownYet = TRUE;
     }
 
+    $decimals = $currencies->get_decimal_places($_SESSION['currency']);
+
     // loop thru all products to prepare details of quantity and price.
-    for ($i=0, $n=sizeof($order->products), $k=1; $i<$n; $i++, $k++) {
-      // PayPal won't accept zero-value line-items, so skip this entry if price is zero
-      if ($order->products[$i]['final_price'] == 0) continue;
+    for ($i=0, $n=sizeof($order->products), $k=0; $i<$n; $i++) {
+      // PayPal is inconsistent in how it handles zero-value line-items, so skip this entry if price is zero
+      if ($order->products[$i]['final_price'] == 0) {
+        continue;
+      } else {
+        $k++;
+      }
 
       $optionsLI["item_number_$k"] = $order->products[$i]['model'];
-      $optionsLI["item_name_$k"]   = $order->products[$i]['name'];
+      $optionsLI["item_name_$k"]   = $order->products[$i]['name'] . ' [' . (int)$order->products[$i]['id'] . ']';
       // Append *** if out-of-stock.
       $optionsLI["item_name_$k"]  .= ((zen_get_products_stock($order->products[$i]['id']) - $order->products[$i]['qty']) < 0 ? STOCK_MARK_PRODUCT_OUT_OF_STOCK : '');
       // if there are attributes, loop thru them and add to description
       if (isset($order->products[$i]['attributes']) && sizeof($order->products[$i]['attributes']) > 0 ) {
-        $optionsLI["item_name_$k"] = '';
         for ($j=0, $n2=sizeof($order->products[$i]['attributes']); $j<$n2; $j++) {
           $optionsLI["item_name_$k"] .= "\n " . $order->products[$i]['attributes'][$j]['option'] .
                                         ': ' . $order->products[$i]['attributes'][$j]['value'];
         } // end loop
       } // endif attribute-info
 
-      // check for rounding problems with taxes
-      $m1 = zen_round($order->products[$i]['qty'] * $order->products[$i]['final_price'], $currencies->currencies[$_SESSION['currency']]['decimal_places']);
-      $m2 = ($order->products[$i]['qty'] * zen_round($order->products[$i]['final_price'], $currencies->currencies[$_SESSION['currency']]['decimal_places']));
-      $n1 = $order->products[$i]['qty'] * zen_calculate_tax($order->products[$i]['final_price'], $order->products[$i]['tax']);
-      $n2 = zen_calculate_tax($order->products[$i]['qty'] * $order->products[$i]['final_price'], $order->products[$i]['tax']);
-      if ($m1 != $m2 || zen_round($n1, $currencies->currencies[$_SESSION['currency']]['decimal_places']) != zen_round($n2, $currencies->currencies[$_SESSION['currency']]['decimal_places'])) $flag_treat_as_partial = true;
-
-      // PayPal can't handle partial-quantity values, so fudge it here
-      if ($flag_treat_as_partial || $order->products[$i]['qty'] != (int)$order->products[$i]['qty']) {
+      // PayPal can't handle fractional-quantity values, so convert it to qty 1 here
+      if ($order->products[$i]['qty'] > 1 && ($order->products[$i]['qty'] != (int)$order->products[$i]['qty'] || $flag_treat_as_partial)) {
         $optionsLI["item_name_$k"] = '('.$order->products[$i]['qty'].' x ) ' . $optionsLI["item_name_$k"];
-        $optionsLI["amount_$k"] = zen_round($order->products[$i]['qty'] * $order->products[$i]['final_price'], $currencies->currencies[$_SESSION['currency']]['decimal_places']);
-        $optionsLI["tax_$k"] = zen_calculate_tax(zen_round($order->products[$i]['qty'] * $order->products[$i]['final_price'], $currencies->currencies[$_SESSION['currency']]['decimal_places']), $order->products[$i]['tax']);
+        // zen_add_tax already handles whether DISPLAY_PRICES_WITH_TAX is set
+        $optionsLI["amount_$k"] = zen_round(zen_round(zen_add_tax($order->products[$i]['final_price'], $order->products[$i]['tax']), $decimals) * $order->products[$i]['qty'], $decimals);
         $optionsLI["quantity_$k"] = 1;
+        // no line-item tax component
       } else {
-        $optionsLI["amount_$k"] = $order->products[$i]['final_price'];
         $optionsLI["quantity_$k"] = $order->products[$i]['qty'];
-        $optionsLI["tax_$k"] = zen_calculate_tax(1 * $order->products[$i]['final_price'], $order->products[$i]['tax']);
+        $optionsLI["amount_$k"] = zen_round(zen_add_tax($order->products[$i]['final_price'], $order->products[$i]['tax']), $decimals);
       }
 
-      // For tax-included pricing, combine tax with price instead of treating separately:
-      if (DISPLAY_PRICE_WITH_TAX == 'true') {
-        $optionsLI["amount_$k"] += $optionsLI["tax_$k"];
-        $optionsLI["tax_$k"] = 0;
-      }
       $subTotalLI += ($optionsLI["quantity_$k"] * $optionsLI["amount_$k"]);
-      $subTotalTax += ($optionsLI["quantity_$k"] * $optionsLI["tax_$k"]);
+//      $subTotalTax += ($optionsLI["quantity_$k"] * $optionsLI["tax_$k"]);
 
       // add line-item for one-time charges on this product
       if ($order->products[$i]['onetime_charges'] != 0 ) {
         $k++;
         $optionsLI["item_name_$k"]   = MODULES_PAYMENT_PAYPALSTD_LINEITEM_TEXT_ONETIME_CHARGES_PREFIX . substr(htmlentities($order->products[$i]['name'], ENT_QUOTES, 'UTF-8'), 0, 120);
-        $optionsLI["amount_$k"]    = $order->products[$i]['onetime_charges'];
+        $optionsLI["amount_$k"]    = zen_round(zen_add_tax($order->products[$i]['onetime_charges'], $order->products[$i]['tax']), $decimals);
         $optionsLI["quantity_$k"]    = 1;
-        $optionsLI["tax_$k"] = zen_calculate_tax($order->products[$i]['onetime_charges'], $order->products[$i]['tax']);
-        $subTotalLI += $order->products[$i]['onetime_charges'];
-        $subTotalTax += $optionsLI["tax_$k"];
+//        $optionsLI["tax_$k"] = zen_round(zen_calculate_tax($order->products[$i]['onetime_charges'], $order->products[$i]['tax']), $decimals);
+        $subTotalLI += $optionsLI["amount_$k"];
+//        $subTotalTax += $optionsLI["tax_$k"];
       }
       $numberOfLineItemsProcessed = $k;
     }  // end for loopthru all products
@@ -838,28 +832,28 @@
     }
 
     // Reformat properly
+    // Replace & and = and % with * if found.
+    // reformat properly according to API specs
+    // Remove HTML markup from name if found
     for ($k=1, $n=$numberOfLineItemsProcessed+1; $k<$n; $k++) {
-      // Replace & and = with * if found.
-      $optionsLI["item_name_$k"] = str_replace(array('&','='), '*', $optionsLI["item_name_$k"]);
-
-      // Remove HTML markup if found
+      $optionsLI["item_name_$k"] = str_replace(array('&','=','%'), '*', $optionsLI["item_name_$k"]);
       $optionsLI["item_name_$k"] = zen_clean_html($optionsLI["item_name_$k"], 'strong');
-
-      // reformat properly according to API specs
       $optionsLI["item_name_$k"]   = substr($optionsLI["item_name_$k"], 0, 127);
-      if (isset($optionsLI["item_number_$k"])) $optionsLI["item_number_$k"] = substr($optionsLI["item_number_$k"], 0, 127);
-;
-      if (isset($optionsLI["tax_$k"]) && ($optionsLI["tax_$k"] != '' || $optionsLI["tax_$k"] > 0)) {
-        $optionsLI["tax_$k"] = round($optionsLI["tax_$k"], 2);
-      }
-    }
+      $optionsLI["amount_$k"] = round($optionsLI["amount_$k"], 2);
 
-/**
- * PayPal says their math works like this:
- * a) ITEMAMT = L_AMTn * L_QTYn
- * b) TAXAMT = L_QTYn * L_TAXAMTn
- * c) AMT = ITEMAMT + SHIPPINGAMT + HANDLINGAMT + TAXAMT
- */
+      if (isset($optionsLI["item_number_$k"])) {
+        if ($optionsLI["item_number_$k"] == '') {
+          unset($optionsLI["item_number_$k"]);
+        } else {
+          $optionsLI["item_number_$k"] = str_replace(array('&','=','%'), '*', $optionsLI["item_number_$k"]);
+          $optionsLI["item_number_$k"] = substr($optionsLI["item_number_$k"], 0, 127);
+        }
+      }
+
+//      if (isset($optionsLI["tax_$k"]) && ($optionsLI["tax_$k"] != '' || $optionsLI["tax_$k"] > 0)) {
+//        $optionsLI["tax_$k"] = round($optionsLI["tax_$k"], 2);
+//      }
+    }
 
     // Sanity Check of line-item subtotals
     $optionsLI['num_cart_items'] = 0;
@@ -883,59 +877,72 @@
       }
     }
 
-    // Sanity check -- if tax-included pricing is causing problems, remove the numbers and put them in a comment instead:
-    $stDiffTaxOnly = (strval($sumOfLineItems - $sumOfLineTax - round($optionsST['amount'], 2)) + 0);
-    if (DISPLAY_PRICE_WITH_TAX == 'true' && $stDiffTaxOnly == 0) {
-      //$optionsNB['DESC'] = 'Tax included in prices: ' . $sumOfLineTax . ' (' . $optionsST['tax_cart'] . ') ';
-      $optionsST['tax_cart'] = 0;
-      for ($k=1, $n=$numberOfLineItemsProcessed+1; $k<$n; $k++) {
-        if (isset($optionsLI["tax_$k"])) unset($optionsLI["tax_$k"]);
-      }
-    }
+//    // Sanity check -- if tax-included pricing is causing problems, remove the numbers and put them in a comment instead:
+//    $stDiffTaxOnly = (strval($sumOfLineItems - $sumOfLineTax - round($optionsST['amount'], 2)) + 0);
+//    if (DISPLAY_PRICE_WITH_TAX == 'true' && $stDiffTaxOnly == 0 && ($optionsST['tax_cart'] != 0 && $sumOfLineTax != 0)) {
+//      $optionsNB['DESC'] = 'Tax included in prices: ' . $sumOfLineTax . ' (' . $optionsST['tax_cart'] . ') ';
+//      $optionsST['tax_cart'] = 0;
+//      for ($k=1, $n=$numberOfLineItemsProcessed+1; $k<$n; $k++) {
+//        if (isset($optionsLI["tax_$k"])) unset($optionsLI["tax_$k"]);
+//      }
+//    }
 
-    // Do sanity check -- if any of the line-item subtotal math doesn't add up properly, skip line-item details,
-    // so that the order can go through even though PayPal isn't being flexible to handle Zen Cart's diversity
-    if ((strval($subTotalTax) - strval($sumOfLineTax)) > 0.02) {
-      ipn_logging('getLineItemDetails 3', 'Tax Subtotal does not match sum of taxes for line-items. Tax details are being removed from line-item submission data.' . "\n" . $sumOfLineTax . ' ' . $subTotalTax . print_r(array_merge($optionsST, $optionsLI), true));
-      for ($k=1, $n=$numberOfLineItemsProcessed+1; $k<$n; $k++) {
-        if (isset($optionsLI["tax_$k"])) unset($optionsLI["tax_$k"]);
-      }
-      $subTotalTax = 0;
-      $sumOfLineTax = 0;
-    }
+//    // Do sanity check -- if any of the line-item subtotal math doesn't add up properly, skip line-item details,
+//    // so that the order can go through even though PayPal isn't being flexible to handle Zen Cart's diversity
+//    if ((strval($subTotalTax) - strval($sumOfLineTax)) > 0.02) {
+//      $ipn_logging('getLineItemDetails 3', 'Tax Subtotal does not match sum of taxes for line-items. Tax details are being removed from line-item submission data.' . "\n" . $sumOfLineTax . ' ' . $subTotalTax . print_r(array_merge($optionsST, $optionsLI), true));
+//      for ($k=1, $n=$numberOfLineItemsProcessed+1; $k<$n; $k++) {
+//        if (isset($optionsLI["tax_$k"])) unset($optionsLI["tax_$k"]);
+//      }
+//      $subTotalTax = 0;
+//      $sumOfLineTax = 0;
+//    }
 
-    // If coupons exist and there's a calculation problem, then it's likely that taxes are incorrect, so reset L_TAXAMTn values
-    if ($creditsApplied > 0 && (strval($optionsST['tax_cart']) != strval($sumOfLineTax))) {
-      $pre = $optionsLI;
-      for ($k=1, $n=$numberOfLineItemsProcessed+1; $k<$n; $k++) {
-        if (isset($optionsLI["tax_$k"])) unset($optionsLI["tax_$k"]);
-      }
-      ipn_logging('getLineItemDetails 4', 'Coupons/Discounts have affected tax calculations, so tax details are being removed from line-item submission data.' . "\n" . $sumOfLineTax . ' ' . $optionsST['tax_cart'] . print_r(array_merge($optionsST, $pre, $optionsNB), true) . "\nAFTER:" . print_r(array_merge($optionsST, $optionsLI, $optionsNB), TRUE));
-      $subTotalTax = 0;
-      $sumOfLineTax = 0;
-    }
+//    // If coupons exist and there's a calculation problem, then it's likely that taxes are incorrect, so reset L_TAXAMTn values
+//    if ($creditsApplied > 0 && (strval($optionsST['tax_cart']) != strval($sumOfLineTax))) {
+//      $pre = $optionsLI;
+//      for ($k=1, $n=$numberOfLineItemsProcessed+1; $k<$n; $k++) {
+//        if (isset($optionsLI["tax_$k"])) unset($optionsLI["tax_$k"]);
+//      }
+//      $ipn_logging('getLineItemDetails 4', 'Coupons/Discounts have affected tax calculations, so tax details are being removed from line-item submission data.' . "\n" . $sumOfLineTax . ' ' . $optionsST['tax_cart'] . "\n" . print_r(array_merge($optionsST, $pre, $optionsNB), true) . "\nAFTER:" . print_r(array_merge($optionsST, $optionsLI, $optionsNB), TRUE));
+//      $subTotalTax = 0;
+//      $sumOfLineTax = 0;
+//    }
 
-    if (TRUE) {
-      // disable line-item tax details, leaving only TAXAMT subtotal as tax indicator
-      for ($k=1, $n=$numberOfLineItemsProcessed+1; $k<$n; $k++) {
-        if (isset($optionsLI["tax_$k"])) unset($optionsLI["tax_$k"]);
-      }
+    // disable line-item tax details, leaving only TAXAMT subtotal as tax indicator
+    for ($k=1, $n=$numberOfLineItemsProcessed+1; $k<$n; $k++) {
+      if (isset($optionsLI["tax_$k"])) unset($optionsLI["tax_$k"]);
     }
 
     // check subtotals
-    if (strval($subTotalLI) - strval($sumOfLineItems) > 0.02) {
-      ipn_logging('getLineItemDetails 5', 'Line-item subtotals do not add up properly. Line-item-details skipped.' . "\n" . (float)$sumOfLineItems . ' ' . (float)$subTotalTax . print_r(array_merge($optionsST, $optionsLI), true));
+    if ((strval($optionsST['subtotal']) > 0 && strval($subTotalLI) > 0 && strval($subTotalLI) != strval($optionsST['subtotal'])) || strval($subTotalLI) - strval($sumOfLineItems) != 0) {
+      $ipn_logging('getLineItemDetails 5', 'Line-item subtotals do not add up properly. Line-item-details skipped.' . "\n" . strval($sumOfLineItems) . ' ' . strval($subTotalLI) . ' ' . print_r(array_merge($optionsST, $optionsLI), true));
       $optionsLI = array();
+      $optionsLI["item_name_0"] = MODULE_PAYMENT_PAYPAL_PURCHASE_DESCRIPTION_TITLE;
+      $optionsLI["amount_0"]  = $sumOfLineItems = $subTotalLI = $optionsST['subtotal'];
     }
 
-    // if AMT or ITEMAMT values are 0 (ie: certain OT modules disabled) or we've started express checkout without going through normal checkout flow, we have to get subtotals manually
-    if (!isset($optionsST['amount']) || $optionsST['amount'] == 0 || $flagSubtotalsUnknownYet == TRUE || $optionsST['subtotal'] == 0) {
+    // check whether discounts are causing a problem
+    if (strval($optionsST['subtotal']) < 0) {
+      $pre = (array_merge($optionsST, $optionsLI));
+      $optionsST['subtotal'] = $optionsST['amount'];
+      $optionsLI = array();
+      $optionsLI["item_name_0"] = MODULE_PAYMENT_PAYPAL_PURCHASE_DESCRIPTION_TITLE;
+      $optionsLI["amount_0"]  = $sumOfLineItems = $subTotalLI = $optionsST['subtotal'];
+      if ($optionsST['amount'] < $optionsST['tax_cart']) $optionsST['tax_cart'] = 0;
+      if ($optionsST['amount'] < $optionsST['shipping']) $optionsST['shipping'] = 0;
+      $discountProblemsFlag = TRUE;
+      $this->zcLog('getLineItemDetails 6', 'Discounts have caused the subtotal to calculate incorrectly. Line-item-details cannot be submitted.' . "\nBefore:" . print_r($pre, TRUE) . "\nAfter:" . print_r(array_merge($optionsST, $optionsLI), true));
+    }
+
+    // if amount or subtotal values are 0 (ie: certain OT modules disabled), we have to get subtotals manually
+    if ((!isset($optionsST['amount']) || $optionsST['amount'] == 0 || $flagSubtotalsUnknownYet == TRUE || $optionsST['subtotal'] == 0) && $discountProblemsFlag != TRUE) {
       $optionsST['subtotal'] = $sumOfLineItems;
       $optionsST['tax_cart'] = $sumOfLineTax;
       if ($subTotalShipping > 0) $optionsST['shipping'] = $subTotalShipping;
       $optionsST['amount'] = $sumOfLineItems + $optionsST['tax_cart'] + $optionsST['shipping'];
     }
-    ipn_logging('getLineItemDetails 6 - subtotal comparisons', 'BEFORE line-item calcs: ' . print_r($subtotalPRE, true) . ' - AFTER doing line-item calcs: ' . print_r(array_merge($optionsST, $optionsLI, $optionsNB), true));
+    ipn_logging('getLineItemDetails 7 - subtotal comparisons', 'BEFORE line-item calcs: ' . print_r($subtotalPRE, true) . ' - AFTER doing line-item calcs: ' . print_r(array_merge($optionsST, $optionsLI, $optionsNB), true));
 
     // if subtotals are not adding up correctly, then skip sending any line-item or subtotal details to PayPal
     $stAll = round(strval($optionsST['subtotal'] + $optionsST['tax_cart'] + $optionsST['shipping']), 2);
@@ -943,30 +950,32 @@
     $stDiffRounded = (strval($stAll - round($optionsST['amount'], 2)) + 0);
 
     // unset any subtotal values that are zero
+    if (isset($optionsST['subtotal']) && $optionsST['subtotal'] == 0) unset($optionsST['subtotal']);
+    if (isset($optionsST['tax_cart']) && $optionsST['tax_cart'] == 0) unset($optionsST['tax_cart']);
     if (isset($optionsST['shipping']) && $optionsST['shipping'] == 0) unset($optionsST['shipping']);
 
     // tidy up all values so that they comply with proper format (number_format(xxxx,2) for PayPal US use )
-    if (!defined('PAYPALWPP_SKIP_LINE_ITEM_DETAIL_FORMATTING') || PAYPALWPP_SKIP_LINE_ITEM_DETAIL_FORMATTING != 'true' || in_array($order->info['currency'], array('JPY', 'NOK'))) {
+    if (!defined('PAYPALWPP_SKIP_LINE_ITEM_DETAIL_FORMATTING') || PAYPALWPP_SKIP_LINE_ITEM_DETAIL_FORMATTING != 'true' || in_array($order->info['currency'], array('JPY', 'NOK', 'HUF'))) {
       if (is_array($optionsST)) foreach ($optionsST as $key=>$value) {
-        $optionsST[$key] = number_format($value, ($order->info['currency'] == 'JPY' ? 0 : 2));
+        $optionsST[$key] = number_format($value, ((int)$currencies->get_decimal_places($restrictedCurrency) == 0 ? 0 : 2));
       }
       if (is_array($optionsLI)) foreach ($optionsLI as $key=>$value) {
         if (substr($key, 0, 8) == 'tax_' && ($optionsLI[$key] == '' || $optionsLI[$key] == 0)) {
           unset($optionsLI[$key]);
         } else {
-          if (strstr($key, 'amount')) $optionsLI[$key] = number_format($value, ($order->info['currency'] == 'JPY' ? 0 : 2));
+          if (strstr($key, 'amount')) $optionsLI[$key] = number_format($value, ((int)$currencies->get_decimal_places($restrictedCurrency) == 0 ? 0 : 2));
         }
       }
     }
 
-    ipn_logging('getLineItemDetails 7', 'checking subtotals... ' . "\n" . print_r(array_merge(array('calculated total'=>number_format($stAll, ($order->info['currency'] == 'JPY' ? 0 : 2))), $optionsST), true) . "\n-------------------\ndifference: " . ($stDiff + 0) . '  (abs+rounded: ' . ($stDiffRounded + 0) . ')');
+    ipn_logging('getLineItemDetails 8', 'checking subtotals... ' . "\n" . print_r(array_merge(array('calculated total'=>number_format($stAll, ((int)$currencies->get_decimal_places($restrictedCurrency) == 0 ? 0 : 2))), $optionsST), true) . "\n-------------------\ndifference: " . ($stDiff + 0) . '  (abs+rounded: ' . ($stDiffRounded + 0) . ')');
 
     if ( $stDiffRounded != 0) {
-      ipn_logging('getLineItemDetails 8', 'Subtotals Bad. Skipping line-item/subtotal details');
+      ipn_logging('getLineItemDetails 9', 'Subtotals Bad. Skipping line-item/subtotal details');
       return array();
     }
 
-    ipn_logging('getLineItemDetails 9', 'subtotals balance - okay');
+    ipn_logging('getLineItemDetails 10', 'subtotals balance - okay' . "\nSubmitting:   " . print_r(array_merge($optionsST, $optionsLI, $optionsNB), true));
 
     // Send Subtotal and LineItem results back to be submitted to PayPal
     return array_merge($optionsST, $optionsLI, $optionsNB);

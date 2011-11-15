@@ -2,7 +2,7 @@
 
 /**
  * @package map_shop
- * @desc map_shop generates google_map entries at http://shops.zen-cart.at
+ * @desc map_shop generates google_map entries at http://shops.zen-cart-pro.at
  * @copyright Copyright 2006-2007 rainer langheiter
  * @author rainer langheiter <zen-cart@langheiter.com http://edv.langheiter.com/zencart/>
  * @license http://www.gnu.org/copyleft/gpl.html     
@@ -135,7 +135,7 @@ function displayMap($form){
     return $html;
 
 }
-function getCurlCoord($address, $coord='http://demo.zen-cart.at/map/getcoord.php'){
+function getCurlCoord($address, $coord='http://demo.zen-cart-pro.at/map/getcoord.php'){
     $c = curl_init($coord);
     curl_setopt($c, CURLOPT_POST, 1);
     curl_setopt($c, CURLOPT_POSTFIELDS,'a=' . $address);

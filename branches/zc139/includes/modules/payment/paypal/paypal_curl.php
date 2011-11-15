@@ -3,27 +3,27 @@
  * paypal_curl.php communications class for PayPal Express Checkout / Website Payments Pro / Payflow Pro payment methods
  *
  * @package paymentMethod
- * @copyright Copyright 2003-2010 Zen Cart Development Team
+ * @copyright Copyright 2003-2011 Zen Cart Development Team
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: paypal_curl.php 17860 2010-10-08 04:31:42Z drbyte $
+ * @version $Id: paypal_curl.php 793 2011-10-10 06:24:50Z hugo13 $
  */
 
 /**
- * PayPal NVP (v60) and Payflow Pro (v4 HTTP API) implementation via cURL.
+ * PayPal NVP (v61) and Payflow Pro (v4 HTTP API) implementation via cURL.
  */
 class paypal_curl extends base {
 
   /**
    * What level should we log at? Valid levels are:
-   *   PEAR_LOG_ERR   - Log only severe errors.
-   *   PEAR_LOG_INFO  - Date/time of operation, operation name, elapsed time, success or failure indication.
-   *   PEAR_LOG_DEBUG - Full text of requests and responses and other debugging messages.
+   *   1 - Log only severe errors.
+   *   2 - Date/time of operation, operation name, elapsed time, success or failure indication.
+   *   3 - Full text of requests and responses and other debugging messages.
    *
    * @access protected
    *
    * @var integer $_logLevel
    */
-  var $_logLevel = PEAR_LOG_DEBUG;
+  var $_logLevel = 3;
 
   /**
    * If we're logging, what directory should we create log files in?
@@ -142,6 +142,8 @@ class paypal_curl extends base {
 
     // allow page-styling support -- see language file for definitions
     if (defined('MODULE_PAYMENT_PAYPALWPP_PAGE_STYLE'))   $values['PAGESTYLE'] = MODULE_PAYMENT_PAYPALWPP_PAGE_STYLE;
+    if (defined('MODULE_PAYMENT_PAYPAL_LOGO_IMAGE')) $values['LOGOIMG'] = urlencode(MODULE_PAYMENT_LOGO_IMAGE);
+    if (defined('MODULE_PAYMENT_PAYPAL_CART_BORDER_COLOR')) $values['CARTBORDERCOLOR'] = MODULE_PAYMENT_PAYPAL_CART_BORDER_COLOR;
     if (defined('MODULE_PAYMENT_PAYPALWPP_HEADER_IMAGE')) $values['HDRIMG'] = urlencode(MODULE_PAYMENT_PAYPALWPP_HEADER_IMAGE);
     if (defined('MODULE_PAYMENT_PAYPALWPP_PAGECOLOR'))    $values['PAYFLOWCOLOR'] = MODULE_PAYMENT_PAYPALWPP_PAGECOLOR;
     if (defined('MODULE_PAYMENT_PAYPALWPP_HEADER_BORDER_COLOR')) $values['HDRBORDERCOLOR'] = MODULE_PAYMENT_PAYPALWPP_HEADER_BORDER_COLOR;
@@ -164,8 +166,6 @@ class paypal_curl extends base {
       $values = array_merge($values, array('ACTION'  => 'G', /* ACTION=G denotes GetExpressCheckoutDetails */
                                            'TENDER'  => 'P',
                                            'TRXTYPE' => $this->_trxtype));
-    } elseif ($this->_mode == 'nvp') {
-      $values = array_merge($values, array('REQBILLINGADDRESS' => '1'));
     }
     return $this->_request($values, 'GetExpressCheckoutDetails');
   }
@@ -243,7 +243,7 @@ class paypal_curl extends base {
    *
    * Used to refund all or part of a given transaction
    */
-  function RefundTransaction($oID, $txnID, $amount = 'Full', $note = '') {
+  function RefundTransaction($oID, $txnID, $amount = 'Full', $note = '', $curCode = 'USD') {
     if ($this->_mode == 'payflow') {
       $values['ORIGID'] = $txnID;
       $values['TENDER'] = 'C';
@@ -254,6 +254,7 @@ class paypal_curl extends base {
       $values['TRANSACTIONID'] = $txnID;
       if ($amount != 'Full' && (float)$amount > 0) {
         $values['REFUNDTYPE'] = 'Partial';
+        $values['CURRENCYCODE'] = $curCode;
         $values['AMT'] = number_format((float)$amount, 2);
       } else {
         $values['REFUNDTYPE'] = 'Full';
@@ -425,14 +426,14 @@ class paypal_curl extends base {
     }
 
     $headers[] = 'Content-Type: text/namevalue';
-    $headers[] = 'X-VPS-Timeout: 45';
+    $headers[] = 'X-VPS-Timeout: 90';
     $headers[] = "X-VPS-VIT-Client-Type: PHP/cURL";
     if ($this->_mode == 'payflow') {
-      $headers[] = 'X-VPS-VIT-Integration-Product: PHP::Zen Cart(tm) - PayPal/Payflow Pro';
+      $headers[] = 'X-VPS-VIT-Integration-Product: PHP::Zen Cart(R) - PayPal/Payflow Pro';
     } elseif ($this->_mode == 'nvp') {
-      $headers[] = 'X-VPS-VIT-Integration-Product: PHP::Zen Cart(tm) - PayPal/NVP';
+      $headers[] = 'X-VPS-VIT-Integration-Product: PHP::Zen Cart(R) - PayPal/NVP';
     }
-    $headers[] = 'X-VPS-VIT-Integration-Version: 1.3.9h';
+    $headers[] = 'X-VPS-VIT-Integration-Version: 1.5.0';
     $this->lastHeaders = $headers;
 
     $ch = curl_init();
@@ -574,29 +575,26 @@ class paypal_curl extends base {
     $values = $this->_parseNameValueList($response);
     $token = isset($values['TOKEN']) ? $values['TOKEN'] : '';
     $token = preg_replace('/[^0-9.A-Z\-]/', '', urldecode($token));
-    switch ($this->_logLevel) {
-    case PEAR_LOG_DEBUG:
-      $message =   date('Y-m-d h:i:s') . "\n-------------------\n";
-      $message .=  '(' . $this->_server . ' transaction) --> ' . $this->_endpoints[$this->_server] . "\n";
-      $message .= 'Request Headers: ' . "\n" . $this->_sanitizeLog($this->lastHeaders) . "\n\n";
-      $message .= 'Request Parameters: {' . $operation . '} ' . "\n" . urldecode($this->_sanitizeLog($this->_parseNameValueList($this->lastParamList))) . "\n\n";
-      $message .= 'Response: ' . "\n" . urldecode($this->_sanitizeLog($values)) . $errors;
+    $success = false;
+    if ($response) {
+      if ((isset($values['RESULT']) && $values['RESULT'] == 0) || (isset($values['ACK']) && (strstr($values['ACK'],'Success') || strstr($values['ACK'],'SuccessWithWarning')) && !strstr($values['ACK'],'Failure'))) {
+        $success = true;
+      }
+    }
+    $message =   date('Y-m-d h:i:s') . "\n-------------------\n";
+    $message .=  '(' . $this->_server . ' transaction) --> ' . $this->_endpoints[$this->_server] . "\n";
+    $message .= 'Request Headers: ' . "\n" . $this->_sanitizeLog($this->lastHeaders) . "\n\n";
+    $message .= 'Request Parameters: {' . $operation . '} ' . "\n" . urldecode($this->_sanitizeLog($this->_parseNameValueList($this->lastParamList))) . "\n\n";
+    $message .= 'Response: ' . "\n" . urldecode($this->_sanitizeLog($values)) . $errors;
+
+    if ($this->_logLevel > 0 || $success == FALSE) {
       $this->log($message, $token);
       // extra debug email: //
       if (MODULE_PAYMENT_PAYPALWPP_DEBUGGING == 'Log and Email') {
         zen_mail(STORE_NAME, STORE_OWNER_EMAIL_ADDRESS, 'PayPal Debug log - ' . $operation, $message, STORE_OWNER, STORE_OWNER_EMAIL_ADDRESS, array('EMAIL_MESSAGE_HTML'=>nl2br($message)), 'debug');
       }
-
-    case PEAR_LOG_INFO:
-      $success = false;
-      if ($response) {
-        if ((isset($values['RESULT']) && $values['RESULT'] == 0) || strstr($values['ACK'],'Success') || strstr($values['ACK'],'SuccessWithWarning')) {
-          $success = true;
-        }
-      }
       $this->log($operation . ', Elapsed: ' . $elapsed . 'ms -- ' . (isset($values['ACK']) ? $values['ACK'] : ($success ? 'Succeeded' : 'Failed')) . $errors, $token);
 
-    case PEAR_LOG_ERR:
       if (!$response) {
         $this->log('No response from server' . $errors, $token);
       } else {

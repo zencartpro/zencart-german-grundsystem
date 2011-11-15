@@ -2,7 +2,7 @@
 /**
  * @package Installer
  * @access private
- * @copyright Copyright 2003-2007 Zen Cart Development Team
+ * @copyright Copyright 2003-2011 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
  * @version $Id$
@@ -37,7 +37,7 @@
   ?>
   </div>
   <div id="footer">
-    <p>Copyright &copy; 2003-<?php echo date('Y'); ?> <a href="http://www.zen-cart.com" target="_blank">Zen Cart&trade;</a></p>
+    <p>Copyright &copy; 2003-<?php echo date('Y'); ?> <a href="http://www.zen-cart-pro.at" target="_blank">zen-cart-pro.at</a></p>
   </div>
 </div>
 <!--  <p><a href="http://validator.w3.org/check?uri=referer">Valid XHTML 1.0 Transitional</a></p>-->

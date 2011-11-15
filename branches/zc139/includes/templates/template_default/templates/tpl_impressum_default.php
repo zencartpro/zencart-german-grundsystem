@@ -6,7 +6,7 @@
  * Displays impressum page.
  *
  * @package templateSystem
- * @copyright Copyright 2003-2010 Zen Cart Development Team
+ * @copyright Copyright 2003-2011 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
  * @version $Id: tpl_impressum_default.php 650 2010-09-26 09:11:26Z webchills $

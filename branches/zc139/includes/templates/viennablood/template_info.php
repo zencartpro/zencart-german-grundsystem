@@ -10,7 +10,7 @@
  */
 $template_name = 'ViennaBlood';
 $template_version = 'Version 1.0';
-$template_author = 'zen-cart.at';
+$template_author = 'zen-cart-pro.at';
 $template_description = 'Simple red & white template for zen-cart.';
 $template_screenshot = 'screenshot.jpg';
 ?>

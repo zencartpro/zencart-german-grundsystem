@@ -1,29 +1,13 @@
 <?php
-//
-// +----------------------------------------------------------------------+
-// |zen-cart Open Source E-commerce                                       |
-// +----------------------------------------------------------------------+
-// | Copyright (c) 2004 The zen-cart developers                           |
-// |                                                                      |
-// | http://www.zen-cart.com/index.php                                    |
-// |                                                                      |
-// | Portions Copyright (c) 2003 osCommerce                               |
-// +----------------------------------------------------------------------+
-// | This source file is subject to version 2.0 of the GPL license,       |
-// | that is bundled with this package in the file LICENSE, and is        |
-// | available through the world-wide-web at the following url:           |
-// | http://www.zen-cart.com/license/2_0.txt.                             |
-// | If you did not receive a copy of the zen-cart license and are unable |
-// | to obtain it through the world-wide-web, please send a note to       |
-// | license@zen-cart.com so we can mail you a copy immediately.          |
-// +----------------------------------------------------------------------+
-// | Translator:           cyaneo                                         |
-// | Date of Translation:  16.08.04                                       |
-// | Homepage:             www.zen-cart.at                                |
-// +----------------------------------------------------------------------+
-// $Id$
-//
+/**
+ * @package languageDefines
+ * @copyright Copyright 2003-2011 Zen Cart Development Team
+ * @copyright Portions Copyright 2003 osCommerce
+ * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
+ * @translators: cyaneo/hugo13/wflohr/maleborg/webchills	http://www.zen-cart-pro.at
+ * @version $Id$
+ */
 
-define('TEXT_MAIN', 'Willkommen im Installationsprogramm für Zen Cart v' . PROJECT_VERSION_MAJOR .'.'.PROJECT_VERSION_MINOR. '. Dieses Programm führt Sie durch die notwendigen Schritte für eine erfolgreiche Installation von Zen Cart.');
+define('TEXT_MAIN', 'Willkommen im Installationsprogramm der deutschen Zen-Cart Version ' . PROJECT_VERSION_MAJOR .'.'.PROJECT_VERSION_MINOR. '. Dieses Programm führt Sie durch die notwendigen Schritte für eine erfolgreiche Installation der deutschen Zen-Cart Version.');
 define('TEXT_PAGE_HEADING', 'Zen Cart Installation - Willkommen');
 define('INSTALL', 'Weiter');

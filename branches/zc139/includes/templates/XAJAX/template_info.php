@@ -10,7 +10,7 @@
  */
 $template_name = 'XAJAX';
 $template_version = 'Version 1.0';
-$template_author = 'zen-cart.at // hugo13';
+$template_author = 'zen-cart-pro.at // hugo13';
 $template_description = 'demonstrates the xajax use ';
 $template_screenshot = 'screenshot.gif';
 ?>

@@ -3,7 +3,7 @@
  * cc_validation Class.
  *
  * @package classes
- * @copyright Copyright 2003-2010 Zen Cart Development Team
+ * @copyright Copyright 2003-2011 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
  * @version $Id: cc_validation.php 16229 2010-05-07 05:19:11Z drbyte $

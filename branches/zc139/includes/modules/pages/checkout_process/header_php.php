@@ -3,7 +3,7 @@
  * Checkout Process Page 
  * 
  * @package page
- * @copyright Copyright 2003-2010 Zen Cart Development Team
+ * @copyright Copyright 2003-2011 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
  * @version $Id: header_php.php 16907 2010-07-15 19:38:33Z drbyte $

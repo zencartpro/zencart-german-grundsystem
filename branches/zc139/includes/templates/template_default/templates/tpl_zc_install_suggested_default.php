@@ -52,7 +52,7 @@ dann laden Sie das Verzeichnis "zc_install" per FTP Programm in Ihr Shopverzeich
 </li>
 <li>Ihre <tt><strong>/includes/configure.php</strong></tt> und/oder <tt><strong>/admin/includes/configure.php</strong></tt> Datei enthält ungültige <em>Pfadangaben</em> und/oder ungültige <em>Angaben zur Datenbankverbindung</em>.<br />
 Sollten Sie kürzlich Ihre configure.php Dateien aus irgendwelchen Gründen geändert haben, oder Ihren Shop in ein anderes Verzeichnis/anderen Server verschoben haben, dann müssen Sie die entsprechenden Angaben in den beiden Dateien anpassen.<br />
-Weitere Informationen erhalten Sie im <a href="http://www.zen-cart.at" target="_blank">deutschsprachigen Supportforum</a>.</li>
+Weitere Informationen erhalten Sie im <a href="http://www.zen-cart-pro.at" target="_blank">deutschsprachigen Supportforum</a>.</li>
 <?php if (isset($problemString) && $problemString != '') { ?>
 <li class="errorDetails">Zusätzliche Hinweise: <?php echo $problemString; ?></li>
 <?php } ?>
@@ -70,7 +70,7 @@ Weitere Informationen erhalten Sie im <a href="http://www.zen-cart.at" target="_
 <?php } else { ?>
 <li>Sie müssen das Verzeichnis "zc_install" per FTP in Ihr Shopverzeichnis hochladen und dann <a href="<?php echo $instPath; ?>">zc_install/index.php</a> via Ihrem Browser aufrufen (oder laden Sie diese Seite erneut, um einen Link dahin angezeigt zu bekommen).</li>
 <?php } ?>
-<li>Das <a href="http://www.zen-cart.at" target="_blank">deutschsprachige Supportforum</a> steht Ihnen bei Problemen ebenfalls zur Verfügung.</li>
+<li>Das <a href="http://www.zen-cart-pro.at" target="_blank">deutschsprachige Supportforum</a> steht Ihnen bei Problemen ebenfalls zur Verfügung.</li>
 </ol>
 
 </div>

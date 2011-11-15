@@ -48,39 +48,39 @@ define('MODULE_PAYMENT_PAYPALWPP_TEXT_ADDR_ERROR', 'Die angegebene Adresse schei
 define('MODULE_PAYMENT_PAYPALWPP_TEXT_CONFIRMEDADDR_ERROR', 'Die ausgewählte Adresse bei Paypal ist keine bestätigte Adresse. Bitte wählen Sie eine Andere aus und versuchen Sie es erneut.');
 define('MODULE_PAYMENT_PAYPALWPP_TEXT_INSUFFICIENT_FUNDS_ERROR', 'PayPal konnte diese Transaktion nicht erfolgreich durchführen. Bitte wählen Sie eine andere Zahlungsart oder überprüfen Sie Ihre Zahlungsoptionen in Ihrem PayPal Account bevor Sie fortfahren.');
 define('MODULE_PAYMENT_PAYPALWPP_TEXT_ERROR', 'Es trat ein Fehler während der Verarbeitung Ihrer Kreditkarten Informationen auf. Bitte versuchen Sie es erneut oder nehmen Sie mit uns Kontakt auf.');
-define('MODULE_PAYMENT_PAYPALWPP_TEXT_BAD_CARD', 'Es tut uns leid, aber die angebene Kreditkarte akzeptieren wir nicht. Bitte wählen sie eine Andere oder nehmen Sie mit uns Kontakt auf.');
+define('MODULE_PAYMENT_PAYPALWPP_TEXT_BAD_CARD', 'Es tut uns leid, aber die angebene Kreditkarte akzeptieren wir nicht. Bitte wählen sie eine andere oder nehmen Sie mit uns Kontakt auf.');
 define('MODULE_PAYMENT_PAYPALWPP_TEXT_BAD_LOGIN', 'Es gab ein Problem bei der Überprüfung Ihres Paypal Accounts, bitte versuchen Sie es erneut.');
 define('MODULE_PAYMENT_PAYPALWPP_TEXT_JS_CC_OWNER', '* Der Kreditkarteninhaber sollte mindestens eine Länge von' . CC_OWNER_MIN_LENGTH . ' Zeichen haben.\n');
 define('MODULE_PAYMENT_PAYPALWPP_TEXT_JS_CC_NUMBER', '* Die Kreditkartenummer sollte mindestens eine Länge von ' . CC_NUMBER_MIN_LENGTH . ' Zeichen haben.\n');
 define('MODULE_PAYMENT_PAYPALWPP_ERROR_AVS_FAILURE_TEXT', 'ALARM: Addressprüfungsfehler. ');
 define('MODULE_PAYMENT_PAYPALWPP_ERROR_CVV_FAILURE_TEXT', 'ALARM: CVV Code Überprüfungsfehler. ');
 define('MODULE_PAYMENT_PAYPALWPP_ERROR_AVSCVV_PROBLEM_TEXT', ' Bestellung wird erst vom Shopinhaber überprüft.');
-define('MODULE_PAYMENT_PAYPALWPP_TEXT_UNILATERAL', ' - You need to register your PayPal API Credentials before you can do advanced transaction processing.');
+define('MODULE_PAYMENT_PAYPALWPP_TEXT_UNILATERAL', ' - Sie müssen Ihre PayPal API Zugangsdaten eintragen, bevor Sie erweitere Transaktionsverarbeitungen nutzen können.');
 define('MODULE_PAYMENT_PAYPALWPP_TEXT_BUTTON_TEXT', 'Sparen sie Zeit und bestellen sie vollkommen sicher. Zahlen Sie ohne ihre finanzielle Situation preiszugeben');
 define('MODULE_PAYMENT_PAYPALWPP_TEXT_BUTTON_ALTTEXT', 'Klicken Sie hier um per PayPal Express Checkout zu bestellen');
-define('MODULE_PAYMENT_PAYPALWPP_TEXT_STATE_ERROR', 'Der zugewiesene Status zu ihrem Paypal Account ist nicht gültig., Bitte äändern Sie Ihre Einstellungen.');
+define('MODULE_PAYMENT_PAYPALWPP_TEXT_STATE_ERROR', 'Der zugewiesene Status zu ihrem Paypal Account ist nicht gültig., Bitte ändern Sie Ihre Einstellungen.');
 define('MODULE_PAYMENT_PAYPALWPP_TEXT_NOT_WPP_ACCOUNT_ERROR', 'Es tut uns leid, wir konnten Ihre Zahlungsart Paypal Express Checkout leider nicht akzeptieren. Entweder sind die Shopeinstellungen fehlerhaft oder die Zahlungsart wurde noch nicht von Paypal für diesen Webshop aktiviert. Bitte nehmen Sie mit uns Kontakt auf');
 define('MODULE_PAYMENT_PAYPALWPP_TEXT_SANDBOX_VS_LIVE_ERROR', 'Es tut uns leid, wir konnten die Transaktion leider nicht ausführen. Der Paypal Account dieses Webshops ist leider fehlerhaft (Sandbox und Live Status aktiviert) eingestellt. Bitte nehmen Sie mit dem Shopinhaber Kontakt auf und weisen Sie ihn auf diesen Fehler hin.');
 define('MODULE_PAYMENT_PAYPALWPP_TEXT_WPP_BAD_COUNTRY_ERROR', 'Es tut uns leid, der Paypal Account des Shopinhabers liegt in einem Land, das derzeit noch nicht von Paypal Express Checkout unterstützt wird. Bitte wählen Sie eine andere Zahlungsweise aus.');
-define('MODULE_PAYMENT_PAYPALWPP_TEXT_NOT_CONFIGURED', '<span class="alert">&nbsp;(Hinweis: Das Modul ist noch nicht konfiguriert)</span>');
+define('MODULE_PAYMENT_PAYPALWPP_TEXT_NOT_CONFIGURED', '<span class="alert">&nbsp;(HINWEIS: Das Modul ist noch nicht konfiguriert)</span>');
 define('MODULE_PAYMENT_PAYPALWPP_TEXT_GETDETAILS_ERROR', 'Es gab Probleme beim Empfangen von Transaktionsdetails. ');
 define('MODULE_PAYMENT_PAYPALWPP_TEXT_TRANSSEARCH_ERROR', 'Es gab ein Problem, passende Transaktionen zu Ihren Angaben zu finden. ');
 define('MODULE_PAYMENT_PAYPALWPP_TEXT_VOID_ERROR', 'Ein Problem hat die Ausführung der Transaktion verhindert. ');
 define('MODULE_PAYMENT_PAYPALWPP_TEXT_REFUND_ERROR', 'Es gab ein Problem beim Rückerstatten der Zahlung. ');
-define('MODULE_PAYMENT_PAYPALWPP_TEXT_AUTH_ERROR', 'Es gab ein Problem bei der Authorisierung der Transaktion. ');
+define('MODULE_PAYMENT_PAYPALWPP_TEXT_AUTH_ERROR', 'Es gab ein Problem bei der Autorisierung der Transaktion. ');
 define('MODULE_PAYMENT_PAYPALWPP_TEXT_CAPT_ERROR', 'Ein Problem hat die Ausführung der Transaktion verhindert. ');
 define('MODULE_PAYMENT_PAYPALWPP_TEXT_REFUNDFULL_ERROR', 'Ihr Rückerstattungsanliegen wurde von Paypal abgelehnt.');
 define('MODULE_PAYMENT_PAYPALWPP_TEXT_INVALID_REFUND_AMOUNT', 'Sie haben eine teilweise Rückerstattung angefordert, haben allerdings keinen Betrag eingegeben.');
 define('MODULE_PAYMENT_PAYPALWPP_TEXT_REFUND_FULL_CONFIRM_ERROR', 'Sie haben die volle Rückerstattung angefordert, aber haben nicht die Bestätigen Checkbox angehakt.');
-define('MODULE_PAYMENT_PAYPALWPP_TEXT_INVALID_AUTH_AMOUNT', 'Sie haben eine Authorisation angefordert, aber haben keinen Betrag angegeben.');
+define('MODULE_PAYMENT_PAYPALWPP_TEXT_INVALID_AUTH_AMOUNT', 'Sie haben eine Autorisation angefordert, aber haben keinen Betrag angegeben.');
 define('MODULE_PAYMENT_PAYPALWPP_TEXT_INVALID_CAPTURE_AMOUNT', 'Die haben eine Capture angefordert, aber haben keinen Betrag angegeben.');
 define('MODULE_PAYMENT_PAYPALWPP_TEXT_VOID_CONFIRM_CHECK', 'Bestätigen');
 define('MODULE_PAYMENT_PAYPALWPP_TEXT_VOID_CONFIRM_ERROR', 'Sie wollten eine Transaktion abbrechen, haben aber nicht die Bestätigen Checkbox angehakt.');
 define('MODULE_PAYMENT_PAYPALWPP_TEXT_AUTH_FULL_CONFIRM_CHECK', 'Bestätigen');
-define('MODULE_PAYMENT_PAYPALWPP_TEXT_AUTH_CONFIRM_ERROR', 'Sie haben eine Authorisation angefordert, aber haben nicht die Bestätigen Checkbox angehakt.');
+define('MODULE_PAYMENT_PAYPALWPP_TEXT_AUTH_CONFIRM_ERROR', 'Sie haben eine Autorisation angefordert, aber haben nicht die Bestätigen Checkbox angehakt.');
 define('MODULE_PAYMENT_PAYPALWPP_TEXT_CAPTURE_FULL_CONFIRM_ERROR', 'Sie haben einen Funds-Capture angefordert, aber haben nicht die Bestätigen Checkbox angehakt.');
 define('MODULE_PAYMENT_PAYPALWPP_TEXT_REFUND_INITIATED', 'PayPal Rückerstattung für %s gestartet. Transaction ID: %s. Aktualisieren Sie die Seite (F5) um den aktuellen Status einzusehen.');
-define('MODULE_PAYMENT_PAYPALWPP_TEXT_AUTH_INITIATED', 'PayPal Authorization für %s gestartet. Aktualisieren Sie die Seite (F5) um den aktuellen Status einzusehen.');
+define('MODULE_PAYMENT_PAYPALWPP_TEXT_AUTH_INITIATED', 'PayPal Autorisation für %s gestartet. Aktualisieren Sie die Seite (F5) um den aktuellen Status einzusehen.');
 define('MODULE_PAYMENT_PAYPALWPP_TEXT_CAPT_INITIATED', 'PayPal Capture für %s gestartet. Receipt ID: %s. Aktualisieren Sie die Seite (F5) um den aktuellen Status einzusehen.');
 define('MODULE_PAYMENT_PAYPALWPP_TEXT_VOID_INITIATED', 'PayPal Abbrechen Request gestartet. Transaction ID: %s. Aktualisieren Sie die Seite (F5) um den aktuellen Status einzusehen.');
 define('MODULE_PAYMENT_PAYPALWPP_TEXT_GEN_API_ERROR', 'Es gab einen Fehler bei der auszuführenden Transaktion. Bitte schauen Sie in der API Anleitung oder in den Transaktions Logs für weitere Informationen nach.');
@@ -101,6 +101,9 @@ define('MODULE_PAYMENT_PAYPALEC_MARK_BUTTON_TXT', 'Einkaufen mit PayPal');
   //define('MODULE_PAYMENT_PAYPALWPP_PAGECOLOR', '');  // 6-digit hex value
   //define('MODULE_PAYMENT_PAYPALWPP_HEADER_BORDER_COLOR', '');  // 6-digit hex value
   //define('MODULE_PAYMENT_PAYPALWPP_HEADER_BACK_COLOR', ''); // 6-digit hex value
+ ////// Styling of pseudo cart contents display section
+  //define('MODULE_PAYMENT_PAYPAL_LOGO_IMAGE', ''); // https path to your customized logo
+  //define('MODULE_PAYMENT_PAYPAL_CART_BORDER_COLOR', ''); // 6-digit hex value
 ////////////////////////////////////////
 
 
@@ -145,9 +148,9 @@ define('MODULE_PAYMENT_PAYPAL_ENTRY_REFUND_DEFAULT_MESSAGE', 'Rückerstattet vom
 define('MODULE_PAYMENT_PAYPALWPP_TEXT_REFUND_FULL_CONFIRM_CHECK','Bestätigung: ');
 define('MODULE_PAYMENT_PAYPAL_ENTRY_COMMENTS', 'System Meldungen: ');
 define('MODULE_PAYMENT_PAYPALWPP_ENTRY_PROTECTIONELIG', 'Protection Berechtigung:');
-define('MODULE_PAYMENT_PAYPAL_ENTRY_AUTH_TITLE', '<strong>Bestell Authorisation</strong>');
+define('MODULE_PAYMENT_PAYPAL_ENTRY_AUTH_TITLE', '<strong>Bestell Autorisation</strong>');
 define('MODULE_PAYMENT_PAYPAL_ENTRY_AUTH_PARTIAL_TEXT', 'Wollen Sie einen Teil dieser Bestellungen authorisieren, dann tragen Sie den Betrag hier ein:');
-define('MODULE_PAYMENT_PAYPAL_ENTRY_AUTH_BUTTON_TEXT_PARTIAL', 'Authorisieren');
+define('MODULE_PAYMENT_PAYPAL_ENTRY_AUTH_BUTTON_TEXT_PARTIAL', 'Autorisieren');
 define('MODULE_PAYMENT_PAYPAL_ENTRY_AUTH_SUFFIX', '');
 define('MODULE_PAYMENT_PAYPAL_ENTRY_REFUND_TEXT_COMMENTS', '<strong>Hinweis für den Kunden:</strong>');
 define('MODULE_PAYMENT_PAYPAL_ENTRY_REFUND_DEFAULT_MESSAGE', 'Rückerstattet vom Shopinhaber.');
@@ -160,8 +163,8 @@ define('MODULE_PAYMENT_PAYPAL_ENTRY_CAPTURE_SUFFIX', '');
 define('MODULE_PAYMENT_PAYPAL_ENTRY_CAPTURE_TEXT_COMMENTS', '<strong>Hinweis für den Kunden:</strong>');
 define('MODULE_PAYMENT_PAYPAL_ENTRY_CAPTURE_DEFAULT_MESSAGE', 'Vielen Dank für Ihren Auftrag.');
 define('MODULE_PAYMENT_PAYPALWPP_TEXT_CAPTURE_FULL_CONFIRM_CHECK','Bestätigung: ');
-define('MODULE_PAYMENT_PAYPAL_ENTRY_VOID_TITLE', '<strong>Abbrechen von Auftrags Authorisationen</strong>');
-define('MODULE_PAYMENT_PAYPAL_ENTRY_VOID', 'Wenn Sie eine Authorisation abbrechen wollen, dann tragen Sie bitte die entsprechende ID hier ein und klicken auf Abbrechen.');
+define('MODULE_PAYMENT_PAYPAL_ENTRY_VOID_TITLE', '<strong>Abbrechen von Auftrags Autorisationen</strong>');
+define('MODULE_PAYMENT_PAYPAL_ENTRY_VOID', 'Wenn Sie eine Autorisation abbrechen wollen, dann tragen Sie bitte die entsprechende ID hier ein und klicken auf Abbrechen.');
 define('MODULE_PAYMENT_PAYPAL_ENTRY_VOID_TEXT_COMMENTS', '<strong>Hinweis für den Kunden:</strong>');
 define('MODULE_PAYMENT_PAYPAL_ENTRY_VOID_DEFAULT_MESSAGE', 'Vielen Dank dass Sie ein Kunde von uns sind, bitte besuchen Sie uns bald wieder.');
 define('MODULE_PAYMENT_PAYPAL_ENTRY_VOID_BUTTON_TEXT_FULL', 'Abbrechen');
@@ -181,3 +184,5 @@ define('MODULES_PAYMENT_PAYPALWPP_LINEITEM_TEXT_DISCOUNTS_SHORT', 'Rabatte');
 define('MODULES_PAYMENT_PAYPALWPP_LINEITEM_TEXT_DISCOUNTS_LONG', 'Angewandte Rabatte, Discounts, Gutscheincodes, Geschenkgutscheine, etc');
 define('MODULE_PAYMENT_PAYPALDP_TEXT_EMAIL_FMF_SUBJECT', 'Zahlung in Betrugsprüfung Status: ');
 define('MODULE_PAYMENT_PAYPALDP_TEXT_EMAIL_FMF_INTRO', 'This is an automated notification to advise you that PayPal flagged the payment for a new order as Requiring Payment Review by their Fraud team. Normally the review is completed within 36 hours. It is STRONGLY ADVISED that you DO NOT SHIP the order until payment review is completed. You can see the latest review status of the order by logging into your PayPal account and reviewing recent transactions.');
+  define('MODULES_PAYMENT_PAYPALWPP_TEXT_BLANK_ADDRESS', 'PROBLEM: Sorry. PayPal hat unerwarteter Weise eine leer Adresse zurückgegeben. <br />Um Ihre Bestellung abzuschließen, geben Sie bitte Ihre Adresse an, in dem Sie den Konto Erstellen Button anclicken und ein Kundenkonto in unserem Shop anlegen. Dann gehen Sie bitte wieder zur Kasse und wählen erneut PayPal als Zahlungsart aus. Sorry für die Unannehmlichkeiten. Wenn Sie Schwierigkeiten mit der Bestellung haben, nutzen Sie bitte das Kontaktformular und schildern uns, was nicht funktioniert. Wir helfen Ihnen dann gerne weiter.');
+  define('MODULES_PAYMENT_PAYPALWPP_AGGREGATE_CART_CONTENTS', 'Alle Artikel in Ihrem Warenkorb (Details finden Sie im Shop unter Mein Konto und in Ihrer Bestellbestätigung)');

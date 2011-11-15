@@ -3,7 +3,7 @@
  * File contains the order-totals-processing class ("order-total")
  *
  * @package classes
- * @copyright Copyright 2003-2010 Zen Cart Development Team
+ * @copyright Copyright 2003-2011 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
  * @version $Id: order_total.php 16811 2010-06-30 19:18:43Z drbyte $

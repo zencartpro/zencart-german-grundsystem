@@ -8,9 +8,9 @@
  * FILE SHOULD NEVER BE EDITED MANUALLY !!!!!!!!
  *
  * @package general
- * @copyright Copyright 2003-2010 Zen Cart Development Team
+ * @copyright Copyright 2003-2011 Zen Cart Development Team
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: version.php 675 2010-10-28 18:05:06Z webchills $
+ * @version $Id: version.php 676 2011-11-15 06:05:06Z webchills $
  * @private
  */
 
@@ -21,6 +21,6 @@ define('PROJECT_VERSION_PATCH1', '');
 define('PROJECT_VERSION_PATCH2', '');
 define('PROJECT_VERSION_PATCH1_SOURCE', '');
 define('PROJECT_VERSION_PATCH2_SOURCE', '');
-define('NEW_VERSION_CHECKUP_URL','http://demo.zen-cart.at/version_id.txt');
+define('NEW_VERSION_CHECKUP_URL','http://www.zen-cart-pro.at/version_id.txt');
 define('EXPECTED_DATABASE_VERSION_MAJOR', '1');
 define('EXPECTED_DATABASE_VERSION_MINOR', '3.9');

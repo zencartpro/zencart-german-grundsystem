@@ -1,7 +1,7 @@
 <?php
 /**
  * @package shippingMethod
- * @copyright Copyright 2003-2010 Zen Cart Development Team
+ * @copyright Copyright 2003-2011 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
  * @version $Id: zones.php 2010-05-21 11:37:16Z webchills $
@@ -302,7 +302,7 @@
       $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) values ('Tax Basis', 'MODULE_SHIPPING_ZONES_TAX_BASIS', 'Shipping', 'On what basis is Shipping Tax calculated. Options are<br />Shipping - Based on customers Shipping Address<br />Billing Based on customers Billing address<br />Store - Based on Store address if Billing/Shipping Zone equals Store zone', '6', '0', 'zen_cfg_select_option(array(\'Shipping\', \'Billing\', \'Store\'), ', now())");
       $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) values ('Sort Order', 'MODULE_SHIPPING_ZONES_SORT_ORDER', '0', 'Sort order of display.', '6', '0', now())");
       $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) values ('Skip Countries, use a comma separated list of the two character ISO country codes', 'MODULE_SHIPPING_ZONES_SKIPPED', '', 'Disable for the following Countries:', '6', '0', 'zen_cfg_textarea(', now())");
-// www.zen-cart.at r.l. languages_id==43 START
+// www.zen-cart-pro.at r.l. languages_id==43 START
       $db->Execute("insert into " . TABLE_CONFIGURATION_LANGUAGE   . " (configuration_title, configuration_key, configuration_language_id, configuration_description, date_added) values ('Versandkosten nach Zonen anbieten?', 'MODULE_SHIPPING_ZONES_STATUS', '43', 'Wollen Sie Versandkosten nach Zonen aktivieren?', now())");
       $db->Execute("insert into " . TABLE_CONFIGURATION_LANGUAGE   . " (configuration_title, configuration_key, configuration_language_id, configuration_description, date_added) values ('Berechnungsweise', 'MODULE_SHIPPING_ZONES_METHOD', '43', 'Sollen die Kosten nach Gewicht (Weight), Preis (Price) oder pro Stück (Item) berechnet werden?', now())");
       $db->Execute("insert into " . TABLE_CONFIGURATION_LANGUAGE   . " (configuration_title, configuration_key, configuration_language_id, configuration_description, date_added) values ('Steuerklasse', 'MODULE_SHIPPING_ZONES_TAX_CLASS', '43', 'Folgende Steuerklasse auf die Versandkosten anwenden:', now())");
@@ -321,7 +321,7 @@
       $db->Execute("insert into " . TABLE_CONFIGURATION_LANGUAGE   . " (configuration_title, configuration_key, configuration_language_id, configuration_description, date_added) values ('Zone 1 Art der Bearbeitungsgebühr (nur falls nach Gewicht berechnet wird)', 'MODULE_SHIPPING_ZONES_HANDLING_METHOD_1', '43', 'Falls Sie in dieser Zone eine Bearbeitungsgebühr verrechnen, soll die pro Bestellung (Order) oder pro Paket (Box) verrechnet werden?', now())");
       $db->Execute("insert into " . TABLE_CONFIGURATION_LANGUAGE   . " (configuration_title, configuration_key, configuration_language_id, configuration_description, date_added) values ('Zone 2 Art der Bearbeitungsgebühr (nur falls nach Gewicht berechnet wird)', 'MODULE_SHIPPING_ZONES_HANDLING_METHOD_2', '43', 'Falls Sie in dieser Zone eine Bearbeitungsgebühr verrechnen, soll die pro Bestellung (Order) oder pro Paket (Box) verrechnet werden?', now())");
       $db->Execute("insert into " . TABLE_CONFIGURATION_LANGUAGE   . " (configuration_title, configuration_key, configuration_language_id, configuration_description, date_added) values ('Zone 3 Art der Bearbeitungsgebühr (nur falls nach Gewicht berechnet wird)', 'MODULE_SHIPPING_ZONES_HANDLING_METHOD_3', '43', 'Falls Sie in dieser Zone eine Bearbeitungsgebühr verrechnen, soll die pro Bestellung (Order) oder pro Paket (Box) verrechnet werden?', now())");
-			// www.zen-cart.at r.l. languages_id==43  END
+			// www.zen-cart-pro.at r.l. languages_id==43  END
       for ($i = 1; $i <= $this->num_zones; $i++) {
         $default_countries = '';
         if ($i == 1) {
@@ -338,7 +338,7 @@
     function remove() {
       global $db;
       $db->Execute("delete from " . TABLE_CONFIGURATION . " where configuration_key like 'MODULE\_SHIPPING\_ZONES\_%'");
-      // www.zen-cart.at r.l. languages_id == delete all
+      // www.zen-cart-pro.at r.l. languages_id == delete all
       $db->Execute("delete from " . TABLE_CONFIGURATION_LANGUAGE . " where configuration_key like 'MODULE\_SHIPPING\_ZONES\_%'");
     }
 

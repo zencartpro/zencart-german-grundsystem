@@ -5,7 +5,7 @@
  * Hooks into phpMailer class for actual email encoding and sending
  *
  * @package functions
- * @copyright Copyright 2003-2010 Zen Cart Development Team
+ * @copyright Copyright 2003-2011 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
  * @version $Id: functions_email.php 16891 2010-07-14 15:17:09Z drbyte $

@@ -41,7 +41,7 @@
                     'translate' => true, 
                     ),
                 'trans'=>array(                     // replace with translator info
-                    '* @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0' => "* @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0\n * @translator: cyaneo/hugo13/wflohr\thttp://www.zen-cart.at\t" . date('Y-m-d'),
+                    '* @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0' => "* @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0\n * @translator: cyaneo/hugo13/wflohr\thttp://www.zen-cart-pro.at\t" . date('Y-m-d'),
                     '// | Translator:           cyaneo/hugo13                                  |' => '// | Translator:           cyaneo/hugo13/wflohr                           |',
                     '// | Date of Translation:  31.03.06                                       |' => '// | Date of Translation:  '.date('Y-m-d').'                                     |',
                     ),

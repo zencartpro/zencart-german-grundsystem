@@ -3,7 +3,7 @@
  * Header code file for the customer's Account-Edit page
  *
  * @package page
- * @copyright Copyright 2003-2010 Zen Cart Development Team
+ * @copyright Copyright 2003-2011 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
  * @version $Id: header_php.php 4825 2006-10-23 22:25:11Z drbyte $

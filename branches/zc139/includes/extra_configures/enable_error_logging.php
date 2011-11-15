@@ -7,7 +7,7 @@
  * Using this method, the debug details are stored at: /cache/myDEBUG-999999-00000000.log
  *
  * @package debug
- * @copyright Copyright 2003-2010 Zen Cart Development Team
+ * @copyright Copyright 2003-2011 Zen Cart Development Team
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
  * @version $Id: enable_error_logging.php 16900 2010-07-14 22:38:38Z drbyte $
  */

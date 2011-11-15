@@ -1,7 +1,7 @@
 <?php
 /**
  * @package linkpoint_api_payment_module
- * @copyright Copyright 2003-2010 Zen Cart Development Team
+ * @copyright Copyright 2003-2011 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @copyright Portions Copyright 2003 Jason LeBaron
  * @copyright Portions Copyright 2004 DevosC.com
