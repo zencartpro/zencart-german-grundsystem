@@ -1,6 +1,5 @@
 Forum|http://www.zen-cart-pro.at/zcvb/forum|E
 FAQ|http://www.zen-cart-pro.at/zcvb/forum/vbglossar.php|E
-cyaneo|http://www.brainnetwork.at|E
-hugo13|http://edv.langheiter.com/zencartfaq.0.html|E
+hugo13|http://edv.langheiter.com/|E
 maleborg|http://zencart.edv-service-sachs.de|E
 webchills|http://www.webchills.at|E
