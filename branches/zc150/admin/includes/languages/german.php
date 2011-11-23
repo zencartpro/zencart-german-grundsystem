@@ -4,7 +4,7 @@
  * @copyright Copyright 2003-2010 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @translator: cyaneo/hugo13/wflohr/maleborg/webchills	http://www.zen-cart.at	2010-04-27
+ * @translator: cyaneo/hugo13/wflohr/maleborg/webchills	http://www.zen-cart-pro.at	2010-04-27
  * @version $Id: german.php 643 2010-09-23 22:54:04Z maleborg $
  */
 if (!defined('IS_ADMIN_FLAG'))
@@ -714,7 +714,7 @@ define('CATEGORY_HAS_SUBCATEGORIES', 'Achtung: Kategorie besitzt Unterkategorien
 
 define('WARNING_WELCOME_DISCOUNT_COUPON_EXPIRES_IN', 'Warnung! Der Aktionskupon "Willkommensgeschenk" läuft in %s Tagen ab.');
 
-define('WARNING_ADMIN_FOLDERNAME_VULNERABLE', 'VORSICHT: <a href="http://www.zen-cart.at/zcvb/forum/vbglossar.php?do=showentry&id=6" target="_blank">Sie sollten den Ordner /admin/ in irgendwas weniger auffallendes umbenennen</a>, um ihn vor unbefugten Zugriffen zu schützen.');
+define('WARNING_ADMIN_FOLDERNAME_VULNERABLE', 'VORSICHT: <a href="http://www.zen-cart-pro.at/zcvb/forum/vbglossar.php?do=showentry&id=6" target="_blank">Sie sollten den Ordner /admin/ in irgendwas weniger auffallendes umbenennen</a>, um ihn vor unbefugten Zugriffen zu schützen.');
 define('WARNING_EMAIL_SYSTEM_DISABLED', 'WARNUNG: Das Emailsystem ist abgeschaltet. Es werden keine Emails vom Shop versendet, bevor Sie das nicht unter Admin->Konfiguration->Email Optionen aktivieren..');
 define('TEXT_CURRENT_VER_IS', 'Sie benutzen gerade: ');
 define('ERROR_NO_DATA_TO_SAVE', 'FEHLER: Die übertragenen Daten waren leer. IHRE ÄNDERUNGEN WURDEN *NICHT* GESPEICHERT. Sie haben möglicherweise ein Problem mit Ihrem Browser oder Ihrer Internetverbindung.');

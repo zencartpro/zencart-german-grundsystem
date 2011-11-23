@@ -3336,8 +3336,8 @@ VALUES ('german1', 'BOX_HEADING_EXTRAS_GERMAN', 50);
 
 INSERT INTO admin_pages (page_key, language_key, main_page, page_params, menu_key, display_on_menu, sort_order) 
 VALUES  ('proponents', 'GERMAN_PROPONENTS', 'FILENAME_GERMAN', '', 'german1', 'Y', 30),
-        ('german10', 'GERMAN_FORUM', 'FILENAME_GERMAN', 'extern=http://www.zen-cart.at/zcvb/forum', 'german1', 'Y', 10),
-        ('german30', 'GERMAN_FAQ', 'FILENAME_GERMAN', 'extern=http://www.zen-cart.at/zcvb/forum/vbglossar.php', 'german1', 'Y', 20);
+        ('german10', 'GERMAN_FORUM', 'FILENAME_GERMAN', 'extern=http://www.zen-cart-pro.at/zcvb/forum', 'german1', 'Y', 10),
+        ('german30', 'GERMAN_FAQ', 'FILENAME_GERMAN', 'extern=http://www.zen-cart-pro.at/zcvb/forum/vbglossar.php', 'german1', 'Y', 20);
     
 
 ##### End of SQL setup for Zen Cart.

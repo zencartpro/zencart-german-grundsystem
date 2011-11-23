@@ -3,7 +3,7 @@
  * @package admin Zen-Cart Deutsch
  * @copyright Copyright 2003-2011 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
- * @license http://www.zen-cart.at/license/2_0.txt GNU Public License V2.0
+ * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
  * @version $Id: store_manager.php 727 2011-07-28 10:36:31Z webchills $
  */
 define('HEADING_TITLE', 'Shopmanager');

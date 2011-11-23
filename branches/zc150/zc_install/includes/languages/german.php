@@ -5,7 +5,7 @@
  * @access private
  * @copyright Copyright 2003-2010 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
- * @license http://www.zen-cart.at/license/2_0.txt GNU Public License V2.0
+ * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
  * @version $Id$
  */
 /**
@@ -258,12 +258,12 @@ switch ($error_code) {
   break;
   case ('6'):
     define('POPUP_ERROR_HEADING', 'Virtueller HTTPS Server');
-    define('POPUP_ERROR_TEXT', 'Das ist die Adresse zu Ihrem sicheren SSL Server. Diese Adresse hängt von auf Ihrem Webserver installierten SSL Modus ab. Sie können auf <a href="http://www.zen-cart.at/modules/xoopsfaq/index.php?cat_id=2#46" target="_blank">Zen Cart FAQ</a> mehr zum Thema SSL erfahren.');
+    define('POPUP_ERROR_TEXT', 'Das ist die Adresse zu Ihrem sicheren SSL Server. Diese Adresse hängt von auf Ihrem Webserver installierten SSL Modus ab. Sie können auf <a href="http://www.zen-cart-pro.at/modules/xoopsfaq/index.php?cat_id=2#46" target="_blank">Zen Cart FAQ</a> mehr zum Thema SSL erfahren.');
     
   break;
   case ('7'):
     define('POPUP_ERROR_HEADING', 'Virtueller HTTPS Path');
-    define('POPUP_ERROR_TEXT', 'Das ist die Adresse, die Sie in Ihrem Browser eingeben, um auf Ihre Shopseite über eine sichere SSL Verbindung zu gelangen, z.B. \'https://www.ihredomain.at\'. Sie können auf <a href="http://www.zen-cart.at/modules/xoopsfaq/index.php?cat_id=2#46" target="_blank">Zen Cart FAQ</a> mehr zum Thema SSL erfahren.');
+    define('POPUP_ERROR_TEXT', 'Das ist die Adresse, die Sie in Ihrem Browser eingeben, um auf Ihre Shopseite über eine sichere SSL Verbindung zu gelangen, z.B. \'https://www.ihredomain.at\'. Sie können auf <a href="http://www.zen-cart-pro.at/modules/xoopsfaq/index.php?cat_id=2#46" target="_blank">Zen Cart FAQ</a> mehr zum Thema SSL erfahren.');
     
   break;
   case ('8'):
