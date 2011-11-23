@@ -162,7 +162,6 @@ define('FILENAME_STATS_PRODUCTS_LOWSTOCK', 'stats_products_lowstock');
 define('FILENAME_STORE_MANAGER', 'store_manager');
 define('FILENAME_TAX_CLASSES', 'tax_classes');
 define('FILENAME_TAX_RATES', 'tax_rates');
-define('FILENAME_TELL_A_FRIEND', 'tell_a_friend');
 define('FILENAME_TEMPLATE_SELECT', 'template_select');
 define('FILENAME_TIME_OUT','time_out');
 define('FILENAME_UNSUBSCRIBE', 'unsubscribe');

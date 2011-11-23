@@ -3,8 +3,8 @@
  * @package admin
  * @copyright Copyright 2003-2010 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
- * @license http://www.zen-cart.at/license/2_0.txt GNU Public License V2.0
- * @translator: cyaneo/hugo13/wflohr	http://www.zen-cart.at	2007-01-03
+ * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
+ * @translator: cyaneo/hugo13/wflohr	http://www.zen-cart-pro.at	2007-01-03
  * @version $Id: newsletter.php 627 2010-08-30 15:05:14Z webchills $
  */
 

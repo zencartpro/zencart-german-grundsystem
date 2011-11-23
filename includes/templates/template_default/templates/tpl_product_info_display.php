@@ -60,7 +60,7 @@ require($template->get_template_dir('/tpl_products_next_previous.php',DIR_WS_TEM
 <!--eof Product Name-->
 
 <!--bof Product Price block -->
-<span id="productPrices" class="productGeneral">
+<h2 id="productPrices" class="productGeneral">
 <?php
 // base price
   if ($show_onetime_charges_description == 'true') {
@@ -69,7 +69,7 @@ require($template->get_template_dir('/tpl_products_next_previous.php',DIR_WS_TEM
     $one_time = '';
   }
   echo $one_time . ((zen_has_product_attributes_values((int)$_GET['products_id']) and $flag_show_product_info_starting_at == 1) ? TEXT_BASE_PRICE : '') . zen_get_products_display_price((int)$_GET['products_id']);
-?></span>
+?></h2>
 <!--eof Product Price block -->
 
 <!--bof free ship icon  -->
@@ -171,15 +171,6 @@ if (CUSTOMERS_APPROVAL == 3 and TEXT_LOGIN_FOR_PRICE_BUTTON_REPLACE_SHOWROOM == 
  require($template->get_template_dir('/tpl_products_next_previous.php',DIR_WS_TEMPLATE, $current_page_base,'templates'). '/tpl_products_next_previous.php'); ?>
 <?php } ?>
 <!--eof Prev/Next bottom position -->
-
-<!--bof Tell a Friend button -->
-<?php
-  if ($flag_show_product_info_tell_a_friend == 1) { ?>
-<div id="productTellFriendLink" class="buttonRow forward"><?php echo ($flag_show_product_info_tell_a_friend == 1 ? '<a href="' . zen_href_link(FILENAME_TELL_A_FRIEND, 'products_id=' . $_GET['products_id']) . '">' . zen_image_button(BUTTON_IMAGE_TELLAFRIEND, BUTTON_TELLAFRIEND_ALT) . '</a>' : ''); ?></div>
-<?php
-  }
-?>
-<!--eof Tell a Friend button -->
 
 <!--bof Reviews button and count-->
 <?php

@@ -36,7 +36,7 @@ if (! isset ( $_SESSION ['securityToken'] ))
 {
   $_SESSION ['securityToken'] = md5 ( uniqid ( rand (), true ) );
 }
-if (isset ( $_GET ['action'] ) && $_SERVER['REQUEST_METHOD'] == 'POST')
+if ((isset ( $_GET ['action'] ) || isset($_POST['action']) ) && $_SERVER['REQUEST_METHOD'] == 'POST')
 {
   if ((! isset ( $_SESSION ['securityToken'] ) || ! isset ( $_POST ['securityToken'] )) || ($_SESSION ['securityToken'] !== $_POST ['securityToken']))
   {

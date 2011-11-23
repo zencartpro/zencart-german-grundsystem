@@ -42,7 +42,7 @@ fieldset {max-width: 748px; margin: auto}
 
 -->
 </style>
-<title>What's New in Zen Cart(R) v1.5.0RC1</title>
+<title>What's New in Zen Cart(R) v1.5.0RC2</title>
 <meta http-equiv="imagetoolbar" content="no">
 <meta name="author" content="The Zen Cart&reg; Team">
 <meta name="robots" content="noindex, nofollow">
@@ -222,6 +222,9 @@ OSI Certified is a certification mark of the Open Source Initiative.
 <li>BUGSFORUM-2138 - stripslash keyword in first parsing of search keywords, to protect against broken sql resulting in blank page</li>
 <li>BUGSFORUM-2140 - fix problem with metatag deletion where multiple languages exist</li>
 <li>BUGSFORUM-2150 - PHP Warning: strlen() expects parameter 1 to be string</li>
+<li>BUGSFORUM-2175 - fix XSS issue reported by intermittent PCI scans</li>
+<li>CHANGE-190 - fix constants from discount coupon to gv</li>
+
 <li>And all the security fixes and bugfixes from prior versions</li>
 </ul>
 <h1>CHANGELOG - List of Changed Files </h1>
@@ -231,7 +234,7 @@ OSI Certified is a certification mark of the Open Source Initiative.
 <h2>Upgrading Addons or Custom Code</h2>
 <p>If you are attempting to upgrade custom code or addons written for prior versions, you may find this tutorial article helpful: <a href="http://tutorials.zen-cart.com/index.php?article=410" target="_blank">http://tutorials.zen-cart.com/index.php?article=410</a> </p>
 <h2>A Word About UTF-8 vs iso-8859-1</h2>
-<p>Please see this online article for guidance on <a href="http://tutorials.zen-cart.com/index.php?article=396">upgrading old sites from iso-8859-1 to utf8</a> </p>
+<p>Please see this online article for guidance on <a href="http://tutorials.zen-cart.com/index.php?article=414">upgrading old sites from iso-8859-1 to utf8</a> </p>
 <h1>*** SERVER CONFIGURATION REQUIREMENT ***</h1>
 <p>For added security, Zen Cart&reg; comes with several .htaccess files already included in various folders to help provide protection against unwanted visitors 
 and even against mis-use of your site in the unfortunate situation of your site being hacked. These protections prevent hackers from using your site as phishing sources.</p>

@@ -15,6 +15,14 @@
 
 @ini_set("arg_separator.output","&");
 
+// Check PHP version
+if (version_compare(PHP_VERSION, '5.2.14', '<'))
+{
+  require('includes/templates/template_default/templates/tpl_php_version_problem.php');
+  die('');
+}
+
+
 /**
  * Set the local configuration parameters - mainly for developers
  */

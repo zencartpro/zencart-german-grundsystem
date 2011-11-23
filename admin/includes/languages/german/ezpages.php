@@ -5,14 +5,14 @@
 // +----------------------------------------------------------------------+
 // | Copyright (c) 2003 The zen-cart developers                           |
 // |                                                                      |
-// | http://www.zen-cart.at/index.php                                     |
+// | http://www.zen-cart-pro.at/index.php                                     |
 // |                                                                      |
 // | Portions Copyright (c) 2003 osCommerce                               |
 // +----------------------------------------------------------------------+
 // | This source file is subject to version 2.0 of the GPL license,       |
 // | that is bundled with this package in the file LICENSE, and is        |
 // | available through the world-wide-web at the following url:           |
-// | http://www.zen-cart.at/license/2_0.txt.                              |
+// | http://www.zen-cart-pro.at/license/2_0.txt.                              |
 // | If you did not receive a copy of the zen-cart license and are unable |
 // | to obtain it through the world-wide-web, please send a note to       |
 // | license@zen-cart.com so we can mail you a copy immediately.          |
@@ -66,7 +66,7 @@ define('TEXT_CHAPTER_EXPLAIN', 'Kapitel werden nach der Inhaltsverzeichnis Sorti
 define('TEXT_ALT_URL', 'Interne Link URL:');
 define('TEXT_ALT_URL_EXPLAIN', 'Wenn angegeben, wird der Inhalt der EZ-Page ignoriert und dieser Link verwendet<br />z.B. Reviews: index.php?main_page=reviews<br />Mein Konto: index.php?main_page=account<br /> zusätzlich wird SSL markiert');
 define('TEXT_ALT_URL_EXTERNAL', 'Externe Link URL:');
-define('TEXT_ALT_URL_EXTERNAL_EXPLAIN', 'Wenn angegeben, wird der Inhalt der EZ-Page ignoriert und dieser Link verwendet<br />z.B. http://www.zen-cart.at');
+define('TEXT_ALT_URL_EXTERNAL_EXPLAIN', 'Wenn angegeben, wird der Inhalt der EZ-Page ignoriert und dieser Link verwendet<br />z.B. http://www.zen-cart-pro.at');
 define('TEXT_SORT_CHAPTER_TOC_TITLE_INFO', 'Anzeige Sortierung: ');
 define('TEXT_SORT_CHAPTER_TOC_TITLE', 'Kapitel/Inhaltsverzeichnis');
 define('TEXT_SORT_HEADER_TITLE', 'Kopfzeile');

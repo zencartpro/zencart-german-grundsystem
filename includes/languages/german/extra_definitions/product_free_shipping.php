@@ -19,7 +19,7 @@
 // +----------------------------------------------------------------------+
 // | Translator:           cyaneo/hugo13                                  |
 // | Date of Translation:  31.03.06                                       |
-// | Homepage:             www.zen-cart.at                                |
+// | Homepage:             www.zen-cart-pro.at                                |
 // +----------------------------------------------------------------------+
 // $Id: product_free_shipping.php 210 2008-04-09 07:26:51Z hugo13 $
 //

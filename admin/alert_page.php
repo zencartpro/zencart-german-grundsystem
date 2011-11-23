@@ -38,7 +38,7 @@ if (!$adminDirectoryExists && !$installDirectoryExists)
 	<li><?php echo ALERT_REMOVE_ZCINSTALL; ?><br /><br /></li>
 	<?php  } ?>
 	<?php if ($adminDirectoryExists) { ?>
-	<li><?php echo ALERT_RENAME_ADMIN; ?><br /><a href="http://www.zen-cart.at/zcvb/forum/vbglossar.php?do=showentry&id=6" target="_blank"><?php echo ADMIN_RENAME_FAQ_NOTE; ?></a></li>
+	<li><?php echo ALERT_RENAME_ADMIN; ?><br /><a href="http://www.zen-cart-pro.at/zcvb/forum/vbglossar.php?do=showentry&id=6" target="_blank"><?php echo ADMIN_RENAME_FAQ_NOTE; ?></a></li>
 	<?php  } ?>
 	</ul>
 	<br />

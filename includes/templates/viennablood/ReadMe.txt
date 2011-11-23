@@ -1,5 +1,5 @@
 ViennaBlood Template by zen-cart.at
-http://www.zen-cart.at
+http://www.zen-cart-pro.at
 
 info@zen-cart.at
 
