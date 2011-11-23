@@ -16,13 +16,13 @@
 // | to obtain it through the world-wide-web, please send a note to       |
 // | license@zen-cart.com so we can mail you a copy immediately.          |
 // +----------------------------------------------------------------------+
-// | file: google_analytics.php, 2010/09/10							  	  |
+// | file: google_analytics.php, 2010/12/02							  	  |
 // | Adds Google Analytics Capability to Zen Cart						  |
-// | Version Information:  v1.2.3 2010.09.10							  |
-// | Author: Eric Leuenberger - http://www.ZenCartOptimization.com	      |
+// | Version Information:  v1.2.4 2010.12.02							  |
+// | Author: Eric Leuenberger - http://www.TheEcommerceExpert.com	      |
 // +----------------------------------------------------------------------+
 //
-define('VERSION', 'Version: 1.3.2');
+define('VERSION', 'Version: 1.4');
 if ($request_type == 'NONSSL') {
 	$google_analytics_url = "http://www.google-analytics.com/urchin.js"; // used only for old urchin tracking code. new tracking code auto detects protocol
 	$google_conversion_url = "http://www.googleadservices.com/pagead/conversion.js";
@@ -77,11 +77,14 @@ document.write(unescape(\"%3Cscript src='\" + gaJsHost + \"google-analytics.com/
 <script type=\"text/javascript\">
 var pageTracker = _gat._getTracker(\"" . GOOGLE_ANALYTICS_UACCT . "\");
 pageTracker._initData();
-pageTracker._trackPageview();
 ";
 if (GOOGLE_ANALYTICS_CUSTOM_AFTER == 'Enable') { //custom tracking code should be added so add it.
 	echo GOOGLE_ANALYTICS_AFTER_CODE;
 } // end if for adding any addiitonal custom tracking code
+echo "
+pageTracker._trackPageview();
+pageTracker._trackPageLoadTime();
+";
 	if($page_directory == 'includes/modules/pages/checkout_success') {
 	// Do not close script because it is closed at the end of the transaction tracking section
 	} else {
@@ -95,11 +98,14 @@ if (GOOGLE_ANALYTICS_CUSTOM_AFTER == 'Enable') { //custom tracking code should b
 echo "<script type=\"text/javascript\">
   var _gaq = _gaq || [];
   _gaq.push(['_setAccount', '" . GOOGLE_ANALYTICS_UACCT . "']);
-  _gaq.push(['_trackPageview']);
   ";
 if (GOOGLE_ANALYTICS_CUSTOM_AFTER == 'Enable') { //custom tracking code should be added so add it.
 	echo GOOGLE_ANALYTICS_AFTER_CODE;
-} // end if for adding any addiitonal custom tracking code
+} // end if for adding any additonal custom tracking code
+echo "
+  _gaq.push(['_trackPageview']);
+  _gaq.push(['_trackPageLoadTime']);
+  ";
 /*
 echo "
   (function() {
@@ -190,9 +196,9 @@ If (GOOGLE_ANALYTICS_TRACKING_TYPE == "Urchin") {
 echo "
 pageTracker._addItem(
 \"". $order->fields['orders_id'] ."\",
-\"". $products->fields['skucode'] ."\",
-\"". $products->fields['products_name'] ."\",
-\"". $category->fields['categories_name'] ."\",
+\"". addslashes($products->fields['skucode']) ."\",
+\"". addslashes($products->fields['products_name']) ."\",
+\"". addslashes($category->fields['categories_name']) ."\",
 \"". number_format($products->fields['final_price'], 2, '.', '') ."\",
 \"". $products->fields['products_quantity'] . "\"
 );
@@ -203,9 +209,9 @@ pageTracker._addItem(
 echo "
 _gaq.push(['_addItem',
 \"". $order->fields['orders_id'] ."\",
-\"". $products->fields['skucode'] ."\",
-\"". $products->fields['products_name'] ."\",
-\"". $category->fields['categories_name'] ."\",
+\"". addslashes($products->fields['skucode']) ."\",
+\"". addslashes($products->fields['products_name']) ."\",
+\"". addslashes($category->fields['categories_name']) ."\",
 \"". number_format($products->fields['final_price'], 2, '.', '') ."\",
 \"". $products->fields['products_quantity'] . "\"
 ]);

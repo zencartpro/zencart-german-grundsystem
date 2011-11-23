@@ -1,13 +1,38 @@
-##########################################################################
-# Google Analytics 1.3.2 Uninstall - 2010-12-27 - webchills
-# NUR AUSF�HREN WENN SIE DAS MODUL AUS DER DATENBANK ENTFERNEN WOLLEN!!!!!
-##########################################################################
+###############################################################################
+# Google Analytics Cleaner - 2011-11-23 - webchills
+# ENTFERNT ALLE DATENBANKEINTRÄGE VON GOOGLE ANALYTIVS VERSIONEN 1.4 UND ÄLTER
+###############################################################################
 
-SET @t4=0;
-SELECT (@t4:=configuration_group_id) as t4 
-FROM configuration_group
-WHERE configuration_group_title= 'Google Analytics Configuration';
-DELETE FROM configuration WHERE configuration_group_id = @t4 AND configuration_group_id != 0;
-DELETE FROM configuration_group WHERE configuration_group_id = @t4 AND configuration_group_id != 0;
+
+DELETE FROM configuration WHERE configuration_key = 'GOOGLE_ANALYTICS_AFTER_CODE';
+DELETE FROM configuration WHERE configuration_key = 'GOOGLE_ANALYTICS_CUSTOM_AFTER';
+DELETE FROM configuration WHERE configuration_key = 'GOOGLE_ANALYTICS_CONVERSION_LANG';
+DELETE FROM configuration WHERE configuration_key = 'GOOGLE_ANALYTICS_TRACKING_TYPE';
+DELETE FROM configuration WHERE configuration_key = 'GOOGLE_ANALYTICS_CONVERSION_IDNUM';
+DELETE FROM configuration WHERE configuration_key = 'GOOGLE_ANALYTICS_CONVERSION_ACTIVE';
+DELETE FROM configuration WHERE configuration_key = 'GOOGLE_ANALYTICS_SKUCODE';
+DELETE FROM configuration WHERE configuration_key = 'GOOGLE_ANALYTICS_AFFILIATION';
+DELETE FROM configuration WHERE configuration_key = 'GOOGLE_ANALYTICS_TARGET';
+DELETE FROM configuration WHERE configuration_key = 'GOOGLE_ANALYTICS_UACCT';
+DELETE FROM configuration WHERE configuration_key = 'GOOGLE_CONVERSION_ACTIVE';
+DELETE FROM configuration WHERE configuration_key = 'GOOGLE_CONVERSION_IDNUM';
+DELETE FROM configuration WHERE configuration_key = 'GOOGLE_CONVERSION_LANG';
+
+DELETE FROM configuration_language WHERE configuration_key = 'GOOGLE_ANALYTICS_AFTER_CODE';
+DELETE FROM configuration_language WHERE configuration_key = 'GOOGLE_ANALYTICS_CUSTOM_AFTER';
+DELETE FROM configuration_language WHERE configuration_key = 'GOOGLE_ANALYTICS_CONVERSION_LANG';
+DELETE FROM configuration_language WHERE configuration_key = 'GOOGLE_ANALYTICS_TRACKING_TYPE';
+DELETE FROM configuration_language WHERE configuration_key = 'GOOGLE_ANALYTICS_CONVERSION_IDNUM';
+DELETE FROM configuration_language WHERE configuration_key = 'GOOGLE_ANALYTICS_CONVERSION_ACTIVE';
+DELETE FROM configuration_language WHERE configuration_key = 'GOOGLE_ANALYTICS_SKUCODE';
+DELETE FROM configuration_language WHERE configuration_key = 'GOOGLE_ANALYTICS_AFFILIATION';
+DELETE FROM configuration_language WHERE configuration_key = 'GOOGLE_ANALYTICS_TARGET';
+DELETE FROM configuration_language WHERE configuration_key = 'GOOGLE_ANALYTICS_UACCT';
+DELETE FROM configuration_language WHERE configuration_key = 'GOOGLE_CONVERSION_ACTIVE';
+DELETE FROM configuration_language WHERE configuration_key = 'GOOGLE_CONVERSION_IDNUM';
+DELETE FROM configuration_language WHERE configuration_key = 'GOOGLE_CONVERSION_LANG';
+
+DELETE FROM configuration_group WHERE configuration_group_title = 'Google Analytics Einstellungen';
+DELETE FROM configuration_group WHERE configuration_group_title = 'Google Analytics Configuration';
+
 DROP TABLE IF EXISTS google_analytics_languages;
-DELETE FROM configuration_language WHERE configuration_key LIKE '%GOOGLE_ANALYTICS%';

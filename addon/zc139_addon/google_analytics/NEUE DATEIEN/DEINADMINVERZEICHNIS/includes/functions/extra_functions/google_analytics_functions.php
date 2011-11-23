@@ -15,25 +15,24 @@
 // +----------------------------------------------------------------------+
 // | file: google_analytics_functions.php, 2008/01/09					  |
 // | Functions for creating the dropdown box of Languages				  |
-// | Author: Eric Leuenberger - http://www.ZenCartOptimization.com	
-// | modified 2008-12-30 by webchills
+// | Author: Eric Leuenberger - http://www.ZenCartOptimization.com	      |
 // +----------------------------------------------------------------------+
 //
-  function zen_cfg_pull_down_google_analytics_languages($languages_id, $key = '') {
+  function zen_cfg_pull_down_google_languages($languages_id, $key = '') {
     global $db;
     $name = (($key) ? 'configuration[' . $key . ']' : 'configuration_value');
-    $google_analytics_languages = $db->Execute("select languages_id, name, code from " . TABLE_GOOGLE_ANALYTICS_LANGUAGES . " order by sort_order");
-    $google_analytics_languages_array = array(array('id' => '0', 'text' => TEXT_DEFAULT));
+    $google_languages = $db->Execute("select languages_id, name, code from " . TABLE_GOOGLE_ANALYTICS_LANGUAGES . " order by sort_order");
+    $google_languages_array = array(array('id' => '0', 'text' => TEXT_DEFAULT));
 
-    while (!$google_analytics_languages->EOF) {
+    while (!$google_languages->EOF) {
 
-      $google_analytics_languages_array[] = array('id' => $google_analytics_languages->fields['code'],
-                                'text' => $google_analytics_languages->fields['name']);
+      $google_languages_array[] = array('id' => $google_languages->fields['code'],
+                                'text' => $google_languages->fields['name']);
 
 								
-      $google_analytics_languages->MoveNext();
+      $google_languages->MoveNext();
     }
 
-    return zen_draw_pull_down_menu($name, $google_analytics_languages_array, $languages_id);
+    return zen_draw_pull_down_menu($name, $google_languages_array, $languages_id);
   }
 ?>
