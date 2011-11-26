@@ -1,5 +1,5 @@
 ##########################################################################
-# Paket Tracking 3.1 Uninstall - 2011-06-28 - webchills
+# Paket Tracking 2.0 Uninstall - 2011-06-28 - webchills
 # NUR AUSFÜHREN WENN SIE DAS MODUL AUS DER DATENBANK ENTFERNEN WOLLEN!!!!!
 # Entfernt auch Datenbankeinträge älterer Paket Tracking Versionen
 ##########################################################################

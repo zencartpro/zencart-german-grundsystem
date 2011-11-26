@@ -3,29 +3,9 @@
 #####################################################################
 
 
-SET @gid=0;
-SELECT @gid:=configuration_group_id
-FROM configuration_group
-WHERE configuration_group_title LIKE '%reCAPTCHA%'
-LIMIT 1;
-DELETE FROM configuration WHERE configuration_group_id = @gid;
-DELETE FROM configuration_group WHERE configuration_group_id = @gid;
-SET @gid=0;
-SELECT @gid:=configuration_group_id
-FROM configuration_group
-WHERE configuration_group_title LIKE '%reCAPTCHA%'
-LIMIT 1;
-DELETE FROM configuration WHERE configuration_group_id = @gid;
-DELETE FROM configuration_group WHERE configuration_group_id = @gid;
-DELETE FROM configuration_group WHERE configuration_group_title LIKE '%reCAPTCHA Settings%';
-DELETE FROM configuration_group WHERE configuration_group_title LIKE '%reCAPTCHA Einstellungen%';
-DELETE FROM configuration WHERE configuration_description LIKE 'reCAPTCHA%' LIMIT 4;
-DELETE FROM configuration WHERE configuration_title LIKE 'reCAPTCHA - %' LIMIT 4;
-
-INSERT INTO configuration_group (configuration_group_id, configuration_group_title, configuration_group_description, sort_order, visible) VALUES
-(NULL, 'reCAPTCHA', 'reCAPTCHA Settings', '1', '1');
+INSERT INTO configuration_group (configuration_group_title, configuration_group_description, sort_order, visible) VALUES
+('reCAPTCHA', 'reCAPTCHA Settings', '1', '1');
 SET @gid=last_insert_id();
-
 UPDATE configuration_group SET sort_order = @gid WHERE configuration_group_id = @gid;
 
 INSERT INTO configuration VALUES 

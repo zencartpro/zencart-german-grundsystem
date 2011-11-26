@@ -1,0 +1,330 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<title>Image Handler 3.0 für Zen-Cart 1.3.9 deutsch</title>
+<meta http-equiv="pragma" content="no-cache">
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
+<meta http-equiv="content-language" content="de">
+<meta name="description" content="eine komfortablere Bilderverwaltung in der deutschen Zen-Cart Version">
+<link rel="stylesheet" type="text/css" href="includes/css/stylesheet.css">  
+<script type="text/javascript" src="includes/jscript/jscript_tabs.js"></script>
+</head>
+<body>
+<div id="wrapper">
+<div id="header">
+<h1>Image Handler 3.0 für Zen-Cart 1.3.9 deutsch</h1>
+</div>
+
+<div id="slidetabsmenu" style="display: none;">
+<ul>
+  <li> <a onClick="expandcontent('sc1', this)" href="javascript:void(0)"><span>Sinn und Zweck</span></a></li>
+  <li> <a onClick="expandcontent('sc2', this)" href="javascript:void(0)"><span>Installation</span></a></li>
+   <li> <a onClick="expandcontent('sc3', this)" href="javascript:void(0)"><span>Konfiguration</span></a></li>
+   <li> <a onClick="expandcontent('sc4', this)" href="javascript:void(0)"><span>Deinstallation</span></a></li>
+  <li> <a onClick="expandcontent('sc5', this)" href="javascript:void(0)"><span>Download & Support</span></a></li>
+  <li> <a onClick="expandcontent('sc6', this)" href="javascript:void(0)"><span>Unterstützen</span></a></li>
+ </ul>
+</div>
+<br style="clear: both;">
+
+<!--Begin tabcontainer-->
+<div id="tabcontentcontainer">
+
+<!--Begin sc1-->
+<div class="tabcontent" id="sc1" style="display: block;">
+<div class="textcontent">
+<div class="regularlist">
+
+<h2>Sinn und Zweck dieses Moduls</h2>
+
+  <p>Image Handler vereinfacht das Handling von Artikelbildern in Zen-Cart, vor allem das Hinzufügen von zusätzlichen Artikelbildern.<br>
+Mit Image Handler ist es möglich, die Artikelbilder über die Zen-Cart   Administration hochzuladen ohne ein FTP-Programm verwenden und sich um   die reichtige Bennenung der Dateinamen kümmern zu müssen.<br>
+Durch das automatische Generieren und das Caching der Artikelbilder   wird der Seitenaufbau beschleunigt und die Performance verbessert.</p>
+  <p>Einige Features</p>
+  <ul>
+    <li>Verbesserung der Performance (schnellere Ladezeiten, schnellere Anzeige der Bilder).</li>
+    <li>Das Hochladen eines einzigen Bildes erzeugt automatisch kleine, mittlere und große Artikelbilder beim Aufruf der Seite.</li>
+    <li>Besethende Artikelbilder werden weiter genutzt, es ist nicht nötig, die Bilder neu zu bearbeiten.</li>
+    <li>Einfache Installation mit automatischem Anlegen der nötigen Datenbankeinträge</li>
+    <li>Funktioniert auch in Verbindung mit EasyPopulate</li>
+    <li>Automatische Integration eines Wasserzeichens in die Artikelbilder ist möglich.</li>
+    <li>Optionaler Image Hover Effekt: Bei Mouseover über kleine Artikelbilder wird das Bild vergrößert angezeigt.</li>
+    <li>Wählen Sie eine generelle Hintergrundfarbe zum Auffüllen des   Bildes bei unterschiedlichen Bildgrößen oder wählen Sie einen   transparenten Hintergrund.</li>
+    <li>Verwalten Sie mehrere Bilder zu einem Artikel komfortabel über eine einzige Administrationsoberfläche.</li>
+  </ul>
+  
+<h3>Copyright, Changelog, Lizenz</h3>
+<p>Copyright dieser deutschen Anpassung/Anleitung für Zen-Cart 1.3.9 deutsch<br>
+(c) 2011 webchills (<a href="http://www.webchills.at" target="_blank">www.webchills.at</a>) &amp; hugo13 (<a href="http://edv.langheiter.com" target="_blank">edv.langheiter.com</a>)<br>
+Danke an waldelfe für Hilfe bei der Übersetzung der Anleitung. </p>
+<p>deutsche Übersetzung/Anpassung des Moduls Image Handler  3.0 von<br>
+  <a href="http://www.zen-cart.com/index.php?main_page=product_contrib_info&products_id=117" target="_blank">http://www.zen-cart.com/index.php?main_page=product_contrib_info&amp;products_id=1910</a></p>
+<p>Änderungen zu früheren Versionen<br>
+  - Javascript für IE9 angepasst<br>
+  - Bugfixes bei den Dateierweiterungen für die zusätzlichen Artikelbilder<br>
+  - Bugfixes im SQL Installer/Uninstaller<br>
+  - Beim Mouseover kann nun eingestellt werden, ob die großen oder mittleren Artikelbilder verwendet werden sollen <br>
+  - unnötige Funktionen entfernt (Hotzone und Zoom für mittlere Bilder)<br>
+  - PHP 5.3 kompatibel<br>
+  - Performanceverbesserungen<br>
+  - verbesserte cross-browser-optimierte Javascripts <br>
+  - Die zu ändernden Dateien wurden auf die neueste deutsche 1.3.9 Version angepasst<br>
+  - Bugfix zur korrekten Anzeige von übergroßen additional images</p>
+<p>Credits:<br>
+  Thanks to Tim Kroeger from <a href="http://www.breakmyzencart.com" target="_blank">www.breakmyzencart.com</a> for crafting the original versions of this superb contribution only on the basis of donation-ware.<br>
+  Thanks to ckosloff and DerManoMann for their gracious and hard work on this version of Image Handler2.<br>
+  Thanks to Nigel for all of his hardwork in providing a truly cross   browser compatible version of the Image Handler2 jscript_imagehover.js.<br>
+  Thanks to tophand and yellow 1912 for previous contributions to the Image Handler2 codebase (from Rev 6 &amp; 7). <br>
+  <br>
+  3.0 modifications by:</p>
+<ul>
+  <li>nagelkruid (nagelkruid@gmail.com)</li>
+  <li>Nigelt74 (<a href="http://webzings.com" target="_blank">http://webzings.com</a>)</li>
+  <li>C Jones (<a href="http://overthehillweb.com" target="_blank">http://overthehillweb.com</a>)</li>
+  <li>K Hudson</li>
+</ul>
+<p> Portions Copyright (c) 2003 osCommerce<br>
+  Portions Copyright     (c) 2003-2011 Zen Cart</p>
+<p>This contribution is subject to version 2.0 of the GPL license available through the world-wide-web at the following url:<br>
+  <a href="http://www.zen-cart-pro.at/license/2_0.txt">http://www.zen-cart-pro.at/license/2_0.txt</a></p>
+</div>
+</div>
+</div>
+<!--End sc1-->
+
+<!--Begin sc2-->
+<div class="tabcontent" id="sc2" style="display: block;">
+<div class="textcontent">
+<div class="regularlist">
+
+<h2>Installation</h2>
+<h3>Voraussetzungen</h3>
+  <br>
+  Dieses Modul ist<strong> nur für die deutsche Zen-Cart 1.3.9 Version geeignet</strong></p>
+  <p><br>
+  Für den Einbau dieses Moduls sollten Sie über folgende Werkzeuge verfügen:<br>
+  <br>
+  <strong>1) Ein guter Texteditor </strong><br>
+  Damit ist nicht das in Windows enthaltene Notepad oder Microsoft Word gemeint.<br>
+  Sie benötigen einen Texteditor, der utf-8 versteht und auch im Format utf-8 ohne BOM abspeichern kann.<br>
+  Meine Empfehlung: <a href="http://www.ultraedit.com/loc/de/index_de.html" target="_blank">UltraEdit</a> (kostenlose 30 Tage Testversion verfügbar)<br>
+  Ebenfalls gut geeignet ist der kostenlose Texteditor <a href="http://notepad-plus.sourceforge.net/de/site.htm" target="_blank">Notepad++ </a><br>
+</p>
+<p><strong>2) Ein Tool zum Vergleichen von Dateien</strong><br>
+  Bei der Installation dieses Moduls ist es erforderlich, dass Sie den     Inhalt einiger Ihrer bestehenden Zen-Cart Dateien mit dem Inhalt der     neuen Moduldateien vergleichen und die Änderungen zusammenführen     ("mergen").<br>
+  Meine Empfehlung: <a href="http://www.scootersoftware.com/" target="_blank">BeyondCompare</a> (kostenlose 30 Tage Testversion verfügbar)<br>
+  Ebenfalls gut geeignet ist das kostenlose Programm <a href="http://winmerge.org/" target="_blank">WinMerge </a></p>
+<p><br>
+  <strong>Empfehlung:</strong><br>
+  <br>
+  Dieses Modul erst in einem Testsystem einbauen und dort   konfigurieren/testen und endgültig an die eigenen Wünsche anpassen.        Erst dann in einem Liveshop einsetzen! Sichern Sie unbedingt alle   Dateien Ihres Shops per FTP und sichern Sie die Datenbank mit phpMyAdmin   oder anderen geeigneten Tools!</p>
+<div id="warning"><b>WICHTIG</b><br>
+Vor dem Einbau dieser Änderungen:<br>
+BACKUP von Shop und Datenbank machen! <br>
+Keine Haftung, Verwendung auf eigene Gefahr!<br>
+BACKUP gemacht? Ok, dann weiterlesen...
+</div>
+<p>Die Installation erfolgt in folgenden Schritten. Halten Sie diesen Ablauf ein!</p>
+<p>1.<br>
+Im Order NEUEDATEIEN  den Ordner   DEINADMINVERZEICHNIS auf den Namen Ihres admin Verzeichnisses   umbenennen.<br>
+Alle Ordner namens DEINTEMPLATE auf das im Shop aktive Template umbenennen (z.B. classic, viennabright,...) <br>
+Dann die Ordner/Dateien in der vorgegebenen Struktur in Ihr Zen-Cart   Verzeichnis hochladen. Dabei werden keine bestehenden Dateien   überschrieben.</p>
+<p>2.<br>
+  Im Ordner GEAENDERTE DATEIEN  alle Ordner namens   DEINTEMPLATE  in den Namen des aktuell verwendeten Templates umbenennen   (z.B. classic, viennabright,...)<br>
+  Den Ordner DEINADMINVERZEICHNIS auf den Namen Ihres admin Verzeichnisses umbenennen.<br>
+  Achtung:<br>
+  Beim Hochladen dieser Dateien werden bestehende Dateien überschrieben!<br>
+  Daher:<br>
+  Falls bereits einmal Änderungen an diesen Dateien in der Zen-Cart   Installation gemacht wurden, mit WinMerge oder BeyondCompare die Dateien   vergleichen und nur die Änderungen in die bestehenden Dateien   übernehmen.<br>
+  Wurden noch keine Änderungen gemacht (Zen-Cart wurde z.B. gerade erst   frisch installiert), die Ordner/Dateien aus dem Ordner GEAENDERTE   DATEIEN einfach in der vorgegebenen Struktur in Ihr Zen-Cart Verzeichnis   hochladen.<br>
+  <br>
+  3.<br>
+  Der Ordner bmz_cache, den Sie gerade in Ihr Shopverzeichnis   hochgeladen haben benötigt Schreibrechte. In diesem Ordner werden später   von Image Handler dynamisch generierte Bilddateien abgelegt. Geben Sie   diesem Ordner daher Schreibrechte (chmod 777) </p>
+<p>4. <br>
+  In der Zen-Cart Administration ist nun unter Tools der Menüpunkt Image Handler 3.0 vorhanden<br>
+  Rufen Sie dieses Menü auf und clicken Sie auf den Link "Image Handler installieren".<br>
+  Dadurch werden die nötigen Datenbankeinträge vorgenommen und Sie sollten danach angezeigt bekommen:<br>
+  Version 3.0</p>
+<p>5.<br>
+  Wechseln Sie nun ins Menü Konfiguration &gt; Bilder<br>
+  Hier sind durch die Image Handler Installation neue Konfigurationsmöglichkeiten hinzugekommen.<br>
+  Stellen Sie hier Ihre gewünschten Optionen ein, Hinweise dazu finden Sie in dieser Anleitung unter Konfiguration<br>
+  Achtung: Ändern Sie hier keinesfalls die angezeigte Image Handler Versionsnummer!
+</p>
+<h2>Update von einer älteren Image Handler Version</h2>
+<p><strong>Wichtig:</strong><br>
+  Falls Sie bereits eine ältere Image Handler Version im Einsatz haben,   entfernen Sie diese vorher komplett und folgen erst dann den Schritten   unter Neuinstallation.<br>
+  <br>
+  <strong>Entfernen einer älteren Image Handler Version</strong><br>
+  Im Ordner SQL dieses Downloads die uninstall.sql mit einem Texteditor öffnen und den Inhalt kopieren.<br>
+  Dann in der Zen-Cart Administration unter Tools &gt; SQL Patches installieren ins Eingabefeld kopieren und Absenden <br>
+  Dadurch werden alle Datenbankeinträge auch sehr alter Image Handler Versionen vollständig entfernt.</p>
+
+</div>
+</div>
+</div>
+
+<!--End sc2-->
+
+<!--Begin sc3-->
+<div class="tabcontent" id="sc3" style="display: block;">
+<div class="textcontent">
+<div class="regularlist">
+
+<h2>KONFIGURATION</h2>
+<p>Unter Konfiguration &gt; Bilder können Sie nun alle Einstellungen zum Verhalten von Image Handler vornehmen.</p>
+<p>Bitte beachten Sie zunächst die generellen Zen-Cart Einstellungen   unter "Kleine Bilder - Höhe", "Artikelliste - Höhe der Artikelbilder",   usw.<br>
+  Also alle Höhenangaben für die kleinen Artikelbilder, die hier standardmäßig auf 80 gesetzt sind.<br>
+  Sie können diese Werte auf einen anderen Wert als 80 setzen, nur tun Sie das konsistent, z.B. alle auf 160.<br>
+  Nur dann wird Image Handler korrekt funktionieren<br>
+  Es ist generell nicht nötig Breite UND Höhe zu definieren.<br>
+  Entscheiden Sie sich für Breite oder Höhe, Image Handler macht den Rest. <br>
+  Falls Sie den Hover-Effekt für die kleinen Bilder nutzen wollen (IH -   Kleine Bilder - Zoom steht voreingestellt auf yes), beachten Sie, dass   für die Vergrößerung die Größe genommen wird,     die Sie für die mittleren Artikelbilder eingestellt haben   (Artikelbeschreibung: Breite der Artikelbilder bzw. Artikelbeschreibung:   Höhe der Artikelbilder)<br>
+  Mittlere Artikelbilder werden nicht von einem Hover-Effekt vergrößert! <br>
+  <br>
+  Tipp:<br>
+  Stellen Sie immer nur die Bildbreite ein und stellen Sie die Höhe auf 0.<br>
+  Die korrekte Höhe wird errechnet, wenn Sie folgende Einstellungen aktiv haben:<br>
+  Bildgröße berechnen: true<br>
+  Proportionale Bilder für Artikel &amp; Kategorien verwenden: 1 <br>
+  <br>
+  Auch bei IH -  Große Bilder - Maximale Breite oder Höhe stellen Sie am besten nur die Breite ein und stellen die Höhe auf 0.<br>
+  Außer natürlich, Sie bereiten Ihre Bilder ohnehin vorher in einem   Bildbearbeitungsprogramm auf die exakt passenden proportionalen Größen   vor.</p>
+<h3><strong>Bildgrößen</strong></h3>
+<p>Es werden nicht nur numerische Werte akzeptiert, sondern auch   Parameter mit einem angefügten „!“ (Ausrufezeichen), was einen <em>force canvas size</em> Modus anzeigt. Die Bildgrösse wird damit angepasst und zentriert im     vorgegebenen Bereich positioniert, anstatt das Bild an nur eine der     Dimensionen anzupassen sobald es nicht das selbe Seitenverhältnis wie     die Grundeinstellung aufweist. Das klingt zu kompliziert?  Probieren Sie   es aus: Erstellen Sie einen hübschen, bunten   Hintergrund und testen   beide Werte mit und ohne das angefügte   Ausrufezeichen. </p>
+<p>Es gibt verschiedene Vorgehensweisen, um die  Dimensionen von Bildern festzulegen.<br>
+  Sie können dies auf dem üblichen Weg tun und einfach Breite (width) und     Höhe (hight) in Pixels angeben. Setzen Sie beispielsweise width auf   100 und   height auf 80. Wenn Ihr Bild Abmessungen von 200x200 Pixel   hat, wird es   auf 80x80 Pixel verkleinert, da die Höhe ja 80 Pixel   nicht übersteigen   darf.<br>
+  Sie können auch nur entweder die Breite oder die Höhe angeben,     beispielsweise mit 100, und die andere Dimension leer lassen (oder auf 0     stellen). Nun haben Sie eine Breite oder Höhe festgelegt, in der das   Bild   angezeigt werden soll. Dabei wird das Seitenverhältnis   beibehalten.<br>
+  Sie können die Abmessungen auch wie im ersten Beispiel angeben, jedoch     ein „!“ (Ausrufezeichen) an eine der Dimensionen anhängen     (beispielsweise 80! für die Höhe kleiner Bilder). Die angepaßten Bilder     werden auf einem Feld, das genau über die angegebenen Masse verfügt,     mittig angezeigt. Wenn Sie also 100x80! festgelegt haben, wird Ihr     200x200 Pixel Bild von vorhin auf 80x80 Pixel reduziert und zentriert in     einem 100x80 Pixel Feld mit der angegebenen Hintergrundfarbe   angezeigt.   Betrachten Sie es als eine Art erzwungene Bildgrösse ohne     durcheinandergebrachte Seitenverhältnisse. </p>
+<h3><strong>Watermarks</strong></h3>
+Wenn Sie Ihre Bilder mit einem Wasserzeichen schützen wollen, können Sie   das unter Konfiguration &gt; Bilder für die kleinen, mittleren und   großen Artikelbilder separat aktivieren. Benötigt werden dazu folgende   Bilddateien für die Wasserzeichen:<br>
+<ul>
+  <li> images/watermark.png</li>
+  <li> images/medium/watermark_MED.png </li>
+  <li> images/large/watermark_LRG.png </li>
+</ul>
+<p>In dieser Installation sind bereits Beispielwasserzeichen in Form   eines Zen-Cart Logos enthalten. Überschreiben Sie diese Beispieldateien   mit Ihrem eigenen Wasserzeichen. Die Position des Wassezeichen können   Sie ebenfalls unter Konfiguration &gt; Bilder einstellen: IH -   Wasserzeichen - Position. Voreingestellt ist zentriert. </p>
+<h3><strong>GD libraries und Image Magick</strong></h3>
+<p>Um Bilder und ihre Grösse anzupassen, muss zusätzlich zu Image   Handler 3.0   entweder GD libraries (ab Version 2) oder ImageMagick (ab   Version 6)   installiert sein. Um herauszufinden, ob Ihre PHP-Version GD   libraries   anbietet, suchen Sie im Admin unter Tools -&gt; Server Info   nach "GD". Ob   eine ImageMagick-Installation vorhanden ist, erfähren   Sie von Ihrem   Hostinganbieter.<br>
+  Standardmäßig wird mit GD libraries gearbeitet. Wenn Sie stattdessen   Image Magick verwenden wollen, dann müssen Sie in folgender Datei eine   Änderung vornehmen:<br>
+  includes/extra_configures/bmz_image_handler_conf.php</p>
+<p>Hier ist standardmäßig folgender Eintrag:</p>
+<p><code>$ihConf['im_convert']           = '';</code> </p>
+Das bedeutet, dass Image Magick nicht verwendet wird.
+<p>Um ImageMagick zu verwenden, geben Sie hier den Pfad zu Image Magick an, üblicherweise ist das:</p>
+<code>$ihConf['im_convert']           = '/usr/bin/convert';</code>
+<p>Je nach Provider könnte der Pfad auch anders lauten, bitte im Zweifel mit Ihrem Webhoster abklären</p>
+<h3><strong>Gewünschte Dateitypen</strong></h3>
+<p>Sie können für jede Bildgröße wählen zwischen .png, .jpg, .gif oder     no_change (keine Änderung). Heraufgeladene Bilder werden so belassen   wie   sie sind, aber die generierten Dateien simulieren den Dateityp,   den   Sie hier angeben. GIF ist gut für kleine Vorschaubilder geeignet   und kann   Transparenz simulieren. Mit JPG ist keine Transparenz   möglich, es   bietet jedoch ein sehr gutes Dateiqualität/Druck   Verhältnis,   insbesondere für Fotografien. Für größere und mittlere   Bilder ist dieser   Dateityp am ehesten geeignet. PNG Dateien simulieren   alpha Transparenz   und ebenso viele Farben wie jpg, haben jedoch eine   größere Dateigröße   als jpg und gif. Internet Explorer hat in älteren   Versionen Schwierigkeiten, alpha   Transparenz anzuzeigen, so daß Sie   besser mit gif arbeiten, sofern Sie   Transparenz benötigen.</p>
+<h3><strong>Druckqualität</strong></h3>
+<p>Sie können die Qualität für die Ausgabe als jpg für kleine, mittlere   und   große Bilder vorgeben. Diese Einstellung ist auf einer Skala von 0   bis   100 für alle drei Bildgrössen auf 85 festgesetzt und ist sehr   gut, außer   wenn Sie entweder außerordentlich genauen Druck oder extrem   kleine   Bilder benötigen. Ein höherer Wert bringt bessere Qualität   größerer   Dateien.</p>
+<h3><strong>Hintergrundfarbe</strong></h3>
+<p> Sie können die Hintergrundfarbe jeder Bildgrösse durch Eingabe der    RGB-Farbwerte aller drei Farbkomponenten (rot, grün und blau), getrennt   durch Doppelpunkte, festlegen. Die Werte der Farbkomponenten bewegen     sich zwischen 0 und 255. Die folgenden Beispiele sollen zeigen, wie die    Hintergrundfarbe eingestellt werden kann: </p>
+<ul>
+  <li>255:255:255 (weiss)</li>
+  <li>255:0:0 (rot)</li>
+  <li>255:200:200 (hellrot)</li>
+  <li>0:255:0 (grün)</li>
+  <li>0:0:255 (blau)</li>
+  <li>255:0:255 (violett)</li>
+  <li>255:255:0 (gelb)</li>
+</ul>
+<p>Wenn Sie die Transparenz eines hochgeladenen Bildes beibehalten   möchten, müssen Sie den Wert der Hintergrundfarbe auf transparent     stellen.<br>
+  Mit gif Bildern können Sie beispielsweise transparent 255:255:255     anstelle von absoluter Transparenz festlegen, so daß die     halbdurchsichtigen Bildpunkte mit der angegebenen Hintergrundfarbe     verbunden werden. Bildpunkte mit einer Transparenz-Schwelle von mehr als     90% (dies ist der Standard) werden volltransparent dargestellt. Wenn   Sie   die besagte Farbe auf den Wert der Hintergrundfarbe Ihrer Webseite     einstellen, erhöht dies infolge einer Reduktion des „Treppeneffekts“   die   sichtbare Qualität der gifs beträchtlich.</p>
+<h3><strong>Ein Beispiel</strong></h3>
+<p>Sie haben mit Ihrer Digitalkamera ein Bild   von einem netten Produkt   geschossen und den Hintergrund mit Ihrem   Lieblings-Fotoprogramm   entfernt. Sie speichern diese   Datei als Portable Network Graphic   (png), um den alpha channel   beizubehalten, der die transparenten Zonen   festlegt, durch die hindurch   Sie Ihre Webseite betrachten wollen.   Nehmen wir an, das Bild ist 600   Pixel breit und 800 Pixel hoch   (600x800). Für die kleinen Bilder haben Sie einen Wert von 100x80   eingegeben und für die mittleren 150x120.<br>
+  Da die Produktliste-Ansicht verschiedene Farben für die Anzeigereihen     hat, möchten Sie wenigstens für die kleinen Bilder die Transparenz     erhalten. Internet Explorer kann in älteren Versionen nicht png Bilder   mit   Transparenz anzeigen, also verwenden Sie besser  gifs. Sie wählen   also   .gif als Dateityp für kleine Bilder und transparent für den   Hintergrund   der kleinen Bilder.<br>
+  Nun denken Sie an die mittleren und großen Bilder. Sie möchten sie     nicht im gif Format haben, da sie nicht sehr gut gedruckt werden, und   Sie möchten auch gerne mehr als nur 256 Farben in den hochauflösenden     Bildern zur Verfügung haben. Ausserdem brauchen Sie keine Transparenz,   da   Sie nur eine Hintergrundfarbe auf den Produkt-Infoseiten und im     Popup-Fenster haben, also benutzten Sie .jpg. Dieses Format wählen Sie   also   für Ihre mittleren und großen Bilder aus. Nehmen wir an, Sie   haben sowohl   auf den Produkt-Infoseiten als auch im Popup-Fenster   einen weißen   Hintergrund, deshalb geben Sie 255:255:255 in die Felder   für den   Hintergrund der mittleren und großen Bilder ein.</p>
+<h3><strong>Benutzen von Image Handler</strong></h3>
+<p> Da Image Handler meistens im Hintergrund arbeitet, ohne dass ihn jemand    bemerkt, gibt es nicht viel dazu zu sagen. Sie können Image Handler auf     zwei Arten aufrufen:<br>
+  1) <br>
+  Admin → Webshop → Kategorien &amp; Artikel<br>
+  Klicken Sie beim jeweiligen Artikel auf das kleine <u><img src="images/clip_image008.gif" alt="" border="0"></u> Icon zwischen dem Kopieren- und dem Attribute-Icon klicken, um die   Image Handler Bildverwaltung für den jeweiligen Artikel aufzurufen.<br>
+  2)<br>
+  Admin → Tools → Image Handler 3<br>
+  Bietet eine eigene Oberfläche , um Kategorien und Artikel anzuzeigen und die Bilder hochzuladen<br>
+  Natürlich  können Sie auch weiterhin Artikelbilder über die Produktinfoseiten hochladen. </p>
+<h3>Wichtige Info zu den zusätzlichen Artikelbildern</h3>
+Wenn Sie zu einem Artikel zusätzliche Artikelbilder hochladen, dann   achten Sie darauf, dass die zusätzlichen Bilder, denselben Dateityp wie   das Hauptbild haben!<br>
+Wenn das Hauptbild zu einem Artikel z.B. ein gif ist, dann müssen auch   die zusätzlichen Artikelbilder dieses Artikels gifs sein. Würden Sie   stattdessen ein .jpg hochladen, dann wird das dieses zusätzliche   Artikelbild nicht angezeigt werden. In der Image Handler Maske sehen Sie   dann auch einen rot unterlegten Hinweis auf den falschen Dateityp.</div>
+</div>
+</div>
+<!--End sc3-->
+
+<!--Begin sc4-->
+<div class="tabcontent" id="sc4" style="display: block;">
+<div class="textcontent">
+<div class="regularlist">
+
+<h2>DEINSTALLATION</h2>
+<p>Zum Entfernen von Image Handler 3.0 rufen Sie auf:<br>
+Admin &gt; Tools &gt; Image Handler 3.0<br>
+Gehen Sie dort auf Admin und dann auf "Image Handler aus der Datenbank entfernen"<br>
+Löschen Sie dann alle von der alten Image Handler Installation neu   angelegten Dateien vom Server und spielen Sie die Originaldateien ein,   die von Image Handler überschrieben wurden.</p>
+
+
+
+</div>
+</div>
+</div>
+<!--End sc4-->
+
+<!--Begin sc5-->
+<div class="tabcontent" id="sc5" style="display: block;">
+<div class="textcontent">
+<div class="regularlist">
+<h2>Download &amp; Support</h2>
+<p>Download des Moduls:</p>
+<p><a href="http://www.zen-cart-pro.at/zcvb/forum/downloads.php" target="_blank">www.zen-cart-pro.at/zcvb/forum/downloads.php</a></p>
+
+<p>Supportforum zum Modul:</p>
+<p><a href="http://www.zen-cart-pro.at/zcvb/forum" target="_blank">www.zen-cart-pro.at/zcvb/forum</a></p>
+</div>
+</div>
+</div>
+<!--End sc5-->
+
+<!--Begin sc6-->
+<div class="tabcontent" id="sc6" style="display: block;">
+<div class="textcontent">
+<div class="regularlist">
+
+<h2>Unterstützen</h2>
+<p>Sie finden dieses Modul nützlich?</p>
+<p>Sie haben vom Support im Forum auf www.zen-cart-pro.at profitiert?</p>
+<p>Unterstützen Sie die Weiterentwicklung der deutschen Zen-Cart Version.<br/>Wir freuen uns über Spenden zur Finanzierung des Servers und der vBulletin-Lizenz: </p>
+<form action="https://www.paypal.com/cgi-bin/webscr" method="post">
+<input type="hidden" name="cmd" value="_s-xclick">
+<input type="hidden" name="hosted_button_id" value="D8HDC4GJE2386">
+<input type="image" src="https://www.paypalobjects.com/de_DE/AT/i/btn/btn_donateCC_LG.gif" border="0" name="submit" alt="Jetzt einfach, schnell und sicher online bezahlen – mit PayPal.">
+<img alt="" border="0" src="https://www.paypalobjects.com/de_DE/i/scr/pixel.gif" width="1" height="1">
+</form>
+
+<br/><br/>
+</div>
+</div>
+</div>
+<!--End sc6-->
+</div>
+<div id="footer">
+Ein Modul von <a href="http://www.zen-cart-pro.at" target="_blank">www.zen-cart-pro.at</a> - Die deutsche Zen-Cart Version
+</div>
+</div>
+<!--end tabcontainer-->
+<script type="text/javascript">document.getElementById('sc1').style.display = 'none';</script>
+<script type="text/javascript">document.getElementById('sc2').style.display = 'none';</script>
+<script type="text/javascript">document.getElementById('sc3').style.display = 'none';</script>
+<script type="text/javascript">document.getElementById('sc4').style.display = 'none';</script>
+<script type="text/javascript">document.getElementById('sc5').style.display = 'none';</script>
+<script type="text/javascript">document.getElementById('sc6').style.display = 'none';</script>
+<script type="text/javascript">ShowTabs()</script>
+<script type="text/javascript">
+// We only show the tab links if JavaScript is available/active.
+<!--
+if (document.getElementById("slidetabsmenu") != null) {
+  document.getElementById('slidetabsmenu').style.display = "block";
+}
+//-->
+</script>
+
+</body></html>

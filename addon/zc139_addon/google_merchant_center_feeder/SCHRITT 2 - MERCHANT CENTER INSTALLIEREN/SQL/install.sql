@@ -1,18 +1,12 @@
-﻿################################################################################
-# Google Merchant Center Deutschland 3.0 German Install - 2011-08-14 - webchills
+################################################################################
+# Google Merchant Center Deutschland 3.0 German Install - 2011-10-05 - webchills
 ################################################################################
 
-SET @gid=0;
-SELECT @gid:=configuration_group_id
-FROM configuration_group
-WHERE configuration_group_title= 'Google Merchant Center Deutschland';
-DELETE FROM configuration WHERE configuration_group_id = @gid;
-DELETE FROM configuration_group WHERE configuration_group_id = @gid;
+
 INSERT INTO configuration_group (`language_id`,`configuration_group_title`,`configuration_group_description`,`sort_order`,`visible`) 
 VALUES (43, 'Google Merchant Center Deutschland', 'Einstellungen für das Google Merchant Center', '1', '1');
-UPDATE configuration_group SET sort_order = last_insert_id() WHERE configuration_group_id = last_insert_id();
-
 SET @gid=last_insert_id();
+UPDATE configuration_group SET sort_order = @gid WHERE configuration_group_id = @gid;
 
 SET @security_key = SUBSTR(MD5(RAND()),1,10);
 

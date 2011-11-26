@@ -2,28 +2,9 @@
 # Zen Lightbox 1.6.2 Multilanguage Install - 2011-02-09 - webchills
 #####################################################################
 
-SET @gid=0;
-SELECT @gid:=configuration_group_id
-FROM configuration_group
-WHERE configuration_group_title LIKE '%Zen Lightbox%'
-LIMIT 1;
-DELETE FROM configuration WHERE configuration_group_id = @gid;
-DELETE FROM configuration_group WHERE configuration_group_id = @gid;
-SET @gid=0;
-SELECT @gid:=configuration_group_id
-FROM configuration_group
-WHERE configuration_group_title LIKE '%Zen Lightbox%'
-LIMIT 1;
-DELETE FROM configuration WHERE configuration_group_id = @gid;
-DELETE FROM configuration_group WHERE configuration_group_id = @gid;
-DELETE FROM configuration_group WHERE configuration_group_title LIKE '%Zen Lightbox%';
-DELETE FROM configuration WHERE configuration_description LIKE 'Zen Lightbox%' LIMIT 12;
-DELETE FROM configuration WHERE configuration_title LIKE 'LB - %' LIMIT 12;
-
-INSERT INTO configuration_group (configuration_group_id, configuration_group_title, configuration_group_description, sort_order, visible) VALUES
-(NULL, 'Zen Lightbox', 'Configure Zen Lightbox settings', '0', '1');
+INSERT INTO configuration_group (configuration_group_title, configuration_group_description, sort_order, visible) VALUES
+('Zen Lightbox', 'Configure Zen Lightbox settings', '0', '1');
 SET @gid=last_insert_id();
-
 UPDATE configuration_group SET sort_order = @gid WHERE configuration_group_id = @gid;
 
 INSERT INTO configuration VALUES 

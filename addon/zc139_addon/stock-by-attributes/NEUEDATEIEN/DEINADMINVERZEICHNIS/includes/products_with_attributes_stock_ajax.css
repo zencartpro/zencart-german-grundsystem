@@ -1,0 +1,39 @@
+
+#loading {
+    background: white;
+    padding: 20px;
+    border: 2px solid green;
+    display: none; /* hidden */
+    position: absolute;    
+    left: 50%;
+    margin-left: -100px;
+    top: 25%;
+    width: 200px;
+    /*height: 100px;*/
+    /*margin-top: -50;*/
+    font-weight: bold;
+    font-size: large;
+}
+
+
+table#mainProductTable tbody tr td
+{
+	border: 1px solid #999;
+}
+tr.productRow{font-weight: bold; background-color: #eee;}
+tr.productRow td {padding: 6px;}
+td.stockAttributesCellStockId, td.stockAttributesCellQuantity, td.stockAttributesCellVariant, td.stockAttributesCellDelete, td.stockAttributesCellEdit { padding: 5px; background-color: #fdffff;}
+
+div.productGroup {background-color: #e9e9e9; padding-bottom: 10px; border-bottom: 10px double gray;}
+
+.thProdId, .tdProdId {width: 76px; }
+.thProdName, .tdProdName {width: 200px;}
+.thProdModel, .tdProdModel {width: 100px;}
+.thProdQty, .tdProdQty {width: 150px;}
+.thProdAdd, .tdProdAdd {width: 220px;}
+.thProdSync, .tdProdSync {width: 110px;}
+.thProdImage, .tdProdImage{width: 60px;}
+
+.thProdId, .tdProdId, .thProdName, .tdProdName,.thProdImage, .tdProdImage,  .thProdModel, .tdProdModel,.thProdQty, .tdProdQty, .thProdAdd, .tdProdAdd, .thProdSync, .tdProdSync{background-color: #d9e1e5;}
+
+.thProdId,.thProdName,.thProdImage, .thProdModel,.thProdQty, .thProdAdd, .thProdSync{ padding: 6px;border: 1px solid #999;}

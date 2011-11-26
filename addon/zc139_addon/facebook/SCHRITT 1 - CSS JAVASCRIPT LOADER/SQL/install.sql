@@ -2,19 +2,9 @@
 # CSS Javascript Loader Multilanguage Install - 2011-09-07 - webchills
 ##############################################################################
 
-SET @gid=0;
-SELECT @gid:=configuration_group_id
-FROM configuration_group
-WHERE configuration_group_title= 'CSS/JS Loader';
-DELETE FROM configuration WHERE configuration_group_id = @gid;
-DELETE FROM configuration_group WHERE configuration_group_id = @gid;
-
-
 INSERT INTO configuration_group (`configuration_group_title`,`configuration_group_description`,`sort_order`,`visible`) VALUES ('CSS/JS Loader', 'Set CSS/JS Loader Options', '1', '1');
 UPDATE configuration_group SET sort_order = last_insert_id() WHERE configuration_group_id = last_insert_id();
-
 SET @gid=last_insert_id();
-
 UPDATE configuration_group SET sort_order = @gid WHERE configuration_group_id = @gid;
 
 INSERT INTO configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, last_modified, date_added, use_function, set_function) VALUES 

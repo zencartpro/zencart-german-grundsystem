@@ -21,17 +21,9 @@ UPDATE configuration SET configuration_value = 'True' WHERE configuration_title 
 # Add COWOA config
 ##############################
 
-SET @gid=0;
-SELECT @gid:=configuration_group_id
-FROM configuration_group
-WHERE configuration_group_title= 'COWOA'
-LIMIT 1;
-DELETE FROM configuration WHERE configuration_group_id = @gid;
-DELETE FROM configuration_group WHERE configuration_group_id = @gid;
 INSERT INTO configuration_group (configuration_group_id, configuration_group_title, configuration_group_description, sort_order, visible) VALUES
 (NULL, 'COWOA', 'Set Checkout Without an Account', '1', '1');
 SET @gid=last_insert_id();
-
 UPDATE configuration_group SET sort_order = @gid WHERE configuration_group_id = @gid;
 
 INSERT INTO configuration (configuration_id, configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added, use_function, set_function) VALUES 
