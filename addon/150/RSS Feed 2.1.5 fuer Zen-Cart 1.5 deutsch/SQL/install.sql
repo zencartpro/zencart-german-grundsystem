@@ -2,18 +2,11 @@
 # RSS Feed 2.1.5 Multilanguage Install 1.5 - 2011-09-07 - webchills
 #####################################################################
 
-SET @gid=0;
-SELECT @gid:=configuration_group_id
-FROM configuration_group
-WHERE configuration_group_title= 'RSS Feed';
-DELETE FROM configuration WHERE configuration_group_id = @gid;
-DELETE FROM configuration_group WHERE configuration_group_id = @gid;
-DELETE FROM admin_pages WHERE page_key='configProdRSSFeed';
 
 INSERT INTO configuration_group (configuration_group_title, configuration_group_description, sort_order, visible) VALUES
 ('RSS Feed', 'RSS Feed Configuration', '1', '1');
-UPDATE configuration_group SET sort_order = last_insert_id() WHERE configuration_group_id = last_insert_id();
 SET @gid=last_insert_id();
+UPDATE configuration_group SET sort_order = last_insert_id() WHERE configuration_group_id = last_insert_id();
 
 INSERT INTO configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, last_modified, date_added, use_function, set_function) VALUES 
 ('RSS Title', 'RSS_TITLE', '', 'RSS Title (if empty use Store Name)', @gid, 1, NOW(), NOW(), NULL, NULL),

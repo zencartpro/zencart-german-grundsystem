@@ -3,17 +3,9 @@
 ########################################################################
 
 
-SET @gid=0;
-SELECT @gid:=configuration_group_id
-FROM configuration_group
-WHERE configuration_group_title= 'Facebook Open Graph';
-DELETE FROM configuration WHERE configuration_group_id = @gid;
-DELETE FROM configuration_group WHERE configuration_group_id = @gid;
-DELETE FROM admin_pages WHERE page_key='configProdFacebookOpenGraph';
-
 INSERT INTO configuration_group (configuration_group_title, configuration_group_description, sort_order, visible) VALUES ('Facebook Open Graph', 'Set Facebook Open Graph Options', '1', '1');
-UPDATE configuration_group SET sort_order = last_insert_id() WHERE configuration_group_id = last_insert_id();
 SET @gid=last_insert_id();
+UPDATE configuration_group SET sort_order = last_insert_id() WHERE configuration_group_id = last_insert_id();
 
 INSERT INTO configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, last_modified, date_added, use_function, set_function) VALUES 
 ('Enable Facebook Open Graph', 'FACEBOOK_OPEN_GRAPH_STATUS', 'true', 'Enable Facebook Open Graph meta data?', @gid, 1, NOW(), NOW(), NULL, 'zen_cfg_select_option(array(\'true\', \'false\'),'),

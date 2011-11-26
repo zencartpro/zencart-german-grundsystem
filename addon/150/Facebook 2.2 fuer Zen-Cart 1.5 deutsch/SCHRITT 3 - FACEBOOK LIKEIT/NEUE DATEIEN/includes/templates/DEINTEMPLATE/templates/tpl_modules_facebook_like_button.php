@@ -35,7 +35,7 @@
   };
   (function() {
     var e = document.createElement('script'); e.async = true;
-    e.src = document.location.protocol + '//connect.facebook.net/en_US/all.js';
+    e.src = document.location.protocol + '<?php echo FACEBOOK_LANGUAGE_CONNECTOR; ?>';
     document.getElementById('fb-root').appendChild(e);
   }());
 //--></script>

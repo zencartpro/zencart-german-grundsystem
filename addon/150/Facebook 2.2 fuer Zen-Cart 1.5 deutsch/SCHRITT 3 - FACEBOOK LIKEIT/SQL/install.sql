@@ -2,17 +2,9 @@
 # Facebook Like Button Multilanguage Install 1.5 - 2011-09-07 - webchills
 #########################################################################
 
-SET @gid=0;
-SELECT @gid:=configuration_group_id
-FROM configuration_group
-WHERE configuration_group_title= 'Facebook Like Button'; 
-DELETE FROM configuration WHERE configuration_group_id = @gid;
-DELETE FROM configuration_group WHERE configuration_group_id = @gid;
-DELETE FROM admin_pages WHERE page_key='configProdFacebookLikeIt';
-
 INSERT INTO configuration_group (configuration_group_title, configuration_group_description, sort_order, visible) VALUES ('Facebook Like Button', 'Set Facebook Like Button Options', '1', '1');
-UPDATE configuration_group SET sort_order = last_insert_id() WHERE configuration_group_id = last_insert_id();
 SET @gid=last_insert_id();
+UPDATE configuration_group SET sort_order = last_insert_id() WHERE configuration_group_id = last_insert_id();
 
 INSERT INTO configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, last_modified, date_added, use_function, set_function) VALUES 
 ('Enable Facebook Like Button', 'FACEBOOK_LIKE_BUTTON_STATUS', 'true', 'Enable the Facebook Like Button?', @gid, 1, NOW(), NOW(), NULL, 'zen_cfg_select_option(array(\'true\', \'false\'),'),
