@@ -101,7 +101,7 @@ if ($listing_split->number_of_rows > 0) {
         $lc_text = '<a href="' . zen_href_link(FILENAME_DEFAULT, 'manufacturers_id=' . $listing->fields['manufacturers_id']) . '">' . $listing->fields['manufacturers_name'] . '</a>';
         break;
         case 'PRODUCT_LIST_PRICE':
-        $lc_price = zen_get_products_display_price($listing->fields['products_id']) . '<br />';
+        $lc_price = '<div class="listingprice">' . zen_get_products_display_price($listing->fields['products_id']) . '</div><br />';
         $lc_align = 'right';
         $lc_text =  $lc_price;
 

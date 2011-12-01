@@ -283,7 +283,7 @@
       }
     }
 
-    return $final_display_price . $free_tag . $call_tag;
+    return $final_display_price . vatAddOn($product_check) . $free_tag . $call_tag; 
   }
 
 ////
