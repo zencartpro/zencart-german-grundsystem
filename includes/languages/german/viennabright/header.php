@@ -26,7 +26,7 @@
   define('HEADER_OR', 'oder');
 
 // added defines for header alt and text
-  define('HEADER_ALT_TEXT', 'powered by Zen-Cart 1.5');
+  define('HEADER_ALT_TEXT', 'powered by Zen-Cart 1.5 - deutsche Version');
   define('HEADER_SALES_TEXT', '');
   define('HEADER_LOGO_WIDTH', '192px');
   define('HEADER_LOGO_HEIGHT', '64px');

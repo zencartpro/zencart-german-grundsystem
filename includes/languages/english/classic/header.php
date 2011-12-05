@@ -1,7 +1,7 @@
 <?php
 /**
  * @package languageDefines
- * @copyright Copyright 2003-2005 Zen Cart Development Team
+ * @copyright Copyright 2003-2011 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
  * @version $Id$
@@ -18,8 +18,8 @@ define('HEADER_TITLE_LOGOFF', 'Log Out');
 define('HEADER_TITLE_LOGIN', 'Log In');
 
 // added defines for header alt and text
-define('HEADER_ALT_TEXT', 'Powered by Zen Cart :: The Art of E-Commerce [home link]');
-define('HEADER_SALES_TEXT', '<h1>Sales Message Goes Here</h1>');
+define('HEADER_ALT_TEXT', 'powered by Zen Cart 1.5 - German version');
+define('HEADER_SALES_TEXT', '');
 define('HEADER_LOGO_WIDTH', '200px');
 define('HEADER_LOGO_HEIGHT', '70px');
 define('HEADER_LOGO_IMAGE', 'logo.gif');
@@ -27,4 +27,3 @@ define('HEADER_LOGO_IMAGE', 'logo.gif');
 // header Search Button/Box Search Button
 define('HEADER_SEARCH_BUTTON','Search');
 define('HEADER_SEARCH_DEFAULT_TEXT','Enter search keywords here');
-?>

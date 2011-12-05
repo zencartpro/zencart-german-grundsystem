@@ -1,10 +1,10 @@
 <?php
 /**
 * @package languageDefines
-* @copyright Copyright 2003-2005 Zen Cart Development Team
+* @copyright Copyright 2003-2011 Zen Cart Development Team
 * @copyright Portions Copyright 2003 osCommerce
 * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
-* @version $Id: header.php 210 2008-04-09 07:26:51Z hugo13 $
+* @version $Id: header.php 211 2011-12-05 19:26:51Z webchills $
 */
 
 // header text in includes/header.php
@@ -18,8 +18,8 @@ define('HEADER_TITLE_LOGOFF', 'Abmelden');
 define('HEADER_TITLE_LOGIN', 'Anmelden');
 
 // added defines for header alt and text
-define('HEADER_ALT_TEXT', 'Powered by Zen Cart :: The Art of E-Commerce [home link]');
-define('HEADER_SALES_TEXT', '<h3>Abverkaufsnachricht hier angeben</h3>zu finden in:: includes/german/classic/header.php');
+define('HEADER_ALT_TEXT', 'powered by Zen Cart 1.5 - deutsche Version');
+define('HEADER_SALES_TEXT', '');
 define('HEADER_LOGO_WIDTH', '200px');
 define('HEADER_LOGO_HEIGHT', '70px');
 define('HEADER_LOGO_IMAGE', 'logo.gif');
@@ -27,4 +27,3 @@ define('HEADER_LOGO_IMAGE', 'logo.gif');
 // header Search Button/Box Search Button
 define('HEADER_SEARCH_BUTTON', 'Suchen');
 define('HEADER_SEARCH_DEFAULT_TEXT', 'Suchbegriff eingeben');
-?>
