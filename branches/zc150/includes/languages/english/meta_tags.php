@@ -8,10 +8,10 @@
  */
 
 // page title
-define('TITLE', 'Zen Cart!');
+define('TITLE', 'Zen-Cart 1.5 Beta RC3');
 
 // Site Tagline
-define('SITE_TAGLINE', 'The Art of E-commerce');
+define('SITE_TAGLINE', 'German version');
 
 // Custom Keywords
 define('CUSTOM_KEYWORDS', 'ecommerce, open source, shop, online shopping');
