@@ -14,6 +14,7 @@
 //@ini_set("session.use_trans_sid","0");
 
 @ini_set("arg_separator.output","&");
+@ini_set('date.timezone', 'Europe/Vienna'); 
 
 // Check PHP version
 if (version_compare(PHP_VERSION, '5.2.14', '<'))
