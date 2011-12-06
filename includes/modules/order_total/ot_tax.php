@@ -6,7 +6,7 @@
  * @copyright Copyright 2003-2011 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: ot_tax.php 16965 2010-07-23 10:54:39Z wilt $
+ * @version $Id: ot_tax.php 16966 2011-12-06 17:32:39Z webchills $
  */
   class ot_tax {
     var $title, $output;
@@ -46,7 +46,7 @@
         if (SHOW_SPLIT_TAX_CHECKOUT == 'true')
         {
           if ($value > 0 or ($value == 0 && STORE_TAX_DISPLAY_STATUS == 1 )) {
-            $this->output[] = array('title' => ((is_numeric($key) && $key == 0) ? TEXT_UNKNOWN_TAX_RATE :  $key) . ':',
+            $this->output[] = array('title' => $this->description .' '.((is_numeric($key) && $key == 0) ? TEXT_UNKNOWN_TAX_RATE :  $key) . ':',
                                     'text' => $currencies->format($value, true, $order->info['currency'], $order->info['currency_value']),
                                     'value' => $value);
           }
@@ -54,7 +54,7 @@
         {
           if ($value > 0 || ($value == 0 && STORE_TAX_DISPLAY_STATUS == 1))
           {
-            $taxDescription .= ((is_numeric($key) && $key == 0) ? TEXT_UNKNOWN_TAX_RATE :  $key) . ' + ';
+            $taxDescription .= $this->description .' '.((is_numeric($key) && $key == 0) ? TEXT_UNKNOWN_TAX_RATE :  $key) . ' + ';
             $taxValue += $value;
           }
         }
