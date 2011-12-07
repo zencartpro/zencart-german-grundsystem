@@ -1,30 +1,51 @@
-Zen Cart(R) - The Art of E-Commerce
-
-Welcome to Zen Cart(R) E-Commerce
-
-THE FOLLOWING IS A VERY SIMPLIFIED INSTALLATION DOCUMENT.
-WE SUGGEST YOU USE THE HTML VERSIONS IN THE /docs FOLDER FOR MORE DETAILED INSTRUCTIONS.
-
-THE README DOCUMENTS ARE IN THE /docs FOLDER OF THIS DISTRIBUTION.
+Willkommen bei der deutschen Zen-Cart Version
+Version 1.5 Beta RC3
 
 
-You can find online documentation at: http://tutorials.zen-cart.com
+Im Folgenden finden Sie eine sehr vereinfachte Installationsanleitung.
+
+Wir schlagen vor, Sie verwenden die HTML-Version im /docs Ordner für detailliertere Anweisungen.
+Alle unsere README-Dokumente sind im Verzeichnis /docs Ordner dieser Version.
+
+Sie finden die deutsche Online-Dokumentation unter: 
+http://www.zen-cart-pro.at/zcvb/forum/vbglossar.php
+
+Zen Cart verfügt über eine integrierte automatische Installation im System. Um diese nutzen zu können, müssen Sie zuerst den Code auf einem Web-Server entpacken
+
+Der Web-Server kann entweder auf Ihrem lokalen Computer oder auf einer Internet-Host sein.
+
+Entpacken sie die Zen Cart(tm) ZIP-Datei. Nach dem Entpacken, haben Sie ein Verzeichnis mit den Zen Cart(tm)-Skripten.
+
+Der Inhalt dieses Verzeichnis muss auf Ihrem Webserver, und zwar entweder durch Kopieren in das Verzeichnis oder mittels eines FTP-Programms.
+
+Sie müssen nun das Installationsscript starten.
+Um dies zu tun, müssen Sie einen Browser öffnen und die entsprechende URL eingeben.
+
+Wenn Sie auf einem eigenen Computer sind, wird dies
+
+    http://localhost/(Zen-Cart-Verzeichnis)/zc_install/
+
+sein, oder wenn sie auf einem Live-Server sind:
+
+    http://{www.mydomain.com}/zc_install/
+
+Sie brauchen dann nur den Anweisungen zur Installation von Zen Cart zu folgen.
+
+Eine weitere detailliertere Installationsanleitung fnden sie in der /docs/1.readme_installation.html Datei.
+
+____________________________________________________________________________________________________________
+
+Unterschiede zur englischsprachigen Version:
+- eindeutschung des Shops und der Adminoberfläche
+- Umstellung Zeichensatz von iso auf UTF-8
+    + !!! Datenbankanpassung ev. von nöten 
+- ez-pages mehrsprachig
+- zusätzliche Templates  
+- tools/MapShop :: Showcase Eintragung für ihren Shop
 
 
-Zen Cart has a built-in automatic installation system. However to use this you must first unpack and upload the code to a compatible web server:
-
-1. Extract the Zen Cart ZIP file (and tell the unzip utility to *retain* folder structures)
-2. Upload the Zen Cart files and folders to your server using your FTP program
-3. You must make some folders writable. The details are in the HTML-formatted documentation in the /docs/ folder
-4. In your browser enter the URL to your website where you uploaded the files, specifically to the /zc_install/index.php file.
-5. Follow the instructions. You must create your MySQL database credentials before installation, and provide those details when prompted.
-
-For more detailed installation instructions, please see the /docs/1.readme_installation.html document in this distribution.
-
-
-
-
-
+Viel Spaß mit der neuen Version
+wünscht Ihnen das Team
+von zen-cart-pro.at
 
 (Document Revision: $Id$)
-((c)Copyright 2003-2011, Zen Cart(R). All rights reserved.)
