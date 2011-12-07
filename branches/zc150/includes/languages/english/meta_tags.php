@@ -8,7 +8,7 @@
  */
 
 // page title
-define('TITLE', 'Zen-Cart 1.5 Beta RC3');
+define('TITLE', 'Zen Cart 1.5 Beta RC3');
 
 // Site Tagline
 define('SITE_TAGLINE', 'German version');
