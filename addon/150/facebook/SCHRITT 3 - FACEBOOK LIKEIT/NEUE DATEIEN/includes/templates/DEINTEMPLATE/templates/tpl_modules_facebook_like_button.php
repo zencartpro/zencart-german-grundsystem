@@ -29,7 +29,7 @@
  style="<?php echo (FACEBOOK_LIKE_BUTTON_ALIGNMENT == 'left') ? 'float: left; ' : (FACEBOOK_LIKE_BUTTON_ALIGNMENT == 'right') ? 'float: right ' : ''; ?>border: none; overflow: hidden; width: <?php echo FACEBOOK_LIKE_BUTTON_WIDTH; ?>px; height: <?php echo $height; ?>px;" allowTransparency="true"></iframe>
 <?php } else { ?> 
 <div id="fb-root"></div>
-<script><!--//
+<script language="javascript" type="text/javascript"><!--//
   window.fbAsyncInit = function() {
     FB.init({appId: '<?php echo FACEBOOK_OPEN_GRAPH_APPID; ?>', status: true, cookie: true, xfbml: true});
   };
