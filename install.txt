@@ -1,5 +1,5 @@
 Willkommen bei der deutschen Zen-Cart Version
-Version 1.5 Beta RC3
+Version 1.5 Beta RC4
 
 
 Im Folgenden finden Sie eine sehr vereinfachte Installationsanleitung.

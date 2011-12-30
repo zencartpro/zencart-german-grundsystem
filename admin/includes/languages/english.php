@@ -511,8 +511,6 @@ define('NOT_INSTALLED_TEXT','Not Installed');
   define('IMAGE_GIFT_QUEUE', TEXT_GV_NAME . ' Queue');
   define('IMAGE_ORDER','Order');
 
-  define('BOX_TOOLS_EMAIL_WELCOME','Email Welcome');
-
   define('IMAGE_DISPLAY','Display');
   define('IMAGE_UPDATE_SORT','Update Sort Order');
   define('IMAGE_EDIT_PRODUCT','Edit Product');
@@ -727,5 +725,5 @@ define('TEXT_NOEMAIL', 'No Email');
   include(zen_get_file_directory(DIR_FS_CATALOG_LANGUAGES . $_SESSION['language'] . '/', FILENAME_OTHER_IMAGES_NAMES, 'false'));
 
 // Additional Localisation - Languages - Phone Country Code
-define('TEXT_INFO_LANGUAGE_ID', 'Enter telephon country access code without leading 0<br />(english must be 1, german musst be 43):');
+define('TEXT_INFO_LANGUAGE_ID', 'Enter telephone country access code without leading 0<br />(english must be 1, german musst be 43):');
 define('TEXT_INFO_LANGUAGE_CODE', 'Code:<br />(en = englisch, de = german)');
