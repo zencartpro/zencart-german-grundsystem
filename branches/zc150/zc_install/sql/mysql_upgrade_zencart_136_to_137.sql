@@ -3,10 +3,10 @@
 # *
 # * @package Installer
 # * @access private
-# * @copyright Copyright 2003-2010 Zen Cart Development Team
+# * @copyright Copyright 2003-2011 Zen Cart Development Team
 # * @copyright Portions Copyright 2003 osCommerce
 # * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
-# * @version $Id: mysql_upgrade_zencart_136_to_137.sql 627 2010-08-30 15:05:14Z webchills $
+# * @version $Id: mysql_upgrade_zencart_136_to_137.sql 628 2011-12-30 07:05:14Z webchills $
 #
 
 ############ IMPORTANT INSTRUCTIONS ###############
@@ -52,8 +52,6 @@ INSERT INTO configuration (configuration_title, configuration_key, configuration
 # it will likely trigger a warning because upgrades to 1.3.6 will already have this.
 INSERT INTO configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, last_modified, date_added, use_function, set_function) values ('Define Page-Not-Found Status', 'DEFINE_PAGE_NOT_FOUND_STATUS', '1', 'Enable the Defined Page-Not-Found Text from define-pages?<br />0= Define Text OFF<br />1= Define Text ON', '25', '67', now(), now(), NULL, 'zen_cfg_select_option(array(\'0\', \'1\'),');
 
-# fix for database cache bug
-ALTER TABLE db_cache CHANGE COLUMN cache_data cache_data MEDIUMBLOB NOT NULL;
 
 #############
 

@@ -175,9 +175,9 @@ function zen_update_user($name, $email, $id, $profile)
     {
       $errors[] = sprintf(ERROR_ADMIN_NAME_TOO_SHORT, ((int)ADMIN_NAME_MINIMUM_LENGTH < 4 ? 4 : (int)ADMIN_NAME_MINIMUM_LENGTH));
     }
-  }
-  if (zen_check_for_invalid_admin_chars($name) == FALSE) {
-    $errors[] = ERROR_ADMIN_INVALID_CHARS_IN_USERNAME;
+    if (zen_check_for_invalid_admin_chars($name) == FALSE) {
+      $errors[] = ERROR_ADMIN_INVALID_CHARS_IN_USERNAME;
+    }
   }
   $email = zen_db_prepare_input($email);
   if (zen_validate_email($email) == FALSE) {
