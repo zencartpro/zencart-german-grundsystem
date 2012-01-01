@@ -3,7 +3,7 @@
 # *
 # * @package Installer
 # * @access private
-# * @copyright Copyright 2003-2010 Zen Cart Development Team
+# * @copyright Copyright 2003-2012 Zen Cart Development Team
 # * @copyright Portions Copyright 2003 osCommerce
 # * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
 # * @version $Id: mysql_upgrade_zencart_138_to_139.sql 655 2010-09-26 11:29:06Z webchills $
