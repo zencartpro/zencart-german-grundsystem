@@ -4,7 +4,7 @@
  * HTML-generating functions used throughout the core
  *
  * @package functions
- * @copyright Copyright 2003-2011 Zen Cart Development Team
+ * @copyright Copyright 2003-2012 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
  * @version $Id$
@@ -525,8 +525,9 @@
     $countriesAtTopOfList[] = STORE_COUNTRY;
     // IF YOU WANT TO ADD MORE DEFAULTS TO THE TOP OF THIS LIST, SIMPLY ENTER THEIR NUMBERS HERE.
     // Duplicate more lines as needed
-    // Example: Canada is 108, so use 108 as shown:
-    //$countriesAtTopOfList[] = 108;
+    // Example: Germany is 81, so use 81 as shown:
+    $countriesAtTopOfList[] = 81;
+    $countriesAtTopOfList[] = 14;
 
     //process array of top-of-list entries:
     foreach ($countriesAtTopOfList as $key=>$val) {
