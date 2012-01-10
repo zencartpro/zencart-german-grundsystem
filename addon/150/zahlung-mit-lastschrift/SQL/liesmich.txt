@@ -1,0 +1,7 @@
+Die mitgelieferten Bankleitzahlen sind auf dem Stand von Dezember 2011
+
+Installation der Bankleitzahlen:
+
+1) Inhalt der install_banktransfer_blz.sql in Admin > Tools > SQL Patches ins Eingabefeld kopieren und absenden. Dadurch wird die Tabelle banktransfer_blz angelegt.
+
+2) in phpMyAdmin in diese Tabelle wechseln und auf Importieren. Hier die blz_dezember_2011.csv importieren (Dateityp CSV mit LOAD DATA, Format utf-8).

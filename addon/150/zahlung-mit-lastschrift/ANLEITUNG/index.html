@@ -1,0 +1,258 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<title>Zahlung per Lastschrift 2.3 für Zen-Cart 1.5 und 1.3.9 deutsch</title>
+<meta http-equiv="pragma" content="no-cache">
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
+<meta http-equiv="content-language" content="de">
+<meta name="description" content="Lastschriftverfahren für Zen-Cart 1.5 und 1.3.9 deutsch">
+<link rel="stylesheet" type="text/css" href="includes/css/stylesheet.css">  
+<script type="text/javascript" src="includes/jscript/jscript_tabs.js"></script>
+</head>
+<body>
+<div id="wrapper">
+<div id="header">
+<h1>Zahlung per Lastschrift 2.3 für Zen-Cart 1.5 und 1.3.9 deutsch</h1>
+</div>
+
+<div id="slidetabsmenu" style="display: none;">
+<ul>
+  <li> <a onClick="expandcontent('sc1', this)" href="javascript:void(0)"><span>Sinn und Zweck</span></a></li>
+  <li> <a onClick="expandcontent('sc2', this)" href="javascript:void(0)"><span>Installation</span></a></li>
+   
+   <li> <a onClick="expandcontent('sc4', this)" href="javascript:void(0)"><span>Deinstallation</span></a></li>
+  <li> <a onClick="expandcontent('sc5', this)" href="javascript:void(0)"><span>Download & Support</span></a></li>
+  <li> <a onClick="expandcontent('sc6', this)" href="javascript:void(0)"><span>Unterstützen</span></a></li>
+ </ul>
+</div>
+<br style="clear: both;">
+
+<!--Begin tabcontainer-->
+<div id="tabcontentcontainer">
+
+<!--Begin sc1-->
+<div class="tabcontent" id="sc1" style="display: block;">
+<div class="textcontent">
+<div class="regularlist">
+
+<h2>Sinn und Zweck dieses Moduls</h2>
+
+  <p>Dieses Modul ermöglicht die Zahlungsart Lastschrift (Bankeinzug).<br>
+Kunden können im Bestellvorgang ihre Bankdaten eintragen und erteilen online eine Einzugsermächtigung.<br>
+WICHTIG: NUR FÜR GIROKONTEN IN DEUTSCHLAND!!!!<br>
+Die aktuellen Bankleitzahlen mit Namen der Banken werden in der Datenbank hinterlegt.<br>
+Wenn der Kunde Bankleitzahl und Kontonummer eingibt wird überprüft,   ob es diese Bankleitzahl gibt und wenn ja wird der Name der Bank   ausgelesen.<br>
+Der Kunde muss also nur Bankleitzahl und Kontonummer eingeben.<br>
+Das Modul führt eine Plausibilitätsprüfung zwischen BLZ und   Kontonummer durch. Es kann nicht garantieren, dass das angegebene Konto   tatsächlich existiert, dass dieses Konto dem angegebenen Kontoinhaber   zugeordnet ist und ob dieses Konto ausreichend Deckung aufweist.<br>
+Die häufigsten Fehler (Zahlendreher, Verständnisprobleme bei der   Übermittlung der Bankverbindung oder falschen Kundenangaben) können auf   diese Art aber relativ zuverlässig vermieden werden.<br>
+Die Bankdaten werden nicht per Email übermittelt, sondern sind  im Admin bei der Bestellung ersichtlich.<br>
+Optional kann man dem Kunden auch anbieten, seine Bankdaten nicht   online einzutragen, sondern sich eine HTML Seite auszudrucken und dann   ein Fax zu senden.<br>
+<br>
+Mit diesem Modul nicht möglich<br>
+- Speicherung der Bankdaten zusätzlich beim Kunden, so dass bei   späteren Bestellungen gleich die jeweiligen Bankdaten vorausgefüllt sind<br>
+- Übermittlung der Bankdaten via Email<br>
+&gt;&gt;&gt; Wird aus Sicherheitsgründen nicht implementiert!  </p>
+
+<h3>Copyright,  Lizenz, Changelog</h3>
+<p>Copyright dieser deutschen Anpassung/Anleitung für Zen-Cart 1.5 und 1.3.9 deutsch<br>
+(c) 2012 webchills (<a href="http://www.webchills.at" target="_blank">www.webchills.at</a>)</p>
+<p> Portions Copyright (c) 2003 osCommerce<br>
+  Portions Copyright     (c) 2003-2011 Zen Cart</p>
+<p>This contribution is subject to version 2.0 of the GPL license available through the world-wide-web at the following url:<br>
+  <a href="http://www.zen-cart-pro.at/license/2_0.txt">http://www.zen-cart-pro.at/license/2_0.txt</a></p>
+<p>Changelog:<br>
+  <br>
+Version 1.0 <br>
+2006 /cyberflohr 2006 <br>
+<br>
+Version 2.0 <br>
+November 2008 / webchills/hugo13<br>
+angepasst für Zen-Cart 1.3.8 <br>
+<br>
+Version 2.1 <br>
+Dezember 2008 / MaleBorg<br>
+Bugfixes<br>
+<br>
+Version 2.2<br>
+Oktober 2010  / Maleborg/webchills<br>
+Bugfixes in Sprachdateien <br>
+Aktuelle Bankleitzahlen von Oktober 2010<br>
+Stark verbesserte    Überprüfungsroutine durch Aktualisierung der includes/classes/banktransfer_validation.php<br>
+Anleitung aktualisiert </p>
+<p>Version 2.3<br>
+  Januar 2011 / webchills<br>
+  Bankleitzahlen von Dezember 2011<br>
+  Modul einschränkbar auf Land Deutschland ohne Zonendefinition<br>
+  Anpassung für 1.3.9 und 1.5<br>
+  Anleitung aktualisiert
+</p>
+</div>
+</div>
+</div>
+<!--End sc1-->
+
+<!--Begin sc2-->
+<div class="tabcontent" id="sc2" style="display: block;">
+<div class="textcontent">
+<div class="regularlist">
+
+<h2>Installation</h2>
+<h3>Voraussetzungen</h3>
+  <br>
+  <p>Dieses Modul ist<strong> nur für Zen-Cart 1.5 oder 1.3.9 deutsch geeignet</strong>.<br>
+  <br>
+    Für den Einbau dieses Moduls sollten Sie über folgende Werkzeuge verfügen:<br>
+  <br>
+    1) Ein guter Texteditor. <br>
+    Damit ist nicht das in Windows enthaltene Notepad oder Microsoft Word gemeint.<br>
+    Sie benötigen einen Texteditor, der utf-8 versteht und auch im Format utf-8 ohne BOM abspeichern kann.<br>
+    Meine Empfehlung: <a href="http://www.ultraedit.com/loc/de/index_de.html" target="_blank">UltraEdit</a> (kostenlose 30 Tage Testversion verfügbar)<br>
+    Ebenfalls gut geeignet ist der kostenlose Texteditor <a href="http://notepad-plus.sourceforge.net/de/site.htm" target="_blank">Notepad++ </a><br>
+  </p>
+  <p>2) Ein Tool zum Vergleichen von Dateien<br>
+    Bei der Installation dieses Moduls ist es erforderlich, dass Sie den   Inhalt einiger Ihrer bestehenden Zen-Cart Dateien mit dem Inhalt der   neuen Moduldateien vergleichen und die Änderungen zusammenführen   ("mergen").<br>
+    Meine Empfehlung: <a href="http://www.scootersoftware.com/" target="_blank">BeyondCompare</a> (kostenlose 30 Tage Testversion verfügbar)<br>
+    Ebenfalls gut geeignet ist das kostenlose Programm <a href="http://winmerge.org/" target="_blank">WinMerge </a></p>
+  <p><br>
+  <strong>Empfehlung:</strong><br>
+  <br>
+  Dieses Modul erst in einem Testsystem einbauen und dort   konfigurieren/testen und endgültig an die eigenen Wünsche anpassen.        Erst dann in einem Liveshop einsetzen! Sichern Sie unbedingt alle   Dateien Ihres Shops per FTP und sichern Sie die Datenbank mit phpMyAdmin   oder anderen geeigneten Tools!</p>
+<div id="warning"><b>WICHTIG</b><br>
+Vor dem Einbau dieser Änderungen:<br>
+BACKUP von Shop und Datenbank machen! <br>
+Keine Haftung, Verwendung auf eigene Gefahr!<br>
+BACKUP gemacht? Ok, dann weiterlesen...
+</div>
+<p>Die Installation erfolgt in folgenden Schritten. Halten Sie diesen Ablauf ein!</p>
+<p>1.<br>
+Importieren der deutschen Bankleitzahlen<br>
+Im Ordner SQL die install_banktransfer_blz.sql mit einem Texteditor öffnen<br>
+Inhalt in Admin &gt; Tools &gt; SQL Patches ins Eingabefeld kopieren   und absenden. Dadurch wird die Tabelle banktransfer_blz angelegt.<br>
+<br>
+2.<br>
+  Nun in phpMyAdmin in diese Tabelle wechseln und auf Importieren. <br>
+  Hier die blz_dezember_2011.csv importieren (Einstellen: Dateityp CSV mit LOAD DATA, Format utf-8).</p>
+<p>3.<br>
+  Neue Dateien des Moduls einspielen:<br>
+  Im Ordner NEUE DATEIEN dieses Downloads  den Ordner DEINADMIN auf den Namen Ihres admin Verzeichnisses umbenennen<br>
+  Dann die Dateien/Ordner in der vorgegebenen Struktur hochladen.<br>
+  Dadurch werden keine bestehenden Dateien überschrieben.</p>
+<p>4.<br>
+  Geänderte Dateien des Moduls einspielen.<br>
+  <strong>Für Zen-Cart 1.3.9: </strong><br>
+  Im Ordner GEAENDERTE DATEIEN dieses Downloads befindet sich im Ordner 139 die einzige für dieses Modul  geänderte Originaldatei.<br>
+  Benennen Sie den Ordner DEINADMIN    auf den Namen Ihres admin Verzeichnisses um<br>
+  Es wird dringend empfohlen, die darin enthaltene orders.php nicht einfach 1:1 zu übernehmen. <br>
+  Machen Sie das nur, wenn Sie Zen-Cart 1.3. 9 gerade neu installiert haben   und noch keine Änderungen an Originaldateien vorgenommen haben.   Zahlreiche andere Module nehmen Änderungen an der orders.php vor,   vielleicht haben Sie ja schon einmal in dieser Datei etwas geändert.<br>
+  Stattdessen vergleichen Sie Ihre entsprechende Originaldatei mit einem   geeigneten Programm wie z.B. WinMerge oder Beyond Compare und nehmen   die Änderungen manuell vor.<br>
+  Dann hochladen und die bestehende orders.php ersetzen<br>
+  <strong>Für Zen-Cart 1.5: </strong><br>
+Im Ordner GEAENDERTE DATEIEN dieses Downloads befindet sich im Ordner 150 die einzige für dieses Modul  geänderte Originaldatei.<br>
+Benennen Sie den Ordner DEINADMIN    auf den Namen Ihres admin Verzeichnisses um<br>
+Es wird dringend empfohlen, die darin enthaltene orders.php nicht einfach 1:1 zu übernehmen. <br>
+Machen Sie das nur, wenn Sie Zen-Cart 1.5 gerade neu installiert haben   und noch keine Änderungen an Originaldateien vorgenommen haben.   Zahlreiche andere Module nehmen Änderungen an der orders.php vor,   vielleicht haben Sie ja schon einmal in dieser Datei etwas geändert.<br>
+Stattdessen vergleichen Sie Ihre entsprechende Originaldatei mit einem   geeigneten Programm wie z.B. WinMerge oder Beyond Compare und nehmen   die Änderungen manuell vor.<br>
+Dann hochladen und die bestehende orders.php ersetzen  <br>
+</p>
+<p>5.<br>
+  In der Zen-Cart Administration ist nun unter Module &gt; Zahlungsarten   das Lastschriftverfahren verfügbar. Markieren und auf den Button   Installieren.</p>
+<p>6.<br>
+  Nehmen Sie nun Ihre gewünschten Einstellungen vor:<br>
+  <br>
+  Voreingestellt ist, dass die Abfrage der Bankleitzahlen aus der   Datenbank verwendet werden soll. Das sollte auch nicht geändert werden!<br>
+  <br>
+Wer die Faxvariante nutzen will, muss die mitgelieferte fax.html   entsprechend anpassen und dann im Admin "Daten per Fax erlauben" auf   true stellen.<br>
+<br>
+Bei der Eingabe von Bankleitzahl und Kontonummer wird zunächst ein   Fehler ausgegeben, falls die Bankleitzahl nicht bekannt ist oder nicht   zur Kontonummer passt. Die Prüfung ist sehr genau aber nicht 100%. Um   dem Kunden auch bei erfolgloser Prüfung eine Bestellung zu ermöglichen,   kommt man nach mehreren Fehlversuchen trotzdem im Bestellvorgang weiter.   Wenn Sie das unterbinden wollen und nur Bestellung mit vollständig   geprüften Bankdaten erlauben wollen, ändern Sie in   includes/modules/payment/germanbanktransfer.php    in ca. Zeile 188 auf:</p>
+<p> <code>case 1: // number &amp; blz not ok<br>
+  $error = MODULE_PAYMENT_GERMANBT_TEXT_BANK_ERROR_1;<br>
+  $recheckok = '<strong>false</strong>';<br>
+  break;<br>
+  case 5: // BLZ not found<br>
+  $error = MODULE_PAYMENT_GERMANBT_TEXT_BANK_ERROR_5;<br>
+  $recheckok = '<strong>false</strong>';<br>
+  break;</code></p>
+<p>Bei Bestellungen, die mit Lastschrift bezahlt werden, sind die   Bankdaten in der Administration beim Bearbeiten der Bestellung   ersichtlich. Hier sehen Sie auch die Ergebnisse der Prüfung. Es sind nicht alle Prüfverfahren implementiert, daher können nicht alle Bankleitzahlen zu 100% erkannt und geprüft werden! </p>
+<h3>&nbsp;</h3>
+  </div>
+</div>
+</div>
+
+<!--End sc2-->
+
+
+<!--Begin sc4-->
+<div class="tabcontent" id="sc4" style="display: block;">
+<div class="textcontent">
+<div class="regularlist">
+
+<h2>DEINSTALLATION</h2>
+<p>Um das Modul komplett zu entfernen:<br>
+- Alle von diesem Modul neu hinzugefügten Dateien vom Server löschen<br>
+- Die Original DEINADMIN/orders.php wieder einspielen<br>
+- Tabelle banktransfer_blz via phpMyAdmin löschen<br>
+- Tabelle banktransfer via phpMyAdmin löschen</p>
+</div>
+</div>
+</div>
+<!--End sc4-->
+
+<!--Begin sc5-->
+<div class="tabcontent" id="sc5" style="display: block;">
+<div class="textcontent">
+<div class="regularlist">
+<h2>Download &amp; Support</h2>
+<p>Download des Moduls:</p>
+<p><a href="http://www.zen-cart-pro.at/zcvb/forum/downloads.php" target="_blank">www.zen-cart-pro.at/zcvb/forum/downloads.php</a></p>
+
+<p>Supportforum zum Modul:</p>
+<p><a href="http://www.zen-cart-pro.at/zcvb/forum" target="_blank">www.zen-cart-pro.at/zcvb/forum</a></p>
+</div>
+</div>
+</div>
+<!--End sc5-->
+
+<!--Begin sc6-->
+<div class="tabcontent" id="sc6" style="display: block;">
+<div class="textcontent">
+<div class="regularlist">
+
+<h2>Unterstützen</h2>
+<p>Sie finden dieses Modul nützlich?</p>
+<p>Sie haben vom Support im Forum auf www.zen-cart-pro.at profitiert?</p>
+<p>Unterstützen Sie die Weiterentwicklung der deutschen Zen-Cart Version.<br/>Wir freuen uns über Spenden zur Finanzierung des Servers und der vBulletin-Lizenz: </p>
+<form action="https://www.paypal.com/cgi-bin/webscr" method="post">
+<input type="hidden" name="cmd" value="_s-xclick">
+<input type="hidden" name="hosted_button_id" value="D8HDC4GJE2386">
+<input type="image" src="https://www.paypalobjects.com/de_DE/AT/i/btn/btn_donateCC_LG.gif" border="0" name="submit" alt="Jetzt einfach, schnell und sicher online bezahlen – mit PayPal.">
+<img alt="" border="0" src="https://www.paypalobjects.com/de_DE/i/scr/pixel.gif" width="1" height="1">
+</form>
+
+<br/><br/>
+</div>
+</div>
+</div>
+<!--End sc6-->
+</div>
+<div id="footer">
+Ein Modul von <a href="http://www.zen-cart-pro.at" target="_blank">www.zen-cart-pro.at</a> - Die deutsche Zen-Cart Version
+</div>
+</div>
+<!--end tabcontainer-->
+<script type="text/javascript">document.getElementById('sc1').style.display = 'none';</script>
+<script type="text/javascript">document.getElementById('sc2').style.display = 'none';</script>
+<script type="text/javascript">document.getElementById('sc3').style.display = 'none';</script>
+<script type="text/javascript">document.getElementById('sc4').style.display = 'none';</script>
+<script type="text/javascript">document.getElementById('sc5').style.display = 'none';</script>
+<script type="text/javascript">document.getElementById('sc6').style.display = 'none';</script>
+<script type="text/javascript">ShowTabs()</script>
+<script type="text/javascript">
+// We only show the tab links if JavaScript is available/active.
+<!--
+if (document.getElementById("slidetabsmenu") != null) {
+  document.getElementById('slidetabsmenu').style.display = "block";
+}
+//-->
+</script>
+
+</body></html>
