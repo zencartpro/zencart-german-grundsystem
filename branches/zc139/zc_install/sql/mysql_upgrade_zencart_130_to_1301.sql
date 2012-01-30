@@ -3,7 +3,7 @@
 # *
 # * @package Installer
 # * @access private
-# * @copyright Copyright 2003-2011 Zen Cart Development Team
+# * @copyright Copyright 2003-2010 Zen Cart Development Team
 # * @copyright Portions Copyright 2003 osCommerce
 # * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
 # * @version $Id$
@@ -12,7 +12,7 @@
 ## CONFIGURATION TABLE
 #insert for those who did an upgrade from 1.2.x to 1.3.0 and thus didn't get the insert:
 insert into configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, last_modified, date_added, use_function, set_function) values ('Define Site Map Status', 'DEFINE_SITE_MAP_STATUS', '1', 'Enable the Defined Site Map Link/Text?<br />0= Link ON, Define Text OFF<br />1= Link ON, Define Text ON<br />2= Link OFF, Define Text ON<br />3= Link OFF, Define Text OFF', '25', '67', now(), now(), NULL, 'zen_cfg_select_option(array(\'0\', \'1\', \'2\', \'3\'),');
-REPLACE INTO configuration_group VALUES ('30', 1, 'EZ-Pages Settings', 'EZ-Pages Settings', 30, '1');
+REPLACE INTO configuration_group (configuration_group_title, configuration_group_description, sort_order, visible) VALUES ('EZ-Pages Settings', 'EZ-Pages Settings', 30, '1');
 
 UPDATE configuration SET set_function = 'zen_cfg_select_option(array(\'0\', \'1\', \'2\', \'3\'), ' WHERE configuration_key = 'SHOW_TOTALS_IN_CART';
 
