@@ -79,6 +79,7 @@ require_once(DIR_FS_CATALOG . 'includes/' . 'functions/extra_functions/rl_tools.
       $this->version139 = $this->check_version_139();
       $this->version150 = $this->check_version_150();
 	  $this->version138multi2 = $this->check_version_138multi2();
+	  $this->version139multi2 = $this->check_version_139multi2();
 
         if ($this->version110 == true)  $retVal = '1.1.0';
         if ($this->version111 == true)  $retVal = '1.1.1';
@@ -103,6 +104,7 @@ require_once(DIR_FS_CATALOG . 'includes/' . 'functions/extra_functions/rl_tools.
         if ($this->version139 == true) $retVal = '1.3.9';
         if ($this->version150 == true) $retVal = '1.5.0';
 		if ($this->version138multi2 == true) $retVal = '1.3.8multi2';
+			if ($this->version139multi2 == true) $retVal = '1.3.9multi2';
 
       return $retVal;
     }
@@ -748,6 +750,26 @@ require_once(DIR_FS_CATALOG . 'includes/' . 'functions/extra_functions/rl_tools.
       }
       return $got_v1_3_8multi2;
     } //end of 1.3.8multi2 check
+    
+    function check_version_139multi2() {
+      global $db_test;
+      $got_v1_3_9multi2 = false;
+      //1st check for v1.3.9
+      if(isMultiLingual2($db_test)){
+          if (ZC_UPG_DEBUG==true) echo "139f-configtitle_check LANGUAGE_VERSION =" . $result->fields['configuration_title'] . '<br>';
+            $got_v1_3_9multi2 = true;
+
+          if (ZC_UPG_DEBUG==true) {
+            echo '1.3.9multi2=' . $got_v1_3_9multi2 .'<br>';
+          }
+          // evaluate all 1.3.9 checks
+          if ($got_v1_3_9multi2) {
+            $got_v1_3_9multi2 = true;
+            if (ZC_UPG_DEBUG==true) echo '<br>Got 1.3.9multi2<br>';
+          }
+      }
+      return $got_v1_3_9multi2;
+    } //end of 1.3.9multi2 check
 
 
 
