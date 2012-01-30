@@ -82,6 +82,12 @@ $sniffer_text = '';
 
 //display options based on what was found -- THESE SHOULD BE PROCESSED IN REVERSE ORDER, NEWEST VERSION FIRST... !
 //that way only the "earliest-required" upgrade is suggested first.
+    $needs_v1_3_9multi2=false;
+    if (!$dbinfo->version139multi2) {
+      $sniffer_text =  ' upgrade v1.3.9 to v1.50';
+      $needs_v1_3_9multi2=true;
+    }
+    
     $needs_v1_3_8multi2=false;
     if (!$dbinfo->version138multi2) {
       $sniffer_text =  ' upgrade v1.3.9 to v1.3.8multi2';
@@ -417,6 +423,14 @@ if (ZC_UPG_DEBUG2==true) {
           if (ZC_UPG_DEBUG2==true) echo $sniffer_file.'<br>';
           $got_v1_3_8multi2 = true; //after processing this step, this will be the new version-level
           $db_upgraded_to_version='1.3.8multi2';
+          break;
+          
+           case '1.3.9multi2':  // upgrading from v1.3.9 german TO 1.5.0 german
+//          if (!$dbinfo->version137 || $dbinfo->version138) continue;  // if prerequisite not completed, or already done, skip
+          $sniffer_file = '_multilingual_2.sql';
+          if (ZC_UPG_DEBUG2==true) echo $sniffer_file.'<br>';
+          $got_v1_3_9multi2 = true; //after processing this step, this will be the new version-level
+          $db_upgraded_to_version='1.5.0';
           break;
        case 'multilingual':  // upgrading from v1.2.6 TO v1.2.7
 //          if (!$dbinfo->version126 || $dbinfo->version127) continue;  // if prerequisite not completed, or already done, skip
