@@ -2,7 +2,7 @@
     require('includes/application_top.php');
     
     if(isset($_REQUEST['extern'])){
-        print_r($_REQUEST);
+        
         header("location: " . $_REQUEST['extern']);
         exit;
         
