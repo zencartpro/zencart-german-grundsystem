@@ -3,7 +3,7 @@
  * reviews Write
  *
  * @package page
- * @copyright Copyright 2003-2006 Zen Cart Development Team
+ * @copyright Copyright 2003-2012 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
  * @version $Id$
@@ -77,7 +77,7 @@ if (isset($_GET['action']) && ($_GET['action'] == 'process')) {
 
     $sql = $db->bindVars($sql, ':productsID', $_GET['products_id'], 'integer');
     $sql = $db->bindVars($sql, ':customersID', $_SESSION['customer_id'], 'integer');
-    $sql = $db->bindVars($sql, ':customersName', $customer->fields['customers_firstname'] . ' ' . $customer->fields['customers_lastname'], 'string');
+    $sql = $db->bindVars($sql, ':customersName', $customer->fields['customers_firstname'], 'string');
     $sql = $db->bindVars($sql, ':rating', $rating, 'string');
 
     $db->Execute($sql);
