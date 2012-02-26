@@ -1,13 +1,10 @@
 <?php
 /**
-* Template designed by 12leaves.com
-* 12leaves.com - Free ecommerce templates and design services
-* 
-* @copyright Copyright 2008-2009 12leaves.com
-* @copyright Portions Copyright 2010 webchills.at
+* @copyright Portions Copyright 2008-2009 12leaves.com
+* @copyright Portions Copyright 2012 webchills.at
 * @copyright Copyright 2003-2012 Zen Cart Development Team
 * @copyright Portions Copyright 2003 osCommerce
-* @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
+* @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
 * @version $Id$
 */    
 ?>
@@ -23,13 +20,13 @@
 if ($current_page_base == 'products_new') {	$active	= 'tab_active'; 
 	} else { $active = 'tab_nonactive';
 }?>
-		<li class="<?php echo $active;?>"><a href="index.php?main_page=products_new"><?php echo TOP_MENU_NEW_PRODUCTS;?></a></li>
+		<li class="<?php echo $active;?>"><a href="<?php echo zen_href_link(FILENAME_PRODUCTS_NEW, '', 'NONSSL'); ?>"><?php echo TOP_MENU_NEW_PRODUCTS;?></a></li>
 
 <?php
 if ($current_page_base == 'specials') { $active = 'tab_active'; 
 	} else { $active = 'tab_nonactive';
 }?>
-		<li class="<?php echo $active;?>"><a href="index.php?main_page=specials"><?php echo TOP_MENU_SPECIALS;?></a></li>
+		<li class="<?php echo $active;?>"><a href="<?php echo zen_href_link(FILENAME_SPECIALS, '', 'NONSSL'); ?>"><?php echo TOP_MENU_SPECIALS;?></a></li>
 
 <?php
 if ($current_page_base == 'account' || $current_page_base == 'login' || $current_page_base == 'account_edit' || $current_page_base == 'address_book' || $current_page_base == 'account_password' || $current_page_base == 'account_newsletters' || $current_page_base == 'account_notifications') { $active = 'tab_active'; 

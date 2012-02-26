@@ -1,15 +1,13 @@
 <?php
 /**
-* Template designed by 12leaves.com
-* 12leaves.com - Free ecommerce templates and design services
-*
 * Common Template
 * 
 * @package templateSystem
-* @copyright Copyright 2009-2010 12leaves.com
-* @copyright Copyright 2003-2007 Zen Cart Development Team
+* @copyright Portions Copyright 2009-2010 12leaves.com
+* @copyright Copyright 2003-2012 Zen Cart Development Team
+* @copyright Portions Copyright 2012 webchills.at
 * @copyright Portions Copyright 2003 osCommerce
-* @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
+* @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
 * @version $Id$
 */
 
@@ -61,8 +59,7 @@ if (!isset($flag_disable_left) || !$flag_disable_left) {
 ?>
     <td id="columnCenter" valign="top">
 <!-- bof  breadcrumb -->
-<?php 
-	if ((DEFINE_BREADCRUMB_STATUS == '1' || DEFINE_BREADCRUMB_STATUS == '2') && ($this_is_home_page != '1')) { ?>
+<?php if (DEFINE_BREADCRUMB_STATUS == '1' || (DEFINE_BREADCRUMB_STATUS == '2' && !$this_is_home_page) ) { ?>
     <div id="navBreadCrumb"><?php echo $breadcrumb->trail(BREAD_CRUMBS_SEPARATOR); ?></div>
 <?php } ?>
 <!-- eof breadcrumb -->
@@ -103,13 +100,16 @@ if (!isset($flag_disable_right) || !$flag_disable_right) {
   *
   */
 ?>
-<div id="navColumnTwoWrapper" style="width: <?php echo BOX_WIDTH_RIGHT; ?>"><?php require(DIR_WS_MODULES . zen_get_module_directory('column_right.php')); ?></div></td></tr>
-</table>
+<div id="navColumnTwoWrapper" style="width: <?php echo BOX_WIDTH_RIGHT; ?>"><?php require(DIR_WS_MODULES . zen_get_module_directory('column_right.php')); ?></div>
 
-  
+
+  </td>
 <?php
 }
 ?>
+
+</tr>
+</table>
 
 <?php
  /**
