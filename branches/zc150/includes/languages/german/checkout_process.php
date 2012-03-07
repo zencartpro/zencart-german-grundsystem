@@ -1,11 +1,11 @@
 <?php
 /**
  * @package languageDefines
- * @copyright Copyright 2003-2010 Zen Cart Development Team
+ * @copyright Copyright 2003-2012 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
  * @translators: cyaneo/hugo13/wflohr/maleborg/webchills	http://www.zen-cart-pro.at
- * @version $Id: checkout_process.php 627 2010-08-30 15:05:14Z webchills $
+ * @version $Id: checkout_process.php 628 2012-03-07 18:05:14Z webchills $
  */
 
 define('EMAIL_TEXT_SUBJECT', 'Bestellbestätigung');
@@ -27,6 +27,8 @@ define('EMAIL_TEXT_BILLING_ADDRESS', 'Rechnungsanschrift');
 define('EMAIL_TEXT_PAYMENT_METHOD', 'Zahlungsart');
 define('EMAIL_SEPARATOR', '------------------------------------------------------');
 define('TEXT_EMAIL_VIA', 'via');
+define('EMAIL_GREETING_MR', 'Sehr geehrter Herr');
+define('EMAIL_GREETING_MS', 'Sehr geehrte Frau');
 
 // suggest not using # vs No as some spamm protection block emails with these subjects
 define('EMAIL_ORDER_NUMBER_SUBJECT', ' Bestellnummer ');

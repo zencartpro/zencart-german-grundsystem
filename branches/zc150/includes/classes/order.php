@@ -3,7 +3,7 @@
  * File contains the order-processing class ("order")
  *
  * @package classes
- * @copyright Copyright 2003-2011 Zen Cart Development Team
+ * @copyright Copyright 2003-2012 Zen Cart Development Team
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
  * @version $Id$
  */
@@ -243,7 +243,7 @@ class order extends base {
     
     $this->content_type = $_SESSION['cart']->get_content_type();
 
-    $customer_address_query = "select c.customers_firstname, c.customers_lastname, c.customers_telephone,
+    $customer_address_query = "select c.customers_gender, c.customers_firstname, c.customers_lastname, c.customers_telephone,
                                     c.customers_email_address, ab.entry_company, ab.entry_street_address,
                                     ab.entry_suburb, ab.entry_postcode, ab.entry_city, ab.entry_zone_id,
                                     z.zone_name, co.countries_id, co.countries_name,
@@ -389,7 +389,8 @@ class order extends base {
     }
 // eof: move below calculations
 */
-    $this->customer = array('firstname' => $customer_address->fields['customers_firstname'],
+    $this->customer = array('gender' => $customer_address->fields['customers_gender'],
+    												'firstname' => $customer_address->fields['customers_firstname'],
                             'lastname' => $customer_address->fields['customers_lastname'],
                             'company' => $customer_address->fields['entry_company'],
                             'street_address' => $customer_address->fields['entry_street_address'],
@@ -942,8 +943,13 @@ class order extends base {
     $html_msg=array();
 
     //intro area
-    $email_order = EMAIL_TEXT_HEADER . EMAIL_TEXT_FROM . STORE_NAME . "\n\n" .
-    $this->customer['firstname'] . ' ' . $this->customer['lastname'] . "\n\n" .
+     $email_order = EMAIL_TEXT_HEADER . EMAIL_TEXT_FROM . STORE_NAME . "\n\n";
+	   if ($this->customer['gender'] == "m") {
+      $email_order .= EMAIL_GREETING_MR .' ' ;
+     } else {
+      $email_order .= EMAIL_GREETING_MS .' ' ;
+      }
+    $email_order .= $this->customer['firstname'] . ' ' . $this->customer['lastname'] . "\n\n" .
     EMAIL_THANKS_FOR_SHOPPING . "\n" . EMAIL_DETAILS_FOLLOW . "\n" .
     EMAIL_SEPARATOR . "\n" .
     EMAIL_TEXT_ORDER_NUMBER . ' ' . $zf_insert_id . "\n" .
@@ -1029,6 +1035,11 @@ class order extends base {
 
     while (strstr($email_order, '&nbsp;')) $email_order = str_replace('&nbsp;', ' ', $email_order);
 
+    if ($this->customer['gender'] == "m") {
+		$html_msg['EMAIL_GREETING'] = EMAIL_GREETING_MR;
+	} else {
+		$html_msg['EMAIL_GREETING'] = EMAIL_GREETING_MS;
+	}
     $html_msg['EMAIL_FIRST_NAME'] = $this->customer['firstname'];
     $html_msg['EMAIL_LAST_NAME'] = $this->customer['lastname'];
     //  $html_msg['EMAIL_TEXT_HEADER'] = EMAIL_TEXT_HEADER;
