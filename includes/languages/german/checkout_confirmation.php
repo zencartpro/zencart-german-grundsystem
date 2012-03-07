@@ -1,11 +1,11 @@
 <?php
 /**
  * @package languageDefines
- * @copyright Copyright 2003-2010 Zen Cart Development Team
+ * @copyright Copyright 2003-2012 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
  * @translators: cyaneo/hugo13/wflohr/maleborg/webchills	http://www.zen-cart-pro.at
- * @version $Id: checkout_confirmation.php 627 2010-08-30 15:05:14Z webchills $
+ * @version $Id: checkout_confirmation.php 628 2012-03-07 18:05:14Z webchills $
  */
 
 define('NAVBAR_TITLE_1','Kasse');
@@ -23,6 +23,6 @@ define('HEADING_ORDER_COMMENTS','Anmerkungen oder Hinweise');
 // no comments entered
 define('NO_COMMENTS_TEXT','Keine');
 define('TITLE_CONTINUE_CHECKOUT_PROCEDURE','<strong>Bestellung bestätigen</strong>');
-define('TEXT_CONTINUE_CHECKOUT_PROCEDURE','- weiter um Ihre Bestellung zu bestätigen ... Vielen Dank!');
+define('TEXT_CONTINUE_CHECKOUT_PROCEDURE','Clicken Sie hier, um Ihre Bestellung zu bestätigen:');
 
 define('OUT_OF_STOCK_CAN_CHECKOUT', 'Produkte, die mit ' . STOCK_MARK_PRODUCT_OUT_OF_STOCK . ' gekennzeichnet sind, sind nicht vorrätig.<br />Diese Artikel werden nachträglich geliefert');
