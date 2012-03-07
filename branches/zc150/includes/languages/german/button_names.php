@@ -1,11 +1,11 @@
 <?php
 /**
  * @package languageDefines
- * @copyright Copyright 2003-2010 Zen Cart Development Team
+ * @copyright Copyright 2003-2012 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
  * @translator: cyaneo/hugo13/wflohr/maleborg	http://www.zen-cart-pro.at	2007-01-03
- * @version $Id: button_names.php 627 2010-08-30 15:05:14Z webchills $
+ * @version $Id: button_names.php 628 2012-03-07 17:05:14Z webchills $
  */
 
 
@@ -44,8 +44,6 @@ define('BUTTON_IMAGE_SHIPPING_ESTIMATOR', 'button_shipping_estimator.gif');
 define('BUTTON_IMAGE_SOLD_OUT','button_sold_out.gif');
 define('BUTTON_IMAGE_SOLD_OUT_SMALL','button_sold_out_sm.gif');
 define('BUTTON_IMAGE_SUBMIT', 'button_submit.gif');
-define('BUTTON_IMAGE_TELL_A_FRIEND', 'button_tell_a_friend.gif');
-define('BUTTON_IMAGE_TELLAFRIEND', 'button_TellAFriend.gif');
 define('BUTTON_IMAGE_UNSUBSCRIBE', 'button_unsubscribe.gif');
 define('BUTTON_IMAGE_UPDATE', 'button_update.gif');
 define('BUTTON_IMAGE_VIEW_SMALL', 'button_view.gif');
@@ -76,7 +74,7 @@ define('BUTTON_CANCEL_ALT', 'Abbrechen');
 define('BUTTON_CHANGE_ADDRESS_ALT', 'Adresse ändern');
 define('BUTTON_CHECKOUT_ALT', 'Zur Kasse');
 define('BUTTON_CONFIRM_SEND_ALT', 'Gutschein senden');
-define('BUTTON_CONFIRM_ORDER_ALT', 'Bestellung bestätigen');
+define('BUTTON_CONFIRM_ORDER_ALT', 'zahlungspflichtig bestellen');
 define('BUTTON_CONTINUE_ALT', 'Weiter');
 define('BUTTON_CONTINUE_SHOPPING_ALT', 'Weiter einkaufen');
 define('BUTTON_DELETE_ALT', 'Löschen');
@@ -97,13 +95,11 @@ define('BUTTON_SEND_A_GIFT_CERT_ALT', 'Einen Gutschein senden');
 define('BUTTON_SHIPPING_ESTIMATOR_ALT', 'Voraussichtliche Versandkosten');
 define('BUTTON_SOLD_OUT_ALT', 'Ausverkauft');
 define('BUTTON_SOLD_OUT_SMALL_ALT', 'Ausverkauft');
-define('BUTTON_SUBMIT_ALT', 'Information senden');
-define('BUTTON_TELL_A_FRIEND_ALT', 'An einen Freund senden');
-define('BUTTON_TELLAFRIEND_ALT', 'An einen Freund senden');
+define('BUTTON_SUBMIT_ALT', 'Absenden');
 define('BUTTON_UNSUBSCRIBE', 'Abbestellen');
 define('BUTTON_UPDATE_ALT', 'Aktualisieren');
 define('BUTTON_VIEW_SMALL_ALT', 'Anzeigen');
 define('BUTTON_WRITE_REVIEW_ALT', 'Bewertung schreiben');
 define('BUTTON_READ_REVIEWS_ALT', 'Bewertung lesen');
-define('BUTTON_GOTO_PROD_DETAILS_ALT', 'Lesen Sie die detailierte Produktbeschreibung');
-define('BUTTON_MORE_REVIEWS_ALT', 'Lesen Sie weitere Bewertungen');
+define('BUTTON_GOTO_PROD_DETAILS_ALT', 'Detaillierte Produktbeschreibung');
+define('BUTTON_MORE_REVIEWS_ALT', 'Weitere Bewertungen');

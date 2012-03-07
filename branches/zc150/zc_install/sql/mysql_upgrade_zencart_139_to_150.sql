@@ -6,7 +6,7 @@
 # * @copyright Copyright 2003-2012 Zen Cart Development Team
 # * @copyright Portions Copyright 2003 osCommerce
 # * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
-# * @version $Id: mysql_upgrade_zencart_139_to_150.sql 20043 2011-12-06 23:07:06Z drbyte $
+# * @version $Id: mysql_upgrade_zencart_139_to_150.sql 20044 2012-03-07 17:07:06Z webchills $
 #
 
 ############ IMPORTANT INSTRUCTIONS ###############
@@ -42,7 +42,6 @@ TRUNCATE TABLE sessions;
 INSERT INTO configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) VALUES ('Telephone - Customer Service', 'STORE_TELEPHONE_CUSTSERVICE', '', 'Enter a telephone number for customers to reach your Customer Service department. This number may be sent as part of payment transaction details.', 1, 7, now());
 INSERT INTO configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) VALUES ('login mode https', 'SSLPWSTATUSCHECK', '', 'System setting. Do not edit.', 6, 99, now());
 
-UPDATE configuration set configuration_value = '900', configuration_description = 'Enter the time in seconds.<br />Max allowed is 900 for PCI Compliance Reasons.<br /> Default=900<br />Example: 900= 15 min <br /><br />Note: Too few seconds can result in timeout issues when adding/editing products', set_function = 'zen_cfg_select_option(array(\'900\', \'600\', \'300\'), ' where configuration_key = 'SESSION_TIMEOUT_ADMIN';
 UPDATE configuration set configuration_title='CURL Proxy Address', configuration_value = '', configuration_group_id = 6, configuration_description = 'If you have a hosting service that requires use of a proxy to talk to external sites via cURL, enter their proxy address here.<br />format: address:port<br />ie: 127.0.0.1:3128' where configuration_key = 'CURL_PROXY_SERVER_DETAILS';
 UPDATE configuration set configuration_title='CURL Proxy Status', configuration_value = 'False', configuration_group_id = 6 where configuration_key = 'CURL_PROXY_REQUIRED';
 UPDATE configuration set configuration_description = 'Option Names and Values Global Add, Copy and Delete Features Status<br />0= Hide Features<br />1= Show Features<br />(Default=1)' where configuration_key = 'OPTION_NAMES_VALUES_GLOBAL_STATUS';
