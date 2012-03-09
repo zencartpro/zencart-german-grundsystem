@@ -3,7 +3,7 @@
  * functions_prices
  *
  * @package functions
- * @copyright Copyright 2003-2011 Zen Cart Development Team
+ * @copyright Copyright 2003-2012 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
  * @version $Id$
@@ -281,10 +281,14 @@
       } else {
         $call_tag = '<br />' . zen_image(DIR_WS_TEMPLATE_IMAGES . OTHER_IMAGE_CALL_FOR_PRICE, PRODUCTS_PRICE_IS_CALL_FOR_PRICE_TEXT);
       }
-    }
-
-    return $final_display_price . vatAddOn($product_check) . $free_tag . $call_tag; 
+      return $free_tag . $call_tag;
+    } else{
+    
+    return $final_display_price . vatAddOn($product_check) . $free_tag . $call_tag;     
   }
+}
+
+
 
 ////
 // Is the product free?
