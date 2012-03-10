@@ -33,6 +33,8 @@ define('IH_SOURCE_IMAGE', 'Originalbild');
 define('IH_SMALL_IMAGE', 'Vorschaubild');
 define('IH_MEDIUM_IMAGE', 'Produktbild');
 
+
+
 define('IH_ADD_NEW_IMAGE', 'Neues Bild hinzufügen');
 define('IH_NEW_NAME_DISCARD_IMAGES', 'Neuer Bildname, zusätzliche Produktbilder wegwerfen');
 define('IH_NEW_NAME_COPY_IMAGES', 'Neuer Bildname, zusätzliche Produktbilder mitnehmen');
@@ -120,4 +122,38 @@ define('TEXT_MSG_IMPORT_FAILURE', 'Fehler beim Importieren: ');
 
 define('IH_IMAGE_NEW_FILE', 'Hier clicken, um ein neues Bild hinzuzufügen');
 define('IH_IMAGE_EDIT', 'Hier clicken um ein Bild zu bearbeiten');
+
+
+// ih menu
+
+define('IH_MENU_MANAGER', 'Bild Manager');
+define('IH_MENU_ADMIN', 'Admin Tools');
+define('IH_MENU_ABOUT', 'Über/Hilfe');
+define('IH_MENU_PREVIEW', 'Vorschau');
+
+
+// image manager
+
+define('TEXT_MEDIUM_FILE_IMAGE', 'Datei für mittleres Bild (optional)');
+define('TEXT_LARGE_FILE_IMAGE', 'Datei für großes Bild (optional)');
+
+
+// message stack messages
+
+define('IH_MS_ALL_EXIST','Alle Image Handler Dateien sind korrekt in der richtigen Struktur vorhanden.');
+define('IH_MS_ABORTED','********** Installation abgebrochen **********');
+define('IH_MS_SOME_FILES_MISSING','Einige Image Handler Dateien fehlen. Haben Sie wirklich alle hochgeladen? Sind die Dateiberechtigungen korrekt?');
+define('IH_MS_TEMPLATE_NOTFOUND','Image Handler kann Ihr aktives Template nicht finden.');
+define('IH_MS_MISSING_OR_UNREADABLE','Fehlende oder nicht lesbare Datei:');
+define('IH_MS_OVERWRITTEN','wurde überschrieben. Eine Backupdatei wurde angelegt.');
+define('IH_MS_NOT_OVERWRITTEN','wurde NICHT überschrieben.');
+define('IH_MS_CREATED','wurde angelegt. Backupdateien aller überschriebenen Dateien wurden angelegt.');
+define('IH_MS_NOT_CREATED','wurde NICHT angelegt.');
+define('IH_MS_SUCCESS','Image Handler wurde erfolgreich installiert.');
+define('IH_MS_ROLLBACK_OK','wurde wieder auf die vorherige Version zurückgestellt.');
+define('IH_MS_ROLLBACK_NOT_OK','wurde NICHT wieder auf die vorherige Version zurückgestellt.');
+define('IH_MS_UNINSTALL_OK','Image Handler wurde erfolgreich deinstalliert.');
+define('IH_MS_BACKUP_INFO','Image Handler legt Backups bestimmter Dateien an, bevor er diese Dateien bei der Installation überschreibt. Diese Dateien wurden am Server belassen. Sie können Sie löschne, es stört die Funktionalität Ihres Shops aber nicht, wenn Sie sie für Referenzzwecke am Server belassen.');
+define('IH_MS_AUTOLOADER_NOTDELETED','Der Autolaoder YOURADMIN/includes/auto_loaders/config.image_handler.php wurde NICHT gelöscht. Damit Image Handler funktioniert, müssen Sie diese Datei manuell löschen.');
+
 

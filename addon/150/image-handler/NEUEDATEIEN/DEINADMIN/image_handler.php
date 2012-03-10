@@ -1,7 +1,7 @@
 <?php
 /**
  * image_handler.php
- * IH2 admin interface
+ * IH4 admin interface
  *
  * @author  Tim Kroeger (original author)
  * @copyright Copyright 2005-2006
@@ -9,6 +9,7 @@
  * @version $Id: image_handler.php,v 2.0 Rev 8 2010-05-31 23:46:5 DerManoMann Exp $
  * Last modified by DerManoMann 2010-05-31 23:46:50 
  # And again by Nigelt74 2012- 02-18
+ # And again by webchills 2012- 03-10
  */
 
   require('includes/application_top.php');
@@ -379,16 +380,16 @@ if ($page == 'manager') {
 
 <ul style="background-color:#F5F5F5; border: solid #CCCCCC; border-width: 1px 0px;">
   <li style="display:inline; padding:2px 5px; <?php echo ($page == 'manager') ? 'background:#CCCCCC;' : ''; ?>">
-    <a href="<?php echo zen_href_link(FILENAME_IMAGE_HANDLER, 'page=manager') ?>">Manager</a>
+    <a href="<?php echo zen_href_link(FILENAME_IMAGE_HANDLER, 'page=manager') ?>"><?php echo IH_MENU_MANAGER; ?></a>
   </li>
   <li style="display:inline; padding:2px 5px; <?php echo ($page == 'admin') ? 'background:#CCCCCC;' : ''; ?>">
-     <a href="<?php echo zen_href_link(FILENAME_IMAGE_HANDLER, 'page=admin') ?>">Admin</a>
+     <a href="<?php echo zen_href_link(FILENAME_IMAGE_HANDLER, 'page=admin') ?>"><?php echo IH_MENU_ADMIN; ?></a>
   </li>
   <li style="display:inline; padding:2px 5px; <?php echo ($page == 'preview') ? 'background:#CCCCCC;' : ''; ?>">
-    <a href="<?php echo zen_href_link(FILENAME_IMAGE_HANDLER, 'page=preview') ?>">Preview</a>
+    <a href="<?php echo zen_href_link(FILENAME_IMAGE_HANDLER, 'page=preview') ?>"><?php echo IH_MENU_PREVIEW; ?></a>
   </li>
   <li style="display:inline; padding:2px 5px; <?php echo ($page == 'about') ? 'background:#CCCCCC;' : ''; ?>">
-    <a href="<?php echo zen_href_link(FILENAME_IMAGE_HANDLER, 'page=about') ?>">About</a>
+    <a href="<?php echo zen_href_link(FILENAME_IMAGE_HANDLER, 'page=about') ?>"><?php echo IH_MENU_ABOUT; ?></a>
   </li>
 </ul>
 

@@ -166,7 +166,7 @@ if (!defined('IS_ADMIN_FLAG')) {
     {
         if(!is_readable($f))
         {
-        $messageStack->add('Missing or unreadable file : '.$f, 'warning');
+        $messageStack->add('' . IH_MS_MISSING_OR_UNREADABLE . ''.$f, 'warning');
         $install_incomplete = true;
         }
     }
@@ -175,7 +175,7 @@ if (!defined('IS_ADMIN_FLAG')) {
     {
         if(!is_readable($f[1]))
         {
-        $messageStack->add('Missing or unreadable file : '.$f[1], 'warning');
+        $messageStack->add('' . IH_MS_MISSING_OR_UNREADABLE . ' '.$f[1], 'warning');
         $install_incomplete = true;
         }
     }
@@ -184,22 +184,23 @@ if (!defined('IS_ADMIN_FLAG')) {
     {
         if(!is_readable($f[1]))
         {
-        $messageStack->add('Missing or unreadable file : '.$f[1], 'warning');
+        $messageStack->add('' . IH_MS_MISSING_OR_UNREADABLE . ''.$f[1], 'warning');
         $install_incomplete = true;
         }
     }
 
     if($install_incomplete and $uninstall != 'uninstall' and $no_template)
     {
-        $messageStack->add('Image Handler is having some problems finding your current template.', 'warning');
-        $messageStack->add('********** Installation has been aborted. ********** ', 'warning');
+        $messageStack->add('' . IH_MS_TEMPLATE_NOTFOUND . '', 'warning');
+        $messageStack->add('' . IH_MS_ABORTED . '', 'warning');
     }
     elseif($install_incomplete and $uninstall != 'uninstall')
     {
-        $messageStack->add('Some Image Handler files do not exist.  Perhaps you have uploaded them incorrectly? Or the permissions are set incorrectly?', 'warning');
-        $messageStack->add('********** Installation has been aborted. ********** ', 'warning');
+        $messageStack->add('' . IH_MS_SOME_FILES_MISSING .'', 'warning');
+        $messageStack->add('' . IH_MS_ABORTED .'', 'warning');
     }else{
-        $messageStack->add('Image Handler files all exist in correct positions in the directory structure.', 'success');
+        $messageStack->add('' . IH_MS_ALL_EXIST .'', 'success');
+        
     }
 
     }
@@ -264,9 +265,9 @@ if($uninstall != 'uninstall' and !$install_incomplete)
     {
         if(xxxx_install_replace($cf[0],$cf[1]))
         {
-            $messageStack->add('CORE FILE OVERWRITE : '.$cf[0].' was overwriten. A back up copy was saved.', 'success');		
+            $messageStack->add('CORE FILE OVERWRITE : '.$cf[0].' ' . IH_MS_OVERWRITTEN . '', 'success');		
         }else{
-            $messageStack->add('CORE FILE OVERWRITE : '.$cf[0].' was NOT overwriten. ', 'warning');
+            $messageStack->add('CORE FILE OVERWRITE : '.$cf[0].' ' . IH_MS_NOT_OVERWRITTEN . '', 'warning');
         }
     }
 
@@ -280,9 +281,9 @@ if($uninstall != 'uninstall' and !$install_incomplete)
     {
         if(xxxx_install_replace($cf[0],$cf[1]))
         {
-            $messageStack->add('TEMPLATE FILE CREATE : '.$cf[0].' was created. A back up copy of any overwriten file was saved.', 'success');
+            $messageStack->add('TEMPLATE FILE CREATE : '.$cf[0].' ' . IH_MS_CREATED . '', 'success');
         }else{
-            $messageStack->add('TEMPLATE FILE CREATE : '.$cf[0].' was NOT created. ', 'warning');
+            $messageStack->add('TEMPLATE FILE CREATE : '.$cf[0].'' . IH_MS_NOT_CREATED . '', 'warning');
         }
     }
 
@@ -307,11 +308,11 @@ if($uninstall != 'uninstall' and !$install_incomplete)
     {
         if(!unlink(DIR_FS_ADMIN . DIR_WS_INCLUDES . 'auto_loaders/config.image_handler.php'))
 	{
-		$messageStack->add('The auto-loader '.DIR_FS_ADMIN.'includes/auto_loaders/config.image_handler.php  has not been deleted.  For Image handler to work you must delete this file manually.','error');
+		$messageStack->add('' . IH_MS_AUTOLOADER_NOTDELETED . '','error');
 	};
     }
 
-    $messageStack->add('Image Handler has been installed', 'success');
+    $messageStack->add('' . IH_MS_SUCCESS . '', 'success');
     $_SESSION['image_handler_errors'] = false;
 }
 elseif($uninstall == 'uninstall')
@@ -412,17 +413,17 @@ elseif($uninstall == 'uninstall')
         if(xxxx_install_replace($cf[0],$cf[1]))
         {
                 if($message_type=='session'){
-                    $messageStack->add_session('ROLLBACK  : '.$cf[0].' was returned to default version.', 'success');
+                    $messageStack->add_session('ROLLBACK  : '.$cf[0].' ' . IH_MS_ROLLBACK_OK . '', 'success');
                 }else{
-                    $messageStack->add('ROLLBACK  : '.$cf[0].' was returned to default version.', 'success');
+                    $messageStack->add('ROLLBACK  : '.$cf[0].' ' . IH_MS_ROLLBACK_OK . '', 'success');
                 }
 		@unlink($cf[1]);
 		
         }else{
                 if($message_type=='session'){
-                    $messageStack->add_session('ROLLBACK : '.$cf[0].' was NOT rolled back. ', 'warning');
+                    $messageStack->add_session('ROLLBACK : '.$cf[0].' ' . IH_MS_ROLLBACK_NOT_OK . ' ', 'warning');
                 }else{
-                    $messageStack->add('ROLLBACK : '.$cf[0].' was NOT rolled back. ', 'warning');
+                    $messageStack->add('ROLLBACK : '.$cf[0].' ' . IH_MS_ROLLBACK_NOT_OK . ' ', 'warning');
                 }
         }
     }
@@ -481,11 +482,11 @@ elseif($uninstall == 'uninstall')
   
 
 	if($message_type=='session'){
-		    $messageStack->add_session('Image Handler has been Uninstalled', 'success');
-		    $messageStack->add_session('Image handler Creates back up versions of certain files when it is installed before overwriting them.  These files have been left in position for reference.  They may be deleted but will not effect the functioning of the shop if you leave them in place.', 'warning');
+		    $messageStack->add_session('' . IH_MS_UNINSTALL_OK . '', 'success');
+		    $messageStack->add_session('' . IH_MS_BACKUP_INFO . '', 'warning');
 	}else{
-		    $messageStack->add('Image Handler has been Uninstalled', 'success');
-		    $messageStack->add('Image handler Creates back up versions of certain files when it is installed before overwriting them.  These files have been left in position for reference.  They may be deleted but will not effect the functioning of the shop if you leave them in place.', 'warning');
+		    $messageStack->add('' . IH_MS_UNINSTALL_OK . '', 'success');
+		    $messageStack->add('' . IH_MS_BACKUP_INFO . '', 'warning');
 	}
 }
 

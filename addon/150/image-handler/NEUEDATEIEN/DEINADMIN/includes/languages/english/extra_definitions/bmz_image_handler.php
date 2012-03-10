@@ -7,7 +7,7 @@
  * @copyright Copyright 2005-2006
  * @license http://www.gnu.org/licenses/gpl.txt GNU General Public License V2.0
  * @version $Id: bmz_image_handler.php,v 2.0 Rev 8 2010-05-31 23:46:5 DerManoMann Exp $
- * Last modified by DerManoMann 2010-05-31 23:46:50 
+ * Last modified by webchills 2012-03-10 17:46:50 
  */
 
 define('BOX_TOOLS_IMAGE_HANDLER', 'Image Handler<sup>4</sup>');
@@ -120,4 +120,47 @@ define('TEXT_MSG_IMPORT_FAILURE', 'Import failure: ');
 
 define('IH_IMAGE_NEW_FILE', 'Click to add a new image to this product');
 define('IH_IMAGE_EDIT', 'Click to edit this image');
+
+
+// image manager
+
+define('TEXT_MEDIUM_FILE_IMAGE', 'Medium image file (optional)');
+define('TEXT_LARGE_FILE_IMAGE', 'Large image file (optional)');
+
+// ih menu
+
+define('IH_MENU_MANAGER', 'Image Manager');
+define('IH_MENU_ADMIN', 'Admin Tools');
+define('IH_MENU_ABOUT', 'About/Help');
+define('IH_MENU_PREVIEW', 'Preview');
+
+// message stack messages
+
+define('IH_MS_ALL_EXIST','Image Handler files all exist in correct positions in the directory structure.');
+define('IH_MS_ABORTED','********** Installation has been aborted. **********');
+define('IH_MS_SOME_FILES_MISSING','Some Image Handler files do not exist. Perhaps you have uploaded them incorrectly? Or the permissions are set incorrectly?');
+define('IH_MS_TEMPLATE_NOTFOUND','Image Handler is having some problems finding your current template.');
+define('IH_MS_MISSING_OR_UNREADABLE','Missing or unreadable file:');
+define('IH_MS_OVERWRITTEN','was overwritten. A back up copy was saved.');
+define('IH_MS_NOT_OVERWRITTEN','was NOT overwritten.');
+define('IH_MS_CREATED','was created. A back up copy of any overwritten file was saved.');
+define('IH_MS_NOT_CREATED','was NOT created.');
+define('IH_MS_SUCCESS','Image Handler has been successfully installed');
+define('IH_MS_ROLLBACK_OK','was returned to default version.');
+define('IH_MS_ROLLBACK_NOT_OK','was NOT rolled back.');
+define('IH_MS_UNINSTALL_OK','Image Handler has been uninstalled.');
+define('IH_MS_BACKUP_INFO','Image Handler creates back up versions of certain files when it is installed before overwriting them. These files have been left in position for reference. They may be deleted but will not effect the functioning of the shop if you leave them in place.');
+define('IH_MS_AUTOLOADER_NOTDELETED','The auto-loader YOURADMIN/includes/auto_loaders/config.image_handler.php has not been deleted. For Image Handler to work you must delete this file manually.');
+
+
+
+
+
+
+
+
+
+
+
+
 
