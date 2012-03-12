@@ -133,12 +133,12 @@
       <label for="checkbox22">Upgrade DB from 1.3.9 to 1.5.0</label>
     </div>
     <div class="input">
-      <input <?php if ($needs_multilingual) {echo "checked";} ?> name="version[]" type="checkbox" id="checkbox22" value="multilingual" tabindex="15" />
-      <label for="checkbox15">Upgrade DB to Multilingual 1</label>
+      <input <?php if ($needs_multilingual) {echo "checked";} ?> name="version[]" type="checkbox" id="checkbox23" value="multilingual" tabindex="15" />
+      <label for="checkbox23">Upgrade DB to Multilingual 1</label>
     </div>
     <div class="input">
-      <input <?php if ($needs_v1_3_9multi2) {echo "checked";} ?> name="version[]" type="checkbox" id="checkbox23" value="1.3.9multi2" tabindex="21" />
-      <label for="checkbox21">Upgrade DB to Multilingual 2</label>
+      <input <?php {echo "checked";} ?> name="version[]" type="checkbox" id="checkbox24" value="1.3.9multi2" tabindex="21" />
+      <label for="checkbox24">Upgrade DB to Multilingual 2</label>
     </div>
     </fieldset>
     <br />

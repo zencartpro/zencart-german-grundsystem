@@ -2,7 +2,7 @@
 /**
  * @package Installer
  * @access private
- * @copyright Copyright 2003-2005 Zen Cart Development Team
+ * @copyright Copyright 2003-2012 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
  * @version $Id$
@@ -35,9 +35,9 @@
   define('DATABASE_OLD_PREFIX_INSTRUCTION','Geben Sie bitte das alte Präfix ein');
   define('ENTRY_NEW_PREFIX','Neues Tabellen Präfix ');
   define('DATABASE_NEW_PREFIX_INSTRUCTION','Geben Sie bitte das neue Präfix ein');
-  define('ENTRY_ADMIN_ID','Adminstrator Benutzername (vom Zen-Cart Adminbereich)');
-  define('ENTRY_ADMIN_PASSWORD','Adminstrator Password (vom Zen-Cart Adminbereich)');
-  define('ADMIN_PASSSWORD_INSTRUCTION','Ihr Adminstrator Benutzername und Passwort, welche Sie zum Anmelden im Zen-Cart Adminbereich benutzen, werden benötigt, um die Änderungen an der Datenbank vorzunehmen. <em>(Dieses ist NICHT Ihr MYSQL Passwort)</em>');
+  define('ENTRY_ADMIN_ID','Administrator Benutzername (vom Zen-Cart Adminbereich)');
+  define('ENTRY_ADMIN_PASSWORD','Administrator Passwort (vom Zen-Cart Adminbereich)');
+  define('ADMIN_PASSSWORD_INSTRUCTION','Ihr Administrator Benutzername und Passwort, welche Sie zum Anmelden im Zen-Cart Adminbereich benutzen, werden benötigt, um die Änderungen an der Datenbank vorzunehmen. <em>(Dies ist NICHT Ihr MYSQL Passwort)</em>');
   define('TITLE_SECURITY','Datenbank Sicherheit');
 
   define('UPDATE_DATABASE_WARNING_DO_NOT_INTERRUPT','<span class="emphasis">Bitte unterbrechen Sie die Prozedur KEINESFALLS, nachdem Sie auf den unten stehenden Button geklickt haben!!! Bitte warten Sie, bis die Aktualisierung abgeschlossen ist.</span><br />');
