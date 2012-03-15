@@ -20,7 +20,8 @@
    <li> <a onClick="expandcontent('sc3', this)" href="javascript:void(0)"><span>Update</span></a></li>
    <li> <a onClick="expandcontent('sc4', this)" href="javascript:void(0)"><span>PA/DSS Compliance</span></a></li>
   <li> <a onClick="expandcontent('sc5', this)" href="javascript:void(0)"><span>Sicherheit</span></a></li>
-  <li> <a onClick="expandcontent('sc6', this)" href="javascript:void(0)"><span>Changelog</span></a></li>
+  <li> <a onClick="expandcontent('sc6', this)" href="javascript:void(0)"><span>Adminverwaltung</span></a></li>
+  <li> <a onClick="expandcontent('sc7', this)" href="javascript:void(0)"><span>Changelog</span></a></li>
  </ul>
 </div>
 <br style="clear: both;">
@@ -70,11 +71,11 @@ Da wir Ihnen diese Software kostenfrei zur Verfügung stellen, würden wir uns �
 <ul>
   <li>
     
-    Die amerikanische Version ist im Administrationsbereich immer multilingual englisch. Daran ändert auch die etwaige Installation eines deutschen Sprachpakets nichts. Die deutsche Zen-Cart Version bietet einen multilingualen Adminbereich. Dadurch sind auch die in der Datenbank hinterlegten Konfigurationseinstellungen und -beschreibungen auf deutsch. Sie könnten auch in jeder anderen Sprache genutzt werden. Diese Funktionalität steht natürlich auch für später installierte Erweiterungen zur Verfügung. Die im Downloadbereich von zen-cart-pro.at angebotenen Module berücksichtigen diese Multilanguagefähigkeit und sind alle für die deutsche Zen-Cart Version ausgelegt.</li>
+    Die amerikanische Version ist im Administrationsbereich immer monolingual englisch. Daran ändert auch die etwaige Installation eines deutschen Sprachpakets nichts. Die meisten Konfigurationseinstellungen werden immer auf englisch sein, da sie in der Datenbank hinterlegt sind. Die deutsche Zen-Cart Version bietet einen multilingualen Adminbereich. Dadurch sind auch die in der Datenbank hinterlegten Konfigurationseinstellungen und -beschreibungen auf deutsch. Sie könnten auch in jeder anderen Sprache genutzt werden. Diese Funktionalität steht natürlich auch für später installierte Erweiterungen zur Verfügung. Die im Downloadbereich von zen-cart-pro.at angebotenen Module berücksichtigen diese Multilanguagefähigkeit und sind alle für die deutsche Zen-Cart Version ausgelegt.</li>
   <li>Die amerikanische Zen-Cart Version berücksichtigt viele rechtliche Erfordernisse nicht, denen ein Onlineshop im deutschsprachigen Raum unterworfen ist. Daher wurde die deutsche Zen-Cart Version auf die Anforderungen, die an Onlineshops in Deutschland, Österreich und der Schweiz gestellt werden, angepasst.</li>
   <li>   Die Installation wurde gegenüber der amerikanischen Version vereinfacht, so kann z.B. das admin Verzeichnis direkt bei der Installation umbenannt werden.
     </li>
-  <li>Die amerikanische Version enthält keinerlei HTML Editor mehr, in der deutschen Version ist der Tiny MCE Editor integriert und löst das veraltete HTML Area ab</li>
+  <li>Die amerikanische Version enthält keinerlei HTML Editor mehr, in der deutschen Version ist der Tiny MCE Editor bereits integriert und löst das veraltete HTML Area ab</li>
   <li>Weitere Bugfixes und Verbesserungen, die von den Amerikanern nicht übernommen wurden</li>
 </ul>
 
@@ -408,6 +409,8 @@ Zusätzlich ist ein Dateienvergleichsprogramm wie <a href="http://winmerge.sf.ne
 Die Aktualisierung erfolgt in 3 einfachen Schritten. Nehmen Sie sich   bitte Zeit und studieren Sie die einzelnen Schritte und Methoden   sorgfältig. Überstürzen Sie nichts! <br>
 Und wie immer: VOR Beginn eine Sicherung aller relevanten Daten durchführen!!! <br>
 <br>
+<br>
+<br>
 <div>
   <h2>1. Vorbereitung</h2>
   Entpacken Sie alle Dateien der neuen Version von Zen-Cart, laden Sie diese auf Ihren Webserver in ein "demo" Verzeichnis und installieren Sie die neue Version - mit den Demodaten - in eine eigene Datenbank. <br>
@@ -435,7 +438,7 @@ Und wie immer: VOR Beginn eine Sicherung aller relevanten Daten durchführen!!! 
   <br>
   Ihre Liste der installierten Module und Add-Ons kann Ihnen helfen, die   Anzahl der gefundenen Unterschiede zu schmälern. Ebenso kann es   vorkommen, dass Sie diese Module und Add-Ons noch einmal herunter laden   müssen, um sich deren Readme- Datei bzw. den Code durchzusehen.   Eventuell müssen Sie die Autoren der Module bezüglich einer   Aktualisierung des Codes kontaktieren. <br>
   <br>
-  Evtl. wollen Sie an diesem Punkt einige der Änderungen direkt (gemäß der   Zen-Cart Template Override Struktur) in die neue Version einbauen.   Hilfe hierzu erhalten Sie auf <a href="http://www.zen-cart-pro.at">www.zen-cart-pro.at</a> in den FAQ's für das Template System. <br>
+  Evtl. wollen Sie an diesem Punkt einige der Änderungen direkt (gemäß der   Zen-Cart Template Override Struktur) in die neue Version einbauen.   Hilfe hierzu erhalten Sie auf <a href="http://www.zen-cart-pro.at">www.zen-cart-pro.at</a> in den FAQ's/Tutorials und im Forum. <br>
 </div>
 <br>
 <div>
@@ -738,6 +741,46 @@ DEINADMIN/includes/configure.php</p>
 <div class="tabcontent" id="sc6" style="display: block;">
 <div class="textcontent">
 <div class="regularlist">
+<h1>Admin Rechte Verwaltung in Zen-Cart 1.5</h1>
+<p><strong>Generelles:</strong><br>
+  <br>
+  Zen-Cart 1.5 enthält nun standardmäßig ein System, mit denen die Rechte für verschiedene Administratoren vergeben werden können. Für jeden Administrator kann individuell gesteuert werden, welche Funktionen der Administration für ihn zur Verfügung stehen sollen.<br>
+  In früheren Zen-Cart Version war ähnliches mit der Erweiterung Admin Profiles möglich.<br>
+  In 1.5 ist nun ein komplett neues verbessertes Admin Rechte System integriert.</p>
+<p>Bei der Installation wird ein Admin mit der Berechtigung &quot;Superuser&quot; angelegt (mit dem Benutzernamen und Passwort, das Sie während der Installation angegeben haben. Ein solcher Superuse hat Zugnag zu allen Bereichen und Funktionen der Zen-Cart Administration.</p>
+<p>Gegenüber früheren Zen-Cart Versionen wurden einige wesentliche Änderungen in Bezug auf Administratoren, Passwörtern vorgenommen:</p>
+<ul>
+  <li>Jeder Administrator muss einen eigenen Usernamen haben. Teilen Sie nicht Ihren Adminuser mit anderen. Legen Sie für jede Person, die Zugang zu Ihrer Shopadministration bekommen soll einen eigenen Adminuser an</li>
+  <li>Passwörter müssen mindestens 7 Zeichen lang sein</li>
+  <li>Passwörter müssen Buchstaben und Zahlen enthalten</li>
+  <li>Passwörter und Usernamen sind case sensitive</li>
+  <li>Passwörter müssen alle 90 Tage geändert werden</li>
+  <li>Bei einer Passwortänderung können die 4 zuletzt verwendeten Paswörter nicht mehr verwendet werden</li>
+  <li>Wenn eine ungültige Adminuser/Passwort Kombination mehr als 6 mal eingegeben wird, wird der Zugang zur Administration für 30 Minuten gesperrt</li>
+  <li>Der Adminbereich hat ein Timeout von 15 inaktiven Minuten. Wird innerhalb von 15 Minuten keinerlei Seite im Admin aufgerufen, muss man neu einloggen. Eine Erhöhung dieses Timeouts ist in der Administration zwar möglich, sollte aber nur für Testseiten eingestellt werden. Wenn Sie das Timeout in Ihrem Liveshop auf mehr als 15 Minuten erhöhen, erfüllt Ihr Shop die PCI Richtliniern nicht mehr.</li>
+</ul>
+<p><strong>Adminuser anlegen und verwalten</strong></p>
+<p>In der Zen-Cart Administration können Sie die Administratoren unter Admin Benutzerrechte &gt; Admin Benutzer verwalten<br>
+  Sie können hier Administratoren hinzufügen, löschen und ändern</p>
+<p>Mit dem Button &quot;Bearbeiten&quot; können Sie Name und Emailadresse sowie das für den User eingestellte Adminprofil ändern.</p>
+<p>Bitte beachten Sie, dass Sie das Profil des bei der Installtion angelegten Erstadmins nicht mehr ändern können.<br>
+</p>
+<p><strong>Profile</strong></p>
+<p>Nach der Installation steht nur ein Profil zur Verfügung, das Superuser Profil.</p>
+<p>Um einem User nun eingeschränkte Rechte zu geben, müssen Sie zunächst ein neues Profil erstellen unter Admin &gt; Admin Benutzerrechte &gt; Admin Profile<br>
+  Legen Sie mit &quot;Add Profile&quot; ein neues Profil an und kreuzen Sie hier nur die Dinge an, die Sie dem neuen Admin erlauben wollen.<br>
+  Geben Sie dem Profil einen Namen und speichern es.</p>
+<p>Nun können Sie einem neuen Adminuser Ihr soeben erstelltes Profil zuweisen.</p>
+</div>
+</div>
+</div>
+
+<!--End sc6-->
+
+<!--Begin sc7-->
+<div class="tabcontent" id="sc7" style="display: block;">
+<div class="textcontent">
+<div class="regularlist">
 <h1>Neuerungen gegenüber 1.3.9</h1>
 <p><strong>Generell:</strong><br>
   In Zen-Cart 1.5 wird das Adminverzeichnis bereits bei der Installation umbenannt. Dadurch entfällt das manuelle Ändern nach der Installation.<br>
@@ -888,7 +931,7 @@ DEINADMIN/includes/configure.php</p>
 </div>
 </div>
 
-<!--End sc6-->
+<!--End sc7-->
 
 
 </div>
@@ -902,6 +945,7 @@ DEINADMIN/includes/configure.php</p>
 <script type="text/javascript">document.getElementById('sc4').style.display = 'none';</script>
 <script type="text/javascript">document.getElementById('sc5').style.display = 'none';</script>
 <script type="text/javascript">document.getElementById('sc6').style.display = 'none';</script>
+<script type="text/javascript">document.getElementById('sc7').style.display = 'none';</script>
 <script type="text/javascript">ShowTabs()</script>
 <script type="text/javascript">
 // We only show the tab links if JavaScript is available/active.
