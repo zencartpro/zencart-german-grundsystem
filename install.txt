@@ -1,51 +1,7 @@
 Willkommen bei der deutschen Zen-Cart Version
 Version 1.5
 
+Eine umfangreiche deutschsprachige Dokumentation und Installationsanleitung finden Sie im Ordner docs
+Öffenen Sie die index.html im Ordner docs und lesen Sie vor der Installation unbedingt die komplette Dokumentation.
 
-Im Folgenden finden Sie eine sehr vereinfachte Installationsanleitung.
-
-Wir schlagen vor, Sie verwenden die HTML-Version im /docs Ordner für detailliertere Anweisungen.
-Alle unsere README-Dokumente sind im Verzeichnis /docs Ordner dieser Version.
-
-Sie finden die deutsche Online-Dokumentation unter: 
-http://www.zen-cart-pro.at/zcvb/forum/vbglossar.php
-
-Zen Cart verfügt über eine integrierte automatische Installation im System. Um diese nutzen zu können, müssen Sie zuerst den Code auf einem Web-Server entpacken
-
-Der Web-Server kann entweder auf Ihrem lokalen Computer oder auf einer Internet-Host sein.
-
-Entpacken sie die Zen Cart(tm) ZIP-Datei. Nach dem Entpacken, haben Sie ein Verzeichnis mit den Zen Cart(tm)-Skripten.
-
-Der Inhalt dieses Verzeichnis muss auf Ihrem Webserver, und zwar entweder durch Kopieren in das Verzeichnis oder mittels eines FTP-Programms.
-
-Sie müssen nun das Installationsscript starten.
-Um dies zu tun, müssen Sie einen Browser öffnen und die entsprechende URL eingeben.
-
-Wenn Sie auf einem eigenen Computer sind, wird dies
-
-    http://localhost/(Zen-Cart-Verzeichnis)/zc_install/
-
-sein, oder wenn sie auf einem Live-Server sind:
-
-    http://{www.mydomain.com}/zc_install/
-
-Sie brauchen dann nur den Anweisungen zur Installation von Zen Cart zu folgen.
-
-Eine weitere detailliertere Installationsanleitung fnden sie in der /docs/1.readme_installation.html Datei.
-
-____________________________________________________________________________________________________________
-
-Unterschiede zur englischsprachigen Version:
-- eindeutschung des Shops und der Adminoberfläche
-- Umstellung Zeichensatz von iso auf UTF-8
-    + !!! Datenbankanpassung ev. von nöten 
-- ez-pages mehrsprachig
-- zusätzliche Templates  
-- tools/MapShop :: Showcase Eintragung für ihren Shop
-
-
-Viel Spaß mit der neuen Version
-wünscht Ihnen das Team
-von zen-cart-pro.at
-
-(Document Revision: $Id$)
+Es ist nicht erforderlich, den Ordner docs auf Ihren Server hochzuladen!
