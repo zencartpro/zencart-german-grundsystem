@@ -20,9 +20,10 @@
   <li> <a onClick="expandcontent('sc1', this)" href="javascript:void(0)"><span>Sinn und Zweck</span></a></li>
   <li> <a onClick="expandcontent('sc2', this)" href="javascript:void(0)"><span>Installation</span></a></li>
    <li> <a onClick="expandcontent('sc3', this)" href="javascript:void(0)"><span>Konfiguration</span></a></li>
-   <li> <a onClick="expandcontent('sc4', this)" href="javascript:void(0)"><span>Deinstallation</span></a></li>
-  <li> <a onClick="expandcontent('sc5', this)" href="javascript:void(0)"><span>Download & Support</span></a></li>
-  <li> <a onClick="expandcontent('sc6', this)" href="javascript:void(0)"><span>Unterstützen</span></a></li>
+   <li> <a onClick="expandcontent('sc4', this)" href="javascript:void(0)"><span>Lightbox/Slimbox</span></a></li>
+  <li> <a onClick="expandcontent('sc5', this)" href="javascript:void(0)"><span>Deinstallation</span></a></li>
+  <li> <a onClick="expandcontent('sc6', this)" href="javascript:void(0)"><span>Download & Support</span></a></li>
+   <li> <a onClick="expandcontent('sc7', this)" href="javascript:void(0)"><span>Unterstützen</span></a></li>
  </ul>
 </div>
 <br style="clear: both;">
@@ -44,7 +45,7 @@ Durch das automatische Generieren und das Caching der Artikelbilder   wird der S
   <ul>
     <li>Verbesserung der Performance (schnellere Ladezeiten, schnellere Anzeige der Bilder).</li>
     <li>Das Hochladen eines einzigen Bildes erzeugt automatisch kleine, mittlere und große Artikelbilder beim Aufruf der Seite.</li>
-    <li>Besethende Artikelbilder werden weiter genutzt, es ist nicht nötig, die Bilder neu zu bearbeiten.</li>
+    <li>Bestehende Artikelbilder werden weiter genutzt, es ist nicht nötig, die Bilder neu zu bearbeiten.</li>
     <li>Einfache Installation mit automatischem Anlegen der nötigen Datenbankeinträge</li>
     <li>Automatische Integration eines Wasserzeichens in die Artikelbilder ist möglich.</li>
     <li>Optionaler Image Hover Effekt: Bei Mouseover über kleine Artikelbilder wird das Bild vergrößert angezeigt.</li>
@@ -55,26 +56,37 @@ Durch das automatische Generieren und das Caching der Artikelbilder   wird der S
 <h3>Copyright, Changelog, Lizenz</h3>
 <p>Copyright dieser deutschen Anpassung/Anleitung für Zen-Cart 1.5 deutsch<br>
 (c) 2012 webchills (<a href="http://www.webchills.at" target="_blank">www.webchills.at</a>) <br>
-Danke an waldelfe für Hilfe bei der Übersetzung der Anleitung. </p>
-<p>deutsche Übersetzung/Anpassung des Moduls Image Handler  4.0 von<br>
-  <a href="http://www.zen-cart.com/index.php?main_page=product_contrib_info&products_id=117" target="_blank">http://www.zen-cart.com/index.php?main_page=product_contrib_info&amp;products_id=1910</a></p>
-<p>Änderungen zu früheren Versionen<br>
-  - komplett neuer Installer von DivaVocals und Nigelt74<br>
-  - vollständig kompatibel mit Zen-Cart 1.5
+Danke an waldelfe und jjuno für Hilfe bei der Übersetzung der Anleitung. </p>
+<p>deutsche Übersetzung/Anpassung des Moduls Image Handler  4.0 <br>
   <br>
-  - alle veralteten und nicht mehr benötigten Funktionen entfernt
-</p>
-<p>Credits:<br>
+  <strong>Danke an DivaVocals!</strong><br>
+  <br>
+  Basiert auf Image Handler2 Ver 2.0 Rev 7 für Zen-Cart 1.3.8 aktualisiert von ckosloff.<br>
+  <br>
+  <strong>Image Handler4 v4.0 Änderungen von:</strong></p>
+<ul>
+  <li>nagelkruid (nagelkruid@gmail.com)</li>
+  <li>Nigelt74 (<a href="http://webzings.com">http://webzings.com</a>)</li>
+  <li>C Jones (<a href="http://overthehillweb.com">http://overthehillweb.com</a>)</li>
+  <li>K Hudson (<a href="http://empowermentsanctuary.com">http://empowermentsanctuary.com</a>)</li>
+  <li>N Collie (<a href="http://www.clearright.co.uk">http://www.clearright.co.uk</a>)</li>
+  <li>webchills (<a href="http://www.webchills.at">http://www.webchills.at</a>)</li>
+</ul>
+<p>  <strong>Changelog:</strong></p>
+<ul>
+  <li>Aktualisiert für Zen-Cart 1.5 (nicht abwärtskompatibel!!)</li>
+  <li>veraltete und nicht mehr benötigte Dateien entfernt</li>
+  <li>Autoinstaller integriert</li>
+  <li>Verbessertes Fehlerhandling beim Upload falscher Dateitypen</li>
+  <li>Alle harcodierten Texte in entsprechende Sprachfiles ausgelagert</li>
+  <li>Verbesserte, detaillierte Anleitung</li>
+  <li>Zusätzliche Hilfe integriert unter Admin &gt; Tools &gt; Image Handler </li>
+</ul>
+<p><strong>Credits:</strong><br>
   Thanks to Tim Kroeger from <a href="http://www.breakmyzencart.com" target="_blank">www.breakmyzencart.com</a> for crafting the original versions of this superb contribution only on the basis of donation-ware.<br>
   Thanks to ckosloff and DerManoMann for their gracious and hard work on this version of Image Handler2.<br>
   Thanks to Nigel for all of his hardwork in providing a truly cross   browser compatible version of the Image Handler2 jscript_imagehover.js.<br>
-  Thanks to tophand and yellow 1912 for previous contributions to the Image Handler2 codebase (from Rev 6 &amp; 7). <br>
-  <br>
-  4.0 modifications by:</p>
-<ul>
-  <li>Nigelt74 (<a href="http://webzings.com" target="_blank">http://webzings.com</a>)</li>
-  <li>C Jones (<a href="http://overthehillweb.com" target="_blank">http://overthehillweb.com</a>)</li>
-</ul>
+  Thanks to tophand and yellow 1912 for previous contributions to the Image Handler2 codebase (from Rev 6 &amp; 7).  </p>
 <p> Portions Copyright (c) 2003 osCommerce<br>
   Portions Copyright     (c) 2003-2012 Zen Cart</p>
 <p>This contribution is subject to version 2.0 of the GPL license available through the world-wide-web at the following url:<br>
@@ -91,9 +103,27 @@ Danke an waldelfe für Hilfe bei der Übersetzung der Anleitung. </p>
 
 <h2>Installation</h2>
 <h3>Voraussetzungen</h3>
-  <br>
-  Dieses Modul ist<strong> nur für die deutsche Zen-Cart 1.5 Version geeignet</strong></p>
-  <p><br>
+<p>Dieses Modul ist<strong> nur für die deutsche Zen-Cart 1.5 Version geeignet</strong></p>
+<p>
+  Image Handler 4 nutzt einen neuen Auto-Installer, die Installation weicht also von den Schritten ab, die Sie vielleicht schon von anderen Modulen her kennen. Lesen Sie daher unbedingt genau die Installationsanleitung.<br>
+  <strong><br>
+  Wichtig:</strong><br>
+  In Zen-Cart 1.5 kann NUR Image Handler 4 verwendet werden, versuchen Sie nicht Image Handler 3 oder noch ältere Versionen in Zen-Cart 1.5 zu installieren.<br>
+  Ebensowenig ist es möglich Image Handler 4 in Zen-Cart 1.3.9 und älter zu verwenden.
+  </p>
+  <p><strong>Für den Einbau dieses Moduls sollten Sie über folgende Werkzeuge verfügen:</strong><br>
+    <br>
+    1) Ein guter Texteditor. <br>
+    Damit ist nicht das in Windows enthaltene Notepad oder Microsoft Word gemeint.<br>
+    Sie benötigen einen Texteditor, der utf-8 versteht und auch im Format utf-8 ohne BOM abspeichern kann.<br>
+    Meine Empfehlung: <a href="http://www.ultraedit.com/loc/de/index_de.html" target="_blank">UltraEdit</a> (kostenlose 30 Tage Testversion verfügbar)<br>
+    Ebenfalls gut geeignet ist der kostenlose Texteditor <a href="http://notepad-plus.sourceforge.net/de/site.htm" target="_blank">Notepad++ </a><br>
+    <br>
+    2) Ein Tool zum Vergleichen von Dateien<br>
+    Bei der Installation dieses Moduls ist es erforderlich, dass Sie den     Inhalt einiger Ihrer bestehenden Zen-Cart Dateien mit dem Inhalt der     neuen Moduldateien vergleichen und die Änderungen zusammenführen     ("mergen").<br>
+    Meine Empfehlung: <a href="http://www.scootersoftware.com/" target="_blank">BeyondCompare</a> (kostenlose 30 Tage Testversion verfügbar)<br>
+    Ebenfalls gut geeignet ist das kostenlose Programm <a href="http://winmerge.org/" target="_blank">WinMerge </a></p>
+  <p>
     <strong>Empfehlung:</strong><br>
   <br>
   Dieses Modul erst in einem Testsystem einbauen und dort   konfigurieren/testen und endgültig an die eigenen Wünsche anpassen.        Erst dann in einem Liveshop einsetzen! Sichern Sie unbedingt alle   Dateien Ihres Shops per FTP und sichern Sie die Datenbank mit phpMyAdmin   oder anderen geeigneten Tools!</p>
@@ -103,34 +133,48 @@ BACKUP von Shop und Datenbank machen! <br>
 Keine Haftung, Verwendung auf eigene Gefahr!<br>
 BACKUP gemacht? Ok, dann weiterlesen...
 </div>
-<p>Die Installation erfolgt in folgenden Schritten. Halten Sie diesen Ablauf ein!</p>
+<p><strong>Die Installation erfolgt in folgenden Schritten. Halten Sie diesen Ablauf exakt ein!</strong></p>
 <p>1.<br>
 Im Order NEUEDATEIEN  den Ordner   DEINADMIN auf den Namen Ihres admin Verzeichnisses   umbenennen.<br>
+<strong>Benennen Sie sonst NICHTS um, nur den Ordner DEINADMIN</strong>. <br>
+Lassen Sie auch sonst alle Dateien und Ordner im Ordner NEUEDATEIEN völlig unverändert. Bei anderen Modulen ist es oft notwendig, seltsam klingende Ordner auf den Namen des im Shop aktiven Templates umzubenennen. Hier nicht. Es gibt z.B. einen Ordner namens IH_INSTALL. Lassen Sie alles so wie es ist, es ist absolut notwendig, dass genauso hochgeladen wird, wie die Dateien vorliegen. Auch die Dateien selbst nicht umbennen, es gibt da z.B. seltsam aussehende Dateinamen wie category_product_listing.DEFAULT.php.bak. Das ist völlig in Ordnung!<br>
+Nur den Ordner DEINADMIN umbenannt?<br>
+Ok dann gehts weiter...<br>
 <br>
-2.<br>
+  2.<br>
   Loggen Sie sich in Ihre Zen-Cart Administration ein<br>
   <br>
   3.<br>
-  Laden Sie nun alle Dateien und Ordner aus dem Ordner NEUEDATEIEN inder vorgegebenen Struktur in Ihr Zen-Cart Verzeichnis hoch, dabei werden keinerlei bestehende Dateien überschrieben.
+  Laden Sie nun alle Dateien und Ordner aus dem Ordner NEUEDATEIEN in der vorgegebenen Struktur in Ihr Zen-Cart Verzeichnis hoch, dabei werden keinerlei bestehende Dateien überschrieben.
   <br>
   <br>
-  4.<br>
-  Der Ordner bmz_cache, den Sie gerade in Ihr Shopverzeichnis   hochgeladen haben benötigt Schreibrechte. In diesem Ordner werden später   von Image Handler dynamisch generierte Bilddateien abgelegt. Geben Sie   diesem Ordner daher Schreibrechte (chmod 777) </p>
-<p>5. <br>
+  4. <br>
   Klicken Sie nun in Ihrer Zen-Cart Administration auf irgendeinen Menüpunkt. Dadurch wird das Modul automatisch installiert und Sie sehen grüne Erfolgsmeldungen.</p>
 <p>5.<br>
+  Der Ordner bmz_cache, den Sie gerade in Ihr Shopverzeichnis   hochgeladen haben benötigt Schreibrechte. In diesem Ordner werden später   von Image Handler dynamisch generierte Bilddateien abgelegt. Geben Sie   diesem Ordner daher Schreibrechte (chmod 777) </p>
+<p>6.<br>
   Wechseln Sie nun ins Menü Konfiguration &gt; Bilder<br>
   Hier sind durch die Image Handler Installation neue Konfigurationsmöglichkeiten hinzugekommen.<br>
-  Stellen Sie hier Ihre gewünschten Optionen ein, Hinweise dazu finden Sie in dieser Anleitung unter Konfiguration<br>
-</p>
-<h2>Update von einer älteren Image Handler Version</h2>
-<p><strong>Wichtig:</strong><br>
-  Falls Sie bereits eine ältere Image Handler Version im Einsatz haben,   entfernen Sie diese vorher komplett und folgen erst dann den Schritten   unter Neuinstallation.<br>
+  Stellen Sie hier Image Resize auf ja, um die Image Handler Funktionalität überhaupt zu aktivieren.
   <br>
-  <strong>Entfernen einer älteren Image Handler Version</strong><br>
-  Im Ordner SQL dieses Downloads die uninstall.sql mit einem Texteditor öffnen und den Inhalt kopieren.<br>
-  Dann in der Zen-Cart Administration unter Tools &gt; SQL Patches installieren ins Eingabefeld kopieren und Absenden <br>
-  Dadurch werden alle Datenbankeinträge auch sehr alter Image Handler Versionen vollständig entfernt.</p>
+  Stellen Sie  Ihre weiteren gewünschten Optionen ein, Hinweise dazu finden Sie in dieser Anleitung unter Konfiguration.<br>
+  Einige grundlegende Dinge zum besseren Verständnis 
+  der Bildfunktionalitäten in Zen-Cart finden Sie auch im Image Handler Menü selbst unter Tools &gt; Image Handler 4 &gt; Über/Hilfe<br>
+  <br>
+  <strong>Hinweis:</strong><br>
+  Image Handler 4 hat bei der Installation folgende Dateien in Ihrer Zen-Cart Installation überschrieben:
+</p>
+<ul>
+  <li>/DEINADMIN/includes/modules/category_product_listing.php</li>
+  <li>/includes/modules/pages/popup_image/header_php.php</li>
+  <li>/includes/modules/pages/popup_image_additional/header_php.php</li>
+  <li>/includes/modules/DEINTEMPLATE/additional_images.php</li>
+  <li>/includes/modules/DEINTEMPLATE/main_product_image.php</li>
+  <li>/includes/templates/DEINTEMPLATE/popup_image_additional/tpl_main_page.php</li>
+</ul>
+<p>Wenn Sie bisher in Ihrem Zen-Cart 1.5 Shop keine anderen Erweiterungen integriert haben, ist es sehr unwahrscheinlich, dass Sie an diesen Dateien schon einmal Änderungen vorgenommen haben. Trotzdem:<br>
+  Vergleichen Sie nun diese Dateien mit denen aus Ihrem Backup, das Sie ja vor der Installation angelegt haben. Falls Sie Unterschiede feststellen, mergen Sie etwaige Änderungen mit BeyondCompare oder WinMerge und laden diese Dateien dann erneut hoch.<br>
+</p>
 
 </div>
 </div>
@@ -177,7 +221,7 @@ Wenn Sie Ihre Bilder mit einem Wasserzeichen schützen wollen, können Sie   das
 </ul>
 <p>In dieser Installation sind bereits Beispielwasserzeichen in Form   eines Zen-Cart Logos enthalten. Überschreiben Sie diese Beispieldateien   mit Ihrem eigenen Wasserzeichen. Die Position des Wassezeichen können   Sie ebenfalls unter Konfiguration &gt; Bilder einstellen: IH -   Wasserzeichen - Position. Voreingestellt ist zentriert. </p>
 <h3><strong>GD libraries und Image Magick</strong></h3>
-<p>Um Bilder und ihre Grösse anzupassen, muss zusätzlich zu Image   Handler 3.0   entweder GD libraries (ab Version 2) oder ImageMagick (ab   Version 6)   installiert sein. Um herauszufinden, ob Ihre PHP-Version GD   libraries   anbietet, suchen Sie im Admin unter Tools -&gt; Server Info   nach "GD". Ob   eine ImageMagick-Installation vorhanden ist, erfähren   Sie von Ihrem   Hostinganbieter.<br>
+<p>Um Bilder und ihre Grösse anzupassen, muss zusätzlich zu Image   Handler 4.0   entweder GD libraries (ab Version 2) oder ImageMagick (ab   Version 6)   installiert sein. Um herauszufinden, ob Ihre PHP-Version GD   libraries   anbietet, suchen Sie im Admin unter Tools -&gt; Server Info   nach "GD". Ob   eine ImageMagick-Installation vorhanden ist, erfähren   Sie von Ihrem   Hostinganbieter.<br>
   Standardmäßig wird mit GD libraries gearbeitet. Wenn Sie stattdessen   Image Magick verwenden wollen, dann müssen Sie in folgender Datei eine   Änderung vornehmen:<br>
   includes/extra_configures/bmz_image_handler_conf.php</p>
 <p>Hier ist standardmäßig folgender Eintrag:</p>
@@ -211,14 +255,28 @@ Das bedeutet, dass Image Magick nicht verwendet wird.
 <p> Da Image Handler meistens im Hintergrund arbeitet, ohne dass ihn jemand    bemerkt, gibt es nicht viel dazu zu sagen. Sie können Image Handler auf     zwei Arten aufrufen:<br>
   1) <br>
   Admin → Webshop → Kategorien &amp; Artikel<br>
-  Klicken Sie beim jeweiligen Artikel auf das kleine <u><img src="images/clip_image008.gif" alt="" border="0"></u> Icon zwischen dem Kopieren- und dem Attribute-Icon klicken, um die   Image Handler Bildverwaltung für den jeweiligen Artikel aufzurufen.<br>
+  Klicken Sie beim jeweiligen Artikel auf das kleine <u><img src="images/icon_image_handler.gif" alt="" border="0"></u> Icon zwischen dem Kopieren- und dem Attribute-Icon klicken, um die   Image Handler Bildverwaltung für den jeweiligen Artikel aufzurufen.<br>
   2)<br>
-  Admin → Tools → Image Handler 3<br>
+  Admin → Tools → Image Handler 4<br>
   Bietet eine eigene Oberfläche , um Kategorien und Artikel anzuzeigen und die Bilder hochzuladen<br>
   Natürlich  können Sie auch weiterhin Artikelbilder über die Produktinfoseiten hochladen. </p>
 <h3>Wichtige Info zu den zusätzlichen Artikelbildern</h3>
 Wenn Sie zu einem Artikel zusätzliche Artikelbilder hochladen, dann   achten Sie darauf, dass die zusätzlichen Bilder, denselben Dateityp wie   das Hauptbild haben!<br>
-Wenn das Hauptbild zu einem Artikel z.B. ein gif ist, dann müssen auch   die zusätzlichen Artikelbilder dieses Artikels gifs sein. Würden Sie   stattdessen ein .jpg hochladen, dann wird das dieses zusätzliche   Artikelbild nicht angezeigt werden. In der Image Handler Maske sehen Sie   dann auch einen rot unterlegten Hinweis auf den falschen Dateityp.</div>
+Wenn das Hauptbild zu einem Artikel z.B. ein gif ist, dann müssen auch   die zusätzlichen Artikelbilder dieses Artikels gifs sein. Würden Sie   stattdessen ein .jpg hochladen, dann wird das dieses zusätzliche   Artikelbild nicht angezeigt werden. In der Image Handler Maske sehen Sie   dann auch einen rot unterlegten Hinweis auf den falschen Dateityp.<br>
+<strong><br>
+Tips:
+</strong><br><br/>
+<ul>
+  <li><strong>Es ist definitiv NICHT notwendig, Bilder über die Felder &quot;Datei für mittleres Bild&quot; oder &quot;Datei für grosses Bild&quot; hochzuladen<br>
+  </strong>Das wäre nur notwendig, wenn Sie für Ihre mittleren und grossen Artikelbilder unterschiedliche Bilder angezeigt haben wollen. unless you </li>
+  <li>Image Handler4 kümmert sich um das Erstellen der Bilder in den unterschiedlichen Größen, die Sie unter Konfiguration &gt; Bilder eingestellt haben. <strong>Sie laden also im Normalfall immer nur über das Feld &quot;Hauptbild&quot; hoch!</strong></li>
+  <li>Der Versuch, ein Bild über die Felder &quot;Datei für mittleres Bild&quot; oder &quot;Datei für grosses Bild&quot; hochzuladen ohne zuvor das eld &quot;Hauptbild&quot; befüllt zu haben, wird zu einer Fehlermeldung führen. <strong>Sie müssen IMMER ein &quot;Hauptbild&quot; hochladen</strong>, ganz egal ob das nun das erste zusätzliche Artikelbild ist oder das hunderte</li>
+  <li><strong>Die Felder Datei für mittleres Bild und Datei für grosses Bild bitte nicht mit den zusätzlichen Artikelbildern verwechseln! </strong>Sie haben damit nichts zu tun. Egal ob sie das erste Bild hochladen oder später zum Artikel weitere Bilder, Sie verwenden immer das Feld &quot;Hauptbild&quot;</li>
+  <li>Sie müssen Image Handler auch gar nicht für das Hochladen eines Artikelbildes verwenden. Wenn Sie bei einem Artikel gar keine zusätzlichen Artikelbilder anzeigen lassen wollen, dann laden Sie Ihr Artikelbild ganz einfach so wie gewohnt beim Artikel bearbeiten hoch. Sollten Sie später bei einem Artikel weitere Artikelbilder hinzufügen wollen, dann verwenden Sie Image Handler, gehen auf &quot;Neue Datei&quot; und laden Ihr erstes zusätzliches Artikelbild als &quot;Hauptbild&quot; hoch. Dann wieder auf Neue Datei und das zweite, usw. usw.<br>
+    Sie müssen sich also nicht um das Umbenennen der zusätzlichen Artikelbilder kümmern und Sie müssen diese auch nicht per FTP hochladen. Das ist einer der größten Vorteile von Image Handler!
+  </li>
+</ul>
+</div>
 </div>
 </div>
 <!--End sc3-->
@@ -228,15 +286,18 @@ Wenn das Hauptbild zu einem Artikel z.B. ein gif ist, dann müssen auch   die zu
 <div class="textcontent">
 <div class="regularlist">
 
-<h2>DEINSTALLATION</h2>
-<p>Zum Entfernen von Image Handler 4.0 rufen Sie auf:<br>
-Admin &gt; Tools &gt; Image Handler 4<br>
-Gehen Sie dort auf Admin und dann auf "Image Handler aus der Datenbank entfernen"<br> 
-Der Uninstaller stellt automatisch wieder Ihre alten Dateien her und löscht die nicht mehr benötigten.
-</p>
-
-
-
+<h2>HINWEIS FÜR USER VON ZEN-LIGHTBOX ODER FUAL SLIMBOX</h2>
+<p>Die Erweiterungen Zen-Lightbox 1.6.3 oder Fual Slimbox arbeiten sehr ähnlich. </p>
+<p>Um eines dieser Module mit Image Handler4 zu verwenden, müssen Sie eine einzige Datei verändern, die Image Handler 4 und Lightbox/Slimbox gemainsam haben:<br>
+<strong>includes/modules/DEINTEMPLATE/additional_images.php</strong><br>
+<br>
+Mergen Sie diese Datei wie folgt:</p>
+<ul>
+  <li><strong>Zen Lightbox 1.6.3</strong> - Falls Sie die Lightbox <strong>vor</strong> Image Handler4 installiert haben, dann ersetzen Sie die <strong>additional_images.php</strong> aus Image Handler4   mit der, die Zen-Lightbox 1.6.3 mitgebracht hat. (Zen Lightbox ist auf Image Handler 4 abgestimmt und funktioniert wunderbar damit gemeinsam). Wenn Sie vorhaben, neben Image Handler auch Zen-Lightbox zu installieren, dann installieren Sie Zen-Lightbox <strong>nachdem</strong> Sie Image Handler 4 installiert haben.</li>
+  <li><strong>Fual Slimbox</strong> - Suchen Sie nach den mit "<em>Image Handler changes</em>" gekennzeichneten Stellen in der <strong>additional_images.php</strong> , die Imahe Handler 4 mitbringt. Mergen Sie die Änderungen mit der <strong>additional_images.php</strong> aus Fual Slimbox.<br>
+    (Verwenden Sie dazu z.B. BeyondCompare oder WinMerge) </li>
+</ul>
+<p> Egal ob Sie Zen-Lightbox oder Fual Slimbox zur Vergrößerung der Artikelbilder auf Ihren Artikeldetailseiten einsetzen wollen: Beide Module spielen ganz reibungslos mit Image Handler 4 zusammen.</p>
 </div>
 </div>
 </div>
@@ -246,19 +307,54 @@ Der Uninstaller stellt automatisch wieder Ihre alten Dateien her und löscht die
 <div class="tabcontent" id="sc5" style="display: block;">
 <div class="textcontent">
 <div class="regularlist">
-<h2>Download &amp; Support</h2>
-<p>Download des Moduls:</p>
-<p><a href="http://www.zen-cart-pro.at/zcvb/forum/downloads.php" target="_blank">www.zen-cart-pro.at/zcvb/forum/downloads.php</a></p>
 
-<p>Supportforum zum Modul:</p>
-<p><a href="http://www.zen-cart-pro.at/zcvb/forum" target="_blank">www.zen-cart-pro.at/zcvb/forum</a></p>
+<h2>DEINSTALLATION</h2>
+<p>Zum Entfernen von Image Handler 4.0 rufen Sie auf:<br>
+Admin &gt; Tools &gt; Image Handler 4<br>
+Gehen Sie dort auf Admin und dann auf "Image Handler aus der Datenbank entfernen"<br> 
+Der Uninstaller stellt automatisch wieder Ihre alten Dateien her und löscht die nicht mehr benötigten.
+</p>
+<p>Durch den Installer wurden folgende Ordner/Dateien am Server angelegt:</p>
+<ul>
+  <li>bmz_cache</li>
+  <li>admin/images/.picasa.ini</li>
+  <li>admin/includes/modules/category_product_listing.php.bak</li>
+  <li>admin/includes/modules/category_product_listing.php_IH.bak</li>
+  <li>includes/modules/IH_INSTALL </li>
+  <li>includes/modules/pages/popup_image/header_php.php.bak</li>
+  <li>includes/modules/pages/popup_image/header_php.phpIH.bak</li>
+  <li>includes/modules/pages/popup_image_additional/header_php.php.bak</li>
+  <li>includes/modules/pages/popup_image_additional/header_php.phpIH.bak</li>
+  <li>includes/templates/IH_INSTALL </li>
+  </ul>
+<p>Diese stören nicht. Wenn Sie sie trotzdem entfernen wollen, löschen Sie sie einfach.</p>
+<p></p>
+
+
+
 </div>
 </div>
 </div>
 <!--End sc5-->
 
+
 <!--Begin sc6-->
 <div class="tabcontent" id="sc6" style="display: block;">
+<div class="textcontent">
+<div class="regularlist">
+<h2>Download &amp; Support</h2>
+<p>Download des Moduls:</p>
+<p><a href="http://www.zen-cart-pro.at/zcvb/forum/downloads.php" target="_blank">www.zen-cart-pro.at/forum/downloads.php</a></p>
+
+<p>Supportforum zum Modul:</p>
+<p><a href="http://www.zen-cart-pro.at/forum/forums/76-Image-Handler-4" target="_blank">www.zen-cart-pro.at/forum/forums/76-Image-Handler-4</a></p>
+</div>
+</div>
+</div>
+<!--End sc6-->
+
+<!--Begin sc7-->
+<div class="tabcontent" id="sc7" style="display: block;">
 <div class="textcontent">
 <div class="regularlist">
 
@@ -277,7 +373,7 @@ Der Uninstaller stellt automatisch wieder Ihre alten Dateien her und löscht die
 </div>
 </div>
 </div>
-<!--End sc6-->
+<!--End sc7-->
 </div>
 <div id="footer">
 Ein Modul von <a href="http://www.zen-cart-pro.at" target="_blank">www.zen-cart-pro.at</a> - Die deutsche Zen-Cart Version
@@ -290,6 +386,7 @@ Ein Modul von <a href="http://www.zen-cart-pro.at" target="_blank">www.zen-cart-
 <script type="text/javascript">document.getElementById('sc4').style.display = 'none';</script>
 <script type="text/javascript">document.getElementById('sc5').style.display = 'none';</script>
 <script type="text/javascript">document.getElementById('sc6').style.display = 'none';</script>
+<script type="text/javascript">document.getElementById('sc7').style.display = 'none';</script>
 <script type="text/javascript">ShowTabs()</script>
 <script type="text/javascript">
 // We only show the tab links if JavaScript is available/active.

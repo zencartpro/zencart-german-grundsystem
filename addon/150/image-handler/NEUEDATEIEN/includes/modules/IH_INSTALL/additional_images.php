@@ -8,7 +8,7 @@
  * @copyright Copyright 2003-2012 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: additional_images.php for IH4 and Zen-Lightbox 2012-03-10 12:38:06Z webchills $
+ * @version $Id: additional_images.php for IH4 2012-04-02 12:38:06Z webchills $
  */
 if (!defined('IS_ADMIN_FLAG')) {
   die('Illegal Access');
@@ -47,10 +47,10 @@ if ($products_image != '' && $flag_show_product_info_additional_images != 0) {
           if(preg_match('/\Q' . $products_image_base . '\E/i', $file) == 1) {
             if ($file != $products_image) {
               if ($products_image_base . str_replace($products_image_base, '', $file) == $file) {
-                //echo 'I AM A MATCH ' . $file . '<br />';
+                //  echo 'I AM A MATCH ' . $file . '<br>';
                 $images_array[] = $file;
               } else {
-                //  echo 'I AM NOT A MATCH ' . $file . '<br />';
+                //  echo 'I AM NOT A MATCH ' . $file . '<br>';
               }
             }
           }
@@ -82,7 +82,7 @@ if ($num_images) {
     $file = $images_array[$i];
     $products_image_large = str_replace(DIR_WS_IMAGES, DIR_WS_IMAGES . 'large/', $products_image_directory) . str_replace($products_image_extension, '', $file) . IMAGE_SUFFIX_LARGE . $products_image_extension;
 //  Begin Image Handler changes 1 of 2
-//next line is commented out for Image Handler 3
+//next line is commented out for Image Handler
 //  $flag_has_large = file_exists($products_image_large);
     $flag_has_large = true;
 //  End Image Handler changes 1 of 2
@@ -98,20 +98,7 @@ if ($num_images) {
     $large_link = zen_href_link(FILENAME_POPUP_IMAGE_ADDITIONAL, 'pID=' . $_GET['products_id'] . '&pic=' . $i . '&products_image_large_additional=' . $products_image_large);
 
     // Link Preparation:
-	// bof Zen Lightbox 2008-12-11 aclarke
-	if (ZEN_LIGHTBOX_STATUS == 'true') {
-	  if (ZEN_LIGHTBOX_GALLERY_MODE == 'true') {
-	    $rel = 'lightbox-g';
-	  } else {
-	    $rel = 'lightbox';
-	  }
-    $script_link = '<script language="javascript" type="text/javascript"><!--' . "\n" . 'document.write(\'' . ($flag_display_large ? '<a href="' . zen_lightbox($products_image_large, addslashes($products_name), LARGE_IMAGE_WIDTH, LARGE_IMAGE_HEIGHT) . '" rel="' . $rel . '" title="' . addslashes($products_name) . '">' . $thumb_slashes . '<br />' . TEXT_CLICK_TO_ENLARGE . '</a>' : $thumb_slashes) . '\');' . "\n" . '//--></script>';
-	} else {
-	// eof Zen Lightbox 2008-12-11 aclarke
     $script_link = '<script language="javascript" type="text/javascript"><!--' . "\n" . 'document.write(\'' . ($flag_display_large ? '<a href="javascript:popupWindow(\\\'' . str_replace($products_image_large, urlencode(addslashes($products_image_large)), $large_link) . '\\\')">' . $thumb_slashes . '<br />' . TEXT_CLICK_TO_ENLARGE . '</a>' : $thumb_slashes) . '\');' . "\n" . '//--></script>';
-	// bof Zen Lightbox 2008-12-11 aclarke
-	}
-	// eof Zen Lightbox 2008-12-11 aclarke
 
     $noscript_link = '<noscript>' . ($flag_display_large ? '<a href="' . zen_href_link(FILENAME_POPUP_IMAGE_ADDITIONAL, 'pID=' . $_GET['products_id'] . '&pic=' . $i . '&products_image_large_additional=' . $products_image_large) . '" target="_blank">' . $thumb_regular . '<br /><span class="imgLinkAdditional">' . TEXT_CLICK_TO_ENLARGE . '</span></a>' : $thumb_regular ) . '</noscript>';
 

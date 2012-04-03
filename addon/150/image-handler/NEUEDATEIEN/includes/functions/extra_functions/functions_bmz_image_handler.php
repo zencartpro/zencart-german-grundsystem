@@ -12,7 +12,7 @@
  */
 
 require_once(DIR_FS_CATALOG . DIR_WS_CLASSES . 'bmz_image_handler.class.php');
-$ihConf['version']              = 'v3.0';
+$ihConf['version']              = 'v4.0';
 
 $ihConf['dir']['docroot']       = DIR_FS_CATALOG;
 $ihConf['dir']['images']        = DIR_WS_IMAGES;
@@ -27,7 +27,6 @@ $ihConf['small']['quality']     = defined('SMALL_IMAGE_QUALITY') ? intval(SMALL_
 $ihConf['small']['watermark']   = defined('WATERMARK_SMALL_IMAGES') ? (WATERMARK_SMALL_IMAGES == 'yes') : false;
 $ihConf['small']['zoom']        = defined('ZOOM_SMALL_IMAGES') ? (ZOOM_SMALL_IMAGES == 'yes') : true;
 $ihConf['small']['size']        = defined('ZOOM_IMAGE_SIZE') ? ZOOM_IMAGE_SIZE : 'Medium';
-//$ihConf['small']['hotzone']     = defined('SMALL_IMAGE_HOTZONE') ? (SMALL_IMAGE_HOTZONE == 'yes') : false;
 
 $ihConf['medium']['prefix']      = '/medium';
 $ihConf['medium']['suffix']      = IMAGE_SUFFIX_MEDIUM;
@@ -37,8 +36,6 @@ $ihConf['medium']['filetype']    = defined('MEDIUM_IMAGE_FILETYPE') ? MEDIUM_IMA
 $ihConf['medium']['bg']         = defined('MEDIUM_IMAGE_BACKGROUND') ? MEDIUM_IMAGE_BACKGROUND : 'transparent 255:255:255';
 $ihConf['medium']['quality']    = defined('MEDIUM_IMAGE_QUALITY') ? intval(MEDIUM_IMAGE_QUALITY) : 85;
 $ihConf['medium']['watermark']  = defined('WATERMARK_MEDIUM_IMAGES') ? (WATERMARK_MEDIUM_IMAGES == 'yes') : false;
-//$ihConf['medium']['zoom']       = defined('ZOOM_MEDIUM_IMAGES') ? (ZOOM_MEDIUM_IMAGES == 'yes') : false;
-//$ihConf['medium']['hotzone']    = defined('MEDIUM_IMAGE_HOTZONE') ? (MEDIUM_IMAGE_HOTZONE == 'yes') : false;
 
 $ihConf['large']['prefix']      = '/large';
 $ihConf['large']['suffix']       = IMAGE_SUFFIX_LARGE;
@@ -50,7 +47,6 @@ $ihConf['large']['quality']     = defined('LARGE_IMAGE_QUALITY') ? intval(LARGE_
 $ihConf['large']['watermark']   = defined('WATERMARK_LARGE_IMAGES') ? (WATERMARK_LARGE_IMAGES == 'yes') : false;
 
 $ihConf['watermark']['gravity'] = defined('WATERMARK_GRAVITY') ? WATERMARK_GRAVITY : 'Center';
-//$ihConf['zoom']['gravity']      = defined('ZOOM_GRAVITY') ? ZOOM_GRAVITY : 'SouthEast';
 
 function handle_image($src, $alt, $width, $height, $parameters) {
 	global $ihConf;
