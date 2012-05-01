@@ -23,6 +23,6 @@ define('HEADING_ORDER_COMMENTS','Anmerkungen oder Hinweise');
 // no comments entered
 define('NO_COMMENTS_TEXT','Keine');
 define('TITLE_CONTINUE_CHECKOUT_PROCEDURE','<strong>Bestellung bestätigen</strong>');
-define('TEXT_CONTINUE_CHECKOUT_PROCEDURE','Clicken Sie hier, um Ihre Bestellung zu bestätigen:');
+define('TEXT_CONTINUE_CHECKOUT_PROCEDURE','Klicken Sie hier, um Ihre Bestellung zu bestätigen:');
 
 define('OUT_OF_STOCK_CAN_CHECKOUT', 'Produkte, die mit ' . STOCK_MARK_PRODUCT_OUT_OF_STOCK . ' gekennzeichnet sind, sind nicht vorrätig.<br />Diese Artikel werden nachträglich geliefert');
