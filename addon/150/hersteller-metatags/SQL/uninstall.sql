@@ -1,0 +1,1 @@
+DROP TABLE IF EXISTS meta_tags_manufacturers_description;

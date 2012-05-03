@@ -1,0 +1,52 @@
+Metatags für Herstellerseiten 1.0 für Zen-Cart 1.5 deutsch
+
+deutsche Übersetzung/Bugfixes/Anpassung des Moduls Meta-tags Manufacturers von
+http://www.zen-cart.com/downloads.php?do=file&id=932
+für die deutsche Zen-Cart Version 1.5
+
+Mai 2012
+webchills
+
+Mit diesem Modul stehen beim Bearbeiten von Herstellern Eingabefelder für Metatags zur Verfügung: Seitentiel, Keywords und Beschreibung
+Genauso wie das bei Kategorein oder Artikeln Standard ist.
+Werden diese Feleder befüllt, werden im Frontend auf den Herstellerseiten (z.B. index.php?main_page=index&manufacturers_id=4) die entsprechenden Seitentitel, Keywords und Beschreibungstexte in den Metatags durch die eingegebenen ersetzt.
+
+
+================= WICHTIG =====================
+Vor dem Einbau dieser Änderungen:
+BACKUP von Shop und Datenbank machen! 
+Keine Haftung, Verwendung auf eigene Gefahr!
+BACKUP gemacht? Ok, dann weiterlesen...
+    
+=============== INSTALLATION ===================
+
+1)
+Im Ordner NEUE DATEIEN den Ordner DEINADMIN auf den Namen des Admin Verzeichnisses umbenennen
+Dann alle Ordner/Dateien aus diesem Ordner in der vorgegebenen Struktur ins Zen-Cart Verzeichnis hochladen.
+Dadurch werden keinerlei bestehenden Dateien überschrieben
+
+2)
+Im Ordner GEAENDERTE DATEIEN den Ordner DEINADMIN auf den Namen des Admin Verzeichnisses umbenennen.
+Den Ordner DEINTEMPLATE auf den Namen des im Shop aktiven Templates umbenennen.
+Die Dateien darin dann nicht einfach hochladen, sondern mit WinMerge oder Beyond Compare mit den bestehenden vergleichen und die Änderungen mergen.
+Laden Sie die geänderten Dateien nur dann einfach so hoch, wenn Sie Zen-Cart 1.5 gerade erst installiert haben bzw. noch nie Änderungen an diesen bestehenden Dateien vorgenommen haben.
+.
+
+3)
+Im Ordner SQL die install.sql mit einem Texteditor öffnen und den Inhalt ins Eingabefeld unter Tools > SQL Patches installieren kopieren und absenden. Dadurch wird eine neue Tabelle in der Datenbank angelegt.
+
+4)
+In der Zen-Cart Administration erscheinen nun unter Webshop > Hersteller wie bei den Kategorien und Artikeln Metatag Symbole (schwarz = noch keine eingetragen; rot = bereits eingetragen)
+Mit Click auf dieses Symbole können die Metatags eingetragen oder bearbeitet werden
+
+
+
+=============== DEINSTALLATION ===================
+
+1)
+Im Ordner SQL die uninstall.sql mit einem Texteditor öffnen und den Inhalt ins Eingabefeld unter Tools > SQL Patches installieren kopieren und absenden. Dadurch wird die Tebelle mit den Herstellermetatgs gelöscht.
+
+2)
+Alle von diesem Modul neu angelegten Dateien vom Server löschen und alle von diesem Modul geänderten Dateien mit den Dateien Ihres zuvor angelegten Backups ersetzen.
+
+
