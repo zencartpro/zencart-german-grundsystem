@@ -1,0 +1,51 @@
+@charset "UTF-8";
+/* CSS Document */
+body {font-family: Arial, Helvetica, sans-serif; font-size: 13px; margin: 0; background-image:url(../images/backgroundImg.png); background-repeat: repeat-x; background-position: bottom; background-color: #F2F2F2;}
+ol, ul {padding: 0 18px; margin-top: 0px;}  
+a img {border:none;}
+li {margin-bottom: 20px;}
+li ul, li ol {margin-top: 20px;}
+ol li {padding-left: 30px;} 
+code {font-size: 11px;}
+pre {overflow: scroll;}
+.back {float: left;}
+.forward {float: right;}
+#headerContainer {margin-bottom: 33px;}
+#headerWrapper {width: 100%; height: 93px; background-color: #232323;}
+.contentWrapper {width: 819px; margin: 0 auto;}
+#header {display: block; color: #FFF; font-size: 22px;}
+.headerContent {margin-top:36px;}
+.clearBoth {clear: both;}
+#headerButton {text-align: center; padding-top: 17px;}
+#headerButton a {background-color: #fff;}
+.headerLink {padding-right: 4px;}
+.btn {height: 30px; color: #000; text-decoration: none; padding: 17px 17px 17px 57px; font-size: 15px; letter-spacing: -1px; margin-right: 4px;}
+.install {background:url(../images/installZenCart.png) no-repeat 4% 70%; width: 174px; border-top: 5px #6B902D solid;}
+.upgrade {background:url(../images/installZenCart.png) no-repeat 4% 70%; background-color: #E6E6E6; width: 174px; border-top: 5px #C18E18 solid;}
+.tips {background: url(../images/tips.png) no-repeat 12% 70%; width: 45px; border-top: 5px #3A7EAD solid;}
+.uninstall {background: url(../images/uninstall.png) no-repeat 10% 70%; width: 69px; border-top: 5px #A72B24 solid;}
+.help {background: url(../images/help.png) no-repeat 12% 70%; width: 45px; border-top: 5px #CD5F09 solid;}
+.bodyHeader {height: 33px; color: #FFFFFF; font-size: 16px; font-weight: bold; display: table-cell; vertical-align: middle; width: 819px; padding: 0 12px;}
+.numHeader {background-color: #4D4D4D;}
+#green {background-color: #6B902D;}
+#yellow {background-color: #C18E18;}
+#blue {background-color: #3A7EAD;}
+#red {background-color: #A72B24;}
+#orange {background-color: #CD5F09;}
+.bodyHeaderContainer {margin-top:24px;}
+.bodyHeaderTxt {padding-top: 3px; display: block;}
+.bodyWrapper {background-color: #FFF; border: 1px solid #B3B3B3; padding: 25px 33px 5px;}
+.spacer {margin-bottom: 20px;}
+.bodyRow {display: table-row; line-height: 23px;}
+.bodyStrong, .content {display: table-cell;}
+.bodyStrong {font-weight:bold;}
+.content {padding-left: 30px; line-height: normal;}
+.centered{text-align: center;}
+.bodyTxt {font-weight: normal;}
+.code {background-color: #E6E6E6; border-top: 1px solid #4D4D4D; border-left: 1px solid #4D4D4D; border-right: 1px solid #B3B3B3; border-bottom: 1px solid #B3B3B3; width: 687px; margin: 21px 0; padding:18px 12px;}
+.codeTitle {border-bottom: 1px #B3B3B3 solid; width: 100%; padding-bottom: 5px;}
+.select {color: #3A7EAD; cursor: pointer;}
+.find {color: #025E0F; font-weight: bold;}
+.replace {color: #C1272D; font-weight: bold;}
+#licenseAgreement{margin-top: 10px;}
+#footerContainer {background-color: #232323; height: 30px; width: 100%; color: #FFF; font-size: 11px; padding-top: 15px; text-align: center;}

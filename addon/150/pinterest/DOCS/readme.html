@@ -1,0 +1,172 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <title>Pin It Button Documentation</title>
+  <link href="css/stylesheet.css" rel="stylesheet" type="text/css" />
+  <link href="css/sh_style.css" rel="stylesheet" type="text/css" />
+  <script type="text/javascript" src="http://code.jquery.com/jquery-1.6.1.min.js"></script>
+  <script type="text/javascript" src="js/sh_main.min.js"></script>
+  <script type="text/javascript" src="js/sh_html.min.js"></script>
+  <script type="text/javascript" src="js/sh_php.min.js"></script>
+  <script type="text/javascript" src="js/sh_javascript.min.js"></script>
+  <script type="text/javascript" src="js/sh_sql.min.js"></script>
+  <script type="text/javascript" src="js/sh_css.min.js"></script>
+  <script type="text/javascript" src="js/documentation.js"></script>
+</head>
+<body>
+  <!--[if lt IE 8]> <div style=' clear: both; height: 59px; padding:0 0 0 15px; position: relative; margin: auto; text-align: center;'> <a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode"><img src="http://www.theie6countdown.com/images/banners/warning_bar_0000_us.jpg" border="0" height="42" width="820" alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today." /></a></div> <![endif]--> 
+  <!--BOF Header-->
+  <div id="headerContainer">
+    <a name="top"></a>
+    <div id="headerWrapper">
+      <div class="contentWrapper">
+        <img src="images/logo.png" alt="Numinix.com" title="Numinix" id="logo" class="headerContent" />
+        <span id="header" class="headerContent forward">Installation Instructions for Pin It Button</span>
+        <br class="clearBoth" />
+      </div>
+    </div>
+    <!--BOF Links-->
+    <div class="contentWrapper" id="headerButton">
+      <a href="#install" class="btn install" title="Installation">Installation</a>
+      <a href="#tips" class="btn tips" title="Tips">Tips</a>
+      <a href="#uninstall" class="btn uninstall" title="Uninstall">Uninstall</a>
+      <a href="#help" class="btn help" title="Help">Help</a>
+    </div>
+    <!--EOF Links-->
+  </div>
+  <!--EOF Header-->
+  <div class="contentWrapper">
+    <!--BOF About Us-->
+    <div class="numHeader bodyHeader">
+      <span class="bodyHeaderTxt back">ABOUT US</span>
+      <div class="forward"><a href="#top"><img src="images/backToTop.png" width="115" height="22" alt="backtotop" /></a></div>
+    </div>
+    <div class="bodyWrapper">
+      <div class="spacer">
+        <div class="bodyRow"><span class="bodyStrong">Title:</span><span class="content">Pin It Button</span></div>
+        <div class="bodyRow"><span class="bodyStrong">Author:</span><span class="content">Numinix</span></div>
+        <div class="bodyRow"><span class="bodyStrong">Description:</span><span class="content">Adds a Pinterest.com Pin It button to your product pages as described here: http://pinterest.com/about/.</span></div>
+        <div class="bodyRow"><span class="bodyStrong">Installation Level:</span><span class="content">Easy</span></div>
+        <div class="bodyRow"><span class="bodyStrong">Installation Time:</span><span class="content">~ 5 minutes</span></div>
+        <div class="bodyRow"><span class="bodyStrong">Author Notes:</span><span class="content">Zen Cart is the copyright of the Zen Cart Development Team.</span></div>
+      </div>
+    </div>
+    <!--EOF About Us-->
+    <!--BOF Disclalimer-->
+    <div class="bodyHeaderContainer">
+      <div class="numHeader bodyHeader">
+        <span class="bodyHeaderTxt back">DISCLAIMER</span>
+        <div class="forward"><a href="#top"><img src="images/backToTop.png" width="115" height="22" alt="backtotop" /></a></div>
+      </div>
+      <div class="bodyWrapper">
+        <div class="spacer">
+          This module is installed at your own risk.  If you are unsure of how to complete the installation procedure documented below, please view our help section for additional information.  Numinix Web Development LLC takes no responsibility for problems related to the installation of this module.
+        </div>
+      </div>
+    </div>
+    <!--EOF Disclaimer-->
+    <!--BOF License-->
+    <div class="bodyHeaderContainer">
+      <div class="numHeader bodyHeader">
+        <span class="bodyHeaderTxt back">LICENSE</span>
+        <div class="forward"><a href="#top"><img src="images/backToTop.png" width="115" height="22" alt="backtotop" /></a></div>
+      </div>
+      <div class="bodyWrapper">
+        <div class="spacer">
+          Before installing this module, you agree to abide by these <a href="license.txt" target="_blank">license terms</a>.
+          <br />
+          <div class="centered" id="licenseAgreement">
+            <input type="radio" value="1" name="license" /><label for="license">I agree</label>
+            <input type="radio" value="0" name="license" /><label for="license">I disagree</label>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--EOF License-->
+    <div id="licenseAgreed">
+      <a name="install"></a>
+      <!--BOF INSTALLATION-->
+      <div class="bodyHeaderContainer">
+        <div class="bodyHeader" id="green">
+          <span class="bodyHeaderTxt back">INSTALLATION</span>
+          <div class="forward"><a href="#top"><img src="images/backToTop.png" width="115" height="22" alt="backtotop" /></a></div>
+        </div>
+
+        <div class="bodyWrapper">
+          <ol>
+            <li>Patch your database by copying and pasting the contents of install.sql in the Admin Panel at Tools->Install SQL Patches.</li>
+            <li>Before uploading, rename these folders to your specific folder names:<br />
+            /YOUR_ADMIN -> Rename to your admin folder name<br />
+            /includes/templates/YOUR_TEMPLATE -> Rename to your template folder name<br />
+            <li>Upload all files and updated folders in this package while maintaining the directory structure.</li>
+            <li>In the Admin Panel, go to Configuration->Pinterest.com Pin-It Button and enable the button by setting "Enable Pinterest Button false" to <b>True</b>.</li>
+            <li class="bodyText">
+              <div class="bodyTxt">
+                Add the following code to any template file(s) you choose (example: includes/templates/YOUR_TEMPLATE/templates/tpl_product_info_display.php):
+                <div class="code">
+                  <div class="codeTitle"><strong>Code:</strong> <span class="select">SELECT ALL</span></div>
+<pre class="sh_php"><code>&lt;!-- Pin It Button BEGIN --&gt;
+&lt;?php
+  if (PINTEREST_BUTTON_STATUS == 'true') { 
+    require($template-&gt;get_template_dir('/tpl_modules_pin_it_button.php',DIR_WS_TEMPLATE, $current_page_base,'templates'). '/tpl_modules_pin_it_button.php');
+  } 
+?&gt;
+&lt;!-- Pin It Button END --&gt;</code></pre>
+                </div>
+              </div>
+            </li>
+          </ol>
+        </div>
+      </div>
+      <!--EOF INSTALLATION-->
+      <a name="tips"></a>
+      <!--BOF TIPS-->
+      <div class="bodyHeaderContainer">
+        <div class="bodyHeader" id="blue">
+          <span class="bodyHeaderTxt back">TIPS</span>
+          <div class="forward"><a href="#top"><img src="images/backToTop.png" width="115" height="22" alt="backtotop" /></a></div>
+        </div>
+        <div class="bodyWrapper">
+          <ul>
+          <li>Use the selector #pinitButton in your CSS stylesheet to position the button (use !important to override the inline styles).</li>
+          </ul>
+        </div>
+      </div>
+      <!--EOF TIPS-->
+      <a name="uninstall"></a>
+      <!--BOF UNINSTALL-->
+      <div class="bodyHeaderContainer">
+        <div class="bodyHeader" id="red">
+          <span class="bodyHeaderTxt back">UNINSTALL</span>
+          <div class="forward"><a href="#top"><img src="images/backToTop.png" width="115" height="22" alt="backtotop" /></a></div>
+        </div>
+        <div class="bodyWrapper">
+          <ol>
+            <li>Remove edits performed in the installation procedure above.</li>
+            <li>Delete all uploaded files from your store.</li>
+          </ol>
+        </div>
+      </div>
+      <!--EOF UNINSTALL-->
+    </div>
+    <a name="help"></a>
+    <!--BOF HELP-->
+    <div class="bodyHeaderContainer">
+      <div class="bodyHeader" id="orange">
+        <span class="bodyHeaderTxt back">HELP</span>
+        <div class="forward"><a href="#top"><img src="images/backToTop.png" width="115" height="22" alt="backtotop" /></a></div>
+      </div>
+      <div class="bodyWrapper">
+        <div class="spacer">
+          <div class="bodyRow"><span class="bodyStrong">Support Thread:</span><span class="content"><a href="http://www.numinix.com/forum/viewtopic.php?f=27&amp;t=1688" target="_blank">http://www.numinix.com/forum/viewtopic.php?f=27&amp;t=1669</a></span></div>
+          <div class="bodyRow"><span class="bodyStrong">Change Logs:</span><span class="content"><a href="http://www.numinix.com/forum/viewtopic.php?f=27&amp;t=1689" target="_blank">http://www.numinix.com/forum/viewtopic.php?f=27&amp;t=1670</a></span></div>
+          <div class="bodyRow"><span class="bodyStrong">Contact Us:</span><span class="content"><a href="http://www.numinix.com/contact_us" target="_blank">http://www.numinix.com/contact_us</a></span></div>
+        </div>
+      </div>
+    </div>
+    <!--EOF HELP-->
+  </div>
+  <div id="footerContainer" class="bodyHeaderContainer">Copyright &copy; 2006-2011 Numinix Web Development LLC. Web design by Numinix</div>
+</body>
+</html>

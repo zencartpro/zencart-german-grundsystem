@@ -1,0 +1,45 @@
+Pinterest Pin-It Button für Zen-Cart 1.5 deutsch
+
+Mit diesem Modul kann der Pin-It Button von pinterest.com in Zen-Cart eingebunden werden.
+
+
+deutsche Übersetzung/Anpassung des Moduls Pin It Button 1.2.1 von Numinix
+www.numinix.com
+
+
+Installation:
+
+1)
+Im Ordner NEUEDATEIEN den Ordner DEINADMIN auf den Namen Deines admin Verzeichnisses umbenennen.
+Im Ordner NEUE DATEIEN den Ordner DEINTEMPLATE auf das im SDhop aktive Template umbenennen, also z.B. classic, viennabright, usw.
+
+2)
+Dann alle Dateien/Ordner aus dem Ordner NEUEDATEIEN in der vorgegebenen Struktur ins Zen-Cart Verzeichnis hochladen. Dabei werden keinerlei bestehende Dateien überschrieben.
+
+3) 
+Im Ordner SQL die install.sql mit einem Texteditor öffnen und den Inhalt kopieren. 
+Einfügen unter Tools > SQL Patches installieren und absenden. 
+Dadurch ist nun unter Konfiguration > ein neuer Menüpunkt namens Pinterest Button Konfiguration vorhanden.
+Hier alles so einstellen, wie Sie es haben wollen
+
+4)
+Fügen Sie nun folgenden Code an der Stelle ein, wo Sie den Button anzeigen wollen.
+Normalerweise ist dazu die Artikeldetailseite geeignet.
+Öffnen Sie Ihre includes/templates/DEINTEMPLATE/tpl_product_info_display.php mit einem Texteditor und fügen Sie ein:
+
+<!-- Pin It Button BEGIN -->
+<?php
+  if (PINTEREST_BUTTON_STATUS == 'true') { 
+    require($template->get_template_dir('/tpl_modules_pin_it_button.php',DIR_WS_TEMPLATE, $current_page_base,'templates'). '/tpl_modules_pin_it_button.php');
+  } 
+?>
+<!-- Pin It Button END -->
+
+5)
+Um die Positionierung des Buttons feinabzustimmen, legen Sie in Ihrem Stylesheet folgende ID an und stellen sie nach Ihren Wünschen ein:
+
+#pinitButton
+
+
+
+Weitere Infos in der englischsprachigen readme.html im Ordner DOCS
