@@ -1,0 +1,46 @@
+Artikelmerkmale auf der Seite Bestellbestätigung 1.0 für Zen-Cart 1.5 deutsch
+
+Juni 2012
+www.webchills.at
+
+
+Dies ist eine Erweiterung für die Umsetzung der sogenannten "Buttonlösung" in Zen-Cart 1.5 deutsch
+In der Zen-Cart Administration ist damit beim Bearbeiten eines Artikels unterhalb des Artikelnamens ein neues Zusatzfeld vorhanden, in dem die "wesentlichen Merkmale der Ware" eingetragen werden können.
+Auf der letzten Seite des Bestellvorgangs werden die dort hinterlegten Merkmale dann in der Warenkorbinhaltsübersicht unterhalb des Artikelnamens angezeigt.
+Es gibt sicher auch viele andere Wege das zu integrieren, das ist mal eine ganz einfache Lösung zur Anzeige der Merkmale
+
+WICHTIG:
+Ob das mit diesen schwammigen Anforderungen konform ist und ausreicht, kann und will ich nicht beurteilen.
+Wer das als Grundlage verwenden will kann es gerne tun.
+Keinerlei Haftung!
+Keinerlei Garantie gegen irgendwelche Abmahnungen.
+Verwendung auf eigene Gefahr!
+Nur für Zen-Cart 1.5 geeignet!
+Wer das in 1.3.9 nutzen will, möge bitte die entsprechenden Dateien mergen.
+
+
+
+================= WICHTIG =====================
+Vor dem Einbau dieser Änderungen:
+BACKUP von Shop und Datenbank machen! 
+Keine Haftung, Verwendung auf eigene Gefahr!
+BACKUP gemacht? Ok, dann weiterlesen...
+    
+=============== INSTALLATION ===================
+
+
+Installation:
+
+1)
+Im Ordner SQL die install.sql mit einem Texteditor öffnen, Inhalt kopieren und unter Tools > SQL Patches installieren ins Eingabefeld kopieren und absenden.
+Dadurch wird die Tabelle products_description mit einem neuen Feld für die Artikelmerkmale erweitert.
+
+2)
+Im Ordner NEUE DATEIEN den Ordner DEINADMIN auf den Namen Ihres Adminverzeichnisses umbenennen. Dann in der vorgegebenen Struktur ins Zen-Cart Verzeichnis hochladen, dabei werden keine bestehenden Dateien überschrieben
+
+3)
+Im Ordner GEAENDERTE DATEIEN den Ordner namens DEINTEMPLATE auf das im Shop verwendete Template umbennen (z.B. viennabright, classic, ...). Den Ordner DEINADMIN auf den Namen Ihres admin Verzeichnisses umbenennen.
+Wenn Sie Zen-Cart 1.5 gerade frisch installiert haben und noch keinerlei Änderungen an den Dateien vorgenommen haben, können Sie nun alle Dateien/Ordner aus dem Ordner GEAENDERTE DATEIEN in der vorgegebenen Struktur in die Zen-Cart Installation hochladen. Dabei werden dann etliche Dateien überschrieben.
+Wenn Sie Zen-Cart 1.5 schon länger im Einsatz haben und schon einmal Änderungen an Dateien vorgenommen oder andere Module eingebaut haben, dann laden Sie die Dateien keinesfalls einfach hoch.
+Vergleichen Sie alle Dateien im Ordner GEAENDERTE DATEIEN mit den entsprechenden Dateien in Ihrem Shop und nehmen Sie die Änderungen manuell per WinMerge oder BeyondCompare vor.
+Dann spielen Sie die geänderten Dateien in der gezeigten Struktur ein.
