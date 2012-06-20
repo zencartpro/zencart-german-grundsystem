@@ -5,7 +5,7 @@
  * @package classes
  * @copyright Copyright 2003-2012 Zen Cart Development Team
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: order.php für Buttonlösung 2012-06-12 20:26:25Z webchills $
+ * @version $Id: order.php für Buttonlösung 2012-06-21 19:26:25Z webchills $
  */
 /**
  * order class
@@ -161,7 +161,7 @@ class order extends base {
                            'format_id' => $order->fields['billing_address_format_id']);
 
     $index = 0;
-    $orders_products_query = "select orders_products_id, products_id, products_name, products_merkmale, 
+    $orders_products_query = "select orders_products_id, products_id, products_name,
                                  products_model, products_price, products_tax,
                                  products_quantity, final_price,
                                  onetime_charges,
