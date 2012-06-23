@@ -4,9 +4,9 @@
  * see {@link  http://www.zen-cart.com/wiki/index.php/Developers_API_Tutorials#InitSystem wikitutorials} for more details.
  *
  * @package initSystem
- * @copyright Copyright 2003-2007 Zen Cart Development Team
+ * @copyright Copyright 2003-2012 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
- * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
+ * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
  * @version $Id$
  */
 if (!defined('IS_ADMIN_FLAG')) {
@@ -58,7 +58,7 @@ switch (true) {
     zen_redirect(zen_href_link(DOWN_FOR_MAINTENANCE_FILENAME));
   break;
 
-  case ((DOWN_FOR_MAINTENANCE == 'true') && !in_array($_GET['main_page'], array(FILENAME_LOGOFF, FILENAME_PRIVACY, FILENAME_CONTACT_US, FILENAME_CONDITIONS, FILENAME_SHIPPING))):
+  case ((DOWN_FOR_MAINTENANCE == 'true') && !in_array($_GET['main_page'], array(FILENAME_LOGOFF, FILENAME_PRIVACY, FILENAME_CONTACT_US, FILENAME_CONDITIONS, FILENAME_SHIPPING, FILENAME_IMPRESSUM, FILENAME_WIDERRUFSRECHT))):
     // on special pages, if DFM mode is "relaxed", allow access to these pages
     if ($down_for_maint_flag && DOWN_FOR_MAINTENANCE_TYPE == 'relaxed') {
       zen_redirect(zen_href_link(DOWN_FOR_MAINTENANCE_FILENAME));
