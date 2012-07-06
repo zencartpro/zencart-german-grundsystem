@@ -8,8 +8,8 @@
  * @package templateSystem
  * @copyright Copyright 2003-2012 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
- * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: tpl_checkout_confirmation_default.php für Buttonlösung 2012-06-12 20:10:16Z webchills $
+ * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
+ * @version $Id: tpl_checkout_confirmation_default.php für Buttonlösung 2012-07-05 10:10:16Z webchills $
  */
 ?>
 <div class="centerColumn" id="checkoutConfirmDefault">
@@ -130,7 +130,12 @@
 <?php for ($i=0, $n=sizeof($order->products); $i<$n; $i++) { ?>
         <tr class="<?php echo $order->products[$i]['rowClass']; ?>">
           <td  class="cartQuantity"><?php echo $order->products[$i]['qty']; ?>&nbsp;x</td>
-          <td class="cartProductDisplay"><?php echo $order->products[$i]['name']; ?><br/><?php echo $order->products[$i]['merkmale']; ?>
+          <td class="cartProductDisplay"><?php echo $order->products[$i]['name']; ?>
+          	
+<?php if (ENABLE_BUTTONLOESUNG != 'false') { ?>
+          	<br/><?php echo $order->products[$i]['merkmale']; ?>
+          	<?php } ?>
+
           <?php  echo $stock_check[$i]; ?>
 
 <?php // if there are attributes, loop thru them and display one per line
@@ -177,8 +182,9 @@
     echo $payment_modules->process_button();
   }
 ?>
-<div class="buttonRow forward"><?php echo zen_image_submit(BUTTON_IMAGE_CONFIRM_ORDER, BUTTON_CONFIRM_ORDER_ALT, 'name="btn_submit" id="btn_submit"') ;?></div>
+<div class="buttonRow center"><?php echo TITLE_CONTINUE_CHECKOUT_PROCEDURE . '<br />' . TEXT_CONTINUE_CHECKOUT_PROCEDURE; ?></div>
+<div class="buttonRow center"><?php echo zen_image_submit(BUTTON_IMAGE_CONFIRM_ORDER, BUTTON_CONFIRM_ORDER_ALT, 'name="btn_submit" id="btn_submit"') ;?></div>
 </form>
-<div class="buttonRow back"><?php echo TITLE_CONTINUE_CHECKOUT_PROCEDURE . '<br />' . TEXT_CONTINUE_CHECKOUT_PROCEDURE; ?></div>
+
 
 </div>

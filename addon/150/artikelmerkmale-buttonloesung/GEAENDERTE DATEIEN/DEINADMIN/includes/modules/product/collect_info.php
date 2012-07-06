@@ -4,7 +4,7 @@
  * @copyright Copyright 2003-2012 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: collect_info.php für Buttonlösung 2012-06-13 19:24:50Z webchills $
+ * @version $Id: collect_info.php fÃ¼r ButtonlÃ¶sung 2012-07-05 10:17:50Z webchills $
  */
 if (!defined('IS_ADMIN_FLAG')) {
   die('Illegal Access');
@@ -304,6 +304,9 @@ echo zen_draw_hidden_field('products_price_sorter', $pInfo->products_price_sorte
     }
 ?>
 
+
+<?php if (ENABLE_BUTTONLOESUNG != 'false') { ?>
+
 <?php
     for ($i=0, $n=sizeof($languages); $i<$n; $i++) {
 ?>
@@ -314,6 +317,8 @@ echo zen_draw_hidden_field('products_price_sorter', $pInfo->products_price_sorte
 <?php
     }
 ?>
+<?php } ?>
+
           <tr>
             <td colspan="2"><?php echo zen_draw_separator('pixel_trans.gif', '1', '10'); ?></td>
           </tr>
@@ -486,6 +491,7 @@ updateGross();
 <?php
     }
 ?>
+
           <tr>
             <td colspan="2"><?php echo zen_draw_separator('pixel_trans.gif', '1', '10'); ?></td>
           </tr>
