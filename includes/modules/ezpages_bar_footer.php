@@ -25,7 +25,7 @@ if (EZPAGES_STATUS_FOOTER == '1' or (EZPAGES_STATUS_FOOTER == '2' and (strstr(EX
     unset($var_linksList);
   }
 // r.l. language_id
-  $page_query = $db->Execute("select * from " . TABLE_EZPAGES . " where status_footer = 1 and languages_id='$rl_language' and footer_sort_order > 0 order by footer_sort_order, pages_title");
+  $page_query = $db->Execute("select * from " . TABLE_EZPAGES . " where status_footer = 1 and languages_id='$rl_language'  order by footer_sort_order, pages_title");
   if ($page_query->RecordCount()>0) {
     $rows = 0;
     while (!$page_query->EOF) {

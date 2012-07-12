@@ -23,7 +23,7 @@ if (EZPAGES_STATUS_HEADER == '1' or (EZPAGES_STATUS_HEADER == '2' and (strstr(EX
   if (isset($var_linksList)) {
     unset($var_linksList);
   }
-  $page_query = $db->Execute("select * from " . TABLE_EZPAGES . " where status_header = 1 and languages_id='$rl_language' and header_sort_order > 0 order by header_sort_order, pages_title");
+  $page_query = $db->Execute("select * from " . TABLE_EZPAGES . " where status_header = 1 and languages_id='$rl_language' order by header_sort_order, pages_title");
   if ($page_query->RecordCount()>0) {
     $rows = 0;
     while (!$page_query->EOF) {
