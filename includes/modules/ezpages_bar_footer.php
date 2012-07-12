@@ -3,7 +3,7 @@
  * ezpages bar (footer) - used to display links to EZ-Pages content in horizontal format (usually as a footer element)
  *
  * @package templateSystem
- * @copyright Copyright 2003-2007 Zen Cart Development Team
+ * @copyright Copyright 2003-2012 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
  * @version $Id$
@@ -12,6 +12,11 @@ if (!defined('IS_ADMIN_FLAG')) {
   die('Illegal Access');
 }
 $zco_notifier->notify('NOTIFY_START_EZPAGES_FOOTERBAR');
+  if(isset($_SESSION['languages_id'])){
+        $rl_language = $_SESSION['languages_id'];
+    } else {
+        $rl_language=1;
+    }
 
 // test if bar should display:
 if (EZPAGES_STATUS_FOOTER == '1' or (EZPAGES_STATUS_FOOTER == '2' and (strstr(EXCLUDE_ADMIN_IP_FOR_MAINTENANCE, $_SERVER['REMOTE_ADDR'])))) {
@@ -19,7 +24,8 @@ if (EZPAGES_STATUS_FOOTER == '1' or (EZPAGES_STATUS_FOOTER == '2' and (strstr(EX
   if (isset($var_linksList)) {
     unset($var_linksList);
   }
-  $page_query = $db->Execute("select * from " . TABLE_EZPAGES . " where status_footer = 1 and footer_sort_order > 0 order by footer_sort_order, pages_title");
+// r.l. language_id
+  $page_query = $db->Execute("select * from " . TABLE_EZPAGES . " where status_footer = 1 and languages_id='$rl_language' and footer_sort_order > 0 order by footer_sort_order, pages_title");
   if ($page_query->RecordCount()>0) {
     $rows = 0;
     while (!$page_query->EOF) {
