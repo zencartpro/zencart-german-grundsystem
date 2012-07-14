@@ -1,0 +1,42 @@
+@charset "utf-8";
+/* CSS Document 
+$Id: rl_invoice3_dialog.css 486 2009-01-24 13:03:42Z hugo13 $
+*/
+
+#header {
+	position:absolute;
+	padding: 10px;
+	border: 2px double red;
+	margin-bottom:10px;
+	left: 697px;
+	top: 100px;
+	height: 80px;
+	width:300px;
+	color:#FFFFFF;
+	font-size:12px;
+	font-family:Arial, Verdana, sans-serif;
+}
+
+
+
+
+.cl {
+	clear:both;
+}
+
+
+
+
+.paper-format {
+	width: 20px; 
+}
+
+
+#donationbox {
+    display:none;
+	 visibility:hidden;
+}
+
+
+
+
