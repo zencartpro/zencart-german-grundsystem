@@ -1,9 +1,9 @@
 <?php
 /**
  * @package admin
- * @copyright Copyright 2003-2011 Zen Cart Development Team
+ * @copyright Copyright 2003-2012 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
- * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
+ * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
  * @version $Id$
  */
 if (!defined('IS_ADMIN_FLAG'))
@@ -609,7 +609,7 @@ define('TEXT_INFO_SET_MASTER_CATEGORIES_ID_WARNING', '<strong>WARNING:</strong> 
 define('PRODUCTS_PRICE_IS_CALL_FOR_PRICE_TEXT', 'Product is Call for Price');
 define('PRODUCTS_PRICE_IS_FREE_TEXT','Product is Free');
 
-define('TEXT_PRODUCT_WEIGHT_UNIT','lbs');
+define('TEXT_PRODUCT_WEIGHT_UNIT','kg');
 
 // min, max, units
 define('PRODUCTS_QUANTITY_MAX_TEXT_LISTING', 'Max:');
