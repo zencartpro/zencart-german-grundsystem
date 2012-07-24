@@ -6,7 +6,7 @@
  *
  * @author rainer AT langheiter DOT com // http://www.filosofisch.com // http://edv.langheiter.com
  * 
- * @version $Id: class.rl_invoice3.php 2012-07-12 17:14:06Z webchills $
+ * @version $Id: class.rl_invoice3.php 2012-07-24 20:14:06Z webchills $
  */
  
 define('FPDF_FONTPATH', DIR_FS_CATALOG . DIR_WS_INCLUDES . 'pdf/font/');
@@ -135,6 +135,8 @@ class rl_invoice3 extends fpdi {
         $this->db->Execute($sql);
         $sql = "DELETE FROM " . TABLE_ADMIN_PAGES . " WHERE page_key='toolsPDF3'";
         $this->db->Execute($sql);
+        $sql = "DELETE FROM " . TABLE_ADMIN_PAGES . " WHERE page_key='GeneratePDFInvoice'";
+        $this->db->Execute($sql);
     }
     function setTemplate($cp, $op) {
         #rldp($this->colsP, '$this->colsP');
@@ -178,6 +180,8 @@ class rl_invoice3 extends fpdi {
                     $sql = "INSERT INTO " . TABLE_ADMIN_PAGES . " (page_key,language_key,main_page,page_params,menu_key,display_on_menu,sort_order) VALUES ('configPDF3', 'BOX_CONFIGURATION_PDF3', 'FILENAME_CONFIGURATION', 'gID=".$group."', 'configuration', 'Y', '100')";
 		                $this->db->Execute($sql);
 		                $sql = "INSERT INTO " . TABLE_ADMIN_PAGES . " (page_key,language_key,main_page,page_params,menu_key,display_on_menu,sort_order) VALUES ('toolsPDF3','BOX_TOOLS_PDF3','RL_INVOICE3_ADMIN_FILENAME','','tools','Y','100')";
+		               $this->db->Execute($sql);
+		               $sql = "INSERT INTO " . TABLE_ADMIN_PAGES . " (page_key,language_key,main_page,page_params,menu_key,display_on_menu,sort_order) VALUES ('GeneratePDFInvoice','GENERATE_RL_INVOICE3','FILENAME_RL_INVOICE3','','customers','N','100')";
 		               $this->db->Execute($sql);
                 }
             } else {
