@@ -1,9 +1,9 @@
 <?php
 /**
  * @package admin
- * @copyright Copyright 2003-2011 Zen Cart Development Team
+ * @copyright Copyright 2003-2012 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
- * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
+ * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
  * @version $Id$
  */
 
@@ -196,7 +196,7 @@ switch ($action) {
 
   <h1><?php echo sprintf(HEADING_TITLE_INDIVIDUAL_PROFILE, $profileName) ?></h1>
 
-  <form id="profileBoxes" name="profileBoxes" action="<?php echo zen_href_link(FILENAME_PROFILES) ?>" method="post">
+  <?php echo zen_draw_form('profileBoxes', FILENAME_PROFILES, 'action=insert') ?>
     <input type="hidden" name="action" value="update"/>
     <input type="hidden" name="profile" value="<?php echo $profile ?>"/>
     <div class="formButtons">
