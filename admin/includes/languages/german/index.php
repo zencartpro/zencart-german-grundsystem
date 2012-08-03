@@ -1,15 +1,11 @@
 <?php
 /**
- * @package linkpoint_api_payment_module
- * @copyright Copyright 2003-2010 Zen Cart Development Team
+ * @package admin
+ * @copyright Copyright 2003-2012 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @translators: cyaneo/hugo13/wflohr/maleborg/webchills	http://www.zen-cart-pro.at
- * @version $Id: index.php 643 2010-09-23 22:54:04Z maleborg $
+ * @version $Id: index.php 2012-08-03 15:11:04Z webchills $
  */
-
-//  $Id: index.php 643 2010-09-23 22:54:04Z maleborg $
-//
 
 define('HEADING_TITLE', 'Bitte wählen Sie...');
 define('BOX_TITLE_ORDERS', 'Bestellungen');
@@ -34,7 +30,7 @@ define('TOOLS_FILES', 'Dateien');
 define('REPORTS_PRODUCTS', 'Artikel');
 define('REPORTS_ORDERS', 'Bestellungen');
 define('BOX_ENTRY_CUSTOMERS', 'Kunden:');
-define('BOX_ENTRY_NEWSLETTERS', 'Newsletter Abonnementen:');
+define('BOX_ENTRY_NEWSLETTERS', 'Newsletter Abonnenten:');
 define('BOX_ENTRY_PRODUCTS', 'Artikel:');
 define('BOX_ENTRY_PRODUCTS_OFF', 'Deaktivierte Artikel:');
 define('BOX_ENTRY_REVIEWS', 'Bewertungen:');
