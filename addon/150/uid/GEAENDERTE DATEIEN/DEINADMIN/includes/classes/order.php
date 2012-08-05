@@ -1,10 +1,10 @@
 <?php
 /**
  * @package admin
- * @copyright Copyright 2003-2011 Zen Cart Development Team
+ * @copyright Copyright 2003-2012 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: order.php for UID 2.0 2011-12-17 09:00:58Z webchills $
+ * @version $Id: order.php for UID 2.0 2012-08-05 09:00:58Z webchills $
  */
 
   class order {
@@ -39,7 +39,7 @@
                              where orders_id = '" . (int)$order_id . "'"); // TVA_INTRACOM
 
 
-      $totals = $db->Execute("select title, text, class
+      $totals = $db->Execute("select title, text, class, value
                               from " . TABLE_ORDERS_TOTAL . "
                               where orders_id = '" . (int)$order_id . "'
                               order by sort_order");

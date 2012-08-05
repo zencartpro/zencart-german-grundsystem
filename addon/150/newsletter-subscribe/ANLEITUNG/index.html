@@ -1,0 +1,259 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<title>Newsletter ohne Kundenkonto 2.3 für Zen-Cart 1.5 deutsch</title>
+<meta http-equiv="pragma" content="no-cache">
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
+<meta http-equiv="content-language" content="de">
+<meta name="description" content="Newsletter ohne Kundenkonto für Zen-Cart 1.5 deutsch">
+<link rel="stylesheet" type="text/css" href="includes/css/stylesheet.css">  
+<script type="text/javascript" src="includes/jscript/jscript_tabs.js"></script>
+</head>
+<body>
+<div id="wrapper">
+<div id="header">
+<h1>Newsletter ohne Kundenkonto 2.3 für Zen-Cart 1.5 deutsch</h1>
+</div>
+
+<div id="slidetabsmenu" style="display: none;">
+<ul>
+  <li> <a onClick="expandcontent('sc1', this)" href="javascript:void(0)"><span>Sinn und Zweck</span></a></li>
+  <li> <a onClick="expandcontent('sc2', this)" href="javascript:void(0)"><span>Installation</span></a></li>
+   <li> <a onClick="expandcontent('sc3', this)" href="javascript:void(0)"><span>Konfiguration</span></a></li>
+   <li> <a onClick="expandcontent('sc4', this)" href="javascript:void(0)"><span>Deinstallation</span></a></li>
+  <li> <a onClick="expandcontent('sc5', this)" href="javascript:void(0)"><span>Download & Support</span></a></li>
+  <li> <a onClick="expandcontent('sc6', this)" href="javascript:void(0)"><span>Unterstützen</span></a></li>
+ </ul>
+</div>
+<br style="clear: both;">
+
+<!--Begin tabcontainer-->
+<div id="tabcontentcontainer">
+
+<!--Begin sc1-->
+<div class="tabcontent" id="sc1" style="display: block;">
+<div class="textcontent">
+<div class="regularlist">
+
+<h2>Sinn und Zweck dieses Moduls</h2>
+
+  <p>    Shopbesucher können sich in den Newsletter eintragen, ohne ein Kundenkonto anzulegen.<br>
+    Solche Newsletter Abonnenten müssen ihre E-Mail Adresse vor dem Empfangen des Newsletters
+bestätigen (Double-Opt-In).</p>
+  <p>Ehemalige reine Newsletter Abonnenten, die sich später dafür entscheiden ein
+    Kundenkonto zu eröffnen, werden automatisch erkannt und aktualisiert, so dass
+    mehrfache Anmeldungen für dieselbe EMail Adresse nicht entstehen können.</p>
+<p>Unter Kunden-&gt; Newsletter Manager können die Newsletterabonnenten verwaltet, neue eingetragen und auch Emailadressen aus Textfiles importiert werden. Emailadressen, die ihr Abonnement länger als 90 Tage nicht bestätigt haben, können automatisch gelöscht werden.<br>
+  <br>
+  Deutsche Übersetzung/Anpassung des Moduls Newsletter Subscribe von Sara Jacobson:<br>
+  <a href="http://www.zen-cart.com/downloads.php?do=file&id=29">http://www.zen-cart.com/downloads.php?do=file&amp;id=29 </a><br>
+</p>
+<h3>Copyright,  Lizenz</h3>
+<p>Copyright dieser deutschen Anpassung/Anleitung für Zen-Cart 1.5 deutsch<br>
+(c) 2012 webchills (<a href="http://www.webchills.at" target="_blank">www.webchills.at</a>)</p>
+<p> Portions Copyright (c) 2003 osCommerce<br>
+  Portions Copyright     (c) 2003-2011 Zen Cart</p>
+<p>This contribution is subject to version 2.0 of the GPL license available through the world-wide-web at the following url:<br>
+  <a href="http://www.zen-cart-pro.at/license/2_0.txt">http://www.zen-cart-pro.at/license/2_0.txt</a></p>
+</div>
+</div>
+</div>
+<!--End sc1-->
+
+<!--Begin sc2-->
+<div class="tabcontent" id="sc2" style="display: block;">
+<div class="textcontent">
+<div class="regularlist">
+
+<h2>Installation</h2>
+<h3>Voraussetzungen</h3>
+  <br>
+  <p>Dieses Modul ist<strong> nur für Zen-Cart 1.5 deutsch geeignet</strong> und ändert zahlreiche sehr wichtige Corefiles.<br>
+    Es ist kein Modul, das Sie in 2 Minuten einfach hochladen können.<br>
+  <br>
+    Für den Einbau dieses Moduls sollten Sie über folgende Werkzeuge verfügen:<br>
+  <br>
+    1) Ein guter Texteditor. <br>
+    Damit ist nicht das in Windows enthaltene Notepad oder Microsoft Word gemeint.<br>
+    Sie benötigen einen Texteditor, der utf-8 versteht und auch im Format utf-8 ohne BOM abspeichern kann.<br>
+    Meine Empfehlung: <a href="http://www.ultraedit.com/loc/de/index_de.html" target="_blank">UltraEdit</a> (kostenlose 30 Tage Testversion verfügbar)<br>
+    Ebenfalls gut geeignet ist der kostenlose Texteditor <a href="http://notepad-plus.sourceforge.net/de/site.htm" target="_blank">Notepad++ </a><br>
+  </p>
+  <p>2) Ein Tool zum Vergleichen von Dateien<br>
+    Bei der Installation dieses Moduls ist es erforderlich, dass Sie den   Inhalt einiger Ihrer bestehenden Zen-Cart Dateien mit dem Inhalt der   neuen Moduldateien vergleichen und die Änderungen zusammenführen   ("mergen").<br>
+    Meine Empfehlung: <a href="http://www.scootersoftware.com/" target="_blank">BeyondCompare</a> (kostenlose 30 Tage Testversion verfügbar)<br>
+    Ebenfalls gut geeignet ist das kostenlose Programm <a href="http://winmerge.org/" target="_blank">WinMerge </a></p>
+  <p><br>
+  <strong>Empfehlung:</strong><br>
+  <br>
+  Dieses Modul erst in einem Testsystem einbauen und dort   konfigurieren/testen und endgültig an die eigenen Wünsche anpassen.        Erst dann in einem Liveshop einsetzen! Sichern Sie unbedingt alle   Dateien Ihres Shops per FTP und sichern Sie die Datenbank mit phpMyAdmin   oder anderen geeigneten Tools!</p>
+<div id="warning"><b>WICHTIG</b><br>
+Vor dem Einbau dieser Änderungen:<br>
+BACKUP von Shop und Datenbank machen! <br>
+Keine Haftung, Verwendung auf eigene Gefahr!<br>
+BACKUP gemacht? Ok, dann weiterlesen...
+</div>
+<p>Die Installation erfolgt in folgenden Schritten. Halten Sie diesen Ablauf ein!</p>
+<p>1) <br>
+  Im Ordner NEUE DATEIEN alle Ordner namens DEINTEMPLATE auf das im Shop   verwendete Template umbennen (z.B. viennabright, classic, ...). Den   Ordner DEINADMIN auf den Namen Ihres admin Verzeichnisses   umbenennen.</p>
+<p>2) <br>
+  Dann alle Dateien/Ordner aus dem Ordner NEUE DATEIEN in der vorgegebenen Struktur in die Zen-Cart Installation hochladen. <br>
+  Dabei werden keine bestehende Datei überschrieben.</p>
+<p>3)<br>
+  Im Ordner GEAENDERTE DATEIEN alle Ordner namens DEINTEMPLATE auf das   im Shop verwendete Template umbennen (z.B. viennabright, classic, ...).   Den Ordner DEINADMIN auf den Namen Ihres admin Verzeichnisses   umbenennen.<br>
+  Wenn Sie Zen-Cart 1.5 gerade frisch installiert haben und noch   keinerlei Änderungen an den Dateien vorgenommen haben, können Sie nun  alle Dateien/Ordner aus dem Ordner GEAENDERTE DATEIEN in der   vorgegebenen Struktur in die Zen-Cart Installation hochladen. Dabei   werden dann etliche Dateien überschrieben.<br>
+  Wenn Sie Zen-Cart 1.5 schon länger im Einsatz haben und schon einmal   Änderungen an Dateien vorgenommen oder andere Module eingebaut haben,   dann laden Sie die Dateien keinesfalls einfach hoch. <br>
+  Vergleichen Sie alle Dateien im Ordner GEAENDERTE DATEIEN mit den   entsprechenden Dateien in Ihrem Shop und nehmen Sie die Änderungen   manuell per WinMerge oder BeyondCompare vor.<br>
+  Dann spielen Sie die geänderten Dateien in der gezeigten Struktur ein.</p>
+<p>4)<br>
+  Loggen Sie sich nun in die Zen-Cart Administration ein und clicken auf irgendeinen Menüpunkt. Nun ist unter Kunden der neue Menüpunkt Newsletter Manager vorhanden.<br>
+Wählen Sie nun diesen Menüpunkt, es erscheint die Meldung:<br>
+Das Newsletter ohne Kundenkonto Modul ist noch nicht installiert worden.<br>
+Klicken Sie nun rechts oben auf Installieren, dadurch wird das Modul datenbankseitig hinterlegt. Es wird eine neue Tabelle namens subscribers angelegt, in der später die Abonnenten gespeichert werden und es werden die Konfiguraionseinstellungen in verschiedenen Untermenüs eingerichtet.</p>
+<p>5)<br>
+  Unter Tools &gt; Boxlayout nun die neu hinzugekommene Sidebox aktivieren.
+</p>
+<p>&nbsp;</p>
+</div>
+</div>
+</div>
+
+<!--End sc2-->
+
+<!--Begin sc3-->
+<div class="tabcontent" id="sc3" style="display: block;">
+<div class="textcontent">
+<div class="regularlist">
+
+<h2>KONFIGURATION<strong> und VERWENDUNG</strong></h2>
+<p><b>Einstellungsmöglichkeiten in der Zen-Cart Administration</b></p>
+<p> Durch die Installation sind in verschiedenen Adminmenüs neue Optionen hinzugekommen:<br>
+  <strong><br>
+    Konfiguration &gt; Mein Shop &gt; Newsletter ohne Kundenkonto aktivieren</strong><br> 
+    Steht nach der Installation auf true.
+    <br>
+    Auf false stellen, um das Modul zu deaktivieren.
+    <br>
+    <br>
+    <strong>Konfiguration &gt; Email Optionen &gt; Benachrichtigung über Newsletteranmeldung an Admin senden?</strong><br>
+Steht nach der Installation auf 0. <br>
+Auf 1 stellen, um ein Mail an die eingestellte Emailadresse zu senden, wenn ein Besucher den Newsletter abonniert</p>
+<p><strong>Konfiguration &gt; Email Optionen &gt; Emailadresse für Benachrichtigung über Newsletteranmeldung</strong><br>
+  Hier die gewünschte Admin Emailadresse eintragen</p>
+<p><strong>Konfiguration &gt; Email Optionen &gt; Emailadressen für Newsletter Tests</strong><br>
+  Geben Sie hier die   Emailadressen von Kunden und von Newsletterabonnenten ohne Kundenkonto   ein, die Sie für Test Emails verwenden wollen.<br>
+  Hinweis: Diese Adressen müssen den Newsletter abonniert haben! <br>
+  <br>
+  <strong>Konfiguration &gt; Layouteinstellungen &gt; Newsletteranmeldung im Header anzeigen</strong><br>
+  Steht nach der Installation auf false.<br>
+  Wenn Sie hier auf true stellen lässt sich statt der Sidebox die Newsletteranmeldung auch im Header anzeigen. Dazu müssen Sie Ihre includes/templates/DEMPLATE/DEINTEMPLATE/common/tpl_header.php editieren und an der gewünschten Stelle folgenden Code einfügen:<br>
+  <code>&lt;?php <br>
+// BEGIN newsletter_subscribe mod 1/1<br>
+if(defined('NEWSONLY_SUBSCRIPTION_ENABLED') &amp;&amp;<br>
+(NEWSONLY_SUBSCRIPTION_ENABLED=='true') &amp;&amp;<br>
+(NEWSONLY_SUBSCRIPTION_HEADER=='true')) {<br>
+include(DIR_WS_MODULES . zen_get_module_directory(FILENAME_SUBSCRIBE_HEADER));<br>
+}<br>
+// END newsletter_subscribe mod 1/1 <br>
+?&gt;</code></p>
+<p>Einfacher und in den meisten Layouts auch schöner ist die Einbindung per Sidebox.<br>
+  <br>
+  Unter <strong>Tools &gt; Seiteneditor</strong> können die beiden neu hinzugekommenen Seiten für die Newsletteranmeldung und Newsletterabmeldung editiert werden (define_subscribe und define_unsubscribe).</p>
+<p><b>Verwendung</b></p>
+  <p>Unter <strong>Kunden &gt; Newsletter Manager</strong> finden Sie eine Übersicht aller Newsletter-Abonnenten. Egal ob die sich nun als Newsletter Only eingetragen haben oder im Zuge einer normalen Registrierung. Hier können Sie neue Email-Adressen eintragen, die sofort ohne Bestätigung aufgenommen werden sollen.<br>
+  Auch ein Import von Emailadresen ist hier möglich. Am einfachsten ist ein Import aus einer Textdatei, die in jeder Zeile einfach nur die Emailadresse enthält.
+    <br>
+    Abonnenten, die ihre Emailadresse länger als 90 Tage nicht bestätigt haben, können hier gelöscht werden, um Datenmüll zu reduzieren.<br>
+    <br>
+    Der Newsletterversand findet weiterhin unter Tools &gt; Newsletter &amp; Artikelbenachrichtigungen Manager statt.<br>
+    Unter Tools &gt; Rundschreiben
+  stehen nun neue Kundengruppen zur Verfügung.<br>
+  Die Testgruppen, die Sie unter Konfiguration &gt; Emailoptionen befüllen können und Newsletter Only Subscribers so dass diese Gruppe auch gezielt angemailt werden könnte.
+  </p>
+</div>
+</div>
+</div>
+<!--End sc3-->
+
+<!--Begin sc4-->
+<div class="tabcontent" id="sc4" style="display: block;">
+<div class="textcontent">
+<div class="regularlist">
+
+<h2>DEINSTALLATION</h2>
+<p>Um das Modul vollständig zu entfernen:</p>
+<p>1.<br>
+  Kunden &gt; Newsletter Manager<br>
+  Rechts oben auf den Button &quot;Entfernen&quot;
+  <br>
+  <strong>Vorsicht:<br>
+  Dabei werden nicht nur die Konfigurationseinträge gelöscht sondern auch die gesamte Tabelle subscribers gelöscht, die die Abonnenten enthält.<br>
+  Wenn Sie vorhaben, das Modul nochmals zu verwenden , sichern Sie vorher diese Tabelle samt Inhalt mit phpMyAdmin!
+  </strong></p>
+<p>2.<br>
+  Alle von diesem Modul neu angelegten Dateien vom Server löschen.<br>
+  Alle von diesem Modul geänderten Dateien wieder mit den Originalversionen bzw. den Dateien Ihres Backups ersetzen.</p>
+</div>
+</div>
+</div>
+<!--End sc4-->
+
+<!--Begin sc5-->
+<div class="tabcontent" id="sc5" style="display: block;">
+<div class="textcontent">
+<div class="regularlist">
+<h2>Download &amp; Support</h2>
+<p>Download des Moduls:</p>
+<p><a href="http://www.zen-cart-pro.at/zcvb/forum/downloads.php" target="_blank">www.zen-cart-pro.at/zcvb/forum/downloads.php</a></p>
+
+<p>Supportforum zum Modul:</p>
+<p><a href="http://www.zen-cart-pro.at/zcvb/forum" target="_blank">www.zen-cart-pro.at/zcvb/forum</a></p>
+</div>
+</div>
+</div>
+<!--End sc5-->
+
+<!--Begin sc6-->
+<div class="tabcontent" id="sc6" style="display: block;">
+<div class="textcontent">
+<div class="regularlist">
+
+<h2>Unterstützen</h2>
+<p>Sie finden dieses Modul nützlich?</p>
+<p>Sie haben vom Support im Forum auf www.zen-cart-pro.at profitiert?</p>
+<p>Unterstützen Sie die Weiterentwicklung der deutschen Zen-Cart Version.<br/>Wir freuen uns über Spenden zur Finanzierung des Servers und der vBulletin-Lizenz: </p>
+<form action="https://www.paypal.com/cgi-bin/webscr" method="post">
+<input type="hidden" name="cmd" value="_s-xclick">
+<input type="hidden" name="hosted_button_id" value="D8HDC4GJE2386">
+<input type="image" src="https://www.paypalobjects.com/de_DE/AT/i/btn/btn_donateCC_LG.gif" border="0" name="submit" alt="Jetzt einfach, schnell und sicher online bezahlen – mit PayPal.">
+<img alt="" border="0" src="https://www.paypalobjects.com/de_DE/i/scr/pixel.gif" width="1" height="1">
+</form>
+
+<br/><br/>
+</div>
+</div>
+</div>
+<!--End sc6-->
+</div>
+<div id="footer">
+Ein Modul von <a href="http://www.zen-cart-pro.at" target="_blank">www.zen-cart-pro.at</a> - Die deutsche Zen-Cart Version
+</div>
+</div>
+<!--end tabcontainer-->
+<script type="text/javascript">document.getElementById('sc1').style.display = 'none';</script>
+<script type="text/javascript">document.getElementById('sc2').style.display = 'none';</script>
+<script type="text/javascript">document.getElementById('sc3').style.display = 'none';</script>
+<script type="text/javascript">document.getElementById('sc4').style.display = 'none';</script>
+<script type="text/javascript">document.getElementById('sc5').style.display = 'none';</script>
+<script type="text/javascript">document.getElementById('sc6').style.display = 'none';</script>
+<script type="text/javascript">ShowTabs()</script>
+<script type="text/javascript">
+// We only show the tab links if JavaScript is available/active.
+<!--
+if (document.getElementById("slidetabsmenu") != null) {
+  document.getElementById('slidetabsmenu').style.display = "block";
+}
+//-->
+</script>
+
+</body></html>
