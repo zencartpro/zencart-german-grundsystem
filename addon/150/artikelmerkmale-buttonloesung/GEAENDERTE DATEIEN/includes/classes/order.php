@@ -5,7 +5,7 @@
  * @package classes
  * @copyright Copyright 2003-2012 Zen Cart Development Team
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: order.php für Buttonlösung 2012-06-21 19:26:25Z webchills $
+ * @version $Id: order.php für Buttonlösung 1.2 2012-08-05 09:26:25Z webchills $
  */
 /**
  * order class
@@ -198,7 +198,6 @@ class order extends base {
       $this->products[$index] = array('qty' => $new_qty,
                                       'id' => $orders_products->fields['products_id'],
                                       'name' => $orders_products->fields['products_name'],
-                                       'merkmale' => $orders_products->fields['products_merkmale'],
                                       'model' => $orders_products->fields['products_model'],
                                       'tax' => $orders_products->fields['products_tax'],
                                       'price' => $orders_products->fields['products_price'],
@@ -444,6 +443,7 @@ class order extends base {
                                       'name' => $products[$i]['name'],
                                       'merkmale' => $products[$i]['merkmale'],
                                       'model' => $products[$i]['model'],
+                                      'image' => $products[$i]['image'], 
                                       'tax' => zen_get_tax_rate($products[$i]['tax_class_id'], $taxCountryId, $taxZoneId),
                                       'tax_groups'=>$taxRates,
                                       'tax_description' => zen_get_tax_description($products[$i]['tax_class_id'], $taxCountryId, $taxZoneId),

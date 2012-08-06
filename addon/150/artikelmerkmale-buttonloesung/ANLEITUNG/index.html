@@ -1,7 +1,7 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
-<title>Artikelmerkmale für Buttonlösung 1.1 für Zen-Cart 1.5 deutsch</title>
+<title>Buttonlösung 2.0 für Zen-Cart 1.5 deutsch</title>
 <meta http-equiv="pragma" content="no-cache">
 <meta http-equiv="content-type" content="text/html; charset=utf-8">
 <meta http-equiv="content-language" content="de">
@@ -12,13 +12,14 @@
 <body>
 <div id="wrapper">
 <div id="header">
-<h1>Artikelmerkmale für Buttonlösung 1.1 für Zen-Cart 1.5 deutsch</h1>
+<h1>Buttonlösung 2.0 für Zen-Cart 1.5 deutsch</h1>
 </div>
 
 <div id="slidetabsmenu" style="display: none;">
 <ul>
   <li> <a onClick="expandcontent('sc1', this)" href="javascript:void(0)"><span>Sinn und Zweck</span></a></li>
   <li> <a onClick="expandcontent('sc2', this)" href="javascript:void(0)"><span>Installation</span></a></li>
+  
    <li> <a onClick="expandcontent('sc4', this)" href="javascript:void(0)"><span>Deinstallation</span></a></li>
   <li> <a onClick="expandcontent('sc5', this)" href="javascript:void(0)"><span>Download & Support</span></a></li>
   <li> <a onClick="expandcontent('sc6', this)" href="javascript:void(0)"><span>Unterstützen</span></a></li>
@@ -37,13 +38,16 @@
 <h2>Sinn und Zweck dieses Moduls</h2>
 
   <p>Dies ist eine Erweiterung für die Umsetzung der sogenannten "Buttonlösung" in Zen-Cart 1.5 deutsch<br/>
-In der Zen-Cart Administration ist damit beim Bearbeiten eines Artikels unterhalb des Artikelnamens ein neues Zusatzfeld vorhanden, in dem die "wesentlichen Merkmale der Ware" eingetragen werden können:</p>
-<img src="images/buttonloesung1.jpg" alt="Administration"/>
-    <p>Auf der letzten Seite des Bestellvorgangs werden die dort hinterlegten Merkmale dann in der Warenkorbinhaltsübersicht unterhalb des Artikelnamens angezeigt:</p>
-    <img src="images/buttonloesung2.jpg" alt="Bestellung bestätigen"/>
-    <p>Enthalten sind auch geänderte Texte für die letzte Seite des Bestellvorgangs und ein passender Button.
-    
-  </p>
+In der Zen-Cart Administration ist damit beim Bearbeiten eines Artikels unterhalb des Artikelnamens ein neues Zusatzfeld vorhanden, in dem die "wesentlichen Merkmale der Ware" eingetragen werden können.</p>
+  <p>Auf der letzten Seite des Bestellvorgangs werden die dort hinterlegten Merkmale dann in der Warenkorbinhaltsübersicht unterhalb des Artikelnamens angezeigt. Zu Beginn der letzten Seite sind AGB und Widerrufsrecht nochmals verlinkt.<br>
+      Es gibt eine neue eigene Spalte für den Einzelpreis und das Artikelbild und der gesamte Bereich von Warenkorbinhalt bis zum Kaufen Button ist farblich unterlegt. Die Endsumme wird fett dargestellt:
+      <br>
+      <br>
+      <img src="images/buttonloesung_bestellschritt3.jpg" width="616" height="936" alt="Schritt 3">    <br>
+      Wenn die Lieferadresse in einem Nicht-EU Land liegt, erscheint ein Hinweis auf mögliche Zölle und andere Gebühren:</p>
+    <p><img src="images/buttonloesung_zollhinweis.jpg" width="594" height="152" alt="Zoll"></p>
+    <br>
+<p>&nbsp;</p>
 
 <h3>Copyright,  Lizenz</h3>
 <p>Copyright dieser deutschen Anpassung/Anleitung für Zen-Cart 1.5 deutsch<br>
@@ -53,7 +57,10 @@ In der Zen-Cart Administration ist damit beim Bearbeiten eines Artikels unterhal
 Portions Copyright (c) 2003 osCommerce<br>
   Portions Copyright     (c) 2003-2012 Zen Cart</p>
 <p>This contribution is subject to version 2.0 of the GPL license available through the world-wide-web at the following url:<br>
-  <a href="http://www.zen-cart-pro.at/license/2_0.txt">http://www.zen-cart-pro.at/license/2_0.txt</a></p>
+  <a href="http://www.zen-cart-pro.at/license/2_0.txt">http://www.zen-cart-pro.at/license/2_0.txt</a><br>
+  <br>
+  <br>
+</p>
 </div>
 </div>
 </div>
@@ -69,8 +76,7 @@ Portions Copyright (c) 2003 osCommerce<br>
   <br>
   Dieses Modul ist<strong> nur für die deutsche Zen-Cart 1.5 Version geeignet</strong></p>
   
-  <p><br>
-  Für den Einbau dieses Moduls sollten Sie über folgende Werkzeuge verfügen:<br>
+  <p>  Für den Einbau dieses Moduls sollten Sie über folgende Werkzeuge verfügen:<br>
   <br>
   <strong>1) Ein guter Texteditor </strong><br>
   Damit ist nicht das in Windows enthaltene Notepad oder Microsoft Word gemeint.<br>
@@ -92,13 +98,18 @@ BACKUP von Shop und Datenbank machen! <br>
 Keine Haftung, Verwendung auf eigene Gefahr!<br>
 BACKUP gemacht? Ok, dann weiterlesen...
 </div>
-<p>Die Installation erfolgt in folgenden Schritten. Halten Sie diesen Ablauf ein!</p>
+<p><strong>Hinweis:</strong><br>
+  Falls Sie bereits eine ältere Version dieses Moduls verwenden (Artikelmerkmale für Buttonlösung 1.1) führen Sie dieselben Schritte durch wie unter Neuinstallation beschrieben. Einziger Unterschied: Verwenden Sie die Datei update.sql im Ordner SQL!<br>
+  <br>
+Die <strong>Neuinstallation</strong> erfolgt in folgenden Schritten. Halten Sie diesen Ablauf ein!</p>
 <p>1.<br>
   Die Datei install.sql im Ordner SQL mit einem Texteditor öffen und den Inhalt kopieren</p>
 <p>2.<br>
   In der Zen-Cart Administration unter Tools &gt; SQL Patches installieren ins Eingabefeld kopieren und absenden.<br>
   Dadurch wird die Tabelle products_description mit einem neuen Feld für die Artikelmerkmale erweitert.<br>
-  Unter Konfiguration &gt; Mein Shop wird ein neuer Menüpunkt angelegt, mit dem die Buttonlösung aus. und eingeschaltet werden kann.<br>
+  Unter Konfiguration &gt; Mein Shop wird ein neuer Menüpunkt angelegt, mit dem die Buttonlösung aus- und eingeschaltet werden kann.<br>
+  Unter Konfiguration &gt; Mein Shop
+  wird ein neuer Menüpunkt angelegt, in dem die EU-Mitgliedsstaaten hinterlegt werden (nötig für den Hinweis auf Zölle bei Lieferung außerhalb der EU).<br>
   <br>
   3.<br>
   Neue Dateien des Moduls einspielen:
@@ -115,6 +126,11 @@ BACKUP gemacht? Ok, dann weiterlesen...
   5.<br>
   Überprüfen Sie unter Konfiguration &gt; Mein Shop &gt; Artikelmerkmale für Buttonlösung aktivieren ob diese Einstellung auf true steht<br>
   Nun können Sie bei jedem Artikel die wesentlichen Artikelmerkmale eintragen.</p>
+<p>6.<br>
+  Feinabstimmung des Layouts (z.B. Hintergrundfarben für Warenkorbinhalt) in der includes/templates/DEINTEMPLATE/css/stylesheet_buttonloesung.css vornehmen.<br>
+  Die Texte, die im letzten Bestellschritt erscheinen auf die eigenen Wünsche anpassen in includes/languages/german/DEINTEMPLATE/checkout_confirmation.php
+  <br>
+</p>
   <p><strong>HINWEIS:<br>
     Da etliche Dinge in dieser &quot;Buttonlösung&quot; unklar formuliert bzw, noch nicht rechtlich geklärt sind:<br>
     Keine Haftung für eine Abmahnsicherheit durch diese Erweiterung!<br>

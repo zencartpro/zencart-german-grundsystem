@@ -4,7 +4,7 @@
  * @copyright Copyright 2003-2012 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: product.php für Buttonlösung 2012-06-12 20:49:16Z webchills $
+ * @version $Id: product.php für Buttonlösung 2012-08-05 20:49:16Z webchills $
  */
 
 define('HEADING_TITLE', 'Categories / Products');
@@ -87,7 +87,7 @@ define('TEXT_PRODUCTS_QTY_BOX_STATUS_OFF', 'No, Do not show Quantity Box');
 
 define('TEXT_PRODUCTS_MANUFACTURER', 'Products Manufacturer:');
 define('TEXT_PRODUCTS_NAME', 'Products Name:');
-define('TEXT_PRODUCTS_MERKMALE', 'Merkmale für Buttonlösung:');
+define('TEXT_PRODUCTS_MERKMALE', 'Additional Info for Buttonlösung:');
 define('TEXT_PRODUCTS_DESCRIPTION', 'Products Description:');
 define('TEXT_PRODUCTS_QUANTITY', 'Products Quantity:');
 define('TEXT_PRODUCTS_MODEL', 'Products Model:');
