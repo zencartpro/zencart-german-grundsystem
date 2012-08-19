@@ -4,8 +4,7 @@
  * @copyright Copyright 2003-2012 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @translator: cyaneo/hugo13/wflohr/maleborg	http://www.zen-cart-pro.at	2007-01-03
- * @version $Id: button_names.php 628 2012-03-07 17:05:14Z webchills $
+ * @version $Id: button_names.php 629 2012-07-05 11:05:14Z webchills $
  */
 
 
@@ -52,10 +51,6 @@ define('BUTTON_IMAGE_READ_REVIEWS', 'button_read_reviews.gif');
 define('BUTTON_IMAGE_GOTO_PROD_DETAILS', 'button_goto_prod_details.gif');
 define('BUTTON_IMAGE_MORE_REVIEWS', 'button_more_reviews.gif');
 define('BUTTON_IMAGE_CONTINUE_CHECKOUT', 'button_continue_checkout.gif');
-//define('PREVNEXT_BUTTON_NEXT', '[Next&nbsp;&gt;&gt;]');
-//define('PREVNEXT_BUTTON_LAST', 'LAST&gt;&gt;');
-
-
 define('BUTTON_IMAGE_CREATE_ACCOUNT', 'button_create_account.gif');
 define('BUTTON_IMAGE_LOG_OFF', 'button_logoff.gif');
 

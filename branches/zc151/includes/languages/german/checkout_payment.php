@@ -4,14 +4,13 @@
  * @copyright Copyright 2003-2012 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @translators: cyaneo/hugo13/wflohr/maleborg/webchills	http://www.zen-cart-pro.at
- * @version $Id: checkout_payment.php 627 2010-08-30 15:05:14Z webchills $
+ * @version $Id: checkout_payment.php 628 2012-07-05 11:05:14Z webchills $
  */
 
-define('NAVBAR_TITLE_1', 'Kasse - Schritt 1');
-define('NAVBAR_TITLE_2', 'Zahlungsart - Schritt 2');
+define('NAVBAR_TITLE_1', 'Bestellung - Schritt 1');
+define('NAVBAR_TITLE_2', ' Schritt 2 - Zahlungsart wählen');
 
-define('HEADING_TITLE', 'Schritt 2 von 3 , Zahlungsinformationen');
+define('HEADING_TITLE', 'Schritt 2 von 3 : Zahlungsinformationen');
 
 define('TABLE_HEADING_BILLING_ADDRESS', 'Rechnungsanschrift');
 define('TEXT_SELECTED_BILLING_DESTINATION', 'Ihre Rechnungsanschrift steht links. Sie können Ihre Rechnungsanschrift ändern indem Sie auf <em>Adresse ändern</em> klicken.');

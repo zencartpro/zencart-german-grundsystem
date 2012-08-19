@@ -5,7 +5,7 @@
 # * @copyright Copyright 2003-2012 Zen Cart Development Team
 # * @copyright Portions Copyright 2003 osCommerce
 # * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
-# * @version $Id: mysql_zencart.sql 19327 2012-08-05 13:35:59Z webchills $
+# * @version $Id: mysql_zencart.sql 19328 2012-08-19 13:35:59Z webchills $
 #
 
 ############ IMPORTANT INSTRUCTIONS ###############
@@ -1559,6 +1559,7 @@ CREATE TABLE products_description (
   products_id int(11) NOT NULL auto_increment,
   language_id int(11) NOT NULL default '1',
   products_name varchar(64) NOT NULL default '',
+  products_merkmale varchar(128) NOT NULL default '',
   products_description text,
   products_url varchar(255) default NULL,
   products_viewed int(5) default '0',
