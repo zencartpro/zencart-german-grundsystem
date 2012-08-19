@@ -71,7 +71,7 @@ ALTER TABLE admin_activity_log CHANGE COLUMN ip_address ip_address varchar(20) N
 ALTER TABLE whos_online CHANGE COLUMN ip_address ip_address varchar(20) NOT NULL default '';
 
 # buttonloesung
-ALTER TABLE `products_description` ADD `products_merkmale` VARCHAR( 128 ) NOT NULL DEFAULT '';
+ALTER TABLE products_description ADD COLUMN products_merkmale varchar(128) NOT NULL default '' AFTER products_name;
 
 ALTER TABLE admin ADD COLUMN admin_profile int(11) NOT NULL default '0' AFTER admin_email;
 ALTER TABLE admin ADD INDEX idx_admin_profile_zen (admin_profile);

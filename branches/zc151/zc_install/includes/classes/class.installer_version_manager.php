@@ -8,7 +8,7 @@
  * @copyright Copyright 2003-2012 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: class.installer_version_manager.php 840 2012-01-30 18:58:25Z webchills $
+ * @version $Id: class.installer_version_manager.php 841 2012-08-18 09:58:25Z webchills $
  */
 
 
@@ -78,6 +78,7 @@ require_once(DIR_FS_CATALOG . 'includes/' . 'functions/extra_functions/rl_tools.
       $this->version138 = $this->check_version_138();
       $this->version139 = $this->check_version_139();
       $this->version150 = $this->check_version_150();
+  
 	  $this->version138multi2 = $this->check_version_138multi2();
 	  $this->version139multi2 = $this->check_version_139multi2();
 
@@ -102,7 +103,8 @@ require_once(DIR_FS_CATALOG . 'includes/' . 'functions/extra_functions/rl_tools.
         if ($this->version137 == true) $retVal = '1.3.7';
         if ($this->version138 == true) $retVal = '1.3.8';
         if ($this->version139 == true) $retVal = '1.3.9';
-        if ($this->version150 == true) $retVal = '1.5.0';
+         if ($this->version150 == true) $retVal = '1.5.0';
+     
 		if ($this->version138multi2 == true) $retVal = '1.3.8multi2';
 			if ($this->version139multi2 == true) $retVal = '1.3.9multi2';
 

@@ -95,7 +95,7 @@ $sniffer_text = '';
     }
     $needs_v1_5_0=false;
     if (!$dbinfo->version150) {
-      $sniffer_text =  ' upgrade v1.3.9 to v1.5.0';
+      $sniffer_text =  ' upgrade v1.3.9 to v1.5.1';
       $needs_v1_5_0=true;
     }
     $needs_v1_3_9=false;
