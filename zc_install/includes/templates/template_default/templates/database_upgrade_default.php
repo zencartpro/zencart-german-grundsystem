@@ -130,7 +130,7 @@
     </div>
 	<div class="input">
       <input <?php if ($needs_v1_5_0) {echo "checked";} ?> name="version[]" type="checkbox" id="checkbox22" value="1.3.9" tabindex="22" />
-      <label for="checkbox22">Upgrade DB from 1.3.9 to 1.5.0</label>
+      <label for="checkbox22">Upgrade DB from 1.3.9 to 1.5.1</label>
     </div>
     <div class="input">
       <input <?php if ($needs_multilingual) {echo "checked";} ?> name="version[]" type="checkbox" id="checkbox23" value="multilingual" tabindex="15" />
