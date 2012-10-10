@@ -1,9 +1,9 @@
 <?php
 /**
  * @package admin
- * @copyright Copyright 2003-2011 Zen Cart Development Team
+ * @copyright Copyright 2003-2012 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
- * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
+ * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
  * @version $Id$
  */
 
@@ -122,7 +122,8 @@
 
     reset($_GET);
     while (list($key, $value) = each($_GET)) {
-      if (($key != zen_session_name()) && ($key != 'error') && (!in_array($key, $exclude_array))) $get_url .= $key . '=' . $value . '&';
+      if (($key != zen_session_name()) && ($key != 'error') && (!in_array($key, $exclude_array))) 
+        $get_url .= zen_sanitize_string($key) . '=' . rawurlencode(stripslashes($value)) . '&';  
     }
 
     return $get_url;
