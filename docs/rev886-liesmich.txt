@@ -1,0 +1,17 @@
+Zen-Cart 1.5 deutsch Revision 886 vom 10.10.2012
+
+geänderte Dateien gegenüber Revision 857 vom 15.03.2012
+
+admin/profiles.php
+admin/includes/functions/general.php
+admin/includes/languages/english.php
+admin/includes/languages/german/index.php
+admin/includes/languages/german/modules.php
+includes/init_includes/init_customer_auth.php
+includes/languages/english.php
+includes/languages/german.php
+includes/languages/german/checkout_confirmation.php
+includes/languages/german/download.php
+includes/modules/ezpages_bar_footer.php
+includes/modules/ezpages_bar_header.php
+includes/modules/sideboxes/ezpages.php
