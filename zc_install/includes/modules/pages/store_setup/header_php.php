@@ -4,8 +4,8 @@
  * @access private
  * @copyright Copyright 2003-2012 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
- * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: header_php.php 730 2011-08-09 17:26:53Z hugo13 $
+ * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
+ * @version $Id: header_php.php 731 2012-11-17 10:26:53Z webchills $
  */
 
   @define('SQL_CACHE_METHOD', 'none');
@@ -98,6 +98,16 @@
 
   if (!isset($_POST['demo_install'])) $_POST['demo_install']=false;
 
+  // quick sanitization
+  foreach($_POST as $key=>$val) {
+    if(is_array($val)){
+      foreach($val as $key2 => $val2){
+        $_POST[$key][$key2] = htmlspecialchars($val2, ENT_COMPAT, CHARSET, TRUE);
+      }
+    } else {
+      $_POST[$key] = htmlspecialchars($val, ENT_COMPAT, CHARSET, TRUE);
+    }
+  }
   setInputValue($_POST['store_name'], 'STORE_NAME_VALUE', '');
   setInputValue($_POST['store_owner'], 'STORE_OWNER_VALUE', '');
   setInputValue($_POST['store_owner_email'], 'STORE_OWNER_EMAIL_VALUE', '');

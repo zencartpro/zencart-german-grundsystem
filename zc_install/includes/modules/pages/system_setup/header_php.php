@@ -4,8 +4,8 @@
  * @access private
  * @copyright Copyright 2003-2012 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
- * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: header_php.php 733 2011-08-10 07:30:11Z hugo13 $
+ * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
+ * @version $Id: header_php.php 734 2012-11-17 11:30:11Z webchills $
  * @TODO: If SSL is selected, switch into SSL mode to prove that it works.
  */
 
@@ -103,3 +103,20 @@ if ($is_upgrade) {
     exit;
     }
   }
+  // quick sanitization
+  foreach($_POST as $key=>$val) {
+    if(is_array($val)){
+      foreach($val as $key2 => $val2){
+        $_POST[$key][$key2] = htmlspecialchars($val2, ENT_COMPAT, CHARSET, TRUE);
+      }
+    } else {
+      $_POST[$key] = htmlspecialchars($val, ENT_COMPAT, CHARSET, TRUE);
+    }
+  }
+
+  setInputValue($_POST['physical_path'], 'PHYSICAL_PATH_VALUE', $dir_fs_www_root);
+  setInputValue($_POST['virtual_http_path'], 'VIRTUAL_HTTP_PATH_VALUE', 'http://' . $virtual_path);
+  setInputValue($_POST['virtual_https_path'], 'VIRTUAL_HTTPS_PATH_VALUE', 'https://' . $virtual_https_path);
+  setInputValue($_POST['virtual_https_server'], 'VIRTUAL_HTTPS_SERVER_VALUE', 'https://' . $virtual_https_server);
+  setRadioChecked($_POST['enable_ssl'], 'ENABLE_SSL', $enable_ssl);
+  setRadioChecked($_POST['enable_ssl_admin'], 'ENABLE_SSL_ADMIN', $enable_ssl_admin);

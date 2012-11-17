@@ -3,8 +3,8 @@
  * @package admin
  * @copyright Copyright 2003-2012 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce<br />
- * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: users.php 729 2011-08-09 15:49:16Z hugo13 $
+ * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
+ * @version $Id: users.php 730 2012-11-06 09:49:16Z webchills $
  */
 
 require('includes/application_top.php');
@@ -185,8 +185,8 @@ $userList = zen_get_users();
         <td class="name"><?php echo zen_draw_input_field('name', isset($_POST['name']) ? $_POST['name'] : '', 'class="field"', false, 'text', true) ?></td>
         <td class="email"><?php echo zen_draw_input_field('email', isset($_POST['email']) ? $_POST['email'] : '', 'class="field"', false, 'text', true) ?></td>
         <td class="profile"><?php echo zen_draw_pull_down_menu('profile', $profilesList, isset($_POST['profile']) ? $_POST['profile'] : 0) ?></td>
-        <td class="password"><input type="password" name="password" class="field" value="<?php echo isset($_POST['password']) ? $_POST['password'] : '' ?>"/></td>
-        <td class="confirm"><input type="password" name="confirm" class="field" value="<?php echo isset($_POST['confirm']) ? $_POST['confirm'] : '' ?>"/></td>
+        <td class="password"><?php echo zen_draw_input_field('password', isset($_POST['password']) ? $_POST['password'] : '', ' class="field"', false, 'password'); ?></td>
+        <td class="confirm"><?php echo zen_draw_input_field('confirm', isset($_POST['confirm']) ? $_POST['confirm'] : '', ' class="field"', false, 'password'); ?></td>
         <td class="actions"><?php echo zen_image_submit('button_insert.gif', IMAGE_INSERT) ?> <a href="<?php echo zen_href_link(FILENAME_USERS) ?>"> <?php echo zen_image_button('button_cancel.gif', IMAGE_CANCEL) ?></a></td>
       </tr>
 <?php } ?>
@@ -199,8 +199,8 @@ $userList = zen_get_users();
         <td class="id"><?php echo $userDetails['id'] ?></td>
 <?php } ?>
 <?php if ($action == 'edit' && $user == $userDetails['id']) { ?>
-        <td class="name"><?php echo zen_draw_input_field('name', $userDetails['name'], 'class="field"', false, 'text', true) ?></td>
-        <td class="email"><?php echo zen_draw_input_field('email', $userDetails['email'], 'class="field"', false, 'text', true) ?></td>
+        <td class="name"><?php echo zen_draw_input_field('name', $userDetails['name'], 'class="field"') ?></td>
+        <td class="email"><?php echo zen_draw_input_field('email', $userDetails['email'], 'class="field"') ?></td>
 <?php } else { ?>
         <td class="name"><?php echo $userDetails['name'] ?></td>
         <td class="email"><?php echo $userDetails['email'] ?></td>
@@ -242,7 +242,7 @@ $userList = zen_get_users();
   }
 ?>
           <?php echo zen_draw_form('delete_user', FILENAME_USERS, 'action=' . ($action == 'delete' ? 'delete_confirm' : 'delete')); ?>
-          <input type="hidden" name="user" value="<?php echo $userDetails['id']; ?>" />
+          <?php echo zen_draw_hidden_field('user', $userDetails['id']); ?>
           <?php echo ($action == 'delete' && $userDetails['id'] == $user ? TEXT_CONFIRM_DELETE : '') . ($btn_img == '' ? '' : zen_image_submit($btn_img, IMAGE_DELETE)) ?>
 <?php if ($action == 'delete' && $userDetails['id'] == $user) { ?>
             <a href="<?php echo zen_href_link(FILENAME_USERS) ?>"><?php echo zen_image_button('button_cancel.gif', IMAGE_CANCEL) ?></a>

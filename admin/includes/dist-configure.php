@@ -6,8 +6,8 @@
  * @package Admin
  * @copyright Copyright 2003-2012 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
- * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: dist-configure.php 793 2011-10-10 06:24:50Z hugo13 $
+ * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
+ * @version $Id: dist-configure.php 794 2012-11-06 09:24:50Z webchills $
  * @private
  */
 /**
@@ -62,6 +62,7 @@
 // define our database connection
   define('DB_TYPE', 'mysql');
   define('DB_PREFIX', '');
+  define('DB_CHARSET', 'utf8');
   define('DB_SERVER', 'localhost');
   define('DB_SERVER_USERNAME', '');
   define('DB_SERVER_PASSWORD', '');

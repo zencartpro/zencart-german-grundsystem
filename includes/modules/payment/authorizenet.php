@@ -5,8 +5,8 @@
  * @package paymentMethod
  * @copyright Copyright 2003-2012 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
- * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: authorizenet.php 785 2011-09-20 08:13:51Z webchills $
+ * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
+ * @version $Id: authorizenet.php 786 2012-11-06 15:13:51Z webchills $
  */
 /**
  * authorize.net SIM payment method class
@@ -88,7 +88,7 @@ class authorizenet extends base {
 
     $this->gateway_mode = MODULE_PAYMENT_AUTHORIZENET_GATEWAY_MODE;
 
-    $this->_logDir = DIR_FS_SQL_CACHE;
+    $this->_logDir = defined('DIR_FS_LOGS') ? DIR_FS_LOGS : DIR_FS_SQL_CACHE;
 
     // verify table structure
     if (IS_ADMIN_FLAG === true) $this->tableCheckup();
@@ -366,6 +366,13 @@ class authorizenet extends base {
       'x_description' => 'Website Purchase from ' . str_replace('"',"'", STORE_NAME),
     );
 
+    // force conversion to USD
+    if ($_SESSION['currency'] != 'USD') {
+      global $currencies;
+      $submit_data_core['x_amount'] = number_format($order->info['total'] * $currencies->get_value('USD'), 2);
+      $submit_data_core['x_currency_code'] = 'USD';
+      unset($submit_data_core['x_tax'], $submit_data_core['x_freight']);
+    }
     $submit_data_security = $this->InsertFP(MODULE_PAYMENT_AUTHORIZENET_LOGIN, MODULE_PAYMENT_AUTHORIZENET_TXNKEY, number_format($order->info['total'], 2), $sequence);
 
     $submit_data_offline = array(

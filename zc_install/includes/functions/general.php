@@ -5,8 +5,8 @@
  * @access private
  * @copyright Copyright 2003-2012 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
- * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: general.php 785 2011-09-20 08:13:51Z webchills $
+ * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
+ * @version $Id: general.php 786 2012-11-17 10:56:51Z webchills $
  */
 
   if (!defined('TABLE_UPGRADE_EXCEPTIONS')) define('TABLE_UPGRADE_EXCEPTIONS','upgrade_exceptions');
@@ -29,7 +29,7 @@
 
   function zen_output_string($string, $translate = false, $protected = false) {
     if ($protected == true) {
-      return htmlspecialchars($string);
+      return htmlspecialchars($string, ENT_COMPAT, CHARSET, TRUE);
     } else {
       if ($translate == false) {
         return zen_parse_input_field_data($string, array('"' => '&quot;'));
@@ -120,9 +120,6 @@ function executeSql($sql_file, $database, $table_prefix = '', $isupgrade=false) 
 
           $line_upper=strtoupper($line);
           switch (true) {
-          case (substr($line_upper, 0, 13) == 'REPLACE INTO '):
-            $line = 'REPLACE INTO ' . $table_prefix . substr($line, 13);
-            break;
           case (substr($line_upper, 0, 21) == 'DROP TABLE IF EXISTS '):
             $line = 'DROP TABLE IF EXISTS ' . $table_prefix . substr($line, 21);
             break;
@@ -858,7 +855,10 @@ function executeSql($sql_file, $database, $table_prefix = '', $isupgrade=false) 
   function zen_write_to_upgrade_exceptions_table($line, $reason, $sql_file) {
     global $db;
     zen_create_exceptions_table();
-    $sql="INSERT INTO " . DB_PREFIX . TABLE_UPGRADE_EXCEPTIONS . " VALUES (0,'". $sql_file."','".$reason."', now(), '".addslashes($line)."')";
+    $sql="INSERT INTO " . DB_PREFIX . TABLE_UPGRADE_EXCEPTIONS . " VALUES (0,:file:, :reason:, now(), :line:)";
+    $sql = $db->bindVars($sql, ':file:', $sql_file, 'string');
+    $sql = $db->bindVars($sql, ':reason:', $reason, 'string');
+    $sql = $db->bindVars($sql, ':line:', $line, 'string');
      if (ZC_UPG_DEBUG3==true) echo '<br />sql='.$sql.'<br />';
     $result = $db->Execute($sql);
     return $result;

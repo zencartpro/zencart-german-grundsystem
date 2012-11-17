@@ -3,8 +3,8 @@
  * @package Admin Access Management
  * @copyright Copyright 2003-2012 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
- * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: admin_access.php 833 2011-12-30 10:23:21Z webchills $
+ * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
+ * @version $Id: admin_access.php 834 2012-11-06 08:23:21Z webchills $
  */
 
 /**
@@ -41,7 +41,20 @@ function check_page($page, $params) {
     }
     $result->MoveNext();
   }
-
+  if (!$retVal)
+  {
+    $sql = "SELECT *
+            FROM " . TABLE_ADMIN . " a
+            LEFT JOIN " . TABLE_ADMIN_PAGES_TO_PROFILES . " ap2p ON ap2p.profile_id = a.admin_profile
+            WHERE admin_id = :adminId:";
+    $sql = $db->bindVars($sql, ':adminId:', $_SESSION['admin_id'], 'integer');
+    $result = $db->Execute($sql);
+    while (!$result->EOF) {
+      $adjustedPageKey = preg_replace('/_productTypes_/', '', $result->fields['page_key']);
+      if ($adjustedPageKey == $page) $retVal = TRUE;
+      $result->MoveNext();
+    }
+  }
   return $retVal;
 }
 
@@ -214,8 +227,8 @@ function zen_update_user($name, $email, $id, $profile)
     if (isset($changes['email'])) $alertText .= sprintf(TEXT_EMAIL_ALERT_ADM_EMAIL_CHANGED, $oldData['admin_name'], $changes['email']['old'], $changes['email']['new'], $admname) . "\n";
     if (isset($changes['name'])) $alertText .= sprintf(TEXT_EMAIL_ALERT_ADM_NAME_CHANGED, $oldData['admin_name'], $changes['name']['old'], $changes['name']['new'], $admname) . "\n";
     if (isset($changes['profile'])) $alertText .= sprintf(TEXT_EMAIL_ALERT_ADM_PROFILE_CHANGED, $oldData['admin_name'], $changes['profile']['old'], $changes['profile']['new'], $admname) . "\n";
-    if ($alertText != '') zen_mail(STORE_OWNER_EMAIL_ADDRESS, STORE_OWNER_EMAIL_ADDRESS, TEXT_EMAIL_SUBJECT_ADMIN_USER_CHANGED, $alertText, STORE_NAME, EMAIL_FROM, array(), 'admin_settings_changed');
-    if ($alertText != '') zen_mail($oldData['admin_email'], $oldData['admin_email'], TEXT_EMAIL_SUBJECT_ADMIN_USER_CHANGED, $alertText, STORE_NAME, EMAIL_FROM, array(), 'admin_settings_changed');
+    if ($alertText != '') zen_mail(STORE_OWNER_EMAIL_ADDRESS, STORE_OWNER_EMAIL_ADDRESS, TEXT_EMAIL_SUBJECT_ADMIN_USER_CHANGED, $alertText, STORE_NAME, EMAIL_FROM, array('EMAIL_MESSAGE_HTML' => $alertText, 'EMAIL_SPAM_DISCLAIMER'=>' ', 'EMAIL_DISCLAIMER' => ' '), 'admin_settings_changed');
+    if ($alertText != '') zen_mail($oldData['admin_email'], $oldData['admin_email'], TEXT_EMAIL_SUBJECT_ADMIN_USER_CHANGED, $alertText, STORE_NAME, EMAIL_FROM, array('EMAIL_MESSAGE_HTML' => $alertText, 'EMAIL_SPAM_DISCLAIMER'=>' ', 'EMAIL_DISCLAIMER' => ' '), 'admin_settings_changed');
   }
   return $errors;
 }
@@ -596,6 +609,13 @@ function zen_get_admin_pages($menu_only)
   /**
    * First we'll get all the pages
    */
+  $sql = "SELECT * FROM " . TABLE_PRODUCT_TYPES . " WHERE type_handler != 'product'";
+  $result = $db->Execute($sql);
+  while (!$result->EOF)
+  {
+    $productTypes['_productTypes_'.$result->fields['type_handler']] = array('name'=>$result->fields['type_name'], 'file'=>$result->fields['type_handler'], 'params'=>'');
+    $result->MoveNext();
+  }
   $sql = "SELECT ap.menu_key, ap.page_key, ap.main_page, ap.page_params, ap.language_key as page_name
           FROM " . TABLE_ADMIN_PAGES . " ap
           LEFT JOIN " . TABLE_ADMIN_MENUS . " am ON am.menu_key = ap.menu_key ";
@@ -611,7 +631,16 @@ function zen_get_admin_pages($menu_only)
     }
     $result->MoveNext();
   }
-
+  if (!$menu_only)
+  {
+    foreach ($productTypes as $pageName => $productType)
+    {
+      if (!isset($retVal['_productTypes']['_productTypes_'.$pageName]))
+      {
+        $retVal['_productTypes'][$pageName] = $productType;
+      }
+    }
+  }
   /**
    * Then we'll deal with the exceptions
    */
@@ -787,6 +816,7 @@ function zen_get_menu_titles()
     $retVal[$result->fields['menu_key']] = constant($result->fields['language_key']);
     $result->MoveNext();
   }
+  $retVal['_productTypes'] = BOX_HEADING_PRODUCT_TYPES;
   return $retVal;
 }
 

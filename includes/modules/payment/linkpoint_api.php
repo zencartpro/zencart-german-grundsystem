@@ -6,8 +6,8 @@
  * @copyright Copyright 2003-2012 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @copyright Portions Copyright 2003 Jason LeBaron
- * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: linkpoint_api.php 785 2011-09-20 08:13:51Z webchills $
+ * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
+ * @version $Id: linkpoint_api.php 786 2012-11-06 15:13:51Z webchills $
  */
   if (!defined('TABLE_LINKPOINT_API')) define('TABLE_LINKPOINT_API', DB_PREFIX . 'linkpoint_api');
   @define('MODULE_PAYMENT_LINKPOINT_API_CODE_DEBUG' ,'off'); // debug for programmer use only
@@ -55,7 +55,7 @@ class linkpoint_api {
       }
     }
 
-    $this->_logDir = DIR_FS_SQL_CACHE;
+    $this->_logDir = defined('DIR_FS_LOGS') ? DIR_FS_LOGS : DIR_FS_SQL_CACHE;
   }
 
 
@@ -892,7 +892,7 @@ class linkpoint_api {
       $myorder["oid"] = $query->fields['lp_trans_num'];
       if ($_POST['trans_id'] != '') $myorder["tdate"] = $_POST['trans_id'];
       $myorder["chargetotal"] = number_format($refundAmt, 2, '.', '');
-      $myorder["comments"]  = htmlentities($refundNote);
+      $myorder["comments"]  = htmlentities($refundNote, ENT_QUOTES, 'UTF-8');
 
       $result = $this->_sendRequest($myorder);
       $response_alert = $result['r_approved'] . ' ' . $result['r_error'] . ($this->commError == '' ? '' : ' Communications Error - Please notify webmaster.');
@@ -953,7 +953,7 @@ class linkpoint_api {
       $myorder["ordertype"] = 'POSTAUTH';
       $myorder["oid"] = $query->fields['lp_trans_num'];
       $myorder["chargetotal"] = number_format($captureAmt, 2, '.', '');
-      $myorder["comments"]  = htmlentities($captureNote);
+      $myorder["comments"]  = htmlentities($captureNote, ENT_QUOTES, 'UTF-8');
 
       $result = $this->_sendRequest($myorder);
       $response_alert = $result['r_approved'] . ' ' . $result['r_error'] . ($this->commError == '' ? '' : ' Communications Error - Please notify webmaster.');
@@ -1004,7 +1004,7 @@ class linkpoint_api {
       $myorder["ordertype"] = 'VOID';
       $myorder["oid"] = $query->fields['lp_trans_num'];
       if ($voidAuthID != '') $myorder["tdate"] = $voidAuthID;
-      $myorder["comments"]  = htmlentities($voidNote);
+      $myorder["comments"]  = htmlentities($voidNote, ENT_QUOTES, 'UTF-8');
 
       $result = $this->_sendRequest($myorder);
       $response_alert = $result['r_approved'] . ' ' . $result['r_error'] . ($this->commError == '' ? '' : ' Communications Error - Please notify webmaster.');

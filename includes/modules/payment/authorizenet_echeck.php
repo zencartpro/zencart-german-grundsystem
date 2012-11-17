@@ -5,8 +5,8 @@
  * @package paymentMethod
  * @copyright Copyright 2003-2012 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
- * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: authorizenet_echeck.php 729 2011-08-09 15:49:16Z hugo13 $
+ * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
+ * @version $Id: authorizenet_echeck.php 730 2012-11-06 15:49:16Z webchills $
  */
 /**
  * Authorize.net echeck Payment Module
@@ -98,7 +98,7 @@ class authorizenet_echeck extends base {
       $this->order_status = (int)MODULE_PAYMENT_AUTHORIZENET_ECHECK_ORDER_STATUS_ID;
     }
 
-    $this->_logDir = DIR_FS_SQL_CACHE;
+    $this->_logDir = defined('DIR_FS_LOGS') ? DIR_FS_LOGS : DIR_FS_SQL_CACHE;
 
     if (is_object($order)) $this->update_status();
 
@@ -389,6 +389,13 @@ class authorizenet_echeck extends base {
                          'x_drivers_license_state' => zen_db_prepare_input($_POST['echeck_dl_state']),
                          'x_drivers_license_dob' => zen_db_prepare_input($_POST['echeck_dl_dob'])  ));
       }
+    }
+    // force conversion to USD
+    if ($order->info['currency'] != 'USD') {
+      global $currencies;
+      $submit_data['x_amount'] = number_format($order->info['total'] * $currencies->get_value('USD'), 2);
+      $submit_data['x_currency_code'] = 'USD';
+      unset($submit_data['x_tax'], $submit_data['x_freight']);
     }
     unset($response);
     $response = $this->_sendRequest($submit_data);

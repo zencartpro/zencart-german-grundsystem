@@ -3,8 +3,8 @@
  * @package admin
  * @copyright Copyright 2003-2012 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
- * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: product_types.php 785 2011-09-20 08:13:51Z webchills $
+ * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
+ * @version $Id: product_types.php 786 2012-11-06 09:13:51Z webchills $
  */
 
   require('includes/application_top.php');
@@ -232,7 +232,7 @@ if ($_GET['action'] == 'layout' || $_GET['action'] == 'layout_edit') {
       $cfg_extra = $db->Execute("select configuration_key, configuration_description, date_added,
                                         last_modified, use_function, set_function
                                  from " . TABLE_PRODUCT_TYPE_LAYOUT . "
-                                 where configuration_id = '" . (int)$configuration->fields['configuration_id'] . "'");     
+                                 where configuration_id = '" . (int)$configuration->fields['configuration_id'] . "'");
 
       $cInfo_array = array_merge($configuration->fields, $cfg_extra->fields);      
 	    if(MULTILANG_TYPE=='YES'){
@@ -248,7 +248,7 @@ if ($_GET['action'] == 'layout' || $_GET['action'] == 'layout_edit') {
     }
 ?>
                 <td class="dataTableContent"><?php echo $configuration->fields['configuration_title']; ?></td>
-                <td class="dataTableContent"><?php echo htmlspecialchars($cfgValue); ?></td>
+                <td class="dataTableContent"><?php echo htmlspecialchars($cfgValue, ENT_COMPAT, CHARSET, TRUE); ?></td>
                 <td class="dataTableContent" align="right"><?php if ( (isset($cInfo) && is_object($cInfo)) && ($configuration->fields['configuration_id'] == $cInfo->configuration_id) ) { echo zen_image(DIR_WS_IMAGES . 'icon_arrow_right.gif', ''); } else { echo '<a href="' . zen_href_link(FILENAME_PRODUCT_TYPES, 'ptID=' . $_GET['ptID'] . '&cID=' . $configuration->fields['configuration_id'] . '&action=layout') . '">' . zen_image(DIR_WS_IMAGES . 'icon_info.gif', IMAGE_ICON_INFO) . '</a>'; } ?>&nbsp;</td>
               </tr>
 <?php
@@ -265,7 +265,7 @@ if ($_GET['action'] == 'layout' || $_GET['action'] == 'layout_edit') {
       $heading[] = array('text' => '<b>' . $cInfo->configuration_title . '</b>');
 
       if ($cInfo->set_function) {
-        eval('$value_field = ' . $cInfo->set_function . '"' . htmlspecialchars($cInfo->configuration_value) . '");');
+        eval('$value_field = ' . $cInfo->set_function . '"' . htmlspecialchars($cInfo->configuration_value, ENT_COMPAT, CHARSET, TRUE) . '");');
       } else {
         $value_field = zen_draw_input_field('configuration_value', htmlspecialchars($cInfo->configuration_value, ENT_COMPAT, CHARSET, TRUE), 'size="60"');
       }

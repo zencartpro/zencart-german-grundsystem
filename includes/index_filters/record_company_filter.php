@@ -9,8 +9,8 @@
  * @copyright Copyright 2003-2012 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @todo Need to add/fine-tune ability to override or insert entry-points on a per-product-type basis
- * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: record_company_filter.php 729 2011-08-09 15:49:16Z hugo13 $
+ * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
+ * @version $Id: record_company_filter.php 730 2012-11-06 15:20:16Z webchills $
  */
 if (!defined('IS_ADMIN_FLAG')) {
   die('Illegal Access');
@@ -189,7 +189,7 @@ if (!isset($select_column_list)) $select_column_list = "";
         from " . TABLE_PRODUCTS . " p, " .
         TABLE_PRODUCTS_TO_CATEGORIES . " p2c, " .
         TABLE_PRODUCT_MUSIC_EXTRA . " pme, " .
-        TABLE_RECORD_COMPANY . " m
+        TABLE_RECORD_COMPANY . " r
         where p.products_status = 1
           and pme.record_company_id = r.record_company_id
           and p.products_id = p2c.products_id

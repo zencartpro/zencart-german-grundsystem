@@ -1,7 +1,7 @@
 Willkommen bei der deutschen Zen-Cart Version
-Version 1.5
+Version 1.5.1
 
 Eine umfangreiche deutschsprachige Dokumentation und Installationsanleitung finden Sie im Ordner docs
-Öffenen Sie die index.html im Ordner docs und lesen Sie vor der Installation unbedingt die komplette Dokumentation.
+Öffnen Sie die index.html im Ordner docs und lesen Sie vor der Installation unbedingt die komplette Dokumentation.
 
 Es ist nicht erforderlich, den Ordner docs auf Ihren Server hochzuladen!

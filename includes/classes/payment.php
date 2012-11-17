@@ -5,8 +5,8 @@
  * @package classes
  * @copyright Copyright 2003-2012 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
- * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: payment.php 729 2011-08-09 15:49:16Z hugo13 $
+ * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
+ * @version $Id: payment.php 730 2012-11-06 15:13:16Z webchills $
  */
 if (!defined('IS_ADMIN_FLAG')) {
   die('Illegal Access');
@@ -258,5 +258,15 @@ class payment extends base {
         return $GLOBALS[$this->selected_module]->get_error();
       }
     }
+  }
+  function get_checkout_confirm_form_replacement() {
+    if (is_array($this->modules)) {
+      if (is_object($GLOBALS[$this->selected_module]) && ($GLOBALS[$this->selected_module]->enabled) ) {
+        if (method_exists($GLOBALS[$this->selected_module], 'get_checkout_confirm_form_replacement')) {
+          return $GLOBALS[$this->selected_module]->get_checkout_confirm_form_replacement();
+        }
+      }
+    }
+    return array(false, '');
   }
 }

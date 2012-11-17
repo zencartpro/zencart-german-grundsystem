@@ -5,8 +5,8 @@
  * @package Configuration Settings
  * @copyright Copyright 2003-2012 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
- * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: dist-configure.php 729 2011-08-09 15:49:16Z hugo13 $
+ * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
+ * @version $Id: dist-configure.php 730 2012-11-06 15:49:16Z webchills $
  * @private
  */
 // Define the webserver and path parameters
@@ -47,6 +47,7 @@ define('DIR_FS_EMAIL_TEMPLATES', DIR_FS_CATALOG . 'email/');
 // define our database connection
 define('DB_TYPE', 'mysql');
 define('DB_PREFIX', ''); // prefix for database table names -- preferred to be left empty
+define('DB_CHARSET', 'utf8');
 define('DB_SERVER', 'localhost');
 define('DB_SERVER_USERNAME', '');
 define('DB_SERVER_PASSWORD', '');

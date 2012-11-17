@@ -3,8 +3,8 @@
  * @package admin
  * @copyright Copyright 2003-2012 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
- * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: init_file_db_names.php 729 2011-08-09 15:49:16Z hugo13 $
+ * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
+ * @version $Id: init_file_db_names.php 730 2012-11-06 08:49:16Z webchills $
  */
 if (!defined('IS_ADMIN_FLAG')) {
   die('Illegal Access');
@@ -41,7 +41,7 @@ $extra_datafiles_dir = DIR_WS_INCLUDES . 'extra_datafiles/';
 if ($dir = @dir($extra_datafiles_dir)) {
   while ($file = $dir->read()) {
     if (!is_dir($extra_datafiles_dir . $file)) {
-      if (preg_match('/\.php$/', $file) > 0) {
+      if (preg_match('~^[^\._].*\.php$~i', $file) > 0) {
         require($extra_datafiles_dir . $file);
       }
     }

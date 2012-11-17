@@ -1,4 +1,4 @@
-# $Id: mysql_multilingual_2.sql 678 2012-08-05 12:56:40Z webchills $
+# $Id: mysql_multilingual_2.sql 675 2012-02-26 12:02:40Z webchills $
 # multilingual part II
 # @translators: maleborg/webchills/hugo13
 
@@ -76,9 +76,6 @@ REPLACE INTO configuration_language (configuration_title, configuration_key, con
 ('phpBB Forumsynchronisierung aktivieren?', 'PHPBB_LINKS_ENABLED', 43, 'Soll Zen Cart neue Kundenkonten mit dem - bereits installierten - phpBB Forum synchronisieren?', now(), now()),
 ('Kategoriezähler im Adminbereich anzeigen', 'SHOW_COUNTS_ADMIN', 43, 'Soll der Kategoriezähler im Adminbereich angezeigt werden?', now(), now()),
 ('Multiplikator für Fremdwährungen', 'CURRENCY_UPLIFT_RATIO', 43, 'Wie hoch soll der Faktor für den Aufschlag von Fremdwährungen in Ihrem Shop bei der Aktualisierung der Währungskurse sein?<br /><br />BESCHREIBUNG:<br />Der Umrechnungskurs wird vom externen Wechselkurs-Server während der Abfrage festgestellt und mit Ihrem Shop abgeglichen.<br />Wird als Faktor z.B. der Wert <em>2.00</em> verwendet, werden Fremdwährungen mit diesem Wert multipliziert.<br /><br />BEISPIEL:<br />Die Währung <em>EURO</em> ist als <em>Standard</em> definiert:<br />Kurs: EURO = 1.00000000; USD = 1.40000000<br />Als Faktor wird <em>2.00</em> verwendet.<br />Ergebnis: Euro = 1.00000000; USD = 2.80000000<br /><br /><br />Standard: 1.05', now(), now()),
-('EU Länder', 'EU_COUNTRIES_FOR_LAST_STEP', 43, 'Tragen Sie hier die Mitgliedsstaaten der Europäischen Union ein. Wenn an Länder geliefert wird, die nicht in dieser Liste stehen, dann erscheint im letzten Schritt des Bestellvorgangs ein Hinweis auf mögliche Zollgebühren. Zweistellige ISO Codes mit Komma getrennt.', now(), now()),
-('Buttonlösung aktivieren', 'ENABLE_BUTTONLOESUNG', 43, 'Wollen Sie die zusätzlichen Artikelmerkmale und sonstigen Änderungen auf der Seite Bestellung bestätigen aktivieren ("Buttonlösung" in Deutschland)? Wenn Sie hier auf true stellen, dann erscheint beim Artikel bearbeiten ein zusätzliches Feld für die Eingabe der wesentlichen Merkmale des Artikels. Der dort hinterlegte Text wird dann auf der Seite Bestellung bestätigen unterhalb des Artikelnamens angezeigt. Weiterhin erscheinen auf der Seite Bestellung bestätigen zusätzliche Spalten für den Einzelpreis und das Artikelbild. Und bei Versand in Nicht-EU Staaten wird ein Hinweis auf die Zollgebühren eingeblendet.', now(), now()),
-
 
 # Adminmenü ID 2
 ('Vorname', 'ENTRY_FIRST_NAME_MIN_LENGTH', 43, 'Minimale Zeichenlänge für den Vornamen', now(), now()),

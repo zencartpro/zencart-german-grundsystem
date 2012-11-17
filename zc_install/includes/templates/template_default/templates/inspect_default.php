@@ -4,8 +4,8 @@
  * @access private
  * @copyright Copyright 2003-2012 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
- * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: inspect_default.php 729 2011-08-09 15:49:16Z hugo13 $
+ * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
+ * @version $Id: inspect_default.php 730 2012-11-17 12:49:16Z webchills $
  */
 
   if ($zc_install->error) include(DIR_WS_INSTALL_TEMPLATE . 'templates/display_errors.php');
@@ -13,8 +13,7 @@
 
 <fieldset>
 <legend><strong><?php echo TITLE_DOCUMENTATION; ?></strong></legend>
-<div class="section"><br />
- <?php echo sprintf(TEXT_DOCUMENTATION, (file_exists('../docs/index.html') ? '../docs/index.html' : 'http://tutorials.zen-cart.com/index.php?article=107')); ?><br />
+<div class="section"><?php echo sprintf(TEXT_DOCUMENTATION, (file_exists('../docs/index.html') ? '../docs/index.html' : 'http://www.zen-cart-pro.at/forum/forums/69-FAQ-und-Tutorials')); ?>
  </div></fieldset>
  <br />
 
@@ -52,6 +51,7 @@
 -->
 </ul>
 <br /><a class="button" href="javascript:popupWindowLrg('includes/phpinfo.php')"><?php echo VIEW_PHP_INFO_LINK_TEXT; ?></a>
+<br/><br/><br/>
 </div>
 </fieldset>
 

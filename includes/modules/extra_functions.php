@@ -4,10 +4,10 @@
  * see  {@link  http://www.zen-cart.com/wiki/index.php/Developers_API_Tutorials#InitSystem wikitutorials} for more details.
  *
  * @package initSystem
- * @copyright Copyright 2003-2006 Zen Cart Development Team
+ * @copyright Copyright 2003-2012 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
- * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: extra_functions.php 729 2011-08-09 15:49:16Z hugo13 $
+ * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
+ * @version $Id: extra_functions.php 730 2012-11-06 15:49:16Z webchills $
  */
 // must be called appropriately
 if (!defined('IS_ADMIN_FLAG')) {
@@ -23,7 +23,7 @@ $directory_array = array();
 if ($dir = @dir($extra_functions_directory)) {
   while ($file = $dir->read()) {
     if (!is_dir($extra_functions_directory . $file)) {
-      if (preg_match('/\.php$/', $file) > 0) {
+      if (preg_match('~^[^\._].*\.php$~i', $file) > 0) {
         $directory_array[] = $file;
       }
     }
@@ -44,4 +44,3 @@ for ($i = 0, $n = sizeof($directory_array); $i < $n; $i++) {
     include($ws_extra_functions_directory . $file);
   }
 }
-?>

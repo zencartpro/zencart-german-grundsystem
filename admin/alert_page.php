@@ -3,8 +3,8 @@
 /**
  * @package admin
  * @copyright Copyright 2003-2012 Zen Cart Development Team
- * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: alert_page.php 804 2011-11-23 08:28:24Z webchills $
+ * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
+ * @version $Id: alert_page.php 805 2012-11-06 09:28:24Z webchills $
  */
 require ('includes/application_top.php');
 $adminDirectoryExists = $installDirectoryExists = FALSE;
@@ -38,7 +38,7 @@ if (!$adminDirectoryExists && !$installDirectoryExists)
 	<li><?php echo ALERT_REMOVE_ZCINSTALL; ?><br /><br /></li>
 	<?php  } ?>
 	<?php if ($adminDirectoryExists) { ?>
-	<li><?php echo ALERT_RENAME_ADMIN; ?><br /><a href="http://www.zen-cart-pro.at/zcvb/forum/vbglossar.php?do=showentry&id=6" target="_blank"><?php echo ADMIN_RENAME_FAQ_NOTE; ?></a></li>
+	<li><?php echo ALERT_RENAME_ADMIN; ?><br /><a href="http://www.zen-cart-pro.at/forum/threads/9870-Wie-benenne-ich-das-admin-Verzeichnis-in-Zen-Cart-1-5-um" target="_blank"><?php echo ADMIN_RENAME_FAQ_NOTE; ?></a></li>
 	<?php  } ?>
 	</ul>
 	<br />

@@ -5,8 +5,8 @@
  * @package classes
  * @copyright Copyright 2003-2012 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
- * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: shopping_cart.php für Buttonlösung 2012-06-12 20:08:29Z webchills $
+ * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
+ * @version $Id: shopping_cart.php 769 2012-11-06 15:08:29Z webchills $
  */
 
 if (!defined('IS_ADMIN_FLAG')) {
@@ -777,7 +777,7 @@ class shoppingCart extends base {
             //// one time charges
             // attributes_price_onetime
             if ($attribute_price->fields['attributes_price_onetime'] > 0) {
-              $totalOnetimeCharge = $attribute_price->fields['attributes_price_onetime'];
+              $totalOnetimeCharge += $attribute_price->fields['attributes_price_onetime'];
             }
             // attributes_price_factor_onetime
             $added_charge = 0;
@@ -1091,7 +1091,7 @@ class shoppingCart extends base {
     $products_array = array();
     reset($this->contents);
     while (list($products_id, ) = each($this->contents)) {
-      $products_query = "select p.products_id, p.master_categories_id, p.products_status, pd.products_name, pd.products_merkmale, p.products_model, p.products_image,
+      $products_query = "select p.products_id, p.master_categories_id, p.products_status, pd.products_name, p.products_model, p.products_image,
                                   p.products_price, p.products_weight, p.products_tax_class_id,
                                   p.products_quantity_order_min, p.products_quantity_order_units, p.products_quantity_order_max,
                                   p.product_is_free, p.products_priced_by_attribute,
@@ -1242,7 +1242,6 @@ class shoppingCart extends base {
         $products_array[] = array('id' => $products_id,
                                   'category' => $products->fields['master_categories_id'],
                                   'name' => $products->fields['products_name'],
-                                  'merkmale' => $products->fields['products_merkmale'],
                                   'model' => $products->fields['products_model'],
                                   'image' => $products->fields['products_image'],
                                   'price' => ($products->fields['product_is_free'] =='1' ? 0 : $products_price),

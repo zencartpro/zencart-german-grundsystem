@@ -1,17 +1,17 @@
 <?php
 /**
  * @package languageDefines
- * @copyright Copyright 2003-2012 Zen Cart Development Team
+ * @copyright Copyright 2003-2006 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
- * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: checkout_confirmation.php 730 2012-08-05 09:49:16Z webchills $
+ * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
+ * @version $Id: checkout_confirmation.php 729 2011-08-09 15:49:16Z hugo13 $
  */
 
 define('NAVBAR_TITLE_1', 'Checkout');
 define('NAVBAR_TITLE_2', 'Confirmation');
 
-define('HEADING_TITLE', 'Step 3 of 3 - Confirm Purchase');
-define('TEXT_ZUSATZ_SCHRITT3','Please verify your order and confirm by clicking the "Confirm Purchase" button at the bottom of this page.');
+define('HEADING_TITLE', 'Step 3 of 3 - Order Confirmation');
+
 define('HEADING_BILLING_ADDRESS', 'Billing/Payment Information');
 define('HEADING_DELIVERY_ADDRESS', 'Delivery/Shipping Information');
 define('HEADING_SHIPPING_METHOD', 'Shipping Method:');
@@ -19,11 +19,11 @@ define('HEADING_PAYMENT_METHOD', 'Payment Method:');
 define('HEADING_PRODUCTS', 'Shopping Cart Contents');
 define('HEADING_TAX', 'Tax');
 define('HEADING_ORDER_COMMENTS', 'Special Instructions or Order Comments');
+// no comments entered
 define('NO_COMMENTS_TEXT', 'None');
+define('TITLE_CONTINUE_CHECKOUT_PROCEDURE', '<strong>Final Step</strong>');
+define('TEXT_CONTINUE_CHECKOUT_PROCEDURE', '- continue to confirm your order. Thank you!');
+
 define('OUT_OF_STOCK_CAN_CHECKOUT', 'Products marked with ' . STOCK_MARK_PRODUCT_OUT_OF_STOCK . ' are out of stock.<br />Items not in stock will be placed on backorder.');
 
-// buttonloesung
-define('TABLE_HEADING_SINGLEPRICE','Price');
-define('TABLE_HEADING_PRODUCTIMAGE','Image');
-define('TEXT_CONDITIONS_ACCEPTED_IN_LAST_STEP','I have read and agreed to the <a href="' . zen_href_link(FILENAME_CONDITIONS, '', 'SSL') . '" target="_blank"><u>terms and conditions</u></a> bound to this order.');
-define('TEXT_NON_EU_COUNTRIES','Note:<br/>Your order will be shipped to a country outside the European Union. Your packages may be subject to the customs fees and import duties of the country to which you have your order shipped. These charges are always the recipient\'s responsibility.');
+?>

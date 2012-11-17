@@ -3,8 +3,8 @@
  * @package admin
  * @copyright Copyright 2003-2012 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
- * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: preview_info.php für Buttonlösung 2012-07-04 10:47:16Z webchills $
+ * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
+ * @version $Id: preview_info.php 730 2012-11-06 08:49:16Z webchills $
  */
 if (!defined('IS_ADMIN_FLAG')) {
   die('Illegal Access');
@@ -12,11 +12,10 @@ if (!defined('IS_ADMIN_FLAG')) {
     if (zen_not_null($_POST)) {
       $pInfo = new objectInfo($_POST);
       $products_name = $_POST['products_name'];
-	   $products_merkmale = $_POST['products_merkmale'];
       $products_description = $_POST['products_description'];
       $products_url = $_POST['products_url'];
     } else {
-      $product = $db->Execute("select p.products_id, pd.language_id, pd.products_name, pd.products_merkmale,
+      $product = $db->Execute("select p.products_id, pd.language_id, pd.products_name,
                                       pd.products_description, pd.products_url, p.products_quantity,
                                       p.products_model, p.products_image, p.products_price, p.products_virtual,
                                       p.products_weight, p.products_date_added, p.products_last_modified,
@@ -39,12 +38,10 @@ if (!defined('IS_ADMIN_FLAG')) {
     for ($i=0, $n=sizeof($languages); $i<$n; $i++) {
       if (isset($_GET['read']) && ($_GET['read'] == 'only')) {
         $pInfo->products_name = zen_get_products_name($pInfo->products_id, $languages[$i]['id']);
-		$pInfo->products_merkmale = zen_get_products_merkmale($pInfo->products_id, $languages[$i]['id']);
         $pInfo->products_description = zen_get_products_description($pInfo->products_id, $languages[$i]['id']);
         $pInfo->products_url = zen_get_products_url($pInfo->products_id, $languages[$i]['id']);
       } else {
         $pInfo->products_name = zen_db_prepare_input($products_name[$languages[$i]['id']]);
-		$pInfo->products_merkmale = zen_db_prepare_input($products_merkmale[$languages[$i]['id']]);
         $pInfo->products_description = zen_db_prepare_input($products_description[$languages[$i]['id']]);
         $pInfo->products_url = zen_db_prepare_input($products_url[$languages[$i]['id']]);
       }
@@ -144,16 +141,15 @@ if (!defined('IS_ADMIN_FLAG')) {
       reset($_POST);
       while (list($key, $value) = each($_POST)) {
         if (!is_array($_POST[$key])) {
-          echo zen_draw_hidden_field($key, htmlspecialchars(stripslashes($value)));
+          echo zen_draw_hidden_field($key, htmlspecialchars(stripslashes($value), ENT_COMPAT, CHARSET, TRUE));
         }
       }
 
       $languages = zen_get_languages();
       for ($i=0, $n=sizeof($languages); $i<$n; $i++) {
-        echo zen_draw_hidden_field('products_name[' . $languages[$i]['id'] . ']', htmlspecialchars(stripslashes($products_name[$languages[$i]['id']])));
-          echo zen_draw_hidden_field('products_merkmale[' . $languages[$i]['id'] . ']', htmlspecialchars(stripslashes($products_merkmale[$languages[$i]['id']])));
-        echo zen_draw_hidden_field('products_description[' . $languages[$i]['id'] . ']', htmlspecialchars(stripslashes($products_description[$languages[$i]['id']])));
-        echo zen_draw_hidden_field('products_url[' . $languages[$i]['id'] . ']', htmlspecialchars(stripslashes($products_url[$languages[$i]['id']])));
+        echo zen_draw_hidden_field('products_name[' . $languages[$i]['id'] . ']', htmlspecialchars(stripslashes($products_name[$languages[$i]['id']]), ENT_COMPAT, CHARSET, TRUE));
+        echo zen_draw_hidden_field('products_description[' . $languages[$i]['id'] . ']', htmlspecialchars(stripslashes($products_description[$languages[$i]['id']]), ENT_COMPAT, CHARSET, TRUE));
+        echo zen_draw_hidden_field('products_url[' . $languages[$i]['id'] . ']', htmlspecialchars(stripslashes($products_url[$languages[$i]['id']]), ENT_COMPAT, CHARSET, TRUE));
       }
       echo zen_draw_hidden_field('products_image', stripslashes($products_image_name));
       echo ( (isset($_GET['search']) && !empty($_GET['search'])) ? zen_draw_hidden_field('search', $_GET['search']) : '') . ( (isset($_POST['search']) && !empty($_POST['search']) && empty($_GET['search'])) ? zen_draw_hidden_field('search', $_POST['search']) : '');
