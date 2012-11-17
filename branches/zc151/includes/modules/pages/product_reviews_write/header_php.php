@@ -5,8 +5,8 @@
  * @package page
  * @copyright Copyright 2003-2012 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
- * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: header_php.php 842 2012-02-20 10:59:50Z webchills $
+ * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
+ * @version $Id: header_php.php 843 2012-11-06 15:59:50Z webchills $
  */
 /**
  * Header code file for product reviews "write" page
@@ -47,11 +47,13 @@ $customer_query = "SELECT customers_firstname, customers_lastname, customers_ema
 $customer_query = $db->bindVars($customer_query, ':customersID', $_SESSION['customer_id'], 'integer');
 $customer = $db->Execute($customer_query);
 
+$error = false;
 if (isset($_GET['action']) && ($_GET['action'] == 'process')) {
   $rating = zen_db_prepare_input($_POST['rating']);
   $review_text = zen_db_prepare_input($_POST['review_text']);
+  $antiSpam = isset($_POST['should_be_empty']) ? zen_db_prepare_input($_POST['should_be_empty']) : '';
+  $zco_notifier->notify('NOTIFY_REVIEWS_WRITE_CAPTCHA_CHECK');
 
-  $error = false;
   if (strlen($review_text) < REVIEW_TEXT_MIN_LENGTH) {
     $error = true;
 
@@ -65,6 +67,11 @@ if (isset($_GET['action']) && ($_GET['action'] == 'process')) {
   }
 
   if ($error == false) {
+   if ($antiSpam != '') {
+    $zco_notifier->notify('NOTIFY_SPAM_DETECTED_DURING_WRITE_REVIEW');
+    $messageStack->add_session('header', (defined('ERROR_WRITE_REVIEW_SPAM_DETECTED') ? ERROR_WRITE_REVIEW_SPAM_DETECTED : 'Thank you, your post has been submitted for review.'), 'success');
+   } else {
+
     if (REVIEWS_APPROVAL == '1') {
       $review_status = '0';
     } else {
@@ -107,7 +114,7 @@ if (isset($_GET['action']) && ($_GET['action'] == 'process')) {
       $email_text . $extra_info['TEXT'], STORE_NAME, EMAIL_FROM, $html_msg, 'reviews_extra');
     }
     // end send email
-
+   }
     zen_redirect(zen_href_link(FILENAME_PRODUCT_REVIEWS, zen_get_all_get_params(array('action'))));
   }
 }
@@ -134,4 +141,3 @@ $breadcrumb->add(NAVBAR_TITLE);
 
 // This should be last line of the script:
 $zco_notifier->notify('NOTIFY_HEADER_END_PRODUCT_REVIEWS_WRITE');
-?>

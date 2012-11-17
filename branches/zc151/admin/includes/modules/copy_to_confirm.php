@@ -1,10 +1,10 @@
 <?php
 /**
  * @package admin
- * @copyright Copyright 2003-2012 Zen Cart Development Team
+ * @copyright Copyright 2003-2009 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
- * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: copy_to_confirm.php für Buttonlösung 2012-06-13 19:50:16Z webchills $
+ * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
+ * @version $Id: copy_to_confirm.php 729 2011-08-09 15:49:16Z hugo13 $
  */
 if (!defined('IS_ADMIN_FLAG')) {
   die('Illegal Access');
@@ -86,18 +86,17 @@ if (!defined('IS_ADMIN_FLAG')) {
 
             $dup_products_id = $db->Insert_ID();
 
-            $description = $db->Execute("select language_id, products_name, products_merkmale, products_description,
+            $description = $db->Execute("select language_id, products_name, products_description,
                                                              products_url
                                          from " . TABLE_PRODUCTS_DESCRIPTION . "
                                          where products_id = '" . (int)$products_id . "'");
             while (!$description->EOF) {
               $db->Execute("insert into " . TABLE_PRODUCTS_DESCRIPTION . "
-                                        (products_id, language_id, products_name, products_merkmale, products_description,
+                                        (products_id, language_id, products_name, products_description,
                                          products_url, products_viewed)
                             values ('" . (int)$dup_products_id . "',
                                     '" . (int)$description->fields['language_id'] . "',
                                     '" . zen_db_input($description->fields['products_name']) . "',
-									'" . zen_db_input($description->fields['products_merkmale']) . "',
                                     '" . zen_db_input($description->fields['products_description']) . "',
                                     '" . zen_db_input($description->fields['products_url']) . "', '0')");
               $description->MoveNext();

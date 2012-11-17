@@ -5,8 +5,8 @@
  *
  * @package initSystem
  * @copyright Copyright 2003-2012 Zen Cart Development Team
- * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: config.core.php 729 2011-08-09 15:49:16Z hugo13 $
+ * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
+ * @version $Id: config.core.php 730 2012-11-06 09:49:16Z webchills $
  */
 if (!defined('IS_ADMIN_FLAG')) {
  die('Illegal Access');
@@ -70,6 +70,13 @@ if (!defined('USE_PCONNECT')) define('USE_PCONNECT', 'false');
                                 'loadFile'=>'message_stack.php');
   $autoLoadConfig[0][] = array('autoType'=>'class',
                                 'loadFile'=>'breadcrumb.php');
+  $autoLoadConfig[0][] = array('autoType'=>'class',
+                               'loadFile'=>'query_cache.php');
+
+  $autoLoadConfig[0][] = array('autoType'=>'classInstantiate',
+                               'className'=>'QueryCache',
+                               'objectName'=>'queryCache',
+                               'checkInstantiated'=>true);
 /**
  * Breakpoint 10.
  *

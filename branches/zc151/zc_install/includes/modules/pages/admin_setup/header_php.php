@@ -4,8 +4,8 @@
  * @access private
  * @copyright Copyright 2003-2012 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
- * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: header_php.php 740 2011-08-11 05:21:39Z hugo13 $
+ * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
+ * @version $Id: header_php.php 741 2012-11-17 10:21:39Z webchills $
  */
 
   if (!isset($_POST['admin_username'])) $_POST['admin_username'] = '';
@@ -46,6 +46,16 @@
     }
   }
 
+  // quick sanitization
+  foreach($_POST as $key=>$val) {
+    if(is_array($val)){
+      foreach($val as $key2 => $val2){
+        $_POST[$key][$key2] = htmlspecialchars($val2, ENT_COMPAT, CHARSET, TRUE);
+      }
+    } else {
+      $_POST[$key] = htmlspecialchars($val, ENT_COMPAT, CHARSET, TRUE);
+    }
+  }
   setInputValue($_POST['admin_username'], 'ADMIN_USERNAME_VALUE', '');
   setInputValue($_POST['admin_email'], 'ADMIN_EMAIL_VALUE', '');
 

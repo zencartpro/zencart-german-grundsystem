@@ -9,8 +9,8 @@
  * @package initSystem
  * @copyright Copyright 2003-2012 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
- * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: application_top.php 804 2011-11-23 08:28:24Z webchills $
+ * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
+ * @version $Id: application_top.php 805 2012-11-06 15:28:24Z webchills $
  */
 /**
  * inoculate against hack attempts which waste CPU cycles
@@ -116,7 +116,7 @@ if (!defined('DIR_FS_CATALOG') || !is_dir(DIR_FS_CATALOG.'/includes/classes')) {
  */
 if ($za_dir = @dir(DIR_WS_INCLUDES . 'extra_configures')) {
   while ($zv_file = $za_dir->read()) {
-    if (preg_match('/\.php$/', $zv_file) > 0) {
+    if (preg_match('~^[^\._].*\.php$~i', $zv_file) > 0) {
       /**
        * load any user/contribution specific configuration files.
        */

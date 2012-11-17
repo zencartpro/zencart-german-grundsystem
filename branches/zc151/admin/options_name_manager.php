@@ -3,8 +3,8 @@
  * @package admin
  * @copyright Copyright 2003-2012 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
- * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: options_name_manager.php 729 2011-08-09 15:49:16Z hugo13 $
+ * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
+ * @version $Id: options_name_manager.php 730 2012-11-06 09:49:16Z webchills $
  */
 
   require('includes/application_top.php');
@@ -13,6 +13,18 @@
   require(DIR_WS_CLASSES . 'currencies.php');
   $currencies = new currencies();
 
+  // check for damaged database, caused by users indiscriminately deleting table data
+  $ary = array();
+  $chk_option_values = $db->Execute("select * from " . TABLE_PRODUCTS_OPTIONS_VALUES . " where products_options_values_name = 'TEXT' and products_options_values_id=" . (int)PRODUCTS_OPTIONS_VALUES_TEXT_ID);
+  while (!$chk_option_values->EOF) {
+    $ary[] = $chk_option_values->fields['language_id'];
+    $chk_option_values->MoveNext();
+  }
+  for ($i=0, $n=sizeof($languages); $i<$n; $i ++) {
+    if ((int)$languages[$i]['id'] > 0 && !in_array((int)$languages[$i]['id'], $ary)) {
+      $db->Execute("INSERT INTO products_options_values (products_options_values_id, language_id, products_options_values_name) VALUES ((int)PRODUCTS_OPTIONS_VALUES_TEXT_ID, " . (int)$languages[$i]['id'] . ", 'TEXT')");
+    }
+  }
   $action = (isset($_GET['action']) ? $_GET['action'] : '');
 
 // display or hide copier features

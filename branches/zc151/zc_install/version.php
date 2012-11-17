@@ -9,8 +9,8 @@
  *
  * @package general
  * @copyright Copyright 2003-2012 Zen Cart Development Team
- * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: version.php 837 2012-08-05 20:33:58Z webchills $
+ * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
+ * @version $Id: version.php 837 2012-11-06 15:33:58Z webchills $
  * @private
  */
 
@@ -23,4 +23,4 @@ define('PROJECT_VERSION_PATCH1_SOURCE', '');
 define('PROJECT_VERSION_PATCH2_SOURCE', '');
 define('NEW_VERSION_CHECKUP_URL','http://www.zen-cart-pro.at/version_id.txt');
 define('EXPECTED_DATABASE_VERSION_MAJOR', '1');
-define('EXPECTED_DATABASE_VERSION_MINOR', '5.1');
+define('EXPECTED_DATABASE_VERSION_MINOR', '5.0');

@@ -4,8 +4,8 @@
  *
  * @package paymentMethod
  * @copyright Copyright 2003-2012 Zen Cart Development Team
- * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: paypal_curl.php 793 2011-10-10 06:24:50Z hugo13 $
+ * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
+ * @version $Id: paypal_curl.php 794 2012-11-06 15:24:50Z webchills $
  */
 
 /**
@@ -46,7 +46,7 @@ class paypal_curl extends base {
    * URL endpoints -- defaults here are for three-token NVP implementation
    */
   var $_endpoints = array('live'    => 'https://api-3t.paypal.com/nvp',
-                          'sandbox' => 'https://api.sandbox.paypal.com/nvp');
+                          'sandbox' => 'https://api-3t.sandbox.paypal.com/nvp');
   /**
    * Options for cURL. Defaults to preferred (constant) options.
    */
@@ -433,7 +433,7 @@ class paypal_curl extends base {
     } elseif ($this->_mode == 'nvp') {
       $headers[] = 'X-VPS-VIT-Integration-Product: PHP::Zen Cart(R) - PayPal/NVP';
     }
-    $headers[] = 'X-VPS-VIT-Integration-Version: 1.5.0';
+    $headers[] = 'X-VPS-VIT-Integration-Version: 1.5.1';
     $this->lastHeaders = $headers;
 
     $ch = curl_init();

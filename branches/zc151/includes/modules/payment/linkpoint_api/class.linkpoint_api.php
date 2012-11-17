@@ -3,7 +3,7 @@
  * @package paymentMethod
  * @copyright Copyright 2003-2012 Zen Cart Development Team
  * @copyright Copyright 2003 LinkPoint International, Inc. All Rights Reserved.
- * @version (within Zen Cart SVN) $Id: class.linkpoint_api.php 729 2011-08-09 15:49:16Z hugo13 $
+ * @version (within Zen Cart SVN) $Id: class.linkpoint_api.php 730 2012-11-06 15:49:16Z webchills $
  */
 /* lphp.php  LINKPOINT PHP MODULE */
 
@@ -57,7 +57,7 @@ class lphp
 					echo "at process, incoming data: <br>";
 
 					while (list($key, $value) = each($data))
-						 echo htmlspecialchars($key) . " = " . htmlspecialchars($value) . "<BR>\n";
+						 echo htmlspecialchars($key) . " = " . htmlspecialchars($value, ENT_COMPAT, CHARSET, TRUE) . "<BR>\n";
 				}
 				else      // don't use html output
 				{
@@ -103,7 +103,7 @@ class lphp
 		if ($this->debugging)
 		{
 			if ($webspace)
-				echo "<br>sending xml string:<br>" . htmlspecialchars($xml) . "<br><br>";
+				echo "<br>sending xml string:<br>" . htmlspecialchars($xml, ENT_COMPAT, CHARSET, TRUE) . "<br><br>";
 			else
 				echo "\nsending xml string:\n$xml\n\n";
 		}
@@ -118,7 +118,7 @@ class lphp
 		if ($this->debugging)
 		{
 			if ($this->webspace)	// we're web space
-				echo "<br>server responds:<br>" . htmlspecialchars($retstg) . "<br><br>";
+				echo "<br>server responds:<br>" . htmlspecialchars($retstg, ENT_COMPAT, CHARSET, TRUE) . "<br><br>";
 			else						// not html output
 				echo "\nserver responds:\n $retstg\n\n";
 		}
@@ -211,7 +211,7 @@ class lphp
 		if ($this->debugging)
 		{
 			if ($webspace)
-				echo "<br>sending xml string:<br>" . htmlspecialchars($xml) . "<br><br>";
+				echo "<br>sending xml string:<br>" . htmlspecialchars($xml, ENT_COMPAT, CHARSET, TRUE) . "<br><br>";
 			else
 				echo "\nsending xml string:\n$xml\n\n";
 				$this->xmlString .= "\nsending xml string:\n$xml\n\n";
@@ -275,7 +275,7 @@ class lphp
 				if ($this->debugging)
 				{
 					if ($this->webspace)
-						echo "<br>server responds:<br>" . htmlspecialchars($result) . "<br><br>";
+						echo "<br>server responds:<br>" . htmlspecialchars($result, ENT_COMPAT, CHARSET, TRUE) . "<br><br>";
 					else						// non html output
 						echo "\nserver responds:\n $result\n\n";
 				}
@@ -327,7 +327,7 @@ class lphp
       if ($this->debugging)
       {
         if ($webspace)	// html-friendly output
-        echo "<br>server responds:<br>" . htmlspecialchars(curl_error($ch)). ' <br>ErrNo#: ' . curl_errno($ch) . "<br><br>";
+        echo "<br>server responds:<br>" . htmlspecialchars(curl_error($ch), ENT_COMPAT, CHARSET, TRUE). ' <br>ErrNo#: ' . curl_errno($ch) . "<br><br>";
         else
         echo "\nserver responds:\n". curl_error($ch). " \nErrNo:" . curl_errno($ch)."\n\n";
       }
@@ -339,7 +339,7 @@ class lphp
       if ($this->debugging)
       {
         if ($webspace)	// html-friendly output
-        echo "<br>server responds:<br>" . htmlspecialchars($result) . "<br><br>";
+        echo "<br>server responds:<br>" . htmlspecialchars($result, ENT_COMPAT, CHARSET, TRUE) . "<br><br>";
         else
         echo "\nserver responds:\n $result\n\n";
 				$this->serverResponse .= "\nCould Not Connect:\n $result\n\n";
@@ -350,7 +350,7 @@ class lphp
 			if ($this->debugging)
 			{
 				if ($webspace)	// html-friendly output
-					echo "<br>server responds:<br>" . htmlspecialchars($result) . "<br><br>";
+					echo "<br>server responds:<br>" . htmlspecialchars($result, ENT_COMPAT, CHARSET, TRUE) . "<br><br>";
 				else
 					echo "\nserver responds:\n $result\n\n";
 					$this->serverResponse .= "\nserver responds:\n $result\n\n";

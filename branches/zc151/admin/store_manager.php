@@ -3,8 +3,8 @@
  * @package admin
  * @copyright Copyright 2003-2012 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
- * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: store_manager.php 729 2011-08-09 15:49:16Z hugo13 $
+ * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
+ * @version $Id: store_manager.php 730 2012-11-06 09:49:16Z webchills $
  */
 
   require('includes/application_top.php');
@@ -132,7 +132,8 @@
 
 // clean out old DEBUG logfiles
     case 'clean_debug_files':
-      $purgeFolder = rtrim(DIR_FS_SQL_CACHE, '/');
+      foreach(array(DIR_FS_LOGS, DIR_FS_SQL_CACHE, DIR_FS_CATALOG . '/includes/modules/payment/paypal/logs') as $purgeFolder) {
+        $purgeFolder = rtrim($purgeFolder, '/');
       $dir = dir($purgeFolder);
       while ($file = $dir->read()) {
         if ( ($file != '.') && ($file != '..') && substr($file, 0, 1) != '.') {
@@ -145,6 +146,7 @@
       }
       $dir->close();
       unset($dir);
+      }
       $messageStack->add_session(SUCCESS_CLEAN_DEBUG_FILES, 'success');
       zen_redirect(zen_href_link(FILENAME_STORE_MANAGER));
     break;

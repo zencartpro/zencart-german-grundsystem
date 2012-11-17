@@ -3,11 +3,12 @@
  * @package admin
  * @copyright Copyright 2003-2012 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
- * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: modules.php 785 2011-09-20 08:13:51Z webchills $
+ * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
+ * @version $Id: modules.php 786 2012-11-06 08:13:51Z webchills $
  */
 
   require('includes/application_top.php');
+  if (file_exists(DIR_FS_CATALOG . 'includes/classes/dbencdata.php')) require_once(DIR_FS_CATALOG . 'includes/classes/dbencdata.php');
 /* r.l. multilanguage : merge module languages */
   function getModuleLanguage($module_keys, $mKeys) {
     global $db;
@@ -74,6 +75,9 @@
           if (is_array( $value ) ) {
             $value = implode( ", ", $value);
             $value = preg_replace ("/, --none--/", "", $value);
+          }
+          if (function_exists('dbenc_encrypt') && function_exists('dbenc_is_encrypted_value_key') && dbenc_is_encrypted_value_key($key)) {
+            $value = dbenc_encrypt($value);
           }
           $db->Execute("update " . TABLE_CONFIGURATION . "
                         set configuration_value = '" . zen_db_input($value) . "'

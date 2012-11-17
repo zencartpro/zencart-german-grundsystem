@@ -5,8 +5,8 @@
  * @package page
  * @copyright Copyright 2003-2012 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
- * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: header_php.php 763 2011-08-29 13:23:42Z hugo13 $
+ * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
+ * @version $Id: header_php.php 764 2012-11-06 15:23:42Z webchills $
  */
 
 // This should be first line of the script:
@@ -144,7 +144,7 @@ submit_form();
   reset($_POST);
   while (list($key, $value) = each($_POST)) {
     if (!is_array($_POST[$key])) {
-      echo zen_draw_hidden_field($key, htmlspecialchars(stripslashes($value))) . "\n";
+      echo zen_draw_hidden_field($key, htmlspecialchars(stripslashes($value), ENT_COMPAT, CHARSET, TRUE)) . "\n";
     }
   }
   if (!isset($_POST['securityToken'])) zen_draw_hidden_field('securityToken', $_SESSION['securityToken']);

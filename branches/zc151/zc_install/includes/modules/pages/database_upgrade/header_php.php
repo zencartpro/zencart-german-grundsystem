@@ -4,8 +4,8 @@
  * @access private
  * @copyright Copyright 2003-2012 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
- * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: header_php.php 840 2012-01-30 18:58:25Z webchills $
+ * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
+ * @version $Id: header_php.php 841 2012-11-17 10:58:25Z webchills $
  */
 include('includes/modules/pages/database_upgrade/language_id_change.php');
 /*
@@ -27,7 +27,7 @@ include('includes/modules/pages/database_upgrade/language_id_change.php');
 /////////////////////////////////////////////////////////////////////
 //this is the latest database-version-level that this script knows how to inspect and upgrade to.
 //it is used to determine whether to stay on the upgrade page when done, or continue to the finished page
-$latest_version = '1.5.0';
+$latest_version = '1.5.1';
 
 ///////////////////////////////////
 $is_upgrade = true; //that's what this page is all about!
@@ -93,9 +93,17 @@ $sniffer_text = '';
       $sniffer_text =  ' upgrade v1.3.9 to v1.3.8multi2';
       $needs_v1_3_8multi2=true;
     }
+	
+	    $needs_v1_5_1=false;
+    if (!$dbinfo->version151) {
+      $sniffer_text =  ' upgrade v1.5.0 to v1.5.1';
+      $needs_v1_5_1=true;
+    }
+
+	
     $needs_v1_5_0=false;
     if (!$dbinfo->version150) {
-      $sniffer_text =  ' upgrade v1.3.9 to v1.5.1';
+      $sniffer_text =  ' upgrade v1.3.9 to v1.5.0';
       $needs_v1_5_0=true;
     }
     $needs_v1_3_9=false;
@@ -256,7 +264,7 @@ if (ZC_UPG_DEBUG2==true) {
     $sniffer_version = '';
     $nothing_to_process = false;
     if (is_array($_POST['version'])) {
-      if (ZC_UPG_DEBUG2==true) foreach($_POST['version'] as $value) { echo 'Selected: ' . $value.'<br />';}
+      if (ZC_UPG_DEBUG2==true) foreach($_POST['version'] as $value) { echo 'Selected: ' . htmlspecialchars($value, ENT_COMPAT, CHARSET, TRUE).'<br />';}
       reset($_POST['version']);
       if (sizeof($_POST['version'])) $zc_install->updateAdminIpList();
       while (list(, $value) = each($_POST['version'])) {
@@ -439,6 +447,17 @@ if (ZC_UPG_DEBUG2==true) {
           $got_multilingual = true; //after processing this step, this will be the new version-level
           $db_upgraded_to_version='multilingual';
           break;
+		  
+		  
+		         case '1.5.0':  // upgrading from v1.5.0 TO 1.5.1
+            $sniffer_file = '_upgrade_zencart_150_to_151.sql';
+            if (ZC_UPG_DEBUG2==true) echo $sniffer_file.'<br>';
+            $got_v1_5_1 = true; //after processing this step, this will be the new version-level
+            $db_upgraded_to_version='1.5.1';
+            break;
+
+		  
+		  
           default:
             $nothing_to_process=true;
         } // end switch
@@ -560,4 +579,14 @@ echo 'CAUTION: '.$value.'<br />';
    exit;
  }
 
+  // quick sanitization
+  foreach($_POST as $key=>$val) {
+    if(is_array($val)){
+      foreach($val as $key2 => $val2){
+        $_POST[$key][$key2] = htmlspecialchars($val2, ENT_COMPAT, CHARSET, TRUE);
+      }
+    } else {
+      $_POST[$key] = htmlspecialchars($val, ENT_COMPAT, CHARSET, TRUE);
+    }
+  }
   $adminName = (isset($_POST['adminid'])) ? $_POST['adminid'] : '';

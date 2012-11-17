@@ -4,14 +4,14 @@
  * @copyright Copyright 2003-2012 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: stylesheet.css 836 2012-01-01 20:33:58Z webchills $
+ * @version $Id: stylesheet.css 837 2012-11-17 10:33:58Z webchills $
  */
 
 body {
-background-color: #EEE;
-margin: 0px;
+background-color: #313131;
+margin: 5px 0 0 0;
 padding: 0px;
-font: 12px Tahoma, Verdana, Arial, sans-serif;
+font: 12px Arial, Helvetica, sans-serif;
 text-align: center;
 }
 
@@ -26,7 +26,7 @@ padding: 0px;
 margin: 0px auto;
 position: relative;
 text-align: left;
-width: 760px !important;
+width: 790px !important;
 width /**/: 752px;
 }
 #main {
@@ -36,7 +36,7 @@ width /**/: 752px;
 }
 #content {
 float: right;
-width: 578px;
+width: 600px;
 margin: 0px 20px 5px 0px;
 padding: 0px;
 }
@@ -44,21 +44,38 @@ padding: 0px;
 text-align: left;
 margin: 0px 20px 5px 0px;
 padding: 10px;
+background:#FFFFFF;
 }
+
+
+#popup{
+	background:#FFFFFF;
+}
+
 #navigation {
-margin: 11px 0px 0px -7px;
+margin: 11px 0px 0px 2px;
 padding: 0;
 background: transparent;
-width: 120px !important;
-width /**/: 135px;
+width: 160px !important;
+
+}
+
+#installme{
+	text-align:center;
+	border-bottom:2px solid #313131;
+	border-top:2px solid #313131;
+	
+	font-weight:bold;
+	font-size:12px;
+	padding:3px;
 }
 
 
 /*  Header
 --------------------------------- */
 #header {
-height: 120px;
-width: 760px;
+height: 90px;
+width: 790px;
 margin: 0;
 padding: 0;
 text-align: right;
@@ -84,10 +101,10 @@ margin-bottom: 3px;
 }
 #navigation li {
 padding: 3px 0 3px 9px;
-width: 124px;
+width: 150px;
 display: block;
 text-decoration: none;
-color: #333;
+color: #313131;
 background: #fff;
 }
 
@@ -146,25 +163,25 @@ body#configcheckup li#cfgcheck,
 body#storesetup li#store,
 body#adminsetup li#admin,
 body#finished li#finish {
-	font-weight: bold;  background-color: #ceddf0;
+	font-weight: bold;  background-color: #FF5D14;
 }
 
 /*  Footer
 --------------------------------- */
-#footer { clear: both; text-align: center; margin: 10px 0 0 5px;}
+#footer { clear: both; text-align: center; margin: 30px 0 0 0; border-top:2px solid #000000;padding:6px;}
 
 /*  Headings
 --------------------------------- */
 h1 {
    color: #ffffff;
    border:1px solid #aca893;
-   background-color: #c96e29;
-   background-image: url(../images/tile_back.jpg);
+   background-color: #FF5D14;
+   
    font-size: 16px;
    padding: 4px;
 }
 h2 {
-	color: #c96e29;
+	color: #FF5D14;
 	font-size: 16px;
 }
 
@@ -175,15 +192,15 @@ h2 {
 /* Links
 --------------------------------- */
 a:link, a:visited, a:active { color:#0033FF; font-weight: bold; font-size: 1.1em; text-decoration:none; }
-a:hover { color:#c96e29;}
-a.button { padding: 3px 15px; color: #000; border: 3px outset #666; margin: 0px 5px; background-color: #ceddf0; }
-a.button:hover {background-color: #ceddf0; }
+a:hover { color:#FF5D14;}
+a.button { padding: 3px 15px; color: #000; border: 1px outset #666; margin: 0px 5px; background-color: #FF5D14; }
+a.button:hover {background-color: #FF5D14; }
 
 /*  Forms
 --------------------------------- */
 form { margin: 0; padding: 0; }
-fieldset { margin: 0; padding: 10px; border: 1px solid #666; }
-legend { margin: 0; padding: 0 4px; color: #e80; font-weight: bold;}
+fieldset { margin: 0; padding: 0; border: 0px solid #666; }
+legend { margin-bottom: 6px; padding: 0; color: #FF5D14; font-weight: bold; font-size:13px; border-bottom:2px solid #000000; text-transform:uppercase;}
 .attention { color: red; }
 input, select, textarea { margin: 10px 5px 0; padding: 0; }
 label, span.label { margin: 0; padding: 0; font-weight: bold; }
@@ -216,7 +233,7 @@ padding: 0px;
 }
 .center { text-align: center; }
 .errors {  color: #FF0000;}
-SPAN.emphasis {  color:#c96e29;}
+SPAN.emphasis {  color:#FF5D14;}
 a.nowrap {	white-space: nowrap; }
 
 /* message box */
@@ -256,3 +273,8 @@ background-color:#d4ffbd;
 .cfgfilecontent {
 	font-size:11px;
 	}
+	
+#lic{
+	font-family:Arial,Helvetica,sans-serif;
+	font-size:11px;
+}

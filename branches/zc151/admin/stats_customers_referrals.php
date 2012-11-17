@@ -3,8 +3,8 @@
  * @package admin
  * @copyright Copyright 2003-2012 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
- * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: stats_customers_referrals.php 729 2011-08-09 15:49:16Z hugo13 $
+ * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
+ * @version $Id: stats_customers_referrals.php 730 2012-11-06 09:49:16Z hugo13 $
  */
   require('includes/application_top.php');
 
@@ -148,8 +148,8 @@
           </tr>
           <tr>
             <td class="main" align="left"><?php echo zen_date_long($customers_orders->fields['date_purchased']); ?></td>
-            <td class="main" align="left">Order #<?php echo $customers_orders->fields['orders_id']; ?></td>
-            <td class="main" align="left">Discount Coupon ID# <?php echo $customers_orders->fields['coupon_code']; ?></td>
+            <td class="main" align="left"><?php echo TEXT_ORDER_NUMBER; ?> <?php echo $customers_orders->fields['orders_id']; ?></td>
+            <td class="main" align="left"><?php echo TEXT_COUPON_ID; ?> <?php echo $customers_orders->fields['coupon_code']; ?></td>
             <td class="main" align="left"><?php echo '<a href="' . zen_href_link(FILENAME_ORDERS, zen_get_all_get_params(array('oID', 'action')) . 'oID=' . $customers_orders->fields['orders_id'] . '&action=edit', 'NONSSL') . '">' . zen_image_button('button_edit.gif', IMAGE_EDIT) . '</a>'; ?></td>
           </tr>
           <tr>

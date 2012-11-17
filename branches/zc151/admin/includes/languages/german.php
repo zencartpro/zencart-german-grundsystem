@@ -3,9 +3,9 @@
  * @package admin
  * @copyright Copyright 2003-2012 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
- * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @translator: cyaneo/hugo13/wflohr/maleborg/webchills	http://www.zen-cart-pro.at	2010-04-27
- * @version $Id: german.php 643 2010-09-23 22:54:04Z maleborg $
+ * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
+ * @translator: cyaneo/hugo13/wflohr/maleborg/webchills	http://www.zen-cart-pro.at
+ * @version $Id: german.php 644 2012-11-06 17:54:04Z webchills $
  */
 if (!defined('IS_ADMIN_FLAG'))
 {
@@ -295,7 +295,7 @@ define('ENTRY_NEWSLETTER_ERROR', '');
 
 define('ERROR_PASSWORDS_NOT_MATCHING', 'Das Passwort und die Passwortbestätigung müssen identisch sein');
 define('ENTRY_PASSWORD_CHANGE_ERROR', '<strong>Entschuldigung, Ihr neues Passwort wurde abgelehnt.</strong><br />');
-define('ERROR_PASSWORD_RULES', 'Passwärter müssen sowohl Buchstaben als auch Zahlen enthalten und mindestens %s Zeichen lang sein. Außerdem darf Ihr neues Passwort nicht mit einem der letzten 4 benutzten Passwörter identisch sein. Passwörter verlieren alle 90 Tage ihre Gültigkeit.');
+define('ERROR_PASSWORD_RULES', 'Passwärter müssen sowohl Buchstaben als auch Zahlen enthalten und mindestens %s Zeichen lang sein. Außerdem darf Ihr neues Passwort nicht mit einem der letzten 4 benutzten Passwörter identisch sein. Passwörter verlieren alle 90 Tage ihre Gültigkeit. Danch werden Sie automatisch aufgefordert Ihr Passwort zu ändern.');
 define('ERROR_TOKEN_EXPIRED_PLEASE_RESUBMIT', 'FEHLER: Entschuldigung, es trat ein Fehler während der Verarbeitung Ihrer Daten auf. Bitte übermitteln Sie Ihre Daten erneut.');
 
 // images
@@ -447,7 +447,7 @@ define('ERROR_FILETYPE_NOT_ALLOWED', 'FEHLER: Dateityp %s ist nicht erlaubt');
 define('SUCCESS_FILE_SAVED_SUCCESSFULLY', 'Erfolgreich: Dateiupload %s wurde gespeichert');
 define('WARNING_NO_FILE_UPLOADED', 'WARNUNG: Keine Datei hochgeladen.');
 define('WARNING_FILE_UPLOADS_DISABLED', 'WARNUNG: Die Option "Dateiupload" ist in der php.ini deaktiviert.');
-define('ERROR_ADMIN_SECURITY_WARNING', 'WARNUNG: Ihr Admin Login ist nicht sicher ... entweder noch Standard-Login-Einstellungen: Admin admin oder nicht entfernt: demo demoonly<br />Login(s) sollten zur Sicherheit so schnell als möglich geändert werden.<br />Für zusätzliche Sicherheitshinweise siehe auch Verzeichnis /docs');
+define('ERROR_ADMIN_SECURITY_WARNING', 'WARNUNG: Ihr Admin Login ist nicht sicher ... entweder noch Standard-Login-Einstellungen: Admin admin oder nicht entfernt: demo demoonly<br />Login(s) sollten zur Sicherheit so schnell als möglich geändert werden.');
 define('WARNING_DATABASE_VERSION_OUT_OF_DATE', 'Ihre Datenbank scheint einen Patch zu benötigen. Siehe auch Tools->Server Information um die Patchlevels zu betrachten.');
 define('WARN_DATABASE_VERSION_PROBLEM','true'); //set to false to turn off warnings about database version mismatches
 define('WARNING_ADMIN_DOWN_FOR_MAINTENANCE', '<strong>WARNUNG:</strong> Der Shop ist z.Zt. wegen Wartung geschlossen ...<br />ANMERKUNG: Sie können die meisten Zahlungs- und Versand-Module im Wartungszustand nicht prüfen');
@@ -724,6 +724,7 @@ define('TEXT_HIDE', 'Verstecken');
 define('TEXT_EMAIL', 'E-Mail');
 define('TEXT_NOEMAIL', 'Keine E-Mail');
 
+define('BOX_HEADING_PRODUCT_TYPES', 'Artikeltypen');
 
 ///////////////////////////////////////////////////////////
 // include additional files:

@@ -3,7 +3,7 @@
  * Main English language file for installer *
  * @package Installer
  * @access private
- * @copyright Copyright 2003-2012 Zen Cart Development Team
+ * @copyright Copyright 2003-2010 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
  * @version $Id: german.php 804 2011-11-23 08:28:24Z webchills $
@@ -23,19 +23,19 @@ define('HTML_PARAMS','dir="ltr" lang="de"');
 define('CHARSET', 'utf-8');
 
 // META TAG TITLE
-define('META_TAG_TITLE', 'Zen Cart&reg; Installationsprogramm');
+define('META_TAG_TITLE', 'Zen-Cart 1.5.1 deutsch - Installationsprogramm');
 
 define('INSTALLATION_IN_PROGRESS','Installation läuft...');
 
 if (isset($_GET['main_page']) && ($_GET['main_page']== 'index' || $_GET['main_page']== 'license')) {
-    define('TEXT_ERROR_WARNING', 'Hi: Es müssen nur einige Kleinigkeiten adressiert werden, bevor wir fortfahren können.');
+    define('TEXT_ERROR_WARNING', 'Es müssen nur einige Kleinigkeiten behoben werden, bevor wir fortfahren können.');
 } else {
     define('TEXT_ERROR_WARNING', '<span class="errors"><strong>WARNUNG: Es sind Probleme aufgetreten</strong></span>');
 }
 
 define('DB_ERROR_NOT_CONNECTED', 'Installationsfehler: Es konnte keine Verbindung zur Datenbank hergestellt werden');
 define('SHOULD_UPGRADE','Sie sollten ein Upgrade in Betracht ziehen!');
-define('MUST_UPGRADE','Sie müssen zuerst upgraden bevor Sie Zen-Cart&trade; installieren');
+define('MUST_UPGRADE','Sie müssen zuerst upgraden bevor Sie Zen-Cart installieren');
 
 define('UPLOAD_SETTINGS','Die maximale Uploadgröße muss kleiner als einer der folgenden Werte sein:.<br />
 <em>upload_max_filesize</em> in php.ini %s <br />
@@ -546,28 +546,7 @@ switch ($error_code) {
     define('POPUP_ERROR_TEXT', 'Wenn Sie die Option Sitzungs/SQL Cache aktivieren wollen, muss ein Verzeichnis für das Speichern von SQL Abfragen und die notwendigen Lese- und Schreibrechte vorhanden sein. Stellen Sie sicher, dass das Verzeichnis vorhanden ist und der Server die notwendigen Rechte zum Schreiben für dieses Verzeichnis besitzt (Auf Unix/Linux Systemen stellen Sie CHMOD 666 oder 777 ein und auf Windows Systemen deaktivieren Sie den Schreibschutz.');
     
   break;
-//  case ('64'):
-//     define('POPUP_ERROR_HEADING', 'Wollen Sie einen Link zu einem phpBB Forum auf Ihren Shop anbieten?');
-//     define('POPUP_ERROR_TEXT', 'Wenn Sie möchten, dass Ihr Zen Cart Shop einen Link zu einem bereits existierendes phpBB Forum haben soll, wählen Sie \'ja\'.');
-    
-//   break;
-//   case ('65'):
-//     define('POPUP_ERROR_HEADING', 'phpBB Datenbank Präfix');
-//     define('POPUP_ERROR_TEXT', 'Bitte geben Sie das Präfix der Datenbanktabellen für Ihr phpBB Forum an. Normalerweise lautet dieser \'phpBB_\'');
-    
-//   break;
-//   case ('66'):
-//     define('POPUP_ERROR_HEADING', 'phpBB Datenbankname');
-//     define('POPUP_ERROR_TEXT', 'Bitte geben Sie heri den Namen der Datenbank Ihres phpBB Forums bekannt.');
-//   break;
-//   case ('67'):
-//     define('POPUP_ERROR_HEADING', 'phpBB Verzeichnis');
-//     define('POPUP_ERROR_TEXT', 'Bitte geben Sie hier den vollständigen relativen Pfad zu Ihren phpBB Dateien an. Damit ermöglichen Sie Ihrem Zen Cart Shop Kunden, die auf den phpBB Link klicken, direkt zum phpBB Forum weiter zu leiten.<br /><br />Der Pfad, der hier eingegeben werden muss, ist relativ zum "Rootverzeichnis" ihres Webservers. Wenn z.B. Ihre phpBB Forum Installation in <strong>/home/users/username/public_html/phpbb </strong> liegt, dann müssen Sie <strong>/home/users/username/public_html/phpbb/ </strong>eingeben. Wenn diese in einem Unterordner liegen, so muss dieser im Pfad angegeben werden.<br /><br />Zen Cart wird versuchen, die Datei "<em>config.php</em>" in diesem Ordner zu finden.');
-//   break;
-//   case ('68'):
-//     define('POPUP_ERROR_HEADING', 'phpBB Verzeichnis');
-//     define('POPUP_ERROR_TEXT', 'Es konnte keine phpBB Konfigurationsdatei in dem von Ihnen angegebenen Verzeichnis gefunden werden. phpBB muss bereit installiert sein, wenn Sie diese automatische Konfiguration verwenden wollen. Andernfalls überspringen Sie diese Konfiguration und installieren Sie es zu einem späteren Zeitpunkt.<br /><br />Der Pfad, der hier eingegeben werden muss, ist relativ zum "Rootverzeichnis" ihres Webservers. Wenn z.B. Ihre phpBB Forum Installation in <strong>/home/users/username/public_html/phpbb </strong> liegt, dann müssen Sie <strong>/home/users/username/public_html/phpbb/ </strong>eingeben. Wenn diese in einem Unterordner liegen, so muss dieser im Pfad angegeben werden.<br /><br />Zen Cart wird versuchen, die Datei "<em>config.php</em>" in diesem Ordner zu finden.');
-//   break;
+
   case ('69'):
     define('POPUP_ERROR_HEADING', 'Register Globals');
     define('POPUP_ERROR_TEXT', 'Zen Cart funktioniert mit "Register Globals" ON und OFF. Jedoch bietet die Einstellung der "Register Globals" auf "OFF" mehr Sicherheit für Ihr System.');
@@ -673,12 +652,12 @@ switch ($error_code) {
     define('POPUP_ERROR_TEXT', 'It is best to have "magic_quotes_sybase" disabled. When enabled, it can cause unexpected 1064 SQL errors, and other code-execution problems.<br /><br />If you cannot disable it for the whole server, it may be possible to disable via .htaccess or your own php.ini file in your private webspace.  Talk to your hosting company for assistance.');
   break;
   case ('95'):
-    define('POPUP_ERROR_HEADING','CURL requires SSL support. Please notify webmaster or hosting company.');
+    define('POPUP_ERROR_HEADING','CURL benötigt SSL Support. Bitte kontaktieren Sie Ihren Provider');
     define('POPUP_ERROR_TEXT','Zen Cart&reg; uses CURL and SSL to communicate with some payment and shipping service providers.<br />The installer has just tested your CURL SSL support and found that it failed.<br /><br />You will not be able to use PayPal or Authorize.net or FirstData/Linkpoint payment modules, and possibly other third-party contributed payment/shipping modules until you enable SSL support in CURL and PHP.<br /><br />More information on CURL can be found at the <a href="http://curl.haxx.se" target="_blank">CURL website</a>');
   break;
   case ('96'):
     define('POPUP_ERROR_HEADING','Adminordner Name');
-    define('POPUP_ERROR_TEXT','Geben Sie bitte einen neuen Namen für den AdminoOrdner an. Der Adminordner muss umbenannt werden damit das Adminsystem betreten werden kann');
+    define('POPUP_ERROR_TEXT','Geben Sie bitte einen neuen Namen für den Admin Ordner an. Der Adminordner muss umbenannt werden damit das Adminsystem betreten werden kann');
   break;
 
 }

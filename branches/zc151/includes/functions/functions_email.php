@@ -7,8 +7,8 @@
  * @package functions
  * @copyright Copyright 2003-2012 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
- * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: functions_email.php 729 2011-08-09 15:49:16Z hugo13 $
+ * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
+ * @version $Id: functions_email.php 730 2012-11-06 15:49:16Z webchills $
  * 2007-09-30 added encryption support for Gmail Chuck Redman
  */
 
@@ -106,13 +106,13 @@
       if ($email_text == '') {
         $email_text = str_replace(array('<br>','<br />'), "<br />\n", $block['EMAIL_MESSAGE_HTML']);
         $email_text = str_replace('</p>', "</p>\n", $email_text);
-        $email_text = ($module != 'xml_record') ? htmlspecialchars(stripslashes(strip_tags($email_text))) : $email_text;
+        $email_text = ($module != 'xml_record') ? htmlspecialchars(stripslashes(strip_tags($email_text)), ENT_COMPAT, CHARSET, TRUE) : $email_text;
       } else {
         $email_text = ($module != 'xml_record') ? strip_tags($email_text) : $email_text;
       }
 
       if ($module != 'xml_record') {
-        if (!strstr($email_text, sprintf(EMAIL_DISCLAIMER, STORE_OWNER_EMAIL_ADDRESS)) && $to_email_address != STORE_OWNER_EMAIL_ADDRESS && !defined('EMAIL_DISCLAIMER_NEW_CUSTOMER')) $email_text .= "\n" . sprintf(EMAIL_DISCLAIMER, STORE_OWNER_EMAIL_ADDRESS);
+        if (defined('EMAIL_DISCLAIMER') && EMAIL_DISCLAIMER != '' && !strstr($email_text, sprintf(EMAIL_DISCLAIMER, STORE_OWNER_EMAIL_ADDRESS)) && $to_email_address != STORE_OWNER_EMAIL_ADDRESS && !defined('EMAIL_DISCLAIMER_NEW_CUSTOMER')) $email_text .= "\n" . sprintf(EMAIL_DISCLAIMER, STORE_OWNER_EMAIL_ADDRESS);
         if (defined('EMAIL_SPAM_DISCLAIMER') && EMAIL_SPAM_DISCLAIMER != '' && !strstr($email_text, EMAIL_SPAM_DISCLAIMER) && $to_email_address != STORE_OWNER_EMAIL_ADDRESS) $email_text .= "\n\n" . EMAIL_SPAM_DISCLAIMER;
       }
 

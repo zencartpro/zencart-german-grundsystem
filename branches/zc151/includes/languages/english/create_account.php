@@ -3,8 +3,8 @@
  * @package languageDefines
  * @copyright Copyright 2003-2012 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
- * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: create_account.php 729 2011-08-09 15:49:16Z hugo13 $
+ * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
+ * @version $Id: create_account.php 730 2012-11-06 15:29:16Z webchills $
  */
 
 define('NAVBAR_TITLE', 'Create an Account');
@@ -13,7 +13,7 @@ define('HEADING_TITLE', 'My Account Information');
 
 define('TEXT_ORIGIN_LOGIN', '<strong class="note">NOTE:</strong> If you already have an account with us, please login at the <a href="%s">login page</a>.');
 
-
+define('ERROR_CREATE_ACCOUNT_SPAM_DETECTED', 'Thank you, your account request has been submitted for review.');
 
 
 // greeting salutation

@@ -1,16 +1,17 @@
 <?php
 /**
  * @package languageDefines
- * @copyright Copyright 2003-2012 Zen Cart Development Team
+ * @copyright Copyright 2003-2010 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
- * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: checkout_shipping.php 628 2012-07-05 11:05:14Z webchills $
+ * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
+ * @translators: cyaneo/hugo13/wflohr/maleborg/webchills	http://www.zen-cart-pro.at
+ * @version $Id: checkout_shipping.php 627 2010-08-30 15:05:14Z webchills $
  */
 
-define('NAVBAR_TITLE_1','Bestellung');
-define('NAVBAR_TITLE_2','Versandart wählen');
+define('NAVBAR_TITLE_1','Kasse');
+define('NAVBAR_TITLE_2','Versandart');
 
-define('HEADING_TITLE','Schritt 1 von 3 : Lieferinformationen');
+define('HEADING_TITLE','Schritt 1 von 3 , Lieferinformationen');
 
 define('TABLE_HEADING_SHIPPING_ADDRESS','Lieferanschrift');
 define('TEXT_CHOOSE_SHIPPING_DESTINATION','Ihre Bestellung wird an die links angezeigte Anschrift geliefert. Sie können die Lieferanschrift ändern, wenn Sie auf den Button <em>Adresse ändern</em> klicken.');
