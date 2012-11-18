@@ -1,15 +1,18 @@
 <?php
-// $Id: vataddon.php 343 2008-06-28 12:11:52Z hugo13 $
-// samples
+/**
+ * @package functions
+ * @copyright Copyright 2003-2012 Zen Cart Development Team
+ * @copyright Portions Copyright 2003 osCommerce
+ * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
+ * @version $Id: vataddon.php 344 2012-11-18 18:49:16Z webchills $
+ */
 
 function vatAddOn($product_check){
-    if(!defined(ADD_VATADDON)){
-        define('ADD_VATADDON', 'ALL');
-    }
-    if(ADD_VATADDON == 'NONE'){
+    
+    if(DISPLAY_VATADDON_WHERE == '0'){
         return '';
     }
-    $s = explode('|', ADD_VATADDON);
+    $s = explode('|', DISPLAY_VATADDON_WHERE);
     $ok = in_array($GLOBALS['current_page'], $s);
     if($ok || $s[0] == 'ALL'){
         $vat = zen_get_tax_rate($product_check->fields['products_tax_class_id']) . '% ';
