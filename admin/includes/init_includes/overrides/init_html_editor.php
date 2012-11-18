@@ -1,19 +1,26 @@
 <?php
 /**
  * @package htmleditors
- * @copyright Copyright 2010 Kuroi Web Design
- * @copyright Portions Copyright 2003-2006 Zen Cart Development Team
+ * @copyright Copyright 2003-2012 Zen Cart Development Team
+ * @copyright Portions Copyright 2003-2012 Zen Cart Development Team
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: init_html_editor.php 754 2011-08-13 13:47:09Z hugo13 $
+ * @version $Id: init_html_editor.php 755 2012-11-18 20:47:09Z webchills $
  */
+if (!defined('DIR_WS_EDITORS')) define('DIR_WS_EDITORS', 'editors/');
 if (!defined('IS_ADMIN_FLAG')) {
   die('Illegal Access');
 }
 /**
  * List of installed editors should be here:
- * CONSTANTS are used for language-specific display names, and are defined in languages/extra_definitions/editors_list.php
+ * CONSTANTS are used for language-specific display names, and are defined in /YOUR_ADMIN_FOLDER/includes/languages/extra_definitions/editor_EDITORNAME.php
+ *
+ * To add additional editors, add your own entries to the $editors_list array by creating a NEW FILE in /YOUR_ADMIN_FOLDER/includes/extra_functions/editor_EDITORNAME.php containing just one line of PHP:
+ *    <?php  $editors_list['NAME_OF_EDITOR']  = array('desc' => EDITOR_CONSTANT,  'handler' => 'editorhandlerfilename.php',  'special_needs' => '');
+ *
+ *
+ * NOTE: THERE SHOULD BE NO NEED TO EDIT ANYTHING BELOW THIS LINE:
  */
-  if (!defined(DIR_WS_EDITORS)) define ('DIR_WS_EDITORS','editors/');
+  
   $editors_list['NONE'] = array('desc' => EDITOR_NONE, 'handler' => '', 'special_needs' => '');
   if (is_dir(DIR_FS_CATALOG . DIR_WS_EDITORS . 'htmlarea')) $editors_list['HTMLAREA'] = array('desc' => EDITOR_HTMLAREA, 'handler' => 'htmlarea.php', 'special_needs' => '');
   if (is_dir(DIR_FS_CATALOG . DIR_WS_EDITORS . 'fckeditor')) $editors_list['FCKEDITOR'] = array('desc' => EDITOR_FCKEDITOR, 'handler' => 'fckeditor.php', 'special_needs' => '');
