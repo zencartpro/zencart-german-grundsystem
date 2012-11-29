@@ -1,12 +1,12 @@
 <?php
 /**
- * Main English language file for installer *
+ * Main German language file for installer *
  * @package Installer
  * @access private
- * @copyright Copyright 2003-2010 Zen Cart Development Team
+ * @copyright Copyright 2003-2012 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: german.php 804 2011-11-23 08:28:24Z webchills $
+ * @version $Id: german.php 805 2012-11-30 18:28:24Z webchills $
  */
 /**
  * defining language components for the page
@@ -44,7 +44,7 @@ define('UPLOAD_SETTINGS','Die maximale Uploadgröße muss kleiner als einer der 
 'Einige Apache-Einstellungen können das Hochladen von Dateien verhindern bzw. Ihre Dateigröße begrenzen.
 Nutzen Sie die Apache-Dokumentation um weitere Informationen zu erhalten.');
 
-define('TEXT_HELP_LINK', ' mehr...');
+define('TEXT_HELP_LINK', '[Hilfe]');
 define('TEXT_CLOSE_WINDOW', 'Fenster schließen');
 define('STORE_ADDRESS_DEFAULT_VALUE', 'Shopname
   Adresse
@@ -297,9 +297,9 @@ switch ($error_code) {
     
   break;
   case ('14'):
-    define('POPUP_ERROR_HEADING', 'Datenbanktyp');
-    define('POPUP_ERROR_TEXT', 'Zen Cart unterstützt mehrere Datenbanktypen. Dieses Feature ist jedoch zur Zeit noch nicht vollständig ausgebaut. Derzeit sollten Sie die Einstellung auf der Verwendung von MySQL Datenbanken belassen.');
-    
+    define('POPUP_ERROR_HEADING', 'Datenbank Character Set / Kollation');
+    define('POPUP_ERROR_TEXT', 'Die deutsche Zen-Cart Version verwendet durchgehend utf-8 sowohl für Datenbank als auch in den Sprachdateien. Wir empfehlen daher unbedingt hier die Vorauswahl utf-8 zu lassen!');
+
   break;
   case ('15'):
     define('POPUP_ERROR_HEADING', 'Datenbank Host');
@@ -318,12 +318,12 @@ switch ($error_code) {
   break;
   case ('18'):
     define('POPUP_ERROR_HEADING', 'Datenbank Name');
-    define('POPUP_ERROR_TEXT', 'Das ist der Name der Datenbank, die Sie zur Verwendung von Zen Cart benötigen. Wenn Sie nicht sicher sind, wofür Sie das benötigen, kontaktieren Sie Ihren Webhoster.');
+    define('POPUP_ERROR_TEXT', 'Das ist der Name der Datenbank, die Sie zur Verwendung von Zen Cart benötigen. Den Manen der Datenbank finden Sie in der Regel in der Administration Ihres Webhoster, wo Sie die Datenbank ja zuvor auch angelegt haben.');
     
   break;
   case ('19'):
     define('POPUP_ERROR_HEADING', 'Datenbank Präfix');
-    define('POPUP_ERROR_TEXT', 'Mit Zen Cart ist es möglich, den verwendeten Tabellen ein Präfix voranzustellen. Diese Funktion ist hilfreich, wenn Sie z.B. nur eine Datenbank aber mehrere Skripte installiert haben, die auf diese Datenbank zugreifen. Grundsätzlich sollten Sie die vorgegebene Standardeinstellung verwenden.');
+    define('POPUP_ERROR_TEXT', 'Mit Zen Cart ist es möglich, den verwendeten Tabellen ein Präfix voranzustellen. Diese Funktion ist hilfreich, wenn Sie z.B. nur eine Datenbank aber mehrere Skripte installiert haben, die auf diese Datenbank zugreifen. Grundsätzlich sollten Sie die vorgegebene Standardeinstellung ohne Präfix verwenden. Wir empfehlen in der Datenbank ausschliesslich Zen-Cart zu installieren und nicht eine Datenbank für unterschiedeliche Scripts zu verwenden.');
     
   break;
   case ('20'):
@@ -453,7 +453,7 @@ switch ($error_code) {
   break;
   case ('45'):
     define('POPUP_ERROR_HEADING', 'Demoartikel installieren');
-    define('POPUP_ERROR_TEXT', 'Bitte wählen Sie, ob Sie Demoartikel verwenden wollen. Diese Demodaten enthalten einige Beispiele zur Demonstration der Leistungsfähigkeit des Shops.');
+    define('POPUP_ERROR_TEXT', 'Bitte wählen Sie, ob Sie Demoartikel verwenden wollen. Diese Demodaten enthalten einige Beispiele zur Demonstration der Leistungsfähigkeit des Shops. <br/>WICHTIG:<br/>Die Demodaten sind NUR für einen Testshop gedacht, den Sie zusätzlich zu Ihrem eigentlich Shop installieren. Wenn Sie diese Installation für Ihren echten Shop ausführen, dann kreuzen Sie die Demodaten NICHT an. Sie haben sonst ganz unnötige Artikel, Kategorien und Attribute in Ihrem Shop, die Sie später mühsam wieder deaktivieren oder löschen müssen.');
     
   break;
   case ('46'):
@@ -493,7 +493,7 @@ switch ($error_code) {
   break;
   case ('53'):
     define('POPUP_ERROR_HEADING', 'Admin Passwort');
-    define('POPUP_ERROR_TEXT', 'Das Admin Passwort dient zu Ihrer Sicherheit und ermöglicht Ihnen den Zugang zum Admin Bereich.');
+    define('POPUP_ERROR_TEXT', 'Das Admin Passwort dient zu Ihrer Sicherheit und ermöglicht Ihnen den Zugang zum Admin Bereich. Das Passwort muss mindestens 7 Zeichen haben und mindestens eine Ziffer enthalten. Sie werden Ihr Passwort später alle 90 tage ändern müssen. Dazu werden Sie nach Ablauf der 90 Tage automatisch aufgefordert.');
     
   break;
   case ('54'):

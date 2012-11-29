@@ -5,8 +5,8 @@
  * @copyright Copyright 2003-2012 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @translator: cyaneo/hugo13/wflohr/hugo13/maleborg/webchills	http://www.zen-cart-pro.at	2010-05-01
- * @version $Id: inspect.php 804 2011-11-23 08:28:24Z webchills $
+ * @translator: cyaneo/hugo13/wflohr/hugo13/maleborg/webchills	http://www.zen-cart-pro.at
+ * @version $Id: inspect.php 805 2012-11-30 18:28:24Z webchills $
  */
 /**
  * defining language components for the page
@@ -25,7 +25,7 @@ define('DB_UPGRADE_BUTTON', 'Datenbank aktualisieren');
 // "Database Upgrade" = don't write the configure.php files -- simply jump to the database-upgrade page. Only displayed if detected database version is new enough to not require configure.php file updates.
 
 define('TITLE_DOCUMENTATION', 'Dokumentation');
-define('TEXT_DOCUMENTATION', '<h3>Haben Sie die Installationsanleitung bereits gelesen?</h3>Die <a href="http://www.zen-cart-pro.at/zcvb/forum/vbglossar.php?do=showcat&catid=6" target="_blank">Installationsanleitung</a> ist meist eine große Hilfe und sollte vorab gelesen werden, wenn nicht bereits geschehen.<br />Die Anleitung finden Sie auch im Ordner docs.<br/>In dieser finden Sie unter anderem Angaben über die zu setzenden CHMOD Level einzelner Dateien und Ordner sowie weitere Angaben über mögliche Einstellungen nach Abschluss der Installation. Weiterhin enthält diese Links zur <a href="http://www.zen-cart-pro.at/zcvb/forum/vbglossar.php" target="_blank">Online FAQs</a> und anderen hilfreichen Informationen.');
+define('TEXT_DOCUMENTATION', '<h3>Haben Sie die Installationsanleitung bereits gelesen?</h3>Die <a href="../docs/index.html" target="_blank">Installationsanleitung</a> ist meist eine große Hilfe und sollte vorab gelesen werden, wenn nicht bereits geschehen.<br />Die Anleitung finden Sie auch im Ordner docs.<br/>In dieser finden Sie unter anderem Angaben über die zu setzenden CHMOD Level einzelner Dateien und Ordner sowie weitere Angaben über mögliche Einstellungen nach Abschluss der Installation. Weiterhin enthält diese Links zur <a href="http://www.zen-cart-pro.at/forum/forums/69-FAQ-und-Tutorials" target="_blank">Online FAQs</a> und anderen hilfreichen Informationen.');
 define('TEXT_MAIN', 'Bitte nehmen Sie sich einen Augenblick Zeit für die Systemprüfung - diese stellt sicher, ob alle notwendigen Systemvoraussetzungen für eine erfolgreiche Installation von Zen Cart gegeben sind. Bitte beheben Sie alle Fehler oder Warnungen, bevor Sie mit der Installation fortfahren. Klicken Sie anschließend auf <em>'.INSTALL_BUTTON.'&nbsp;</em>.');
 define('SYSTEM_INSPECTION_RESULTS', 'Systemprüfung - Ergebnis');
 define('OTHER_INFORMATION', 'Sonstige Systeminformation (Nur zur Referenz)');

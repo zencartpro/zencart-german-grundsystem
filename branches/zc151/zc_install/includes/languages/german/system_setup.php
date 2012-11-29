@@ -34,4 +34,4 @@ define('ENABLE_SSL_ADMIN_INSTRUCTION', 'Wollen Sie SSL (Secure Sockets Layer) f�
 define('REDISCOVER', 'Die Standardwerte für diesen Host neu ermitteln');
 
 define('NEWADMIN_PATH', 'Adminordner Name');
-define('NEWADMIN_PATH_INSTRUCTION', 'Neuer Name für den Adminordner');
+define('NEWADMIN_PATH_INSTRUCTION', 'Neuer Name für den Adminordner. Bitte ändern Sie diesen Wert sofort auf einen Namen Ihrer Wahl!');
