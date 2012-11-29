@@ -4,7 +4,7 @@
  * @copyright Copyright 2003-2012 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: stylesheet.css 837 2012-11-17 10:33:58Z webchills $
+ * @version $Id: stylesheet.css 838 2012-11-29 18:33:58Z webchills $
  */
 
 body {
@@ -202,7 +202,7 @@ form { margin: 0; padding: 0; }
 fieldset { margin: 0; padding: 0; border: 0px solid #666; }
 legend { margin-bottom: 6px; padding: 0; color: #FF5D14; font-weight: bold; font-size:13px; border-bottom:2px solid #000000; text-transform:uppercase;}
 .attention { color: red; }
-input, select, textarea { margin: 10px 5px 0; padding: 0; }
+input, select, textarea { margin: 20px 0; padding: 0; }
 label, span.label { margin: 0; padding: 0; font-weight: bold; }
 
 div.section { margin: 0; padding: 0; clear: both; }
