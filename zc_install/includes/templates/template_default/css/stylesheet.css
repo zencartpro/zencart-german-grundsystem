@@ -191,7 +191,7 @@ h2 {
 
 /* Links
 --------------------------------- */
-a:link, a:visited, a:active { color:#0033FF; font-weight: bold; font-size: 1.1em; text-decoration:none; }
+a:link, a:visited, a:active { color:#0033FF; font-weight: bold; text-decoration:none; }
 a:hover { color:#FF5D14;}
 a.button { padding: 3px 15px; color: #000; border: 1px outset #666; margin: 0px 5px; background-color: #FF5D14; }
 a.button:hover {background-color: #FF5D14; }
@@ -205,8 +205,29 @@ legend { margin-bottom: 6px; padding: 0; color: #FF5D14; font-weight: bold; font
 input, select, textarea { margin: 20px 0; padding: 0; }
 label, span.label { margin: 0; padding: 0; font-weight: bold; }
 
+input[type='text']{
+	border:2px solid #FF5D14;
+	background:#FCFCFC;
+}
+
+input[type='password']{
+	border:2px solid #FF5D14;
+	background:#FCFCFC;
+}
+
+select{
+	border:2px solid #FF5D14;
+	background:#FCFCFC;
+}
+
+textarea{
+	border:2px solid #FF5D14;
+	background:#FCFCFC;
+	width:300px;
+}
+
 div.section { margin: 0; padding: 0; clear: both; }
-div.section input, div.section select, div.section div.input, div.section textarea { float: right; }
+div.section input, div.section select, div.section div.input, div.section textarea { }
 div.section div.input input { float: none; }
 div#language input, div#language select { margin: 0; padding: 0; }
 
@@ -277,4 +298,10 @@ background-color:#d4ffbd;
 #lic{
 	font-family:Arial,Helvetica,sans-serif;
 	font-size:11px;
+}
+
+.warning{
+	font-weight:bold;
+	color:#000000;
+	font-size:13px;
 }

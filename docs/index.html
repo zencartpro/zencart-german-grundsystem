@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>Zen-Cart 1.5 deutsch - Dokumentation</title>
+<title>Zen-Cart 1.5.1 deutsch - Dokumentation</title>
 <link rel="stylesheet" type="text/css" href="includes/css/stylesheet.css">  
 <script type="text/javascript" src="includes/jscript/jscript_tabs.js"></script>
 </head>
@@ -11,7 +11,7 @@
 <div id="header">
 
 
-  <h1 >Zen-Cart 1.5 deutsch - Dokumentation</h1>
+  <h1 >Zen-Cart 1.5.1 deutsch - Dokumentation</h1>
   </div>
   <div id="slidetabsmenu" style="display: none;">
 <ul>
@@ -55,7 +55,7 @@ Da wir Ihnen diese Software kostenfrei zur Verfügung stellen, würden wir uns �
     
     
     <span class="small">
-      Die deutsche Zen-Cart Version 1.5 ist eine Modifikation der amerikanischen Zen-Cart Version 1.5 von zen-cart.com.<br>
+      Die deutsche Zen-Cart Version 1.5.1 ist eine Modifikation der amerikanischen Zen-Cart Version 1.5.1 von zen-cart.com.<br>
       Zen-Cart ist 
       abgeleitet von: Copyright  2003 osCommerce<br />
       <br>
@@ -72,10 +72,11 @@ Da wir Ihnen diese Software kostenfrei zur Verfügung stellen, würden wir uns �
   <li>
     
     Die amerikanische Version ist im Administrationsbereich immer monolingual englisch. Daran ändert auch die etwaige Installation eines deutschen Sprachpakets nichts. Die meisten Konfigurationseinstellungen werden immer auf englisch sein, da sie in der Datenbank hinterlegt sind. Die deutsche Zen-Cart Version bietet einen multilingualen Adminbereich. Dadurch sind auch die in der Datenbank hinterlegten Konfigurationseinstellungen und -beschreibungen auf deutsch. Sie könnten auch in jeder anderen Sprache genutzt werden. Diese Funktionalität steht natürlich auch für später installierte Erweiterungen zur Verfügung. Die im Downloadbereich von zen-cart-pro.at angebotenen Module berücksichtigen diese Multilanguagefähigkeit und sind alle für die deutsche Zen-Cart Version ausgelegt.</li>
-  <li>Die amerikanische Zen-Cart Version berücksichtigt viele rechtliche Erfordernisse nicht, denen ein Onlineshop im deutschsprachigen Raum unterworfen ist. Daher wurde die deutsche Zen-Cart Version auf die Anforderungen, die an Onlineshops in Deutschland, Österreich und der Schweiz gestellt werden, angepasst.</li>
+  <li>Die amerikanische Zen-Cart Version berücksichtigt viele rechtliche Erfordernisse nicht, denen ein Onlineshop im deutschsprachigen Raum unterworfen ist. Daher wurde die deutsche Zen-Cart Version auf die Anforderungen, die an Onlineshops in Deutschland, Österreich und der Schweiz gestellt werden, angepasst. Die Anforderungen der sogenannten &quot;Buttonlösung&quot; werden erfüllt.</li>
   <li>   Die Installation wurde gegenüber der amerikanischen Version vereinfacht, so kann z.B. das admin Verzeichnis direkt bei der Installation umbenannt werden.
     </li>
-  <li>Die amerikanische Version enthält keinerlei HTML Editor mehr, in der deutschen Version ist der Tiny MCE Editor bereits integriert und löst das veraltete HTML Area ab</li>
+  <li>Die amerikanische Version enthält keinerlei HTML Editor mehr, in der deutschen Version ist der Tiny MCE Editor bereits integriert und löst das veraltete HTML Area ab. Alternativ ist auch der CKEditor integriert.</li>
+  <li>Für ein einfachereres Bildermanagement ist die Erweiterung Image Handler bereits vorinstalliert.</li>
   <li>Weitere Bugfixes und Verbesserungen, die von den Amerikanern nicht übernommen wurden</li>
 </ul>
 
@@ -108,7 +109,7 @@ OSI certified ist ein Zertifikat der Open Source Initiative.
 <div class="regularlist">
 <h1>NEUINSTALLATION</h1>
 <h2>Einleitung</h2>
-<p>Dieses Dokument ist eine Basisanleitung für die Installation der deutschen Zen-Cart Version. Wenn Sie die deutsche Zen-Cart Version bereits installiert haben und diese auf 1.5 aktualisieren möchten, lesen Sie bitte die <strong><a onClick="expandcontent('sc3', this)" href="javascript:void(0)">Update Anleitung</a></strong>.<br />
+<p>Dieses Dokument ist eine Basisanleitung für die Installation der deutschen Zen-Cart Version. Wenn Sie die deutsche Zen-Cart Version bereits installiert haben und diese auf 1.5.1 aktualisieren möchten, lesen Sie bitte die <strong><a onClick="expandcontent('sc3', this)" href="javascript:void(0)">Update Anleitung</a></strong>.<br />
 </p>
 <h2>Grundsätzliches  </h2>
 <p>Sie haben bereits ein gepacktes Paket der deutschen Zen-Cart Version herunter geladen.</p>
@@ -369,7 +370,7 @@ Sollten während der Installation keine Fehler aufgetreten sein, sollten Sie nun
 <div class="tabcontent" id="sc3" style="display: block;">
 <div class="textcontent">
 <div class="regularlist">
-<h1>UPDATE auf die Version 1.5</h1>
+<h1>UPDATE auf die Version 1.5.1</h1>
 <div>
   <h2>HINWEIS: Zahlungs- und Versandmodule </h2>
   Sie müssen Ihre momentan genutzen Zahlungs- und Versandmodule im Rahmen des Upgrades neu installieren:
@@ -381,7 +382,7 @@ Sollten während der Installation keine Fehler aufgetreten sein, sollten Sie nun
   </ul>
 </div>
 <h2>Voraussetzungen </h2>
-<p>Bevor Sie ein Update auf 1.5 planen, stellen Sie bitte sicher, dass Ihr Server die Systemvoraussetzungen erfüllt: </p>
+<p>Bevor Sie ein Update auf 1.5.1 planen, stellen Sie bitte sicher, dass Ihr Server die Systemvoraussetzungen erfüllt: </p>
 <p><strong>Minimale Anforderungen:</strong></p>
 <ul>
   <li> PHP 5.2.14 oder höher, Apache 2.0 oder höher und MySQL 5.0.90 oder höher</li>
@@ -398,9 +399,9 @@ Sollten während der Installation keine Fehler aufgetreten sein, sollten Sie nun
 <p>Zen-Cart 1.5 funktioniert zwar auch auf einem Windows/IIS server, <b>wir raten aber dringend zu einem Linux/Apache Server</b>.
   <br>
   <br>
-  Falls Sie Ihren Shop mit Modulen erweitert haben, stellen Sie sicher, dass es für die in Ihrem derzeitigen Shop eingesetzen Erweiterungen aktuelle mit Zen-Cart 1.5 getestete Versionen gibt. In Zen-Cart 1.5 können nur Zen-Cart 1.5 kompatible Module und Erweiterungen genutzt werden!
+  Falls Sie Ihren Shop mit Modulen erweitert haben, stellen Sie sicher, dass es für die in Ihrem derzeitigen Shop eingesetzen Erweiterungen aktuelle mit Zen-Cart 1.5 getestete Versionen gibt. In Zen-Cart 1.5.1 können nur Zen-Cart 1.5.1 kompatible Module und Erweiterungen genutzt werden!
 <h2>Einleitung ... </h2>
-Dieses ist eine Anleitung, um eine bestehende Zen-Cart Installation auf Zen-Cart 1.5 zu   aktualisieren. Falls Sie Zen-Cart bisher noch nicht installiert haben   sollten, schauen Sie bitte unter Neuinstallation <br>
+Dieses ist eine Anleitung, um eine bestehende Zen-Cart Installation auf Zen-Cart 1.5.1 zu   aktualisieren. Falls Sie Zen-Cart bisher noch nicht installiert haben   sollten, schauen Sie bitte unter Neuinstallation <br>
 <br>
 Um Ihre Zen-Cart Installationzu aktualisieren brauchen Sie die gleichen Programme,   die Sie für die Erstinstallation und evtl. Anpassungen benutzt haben.   Ein FTP Programm, einen Texteditor für HTML/PHP Code, phpMyAdmin or   Ähnliches um auf Ihre MySQL Datenbank zugreifen zu können, und den   Adminbereich Ihres Webspaces.<br>
 <br>
@@ -455,7 +456,7 @@ Und wie immer: VOR Beginn eine Sicherung aller relevanten Daten durchführen!!! 
 <br>
 <div>
   <h2><strong>3. Testen</strong></h2>
-  <p>Erstellen Sie eine NEUE Datenbank für die Installation Ihrer neuen Version von Zen-Cart 1.5. <br>
+  <p>Erstellen Sie eine NEUE Datenbank für die Installation Ihrer neuen Version von Zen-Cart 1.5.1 <br>
     <br>
     Stellen Sie sicher, dass Ihre vorhandene Sicherung der Datenbank die   aktuellsten Daten enthält, ansonsten führen Sie jetzt erneut eine   aktuelle Sicherung Ihrer Datenbank durch.<br>
     Führen Sie nun eine Wiederherstellung der aktuellen Sicherung der   Datenbank, die Sie vorher in Schritt 1 erstellt haben, in Ihrer NEUEN   Datenbank durch. <br>
@@ -741,12 +742,12 @@ DEINADMIN/includes/configure.php</p>
 <div class="tabcontent" id="sc6" style="display: block;">
 <div class="textcontent">
 <div class="regularlist">
-<h1>Admin Rechte Verwaltung in Zen-Cart 1.5</h1>
+<h1>Admin Rechte Verwaltung in Zen-Cart 1.5.1</h1>
 <p><strong>Generelles:</strong><br>
   <br>
-  Zen-Cart 1.5 enthält nun standardmäßig ein System, mit denen die Rechte für verschiedene Administratoren vergeben werden können. Für jeden Administrator kann individuell gesteuert werden, welche Funktionen der Administration für ihn zur Verfügung stehen sollen.<br>
+  Zen-Cart 1.5.1 enthält nun standardmäßig ein System, mit denen die Rechte für verschiedene Administratoren vergeben werden können. Für jeden Administrator kann individuell gesteuert werden, welche Funktionen der Administration für ihn zur Verfügung stehen sollen.<br>
   In früheren Zen-Cart Version war ähnliches mit der Erweiterung Admin Profiles möglich.<br>
-  In 1.5 ist nun ein komplett neues verbessertes Admin Rechte System integriert.</p>
+  In 1.5.1 ist nun ein komplett neues verbessertes Admin Rechte System integriert.</p>
 <p>Bei der Installation wird ein Admin mit der Berechtigung &quot;Superuser&quot; angelegt (mit dem Benutzernamen und Passwort, das Sie während der Installation angegeben haben. Ein solcher Superuse hat Zugnag zu allen Bereichen und Funktionen der Zen-Cart Administration.</p>
 <p>Gegenüber früheren Zen-Cart Versionen wurden einige wesentliche Änderungen in Bezug auf Administratoren, Passwörtern vorgenommen:</p>
 <ul>
@@ -783,7 +784,7 @@ DEINADMIN/includes/configure.php</p>
 <div class="regularlist">
 <h1>Neuerungen gegenüber 1.3.9</h1>
 <p><strong>Generell:</strong><br>
-  In Zen-Cart 1.5 wird das Adminverzeichnis bereits bei der Installation umbenannt. Dadurch entfällt das manuelle Ändern nach der Installation.<br>
+  In Zen-Cart 1.5.1 wird das Adminverzeichnis bereits bei der Installation umbenannt. Dadurch entfällt das manuelle Ändern nach der Installation.<br>
   Wenn Sie später Ihr Adminverzeichnis erneut umbenennen wollen, reicht es , einfach den Ordner umzubenennen, es sind keinerlei manuelle Änderungen in der admin/includes/configure.php mehr nötig!<br>
   Die Funktion &quot;an einen Freund senden&quot; wurde aus Sicherheitsgründen vollständig entfernt.<br>
   Zen-Cart 1.5 ist PA/DSS zertifiziert.
