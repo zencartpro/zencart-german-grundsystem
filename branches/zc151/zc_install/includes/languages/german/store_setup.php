@@ -5,13 +5,13 @@
  * @copyright Copyright 2003-2012 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: store_setup.php 732 2011-08-09 19:31:40Z hugo13 $
+ * @version $Id: store_setup.php 733 2012-11-30 11:31:40Z webchills $
  */
 /**
  * defining language components for the page
  */
-define('SAVE_STORE_SETTINGS', 'Shopeinstellungen speichern');//this comes before TEXT_MAIN
-define('TEXT_MAIN', 'Diese Sektion der Zen Cart Installation hilft Ihnen bei der Festlegung Ihrer Grundeinstellungen für den Zen Cart Shop. Diese Einstellungen können später im Adminbereich geändert werden. Tragen Sie alle Optionen gewissenhaft ein und klicken Sie anschließend zum Fortfahren auf <em>'.SAVE_STORE_SETTINGS.'</em>.');
+define('SAVE_STORE_SETTINGS', 'Shopeinstellungen speichern');
+define('TEXT_MAIN', 'Dieser Teil der Zen Cart Installation hilft Ihnen bei der Festlegung Ihrer Grundeinstellungen für den Zen Cart Shop. Diese Einstellungen können später im Adminbereich geändert werden. Tragen Sie alle Optionen gewissenhaft ein und klicken Sie anschließend zum Fortfahren auf <em>'.SAVE_STORE_SETTINGS.'</em>.');
 define('TEXT_PAGE_HEADING', 'Zen Cart Installation - Installation');
 define('STORE_INFORMATION', 'Shopinformation');
 define('STORE_NAME', 'Shopname');
@@ -32,4 +32,4 @@ define('STORE_DEFAULT_CURRENCY', 'Standardwährung');
 define('STORE_DEFAULT_CURRENCY_INSTRUCTION', 'Bitte geben Sie die Standardwährung an, mit der der Shop betrieben werden soll');
 define('DEMO_INFORMATION', 'Demodaten');
 define('DEMO_INSTALL', 'Shopdemo');
-define('DEMO_INSTALL_INSTRUCTION', 'Wollen Sie Zen Cart Demodaten, Kategorien und Demoartikel installieren?');
+define('DEMO_INSTALL_INSTRUCTION', 'Wollen Sie Zen Cart Demodaten, Demo Kategorien und Demoartikel installieren?');
