@@ -4,7 +4,7 @@
  * @copyright Copyright 2003-2012 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: index.php 814 2011-11-28 15:50:12Z webchills $
+ * @version $Id: index.php 815 2012-11-30 13:50:12Z webchills $
  */
   $version_check_index=true;
   require('includes/application_top.php');
@@ -100,7 +100,7 @@
 ?>
  </div>
  <div class="reportBox">
-   <div class="header"><?php echo BOX_TITLE_ORDERS; ?> </div>
+   <div class="header"><img src="images/indx_icon_properties_f2.png" width="38" height="32" /><?php echo BOX_TITLE_ORDERS; ?> </div>
   <?php   $orders_contents = '';
   $orders_status = $db->Execute("select orders_status_name, orders_status_id from " . TABLE_ORDERS_STATUS . " where language_id = '" . $_SESSION['languages_id'] . "'");
 
@@ -117,7 +117,7 @@
 </div>
 <div id="coltwo">
 <div class="reportBox">
-<div class="header"><?php echo BOX_ENTRY_NEW_CUSTOMERS; ?> </div>
+  <div class="header"><img src="images/indx_icon_groups_f2.png" width="38" height="32" /><?php echo BOX_ENTRY_NEW_CUSTOMERS; ?> </div>
   <?php  $customers = $db->Execute("select c.customers_id as customers_id, c.customers_firstname as customers_firstname, c.customers_lastname as customers_lastname, c.customers_email_address as customers_email_address, a.customers_info_date_account_created as customers_info_date_account_created, a.customers_info_id from " . TABLE_CUSTOMERS . " c left join " . TABLE_CUSTOMERS_INFO . " a on c.customers_id = a.customers_info_id order by a.customers_info_date_account_created DESC limit 15");
 
   while (!$customers->EOF) {
@@ -136,7 +136,7 @@
   $counter_query = "select startdate, counter, session_counter from " . TABLE_COUNTER_HISTORY . " order by startdate DESC limit 10";
   $counter = $db->Execute($counter_query);
 ?>
-   <div class="header"><?php echo sprintf(LAST_10_DAYS, $counter->RecordCount()); ?><?php echo '<span class="rigth"> &nbsp;&nbsp;&nbsp;' . SESSION . ' - ' . TOTAL . '</span>'; ?></div>
+   <div class="header"><img src="images/indx_icon_week_f2.png" width="38" height="32" /><?php echo sprintf(LAST_10_DAYS, $counter->RecordCount()); ?><?php echo '<span class="rigth"> &nbsp;&nbsp;&nbsp;' . SESSION . ' - ' . TOTAL . '</span>'; ?></div>
   <?php
 
   while (!$counter->EOF) {
@@ -151,12 +151,37 @@
 </div>
 <div id="colthree">
 <div class="reportBox">
-<div class="header"><?php echo BOX_ENTRY_NEW_ORDERS; ?> </div>
+<div class="header"><img src="images/indx_icon_paste_f2.png" width="38" height="32" /><?php echo BOX_ENTRY_NEW_ORDERS; ?> </div>
   <?php  $orders = $db->Execute("select o.orders_id as orders_id, o.customers_name as customers_name, o.customers_id, o.date_purchased as date_purchased, o.currency, o.currency_value, ot.class, ot.text as order_total from " . TABLE_ORDERS . " o left join " . TABLE_ORDERS_TOTAL . " ot on (o.orders_id = ot.orders_id and class = 'ot_total') order by orders_id DESC limit 20");
 
   while (!$orders->EOF) {
     echo '              <div class="row"><span class="left"><a href="' . zen_href_link(FILENAME_ORDERS, 'oID=' . $orders->fields['orders_id'] . '&origin=' . FILENAME_DEFAULT, 'NONSSL') . '" class="contentlink"> ' . $orders->fields['customers_name'] . '</a></span><span class="center">' . $orders->fields['order_total'] . '</span><span class="rigth">' . "\n";
     echo zen_date_short($orders->fields['date_purchased']);
+// ====> BOF: INFO AT-A-GLANCE <==== 
+echo $orders->fields['orders_id'];
+$artikel = "";
+$num = 1;
+$result_artikels = $db->Execute("select products_name, products_quantity from " . TABLE_ORDERS_PRODUCTS . " where orders_id = '" . zen_db_input($orders->fields['orders_id']) . "' ");
+while(!$result_artikels->EOF){
+$artikel .= ($result_artikels->fields["products_quantity"]) . "x " . ($result_artikels->fields["products_name"]) . "<br>";
+$num++;
+$result_artikels->MoveNext();
+}
+ { 
+	$parsedComment = explode("\r", $artikel);
+	$cleanComment = "";
+	$i=0;
+	while($i < count($parsedComment)) {
+	$cleanComment .= trim($parsedComment[$i]);
+	$i++;
+	if ($i < count($parsedComment)) $cleanComment .= '<br \> ';
+}
+ ?>	
+                	<script language="javascript"><!--
+              			document.write('<?php echo '<a href="javascript:void(0);" onmouseover="return overlib(\\\'' . $cleanComment . '\\\');" onmouseout="return nd();"><img src="images/icons/comment2.gif" align="top" border=0></a>&nbsp;'; ?>');
+              		--></script>
+					<?php } ?> 
+   	<?php // ====> EOF: INFO AT-A-GLANCE <====
     echo '              </span></div>' . "\n";
     $orders->MoveNext();
   }
@@ -171,7 +196,7 @@ appropriately.
 Please leave this comment intact together with the
 following copyright announcement. //-->
 
-<div class="copyrightrow"><a href="http://www.zen-cart-pro.at" target="_blank"><img src="images/small_zen_logo.gif" alt="Zen Cart:: the art of e-commerce" border="0" /></a><br /><br />E-Commerce Engine Copyright &copy; 2003-<?php echo date('Y'); ?> <a href="http://www.zen-cart-pro.at" target="_blank">zen-cart-pro.at</a></div><div class="warrantyrow"><br /><br />Zen Cart is derived from: Copyright &copy; 2003 osCommerce<br />This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;<br />without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE<br />and is redistributable under the <a href="http://www.zen-cart-pro.at/license/2_0.txt" target="_blank">GNU General Public License</a><br />
+<div class="copyrightrow">E-Commerce Engine Copyright &copy; 2003-<?php echo date('Y'); ?> <a href="http://www.zen-cart-pro.at" target="_blank">zen-cart-pro.at</a></div><div class="warrantyrow"><br /><br />Zen Cart is derived from: Copyright &copy; 2003 osCommerce<br />This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;<br />without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE<br />and is redistributable under the <a href="http://www.zen-cart-pro.at/license/2_0.txt" target="_blank">GNU General Public License</a><br />
 </div>
 </body>
 </html>

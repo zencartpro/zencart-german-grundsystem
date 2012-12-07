@@ -1,10 +1,10 @@
 <?php
 /**
  * @package languageDefines
- * @copyright Copyright 2003-2011 Zen Cart Development Team
+ * @copyright Copyright 2003-2012 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
- * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: button_names.php 804 2011-11-23 08:28:24Z webchills $
+ * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
+ * @version $Id: button_names.php 805 2012-12-07 07:28:24Z webchills $
  */
 
 
@@ -73,7 +73,7 @@ define('BUTTON_CANCEL_ALT', 'Cancel');
 define('BUTTON_CHANGE_ADDRESS_ALT', 'Change Address');
 define('BUTTON_CHECKOUT_ALT', 'Checkout');
 define('BUTTON_CONFIRM_SEND_ALT', 'Send Gift Certificate');
-define('BUTTON_CONFIRM_ORDER_ALT', 'Confirm Order');
+define('BUTTON_CONFIRM_ORDER_ALT', 'Confirm Purchase');
 define('BUTTON_CONTINUE_ALT', 'Continue');
 define('BUTTON_CONTINUE_SHOPPING_ALT', 'Continue Shopping');
 define('BUTTON_DELETE_ALT', 'Delete');
@@ -100,5 +100,5 @@ define('BUTTON_UPDATE_ALT', 'Update');
 define('BUTTON_VIEW_SMALL_ALT', 'View');
 define('BUTTON_WRITE_REVIEW_ALT', 'Write Review');
 define('BUTTON_READ_REVIEWS_ALT', 'Read the Review');
-define('BUTTON_GOTO_PROD_DETAILS_ALT', 'Go To This Product\'s Detailed Information');
+define('BUTTON_GOTO_PROD_DETAILS_ALT', 'Detailed Information');
 define('BUTTON_MORE_REVIEWS_ALT', 'Read More Reviews');

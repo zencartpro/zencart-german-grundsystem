@@ -4,7 +4,7 @@
  * @copyright Copyright 2003-2012 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: footer.php 793 2011-10-10 06:24:50Z hugo13 $
+ * @version $Id: footer.php 794 2012-12-01 08:24:50Z webchills $
  */
 
 // check and display zen cart version and history version in footer
@@ -18,6 +18,6 @@
 ?>
 <table border="0" width="100%" cellspacing="10" cellpadding="10">
   <tr>
-    <td align="center" class="smallText" height="100" valign="bottom"><a href="http://www.zen-cart.com" target="_blank"><img src="images/small_zen_logo.gif" alt="Zen Cart:: the art of e-commerce" border="0"></a><br /><br />E-Commerce Engine Copyright &copy; 2003-<?php echo date('Y'); ?> <a href="http://www.zen-cart.com" target="_blank">Zen Cart&reg;</a><br /><?php echo '<a href="' . zen_href_link(FILENAME_SERVER_INFO) . '">' . $current_sinfo . '</a>'; ?></td>
+    <td align="center" class="smallText" height="100" valign="bottom">E-Commerce Engine Copyright &copy; 2003-<?php echo date('Y'); ?> <a href="http://www.zen-cart-pro.at" target="_blank">Zen-Cart</a><br /><?php echo '<a href="' . zen_href_link(FILENAME_SERVER_INFO) . '">' . $current_sinfo . '</a>'; ?></td>
   </tr>
 </table>

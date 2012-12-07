@@ -4,8 +4,8 @@
  *
  * @package classes
  * @copyright Copyright 2003-2012 Zen Cart Development Team
- * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: order.php 850 2012-11-06 15:13:25Z webchills $
+ * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
+ * @version $Id: order.php 851 2012-12-07 07:13:25Z webchills $
  */
 /**
  * order class
@@ -441,7 +441,9 @@ class order extends base {
       $taxRates = zen_get_multiple_tax_rates($products[$i]['tax_class_id'], $taxCountryId, $taxZoneId);
       $this->products[$index] = array('qty' => $products[$i]['quantity'],
                                       'name' => $products[$i]['name'],
+                                      'merkmale' => $products[$i]['merkmale'],
                                       'model' => $products[$i]['model'],
+                                      'image' => $products[$i]['image'], 
                                       'tax' => zen_get_tax_rate($products[$i]['tax_class_id'], $taxCountryId, $taxZoneId),
                                       'tax_groups'=>$taxRates,
                                       'tax_description' => zen_get_tax_description($products[$i]['tax_class_id'], $taxCountryId, $taxZoneId),

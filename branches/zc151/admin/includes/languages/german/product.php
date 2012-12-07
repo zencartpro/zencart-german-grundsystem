@@ -1,24 +1,11 @@
 <?php
-//
-// +----------------------------------------------------------------------+
-// |zen-cart Open Source E-commerce                                       |
-// +----------------------------------------------------------------------+
-// | Copyright (c) 2004 The zen-cart developers                           |
-// |                                                                      |
-// |  http://www.zen-cart-pro.at/index.php                                    |
-// |                                                                      |
-// | Portions Copyright (c) 2003 osCommerce                               |
-// +----------------------------------------------------------------------+
-// | This source file is subject to version 2.0 of the GPL license,       |
-// | that is bundled with this package in the file LICENSE, and is        |
-// | available through the world-wide-web at the following url:           |
-// | http://www.zen-cart-pro.at/license/2_0.txt.                              |
-// | If you did not receive a copy of the zen-cart license and are unable |
-// | to obtain it through the world-wide-web, please send a note to       |
-// | license@zen-cart.com so we can mail you a copy immediately.          |
-// +----------------------------------------------------------------------+
-//  $Id: product.php 302 2008-05-30 19:49:12Z maleborg $
-//
+/**
+ * @package admin
+ * @copyright Copyright 2003-2012 Zen Cart Development Team
+ * @copyright Portions Copyright 2003 osCommerce
+ * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
+ * @version $Id: product.php 2012-12-07 07:58:04Z webchills $
+ */
 
 define('HEADING_TITLE', 'Kategorien / Artikel');
 define('HEADING_TITLE_GOTO', 'Gehe zu:');
@@ -86,6 +73,7 @@ define('TEXT_PRODUCTS_QTY_BOX_STATUS_ON', 'Ja, zeige Box für Stückzahl');
 define('TEXT_PRODUCTS_QTY_BOX_STATUS_OFF', 'Nein, zeige keine Box für Stückzahl');
 define('TEXT_PRODUCTS_MANUFACTURER', 'Artikelhersteller:');
 define('TEXT_PRODUCTS_NAME', 'Artikelname:');
+define('TEXT_PRODUCTS_MERKMALE', 'Merkmale für Buttonlösung:');
 define('TEXT_PRODUCTS_DESCRIPTION', 'Artikelbeschreibung:');
 define('TEXT_PRODUCTS_QUANTITY', 'Lagerbestand:');
 define('TEXT_PRODUCTS_MODEL', 'Artikelnummer:');

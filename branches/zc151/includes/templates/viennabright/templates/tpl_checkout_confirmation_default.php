@@ -8,13 +8,14 @@
  * @package templateSystem
  * @copyright Copyright 2003-2012 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
- * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: tpl_checkout_confirmation_default.php 730 2012-03-07 18:19:16Z webchills $
+ * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
+ * @version $Id: tpl_checkout_confirmation_default.php 2012-12-07 07:10:16Z webchills $
  */
 ?>
 <div class="centerColumn" id="checkoutConfirmDefault">
 
 <h1 id="checkoutConfirmDefaultHeading"><?php echo HEADING_TITLE; ?></h1>
+<div id="conditionslaststep"><?php echo TEXT_ZUSATZ_SCHRITT3; ?><br/><?php echo TEXT_CONDITIONS_ACCEPTED_IN_LAST_STEP; ?></div>
 
 <?php if ($messageStack->size('redemptions') > 0) echo $messageStack->output('redemptions'); ?>
 <?php if ($messageStack->size('checkout_confirmation') > 0) echo $messageStack->output('checkout_confirmation'); ?>
@@ -97,7 +98,7 @@
 //  }
 ?>
 <hr />
-
+<div id="cartandsum">
 <h2 id="checkoutConfirmDefaultHeadingCart"><?php echo HEADING_PRODUCTS; ?></h2>
 
 <div class="buttonRow forward"><?php echo '<a href="' . zen_href_link(FILENAME_SHOPPING_CART, '', 'SSL') . '">' . zen_image_button(BUTTON_IMAGE_EDIT_SMALL, BUTTON_EDIT_SMALL_ALT) . '</a>'; ?></div>
@@ -116,6 +117,9 @@
         <tr class="cartTableHeading">
         <th scope="col" id="ccQuantityHeading" width="30"><?php echo TABLE_HEADING_QUANTITY; ?></th>
         <th scope="col" id="ccProductsHeading"><?php echo TABLE_HEADING_PRODUCTS; ?></th>
+        <?php if (ENABLE_BUTTONLOESUNG != 'false') { ?>
+        <th scope="col" id="ccProductsHeading"><?php echo TABLE_HEADING_PRODUCTIMAGE; ?></th>
+        <?php } ?>
 <?php
   // If there are tax groups, display the tax columns for price breakdown
   if (sizeof($order->info['tax_groups']) > 1) {
@@ -124,6 +128,9 @@
 <?php
   }
 ?>
+<?php if (ENABLE_BUTTONLOESUNG != 'false') { ?>
+ <th scope="col" id="ccSinglePriceHeading" width="60"><?php echo TABLE_HEADING_SINGLEPRICE; ?></th>
+ <?php } ?>
           <th scope="col" id="ccTotalHeading"><?php echo TABLE_HEADING_TOTAL; ?></th>
         </tr>
 <?php // now loop thru all products to display quantity and price ?>
@@ -131,6 +138,11 @@
         <tr class="<?php echo $order->products[$i]['rowClass']; ?>">
           <td  class="cartQuantity"><?php echo $order->products[$i]['qty']; ?>&nbsp;x</td>
           <td class="cartProductDisplay"><?php echo $order->products[$i]['name']; ?>
+          	
+<?php if (ENABLE_BUTTONLOESUNG != 'false') { ?>
+          	<br/><?php echo $order->products[$i]['merkmale']; ?>
+          	<?php } ?>
+
           <?php  echo $stock_check[$i]; ?>
 
 <?php // if there are attributes, loop thru them and display one per line
@@ -145,13 +157,24 @@
     } // endif attribute-info
 ?>
         </td>
+        <?php if (ENABLE_BUTTONLOESUNG != 'false') { ?>
+        <td class="cartProductImg">
+<?php echo zen_image(DIR_WS_IMAGES . $order->products[$i]['image'], $order->products[$i]['name'], IMAGE_SHOPPING_CART_WIDTH, IMAGE_SHOPPING_CART_HEIGHT);?>
+ </td>
+ <?php } ?>
 
 <?php // display tax info if exists ?>
 <?php if (sizeof($order->info['tax_groups']) > 1)  { ?>
         <td class="cartTotalDisplay">
           <?php echo zen_display_tax_value($order->products[$i]['tax']); ?>%</td>
 <?php    }  // endif tax info display  ?>
+         <?php if (ENABLE_BUTTONLOESUNG != 'false') { ?>
         <td class="cartTotalDisplay">
+          <?php echo $currencies->display_price($order->products[$i]['final_price'], $order->products[$i]['tax'], 1);?>
+         
+ </td>
+ <?php } ?>
+        <td class="cartTotalDisplay" valign="top">
           <?php echo $currencies->display_price($order->products[$i]['final_price'], $order->products[$i]['tax'], $order->products[$i]['qty']);
           if ($order->products[$i]['onetime_charges'] != 0 ) echo '<br /> ' . $currencies->display_price($order->products[$i]['onetime_charges'], $order->products[$i]['tax'], 1);
 ?>
@@ -177,9 +200,24 @@
     echo $payment_modules->process_button();
   }
 ?>
-<br/>
-<div class="buttonRow center"><?php echo TITLE_CONTINUE_CHECKOUT_PROCEDURE . '<br />' . TEXT_CONTINUE_CHECKOUT_PROCEDURE; ?></div>
-<div class="buttonRow center"><?php echo zen_image_submit(BUTTON_IMAGE_CONFIRM_ORDER, BUTTON_CONFIRM_ORDER_ALT, 'name="btn_submit" id="btn_submit"') ;?></div>
+<?php if (ENABLE_BUTTONLOESUNG != 'false') { ?>
+<?php
+ // zollhinweis für nicht EU
+        $dest_country = $order->delivery['country']['iso_code_2'];
+        $dest_zone = 0;
+        $error = false;
+        $countries_table = EU_COUNTRIES_FOR_LAST_STEP; 
+        $country_zones = split("[,]", $countries_table);
+        if (!in_array($dest_country, $country_zones)) {
+            $dest_zone = $i;
+            echo TEXT_NON_EU_COUNTRIES;
+        } else {
+            // do nothing
+        }
+        ?>
+<?php } ?>
+</div>
+<div class="buttonRow forward"><?php echo zen_image_submit(BUTTON_IMAGE_CONFIRM_ORDER, BUTTON_CONFIRM_ORDER_ALT, 'name="btn_submit" id="btn_submit"') ;?></div>
 </form>
 
 

@@ -1,10 +1,10 @@
 <?php
 /**
  * @package admin
- * @copyright Copyright 2003-2011 Zen Cart Development Team
+ * @copyright Copyright 2003-2012 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
- * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: update_product.php 729 2011-08-09 15:49:16Z hugo13 $
+ * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
+ * @version $Id: update_product.php 730 2012-12-07 07:49:16Z webchills $
  */
   if (!defined('IS_ADMIN_FLAG')) {
     die('Illegal Access');
@@ -12,7 +12,7 @@
   if (isset($_GET['pID'])) $products_id = zen_db_prepare_input($_GET['pID']);
   if (isset($_POST['edit_x']) || isset($_POST['edit_y'])) {
     $action = 'new_product';
-  } elseif ($_POST['products_model'] . $_POST['products_url'] . $_POST['products_name'] . $_POST['products_description'] != '') {
+  } elseif ($_POST['products_model'] . $_POST['products_url'] . $_POST['products_name'] . $_POST['products_merkmale'] . $_POST['products_description'] != '') {
     $products_date_available = zen_db_prepare_input($_POST['products_date_available']);
 
     $products_date_available = (date('Y-m-d') < $products_date_available) ? $products_date_available : 'null';
@@ -113,6 +113,7 @@ if ($_POST['image_delete'] == 1) {
       $language_id = $languages[$i]['id'];
 
       $sql_data_array = array('products_name' => zen_db_prepare_input($_POST['products_name'][$language_id]),
+							  'products_merkmale' => zen_db_prepare_input($_POST['products_merkmale'][$language_id]),
                               'products_description' => zen_db_prepare_input($_POST['products_description'][$language_id]),
                               'products_url' => zen_db_prepare_input($_POST['products_url'][$language_id]));
 

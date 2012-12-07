@@ -4,7 +4,7 @@
  * @copyright Copyright 2003-2012 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: button_names.php 629 2012-07-05 11:05:14Z webchills $
+ * @version $Id: button_names.php 630 2012-12-07 07:05:14Z webchills $
  */
 
 
@@ -69,7 +69,7 @@ define('BUTTON_CANCEL_ALT', 'Abbrechen');
 define('BUTTON_CHANGE_ADDRESS_ALT', 'Adresse ändern');
 define('BUTTON_CHECKOUT_ALT', 'Zur Kasse');
 define('BUTTON_CONFIRM_SEND_ALT', 'Gutschein senden');
-define('BUTTON_CONFIRM_ORDER_ALT', 'zahlungspflichtig bestellen');
+define('BUTTON_CONFIRM_ORDER_ALT', 'KAUFEN');
 define('BUTTON_CONTINUE_ALT', 'Weiter');
 define('BUTTON_CONTINUE_SHOPPING_ALT', 'Weiter einkaufen');
 define('BUTTON_DELETE_ALT', 'Löschen');
