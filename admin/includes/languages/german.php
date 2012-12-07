@@ -5,7 +5,7 @@
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
  * @translator: cyaneo/hugo13/wflohr/maleborg/webchills	http://www.zen-cart-pro.at
- * @version $Id: german.php 644 2012-11-06 17:54:04Z webchills $
+ * @version $Id: german.php 645 2012-12-07 12:54:04Z webchills $
  */
 if (!defined('IS_ADMIN_FLAG'))
 {
@@ -380,11 +380,11 @@ define('ICON_CROSS', 'Falsch');
 define('ICON_CURRENT_FOLDER', 'Aktueller Ordner');
 define('ICON_DELETE', 'Löschen');
 define('ICON_EDIT', 'Bearbeiten');
+define('ICON_IMAGE_HANDLER', 'Bildmanager');
 define('ICON_ERROR', 'Fehler');
 define('ICON_FILE', 'Datei');
 define('ICON_FILE_DOWNLOAD', 'Download');
 define('ICON_FOLDER', 'Ordner');
-//define('ICON_LOCKED', 'Locked');
 define('ICON_MOVE', 'Verschieben');
 define('ICON_PERMISSIONS', 'Permissions');
 define('ICON_PREVIOUS_LEVEL', 'Vorherige Ebene');
@@ -393,7 +393,6 @@ define('ICON_RESET', 'Zurücksetzen');
 define('ICON_STATISTICS', 'Statistiken');
 define('ICON_SUCCESS', 'Erfolgreich');
 define('ICON_TICK', 'Richtig');
-//define('ICON_UNLOCKED', 'Unlocked');
 define('ICON_WARNING', 'Warnung');
 
 // constants for use in zen_prev_next_display function

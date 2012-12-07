@@ -4,7 +4,7 @@
  * @copyright Copyright 2003-2012 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: english.php 875 2012-11-06 08:33:32Z webchills $
+ * @version $Id: english.php 876 2012-12-07 12:33:32Z webchills $
  */
 if (!defined('IS_ADMIN_FLAG'))
 {
@@ -12,7 +12,7 @@ if (!defined('IS_ADMIN_FLAG'))
 }
 
 // added defines for header alt and text
-define('HEADER_ALT_TEXT', 'Admin Powered by Zen Cart :: The Art of E-Commerce');
+define('HEADER_ALT_TEXT', 'Admin Powered by Zen-Cart 1.5 - German version');
 define('HEADER_LOGO_WIDTH', '200px');
 define('HEADER_LOGO_HEIGHT', '70px');
 define('HEADER_LOGO_IMAGE', 'logo.gif');
@@ -376,11 +376,11 @@ define('ICON_CROSS', 'False');
 define('ICON_CURRENT_FOLDER', 'Current Folder');
 define('ICON_DELETE', 'Delete');
 define('ICON_EDIT', 'Edit');
+define('ICON_IMAGE_HANDLER', 'Image Handler');
 define('ICON_ERROR', 'Error');
 define('ICON_FILE', 'File');
 define('ICON_FILE_DOWNLOAD', 'Download');
 define('ICON_FOLDER', 'Folder');
-//define('ICON_LOCKED', 'Locked');
 define('ICON_MOVE', 'Move');
 define('ICON_PERMISSIONS', 'Permissions');
 define('ICON_PREVIOUS_LEVEL', 'Previous Level');
@@ -389,7 +389,6 @@ define('ICON_RESET', 'Reset');
 define('ICON_STATISTICS', 'Statistics');
 define('ICON_SUCCESS', 'Success');
 define('ICON_TICK', 'True');
-//define('ICON_UNLOCKED', 'Unlocked');
 define('ICON_WARNING', 'Warning');
 
 // constants for use in zen_prev_next_display function
