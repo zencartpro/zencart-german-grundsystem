@@ -1,15 +1,16 @@
 <?php
 /**
  * @package admin
- * @copyright Copyright 2003-2011 Zen Cart Development Team
+ * @copyright Copyright 2003-2012 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
- * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: collect_info.php 793 2011-10-10 06:24:50Z hugo13 $
+ * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
+ * @version $Id: collect_info.php 794 2012-12-07 07:24:50Z webchills $
  */
 if (!defined('IS_ADMIN_FLAG')) {
   die('Illegal Access');
 }
     $parameters = array('products_name' => '',
+			'products_merkmale' => '',
                        'products_description' => '',
                        'products_url' => '',
                        'products_id' => '',
@@ -44,7 +45,7 @@ if (!defined('IS_ADMIN_FLAG')) {
     $pInfo = new objectInfo($parameters);
 
     if (isset($_GET['pID']) && empty($_POST)) {
-      $product = $db->Execute("select pd.products_name, pd.products_description, pd.products_url,
+      $product = $db->Execute("select pd.products_name, pd.products_merkmale, pd.products_description, pd.products_url,
                                       p.products_id, p.products_quantity, p.products_model,
                                       p.products_image, p.products_price, p.products_virtual, p.products_weight,
                                       p.products_date_added, p.products_last_modified,
@@ -66,6 +67,7 @@ if (!defined('IS_ADMIN_FLAG')) {
     } elseif (zen_not_null($_POST)) {
       $pInfo->objectInfo($_POST);
       $products_name = $_POST['products_name'];
+       $products_merkmale = $_POST['products_merkmale'];
       $products_description = $_POST['products_description'];
       $products_url = $_POST['products_url'];
     }
@@ -302,6 +304,16 @@ echo zen_draw_hidden_field('products_price_sorter', $pInfo->products_price_sorte
     }
 ?>
 
+<?php
+    for ($i=0, $n=sizeof($languages); $i<$n; $i++) {
+?>
+          <tr>
+            <td class="main"><?php if ($i == 0) echo TEXT_PRODUCTS_MERKMALE; ?></td>
+            <td class="main"><?php echo zen_image(DIR_WS_CATALOG_LANGUAGES . $languages[$i]['directory'] . '/images/' . $languages[$i]['image'], $languages[$i]['name']) . '&nbsp;' . zen_draw_input_field('products_merkmale[' . $languages[$i]['id'] . ']', (isset($products_merkmale[$languages[$i]['id']]) ? htmlspecialchars(stripslashes($products_merkmale[$languages[$i]['id']]), ENT_COMPAT, CHARSET, TRUE) : htmlspecialchars(zen_get_products_merkmale($pInfo->products_id, $languages[$i]['id']), ENT_COMPAT, CHARSET, TRUE)), zen_set_field_length(TABLE_PRODUCTS_DESCRIPTION, 'products_merkmale')); ?></td>
+          </tr>
+<?php
+    }
+?>
           <tr>
             <td colspan="2"><?php echo zen_draw_separator('pixel_trans.gif', '1', '10'); ?></td>
           </tr>

@@ -84,7 +84,7 @@ a.cal-DayLink:active {
     font-family: Verdana,  Arial, sans-serif;
     font-size: 8pt;
     font-weight: normal;
-    background-color: #EAFFFF;
+    background-color: #DCE4E9;
 }
 
 .cal-Today {
@@ -139,7 +139,7 @@ a.cal-TodayLink:active {
     font-size: 8pt;
     font-weight: normal;
     text-decoration: none;
-	background-color: #FFFFCC;
+	background-color: #BBDDFF;
     color: #999999;
 }
 
@@ -148,7 +148,7 @@ a.cal-TodayLink:active {
     font-size: 8pt;
     font-weight: normal;
     text-decoration: line-through;
-	background-color: #FFFFCC;
+	background-color: #BBDDFF;
     color: #999999;
 }
 
@@ -163,29 +163,29 @@ a.cal-TodayLink:active {
     font-family: Verdana, Arial, sans-serif;
     font-size: 8pt;
     font-weight: normal;
-	background-color: #B0C4DE; 
+	background-color: #E8E8E8; 
 }
 
 .cal-HolidayCell {
     font-family: Verdana, Arial, sans-serif;
     font-size: 8pt;
     font-weight: normal;
-	background-color: #99FF99;
+	background-color: #FF9900;
 }
 .cal-HeadCell {
     font-family: Verdana, Arial, sans-serif;
     font-size: 8pt;
     font-weight: bold;
 	color: Black;
-	background-color: #99CCFF;  /*#CCCC99; */
+	background-color: #FFE271;  /*#CCCC99; */
 }
 
 .cal-Table{
-	border-top-color: #6666FF;
-	border-left-color: #6666FF;
-	border-right-color: #6666FF;
-	border-bottom-color:  #6666FF;
-	background-color: #6666CC;
+	border-top-color: #b7b7b7;
+	border-left-color: #b7b7b7;
+	border-right-color: #b7b7b7;
+	border-bottom-color:  #b7b7b7;
+	background-color: #b7b7b7;
 	border-width:1px;
 	border-style: solid;
 	cursor: url('includes/javascript/spiffyCal/images/spiffycal3.cur');

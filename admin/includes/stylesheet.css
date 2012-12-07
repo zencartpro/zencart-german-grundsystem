@@ -4,20 +4,58 @@
  * @access private
  * @copyright Copyright 2003-2012 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
- * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: stylesheet.css 836 2012-01-01 20:33:58Z webchills $
+ * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
+ * @version $Id: stylesheet.css 837 2012-11-30 13:33:58Z webchills $
  */
-@import url("menu.css");/* including stylesheet for dhtml menu */
-@import url("index.css");/* including stylesheet for index.php */
+/*@import url("menu.css"); including stylesheet for dhtml menu */
+/*@import url("index.css"); including stylesheet for index.php */
 a{
-color:#0000ff;
+	color:#313131;
 text-decoration:none;
 }
-a,body,html,table{
-font:normal normal 11px Verdana,sans-serif;
+html {
+	background:#fff;
+}
+
+body {
+	background:#fff;
+	color:#333333;
+	font-size:12px ;
+	font-family: arial, helvetica, sans-serif;
+}
+body#login{
+margin-top:100px;
+text-align:center;
+}
+body#login .button{
+cursor:pointer;
+padding: 3px;
+margin-top: 10px;
+}
+body#login fieldset{
+margin:0 auto;
+padding:10px;
+width:400px;
+}
+
+.loginLabel {
+	margin-left: 60px;
+	margin-right: 5px;
+	width: 125px;
+	float: left;
+	text-align: right;
+	line-height: 1.5;
+	}
+body#login legend{
+background:#ffffff;
+border:1px solid #003D00;
+color:#333333;
+font-size:90%;
+padding:0.2em 0.5em;
+text-align:right;
 }
 a:hover{
-color:#0000ff;
+	color:orange;
 text-decoration:underline;
 }
 a.headerLink:link{
@@ -93,292 +131,629 @@ a.splitPageLink:active{
 color:#0000ff;
 text-decoration:none;
 }
-body{
-background-color:#ffffff;
-color:#333333;
-margin:0;
-}
 .clearBoth {
 	clear: both;
-	}
-body#login{
-margin-top:100px;
-text-align:center;
-}
-body#login .button{
-cursor:pointer;
-padding: 3px;
-margin-top: 10px;
-}
-body#login fieldset{
-margin:0 auto;
-padding:10px;
-width:400px;
 }
 
-.loginLabel {
-	margin-left: 60px;
-	margin-right: 5px;
-	width: 125px;
-	float: left;
-	text-align: right;
-	line-height: 1.5;
-	}
-body#login legend{
-background:#ffffff;
-border:1px solid #003D00;
-color:#333333;
-font-size:90%;
-padding:0.2em 0.5em;
-text-align:right;
+.floatright {
+	float:right;
+	text-align:right;
 }
-checkbox,input,radio,select,textarea,file{
-font-size:11px;
+
+.floatleft {
+	float:left;
 }
+
+input {
+	vertical-align:middle;
+}
+
+
 textarea {
-width: 80%;
+	font-family:arial,sans-serif;
+	font-size:12px;
+	line-height:18px;
+	width: 80%;
 }
+
 /* to handle textareas for browsers which don't like % widths */
-textarea.sqlpatchKeyedQuery, TEXTAREA#file_contents {
-width:auto;
+textarea.sqlpatchKeyedQuery, textarea#file_contents {
+	width:auto;
 }
-form{
-display:inline;
+
+form {
+	display:inline;
 }
-span.dataTableHeadingContentWhois{
-color:#ff6600;
-font-weight:bold;
+
+span.dataTableHeadingContentWhois {
+	color:#ff6600;
+	font-weight:bold;
 }
-span.normalprice{
-text-decoration:line-through;
+
+span.normalprice {
+	text-decoration:line-through;
 }
-span.productPriceDiscount,.inputRequirement{
-color:#ff0000;
+
+span.productPriceDiscount,.inputRequirement {
+	color:#ff0000;
 }
-span.productSpecialPrice,span.productSalePrice,.stockWarning,span.coming{
-color:#ff0000;
+
+span.productSpecialPrice,span.productSalePrice,.stockWarning,span.coming {
+	color:#ff0000;
 }
-span.productSpecialPriceSale{
-color:#ff0000;
-text-decoration:line-through;
+
+span.productSpecialPriceSale {
+	color:#ff0000;
+	text-decoration:line-through;
 }
-span.SortOrderHeader{
-color:#ff6600;
-font-weight:bold;
+
+span.SortOrderHeader {
+	color:#ff6600;
+	font-weight:bold;
 }
-span.SortOrderHeaderLink{
-color:#0000ff;
-font-weight:bold;
+
+span.SortOrderHeaderLink {
+	color:#0000ff;
+	font-weight:bold;
 }
-td.alert,span.alert{
-color:#ff0000;
-font-weight:bold;
+
+td.alert,span.alert {
+	color:#ff0000;
+	font-weight:bold;
 }
-td.attributeBoxContent{
-background-color:#dcdbd1;
-color:#333333;
+
+td.attributeBoxContent {
+	background-color:#ffedd4;
+	color:#000000;
 }
-td.ot-subtotal-Amount,td.ot-cod-fee-Amount,td.ot-group-pricing-Amount,td.ot-gv-Amount,td.ot-loworderfee-Amount,td.ot-shipping-Amount,td.ot-subtotal-Amount,td.ot-tax-Amount,td.ot-coupon-Amount{
+
+td.ot-subtotal-Amount,td.ot-cod-fee-Amount,td.ot-group-pricing-Amount,td.ot-gv-Amount,td.ot-loworderfee-Amount,td.ot-shipping-Amount,td.ot-subtotal-Amount,td.ot-tax-Amount,td.ot-coupon-Amount {
 }
-td.ot-subtotal-Text,td.ot-cod-fee-Text,td.ot-total-Text,td.ot-group-pricing-Text,td.ot-gv-Text,td.ot-loworderfee-Text,td.ot-shipping-Text,td.ot-subtotal-Text,td.ot-tax-Text,td.ot-coupon-Text{
-font-weight:bold;
+
+td.ot-subtotal-Text,td.ot-cod-fee-Text,td.ot-total-Text,td.ot-group-pricing-Text,td.ot-gv-Text,td.ot-loworderfee-Text,td.ot-shipping-Text,td.ot-subtotal-Text,td.ot-tax-Text,td.ot-coupon-Text {
+	font-weight:bold;
 }
-td.ot-total-Amount{
-border-top:1px solid #9a9a9a;
-font-weight:bold;
+
+td.ot-total-Amount {
+	border-top:1px solid #9a9a9a;
+	font-weight:bold;
 }
-tr.attributeBoxContent{
-background-color:#dcdbd1;
-color:#333333;
+
+tr.attributeBoxContent {
+	background-color:#ffedd4;
+	color:#333333;
 }
-.attributeBoxContent{
-background-color:#dcdbd1;
-color:#333333;
+
+.attributeBoxContent {
+	background-color:#ffedd4;
+	color:#333333;
 }
-.attributes-even{
-background-color:#ffffff;
+
+.attributes-even {
+	background-color:#ffffff;
 }
-.attributes-odd{
-background-color:#f7f6ef;
+
+.attributes-odd {
+	background-color:#ffedd4;
 }
-.columnLeft{
-background-color:#f2f1ee;
-border-color:#999999;
-border-style:solid;
-border-width:1px;
-padding:2px;
+
+.columnLeft {
+	background-color:#f2f1ee;
+	border:1px solid #313131;
+	padding:2px;
 }
-.dataTableContent{
-color:#333333;
+
+#tableLegend {
+	border-bottom:1px solid #313131;
+	border-top:1px solid #313131;
+	margin-bottom:15px;
+	padding: 0 0 10px 0;
 }
-.dataTableContentBot{
-color:#333333;
+
+#tableLegend img {
+	vertical-align:middle;
+}	
+
+table {
+*border-collapse: collapse; /*stupid IE hack so borders on empty cells will show in IE 7 & 8 -- DO NOT REMOVE!!*/
 }
-.dataTableContentWhois{
-color:#333333;
+
+.dataTableContent {
+	border-bottom:1px solid #313131;
+	color:#333333;
+	empty-cells: show; /*added so borders on empty cells will show -- DO NOT REMOVE!!*/
+	padding:5px ;
 }
-.dataTableHeadingContent{
-color:#333333;
-font-weight:bold;
+
+.dataTableContent img {
+	margin-left:3px;
 }
-.dataTableHeadingContentWhois{
-color:#333333;
-font-weight:bold;
+
+.dataTableContentBot {
+	color:#333333;
 }
-.dataTableHeadingContentWhois a:link,.dataTableHeadingContentWhois a:visited{
-color:#0000ff;
-font-weight:bold;
+
+.dataTableContentWhois {
+	color:#333333;
 }
-.dataTableHeadingContentWhois a:hover{
-color:#ffffff;
-font-weight:bold;
+
+.dataTableHeadingContent {
+	color:#FFFFFF;
+	font-weight:bold;
+	padding:5px;
+	text-transform:uppercase;
 }
-.dataTableHeadingRow{
-background-color:#d7d6cc;
+
+.dataTableHeadingContentWhois {
+	color:#333333;
+	font-weight:bold;
 }
-.dataTableHeadingRowWhois{
-background-color:#d7d6cc;
+
+.dataTableHeadingContentWhois a:link,.dataTableHeadingContentWhois a:visited {
+	color:#0000ff;
+	font-weight:bold;
 }
-.dataTableRow{
-background-color:#f2f1ee;
+
+.dataTableHeadingContentWhois a:hover {
+	color:#ffffff;
+	font-weight:bold;
 }
-.dataTableRowBot{
-background-color:#facbfa;
+
+.dataTableHeadingRow {
+	background-color:#313131;
+	padding:5px;
+	color:#FFFFFF;
 }
-.dataTableRowOver{
-background-color:#ffffff;
-cursor:pointer;
-cursor:hand;
+
+.dataTableHeadingRowWhois {
+	background-color:#d7d6cc;
 }
-.dataTableRowOverBot{
-background-color:#ffffff;
+
+table {
+	font-size:12px;
+	
 }
-.dataTableRowOverWhois{
-background-color:#ffffff;
+
+table img {
+	vertical-align: middle;
 }
-.dataTableRowSelected{
-background-color:#e7e6e0;
+
+.dataTableRow {
+	background-color:#fff;
+	border-bottom:1px solid #ccc!important;
+	padding:3px 0;
 }
-.dataTableRowSelectedBot{
-background-color:#ff93ff;
+
+#productCategoryTable {
+	border:1px solid #ccc;
+	line-height:18px;
+	padding:0;
+	width:100%;
 }
-.dataTableRowSelectedWhois{
-background-color:#dee4e8;
+
+#productCategoryTable table tr {
+	padding:10px;
 }
-.dataTableRowSpacer,td.dataTableRowSpacer,TR.dataTableRowSpacer{
-background-color:#d7d6cc;
-color:#ff6600;
-font-size:11px;
-font-weight:bold;
-line-height:1.0;
+
+.dataTableRowBot {
+	background-color:#facbfa;
 }
-.dataTableRowWhois{
-background-color:#f2f1ee;
+
+.dataTableRowOver {
+	background-color:#ffffff;
+	cursor:pointer;
+	cursor:hand;
 }
-.errorText{
-color:#ff0000;
+
+.dataTableRowOverBot {
+	background-color:#ffffff;
 }
-.fieldRequired{
-color:#ff0000;
+
+.dataTableRowOverWhois {
+	background-color:#ffffff;
 }
-.formArea{
-background-color:#f1f9fe;
-border-color:#7b9ebd;
-border-style:solid;
-border-width:1px;
+
+.dataTableRowSelected {
+	background-color: #ffedd4;
 }
-.formAreaTitle{
-font-family:Tahoma,Verdana,Arial,sans-serif;
-font-size:12px;
-font-weight:bold;
+
+.dataTableRowSelectedBot {
+	background-color:#ffedd4;
 }
-.headerBar{
-background-color:#003D00;
+
+.dataTableRowSelectedWhois {
+	background-color:#dee4e8;
 }
-.headerBarContent{
-color:#ffffff;
-font-weight:bold;
-padding:2px;
+
+.dataTableRowSpacer, td.dataTableRowSpacer, tr.dataTableRowSpacer {
+	background-color:#d7d6cc;
+	color:#ff6600;
+	font-size:12px;
+	font-weight:bold;
+	line-height:1.0;
 }
-.infoBoxContent{
-background-color:#e7e6e0;
-color:#333333;
+
+.dataTableRowWhois {
+	background-color:#f2f1ee;
 }
-.infoBoxHeading{
-background-color:#003D00;
-color:#ffffff;
+
+.errorText {
+	color:#ff0000;
 }
-.main{
+
+.fieldRequired {
+	color:#ff0000;
 }
-.menuBoxContent{
-color:#616060;
+
+.formArea {
+	background-color:#ffedd4;
+	border:1px solid #313131;
 }
-.menuBoxHeading{
-background-color:#ffffff;
-color:#616060;
+
+.formAreaTitle {
+	font-family:Arial,sans-serif;
+	font-size:12px;
+	font-weight:bold;
 }
-.messageBox{
+
+.headerBar {
+	background-color:#313131;
+	font-size:12px;
 }
-.messageStackCaution{
-background-color:#ffff00;
+
+.headerBarContent {
+	color:#ffffff;
+	font-weight:bold;
+	padding:10px;
 }
-.messageStackError,.messageStackWarning{
-background-color:#ffb3b5;
+
+.infoBoxContent {
+	background-color:#ffedd4;
+	color:#333333;
+	padding:5px;
+	text-align:left;
 }
-.messageStackSuccess{
-background-color:#d4ffbd;
+
+.infoBoxContent a {
+	vertical-align:top;
 }
-.oldPrice{
-text-decoration:line-through;
+
+.infoBoxHeading {
+	background-color:#313131;
+	color:orange;
+	padding:5px;
+	text-transform:uppercase;
 }
-h1,.pageHeading{
-color:#003D00; /*727272*/
-font-size:16px;
-font-variant:small-caps;
-font-weight:bold;
+
+.main {
 }
-.SaleMakerDisabled{
-background-color:#f0f1f1;
+
+.menuBoxContent {
+	color:#616060;
 }
-.SaleMakerOver{
-background-color:#ffffff;
-cursor:pointer;
-cursor:hand;
+
+.menuBoxHeading {
+	background-color:#ffffff;
+	color:#616060;
 }
-.SaleMakerSelected{
-background-color:#dee4e8;
-cursor:pointer;
-cursor:hand;
+
+.messageBox {
 }
-.smallText{
-font-size:9px;
+
+.messageStackCaution {
+	background-color:#ffff00;
 }
-.specialPrice{
-color:#ff6600;
+
+.messageStackError,.messageStackWarning {
+	background-color:#ffb3b5;
 }
+
+.messageStackSuccess {
+	background-color:#d4ffbd;
+}
+
+.oldPrice {
+	text-decoration:line-through;
+}
+
+h1,.pageHeading {
+	color:#000000;
+	font-size:18px;
+	font-weight:bold;
+	text-transform:uppercase;
+	
+}
+
+.SaleMakerDisabled {
+	background-color:#f0f1f1;
+}
+
+.SaleMakerOver {
+	background-color:#ffffff;
+	cursor:pointer;
+	cursor:hand;
+}
+
+.SaleMakerSelected {
+	background-color:#dee4e8;
+	cursor:pointer;
+	cursor:hand;
+}
+
+.smallText {
+	font-size:9px;
+}
+
+.specialPrice {
+	color:#ff6600;
+}
+
 .lookupAttention {
-  color: #FF0000;
+  	color: #FF0000;
 }
+
 .clearBoth {
 	clear:both;
 }
-#loginExpiryPolicy {
-	margin-top: 2em;
+
+/* use xb settings to make ul/li appear the same in mozilla, ie and opera
+ needed to keep IE from bubbling events from items that are not contained but only covered. */
+
+ul.nde-menu-system {
+	background-color:#313131;
+	display:block;
+	margin:0;
+	padding:4px 1px 10px;
+	font-size:13px;
 }
-.hiddenField {
-	display: none;
+
+ul.nde-menu-system * {
+	font-size:13px;
 }
-#alt_nav {
-	padding:20px;
-	font-size:110%;
-	line-height:1.8em;
+
+ul.nde-menu-system li {
+	border-right:0px solid #003D00;
+	color:#ffffff;
+	display:inline;
+	font-weight:bold;
+	margin:0;
+	padding:0 ;
+	position:relative;
 }
-#alt_nav h2 {
-	font-size:90%
+
+ul.nde-menu-system li a {
+	color:#ffffff;
+	font-weight:bold;
+	padding:10px;
 }
-#alt_nav p {
-	max-width:600px;
+
+ul.nde-menu-system li a:hover {
+	background-color:transparent;
+	color:orange;
+	text-decoration:underline;
 }
-#alt_nav a {
-	white-space: nowrap;
+
+ul.nde-menu-system li ul {
+	display:block;
+	left:0;
+	position:absolute;
+	top:1em;/* required for NS 7.x/Gecko 1.0.x but not Gecko 1.3 */
+	visibility:hidden;
+	z-index:1000;
+}
+
+ul.nde-menu-system li ul li {
+	background-color:#f7f7f7;
+	border:none;
+	display:block;
+	list-style:none;
+	margin:0;
+	padding:0;
+	width:240px;
+}
+
+ul.nde-menu-system li ul li a {
+	background-color:#313131;
+	color:#FFFFFF;
+	display:block;
+	font-weight:normal;
+	margin:0;
+	padding:6px 10px;
+	font-weight:bold;
+}
+
+* html ul.nde-menu-system li ul li a {
+	width:100%;
+}
+
+ul.nde-menu-system li ul li a:hover {
+	background-color:#313131;
+	color:orange;
+	text-decoration:underline;
+}
+
+ul.nde-menu-system ul {
+	background-color:#313131;
+	display:block;
+	margin:0;
+	padding:4px 0 0;
+}
+
+/* ---------------------------------*/
+
+/* `Clear Floated Elements
+------------------------------------------------*/
+
+/* http://sonspring.com/journal/clearing-floats */
+
+.clear {
+	clear: both;
+	display: block;
+	overflow: hidden;
+	visibility: hidden;
+	width: 0;
+	height: 0;
+}
+
+/* http://perishablepress.com/press/2008/02/05/lessons-learned-concerning-the-clearfix-css-hack */
+.clearfix:after {
+	clear: both;
+	content: ' ';
+	display: block;
+	font-size: 0;
+	line-height: 0;
+	visibility: hidden;
+	width: 0;
+	height: 0;
+}
+
+.clearfix {
+	display: inline-block;
+}
+
+* html .clearfix {
+	height: 1%;
+}
+
+.clearfix {
+	display: block;
+}
+
+/* ---------------------------------*/
+
+div.clearBoth {
+	clear:both;
+	margin-top:20px;
+}
+
+div.header {
+	background:#313131;
+	clear:both;
+	color:#ffffff;
+	font-weight:bold;
+	padding:3px;
+}
+
+div.reportBox {
+	background:#FCFCFC;
+	border:1px solid #313131;
+	margin-top:1em;
+}
+
+div.reportBox a {
+color:orange;
+text-decoration:underline;
+font-weight:bold;
+}
+
+div.row {
+	background:#FCFCFC;
+	border-bottom:1px solid #313131;
+	clear:both;
+	margin-top:1px;
+	padding:3px;
+}
+
+div.row span.center {
+	margin-right:30px;
+}
+
+div.row span.left {
+	float:left;
+	text-align:left;
+	width:74%;
+}
+
+div.row span.right {
+	float:right;
+	text-align:right;
+	width:34%;
+}
+
+#colone, #coltwo, #colthree {
+	display:inline;
+	float:left;
+	margin-left:5px;
+	padding-top:3em;
+	width:30%;
+}
+
+#credits {
+	clear:both;
+	height:50px;
+	padding:10px;
+	position:relative;
+}
+
+div.copyrightrow {
+	clear:both;
+	font-size: 10px;
+	text-align:center;
+}
+
+div.warrantyrow {
+	clear:both;
+	font-size: 10px;
+	text-align:center;
+}
+
+#altNavList {
+	font-size:12px;
+	margin-bottom:30px;
+	padding-left:30px;
+}
+
+#altNavList ul  {
+	margin-left:15px;
+	padding-left:15px;
+}
+
+.fcsButton {
+	background:#313131;
+	border:0;
+	color:#fff;
+	font-weight:bold;
+	padding:5px 8px;
+	width:auto;
+}
+
+.fcsButtonCancel {
+	background:#CC0201!important;
+	border:0;
+	color:#fff;
+	font-weight:bold;
+	padding:5px 8px;
+	width:auto;
+}
+
+.fcsButtonOK {
+	background:#339900;
+	border:0;
+	color:#fff;
+	font-weight:bold;
+	padding:5px 8px;
+	width:auto;
+}
+
+a:hover.fcsButton, button:hover.fcsButton {
+	background:#4D99CC;
+	color:#fff;
+	text-decoration:none;
+}
+
+#content {
+	padding:10px;
+}
+
+
+.productHeadingTitles {
+background-color:#313131;
+height: 24px;
+font-weight:bold;
+font-size: 14px;
+color: #FFF;
+}
+
+#navbar{
+	border-top:1px solid #ffedd4;
 }
