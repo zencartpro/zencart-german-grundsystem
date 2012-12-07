@@ -5,7 +5,7 @@
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
  * @translators: cyaneo/hugo13/wflohr/maleborg/webchills	http://www.zen-cart-pro.at
- * @version $Id: other_images_names.php 627 2010-08-30 15:05:14Z webchills $
+ * @version $Id: other_images_names.php 628 2012-12-07 12:05:14Z webchills $
  */
 
 /*
@@ -16,7 +16,7 @@ define('OTHER_IMAGE_BLACK_SEPARATOR', 'pixel_black.gif');
 define('OTHER_IMAGE_BOX_NOTIFY_REMOVE', 'box_products_notifications_remove.gif');
 define('OTHER_IMAGE_BOX_NOTIFY_YES', 'box_products_notifications.gif');
 define('OTHER_IMAGE_BOX_WRITE_REVIEW', 'box_write_review.gif');
-define('OTHER_IMAGE_CALL_FOR_PRICE', 'call_for_prices.jpg');
+define('OTHER_IMAGE_CALL_FOR_PRICE', 'call_for_prices.gif');
 define('OTHER_IMAGE_DOWN_FOR_MAINTENANCE', 'down_for_maintenance.gif');
 define('OTHER_IMAGE_PRICE_IS_FREE', 'free.gif');
 define('OTHER_IMAGE_TRANPARENT', 'pixel_trans.gif');
@@ -26,7 +26,6 @@ define('OTHER_IMAGE_REVIEWS_RATING_STARS_FOUR', 'stars_4_small.gif');
 define('OTHER_IMAGE_REVIEWS_RATING_STARS_THREE', 'stars_3_small.gif');
 define('OTHER_IMAGE_REVIEWS_RATING_STARS_TWO', 'stars_2_small.gif');
 define('OTHER_IMAGE_REVIEWS_RATING_STARS_ONE', 'stars_1_small.gif');
-//define('OTHER_IMAGE_', '');
 
 /*
  * ALT tags for other images
@@ -44,4 +43,3 @@ define('OTHER_REVIEWS_RATING_STARS_FOUR_ALT', 'Vier Sterne');
 define('OTHER_REVIEWS_RATING_STARS_THREE_ALT', 'Drei Sterne');
 define('OTHER_REVIEWS_RATING_STARS_TWO_ALT', 'Zwei Sterne');
 define('OTHER_REVIEWS_RATING_STARS_ONE_ALT', 'Ein Stern');
-//define('OTHER_xxx_ALT', '');

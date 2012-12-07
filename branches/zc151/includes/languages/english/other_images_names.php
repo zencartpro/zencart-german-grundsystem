@@ -1,10 +1,10 @@
 <?php
 /**
  * @package languageDefines
- * @copyright Copyright 2003-2006 Zen Cart Development Team
+ * @copyright Copyright 2003-2012 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: other_images_names.php 729 2011-08-09 15:49:16Z hugo13 $
+ * @version $Id: other_images_names.php 730 2012-12-07 12:49:16Z webchills $
  */
 
 /*
@@ -15,7 +15,7 @@ define('OTHER_IMAGE_BLACK_SEPARATOR', 'pixel_black.gif');
 define('OTHER_IMAGE_BOX_NOTIFY_REMOVE', 'box_products_notifications_remove.gif');
 define('OTHER_IMAGE_BOX_NOTIFY_YES', 'box_products_notifications.gif');
 define('OTHER_IMAGE_BOX_WRITE_REVIEW', 'box_write_review.gif');
-define('OTHER_IMAGE_CALL_FOR_PRICE', 'call_for_prices.jpg');
+define('OTHER_IMAGE_CALL_FOR_PRICE', 'call_for_prices.gif');
 define('OTHER_IMAGE_DOWN_FOR_MAINTENANCE', 'down_for_maintenance.gif');
 define('OTHER_IMAGE_PRICE_IS_FREE', 'free.gif');
 define('OTHER_IMAGE_TRANPARENT', 'pixel_trans.gif');
@@ -25,7 +25,6 @@ define('OTHER_IMAGE_REVIEWS_RATING_STARS_FOUR', 'stars_4_small.gif');
 define('OTHER_IMAGE_REVIEWS_RATING_STARS_THREE', 'stars_3_small.gif');
 define('OTHER_IMAGE_REVIEWS_RATING_STARS_TWO', 'stars_2_small.gif');
 define('OTHER_IMAGE_REVIEWS_RATING_STARS_ONE', 'stars_1_small.gif');
-//define('OTHER_IMAGE_', '');
 
 /*
  * ALT tags for other images
@@ -43,6 +42,3 @@ define('OTHER_REVIEWS_RATING_STARS_FOUR_ALT', 'Four Stars');
 define('OTHER_REVIEWS_RATING_STARS_THREE_ALT', 'Three Stars');
 define('OTHER_REVIEWS_RATING_STARS_TWO_ALT', 'Two Stars');
 define('OTHER_REVIEWS_RATING_STARS_ONE_ALT', 'One Star');
-//define('OTHER_xxx_ALT', '');
-
-?>
