@@ -2,9 +2,9 @@
 # * Country/Zones Zen Cart SQL Load for MySQL databases
 # * @package Installer
 # * @access private
-# * @copyright Copyright 2003-2012 Zen Cart Development Team
+# * @copyright Copyright 2003-2013 Zen Cart Development Team
 # * @copyright Portions Copyright 2003 osCommerce
-# * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
+# * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
 # * @version $Id: mysql_latin1.sql 19301 2012-11-06 16:09:18Z webchills $
 #
 

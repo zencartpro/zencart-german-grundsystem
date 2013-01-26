@@ -2,10 +2,10 @@
 # * Main Zen Cart SQL Load for MySQL databases
 # * @package Installer
 # * @access private
-# * @copyright Copyright 2003-2012 Zen Cart Development Team
+# * @copyright Copyright 2003-2013 Zen Cart Development Team
 # * @copyright Portions Copyright 2003 osCommerce
-# * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
-# * @version $Id: mysql_zencart.sql 19330 2012-12-07 08:12:59Z webchills $
+# * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
+# * @version $Id: mysql_zencart.sql 19331 2013-01-26 12:12:59Z webchills $
 #
 
 ############ IMPORTANT INSTRUCTIONS ###############
@@ -60,6 +60,8 @@ CREATE TABLE address_book (
   PRIMARY KEY  (address_book_id),
   KEY idx_address_book_customers_id_zen (customers_id)
 ) ENGINE=MyISAM;
+
+
 
 # --------------------------------------------------------
 
@@ -2337,26 +2339,6 @@ INSERT INTO configuration (configuration_title, configuration_key, configuration
 INSERT INTO configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) VALUES ('Product Image - No Image picture', 'PRODUCTS_IMAGE_NO_IMAGE', 'no_picture.gif', 'Use automatic No Image when none is added to product<br />Default = no_picture.gif', '4', '61', now());
 INSERT INTO configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) VALUES ('Image - Use Proportional Images on Products and Categories', 'PROPORTIONAL_IMAGES_STATUS', '1', 'Use Proportional Images on Products and Categories?<br /><br />NOTE: Do not use 0 height or width settings for Proportion Images<br />0= off 1= on', 4, 75, 'zen_cfg_select_option(array(\'0\', \'1\'), ', now());
 
-# image handler VALUES
-INSERT INTO configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) VALUES ('IH version', 'IH_VERSION', '4.0', 'IH Version is stored but not shown on configuration menus', 0, 1000, now());
-INSERT INTO configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) VALUES ('IH resize images', 'IH_RESIZE', 'yes', 'Select either -no- which is old Zen-Cart behaviour or -yes- to activate automatic resizing and caching of images. --Note: If you select -no-, all of the Image Handler specific image settings will be unavailable including: image filetype selection, background colors, compression, image hover, and watermarking-- If you want to use ImageMagick you have to specify the location of the <strong>convert</strong> binary in <em>includes/extra_configures/bmz_image_handler_conf.php</em>.', 4, 102, 'zen_cfg_select_option(array(''no'', ''yes''),', now());
-INSERT INTO configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) VALUES ('IH small images filetype', 'SMALL_IMAGE_FILETYPE', 'no_change', 'Select one of -jpg-, -gif- or -png-. Older versions of Internet Explorer -v6.0 and older- will have issues displaying -png- images with transparent areas. You better stick to -gif- for transparency if you MUST support older versions of Internet Explorer. However -png- is a MUCH BETTER format for transparency. Use -jpg- or -png- for larger images. -no_change- is old zen-cart behavior, use the same file extension for small images as uploaded image', 4, 102, 'zen_cfg_select_option(array(''gif'', ''jpg'', ''png'', ''no_change''),', now());
-INSERT INTO configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) VALUES ('IH small images background', 'SMALL_IMAGE_BACKGROUND', '255:255:255', 'If converted from an uploaded image with transparent areas, these areas become the specified color. Set to ''transparent'' to keep transparency.', 4, 102, 'zen_cfg_textarea_small(', now());
-INSERT INTO configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) VALUES ('IH small images compression quality', 'SMALL_IMAGE_QUALITY', '85', 'Specify the desired image quality for small jpg images, decimal values ranging from 0 to 100. Higher is better quality and takes more space. Default is 85 which is ok unless you have very specific needs.', 4, 103, 'zen_cfg_textarea_small(', now());
-INSERT INTO configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) VALUES ('IH small images watermark', 'WATERMARK_SMALL_IMAGES', 'no', 'Set to ''yes'', if you want to show watermarked small images instead of unmarked small images.', 4, 104, 'zen_cfg_select_option(array(''no'', ''yes''),', now());
-INSERT INTO configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) VALUES ('IH small images zoom on hover', 'ZOOM_SMALL_IMAGES', 'no', 'Set to ''yes'', if you want to enable a nice zoom overlay while hovering the mouse pointer over small images.', 4, 105, 'zen_cfg_select_option(array(''no'', ''yes''),', now());
-INSERT INTO configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) VALUES ('IH small images zoom on hover size', 'ZOOM_IMAGE_SIZE', 'Medium', 'Set to ''Medium'', if you want to the zoom on hover display to use the medium sized image. Otherwise, to use the large sized image on hover, set to ''Large''', 4, 106, 'zen_cfg_select_option(array(''Medium'', ''Large''),', now());
-INSERT INTO configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) VALUES ('IH medium images filetype', 'MEDIUM_IMAGE_FILETYPE', 'no_change', 'Select one of ''jpg'', ''gif'' or ''png''. Internet Explorer has still issues displaying png-images with transparent areas. You better stick to ''gif'' for transparency or ''jpg'' for larger images. ''no_change'' is old zen-cart behavior, use the same file extension for medium images as uploaded image''s.', 4, 107, 'zen_cfg_select_option(array(''gif'', ''jpg'', ''png'', ''no_change''),', now());
-INSERT INTO configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) VALUES ('IH medium images background', 'MEDIUM_IMAGE_BACKGROUND', '255:255:255', 'If converted from an uploaded image with transparent areas, these areas become the specified color. Set to ''transparent'' to keep transparency.', 4, 108,  'zen_cfg_textarea_small(', now());
-INSERT INTO configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) VALUES ('IH medium images compression quality', 'MEDIUM_IMAGE_QUALITY', '85', 'Specify the desired image quality for medium jpg images, decimal values ranging from 0 to 100. Higher is better quality and takes more space. Default is 85 which is ok unless you have very specific needs.', 4, 109, 'zen_cfg_textarea_small(', now());
-INSERT INTO configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) VALUES ('IH medium images watermark', 'WATERMARK_MEDIUM_IMAGES', 'no', 'Set to ''yes'', if you want to show watermarked medium images instead of unmarked medium images.', 4, 110,  'zen_cfg_select_option(array(''no'', ''yes''),', now());
-INSERT INTO configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) VALUES ('IH large images filetype', 'LARGE_IMAGE_FILETYPE', 'no_change', 'Select one of ''jpg'', ''gif'' or ''png''. Internet Explorer has still issues displaying png-images with transparent areas. You better stick to ''gif'' for transparency or ''jpg'' for larger images. ''no_change'' is old zen-cart behavior, use the same file extension for large images as uploaded image''s.', 4, 111, 'zen_cfg_select_option(array(''gif'', ''jpg'', ''png'', ''no_change''),', now());
-INSERT INTO configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) VALUES ('IH large images background', 'LARGE_IMAGE_BACKGROUND', '255:255:255', 'If converted from an uploaded image with transparent areas, these areas become the specified color. Set to ''transparent'' to keep transparency.', 4, 112, 'zen_cfg_textarea_small(', now());
-INSERT INTO configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) VALUES ('IH large images compression quality', 'LARGE_IMAGE_QUALITY', '85', 'Specify the desired image quality for large jpg images, decimal values ranging from 0 to 100. Higher is better quality and takes more space. Default is 85 which is ok unless you have very specific needs.', 4, 113, 'zen_cfg_textarea_small(', now());
-INSERT INTO configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) VALUES ('IH large images watermark', 'WATERMARK_LARGE_IMAGES', 'no', 'Set to ''yes'', if you want to show watermarked large images instead of unmarked large images.', 4, 114, 'zen_cfg_select_option(array(''no'', ''yes''),', now());
-INSERT INTO configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) VALUES ('IH large images maximum width', 'LARGE_IMAGE_MAX_WIDTH', '750', 'Specify a maximum width for your large images. If width and height are empty or set to 0, no resizing of large images is done.', 4, 115,  'zen_cfg_textarea_small(', now());
-INSERT INTO configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) VALUES ('IH large images maximum height', 'LARGE_IMAGE_MAX_HEIGHT', '550', 'Specify a maximum height for your large images. If width and height are empty or set to 0, no resizing of large images is done.', 4, 116,  'zen_cfg_textarea_small(', now());
-INSERT INTO configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) VALUES ('IH watermark gravity', 'WATERMARK_GRAVITY', 'Center', 'Select the position for the watermark relative to the image''s canvas. Default is <strong>Center</Strong>.', 4, 117, 'zen_cfg_select_drop_down(array(array(''id''=>''NorthWest'', ''text''=>''NorthWest''), array(''id''=>''North'', ''text''=>''North''), array(''id''=>''NorthEast'', ''text''=>''NorthEast''), array(''id''=>''West'', ''text''=>''West''), array(''id''=>''Center'', ''text''=>''Center''), array(''id''=>''East'', ''text''=>''East''), array(''id''=>''SouthWest'', ''text''=>''SouthWest''), array(''id''=>''South'', ''text''=>''South''), array(''id''=>''SouthEast'', ''text''=>''SouthEast'')),', now());
 
 
 
@@ -3289,7 +3271,9 @@ INSERT INTO get_terms_to_filter VALUES ('record_company_id', 'TABLE_RECORD_COMPA
 ALTER TABLE configuration_group ADD language_id INT( 11 ) DEFAULT '1' NOT NULL AFTER configuration_group_id ;
 ALTER TABLE configuration_group DROP PRIMARY KEY ,
 ADD PRIMARY KEY ( configuration_group_id , language_id );
-CREATE TABLE IF NOT EXISTS configuration_language(
+
+DROP TABLE IF EXISTS configuration_language;
+CREATE TABLE configuration_language (
   configuration_id int(11) NOT NULL auto_increment,
   configuration_title text NOT NULL,
   configuration_key varchar(255) NOT NULL default '',
@@ -3300,7 +3284,8 @@ CREATE TABLE IF NOT EXISTS configuration_language(
   PRIMARY KEY  (configuration_id),
   UNIQUE KEY config_lang (configuration_key,configuration_language_id),
   KEY configuration_language_id (configuration_language_id)
-);
+)ENGINE=MyISAM;
+
 #
 # German Version Special Definitions
 #
@@ -3323,9 +3308,6 @@ VALUES  ('proponents', 'GERMAN_PROPONENTS', 'FILENAME_GERMAN', '', 'german1', 'Y
         ('german10', 'GERMAN_FORUM', 'FILENAME_GERMAN', 'extern=http://www.zen-cart-pro.at/zcvb/forum', 'german1', 'Y', 10),
         ('german30', 'GERMAN_FAQ', 'FILENAME_GERMAN', 'extern=http://www.zen-cart-pro.at/forum/forums/72-FAQ-passend-zu-allen-deutschen-Zen-Cart-Versionen', 'german1', 'Y', 20);
 
-## IMAGE HANDLER MENU einfuegen
-INSERT INTO admin_pages (page_key,language_key,main_page,page_params,menu_key,display_on_menu,sort_order)
-VALUES ('configImageHandler4','BOX_TOOLS_IMAGE_HANDLER','FILENAME_IMAGE_HANDLER','','tools','Y',100);  
 
 ##### End of SQL setup for Zen Cart.
 

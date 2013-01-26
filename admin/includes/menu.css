@@ -6,15 +6,13 @@ same in mozilla, ie and opera
 from items that are not contained but only
 covered. */
 ul.nde-menu-system{
-background-color:#313131;
+background-color:#599659;
 display:block;
 margin:0;
 padding:4px 10px;
-font-size:12px;
-text-transform:uppercase;
 }
 ul.nde-menu-system *{
-font-size:12px;
+font-size:10px;
 }
 ul.nde-menu-system li{
 border-right:1px solid #003D00;
@@ -26,7 +24,6 @@ padding:0 10px;
 position:relative;
 cursor:pointer;
 cursor:hand;
-background-color:#313131;
 }
 ul.nde-menu-system li a{
 color:#ffffff;
@@ -36,7 +33,7 @@ cursor:hand;
 }
 ul.nde-menu-system li a:hover{
 background-color:transparent;
-color:orange;
+color:#ffffff;
 text-decoration:underline;
 }
 ul.nde-menu-system li ul{
@@ -48,7 +45,7 @@ visibility:hidden;
 z-index:1000;
 }
 ul.nde-menu-system li ul li{
-background-color:#313131;
+background-color:#f7f7f7;
 border:#a8a8a8 1px solid;
 border-width:0 1px 1px;
 display:block;
@@ -58,8 +55,8 @@ padding:0;
 width:150px;
 }
 ul.nde-menu-system li ul li a{
-background-color:#313131;
-color:#FFFFFF;
+background-color:#EFF4EA;
+color:#333333;
 display:block;
 font-weight:normal;
 margin:0;
@@ -69,12 +66,12 @@ padding:3px 5px;
 width:100%;
 }
 ul.nde-menu-system li ul li a:hover{
-background-color:#313131;
-color:orange;
+background-color:#85C285;
+color:#333333;
 text-decoration:none;
 }
 ul.nde-menu-system ul{
-background-color:#313131;
+background-color:#599659;
 display:block;
 margin:0;
 padding:4px 0 0;

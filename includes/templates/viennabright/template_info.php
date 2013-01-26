@@ -8,7 +8,7 @@
 * @package templateSystem
 * @copyright Copyright 2008-2009 12leaves.com
 * @copyright Portions Copyright 2012 webchills.at
-* @copyright Copyright 2003-2012 Zen Cart Development Team
+* @copyright Copyright 2003-2013 Zen Cart Development Team
 * @copyright Portions Copyright 2003 osCommerce
 * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
 * @version $Id: template_info.php 846 2012-02-26 12:10:39Z webchills $
