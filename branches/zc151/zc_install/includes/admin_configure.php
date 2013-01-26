@@ -12,9 +12,9 @@ $file_contents =
 '<'.'?php' . "\n" .
 '/**' . "\n" .
 ' * @package Configuration Settings circa 1.5.1' . "\n" .
-' * @copyright Copyright 2003-2012 Zen Cart Development Team' . "\n" .
+' * @copyright Copyright 2003-2013 Zen Cart Development Team' . "\n" .
 ' * @copyright Portions Copyright 2003 osCommerce' . "\n" .
-' * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0' . "\n" .
+' * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0' . "\n" .
 ' * File Built by zc_install on ' . date('Y-m-d h:i:s') . "\n" .
 ' */' . "\n" .
 '' . "\n" .
