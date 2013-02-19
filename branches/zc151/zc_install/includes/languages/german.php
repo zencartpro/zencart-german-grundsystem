@@ -3,10 +3,10 @@
  * Main German language file for installer *
  * @package Installer
  * @access private
- * @copyright Copyright 2003-2012 Zen Cart Development Team
+ * @copyright Copyright 2003-2013 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: german.php 805 2012-11-30 18:28:24Z webchills $
+ * @version $Id: german.php 806 2013-02-19 18:33:24Z webchills $
  */
 /**
  * defining language components for the page
@@ -217,7 +217,7 @@ define('ERROR_TEXT_OPEN_BASEDIR','Es könnte Probleme mit Uploads oder Backups g
 define('ERROR_CODE_OPEN_BASEDIR','92');
 define('ERROR_TEXT_CURL_SUPPORT','CURL Unterstützung nicht gefunden.');
 define('ERROR_CODE_CURL_SUPPORT','93');
-define('ERROR_TEXT_CURL_NOT_COMPILED', 'CURL nicht in PHP compiliert - bitte benachrichtigen Sie Ihre Server Adminstrator (Webhoster)');
+define('ERROR_TEXT_CURL_NOT_COMPILED', 'CURL nicht in PHP compiliert - bitte benachrichtigen Sie Ihren Webhoster.');
 define('ERROR_TEXT_CURL_PROBLEM_GENERAL', 'CURL Probleme festgestellt: ');
 define('ERROR_TEXT_CURL_SSL_PROBLEM', 'CURL benötigt SSL Unterstützung. Bitte benachrichtigen Sie den Serveradminstrator oder Webhoster.');
 define('ERROR_CODE_CURL_SSL_PROBLEM','95');
