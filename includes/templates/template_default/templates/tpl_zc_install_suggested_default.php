@@ -5,9 +5,9 @@
  * This page is auto-displayed if the configure.php file cannot be read properly. It is intended simply to recommend clicking on the zc_install link to begin installation.
  *
  * @package templateSystem
- * @copyright Copyright 2003-2012 Zen Cart Development Team
+ * @copyright Copyright 2003-2013 Zen Cart Development Team
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: tpl_zc_install_suggested_default.php 804 2011-11-23 08:28:24Z webchills $
+ * @version $Id: tpl_zc_install_suggested_default.php 805 2013-02-19 16:28:24Z webchills $
  * 
  */
 $relPath = (file_exists('includes/templates/template_default/images/logo.gif')) ? '' : '../';
@@ -17,13 +17,13 @@ $docsPath = (file_exists('docs/index.html')) ? 'docs/index.html' : (file_exists(
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" dir="ltr" lang="en">
 <head>
-<title>System Setup Required</title>
+<title>Zen Cart muss erst installiert oder richtig konfiguriert werden</title>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="keywords" content="" />
 <meta name="description" content="" />
 <meta http-equiv="imagetoolbar" content="no" />
 <meta name="authors" content="The Zen Cart&reg; Team and others" />
-<meta name="generator" content="shopping cart program by Zen Cart&reg;, http://www.zen-cart.com" />
+<meta name="generator" content="Zen-Cart deutsche Version, http://www.zen-cart-pro.at" />
 <meta name="robots" content="noindex, nofollow" />
 <style type="text/css">
 <!--
@@ -35,14 +35,17 @@ $docsPath = (file_exists('docs/index.html')) ? 'docs/index.html' : (file_exists(
 </head>
 
 <body style="margin: 20px">
-<div style="width: 730px; background-color: #ffffff; margin: auto; padding: 10px; border: 1px solid #cacaca;">
-<div>
-<img src="<?php echo $relPath; ?>includes/templates/template_default/images/logo.gif" alt="Zen Cart&reg;" title=" Zen Cart&reg; " width="192" height="64" border="0" />
+<div style="width: 730px; background-color: #ffffff; margin: auto; padding: 10px; border: 0px solid #cacaca; font-family: Arial, Verdana, sans-serif;">
+<div align="center">
+<img src="<?php echo $relPath; ?>includes/templates/template_default/images/logo.gif" alt="Zen Cart&reg;" title=" Zen Cart&reg; " width="242" height="70" border="0" />
 </div>
-<h1>Hallo. Danke das Sie sich für Zen Cart&reg; entschieden haben.</h1>
-<h2>Sie bekommen diese Seite aus einem oder mehreren der folgenden Gründe angezeigt:</h2>  
+<div align="center">
+<h2>Zen Cart muss erst installiert oder richtig konfiguriert werden.</h2>
+</div>
+<br/><br/>
+<h3>Sie bekommen diese Seite aus einem oder mehreren der folgenden Gründe angezeigt:</h3>  
 <ol>
-<li>Sie benutzen <strong>Zen Cart&reg; zum ersten Mal</strong> und haben noch keine Installation durchgeführt.<br />
+<li>Sie benutzen <strong>Zen Cart zum ersten Mal</strong> und haben noch keine Installation durchgeführt.<br />
 Sollte das der Fall sein,
 <?php if ($instPath) { ?>
 <a href="<?php echo $instPath; ?>">dann klicken Sie hier</a>, um die Installation zu starten.
@@ -53,18 +56,18 @@ dann laden Sie das Verzeichnis "zc_install" per FTP Programm in Ihr Shopverzeich
 </li>
 <li>Ihre <tt><strong>/includes/configure.php</strong></tt> und/oder <tt><strong>/admin/includes/configure.php</strong></tt> Datei enthält ungültige <em>Pfadangaben</em> und/oder ungültige <em>Angaben zur Datenbankverbindung</em>.<br />
 Sollten Sie kürzlich Ihre configure.php Dateien aus irgendwelchen Gründen geändert haben, oder Ihren Shop in ein anderes Verzeichnis/anderen Server verschoben haben, dann müssen Sie die entsprechenden Angaben in den beiden Dateien anpassen.<br />
-Weitere Informationen erhalten Sie im <a href="http://www.zen-cart-pro.at" target="_blank">deutschsprachigen Supportforum</a>.</li>
+Weitere Informationen erhalten Sie im <a href="http://www.zen-cart-pro.at" target="_blank">deutschsprachigen Supportforum</a>.<br/><br/></li>
 <?php if (isset($problemString) && $problemString != '') { ?>
 <li class="errorDetails">Zusätzliche Hinweise: <?php echo $problemString; ?></li>
 <?php } ?>
 </ol>
 <br />
-<h2>Um die Installation zu starten ...</h2>
+<h3>Um die Installation zu starten ...</h3>
 <ol>
 <?php if ($docsPath) { ?>
 <li>Lesen Sie vorab die <a href="<?php echo $docsPath; ?>">Installationsanleitung</a>.</li>
 <?php } else { ?>
-<li>Die Installation finden Sie normalerweise im Verzeichnis /docs in Ihrer Zen Cart&reg; Zip Datei.</li>
+<li>Die Installation finden Sie normalerweise im Verzeichnis /docs in Ihrer Zen Cart Zip Datei.</li>
 <?php } ?>
 <?php if ($instPath) { ?>
 <li>Gehen Sie auf <a href="<?php echo $instPath; ?>">zc_install/index.php</a> via Ihrem Browser.</li>
@@ -75,5 +78,5 @@ Weitere Informationen erhalten Sie im <a href="http://www.zen-cart-pro.at" targe
 </ol>
 
 </div>
-    <p style="text-align: center; font-size: small;">Copyright &copy; 2003-<?php echo date('Y'); ?> <a href="http://www.zen-cart.com" target="_blank">Zen Cart&reg;</a></p>
+   
 </body></html>
