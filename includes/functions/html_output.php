@@ -4,10 +4,10 @@
  * HTML-generating functions used throughout the core
  *
  * @package functions
- * @copyright Copyright 2003-2012 Zen Cart Development Team
+ * @copyright Copyright 2003-2013 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: html_output.php 836 2012-01-01 20:33:58Z webchills $
+ * @version $Id: html_output.php 837 2013-02-28 11:33:58Z webchills $
  */
 
 /*
@@ -523,11 +523,11 @@
     // Set some default entries at top of list:
     if (STORE_COUNTRY != SHOW_CREATE_ACCOUNT_DEFAULT_COUNTRY) $countriesAtTopOfList[] = SHOW_CREATE_ACCOUNT_DEFAULT_COUNTRY;
     $countriesAtTopOfList[] = STORE_COUNTRY;
-    // IF YOU WANT TO ADD MORE DEFAULTS TO THE TOP OF THIS LIST, SIMPLY ENTER THEIR NUMBERS HERE.
-    // Duplicate more lines as needed
-    // Example: Germany is 81, so use 81 as shown:
-    $countriesAtTopOfList[] = 81;
-    $countriesAtTopOfList[] = 14;
+    // Wenn Sie weitere Laender direkt am Anfang der Liste anzeigen lassen wollen, kommentieren Sie die Zeilen mit $countriesAtTopOfList aus.
+    // Sie koennen hier soviele Laender angeben wie Sie wollen, einfach weitere solcher Zeilen anlegen
+    // Beispiel: Deutschland ist 81, Oesterreich ist 14:
+    //$countriesAtTopOfList[] = 81;
+    //$countriesAtTopOfList[] = 14;
 
     //process array of top-of-list entries:
     foreach ($countriesAtTopOfList as $key=>$val) {
