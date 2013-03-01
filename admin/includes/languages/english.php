@@ -376,7 +376,6 @@ define('ICON_CROSS', 'False');
 define('ICON_CURRENT_FOLDER', 'Current Folder');
 define('ICON_DELETE', 'Delete');
 define('ICON_EDIT', 'Edit');
-define('ICON_IMAGE_HANDLER', 'Image Handler');
 define('ICON_ERROR', 'Error');
 define('ICON_FILE', 'File');
 define('ICON_FILE_DOWNLOAD', 'Download');
