@@ -6,10 +6,10 @@
  * Displays Create Account form.
  *
  * @package templateSystem
- * @copyright Copyright 2003-2006 Zen Cart Development Team
+ * @copyright Copyright 2003-2013 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: tpl_modules_create_account.php 836 2012-01-01 20:33:58Z webchills $
+ * @version $Id: tpl_modules_create_account.php 837 2013-03-01 11:33:58Z webchills $
  */
 ?>
 
@@ -65,6 +65,7 @@
   <?php echo zen_draw_input_field('street_address', '', zen_set_field_length(TABLE_ADDRESS_BOOK, 'entry_street_address', '40') . ' id="street-address"') . (zen_not_null(ENTRY_STREET_ADDRESS_TEXT) ? '<span class="alert">' . ENTRY_STREET_ADDRESS_TEXT . '</span>': ''); ?>
 <br class="clearBoth" />
 
+<?php echo zen_draw_input_field('should_be_empty', '', ' size="40" id="CAAS" style="visibility:hidden; display:none;" autocomplete="off"'); ?>
 <?php
   if (ACCOUNT_SUBURB == 'true') {
 ?>

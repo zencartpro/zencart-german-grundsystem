@@ -11,10 +11,10 @@
  * $flag_disable_header = true;<br />
  *
  * @package templateSystem
- * @copyright Copyright 2003-2006 Zen Cart Development Team
+ * @copyright Copyright 2003-2013 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: tpl_header.php 729 2011-08-09 15:49:16Z hugo13 $
+ * @version $Id: tpl_header.php 730 2013-03-01 11:49:16Z webchills $
  */
 ?>
 
@@ -24,10 +24,10 @@
     echo $messageStack->output('header');
   }
   if (isset($_GET['error_message']) && zen_not_null($_GET['error_message'])) {
-  echo htmlspecialchars(urldecode($_GET['error_message']));
+  echo htmlspecialchars(urldecode($_GET['error_message']), ENT_COMPAT, CHARSET, TRUE);
   }
   if (isset($_GET['info_message']) && zen_not_null($_GET['info_message'])) {
-   echo htmlspecialchars($_GET['info_message']);
+   echo htmlspecialchars($_GET['info_message'], ENT_COMPAT, CHARSET, TRUE);
 } else {
 
 }

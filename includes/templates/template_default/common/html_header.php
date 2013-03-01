@@ -5,10 +5,10 @@
  * outputs the html header. i,e, everything that comes before the \</head\> tag <br />
  *
  * @package templateSystem
- * @copyright Copyright 2003-2012 Zen Cart Development Team
+ * @copyright Copyright 2003-2013 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: html_header.php 846 2012-02-26 12:10:39Z webchills $
+ * @version $Id: html_header.php 847 2013-03-01 11:10:39Z webchills $
  */
 /**
  * load the module for generating page meta-tags
@@ -73,6 +73,18 @@ require(DIR_WS_MODULES . zen_get_module_directory('meta_tags.php'));
   }
 
 /**
+ *  custom category handling for a parent and all its children ... works for any c_XX_XX_children.css  where XX_XX is any parent category
+ */
+  $tmp_cats = explode('_', $cPath);
+  $value = '';
+  foreach($tmp_cats as $val) {
+    $value .= $val;
+    $perpagefile = $template->get_template_dir('.css', DIR_WS_TEMPLATE, $current_page_base, 'css') . '/c_' . $value . '_children.css';
+    if (file_exists($perpagefile)) echo '<link rel="stylesheet" type="text/css" href="' . $perpagefile .'" />'."\n";
+    $perpagefile = $template->get_template_dir('.css', DIR_WS_TEMPLATE, $current_page_base, 'css') . '/' . $_SESSION['language'] . '_c_' . $value . '_children.css';
+    if (file_exists($perpagefile)) echo '<link rel="stylesheet" type="text/css" href="' . $perpagefile .'" />'."\n";
+    $value .= '_';
+  }
  * load printer-friendly stylesheets -- named like "print*.css", alphabetically
  */
   $directory_array = $template->get_template_part($template->get_template_dir('.css',DIR_WS_TEMPLATE, $current_page_base,'css'), '/^print/', '.css');
