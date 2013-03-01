@@ -295,7 +295,7 @@ define('ENTRY_NEWSLETTER_ERROR', '');
 
 define('ERROR_PASSWORDS_NOT_MATCHING', 'Das Passwort und die Passwortbestätigung müssen identisch sein');
 define('ENTRY_PASSWORD_CHANGE_ERROR', '<strong>Entschuldigung, Ihr neues Passwort wurde abgelehnt.</strong><br />');
-define('ERROR_PASSWORD_RULES', 'Passwärter müssen sowohl Buchstaben als auch Zahlen enthalten und mindestens %s Zeichen lang sein. Außerdem darf Ihr neues Passwort nicht mit einem der letzten 4 benutzten Passwörter identisch sein. Passwörter verlieren alle 90 Tage ihre Gültigkeit. Danch werden Sie automatisch aufgefordert Ihr Passwort zu ändern.');
+define('ERROR_PASSWORD_RULES', 'Passwörter müssen sowohl Buchstaben als auch Zahlen enthalten und mindestens %s Zeichen lang sein. Außerdem darf Ihr neues Passwort nicht mit einem der letzten 4 benutzten Passwörter identisch sein. Passwörter verlieren alle 90 Tage ihre Gültigkeit. Danch werden Sie automatisch aufgefordert Ihr Passwort zu ändern.');
 define('ERROR_TOKEN_EXPIRED_PLEASE_RESUBMIT', 'FEHLER: Entschuldigung, es trat ein Fehler während der Verarbeitung Ihrer Daten auf. Bitte übermitteln Sie Ihre Daten erneut.');
 
 // images
@@ -380,7 +380,6 @@ define('ICON_CROSS', 'Falsch');
 define('ICON_CURRENT_FOLDER', 'Aktueller Ordner');
 define('ICON_DELETE', 'Löschen');
 define('ICON_EDIT', 'Bearbeiten');
-define('ICON_IMAGE_HANDLER', 'Bildmanager');
 define('ICON_ERROR', 'Fehler');
 define('ICON_FILE', 'Datei');
 define('ICON_FILE_DOWNLOAD', 'Download');
