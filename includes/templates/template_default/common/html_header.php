@@ -85,6 +85,7 @@ require(DIR_WS_MODULES . zen_get_module_directory('meta_tags.php'));
     if (file_exists($perpagefile)) echo '<link rel="stylesheet" type="text/css" href="' . $perpagefile .'" />'."\n";
     $value .= '_';
   }
+/**
  * load printer-friendly stylesheets -- named like "print*.css", alphabetically
  */
   $directory_array = $template->get_template_part($template->get_template_dir('.css',DIR_WS_TEMPLATE, $current_page_base,'css'), '/^print/', '.css');
