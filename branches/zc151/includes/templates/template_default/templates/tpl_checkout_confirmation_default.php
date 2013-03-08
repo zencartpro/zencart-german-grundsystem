@@ -6,10 +6,10 @@
  * Displays final checkout details, cart, payment and shipping info details.
  *
  * @package templateSystem
- * @copyright Copyright 2003-2012 Zen Cart Development Team
+ * @copyright Copyright 2003-2013 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: tpl_checkout_confirmation_default.php 2012-12-07 07:10:16Z webchills $
+ * @version $Id: tpl_checkout_confirmation_default.php 2013-03-08 08:57:16Z webchills $
  */
 ?>
 <div class="centerColumn" id="checkoutConfirmDefault">
@@ -117,9 +117,9 @@
         <tr class="cartTableHeading">
         <th scope="col" id="ccQuantityHeading" width="30"><?php echo TABLE_HEADING_QUANTITY; ?></th>
         <th scope="col" id="ccProductsHeading"><?php echo TABLE_HEADING_PRODUCTS; ?></th>
-        <?php if (ENABLE_BUTTONLOESUNG != 'false') { ?>
+        
         <th scope="col" id="ccProductsHeading"><?php echo TABLE_HEADING_PRODUCTIMAGE; ?></th>
-        <?php } ?>
+        
 <?php
   // If there are tax groups, display the tax columns for price breakdown
   if (sizeof($order->info['tax_groups']) > 1) {
@@ -128,9 +128,9 @@
 <?php
   }
 ?>
-<?php if (ENABLE_BUTTONLOESUNG != 'false') { ?>
+
  <th scope="col" id="ccSinglePriceHeading" width="60"><?php echo TABLE_HEADING_SINGLEPRICE; ?></th>
- <?php } ?>
+
           <th scope="col" id="ccTotalHeading"><?php echo TABLE_HEADING_TOTAL; ?></th>
         </tr>
 <?php // now loop thru all products to display quantity and price ?>
@@ -139,9 +139,9 @@
           <td  class="cartQuantity"><?php echo $order->products[$i]['qty']; ?>&nbsp;x</td>
           <td class="cartProductDisplay"><?php echo $order->products[$i]['name']; ?>
           	
-<?php if (ENABLE_BUTTONLOESUNG != 'false') { ?>
+
           	<br/><?php echo $order->products[$i]['merkmale']; ?>
-          	<?php } ?>
+       
 
           <?php  echo $stock_check[$i]; ?>
 
@@ -157,23 +157,23 @@
     } // endif attribute-info
 ?>
         </td>
-        <?php if (ENABLE_BUTTONLOESUNG != 'false') { ?>
+        
         <td class="cartProductImg">
 <?php echo zen_image(DIR_WS_IMAGES . $order->products[$i]['image'], $order->products[$i]['name'], IMAGE_SHOPPING_CART_WIDTH, IMAGE_SHOPPING_CART_HEIGHT);?>
  </td>
- <?php } ?>
+
 
 <?php // display tax info if exists ?>
 <?php if (sizeof($order->info['tax_groups']) > 1)  { ?>
         <td class="cartTotalDisplay">
           <?php echo zen_display_tax_value($order->products[$i]['tax']); ?>%</td>
 <?php    }  // endif tax info display  ?>
-         <?php if (ENABLE_BUTTONLOESUNG != 'false') { ?>
+        
         <td class="cartTotalDisplay">
           <?php echo $currencies->display_price($order->products[$i]['final_price'], $order->products[$i]['tax'], 1);?>
          
  </td>
- <?php } ?>
+
         <td class="cartTotalDisplay" valign="top">
           <?php echo $currencies->display_price($order->products[$i]['final_price'], $order->products[$i]['tax'], $order->products[$i]['qty']);
           if ($order->products[$i]['onetime_charges'] != 0 ) echo '<br /> ' . $currencies->display_price($order->products[$i]['onetime_charges'], $order->products[$i]['tax'], 1);
@@ -200,7 +200,7 @@
     echo $payment_modules->process_button();
   }
 ?>
-<?php if (ENABLE_BUTTONLOESUNG != 'false') { ?>
+
 <?php
  // zollhinweis für nicht EU
         $dest_country = $order->delivery['country']['iso_code_2'];
@@ -215,7 +215,7 @@
             // do nothing
         }
         ?>
-<?php } ?>
+
 </div>
 <div class="buttonRow forward"><?php echo zen_image_submit(BUTTON_IMAGE_CONFIRM_ORDER, BUTTON_CONFIRM_ORDER_ALT, 'name="btn_submit" id="btn_submit"') ;?></div>
 </form>
