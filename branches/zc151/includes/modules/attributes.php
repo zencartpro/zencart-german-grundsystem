@@ -6,10 +6,10 @@
  * Prepares HTML for input fields with required uniqueness so template can display them as needed and keep collected data in proper fields
  *
  * @package modules
- * @copyright Copyright 2003-2012 Zen Cart Development Team
+ * @copyright Copyright 2003-2013 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: attributes.php 730 2012-11-06 15:49:16Z webchills $
+ * @version $Id: attributes.php 731 2013-04-02 18:07:16Z webchills $
  */
 if (!defined('IS_ADMIN_FLAG')) {
   die('Illegal Access');
@@ -598,6 +598,7 @@ $sql = "select count(*) as total
                   $options_comment_position[] = ($products_options_names->fields['products_options_comment_position'] == '1' ? '1' : '0');
                   break;
                 }
+                $options_wrapper_id[] = 'wAttrib-' . $products_options_names->fields['products_options_id'];//gjh42
 
                 // attributes images table
                 $options_attributes_image[] = trim($tmp_attributes_image) . "\n";
