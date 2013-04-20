@@ -1,10 +1,10 @@
 <?php
 /**
  * @package admin
- * @copyright Copyright 2003-2012 Zen Cart Development Team
+ * @copyright Copyright 2003-2013 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
- * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: options_name_manager.php 730 2012-11-06 09:49:16Z webchills $
+ * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
+ * @version $Id: options_name_manager.php 731 2013-04-18 09:49:16Z webchills $
  */
 
   require('includes/application_top.php');
@@ -22,7 +22,7 @@
   }
   for ($i=0, $n=sizeof($languages); $i<$n; $i ++) {
     if ((int)$languages[$i]['id'] > 0 && !in_array((int)$languages[$i]['id'], $ary)) {
-      $db->Execute("INSERT INTO products_options_values (products_options_values_id, language_id, products_options_values_name) VALUES ((int)PRODUCTS_OPTIONS_VALUES_TEXT_ID, " . (int)$languages[$i]['id'] . ", 'TEXT')");
+      $db->Execute("INSERT INTO " . TABLE_PRODUCTS_OPTIONS_VALUES . " (products_options_values_id, language_id, products_options_values_name) VALUES (" . (int)PRODUCTS_OPTIONS_VALUES_TEXT_ID . ", " . (int)$languages[$i]['id'] . ", 'TEXT')");
     }
   }
   $action = (isset($_GET['action']) ? $_GET['action'] : '');
