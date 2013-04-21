@@ -1,10 +1,10 @@
 <?php
 /**
  * @package Admin Access Management
- * @copyright Copyright 2003-2012 Zen Cart Development Team
+ * @copyright Copyright 2003-2013 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
- * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: admin_access.php 834 2012-11-06 08:23:21Z webchills $
+ * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
+ * @version $Id: admin_access.php 835 2013-04-06 18:03:21Z webchills $
  */
 
 /**
@@ -36,7 +36,7 @@ function check_page($page, $params) {
 
   $retVal = FALSE;
   while (!$result->EOF) {
-    if (constant($result->fields['main_page']) == $page && $result->fields['page_params'] == $page_params) {
+    if ( ((constant($result->fields['main_page']) == $page)|| (constant($result->fields['main_page']) . ".php" == $page) ) && $result->fields['page_params'] == $page_params) {
       $retVal = TRUE;
     }
     $result->MoveNext();
