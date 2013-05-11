@@ -12,7 +12,7 @@ clear:both;
 margin-top:20px;
 }
 div.copyrightrow{
-background:#ffffff;
+background:#F8FAF7;
 clear:both;
 font-size:9px;
 padding:25px;
@@ -20,13 +20,13 @@ text-align:center;
 }
 div.header{
 clear:both;
-color:#ffffff;
+color:#4C4C4C;
 font-weight:bold;
 padding:3px;
 }
 div.reportBox{
-background:#d7d6cc;
-border:1px solid #d7d6cc;
+background:#4C4C4C;
+border:1px solid #FF5D11;
 margin-top:1em;
 }
 div.row{
@@ -49,7 +49,7 @@ text-align:right;
 width:34%;
 }
 div.warrantyrow{
-background:#ffffff;
+background:#F8FAF7;
 clear:both;
 font-size:9px;
 text-align:center;
