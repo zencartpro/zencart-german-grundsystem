@@ -16,6 +16,9 @@ text-decoration:none;
 a,body,html,table{
 font:normal normal 11px Verdana,sans-serif;
 }
+.header {
+	background-color: #fff;
+	}
 a:hover{
 color:#0000ff;
 text-decoration:underline;
@@ -94,7 +97,7 @@ color:#0000ff;
 text-decoration:none;
 }
 body{
-background-color:#ffffff;
+background-color:#F8FAF7;
 color:#333333;
 margin:0;
 }
@@ -293,7 +296,7 @@ font-size:12px;
 font-weight:bold;
 }
 .headerBar{
-background-color:#003D00;
+background-color:#FF5D11;
 }
 .headerBarContent{
 color:#ffffff;
@@ -332,7 +335,7 @@ background-color:#d4ffbd;
 text-decoration:line-through;
 }
 h1,.pageHeading{
-color:#003D00; /*727272*/
+color:#FF5D11; /*727272*/
 font-size:16px;
 font-variant:small-caps;
 font-weight:bold;
