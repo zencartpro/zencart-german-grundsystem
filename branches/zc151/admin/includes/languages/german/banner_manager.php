@@ -1,15 +1,10 @@
 <?php
 /**
- * @package linkpoint_api_payment_module
- * @copyright Copyright 2003-2012 Zen Cart Development Team
+ * @copyright Copyright 2003-2013 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @translators: cyaneo/hugo13/wflohr/maleborg/webchills	http://www.zen-cart-pro.at
- * @version $Id: banner_manager.php 627 2010-08-30 15:05:14Z webchills $
+ * @version $Id: banner_manager.php 628 2013-07-17 08:05:14Z webchills $
  */
-
-//  $Id: banner_manager.php 627 2010-08-30 15:05:14Z webchills $
-//
 
 define('HEADING_TITLE', 'Bannermanager');
 
@@ -80,7 +75,7 @@ define('ERROR_UNKNOWN_STATUS_FLAG', 'Achtung! Unbekannter Status.');
 define('ERROR_BANNER_IMAGE_REQUIRED', 'FEHLER: Bild für Banner wird benötigt.');
 
 define('ERROR_GRAPHS_DIRECTORY_DOES_NOT_EXIST', 'Achtung! Das Grafikverzeichnis existiert nicht. Bitte erstellen Sie das Verzeichnis \'graphs\'  im Ordner \'images\'.');
-define('ERROR_GRAPHS_DIRECTORY_NOT_WRITEABLE', 'Achtung! Das Grafikverzeichnis nicht beschreibbar.');
+define('ERROR_GRAPHS_DIRECTORY_NOT_WRITEABLE', 'Achtung! Das graphs Verzeichnis ist nicht beschreibbar. Es befindet sich hier: <strong>' . DIR_WS_ADMIN . 'images/graphs</strong>');
 
 define('TEXT_LEGEND_BANNER_ON_SSL', 'SSL anzeigen');
 define('TEXT_LEGEND_BANNER_OPEN_NEW_WINDOWS', 'Neues Fenster');
@@ -93,6 +88,3 @@ define('IMAGE_ICON_BANNER_ON_SSL_OFF', 'Auf SSL Seiten darstellen - AUS');
 
 define('SUCCESS_BANNER_OPEN_NEW_WINDOW_UPDATED', 'Erfolgreich: Der Status des Banners zum Öffnen in einem neuen Fenster ist aktualisiert worden .');
 define('SUCCESS_BANNER_ON_SSL_UPDATED', 'Erfolgreich: Der Status des Banners zum Darstellen auf SSL Seiten ist aktualisiert worden .');
-
-
-?>

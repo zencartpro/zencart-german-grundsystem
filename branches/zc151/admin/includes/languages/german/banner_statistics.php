@@ -1,15 +1,10 @@
 <?php
 /**
- * @package linkpoint_api_payment_module
- * @copyright Copyright 2003-2012 Zen Cart Development Team
+ * @copyright Copyright 2003-2013 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @translators: cyaneo/hugo13/wflohr/maleborg/webchills	http://www.zen-cart-pro.at
- * @version $Id: banner_statistics.php 627 2010-08-30 15:05:14Z webchills $
+ * @version $Id: banner_statistics.php 628 2013-07-17 08:05:14Z webchills $
  */
-
-//  $Id: banner_statistics.php 627 2010-08-30 15:05:14Z webchills $
-//
 
 define('HEADING_TITLE','Bannerstatistik');
 define('TABLE_HEADING_SOURCE','Quelle');
@@ -30,4 +25,4 @@ define('TITLE_YEAR','Jahr:');
 define('TITLE_MONTH','Monat:');
 
 define('ERROR_GRAPHS_DIRECTORY_DOES_NOT_EXIST','Achtung! Das Grafikverzeichnis existiert nicht. Bitte erstellen Sie das Verzeichnis <strong>' . DIR_WS_ADMIN . 'images/graphs</strong>.');
-define('ERROR_GRAPHS_DIRECTORY_NOT_WRITEABLE','Achtung! Das Grafikverzeichnis <strong>' . DIR_WS_ADMIN . 'images/graphs</strong> ist nicht beschreibbar.');
+define('ERROR_GRAPHS_DIRECTORY_NOT_WRITEABLE','Achtung! Das graphs Verzeichnis ist nicht beschreibbar. Es befindet sich hier: <strong>' . DIR_WS_ADMIN . 'images/graphs</strong>');
