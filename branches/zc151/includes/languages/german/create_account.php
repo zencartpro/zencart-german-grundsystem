@@ -1,11 +1,10 @@
 <?php
 /**
  * @package languageDefines
- * @copyright Copyright 2003-2012 Zen Cart Development Team
+ * @copyright Copyright 2003-2013 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @translators: cyaneo/hugo13/wflohr/maleborg/webchills	http://www.zen-cart-pro.at
- * @version $Id: create_account.php 627 2010-08-30 15:05:14Z webchills $
+ * @version $Id: create_account.php 628 2013-07-22 08:05:14Z webchills $
  */
 
 define('NAVBAR_TITLE', 'Neues Konto erstellen');
@@ -13,6 +12,8 @@ define('NAVBAR_TITLE', 'Neues Konto erstellen');
 define('HEADING_TITLE', 'Meine Kontoinformationen');
 
 define('TEXT_ORIGIN_LOGIN', '<strong class="note">Achtung:</strong> Sollten Sie bereits bei uns registriert sein, melden Sie sich bitte <a href="%s">hier an</a>.');
+
+define('ERROR_CREATE_ACCOUNT_SPAM_DETECTED', 'Vielen Dank, Ihre Registrierungsanfrage wurde zur Überprüfung übermittelt.');
 
 // greeting salutation
 define('EMAIL_SUBJECT', 'Herzlich Willkommen bei ' . STORE_NAME . '!');
@@ -47,4 +48,3 @@ define('EMAIL_GV_CLOSURE', 'Mit freundlichen Grüssen,' . "\n\n" . STORE_OWNER .
 
 // email disclaimer - this disclaimer is separate from all other email disclaimers
 define('EMAIL_DISCLAIMER_NEW_CUSTOMER', 'Diese E-Mail Adresse haben wir von Ihnen oder einer unserer Kunden erhalten. Sollten Sie diese Nachricht zu Unrecht erhalten haben, kontaktieren Sie uns bitte unter %s');
-
