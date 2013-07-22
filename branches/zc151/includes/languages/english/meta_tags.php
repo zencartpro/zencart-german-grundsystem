@@ -1,14 +1,14 @@
 <?php
 /**
  * @package languageDefines
- * @copyright Copyright 2003-2012 Zen Cart Development Team
+ * @copyright Copyright 2003-2013 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
- * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: meta_tags.php 836 2012-01-01 20:33:58Z webchills $
+ * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
+ * @version $Id: meta_tags.php 837 2013-07-22 09:33:58Z webchills $
  */
 
 // page title
-define('TITLE', 'Zen Cart 1.5');
+define('TITLE', 'Zen Cart 1.5.1');
 
 // Site Tagline
 define('SITE_TAGLINE', 'German version');
@@ -63,4 +63,3 @@ define('CUSTOM_KEYWORDS', 'ecommerce, open source, shop, online shopping');
 // favicon setting
 // There is usually NO need to enable this unless you need to specify a path and/or a different filename
 //  define('FAVICON','favicon.ico');
-

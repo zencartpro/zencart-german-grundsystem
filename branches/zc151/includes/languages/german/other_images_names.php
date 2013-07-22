@@ -4,8 +4,7 @@
  * @copyright Copyright 2003-2013 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @translators: cyaneo/hugo13/wflohr/maleborg/webchills	http://www.zen-cart-pro.at
- * @version $Id: other_images_names.php 629 2013-03-24 12:05:14Z webchills $
+ * @version $Id: other_images_names.php 630 2013-07-22 09:05:14Z webchills $
  */
 
 /*
@@ -16,7 +15,7 @@ define('OTHER_IMAGE_BLACK_SEPARATOR', 'pixel_black.gif');
 define('OTHER_IMAGE_BOX_NOTIFY_REMOVE', 'box_products_notifications_remove.gif');
 define('OTHER_IMAGE_BOX_NOTIFY_YES', 'box_products_notifications.gif');
 define('OTHER_IMAGE_BOX_WRITE_REVIEW', 'box_write_review.gif');
-define('OTHER_IMAGE_CALL_FOR_PRICE', 'call_for_price.jpg');
+define('OTHER_IMAGE_CALL_FOR_PRICE', 'call_for_prices.gif');
 define('OTHER_IMAGE_DOWN_FOR_MAINTENANCE', 'down_for_maintenance.gif');
 define('OTHER_IMAGE_PRICE_IS_FREE', 'free.gif');
 define('OTHER_IMAGE_TRANPARENT', 'pixel_trans.gif');

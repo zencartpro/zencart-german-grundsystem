@@ -2,10 +2,10 @@
 /**
  * @package Installer
  * @access private
- * @copyright Copyright 2003-2012 Zen Cart Development Team
+ * @copyright Copyright 2003-2013 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
- * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: header_php.php 786 2012-11-17 08:13:51Z webchills $
+ * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
+ * @version $Id: header_php.php 787 2013-07-22 08:13:51Z webchills $
  *
  * @TODO - http://dev.mysql.com/doc/refman/5.0/en/user-resources.html
  */
@@ -243,7 +243,7 @@ if (false) { // DISABLED THIS CODEBLOCK FOR NOW....
   $status_check[] = array('Importance' => 'Critical', 'Title' => LABEL_PHP_VER, 'Status' => $php_ver, 'Class' => $this_class, 'HelpURL' =>$err_code, 'HelpLabel'=>$err_text);
 
   //PHP Version Check
-  if (version_compare(PHP_VERSION, 5.4, '>=')) {
+  if (version_compare(PHP_VERSION, 5.5, '>=')) {
     $status_check[] = array('Importance' => 'Critical', 'Title' => LABEL_PHP_VER, 'Status' => PHP_VERSION, 'Class' => 'WARN', 'HelpURL' =>'', 'HelpLabel'=>'This ZC version is not yet tested with this version of PHP.');
   }
 
