@@ -18,10 +18,10 @@
   <li> <a onClick="expandcontent('sc1', this)" href="javascript:void(0)"><span>Willkommen</span></a></li>
   <li> <a onClick="expandcontent('sc2', this)" href="javascript:void(0)"><span>Neuinstallation</span></a></li>
    <li> <a onClick="expandcontent('sc3', this)" href="javascript:void(0)"><span>Update</span></a></li>
-   <li> <a onClick="expandcontent('sc4', this)" href="javascript:void(0)"><span>PA/DSS Compliance</span></a></li>
+  
   <li> <a onClick="expandcontent('sc5', this)" href="javascript:void(0)"><span>Sicherheit</span></a></li>
-  <li> <a onClick="expandcontent('sc6', this)" href="javascript:void(0)"><span>Adminverwaltung</span></a></li>
-  <li> <a onClick="expandcontent('sc7', this)" href="javascript:void(0)"><span>Changelog</span></a></li>
+  <li> <a onClick="expandcontent('sc6', this)" href="javascript:void(0)"><span>Changelog 1.5.1</span></a></li>
+  <li> <a onClick="expandcontent('sc7', this)" href="javascript:void(0)"><span>Neue Funktionen</span></a></li>
  </ul>
 </div>
 <br style="clear: both;">
@@ -76,7 +76,6 @@ Da wir Ihnen diese Software kostenfrei zur Verfügung stellen, würden wir uns �
   <li>   Die Installation wurde gegenüber der amerikanischen Version vereinfacht, so kann z.B. das admin Verzeichnis direkt bei der Installation umbenannt werden.
     </li>
   <li>Die amerikanische Version enthält keinerlei HTML Editor mehr, in der deutschen Version ist der Tiny MCE Editor bereits integriert und löst das veraltete HTML Area ab. Alternativ ist auch der CKEditor integriert.</li>
-  <li>Für ein einfachereres Bildermanagement ist die Erweiterung Image Handler bereits vorinstalliert.</li>
   <li>Weitere Bugfixes und Verbesserungen, die von den Amerikanern nicht übernommen wurden</li>
 </ul>
 
@@ -97,7 +96,8 @@ OSI certified ist ein Zertifikat der Open Source Initiative.
    <li> Apache 2.0 oder höher</li>
     <li>MySQL 5.0.90 oder höher</li>
     <li>und die oben erwähnten Apache/PHP Settings</li></ul>
-<p>Zen-Cart funktioniert zwar auch auf einem Windows/IIS server, <b>wir raten aber dringend zu einem Linux/Apache Server</b>.
+<p>PHP 5.4 wird unterstützt. Mit PHP 5.5 wurde nicht getestet.<br>
+  Zen-Cart funktioniert zwar auch auf einem Windows/IIS server, <b>wir raten aber dringend zu einem Linux/Apache Server</b>.
 </div>
 </div>
 </div>
@@ -396,10 +396,11 @@ Sollten während der Installation keine Fehler aufgetreten sein, sollten Sie nun
   <li>MySQL 5.0.90 oder höher</li>
   <li>und die oben erwähnten Apache/PHP Settings</li>
 </ul>
-<p>Zen-Cart 1.5 funktioniert zwar auch auf einem Windows/IIS server, <b>wir raten aber dringend zu einem Linux/Apache Server</b>.
+<p>PHP 5.4 wird unterstützt. Mit PHP 5.5 wurde nicht getestet.<br>
+  Zen-Cart 1.5 funktioniert zwar auch auf einem Windows/IIS server, <b>wir raten aber dringend zu einem Linux/Apache Server</b>.
   <br>
   <br>
-  Falls Sie Ihren Shop mit Modulen erweitert haben, stellen Sie sicher, dass es für die in Ihrem derzeitigen Shop eingesetzen Erweiterungen aktuelle mit Zen-Cart 1.5 getestete Versionen gibt. In Zen-Cart 1.5.1 können nur Zen-Cart 1.5.1 kompatible Module und Erweiterungen genutzt werden!
+  Falls Sie Ihren Shop mit Modulen erweitert haben, stellen Sie sicher, dass es für die in Ihrem derzeitigen Shop eingesetzen Erweiterungen aktuelle mit Zen-Cart 1.5.1 getestete Versionen gibt. In Zen-Cart 1.5.1 können nur Zen-Cart 1.5.1 kompatible Module und Erweiterungen genutzt werden!
 <h2>Einleitung ... </h2>
 Dieses ist eine Anleitung, um eine bestehende Zen-Cart Installation auf Zen-Cart 1.5.1 zu   aktualisieren. Falls Sie Zen-Cart bisher noch nicht installiert haben   sollten, schauen Sie bitte unter Neuinstallation <br>
 <br>
@@ -487,69 +488,7 @@ Und wie immer: VOR Beginn eine Sicherung aller relevanten Daten durchführen!!! 
 <!--End sc3-->
 
 
-<!--Begin sc4-->
-<div class="tabcontent" id="sc4" style="display: block;">
-<div class="textcontent">
-<div class="regularlist">
-<h1>PA/DSS Compliance</h1>
-<p>Zen-Cart 1.5 ist PA/DSS zertifiziert</p>
-<p>Nähere Informationen dazu finden Sie auf: <a href="http://en.wikipedia.org/wiki/PA-DSS" target="_blank">http://en.wikipedia.org/wiki/PA-DSS</a></p>
-<p>Wenn Sie Ihren Shop derart zertifiziert betreiben wollen, z.B. weil Ihr Payment Anbieter das verlangt, dann beachten Sie bitte, dass Sie zusätzlich zu den normalen Installationsschritten und im laufenden Betrieb folgendes beachten müssen:</p>
-<p>PA-DSS
-Zen-Cart® nutzt aus Sicherheitsgründen Apache .htaccess Dateien um einige Verzeichnisse besser schützen zu können. Stellen
-Sie sicher, dass die Einstellungen Ihres Apache Servers die Nutzung von .htaccess Dateien erlauben (Die meisten tun das).
-Falls Sie sich nicht nicht sicher sind, fragen Sie bitte Ihren Webspace/Hosting Anbieter.<br><br>
 
-Insbesondere sollte bei Ihrem Apache Server die Einstellung AllowOverride auf 'All'" oder zumindestens auf 
-'Limit' und 'Indexes', vorzugsweise auch auf 'Options' gesetzt sein. <br><br>
-
-Falls Sie keinen Apache Webserver nutzen, sondern beispielsweise IIS oder nginx, dann sollten Sie entsprechenden Schritte 
-unternehmen, um Ihre Verzeichnisse in der gleichen Art wie die mitgelieferten Zen-Cart® .htaccess Dateien zu schützen.
-
-Ihr Webserver muss in der Lage sein Webseiten anzuzeigen, die eine SSL Verschlüsselung benutzen. Außerdem sollten Sie ein
-SSL Zertifikat für Ihre Domain auf Ihrem Webserver installiert haben. Falls Sie kein SSL Zertifikat besitzen oder sich 
-unsicher sind, ob Sie Eines besitzen, dann nehmen Sie Kontakt mit Ihrem Webspace/Hosting Anbieter auf. <br><br>
-
-Ihr Webspace/Hosting Anbieter muss Ihnen ebenso die Möglichkeit anbieten, SFTP (Secure FTP) für den Transfer Ihrer Dateien zum/vom Server nutzen zu können.</p>
-<p>Um den Anforderungen der PA-DSS gerecht zu werden müssen Sie im Adminbereich und im Shop SSL aktivieren.<br>
-  Nach der Aktivierung nutzt Zen-Cart® automatisch SSL auf den entsprechenden Seiten in Ihrem Shop
-  (z. B. Kasse, Kundenkonto, Anmeldung/Login, etc.) solange Sie SSL aktiviert lassen.<br>
-  Weiterhin werden alle in der Standardinstallation eingebauten Zahlungsmodule, die die Zahlung per Kreditkarte akzeptieren,
-  NICHT funktionieren, wenn die SSL nicht aktiviert haben.</p>
-<p>Sie werden wahrscheinlich diese Installation ohne SSL durchgeführt haben, dadurch ergibt sich eine extrem kleine
-  Möglichkeit, dass jemand Ihre Zugangsdaten für den Adminbereich abgefangen hat.<br>
-  Stellen Sie daher sicher, dass Sie SSL für Ihren Adminbereich aktiviert haben.<br>
-  Wenn Sie den SSL Status für Ihren Adminbereich geändert haben, läuft Ihr Passwort unverzüglich ab
-  und Sie müssen ein neues Passwort erstellen. Diese Vorgehensweise hilft Ihnen zusätzlich sicher zu gehen,
-  dass wenn jemand Ihnen die Zugangsdaten über eine ungesicherte Verbindung gestohlen hat, er diese nicht mehr nutzen kann.<br>
-  <br>
-  Wichtig: Eine der Anforderungen von PA-DSS ist es, dass Sie Ihre Log Dateien regelmäßig anschauen, um einen 
-  unberechtigten Zugriff zu erkennen und die entsprechenden Gegenmaßnahmen einzuleiten.<br>
-  <br>
-  Wichtig: Eine der Anforderungen von PA-DSS ist es, dass Sie diese Log Dateien mindestens 12 Monate aufbewahren.<br>
-  Während wir Ihnen die Möglichkeit zur Verfügung stellen, diese Log Daten sicher zu speichern und zu entfernen,
-  sind Sie als Onlineshop Betreiber dafür verantwortlich, dass diese Log Daten im Rahmen einer PCI Audit verfügbar sind.<br>
-  <br>
-  Hinweis: Die Zen-Cart® DA-DSS Zertifizierung gilt nur für die offiziell veröffentlichen Programmcode 
-  von Zen Ventures, LLC<br>
-  Jede Änderung von Ihnen oder Drittanbietern, egal ob eine Änderung einer Admineinstellung, das Hinzufügen 
-  von Erweiterungen/Modulen, Codeanpassungen, etc. kann dazu führen, dass die PA-DSS Zertifizierung ungültig wird.<br>
-  Es liegt an Ihnen dafür zu sorgen, dass alle oben aufgeführten Änderungen PCI gerecht in Bezug auf die 
-  PCI Sicherheitstandards sind. Falls Sie spezielle Fragen zu einer geplanten Änderung haben, dann setzen Sie sich
-  mit Ihrem PCI Dienstleister in Verbindung und bitten ggf. um Anleitung und Überprüfung.<br>
-  <br>
-  Wichtig: Eine der Anforderungen von PA-DSS ist es, dass Drittanbieter nur Zugang zu den Komponenten haben,
-  die sie für ihre Arbeit benötigen und sie diesen Zugang in sicherer Art und Weise nutzen.<br>
-  Ebenso sollten diese Drittanbieter alle nicht benötigten Kopien Ihrer Informationen nach Entzug des Zugangs vernichten.<br>
-  <br>
-  PCI Compliance: Sie dürfen weder Zahlungsmodule verwenden, die die komplette Kreditkartennummer oder -prüfziffer
-  in Ihrer Datenbank speichern, noch die komplette Kreditkartennummer oder -prüfziffer per E-Mail an den Shopinhaber oder 
-  sonstigen Personen sendet.</p>
-</div>
-</div>
-</div>
-
-<!--End sc4-->
 
 <!--Begin sc5-->
 <div class="tabcontent" id="sc5" style="display: block;">
@@ -742,36 +681,185 @@ DEINADMIN/includes/configure.php</p>
 <div class="tabcontent" id="sc6" style="display: block;">
 <div class="textcontent">
 <div class="regularlist">
-<h1>Admin Rechte Verwaltung in Zen-Cart 1.5.1</h1>
-<p><strong>Generelles:</strong><br>
+<h1>Changelog Dateien</h1>
+<p>  Änderungen gegenüber Version 1.5 deutsch<br>
   <br>
-  Zen-Cart 1.5.1 enthält nun standardmäßig ein System, mit denen die Rechte für verschiedene Administratoren vergeben werden können. Für jeden Administrator kann individuell gesteuert werden, welche Funktionen der Administration für ihn zur Verfügung stehen sollen.<br>
-  In früheren Zen-Cart Version war ähnliches mit der Erweiterung Admin Profiles möglich.<br>
-  In 1.5.1 ist nun ein komplett neues verbessertes Admin Rechte System integriert.</p>
-<p>Bei der Installation wird ein Admin mit der Berechtigung &quot;Superuser&quot; angelegt (mit dem Benutzernamen und Passwort, das Sie während der Installation angegeben haben. Ein solcher Superuse hat Zugnag zu allen Bereichen und Funktionen der Zen-Cart Administration.</p>
-<p>Gegenüber früheren Zen-Cart Versionen wurden einige wesentliche Änderungen in Bezug auf Administratoren, Passwörtern vorgenommen:</p>
-<ul>
-  <li>Jeder Administrator muss einen eigenen Usernamen haben. Teilen Sie nicht Ihren Adminuser mit anderen. Legen Sie für jede Person, die Zugang zu Ihrer Shopadministration bekommen soll einen eigenen Adminuser an</li>
-  <li>Passwörter müssen mindestens 7 Zeichen lang sein</li>
-  <li>Passwörter müssen Buchstaben und Zahlen enthalten</li>
-  <li>Passwörter und Usernamen sind case sensitive</li>
-  <li>Passwörter müssen alle 90 Tage geändert werden</li>
-  <li>Bei einer Passwortänderung können die 4 zuletzt verwendeten Paswörter nicht mehr verwendet werden</li>
-  <li>Wenn eine ungültige Adminuser/Passwort Kombination mehr als 6 mal eingegeben wird, wird der Zugang zur Administration für 30 Minuten gesperrt</li>
-  <li>Der Adminbereich hat ein Timeout von 15 inaktiven Minuten. Wird innerhalb von 15 Minuten keinerlei Seite im Admin aufgerufen, muss man neu einloggen. Eine Erhöhung dieses Timeouts ist in der Administration zwar möglich, sollte aber nur für Testseiten eingestellt werden. Wenn Sie das Timeout in Ihrem Liveshop auf mehr als 15 Minuten erhöhen, erfüllt Ihr Shop die PCI Richtliniern nicht mehr.</li>
-</ul>
-<p><strong>Adminuser anlegen und verwalten</strong></p>
-<p>In der Zen-Cart Administration können Sie die Administratoren unter Admin Benutzerrechte &gt; Admin Benutzer verwalten<br>
-  Sie können hier Administratoren hinzufügen, löschen und ändern</p>
-<p>Mit dem Button &quot;Bearbeiten&quot; können Sie Name und Emailadresse sowie das für den User eingestellte Adminprofil ändern.</p>
-<p>Bitte beachten Sie, dass Sie das Profil des bei der Installtion angelegten Erstadmins nicht mehr ändern können.<br>
-</p>
-<p><strong>Profile</strong></p>
-<p>Nach der Installation steht nur ein Profil zur Verfügung, das Superuser Profil.</p>
-<p>Um einem User nun eingeschränkte Rechte zu geben, müssen Sie zunächst ein neues Profil erstellen unter Admin &gt; Admin Benutzerrechte &gt; Admin Profile<br>
-  Legen Sie mit &quot;Add Profile&quot; ein neues Profil an und kreuzen Sie hier nur die Dinge an, die Sie dem neuen Admin erlauben wollen.<br>
-  Geben Sie dem Profil einen Namen und speichern es.</p>
-<p>Nun können Sie einem neuen Adminuser Ihr soeben erstelltes Profil zuweisen.</p>
+  <strong>Entfernte Dateien:</strong></p>
+<p> /admin/includes/functions/password_funcs.php <br>
+  /includes/templates/classic/css/CSS_read_me.txt</p>
+<p><strong>Neue Dateien/Ordner</strong></p>
+<p> /editors/ckeditor (neuer Ordner samt neuem Inhalt)<br>
+  /logs/ (neuer Ordner samt neuem Inhalt)<br>
+  <br>
+  /admin/includes/classes/split_page_results_new.php<br>
+  /admin/includes/ckeditor.php<br>
+  /includes/auto_loaders/config.products_viewed_counter.php<br>
+  /includes/classes/observers/class.products_viewed_counter.php<br>
+  /includes/classes/query_cache.php<br>
+  /includes/extra_datafiles/products_viewed_counter.php<br>
+  /includes/modules/pages/advanced_search_result/jscript_onload_helper.php<br>
+  /includes/modules/pages/advanced_search_result/on_load_focus.js<br>
+  /includes/templates/template_default/css/CSS_read_me.txt<br>
+  /includes/templates/template_default/css/stylesheet_buttonloesung.css<br>
+  /includes/templates/template_default/images/call_for_prices.gif<br>
+  /includes/templates/viennablood/css/stylesheet_buttonloesung.css<br>
+  /includes/templates/viennabright/css/stylesheet_buttonloesung.css<br>
+  /includes/templates/viennabright/images/call_for_prices.gif</p>
+<p><strong>Geänderte Dateien</strong></p>
+<p> /admin/admin_activity.php<br>
+  /admin/admin_page_registration.php<br>
+  /admin/alert_page.php<br>
+  /admin/attributes_controller.php<br>
+  /admin/categories.php<br>
+  /admin/coupon_admin.php<br>
+  /admin/customers.php<br>
+  /admin/gv_mail.php<br>
+  /admin/index.php<br>
+  /admin/mail.php<br>
+  /admin/modules.php<br>
+  /admin/options_name_manager.php<br>
+  /admin/options_values_manager.php<br>
+  /admin/password_forgotten.php<br>
+  /admin/product_types.php<br>
+  /admin/profiles.php<br>
+  /admin/sqlpatch.php<br>
+  /admin/stats_customers_referrals.php<br>
+  /admin/store_manager.php<br>
+  /admin/users.php<br>
+  /admin/includes/.htaccess<br>
+  /admin/includes/application_top.php<br>
+  /admin/includes/attributes_preview.php<br>
+  /admin/includes/dist-configure.php <br>
+  /admin/includes/footer.php<br>
+  /admin/includes/header.php<br>
+  /admin/includes/index.css<br>
+  /admin/includes/initsystem.php<br>
+  /admin/includes/menu.css<br>
+  /admin/includes/menu.js<br>
+  /admin/includes/stylesheet.js<br>
+  /admin/includes/extra_configures/enable_error_logging.php<br>
+  /admin/includes/functions/admin_access.php<br>
+  /admin/includes/functions/database.php<br>
+  /admin/includes/functions/general.php<br>
+  /admin/includes/functions/localization.php<br>
+  /admin/includes/init_includes/init_admin_auth.php<br>
+  /admin/includes/init_includes/init_admin_history.php<br>
+  /admin/includes/init_includes/init_errors.php<br>
+  /admin/includes/init_includes/init_file_db_names.php<br>
+  /admin/includes/init_includes/init_general_funcs.php<br>
+  /admin/includes/init_includes/init_html_editor.php<br>
+  /admin/includes/init_includes/init_languages.php<br>
+  /admin/includes/languages/english/extra_definitions/editors_list.php<br>
+  /admin/includes/languages/english/login.php<br>
+  /admin/includes/languages/english/profiles.php<br>
+  /admin/includes/languages/english/product.php<br>
+  /admin/includes/languages/english/stats_customers_referrals.php<br>
+  /admin/includes/languages/english.php<br>
+  /admin/includes/languages/german/extra_definitions/editors_list.php<br>
+  /admin/includes/languages/german/banner_manager.php<br>
+  /admin/includes/languages/german/banner_statistics.php<br>
+  /admin/includes/languages/german/login.php<br>
+  /admin/includes/languages/german/profiles.php<br>
+  /admin/includes/languages/german/product.php<br>
+  /admin/includes/languages/german/stats_customers_referrals.php<br>
+  /admin/includes/languages/german.php<br>
+  /admin/includes/modules/document_general/preview_info.php<br>
+  /admin/includes/modules/document_general/preview_info_meta_tags.php<br>
+  /admin/includes/modules/document_product/collect_info.php<br>
+  /admin/includes/modules/document_product/preview_info.php<br>
+  /admin/includes/modules/document_product/preview_info_meta_tags.php<br>
+  /admin/includes/modules/product/preview_info.php<br>
+  /admin/includes/modules/product/preview_info_meta_tags.php<br>
+  /admin/includes/modules/product_free_shipping/preview_info.php<br>
+  /admin/includes/modules/product_free_shipping/preview_info_meta_tags.php<br>
+  /admin/includes/modules/product_music/preview_info.php<br>
+  /admin/includes/modules/product_music/preview_info_meta_tags.php<br>
+  /admin/includes/modules/copy_to_confirm.php<br>
+  /admin/includes/modules/update_product.php</p>
+<p> /extras/ipncheck.php</p>
+<p> /ipn_main_handler.php</p>
+<p> /includes/application_top.php<br>
+  /includes/dist-configure.php <br>
+  /includes/initsystem.php<br>
+  /includes/main_cart_actions.php<br>
+  /includes/version.php<br>
+  /includes/auto_loaders/config.core.php<br>
+  /includes/classes/db/mysql/query_factory.php<br>
+  /includes/classes/order.php<br>
+  /includes/classes/payment.php<br>
+  /includes/classes/shipping.php<br>
+  /includes/classes/shopping_cart.php<br>
+  /includes/classes/split_page_results.php<br>
+  /includes/extra_configures/enable_error_logging.php<br>
+  /includes/functions/functions_customers.php<br>
+  /includes/functions/functions_email.php<br>
+  /includes/functions/functions_general.php<br>
+  /includes/functions/html_output.php<br>
+  /includes/functions/password_funcs.php<br>
+  /includes/index_filters/record_company_filter.php<br>
+  /includes/init_includes/init_file_db_names.php<br>
+  /includes/init_includes/init_general_funcs.php<br>
+  /includes/init_includes/init_sanitize.php<br>
+  /includes/init_includes/init_special_funcs.php<br>
+  /includes/languages/english/extra_definitions/rl.vat_info.php<br>
+  /includes/languages/english/html_includes/classic/define_main_page.php<br>
+  /includes/languages/english/html_includes/define_main_page.php<br>
+  /includes/languages/english/modules/payment/paypal.php<br>
+  /includes/languages/english/modules/payment/paypaldp.php<br>
+  /includes/languages/english/modules/payment/paypalwpp.php<br>
+  /includes/languages/english/button_names.php<br>
+  /includes/languages/english/checkout_confirmation.php<br>
+  /includes/languages/english/create_account.php<br>
+  /includes/languages/english/other_images_names.php<br>
+  /includes/languages/german/html_includes/classic/define_main_page.php<br>
+  /includes/languages/german/html_includes/define_main_page.php<br>
+  /includes/languages/german/modules/payment/paypal.php<br>
+  /includes/languages/german/modules/payment/paypaldp.php<br>
+  /includes/languages/german/modules/payment/paypalwpp.php<br>
+  /includes/languages/german/button_names.php<br>
+  /includes/languages/german/checkout_confirmation.php<br>
+  /includes/languages/german/checkout_payment.php<br>
+  /includes/languages/german/checkout_shipping.php<br>
+  /includes/languages/german/create_account.php<br>
+  /includes/languages/german/other_images_names.php<br>
+  /includes/languages/german/time_out.php<br>
+  /includes/modules/pages/contact_us/header_php.php<br>
+  /includes/modules/pages/checkout_success/header_php.php<br>
+  /includes/modules/pages/document_general_info/main_template_vars.php<br>
+  /includes/modules/pages/document_product_info/main_template_vars.php<br>
+  /includes/modules/pages/download/header_php.php<br>
+  /includes/modules/pages/password_forgotten/header_php.php<br>
+  /includes/modules/pages/product_free_shipping_info/main_template_vars.php<br>
+  /includes/modules/pages/product_info/main_template_vars.php<br>
+  /includes/modules/pages/product_music_info/main_template_vars.php<br>
+  /includes/modules/pages/product_reviews_write/header_php.php<br>
+  /includes/modules/payment/authorizenet.php<br>
+  /includes/modules/payment/authorizenet_aim.php<br>
+  /includes/modules/payment/authorizenet_echeck.php<br>
+  /includes/modules/payment/linkpoint_api/class.linkpoint_api.php<br>
+  /includes/modules/payment/linkpoint_api.php<br>
+  /includes/modules/payment/paypal/paypal_curl.php<br>
+  /includes/modules/payment/paypal/paypal_functions.php<br>
+  /includes/modules/payment/paypal.php<br>
+  /includes/modules/payment/paypaldp.php<br>
+  /includes/modules/payment/paypalwpp.php<br>
+  /includes/modules/sideboxes/manufacturers.php<br>
+  /includes/modules/attributes.php<br>
+  /includes/modules/create_account.php<br>
+  /includes/modules/extra_definitions.php<br>
+  /includes/modules/extra_functions.php<br>
+  /includes/templates/template_default/common/html_header.php<br>
+  /includes/templates/template_default/common/tpl_header.php<br>
+  /includes/templates/template_default/css/CSS_read_me.txt (just a help-text file)<br>
+  /includes/templates/template_default/jscript/on_load/read_me.txt (just a help-text file)<br>
+  /includes/templates/template_default/jscript/read_me.txt (just a help-text file)<br>
+  /includes/templates/template_default/popup_search_help/tpl_main_page.php<br>
+  /includes/templates/template_default/templates/tpl_account_default.php<br>
+  /includes/templates/template_default/templates/tpl_contact_us_default.php<br>
+  /includes/templates/template_default/templates/tpl_modules_create_account.php<br>
+  /includes/templates/template_default/templates/tpl_product_reviews_write_default.php<br>
+  /includes/templates/template_default/templates/tpl_zc_install_suggested_default.php</p>
+<p> /zc_install/ (alle Dateien in diesem Ordner)</p>
 </div>
 </div>
 </div>
@@ -782,152 +870,86 @@ DEINADMIN/includes/configure.php</p>
 <div class="tabcontent" id="sc7" style="display: block;">
 <div class="textcontent">
 <div class="regularlist">
-<h1>Neuerungen gegenüber 1.3.9</h1>
-<p><strong>Generell:</strong><br>
-  In Zen-Cart 1.5.1 wird das Adminverzeichnis bereits bei der Installation umbenannt. Dadurch entfällt das manuelle Ändern nach der Installation.<br>
-  Wenn Sie später Ihr Adminverzeichnis erneut umbenennen wollen, reicht es , einfach den Ordner umzubenennen, es sind keinerlei manuelle Änderungen in der admin/includes/configure.php mehr nötig!<br>
-  Die Funktion &quot;an einen Freund senden&quot; wurde aus Sicherheitsgründen vollständig entfernt.<br>
-  Zen-Cart 1.5 ist PA/DSS zertifiziert.
-  <br>
-  <br>
-  <strong>Folgende Änderungen wurden aus der amerikanischen Version unverändert übernommen:</strong></p>
-<p> CHANGE-12 - Numerous system changes to support PA-DSS compliance certification<br>
-  Admin passwords now expire every 90 days, as per PA-DSS specification<br>
-  Admin passwords now require a combination of letters and numbers, as well as uniqueness (cannot use already-used passwords)<br>
-  Admin passwords can have a configurable length, but no less than 7 characters<br>
-  Admin passwords also expire, for security reasons, when changing admin configuration from non-SSL mode to SSL mode.<br>
-  Admin Profiles - is now built-in, with a significant number of additional features, and simpler to use.<br>
-  Add basic admin Activity Log Viewer/Exporter tool<br>
-  HTMLarea editor removed from core due to obsolescence. Use preferred plugin instead if similar functionality is required.<br>
-  FCKeditor components removed from core due to obsolescence. CKEditor is the replacement editor by the same author. Switch to the new plugin if desiring to use this editor.<br>
-  USPS module removed from core in favor of being an addon, due to the volatility of frequent changes made by USPS. The addon is available in the Free Addons section of the Zen-Cart website.<br>
-  CHANGE-12 - PA-DSS - prevent payment modules from ever storing more than 10 characters of sanitized CC numbers<br>
-  CHANGE-12 - PA-DSS - prevent built-in &quot;gateway&quot; payment modules from functioning if the site is not protected by SSL<br>
-  CHANGE-12 - PA-DSS - add admin detection of SSL mode change and auto-expire all passwords if SSL mode is enabled either with ENABLE_SSL_ADMIN or using an https address for HTTP_SERVER<br>
-  CHANGE-12 - PA-DSS - add two-factor authentication hook in admin login<br>
-  zc_install now treats supplied initial admin password (during install) as temporary ... requiring the admin user to select a new password at first login. This is to prevent abuse from password sniffing.<br>
-  Incorporate TZ (timezone) support, with ability to override/disable simply by defining a DISABLE_MYSQL_TZ_SET constant. c/f http://www.zen-cart.com/forum/showthread.php?t=174346<br>
-  PADSS-30 - Admin SSL now enabled by default in configure.php file if Enable-SSL is selected during zc_install<br>
-  BUGSFORUM-1774 - Add 'secure' flag support for session cookie when site is running entirely in SSL<br>
-  BUGSFORUM-1081 - Fixed: no default set for shipping radio buttons if module is disabled after previously selecting a shipping method<br>
-  BUGSFORUM-1347 - Remove file-based session handling support due to security concerns and chicken/egg situation caused by garbage collection processes.<br>
-  BUGSFORUM-1497 - Admin order totals section of orders.php page ignored currency-formatting display rules in some cases<br>
-  BUGSFORUM-1550 - Fix occasional problem with &quot;duplicate entry&quot; in sessions table caused by some servers using longer session ID keys<br>
-  BUGSFORUM-1558 - typefilter incorrect lookup problem in case of (unlikely) file-not-found scenario<br>
-  BUGSFORUM-1554 - Shopping Cart Problems when updating product quantities for products with Max limit set<br>
-  BUGSFORUM-1564 - orders_status wrongly set to 0 in rare cases<br>
-  BUGSFORUM-1584 - no_picture.gif could be accidentally deleted if specified as an actual product image<br>
-  BUGSFORUM-1589 - Fixed problem with some downloadable orders where an update of an order might set the number of days to a wrong value<br>
-  CHANGE-151: Fix rounding and tax calculation issues in Cart/Order Class<br>
-  CHANGE-90 - SECURITY: Fix Local File Inclusion Vulnerability<br>
-  Whos_online - several improvements to allow the option to exclude spiders and/or admin IP's from the list of displayed results<br>
-  Improvement: Developers Toolkit can now optionally search .js files too.<br>
-  CHANGE-136 on new installs, DB_CHARSET now defaults to UTF8, not latin1<br>
-  CHANGE-137 Removal(deactivation) of CDE payment modules when SSL disabled<br>
-  BUGSFORUM-1592 - Fix rounding problems affecting coupon min-purchase eligibility calculations<br>
-  CHANGE-70 - zc_install now checks whether .htaccess rules will work, and provides an alert if there's a problem.<br>
-  BUGSFORUM-XXXX - PayPal improvements - allows Transaction ID to show on admin order confirmation emails for WPS, just like other payment modules do<br>
-  BUGSFORUM-XXXX - PayPal - partial fix for bug where currency code not specified during partial refunds causes request to fail<br>
-  BUGSFORUM-XXXX - PayPal - fixed bug where debug logging might happen even if switched off (caused by broader server-config issues)<br>
-  BUGSFORUM-XXXX - PayPal - fix bug in Express Checkout where a shipping-override would still send a shipping phone number, causing a 10001 error without explanation.<br>
-  BUGSFORUM-XXXX - PayPal - fix bug where EC button was removed from login page but left PayPal text prompts, resulting in confusion.<br>
-  BUGSFORUM-XXXX - PayPal - Change to VPS-Timeout-90 instead of 45 at PayPal's request. This means customers might have to wait longer for transactions to complete, but will reduce timeout errors when PayPal's systems are slow.<br>
-  BUGSFORUM-XXXX - PayPal - include product ID number on line-item details since is needed for order fulfillment<br>
-  BUGSFORUM-1673 - PayPal - Fix minor html table syntax bug in paypal history details on admin orders screen<br>
-  BUGSFORUM-1754 - PayPal - fix various rounding problems in all modules<br>
-  BUGSFORUM-1760 - PayPal - Fix problems with Hungarian Forint and other 0-decimal currencies<br>
-  BUGSFORUM-1926 - PayPal - Fix problem with attributes -- if a product had attributes, the product name was being replaced with attribute details, instead of being appended to<br>
-  BUGSFORUM-1971 - PayPal - Trap cases where PayPal returns a blank address unexpectedly, and ask them to supply address details by creating an account<br>
-  BUGSFORUM-1971 - PayPal - Minimize address matching issues which arise when storeowners rename their countries to non-ISO standard names (something they should not do)<br>
-  BUGSFORUM-1892 - PayPal Express: Item details were shown as &quot;Tax included in prices: 0 (0)&quot;<br>
-  BUGSFORUM-1959 - PayPal IPN and Express Checkout Missing free Items, or listing free items without description<br>
-  BUGSFORUM-2024 - PayPal IPN - address-override alert might insert duplicate update notices in order status history<br>
-  BUGSFORUM-2151 - Paypal - Error 10413 when redeeming Gift Certificates for amount greater than product-subtotal<br>
-  CHANGE-164 - paypal logging not properly disabling consistently<br>
-  BUGSFORUM-1613 - Media Manager Assign to Products wouldn't allow assigning of new products due to security change in 1.3.9h<br>
-  Fix to admin customer search: search for new customers by customers_email_address to get correct customer and not everyone named Smith<br>
-  Fixed display bug with category icons generating link to cPath=0 if cPath not set<br>
-  Fix the display of Discount Coupons when a redemption code is applied so it is more readable by the customer<br>
-  Fix Add to Cart to stay on listing when set to not display cart<br>
-  Fixed coupon admin screen to land on correct page after adding new coupon<br>
-  Various Admin pages: Fix pagination problems when changing status, searching, etc.<br>
-  Improvement: Shorten CPU cycles on double-parsing an array needlessly in Authorize.net modules. Also improved sanitized debug output.<br>
-  BUGSFORUM-1645 - Adding Featured Products ERROR Warning Warning: Product ID already on Special<br>
-  Admin products-to-categories copier: Add additional message for clarity when Copy to categories_id is invalid but allow for obscure usage<br>
-  Fixed bug on Order History going to page not found when set to not display cart<br>
-  Fix: restore shopping cart products in the order they were added<br>
-  BUGSFORUM-1662 - Gift Certificates Will Not Release<br>
-  Fixed Error message when restricting coupons<br>
-  Fixed hard-coded table names which should have been using constants, to allow for prefixes properly.<br>
-  Fix problems with the word &quot;search&quot; in spiders.txt<br>
-  Admin orders page now passes unformatted value back for availability to customizations which want to redisplay the values differently.<br>
-  BUGSFORUM-1696 - clear COUPON_GV_QUEUE when deleting an order<br>
-  BUGSFORUM-1681 - fix links in GV mails<br>
-  BUGSFORUM-1689 - email validation regex improvements<br>
-  BUGSFORUM-1634 - Bugfix: Prevent loading of non-PHP files in some admin autoloading routines<br>
-  BUGSFORUM-1650 - sanitize whosonline output<br>
-  Downloads - improvements and addition of support for IE9<br>
-  BUGSFORUM-1708 - Combine class methods to reduce chance of race conditions and add error suppression to filemtime<br>
-  Fix potential GZIP error if server configuration is overly generic<br>
-  CHANGE-74 Sanitization<br>
-  VARIOUS changes made to admin/catalog page forms to protect against CSRF using security token<br>
-  VARIOUS changes for date fields to be handled consistently and to remove some pre-quoting which was breaking bindVars<br>
-  CHANGE-102 Fix broken error checking in SQLPatch tool<br>
-  CHANGE-128 obscure sql injection fix<br>
-  CHANGE-135 add default value to zen_draw_pull_down_menu call to stop the value being drawn from the GLOBALS array and tested as a string.<br>
-  CHANGE-138 Set CURL Proxy Status to FALSE by default, and remove from display since it's now deprecated<br>
-  CHANGE-139 fix sprintf() error when generating an outgoing email notification caused by language file refinement<br>
-  CHANGE-142 fix tax calculation<br>
-  CHANGE-143 fix sidebox query to ensure a correct limit statement is built, if necessary<br>
-  CHANGE-143 catch SQL errors and output generic message to user and write message to log instead<br>
-  CHANGE-144 XSS mitigation for admin forms -- adds logging for inputs flagged as &quot;rogue&quot; by blacklist algorithm.<br>
-  CHANGE-145+146 Blank values for various Maximum Values settings causes PHP errors<br>
-  CHANGE-147 zc_install was throwing warning for MySQL versions over 5.2<br>
-  BUGSFORUM-1709 Fix extraneous products_id in url<br>
-  BUGSFORUM-1783 Fix Virtual Product defaults for all core Product Types<br>
-  BUGSFORUM-1798 Preview icon was linked directly to product-general type. Now linked to the product type handler, allowing correct language defines to be loaded when previewing a product via this icon.<br>
-  BUGSFORUM-1862 status filter not retaining state, restrict to first char for safety<br>
-  BUGSFORUM-1754 change to calculate price/tax on zen_round(zen_add_tax(price,rate)*quantity, decimals)<br>
-  BUGSFORUM-1696 SQL error due to non-matching field name<br>
-  BUGSFORUM-1907 Fix ambiguous description on admin search switch<br>
-  BUGSFORUM-1905 Adjust schema to handle ipv6 addresses<br>
-  BUGSFORUM-1949 various ISO country updates<br>
-  BUGSFORUM-1973 Downloads might deliver an empty file if readfile() is disabled in PHP and symlink support is off<br>
-  BUGSFORUM-2046 HTML Entities not retained while editing via admin<br>
-  CHANGE-159 - Remove Welcome-Email Preview from admin<br>
-  BUGSFORUM-2038 Invalid email address formatting can cause ugly failure message without explanation<br>
-  CHANGE-168 - Fix tax calculations for not-logged-in users, by defaulting to default country/zone just like it does for product listings<br>
-  .htaccess - add safety around apache directives to prevent errors with poorly configured servers<br>
-  Fix bug in properly detecting SSL mode with zen_redirect calls<br>
-  Addressed SSL logoff scenario specific to shared SSL on shared hosting.<br>
-  Fix email error handling - was only setting error info if the message succeeded, thus always blank.<br>
-  Fix broken markup in admin layout-controller<br>
-  add extra line-break before &quot;spam&quot; disclaimer in email footers<br>
-  Disable language/currency sideboxes by default, to minimize some confusion<br>
-  Fix some collation errors encountered during upgrades<br>
-  CHANGE-160 - Various changes for basic compatibility with the proposed PHP 5.4 specifications<br>
-  CHANGE-175 - Fix Maximum limit to manage merge of cart on login<br>
-  CHANGE-176 - Fix Text Required to allow for 0 to work as Required Text content<br>
-  BUGSFORUM-2121 - zc_install - fixed broken link for help with disabling session.use_trans_sid in help text<br>
-  Simplified the admin-directory-rename process: New installs now only require renaming the folder. No more special configure.php file edits!<br>
-  CHANGE-186 - Removed Tell A Friend feature<br>
-  BUGSFORUM-2138 - stripslash keyword in first parsing of search keywords, to protect against broken sql resulting in blank page<br>
-  BUGSFORUM-2140 - fix problem with metatag deletion where multiple languages exist<br>
-  BUGSFORUM-2150 - PHP Warning: strlen() expects parameter 1 to be string<br>
-  BUGSFORUM-2175 - fix XSS issue reported by intermittent PCI scans<br>
-  CHANGE-190 - fix constants from discount coupon to gv<br>
-  And all the security fixes and bugfixes from prior versions</p>
-<p><strong>Zusätzliche Änderungen in der deutschen Version:</strong><br>
-  Tiny MCE Editor statt HTML Area<br>
-  Korrekte Bezeichnungen beim Ausweisen der enthaltenen Steuer<br>
-  Automatisches Umbenennen des Admins schon während der Installation
-  <br>
-  Nettobetrag unter Module &gt; Zusammenfassung aktivierbar<br>
-  Bei Kundenbewertungen wird nicht mehr der volle Name sondern nur noch der Vorname angezeigt.
-  <br>
-  In der Bestellbestätigungsemail wird der Kunde mit Namen angesprochen.<br>
-  Verbessertes Banküberweisungsmodul
-</p>
+<h1>Neuerungen gegenüber 1.5.0</h1>
+<ul>
+  <li><strong>Buttonlösung integriert</strong><br>
+    Die &quot;Buttonlösung&quot; ist integriert, beim Bearbeiten eines Artikels stehen Eingabefelder für die zusätzlichen Merkmale zur Verfügung. Der Bestellablauf ist an die Buttonlösung angepasst, im letzten Bestellschritt werden falls hinterlegt die zusätzlichen Merkmale angezeigt und kleine Artikelbilder. Layout und Texte entsprechen den Vorgaben der Buttonlösung. Bei Lieferung in ein Nicht-EU Land erscheint ein Hinweis zu möglichen Zollgebühren.</li>
+  <li><strong>Steuerung der Anzeige &quot;incl. Mwst. zzgl. Versandkosten&quot; via Administration</strong><br>
+    Die Anzeige &quot;incl. Mwst zzgl. Versandkosten&quot; berücksichtigt nun, ob im Shop Bruttopreise oder Nettopreise verwendet werden und zeigt dementsprechend den Text incl. oder excl. Steuer an. Unter Konfiguration &gt; Mein Shop kann nun eingestellt werden, ob die Anzeige überall, nur auf der Artikeldetailseite oder gar nicht erscheinen soll.</li>
+  <li><strong>CKEditor</strong><br> 
+    Neben dem TinyMCE steht nun auch der CKEditor als alternativer HTML Editor zur Verfügung</li>
+  <li><strong>Installationslayout  modernisiert</strong><br> 
+    Der seit Jahren unveränderte Installer wurde layoutseitig überarbeitet</li>
+  <li><strong>Unterstützung von PHP 5.4</strong><br>
+    PHP 5.4 wird nun vollständig unterstützt. Mit PHP 5.5 wurde diese Version aber nicht getestet.</li>
+</ul>
+Zusätzlich wurden folgende Neuerungen und Bugfixes aus der amerikanischen 1.5.1 Version unverändert übernommen:
+<p>Neuerungen: </p>
+<ul>
+  <li>CHANGE-207 - Add bypass to bandage the performance/caching problem   with products_viewed counter on busy sites, inspired by an idea from   data-diggers. This step simply splits the logic out into an observer   class, and adds a switch to turn it on or off. Doesn't change any schema   or any reports. But of course if the switch is set to something other   than 'on', then the reports will be useless too unless alternate custom   data tracking code is added to the observer class.</li>
+  <li>CHANGE-208 - Implement data-diggers querycache</li>
+  <li>CHANGE-220 - Add optional constant   'DOWNLOADS_SKIP_DOT_PREFIX_ON_REDIRECT' to overcome rare problem on some   servers which won't allow use of dot-prefixed temporary files.      Usage: define('DOWNLOADS_SKIP_DOT_PREFIX_ON_REDIRECT', TRUE); in   /includes/extra_configures/ folder.</li>
+  <li>CHANGE-238 - php 5.4 Updates, mainly for htmlentities() calls</li>
+  <li>CHANGE-240 - Add form auto-focus on advanced-search results and admin category lookups</li>
+  <li>CHANGE-265 - Add children support to category-specific stylesheet overrides -- ie: c_XX_XX_children.css</li>
+  <li>CHANGE-273 - Add css-driven antispam support to contact-us, create-account, and product reviews</li>
+  <li>CHANGE-282 - Add improved notifier support for the shipping   calculate_boxes_weight_and_tare() function to allow for easier intercept   by plugins</li>
+  <li>CHANGE-283 - Add coders the ability to allow for a custom count query in split page results class</li>
+  <li>CHANGE-284 - Update db schema and various code bits to handle longer lengths for IP addresses, to accommodate IPv6</li>
+  <li>CHANGE-287 - Add hooks for encryption tools needed by modules such as PPA</li>
+  <li>CHANGE-297 - Add improvements to notifier support for Downloads script (add all order data to observer resources)</li>
+  <li>CHANGE-298 - Move debug logging to separate /logs/ folder, as a   performance improvement measure, and be more semantically meaningful</li>
+</ul>
+Bugfixes:
+<ul>
+  <li>CHANGE-201 - Fix JS_STATE typo in /admin/includes/languages/english.php</li>
+  <li>CHANGE-202 - Fix compounding or multiple tax problems</li>
+  <li>CHANGE-204 - Fix problem with unescaped error messages in zc_install</li>
+  <li>CHANGE-205 - Fix error on Windows hosts: 'gzpost' can't have default value</li>
+  <li>CHANGE-206 - Fix admin profiles code to also manage product types</li>
+  <li>CHANGE-209 - Prevent the "apple double" effect in auto-loading folders ... ie: skip all files starting with "." or "_"</li>
+  <li>CHANGE-211 - Fix for bug where renaming an Admin Profile name allowed a blank entry.</li>
+  <li>CHANGE-213 - Fix missing check for EMAIL_DISCLAIMER constant, to   help prevent problems caused by people who incorrectly delete the define   from the language files.</li>
+  <li>CHANGE-214 - Fix various documentation errors</li>
+  <li>CHANGE-215 - Fix BOC currency exchange rate lookup to use newer   source. Fix bug which could return 0.00 mistakenly in some cases.</li>
+  <li>CHANGE-216 - Fix handler for HTML Editor plugins - was missing trailing slash in lookup path</li>
+  <li>CHANGE-218 - Fix Admin alert email text (HTML content missing) on change of user details</li>
+  <li>CHANGE-219 - Fix multiple-content-length headers when downloading by redirect</li>
+  <li>CHANGE-221 - Fix cause of error message: PHP Warning: strlen()   expects parameter 1 to be string, when triggered by customer   notification preferences submission at checkout</li>
+  <li>CHANGE-222 - Fix the .htaccess restriction which was preventing the .cur image files from working with spiffyCal</li>
+  <li>CHANGE-223 - Fix Authorize.net SIM/echeck module "currency code invalid" error when customer is shopping in non-USD currency</li>
+  <li>CHANGE-230 - Fix password reset vulnerability (random seed/entropy issue)</li>
+  <li>CHANGE-231 - Fix page_not_found on session timeout to time_out instead</li>
+  <li>CHANGE-233 - Fix HTML error in admin/profiles.php page - /head should have been /thead</li>
+  <li>CHANGE-236 - Fix: Customer authorization e-mail not sent out on pressing "the red button".</li>
+  <li>CHANGE-239 - Fix virtual cart problem causing error: "PayPal has   unexpectedly returned a blank address" only on carts with all virtual   products</li>
+  <li>CHANGE-241 - Fix Improper handling of '0' as search keyword</li>
+  <li>CHANGE-242 - Fix output/display errors in admin user/profile tools.</li>
+  <li>CHANGE-244 - Fix name of form field for javascript character count which could break in non-english translations</li>
+  <li>CHANGE-246 - Improve exceptions for testing Authnet in Test Mode</li>
+  <li>CHANGE-249 - Fix to allow more than one onetime fee in the shopping basket</li>
+  <li>CHANGE-255 - Fix missing [close]  from popup_search_help template file</li>
+  <li>CHANGE-256 - Fix validation errors in manufacturers sidebox if manufacturer_name contains ampersands</li>
+  <li>CHANGE-259 - Fix Admin menu problem occurring only in Opera 12 on Windows</li>
+  <li>CHANGE-261 - Fix outdated error message text about PHP 5.4 and configure.php file problems</li>
+  <li>CHANGE-262 - Fix PHP Error when no Record Company ID with Typefilter</li>
+  <li>CHANGE-263 - Clarify password-expiry language to minimize alarmist   reactions for those who don't understand the common use of expiring   passwords</li>
+  <li>CHANGE-264 - Fix PHP Fatal error: 1062:Duplicate entry '1-1' for key 1 when adding option values</li>
+  <li>CHANGE-268 - Fix Hardcoded text in Reports/Customer Referrals</li>
+  <li>CHANGE-269 - Fix misspelled Germany state (zones table)</li>
+  <li>CHANGE-275 - Fix json_encode error on non-UTF8 sites</li>
+  <li>CHANGE-277 - Rebrand PayPal products (for USA merchants only) according to changes implemented by PayPal in Q2 2012</li>
+  <li>CHANGE-279 - Fix PayPal Processor Decline Fails to Show Error Message when debug logging disabled</li>
+  <li>CHANGE-280 - Fix inconsistency in dist-configure.php example files</li>
+  <li>CHANGE-281 - Fix incorrect database constant used in tpl_account_default.php</li>
+  <li>CHANGE-294 - Fix issue where a customer who is banned after login could still checkout</li>
+  <li>CHANGE-296 - Update outdated Admin error message text for secure usernames</li>
+  <li>CHANGE-299 - update to change-230</li>
+  <li>CHANGE-199 - Fix various vulnerabilities in zc_install</li>
+  <li>CHANGE-325 - Admin Configuration does not correctly encode html entities in text boxes</li>
+  <li>CHANGE-327 - Update PayPal sandbox endpoints</li>
+  <li>CHANGE-334 - PHP Warning: strip_tags() expects at most 2 parameters, 4 given in coupon_admin.php</li>
+</ul>
 </div>
 </div>
 </div>
@@ -943,7 +965,7 @@ DEINADMIN/includes/configure.php</p>
 <script type="text/javascript">document.getElementById('sc1').style.display = 'none';</script>
 <script type="text/javascript">document.getElementById('sc2').style.display = 'none';</script>
 <script type="text/javascript">document.getElementById('sc3').style.display = 'none';</script>
-<script type="text/javascript">document.getElementById('sc4').style.display = 'none';</script>
+
 <script type="text/javascript">document.getElementById('sc5').style.display = 'none';</script>
 <script type="text/javascript">document.getElementById('sc6').style.display = 'none';</script>
 <script type="text/javascript">document.getElementById('sc7').style.display = 'none';</script>
