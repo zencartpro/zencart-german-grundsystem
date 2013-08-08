@@ -2,9 +2,9 @@
 /**
  * @package admin
  * @copyright Copyright 2010 Kuroi Web Design
- * @copyright Portions Copyright 2009 Zen Cart Development Team
+ * @copyright Portions Copyright 2013 Zen Cart Development Team
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: tinymce.php 754 2011-08-13 13:47:09Z hugo13 $
+ * @version $Id: tinymce.php 755 2013-08-08 20:47:09Z webchills $
  */
 if (!defined('IS_ADMIN_FLAG')) {
   die('Illegal Access');
@@ -17,7 +17,7 @@ foreach ($var as $key)
   $jsLanguageLookupArray .= "  lang[" . $key['id'] . "] = '" . $key['code'] . "';\n";
 }
 ?>
-<script type="text/javascript" src="http://www.google.com/jsapi"></script>
+<script type="text/javascript" src="<?php echo (strstr(HTTP_SERVER, 'ttps:') ? 'https' : 'http'); ?>://www.google.com/jsapi"></script>
 <script type="text/javascript">if (typeof jQuery == 'undefined') google.load("jquery", "1");</script>
 <script type="text/javascript" src="../<?php echo DIR_WS_EDITORS ?>tiny_mce/jquery.tinymce.js"></script>
 <script type="text/javascript"><!--
