@@ -2,17 +2,17 @@
  * @package admin
  * @ignore
  * @access private
- * @copyright Copyright 2003-2006 Zen Cart Development Team
+ * @copyright Copyright 2003-2013 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: index.css 5454 2006-12-29 20:10:17Z drbyte $
+ * @version $Id: index.css 837 2013-08-16 20:33:58Z webchills $
  */
 div.clearBoth{
 clear:both;
 margin-top:20px;
 }
 div.copyrightrow{
-background:#F8FAF7;
+background:#ffffff;
 clear:both;
 font-size:9px;
 padding:25px;
@@ -20,13 +20,13 @@ text-align:center;
 }
 div.header{
 clear:both;
-color:#4C4C4C;
+color:#ffffff;
 font-weight:bold;
 padding:3px;
 }
 div.reportBox{
-background:#4C4C4C;
-border:1px solid #FF5D11;
+background:#d7d6cc;
+border:1px solid #d7d6cc;
 margin-top:1em;
 }
 div.row{
@@ -49,7 +49,7 @@ text-align:right;
 width:34%;
 }
 div.warrantyrow{
-background:#F8FAF7;
+background:#ffffff;
 clear:both;
 font-size:9px;
 text-align:center;

@@ -10,6 +10,8 @@ if (!defined('IS_ADMIN_FLAG')) {
   die('Illegal Access');
 }
 
+
+
 $var = zen_get_languages();
 $jsLanguageLookupArray = "var lang = new Array;\n";
 foreach ($var as $key)
@@ -35,8 +37,12 @@ $(document).ready(function() {
 
           // Location of TinyMCE script
           script_url : '../<?php echo DIR_WS_EDITORS ?>/tiny_mce/tiny_mce.js',
-          relative_urls : false,
-
+          relative_urls : true,
+          remove_script_host : false,
+          // utf-8 please
+          entity_encoding : "raw",
+                  
+          
           // General options
           theme : "advanced",
           plugins : "pagebreak,style,layer,table,save,advhr,advimage,advlink,emotions,iespell,inlinepopups,insertdatetime,preview,media,searchreplace,print,contextmenu,paste,directionality,fullscreen,noneditable,visualchars,nonbreaking,xhtmlxtras,template,advlist",

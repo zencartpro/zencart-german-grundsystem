@@ -2,10 +2,10 @@
  * @package admin
  * @ignore
  * @access private
- * @copyright Copyright 2003-2011 Zen Cart Development Team
+ * @copyright Copyright 2003-2013 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: stylesheet.css 19301 2011-07-28 21:50:05Z kuroi $
+ * @version $Id: stylesheet.css 837 2013-08-16 20:33:58Z webchills $
  */
 @import url("menu.css");/* including stylesheet for dhtml menu */
 @import url("index.css");/* including stylesheet for index.php */
@@ -15,9 +15,6 @@ text-decoration:none;
 }
 a,body,html,table{
 font:normal normal 11px Verdana,sans-serif;
-}
-.header {
-	background-color: #fff;
 	}
 a:hover{
 color:#0000ff;
@@ -97,7 +94,7 @@ color:#0000ff;
 text-decoration:none;
 }
 body{
-background-color:#F8FAF7;
+background-color:#ffffff;
 color:#333333;
 margin:0;
 }
@@ -296,7 +293,7 @@ font-size:12px;
 font-weight:bold;
 }
 .headerBar{
-background-color:#FF5D11;
+background-color:#003D00;
 }
 .headerBarContent{
 color:#ffffff;
@@ -335,7 +332,7 @@ background-color:#d4ffbd;
 text-decoration:line-through;
 }
 h1,.pageHeading{
-color:#FF5D11; /*727272*/
+color:#003D00; /*727272*/
 font-size:16px;
 font-variant:small-caps;
 font-weight:bold;

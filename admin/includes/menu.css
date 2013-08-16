@@ -6,7 +6,7 @@ same in mozilla, ie and opera
 from items that are not contained but only
 covered. */
 ul.nde-menu-system{
-background-color:#4C4C4C;
+background-color:#599659;
 display:block;
 margin:0;
 padding:4px 10px;
@@ -55,7 +55,7 @@ padding:0;
 width:150px;
 }
 ul.nde-menu-system li ul li a{
-background-color:#FCF5F2;
+background-color:#EFF4EA;
 color:#333333;
 display:block;
 font-weight:normal;
@@ -66,12 +66,12 @@ padding:3px 5px;
 width:100%;
 }
 ul.nde-menu-system li ul li a:hover{
-background-color:#E2E2E2;
+background-color:#85C285;
 color:#333333;
 text-decoration:none;
 }
 ul.nde-menu-system ul{
-background-color:#FF5D11;
+background-color:#599659;
 display:block;
 margin:0;
 padding:4px 0 0;
