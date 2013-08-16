@@ -171,7 +171,7 @@ appropriately.
 Please leave this comment intact together with the
 following copyright announcement. //-->
 
-<div class="copyrightrow">E-Commerce Engine Copyright &copy; 2003-<?php echo date('Y'); ?> <a href="http://www.zen-cart-pro.at" target="_blank">zen-cart-pro.at</a></div><div class="warrantyrow"><br /><a href="//www.zen-cart-pro.at" target="_blank"><img src="images/logo.png"></a><br />Zen Cart is derived from: Copyright &copy; 2003 osCommerce<br />This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;<br />without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE<br />and is redistributable under the <a href="http://www.zen-cart-pro.at/license/2_0.txt" target="_blank">GNU General Public License</a><br />
+<div class="copyrightrow">E-Commerce Engine Copyright &copy; 2003-<?php echo date('Y'); ?> <a href="http://www.zen-cart-pro.at" target="_blank">zen-cart-pro.at</a></div><div class="warrantyrow">Die deutsche Zen Cart Version ist eine Modifikation der amerikanischen Version von <a href="http://www.zen-cart.com" target="_blank">www.zen-cart.com</a><br/><br/>Zen Cart is derived from: Copyright &copy; 2003 osCommerce<br />This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;<br />without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE<br />and is redistributable under the <a href="http://www.zen-cart-pro.at/license/2_0.txt" target="_blank">GNU General Public License</a><br />
 </div>
 </body>
 </html>
