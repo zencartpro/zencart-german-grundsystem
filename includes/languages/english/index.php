@@ -1,10 +1,10 @@
 <?php
 /**
  * @package languageDefines
- * @copyright Copyright 2003-2006 Zen Cart Development Team
+ * @copyright Copyright 2003-2013 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: index.php 793 2011-10-10 06:24:50Z hugo13 $
+ * @version $Id: index.php 794 2013-08-17 09:24:50Z webchills $
  */
 
 define('TEXT_MAIN','This is the main define statement for the page for english when no template defined file exists. It is located in: <strong>/includes/languages/english/index.php</strong>');
@@ -49,10 +49,9 @@ if ( ($category_depth == 'products') || (zen_check_url_get_terms()) ) {
 } elseif ($category_depth == 'top') {
   // This section deals with the "home" page at the top level with no options/products selected
   /*Replace this text with the headline you would like for your shop. For example: 'Welcome to My SHOP!'*/
-  define('HEADING_TITLE', 'Congratulations! You have successfully installed your Zen Cart&reg; E-Commerce Solution.');
+  define('HEADING_TITLE', 'Welcome to our store!');
 } elseif ($category_depth == 'nested') {
   // This section deals with displaying a subcategory
   /*Replace this line with the headline you would like for your shop. For example: 'Welcome to My SHOP!'*/
-  define('HEADING_TITLE', 'Congratulations! You have successfully installed your Zen Cart&reg; E-Commerce Solution.'); 
+  define('HEADING_TITLE', 'Welcome to our store!'); 
 }
-?>

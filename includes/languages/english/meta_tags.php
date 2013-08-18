@@ -4,7 +4,7 @@
  * @copyright Copyright 2003-2013 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: meta_tags.php 837 2013-07-22 09:33:58Z webchills $
+ * @version $Id: meta_tags.php 838 2013-08-17 09:33:58Z webchills $
  */
 
 // page title
@@ -44,13 +44,13 @@ define('CUSTOM_KEYWORDS', 'ecommerce, open source, shop, online shopping');
 
 // separators for meta tag definitions
 // Define Primary Section Output
-  define('PRIMARY_SECTION', ' : ');
+  define('PRIMARY_SECTION', ' - ');
 
 // Define Secondary Section Output
   define('SECONDARY_SECTION', ' - ');
 
 // Define Tertiary Section Output
-  define('TERTIARY_SECTION', ', ');
+  define('TERTIARY_SECTION', ' - ');
 
 // Define divider ... usually just a space or a comma plus a space
   define('METATAGS_DIVIDER', ' ');
