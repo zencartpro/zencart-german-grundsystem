@@ -1,18 +1,15 @@
 <?php
 /**
-* Template designed by 12leaves.com
-* 12leaves.com - Free ecommerce templates and design services
-
  * Page Template
  *
  * Loaded automatically by index.php?main_page=product_info.<br />
  * Displays details of a typical product
  *
  * @package templateSystem
- * @copyright Copyright 2003-2006 Zen Cart Development Team
+ * @copyright Copyright 2003-2013 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: tpl_product_info_display.php 746 2011-08-12 07:58:36Z hugo13 $
+ * @version $Id: tpl_product_info_display.php 747 2013-08-17 09:58:36Z webchills $
  */
  //require(DIR_WS_MODULES . '/debug_blocks/product_info_prices.php');
 ?>
@@ -87,7 +84,32 @@ require($template->get_template_dir('/tpl_products_next_previous.php',DIR_WS_TEM
 <?php } ?>
 <!--eof Product description -->
 <br class="clearBoth" />
+<!--bof Attributes Module -->
+<?php
+  if ($pr_attr->fields['total'] > 0) {
+?>
+<?php
+/**
+ * display the product atributes
+ */
+  require($template->get_template_dir('/tpl_modules_attributes.php',DIR_WS_TEMPLATE, $current_page_base,'templates'). '/tpl_modules_attributes.php'); ?>
+<?php
+  }
+?>
+<!--eof Attributes Module -->
 
+<!--bof Quantity Discounts table -->
+<?php
+  if ($products_discount_type != 0) { ?>
+<?php
+/**
+ * display the products quantity discount
+ */
+ require($template->get_template_dir('/tpl_modules_products_quantity_discounts.php',DIR_WS_TEMPLATE, $current_page_base,'templates'). '/tpl_modules_products_quantity_discounts.php'); ?>
+<?php
+  }
+?>
+<!--eof Quantity Discounts table -->
 <!--bof Add to Cart Box -->
 <?php
 if (CUSTOMERS_APPROVAL == 3 and TEXT_LOGIN_FOR_PRICE_BUTTON_REPLACE_SHOWROOM == '') {
@@ -130,32 +152,7 @@ if (CUSTOMERS_APPROVAL == 3 and TEXT_LOGIN_FOR_PRICE_BUTTON_REPLACE_SHOWROOM == 
 ?>
 <!--eof Product details list -->
 
-<!--bof Attributes Module -->
-<?php
-  if ($pr_attr->fields['total'] > 0) {
-?>
-<?php
-/**
- * display the product atributes
- */
-  require($template->get_template_dir('/tpl_modules_attributes.php',DIR_WS_TEMPLATE, $current_page_base,'templates'). '/tpl_modules_attributes.php'); ?>
-<?php
-  }
-?>
-<!--eof Attributes Module -->
 
-<!--bof Quantity Discounts table -->
-<?php
-  if ($products_discount_type != 0) { ?>
-<?php
-/**
- * display the products quantity discount
- */
- require($template->get_template_dir('/tpl_modules_products_quantity_discounts.php',DIR_WS_TEMPLATE, $current_page_base,'templates'). '/tpl_modules_products_quantity_discounts.php'); ?>
-<?php
-  }
-?>
-<!--eof Quantity Discounts table -->
 
 <!--bof Additional Product Images -->
 <?php

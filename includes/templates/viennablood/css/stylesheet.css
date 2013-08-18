@@ -5,7 +5,7 @@
  * @copyright Copyright 2003-2013 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: stylesheet.css 836 2012-01-01 20:33:58Z webchills $
+ * @version $Id: stylesheet.css 837 2013-08-17 17:33:58Z webchills $
  */
 
 body {
@@ -55,9 +55,7 @@ FORM, SELECT, INPUT {
 	margin: 0.1em;
 	}
 
-input {
-	border: 1px solid;
-}
+
 input[type="hidden"] {
 	display:none;
 }
@@ -94,7 +92,7 @@ LABEL.checkboxLabel, LABEL.radioButtonLabel {
 	}
 	
 #logo {
-	margin-top: 15px;
+	margin-top: 10px;
 	float: right;
 	padding-right: 20px;
 }
@@ -144,7 +142,7 @@ HR {
 #mainWrapper {
 	text-align: left;
     width: 770px;
-    width: 95%;
+    
 	vertical-align: top;
 	}
 
@@ -155,7 +153,7 @@ HR {
 
 #logoWrapper {
     width:770px;
-    width:95%;
+    
 	height:110px;
 	}
 
@@ -318,7 +316,7 @@ HR {
 	float: right;
 	text-align: center;
 	margin: 1em;
-	border: 1px solid;
+	
 	padding: 1em;
 	}
 
