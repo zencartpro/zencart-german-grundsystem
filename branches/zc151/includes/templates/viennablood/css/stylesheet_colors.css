@@ -164,7 +164,7 @@ h3.leftBoxHeading a:hover, h3.rightBoxHeading a:hover{
 }
 
 .centerBoxHeading {
-	background-color: #999999;
+	background-color: #660000;
 	color: #ffffff;
 }
 
@@ -186,7 +186,7 @@ h3.leftBoxHeading a:hover, h3.rightBoxHeading a:hover{
 }
 
 .rowOdd {
-	background-color: #999999;
+	background-color: #FCFCFC;
 }
 
 .rowEven {
@@ -202,7 +202,7 @@ TR.tableHeading {
 }
 	
 .productListing-odd	{
-	background-color:#999999;
+	background-color:#FCFCFC;
 }
 
 .tabTable	{
