@@ -1,6 +1,6 @@
 # MySQL file for Zen Cart Demo Products load
 #
-# $Id: mysql_demo.sql 645 2011-12-03 17:03:04Z webchills $
+# $Id: mysql_demo.sql 646 2013-09-01 10:03:04Z webchills $
 #
 
 # Configuration Settings:
@@ -10,72 +10,72 @@ UPDATE configuration SET configuration_value='true' WHERE configuration_key='DOW
 # Dumping data for table `address_book`
 #
 
-INSERT INTO address_book (address_book_id, customers_id, entry_gender, entry_company, entry_firstname, entry_lastname, entry_street_address, entry_suburb, entry_postcode, entry_city, entry_state, entry_country_id, entry_zone_id) VALUES (NULL, 1, 'm', 'JustaDemo', 'Bill', 'Smith', '123 Any Avenue', '', '12345', 'Here', '', 223, 12);
+INSERT INTO address_book (address_book_id, customers_id, entry_gender, entry_company, entry_firstname, entry_lastname, entry_street_address, entry_suburb, entry_postcode, entry_city, entry_state, entry_country_id, entry_zone_id) VALUES (NULL, 1, 'm', 'Demofirma', 'Peter', 'Meier', 'Demogasse 17', '', '10101', 'Berlin', '', 81, 82);
 
 #
 # Dumping data for table `categories`
 #
 
-INSERT INTO categories (categories_id, categories_image, parent_id, sort_order, date_added, last_modified, categories_status) VALUES (1, 'categories/category_hardware.gif', 0, 1, '2003-12-23 03:18:19', '2004-05-21 00:32:17', 1),
-(2, 'categories/category_software.gif', 0, 2, '2003-12-23 03:18:19', '2004-05-22 21:14:57', 1),
-(3, 'categories/category_dvd_movies.gif', 0, 3, '2003-12-23 03:18:19', '2004-05-21 00:22:39', 1),
-(4, 'categories/subcategory_graphic_cards.gif', 1, 0, '2003-12-23 03:18:19', NULL, 1),
-(5, 'categories/subcategory_printers.gif', 1, 0, '2003-12-23 03:18:19', NULL, 1),
-(6, 'categories/subcategory_monitors.gif', 1, 0, '2003-12-23 03:18:19', NULL, 1),
-(7, 'categories/subcategory_speakers.gif', 1, 0, '2003-12-23 03:18:19', NULL, 1),
-(8, 'categories/subcategory_keyboards.gif', 1, 0, '2003-12-23 03:18:19', NULL, 1),
-(9, 'categories/subcategory_mice.gif', 1, 0, '2003-12-23 03:18:19', '2004-05-21 00:34:10', 1),
-(10, 'categories/subcategory_action.gif', 3, 0, '2003-12-23 03:18:19', '2004-05-21 00:39:17', 1),
-(11, 'categories/subcategory_science_fiction.gif', 3, 0, '2003-12-23 03:18:19', NULL, 1),
-(12, 'categories/subcategory_comedy.gif', 3, 0, '2003-12-23 03:18:19', NULL, 1),
-(13, 'categories/subcategory_cartoons.gif', 3, 0, '2003-12-23 03:18:19', '2004-05-21 00:23:13', 1),
-(14, 'categories/subcategory_thriller.gif', 3, 0, '2003-12-23 03:18:19', NULL, 1),
-(15, 'categories/subcategory_drama.gif', 3, 0, '2003-12-23 03:18:19', NULL, 1),
-(16, 'categories/subcategory_memory.gif', 1, 0, '2003-12-23 03:18:19', NULL, 1),
-(17, 'categories/subcategory_cdrom_drives.gif', 1, 0, '2003-12-23 03:18:19', NULL, 1),
-(18, 'categories/subcategory_simulation.gif', 2, 0, '2003-12-23 03:18:19', NULL, 1),
-(19, 'categories/subcategory_action_games.gif', 2, 0, '2003-12-23 03:18:19', NULL, 1),
-(20, 'categories/subcategory_strategy.gif', 2, 0, '2003-12-23 03:18:19', NULL, 1),
-(21, 'categories/gv_25.gif', 0, 4, '2003-12-23 03:18:19', '2004-05-21 00:26:06', 1),
-(22, 'categories/box_of_color.gif', 0, 5, '2003-12-23 03:18:19', '2004-05-21 00:28:43', 1),
-(23, 'waybkgnd.gif', 0, 500, '2003-12-28 02:26:19', '2003-12-29 23:21:35', 1),
-(24, 'categories/category_free.gif', 0, 600, '2003-12-28 11:48:46', '2004-01-02 19:13:45', 1),
-(25, 'sample_image.gif', 0, 515, '2003-12-31 02:39:17', '2004-01-24 01:49:12', 1),
-(27, 'sample_image.gif', 49, 10, '2004-01-04 14:13:08', '2004-01-24 16:16:23', 1),
-(28, 'sample_image.gif', 0, 510, '2004-01-04 17:13:47', '2004-01-05 23:54:23', 1),
-(31, 'sample_image.gif', 48, 30, '2004-01-04 23:16:46', '2004-01-24 01:48:29', 1),
-(32, 'sample_image.gif', 48, 40, '2004-01-05 01:34:56', '2004-01-24 01:48:36', 1),
-(33, 'categories/subcategory.gif', 0, 700, '2004-01-05 02:08:31', '2004-05-20 10:35:31', 1),
-(34, 'categories/subcategory.gif', 33, 10, '2004-01-05 02:08:50', '2004-05-20 10:35:57', 1),
-(35, 'categories/subcategory.gif', 33, 20, '2004-01-05 02:09:01', '2004-01-24 00:07:33', 1),
-(36, 'categories/subcategory.gif', 33, 30, '2004-01-05 02:09:12', '2004-01-24 00:07:41', 1),
-(37, 'categories/subcategory.gif', 35, 10, '2004-01-05 02:09:28', '2004-01-24 00:22:39', 1),
-(38, 'categories/subcategory.gif', 35, 20, '2004-01-05 02:09:39', '2004-01-24 00:22:46', 1),
-(39, 'categories/subcategory.gif', 35, 30, '2004-01-05 02:09:49', '2004-01-24 00:22:53', 1),
-(40, 'categories/subcategory.gif', 34, 10, '2004-01-05 02:17:27', '2004-05-20 10:36:19', 1),
-(41, 'categories/subcategory.gif', 36, 10, '2004-01-05 02:21:02', '2004-01-24 00:23:04', 1),
-(42, 'categories/subcategory.gif', 36, 30, '2004-01-05 02:21:14', '2004-01-24 00:23:18', 1),
-(43, 'categories/subcategory.gif', 34, 20, '2004-01-05 02:21:29', '2004-01-24 00:21:37', 1),
-(44, 'categories/subcategory.gif', 36, 20, '2004-01-05 02:21:47', '2004-01-24 00:23:11', 1),
-(45, 'sample_image.gif', 48, 10, '2004-01-05 23:54:56', '2004-01-24 01:48:22', 1),
-(46, 'sample_image.gif', 50, 10, '2004-01-06 00:01:48', '2004-01-24 01:39:56', 1),
-(47, 'sample_image.gif', 48, 20, '2004-01-06 03:09:57', '2004-01-24 01:48:05', 1),
-(48, 'sample_image.gif', 0, 1000, '2004-01-07 02:24:07', '2004-01-07 02:44:26', 1),
-(49, 'sample_image.gif', 0, 1100, '2004-01-07 02:27:31', '2004-01-07 02:44:34', 1),
-(50, 'sample_image.gif', 0, 1200, '2004-01-07 02:28:18', '2004-01-07 02:47:19', 1),
-(51, 'sample_image.gif', 50, 20, '2004-01-07 02:33:55', '2004-01-24 01:40:05', 1),
-(52, 'sample_image.gif', 49, 20, '2004-01-24 16:09:35', '2004-01-24 16:16:33', 1),
-(53, 'categories/subcategory.gif', 0, 1500, '2004-04-25 23:07:41', NULL, 1),
-(54, 'categories/subcategory.gif', 0, 1510, '2004-04-26 12:02:35', '2004-05-20 11:45:20', 1),
-(55, 'categories/subcategory.gif', 54, 0, '2004-04-28 01:48:47', '2004-05-20 11:45:51', 1),
-(56, 'categories/subcategory.gif', 54, 0, '2004-04-28 01:49:16', '2004-04-28 01:53:14', 1),
-(57, 'categories/subcategory.gif', 54, 0, '2004-05-01 01:29:13', NULL, 1),
-(58, 'categories/subcategory.gif', 54, 110, '2004-05-02 12:35:02', '2004-05-18 10:46:13', 1),
-(60, 'categories/subcategory.gif', 54, 0, '2004-05-02 23:45:21', NULL, 1),
-(61, 'categories/subcategory.gif', 54, 100, '2004-05-18 10:13:46', '2004-05-18 10:46:02', 1),
-(62, 'sample_image.gif', 0, 1520, '2003-12-23 03:18:19', '2004-05-22 21:14:57', 1),
-(63, 'categories/subcategory.gif', 0, 1530, '2003-12-23 03:18:19', '2004-07-12 17:45:24', 1),
-(64, 'categories/subcategory.gif', 0, 1550, '2004-07-12 15:22:27', NULL, 1);
+INSERT INTO categories (categories_id, categories_image, parent_id, sort_order, date_added, last_modified, categories_status) VALUES (1, 'categories/category_hardware.gif', 0, 1, '2012-12-23 03:18:19', '2004-05-21 00:32:17', 1),
+(2, 'categories/category_software.gif', 0, 2, '2012-12-23 03:18:19', '2004-05-22 21:14:57', 1),
+(3, 'categories/category_dvd_movies.gif', 0, 3, '2012-12-23 03:18:19', '2004-05-21 00:22:39', 1),
+(4, 'categories/subcategory_graphic_cards.gif', 1, 0, '2012-12-23 03:18:19', NULL, 1),
+(5, 'categories/subcategory_printers.gif', 1, 0, '2012-12-23 03:18:19', NULL, 1),
+(6, 'categories/subcategory_monitors.gif', 1, 0, '2012-12-23 03:18:19', NULL, 1),
+(7, 'categories/subcategory_speakers.gif', 1, 0, '2012-12-23 03:18:19', NULL, 1),
+(8, 'categories/subcategory_keyboards.gif', 1, 0, '2012-12-23 03:18:19', NULL, 1),
+(9, 'categories/subcategory_mice.gif', 1, 0, '2012-12-23 03:18:19', '2004-05-21 00:34:10', 1),
+(10, 'categories/subcategory_action.gif', 3, 0, '2012-12-23 03:18:19', '2004-05-21 00:39:17', 1),
+(11, 'categories/subcategory_science_fiction.gif', 3, 0, '2012-12-23 03:18:19', NULL, 1),
+(12, 'categories/subcategory_comedy.gif', 3, 0, '2012-12-23 03:18:19', NULL, 1),
+(13, 'categories/subcategory_cartoons.gif', 3, 0, '2012-12-23 03:18:19', '2004-05-21 00:23:13', 1),
+(14, 'categories/subcategory_thriller.gif', 3, 0, '2012-12-23 03:18:19', NULL, 1),
+(15, 'categories/subcategory_drama.gif', 3, 0, '2012-12-23 03:18:19', NULL, 1),
+(16, 'categories/subcategory_memory.gif', 1, 0, '2012-12-23 03:18:19', NULL, 1),
+(17, 'categories/subcategory_cdrom_drives.gif', 1, 0, '2012-12-23 03:18:19', NULL, 1),
+(18, 'categories/subcategory_simulation.gif', 2, 0, '2012-12-23 03:18:19', NULL, 1),
+(19, 'categories/subcategory_action_games.gif', 2, 0, '2012-12-23 03:18:19', NULL, 1),
+(20, 'categories/subcategory_strategy.gif', 2, 0, '2012-12-23 03:18:19', NULL, 1),
+(21, 'categories/gv_25.gif', 0, 4, '2012-12-23 03:18:19', '2004-05-21 00:26:06', 1),
+(22, 'categories/box_of_color.gif', 0, 5, '2012-12-23 03:18:19', '2004-05-21 00:28:43', 1),
+(23, 'waybkgnd.gif', 0, 500, '2012-12-28 02:26:19', '2012-12-29 23:21:35', 1),
+(24, 'categories/category_free.gif', 0, 600, '2012-12-28 11:48:46', '2004-01-02 19:13:45', 1),
+(25, 'sample_image.gif', 0, 515, '2012-12-31 02:39:17', '2004-01-24 01:49:12', 1),
+(27, 'sample_image.gif', 49, 10, '2013-01-04 14:13:08', '2013-01-24 16:16:23', 1),
+(28, 'sample_image.gif', 0, 510, '2013-01-04 17:13:47', '2013-01-05 23:54:23', 1),
+(31, 'sample_image.gif', 48, 30, '2013-01-04 23:16:46', '2013-01-24 01:48:29', 1),
+(32, 'sample_image.gif', 48, 40, '2013-01-05 01:34:56', '2013-01-24 01:48:36', 1),
+(33, 'categories/subcategory.gif', 0, 700, '2013-01-05 02:08:31', '2004-05-20 10:35:31', 1),
+(34, 'categories/subcategory.gif', 33, 10, '2013-01-05 02:08:50', '2004-05-20 10:35:57', 1),
+(35, 'categories/subcategory.gif', 33, 20, '2013-01-05 02:09:01', '2013-01-24 00:07:33', 1),
+(36, 'categories/subcategory.gif', 33, 30, '2013-01-05 02:09:12', '2013-01-24 00:07:41', 1),
+(37, 'categories/subcategory.gif', 35, 10, '2013-01-05 02:09:28', '2013-01-24 00:22:39', 1),
+(38, 'categories/subcategory.gif', 35, 20, '2013-01-05 02:09:39', '2013-01-24 00:22:46', 1),
+(39, 'categories/subcategory.gif', 35, 30, '2013-01-05 02:09:49', '2013-01-24 00:22:53', 1),
+(40, 'categories/subcategory.gif', 34, 10, '2013-01-05 02:17:27', '2004-05-20 10:36:19', 1),
+(41, 'categories/subcategory.gif', 36, 10, '2013-01-05 02:21:02', '2013-01-24 00:23:04', 1),
+(42, 'categories/subcategory.gif', 36, 30, '2013-01-05 02:21:14', '2013-01-24 00:23:18', 1),
+(43, 'categories/subcategory.gif', 34, 20, '2013-01-05 02:21:29', '2013-01-24 00:21:37', 1),
+(44, 'categories/subcategory.gif', 36, 20, '2013-01-05 02:21:47', '2013-01-24 00:23:11', 1),
+(45, 'sample_image.gif', 48, 10, '2013-01-05 23:54:56', '2013-01-24 01:48:22', 1),
+(46, 'sample_image.gif', 50, 10, '2013-01-06 00:01:48', '2013-01-24 01:39:56', 1),
+(47, 'sample_image.gif', 48, 20, '2013-01-06 03:09:57', '2013-01-24 01:48:05', 1),
+(48, 'sample_image.gif', 0, 1000, '2013-01-07 02:24:07', '2013-01-07 02:44:26', 1),
+(49, 'sample_image.gif', 0, 1100, '2013-01-07 02:27:31', '2013-01-07 02:44:34', 1),
+(50, 'sample_image.gif', 0, 1200, '2013-01-07 02:28:18', '2013-01-07 02:47:19', 1),
+(51, 'sample_image.gif', 50, 20, '2013-01-07 02:33:55', '2013-01-24 01:40:05', 1),
+(52, 'sample_image.gif', 49, 20, '2013-01-24 16:09:35', '2013-01-24 16:16:33', 1),
+(53, 'categories/subcategory.gif', 0, 1500, '2013-04-25 23:07:41', NULL, 1),
+(54, 'categories/subcategory.gif', 0, 1510, '2013-04-26 12:02:35', '2013-05-20 11:45:20', 1),
+(55, 'categories/subcategory.gif', 54, 0, '2013-04-28 01:48:47', '2013-05-20 11:45:51', 1),
+(56, 'categories/subcategory.gif', 54, 0, '2013-04-28 01:49:16', '2013-04-28 01:53:14', 1),
+(57, 'categories/subcategory.gif', 54, 0, '2013-05-01 01:29:13', NULL, 1),
+(58, 'categories/subcategory.gif', 54, 110, '2013-05-02 12:35:02', '2013-05-18 10:46:13', 1),
+(60, 'categories/subcategory.gif', 54, 0, '2013-05-02 23:45:21', NULL, 1),
+(61, 'categories/subcategory.gif', 54, 100, '2013-05-18 10:13:46', '2013-05-18 10:46:02', 1),
+(62, 'sample_image.gif', 0, 1520, '2012-12-23 03:18:19', '2013-05-22 21:14:57', 1),
+(63, 'categories/subcategory.gif', 0, 1530, '2012-12-23 03:18:19', '2004-07-12 17:45:24', 1),
+(64, 'categories/subcategory.gif', 0, 1550, '2013-07-12 15:22:27', NULL, 1);
 
 #
 # Dumping data for table `categories_description`
@@ -84,16 +84,16 @@ INSERT INTO categories (categories_id, categories_image, parent_id, sort_order, 
 INSERT INTO categories_description (categories_id, language_id, categories_name, categories_description) VALUES 
 (1, 1, 'Hardware', 'We offer a variety of Hardware from printers to graphics cards and mice to keyboards.'),
 (2, 1, 'Software', 'Select from an exciting list of software titles. <br /><br />Not seeing a title that you are looking for?'),
-(3, 1, 'DVD Filme', 'We offer a variety of DVD movies enjoyable for the whole family.<br /><br />Please browse the various categories to find your favorite movie today!'),
-(4, 1, 'Grafikkarten', ''),
-(5, 1, 'Drucker', ''),
-(6, 1, 'Monitore', ''),
-(7, 1, 'Lautsprecher', ''),
-(8, 1, 'Tastaturen', ''),
+(3, 1, 'DVD Movies', 'We offer a variety of DVD movies enjoyable for the whole family.<br /><br />Please browse the various categories to find your favorite movie today!'),
+(4, 1, 'Graphic Cards', ''),
+(5, 1, 'Printer', ''),
+(6, 1, 'Monitors', ''),
+(7, 1, 'Speakers', ''),
+(8, 1, 'Keyboards', ''),
 (9, 1, 'Mice', 'Pick the right mouse for your individual computer needs!<br /><br />Contact Us if you are looking for a particular mouse that we do not currently have in stock.'),
 (10, 1, 'Action', '<p>Get into the action with our Action collection of DVD movies!<br /><br />Don\'t miss the excitement and order your\'s today!<br /><br /></p>'),
 (11, 1, 'Science Fiction', ''),
-(12, 1, 'Komödien', ''),
+(12, 1, 'Comedy', ''),
 (13, 1, 'Cartoons', 'Something you can enjoy with children of all ages!'),
 (14, 1, 'Thriller', ''),
 (15, 1, 'Drama', ''),
@@ -101,26 +101,26 @@ INSERT INTO categories_description (categories_id, language_id, categories_name,
 (17, 1, 'CDROM Drives', ''),
 (18, 1, 'Simulation', ''),
 (19, 1, 'Action', ''),
-(20, 1, 'Strategie', ''),
+(20, 1, 'Strategy', ''),
 (60, 1, 'Downloads', ''),
 (58, 1, 'Real Sale', ''),
-(21, 1, 'Geschenkgutscheine', 'Send a Geschenkgutschein today!<br /><br />Geschenkgutscheine are good for anything in the store.'),
-(57, 1, 'Textpreise', ''),
-(56, 1, 'Attribute', ''),
-(22, 1, 'Verlinkte Artikel', 'All of these products are &quot;Linked Products&quot;.<br /><br />This means that they appear in more than one Category.<br /><br />However, you only have to maintain the product in one place.<br /><br />The Master Product is used for pricing purposes.'),
-(55, 1, 'Mengenrabatte', '<p>Discount Quantities can be set for Products or on the individual attributes.<br /><br />Discounts on the Product do NOT reflect on the attributes price.<br /><br />Only discounts based on Special and Sale Prices are applied to attribute prices.</p>'),
-(23, 1, 'Testbeispiele', ''),
-(24, 1, 'Für Preis anrufen', ''),
-(25, 1, 'Test 10% per Attribut', ''),
+(21, 1, 'Gift Certificates', 'Send a gift certificate today!<br /><br />Gift certificates are good for anything in the store.'),
+(57, 1, 'Text Prices', ''),
+(56, 1, 'Attributes', ''),
+(22, 1, 'Linked products', 'All of these products are &quot;Linked Products&quot;.<br /><br />This means that they appear in more than one Category.<br /><br />However, you only have to maintain the product in one place.<br /><br />The Master Product is used for pricing purposes.'),
+(55, 1, 'Quantity Discounts', '<p>Discount Quantities can be set for Products or on the individual attributes.<br /><br />Discounts on the Product do NOT reflect on the attributes price.<br /><br />Only discounts based on Special and Sale Prices are applied to attribute prices.</p>'),
+(23, 1, 'Test Examples', ''),
+(24, 1, 'Call for price', ''),
+(25, 1, 'Test 10% by attribute', ''),
 (27, 1, '$5.00 off', ''),
 (28, 1, 'Test 10%', ''),
 (31, 1, 'Minus 10% Ausnahme', ''),
-(32, 1, 'Minus 10% Preis', ''),
-(47, 1, 'Minus 10% Attribut', ''),
-(33, 1, 'Eine Hauptkategorie', '<p>This is a top level category description.</p>'),
-(34, 1, 'Unterkategorie 2 A', 'This is a sublevel category description.'),
-(35, 1, 'Unterkategorie 2 B', ''),
-(36, 1, 'Unterkategorie 2 C', ''),
+(32, 1, 'Minus 10% Price', ''),
+(47, 1, 'Minus 10% Attribute', ''),
+(33, 1, 'A Main Category', '<p>This is a top level category description.</p>'),
+(34, 1, 'Sub category 2 A', 'This is a sublevel category description.'),
+(35, 1, 'Sub category 2 B', ''),
+(36, 1, 'Sub category 2 C', ''),
 (37, 1, 'Sub Sub Cat 2B1', ''),
 (38, 1, 'Sub Sub Cat 2B2', ''),
 (39, 1, 'Sub Sub Cat 2B3', ''),
@@ -135,25 +135,25 @@ INSERT INTO categories_description (categories_id, language_id, categories_name,
 (49, 1, 'Abverkauf Fixbetrag', ''),
 (50, 1, 'Abverkauf neuer Preis', ''),
 (51, 1, 'Set $100 Skip', ''),
-(52, 1, '$5.00 off Skip', ''),
+(52, 1, '€5.00 off Skip', ''),
 (53, 1, 'Big Unlinked', ''),
-(54, 1, 'Neu seit v1.2', '<p>The New Products show many of the newest features that have been added to Zen Cart.<br /><br />Take the time to review these and the other Demo Products to better understand all the options and features that Zen Cart has to offer.</p>'),
+(54, 1, 'Special Functions', '<p>The New Products show many of the newest features that have been added to Zen Cart.<br /><br />Take the time to review these and the other Demo Products to better understand all the options and features that Zen Cart has to offer.</p>'),
 (61, 1, 'Real', ''),
-(62, 1, 'Musik', ''),
-(63, 1, 'Dokumente', 'Dokumente can now be added to the category tree. For example you may want to add servicing/Technical documents. Or use Dokumente as an integrated FAQ system on your site. The implemetation here is fairly spartan, but could be expanded to offer PDF downloads, links to purchaseable download files. The possibilities are endless and left to your imagination.'),
-(64, 1, 'Gemischte Artikeltypen', 'This is a category with mixed product types.\r\n\r\nThis includes both products and documents. There are two types of documents - Dokumente that are for reading and Dokumente that are for reading and purchasing.');
+(62, 1, 'Music', ''),
+(63, 1, 'Documents', 'Dokumente can now be added to the category tree. For example you may want to add servicing/Technical documents. Or use Dokumente as an integrated FAQ system on your site. The implemetation here is fairly spartan, but could be expanded to offer PDF downloads, links to purchaseable download files. The possibilities are endless and left to your imagination.'),
+(64, 1, 'Mixed Product Types', 'This is a category with mixed product types.\r\n\r\nThis includes both products and documents. There are two types of documents - Dokumente that are for reading and Dokumente that are for reading and purchasing.');
 
 #
 # Dumping data for table `customers`
 #
 
-INSERT INTO customers (customers_id, customers_gender, customers_firstname, customers_lastname, customers_dob, customers_email_address, customers_nick, customers_default_address_id, customers_telephone, customers_fax, customers_password, customers_newsletter, customers_group_pricing, customers_email_format, customers_authorization, customers_referral) VALUES (NULL, 'm', 'Bill', 'Smith', '2001-01-01 00:00:00', 'root@localhost', '', 1, '12345', '', 'd95e8fa7f20a009372eb3477473fcd34:1c', '0', 0, 'TEXT', 0, '');
+INSERT INTO customers (customers_id, customers_gender, customers_firstname, customers_lastname, customers_dob, customers_email_address, customers_nick, customers_default_address_id, customers_telephone, customers_fax, customers_password, customers_newsletter, customers_group_pricing, customers_email_format, customers_authorization, customers_referral) VALUES (NULL, 'm', 'Peter', 'Meier', '2013-09-01 00:00:00', 'root@localhost', '', 1, '10101', '', 'd95e8fa7f20a009372eb3477473fcd34:1c', '0', 0, 'TEXT', 0, '');
 
 #
 # Dumping data for table `customers_info`
 #
 
-INSERT INTO customers_info (customers_info_id, customers_info_date_of_last_logon, customers_info_number_of_logons, customers_info_date_account_created, customers_info_date_account_last_modified, global_product_notifications) VALUES (1, '0001-01-01 00:00:00', 0, '2004-01-21 01:35:28', '0001-01-01 00:00:00', 0);
+INSERT INTO customers_info (customers_info_id, customers_info_date_of_last_logon, customers_info_number_of_logons, customers_info_date_account_created, customers_info_date_account_last_modified, global_product_notifications) VALUES (1, '0001-01-01 00:00:00', 0, '2013-01-21 01:35:28', '0001-01-01 00:00:00', 0);
 
 #
 # Dumping data for table ezpages
@@ -192,35 +192,35 @@ lgreicher Anmeldung mit Ihrer E-Mail Adresse und Ihrem Passwort befinden Sie sic
 #
 
 INSERT INTO featured (featured_id, products_id, featured_date_added, featured_last_modified, expires_date, date_status_change, status, featured_date_available) VALUES (1, 34, '2004-02-21 16:34:31', '2004-02-21 16:34:31', '0001-01-01', '2004-02-21 16:34:31', 1, '0001-01-01'),
-(2, 8, '2004-02-21 17:04:54', '2004-02-21 22:31:52', '2004-02-27', '2004-04-25 22:50:50', 0, '2004-02-21'),
-(3, 12, '2004-02-21 17:10:49', '2004-02-21 17:10:49', '0001-01-01', '2004-02-21 17:10:49', 1, '0001-01-01'),
-(4, 27, '2004-02-21 22:30:53', NULL, '0001-01-01', NULL, 1, '0001-01-01'),
-(5, 26, '2004-02-21 22:31:24', NULL, '0001-01-01', NULL, 1, '0001-01-01'),
-(6, 40, '2004-05-13 22:50:33', NULL, '0001-01-01', NULL, 1, '0001-01-01'),
-(7, 171, '2004-07-12 15:47:22', NULL, '0001-01-01', NULL, 1, '0001-01-01'),
-(8, 172, '2004-07-12 15:47:29', NULL, '0001-01-01', NULL, 1, '0001-01-01'),
-(9, 168, '2004-07-12 15:47:37', NULL, '0001-01-01', NULL, 1, '0001-01-01'),
-(10, 169, '2004-07-12 15:47:45', NULL, '0001-01-01', NULL, 1, '0001-01-01');
+(2, 8, '2013-02-21 17:04:54', '2013-02-21 22:31:52', '2013-02-27', '2013-04-25 22:50:50', 0, '2013-02-21'),
+(3, 12, '2013-02-21 17:10:49', '2013-02-21 17:10:49', '0001-01-01', '2013-02-21 17:10:49', 1, '0001-01-01'),
+(4, 27, '2013-02-21 22:30:53', NULL, '0001-01-01', NULL, 1, '0001-01-01'),
+(5, 26, '2013-02-21 22:31:24', NULL, '0001-01-01', NULL, 1, '0001-01-01'),
+(6, 40, '2013-05-13 22:50:33', NULL, '0001-01-01', NULL, 1, '0001-01-01'),
+(7, 171, '2013-07-12 15:47:22', NULL, '0001-01-01', NULL, 1, '0001-01-01'),
+(8, 172, '2013-07-12 15:47:29', NULL, '0001-01-01', NULL, 1, '0001-01-01'),
+(9, 168, '2013-07-12 15:47:37', NULL, '0001-01-01', NULL, 1, '0001-01-01'),
+(10, 169, '2013-07-12 15:47:45', NULL, '0001-01-01', NULL, 1, '0001-01-01');
 
 #
 # Dumping data for table `group_pricing`
 #
 
-INSERT INTO group_pricing (group_id, group_name, group_percentage, last_modified, date_added) VALUES (1, 'Group 10', '10.00', NULL, '2004-04-29 00:21:04');
+INSERT INTO group_pricing (group_id, group_name, group_percentage, last_modified, date_added) VALUES (1, 'Group 10', '10.00', NULL, '2013-04-29 00:21:04');
 
 #
 # Dumping data for table `manufacturers`
 #
 
-INSERT INTO manufacturers (manufacturers_id, manufacturers_name, manufacturers_image, date_added, last_modified) VALUES (1, 'Matrox', 'manufacturers/manufacturer_matrox.gif', '2003-12-23 03:18:19', NULL),
-(2, 'Microsoft', 'manufacturers/manufacturer_microsoft.gif', '2003-12-23 03:18:19', NULL),
-(3, 'Warner', 'manufacturers/manufacturer_warner.gif', '2003-12-23 03:18:19', NULL),
-(4, 'Fox', 'manufacturers/manufacturer_fox.gif', '2003-12-23 03:18:19', NULL),
-(5, 'Logitech', 'manufacturers/manufacturer_logitech.gif', '2003-12-23 03:18:19', NULL),
-(6, 'Canon', 'manufacturers/manufacturer_canon.gif', '2003-12-23 03:18:19', NULL),
-(7, 'Sierra', 'manufacturers/manufacturer_sierra.gif', '2003-12-23 03:18:19', NULL),
-(8, 'GT Interactive', 'manufacturers/manufacturer_gt_interactive.gif', '2003-12-23 03:18:19', NULL),
-(9, 'Hewlett Packard', 'manufacturers/manufacturer_hewlett_packard.gif', '2003-12-23 03:18:19', NULL);
+INSERT INTO manufacturers (manufacturers_id, manufacturers_name, manufacturers_image, date_added, last_modified) VALUES (1, 'Matrox', 'manufacturers/manufacturer_matrox.gif', '2012-12-23 03:18:19', NULL),
+(2, 'Microsoft', 'manufacturers/manufacturer_microsoft.gif', '2012-12-23 03:18:19', NULL),
+(3, 'Warner', 'manufacturers/manufacturer_warner.gif', '2012-12-23 03:18:19', NULL),
+(4, 'Fox', 'manufacturers/manufacturer_fox.gif', '2012-12-23 03:18:19', NULL),
+(5, 'Logitech', 'manufacturers/manufacturer_logitech.gif', '2012-12-23 03:18:19', NULL),
+(6, 'Canon', 'manufacturers/manufacturer_canon.gif', '2012-12-23 03:18:19', NULL),
+(7, 'Sierra', 'manufacturers/manufacturer_sierra.gif', '2012-12-23 03:18:19', NULL),
+(8, 'GT Interactive', 'manufacturers/manufacturer_gt_interactive.gif', '2012-12-23 03:18:19', NULL),
+(9, 'Hewlett Packard', 'manufacturers/manufacturer_hewlett_packard.gif', '2012-12-23 03:18:19', NULL);
 
 #
 # Dumping data for table `manufacturers_info`
@@ -241,14 +241,14 @@ INSERT INTO manufacturers_info (manufacturers_id, languages_id, manufacturers_ur
 #
 
 INSERT INTO media_clips (clip_id, media_id, clip_type, clip_filename, date_added, last_modified) VALUES (1, 1, 1, 'thehunter.mp3', '2004-06-01 20:57:43', '0000-00-00 00:00:00'),
-(6, 2, 1, 'thehunter.mp3', '2004-07-13 00:45:09', '0000-00-00 00:00:00');
+(6, 2, 1, 'thehunter.mp3', '2013-07-13 00:45:09', '0000-00-00 00:00:00');
 
 #
 # Dumping data for table `media_manager`
 #
 
 INSERT INTO media_manager (media_id, media_name, last_modified, date_added) VALUES (1, 'Russ Tippins - The Hunter', '2004-06-01 20:57:43', '2004-06-01 20:42:53'),
-(2, 'Help!', '2004-07-13 01:01:14', '2004-07-12 17:57:45');
+(2, 'Help!', '2013-07-13 01:01:14', '2013-07-12 17:57:45');
 
 #
 # Dumping data for table `media_to_products`
@@ -268,7 +268,7 @@ INSERT INTO media_to_products (media_id, product_id) VALUES (1, 166),
 #
 
 INSERT INTO music_genre (music_genre_id, music_genre_name, date_added, last_modified) VALUES (1, 'Rock', '2004-06-01 20:53:26', NULL),
-(2, 'Jazz', '2004-06-01 20:53:45', NULL);
+(2, 'Jazz', '2013-06-01 20:53:45', NULL);
 
 #
 # Dumping data for table `product_music_extra`
@@ -288,131 +288,131 @@ INSERT INTO product_types_to_category (product_type_id, category_id) VALUES (3, 
 # Dumping data for table `products`
 #
 
-INSERT INTO products (products_id, products_type, products_quantity, products_model, products_image, products_price, products_virtual, products_date_added, products_last_modified, products_date_available, products_weight, products_status, products_tax_class_id, manufacturers_id, products_ordered, products_quantity_order_min, products_quantity_order_units, products_priced_by_attribute, product_is_free, product_is_call, products_quantity_mixed, product_is_always_free_shipping, products_qty_box_status, products_quantity_order_max, products_sort_order, products_discount_type, products_discount_type_from, products_price_sorter, master_categories_id, products_mixed_discount_quantity) VALUES (1, 1, '31', 'MG200MMS', 'matrox/mg200mms.gif', '299.9900', 0, '2003-11-03 12:32:17', '2004-04-26 23:57:34', NULL, '23.00', 1, 1, 1, '1', '1', '1', 0, 0, 0, 0, 0, 1, '0', 0, 0, 0, '299.9900', 4, 1),
-(2, 1, '31', 'MG400-32MB', 'matrox/mg400-32mb.gif', '499.9900', 0, '2003-11-03 12:32:17', NULL, NULL, '23.00', 1, 1, 1, '1', '1', '1', 0, 0, 0, 0, 0, 1, '0', 0, 0, 0, '499.9900', 4, 1),
-(3, 1, '500', 'MSIMPRO', 'microsoft/msimpro.gif', '49.9900', 0, '2003-11-03 12:32:17', NULL, NULL, '7.00', 1, 1, 2, '1', '1', '1', 0, 0, 0, 0, 0, 1, '0', 0, 0, 0, '39.9900', 9, 1),
-(4, 1, '12', 'DVD-RPMK', 'dvd/replacement_killers.gif', '42.0000', 0, '2003-11-03 12:32:17', NULL, NULL, '23.00', 1, 1, 3, '1', '1', '1', 0, 0, 0, 0, 0, 1, '0', 0, 0, 0, '42.0000', 10, 1),
-(5, 1, '15', 'DVD-BLDRNDC', 'dvd/blade_runner.gif', '35.9900', 0, '2003-11-03 12:32:17', '2003-12-23 00:44:28', NULL, '7.00', 1, 1, 3, '2', '1', '1', 0, 0, 0, 0, 0, 1, '0', 0, 0, 0, '30.0000', 11, 1),
-(6, 1, '8', 'DVD-MATR', 'dvd/the_matrix.gif', '39.9900', 0, '2003-11-03 12:32:17', '2003-12-23 00:48:28', NULL, '7.00', 1, 1, 3, '2', '1', '1', 0, 0, 0, 0, 0, 1, '0', 0, 0, 0, '30.0000', 10, 1),
-(7, 1, '500', 'DVD-YGEM', 'dvd/youve_got_mail.gif', '34.9900', 0, '2003-11-03 12:32:17', '2004-04-27 14:53:17', NULL, '7.00', 1, 1, 3, '5', '1', '1', 0, 0, 0, 0, 0, 1, '0', 0, 0, 0, '34.9900', 12, 1),
-(8, 1, '499', 'DVD-ABUG', 'dvd/a_bugs_life.gif', '35.9900', 0, '2003-11-03 12:32:17', '2004-04-27 14:52:54', NULL, '7.00', 1, 1, 3, '6', '1', '1', 0, 0, 0, 0, 0, 1, '0', 10, 1, 1, '35.9900', 13, 1),
-(9, 1, '10', 'DVD-UNSG', 'dvd/under_siege.gif', '29.9900', 0, '2003-11-03 12:32:17', '2004-05-17 13:35:27', NULL, '7.00', 1, 1, 3, '0', '1', '1', 0, 0, 0, 0, 0, 1, '0', 0, 0, 0, '29.9900', 10, 1),
-(10, 1, '9', 'DVD-UNSG2', 'dvd/under_siege2.gif', '29.9900', 0, '2003-11-03 12:32:17', NULL, NULL, '7.00', 1, 1, 3, '1', '1', '1', 0, 0, 0, 0, 0, 1, '0', 0, 0, 0, '29.9900', 10, 1),
-(11, 1, '10', 'DVD-FDBL', 'dvd/fire_down_below.gif', '29.9900', 0, '2003-11-03 12:32:17', '2003-12-23 00:43:40', NULL, '7.00', 1, 1, 3, '0', '1', '1', 0, 0, 0, 0, 0, 1, '0', 0, 0, 0, '29.9900', 10, 1),
-(12, 1, '9', 'DVD-DHWV', 'dvd/die_hard_3.gif', '39.9900', 0, '2003-11-03 12:32:17', '2004-05-16 00:34:33', NULL, '7.00', 1, 1, 4, '6', '1', '1', 0, 0, 0, 0, 0, 1, '0', 0, 0, 0, '39.9900', 10, 1),
-(13, 1, '10', 'DVD-LTWP', 'dvd/lethal_weapon.gif', '34.9900', 0, '2003-11-03 12:32:17', '2004-04-27 00:07:35', NULL, '7.00', 1, 1, 3, '0', '1', '1', 0, 0, 0, 0, 0, 1, '0', 0, 0, 0, '34.9900', 10, 1),
-(14, 1, '9', 'DVD-REDC', 'dvd/red_corner.gif', '32.0000', 0, '2003-11-03 12:32:17', '2003-12-23 00:47:39', NULL, '7.00', 1, 1, 3, '1', '1', '1', 0, 0, 0, 0, 0, 1, '0', 0, 0, 0, '32.0000', 15, 1),
-(15, 1, '9', 'DVD-FRAN', 'dvd/frantic.gif', '35.0000', 0, '2003-11-03 12:32:17', '2003-12-23 00:43:55', NULL, '7.00', 1, 1, 3, '1', '1', '1', 0, 0, 0, 0, 0, 1, '0', 0, 0, 0, '35.0000', 14, 1),
-(16, 1, '9', 'DVD-CUFI', 'dvd/courage_under_fire.gif', '38.9900', 0, '2003-11-03 12:32:17', '2003-12-23 00:42:57', '2007-02-21 00:00:00', '7.00', 1, 1, 4, '1', '1', '1', 0, 0, 0, 0, 0, 1, '0', 0, 0, 0, '29.9900', 15, 1),
-(17, 1, '10', 'DVD-SPEED', 'dvd/speed.gif', '39.9900', 0, '2003-11-03 12:32:17', '2003-12-23 00:47:51', NULL, '7.00', 1, 1, 4, '0', '1', '1', 0, 0, 0, 0, 0, 1, '0', 0, 0, 0, '39.9900', 10, 1),
-(18, 1, '10', 'DVD-SPEED2', 'dvd/speed_2.gif', '42.0000', 0, '2003-11-03 12:32:17', NULL, NULL, '7.00', 1, 1, 4, '0', '1', '1', 0, 0, 0, 0, 0, 1, '0', 0, 0, 0, '42.0000', 10, 1),
-(19, 1, '10', 'DVD-TSAB', 'dvd/theres_something_about_mary.gif', '49.9900', 0, '2003-11-03 12:32:17', '2003-12-23 00:49:00', NULL, '7.00', 1, 1, 4, '0', '1', '1', 0, 0, 0, 0, 0, 1, '0', 0, 0, 0, '49.9900', 12, 1),
-(20, 1, '8', 'DVD-BELOVED', 'dvd/beloved.gif', '54.9900', 0, '2003-11-03 12:32:17', '2003-12-23 00:42:34', NULL, '7.00', 1, 1, 3, '2', '1', '1', 0, 0, 0, 0, 0, 1, '0', 0, 0, 0, '54.9900', 15, 1),
-(21, 1, '16', 'PC-SWAT3', 'sierra/swat_3.gif', '79.9900', 0, '2003-11-03 12:32:17', '2004-04-27 14:51:00', NULL, '7.00', 1, 1, 7, '0', '1', '1', 0, 0, 0, 0, 0, 1, '0', 0, 0, 0, '79.9900', 18, 1),
-(22, 1, '13', 'PC-UNTM', 'gt_interactive/unreal_tournament.gif', '89.9900', 0, '2003-11-03 12:32:17', '2003-12-23 00:49:29', NULL, '7.00', 1, 1, 8, '9', '1', '1', 0, 0, 0, 0, 0, 1, '0', 0, 0, 0, '89.9900', 19, 1),
-(23, 1, '16', 'PC-TWOF', 'gt_interactive/wheel_of_time.gif', '99.9900', 0, '2003-11-03 12:32:17', '2003-12-23 00:48:50', NULL, '10.00', 1, 1, 8, '0', '1', '1', 0, 0, 0, 0, 0, 1, '0', 0, 0, 0, '99.9900', 20, 1),
-(24, 1, '16', 'PC-DISC', 'gt_interactive/disciples.gif', '90.0000', 0, '2003-11-03 12:32:17', '2003-12-23 00:43:24', NULL, '8.00', 1, 1, 8, '1', '1', '1', 0, 0, 0, 0, 0, 1, '0', 0, 0, 0, '90.0000', 20, 1),
-(25, 1, '16', 'MSINTKB', 'microsoft/intkeyboardps2.gif', '69.9900', 0, '2003-11-03 12:32:17', '2004-01-04 03:02:41', NULL, '8.00', 1, 1, 2, '0', '1', '1', 0, 0, 0, 0, 0, 1, '0', 0, 0, 0, '69.9900', 8, 1),
-(26, 1, '9', 'MSIMEXP', 'microsoft/imexplorer.gif', '64.9500', 0, '2003-11-03 12:32:17', '2004-05-03 01:47:47', NULL, '8.00', 1, 1, 2, '17', '1', '1', 0, 0, 0, 0, 0, 1, '0', 0, 0, 0, '64.9500', 9, 1),
-(27, 1, '7', 'HPLJ1100XI', 'hewlett_packard/lj1100xi.gif', '499.9900', 0, '2003-11-03 12:32:17', '2003-12-23 00:45:03', NULL, '45.00', 1, 1, 9, '1', '1', '1', 0, 0, 0, 0, 0, 1, '0', 0, 0, 0, '499.9900', 5, 1),
-(28, 1, '999', 'GIFT005', 'gift_certificates/gv_5.gif', '5.0000', 1, '2003-11-03 12:32:17', '2004-01-10 02:57:18', NULL, '0.00', 1, 0, 0, '1', '1', '1', 0, 0, 0, 0, 0, 1, '0', 0, 0, 0, '5.0000', 21, 1),
-(29, 1, '985', 'GIFT 010', 'gift_certificates/gv_10.gif', '10.0000', 1, '2003-11-03 12:32:17', '2003-12-28 14:51:36', NULL, '0.00', 1, 0, 0, '15', '1', '1', 0, 0, 0, 0, 0, 1, '0', 0, 0, 0, '10.0000', 21, 1),
-(30, 1, '992', 'GIFT025', 'gift_certificates/gv_25.gif', '25.0000', 1, '2003-11-03 12:32:17', NULL, NULL, '0.00', 1, 0, 0, '8', '1', '1', 0, 0, 0, 0, 0, 1, '0', 0, 0, 0, '25.0000', 21, 1),
-(31, 1, '997', 'GIFT050', 'gift_certificates/gv_50.gif', '50.0000', 1, '2003-11-03 12:32:17', NULL, NULL, '0.00', 1, 0, 0, '4', '1', '1', 0, 0, 0, 0, 0, 1, '0', 0, 0, 0, '50.0000', 21, 1),
-(32, 1, '995', 'GIFT100', 'gift_certificates/gv_100.gif', '100.0000', 1, '2003-11-03 12:32:17', NULL, NULL, '0.00', 1, 0, 0, '5', '1', '1', 0, 0, 0, 0, 0, 1, '0', 0, 0, 0, '100.0000', 21, 1),
-(34, 1, '796', 'DVD-ABUG', 'dvd/a_bugs_life.gif', '35.9900', 0, '2003-11-07 22:03:45', '2004-01-01 14:16:01', '2005-02-21 00:00:00', '7.00', 1, 1, 3, '5', '1', '1', 0, 0, 0, 0, 0, 1, '0', 0, 0, 0, '35.9900', 22, 1),
-(36, 1, '700', 'HPLJ1100XI', 'hewlett_packard/lj1100xi.gif', '0.0000', 0, '2003-12-24 14:29:11', '2004-01-03 01:51:12', NULL, '45.00', 1, 1, 9, '0', '1', '1', 1, 0, 0, 0, 0, 1, '0', 0, 0, 0, '449.1000', 25, 1),
-(100, 1, '700', 'HPLJ1100XI', 'hewlett_packard/lj1100xi.gif', '0.0000', 0, '2004-01-08 14:06:13', '2004-01-08 14:06:50', NULL, '45.00', 1, 1, 9, '0', '1', '1', 1, 0, 0, 0, 0, 1, '0', 0, 0, 0, '336.8250', 25, 1),
-(39, 1, '997', 'TESTFREE', 'free.gif', '100.0000', 0, '2003-12-25 16:33:13', '2004-01-11 02:29:16', NULL, '1.00', 1, 1, 0, '3', '1', '1', 0, 1, 0, 1, 0, 1, '0', 0, 0, 0, '0.0000', 24, 1),
-(40, 1, '999', 'TESTCALL', 'call_for_price.jpg', '100.0000', 0, '2003-12-25 17:42:15', '2004-01-04 13:08:08', '2007-02-21 00:00:00', '1.00', 1, 1, 0, '0', '1', '1', 0, 0, 1, 1, 0, 1, '0', 0, 0, 0, '100.0000', 24, 1),
-(41, 1, '999', 'TESTCALL', 'call_for_price.jpg', '100.0000', 0, '2003-12-25 19:13:35', '2004-09-27 13:33:33', NULL, '1.00', 1, 1, 0, '0', '1', '1', 0, 0, 1, 1, 0, 1, '0', 0, 0, 0, '81.0000', 28, 0),
-(42, 1, '998', 'TESTFREE', 'free.gif', '100.0000', 0, '2003-12-25 19:14:16', '2003-12-25 19:15:00', NULL, '1.00', 1, 1, 0, '1', '1', '1', 0, 1, 0, 1, 0, 1, '0', 0, 0, 0, '0.0000', 28, 1),
-(43, 1, '999', 'TESTFREEATTRIB', 'free.gif', '100.0000', 0, '2003-12-25 20:44:06', '2004-01-21 16:23:29', NULL, '0.00', 1, 1, 0, '0', '1', '1', 0, 1, 0, 1, 0, 1, '0', 0, 0, 0, '0.0000', 24, 1),
-(44, 1, '999', 'TESTMINUNITSNOMIX', 'sample_image.gif', '100.0000', 0, '2003-12-25 21:38:59', '2004-01-22 13:15:41', NULL, '1.00', 1, 1, 0, '0', '4', '2', 0, 0, 0, 0, 0, 1, '0', 0, 0, 0, '90.0000', 22, 1),
-(46, 1, '981', 'TESTMINUNITSMIX', 'sample_image.gif', '100.0000', 0, '2003-12-25 21:53:07', '2003-12-29 02:00:50', NULL, '1.00', 1, 1, 0, '18', '4', '2', 0, 0, 0, 1, 0, 1, '0', 0, 0, 0, '90.0000', 22, 1),
-(47, 1, '9996', 'GIFT', 'gift_certificates/gv.gif', '0.0000', 1, '2003-12-27 22:56:57', '2004-09-29 20:11:51', NULL, '0.00', 1, 0, 0, '4', '1', '1', 1, 0, 0, 1, 0, 1, '0', 0, 0, 0, '5.0000', 21, 1),
-(48, 1, '9990', 'TEST1', '1_small.jpg', '39.0000', 0, '2003-12-28 02:27:47', '2004-01-11 02:56:37', NULL, '1.00', 1, 1, 0, '10', '1', '1', 0, 0, 0, 1, 0, 1, '0', 0, 0, 0, '39.0000', 23, 1),
-(49, 1, '900', 'TEST2', '2_small.jpg', '20.0000', 0, '2003-12-28 02:28:42', '2003-12-29 23:00:27', NULL, '0.50', 1, 1, 0, '0', '1', '1', 0, 0, 0, 1, 0, 1, '0', 0, 0, 0, '20.0000', 23, 1),
-(50, 1, '1000', 'TEST3', '3_small.jpg', '75.0000', 0, '2003-12-28 02:29:37', '2003-12-29 23:01:04', NULL, '1.50', 1, 1, 0, '0', '1', '1', 0, 0, 0, 1, 0, 1, '0', 0, 0, 0, '75.0000', 23, 1),
-(51, 1, '998', 'Free1', 'b_g_grid.gif', '25.0000', 0, '2003-12-28 11:51:05', '2004-01-21 17:03:32', NULL, '10.00', 1, 1, 0, '2', '1', '1', 0, 1, 0, 1, 1, 1, '0', 0, 0, 0, '0.0000', 24, 1),
-(52, 1, '997', 'Free2', 'b_p_grid.gif', '0.0000', 1, '2003-12-28 12:24:58', '2004-01-21 17:01:18', NULL, '2.00', 1, 1, 0, '2', '1', '1', 0, 1, 0, 1, 0, 1, '0', 0, 0, 0, '0.0000', 24, 1),
-(53, 1, '991', 'MINUNITSMIX', 'b_c_grid.gif', '25.0000', 0, '2003-12-28 23:26:44', '2004-01-11 02:22:35', NULL, '1.00', 1, 1, 0, '6', '6', '3', 0, 0, 0, 1, 0, 1, '0', 0, 0, 0, '20.0000', 23, 1),
-(54, 1, '991', 'MINUNITSNOMIX', 'waybkgnd.gif', '25.0000', 0, '2003-12-29 23:19:13', '2004-01-11 02:23:08', NULL, '1.00', 1, 1, 0, '0', '6', '3', 0, 0, 0, 0, 0, 1, '0', 0, 0, 0, '25.0000', 23, 1),
-(55, 1, '991', 'MINUNITSMIXSALE', 'b_b_grid.gif', '25.0000', 0, '2003-12-31 11:11:46', '2004-01-11 02:26:28', NULL, '1.00', 1, 1, 0, '0', '6', '3', 0, 0, 0, 1, 0, 1, '0', 0, 0, 0, '22.5000', 28, 1),
-(56, 1, '991', 'MINUNITSNOMIXSALE', 'b_w_grid.gif', '25.0000', 0, '2003-12-31 11:13:08', '2004-01-11 02:26:49', NULL, '1.00', 1, 1, 0, '0', '6', '3', 0, 0, 0, 0, 0, 1, '0', 0, 0, 0, '22.5000', 28, 1),
-(57, 1, '998', 'TESTFREEALL', 'free.gif', '0.0000', 0, '2003-12-31 11:36:09', '2004-01-21 16:55:19', NULL, '1.00', 1, 1, 0, '1', '1', '1', 0, 1, 0, 1, 1, 1, '0', 0, 0, 0, '0.0000', 24, 1),
-(59, 1, '700', 'HPLJ1100XI', 'hewlett_packard/lj1100xi.gif', '0.0000', 0, '2003-12-31 14:36:57', '2003-12-31 14:37:05', NULL, '45.00', 1, 1, 9, '0', '1', '1', 1, 0, 0, 0, 0, 1, '0', 0, 0, 0, '300.0000', 23, 1),
-(60, 1, '699', 'HPLJ1100XI', 'hewlett_packard/lj1100xi.gif', '499.7500', 0, '2004-01-02 01:34:55', '2004-01-02 01:41:37', NULL, '45.00', 1, 1, 9, '1', '1', '1', 0, 0, 0, 0, 0, 1, '0', 0, 0, 0, '449.7750', 28, 1),
-(61, 1, '699', 'HPLJ1100XI', 'hewlett_packard/lj1100xi.gif', '499.7500', 0, '2004-01-02 01:44:09', '2004-01-02 01:45:45', NULL, '45.00', 1, 1, 9, '1', '1', '1', 0, 0, 0, 0, 0, 1, '0', 0, 0, 0, '449.7750', 28, 1),
-(101, 1, '1000', 'Test120-90off-10', 'test_demo.jpg', '0.0000', 0, '2004-01-08 14:11:32', '2004-01-08 14:17:09', NULL, '1.00', 1, 1, 0, '0', '1', '1', 1, 0, 0, 1, 0, 1, '0', 0, 0, 0, '72.0000', 47, 1),
-(109, 1, '1000', 'HIDEQTYBOX', '1_small.jpg', '75.0000', 0, '2004-01-21 22:01:20', '2004-01-22 11:21:12', NULL, '1.00', 1, 1, 0, '0', '1', '1', 0, 0, 0, 1, 0, 1, '1', 0, 0, 0, '75.0000', 23, 1),
-(78, 1, '1000', 'Test25-10AttrAll', 'test_demo.jpg', '0.0000', 0, '2004-01-04 01:09:46', '2004-01-04 01:30:12', NULL, '0.00', 1, 1, 0, '0', '1', '1', 1, 0, 0, 1, 0, 1, '0', 0, 0, 0, '101.2500', 25, 1),
-(79, 1, '1000', 'Test25-AttrAll', 'test_demo.jpg', '0.0000', 0, '2004-01-04 01:28:52', '2004-01-04 01:33:55', NULL, '1.00', 1, 1, 0, '0', '1', '1', 1, 0, 0, 1, 0, 1, '0', 0, 0, 0, '150.0000', 23, 1),
-(74, 1, '700', 'HPLJ1100XI', 'hewlett_packard/lj1100xi.gif', '0.0000', 0, '2004-01-02 15:34:49', '2004-01-02 15:35:17', NULL, '45.00', 1, 1, 9, '0', '1', '1', 1, 0, 0, 0, 0, 1, '0', 0, 0, 0, '399.2000', 23, 1),
-(76, 1, '1000', 'Test25-10', 'test_demo.jpg', '100.0000', 0, '2004-01-03 23:08:33', NULL, NULL, '0.00', 1, 1, 0, '0', '1', '1', 0, 0, 0, 1, 0, 1, '0', 0, 0, 0, '67.5000', 28, 1),
-(80, 1, '1000', 'Test25', 'test_demo.jpg', '100.0000', 0, '2004-01-04 01:31:06', '2004-01-04 13:35:47', NULL, '1.00', 1, 1, 0, '0', '1', '1', 0, 0, 0, 1, 0, 1, '0', 0, 0, 0, '100.0000', 23, 1),
-(84, 1, '999', 'Test120', 'test_demo.jpg', '120.0000', 0, '2004-01-04 15:05:10', '2004-01-06 15:27:39', NULL, '1.00', 1, 1, 0, '1', '1', '1', 0, 0, 0, 1, 0, 1, '0', 0, 0, 0, '120.0000', 23, 1),
-(82, 1, '1000', 'Test120-5', 'test_demo.jpg', '120.0000', 0, '2004-01-04 14:50:38', '2004-01-04 17:09:03', NULL, '1.00', 1, 1, 0, '0', '1', '1', 0, 0, 0, 1, 0, 1, '0', 0, 0, 0, '115.0000', 27, 1),
-(83, 1, '1000', 'Test120-90-5', 'test_demo.jpg', '120.0000', 0, '2004-01-04 15:01:53', '2004-01-06 10:02:11', NULL, '1.00', 1, 1, 0, '0', '1', '1', 0, 0, 0, 1, 0, 1, '0', 0, 0, 0, '85.0000', 27, 1),
-(85, 1, '1000', 'Test90', 'test_demo.jpg', '120.0000', 0, '2004-01-04 15:19:00', '2004-01-06 10:00:35', NULL, '1.00', 1, 1, 0, '0', '1', '1', 0, 0, 0, 1, 0, 1, '0', 0, 0, 0, '90.0000', 23, 1),
-(88, 1, '1000', 'Test120-90-10-Skip', 'test_demo.jpg', '120.0000', 0, '2004-01-05 00:14:31', '2004-01-06 09:58:08', NULL, '1.00', 1, 1, 0, '0', '1', '1', 0, 0, 0, 1, 0, 1, '0', 0, 0, 0, '90.0000', 31, 1),
-(89, 1, '1000', 'Test120-90-10-Skip', 'test_demo.jpg', '120.0000', 0, '2004-01-05 00:41:40', '2004-01-06 09:57:42', NULL, '1.00', 1, 1, 0, '0', '1', '1', 0, 0, 0, 1, 0, 1, '0', 0, 0, 0, '108.0000', 31, 1),
-(95, 1, '1000', 'Test120-25-New100-Skip', 'test_demo.jpg', '120.0000', 0, '2004-01-07 02:35:44', '2004-01-07 02:37:27', NULL, '1.00', 1, 1, 0, '0', '1', '1', 0, 0, 0, 1, 0, 1, '0', 0, 0, 0, '90.0000', 51, 1),
-(90, 1, '999', 'Test120-90-10', 'test_demo.jpg', '120.0000', 0, '2004-01-05 23:55:18', '2004-01-06 00:08:58', NULL, '1.00', 1, 1, 0, '1', '1', '1', 0, 0, 0, 1, 0, 1, '0', 0, 0, 0, '81.0000', 45, 1),
-(92, 1, '1000', 'Test120-90off-10', 'test_demo.jpg', '120.0000', 0, '2004-01-05 23:58:54', '2004-01-06 00:09:28', NULL, '1.00', 1, 1, 0, '0', '1', '1', 0, 0, 0, 1, 0, 1, '0', 0, 0, 0, '108.0000', 45, 1),
-(93, 1, '1000', 'Test120-New100', 'test_demo.jpg', '120.0000', 0, '2004-01-06 00:02:32', '2004-01-06 00:04:25', NULL, '1.00', 1, 1, 0, '0', '1', '1', 0, 0, 0, 1, 0, 1, '0', 0, 0, 0, '100.0000', 46, 1),
-(94, 1, '1000', 'Test120-25-New100', 'test_demo.jpg', '120.0000', 0, '2004-01-06 00:04:31', '2004-01-06 00:07:08', NULL, '1.00', 1, 1, 0, '0', '1', '1', 0, 0, 0, 1, 0, 1, '0', 0, 0, 0, '100.0000', 46, 1),
-(96, 1, '1000', 'Test120-New100-Off-Skip', 'test_demo.jpg', '120.0000', 0, '2004-01-07 02:36:52', '2004-01-07 02:37:29', NULL, '1.00', 1, 1, 0, '0', '1', '1', 0, 0, 0, 1, 0, 1, '0', 0, 0, 0, '100.0000', 51, 1),
-(97, 1, '1000', 'Test120-90-10-Price', 'test_demo.jpg', '120.0000', 0, '2004-01-07 11:26:34', '2004-01-07 11:27:24', NULL, '1.00', 1, 1, 0, '0', '1', '1', 0, 0, 0, 1, 0, 1, '0', 0, 0, 0, '108.0000', 32, 1),
-(98, 1, '1000', 'Test120-90off-10-Price', 'test_demo.jpg', '120.0000', 0, '2004-01-07 11:28:16', '2004-01-07 11:29:57', NULL, '1.00', 1, 1, 0, '0', '1', '1', 0, 0, 0, 1, 0, 1, '0', 0, 0, 0, '108.0000', 32, 1),
-(99, 1, '997', 'FreeShipping', 'small_00.jpg', '25.0000', 0, '2004-01-07 13:27:30', '2004-01-21 01:48:48', NULL, '5.00', 1, 1, 0, '3', '1', '1', 0, 0, 0, 1, 1, 1, '0', 0, 0, 0, '25.0000', 23, 1),
-(104, 1, '1000', 'HIDEQTY', '1_small.jpg', '75.0000', 0, '2004-01-11 03:02:51', '2004-01-22 11:21:36', NULL, '1.00', 1, 1, 0, '0', '1', '1', 0, 0, 0, 1, 0, 0, '0', 0, 0, 0, '75.0000', 23, 1),
-(105, 1, '999', 'MAXSAMPLE-1', 'waybkgnd.gif', '50.0000', 0, '2004-01-11 14:10:59', '2004-01-11 14:36:00', NULL, '1.00', 1, 1, 0, '1', '1', '1', 0, 0, 0, 1, 0, 1, '1', 0, 0, 0, '50.0000', 22, 1),
-(106, 1, '1000', 'MAXSAMPLE-3', 'waybkgnd.gif', '50.0000', 0, '2004-01-11 14:36:08', '2004-01-11 15:32:56', NULL, '1.00', 1, 1, 0, '0', '1', '1', 0, 0, 0, 1, 0, 1, '3', 0, 0, 0, '50.0000', 22, 1),
-(107, 1, '995', 'FreeShippingNoWeight', 'small_00.jpg', '25.0000', 0, '2004-01-21 01:41:22', '2004-01-21 02:01:54', NULL, '0.00', 1, 1, 0, '0', '1', '1', 0, 0, 0, 1, 0, 1, '0', 0, 0, 0, '25.0000', 23, 1),
-(108, 1, '0', 'SoldOut', 'small_00.jpg', '25.0000', 0, '2004-01-21 01:53:20', NULL, NULL, '3.00', 1, 1, 0, '0', '1', '1', 0, 0, 0, 1, 0, 1, '0', 0, 0, 0, '25.0000', 23, 1),
-(110, 1, '1000', 'Test120-5SKIP', 'test_demo.jpg', '120.0000', 0, '2004-01-24 16:09:52', '2004-01-24 16:15:25', NULL, '1.00', 1, 1, 0, '0', '1', '1', 0, 0, 0, 1, 0, 1, '0', 0, 0, 0, '115.0000', 52, 1),
-(111, 1, '1000', 'Test120-90-5SKIP', 'test_demo.jpg', '120.0000', 0, '2004-01-24 16:10:12', '2004-01-24 16:15:27', NULL, '1.00', 1, 1, 0, '0', '1', '1', 0, 0, 0, 1, 0, 1, '0', 0, 0, 0, '90.0000', 52, 1),
-(112, 1, '998', 'Test2', '', '25.0000', 0, '2004-04-26 02:24:57', '2004-04-26 02:25:44', NULL, '1.00', 1, 1, 0, '2', '1', '1', 0, 0, 0, 1, 0, 1, '0', 2, 0, 0, '25.0000', 53, 1),
-(113, 1, '994', 'Test4', '', '25.0000', 0, '2004-04-26 02:25:03', '2004-04-26 02:25:35', NULL, '1.00', 1, 1, 0, '6', '1', '1', 0, 0, 0, 1, 0, 1, '0', 4, 0, 0, '25.0000', 53, 1),
-(114, 1, '998', 'Test5', '', '25.0000', 0, '2004-04-26 02:25:53', '2004-04-26 02:26:15', NULL, '1.00', 1, 1, 0, '2', '1', '1', 0, 0, 0, 1, 0, 1, '0', 5, 0, 0, '25.0000', 53, 1),
-(115, 1, '999', 'Test1', '', '25.0000', 0, '2004-04-26 02:26:23', '2004-05-06 21:50:19', NULL, '1.00', 1, 1, 0, '1', '1', '1', 0, 0, 0, 1, 0, 1, '0', 1, 0, 0, '25.0000', 53, 1),
-(116, 1, '997', 'Test8', '', '25.0000', 0, '2004-04-26 02:26:54', '2004-04-26 02:27:18', NULL, '1.00', 1, 1, 0, '3', '1', '1', 0, 0, 0, 1, 0, 1, '0', 8, 0, 0, '25.0000', 53, 1),
-(117, 1, '995', 'Test3', '', '25.0000', 0, '2004-04-26 02:27:24', '2004-10-03 12:20:14', NULL, '1.00', 1, 1, 0, '5', '1', '1', 0, 0, 0, 1, 0, 1, '0', 3, 0, 0, '25.0000', 53, 1),
-(118, 1, '999', 'Test10', '', '25.0000', 0, '2004-04-26 02:27:52', '2004-04-26 02:28:14', NULL, '1.00', 1, 1, 0, '1', '1', '1', 0, 0, 0, 1, 0, 1, '0', 10, 0, 0, '25.0000', 53, 1),
-(119, 1, '1000', 'Test6', '', '25.0000', 0, '2004-04-26 02:28:22', '2004-10-06 18:26:25', NULL, '1.00', 1, 1, 0, '0', '1', '1', 0, 0, 0, 1, 0, 1, '0', 6, 0, 0, '25.0000', 53, 1),
-(120, 1, '1000', 'Test7', '', '25.0000', 0, '2004-04-26 02:29:03', '2004-04-26 02:29:23', NULL, '1.00', 1, 1, 0, '0', '1', '1', 0, 0, 0, 1, 0, 1, '0', 7, 0, 0, '25.0000', 53, 1),
-(121, 1, '999', 'Test12', '', '25.0000', 0, '2004-04-26 02:29:36', '2004-04-28 13:02:47', NULL, '1.00', 1, 1, 0, '1', '1', '1', 0, 0, 0, 1, 0, 1, '0', 12, 0, 0, '25.0000', 53, 1),
-(122, 1, '998', 'Test9', '', '25.0000', 0, '2004-04-26 02:30:12', '2004-04-26 02:30:32', NULL, '1.00', 1, 1, 0, '2', '1', '1', 0, 0, 0, 1, 0, 1, '0', 9, 0, 0, '25.0000', 53, 1),
-(123, 1, '999', 'Test11', '', '25.0000', 0, '2004-04-26 02:30:41', '2004-04-26 02:31:04', NULL, '1.00', 1, 1, 0, '1', '1', '1', 0, 0, 0, 1, 0, 1, '0', 11, 0, 0, '25.0000', 53, 1),
-(130, 1, '1000', 'Special', '2_small.jpg', '15.0000', 0, '2004-04-28 02:19:53', '2004-10-06 00:05:34', NULL, '2.00', 1, 1, 0, '0', '1', '1', 0, 0, 0, 1, 0, 1, '0', 0, 1, 1, '10.0000', 55, 1),
-(127, 1, '1000', 'Normal', 'small_00.jpg', '15.0000', 0, '2004-04-28 01:51:35', '2004-04-28 14:23:29', NULL, '2.00', 1, 1, 0, '0', '1', '1', 0, 0, 0, 1, 0, 1, '0', 0, 1, 0, '15.0000', 55, 1),
-(131, 1, '1000', 'PERWORDREQ', '', '0.0000', 0, '2004-05-01 01:31:28', '2004-05-07 21:30:23', NULL, '1.00', 1, 1, 0, '0', '1', '1', 1, 0, 0, 1, 0, 1, '0', 0, 0, 0, '5.0000', 57, 1),
-(132, 1, '997', 'GolfClub', '9_small.jpg', '0.0000', 0, '2004-05-02 12:36:12', '2004-05-02 18:04:36', NULL, '1.00', 1, 1, 0, '3', '1', '1', 1, 0, 0, 1, 0, 1, '0', 0, 0, 0, '13.0050', 58, 1),
-(133, 1, '1000', 'DOWNLOAD2', '2_small.jpg', '49.9900', 0, '2004-05-02 23:51:33', '2004-05-03 00:06:58', NULL, '0.00', 1, 1, 0, '2', '1', '1', 0, 0, 0, 1, 0, 1, '0', 0, 0, 0, '49.9900', 60, 1),
-(134, 1, '1000', 'PERLETTERREQ', '', '0.0000', 0, '2004-05-07 21:23:58', '2004-05-07 21:29:50', NULL, '1.00', 1, 1, 0, '0', '1', '1', 1, 0, 0, 1, 0, 1, '0', 0, 0, 0, '5.0000', 57, 1),
-(154, 1, '10000', 'ROPE', '9_small.jpg', '1.0000', 0, '2004-05-16 21:08:08', '2004-07-12 17:18:46', NULL, '0.00', 1, 1, 0, '0', '10', '1', 0, 0, 0, 1, 0, 1, '0', 0, 0, 0, '0.9000', 58, 0),
-(155, 1, '1000', 'PRICEFACTOR', 'sample_image.gif', '10.0000', 0, '2004-05-17 23:03:10', '2004-07-12 17:21:04', NULL, '1.00', 1, 1, 0, '0', '1', '1', 0, 0, 0, 1, 0, 1, '0', 0, 0, 0, '10.0000', 56, 1),
-(156, 1, '1000', 'PRICEFACTOROFF', 'sample_image.gif', '10.0000', 0, '2004-05-17 23:05:24', '2004-05-17 23:10:12', NULL, '1.00', 1, 1, 0, '0', '1', '1', 0, 0, 0, 1, 0, 1, '0', 0, 0, 0, '10.0000', 56, 1),
-(157, 1, '1000', 'PRICEFACTOROFFATTR', 'sample_image.gif', '10.0000', 0, '2004-05-17 23:10:18', '2004-05-17 23:13:48', NULL, '1.00', 1, 1, 0, '0', '1', '1', 1, 0, 0, 1, 0, 1, '0', 0, 0, 0, '10.0000', 56, 1),
-(158, 1, '1000', 'ONETIME', 'b_b_grid.gif', '45.0000', 0, '2004-05-17 23:22:08', NULL, NULL, '1.00', 1, 1, 0, '0', '1', '1', 0, 0, 0, 1, 0, 1, '0', 0, 0, 0, '45.0000', 56, 1),
-(159, 1, '10000', 'ATTQTYPRICE', 'b_c_grid.gif', '25.0000', 0, '2004-05-17 23:29:31', '2004-05-17 23:49:56', NULL, '1.00', 1, 1, 0, '0', '1', '1', 0, 0, 0, 1, 0, 1, '0', 0, 0, 0, '25.0000', 56, 1),
-(160, 1, '997', 'GolfClub', '9_small.jpg', '0.0000', 0, '2004-05-18 10:14:35', '2004-05-18 10:15:16', NULL, '1.00', 1, 1, 0, '0', '1', '1', 1, 0, 0, 1, 0, 1, '0', 0, 0, 0, '14.4500', 61, 1),
-(165, 1, '10000', 'ROPE', '9_small.jpg', '1.0000', 0, '2004-05-18 10:42:50', '2004-07-12 17:18:12', NULL, '0.00', 1, 1, 0, '0', '10', '1', 0, 0, 0, 1, 0, 1, '0', 0, 0, 0, '1.0000', 61, 0),
-(166, 2, '10000', 'RTBHUNTER', 'sooty.jpg', '4.9900', 0, '2004-05-18 10:42:50', '2004-05-18 10:43:00', NULL, '3.00', 1, 1, 0, '0', '1', '1', 0, 0, 0, 1, 0, 1, '0', 0, 0, 0, '3.0000', 62, 1),
-(167, 3, '0', '', '', '0.0000', 0, '2004-05-18 10:42:50', '2004-10-06 00:39:10', NULL, '0.00', 1, 0, 0, '0', '1', '1', 0, 0, 0, 0, 0, 0, '0', 0, 0, 0, '0.0000', 63, 1),
-(168, 1, '1000', 'PGT', 'samples/1_small.jpg', '3.9500', 0, '2004-07-12 15:25:32', '2004-07-12 16:26:08', NULL, '1.00', 1, 1, 0, '0', '1', '1', 0, 0, 0, 1, 0, 1, '0', 10, 0, 0, '3.9500', 64, 1),
-(169, 2, '1000', 'PMT', 'samples/2_small.jpg', '3.9500', 0, '2004-07-12 15:27:50', '2004-07-12 16:29:01', NULL, '1.00', 1, 1, NULL, '0', '1', '1', 0, 0, 0, 1, 0, 1, '0', 20, 0, 0, '3.9500', 64, 1),
-(170, 3, '0', '', 'samples/3_small.jpg', '0.0000', 0, '2004-07-12 15:29:23', '2004-09-27 23:11:25', NULL, '0.00', 1, 0, 0, '0', '1', '1', 0, 0, 0, 0, 0, 0, '0', 30, 0, 0, '0.0000', 64, 1),
-(171, 4, '1000', 'DPT', 'samples/4_small.jpg', '3.9500', 0, '2004-07-12 15:32:40', '2004-07-12 17:46:49', NULL, '0.00', 1, 1, 0, '0', '1', '1', 0, 0, 0, 1, 0, 1, '0', 40, 0, 0, '3.9500', 64, 1),
-(172, 5, '1000', 'PFS', 'samples/5_small.jpg', '3.9500', 0, '2004-07-12 15:39:18', '2004-07-12 23:08:43', NULL, '5.00', 1, 0, 0, '0', '1', '1', 0, 0, 0, 1, 1, 1, '0', 50, 0, 0, '3.9500', 64, 1),
-(173, 1, '1000', 'Book', 'b_g_grid.gif', '0.0000', 0, '2004-09-24 23:54:34', '2004-09-26 02:50:59', NULL, '0.00', 1, 1, 0, '0', '1', '1', 1, 0, 0, 1, 0, 1, '0', 0, 0, 0, '52.5000', 61, 1),
-(174, 1, '999', 'TESTCALL', 'call_for_price.jpg', '0.0000', 0, '2004-09-27 13:25:44', '2004-09-27 13:28:54', '2007-02-21 00:00:00', '1.00', 1, 1, 0, '0', '1', '1', 0, 0, 1, 1, 0, 1, '0', 0, 0, 0, '0.0000', 24, 0),
-(175, 1, '1000', 'Normal', '1_small.jpg', '60.0000', 0, '2004-09-27 23:32:52', '2004-10-05 17:13:20', NULL, '2.00', 1, 1, 0, '0', '1', '1', 0, 0, 0, 0, 0, 1, '0', 0, 1, 0, '60.0000', 55, 1),
-(176, 1, '1000', 'Normal', 'small_00.jpg', '100.0000', 0, '2004-10-05 16:45:25', '2004-10-05 16:47:22', NULL, '2.00', 1, 1, 0, '0', '1', '1', 0, 0, 0, 1, 0, 1, '0', 0, 1, 0, '100.0000', 55, 1),
-(177, 1, '1000', 'Special', '2_small.jpg', '100.0000', 0, '2004-10-05 16:47:45', '2004-10-06 00:05:48', NULL, '2.00', 1, 1, 0, '0', '1', '1', 0, 0, 0, 1, 0, 1, '0', 0, 1, 1, '75.0000', 55, 1),
-(179, 1, '1000', 'DOWNLOAD1', '1_small.jpg', '39.0000', 0, '2004-10-06 00:08:33', '2004-10-06 00:18:51', NULL, '0.00', 1, 1, 0, '0', '1', '1', 0, 0, 0, 1, 0, 1, '0', 0, 0, 0, '39.0000', 60, 1),
-(178, 1, '1000', 'Normal', '1_small.jpg', '60.0000', 0, '2004-10-05 16:54:52', '2004-10-05 17:15:02', NULL, '2.00', 1, 1, 0, '0', '1', '1', 0, 0, 0, 0, 0, 1, '0', 0, 1, 0, '50.0000', 55, 1);
+INSERT INTO products (products_id, products_type, products_quantity, products_model, products_image, products_price, products_virtual, products_date_added, products_last_modified, products_date_available, products_weight, products_status, products_tax_class_id, manufacturers_id, products_ordered, products_quantity_order_min, products_quantity_order_units, products_priced_by_attribute, product_is_free, product_is_call, products_quantity_mixed, product_is_always_free_shipping, products_qty_box_status, products_quantity_order_max, products_sort_order, products_discount_type, products_discount_type_from, products_price_sorter, master_categories_id, products_mixed_discount_quantity) VALUES (1, 1, '31', 'MG200MMS', 'matrox/mg200mms.gif', '299.9900', 0, '2003-11-03 12:32:17', '2013-04-26 23:57:34', NULL, '23.00', 1, 1, 1, '1', '1', '1', 0, 0, 0, 0, 0, 1, '0', 0, 0, 0, '299.9900', 4, 1),
+(2, 1, '31', 'MG400-32MB', 'matrox/mg400-32mb.gif', '499.9900', 0, '2012-11-03 12:32:17', NULL, NULL, '23.00', 1, 1, 1, '1', '1', '1', 0, 0, 0, 0, 0, 1, '0', 0, 0, 0, '499.9900', 4, 1),
+(3, 1, '500', 'MSIMPRO', 'microsoft/msimpro.gif', '49.9900', 0, '2012-11-03 12:32:17', NULL, NULL, '7.00', 1, 1, 2, '1', '1', '1', 0, 0, 0, 0, 0, 1, '0', 0, 0, 0, '39.9900', 9, 1),
+(4, 1, '12', 'DVD-RPMK', 'dvd/replacement_killers.gif', '42.0000', 0, '2012-11-03 12:32:17', NULL, NULL, '23.00', 1, 1, 3, '1', '1', '1', 0, 0, 0, 0, 0, 1, '0', 0, 0, 0, '42.0000', 10, 1),
+(5, 1, '15', 'DVD-BLDRNDC', 'dvd/blade_runner.gif', '35.9900', 0, '2012-11-03 12:32:17', '2012-12-23 00:44:28', NULL, '7.00', 1, 1, 3, '2', '1', '1', 0, 0, 0, 0, 0, 1, '0', 0, 0, 0, '30.0000', 11, 1),
+(6, 1, '8', 'DVD-MATR', 'dvd/the_matrix.gif', '39.9900', 0, '2012-11-03 12:32:17', '2012-12-23 00:48:28', NULL, '7.00', 1, 1, 3, '2', '1', '1', 0, 0, 0, 0, 0, 1, '0', 0, 0, 0, '30.0000', 10, 1),
+(7, 1, '500', 'DVD-YGEM', 'dvd/youve_got_mail.gif', '34.9900', 0, '2012-11-03 12:32:17', '2013-04-27 14:53:17', NULL, '7.00', 1, 1, 3, '5', '1', '1', 0, 0, 0, 0, 0, 1, '0', 0, 0, 0, '34.9900', 12, 1),
+(8, 1, '499', 'DVD-ABUG', 'dvd/a_bugs_life.gif', '35.9900', 0, '2012-11-03 12:32:17', '2013-04-27 14:52:54', NULL, '7.00', 1, 1, 3, '6', '1', '1', 0, 0, 0, 0, 0, 1, '0', 10, 1, 1, '35.9900', 13, 1),
+(9, 1, '10', 'DVD-UNSG', 'dvd/under_siege.gif', '29.9900', 0, '2012-11-03 12:32:17', '2013-05-17 13:35:27', NULL, '7.00', 1, 1, 3, '0', '1', '1', 0, 0, 0, 0, 0, 1, '0', 0, 0, 0, '29.9900', 10, 1),
+(10, 1, '9', 'DVD-UNSG2', 'dvd/under_siege2.gif', '29.9900', 0, '2012-11-03 12:32:17', NULL, NULL, '7.00', 1, 1, 3, '1', '1', '1', 0, 0, 0, 0, 0, 1, '0', 0, 0, 0, '29.9900', 10, 1),
+(11, 1, '10', 'DVD-FDBL', 'dvd/fire_down_below.gif', '29.9900', 0, '2012-11-03 12:32:17', '2012-12-23 00:43:40', NULL, '7.00', 1, 1, 3, '0', '1', '1', 0, 0, 0, 0, 0, 1, '0', 0, 0, 0, '29.9900', 10, 1),
+(12, 1, '9', 'DVD-DHWV', 'dvd/die_hard_3.gif', '39.9900', 0, '2012-11-03 12:32:17', '2013-05-16 00:34:33', NULL, '7.00', 1, 1, 4, '6', '1', '1', 0, 0, 0, 0, 0, 1, '0', 0, 0, 0, '39.9900', 10, 1),
+(13, 1, '10', 'DVD-LTWP', 'dvd/lethal_weapon.gif', '34.9900', 0, '2012-11-03 12:32:17', '2013-04-27 00:07:35', NULL, '7.00', 1, 1, 3, '0', '1', '1', 0, 0, 0, 0, 0, 1, '0', 0, 0, 0, '34.9900', 10, 1),
+(14, 1, '9', 'DVD-REDC', 'dvd/red_corner.gif', '32.0000', 0, '2012-11-03 12:32:17', '2012-12-23 00:47:39', NULL, '7.00', 1, 1, 3, '1', '1', '1', 0, 0, 0, 0, 0, 1, '0', 0, 0, 0, '32.0000', 15, 1),
+(15, 1, '9', 'DVD-FRAN', 'dvd/frantic.gif', '35.0000', 0, '2012-11-03 12:32:17', '2012-12-23 00:43:55', NULL, '7.00', 1, 1, 3, '1', '1', '1', 0, 0, 0, 0, 0, 1, '0', 0, 0, 0, '35.0000', 14, 1),
+(16, 1, '9', 'DVD-CUFI', 'dvd/courage_under_fire.gif', '38.9900', 0, '2012-11-03 12:32:17', '2012-12-23 00:42:57', '2007-02-21 00:00:00', '7.00', 1, 1, 4, '1', '1', '1', 0, 0, 0, 0, 0, 1, '0', 0, 0, 0, '29.9900', 15, 1),
+(17, 1, '10', 'DVD-SPEED', 'dvd/speed.gif', '39.9900', 0, '2012-11-03 12:32:17', '2012-12-23 00:47:51', NULL, '7.00', 1, 1, 4, '0', '1', '1', 0, 0, 0, 0, 0, 1, '0', 0, 0, 0, '39.9900', 10, 1),
+(18, 1, '10', 'DVD-SPEED2', 'dvd/speed_2.gif', '42.0000', 0, '2012-11-03 12:32:17', NULL, NULL, '7.00', 1, 1, 4, '0', '1', '1', 0, 0, 0, 0, 0, 1, '0', 0, 0, 0, '42.0000', 10, 1),
+(19, 1, '10', 'DVD-TSAB', 'dvd/theres_something_about_mary.gif', '49.9900', 0, '2012-11-03 12:32:17', '2012-12-23 00:49:00', NULL, '7.00', 1, 1, 4, '0', '1', '1', 0, 0, 0, 0, 0, 1, '0', 0, 0, 0, '49.9900', 12, 1),
+(20, 1, '8', 'DVD-BELOVED', 'dvd/beloved.gif', '54.9900', 0, '2012-11-03 12:32:17', '2012-12-23 00:42:34', NULL, '7.00', 1, 1, 3, '2', '1', '1', 0, 0, 0, 0, 0, 1, '0', 0, 0, 0, '54.9900', 15, 1),
+(21, 1, '16', 'PC-SWAT3', 'sierra/swat_3.gif', '79.9900', 0, '2012-11-03 12:32:17', '2013-04-27 14:51:00', NULL, '7.00', 1, 1, 7, '0', '1', '1', 0, 0, 0, 0, 0, 1, '0', 0, 0, 0, '79.9900', 18, 1),
+(22, 1, '13', 'PC-UNTM', 'gt_interactive/unreal_tournament.gif', '89.9900', 0, '2012-11-03 12:32:17', '2012-12-23 00:49:29', NULL, '7.00', 1, 1, 8, '9', '1', '1', 0, 0, 0, 0, 0, 1, '0', 0, 0, 0, '89.9900', 19, 1),
+(23, 1, '16', 'PC-TWOF', 'gt_interactive/wheel_of_time.gif', '99.9900', 0, '2012-11-03 12:32:17', '2012-12-23 00:48:50', NULL, '10.00', 1, 1, 8, '0', '1', '1', 0, 0, 0, 0, 0, 1, '0', 0, 0, 0, '99.9900', 20, 1),
+(24, 1, '16', 'PC-DISC', 'gt_interactive/disciples.gif', '90.0000', 0, '2012-11-03 12:32:17', '2012-12-23 00:43:24', NULL, '8.00', 1, 1, 8, '1', '1', '1', 0, 0, 0, 0, 0, 1, '0', 0, 0, 0, '90.0000', 20, 1),
+(25, 1, '16', 'MSINTKB', 'microsoft/intkeyboardps2.gif', '69.9900', 0, '2012-11-03 12:32:17', '2013-01-04 03:02:41', NULL, '8.00', 1, 1, 2, '0', '1', '1', 0, 0, 0, 0, 0, 1, '0', 0, 0, 0, '69.9900', 8, 1),
+(26, 1, '9', 'MSIMEXP', 'microsoft/imexplorer.gif', '64.9500', 0, '2012-11-03 12:32:17', '2013-05-03 01:47:47', NULL, '8.00', 1, 1, 2, '17', '1', '1', 0, 0, 0, 0, 0, 1, '0', 0, 0, 0, '64.9500', 9, 1),
+(27, 1, '7', 'HPLJ1100XI', 'hewlett_packard/lj1100xi.gif', '499.9900', 0, '2012-11-03 12:32:17', '2012-12-23 00:45:03', NULL, '45.00', 1, 1, 9, '1', '1', '1', 0, 0, 0, 0, 0, 1, '0', 0, 0, 0, '499.9900', 5, 1),
+(28, 1, '999', 'GIFT005', 'gift_certificates/gv_5.gif', '5.0000', 1, '2012-11-03 12:32:17', '2013-01-10 02:57:18', NULL, '0.00', 1, 0, 0, '1', '1', '1', 0, 0, 0, 0, 0, 1, '0', 0, 0, 0, '5.0000', 21, 1),
+(29, 1, '985', 'GIFT 010', 'gift_certificates/gv_10.gif', '10.0000', 1, '2012-11-03 12:32:17', '2012-12-28 14:51:36', NULL, '0.00', 1, 0, 0, '15', '1', '1', 0, 0, 0, 0, 0, 1, '0', 0, 0, 0, '10.0000', 21, 1),
+(30, 1, '992', 'GIFT025', 'gift_certificates/gv_25.gif', '25.0000', 1, '2012-11-03 12:32:17', NULL, NULL, '0.00', 1, 0, 0, '8', '1', '1', 0, 0, 0, 0, 0, 1, '0', 0, 0, 0, '25.0000', 21, 1),
+(31, 1, '997', 'GIFT050', 'gift_certificates/gv_50.gif', '50.0000', 1, '2012-11-03 12:32:17', NULL, NULL, '0.00', 1, 0, 0, '4', '1', '1', 0, 0, 0, 0, 0, 1, '0', 0, 0, 0, '50.0000', 21, 1),
+(32, 1, '995', 'GIFT100', 'gift_certificates/gv_100.gif', '100.0000', 1, '2012-11-03 12:32:17', NULL, NULL, '0.00', 1, 0, 0, '5', '1', '1', 0, 0, 0, 0, 0, 1, '0', 0, 0, 0, '100.0000', 21, 1),
+(34, 1, '796', 'DVD-ABUG', 'dvd/a_bugs_life.gif', '35.9900', 0, '2012-11-07 22:03:45', '2013-01-01 14:16:01', '2005-02-21 00:00:00', '7.00', 1, 1, 3, '5', '1', '1', 0, 0, 0, 0, 0, 1, '0', 0, 0, 0, '35.9900', 22, 1),
+(36, 1, '700', 'HPLJ1100XI', 'hewlett_packard/lj1100xi.gif', '0.0000', 0, '2012-12-24 14:29:11', '2013-01-03 01:51:12', NULL, '45.00', 1, 1, 9, '0', '1', '1', 1, 0, 0, 0, 0, 1, '0', 0, 0, 0, '449.1000', 25, 1),
+(100, 1, '700', 'HPLJ1100XI', 'hewlett_packard/lj1100xi.gif', '0.0000', 0, '2013-01-08 14:06:13', '2013-01-08 14:06:50', NULL, '45.00', 1, 1, 9, '0', '1', '1', 1, 0, 0, 0, 0, 1, '0', 0, 0, 0, '336.8250', 25, 1),
+(39, 1, '997', 'TESTFREE', 'free.gif', '100.0000', 0, '2012-12-25 16:33:13', '2013-01-11 02:29:16', NULL, '1.00', 1, 1, 0, '3', '1', '1', 0, 1, 0, 1, 0, 1, '0', 0, 0, 0, '0.0000', 24, 1),
+(40, 1, '999', 'TESTCALL', 'call_for_price.jpg', '100.0000', 0, '2012-12-25 17:42:15', '2013-01-04 13:08:08', '2007-02-21 00:00:00', '1.00', 1, 1, 0, '0', '1', '1', 0, 0, 1, 1, 0, 1, '0', 0, 0, 0, '100.0000', 24, 1),
+(41, 1, '999', 'TESTCALL', 'call_for_price.jpg', '100.0000', 0, '2012-12-25 19:13:35', '2004-09-27 13:33:33', NULL, '1.00', 1, 1, 0, '0', '1', '1', 0, 0, 1, 1, 0, 1, '0', 0, 0, 0, '81.0000', 28, 0),
+(42, 1, '998', 'TESTFREE', 'free.gif', '100.0000', 0, '2012-12-25 19:14:16', '2012-12-25 19:15:00', NULL, '1.00', 1, 1, 0, '1', '1', '1', 0, 1, 0, 1, 0, 1, '0', 0, 0, 0, '0.0000', 28, 1),
+(43, 1, '999', 'TESTFREEATTRIB', 'free.gif', '100.0000', 0, '2012-12-25 20:44:06', '2013-01-21 16:23:29', NULL, '0.00', 1, 1, 0, '0', '1', '1', 0, 1, 0, 1, 0, 1, '0', 0, 0, 0, '0.0000', 24, 1),
+(44, 1, '999', 'TESTMINUNITSNOMIX', 'sample_image.gif', '100.0000', 0, '2012-12-25 21:38:59', '2013-01-22 13:15:41', NULL, '1.00', 1, 1, 0, '0', '4', '2', 0, 0, 0, 0, 0, 1, '0', 0, 0, 0, '90.0000', 22, 1),
+(46, 1, '981', 'TESTMINUNITSMIX', 'sample_image.gif', '100.0000', 0, '2012-12-25 21:53:07', '2012-12-29 02:00:50', NULL, '1.00', 1, 1, 0, '18', '4', '2', 0, 0, 0, 1, 0, 1, '0', 0, 0, 0, '90.0000', 22, 1),
+(47, 1, '9996', 'GIFT', 'gift_certificates/gv.gif', '0.0000', 1, '2012-12-27 22:56:57', '2004-09-29 20:11:51', NULL, '0.00', 1, 0, 0, '4', '1', '1', 1, 0, 0, 1, 0, 1, '0', 0, 0, 0, '5.0000', 21, 1),
+(48, 1, '9990', 'TEST1', '1_small.jpg', '39.0000', 0, '2012-12-28 02:27:47', '2013-01-11 02:56:37', NULL, '1.00', 1, 1, 0, '10', '1', '1', 0, 0, 0, 1, 0, 1, '0', 0, 0, 0, '39.0000', 23, 1),
+(49, 1, '900', 'TEST2', '2_small.jpg', '20.0000', 0, '2012-12-28 02:28:42', '2012-12-29 23:00:27', NULL, '0.50', 1, 1, 0, '0', '1', '1', 0, 0, 0, 1, 0, 1, '0', 0, 0, 0, '20.0000', 23, 1),
+(50, 1, '1000', 'TEST3', '3_small.jpg', '75.0000', 0, '2012-12-28 02:29:37', '2012-12-29 23:01:04', NULL, '1.50', 1, 1, 0, '0', '1', '1', 0, 0, 0, 1, 0, 1, '0', 0, 0, 0, '75.0000', 23, 1),
+(51, 1, '998', 'Free1', 'b_g_grid.gif', '25.0000', 0, '2012-12-28 11:51:05', '2013-01-21 17:03:32', NULL, '10.00', 1, 1, 0, '2', '1', '1', 0, 1, 0, 1, 1, 1, '0', 0, 0, 0, '0.0000', 24, 1),
+(52, 1, '997', 'Free2', 'b_p_grid.gif', '0.0000', 1, '2012-12-28 12:24:58', '2013-01-21 17:01:18', NULL, '2.00', 1, 1, 0, '2', '1', '1', 0, 1, 0, 1, 0, 1, '0', 0, 0, 0, '0.0000', 24, 1),
+(53, 1, '991', 'MINUNITSMIX', 'b_c_grid.gif', '25.0000', 0, '2012-12-28 23:26:44', '2013-01-11 02:22:35', NULL, '1.00', 1, 1, 0, '6', '6', '3', 0, 0, 0, 1, 0, 1, '0', 0, 0, 0, '20.0000', 23, 1),
+(54, 1, '991', 'MINUNITSNOMIX', 'waybkgnd.gif', '25.0000', 0, '2012-12-29 23:19:13', '2013-01-11 02:23:08', NULL, '1.00', 1, 1, 0, '0', '6', '3', 0, 0, 0, 0, 0, 1, '0', 0, 0, 0, '25.0000', 23, 1),
+(55, 1, '991', 'MINUNITSMIXSALE', 'b_b_grid.gif', '25.0000', 0, '2012-12-31 11:11:46', '2013-01-11 02:26:28', NULL, '1.00', 1, 1, 0, '0', '6', '3', 0, 0, 0, 1, 0, 1, '0', 0, 0, 0, '22.5000', 28, 1),
+(56, 1, '991', 'MINUNITSNOMIXSALE', 'b_w_grid.gif', '25.0000', 0, '2012-12-31 11:13:08', '2013-01-11 02:26:49', NULL, '1.00', 1, 1, 0, '0', '6', '3', 0, 0, 0, 0, 0, 1, '0', 0, 0, 0, '22.5000', 28, 1),
+(57, 1, '998', 'TESTFREEALL', 'free.gif', '0.0000', 0, '2012-12-31 11:36:09', '2013-01-21 16:55:19', NULL, '1.00', 1, 1, 0, '1', '1', '1', 0, 1, 0, 1, 1, 1, '0', 0, 0, 0, '0.0000', 24, 1),
+(59, 1, '700', 'HPLJ1100XI', 'hewlett_packard/lj1100xi.gif', '0.0000', 0, '2012-12-31 14:36:57', '2012-12-31 14:37:05', NULL, '45.00', 1, 1, 9, '0', '1', '1', 1, 0, 0, 0, 0, 1, '0', 0, 0, 0, '300.0000', 23, 1),
+(60, 1, '699', 'HPLJ1100XI', 'hewlett_packard/lj1100xi.gif', '499.7500', 0, '2013-01-02 01:34:55', '2013-01-02 01:41:37', NULL, '45.00', 1, 1, 9, '1', '1', '1', 0, 0, 0, 0, 0, 1, '0', 0, 0, 0, '449.7750', 28, 1),
+(61, 1, '699', 'HPLJ1100XI', 'hewlett_packard/lj1100xi.gif', '499.7500', 0, '2013-01-02 01:44:09', '2013-01-02 01:45:45', NULL, '45.00', 1, 1, 9, '1', '1', '1', 0, 0, 0, 0, 0, 1, '0', 0, 0, 0, '449.7750', 28, 1),
+(101, 1, '1000', 'Test120-90off-10', 'test_demo.jpg', '0.0000', 0, '2013-01-08 14:11:32', '2013-01-08 14:17:09', NULL, '1.00', 1, 1, 0, '0', '1', '1', 1, 0, 0, 1, 0, 1, '0', 0, 0, 0, '72.0000', 47, 1),
+(109, 1, '1000', 'HIDEQTYBOX', '1_small.jpg', '75.0000', 0, '2013-01-21 22:01:20', '2013-01-22 11:21:12', NULL, '1.00', 1, 1, 0, '0', '1', '1', 0, 0, 0, 1, 0, 1, '1', 0, 0, 0, '75.0000', 23, 1),
+(78, 1, '1000', 'Test25-10AttrAll', 'test_demo.jpg', '0.0000', 0, '2013-01-04 01:09:46', '2013-01-04 01:30:12', NULL, '0.00', 1, 1, 0, '0', '1', '1', 1, 0, 0, 1, 0, 1, '0', 0, 0, 0, '101.2500', 25, 1),
+(79, 1, '1000', 'Test25-AttrAll', 'test_demo.jpg', '0.0000', 0, '2013-01-04 01:28:52', '2013-01-04 01:33:55', NULL, '1.00', 1, 1, 0, '0', '1', '1', 1, 0, 0, 1, 0, 1, '0', 0, 0, 0, '150.0000', 23, 1),
+(74, 1, '700', 'HPLJ1100XI', 'hewlett_packard/lj1100xi.gif', '0.0000', 0, '2013-01-02 15:34:49', '2013-01-02 15:35:17', NULL, '45.00', 1, 1, 9, '0', '1', '1', 1, 0, 0, 0, 0, 1, '0', 0, 0, 0, '399.2000', 23, 1),
+(76, 1, '1000', 'Test25-10', 'test_demo.jpg', '100.0000', 0, '2013-01-03 23:08:33', NULL, NULL, '0.00', 1, 1, 0, '0', '1', '1', 0, 0, 0, 1, 0, 1, '0', 0, 0, 0, '67.5000', 28, 1),
+(80, 1, '1000', 'Test25', 'test_demo.jpg', '100.0000', 0, '2013-01-04 01:31:06', '2013-01-04 13:35:47', NULL, '1.00', 1, 1, 0, '0', '1', '1', 0, 0, 0, 1, 0, 1, '0', 0, 0, 0, '100.0000', 23, 1),
+(84, 1, '999', 'Test120', 'test_demo.jpg', '120.0000', 0, '2013-01-04 15:05:10', '2013-01-06 15:27:39', NULL, '1.00', 1, 1, 0, '1', '1', '1', 0, 0, 0, 1, 0, 1, '0', 0, 0, 0, '120.0000', 23, 1),
+(82, 1, '1000', 'Test120-5', 'test_demo.jpg', '120.0000', 0, '2013-01-04 14:50:38', '2013-01-04 17:09:03', NULL, '1.00', 1, 1, 0, '0', '1', '1', 0, 0, 0, 1, 0, 1, '0', 0, 0, 0, '115.0000', 27, 1),
+(83, 1, '1000', 'Test120-90-5', 'test_demo.jpg', '120.0000', 0, '2013-01-04 15:01:53', '2013-01-06 10:02:11', NULL, '1.00', 1, 1, 0, '0', '1', '1', 0, 0, 0, 1, 0, 1, '0', 0, 0, 0, '85.0000', 27, 1),
+(85, 1, '1000', 'Test90', 'test_demo.jpg', '120.0000', 0, '2013-01-04 15:19:00', '2013-01-06 10:00:35', NULL, '1.00', 1, 1, 0, '0', '1', '1', 0, 0, 0, 1, 0, 1, '0', 0, 0, 0, '90.0000', 23, 1),
+(88, 1, '1000', 'Test120-90-10-Skip', 'test_demo.jpg', '120.0000', 0, '2013-01-05 00:14:31', '2013-01-06 09:58:08', NULL, '1.00', 1, 1, 0, '0', '1', '1', 0, 0, 0, 1, 0, 1, '0', 0, 0, 0, '90.0000', 31, 1),
+(89, 1, '1000', 'Test120-90-10-Skip', 'test_demo.jpg', '120.0000', 0, '2013-01-05 00:41:40', '2013-01-06 09:57:42', NULL, '1.00', 1, 1, 0, '0', '1', '1', 0, 0, 0, 1, 0, 1, '0', 0, 0, 0, '108.0000', 31, 1),
+(95, 1, '1000', 'Test120-25-New100-Skip', 'test_demo.jpg', '120.0000', 0, '2013-01-07 02:35:44', '2013-01-07 02:37:27', NULL, '1.00', 1, 1, 0, '0', '1', '1', 0, 0, 0, 1, 0, 1, '0', 0, 0, 0, '90.0000', 51, 1),
+(90, 1, '999', 'Test120-90-10', 'test_demo.jpg', '120.0000', 0, '2013-01-05 23:55:18', '2013-01-06 00:08:58', NULL, '1.00', 1, 1, 0, '1', '1', '1', 0, 0, 0, 1, 0, 1, '0', 0, 0, 0, '81.0000', 45, 1),
+(92, 1, '1000', 'Test120-90off-10', 'test_demo.jpg', '120.0000', 0, '2013-01-05 23:58:54', '2013-01-06 00:09:28', NULL, '1.00', 1, 1, 0, '0', '1', '1', 0, 0, 0, 1, 0, 1, '0', 0, 0, 0, '108.0000', 45, 1),
+(93, 1, '1000', 'Test120-New100', 'test_demo.jpg', '120.0000', 0, '2013-01-06 00:02:32', '2013-01-06 00:04:25', NULL, '1.00', 1, 1, 0, '0', '1', '1', 0, 0, 0, 1, 0, 1, '0', 0, 0, 0, '100.0000', 46, 1),
+(94, 1, '1000', 'Test120-25-New100', 'test_demo.jpg', '120.0000', 0, '2013-01-06 00:04:31', '2013-01-06 00:07:08', NULL, '1.00', 1, 1, 0, '0', '1', '1', 0, 0, 0, 1, 0, 1, '0', 0, 0, 0, '100.0000', 46, 1),
+(96, 1, '1000', 'Test120-New100-Off-Skip', 'test_demo.jpg', '120.0000', 0, '2013-01-07 02:36:52', '2013-01-07 02:37:29', NULL, '1.00', 1, 1, 0, '0', '1', '1', 0, 0, 0, 1, 0, 1, '0', 0, 0, 0, '100.0000', 51, 1),
+(97, 1, '1000', 'Test120-90-10-Price', 'test_demo.jpg', '120.0000', 0, '2013-01-07 11:26:34', '2013-01-07 11:27:24', NULL, '1.00', 1, 1, 0, '0', '1', '1', 0, 0, 0, 1, 0, 1, '0', 0, 0, 0, '108.0000', 32, 1),
+(98, 1, '1000', 'Test120-90off-10-Price', 'test_demo.jpg', '120.0000', 0, '2013-01-07 11:28:16', '2013-01-07 11:29:57', NULL, '1.00', 1, 1, 0, '0', '1', '1', 0, 0, 0, 1, 0, 1, '0', 0, 0, 0, '108.0000', 32, 1),
+(99, 1, '997', 'FreeShipping', 'small_00.jpg', '25.0000', 0, '2013-01-07 13:27:30', '2013-01-21 01:48:48', NULL, '5.00', 1, 1, 0, '3', '1', '1', 0, 0, 0, 1, 1, 1, '0', 0, 0, 0, '25.0000', 23, 1),
+(104, 1, '1000', 'HIDEQTY', '1_small.jpg', '75.0000', 0, '2013-01-11 03:02:51', '2013-01-22 11:21:36', NULL, '1.00', 1, 1, 0, '0', '1', '1', 0, 0, 0, 1, 0, 0, '0', 0, 0, 0, '75.0000', 23, 1),
+(105, 1, '999', 'MAXSAMPLE-1', 'waybkgnd.gif', '50.0000', 0, '2013-01-11 14:10:59', '2013-01-11 14:36:00', NULL, '1.00', 1, 1, 0, '1', '1', '1', 0, 0, 0, 1, 0, 1, '1', 0, 0, 0, '50.0000', 22, 1),
+(106, 1, '1000', 'MAXSAMPLE-3', 'waybkgnd.gif', '50.0000', 0, '2013-01-11 14:36:08', '2013-01-11 15:32:56', NULL, '1.00', 1, 1, 0, '0', '1', '1', 0, 0, 0, 1, 0, 1, '3', 0, 0, 0, '50.0000', 22, 1),
+(107, 1, '995', 'FreeShippingNoWeight', 'small_00.jpg', '25.0000', 0, '2013-01-21 01:41:22', '2013-01-21 02:01:54', NULL, '0.00', 1, 1, 0, '0', '1', '1', 0, 0, 0, 1, 0, 1, '0', 0, 0, 0, '25.0000', 23, 1),
+(108, 1, '0', 'SoldOut', 'small_00.jpg', '25.0000', 0, '2013-01-21 01:53:20', NULL, NULL, '3.00', 1, 1, 0, '0', '1', '1', 0, 0, 0, 1, 0, 1, '0', 0, 0, 0, '25.0000', 23, 1),
+(110, 1, '1000', 'Test120-5SKIP', 'test_demo.jpg', '120.0000', 0, '2013-01-24 16:09:52', '2013-01-24 16:15:25', NULL, '1.00', 1, 1, 0, '0', '1', '1', 0, 0, 0, 1, 0, 1, '0', 0, 0, 0, '115.0000', 52, 1),
+(111, 1, '1000', 'Test120-90-5SKIP', 'test_demo.jpg', '120.0000', 0, '2013-01-24 16:10:12', '2013-01-24 16:15:27', NULL, '1.00', 1, 1, 0, '0', '1', '1', 0, 0, 0, 1, 0, 1, '0', 0, 0, 0, '90.0000', 52, 1),
+(112, 1, '998', 'Test2', '', '25.0000', 0, '2013-04-26 02:24:57', '2013-04-26 02:25:44', NULL, '1.00', 1, 1, 0, '2', '1', '1', 0, 0, 0, 1, 0, 1, '0', 2, 0, 0, '25.0000', 53, 1),
+(113, 1, '994', 'Test4', '', '25.0000', 0, '2013-04-26 02:25:03', '2013-04-26 02:25:35', NULL, '1.00', 1, 1, 0, '6', '1', '1', 0, 0, 0, 1, 0, 1, '0', 4, 0, 0, '25.0000', 53, 1),
+(114, 1, '998', 'Test5', '', '25.0000', 0, '2013-04-26 02:25:53', '2013-04-26 02:26:15', NULL, '1.00', 1, 1, 0, '2', '1', '1', 0, 0, 0, 1, 0, 1, '0', 5, 0, 0, '25.0000', 53, 1),
+(115, 1, '999', 'Test1', '', '25.0000', 0, '2013-04-26 02:26:23', '2013-05-06 21:50:19', NULL, '1.00', 1, 1, 0, '1', '1', '1', 0, 0, 0, 1, 0, 1, '0', 1, 0, 0, '25.0000', 53, 1),
+(116, 1, '997', 'Test8', '', '25.0000', 0, '2013-04-26 02:26:54', '2013-04-26 02:27:18', NULL, '1.00', 1, 1, 0, '3', '1', '1', 0, 0, 0, 1, 0, 1, '0', 8, 0, 0, '25.0000', 53, 1),
+(117, 1, '995', 'Test3', '', '25.0000', 0, '2013-04-26 02:27:24', '2004-10-03 12:20:14', NULL, '1.00', 1, 1, 0, '5', '1', '1', 0, 0, 0, 1, 0, 1, '0', 3, 0, 0, '25.0000', 53, 1),
+(118, 1, '999', 'Test10', '', '25.0000', 0, '2013-04-26 02:27:52', '2013-04-26 02:28:14', NULL, '1.00', 1, 1, 0, '1', '1', '1', 0, 0, 0, 1, 0, 1, '0', 10, 0, 0, '25.0000', 53, 1),
+(119, 1, '1000', 'Test6', '', '25.0000', 0, '2013-04-26 02:28:22', '2004-10-06 18:26:25', NULL, '1.00', 1, 1, 0, '0', '1', '1', 0, 0, 0, 1, 0, 1, '0', 6, 0, 0, '25.0000', 53, 1),
+(120, 1, '1000', 'Test7', '', '25.0000', 0, '2013-04-26 02:29:03', '2013-04-26 02:29:23', NULL, '1.00', 1, 1, 0, '0', '1', '1', 0, 0, 0, 1, 0, 1, '0', 7, 0, 0, '25.0000', 53, 1),
+(121, 1, '999', 'Test12', '', '25.0000', 0, '2013-04-26 02:29:36', '2013-04-28 13:02:47', NULL, '1.00', 1, 1, 0, '1', '1', '1', 0, 0, 0, 1, 0, 1, '0', 12, 0, 0, '25.0000', 53, 1),
+(122, 1, '998', 'Test9', '', '25.0000', 0, '2013-04-26 02:30:12', '2013-04-26 02:30:32', NULL, '1.00', 1, 1, 0, '2', '1', '1', 0, 0, 0, 1, 0, 1, '0', 9, 0, 0, '25.0000', 53, 1),
+(123, 1, '999', 'Test11', '', '25.0000', 0, '2013-04-26 02:30:41', '2013-04-26 02:31:04', NULL, '1.00', 1, 1, 0, '1', '1', '1', 0, 0, 0, 1, 0, 1, '0', 11, 0, 0, '25.0000', 53, 1),
+(130, 1, '1000', 'Special', '2_small.jpg', '15.0000', 0, '2013-04-28 02:19:53', '2004-10-06 00:05:34', NULL, '2.00', 1, 1, 0, '0', '1', '1', 0, 0, 0, 1, 0, 1, '0', 0, 1, 1, '10.0000', 55, 1),
+(127, 1, '1000', 'Normal', 'small_00.jpg', '15.0000', 0, '2013-04-28 01:51:35', '2013-04-28 14:23:29', NULL, '2.00', 1, 1, 0, '0', '1', '1', 0, 0, 0, 1, 0, 1, '0', 0, 1, 0, '15.0000', 55, 1),
+(131, 1, '1000', 'PERWORDREQ', '', '0.0000', 0, '2013-05-01 01:31:28', '2013-05-07 21:30:23', NULL, '1.00', 1, 1, 0, '0', '1', '1', 1, 0, 0, 1, 0, 1, '0', 0, 0, 0, '5.0000', 57, 1),
+(132, 1, '997', 'GolfClub', '9_small.jpg', '0.0000', 0, '2013-05-02 12:36:12', '2013-05-02 18:04:36', NULL, '1.00', 1, 1, 0, '3', '1', '1', 1, 0, 0, 1, 0, 1, '0', 0, 0, 0, '13.0050', 58, 1),
+(133, 1, '1000', 'DOWNLOAD2', '2_small.jpg', '49.9900', 0, '2013-05-02 23:51:33', '2013-05-03 00:06:58', NULL, '0.00', 1, 1, 0, '2', '1', '1', 0, 0, 0, 1, 0, 1, '0', 0, 0, 0, '49.9900', 60, 1),
+(134, 1, '1000', 'PERLETTERREQ', '', '0.0000', 0, '2013-05-07 21:23:58', '2013-05-07 21:29:50', NULL, '1.00', 1, 1, 0, '0', '1', '1', 1, 0, 0, 1, 0, 1, '0', 0, 0, 0, '5.0000', 57, 1),
+(154, 1, '10000', 'ROPE', '9_small.jpg', '1.0000', 0, '2013-05-16 21:08:08', '2013-07-12 17:18:46', NULL, '0.00', 1, 1, 0, '0', '10', '1', 0, 0, 0, 1, 0, 1, '0', 0, 0, 0, '0.9000', 58, 0),
+(155, 1, '1000', 'PRICEFACTOR', 'sample_image.gif', '10.0000', 0, '2013-05-17 23:03:10', '2013-07-12 17:21:04', NULL, '1.00', 1, 1, 0, '0', '1', '1', 0, 0, 0, 1, 0, 1, '0', 0, 0, 0, '10.0000', 56, 1),
+(156, 1, '1000', 'PRICEFACTOROFF', 'sample_image.gif', '10.0000', 0, '2013-05-17 23:05:24', '2013-05-17 23:10:12', NULL, '1.00', 1, 1, 0, '0', '1', '1', 0, 0, 0, 1, 0, 1, '0', 0, 0, 0, '10.0000', 56, 1),
+(157, 1, '1000', 'PRICEFACTOROFFATTR', 'sample_image.gif', '10.0000', 0, '2013-05-17 23:10:18', '2013-05-17 23:13:48', NULL, '1.00', 1, 1, 0, '0', '1', '1', 1, 0, 0, 1, 0, 1, '0', 0, 0, 0, '10.0000', 56, 1),
+(158, 1, '1000', 'ONETIME', 'b_b_grid.gif', '45.0000', 0, '2013-05-17 23:22:08', NULL, NULL, '1.00', 1, 1, 0, '0', '1', '1', 0, 0, 0, 1, 0, 1, '0', 0, 0, 0, '45.0000', 56, 1),
+(159, 1, '10000', 'ATTQTYPRICE', 'b_c_grid.gif', '25.0000', 0, '2013-05-17 23:29:31', '2013-05-17 23:49:56', NULL, '1.00', 1, 1, 0, '0', '1', '1', 0, 0, 0, 1, 0, 1, '0', 0, 0, 0, '25.0000', 56, 1),
+(160, 1, '997', 'GolfClub', '9_small.jpg', '0.0000', 0, '2013-05-18 10:14:35', '2013-05-18 10:15:16', NULL, '1.00', 1, 1, 0, '0', '1', '1', 1, 0, 0, 1, 0, 1, '0', 0, 0, 0, '14.4500', 61, 1),
+(165, 1, '10000', 'ROPE', '9_small.jpg', '1.0000', 0, '2013-05-18 10:42:50', '2013-07-12 17:18:12', NULL, '0.00', 1, 1, 0, '0', '10', '1', 0, 0, 0, 1, 0, 1, '0', 0, 0, 0, '1.0000', 61, 0),
+(166, 2, '10000', 'RTBHUNTER', 'sooty.jpg', '4.9900', 0, '2013-05-18 10:42:50', '2013-05-18 10:43:00', NULL, '3.00', 1, 1, 0, '0', '1', '1', 0, 0, 0, 1, 0, 1, '0', 0, 0, 0, '3.0000', 62, 1),
+(167, 3, '0', '', '', '0.0000', 0, '2013-05-18 10:42:50', '2013-08-06 00:39:10', NULL, '0.00', 1, 0, 0, '0', '1', '1', 0, 0, 0, 0, 0, 0, '0', 0, 0, 0, '0.0000', 63, 1),
+(168, 1, '1000', 'PGT', 'samples/1_small.jpg', '3.9500', 0, '2013-07-12 15:25:32', '2013-07-12 16:26:08', NULL, '1.00', 1, 1, 0, '0', '1', '1', 0, 0, 0, 1, 0, 1, '0', 10, 0, 0, '3.9500', 64, 1),
+(169, 2, '1000', 'PMT', 'samples/2_small.jpg', '3.9500', 0, '2013-07-12 15:27:50', '2013-07-12 16:29:01', NULL, '1.00', 1, 1, NULL, '0', '1', '1', 0, 0, 0, 1, 0, 1, '0', 20, 0, 0, '3.9500', 64, 1),
+(170, 3, '0', '', 'samples/3_small.jpg', '0.0000', 0, '2013-07-12 15:29:23', '2004-09-27 23:11:25', NULL, '0.00', 1, 0, 0, '0', '1', '1', 0, 0, 0, 0, 0, 0, '0', 30, 0, 0, '0.0000', 64, 1),
+(171, 4, '1000', 'DPT', 'samples/4_small.jpg', '3.9500', 0, '2013-07-12 15:32:40', '2013-07-12 17:46:49', NULL, '0.00', 1, 1, 0, '0', '1', '1', 0, 0, 0, 1, 0, 1, '0', 40, 0, 0, '3.9500', 64, 1),
+(172, 5, '1000', 'PFS', 'samples/5_small.jpg', '3.9500', 0, '2013-07-12 15:39:18', '2013-07-12 23:08:43', NULL, '5.00', 1, 0, 0, '0', '1', '1', 0, 0, 0, 1, 1, 1, '0', 50, 0, 0, '3.9500', 64, 1),
+(173, 1, '1000', 'Book', 'b_g_grid.gif', '0.0000', 0, '2013-08-24 23:54:34', '2013-08-26 02:50:59', NULL, '0.00', 1, 1, 0, '0', '1', '1', 1, 0, 0, 1, 0, 1, '0', 0, 0, 0, '52.5000', 61, 1),
+(174, 1, '999', 'TESTCALL', 'call_for_price.jpg', '0.0000', 0, '2013-08-27 13:25:44', '2013-08-27 13:28:54', '2007-02-21 00:00:00', '1.00', 1, 1, 0, '0', '1', '1', 0, 0, 1, 1, 0, 1, '0', 0, 0, 0, '0.0000', 24, 0),
+(175, 1, '1000', 'Normal', '1_small.jpg', '60.0000', 0, '2013-08-27 23:32:52', '2013-08-05 17:13:20', NULL, '2.00', 1, 1, 0, '0', '1', '1', 0, 0, 0, 0, 0, 1, '0', 0, 1, 0, '60.0000', 55, 1),
+(176, 1, '1000', 'Normal', 'small_00.jpg', '100.0000', 0, '2013-08-05 16:45:25', '2013-08-05 16:47:22', NULL, '2.00', 1, 1, 0, '0', '1', '1', 0, 0, 0, 1, 0, 1, '0', 0, 1, 0, '100.0000', 55, 1),
+(177, 1, '1000', 'Special', '2_small.jpg', '100.0000', 0, '2013-08-05 16:47:45', '2013-08-06 00:05:48', NULL, '2.00', 1, 1, 0, '0', '1', '1', 0, 0, 0, 1, 0, 1, '0', 0, 1, 1, '75.0000', 55, 1),
+(179, 1, '1000', 'DOWNLOAD1', '1_small.jpg', '39.0000', 0, '2012-10-06 00:08:33', '2012-10-06 00:18:51', NULL, '0.00', 1, 1, 0, '0', '1', '1', 0, 0, 0, 1, 0, 1, '0', 0, 0, 0, '39.0000', 60, 1),
+(178, 1, '1000', 'Normal', '1_small.jpg', '60.0000', 0, '2012-10-05 16:54:52', '2012-10-05 17:15:02', NULL, '2.00', 1, 1, 0, '0', '1', '1', 0, 0, 0, 0, 0, 1, '0', 0, 1, 0, '50.0000', 55, 1);
 
 #
 # Dumping data for table `products_attributes`
@@ -990,11 +990,11 @@ INSERT INTO products_description (products_id, language_id, products_name, produ
 (25, 1, 'Microsoft Internet Keyboard PS/2', 'The Internet Keyboard has 10 Hot Keys on a comfortable standard keyboard design that also includes a detachable palm rest. The Hot Keys allow you to browse the web, or check e-mail directly from your keyboard. The IntelliType Pro software also allows you to customize your hot keys - make the Internet Keyboard work the way you want it to!', '', 0),
 (26, 1, 'Microsoft IntelliMouse Explorer', 'Microsoft introduces its most advanced mouse, the IntelliMouse Explorer! IntelliMouse Explorer features a sleek design, an industrial-silver finish, a glowing red underside and taillight, creating a style and look unlike any other mouse. IntelliMouse Explorer combines the accuracy and reliability of Microsoft IntelliEye optical tracking technology, the convenience of two new customizable function buttons, the efficiency of the scrolling wheel and the comfort of expert ergonomic design. All these great features make this the best mouse for the PC!', 'www.microsoft.com/hardware/mouse/explorer.asp', 0),
 (27, 1, 'Hewlett Packard LaserJet 1100Xi Linked', 'HP has always set the pace in laser printing technology. The new generation HP LaserJet 1100 series sets another impressive pace, delivering a stunning 8 pages per minute print speed. The 600 dpi print resolution with HP\'s Resolution Enhancement technology (REt) makes every document more professional.<br /><br />Enhanced print speed and laser quality results are just the beginning. With 2MB standard memory, HP LaserJet 1100xi users will be able to print increasingly complex pages. Memory can be increased to 18MB to tackle even more complex documents with ease. The HP LaserJet 1100xi supports key operating systems including Windows 3.1, 3.11, 95, 98, NT 4.0, OS/2 and DOS. Network compatibility available via the optional HP JetDirect External Print Servers.<br /><br />HP LaserJet 1100xi also features The Document Builder for the Web Era from Trellix Corp. (featuring software to create Web documents).', 'www.pandi.hp.com/pandi-db/prodinfo.main?product=laserjet1100', 0),
-(28, 1, 'Geschenkgutschein &euro;  5.00', 'Purchase a Geschenkgutschein today to share with your family, friends or business associates!', '', 0),
-(29, 1, 'Geschenkgutschein &euro; 10.00', 'Purchase a Geschenkgutschein today to share with your family, friends or business associates!', '', 0),
-(30, 1, 'Geschenkgutschein &euro; 25.00', 'Purchase a Geschenkgutschein today to share with your family, friends or business associates!', '', 0),
-(31, 1, 'Geschenkgutschein &euro; 50.00', 'Purchase a Geschenkgutschein today to share with your family, friends or business associates!', '', 0),
-(32, 1, 'Geschenkgutschein $100.00', 'Purchase a Geschenkgutschein today to share with your family, friends or business associates!', '', 0),
+(28, 1, 'Gift Certificate €  5.00', 'Purchase a Gift Certificate today to share with your family, friends or business associates!', '', 0),
+(29, 1, 'Gift Certificate € 10.00', 'Purchase a Gift Certificate today to share with your family, friends or business associates!', '', 0),
+(30, 1, 'Gift Certificate € 25.00', 'Purchase a Gift Certificate today to share with your family, friends or business associates!', '', 0),
+(31, 1, 'Gift Certificate € 50.00', 'Purchase a Gift Certificate today to share with your family, friends or business associates!', '', 0),
+(32, 1, 'Gift Certificate $100.00', 'Purchase a Gift Certificate today to share with your family, friends or business associates!', '', 0),
 (34, 1, 'A Bug\'s Life "Multi Pak" Special 2003 Collectors Edition', 'A Bug\'s Life "Multi Pak" Special 2003 Collectors Edition\r\n<br />\r\nRegional Code: 2 (Japan, Europe, Middle East, South Africa).\r\n<br />\r\nLanguages: English, Deutsch.\r\n<br />\r\nSubtitles: English, Deutsch, Spanish.\r\n<br />\r\nAudio: Dolby Digital 5.1 / Dolby Surround Stereo.\r\n<br />\r\nPicture Format: 16:9 Wide-Screen.\r\n<br />\r\nLength: (approx) 91 minutes.\r\n<br />\r\nOther: Interactive Menus, Chapter Selection, Subtitles (more languages).', 'www.abugslife.com', 0),
 (36, 1, 'Hewlett Packard - by attributes SALE', 'The Product Price is set to 0.00\r\n<br /><br />\r\n\r\nThe Product Priced by Attribute is set to YES\r\n<br /><br />\r\n\r\nThe attribute prices are defined without the price prefix of +\r\n<br /><br />\r\n\r\nThe Display Price is made up of the lowest attribute price from each Option Name group.\r\n<br /><br />\r\n\r\nIf there had been a Product Price, this would have been added together to the lowest attributes price from each of the Option Name groups to make up the display price.\r\n<br /><br />\r\n\r\nThe price prefix of the + is not used as we are not "adding" to the display price.\r\n<br /><br />\r\n\r\nThe Colors attributes are set for the discount to be applied, their prices before the discount are:<br />\r\nWhite $499.99<br />\r\nBlack $519.00<br />\r\nBlue $539.00<br />', 'www.pandi.hp.com/pandi-db/prodinfo.main?product=laserjet1100', 0),
 (57, 1, 'A Free Product - All', 'This is a free product where there are no prices at all.\r\n<br /><br />\r\n\r\nThe Always Free Shipping is also turned ON.\r\n<br /><br />\r\n\r\nIf this is bought separately, the Zen Cart Free Charge payment module will show if there is no charges on shipping.\r\n<br /><br />\r\n\r\nIf other products are purchased with a price or shipping charge, then the Zen Cart Free Charge payment module will not show and the shipping will be applied accordingly.', '', 0),
@@ -1457,7 +1457,7 @@ INSERT INTO products_to_categories (products_id, categories_id) VALUES (1, 4),
 # Dumping data for table `record_artists`
 #
 
-INSERT INTO record_artists (artists_id, artists_name, artists_image, date_added, last_modified) VALUES (1, 'The Russ Tippins Band', 'sooty.jpg', '2004-06-01 20:53:00', NULL);
+INSERT INTO record_artists (artists_id, artists_name, artists_image, date_added, last_modified) VALUES (1, 'The Russ Tippins Band', 'sooty.jpg', '2012-06-01 20:53:00', NULL);
 
 #
 # Dumping data for table `record_artists_info`
@@ -1469,7 +1469,7 @@ INSERT INTO record_artists_info (artists_id, languages_id, artists_url, url_clic
 # Dumping data for table `record_company`
 #
 
-INSERT INTO record_company (record_company_id, record_company_name, record_company_image, date_added, last_modified) VALUES (1, 'HMV Group', NULL, '2004-07-09 14:11:52', NULL);
+INSERT INTO record_company (record_company_id, record_company_name, record_company_image, date_added, last_modified) VALUES (1, 'HMV Group', NULL, '2012-07-09 14:11:52', NULL);
 
 #
 # Dumping data for table `record_company_info`
@@ -1481,7 +1481,7 @@ INSERT INTO record_company_info (record_company_id, languages_id, record_company
 # Dumping data for table `reviews`
 #
 
-INSERT INTO reviews (reviews_id, products_id, customers_id, customers_name, reviews_rating, date_added, last_modified, reviews_read, status) VALUES (1, 19, 0, 'Bill Smith', 5, '2003-12-23 03:18:19', '0001-01-01 00:00:00', 11, 1);
+INSERT INTO reviews (reviews_id, products_id, customers_id, customers_name, reviews_rating, date_added, last_modified, reviews_read, status) VALUES (1, 19, 0, 'Bill Smith', 5, '2012-12-23 03:18:19', '0001-01-01 00:00:00', 11, 1);
 
 #
 # Dumping data for table `reviews_description`
@@ -1493,66 +1493,66 @@ INSERT INTO reviews_description (reviews_id, languages_id, reviews_text) VALUES 
 # Dumping data for table `salemaker_sales`
 #
 
-INSERT INTO salemaker_sales (sale_id, sale_status, sale_name, sale_deduction_value, sale_deduction_type, sale_pricerange_from, sale_pricerange_to, sale_specials_condition, sale_categories_selected, sale_categories_all, sale_date_start, sale_date_end, sale_date_added, sale_date_last_modified, sale_date_status_change) VALUES (1, 1, 'Minus 10% Sale', '10.0000', 1, '1.0000', '1000.0000', 2, '25,28,45,47,58', ',25,28,45,47,58,', '2003-12-23', '2007-02-21', '2003-12-23', '2004-05-18', '2004-01-03'),
-(3, 0, 'Mice 20%', '20.0000', 1, '1.0000', '1000.0000', 2, '9', ',9,', '2003-12-24', '2004-04-21', '2003-12-31', '2003-12-31', '2004-04-25'),
-(6, 1, '$5.00 off', '5.0000', 0, '0.0000', '0.0000', 2, '27', ',27,', '0001-01-01', '0001-01-01', '2004-01-04', '2004-01-05', '2004-01-04'),
-(7, 1, '10% Skip Specials', '10.0000', 1, '0.0000', '0.0000', 1, '31', ',31,', '0001-01-01', '0001-01-01', '2004-01-04', '2004-05-18', '2004-01-04'),
-(8, 1, '10% Apply to Price', '10.0000', 1, '0.0000', '0.0000', 0, '32', ',32,', '0001-01-01', '0001-01-01', '2004-01-05', '2004-05-18', '2004-01-05'),
-(9, 1, 'New Price $100', '100.0000', 2, '0.0000', '0.0000', 2, '46', ',46,', '0001-01-01', '0001-01-01', '2004-01-06', '2004-01-07', '2004-01-06'),
-(10, 1, 'New Price $100 Skip Special', '100.0000', 2, '0.0000', '0.0000', 1, '51', ',51,', '0001-01-01', '0001-01-01', '2004-01-07', '2004-01-07', '2004-01-07'),
-(11, 1, '$5.00 off Skip Specials', '5.0000', 0, '0.0000', '0.0000', 1, '52', ',52,', '0001-01-01', '0001-01-01', '2004-01-24', '2004-01-24', '2004-01-24');
+INSERT INTO salemaker_sales (sale_id, sale_status, sale_name, sale_deduction_value, sale_deduction_type, sale_pricerange_from, sale_pricerange_to, sale_specials_condition, sale_categories_selected, sale_categories_all, sale_date_start, sale_date_end, sale_date_added, sale_date_last_modified, sale_date_status_change) VALUES (1, 1, 'Minus 10% Sale', '10.0000', 1, '1.0000', '1000.0000', 2, '25,28,45,47,58', ',25,28,45,47,58,', '2012-12-23', '2007-02-21', '2012-12-23', '2012-05-18', '2012-01-03'),
+(3, 0, 'Mice 20%', '20.0000', 1, '1.0000', '1000.0000', 2, '9', ',9,', '2012-12-24', '2012-04-21', '2012-12-31', '2012-12-31', '2012-04-25'),
+(6, 1, '$5.00 off', '5.0000', 0, '0.0000', '0.0000', 2, '27', ',27,', '0001-01-01', '0001-01-01', '2012-01-04', '2012-01-05', '2012-01-04'),
+(7, 1, '10% Skip Specials', '10.0000', 1, '0.0000', '0.0000', 1, '31', ',31,', '0001-01-01', '0001-01-01', '2012-01-04', '2012-05-18', '2012-01-04'),
+(8, 1, '10% Apply to Price', '10.0000', 1, '0.0000', '0.0000', 0, '32', ',32,', '0001-01-01', '0001-01-01', '2012-01-05', '2012-05-18', '2012-01-05'),
+(9, 1, 'New Price $100', '100.0000', 2, '0.0000', '0.0000', 2, '46', ',46,', '0001-01-01', '0001-01-01', '2012-01-06', '2012-01-07', '2012-01-06'),
+(10, 1, 'New Price $100 Skip Special', '100.0000', 2, '0.0000', '0.0000', 1, '51', ',51,', '0001-01-01', '0001-01-01', '2012-01-07', '2012-01-07', '2012-01-07'),
+(11, 1, '$5.00 off Skip Specials', '5.0000', 0, '0.0000', '0.0000', 1, '52', ',52,', '0001-01-01', '0001-01-01', '2012-01-24', '2012-01-24', '2012-01-24');
 
 #
 # Dumping data for table `specials`
 #
 
-INSERT INTO specials (specials_id, products_id, specials_new_products_price, specials_date_added, specials_last_modified, expires_date, date_status_change, status, specials_date_available) VALUES (1, 3, '39.9900', '2003-12-23 03:18:19', '0001-01-01 00:00:00', '0001-01-01', '0001-01-01 00:00:00', 1, '0001-01-01'),
-(2, 5, '30.0000', '2003-12-23 03:18:19', '0001-01-01 00:00:00', '0001-01-01', '0001-01-01 00:00:00', 1, '0001-01-01'),
-(3, 6, '30.0000', '2003-12-23 03:18:19', '0001-01-01 00:00:00', '0001-01-01', '0001-01-01 00:00:00', 1, '0001-01-01'),
-(4, 16, '29.9900', '2003-12-23 03:18:19', '0001-01-01 00:00:00', '0001-01-01', '0001-01-01 00:00:00', 1, '0001-01-01'),
-(5, 41, '90.0000', '2003-12-25 19:15:47', '2004-09-27 13:33:33', '2007-02-21', '0001-01-01 00:00:00', 1, '0001-01-01'),
-(6, 42, '95.0000', '2003-12-25 19:15:57', '2004-01-04 13:07:27', '0001-01-01', '0001-01-01 00:00:00', 1, '0001-01-01'),
-(7, 44, '90.0000', '2003-12-25 21:54:50', NULL, '0001-01-01', '0001-01-01 00:00:00', 1, '0001-01-01'),
-(8, 46, '90.0000', '2003-12-25 21:55:01', NULL, '0001-01-01', '0001-01-01 00:00:00', 1, '0001-01-01'),
-(9, 53, '20.0000', '2003-12-28 23:59:03', NULL, '0001-01-01', '0001-01-01 00:00:00', 1, '0001-01-01'),
-(10, 39, '75.0000', '2003-12-31 02:03:59', '2004-02-21 00:36:40', '0001-01-01', '0001-01-01 00:00:00', 1, '0001-01-01'),
-(40, 100, '374.2500', '2004-01-08 14:07:31', NULL, '0001-01-01', '0001-01-01 00:00:00', 1, '0001-01-01'),
-(42, 111, '90.0000', '2004-01-24 16:14:19', NULL, '0001-01-01', '0001-01-01 00:00:00', 1, '0001-01-01'),
-(14, 74, '399.2000', '2004-01-02 15:35:30', '2004-01-02 17:38:43', '0001-01-01', '0001-01-01 00:00:00', 1, '0001-01-01'),
-(29, 78, '112.5000', '2004-01-04 01:12:14', NULL, '0001-01-01', '0001-01-01 00:00:00', 1, '0001-01-01'),
-(27, 59, '300.0000', '2004-01-03 01:51:50', NULL, '0001-01-01', '0001-01-01 00:00:00', 1, '0001-01-01'),
-(28, 76, '75.0000', '2004-01-03 23:09:36', NULL, '0001-01-01', '0001-01-01 00:00:00', 1, '0001-01-01'),
-(32, 85, '90.0000', '2004-01-04 15:19:59', '2004-01-06 09:59:59', '0001-01-01', '0001-01-01 00:00:00', 1, '0001-01-01'),
-(31, 83, '90.0000', '2004-01-04 15:03:07', '2004-01-06 10:02:25', '0001-01-01', '0001-01-01 00:00:00', 1, '0001-01-01'),
-(34, 88, '90.0000', '2004-01-05 00:16:22', '2004-01-06 09:59:30', '0001-01-01', '0001-01-01 00:00:00', 1, '0001-01-01'),
-(35, 90, '90.0000', '2004-01-05 23:57:20', NULL, '0001-01-01', '0001-01-01 00:00:00', 1, '0001-01-01'),
-(36, 94, '90.0000', '2004-01-06 00:07:34', NULL, '0001-01-01', '0001-01-01 00:00:00', 1, '0001-01-01'),
-(39, 97, '90.0000', '2004-01-07 11:29:03', NULL, '0001-01-01', '0001-01-01 00:00:00', 1, '0001-01-01'),
-(38, 95, '90.0000', '2004-01-07 02:39:58', NULL, '0001-01-01', '0001-01-01 00:00:00', 1, '0001-01-01'),
-(44, 130, '10.0000', '2004-04-28 02:46:44', NULL, '0001-01-01', NULL, 1, '0001-01-01'),
-(45, 173, '47.5000', '2004-09-24 23:57:05', NULL, '2004-09-28', '2004-09-28 18:48:42', 0, '0001-01-01'),
-(46, 166, '3.0000', '2004-10-03 20:24:53', NULL, '0001-01-01', NULL, 1, '0001-01-01'),
-(47, 177, '75.0000', '2004-10-05 16:49:33', NULL, '0001-01-01', NULL, 1, '0001-01-01'),
-(48, 178, '50.0000', '2004-10-05 16:56:46', NULL, '0001-01-01', NULL, 1, '0001-01-01'),
-(50, 40, '75.0000', '2004-01-08 14:07:31', NULL, '0001-01-01', '0001-01-01 00:00:00', 1, '0001-01-01');
+INSERT INTO specials (specials_id, products_id, specials_new_products_price, specials_date_added, specials_last_modified, expires_date, date_status_change, status, specials_date_available) VALUES (1, 3, '39.9900', '2012-12-23 03:18:19', '0001-01-01 00:00:00', '0001-01-01', '0001-01-01 00:00:00', 1, '0001-01-01'),
+(2, 5, '30.0000', '2012-12-23 03:18:19', '0001-01-01 00:00:00', '0001-01-01', '0001-01-01 00:00:00', 1, '0001-01-01'),
+(3, 6, '30.0000', '2012-12-23 03:18:19', '0001-01-01 00:00:00', '0001-01-01', '0001-01-01 00:00:00', 1, '0001-01-01'),
+(4, 16, '29.9900', '2012-12-23 03:18:19', '0001-01-01 00:00:00', '0001-01-01', '0001-01-01 00:00:00', 1, '0001-01-01'),
+(5, 41, '90.0000', '2012-12-25 19:15:47', '2012-09-27 13:33:33', '2007-02-21', '0001-01-01 00:00:00', 1, '0001-01-01'),
+(6, 42, '95.0000', '2012-12-25 19:15:57', '2012-01-04 13:07:27', '0001-01-01', '0001-01-01 00:00:00', 1, '0001-01-01'),
+(7, 44, '90.0000', '2012-12-25 21:54:50', NULL, '0001-01-01', '0001-01-01 00:00:00', 1, '0001-01-01'),
+(8, 46, '90.0000', '2012-12-25 21:55:01', NULL, '0001-01-01', '0001-01-01 00:00:00', 1, '0001-01-01'),
+(9, 53, '20.0000', '2012-12-28 23:59:03', NULL, '0001-01-01', '0001-01-01 00:00:00', 1, '0001-01-01'),
+(10, 39, '75.0000', '2012-12-31 02:03:59', '2012-02-21 00:36:40', '0001-01-01', '0001-01-01 00:00:00', 1, '0001-01-01'),
+(40, 100, '374.2500', '2012-01-08 14:07:31', NULL, '0001-01-01', '0001-01-01 00:00:00', 1, '0001-01-01'),
+(42, 111, '90.0000', '2012-01-24 16:14:19', NULL, '0001-01-01', '0001-01-01 00:00:00', 1, '0001-01-01'),
+(14, 74, '399.2000', '2012-01-02 15:35:30', '2012-01-02 17:38:43', '0001-01-01', '0001-01-01 00:00:00', 1, '0001-01-01'),
+(29, 78, '112.5000', '2012-01-04 01:12:14', NULL, '0001-01-01', '0001-01-01 00:00:00', 1, '0001-01-01'),
+(27, 59, '300.0000', '2012-01-03 01:51:50', NULL, '0001-01-01', '0001-01-01 00:00:00', 1, '0001-01-01'),
+(28, 76, '75.0000', '2012-01-03 23:09:36', NULL, '0001-01-01', '0001-01-01 00:00:00', 1, '0001-01-01'),
+(32, 85, '90.0000', '2012-01-04 15:19:59', '2012-01-06 09:59:59', '0001-01-01', '0001-01-01 00:00:00', 1, '0001-01-01'),
+(31, 83, '90.0000', '2012-01-04 15:03:07', '2012-01-06 10:02:25', '0001-01-01', '0001-01-01 00:00:00', 1, '0001-01-01'),
+(34, 88, '90.0000', '2012-01-05 00:16:22', '2012-01-06 09:59:30', '0001-01-01', '0001-01-01 00:00:00', 1, '0001-01-01'),
+(35, 90, '90.0000', '2012-01-05 23:57:20', NULL, '0001-01-01', '0001-01-01 00:00:00', 1, '0001-01-01'),
+(36, 94, '90.0000', '2012-01-06 00:07:34', NULL, '0001-01-01', '0001-01-01 00:00:00', 1, '0001-01-01'),
+(39, 97, '90.0000', '2012-01-07 11:29:03', NULL, '0001-01-01', '0001-01-01 00:00:00', 1, '0001-01-01'),
+(38, 95, '90.0000', '2012-01-07 02:39:58', NULL, '0001-01-01', '0001-01-01 00:00:00', 1, '0001-01-01'),
+(44, 130, '10.0000', '2012-04-28 02:46:44', NULL, '0001-01-01', NULL, 1, '0001-01-01'),
+(45, 173, '47.5000', '2012-09-24 23:57:05', NULL, '2012-09-28', '2012-09-28 18:48:42', 0, '0001-01-01'),
+(46, 166, '3.0000', '2012-10-03 20:24:53', NULL, '0001-01-01', NULL, 1, '0001-01-01'),
+(47, 177, '75.0000', '2012-10-05 16:49:33', NULL, '0001-01-01', NULL, 1, '0001-01-01'),
+(48, 178, '50.0000', '2012-10-05 16:56:46', NULL, '0001-01-01', NULL, 1, '0001-01-01'),
+(50, 40, '75.0000', '2012-01-08 14:07:31', NULL, '0001-01-01', '0001-01-01 00:00:00', 1, '0001-01-01');
 ############ GERMAN DEMO
 INSERT INTO categories_description (categories_id, language_id, categories_name, categories_description) VALUES (1, 43, 'Hardware', 'We offer a variety of Hardware from printers to graphics cards and mice to keyboards.');
 INSERT INTO categories_description (categories_id, language_id, categories_name, categories_description) VALUES (2, 43, 'Software', 'Select from an exciting list of software titles. <br /><br />Not seeing a title that you are looking for?');
 INSERT INTO categories_description (categories_id, language_id, categories_name, categories_description) VALUES (3, 43, 'DVD', 'We offer a variety of DVD movies enjoyable for the whole family.<br /><br />Please browse the various categories to find your favorite movie today!');
-INSERT INTO categories_description (categories_id, language_id, categories_name, categories_description) VALUES (4, 43, 'Graphics Cards', '');
-INSERT INTO categories_description (categories_id, language_id, categories_name, categories_description) VALUES (5, 43, 'Printers', '');
-INSERT INTO categories_description (categories_id, language_id, categories_name, categories_description) VALUES (6, 43, 'Monitors', '');
-INSERT INTO categories_description (categories_id, language_id, categories_name, categories_description) VALUES (7, 43, 'Speakers', '');
-INSERT INTO categories_description (categories_id, language_id, categories_name, categories_description) VALUES (8, 43, 'Keyboards', '');
-INSERT INTO categories_description (categories_id, language_id, categories_name, categories_description) VALUES (9, 43, 'Mice', 'Pick the right mouse for your individual computer needs!<br /><br />Contact Us if you are looking for a particular mouse that we do not currently have in stock.');
+INSERT INTO categories_description (categories_id, language_id, categories_name, categories_description) VALUES (4, 43, 'Grafikkarten', '');
+INSERT INTO categories_description (categories_id, language_id, categories_name, categories_description) VALUES (5, 43, 'Drucker', '');
+INSERT INTO categories_description (categories_id, language_id, categories_name, categories_description) VALUES (6, 43, 'Monitore', '');
+INSERT INTO categories_description (categories_id, language_id, categories_name, categories_description) VALUES (7, 43, 'Lautsprecher', '');
+INSERT INTO categories_description (categories_id, language_id, categories_name, categories_description) VALUES (8, 43, 'Tastaturen', '');
+INSERT INTO categories_description (categories_id, language_id, categories_name, categories_description) VALUES (9, 43, 'Mäuse', 'Pick the right mouse for your individual computer needs!<br /><br />Contact Us if you are looking for a particular mouse that we do not currently have in stock.');
 INSERT INTO categories_description (categories_id, language_id, categories_name, categories_description) VALUES (10, 43, 'Action', '<p>Get into the action with our Action collection of DVD movies!<br /><br />Don''t miss the excitement and order your''s today!<br /><br /></p>');
 INSERT INTO categories_description (categories_id, language_id, categories_name, categories_description) VALUES (11, 43, 'Science Fiction', '');
 INSERT INTO categories_description (categories_id, language_id, categories_name, categories_description) VALUES (12, 43, 'Komödien', '');
 INSERT INTO categories_description (categories_id, language_id, categories_name, categories_description) VALUES (13, 43, 'Cartoons', 'Something you can enjoy with children of all ages!');
 INSERT INTO categories_description (categories_id, language_id, categories_name, categories_description) VALUES (14, 43, 'Thriller', '');
 INSERT INTO categories_description (categories_id, language_id, categories_name, categories_description) VALUES (15, 43, 'Drama', '');
-INSERT INTO categories_description (categories_id, language_id, categories_name, categories_description) VALUES (16, 43, 'Memory', '');
-INSERT INTO categories_description (categories_id, language_id, categories_name, categories_description) VALUES (17, 43, 'CDROM Drives', '');
+INSERT INTO categories_description (categories_id, language_id, categories_name, categories_description) VALUES (16, 43, 'Speicher', '');
+INSERT INTO categories_description (categories_id, language_id, categories_name, categories_description) VALUES (17, 43, 'CDROM Laufwerke', '');
 INSERT INTO categories_description (categories_id, language_id, categories_name, categories_description) VALUES (18, 43, 'Simulation', '');
 INSERT INTO categories_description (categories_id, language_id, categories_name, categories_description) VALUES (19, 43, 'Action', '');
 INSERT INTO categories_description (categories_id, language_id, categories_name, categories_description) VALUES (20, 43, 'Strategie', '');
@@ -1566,7 +1566,7 @@ INSERT INTO categories_description (categories_id, language_id, categories_name,
 INSERT INTO categories_description (categories_id, language_id, categories_name, categories_description) VALUES (23, 43, 'Testbeispiele', '');
 INSERT INTO categories_description (categories_id, language_id, categories_name, categories_description) VALUES (24, 43, 'Für Preis anrufen', '');
 INSERT INTO categories_description (categories_id, language_id, categories_name, categories_description) VALUES (25, 43, 'Test 10% per Attribut', '');
-INSERT INTO categories_description (categories_id, language_id, categories_name, categories_description) VALUES (27, 43, '$5.00 off', '');
+INSERT INTO categories_description (categories_id, language_id, categories_name, categories_description) VALUES (27, 43, '€5.00 reduziert', '');
 INSERT INTO categories_description (categories_id, language_id, categories_name, categories_description) VALUES (28, 43, 'Test 10%', '');
 INSERT INTO categories_description (categories_id, language_id, categories_name, categories_description) VALUES (31, 43, 'Minus 10% Ausnahme', '');
 INSERT INTO categories_description (categories_id, language_id, categories_name, categories_description) VALUES (32, 43, 'Minus 10% Preis', '');
@@ -1591,7 +1591,7 @@ INSERT INTO categories_description (categories_id, language_id, categories_name,
 INSERT INTO categories_description (categories_id, language_id, categories_name, categories_description) VALUES (51, 43, 'Set $100 Skip', '');
 INSERT INTO categories_description (categories_id, language_id, categories_name, categories_description) VALUES (52, 43, '$5.00 off Skip', '');
 INSERT INTO categories_description (categories_id, language_id, categories_name, categories_description) VALUES (53, 43, 'Big Unlinked', '');
-INSERT INTO categories_description (categories_id, language_id, categories_name, categories_description) VALUES (54, 43, 'Neu seit v1.2', '<p>The New Products show many of the newest features that have been added to Zen Cart.<br /><br />Take the time to review these and the other Demo Products to better understand all the options and features that Zen Cart has to offer.</p>');
+INSERT INTO categories_description (categories_id, language_id, categories_name, categories_description) VALUES (54, 43, 'Spezialfunktionen', '<p>The New Products show many of the newest features that have been added to Zen Cart.<br /><br />Take the time to review these and the other Demo Products to better understand all the options and features that Zen Cart has to offer.</p>');
 INSERT INTO categories_description (categories_id, language_id, categories_name, categories_description) VALUES (61, 43, 'Real', '');
 INSERT INTO categories_description (categories_id, language_id, categories_name, categories_description) VALUES (62, 43, 'Musik', '');
 INSERT INTO categories_description (categories_id, language_id, categories_name, categories_description) VALUES (63, 43, 'Dokumente', 'Dokumente can now be added to the category tree. For example you may want to add servicing/Technical documents. Or use Dokumente as an integrated FAQ system on your site. The implemetation here is fairly spartan, but could be expanded to offer PDF downloads, links to purchaseable download files. The possibilities are endless and left to your imagination.');
@@ -1632,10 +1632,10 @@ INSERT INTO products_description (products_id, language_id, products_name, produ
 INSERT INTO products_description (products_id, language_id, products_name, products_description, products_url, products_viewed) VALUES (25, 43, 'Microsoft Internet Keyboard PS/2', 'The Internet Keyboard has 10 Hot Keys on a comfortable standard keyboard design that also includes a detachable palm rest. The Hot Keys allow you to browse the web, or check e-mail directly from your keyboard. The IntelliType Pro software also allows you to customize your hot keys - make the Internet Keyboard work the way you want it to!', '', 0);
 INSERT INTO products_description (products_id, language_id, products_name, products_description, products_url, products_viewed) VALUES (26, 43, 'Microsoft IntelliMouse Explorer', 'Microsoft introduces its most advanced mouse, the IntelliMouse Explorer! IntelliMouse Explorer features a sleek design, an industrial-silver finish, a glowing red underside and taillight, creating a style and look unlike any other mouse. IntelliMouse Explorer combines the accuracy and reliability of Microsoft IntelliEye optical tracking technology, the convenience of two new customizable function buttons, the efficiency of the scrolling wheel and the comfort of expert ergonomic design. All these great features make this the best mouse for the PC!', 'www.microsoft.com/hardware/mouse/explorer.asp', 0);
 INSERT INTO products_description (products_id, language_id, products_name, products_description, products_url, products_viewed) VALUES (27, 43, 'Hewlett Packard LaserJet 1100Xi Linked', 'HP has always set the pace in laser printing technology. The new generation HP LaserJet 1100 series sets another impressive pace, delivering a stunning 8 pages per minute print speed. The 600 dpi print resolution with HP''s Resolution Enhancement technology (REt) makes every document more professional.<br><br>Enhanced print speed and laser quality results are just the beginning. With 2MB standard memory, HP LaserJet 1100xi users will be able to print increasingly complex pages. Memory can be increased to 18MB to tackle even more complex documents with ease. The HP LaserJet 1100xi supports key operating systems including Windows 3.1, 3.11, 95, 98, NT 4.0, OS/2 and DOS. Network compatibility available via the optional HP JetDirect External Print Servers.<br><br>HP LaserJet 1100xi also features The Document Builder for the Web Era from Trellix Corp. (featuring software to create Web documents).', 'www.pandi.hp.com/pandi-db/prodinfo.main?product=laserjet1100', 0);
-INSERT INTO products_description (products_id, language_id, products_name, products_description, products_url, products_viewed) VALUES (28, 43, 'Geschenkgutschein &euro;  5.00', 'Purchase a Geschenkgutschein today to share with your family, friends or business associates!', '', 0);
-INSERT INTO products_description (products_id, language_id, products_name, products_description, products_url, products_viewed) VALUES (29, 43, 'Geschenkgutschein &euro; 10.00', 'Purchase a Geschenkgutschein today to share with your family, friends or business associates!', '', 0);
-INSERT INTO products_description (products_id, language_id, products_name, products_description, products_url, products_viewed) VALUES (30, 43, 'Geschenkgutschein &euro; 25.00', 'Purchase a Geschenkgutschein today to share with your family, friends or business associates!', '', 0);
-INSERT INTO products_description (products_id, language_id, products_name, products_description, products_url, products_viewed) VALUES (31, 43, 'Geschenkgutschein &euro; 50.00', 'Purchase a Geschenkgutschein today to share with your family, friends or business associates!', '', 0);
+INSERT INTO products_description (products_id, language_id, products_name, products_description, products_url, products_viewed) VALUES (28, 43, 'Geschenkgutschein €  5.00', 'Purchase a Geschenkgutschein today to share with your family, friends or business associates!', '', 0);
+INSERT INTO products_description (products_id, language_id, products_name, products_description, products_url, products_viewed) VALUES (29, 43, 'Geschenkgutschein € 10.00', 'Purchase a Geschenkgutschein today to share with your family, friends or business associates!', '', 0);
+INSERT INTO products_description (products_id, language_id, products_name, products_description, products_url, products_viewed) VALUES (30, 43, 'Geschenkgutschein € 25.00', 'Purchase a Geschenkgutschein today to share with your family, friends or business associates!', '', 0);
+INSERT INTO products_description (products_id, language_id, products_name, products_description, products_url, products_viewed) VALUES (31, 43, 'Geschenkgutschein € 50.00', 'Purchase a Geschenkgutschein today to share with your family, friends or business associates!', '', 0);
 INSERT INTO products_description (products_id, language_id, products_name, products_description, products_url, products_viewed) VALUES (32, 43, 'Geschenkgutschein $100.00', 'Purchase a Geschenkgutschein today to share with your family, friends or business associates!', '', 0);
 INSERT INTO products_description (products_id, language_id, products_name, products_description, products_url, products_viewed) VALUES (34, 43, 'A Bug''s Life "Multi Pak" Special 2003 Collectors Edition', 'A Bug''s Life "Multi Pak" Special 2003 Collectors Edition\r\n<br>\r\nRegional Code: 2 (Japan, Europe, Middle East, South Africa).\r\n<br>\r\nLanguages: English, Deutsch.\r\n<br>\r\nSubtitles: English, Deutsch, Spanish.\r\n<br>\r\nAudio: Dolby Digital 5.1 / Dobly Surround Stereo.\r\n<br>\r\nPicture Format: 16:9 Wide-Screen.\r\n<br>\r\nLength: (approx) 91 minutes.\r\n<br>\r\nOther: Interactive Menus, Chapter Selection, Subtitles (more languages).', 'www.abugslife.com', 0);
 INSERT INTO products_description (products_id, language_id, products_name, products_description, products_url, products_viewed) VALUES (36, 43, 'Hewlett Packard - by attributes SALE', 'The Product Price is set to 0.00\r\n<br><br>\r\n\r\nThe Product Priced by Attribute is set to YES\r\n<br><br>\r\n\r\nThe attribute prices are defined without the price prefix of +\r\n<br><br>\r\n\r\nThe Display Price is made up of the lowest attribute price from each Option Name group.\r\n<br><br>\r\n\r\nIf there had been a Product Price, this would have been added together to the lowest attributes price from each of the Option Name groups to make up the display price.\r\n<br><br>\r\n\r\nThe price prefix of the + is not used as we are not "adding" to the display price.\r\n<br><br>\r\n\r\nThe Colors attributes are set for the discount to be applied, their prices before the discount are:<br>\r\nWhite $499.99<br>\r\nBlack $519.00<br>\r\nBlue $539.00<br>', 'www.pandi.hp.com/pandi-db/prodinfo.main?product=laserjet1100', 0);
@@ -1759,21 +1759,21 @@ INSERT INTO products_options_values (products_options_values_id, language_id, pr
 INSERT INTO products_options_values (products_options_values_id, language_id, products_options_values_name, products_options_values_sort_order) VALUES (7, 43, 'Deluxe', 30);
 INSERT INTO products_options_values (products_options_values_id, language_id, products_options_values_name, products_options_values_sort_order) VALUES (8, 43, 'PS/2', 20);
 INSERT INTO products_options_values (products_options_values_id, language_id, products_options_values_name, products_options_values_sort_order) VALUES (9, 43, 'USB', 10);
-INSERT INTO products_options_values (products_options_values_id, language_id, products_options_values_name, products_options_values_sort_order) VALUES (10, 43, 'Download: Windows - English', 10);
-INSERT INTO products_options_values (products_options_values_id, language_id, products_options_values_name, products_options_values_sort_order) VALUES (13, 43, 'Box: Windows - English', 1000);
-INSERT INTO products_options_values (products_options_values_id, language_id, products_options_values_name, products_options_values_sort_order) VALUES (14, 43, 'DVD/VHS Combo Pak', 30);
-INSERT INTO products_options_values (products_options_values_id, language_id, products_options_values_name, products_options_values_sort_order) VALUES (15, 43, 'Blue', 50);
-INSERT INTO products_options_values (products_options_values_id, language_id, products_options_values_name, products_options_values_sort_order) VALUES (16, 43, 'Red', 10);
-INSERT INTO products_options_values (products_options_values_id, language_id, products_options_values_name, products_options_values_sort_order) VALUES (17, 43, 'Yellow', 30);
+INSERT INTO products_options_values (products_options_values_id, language_id, products_options_values_name, products_options_values_sort_order) VALUES (10, 43, 'Download: Windows - Englisch', 10);
+INSERT INTO products_options_values (products_options_values_id, language_id, products_options_values_name, products_options_values_sort_order) VALUES (13, 43, 'Box: Windows - Englisch', 1000);
+INSERT INTO products_options_values (products_options_values_id, language_id, products_options_values_name, products_options_values_sort_order) VALUES (14, 43, 'DVD/VHS Kombipack', 30);
+INSERT INTO products_options_values (products_options_values_id, language_id, products_options_values_name, products_options_values_sort_order) VALUES (15, 43, 'Blau', 50);
+INSERT INTO products_options_values (products_options_values_id, language_id, products_options_values_name, products_options_values_sort_order) VALUES (16, 43, 'Rot', 10);
+INSERT INTO products_options_values (products_options_values_id, language_id, products_options_values_name, products_options_values_sort_order) VALUES (17, 43, 'Gelb', 30);
 INSERT INTO products_options_values (products_options_values_id, language_id, products_options_values_name, products_options_values_sort_order) VALUES (18, 43, 'Medium', 30);
-INSERT INTO products_options_values (products_options_values_id, language_id, products_options_values_name, products_options_values_sort_order) VALUES (63, 43, 'MS Word - English', 20);
-INSERT INTO products_options_values (products_options_values_id, language_id, products_options_values_name, products_options_values_sort_order) VALUES (19, 43, 'X-Small', 10);
-INSERT INTO products_options_values (products_options_values_id, language_id, products_options_values_name, products_options_values_sort_order) VALUES (62, 43, 'PDF - English', 10);
+INSERT INTO products_options_values (products_options_values_id, language_id, products_options_values_name, products_options_values_sort_order) VALUES (63, 43, 'MS Word - Englisch', 20);
+INSERT INTO products_options_values (products_options_values_id, language_id, products_options_values_name, products_options_values_sort_order) VALUES (19, 43, 'XXS', 10);
+INSERT INTO products_options_values (products_options_values_id, language_id, products_options_values_name, products_options_values_sort_order) VALUES (62, 43, 'PDF - Englisch', 10);
 INSERT INTO products_options_values (products_options_values_id, language_id, products_options_values_name, products_options_values_sort_order) VALUES (61, 43, '2 Iron', 20);
-INSERT INTO products_options_values (products_options_values_id, language_id, products_options_values_name, products_options_values_sort_order) VALUES (20, 43, 'Large', 40);
+INSERT INTO products_options_values (products_options_values_id, language_id, products_options_values_name, products_options_values_sort_order) VALUES (20, 43, 'Gross', 40);
 INSERT INTO products_options_values (products_options_values_id, language_id, products_options_values_name, products_options_values_sort_order) VALUES (60, 43, '8 Iron', 80);
 INSERT INTO products_options_values (products_options_values_id, language_id, products_options_values_name, products_options_values_sort_order) VALUES (59, 43, '7 Iron', 70);
-INSERT INTO products_options_values (products_options_values_id, language_id, products_options_values_name, products_options_values_sort_order) VALUES (21, 43, 'Small', 20);
+INSERT INTO products_options_values (products_options_values_id, language_id, products_options_values_name, products_options_values_sort_order) VALUES (21, 43, 'Klein', 20);
 INSERT INTO products_options_values (products_options_values_id, language_id, products_options_values_name, products_options_values_sort_order) VALUES (58, 43, 'Wedge', 200);
 INSERT INTO products_options_values (products_options_values_id, language_id, products_options_values_name, products_options_values_sort_order) VALUES (57, 43, '9 Iron', 90);
 INSERT INTO products_options_values (products_options_values_id, language_id, products_options_values_name, products_options_values_sort_order) VALUES (22, 43, 'VHS', 20);
@@ -1784,34 +1784,34 @@ INSERT INTO products_options_values (products_options_values_id, language_id, pr
 INSERT INTO products_options_values (products_options_values_id, language_id, products_options_values_name, products_options_values_sort_order) VALUES (54, 43, '4 Iron', 40);
 INSERT INTO products_options_values (products_options_values_id, language_id, products_options_values_name, products_options_values_sort_order) VALUES (53, 43, '3 Iron', 30);
 INSERT INTO products_options_values (products_options_values_id, language_id, products_options_values_name, products_options_values_sort_order) VALUES (25, 43, 'Orange', 20);
-INSERT INTO products_options_values (products_options_values_id, language_id, products_options_values_name, products_options_values_sort_order) VALUES (26, 43, 'Green', 40);
-INSERT INTO products_options_values (products_options_values_id, language_id, products_options_values_name, products_options_values_sort_order) VALUES (27, 43, 'Purple', 60);
-INSERT INTO products_options_values (products_options_values_id, language_id, products_options_values_name, products_options_values_sort_order) VALUES (28, 43, 'Brown', 70);
-INSERT INTO products_options_values (products_options_values_id, language_id, products_options_values_name, products_options_values_sort_order) VALUES (29, 43, 'Black', 80);
-INSERT INTO products_options_values (products_options_values_id, language_id, products_options_values_name, products_options_values_sort_order) VALUES (30, 43, 'White', 90);
-INSERT INTO products_options_values (products_options_values_id, language_id, products_options_values_name, products_options_values_sort_order) VALUES (31, 43, 'Silver', 100);
+INSERT INTO products_options_values (products_options_values_id, language_id, products_options_values_name, products_options_values_sort_order) VALUES (26, 43, 'Grün', 40);
+INSERT INTO products_options_values (products_options_values_id, language_id, products_options_values_name, products_options_values_sort_order) VALUES (27, 43, 'Lila', 60);
+INSERT INTO products_options_values (products_options_values_id, language_id, products_options_values_name, products_options_values_sort_order) VALUES (28, 43, 'Braun', 70);
+INSERT INTO products_options_values (products_options_values_id, language_id, products_options_values_name, products_options_values_sort_order) VALUES (29, 43, 'Schwarz', 80);
+INSERT INTO products_options_values (products_options_values_id, language_id, products_options_values_name, products_options_values_sort_order) VALUES (30, 43, 'Weiss', 90);
+INSERT INTO products_options_values (products_options_values_id, language_id, products_options_values_name, products_options_values_sort_order) VALUES (31, 43, 'Silber', 100);
 INSERT INTO products_options_values (products_options_values_id, language_id, products_options_values_name, products_options_values_sort_order) VALUES (32, 43, 'Gold', 110);
 INSERT INTO products_options_values (products_options_values_id, language_id, products_options_values_name, products_options_values_sort_order) VALUES (64, 43, 'Download: MAC - English', 100);
 INSERT INTO products_options_values (products_options_values_id, language_id, products_options_values_name, products_options_values_sort_order) VALUES (34, 43, 'Wrapping', 40);
 INSERT INTO products_options_values (products_options_values_id, language_id, products_options_values_name, products_options_values_sort_order) VALUES (35, 43, 'Autographed Memorabilia Card', 30);
 INSERT INTO products_options_values (products_options_values_id, language_id, products_options_values_name, products_options_values_sort_order) VALUES (36, 43, 'Collector''s Tin', 20);
-INSERT INTO products_options_values (products_options_values_id, language_id, products_options_values_name, products_options_values_sort_order) VALUES (37, 43, 'Select from below ...', 5);
-INSERT INTO products_options_values (products_options_values_id, language_id, products_options_values_name, products_options_values_sort_order) VALUES (38, 43, '$5.00', 5);
-INSERT INTO products_options_values (products_options_values_id, language_id, products_options_values_name, products_options_values_sort_order) VALUES (39, 43, '$10.00', 10);
-INSERT INTO products_options_values (products_options_values_id, language_id, products_options_values_name, products_options_values_sort_order) VALUES (40, 43, '$25.00', 25);
-INSERT INTO products_options_values (products_options_values_id, language_id, products_options_values_name, products_options_values_sort_order) VALUES (41, 43, '$15.00', 15);
-INSERT INTO products_options_values (products_options_values_id, language_id, products_options_values_name, products_options_values_sort_order) VALUES (42, 43, '$50.00', 50);
-INSERT INTO products_options_values (products_options_values_id, language_id, products_options_values_name, products_options_values_sort_order) VALUES (43, 43, '$100.00', 100);
-INSERT INTO products_options_values (products_options_values_id, language_id, products_options_values_name, products_options_values_sort_order) VALUES (44, 43, 'Select from below ...', 5);
-INSERT INTO products_options_values (products_options_values_id, language_id, products_options_values_name, products_options_values_sort_order) VALUES (45, 43, 'NONE', 5);
-INSERT INTO products_options_values (products_options_values_id, language_id, products_options_values_name, products_options_values_sort_order) VALUES (46, 43, 'None', 5);
+INSERT INTO products_options_values (products_options_values_id, language_id, products_options_values_name, products_options_values_sort_order) VALUES (37, 43, 'Bitte wählen Sie ...', 5);
+INSERT INTO products_options_values (products_options_values_id, language_id, products_options_values_name, products_options_values_sort_order) VALUES (38, 43, '€ 5.00', 5);
+INSERT INTO products_options_values (products_options_values_id, language_id, products_options_values_name, products_options_values_sort_order) VALUES (39, 43, '€ 10.00', 10);
+INSERT INTO products_options_values (products_options_values_id, language_id, products_options_values_name, products_options_values_sort_order) VALUES (40, 43, '€ 25.00', 25);
+INSERT INTO products_options_values (products_options_values_id, language_id, products_options_values_name, products_options_values_sort_order) VALUES (41, 43, '€ 15.00', 15);
+INSERT INTO products_options_values (products_options_values_id, language_id, products_options_values_name, products_options_values_sort_order) VALUES (42, 43, '€ 50.00', 50);
+INSERT INTO products_options_values (products_options_values_id, language_id, products_options_values_name, products_options_values_sort_order) VALUES (43, 43, '€ 100.00', 100);
+INSERT INTO products_options_values (products_options_values_id, language_id, products_options_values_name, products_options_values_sort_order) VALUES (44, 43, 'Bitte wählen Sie ...', 5);
+INSERT INTO products_options_values (products_options_values_id, language_id, products_options_values_name, products_options_values_sort_order) VALUES (45, 43, 'KEIN', 5);
+INSERT INTO products_options_values (products_options_values_id, language_id, products_options_values_name, products_options_values_sort_order) VALUES (46, 43, 'kein', 5);
 INSERT INTO products_options_values (products_options_values_id, language_id, products_options_values_name, products_options_values_sort_order) VALUES (47, 43, 'Embossed Collector''s Tin', 10);
 INSERT INTO products_options_values (products_options_values_id, language_id, products_options_values_name, products_options_values_sort_order) VALUES (49, 43, 'Custom Handling', 20);
-INSERT INTO products_options_values (products_options_values_id, language_id, products_options_values_name, products_options_values_sort_order) VALUES (48, 43, 'None', 5);
+INSERT INTO products_options_values (products_options_values_id, language_id, products_options_values_name, products_options_values_sort_order) VALUES (48, 43, 'kein', 5);
 INSERT INTO products_options_values (products_options_values_id, language_id, products_options_values_name, products_options_values_sort_order) VALUES (50, 43, 'Same Day Shipping', 30);
 INSERT INTO products_options_values (products_options_values_id, language_id, products_options_values_name, products_options_values_sort_order) VALUES (51, 43, 'Quality Design', 10);
-INSERT INTO products_options_values (products_options_values_id, language_id, products_options_values_name, products_options_values_sort_order) VALUES (52, 43, 'Download: Windows - Spanish', 20);
+INSERT INTO products_options_values (products_options_values_id, language_id, products_options_values_name, products_options_values_sort_order) VALUES (52, 43, 'Download: Windows - Spanisch', 20);
 INSERT INTO products_options_values (products_options_values_id, language_id, products_options_values_name, products_options_values_sort_order) VALUES (65, 43, 'per Foot', 10);
 INSERT INTO products_options_values (products_options_values_id, language_id, products_options_values_name, products_options_values_sort_order) VALUES (66, 43, 'per Yard', 20);
-INSERT INTO products_options_values (products_options_values_id, language_id, products_options_values_name, products_options_values_sort_order) VALUES (67, 43, 'Free Shipping Included!', 10);
-INSERT INTO products_options_values (products_options_values_id, language_id, products_options_values_name, products_options_values_sort_order) VALUES (68, 43, 'Book Hard Cover', 5);
+INSERT INTO products_options_values (products_options_values_id, language_id, products_options_values_name, products_options_values_sort_order) VALUES (67, 43, 'Versandkostenfrei!', 10);
+INSERT INTO products_options_values (products_options_values_id, language_id, products_options_values_name, products_options_values_sort_order) VALUES (68, 43, 'Buch Hardcover', 5);
