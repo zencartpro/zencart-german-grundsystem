@@ -1,20 +1,20 @@
 <?php
 /**
- * @copyright Copyright 2003-2012 Zen Cart Development Team
+ * @copyright Copyright 2003-2013 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: eustandardtransfer.php 572 2011-09-06 17:36:14 webchills $
+ * @version $Id: eustandardtransfer.php 573 2013-09-11 17:36:14 webchills $
 */
 define('MODULE_PAYMENT_EUTRANSFER_TEXT_TITLE', 'Moneyorder');
 
 define('MODULE_PAYMENT_EUTRANSFER_TEXT_DESCRIPTION', 
-'Please use the following details to transfer your total order value:<br />' .
+'<div class="eustandardtransferdescription">Please use the following details to transfer your total order value:<br />' .
 '<br />Bank name:  ' . nl2br(MODULE_PAYMENT_EUTRANSFER_BANKNAM) .
 '<br />Account Name: ' . nl2br(MODULE_PAYMENT_EUTRANSFER_ACCNAM) . 
 '<br />Account No:   ' . nl2br(MODULE_PAYMENT_EUTRANSFER_ACCNUM) . 
 '<br />IBAN:    ' . nl2br(MODULE_PAYMENT_EUTRANSFER_ACCIBAN) .
 '<br />BIC/SWIFT:   ' . nl2br(MODULE_PAYMENT_EUTRANSFER_BANKBIC) .
-'<br/>Your order will be processed as soon as we received the payment.');
+'<br/>Your order will be processed as soon as we received the payment.</div>');
    
 define('MODULE_PAYMENT_EUTRANSFER_TEXT_EMAIL_FOOTER', 
 "Please use the following details to transfer your total order value:\n" .
