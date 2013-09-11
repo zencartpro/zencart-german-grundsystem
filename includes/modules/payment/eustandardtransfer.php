@@ -1,10 +1,10 @@
 <?php
 /**
  * @package paymentMethod 
- * @copyright Copyright 2003-2012 Zen Cart Development Team
+ * @copyright Copyright 2003-2013 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: eustandardtransfer.php 573 2011-09-16 15:27:14 webchills $
+ * @version $Id: eustandardtransfer.php 574 2013-09-11 19:02:14 webchills $
 */
 
   class eustandardtransfer {
@@ -42,7 +42,7 @@
         $dest_zone = 0;
         $error = false;
         $countries_table = MODULE_PAYMENT_EUTRANSFER_COUNTRIES; 
-        $country_zones = split("[,]", $countries_table);
+        $country_zones = explode(",", $countries_table);
         if (in_array($dest_country, $country_zones)) {
             $dest_zone = $i;
             $this->enabled = true;
@@ -88,12 +88,7 @@
 
 
     function confirmation() {
-      global $HTTP_POST_VARS;
-
-      $confirmation = array('title' => $this->title . ': ' . $this->check,
-                            'fields' => array(array('title' => MODULE_PAYMENT_EUTRANSFER_TEXT_DESCRIPTION)));
-
-      return $confirmation;
+      return array('title' => MODULE_PAYMENT_EUTRANSFER_TEXT_DESCRIPTION);
     }
 
     function process_button() {
