@@ -1,6 +1,6 @@
 # MySQL file for Zen Cart Demo Products load
 #
-# $Id: mysql_demo.sql 646 2013-09-01 10:03:04Z webchills $
+# $Id: mysql_demo.sql 646 2013-09-20 18:03:04Z webchills $
 #
 
 # Configuration Settings:
@@ -1536,7 +1536,7 @@ INSERT INTO specials (specials_id, products_id, specials_new_products_price, spe
 (48, 178, '50.0000', '2012-10-05 16:56:46', NULL, '0001-01-01', NULL, 1, '0001-01-01'),
 (50, 40, '75.0000', '2012-01-08 14:07:31', NULL, '0001-01-01', '0001-01-01 00:00:00', 1, '0001-01-01');
 ############ GERMAN DEMO
-INSERT INTO categories_description (categories_id, language_id, categories_name, categories_description) VALUES (1, 43, 'Hardware', 'We offer a variety of Hardware from printers to graphics cards and mice to keyboards.');
+INSERT INTO categories_description (categories_id, language_id, categories_name, categories_description) VALUES (1, 43, 'Hardware', 'Wir bieten verschiedenste Hardware von Druckern, über Grafikkarten bis in zu Mäusen und Tastaturen.');
 INSERT INTO categories_description (categories_id, language_id, categories_name, categories_description) VALUES (2, 43, 'Software', 'Select from an exciting list of software titles. <br /><br />Not seeing a title that you are looking for?');
 INSERT INTO categories_description (categories_id, language_id, categories_name, categories_description) VALUES (3, 43, 'DVD', 'We offer a variety of DVD movies enjoyable for the whole family.<br /><br />Please browse the various categories to find your favorite movie today!');
 INSERT INTO categories_description (categories_id, language_id, categories_name, categories_description) VALUES (4, 43, 'Grafikkarten', '');
@@ -1558,7 +1558,7 @@ INSERT INTO categories_description (categories_id, language_id, categories_name,
 INSERT INTO categories_description (categories_id, language_id, categories_name, categories_description) VALUES (20, 43, 'Strategie', '');
 INSERT INTO categories_description (categories_id, language_id, categories_name, categories_description) VALUES (60, 43, 'Downloads', '');
 INSERT INTO categories_description (categories_id, language_id, categories_name, categories_description) VALUES (58, 43, 'Real Sale', '');
-INSERT INTO categories_description (categories_id, language_id, categories_name, categories_description) VALUES (21, 43, 'Geschenkgutscheine', 'Send a Geschenkgutschein today!<br /><br />Geschenkgutscheine are good for anything in the store.');
+INSERT INTO categories_description (categories_id, language_id, categories_name, categories_description) VALUES (21, 43, 'Geschenkgutscheine', 'Verschenken Sie einen Geschenkgutschein!<br /><br />Geschenkgutscheine können für alle Artikel in unserem SDhop eingelöst werden.');
 INSERT INTO categories_description (categories_id, language_id, categories_name, categories_description) VALUES (57, 43, 'Textpreise', '');
 INSERT INTO categories_description (categories_id, language_id, categories_name, categories_description) VALUES (56, 43, 'Attribute', '');
 INSERT INTO categories_description (categories_id, language_id, categories_name, categories_description) VALUES (22, 43, 'Verlinkte Artikel', 'All of these products are &quot;Linked Products&quot;.<br /><br />This means that they appear in more than one Category.<br /><br />However, you only have to maintain the product in one place.<br /><br />The Master Product is used for pricing purposes.');

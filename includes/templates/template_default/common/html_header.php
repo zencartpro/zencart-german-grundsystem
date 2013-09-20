@@ -37,6 +37,7 @@ require(DIR_WS_MODULES . zen_get_module_directory('meta_tags.php'));
 <?php } //endif FAVICON ?>
 
 <base href="<?php echo (($request_type == 'SSL') ? HTTPS_SERVER . DIR_WS_HTTPS_CATALOG : HTTP_SERVER . DIR_WS_CATALOG ); ?>" />
+<?php echo rss_feed_link_alternate(); // RSS Feed ?>
 <?php if (isset($canonicalLink) && $canonicalLink != '') { ?>
 <link rel="canonical" href="<?php echo $canonicalLink; ?>" />
 <?php } ?>

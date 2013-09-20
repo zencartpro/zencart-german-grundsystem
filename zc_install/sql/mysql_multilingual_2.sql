@@ -1,4 +1,4 @@
-# $Id: mysql_multilingual_2.sql 675 2012-02-26 12:02:40Z webchills $
+# $Id: mysql_multilingual_2.sql 676 2013-09-20 18:02:40Z webchills $
 # multilingual part II
 # @translators: maleborg/webchills/hugo13
 
@@ -37,7 +37,8 @@ REPLACE INTO configuration_group (configuration_group_id, language_id, configura
 (23, 43, 'Liste - Alle Artikel', 'Listenansicht für alle Artikel', 23, 1),
 (24, 43, 'Liste - Artikelindex', 'Listenansicht für Artikelindex', 24, 1),
 (25, 43, 'Eigene Seiten', 'Eigene Seiten, die über den im Seiteneditor eingegebenen Texte festgelegt werden und HTMLArea Optionen', 25, 1),
-(30, 43, 'EZ-Pages Einstellungen', 'EZ-Pages Einstellungen', 30, 1);
+(30, 43, 'EZ-Pages Einstellungen', 'EZ-Pages Einstellungen', 30, 1),
+(31, 43, 'RSS Feed Einstellungen', 'RSS Feed Einstellungen', 31, 1);
 
 
 REPLACE INTO configuration_language (configuration_title, configuration_key, configuration_language_id, configuration_description, last_modified, date_added) VALUES
@@ -647,6 +648,38 @@ REPLACE INTO configuration_language (configuration_title, configuration_key, con
 ('In diesen Seiten keine Fußzeile anzeigen', 'EZPAGES_DISABLE_FOOTER_DISPLAY_LIST', 43, 'Geben Sie hier die "Seiten" der EZ-Pages an, in der keine Fußzeile angezeigt werden sollen.<br />Seiten IDs durch Komma getrennt (ohne Leerzeichen) eingeben.<br />Seiten IDs können in der EZ-Pages Ansicht über <em>Admin->Tools->EZ-Pages</em> ermittelt werden.<br />z.B. 3,7<br />oder leer lassen.', now(), now()),
 ('In diesen Seiten keine linke Spalte anzeigen', 'EZPAGES_DISABLE_LEFTCOLUMN_DISPLAY_LIST', 43, 'Geben Sie hier die "Seiten" der EZ-Pages an, in der keine linken Spalten (der Sideboxen) angezeigt werden sollen.<br />Seiten IDs durch Komma getrennt (ohne Leerzeichen) eingeben.<br />Seiten IDs können in der EZ-Pages Ansicht über <em>Admin->Tools->EZ-Pages</em> ermittelt werden.<br />z.B. 3,7<br />oder leer lassen.', now(), now()),
 ('In diesen Seiten keine rechte Spalte anzeigen', 'EZPAGES_DISABLE_RIGHTCOLUMN_DISPLAY_LIST', 43, 'Geben Sie hier die "Seiten" der EZ-Pages an, in der keine rechten Spalten (der Sideboxen) angezeigt werden sollen.<br />Seiten IDs durch Komma getrennt (ohne Leerzeichen) eingeben.<br />Seiten IDs können in der EZ-Pages Ansicht über <em>Admin->Tools->EZ-Pages</em> ermittelt werden.<br />z.B. 3,7<br />oder leer lassen.', now(), now()),
+
+# Adminmenü ID 31
+('RSS - Titel', 'RSS_TITLE', 43, 'RSS Titel (falls leer verwende den Shopnamen)', now(), now()),
+('RSS - Beschreibung', 'RSS_DESCRIPTION', 43, 'RSS Beschreibung', now(), now()),
+('RSS - Bild', 'RSS_IMAGE', 43, 'ein GIF, JPEG oder PNG Bild, das das RSS Feed illustriert', now(), now()),
+('RSS - Bild Name', 'RSS_IMAGE_NAME', 43, 'RSS Bild Name (falls leer verwende den Shopnamen)', now(), now()),
+('RSS - Copyright', 'RSS_COPYRIGHT', 43, 'RSS Copyright (falls leer verwende den Shopinhaber)', now(), now()),
+('RSS - Editor', 'RSS_MANAGING_EDITOR', 43, 'RSS Managing Editor (falls leer verwende die Shopinhaber Emailadresse und den Shopinhaber)', now(), now()),
+('RSS - Webmaster', 'RSS_WEBMASTER', 43, 'RSS Webmaster (falls leer verwende die Shopinhaber Emailadresse und den Shopinhaber)', now(), now()),
+('RSS - Author', 'RSS_AUTHOR', 43, 'RSS Autor (falls leer verwende die Shopinhaber Emailadresse und den Shopinhaber)', now(), now()),
+('RSS - Home Page Feed', 'RSS_HOMEPAGE_FEED', 43, 'RSS Home Page Feed - Standardwert Neue Artikel', now(), now()),
+('RSS - Default Feed', 'RSS_DEFAULT_FEED', 43, 'RSS Default Feed - Standarwert Neue Artikel', now(), now()),
+('RSS - HTML Tags ausfiltern', 'RSS_STRIP_TAGS', 43, 'HTML Tags ausfiltern? Standardwert: false', now(), now()),
+('RSS - Erzeuge Beschreibung', 'RSS_ITEMS_DESCRIPTION', 43, 'Soll die Artikelbeschreibung im Feed erscheinen?', now(), now()),
+('RSS - Länge der Beschreibung', 'RSS_ITEMS_DESCRIPTION_MAX_LENGTH', 43, 'Wollen Sie den Beschreibungstext auf eine bestimmte Länge beschränken? (0 für kein Limit)', now(), now()),
+('RSS - Lebensdauer des Feeds', 'RSS_TTL', 43, 'Lebensdauer - Zeit in Minuten nach der ein RSS Reader das Feed refreshen soll - Standardwert: 1440', now(), now()),
+('RSS - Standard Artikel Limit', 'RSS_PRODUCTS_LIMIT', 43, 'Wieviele Artikel soll das RSS Feed enthalten? Standardwert: 100', now(), now()),
+('RSS - Füge Artikelbild hinzu', 'RSS_PRODUCTS_DESCRIPTION_IMAGE', 43, 'Soll das Artikelbild im Feed erscheinen?', now(), now()),
+('RSS - Füge Jetzt kaufen Button hinzu', 'RSS_PRODUCTS_DESCRIPTION_BUYNOW', 43, 'Soll der Jetzt kaufen Button im Feed erscheinen?', now(), now()),
+('RSS - Kategorien für Artikel', 'RSS_PRODUCTS_CATEGORIES', 43, 'Wenn ein cPath mit angegeben wird, sollen die Artikel, dann nur aus der Masterkategorie kommen oder aus allen Kategorien? (wichtig bei verlinkten Artikeln)', now(), now()),
+('RSS - Generiere Artikelpreis', 'RSS_PRODUCTS_PRICE', 43, 'Artikelpreis generieren? (extended tag &lt;g:price&gt;)', now(), now()),
+('RSS - Generiere Artikelkennung', 'RSS_PRODUCTS_ID', 43, 'Artikel ID generieren? (erweiterter Tag &lt;g:id&gt;)', now(), now()),
+('RSS - Generiere Artikelgewicht', 'RSS_PRODUCTS_WEIGHT', 43, 'Artikelgewicht generieren? (erweiterter Tag &lt;g:weight&gt;)', now(), now()),
+('RSS - Generiere Artikelhersteller', 'RSS_PRODUCTS_BRAND', 43, 'Herstellernamen generieren? (erweiterter Tag &lt;g:brand&gt;)', now(), now()),
+('RSS - Generiere Artikelwährung', 'RSS_PRODUCTS_CURRENCY', 43, 'Währung des Artikels generieren? (erweiterter Tag &lt;g:currency&gt;)', now(), now()),
+('RSS - Generiere Artikelanzahl', 'RSS_PRODUCTS_QUANTITY', 43, 'Mengenangabe generieren? (erweiterter Tag &lt;g:quantity&gt;)', now(), now()),
+('RSS - Generiere Artikelnummer', 'RSS_PRODUCTS_MODEL', 43, 'Artikelnummer generieren? (erweiterter Tag &lt;g:model_number&gt;)', now(), now()),
+('RSS - Generiere Artikelbewertung', 'RSS_PRODUCTS_RATING', 43, 'Artikelbewertung generieren? (erweiterter Tag &lt;g:rating&gt;)', now(), now()),
+('RSS - Generiere Artikelbilder', 'RSS_PRODUCTS_IMAGES', 43, 'Artikelbilder generieren? (erweiterter Tag &lt;g:image_link&gt;)', now(), now()),
+('RSS - Bildgröße der Artikelbilder', 'RSS_DEFAULT_IMAGE_SIZE', 43, 'Welche Bildgröße wird verwendet - Voreinstellung: large (erweiterter Tag &lt;g:image_link&gt;)', now(), now()),
+('RSS - Cache', 'RSS_CACHE_TIME', 43, 'Feed Cache aktivieren (es werden Feed Files im cache Ordner abgelegt). Wenn Sie kein Caching verwenden wollen stellen Sie auf false', now(), now()),
+
 
 # Deutsche Einträge für Versandmodul Versandkostenfrei mit Optionen
 ('Versandkostenfrei mit Optionen aktivieren', 'MODULE_SHIPPING_FREEOPTIONS_STATUS', 43, 'Wollen Sie "Versandkostenfrei mit Optionen" aktivieren?', now(), now()),
