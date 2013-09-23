@@ -1,0 +1,54 @@
+#navColumnTwo{
+	display:none;
+}
+
+#cartandsum{
+background:#F6F6F6;
+border:2px solid #F6F6F6;
+}
+
+#cartContentsDisplay{
+	background: #F6F6F6;
+}
+
+#checkoutconfirmationBody .rowEven{
+	background:#F6F6F6;
+}
+
+#checkoutconfirmationBody .rowOdd{
+	background:#F6F6F6;
+}
+
+#checkoutconfirmationBody .cartProductDisplay{
+	background:#F6F6F6;
+}
+
+#checkoutconfirmationBody .cartTotalDisplay{
+	background:#F6F6F6;
+}
+
+#checkoutconfirmationBody .cartQuantity{
+	background:#F6F6F6;
+}
+
+#ccTotalHeading{
+	text-align:right;
+}
+
+#ccProductsHeading{
+	text-align:left;
+}
+
+#ottotal{
+	font-weight:bold;
+	font-size:13px;
+}
+
+#checkoutconfirmationBody #ottotal{
+	font-size:14px;
+	}
+	
+.eustandardtransferdescription{
+	font-weight:normal;
+	font-size:11px;
+}
