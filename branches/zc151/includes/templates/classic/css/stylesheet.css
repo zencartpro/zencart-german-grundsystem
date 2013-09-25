@@ -5,7 +5,7 @@
  * @copyright Copyright 2003-2013 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: stylesheet.css 836 2012-01-01 20:33:58Z webchills $
+ * @version $Id: stylesheet.css 837 2013-09-25 08:33:58Z webchills $
  */
 
 body {
@@ -181,7 +181,7 @@ HR {
 #mainWrapper {
 	background-color: #ffffff;
 	text-align: left;
-	width: 750px;
+	width: 990px;
 	vertical-align: top;
 	border: 1px solid #9a9a9a;
 	}
@@ -723,4 +723,9 @@ LABEL#textAreaReviews {
 	font-weight:normal;
 	font-size:10px;
     display: block;        
+}
+
+.listingprice{
+	font-weight:bold;
+	font-size:12px;
 }
