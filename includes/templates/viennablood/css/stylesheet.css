@@ -87,14 +87,14 @@ LABEL.checkboxLabel, LABEL.radioButtonLabel {
 	margin: 0.5em 0.3em;
 	}
 
-#logo, .centerBoxContents, .specialsListBoxContents, .categoryListBoxContents, .centerBoxContentsAlsoPurch, .attribImg {
+.centerBoxContents, .specialsListBoxContents, .categoryListBoxContents, .centerBoxContentsAlsoPurch, .attribImg {
 	float: right;
 	}
 	
 #logo {
-	margin-top: 10px;
+	margin-top:10px;
 	float: right;
-	padding-right: 20px;
+	padding-right: 40px;
 }
 
 LABEL.inputLabel {
@@ -141,7 +141,7 @@ HR {
 /*wrappers - page or section containers*/
 #mainWrapper {
 	text-align: left;
-    width: 770px;
+    width: 990px;
     
 	vertical-align: top;
 	}
@@ -152,7 +152,7 @@ HR {
 	}
 
 #logoWrapper {
-    width:770px;
+    width:990px;
     
 	height:110px;
 	}
@@ -592,4 +592,9 @@ table #orderHistoryDetailedOrder, table #orderHistoryStatus {
     color: #a30101;
     margin: 0 0 6px 0;
     display: block;
+}
+
+.listingprice{
+	font-weight:bold;
+	font-size:12px;
 }
