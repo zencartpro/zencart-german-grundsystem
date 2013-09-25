@@ -1,4 +1,4 @@
-# $Id: mysql_multilingual_2.sql 676 2013-09-20 18:02:40Z webchills $
+# $Id: mysql_multilingual_2.sql 677 2013-09-25 11:02:40Z webchills $
 # multilingual part II
 # @translators: maleborg/webchills/hugo13
 
@@ -97,7 +97,7 @@ REPLACE INTO configuration_language (configuration_title, configuration_key, con
 ('Kreditkarten Prüfziffer (CVV)', 'CC_CVV_MIN_LENGTH', 43, 'Minimale Zeichenlänge für den Kreditkarten Prüfziffer (CVV)', now(), now()),
 ('Zeichenlänge für Bewertungstexte', 'REVIEW_TEXT_MIN_LENGTH', 43, 'Minimale Zeichenlänge für den Text einer Bewertung', now(), now()),
 ('Bestseller', 'MIN_DISPLAY_BESTSELLERS', 43, 'Wieviele Bestseller/Top Artikel sollen mindestens angezeigt werden?', now(), now()),
-('"Empfohlene Artikel', 'MIN_DISPLAY_ALSO_PURCHASED', 43, 'Minimale Anzahl der anzuzeigenden Artikel in der Box "Empfohlene Artikel"', now(), now()),
+('Empfohlene Artikel', 'MIN_DISPLAY_ALSO_PURCHASED', 43, 'Minimale Anzahl der anzuzeigenden Artikel in der Box Empfohlene Artikel', now(), now()),
 ('Nickname', 'ENTRY_NICK_MIN_LENGTH', 43, 'Minimale Zeichenlänge für Nicknamen', now(), now()),
 
 # Adminmenü ID 3
