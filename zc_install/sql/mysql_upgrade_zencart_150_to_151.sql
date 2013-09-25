@@ -6,7 +6,7 @@
 # * @copyright Copyright 2003-2013 Zen Cart Development Team
 # * @copyright Portions Copyright 2003 osCommerce
 # * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
-# * @version $Id: mysql_upgrade_zencart_150_to_151.sql 19333 2013-02-19 17:12:59Z webchills $
+# * @version $Id: mysql_upgrade_zencart_150_to_151.sql 19334 2013-09-25 13:12:59Z webchills $
 #
 
 ############ IMPORTANT INSTRUCTIONS ###############
@@ -59,7 +59,8 @@ INSERT INTO configuration (configuration_title, configuration_key, configuration
 INSERT INTO configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, last_modified, date_added, use_function, set_function) VALUES ('EU Countries', 'EU_COUNTRIES_FOR_LAST_STEP', 'BE,BG,DK,DE,EE,FI,FR,GR,IE,IT,LV,LT,LU,MT,NL,AT,PL,PT,RO,SE,SK,SI,ES,CZ,HU,GB,CY', 'Enter the countries which are part of the European Union. Two digit ISO codes, comma separated.', '1', '100', now(), now(), NULL, NULL);
 
 #Set TinyMCE as default HTML editor
-UPDATE configuration SET configuration_value = 'TINYMCE' WHERE configuration_key = 'HTML_EDITOR_PREFERENCE';
+UPDATE configuration SET configuration_value = 'CKEDITOR' WHERE configuration_key = 'HTML_EDITOR_PREFERENCE';
+
 
 #############
 
