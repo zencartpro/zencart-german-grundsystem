@@ -2084,7 +2084,6 @@ VALUES ('configMyStore', 'BOX_CONFIGURATION_MY_STORE', 'FILENAME_CONFIGURATION',
        ('configIndexListing', 'BOX_CONFIGURATION_INDEX_LISTING', 'FILENAME_CONFIGURATION', 'gID=24', 'configuration', 'Y', 23),
        ('configDefinePageStatus', 'BOX_CONFIGURATION_DEFINE_PAGE_STATUS', 'FILENAME_CONFIGURATION', 'gID=25', 'configuration', 'Y', 24),
        ('configEzPagesSettings', 'BOX_CONFIGURATION_EZPAGES_SETTINGS', 'FILENAME_CONFIGURATION', 'gID=30', 'configuration', 'Y', 25),
-       ('configProdRSSFeed', 'BOX_CONFIGURATION_PRODUCT_RSSFEED', 'FILENAME_CONFIGURATION', 'gID=31', 'configuration', 'Y', 31),
        ('categories', 'BOX_CATALOG_CATEGORIES_PRODUCTS', 'FILENAME_CATEGORIES', '', 'catalog', 'Y', 1),
        ('productTypes', 'BOX_CATALOG_PRODUCT_TYPES', 'FILENAME_PRODUCT_TYPES', '', 'catalog', 'Y', 2),
        ('priceManager', 'BOX_CATALOG_PRODUCTS_PRICE_MANAGER', 'FILENAME_PRODUCTS_PRICE_MANAGER', '', 'catalog', 'Y', 3),
@@ -2858,40 +2857,6 @@ INSERT INTO configuration (configuration_title, configuration_key, configuration
 #EU Countries fuer Buttonloesung
 INSERT INTO configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, last_modified, date_added, use_function, set_function) VALUES ('EU Countries', 'EU_COUNTRIES_FOR_LAST_STEP', 'BE,BG,DK,DE,EE,FI,FR,GR,IE,IT,LV,LT,LU,MT,NL,AT,PL,PT,RO,SE,SK,SI,ES,CZ,HU,GB,CY,HR', 'Enter the countries which are part of the European Union. Two digit ISO codes, comma separated.', '1', '100', now(), now(), NULL, NULL);
 
-#RSS Feed
-INSERT INTO configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, last_modified, date_added, use_function, set_function) VALUES 
-('RSS Title', 'RSS_TITLE', '', 'RSS Title (if empty use Store Name)', 31, 1, NOW(), NOW(), NULL, NULL),
-('RSS Description', 'RSS_DESCRIPTION', '', 'RSS description', 31, 2, NOW(), NOW(), NULL, NULL),
-('RSS Image', 'RSS_IMAGE', '', 'A GIF, JPEG or PNG image that represents the channel', 31, 3, NOW(), NOW(), NULL, NULL),
-('RSS Image Name', 'RSS_IMAGE_NAME', '', 'RSS Image Name (if empty use Store Name)', 31, 4, NOW(), NOW(), NULL, NULL),
-('RSS Copyright', 'RSS_COPYRIGHT', '', 'RSS Copyright (if empty use Store Owner)', 31, 5, NOW(), NOW(), NULL, NULL),
-('RSS Managing Editor', 'RSS_MANAGING_EDITOR', '', 'RSS Managing Editor (if empty use Store Owner Email Address and Store Owner)', 31, 6, NOW(), NOW(), NULL, NULL),
-('RSS Webmaster', 'RSS_WEBMASTER', '', 'RSS Webmaster (if empty use Store Owner Email Address and Store Owner)', 31, 7, NOW(), NOW(), NULL, NULL),
-('RSS Author', 'RSS_AUTHOR', '', 'RSS Author (if empty use Store Owner Email Address and Store Owner)', 31, 8, NOW(), NOW(), NULL, NULL),
-('RSS Home Page Feed', 'RSS_HOMEPAGE_FEED', 'new_products', 'RSS Home Page Feed', 31, 8, NOW(), NOW(), NULL, 'zen_cfg_select_option(array(\'news\', \'new_products\', \'upcoming\', \'featured\', \'specials\', \'products\', \'categories\'),'),
-('RSS Default Feed', 'RSS_DEFAULT_FEED', 'new_products', 'RSS Default Feed', 31, 10, NOW(), NOW(), NULL, 'zen_cfg_select_option(array(\'news\', \'new_products\', \'upcoming\', \'featured\', \'specials\', \'products\', \'categories\'),'),
-('Strip tags', 'RSS_STRIP_TAGS', 'false', 'Strip tags', 31, 11, NOW(), NOW(), NULL, 'zen_cfg_select_option(array(\'true\', \'false\'),'),
-('Generate Descriptions', 'RSS_ITEMS_DESCRIPTION', 'true', 'Generate Descriptions', 31, 12, NOW(), NOW(), NULL, 'zen_cfg_select_option(array(\'true\', \'false\'),'),
-('Descriptions Length', 'RSS_ITEMS_DESCRIPTION_MAX_LENGTH', '0', 'How many characters in description (0 for no limit)', 31, 13, NOW(), NOW(), NULL, NULL),
-('Time to live', 'RSS_TTL', '1440', 'Time to live - time after reader should refresh the info in minutes', 31, 14, NOW(), NOW(), NULL, NULL),
-('Default Products Limit', 'RSS_PRODUCTS_LIMIT', '100', 'Default Limit to Products Feed', 31, 15, NOW(), NOW(), NULL, NULL),
-('Add Product image', 'RSS_PRODUCTS_DESCRIPTION_IMAGE', 'true', 'Add product image to product description tag', 31, 16, NOW(), NOW(), NULL, 'zen_cfg_select_option(array(\'true\', \'false\'),'),
-('Add "buy now" button', 'RSS_PRODUCTS_DESCRIPTION_BUYNOW', 'true', 'Add "buy now" button to product description tag', 31, 17, NOW(), NOW(), NULL, 'zen_cfg_select_option(array(\'true\', \'false\'),'),
-('Categories for Products', 'RSS_PRODUCTS_CATEGORIES', 'master', 'Use \'all\' or only \'master\' Categories for Products when specified cPath parameter', 31, 18, NOW(), NOW(), NULL, 'zen_cfg_select_option(array(\'master\', \'all\'),'),
-('Generate Products Price', 'RSS_PRODUCTS_PRICE', 'true', 'Generate Products Price (extended tag &lt;g:price&gt;)', 31, 19, NOW(), NOW(), NULL, 'zen_cfg_select_option(array(\'true\', \'false\'),'),
-('Generate Products ID', 'RSS_PRODUCTS_ID', 'true', 'Generate Products ID (extended tag &lt;g:id&gt;)', 31, 20, NOW(), NOW(), NULL, 'zen_cfg_select_option(array(\'true\', \'false\'),'),
-('Generate Products Weight', 'RSS_PRODUCTS_WEIGHT', 'true', 'Generate Products Weight (extended tag &lt;g:weight&gt;)', 31, 21, NOW(), NOW(), NULL, 'zen_cfg_select_option(array(\'true\', \'false\'),'),
-('Generate Products Brand', 'RSS_PRODUCTS_BRAND', 'true', 'Generate Products Manufacturers Name (extended tag &lt;g:brand&gt;)', 31, 22, NOW(), NOW(), NULL, 'zen_cfg_select_option(array(\'true\', \'false\'),'),
-('Generate Products Currency', 'RSS_PRODUCTS_CURRENCY', 'true', 'Generate Products Currency (extended tag &lt;g:currency&gt;)', 31, 23, NOW(), NOW(), NULL, 'zen_cfg_select_option(array(\'true\', \'false\'),'),
-('Generate Products Quantity', 'RSS_PRODUCTS_QUANTITY', 'true', 'Generate Products Quantity (extended tag &lt;g:quantity&gt;)', 31, 24, NOW(), NOW(), NULL, 'zen_cfg_select_option(array(\'true\', \'false\'),'),
-('Generate Products Model', 'RSS_PRODUCTS_MODEL', 'true', 'Generate Products Model (extended tag &lt;g:model_number&gt;)', 31, 25, NOW(), NOW(), NULL, 'zen_cfg_select_option(array(\'true\', \'false\'),'),
-('Generate Products Rating', 'RSS_PRODUCTS_RATING', 'true', 'Generate Products Rating (extended tag &lt;g:rating&gt;)', 31, 26, NOW(), NOW(), NULL, 'zen_cfg_select_option(array(\'true\', \'false\'),'),
-('Generate Products Images', 'RSS_PRODUCTS_IMAGES', 'true', 'Generate Products Images (extended tag &lt;g:image_link&gt;)', 31, 27, NOW(), NOW(), NULL, 'zen_cfg_select_option(array(\'true\', \'false\'),'),
-('Generate Products Images Size', 'RSS_DEFAULT_IMAGE_SIZE', 'large', 'What image size Generate (extended tag &lt;g:image_link&gt;)', 31, 28, NOW(), NOW(),  NULL, 'zen_cfg_select_option(array(\'small\', \'medium\', \'large\'),'),
-('Feed Cache', 'RSS_CACHE_TIME', 'false', 'Cache Feeds in the cache folder. If you don\'t want caching, set it to false', 31, 29, NOW(), NOW(), NULL, 'zen_cfg_select_option(array(\'true\', \'false\'),');
-
-
-
 INSERT INTO configuration_group VALUES (1, 'My Store', 'General information about my store', '1', '1');
 INSERT INTO configuration_group VALUES (2, 'Minimum Values', 'The minimum values for functions / data', '2', '1');
 INSERT INTO configuration_group VALUES (3, 'Maximum Values', 'The maximum values for functions / data', '3', '1');
@@ -2918,7 +2883,7 @@ INSERT INTO configuration_group VALUES (23, 'All Listing', 'All Products Listing
 INSERT INTO configuration_group VALUES (24, 'Index Listing', 'Index Products Listing', '24', '1');
 INSERT INTO configuration_group VALUES (25, 'Define Page Status', 'Define Main Pages and HTMLArea Options', '25', '1');
 INSERT INTO configuration_group VALUES (30, 'EZ-Pages Settings', 'EZ-Pages Settings', 30, '1');
-INSERT INTO configuration_group VALUES (31, 'RSS Feed', 'RSS Feed Settings', 31, '1');
+
 
 INSERT INTO currencies VALUES (1,'Euro','EUR','&euro;','','.',',','2','1.000', now());
 INSERT INTO currencies VALUES (2,'US Dollar','USD','$','','.',',','2','1.385', now());

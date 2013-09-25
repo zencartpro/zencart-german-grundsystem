@@ -6,7 +6,7 @@
 # * @copyright Copyright 2003-2013 Zen Cart Development Team
 # * @copyright Portions Copyright 2003 osCommerce
 # * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
-# * @version $Id: mysql_upgrade_zencart_139_to_150.sql 20044 2012-03-07 17:07:06Z webchills $
+# * @version $Id: mysql_upgrade_zencart_139_to_150.sql 20045 2013-09-25 13:07:06Z webchills $
 #
 
 ############ IMPORTANT INSTRUCTIONS ###############
@@ -252,8 +252,8 @@ VALUES ('german1', 'BOX_HEADING_EXTRAS_GERMAN', 50);
 
 INSERT INTO admin_pages (page_key, language_key, main_page, page_params, menu_key, display_on_menu, sort_order) 
 VALUES  ('proponents', 'GERMAN_PROPONENTS', 'FILENAME_GERMAN', '', 'german1', 'Y', 30),
-        ('german10', 'GERMAN_FORUM', 'FILENAME_GERMAN', 'extern=http://www.zen-cart-pro.at/zcvb/forum', 'german1', 'Y', 10),
-        ('german30', 'GERMAN_FAQ', 'FILENAME_GERMAN', 'extern=http://www.zen-cart-pro.at/zcvb/forum/vbglossar.php', 'german1', 'Y', 20);
+        ('german10', 'GERMAN_FORUM', 'FILENAME_GERMAN', 'extern=http://www.zen-cart-pro.at/forum', 'german1', 'Y', 10),
+        ('german30', 'GERMAN_FAQ', 'FILENAME_GERMAN', 'extern=http://www.zen-cart-pro.at/forum/forums/69-FAQ-und-Tutorials', 'german1', 'Y', 20);
     
        
        
@@ -284,7 +284,7 @@ SELECT project_version_key, project_version_major, project_version_minor, projec
 FROM project_version;
 
 ## Now set to new version
-UPDATE project_version SET project_version_major='1', project_version_minor='5.0', project_version_patch1='', project_version_patch1_source='', project_version_patch2='', project_version_patch2_source='', project_version_comment='Version Update 1.3.9->1.5.0RC4', project_version_date_applied=now() WHERE project_version_key = 'Zen-Cart Main';
+UPDATE project_version SET project_version_major='1', project_version_minor='5.0', project_version_patch1='', project_version_patch1_source='', project_version_patch2='', project_version_patch2_source='', project_version_comment='Version Update 1.3.9->1.5.0', project_version_date_applied=now() WHERE project_version_key = 'Zen-Cart Main';
 UPDATE project_version SET project_version_major='1', project_version_minor='5.0', project_version_patch1='', project_version_patch1_source='', project_version_patch2='', project_version_patch2_source='', project_version_comment='Version Update 1.3.9->1.5.0', project_version_date_applied=now() WHERE project_version_key = 'Zen-Cart Database';
 
 #####  END OF UPGRADE SCRIPT
