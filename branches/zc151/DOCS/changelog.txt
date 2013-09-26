@@ -1,0 +1,190 @@
+Zen Cart 1.5.1 deutsche Version - 2013-09-25
+Änderungen gegenüber Version 1.5
+
+
+Entfernte Dateien:
+
+    /admin/includes/functions/password_funcs.php 
+    /includes/templates/classic/css/CSS_read_me.txt
+
+Neue Dateien/Ordner
+
+    /editors/ckeditor (neuer Ordner samt neuem Inhalt)
+    /logs/ (neuer Ordner samt neuem Inhalt)
+    
+    /admin/includes/classes/split_page_results_new.php
+    /admin/includes/ckeditor.php
+    /includes/auto_loaders/config.products_viewed_counter.php
+    /includes/classes/observers/class.products_viewed_counter.php
+    /includes/classes/query_cache.php
+    /includes/extra_datafiles/products_viewed_counter.php
+    /includes/modules/pages/advanced_search_result/jscript_onload_helper.php
+    /includes/modules/pages/advanced_search_result/on_load_focus.js
+    /includes/templates/template_default/css/CSS_read_me.txt
+    /includes/templates/template_default/css/stylesheet_buttonloesung.css
+    /includes/templates/template_default/images/call_for_prices.gif
+    /includes/templates/viennablood/css/stylesheet_buttonloesung.css
+    /includes/templates/viennabright/css/stylesheet_buttonloesung.css
+    /includes/templates/viennabright/images/call_for_prices.gif
+    /includes/templates/viennaorange (neuer Ordner samt neuem Inhalt)
+
+Geänderte Dateien
+
+    /admin/admin_activity.php
+    /admin/admin_page_registration.php
+    /admin/alert_page.php
+    /admin/attributes_controller.php
+    /admin/categories.php
+    /admin/coupon_admin.php
+    /admin/customers.php
+    /admin/gv_mail.php
+    /admin/index.php
+    /admin/mail.php
+    /admin/modules.php
+    /admin/options_name_manager.php
+    /admin/options_values_manager.php
+    /admin/password_forgotten.php
+    /admin/product_types.php
+    /admin/profiles.php
+    /admin/sqlpatch.php
+    /admin/stats_customers_referrals.php
+    /admin/store_manager.php
+    /admin/users.php
+    /admin/includes/.htaccess
+    /admin/includes/application_top.php
+    /admin/includes/attributes_preview.php
+    /admin/includes/dist-configure.php 
+    /admin/includes/footer.php
+    /admin/includes/header.php
+    /admin/includes/index.css
+    /admin/includes/initsystem.php
+    /admin/includes/menu.css
+    /admin/includes/menu.js
+    /admin/includes/stylesheet.js
+    /admin/includes/extra_configures/enable_error_logging.php
+    /admin/includes/functions/admin_access.php
+    /admin/includes/functions/database.php
+    /admin/includes/functions/general.php
+    /admin/includes/functions/localization.php
+    /admin/includes/init_includes/init_admin_auth.php
+    /admin/includes/init_includes/init_admin_history.php
+    /admin/includes/init_includes/init_errors.php
+    /admin/includes/init_includes/init_file_db_names.php
+    /admin/includes/init_includes/init_general_funcs.php
+    /admin/includes/init_includes/init_html_editor.php
+    /admin/includes/init_includes/init_languages.php
+    /admin/includes/languages/english/extra_definitions/editors_list.php
+    /admin/includes/languages/english/login.php
+    /admin/includes/languages/english/profiles.php
+    /admin/includes/languages/english/product.php
+    /admin/includes/languages/english/stats_customers_referrals.php
+    /admin/includes/languages/english.php
+    /admin/includes/languages/german/extra_definitions/editors_list.php
+    /admin/includes/languages/german/banner_manager.php
+    /admin/includes/languages/german/banner_statistics.php
+    /admin/includes/languages/german/login.php
+    /admin/includes/languages/german/profiles.php
+    /admin/includes/languages/german/product.php
+    /admin/includes/languages/german/stats_customers_referrals.php
+    /admin/includes/languages/german.php
+    /admin/includes/modules/document_general/preview_info.php
+    /admin/includes/modules/document_general/preview_info_meta_tags.php
+    /admin/includes/modules/document_product/collect_info.php
+    /admin/includes/modules/document_product/preview_info.php
+    /admin/includes/modules/document_product/preview_info_meta_tags.php
+    /admin/includes/modules/product/preview_info.php
+    /admin/includes/modules/product/preview_info_meta_tags.php
+    /admin/includes/modules/product_free_shipping/preview_info.php
+    /admin/includes/modules/product_free_shipping/preview_info_meta_tags.php
+    /admin/includes/modules/product_music/preview_info.php
+    /admin/includes/modules/product_music/preview_info_meta_tags.php
+    /admin/includes/modules/copy_to_confirm.php
+    /admin/includes/modules/update_product.php
+
+    /extras/ipncheck.php
+
+    /ipn_main_handler.php
+
+    /includes/application_top.php
+    /includes/dist-configure.php 
+    /includes/initsystem.php
+    /includes/main_cart_actions.php
+    /includes/version.php
+    /includes/auto_loaders/config.core.php
+    /includes/classes/db/mysql/query_factory.php
+    /includes/classes/order.php
+    /includes/classes/payment.php
+    /includes/classes/shipping.php
+    /includes/classes/shopping_cart.php
+    /includes/classes/split_page_results.php
+    /includes/extra_configures/enable_error_logging.php
+    /includes/functions/functions_customers.php
+    /includes/functions/functions_email.php
+    /includes/functions/functions_general.php
+    /includes/functions/html_output.php
+    /includes/functions/password_funcs.php
+    /includes/index_filters/record_company_filter.php
+    /includes/init_includes/init_file_db_names.php
+    /includes/init_includes/init_general_funcs.php
+    /includes/init_includes/init_sanitize.php
+    /includes/init_includes/init_special_funcs.php
+    /includes/languages/english/extra_definitions/rl.vat_info.php
+    /includes/languages/english/html_includes/classic/define_main_page.php
+    /includes/languages/english/html_includes/define_main_page.php
+    /includes/languages/english/modules/payment/paypal.php
+    /includes/languages/english/modules/payment/paypaldp.php
+    /includes/languages/english/modules/payment/paypalwpp.php
+    /includes/languages/english/button_names.php
+    /includes/languages/english/checkout_confirmation.php
+    /includes/languages/english/create_account.php
+    /includes/languages/english/other_images_names.php
+    /includes/languages/german/html_includes/classic/define_main_page.php
+    /includes/languages/german/html_includes/define_main_page.php
+    /includes/languages/german/modules/payment/paypal.php
+    /includes/languages/german/modules/payment/paypaldp.php
+    /includes/languages/german/modules/payment/paypalwpp.php
+    /includes/languages/german/button_names.php
+    /includes/languages/german/checkout_confirmation.php
+    /includes/languages/german/checkout_payment.php
+    /includes/languages/german/checkout_shipping.php
+    /includes/languages/german/create_account.php
+    /includes/languages/german/other_images_names.php
+    /includes/languages/german/time_out.php
+    /includes/modules/pages/contact_us/header_php.php
+    /includes/modules/pages/checkout_success/header_php.php
+    /includes/modules/pages/document_general_info/main_template_vars.php
+    /includes/modules/pages/document_product_info/main_template_vars.php
+    /includes/modules/pages/download/header_php.php
+    /includes/modules/pages/password_forgotten/header_php.php
+    /includes/modules/pages/product_free_shipping_info/main_template_vars.php
+    /includes/modules/pages/product_info/main_template_vars.php
+    /includes/modules/pages/product_music_info/main_template_vars.php
+    /includes/modules/pages/product_reviews_write/header_php.php
+    /includes/modules/payment/authorizenet.php
+    /includes/modules/payment/authorizenet_aim.php
+    /includes/modules/payment/authorizenet_echeck.php
+    /includes/modules/payment/linkpoint_api/class.linkpoint_api.php
+    /includes/modules/payment/linkpoint_api.php
+    /includes/modules/payment/paypal/paypal_curl.php
+    /includes/modules/payment/paypal/paypal_functions.php
+    /includes/modules/payment/paypal.php
+    /includes/modules/payment/paypaldp.php
+    /includes/modules/payment/paypalwpp.php
+    /includes/modules/sideboxes/manufacturers.php
+    /includes/modules/attributes.php
+    /includes/modules/create_account.php
+    /includes/modules/extra_definitions.php
+    /includes/modules/extra_functions.php
+    /includes/templates/template_default/common/html_header.php
+    /includes/templates/template_default/common/tpl_header.php
+    /includes/templates/template_default/css/CSS_read_me.txt (just a help-text file)
+    /includes/templates/template_default/jscript/on_load/read_me.txt (just a help-text file)
+    /includes/templates/template_default/jscript/read_me.txt (just a help-text file)
+    /includes/templates/template_default/popup_search_help/tpl_main_page.php
+    /includes/templates/template_default/templates/tpl_account_default.php
+    /includes/templates/template_default/templates/tpl_contact_us_default.php
+    /includes/templates/template_default/templates/tpl_modules_create_account.php
+    /includes/templates/template_default/templates/tpl_product_reviews_write_default.php
+    /includes/templates/template_default/templates/tpl_zc_install_suggested_default.php
+
+    /zc_install/ (alle Dateien in diesem Ordner)

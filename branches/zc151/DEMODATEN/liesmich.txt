@@ -1,0 +1,9 @@
+Info zu den Demodaten
+
+In diesem Ordner befinden sich Bilder und Mediendateien für eine Zen Cart Installation mit Demodaten.
+
+Wenn Sie bei der Installation angegeben haben, die Demodaten nicht zu installieren, dann müssen Sie diese Dateien nicht hochladen.
+Sie sind nur für einen Demoshop/Testshop gedacht.
+Auch wenn Sie ein Update eines bestehenden Shops durchführen, sind diese Dateien nicht notwendig!
+
+Wenn Sie bei der Zen Cart Installation die Demodaten mitinstalliert haben, dann laden Sie die Verzeichnisse/Dateien aus diesem Ordner DEMODATEN in der vorgebenen Struktur in Ihr Zen Cart Verzeichnis hoch.
