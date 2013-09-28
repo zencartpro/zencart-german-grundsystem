@@ -2,11 +2,10 @@
 /**
  * @package Installer
  * @access private
- * @copyright Copyright 2003-2012 Zen Cart Development Team
+ * @copyright Copyright 2003-2013 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @translator: cyaneo/hugo13/wflohr/hugo13/maleborg/webchills	http://www.zen-cart-pro.at
- * @version $Id: inspect.php 805 2012-11-30 18:28:24Z webchills $
+ * @version $Id: inspect.php 806 2013-09-27 10:28:24Z webchills $
  */
 /**
  * defining language components for the page
@@ -37,9 +36,9 @@ define('UNKNOWN','unbekannt');
 define('ON','EIN');
 define('OFF','AUS');
 define('OK','OK');
-define('UPGRADE_DETECTION','Update Modus verfügbar');
-define('LABEL_PREVIOUS_INSTALL_FOUND','Es wurde eine vorherigen Zen Cart Installation gefunden:');
-define('LABEL_PREVIOUS_VERSION_NUMBER','Die installierte Version scheint eine Zen Cart v%s zu sein');
+define('UPGRADE_DETECTION','!!!! Update Modus verfügbar !!!!');
+define('LABEL_PREVIOUS_INSTALL_FOUND','Es wurde eine vorherige Zen Cart Installation gefunden:');
+define('LABEL_PREVIOUS_VERSION_NUMBER','Die installierte Version scheint Zen Cart v%s zu sein');
 define('LABEL_PREVIOUS_VERSION_NUMBER_UNKNOWN','<em>Die Version Ihrer Datenbank konnte nicht korrekt ermittelt werden. Die Ursache kann ein falsches Tabellen-Präfix sein oder es wurden fehlerhafte Angaben zu Ihrer Datenbank gemacht. <br /><br />ACHTUNG: Verwenden Sie die Update Option nur, wenn alle Angaben in Ihrer \'configure.php\' korrekt sind.</em>');
 define('LABEL_UPGRADE_VS_INSTALL', 'Installieren oder Updaten?');
 define('LABEL_INSTALL', 'Bereit für die Installation?  <br>(Es werden alle existierenden Daten gelöscht. Sie befinden sich NICHT im Updatemodus!!!)');

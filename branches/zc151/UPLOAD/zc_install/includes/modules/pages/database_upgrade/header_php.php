@@ -2,10 +2,10 @@
 /**
  * @package Installer
  * @access private
- * @copyright Copyright 2003-2012 Zen Cart Development Team
+ * @copyright Copyright 2003-2013 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: header_php.php 841 2012-11-17 10:58:25Z webchills $
+ * @version $Id: header_php.php 842 2013-09-27 10:58:25Z webchills $
  */
 include('includes/modules/pages/database_upgrade/language_id_change.php');
 /*
@@ -82,17 +82,6 @@ $sniffer_text = '';
 
 //display options based on what was found -- THESE SHOULD BE PROCESSED IN REVERSE ORDER, NEWEST VERSION FIRST... !
 //that way only the "earliest-required" upgrade is suggested first.
-    $needs_v1_3_9multi2=false;
-    if (!$dbinfo->version139multi2) {
-      $sniffer_text =  ' upgrade v1.3.9 to v1.50';
-      $needs_v1_3_9multi2=true;
-    }
-    
-    $needs_v1_3_8multi2=false;
-    if (!$dbinfo->version138multi2) {
-      $sniffer_text =  ' upgrade v1.3.9 to v1.3.8multi2';
-      $needs_v1_3_8multi2=true;
-    }
 	
 	    $needs_v1_5_1=false;
     if (!$dbinfo->version151) {
@@ -103,7 +92,7 @@ $sniffer_text = '';
 	
     $needs_v1_5_0=false;
     if (!$dbinfo->version150) {
-      $sniffer_text =  ' upgrade v1.3.9 to v1.5.0';
+      $sniffer_text =  ' upgrade v1.3.9 to v1.5.1';
       $needs_v1_5_0=true;
     }
     $needs_v1_3_9=false;
@@ -131,99 +120,7 @@ $sniffer_text = '';
       $sniffer_text =  ' upgrade v1.3.0.2 to v1.3.5';
       $needs_v1_3_5=true;
     }
-    $needs_v1_3_0_2=false;
-    if (!$dbinfo->version1302) {
-      $sniffer_text =  ' upgrade v1.3.0.1 to v1.3.0.2';
-      $needs_v1_3_0_2=true;
-    }
-    $needs_v1_3_0_1=false;
-    if (!$dbinfo->version1301) {
-      $sniffer_text =  ' upgrade v1.3.0 to v1.3.0.1';
-      $needs_v1_3_0_1=true;
-    }
-    $needs_v1_3_0=false;
-    if (!$dbinfo->version130) {
-      $sniffer_text =  ' upgrade v1.2.7 to v1.3.0';
-      $needs_v1_3_0=true;
-    }
-    $needs_v1_2_7=false;
-    if (!$dbinfo->version127) {
-      $sniffer_text =  ' upgrade v1.2.6 to v1.2.7';
-      $needs_v1_2_7=true;
-    }
-    $needs_v1_2_6=false;
-    if (!$dbinfo->version126) {
-      $sniffer_text =  ' upgrade v1.2.5 to v1.2.6';
-      $needs_v1_2_6=true;
-    }
-    $needs_v1_2_5=false;
-    if (!$dbinfo->version125) {
-      $sniffer_text =  ' upgrade v1.2.4 to v1.2.5';
-      $needs_v1_2_5=true;
-    }
-    $needs_v1_2_4=false;
-    if (!$dbinfo->version124) {
-      $sniffer_text =  ' upgrade v1.2.3 to v1.2.4';
-      $needs_v1_2_4=true;
-    }
-    $needs_v1_2_3=false;
-    if (!$dbinfo->version123) {
-      $sniffer_text =  ' upgrade v1.2.2 to v1.2.3';
-      $needs_v1_2_3=true;
-    }
-    $needs_v1_2_2=false;
-    if (!$dbinfo->version122) {
-      $sniffer_text =  ' upgrade v1.2.1 to v1.2.2';
-      $needs_v1_2_2=true;
-    }
-    $needs_v1_2_1=false;
-    if (!$dbinfo->version121) {
-      $sniffer_text =  ' upgrade v1.2.0 to v1.2.1';
-      $needs_v1_2_1=true;
-    }  else {
-        $got_v1_2_1=true;   // r.l. multilingual
-    }
-    $needs_v1_2_0=false;
-    if (!$dbinfo->version120) {
-      $sniffer_text =  ' upgrade v1.1.4 to v1.2.0';
-      $needs_v1_2_0=true;
-    }
-    $needs_v1_1_4_patch1=false;
-    if (!$dbinfo->version1141) {
-      $sniffer_text =  ' upgrade v1.1.4 to v1.1.4_patch1';
-      $needs_v1_1_4_patch1=true;
-    }
-    $needs_v1_1_4=false;
-    if (!$dbinfo->version114) {
-      $sniffer_text =  ' upgrade v1.1.2 or v1.1.3 to v1.1.4';
-      $needs_v1_1_4=true;
-    }
-    $needs_v1_1_2=false;
-    if (!$dbinfo->version112) {
-      $sniffer_text =  ' upgrade v1.1.1 to v1.1.2';
-      $needs_v1_1_2=true;
-    }
-    $needs_v1_1_1=false;
-    if (!$dbinfo->version111) {
-      $sniffer_text =  ' upgrade v1.1.0 to v1.1.1';
-      $needs_v1_1_1=true;
-    }
-    $needs_v1_1_0=false;
-    if (!$dbinfo->version110) {
-      $sniffer_text =  ' upgrade v1.04 to v.1.1.1';
-      $needs_v1_1_0=true;
-//    $needs_v1_1_1=false; // exclude the 1.1.0-to-1.1.1 update since it's included in this step if selected
-    }
-    if(isMultiLingual($db_test)==false &&  $got_v1_2_1 == true ){
-        $needs_multilingual=true;   
-      $db = new queryFactory;
-      $db->Connect(DB_SERVER, DB_SERVER_USERNAME, DB_SERVER_PASSWORD, DB_DATABASE) or die("Unable to connect to database");
-      if (!ini_get('safe_mode')) set_time_limit(300);
-      executeSql(DB_TYPE . '_multilingual_1.sql', DB_DATABASE, DB_PREFIX);
-      $db->Close();
-     changeLanguageID($db_test, "'german', 'deutsch'", "de", 43, true);
-     changeLanguageID($db_test, "'english'", "en", 1, true);
-    }
+    
 
     if (!isset($sniffer_text) || $sniffer_text == '') {
       $sniffer_text = ' &nbsp;*** No upgrade required ***';
@@ -233,28 +130,14 @@ $sniffer_text = '';
 } // end if zc_install_error == false ....... and database schema checks
 
 if (ZC_UPG_DEBUG2==true) {
-  echo '<br>110='.$dbinfo->version110;
-  echo '<br>111='.$dbinfo->version111;
-  echo '<br>112='.$dbinfo->version112;
-  echo '<br>114='.$dbinfo->version114;
-  echo '<br>1_1_4_patch1='.$dbinfo->version1141;
-  echo '<br>120='.$dbinfo->version120;
-  echo '<br>121='.$dbinfo->version121;
-  echo '<br>122='.$dbinfo->version122;
-  echo '<br>123='.$dbinfo->version123;
-  echo '<br>124='.$dbinfo->version124;
-  echo '<br>125='.$dbinfo->version125;
-  echo '<br>126='.$dbinfo->version126;
-  echo '<br>127='.$dbinfo->version127;
-  echo '<br>130='.$dbinfo->version130;
-  echo '<br>1301='.$dbinfo->version1301;
-  echo '<br>1302='.$dbinfo->version1302;
+  
   echo '<br>135='.$dbinfo->version135;
   echo '<br>136='.$dbinfo->version136;
   echo '<br>137='.$dbinfo->version137;
   echo '<br>138='.$dbinfo->version138;
   echo '<br>139='.$dbinfo->version139;
   echo '<br>150='.$dbinfo->version150;
+  echo '<br>151='.$dbinfo->version151;
   echo '<br>';
   }
 
@@ -270,126 +153,6 @@ if (ZC_UPG_DEBUG2==true) {
       while (list(, $value) = each($_POST['version'])) {
         $sniffer_file = '';
         switch ($value) {
-          case '1.0.4':  // upgrading from v1.0.4 to 1.1.1
-            if ($dbinfo->version111) continue;  // if prerequisite not completed, or already done, skip
-            $sniffer_file = '_upgrade_zencart_104_to_111.sql';
-            if (ZC_UPG_DEBUG2==true) echo '<br>'.$sniffer_file.'<br>';
-            $got_v1_1_1 = true;
-            $db_upgraded_to_version='1.1.1';
-            break;
-          case '1.1.0':  // upgrading from v1.1.0 to 1.1.1
-            if (!$dbinfo->version110 || $dbinfo->version111) continue; // if don't have prerequisite, or if already done this step
-            $sniffer_file = '_upgrade_zencart_110_to_111.sql';
-            if (ZC_UPG_DEBUG2==true) echo $sniffer_file.'<br>';
-            $got_v1_1_1 = true; //after processing this step, this will be the new version-level
-            $db_upgraded_to_version='1.1.1';
-            break;
-          case '1.1.1':  // upgrading from v1.1.1 to 1.1.2
-            if (!$dbinfo->version111 || $dbinfo->version112) continue;
-            $sniffer_file = '_upgrade_zencart_110_to_112.sql';
-            if (ZC_UPG_DEBUG2==true) echo $sniffer_file.'<br>';
-            $got_v1_1_2 = true; //after processing this step, this will be the new version-level
-            $db_upgraded_to_version='1.1.2';
-            break;
-          case '1.1.2-or-1.1.3':  // upgrading from v1.1.2 or v.1.13  TO   1.1.4
-            if (!$dbinfo->version112 || $dbinfo->version114) continue;
-            $sniffer_file = '_upgrade_zencart_112_to_114.sql';
-            if (ZC_UPG_DEBUG2==true) echo $sniffer_file.'<br>';
-            $got_v1_1_4 = true;
-            $got_v1_1_4_patch1 = true; //after processing this step, this will be the new version-level
-            $db_upgraded_to_version='1.1.4-1';
-            break;
-          case '1.1.4':  // upgrading from v1.1.4 to 1.1.4 patch1
-            if (!$dbinfo->version114 || $dbinfo->version1141) continue;
-            $sniffer_file = '_upgrade_zencart_114_patch1.sql';
-            if (ZC_UPG_DEBUG2==true) echo $sniffer_file.'<br>';
-            $got_v1_1_4_patch1 = true; //after processing this step, this will be the new version-level
-            $db_upgraded_to_version='1.1.4-1';
-            break;
-          case '1.1.4u':  // upgrading from v1.1.4 TO v1.2.0  ('u' implies "upgrade", rather than just the patch1)
-            if (!$dbinfo->version114 || $dbinfo->version120) continue;
-            $sniffer_file = '_upgrade_zencart_114_to_120.sql';
-            if (ZC_UPG_DEBUG2==true) echo $sniffer_file.'<br>';
-            $got_v1_2_0 = true; //after processing this step, this will be the new version-level
-            $db_upgraded_to_version='1.2.0';
-            break;
-          case '1.2.0':  // upgrading from v1.2.0 TO v1.2.1
-            if (!$dbinfo->version120 || $dbinfo->version121) continue;   // if prerequisite not completed, or already done, skip
-            $sniffer_file = '_upgrade_zencart_120_to_121.sql';
-            if (ZC_UPG_DEBUG2==true) echo $sniffer_file.'<br>';
-            $got_v1_2_1 = true; //after processing this step, this will be the new version-level
-            $db_upgraded_to_version='1.2.1';
-            break;
-          case '1.2.1':  // upgrading from v1.2.1 TO v1.2.2
-//          if (!$dbinfo->version121 || $dbinfo->version122) continue;   // if prerequisite not completed, or already done, skip
-            $sniffer_file = '_upgrade_zencart_121_to_122.sql';
-            if (ZC_UPG_DEBUG2==true) echo $sniffer_file.'<br>';
-            $got_v1_2_2 = true; //after processing this step, this will be the new version-level
-            $db_upgraded_to_version='1.2.2';
-            break;
-          case '1.2.2':  // upgrading from v1.2.2 TO v1.2.3
-//          if (!$dbinfo->version122 || $dbinfo->version123) continue;  // if prerequisite not completed, or already done, skip
-            $sniffer_file = '_upgrade_zencart_122_to_123.sql';
-            if (ZC_UPG_DEBUG2==true) echo $sniffer_file.'<br>';
-            $got_v1_2_3 = true; //after processing this step, this will be the new version-level
-            $db_upgraded_to_version='1.2.3';
-            break;
-          case '1.2.3':  // upgrading from v1.2.3 TO v1.2.4
-//          if (!$dbinfo->version123 || $dbinfo->version124) continue;  // if prerequisite not completed, or already done, skip
-            $sniffer_file = '_upgrade_zencart_123_to_124.sql';
-            if (ZC_UPG_DEBUG2==true) echo $sniffer_file.'<br>';
-            $got_v1_2_4 = true; //after processing this step, this will be the new version-level
-            $db_upgraded_to_version='1.2.4';
-            break;
-          case '1.2.4':  // upgrading from v1.2.4 TO v1.2.5
-//          if (!$dbinfo->version124 || $dbinfo->version125) continue;  // if prerequisite not completed, or already done, skip
-            $sniffer_file = '_upgrade_zencart_124_to_125.sql';
-            if (ZC_UPG_DEBUG2==true) echo $sniffer_file.'<br>';
-            $got_v1_2_5 = true; //after processing this step, this will be the new version-level
-            $db_upgraded_to_version='1.2.5';
-            break;
-          case '1.2.5':  // upgrading from v1.2.5 TO v1.2.6
-//          if (!$dbinfo->version125 || $dbinfo->version126) continue;  // if prerequisite not completed, or already done, skip
-            $sniffer_file = '_upgrade_zencart_125_to_126.sql';
-            if (ZC_UPG_DEBUG2==true) echo $sniffer_file.'<br>';
-            $got_v1_2_6 = true; //after processing this step, this will be the new version-level
-            $db_upgraded_to_version='1.2.6';
-            break;
-          case '1.2.6':  // upgrading from v1.2.6 TO v1.2.7
-//          if (!$dbinfo->version126 || $dbinfo->version127) continue;  // if prerequisite not completed, or already done, skip
-            $sniffer_file = '_upgrade_zencart_126_to_127.sql';
-            if (ZC_UPG_DEBUG2==true) echo $sniffer_file.'<br>';
-            $got_v1_2_7 = true; //after processing this step, this will be the new version-level
-            $db_upgraded_to_version='1.2.7';
-            break;
-          case '1.2.7':  // upgrading from v1.2.7 TO v1.3.0
-//          if (!$dbinfo->version127 || $dbinfo->version130) continue;  // if prerequisite not completed, or already done, skip
-            $sniffer_file = '_upgrade_zencart_127_to_130.sql';
-            if (ZC_UPG_DEBUG2==true) echo $sniffer_file.'<br>';
-            $got_v1_3_0 = true; //after processing this step, this will be the new version-level
-            $db_upgraded_to_version='1.3.0';
-            break;
-          case '1.3.0':  // upgrading from v1.3.0 TO 1.3.0.1
-//          if (!$dbinfo->version130 || $dbinfo->version1301) continue;  // if prerequisite not completed, or already done, skip
-            $sniffer_file = '_upgrade_zencart_130_to_1301.sql';
-            if (ZC_UPG_DEBUG2==true) echo $sniffer_file.'<br>';
-            $got_v1_3_0_1 = true; //after processing this step, this will be the new version-level
-            $db_upgraded_to_version='1.3.0.1';
-            break;
-          case '1.3.0.1':  // upgrading from v1.3.0.1 TO 1.3.0.2
-//          if (!$dbinfo->version1301 || $dbinfo->version1302) continue;  // if prerequisite not completed, or already done, skip
-            $sniffer_file = '_upgrade_zencart_1301_to_1302.sql';
-            if (ZC_UPG_DEBUG2==true) echo $sniffer_file.'<br>';
-            $got_v1_3_0_2 = true; //after processing this step, this will be the new version-level
-            $db_upgraded_to_version='1.3.0.2';
-            break;
-          case '1.3.0.2':  // upgrading from v1.3.0.2 TO 1.3.5
-//          if (!$dbinfo->version1302 || $dbinfo->version135) continue;  // if prerequisite not completed, or already done, skip
-            $sniffer_file = '_upgrade_zencart_1302_to_135.sql';
-            if (ZC_UPG_DEBUG2==true) echo $sniffer_file.'<br>';
-            $got_v1_3_5 = true; //after processing this step, this will be the new version-level
-            $db_upgraded_to_version='1.3.5';
-            break;
           case '1.3.5':  // upgrading from v1.3.5 TO 1.3.6
 //          if (!$dbinfo->version135 || $dbinfo->version136) continue;  // if prerequisite not completed, or already done, skip
             $sniffer_file = '_upgrade_zencart_135_to_136.sql';
@@ -424,30 +187,7 @@ if (ZC_UPG_DEBUG2==true) {
             $got_v1_5_0 = true; //after processing this step, this will be the new version-level
             $db_upgraded_to_version='1.5.0';
             break;
-
-       case '1.3.8multi2':  // upgrading from v1.3.7 TO 1.3.8
-//          if (!$dbinfo->version137 || $dbinfo->version138) continue;  // if prerequisite not completed, or already done, skip
-          $sniffer_file = '_multilingual_2.sql';
-          if (ZC_UPG_DEBUG2==true) echo $sniffer_file.'<br>';
-          $got_v1_3_8multi2 = true; //after processing this step, this will be the new version-level
-          $db_upgraded_to_version='1.3.8multi2';
-          break;
-          
-           case '1.3.9multi2':  // upgrading from v1.3.9 german TO 1.5.0 german
-//          if (!$dbinfo->version137 || $dbinfo->version138) continue;  // if prerequisite not completed, or already done, skip
-          $sniffer_file = '_multilingual_2.sql';
-          if (ZC_UPG_DEBUG2==true) echo $sniffer_file.'<br>';
-          $got_v1_3_9multi2 = true; //after processing this step, this will be the new version-level
-          $db_upgraded_to_version='1.5.0';
-          break;
-       case 'multilingual':  // upgrading from v1.2.6 TO v1.2.7
-//          if (!$dbinfo->version126 || $dbinfo->version127) continue;  // if prerequisite not completed, or already done, skip
-          $sniffer_file = '_multilingual_1.sql';
-          if (ZC_UPG_DEBUG2==true) echo $sniffer_file.'<br>';
-          $got_multilingual = true; //after processing this step, this will be the new version-level
-          $db_upgraded_to_version='multilingual';
-          break;
-		  
+     
 		  
 		         case '1.5.0':  // upgrading from v1.5.0 TO 1.5.1
             $sniffer_file = '_upgrade_zencart_150_to_151.sql';
@@ -475,23 +215,7 @@ if (ZC_UPG_DEBUG2==true) {
 
        if (ZC_UPG_DEBUG2==true) echo 'Processing ['.$sniffer_file.']...<br />';
        if ($zc_install->error == false && $nothing_to_process==false) {
-          // r.l.: check multilangual
-          if(isMultiLingual($db_test)==false &&  $got_v1_2_1 == true ){
-              $db = new queryFactory;
-              $db->Connect(DB_SERVER, DB_SERVER_USERNAME, DB_SERVER_PASSWORD, DB_DATABASE) or die("Unable to connect to database");
-              if (!ini_get('safe_mode')) set_time_limit(300);
-              // _multilingual_1.sql == all changes since act-version -1
-              executeSql('sql/'. DB_TYPE . '_multilingual_1.sql', DB_DATABASE, DB_PREFIX);
-              $db->Close();
-             // r.l.: do language_id change
-             changeLanguageID($db_test, "'german', 'deutsch'", "de", 43, true);
-             changeLanguageID($db_test, "'english'", "en", 1, true);
-          }
-          if($sniffer_file == '_upgrade_zencart_121_to_122.sql'){
-             // r.l.: do language_id change
-             changeLanguageID($db_test, "'german', 'deutsch'", "de", 43, true);
-             changeLanguageID($db_test, "'english'", "en", 1, true);
-          }
+         
           //open database connection to run queries against it
           $db = new queryFactory;
           $db->Connect(DB_SERVER, DB_SERVER_USERNAME, DB_SERVER_PASSWORD, DB_DATABASE) or die("Unable to connect to database");
