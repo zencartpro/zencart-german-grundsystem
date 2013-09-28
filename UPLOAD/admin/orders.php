@@ -1,10 +1,10 @@
 <?php
 /**
  * @package admin
- * @copyright Copyright 2003-2012 Zen Cart Development Team
+ * @copyright Copyright 2003-2013 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: orders.php 785 2011-09-20 08:13:51Z webchills $
+ * @version $Id: orders.php 786 2013-09-27 08:13:51Z webchills $
  */
 
   require('includes/application_top.php');
@@ -62,7 +62,8 @@
           $check_status = $db->Execute("select customers_name, customers_email_address, orders_status,
                                       date_purchased from " . TABLE_ORDERS . "
                                       where orders_id = '" . $_GET['oID'] . "'");
-
+          $customer_gender = $db->Execute("select customers_gender from " . TABLE_CUSTOMERS . "
+                                      where customers_id = '" . $check_status->fields['customers_id'] . "'");
           // check for existing product attribute download days and max
           $chk_products_download_query = "SELECT orders_products_id, orders_products_filename, products_prid from " . TABLE_ORDERS_PRODUCTS_DOWNLOAD . " WHERE orders_products_download_id='" . $_GET['download_reset_on'] . "'";
           $chk_products_download = $db->Execute($chk_products_download_query);
@@ -139,7 +140,12 @@
             strip_tags($notify_comments) .
             EMAIL_TEXT_STATUS_UPDATED . sprintf(EMAIL_TEXT_STATUS_LABEL, $orders_status_array[$status] ) .
             EMAIL_TEXT_STATUS_PLEASE_REPLY;
-
+            if ($customer_gender->fields['customers_gender'] == 'm') {
+            $html_msg['EMAIL_CUSTOMER_GREETING']    = EMAIL_TEXT_ORDER_CUSTOMER_GENDER_MALE;
+            } else {
+            $html_msg['EMAIL_CUSTOMER_GREETING']    = EMAIL_TEXT_ORDER_CUSTOMER_GENDER_FEMALE;
+            }
+            $html_msg['EMAIL_TEXT_UPDATEINFO']    = EMAIL_TEXT_UPDATEINFO;
             $html_msg['EMAIL_CUSTOMERS_NAME']    = $check_status->fields['customers_name'];
             $html_msg['EMAIL_TEXT_ORDER_NUMBER'] = EMAIL_TEXT_ORDER_NUMBER . ' ' . $oID;
             $html_msg['EMAIL_TEXT_INVOICE_URL']  = '<a href="' . zen_catalog_href_link(FILENAME_CATALOG_ACCOUNT_HISTORY_INFO, 'order_id=' . $oID, 'SSL') .'">'.str_replace(':','',EMAIL_TEXT_INVOICE_URL).'</a>';

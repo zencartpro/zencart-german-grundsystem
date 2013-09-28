@@ -1,10 +1,10 @@
 <?php
 /**
  * @package admin
- * @copyright Copyright 2003-2012 Zen Cart Development Team
+ * @copyright Copyright 2003-2013 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: orders.php 729 2011-08-09 15:49:16Z hugo13 $
+ * @version $Id: orders.php 731 2013-08-17 08:49:16Z webchills $
  */
 
 define('HEADING_TITLE', 'Orders');
@@ -74,6 +74,9 @@ define('TEXT_NO_ORDER_HISTORY', 'No Order History Available');
 
 define('EMAIL_SEPARATOR', '------------------------------------------------------');
 define('EMAIL_TEXT_SUBJECT', 'Order Update');
+define('EMAIL_TEXT_ORDER_CUSTOMER_GENDER_MALE', 'Dear Mr');
+define('EMAIL_TEXT_ORDER_CUSTOMER_GENDER_FEMALE', 'Dear Mrs');
+define('EMAIL_TEXT_UPDATEINFO', 'We inform you about your order status at ');
 define('EMAIL_TEXT_ORDER_NUMBER', 'Order Number:');
 define('EMAIL_TEXT_INVOICE_URL', 'Detailed Invoice:');
 define('EMAIL_TEXT_DATE_ORDERED', 'Date Ordered:');
@@ -118,4 +121,3 @@ define('TEXT_INFO_EXPIRED_COUNT', 'Expired Count:<br />');
 define('TABLE_HEADING_CUSTOMER_COMMENTS', 'Customer<br />Comments');
 define('TEXT_COMMENTS_YES', 'Customer Comments - YES');
 define('TEXT_COMMENTS_NO', 'Customer Comments - NO');
-?>
