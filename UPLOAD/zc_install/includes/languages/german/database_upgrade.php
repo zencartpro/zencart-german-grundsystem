@@ -2,10 +2,10 @@
 /**
  * @package Installer
  * @access private
- * @copyright Copyright 2003-2012 Zen Cart Development Team
+ * @copyright Copyright 2003-2013 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: database_upgrade.php 853 2012-03-12 03:45:30Z webchills $
+ * @version $Id: database_upgrade.php 854 2013-09-26 09:45:30Z webchills $
  */
 /**
  * defining language components for the page
@@ -26,7 +26,7 @@
   define('DATABASE_PRIVILEGES', 'Datenbank Rechte');
 
   define('SNIFFER_PREDICTS','<em>Upgrade Sniffer</em> Voraussage: ');
-  define('CHOOSE_UPGRADES','Bitte wählen Sie Ihre bevorzugten Schritte der Aktualisierung');
+  define('CHOOSE_UPGRADES','Bitte wählen Sie Ihre bevorzugten Schritte der Aktualisierung. Der Installer hat die nötigen Schritte bereits angekreuzt. Es ist NICHT nötig hier irgendetwas zu ändern!');
   define('TITLE_DATABASE_PREFIX_CHANGE','Präfix der Datenbanktabelle ändern');
   define('ERROR_PREFIX_CHANGE_NEEDED','<span class="errors">Es konnten keine Zen Cart Tabellen in der Datenbank gefunden werden.<br />Haben Sie eventuell einen falschen Präfix angegeben?</span><br />Wenn sie das Problem nicht lösen können, vergleichen Sie bitte die Einstellungen Ihrer configure.php mit Ihrer aktuellen Datenbank.');
   define('TEXT_DATABASE_PREFIX_CHANGE','Wenn Sie das Präfix der Tabellen ändern wollen, geben Sie unten das neue Präfix ein. <span class="emphasis"><br />HINWEIS: Bitte stellen Sie sicher, dass das neue Präfix noch nicht in der Datenbank existiert</span>, da das Programm keine Überprüfung für doppelte Präfixe durchführt.');
