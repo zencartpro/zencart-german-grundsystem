@@ -74,8 +74,8 @@ Da wir Ihnen diese Software kostenfrei zur Verfügung stellen, würden wir uns �
     Die amerikanische Version ist im Administrationsbereich immer monolingual englisch. Daran ändert auch die etwaige Installation eines deutschen Sprachpakets nichts. Die meisten Konfigurationseinstellungen werden immer auf englisch sein, da sie in der Datenbank hinterlegt sind. Die deutsche Zen-Cart Version bietet einen multilingualen Adminbereich. Dadurch sind auch die in der Datenbank hinterlegten Konfigurationseinstellungen und -beschreibungen auf deutsch. Sie könnten auch in jeder anderen Sprache genutzt werden. Diese Funktionalität steht natürlich auch für später installierte Erweiterungen zur Verfügung. Die im Downloadbereich von zen-cart-pro.at angebotenen Module berücksichtigen diese Multilanguagefähigkeit und sind alle für die deutsche Zen-Cart Version ausgelegt.</li>
   <li>Die amerikanische Zen-Cart Version berücksichtigt viele rechtliche Erfordernisse nicht, denen ein Onlineshop im deutschsprachigen Raum unterworfen ist. Daher wurde die deutsche Zen-Cart Version auf die Anforderungen, die an Onlineshops in Deutschland, Österreich und der Schweiz gestellt werden, angepasst. Die Anforderungen der sogenannten &quot;Buttonlösung&quot; werden erfüllt.</li>
   <li>   Die Installation wurde gegenüber der amerikanischen Version vereinfacht, so kann z.B. das admin Verzeichnis direkt bei der Installation umbenannt werden.
-    </li>
-  <li>Die amerikanische Version enthält keinerlei HTML Editor mehr, in der deutschen Version ist der Tiny MCE Editor bereits integriert und löst das veraltete HTML Area ab. Alternativ ist auch der CKEditor integriert.</li>
+    Die Installation ist schlanker und enthält keine unnötigen Dateien mehr, da die Bilder und Medien der Demodaten nicht mehr automatisch mitinstalliert werden, sondern nur bei Bedarf hochgeladen werden können</li>
+  <li>Die amerikanische Version enthält keinerlei HTML Editor mehr, in der deutschen Version ist der CKEditor bereits integriert und löst das veraltete HTML Area ab. Alternativ ist auch der Tiny MCE Editor integriert.</li>
   <li>Weitere Bugfixes und Verbesserungen, die von den Amerikanern nicht übernommen wurden</li>
 </ul>
 
@@ -133,8 +133,7 @@ OSI certified ist ein Zertifikat der Open Source Initiative.
 <p> BEVOR SIE NUN FORTFAHREN stellen Sie bitte sicher, dass Sie Zugriff auf eine MySQL Datenbank, den Benutzernamen und das Passwort haben. Eventuell müssen Sie erst eine Datenbank mit dem Webinterface des Providers erstellen. Benötigen Sie hierbei Hilfe, kontaktieren Sie bitte Ihren Provider.  Zen-Cart kann keine Datenbank erstellen, die Datenbank muss vor der Installation bereits vorhanden sein.</p>
 <p>(Folgende Rechte benötigt Ihr MySQL Benutzer: SELECT, INSERT, UPDATE, DELETE, CREATE, ALTER, INDEX, DROP. Auf einem Host mit hSphere würden Sie einen "dba" Zugriff - oder mindestens Lese-/und Schreibrechte - benötigen.) <br>
   <br>
-  Achten Sie darauf, dass Sie die Datenbank mit der Kollation utf8_general_ci erstellen!
-<br /></p>
+  <strong>Achten Sie darauf, dass Sie die Datenbank mit der Kollation utf8_general_ci erstellen!</strong><br /></p>
 <h3>Alles eingerichtet? </h3>
 <p>Können Sie alle Fragen mit "Ja" beantworten, sind Sie bereit für den nächsten Schritt...</p>
 <h3>ZIP Datei</h3>
@@ -143,9 +142,9 @@ OSI certified ist ein Zertifikat der Open Source Initiative.
 </div>
 <div>
 <h2>Hochladen der  Zen-Cart  Dateien auf Ihren Webserver</h2>
-<p>Laden Sie mit einem FTP Programm den gesamten Inhalt des entpackten Paketes in ein Verzeichnis Ihres Servers, z.B.: /shop 
+<p>Laden Sie mit einem FTP Programm den gesamten Inhalt des Ordners UPLOAD in ein Verzeichnis Ihres Servers, z.B.: /shop 
 <br />
-<em>(Als Beispiel verwenden wir hier &quot;<span class="filename">/shop</span>&quot;. Sie können natürlich ein Verzeichnis Ihrer Wahl erstellen, wie z.B.  &quot;<span class="filename">/webshop</span>&quot; etc. oder können den Shop auch in Ihrem Hauptverzeichnis installieren.)</em> <br />
+<em>(Als Beispiel verwenden wir hier &quot;<span class="filename">/shop</span>&quot;. Sie können natürlich ein Verzeichnis Ihrer Wahl erstellen, wie z.B.  &quot;<span class="filename">/webshop</span>&quot; etc. oder können den Shop auch in Ihrem Hauptverzeichnis installieren.)</em> <br>
 <br />
 <em>Anmerkung: Beim Hochladen Ihrer Dateien stellen Sie bitte sicher, dass Ihr FTP Programm und Ihr Webserver &quot;<span class="error">lange Dateinamen</span>&quot; erlauben. MAC OS z.B. tendiert eher dazu, keine langen Dateinamen zu akzeptieren. Bitte passen Sie Ihre Einstellungen ggf. entsprechend an.  </em> </p>
 <h3>In welchem Verzeichnis meines Servers soll ich die Dateien speichern?</h3>
@@ -177,9 +176,7 @@ etc, etc, etc</p>
       <br />
 	Anmerkung: Öffnen Sie bitte das Verzeichnis shop/images und ändern Sie dort ebenso die Rechte <strong>aller</strong> Unterverzeichnisse und deren Unterverzeichnisse auf 777. Dies ist ein teilweiser Auszug: <br />
   <span class="filename">/shop/images/attributes<br />
-    /shop/images/dvd<br />
     /shop/images/large<br />
-    /shop/images/large/dvd<br />
     /shop/images/medium <br />
     /shop/images/upload<br />
   </span>
@@ -281,7 +278,7 @@ Vervollständigen Sie die Angaben zu Ihrem Shop.<br />
   Demo Daten</strong><br />
 Wenn Sie die Demo Daten installieren wollen, dann wählen Sie "Ja". <br />
 <br />
-Wir empfehlen Ihnen die Installation der Demodaten, damit Sie sich mit dem Funktionsumfang der deutschen Zen-Cart Version leichter vertraut machen können. Die Demodaten enthalten umfangreiche Beispiele der enormen Funktionen, die in Zen-Cart  enthalten sind.  Wenn Sie sich entscheiden, die Demodaten zu installieren, dann sollten sie einen solchen ausschließlich für Testzwecke nutzen. Ein Shop, mit dem Sie später Ihren echten Shop betreiben wollen, sollte KEINE Demodaten enthalten!<br />
+Wir empfehlen Ihnen die Installation der Demodaten, damit Sie sich mit dem Funktionsumfang der deutschen Zen-Cart Version leichter vertraut machen können. Die Demodaten enthalten umfangreiche Beispiele der enormen Funktionen, die in Zen-Cart  enthalten sind.  <strong>Wenn Sie sich entscheiden, die Demodaten zu installieren, dann sollten sie einen solchen ausschließlich für Testzwecke nutzen. Ein Shop, mit dem Sie später Ihren echten Shop betreiben wollen, sollte KEINE Demodaten enthalten!</strong><br />
 <br />
 Ebenso können Sie später entscheiden, einen Testshop mit den Demodaten zu installieren UND eine Installation mit Ihren echten Shopdaten, damit Sie für Ihren "Liveshop" auf den Testshop für Referenz Zwecke zurückgreifen können. </div> <br />
 <br />
@@ -344,7 +341,12 @@ Sollten während der Installation keine Fehler aufgetreten sein, sollten Sie nun
   Es wurde bei der Installation bereits automatisch umbenannt und sollte nun z.B. zc_install_gshd6dthsdffgfgfgfg heißen
   </span><br />
   Von einem lediglichen Umbenennen des Verzeichnis raten wir ab. Dieses bietet nicht genug Schutz gegen Personen mit Böses im Sinn.<br />
-  Hacker könnten sonst versuchen, Ihren Shop durch erneuten Aufruf des Installers zu zerstören. <br />
+  Hacker könnten sonst versuchen, Ihren Shop durch erneuten Aufruf des Installers zu zerstören. </p>
+<p><strong>Demodaten</strong><br>
+  Falls Sie bei der Installation die Demodaten mitinstalliert haben, dann laden Sie nun den Inhalt des Ordners DEMODATEN in der vorgegebenen Struktur in Ihr Shopverzeichnis hoch.
+    <br>
+    <br>
+<br />
 </p>
 </div>
 <div>
@@ -382,7 +384,14 @@ Sollten während der Installation keine Fehler aufgetreten sein, sollten Sie nun
   </ul>
 </div>
 <h2>Voraussetzungen </h2>
-<p>Bevor Sie ein Update auf 1.5.1 planen, stellen Sie bitte sicher, dass Ihr Server die Systemvoraussetzungen erfüllt: </p>
+<p><br>
+  <strong>Hinweis für Anwender sehr alter Zen Cart Versionen</strong><br>
+  Das Updateprogramm unterstützt nur Zen Cart Versionen neuer als 1.3.5.<br>
+  Sollten Sie noch eine ältere Zen Cart Version als 1.3.5 im Einsatz haben, laden Sie sich Zen Cart 1.5 herunter und aktualisieren zunächst auf 1.5.<br>
+  Danach können Sie auf 1.5.1 aktualisieren
+  <br>
+  <br>
+  Bevor Sie ein Update auf 1.5.1 planen, stellen Sie bitte sicher, dass Ihr Server die Systemvoraussetzungen erfüllt: </p>
 <p><strong>Minimale Anforderungen:</strong></p>
 <ul>
   <li> PHP 5.2.14 oder höher, Apache 2.0 oder höher und MySQL 5.0.90 oder höher</li>
@@ -402,17 +411,18 @@ Sollten während der Installation keine Fehler aufgetreten sein, sollten Sie nun
   <br>
   Falls Sie Ihren Shop mit Modulen erweitert haben, stellen Sie sicher, dass es für die in Ihrem derzeitigen Shop eingesetzen Erweiterungen aktuelle mit Zen-Cart 1.5.1 getestete Versionen gibt. In Zen-Cart 1.5.1 können nur Zen-Cart 1.5.1 kompatible Module und Erweiterungen genutzt werden!
 <h2>Einleitung ... </h2>
-Dieses ist eine Anleitung, um eine bestehende Zen-Cart Installation auf Zen-Cart 1.5.1 zu   aktualisieren. Falls Sie Zen-Cart bisher noch nicht installiert haben   sollten, schauen Sie bitte unter Neuinstallation <br>
-<br>
-Um Ihre Zen-Cart Installationzu aktualisieren brauchen Sie die gleichen Programme,   die Sie für die Erstinstallation und evtl. Anpassungen benutzt haben.   Ein FTP Programm, einen Texteditor für HTML/PHP Code, phpMyAdmin or   Ähnliches um auf Ihre MySQL Datenbank zugreifen zu können, und den   Adminbereich Ihres Webspaces.<br>
-<br>
-Zusätzlich ist ein Dateienvergleichsprogramm wie <a href="http://winmerge.sf.net" target="_blank">WinMerge</a>, <a href="http://www.scootersoftware.com/" target="_blank">Beyond Compare</a> oder ExamDiff (Linux) sehr hilfreich.  (Für Mac gibt es z.B. <a href="http://www.barebones.com" target="_blank">BBedit</a>.)<br>
-<br>
-Die Aktualisierung erfolgt in 3 einfachen Schritten. Nehmen Sie sich   bitte Zeit und studieren Sie die einzelnen Schritte und Methoden   sorgfältig. Überstürzen Sie nichts! <br>
-Und wie immer: VOR Beginn eine Sicherung aller relevanten Daten durchführen!!! <br>
-<br>
-<br>
-<br>
+<p>Dieses ist eine Anleitung, um eine bestehende Zen-Cart Installation auf Zen-Cart 1.5.1 zu   aktualisieren. Falls Sie Zen-Cart bisher noch nicht installiert haben   sollten, schauen Sie bitte unter Neuinstallation.<br>
+  <br>
+  Um Ihre Zen-Cart Installation zu aktualisieren brauchen Sie die gleichen Programme,   die Sie für die Erstinstallation und evtl. Anpassungen benutzt haben.   Ein FTP Programm, einen Texteditor für HTML/PHP Code, phpMyAdmin or   Ähnliches um auf Ihre MySQL Datenbank zugreifen zu können, und den   Adminbereich Ihres Webspaces.<br>
+  <br>
+  Zusätzlich ist ein Dateienvergleichsprogramm wie <a href="http://winmerge.sf.net" target="_blank">WinMerge</a>, <a href="http://www.scootersoftware.com/" target="_blank">Beyond Compare</a> oder ExamDiff (Linux) sehr hilfreich.  (Für Mac gibt es z.B. <a href="http://www.barebones.com" target="_blank">BBedit</a>.)<br>
+  <br>
+  Die Aktualisierung erfolgt in 3 einfachen Schritten. Nehmen Sie sich   bitte Zeit und studieren Sie die einzelnen Schritte und Methoden   sorgfältig. Überstürzen Sie nichts! <br>
+  Und wie immer: VOR Beginn eine Sicherung aller relevanten Daten durchführen!!! <br>
+  <br>
+  <br>
+  <br>
+</p>
 <div>
   <h2>1. Vorbereitung</h2>
   Entpacken Sie alle Dateien der neuen Version von Zen-Cart, laden Sie diese auf Ihren Webserver in ein "demo" Verzeichnis und installieren Sie die neue Version - mit den Demodaten - in eine eigene Datenbank. <br>
@@ -682,7 +692,13 @@ DEINADMIN/includes/configure.php</p>
 <div class="textcontent">
 <div class="regularlist">
 <h1>Changelog Dateien</h1>
-<p>  Änderungen gegenüber Version 1.5 deutsch<br>
+<p>  Änderungen gegenüber Version 1.5 deutsch</p>
+<p><strong>NEUE STRUKTUR DES DOWNLOADPAKETS</strong><br>
+Damit bei Neuinstallationen oder Updates nicht immer die Bild- und Mediendateien der Demodaten mitinstalliert werden, wurde die Demodaten ausgelagert und können bei Bedarf aus dem Ordner DEMODATEN hochgeladen werden.<br>
+Die Überprüfungstools im Ordner extras (ipncheck und curltester) werden für den normalen Betrieb nicht benötigt und wurden daher ebenfalls ausgelagert in den Ordner TOOLS.<br>
+<br>
+Die für eine Installation oder Update benötigten Ordner/Dateien liegen nun im Ordner UPLOAD. Nur der Inhalt des Ordners UPLOAD muss hochgeladen werden!
+<br>
   <br>
   <strong>Entfernte Dateien:</strong></p>
 <p> /admin/includes/functions/password_funcs.php <br>
@@ -777,6 +793,7 @@ DEINADMIN/includes/configure.php</p>
   /admin/includes/modules/copy_to_confirm.php<br>
   /admin/includes/modules/update_product.php</p>
 <p> /extras/ipncheck.php</p>
+<p>/email (alle Dateien in diesem Ordner)</p>
 <p> /ipn_main_handler.php</p>
 <p> /includes/application_top.php<br>
   /includes/dist-configure.php <br>
@@ -877,9 +894,14 @@ DEINADMIN/includes/configure.php</p>
   <li><strong>Steuerung der Anzeige &quot;incl. Mwst. zzgl. Versandkosten&quot; via Administration</strong><br>
     Die Anzeige &quot;incl. Mwst zzgl. Versandkosten&quot; berücksichtigt nun, ob im Shop Bruttopreise oder Nettopreise verwendet werden und zeigt dementsprechend den Text incl. oder excl. Steuer an. Unter Konfiguration &gt; Mein Shop kann nun eingestellt werden, ob die Anzeige überall, nur auf der Artikeldetailseite oder gar nicht erscheinen soll.</li>
   <li><strong>CKEditor</strong><br> 
-    Neben dem TinyMCE steht nun auch der CKEditor als alternativer HTML Editor zur Verfügung</li>
+    Neben dem TinyMCE steht nun auch die neueste Version des CKEditor als alternativer HTML Editor zur Verfügung. CKEditor ist als Standard gesetzt</li>
   <li><strong>Installationslayout  modernisiert</strong><br> 
     Der seit Jahren unveränderte Installer wurde layoutseitig überarbeitet</li>
+  <li><b>Neue Buttons im Adminbereich</b><br>
+  Der seit Jahren unveränderte Adminbereich wurde layoutseitig etwas überarbeitet
+  </li>
+    <li><b>Neues Template Viennaorange</b><br>
+  Als neues Standardtemplate kommt Viennaorange zum Einsatz. Die weiteren Beispieltemplates wurden verbreitert und haben teilweise neue Buttons bekommen.</li>
   <li><strong>Unterstützung von PHP 5.4</strong><br>
     PHP 5.4 wird nun vollständig unterstützt. Mit PHP 5.5 wurde diese Version aber nicht getestet.</li>
 </ul>
