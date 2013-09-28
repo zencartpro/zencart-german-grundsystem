@@ -51,6 +51,9 @@ ALTER TABLE coupon_gv_queue CHANGE COLUMN ipaddr ipaddr varchar(45) NOT NULL def
 
 #Buttonloesung Merkmale in table products_description
 ALTER TABLE products_description ADD products_merkmale varchar(256) NOT NULL default '';
+#Buttonloesung Optionaleintrag entfernen
+DELETE FROM configuration WHERE configuration_key = 'ENABLE_BUTTONLOESUNG';
+DELETE FROM configuration_language WHERE configuration_key = 'ENABLE_BUTTONLOESUNG';
 
 #Vataddon Admin Control
 INSERT INTO configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, last_modified, date_added, use_function, set_function) VALUES ('Display Vat Addon', 'DISPLAY_VATADDON_WHERE', 'ALL', 'Do you want to display the text incl. or excl. VAT plus shipping costs near the prices?<br />0=off<br/>ALL=everywhere<br/>product_info=only on products details page<br />', '1', '120', NULL, now(), NULL, 'zen_cfg_select_option(array(\'0\', \'ALL\', \'product_info\'), ');
