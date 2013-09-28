@@ -133,8 +133,7 @@ OSI certified ist ein Zertifikat der Open Source Initiative.
 <p> BEVOR SIE NUN FORTFAHREN stellen Sie bitte sicher, dass Sie Zugriff auf eine MySQL Datenbank, den Benutzernamen und das Passwort haben. Eventuell müssen Sie erst eine Datenbank mit dem Webinterface des Providers erstellen. Benötigen Sie hierbei Hilfe, kontaktieren Sie bitte Ihren Provider.  Zen-Cart kann keine Datenbank erstellen, die Datenbank muss vor der Installation bereits vorhanden sein.</p>
 <p>(Folgende Rechte benötigt Ihr MySQL Benutzer: SELECT, INSERT, UPDATE, DELETE, CREATE, ALTER, INDEX, DROP. Auf einem Host mit hSphere würden Sie einen "dba" Zugriff - oder mindestens Lese-/und Schreibrechte - benötigen.) <br>
   <br>
-  Achten Sie darauf, dass Sie die Datenbank mit der Kollation utf8_general_ci erstellen!
-<br /></p>
+  <strong>Achten Sie darauf, dass Sie die Datenbank mit der Kollation utf8_general_ci erstellen!</strong><br /></p>
 <h3>Alles eingerichtet? </h3>
 <p>Können Sie alle Fragen mit "Ja" beantworten, sind Sie bereit für den nächsten Schritt...</p>
 <h3>ZIP Datei</h3>
@@ -385,7 +384,14 @@ Sollten während der Installation keine Fehler aufgetreten sein, sollten Sie nun
   </ul>
 </div>
 <h2>Voraussetzungen </h2>
-<p>Bevor Sie ein Update auf 1.5.1 planen, stellen Sie bitte sicher, dass Ihr Server die Systemvoraussetzungen erfüllt: </p>
+<p><br>
+  <strong>Hinweis für Anwender sehr alter Zen Cart Versionen</strong><br>
+  Das Updateprogramm unterstützt nur Zen Cart Versionen neuer als 1.3.5.<br>
+  Sollten Sie noch eine ältere Zen Cart Version als 1.3.5 im Einsatz haben, laden Sie sich Zen Cart 1.5 herunter und aktualisieren zunächst auf 1.5.<br>
+  Danach können Sie auf 1.5.1 aktualisieren
+  <br>
+  <br>
+  Bevor Sie ein Update auf 1.5.1 planen, stellen Sie bitte sicher, dass Ihr Server die Systemvoraussetzungen erfüllt: </p>
 <p><strong>Minimale Anforderungen:</strong></p>
 <ul>
   <li> PHP 5.2.14 oder höher, Apache 2.0 oder höher und MySQL 5.0.90 oder höher</li>
@@ -405,8 +411,9 @@ Sollten während der Installation keine Fehler aufgetreten sein, sollten Sie nun
   <br>
   Falls Sie Ihren Shop mit Modulen erweitert haben, stellen Sie sicher, dass es für die in Ihrem derzeitigen Shop eingesetzen Erweiterungen aktuelle mit Zen-Cart 1.5.1 getestete Versionen gibt. In Zen-Cart 1.5.1 können nur Zen-Cart 1.5.1 kompatible Module und Erweiterungen genutzt werden!
 <h2>Einleitung ... </h2>
-<p>Dieses ist eine Anleitung, um eine bestehende Zen-Cart Installation auf Zen-Cart 1.5.1 zu   aktualisieren. Falls Sie Zen-Cart bisher noch nicht installiert haben   sollten, schauen Sie bitte unter Neuinstallation.</p>
-<p>  Um Ihre Zen-Cart Installation zu aktualisieren brauchen Sie die gleichen Programme,   die Sie für die Erstinstallation und evtl. Anpassungen benutzt haben.   Ein FTP Programm, einen Texteditor für HTML/PHP Code, phpMyAdmin or   Ähnliches um auf Ihre MySQL Datenbank zugreifen zu können, und den   Adminbereich Ihres Webspaces.<br>
+<p>Dieses ist eine Anleitung, um eine bestehende Zen-Cart Installation auf Zen-Cart 1.5.1 zu   aktualisieren. Falls Sie Zen-Cart bisher noch nicht installiert haben   sollten, schauen Sie bitte unter Neuinstallation.<br>
+  <br>
+  Um Ihre Zen-Cart Installation zu aktualisieren brauchen Sie die gleichen Programme,   die Sie für die Erstinstallation und evtl. Anpassungen benutzt haben.   Ein FTP Programm, einen Texteditor für HTML/PHP Code, phpMyAdmin or   Ähnliches um auf Ihre MySQL Datenbank zugreifen zu können, und den   Adminbereich Ihres Webspaces.<br>
   <br>
   Zusätzlich ist ein Dateienvergleichsprogramm wie <a href="http://winmerge.sf.net" target="_blank">WinMerge</a>, <a href="http://www.scootersoftware.com/" target="_blank">Beyond Compare</a> oder ExamDiff (Linux) sehr hilfreich.  (Für Mac gibt es z.B. <a href="http://www.barebones.com" target="_blank">BBedit</a>.)<br>
   <br>
@@ -685,7 +692,13 @@ DEINADMIN/includes/configure.php</p>
 <div class="textcontent">
 <div class="regularlist">
 <h1>Changelog Dateien</h1>
-<p>  Änderungen gegenüber Version 1.5 deutsch<br>
+<p>  Änderungen gegenüber Version 1.5 deutsch</p>
+<p><strong>NEUE STRUKTUR DES DOWNLOADPAKETS</strong><br>
+Damit bei Neuinstallationen oder Updates nicht immer die Bild- und Mediendateien der Demodaten mitinstalliert werden, wurde die Demodaten ausgelagert und können bei Bedarf aus dem Ordner DEMODATEN hochgeladen werden.<br>
+Die Überprüfungstools im Ordner extras (ipncheck und curltester) werden für den normalen Betrieb nicht benötigt und wurden daher ebenfalls ausgelagert in den Ordner TOOLS.<br>
+<br>
+Die für eine Installation oder Update benötigten Ordner/Dateien liegen nun im Ordner UPLOAD. Nur der Inhalt des Ordners UPLOAD muss hochgeladen werden!
+<br>
   <br>
   <strong>Entfernte Dateien:</strong></p>
 <p> /admin/includes/functions/password_funcs.php <br>
@@ -780,6 +793,7 @@ DEINADMIN/includes/configure.php</p>
   /admin/includes/modules/copy_to_confirm.php<br>
   /admin/includes/modules/update_product.php</p>
 <p> /extras/ipncheck.php</p>
+<p>/email (alle Dateien in diesem Ordner)</p>
 <p> /ipn_main_handler.php</p>
 <p> /includes/application_top.php<br>
   /includes/dist-configure.php <br>
@@ -880,9 +894,14 @@ DEINADMIN/includes/configure.php</p>
   <li><strong>Steuerung der Anzeige &quot;incl. Mwst. zzgl. Versandkosten&quot; via Administration</strong><br>
     Die Anzeige &quot;incl. Mwst zzgl. Versandkosten&quot; berücksichtigt nun, ob im Shop Bruttopreise oder Nettopreise verwendet werden und zeigt dementsprechend den Text incl. oder excl. Steuer an. Unter Konfiguration &gt; Mein Shop kann nun eingestellt werden, ob die Anzeige überall, nur auf der Artikeldetailseite oder gar nicht erscheinen soll.</li>
   <li><strong>CKEditor</strong><br> 
-    Neben dem TinyMCE steht nun auch der CKEditor als alternativer HTML Editor zur Verfügung</li>
+    Neben dem TinyMCE steht nun auch die neueste Version des CKEditor als alternativer HTML Editor zur Verfügung. CKEditor ist als Standard gesetzt</li>
   <li><strong>Installationslayout  modernisiert</strong><br> 
     Der seit Jahren unveränderte Installer wurde layoutseitig überarbeitet</li>
+  <li><b>Neue Buttons im Adminbereich</b><br>
+  Der seit Jahren unveränderte Adminbereich wurde layoutseitig etwas überarbeitet
+  </li>
+    <li><b>Neues Template Viennaorange</b><br>
+  Als neues Standardtemplate kommt Viennaorange zum Einsatz. Die weiteren Beispieltemplates wurden verbreitert und haben teilweise neue Buttons bekommen.</li>
   <li><strong>Unterstützung von PHP 5.4</strong><br>
     PHP 5.4 wird nun vollständig unterstützt. Mit PHP 5.5 wurde diese Version aber nicht getestet.</li>
 </ul>
