@@ -1,11 +1,10 @@
 <?php
 /**
  * @package languageDefines
- * @copyright Copyright 2003-2012 Zen Cart Development Team
+ * @copyright Copyright 2003-2013 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @translator: cyaneo/hugo13/wflohr/maleborg	http://www.zen-cart-pro.at	2007-01-03
- * @version $Id: email_extras.php 627 2010-08-30 15:05:14Z webchills $
+ * @version $Id: email_extras.php 628 2013-08-16 18:05:14Z webchills $
  */
 
 // office use only
@@ -28,7 +27,7 @@ define('OFFICE_DATE_TIME', '<strong>Datum und Uhrzeit:</strong>');
 // email disclaimer
 define('EMAIL_DISCLAIMER', 'Diese E-Mail-Adresse wurde uns von Ihnen oder einem unserer Kunden mitgeteilt. Sollten Sie diese Nachricht versehentlich erhalten haben, wenden Sie sich bitte an: ' . STORE_OWNER_EMAIL_ADDRESS);
 define('EMAIL_SPAM_DISCLAIMER', '-');
-define('EMAIL_FOOTER_COPYRIGHT','Copyright (c) ' . date('Y') . ' <a href="' . zen_href_link(FILENAME_DEFAULT) . '" target="_blank">' . STORE_NAME . '</a>. Powered by <a href="http://www.zen-cart-pro.at" target="_blank">Zen Cart</a>');
+define('EMAIL_FOOTER_COPYRIGHT','Copyright (c) ' . date('Y') . ' <a href="' . zen_href_link(FILENAME_DEFAULT) . '" target="_blank">' . STORE_NAME . '</a>');
 define('TEXT_UNSUBSCRIBE', "\n\n" . 'Um diesen Newsletter abzubestellen, klicken Sie bitte auf folgenden Link: ' . "\n");
 // email advisory for all emails customer generate - tell-a-friend and GV send
 define('EMAIL_ADVISORY', '-----' . "\n" . '<strong>Achtung:</strong> Aus Sicherheitsgründen werden alle gesendeten E-Mails zwischengespeichert.<br />Sollten Sie diesbezüglich Fragen haben, wenden Sie sich bitte an: ' . STORE_OWNER_EMAIL_ADDRESS);
