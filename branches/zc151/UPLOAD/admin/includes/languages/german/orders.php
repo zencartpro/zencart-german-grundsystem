@@ -1,15 +1,11 @@
 <?php
 /**
- * @package linkpoint_api_payment_module
- * @copyright Copyright 2003-2012 Zen Cart Development Team
+ * @package admin
+ * @copyright Copyright 2003-2013 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @translators: cyaneo/hugo13/wflohr/maleborg/webchills	http://www.zen-cart-pro.at
- * @version $Id: orders.php 627 2010-08-30 15:05:14Z webchills $
+ * @version $Id: orders.php 628 2013-08-17 08:05:14Z webchills $
  */
-
-//  $Id: orders.php 627 2010-08-30 15:05:14Z webchills $
-//
 
 define('HEADING_TITLE', 'Bestellungen');
 define('HEADING_TITLE_SEARCH', 'Bestell ID:');
@@ -78,6 +74,9 @@ define('TEXT_NO_ORDER_HISTORY', 'keine Bestellstatistik verfügbar');
 
 define('EMAIL_SEPARATOR', '------------------------------------------------------');
 define('EMAIL_TEXT_SUBJECT', 'Bestellstatus aktualisiert');
+define('EMAIL_TEXT_ORDER_CUSTOMER_GENDER_MALE', 'Sehr geehrter Herr');
+define('EMAIL_TEXT_ORDER_CUSTOMER_GENDER_FEMALE', 'Sehr geehrte Frau');
+define('EMAIL_TEXT_UPDATEINFO', 'Wir informieren Sie über den Status Ihrer Bestellung bei ');
 define('EMAIL_TEXT_ORDER_NUMBER', 'Bestellnummer:');
 define('EMAIL_TEXT_INVOICE_URL', 'Detaillierte Rechnung:');
 define('EMAIL_TEXT_DATE_ORDERED', 'Datum der Bestellung:');
