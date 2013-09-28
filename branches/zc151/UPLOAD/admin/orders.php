@@ -4,7 +4,7 @@
  * @copyright Copyright 2003-2013 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: orders.php 786 2013-09-27 08:13:51Z webchills $
+ * @version $Id: orders.php 787 2013-09-28 18:13:51Z webchills $
  */
 
   require('includes/application_top.php');
@@ -116,9 +116,11 @@
         if ($status < 1) break;
 
         $order_updated = false;
-        $check_status = $db->Execute("select customers_name, customers_email_address, orders_status,
+        $check_status = $db->Execute("select customers_id, customers_name, customers_email_address, orders_status,
                                       date_purchased from " . TABLE_ORDERS . "
                                       where orders_id = '" . (int)$oID . "'");
+        $customer_gender = $db->Execute("select customers_gender from " . TABLE_CUSTOMERS . "
+                                      where customers_id = '" . $check_status->fields['customers_id'] . "'");
 
         if ( ($check_status->fields['orders_status'] != $status) || zen_not_null($comments)) {
           $db->Execute("update " . TABLE_ORDERS . "
