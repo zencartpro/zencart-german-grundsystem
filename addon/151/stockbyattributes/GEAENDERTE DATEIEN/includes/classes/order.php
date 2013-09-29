@@ -5,7 +5,7 @@
  * @package classes
  * @copyright Copyright 2003-2013 Zen Cart Development Team
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: order.php for SBA 1.5.1 2013-04-17 08:12:23Z webchills $
+ * @version $Id: order.php for SBA 1.6 2013-04-17 08:12:23Z webchills $
  */
 /**
  * order class
@@ -161,6 +161,7 @@ class order extends base {
                            'format_id' => $order->fields['billing_address_format_id']);
 
     $index = 0;
+// rhuseby: add my_stock_id to query (my_stock_id MOD)
     $orders_products_query = "select orders_products_id, products_id, products_name,
                                  products_model, products_price, products_tax,
                                  products_quantity, final_price,
@@ -733,7 +734,7 @@ class order extends base {
 
           $db->Execute("update " . TABLE_PRODUCTS . " set products_quantity = '" . $stock_left . "' where products_id = '" . zen_get_prid($this->products[$i]['id']) . "'");
 
-			// Begin SBA 1.5.1
+			// Begin SBA 1.6
 			// added to update quantities of products with attributes
 			$attribute_search = array();
 			$attribute_stock_left = STOCK_REORDER_LEVEL + 1;  // kuroi: prevent false low stock triggers  
@@ -773,7 +774,7 @@ class order extends base {
 				$attribute_update_query = 'update ' . TABLE_PRODUCTS_WITH_ATTRIBUTES_STOCK . ' set quantity='.$attribute_stock_left.' where products_id="' . zen_get_prid($this->products[$i]['id']) . '" and stock_attributes="' . $stock_attributes_search . '"';
 				$db->Execute($attribute_update_query);	
 			}
-			// kuroi: End SBA 1.5.1
+			// kuroi: End SBA 1.6
 
           //        if ( ($stock_left < 1) && (STOCK_ALLOW_CHECKOUT == 'false') ) {
           if ($stock_left <= 0) {
@@ -787,7 +788,7 @@ class order extends base {
           if ( $stock_left <= STOCK_REORDER_LEVEL ) {
             // WebMakers.com Added: add to low stock email
             $this->email_low_stock .=  'ID# ' . zen_get_prid($this->products[$i]['id']) . "\t\t" . $this->products[$i]['model'] . "\t\t" . $this->products[$i]['name'] . "\t\t" . ' Qty Left: ' . $stock_left . "\n";
-          // SBA 1.5.1 kuroi: trigger and details for attribute low stock email
+          // SBA 1.6 kuroi: trigger and details for attribute low stock email
           } elseif ($attribute_stock_left <= STOCK_REORDER_LEVEL) {
             $this->email_low_stock .=  'ID# ' . zen_get_prid($this->products[$i]['id']) . ', ' . $this->products[$i]['model'] . ', ' . $this->products[$i]['name'] . ', ';
 						foreach($this->products[$i]['attributes'] as $attributes){

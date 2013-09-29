@@ -7,7 +7,7 @@
  * @copyright Copyright 2003-2013 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: functions_lookups.php for SBA 1.5.1 2013-04-17 07:34:47Z webchills $
+ * @version $Id: functions_lookups.php for SBA 1.6 2013-08-05 15:34:47Z webchills $
  */
 
 
@@ -160,7 +160,10 @@
  *
  * @param int The product id of the product who's stock we want
 */
-/*  function zen_get_products_stock($products_id) {
+/* Begin Stock by Attributes additions */
+/* Disable Default Function
+
+  function zen_get_products_stock($products_id) {
     global $db;
     $products_id = zen_get_prid($products_id);
     $stock_query = "select products_quantity
@@ -222,6 +225,9 @@
     return $stock_values->fields['products_quantity'];
 
   }
+/*
+ *End Amend for Stock by Attributes add-on
+*/
 
 /**
  * Check if the required stock is available.
@@ -233,7 +239,9 @@
  *
  * @TODO naughty html in a function
 */
-/*  function zen_check_stock($products_id, $products_quantity) {
+/* Begin Stock by Attributes additions */
+/* Disable Default Function
+  function zen_check_stock($products_id, $products_quantity) {
     $stock_left = zen_get_products_stock($products_id) - $products_quantity;
     $out_of_stock = '';
 
@@ -246,20 +254,21 @@
 */
 
   // modified to include attributes
+  /* Removed redundant section of code--Zola*/
   function zen_check_stock($products_id, $products_quantity, $attributes = '') {
 
     $stock_left = zen_get_products_stock($products_id, $attributes) - $products_quantity;
     $out_of_stock = '';
 
-    if ($stock_left < 0 && !is_array($attributes)) {
-      $out_of_stock = '<span class="markProductOutOfStock">' . STOCK_MARK_PRODUCT_OUT_OF_STOCK . '</span>';
-    }
-    elseif ($stock_left < 0 && is_array($attributes)) {
+    if ($stock_left < 0) {
       $out_of_stock = '<span class="markProductOutOfStock">' . STOCK_MARK_PRODUCT_OUT_OF_STOCK . '</span>';
     }
 
     return $out_of_stock;
   }
+/*
+ *End Amend for Stock by Attributes add-on
+*/
 
 
 

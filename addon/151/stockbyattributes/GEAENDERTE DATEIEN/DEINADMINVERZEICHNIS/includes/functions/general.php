@@ -4,7 +4,7 @@
  * @copyright Copyright 2003-2013 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: general.php for SBA 1.5.1 2013-04-17 07:45:52Z webchills $
+ * @version $Id: general.php for SBA 1.6 2013-04-17 07:45:52Z webchills $
  */
 
 ////
@@ -931,7 +931,7 @@
 // Function to read in text area in admin
  function zen_cfg_textarea($text, $key = '') {
     $name = (($key) ? 'configuration[' . $key . ']' : 'configuration_value');
-    return zen_draw_textarea_field($name, false, 60, 5, htmlspecialchars($text, ENT_COMPAT, CHARSET, TRUE));
+    return zen_draw_textarea_field($name, false, 60, 5, htmlspecialchars($text, ENT_COMPAT, CHARSET, FALSE));
   }
 
 
@@ -939,7 +939,7 @@
 // Function to read in text area in admin
  function zen_cfg_textarea_small($text, $key = '') {
     $name = (($key) ? 'configuration[' . $key . ']' : 'configuration_value');
-    return zen_draw_textarea_field($name, false, 35, 1, htmlspecialchars($text, ENT_COMPAT, CHARSET, TRUE));
+    return zen_draw_textarea_field($name, false, 35, 1, htmlspecialchars($text, ENT_COMPAT, CHARSET, FALSE));
   }
 
 
@@ -1450,7 +1450,7 @@ while (!$chk_sale_categories_all->EOF) {
     }
   }
 
-/* BEGIN SBA 1.5.1
+/* BEGIN SBA 1.6
   function zen_remove_order($order_id, $restock = false) {
     global $db;
     if ($restock == 'on') {
@@ -1539,7 +1539,7 @@ while (!$chk_sale_categories_all->EOF) {
 	$db->Execute("delete from " . TABLE_COUPON_GV_QUEUE . "
     where order_id = '" . (int)$order_id . "' and release_flag = 'N'");
   }
-  /* END SBA 1.5.1 */
+  /* END SBA 1.6 */
 
   function zen_get_file_permissions($mode) {
 // determine type

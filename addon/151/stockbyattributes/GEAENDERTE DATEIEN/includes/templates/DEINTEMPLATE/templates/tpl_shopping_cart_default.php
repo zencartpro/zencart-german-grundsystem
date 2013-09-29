@@ -9,7 +9,7 @@
  * @copyright Copyright 2003-2013 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: tpl_shopping_cart_default.php for SBA 1.5.1 2013-04-17 07:32:39Z webchills $
+ * @version $Id: tpl_shopping_cart_default.php for SBA 1.6 2013-09-27 07:32:39Z webchills $
  */
 ?>
 <div class="centerColumn" id="shoppingCartDefault">
@@ -65,7 +65,11 @@
      <tr class="<?php echo $product['rowClass']; ?>">
        <td class="cartQuantity">
 <?php
-  if ($product['flagShowFixedQuantity']) {
+	// START "Stock by Attributes"
+ 	if( $product['lowproductstock'] AND STOCK_CHECK == 'true' ) {
+ 		echo $product['quantityField']           . '<br /><span class="alert bold">***' . '</span><br /><br />' . $product['showMinUnits'];
+ 	}
+  	elseif ( $product['flagShowFixedQuantity'] ) {
     echo $product['showFixedQuantityAmount'] . '<br /><span class="alert bold">' . $product['flagStockCheck'] . '</span><br /><br />' . $product['showMinUnits'];
   } else {
     echo $product['quantityField'] . '<br /><span class="alert bold">' . $product['flagStockCheck'] . '</span><br /><br />' . $product['showMinUnits'];
@@ -82,14 +86,39 @@
 ?>
        </td>
        <td class="cartProductDisplay">
-<a href="<?php echo $product['linkProductsName']; ?>"><span id="cartImage" class="back"><?php echo $product['productsImage']; ?></span><span id="cartProdTitle"><?php echo $product['productsName'] . '<span class="alert bold">' . $product['flagStockCheck'] . '</span>'; ?></span></a>
+<a href="<?php echo $product['linkProductsName']; ?>"><span id="cartImage" class="back"><?php echo $product['productsImage']; ?></span>
+<span id="cartProdTitle"><?php echo $product['productsName'] . '<span class="alert bold">' . $product['flagStockCheck'] . '</span>'; ?></span></a>
 
-<?php if ((STOCK_SHOW_LOW_IN_CART == 'true') && $product['flagStockCheck']) {
-         echo '<span class="alert bold">';
-         echo PWA_STOCK_AVAILABLE;
-				 echo ((isset($product['stockAvailable'])) ? $product['stockAvailable']: 0);
-         echo '</span>';
+<?php 
+	// START "Stock by Attributes"
+	if ( (STOCK_SHOW_LOW_IN_CART == 'true') && $product['flagStockCheck'] ) {
+		 //if( is_array($product['attributes']) && ($product['showFixedQuantityAmount'] > $product['stockAvailable']) ){
+			echo '<span class="alert bold">';
+			if( $product['stockAvailable'] == 0 ){
+				echo PWA_OUT_OF_STOCK . '&nbsp;';
 			}
+			else{
+				echo PWA_STOCK_AVAILABLE . '&nbsp;';
+				echo ((isset($product['stockAvailable'])) ? $product['stockAvailable']: 0);//shows atribbute stock
+			}
+			echo '</span>';
+		 //}
+	}
+	//for products without attribute
+	if( empty($product['attributes']) && STOCK_SHOW_LOW_IN_CART == 'true' && $product['lowproductstock'] ){
+		//if( $product['lowproductstock'] && ($product['quantityField'] > $product['stockofproduct']) ){
+			echo '<span class="alert bold">';
+			if( $product['stockofproduct'] == 0 ){
+				echo '&nbsp;***&nbsp;' . PWA_OUT_OF_STOCK . '&nbsp;';
+			}
+			else{
+				echo '&nbsp;***&nbsp;' . PWA_STOCK_AVAILABLE . '&nbsp;';
+				echo ((isset($product['stockofproduct'])) ? $product['stockofproduct']: 0);//shows product stock (with NO attribute)
+			}
+			echo '</span>';
+		//}
+	}
+	// END "Stock by Attributes"
 ?>
 <br class="clearBoth" />
 
@@ -100,6 +129,9 @@
   echo '<ul>';
     reset($product['attributes']);
     foreach ($product['attributes'] as $option => $value) {
+        $product_options_name = $value['products_options_name'];
+        $product_options_name_array = explode(":", $product_options_name);
+        $product_options_name = $product_options_name_array[0];
 ?>
 
 <li><?php echo $value['products_options_name'] . TEXT_OPTION_DIVIDER . nl2br($value['products_options_values_name']); ?></li>

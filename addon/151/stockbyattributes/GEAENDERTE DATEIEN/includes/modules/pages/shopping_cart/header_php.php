@@ -6,7 +6,7 @@
  * @copyright Copyright 2003-2013 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: header_php.php for SBA 1.5.1 2013-04-17 07:33:18Z webchills $
+ * @version $Id: header_php.php for SBA 1.6 2013-09-27 07:33:18Z webchills $
  */
 
 // This should be first line of the script:
@@ -82,6 +82,32 @@ for ($i=0, $n=sizeof($products); $i<$n; $i++) {
   $attributeHiddenField = "";
   $attrArray = false;
   $productsName = $products[$i]['name'];
+  // START "Stock by Attributes"
+  //use this to get quantity of each product when no option was used, to show stock in checkout when low
+  $stockofproduct = null;
+  $sql2 = "SELECT products_id, products_quantity
+						FROM " . TABLE_PRODUCTS . "
+						WHERE products_id = '" . $products[$i]['id'] . "'";
+  $qtyeachoption = $db->Execute($sql2);
+  $stockofproduct = $qtyeachoption->fields['products_quantity'];
+  //echo $n . ' ' . $qtyeachoption->fields['products_id'] . ' ' . $qtyeachoption->fields['products_quantity'];//debug
+
+  //Clear variable so they do not affect products that are not based on atributes
+  $flagStockCheck = null;
+  $stockAvailable = null;
+  $stock_check = null;
+  $lowproductstock = false;
+  $noproductstock = false;
+  //run stock check on products without atribbutes when STOCK_CHECK flag is set
+  if ( empty($products[$i]['attributes']) && STOCK_CHECK == 'true' && ($products[$i]['quantity'] > $stockofproduct) ) {
+ 		//echo $stockofproduct . ' ';//debug
+ 		$lowproductstock = true;
+  		$flagAnyOutOfStock = true;
+		if(empty($stockofproduct)){
+			$noproductstock = true;
+		}
+  }
+  // END "Stock by Attributes"
   // Push all attributes information in an array
   if (isset($products[$i]['attributes']) && is_array($products[$i]['attributes'])) {
     if (PRODUCTS_OPTIONS_SORT_ORDER=='0') {
@@ -120,27 +146,33 @@ for ($i=0, $n=sizeof($products); $i<$n; $i++) {
       $attrArray[$option]['options_values_price'] = $attributes_values->fields['options_values_price'];
       $attrArray[$option]['price_prefix'] = $attributes_values->fields['price_prefix'];
     }
-    // bof SBA 1.5.1
+    // bof SBA 1.6
+    	// START "Stock by Attributes"
+ 		/* Fix subsequent products showing out of stock when they actually have stock--Zola */
+		$flagStockCheck = null;   
+		$stockAvailable = null;
+		$stock_check = null;
+		unset($attributes);
+
 		if ( STOCK_CHECK == 'true' ) {
 
 			// Added to allow individual stock of different attributes
-			unset($attributes);
 			if(is_array($products[$i]['attributes'])){
 				$attributes = $products[$i]['attributes'];
-			} else {
-				$attributes = '';
-			}
+			} 
 
-			$stock_check = zen_check_stock($products[$i]['id'], $products[$i]['quantity'],$attributes);
-	
-			if (zen_not_null($stock_check))
-			{
+			if($attributes){
+				$stock_check = zen_check_stock($products[$i]['id'], $products[$i]['quantity'],$attributes);
+			}
+						
+			if (zen_not_null($stock_check)){
 				$flagAnyOutOfStock = true;
 				$flagStockCheck = $stock_check;
-			  $stockAvailable = zen_get_products_stock($products[$i]['id'], $attributes);		
+			  	$stockAvailable = zen_get_products_stock($products[$i]['id'], $attributes);		
 			}
+
 		}
-    // eof SBA 1.5.1
+    // eof SBA 1.6
   } //end foreach [attributes]
 /*
   if (STOCK_CHECK == 'true') {
@@ -176,6 +208,9 @@ for ($i=0, $n=sizeof($products); $i<$n; $i++) {
                             'linkProductsImage'=>$linkProductsImage,
                             'linkProductsName'=>$linkProductsName,
                             'stockAvailable'=>$stockAvailable,
+							'stockofproduct'=>$stockofproduct,
+							'lowproductstock'=>$lowproductstock,
+							'noproductstock'=>$noproductstock,
                             'productsImage'=>$productsImage,
                             'productsName'=>$productsName,
                             'showFixedQuantity'=>$showFixedQuantity,

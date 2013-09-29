@@ -4,7 +4,7 @@
  * @copyright Copyright 2003-2013 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: orders.php for SBA 1.5.1 2013-04-17 07:17:51Z webchills $
+ * @version $Id: orders.php for SBA 1.6 2013-04-17 07:17:51Z webchills $
 
  */
 
@@ -62,7 +62,8 @@
           $check_status = $db->Execute("select customers_name, customers_email_address, orders_status,
                                       date_purchased from " . TABLE_ORDERS . "
                                       where orders_id = '" . $_GET['oID'] . "'");
-
+          $customer_gender = $db->Execute("select customers_gender from " . TABLE_CUSTOMERS . "
+                                      where customers_id = '" . $check_status->fields['customers_id'] . "'");
           // check for existing product attribute download days and max
           $chk_products_download_query = "SELECT orders_products_id, orders_products_filename, products_prid from " . TABLE_ORDERS_PRODUCTS_DOWNLOAD . " WHERE orders_products_download_id='" . $_GET['download_reset_on'] . "'";
           $chk_products_download = $db->Execute($chk_products_download_query);
@@ -115,9 +116,11 @@
         if ($status < 1) break;
 
         $order_updated = false;
-        $check_status = $db->Execute("select customers_name, customers_email_address, orders_status,
+        $check_status = $db->Execute("select customers_id, customers_name, customers_email_address, orders_status,
                                       date_purchased from " . TABLE_ORDERS . "
                                       where orders_id = '" . (int)$oID . "'");
+        $customer_gender = $db->Execute("select customers_gender from " . TABLE_CUSTOMERS . "
+                                      where customers_id = '" . $check_status->fields['customers_id'] . "'");
 
         if ( ($check_status->fields['orders_status'] != $status) || zen_not_null($comments)) {
           $db->Execute("update " . TABLE_ORDERS . "
@@ -139,7 +142,12 @@
             strip_tags($notify_comments) .
             EMAIL_TEXT_STATUS_UPDATED . sprintf(EMAIL_TEXT_STATUS_LABEL, $orders_status_array[$status] ) .
             EMAIL_TEXT_STATUS_PLEASE_REPLY;
-
+            if ($customer_gender->fields['customers_gender'] == 'm') {
+            $html_msg['EMAIL_CUSTOMER_GREETING']    = EMAIL_TEXT_ORDER_CUSTOMER_GENDER_MALE;
+            } else {
+            $html_msg['EMAIL_CUSTOMER_GREETING']    = EMAIL_TEXT_ORDER_CUSTOMER_GENDER_FEMALE;
+            }
+            $html_msg['EMAIL_TEXT_UPDATEINFO']    = EMAIL_TEXT_UPDATEINFO;
             $html_msg['EMAIL_CUSTOMERS_NAME']    = $check_status->fields['customers_name'];
             $html_msg['EMAIL_TEXT_ORDER_NUMBER'] = EMAIL_TEXT_ORDER_NUMBER . ' ' . $oID;
             $html_msg['EMAIL_TEXT_INVOICE_URL']  = '<a href="' . zen_catalog_href_link(FILENAME_CATALOG_ACCOUNT_HISTORY_INFO, 'order_id=' . $oID, 'SSL') .'">'.str_replace(':','',EMAIL_TEXT_INVOICE_URL).'</a>';
@@ -563,10 +571,10 @@ function couponpopupWindow(url) {
 
       if (isset($order->products[$i]['attributes']) && (sizeof($order->products[$i]['attributes']) > 0)) {
         for ($j = 0, $k = sizeof($order->products[$i]['attributes']); $j < $k; $j++) {
-// bof SBA 1.5.1
+// bof SBA 1.6
           $option_name_array = explode(":", $order->products[$i]['attributes'][$j]['option']);
           $option_Name = $option_name_array[0];
-// eof SBA 1.5.1
+// eof SBA 1.6
           echo '<br /><nobr><small>&nbsp;<i> - ' . $order->products[$i]['attributes'][$j]['option'] . ': ' . nl2br(zen_output_string_protected($order->products[$i]['attributes'][$j]['value']));
           if ($order->products[$i]['attributes'][$j]['price'] != '0') echo ' (' . $order->products[$i]['attributes'][$j]['prefix'] . $currencies->format($order->products[$i]['attributes'][$j]['price'] * $order->products[$i]['qty'], true, $order->info['currency'], $order->info['currency_value']) . ')';
           if ($order->products[$i]['attributes'][$j]['product_attribute_is_free'] == '1' and $order->products[$i]['product_is_free'] == '1') echo TEXT_INFO_ATTRIBUTE_FREE;

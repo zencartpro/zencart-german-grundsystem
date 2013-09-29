@@ -1,10 +1,10 @@
 <?php
 /**
  * @package admin
- * @copyright Copyright 2003-2012 Zen Cart Development Team
+ * @copyright Copyright 2003-2013 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: products_with_attributes_stock.php 2012-08-21 18:37:14Z hugo13/webchills $
+ * @version $Id: products_with_attributes_stock.php 2013-06-06 19:37:14Z hugo13/webchills $
  */
 
 require('includes/application_top.php');
@@ -111,6 +111,7 @@ switch($action)
 			{
 				zen_redirect(zen_href_link(FILENAME_PRODUCTS_WITH_ATTRIBUTES_STOCK, zen_get_all_get_params(array('action')), 'NONSSL'));
 			}
+			
 			$products_id = $_POST['products_id'];
 			$product_name = zen_get_products_name($products_id);
 			if(is_numeric($_POST['quantity']))
@@ -172,6 +173,7 @@ switch($action)
 		$products_id = $_POST['products_id'];
 		if ($_GET['products_id']) { $products_id = $_GET['products_id']; } //s_mack:noconfirm
 
+		
 		$quantity = $_GET['quantity']; //s_mack:noconfirm
 		if ($_GET['quantity']) { $quantity = $_GET['quantity']; } //s_mack:noconfirm
 		if(!is_numeric((int)$quantity)) //s_mack:noconfirm

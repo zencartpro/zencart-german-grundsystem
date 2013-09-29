@@ -25,4 +25,4 @@ define('PWA_EDIT', 'Bearbeiten');
 define('PWA_DELETE', 'Löschen');
 define('PWA_SUBMIT','Absenden');
 define('PWA_SORTIEREN','Sortieren');
-define('PWA_WELCOME','Stock by Attributes 1.5.1');
+define('PWA_WELCOME','Stock by Attributes 1.6');

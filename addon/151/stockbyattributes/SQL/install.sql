@@ -1,5 +1,5 @@
 #########################################################################################
-# Stock by Attributes 1.5.1 Multilanguage Install Zen-Cart 1.5.1 - 2013-04-17 - webchills
+# Stock by Attributes 1.6 Multilanguage Install Zen-Cart 1.5.1 - 2013-04-17 - webchills
 #########################################################################################
 
 
