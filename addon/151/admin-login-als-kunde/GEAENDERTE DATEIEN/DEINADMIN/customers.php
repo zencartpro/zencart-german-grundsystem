@@ -3,8 +3,8 @@
  * @package admin
  * @copyright Copyright 2003-2013 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
- * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: customers.php for login as customer 2013-04-17 08:48:50Z webchills $
+ * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
+ * @version $Id: customers.php for login as customer ZC151 2013-09-29 11:51:52Z webchills $
  */
 
   require('includes/application_top.php');
@@ -14,6 +14,7 @@
 
   $action = (isset($_GET['action']) ? $_GET['action'] : '');
   $customers_id = zen_db_prepare_input($_GET['cID']);
+  if (isset($_POST['cID'])) $customers_id = zen_db_prepare_input($_POST['cID']);
 
   $error = false;
   $processed = false;
@@ -71,21 +72,21 @@
         if (isset($_POST['current']) && is_numeric($_POST['current']))
         {
           if ($_POST['current'] == CUSTOMERS_APPROVAL_AUTHORIZATION) {
-          $sql = "update " . TABLE_CUSTOMERS . " set customers_authorization=0 where customers_id='" . (int)$customers_id . "'";
-          $custinfo = $db->Execute("select customers_email_address, customers_firstname, customers_lastname
-                                    from " . TABLE_CUSTOMERS . "
-                                    where customers_id = '" . (int)$customers_id . "'");
-          if ((int)CUSTOMERS_APPROVAL_AUTHORIZATION > 0 && (int)$_GET['current'] > 0 && $custinfo->RecordCount() > 0) {
-            $message = EMAIL_CUSTOMER_STATUS_CHANGE_MESSAGE;
-            $html_msg['EMAIL_MESSAGE_HTML'] = EMAIL_CUSTOMER_STATUS_CHANGE_MESSAGE ;
-            zen_mail($custinfo->fields['customers_firstname'] . ' ' . $custinfo->fields['customers_lastname'], $custinfo->fields['customers_email_address'], EMAIL_CUSTOMER_STATUS_CHANGE_SUBJECT , $message, STORE_NAME, EMAIL_FROM, $html_msg, 'default');
+            $sql = "update " . TABLE_CUSTOMERS . " set customers_authorization=0 where customers_id='" . (int)$customers_id . "'";
+            $custinfo = $db->Execute("select customers_email_address, customers_firstname, customers_lastname
+                                      from " . TABLE_CUSTOMERS . "
+                                      where customers_id = '" . (int)$customers_id . "'");
+            if ((int)CUSTOMERS_APPROVAL_AUTHORIZATION > 0 && (int)$_POST['current'] > 0 && $custinfo->RecordCount() > 0) {
+              $message = EMAIL_CUSTOMER_STATUS_CHANGE_MESSAGE;
+              $html_msg['EMAIL_MESSAGE_HTML'] = EMAIL_CUSTOMER_STATUS_CHANGE_MESSAGE ;
+              zen_mail($custinfo->fields['customers_firstname'] . ' ' . $custinfo->fields['customers_lastname'], $custinfo->fields['customers_email_address'], EMAIL_CUSTOMER_STATUS_CHANGE_SUBJECT , $message, STORE_NAME, EMAIL_FROM, $html_msg, 'default');
+            }
+          } else {
+            $sql = "update " . TABLE_CUSTOMERS . " set customers_authorization='" . CUSTOMERS_APPROVAL_AUTHORIZATION . "' where customers_id='" . (int)$customers_id . "'";
           }
-        } else {
-          $sql = "update " . TABLE_CUSTOMERS . " set customers_authorization='" . CUSTOMERS_APPROVAL_AUTHORIZATION . "' where customers_id='" . (int)$customers_id . "'";
-        }
-        $db->Execute($sql);
-        $action = '';
-        zen_redirect(zen_href_link(FILENAME_CUSTOMERS, 'cID=' . (int)$customers_id . '&page=' . $_GET['page'], 'NONSSL'));
+          $db->Execute($sql);
+          $action = '';
+          zen_redirect(zen_href_link(FILENAME_CUSTOMERS, 'cID=' . (int)$customers_id . '&page=' . $_GET['page'], 'NONSSL'));
         }
         $action = '';
         break;
@@ -459,7 +460,7 @@ function check_form() {
     }
   }
 
-  minTelephoneLength = <?php echo ENTRY_TELEPHONE_MIN_LENGTH; ?>;
+  minTelephoneLength = <?php echo (int)ENTRY_TELEPHONE_MIN_LENGTH; ?>;
   if (minTelephoneLength > 0 && customers_telephone.length < minTelephoneLength) {
     error_message = error_message + "<?php echo JS_TELEPHONE; ?>";
     error = 1;
@@ -1216,7 +1217,9 @@ $url = HTTP_SERVER .  DIR_WS_CATALOG;
         $heading[] = array('text' => '<b>' . TABLE_HEADING_ID . $cInfo->customers_id . ' ' . $cInfo->customers_firstname . ' ' . $cInfo->customers_lastname . '</b>');
 
         $contents[] = array('align' => 'center', 'text' => '<a href="' . zen_href_link(FILENAME_CUSTOMERS, zen_get_all_get_params(array('cID', 'action', 'search')) . 'cID=' . $cInfo->customers_id . '&action=edit', 'NONSSL') . '">' . zen_image_button('button_edit.gif', IMAGE_EDIT) . '</a> <a href="' . zen_href_link(FILENAME_CUSTOMERS, zen_get_all_get_params(array('cID', 'action', 'search')) . 'cID=' . $cInfo->customers_id . '&action=confirm', 'NONSSL') . '">' . zen_image_button('button_delete.gif', IMAGE_DELETE) . '</a><br />' . ($customers_orders->RecordCount() != 0 ? '<a href="' . zen_href_link(FILENAME_ORDERS, 'cID=' . $cInfo->customers_id, 'NONSSL') . '">' . zen_image_button('button_orders.gif', IMAGE_ORDERS) . '</a>' : '') . ' <a href="' . zen_href_link(FILENAME_MAIL, 'origin=customers.php&mode=NONSSL&selected_box=tools&customer=' . $cInfo->customers_email_address.'&cID=' . $cInfo->customers_id, 'NONSSL') . '">' . zen_image_button('button_email.gif', IMAGE_EMAIL) . '</a>');
-        $contents[] = array('text' => '<div align="center"><form target="_blank" name="login" action="' . $p_url . '" method="post">
+		
+		// BOF login_as_customer module
+		$contents[] = array('text' => '<div align="center"><form target="_blank" name="login" action="' . $p_url . '" method="post">
 <input type="hidden" name="firstname" id="firstname" value="' . $cInfo->customers_firstname . '">
 <input type="hidden" name="lastname" id="lastname" value="' . $cInfo->customers_lastname . '">
 <input type="hidden" name="cid" id="cid" value="' . $cInfo->customers_id . '">
@@ -1231,6 +1234,8 @@ $url = HTTP_SERVER .  DIR_WS_CATALOG;
 <input type="hidden" name="password" id="login-password" value="' . MASTER_PASS . '">
 <input type="image" src="' . $place_order_button . '">
 </form></div>');
+		//EOF login_as_customer module
+		
         $contents[] = array('text' => '<br />' . TEXT_DATE_ACCOUNT_CREATED . ' ' . zen_date_short($cInfo->date_account_created));
         $contents[] = array('text' => '<br />' . TEXT_DATE_ACCOUNT_LAST_MODIFIED . ' ' . zen_date_short($cInfo->date_account_last_modified));
         $contents[] = array('text' => '<br />' . TEXT_INFO_DATE_LAST_LOGON . ' '  . zen_date_short($cInfo->date_last_logon));

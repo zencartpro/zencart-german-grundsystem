@@ -3,10 +3,10 @@
  * password_funcs functions 
  *
  * @package functions
- * @copyright Copyright 2003-2013 Zen Cart Development Team
+ * @copyright Copyright 2003-2012 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
- * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: password_funcs.php for login as customer 2.4 2013-03-06 09:35:47Z webchills $
+ * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
+ * @version $Id: password_funcs.php for login as customer 2013-09-29 11:25:16Z webchills $
  */
 
 ////
