@@ -6,7 +6,7 @@
  * @copyright Copyright 2003-2013 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: functions_taxes.php for UID 2.1 2013-03-06 09:18:57Z webchills $
+ * @version $Id: functions_taxes.php for UID 2.1 2013-10-15 11:18:57Z webchills $
  */
 
 ////
@@ -45,10 +45,18 @@
     $tax = $db->Execute($tax_query);
 
 // TVA_INTRACOM BEGIN
-    $tva_intracom_number = get_tva_intracom_number();
-    if ($tva_intracom_number === true && $_SESSION['customer_id']) {
-        return 0;
-        } else {
+    if ($_SESSION['customer_id']) {
+        $customers_id = $_SESSION['customer_id'];
+                $customer_check = $db->Execute("select * from " . TABLE_CUSTOMERS . " where customers_id = " . $customers_id);
+                $customers_default_address_id = $customer_check->fields['customers_default_address_id'];
+                $address_book_check = $db->Execute("select * from address_book where address_book_id = $customers_default_address_id and customers_id = $customers_id");
+                $entry_tva_intracom = $address_book_check->fields['entry_tva_intracom'];
+    }
+    if ($entry_tva_intracom != "" and $country_id != STORE_COUNTRY) {
+	    $tax_rate = 0.00;
+            return $tax_rate;
+    } else {
+// TVA_INTRACOM END
         if ($tax->RecordCount() > 0) {
             $tax_multiplier = 1.0;
             while (!$tax->EOF) {
