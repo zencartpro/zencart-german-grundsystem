@@ -1,0 +1,276 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<title>Bestellen ohne Kundenkonto (COWOA) 3.1 für Zen-Cart 1.5.1 deutsch</title>
+<meta http-equiv="pragma" content="no-cache">
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
+<meta http-equiv="content-language" content="de">
+<meta name="description" content="Checkout without Account für Zen-Cart 1.5 deutsch">
+<link rel="stylesheet" type="text/css" href="includes/css/stylesheet.css">  
+<script type="text/javascript" src="includes/jscript/jscript_tabs.js"></script>
+</head>
+<body>
+<div id="wrapper">
+<div id="header">
+<h1>Bestellen ohne Kundenkonto (COWOA) 3.1 für Zen-Cart 1.5.1 deutsch</h1>
+</div>
+
+<div id="slidetabsmenu" style="display: none;">
+<ul>
+  <li> <a onClick="expandcontent('sc1', this)" href="javascript:void(0)"><span>Sinn und Zweck</span></a></li>
+  <li> <a onClick="expandcontent('sc2', this)" href="javascript:void(0)"><span>Installation</span></a></li>
+   <li> <a onClick="expandcontent('sc3', this)" href="javascript:void(0)"><span>Konfiguration</span></a></li>
+   <li> <a onClick="expandcontent('sc4', this)" href="javascript:void(0)"><span>Deinstallation</span></a></li>
+  <li> <a onClick="expandcontent('sc5', this)" href="javascript:void(0)"><span>Download & Support</span></a></li>
+  <li> <a onClick="expandcontent('sc6', this)" href="javascript:void(0)"><span>Unterstützen</span></a></li>
+ </ul>
+</div>
+<br style="clear: both;">
+
+<!--Begin tabcontainer-->
+<div id="tabcontentcontainer">
+
+<!--Begin sc1-->
+<div class="tabcontent" id="sc1" style="display: block;">
+<div class="textcontent">
+<div class="regularlist">
+
+<h2>Sinn und Zweck dieses Moduls</h2>
+
+  <p>Bestellung ohne Kundenkonto ist als Checkout without Account (COWOA) bekannt.<br>
+    <br>
+Wenn ein Besucher etwas in seinen Warenkorb legt und zur Kasse geht,   bekommt er zusätzlich zu den beiden normalen Möglichkeiten (Login für   bestehende Kunden oder Neuregistrierung) ein dritte Option angeboten:<br>
+Bestellen ohne Kundenkonto<br>
+Der Kunde kann also einkaufen, ohne ein Kundenkonto zu erstellen.<br>
+Im Hintergrund wird trotzdem ein Kundenkonto angelegt, damit die   Bestellung abgewickelt werden kann und die Kundendaten/Bestelldaten auch   im Admin ersichtlich sind.<br>
+Ein solcher COWOA Account ist eingeschränkt, folgende Funktionen stehen solchen "Kunden" nicht zur Verfügung:<br>
+- Geburtsdatum<br>
+- phpBB Integration<br>
+- Newsletter bestellen/abbestellen<br>
+- Passwort zusenden (es gibt ja kein Passwort)<br>
+Sollte der Kunde später einmal ein Kundenkonto anlegen wollen, ist   das möglich, dazu kann auch dieselbe Emailadresse verwendet werden, die   bei der Bestellung ohne Registrierung angegeben wurde.<br>
+Umgekehrt nicht:<br>
+Hat ein Kunde einmal ein Kundenkonto angelegt, kann er nicht mehr COWOA nutzen (macht ja auch wenig Sinn).</p>
+  <p>Die Version 3.1 integriert ein besseres Service für COWOA Kunden und eine neue Darstellung  solcher "nicht registrierter" Kunden in den Zen-Cart Administration.<br>
+    COWOA Kunden haben nun die Möglichkeit, den Bestellstatus ihrer   Bestellung einzusehen. Dazu können Sie mit ihrer Bestellnummer und der   Emailadresse, die sie für die Bestellung verwendet haben, einloggen und   bekommen dann eine ähnliche Ansicht, wie sie normale Kunden in ihrem   Kundenkonto haben.<br>
+    In der Zen-Cart Administration wird nun zwischen Kunden mit und ohne Account differenziert.</p>
+<h3>Copyright,  Lizenz</h3>
+<p>Copyright dieser deutschen Anpassung/Anleitung für Zen-Cart 1.5.1 deutsch<br>
+(c) 2013 webchills (<a href="http://www.webchills.at" target="_blank">www.webchills.at</a>)</p>
+<p>Die COWOA Funktionalität wurde entwickelt und erstmals integriert von:<br>
+  Joseph Schilz AKA KGZotU or J_Schilz<br>
+  Anpassungen seitdem von<br>
+  craftzombie <br>
+  JT of GTI_Custom</p>
+<p> Portions Copyright (c) 2003 osCommerce<br>
+  Portions Copyright     (c) 2003-2013 Zen Cart</p>
+<p>This contribution is subject to version 2.0 of the GPL license available through the world-wide-web at the following url:<br>
+  <a href="http://www.zen-cart-pro.at/license/2_0.txt">http://www.zen-cart-pro.at/license/2_0.txt</a></p>
+</div>
+</div>
+</div>
+<!--End sc1-->
+
+<!--Begin sc2-->
+<div class="tabcontent" id="sc2" style="display: block;">
+<div class="textcontent">
+<div class="regularlist">
+
+<h2>Installation</h2>
+<h3>Voraussetzungen</h3>
+  <br>
+  <p>Dieses Modul ist<strong> nur für Zen-Cart 1.5.1 deutsch geeignet</strong> und ändert zahlreiche für den Bestellablauf sehr wichtige Corefiles.<br>
+    <strong>Es ist kein Modul, das Sie in 2 Minuten einfach hochladen können.</strong><br>
+  <br>
+    Für den Einbau dieses Moduls sollten Sie über folgende Werkzeuge verfügen:<br>
+  <br>
+    1) Ein guter Texteditor. <br>
+    Damit ist nicht das in Windows enthaltene Notepad oder Microsoft Word gemeint.<br>
+    Sie benötigen einen Texteditor, der utf-8 versteht und auch im Format utf-8 ohne BOM abspeichern kann.<br>
+    Meine Empfehlung: <a href="http://www.ultraedit.com/loc/de/index_de.html" target="_blank">UltraEdit</a> (kostenlose 30 Tage Testversion verfügbar)<br>
+    Ebenfalls gut geeignet ist der kostenlose Texteditor <a href="http://notepad-plus.sourceforge.net/de/site.htm" target="_blank">Notepad++ </a><br>
+  </p>
+  <p>2) Ein Tool zum Vergleichen von Dateien<br>
+    Bei der Installation dieses Moduls ist es erforderlich, dass Sie den   Inhalt einiger Ihrer bestehenden Zen-Cart Dateien mit dem Inhalt der   neuen Moduldateien vergleichen und die Änderungen zusammenführen   ("mergen").<br>
+    Meine Empfehlung: <a href="http://www.scootersoftware.com/" target="_blank">BeyondCompare</a> (kostenlose 30 Tage Testversion verfügbar)<br>
+    Ebenfalls gut geeignet ist das kostenlose Programm <a href="http://winmerge.org/" target="_blank">WinMerge </a></p>
+  <p><br>
+  <strong>Empfehlung:</strong><br>
+  <br>
+  Dieses Modul erst in einem Testsystem einbauen und dort   konfigurieren/testen und endgültig an die eigenen Wünsche anpassen.        Erst dann in einem Liveshop einsetzen! Sichern Sie unbedingt alle   Dateien Ihres Shops per FTP und sichern Sie die Datenbank mit phpMyAdmin   oder anderen geeigneten Tools!</p>
+<div id="warning"><b>WICHTIG</b><br>
+Vor dem Einbau dieser Änderungen:<br>
+BACKUP von Shop und Datenbank machen! <br>
+Keine Haftung, Verwendung auf eigene Gefahr!<br>
+BACKUP gemacht? Ok, dann weiterlesen...
+</div>
+<p>Die Installation erfolgt in folgenden Schritten. Halten Sie diesen Ablauf ein!</p>
+<p>1)<br>
+Im Ordner SQL die install.sql mit einem Texteditor öffnen und den Inhalt   ins Eingabefeld kopieren unter Admin &gt; Tools &gt; SQL Patches   installieren<br>
+Absenden<br>
+Dadurch werden die nötigen Datenbankeinträge vorgenommen.</p>
+<p>2) <br>
+  Im Ordner NEUE DATEIEN alle Ordner namens DEINTEMPLATE auf das im Shop   verwendete Template umbennen (z.B. viennaorange, classic, ...). Den   Ordner DEINADMIN auf den Namen Ihres admin Verzeichnisses   umbenennen.</p>
+<p>3) <br>
+  Dann alle Dateien/Ordner aus dem Ordner NEUE DATEIEN in der vorgegebenen Struktur in die Zen-Cart Installation hochladen. <br>
+  Dabei werden keine bestehende Datei überschrieben.</p>
+<p>4)<br>
+  Im Ordner GEAENDERTE DATEIEN alle Ordner namens DEINTEMPLATE auf das   im Shop verwendete Template umbennen (z.B. viennaorange, classic, ...).   Den Ordner DEINADMIN auf den Namen Ihres admin Verzeichnisses   umbenennen.<br>
+  Wenn Sie Zen-Cart 1.5.1 gerade frisch installiert haben und noch   keinerlei Änderungen an den Dateien vorgenommen haben, können Sie nun  alle Dateien/Ordner aus dem Ordner GEAENDERTE DATEIEN in der   vorgegebenen Struktur in die Zen-Cart Installation hochladen. Dabei   werden dann etliche Dateien überschrieben.<br>
+  Wenn Sie Zen-Cart 1.5.1 schon länger im Einsatz haben und schon einmal   Änderungen an Dateien vorgenommen oder andere Module eingebaut haben,   dann laden Sie die Dateien keinesfalls einfach hoch. <br>
+  Vergleichen Sie alle Dateien im Ordner GEAENDERTE DATEIEN mit den   entsprechenden Dateien in Ihrem Shop und nehmen Sie die Änderungen   manuell per WinMerge oder BeyondCompare vor.<br>
+  Dann spielen Sie die geänderten Dateien in der gezeigten Struktur ein.</p>
+<p>5)<br>
+  Im Header Ihres Shops wird normalerweise der Link &quot;Mein Konto&quot; angezeigt. Normalerweise ist dieser Eintrag zu finden in:<br>
+  includes/templates/DEINTEMPLATE/common/tpl_header.php:<br>
+  <br><code>
+  &lt;li&gt;&lt;a href=&quot;&lt;?php echo zen_href_link(FILENAME_ACCOUNT, '', 'SSL'); ?&gt;&quot;&gt;&lt;?php echo HEADER_TITLE_MY_ACCOUNT; ?&gt;&lt;/a&gt;&lt;/li&gt;</code><br>
+  <br>
+  Der Link darf für Kunden ohne Kundenkonto nicht angezeigt werden, daher ändern Sie auf:</p>
+<code><p>&lt;?php if (!($_SESSION['COWOA'])) { ?&gt;<br>
+&lt;li&gt;&lt;a href=&quot;&lt;?php echo zen_href_link(FILENAME_ACCOUNT, '', 'SSL'); ?&gt;&quot;&gt;&lt;?php echo HEADER_TITLE_MY_ACCOUNT; ?&gt;&lt;/a&gt;&lt;/li&gt;<br>
+&lt;?php } ?&gt;</p></code>
+<p>In manchen Templates (z.B. viennaorange oder viennabright) befindet sich dieser Eintrag in:<br>
+  includes/templates/viennaorange/templates/tpl_top_nav.php:<br>
+  <br>
+  <code>&lt;li class=&quot;&lt;?php echo $active;?&gt;&quot;&gt;&lt;a href=&quot;&lt;?php echo zen_href_link(FILENAME_ACCOUNT, '', 'SSL'); ?&gt;&quot;&gt;&lt;?php echo TOP_MENU_MY_ACCOUNT;?&gt;&lt;/a&gt;&lt;/li&gt;</code><br>
+  <br>
+  Wenn Sie ein solches Template verwenden, dann eben dort ändern auf:</p>
+<code>
+<p>&lt;?php if ($_SESSION['customer_id']) { ?&gt;<br>
+&lt;?php if (!($_SESSION['COWOA'])) { ?&gt;<br>
+&lt;li class=&quot;&lt;?php echo $active;?&gt;&quot;&gt;&lt;a href=&quot;&lt;?php echo zen_href_link(FILENAME_ACCOUNT, '', 'SSL'); ?&gt;&quot;&gt;&lt;?php echo TOP_MENU_MY_ACCOUNT;?&gt;&lt;/a&gt;&lt;/li&gt;<br>
+&lt;?php } ?&gt;<br>
+&lt;?php } ?&gt;</p>
+</code>
+<p>6)<br>
+  In der Zen-Cart Administration ist nun unter Konfiguration ein neuer   Menüpunkt namens COWOA vorhanden. Dort sind alle drei möglichen Optionen   standardmäßig deaktiviert. Stellen Sie die auf true, die Sie verwenden   wollen. Die grundsätzlichste ist COWOA Allgemein. Stellen Sie hier auf   true, um Bestellung ohne Kundenkonto überhaupt zu aktivieren. Die   weiteren beiden Optionen (COWOA - Bestellstatus aktivieren und COWOA -   Automatisches Ausloggen) sind unter Konfiguration genauer erklärt. Aktivieren Sie auch diese beiden, damit Sie nun die Funktionalität testen können.</p>
+<p>7)<br>
+  Legen Sie nun in Ihrem Shop etwas in den Warenkorb und gehen zur   Kasse. Sie sollten nun die Option "Bestellen ohne Kundenkonto" angeboten   bekommen. Führen Sie eine Bestellung mit dieser Variante durch und   überprüfen Sie, ob alle Bestellschritte korrekt angezeigt werden und ob   auch die Bestellbestätigungsemail korrekt versandt wird. Das   Bestellbestätigungsemail enthält einen Link zur speziellen Loginseite   für COWOA-Kunden. Testen Sie, ob Sie sich nach Ihrer Bestellung dort mit   Bestellnummer und Emailadresse einloggen können. </p>
+<h3>&nbsp;</h3>
+  </div>
+</div>
+</div>
+
+<!--End sc2-->
+
+<!--Begin sc3-->
+<div class="tabcontent" id="sc3" style="display: block;">
+<div class="textcontent">
+<div class="regularlist">
+
+<h2>KONFIGURATION</h2>
+<p><b>Einstellungsmöglichkeiten in der Zen-Cart Administration</b></p>
+<p> Unter Konfiguration &gt; COWOA sind 3 Optionen verfügbar:<br>
+  <strong><br>
+    COWOA - Allgemein</strong><br>
+  true oder false<br>
+  Ist nach der Installation auf false gestellt.<br>
+  Stellen Sie auf true um Bestellung ohne Kundenkonto überhaupt zu aktivieren.</p>
+<p><strong>COWOA - Bestellstatus aktivieren</strong><br>
+  true oder false<br>
+  Ist nach der Installation auf false gestellt<br>
+  Wenn Sie hier auf true stellen, bekommt ein COWOA-Kunde in der   Bestellbestätigung und bei späteren Bestellstatusupdates einen Link, mit   dem er den Status der Bestellung einsehen kann.<br>
+  Bei normalen Kunden heißt der Link wie immer "Detaillierte Rechnung" und führt zum Kundenkonto.<br>
+  COWOA-Kunden haben kein Kundenkonto, daher heißt der Link für   COWOA-Kunden "Bestellstatus einsehen" und führt zu einer Loginmaske, die   Bestellnummer und für die COWOA-Bestellung verwendete Emailadresse   verlangt.</p>
+<p><strong>COWOA - Automatisches Ausloggen</strong><br>
+  true oder false<br>
+  Ist nach der Installation auf false gestellt.<br>
+  Wenn Sie hier auf true stellen, dann wird ein Kunde der ohne   Kundenkonto bestellt   nach erfolgreicher Bestellung automatisch   ausgeloggt. <br>
+  Achtung:<br>
+  Falls der   COWOA Kunde einen Download gekauft hat, kann er diesen dann   erst mittels   Link im Bestellstatusupdate-Email herunterladen</p>
+<p><b>Unterscheidung zwischen "normalen Kunden" und COWOA-Kunden in der Zen-Cart Administration</b></p>
+<p>Unter Kunden &gt; Kunden ist in der Kundenliste eine neue Spalte   verfügbar, die anzeigt, ob es sich um einen voll registrierten Kunden   oder einen COWOA-Kunden handelt.<br>
+  Auch auf der Einstiegsseite der Administration ist gleich ersichtlich, welche Bestellungen per COWOA getätigt wurden.</p>
+<p><b>Email-Format für COWOA-Kunden</b></p>
+<p> Normale Kunden können bei der Registrierung angeben, ob sie Emails im   HTML- oder Textformat erhalten wollen und diese Einstellung auch später   in ihrem Kundenkonto ändern. COWOA-Kunden haben kein Kundenkonto, daher   wird die Auswahl zwischen HTML und Textemails im Zuge der Bestellung   nicht angeboten. Trotzdem muss übermittelt werden, ob Text oder HTML   gesendet werden soll. Voreingestellt sind Textemails für COWOA-Kunden. <br>
+  <br>
+  Wenn Sie stattdessen standardmäßig HTML-Emails an COWOA-Kunden senden wollen, ändern Sie in:<br>
+  includes/templates/DEINTEMPLATE/templates/tpl_modules_no_account.php:<br>
+  <code>&lt;input type="hidden" name="email_format" value="TEXT" checked="checked" id="email-format-text" /&gt;</code> <br>
+  auf: <br>
+  <code>&lt;input type="hidden" name="email_format" value="HTML" checked="checked" id="email-format-html" /&gt; </code></p>
+<p><b>Split-Login</b></p>
+<p>Bestellung ohne Kundenkonto funktioniert nur, wenn die geteilte   Anmeldeseite aktiv ist (Split-Login). Bei der Installation wird   automatisch auf Split-Login umgestellt. Sollte die Option "Bestellen   ohne Kundenkonto" nicht angeboten werden, überprüfen Sie unter   Konfiguration &gt; Layouteinstellungen, ob <strong>Anmeldeseite geteilt anzeigen</strong> wirklich auf true steht.</p>
+</div>
+</div>
+</div>
+<!--End sc3-->
+
+<!--Begin sc4-->
+<div class="tabcontent" id="sc4" style="display: block;">
+<div class="textcontent">
+<div class="regularlist">
+
+<h2>DEINSTALLATION</h2>
+<p>1.<br>
+Die Datei uninstall.sql im Ordner SQL mit einem Texteditor öffen und den Inhalt kopieren</p>
+<p>2.<br>
+  Zen-Cart Administration öffnen und unter Tools &gt; SQL Patches installieren den Inhalt ins Feld hineinkopieren und absenden.</p>
+<p>3.<br>
+  Alle von diesem Modul neu angelegten Dateien vom Server löschen.<br>
+  Alle von diesem Modul geänderten Dateien wieder mit den Originalversionen bzw. den Dateien Ihres Backups ersetzen.</p>
+</div>
+</div>
+</div>
+<!--End sc4-->
+
+<!--Begin sc5-->
+<div class="tabcontent" id="sc5" style="display: block;">
+<div class="textcontent">
+<div class="regularlist">
+<h2>Download &amp; Support</h2>
+<p>Download des Moduls:</p>
+<p><a href="http://www.zen-cart-pro.at/forum/vbdownloads.php" target="_blank">www.zen-cart-pro.at/forum/vbdownloads.php</a></p>
+
+<p>Supportforum zum Modul:</p>
+<p><a href="http://www.zen-cart-pro.at/forum" target="_blank">www.zen-cart-pro.at/forum</a></p>
+</div>
+</div>
+</div>
+<!--End sc5-->
+
+<!--Begin sc6-->
+<div class="tabcontent" id="sc6" style="display: block;">
+<div class="textcontent">
+<div class="regularlist">
+
+<h2>Unterstützen</h2>
+<p>Sie finden dieses Modul nützlich?</p>
+<p>Sie haben vom Support im Forum auf www.zen-cart-pro.at profitiert?</p>
+<p>Unterstützen Sie die Weiterentwicklung der deutschen Zen-Cart Version.<br/>Wir freuen uns über Spenden zur Finanzierung des Servers und der vBulletin-Lizenz: </p>
+<form action="https://www.paypal.com/cgi-bin/webscr" method="post">
+<input type="hidden" name="cmd" value="_s-xclick">
+<input type="hidden" name="hosted_button_id" value="D8HDC4GJE2386">
+<input type="image" src="https://www.paypalobjects.com/de_DE/AT/i/btn/btn_donateCC_LG.gif" border="0" name="submit" alt="Jetzt einfach, schnell und sicher online bezahlen – mit PayPal.">
+<img alt="" border="0" src="https://www.paypalobjects.com/de_DE/i/scr/pixel.gif" width="1" height="1">
+</form>
+
+<br/><br/>
+</div>
+</div>
+</div>
+<!--End sc6-->
+</div>
+<div id="footer">
+Ein Modul von <a href="http://www.zen-cart-pro.at" target="_blank">www.zen-cart-pro.at</a> - Die deutsche Zen-Cart Version
+</div>
+</div>
+<!--end tabcontainer-->
+<script type="text/javascript">document.getElementById('sc1').style.display = 'none';</script>
+<script type="text/javascript">document.getElementById('sc2').style.display = 'none';</script>
+<script type="text/javascript">document.getElementById('sc3').style.display = 'none';</script>
+<script type="text/javascript">document.getElementById('sc4').style.display = 'none';</script>
+<script type="text/javascript">document.getElementById('sc5').style.display = 'none';</script>
+<script type="text/javascript">document.getElementById('sc6').style.display = 'none';</script>
+<script type="text/javascript">ShowTabs()</script>
+<script type="text/javascript">
+// We only show the tab links if JavaScript is available/active.
+<!--
+if (document.getElementById("slidetabsmenu") != null) {
+  document.getElementById('slidetabsmenu').style.display = "block";
+}
+//-->
+</script>
+
+</body></html>
