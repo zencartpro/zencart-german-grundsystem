@@ -1,0 +1,35 @@
+###############################################################################
+# Common directives
+###############################################################################
+##### WICHTIG: Ersetze bei RewriteBase /shop/ mit dem Verzeichnis, in dem der Zen-Cart Shop läuft, relativ zum Root Verzeichnis angegeben.
+##### Beispiel 1: Shop läuft im Rootverzeichnis auf http://www.meinshop.de : RewriteBase /
+##### Beispiel 2: Shop läuft im Unterverzeichnis auf http://www.meinshop.de/onlineshop : RewriteBase /onlineshop/
+
+Options +FollowSymLinks
+RewriteEngine on
+RewriteBase /shop/
+
+###############################################################################
+# Start Ultimate SEO URLs
+###############################################################################
+
+# Handles the new URL formats
+RewriteRule ^(.*)-c-([0-9_]+)/(.*)-p-([0-9]+)(.*)$ index\.php?main_page=product_info&products_id=$4&cPath=$2&%{QUERY_STRING} [L]
+RewriteRule ^(.*)-c-([0-9_]+)/(.*)-pi-([0-9]+)(.*)$ index\.php?main_page=popup_image&pID=$4&cPath=$2&%{QUERY_STRING} [L]
+RewriteRule ^(.*)-c-([0-9_]+)/(.*)-pr-([0-9]+)(.*)$ index\.php?main_page=product_reviews&products_id=$4&cPath=$2&%{QUERY_STRING} [L]
+RewriteRule ^(.*)-c-([0-9_]+)/(.*)-pri-([0-9]+)(.*)$ index\.php?main_page=product_reviews_info&products_id=$4&cPath=$2&%{QUERY_STRING} [L]
+
+# Original (unchanged) URL formats
+RewriteRule ^(.*)-p-([0-9]+)(.*)$ index\.php?main_page=product_info&products_id=$2&%{QUERY_STRING} [L]
+RewriteRule ^(.*)-m-([0-9]+)(.*)$ index\.php?main_page=index&manufacturers_id=$2&%{QUERY_STRING} [L]
+RewriteRule ^(.*)-pi-([0-9]+)(.*)$ index\.php?main_page=popup_image&pID=$2&%{QUERY_STRING} [L]
+RewriteRule ^(.*)-pr-([0-9]+)(.*)$ index\.php?main_page=product_reviews&products_id=$2&%{QUERY_STRING} [L]
+RewriteRule ^(.*)-pri-([0-9]+)(.*)$ index\.php?main_page=product_reviews_info&products_id=$2&%{QUERY_STRING} [L]
+RewriteRule ^(.*)-ezp-([0-9]+)(.*)$ index\.php?main_page=page&id=$2&%{QUERY_STRING} [L]
+RewriteRule ^(.*)-c-([0-9_]+)(.*)$ index\.php?main_page=index&cPath=$2&%{QUERY_STRING} [L]
+
+# All other pages
+# Don't rewrite real files or directories
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)$ index\.php?main_page=$1&%{QUERY_STRING} [L]
