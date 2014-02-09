@@ -1,0 +1,13 @@
+Willkommen bei der deutschen Zen-Cart Version
+Version 1.5.2 BETA1
+
+Eine umfangreiche deutschsprachige Dokumentation und Installationsanleitung finden Sie im Ordner ANLEITUNG
+Öffnen Sie die index.html im Ordner DOCS und lesen Sie vor der Installation unbedingt die komplette Dokumentation.
+
+Um Zen Cart zu installieren oder zu aktualisieren müssen Sie nur die Ordner/Dateien im Ordner UPLOAD hochladen!
+
+Um eine schlankere Installation und ein einfacheres Update zu ermöglichen, wurden die Demodaten ausgelagert.
+Sie befinden sich im Ordner DEMODATEN
+
+Ebenso ausgelagert wurden die Überprüfungstools im Ordner extras.
+Sie befinden sich im Ordner TOOLS.
