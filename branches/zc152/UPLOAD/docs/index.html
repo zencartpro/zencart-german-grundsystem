@@ -1,0 +1,1005 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Zen-Cart 1.5.1 deutsch - Dokumentation</title>
+<link rel="stylesheet" type="text/css" href="includes/css/stylesheet.css">  
+<script type="text/javascript" src="includes/jscript/jscript_tabs.js"></script>
+</head>
+<body>
+<div id="wrapper">
+<div id="header">
+
+
+  <h1 >Zen-Cart 1.5.1 deutsch - Dokumentation</h1>
+  </div>
+  <div id="slidetabsmenu" style="display: none;">
+<ul>
+  <li> <a onClick="expandcontent('sc1', this)" href="javascript:void(0)"><span>Willkommen</span></a></li>
+  <li> <a onClick="expandcontent('sc2', this)" href="javascript:void(0)"><span>Neuinstallation</span></a></li>
+   <li> <a onClick="expandcontent('sc3', this)" href="javascript:void(0)"><span>Update</span></a></li>
+  
+  <li> <a onClick="expandcontent('sc5', this)" href="javascript:void(0)"><span>Sicherheit</span></a></li>
+  <li> <a onClick="expandcontent('sc6', this)" href="javascript:void(0)"><span>Changelog 1.5.1</span></a></li>
+  <li> <a onClick="expandcontent('sc7', this)" href="javascript:void(0)"><span>Neue Funktionen</span></a></li>
+ </ul>
+</div>
+<br style="clear: both;">
+
+<!--Begin tabcontainer-->
+<div id="tabcontentcontainer">
+
+<!--Begin sc1-->
+<div class="tabcontent" id="sc1" style="display: block;">
+<div class="textcontent">
+<div class="regularlist">
+<h1>Willkommen bei der deutschen Zen-Cart Version</h1>
+<p>
+Die deutsche Zen-Cart Version steht Ihnen kostenfrei im Rahmen der GNU General Public License zur Verfügung. Sie können diese Software kostenfrei benutzen, Änderungen vornehmen, etc.
+<br />
+<br />
+Da wir Ihnen diese Software kostenfrei zur Verfügung stellen, würden wir uns über Spenden freuen. Diese Spenden helfen uns, die Kosten für die Wartung, Upgrades, Updates, den kostenlosen Support und die stetige Weiterentwicklung dieser Software für Ihren Online-Shop zu decken.
+</p>
+<div align="center">
+<form action="https://www.paypal.com/cgi-bin/webscr" method="post">
+<input type="hidden" name="cmd" value="_s-xclick">
+<input type="hidden" name="hosted_button_id" value="D8HDC4GJE2386">
+<input type="image" src="https://www.paypalobjects.com/de_DE/AT/i/btn/btn_donateCC_LG.gif" border="0" name="submit" alt="Jetzt einfach, schnell und sicher online bezahlen – mit PayPal.">
+<img alt="" border="0" src="https://www.paypalobjects.com/de_DE/i/scr/pixel.gif" width="1" height="1">
+</form>
+</div>
+
+    Wir danken für Ihre Unterstützung.<br />
+    <em>Das Team der deutschen Zen-Cart Version</em><br />
+    <br />
+    
+    
+    <span class="small">
+      Die deutsche Zen-Cart Version 1.5.1 ist eine Modifikation der amerikanischen Zen-Cart Version 1.5.1 von zen-cart.com.<br>
+      Zen-Cart ist 
+      abgeleitet von: Copyright  2003 osCommerce<br />
+      <br>
+      Dieses Programm wird in der Hoffnung vertrieben, dass es nützlich ist, allerdings OHNE IRGENDWELCHE GARANTIEN;
+      ohne  die  Garantie der MARKTGÄNGIGKEIT oder der EIGNUNG ZU EINEM BESTIMMTEN ZWECK
+      und wird vertrieben unter der GNU General Public License </span>
+    
+    
+    
+    <br>
+    <br>
+    <strong>Hauptunterschiede zwischen der deutschen und amerikanischen Version:</strong>
+<ul>
+  <li>
+    
+    Die amerikanische Version ist im Administrationsbereich immer monolingual englisch. Daran ändert auch die etwaige Installation eines deutschen Sprachpakets nichts. Die meisten Konfigurationseinstellungen werden immer auf englisch sein, da sie in der Datenbank hinterlegt sind. Die deutsche Zen-Cart Version bietet einen multilingualen Adminbereich. Dadurch sind auch die in der Datenbank hinterlegten Konfigurationseinstellungen und -beschreibungen auf deutsch. Sie könnten auch in jeder anderen Sprache genutzt werden. Diese Funktionalität steht natürlich auch für später installierte Erweiterungen zur Verfügung. Die im Downloadbereich von zen-cart-pro.at angebotenen Module berücksichtigen diese Multilanguagefähigkeit und sind alle für die deutsche Zen-Cart Version ausgelegt.</li>
+  <li>Die amerikanische Zen-Cart Version berücksichtigt viele rechtliche Erfordernisse nicht, denen ein Onlineshop im deutschsprachigen Raum unterworfen ist. Daher wurde die deutsche Zen-Cart Version auf die Anforderungen, die an Onlineshops in Deutschland, Österreich und der Schweiz gestellt werden, angepasst. Die Anforderungen der sogenannten &quot;Buttonlösung&quot; werden erfüllt.</li>
+  <li>   Die Installation wurde gegenüber der amerikanischen Version vereinfacht, so kann z.B. das admin Verzeichnis direkt bei der Installation umbenannt werden.
+    Die Installation ist schlanker und enthält keine unnötigen Dateien mehr, da die Bilder und Medien der Demodaten nicht mehr automatisch mitinstalliert werden, sondern nur bei Bedarf hochgeladen werden können</li>
+  <li>Die amerikanische Version enthält keinerlei HTML Editor mehr, in der deutschen Version ist der CKEditor bereits integriert und löst das veraltete HTML Area ab. Alternativ ist auch der Tiny MCE Editor integriert.</li>
+  <li>Weitere Bugfixes und Verbesserungen, die von den Amerikanern nicht übernommen wurden</li>
+</ul>
+
+<p align="center"><img src="images/osi-certified-120x100.png" /><br />
+Diese Software ist OSI certified Open Source Software.<br />
+OSI certified ist ein Zertifikat der Open Source Initiative.
+
+</p>
+<h2>SYSTEMVORAUSSETZUNGEN</h2>
+<p><strong>Minimale Anforderungen:</strong></p>
+<ul><li>
+  PHP 5.2.14 oder höher, Apache 2.0 oder höher und MySQL 5.0.90 oder höher</li>
+ <li>Apache muss konfiguriert sein mit AllowOverride auf entweder 'All' oder mit zumindestens 'Limit' und 'Indexes' Parameter, vorzugsweise mit ebenfalls 'Options' Parameter.</li>
+<li> PHP muss CURL mit OpenSSL unterstützen (erforderlich z.B. für PayPal Express)</li>
+</ul>
+<p><strong>Empfohlene Serverkonfiguration:</strong></p>
+<ul><li>    PHP 5.3.5 oder höher</li>
+   <li> Apache 2.0 oder höher</li>
+    <li>MySQL 5.0.90 oder höher</li>
+    <li>und die oben erwähnten Apache/PHP Settings</li></ul>
+<p>PHP 5.4 wird unterstützt. Mit PHP 5.5 wurde nicht getestet.<br>
+  Zen-Cart funktioniert zwar auch auf einem Windows/IIS server, <b>wir raten aber dringend zu einem Linux/Apache Server</b>.
+</div>
+</div>
+</div>
+<!--End sc1-->
+
+<!--Begin sc2-->
+<div class="tabcontent" id="sc2" style="display: block;">
+<div class="textcontent">
+<div class="regularlist">
+<h1>NEUINSTALLATION</h1>
+<h2>Einleitung</h2>
+<p>Dieses Dokument ist eine Basisanleitung für die Installation der deutschen Zen-Cart Version. Wenn Sie die deutsche Zen-Cart Version bereits installiert haben und diese auf 1.5.1 aktualisieren möchten, lesen Sie bitte die <strong><a onClick="expandcontent('sc3', this)" href="javascript:void(0)">Update Anleitung</a></strong>.<br />
+</p>
+<h2>Grundsätzliches  </h2>
+<p>Sie haben bereits ein gepacktes Paket der deutschen Zen-Cart Version herunter geladen.</p>
+<p>Bitte fragen Sie sich...</p>
+<h3>1. Habe ich bereits eine Domain und den nötigen Webspace? </h3>
+<p>Falls nicht... sehen Sie sich unsere qualifizierten <a href="http://www.zen-cart-pro.at/zcvb/index.php?area=vbcmsarea_links&do=showcat&name=provider&catid=5" target="_blank">Domain und Webhosting Angebote</a> an. Dort finden Sie zuverlässige Provider, die für die Verwendung der deutschen Zen-Cart Version geeignet sind. </p>
+<h3>2. Haben Sie eine zuverlässige FTP Software? </h3>
+<p>Falls nicht ... besorgen Sie sich eine zuverlässige FTP Software wie z.B. <a href="http://filezilla.sourceforge.net/" target="_blank">FileZilla</a> (kostenlos), <a href="http://www.globalscape.com/products/ftp_clients.aspx">Cute FTP Pro</a>, <a href="http://www.flashfxp.com/" target="_blank">FlashFXP</a> oder eine andere FTP Software, mit der Sie Dateien auf Ihren Webserver hochladen oder auf Ihren PC herunterladen können. 
+<br /><br />
+  <strong>Anmerkung:</strong> Als Webserver bezeichnet man einen Computer im Internet, auf welchem Domains gehostet werden.(Siehe 1) <br>
+  <br>
+<span class="error">
+<strong>Anmerkung 2:</strong> Wenn Ihnen Ihr Provider ein FTP Programm anbietet, welches in Ihrem Browser ausgeführt wird, empfehlen wir, dieses Programm nicht für große Datenmengen (wie z.B. die deutsche Zen-Cart Version) zu verwenden. Derartige Programme sind geeignet für den Transfer einzelner Dateien, aber unzuverlässig beim Transfer von mehreren Dateien gleichzeitig. </span></p>
+<h3>3. Haben Sie einen guten Texteditor? </h3>
+<p>Falls nicht ... benötigen Sie einen guten Texteditor wie z.B. <a href="http://ultraedit.com/" target="_blank">UltraEdit</a>, <a href="http://www.pspad.com/de/" target="_blank">PSPad</a> (kostenlos), <a href="http://notepad-plus.sourceforge.net" target="_blank">Notepad++</a> (kostenlos), <a href="http://crimsoneditor.com" target="_blank">CrimsonEditor</a> (kostenlos), <a href="http://www.barebones.com" target="_blank">BBedit</a>(Mac), Kedit (linux), oder einen anderen Texteditor zur Bearbeitung der in deutsche Zen-Cart Version enthaltenen Dateien...</p>
+<p><span class="error">Verwenden Sie <strong>keinesfalls</strong> Programme wie CPanel, MS Word oder ähnliche Software, welche für phantasievolle Schreiber konzipiert wurden - Sie benötigen einen einfachen, reinen Texteditor.</span></p>
+<p><span class="error"><strong>WICHTIG:</strong> Es ist unbedingt erforderlich, dass dieser Texteditor mit utf-8 umgehen kann und in der Lage ist, Dateien im Format <b>utf-8 ohne BOM</b> zu speichern!<br /><strong>Wir empfehlen dafür <a href="http://ultraedit.com/" target="_blank">UltraEdit</a> oder <a href="http://notepad-plus.sourceforge.net" target="_blank">Notepad++</a> (kostenlos).</strong></span><br>
+  Der in Windows enthaltene Editor oder das in Windows enthaltene Notepad ist NICHT geeignet!
+</p>
+<h3>4. Haben Sie Zugriff auf ein Webinterface Ihres Providers um MySQL Datenbanken zu erstellen bzw. vorhandene Datenbanken zu bearbeiten?</h3>
+<p> BEVOR SIE NUN FORTFAHREN stellen Sie bitte sicher, dass Sie Zugriff auf eine MySQL Datenbank, den Benutzernamen und das Passwort haben. Eventuell müssen Sie erst eine Datenbank mit dem Webinterface des Providers erstellen. Benötigen Sie hierbei Hilfe, kontaktieren Sie bitte Ihren Provider.  Zen-Cart kann keine Datenbank erstellen, die Datenbank muss vor der Installation bereits vorhanden sein.</p>
+<p>(Folgende Rechte benötigt Ihr MySQL Benutzer: SELECT, INSERT, UPDATE, DELETE, CREATE, ALTER, INDEX, DROP. Auf einem Host mit hSphere würden Sie einen "dba" Zugriff - oder mindestens Lese-/und Schreibrechte - benötigen.) <br>
+  <br>
+  <strong>Achten Sie darauf, dass Sie die Datenbank mit der Kollation utf8_general_ci erstellen!</strong><br /></p>
+<h3>Alles eingerichtet? </h3>
+<p>Können Sie alle Fragen mit "Ja" beantworten, sind Sie bereit für den nächsten Schritt...</p>
+<h3>ZIP Datei</h3>
+<p>Da Sie dieses Dokument bereits lesen, gehen wir davon aus, dass Sie das deutsche Zen-Cart Version Paket bereits auf Ihrem PC in einem Ordner entpackt haben. Sollte das aus irgendeinem Grund noch nicht geschehen sein, so holen Sie das bitte jetzt nach. Behalten Sie die vorgegebene Dateistruktur des Paketes bei. <br />
+</p>
+</div>
+<div>
+<h2>Hochladen der  Zen-Cart  Dateien auf Ihren Webserver</h2>
+<p>Laden Sie mit einem FTP Programm den gesamten Inhalt des Ordners UPLOAD in ein Verzeichnis Ihres Servers, z.B.: /shop 
+<br />
+<em>(Als Beispiel verwenden wir hier &quot;<span class="filename">/shop</span>&quot;. Sie können natürlich ein Verzeichnis Ihrer Wahl erstellen, wie z.B.  &quot;<span class="filename">/webshop</span>&quot; etc. oder können den Shop auch in Ihrem Hauptverzeichnis installieren.)</em> <br>
+<br />
+<em>Anmerkung: Beim Hochladen Ihrer Dateien stellen Sie bitte sicher, dass Ihr FTP Programm und Ihr Webserver &quot;<span class="error">lange Dateinamen</span>&quot; erlauben. MAC OS z.B. tendiert eher dazu, keine langen Dateinamen zu akzeptieren. Bitte passen Sie Ihre Einstellungen ggf. entsprechend an.  </em> </p>
+<h3>In welchem Verzeichnis meines Servers soll ich die Dateien speichern?</h3>
+Jeder Webhoster hat für den Betrieb von Webseiten seine eigenen Einstellungen im Bezug auf die Benennung der Verzeichnisse.<br>
+Es können in Ihrem Webordner viele Verzeichnisse eingerichtet sein, die nicht für den öffentlichen Zugang gedacht sind. Üblicherweise sehen die für die Öffentlichkeit verwendbaren Verzeichnise in etwa so aus:
+<p>- /home/IHRNAME/public_html<br>
+oder<br>
+- /var/www/IHRNAME/httpdocs<br>
+oder<br>
+- /usr/accounts/a/b/IHRNAME/httpd<br>
+etc, etc, etc</p>
+<p>Suchen Sie auf Ihrem FTP Server nach Verzeichnissen mit dem Namen &quot;www&quot; oder &quot;public_html&quot; oder &quot;htdocs&quot; oder &quot;httpdocs&quot; oder &quot;wwwroot&quot;. Dies sind die gebräuchlichsten Verzeichnisnamen für den sogenannten &quot;webroot&quot;, welcher jedweden Websiten Inhalt enthält.</p>
+<p>Ihre  Zen-Cart  Dateien müssen in diesem Verzeichnis oder einem Unterverzeichnis davon sein. Falls sie es nicht sein sollten, werden Sie die Fehlermeldung &quot;Not Found&quot; erhalten, weil die Website über das Internet nicht erreichbar ist!</p>
+<p>Wenn Sie sich nicht sicher sind, welches Verzeichnis Sie verwenden sollen, kontaktieren Sie bitte Ihren Provider für weitere Instruktionen. </p>
+
+
+<h2>Zugriffsrechte der Verzeichnisse konfigurieren </h2>
+  <p>Ändern Sie nun die Rechte der nachstehenden Verzeichnisse auf 777 (read/write/execute): <br />
+      <br />
+      <span class="filename">/shop/cache<br />
+        /shop/images<br />
+        /shop/includes/languages/german/html_includes<br />
+		/shop/includes/languages/english/html_includes<br />
+        /shop/media<br />
+        /shop/pub<br />
+        /shop/admin/backups <br />
+        /shop/admin/images/graphs<br />
+      </span>
+      <br />
+	Anmerkung: Öffnen Sie bitte das Verzeichnis shop/images und ändern Sie dort ebenso die Rechte <strong>aller</strong> Unterverzeichnisse und deren Unterverzeichnisse auf 777. Dies ist ein teilweiser Auszug: <br />
+  <span class="filename">/shop/images/attributes<br />
+    /shop/images/large<br />
+    /shop/images/medium <br />
+    /shop/images/upload<br />
+  </span>
+  <br />
+  Anmerkung: Sollen Sie eins dieser Verzeichnisse innerhalb von <span class="filename">/images</span> übersehen haben und später darauf zugreifen wollen, werden Sie die Fehlermeldung erhalten, dass Sie in diese(s) Verzeichnis(se) nicht schreiben können. 
+  </p>
+  <h2><br>
+    Andere Verzeichnisse und Dateien </h2>
+  <p>Für alle anderen Verzeichnisse und Dateien sind die Rechte - je nach Serverkonfiguration - wie folgt eingestellt:<br>
+	- Ordner: CHMOD 755<br>
+	- Dateien: CHMOD 644<br>
+	&quot;CHMOD&quot; ist die Abkürzung für &quot;change mode&quot;, einem Kommandozeilenprogramm unter Unix<br>
+	Dies sind auch die typischen Standardeinstellungen, die Ihr FTP Programm beim Hochladen von Dateien verwendet und müssen normalerweise nicht manuell eingestellt werden. </p>
+</div>
+<div>
+<h2>Bevor das Installationsprogramm gestartet wird...</h2>
+Das Installationsprogramm ist ziemlich intelligent und sollte automatisch Antworten auf die unten angeführten Fragen haben.<br />
+<br />
+Sie werden feststellen, dass die automatischen Antworten meist zutreffend sind, jedoch auf manchen Servern abweichen könnten.<br />
+<br />
+Folgende Informationen sind für die Installation von Zen-Cart notwendig:  <br />
+<ul>
+<li><strong>Der physikalische Pfad zu Ihrem neuen Zen-Cart  Verzeichnis</strong><br />
+Beispiel: /www/home/user1/public_html/shop</li>
+<li><strong>Der virtuelle HTTP Pfad (die URL zu Ihrer Domain und des Verzeichnisses Ihres Shops) </strong><br />
+Beispiel: http://www.meinedomain.de/shop</li></ul>
+<h2>SSL</h2>
+Wenn Sie beabsichtigen Ihren Webshop sofort live im Netz einzusetzen, sollten Sie sich Gedanken über die Sicherung Ihrer Kundentransaktionen per SSL machen. Falls Sie nicht bereits ein SSL Zertifikat haben, kontaktieren Sie Ihren Anbieter über mögliche Optionen. Wenn Sie SSL nutzen wollen, müssen Sie die SSL Details unten eingeben. In den meisten Fällen werden die Pfade automatisch korrekt erkannt, ausser Sie nutzen ein "Shared SSL" Zertifikat. In dem Fall fragen Sie bitte Ihren Anbieter nach der korrekten URL.<br />
+Wenn Sie Zen-Cart nur lokal auf Ihrem PC oder auf einem Testserver installieren, dann brauchen Sie keine SSL Sicherung. Sie können die SSL Einstellungen auf den Standardwerten lassen.
+<ul>
+<li><strong>Der virtuelle HTTPS Server (die sichere URL zu Ihrer Domain) </strong><br />
+Beispiel: <span class="filename">https://www.meinedomain.de</span><br />
+Anmerkung: Wenn Sie ein "Shared SSL" Zertifikat eines virtuellen Servers haben, könnte der Pfad in etwa so aussehen:<br />
+<span class="filename">https://meinedomain.secureservername.de/</span><br />
+- oder - <span class="filename">https://secure.sharedservername.de/~username</span><br />
+</li><br />
+<li><strong>Der virtuelle HTTPS Pfad (die sichere URL zu Ihrer Domain und des Verzeichnisses Ihres Shops) </strong><br />
+Beispiel: <span class="filename">https://www.meinedomain.de/shop</span><br />
+- oder - <span class="filename">https://secure.sharedservername.de/~username/shop</span></li>
+</ul>
+
+
+<h2>Das Installationsprogramm starten </h2>
+Geben Sie in Ihrem Browser die URL Ihres neuen Shops ein, das Installationsprogramm startet automatisch.  <br />
+Beispiel: http://www.meinedomain.de/shop <br />
+- oder - starten Sie das Installationsprogramm direkt mit: http://www.meinedomain.de/shop/zc_install<br />
+<br />
+<em>Sollten Sie nun eine Liste von Verzeichnissen vorfinden, fragen Sie bitte mit Ihrem Provider, wie Sie die Konfiguration für die automatische Erkennung von PHP Dateiendungen einstellen müssen.  </em><br />
+<br />
+Es erscheint eine "Willkommen bei der deutschen Zen-Cart Version" Seite mit einer Beschreibung der Funktionen von Zen-Cart.<br />
+Mit einem Klick auf <em>Weiter</em> gelangen Sie zur Seite mit den Lizenzbestimmungen. Bitte lesen Sie diese Bestimmungen sorgfältig durch. Stimmen Sie diesen Bedingungen zu und klicken auf Weiter, werden Sie zum nächsten Schritt der Installation weitergeleitet. <br />
+<h3>Systemprüfung </h3>
+In diesem Schritt wird der Server auf die notwendigen Systemvoraussetzungen, die für den Einsatz der deutschen Zen-Cart Version erforderlich sind, geprüft. Alle Einträge, die mit einem roten "X" gekennzeichnet werden, müssen entsprechend korrigiert werden, um mit der Installation fortfahren zu können. Einträge, die mit einem in Gelb oder Orange gehaltenen "Achtung" Symbol gekennzeichnet werden, sind Warnungen, die Sie anpassen sollten, aber nicht angepasst werden müssen. Das images Verzeichnis und andere bereits beschriebene Einstellungen werden hier ebenso aufgelistet. Wenn Sie die erforderlichen Änderungen am Server durchgeführt haben, können Sie die Systemprüfung erneut durchführen, in dem Sie auf "neu prüfen" klicken oder mit der Taste F5 die Seite in Ihrem Browser neu laden und die Änderungen werden aktuell angezeigt.<br />
+<br />
+Wird eine vorangegangene Version von Zen-Cart  auf Ihrem System gefunden, versucht das Installationsprogramm den Patch Level der Datenbank zu bestimmen und gibt diesen auf dem Bildschirm aus. In diesem Fall wird ein "Upgrade" Button angezeigt und bietet Ihnen die Möglichkeit einer Aktualisierung der vorangegangenen Version von  Zen-Cart  an. Mehr Informationen dazu erhalten Sie in der <strong><a href="#">Upgrade Anleitung</a></strong>.<br />
+<br />
+Wenn Sie mit dem Ergebnis der Systemüberprüfung zufrieden sind (Idealerweise sind alle Punkte "grün" markiert), können Sie auf den Button "installieren" klicken. 
+<br />
+<h3>System Setup</h3>
+Auf der "System Setup" Seite müssen Sie die Informationen, die in "Vor dem Start des Installationsprogramms" beschrieben wurden, vervollständigen.<br />
+<br />
+Geben Sie an, ob Sie SSL auf Ihrem Server aktivieren wollen (die gesicherten Seiten, die für die Seite für den Login, in der Bestellung und optional im Admin Bereich benötigt werden). Wenn Sie zurzeit kein SSL Zertifikat besitzen, <strong>lassen Sie diese Option deaktiviert</strong>.
+<em>Diese Option kann zu einem späteren Zeitpunkt aktiviert werden.</em><br />
+<br />
+Anmerkung: Wenn Sie eine der folgenden Fehlermeldungen erhalten, lesen sie sich bitte diese Anleitung noch einmal durch, um sicher zu stellen, dass Sie nichts übersehen oder vergessen haben. Die Fehlermeldungen im Installationsprogramm geben Ihnen Hilfestellungen in Form eines <span class="pseudolink">mehr...</span> Links. <br />
+<div class="callout">
+<strong>Warnung: Es sind Fehler aufgetreten </strong><br />
+<ul>
+<li><span class="error"> /includes/configure.php existiert nicht.</span>&nbsp;&nbsp;<span class="pseudolink">mehr...</span></li><li><span class="error">/admin/includes/configure.php existiert nicht.</span>&nbsp;&nbsp;<span class="pseudolink">mehr...</span>
+</li><br />
+</ul></div>
+Diese zwei Dateien werden normalerweise vom Installer automatisch erstellt Sie beinhalten die Servereinstellungen und die Pfade zu Ihren Dateien, die Sie soeben hochgeladen haben. Auf machen Servern kann das Erstellen dieser Dateien fehlschlagen. In diesem Fall ist keine funktionierende Konfiguration bekannt und Sie müssen die Dateien manuell editieren.<br />
+Dies ist wie gesagt nur notwendig, wenn die Installation fehlschlägt, da die Dateien nicht erstellt werden konnten!<br />
+<br />
+Gehen Sie in so einem Fall folgendermaßen vor:<br />
+Suchen Sie auf Ihrem Server die Datei: <span class="filename">/shop/includes/dist-configure.php</span><br />
+Benennen Sie diese Datei in configure.php um und ändern Sie die Rechte auf 777 (read-write-execute for all)<br />
+<br />
+Suchen Sie nun nach der Datei: <span class="filename">/shop/admin/includes/dist-configure.php</span><br />
+Benennen Sie diese Datei in configure.php um und ändern Sie die Rechte auf 777 (read-write-execute for all)<br />
+<br />
+Danach starten Sie die Installation erneut.<br />
+<h3>Datenbankverbindung </h3>
+
+In diesem Schritt werden Sie nach Ihren Datenbankinformationen wie MySQL Datenbank, Datenbankbenutzername oder -passwort, gefragt. Diese Informationen erhalten Sie entweder von Ihrem Provider, oder über Tools wie cPanel o. ä. Wenn Sie über keine (leere) MySQL Datenbank Installation verfügen, müssen Sie diese nun erstellen. <br />
+Kontaktieren Sie bitte Ihren Provider, wenn Sie Unterstützung beim Erstellen einer Datenbank benötigen. <strong>Beachten Sie bitte, dass Sie zur Installation der deutschen Zen-Cart Version über eine Datenbank mit dazugehörigen Anmeldedaten (Benutzername, Passwort etc.) verfügen müssen</strong>.<br /> 
+<br />
+<em>Andere Informationen auf dieser Seite:</em>
+<ul>
+<li>Derzeit ist MySQL der einzig unterstütze Datenbanktyp. <br />
+Zukünftige Releases werden auch andere Datenbanktypen unterstützen.</li><br />
+<li>Wir empfehlen Ihnen aus Sicherheitsgründen, die Datenbanksitzungen in der Datenbank zu speichern.</li></ul>
+<h3>Shop Setup</h3>
+Vervollständigen Sie die Angaben zu Ihrem Shop.<br />
+<br />
+<em>Anmerkung: Mit Ausnahme der &quot;Demo Daten&quot;, können alle hier angegebenen Informationen nachträglich im Adminbereich geändert werden. </em><br />
+<br />
+<div class="callout"><strong><br>
+  Demo Daten</strong><br />
+Wenn Sie die Demo Daten installieren wollen, dann wählen Sie "Ja". <br />
+<br />
+Wir empfehlen Ihnen die Installation der Demodaten, damit Sie sich mit dem Funktionsumfang der deutschen Zen-Cart Version leichter vertraut machen können. Die Demodaten enthalten umfangreiche Beispiele der enormen Funktionen, die in Zen-Cart  enthalten sind.  <strong>Wenn Sie sich entscheiden, die Demodaten zu installieren, dann sollten sie einen solchen ausschließlich für Testzwecke nutzen. Ein Shop, mit dem Sie später Ihren echten Shop betreiben wollen, sollte KEINE Demodaten enthalten!</strong><br />
+<br />
+Ebenso können Sie später entscheiden, einen Testshop mit den Demodaten zu installieren UND eine Installation mit Ihren echten Shopdaten, damit Sie für Ihren "Liveshop" auf den Testshop für Referenz Zwecke zurückgreifen können. </div> <br />
+<br />
+Nachdem Sie auf "Shopeinstellungen speichern" geklickt haben, kann es zu einer längeren Verzögerung während der Erstellung der Datenbanktabellen und der optionalen Demodaten kommen. 
+<h3>Administrationszugang </h3>
+In diesen Schritt werden Informationen zu Ihrem Administratorenkonto benötigt. Füllen Sie bitte sorgfältig Informationen wie Benutzername, Passwort und E-Mail Adresse aus.<br />
+<br />
+Anmerkung: Der Benutzername und das Passwort sind "case sensitive" (=Groß- und Kleinschreibung beachten)!  <br>
+<br>
+<strong>Wichtig:</strong><br>
+<strong>Verwenden Sie als erstes Passwort unbedingt ein &quot;Übergangspasswort&quot; wie z.B. demo1234. Sie müssen nach der Installation nämlich dieses Passwort beim ersten Einloggen sofort wieder ändern. Heben Sie sich also Ihr &quot;starkes&quot; Passwort für später auf.</strong><br>
+<br>
+<strong>Der Name Ihres admin Verzeichnisses:</strong><br>
+Das admin Verzeichnis einer Zen-Cart Installation darf aus Sicherhetsgründe nie admin heißen.
+In früheren Zen-Cart Versionen musste erst mit dem Namen admin installiert werden und dann nach der Installation der Name geändert werden. Dieser umständliche und fehleranfällige Schritt entfällt in Zen-Cart 1.5.<br>
+Sie können in diesem Installationsschritt  sofort einen neuen Namen für das admin Verzeichnis festlegen. Das Installationsprogramm wird einen Namen wie z.B. admin-x6gfsgs6sgssjdgdsgffddf vorschlagen. Ändern Sie diesen Namen auf einen namen Ihrer Wahl. Verwenden Sie einen Namen, den Sie sich gut merken können, der nur für Sie Sinn macht oder eine starke 
+Buchstaben-Ziffern Kombination. Dies wird später die Adresse sein, mit der Sie die Shopadministration aufrufen. Nennen Sie das admin Verzeichnis z.B. thj99zb, dann wäre die spätere Webadresse Ihrer Shopadministration:<br>
+http://www.meinedomain.de/shop/thj99zb
+<br>
+Sie können das admin Verzeichnis
+später jederzeit wieder umbenennen.<br>
+<br>
+Im weiteren Verlauf dieser Anleitung nennen wir das umbenannte admin Verzeichnis DEINADMIN.
+<br />
+<br />
+Speichern Sie Ihre Einstellungen für das Administratorenkonto und Ihre Installation ist nun abgeschlossen! Es werden nun die mit Ihren angegebenen Informationen befüllten Dateien includes/configure.php und DEINADMIN/includes/configure.php automatisch erstellt und am Server abgelegt.
+<br>
+<br />
+Sollten während der Installation keine Fehler aufgetreten sein, sollten Sie nun Zugriff auf Ihren Shop oder auf Ihren Adminbereich haben.  <br>
+<br>
+<br />
+</div>
+<div>
+<h2>Nach der Installation </h2>
+<p>Wenn Sie Ihren Shop betreten, erhalten Sie möglicherweise eine Sicherheitswarnung bezüglich   der Dateien <em>configure.php</em></p>
+<p>Der Installer setzt die Rechte der configure.php Dateien in der Regel automatisch auf chmod 444 (schreibgeschützt). Sollte das aus irgendeinem Grund fehlgeschlagen sein, werden Sie einen Hinweis bekommen, dass die Konfigurationsdateien beschreibbar sind. Falls dieser Hinweis kommt, gehen Se bitte wie folgt vor:<br />
+  <br />
+  <br />
+  <strong>Die Dateien "configure.php" </strong><br />
+  Sie sollten nun die Rechte dieser Dateien auf CHMOD 444 (oder 644, abhängig vom Server) setzen.<br />
+  <br />
+  Diese Dateien finden Sie in: <br />
+  <span class="filename">/shop/includes/configure.php<br />
+    /shop/DEINADMIN/includes/configure.php </span><br />
+  <br />
+  Wir empfehlen Ihnen, sich nach erfolgreicher Installation Ihres deutsche Zen-Cart Version Shops, eine Sicherungskopie dieser Konfigurationsdateien auf Ihrem Computer zu speichern.  <br />
+  <br />
+  Wenn Fehler oder Probleme auftreten, können Sie diese leicht durch kleinere Korrekturen dieser Dateien behoben werden.  <br>
+  <br>
+  Loggen Sie sich nun erstmalig in Ihre Shopadministration ein, zu finden unter http://www.meinedomain.de/shop/DEINADMIN<br>
+  <br>
+  Sie werden aufgefordert, Ihr Passwort sofort zu ändern.<br>
+  <br>
+  Danach haben Sie Ihre Shopadministration vor sich und können mit der Konfiguration beginnen.
+<br />
+  <br />
+  <br />
+  <strong>Das "zc_install" Verzeichnis </strong><br />
+  Löschen Sie bitte nach erfolgreicher Installation das Verzeichnis <span class="filename"> /shop/zc_install<br>
+  Es wurde bei der Installation bereits automatisch umbenannt und sollte nun z.B. zc_install_gshd6dthsdffgfgfgfg heißen
+  </span><br />
+  Von einem lediglichen Umbenennen des Verzeichnis raten wir ab. Dieses bietet nicht genug Schutz gegen Personen mit Böses im Sinn.<br />
+  Hacker könnten sonst versuchen, Ihren Shop durch erneuten Aufruf des Installers zu zerstören. </p>
+<p><strong>Demodaten</strong><br>
+  Falls Sie bei der Installation die Demodaten mitinstalliert haben, dann laden Sie nun den Inhalt des Ordners DEMODATEN in der vorgegebenen Struktur in Ihr Shopverzeichnis hoch.
+    <br>
+    <br>
+<br />
+</p>
+</div>
+<div>
+<h2>Weitere Schritte</h2>
+<p>Viele Hinweise zur weiteren Konfiguration finden Sie in unserer <a href="http://www.zen-cart-pro.at/zcvb/forum/vbglossar.php">Online Dokumentation</a>. Oder Sie besuchen einfach unser <strong><a href="http://www.zen-cart-pro.at/zcvb/forum/" target="_blank">Forum</a></strong>.
+    <br />
+  
+    <br />
+  Machen Sie sich mit dem  Developers Toolkit vertraut, zu finden im Administrationsbereich unter "Tools". Dieses hilft Ihnen fast jeden Bereich, den sie verändern wollen, zu lokalisieren. </p>
+  <p>Haben Sie Ihren Shop wunschgemäß eingerichtet und sind bereit, mit Ihrem Shop online zu gehen, lesen Sie bitte unbedingt ZUERST die <a onClick="expandcontent('sc5', this)" href="#">Wichtigen Sicherheitsempfehlungen für Zen-Cart&trade;</a> um sicher zu gehen, dass Ihr Shop keine Angriffsfläche für Hacker bietet.</p>
+  <p>Wenn Sie Ihr admin Verzeichnis wieder umbenennen wollen (vielleicht ist Ihnen ja noch ein besserer Name eingefallen), dann reicht es, den Ordner DEINADMIN am Server einfach umzubenennen. Ein manuelles anschließendes Editieren der DEINADMIN/includes/configure.php ist in Zen-Cart 1.5 NICHT mehr nötig!</p>
+</div>
+<div>
+<h2>Hilfe und Support </h2>
+<p>Für weitere Hilfe und Support besuchen Sie unser Supportforum auf <a href="http://www.zen-cart-pro.at">www.zen-cart-pro.at</a></p>
+</div>
+</div>
+</div>
+
+<!--End sc2-->
+
+<!--Begin sc3-->
+<div class="tabcontent" id="sc3" style="display: block;">
+<div class="textcontent">
+<div class="regularlist">
+<h1>UPDATE auf die Version 1.5.1</h1>
+<div>
+  <h2>HINWEIS: Zahlungs- und Versandmodule </h2>
+  Sie müssen Ihre momentan genutzen Zahlungs- und Versandmodule im Rahmen des Upgrades neu installieren:
+  <ul>
+    <li>BEVOR SIE UPGRADEN: Notieren Sie sich die Login IDs,   Transaktionsschlüssel, E-Mail Adressen und andere Einstellungen, die Sie   bereits in JEDEM Zahlungs- und Versandmodul eingegeben haben. Sie   benötigen diese Information später bei der Neuinstallation dieser   Module. </li>
+    <li>Entfernen Sie jedes Modul indem Sie auf den Butten "Entfernen" klicken. </li>
+    <li>NACH DEM UPGRADE: Installieren Sie alle Zahlungs- und   Versandmodule, die Sie benötigen, erneut. Nur so profitieren Sie von den   Fehlerbehebungen und den neuen Funktionen in jedem Modul. Nicht   benötigte Module brauchen Sie nicht auf diese Weise zu behandeln.   Sollten Sie noch Module haben, die zwar installiert sind, aber nicht   mehr genutzt werden, empfehlen wir Ihnen diese aus Performancegründen zu   deinstallieren. </li>
+    <li>Geben Sie die zuvor notieren Einstellungen für jedes Modul   erneut ein. TESTEN SIE JEDES MODUL um sicherzugehen, dass alle   Einstellungen korrekt sind, bevor Sie Ihren Shop wieder für Ihre Kunden   freigeben. </li>
+  </ul>
+</div>
+<h2>Voraussetzungen </h2>
+<p><br>
+  <strong>Hinweis für Anwender sehr alter Zen Cart Versionen</strong><br>
+  Das Updateprogramm unterstützt nur Zen Cart Versionen neuer als 1.3.5.<br>
+  Sollten Sie noch eine ältere Zen Cart Version als 1.3.5 im Einsatz haben, laden Sie sich Zen Cart 1.5 herunter und aktualisieren zunächst auf 1.5.<br>
+  Danach können Sie auf 1.5.1 aktualisieren
+  <br>
+  <br>
+  Bevor Sie ein Update auf 1.5.1 planen, stellen Sie bitte sicher, dass Ihr Server die Systemvoraussetzungen erfüllt: </p>
+<p><strong>Minimale Anforderungen:</strong></p>
+<ul>
+  <li> PHP 5.2.14 oder höher, Apache 2.0 oder höher und MySQL 5.0.90 oder höher</li>
+  <li>Apache muss konfiguriert sein mit AllowOverride auf entweder 'All' oder mit zumindestens 'Limit' und 'Indexes' Parameter, vorzugsweise mit ebenfalls 'Options' Parameter.</li>
+  <li> PHP muss CURL mit OpenSSL unterstützen (erforderlich z.B. für PayPal Express)</li>
+</ul>
+<p><strong>Empfohlene Serverkonfiguration:</strong></p>
+<ul>
+  <li> PHP 5.3.5 oder höher</li>
+  <li> Apache 2.0 oder höher</li>
+  <li>MySQL 5.0.90 oder höher</li>
+  <li>und die oben erwähnten Apache/PHP Settings</li>
+</ul>
+<p>PHP 5.4 wird unterstützt. Mit PHP 5.5 wurde nicht getestet.<br>
+  Zen-Cart 1.5 funktioniert zwar auch auf einem Windows/IIS server, <b>wir raten aber dringend zu einem Linux/Apache Server</b>.
+  <br>
+  <br>
+  Falls Sie Ihren Shop mit Modulen erweitert haben, stellen Sie sicher, dass es für die in Ihrem derzeitigen Shop eingesetzen Erweiterungen aktuelle mit Zen-Cart 1.5.1 getestete Versionen gibt. In Zen-Cart 1.5.1 können nur Zen-Cart 1.5.1 kompatible Module und Erweiterungen genutzt werden!
+<h2>Einleitung ... </h2>
+<p>Dieses ist eine Anleitung, um eine bestehende Zen-Cart Installation auf Zen-Cart 1.5.1 zu   aktualisieren. Falls Sie Zen-Cart bisher noch nicht installiert haben   sollten, schauen Sie bitte unter Neuinstallation.<br>
+  <br>
+  Um Ihre Zen-Cart Installation zu aktualisieren brauchen Sie die gleichen Programme,   die Sie für die Erstinstallation und evtl. Anpassungen benutzt haben.   Ein FTP Programm, einen Texteditor für HTML/PHP Code, phpMyAdmin or   Ähnliches um auf Ihre MySQL Datenbank zugreifen zu können, und den   Adminbereich Ihres Webspaces.<br>
+  <br>
+  Zusätzlich ist ein Dateienvergleichsprogramm wie <a href="http://winmerge.sf.net" target="_blank">WinMerge</a>, <a href="http://www.scootersoftware.com/" target="_blank">Beyond Compare</a> oder ExamDiff (Linux) sehr hilfreich.  (Für Mac gibt es z.B. <a href="http://www.barebones.com" target="_blank">BBedit</a>.)<br>
+  <br>
+  Die Aktualisierung erfolgt in 3 einfachen Schritten. Nehmen Sie sich   bitte Zeit und studieren Sie die einzelnen Schritte und Methoden   sorgfältig. Überstürzen Sie nichts! <br>
+  Und wie immer: VOR Beginn eine Sicherung aller relevanten Daten durchführen!!! <br>
+  <br>
+  <br>
+  <br>
+</p>
+<div>
+  <h2>1. Vorbereitung</h2>
+  Entpacken Sie alle Dateien der neuen Version von Zen-Cart, laden Sie diese auf Ihren Webserver in ein "demo" Verzeichnis und installieren Sie die neue Version - mit den Demodaten - in eine eigene Datenbank. <br>
+  Diese Installation soll als Referenz dienen und Sie können sich mit den   neuen Funktionen vertraut machen. Diese Installation können Sie nach der   Konvertierung wieder löschen. <br>
+  <br>
+  Studieren Sie die neuen Funktionen, die dokumentierten Änderungen der   Template Struktur und ebenso die Datei "changelog.txt". Verwenden Sie   die Demodateien im Demoshop als Beispielvorlage und lesen alle   Supportdokumente dieser neuen Version.<br>
+  <br>
+  Erstellen Sie eine komplette Sicherung Ihrer Datenbank (SQL Dateidump). Speichern Sie diese Datei auf Ihrem PC.<br>
+  <br>
+  Erstellen Sie eine komplette Sicherung Ihres Webordners via FTP auf   Ihrem PC und packen Sie diese dann zusätzlich in eine ZIP Datei.<br>
+  Heben Sie die Sicherung auf Ihrem PC gut auf - sie wird in den weiteren   Schritten der Aktualisierung noch benötigt. Eventuell benennen Sie   diesen Sicherungsordner in "\zen_backup" um. <br>
+  <br>
+  Lassen Sie uns nun die Unterschiede und notwendigen Anpassungen zwischen   Ihrer Installation und den originalen Zen-Cart™ Dateien herausfinden. <br>
+  <br>
+  Entpacken Sie eine Kopie Ihrer <em>ursprünglich installierten</em> bzw. aktualisierten Zen-Cart™ Version (z.B. v1.3.8 oder auch v1.3.9) in ein eigenes Arbeitsverzeichnis (z.B. "\zen_orig").<br>
+  <br>
+  Machen Sie sich zur späteren Verwendung eine Liste Ihrer installierten Module und Add-Ons.<br>
+  <br>
+  Vergleichen Sie nun mit einem Programm wie z.B. <a href="http://www.scootersoftware.com" target="_blank">Beyond Compare</a>, <a href="http://winmerge.sf.net" target="_blank">WinMerge</a> o.ä. Ihre "originalen" Zen-Cart Dateien des Ordners "\zen_orig" mit den Dateien Ihres Sicherungsordners "\zen_backup".<br>
+  Schreiben Sie alle Dateien die "unterschiedlich" sind auf. Doppelklicken   Sie in WinMerge auf jede Datei und notieren sich die die jeweiligen   Unterschiede.<br>
+  Wenn die Unterschiede nur in Sprachdateien (Ordner Languages) sind, dann sind diese leicht zu übertragen.<br>
+  Alle anderen Unterschiede der Programmierung/Codes müssen detailiert   aufgeschrieben werden um diese in die neue Version zu übertragen.<br>
+  <br>
+  HINWEIS: Eigene Modifikationen, Module und Add-Ons, die Sie bisher   installiert haben, enthalten zahlreiche Änderungen in der Programmierung   und können möglicherweise nicht mehr mit der neuen Zen-Cart 1.5 Version   kompatibel sein.<br>
+  <br>
+  Ihre Liste der installierten Module und Add-Ons kann Ihnen helfen, die   Anzahl der gefundenen Unterschiede zu schmälern. Ebenso kann es   vorkommen, dass Sie diese Module und Add-Ons noch einmal herunter laden   müssen, um sich deren Readme- Datei bzw. den Code durchzusehen.   Eventuell müssen Sie die Autoren der Module bezüglich einer   Aktualisierung des Codes kontaktieren. <br>
+  <br>
+  Evtl. wollen Sie an diesem Punkt einige der Änderungen direkt (gemäß der   Zen-Cart Template Override Struktur) in die neue Version einbauen.   Hilfe hierzu erhalten Sie auf <a href="http://www.zen-cart-pro.at">www.zen-cart-pro.at</a> in den FAQ's/Tutorials und im Forum. <br>
+</div>
+<br>
+<div>
+  <h2>2. Durchführung</h2>
+  Laden Sie sich die neueste Version von Zen-Cart auf Ihren PC herunter.   Speichern Sie diese in ein eigenes, drittes Verzeichnis (z.B. "\zen_neu"). <br>
+  <br>
+  Nehmen Sie Ihre erstellte Liste der geänderten Dateien, arbeiten Sie   diese Schritt für Schritt durch und übertragen Sie Ihre Änderungen von   der alten Version auf die neue Version.<br>
+  Einfache Änderungen Ihrer Sprachdateien können Sie über "kopieren-und-einfügen" leicht übertragen.<br>
+  Änderungen, die Sie im Programmcode durchgeführt haben, sich mit Bedacht zu übertragen und benötigen ausführliche Tests.<br>
+  Das Programm Beyond Compare oder WinMerge kann Ihnen hierbei sehr hilfreich sein. Wie auch   immer - Sie werden viele zusätzliche Unterschiede feststellen, die   nichts mit Ihren Modifikationen zu tun haben. Seien Sie bitte sehr   vorsichtig bei Ihren Anpassungen des Codes, sie könnten sonst zu   erheblichen Konflikten führen. <br>
+  <br>
+  Beachten Sie bitte, dass Sie eventuell noch Änderungen Ihres selbst   erstellten Templates durchführen müssen. Vergleichen Sie deshalb bitte   im Bedarfsfall die Dateien Ihres Template Ordners   /includes/templates/MEINTEMPLATE/* mit   /includes/template/template_default/* ... dasselbe gilt auch für Dateien   der Sprachfiles, Sideboxen etc. <br>
+</div>
+<br>
+<div>
+  <h2><strong>3. Testen</strong></h2>
+  <p>Erstellen Sie eine NEUE Datenbank für die Installation Ihrer neuen Version von Zen-Cart 1.5.1 <br>
+    <br>
+    Stellen Sie sicher, dass Ihre vorhandene Sicherung der Datenbank die   aktuellsten Daten enthält, ansonsten führen Sie jetzt erneut eine   aktuelle Sicherung Ihrer Datenbank durch.<br>
+    Führen Sie nun eine Wiederherstellung der aktuellen Sicherung der   Datenbank, die Sie vorher in Schritt 1 erstellt haben, in Ihrer NEUEN   Datenbank durch. <br>
+    <br>
+    Wenn in Ihrem Ordner /zen_new keine Dateien "/includes/configure.php" und "/admin/includes/configure.php" sind, kopieren Sie diese aus den alten Ordner "\zen_backup".<br>
+    <br>
+    BEARBEITEN Sie nun die Datei "/zen_new/includes/configure.php"   und stellen Sie sicher, dass der Eintrag DATABASE_NAME mit Ihrer NEUEN   Datenbank übereinstimmt. Verifizieren Sie ebenso den Benutzernamen und   das Passwort der Datenbank, sollten sich diese geändert haben. Speichern   Sie die Datei und stellen Sie sicher, dass Sie diese in nächsten   Schritt mit hochladen. Wiederholen Sie das auch für die Datei /DEINADMIN/includes/configure.php.<br>
+    <br>
+    Laden Sie die Dateien Ihrer modifizierten "neuen Version" (in Schritt 2   erstellt) auf Ihren Server in einen alternativen Ordner - z.B "/shop_neu" - hoch.<br>
+    <br>
+    Stellen Sie sicher, dass Sie den Ordner "/zen_new/zc_install" auf Ihren Server hochgeladen haben. </p>
+  <p>Starten Sie Ihren Internetbrowser und geben Sie als Adresse "www.ihredomain.de/zc_install/index.php" ein und wählen Sie die Option <em>"Datenabnk aktualisieren"</em> (Wählen Sie keinesfalls "installieren", ansonsten wird Ihre Datenbank   überschrieben!).  (Sollte die Option "Upgrade" nicht zur Verfügung stehen, konnte das   Installationsprogramm keine Verbindung zu Ihrer Datenbank herstellen.   Überprüfen Sie in diesem Fall Ihre Einstellungen in der Datei   configure.php.) <br>
+    <br>
+    Testen Sie Ihre Anpassungen, bearbeiten Sie diese ggf. und vergleichen   Sie Ihre "Testinstallation" mit der Installation Ihrer neuen Version.<br>
+    <br>
+    Wenn Sie zufrieden feststellen, dass alles OK ist, können Sie online gehen. <br>
+    Sollte seit Ihrer letzten Datenbanksicherung bereits eine signifikante   Zeit vergangen sein, können Sie die Schritte im Punkt "Testen" mit   einer neueren, aktuelleren Datenbanksicherung wiederholen. Sie brauchen   nicht noch einmal alle Dateien auf Ihren Webserver hoch laden... Eine   einfache Wiederherstellung der Datenbank genügt. Anschließend starten   Sie das Installationsprogramm mit der Option "Upgrade" erneut. <br>
+    <br>
+    Nach dem Update ist der Shop automatisch im  Modus "Wegen Wartungsarbeiten   geschlossen". <br>
+    Wenn alle Punkte korrekt durchgeführt wurden, benennen sie auf Ihrem Webserver das Verzeichnis Shop "shop_neu" in "shop" um (vorher müssen Sie noch Ihr altes Verzeichnis "shop" in irgendetwas Anderes umbenennen).<br>
+    Kontrollieren Sie, ob alle Dinge wie gewünscht funktionieren. Wenn Sie   kleinere Probleme zu beheben haben, schalten Sie den Modus "Wegen   Wartungsarbeiten geschlossen" nach Bedarf ein oder aus. </p>
+</div>
+<p>&nbsp;</p>
+</div>
+</div>
+</div>
+
+<!--End sc3-->
+
+
+
+
+<!--Begin sc5-->
+<div class="tabcontent" id="sc5" style="display: block;">
+<div class="textcontent">
+<div class="regularlist">
+<h1>WICHTIGE SICHERHEITSEMPFEHLUNGEN</h1>
+<p>Generell:<br>
+  <br>
+  <strong>Betreiben Sie Ihren Onlineshop NICHT OHNE SSL!</strong><br>
+  Ihre Kunden können erwarten, dass ihre Daten beim Konto erstellen, Login, Daten ändern und im Bestellablauf nicht völlig unverschlüsselt übertragen werden. Empfohlen ist ein &quot;echtes&quot; auf Ihre Domain ausgestelltes SSL Zertifikat, ie sollten aber mindestens ein von den meisten Providern angebotenes &quot;Shared SSL&quot; verwenden. Nähere Informationen dazu gibt Ihr Provider.<br>
+  Auch für Ihre Zen-Cart Administration ist SSL eine ganz wesentliche Absicherung.<br>
+  <br>
+  <strong>Übertragen Sie Daten per FTP nur per <a href="http://en.wikipedia.org/wiki/SSH_File_Transfer_Protocol">SFTP</a> oder <a href="http://en.wikipedia.org/wiki/FTPS">FTPS</a></strong><br>
+  Per normalem FTP werden die Daten unverschlüsselt übertragen. Sollte Ihr Provider keine SFTP oder FTPS Übertragung unterstützen, stellt sich die Frage, ob der Provider für Ihren Onlineshop wirklich geeignet ist.<br>
+  <br>
+  Nach erfolgreicher Installation des Shops sind folgende Maßnahmen   empfohlen, um die Sicherheit des Shops zu erhöhen. <br>
+  <br>
+  <strong>1. Löschen Sie das Installationsverzeichnis zc_install und andere nicht benötigte Dateien und Ordner</strong><br>
+  <br>
+Der Ordner zc_install wird am Server nicht mehr benötigt und sollte   komplett gelöscht werden. Er wurde bereits vom Installationsprogramm auf zc_install_irgendeinelangeziffernzahlenkombination umbenannt. Nicht umbenennen und am Server lassen, sondern   komplett löschen!<br>
+Falls Sie auch folgende Ordner hochgeladen haben, löschen Sie diese ebenfalls:<br>
+- docs<br>
+- extras<br>
+Der Ordner docs enthält nur Anleitungen und wird am Server nicht   benötigt. Der Ordner extras enthält einige Diagnosedateien, die   ebenfalls für den Shopbetrieb nicht notwendig sind. Das Verbleiben   dieser Dateien am Server stellt ein Sicherheitsrisiko dar.<br>
+Ausnahme:<br>
+Manche Module legen Dateien im Ordner extras ab, z.B. das Modul von sofortüberweisung.<br>
+Löschen Sie also nur die Dateien im Ordner extras, die mit test gekennzeichnet sind.<br>
+Löschen Sie auch folgende Datei:<br>
+- install.txt<br>
+<br>
+Falls Sie in Ihrem Shop keine Downloads oder Musikdateien anbieten werden, können Sie auch die folgenden Ordner löschen:<br>
+- download<br>
+- media<br>
+- pub<br>
+Damit Sie keine Warnmeldung über den fehlenden Downloadordner bekommen,   müssen Sie danach in der Administration unter Konfiguration &gt;   Attributeinstellungen "Downloads aktivieren" auf false stellen.<br>
+Sollten Sie später einmal Downloads anbieten wollen, müssen Sie diese   Ordner wieder hochladen und ihnen die entsprechenden Berechtigungen   geben.<br>
+<br>
+<br>
+<strong>2. Setzen Sie einen Schreibschutz für die beiden configure.php </strong><br>
+<br>
+Die beiden Zen-Cart Konfigurationsdateien sollten nachdem Sie darin alle   gewünschten Änderungen vorgenommen haben, nicht mehr am Server änderbar   sein.<br>
+Daher müssen sie mit einem Schreibschutz versehen werden. Normalerweise wird das vom Installationsprogramm automatisch gemacht.<br>
+Wenn sich Ihr Shop auf einem Linux-Server befindet, setzen Sie den   Schreibschutz mit Ihrem FTP Programm und geben folgenden Dateien den   Befehl chmod 444<br>
+includes/configure.php<br>
+DEINADMIN/includes/configure.php</p>
+<p><strong>3. Verwenden Sie als Emailtransportmethode smtpauth oder smtp</strong><br>
+  <br>
+  Unter Konfiguration &gt; Emailoptionen können Sie einstellen, wie Ihr Shop Emails versenden soll. Standardmäßig ist hier meist PHP eingestellt, damit der Shop direkt einsatzbereit ist.<br>
+  Es ist wesentlich besser, die Emails über einen SMTP Server versenden zu lassen. Zum einen reduziert das die Wahrscheinlichkeit, dass Emails bei Ihren Kunden im Spamordner landen. Zum anderen ist es bei Versand über PHP je nach Serverkonfiguration möglich, dass bei Mails aus dem Adminbereich (z.B. Bestellstatusupdates) der Name Ihres admin Verzeichnisses im Mail auslesbar ist.<br>
+  Daher stellen Sie um auf smtpauth und geben weiter unten in der Konfiguration den Namen Ihres SMP Servers und eine gültigen Usernamen/Passwort dazu ein.
+  <br>
+  <br>
+  <br>
+  <strong>4. Löschen Sie alle nicht benötigten Admin Accounts</strong><br>
+  <br>
+  Haben Sie mehrere Administratoren angelegt? Werden wirklich mehrere   Admin Accounts verwendet? Sind die zusätzlichen Admin Accounts wirklich   nötig? Gibt es noch einen Adminaccount namens Demo?<br>
+  Überprüfen Sie, ob mehrere   Admins angelegt sind und löschen Sie nicht unbedingt benötigte   Administratoren.<br>
+  In Zen-Cart 1.5 finden Sie das unter Admin &gt; Admin Benutzerechte &gt; Adminbenutzer<br>
+  In Zen-Cart 1.3.9 finden Sie das unter Admin &gt; Tools &gt; Administratoren.</p>
+<p><strong><br>
+5</strong><strong>. Verwenden Sie sichere Passwörter</strong><br>
+  <br>
+  Das Passwort für Ihren Admin Account sollte mindestens 8 Zeichen lang   sein und am besten aus einer Ziffern-, Buchstaben-Kombination bestehen.   Verwenden Sie auch Groß- und Kleinschreibung. Verwenden Sie keine   "normalen" Wörter, die einen Sinn ergeben.<br>
+  In Zen-Cart 1.5
+  werden Sie alle 90 Tage automatisch aufgefordert, Ihr Passwort zu änden.<br>
+  Passwortänderung in Zen-Cart 1.5 unter Admin &gt; Admin Benutzerrechte &gt; Admin Benutzer &gt; Reset Password
+  <br>
+  Passwortänderung in Zen-Cart 1.3.9 unter Admin &gt; Tools &gt; Administratoren mit dem Button "Reset Password" ändern.<br>
+  Diese Passwortempfehlungen gelten genauso für Ihren FTP User oder das   Passwort zum Zugang zu phpMyAdmin. Verwenden Sie auch hier sichere   Passwörter!<br>
+  <br>
+  <br>
+  <strong>6. Versehen Sie Ihre define pages mit einem Schreibschutz</strong><br>
+  <br>
+  Damit Sie unter Admin &gt; Tools &gt; Seiteneditor Ihre Define Pages   online bearbeiten können, mussten Sie diesen Dateien Schreibrechte   geben.<br>
+  Die Dateien befinden sich im Ordner includes/languages/german/html_includes<br>
+  Falls Sie weitere Sprachen einsetzen im entsprechenden Sprachverzeichnis, z.B. includes/languages/english/html_includes<br>
+  Wenn Sie mit dem Editieren Ihrer Seiten fertig sind, setzen Sie auf all diese Dateien wieder einen Scheibschutz mit chmod 644.<br>
+  Wenn Sie später wieder über den Seiteneditor im Adminbereich Änderungen   an diesen Seiten vornhehmen wollen, müssen Sie natürlich wieder per FTP   den entsprechenden Dateien Schreibrechte geben (z.B. chmod 666)<br>
+  <br>
+  <br>
+  <strong>7. Verwenden Sie die mitgelieferten .htaccess und index.html Dateien</strong><br>
+  <br>
+  In verschiedenen Verzeichnissen der Zen-Cart Installation befinden sich .htaccess Dateien und index.html Dateien.<br>
+  Löschen Sie diese Dateien nicht! V.a. die verschiedenen .htaccess   Dateien z.B. im admin Verzeichnis oder im includes Verzeichnis sind für   die Sicherheit Ihres Shops sehr wichtig!<br>
+  Die leeren index.html Dateien dienen dazu, dass beim Aufruf des Verzeichnisses nicht der Inhalt angezeigt wird.<br>
+  Noch sicherer ist es, dazu zusätzlich eine .htaccess Datei zu erstellen und sie in Verzeichnisse mit einer index.html zu legen.<br>
+  <br>
+  Diese .htaccess könnte folgenden Inhalt haben:<br>
+  <br>
+  #.htaccess to prevent unauthorized directory browsing or access to .php files<br>
+  IndexIgnore */*<br>
+  &lt;Files *.php&gt;<br>
+  Order Deny,Allow<br>
+  Deny from all<br>
+  &lt;/Files&gt;<br>
+  <br>
+  Manche Provider erlauben das manuelle Erstellen von .htaccess Dateien   nicht oder benötigen andere Settings als die in obigem Beispiel.<br>
+  Nehmen Sie bei Unklarheiten oder Schwierigkeiten mit Ihrem Provider   Kontakt auf, um die besten Einstellungen für Ihr System zu ermitteln.<br>
+  <br>
+  <br>
+  <strong>8. Schützen Sie das images Verzeichnis</strong><br>
+  <br>
+  Während der Zen-Cart Installation wurde empfohlen, dem images Verzeichnis Schreibrechte zu geben (chmod 777).<br>
+  Das dient dazu, dass Sie in der Lage sind, über das Adminmenü Bilder hochzuladen.<br>
+  Wenn Sie Ihren Shop fertig eingerichtet haben, ist es besser, das images Verzeichnis wieder auf chmod 755 zurückzustellen.<br>
+  Dadurch haben Hacker nicht die Möglichkeit, zu versuchen, schadhaften Code in Ihr images Verzeichnis einzuschleusen.<br>
+  Stellen Sie daher die Rechte des images Verzeichnisses und der Unterordner darin von chmod 777 auf chmod 755.<br>
+  Ähnlich wie bei Empfehlung 6 (Versehen Sie Ihre define pages mit einem   Schreibschutz) müssen Sie dann später möglicherweise wieder auf 777   stellen, bevor Sie über das Adminmenü weitere Bilder hochladen können.<br>
+  <br>
+  Sollte bei Ihrem Provider PHP als CGI-Modul laufen, ist folgende .htaccess Datei für das images Verzeichnis empfehlenswert:<br>
+  <br>
+  # Prevent directory viewing and the ability of any scripts to run.<br>
+  # No script, be it PHP, PERL or whatever, can normally be executed if ExecCGI is disabled.<br>
+  OPTIONS -Indexes -ExecCGI<br>
+  <br>
+  <br>
+  <strong>9. Hinweise zu Schreibrechten für verschiedene Ordner</strong><br>
+  <br>
+  Während der Zen-Cart Installation wurde empfohlen, bestimmten weiteren Verzeichnissen Schreibrechte (chmod 777) zu geben.<br>
+  Nachdem der Shop fertig eingerichtet ist, sind diese Rechte meist nicht mehr nötig.<br>
+  Faustregel: Je weniger chmod 777 desto besser!<br>
+  <br>
+  Hier einige Informationen zu diesen Verzeichnissen. Bitte wenden Sie   sich bei Unklarheiten an Ihren Provider, nicht alle hier beschriebenen   Enpfehlungen sind bei allen Providern so möglich.<br>
+  <br>
+  cache<br>
+  Statt diesem Ordner chmod 777 zu geben ist es besser, den Ordner eine   Ebene über das  public_html/htdocs/www Verzeichnis zu legen.<br>
+  Verzeichnisse auf dieser Ebene sind im Browser nicht aufrufbar.<br>
+  Wenn Sie das tun, müssen sie auch in beiden configure.php den Pfad zum cache Verzeichnis entsprechend anpassen.<br>
+  Und Sie müssen es auch in der Datenbank ändern: Admin &gt; Konfiguration &gt; Sitzungen/Sessions &gt; Verzeichnis für Sitzungen<br>
+  <br>
+  images<br>
+  siehe Empfehlungen unter 7.<br>
+  <br>
+  includes/languages/german/html_includes<br>
+  siehe Empfehlungen unter 6.<br>
+  <br>
+  media<br>
+  Dieses Verzeichnis muss nur Schreibrechte haben, wenn Mediendateien zum Artikeltyp Musik per Admin hochgeladen werden sollen.<br>
+  Wenn Sie in Ihrem Shop nichts Derartiges anbieten, setzen Sie das Verzeichnis auf chmod 755<br>
+  <br>
+  pub<br>
+  Dieses Verzeichnis wird nur verwendet, wenn Sie in Ihrem Shop Downloads anbieten.<br>
+  Wenn Sie in ihrem Shop keine Downloads anbieten, setzen Sie das Verzeichnis auf chmod 755<br>
+  <br>
+  DEINADMIN/backups<br>
+  Dieses Verzeichnis benötigt chmod 777, falls Sie via Admin Sicherungen Ihrer Datenbank durchführen.<br>
+  Wenn Sie das nicht verwenden, setzen Sie das Verzeichnis auf chmod 755<br>
+  <br>
+  DEINADMIN/images/graphs<br>
+  Dieses Verzeichnis benötigt nur chmod 777, um die Statistiken und   Grafiken unter Admin &gt; Tools &gt; Banner Manager aktualisieren zu   können.<br>
+  Wenn Sie dieses Feature nicht brauchen, setzen Sie das Verzeichnis auf chmod 755<br>
+  <br>
+  Generelle Empfehlung für alle übrigen Verzeichnisse und Dateien:<br>
+  Verzeichnisse: chmod 755<br>
+  Dateien: chmod 644 <br>
+  <br>
+  <br>
+  <strong>10. Drucken Sie nicht die Admin URL mit</strong><br>
+  <br>
+  Falls Sie Rechnungen über den Adminbereich ausdrucken ("in Rechnung   stellen"), achten Sie darauf, dass im Ausdruck nicht die URL mitgedruckt   wird:<br>
+  In Firefox:<br>
+  Datei &gt; Seite einrichten &gt; Ränder &amp; Kopf- und Fusszeilen<br>
+  Stellen Sie in allen Dropdownmenüs auf "leer" oder entfernen Sie zumindest "URL" oder "Titel"<br>
+  In Internet Explorer:<br>
+  Datei &gt; Seite einrichten<br>
+  Entfernen Sie bei Kopfzeile und Fusszeile die Werte Titel und URL<br>
+  <br>
+  <br>
+  <strong>11. Achten Sie auf Sicherheitswarnungen und Updateankündigungen</strong><br>
+  <br>
+  Im Forum "News und Ankündigungen" veröffentlichen wir Hinweise auf Sicherheitslücken, Patches und neue Zen-Cart Versionen.<br>
+  Schauen Sie regelmäßig vorbei oder lassen Sie sich per Email über Ankündigungen in diesem Forum informieren:<br>
+  <a href="http://www.zen-cart-pro.at/zcvb/forum/subscription.php?do=addsubscription&f=8" target="_blank">Forum News und Ankündigungen abonnieren</a><br>
+  <br>
+  <br>
+  <strong>12. Was Sie regelmäßig tun sollten</strong><br>
+  <br>
+  1. Stellen Sie sicher, dass Sie alle Empfehlungen aus dieser Anleitung beachtet haben.<br>
+  2. Machen Sie regelmäßig Sicherungen Ihrer Shopdateien und Ihrer   Datenbank. Für die Übertragung per FTP verwenden Sie wenn möglich (und   wenn von Ihrem Provider unterstützt) <a href="http://de.wikipedia.org/wiki/FTPS" target="_blank">FTP via SSL/TLS</a><br>
+  Für die Datenbanksicherung (z.B. via phpMyAdmin) sollten Sie falls möglich SSL aktiv haben.<br>
+  3. Überprüfen Sie regelmäßig die Logfiles am Server auf Seltsamkeiten.   Achten Sie dabei auf Seitenaufrufe von URLs, zu denen nirgendwo auf   Ihrer Seite gelinkt wird. Und achten Sie auf Links, die nach index.php   ein http enthalten.<br>
+  4. Überprüfen Sie regelmäßig die Datein am Server. Wurden neue Dateien hinzugefügt? Wurden bestehende Dateien geändert?</p>
+</div>
+</div>
+</div>
+
+<!--End sc5-->
+
+<!--Begin sc6-->
+<div class="tabcontent" id="sc6" style="display: block;">
+<div class="textcontent">
+<div class="regularlist">
+<h1>Changelog Dateien</h1>
+<p>  Änderungen gegenüber Version 1.5 deutsch</p>
+<p><strong>NEUE STRUKTUR DES DOWNLOADPAKETS</strong><br>
+Damit bei Neuinstallationen oder Updates nicht immer die Bild- und Mediendateien der Demodaten mitinstalliert werden, wurde die Demodaten ausgelagert und können bei Bedarf aus dem Ordner DEMODATEN hochgeladen werden.<br>
+Die Überprüfungstools im Ordner extras (ipncheck und curltester) werden für den normalen Betrieb nicht benötigt und wurden daher ebenfalls ausgelagert in den Ordner TOOLS.<br>
+<br>
+Die für eine Installation oder Update benötigten Ordner/Dateien liegen nun im Ordner UPLOAD. Nur der Inhalt des Ordners UPLOAD muss hochgeladen werden!
+<br>
+  <br>
+  <strong>Entfernte Dateien:</strong></p>
+<p> /admin/includes/functions/password_funcs.php <br>
+  /includes/templates/classic/css/CSS_read_me.txt</p>
+<p><strong>Neue Dateien/Ordner</strong></p>
+<p> /editors/ckeditor (neuer Ordner samt neuem Inhalt)<br>
+  /logs/ (neuer Ordner samt neuem Inhalt)<br>
+  <br>
+  /admin/includes/classes/split_page_results_new.php<br>
+  /admin/includes/ckeditor.php<br>
+  /includes/auto_loaders/config.products_viewed_counter.php<br>
+  /includes/classes/observers/class.products_viewed_counter.php<br>
+  /includes/classes/query_cache.php<br>
+  /includes/extra_datafiles/products_viewed_counter.php<br>
+  /includes/modules/pages/advanced_search_result/jscript_onload_helper.php<br>
+  /includes/modules/pages/advanced_search_result/on_load_focus.js<br>
+  /includes/templates/template_default/css/CSS_read_me.txt<br>
+  /includes/templates/template_default/css/stylesheet_buttonloesung.css<br>
+  /includes/templates/template_default/images/call_for_prices.gif<br>
+  /includes/templates/viennablood/css/stylesheet_buttonloesung.css<br>
+  /includes/templates/viennabright/css/stylesheet_buttonloesung.css<br>
+  /includes/templates/viennabright/images/call_for_prices.gif</p>
+<p><strong>Geänderte Dateien</strong></p>
+<p> /admin/admin_activity.php<br>
+  /admin/admin_page_registration.php<br>
+  /admin/alert_page.php<br>
+  /admin/attributes_controller.php<br>
+  /admin/categories.php<br>
+  /admin/coupon_admin.php<br>
+  /admin/customers.php<br>
+  /admin/gv_mail.php<br>
+  /admin/index.php<br>
+  /admin/mail.php<br>
+  /admin/modules.php<br>
+  /admin/options_name_manager.php<br>
+  /admin/options_values_manager.php<br>
+  /admin/password_forgotten.php<br>
+  /admin/product_types.php<br>
+  /admin/profiles.php<br>
+  /admin/sqlpatch.php<br>
+  /admin/stats_customers_referrals.php<br>
+  /admin/store_manager.php<br>
+  /admin/users.php<br>
+  /admin/includes/.htaccess<br>
+  /admin/includes/application_top.php<br>
+  /admin/includes/attributes_preview.php<br>
+  /admin/includes/dist-configure.php <br>
+  /admin/includes/footer.php<br>
+  /admin/includes/header.php<br>
+  /admin/includes/index.css<br>
+  /admin/includes/initsystem.php<br>
+  /admin/includes/menu.css<br>
+  /admin/includes/menu.js<br>
+  /admin/includes/stylesheet.js<br>
+  /admin/includes/extra_configures/enable_error_logging.php<br>
+  /admin/includes/functions/admin_access.php<br>
+  /admin/includes/functions/database.php<br>
+  /admin/includes/functions/general.php<br>
+  /admin/includes/functions/localization.php<br>
+  /admin/includes/init_includes/init_admin_auth.php<br>
+  /admin/includes/init_includes/init_admin_history.php<br>
+  /admin/includes/init_includes/init_errors.php<br>
+  /admin/includes/init_includes/init_file_db_names.php<br>
+  /admin/includes/init_includes/init_general_funcs.php<br>
+  /admin/includes/init_includes/init_html_editor.php<br>
+  /admin/includes/init_includes/init_languages.php<br>
+  /admin/includes/languages/english/extra_definitions/editors_list.php<br>
+  /admin/includes/languages/english/login.php<br>
+  /admin/includes/languages/english/profiles.php<br>
+  /admin/includes/languages/english/product.php<br>
+  /admin/includes/languages/english/stats_customers_referrals.php<br>
+  /admin/includes/languages/english.php<br>
+  /admin/includes/languages/german/extra_definitions/editors_list.php<br>
+  /admin/includes/languages/german/banner_manager.php<br>
+  /admin/includes/languages/german/banner_statistics.php<br>
+  /admin/includes/languages/german/login.php<br>
+  /admin/includes/languages/german/profiles.php<br>
+  /admin/includes/languages/german/product.php<br>
+  /admin/includes/languages/german/stats_customers_referrals.php<br>
+  /admin/includes/languages/german.php<br>
+  /admin/includes/modules/document_general/preview_info.php<br>
+  /admin/includes/modules/document_general/preview_info_meta_tags.php<br>
+  /admin/includes/modules/document_product/collect_info.php<br>
+  /admin/includes/modules/document_product/preview_info.php<br>
+  /admin/includes/modules/document_product/preview_info_meta_tags.php<br>
+  /admin/includes/modules/product/preview_info.php<br>
+  /admin/includes/modules/product/preview_info_meta_tags.php<br>
+  /admin/includes/modules/product_free_shipping/preview_info.php<br>
+  /admin/includes/modules/product_free_shipping/preview_info_meta_tags.php<br>
+  /admin/includes/modules/product_music/preview_info.php<br>
+  /admin/includes/modules/product_music/preview_info_meta_tags.php<br>
+  /admin/includes/modules/copy_to_confirm.php<br>
+  /admin/includes/modules/update_product.php</p>
+<p> /extras/ipncheck.php</p>
+<p>/email (alle Dateien in diesem Ordner)</p>
+<p> /ipn_main_handler.php</p>
+<p> /includes/application_top.php<br>
+  /includes/dist-configure.php <br>
+  /includes/initsystem.php<br>
+  /includes/main_cart_actions.php<br>
+  /includes/version.php<br>
+  /includes/auto_loaders/config.core.php<br>
+  /includes/classes/db/mysql/query_factory.php<br>
+  /includes/classes/order.php<br>
+  /includes/classes/payment.php<br>
+  /includes/classes/shipping.php<br>
+  /includes/classes/shopping_cart.php<br>
+  /includes/classes/split_page_results.php<br>
+  /includes/extra_configures/enable_error_logging.php<br>
+  /includes/functions/functions_customers.php<br>
+  /includes/functions/functions_email.php<br>
+  /includes/functions/functions_general.php<br>
+  /includes/functions/html_output.php<br>
+  /includes/functions/password_funcs.php<br>
+  /includes/index_filters/record_company_filter.php<br>
+  /includes/init_includes/init_file_db_names.php<br>
+  /includes/init_includes/init_general_funcs.php<br>
+  /includes/init_includes/init_sanitize.php<br>
+  /includes/init_includes/init_special_funcs.php<br>
+  /includes/languages/english/extra_definitions/rl.vat_info.php<br>
+  /includes/languages/english/html_includes/classic/define_main_page.php<br>
+  /includes/languages/english/html_includes/define_main_page.php<br>
+  /includes/languages/english/modules/payment/paypal.php<br>
+  /includes/languages/english/modules/payment/paypaldp.php<br>
+  /includes/languages/english/modules/payment/paypalwpp.php<br>
+  /includes/languages/english/button_names.php<br>
+  /includes/languages/english/checkout_confirmation.php<br>
+  /includes/languages/english/create_account.php<br>
+  /includes/languages/english/other_images_names.php<br>
+  /includes/languages/german/html_includes/classic/define_main_page.php<br>
+  /includes/languages/german/html_includes/define_main_page.php<br>
+  /includes/languages/german/modules/payment/paypal.php<br>
+  /includes/languages/german/modules/payment/paypaldp.php<br>
+  /includes/languages/german/modules/payment/paypalwpp.php<br>
+  /includes/languages/german/button_names.php<br>
+  /includes/languages/german/checkout_confirmation.php<br>
+  /includes/languages/german/checkout_payment.php<br>
+  /includes/languages/german/checkout_shipping.php<br>
+  /includes/languages/german/create_account.php<br>
+  /includes/languages/german/other_images_names.php<br>
+  /includes/languages/german/time_out.php<br>
+  /includes/modules/pages/contact_us/header_php.php<br>
+  /includes/modules/pages/checkout_success/header_php.php<br>
+  /includes/modules/pages/document_general_info/main_template_vars.php<br>
+  /includes/modules/pages/document_product_info/main_template_vars.php<br>
+  /includes/modules/pages/download/header_php.php<br>
+  /includes/modules/pages/password_forgotten/header_php.php<br>
+  /includes/modules/pages/product_free_shipping_info/main_template_vars.php<br>
+  /includes/modules/pages/product_info/main_template_vars.php<br>
+  /includes/modules/pages/product_music_info/main_template_vars.php<br>
+  /includes/modules/pages/product_reviews_write/header_php.php<br>
+  /includes/modules/payment/authorizenet.php<br>
+  /includes/modules/payment/authorizenet_aim.php<br>
+  /includes/modules/payment/authorizenet_echeck.php<br>
+  /includes/modules/payment/linkpoint_api/class.linkpoint_api.php<br>
+  /includes/modules/payment/linkpoint_api.php<br>
+  /includes/modules/payment/paypal/paypal_curl.php<br>
+  /includes/modules/payment/paypal/paypal_functions.php<br>
+  /includes/modules/payment/paypal.php<br>
+  /includes/modules/payment/paypaldp.php<br>
+  /includes/modules/payment/paypalwpp.php<br>
+  /includes/modules/sideboxes/manufacturers.php<br>
+  /includes/modules/attributes.php<br>
+  /includes/modules/create_account.php<br>
+  /includes/modules/extra_definitions.php<br>
+  /includes/modules/extra_functions.php<br>
+  /includes/templates/template_default/common/html_header.php<br>
+  /includes/templates/template_default/common/tpl_header.php<br>
+  /includes/templates/template_default/css/CSS_read_me.txt (just a help-text file)<br>
+  /includes/templates/template_default/jscript/on_load/read_me.txt (just a help-text file)<br>
+  /includes/templates/template_default/jscript/read_me.txt (just a help-text file)<br>
+  /includes/templates/template_default/popup_search_help/tpl_main_page.php<br>
+  /includes/templates/template_default/templates/tpl_account_default.php<br>
+  /includes/templates/template_default/templates/tpl_contact_us_default.php<br>
+  /includes/templates/template_default/templates/tpl_modules_create_account.php<br>
+  /includes/templates/template_default/templates/tpl_product_reviews_write_default.php<br>
+  /includes/templates/template_default/templates/tpl_zc_install_suggested_default.php</p>
+<p> /zc_install/ (alle Dateien in diesem Ordner)</p>
+</div>
+</div>
+</div>
+
+<!--End sc6-->
+
+<!--Begin sc7-->
+<div class="tabcontent" id="sc7" style="display: block;">
+<div class="textcontent">
+<div class="regularlist">
+<h1>Neuerungen gegenüber 1.5.0</h1>
+<ul>
+  <li><strong>Buttonlösung integriert</strong><br>
+    Die &quot;Buttonlösung&quot; ist integriert, beim Bearbeiten eines Artikels stehen Eingabefelder für die zusätzlichen Merkmale zur Verfügung. Der Bestellablauf ist an die Buttonlösung angepasst, im letzten Bestellschritt werden falls hinterlegt die zusätzlichen Merkmale angezeigt und kleine Artikelbilder. Layout und Texte entsprechen den Vorgaben der Buttonlösung. Bei Lieferung in ein Nicht-EU Land erscheint ein Hinweis zu möglichen Zollgebühren.</li>
+  <li><strong>Steuerung der Anzeige &quot;incl. Mwst. zzgl. Versandkosten&quot; via Administration</strong><br>
+    Die Anzeige &quot;incl. Mwst zzgl. Versandkosten&quot; berücksichtigt nun, ob im Shop Bruttopreise oder Nettopreise verwendet werden und zeigt dementsprechend den Text incl. oder excl. Steuer an. Unter Konfiguration &gt; Mein Shop kann nun eingestellt werden, ob die Anzeige überall, nur auf der Artikeldetailseite oder gar nicht erscheinen soll.</li>
+  <li><strong>CKEditor</strong><br> 
+    Neben dem TinyMCE steht nun auch die neueste Version des CKEditor als alternativer HTML Editor zur Verfügung. CKEditor ist als Standard gesetzt</li>
+  <li><strong>Installationslayout  modernisiert</strong><br> 
+    Der seit Jahren unveränderte Installer wurde layoutseitig überarbeitet</li>
+  <li><b>Neue Buttons im Adminbereich</b><br>
+  Der seit Jahren unveränderte Adminbereich wurde layoutseitig etwas überarbeitet
+  </li>
+    <li><b>Neues Template Viennaorange</b><br>
+  Als neues Standardtemplate kommt Viennaorange zum Einsatz. Die weiteren Beispieltemplates wurden verbreitert und haben teilweise neue Buttons bekommen.</li>
+  <li><strong>Unterstützung von PHP 5.4</strong><br>
+    PHP 5.4 wird nun vollständig unterstützt. Mit PHP 5.5 wurde diese Version aber nicht getestet.</li>
+</ul>
+Zusätzlich wurden folgende Neuerungen und Bugfixes aus der amerikanischen 1.5.1 Version unverändert übernommen:
+<p>Neuerungen: </p>
+<ul>
+  <li>CHANGE-207 - Add bypass to bandage the performance/caching problem   with products_viewed counter on busy sites, inspired by an idea from   data-diggers. This step simply splits the logic out into an observer   class, and adds a switch to turn it on or off. Doesn't change any schema   or any reports. But of course if the switch is set to something other   than 'on', then the reports will be useless too unless alternate custom   data tracking code is added to the observer class.</li>
+  <li>CHANGE-208 - Implement data-diggers querycache</li>
+  <li>CHANGE-220 - Add optional constant   'DOWNLOADS_SKIP_DOT_PREFIX_ON_REDIRECT' to overcome rare problem on some   servers which won't allow use of dot-prefixed temporary files.      Usage: define('DOWNLOADS_SKIP_DOT_PREFIX_ON_REDIRECT', TRUE); in   /includes/extra_configures/ folder.</li>
+  <li>CHANGE-238 - php 5.4 Updates, mainly for htmlentities() calls</li>
+  <li>CHANGE-240 - Add form auto-focus on advanced-search results and admin category lookups</li>
+  <li>CHANGE-265 - Add children support to category-specific stylesheet overrides -- ie: c_XX_XX_children.css</li>
+  <li>CHANGE-273 - Add css-driven antispam support to contact-us, create-account, and product reviews</li>
+  <li>CHANGE-282 - Add improved notifier support for the shipping   calculate_boxes_weight_and_tare() function to allow for easier intercept   by plugins</li>
+  <li>CHANGE-283 - Add coders the ability to allow for a custom count query in split page results class</li>
+  <li>CHANGE-284 - Update db schema and various code bits to handle longer lengths for IP addresses, to accommodate IPv6</li>
+  <li>CHANGE-287 - Add hooks for encryption tools needed by modules such as PPA</li>
+  <li>CHANGE-297 - Add improvements to notifier support for Downloads script (add all order data to observer resources)</li>
+  <li>CHANGE-298 - Move debug logging to separate /logs/ folder, as a   performance improvement measure, and be more semantically meaningful</li>
+</ul>
+Bugfixes:
+<ul>
+  <li>CHANGE-201 - Fix JS_STATE typo in /admin/includes/languages/english.php</li>
+  <li>CHANGE-202 - Fix compounding or multiple tax problems</li>
+  <li>CHANGE-204 - Fix problem with unescaped error messages in zc_install</li>
+  <li>CHANGE-205 - Fix error on Windows hosts: 'gzpost' can't have default value</li>
+  <li>CHANGE-206 - Fix admin profiles code to also manage product types</li>
+  <li>CHANGE-209 - Prevent the "apple double" effect in auto-loading folders ... ie: skip all files starting with "." or "_"</li>
+  <li>CHANGE-211 - Fix for bug where renaming an Admin Profile name allowed a blank entry.</li>
+  <li>CHANGE-213 - Fix missing check for EMAIL_DISCLAIMER constant, to   help prevent problems caused by people who incorrectly delete the define   from the language files.</li>
+  <li>CHANGE-214 - Fix various documentation errors</li>
+  <li>CHANGE-215 - Fix BOC currency exchange rate lookup to use newer   source. Fix bug which could return 0.00 mistakenly in some cases.</li>
+  <li>CHANGE-216 - Fix handler for HTML Editor plugins - was missing trailing slash in lookup path</li>
+  <li>CHANGE-218 - Fix Admin alert email text (HTML content missing) on change of user details</li>
+  <li>CHANGE-219 - Fix multiple-content-length headers when downloading by redirect</li>
+  <li>CHANGE-221 - Fix cause of error message: PHP Warning: strlen()   expects parameter 1 to be string, when triggered by customer   notification preferences submission at checkout</li>
+  <li>CHANGE-222 - Fix the .htaccess restriction which was preventing the .cur image files from working with spiffyCal</li>
+  <li>CHANGE-223 - Fix Authorize.net SIM/echeck module "currency code invalid" error when customer is shopping in non-USD currency</li>
+  <li>CHANGE-230 - Fix password reset vulnerability (random seed/entropy issue)</li>
+  <li>CHANGE-231 - Fix page_not_found on session timeout to time_out instead</li>
+  <li>CHANGE-233 - Fix HTML error in admin/profiles.php page - /head should have been /thead</li>
+  <li>CHANGE-236 - Fix: Customer authorization e-mail not sent out on pressing "the red button".</li>
+  <li>CHANGE-239 - Fix virtual cart problem causing error: "PayPal has   unexpectedly returned a blank address" only on carts with all virtual   products</li>
+  <li>CHANGE-241 - Fix Improper handling of '0' as search keyword</li>
+  <li>CHANGE-242 - Fix output/display errors in admin user/profile tools.</li>
+  <li>CHANGE-244 - Fix name of form field for javascript character count which could break in non-english translations</li>
+  <li>CHANGE-246 - Improve exceptions for testing Authnet in Test Mode</li>
+  <li>CHANGE-249 - Fix to allow more than one onetime fee in the shopping basket</li>
+  <li>CHANGE-255 - Fix missing [close]  from popup_search_help template file</li>
+  <li>CHANGE-256 - Fix validation errors in manufacturers sidebox if manufacturer_name contains ampersands</li>
+  <li>CHANGE-259 - Fix Admin menu problem occurring only in Opera 12 on Windows</li>
+  <li>CHANGE-261 - Fix outdated error message text about PHP 5.4 and configure.php file problems</li>
+  <li>CHANGE-262 - Fix PHP Error when no Record Company ID with Typefilter</li>
+  <li>CHANGE-263 - Clarify password-expiry language to minimize alarmist   reactions for those who don't understand the common use of expiring   passwords</li>
+  <li>CHANGE-264 - Fix PHP Fatal error: 1062:Duplicate entry '1-1' for key 1 when adding option values</li>
+  <li>CHANGE-268 - Fix Hardcoded text in Reports/Customer Referrals</li>
+  <li>CHANGE-269 - Fix misspelled Germany state (zones table)</li>
+  <li>CHANGE-275 - Fix json_encode error on non-UTF8 sites</li>
+  <li>CHANGE-277 - Rebrand PayPal products (for USA merchants only) according to changes implemented by PayPal in Q2 2012</li>
+  <li>CHANGE-279 - Fix PayPal Processor Decline Fails to Show Error Message when debug logging disabled</li>
+  <li>CHANGE-280 - Fix inconsistency in dist-configure.php example files</li>
+  <li>CHANGE-281 - Fix incorrect database constant used in tpl_account_default.php</li>
+  <li>CHANGE-294 - Fix issue where a customer who is banned after login could still checkout</li>
+  <li>CHANGE-296 - Update outdated Admin error message text for secure usernames</li>
+  <li>CHANGE-299 - update to change-230</li>
+  <li>CHANGE-199 - Fix various vulnerabilities in zc_install</li>
+  <li>CHANGE-325 - Admin Configuration does not correctly encode html entities in text boxes</li>
+  <li>CHANGE-327 - Update PayPal sandbox endpoints</li>
+  <li>CHANGE-334 - PHP Warning: strip_tags() expects at most 2 parameters, 4 given in coupon_admin.php</li>
+</ul>
+</div>
+</div>
+</div>
+
+<!--End sc7-->
+
+
+</div>
+<div id="footer"><a href="http://www.zen-cart-pro.at" target="_blank">www.zen-cart-pro.at</a> - Die deutsche Zen-Cart Version
+</div>
+</div>
+<!--end tabcontainer-->
+<script type="text/javascript">document.getElementById('sc1').style.display = 'none';</script>
+<script type="text/javascript">document.getElementById('sc2').style.display = 'none';</script>
+<script type="text/javascript">document.getElementById('sc3').style.display = 'none';</script>
+
+<script type="text/javascript">document.getElementById('sc5').style.display = 'none';</script>
+<script type="text/javascript">document.getElementById('sc6').style.display = 'none';</script>
+<script type="text/javascript">document.getElementById('sc7').style.display = 'none';</script>
+<script type="text/javascript">ShowTabs()</script>
+<script type="text/javascript">
+// We only show the tab links if JavaScript is available/active.
+<!--
+if (document.getElementById("slidetabsmenu") != null) {
+  document.getElementById('slidetabsmenu').style.display = "block";
+}
+//-->
+</script>
+</div>
+
+</body></html>
