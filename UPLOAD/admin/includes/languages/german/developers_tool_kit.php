@@ -4,7 +4,7 @@
  * @copyright Copyright 2003-2014 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: developers_tool_kit.php 616 2010-07-22 16:50:27Z webchills $
+ * @version $Id: developers_tool_kit.php 617 2014-02-18 08:50:27Z webchills $
  */
 define('HEADING_TITLE', 'Developers Tool Kit');
 define('TABLE_CONFIGURATION_TABLE', 'KONSTANTEN Definition suchen');
@@ -24,6 +24,7 @@ define('TEXT_LOOKUP_NONE', 'Keine');
 define('TEXT_INFO_SEARCHING', 'Durchsuche ');
 define('TEXT_INFO_FILES_FOR', ' Dateien ... nach: ');
 define('TEXT_INFO_MATCHES_FOUND', 'Anzahl gefundener Zeilen: ');
+define('TEXT_INFO_FILENAME', 'DATEINAME: ');
 define('TEXT_LANGUAGE_LOOKUPS', 'Sprachdateien durchsuchen:');
 define('TEXT_LANGUAGE_LOOKUP_CURRENT_LANGUAGE', 'Alle Sprachdateien für ' . strtoupper($_SESSION['language']) . ' - Webshop/Admin');
 define('TEXT_LANGUAGE_LOOKUP_CURRENT_CATALOG', 'Alle Haupt-Sprachdateien - Webshop (' . DIR_WS_CATALOG . DIR_WS_LANGUAGES . 'english.php /espanol.php etc.)');
@@ -61,4 +62,22 @@ define('TEXT_ALL_FILES_LOOKUP_PHP', 'nur .php');
 define('TEXT_ALL_FILES_LOOKUP_PHPCSS', 'nur .php und .css');
 define('TEXT_ALL_FILES_LOOKUP_CSS', 'nur .css');
 define('TEXT_ALL_FILES_LOOKUP_HTMLTXT', 'nur .html and .txt');
+define('TEXT_ALL_FILES_LOOKUP_JS', 'nur .js');
 define('TEXT_CASE_SENSITIVE', 'Groß-/Kleinschreibung beachten?');
+  //Search Configuration Keys
+  define('SEARCH_CFG_KEYS_HEADING_TITLE','<strong>Suche in Konfigurationseinstellungen/Kofigurationsschlüsseln</strong>');
+  define('SEARCH_CFG_KEYS_SEARCH_BOX_TEXT', '<strong>Suchbegriff:</strong> (Durchsucht werden Namen und Beschreibung von Konfigurationseinstellungen und Konfigurationsschlüssel, falls sie exakt dem Suchbegriff entsprechen.)');
+  define('SEARCH_CFG_KEYS_TABLE_SECTION', 'Bereich');
+  define('SEARCH_CFG_KEYS_TABLE_GROUP','Gruppe');
+  define('SEARCH_CFG_KEYS_TABLE_TITLE', 'Titel');
+  define('SEARCH_CFG_KEYS_TABLE_DESCRIPTION','Beschreibung');
+  define('SEARCH_CFG_KEYS_TABLE_VALUE','Wert');
+  define('SEARCH_CFG_KEYS_TABLE_KEY_NAME', 'Schlüssel Name');
+  define('SEARCH_CFG_KEYS_TABLE_EDIT','Bearbeiten');
+  define('SEARCH_CFG_KEYS_NOT_FOUND_KEYS', 'Kein(e) Konfigurationsschlüssel gefunden.');
+  define('SEARCH_CFG_KEYS_FOUND_KEYS', 'Konfigurationsschlüssel gefunden');
+  define('SEARCH_CFG_KEYS_FORM_PLACEHOLDER', 'Suchbegriff für Einstellungen eingeben');
+  define('SEARCH_CFG_KEYS_FORM_BUTTON_SEARCH_SORTED_BY_GROUP', 'Suche');
+  define('SEARCH_CFG_KEYS_FORM_BUTTON_SEARCH_SORTED_BY_KEY', 'Suche (nach Schlüssel sortiert)');
+  define('SEARCH_CFG_KEYS_FORM_BUTTON_VIEW_ALL', 'Zeige Alle');
+  define('SEARCH_CFG_KEYS_FORM_BUTTON_RESET', 'Zurücksetzen');

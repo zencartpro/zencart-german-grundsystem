@@ -4,7 +4,7 @@
  * @copyright Copyright 2003-2014 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: german.php 646 2014-02-09 12:54:04Z webchills $
+ * @version $Id: german.php 647 2014-02-18 12:54:04Z webchills $
  */
 if (!defined('IS_ADMIN_FLAG'))
 {
@@ -87,8 +87,7 @@ define('TEXT_GV_REDEEM', 'Gutscheinnummer');
 define('MALE', 'Herr');
 define('FEMALE', 'Frau');
 
-// text for date of birth example
-define('DOB_FORMAT_STRING', 'dd.mm.yyyy');
+define('NONE', 'Kein');
 
 // configuration box text
 define('BOX_HEADING_CONFIGURATION', 'Konfiguration');
@@ -514,8 +513,6 @@ define('TEXT_SHOW_GV_QUEUE', '%s wartet auf Freigabe');
 define('IMAGE_GIFT_QUEUE', TEXT_GV_NAME . ' Warteschleife');
 define('IMAGE_ORDER', 'Bestellung');
 
-define('BOX_TOOLS_EMAIL_WELCOME', 'Willkommensnachricht');
-
 define('IMAGE_DISPLAY', 'Anzeige');
 define('IMAGE_UPDATE_SORT', 'Sortierung aktualisieren');
 define('IMAGE_EDIT_PRODUCT', 'Artikel bearbeiten');
@@ -581,6 +578,7 @@ define('TEXT_LEGEND_STATUS_ON', 'Status AN ');
 define('TEXT_INFO_MASTER_CATEGORIES_ID', '<strong>HINWEIS: Die Hauptkategorie wird für die Bepreisung verwendet, wo<br />Artikelkategorien Preise bei verlinkten Artikel beeinflussen, z.B. bei Abverkäufen</strong>');
 define('TEXT_YES', 'Ja');
 define('TEXT_NO', 'Nein');
+define('TEXT_CANCEL', 'Abbrechen');
 
 // shipping error messages
 define('ERROR_SHIPPING_CONFIGURATION', '<strong>Fehler in der Versandkonfiguration!</strong>');
@@ -725,6 +723,7 @@ define('TEXT_NOEMAIL', 'Keine E-Mail');
 
 define('BOX_HEADING_PRODUCT_TYPES', 'Artikeltypen');
 
+define('ERROR_DATABASE_MAINTENANCE_NEEDED', '<a href="http://www.zen-cart-pro.at/forum" target="_blank">FEHLER 0071: Es scheint ein Problem mit der Datenbank zu geben. Ausführung von Datenbankwartungsfunktionen ist erforderlich.</a>');
 ///////////////////////////////////////////////////////////
 // include additional files:
   require(DIR_WS_LANGUAGES . $_SESSION['language'] . '/' . FILENAME_EMAIL_EXTRAS);
