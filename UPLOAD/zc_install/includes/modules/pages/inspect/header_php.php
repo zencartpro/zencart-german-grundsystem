@@ -5,7 +5,7 @@
  * @copyright Copyright 2003-2014 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: header_php.php 788 2014-02-08 08:13:51Z webchills $
+ * @version $Id: header_php.php 789 2014-02-18 08:15:51Z webchills $
  *
  * @TODO - http://dev.mysql.com/doc/refman/5.0/en/user-resources.html
  */
@@ -246,10 +246,10 @@ if (false) { // DISABLED THIS CODEBLOCK FOR NOW....
     $this_class = 'OK';
   }
   
-  if (version_compare(PHP_VERSION, 5.5, '>=')) {
+  if (version_compare(PHP_VERSION, 6, '>=')) {
     $php_ver = $zc_install->php_version;
     $this_class = 'WARN';
-    $err_text = 'This ZC version is not yet tested with this version of PHP.';
+    $err_text = 'Diese Zen Cart Version wurde mit dieser PHP Version nicht getestet!';
     $err_code = '';
   }
   $status_check[] = array('Importance' => 'Critical', 'Title' => LABEL_PHP_VER, 'Status' => $php_ver, 'Class' => $this_class, 'HelpURL' =>$err_code, 'HelpLabel'=>$err_text);
