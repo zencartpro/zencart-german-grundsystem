@@ -5,7 +5,7 @@
  * @copyright Copyright 2003-2014 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: header_php.php 789 2014-02-18 08:15:51Z webchills $
+ * @version $Id: header_php.php 790 2014-02-18 08:15:51Z webchills $
  *
  * @TODO - http://dev.mysql.com/doc/refman/5.0/en/user-resources.html
  */
@@ -379,8 +379,8 @@ if (version_compare(PHP_VERSION, 5.4, '<')) {
   $status_check2[] = array('Importance' => 'Optional', 'Title' => LABEL_XML_SUPPORT, 'Status' => $xml_support, 'Class' => ($xml_support==ON)?'OK':'WARN', 'HelpURL' =>'', 'HelpLabel'=>'');
 
   // PHP output buffering (GZip) (PHP configuration)
-  $php_buffer = (@ini_get("output_buffering"))   ? ON : OFF;
-  $status_check2[] = array('Importance' => 'Optional', 'Title' => LABEL_GZIP, 'Status' => $php_buffer, 'Class' => ($php_buffer==ON)?'OK':'WARN', 'HelpURL' =>'', 'HelpLabel'=>'');
+  //$php_buffer = (@ini_get("output_buffering"))   ? ON : OFF;
+  //$status_check2[] = array('Importance' => 'Optional', 'Title' => LABEL_GZIP, 'Status' => $php_buffer, 'Class' => ($php_buffer==ON)?'OK':'WARN', 'HelpURL' =>'', 'HelpLabel'=>'');
 
   //Check PostgreSQL availability
 // turn off display of Postgres status until we support it again
@@ -478,6 +478,7 @@ if (version_compare(PHP_VERSION, 5.4, '<')) {
   foreach (array('cache'=>'777 read/write/execute',
                  'images'=>'777 read/write/execute (INCLUDE SUBDIRECTORIES TOO)',
                  'includes/languages/english/html_includes'=>'777 read/write (INCLUDE SUBDIRECTORIES TOO)',
+                 'includes/languages/german/html_includes'=>'777 read/write (INCLUDE SUBDIRECTORIES TOO)',
                  'logs'=>'777 read/write/execute',
                  'media'=>'777 read/write/execute',
                  'pub'=>'777 read/write/execute',
