@@ -35,22 +35,20 @@
 <body onload="init()">
 <!-- header //-->
 <?php require(DIR_WS_INCLUDES . 'header.php'); ?>
-
-<style>
-    ul {list-style-type: none;}
-    .f14 {font-size: 14pt;}
-    h1 {font-size: 18pt; padding-left: 20pt;}
-    .w200 {width: 85pt; border: 0px solid red; display:inline-block; text-align:right; padding: 3pt;}
-</style>
-
-<h1>die proponenten</h1>
-<ul>                
-    <li class="f14"><span class="w200">hugo13: </span><a class="f14" href="http://edv.langheiter.com">http://edv.langheiter.com</a></li>
-    <li class="f14"><span class="w200">maleborg: </span><a style="font-size: 14pt;" href="http://zencart.edv-service-sachs.de/">http://zencart.edv-service-sachs.de</a></li>
-    <li class="f14"><span class="w200">webchills: </span><a style="font-size: 14pt;" href="http://www.webchills.at">http://www.webchills.at</a></li>
-</ul>
+<div id="additionalpages">
+<h1>Entwicklerteam der deutschen Zen Cart Version</h1>
+<b>hugo13</b><br/>
+<a href="http://edv.langheiter.com" target="_blank">http://edv.langheiter.com</a>
+<br/><br/>
+<b>webchills</b><br/>
+<a href="http://www.webchills.at" target="_blank">http://www.webchills.at</a>
+<br/><br/>
+<b>MaleBorg</b>
+<br/><br/>
+Follow us on Twitter:<br/>
+<a href="http://www.twitter.com/zencartpro" target="_blank">www.twitter.com/zencartpro</a>
 <br><br><br>
-
+</div>
 <?php require(DIR_WS_INCLUDES . 'footer.php'); ?>
 <!-- footer_eof //-->
 <br>
