@@ -4,7 +4,7 @@
  * @copyright Copyright 2003-2014 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: zones.php 730 2014-02-08 15:49:16Z webchills $
+ * @version $Id: zones.php 731 2014-02-22 07:49:16Z webchills $
  */
 /*
 
@@ -302,24 +302,32 @@
       $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) values ('Tax Basis', 'MODULE_SHIPPING_ZONES_TAX_BASIS', 'Shipping', 'On what basis is Shipping Tax calculated. Options are<br />Shipping - Based on customers Shipping Address<br />Billing Based on customers Billing address<br />Store - Based on Store address if Billing/Shipping Zone equals Store zone', '6', '0', 'zen_cfg_select_option(array(\'Shipping\', \'Billing\', \'Store\'), ', now())");
       $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) values ('Sort Order', 'MODULE_SHIPPING_ZONES_SORT_ORDER', '0', 'Sort order of display.', '6', '0', now())");
       $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) values ('Skip Countries, use a comma separated list of the two character ISO country codes', 'MODULE_SHIPPING_ZONES_SKIPPED', '', 'Disable for the following Countries:', '6', '0', 'zen_cfg_textarea(', now())");
-
+      $db->Execute("insert into " . TABLE_CONFIGURATION_LANGUAGE   . " (configuration_title, configuration_key, configuration_language_id, configuration_description, date_added) values ('Versandkosten nach Zonen aktivieren?', 'MODULE_SHIPPING_ZONES_STATUS', '43', 'Wollen Sie Versandkosten nach Zonen anbieten?', now())");
+      $db->Execute("insert into " . TABLE_CONFIGURATION_LANGUAGE   . " (configuration_title, configuration_key, configuration_language_id, configuration_description, date_added) values ('Berechnungmethode', 'MODULE_SHIPPING_ZONES_METHOD', '43', 'Sollen die Versandkosten nach Gewicht (= Weight), Preis (= Price) oder Artikelanzahl (= Item) berechnet werden?', now())");
+      $db->Execute("insert into " . TABLE_CONFIGURATION_LANGUAGE   . " (configuration_title, configuration_key, configuration_language_id, configuration_description, date_added) values ('Steuerklasse', 'MODULE_SHIPPING_ZONES_TAX_CLASS', '43', 'Folgende Steuerklasse auf die Versandkosten anwenden:', now())");
+      $db->Execute("insert into " . TABLE_CONFIGURATION_LANGUAGE   . " (configuration_title, configuration_key, configuration_language_id, configuration_description, date_added) values ('Grundlage der Steuern', 'MODULE_SHIPPING_ZONES_TAX_BASIS', '43', 'Möglichkeiten sind:<br/>Shipping = Steuern der Versandkosten richten sich nach der Lieferadresse des Kunden<br/>Billing = Steuern der Versandkosten richten sich nach der Rechnungsadresse des Kunden<br/>Store = Steuern der Versandkosten richten sich nach der Adresse des Shops', now())");
+      $db->Execute("insert into " . TABLE_CONFIGURATION_LANGUAGE   . " (configuration_title, configuration_key, configuration_language_id, configuration_description, date_added) values ('Sortierreihenfolge', 'MODULE_SHIPPING_ZONES_SORT_ORDER', '43', 'Anzeigereihenfolge dieses Moduls. Niedrigste Werte werden zuerst angezeigt.', now())");
+      $db->Execute("insert into " . TABLE_CONFIGURATION_LANGUAGE   . " (configuration_title, configuration_key, configuration_language_id, configuration_description, date_added) values ('Länder sperren', 'MODULE_SHIPPING_ZONES_SKIPPED', '43', 'Wenn Sie für bestimmte Länder Versandkosten nach Zonen NICHT erlauben wollen, dann tragen Sie hier die zweiställigen Länder ISO Codes ein mit Komma getrennt, um diese Länder zu sperren.', now())");
       for ($i = 1; $i <= $this->num_zones; $i++) {
         $default_countries = '';
         if ($i == 1) {
-          $default_countries = 'US,CA';
+          $default_countries = 'AT,DE';
         }
         $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) values ('Zone " . $i ." Countries', 'MODULE_SHIPPING_ZONES_COUNTRIES_" . $i ."', '" . $default_countries . "', 'Comma separated list of two character ISO country codes that are part of Zone " . $i . ".<br />Set as 00 to indicate all two character ISO country codes that are not specifically defined.', '6', '0', 'zen_cfg_textarea(', now())");
         $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) values ('Zone " . $i ." Shipping Table', 'MODULE_SHIPPING_ZONES_COST_" . $i ."', '3:8.50,7:10.50,99:20.00', 'Shipping rates to Zone " . $i . " destinations based on a group of maximum order weights/prices. Example: 3:8.50,7:10.50,... Weight/Price less than or equal to 3 would cost 8.50 for Zone " . $i . " destinations.<br />You can also use percentage amounts, such 25:8.50,35:5%,40:9.50,10000:7% to charge a percentage value of the Order Total', '6', '0', 'zen_cfg_textarea(', now())");
         $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) values ('Zone " . $i ." Handling Fee', 'MODULE_SHIPPING_ZONES_HANDLING_" . $i."', '0', 'Handling Fee for this shipping zone', '6', '0', now())");
-
         $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) values ('Handling Per Order or Per Box Zone " . $i . " (when by weight)' , 'MODULE_SHIPPING_ZONES_HANDLING_METHOD_" . $i."', 'Order', 'Do you want to charge Handling Fee Per Order or Per Box?', '6', '0', 'zen_cfg_select_option(array(\'Order\', \'Box\'), ', now())");
-
+        $db->Execute("insert into " . TABLE_CONFIGURATION_LANGUAGE   . " (configuration_title, configuration_key, configuration_language_id, configuration_description, date_added) values ('Zone " . $i ." Länder', 'MODULE_SHIPPING_ZONES_COUNTRIES_" . $i ."', '43', 'Durch Komma getrennte Liste zweistelliger ISO Ländercodes für die die Versandkosten der Zone " . $i . " gelten sollen.<br />Wenn Sie hier 00 eintragen, dann gelten die Versandkosten für alle Länder, die nicht explizit angegeben wurden.', now())");
+        $db->Execute("insert into " . TABLE_CONFIGURATION_LANGUAGE   . " (configuration_title, configuration_key, configuration_language_id, configuration_description, date_added) values ('Zone " . $i ." Versandkosten', 'MODULE_SHIPPING_ZONES_COST_" . $i ."', '43', 'Versandkosten für Zone " . $i . " Länder.<br/>Beispiel: 3:8.50,7:10.50,20:20.50 bedeutet:<br/>Gewicht/Preis kleiner gleich 3 kostet 8,50 Euro. Gewicht/Preis von mehr als 3 und kleiner gleich 7 kostet 10,50 Euro. Und Gewicht/Preis von mehr als 7 und kleiner gleich 20 kostet 20,50 Euro für Zone " . $i . " Länder.<br />Sie können auch Prozentwerte angeben, z.B. 25:8.50,35:5%,40:9.50,10000:7% um einen Prozentsatz der Gesamtsumme zu verrechnen.', now())");
+        $db->Execute("insert into " . TABLE_CONFIGURATION_LANGUAGE   . " (configuration_title, configuration_key, configuration_language_id, configuration_description, date_added) values ('Zone " . $i ." Bearbeitungsgebühr', 'MODULE_SHIPPING_ZONES_HANDLING_" . $i."', '43', 'Wollen Sie für diese Versandart eine Bearbeitungsgebühr verrechnen? Dann tragen Sie hier die Kosten dieser Gebühr ein:', now())");
+        $db->Execute("insert into " . TABLE_CONFIGURATION_LANGUAGE   . " (configuration_title, configuration_key, configuration_language_id, configuration_description, date_added) values ('Zone " . $i ." Art der Bearbeitungsgebühr (nur wenn nach Gewicht verrechnet wird)', 'MODULE_SHIPPING_ZONES_HANDLING_METHOD_" . $i."', '43', 'Wollen Sie die Bearbeitungsgebühr pro Bestellung (=Order) oder pro Paket (=Box) verrechnen?', now())");
       }
     }
 
     function remove() {
       global $db;
       $db->Execute("delete from " . TABLE_CONFIGURATION . " where configuration_key like 'MODULE\_SHIPPING\_ZONES\_%'");
+      $db->Execute("delete from " . TABLE_CONFIGURATION_LANGUAGE . " where configuration_key like 'MODULE\_SHIPPING\_ZONES\_%'");
     }
 
     function keys() {

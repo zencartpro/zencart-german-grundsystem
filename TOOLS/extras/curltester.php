@@ -1,11 +1,14 @@
 <?php
-/*
- * @package utilities
- * @copyright Copyright 2003-2014 Zen Cart Development Team
- * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: curltester.php 730 2014-02-09 15:49:16Z webchills $
+/**
+ * Standalone Diagnostics/Debug tool for testing CURL communications to common 3rd party services such as USPS and PayPal and Authorize.net and more.
+ * Accepted parameters:
+ *   d=1 or details=1 -- show CURL connection details -- useful for determining cause of communications problems
+ *   r=1 -- show Response obtained from destination server -- this may contain an error message, but usually means communication was okay
  *
- * This utility is simply intended to test whether the host server has the ability to use CURL to connect to external servers in order to send communications, such as for PayPal transactions
+ * @package utilities
+ * @copyright Copyright 2003-2013 Zen Cart Development Team
+ * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
+ * @version GIT: $Id: Author: DrByte  Mon Oct 28 16:43:30 2013 -0400 Modified in v1.5.2 $
  */
 // no caching
 header('Cache-Control: no-cache, no-store, must-revalidate');
@@ -166,3 +169,7 @@ function dofsockTest($url = 'www.zen-cart.com/testcurl.php', $port = 80, $timeou
  * FOR DEVELOPERS ONLY:
  * Additional tip about CURLOPT_CAINFO in Development environments  (NOTE: THIS IS NOT SAFE FOR LIVE PRODUCTION SERVERS!!!!!)
  * 1. obtain the cacert.pem file from http://curl.haxx.se/docs/caextract.html
+ * 2. place the file on your development server
+ * 3. edit your php.ini and set curl.cainfo = '/your/full/path/to/cacert.pem' ... or manually add CURLOPT_CAINFO to every CURL call you do in every php file.
+ * NOTE: this opens you up to MITM risks, so should NEVER be done on a live server!!!!!
+ */
