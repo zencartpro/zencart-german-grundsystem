@@ -5,7 +5,7 @@
  * @copyright Copyright 2003-2014 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: tpl_main_page.php 806 2014-02-08 08:28:24Z webchills $
+ * @version $Id: tpl_main_page.php 807 2014-02-22 08:28:24Z webchills $
  */
 
   $header_template = 'tpl_header.php';
@@ -24,7 +24,7 @@
   <div id="header">
   <img src="<?php echo DIR_WS_INSTALL_TEMPLATE; ?>images/zen_header_bg.jpg" alt="Zen-Cart 1.5.2 - deutsche Version" title="Zen-Cart 1.5.1 - deutsche Version"/>
   </div>
-  <div id="installme">Installationsprogramm für Zen-Cart 1.5.2 BETA1 - deutsche Version</div>
+  <div id="installme">Installationsprogramm für Zen-Cart 1.5.2 - deutsche Version</div>
   <div id="content">
   <h1><?php echo TEXT_PAGE_HEADING; ?></h1>
   <p><?php echo TEXT_MAIN; ?></p>
