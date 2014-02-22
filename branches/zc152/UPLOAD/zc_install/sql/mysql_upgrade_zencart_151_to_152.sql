@@ -5,8 +5,8 @@
 # * @access private
 # * @copyright Copyright 2003-2013 Zen Cart Development Team
 # * @copyright Portions Copyright 2003 osCommerce
-# * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
-# * @version GIT: $Id: Author: DrByte  Thu Oct 31 13:50:24 2013 -0400 New in v1.5.2 $
+# * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
+# * @version $Id: mysql_upgrade_zencart_151_to_152.sql 1 2014-02-22 08:45:57Z webchills $
 #
 
 ############ IMPORTANT INSTRUCTIONS ###############
@@ -32,7 +32,7 @@
 #####################################################
 
 # Set store to Down-For-Maintenance mode.  Must reset manually via admin after upgrade is done.
-#UPDATE configuration set configuration_value = 'true' where configuration_key = 'DOWN_FOR_MAINTENANCE';
+UPDATE configuration set configuration_value = 'true' where configuration_key = 'DOWN_FOR_MAINTENANCE';
 
 # Clear out active customer sessions
 TRUNCATE TABLE whos_online;
@@ -75,6 +75,15 @@ INSERT INTO configuration (configuration_title, configuration_key, configuration
 INSERT INTO configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, last_modified, date_added, use_function, set_function) VALUES ('PA-DSS Strong Password Rules Enforced?', 'PADSS_PWD_EXPIRY_ENFORCED', '1', 'PA-DSS Compliance requires that admin passwords must be changed after 90 days and cannot re-use the last 4 passwords. <strong>Disabling this makes your site NON-COMPLIANT with PA-DSS rules, thus invalidating any certification.</strong>', 1, 30, now(), now(), NULL, 'zen_cfg_select_drop_down(array(array(\'id\'=>\'0\', \'text\'=>\'Non-Compliant\'), array(\'id\'=>\'1\', \'text\'=>\'On\')),');
 INSERT INTO configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) VALUES ('Show linked status for categories', 'SHOW_CATEGORY_PRODUCTS_LINKED_STATUS', 'true', 'Show Category products linked status?', '1', '19', 'zen_cfg_select_option(array(\'true\', \'false\'), ', now());
 
+
+REPLACE INTO configuration_language (configuration_title, configuration_key, configuration_language_id, configuration_description, last_modified, date_added) VALUES
+('Admin Timeout gemäß PA-DSS Zertifizierung?', 'PADSS_ADMIN_SESSION_TIMEOUT_ENFORCED', 43, 'Der Shop erfüllt nur dann die Richtlinien einer PA-DSS Zertifizierung, wenn die Adminsitzung nach 15 Minuten Inaktivität beendet wird. Nach 15 Minuten Inaktivität werden Sie aus der Administration ausgeloggt. Wenn Sie das nicht wollen, dann deaktivieren Sie hier diese Einstellung.<br/><b>Achtung: Durch das Deaktivieren dieser Einstellung erfüllt Ihr Shop die PA-DSS Richtlinien nicht mehr und ist daher für eine Zertifizierung ungeeignet!</b>', now(), now()),
+('Admin Passwortregeln gemäß PA-DSS Zertifizierung?', 'PADSS_PWD_EXPIRY_ENFORCED', 43, 'Der Shop erfüllt nur dann die Richtlinien einer PA-DSS Zertifizierung, wenn die Adminpasswörter alle 90 Tage geändert werden und dabei nicht die 4 letzten Passwörter wiederverwendet werden dürfen. Wenn Sie das nicht wollen, dann deaktivieren Sie hier diese Einstellung.<br/><b>Achtung: Durch das Deaktivieren dieser Einstellung erfüllt Ihr Shop die PA-DSS Richtlinien nicht mehr und ist daher für eine Zertifizierung ungeeignet!</b>', now(), now()),
+('Verlinkte Kategorien im Adminbereich anzeigen', 'SHOW_CATEGORY_PRODUCTS_LINKED_STATUS', 43, 'Soll im Adminbereich angezeigt werden, wenn Artikel auch in anderen Kategorien verlinkt sind (gelbes Symbol neben dem Artikel)?', now(), now()),
+('Orte für die Abholung', 'MODULE_SHIPPING_STOREPICKUP_LOCATIONS_LIST', 43, 'Hier können Sie verschiedene Orte für die Selbstabholung eintragen. Trennen Sie die Orte mit einem Strichpunkt (Semikolon).<br/>Optional können Sie je nach Abholort auch eine Gebühr verrechnen. Wird keine spezielle Gebühr definiert, dann gelten die normalen Kosten aus der näcjsten Einstellung.<br/><br/>Hier einige Beispiele:<br/><br/>Demogasse 17 - 1010 Wien;Beispielweg 15 - 8020 Graz<br/>Demogasse 17 - 1010 Wien,4.00;Beispielweg 15 - 8020 Graz,5.00<br/>Demogasse 17 - 1010 Wien,4.00;Beispielweg 15 - 8020 Graz,0.00<br/><br/>Wenn Sie in Ihrem Shop mehrere Sprachen aktiv haben und diese Ortsangaben je nach Sprache anders angeben wollen, dann beachten Sie bitte die Hinweise in der entsprechenden Sprachdatei (z.B. includes/languages/german/modules/shipping/storepickup.php)<br/>', now(), now()),
+('E-Mail als MIME HTML versenden', 'EMAIL_USE_HTML', 43, 'Wollen Sie e-Mails im HTML Format versenden falls der Empfänger in seinen Einstellungen HTML statt Text angekreuzt hat?<br/>HINWEIS: Dies ist der generelle Hauptschalter. Wenn Sie hier auf false stellen, dann wird der Shop keinerlei HTML Emails versenden.', now(), now()),
+('E-Mail an Admin: Format', 'ADMIN_EXTRA_EMAIL_FORMAT', 43, 'WÃ¤hlen Sie das Format fÃ¼r e-Mails, die zusÃ¤tzlich an den Administrator versendet werden.<br/>HINWEIS: Wenn Sie hier HTML auswählen, dann muss auch der generelle Hauptschalter HTML Emails versenden auf true gestellt sein, sonst werden trotzdem nur Text Emails an den Admin versandt.', now(), now());
+
 #############
 
 #### VERSION UPDATE STATEMENTS
@@ -86,7 +95,7 @@ SELECT project_version_key, project_version_major, project_version_minor, projec
 FROM project_version;
 
 ## Now set to new version
-UPDATE project_version SET project_version_major='1', project_version_minor='5.2-BETA', project_version_patch1='', project_version_patch1_source='', project_version_patch2='', project_version_patch2_source='', project_version_comment='Version Update 1.5.1->1.5.2-BETA', project_version_date_applied=now() WHERE project_version_key = 'Zen-Cart Main';
+UPDATE project_version SET project_version_major='1', project_version_minor='5.2', project_version_patch1='', project_version_patch1_source='', project_version_patch2='', project_version_patch2_source='', project_version_comment='Version Update 1.5.1->1.5.2', project_version_date_applied=now() WHERE project_version_key = 'Zen-Cart Main';
 UPDATE project_version SET project_version_major='1', project_version_minor='5.2', project_version_patch1='', project_version_patch1_source='', project_version_patch2='', project_version_patch2_source='', project_version_comment='Version Update 1.5.1->1.5.2', project_version_date_applied=now() WHERE project_version_key = 'Zen-Cart Database';
 
 #####  END OF UPGRADE SCRIPT
