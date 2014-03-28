@@ -5,7 +5,7 @@
  * @package classes
  * @copyright Copyright 2003-2014 Zen Cart Development Team
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: class.base.php 730 2014-02-08 15:49:16Z hugo13 $
+ * @version $Id: class.base.php 731 2014-03-28 11:11:16Z webchills $
  */
 /**
  * abstract class base
@@ -116,6 +116,9 @@ class base {
   function setStaticObserver($element, $value)
   {
     $observer =  & base::getStaticObserver();
+    if (!is_array($observer)) {
+      $observer = array ();
+    }
     $observer[$element] = $value;
   }
   function unsetStaticObserver($element)
