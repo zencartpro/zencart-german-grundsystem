@@ -7,7 +7,7 @@
  * @copyright Copyright 2003-2014 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: html_output.php 837 2013-02-28 11:33:58Z webchills $
+ * @version $Id: html_output.php 838 2014-03-28 11:06:58Z webchills $
  */
 
 /*
@@ -59,8 +59,8 @@
     while ( (substr($link, -1) == '&') || (substr($link, -1) == '?') ) $link = substr($link, 0, -1);
 // Add the session ID when moving from different HTTP and HTTPS servers, or when SID is defined
     if ( ($add_session_id == true) && ($session_started == true) && (SESSION_FORCE_COOKIE_USE == 'False') ) {
-      if (defined('SID') && zen_not_null(SID)) {
-        $sid = SID;
+      if (defined('SID') && zen_not_null(constant('SID'))) {
+        $sid = constant('SID');
 //      } elseif ( ( ($request_type == 'NONSSL') && ($connection == 'SSL') && (ENABLE_SSL_ADMIN == 'true') ) || ( ($request_type == 'SSL') && ($connection == 'NONSSL') ) ) {
       } elseif ( ( ($request_type == 'NONSSL') && ($connection == 'SSL') && (ENABLE_SSL == 'true') ) || ( ($request_type == 'SSL') && ($connection == 'NONSSL') ) ) {
         if ($http_domain != $https_domain) {
