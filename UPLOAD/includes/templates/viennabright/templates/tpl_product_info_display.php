@@ -130,6 +130,7 @@ if (CUSTOMERS_APPROVAL == 3 and TEXT_LOGIN_FOR_PRICE_BUTTON_REPLACE_SHOWROOM == 
 ?>
 <!--eof Product details list -->
 
+
 <!--bof Attributes Module -->
 <?php
   if ($pr_attr->fields['total'] > 0) {
@@ -222,6 +223,14 @@ if (CUSTOMERS_APPROVAL == 3 and TEXT_LOGIN_FOR_PRICE_BUTTON_REPLACE_SHOWROOM == 
   }
 ?>
 <!--eof Product URL -->
+
+<!--bof Facebook Like Button-->
+<?php 
+  if (FACEBOOK_LIKE_BUTTON_STATUS == 'true' && $_SERVER['https'] != 'on') {
+    require($template->get_template_dir('tpl_modules_facebook_like_button.php',DIR_WS_TEMPLATE, $current_page_base,'templates'). '/tpl_modules_facebook_like_button.php'); 
+  }
+?>
+<!--eof Facebook Like Button-->
 
 <!--bof also purchased products module-->
 <?php 

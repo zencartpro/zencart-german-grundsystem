@@ -5,7 +5,7 @@
 # * @copyright Copyright 2003-2014 Zen Cart Development Team
 # * @copyright Portions Copyright 2003 osCommerce
 # * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
-# * @version $Id: mysql_zencart.sql 19336 2014-03-28 11:12:59Z webchills $
+# * @version $Id: mysql_zencart.sql 19337 2014-03-28 19:12:59Z webchills $
 #
 
 ############ IMPORTANT INSTRUCTIONS ###############
@@ -2106,6 +2106,7 @@ VALUES ('configMyStore', 'BOX_CONFIGURATION_MY_STORE', 'FILENAME_CONFIGURATION',
        ('configEzPagesSettings', 'BOX_CONFIGURATION_EZPAGES_SETTINGS', 'FILENAME_CONFIGURATION', 'gID=30', 'configuration', 'Y', 25),
        ('configMinifySettings', 'BOX_CONFIGURATION_MINIFY', 'FILENAME_CONFIGURATION', 'gID=31', 'configuration', 'Y', 31),
        ('configGoogleAnalytics','BOX_CONFIGURATION_GOOGLEANALYTICS','FILENAME_CONFIGURATION', 'gID=32', 'configuration', 'Y', 32),
+	   ('configFacebook','BOX_CONFIGURATION_FACEBOOK','FILENAME_CONFIGURATION', 'gID=33', 'configuration', 'Y', 33),
        ('categories', 'BOX_CATALOG_CATEGORIES_PRODUCTS', 'FILENAME_CATEGORIES', '', 'catalog', 'Y', 1),
        ('productTypes', 'BOX_CATALOG_PRODUCT_TYPES', 'FILENAME_PRODUCT_TYPES', '', 'catalog', 'Y', 2),
        ('priceManager', 'BOX_CATALOG_PRODUCTS_PRICE_MANAGER', 'FILENAME_PRODUCTS_PRICE_MANAGER', '', 'catalog', 'Y', 3),
@@ -2905,6 +2906,27 @@ INSERT INTO configuration (configuration_title, configuration_key, configuration
 INSERT INTO configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, last_modified, date_added, use_function, set_function) VALUES ('Add Custom Tracking After Main Analytics Code?', 'GOOGLE_ANALYTICS_CUSTOM_CODE_ENABLED', 'Disable', 'Enables / disables inclusion of custom Javascript.', @gid, 10, NOW(), NOW(), NULL, 'zen_cfg_select_option(array(''Enable'', ''Disable''),');
 INSERT INTO configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, last_modified, date_added, use_function, set_function) VALUES ('Google Custom Code - After', 'GOOGLE_ANALYTICS_CUSTOM_CODE', '', 'If you wish to include any Javascript code after the main tracking segment, insert it here.<br /><br />', @gid, 11, NOW(), NOW(), NULL, 'zen_cfg_textarea(');
 
+#Facebook Settings
+INSERT INTO configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, last_modified, date_added, use_function, set_function) VALUES('Open Graph - Enable Facebook Open Graph', 'FACEBOOK_OPEN_GRAPH_STATUS', 'false', 'Enable Facebook Open Graph meta data?', 33, 1, NOW(), NOW(), NULL, 'zen_cfg_select_option(array(\'true\', \'false\'),');
+INSERT INTO configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, last_modified, date_added, use_function, set_function) VALUES('Open Graph - Application ID', 'FACEBOOK_OPEN_GRAPH_APPID', '', 'Please enter your application ID (<a href="http://developers.facebook.com/setup/" target="_blank">Get an application ID</a>)', 33, 2, NOW(), NOW(), NULL, NULL);
+INSERT INTO configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, last_modified, date_added, use_function, set_function) VALUES('Open Graph - Application Secret', 'FACEBOOK_OPEN_GRAPH_APPSECRET', '', 'Please enter your application secret', 33, 3, NOW(), NOW(), NULL, NULL);
+INSERT INTO configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, last_modified, date_added, use_function, set_function) VALUES('Open Graph - Admin ID', 'FACEBOOK_OPEN_GRAPH_ADMINID', '', 'Enter the Admin ID(s) of the Facebook user(s) that administer your Facebook fan page separated by commas (<a href="http://www.facebook.com/insights/" target="_blank">Insights for your domain</a>)', 33, 4, NOW(), NOW(), NULL, NULL);
+INSERT INTO configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, last_modified, date_added, use_function, set_function) VALUES('Open Graph - Default Image', 'FACEBOOK_OPEN_GRAPH_DEFAULT_IMAGE', '', 'Enter the full path to your default image or leave blank to disable.  The default image is only used when the product image cannot be found.', 33, 5, NOW(), NOW(), NULL, NULL);
+INSERT INTO configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, last_modified, date_added, use_function, set_function) VALUES('Open Graph - Object Type', 'FACEBOOK_OPEN_GRAPH_TYPE', 'product', 'Enter an Open Graph Object Type for your products (<a href="https://developers.facebook.com/docs/reference/opengraph/" target="_blank">Open Graph Object Types</a>)', 33, 6, NOW(), NOW(), NULL, NULL);
+INSERT INTO configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, last_modified, date_added, use_function, set_function) VALUES('Open Graph - Use cPath', 'FACEBOOK_OPEN_GRAPH_CPATH', 'true', 'Include the cPath in your URLs?', 33, 7, NOW(), NOW(), NULL, 'zen_cfg_select_option(array(\'true\', \'false\'),');
+INSERT INTO configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, last_modified, date_added, use_function, set_function) VALUES('Open Graph - Include Language', 'FACEBOOK_OPEN_GRAPH_LANGUAGE', 'false', 'Include the language in your URLs?', 33, 8, NOW(), NOW(), NULL, 'zen_cfg_select_option(array(\'true\', \'false\'),');
+INSERT INTO configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, last_modified, date_added, use_function, set_function) VALUES('Open Graph - Use Canonical URL', 'FACEBOOK_OPEN_GRAPH_CANONICAL', 'true', 'Use the canonical URL from Zen Cart or try and recreate the URL?', 33, 9, NOW(), NOW(), NULL, 'zen_cfg_select_option(array(\'true\', \'false\'),');
+INSERT INTO configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, last_modified, date_added, use_function, set_function) VALUES('Like Button - Enable Facebook Like Button', 'FACEBOOK_LIKE_BUTTON_STATUS', 'false', 'Enable the Facebook Like Button?', 33, 10, NOW(), NOW(), NULL, 'zen_cfg_select_option(array(\'true\', \'false\'),');
+INSERT INTO configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, last_modified, date_added, use_function, set_function) VALUES('Like Button - Method', 'FACEBOOK_LIKE_BUTTON_METHOD', 'XBFML', 'Use the iframe, HTML5, or XBFML method?', 33, 11, NOW(), NOW(), NULL, 'zen_cfg_select_option(array(\'iframe\', \'XBFML\', \'HTML5\'),');
+INSERT INTO configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, last_modified, date_added, use_function, set_function) VALUES('Like Button - Alignment', 'FACEBOOK_LIKE_BUTTON_ALIGNMENT', 'none', 'Float the widget to the left, right, or none', 33, 12, NOW(), NOW(), NULL, 'zen_cfg_select_option(array(\'none\', \'left\', \'right\'),');
+INSERT INTO configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, last_modified, date_added, use_function, set_function) VALUES('Like Button - Layout Style', 'FACEBOOK_LIKE_BUTTON_LAYOUT_STYLE', 'button_count', 'Select a layout style', 33, 13, NOW(), NOW(), NULL, 'zen_cfg_select_option(array(\'standard\', \'button_count\', \'box_count\'),');
+INSERT INTO configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, last_modified, date_added, use_function, set_function) VALUES('Like Button - Show Faces', 'FACEBOOK_LIKE_BUTTON_SHOW_FACES', 'false', 'Specifies whether to display profile photos below the button (if true, set height to 80 or more; standard layout only)', 33, 14, NOW(), NOW(), NULL, 'zen_cfg_select_option(array(\'true\', \'false\'),');
+INSERT INTO configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, last_modified, date_added, use_function, set_function) VALUES('Like Button - Action', 'FACEBOOK_LIKE_BUTTON_ACTION', 'like', 'The verb to display on the button', 33, 15, NOW(), NOW(), NULL, 'zen_cfg_select_option(array(\'like\', \'recommend\'),');
+INSERT INTO configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, last_modified, date_added, use_function, set_function) VALUES('Like Button - Font', 'FACEBOOK_LIKE_BUTTON_FONT', 'arial', 'Select a font:', 33, 16, NOW(), NOW(), NULL, 'zen_cfg_select_option(array(\'arial\', \'lucida grande\', \'segoe ui\', \'tahoma\', \'trebuchet ms\', \'verdana\'),');
+INSERT INTO configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, last_modified, date_added, use_function, set_function) VALUES('Like Button - Color Scheme', 'FACEBOOK_LIKE_BUTTON_COLOR_SCHEME', 'light', 'The color scheme for the like button', 33, 17, NOW(), NOW(), NULL, 'zen_cfg_select_option(array(\'light\', \'dark\'),');
+INSERT INTO configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, last_modified, date_added, use_function, set_function) VALUES('Like Button - Width', 'FACEBOOK_LIKE_BUTTON_WIDTH', '90', 'The width of the like button (standard => 450; button_count => 90; box_count => 55)', 33, 18, NOW(), NOW(),  NULL, NULL);
+INSERT INTO configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, last_modified, date_added, use_function, set_function) VALUES('Like Button - Combined Send Button', 'FACEBOOK_LIKE_BUTTON_SEND', 'true', 'Create a combined Like and Send button?', 33, 19, NOW(), NOW(), NULL, 'zen_cfg_select_option(array(\'true\', \'false\'),');
+
 
 #Vataddon
 INSERT INTO configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, last_modified, date_added, use_function, set_function) VALUES ('Display Vat Addon', 'DISPLAY_VATADDON_WHERE', 'ALL', 'Do you want to display the text incl. or excl. VAT plus shipping costs near the prices?<br />0=off<br/>ALL=everywhere<br/>product_info=only on products details page<br />', '1', '120', NULL, now(), NULL, 'zen_cfg_select_option(array(\'0\', \'ALL\', \'product_info\'), ');
@@ -2939,6 +2961,8 @@ INSERT INTO configuration_group VALUES (24, 'Index Listing', 'Index Products Lis
 INSERT INTO configuration_group VALUES (25, 'Define Page Status', 'Define Main Pages and HTMLArea Options', '25', '1');
 INSERT INTO configuration_group VALUES (30, 'EZ-Pages Settings', 'EZ-Pages Settings', 30, '1');
 INSERT INTO configuration_group VALUES (31, 'Minify Settings', 'Minify Settings', 31, '1');
+INSERT INTO configuration_group VALUES (32, 'Google Analytics', 'Google Analytics Settings', 32, '1');
+INSERT INTO configuration_group VALUES (33, 'Facebook Support', 'Facebook Settings', 33, '1');
 
 
 INSERT INTO currencies VALUES (1,'Euro','EUR','&euro;','','.',',','2','1.0000', now());
@@ -3138,6 +3162,7 @@ INSERT INTO orders_status VALUES ( '2', '1', 'Processing');
 INSERT INTO orders_status VALUES ( '3', '1', 'Delivered');
 INSERT INTO orders_status VALUES ( '4', '1', 'Update');
 INSERT INTO orders_status VALUES ( '5', '1', 'Cancelled');
+INSERT INTO orders_status VALUES ( '6', '1', 'Test Order');
 
 INSERT INTO product_types VALUES (1, 'Product - General', 'product', '1', 'Y', '', now(), now());
 INSERT INTO product_types VALUES (2, 'Product - Music', 'product_music', '1', 'Y', '', now(), now());
@@ -3388,11 +3413,12 @@ INSERT INTO project_version (project_version_id, project_version_key, project_ve
 INSERT INTO project_version (project_version_id, project_version_key, project_version_major, project_version_minor, project_version_patch1, project_version_patch1_source, project_version_patch2, project_version_patch2_source, project_version_comment, project_version_date_applied) VALUES (2, 'Zen-Cart Database', '1', '5.2', '', '', '', '', 'New Installation', now());
 INSERT INTO project_version_history (project_version_id, project_version_key, project_version_major, project_version_minor, project_version_patch, project_version_comment, project_version_date_applied) VALUES (1, 'Zen-Cart Main', '1', '5.2', '', 'Neue Installation', now());
 INSERT INTO project_version_history (project_version_id, project_version_key, project_version_major, project_version_minor, project_version_patch, project_version_comment, project_version_date_applied) VALUES (2, 'Zen-Cart Database', '1', '5.2', '', 'Neue Installation', now());
-INSERT INTO orders_status VALUES (2, 43, 'In Arbeit');
-INSERT INTO orders_status VALUES (1, 43, 'Wartet');
+INSERT INTO orders_status VALUES (1, 43, 'warten auf Zahlung');
+INSERT INTO orders_status VALUES (2, 43, 'Zahlung erhalten - in Arbeit');
 INSERT INTO orders_status VALUES (3, 43, 'Verschickt');
-INSERT INTO orders_status VALUES (4, 43, 'Update');
+INSERT INTO orders_status VALUES (4, 43, 'Information');
 INSERT INTO orders_status VALUES (5, 43, 'Storniert');
+INSERT INTO orders_status VALUES (6, 43, 'Testbestellung');
 
 ## ZEN-DEUTSCH MENU einfuegen
 INSERT INTO admin_menus (menu_key, language_key, sort_order) 
@@ -3444,7 +3470,9 @@ REPLACE INTO configuration_group (configuration_group_id, language_id, configura
 (24, 43, 'Liste - Artikelindex', 'Listenansicht für Artikelindex', 24, 1),
 (25, 43, 'Eigene Seiten', 'Eigene Seiten, die über den im Seiteneditor eingegebenen Texte festgelegt werden', 25, 1),
 (30, 43, 'EZ-Pages Einstellungen', 'EZ-Pages Einstellungen', 30, 1),
-(31, 43, 'Minify Einstellungen', 'Minify Einstellungen', 30, 1);
+(31, 43, 'Minify Einstellungen', 'Minify Einstellungen', 31, 1);
+(32, 43, 'Google Analytics Einstellungen', 'Google Analytics Einstellungen', 32, 1);
+(33, 43, 'Facebook Funktionen', 'Facebook Einstellungen', 33, 1);
 
 
 
@@ -4098,6 +4126,27 @@ REPLACE INTO configuration_language (configuration_title, configuration_key, con
 ('GA - Benutzerdefinierten Tracking Code nach dem Hauptcode einfügen?', 43, 'GOOGLE_ANALYTICS_CUSTOM_CODE_ENABLED', 'Google Analytics:<br/><br/>Wollen Sie einen weiteren benutzerdefinierten Trackingcode nach dem normalen Google Analytics Hauptcode einfügen? Das kann genutzt werden, um den Code an Ihre ganz individuellen Erfordernisse anzupassen. Fügen Sie Tracking Objekte entsprechend der Dokumentation der <a href="http://code.google.com/apis/analytics/docs/tracking/gaTrackingCustomVariables.html" target="_blank">Google Analytics Website</a> ein.<br/><br/>Voreingestellt ist: Deaktiviert.', now(), now()),
 ('GA - Benutzerdefinierter Tracking Code', 'GOOGLE_ANALYTICS_CUSTOM_CODE', 43, 'Google Analytics:<br/><br/>Falls Sie benutzerdefinierten Tracking Code aktiviert haben, fügen Sie diesen hier ein:', now(), now()),
 
+
+# Adminmenü ID 33
+('Open Graph - Facebook Open Graph aktivieren', 'FACEBOOK_OPEN_GRAPH_STATUS', 43, 'Wollen Sie die Facebook Open Graph Metadaten aktivieren?', now(), now()),
+('Open Graph - Anwendungsnummer', 'FACEBOOK_OPEN_GRAPH_APPID', 43, 'Tragen Sie hier Ihre Anwendungsnummer / Application ID ein. Falls Sie noch keine haben:<br/><a href="http://developers.facebook.com/setup/" target="_blank">Application ID beantragen</a>', now(), now()),
+('Open Graph - Anwendungs Geheimcode', 'FACEBOOK_OPEN_GRAPH_APPSECRET', 43, 'Tragen Sie Ihren Anwendungs Geheimcode / Application Secret Key ein.', now(), now()),
+('Open Graph - Admin ID', 'FACEBOOK_OPEN_GRAPH_ADMINID', 43, 'Geben Sie die Admin ID(s) des oder der Facebook User an, die Ihre Facebook Fanseite administrieren. Wenn das mehrere sind, geben Sie die IDs mit Komma getrennt ein. Infos dazu:<br/><a href="http://www.facebook.com/insights/" target="_blank">Insights for your domain</a>', now(), now()),
+('Open Graph - Standard Bild', 'FACEBOOK_OPEN_GRAPH_DEFAULT_IMAGE', 43, 'Geben Sie den vollen Pfad zu einem Standardbild an oder lassen Sie dieses Feld leer, um kein Standardbild zu verwenden. Ein hier eingestelltes Standardbild wird nur verwendet, wenn kein Artikelbild gefunden wird und stellt so sicher, dass zumindest ein passendes Bild bei Facebook gepostet wird.', now(), now()),
+('Open Graph - Objekt Typ', 'FACEBOOK_OPEN_GRAPH_TYPE', 43, 'Geben Sie hier einen Open Graph Object Type für Ihre Artikel ein. Beispiel: product<br/>Infos dazu:<br/><a href="https://developers.facebook.com/docs/reference/opengraph/" target="_blank">Open Graph Object Types</a>', now(), now()),
+('Open Graph - Kategoriepfad in den URLs?', 'FACEBOOK_OPEN_GRAPH_CPATH', 43, 'Sollen Ihre URLs für Facebook den cPath enthalten?', now(), now()),
+('Open Graph - Sprache in den Links?', 'FACEBOOK_OPEN_GRAPH_LANGUAGE', 43, 'Sollen Ihre URLs das Anhängsel für die Sprache enthalten?', now(), now()),
+('Open Graph - Kanonische URLs verwenden?', 'FACEBOOK_OPEN_GRAPH_CANONICAL', 43, 'Wollen Sie die kanonische URL der Seite verwenden (empfohlen) oder versuchen, die URL neu zu generieren?', now(), now()),
+('Like Button - Facebook Like Button aktivieren?', 'FACEBOOK_LIKE_BUTTON_STATUS', 43, 'Wollen Sie den Facebook Like Button aktivieren?', now(), now()),
+('Like Button - Einbindungsart', 'FACEBOOK_LIKE_BUTTON_METHOD', 43, 'iframe, HTML5 oder XBFML', now(), now()),
+('Like Button - Ausrichtung', 'FACEBOOK_LIKE_BUTTON_ALIGNMENT', 43, 'Soll der Button links, rechts oder gar nicht floaten?', now(), now()),
+('Like Button - Layout Stil', 'FACEBOOK_LIKE_BUTTON_LAYOUT_STYLE', 43, 'Wählen Sie das Grundlayout für den Button: Standard, Button mit Counter oder Box mit Counter', now(), now()),
+('Like Button - Profilfotos?', 'FACEBOOK_LIKE_BUTTON_SHOW_FACES', 43, 'Sollen Profilfotos unter dem Button angezeigt werden (Falls ja setzen Sie die Höhe auf 80 und mehr. Nur im Standardlayout möglich)', now(), now()),
+('Like Button - Aktion', 'FACEBOOK_LIKE_BUTTON_ACTION', 43, 'Aktion für den Button: like oder recommend', now(), now()),
+('Like Button - Schriftart', 'FACEBOOK_LIKE_BUTTON_FONT', 43, 'Wählen Sie eine Schriftart aus:', now(), now()),
+('Like Button - Farbschema', 'FACEBOOK_LIKE_BUTTON_COLOR_SCHEME', 43, 'Farbschema light oder dark', now(), now()),
+('Like Button - Breite', 'FACEBOOK_LIKE_BUTTON_WIDTH', 43, 'Breite des Like Buttons (Standard => 450; Button mit Counter => 90; Box mit Counter =>55)', now(), now()),
+('Like Button - Senden und Liken kombinieren?', 'FACEBOOK_LIKE_BUTTON_SEND', 43, 'Soll der Button die Funktionen Send und Like kombinieren?', now(), now()),
 
 
 # Deutsche Einträge für Versandmodul Versandkostenfrei mit Optionen

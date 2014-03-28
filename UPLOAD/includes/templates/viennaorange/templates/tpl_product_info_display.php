@@ -99,7 +99,13 @@ require($template->get_template_dir('/tpl_products_next_previous.php',DIR_WS_TEM
   }
 ?>
 <!--eof Product details list -->
-	
+	<!--bof Facebook Like Button-->
+<?php 
+  if (FACEBOOK_LIKE_BUTTON_STATUS == 'true' && $_SERVER['https'] != 'on') {
+    require($template->get_template_dir('tpl_modules_facebook_like_button.php',DIR_WS_TEMPLATE, $current_page_base,'templates'). '/tpl_modules_facebook_like_button.php'); 
+  }
+?>
+<!--eof Facebook Like Button-->
 	</div>
 	
 	</div>

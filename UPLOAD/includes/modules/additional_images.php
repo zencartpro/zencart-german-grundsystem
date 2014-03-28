@@ -8,7 +8,7 @@
  * @copyright Copyright 2003-2014 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: additional_images.php for IH 4.3.3 ZC152 2014-02-22 12:38:06Z webchills $
+ * @version $Id: additional_images.php 2014-03-28 12:38:06Z webchills $
  */
 if (!defined('IS_ADMIN_FLAG')) {
   die('Illegal Access');
@@ -81,22 +81,21 @@ if ($num_images) {
   for ($i=0, $n=$num_images; $i<$n; $i++) {
     $file = $images_array[$i];
     $products_image_large = str_replace(DIR_WS_IMAGES, DIR_WS_IMAGES . 'large/', $products_image_directory) . str_replace($products_image_extension, '', $file) . IMAGE_SUFFIX_LARGE . $products_image_extension;
-//  Begin Image Handler changes 1 of 2
+
 	if (function_exists('handle_image')) {
 		$newimg = handle_image($products_image_large, addslashes($products_name), LARGE_IMAGE_WIDTH, LARGE_IMAGE_HEIGHT, '');
 		list($src, $alt, $width, $height, $parameters) = $newimg;
 		$products_image_large = zen_output_string($src);
 	} 
 	$flag_has_large = file_exists($products_image_large);
-//  End Image Handler changes 1 of 2
+
     $products_image_large = ($flag_has_large ? $products_image_large : $products_image_directory . $file);
     $flag_display_large = (IMAGE_ADDITIONAL_DISPLAY_LINK_EVEN_WHEN_NO_LARGE == 'Yes' || $flag_has_large);
     $base_image = $products_image_directory . $file;
     $thumb_slashes = zen_image(addslashes($base_image), addslashes($products_name), SMALL_IMAGE_WIDTH, SMALL_IMAGE_HEIGHT);
-//  Begin Image Handler changes 2 of 2
-//  remove additional single quotes from image attributes (important!)
+
     $thumb_slashes = preg_replace("/([^\\\\])'/", '$1\\\'', $thumb_slashes);
-//  End Image Handler changes 2 of 2
+
     $thumb_regular = zen_image($base_image, $products_name, SMALL_IMAGE_WIDTH, SMALL_IMAGE_HEIGHT);
     $large_link = zen_href_link(FILENAME_POPUP_IMAGE_ADDITIONAL, 'pID=' . $_GET['products_id'] . '&pic=' . $i . '&products_image_large_additional=' . $products_image_large);
 
