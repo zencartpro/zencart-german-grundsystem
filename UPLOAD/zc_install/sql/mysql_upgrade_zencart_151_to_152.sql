@@ -6,7 +6,7 @@
 # * @copyright Copyright 2003-2014 Zen Cart Development Team
 # * @copyright Portions Copyright 2003 osCommerce
 # * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
-# * @version $Id: mysql_upgrade_zencart_151_to_152.sql 3 2014-03-27 18:45:57Z webchills $
+# * @version $Id: mysql_upgrade_zencart_151_to_152.sql 4 2014-03-28 07:45:57Z webchills $
 #
 
 ############ IMPORTANT INSTRUCTIONS ###############
@@ -169,6 +169,14 @@ INSERT INTO configuration (configuration_title, configuration_key, configuration
 INSERT INTO configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, last_modified, date_added, use_function, set_function) VALUES ('IH large images maximum height', 'LARGE_IMAGE_MAX_HEIGHT', '550', 'Specify a maximum height for your large images. If width and height are empty or set to 0, no resizing of large images is done.', 4, 90, NULL, now(), NULL, 'zen_cfg_textarea_small(');
 INSERT INTO configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, last_modified, date_added, use_function, set_function) VALUES ('IH watermark gravity', 'WATERMARK_GRAVITY', 'Center', 'Select the position for the watermark relative to the image''s canvas. Default is <strong>Center</Strong>.', 4, 91, NULL, now(), NULL, 'zen_cfg_select_drop_down(array(array(''id''=>''NorthWest'', ''text''=>''NorthWest''), array(''id''=>''North'', ''text''=>''North''), array(''id''=>''NorthEast'', ''text''=>''NorthEast''), array(''id''=>''West'', ''text''=>''West''), array(''id''=>''Center'', ''text''=>''Center''), array(''id''=>''East'', ''text''=>''East''), array(''id''=>''SouthWest'', ''text''=>''SouthWest''), array(''id''=>''South'', ''text''=>''South''), array(''id''=>''SouthEast'', ''text''=>''SouthEast'')),');
 
+## Install new column grid entries
+
+INSERT INTO configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, last_modified, date_added, use_function, set_function) VALUES ('Product Listing - Layout Style', 'PRODUCT_LISTING_LAYOUT_STYLE', 'columns', 'Select the layout style:<br />Each product can be listed in its own row (rows option) or products can be listed in multiple columns per row (columns option)', '8', '40', NULL, now(), NULL, 'zen_cfg_select_option(array("rows", "columns"),');
+INSERT INTO configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, last_modified, date_added, use_function, set_function) VALUES ('Product Listing - Columns Per Row', 'PRODUCT_LISTING_COLUMNS_PER_ROW', '3', 'Select the number of columns of products to show in each row in the product listing. The default setting is 3.', '8', '41', NULL, now(), NULL, NULL);
+               
+
+## Install new image handler language entries
+
 REPLACE INTO configuration_language (configuration_title, configuration_key, configuration_language_id, configuration_description, last_modified, date_added) VALUES
 ('IH - Bildgröße ändern', 'IH_RESIZE', 43, 'Entweder ''No'' fÃ¼r normales Zen-Cart Verhalten oder ''Yes'' um die automatische Größenänderung und das Caching von Bildern zu aktivieren. Wenn Sie ImageMagick verwenden wollen, müssen Sie den Pfad zur convert binary in <em>includes/extra_configures/bmz_image_handler_conf.php</em> angeben.', now(), now()),
 ('IH - Kleine Bilder - Dateityp', 'SMALL_IMAGE_FILETYPE', 43, 'WÃ¤hlen Sie ''jpg'', ''gif'' oder ''png''. Internet Explorer hat noch immer Probleme transparente png darzustellen. Nehmen Sie besser ''gif'' für die Transparenz oder ''jpg'' für grÃ¶ÃŸere Bilder. ''no_change'' bedeutet normales Zen-Cart Verhalten. Es wird derselbe Dateityp für kleine Bilder wie für hochgeladene Bilder verwendet.', now(), now()),
@@ -189,6 +197,13 @@ REPLACE INTO configuration_language (configuration_title, configuration_key, con
 ('IH - Wasserzeichen - Position', 'WATERMARK_GRAVITY', 43, 'Wählen Sie die Position für das Wasserzeichen. Voreingestellt ist <strong>Center (Zentriert)</strong>.', now(), now()),
 ('IH - Grosse Bilder - Maximale Höhe', 'LARGE_IMAGE_MAX_HEIGHT', 43, 'Geben Sie eine maximale Höhe für Ihre grossen Bilder an. Wenn Breite und Höhe leer gelassen oder auf 0 gesetzt werden, werden die grossen Bilder in ihrer Größe nicht verändert.', now(), now());
 
+## Install new column grid language entries
+
+REPLACE INTO configuration_language (configuration_title, configuration_key, configuration_description, configuration_language_id) VALUES
+('Artikelliste - Layout Stil', 'PRODUCT_LISTING_LAYOUT_STYLE', 'Wählen Sie das Layout Ihrer Artikelliste:<br/>Jeder Artikel kann in einer eigenen Zeile angezeigt werden (rows) oder die Artikel können nebeneinander in mehreren Spalten pro Reihe angezeigt werden (columns)', 43),
+('Artikelliste - Spalten pro Reihe', 'PRODUCT_LISTING_COLUMNS_PER_ROW', 'Wieviele Spalten pro Reihe wollen Sie in der Artikelliste anzeigen. Voreinstellung: 3', 43);
+
+
 ## Install New Minify entries
 
 INSERT INTO configuration_group (`configuration_group_title`,`configuration_group_description`,`sort_order`,`visible`) VALUES ('CSS/JS Loader', 'Set CSS/JS Loader Options', '1', '1');
@@ -200,7 +215,8 @@ INSERT INTO configuration (configuration_title, configuration_key, configuration
 ('Enable Minify for CSS', 'MINIFY_STATUS_CSS', 'true', 'Minifying will speed up your site\'s loading speed by combining and compressing CSS files.', @gid, 2, NULL, now(), NULL, 'zen_cfg_select_option(array(\'true\', \'false\'),'),
 ('Max URL Lenght', 'MINIFY_MAX_URL_LENGHT', '500', 'On some server the maximum lenght of any POST/GET request URL is limited. If this is the case for your server, you can change the setting here', @gid, 3, NULL, now(), NULL, NULL),
 ('Minify Cache Time', 'MINIFY_CACHE_TIME_LENGHT', '31536000', 'Set minify cache time (in second). Default is 1 year (31536000)', @gid, 4, NULL, now(), NULL, NULL),
-('Latest Cache Time', 'MINIFY_CACHE_TIME_LATEST', '0', 'Normally you don\'t have to set this, but if you have just made changes to your js/css files and want to make sure they are reloaded right away, you can reset this to 0.', @gid, 5, NULL, now(), NULL, NULL);
+('Latest Cache Time', 'MINIFY_CACHE_TIME_LATEST', '0', 'Normally you don\'t have to set this, but if you have just made changes to your js/css files and want to make sure they are reloaded right away, you can reset this to 0.', @gid, 5, NULL, now(), NULL, NULL),
+    
 
 INSERT INTO configuration_group (configuration_group_id, language_id, configuration_group_title, configuration_group_description, sort_order, visible ) VALUES 
 (@gid, 43, 'Minify', 'Minify Einstellungen', '1', '1');
