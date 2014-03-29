@@ -34,13 +34,15 @@ require(DIR_WS_MODULES . zen_get_module_directory('meta_tags.php'));
 <?php if (defined('FAVICON')) { ?>
 <link rel="icon" href="<?php echo FAVICON; ?>" type="image/x-icon" />
 <link rel="shortcut icon" href="<?php echo FAVICON; ?>" type="image/x-icon" />
-<?php } //endif FAVICON ?>
+<?php }?>
 
 <base href="<?php echo (($request_type == 'SSL') ? HTTPS_SERVER . DIR_WS_HTTPS_CATALOG : HTTP_SERVER . DIR_WS_CATALOG ); ?>" />
 <?php if (isset($canonicalLink) && $canonicalLink != '') { ?>
 <link rel="canonical" href="<?php echo $canonicalLink; ?>" />
 <?php } ?>
-
+<?php if (RSS_FEED_ENABLED == 'true'){ ?>
+<?php echo rss_feed_link_alternate();?>
+<?php } ?>
 <?php
 /**
 * load the loader files
