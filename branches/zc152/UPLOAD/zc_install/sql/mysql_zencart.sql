@@ -5,7 +5,7 @@
 # * @copyright Copyright 2003-2014 Zen Cart Development Team
 # * @copyright Portions Copyright 2003 osCommerce
 # * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
-# * @version $Id: mysql_zencart.sql 19337 2014-03-28 19:12:59Z webchills $
+# * @version $Id: mysql_zencart.sql 19338 2014-03-29 08:12:59Z webchills $
 #
 
 ############ IMPORTANT INSTRUCTIONS ###############
@@ -2107,6 +2107,7 @@ VALUES ('configMyStore', 'BOX_CONFIGURATION_MY_STORE', 'FILENAME_CONFIGURATION',
        ('configMinifySettings', 'BOX_CONFIGURATION_MINIFY', 'FILENAME_CONFIGURATION', 'gID=31', 'configuration', 'Y', 31),
        ('configGoogleAnalytics','BOX_CONFIGURATION_GOOGLEANALYTICS','FILENAME_CONFIGURATION', 'gID=32', 'configuration', 'Y', 32),
 	   ('configFacebook','BOX_CONFIGURATION_FACEBOOK','FILENAME_CONFIGURATION', 'gID=33', 'configuration', 'Y', 33),
+	   ('configRSSFeed','BOX_CONFIGURATION_RSSFEED','FILENAME_CONFIGURATION', 'gID=34', 'configuration', 'Y', 34),
        ('categories', 'BOX_CATALOG_CATEGORIES_PRODUCTS', 'FILENAME_CATEGORIES', '', 'catalog', 'Y', 1),
        ('productTypes', 'BOX_CATALOG_PRODUCT_TYPES', 'FILENAME_PRODUCT_TYPES', '', 'catalog', 'Y', 2),
        ('priceManager', 'BOX_CATALOG_PRODUCTS_PRICE_MANAGER', 'FILENAME_PRODUCTS_PRICE_MANAGER', '', 'catalog', 'Y', 3),
@@ -2928,6 +2929,30 @@ INSERT INTO configuration (configuration_title, configuration_key, configuration
 INSERT INTO configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, last_modified, date_added, use_function, set_function) VALUES('Like Button - Combined Send Button', 'FACEBOOK_LIKE_BUTTON_SEND', 'true', 'Create a combined Like and Send button?', 33, 19, NOW(), NOW(), NULL, 'zen_cfg_select_option(array(\'true\', \'false\'),');
 
 
+#RSS Feed Settings
+
+INSERT INTO configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, last_modified, date_added, use_function, set_function) VALUES ('Enable RSS Feed?', 'RSS_FEED_ENABLED', 'true', 'Do you want to enable the RSS Feeds?', 34, 1, NOW(), NOW(), NULL, 'zen_cfg_select_option(array(\'true\', \'false\'),');
+INSERT INTO configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, last_modified, date_added, use_function, set_function) VALUES ('RSS Title', 'RSS_TITLE', '', 'RSS Title (if empty use Store Name)', 34, 2, NOW(), NOW(), NULL, NULL);
+INSERT INTO configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, last_modified, date_added, use_function, set_function) VALUES ('RSS Description', 'RSS_DESCRIPTION', '', 'RSS description', 34, 3, NOW(), NOW(), NULL, NULL);
+INSERT INTO configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, last_modified, date_added, use_function, set_function) VALUES ('RSS Image', 'RSS_IMAGE', '', 'A GIF, JPEG or PNG image that represents the channel', 34, 4, NOW(), NOW(), NULL, NULL);
+INSERT INTO configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, last_modified, date_added, use_function, set_function) VALUES ('RSS Image Name', 'RSS_IMAGE_NAME', '', 'RSS Image Name (if empty use Store Name)', 34, 5, NOW(), NOW(), NULL, NULL);
+INSERT INTO configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, last_modified, date_added, use_function, set_function) VALUES ('RSS Copyright', 'RSS_COPYRIGHT', '', 'RSS Copyright (if empty use Store Owner)', 34, 6, NOW(), NOW(), NULL, NULL);
+INSERT INTO configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, last_modified, date_added, use_function, set_function) VALUES ('RSS Managing Editor', 'RSS_MANAGING_EDITOR', '', 'RSS Managing Editor (if empty use Store Owner Email Address and Store Owner)', 34, 7, NOW(), NOW(), NULL, NULL);
+INSERT INTO configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, last_modified, date_added, use_function, set_function) VALUES ('RSS Webmaster', 'RSS_WEBMASTER', '', 'RSS Webmaster (if empty use Store Owner Email Address and Store Owner)', 34, 8, NOW(), NOW(), NULL, NULL);
+INSERT INTO configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, last_modified, date_added, use_function, set_function) VALUES ('RSS Author', 'RSS_AUTHOR', '', 'RSS Author (if empty use Store Owner Email Address and Store Owner)', 34, 9, NOW(), NOW(), NULL, NULL);
+INSERT INTO configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, last_modified, date_added, use_function, set_function) VALUES ('RSS Home Page Feed', 'RSS_HOMEPAGE_FEED', 'new_products', 'RSS Home Page Feed', 34, 10, NOW(), NOW(), NULL, 'zen_cfg_select_option(array(\'news\', \'new_products\', \'upcoming\', \'featured\', \'specials\', \'products\', \'categories\'),');
+INSERT INTO configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, last_modified, date_added, use_function, set_function) VALUES ('RSS Default Feed', 'RSS_DEFAULT_FEED', 'new_products', 'RSS Default Feed', 34, 11, NOW(), NOW(), NULL, 'zen_cfg_select_option(array(\'news\', \'new_products\', \'upcoming\', \'featured\', \'specials\', \'products\', \'categories\'),');
+INSERT INTO configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, last_modified, date_added, use_function, set_function) VALUES ('Strip tags', 'RSS_STRIP_TAGS', 'false', 'Strip tags', 34, 12, NOW(), NOW(), NULL, 'zen_cfg_select_option(array(\'true\', \'false\'),');
+INSERT INTO configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, last_modified, date_added, use_function, set_function) VALUES ('Generate Descriptions', 'RSS_ITEMS_DESCRIPTION', 'true', 'Generate Descriptions', 34, 13, NOW(), NOW(), NULL, 'zen_cfg_select_option(array(\'true\', \'false\'),');
+INSERT INTO configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, last_modified, date_added, use_function, set_function) VALUES ('Descriptions Length', 'RSS_ITEMS_DESCRIPTION_MAX_LENGTH', '0', 'How many characters in description (0 for no limit)', 34, 14, NOW(), NOW(), NULL, NULL);
+INSERT INTO configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, last_modified, date_added, use_function, set_function) VALUES ('Time to live', 'RSS_TTL', '1440', 'Time to live - time after reader should refresh the info in minutes', 34, 15, NOW(), NOW(), NULL, NULL);
+INSERT INTO configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, last_modified, date_added, use_function, set_function) VALUES ('Default Products Limit', 'RSS_PRODUCTS_LIMIT', '100', 'Default Limit to Products Feed', 34, 16, NOW(), NOW(), NULL, NULL);
+INSERT INTO configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, last_modified, date_added, use_function, set_function) VALUES ('Add Product image', 'RSS_PRODUCTS_DESCRIPTION_IMAGE', 'true', 'Add product image to product description tag', 34, 17, NOW(), NOW(), NULL, 'zen_cfg_select_option(array(\'true\', \'false\'),');
+INSERT INTO configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, last_modified, date_added, use_function, set_function) VALUES ('Add "buy now" button', 'RSS_PRODUCTS_DESCRIPTION_BUYNOW', 'true', 'Add "buy now" button to product description tag', 34, 18, NOW(), NOW(), NULL, 'zen_cfg_select_option(array(\'true\', \'false\'),');
+INSERT INTO configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, last_modified, date_added, use_function, set_function) VALUES ('Categories for Products', 'RSS_PRODUCTS_CATEGORIES', 'master', 'Use \'all\' or only \'master\' Categories for Products when specified cPath parameter', 34, 19, NOW(), NOW(), NULL, 'zen_cfg_select_option(array(\'master\', \'all\'),');
+INSERT INTO configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, last_modified, date_added, use_function, set_function) VALUES ('Feed Cache', 'RSS_CACHE_TIME', '10', 'Cache Time (in min). If you don\'t want caching, set it to 0. The cache feeds are generated into the cache folder.', 34, 20, NOW(), NOW(), NULL, NULL);
+
+
 #Vataddon
 INSERT INTO configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, last_modified, date_added, use_function, set_function) VALUES ('Display Vat Addon', 'DISPLAY_VATADDON_WHERE', 'ALL', 'Do you want to display the text incl. or excl. VAT plus shipping costs near the prices?<br />0=off<br/>ALL=everywhere<br/>product_info=only on products details page<br />', '1', '120', NULL, now(), NULL, 'zen_cfg_select_option(array(\'0\', \'ALL\', \'product_info\'), ');
 
@@ -2963,6 +2988,7 @@ INSERT INTO configuration_group VALUES (30, 'EZ-Pages Settings', 'EZ-Pages Setti
 INSERT INTO configuration_group VALUES (31, 'Minify Settings', 'Minify Settings', 31, '1');
 INSERT INTO configuration_group VALUES (32, 'Google Analytics', 'Google Analytics Settings', 32, '1');
 INSERT INTO configuration_group VALUES (33, 'Facebook Support', 'Facebook Settings', 33, '1');
+INSERT INTO configuration_group VALUES (34, 'RSS Feed', 'RSS Feed Settings', 33, '1');
 
 
 INSERT INTO currencies VALUES (1,'Euro','EUR','&euro;','','.',',','2','1.0000', now());
@@ -3473,6 +3499,7 @@ REPLACE INTO configuration_group (configuration_group_id, language_id, configura
 (31, 43, 'Minify Einstellungen', 'Minify Einstellungen', 31, 1);
 (32, 43, 'Google Analytics Einstellungen', 'Google Analytics Einstellungen', 32, 1);
 (33, 43, 'Facebook Funktionen', 'Facebook Einstellungen', 33, 1);
+(34, 43, 'RSS Feed', 'RSS Feed Einstellungen', 34, 1);
 
 
 
@@ -4147,6 +4174,29 @@ REPLACE INTO configuration_language (configuration_title, configuration_key, con
 ('Like Button - Farbschema', 'FACEBOOK_LIKE_BUTTON_COLOR_SCHEME', 43, 'Farbschema light oder dark', now(), now()),
 ('Like Button - Breite', 'FACEBOOK_LIKE_BUTTON_WIDTH', 43, 'Breite des Like Buttons (Standard => 450; Button mit Counter => 90; Box mit Counter =>55)', now(), now()),
 ('Like Button - Senden und Liken kombinieren?', 'FACEBOOK_LIKE_BUTTON_SEND', 43, 'Soll der Button die Funktionen Send und Like kombinieren?', now(), now()),
+
+# Adminmenü ID 34 - RSS Feed
+
+('RSS - RSS Feeds aktivieren?', 'RSS_FEED_ENABLED', 43, 'Wollen Sie die RSS Feeds aktivieren?', now(), now()),
+('RSS - Titel', 'RSS_TITLE', 43, 'RSS Titel (falls leer verwende den Shopnamen)', now(), now()),
+('RSS - Beschreibung', 'RSS_DESCRIPTION', 43, 'RSS Beschreibung', now(), now()),
+('RSS - Bild', 'RSS_IMAGE', 43, 'ein GIF, JPEG oder PNG Bild, das das RSS Feed illustriert', now(), now()),
+('RSS - Bild Name', 'RSS_IMAGE_NAME', 43, 'RSS Bild Name (falls leer verwende den Shopnamen)', now(), now()),
+('RSS - Copyright', 'RSS_COPYRIGHT', 43, 'RSS Copyright (falls leer verwende den Shopinhaber)', now(), now()),
+('RSS - Editor', 'RSS_MANAGING_EDITOR', 43, 'RSS Managing Editor (falls leer verwende die Shopinhaber Emailadresse und den Shopinhaber)', now(), now()),
+('RSS - Webmaster', 'RSS_WEBMASTER', 43, 'RSS Webmaster (falls leer verwende die Shopinhaber Emailadresse und den Shopinhaber)', now(), now()),
+('RSS - Author', 'RSS_AUTHOR', 43, 'RSS Autor (falls leer verwende die Shopinhaber Emailadresse und den Shopinhaber)', now(), now()),
+('RSS - Home Page Feed', 'RSS_HOMEPAGE_FEED', 43, 'RSS Home Page Feed - Standardwert Neue Artikel', now(), now()),
+('RSS - Default Feed', 'RSS_DEFAULT_FEED', 43, 'RSS Default Feed - Standarwert Neue Artikel', now(), now()),
+('RSS - HTML Tags ausfiltern', 'RSS_STRIP_TAGS', 43, 'HTML Tags ausfiltern? Standardwert: false', now(), now()),
+('RSS - Erzeuge Beschreibung', 'RSS_ITEMS_DESCRIPTION', 43, 'Soll die Artikelbeschreibung im Feed erscheinen?', now(), now()),
+('RSS - Länge der Beschreibung', 'RSS_ITEMS_DESCRIPTION_MAX_LENGTH', 43, 'Wollen Sie den Beschreibungstext auf eine bestimmte Länge beschränken? (0 für kein Limit)', now(), now()),
+('RSS - Lebensdauer des Feeds', 'RSS_TTL', 43, 'Lebensdauer - Zeit in Minuten nach der ein RSS Reader das Feed refreshen soll - Standardwert: 1440', now(), now()),
+('RSS - Standard Artikel Limit', 'RSS_PRODUCTS_LIMIT', 43, 'Wieviele Artikel soll das RSS Feed enthalten? Standardwert: 100', now(), now()),
+('RSS - Füge Artikelbild hinzu', 'RSS_PRODUCTS_DESCRIPTION_IMAGE', 43, 'Soll das Artikelbild im Feed erscheinen?', now(), now()),
+('RSS - Füge Jetzt kaufen Button hinzu', 'RSS_PRODUCTS_DESCRIPTION_BUYNOW', 43, 'Soll der Jetzt kaufen Button im Feed erscheinen?', now(), now()),
+('RSS - Kategorien für Artikel', 'RSS_PRODUCTS_CATEGORIES', 43, 'Wenn ein cPath mit angegeben wird, sollen die Artikel, dann nur aus der Masterkategorie kommen oder aus allen Kategorien? (wichtig bei verlinkten Artikeln)', now(), now()),
+('RSS - Cache', 'RSS_CACHE_TIME', 43, 'Dauer des Feed Cachings in Minuten (es werden Feed Files im cache Ordner abgelegt). Wenn Sie kein Caching verwenden wollen stellen Sie auf 0', now(), now()),
 
 
 # Deutsche Einträge für Versandmodul Versandkostenfrei mit Optionen
