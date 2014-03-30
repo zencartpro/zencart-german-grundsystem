@@ -3,10 +3,10 @@
 # *
 # * @package Installer
 # * @access private
-# * @copyright Copyright 2003-2007 Zen Cart Development Team
+# * @copyright Copyright 2003-2014 Zen Cart Development Team
 # * @copyright Portions Copyright 2003 osCommerce
 # * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
-# * @version $Id: mysql_upgrade_zencart_137_to_138.sql 544 2010-04-16 11:08:59Z hugo13 $
+# * @version $Id: mysql_upgrade_zencart_137_to_138.sql 545 2014-03-30 10:08:59Z webchills $
 #
 
 ############ IMPORTANT INSTRUCTIONS ###############
@@ -141,7 +141,6 @@ UPDATE project_version SET project_version_major='1', project_version_minor='3.8
 #rename zen_order_id field to order_id to minimize confusion for folks who decide to manually edit their databases
 ALTER TABLE paypal CHANGE COLUMN zen_order_id order_id int(11) NOT NULL default '0';
 ALTER TABLE paypal_testing CHANGE COLUMN zen_order_id order_id int(11) NOT NULL default '0';
-ALTER TABLE linkpoint_api CHANGE COLUMN zen_order_id order_id int(11) NOT NULL default '0';
 
 
 
