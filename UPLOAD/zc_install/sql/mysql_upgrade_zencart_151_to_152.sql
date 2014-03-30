@@ -142,7 +142,10 @@ DELETE FROM configuration_language WHERE configuration_key = 'IMAGE_MANAGER_HAND
 
 ## Delete old CSS/JS Loader entries
 DELETE FROM configuration_group WHERE configuration_group_title = 'CSS/JS Loader';
+DELETE FROM configuration_group WHERE configuration_group_title = 'MINIFY';
 DELETE FROM configuration WHERE configuration_key = 'MINIFY_STATUS';
+DELETE FROM configuration WHERE configuration_key = 'MINIFY_STATUS_JS';
+DELETE FROM configuration WHERE configuration_key = 'MINIFY_STATUS_CSS';
 DELETE FROM configuration WHERE configuration_key = 'MINIFY_MAX_URL_LENGHT';
 DELETE FROM configuration WHERE configuration_key = 'MINIFY_CACHE_TIME_LENGHT';
 DELETE FROM configuration WHERE configuration_key = 'MINIFY_CACHE_TIME_LATEST';
@@ -285,16 +288,16 @@ REPLACE INTO configuration_language (configuration_title, configuration_key, con
 
 ## Install New Minify entries
 
-INSERT INTO configuration_group (`configuration_group_title`,`configuration_group_description`,`sort_order`,`visible`) VALUES ('CSS/JS Loader', 'Set CSS/JS Loader Options', '1', '1');
+INSERT INTO configuration_group (configuration_group_title, configuration_group_description, sort_order, visible) VALUES ('Minify', 'Set Minify Options', '1', '1');
 SET @gid=last_insert_id();
 UPDATE configuration_group SET sort_order = @gid WHERE configuration_group_id = @gid;
 
-INSERT INTO configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, last_modified, date_added, use_function, set_function) VALUES 
-('Enable Minify for Javascripts', 'MINIFY_STATUS_JS', 'true', 'Minifying will speed up your site\'s loading speed by combining and compressing Javascript files.', @gid, 1, now(), now(), NULL, 'zen_cfg_select_option(array(\'true\', \'false\'),'),
-('Enable Minify for CSS', 'MINIFY_STATUS_CSS', 'true', 'Minifying will speed up your site\'s loading speed by combining and compressing CSS files.', @gid, 2, now(), now(), NULL, 'zen_cfg_select_option(array(\'true\', \'false\'),'),
+REPLACE INTO configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, last_modified, date_added, use_function, set_function) VALUES 
+('Enable Minify for Javascripts', 'MINIFY_STATUS_JS', 'true', 'Minifying will speed up your sites loading speed by combining and compressing Javascript files.', @gid, 1, now(), now(), NULL, 'zen_cfg_select_option(array(\'true\', \'false\'),'),
+('Enable Minify for CSS', 'MINIFY_STATUS_CSS', 'true', 'Minifying will speed up your sites loading speed by combining and compressing CSS files.', @gid, 2, now(), now(), NULL, 'zen_cfg_select_option(array(\'true\', \'false\'),'),
 ('Max URL Lenght', 'MINIFY_MAX_URL_LENGHT', '500', 'On some server the maximum lenght of any POST/GET request URL is limited. If this is the case for your server, you can change the setting here', @gid, 3, now(), now(), NULL, NULL),
 ('Minify Cache Time', 'MINIFY_CACHE_TIME_LENGHT', '31536000', 'Set minify cache time (in second). Default is 1 year (31536000)', @gid, 4, now(), now(), NULL, NULL),
-('Latest Cache Time', 'MINIFY_CACHE_TIME_LATEST', '0', 'Normally you don\'t have to set this, but if you have just made changes to your js/css files and want to make sure they are reloaded right away, you can reset this to 0.', @gid, 5, now(), now(), NULL, NULL);
+('Latest Cache Time', 'MINIFY_CACHE_TIME_LATEST', '0', 'Normally you dont have to set this, but if you have just made changes to your js/css files and want to make sure they are reloaded right away, you can reset this to 0.', @gid, 5, now(), now(), NULL, NULL);
     
 
 INSERT INTO configuration_group (configuration_group_id, language_id, configuration_group_title, configuration_group_description, sort_order, visible ) VALUES 
@@ -313,20 +316,20 @@ INSERT INTO admin_pages (page_key, language_key, main_page, page_params, menu_ke
 
 ## Install New Google Analytics
 
-INSERT INTO configuration_group (`configuration_group_title`,`configuration_group_description`,`sort_order`,`visible`) VALUES ('Google Analytics', 'Google Analytics Settings', '1', '1');
+INSERT INTO configuration_group (configuration_group_title,configuration_group_description,sort_order,visible) VALUES ('Google Analytics', 'Google Analytics Settings', '1', '1');
 SET @gid=last_insert_id();
 UPDATE configuration_group SET sort_order = @gid WHERE configuration_group_id = @gid;
 
-INSERT INTO configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, last_modified, date_added, use_function, set_function) VALUES 
-('Analytics Enabled', 'GOOGLE_ANALYTICS_ENABLED', 'Disabled', 'Enables / disables this plugin.', @gid, 1, now(), now(), NULL, 'zen_cfg_select_option(array(''Enabled'', ''Disabled''), '),
+REPLACE INTO configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, last_modified, date_added, use_function, set_function) VALUES 
+('Analytics Enabled', 'GOOGLE_ANALYTICS_ENABLED', 'Disabled', 'Enables / disables this plugin.', @gid, 1, now(), now(), NULL, 'zen_cfg_select_option(array(\'Enabled\', \'Disabled\'), '),
 ('Analytics Account', 'GOOGLE_ANALYTICS_UACCT', 'UA-XXXXXX-X', 'This number is the unique ID you were given by Google when you registered for your Google Analytics account. <b>Enter your Google Analytics account number below. It starts with UA</b>', @gid, 2, now(), now(), NULL, NULL),
-('Target Address', 'GOOGLE_ANALYTICS_TARGET', 'customers', 'This element is used in conjunction with Google E-Commerce Tracking. It indicates how you want your "transactions" to be identified in your Analytics reports.<br><br>Addresses consist of City,State, and Country.<br><br>This information can help you determine locality of orders placed, shipped to, or billed to.<br><br><b>Which address type do you want to use for recording transaction information?</b><br>', @gid, 3, now(), now(), NULL, 'zen_cfg_select_option(array(''customers'', ''delivery'', ''billing''),'),
+('Target Address', 'GOOGLE_ANALYTICS_TARGET', 'customers', 'This element is used in conjunction with Google E-Commerce Tracking. It indicates how you want your "transactions" to be identified in your Analytics reports.<br><br>Addresses consist of City,State, and Country.<br><br>This information can help you determine locality of orders placed, shipped to, or billed to.<br><br><b>Which address type do you want to use for recording transaction information?</b><br>', @gid, 3, now(), now(), NULL, 'zen_cfg_select_option(array(\'customers\', \'delivery\', \'billing\'),'),
 ('Affiliation', 'GOOGLE_ANALYTICS_AFFILIATION', '', 'This <b>optional</b> tracking element is used in conjunction with Google E-Commerce Tracking.<br><br>The Affiliation tag describes the affiliating store or processing site.<br><br>It can be used if you have multiple stores (or web sites) in various locations and is used to track from which location a particular sale originated.<br><br><b>If you have one, enter your optional partner or store affiliation in the space provided below.</b><br>', @gid, 4, now(), now(), NULL, NULL),
-('Use sku/code', 'GOOGLE_ANALYTICS_SKU_CODE', 'products_id', 'This tracking element is used in conjunction with Google Analytics E-Commerce tracking.<br><br>It enables you to track which products perform better than others using either the Product ID, or the Product Model Number as a unique identifier.<br><br>Indicate which identifier you want to use to track product performance by selecting one of the options below.</b>', @gid, 5, now(), now(), NULL, 'zen_cfg_select_option(array(''products_id'', ''products_model''),'),
-('Activate Adwords Conversion Tracking', 'GOOGLE_CONVERSION_ACTIVE', 'No', 'This element enables you turn on or off Google Conversion Tracking.<br><br><span style="color:#ff0000;font-weight:bold;">Please Note:</span> Conversion tracking is used to track the effectiveness of Google AdWords paid search campaigns. If you are <b>not</b> running any paid search campaigns, then you should leave this set to "No".<br><br>If you are running Google AdWords (paid search) campaigns, then turning this on will place the proper conversion tracking code on your checkout success page and enable you to start tracking conversions.<br><br>Turning this on <b>requires you</b> to enter your unique Google Conversion Tracking ID in place of the "XXXXXXXXXXX" number shown in the next section.<br><br><b>Do you want to turn on Google AdWords Conversion Tracking?</b><br>', @gid, 6, now(), now(), NULL, 'zen_cfg_select_option(array(''Yes'', ''No''), '),
+('Use sku/code', 'GOOGLE_ANALYTICS_SKU_CODE', 'products_id', 'This tracking element is used in conjunction with Google Analytics E-Commerce tracking.<br><br>It enables you to track which products perform better than others using either the Product ID, or the Product Model Number as a unique identifier.<br><br>Indicate which identifier you want to use to track product performance by selecting one of the options below.</b>', @gid, 5, now(), now(), NULL, 'zen_cfg_select_option(array(\'products_id\', \'products_model\'),'),
+('Activate Adwords Conversion Tracking', 'GOOGLE_CONVERSION_ACTIVE', 'No', 'This element enables you turn on or off Google Conversion Tracking.<br><br><span style="color:#ff0000;font-weight:bold;">Please Note:</span> Conversion tracking is used to track the effectiveness of Google AdWords paid search campaigns. If you are <b>not</b> running any paid search campaigns, then you should leave this set to "No".<br><br>If you are running Google AdWords (paid search) campaigns, then turning this on will place the proper conversion tracking code on your checkout success page and enable you to start tracking conversions.<br><br>Turning this on <b>requires you</b> to enter your unique Google Conversion Tracking ID in place of the "XXXXXXXXXXX" number shown in the next section.<br><br><b>Do you want to turn on Google AdWords Conversion Tracking?</b><br>', @gid, 6, now(), now(), NULL, 'zen_cfg_select_option(array(\'Yes\', \'No\'), '),
 ('Google AdWords Conversion Tracking Number', 'GOOGLE_CONVERSION_IDNUM', 'XXXXXXXXXX', 'If you activated Conversion Tracking in the previous section, then you <b>must</b> enter your unique Google Conversion Tracking ID in place of the "XXXXXXXXXXX" shown in the space provided below.<br><br>If you have activated Conversion Tracking, and do not enter your number below, tracking will not work.<br><br><b>Enter your AdWords Conversion Tracking ID Number below.</b>', @gid, 7, now(), now(), NULL, NULL),
 ('Google AdWords Language', 'GOOGLE_CONVERSION_LANG', 'de', 'Select the language to be used. The default is "English US".<br><br><b>Select your language below</b><br>', @gid, 8, now(), now(), NULL, 'zen_cfg_pull_down_google_languages('),
-('Google Tracking Code Type To Use', 'GOOGLE_ANALYTICS_TRACKING_TYPE', 'universal', 'Select the type of tracking you wish to use. The default is the "universal" type. You have the ability to change this to the older "ga.js" method. <b>Select your tracking preference below.</b><br />', @gid, 9, now(), now(), NULL, 'zen_cfg_select_option(array(''universal'', ''ga.js'', ''ga.js asynchronous''), ');
+('Google Tracking Code Type To Use', 'GOOGLE_ANALYTICS_TRACKING_TYPE', 'universal', 'Select the type of tracking you wish to use. The default is the "universal" type. You have the ability to change this to the older "ga.js" method. <b>Select your tracking preference below.</b><br />', @gid, 9, now(), now(), NULL, 'zen_cfg_select_option(array(\'universal\', \'ga.js\', \'ga.js asynchronous\'), ');
 
 INSERT INTO configuration_group (configuration_group_id, language_id, configuration_group_title, configuration_group_description, sort_order, visible ) VALUES 
 (@gid, 43, 'Google Analytics', 'Google Analytics', '1', '1');
@@ -383,30 +386,30 @@ INSERT INTO google_analytics_languages VALUES (22,'Turkish - Türkisch','tr',22)
 
 ## Install New Facebook
 
-INSERT INTO configuration_group (`configuration_group_title`,`configuration_group_description`,`sort_order`,`visible`) VALUES ('Facebook Support', 'Facebook Settings', '1', '1');
+INSERT INTO configuration_group (configuration_group_title, configuration_group_description , sort_order , visible) VALUES ('Facebook Support', 'Facebook Settings', '1', '1');
 SET @gid=last_insert_id();
 UPDATE configuration_group SET sort_order = @gid WHERE configuration_group_id = @gid;
 
-INSERT INTO configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, last_modified, date_added, use_function, set_function) VALUES 
-('Open Graph - Enable Facebook Open Graph', 'FACEBOOK_OPEN_GRAPH_STATUS', 'false', 'Enable Facebook Open Graph meta data?', @gid, 1, now(), now(), NULL, 'zen_cfg_select_option(array(''true'', ''false''),'),
+REPLACE INTO configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, last_modified, date_added, use_function, set_function) VALUES 
+('Open Graph - Enable Facebook Open Graph', 'FACEBOOK_OPEN_GRAPH_STATUS', 'false', 'Enable Facebook Open Graph meta data?', @gid, 1, now(), now(), NULL, 'zen_cfg_select_option(array(\'true\', \'false\'),'),
 ('Open Graph - Application ID', 'FACEBOOK_OPEN_GRAPH_APPID', '', 'Please enter your application ID (<a href="http://developers.facebook.com/setup/" target="_blank">Get an application ID</a>)', @gid, 2, now(), now(), NULL, NULL),
 ('Open Graph - Application Secret', 'FACEBOOK_OPEN_GRAPH_APPSECRET', '', 'Please enter your application secret', @gid, 3, now(), now(), NULL, NULL),
 ('Open Graph - Admin ID', 'FACEBOOK_OPEN_GRAPH_ADMINID', '', 'Enter the Admin ID(s) of the Facebook user(s) that administer your Facebook fan page separated by commas (<a href="http://www.facebook.com/insights/" target="_blank">Insights for your domain</a>)', @gid, 4, now(), now(), NULL, NULL),
 ('Open Graph - Default Image', 'FACEBOOK_OPEN_GRAPH_DEFAULT_IMAGE', '', 'Enter the full path to your default image or leave blank to disable.  The default image is only used when the product image cannot be found.', @gid, 5, now(), now(), NULL, NULL),
 ('Open Graph - Object Type', 'FACEBOOK_OPEN_GRAPH_TYPE', 'product', 'Enter an Open Graph Object Type for your products (<a href="https://developers.facebook.com/docs/reference/opengraph/" target="_blank">Open Graph Object Types</a>)', @gid, 6, now(), now(), NULL, NULL),
-('Open Graph - Use cPath', 'FACEBOOK_OPEN_GRAPH_CPATH', 'true', 'Include the cPath in your URLs?', @gid, 7, now(), now(), NULL, 'zen_cfg_select_option(array(''true'', ''false''),'),
-('Open Graph - Include Language', 'FACEBOOK_OPEN_GRAPH_LANGUAGE', 'false', 'Include the language in your URLs?', @gid, 8, now(), now(), NULL, 'zen_cfg_select_option(array(''true'', ''false''),'),
-('Open Graph - Use Canonical URL', 'FACEBOOK_OPEN_GRAPH_CANONICAL', 'true', 'Use the canonical URL from Zen Cart or try and recreate the URL?', @gid, 9, now(), now(), NULL, 'zen_cfg_select_option(array(''true'', ''false''),'),
-('Like Button - Enable Facebook Like Button', 'FACEBOOK_LIKE_BUTTON_STATUS', 'false', 'Enable the Facebook Like Button?', @gid, 10, now(), now(), NULL, 'zen_cfg_select_option(array(''true'', ''false''),'),
-('Like Button - Method', 'FACEBOOK_LIKE_BUTTON_METHOD', 'XBFML', 'Use the iframe, HTML5, or XBFML method?', @gid, 11, now(), now(), NULL, 'zen_cfg_select_option(array(''iframe'', ''XBFML'', ''HTML5''),'),
-('Like Button - Alignment', 'FACEBOOK_LIKE_BUTTON_ALIGNMENT', 'none', 'Float the widget to the left, right, or none', @gid, 12, now(), now(), NULL, 'zen_cfg_select_option(array(''none'', ''left'', ''right''),'),
-('Like Button - Layout Style', 'FACEBOOK_LIKE_BUTTON_LAYOUT_STYLE', 'button_count', 'Select a layout style', @gid, 13, now(), now(), NULL, 'zen_cfg_select_option(array(''standard'', ''button_count'', ''box_count''),'),
-('Like Button - Show Faces', 'FACEBOOK_LIKE_BUTTON_SHOW_FACES', 'false', 'Specifies whether to display profile photos below the button (if true, set height to 80 or more; standard layout only)', @gid, 14, now(), now(), NULL, 'zen_cfg_select_option(array(''true'', ''false''),'),
-('Like Button - Action', 'FACEBOOK_LIKE_BUTTON_ACTION', 'like', 'The verb to display on the button', @gid, 15, now(), now(), NULL, 'zen_cfg_select_option(array(''like'', ''recommend''),'),
-('Like Button - Font', 'FACEBOOK_LIKE_BUTTON_FONT', 'arial', 'Select a font:', @gid, 16, now(), now(), NULL, 'zen_cfg_select_option(array(''arial'', ''lucida grande'', ''segoe ui'', ''tahoma'', ''trebuchet ms'', ''verdana''),'),
-('Like Button - Color Scheme', 'FACEBOOK_LIKE_BUTTON_COLOR_SCHEME', 'light', 'The color scheme for the like button', @gid, 17, now(), now(), NULL, 'zen_cfg_select_option(array(''light'', ''dark''),'),
+('Open Graph - Use cPath', 'FACEBOOK_OPEN_GRAPH_CPATH', 'true', 'Include the cPath in your URLs?', @gid, 7, now(), now(), NULL, 'zen_cfg_select_option(array(\'true\', \'false\'),'),
+('Open Graph - Include Language', 'FACEBOOK_OPEN_GRAPH_LANGUAGE', 'false', 'Include the language in your URLs?', @gid, 8, now(), now(), NULL, 'zen_cfg_select_option(array(\'true\', \'false\'),'),
+('Open Graph - Use Canonical URL', 'FACEBOOK_OPEN_GRAPH_CANONICAL', 'true', 'Use the canonical URL from Zen Cart or try and recreate the URL?', @gid, 9, now(), now(), NULL, 'zen_cfg_select_option(array(\'true\', \'false\'),'),
+('Like Button - Enable Facebook Like Button', 'FACEBOOK_LIKE_BUTTON_STATUS', 'false', 'Enable the Facebook Like Button?', @gid, 10, now(), now(), NULL, 'zen_cfg_select_option(array(\'true\', \'false\'),'),
+('Like Button - Method', 'FACEBOOK_LIKE_BUTTON_METHOD', 'XBFML', 'Use the iframe, HTML5, or XBFML method?', @gid, 11, now(), now(), NULL, 'zen_cfg_select_option(array(\'iframe\', \'XBFML\', \'HTML5\'),'),
+('Like Button - Alignment', 'FACEBOOK_LIKE_BUTTON_ALIGNMENT', 'none', 'Float the widget to the left, right, or none', @gid, 12, now(), now(), NULL, 'zen_cfg_select_option(array(\'none\', \'left\', \'right\'),'),
+('Like Button - Layout Style', 'FACEBOOK_LIKE_BUTTON_LAYOUT_STYLE', 'button_count', 'Select a layout style', @gid, 13, now(), now(), NULL, 'zen_cfg_select_option(array(\'standard\', \'button_count\', \'box_count\'),'),
+('Like Button - Show Faces', 'FACEBOOK_LIKE_BUTTON_SHOW_FACES', 'false', 'Specifies whether to display profile photos below the button (if true, set height to 80 or more; standard layout only)', @gid, 14, now(), now(), NULL, 'zen_cfg_select_option(array(\'true\', \'false\'),'),
+('Like Button - Action', 'FACEBOOK_LIKE_BUTTON_ACTION', 'like', 'The verb to display on the button', @gid, 15, now(), now(), NULL, 'zen_cfg_select_option(array(\'like\', \'recommend\'),'),
+('Like Button - Font', 'FACEBOOK_LIKE_BUTTON_FONT', 'arial', 'Select a font:', @gid, 16, now(), now(), NULL, 'zen_cfg_select_option(array(\'arial\', \'lucida grande\', \'segoe ui\', \'tahoma\', \'trebuchet ms\', \'verdana\'),'),
+('Like Button - Color Scheme', 'FACEBOOK_LIKE_BUTTON_COLOR_SCHEME', 'light', 'The color scheme for the like button', @gid, 17, now(), now(), NULL, 'zen_cfg_select_option(array(\'light\', \'dark\'),'),
 ('Like Button - Width', 'FACEBOOK_LIKE_BUTTON_WIDTH', '90', 'The width of the like button (standard => 450; button_count => 90; box_count => 55)', @gid, 18, now(), now(), NULL, NULL),
-('Like Button - Combined Send Button', 'FACEBOOK_LIKE_BUTTON_SEND', 'true', 'Create a combined Like and Send button?', @gid, 19, now(), now(), NULL, 'zen_cfg_select_option(array(''true'', ''false''),');
+('Like Button - Combined Send Button', 'FACEBOOK_LIKE_BUTTON_SEND', 'true', 'Create a combined Like and Send button?', @gid, 19, now(), now(), NULL, 'zen_cfg_select_option(array(\'true\', \'false\'),');
 
 INSERT INTO configuration_group (configuration_group_id, language_id, configuration_group_title, configuration_group_description, sort_order, visible ) VALUES 
 (@gid, 43, 'Facebook Funktionen', 'Facebook Einstellungen', '1', '1');
@@ -438,12 +441,12 @@ INSERT INTO admin_pages (page_key, language_key, main_page, page_params, menu_ke
 
 ## Install New RSS Feed
 
-INSERT INTO configuration_group (`configuration_group_title`,`configuration_group_description`,`sort_order`,`visible`) VALUES ('RSS Feed', 'RSS Feed Settings', '1', '1');
+INSERT INTO configuration_group (configuration_group_title, configuration_group_description , sort_order , visible ) VALUES ('RSS Feed', 'RSS Feed Settings', '1', '1');
 SET @gid=last_insert_id();
 UPDATE configuration_group SET sort_order = @gid WHERE configuration_group_id = @gid;
 
-INSERT INTO configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, last_modified, date_added, use_function, set_function) VALUES 
-('Enable RSS Feed?', 'RSS_FEED_ENABLED', 'true', 'Do you want to enable teh RSS Feeds?', @gid, 1, now(), now(), NULL, 'zen_cfg_select_option(array(''true'', ''false''),'),
+REPLACE INTO configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, last_modified, date_added, use_function, set_function) VALUES 
+('Enable RSS Feed?', 'RSS_FEED_ENABLED', 'true', 'Do you want to enable teh RSS Feeds?', @gid, 1, now(), now(), NULL, 'zen_cfg_select_option(array(\'true\', \'false\'),'),
 ('RSS Title', 'RSS_TITLE', '', 'RSS Title (if empty use Store Name)', @gid, 2, now(), now(), NULL, NULL),
 ('RSS Description', 'RSS_DESCRIPTION', '', 'RSS description', @gid, 3, now(), now(), NULL, NULL),
 ('RSS Image', 'RSS_IMAGE', '', 'A GIF, JPEG or PNG image that represents the channel', @gid, 4, now(), now(), NULL, NULL),
@@ -452,17 +455,17 @@ INSERT INTO configuration (configuration_title, configuration_key, configuration
 ('RSS Managing Editor', 'RSS_MANAGING_EDITOR', '', 'RSS Managing Editor (if empty use Store Owner Email Address and Store Owner)', @gid, 7, now(), now(), NULL, NULL),
 ('RSS Webmaster', 'RSS_WEBMASTER', '', 'RSS Webmaster (if empty use Store Owner Email Address and Store Owner)', @gid, 8, now(), now(), NULL, NULL),
 ('RSS Author', 'RSS_AUTHOR', '', 'RSS Author (if empty use Store Owner Email Address and Store Owner)', @gid, 9, now(), now(), NULL, NULL),
-('RSS Home Page Feed', 'RSS_HOMEPAGE_FEED', 'new_products', 'RSS Home Page Feed', @gid, 10, now(), now(), NULL, 'zen_cfg_select_option(array(''news'', ''new_products'', ''upcoming'', ''featured'', ''specials'', ''products'', ''categories''),'),
-('RSS Default Feed', 'RSS_DEFAULT_FEED', 'new_products', 'RSS Default Feed', @gid, 11, now(), now(), NULL, 'zen_cfg_select_option(array(''news'', ''new_products'', ''upcoming'', ''featured'', ''specials'', ''products'', ''categories''),'),
-('Strip tags', 'RSS_STRIP_TAGS', 'false', 'Strip tags', @gid, 12, now(), now(), NULL, 'zen_cfg_select_option(array(''true'', ''false''),'),
-('Generate Descriptions', 'RSS_ITEMS_DESCRIPTION', 'true', 'Generate Descriptions', @gid, 13, now(), now(), NULL, 'zen_cfg_select_option(array(''true'', ''false''),'),
+('RSS Home Page Feed', 'RSS_HOMEPAGE_FEED', 'new_products', 'RSS Home Page Feed', @gid, 10, now(), now(), NULL, 'zen_cfg_select_option(array(\'news\', \'new_products\', \'upcoming\', \'featured\', \'specials\', \'products\', \'categories\'),'),
+('RSS Default Feed', 'RSS_DEFAULT_FEED', 'new_products', 'RSS Default Feed', @gid, 11, now(), now(), NULL, 'zen_cfg_select_option(array(\'news\', \'new_products\', \'upcoming\', \'featured\', \'specials\', \'products\', \'categories\'),'),
+('Strip tags', 'RSS_STRIP_TAGS', 'false', 'Strip tags', @gid, 12, now(), now(), NULL, 'zen_cfg_select_option(array(\'true\', \'false\'),'),
+('Generate Descriptions', 'RSS_ITEMS_DESCRIPTION', 'true', 'Generate Descriptions', @gid, 13, now(), now(), NULL, 'zen_cfg_select_option(array(\'true\', \'false\'),'),
 ('Descriptions Length', 'RSS_ITEMS_DESCRIPTION_MAX_LENGTH', '400', 'How many characters in description (0 for no limit)', @gid, 14, now(), now(), NULL, NULL),
 ('Time to live', 'RSS_TTL', '1440', 'Time to live - time after reader should refresh the info in minutes', @gid, 15, now(), now(), NULL, NULL),
 ('Default Products Limit', 'RSS_PRODUCTS_LIMIT', '100', 'Default Limit to Products Feed', @gid, 16, now(), now(), NULL, NULL),
-('Add Product image', 'RSS_PRODUCTS_DESCRIPTION_IMAGE', 'true', 'Add product image to product description tag', @gid, 17, now(), now(), NULL, 'zen_cfg_select_option(array(''true'', ''false''),'),
-('Add "buy now" button', 'RSS_PRODUCTS_DESCRIPTION_BUYNOW', 'false', 'Add "buy now" button to product description tag', @gid, 18, now(), now(), NULL, 'zen_cfg_select_option(array(''true'', ''false''),'),
-('Categories for Products', 'RSS_PRODUCTS_CATEGORIES', 'master', 'Use ''all'' or only ''master'' Categories for Products when specified cPath parameter', @gid, 19, now(), now(), NULL, 'zen_cfg_select_option(array(''master'', ''all''),'),
-('Feed Cache', 'RSS_CACHE_TIME', '10', 'Cache Feeds in the cache folder. If you don''t want caching, set it to 0', @gid, 20, now(), now(), '', '');
+('Add Product image', 'RSS_PRODUCTS_DESCRIPTION_IMAGE', 'true', 'Add product image to product description tag', @gid, 17, now(), now(), NULL, 'zen_cfg_select_option(array(\'true\', \'false\'),'),
+('Add "buy now" button', 'RSS_PRODUCTS_DESCRIPTION_BUYNOW', 'false', 'Add "buy now" button to product description tag', @gid, 18, now(), now(), NULL, 'zen_cfg_select_option(array(\'true\', \'false\'),'),
+('Categories for Products', 'RSS_PRODUCTS_CATEGORIES', 'master', 'Use ''all'' or only ''master'' Categories for Products when specified cPath parameter', @gid, 19, now(), now(), NULL, 'zen_cfg_select_option(array(\'master\', \'all\'),'),
+('Feed Cache', 'RSS_CACHE_TIME', '10', 'Cache Feeds in the cache folder. If you don''t want caching, set it to 0', @gid, 20, now(), now(), NULL, NULL);
 
 INSERT INTO configuration_group (configuration_group_id, language_id, configuration_group_title, configuration_group_description, sort_order, visible ) VALUES 
 (@gid, 43, 'RSS Feed', 'RSS Feed Einstellungen', '1', '1');
