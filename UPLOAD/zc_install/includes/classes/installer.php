@@ -7,7 +7,7 @@
  * @copyright Copyright 2003-2014 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: installer.php 794 2014-02-08 10:01:13Z webchills $
+ * @version $Id: installer.php 795 2014-04-06 19:01:13Z webchills $
  */
 
 
@@ -521,8 +521,7 @@
       $db = $this->db;
       // process the actual sql insertions
       executeSql('sql/' . $this->getConfigKey('DB_TYPE') . '_zencart.sql', $this->getConfigKey('DB_DATABASE'), $this->getConfigKey('DB_PREFIX'));
-	  // hugo13 : only for a fully multilingual admin installation
-	  executeSql('sql/' . $this->getConfigKey('DB_TYPE') . '_multilingual_2.sql', $this->getConfigKey('DB_DATABASE'), $this->getConfigKey('DB_PREFIX'));
+	 
       executeSql('sql/' . $this->getConfigKey('DB_TYPE') . '_' . $this->getConfigKey('DB_CHARSET') . '.sql', $this->getConfigKey('DB_DATABASE'), $this->getConfigKey('DB_PREFIX'));
 
       //update the cache folder setting:
