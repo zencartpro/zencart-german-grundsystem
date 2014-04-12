@@ -7,7 +7,7 @@
  * @copyright Copyright 2003-2014 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: filenames.php 804 2011-11-23 08:28:24Z webchills $
+ * @version $Id: filenames.php 805 2014-04-14 08:28:24Z webchills $
  * @private
  */
 /**
@@ -168,6 +168,8 @@ define('FILENAME_UNSUBSCRIBE', 'unsubscribe');
 define('FILENAME_USERS', 'users');
 define('FILENAME_WIDERRUFSRECHT', 'widerrufsrecht');
 define('FILENAME_DEFINE_WIDERRUFSRECHT', 'define_widerrufsrecht');
+define('FILENAME_ZAHLUNGSARTEN', 'zahlungsarten');
+define('FILENAME_DEFINE_ZAHLUNGSARTEN', 'define_zahlungsarten');
 define('FILENAME_ZONES', 'zones');
 define('FILENAME_WHOS_ONLINE', 'whos_online');
 
@@ -193,4 +195,3 @@ define('FILENAME_SPECIALS_INDEX', 'specials_index.php');
 define('FILENAME_UPCOMING_PRODUCTS', 'upcoming_products.php');
 
 define('FILENAME_BB_INDEX', 'index.php'); // phpBB main index filename
-

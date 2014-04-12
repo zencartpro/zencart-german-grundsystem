@@ -6,7 +6,7 @@
  * @copyright Copyright 2003-2014 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: information.php 731 2014-02-09 15:08:16Z webchills $
+ * @version $Id: information.php 732 2014-04-12 15:08:16Z webchills $
  */
 
   unset($information);
@@ -23,6 +23,10 @@
   if (DEFINE_WIDERRUFSRECHT_STATUS <= 1) {
     $information[] = '<a href="' . zen_href_link(FILENAME_WIDERRUFSRECHT) . '">' . BOX_INFORMATION_WIDERRUFSRECHT . '</a>';
   }
+  if (DEFINE_ZAHLUNGSARTEN_STATUS <= 1) {
+    $information[] = '<a href="' . zen_href_link(FILENAME_ZAHLUNGSARTEN) . '">' . BOX_INFORMATION_ZAHLUNGSARTEN . '</a>';
+  }
+  
   if (DEFINE_IMPRESSUM_STATUS <= 1) {
     $information[] = '<a href="' . zen_href_link(FILENAME_IMPRESSUM) . '">' . BOX_INFORMATION_IMPRESSUM . '</a>';
   }
