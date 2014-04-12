@@ -1,7 +1,7 @@
 #
 # @copyright Copyright 2003-2014 Zen Cart Development Team
 # @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
-# @version $Id: .htaccess 837 2014-02-08 20:33:58Z webchills $
+# @version $Id: .htaccess 838 2014-04-12 16:33:58Z webchills $
 #
 # This is used with Apache WebServers
 #
@@ -24,7 +24,7 @@
 </FilesMatch>
 
 # but now allow just *certain* necessary files:
-<FilesMatch "(?i).*\.(js|css|jpg|gif|png|html?|xml)$">
+<FilesMatch "(?i).*\.(js|css|jpg|gif|png|html?|xml|ttf|woff|eot|svg)$">
   Order Allow,Deny
   Allow from all
 </FilesMatch>
