@@ -4,7 +4,7 @@
  * @copyright Copyright 2003-2014 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: english.php 875 2014-02-09 11:33:32Z webchills $
+ * @version $Id: english.php 878 2014-04-12 18:33:32Z webchills $
  */
 
 // FOLLOWING WERE moved to meta_tags.php
@@ -13,7 +13,7 @@
 //define('CUSTOM_KEYWORDS', 'ecommerce, open source, shop, online shopping');
 // END: moved to meta_tags.php
 
-  define('FOOTER_TEXT_BODY', 'Copyright &copy; ' . date('Y') . ' <a href="' . zen_href_link(FILENAME_DEFAULT) . '">' . STORE_NAME . '</a>. Powered by <a href="http://www.zen-cart-pro.at" target="_blank">Zen-Cart</a>');
+  define('FOOTER_TEXT_BODY', 'Copyright &copy; ' . date('Y') . ' <a href="' . zen_href_link(FILENAME_DEFAULT) . '">' . STORE_NAME . '</a>. Powered by <a href="http://www.zen-cart-pro.at" target="_blank">Zen Cart</a>');
 
 // look in your $PATH_LOCALE/locale directory for available locales..
   $locales = array('en_US', 'en_US.utf8', 'en', 'English_United States.1252');
@@ -137,6 +137,7 @@
   define('BOX_INFORMATION_CONDITIONS', 'Conditions of Use');
   define('BOX_INFORMATION_SHIPPING', 'Shipping &amp; Returns');
   define('BOX_INFORMATION_WIDERRUFSRECHT', 'Revocation Clause');
+  define('BOX_INFORMATION_ZAHLUNGSARTEN', 'Payment Methods');
   define('BOX_INFORMATION_IMPRESSUM', 'Imprint');
   define('BOX_INFORMATION_CONTACT', 'Contact Us');
   define('BOX_BBINDEX', 'Forum');
