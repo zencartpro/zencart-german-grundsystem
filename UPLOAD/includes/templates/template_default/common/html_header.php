@@ -8,7 +8,7 @@
  * @copyright Copyright 2003-2014 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: html_header.php 848 2014-03-23 12:10:39Z webchills $
+ * @version $Id: html_header.php 849 2014-04-13 07:10:39Z webchills $
  */
 /**
  * load the module for generating page meta-tags
@@ -25,6 +25,7 @@ require(DIR_WS_MODULES . zen_get_module_directory('meta_tags.php'));
 <meta http-equiv="Content-Type" content="text/html; charset=<?php echo CHARSET; ?>" />
 <meta name="keywords" content="<?php echo META_TAG_KEYWORDS; ?>" />
 <meta name="description" content="<?php echo META_TAG_DESCRIPTION; ?>" />
+<meta name="language" content="<?php echo META_TAG_LANGUAGE; ?>" />
 <meta http-equiv="imagetoolbar" content="no" />
 <meta name="author" content="The Zen Cart&reg; Team and others" />
 <meta name="generator" content="Zen-Cart 1.5.2 - deutsche Version, http://www.zen-cart-pro.at" />
