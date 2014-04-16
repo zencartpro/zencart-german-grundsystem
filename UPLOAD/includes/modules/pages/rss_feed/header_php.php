@@ -7,7 +7,7 @@
  * @copyright Portions Copyright 2003-2014 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: header_php.php, 2014-03-29 07:23:04 webchills $
+ * @version $Id: header_php.php, 2014-04-16 19:23:04 webchills $
  */
 //  @ini_set('display_errors', '1');
 //  error_reporting(E_ALL);
@@ -345,15 +345,7 @@ if(!$rss->rss_feed_cache($_SERVER['QUERY_STRING'], RSS_CACHE_TIME*60)) {
     $imageSize = (isset($_GET['imgsize']) ? $_GET['imgsize'] : RSS_DEFAULT_IMAGE_SIZE);
 
 
-    $sql_maxdate = "SELECT GREATEST(MAX(products_date_added), MAX(IFNULL(products_last_modified, 0))) as max_date
-                    FROM " . TABLE_PRODUCTS . "
-                    WHERE products_status = 1";
-    $maxdate = $db->Execute($sql_maxdate);
-    if(!$maxdate->EOF) {
-      $rss->rss_feed_set('lastBuildDate', date('r', strtotime($maxdate->fields['max_date'])));
-    }
-
-    if ($random) {
+      if ($random) {
       $products = zen_random_select($sql_products);
     } else {
       $products = $db->Execute($sql_products);
