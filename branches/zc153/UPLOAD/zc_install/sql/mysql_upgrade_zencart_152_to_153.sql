@@ -5,8 +5,8 @@
 # * @access private
 # * @copyright Copyright 2003-2014 Zen Cart Development Team
 # * @copyright Portions Copyright 2003 osCommerce
-# * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
-# * @version GIT: $Id: Author: DrByte  Fri Jun 13 2014  New in v1.5.3 $
+# * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
+# * @version $Id: mysql_upgrade_zencart_152_to_153.sql 2 2014-07-06 10:46:59Z webchills $
 #
 
 ############ IMPORTANT INSTRUCTIONS ###############
@@ -32,7 +32,7 @@
 #####################################################
 
 # Set store to Down-For-Maintenance mode.  Must reset manually via admin after upgrade is done.
-#UPDATE configuration set configuration_value = 'true' where configuration_key = 'DOWN_FOR_MAINTENANCE';
+UPDATE configuration set configuration_value = 'true' where configuration_key = 'DOWN_FOR_MAINTENANCE';
 
 # Clear out active customer sessions
 TRUNCATE TABLE whos_online;
@@ -55,7 +55,8 @@ ALTER TABLE customers MODIFY customers_password VARCHAR( 255 ) NOT NULL DEFAULT 
 
 UPDATE configuration set configuration_description = 'Record the database queries to files in the system /logs/ folder. USE WITH CAUTION. This can seriously degrade your site performance and blow out your disk space storage quotas.<br><strong>Enabling this makes your site NON-COMPLIANT with PCI DSS rules, thus invalidating any certification.</strong>' where configuration_key = 'STORE_DB_TRANSACTIONS';
 
-
+## Email Archiv Manager
+INSERT INTO admin_pages (page_key, language_key, main_page, page_params, menu_key, display_on_menu, sort_order) VALUES ('emailArchive', 'BOX_TOOLS_EMAIL_ARCHIVE_MANAGER', 'FILENAME_EMAIL_HISTORY', '', 'tools', 'Y', 16);
 
 #############
 

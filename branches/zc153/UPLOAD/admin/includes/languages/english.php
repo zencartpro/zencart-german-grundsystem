@@ -4,7 +4,7 @@
  * @copyright Copyright 2003-2014 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: english.php 877 2014-02-08 12:33:32Z webchills $
+ * @version $Id: english.php 878 2014-07-06 09:33:32Z webchills $
  */
 if (!defined('IS_ADMIN_FLAG'))
 {
@@ -12,7 +12,7 @@ if (!defined('IS_ADMIN_FLAG'))
 }
 
 // added defines for header alt and text
-define('HEADER_ALT_TEXT', 'Admin Powered by Zen-Cart 1.5.2 - German version');
+define('HEADER_ALT_TEXT', 'Admin Powered by Zen-Cart 1.5.3 - German version');
 define('HEADER_LOGO_WIDTH', '200px');
 define('HEADER_LOGO_HEIGHT', '70px');
 define('HEADER_LOGO_IMAGE', 'logo.gif');
