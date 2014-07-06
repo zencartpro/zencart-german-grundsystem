@@ -6,7 +6,7 @@
  * @copyright Copyright 2003-2014 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: german.php 807 2014-02-09 18:33:24Z webchills $
+ * @version $Id: german.php 808 2014-07-05 09:33:24Z webchills $
  */
 /**
  * defining language components for the page
@@ -23,7 +23,7 @@ define('HTML_PARAMS','dir="ltr" lang="de"');
 define('CHARSET', 'utf-8');
 
 // META TAG TITLE
-define('META_TAG_TITLE', 'Zen-Cart 1.5.2 deutsch - Installationsprogramm');
+define('META_TAG_TITLE', 'Zen-Cart 1.5.3 deutsch - Installationsprogramm');
 
 define('INSTALLATION_IN_PROGRESS','Installation läuft...');
 
