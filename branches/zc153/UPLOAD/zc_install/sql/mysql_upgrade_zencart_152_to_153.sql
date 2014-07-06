@@ -6,7 +6,7 @@
 # * @copyright Copyright 2003-2014 Zen Cart Development Team
 # * @copyright Portions Copyright 2003 osCommerce
 # * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
-# * @version $Id: mysql_upgrade_zencart_152_to_153.sql 2 2014-07-06 10:46:59Z webchills $
+# * @version $Id: mysql_upgrade_zencart_152_to_153.sql 3 2014-07-06 11:46:59Z webchills $
 #
 
 ############ IMPORTANT INSTRUCTIONS ###############
@@ -57,6 +57,10 @@ UPDATE configuration set configuration_description = 'Record the database querie
 
 ## Email Archiv Manager
 INSERT INTO admin_pages (page_key, language_key, main_page, page_params, menu_key, display_on_menu, sort_order) VALUES ('emailArchive', 'BOX_TOOLS_EMAIL_ARCHIVE_MANAGER', 'FILENAME_EMAIL_HISTORY', '', 'tools', 'Y', 16);
+
+## Logfiles anzeigen
+INSERT INTO admin_pages (page_key, language_key, main_page, page_params, menu_key, display_on_menu, sort_order) VALUES ('toolsDisplayLogs', 'BOX_TOOLS_DISPLAY_LOGS', 'FILENAME_DISPLAY_LOGS', '', 'tools', 'Y', 17);
+
 
 #############
 
