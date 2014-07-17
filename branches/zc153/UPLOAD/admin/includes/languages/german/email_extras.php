@@ -4,7 +4,7 @@
  * @copyright Copyright 2003-2014 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
-  * @version $Id: email_extras.php 628 2013-08-17 09:05:14Z webchills $
+  * @version $Id: email_extras.php 629 2014-07-17 09:05:14Z webchills $
  */
 
 
@@ -24,7 +24,7 @@ define('OFFICE_DATE_TIME','Datum und Uhrzeit:');
 // email disclaimer
 define('EMAIL_DISCLAIMER','Diese E-Mail Adresse wurde uns von Ihnen oder einer unserer Kunden mitgeteilt. Sollten Sie diese Nachricht versehentlich erhalten haben, wenden Sie sich bitte an %s');
 define('EMAIL_SPAM_DISCLAIMER', '-');
-define('EMAIL_FOOTER_COPYRIGHT','Copyright (c) ' . date('Y') . ' <a href="' . zen_href_link(FILENAME_DEFAULT) . '" target="_blank">' . STORE_NAME . '</a>');
+define('EMAIL_FOOTER_COPYRIGHT','Copyright (c) ' . date('Y') . ' <a href="http://www.zen-cart-pro.at" target="_blank">' . STORE_NAME . '</a>');
 define('SEND_EXTRA_GV_ADMIN_EMAILS_TO_SUBJECT','[GUTSCHEIN ADMIN GESENDET]');
 define('SEND_EXTRA_DISCOUNT_COUPON_ADMIN_EMAILS_TO_SUBJECT','[AKTIONSKUPON]');
 define('SEND_EXTRA_ORDERS_STATUS_ADMIN_EMAILS_TO_SUBJECT','[BESTELLSTATUS]');
