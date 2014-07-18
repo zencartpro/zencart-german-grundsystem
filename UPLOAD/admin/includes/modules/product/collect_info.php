@@ -4,13 +4,13 @@
  * @copyright Copyright 2003-2014 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: collect_info.php 794 2012-12-07 07:24:50Z webchills $
+ * @version $Id: collect_info.php 796 2014-07-17 11:24:50Z webchills $
  */
 if (!defined('IS_ADMIN_FLAG')) {
   die('Illegal Access');
 }
     $parameters = array('products_name' => '',
-			'products_merkmale' => '',
+		            	'products_merkmale' => '',
                        'products_description' => '',
                        'products_url' => '',
                        'products_id' => '',
@@ -67,7 +67,7 @@ if (!defined('IS_ADMIN_FLAG')) {
     } elseif (zen_not_null($_POST)) {
       $pInfo->objectInfo($_POST);
       $products_name = $_POST['products_name'];
-       $products_merkmale = $_POST['products_merkmale'];
+      $products_merkmale = $_POST['products_merkmale'];
       $products_description = $_POST['products_description'];
       $products_url = $_POST['products_url'];
     }
