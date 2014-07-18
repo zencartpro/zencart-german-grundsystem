@@ -6,7 +6,7 @@
 # * @copyright Copyright 2003-2014 Zen Cart Development Team
 # * @copyright Portions Copyright 2003 osCommerce
 # * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
-# * @version $Id: mysql_upgrade_zencart_151_to_152.sql 6 2014-03-30 09:45:57Z webchills $
+# * @version $Id: mysql_upgrade_zencart_151_to_152.sql 7 2014-07-18 10:22:57Z webchills $
 #
 
 ############ IMPORTANT INSTRUCTIONS ###############
@@ -331,6 +331,9 @@ REPLACE INTO configuration (configuration_title, configuration_key, configuratio
 ('Google AdWords Conversion Tracking Number', 'GOOGLE_CONVERSION_IDNUM', 'XXXXXXXXXX', 'If you activated Conversion Tracking in the previous section, then you <b>must</b> enter your unique Google Conversion Tracking ID in place of the "XXXXXXXXXXX" shown in the space provided below.<br><br>If you have activated Conversion Tracking, and do not enter your number below, tracking will not work.<br><br><b>Enter your AdWords Conversion Tracking ID Number below.</b>', @gid, 7, now(), now(), NULL, NULL),
 ('Google AdWords Language', 'GOOGLE_CONVERSION_LANG', 'de', 'Select the language to be used. The default is "English US".<br><br><b>Select your language below</b><br>', @gid, 8, now(), now(), NULL, 'zen_cfg_pull_down_google_languages('),
 ('Google Tracking Code Type To Use', 'GOOGLE_ANALYTICS_TRACKING_TYPE', 'universal', 'Select the type of tracking you wish to use. The default is the "universal" type. You have the ability to change this to the older "ga.js" method. <b>Select your tracking preference below.</b><br />', @gid, 9, now(), now(), NULL, 'zen_cfg_select_option(array(\'universal\', \'ga.js\', \'ga.js asynchronous\'), ');
+('Add Custom Tracking After Main Analytics Code?', 'GOOGLE_ANALYTICS_CUSTOM_CODE_ENABLED', 'Disable', 'Enables / disables inclusion of custom Javascript.', @gid, 10, NOW(), NOW(), NULL, 'zen_cfg_select_option(array(''Enable'', ''Disable''),');
+('Google Custom Code - After', 'GOOGLE_ANALYTICS_CUSTOM_CODE', '', 'If you wish to include any Javascript code after the main tracking segment, insert it here.<br /><br />', @gid, 11, NOW(), NOW(), NULL, 'zen_cfg_textarea(');
+
 
 INSERT INTO configuration_group (configuration_group_id, language_id, configuration_group_title, configuration_group_description, sort_order, visible ) VALUES 
 (@gid, 43, 'Google Analytics', 'Google Analytics', '1', '1');
@@ -345,7 +348,7 @@ REPLACE INTO configuration_language (configuration_title, configuration_key, con
 ('GA - Adwords Conversion Tracking Nummer', 'GOOGLE_CONVERSION_IDNUM', 43, 'Google Analytics:<br/><br/>Wenn Sie oben Conversion Tracking aktiviert haben, geben Sie hier Ihre Conversion Tracking ID anstelle der XXXXXXXXXXX ein. Sollten Sie hier keine Nummer eingeben, wird das Conversion Tracking nicht funktionieren.<br/><br/><b>Geben Sie hier Ihre AdWords Conversion Tracking ID ein:</b>', now(), now()),
 ('GA - Google Adwords Sprache', 'GOOGLE_CONVERSION_LANG', 43, 'Google Analytics:<br/><br/>Spracheinstellung für Google Adwords. Voreingestellt ist: Deutsch<br/><br/><b>Wählen Sie die gewünschte Sprache aus:</b>', now(), now()),
 ('GA - Art des Tracking Codes', 'GOOGLE_ANALYTICS_TRACKING_TYPE', 43, 'Google Analytics:<br/><br/>Welchen Tracking Code Typ wollen Sie verwenden? Voreingestellt ist der neueste universal Typ. Sie können das auf den veralteten ga.js oder auf den früher von Google angebotenen Asynchronous Typ umstellen. Besuchen Sie die <a href="http://code.google.com/apis/analytics/docs/tracking/home.html" target="_blank">Google Analytics Website</a> für genauere Informationen zu den verschiedenen Varianten<br/><br/><b>Wählen Sie Ihren Tracking Typ:</b>', now(), now()),
-('GA - Benutzerdefinierten Tracking Code nach dem Hauptcode einfügen?', '43', 0, 'Google Analytics:<br/><br/>Wollen Sie einen weiteren benutzerdefinierten Trackingcode nach dem normalen Google Analytics Hauptcode einfügen? Das kann genutzt werden, um den Code an Ihre ganz individuellen Erfordernisse anzupassen. Fügen Sie Tracking Objekte entsprechend der Dokumentation der <a href="http://code.google.com/apis/analytics/docs/tracking/gaTrackingCustomVariables.html" target="_blank">Google Analytics Website</a> ein.<br/><br/>Voreingestellt ist: Deaktiviert.', now(), now()),
+('GA - Benutzerdefinierten Tracking Code nach dem Hauptcode einfügen?', 43, 'Google Analytics:<br/><br/>Wollen Sie einen weiteren benutzerdefinierten Trackingcode nach dem normalen Google Analytics Hauptcode einfügen? Das kann genutzt werden, um den Code an Ihre ganz individuellen Erfordernisse anzupassen. Fügen Sie Tracking Objekte entsprechend der Dokumentation der <a href="http://code.google.com/apis/analytics/docs/tracking/gaTrackingCustomVariables.html" target="_blank">Google Analytics Website</a> ein.<br/><br/>Voreingestellt ist: Deaktiviert.', now(), now()),
 ('GA - Benutzerdefinierter Tracking Code', 'GOOGLE_ANALYTICS_CUSTOM_CODE', 43, 'Google Analytics:<br/><br/>Falls Sie benutzerdefinierten Tracking Code aktiviert haben, fügen Sie diesen hier ein:', now(), now());
 
 INSERT INTO admin_pages (page_key, language_key, main_page, page_params, menu_key, display_on_menu, sort_order) VALUES
