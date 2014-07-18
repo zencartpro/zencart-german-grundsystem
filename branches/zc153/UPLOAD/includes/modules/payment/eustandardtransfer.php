@@ -4,7 +4,7 @@
  * @copyright Copyright 2003-2014 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: eustandardtransfer.php 574 2013-09-11 19:02:14 webchills $
+ * @version $Id: eustandardtransfer.php 575 2014-07-17 10:02:14 webchills $
 */
 
   class eustandardtransfer {
@@ -38,7 +38,7 @@
       global $order, $db;
       
       // check country
-        $dest_country = $order->billing['country']['iso_code_2'];
+        $dest_country = isset ($order->billing['country']['iso_code_2']) ? $order->billing['country']['iso_code_2'] : 0 ;
         $dest_zone = 0;
         $error = false;
         $countries_table = MODULE_PAYMENT_EUTRANSFER_COUNTRIES; 
