@@ -4,10 +4,12 @@
  * @copyright Copyright 2003-2014 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: orders.php 788 2014-02-08 12:13:51Z webchills $
+ * @version $Id: orders.php 789 2014-07-18 19:13:51Z webchills $
  */
 
   require('includes/application_top.php');
+  // unset variable which is sometimes tainted by bad plugins like magneticOne tools
+  if (isset($module)) unset($module);
 
   require(DIR_WS_CLASSES . 'currencies.php');
   $currencies = new currencies();
