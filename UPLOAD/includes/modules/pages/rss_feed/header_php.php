@@ -7,7 +7,7 @@
  * @copyright Portions Copyright 2003-2014 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: header_php.php, 2014-04-16 19:23:04 webchills $
+ * @version $Id: header_php.php, 2014-07-19 08:23:04 webchills $
  */
 //  @ini_set('display_errors', '1');
 //  error_reporting(E_ALL);
@@ -23,7 +23,7 @@
 @define('RSS_DEFAULT_IMAGE_SIZE', 'small'); // \'small\', \'medium\', \'large\'
 @define('RSS_CACHE_TIME', '10');
 
-@define('DIR_FS_RSSFEED_CACHE', DIR_FS_SQL_CACHE);
+@define('DIR_FS_RSSFEED_CACHE', DIR_FS_SQL_CACHE . '/rss');
 @define('RSS_ERROR_CACHE_DIR', 'Cache directory not found "' . DIR_FS_RSSFEED_CACHE . '"');
 
 
