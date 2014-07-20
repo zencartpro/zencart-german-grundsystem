@@ -6,10 +6,11 @@
  * @copyright Copyright 2003-2014 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: general.php 788 2014-07-05 10:56:51Z webchills $
+ * @version $Id: general.php 789 2014-07-20 08:56:51Z webchills $
  */
 
   if (!defined('TABLE_UPGRADE_EXCEPTIONS')) define('TABLE_UPGRADE_EXCEPTIONS','upgrade_exceptions');
+  require('../includes/classes/class.zcPassword.php');
 
   function zen_not_null($value) {
     if (is_array($value)) {
@@ -464,13 +465,19 @@ function executeSql($sql_file, $database, $table_prefix = '', $isupgrade=false) 
   }
 
   function zen_validate_password($plain, $encrypted) {
-    if (zen_not_null($plain) && zen_not_null($encrypted)) {
-      $stack = explode(':', $encrypted);
-      if (sizeof($stack) != 2) return false;
-      if (md5($stack[1] . $plain) == $stack[0]) {
-        return true;
-      }
+    if (!zen_not_null($plain) || !zen_not_null($encrypted)) {
+      return false;
     }
+
+    if (strpos($encrypted, '$2y$') === 0) {
+      return zcPassword::getInstance(PHP_VERSION)->validatePassword($plain, $encrypted);
+    }
+
+    $stack = explode(':', $encrypted);
+    if (sizeof($stack) == 2) {
+      return (md5($stack[1] . $plain) == $stack[0]);
+    }
+
     return false;
   }
 
@@ -899,7 +906,7 @@ function executeSql($sql_file, $database, $table_prefix = '', $isupgrade=false) 
     if ($connection == '') $connection = $request_type;
     // Add the session ID when moving from different HTTP and HTTPS servers, or when SID is defined
     if ($session_started == true) {
-      if (defined('SID') && zen_not_null(SID)) {
+      if (defined('SID') && zen_not_null(constant('SID'))) {
         $sid = SID;
       } elseif ( ($request_type == 'NONSSL' && $connection == 'SSL') || ($request_type == 'SSL' && $connection == 'NONSSL') ) {
         if ($http_domain != $https_domain) {
