@@ -8,7 +8,7 @@
  * @package templateSystem
  * @copyright Copyright 2003-2014 Zen Cart Development Team
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: tpl_account_edit_default.php 729 2011-08-09 15:49:16Z hugo13 $
+ * @version $Id: tpl_account_edit_default.php 730 2014-07-23 17:49:16Z webchills $
  * @copyright Portions Copyright 2003 osCommerce
  */
 ?>
@@ -51,6 +51,10 @@
 
 <label class="inputLabel" for="email-address"><?php echo ENTRY_EMAIL_ADDRESS; ?></label>
 <?php echo zen_draw_input_field('email_address', $account->fields['customers_email_address'], 'id="email-address"') . (zen_not_null(ENTRY_EMAIL_ADDRESS_TEXT) ? '<span class="alert">' . ENTRY_EMAIL_ADDRESS_TEXT . '</span>': ''); ?>
+<br class="clearBoth" />
+
+<label class="inputLabel" for="email-address-confirm"><?php echo ENTRY_EMAIL_ADDRESS_CONFIRM; ?></label>
+<?php echo zen_draw_input_field('email_address_confirm', $account->fields['customers_email_address'], 'id="email-address-confirm"') . (zen_not_null(ENTRY_EMAIL_ADDRESS_CONFIRM) ? '<span class="alert">' . ENTRY_EMAIL_ADDRESS_TEXT . '</span>': ''); ?>
 <br class="clearBoth" />
 
 <label class="inputLabel" for="telephone"><?php echo ENTRY_TELEPHONE_NUMBER; ?></label>

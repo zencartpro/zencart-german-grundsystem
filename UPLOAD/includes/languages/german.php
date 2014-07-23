@@ -4,7 +4,7 @@
  * @copyright Copyright 2003-2014 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: german.php 656 2014-04-12 18:45:57Z webchills $
+ * @version $Id: german.php 657 2014-07-23 17:45:57Z webchills $
  */
 
 // FOLLOWING WERE moved to meta_tags.php
@@ -206,6 +206,8 @@ define('ENTRY_EMAIL_ADDRESS_ERROR', 'Ihre E-Mail Adresse muss mindestens ' . ENT
 define('ENTRY_EMAIL_ADDRESS_CHECK_ERROR', 'Ihre E-Mail Adresse scheint nicht korrekt zu sein. Bitte ändern Sie diese.');
 define('ENTRY_EMAIL_ADDRESS_ERROR_EXISTS', 'Ihre E-Mail Adresse ist bereits registriert. Bitte melden Sie sich an oder registrieren Sie sich mit einer anderen E-Mail Adresse.');
 define('ENTRY_EMAIL_ADDRESS_TEXT', '*');
+define('ENTRY_EMAIL_ADDRESS_CONFIRM', 'E-Mail bestätigen:');
+define('ENTRY_EMAIL_ADDRESS_CONFIRM_NOT_MATCHING', 'Die angegebenen Emailadressen stimmen nicht überein.');
 define('ENTRY_NICK', 'Forum Nick Name:');
 define('ENTRY_NICK_TEXT', '*');   // note to display beside nickname input field
 define('ENTRY_NICK_DUPLICATE_ERROR', 'Der Nickname existiert bereits.');

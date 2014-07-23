@@ -6,7 +6,7 @@
  * @copyright Copyright 2003-2014 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: header_php.php 730 2014-02-09 14:49:16Z hugo13 $
+ * @version $Id: header_php.php 731 2014-07-23 17:49:16Z webchills $
  */
 // This should be first line of the script:
 $zco_notifier->notify('NOTIFY_HEADER_START_ACCOUNT_EDIT');
@@ -23,6 +23,7 @@ if (isset($_POST['action']) && ($_POST['action'] == 'process')) {
   $lastname = zen_db_prepare_input($_POST['lastname']);
   if (ACCOUNT_DOB == 'true') $dob = (empty($_POST['dob']) ? zen_db_prepare_input('0001-01-01 00:00:00') : zen_db_prepare_input($_POST['dob']));
   $email_address = zen_db_prepare_input($_POST['email_address']);
+  $email_address_confirm = zen_db_prepare_input($_POST['email_address_confirm']);
   $telephone = zen_db_prepare_input($_POST['telephone']);
   $fax = zen_db_prepare_input($_POST['fax']);
   $email_format = zen_db_prepare_input($_POST['email_format']);
@@ -66,6 +67,10 @@ if (isset($_POST['action']) && ($_POST['action'] == 'process')) {
     $error = true;
     $messageStack->add('account_edit', ENTRY_EMAIL_ADDRESS_CHECK_ERROR);
   }
+  elseif ($email_address != $email_address_confirm) {
+      $error = true;
+      $messageStack->add('account_edit', ENTRY_EMAIL_ADDRESS_CONFIRM_NOT_MATCHING);
+    }
 
   $check_email_query = "SELECT count(*) AS total
                         FROM   " . TABLE_CUSTOMERS . "
