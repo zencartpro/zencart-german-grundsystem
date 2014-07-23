@@ -4,7 +4,7 @@
  * @copyright Copyright 2003-2014 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: english.php 878 2014-04-12 18:33:32Z webchills $
+ * @version $Id: english.php 879 2014-07-23 17:33:32Z webchills $
  */
 
 // FOLLOWING WERE moved to meta_tags.php
@@ -200,6 +200,8 @@
   define('ENTRY_EMAIL_ADDRESS_CHECK_ERROR', 'Sorry, my system does not understand your email address. Please try again.');
   define('ENTRY_EMAIL_ADDRESS_ERROR_EXISTS', 'Our system already has a record of that email address - please try logging in with that email address. If you do not use that address any longer you can correct it in the My Account area.');
   define('ENTRY_EMAIL_ADDRESS_TEXT', '*');
+  define('ENTRY_EMAIL_ADDRESS_CONFIRM', 'Confirm E-Mail:');
+  define('ENTRY_EMAIL_ADDRESS_CONFIRM_NOT_MATCHING', 'The Confirmation Email must match your Email Address.');
   define('ENTRY_NICK', 'Forum Nick Name:');
   define('ENTRY_NICK_TEXT', '*'); // note to display beside nickname input field
   define('ENTRY_NICK_DUPLICATE_ERROR', 'That Nick Name is already being used. Please try another.');

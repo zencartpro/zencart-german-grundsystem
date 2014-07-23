@@ -9,7 +9,7 @@
  * @copyright Copyright 2003-2014 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: tpl_modules_create_account.php 838 2014-07-05 10:33:58Z webchills $
+ * @version $Id: tpl_modules_create_account.php 839 2014-07-23 17:33:58Z webchills $
  */
 ?>
 
@@ -152,6 +152,9 @@
 <?php echo zen_draw_input_field('email_address', '', zen_set_field_length(TABLE_CUSTOMERS, 'customers_email_address', '40') . ' id="email-address"') . (zen_not_null(ENTRY_EMAIL_ADDRESS_TEXT) ? '<span class="alert">' . ENTRY_EMAIL_ADDRESS_TEXT . '</span>': ''); ?>
 <br class="clearBoth" />
 
+<label class="inputLabel" for="email-address-confirm"><?php echo ENTRY_EMAIL_ADDRESS_CONFIRM; ?></label>
+<?php echo zen_draw_input_field('email_address_confirm', '', zen_set_field_length(TABLE_CUSTOMERS, 'customers_email_address', '32') . ' id="email-address-confirm"') . (zen_not_null(ENTRY_EMAIL_ADDRESS_CONFIRM) ? '<span class="alert">' . ENTRY_EMAIL_ADDRESS_TEXT . '</span>': ''); ?>
+<br class="clearBoth" />
 <?php
   if ($phpBB->phpBB['installed'] == true) {
 ?>

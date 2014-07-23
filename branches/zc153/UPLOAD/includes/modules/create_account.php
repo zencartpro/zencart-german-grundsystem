@@ -6,7 +6,7 @@
  * @copyright Copyright 2003-2014 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: create_account.php 730 2012-11-06 15:29:16Z webchills $
+ * @version $Id: create_account.php 731 2014-07-23 17:29:16Z webchills $
  */
 // This should be first line of the script:
 $zco_notifier->notify('NOTIFY_MODULE_START_CREATE_ACCOUNT');
@@ -53,6 +53,7 @@ if (isset($_POST['action']) && ($_POST['action'] == 'process')) {
   $nick = zen_db_prepare_input($_POST['nick']);
   if (ACCOUNT_DOB == 'true') $dob = zen_db_prepare_input($_POST['dob']);
   $email_address = zen_db_prepare_input($_POST['email_address']);
+  $email_address_confirm = zen_db_prepare_input($_POST['email_address_confirm']);
   $street_address = zen_db_prepare_input($_POST['street_address']);
   if (ACCOUNT_SUBURB == 'true') $suburb = zen_db_prepare_input($_POST['suburb']);
   $postcode = zen_db_prepare_input($_POST['postcode']);
@@ -129,6 +130,10 @@ if (isset($_POST['action']) && ($_POST['action'] == 'process')) {
   } elseif (zen_validate_email($email_address) == false) {
     $error = true;
     $messageStack->add('create_account', ENTRY_EMAIL_ADDRESS_CHECK_ERROR);
+  } elseif ($email_address != $email_address_confirm) {
+      $error = true;
+
+      $messageStack->add('create_account', ENTRY_EMAIL_ADDRESS_CONFIRM_NOT_MATCHING);
   } else {
     $check_email_query = "select count(*) as total
                             from " . TABLE_CUSTOMERS . "
