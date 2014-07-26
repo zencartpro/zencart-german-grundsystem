@@ -18,7 +18,7 @@
 <li> <a onClick="expandcontent('sc3', this)" href="javascript:void(0)"><span>Neuinstallation</span></a></li>
 <li> <a onClick="expandcontent('sc4', this)" href="javascript:void(0)"><span>Update</span></a></li>  
 <li> <a onClick="expandcontent('sc5', this)" href="javascript:void(0)"><span>Sicherheit</span></a></li>
-<li> <a onClick="expandcontent('sc6', this)" href="javascript:void(0)"><span>Konfiguration</span></a></li>
+<li> <a onClick="expandcontent('sc6', this)" href="javascript:void(0)"><span>Image Handler</span></a></li>
 </ul>
 </div>
 <br style="clear: both;">
@@ -28,7 +28,7 @@
 <div class="tabcontent" id="sc1" style="display: block;">
 <div class="textcontent">
 <div class="regularlist">
-<h1>Willkommen bei der deutschen Zen Cart Version</h1>
+<h1>Willkommen bei der deutschen Zen Cart Version 1.5.3</h1>
 <p>
 Die deutsche Zen Cart Version steht Ihnen kostenfrei im Rahmen der GNU General Public License zur Verfügung. Sie können diese Software kostenfrei benutzen, Änderungen vornehmen, etc.
 <br />
@@ -70,19 +70,22 @@ OSI certified ist ein Zertifikat der Open Source Initiative.
 </p>
 <h2>SYSTEMVORAUSSETZUNGEN</h2>
 <p><strong>Minimale Anforderungen:</strong></p>
-<ul><li>
-  PHP 5.2.14 oder höher, Apache 2.0 oder höher und MySQL 5.0.90 oder höher</li>
+<ul>
+ <li>
+  PHP 5.3.7 oder höher, Apache 2.0 oder höher und MySQL 5.1 oder höher (Zen Cart 1.5.3 ist auch noch mit PHP 5.2.14 kompatibel, allerdings werden damit die neuen Passwort Funktionen nicht unterstützt, daher verwenden Sie in Ihrem eigenen Interesse mindestens PHP 5.3.7)</li>
  <li>Apache muss konfiguriert sein mit AllowOverride auf entweder 'All' oder mit zumindestens 'Limit' und 'Indexes' Parameter, vorzugsweise mit ebenfalls 'Options' Parameter.</li>
 <li> PHP muss CURL mit OpenSSL unterstützen (erforderlich z.B. für PayPal Express)</li>
 </ul>
 <p><strong>Empfohlene Serverkonfiguration:</strong></p>
 <ul>
-   <li>    PHP 5.4 oder höher</li>
+   <li>    PHP 5.4.x oder höher</li>
    <li> Apache 2.0 oder höher</li>
-    <li>MySQL 5.0.90 oder höher</li>
+    <li>MySQL 5.5</li>
     <li>und die oben erwähnten Apache/PHP Settings</li></ul>
-<p>PHP 5.4 und PHP 5.5 werden mit dieser Version vollständig unterstützt!<br/>
-  Mit PHP 5.6 oder 6.0 wurde nicht getestet.
+<p>PHP 5.4 und PHP 5.5 werden mit dieser Version vollständig unterstützt!
+  <br>
+  Mit PHP 5.6 wurde nicht getestet.
+  <br/>
   <br/>
   Zen Cart funktioniert zwar auch auf einem Windows/IIS server, <b>wir raten aber dringend zu einem Linux/Apache Server</b>.
 </div>
@@ -97,7 +100,7 @@ OSI certified ist ein Zertifikat der Open Source Initiative.
 <h1>Neue Funktionen gegenüber 1.5.1</h1>
 <b>Generell</b>
 <ul>
-  <li>Unterstützung von PHP 5.4, PHP 5.5 und PHP 5.6 beta</li>
+  <li>Unterstützung von PHP 5.4 und PHP 5.5</li>
     <li>Beschleunigung des Seitenaufbaus durch besseres Caching</li>
     <li>Passworthashing mit bcrypt (PHP 5.3.7 und höher erforderlich)</li>
      <li>zahlreiche Erweiterungen bereits vorinstalliert</li>
@@ -124,7 +127,7 @@ Einstellungen dazu unter Konfiguration > Google Analytics
 </p>
 <p><b>Facebook Funktionen integriert</b>
 <br/>
-Zen Cart 1.5.3 deutsch liefert einen Untesrtützung von Facebook Open Graph und Facebook Like Funktionen mit<br/>
+Zen Cart 1.5.3 deutsch liefert einen Unterstützung von Facebook Open Graph und Facebook Like Funktionen mit<br/>
 Einstellungen dazu unter Konfiguration > Facebook Funktionen
 </p>
 <p><b>RSS Feed integriert</b>
@@ -132,14 +135,18 @@ Einstellungen dazu unter Konfiguration > Facebook Funktionen
 Zen Cart 1.5.3 deutsch generiert nun out of the box RSS Feeds<br/>
 Einstellungen dazu unter Konfiguration > RSS Feed
 </p>
-<strong>Logfiles im Admin anzeigen integriert</strong><br>
-Errorlogs können nun direkt in der Administration angesehen und gelöscht werden (Tools &gt; Logfiles ansehen)<br>
-<br>
-<strong>Email Archiv Manager integriert</strong><br>
-Falls die Email Archivierung aktiviert ist können vom Shop versandte   Mails in der Administration angesehen, gelöscht oder erneut versendet   werden.<br>
-<br>
-<strong>Datenbanksicherung integriert</strong><br>
-Unter Tools Datenbanksicherung kann nun - falls vom Hostingprovider   unterstützt - die Datenbank gesichert oder wiederhergestellt werden.
+<p><strong>Logfiles im Admin anzeigen integriert</strong><br>
+  Errorlogs können nun direkt in der Administration angesehen und gelöscht werden (Tools &gt; Logfiles ansehen)<br>
+  <br>
+  <strong>Email Archiv Manager integriert</strong><br>
+  Falls die Email Archivierung aktiviert ist können vom Shop versandte   Mails in der Administration angesehen, gelöscht oder erneut versendet   werden.<br>
+  <br>
+  <strong>Datenbanksicherung integriert</strong><br>
+  Unter Tools Datenbanksicherung kann nun - falls vom Hostingprovider   unterstützt - die Datenbank gesichert oder wiederhergestellt werden.</p>
+<p><strong>Verkaufsbericht integriert</strong><br> 
+  Das Modul &quot;Sales Report&quot; ist nun integriert und ermöglicht unter Statistiken &gt; Verkaufsbericht detaillierte Auswertungen zu den Bestellungen</p>
+<p><strong>Emailadresse Kontrollfeld</strong><br> 
+  Da sich viele Kunden bei der Eingabe ihrerr Emailadresse vertippen, wird nun bei Registrierung oder Kundendatenänderung wie beim Passwort auch dei Emailadresse in einem zweiten Feld überprüft.</p>
 <p><b>Spaltenlayout in den Artikellisten</b>
   <br/>
   Die Artikel in den Artikellisten können nun wahlweise in Spalten oder Reihen angezeigt werden (Modul Spaltenlayout integriert)</p>
@@ -167,196 +174,195 @@ Um die im Shop angeboten Zahlungsarten zu erläutern steht nun eine neue Define 
     <br/>
     Improvements:
 <ul>
-  <li>CHANGE-432 - Numerous fixes for stricter PHP 5.4 compatibility</li>
-  <li>CHANGE-543 - Updates for PHP 5.5 Compatibility; Verified PHP 5.6-beta compatibility</li>
-  <li>CHANGE-89  - Convert to bcrypt for password security hashing (requires PHP 5.3.7 or newer)</li>
-  <li>CHANGE-359 - Add advanced developer tool for Notifier Trace and a global eventID</li>
-  <li>ISSUE-54 - Session handling improvements</li>
-  <li>ISSUE-82 - Fix odd PHP 5.4 quirk which triggers fatal error "Allowed   memory size of --- bytes exhausted" when accessing SID constant</li>
-  <li>CHANGE-511 - Change DB functions from mysql to mysqli</li>
-  <li>CHANGE-491 - Timezone patch for PHP 5.3/5.4/5.5 (this makes the "timezone offset" plugin obsolete)</li>
-  <li>CHANGE-566 - Add Admin switch to relax PA-DSS "strong" password requirements when in Demo mode</li>
-  <li>CHANGE-350 - Improvements to queryFactory to better support sql caching</li>
-  <li>CHANGE-412 - Increase length of session key field due to changes in PHP defaults</li>
-  <li>CHANGE-421 - Update Authorize.net modules to support CAD and UK currencies</li>
-  <li>CHANGE-427 - Fix Memory Leak with PHP 5.3/5.4</li>
-  <li>CHANGE-434 - Add additional SSL detection checks to accommodate more poorly configured hosting companies</li>
-  <li>CHANGE-450 - Switch to SSL for contact-us form (when SSL is enabled)</li>
-  <li>CHANGE-452 - Add multiple-language and multiple-location support to the Store Pickup shipping module</li>
-  <li>CHANGE-454 - Made low-stock emails interceptable by notifier/observer</li>
-  <li>CHANGE-524 - Fix SaleMaker issues on Discount Quantity</li>
-  <li>ISSUE-54 - Session handling improvements</li>
+  <li>Numerous fixes for stricter PHP 5.4 compatibility</li>
+  <li>Updates for PHP 5.5 Compatibility; Verified PHP 5.6-beta compatibility</li>
+  <li>Convert to bcrypt for password security hashing (requires PHP 5.3.7 or newer)</li>
+  <li>Add advanced developer tool for Notifier Trace and a global eventID</li>
+  <li>Session handling improvements</li>
+  <li>Fix odd PHP 5.4 quirk which triggers fatal error "Allowed   memory size of --- bytes exhausted" when accessing SID constant</li>
+  <li>Change DB functions from mysql to mysqli</li>
+  <li>Timezone patch for PHP 5.3/5.4/5.5 (this makes the "timezone offset" plugin obsolete)</li>
+  <li>Add Admin switch to relax PA-DSS "strong" password requirements when in Demo mode</li>
+  <li>Improvements to queryFactory to better support sql caching</li>
+  <li>Increase length of session key field due to changes in PHP defaults</li>
+  <li>Update Authorize.net modules to support CAD and UK currencies</li>
+  <li>Fix Memory Leak with PHP 5.3/5.4</li>
+  <li>Add additional SSL detection checks to accommodate more poorly configured hosting companies</li>
+  <li>Switch to SSL for contact-us form (when SSL is enabled)</li>
+  <li>Add multiple-language and multiple-location support to the Store Pickup shipping module</li>
+  <li>Made low-stock emails interceptable by notifier/observer</li>
+  <li>Fix SaleMaker issues on Discount Quantity</li>
+  <li>Session handling improvements</li>
 </ul>
 <p>Fixes: </p>
 <ul>
-  <li>CHANGE-206 fix admin profiles code to also manage product types</li>
-  <li>CHANGE-311 - Data sanity check in customer login and admin customer   mgmt to handle missing records resulting from bad imports or damaged   data</li>
-  <li>CHANGE-446 - Cleanup: Remove duplicate code in update_product.php</li>
-  <li>CHANGE-591 - Fix Australia address format to remove comma</li>
-  <li>CHANGE-673 - Remove obsolete ssl-unclean-shutdown hack from admin</li>
-  <li>CHANGE-675 - Update country names to reflect changes in the ISO standards thru end of 2013</li>
-  <li>CHANGE-677 - Adjust admin categories code to stop triggering false-positive on security scan</li>
-  <li>CHANGE-678 - Adjust admin banner code to stop triggering a false-positive alert on security scan</li>
-  <li>CHANGE-679 - Adjust admin categories code to stop triggering false-positive on security scan</li>
-  <li>CHANGE-681 - Fix admin scenario of mixed content embedded on a page</li>
-  <li>CHANGE-682 - Adjust admin product-music code to stop triggering false-positive on security scan</li>
-  <li>CHANGE-683 - Backport compatibility fix</li>
-  <li>CHANGE-685 - Fix stock reduction problem with checkbox/attribute combinations in cart</li>
-  <li>CHANGE-686 - Changes to ensure output is correctly sanitized even in places protected by authentication requirements</li>
-  <li>CHANGE-689 - zc_install updates</li>
-  <li>CHANGE-690 - Add function to do lookup of latest version of plugins</li>
-  <li>CHANGE-691 - Retire obsolete compatibility functions</li>
-  <li>CHANGE-692 - CURL-force SSL3 on Cardinal connections</li>
-  <li>CHANGE-694 - Stopped admin send-mail page from drawing a huge   dropdown list even when a single customer is pre-selected from customers   screen</li>
-  <li>CHANGE-696 - Display of Product Categories is unclear and needs better layout</li>
-  <li>CHANGE-697 - Change core config entries to not use config-group-id 0 since many sloppy plugin authors delete those core settings</li>
-  <li>CHANGE-698 - Fix bugs in calls to zenCssButton()</li>
-  <li>CHANGE-706 - Clean up display of "php disabled functions" list in zc_install inspect screen</li>
-  <li>CHANGE-707 - Fix admin url autodetection to accommodate :port suffix   in admin urls for local dev setups, and better handle shared-ssl   configurations</li>
-  <li>CHANGE-708 - EZ Page Title Tag incorrect (introduced by CHANGE-425)</li>
-  <li>CHANGE-713 - zc_install problem with correctly detecting working dir on shared-SSL servers</li>
-  <li>CHANGE-715 - Fix Attributes Controller not accounting for Tax classes</li>
-  <li>CHANGE-716 - General file formatting and syntax cleanups</li>
-  <li>ISSUE-9  - Fix minor issue with model number display on product_reviews page</li>
-  <li>ISSUE-19 - Fix coupon-admin date check since mktime() doesn't support is_dst param anymore</li>
-  <li>ISSUE-23 - Clean up add to cart when non-numeric value is used and display message</li>
-  <li>ISSUE-51 - Add ability to autoload observer classes without needing to also create auto_loaders scripts</li>
-  <li>ISSUE-81 - class.base.php: Initialize static observer</li>
-  <li>ISSUE-82 - Fix odd PHP 5.4 quirk which triggers fatal error "Allowed   memory size of --- bytes exhausted" when accessing SID constant</li>
-  <li>ISSUE-83 - lat9 requested more notifiers for order-class</li>
-  <li>ISSUE-87 - Fix payment module problem admin-side preventing use of Refund option</li>
-  <li>ISSUE-88 - Fix var assignment operator in ot_gv.php for Calculate Tax</li>
-  <li>ISSUE-89 - Update zenCssButton function and stylesheet to use CSS3 (courtesy of lat9 contribution)</li>
-  <li>ISSUE-90 - Add gTLD support for email addresses (like .marketing or .international)</li>
-  <li>ISSUE-116 - Make admin configure.php "cognizant" of /local subdirectory</li>
-  <li>ISSUE-131 - Change password fields to specify autocomplete=off</li>
-  <li>ISSUE-132 - Clean up some debug logging activity with payment modules</li>
-  <li>ISSUE-133 - Change error messages on password-forgotten screen</li>
-  <li>ISSUE-134 - Fix outputs for locate_configuration in DTK added by recent incorporation of lookup plugin</li>
-  <li>ISSUE-135 - Fix a potential XSS issue on the countries screen</li>
-  <li>ISSUE-136 - Fix frequently-reported scenario where redirect links could be abused to redirect to unverified destinations</li>
-  <li>ISSUE-137 - Add PCI DSS warning to the DB query-logging switch</li>
-  <li>ISSUE-138 - Riddler spider causing performance issues; update spiders.txt list</li>
-  <li>ISSUE-142 - Record Company/Record Artist cannot update language dependant fields</li>
-  <li>ISSUE-143 - Remove (previously commented-out) SecFilter rules from   zc_install/.htaccess so aggressive hosting company security systems   don't quarantine</li>
+  <li>fix admin profiles code to also manage product types</li>
+  <li>Data sanity check in customer login and admin customer   mgmt to handle missing records resulting from bad imports or damaged   data</li>
+  <li>Cleanup: Remove duplicate code in update_product.php</li>
+  <li>Fix Australia address format to remove comma</li>
+  <li>Remove obsolete ssl-unclean-shutdown hack from admin</li>
+  <li>Update country names to reflect changes in the ISO standards thru end of 2013</li>
+  <li>Adjust admin categories code to stop triggering false-positive on security scan</li>
+  <li>Adjust admin banner code to stop triggering a false-positive alert on security scan</li>
+  <li>Adjust admin categories code to stop triggering false-positive on security scan</li>
+  <li>Fix admin scenario of mixed content embedded on a page</li>
+  <li>Adjust admin product-music code to stop triggering false-positive on security scan</li>
+  <li>Backport compatibility fix</li>
+  <li>Fix stock reduction problem with checkbox/attribute combinations in cart</li>
+  <li>Changes to ensure output is correctly sanitized even in places protected by authentication requirements</li>
+  <li>zc_install updates</li>
+  <li>Add function to do lookup of latest version of plugins</li>
+  <li>Retire obsolete compatibility functions</li>
+  <li>CURL-force SSL3 on Cardinal connections</li>
+  <li>Stopped admin send-mail page from drawing a huge   dropdown list even when a single customer is pre-selected from customers   screen</li>
+  <li>Display of Product Categories is unclear and needs better layout</li>
+  <li>Change core config entries to not use config-group-id 0 since many sloppy plugin authors delete those core settings</li>
+  <li>Fix bugs in calls to zenCssButton()</li>
+  <li>Clean up display of "php disabled functions" list in zc_install inspect screen</li>
+  <li>Fix admin url autodetection to accommodate :port suffix   in admin urls for local dev setups, and better handle shared-ssl   configurations</li>
+  <li>EZ Page Title Tag incorrect (introduced by CHANGE-425)</li>
+  <li>zc_install problem with correctly detecting working dir on shared-SSL servers</li>
+  <li>Fix Attributes Controller not accounting for Tax classes</li>
+  <li>General file formatting and syntax cleanups</li>
+  <li>Fix minor issue with model number display on product_reviews page</li>
+  <li>Fix coupon-admin date check since mktime() doesn't support is_dst param anymore</li>
+  <li>Clean up add to cart when non-numeric value is used and display message</li>
+  <li>Add ability to autoload observer classes without needing to also create auto_loaders scripts</li>
+  <li>class.base.php: Initialize static observer</li>
+  <li>Fix odd PHP 5.4 quirk which triggers fatal error "Allowed   memory size of --- bytes exhausted" when accessing SID constant</li>
+  <li>lat9 requested more notifiers for order-class</li>
+  <li>Fix payment module problem admin-side preventing use of Refund option</li>
+  <li>Fix var assignment operator in ot_gv.php for Calculate Tax</li>
+  <li>Update zenCssButton function and stylesheet to use CSS3 (courtesy of lat9 contribution)</li>
+  <li>Add gTLD support for email addresses (like .marketing or .international)</li>
+  <li>Make admin configure.php "cognizant" of /local subdirectory</li>
+  <li>Change password fields to specify autocomplete=off</li>
+  <li>Clean up some debug logging activity with payment modules</li>
+  <li>Change error messages on password-forgotten screen</li>
+  <li>Fix outputs for locate_configuration in DTK added by recent incorporation of lookup plugin</li>
+  <li>Fix a potential XSS issue on the countries screen</li>
+  <li>Fix frequently-reported scenario where redirect links could be abused to redirect to unverified destinations</li>
+  <li>Add PCI DSS warning to the DB query-logging switch</li>
+  <li>Riddler spider causing performance issues; update spiders.txt list</li>
+  <li>Record Company/Record Artist cannot update language dependant fields</li>
+  <li>Remove (previously commented-out) SecFilter rules from   zc_install/.htaccess so aggressive hosting company security systems   don't quarantine</li>
 
-  <li>CHANGE-196 - Fix issue with Store-pickup module vs taxes</li>
-  <li>CHANGE-225 - Handle use of comma as decimal point for Gift Voucher</li>
-  <li>CHANGE-235 - Fix for create_account_success doesn't honor session timeout</li>
-  <li>CHANGE-274 - Installer improvement - alert if new version available at install time</li>
-  <li>CHANGE-309 - Changes to avoid spam flags on Admin Emails about   payment/shipping modules, and prevent autoresponder replies to   newsletters and contact-us emails</li>
-  <li>CHANGE-323 - Fix rounding error with attributes and salemaker</li>
-  <li>CHANGE-315 - Performance tuning with .htaccess tweaks</li>
-  <li>CHANGE-332 - Update PayPal WPS to prevent mistakenly entering   localized country domain for accessing PayPal services (per PayPal   change Q3-2012)</li>
-  <li>CHANGE-341 - Updates to observer/notifier code to better support legacy procedural code</li>
-  <li>CHANGE-343 - Fix various language wording and dist-configure examples vis a vis the logs foldername</li>
-  <li>CHANGE-345 - Fix typo in whos_online legend</li>
-  <li>CHANGE-346 - Fix outdated language in configuration menu help texts, mainly around the name of the logs folder</li>
-  <li>CHANGE-347 - Fix TRY currency in paypal modules</li>
-  <li>CHANGE-348 - Fix Secunia advisory SA50574 - XSS in admin login.php</li>
-  <li>CHANGE-351 - Fix EZ-Pages Table of Contents links not displaying (if queryCache enabled, such as was added in v1.5.1)</li>
-  <li>CHANGE-352 - Fix attributes controller fatal error after upgrade</li>
-  <li>CHANGE-353 - Fix for password_forgotten generates log file </li>
-  <li>CHANGE-354 - Installer now bypasses APC and other caching mechanisms   during zc_install, to prevent confusion caused by caching of files   which require alteration.</li>
-  <li>CHANGE-355 - Fix redirect error when product is not General</li>
-  <li>CHANGE-361 - Fix blank page problem caused by clash with output_handler in hosting configuration</li>
-  <li>CHANGE-362 - Fix for template_filename not selecting for admin-initiated emails</li>
-  <li>CHANGE-363 - Trap for constant-not-found errors with badly-configured admin plugins</li>
-  <li>CHANGE-364 - Fix installer error: Failed to initialize storage module: memcache</li>
-  <li>CHANGE-365 - Fix missing noindex,nofollow missing on "forgotten" screen in admin</li>
-  <li>CHANGE-368 - Installer was allowing browser to remember old form data</li>
-  <li>CHANGE-371 - Fix for checkout_shipping creating debug logs when shipping method fails to generate methods</li>
-  <li>CHANGE-378 - Fix for Downloads of virtual products fail when site is Down For Maintenance</li>
-  <li>CHANGE-386 - Fix CURL/SSL Vulnerabilities</li>
-  <li>CHANGE-389 - Fix confusion about password reset message</li>
-  <li>CHANGE-392 - Fix coupon_admin.php contains double &lt;p&gt;&lt;p&gt; tag</li>
-  <li>CHANGE-396 - Removed nde-basic.css because it is obsolete since v1.5.0</li>
-  <li>CHANGE-397 - Fix Developers Tool Kit where Line number values in results were off by one</li>
-  <li>CHANGE-398 - Store Manager log purge improvements</li>
-  <li>CHANGE-403 - Fix PayPal EC to prevent use of ImmediatePayment when AuthOnly is selected</li>
-  <li>CHANGE-411 - Increase size of fields in tables for admin profiles</li>
-  <li>CHANGE-413 - Change date/time display format in admin header to be consistent with configured preference</li>
-  <li>CHANGE-416 - Prevent unauthorized information disclosure with editor</li>
-  <li>CHANGE-417 - Fix for issue where email confirmation gets truncated on the &lt; symbol in product names</li>
-  <li>CHANGE-422 - Fix overzealous regex for handling IPv6</li>
-  <li>CHANGE-424 - Fix PayPal Micropayments bug which was preventing   non-micro payments from working if micropayments credentials were   present</li>
-  <li>CHANGE-425 - Fix for: Deleted ez-pages didn't trigger a 404 not   found. Disabled pages were still reachable. Now sends to home page and   shows message.</li>
-  <li>CHANGE-429 - Suppress HTML-formatting in PHP error messages, to aid   in eliminating accidental posting of private links when requesting help</li>
-  <li>CHANGE-432 - Fix several issues causing warnings in debug logs due to PHP 5.4 compatibility</li>
-  <li>CHANGE-435 - Set reply-to header in admin copy of order-confirmation email - to make for easier replying to customers</li>
-  <li>CHANGE-437 - Set proper exclusion metatags to prevent gv_faq pages from being spidered/indexed</li>
-  <li>CHANGE-442 - Fix HTML id=reviewsContent already defined error in reviews sidebox</li>
-  <li>CHANGE-444 - Fix missing 'echo' and centerboxes in tpl_product_info_noproduct.php</li>
-  <li>CHANGE-451 - Fix canonical link handling for cases where the site operates entirely in SSL</li>
-  <li>CHANGE-455 - Improve zen_get_all_get_params to accommodate plugin   issues throwing PHP Warning: strlen() expects parameter 1 to be string</li>
-  <li>CHANGE-459 - Fix inconsistencies in some zc_install help text</li>
-  <li>CHANGE-463 - Add insulation to protect against inaccessible products   caused by errors in custom-written product types (where mistakenly   type=0)</li>
-  <li>CHANGE-464 - Fix PHP warning: Use of undefined constant SUPERUSER_PROFILE ...</li>
-  <li>CHANGE-470 - Fix missing closing table row in /admin/orders.php</li>
-  <li>CHANGE-471 - Fix a couple small logic bugs in table_block.php</li>
-  <li>CHANGE-472 - Improve caching for product-type settings</li>
-  <li>CHANGE-474 - Fix boolean typo on comparison in ot_cod_fee module</li>
-  <li>CHANGE-476 - Fix for zen_mail doesn't always use default template for non-english use</li>
-  <li>CHANGE-478 - Fix Incorrect base_href in admin-sent HTML emails in some configurations</li>
-  <li>CHANGE-484 - Quantities added to cart should adjust to stock rather than just a message</li>
-  <li>CHANGE-487 - a Simplify filesmatch rules in htaccess by adding case-insensitivity flag</li>
-  <li>CHANGE-487 - b Add webm permission to htaccess rules for media-playback and downloadable-files</li>
-  <li>CHANGE-489 - Added additional notifiers to order.php class</li>
-  <li>CHANGE-491 - Improvements to automated timezone detection</li>
-  <li>CHANGE-497 - Improvements to date/time display in admin header</li>
-  <li>CHANGE-498 - Fix proxy-detection support for   EXCLUDE_ADMIN_IP_FOR_MAINTENANCE and zen_get_ip_address() vs   $_SERVER['REMOTE_ADDR']</li>
-  <li>CHANGE-506 - Fix robots tag in admin pages</li>
-  <li>CHANGE-509 - Fix minor incorrect variable declaration in option_values_manager.php</li>
-  <li>CHANGE-514 - Improve Developers Tool Kit to allow the search of single and double quotes</li>
-  <li>CHANGE-519 - Add more error checking in check_page()</li>
-  <li>CHANGE-520 - Remove inline javascript and tags which may not be stripped correctly in product listings etc</li>
-  <li>CHANGE-521 - Fix error on Incorrect integer value: products_priced_by_attribute</li>
-  <li>CHANGE-526 - Additional notifier to allow additional validation in account_edit page</li>
-  <li>CHANGE-527 - Add configuration-settings-search to Developers   Toolkit, credit B.Bellamy,torvista (makes the search_configuration_keys   plugin obsolete)</li>
-  <li>CHANGE-528 - Updates to valid cart issues with attributes and changes prior to checkout</li>
-  <li>CHANGE-529 - Fix variable initialization in Shipping Estimator</li>
-  <li>CHANGE-532 - Init system - move navigation history to after init_sanitize</li>
-  <li>CHANGE-544 - phpMailer upgrade</li>
-  <li>CHANGE-545 - Allow countries to be flagged as available/unavailable   for shipping  (built from a combination of code backported from v2 and a   contribution by lat9)</li>
-  <li>CHANGE-546 - Init system - Relocate version constants to the beginning of the autoloader process.</li>
-  <li>CHANGE-547 - Utilities updates - CURLtester update</li>
-  <li>CHANGE-548 - Fix PHP Notice:  Only variable references should be returned by reference</li>
-  <li>CHANGE-549 - Fix for PHP Notice: Object of class queryFactoryResult could not be converted to int</li>
-  <li>CHANGE-550 - Fix PHP Notice:  Constant ATTRIBUTES_PRICE_FACTOR_FROM_SPECIAL already defined</li>
-  <li>CHANGE-551 - PHP Notice: Undefined index: freeshipper</li>
-  <li>CHANGE-559 - Fix for Shipping Estimator which was causing shipping modules to request quotes twice</li>
-  <li>CHANGE-562 - ironlady github pull request - Add webfont files support to .htaccess whitelist</li>
-  <li>CHANGE-563 - Fix zone misspelling in latin1 encoding. Add translations in utf8 version.</li>
-  <li>CHANGE-565 - Incorporate the Fix_Cache_key utility code into ZC Admin core (thus the plugin by the same name is now obsolete)</li>
-  <li>CHANGE-568 - Add storeowner-definable session timeout limit</li>
-  <li>CHANGE-570 - Add notifier hook to provide ability for Admin Activity   Logs be exportable to CLFS or other standard format (PA-DSS feature)</li>
-  <li>CHANGE-573 - Rename Email HTML switch setting text and description to be clearer</li>
-  <li>CHANGE-574 - Add strict check to some admin pages to protect against   invalid variables created by plugins that don't clean up after   themselves, like MagneticOne stuff</li>
-  <li>CHANGE-575 - update spiders.txt</li>
-  <li>CHANGE-580 - torvista pull request 11 - locale addition for Windows servers</li>
-  <li>CHANGE-593 - PayPal - Change to Pending Reason responses, required one table schema change</li>
-  <li>CHANGE-594 - PayPal API changes - July 2013 (A: deprecated some rarely-used parameters)</li>
-  <li>CHANGE-594 - PayPal API changes - July 2013 (B: Updated treatment of currencies which don't support decimal places)</li>
-  <li>CHANGE-595 - Expand locale support for PayPal to perform better matching and to include PayPal's latest updates</li>
-  <li>CHANGE-601 - Relax PA-DSS "strong" password requirements - sql upgrade changes</li>
-  <li>CHANGE-605 - Fix error in PayPal Standard - PHP Fatal error: Using $this when not in object context</li>
-  <li>CHANGE-591 - Fix Australia address format to remove comma</li>
-  <li>CHANGE-609 - PR12 - Address formats for Belgium, Netherlands</li>
-  <li>CHANGE-610,614,617 - lat9 $param1 array output reduction in notifier trace</li>
-  <li>CHANGE-611 - Sanitize all known get parameters.</li>
-  <li>CHANGE-612 - Sanitize all known get parameters.</li>
-  <li>CHANGE-616 - For consistency and PHP 5.4 compatibility $_SESSION['shipping'] should always be treated as an array</li>
-  <li>CHANGE-619 - Improve speed of stores with over 10,000 products</li>
-  <li>CHANGE-621 - Set defaults on Developers Toolkit pulldowns to improve ease of use</li>
-  <li>CHANGE-622 - Fix issues with ot-coupon for ship/free combo</li>
-  <li>CHANGE-626 - Fix fresh install error if cache table is damaged or database has no tables</li>
-  <li>CHANGE-632 - Change paypal modules to use /logs/ directory for logging</li>
-  <li>CHANGE-638 - Fix review-text stripping html characters into wrong symbols</li>
-  <li>CHANGE-639 - Fix XSS display problem in back-end preview screen</li>
-  <li>CHANGE-666 - minor typo in option_name.php language file</li>
-  <li>CHANGE-667 - Constant OFFICE_IP_TO_HOST_ADDRESS already set</li>
-  <li>CHANGE-671 - Change default address-format layout for Sweden</li>
-  <li>ISSUE-52 - Change admin rules to allow pass"phrases" by permitting the use of spaces</li>
+  <li>Fix issue with Store-pickup module vs taxes</li>
+  <li>Handle use of comma as decimal point for Gift Voucher</li>
+  <li>Fix for create_account_success doesn't honor session timeout</li>
+  <li>Installer improvement - alert if new version available at install time</li>
+  <li>Changes to avoid spam flags on Admin Emails about   payment/shipping modules, and prevent autoresponder replies to   newsletters and contact-us emails</li>
+  <li>Fix rounding error with attributes and salemaker</li>
+  <li>Performance tuning with .htaccess tweaks</li>
+  <li>Update PayPal WPS to prevent mistakenly entering   localized country domain for accessing PayPal services (per PayPal   change Q3-2012)</li>
+  <li> Updates to observer/notifier code to better support legacy procedural code</li>
+  <li>Fix various language wording and dist-configure examples vis a vis the logs foldername</li>
+  <li>Fix typo in whos_online legend</li>
+  <li>Fix outdated language in configuration menu help texts, mainly around the name of the logs folder</li>
+  <li>Fix TRY currency in paypal modules</li>
+  <li>Fix Secunia advisory SA50574 - XSS in admin login.php</li>
+  <li>Fix EZ-Pages Table of Contents links not displaying (if queryCache enabled, such as was added in v1.5.1)</li>
+  <li> Fix attributes controller fatal error after upgrade</li>
+  <li>Fix for password_forgotten generates log file </li>
+  <li>Installer now bypasses APC and other caching mechanisms   during zc_install, to prevent confusion caused by caching of files   which require alteration.</li>
+  <li>Fix redirect error when product is not General</li>
+  <li>Fix blank page problem caused by clash with output_handler in hosting configuration</li>
+  <li>Fix for template_filename not selecting for admin-initiated emails</li>
+  <li>Trap for constant-not-found errors with badly-configured admin plugins</li>
+  <li>Fix installer error: Failed to initialize storage module: memcache</li>
+  <li>Fix missing noindex,nofollow missing on "forgotten" screen in admin</li>
+  <li>Installer was allowing browser to remember old form data</li>
+  <li>Fix for checkout_shipping creating debug logs when shipping method fails to generate methods</li>
+  <li>Fix for Downloads of virtual products fail when site is Down For Maintenance</li>
+  <li>Fix CURL/SSL Vulnerabilities</li>
+  <li>Fix confusion about password reset message</li>
+  <li>Fix coupon_admin.php contains double &lt;p&gt;&lt;p&gt; tag</li>
+  <li>Removed nde-basic.css because it is obsolete since v1.5.0</li>
+  <li>Fix Developers Tool Kit where Line number values in results were off by one</li>
+  <li>Store Manager log purge improvements</li>
+  <li>Fix PayPal EC to prevent use of ImmediatePayment when AuthOnly is selected</li>
+  <li>Increase size of fields in tables for admin profiles</li>
+  <li>Change date/time display format in admin header to be consistent with configured preference</li>
+  <li>Prevent unauthorized information disclosure with editor</li>
+  <li> Fix for issue where email confirmation gets truncated on the &lt; symbol in product names</li>
+  <li>Fix overzealous regex for handling IPv6</li>
+  <li>Fix PayPal Micropayments bug which was preventing   non-micro payments from working if micropayments credentials were   present</li>
+  <li>Fix for: Deleted ez-pages didn't trigger a 404 not   found. Disabled pages were still reachable. Now sends to home page and   shows message.</li>
+  <li>Suppress HTML-formatting in PHP error messages, to aid   in eliminating accidental posting of private links when requesting help</li>
+  <li>Fix several issues causing warnings in debug logs due to PHP 5.4 compatibility</li>
+  <li>Set reply-to header in admin copy of order-confirmation email - to make for easier replying to customers</li>
+  <li>Set proper exclusion metatags to prevent gv_faq pages from being spidered/indexed</li>
+  <li>Fix HTML id=reviewsContent already defined error in reviews sidebox</li>
+  <li>Fix missing 'echo' and centerboxes in tpl_product_info_noproduct.php</li>
+  <li>Fix canonical link handling for cases where the site operates entirely in SSL</li>
+  <li>Improve zen_get_all_get_params to accommodate plugin   issues throwing PHP Warning: strlen() expects parameter 1 to be string</li>
+  <li>Fix inconsistencies in some zc_install help text</li>
+  <li>Add insulation to protect against inaccessible products   caused by errors in custom-written product types (where mistakenly   type=0)</li>
+  <li>Fix PHP warning: Use of undefined constant SUPERUSER_PROFILE ...</li>
+  <li>Fix missing closing table row in /admin/orders.php</li>
+  <li>Fix a couple small logic bugs in table_block.php</li>
+  <li>Improve caching for product-type settings</li>
+  <li>Fix boolean typo on comparison in ot_cod_fee module</li>
+  <li>Fix for zen_mail doesn't always use default template for non-english use</li>
+  <li>Fix Incorrect base_href in admin-sent HTML emails in some configurations</li>
+  <li>Quantities added to cart should adjust to stock rather than just a message</li>
+  <li>  Simplify filesmatch rules in htaccess by adding case-insensitivity flag</li>
+  <li>Add webm permission to htaccess rules for media-playback and downloadable-files</li>
+  <li>Added additional notifiers to order.php class</li>
+  <li>Improvements to automated timezone detection</li>
+  <li> Improvements to date/time display in admin header</li>
+  <li>Fix proxy-detection support for   EXCLUDE_ADMIN_IP_FOR_MAINTENANCE and zen_get_ip_address() vs   $_SERVER['REMOTE_ADDR']</li>
+  <li>Fix robots tag in admin pages</li>
+  <li>Fix minor incorrect variable declaration in option_values_manager.php</li>
+  <li>Improve Developers Tool Kit to allow the search of single and double quotes</li>
+  <li>Add more error checking in check_page()</li>
+  <li>Remove inline javascript and tags which may not be stripped correctly in product listings etc</li>
+  <li>Fix error on Incorrect integer value: products_priced_by_attribute</li>
+  <li>Additional notifier to allow additional validation in account_edit page</li>
+  <li>Add configuration-settings-search to Developers   Toolkit, credit B.Bellamy,torvista (makes the search_configuration_keys   plugin obsolete)</li>
+  <li>Updates to valid cart issues with attributes and changes prior to checkout</li>
+  <li>Fix variable initialization in Shipping Estimator</li>
+  <li>Init system - move navigation history to after init_sanitize</li>
+  <li>phpMailer upgrade</li>
+  <li>Allow countries to be flagged as available/unavailable   for shipping  (built from a combination of code backported from v2 and a   contribution by lat9)</li>
+  <li>Init system - Relocate version constants to the beginning of the autoloader process.</li>
+  <li>Utilities updates - CURLtester update</li>
+  <li>Fix PHP Notice:  Only variable references should be returned by reference</li>
+  <li>Fix for PHP Notice: Object of class queryFactoryResult could not be converted to int</li>
+  <li>Fix PHP Notice:  Constant ATTRIBUTES_PRICE_FACTOR_FROM_SPECIAL already defined</li>
+  <li>PHP Notice: Undefined index: freeshipper</li>
+  <li>Fix for Shipping Estimator which was causing shipping modules to request quotes twice</li>
+  <li>ironlady github pull request - Add webfont files support to .htaccess whitelist</li>
+  <li>Fix zone misspelling in latin1 encoding. Add translations in utf8 version.</li>
+  <li>Incorporate the Fix_Cache_key utility code into ZC Admin core (thus the plugin by the same name is now obsolete)</li>
+  <li>Add storeowner-definable session timeout limit</li>
+  <li>Add notifier hook to provide ability for Admin Activity   Logs be exportable to CLFS or other standard format (PA-DSS feature)</li>
+  <li>Rename Email HTML switch setting text and description to be clearer</li>
+  <li>Add strict check to some admin pages to protect against   invalid variables created by plugins that don't clean up after   themselves, like MagneticOne stuff</li>
+  <li>update spiders.txt</li>
+  <li>torvista pull request 11 - locale addition for Windows servers</li>
+  <li>PayPal - Change to Pending Reason responses, required one table schema change</li>
+  <li>PayPal API changes - July 2013 (A: deprecated some rarely-used parameters)</li>
+  <li> PayPal API changes - July 2013 (B: Updated treatment of currencies which don't support decimal places)</li>
+  <li>Expand locale support for PayPal to perform better matching and to include PayPal's latest updates</li>
+  <li>Relax PA-DSS "strong" password requirements - sql upgrade changes</li>
+  <li>Fix error in PayPal Standard - PHP Fatal error: Using $this when not in object context</li>
+  <li>Fix Australia address format to remove comma</li>
+  <li>Address formats for Belgium, Netherlands</li>
+  <li> lat9 $param1 array output reduction in notifier trace</li>
+  <li>Sanitize all known get parameters.</li>
+  <li> For consistency and PHP 5.4 compatibility $_SESSION['shipping'] should always be treated as an array</li>
+  <li>Improve speed of stores with over 10,000 products</li>
+  <li>Set defaults on Developers Toolkit pulldowns to improve ease of use</li>
+  <li>Fix issues with ot-coupon for ship/free combo</li>
+  <li>Fix fresh install error if cache table is damaged or database has no tables</li>
+  <li>Change paypal modules to use /logs/ directory for logging</li>
+  <li>Fix review-text stripping html characters into wrong symbols</li>
+  <li>Fix XSS display problem in back-end preview screen</li>
+  <li>minor typo in option_name.php language file</li>
+  <li>Constant OFFICE_IP_TO_HOST_ADDRESS already set</li>
+  <li>Change default address-format layout for Sweden</li>
+  <li>Change admin rules to allow pass"phrases" by permitting the use of spaces</li>
 </ul>
 <p>&nbsp;</p>
 </div>
@@ -651,7 +657,7 @@ Sollten während der Installation keine Fehler aufgetreten sein, sollten Sie nun
 <h1>UPDATE auf die Version 1.5.3</h1>
 <div>
  <h2>HINWEIS: Bereits INSTALLIERTE ERWEITERUNGEN</h2>
-  In Zen Cart 1.5.3 sind folgende Erweiterungen bereits enthalten, die Sie möglicherweise bereits früher einmal manuell in Ihre Zen Cart Version 1.5.1 und älter eingebaut hatten:<br/>
+  In Zen Cart 1.5.3 sind folgende Erweiterungen bereits enthalten, die Sie möglicherweise bereits früher einmal manuell in Ihre Zen Cart Version 1.5.1 und älter eingebaut hatten, und die Konfigurationseinträge vorgenommen haben:<br/>
 <ul>
   <li>Image Handler</li>
   <li>Google Analytics</li>
@@ -682,16 +688,16 @@ Um eine zuverlässige Installation der neuen Konfigurationseinträge dieser Modu
   Bevor Sie ein Update auf 1.5.3 planen, stellen Sie bitte sicher, dass Ihr Server die Systemvoraussetzungen erfüllt: </p>
 <p><strong>Minimale Anforderungen:</strong></p>
 <ul>
-  <li> PHP 5.2.14 oder höher, Apache 2.0 oder höher und MySQL 5.0.90 oder höher. <br>
-    Minimum PHP 5.3.7 für die Untesrtüzung der neuen bcrypt Passwort Funktionalität!</li>
+  <li>PHP 5.3.7 oder höher, Apache 2.0 oder höher und MySQL 5.1 oder höher (Zen Cart 1.5.3 ist auch noch mit PHP 5.2.14 kompatibel, allerdings werden damit die neuen Passwort Funktionen nicht unterstützt, daher verwenden Sie in Ihrem eigenen Interesse mindestens PHP 5.3.7)<br>
+  </li>
   <li>Apache muss konfiguriert sein mit AllowOverride auf entweder 'All' oder mit zumindestens 'Limit' und 'Indexes' Parameter, vorzugsweise mit ebenfalls 'Options' Parameter.</li>
   <li> PHP muss CURL mit OpenSSL unterstützen (erforderlich z.B. für PayPal Express)</li>
 </ul>
 <p><strong>Empfohlene Serverkonfiguration:</strong></p>
 <ul>
-  <li> PHP 5.4 oder höher</li>
+  <li> PHP 5.4.x</li>
   <li> Apache 2.0 oder höher</li>
-  <li>MySQL 5.5 oder 5.6</li>
+  <li>MySQL 5.5</li>
   <li>und die oben erwähnten Apache/PHP Settings</li>
 </ul>
 <p>PHP 5.4 und PHP 5.5 werden vollständig unterstützt!<br/>
@@ -977,8 +983,8 @@ Sollten Sie später einmal Downloads anbieten wollen, müssen Sie diese   Ordner
 <div class="tabcontent" id="sc6" style="display: block;">
 <div class="textcontent">
 <div class="regularlist">
-<h1>Konfiguration</h1>
-<p>Hier noch einige Hinweise zu den neuen Einstellungsmöglichkeiten in Zen Cart 1.5.3:</p>
+<h1>Image Handler</h1>
+<p>Zen Cart 1.5.3 enthält bereits das Modul Image Handler, hier einige Infos dazu:</p>
 <h2>Image Handler</h2>
 <p>Unter Konfiguration &gt; Bilder können Sie alle Einstellungen zum Verhalten von Image Handler vornehmen.</p>
 <p>Bitte beachten Sie zunächst die generellen Zen-Cart Einstellungen   unter "Kleine Bilder - Höhe", "Artikelliste - Höhe der Artikelbilder",   usw.<br>
@@ -1090,5 +1096,6 @@ if (document.getElementById("slidetabsmenu") != null) {
 }
 //-->
 </script>
+</div>
 </body>
 </html>
