@@ -968,13 +968,13 @@ class order extends base {
     $html_msg=array();
 
     //intro area
-     $email_order = EMAIL_TEXT_HEADER . EMAIL_TEXT_FROM . STORE_NAME . "\n\n";
+     $email_order = EMAIL_TEXT_HEADER . EMAIL_TEXT_FROM . STORE_NAME . "\n\n" ;
 	   if ($this->customer['gender'] == "m") {
       $email_order .= EMAIL_GREETING_MR .' ' ;
      } else {
       $email_order .= EMAIL_GREETING_MS .' ' ;
       }
-    $email_order .= $this->customer['firstname'] . ' ' . $this->customer['lastname'] . "\n\n" .
+    $this->customer['firstname'] . ' ' . $this->customer['lastname'] . "\n\n" .
     EMAIL_THANKS_FOR_SHOPPING . "\n" . EMAIL_DETAILS_FOLLOW . "\n" .
     EMAIL_SEPARATOR . "\n" .
     EMAIL_TEXT_ORDER_NUMBER . ' ' . $zf_insert_id . "\n" .
@@ -998,8 +998,13 @@ class order extends base {
       $invoiceInfo=EMAIL_TEXT_INVOICE_URL . ' ' . zen_href_link(FILENAME_ACCOUNT_HISTORY_INFO, 'order_id=' . $zf_insert_id, 'SSL', false) . "\n\n";
       $htmlInvoiceURL=EMAIL_TEXT_INVOICE_URL_CLICK;
       $htmlInvoiceValue=zen_href_link(FILENAME_ACCOUNT_HISTORY_INFO, 'order_id=' . $zf_insert_id, 'SSL', false);
-      $email_order = EMAIL_TEXT_HEADER . EMAIL_TEXT_FROM . STORE_NAME . "\n\n" .
-      $this->customer['firstname'] . ' ' . $this->customer['lastname'] . "\n\n" .
+      $email_order = EMAIL_TEXT_HEADER . EMAIL_TEXT_FROM . STORE_NAME . "\n\n" ;
+      if ($this->customer['gender'] == "m") {
+      $email_order .= EMAIL_GREETING_MR .' ' ;
+     } else {
+      $email_order .= EMAIL_GREETING_MS .' ' ;
+      }
+	  $this->customer['firstname'] . ' ' . $this->customer['lastname'] . "\n\n" .
       EMAIL_THANKS_FOR_SHOPPING . "\n" . EMAIL_DETAILS_FOLLOW . "\n" .
       EMAIL_SEPARATOR . "\n" .
       EMAIL_TEXT_ORDER_NUMBER . ' ' . $zf_insert_id . "\n" .
