@@ -5,7 +5,7 @@
 # * @copyright Copyright 2003-2014 Zen Cart Development Team
 # * @copyright Portions Copyright 2003 osCommerce
 # * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
-# * @version $Id: mysql_zencart.sql 19446 2014-07-24 09:32:59Z webchills $
+# * @version $Id: mysql_zencart.sql 19447 2014-08-06 08:32:59Z webchills $
 #
 
 ############ IMPORTANT INSTRUCTIONS ###############
@@ -2165,6 +2165,7 @@ VALUES ('configMyStore', 'BOX_CONFIGURATION_MY_STORE', 'FILENAME_CONFIGURATION',
        ('ImageHandler', 'BOX_TOOLS_IMAGE_HANDLER', 'FILENAME_IMAGE_HANDLER', '', 'tools', 'Y', 15),
 	   ('emailArchive', 'BOX_TOOLS_EMAIL_ARCHIVE_MANAGER', 'FILENAME_EMAIL_HISTORY', '', 'tools', 'Y', 16),
 	   ('toolsDisplayLogs', 'BOX_TOOLS_DISPLAY_LOGS', 'FILENAME_DISPLAY_LOGS', '', 'tools', 'Y', 17),
+	   ('backup_mysql', 'BOX_TOOLS_BACKUP_MYSQL', 'FILENAME_BACKUP_MYSQL', '', 'tools', 'Y', 18),
        ('couponAdmin', 'BOX_COUPON_ADMIN', 'FILENAME_COUPON_ADMIN', '', 'gv', 'Y', 1),
        ('couponRestrict', 'BOX_COUPON_RESTRICT', 'FILENAME_COUPON_RESTRICT', '', 'gv', 'N', 1),
        ('gvQueue', 'BOX_GV_ADMIN_QUEUE', 'FILENAME_GV_QUEUE', '', 'gv', 'Y', 2),
