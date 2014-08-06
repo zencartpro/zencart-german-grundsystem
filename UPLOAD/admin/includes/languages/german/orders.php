@@ -4,7 +4,7 @@
  * @copyright Copyright 2003-2014 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: orders.php 628 2013-08-17 08:05:14Z webchills $
+ * @version $Id: orders.php 629 2014-08-06 12:05:14Z webchills $
  */
 
 define('HEADING_TITLE', 'Bestellungen');
@@ -74,8 +74,8 @@ define('TEXT_NO_ORDER_HISTORY', 'keine Bestellstatistik verfügbar');
 
 define('EMAIL_SEPARATOR', '------------------------------------------------------');
 define('EMAIL_TEXT_SUBJECT', 'Bestellstatus aktualisiert');
-define('EMAIL_TEXT_ORDER_CUSTOMER_GENDER_MALE', 'Sehr geehrter Herr');
-define('EMAIL_TEXT_ORDER_CUSTOMER_GENDER_FEMALE', 'Sehr geehrte Frau');
+define('EMAIL_TEXT_ORDER_CUSTOMER_GENDER_MALE', 'Sehr geehrter Herr ');
+define('EMAIL_TEXT_ORDER_CUSTOMER_GENDER_FEMALE', 'Sehr geehrte Frau ');
 define('EMAIL_TEXT_UPDATEINFO', 'Wir informieren Sie über den Status Ihrer Bestellung bei ');
 define('EMAIL_TEXT_ORDER_NUMBER', 'Bestellnummer:');
 define('EMAIL_TEXT_INVOICE_URL', 'Detaillierte Rechnung:');
@@ -89,7 +89,7 @@ define('ERROR_ORDER_DOES_NOT_EXIST', 'FEHLER: Die Bestellung existiert nicht.');
 define('SUCCESS_ORDER_UPDATED', 'Die Bestellung wurde aktualisiert.');
 define('WARNING_ORDER_NOT_UPDATED', 'WARNUNG: Keine Änderung festgestellt. Die Rechnung wurde nicht aktualisiert.');
 
-define('ENTRY_ORDER_ID', 'Rechnungsnummer');
+define('ENTRY_ORDER_ID', 'Rechnungsnummer: ');
 define('TEXT_INFO_ATTRIBUTE_FREE', '&nbsp;-&nbsp;<span class="alert">KOSTENLOS</span>');
 
 define('TEXT_DOWNLOAD_TITLE', 'Download Status');
