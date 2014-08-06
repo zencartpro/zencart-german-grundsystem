@@ -74,8 +74,8 @@ define('TEXT_NO_ORDER_HISTORY', 'No Order History Available');
 
 define('EMAIL_SEPARATOR', '------------------------------------------------------');
 define('EMAIL_TEXT_SUBJECT', 'Order Update');
-define('EMAIL_TEXT_ORDER_CUSTOMER_GENDER_MALE', 'Dear Mr');
-define('EMAIL_TEXT_ORDER_CUSTOMER_GENDER_FEMALE', 'Dear Mrs');
+define('EMAIL_TEXT_ORDER_CUSTOMER_GENDER_MALE', 'Dear Mr ');
+define('EMAIL_TEXT_ORDER_CUSTOMER_GENDER_FEMALE', 'Dear Mrs ');
 define('EMAIL_TEXT_UPDATEINFO', 'We inform you about your order status at ');
 define('EMAIL_TEXT_ORDER_NUMBER', 'Order Number:');
 define('EMAIL_TEXT_INVOICE_URL', 'Detailed Invoice:');

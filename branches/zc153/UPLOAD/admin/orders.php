@@ -4,7 +4,7 @@
  * @copyright Copyright 2003-2014 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: orders.php 789 2014-07-18 19:13:51Z webchills $
+ * @version $Id: orders.php 790 2014-08-06 12:13:51Z webchills $
  */
 
   require('includes/application_top.php');
@@ -123,7 +123,7 @@
                                       where orders_id = '" . (int)$oID . "'");
         $customer_gender = $db->Execute("select customers_gender from " . TABLE_CUSTOMERS . "
                                       where customers_id = '" . $check_status->fields['customers_id'] . "'");
-
+      
         if ( ($check_status->fields['orders_status'] != $status) || zen_not_null($comments)) {
           $db->Execute("update " . TABLE_ORDERS . "
                         set orders_status = '" . zen_db_input($status) . "', last_modified = now()
@@ -137,7 +137,18 @@
               $notify_comments = EMAIL_TEXT_COMMENTS_UPDATE . $comments . "\n\n";
             }
             //send emails
+        
+            
+      if ($customer_gender->fields['customers_gender'] == 'm') {
+        $email_greeting = EMAIL_TEXT_ORDER_CUSTOMER_GENDER_MALE;
+      } else {
+        $email_greeting = EMAIL_TEXT_ORDER_CUSTOMER_GENDER_FEMALE;
+      }
+    
             $message =
+            $email_greeting .
+            $check_status->fields['customers_name']. "\n\n" .
+            EMAIL_TEXT_UPDATEINFO . STORE_NAME . "\n\n" .
             EMAIL_TEXT_ORDER_NUMBER . ' ' . $oID . "\n\n" .
             EMAIL_TEXT_INVOICE_URL . ' ' . zen_catalog_href_link(FILENAME_CATALOG_ACCOUNT_HISTORY_INFO, 'order_id=' . $oID, 'SSL') . "\n\n" .
             EMAIL_TEXT_DATE_ORDERED . ' ' . zen_date_long($check_status->fields['date_purchased']) . "\n\n" .
