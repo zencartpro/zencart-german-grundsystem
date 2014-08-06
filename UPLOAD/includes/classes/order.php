@@ -5,7 +5,7 @@
  * @package classes
  * @copyright Copyright 2003-2014 Zen Cart Development Team
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: order.php 853 2014-07-05 09:13:25Z webchills $
+ * @version $Id: order.php 854 2014-08-06 08:13:25Z webchills $
  */
 /**
  * order class
@@ -697,7 +697,7 @@ class order extends base {
   }
 
 
-  function  create_add_products($zf_insert_id, $zf_mode = false) {
+  function create_add_products($zf_insert_id, $zf_mode = false) {
     global $db, $currencies, $order_total_modules, $order_totals;
 
     // initialized for the email confirmation
@@ -968,13 +968,13 @@ class order extends base {
     $html_msg=array();
 
     //intro area
-     $email_order = EMAIL_TEXT_HEADER . EMAIL_TEXT_FROM . STORE_NAME . "\n\n" ;
+    $email_order = EMAIL_TEXT_HEADER . EMAIL_TEXT_FROM . STORE_NAME . "\n\n" ;
 	   if ($this->customer['gender'] == "m") {
       $email_order .= EMAIL_GREETING_MR .' ' ;
      } else {
       $email_order .= EMAIL_GREETING_MS .' ' ;
       }
-    $this->customer['firstname'] . ' ' . $this->customer['lastname'] . "\n\n" .
+    $email_order .= $this->customer['firstname'] . ' ' . $this->customer['lastname'] . "\n\n" .
     EMAIL_THANKS_FOR_SHOPPING . "\n" . EMAIL_DETAILS_FOLLOW . "\n" .
     EMAIL_SEPARATOR . "\n" .
     EMAIL_TEXT_ORDER_NUMBER . ' ' . $zf_insert_id . "\n" .
@@ -998,13 +998,13 @@ class order extends base {
       $invoiceInfo=EMAIL_TEXT_INVOICE_URL . ' ' . zen_href_link(FILENAME_ACCOUNT_HISTORY_INFO, 'order_id=' . $zf_insert_id, 'SSL', false) . "\n\n";
       $htmlInvoiceURL=EMAIL_TEXT_INVOICE_URL_CLICK;
       $htmlInvoiceValue=zen_href_link(FILENAME_ACCOUNT_HISTORY_INFO, 'order_id=' . $zf_insert_id, 'SSL', false);
-      $email_order = EMAIL_TEXT_HEADER . EMAIL_TEXT_FROM . STORE_NAME . "\n\n" ;
-      if ($this->customer['gender'] == "m") {
+     $email_order = EMAIL_TEXT_HEADER . EMAIL_TEXT_FROM . STORE_NAME . "\n\n" ;
+	   if ($this->customer['gender'] == "m") {
       $email_order .= EMAIL_GREETING_MR .' ' ;
      } else {
       $email_order .= EMAIL_GREETING_MS .' ' ;
       }
-	  $this->customer['firstname'] . ' ' . $this->customer['lastname'] . "\n\n" .
+    $email_order .= $this->customer['firstname'] . ' ' . $this->customer['lastname'] . "\n\n" .
       EMAIL_THANKS_FOR_SHOPPING . "\n" . EMAIL_DETAILS_FOLLOW . "\n" .
       EMAIL_SEPARATOR . "\n" .
       EMAIL_TEXT_ORDER_NUMBER . ' ' . $zf_insert_id . "\n" .
