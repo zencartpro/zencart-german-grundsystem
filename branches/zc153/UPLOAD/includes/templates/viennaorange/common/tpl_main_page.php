@@ -8,7 +8,7 @@
 * @copyright Portions Copyright 2012 webchills.at
 * @copyright Portions Copyright 2003 osCommerce
 * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
-* @version $Id: tpl_main_page.php 846 2012-02-26 12:10:39Z webchills $
+* @version $Id: tpl_main_page.php 847 2014-08-07 13:10:39Z webchills $
 */
 
 // the following IF statement can be duplicated/modified as needed to set additional flags
@@ -144,4 +144,9 @@ if (!isset($flag_disable_right) || !$flag_disable_right) {
 ?>
 <!--eof- banner #6 display -->
 </div>
+<?php 
+if (GOOGLE_ANALYTICS_TRACKING_TYPE != "Asynchronous") {
+	require(DIR_WS_TEMPLATE . 'google_analytics/google_analytics.php');
+}
+?>
 </body>
