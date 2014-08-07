@@ -35,7 +35,7 @@
  * @copyright Copyright 2003-2014 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: tpl_main_page.php 729 2011-08-09 15:49:16Z hugo13 $
+ * @version $Id: tpl_main_page.php 730 2014-08-07 13:49:16Z webchills $
  */
 
 // the following IF statement can be duplicated/modified as needed to set additional flags
@@ -185,4 +185,9 @@ if (!isset($flag_disable_right) || !$flag_disable_right) {
   }
 ?>
 <!--eof- banner #6 display -->
+<?php 
+if (GOOGLE_ANALYTICS_TRACKING_TYPE != "Asynchronous") {
+	require(DIR_WS_TEMPLATE . 'google_analytics/google_analytics.php');
+}
+?>
 </body>
