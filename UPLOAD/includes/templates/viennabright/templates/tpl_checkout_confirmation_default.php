@@ -9,7 +9,7 @@
  * @copyright Copyright 2003-2014 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: tpl_checkout_confirmation_default.php 2013-10-06 19:10:16Z webchills $
+ * @version $Id: tpl_checkout_confirmation_default.php 2014-08-13 16:10:16Z webchills $
  */
 ?>
 <div class="centerColumn" id="checkoutConfirmDefault">
@@ -207,8 +207,8 @@
         $dest_zone = 0;
         $error = false;
         $countries_table = EU_COUNTRIES_FOR_LAST_STEP; 
+        $country_zones = split("[,]", $countries_table);
         if ((!in_array($dest_country, $country_zones))&& ($order->delivery['country']['id'] != '')) {
-        if (!in_array($dest_country, $country_zones)) {
             $dest_zone = $i;
             echo TEXT_NON_EU_COUNTRIES;
         } else {
