@@ -3005,15 +3005,15 @@ INSERT INTO currencies VALUES (5,'Australian Dollar','AUD','$','','.',',','2','1
 
 INSERT INTO google_analytics_languages VALUES (1,'Chinese (simplified) - Chinesisch (einfach)','zh_CN',1);
 INSERT INTO google_analytics_languages VALUES (2,'Chinese (traditional) - Chinesisch (traditionell)','zh_TW',2);
-INSERT INTO google_analytics_languages VALUES (3,'Danish - DÃƒÂ¤nisch','da',3);
-INSERT INTO google_analytics_languages VALUES (4,'Dutch - HollÃƒÂ¤ndisch','nl',4);
+INSERT INTO google_analytics_languages VALUES (3,'Danish - Dänisch','da',3);
+INSERT INTO google_analytics_languages VALUES (4,'Dutch - Holländisch','nl',4);
 INSERT INTO google_analytics_languages VALUES (5,'English (Australia)','en_AU',5);
 INSERT INTO google_analytics_languages VALUES (6,'English (UK))','en_GB',6);
 INSERT INTO google_analytics_languages VALUES (7,'English (US)','en_US',7);
 INSERT INTO google_analytics_languages VALUES (8,'Finnish - Finnisch','fi',8);
-INSERT INTO google_analytics_languages VALUES (9,'French - FranzÃƒÂ¶sisch','fr',9);
+INSERT INTO google_analytics_languages VALUES (9,'French - Französisch','fr',9);
 INSERT INTO google_analytics_languages VALUES (10,'German - Deutsch','de',10);
-INSERT INTO google_analytics_languages VALUES (11,'Hebrew - HebrÃƒÂ¤isch','iw',11);
+INSERT INTO google_analytics_languages VALUES (11,'Hebrew - Hebräisch','iw',11);
 INSERT INTO google_analytics_languages VALUES (12,'Italian - Italienisch','it',12);
 INSERT INTO google_analytics_languages VALUES (13,'Japanese - Japanisch','ja',13);
 INSERT INTO google_analytics_languages VALUES (14,'Korean - Koreanisch','ko',14);
@@ -3024,7 +3024,7 @@ INSERT INTO google_analytics_languages VALUES (18,'Portuguese (Portugal) - Portu
 INSERT INTO google_analytics_languages VALUES (19,'Russian - Russisch','ru',19);
 INSERT INTO google_analytics_languages VALUES (20,'Spanish - Spanisch','es',20);
 INSERT INTO google_analytics_languages VALUES (21,'Swedish - Schwedisch','sv',21);
-INSERT INTO google_analytics_languages VALUES (22,'Turkish - TÃƒÂ¼rkisch','tr',22);
+INSERT INTO google_analytics_languages VALUES (22,'Turkish - Türkisch','tr',22);
 
 INSERT INTO languages VALUES (43,'Deutsch','de','icon.gif','german',1);
 INSERT INTO languages VALUES (1,'English','en','icon.gif','english',2);
