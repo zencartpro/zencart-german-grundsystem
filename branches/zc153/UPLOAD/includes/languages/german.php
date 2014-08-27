@@ -4,7 +4,7 @@
  * @copyright Copyright 2003-2014 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: german.php 657 2014-07-23 17:45:57Z webchills $
+ * @version $Id: german.php 658 2014-08-27 09:45:57Z webchills $
  */
 
 // FOLLOWING WERE moved to meta_tags.php
@@ -46,7 +46,12 @@ function zen_date_raw($date, $reverse = false){
 define('LANGUAGE_CURRENCY', 'EUR');
 
 // Global entries for the <html> tag
+
+if (FACEBOOK_OPEN_GRAPH_STATUS == "true") {
+define('HTML_PARAMS','dir="ltr" lang="de" xmlns:og="http://opengraphprotocol.org/schema/" xmlns:fb="http://www.facebook.com/2008/fbml"');
+} else {
 define('HTML_PARAMS', 'dir="ltr" lang="de"');
+}
 
 // charset for web pages and emails
 define('CHARSET', 'utf-8');
