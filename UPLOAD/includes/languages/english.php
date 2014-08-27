@@ -4,7 +4,7 @@
  * @copyright Copyright 2003-2014 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: english.php 879 2014-07-23 17:33:32Z webchills $
+ * @version $Id: english.php 880 2014-08-27 09:33:32Z webchills $
  */
 
 // FOLLOWING WERE moved to meta_tags.php
@@ -41,7 +41,12 @@
   define('LANGUAGE_CURRENCY', 'USD');
 
 // Global entries for the <html> tag
-  define('HTML_PARAMS','dir="ltr" lang="en"');
+  
+  if (FACEBOOK_OPEN_GRAPH_STATUS == "true") {
+define('HTML_PARAMS','dir="ltr" lang="en" xmlns:og="http://opengraphprotocol.org/schema/" xmlns:fb="http://www.facebook.com/2008/fbml"');
+} else {
+define('HTML_PARAMS','dir="ltr" lang="en"');
+}
 
 // charset for web pages and emails
   define('CHARSET', 'utf-8');
