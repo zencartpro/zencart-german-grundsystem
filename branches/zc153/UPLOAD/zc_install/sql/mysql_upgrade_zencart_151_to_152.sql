@@ -6,7 +6,7 @@
 # * @copyright Copyright 2003-2014 Zen Cart Development Team
 # * @copyright Portions Copyright 2003 osCommerce
 # * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
-# * @version $Id: mysql_upgrade_zencart_151_to_152.sql 8 2014-07-18 11:22:57Z webchills $
+# * @version $Id: mysql_upgrade_zencart_151_to_152.sql 8 2014-10-10 18:22:57Z webchills $
 #
 
 ############ IMPORTANT INSTRUCTIONS ###############
@@ -144,6 +144,8 @@ DELETE FROM configuration_language WHERE configuration_key = 'IMAGE_MANAGER_HAND
 ## Delete old CSS/JS Loader entries
 DELETE FROM configuration_group WHERE configuration_group_title = 'CSS/JS Loader';
 DELETE FROM configuration_group WHERE configuration_group_title = 'MINIFY';
+DELETE FROM configuration_group WHERE configuration_group_title = 'Minify Settings';
+DELETE FROM configuration_group WHERE configuration_group_title = 'Minify Einstellungen';
 DELETE FROM configuration WHERE configuration_key = 'MINIFY_STATUS';
 DELETE FROM configuration WHERE configuration_key = 'MINIFY_STATUS_JS';
 DELETE FROM configuration WHERE configuration_key = 'MINIFY_STATUS_CSS';
@@ -152,16 +154,19 @@ DELETE FROM configuration WHERE configuration_key = 'MINIFY_CACHE_TIME_LENGHT';
 DELETE FROM configuration WHERE configuration_key = 'MINIFY_CACHE_TIME_LATEST';
 DELETE FROM configuration_language WHERE configuration_key LIKE '%MINIFY%';
 DELETE FROM admin_pages WHERE page_key='configProdCssJsLoader';
+DELETE FROM admin_pages WHERE page_key='configMinifySettings';
 
 ## Delete old Google Analytics entries
 
 DELETE FROM admin_pages WHERE page_key='configProdGoogleAnalytics';
+DELETE FROM admin_pages WHERE page_key='configGoogleAnalytics';
 DELETE FROM configuration WHERE configuration_key = 'GOOGLE_ANALYTICS_AFTER_CODE';
 DELETE FROM configuration WHERE configuration_key = 'GOOGLE_ANALYTICS_CUSTOM_AFTER';
 DELETE FROM configuration WHERE configuration_key = 'GOOGLE_ANALYTICS_CONVERSION_LANG';
 DELETE FROM configuration WHERE configuration_key = 'GOOGLE_ANALYTICS_TRACKING_TYPE';
 DELETE FROM configuration WHERE configuration_key = 'GOOGLE_ANALYTICS_CONVERSION_IDNUM';
 DELETE FROM configuration WHERE configuration_key = 'GOOGLE_ANALYTICS_CONVERSION_ACTIVE';
+DELETE FROM configuration WHERE configuration_key = 'GOOGLE_ANALYTICS_SKU_CODE';
 DELETE FROM configuration WHERE configuration_key = 'GOOGLE_ANALYTICS_SKUCODE';
 DELETE FROM configuration WHERE configuration_key = 'GOOGLE_ANALYTICS_AFFILIATION';
 DELETE FROM configuration WHERE configuration_key = 'GOOGLE_ANALYTICS_TARGET';
@@ -178,6 +183,7 @@ DELETE FROM configuration_language WHERE configuration_key = 'GOOGLE_ANALYTICS_C
 DELETE FROM configuration_language WHERE configuration_key = 'GOOGLE_ANALYTICS_TRACKING_TYPE';
 DELETE FROM configuration_language WHERE configuration_key = 'GOOGLE_ANALYTICS_CONVERSION_IDNUM';
 DELETE FROM configuration_language WHERE configuration_key = 'GOOGLE_ANALYTICS_CONVERSION_ACTIVE';
+DELETE FROM configuration_language WHERE configuration_key = 'GOOGLE_ANALYTICS_SKU_CODE';
 DELETE FROM configuration_language WHERE configuration_key = 'GOOGLE_ANALYTICS_SKUCODE';
 DELETE FROM configuration_language WHERE configuration_key = 'GOOGLE_ANALYTICS_AFFILIATION';
 DELETE FROM configuration_language WHERE configuration_key = 'GOOGLE_ANALYTICS_TARGET';
@@ -188,22 +194,26 @@ DELETE FROM configuration_language WHERE configuration_key = 'GOOGLE_CONVERSION_
 DELETE FROM configuration_language WHERE configuration_key = 'GOOGLE_ANALYTICS_ENABLED';
 DELETE FROM configuration_language WHERE configuration_key = 'GOOGLE_ANALYTICS_CUSTOM_CODE_ENABLED';
 DELETE FROM configuration_language WHERE configuration_key = 'GOOGLE_ANALYTICS_CUSTOM_CODE';
-DELETE FROM configuration_group WHERE configuration_group_title = 'Google Analytics Einstellungen';
+DELETE FROM configuration_group WHERE configuration_group_title = 'Google Analytics';
 DELETE FROM configuration_group WHERE configuration_group_title = 'Google Analytics Configuration';
+DELETE FROM configuration_group WHERE configuration_group_title = 'Google Analytics Einstellungen';
 DROP TABLE IF EXISTS google_analytics_languages;
 
 ## Delete old Facebook entries
-
+DELETE FROM admin_pages WHERE page_key='configProdFacebookOpenGraph';
+DELETE FROM admin_pages WHERE page_key='configFacebook';
 DELETE FROM configuration_group WHERE configuration_group_title = 'Facebook Open Graph';
+DELETE FROM configuration_group WHERE configuration_group_title = 'Facebook Functions';
+DELETE FROM configuration_group WHERE configuration_group_title = 'Facebook Funktionen';
+DELETE FROM configuration_group WHERE configuration_group_title = 'Facebook Support';
+DELETE FROM configuration_group WHERE configuration_group_title = 'Facebook Unterstützung';
+DELETE FROM configuration_group WHERE configuration_group_title = 'Facebook Like Button';
 DELETE FROM configuration WHERE configuration_key = 'FACEBOOK_OPEN_GRAPH_STATUS';
 DELETE FROM configuration WHERE configuration_key = 'FACEBOOK_OPEN_GRAPH_APPID';
 DELETE FROM configuration WHERE configuration_key = 'FACEBOOK_OPEN_GRAPH_APPSECRET';
 DELETE FROM configuration WHERE configuration_key = 'FACEBOOK_OPEN_GRAPH_ADMINID';
 DELETE FROM configuration WHERE configuration_key = 'FACEBOOK_OPEN_GRAPH_DEFAULT_IMAGE';
 DELETE FROM configuration WHERE configuration_key = 'FACEBOOK_OPEN_GRAPH_TYPE';
-DELETE FROM configuration_language WHERE configuration_key LIKE '%FACEBOOK_OPEN_GRAPH%';
-DELETE FROM admin_pages WHERE page_key='configProdFacebookOpenGraph';
-DELETE FROM configuration_group WHERE configuration_group_title = 'Facebook Like Button';
 DELETE FROM configuration WHERE configuration_key = 'FACEBOOK_LIKE_BUTTON_STATUS';
 DELETE FROM configuration WHERE configuration_key = 'FACEBOOK_LIKE_BUTTON_METHOD';
 DELETE FROM configuration WHERE configuration_key = 'FACEBOOK_LIKE_BUTTON_ALIGNMENT';
@@ -213,8 +223,25 @@ DELETE FROM configuration WHERE configuration_key = 'FACEBOOK_LIKE_BUTTON_ACTION
 DELETE FROM configuration WHERE configuration_key = 'FACEBOOK_LIKE_BUTTON_FONT';
 DELETE FROM configuration WHERE configuration_key = 'FACEBOOK_LIKE_BUTTON_COLOR_SCHEME';
 DELETE FROM configuration WHERE configuration_key = 'FACEBOOK_LIKE_BUTTON_WIDTH';
-DELETE FROM configuration_language WHERE configuration_key LIKE '%FACEBOOK_LIKE_BUTTON%';
-DELETE FROM admin_pages WHERE page_key='configProdFacebookOpenGraph';
+DELETE FROM configuration_language WHERE configuration_key = 'FACEBOOK_OPEN_GRAPH_STATUS';
+DELETE FROM configuration_language WHERE configuration_key = 'FACEBOOK_OPEN_GRAPH_APPID';
+DELETE FROM configuration_language WHERE configuration_key = 'FACEBOOK_OPEN_GRAPH_APPSECRET';
+DELETE FROM configuration_language WHERE configuration_key = 'FACEBOOK_OPEN_GRAPH_ADMINID';
+DELETE FROM configuration_language WHERE configuration_key = 'FACEBOOK_OPEN_GRAPH_DEFAULT_IMAGE';
+DELETE FROM configuration_language WHERE configuration_key = 'FACEBOOK_OPEN_GRAPH_TYPE';
+DELETE FROM configuration_language WHERE configuration_key = 'FACEBOOK_OPEN_GRAPH_CPATH';
+DELETE FROM configuration_language WHERE configuration_key = 'FACEBOOK_OPEN_GRAPH_LANGUAGE';
+DELETE FROM configuration_language WHERE configuration_key = 'FACEBOOK_OPEN_GRAPH_CANONICAL';
+DELETE FROM configuration_language WHERE configuration_key = 'FACEBOOK_LIKE_BUTTON_STATUS';
+DELETE FROM configuration_language WHERE configuration_key = 'FACEBOOK_LIKE_BUTTON_METHOD';
+DELETE FROM configuration_language WHERE configuration_key = 'FACEBOOK_LIKE_BUTTON_ALIGNMENT';
+DELETE FROM configuration_language WHERE configuration_key = 'FACEBOOK_LIKE_BUTTON_LAYOUT_STYLE';
+DELETE FROM configuration_language WHERE configuration_key = 'FACEBOOK_LIKE_BUTTON_SHOW_FACES';
+DELETE FROM configuration_language WHERE configuration_key = 'FACEBOOK_LIKE_BUTTON_ACTION';
+DELETE FROM configuration_language WHERE configuration_key = 'FACEBOOK_LIKE_BUTTON_FONT';
+DELETE FROM configuration_language WHERE configuration_key = 'FACEBOOK_LIKE_BUTTON_COLOR_SCHEME';
+DELETE FROM configuration_language WHERE configuration_key = 'FACEBOOK_LIKE_BUTTON_WIDTH';
+DELETE FROM configuration_language WHERE configuration_key = 'FACEBOOK_LIKE_BUTTON_SEND';
 
 ## Delete old RSS Feed entries
 
@@ -515,4 +542,3 @@ UPDATE project_version SET project_version_major='1', project_version_minor='5.2
 UPDATE project_version SET project_version_major='1', project_version_minor='5.2', project_version_patch1='', project_version_patch1_source='', project_version_patch2='', project_version_patch2_source='', project_version_comment='Version Update 1.5.1->1.5.2', project_version_date_applied=now() WHERE project_version_key = 'Zen-Cart Database';
 
 #####  END OF UPGRADE SCRIPT
-
