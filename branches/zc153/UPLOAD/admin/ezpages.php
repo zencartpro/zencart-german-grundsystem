@@ -4,20 +4,20 @@
  * @copyright Copyright 2003-2014 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: ezpages.php 785 2011-09-20 08:13:51Z webchills $
+ * @version $Id: ezpages.php 786 2014-10-16 16:40:51Z webchills $
  */
 
 // Sets the status of a page
-  function zen_set_ezpage_status($pages_id, $status, $status_field) {
-  global $db;
-    if ($status == '1') {
-      return $db->Execute("update " . TABLE_EZPAGES . " set " . zen_db_input($status_field) . " = '0'  where pages_id = '" . (int)$pages_id . "'");
-    } elseif ($status == '0') {
-      return $db->Execute("update " . TABLE_EZPAGES . " set " . zen_db_input($status_field) . " = '1'  where pages_id = '" . (int)$pages_id . "'");
-    } else {
-      return -1;
-    }
-  }
+function zen_set_ezpage_status($pages_id, $status, $status_field) {
+global $db;
+if ($status == '1') {
+return $db->Execute("update " . TABLE_EZPAGES . " set " . zen_db_input($status_field) . " = '0' where pages_id = '" . (int)$pages_id . "'");
+} elseif ($status == '0') {
+return $db->Execute("update " . TABLE_EZPAGES . " set " . zen_db_input($status_field) . " = '1' where pages_id = '" . (int)$pages_id . "'");
+} else {
+return -1;
+}
+}
 
 
   require('includes/application_top.php');
@@ -57,7 +57,6 @@
         }
         zen_redirect(zen_href_link(FILENAME_EZPAGES_ADMIN, 'page=' . $_GET['page'] . '&ezID=' . $_GET['ezID']));
         break;
-
       case 'page_open_new_window':
         zen_set_ezpage_status(zen_db_prepare_input($_GET['ezID']), zen_db_prepare_input($_GET['current']), 'page_open_new_window');
         $messageStack->add(SUCCESS_PAGE_STATUS_UPDATED, 'success');
@@ -514,7 +513,7 @@
       $ez_order_by =  " order by pages_title";
       break;
     case ($_SESSION['ez_sort_order'] == 5):
-      $ez_order_by =  " order by  pages_id, pages_title";
+$ez_order_by = " order by pages_id, pages_title";
       break;
     default:
       $ez_order_by =  " order by toc_chapter, toc_sort_order, pages_title";
@@ -561,9 +560,9 @@ while (!$pages->EOF) {
       $zv_link_method_cnt++;
     }
       if (isset($ezInfo) && is_object($ezInfo) && ($pages->fields['pages_id'] == $ezInfo->pages_id)) {
-        echo '              <tr id="defaultSelected" class="dataTableRowSelected" onmouseover="rowOverEffect(this)" onmouseout="rowOutEffect(this)" onclick="document.location.href=\'' . zen_href_link(FILENAME_EZPAGES_ADMIN, 'page=' . $_GET['page'] . '&ezID=' . $pages->fields['pages_id']) . '\'">' . "\n";
+echo ' <tr id="defaultSelected" class="dataTableRowSelected" onmouseover="rowOverEffect(this)" onmouseout="rowOutEffect(this)" onclick="document.location.href=\'' . zen_href_link(FILENAME_EZPAGES_ADMIN, 'page=' . $_GET['page'] . '&ezID=' . $pages->fields['pages_id']) . '\'">' . "\n";
       } else {
-        echo '              <tr class="dataTableRow" onmouseover="rowOverEffect(this)" onmouseout="rowOutEffect(this)" onclick="document.location.href=\'' . zen_href_link(FILENAME_EZPAGES_ADMIN, 'page=' . $_GET['page'] . '&ezID=' . $pages->fields['pages_id']) . '\'">' . "\n";
+echo ' <tr class="dataTableRow" onmouseover="rowOverEffect(this)" onmouseout="rowOutEffect(this)" onclick="document.location.href=\'' . zen_href_link(FILENAME_EZPAGES_ADMIN, 'page=' . $_GET['page'] . '&ezID=' . $pages->fields['pages_id']) . '\'">' . "\n";
       }
 ?>
                 <td class="dataTableContent" width="75px" align="right"><?php echo ($zv_link_method_cnt > 1 ? zen_image(DIR_WS_IMAGES . 'icon_status_red.gif', IMAGE_ICON_STATUS_RED_EZPAGES, 10, 10) : '') . '&nbsp;' . $pages->fields['pages_id']; ?></td>
@@ -649,12 +648,12 @@ while (!$pages->EOF) {
   }
 
   if ( (zen_not_null($heading)) && (zen_not_null($contents)) ) {
-    echo '            <td width="25%" valign="top">' . "\n";
+echo ' <td width="25%" valign="top">' . "\n";
 
     $box = new box;
     echo $box->infoBox($heading, $contents);
 
-    echo '            </td>' . "\n";
+echo ' </td>' . "\n";
   }
 ?>
           </tr>
