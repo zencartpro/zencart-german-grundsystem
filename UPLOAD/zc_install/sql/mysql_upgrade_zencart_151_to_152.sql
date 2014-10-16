@@ -6,7 +6,7 @@
 # * @copyright Copyright 2003-2014 Zen Cart Development Team
 # * @copyright Portions Copyright 2003 osCommerce
 # * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
-# * @version $Id: mysql_upgrade_zencart_151_to_152.sql 8 2014-10-10 18:22:57Z webchills $
+# * @version $Id: mysql_upgrade_zencart_151_to_152.sql 8 2014-10-16 16:22:57Z webchills $
 #
 
 ############ IMPORTANT INSTRUCTIONS ###############
@@ -140,6 +140,8 @@ DELETE FROM configuration_language WHERE configuration_key = 'MEDIUM_IMAGE_HOTZO
 DELETE FROM configuration_language WHERE configuration_key = 'SHOW_UPLOADED_IMAGES';
 DELETE FROM configuration_language WHERE configuration_key = 'ZOOM_GRAVITY';
 DELETE FROM configuration_language WHERE configuration_key = 'IMAGE_MANAGER_HANDLER';
+DELETE FROM admin_pages WHERE page_key='configImageHandler4';
+DELETE FROM admin_pages WHERE page_key='ImageHandler';
 
 ## Delete old CSS/JS Loader entries
 DELETE FROM configuration_group WHERE configuration_group_title = 'CSS/JS Loader';
