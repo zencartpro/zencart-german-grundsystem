@@ -5,7 +5,7 @@
  * @package paymentMethod
  * @copyright Copyright 2003-2014 Zen Cart Development Team
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: paypal_curl.php 802 2014-07-05 09:47:36Z webchills $
+ * @version $Id: paypal_curl.php 803 2014-10-16 15:47:36Z webchills $
  */
 
 /**
@@ -57,7 +57,7 @@ class paypal_curl extends base {
                             CURLOPT_FOLLOWLOCATION => FALSE,
                           //CURLOPT_SSL_VERIFYPEER => FALSE, // Leave this line commented out! This should never be set to FALSE on a live site!
                           //CURLOPT_CAINFO => '/local/path/to/cacert.pem', // for offline testing, this file can be obtained from http://curl.haxx.se/docs/caextract.html ... should never be used in production!
-                            CURLOPT_SSLVERSION => 3,
+                            //CURLOPT_SSLVERSION => 3,
                             CURLOPT_FORBID_REUSE => TRUE,
                             CURLOPT_FRESH_CONNECT => TRUE,
                             CURLOPT_POST => TRUE,
