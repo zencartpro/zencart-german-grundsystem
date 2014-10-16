@@ -6,7 +6,7 @@
  * @copyright Copyright 2003-2014 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: header_php.php 731 2014-07-05 10:03:16Z webchills $
+ * @version $Id: header_php.php 732 2014-10-16 16:03:16Z webchills $
  */
 /*
 * This "page" page is the display component of the ez-pages module
@@ -33,37 +33,36 @@ $sql .= " AND (status_toc > 0 or status_header > 0 or status_sidebox > 0 or stat
 $var_pageDetails = $db->Execute($sql);
 // redirect to home page if page not found (or deactivated/deleted):
 if ($var_pageDetails->EOF) {
-  require(DIR_WS_MODULES . zen_get_module_directory('require_languages.php'));
-  $messageStack->add_session('header', ERROR_PAGE_NOT_FOUND, 'caution');
-  header('HTTP/1.1 404 Not Found');
-  header('Status: 404 Not Found');
-  zen_redirect(zen_href_link(FILENAME_DEFAULT));
+require(DIR_WS_MODULES . zen_get_module_directory('require_languages.php'));
+$messageStack->add_session('header', ERROR_PAGE_NOT_FOUND, 'caution');
+header('HTTP/1.1 404 Not Found');
+zen_redirect(zen_href_link(FILENAME_DEFAULT));
 }
 
 //check db for prev/next based on sort orders
-$pos = (isset($_GET['pos'])) ? $_GET['pos'] : 'v';  // v for vertical, h for horizontal  (v assumed if not specified)
+$pos = (isset($_GET['pos'])) ? $_GET['pos'] : 'v'; // v for vertical, h for horizontal (v assumed if not specified)
 $vert_links = array();
 $toc_links = array();
-//  $pages_order_query = "SELECT pages_id FROM " . TABLE_EZPAGES . " WHERE status = 1 and vertical_sort_order <> 0 ORDER BY vertical_sort_order, horizontal_sort_order, pages_title";
-//  $pages_order_query = "SELECT * FROM " . TABLE_EZPAGES . " WHERE ((status_sidebox = 1 and sidebox_sort_order <> 0) or (status_footer = 1 and footer_sort_order <> 0) or (status_header = 1 and header_sort_order <> 0)) and alt_url_external = '' ORDER BY header_sort_order, sidebox_sort_order, footer_sort_order, pages_title";
+// $pages_order_query = "SELECT pages_id FROM " . TABLE_EZPAGES . " WHERE status = 1 and vertical_sort_order <> 0 ORDER BY vertical_sort_order, horizontal_sort_order, pages_title";
+// $pages_order_query = "SELECT * FROM " . TABLE_EZPAGES . " WHERE ((status_sidebox = 1 and sidebox_sort_order <> 0) or (status_footer = 1 and footer_sort_order <> 0) or (status_header = 1 and header_sort_order <> 0)) and alt_url_external = '' ORDER BY header_sort_order, sidebox_sort_order, footer_sort_order, pages_title";
 $pages_order_query = "SELECT *
-                      FROM " . TABLE_EZPAGES . "
-                      WHERE ((status_toc = 1 and toc_sort_order <> 0) and toc_chapter= :chapterID )
-                      AND alt_url_external = '' and alt_url = ''
-                      ORDER BY toc_sort_order, pages_title";
+FROM " . TABLE_EZPAGES . "
+WHERE ((status_toc = 1 and toc_sort_order <> 0) and toc_chapter= :chapterID )
+AND alt_url_external = '' and alt_url = ''
+ORDER BY toc_sort_order, pages_title";
 
 $pages_order_query = $db->bindVars($pages_order_query, ':chapterID', $chapter_id, 'integer');
 $pages_ordering = $db->execute($pages_order_query);
 
 while (!$pages_ordering->EOF) {
-  $vert_links[] = $pages_ordering->fields['pages_id'];
-  $toc_links[] = array('pages_id' => $pages_ordering->fields['pages_id'], 'pages_title' => $pages_ordering->fields['pages_title']);
-  $pages_ordering->MoveNext();
+$vert_links[] = $pages_ordering->fields['pages_id'];
+$toc_links[] = array('pages_id' => $pages_ordering->fields['pages_id'], 'pages_title' => $pages_ordering->fields['pages_title']);
+$pages_ordering->MoveNext();
 }
 
 /**
 $horiz_links = array();
-//  $pages_order_query = "SELECT pages_id FROM " . TABLE_EZPAGES . " WHERE status = 1 and horizontal_sort_order <> 0 ORDER BY horizontal_sort_order, pages_title";
+// $pages_order_query = "SELECT pages_id FROM " . TABLE_EZPAGES . " WHERE status = 1 and horizontal_sort_order <> 0 ORDER BY horizontal_sort_order, pages_title";
 $pages_order_query = "SELECT * FROM " . TABLE_EZPAGES . " WHERE status_footer = 1 and footer_sort_order <> 0 and alt_url_external = '' ORDER BY footer_sort_order, pages_title";
 $pages_ordering = $db->execute($pages_order_query);
 while (!$pages_ordering->EOF) {
@@ -80,23 +79,23 @@ $previous_vssl = '0';
 $next_item_v = 0;
 $next_vssl = 0;
 while (list($key, $value) = each ($vert_links)) {
-  if ($value == $ezpage_id) {
-    $position_v = $counter;
-    $previous_vssl = '0';
-    if ($key == 0) {
-      $previous_v = -1; // it was the first to be found
-    } else {
-      $previous_v = $vert_links[$key - 1];
-    }
-    $next_vssl = '0';
-    if ($vert_links[$key + 1]) {
-      $next_item_v = $vert_links[$key + 1];
-    } else {
-      $next_item_v = $vert_links[0];
-    }
-  }
-  $last_v = $value;
-  $counter++;
+if ($value == $ezpage_id) {
+$position_v = $counter;
+$previous_vssl = '0';
+if ($key == 0) {
+$previous_v = -1; // it was the first to be found
+} else {
+$previous_v = $vert_links[$key - 1];
+}
+$next_vssl = '0';
+if ($vert_links[$key + 1]) {
+$next_item_v = $vert_links[$key + 1];
+} else {
+$next_item_v = $vert_links[0];
+}
+}
+$last_v = $value;
+$counter++;
 }
 if ($previous_v == -1) $previous_v = $last_v;
 
@@ -127,11 +126,11 @@ if ($previous_h == -1) $previous_h = $last_h;
 */
 
 if (!isset($pos) || empty($pos) || $pos=='v') {
-  $prev_link = zen_href_link(FILENAME_EZPAGES, 'id=' . $previous_v . '&pos=v' . '&chapter=' . $chapter_link, ($previous_vssl =='0' ? 'NONSSL' : 'SSL'));
-  $next_link = zen_href_link(FILENAME_EZPAGES, 'id=' . $next_item_v . '&pos=v' . '&chapter=' . $chapter_link, ($next_vssl =='0' ? 'NONSSL' : 'SSL'));
+$prev_link = zen_href_link(FILENAME_EZPAGES, 'id=' . $previous_v . '&pos=v' . '&chapter=' . $chapter_link, ($previous_vssl =='0' ? 'NONSSL' : 'SSL'));
+$next_link = zen_href_link(FILENAME_EZPAGES, 'id=' . $next_item_v . '&pos=v' . '&chapter=' . $chapter_link, ($next_vssl =='0' ? 'NONSSL' : 'SSL'));
 } else {
-  $prev_link = zen_href_link(FILENAME_EZPAGES, 'id=' . $previous_h . '&pos=h' . '&chapter=' . $chapter_link, ($previous_hssl =='0' ? 'NONSSL' : 'SSL'));
-  $next_link = zen_href_link(FILENAME_EZPAGES, 'id=' . $next_item_h . '&pos=h' . '&chapter=' . $chapter_link, ($next_hssl =='0' ? 'NONSSL' : 'SSL'));
+$prev_link = zen_href_link(FILENAME_EZPAGES, 'id=' . $previous_h . '&pos=h' . '&chapter=' . $chapter_link, ($previous_hssl =='0' ? 'NONSSL' : 'SSL'));
+$next_link = zen_href_link(FILENAME_EZPAGES, 'id=' . $next_item_h . '&pos=h' . '&chapter=' . $chapter_link, ($next_hssl =='0' ? 'NONSSL' : 'SSL'));
 }
 
 
@@ -147,7 +146,7 @@ define('HEADING_TITLE', $var_pageDetails->fields['pages_title']);
 $breadcrumb->add($var_pageDetails->fields['pages_title']);
 
 
-// @TODO - confirm whether the following line can be removed. Preliminary testing suggests it's not needed by any current built-in functionality
+// @TODO - confirm whether the following line might be needed. Preliminary testing suggests it's not needed by any current built-in functionality
 // require(DIR_WS_MODULES . zen_get_module_directory('require_languages.php'));
 
 
@@ -158,10 +157,10 @@ if (!defined('EZPAGES_DISABLE_FOOTER_DISPLAY_LIST')) define('EZPAGES_DISABLE_FOO
 if (!defined('EZPAGES_DISABLE_LEFTCOLUMN_DISPLAY_LIST')) define('EZPAGES_DISABLE_LEFTCOLUMN_DISPLAY_LIST','');
 if (!defined('EZPAGES_DISABLE_RIGHTCOLUMN_DISPLAY_LIST')) define('EZPAGES_DISABLE_RIGHTCOLUMN_DISPLAY_LIST','');
 if ($ezpage_id > 0 ) {
-  if (in_array($ezpage_id, explode(",",EZPAGES_DISABLE_HEADER_DISPLAY_LIST)) || strstr(EZPAGES_DISABLE_HEADER_DISPLAY_LIST,'*')) $flag_disable_header = true;
-  if (in_array($ezpage_id, explode(",",EZPAGES_DISABLE_FOOTER_DISPLAY_LIST)) || strstr(EZPAGES_DISABLE_FOOTER_DISPLAY_LIST,'*')) $flag_disable_footer = true;
-  if (in_array($ezpage_id, explode(",",EZPAGES_DISABLE_LEFTCOLUMN_DISPLAY_LIST)) || strstr(EZPAGES_DISABLE_LEFTCOLUMN_DISPLAY_LIST,'*')) $flag_disable_left = true;
-  if (in_array($ezpage_id, explode(",",EZPAGES_DISABLE_RIGHTCOLUMN_DISPLAY_LIST)) || strstr(EZPAGES_DISABLE_RIGHTCOLUMN_DISPLAY_LIST,'*')) $flag_disable_right = true;
+if (in_array($ezpage_id, explode(",",EZPAGES_DISABLE_HEADER_DISPLAY_LIST)) || strstr(EZPAGES_DISABLE_HEADER_DISPLAY_LIST,'*')) $flag_disable_header = true;
+if (in_array($ezpage_id, explode(",",EZPAGES_DISABLE_FOOTER_DISPLAY_LIST)) || strstr(EZPAGES_DISABLE_FOOTER_DISPLAY_LIST,'*')) $flag_disable_footer = true;
+if (in_array($ezpage_id, explode(",",EZPAGES_DISABLE_LEFTCOLUMN_DISPLAY_LIST)) || strstr(EZPAGES_DISABLE_LEFTCOLUMN_DISPLAY_LIST,'*')) $flag_disable_left = true;
+if (in_array($ezpage_id, explode(",",EZPAGES_DISABLE_RIGHTCOLUMN_DISPLAY_LIST)) || strstr(EZPAGES_DISABLE_RIGHTCOLUMN_DISPLAY_LIST,'*')) $flag_disable_right = true;
 }
 // end flag settings for sections to disable
 
