@@ -4,7 +4,7 @@
  * @copyright Copyright 2003-2014 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: german.php 658 2014-08-27 09:45:57Z webchills $
+ * @version $Id: german.php 659 2014-10-27 18:45:57Z webchills $
  */
 
 // FOLLOWING WERE moved to meta_tags.php
@@ -490,6 +490,7 @@ define('ERROR_PRODUCT_QUANTITY_MIN_SHOPPING_CART', '... minimale Stückzahl unte
 define('ERROR_PRODUCT_QUANTITY_UNITS_SHOPPING_CART', '... ungültige Stückzahl -');
 define('ERROR_PRODUCT_QUANTITY_MAX_SHOPPING_CART', '... maximale Stückzahl überschritten -');
 define('WARNING_SHOPPING_CART_COMBINED', 'Achtung: Ihr aktueller Warenkorb wurde mit dem Warenkorb Ihres letzten Besuchs zusammengelegt. Bitte überprüfen Sie den Inhalt Ihres Warenkorbs, bevor Sie ihre Bestellung abschließen.');
+define('WARNING_PRODUCT_QUANTITY_ADJUSTED', 'Die Menge wurde automatisch auf den verfügbaren Lagerbestand angepasst. ');
 
 // error on checkout when $_SESSION['customers_id' does not exist in customers table
 define('ERROR_CUSTOMERS_ID_INVALID', 'Die Kundeninformation konnte nicht verifiziert werden!<br />Bitte melden Sie sich an oder erstellen Sie Ihr Kundenkonto erneut ...');
