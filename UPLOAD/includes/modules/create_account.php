@@ -3,10 +3,10 @@
  * create_account header_php.php
  *
  * @package modules
- * @copyright Copyright 2003-2014 Zen Cart Development Team
+ * @copyright Copyright 2003-2015 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: create_account.php 731 2014-07-23 17:29:16Z webchills $
+ * @version $Id: create_account.php 732 2015-02-11 16:18:16Z webchills $
  */
 // This should be first line of the script:
 $zco_notifier->notify('NOTIFY_MODULE_START_CREATE_ACCOUNT');
@@ -344,7 +344,8 @@ if (isset($_POST['action']) && ($_POST['action'] == 'process')) {
 
     // hook notifier class
     $zco_notifier->notify('NOTIFY_LOGIN_SUCCESS_VIA_CREATE_ACCOUNT');
-
+/* IF ADMIN SETTING FOR WELCOME E-MAIL IS FALSE DO NOT SEND A WELCOME E-MAIL  */    
+if (SEND_WELCOME_EMAIL == 'true') {
     // build the message content
     $name = $firstname . ' ' . $lastname;
 
@@ -432,7 +433,7 @@ if (isset($_POST['action']) && ($_POST['action'] == 'process')) {
       if (trim(SEND_EXTRA_CREATE_ACCOUNT_EMAILS_TO_SUBJECT) != 'n/a') zen_mail('', SEND_EXTRA_CREATE_ACCOUNT_EMAILS_TO, SEND_EXTRA_CREATE_ACCOUNT_EMAILS_TO_SUBJECT . ' ' . EMAIL_SUBJECT,
       $email_text . $extra_info['TEXT'], STORE_NAME, EMAIL_FROM, $html_msg, 'welcome_extra');
     } //endif send extra emails
-
+}
     zen_redirect(zen_href_link(FILENAME_CREATE_ACCOUNT_SUCCESS, '', 'SSL'));
 
   } //endif !error
