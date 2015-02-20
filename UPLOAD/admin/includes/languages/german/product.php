@@ -1,10 +1,10 @@
 <?php
 /**
  * @package admin
- * @copyright Copyright 2003-2014 Zen Cart Development Team
+ * @copyright Copyright 2003-2015 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: product.php 2012-12-07 07:58:04Z webchills $
+ * @version $Id: product.php 2015-02-20 10:58:04Z webchills $
  */
 
 define('HEADING_TITLE', 'Kategorien / Artikel');
@@ -59,7 +59,7 @@ define('TEXT_SORT_ORDER', 'Sortierung:');
 define('TEXT_PRODUCTS_STATUS', 'Artikelstatus:');
 define('TEXT_PRODUCTS_VIRTUAL', 'Virtueller Artikel:');
 define('TEXT_PRODUCTS_IS_ALWAYS_FREE_SHIPPING', 'Immer versandkostenfrei:');
-define('TEXT_PRODUCTS_QTY_BOX_STATUS', 'Lagerbestand anzeigen:');
+define('TEXT_PRODUCTS_QTY_BOX_STATUS', 'Mengeneingabefeld anzeigen:');
 define('TEXT_PRODUCTS_DATE_AVAILABLE', 'Erscheinungsdatum:');
 define('TEXT_PRODUCT_AVAILABLE', 'Lagernd');
 define('TEXT_PRODUCT_NOT_AVAILABLE', 'Nicht lagernd');
