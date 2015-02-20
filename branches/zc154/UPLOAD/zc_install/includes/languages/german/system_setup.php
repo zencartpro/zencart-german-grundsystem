@@ -2,11 +2,10 @@
 /**
  * @package Installer
  * @access private
- * @copyright Copyright 2003-2014 Zen Cart Development Team
+ * @copyright Copyright 2003-2015 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @translator: cyaneo/hugo13/wflohr/MaleBorg/webchills	http://www.zen-cart-pro.at
- * @version $Id: system_setup.php 805 2012-11-30 11:28:24Z webchills $
+ * @version $Id: system_setup.php 806 2015-02-20 09:28:24Z webchills $
  */
 /**
  * defining language components for the page
@@ -34,4 +33,4 @@ define('ENABLE_SSL_ADMIN_INSTRUCTION', 'Wollen Sie SSL (Secure Sockets Layer) f�
 define('REDISCOVER', 'Standardwerte für diesen Host neu ermitteln');
 
 define('NEWADMIN_PATH', 'Adminordner Name');
-define('NEWADMIN_PATH_INSTRUCTION', 'Neuer Name für den Adminordner. Bitte ändern Sie diesen Wert sofort auf einen Namen Ihrer Wahl!');
+define('NEWADMIN_PATH_INSTRUCTION', 'Das Admin Verzeichnis wird vom Installer von admin auf einen neuen Namen Ihrer Wahl umbenannt.<br/><b>Der hier eingetragene Name ist nur ein Beispiel. Bitte ändern Sie diesen Wert sofort auf einen Namen Ihrer Wahl!</b>');

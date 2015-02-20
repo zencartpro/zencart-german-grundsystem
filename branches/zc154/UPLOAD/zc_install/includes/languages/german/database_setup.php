@@ -2,10 +2,10 @@
 /**
  * @package Installer
  * @access private
- * @copyright Copyright 2003-2014 Zen Cart Development Team
+ * @copyright Copyright 2003-2015 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: database_setup.php 771 2011-09-06 15:45:49Z webchills $
+ * @version $Id: database_setup.php 772 2015-02-20 09:45:49Z webchills $
  */
 /**
  * defining language components for the page
@@ -15,7 +15,7 @@
   define('TEXT_PAGE_HEADING', 'Zen Cart Installation - Datenbankanbindung');
   define('DATABASE_INFORMATION', 'Datenbankinformationen');
   define('DATABASE_OPTIONAL_INFORMATION', 'Datenbank - OPTIONALE Einstellungen');
-  define('DATABASE_OPTIONAL_INSTRUCTION', 'Wir empfehlen, diese Einstellungen so zu lassen wie sie sind, außer Sie haben einen bestimmten Grund Sie zu ändern.');
+  define('DATABASE_OPTIONAL_INSTRUCTION', '<b>Wir empfehlen, diese Einstellungen so zu lassen wie sie sind, außer Sie haben einen bestimmten Grund Sie zu ändern.</b>');
   define('DATABASE_TYPE', 'Datenbanktyp');
   define('DATABASE_TYPE_INSTRUCTION', 'Wählen Sie hier den Datenbanktyp aus, den Sie verwenden wollen.');
 
@@ -29,9 +29,9 @@ define('DATABASE_CHARSET_INSTRUCTION', 'Lassen Sie diese Einstellung unbedingt a
   define('DATABASE_PASSWORD', 'Datenbank Passwort');
   define('DATABASE_PASSWORD_INSTRUCTION', 'Wie lautet das Passwort für den Datenbankzugriff?');
   define('DATABASE_NAME', 'Name der Datenbank');
-  define('DATABASE_NAME_INSTRUCTION', 'Geben Sie her den Namen der Datenbank an, die die Daten Ihres Zen Cart Shops beinhalten soll (z.B. \'zencart\')');
+  define('DATABASE_NAME_INSTRUCTION', 'Geben Sie hier den Namen der Datenbank an, die die Daten Ihres Zen Cart Shops beinhalten soll. zencart ist hier nur ein Beispiel, Sie haben ja zuvor eine Datenbank angelegt und den Namen dieser Datenbank tragen Sie hier ein.');
   define('DATABASE_PREFIX', 'Tabellenpräfix (Für Datenbank-Sharing)');
-  define('DATABASE_PREFIX_INSTRUCTION', 'Wie soll das Tabellenpräfix lauten?  Dies ist zu empfehlen, wenn mehrere Programme auf die selbe Datenbank zugreifen. Beispiel: zen_<br /> Lassen Sie dieses Feld leer, wenn Sie kein Präfix verwenden möchten.');
+  define('DATABASE_PREFIX_INSTRUCTION', 'Wie soll das Tabellenpräfix lauten?  Dies ist zu empfehlen, wenn mehrere Programme auf dieselbe Datenbank zugreifen. Beispiel: zencart_<br /> Lassen Sie dieses Feld leer, wenn Sie kein Präfix verwenden möchten.<br/><b>Wir empfehlen KEIN Präfix zu verwenden und die Datenbank ausschliesslich für Zen Cart zu nutzen!</b>');
   define('DATABASE_CREATE', 'Datenbank erstellen?');
   define('DATABASE_CREATE_INSTRUCTION', 'Möchten Sie, dass Zen Cart versucht, die Datenbank zu erstellen)<br>(Rechte für ROOT-Zugriff erforderlich!)');
   define('DATABASE_CONNECTION', 'Dauerhafte Datenbankverbindung');
@@ -43,8 +43,6 @@ define('DATABASE_CHARSET_INSTRUCTION', 'Lassen Sie diese Einstellung unbedingt a
   define('SQL_CACHE', 'Sitzungs/SQL Cache Verzeichnis');
   define('SQL_CACHE_INSTRUCTION', 'Geben Sie das Verzeichnis zum dateibasierten Speichern von SQL Abfragen an.');
   define('ONLY_UPDATE_CONFIG_FILES','Nur Konfigurationsdateien aktualisieren');
-
-
   define('REASON_TABLE_ALREADY_EXISTS','Kann Tabelle %s nicht erzeugen, da sie bereits vorhanden ist');
   define('REASON_TABLE_DOESNT_EXIST','Kann Tabelle %s nicht löschen, da sie nicht vorhanden ist.');
   define('REASON_CONFIG_KEY_ALREADY_EXISTS','Kann den configuration_key "%s" nicht einfügen, da er bereits vorhanden ist.');
