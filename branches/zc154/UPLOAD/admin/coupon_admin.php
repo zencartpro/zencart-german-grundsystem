@@ -1,10 +1,10 @@
 <?php
 /**
  * @package admin
- * @copyright Copyright 2003-2014 Zen Cart Development Team
+ * @copyright Copyright 2003-2015 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: coupon_admin.php 787 2014-07-05 09:13:51Z webchills $
+ * @version $Id: coupon_admin.php 788 2015-02-20 10:56:51Z webchills $
  */
   require('includes/application_top.php');
   require(DIR_WS_CLASSES . 'currencies.php');
@@ -69,7 +69,7 @@
 
 //Send the emails
       zen_mail($mail->fields['customers_firstname'] . ' ' . $mail->fields['customers_lastname'], $mail->fields['customers_email_address'], $subject , $message, '',$from, $html_msg, 'coupon');
-
+      zen_record_admin_activity('Coupon code ' . $coupon_result->fields['coupon-code'] . ' emailed to customer ' . $mail->fields['customers_email_address'], 'info');
       $recip_count++;
       // send copy to Admin if enabled
       if (SEND_EXTRA_DISCOUNT_COUPON_ADMIN_EMAILS_TO_STATUS== '1' and SEND_EXTRA_DISCOUNT_COUPON_ADMIN_EMAILS_TO != '') {
@@ -951,7 +951,7 @@ $customer = $db->Execute("select customers_firstname, customers_lastname
 <?php
     $status_array[] = array('id' => 'Y', 'text' => TEXT_COUPON_ACTIVE);
     $status_array[] = array('id' => 'N', 'text' => TEXT_COUPON_INACTIVE);
-    $status_array[] = array('id' => '*', 'text' => TEXT_COUPON_ALL);
+    $status_array[] = array('id' => 'A', 'text' => TEXT_COUPON_ALL);
 
     if (isset($_GET['status'])) {
       $status = zen_db_prepare_input($_GET['status']);
@@ -991,10 +991,10 @@ $customer = $db->Execute("select customers_firstname, customers_lastname
                 <td class="dataTableHeadingContent" align="right"><?php echo TABLE_HEADING_ACTION; ?>&nbsp;</td>
               </tr>
 <?php
-    if ($status != '*') {
-      $cc_query_raw = "select coupon_id, coupon_code, coupon_amount, coupon_type, coupon_start_date,coupon_expire_date,uses_per_user,uses_per_coupon,restrict_to_products, restrict_to_categories, date_created,date_modified, coupon_active, coupon_zone_restriction from " . TABLE_COUPONS ." where coupon_active='" . zen_db_input($status) . "' and coupon_type != 'G'";
+    if ($status != 'A') {
+      $cc_query_raw = "select * from " . TABLE_COUPONS ." where coupon_active='" . zen_db_input($status) . "' and coupon_type != 'G'";
     } else {
-      $cc_query_raw = "select coupon_id, coupon_code, coupon_amount, coupon_type, coupon_start_date,coupon_expire_date,uses_per_user,uses_per_coupon,restrict_to_products, restrict_to_categories, date_created,date_modified, coupon_active, coupon_zone_restriction from " . TABLE_COUPONS . " where coupon_type != 'G'";
+      $cc_query_raw = "select * from " . TABLE_COUPONS . " where coupon_type != 'G'";
     }
     $maxDisplaySearchResults = (defined('MAX_DISPLAY_SEARCH_RESULTS_DISCOUNT_COUPONS') && (int)MAX_DISPLAY_SEARCH_RESULTS_DISCOUNT_COUPONS > 0) ? (int)MAX_DISPLAY_SEARCH_RESULTS_DISCOUNT_COUPONS : 20;
     // reset page when page is unknown
