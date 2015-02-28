@@ -5,7 +5,7 @@
  * @copyright Copyright 2003-2015 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: header_php.php 844 2015-01-22 16:40:25Z webchills $
+ * @version $Id: header_php.php 845 2015-02-28 16:51:25Z webchills $
  */
 include('includes/modules/pages/database_upgrade/language_id_change.php');
 /*
@@ -260,7 +260,7 @@ if (ZC_UPG_DEBUG2==true) {
              }
            }
            if ($query_results['ignored'] != 0) {
-             $messageStack->add('upgrade','Note: '.$query_results['ignored'].' statements ignored. See "upgrade_exceptions" table for additional details.', 'caution');
+             $messageStack->add('upgrade','Hinweis: '.$query_results['ignored'].' Updateschritte ignoriert. Sie kvnnen diese meist harmlosen Fehler in der Tabelle "upgrade_exceptions" in der Datenbank nachsehen.', 'caution');
            }
 /*           if (zen_not_null($query_results['output'])) {
            foreach ($query_results['output'] as $value) {
@@ -280,9 +280,9 @@ echo 'CAUTION: '.$value.'<br />';
 
     } // end while - version loop
     if ($failed_entries !=0 ) {
-      $zc_install->setError('<span class="errors">NOTE: Skipped upgrade statements: '.$failed_entries.'<br />See details at bottom of page for your inspection.<br />(Details also logged in the "upgrade_exceptions" table.)</span><br />Note: In most cases, these failed statements can be ignored, <br />as they are indications that certain settings may have already been set on your site. <br />If all the suggested upgrade steps have been completed (no recommendations left), <br />you may proceed to Skip Upgrades and continue configuring your site.','85', false);
+      $zc_install->setError('<span class="errors">HINWEIS: Einige Updateschritte im Updateskript wurden |bersprungen: '.$failed_entries.'<br />Ganz am Ende dieser Seite sehen Sie Details dazu.<br />(Details wurden ebenfalls in der Datenbank in der Tabelle "upgrade_exceptions" protokolliert.)</span><br /><b>WICHTIG: In den meisten Fdllen kvnnen diese fehlgeschlagenen Schritte ignoriert werden!<br />Sie weisen nur darauf hinein, dass Sie einige Einstellungen, die das Update vornehmen wollte, ohnehin bereits aktiv hatten.</b><br />Wdhlen Sie nun Update abgeschlossen und setzen die Konfiguration in der Administration fort.','85', false);
     }
-    if (ZC_UPG_DEBUG2==true) echo '<span class="errors">NOTE: Skipped upgrade statements: '.$failed_entries.'<br />See details at bottom of page for your inspection.<br />(Details also logged in the "upgrade_exceptions" table.)</span>';
+    if (ZC_UPG_DEBUG2==true) echo '<span class="errors">HINWEIS: \bersprungene Updateschritte: '.$failed_entries.'<br />Ganz am Ende dieser Seite sehen Sie Details dazu.<br />(Details wurden ebenfalls in der Datenbank in der Tabelle "upgrade_exceptions" protokolliert.)</span>';
   } // end if-is-array-POST['version']
 
 
