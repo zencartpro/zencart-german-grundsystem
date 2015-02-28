@@ -6,7 +6,7 @@
 # * @copyright Copyright 2003-2015 Zen Cart Development Team
 # * @copyright Portions Copyright 2003 osCommerce
 # * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
-# * @version $Id: mysql_upgrade_zencart_151_to_152.sql 9 2015-02-28 16:38:57Z webchills $
+# * @version $Id: mysql_upgrade_zencart_151_to_152.sql 9 2015-02-28 20:02:57Z webchills $
 #
 
 ############ IMPORTANT INSTRUCTIONS ###############
@@ -84,6 +84,9 @@ REPLACE INTO configuration_language (configuration_title, configuration_key, con
 ('E-Mail als MIME HTML versenden', 'EMAIL_USE_HTML', 43, 'Wollen Sie e-Mails im HTML Format versenden falls der Empfänger in seinen Einstellungen HTML statt Text angekreuzt hat?<br/>HINWEIS: Dies ist der generelle Hauptschalter. Wenn Sie hier auf false stellen, dann wird der Shop keinerlei HTML Emails versenden.', now(), now()),
 ('E-Mail an Admin: Format', 'ADMIN_EXTRA_EMAIL_FORMAT', 43, 'Wählen Sie das Format für e-Mails, die zusätzlich an den Administrator versendet werden.<br/>HINWEIS: Wenn Sie hier HTML auswählen, dann muss auch der generelle Hauptschalter HTML Emails versenden auf true gestellt sein, sonst werden trotzdem nur Text Emails an den Admin versandt.', now(), now()),
 ('Zahlungsarten', 'DEFINE_ZAHLUNGSARTEN_STATUS', 43, 'Den Inhalt für diese Seite können Sie über <em>Tools->Seiteneditor</em> bearbeiten.<br /><strong>Zuständige Datei: <em>define_zahlungsarten.php</em></strong><br /><br />BESCHREIBUNG:<br /><em>Link EIN</em> bedeutet, dass der Link in der Infobox sichtbar ist.<br /><em>Text AUS</em> bedeutet, dass der definierte Seitentext nicht eingeblendet wird.<br /><br />OPTIONEN:<br />0= Link EIN, Text AUS<br />1= Link EIN, Text EIN<br />2= Link AUS, Text EIN<br />3= Link AUS, Text AUS<br />', now(), now());
+
+## Delete Installed Modules entry without configuration_key in configuration TABLE
+DELETE FROM configuration WHERE configuration_title = 'Installed Modules';
 
 ## Delete old Image Handler entries
 DELETE FROM configuration WHERE configuration_key = 'IH_VERSION';
