@@ -260,7 +260,7 @@ if (ZC_UPG_DEBUG2==true) {
              }
            }
            if ($query_results['ignored'] != 0) {
-             $messageStack->add('upgrade','Hinweis: '.$query_results['ignored'].' Updateschritte ignoriert. Sie kvnnen diese meist harmlosen Fehler in der Tabelle "upgrade_exceptions" in der Datenbank nachsehen.', 'caution');
+             $messageStack->add('upgrade','Hinweis: '.$query_results['ignored'].' Updateschritte ignoriert. Sie können diese meist harmlosen Fehler in der Tabelle "upgrade_exceptions" in der Datenbank nachsehen.', 'caution');
            }
 /*           if (zen_not_null($query_results['output'])) {
            foreach ($query_results['output'] as $value) {
@@ -280,9 +280,9 @@ echo 'CAUTION: '.$value.'<br />';
 
     } // end while - version loop
     if ($failed_entries !=0 ) {
-      $zc_install->setError('<span class="errors">HINWEIS: Einige Updateschritte im Updateskript wurden |bersprungen: '.$failed_entries.'<br />Ganz am Ende dieser Seite sehen Sie Details dazu.<br />(Details wurden ebenfalls in der Datenbank in der Tabelle "upgrade_exceptions" protokolliert.)</span><br /><b>WICHTIG: In den meisten Fdllen kvnnen diese fehlgeschlagenen Schritte ignoriert werden!<br />Sie weisen nur darauf hinein, dass Sie einige Einstellungen, die das Update vornehmen wollte, ohnehin bereits aktiv hatten.</b><br />Wdhlen Sie nun Update abgeschlossen und setzen die Konfiguration in der Administration fort.','85', false);
+      $zc_install->setError('<span class="errors">HINWEIS: Einige Updateschritte im Updateskript wurden übersprungen: '.$failed_entries.'<br />Ganz am Ende dieser Seite sehen Sie Details dazu.<br />(Details wurden ebenfalls in der Datenbank in der Tabelle "upgrade_exceptions" protokolliert.)</span><br /><b>WICHTIG: In den meisten Fällen können diese fehlgeschlagenen Schritte ignoriert werden!<br />Sie weisen nur darauf hin, dass Sie einige Einstellungen, die das Update vornehmen wollte,<br/>ohnehin bereits aktiv hatten.</b><br />Wählen Sie nun unten den Button Updates abgeschlossen<br/>und setzen die Konfiguration in der Administration fort.','85', false);
     }
-    if (ZC_UPG_DEBUG2==true) echo '<span class="errors">HINWEIS: \bersprungene Updateschritte: '.$failed_entries.'<br />Ganz am Ende dieser Seite sehen Sie Details dazu.<br />(Details wurden ebenfalls in der Datenbank in der Tabelle "upgrade_exceptions" protokolliert.)</span>';
+    if (ZC_UPG_DEBUG2==true) echo '<span class="errors">HINWEIS: Übersprungene Updateschritte: '.$failed_entries.'<br />Ganz am Ende dieser Seite sehen Sie Details dazu.<br />(Details wurden ebenfalls in der Datenbank in der Tabelle "upgrade_exceptions" protokolliert.)</span>';
   } // end if-is-array-POST['version']
 
 
