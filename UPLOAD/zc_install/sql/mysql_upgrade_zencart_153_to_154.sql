@@ -6,7 +6,7 @@
 # * @copyright Copyright 2003-2015 Zen Cart Development Team
 # * @copyright Portions Copyright 2003 osCommerce
 # * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
-# * @version $Id: mysql_upgrade_zencart_153_to_154.sql 2 2015-02-11 16:46:59Z webchills $
+# * @version $Id: mysql_upgrade_zencart_153_to_154.sql 2 2015-02-28 17:42:59Z webchills $
 #
 
 ############ IMPORTANT INSTRUCTIONS ###############
@@ -38,9 +38,17 @@
 TRUNCATE TABLE whos_online;
 TRUNCATE TABLE db_cache;
 
-INSERT INTO configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, last_modified, date_added, use_function, set_function) VALUES ('PA-DSS Ajax Checkout?', 'PADSS_AJAX_CHECKOUT', '1', 'PA-DSS Compliance requires that for some inbuilt payment methods, that we use ajax to draw the checkout confirmation screen. While this will only happen if one of those payment methods is actually present, some people may want the traditional checkout flow <strong>Disabling this makes your site NON-COMPLIANT with PA-DSS rules, thus invalidating any certification.</strong>', 1, 30, now(), now(), NULL, 'zen_cfg_select_drop_down(array(array(\'id\'=>\'0\', \'text\'=>\'Non-Compliant\'), array(\'id\'=>\'1\', \'text\'=>\'On\')),');
-INSERT INTO configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, last_modified, date_added, use_function, set_function) VALUES ('Send Welcome Email', 'SEND_WELCOME_EMAIL', 'false', 'Send Welcome Email to the customer after registration?', 12, 90, now(), now(), NULL, 'zen_cfg_select_option(array(''true'', ''false''),');
-REPLACE INTO configuration_language (configuration_title, configuration_key, configuration_language_id, configuration_description, last_modified, date_added) VALUES ('Willkommensemail senden?', 'SEND_WELCOME_EMAIL', '43', 'Wollen Sie Neukunden nach der Registrierung ein Willkommensemail senden?', now(), now());
+#### Ajax Checkout - New in 1.5.4
+INSERT INTO configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, last_modified, date_added, use_function, set_function) VALUES 
+('PA-DSS Ajax Checkout?', 'PADSS_AJAX_CHECKOUT', '1', 'PA-DSS Compliance requires that for some inbuilt payment methods, that we use ajax to draw the checkout confirmation screen. While this will only happen if one of those payment methods is actually present, some people may want the traditional checkout flow <strong>Disabling this makes your site NON-COMPLIANT with PA-DSS rules, thus invalidating any certification.</strong>', 1, 30, now(), now(), NULL, 'zen_cfg_select_drop_down(array(array(\'id\'=>\'0\', \'text\'=>\'Non-Compliant\'), array(\'id\'=>\'1\', \'text\'=>\'On\')),');
+INSERT INTO configuration_language (configuration_title, configuration_key, configuration_language_id, configuration_description, last_modified, date_added) VALUES
+('PA-DSS Ajax Checkout?', 'PADSS_AJAX_CHECKOUT', '43', 'PA-DSS Compliance erfordert, dass für gewisse Zahlungsarten für die Bestellbestätigungsseite Ajax verwendet wird. Dies wird zwar nur bei manchen unterstützten Zahlungsarten der Fall sein, dennoch wollen Sie vielleicht generell den normalen Bestellablauf ohne Ajax verwenden.<br/>Hinweis: Wenn Sie dieses Setting auf false stellen, dann erfüllt der Shop die PA-DSS Richtlinien nicht mehr.', now(), now());
+#### Welcome Mail optional - New in 1.5.4
+INSERT INTO configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, last_modified, date_added, use_function, set_function) VALUES
+('Send Welcome Email', 'SEND_WELCOME_EMAIL', 'true', 'Send Welcome Email to the customer after registration?', 12, 90, now(), now(), NULL, 'zen_cfg_select_option(array(''true'', ''false''),');
+INSERT INTO configuration_language (configuration_title, configuration_key, configuration_language_id, configuration_description, last_modified, date_added) VALUES
+('Willkommensemail senden?', 'SEND_WELCOME_EMAIL', '43', 'Wollen Sie Neukunden nach der Registrierung ein Willkommensemail senden?', now(), now());
+
 
 #############
 

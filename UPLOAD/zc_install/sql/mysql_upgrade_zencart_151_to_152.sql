@@ -325,16 +325,15 @@ INSERT INTO configuration_group (configuration_group_title, configuration_group_
 SET @gid=last_insert_id();
 UPDATE configuration_group SET sort_order = last_insert_id() WHERE configuration_group_id = last_insert_id();
 
+INSERT INTO configuration_group (configuration_group_id, language_id, configuration_group_title, configuration_group_description, sort_order, visible ) VALUES 
+(@gid, 43, 'Minify', 'Minify Einstellungen', @gid, '1');
+
 INSERT INTO configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, last_modified, date_added, use_function, set_function) VALUES 
 ('Enable Minify for Javascripts', 'MINIFY_STATUS_JS', 'true', 'Minifying will speed up your sites loading speed by combining and compressing Javascript files.', @gid, 1, now(), now(), NULL, 'zen_cfg_select_option(array(\'true\', \'false\'),'),
 ('Enable Minify for CSS', 'MINIFY_STATUS_CSS', 'true', 'Minifying will speed up your sites loading speed by combining and compressing CSS files.', @gid, 2, now(), now(), NULL, 'zen_cfg_select_option(array(\'true\', \'false\'),'),
 ('Max URL Lenght', 'MINIFY_MAX_URL_LENGHT', '500', 'On some server the maximum lenght of any POST/GET request URL is limited. If this is the case for your server, you can change the setting here', @gid, 3, now(), now(), NULL, NULL),
 ('Minify Cache Time', 'MINIFY_CACHE_TIME_LENGHT', '31536000', 'Set minify cache time (in second). Default is 1 year (31536000)', @gid, 4, now(), now(), NULL, NULL),
 ('Latest Cache Time', 'MINIFY_CACHE_TIME_LATEST', '0', 'Normally you dont have to set this, but if you have just made changes to your js/css files and want to make sure they are reloaded right away, you can reset this to 0.', @gid, 5, now(), now(), NULL, NULL);
-
-
-INSERT INTO configuration_group (configuration_group_id, language_id, configuration_group_title, configuration_group_description, sort_order, visible ) VALUES 
-(@gid, 43, 'Minify', 'Minify Einstellungen', '1', '1');
 
 REPLACE INTO configuration_language (configuration_title, configuration_key, configuration_language_id, configuration_description, last_modified, date_added) VALUES
 ('Minify für Javascripts aktivieren', 'MINIFY_STATUS_JS', 43, 'Minify erhöht die Ladegeschwindigkeit Ihrer Website. Javascripts werden kombiniert und komprimiert. Wollen Sie Minify für Javascripts aktivieren?', now(), now()),
@@ -353,6 +352,9 @@ INSERT INTO configuration_group (configuration_group_title,configuration_group_d
 SET @gid=last_insert_id();
 UPDATE configuration_group SET sort_order = @gid WHERE configuration_group_id = @gid;
 
+INSERT INTO configuration_group (configuration_group_id, language_id, configuration_group_title, configuration_group_description, sort_order, visible ) VALUES 
+(@gid, 43, 'Google Analytics', 'Google Analytics', @gid, '1');
+
 INSERT INTO configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, last_modified, date_added, use_function, set_function) VALUES 
 ('Analytics Enabled', 'GOOGLE_ANALYTICS_ENABLED', 'Disabled', 'Enables / disables this plugin.', @gid, 1, now(), now(), NULL, 'zen_cfg_select_option(array(\'Enabled\', \'Disabled\'), '),
 ('Analytics Account', 'GOOGLE_ANALYTICS_UACCT', 'UA-XXXXXX-X', 'This number is the unique ID you were given by Google when you registered for your Google Analytics account. <b>Enter your Google Analytics account number below. It starts with UA</b>', @gid, 2, now(), now(), NULL, NULL),
@@ -365,10 +367,6 @@ INSERT INTO configuration (configuration_title, configuration_key, configuration
 ('Google Tracking Code Type To Use', 'GOOGLE_ANALYTICS_TRACKING_TYPE', 'universal', 'Select the type of tracking you wish to use. The default is the "universal" type. You have the ability to change this to the older "ga.js" method. <b>Select your tracking preference below.</b><br />', @gid, 9, now(), now(), NULL, 'zen_cfg_select_option(array(\'universal\', \'ga.js\', \'ga.js asynchronous\'), '),
 ('Add Custom Tracking After Main Analytics Code?', 'GOOGLE_ANALYTICS_CUSTOM_CODE_ENABLED', 'Disable', 'Enables / disables inclusion of custom Javascript.', @gid, 10, NOW(), NOW(), NULL, 'zen_cfg_select_option(array(''Enable'', ''Disable''),'),
 ('Google Custom Code - After', 'GOOGLE_ANALYTICS_CUSTOM_CODE', '', 'If you wish to include any Javascript code after the main tracking segment, insert it here.<br /><br />', @gid, 11, NOW(), NOW(), NULL, 'zen_cfg_textarea(');
-
-
-INSERT INTO configuration_group (configuration_group_id, language_id, configuration_group_title, configuration_group_description, sort_order, visible ) VALUES 
-(@gid, 43, 'Google Analytics', 'Google Analytics', '1', '1');
 
 REPLACE INTO configuration_language (configuration_title, configuration_key, configuration_language_id, configuration_description, last_modified, date_added) VALUES
 ('GA - Google Analytics aktivieren?', 'GOOGLE_ANALYTICS_ENABLED', 43, 'Wollen Sie Google Analytics aktivieren? <br/><br/>Enabled = Ja<br/>Disabled = Nein', now(), now()),
@@ -426,6 +424,9 @@ INSERT INTO configuration_group (configuration_group_title, configuration_group_
 SET @gid=last_insert_id();
 UPDATE configuration_group SET sort_order = @gid WHERE configuration_group_id = @gid;
 
+INSERT INTO configuration_group (configuration_group_id, language_id, configuration_group_title, configuration_group_description, sort_order, visible ) VALUES 
+(@gid, 43, 'Facebook Funktionen', 'Facebook Einstellungen', @gid, '1');
+
 INSERT INTO configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, last_modified, date_added, use_function, set_function) VALUES 
 ('Open Graph - Enable Facebook Open Graph', 'FACEBOOK_OPEN_GRAPH_STATUS', 'false', 'Enable Facebook Open Graph meta data?', @gid, 1, now(), now(), NULL, 'zen_cfg_select_option(array(\'true\', \'false\'),'),
 ('Open Graph - Application ID', 'FACEBOOK_OPEN_GRAPH_APPID', '', 'Please enter your application ID (<a href="http://developers.facebook.com/setup/" target="_blank">Get an application ID</a>)', @gid, 2, now(), now(), NULL, NULL),
@@ -447,8 +448,6 @@ INSERT INTO configuration (configuration_title, configuration_key, configuration
 ('Like Button - Width', 'FACEBOOK_LIKE_BUTTON_WIDTH', '90', 'The width of the like button (standard => 450; button_count => 90; box_count => 55)', @gid, 18, now(), now(), NULL, NULL),
 ('Like Button - Combined Send Button', 'FACEBOOK_LIKE_BUTTON_SEND', 'true', 'Create a combined Like and Send button?', @gid, 19, now(), now(), NULL, 'zen_cfg_select_option(array(\'true\', \'false\'),');
 
-INSERT INTO configuration_group (configuration_group_id, language_id, configuration_group_title, configuration_group_description, sort_order, visible ) VALUES 
-(@gid, 43, 'Facebook Funktionen', 'Facebook Einstellungen', '1', '1');
 
 REPLACE INTO configuration_language (configuration_title, configuration_key, configuration_language_id, configuration_description, last_modified, date_added) VALUES
 ('Open Graph - Facebook Open Graph aktivieren', 'FACEBOOK_OPEN_GRAPH_STATUS', 43, 'Wollen Sie die Facebook Open Graph Metadaten aktivieren?', now(), now()),
@@ -477,12 +476,16 @@ INSERT INTO admin_pages (page_key, language_key, main_page, page_params, menu_ke
 
 ## Install New RSS Feed
 
-INSERT INTO configuration_group (configuration_group_title, configuration_group_description , sort_order , visible ) VALUES ('RSS Feed', 'RSS Feed Settings', '1', '1');
+INSERT INTO configuration_group (configuration_group_title, configuration_group_description, sort_order, visible) VALUES 
+('RSS Feed', 'RSS Feed Settings', '1', '1');
 SET @gid=last_insert_id();
 UPDATE configuration_group SET sort_order = @gid WHERE configuration_group_id = @gid;
 
+INSERT INTO configuration_group (configuration_group_id, language_id, configuration_group_title, configuration_group_description, sort_order, visible ) VALUES 
+(@gid, 43, 'RSS Feed', 'RSS Feed Einstellungen', @gid, '1');
+
 INSERT INTO configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, last_modified, date_added, use_function, set_function) VALUES 
-('Enable RSS Feed?', 'RSS_FEED_ENABLED', 'true', 'Do you want to enable teh RSS Feeds?', @gid, 1, now(), now(), NULL, 'zen_cfg_select_option(array(\'true\', \'false\'),'),
+('Enable RSS Feed?', 'RSS_FEED_ENABLED', 'true', 'Do you want to enable the RSS Feeds?', @gid, 1, now(), now(), NULL, 'zen_cfg_select_option(array(\'true\', \'false\'),'),
 ('RSS Title', 'RSS_TITLE', '', 'RSS Title (if empty use Store Name)', @gid, 2, now(), now(), NULL, NULL),
 ('RSS Description', 'RSS_DESCRIPTION', '', 'RSS description', @gid, 3, now(), now(), NULL, NULL),
 ('RSS Image', 'RSS_IMAGE', '', 'A GIF, JPEG or PNG image that represents the channel', @gid, 4, now(), now(), NULL, NULL),
@@ -502,9 +505,6 @@ INSERT INTO configuration (configuration_title, configuration_key, configuration
 ('Add "buy now" button', 'RSS_PRODUCTS_DESCRIPTION_BUYNOW', 'false', 'Add "buy now" button to product description tag', @gid, 18, now(), now(), NULL, 'zen_cfg_select_option(array(\'true\', \'false\'),'),
 ('Categories for Products', 'RSS_PRODUCTS_CATEGORIES', 'master', 'Use ''all'' or only ''master'' Categories for Products when specified cPath parameter', @gid, 19, now(), now(), NULL, 'zen_cfg_select_option(array(\'master\', \'all\'),'),
 ('Feed Cache', 'RSS_CACHE_TIME', '10', 'Cache Feeds in the cache folder. If you don''t want caching, set it to 0', @gid, 20, now(), now(), NULL, NULL);
-
-INSERT INTO configuration_group (configuration_group_id, language_id, configuration_group_title, configuration_group_description, sort_order, visible ) VALUES 
-(@gid, 43, 'RSS Feed', 'RSS Feed Einstellungen', '1', '1');
 
 REPLACE INTO configuration_language (configuration_title, configuration_key, configuration_language_id, configuration_description, last_modified, date_added) VALUES
 ('RSS - RSS Feeds aktivieren?', 'RSS_FEED_ENABLED', 43, 'Wollen Sie die RSS Feeds aktivieren?', now(), now()),
