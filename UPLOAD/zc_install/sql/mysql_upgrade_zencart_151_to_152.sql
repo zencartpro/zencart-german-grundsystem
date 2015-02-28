@@ -3,10 +3,10 @@
 # *
 # * @package Installer
 # * @access private
-# * @copyright Copyright 2003-2014 Zen Cart Development Team
+# * @copyright Copyright 2003-2015 Zen Cart Development Team
 # * @copyright Portions Copyright 2003 osCommerce
 # * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
-# * @version $Id: mysql_upgrade_zencart_151_to_152.sql 8 2014-10-16 16:22:57Z webchills $
+# * @version $Id: mysql_upgrade_zencart_151_to_152.sql 9 2015-02-28 16:38:57Z webchills $
 #
 
 ############ IMPORTANT INSTRUCTIONS ###############
@@ -216,6 +216,9 @@ DELETE FROM configuration WHERE configuration_key = 'FACEBOOK_OPEN_GRAPH_APPSECR
 DELETE FROM configuration WHERE configuration_key = 'FACEBOOK_OPEN_GRAPH_ADMINID';
 DELETE FROM configuration WHERE configuration_key = 'FACEBOOK_OPEN_GRAPH_DEFAULT_IMAGE';
 DELETE FROM configuration WHERE configuration_key = 'FACEBOOK_OPEN_GRAPH_TYPE';
+DELETE FROM configuration WHERE configuration_key = 'FACEBOOK_OPEN_GRAPH_CPATH';
+DELETE FROM configuration WHERE configuration_key = 'FACEBOOK_OPEN_GRAPH_LANGUAGE';
+DELETE FROM configuration WHERE configuration_key = 'FACEBOOK_OPEN_GRAPH_CANONICAL';
 DELETE FROM configuration WHERE configuration_key = 'FACEBOOK_LIKE_BUTTON_STATUS';
 DELETE FROM configuration WHERE configuration_key = 'FACEBOOK_LIKE_BUTTON_METHOD';
 DELETE FROM configuration WHERE configuration_key = 'FACEBOOK_LIKE_BUTTON_ALIGNMENT';
@@ -320,15 +323,15 @@ REPLACE INTO configuration_language (configuration_title, configuration_key, con
 
 INSERT INTO configuration_group (configuration_group_title, configuration_group_description, sort_order, visible) VALUES ('Minify', 'Set Minify Options', '1', '1');
 SET @gid=last_insert_id();
-UPDATE configuration_group SET sort_order = @gid WHERE configuration_group_id = @gid;
+UPDATE configuration_group SET sort_order = last_insert_id() WHERE configuration_group_id = last_insert_id();
 
-REPLACE INTO configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, last_modified, date_added, use_function, set_function) VALUES 
+INSERT INTO configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, last_modified, date_added, use_function, set_function) VALUES 
 ('Enable Minify for Javascripts', 'MINIFY_STATUS_JS', 'true', 'Minifying will speed up your sites loading speed by combining and compressing Javascript files.', @gid, 1, now(), now(), NULL, 'zen_cfg_select_option(array(\'true\', \'false\'),'),
 ('Enable Minify for CSS', 'MINIFY_STATUS_CSS', 'true', 'Minifying will speed up your sites loading speed by combining and compressing CSS files.', @gid, 2, now(), now(), NULL, 'zen_cfg_select_option(array(\'true\', \'false\'),'),
 ('Max URL Lenght', 'MINIFY_MAX_URL_LENGHT', '500', 'On some server the maximum lenght of any POST/GET request URL is limited. If this is the case for your server, you can change the setting here', @gid, 3, now(), now(), NULL, NULL),
 ('Minify Cache Time', 'MINIFY_CACHE_TIME_LENGHT', '31536000', 'Set minify cache time (in second). Default is 1 year (31536000)', @gid, 4, now(), now(), NULL, NULL),
 ('Latest Cache Time', 'MINIFY_CACHE_TIME_LATEST', '0', 'Normally you dont have to set this, but if you have just made changes to your js/css files and want to make sure they are reloaded right away, you can reset this to 0.', @gid, 5, now(), now(), NULL, NULL);
-    
+
 
 INSERT INTO configuration_group (configuration_group_id, language_id, configuration_group_title, configuration_group_description, sort_order, visible ) VALUES 
 (@gid, 43, 'Minify', 'Minify Einstellungen', '1', '1');
@@ -350,7 +353,7 @@ INSERT INTO configuration_group (configuration_group_title,configuration_group_d
 SET @gid=last_insert_id();
 UPDATE configuration_group SET sort_order = @gid WHERE configuration_group_id = @gid;
 
-REPLACE INTO configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, last_modified, date_added, use_function, set_function) VALUES 
+INSERT INTO configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, last_modified, date_added, use_function, set_function) VALUES 
 ('Analytics Enabled', 'GOOGLE_ANALYTICS_ENABLED', 'Disabled', 'Enables / disables this plugin.', @gid, 1, now(), now(), NULL, 'zen_cfg_select_option(array(\'Enabled\', \'Disabled\'), '),
 ('Analytics Account', 'GOOGLE_ANALYTICS_UACCT', 'UA-XXXXXX-X', 'This number is the unique ID you were given by Google when you registered for your Google Analytics account. <b>Enter your Google Analytics account number below. It starts with UA</b>', @gid, 2, now(), now(), NULL, NULL),
 ('Target Address', 'GOOGLE_ANALYTICS_TARGET', 'customers', 'This element is used in conjunction with Google E-Commerce Tracking. It indicates how you want your "transactions" to be identified in your Analytics reports.<br><br>Addresses consist of City,State, and Country.<br><br>This information can help you determine locality of orders placed, shipped to, or billed to.<br><br><b>Which address type do you want to use for recording transaction information?</b><br>', @gid, 3, now(), now(), NULL, 'zen_cfg_select_option(array(\'customers\', \'delivery\', \'billing\'),'),
@@ -423,7 +426,7 @@ INSERT INTO configuration_group (configuration_group_title, configuration_group_
 SET @gid=last_insert_id();
 UPDATE configuration_group SET sort_order = @gid WHERE configuration_group_id = @gid;
 
-REPLACE INTO configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, last_modified, date_added, use_function, set_function) VALUES 
+INSERT INTO configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, last_modified, date_added, use_function, set_function) VALUES 
 ('Open Graph - Enable Facebook Open Graph', 'FACEBOOK_OPEN_GRAPH_STATUS', 'false', 'Enable Facebook Open Graph meta data?', @gid, 1, now(), now(), NULL, 'zen_cfg_select_option(array(\'true\', \'false\'),'),
 ('Open Graph - Application ID', 'FACEBOOK_OPEN_GRAPH_APPID', '', 'Please enter your application ID (<a href="http://developers.facebook.com/setup/" target="_blank">Get an application ID</a>)', @gid, 2, now(), now(), NULL, NULL),
 ('Open Graph - Application Secret', 'FACEBOOK_OPEN_GRAPH_APPSECRET', '', 'Please enter your application secret', @gid, 3, now(), now(), NULL, NULL),
@@ -478,7 +481,7 @@ INSERT INTO configuration_group (configuration_group_title, configuration_group_
 SET @gid=last_insert_id();
 UPDATE configuration_group SET sort_order = @gid WHERE configuration_group_id = @gid;
 
-REPLACE INTO configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, last_modified, date_added, use_function, set_function) VALUES 
+INSERT INTO configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, last_modified, date_added, use_function, set_function) VALUES 
 ('Enable RSS Feed?', 'RSS_FEED_ENABLED', 'true', 'Do you want to enable teh RSS Feeds?', @gid, 1, now(), now(), NULL, 'zen_cfg_select_option(array(\'true\', \'false\'),'),
 ('RSS Title', 'RSS_TITLE', '', 'RSS Title (if empty use Store Name)', @gid, 2, now(), now(), NULL, NULL),
 ('RSS Description', 'RSS_DESCRIPTION', '', 'RSS description', @gid, 3, now(), now(), NULL, NULL),
