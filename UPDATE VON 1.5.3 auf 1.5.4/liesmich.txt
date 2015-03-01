@@ -1,0 +1,151 @@
+Um ein Update von 1.5.3 deutsch auf 1.5.4 deutsch durchzuführen, gehen Sie bitte folgendermaßen vor:
+
+ACHTUNG:
+Dieses Updatepaket ist NUR geeignet, wenn Sie bereits Version 1.5.3 verwenden!
+Überprüfen Sie in der Administration unter Tools > Serverinfo, ob sie wirklich die deutsche Version 1.5.3 im Einsatz haben.
+Wenn Sie eine ältere Version (1.5.2, 1.5.1, 1.5 oder noch älter) verwenden, dann müssen Sie ein komplettes Update machen und können dieses Updatepaket nicht nutzen!
+Dieses Paket ist ebenfalls NICHT geeignet, wenn Sie die amerikanische Zen Cart Version verwenden!
+
+Sie haben 1.5.3 deutsch und möchten auf 1.5.4 deutsch updaten?
+Gut, dann weiterlesen
+
+Wenn Sie schon einmal ein Modul installiert haben, dann wird Ihnen diese Vorgangsweise bekannt vorkommen.
+
+Für das Update sollten Sie über folgende Werkzeuge verfügen:
+
+1) Ein guter Texteditor.
+Damit ist nicht das in Windows enthaltene Notepad oder Microsoft Word gemeint.
+Sie benötigen einen Texteditor, der utf-8 versteht und auch im Format utf-8 ohne BOM abspeichern kann.
+Meine Empfehlung: UltraEdit (kostenlose 30 Tage Testversion verfügbar)
+Ebenfalls gut geeignet ist der kostenlose Texteditor Notepad++
+
+2) Ein Tool zum Vergleichen von Dateien
+Bei der Installation dieses Moduls ist es erforderlich, dass Sie den Inhalt einiger Ihrer bestehenden Zen Cart Dateien mit dem Inhalt der neuen Moduldateien vergleichen und die Änderungen zusammenführen ("mergen").
+Meine Empfehlung: BeyondCompare (kostenlose 30 Tage Testversion verfügbar)
+Ebenfalls gut geeignet ist das kostenlose Programm WinMerge
+
+Sichern Sie unbedingt alle Dateien Ihres Shops per FTP und sichern Sie die Datenbank mit phpMyAdmin oder anderen geeigneten Tools!
+
+Ablauf des Updates:
+
+1)
+Im Ordner GEAENDERTE DATEIEN den Ordner DEINADMIN auf den Namen Ihres admin Verzeichnisses umbenennen.
+Den Ordner DEINTEMPLATE auf den Namen Ihres in Shop aktiven Templates umbenenennen.
+Vergleichen Sie nun mit WinMerge oder Beyond Compare und nehmen die Änderungen manuell vor, sonst gehen Änderungen, die Sie vielleicht früher schon einmal an diesen Dateien vorgenommen haben verloren.
+Nach Ihren Änderungen laden Sie die Dateien/Ordner in der vorgegebenen Struktur ins Shopverzeichnis hoch und überschreiben die bestehenden Dateien am Server damit.
+
+2)
+Im Ordner NEUE DATEIEN den Ordner DEINADMIN auf den Namen Ihres admin Verzeichnisses umbenennen.
+Den Ordner DEINTEMPLATE auf den Namen Ihres in Shop aktiven Templates umbenenennen.
+Nun inder vorgegebenen Struktur hochladen, dabei werden keine bestehenden Dateien überschrieben.
+
+3)
+Nun rufen Sie folgende Adresse auf:
+http://www.meinshop.de/zc_install
+Der Zen Cart Installer wird Sie begrüßen und Sie sollten im zweiten Schritt nach Akzeptieren der Lizenzbedingungen die meldung sehen:
+Updatemodus verfügbar.
+Es wurde eine Zen Cart Installation gefunden, die Version scheint 1.5.3 zu sein.
+Wählen Sie nun den Button "Datenbank aktualisieren"
+Im nächsten Schritt sollten Sie folgendes Bild sehen:
+
+Lassen Sie Update von 1.5.3 auf 1.5.4 angekreuzt, geben Sie unten Benutzernamen und Passwort zu Ihrer Zen Cart Administration ein und gehen auf Datenbank aktualisieren.
+
+
+Hier noch eine Übersicht der neuen und geänderten Dateien in 1.5.4 deutsch im Vergleich zu 1.5.3 deutsch:
+
+
+
+NEUE DATEIEN
+
+ajax.php
+admin/includes/auto_loaders/config.admin.zcObserverLogEventListener.php
+admin/includes/auto_loaders/config.admin.zcObserverLogWriterDatabase.php
+admin/includes/auto_loaders/config.admin.zcObserverLogWriterTextfile.php
+admin/includes/classes/class.admin.zcObserverLogEventListener.php
+admin/includes/classes/class.admin.zcObserverLogWriterDatabase.php
+admin/includes/classes/class.admin.zcObserverLogWriterTextfile.php
+includes/classes/ajax/zcAjaxPayment.php
+includes/templates/template_default/jscript/jquery.min.js 
+includes/templates/template_default/jscript/jscript_framework.php
+includes/templates/template_default/templates/tpl_ajax_checkout_confirmation_default.php
+
+
+
+GEAENDERTE DATEIEN
+
+admin/admin_activity.php
+admin/attributes_controller.php
+admin/configuration.php
+admin/countries.php
+admin/coupon_admin.php
+admin/currencies.php
+admin/customers.php
+admin/define_pages_editor.php
+admin/downloads_manager.php
+admin/ezpages.php
+admin/geo_zones.php
+admin/gv_mail.php
+admin/gv_queue.php
+admin/languages.php
+admin/layout_controller.php
+admin/login.php
+admin/media_manager.php
+admin/modules.php
+admin/orders.php
+admin/profiles.php
+admin/salemaker.php
+admin/specials.php
+admin/sqlpatch.php
+admin/store_manager.php
+admin/tax_classes.php
+admin/tax_rates.php
+admin/whos_online.php
+admin/includes/dist-configure.php
+admin/includes/header.php
+admin/includes/classes/upload.php
+admin/includes/functions/admin_access.php
+admin/includes/functions/database.php
+admin/includes/functions/general.php
+admin/includes/functions/html_output.php
+admin/includes/init_includes/init_admin_auth.php
+admin/includes/init_includes/init_admin_history.php
+admin/includes/init_includes/init_cache_key_check.php
+admin/includes/languages/english.php
+admin/includes/languages/german.php
+admin/includes/languages/english/admin_activity.php
+admin/includes/languages/english/profiles.php
+admin/includes/languages/german/admin_activity.php
+admin/includes/languages/german/profiles.php
+admin/includes/languages/german/product.php
+admin/includes/modules/copy_to_confirm.php
+admin/includes/modules/move_product_confirm.php
+admin/includes/modules/update_product.php
+admin/includes/modules/product_music/copy_to_confirm.php
+admin/includes/modules/product_music/update_product.php
+includes/dist-configure.php
+includes/version.php
+includes/classes/class.phpbb.php
+includes/classes/class.smtp.php
+includes/classes/class.zcPassword.php
+includes/classes/payment.php
+includes/classes/shopping_cart.php
+includes/functions/functions_general.php
+includes/languages/english.php
+includes/languages/german.php
+includes/modules/order_total/ot_coupon.php
+includes/modules/pages/checkout_payment/header_php.php
+includes/modules/pages/checkout_payment/jscript_main.php
+includes/modules/pages/checkout_shipping/header_php.php
+includes/modules/pages/page/header_php.php
+includes/modules/pages/shopping_cart/header_php.php
+includes/modules/payment/authorizenet.php
+includes/modules/payment/authorizenet_aim.php
+includes/modules/payment/authorizenet_echeck.php
+includes/modules/payment/linkpoint_api/class.linkpoint_api.php
+includes/modules/payment/linkpoint_api.php
+includes/modules/payment/paypal.php
+includes/modules/payment/paypalwpp.php
+includes/modules/payment/paypal/paypal_curl.php
+includes/modules/shipping/storepickup.php
+includes/templates/template_default/common/html_header.php
+includes/templates/template_default/templates/tpl_checkout_payment_default.php
