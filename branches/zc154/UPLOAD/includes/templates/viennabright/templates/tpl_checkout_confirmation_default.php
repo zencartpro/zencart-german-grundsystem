@@ -6,10 +6,10 @@
  * Displays final checkout details, cart, payment and shipping info details.
  *
  * @package templateSystem
- * @copyright Copyright 2003-2014 Zen Cart Development Team
+ * @copyright Copyright 2003-2015 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: tpl_checkout_confirmation_default.php 2014-08-13 16:10:16Z webchills $
+ * @version $Id: tpl_checkout_confirmation_default.php 2015-04-30 09:10:16Z webchills $
  */
 ?>
 <div class="centerColumn" id="checkoutConfirmDefault">
@@ -217,6 +217,17 @@
         ?>
 
 </div>
+<?php
+  if (DISPLAY_WIDERRUF_DOWNLOADS_ON_CHECKOUT_CONFIRMATION == 'true') {
+?>
+<fieldset>
+<legend><?php echo HEADING_WIDERRUF_DOWNLOADS; ?></legend>
+<?php echo  zen_draw_checkbox_field('widerruf_downloads', '1', false, 'id="widerruf_downloads"');?>
+<label class="checkboxLabel" for="widerruf_downloads"><?php echo TEXT_WIDERRUF_DOWNLOADS_CONFIRM; ?></label>
+</fieldset>
+<?php
+  }
+?>
 <div class="buttonRow forward"><?php echo zen_image_submit(BUTTON_IMAGE_CONFIRM_ORDER, BUTTON_CONFIRM_ORDER_ALT, 'name="btn_submit" id="btn_submit"') ;?></div>
 </form>
 
