@@ -4,11 +4,11 @@
 * 
 * @package templateSystem
 * @copyright Portions Copyright 2009-2010 12leaves.com
-* @copyright Copyright 2003-2014 Zen Cart Development Team
+* @copyright Copyright 2003-2015 Zen Cart Development Team
 * @copyright Portions Copyright 2012 webchills.at
 * @copyright Portions Copyright 2003 osCommerce
 * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
-* @version $Id: tpl_main_page.php 847 2014-08-07 12:10:39Z webchills $
+* @version $Id: tpl_main_page.php 848 2015-04-09 12:10:39Z webchills $
 */
 
 // the following IF statement can be duplicated/modified as needed to set additional flags
@@ -144,9 +144,9 @@ if (!isset($flag_disable_right) || !$flag_disable_right) {
 ?>
 <!--eof- banner #6 display -->
 </div>
-<?php 
-if (GOOGLE_ANALYTICS_TRACKING_TYPE != "Asynchronous") {
-	require(DIR_WS_TEMPLATE . 'google_analytics/google_analytics.php');
+<?php
+if (GOOGLE_ANALYTICS_ENABLED == "Enabled") {
+  require(DIR_WS_TEMPLATE . 'google_analytics/google_analytics.php');
 }
 ?>
 </body>
