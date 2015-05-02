@@ -185,9 +185,9 @@ if (!isset($flag_disable_right) || !$flag_disable_right) {
   }
 ?>
 <!--eof- banner #6 display -->
-<?php
-if (GOOGLE_ANALYTICS_ENABLED == "Enabled") {
-  require(DIR_WS_TEMPLATE . 'google_analytics/google_analytics.php');
+<?php 
+if (GOOGLE_ANALYTICS_TRACKING_TYPE != "Asynchronous") {
+	require(DIR_WS_TEMPLATE . 'google_analytics/google_analytics.php');
 }
 ?>
 </body>
