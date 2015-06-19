@@ -50,7 +50,7 @@ INSERT INTO configuration_language (configuration_title, configuration_key, conf
 ('Willkommensemail senden?', 'SEND_WELCOME_EMAIL', '43', 'Wollen Sie Neukunden nach der Registrierung ein Willkommensemail senden?', now(), now());
 #### Checkbox Digital Downloads - New in 1.5.4
 INSERT INTO configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added, use_function, set_function) VALUES 
-('Display Revocation Checkbox on Checkout Confirmation Page?', 'DISPLAY_WIDERRUF_DOWNLOADS_ON_CHECKOUT_CONFIRMATION', 'true', 'Do you want to display a checkbox for the revocation clause for digital downloads on the checkout confirmation page?<br/>Only activate if you are selling digital downloads!', 11, 3, NOW(), NULL, 'zen_cfg_select_option(array(''true'', ''false''), ');
+('Display Revocation Checkbox on Checkout Confirmation Page?', 'DISPLAY_WIDERRUF_DOWNLOADS_ON_CHECKOUT_CONFIRMATION', 'false', 'Do you want to display a checkbox for the revocation clause for digital downloads on the checkout confirmation page?<br/>Only activate if you are selling digital downloads!', 11, 3, NOW(), NULL, 'zen_cfg_select_option(array(''true'', ''false''), ');
 REPLACE INTO configuration_language (configuration_title, configuration_key, configuration_description, configuration_language_id) VALUES
 ('Checkbox für Widerrufsrecht bei digitalen Downloads', 'DISPLAY_WIDERRUF_DOWNLOADS_ON_CHECKOUT_CONFIRMATION', 'Wollen Sie auf der Bestellbestätigungsseite eine zusätzliche Checkbox für das Widerrufsrecht bei digitalen Downloads anzeigen? Der Kunde muss dann explizit zustimmen, dass sein Widerrufsrecht erlischt.<br/>Nur aktivieren, falls Sie digitale Downloads verkaufen!', 43);
 
