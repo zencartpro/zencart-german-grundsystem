@@ -1,0 +1,125 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Anleitung zum Update von Zen Cart 1.5.3 deutsch auf Zen Cart 1.5.4 deutsch</title>
+<link rel="stylesheet" type="text/css" href="includes/css/stylesheet.css">  
+<script type="text/javascript" src="includes/jscript/jscript_tabs.js"></script>
+</head>
+<body>
+<div id="wrapper">
+<div id="header">
+<h1>Anleitung zum Update von Zen Cart 1.5.3 deutsch auf Zen Cart 1.5.4 deutsch</h1>
+</div>
+<div id="slidetabsmenu" style="display: none;">
+<ul>
+<li> <a onClick="expandcontent('sc1', this)" href="javascript:void(0)"><span>Updatepaket</span></a></li>
+</ul>
+</div>
+<br style="clear: both;">
+<!--Begin tabcontainer-->
+<div id="tabcontentcontainer">
+<!--Begin sc5-->
+<div class="tabcontent" id="sc1" style="display: block;">
+<div class="textcontent">
+<div class="regularlist">
+<h1>UPDATE VON Zen Cart 1.5.3 deutsch auf 1.5.4 deutsch</h1>
+<p>Da die Änderungen zwischen 1.5.3 deutsch und 1.5.4 deutsch nicht so umfangreich sind wie bei größeren Versionssprüngen, können Sie für ein Update von 1.5.3 deutsch auf 1.5.4 deutsch ein eigenes Updatepaket nutzen. <br>
+  Es befindet sich im <strong>Ordner UPDATE VON 1.5.3 auf 1.5.4</strong> des Zen Cart 1.5.4 Downloads.</p>
+<p><b>ACHTUNG:<br>
+  Dieses Updatepaket ist NUR geeignet, wenn Sie bereits Version 1.5.3 deutsch verwenden!<br>
+  Überprüfen Sie in der Administration unter Tools &gt; Serverinfo, ob sie wirklich die deutsche Version 1.5.3 im Einsatz haben.<br>
+  Überprüfen Sie zusätzlich die Datei includes/version.php<br>
+  Sie muss folgendes anzeigen:<br>
+  define('PROJECT_VERSION_MINOR', '5.3');<br>
+  define('NEW_VERSION_CHECKUP_URL','http://www.zen-cart-pro.at/version_id.txt');  <br>
+  <br>
+  Wenn Sie eine ältere Version (1.5.2, 1.5.1, 1.5 oder noch älter) verwenden, dann müssen Sie ein komplettes Update machen und können dieses Updatepaket nicht nutzen!<br>
+  <br>
+  Dieses Paket ist ebenfalls NICHT geeignet, wenn Sie die amerikanische Zen Cart Version verwenden!</b></p>
+<p>Sie haben 1.5.3 deutsch und möchten auf 1.5.4 deutsch updaten?<br>
+  Gut, dann weiterlesen.<br>
+  <br>
+  <strong>Führen Sie die folgenden Schritte erst in einem Testsystem aus! Aktualisieren Sie nie direkt einen Liveshop! </strong></p>
+<p>Wenn Sie schon einmal ein Modul installiert haben, dann wird Ihnen diese Vorgangsweise bekannt vorkommen.</p>
+<p>Für das Update sollten Sie über folgende Werkzeuge verfügen:</p>
+<p><strong>1) Ein guter Texteditor.</strong><br>
+  Damit ist nicht das in Windows enthaltene Notepad oder Microsoft Word gemeint.<br>
+  Sie benötigen einen Texteditor, der utf-8 versteht und auch im Format utf-8 ohne BOM abspeichern kann.<br>
+  Empfehlung: <a href="http://www.ultraedit.de" target="_blank">UltraEdit</a> (kostenlose 30 Tage Testversion verfügbar)<br>
+  Ebenfalls gut geeignet ist der kostenlose Texteditor <a href="https://notepad-plus-plus.org/" target="_blank">Notepad++</a></p>
+<p><strong>2) Ein Tool zum Vergleichen von Dateien</strong><br>
+  Bei der Installation dieses Updates ist es erforderlich, dass Sie den Inhalt einiger Ihrer bestehenden Zen Cart Dateien mit dem Inhalt der neuen Dateien vergleichen und die Änderungen zusammenführen (&quot;mergen&quot;).<br>
+  Empfehlung: <a href="http://www.scootersoftware.com" target="_blank">BeyondCompare</a> (kostenlose 30 Tage Testversion verfügbar)<br>
+  Ebenfalls gut geeignet ist das kostenlose Programm <a href="http://winmerge.org/?lang=de" target="_blank">WinMerge</a></p>
+<p>Sichern Sie unbedingt alle Dateien Ihres Shops per FTP und sichern Sie die Datenbank mit phpMyAdmin oder anderen geeigneten Tools!</p>
+<p><strong>Ablauf des Updates:</strong></p>
+<p>1)<br>
+  Im Ordner GEAENDERTE DATEIEN den Ordner DEINADMIN auf den Namen Ihres admin Verzeichnisses umbenennen.<br>
+  Alle Ordner namens DEINTEMPLATE auf den Namen Ihres in Shop aktiven Templates umbenennen (z.B. viennaorange, classic,...).<br>
+  Vergleichen Sie nun mit WinMerge oder Beyond Compare die Dateien mit denen Ihres Shops und nehmen die Änderungen manuell vor, sonst gehen Änderungen, die Sie vielleicht früher schon einmal an diesen Dateien vorgenommen haben verloren.<br>
+  Die Dateien im Ordner editors müssen Sie nicht unbedingt vergleichen, die Editoren TinyMCE und CKEditor wurden auf die aktuellen Versionen aktualisiert, es ist sehr unwahrscheinlich, dass Sie in diesen Dateien irgendwann einmal Änderungen vorgenommen haben.<br>
+  Nach Ihren Änderungen laden Sie die Dateien/Ordner in der vorgegebenen Struktur ins Shopverzeichnis hoch und überschreiben die bestehenden Dateien am Server damit.</p>
+<p>2)<br>
+  Im Ordner NEUE DATEIEN den Ordner DEINADMIN auf den Namen Ihres admin Verzeichnisses umbenennen.<br>
+  Alle Ordner namens DEINTEMPLATE auf den Namen Ihres in Shop aktiven Templates umbenenennen (z.B. viennaorange, classic,...).<br>
+  Nun in der vorgegebenen Struktur hochladen, dabei werden keine bestehenden Dateien überschrieben.</p>
+<p>3)<br>
+  Nun rufen Sie folgende Adresse auf:<br>
+  http://www.meinshop.de/zc_install<br>
+  Der Zen Cart Installer wird Sie begrüßen:</p>
+<p><img src="images/update-153-154-willkommen.jpg" width="771" height="561"  alt=""/></p>
+<p> Clicken Sie auf Weiter und akzeptieren die Lizenzbedingungen:<br>
+  <br>
+  <img src="images/update-153-154-lizenz.jpg" width="747" height="651"  alt=""/>  <br>
+  <br>
+   Sie sollten nun im nächsten Schritt folgende Meldung sehen:<br>
+   <br>
+   <strong>Updatemodus verfügbar.<br>
+Es wurde eine vorherige Zen Cart Installation gefunden, die installierte Version scheint v1.5.3 zu sein.</strong><br>
+   <br>
+  <img src="images/update-153-154-systempruefung.jpg" width="768" height="545"  alt=""/></p>
+<p>Die obere Warnmeldung können Sie ignorieren, Ihr Adminverzeichnis heißt ja nicht mehr admin und Ihre configure.php Dateien sind schreibgeschützt. Das ist völlig ok so.<br>
+  <br>
+  Scrollen Sie nun nach unten und wählen hier den Button <strong>&quot;Datenbank aktualisieren&quot;</strong>:<br>
+  <br>
+  <img src="images/update-153-154-updatemodus.jpg" width="588" height="442"  alt=""/><br>
+  <br>
+  Im nächsten Schritt sollten Sie folgendes Bild sehen:<br>
+  <br>
+  <img src="images/update-153-154-hakerl-entfernt.jpg" width="583" height="518"  alt=""/><br>
+  <br>
+  Möglicherweise ist bei Ihnen zusätzlich ein früheres Datenbankupdate angekreuzt und es sieht z.B. so aus:</p>
+<p><img src="images/update-153-154-hakerl-entfernen.jpg" width="580" height="525"  alt=""/></p>
+<p><strong>Falls weitere Updates angekreuzt sind, entfernen Sie das Häkchen bei den früherern Updates! Nur Update der Datenbank von 1.5.3 auf 1.5.4 darf angekreuzt sein, so dass es so aussieht:</strong></p>
+<p><img src="images/update-153-154-hakerl-entfernt.jpg" width="583" height="518"  alt=""/></p>
+<p>Geben Sie nun unten Benutzernamen und Passwort zu Ihrer Zen Cart Administration ein und gehen auf Datenbank jetzt updaten:</p>
+<p><img src="images/update-153-154-adminusername.jpg" width="602" height="333"  alt=""/></p>
+<p>Danach sehen Sie folgende Erfolgsmeldung:</p>
+<p><img src="images/update-153-154-finished.jpg" width="767" height="886"  alt=""/></p>
+<p>Das zc_install Verzeichnis sollte vom Updater auf zc_install_irgendwelcheziffernundbuchstaben umbenannt worden sein. Löschen Sie dieses Verzeichnis nun komplett!<br>
+  <br>
+  Loggen Sie sich in Ihren Adminbereich ein und überprüfen Sie unter Tools &gt; Serverinfo, dass Sie erfolgreich auf Zen Cart 1.5.4 aktualisiert haben.
+<br>
+</p>
+</div>
+</div>
+</div>
+<!--End sc1-->
+
+</div>
+<div id="footer"><a href="http://www.zen-cart-pro.at" target="_blank">www.zen-cart-pro.at</a> - Die deutsche Zen Cart Version</div>
+<!--end tabcontainer-->
+<script type="text/javascript">document.getElementById('sc1').style.display = 'none';</script>
+<script type="text/javascript">ShowTabs()</script>
+<script type="text/javascript">
+// We only show the tab links if JavaScript is available/active.
+<!--
+if (document.getElementById("slidetabsmenu") != null) {
+  document.getElementById('slidetabsmenu').style.display = "block";
+}
+//-->
+</script>
+</div>
+</body>
+</html>
