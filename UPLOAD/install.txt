@@ -1,7 +1,16 @@
 Willkommen bei der deutschen Zen-Cart Version
-Version 1.5.3
+Version 1.5.4
 
-Eine umfangreiche deutschsprachige Dokumentation und Installationsanleitung finden Sie im Ordner docs
-�ffnen Sie die index.html im Ordner docs und lesen Sie vor der Installation unbedingt die komplette Dokumentation.
+Eine umfangreiche deutschsprachige Dokumentation und Installationsanleitung finden Sie im Ordner ANLEITUNG
+Öffnen Sie die index.html im Ordner DOCS und lesen Sie vor der Installation unbedingt die komplette Dokumentation.
 
-Es ist nicht erforderlich, den Ordner docs auf Ihren Server hochzuladen!
+Um Zen Cart zu installieren oder zu aktualisieren müssen Sie nur die Ordner/Dateien im Ordner UPLOAD hochladen!
+
+Um eine schlankere Installation und ein einfacheres Update zu ermöglichen, wurden die Demodaten ausgelagert.
+Sie befinden sich im Ordner DEMODATEN
+
+Ebenso ausgelagert wurden die Überprüfungstools im Ordner extras.
+Sie befinden sich im Ordner TOOLS.
+
+Wenn Sie bereits Zen Cart 1.5.3 deutsch im Einsatz haben und auf 1.5.4 deutsch aktualisieren wollen, finden Sie im Ordner UPDATE VON 1.5.3 auf 1.5.4 ein spezielles Updatepaket.
+Für Updates von Zen Cart Version älter als 1.5.3 deutsch auf 1.5.4 deutsch führen Sie bitte ein normales Update durch.
