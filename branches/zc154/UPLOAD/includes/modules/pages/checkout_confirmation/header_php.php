@@ -6,7 +6,7 @@
  * @copyright Copyright 2003-2015 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: header_php.php 731 2015-04-30 09:49:16Z webchills $
+ * @version $Id: header_php.php 732 2015-11-27 14:29:16Z webchills $
  */
 
 // This should be first line of the script:
@@ -48,13 +48,13 @@ if (isset($_SESSION['shipping']['id']) && $_SESSION['shipping']['id'] == 'free_f
 }
 
 if (isset($_POST['payment'])) $_SESSION['payment'] = $_POST['payment'];
-$_SESSION['comments'] = $_POST['comments'];
+$_SESSION['comments'] = zen_output_string_protected($_POST['comments']);
 
 //'checkout_payment_discounts'
 //zen_redirect(zen_href_link(FILENAME_CHECKOUT_PAYMENT, '', 'SSL'));
 
 
-if ((DISPLAY_CONDITIONS_ON_CHECKOUT == 'true') && ($_SESSION['widerruf_downloads'] != 'notaccepted')){ 
+if (DISPLAY_CONDITIONS_ON_CHECKOUT == 'true') {
   if (!isset($_POST['conditions']) || ($_POST['conditions'] != '1')) {
     $messageStack->add_session('checkout_payment', ERROR_CONDITIONS_NOT_ACCEPTED, 'error');
   }
