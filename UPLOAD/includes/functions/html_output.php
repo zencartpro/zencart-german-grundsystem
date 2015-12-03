@@ -7,7 +7,7 @@
  * @copyright Copyright 2003-2015 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: html_output.php 840 2015-11-27 14:06:58Z webchills $
+ * @version $Id: html_output.php 840 2015-12-03 20:06:58Z webchills $
  */
 
 /*
@@ -536,10 +536,11 @@
     // Set some default entries at top of list:
     if (STORE_COUNTRY != SHOW_CREATE_ACCOUNT_DEFAULT_COUNTRY) $countriesAtTopOfList[] = SHOW_CREATE_ACCOUNT_DEFAULT_COUNTRY;
     $countriesAtTopOfList[] = STORE_COUNTRY;
-    // IF YOU WANT TO ADD MORE DEFAULTS TO THE TOP OF THIS LIST, SIMPLY ENTER THEIR NUMBERS HERE.
-    // Duplicate more lines as needed
-    // Example: Canada is 108, so use 108 as shown:
-    //$countriesAtTopOfList[] = 108;
+    // Wenn Sie weitere Laender direkt am Anfang der Liste anzeigen lassen wollen, kommentieren Sie die Zeilen mit $countriesAtTopOfList aus.
+    // Sie koennen hier soviele Laender angeben wie Sie wollen, einfach weitere solcher Zeilen anlegen
+    // Beispiel: Deutschland ist 81, Oesterreich ist 14:
+    //$countriesAtTopOfList[] = 81;
+    //$countriesAtTopOfList[] = 14;
 
     //process array of top-of-list entries:
     foreach ($countriesAtTopOfList as $key=>$val) {

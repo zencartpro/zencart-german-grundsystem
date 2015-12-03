@@ -1,5 +1,8 @@
-Willkommen bei der deutschen Zen-Cart Version
+﻿Willkommen bei der deutschen Zen-Cart Version
 Version 1.5.4
+
+Revision vom 03.12.2016
+enthält die seit Erscheinen der ersten 1.5.4 Version vom 20.06.2015 alle seither erschienenen Bugfixes und Security Patches
 
 Eine umfangreiche deutschsprachige Dokumentation und Installationsanleitung finden Sie im Ordner ANLEITUNG
 Öffnen Sie die index.html im Ordner DOCS und lesen Sie vor der Installation unbedingt die komplette Dokumentation.
