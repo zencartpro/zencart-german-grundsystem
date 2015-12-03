@@ -54,7 +54,7 @@ $_SESSION['comments'] = zen_output_string_protected($_POST['comments']);
 //zen_redirect(zen_href_link(FILENAME_CHECKOUT_PAYMENT, '', 'SSL'));
 
 
-if (DISPLAY_CONDITIONS_ON_CHECKOUT == 'true') {
+if ((DISPLAY_CONDITIONS_ON_CHECKOUT == 'true') && ($_SESSION['widerruf_downloads'] != 'notaccepted')){ 
   if (!isset($_POST['conditions']) || ($_POST['conditions'] != '1')) {
     $messageStack->add_session('checkout_payment', ERROR_CONDITIONS_NOT_ACCEPTED, 'error');
   }
