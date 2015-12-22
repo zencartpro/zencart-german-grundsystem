@@ -34,4 +34,3 @@ define('TEXT_AFTER_EMAIL_INSTRUCTIONS','%s emails processed. (Each checkbox indi
 define('ERROR_NEWSLETTER_TITLE', 'Error: Newsletter title required');
 define('ERROR_NEWSLETTER_MODULE', 'Error: Newsletter module required');
 define('ERROR_PLEASE_SELECT_AUDIENCE','Error: Please select an audience to receive this newsletter');
-?>

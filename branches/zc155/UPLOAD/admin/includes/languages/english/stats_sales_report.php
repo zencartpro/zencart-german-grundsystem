@@ -337,4 +337,3 @@ define('TEXT_SAME_ONE', '| --');
 define('TEXT_PRINT_FORMAT', 'display report in print format');
 define('TEXT_PRINT_FORMAT_TITLE', 'TIP: click \'' . PAGE_HEADING . '\' to return to display view');
 define('TEXT_NO_DATA', '-- NO ORDERS IN TIMEFRAME --');
-?>

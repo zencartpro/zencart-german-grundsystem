@@ -7,8 +7,6 @@
  * @version $Id: coupon_admin.php 805 2014-02-09 15:28:24Z webchills $
  */
 
-
-
 define('TOP_BAR_TITLE', 'Statistics');
 define('HEADING_TITLE', 'Discount Coupons');
 define('HEADING_TITLE_STATUS', 'Status : ');

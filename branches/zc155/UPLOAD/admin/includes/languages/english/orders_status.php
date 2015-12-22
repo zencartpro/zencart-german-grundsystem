@@ -4,9 +4,8 @@
  * @copyright Copyright 2003-2016 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: orders_status.php 731 2014-02-08 15:49:16Z webchills $
+ * @version $Id: orders_status.php 732 2015-12-22 15:49:16Z webchills $
  */
-//
 
 define('HEADING_TITLE', 'Orders Status');
 
@@ -24,4 +23,3 @@ define('TEXT_INFO_HEADING_DELETE_ORDERS_STATUS', 'Delete Orders Status');
 define('ERROR_REMOVE_DEFAULT_ORDER_STATUS', 'Error: The default order status can not be removed. Please set another order status as default, and try again.');
 define('ERROR_STATUS_USED_IN_ORDERS', 'Error: This order status is currently used in orders.');
 define('ERROR_STATUS_USED_IN_HISTORY', 'Error: This order status is currently used in the order status history.');
-?>
