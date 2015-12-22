@@ -1,20 +1,11 @@
 <?php
-/*
-//////////////////////////////////////////////////////////
-//  EMAIL ARCHIVE SEARCH                                //
-//  Version 1.5                                         //
-//                                                      //
-//  By Frank Koehl  (PM: BlindSide)                     //
-//  Support by DrByte                                   //
-//                                                      //
-//  Powered by Zen-Cart (www.zen-cart.com)              //
-//  Portions Copyright (c) 2005 The Zen-Cart Team       //
-//                                                      //
-//  Released under the GNU General Public License       //
-//  available at www.zen-cart.com/license/2_0.txt       //
-//  or see "license.txt" in the downloaded zip          //
-//////////////////////////////////////////////////////////
-*/
+/**
+ * @package admin
+ * @copyright Copyright 2003-2016 Zen Cart Development Team
+ * @copyright Portions Copyright 2003 osCommerce
+ * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
+ * @version $Id: email_archive_manager.php 730 2015-12-22 15:49:16Z webchills $
+ */
 
 define('SUBJECT_SIZE_LIMIT', 25);
 define('MESSAGE_SIZE_LIMIT', 550);

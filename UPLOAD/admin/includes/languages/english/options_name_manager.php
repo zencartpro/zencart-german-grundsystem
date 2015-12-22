@@ -1,24 +1,11 @@
 <?php
-//
-// +----------------------------------------------------------------------+
-// |zen-cart Open Source E-commerce                                       |
-// +----------------------------------------------------------------------+
-// | Copyright (c) 2003 The zen-cart developers                           |
-// |                                                                      |
-// | http://www.zen-cart.com/index.php                                    |
-// |                                                                      |
-// | Portions Copyright (c) 2003 osCommerce                               |
-// +----------------------------------------------------------------------+
-// | This source file is subject to version 2.0 of the GPL license,       |
-// | that is bundled with this package in the file LICENSE, and is        |
-// | available through the world-wide-web at the following url:           |
-// | http://www.zen-cart.com/license/2_0.txt.                             |
-// | If you did not receive a copy of the zen-cart license and are unable |
-// | to obtain it through the world-wide-web, please send a note to       |
-// | license@zen-cart.com so we can mail you a copy immediately.          |
-// +----------------------------------------------------------------------+
-//  $Id: options_name_manager.php 729 2011-08-09 15:49:16Z hugo13 $
-//
+/**
+ * @package admin
+ * @copyright Copyright 2003-2016 Zen Cart Development Team
+ * @copyright Portions Copyright 2003 osCommerce
+ * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
+ * @version $Id: options_name_manager.php 730 2015-12-22 15:49:16Z webchills $
+ */
 
 define('HEADING_TITLE_OPT', 'Product Options');
 define('HEADING_TITLE_VAL', 'Option Values');
@@ -143,4 +130,3 @@ define('TEXT_OPTION_ATTRIBUTE_IMAGES_STYLE_2', '2= Element, Image and Option Nam
 define('TEXT_OPTION_ATTRIBUTE_IMAGES_STYLE_3', '3= Option Name Below Element and Image');
 define('TEXT_OPTION_ATTRIBUTE_IMAGES_STYLE_4', '4= Element Below Image and Option Name');
 define('TEXT_OPTION_ATTRIBUTE_IMAGES_STYLE_5', '5= Element Above Image and Option Name');
-?>

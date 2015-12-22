@@ -25,4 +25,3 @@ define('TEXT_INFO_HEADING_EDIT_TAX_CLASS', 'Edit Tax Class');
 define('TEXT_INFO_HEADING_DELETE_TAX_CLASS', 'Delete Tax Class');
 define('ERROR_TAX_RATE_EXISTS_FOR_CLASS', 'ERROR: Cannot delete this Tax Class -- Tax Rates are currently linked to this Tax Class.');
 define('ERROR_TAX_RATE_EXISTS_FOR_PRODUCTS', 'ERROR: Cannot delete this Tax Class -- There are %s products linked to this Tax Class.');
-?>

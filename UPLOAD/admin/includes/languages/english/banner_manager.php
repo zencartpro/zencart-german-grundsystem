@@ -1,15 +1,11 @@
 <?php
 /**
- * @package linkpoint_api_payment_module
+ * @package admin
  * @copyright Copyright 2003-2016 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- 
- * @version $Id: banner_manager.php 804 2011-11-23 08:28:24Z webchills $
+ * @version $Id: banner_manager.php 805 2015-12-22 15:49:16Z webchills $
  */
-
-//  $Id: banner_manager.php 804 2011-11-23 08:28:24Z webchills $
-//
 
 define('HEADING_TITLE', 'Banner Manager');
 
@@ -93,4 +89,3 @@ define('IMAGE_ICON_BANNER_ON_SSL_OFF','Show on Secure Pages - Disabled');
 
 define('SUCCESS_BANNER_OPEN_NEW_WINDOW_UPDATED', 'Success: The status of the banner to open in a new window has been updated.');
 define('SUCCESS_BANNER_ON_SSL_UPDATED', 'Success: The status of the banner to show on SSL has been updated.');
-?>

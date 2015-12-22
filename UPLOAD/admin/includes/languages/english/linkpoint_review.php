@@ -31,5 +31,3 @@ define('TEXT_INFO_ORDERS_TOTAL', 'Total:');
 define('ENTRY_NONE', 'None');
 
 define('TABLE_HEADING_COMPANY','Company');
-
-?>

@@ -4,7 +4,7 @@
  * @copyright Copyright 2003-2016 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: index.php 732 2014-02-08 15:49:16Z webchills $
+ * @version $Id: index.php 733 2015-12-22 15:49:16Z webchills $
  */
 
 define('HEADING_TITLE', 'Choose an action..');
@@ -87,3 +87,12 @@ define('TEXT_FORM_LABEL_STORE_OWNER_EMAIL', 'Store Owner Email');
 define('TEXT_FORM_LABEL_STORE_COUNTRY', 'Store Country');
 define('TEXT_FORM_LABEL_STORE_ZONE', 'Store Zone');
 define('TEXT_FORM_LABEL_STORE_ADDRESS', 'Store Address');
+
+define('TEXT_STORE_NAME', 'Your Store Name');
+define('TEXT_STORE_OWNER', 'Store Owner');
+define('TEXT_STORE_OWNER_EMAIL', 'Store Owner Email Address');
+define('TEXT_STORE_COUNTRY', 'Store Country');
+define('TEXT_STORE_ZONE', 'Store Zone');
+define('TEXT_STORE_ADDRESS', 'Store Address');
+define('HEADING_TITLE_WIZARD', 'Initial Setup Wizard');
+define('TEXT_STORE_DETAILS', 'Please provide details of your store. All fields are required');

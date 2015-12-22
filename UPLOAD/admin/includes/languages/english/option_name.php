@@ -6,6 +6,7 @@
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
  * @version $Id: option_name.php 731 2014-02-08 15:49:16Z webchills $
  */
+
   define('HEADING_TITLE', 'Option Name Sort Order');
   define('TEXT_EDIT_ALL', 'Editing All Option Names');
   define('TEXT_CURRENT_NAME', 'Current Name');

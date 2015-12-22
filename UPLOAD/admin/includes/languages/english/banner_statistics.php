@@ -1,15 +1,11 @@
 <?php
 /**
- * @package linkpoint_api_payment_module
+ * @package admin
  * @copyright Copyright 2003-2016 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- 
- * @version $Id: banner_statistics.php 804 2011-11-23 08:28:24Z webchills $
+ * @version $Id: banner_statistics.php 805 2015-12-22 15:49:16Z webchills $
  */
-
-//  $Id: banner_statistics.php 804 2011-11-23 08:28:24Z webchills $
-//
 
 define('HEADING_TITLE', 'Banner Statistics');
 

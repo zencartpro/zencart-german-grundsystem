@@ -1,4 +1,4 @@
 <?php
-    define('GERMAN_FORUM', 'Forum');
-    define('GERMAN_FAQ', 'FAQ');
-    define('GERMAN_PROPONENTS', 'Proponenten');
+define('GERMAN_FORUM', 'Forum');
+define('GERMAN_FAQ', 'FAQ');
+define('GERMAN_PROPONENTS', 'Entwickler');

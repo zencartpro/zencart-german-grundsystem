@@ -4,7 +4,7 @@
  * @copyright Copyright 2003-2016 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: orders.php 731 2013-08-17 08:49:16Z webchills $
+ * @version $Id: orders.php 732 2015-12-22 16:49:16Z webchills $
  */
 
 define('HEADING_TITLE', 'Orders');
@@ -121,3 +121,4 @@ define('TEXT_INFO_EXPIRED_COUNT', 'Expired Count:<br />');
 define('TABLE_HEADING_CUSTOMER_COMMENTS', 'Customer<br />Comments');
 define('TEXT_COMMENTS_YES', 'Customer Comments - YES');
 define('TEXT_COMMENTS_NO', 'Customer Comments - NO');
+define('TEXT_CUSTOMER_LOOKUP', 'Lookup Customer');

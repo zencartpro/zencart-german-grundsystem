@@ -33,4 +33,3 @@ define('TEXT_FINISHED_SENDING_EMAILS', 'Finished sending e-mails!');
 
 define('ERROR_NEWSLETTER_TITLE', 'Error: Newsletter title required');
 define('ERROR_NEWSLETTER_MODULE', 'Error: Newsletter module required');
-?>

@@ -1,24 +1,11 @@
 <?php
-//
-// +----------------------------------------------------------------------+
-// |zen-cart Open Source E-commerce                                       |
-// +----------------------------------------------------------------------+
-// | Copyright (c) 2003 The zen-cart developers                           |
-// |                                                                      |
-// | http://www.zen-cart.com/index.php                                    |
-// |                                                                      |
-// | Portions Copyright (c) 2003 osCommerce                               |
-// +----------------------------------------------------------------------+
-// | This source file is subject to version 2.0 of the GPL license,       |
-// | that is bundled with this package in the file LICENSE, and is        |
-// | available through the world-wide-web at the following url:           |
-// | http://www.zen-cart.com/license/2_0.txt.                             |
-// | If you did not receive a copy of the zen-cart license and are unable |
-// | to obtain it through the world-wide-web, please send a note to       |
-// | license@zen-cart.com so we can mail you a copy immediately.          |
-// +----------------------------------------------------------------------+
-//  $Id: salemaker.php 729 2011-08-09 15:49:16Z hugo13 $
-//
+/**
+ * @package admin
+ * @copyright Copyright 2003-2016 Zen Cart Development Team
+ * @copyright Portions Copyright 2003 osCommerce
+ * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
+ * @version $Id: salemaker.php 730 2015-12-22 15:49:16Z webchills $
+ */
 
 define('HEADING_TITLE', 'SaleMaker');
 define('TABLE_HEADING_SALE_NAME', 'SaleName');
@@ -54,12 +41,7 @@ define('TEXT_INFO_DATE_END', 'Expires:');
 define('SPECIALS_CONDITION_DROPDOWN_0', 'Ignore Specials Price - Apply to Product Price and Replace Special');
 define('SPECIALS_CONDITION_DROPDOWN_1', 'Ignore SaleCondition - No Sale Applied When Special Exists');
 define('SPECIALS_CONDITION_DROPDOWN_2', 'Apply SaleDeduction to Specials Price - Otherwise Apply to Price');
-// moved to english.php
-/*
-define('DEDUCTION_TYPE_DROPDOWN_0', 'Deduct amount');
-define('DEDUCTION_TYPE_DROPDOWN_1', 'Percent');
-define('DEDUCTION_TYPE_DROPDOWN_2', 'New Price');
-*/
+
 define('TEXT_INFO_HEADING_COPY_SALE', 'Copy Sale');
 define('TEXT_INFO_COPY_INTRO', 'Enter a name for the copy of<br>&nbsp;&nbsp;"%s"');
 define('TEXT_INFO_HEADING_DELETE_SALE', 'Delete Sale');
@@ -67,4 +49,3 @@ define('TEXT_INFO_DELETE_INTRO', 'Are you sure you want to permanently delete th
 define('TEXT_MORE_INFO', '(More Info)');
 
 define('TEXT_WARNING_SALEMAKER_PREVIOUS_CATEGORIES','&nbsp;Warning : %s sales already include this category');
-?>
