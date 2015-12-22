@@ -1,25 +1,11 @@
 <?php
-//
-// +----------------------------------------------------------------------+
-// |zen-cart Open Source E-commerce                                       |
-// +----------------------------------------------------------------------+
-// | Copyright (c) 2003 The zen-cart developers                           |
-// |                                                                      |
-// | http://www.zen-cart-pro.at/index.php                                     |
-// |                                                                      |
-// | Portions Copyright (c) 2003 osCommerce                               |
-// +----------------------------------------------------------------------+
-// | This source file is subject to version 2.0 of the GPL license,       |
-// | that is bundled with this package in the file LICENSE, and is        |
-// | available through the world-wide-web at the following url:           |
-// | http://www.zen-cart-pro.at/license/2_0.txt.                              |
-// | If you did not receive a copy of the zen-cart license and are unable |
-// | to obtain it through the world-wide-web, please send a note to       |
-// | license@zen-cart.com so we can mail you a copy immediately.          |
-// +----------------------------------------------------------------------+
-
-//  $Id: salemaker.php 627 2010-08-30 15:05:14Z webchills $
-//
+/**
+ * @package admin
+ * @copyright Copyright 2003-2016 Zen Cart Development Team
+ * @copyright Portions Copyright 2003 osCommerce
+ * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
+ * @version $Id: salemaker.php 628 2015-12-22 16:39:16Z webchills $
+ */
 
 define('HEADING_TITLE','Abverkaufsmanager');
 define('TABLE_HEADING_SALE_NAME','Abverkaufsbezeichnung');
@@ -55,12 +41,6 @@ define('TEXT_INFO_DATE_END','Endet:');
 define('SPECIALS_CONDITION_DROPDOWN_0','Sonderpreise ignorieren - Auf Artikelpreis anwenden und Sonderpreis durch Abverkaufspreis ersetzen');
 define('SPECIALS_CONDITION_DROPDOWN_1','Abverkaufsoptionen ignorieren - Keinen Abverkaufspreis anwenden wenn ein Sonderpreis existiert');
 define('SPECIALS_CONDITION_DROPDOWN_2','Abverkaufspreis zu Sonderpreis hinzufügen - sonst auf den Artikelpreis anwenden');
-// moved to english.php
-/*
-define('DEDUCTION_TYPE_DROPDOWN_0','Betrag der Reduzierung:');
-define('DEDUCTION_TYPE_DROPDOWN_1','Prozent');
-define('DEDUCTION_TYPE_DROPDOWN_2','Neuer Preis');
-*/
 define('TEXT_INFO_HEADING_COPY_SALE','Kopiere Abverkauf');
 define('TEXT_INFO_COPY_INTRO','Geben Sie bitte einen Namen für die Kopie von <br>"%s"');
 define('TEXT_INFO_HEADING_DELETE_SALE','Abverkauf löschen');

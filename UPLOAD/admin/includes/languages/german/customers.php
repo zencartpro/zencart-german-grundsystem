@@ -1,15 +1,12 @@
 <?php
 /**
- * @package linkpoint_api_payment_module
+ * @package admin
  * @copyright Copyright 2003-2016 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- 
- * @version $Id: customers.php 627 2010-08-30 15:05:14Z webchills $
+ * @version $Id: customers.php 628 2015-12-22 16:05:14Z webchills $
  */
 
-//  $Id: customers.php 627 2010-08-30 15:05:14Z webchills $
-//
 define('HEADING_TITLE', 'Kunden');
 
 define('TABLE_HEADING_ID', 'ID');
@@ -40,11 +37,21 @@ define('CUSTOMERS_REFERRAL', 'Kundenverweis (Referal)<br />Erster Aktionskupon')
 define('TEXT_INFO_GV_AMOUNT', 'Gutschein Guthaben');
 define('ENTRY_NONE', 'Kein');
 define('TABLE_HEADING_COMPANY', 'Firma');
-define('CUSTOMERS_AUTHORIZATION', 'Kunden - Authorisierungsstatus');
+define('TEXT_INFO_HEADING_RESET_CUSTOMER_PASSWORD', 'Kundenpasswort ändern');
+define('TEXT_PWDRESET_INTRO', 'Um das Passwort dieses Kunden zurückzusetzen, geben Sie ein neues Passwort ein und bestätigen es im Feld darunter. Das neue Psswort muss den im Shop konfigurierten Passwortregeln für Kundenpasswörter entsprechen.');
+define('TEXT_CUST_NEW_PASSWORD', 'Neues Passwort:');
+define('TEXT_CUST_CONFIRM_PASSWORD', 'Passwort bestätigen:');
+define('ERROR_PWD_TOO_SHORT', 'Fehler: Das Passwort ist kürzer als die minimale Anzahl von Zeichen, die für diesen Shop konfiguriert ist.');
+define('SUCCESS_PASSWORD_UPDATED', 'Passwort aktualisiert.');
+
+define('EMAIL_CUSTOMER_PWD_CHANGE_MESSAGE', 'Your password has been changed by the store administrator. Your new password is: ');
+define('EMAIL_CUSTOMER_PWD_CHANGE_SUBJECT', 'Account password reset');
+define('EMAIL_CUSTOMER_PWD_CHANGE_MESSAGE_FOR_ADMIN', 'You have reset the password for a customer: ' . "\n" . '%s' . "\n\n" . 'Administrator ID: %s');
+define('CUSTOMERS_AUTHORIZATION', 'Kunden - Autorisierungsstatus');
 define('CUSTOMERS_AUTHORIZATION_0', 'Geprüft');
-define('CUSTOMERS_AUTHORIZATION_1', 'Anstehende Authorisierung - Muss zum Browsen im Shop authorisiert sein');
-define('CUSTOMERS_AUTHORIZATION_2', 'Anstehende Authorisierung - Darf im Shop browsen, aber keine Preise sehen');
-define('CUSTOMERS_AUTHORIZATION_3', 'Anstehende Authorisierung - Darf im Shop browsen und Preise sehen, aber nicht kaufen');
+define('CUSTOMERS_AUTHORIZATION_1', 'Anstehende Autorisierung - Muss zum Browsen im Shop authorisiert sein');
+define('CUSTOMERS_AUTHORIZATION_2', 'Anstehende Autorisierung - Darf im Shop browsen, aber keine Preise sehen');
+define('CUSTOMERS_AUTHORIZATION_3', 'Anstehende Autorisierung - Darf im Shop browsen und Preise sehen, aber nicht kaufen');
 define('CUSTOMERS_AUTHORIZATION_4', 'Gesperrt - Darf sich nicht anmelden oder einkaufen');
 define('ERROR_CUSTOMER_APPROVAL_CORRECTION1', 'WARNUNG: Ihr Shop ist auf "Autorisierung ohne Browsen" eingestellt. Der Kunde wurde auf "Anstehende Authorisierung - Muss zum Browsen im Shop authorisiert sein" gesetzt');
 define('ERROR_CUSTOMER_APPROVAL_CORRECTION2', 'WARNUNG: Ihr Shop ist auf "Autorisierung mit browsen ohne Preisanzeige" eingestellt. Der Kunde wurde auf "Anstehende Authorisierung - Darf im Shop browsen, aber keine Preise sehen" gesetzt');

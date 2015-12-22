@@ -4,12 +4,9 @@
  * @copyright Copyright 2003-2016 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- 
  * @version $Id: products_price_manager.php 643 2010-09-23 22:54:04Z maleborg $
  */
 
-//  $Id: products_price_manager.php 643 2010-09-23 22:54:04Z maleborg $
-//
 
 define('HEADING_TITLE', 'Artikelpreismanager');
 define('HEADING_TITLE_PRODUCT_SELECT','Wählen Sie bitte eine Kategorie mit Artikeln aus, um die Preisinformationen anzuzeigen von ...');

@@ -1,24 +1,11 @@
 <?php
-//
-// +----------------------------------------------------------------------+
-// |zen-cart Open Source E-commerce                                       |
-// +----------------------------------------------------------------------+
-// | Copyright (c) 2003-2012 The zen-cart developers                      |
-// |                                                                      |
-// | http://www.zen-cart.com/index.php                                    |
-// |                                                                      |
-// | Portions Copyright (c) 2003 osCommerce                               |
-// +----------------------------------------------------------------------+
-// | This source file is subject to version 2.0 of the GPL license,       |
-// | that is bundled with this package in the file LICENSE, and is        |
-// | available through the world-wide-web at the following url:           |
-// | http://www.zen-cart.com/license/2_0.txt.                             |
-// | If you did not receive a copy of the zen-cart license and are unable |
-// | to obtain it through the world-wide-web, please send a note to       |
-// | license@zen-cart.com so we can mail you a copy immediately.          |
-// +----------------------------------------------------------------------+
-// $Id: backup_mysql.php 2012-05-01 09:03:26Z webchills $
-//
+/**
+ * @package admin
+ * @copyright Copyright 2003-2016 Zen Cart Development Team
+ * @copyright Portions Copyright 2003 osCommerce
+ * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
+ * @version $Id: backup_mysql.php 295 2015-12-22 16:39:16Z webchills $
+ */
 
 // define the locations of the mysql utilities.  Typical location is in '/usr/bin/' ... but not on Windows servers.
 // try 'c:/mysql/bin/mysql.exe' and 'c:/mysql/bin/mysqldump.exe' on Windows hosts ... change drive letter and path as needed
@@ -73,4 +60,3 @@ define('FAILURE_DATABASE_NOT_RESTORED', 'FEHLER: Die Datenbank wurde eventuell N
 define('FAILURE_DATABASE_NOT_RESTORED_FILE_NOT_FOUND', 'FEHLER: Die Datenbank wurde NICHT wiederhergestellt.  FEHLER: DIE DATEI %s KONNTE NICHT GEFUNDEN WERDEN');
 define('FAILURE_DATABASE_NOT_RESTORED_UTIL_NOT_FOUND', 'FEHLER: das MYSQL Wiederherstellungsutility konnte nicht lokalisiert werden. WIEDERHERSTELLUNG GESCHEITERT.');
 define('FAILURE_BACKUP_FAILED_CHECK_PERMISSIONS','Die Sicherung ist fehlgeschlagen, da das Backup Tool nicht gestartet werden konnte (mysqldump oder mysqldump.exe).<br />Auf einem WindowsServer müssen Sie die Berechtigungen der cmd.exe so setzen, dass der Internet Guest Account lesen und schreiben darf.<br />Auf einem Linux Server wednen Sie sich bitte an Ihren Provider um zu klären, warum exec() Befehle fehlschlagen.');
-

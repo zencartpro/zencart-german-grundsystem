@@ -1,24 +1,12 @@
 <?php
-//
-// +----------------------------------------------------------------------+
-// |zen-cart Open Source E-commerce                                       |
-// +----------------------------------------------------------------------+
-// | Copyright (c) 2006 The zen-cart developers                           |
-// |                                                                      |
-// |  http://www.zen-cart-pro.at/index.php                                    |
-// |                                                                      |
-// | Portions Copyright (c) 2003 osCommerce                               |
-// +----------------------------------------------------------------------+
-// | This source file is subject to version 2.0 of the GPL license,       |
-// | that is bundled with this package in the file LICENSE, and is        |
-// | available through the world-wide-web at the following url:           |
-// | http://www.zen-cart-pro.at/license/2_0.txt.                              |
-// | If you did not receive a copy of the zen-cart license and are unable |
-// | to obtain it through the world-wide-web, please send a note to       |
-// | license@zen-cart.com so we can mail you a copy immediately.          |
-// +----------------------------------------------------------------------+
-//  $Id: sqlpatch.php 215 2008-04-10 07:34:48Z hugo13 $
-//
+/**
+ * @package admin
+ * @copyright Copyright 2003-2016 Zen Cart Development Team
+ * @copyright Portions Copyright 2003 osCommerce
+ * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
+ * @version $Id: sqlpatch.php 216 2015-12-22 16:39:16Z webchills $
+ */
+
 define('HEADING_TITLE', 'SQL Query Executor');
 define('HEADING_WARNING', 'Stellen Sie sicher, dass Sie VOR DEM AUSFÜHREN DIESES SCRIPTS eine VOLLSTÄNDIGE SICHERUNG IHRER DATENBANK erstellt haben!');
 define('HEADING_WARNING2', 'Wenn Sie 3rd-Party Kontributionen installieren, bedenken Sie bitte, dass Sie dies auf eigenen Gefahr machen.<br />Zen Cart&reg; gibt keine Garantie für die Sicherheit oder Funktion von 3rd-Party Kontributionen. Testen Sie die Kontributionen, bevor Sie diese auf eimen Live-System einsetzen!');
@@ -77,4 +65,3 @@ define('REASON_PRIMARY_KEY_DOESNT_EXIST_TO_DROP', 'Kann primary key on table %s 
 define('REASON_INDEX_ALREADY_EXISTS', 'Kann index %s in table %s nicht hinzufügen, da er bereits vorhanden ist.');
 define('REASON_PRIMARY_KEY_ALREADY_EXISTS', 'Kann primary key in table %s nicht hinzufügen, da er bereits vorhanden ist.');
 define('REASON_NO_PRIVILEGES', 'User ' . DB_SERVER_USERNAME . '@' . DB_SERVER . ' hat nicht die %s Rechte für Datenbank ' . DB_DATABASE . '.');
-
