@@ -4,13 +4,13 @@
  * @copyright Copyright 2003-2016 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: german.php 651 2015-12-22 09:54:04Z webchills $
+ * @version $Id: german.php 652 2015-12-22 17:54:04Z webchills $
  */
 if (!defined('IS_ADMIN_FLAG'))
 {
   die('Illegal Access');
 }
- 
+
 // added defines for header alt and text
 define('HEADER_ALT_TEXT', 'Admin powered by Zen-Cart 1.5.5 - deutsche Version');
 define('HEADER_LOGO_WIDTH', '200px');
@@ -67,9 +67,9 @@ define('HTML_PARAMS', 'dir="ltr" lang="de"');
 define('CHARSET', 'utf-8');
 
 // header text in includes/header.php
-define('HEADER_TITLE_TOP', 'Startseite');
+define('HEADER_TITLE_TOP', 'Admin Startseite');
 define('HEADER_TITLE_SUPPORT_SITE', 'Support');
-define('HEADER_TITLE_ONLINE_CATALOG', 'Webshop');
+define('HEADER_TITLE_ONLINE_CATALOG', 'Shop Startseite');
 define('HEADER_TITLE_VERSION', 'Version');
 define('HEADER_TITLE_ACCOUNT', 'Account');
 define('HEADER_TITLE_LOGOFF', 'Abmelden');
@@ -560,7 +560,7 @@ define('TEXT_VERSION_CHECK_NEW_VER', 'Eine neue Version ist verfügbar: v');
 define('TEXT_VERSION_CHECK_NEW_PATCH', 'Ein neuer PATCH ist verfügbar: v');
 define('TEXT_VERSION_CHECK_PATCH', 'Patch');
 define('TEXT_VERSION_CHECK_DOWNLOAD', 'Hier herunterladen');
-define('TEXT_VERSION_CHECK_CURRENT', 'Sie verwenden die aktuellste Version von Zen Cart&reg;.');
+define('TEXT_VERSION_CHECK_CURRENT', 'Sie verwenden die aktuellste Version von Zen Cart deutsch');
 
 // downloads manager
 define('TEXT_DISPLAY_NUMBER_OF_PRODUCTS_DOWNLOADS_MANAGER', 'Zeige <b>%d</b> bis <b>%d</b> (von <b>%d</b> Downloads)');

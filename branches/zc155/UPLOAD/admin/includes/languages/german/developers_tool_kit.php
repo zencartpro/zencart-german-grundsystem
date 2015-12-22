@@ -4,7 +4,7 @@
  * @copyright Copyright 2003-2016 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: developers_tool_kit.php 617 2014-02-18 08:50:27Z webchills $
+ * @version $Id: developers_tool_kit.php 618 2015-12-22 15:50:27Z webchills $
  */
 define('HEADING_TITLE', 'Developers Tool Kit');
 define('TABLE_CONFIGURATION_TABLE', 'KONSTANTEN Definition suchen');
@@ -63,7 +63,17 @@ define('TEXT_ALL_FILES_LOOKUP_PHPCSS', 'nur .php und .css');
 define('TEXT_ALL_FILES_LOOKUP_CSS', 'nur .css');
 define('TEXT_ALL_FILES_LOOKUP_HTMLTXT', 'nur .html and .txt');
 define('TEXT_ALL_FILES_LOOKUP_JS', 'nur .js');
+  define('TEXT_ALL_FILES_LOOKUP_ALL_TYPES', 'Alles');
 define('TEXT_CASE_SENSITIVE', 'Groß-/Kleinschreibung beachten?');
+  define('TEXT_CONTEXT_LINES', 'Kontext Zeilen: ');
+  define('TEXT_SEARCH_LOOKUP_PLACEHOLDER', 'Suchbegriff eingeben');
+  define('TEXT_SEARCH_KEY_PLACEHOLDER', 'Suchbegriff oder Phrase für die Suche eingeben');
+  define('TEXT_SEARCH_PHRASE_PLACEHOLDER', 'Suchbegriff eingeben');
+  define('TEXT_BUTTON_SEARCH', 'Suche');
+  define('TEXT_BUTTON_SEARCH_ALT', 'Suche ausführen');
+  define('TEXT_BUTTON_REGEX_SEARCH', 'Grep');
+  define('TEXT_BUTTON_REGEX_SEARCH_ALT', 'Suche mit Regex pattern');
+  define('TEXT_ERROR_REGEX_FAIL', 'HINWEIS: Bei der Suche ist ein Fehler aufgetreten. Falls Sie eine Regex/Grep Suche gemacht haben, überprüfen Sie Ihre Regex Pattern auf Syntaxfehler.');
   //Search Configuration Keys
   define('SEARCH_CFG_KEYS_HEADING_TITLE','<strong>Suche in Konfigurationseinstellungen/Kofigurationsschlüsseln</strong>');
   define('SEARCH_CFG_KEYS_SEARCH_BOX_TEXT', '<strong>Suchbegriff:</strong> (Durchsucht werden Namen und Beschreibung von Konfigurationseinstellungen und Konfigurationsschlüssel, falls sie exakt dem Suchbegriff entsprechen.)');
@@ -81,3 +91,4 @@ define('TEXT_CASE_SENSITIVE', 'Groß-/Kleinschreibung beachten?');
   define('SEARCH_CFG_KEYS_FORM_BUTTON_SEARCH_SORTED_BY_KEY', 'Suche (nach Schlüssel sortiert)');
   define('SEARCH_CFG_KEYS_FORM_BUTTON_VIEW_ALL', 'Zeige Alle');
   define('SEARCH_CFG_KEYS_FORM_BUTTON_RESET', 'Zurücksetzen');
+  define('TEXT_RESET_BUTTON_ALT', 'Alle Suchfelder leeren um neu zu beginnen');
