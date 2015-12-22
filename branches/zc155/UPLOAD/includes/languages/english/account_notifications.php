@@ -24,4 +24,3 @@ define('NOTIFICATIONS_NON_EXISTING', 'There are currently no products marked to 
 define('TEXT_NO_PURCHASES', 'No Purchases');
 
 define('SUCCESS_NOTIFICATIONS_UPDATED', 'Your product notifications have been updated.');
-?>

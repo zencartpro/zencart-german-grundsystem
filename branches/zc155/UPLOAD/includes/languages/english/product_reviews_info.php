@@ -16,4 +16,3 @@ define('NAVBAR_TITLE', 'Reviews');
 define('TEXT_OF_5_STARS', '');
 define('TEXT_PRODUCT_INFO', 'Take Me to the Details');
 define('TEXT_REVIEW_ADDITIONAL', 'Read More Reviews');
-?>

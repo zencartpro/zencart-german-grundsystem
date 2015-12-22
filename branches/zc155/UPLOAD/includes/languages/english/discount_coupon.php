@@ -41,4 +41,3 @@ define('TEXT_DISCOUNT_COUPON_ID_INFO', 'Look-up Discount Coupon ... ');
 define('TEXT_DISCOUNT_COUPON_ID', 'Your Code: ');
 
 define('TEXT_COUPON_GV_RESTRICTION_ZONES', 'Billing Address Restrictions apply.');
-?>

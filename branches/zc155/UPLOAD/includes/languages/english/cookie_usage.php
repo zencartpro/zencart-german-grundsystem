@@ -1,24 +1,11 @@
 <?php
-//
-// +----------------------------------------------------------------------+
-// |zen-cart Open Source E-commerce                                       |
-// +----------------------------------------------------------------------+
-// | Copyright (c) 2003 The zen-cart developers                           |
-// |                                                                      |
-// | http://www.zen-cart.com/index.php                                    |
-// |                                                                      |
-// | Portions Copyright (c) 2003 osCommerce                               |
-// +----------------------------------------------------------------------+
-// | This source file is subject to version 2.0 of the GPL license,       |
-// | that is bundled with this package in the file LICENSE, and is        |
-// | available through the world-wide-web at the following url:           |
-// | http://www.zen-cart.com/license/2_0.txt.                             |
-// | If you did not receive a copy of the zen-cart license and are unable |
-// | to obtain it through the world-wide-web, please send a note to       |
-// | license@zen-cart.com so we can mail you a copy immediately.          |
-// +----------------------------------------------------------------------+
-// $Id: cookie_usage.php 729 2011-08-09 15:49:16Z hugo13 $
-//
+/**
+ * @package languageDefines
+ * @copyright Copyright 2003-2016 Zen Cart Development Team
+ * @copyright Portions Copyright 2003 osCommerce
+ * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
+ * @version $Id: cookie_usage.php 730 2015-12-22 17:49:16Z webchills $
+ */
 
 define('NAVBAR_TITLE', 'Cookie Usage');
 define('HEADING_TITLE', 'Cookie Usage');
@@ -31,4 +18,3 @@ define('TEXT_INFORMATION_5', 'Please contact the store owner if you have any que
 
 define('BOX_INFORMATION_HEADING', '<strong>Cookie Privacy and Security</strong>');
 define('BOX_INFORMATION', 'Cookies must be enabled to purchase online on this store, this is to embrace privacy and security related issues regarding your visit to this site.<br /><br />By enabling cookie support on your browser, the communication between you and this site is strengthened to be certain it is you who are making transactions on your own behalf, and to prevent leakage of your privacy information.');
-?>

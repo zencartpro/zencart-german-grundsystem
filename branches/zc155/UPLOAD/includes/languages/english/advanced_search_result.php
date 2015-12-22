@@ -1,24 +1,11 @@
 <?php
-//
-// +----------------------------------------------------------------------+
-// |zen-cart Open Source E-commerce                                       |
-// +----------------------------------------------------------------------+
-// | Copyright (c) 2003 The zen-cart developers                           |
-// |                                                                      |   
-// | http://www.zen-cart.com/index.php                                    |   
-// |                                                                      |   
-// | Portions Copyright (c) 2003 osCommerce                               |
-// +----------------------------------------------------------------------+
-// | This source file is subject to version 2.0 of the GPL license,       |
-// | that is bundled with this package in the file LICENSE, and is        |
-// | available through the world-wide-web at the following url:           |
-// | http://www.zen-cart.com/license/2_0.txt.                             |
-// | If you did not receive a copy of the zen-cart license and are unable |
-// | to obtain it through the world-wide-web, please send a note to       |
-// | license@zen-cart.com so we can mail you a copy immediately.          |
-// +----------------------------------------------------------------------+
-// $Id: advanced_search_result.php 729 2011-08-09 15:49:16Z hugo13 $
-//
+/**
+ * @package languageDefines
+ * @copyright Copyright 2003-2016 Zen Cart Development Team
+ * @copyright Portions Copyright 2003 osCommerce
+ * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
+ * @version $Id: advanced_search_result.php 730 2015-12-22 17:49:16Z webchills $
+ */
 
 define('NAVBAR_TITLE_1', 'Advanced Search');
 define('NAVBAR_TITLE_2', 'Search Results');
@@ -65,4 +52,3 @@ define('ERROR_PRICE_FROM_MUST_BE_NUM', 'Price From must be a number.');
 define('ERROR_PRICE_TO_MUST_BE_NUM', 'Price To must be a number.');
 define('ERROR_PRICE_TO_LESS_THAN_PRICE_FROM', 'Price To must be greater than or equal to Price From.');
 define('ERROR_INVALID_KEYWORDS', 'Invalid keywords.');
-?>
