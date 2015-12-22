@@ -4,7 +4,7 @@
  * @copyright Copyright 2003-2016 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: english.php 881 2015-01-22 09:33:32Z webchills $
+ * @version $Id: english.php 882 2015-12-22 18:33:32Z webchills $
  */
 
 // FOLLOWING WERE moved to meta_tags.php
@@ -519,6 +519,7 @@ define('HTML_PARAMS','dir="ltr" lang="en"');
   define('TEXT_AUTHORIZATION_PENDING_PRICE', 'Price Unavailable');
   define('TEXT_AUTHORIZATION_PENDING_BUTTON_REPLACE', 'APPROVAL PENDING');
   define('TEXT_LOGIN_TO_SHOP_BUTTON_REPLACE','Login to Shop');
+  define('TEXT_AUTHORIZATION_PENDING_CHECKOUT', 'Checkout Unavailable - Approval Pending');
 
 // text pricing
   define('TEXT_CHARGES_WORD','Calculated Charge:');
@@ -614,6 +615,7 @@ define('HTML_PARAMS','dir="ltr" lang="en"');
   define('TABLE_HEADING_REFERRAL_DETAILS', 'Were You Referred to Us?');
 
   define('ERROR_TEXT_COUNTRY_DISABLED_PLEASE_CHANGE', 'Sorry, but we no longer accept billing or shipping addresses in "%s".  Please update this address to continue.');
+
   define('ENTRY_EMAIL_PREFERENCE','Newsletter and Email Details');
   define('ENTRY_EMAIL_HTML_DISPLAY','HTML');
   define('ENTRY_EMAIL_TEXT_DISPLAY','TEXT-Only');

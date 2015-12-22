@@ -28,5 +28,3 @@ define('TEXT_CONTINUE_CHECKOUT_PROCEDURE', '- to shipping method.');
 
 define('SET_AS_PRIMARY', 'Set as Primary Address');
 define('NEW_ADDRESS_TITLE', 'Enter new address');
-
-?>

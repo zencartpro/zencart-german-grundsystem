@@ -4,7 +4,7 @@
  * @copyright Copyright 2003-2016 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: button_names.php 805 2012-12-07 07:28:24Z webchills $
+ * @version $Id: button_names.php 806 2015-12-22 17:28:24Z webchills $
  */
 
 
@@ -59,7 +59,7 @@ define('BUTTON_IMAGE_CONTINUE_CHECKOUT', 'button_continue_checkout.gif');
 define('BUTTON_IMAGE_CREATE_ACCOUNT', 'button_create_account.gif');
 define('BUTTON_IMAGE_LOG_OFF', 'button_logoff.gif');
 /*
- * ALT tags used for buttons
+ * ALT tags used for buttons (text used for CSS buttons)
  */
  
 define('BUTTON_CREATE_ACCOUNT_ALT', 'Sign Up');
@@ -102,3 +102,4 @@ define('BUTTON_WRITE_REVIEW_ALT', 'Write Review');
 define('BUTTON_READ_REVIEWS_ALT', 'Read the Review');
 define('BUTTON_GOTO_PROD_DETAILS_ALT', 'Detailed Information');
 define('BUTTON_MORE_REVIEWS_ALT', 'Read More Reviews');
+define('BUTTON_VIEW_ALL_ALT', 'View All');

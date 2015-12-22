@@ -1,10 +1,10 @@
 <?php
 /**
  * @package languageDefines
- * @copyright Copyright 2003-2006 Zen Cart Development Team
+ * @copyright Copyright 2003-2016 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
- * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version GIT: $Id: picaflor-azul Modified in v1.5.5 $
+ * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
+ * @version $Id: index.php 1 2015-12-22 17:49:16Z webchills $
  */
 
 define('TEXT_MAIN','This is the main define statement for the page for english when no template defined file exists. It is located in: <strong>/includes/languages/english/index.php</strong>');
@@ -19,13 +19,6 @@ if (STORE_STATUS == '0') {
 define('TEXT_GREETING_PERSONAL', 'Hello <span class="greetUser">%s</span>! Would you like to see our <a href="%s">newest additions</a>?');
 
 define('TEXT_INFORMATION', 'Define your main Index page copy here.');
-
-//moved to english
-//define('TABLE_HEADING_FEATURED_PRODUCTS','Featured Products');
-
-//define('TABLE_HEADING_NEW_PRODUCTS', 'New Products For %s');
-//define('TABLE_HEADING_UPCOMING_PRODUCTS', 'Upcoming Products');
-//define('TABLE_HEADING_DATE_EXPECTED', 'Date Expected');
 
 if ( ($category_depth == 'products') || (zen_check_url_get_terms()) ) {
   // This section deals with product-listing page contents
@@ -49,10 +42,9 @@ if ( ($category_depth == 'products') || (zen_check_url_get_terms()) ) {
 } elseif ($category_depth == 'top') {
   // This section deals with the "home" page at the top level with no options/products selected
   /*Replace this text with the headline you would like for your shop. For example: 'Welcome to My SHOP!'*/
-  define('HEADING_TITLE', 'Congratulations! You have successfully installed your Zen Cart&reg; E-Commerce Solution.');
+  define('HEADING_TITLE', 'Welcome to our store!');
 } elseif ($category_depth == 'nested') {
   // This section deals with displaying a subcategory
   /*Replace this line with the headline you would like for your shop. For example: 'Welcome to My SHOP!'*/
-  define('HEADING_TITLE', 'Congratulations! You have successfully installed your Zen Cart&reg; E-Commerce Solution.'); 
+  define('HEADING_TITLE', 'Welcome to our store!'); 
 }
-?>

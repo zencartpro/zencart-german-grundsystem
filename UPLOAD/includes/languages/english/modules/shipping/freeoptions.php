@@ -18,5 +18,3 @@ NOTE: Free Shipping Options does not display if Free Shipping is used based on 0
 See: freeshipper
 ');
 define('MODULE_SHIPPING_FREEOPTIONS_TEXT_WAY', 'Free Shipping');
-
-?>

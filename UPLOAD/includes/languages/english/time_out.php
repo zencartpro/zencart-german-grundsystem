@@ -16,4 +16,3 @@ define('TEXT_INFORMATION_LOGGED_IN', 'You are still logged in to your account an
 
 define('HEADING_RETURNING_CUSTOMER', 'Login');
 define('TEXT_PASSWORD_FORGOTTEN', 'Forgot Your Password?')
-?>

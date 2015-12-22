@@ -20,4 +20,3 @@
   define('MODULE_ORDER_TOTAL_COUPON_REMOVE_INSTRUCTIONS', '<p>To remove a Discount Coupon from this order type REMOVE and press Enter or Return</p>');
   define('TEXT_REMOVE_REDEEM_COUPON', 'Discount Coupon Removed by Request!');
   define('MODULE_ORDER_TOTAL_COUPON_INCLUDE_ERROR', ' Setting Include tax = true, should only happen when recalculate = None');
-?>

@@ -24,4 +24,3 @@ define('TABLE_HEADING_NEW_PAYMENT_ADDRESS', '...Or Choose From Your Address Book
 
 define('TITLE_CONTINUE_CHECKOUT_PROCEDURE', '<strong>Continue</strong>');
 define('TEXT_CONTINUE_CHECKOUT_PROCEDURE', '- to payment method.');
-?>

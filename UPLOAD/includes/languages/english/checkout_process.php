@@ -4,11 +4,8 @@
  * @copyright Copyright 2003-2016 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- 
- * @version $Id: checkout_process.php 849 2012-03-07 17:26:25Z webchills $
+ * @version $Id: checkout_process.php 850 2015-12-22 17:49:16Z webchills $
  */
-// | that is bundled with this package in the file LICENSE, and is        |
-
 
 define('EMAIL_TEXT_SUBJECT', 'Order Confirmation');
 define('EMAIL_TEXT_HEADER', 'Order Confirmation');
