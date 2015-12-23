@@ -1,24 +1,11 @@
 <?php
-//
-// +----------------------------------------------------------------------+
-// |zen-cart Open Source E-commerce                                       |
-// +----------------------------------------------------------------------+
-// | Copyright (c) 2003 The zen-cart developers                           |
-// |                                                                      |
-// | http://www.zen-cart.com/index.php                                    |
-// |                                                                      |
-// | Portions Copyright (c) 2003 osCommerce                               |
-// +----------------------------------------------------------------------+
-// | This source file is subject to version 2.0 of the GPL license,       |
-// | that is bundled with this package in the file LICENSE, and is        |
-// | available through the world-wide-web at the following url:           |
-// | http://www.zen-cart.com/license/2_0.txt.                             |
-// | If you did not receive a copy of the zen-cart license and are unable |
-// | to obtain it through the world-wide-web, please send a note to       |
-// | license@zen-cart.com so we can mail you a copy immediately.          |
-// +----------------------------------------------------------------------+
-// $Id: discount_coupon.php 696 2010-12-10 15:03:54Z maleborg $
-//
+/**
+ * @package languageDefines
+ * @copyright Copyright 2003-2016 Zen Cart Development Team
+ * @copyright Portions Copyright 2003 osCommerce
+ * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
+ * @version $Id: discount_coupon.php 697 2015-12-23 19:05:14Z webchills $
+ */
 
 define('NAVBAR_TITLE', 'Aktionskupon');
 define('HEADING_TITLE', 'Aktionskupon');
@@ -29,7 +16,7 @@ define('TEXT_CLOSE_WINDOW', 'Fenster schließen [x]');
 define('TEXT_COUPON_HELP_HEADER', '<p class="bold">Der eingegebene Code gehört zu ');
 define('TEXT_COUPON_HELP_NAME', '\'%s\'. </p>');
 define('TEXT_COUPON_HELP_FIXED', '');
-define('TEXT_COUPON_HELP_MINORDER', '');
+define('TEXT_COUPON_HELP_MINORDER', '<p>Ein Mindestbestellwert von %s für geeignete Artikel ist Voraussetzung zur Nutzung dieses Kupons.</p>');
 define('TEXT_COUPON_HELP_FREESHIP', '');
 define('TEXT_COUPON_HELP_DESC', '<p><span class="bold">Aktionskuponangebot:</span> %s</p><p class="smallText">Folgende Einschränkungen bestehen:</p>');
 define('TEXT_COUPON_HELP_DATE', '<p>Der Aktionskupon ist gültig von %s bis %s</p>');
@@ -38,6 +25,7 @@ define('TEXT_COUPON_HELP_CATEGORIES', '<p class="bold">Gültig für folgende Kat
 define('TEXT_COUPON_HELP_PRODUCTS', '<p class="bold">Gültig für folgende Artikel:</p>');
 define('TEXT_ALLOW', 'ja');
 define('TEXT_DENY', 'nein');
+define('TEXT_NO_CAT_TOP_ONLY_DENY', '<p>Dieser Aktionskupon ist nur für bestimmte Artikel gültig.');
 define('TEXT_NO_CAT_RESTRICTIONS', '<p>Aktionskupon ist für alle Kategorien gültig.</p>');
 define('TEXT_NO_PROD_RESTRICTIONS', '<p>Aktionskupon ist für alle Artikel gültig.</p>');
 define('TEXT_CAT_ALLOWED', ' (Gültig für diese Kategorie)');
@@ -46,8 +34,6 @@ define('TEXT_PROD_ALLOWED', ' (Gültig für diesen Artikel)');
 define('TEXT_PROD_DENIED', ' (Nicht gültig für diesen Artikel)');
 // gift certificates cannot be purchased with Discount Coupons
 define('TEXT_COUPON_GV_RESTRICTION','<p class="smallText">Aktionskupons können nicht zum Kauf von ' . TEXT_GV_NAMES . ' verwendet werden. Limit: 1 Aktionskupon pro Bestellung.</p>');
-
 define('TEXT_DISCOUNT_COUPON_ID_INFO', 'Aktionskupon Informationen abfragen ... ');
 define('TEXT_DISCOUNT_COUPON_ID', 'Ihr Code: ');
-
 define('TEXT_COUPON_GV_RESTRICTION_ZONES', 'Mit dieser Rechnungsadresse können keine Aktionkupons eingelöst werden.');
