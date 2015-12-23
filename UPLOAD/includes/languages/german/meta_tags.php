@@ -4,11 +4,11 @@
  * @copyright Copyright 2003-2016 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: meta_tags.php 624 2015-01-30 10:48:28Z webchills $
+ * @version $Id: meta_tags.php 625 2015-12-23 21:48:28Z webchills $
  */
 
 // page title
-define('TITLE', 'Zen Cart 1.5.4');
+define('TITLE', 'Zen Cart 1.5.5');
 
 // Site Tagline
 define('SITE_TAGLINE', 'deutsche Version');
