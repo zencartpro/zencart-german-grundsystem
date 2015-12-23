@@ -8,7 +8,7 @@
  * @copyright Copyright 2003-2016 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: header.php 655 2013-07-22 08:10:05Z webchills $
+ * @version $Id: header.php 656 2015-12-23 20:10:05Z webchills $
  */
 
 // header text in includes/header.php
@@ -25,7 +25,7 @@
   define('HEADER_OR', 'oder');
 
 // added defines for header alt and text
-  define('HEADER_ALT_TEXT', 'powered by Zen-Cart 1.5.1 - deutsche Version');
+  define('HEADER_ALT_TEXT', 'powered by Zen-Cart 1.5.5 - deutsche Version');
   define('HEADER_SALES_TEXT', '');
   define('HEADER_LOGO_WIDTH', '192px');
   define('HEADER_LOGO_HEIGHT', '64px');
