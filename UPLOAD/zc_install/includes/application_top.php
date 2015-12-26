@@ -4,7 +4,7 @@
  * @copyright Copyright 2003-2016 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: application_top.php 824 2015-12-25 21:59:53Z webchills $
+ * @version $Id: application_top.php 825 2015-12-26 21:59:53Z webchills $
  */
 
 @ini_set("arg_separator.output", "&");
@@ -195,7 +195,7 @@ if (isset($_POST['lng']))
   }
 } else
 {
-  $lng = (isset($_GET['lng']) && $_GET['lng'] != '') ? preg_replace('/[^a-zA-Z_]/', '', $_GET['lng']) : 'en_us';
+  $lng = (isset($_GET['lng']) && $_GET['lng'] != '') ? preg_replace('/[^a-zA-Z_]/', '', $_GET['lng']) : 'de_de';
   if ($lng == '')
   {
     $lng = 'de_de';
