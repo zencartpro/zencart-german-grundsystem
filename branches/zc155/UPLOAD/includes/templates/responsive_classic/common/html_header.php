@@ -8,7 +8,7 @@
  * @copyright Copyright 2003-2016 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: html_header.php 2 2015-12-23 22:10:39Z webchills $
+ * @version $Id: html_header.php 3 2015-12-26 19:10:39Z webchills $
  */
 /**
  * load the module for generating page meta-tags
@@ -108,6 +108,6 @@ if (in_array($current_page_base,explode(",",'popup_image,popup_image_additional'
   <script type="text/javascript">document.documentElement.className = 'no-fouc';</script>
   <link rel="stylesheet" type="text/css" href="//maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" />
 <?php // ZCAdditions.com, ZCA Responsive Template Default (EOF-addition 3 of 3) ?>
+<?php require($template->get_template_dir('super_data_head.php',DIR_WS_TEMPLATE, $current_page_base,'templates'). '/super_data_head.php'); ?>
 </head>
-
 <?php // NOTE: Blank line following is intended: ?>
