@@ -2,8 +2,8 @@
 /**
  * @package Installer
  * @copyright Copyright 2003-2016 Zen Cart Development Team
- * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id:
+ * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
+ * @version $Id: tpl_main_page.php 3 2015-12-26 21:49:16Z webchills $
  */
 ?>
 <body id="<?php echo $body_id; ?>">
@@ -46,7 +46,7 @@
         <?php require($body_code); ?>
         </div>
          <footer class="footer">
-           <p>Copyright &copy; 2003-<?php echo date('Y'); ?> <a href="http://www.zen-cart.com" target="_blank">Zen Cart&reg;</a></p>
+           <p>Copyright &copy; 2003-<?php echo date('Y'); ?> <a href="http://www.zen-cart-pro.at" target="_blank">Zen Cart deutsch</a></p>
          </footer>
       </div>
       </div>

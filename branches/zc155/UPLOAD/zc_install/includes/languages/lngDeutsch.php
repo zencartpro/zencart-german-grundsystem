@@ -4,7 +4,7 @@
  * @package Installer
  * @copyright Copyright 2003-2016 Zen Cart Development Team
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: lngGerman.php 2 2015-12-25 11:49:16Z webchills $
+ * @version $Id: lngDeutsch.php 4 2015-12-26 21:49:16Z webchills $
  */
 /**
  * defining language components for the page
@@ -15,14 +15,14 @@ define('HTML_PARAMS','dir="ltr" lang="de"');
 define('TEXT_PAGE_HEADING', 'Systemprüfung');
 define('TEXT_INDEX_FATAL_ERRORS', 'Es gibt einige Probleme, die behoben werden müssen bevor wie weitermachen können.');
 define('TEXT_INDEX_WARN_ERRORS', 'Einige andere Probleme');
-define('TEXT_HEADER_MAIN', 'TIP: The field titles are clickable help links which explain what each field means.');
-define('TEXT_INDEX_HEADER_MAIN', 'TIP: For some errors and warnings below, more information may be available by clicking on the error/warning title.');
+define('TEXT_HEADER_MAIN', 'TIP: Die blauen Überschriften Links sind anclickbar und liefern Infos zur Bedeutung des jeweiligen Feldes.');
+define('TEXT_INDEX_HEADER_MAIN', 'TIP: Für einige Fehlermeldungen oder Warnmeldungen unten sind genauere Infos durch Anclicken der Fehlermeldung/Warnmeldung verfügbar.');
 define('TEXT_INSTALLER_CHOOSE_LANGUAGE', 'Sprache wählen');
 define('TEXT_HELP_CONTENT_CHOOSE_LANG', 'Zen Cart&reg; is multi-lingual, supporting as many languages as there are language packs available. Simply install the necessary language pack and your entire store can operate in multiple languages, including this installer.');
 
 define('TEXT_PAGE_HEADING_SYSTEM_SETUP', 'System Setup');
 define('TEXT_SYSTEM_SETUP_ADMIN_SETTINGS', 'Admin Einstellungen');
-define('TEXT_SYSTEM_SETUP_CATALOG_SETTINGS', 'Catalog (Storefront) Settings');
+define('TEXT_SYSTEM_SETUP_CATALOG_SETTINGS', 'Shop Frontend Einstellungen');
 define('TEXT_SYSTEM_SETUP_ADMIN_SERVER_DOMAIN', 'Admin Server Domain');
 define('TEXT_SYSTEM_SETUP_ADMIN_SERVER_URL', 'Admin Server URL');
 define('TEXT_SYSTEM_SETUP_ADMIN_PHYSICAL_PATH', 'Admin Physischer Pfad');
@@ -33,7 +33,7 @@ define('TEXT_SYSTEM_SETUP_CATALOG_HTTPS_SERVER_DOMAIN', 'Shop Frontend HTTPS Dom
 define('TEXT_SYSTEM_SETUP_CATALOG_HTTPS_URL', 'Shop Frontend HTTPS URL');
 define('TEXT_SYSTEM_SETUP_CATALOG_PHYSICAL_PATH', 'Shop Frontend Physischer Pfad');
 define('TEXT_SYSTEM_SETUP_AGREE_LICENSE', 'Lizenzbedingungen akzeptieren: ');
-define('TEXT_SYSTEM_SETUP_CLICK_TO_AGREE_LICENSE', '(Check the box to agree to GPL 2 licence terms. Click the title in the left column to view the license.)');
+define('TEXT_SYSTEM_SETUP_CLICK_TO_AGREE_LICENSE', '(Kreuzen Sie die Checkbox an, um die GPL 2 Lizenzbedingungen zu akzeptieren. Klicken Sie den Titel in der linken Spalte an, um die Lizenzbedingungen anzuzeigen.)');
 define('TEXT_SYSTEM_SETUP_ERROR_DIALOG_TITLE', 'Es gibt einige Probleme');
 define('TEXT_SYSTEM_SETUP_ERROR_DIALOG_CONTINUE', 'Trotzdem weitermachen');
 define('TEXT_SYSTEM_SETUP_ERROR_CATALOG_PHYSICAL_PATH', 'Es scheint ein Problem zu geben mit dem ' . TEXT_SYSTEM_SETUP_CATALOG_PHYSICAL_PATH);
@@ -47,20 +47,20 @@ define('TEXT_DATABASE_SETUP_DB_PASSWORD', 'Datenbank Passwort: ');
 define('TEXT_DATABASE_SETUP_DB_NAME', 'Datenbank Name: ');
 define('TEXT_DATABASE_SETUP_DEMO_SETTINGS', 'Demo Daten');
 define('TEXT_DATABASE_SETUP_LOAD_DEMO', 'Demodaten installieren');
-define('TEXT_DATABASE_SETUP_LOAD_DEMO_DESCRIPTION', 'Sollen die Demodaten in diese Datenbank geladen werden?');
+define('TEXT_DATABASE_SETUP_LOAD_DEMO_DESCRIPTION', 'Sollen die Demodaten in diese Datenbank geladen werden? Nur für Testshops sinnvoll!');
 define('TEXT_DATABASE_SETUP_ADVANCED_SETTINGS', 'Erweiterte Einstellungen');
-define('TEXT_DATABASE_SETUP_DB_CHARSET', 'Database Character Set: ');
-define('TEXT_DATABASE_SETUP_DB_PREFIX', 'Store Prefix: ');
-define('TEXT_DATABASE_SETUP_SQL_CACHE_METHOD', 'SQL Cache Method: ');
+define('TEXT_DATABASE_SETUP_DB_CHARSET', 'Datenbank Character Set: ');
+define('TEXT_DATABASE_SETUP_DB_PREFIX', 'Datenbank Präfix: ');
+define('TEXT_DATABASE_SETUP_SQL_CACHE_METHOD', 'SQL Caching Methode: ');
 define('TEXT_DATABASE_SETUP_JSCRIPT_SQL_ERRORS1', '<p>Some errors occurred when running the SQL install file');
 define('TEXT_DATABASE_SETUP_JSCRIPT_SQL_ERRORS2', '<br>Please see error logs for more details<p>');
-define('TEXT_DATABASE_SETUP_CHARSET_OPTION_UTF8', 'UTF-8 (default setting)');
+define('TEXT_DATABASE_SETUP_CHARSET_OPTION_UTF8', 'UTF-8 (UNBEDINGT SO LASSEN!)');
 define('TEXT_DATABASE_SETUP_CHARSET_OPTION_LATIN1', 'Latin1');
-define('TEXT_DATABASE_SETUP_CACHE_TYPE_OPTION_NONE', 'No SQL Caching');
+define('TEXT_DATABASE_SETUP_CACHE_TYPE_OPTION_NONE', 'kein SQL Caching');
 define('TEXT_DATABASE_SETUP_CACHE_TYPE_OPTION_DATABASE', 'Datenbank');
 define('TEXT_DATABASE_SETUP_CACHE_TYPE_OPTION_FILE', 'Datei');
 define('TEXT_EXAMPLE_DB_HOST', "normalerweise 'localhost'");
-define('TEXT_EXAMPLE_DB_USER', 'enter your MySQL username');
+define('TEXT_EXAMPLE_DB_USER', 'Geben Sie Ihren MySQL Benutzernamen ein');
 define('TEXT_EXAMPLE_DB_PWD', 'enter the password for your MySQL user');
 define('TEXT_EXAMPLE_DB_PREFIX', 'am besten leer lassen');
 define('TEXT_EXAMPLE_DB_NAME', 'Geben Sie den Namen Ihrer MySQL Datenbank ein');
@@ -69,7 +69,7 @@ define('TEXT_EXAMPLE_CACHEDIR', 'usually points to the equivalent of /your/user/
 define('TEXT_DATABASE_SETUP_CONNECTION_ERROR_DIALOG_TITLE', 'Es gibt einige Probleme');
 define('TEXT_CREATING_DATABASE', 'Datenbank wird befüllt...');
 define('TEXT_LOADING_CHARSET_SPECIFIC', 'Loading Character Set specific data');
-define('TEXT_LOADING_DEMO_DATA', 'Loading Demo Data');
+define('TEXT_LOADING_DEMO_DATA', 'Lade Demodaten');
 define('TEXT_LOADING_PLUGIN_DATA', 'Loading SQL for Pre-installed Plugins');
 
 define('TEXT_COULD_NOT_UPDATE_BECAUSE_ANOTHER_VERSION_REQUIRED', 'Could not update to version %s. We detect that you currently have v%s, and must perform the updates to get to version %s first.');
@@ -84,7 +84,7 @@ define('TEXT_ADMIN_SETUP_USER_EMAIL_REPEAT', '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs
 define('TEXT_ADMIN_SETUP_USER_PASSWORD', 'Admin Passwort: ');
 define('TEXT_ADMIN_SETUP_USER_PASSWORD_HELP', '<strong>NOTIEREN SIE SICH DIESES PASSWORT JETZT!!</strong>: Unterhalb ist ihr temporäres Einstiegspasswort für Ihren Admin User. Sie benötigen es zum Einloggen in den Adminbereich, daher NOTIEREN SIE SICH DIESES PASSWORT JETZT. Sie können es später natürlich ändern.');
 define('TEXT_ADMIN_SETUP_ADMIN_DIRECTORY', 'Admin Verzeichnis: ');
-define('TEXT_ADMIN_SETUP_ADMIN_DIRECTORY_HELP_DEFAULT', 'Wir konnten Ihr Admin Verzeichnis nicht automatisch umbenennen. Sie müssen es selbt umbenennen bevor Sie in den Adminbereich einloggen können.');
+define('TEXT_ADMIN_SETUP_ADMIN_DIRECTORY_HELP_DEFAULT', 'Wir konnten Ihr Admin Verzeichnis nicht automatisch umbenennen. Sie müssen es selbst umbenennen bevor Sie in den Adminbereich einloggen können.');
 define('TEXT_ADMIN_SETUP_ADMIN_DIRECTORY_HELP_NOT_ADMIN_CHANGED', 'We did not change your admin directory automatically as it already seems to have been changed from the default.');
 define('TEXT_ADMIN_SETUP_ADMIN_DIRECTORY_HELP_CHANGED', 'Your store Admin directory may have been automatically renamed. Please ensure you make a note of the directory below.');
 define('TEXT_ADMIN_SETUP_NEWSLETTER_SETTINGS', 'Newsletter');
@@ -141,8 +141,8 @@ define('TEXT_NAVBAR_PAYMENT_PROVIDERS', 'Zahlungsanbieter');
 define('TEXT_ERROR_STORE_CONFIGURE', "Main /includes/configure.php file does not exist (isn't readable) or is not writeable");
 define('TEXT_ERROR_ADMIN_CONFIGURE', "Admin /admin/includes/configure.php does not exist (isn't readable) or is not writeable");
 define('TEXT_ERROR_PHP_VERSION', str_replace(array("\n", "\r"), '', 'Incorrect PHP Version.
-<p>The PHP version you are using (' . PHP_VERSION . ') is too old, and this version of Zen Cart&reg; cannot be used on this server in its present configuration.</p>
-<p>This version of Zen Cart&reg; is compatible with PHP versions 5.2.9 to 7.0.<br>
+<p>Ihre verwendete PHP Version (' . PHP_VERSION . ') ist zu alt. Die deutsche Zen Cart Version 1.5.5 kann damit NICHT verwendet werden.</p>
+<p>Diese Version von Zen Cart deutsch ist kompatibel mit PHP Versionen von 5.2.9 bis 7.0.<br>
 Check the <a href="www.zen-cart.com">www.zen-cart.com</a> website for the latest version of Zen Cart&reg;.</p>
 '));
 define('TEXT_ERROR_PHP_VERSION_RECOMMENDED', 'For maximum security and compatibility you should be using PHP %s or newer. This installer can proceed, but this is just letting you know that your site will not be PCI Compliant when running out-of-date software.');
@@ -186,7 +186,7 @@ define('TEXT_FORM_VALIDATION_REQUIRED', 'Required');
 define('TEXT_FORM_VALIDATION_AGREE_LICENSE', 'You must agree to the license terms');
 define('TEXT_FORM_VALIDATION_CATALOG_HTTPS_URL', 'A URL is required here, even if you have temporarily opted not to enable SSL yet. Try using your normal domain name.');
 
-define('TEXT_NAVBAR_INSTALLATION_INSTRUCTIONS', 'Installation Instructions');
+define('TEXT_NAVBAR_INSTALLATION_INSTRUCTIONS', 'Installationsanleitung');
 define('TEXT_NAVBAR_FORUM_LINK', 'Forum');
 define('TEXT_NAVBAR_WIKI_LINK', 'FAQ/Tutorials');
 

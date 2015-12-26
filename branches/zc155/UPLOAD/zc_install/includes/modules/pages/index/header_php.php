@@ -3,7 +3,7 @@
  * @package Installer
  * @copyright Copyright 2003-2016 Zen Cart Development Team
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: header_php.php 730 2015-12-21 21:49:16Z hugo13 $
+ * @version $Id: header_php.php 3 2015-12-26 21:49:16Z webchills $
  */
 
 $otherConfigErrors = FALSE;
