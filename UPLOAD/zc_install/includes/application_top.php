@@ -4,7 +4,7 @@
  * @copyright Copyright 2003-2016 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: application_top.php 823 2015-12-21 21:59:53Z webchills $
+ * @version $Id: application_top.php 824 2015-12-25 21:59:53Z webchills $
  */
 
 @ini_set("arg_separator.output", "&");
@@ -187,22 +187,22 @@ if (isset($_POST['lng']))
   $lng = preg_replace('/[^a-zA-Z_]/', '', $_POST['lng']);
   if ($lng == '')
   {
-    $lng = 'en_us';
+    $lng = 'de_de';
   }
   if (!file_exists(DIR_FS_INSTALL . 'includes/languages/' . $languagesInstalled[$lng]['fileName'] . '.php'))
   {
-    $lng = 'en_us';
+    $lng = 'de_de';
   }
 } else
 {
   $lng = (isset($_GET['lng']) && $_GET['lng'] != '') ? preg_replace('/[^a-zA-Z_]/', '', $_GET['lng']) : 'en_us';
   if ($lng == '')
   {
-    $lng = 'en_us';
+    $lng = 'de_de';
   }
   if (!file_exists(DIR_FS_INSTALL . 'includes/languages/' . $languagesInstalled[$lng]['fileName'] . '.php'))
   {
-    $lng = 'en_us';
+    $lng = 'de_de';
   }
 }
 $lng_short = substr($lng, 0, strpos($lng, '_'));
