@@ -1,6 +1,6 @@
 # MySQL file for Zen Cart Demo Products load
 #
-# $Id: mysql_demo.sql 646 2013-09-20 18:03:04Z webchills $
+# $Id: mysql_demo.sql 647 2015-12-26 22:03:04Z webchills $
 #
 
 # Configuration Settings:
@@ -16,66 +16,66 @@ INSERT INTO address_book (address_book_id, customers_id, entry_gender, entry_com
 # Dumping data for table `categories`
 #
 
-INSERT INTO categories (categories_id, categories_image, parent_id, sort_order, date_added, last_modified, categories_status) VALUES (1, 'categories/category_hardware.gif', 0, 1, '2012-12-23 03:18:19', '2004-05-21 00:32:17', 1),
-(2, 'categories/category_software.gif', 0, 2, '2012-12-23 03:18:19', '2004-05-22 21:14:57', 1),
-(3, 'categories/category_dvd_movies.gif', 0, 3, '2012-12-23 03:18:19', '2004-05-21 00:22:39', 1),
-(4, 'categories/subcategory_graphic_cards.gif', 1, 0, '2012-12-23 03:18:19', NULL, 1),
-(5, 'categories/subcategory_printers.gif', 1, 0, '2012-12-23 03:18:19', NULL, 1),
-(6, 'categories/subcategory_monitors.gif', 1, 0, '2012-12-23 03:18:19', NULL, 1),
-(7, 'categories/subcategory_speakers.gif', 1, 0, '2012-12-23 03:18:19', NULL, 1),
-(8, 'categories/subcategory_keyboards.gif', 1, 0, '2012-12-23 03:18:19', NULL, 1),
-(9, 'categories/subcategory_mice.gif', 1, 0, '2012-12-23 03:18:19', '2004-05-21 00:34:10', 1),
-(10, 'categories/subcategory_action.gif', 3, 0, '2012-12-23 03:18:19', '2004-05-21 00:39:17', 1),
-(11, 'categories/subcategory_science_fiction.gif', 3, 0, '2012-12-23 03:18:19', NULL, 1),
-(12, 'categories/subcategory_comedy.gif', 3, 0, '2012-12-23 03:18:19', NULL, 1),
-(13, 'categories/subcategory_cartoons.gif', 3, 0, '2012-12-23 03:18:19', '2004-05-21 00:23:13', 1),
-(14, 'categories/subcategory_thriller.gif', 3, 0, '2012-12-23 03:18:19', NULL, 1),
-(15, 'categories/subcategory_drama.gif', 3, 0, '2012-12-23 03:18:19', NULL, 1),
-(16, 'categories/subcategory_memory.gif', 1, 0, '2012-12-23 03:18:19', NULL, 1),
-(17, 'categories/subcategory_cdrom_drives.gif', 1, 0, '2012-12-23 03:18:19', NULL, 1),
-(18, 'categories/subcategory_simulation.gif', 2, 0, '2012-12-23 03:18:19', NULL, 1),
-(19, 'categories/subcategory_action_games.gif', 2, 0, '2012-12-23 03:18:19', NULL, 1),
-(20, 'categories/subcategory_strategy.gif', 2, 0, '2012-12-23 03:18:19', NULL, 1),
-(21, 'categories/gv_25.gif', 0, 4, '2012-12-23 03:18:19', '2004-05-21 00:26:06', 1),
-(22, 'categories/box_of_color.gif', 0, 5, '2012-12-23 03:18:19', '2004-05-21 00:28:43', 1),
-(23, 'waybkgnd.gif', 0, 500, '2012-12-28 02:26:19', '2012-12-29 23:21:35', 1),
-(24, 'categories/category_free.gif', 0, 600, '2012-12-28 11:48:46', '2004-01-02 19:13:45', 1),
-(25, 'sample_image.gif', 0, 515, '2012-12-31 02:39:17', '2004-01-24 01:49:12', 1),
-(27, 'sample_image.gif', 49, 10, '2013-01-04 14:13:08', '2013-01-24 16:16:23', 1),
-(28, 'sample_image.gif', 0, 510, '2013-01-04 17:13:47', '2013-01-05 23:54:23', 1),
-(31, 'sample_image.gif', 48, 30, '2013-01-04 23:16:46', '2013-01-24 01:48:29', 1),
-(32, 'sample_image.gif', 48, 40, '2013-01-05 01:34:56', '2013-01-24 01:48:36', 1),
-(33, 'categories/subcategory.gif', 0, 700, '2013-01-05 02:08:31', '2004-05-20 10:35:31', 1),
-(34, 'categories/subcategory.gif', 33, 10, '2013-01-05 02:08:50', '2004-05-20 10:35:57', 1),
-(35, 'categories/subcategory.gif', 33, 20, '2013-01-05 02:09:01', '2013-01-24 00:07:33', 1),
-(36, 'categories/subcategory.gif', 33, 30, '2013-01-05 02:09:12', '2013-01-24 00:07:41', 1),
-(37, 'categories/subcategory.gif', 35, 10, '2013-01-05 02:09:28', '2013-01-24 00:22:39', 1),
-(38, 'categories/subcategory.gif', 35, 20, '2013-01-05 02:09:39', '2013-01-24 00:22:46', 1),
-(39, 'categories/subcategory.gif', 35, 30, '2013-01-05 02:09:49', '2013-01-24 00:22:53', 1),
-(40, 'categories/subcategory.gif', 34, 10, '2013-01-05 02:17:27', '2004-05-20 10:36:19', 1),
-(41, 'categories/subcategory.gif', 36, 10, '2013-01-05 02:21:02', '2013-01-24 00:23:04', 1),
-(42, 'categories/subcategory.gif', 36, 30, '2013-01-05 02:21:14', '2013-01-24 00:23:18', 1),
-(43, 'categories/subcategory.gif', 34, 20, '2013-01-05 02:21:29', '2013-01-24 00:21:37', 1),
-(44, 'categories/subcategory.gif', 36, 20, '2013-01-05 02:21:47', '2013-01-24 00:23:11', 1),
-(45, 'sample_image.gif', 48, 10, '2013-01-05 23:54:56', '2013-01-24 01:48:22', 1),
-(46, 'sample_image.gif', 50, 10, '2013-01-06 00:01:48', '2013-01-24 01:39:56', 1),
-(47, 'sample_image.gif', 48, 20, '2013-01-06 03:09:57', '2013-01-24 01:48:05', 1),
-(48, 'sample_image.gif', 0, 1000, '2013-01-07 02:24:07', '2013-01-07 02:44:26', 1),
-(49, 'sample_image.gif', 0, 1100, '2013-01-07 02:27:31', '2013-01-07 02:44:34', 1),
-(50, 'sample_image.gif', 0, 1200, '2013-01-07 02:28:18', '2013-01-07 02:47:19', 1),
-(51, 'sample_image.gif', 50, 20, '2013-01-07 02:33:55', '2013-01-24 01:40:05', 1),
-(52, 'sample_image.gif', 49, 20, '2013-01-24 16:09:35', '2013-01-24 16:16:33', 1),
-(53, 'categories/subcategory.gif', 0, 1500, '2013-04-25 23:07:41', NULL, 1),
-(54, 'categories/subcategory.gif', 0, 1510, '2013-04-26 12:02:35', '2013-05-20 11:45:20', 1),
-(55, 'categories/subcategory.gif', 54, 0, '2013-04-28 01:48:47', '2013-05-20 11:45:51', 1),
-(56, 'categories/subcategory.gif', 54, 0, '2013-04-28 01:49:16', '2013-04-28 01:53:14', 1),
-(57, 'categories/subcategory.gif', 54, 0, '2013-05-01 01:29:13', NULL, 1),
-(58, 'categories/subcategory.gif', 54, 110, '2013-05-02 12:35:02', '2013-05-18 10:46:13', 1),
-(60, 'categories/subcategory.gif', 54, 0, '2013-05-02 23:45:21', NULL, 1),
-(61, 'categories/subcategory.gif', 54, 100, '2013-05-18 10:13:46', '2013-05-18 10:46:02', 1),
-(62, 'sample_image.gif', 0, 1520, '2012-12-23 03:18:19', '2013-05-22 21:14:57', 1),
-(63, 'categories/subcategory.gif', 0, 1530, '2012-12-23 03:18:19', '2004-07-12 17:45:24', 1),
-(64, 'categories/subcategory.gif', 0, 1550, '2013-07-12 15:22:27', NULL, 1);
+INSERT INTO categories (categories_id, categories_image, parent_id, sort_order, date_added, last_modified, categories_status) VALUES (1, 'categories/category_hardware.gif', 0, 1, '2015-12-23 03:18:19', '2004-05-21 00:32:17', 1),
+(2, 'categories/category_software.gif', 0, 2, '2015-12-23 03:18:19', '2004-05-22 21:14:57', 1),
+(3, 'categories/category_dvd_movies.gif', 0, 3, '2015-12-23 03:18:19', '2004-05-21 00:22:39', 1),
+(4, 'categories/subcategory_graphic_cards.gif', 1, 0, '2015-12-23 03:18:19', NULL, 1),
+(5, 'categories/subcategory_printers.gif', 1, 0, '2015-12-23 03:18:19', NULL, 1),
+(6, 'categories/subcategory_monitors.gif', 1, 0, '2015-12-23 03:18:19', NULL, 1),
+(7, 'categories/subcategory_speakers.gif', 1, 0, '2015-12-23 03:18:19', NULL, 1),
+(8, 'categories/subcategory_keyboards.gif', 1, 0, '2015-12-23 03:18:19', NULL, 1),
+(9, 'categories/subcategory_mice.gif', 1, 0, '2015-12-23 03:18:19', '2004-05-21 00:34:10', 1),
+(10, 'categories/subcategory_action.gif', 3, 0, '2015-12-23 03:18:19', '2004-05-21 00:39:17', 1),
+(11, 'categories/subcategory_science_fiction.gif', 3, 0, '2015-12-23 03:18:19', NULL, 1),
+(12, 'categories/subcategory_comedy.gif', 3, 0, '2015-12-23 03:18:19', NULL, 1),
+(13, 'categories/subcategory_cartoons.gif', 3, 0, '2015-12-23 03:18:19', '2004-05-21 00:23:13', 1),
+(14, 'categories/subcategory_thriller.gif', 3, 0, '2015-12-23 03:18:19', NULL, 1),
+(15, 'categories/subcategory_drama.gif', 3, 0, '2015-12-23 03:18:19', NULL, 1),
+(16, 'categories/subcategory_memory.gif', 1, 0, '2015-12-23 03:18:19', NULL, 1),
+(17, 'categories/subcategory_cdrom_drives.gif', 1, 0, '2015-12-23 03:18:19', NULL, 1),
+(18, 'categories/subcategory_simulation.gif', 2, 0, '2015-12-23 03:18:19', NULL, 1),
+(19, 'categories/subcategory_action_games.gif', 2, 0, '2015-12-23 03:18:19', NULL, 1),
+(20, 'categories/subcategory_strategy.gif', 2, 0, '2015-12-23 03:18:19', NULL, 1),
+(21, 'categories/gv_25.gif', 0, 4, '2015-12-23 03:18:19', '2004-05-21 00:26:06', 1),
+(22, 'categories/box_of_color.gif', 0, 5, '2015-12-23 03:18:19', '2004-05-21 00:28:43', 1),
+(23, 'waybkgnd.gif', 0, 500, '2015-12-22 02:26:19', '2015-12-01 23:21:35', 1),
+(24, 'categories/category_free.gif', 0, 600, '2015-12-22 11:48:46', '2004-01-02 19:13:45', 1),
+(25, 'sample_image.gif', 0, 515, '2015-12-07 02:39:17', '2004-01-24 01:49:12', 1),
+(27, 'sample_image.gif', 49, 10, '2015-05-04 14:13:08', '2015-05-24 16:16:23', 1),
+(28, 'sample_image.gif', 0, 510, '2015-05-04 17:13:47', '2015-05-05 23:54:23', 1),
+(31, 'sample_image.gif', 48, 30, '2015-05-04 23:16:46', '2015-05-24 01:48:29', 1),
+(32, 'sample_image.gif', 48, 40, '2015-05-05 01:34:56', '2015-05-24 01:48:36', 1),
+(33, 'categories/subcategory.gif', 0, 700, '2015-05-05 02:08:31', '2004-05-20 10:35:31', 1),
+(34, 'categories/subcategory.gif', 33, 10, '2015-05-05 02:08:50', '2004-05-20 10:35:57', 1),
+(35, 'categories/subcategory.gif', 33, 20, '2015-05-05 02:09:01', '2015-05-24 00:07:33', 1),
+(36, 'categories/subcategory.gif', 33, 30, '2015-05-05 02:09:12', '2015-05-24 00:07:41', 1),
+(37, 'categories/subcategory.gif', 35, 10, '2015-05-05 02:09:28', '2015-05-24 00:22:39', 1),
+(38, 'categories/subcategory.gif', 35, 20, '2015-05-05 02:09:39', '2015-05-24 00:22:46', 1),
+(39, 'categories/subcategory.gif', 35, 30, '2015-05-05 02:09:49', '2015-05-24 00:22:53', 1),
+(40, 'categories/subcategory.gif', 34, 10, '2015-05-05 02:17:27', '2004-05-20 10:36:19', 1),
+(41, 'categories/subcategory.gif', 36, 10, '2015-05-05 02:21:02', '2015-05-24 00:23:04', 1),
+(42, 'categories/subcategory.gif', 36, 30, '2015-05-05 02:21:14', '2015-05-24 00:23:18', 1),
+(43, 'categories/subcategory.gif', 34, 20, '2015-05-05 02:21:29', '2015-05-24 00:21:37', 1),
+(44, 'categories/subcategory.gif', 36, 20, '2015-05-05 02:21:47', '2015-05-24 00:23:11', 1),
+(45, 'sample_image.gif', 48, 10, '2015-05-05 23:54:56', '2015-05-24 01:48:22', 1),
+(46, 'sample_image.gif', 50, 10, '2015-05-06 00:01:48', '2015-05-24 01:39:56', 1),
+(47, 'sample_image.gif', 48, 20, '2015-05-06 03:09:57', '2015-05-24 01:48:05', 1),
+(48, 'sample_image.gif', 0, 1000, '2015-05-07 02:24:07', '2015-05-07 02:44:26', 1),
+(49, 'sample_image.gif', 0, 1100, '2015-05-07 02:27:31', '2015-05-07 02:44:34', 1),
+(50, 'sample_image.gif', 0, 1200, '2015-05-07 02:28:18', '2015-05-07 02:47:19', 1),
+(51, 'sample_image.gif', 50, 20, '2015-05-07 02:33:55', '2015-05-24 01:40:05', 1),
+(52, 'sample_image.gif', 49, 20, '2015-05-24 16:09:35', '2015-05-24 16:16:33', 1),
+(53, 'categories/subcategory.gif', 0, 1500, '2015-11-25 23:07:41', NULL, 1),
+(54, 'categories/subcategory.gif', 0, 1510, '2015-10-07 12:02:35', '2015-06-20 11:45:20', 1),
+(55, 'categories/subcategory.gif', 54, 0, '2015-11-28 01:48:47', '2015-06-20 11:45:51', 1),
+(56, 'categories/subcategory.gif', 54, 0, '2015-11-28 01:49:16', '2015-11-28 01:53:14', 1),
+(57, 'categories/subcategory.gif', 54, 0, '2015-06-01 01:29:13', NULL, 1),
+(58, 'categories/subcategory.gif', 54, 110, '2015-06-02 12:35:02', '2015-06-18 10:46:13', 1),
+(60, 'categories/subcategory.gif', 54, 0, '2015-06-02 23:45:21', NULL, 1),
+(61, 'categories/subcategory.gif', 54, 100, '2015-06-18 10:13:46', '2015-06-18 10:46:02', 1),
+(62, 'sample_image.gif', 0, 1520, '2015-12-23 03:18:19', '2015-06-22 21:14:57', 1),
+(63, 'categories/subcategory.gif', 0, 1530, '2015-12-23 03:18:19', '2004-07-12 17:45:24', 1),
+(64, 'categories/subcategory.gif', 0, 1550, '2015-12-13 15:22:27', NULL, 1);
 
 #
 # Dumping data for table `categories_description`
@@ -153,7 +153,7 @@ INSERT INTO customers (customers_id, customers_gender, customers_firstname, cust
 # Dumping data for table `customers_info`
 #
 
-INSERT INTO customers_info (customers_info_id, customers_info_date_of_last_logon, customers_info_number_of_logons, customers_info_date_account_created, customers_info_date_account_last_modified, global_product_notifications) VALUES (1, '0001-01-01 00:00:00', 0, '2013-01-21 01:35:28', '0001-01-01 00:00:00', 0);
+INSERT INTO customers_info (customers_info_id, customers_info_date_of_last_logon, customers_info_number_of_logons, customers_info_date_account_created, customers_info_date_account_last_modified, global_product_notifications) VALUES (1, '2015-12-14 09:00:00', 0, '2015-11-01 01:35:28', '2015-11-01 01:35:28', 0);
 
 #
 # Dumping data for table ezpages
@@ -175,7 +175,18 @@ INSERT INTO ezpages (pages_id, languages_id, pages_title, alt_url, alt_url_exter
 (14, 43, 'Was ist EZ-Pages?', '', '', '<table cellspacing="4" cellpadding="4" border="3" align="center" style="width: 80%;"><tbody><tr><td><span style="font-style: italic;">\r\n<span style="font-weight: bold;">Note: This EZ-Page has been written with the help of the HTMLarea Editor.<br /> <br />This means that this EZ-page will not validate correctly based on how HTMLarea or other editors renders the code.</span></span></td></tr></tbody></table><br /><br /><span style="font-weight: bold; color: rgb(255, 0, 0);">Summary</span><br /><br /><span style="font-weight: bold;">EZ-Pages</span> is a fast, easy way of creating links and additional pages.<br /><br />The additional Pages can be for:<br /><ul><li>New Pages</li><li>Internal Links</li><li>External Links</li><li>Secure or Non-Secure pages</li><li>Same or New Window</li></ul>In Addition, there is the ability to create &quot;related&quot; links in the format of a Chapter (group) and its TOC (related pages/links).<br /><br /><span style="font-weight: bold; color: rgb(255, 0, 0);">Link Naming</span><br /><br />Links are named by the Page Title. All Links need a Page Title in order to function.<br /><br />If you forget to add a Page Title, then you will not be able to add the Link.<br /><br />If you do not assign an Order for the Header, Sidebox or Footer, then the Link will not display even if you have a Page Title.<br /><br /><span style="font-weight: bold;"><span style="color: rgb(255, 0, 0);">Link Placement</span><br /><br /></span>While you have the option of adding Additional Links to the Header, Footer and Sidebox with EZ-Pages, you are not limited to these three Link locations. Links can be in one or more locations simply by enabling the Order for the Location(s) where the Link should appear..<br /><br />The Link Location Status for the Header, Footer and Sidebox is controlled simply by setting these to Yes or No for each setting. Then, set the Order in which the Link should appear for each location.<br /><br />This means that if you were to set Header to Yes 30 and Sidebox to Yes 50 then the link would appear in both the Header and Sidebox in the Order of your Links.<br /><br />The Order numbering method is up to you. Numbering using 10, 20, 30, etc. will allow you to sort the Links and add additional Links later.<br /><br />Note: a 0 value for the Order will disable the Link from displaying.<br /><br /><span style="font-weight: bold;"><span style="color: rgb(255, 0, 0);">Open in New Window and Secure Pages</span><br /></span><br />With EZ-Pages, each Link can take you to the same, main window for your shop; or, you can have the Link open a brand new New Window. In addition, there is an option for making the Link open as a Secure Page or a Non-Secure Page.<br /><br /><span style="font-weight: bold; color: rgb(255, 0, 0);">Chapter and TOC</span><br style="font-weight: bold; color: rgb(255, 0, 0);" /><br />The Chapter and TOC, or Table of Contents, are a unique method of building Multiple Links that interact together.<br /><br />While these Links still follow the rules of the Header, Footer and Sidebox placement, the difference is that only one of the Links, the Main Link, needs to be displayed anywhere on the site.<br /><br />If you had, for example, 5 related Links, you could add the first Link as the Main Link by setting its location to the Header, Footer or Sidebox and set its Order, as usual.<br /><br />Next, you need to assign a Chapter or Group number to the Link. This Chapter holds the related Links together.<br /><br />Then, set the TOC or Table of Contents setting. This is a secondary Sort Order for within the Chapter.<br /><br />Again, you can display any of the Links within a Chapter, as well as making any of these Links the Main Link. Whether the Links all show, or just one or more of the Links show, the Chapter is the key to grouping these Links together in the TOC or Previous/Next. <br /><br /><span style="font-weight: bold; font-style: italic;">NOTE: While all Links within a Chapter will display together, you can have the different Links display in the Header, Footer or Sidebox on their own. Or, you can have the additional Links only display when the Main Link or one of the Additional Links within the Chapter has been opened.</span><br style="font-weight: bold; font-style: italic;" /><br />The versitility of EZ-Pages will make adding new Links and Pages extreamly easy for the beginner as well as the advance user.<br /><br />While this page was made in HTMLarea editor, any HTML editor could be used.<br /><br />However, becareful ... HTML editors will often add the opening and closing tags for the  and  to the file you are working on.<br /><br />These are already added to the pages via EZ-Pages.<br /><br /><span style="color: rgb(255, 0, 0); font-weight: bold;">External Link URL</span><br /><br />External Link URLs are links to outside pages not within your shop. These can be to any valid URL such as:<br /><br />http://www.sashbox.net<br /><br />You need to include the full URL path to any External Link URL. You may also mark these to open in a New Window or the Same Window.<br /><br /><span style="color: rgb(255, 0, 0); font-weight: bold;">Internal Link URL</span><br /><br />Internal Link URLs are links to internal pages within your shop. These can be to any valid URL, but should be written as relative links such as:<br /><br />index.php?main_page=index&amp;cPath=21<br /><br />The above Link would take you to the Category for categories_id 21<br /><br />While these links can be the Full URL to an Internal Link, it is best to write as a Relative Link so that if you change domains, are work on a temporary domain or an IP Address, the Link will remain valid if moved to another domain, IP Address, etc.<br /><br />Internal Links can also open in a New Window or the Same Window or be for Secure or Non-Secure Pages.<br /><br /><span style="font-weight: bold; color: rgb(255, 0, 0);">EZ-Pages Additional Pages vs Internal Links vs External Links</span><br /><br />The Type of Link that you create is based on an order of precidence, where HTML Content will superceed both the Internal Link and the External Link values.<br /><br />The External Link URL will superceed the Internal Link URL.<br /><br />If you try to set a combination of HTML Content, Internal Link and/or External Link, the Link will be flagged in the listing with a read icon to alert you to your mistake.<br /><br /><span style="font-weight: bold; color: rgb(255, 0, 0);">WARNING ...</span><br /><br />When using Editors such as HTMLarea, if you hit enter in the HTML Content area <br /> will be added. These will be detected as &quot;content&quot; and will override any Internal Link URL or External Link URL.<br /><br /><span style="font-weight: bold; color: rgb(255, 0, 0);">Admin Only Display</span><br /><br />Sometimes, when working on EZ-Pages, you will want to be able to work on a Live Site and see the results of your work, but not allow the Customers to see this until you are done.<br /><br />There are 3 settings in the Configuration ... EZ-Pages Settings for the Header, Footer and Sidebox  Status:<br /><ul><li>OFF</li><li>ON</li><li>Admin Only</li></ul>The Admin Only setting is controlled by the IP Address(es) set in the Website Maintenance.<br /><br />This can be very handy when needing to work on a Live Site but not wanting customers to see the work in progress.<br /><br />', 0, 0, 0, 1, 0, 0, 0, 20, 0, 0, 10),
 (15, 43, 'Preise und Versand', '', '', '<span style="font-weight: bold;">Preise\r\n\r\n</span><br />Alle Preise verstehen sich als Endpreise (inkl. Mwst.) und beziehen sich, wenn nicht anders angegeben, auf 1 Stück zzgl. Versandkosten.\r\n\r\n<br /><br /><span style="font-weight: bold;">Versand\r\n\r\nInnerhalb Deutschlands:</span>\r\n\r\n<br />Versandkostenpauschale von 4,50 &euro;.\r\n\r\n<br /><span style="font-weight: bold;">Sendungen in andere europ&auml;ische L&auml;nder:</span>\r\n\r\nVersandkostenpauschale von 7,50 &euro;.', 1, 1, 1, 1, 10, 10, 10, 10, 0, 0, 0),
 (16, 43, 'Privatsph&auml;re', '', '', 'Um diesen Text zu editieren öffnen Sie im Adminbereich -> Tools -> den Seiteneditor und w&auml;hlen danach in der Seitenauswahliste ''define_privacy.php''.\r\n\r\nDer Schutz Ihrer Privatsph&auml;re und der Datenschutz sind für uns von höchster Bedeutung\r\n\r\nDaher verpflichten wir uns zum Schutz Ihrer persönlicher Daten. Alle Ihre personengebundenen Daten werden streng vertraulich behandelt und nur im Rahmen der gesetzlichen Vorschriften erhoben.\r\n\r\n\r\nGARANTIE: Keine unerwünschte Nutzung Ihrer Daten\r\n\r\nIhre Daten werden von uns weder verkauft, vermietet noch getauscht. Und Sie erhalten von uns keine Werbesendungen per Post oder eMail, ausser Sie haben sich bei unserem Newsletter eingetragen.', 1, 1, 1, 1, 20, 20, 20, 20, 0, 0, 0),
-(17, 43, 'AGB', '', '', '<p><strong><font face="verdana,arial,helvetica,sans-serif">Beispieltext für die Bedingungen der AGB ...</font></strong></p> <p>Diese Sektion kann mit dem <strong>Informations Seiten</strong> im Admin Menü (Tools) bearbeitet werden.</p>', 0, 1, 0, 1, 30, 30, 30, 30, 0, 0, 0),
+(17, 43, 'AGB', '', '', '<p>
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus vel nisi id ipsum iaculis pretium. Maecenas tristique ex lectus; eget varius odio tristique ut. Aliquam libero lectus, facilisis sed arcu nec, scelerisque euismod erat. Proin libero enim, dapibus nec euismod sit amet, ultrices non purus. Vivamus bibendum metus velit, quis dapibus neque malesuada eget! Nulla facilisi. Aenean ac scelerisque lacus. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas turpis felis, dictum eget pellentesque egestas, molestie ut mauris! Etiam a varius sem, quis dictum nulla. Vivamus euismod lorem eu nisl pulvinar pretium. Sed eget libero malesuada, elementum tortor a, ornare nisl. Donec sed purus non arcu mattis scelerisque. Phasellus condimentum velit et ipsum ultrices, ut tristique mi elementum. Praesent purus enim, vestibulum et diam quis, gravida ornare mi. Praesent sit amet volutpat ante, eget fringilla ante.
+</p>
+<p>
+Suspendisse sed urna odio. Etiam egestas, magna ac luctus bibendum, felis ipsum luctus nisi, ut dapibus ligula ligula id nulla. Integer a lacus et felis elementum ullamcorper sit amet ac lorem. Nulla facilisi. Suspendisse lobortis sapien quis turpis bibendum dictum! Donec et sodales dolor! Ut vestibulum tortor dui, efficitur facilisis nisi fringilla eu. Proin tincidunt cursus turpis, nec posuere eros euismod vitae! Donec feugiat orci sed convallis blandit. Vestibulum sit amet elementum tortor, at hendrerit ligula. Donec vitae tempor ligula, ut fringilla eros. Vestibulum et ex lobortis dolor congue auctor sit amet sit amet est. Suspendisse venenatis arcu nulla.
+</p>
+<p>
+Proin in eleifend est? Etiam elementum, ligula ac tristique placerat, eros tortor laoreet metus, eget pretium tortor mauris id nisi. Aenean faucibus iaculis nisi, id sagittis nisl interdum id! Fusce eget varius nunc. Quisque sit amet dictum ligula. Aliquam congue fermentum leo vel rutrum. Duis luctus; orci id suscipit rutrum, quam est tempor libero, et vehicula neque neque nec augue! Sed sem metus, faucibus ut pretium id, ultricies id nibh. Fusce gravida, augue posuere semper porta, neque massa vehicula nunc, non lacinia mauris justo quis nibh? Ut pretium lorem a ex blandit pretium. Nam nisl felis, egestas id bibendum id, facilisis quis ipsum! Nunc vehicula iaculis leo, eget venenatis nibh mollis sit amet. Vivamus id est eros.
+</p>
+<p>
+Aliquam aliquam varius urna, vel condimentum tellus suscipit eu. Curabitur laoreet et lacus vitae pulvinar. In hac habitasse platea dictumst. Morbi a nisl non magna mollis vestibulum vel nec libero. Suspendisse fermentum tortor id magna rhoncus aliquet. Donec et malesuada nulla. Morbi non lacinia libero? Maecenas molestie iaculis arcu, a bibendum est ultricies et? Maecenas nec sapien vulputate, facilisis sapien et, condimentum nulla! Etiam finibus eleifend ipsum at fermentum. Morbi eu quam posuere, egestas felis sit amet, lobortis odio. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+</p>', 0, 1, 0, 1, 30, 30, 30, 30, 0, 0, 0),
 (18, 43, 'Informationsseite', '', '', '<p><font face="verdana,arial,helvetica,sans-serif"><strong>EZ-Pages</strong></font><font face="verdana,arial,helvetica,sans-serif">Diesen Inhalt bearbeiten bzw. erstellen:</font><ul><li><font face="verdana,arial,helvetica,sans-serif">Gehen Sie hierfür in den Adminbereich unter <em>Tools-&gt;EZ-Pages</em></font></li><li><font face="verdana,arial,helvetica,sans-serif">In der &Uuml;bersicht sehen Sie verschiedene Seiten, unter Anderem auch diese Seite namens &quot;Informationsseite&quot;</font></li><li><font face="verdana,arial,helvetica,sans-serif">Klicken Sie auf &quot;bearbeiten&quot; (ein grünes, rundes Symbol mit einem &quot;e&quot; in der Mitte)</font></li><li><font face="verdana,arial,helvetica,sans-serif">Der Inhalt wird als reiner HTML Text eingegeben - Sie können diesen vorher mit einem HTML-Editor Ihrer Wahl erstellen und den Quelltext in das Feld &quot;HTML Inhalt&quot; kopieren</font></li><li><font face="verdana,arial,helvetica,sans-serif">Speichern Sie Ihre &Auml;nderung (Der Inhalt  wird  in der <strong>Datenbank</strong> gespeichert) </font></li></ul><p><font face="verdana,arial,helvetica,sans-serif"><strong>Benutzer<br /></strong></font><font face="verdana,arial,helvetica,sans-serif">Bitte beachten Sie, dass nur Angestellte der FIRMA AG mit einem gültigen Konto Zugang zum FIRMA Werbemittelshop haben. Wenn Sie Angestellte(r) der FIRMA AG sind, und kein Konto haben, müssen Sie sich bitte einmalig registrieren.<br /><br /></font><font face="verdana,arial,helvetica,sans-serif"><strong>Anmeldung</strong><br /></font><font face="verdana,arial,helvetica,sans-serif">Für die Anmeldung, müssen Sie Ihre E-Mail Adresse und das von Ihnen gew&auml;hlte Kennwort eingeben. Für die erstmalige Benutzung des FIRMA Webemittelshops füllen Sie bitte einmalig die mit rotem Stern markierten Pflilchtfleder aus. W&auml;hlen Sie eine oder mehrere Kostenstellen. Maximal sind jedoch 3 Kostenstellen pro Anwender zugelassen Best&auml;tigen Sie Ihre Daten in dem Sie den &quot;Information übermitteln&quot; Knopf drücken. Um den Berechtigungsprozess abzuschlie&szlig;en muss Ihr(e) Kostenstellen-erantwortliche(r) Ihr Konto freigeben. Somit ist gew&auml;hrleistet, dass von keine(r)m anderen FIRMA Mitarbeiter(in) unter einer ihm/ihr nicht zugewiesenen Kostenstelle eine Bestellung durchführen kann. Nach einer erfolgreichen Berechtigung erreichen Sie unsere FIRMA Verkaufsmaterialseite, die aktuell verfügbare Produkte anzeigt.<br /><br /></font><font face="verdana,arial,helvetica,sans-serif">Sollte Ihre Kostenstelle nicht aufgelistet sein, wenden Sie sich bitte an </font><a href="mailto:advertising@FIRMA-AG.com"><font face="verdana,arial,helvetica,sans-serif">advertising@FIRMA-AG.com</font></a><font face="verdana,arial,helvetica,sans-serif">.</font></p><p><font face="verdana,arial,helvetica,sans-serif"><strong>Produkte aussuchen</strong> </font></p><p><font face="verdana,arial,helvetica,sans-serif">Wir haben eine umfangreiche Sammlung von Produkten in unserem Sortiment. Um </font><font face="verdana,arial,helvetica,sans-serif">Ihnen zu helfen Ihre Suche zu vereinfachen, sind diese in 3 Kategorien eingeteilt:</font></p><ol><li><font face="verdana,arial,helvetica,sans-serif">Produktinformation<br />Diese beinhalten neue Prospekte, CD´s, DVD´s in den einzelnen Sprachen aufgeteilt nach den verschiedenen Kundensegmente.<br /></font></li><li><font face="verdana,arial,helvetica,sans-serif">Werbemittel<br />Diese beinhalten  Bücher, CD´s Bürowerbeartikel, Kleidung, Werkzeuge usw.<br /></font></li><li><font face="verdana,arial,helvetica,sans-serif">Restposten<br />Diese beinhalten Werbeartikel in kleiner Stückzahl, </font></li></ol><p align="justify"><font face="verdana,arial,helvetica,sans-serif"><font face="verdana,arial,helvetica,sans-serif">W&auml;hlen Sie eine Kategorie aus, so werden die Untergruppen</font> angezeigt. Klicken Sie auf eines der beschrifteten Bilder so werden Sie zu den darin befindlichen Produkten geführt. </fon
 t></p><p align="justify"><font face="verdana,arial,helvetica,sans-serif">Diverse Restmengen der Mutationen wie Veitscher, Radex oder Didier können per   E-Mail über </font><a href="mailto:advertising@FIRMA-AG.com"><font face="verdana,arial,helvetica,sans-serif">advertising@FIRMA-AG.com</font></a><font face="verdana,arial,helvetica,sans-serif"> direkt bestellt werden. </font></p><p><font face="verdana,arial,helvetica,sans-serif"><strong>Produkte bestellen<br /></strong></font><font face="verdana,arial,helvetica,sans-serif">Jedes Produkt ist mit einem Bild versehen, welches in der Regel vergrö&szlig;ert werden kann.<br /><br /></font><font face="verdana,arial,helvetica,sans-serif">Die ausgew&auml;hlten Produkte können Sie bestellen indem Sie in dem kleinen K&auml;stchen ADD: Ihre gewünschte Menge eintragen. Danach drücken sie den Knopf „Markierte Artikel in den Warenkorb“ </font></p><p align="justify"><font face="verdana,arial,helvetica,sans-serif">Sie sehen nun links oben Ihren Warenkorb. Der von Ihnen zuletzt bestellte Artikel wird rot geschrieben. Sie können nun den Warenkorb aktualisieren wenn Sie die Menge &auml;ndern wolle, diesen löschen, weiter einkaufen, oder die Bestellung abschlie&szlig;en.</font></p><p><font face="verdana,arial,helvetica,sans-serif"><strong>Warenkorb aktualisieren<br /></strong><br />Sie &auml;ndern die Menge und drücken nochmalig auf den Knopf „Warenkorb aktualisieren. Es &auml;ndert sich die Menge in Ihrem Warenkorb-Fenster links oben.</font></p><ul><li><font face="verdana,arial,helvetica,sans-serif">Löschen<br />Sie drücken den Knopf „Löschen“ des ausgew&auml;hlten Artikels. Ihr Warenkorb wird sofort aktualisiert angezeigt. <br /></font></li><li><font face="verdana,arial,helvetica,sans-serif">Weiter einkaufen<br />Sie drücken den Knopf „Weiter einkaufen“ und können im Auswahlfenster „Kategorien“ links unter dem Warenkorb-Fenster Ihre Bestellung fortsetzen.<br /></font></li><li><font face="verdana,arial,helvetica,sans-serif">Bestellen<br />Klicken Sie auf den Knopf „Bestellen“. Sie werden weitergeleitet zu den Schritten 1-3 Versandart.</font></li></ul><p align="justify"><font face="verdana,arial,helvetica,sans-serif">Der 1. Schritt beinhaltet die Lieferanschrift. Diese kann von Ihnen individuell ge&auml;ndert werden. Alle Felder mit rot markiertem Sternchen sind Pflichtfelder und somit unbedingt auszufüllen. Danach drücken sie den Knopf „Weiter“ Im Feld Lieferanschrift wird Ihre neu eingegebene Lieferanschrift angezeigt. </font></p><p align="justify"><font face="verdana,arial,helvetica,sans-serif">Sie haben noch die Möglichkeit eine Anmerkung oder einen Hinweis in dem dafür zur Verfügung gestellten Feld hineinzuschreiben. Danach klicken Sie auf den Knopf „Weiter“</font></p><p align="justify"><font face="verdana,arial,helvetica,sans-serif">Der 2. Schritt beinhaltet die Zahlungsart. Zu sehen ist der gesamte Warenwert Ihrer Bestellung. Ist das Einkaufslimit von 100,- &euro; Mindestbestellwert unterschritten, so müssen sie noch etwas bestellen. Das Bestelllimit dient zur Optimierung von Versandkosten. Maximal dürfen Sie jedoch  einen Warenwert von 1000,- &euro; nicht überschreiten.</font></p><p align="justify"><font face="verdana,arial,helvetica,sans-serif">Die Rechnungsanschrift ist die der Kostenstelle zugeordnete und dient dazu die Versandkosten auf die jeweiligen Kostenstellen weiterzuverrechnen.</font></p><p align="justify"><font face="verdana,arial,helvetica,sans-serif">Bei Schritt 3 der entgültigen Best&auml;tigung können nochmals alle oben genannten Punkte ge&auml;ndert oder bearbeitet werden. Wenn alle Punkte in Ordnung sind drücken Sie auf den Knopf „Bestellung best&auml;tigen“ </font></p><p align="justify"><font face="verdana,arial,helvetica,sans-serif">Kurze Zeit sp&auml;ter erhalten Sie ein Best&auml;tigungs- E-Mail Ihrer Bestellung. </font></p><p align="justify"><font face="verdana,arial,helvetica,sans-serif"><strong>Lieferung verfolgen<br /></strong>Nach erfo
 lgreicher Anmeldung mit Ihrer E-Mail Adresse und Ihrem Passwort befinden Sie sich auf der Startseite. Dort klicken Sie auf den Knopf „Mein Konto“</font></p><p align="justify"><font face="verdana,arial,helvetica,sans-serif">Alle Ihre Bestellungen können hier verfolgt werden. Der Status der Lieferung kann hier überprüft werden. Weiters haben sie die Möglichkeit Ihre Kontoinformationen, Ihr Adressbuch oder ihr Passwort zu &auml;ndern. </font></p><p align="justify"><font face="verdana,arial,helvetica,sans-serif"><strong>Abmelden<br /></strong></font><font face="verdana,arial,helvetica,sans-serif">Zum Verlassen des Webshops drücken Sie den Knopf „abmelden“Wir wünschen Ihnen viel Spass bei Ihren Bestellungen. </font></p><p><font face="verdana,arial,helvetica,sans-serif"></font></p>', 0, 1, 0, 1, -10, -10, -10, -10, 0, 0, 0),
@@ -185,42 +196,53 @@ lgreicher Anmeldung mit Ihrer E-Mail Adresse und Ihrem Passwort befinden Sie sic
 (25, 43, 'Aktionskupons', 'index.php?main_page=discount_coupon', '', '', 0, 1, 0, 1, 70, 70, 70, 70, 0, 0, 0),
 (22, 43, 'Newsletter abbestellen', 'index.php?main_page=unsubscribe', '', '', 0, 1, 0, 1, 80, 80, 80, 80, 0, 0, 0),
 (23, 43, 'Geschenkgutschein FAQ', 'index.php?main_page=gv_faq', '', '', 0, 1, 0, 1, 60, 60, 60, 60, 0, 0, 0),
-(24, 43, 'Impressum', '', '', 'Firma <br />ADRESSE <br />Tel.: 0043/(0)1/123456 <p> </p><p> </p><p>Firmenbuchnummer: 1111; <br />Firmenbuchgericht: Handelsgericht Wien; <br />UID:ATU123456; <br />Mitglied der Wirtschaftskammer &Ouml;sterreich; </p><p><strong>Für Konzeption & Inhalt verantwortlich:</strong> <br />FirmaX<br />E-Mail: <a href="mailto:office@Firma.xyz">office@Firma.xyz</a> <br />Hotline: 0800 123 456 <br />E-Mail: <a href="mailto:Kundendienst@Firma.xyz">Kundendienst@Firma.xyz</a> <br /></p><p>&Uuml;BERSICHT Customer Service <br />Reparatur Service<br />Sitemap <br /><a target="_blank" href="../../zc12rl/admin/index.php?main_page=conditions">AGB</a> <br />Impressum <br />Wartungsarbeiten </p>', 1, 1, 1, 1, 40, 40, 40, 40, 0, 0, 0);
+(24, 43, 'Impressum', '', '', '<p>
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus vel nisi id ipsum iaculis pretium. Maecenas tristique ex lectus; eget varius odio tristique ut. Aliquam libero lectus, facilisis sed arcu nec, scelerisque euismod erat. Proin libero enim, dapibus nec euismod sit amet, ultrices non purus. Vivamus bibendum metus velit, quis dapibus neque malesuada eget! Nulla facilisi. Aenean ac scelerisque lacus. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas turpis felis, dictum eget pellentesque egestas, molestie ut mauris! Etiam a varius sem, quis dictum nulla. Vivamus euismod lorem eu nisl pulvinar pretium. Sed eget libero malesuada, elementum tortor a, ornare nisl. Donec sed purus non arcu mattis scelerisque. Phasellus condimentum velit et ipsum ultrices, ut tristique mi elementum. Praesent purus enim, vestibulum et diam quis, gravida ornare mi. Praesent sit amet volutpat ante, eget fringilla ante.
+</p>
+<p>
+Suspendisse sed urna odio. Etiam egestas, magna ac luctus bibendum, felis ipsum luctus nisi, ut dapibus ligula ligula id nulla. Integer a lacus et felis elementum ullamcorper sit amet ac lorem. Nulla facilisi. Suspendisse lobortis sapien quis turpis bibendum dictum! Donec et sodales dolor! Ut vestibulum tortor dui, efficitur facilisis nisi fringilla eu. Proin tincidunt cursus turpis, nec posuere eros euismod vitae! Donec feugiat orci sed convallis blandit. Vestibulum sit amet elementum tortor, at hendrerit ligula. Donec vitae tempor ligula, ut fringilla eros. Vestibulum et ex lobortis dolor congue auctor sit amet sit amet est. Suspendisse venenatis arcu nulla.
+</p>
+<p>
+Proin in eleifend est? Etiam elementum, ligula ac tristique placerat, eros tortor laoreet metus, eget pretium tortor mauris id nisi. Aenean faucibus iaculis nisi, id sagittis nisl interdum id! Fusce eget varius nunc. Quisque sit amet dictum ligula. Aliquam congue fermentum leo vel rutrum. Duis luctus; orci id suscipit rutrum, quam est tempor libero, et vehicula neque neque nec augue! Sed sem metus, faucibus ut pretium id, ultricies id nibh. Fusce gravida, augue posuere semper porta, neque massa vehicula nunc, non lacinia mauris justo quis nibh? Ut pretium lorem a ex blandit pretium. Nam nisl felis, egestas id bibendum id, facilisis quis ipsum! Nunc vehicula iaculis leo, eget venenatis nibh mollis sit amet. Vivamus id est eros.
+</p>
+<p>
+Aliquam aliquam varius urna, vel condimentum tellus suscipit eu. Curabitur laoreet et lacus vitae pulvinar. In hac habitasse platea dictumst. Morbi a nisl non magna mollis vestibulum vel nec libero. Suspendisse fermentum tortor id magna rhoncus aliquet. Donec et malesuada nulla. Morbi non lacinia libero? Maecenas molestie iaculis arcu, a bibendum est ultricies et? Maecenas nec sapien vulputate, facilisis sapien et, condimentum nulla! Etiam finibus eleifend ipsum at fermentum. Morbi eu quam posuere, egestas felis sit amet, lobortis odio. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+</p>', 1, 1, 1, 1, 40, 40, 40, 40, 0, 0, 0);
 
 #
 # Dumping data for table `featured`
 #
 
 INSERT INTO featured (featured_id, products_id, featured_date_added, featured_last_modified, expires_date, date_status_change, status, featured_date_available) VALUES (1, 34, '2004-02-21 16:34:31', '2004-02-21 16:34:31', '0001-01-01', '2004-02-21 16:34:31', 1, '0001-01-01'),
-(2, 8, '2013-02-21 17:04:54', '2013-02-21 22:31:52', '2013-02-27', '2013-04-25 22:50:50', 0, '2013-02-21'),
-(3, 12, '2013-02-21 17:10:49', '2013-02-21 17:10:49', '0001-01-01', '2013-02-21 17:10:49', 1, '0001-01-01'),
-(4, 27, '2013-02-21 22:30:53', NULL, '0001-01-01', NULL, 1, '0001-01-01'),
-(5, 26, '2013-02-21 22:31:24', NULL, '0001-01-01', NULL, 1, '0001-01-01'),
-(6, 40, '2013-05-13 22:50:33', NULL, '0001-01-01', NULL, 1, '0001-01-01'),
-(7, 171, '2013-07-12 15:47:22', NULL, '0001-01-01', NULL, 1, '0001-01-01'),
-(8, 172, '2013-07-12 15:47:29', NULL, '0001-01-01', NULL, 1, '0001-01-01'),
-(9, 168, '2013-07-12 15:47:37', NULL, '0001-01-01', NULL, 1, '0001-01-01'),
-(10, 169, '2013-07-12 15:47:45', NULL, '0001-01-01', NULL, 1, '0001-01-01');
+(2, 8, '2015-11-21 17:04:54', '2015-11-21 22:31:52', '2015-11-27', '2015-11-25 22:50:50', 0, '2015-11-21'),
+(3, 12, '2015-11-21 17:10:49', '2015-11-21 17:10:49', '0001-01-01', '2015-11-21 17:10:49', 1, '0001-01-01'),
+(4, 27, '2015-11-21 22:30:53', NULL, '0001-01-01', NULL, 1, '0001-01-01'),
+(5, 26, '2015-11-21 22:31:24', NULL, '0001-01-01', NULL, 1, '0001-01-01'),
+(6, 40, '2015-06-13 22:50:33', NULL, '0001-01-01', NULL, 1, '0001-01-01'),
+(7, 171, '2015-12-13 15:47:22', NULL, '0001-01-01', NULL, 1, '0001-01-01'),
+(8, 172, '2015-12-13 15:47:29', NULL, '0001-01-01', NULL, 1, '0001-01-01'),
+(9, 168, '2015-12-13 15:47:37', NULL, '0001-01-01', NULL, 1, '0001-01-01'),
+(10, 169, '2015-12-13 15:47:45', NULL, '0001-01-01', NULL, 1, '0001-01-01');
 
 #
 # Dumping data for table `group_pricing`
 #
 
-INSERT INTO group_pricing (group_id, group_name, group_percentage, last_modified, date_added) VALUES (1, 'Group 10', '10.00', NULL, '2013-04-29 00:21:04');
+INSERT INTO group_pricing (group_id, group_name, group_percentage, last_modified, date_added) VALUES (1, 'Group 10', '10.00', NULL, '2015-11-29 00:21:04');
 
 #
 # Dumping data for table `manufacturers`
 #
 
-INSERT INTO manufacturers (manufacturers_id, manufacturers_name, manufacturers_image, date_added, last_modified) VALUES (1, 'Matrox', 'manufacturers/manufacturer_matrox.gif', '2012-12-23 03:18:19', NULL),
-(2, 'Microsoft', 'manufacturers/manufacturer_microsoft.gif', '2012-12-23 03:18:19', NULL),
-(3, 'Warner', 'manufacturers/manufacturer_warner.gif', '2012-12-23 03:18:19', NULL),
-(4, 'Fox', 'manufacturers/manufacturer_fox.gif', '2012-12-23 03:18:19', NULL),
-(5, 'Logitech', 'manufacturers/manufacturer_logitech.gif', '2012-12-23 03:18:19', NULL),
-(6, 'Canon', 'manufacturers/manufacturer_canon.gif', '2012-12-23 03:18:19', NULL),
-(7, 'Sierra', 'manufacturers/manufacturer_sierra.gif', '2012-12-23 03:18:19', NULL),
-(8, 'GT Interactive', 'manufacturers/manufacturer_gt_interactive.gif', '2012-12-23 03:18:19', NULL),
-(9, 'Hewlett Packard', 'manufacturers/manufacturer_hewlett_packard.gif', '2012-12-23 03:18:19', NULL);
+INSERT INTO manufacturers (manufacturers_id, manufacturers_name, manufacturers_image, date_added, last_modified) VALUES (1, 'Matrox', 'manufacturers/manufacturer_matrox.gif', '2015-12-23 03:18:19', NULL),
+(2, 'Microsoft', 'manufacturers/manufacturer_microsoft.gif', '2015-12-23 03:18:19', NULL),
+(3, 'Warner', 'manufacturers/manufacturer_warner.gif', '2015-12-23 03:18:19', NULL),
+(4, 'Fox', 'manufacturers/manufacturer_fox.gif', '2015-12-23 03:18:19', NULL),
+(5, 'Logitech', 'manufacturers/manufacturer_logitech.gif', '2015-12-23 03:18:19', NULL),
+(6, 'Canon', 'manufacturers/manufacturer_canon.gif', '2015-12-23 03:18:19', NULL),
+(7, 'Sierra', 'manufacturers/manufacturer_sierra.gif', '2015-12-23 03:18:19', NULL),
+(8, 'GT Interactive', 'manufacturers/manufacturer_gt_interactive.gif', '2015-12-23 03:18:19', NULL),
+(9, 'Hewlett Packard', 'manufacturers/manufacturer_hewlett_packard.gif', '2015-12-23 03:18:19', NULL);
 
 #
 # Dumping data for table `manufacturers_info`
@@ -241,14 +263,14 @@ INSERT INTO manufacturers_info (manufacturers_id, languages_id, manufacturers_ur
 #
 
 INSERT INTO media_clips (clip_id, media_id, clip_type, clip_filename, date_added, last_modified) VALUES (1, 1, 1, 'thehunter.mp3', '2004-06-01 20:57:43', '0000-00-00 00:00:00'),
-(6, 2, 1, 'thehunter.mp3', '2013-07-13 00:45:09', '0000-00-00 00:00:00');
+(6, 2, 1, 'thehunter.mp3', '2015-07-13 00:45:09', '0000-00-00 00:00:00');
 
 #
 # Dumping data for table `media_manager`
 #
 
 INSERT INTO media_manager (media_id, media_name, last_modified, date_added) VALUES (1, 'Russ Tippins - The Hunter', '2004-06-01 20:57:43', '2004-06-01 20:42:53'),
-(2, 'Help!', '2013-07-13 01:01:14', '2013-07-12 17:57:45');
+(2, 'Help!', '2015-07-13 01:01:14', '2015-12-13 17:57:45');
 
 #
 # Dumping data for table `media_to_products`
@@ -268,7 +290,7 @@ INSERT INTO media_to_products (media_id, product_id) VALUES (1, 166),
 #
 
 INSERT INTO music_genre (music_genre_id, music_genre_name, date_added, last_modified) VALUES (1, 'Rock', '2004-06-01 20:53:26', NULL),
-(2, 'Jazz', '2013-06-01 20:53:45', NULL);
+(2, 'Jazz', '2015-05-01 20:53:45', NULL);
 
 #
 # Dumping data for table `product_music_extra`
@@ -288,131 +310,131 @@ INSERT INTO product_types_to_category (product_type_id, category_id) VALUES (3, 
 # Dumping data for table `products`
 #
 
-INSERT INTO products (products_id, products_type, products_quantity, products_model, products_image, products_price, products_virtual, products_date_added, products_last_modified, products_date_available, products_weight, products_status, products_tax_class_id, manufacturers_id, products_ordered, products_quantity_order_min, products_quantity_order_units, products_priced_by_attribute, product_is_free, product_is_call, products_quantity_mixed, product_is_always_free_shipping, products_qty_box_status, products_quantity_order_max, products_sort_order, products_discount_type, products_discount_type_from, products_price_sorter, master_categories_id, products_mixed_discount_quantity) VALUES (1, 1, '31', 'MG200MMS', 'matrox/mg200mms.gif', '299.9900', 0, '2003-11-03 12:32:17', '2013-04-26 23:57:34', NULL, '23.00', 1, 1, 1, '1', '1', '1', 0, 0, 0, 0, 0, 1, '0', 0, 0, 0, '299.9900', 4, 1),
-(2, 1, '31', 'MG400-32MB', 'matrox/mg400-32mb.gif', '499.9900', 0, '2012-11-03 12:32:17', NULL, NULL, '23.00', 1, 1, 1, '1', '1', '1', 0, 0, 0, 0, 0, 1, '0', 0, 0, 0, '499.9900', 4, 1),
-(3, 1, '500', 'MSIMPRO', 'microsoft/msimpro.gif', '49.9900', 0, '2012-11-03 12:32:17', NULL, NULL, '7.00', 1, 1, 2, '1', '1', '1', 0, 0, 0, 0, 0, 1, '0', 0, 0, 0, '39.9900', 9, 1),
-(4, 1, '12', 'DVD-RPMK', 'dvd/replacement_killers.gif', '42.0000', 0, '2012-11-03 12:32:17', NULL, NULL, '23.00', 1, 1, 3, '1', '1', '1', 0, 0, 0, 0, 0, 1, '0', 0, 0, 0, '42.0000', 10, 1),
-(5, 1, '15', 'DVD-BLDRNDC', 'dvd/blade_runner.gif', '35.9900', 0, '2012-11-03 12:32:17', '2012-12-23 00:44:28', NULL, '7.00', 1, 1, 3, '2', '1', '1', 0, 0, 0, 0, 0, 1, '0', 0, 0, 0, '30.0000', 11, 1),
-(6, 1, '8', 'DVD-MATR', 'dvd/the_matrix.gif', '39.9900', 0, '2012-11-03 12:32:17', '2012-12-23 00:48:28', NULL, '7.00', 1, 1, 3, '2', '1', '1', 0, 0, 0, 0, 0, 1, '0', 0, 0, 0, '30.0000', 10, 1),
-(7, 1, '500', 'DVD-YGEM', 'dvd/youve_got_mail.gif', '34.9900', 0, '2012-11-03 12:32:17', '2013-04-27 14:53:17', NULL, '7.00', 1, 1, 3, '5', '1', '1', 0, 0, 0, 0, 0, 1, '0', 0, 0, 0, '34.9900', 12, 1),
-(8, 1, '499', 'DVD-ABUG', 'dvd/a_bugs_life.gif', '35.9900', 0, '2012-11-03 12:32:17', '2013-04-27 14:52:54', NULL, '7.00', 1, 1, 3, '6', '1', '1', 0, 0, 0, 0, 0, 1, '0', 10, 1, 1, '35.9900', 13, 1),
-(9, 1, '10', 'DVD-UNSG', 'dvd/under_siege.gif', '29.9900', 0, '2012-11-03 12:32:17', '2013-05-17 13:35:27', NULL, '7.00', 1, 1, 3, '0', '1', '1', 0, 0, 0, 0, 0, 1, '0', 0, 0, 0, '29.9900', 10, 1),
-(10, 1, '9', 'DVD-UNSG2', 'dvd/under_siege2.gif', '29.9900', 0, '2012-11-03 12:32:17', NULL, NULL, '7.00', 1, 1, 3, '1', '1', '1', 0, 0, 0, 0, 0, 1, '0', 0, 0, 0, '29.9900', 10, 1),
-(11, 1, '10', 'DVD-FDBL', 'dvd/fire_down_below.gif', '29.9900', 0, '2012-11-03 12:32:17', '2012-12-23 00:43:40', NULL, '7.00', 1, 1, 3, '0', '1', '1', 0, 0, 0, 0, 0, 1, '0', 0, 0, 0, '29.9900', 10, 1),
-(12, 1, '9', 'DVD-DHWV', 'dvd/die_hard_3.gif', '39.9900', 0, '2012-11-03 12:32:17', '2013-05-16 00:34:33', NULL, '7.00', 1, 1, 4, '6', '1', '1', 0, 0, 0, 0, 0, 1, '0', 0, 0, 0, '39.9900', 10, 1),
-(13, 1, '10', 'DVD-LTWP', 'dvd/lethal_weapon.gif', '34.9900', 0, '2012-11-03 12:32:17', '2013-04-27 00:07:35', NULL, '7.00', 1, 1, 3, '0', '1', '1', 0, 0, 0, 0, 0, 1, '0', 0, 0, 0, '34.9900', 10, 1),
-(14, 1, '9', 'DVD-REDC', 'dvd/red_corner.gif', '32.0000', 0, '2012-11-03 12:32:17', '2012-12-23 00:47:39', NULL, '7.00', 1, 1, 3, '1', '1', '1', 0, 0, 0, 0, 0, 1, '0', 0, 0, 0, '32.0000', 15, 1),
-(15, 1, '9', 'DVD-FRAN', 'dvd/frantic.gif', '35.0000', 0, '2012-11-03 12:32:17', '2012-12-23 00:43:55', NULL, '7.00', 1, 1, 3, '1', '1', '1', 0, 0, 0, 0, 0, 1, '0', 0, 0, 0, '35.0000', 14, 1),
-(16, 1, '9', 'DVD-CUFI', 'dvd/courage_under_fire.gif', '38.9900', 0, '2012-11-03 12:32:17', '2012-12-23 00:42:57', '2007-02-21 00:00:00', '7.00', 1, 1, 4, '1', '1', '1', 0, 0, 0, 0, 0, 1, '0', 0, 0, 0, '29.9900', 15, 1),
-(17, 1, '10', 'DVD-SPEED', 'dvd/speed.gif', '39.9900', 0, '2012-11-03 12:32:17', '2012-12-23 00:47:51', NULL, '7.00', 1, 1, 4, '0', '1', '1', 0, 0, 0, 0, 0, 1, '0', 0, 0, 0, '39.9900', 10, 1),
-(18, 1, '10', 'DVD-SPEED2', 'dvd/speed_2.gif', '42.0000', 0, '2012-11-03 12:32:17', NULL, NULL, '7.00', 1, 1, 4, '0', '1', '1', 0, 0, 0, 0, 0, 1, '0', 0, 0, 0, '42.0000', 10, 1),
-(19, 1, '10', 'DVD-TSAB', 'dvd/theres_something_about_mary.gif', '49.9900', 0, '2012-11-03 12:32:17', '2012-12-23 00:49:00', NULL, '7.00', 1, 1, 4, '0', '1', '1', 0, 0, 0, 0, 0, 1, '0', 0, 0, 0, '49.9900', 12, 1),
-(20, 1, '8', 'DVD-BELOVED', 'dvd/beloved.gif', '54.9900', 0, '2012-11-03 12:32:17', '2012-12-23 00:42:34', NULL, '7.00', 1, 1, 3, '2', '1', '1', 0, 0, 0, 0, 0, 1, '0', 0, 0, 0, '54.9900', 15, 1),
-(21, 1, '16', 'PC-SWAT3', 'sierra/swat_3.gif', '79.9900', 0, '2012-11-03 12:32:17', '2013-04-27 14:51:00', NULL, '7.00', 1, 1, 7, '0', '1', '1', 0, 0, 0, 0, 0, 1, '0', 0, 0, 0, '79.9900', 18, 1),
-(22, 1, '13', 'PC-UNTM', 'gt_interactive/unreal_tournament.gif', '89.9900', 0, '2012-11-03 12:32:17', '2012-12-23 00:49:29', NULL, '7.00', 1, 1, 8, '9', '1', '1', 0, 0, 0, 0, 0, 1, '0', 0, 0, 0, '89.9900', 19, 1),
-(23, 1, '16', 'PC-TWOF', 'gt_interactive/wheel_of_time.gif', '99.9900', 0, '2012-11-03 12:32:17', '2012-12-23 00:48:50', NULL, '10.00', 1, 1, 8, '0', '1', '1', 0, 0, 0, 0, 0, 1, '0', 0, 0, 0, '99.9900', 20, 1),
-(24, 1, '16', 'PC-DISC', 'gt_interactive/disciples.gif', '90.0000', 0, '2012-11-03 12:32:17', '2012-12-23 00:43:24', NULL, '8.00', 1, 1, 8, '1', '1', '1', 0, 0, 0, 0, 0, 1, '0', 0, 0, 0, '90.0000', 20, 1),
-(25, 1, '16', 'MSINTKB', 'microsoft/intkeyboardps2.gif', '69.9900', 0, '2012-11-03 12:32:17', '2013-01-04 03:02:41', NULL, '8.00', 1, 1, 2, '0', '1', '1', 0, 0, 0, 0, 0, 1, '0', 0, 0, 0, '69.9900', 8, 1),
-(26, 1, '9', 'MSIMEXP', 'microsoft/imexplorer.gif', '64.9500', 0, '2012-11-03 12:32:17', '2013-05-03 01:47:47', NULL, '8.00', 1, 1, 2, '17', '1', '1', 0, 0, 0, 0, 0, 1, '0', 0, 0, 0, '64.9500', 9, 1),
-(27, 1, '7', 'HPLJ1100XI', 'hewlett_packard/lj1100xi.gif', '499.9900', 0, '2012-11-03 12:32:17', '2012-12-23 00:45:03', NULL, '45.00', 1, 1, 9, '1', '1', '1', 0, 0, 0, 0, 0, 1, '0', 0, 0, 0, '499.9900', 5, 1),
-(28, 1, '999', 'GIFT005', 'gift_certificates/gv_5.gif', '5.0000', 1, '2012-11-03 12:32:17', '2013-01-10 02:57:18', NULL, '0.00', 1, 0, 0, '1', '1', '1', 0, 0, 0, 0, 0, 1, '0', 0, 0, 0, '5.0000', 21, 1),
-(29, 1, '985', 'GIFT 010', 'gift_certificates/gv_10.gif', '10.0000', 1, '2012-11-03 12:32:17', '2012-12-28 14:51:36', NULL, '0.00', 1, 0, 0, '15', '1', '1', 0, 0, 0, 0, 0, 1, '0', 0, 0, 0, '10.0000', 21, 1),
-(30, 1, '992', 'GIFT025', 'gift_certificates/gv_25.gif', '25.0000', 1, '2012-11-03 12:32:17', NULL, NULL, '0.00', 1, 0, 0, '8', '1', '1', 0, 0, 0, 0, 0, 1, '0', 0, 0, 0, '25.0000', 21, 1),
-(31, 1, '997', 'GIFT050', 'gift_certificates/gv_50.gif', '50.0000', 1, '2012-11-03 12:32:17', NULL, NULL, '0.00', 1, 0, 0, '4', '1', '1', 0, 0, 0, 0, 0, 1, '0', 0, 0, 0, '50.0000', 21, 1),
-(32, 1, '995', 'GIFT100', 'gift_certificates/gv_100.gif', '100.0000', 1, '2012-11-03 12:32:17', NULL, NULL, '0.00', 1, 0, 0, '5', '1', '1', 0, 0, 0, 0, 0, 1, '0', 0, 0, 0, '100.0000', 21, 1),
-(34, 1, '796', 'DVD-ABUG', 'dvd/a_bugs_life.gif', '35.9900', 0, '2012-11-07 22:03:45', '2013-01-01 14:16:01', '2005-02-21 00:00:00', '7.00', 1, 1, 3, '5', '1', '1', 0, 0, 0, 0, 0, 1, '0', 0, 0, 0, '35.9900', 22, 1),
-(36, 1, '700', 'HPLJ1100XI', 'hewlett_packard/lj1100xi.gif', '0.0000', 0, '2012-12-24 14:29:11', '2013-01-03 01:51:12', NULL, '45.00', 1, 1, 9, '0', '1', '1', 1, 0, 0, 0, 0, 1, '0', 0, 0, 0, '449.1000', 25, 1),
-(100, 1, '700', 'HPLJ1100XI', 'hewlett_packard/lj1100xi.gif', '0.0000', 0, '2013-01-08 14:06:13', '2013-01-08 14:06:50', NULL, '45.00', 1, 1, 9, '0', '1', '1', 1, 0, 0, 0, 0, 1, '0', 0, 0, 0, '336.8250', 25, 1),
-(39, 1, '997', 'TESTFREE', 'free.gif', '100.0000', 0, '2012-12-25 16:33:13', '2013-01-11 02:29:16', NULL, '1.00', 1, 1, 0, '3', '1', '1', 0, 1, 0, 1, 0, 1, '0', 0, 0, 0, '0.0000', 24, 1),
-(40, 1, '999', 'TESTCALL', 'call_for_price.jpg', '100.0000', 0, '2012-12-25 17:42:15', '2013-01-04 13:08:08', '2007-02-21 00:00:00', '1.00', 1, 1, 0, '0', '1', '1', 0, 0, 1, 1, 0, 1, '0', 0, 0, 0, '100.0000', 24, 1),
-(41, 1, '999', 'TESTCALL', 'call_for_price.jpg', '100.0000', 0, '2012-12-25 19:13:35', '2004-09-27 13:33:33', NULL, '1.00', 1, 1, 0, '0', '1', '1', 0, 0, 1, 1, 0, 1, '0', 0, 0, 0, '81.0000', 28, 0),
-(42, 1, '998', 'TESTFREE', 'free.gif', '100.0000', 0, '2012-12-25 19:14:16', '2012-12-25 19:15:00', NULL, '1.00', 1, 1, 0, '1', '1', '1', 0, 1, 0, 1, 0, 1, '0', 0, 0, 0, '0.0000', 28, 1),
-(43, 1, '999', 'TESTFREEATTRIB', 'free.gif', '100.0000', 0, '2012-12-25 20:44:06', '2013-01-21 16:23:29', NULL, '0.00', 1, 1, 0, '0', '1', '1', 0, 1, 0, 1, 0, 1, '0', 0, 0, 0, '0.0000', 24, 1),
-(44, 1, '999', 'TESTMINUNITSNOMIX', 'sample_image.gif', '100.0000', 0, '2012-12-25 21:38:59', '2013-01-22 13:15:41', NULL, '1.00', 1, 1, 0, '0', '4', '2', 0, 0, 0, 0, 0, 1, '0', 0, 0, 0, '90.0000', 22, 1),
-(46, 1, '981', 'TESTMINUNITSMIX', 'sample_image.gif', '100.0000', 0, '2012-12-25 21:53:07', '2012-12-29 02:00:50', NULL, '1.00', 1, 1, 0, '18', '4', '2', 0, 0, 0, 1, 0, 1, '0', 0, 0, 0, '90.0000', 22, 1),
-(47, 1, '9996', 'GIFT', 'gift_certificates/gv.gif', '0.0000', 1, '2012-12-27 22:56:57', '2004-09-29 20:11:51', NULL, '0.00', 1, 0, 0, '4', '1', '1', 1, 0, 0, 1, 0, 1, '0', 0, 0, 0, '5.0000', 21, 1),
-(48, 1, '9990', 'TEST1', '1_small.jpg', '39.0000', 0, '2012-12-28 02:27:47', '2013-01-11 02:56:37', NULL, '1.00', 1, 1, 0, '10', '1', '1', 0, 0, 0, 1, 0, 1, '0', 0, 0, 0, '39.0000', 23, 1),
-(49, 1, '900', 'TEST2', '2_small.jpg', '20.0000', 0, '2012-12-28 02:28:42', '2012-12-29 23:00:27', NULL, '0.50', 1, 1, 0, '0', '1', '1', 0, 0, 0, 1, 0, 1, '0', 0, 0, 0, '20.0000', 23, 1),
-(50, 1, '1000', 'TEST3', '3_small.jpg', '75.0000', 0, '2012-12-28 02:29:37', '2012-12-29 23:01:04', NULL, '1.50', 1, 1, 0, '0', '1', '1', 0, 0, 0, 1, 0, 1, '0', 0, 0, 0, '75.0000', 23, 1),
-(51, 1, '998', 'Free1', 'b_g_grid.gif', '25.0000', 0, '2012-12-28 11:51:05', '2013-01-21 17:03:32', NULL, '10.00', 1, 1, 0, '2', '1', '1', 0, 1, 0, 1, 1, 1, '0', 0, 0, 0, '0.0000', 24, 1),
-(52, 1, '997', 'Free2', 'b_p_grid.gif', '0.0000', 1, '2012-12-28 12:24:58', '2013-01-21 17:01:18', NULL, '2.00', 1, 1, 0, '2', '1', '1', 0, 1, 0, 1, 0, 1, '0', 0, 0, 0, '0.0000', 24, 1),
-(53, 1, '991', 'MINUNITSMIX', 'b_c_grid.gif', '25.0000', 0, '2012-12-28 23:26:44', '2013-01-11 02:22:35', NULL, '1.00', 1, 1, 0, '6', '6', '3', 0, 0, 0, 1, 0, 1, '0', 0, 0, 0, '20.0000', 23, 1),
-(54, 1, '991', 'MINUNITSNOMIX', 'waybkgnd.gif', '25.0000', 0, '2012-12-29 23:19:13', '2013-01-11 02:23:08', NULL, '1.00', 1, 1, 0, '0', '6', '3', 0, 0, 0, 0, 0, 1, '0', 0, 0, 0, '25.0000', 23, 1),
-(55, 1, '991', 'MINUNITSMIXSALE', 'b_b_grid.gif', '25.0000', 0, '2012-12-31 11:11:46', '2013-01-11 02:26:28', NULL, '1.00', 1, 1, 0, '0', '6', '3', 0, 0, 0, 1, 0, 1, '0', 0, 0, 0, '22.5000', 28, 1),
-(56, 1, '991', 'MINUNITSNOMIXSALE', 'b_w_grid.gif', '25.0000', 0, '2012-12-31 11:13:08', '2013-01-11 02:26:49', NULL, '1.00', 1, 1, 0, '0', '6', '3', 0, 0, 0, 0, 0, 1, '0', 0, 0, 0, '22.5000', 28, 1),
-(57, 1, '998', 'TESTFREEALL', 'free.gif', '0.0000', 0, '2012-12-31 11:36:09', '2013-01-21 16:55:19', NULL, '1.00', 1, 1, 0, '1', '1', '1', 0, 1, 0, 1, 1, 1, '0', 0, 0, 0, '0.0000', 24, 1),
-(59, 1, '700', 'HPLJ1100XI', 'hewlett_packard/lj1100xi.gif', '0.0000', 0, '2012-12-31 14:36:57', '2012-12-31 14:37:05', NULL, '45.00', 1, 1, 9, '0', '1', '1', 1, 0, 0, 0, 0, 1, '0', 0, 0, 0, '300.0000', 23, 1),
-(60, 1, '699', 'HPLJ1100XI', 'hewlett_packard/lj1100xi.gif', '499.7500', 0, '2013-01-02 01:34:55', '2013-01-02 01:41:37', NULL, '45.00', 1, 1, 9, '1', '1', '1', 0, 0, 0, 0, 0, 1, '0', 0, 0, 0, '449.7750', 28, 1),
-(61, 1, '699', 'HPLJ1100XI', 'hewlett_packard/lj1100xi.gif', '499.7500', 0, '2013-01-02 01:44:09', '2013-01-02 01:45:45', NULL, '45.00', 1, 1, 9, '1', '1', '1', 0, 0, 0, 0, 0, 1, '0', 0, 0, 0, '449.7750', 28, 1),
-(101, 1, '1000', 'Test120-90off-10', 'test_demo.jpg', '0.0000', 0, '2013-01-08 14:11:32', '2013-01-08 14:17:09', NULL, '1.00', 1, 1, 0, '0', '1', '1', 1, 0, 0, 1, 0, 1, '0', 0, 0, 0, '72.0000', 47, 1),
-(109, 1, '1000', 'HIDEQTYBOX', '1_small.jpg', '75.0000', 0, '2013-01-21 22:01:20', '2013-01-22 11:21:12', NULL, '1.00', 1, 1, 0, '0', '1', '1', 0, 0, 0, 1, 0, 1, '1', 0, 0, 0, '75.0000', 23, 1),
-(78, 1, '1000', 'Test25-10AttrAll', 'test_demo.jpg', '0.0000', 0, '2013-01-04 01:09:46', '2013-01-04 01:30:12', NULL, '0.00', 1, 1, 0, '0', '1', '1', 1, 0, 0, 1, 0, 1, '0', 0, 0, 0, '101.2500', 25, 1),
-(79, 1, '1000', 'Test25-AttrAll', 'test_demo.jpg', '0.0000', 0, '2013-01-04 01:28:52', '2013-01-04 01:33:55', NULL, '1.00', 1, 1, 0, '0', '1', '1', 1, 0, 0, 1, 0, 1, '0', 0, 0, 0, '150.0000', 23, 1),
-(74, 1, '700', 'HPLJ1100XI', 'hewlett_packard/lj1100xi.gif', '0.0000', 0, '2013-01-02 15:34:49', '2013-01-02 15:35:17', NULL, '45.00', 1, 1, 9, '0', '1', '1', 1, 0, 0, 0, 0, 1, '0', 0, 0, 0, '399.2000', 23, 1),
-(76, 1, '1000', 'Test25-10', 'test_demo.jpg', '100.0000', 0, '2013-01-03 23:08:33', NULL, NULL, '0.00', 1, 1, 0, '0', '1', '1', 0, 0, 0, 1, 0, 1, '0', 0, 0, 0, '67.5000', 28, 1),
-(80, 1, '1000', 'Test25', 'test_demo.jpg', '100.0000', 0, '2013-01-04 01:31:06', '2013-01-04 13:35:47', NULL, '1.00', 1, 1, 0, '0', '1', '1', 0, 0, 0, 1, 0, 1, '0', 0, 0, 0, '100.0000', 23, 1),
-(84, 1, '999', 'Test120', 'test_demo.jpg', '120.0000', 0, '2013-01-04 15:05:10', '2013-01-06 15:27:39', NULL, '1.00', 1, 1, 0, '1', '1', '1', 0, 0, 0, 1, 0, 1, '0', 0, 0, 0, '120.0000', 23, 1),
-(82, 1, '1000', 'Test120-5', 'test_demo.jpg', '120.0000', 0, '2013-01-04 14:50:38', '2013-01-04 17:09:03', NULL, '1.00', 1, 1, 0, '0', '1', '1', 0, 0, 0, 1, 0, 1, '0', 0, 0, 0, '115.0000', 27, 1),
-(83, 1, '1000', 'Test120-90-5', 'test_demo.jpg', '120.0000', 0, '2013-01-04 15:01:53', '2013-01-06 10:02:11', NULL, '1.00', 1, 1, 0, '0', '1', '1', 0, 0, 0, 1, 0, 1, '0', 0, 0, 0, '85.0000', 27, 1),
-(85, 1, '1000', 'Test90', 'test_demo.jpg', '120.0000', 0, '2013-01-04 15:19:00', '2013-01-06 10:00:35', NULL, '1.00', 1, 1, 0, '0', '1', '1', 0, 0, 0, 1, 0, 1, '0', 0, 0, 0, '90.0000', 23, 1),
-(88, 1, '1000', 'Test120-90-10-Skip', 'test_demo.jpg', '120.0000', 0, '2013-01-05 00:14:31', '2013-01-06 09:58:08', NULL, '1.00', 1, 1, 0, '0', '1', '1', 0, 0, 0, 1, 0, 1, '0', 0, 0, 0, '90.0000', 31, 1),
-(89, 1, '1000', 'Test120-90-10-Skip', 'test_demo.jpg', '120.0000', 0, '2013-01-05 00:41:40', '2013-01-06 09:57:42', NULL, '1.00', 1, 1, 0, '0', '1', '1', 0, 0, 0, 1, 0, 1, '0', 0, 0, 0, '108.0000', 31, 1),
-(95, 1, '1000', 'Test120-25-New100-Skip', 'test_demo.jpg', '120.0000', 0, '2013-01-07 02:35:44', '2013-01-07 02:37:27', NULL, '1.00', 1, 1, 0, '0', '1', '1', 0, 0, 0, 1, 0, 1, '0', 0, 0, 0, '90.0000', 51, 1),
-(90, 1, '999', 'Test120-90-10', 'test_demo.jpg', '120.0000', 0, '2013-01-05 23:55:18', '2013-01-06 00:08:58', NULL, '1.00', 1, 1, 0, '1', '1', '1', 0, 0, 0, 1, 0, 1, '0', 0, 0, 0, '81.0000', 45, 1),
-(92, 1, '1000', 'Test120-90off-10', 'test_demo.jpg', '120.0000', 0, '2013-01-05 23:58:54', '2013-01-06 00:09:28', NULL, '1.00', 1, 1, 0, '0', '1', '1', 0, 0, 0, 1, 0, 1, '0', 0, 0, 0, '108.0000', 45, 1),
-(93, 1, '1000', 'Test120-New100', 'test_demo.jpg', '120.0000', 0, '2013-01-06 00:02:32', '2013-01-06 00:04:25', NULL, '1.00', 1, 1, 0, '0', '1', '1', 0, 0, 0, 1, 0, 1, '0', 0, 0, 0, '100.0000', 46, 1),
-(94, 1, '1000', 'Test120-25-New100', 'test_demo.jpg', '120.0000', 0, '2013-01-06 00:04:31', '2013-01-06 00:07:08', NULL, '1.00', 1, 1, 0, '0', '1', '1', 0, 0, 0, 1, 0, 1, '0', 0, 0, 0, '100.0000', 46, 1),
-(96, 1, '1000', 'Test120-New100-Off-Skip', 'test_demo.jpg', '120.0000', 0, '2013-01-07 02:36:52', '2013-01-07 02:37:29', NULL, '1.00', 1, 1, 0, '0', '1', '1', 0, 0, 0, 1, 0, 1, '0', 0, 0, 0, '100.0000', 51, 1),
-(97, 1, '1000', 'Test120-90-10-Price', 'test_demo.jpg', '120.0000', 0, '2013-01-07 11:26:34', '2013-01-07 11:27:24', NULL, '1.00', 1, 1, 0, '0', '1', '1', 0, 0, 0, 1, 0, 1, '0', 0, 0, 0, '108.0000', 32, 1),
-(98, 1, '1000', 'Test120-90off-10-Price', 'test_demo.jpg', '120.0000', 0, '2013-01-07 11:28:16', '2013-01-07 11:29:57', NULL, '1.00', 1, 1, 0, '0', '1', '1', 0, 0, 0, 1, 0, 1, '0', 0, 0, 0, '108.0000', 32, 1),
-(99, 1, '997', 'FreeShipping', 'small_00.jpg', '25.0000', 0, '2013-01-07 13:27:30', '2013-01-21 01:48:48', NULL, '5.00', 1, 1, 0, '3', '1', '1', 0, 0, 0, 1, 1, 1, '0', 0, 0, 0, '25.0000', 23, 1),
-(104, 1, '1000', 'HIDEQTY', '1_small.jpg', '75.0000', 0, '2013-01-11 03:02:51', '2013-01-22 11:21:36', NULL, '1.00', 1, 1, 0, '0', '1', '1', 0, 0, 0, 1, 0, 0, '0', 0, 0, 0, '75.0000', 23, 1),
-(105, 1, '999', 'MAXSAMPLE-1', 'waybkgnd.gif', '50.0000', 0, '2013-01-11 14:10:59', '2013-01-11 14:36:00', NULL, '1.00', 1, 1, 0, '1', '1', '1', 0, 0, 0, 1, 0, 1, '1', 0, 0, 0, '50.0000', 22, 1),
-(106, 1, '1000', 'MAXSAMPLE-3', 'waybkgnd.gif', '50.0000', 0, '2013-01-11 14:36:08', '2013-01-11 15:32:56', NULL, '1.00', 1, 1, 0, '0', '1', '1', 0, 0, 0, 1, 0, 1, '3', 0, 0, 0, '50.0000', 22, 1),
-(107, 1, '995', 'FreeShippingNoWeight', 'small_00.jpg', '25.0000', 0, '2013-01-21 01:41:22', '2013-01-21 02:01:54', NULL, '0.00', 1, 1, 0, '0', '1', '1', 0, 0, 0, 1, 0, 1, '0', 0, 0, 0, '25.0000', 23, 1),
-(108, 1, '0', 'SoldOut', 'small_00.jpg', '25.0000', 0, '2013-01-21 01:53:20', NULL, NULL, '3.00', 1, 1, 0, '0', '1', '1', 0, 0, 0, 1, 0, 1, '0', 0, 0, 0, '25.0000', 23, 1),
-(110, 1, '1000', 'Test120-5SKIP', 'test_demo.jpg', '120.0000', 0, '2013-01-24 16:09:52', '2013-01-24 16:15:25', NULL, '1.00', 1, 1, 0, '0', '1', '1', 0, 0, 0, 1, 0, 1, '0', 0, 0, 0, '115.0000', 52, 1),
-(111, 1, '1000', 'Test120-90-5SKIP', 'test_demo.jpg', '120.0000', 0, '2013-01-24 16:10:12', '2013-01-24 16:15:27', NULL, '1.00', 1, 1, 0, '0', '1', '1', 0, 0, 0, 1, 0, 1, '0', 0, 0, 0, '90.0000', 52, 1),
-(112, 1, '998', 'Test2', '', '25.0000', 0, '2013-04-26 02:24:57', '2013-04-26 02:25:44', NULL, '1.00', 1, 1, 0, '2', '1', '1', 0, 0, 0, 1, 0, 1, '0', 2, 0, 0, '25.0000', 53, 1),
-(113, 1, '994', 'Test4', '', '25.0000', 0, '2013-04-26 02:25:03', '2013-04-26 02:25:35', NULL, '1.00', 1, 1, 0, '6', '1', '1', 0, 0, 0, 1, 0, 1, '0', 4, 0, 0, '25.0000', 53, 1),
-(114, 1, '998', 'Test5', '', '25.0000', 0, '2013-04-26 02:25:53', '2013-04-26 02:26:15', NULL, '1.00', 1, 1, 0, '2', '1', '1', 0, 0, 0, 1, 0, 1, '0', 5, 0, 0, '25.0000', 53, 1),
-(115, 1, '999', 'Test1', '', '25.0000', 0, '2013-04-26 02:26:23', '2013-05-06 21:50:19', NULL, '1.00', 1, 1, 0, '1', '1', '1', 0, 0, 0, 1, 0, 1, '0', 1, 0, 0, '25.0000', 53, 1),
-(116, 1, '997', 'Test8', '', '25.0000', 0, '2013-04-26 02:26:54', '2013-04-26 02:27:18', NULL, '1.00', 1, 1, 0, '3', '1', '1', 0, 0, 0, 1, 0, 1, '0', 8, 0, 0, '25.0000', 53, 1),
-(117, 1, '995', 'Test3', '', '25.0000', 0, '2013-04-26 02:27:24', '2004-10-03 12:20:14', NULL, '1.00', 1, 1, 0, '5', '1', '1', 0, 0, 0, 1, 0, 1, '0', 3, 0, 0, '25.0000', 53, 1),
-(118, 1, '999', 'Test10', '', '25.0000', 0, '2013-04-26 02:27:52', '2013-04-26 02:28:14', NULL, '1.00', 1, 1, 0, '1', '1', '1', 0, 0, 0, 1, 0, 1, '0', 10, 0, 0, '25.0000', 53, 1),
-(119, 1, '1000', 'Test6', '', '25.0000', 0, '2013-04-26 02:28:22', '2004-10-06 18:26:25', NULL, '1.00', 1, 1, 0, '0', '1', '1', 0, 0, 0, 1, 0, 1, '0', 6, 0, 0, '25.0000', 53, 1),
-(120, 1, '1000', 'Test7', '', '25.0000', 0, '2013-04-26 02:29:03', '2013-04-26 02:29:23', NULL, '1.00', 1, 1, 0, '0', '1', '1', 0, 0, 0, 1, 0, 1, '0', 7, 0, 0, '25.0000', 53, 1),
-(121, 1, '999', 'Test12', '', '25.0000', 0, '2013-04-26 02:29:36', '2013-04-28 13:02:47', NULL, '1.00', 1, 1, 0, '1', '1', '1', 0, 0, 0, 1, 0, 1, '0', 12, 0, 0, '25.0000', 53, 1),
-(122, 1, '998', 'Test9', '', '25.0000', 0, '2013-04-26 02:30:12', '2013-04-26 02:30:32', NULL, '1.00', 1, 1, 0, '2', '1', '1', 0, 0, 0, 1, 0, 1, '0', 9, 0, 0, '25.0000', 53, 1),
-(123, 1, '999', 'Test11', '', '25.0000', 0, '2013-04-26 02:30:41', '2013-04-26 02:31:04', NULL, '1.00', 1, 1, 0, '1', '1', '1', 0, 0, 0, 1, 0, 1, '0', 11, 0, 0, '25.0000', 53, 1),
-(130, 1, '1000', 'Special', '2_small.jpg', '15.0000', 0, '2013-04-28 02:19:53', '2004-10-06 00:05:34', NULL, '2.00', 1, 1, 0, '0', '1', '1', 0, 0, 0, 1, 0, 1, '0', 0, 1, 1, '10.0000', 55, 1),
-(127, 1, '1000', 'Normal', 'small_00.jpg', '15.0000', 0, '2013-04-28 01:51:35', '2013-04-28 14:23:29', NULL, '2.00', 1, 1, 0, '0', '1', '1', 0, 0, 0, 1, 0, 1, '0', 0, 1, 0, '15.0000', 55, 1),
-(131, 1, '1000', 'PERWORDREQ', '', '0.0000', 0, '2013-05-01 01:31:28', '2013-05-07 21:30:23', NULL, '1.00', 1, 1, 0, '0', '1', '1', 1, 0, 0, 1, 0, 1, '0', 0, 0, 0, '5.0000', 57, 1),
-(132, 1, '997', 'GolfClub', '9_small.jpg', '0.0000', 0, '2013-05-02 12:36:12', '2013-05-02 18:04:36', NULL, '1.00', 1, 1, 0, '3', '1', '1', 1, 0, 0, 1, 0, 1, '0', 0, 0, 0, '13.0050', 58, 1),
-(133, 1, '1000', 'DOWNLOAD2', '2_small.jpg', '49.9900', 0, '2013-05-02 23:51:33', '2013-05-03 00:06:58', NULL, '0.00', 1, 1, 0, '2', '1', '1', 0, 0, 0, 1, 0, 1, '0', 0, 0, 0, '49.9900', 60, 1),
-(134, 1, '1000', 'PERLETTERREQ', '', '0.0000', 0, '2013-05-07 21:23:58', '2013-05-07 21:29:50', NULL, '1.00', 1, 1, 0, '0', '1', '1', 1, 0, 0, 1, 0, 1, '0', 0, 0, 0, '5.0000', 57, 1),
-(154, 1, '10000', 'ROPE', '9_small.jpg', '1.0000', 0, '2013-05-16 21:08:08', '2013-07-12 17:18:46', NULL, '0.00', 1, 1, 0, '0', '10', '1', 0, 0, 0, 1, 0, 1, '0', 0, 0, 0, '0.9000', 58, 0),
-(155, 1, '1000', 'PRICEFACTOR', 'sample_image.gif', '10.0000', 0, '2013-05-17 23:03:10', '2013-07-12 17:21:04', NULL, '1.00', 1, 1, 0, '0', '1', '1', 0, 0, 0, 1, 0, 1, '0', 0, 0, 0, '10.0000', 56, 1),
-(156, 1, '1000', 'PRICEFACTOROFF', 'sample_image.gif', '10.0000', 0, '2013-05-17 23:05:24', '2013-05-17 23:10:12', NULL, '1.00', 1, 1, 0, '0', '1', '1', 0, 0, 0, 1, 0, 1, '0', 0, 0, 0, '10.0000', 56, 1),
-(157, 1, '1000', 'PRICEFACTOROFFATTR', 'sample_image.gif', '10.0000', 0, '2013-05-17 23:10:18', '2013-05-17 23:13:48', NULL, '1.00', 1, 1, 0, '0', '1', '1', 1, 0, 0, 1, 0, 1, '0', 0, 0, 0, '10.0000', 56, 1),
-(158, 1, '1000', 'ONETIME', 'b_b_grid.gif', '45.0000', 0, '2013-05-17 23:22:08', NULL, NULL, '1.00', 1, 1, 0, '0', '1', '1', 0, 0, 0, 1, 0, 1, '0', 0, 0, 0, '45.0000', 56, 1),
-(159, 1, '10000', 'ATTQTYPRICE', 'b_c_grid.gif', '25.0000', 0, '2013-05-17 23:29:31', '2013-05-17 23:49:56', NULL, '1.00', 1, 1, 0, '0', '1', '1', 0, 0, 0, 1, 0, 1, '0', 0, 0, 0, '25.0000', 56, 1),
-(160, 1, '997', 'GolfClub', '9_small.jpg', '0.0000', 0, '2013-05-18 10:14:35', '2013-05-18 10:15:16', NULL, '1.00', 1, 1, 0, '0', '1', '1', 1, 0, 0, 1, 0, 1, '0', 0, 0, 0, '14.4500', 61, 1),
-(165, 1, '10000', 'ROPE', '9_small.jpg', '1.0000', 0, '2013-05-18 10:42:50', '2013-07-12 17:18:12', NULL, '0.00', 1, 1, 0, '0', '10', '1', 0, 0, 0, 1, 0, 1, '0', 0, 0, 0, '1.0000', 61, 0),
-(166, 2, '10000', 'RTBHUNTER', 'sooty.jpg', '4.9900', 0, '2013-05-18 10:42:50', '2013-05-18 10:43:00', NULL, '3.00', 1, 1, 0, '0', '1', '1', 0, 0, 0, 1, 0, 1, '0', 0, 0, 0, '3.0000', 62, 1),
-(167, 3, '0', '', '', '0.0000', 0, '2013-05-18 10:42:50', '2013-08-06 00:39:10', NULL, '0.00', 1, 0, 0, '0', '1', '1', 0, 0, 0, 0, 0, 0, '0', 0, 0, 0, '0.0000', 63, 1),
-(168, 1, '1000', 'PGT', 'samples/1_small.jpg', '3.9500', 0, '2013-07-12 15:25:32', '2013-07-12 16:26:08', NULL, '1.00', 1, 1, 0, '0', '1', '1', 0, 0, 0, 1, 0, 1, '0', 10, 0, 0, '3.9500', 64, 1),
-(169, 2, '1000', 'PMT', 'samples/2_small.jpg', '3.9500', 0, '2013-07-12 15:27:50', '2013-07-12 16:29:01', NULL, '1.00', 1, 1, NULL, '0', '1', '1', 0, 0, 0, 1, 0, 1, '0', 20, 0, 0, '3.9500', 64, 1),
-(170, 3, '0', '', 'samples/3_small.jpg', '0.0000', 0, '2013-07-12 15:29:23', '2004-09-27 23:11:25', NULL, '0.00', 1, 0, 0, '0', '1', '1', 0, 0, 0, 0, 0, 0, '0', 30, 0, 0, '0.0000', 64, 1),
-(171, 4, '1000', 'DPT', 'samples/4_small.jpg', '3.9500', 0, '2013-07-12 15:32:40', '2013-07-12 17:46:49', NULL, '0.00', 1, 1, 0, '0', '1', '1', 0, 0, 0, 1, 0, 1, '0', 40, 0, 0, '3.9500', 64, 1),
-(172, 5, '1000', 'PFS', 'samples/5_small.jpg', '3.9500', 0, '2013-07-12 15:39:18', '2013-07-12 23:08:43', NULL, '5.00', 1, 0, 0, '0', '1', '1', 0, 0, 0, 1, 1, 1, '0', 50, 0, 0, '3.9500', 64, 1),
-(173, 1, '1000', 'Book', 'b_g_grid.gif', '0.0000', 0, '2013-08-24 23:54:34', '2013-08-26 02:50:59', NULL, '0.00', 1, 1, 0, '0', '1', '1', 1, 0, 0, 1, 0, 1, '0', 0, 0, 0, '52.5000', 61, 1),
-(174, 1, '999', 'TESTCALL', 'call_for_price.jpg', '0.0000', 0, '2013-08-27 13:25:44', '2013-08-27 13:28:54', '2007-02-21 00:00:00', '1.00', 1, 1, 0, '0', '1', '1', 0, 0, 1, 1, 0, 1, '0', 0, 0, 0, '0.0000', 24, 0),
-(175, 1, '1000', 'Normal', '1_small.jpg', '60.0000', 0, '2013-08-27 23:32:52', '2013-08-05 17:13:20', NULL, '2.00', 1, 1, 0, '0', '1', '1', 0, 0, 0, 0, 0, 1, '0', 0, 1, 0, '60.0000', 55, 1),
-(176, 1, '1000', 'Normal', 'small_00.jpg', '100.0000', 0, '2013-08-05 16:45:25', '2013-08-05 16:47:22', NULL, '2.00', 1, 1, 0, '0', '1', '1', 0, 0, 0, 1, 0, 1, '0', 0, 1, 0, '100.0000', 55, 1),
-(177, 1, '1000', 'Special', '2_small.jpg', '100.0000', 0, '2013-08-05 16:47:45', '2013-08-06 00:05:48', NULL, '2.00', 1, 1, 0, '0', '1', '1', 0, 0, 0, 1, 0, 1, '0', 0, 1, 1, '75.0000', 55, 1),
-(179, 1, '1000', 'DOWNLOAD1', '1_small.jpg', '39.0000', 0, '2012-10-06 00:08:33', '2012-10-06 00:18:51', NULL, '0.00', 1, 1, 0, '0', '1', '1', 0, 0, 0, 1, 0, 1, '0', 0, 0, 0, '39.0000', 60, 1),
-(178, 1, '1000', 'Normal', '1_small.jpg', '60.0000', 0, '2012-10-05 16:54:52', '2012-10-05 17:15:02', NULL, '2.00', 1, 1, 0, '0', '1', '1', 0, 0, 0, 0, 0, 1, '0', 0, 1, 0, '50.0000', 55, 1);
+INSERT INTO products (products_id, products_type, products_quantity, products_model, products_image, products_price, products_virtual, products_date_added, products_last_modified, products_date_available, products_weight, products_status, products_tax_class_id, manufacturers_id, products_ordered, products_quantity_order_min, products_quantity_order_units, products_priced_by_attribute, product_is_free, product_is_call, products_quantity_mixed, product_is_always_free_shipping, products_qty_box_status, products_quantity_order_max, products_sort_order, products_discount_type, products_discount_type_from, products_price_sorter, master_categories_id, products_mixed_discount_quantity) VALUES (1, 1, '31', 'MG200MMS', 'matrox/mg200mms.gif', '299.9900', 0, '2003-11-03 12:32:17', '2015-10-07 23:57:34', NULL, '23.00', 1, 1, 1, '1', '1', '1', 0, 0, 0, 0, 0, 1, '0', 0, 0, 0, '299.9900', 4, 1),
+(2, 1, '31', 'MG400-32MB', 'matrox/mg400-32mb.gif', '499.9900', 0, '2015-12-15 12:32:17', NULL, NULL, '23.00', 1, 1, 1, '1', '1', '1', 0, 0, 0, 0, 0, 1, '0', 0, 0, 0, '499.9900', 4, 1),
+(3, 1, '500', 'MSIMPRO', 'microsoft/msimpro.gif', '49.9900', 0, '2015-12-15 12:32:17', NULL, NULL, '7.00', 1, 1, 2, '1', '1', '1', 0, 0, 0, 0, 0, 1, '0', 0, 0, 0, '39.9900', 9, 1),
+(4, 1, '12', 'DVD-RPMK', 'dvd/replacement_killers.gif', '42.0000', 0, '2015-12-15 12:32:17', NULL, NULL, '23.00', 1, 1, 3, '1', '1', '1', 0, 0, 0, 0, 0, 1, '0', 0, 0, 0, '42.0000', 10, 1),
+(5, 1, '15', 'DVD-BLDRNDC', 'dvd/blade_runner.gif', '35.9900', 0, '2015-12-15 12:32:17', '2015-12-23 00:44:28', NULL, '7.00', 1, 1, 3, '2', '1', '1', 0, 0, 0, 0, 0, 1, '0', 0, 0, 0, '30.0000', 11, 1),
+(6, 1, '8', 'DVD-MATR', 'dvd/the_matrix.gif', '39.9900', 0, '2015-12-15 12:32:17', '2015-12-23 00:48:28', NULL, '7.00', 1, 1, 3, '2', '1', '1', 0, 0, 0, 0, 0, 1, '0', 0, 0, 0, '30.0000', 10, 1),
+(7, 1, '500', 'DVD-YGEM', 'dvd/youve_got_mail.gif', '34.9900', 0, '2015-12-15 12:32:17', '2015-11-27 14:53:17', NULL, '7.00', 1, 1, 3, '5', '1', '1', 0, 0, 0, 0, 0, 1, '0', 0, 0, 0, '34.9900', 12, 1),
+(8, 1, '499', 'DVD-ABUG', 'dvd/a_bugs_life.gif', '35.9900', 0, '2015-12-15 12:32:17', '2015-11-27 14:52:54', NULL, '7.00', 1, 1, 3, '6', '1', '1', 0, 0, 0, 0, 0, 1, '0', 10, 1, 1, '35.9900', 13, 1),
+(9, 1, '10', 'DVD-UNSG', 'dvd/under_siege.gif', '29.9900', 0, '2015-12-15 12:32:17', '2015-06-17 13:35:27', NULL, '7.00', 1, 1, 3, '0', '1', '1', 0, 0, 0, 0, 0, 1, '0', 0, 0, 0, '29.9900', 10, 1),
+(10, 1, '9', 'DVD-UNSG2', 'dvd/under_siege2.gif', '29.9900', 0, '2015-12-15 12:32:17', NULL, NULL, '7.00', 1, 1, 3, '1', '1', '1', 0, 0, 0, 0, 0, 1, '0', 0, 0, 0, '29.9900', 10, 1),
+(11, 1, '10', 'DVD-FDBL', 'dvd/fire_down_below.gif', '29.9900', 0, '2015-12-15 12:32:17', '2015-12-23 00:43:40', NULL, '7.00', 1, 1, 3, '0', '1', '1', 0, 0, 0, 0, 0, 1, '0', 0, 0, 0, '29.9900', 10, 1),
+(12, 1, '9', 'DVD-DHWV', 'dvd/die_hard_3.gif', '39.9900', 0, '2015-12-15 12:32:17', '2015-06-16 00:34:33', NULL, '7.00', 1, 1, 4, '6', '1', '1', 0, 0, 0, 0, 0, 1, '0', 0, 0, 0, '39.9900', 10, 1),
+(13, 1, '10', 'DVD-LTWP', 'dvd/lethal_weapon.gif', '34.9900', 0, '2015-12-15 12:32:17', '2015-11-27 00:07:35', NULL, '7.00', 1, 1, 3, '0', '1', '1', 0, 0, 0, 0, 0, 1, '0', 0, 0, 0, '34.9900', 10, 1),
+(14, 1, '9', 'DVD-REDC', 'dvd/red_corner.gif', '32.0000', 0, '2015-12-15 12:32:17', '2015-12-23 00:47:39', NULL, '7.00', 1, 1, 3, '1', '1', '1', 0, 0, 0, 0, 0, 1, '0', 0, 0, 0, '32.0000', 15, 1),
+(15, 1, '9', 'DVD-FRAN', 'dvd/frantic.gif', '35.0000', 0, '2015-12-15 12:32:17', '2015-12-23 00:43:55', NULL, '7.00', 1, 1, 3, '1', '1', '1', 0, 0, 0, 0, 0, 1, '0', 0, 0, 0, '35.0000', 14, 1),
+(16, 1, '9', 'DVD-CUFI', 'dvd/courage_under_fire.gif', '38.9900', 0, '2015-12-15 12:32:17', '2015-12-23 00:42:57', '2007-02-21 00:00:00', '7.00', 1, 1, 4, '1', '1', '1', 0, 0, 0, 0, 0, 1, '0', 0, 0, 0, '29.9900', 15, 1),
+(17, 1, '10', 'DVD-SPEED', 'dvd/speed.gif', '39.9900', 0, '2015-12-15 12:32:17', '2015-12-23 00:47:51', NULL, '7.00', 1, 1, 4, '0', '1', '1', 0, 0, 0, 0, 0, 1, '0', 0, 0, 0, '39.9900', 10, 1),
+(18, 1, '10', 'DVD-SPEED2', 'dvd/speed_2.gif', '42.0000', 0, '2015-12-15 12:32:17', NULL, NULL, '7.00', 1, 1, 4, '0', '1', '1', 0, 0, 0, 0, 0, 1, '0', 0, 0, 0, '42.0000', 10, 1),
+(19, 1, '10', 'DVD-TSAB', 'dvd/theres_something_about_mary.gif', '49.9900', 0, '2015-12-15 12:32:17', '2015-12-23 00:49:00', NULL, '7.00', 1, 1, 4, '0', '1', '1', 0, 0, 0, 0, 0, 1, '0', 0, 0, 0, '49.9900', 12, 1),
+(20, 1, '8', 'DVD-BELOVED', 'dvd/beloved.gif', '54.9900', 0, '2015-12-15 12:32:17', '2015-12-23 00:42:34', NULL, '7.00', 1, 1, 3, '2', '1', '1', 0, 0, 0, 0, 0, 1, '0', 0, 0, 0, '54.9900', 15, 1),
+(21, 1, '16', 'PC-SWAT3', 'sierra/swat_3.gif', '79.9900', 0, '2015-12-15 12:32:17', '2015-11-27 14:51:00', NULL, '7.00', 1, 1, 7, '0', '1', '1', 0, 0, 0, 0, 0, 1, '0', 0, 0, 0, '79.9900', 18, 1),
+(22, 1, '13', 'PC-UNTM', 'gt_interactive/unreal_tournament.gif', '89.9900', 0, '2015-12-15 12:32:17', '2015-12-23 00:49:29', NULL, '7.00', 1, 1, 8, '9', '1', '1', 0, 0, 0, 0, 0, 1, '0', 0, 0, 0, '89.9900', 19, 1),
+(23, 1, '16', 'PC-TWOF', 'gt_interactive/wheel_of_time.gif', '99.9900', 0, '2015-12-15 12:32:17', '2015-12-23 00:48:50', NULL, '10.00', 1, 1, 8, '0', '1', '1', 0, 0, 0, 0, 0, 1, '0', 0, 0, 0, '99.9900', 20, 1),
+(24, 1, '16', 'PC-DISC', 'gt_interactive/disciples.gif', '90.0000', 0, '2015-12-15 12:32:17', '2015-12-23 00:43:24', NULL, '8.00', 1, 1, 8, '1', '1', '1', 0, 0, 0, 0, 0, 1, '0', 0, 0, 0, '90.0000', 20, 1),
+(25, 1, '16', 'MSINTKB', 'microsoft/intkeyboardps2.gif', '69.9900', 0, '2015-12-15 12:32:17', '2015-05-04 03:02:41', NULL, '8.00', 1, 1, 2, '0', '1', '1', 0, 0, 0, 0, 0, 1, '0', 0, 0, 0, '69.9900', 8, 1),
+(26, 1, '9', 'MSIMEXP', 'microsoft/imexplorer.gif', '64.9500', 0, '2015-12-15 12:32:17', '2015-06-03 01:47:47', NULL, '8.00', 1, 1, 2, '17', '1', '1', 0, 0, 0, 0, 0, 1, '0', 0, 0, 0, '64.9500', 9, 1),
+(27, 1, '7', 'HPLJ1100XI', 'hewlett_packard/lj1100xi.gif', '499.9900', 0, '2015-12-15 12:32:17', '2015-12-23 00:45:03', NULL, '45.00', 1, 1, 9, '1', '1', '1', 0, 0, 0, 0, 0, 1, '0', 0, 0, 0, '499.9900', 5, 1),
+(28, 1, '999', 'GIFT005', 'gift_certificates/gv_5.gif', '5.0000', 1, '2015-12-15 12:32:17', '2015-05-10 02:57:18', NULL, '0.00', 1, 0, 0, '1', '1', '1', 0, 0, 0, 0, 0, 1, '0', 0, 0, 0, '5.0000', 21, 1),
+(29, 1, '985', 'GIFT 010', 'gift_certificates/gv_10.gif', '10.0000', 1, '2015-12-15 12:32:17', '2015-12-22 14:51:36', NULL, '0.00', 1, 0, 0, '15', '1', '1', 0, 0, 0, 0, 0, 1, '0', 0, 0, 0, '10.0000', 21, 1),
+(30, 1, '992', 'GIFT025', 'gift_certificates/gv_25.gif', '25.0000', 1, '2015-12-15 12:32:17', NULL, NULL, '0.00', 1, 0, 0, '8', '1', '1', 0, 0, 0, 0, 0, 1, '0', 0, 0, 0, '25.0000', 21, 1),
+(31, 1, '997', 'GIFT050', 'gift_certificates/gv_50.gif', '50.0000', 1, '2015-12-15 12:32:17', NULL, NULL, '0.00', 1, 0, 0, '4', '1', '1', 0, 0, 0, 0, 0, 1, '0', 0, 0, 0, '50.0000', 21, 1),
+(32, 1, '995', 'GIFT100', 'gift_certificates/gv_100.gif', '100.0000', 1, '2015-12-15 12:32:17', NULL, NULL, '0.00', 1, 0, 0, '5', '1', '1', 0, 0, 0, 0, 0, 1, '0', 0, 0, 0, '100.0000', 21, 1),
+(34, 1, '796', 'DVD-ABUG', 'dvd/a_bugs_life.gif', '35.9900', 0, '2012-11-07 22:03:45', '2015-05-01 14:16:01', '2005-02-21 00:00:00', '7.00', 1, 1, 3, '5', '1', '1', 0, 0, 0, 0, 0, 1, '0', 0, 0, 0, '35.9900', 22, 1),
+(36, 1, '700', 'HPLJ1100XI', 'hewlett_packard/lj1100xi.gif', '0.0000', 0, '2015-12-24 14:29:11', '2015-05-03 01:51:12', NULL, '45.00', 1, 1, 9, '0', '1', '1', 1, 0, 0, 0, 0, 1, '0', 0, 0, 0, '449.1000', 25, 1),
+(100, 1, '700', 'HPLJ1100XI', 'hewlett_packard/lj1100xi.gif', '0.0000', 0, '2015-05-08 14:06:13', '2015-05-08 14:06:50', NULL, '45.00', 1, 1, 9, '0', '1', '1', 1, 0, 0, 0, 0, 1, '0', 0, 0, 0, '336.8250', 25, 1),
+(39, 1, '997', 'TESTFREE', 'free.gif', '100.0000', 0, '2015-12-02 16:33:13', '2015-05-11 02:29:16', NULL, '1.00', 1, 1, 0, '3', '1', '1', 0, 1, 0, 1, 0, 1, '0', 0, 0, 0, '0.0000', 24, 1),
+(40, 1, '999', 'TESTCALL', 'call_for_price.jpg', '100.0000', 0, '2015-12-02 17:42:15', '2015-05-04 13:08:08', '2007-02-21 00:00:00', '1.00', 1, 1, 0, '0', '1', '1', 0, 0, 1, 1, 0, 1, '0', 0, 0, 0, '100.0000', 24, 1),
+(41, 1, '999', 'TESTCALL', 'call_for_price.jpg', '100.0000', 0, '2015-12-02 19:13:35', '2004-09-27 13:33:33', NULL, '1.00', 1, 1, 0, '0', '1', '1', 0, 0, 1, 1, 0, 1, '0', 0, 0, 0, '81.0000', 28, 0),
+(42, 1, '998', 'TESTFREE', 'free.gif', '100.0000', 0, '2015-12-02 19:14:16', '2015-12-02 19:15:00', NULL, '1.00', 1, 1, 0, '1', '1', '1', 0, 1, 0, 1, 0, 1, '0', 0, 0, 0, '0.0000', 28, 1),
+(43, 1, '999', 'TESTFREEATTRIB', 'free.gif', '100.0000', 0, '2015-12-02 20:44:06', '2015-11-01 16:23:29', NULL, '0.00', 1, 1, 0, '0', '1', '1', 0, 1, 0, 1, 0, 1, '0', 0, 0, 0, '0.0000', 24, 1),
+(44, 1, '999', 'TESTMINUNITSNOMIX', 'sample_image.gif', '100.0000', 0, '2015-12-02 21:38:59', '2015-05-22 13:15:41', NULL, '1.00', 1, 1, 0, '0', '4', '2', 0, 0, 0, 0, 0, 1, '0', 0, 0, 0, '90.0000', 22, 1),
+(46, 1, '981', 'TESTMINUNITSMIX', 'sample_image.gif', '100.0000', 0, '2015-12-02 21:53:07', '2015-12-01 02:00:50', NULL, '1.00', 1, 1, 0, '18', '4', '2', 0, 0, 0, 1, 0, 1, '0', 0, 0, 0, '90.0000', 22, 1),
+(47, 1, '9996', 'GIFT', 'gift_certificates/gv.gif', '0.0000', 1, '2015-12-27 22:56:57', '2004-09-29 20:11:51', NULL, '0.00', 1, 0, 0, '4', '1', '1', 1, 0, 0, 1, 0, 1, '0', 0, 0, 0, '5.0000', 21, 1),
+(48, 1, '9990', 'TEST1', '1_small.jpg', '39.0000', 0, '2015-12-22 02:27:47', '2015-05-11 02:56:37', NULL, '1.00', 1, 1, 0, '10', '1', '1', 0, 0, 0, 1, 0, 1, '0', 0, 0, 0, '39.0000', 23, 1),
+(49, 1, '900', 'TEST2', '2_small.jpg', '20.0000', 0, '2015-12-22 02:28:42', '2015-12-01 23:00:27', NULL, '0.50', 1, 1, 0, '0', '1', '1', 0, 0, 0, 1, 0, 1, '0', 0, 0, 0, '20.0000', 23, 1),
+(50, 1, '1000', 'TEST3', '3_small.jpg', '75.0000', 0, '2015-12-22 02:29:37', '2015-12-01 23:01:04', NULL, '1.50', 1, 1, 0, '0', '1', '1', 0, 0, 0, 1, 0, 1, '0', 0, 0, 0, '75.0000', 23, 1),
+(51, 1, '998', 'Free1', 'b_g_grid.gif', '25.0000', 0, '2015-12-22 11:51:05', '2015-11-01 17:03:32', NULL, '10.00', 1, 1, 0, '2', '1', '1', 0, 1, 0, 1, 1, 1, '0', 0, 0, 0, '0.0000', 24, 1),
+(52, 1, '997', 'Free2', 'b_p_grid.gif', '0.0000', 1, '2015-12-22 12:24:58', '2015-11-01 17:01:18', NULL, '2.00', 1, 1, 0, '2', '1', '1', 0, 1, 0, 1, 0, 1, '0', 0, 0, 0, '0.0000', 24, 1),
+(53, 1, '991', 'MINUNITSMIX', 'b_c_grid.gif', '25.0000', 0, '2015-12-22 23:26:44', '2015-05-11 02:22:35', NULL, '1.00', 1, 1, 0, '6', '6', '3', 0, 0, 0, 1, 0, 1, '0', 0, 0, 0, '20.0000', 23, 1),
+(54, 1, '991', 'MINUNITSNOMIX', 'waybkgnd.gif', '25.0000', 0, '2015-12-01 23:19:13', '2015-05-11 02:23:08', NULL, '1.00', 1, 1, 0, '0', '6', '3', 0, 0, 0, 0, 0, 1, '0', 0, 0, 0, '25.0000', 23, 1),
+(55, 1, '991', 'MINUNITSMIXSALE', 'b_b_grid.gif', '25.0000', 0, '2015-12-07 11:11:46', '2015-05-11 02:26:28', NULL, '1.00', 1, 1, 0, '0', '6', '3', 0, 0, 0, 1, 0, 1, '0', 0, 0, 0, '22.5000', 28, 1),
+(56, 1, '991', 'MINUNITSNOMIXSALE', 'b_w_grid.gif', '25.0000', 0, '2015-12-07 11:13:08', '2015-05-11 02:26:49', NULL, '1.00', 1, 1, 0, '0', '6', '3', 0, 0, 0, 0, 0, 1, '0', 0, 0, 0, '22.5000', 28, 1),
+(57, 1, '998', 'TESTFREEALL', 'free.gif', '0.0000', 0, '2015-12-07 11:36:09', '2015-11-01 16:55:19', NULL, '1.00', 1, 1, 0, '1', '1', '1', 0, 1, 0, 1, 1, 1, '0', 0, 0, 0, '0.0000', 24, 1),
+(59, 1, '700', 'HPLJ1100XI', 'hewlett_packard/lj1100xi.gif', '0.0000', 0, '2015-12-07 14:36:57', '2015-12-07 14:37:05', NULL, '45.00', 1, 1, 9, '0', '1', '1', 1, 0, 0, 0, 0, 1, '0', 0, 0, 0, '300.0000', 23, 1),
+(60, 1, '699', 'HPLJ1100XI', 'hewlett_packard/lj1100xi.gif', '499.7500', 0, '2015-05-02 01:34:55', '2015-05-02 01:41:37', NULL, '45.00', 1, 1, 9, '1', '1', '1', 0, 0, 0, 0, 0, 1, '0', 0, 0, 0, '449.7750', 28, 1),
+(61, 1, '699', 'HPLJ1100XI', 'hewlett_packard/lj1100xi.gif', '499.7500', 0, '2015-05-02 01:44:09', '2015-05-02 01:45:45', NULL, '45.00', 1, 1, 9, '1', '1', '1', 0, 0, 0, 0, 0, 1, '0', 0, 0, 0, '449.7750', 28, 1),
+(101, 1, '1000', 'Test120-90off-10', 'test_demo.jpg', '0.0000', 0, '2015-05-08 14:11:32', '2015-05-08 14:17:09', NULL, '1.00', 1, 1, 0, '0', '1', '1', 1, 0, 0, 1, 0, 1, '0', 0, 0, 0, '72.0000', 47, 1),
+(109, 1, '1000', 'HIDEQTYBOX', '1_small.jpg', '75.0000', 0, '2015-11-01 22:01:20', '2015-05-22 11:21:12', NULL, '1.00', 1, 1, 0, '0', '1', '1', 0, 0, 0, 1, 0, 1, '1', 0, 0, 0, '75.0000', 23, 1),
+(78, 1, '1000', 'Test25-10AttrAll', 'test_demo.jpg', '0.0000', 0, '2015-05-04 01:09:46', '2015-05-04 01:30:12', NULL, '0.00', 1, 1, 0, '0', '1', '1', 1, 0, 0, 1, 0, 1, '0', 0, 0, 0, '101.2500', 25, 1),
+(79, 1, '1000', 'Test25-AttrAll', 'test_demo.jpg', '0.0000', 0, '2015-05-04 01:28:52', '2015-05-04 01:33:55', NULL, '1.00', 1, 1, 0, '0', '1', '1', 1, 0, 0, 1, 0, 1, '0', 0, 0, 0, '150.0000', 23, 1),
+(74, 1, '700', 'HPLJ1100XI', 'hewlett_packard/lj1100xi.gif', '0.0000', 0, '2015-05-02 15:34:49', '2015-05-02 15:35:17', NULL, '45.00', 1, 1, 9, '0', '1', '1', 1, 0, 0, 0, 0, 1, '0', 0, 0, 0, '399.2000', 23, 1),
+(76, 1, '1000', 'Test25-10', 'test_demo.jpg', '100.0000', 0, '2015-05-03 23:08:33', NULL, NULL, '0.00', 1, 1, 0, '0', '1', '1', 0, 0, 0, 1, 0, 1, '0', 0, 0, 0, '67.5000', 28, 1),
+(80, 1, '1000', 'Test25', 'test_demo.jpg', '100.0000', 0, '2015-05-04 01:31:06', '2015-05-04 13:35:47', NULL, '1.00', 1, 1, 0, '0', '1', '1', 0, 0, 0, 1, 0, 1, '0', 0, 0, 0, '100.0000', 23, 1),
+(84, 1, '999', 'Test120', 'test_demo.jpg', '120.0000', 0, '2015-05-04 15:05:10', '2015-05-06 15:27:39', NULL, '1.00', 1, 1, 0, '1', '1', '1', 0, 0, 0, 1, 0, 1, '0', 0, 0, 0, '120.0000', 23, 1),
+(82, 1, '1000', 'Test120-5', 'test_demo.jpg', '120.0000', 0, '2015-05-04 14:50:38', '2015-05-04 17:09:03', NULL, '1.00', 1, 1, 0, '0', '1', '1', 0, 0, 0, 1, 0, 1, '0', 0, 0, 0, '115.0000', 27, 1),
+(83, 1, '1000', 'Test120-90-5', 'test_demo.jpg', '120.0000', 0, '2015-05-04 15:01:53', '2015-05-06 10:02:11', NULL, '1.00', 1, 1, 0, '0', '1', '1', 0, 0, 0, 1, 0, 1, '0', 0, 0, 0, '85.0000', 27, 1),
+(85, 1, '1000', 'Test90', 'test_demo.jpg', '120.0000', 0, '2015-05-04 15:19:00', '2015-05-06 10:00:35', NULL, '1.00', 1, 1, 0, '0', '1', '1', 0, 0, 0, 1, 0, 1, '0', 0, 0, 0, '90.0000', 23, 1),
+(88, 1, '1000', 'Test120-90-10-Skip', 'test_demo.jpg', '120.0000', 0, '2015-05-05 00:14:31', '2015-05-06 09:58:08', NULL, '1.00', 1, 1, 0, '0', '1', '1', 0, 0, 0, 1, 0, 1, '0', 0, 0, 0, '90.0000', 31, 1),
+(89, 1, '1000', 'Test120-90-10-Skip', 'test_demo.jpg', '120.0000', 0, '2015-05-05 00:41:40', '2015-05-06 09:57:42', NULL, '1.00', 1, 1, 0, '0', '1', '1', 0, 0, 0, 1, 0, 1, '0', 0, 0, 0, '108.0000', 31, 1),
+(95, 1, '1000', 'Test120-25-New100-Skip', 'test_demo.jpg', '120.0000', 0, '2015-05-07 02:35:44', '2015-05-07 02:37:27', NULL, '1.00', 1, 1, 0, '0', '1', '1', 0, 0, 0, 1, 0, 1, '0', 0, 0, 0, '90.0000', 51, 1),
+(90, 1, '999', 'Test120-90-10', 'test_demo.jpg', '120.0000', 0, '2015-05-05 23:55:18', '2015-05-06 00:08:58', NULL, '1.00', 1, 1, 0, '1', '1', '1', 0, 0, 0, 1, 0, 1, '0', 0, 0, 0, '81.0000', 45, 1),
+(92, 1, '1000', 'Test120-90off-10', 'test_demo.jpg', '120.0000', 0, '2015-05-05 23:58:54', '2015-05-06 00:09:28', NULL, '1.00', 1, 1, 0, '0', '1', '1', 0, 0, 0, 1, 0, 1, '0', 0, 0, 0, '108.0000', 45, 1),
+(93, 1, '1000', 'Test120-New100', 'test_demo.jpg', '120.0000', 0, '2015-05-06 00:02:32', '2015-05-06 00:04:25', NULL, '1.00', 1, 1, 0, '0', '1', '1', 0, 0, 0, 1, 0, 1, '0', 0, 0, 0, '100.0000', 46, 1),
+(94, 1, '1000', 'Test120-25-New100', 'test_demo.jpg', '120.0000', 0, '2015-05-06 00:04:31', '2015-05-06 00:07:08', NULL, '1.00', 1, 1, 0, '0', '1', '1', 0, 0, 0, 1, 0, 1, '0', 0, 0, 0, '100.0000', 46, 1),
+(96, 1, '1000', 'Test120-New100-Off-Skip', 'test_demo.jpg', '120.0000', 0, '2015-05-07 02:36:52', '2015-05-07 02:37:29', NULL, '1.00', 1, 1, 0, '0', '1', '1', 0, 0, 0, 1, 0, 1, '0', 0, 0, 0, '100.0000', 51, 1),
+(97, 1, '1000', 'Test120-90-10-Price', 'test_demo.jpg', '120.0000', 0, '2015-05-07 11:26:34', '2015-05-07 11:27:24', NULL, '1.00', 1, 1, 0, '0', '1', '1', 0, 0, 0, 1, 0, 1, '0', 0, 0, 0, '108.0000', 32, 1),
+(98, 1, '1000', 'Test120-90off-10-Price', 'test_demo.jpg', '120.0000', 0, '2015-05-07 11:28:16', '2015-05-07 11:29:57', NULL, '1.00', 1, 1, 0, '0', '1', '1', 0, 0, 0, 1, 0, 1, '0', 0, 0, 0, '108.0000', 32, 1),
+(99, 1, '997', 'FreeShipping', 'small_00.jpg', '25.0000', 0, '2015-05-07 13:27:30', '2015-11-01 01:48:48', NULL, '5.00', 1, 1, 0, '3', '1', '1', 0, 0, 0, 1, 1, 1, '0', 0, 0, 0, '25.0000', 23, 1),
+(104, 1, '1000', 'HIDEQTY', '1_small.jpg', '75.0000', 0, '2015-05-11 03:02:51', '2015-05-22 11:21:36', NULL, '1.00', 1, 1, 0, '0', '1', '1', 0, 0, 0, 1, 0, 0, '0', 0, 0, 0, '75.0000', 23, 1),
+(105, 1, '999', 'MAXSAMPLE-1', 'waybkgnd.gif', '50.0000', 0, '2015-05-11 14:10:59', '2015-05-11 14:36:00', NULL, '1.00', 1, 1, 0, '1', '1', '1', 0, 0, 0, 1, 0, 1, '1', 0, 0, 0, '50.0000', 22, 1),
+(106, 1, '1000', 'MAXSAMPLE-3', 'waybkgnd.gif', '50.0000', 0, '2015-05-11 14:36:08', '2015-05-11 15:32:56', NULL, '1.00', 1, 1, 0, '0', '1', '1', 0, 0, 0, 1, 0, 1, '3', 0, 0, 0, '50.0000', 22, 1),
+(107, 1, '995', 'FreeShippingNoWeight', 'small_00.jpg', '25.0000', 0, '2015-11-01 01:41:22', '2015-11-01 02:01:54', NULL, '0.00', 1, 1, 0, '0', '1', '1', 0, 0, 0, 1, 0, 1, '0', 0, 0, 0, '25.0000', 23, 1),
+(108, 1, '0', 'SoldOut', 'small_00.jpg', '25.0000', 0, '2015-11-01 01:53:20', NULL, NULL, '3.00', 1, 1, 0, '0', '1', '1', 0, 0, 0, 1, 0, 1, '0', 0, 0, 0, '25.0000', 23, 1),
+(110, 1, '1000', 'Test120-5SKIP', 'test_demo.jpg', '120.0000', 0, '2015-05-24 16:09:52', '2015-05-24 16:15:25', NULL, '1.00', 1, 1, 0, '0', '1', '1', 0, 0, 0, 1, 0, 1, '0', 0, 0, 0, '115.0000', 52, 1),
+(111, 1, '1000', 'Test120-90-5SKIP', 'test_demo.jpg', '120.0000', 0, '2015-05-24 16:10:12', '2015-05-24 16:15:27', NULL, '1.00', 1, 1, 0, '0', '1', '1', 0, 0, 0, 1, 0, 1, '0', 0, 0, 0, '90.0000', 52, 1),
+(112, 1, '998', 'Test2', '', '25.0000', 0, '2015-10-07 02:24:57', '2015-10-07 02:25:44', NULL, '1.00', 1, 1, 0, '2', '1', '1', 0, 0, 0, 1, 0, 1, '0', 2, 0, 0, '25.0000', 53, 1),
+(113, 1, '994', 'Test4', '', '25.0000', 0, '2015-10-07 02:25:03', '2015-10-07 02:25:35', NULL, '1.00', 1, 1, 0, '6', '1', '1', 0, 0, 0, 1, 0, 1, '0', 4, 0, 0, '25.0000', 53, 1),
+(114, 1, '998', 'Test5', '', '25.0000', 0, '2015-10-07 02:25:53', '2015-10-07 02:26:15', NULL, '1.00', 1, 1, 0, '2', '1', '1', 0, 0, 0, 1, 0, 1, '0', 5, 0, 0, '25.0000', 53, 1),
+(115, 1, '999', 'Test1', '', '25.0000', 0, '2015-10-07 02:26:23', '2015-06-06 21:50:19', NULL, '1.00', 1, 1, 0, '1', '1', '1', 0, 0, 0, 1, 0, 1, '0', 1, 0, 0, '25.0000', 53, 1),
+(116, 1, '997', 'Test8', '', '25.0000', 0, '2015-10-07 02:26:54', '2015-10-07 02:27:18', NULL, '1.00', 1, 1, 0, '3', '1', '1', 0, 0, 0, 1, 0, 1, '0', 8, 0, 0, '25.0000', 53, 1),
+(117, 1, '995', 'Test3', '', '25.0000', 0, '2015-10-07 02:27:24', '2015-11-03 12:20:14', NULL, '1.00', 1, 1, 0, '5', '1', '1', 0, 0, 0, 1, 0, 1, '0', 3, 0, 0, '25.0000', 53, 1),
+(118, 1, '999', 'Test10', '', '25.0000', 0, '2015-10-07 02:27:52', '2015-10-07 02:28:14', NULL, '1.00', 1, 1, 0, '1', '1', '1', 0, 0, 0, 1, 0, 1, '0', 10, 0, 0, '25.0000', 53, 1),
+(119, 1, '1000', 'Test6', '', '25.0000', 0, '2015-10-07 02:28:22', '2015-11-06 18:26:25', NULL, '1.00', 1, 1, 0, '0', '1', '1', 0, 0, 0, 1, 0, 1, '0', 6, 0, 0, '25.0000', 53, 1),
+(120, 1, '1000', 'Test7', '', '25.0000', 0, '2015-10-07 02:29:03', '2015-10-07 02:29:23', NULL, '1.00', 1, 1, 0, '0', '1', '1', 0, 0, 0, 1, 0, 1, '0', 7, 0, 0, '25.0000', 53, 1),
+(121, 1, '999', 'Test12', '', '25.0000', 0, '2015-10-07 02:29:36', '2015-11-28 13:02:47', NULL, '1.00', 1, 1, 0, '1', '1', '1', 0, 0, 0, 1, 0, 1, '0', 12, 0, 0, '25.0000', 53, 1),
+(122, 1, '998', 'Test9', '', '25.0000', 0, '2015-10-07 02:30:12', '2015-10-07 02:30:32', NULL, '1.00', 1, 1, 0, '2', '1', '1', 0, 0, 0, 1, 0, 1, '0', 9, 0, 0, '25.0000', 53, 1),
+(123, 1, '999', 'Test11', '', '25.0000', 0, '2015-10-07 02:30:41', '2015-10-07 02:31:04', NULL, '1.00', 1, 1, 0, '1', '1', '1', 0, 0, 0, 1, 0, 1, '0', 11, 0, 0, '25.0000', 53, 1),
+(130, 1, '1000', 'Special', '2_small.jpg', '15.0000', 0, '2015-11-28 02:19:53', '2015-11-06 00:05:34', NULL, '2.00', 1, 1, 0, '0', '1', '1', 0, 0, 0, 1, 0, 1, '0', 0, 1, 1, '10.0000', 55, 1),
+(127, 1, '1000', 'Normal', 'small_00.jpg', '15.0000', 0, '2015-11-28 01:51:35', '2015-11-28 14:23:29', NULL, '2.00', 1, 1, 0, '0', '1', '1', 0, 0, 0, 1, 0, 1, '0', 0, 1, 0, '15.0000', 55, 1),
+(131, 1, '1000', 'PERWORDREQ', '', '0.0000', 0, '2015-06-01 01:31:28', '2015-06-07 21:30:23', NULL, '1.00', 1, 1, 0, '0', '1', '1', 1, 0, 0, 1, 0, 1, '0', 0, 0, 0, '5.0000', 57, 1),
+(132, 1, '997', 'GolfClub', '9_small.jpg', '0.0000', 0, '2015-06-02 12:36:12', '2015-06-02 18:04:36', NULL, '1.00', 1, 1, 0, '3', '1', '1', 1, 0, 0, 1, 0, 1, '0', 0, 0, 0, '13.0050', 58, 1),
+(133, 1, '1000', 'DOWNLOAD2', '2_small.jpg', '49.9900', 0, '2015-06-02 23:51:33', '2015-06-03 00:06:58', NULL, '0.00', 1, 1, 0, '2', '1', '1', 0, 0, 0, 1, 0, 1, '0', 0, 0, 0, '49.9900', 60, 1),
+(134, 1, '1000', 'PERLETTERREQ', '', '0.0000', 0, '2015-06-07 21:23:58', '2015-06-07 21:29:50', NULL, '1.00', 1, 1, 0, '0', '1', '1', 1, 0, 0, 1, 0, 1, '0', 0, 0, 0, '5.0000', 57, 1),
+(154, 1, '10000', 'ROPE', '9_small.jpg', '1.0000', 0, '2015-06-16 21:08:08', '2015-12-13 17:18:46', NULL, '0.00', 1, 1, 0, '0', '10', '1', 0, 0, 0, 1, 0, 1, '0', 0, 0, 0, '0.9000', 58, 0),
+(155, 1, '1000', 'PRICEFACTOR', 'sample_image.gif', '10.0000', 0, '2015-06-17 23:03:10', '2015-12-13 17:21:04', NULL, '1.00', 1, 1, 0, '0', '1', '1', 0, 0, 0, 1, 0, 1, '0', 0, 0, 0, '10.0000', 56, 1),
+(156, 1, '1000', 'PRICEFACTOROFF', 'sample_image.gif', '10.0000', 0, '2015-06-17 23:05:24', '2015-06-17 23:10:12', NULL, '1.00', 1, 1, 0, '0', '1', '1', 0, 0, 0, 1, 0, 1, '0', 0, 0, 0, '10.0000', 56, 1),
+(157, 1, '1000', 'PRICEFACTOROFFATTR', 'sample_image.gif', '10.0000', 0, '2015-06-17 23:10:18', '2015-06-17 23:13:48', NULL, '1.00', 1, 1, 0, '0', '1', '1', 1, 0, 0, 1, 0, 1, '0', 0, 0, 0, '10.0000', 56, 1),
+(158, 1, '1000', 'ONETIME', 'b_b_grid.gif', '45.0000', 0, '2015-06-17 23:22:08', NULL, NULL, '1.00', 1, 1, 0, '0', '1', '1', 0, 0, 0, 1, 0, 1, '0', 0, 0, 0, '45.0000', 56, 1),
+(159, 1, '10000', 'ATTQTYPRICE', 'b_c_grid.gif', '25.0000', 0, '2015-06-17 23:29:31', '2015-06-17 23:49:56', NULL, '1.00', 1, 1, 0, '0', '1', '1', 0, 0, 0, 1, 0, 1, '0', 0, 0, 0, '25.0000', 56, 1),
+(160, 1, '997', 'GolfClub', '9_small.jpg', '0.0000', 0, '2015-06-18 10:14:35', '2015-06-18 10:15:16', NULL, '1.00', 1, 1, 0, '0', '1', '1', 1, 0, 0, 1, 0, 1, '0', 0, 0, 0, '14.4500', 61, 1),
+(165, 1, '10000', 'ROPE', '9_small.jpg', '1.0000', 0, '2015-06-18 10:42:50', '2015-12-13 17:18:12', NULL, '0.00', 1, 1, 0, '0', '10', '1', 0, 0, 0, 1, 0, 1, '0', 0, 0, 0, '1.0000', 61, 0),
+(166, 2, '10000', 'RTBHUNTER', 'sooty.jpg', '4.9900', 0, '2015-06-18 10:42:50', '2015-06-18 10:43:00', NULL, '3.00', 1, 1, 0, '0', '1', '1', 0, 0, 0, 1, 0, 1, '0', 0, 0, 0, '3.0000', 62, 1),
+(167, 3, '0', '', '', '0.0000', 0, '2015-06-18 10:42:50', '2015-12-06 00:39:10', NULL, '0.00', 1, 0, 0, '0', '1', '1', 0, 0, 0, 0, 0, 0, '0', 0, 0, 0, '0.0000', 63, 1),
+(168, 1, '1000', 'PGT', 'samples/1_small.jpg', '3.9500', 0, '2015-12-13 15:25:32', '2015-12-13 16:26:08', NULL, '1.00', 1, 1, 0, '0', '1', '1', 0, 0, 0, 1, 0, 1, '0', 10, 0, 0, '3.9500', 64, 1),
+(169, 2, '1000', 'PMT', 'samples/2_small.jpg', '3.9500', 0, '2015-12-13 15:27:50', '2015-12-13 16:29:01', NULL, '1.00', 1, 1, NULL, '0', '1', '1', 0, 0, 0, 1, 0, 1, '0', 20, 0, 0, '3.9500', 64, 1),
+(170, 3, '0', '', 'samples/3_small.jpg', '0.0000', 0, '2015-12-13 15:29:23', '2004-09-27 23:11:25', NULL, '0.00', 1, 0, 0, '0', '1', '1', 0, 0, 0, 0, 0, 0, '0', 30, 0, 0, '0.0000', 64, 1),
+(171, 4, '1000', 'DPT', 'samples/4_small.jpg', '3.9500', 0, '2015-12-13 15:32:40', '2015-12-13 17:46:49', NULL, '0.00', 1, 1, 0, '0', '1', '1', 0, 0, 0, 1, 0, 1, '0', 40, 0, 0, '3.9500', 64, 1),
+(172, 5, '1000', 'PFS', 'samples/5_small.jpg', '3.9500', 0, '2015-12-13 15:39:18', '2015-12-13 23:08:43', NULL, '5.00', 1, 0, 0, '0', '1', '1', 0, 0, 0, 1, 1, 1, '0', 50, 0, 0, '3.9500', 64, 1),
+(173, 1, '1000', 'Book', 'b_g_grid.gif', '0.0000', 0, '2015-12-24 23:54:34', '2015-12-26 02:50:59', NULL, '0.00', 1, 1, 0, '0', '1', '1', 1, 0, 0, 1, 0, 1, '0', 0, 0, 0, '52.5000', 61, 1),
+(174, 1, '999', 'TESTCALL', 'call_for_price.jpg', '0.0000', 0, '2015-12-27 13:25:44', '2015-12-27 13:28:54', '2007-02-21 00:00:00', '1.00', 1, 1, 0, '0', '1', '1', 0, 0, 1, 1, 0, 1, '0', 0, 0, 0, '0.0000', 24, 0),
+(175, 1, '1000', 'Normal', '1_small.jpg', '60.0000', 0, '2015-12-27 23:32:52', '2015-12-05 17:13:20', NULL, '2.00', 1, 1, 0, '0', '1', '1', 0, 0, 0, 0, 0, 1, '0', 0, 1, 0, '60.0000', 55, 1),
+(176, 1, '1000', 'Normal', 'small_00.jpg', '100.0000', 0, '2015-12-05 16:45:25', '2015-12-05 16:47:22', NULL, '2.00', 1, 1, 0, '0', '1', '1', 0, 0, 0, 1, 0, 1, '0', 0, 1, 0, '100.0000', 55, 1),
+(177, 1, '1000', 'Special', '2_small.jpg', '100.0000', 0, '2015-12-05 16:47:45', '2015-12-06 00:05:48', NULL, '2.00', 1, 1, 0, '0', '1', '1', 0, 0, 0, 1, 0, 1, '0', 0, 1, 1, '75.0000', 55, 1),
+(179, 1, '1000', 'DOWNLOAD1', '1_small.jpg', '39.0000', 0, '2015-06-06 00:08:33', '2015-06-06 00:18:51', NULL, '0.00', 1, 1, 0, '0', '1', '1', 0, 0, 0, 1, 0, 1, '0', 0, 0, 0, '39.0000', 60, 1),
+(178, 1, '1000', 'Normal', '1_small.jpg', '60.0000', 0, '2015-06-05 16:54:52', '2015-06-05 17:15:02', NULL, '2.00', 1, 1, 0, '0', '1', '1', 0, 0, 0, 0, 0, 1, '0', 0, 1, 0, '50.0000', 55, 1);
 
 #
 # Dumping data for table `products_attributes`
@@ -1481,7 +1503,7 @@ INSERT INTO record_company_info (record_company_id, languages_id, record_company
 # Dumping data for table `reviews`
 #
 
-INSERT INTO reviews (reviews_id, products_id, customers_id, customers_name, reviews_rating, date_added, last_modified, reviews_read, status) VALUES (1, 19, 0, 'Bill Smith', 5, '2012-12-23 03:18:19', '0001-01-01 00:00:00', 11, 1);
+INSERT INTO reviews (reviews_id, products_id, customers_id, customers_name, reviews_rating, date_added, last_modified, reviews_read, status) VALUES (1, 19, 0, 'Bill Smith', 5, '2015-12-23 03:18:19', '0001-01-01 00:00:00', 11, 1);
 
 #
 # Dumping data for table `reviews_description`
@@ -1493,8 +1515,8 @@ INSERT INTO reviews_description (reviews_id, languages_id, reviews_text) VALUES 
 # Dumping data for table `salemaker_sales`
 #
 
-INSERT INTO salemaker_sales (sale_id, sale_status, sale_name, sale_deduction_value, sale_deduction_type, sale_pricerange_from, sale_pricerange_to, sale_specials_condition, sale_categories_selected, sale_categories_all, sale_date_start, sale_date_end, sale_date_added, sale_date_last_modified, sale_date_status_change) VALUES (1, 1, 'Minus 10% Sale', '10.0000', 1, '1.0000', '1000.0000', 2, '25,28,45,47,58', ',25,28,45,47,58,', '2012-12-23', '2007-02-21', '2012-12-23', '2012-05-18', '2012-01-03'),
-(3, 0, 'Mice 20%', '20.0000', 1, '1.0000', '1000.0000', 2, '9', ',9,', '2012-12-24', '2012-04-21', '2012-12-31', '2012-12-31', '2012-04-25'),
+INSERT INTO salemaker_sales (sale_id, sale_status, sale_name, sale_deduction_value, sale_deduction_type, sale_pricerange_from, sale_pricerange_to, sale_specials_condition, sale_categories_selected, sale_categories_all, sale_date_start, sale_date_end, sale_date_added, sale_date_last_modified, sale_date_status_change) VALUES (1, 1, 'Minus 10% Sale', '10.0000', 1, '1.0000', '1000.0000', 2, '25,28,45,47,58', ',25,28,45,47,58,', '2015-12-23', '2007-02-21', '2015-12-23', '2012-05-18', '2012-01-03'),
+(3, 0, 'Mice 20%', '20.0000', 1, '1.0000', '1000.0000', 2, '9', ',9,', '2015-12-24', '2012-04-21', '2015-12-07', '2015-12-07', '2012-04-25'),
 (6, 1, '$5.00 off', '5.0000', 0, '0.0000', '0.0000', 2, '27', ',27,', '0001-01-01', '0001-01-01', '2012-01-04', '2012-01-05', '2012-01-04'),
 (7, 1, '10% Skip Specials', '10.0000', 1, '0.0000', '0.0000', 1, '31', ',31,', '0001-01-01', '0001-01-01', '2012-01-04', '2012-05-18', '2012-01-04'),
 (8, 1, '10% Apply to Price', '10.0000', 1, '0.0000', '0.0000', 0, '32', ',32,', '0001-01-01', '0001-01-01', '2012-01-05', '2012-05-18', '2012-01-05'),
@@ -1506,16 +1528,16 @@ INSERT INTO salemaker_sales (sale_id, sale_status, sale_name, sale_deduction_val
 # Dumping data for table `specials`
 #
 
-INSERT INTO specials (specials_id, products_id, specials_new_products_price, specials_date_added, specials_last_modified, expires_date, date_status_change, status, specials_date_available) VALUES (1, 3, '39.9900', '2012-12-23 03:18:19', '0001-01-01 00:00:00', '0001-01-01', '0001-01-01 00:00:00', 1, '0001-01-01'),
-(2, 5, '30.0000', '2012-12-23 03:18:19', '0001-01-01 00:00:00', '0001-01-01', '0001-01-01 00:00:00', 1, '0001-01-01'),
-(3, 6, '30.0000', '2012-12-23 03:18:19', '0001-01-01 00:00:00', '0001-01-01', '0001-01-01 00:00:00', 1, '0001-01-01'),
-(4, 16, '29.9900', '2012-12-23 03:18:19', '0001-01-01 00:00:00', '0001-01-01', '0001-01-01 00:00:00', 1, '0001-01-01'),
-(5, 41, '90.0000', '2012-12-25 19:15:47', '2012-09-27 13:33:33', '2007-02-21', '0001-01-01 00:00:00', 1, '0001-01-01'),
-(6, 42, '95.0000', '2012-12-25 19:15:57', '2012-01-04 13:07:27', '0001-01-01', '0001-01-01 00:00:00', 1, '0001-01-01'),
-(7, 44, '90.0000', '2012-12-25 21:54:50', NULL, '0001-01-01', '0001-01-01 00:00:00', 1, '0001-01-01'),
-(8, 46, '90.0000', '2012-12-25 21:55:01', NULL, '0001-01-01', '0001-01-01 00:00:00', 1, '0001-01-01'),
-(9, 53, '20.0000', '2012-12-28 23:59:03', NULL, '0001-01-01', '0001-01-01 00:00:00', 1, '0001-01-01'),
-(10, 39, '75.0000', '2012-12-31 02:03:59', '2012-02-21 00:36:40', '0001-01-01', '0001-01-01 00:00:00', 1, '0001-01-01'),
+INSERT INTO specials (specials_id, products_id, specials_new_products_price, specials_date_added, specials_last_modified, expires_date, date_status_change, status, specials_date_available) VALUES (1, 3, '39.9900', '2015-12-23 03:18:19', '0001-01-01 00:00:00', '0001-01-01', '0001-01-01 00:00:00', 1, '0001-01-01'),
+(2, 5, '30.0000', '2015-12-23 03:18:19', '0001-01-01 00:00:00', '0001-01-01', '0001-01-01 00:00:00', 1, '0001-01-01'),
+(3, 6, '30.0000', '2015-12-23 03:18:19', '0001-01-01 00:00:00', '0001-01-01', '0001-01-01 00:00:00', 1, '0001-01-01'),
+(4, 16, '29.9900', '2015-12-23 03:18:19', '0001-01-01 00:00:00', '0001-01-01', '0001-01-01 00:00:00', 1, '0001-01-01'),
+(5, 41, '90.0000', '2015-12-02 19:15:47', '2012-09-27 13:33:33', '2007-02-21', '0001-01-01 00:00:00', 1, '0001-01-01'),
+(6, 42, '95.0000', '2015-12-02 19:15:57', '2012-01-04 13:07:27', '0001-01-01', '0001-01-01 00:00:00', 1, '0001-01-01'),
+(7, 44, '90.0000', '2015-12-02 21:54:50', NULL, '0001-01-01', '0001-01-01 00:00:00', 1, '0001-01-01'),
+(8, 46, '90.0000', '2015-12-02 21:55:01', NULL, '0001-01-01', '0001-01-01 00:00:00', 1, '0001-01-01'),
+(9, 53, '20.0000', '2015-12-22 23:59:03', NULL, '0001-01-01', '0001-01-01 00:00:00', 1, '0001-01-01'),
+(10, 39, '75.0000', '2015-12-07 02:03:59', '2012-02-21 00:36:40', '0001-01-01', '0001-01-01 00:00:00', 1, '0001-01-01'),
 (40, 100, '374.2500', '2012-01-08 14:07:31', NULL, '0001-01-01', '0001-01-01 00:00:00', 1, '0001-01-01'),
 (42, 111, '90.0000', '2012-01-24 16:14:19', NULL, '0001-01-01', '0001-01-01 00:00:00', 1, '0001-01-01'),
 (14, 74, '399.2000', '2012-01-02 15:35:30', '2012-01-02 17:38:43', '0001-01-01', '0001-01-01 00:00:00', 1, '0001-01-01'),
@@ -1531,9 +1553,9 @@ INSERT INTO specials (specials_id, products_id, specials_new_products_price, spe
 (38, 95, '90.0000', '2012-01-07 02:39:58', NULL, '0001-01-01', '0001-01-01 00:00:00', 1, '0001-01-01'),
 (44, 130, '10.0000', '2012-04-28 02:46:44', NULL, '0001-01-01', NULL, 1, '0001-01-01'),
 (45, 173, '47.5000', '2012-09-24 23:57:05', NULL, '2012-09-28', '2012-09-28 18:48:42', 0, '0001-01-01'),
-(46, 166, '3.0000', '2012-10-03 20:24:53', NULL, '0001-01-01', NULL, 1, '0001-01-01'),
-(47, 177, '75.0000', '2012-10-05 16:49:33', NULL, '0001-01-01', NULL, 1, '0001-01-01'),
-(48, 178, '50.0000', '2012-10-05 16:56:46', NULL, '0001-01-01', NULL, 1, '0001-01-01'),
+(46, 166, '3.0000', '2015-06-03 20:24:53', NULL, '0001-01-01', NULL, 1, '0001-01-01'),
+(47, 177, '75.0000', '2015-06-05 16:49:33', NULL, '0001-01-01', NULL, 1, '0001-01-01'),
+(48, 178, '50.0000', '2015-06-05 16:56:46', NULL, '0001-01-01', NULL, 1, '0001-01-01'),
 (50, 40, '75.0000', '2012-01-08 14:07:31', NULL, '0001-01-01', '0001-01-01 00:00:00', 1, '0001-01-01');
 ############ GERMAN DEMO
 INSERT INTO categories_description (categories_id, language_id, categories_name, categories_description) VALUES (1, 43, 'Hardware', 'Wir bieten verschiedenste Hardware von Druckern, über Grafikkarten bis in zu Mäusen und Tastaturen.');

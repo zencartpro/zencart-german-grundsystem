@@ -4,14 +4,14 @@
  * @package Installer
  * @copyright Copyright 2003-2016 Zen Cart Development Team
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: lngDeutsch.php 4 2015-12-26 21:49:16Z webchills $
+ * @version $Id: lngDeutsch.php 5 2015-12-29 19:49:16Z webchills $
  */
 /**
  * defining language components for the page
  */
 define('META_TAG_TITLE', 'Zen Cart 1.5.5 deutsch - Installationsprogramm');
 define('HTML_PARAMS','dir="ltr" lang="de"');
-
+define('ZC_VERSION_STRING', '%s v%s');
 define('TEXT_PAGE_HEADING', 'Systemprüfung');
 define('TEXT_INDEX_FATAL_ERRORS', 'Es gibt einige Probleme, die behoben werden müssen bevor wie weitermachen können.');
 define('TEXT_INDEX_WARN_ERRORS', 'Einige andere Probleme');
@@ -54,25 +54,25 @@ define('TEXT_DATABASE_SETUP_DB_PREFIX', 'Datenbank Präfix: ');
 define('TEXT_DATABASE_SETUP_SQL_CACHE_METHOD', 'SQL Caching Methode: ');
 define('TEXT_DATABASE_SETUP_JSCRIPT_SQL_ERRORS1', '<p>Some errors occurred when running the SQL install file');
 define('TEXT_DATABASE_SETUP_JSCRIPT_SQL_ERRORS2', '<br>Please see error logs for more details<p>');
-define('TEXT_DATABASE_SETUP_CHARSET_OPTION_UTF8', 'UTF-8 (UNBEDINGT SO LASSEN!)');
+define('TEXT_DATABASE_SETUP_CHARSET_OPTION_UTF8', 'UTF8 (UNBEDINGT SO LASSEN!)');
 define('TEXT_DATABASE_SETUP_CHARSET_OPTION_LATIN1', 'Latin1');
 define('TEXT_DATABASE_SETUP_CACHE_TYPE_OPTION_NONE', 'kein SQL Caching');
 define('TEXT_DATABASE_SETUP_CACHE_TYPE_OPTION_DATABASE', 'Datenbank');
 define('TEXT_DATABASE_SETUP_CACHE_TYPE_OPTION_FILE', 'Datei');
 define('TEXT_EXAMPLE_DB_HOST', "normalerweise 'localhost'");
 define('TEXT_EXAMPLE_DB_USER', 'Geben Sie Ihren MySQL Benutzernamen ein');
-define('TEXT_EXAMPLE_DB_PWD', 'enter the password for your MySQL user');
+define('TEXT_EXAMPLE_DB_PWD', 'Geben Sie das Passwort für diesen MySQL Benutzernaemn ein');
 define('TEXT_EXAMPLE_DB_PREFIX', 'am besten leer lassen');
 define('TEXT_EXAMPLE_DB_NAME', 'Geben Sie den Namen Ihrer MySQL Datenbank ein');
-define('TEXT_EXAMPLE_CACHEDIR', 'usually points to the equivalent of /your/user/home/public_html/zencart/cache folder');
+define('TEXT_EXAMPLE_CACHEDIR', 'verweist normalerweise auf den /your/user/home/public_html/zencart/cache Ordner');
 
 define('TEXT_DATABASE_SETUP_CONNECTION_ERROR_DIALOG_TITLE', 'Es gibt einige Probleme');
 define('TEXT_CREATING_DATABASE', 'Datenbank wird befüllt...');
-define('TEXT_LOADING_CHARSET_SPECIFIC', 'Loading Character Set specific data');
+define('TEXT_LOADING_CHARSET_SPECIFIC', 'Lade spezifische Daten für Ihr Character Set');
 define('TEXT_LOADING_DEMO_DATA', 'Lade Demodaten');
-define('TEXT_LOADING_PLUGIN_DATA', 'Loading SQL for Pre-installed Plugins');
+define('TEXT_LOADING_PLUGIN_DATA', 'Lade SQL für vorinstallierte Plugins');
 
-define('TEXT_COULD_NOT_UPDATE_BECAUSE_ANOTHER_VERSION_REQUIRED', 'Could not update to version %s. We detect that you currently have v%s, and must perform the updates to get to version %s first.');
+define('TEXT_COULD_NOT_UPDATE_BECAUSE_ANOTHER_VERSION_REQUIRED', 'Konnte nicht auf Version %s aktualisieren. Wir haben festgestellt, dass Sie derzeit Version %s verwenden. Sie müssen erst die Updates durchführen um auf Version %s zu kommen.');
 
 define('TEXT_PAGE_HEADING_ADMIN_SETUP', 'Admin Setup');
 define('TEXT_ADMIN_SETUP_USER_SETTINGS', 'Admin User Einstellungen');
@@ -82,21 +82,21 @@ define('TEXT_ADMIN_SETUP_USER_EMAIL', 'Admin Superuser Emailadresse: ');
 define('TEXT_EXAMPLE_EMAIL', 'z.B: peter@meinshop.de');
 define('TEXT_ADMIN_SETUP_USER_EMAIL_REPEAT', '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Email wiederholen: ');
 define('TEXT_ADMIN_SETUP_USER_PASSWORD', 'Admin Passwort: ');
-define('TEXT_ADMIN_SETUP_USER_PASSWORD_HELP', '<strong>NOTIEREN SIE SICH DIESES PASSWORT JETZT!!</strong>: Unterhalb ist ihr temporäres Einstiegspasswort für Ihren Admin User. Sie benötigen es zum Einloggen in den Adminbereich, daher NOTIEREN SIE SICH DIESES PASSWORT JETZT. Sie können es später natürlich ändern.');
+define('TEXT_ADMIN_SETUP_USER_PASSWORD_HELP', '<strong>NOTIEREN SIE SICH DIESES PASSWORT JETZT!!</strong>: Unterhalb ist ihr temporäres Einstiegspasswort für Ihren Admin User. Sie benötigen es zum Einloggen in den Adminbereich, daher NOTIEREN SIE SICH DIESES PASSWORT JETZT. Sie müssen das Passwort dann nach dem ersten Login ändern.');
 define('TEXT_ADMIN_SETUP_ADMIN_DIRECTORY', 'Admin Verzeichnis: ');
 define('TEXT_ADMIN_SETUP_ADMIN_DIRECTORY_HELP_DEFAULT', 'Wir konnten Ihr Admin Verzeichnis nicht automatisch umbenennen. Sie müssen es selbst umbenennen bevor Sie in den Adminbereich einloggen können.');
-define('TEXT_ADMIN_SETUP_ADMIN_DIRECTORY_HELP_NOT_ADMIN_CHANGED', 'We did not change your admin directory automatically as it already seems to have been changed from the default.');
-define('TEXT_ADMIN_SETUP_ADMIN_DIRECTORY_HELP_CHANGED', 'Your store Admin directory may have been automatically renamed. Please ensure you make a note of the directory below.');
+define('TEXT_ADMIN_SETUP_ADMIN_DIRECTORY_HELP_NOT_ADMIN_CHANGED', 'Wir haben Ihr Adminverzeichnis nicht umbenannt, da es offensichtlich bereits umbenannt wurde.');
+define('TEXT_ADMIN_SETUP_ADMIN_DIRECTORY_HELP_CHANGED', 'Wir haben das Verzeichnis admin automatisch umbenannt. Der neue Name Ihres admin Verzeichnisses steht unten, NOTIEREN SIE SICH DIESEN NAMEN!');
 define('TEXT_ADMIN_SETUP_NEWSLETTER_SETTINGS', 'Newsletter');
 define('TEXT_ADMIN_SETUP_NEWSLETTER_EMAIL', 'Newsletter Email: ');
-define('TEXT_ADMIN_SETUP_NEWSLETTER_OPTIN', 'Opt In: ');
+define('TEXT_ADMIN_SETUP_NEWSLETTER_OPTIN', 'Newsletter bestellen: ');
 //define('TEXT_MAIN_ADMIN_SETUP', '');
 
 
 define('TEXT_PAGE_HEADING_COMPLETION', 'Setup abgeschlossen');
 define('TEXT_COMPLETION_HEADER_MAIN', '');
 define('TEXT_COMPLETION_INSTALL_COMPLETE', 'Die Installation ist jetzt abgeschlossen');
-define('TEXT_COMPLETION_INSTALL_LINKS_BELOW', 'You can access your storefront and your Administration area using the links below.');
+define('TEXT_COMPLETION_INSTALL_LINKS_BELOW', 'Sie können nun Ihr Shop Frontend und Ihren Adminbereich mit folgenden Links erreichen:');
 define('TEXT_COMPLETION_UPGRADE_COMPLETE', 'Herzlichen Glückwunsch, Ihr Update ist nun abgeschlossen.');
 define('TEXT_COMPLETION_ADMIN_DIRECTORY_WARNING', 'Wir konnten Ihr Admin Verzeichnis nicht automatisch umbenennen. Sie müssen es selbt umbenennen bevor Sie in den Adminbereich einloggen können.');
 define('TEXT_COMPLETION_INSTALLATION_DIRECTORY_WARNING', 'Sie müssen nun das Verzeichnis zc_install unbedingt löschen, um zu verhindern, dass jemand den Shop neu installiert und all Ihre Daten zerstört. Solange Sie dieses Verzeichnis nicht gelöscht haben, werden Sie nicht in den Adminbereich einloggen können.');
@@ -106,26 +106,26 @@ define('TEXT_COMPLETION_ADMIN_LINK_TEXT', 'Ihr Shop Adminbereich');
 
 define('TEXT_PAGE_HEADING_DATABASE_UPGRADE', 'Datenbank Update');
 define('TEXT_DATABASE_UPGRADE_HEADER_MAIN', '');
-define('TEXT_DATABASE_UPGRADE_STEPS_DETECTED', 'The following list shows the various upgrade steps we detected are required for your database.');
-define('TEXT_DATABASE_UPGRADE_LEGEND_UPGRADE_STEPS', 'Please confirm your desired upgrade steps');
-define('TEXT_DATABASE_UPGRADE_ADMIN_CREDENTIALS', 'Admin Credentials (SuperUser)');
-define('TEXT_VALIDATION_ADMIN_CREDENTIALS', 'To authorize the database upgrade, you must enter an admin username and password with SuperUser permissions in your store.');
+define('TEXT_DATABASE_UPGRADE_STEPS_DETECTED', 'Die folgende Liste zeigt die verschiedenen Updateschritte, die wir für Ihre Datenbank als nötig erkannt haben.');
+define('TEXT_DATABASE_UPGRADE_LEGEND_UPGRADE_STEPS', 'Bitte bestätigen Sie Ihre gewünschten Updateschritte');
+define('TEXT_DATABASE_UPGRADE_ADMIN_CREDENTIALS', 'Admin Zugangsdaten (SuperUser)');
+define('TEXT_VALIDATION_ADMIN_CREDENTIALS', 'Um das Update zu autorisieren, müssen Sie Benutzernamen und Passwort eines Super Admins Ihres Zen Cart Shops angeben.');
 define('TEXT_HELP_TITLE_UPGRADEADMINNAME', TEXT_DATABASE_UPGRADE_ADMIN_CREDENTIALS);
-define('TEXT_HELP_CONTENT_UPGRADEADMINNAME', 'To authorize the database upgrade, you must enter an admin username and password with SuperUser (ie: unrestricted) permissions in your store.<br>This will be the username and password you use to log in to the Admin area of your store.<br>(It is NOT your FTP password, and is not your hosting control panel password. Nobody knows this password except you or your storeowner. You can not get it from your hosting company.)<br>If you are locked out of your store and do not know any valid admin passwords and cannot log in to your store Admin page, then you can do an aggressive reset of the password by following the instructions in this article: <a href="http://www.zen-cart.com/content.php?44-how-do-i-change-or-reset-my-admin-password" target="_blank">http://www.zen-cart.com/content.php?44-how-do-i-change-or-reset-my-admin-password</a>.');
+define('TEXT_HELP_CONTENT_UPGRADEADMINNAME', 'Um das Update zu autorisieren, müssen Sie Benutzernamen und Passwort eines Super Admins Ihres Zen Cart Shops angeben.<br>Das sind Benutzername und Passwort, die Sie normalerweise verwenden, um in Ihre Shop Administration einzuloggen.<br>(Es ist NICHT Ihr FTP Passwort oder MySQL Passwort oder das Passwort für die Administration bei Ihrem Provider! Nur Sie oder ein andere Shhop Administrator kennen dieses Passwort.)<br>Falls Sie aus Ihrer Shopadministration ausgeperrt sind, Ihr Passwort nicht mehr kennen und nicht in den Adminbereich einloggen können, dann können Sie ein neues Passwort direkt in der Datenbank setzen so wie in folgendem FAQ Beitrag beschrieben: <a href="https://www.zen-cart-pro.at/forum/threads/9866-Ich-habe-mein-Passwort-f%C3%BCr-den-Adminbereich-vergessen-Was-tun" target="_blank">Ich habe mein Passwort für den Adminbereich vergessen. Was tun?</a>.');
 define('TEXT_DATABASE_UPGRADE_ADMIN_USER', 'Username');
 define('TEXT_DATABASE_UPGRADE_ADMIN_PASSWORD', 'Passwort');
-define('TEXT_HELP_TITLE_UPGRADEADMINPWD', 'Admin Password for Upgrade');
+define('TEXT_HELP_TITLE_UPGRADEADMINPWD', 'Admin Passwort für das Update');
 define('TEXT_HELP_CONTENT_UPGRADEADMINPWD', TEXT_HELP_CONTENT_UPGRADEADMINNAME);
-define('TEXT_VALIDATION_ADMIN_PASSWORD', 'A valid password is required');
-define('TEXT_ERROR_ADMIN_CREDENTIALS', 'Could not verify the Admin Credentials you provided.<br><br>' . TEXT_HELP_CONTENT_UPGRADEADMINNAME);
-define('TEXT_UPGRADE_IN_PROGRESS', 'Upgrade running. Progress of each step is indicated below ...');
+define('TEXT_VALIDATION_ADMIN_PASSWORD', 'Ein gültiges Passwort ist erforderlich');
+define('TEXT_ERROR_ADMIN_CREDENTIALS', 'Angegebener Benutzername/Passwort falsch.<br><br>' . TEXT_HELP_CONTENT_UPGRADEADMINNAME);
+define('TEXT_UPGRADE_IN_PROGRESS', 'Update läuft. Fortschritt der einzelnen Schritte wird unten angezeigt ...');
 define('TEXT_UPGRADE_TO_VER_X_COMPLETED', 'Update auf Version %s abgeschlossen.');
-define('TEXT_NO_REMAINING_UPGRADE_STEPS', 'Looking good! It appears as though there are no more upgrade steps required.');
+define('TEXT_NO_REMAINING_UPGRADE_STEPS', 'Das schaut gut aus! Es scheinen keine weiteren Updateschritte mehr nötig zu sein.');
 
 define ('TEXT_CONTINUE', 'Weiter');
 define ('TEXT_CANCEL', 'Abbrechen');
 define ('TEXT_CONTINUE_FIX', 'Zurück und Beheben');
-define ('TEXT_REFRESH', 'Aktalisieren');
+define ('TEXT_REFRESH', 'Neu laden');
 define ('TEXT_UPGRADE', 'Update ...');
 define ('TEXT_CLEAN_INSTALL', 'Frische Neuinstallation');
 define ('TEXT_UPDATE_CONFIGURE', 'Update Konfigurationsdatei');
@@ -138,17 +138,17 @@ define('TEXT_NAVBAR_ADMIN_SETUP', 'Admin Setup');
 define('TEXT_NAVBAR_COMPLETION', 'Fertig');
 define('TEXT_NAVBAR_PAYMENT_PROVIDERS', 'Zahlungsanbieter');
 
-define('TEXT_ERROR_STORE_CONFIGURE', "Main /includes/configure.php file does not exist (isn't readable) or is not writeable");
-define('TEXT_ERROR_ADMIN_CONFIGURE', "Admin /admin/includes/configure.php does not exist (isn't readable) or is not writeable");
-define('TEXT_ERROR_PHP_VERSION', str_replace(array("\n", "\r"), '', 'Incorrect PHP Version.
+define('TEXT_ERROR_STORE_CONFIGURE', "Frontend Konfigurationsdatei /includes/configure.php existiert nicht, ist nicht lesbar oder ist nicht beschreibbar");
+define('TEXT_ERROR_ADMIN_CONFIGURE', "Admin Konfigurationsdatei /admin/includes/configure.php existiert nicht, ist nicht lesbar oder ist nicht beschreibbar");
+define('TEXT_ERROR_PHP_VERSION', str_replace(array("\n", "\r"), '', 'Falsche PHP Version.
 <p>Ihre verwendete PHP Version (' . PHP_VERSION . ') ist zu alt. Die deutsche Zen Cart Version 1.5.5 kann damit NICHT verwendet werden.</p>
 <p>Diese Version von Zen Cart deutsch ist kompatibel mit PHP Versionen von 5.2.9 bis 7.0.<br>
-Check the <a href="www.zen-cart.com">www.zen-cart.com</a> website for the latest version of Zen Cart&reg;.</p>
+Besuchen Sie unsere <a href="www.zen-cart-pro.at">www.zen-cart-pro.at</a> Website für die neueste deutsche Zen Cart Version</p>
 '));
-define('TEXT_ERROR_PHP_VERSION_RECOMMENDED', 'For maximum security and compatibility you should be using PHP %s or newer. This installer can proceed, but this is just letting you know that your site will not be PCI Compliant when running out-of-date software.');
+define('TEXT_ERROR_PHP_VERSION_RECOMMENDED', 'Für maximale Sicherheit und Kompatibilität sollten Sie mindestens PHP %s oder höher verwenden. Wir können mit der Installation trotzdem weitermachen, weisen aber darauf hin, dass Sie in Ihrem eigenen Interesse keine solch veraltete PHP Version verwenden sollten.');
 define('TEXT_ERROR_PHP_VERSION_MIN', 'Die PHP Version sollte höher sein als %s');
 define('TEXT_ERROR_PHP_VERSION_MAX', 'Die PHP Version sollte niedriger sein als %s');
-define('TEXT_ERROR_MYSQL_SUPPORT', 'Problems with your MySQL (mysqli) support');
+define('TEXT_ERROR_MYSQL_SUPPORT', 'Probleme mit Ihrer MySQL (mysqli) Unterstützung');
 define('TEXT_ERROR_LOG_FOLDER', DIR_FS_LOGS . ' Verzeichnis ist nicht beschreibbar');
 define('TEXT_ERROR_CACHE_FOLDER', DIR_FS_SQL_CACHE . ' Verzeichnis ist nicht beschreibbar');
 define('TEXT_ERROR_IMAGES_FOLDER', '/images/ Verzeichnis ist nicht beschreibbar');
@@ -156,43 +156,43 @@ define('TEXT_ERROR_DEFINEPAGES_FOLDER', '/includes/languages/german/html_include
 define('TEXT_ERROR_MEDIA_FOLDER', '/media/ Verzeichnis ist nicht beschreibbar');
 define('TEXT_ERROR_PUB_FOLDER', DIR_FS_DOWNLOAD_PUBLIC . ' Verzeichnis ist nicht beschreibbar');
 
-define('TEXT_ERROR_CONFIGURE_REQUIRES_UPDATE', 'Your configure.php file is an old version and requires updating before we can continue.');
-define('TEXT_ERROR_HTACCESS_SUPPORT', 'Problems with .htaccess support');
-define('TEXT_ERROR_SESSION_SUPPORT', 'Problems with session support');
-define('TEXT_ERROR_SESSION_SUPPORT_USE_TRANS_SID', 'ini setting session.use_trans_sid is enabled');
-define('TEXT_ERROR_SESSION_SUPPORT_AUTO_START', 'ini setting session.auto_start is enabled');
-define('TEXT_ERROR_DB_CONNECTION', 'Problems with Database Connection');
-define('TEXT_ERROR_DB_CONNECTION_DEFAULT', 'Possible problems with database connection');
+define('TEXT_ERROR_CONFIGURE_REQUIRES_UPDATE', 'Ihre configure.php Datei stammt aus einer alten Zen Cart Version und muss aktualisiert werden, bevor wir weitermachen.');
+define('TEXT_ERROR_HTACCESS_SUPPORT', 'Probleme mit .htaccess Unterstützung');
+define('TEXT_ERROR_SESSION_SUPPORT', 'Probleme mit session Unterstützung');
+define('TEXT_ERROR_SESSION_SUPPORT_USE_TRANS_SID', 'ini setting session.use_trans_sid ist aktiviert');
+define('TEXT_ERROR_SESSION_SUPPORT_AUTO_START', 'ini setting session.auto_start ist aktiviert');
+define('TEXT_ERROR_DB_CONNECTION', 'Probleme mit der Verbindung zur Datenbank');
+define('TEXT_ERROR_DB_CONNECTION_DEFAULT', 'Möglicherweise Probleme mit der Verbindung zur Datenbank');
 define('TEXT_ERROR_DB_CONNECTION_UPGRADE', 'Probems with database connection based on the entries in your current configure.php');
-define('TEXT_ERROR_SET_TIME_LIMIT', 'max_execution_time setting disabled ');
-define('TEXT_ERROR_GD', 'GD Extension not enabled');
-define('TEXT_ERROR_ZLIB', 'Zlib Extension not enabled');
-define('TEXT_ERROR_OPENSSL', 'Openssl Extension not enabled');
+define('TEXT_ERROR_SET_TIME_LIMIT', 'max_execution_time setting deaktiviert ');
+define('TEXT_ERROR_GD', 'GD Extension nicht aktiviert');
+define('TEXT_ERROR_ZLIB', 'Zlib Extension nicht aktiviert');
+define('TEXT_ERROR_OPENSSL', 'Openssl Extension nicht aktiviert');
 define('TEXT_ERROR_CURL', 'Problems with the CURL extension');
-define('TEXT_ERROR_UPLOADS', 'Upload Extension not enabled');
-define('TEXT_ERROR_XML', 'XML Extension not enabled');
-define('TEXT_ERROR_GZIP', 'Gzip Extension not enabled');
-define('TEXT_ERROR_EXTENSION_NOT_LOADED', '%s extension does not seem to be loaded');
-define('TEXT_ERROR_FUNCTION_DOES_NOT_EXIST', 'PHP function %s does not exist');
-define('TEXT_ERROR_CURL_LIVE_TEST', 'Could not use CURL to contact a live server');
-define('TEXT_ERROR_HTTPS', 'PRO TIP: If possible you should already have installed an SSL certificate, and run the installer using https://');
-define('TEXT_ERROR_SUCCESS_EXISTING_CONFIGURE', 'An existing configure.php file was found. The installer will attempt to upgrade your database structure if you choose "Upgrade..." below.');
-define('TEXT_ERROR_SUCCESS_EXISTING_CONFIGURE_NO_UPDATE', 'An existing configure.php file was found. However your database seems to be current. This suggests you are on a live site. Proceeding with Install will wipe out the current database contents! Are you sure you want to install?');
-define('TEXT_ERROR_MULTIPLE_ADMINS_NONE_SELECTED', 'Multiple Admin directories seem to exist. Either remove old admin directories and click Refresh or select the correct admin directory below and click Refresh.');
-define('TEXT_ERROR_MULTIPLE_ADMINS_SELECTED', 'Multiple Admin directories seem to exist. If the selected directory below is incorrect, please choose another and click Refresh.');
-define('TEXT_ERROR_SUCCESS_NO_ERRORS', 'No errors or warnings were detected on your system. You may continue with the installation.');
+define('TEXT_ERROR_UPLOADS', 'Upload Extension nicht aktiviert');
+define('TEXT_ERROR_XML', 'XML Extension nicht aktiviert');
+define('TEXT_ERROR_GZIP', 'Gzip Extension nicht aktiviert');
+define('TEXT_ERROR_EXTENSION_NOT_LOADED', '%s Extension scheint nicht geladen zu sein');
+define('TEXT_ERROR_FUNCTION_DOES_NOT_EXIST', 'PHP Funktion %s existiert nicht');
+define('TEXT_ERROR_CURL_LIVE_TEST', 'CURL Test fehlgeschlagen');
+define('TEXT_ERROR_HTTPS', 'TIP: Sie sollten für Ihren Shop unbedingt SSL nutzen. Falls Sie bereits ein SSL Zertifikat aktiv haben, dann rufen Sie dieses Installationsprogramm gleich über https:// auf');
+define('TEXT_ERROR_SUCCESS_EXISTING_CONFIGURE', 'Es wurde eine bestehende configure.php Datei einer früheren Zen Cart Version gefunden. Wir werden versuchen, Ihre Datenbankstruktur zu aktualisieren, falls Sie unten "Update" wählen.');
+define('TEXT_ERROR_SUCCESS_EXISTING_CONFIGURE_NO_UPDATE', 'Es wurde eine bestehende configure.php Datei gefunden. Ihre Datenbank scheint allerdings aktuell zu sein. Das deutet darauf hin, dass wir uns hier in Ihrem Liveshop befinden. Wenn Sie mit der Installation fortfahren WERDEN ALLE INHALTE IHRER DATENBANK GELÖSCHT! Wollen Sie wirklich neu installieren?');
+define('TEXT_ERROR_MULTIPLE_ADMINS_NONE_SELECTED', 'Es scheinen mehrere Adminverzeichnisse zu existieren. Entweder entfernen Sie alte Adminverzeichnisse und clicken Aktualisieren oder wählen Sie unten das korrekte Admin Verzeichnis aus und clicken Aktualisieren.');
+define('TEXT_ERROR_MULTIPLE_ADMINS_SELECTED', 'Es scheinen mehrere Admin Verzeichnisse zu existieren. Falls das ausgewählte Verzeichnis unten falsch ist, wählen Sie bitte ein anderes aus und klicken Aktualisieren.');
+define('TEXT_ERROR_SUCCESS_NO_ERRORS', 'Es wurden keine Fehler oder Warnungen für Ihre Sysmkonfiguration erkannt. Sie können die Installation fortsetzen.');
 
-define('TEXT_FORM_VALIDATION_REQUIRED', 'Required');
-define('TEXT_FORM_VALIDATION_AGREE_LICENSE', 'You must agree to the license terms');
-define('TEXT_FORM_VALIDATION_CATALOG_HTTPS_URL', 'A URL is required here, even if you have temporarily opted not to enable SSL yet. Try using your normal domain name.');
+define('TEXT_FORM_VALIDATION_REQUIRED', 'Erforderlich');
+define('TEXT_FORM_VALIDATION_AGREE_LICENSE', 'Sie müssen die Lizenzbedingungen akzeptieren');
+define('TEXT_FORM_VALIDATION_CATALOG_HTTPS_URL', 'Hier wird eine URL benötigt, auch wenn Sie übergangsweise SSL noch nicht aktivieren wollen. Versuchen Sie, Ihren normalen Domainnamen anzugeben.');
 
 define('TEXT_NAVBAR_INSTALLATION_INSTRUCTIONS', 'Installationsanleitung');
 define('TEXT_NAVBAR_FORUM_LINK', 'Forum');
 define('TEXT_NAVBAR_WIKI_LINK', 'FAQ/Tutorials');
 
-define('TEXT_HELP_TITLE_HTACCESSSUPPORT', 'htaccess support');
+define('TEXT_HELP_TITLE_HTACCESSSUPPORT', 'htaccess Unterstützung');
 define('TEXT_HELP_CONTENT_HTACCESSSUPPORT', 'There appears to be a problem with the htaccess support on your server. This may be because you are not using Apache as your Web Server or .htaccess support is disabled or not configured correctly.<br><br>htaccess support is used to provide security for certain files/folders on your server.');
-define('TEXT_HELP_TITLE_FOLDERPERMS', 'Folder Permissions');
+define('TEXT_HELP_TITLE_FOLDERPERMS', 'Ordner Schreibrechte');
 define('TEXT_HELP_CONTENT_FOLDERPERMS', 'The permissions for this folder are not set correctly. This folder needs to be writeable. You can find out more about folder permissions at <a href="http://www.zen-cart.com/content.php?51-how-do-i-set-permissions-on-files-folders" target="_blank">http://www.zen-cart.com/content.php?51-how-do-i-set-permissions-on-files-folders</a>');
 define('TEXT_HELP_TITLE_CONNECTIONDATABASECHECK', 'Initial Database Connection');
 define('TEXT_HELP_CONTENT_CONNECTIONDATABASECHECK', 'We tried to connect to MySQL using a localhost connection. This failure does not necessarily mean MySQL is not working, as some hosts require an IP address or host name for the MySQL database.<br><br>If you are indeed using localhost for your database server, you should check that MySQL is running correctly.');
@@ -200,17 +200,17 @@ define('TEXT_HELP_TITLE_CHECKCURL', TEXT_ERROR_CURL);
 define('TEXT_HELP_CONTENT_CHECKCURL', 'CURL is a background process used by (PHP in) your store to connect to external servers and services such as payment and shipping providers to process transactions or get real-time shipping quotes. When we tested CURL functionality on your server we were unable to establish a connection. This could indicate a problem with your webserver configuration. Please contact your hosting company for assistance to enable CURL support on your server.<br><br>If you are a developer running this site on an offline development server then it is unsurprising that CURL cannot connect for this test. CURL is not necessary for development purposes except for testing transactional activity, at which time connecting online will be required.');
 define('TEXT_HELP_TITLE_ADMINSERVERDOMAIN', 'Admin Server Domain');
 define('TEXT_HELP_CONTENT_ADMINSERVERDOMAIN', "Enter the domain name for accessing your Admin area. It is strongly recommended to use HTTPS (SSL) for this address. Consult your hosting company about enabling SSL on your site.");
-define('TEXT_HELP_TITLE_ENABLESSLCATALOG', 'Enable SSL for Storefront?');
+define('TEXT_HELP_TITLE_ENABLESSLCATALOG', 'SSL für das Shop Frontend aktivieren?');
 define('TEXT_HELP_CONTENT_ENABLESSLCATALOG', "Check this box if you have an SSL certificate on your hosting account and you want Zen Cart&reg; to use it when displaying sensitive pages such as Login, My Account, Checkout, etc.");
-define('TEXT_HELP_TITLE_HTTPSERVERCATALOG', 'Storefront HTTP Domain');
+define('TEXT_HELP_TITLE_HTTPSERVERCATALOG', 'Shop Frontend HTTP Domain');
 define('TEXT_HELP_CONTENT_HTTPSERVERCATALOG', "Enter the domain-part of the URL for your store. eg: http://www.example.com");
-define('TEXT_HELP_TITLE_HTTPURLCATALOG', 'Storefront HTTP URL');
+define('TEXT_HELP_TITLE_HTTPURLCATALOG', 'Shop Frontend HTTP URL');
 define('TEXT_HELP_CONTENT_HTTPURLCATALOG', "Enter the entire URL for your store.  eg: http://www.example.com/zencart/");
-define('TEXT_HELP_TITLE_HTTPSSERVERCATALOG', 'Storefront HTTPS Domain');
+define('TEXT_HELP_TITLE_HTTPSSERVERCATALOG', 'Shop Frontend HTTPS Domain');
 define('TEXT_HELP_CONTENT_HTTPSSERVERCATALOG', "If you have checked the box above to enable use of SSL during checkout, you must enter here the domain-part of the https URL to your store.<br>This is typically something like:<br>https://www.example.com<br>https://www.hostingcompany.com/~username<br>https://www.hostingcompany.com/~username/subdomain.com");
-define('TEXT_HELP_TITLE_HTTPSURLCATALOG', 'Storefront HTTPS URL');
+define('TEXT_HELP_TITLE_HTTPSURLCATALOG', 'Shop Frontend HTTPS URL');
 define('TEXT_HELP_CONTENT_HTTPSURLCATALOG', "Enter the https URL to your store. This is typically the same as the HTTPS Domain, followed by the foldername in which your store's files are kept. eg: https://www.example.com/zencart");
-define('TEXT_HELP_TITLE_PHYSICALPATH', 'Storefront Physical Path');
+define('TEXT_HELP_TITLE_PHYSICALPATH', 'Shop Frontend Physischer Pfad');
 define('TEXT_HELP_CONTENT_PHYSICALPATH', "This is the actual path (according to your server's filesystem) where your Zen Cart&reg; files are located. Common examples look like '/users/home/public_html/zencart'.");
 
 
@@ -225,24 +225,24 @@ define('TEXT_HELP_TITLE_DBNAME', 'Datenbank Name');
 define('TEXT_HELP_CONTENT_DBNAME', "What is the name of the database used to hold the data? An example database name is 'zencart' or 'myaccount_zencart'.");
 define('TEXT_HELP_TITLE_DEMODATA', TEXT_DATABASE_SETUP_LOAD_DEMO);
 define('TEXT_HELP_CONTENT_DEMODATA', "If you choose to load Demo Data, we will install a base set of products and categories, with sales and specials and attributes and more. These are useful for you to play around and see how various combinations can be set up and how they can look on your storefront.<br><br>You can certainly delete the demo products (by hand) later, or once you've toyed with the samples, you can re-run this install and choose to not install the demo data, and thus have a fully clean site for setting up your own new store.");
-define('TEXT_HELP_TITLE_DBCHARSET', 'Database Character Set');
-define('TEXT_HELP_CONTENT_DBCHARSET', "Most stores will use UTF8.<br>If you don't have a reason to use something else, use UTF8.");
-define('TEXT_HELP_TITLE_DBPREFIX', 'Database Tablename Prefix');
+define('TEXT_HELP_TITLE_DBCHARSET', 'Datenbank Character Set');
+define('TEXT_HELP_CONTENT_DBCHARSET', "Lassen Sie diese Einstellung unbedingt auf UTF8.");
+define('TEXT_HELP_TITLE_DBPREFIX', 'Datenbank Präfix für Tabellennamen');
 define('TEXT_HELP_CONTENT_DBPREFIX', "What is the prefix you would like used for database tables?  Example: 'zen_'  <strong class='alert'>TIP: Leave empty if no prefix is needed.</strong><br />You can use prefixes to allow more than one store to share the same database.");
-define('TEXT_HELP_TITLE_SQLCACHEMETHOD', 'SQL Cache Method');
+define('TEXT_HELP_TITLE_SQLCACHEMETHOD', 'SQL Caching Methode');
 define('TEXT_HELP_CONTENT_SQLCACHEMETHOD', "Default setting is 'none'. Alternatives are 'database' or 'file'. If your server is really slow, use 'none'. If your site is moderately busy, use 'database'. If your site is extremely high traffic, use 'file'. ");
 define('TEXT_HELP_TITLE_SQLCACHEDIRECTORY', 'SQL Cache Directory');
 define('TEXT_HELP_CONTENT_SQLCACHEDIRECTORY', "Enter the directory to use for file-based caching. This is a directory/folder on your webserver, and its permissions must be set to writable so that the webserver (eg Apache) can write files to it.");
 
 define('TEXT_HELP_TITLE_ADMINUSER', 'Admin Superuser Name');
 define('TEXT_HELP_CONTENT_ADMINUSER', "This will be the primary username used to manage your admin access and other admin user accounts. It will have unrestricted privileges.");
-define('TEXT_HELP_TITLE_ADMINEMAIL', 'Admin Superuser Email');
+define('TEXT_HELP_TITLE_ADMINEMAIL', 'Admin Superuser Emailadresse');
 define('TEXT_HELP_CONTENT_ADMINEMAIL', "This email address will be used for password recovery in case you forget your password.");
-define('TEXT_HELP_TITLE_ADMINEMAIL2', 'Retype Email');
+define('TEXT_HELP_TITLE_ADMINEMAIL2', 'Emailadresse erneut eintippen');
 define('TEXT_HELP_CONTENT_ADMINEMAIL2', "Please re-enter the email address. This is just to help catch accidental typos!");
-define('TEXT_HELP_TITLE_ADMINPASSWORD', 'Admin Superuser Password');
-define('TEXT_HELP_CONTENT_ADMINPASSWORD', "REMEMBER THIS PASSWORD!!!!! This is the default password assigned to the admin username you specified above. You may be asked to change it on first login (thus you can personalize it a bit more at that time). You can always manually change it anytime while you're logged into your Admin.<br><br><strong>REMEMBER THIS PASSWORD, because you will need it to log in to your store!</strong>");
-define('TEXT_HELP_TITLE_ADMINDIRECTORY', 'Admin Directory');
+define('TEXT_HELP_TITLE_ADMINPASSWORD', 'Admin Superuser Passwort');
+define('TEXT_HELP_CONTENT_ADMINPASSWORD', "NOTIEREN SIE SICH DIESES PASSWORT!!!!! This is the default password assigned to the admin username you specified above. You may be asked to change it on first login (thus you can personalize it a bit more at that time). You can always manually change it anytime while you're logged into your Admin.<br><br><strong>REMEMBER THIS PASSWORD, because you will need it to log in to your store!</strong>");
+define('TEXT_HELP_TITLE_ADMINDIRECTORY', 'Admin Verzeichnis');
 define('TEXT_HELP_CONTENT_ADMINDIRECTORY', "We try to rename your admin folder for you automatically, to offer a degree of security-by-obscurity. While we understand that this doesn't make it foolproof, it does discourage unauthorized visitors from attacking your site. You may still consider changing the foldername yourself (just rename the folder to whatever you wish it to be, by using your FTP program or your hosting company's File Manager tool in your hosting control panel).");
 
 define('TEXT_VERSION_CHECK_NEW_VER', 'Neue Version verfügbar v');
@@ -250,14 +250,14 @@ define('TEXT_VERSION_CHECK_NEW_PATCH', 'Neuer PATCH verfügbar: v');
 define('TEXT_VERSION_CHECK_PATCH', 'patch');
 define('TEXT_VERSION_CHECK_DOWNLOAD', 'Hier herunterladen');
 define('TEXT_VERSION_CHECK_CURRENT', 'Ihre Zen Cart Version scheint aktuell zu sein');
-define('TEXT_ERROR_NEW_VERSION_AVAILABLE', '<a href="http://www.zen-cart.com/getit">There is a NEWER version of Zen Cart&reg; available, which you can download from </a><a href="http://www.zen-cart.com" style="text-decoration:underline" target="_blank">www.zen-cart.com</a>');
+define('TEXT_ERROR_NEW_VERSION_AVAILABLE', '<a href="http://www.zen-cart-pro.at/">Es ist eine NEUERE Version von Zen Cart deutsch verfügbar, die Sie hier herunterladen können.</a>');
 
-define('TEXT_DB_VERSION_NOT_FOUND', 'A Zen Cart database for %s was not found!');
+define('TEXT_DB_VERSION_NOT_FOUND', 'Es wurde keine Zen Cart Datenbank für %s gefunden!');
 
 
 define('TEXT_HELP_TITLE_AGREETOTERMS', 'Lizenzbedingungen akzeptieren');
 define('TEXT_HELP_CONTENT_AGREETOTERMS', "<h2>The GNU General Public License (GPL)</h2>
-<p><b>Eine deutsche Übersetzung der GNU General Public License finden Sie online <a href=\"http://www.gnu.de/documents/gpl-2.0.de.html\" target=\"_blank\">hier</a>.</b></p>
+<p><b>Eine deutsche Übersetzung der GNU General Public License finden Sie online auf:<br/><a href=\"http://www.gnu.de/documents/gpl-2.0.de.html\" target=\"_blank\">www.gnu.de/documents/gpl-2.0.de.html</b></p>
 <h3>Version 2, June 1991</h3>
 
 <tt>

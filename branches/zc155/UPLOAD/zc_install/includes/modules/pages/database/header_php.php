@@ -2,8 +2,8 @@
 /**
  * @package Installer
  * @copyright Copyright 2003-2016 Zen Cart Development Team
- * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id:
+ * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
+ * @version $Id: header_php.php 3 2015-12-26 21:49:16Z webchills $
  */
 
 $dbCharset = array( array('id' => 'utf8', 'text' => TEXT_DATABASE_SETUP_CHARSET_OPTION_UTF8),
@@ -20,7 +20,7 @@ if (empty($db_user_fallback)) $db_user_fallback = 'zencart';
 $db_password_fallback = $configReader->getDefine('DB_SERVER_PASSWORD');
 if (empty($db_password_fallback)) $db_password_fallback = 'zencart';
 $db_host = isset($db_host) ? $db_host : 'localhost';
-$db_name = isset($db_name) ? $db_name : $db_name_fallback;
+//$db_name = isset($db_name) ? $db_name : $db_name_fallback;
 if (defined('DEVELOPER_MODE') && DEVELOPER_MODE === true) {
   $db_user = (isset($db_user)) ? $db_user : $db_user_fallback;
   $db_password = (isset($db_password)) ? $db_password : $db_password_fallback;

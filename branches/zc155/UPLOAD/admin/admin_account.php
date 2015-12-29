@@ -4,7 +4,7 @@
  * @copyright Copyright 2003-2016 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: admin_account.php 730 2015-12-21 11:49:16Z webchills $
+ * @version $Id: admin_account.php 731 2015-12-29 19:49:16Z webchills $
  */
 
 require('includes/application_top.php');
@@ -131,7 +131,7 @@ $userDetails = $userList[0];
     <tr>
       <td class="name"><?php echo $userDetails['name'] ?><?php echo zen_draw_hidden_field('id', $userDetails['id']) . zen_draw_hidden_field('admin_name', $userDetails['name']); ?></td>
 <?php if ($action == 'edit' && $user == $userDetails['id']) { ?>
-      <td class="email"><?php echo zen_draw_input_field('email', $userDetails['email'], 'class="field"', false, 'text', true) ?></td>
+      <td class="email"><?php echo zen_draw_input_field('email', $userDetails['email'], 'class="field"', false, 'email', true) ?></td>
 <?php } else { ?>
       <td class="email"><?php echo $userDetails['email'] ?></td>
 <?php } ?>
