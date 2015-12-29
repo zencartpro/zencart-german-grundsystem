@@ -11,7 +11,7 @@
  */
 define('META_TAG_TITLE', 'Zen Cart&reg; Installer');
 define('HTML_PARAMS','dir="ltr" lang="en"');
-
+define('ZC_VERSION_STRING', '%s v%s');
 define('TEXT_PAGE_HEADING_INDEX', 'System Inspection');
 define('TEXT_INDEX_FATAL_ERRORS', 'Some problems that need fixing before we continue');
 define('TEXT_INDEX_WARN_ERRORS', 'Some other problems');
@@ -54,7 +54,7 @@ define('TEXT_DATABASE_SETUP_DB_PREFIX', 'Store Prefix: ');
 define('TEXT_DATABASE_SETUP_SQL_CACHE_METHOD', 'SQL Cache Method: ');
 define('TEXT_DATABASE_SETUP_JSCRIPT_SQL_ERRORS1', '<p>Some errors occurred when running the SQL install file');
 define('TEXT_DATABASE_SETUP_JSCRIPT_SQL_ERRORS2', '<br>Please see error logs for more details<p>');
-define('TEXT_DATABASE_SETUP_CHARSET_OPTION_UTF8', 'UTF-8 (default setting)');
+define('TEXT_DATABASE_SETUP_CHARSET_OPTION_UTF8', 'UTF8 (default setting)');
 define('TEXT_DATABASE_SETUP_CHARSET_OPTION_LATIN1', 'Latin1');
 define('TEXT_DATABASE_SETUP_CACHE_TYPE_OPTION_NONE', 'No SQL Caching');
 define('TEXT_DATABASE_SETUP_CACHE_TYPE_OPTION_DATABASE', 'Database');
@@ -218,7 +218,7 @@ define('TEXT_HELP_CONTENT_PHYSICALPATH', "This is the actual path (according to 
 define('TEXT_HELP_TITLE_DBHOST', 'Database Host');
 define('TEXT_HELP_CONTENT_DBHOST', "What is the database host?  The database host can be in the form of a host name, such as 'localhost' or 'db1.myserver.com', or as an IP-address, such as '192.168.0.1'.");
 define('TEXT_HELP_TITLE_DBUSER', 'Database User');
-define('TEXT_HELP_CONTENT_DBUSER', "What is the username used to connect to the database? An example username is 'myusername_store'.<br>For PCI reasons you should NEVER user 'root' here.");
+define('TEXT_HELP_CONTENT_DBUSER', "What is the username used to connect to the database? An example username is 'myusername_store'.<br>For PCI reasons you should NEVER use 'root' here.");
 define('TEXT_HELP_TITLE_DBPASSWORD', 'Database Password');
 define('TEXT_HELP_CONTENT_DBPASSWORD', "What is the password used for your database username account? It was created when the database-username was created.");
 define('TEXT_HELP_TITLE_DBNAME', 'Database Name');

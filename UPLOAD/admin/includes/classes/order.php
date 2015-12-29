@@ -4,7 +4,7 @@
  * @copyright Copyright 2003-2016 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: order.php 730 2015-12-21 19:49:16Z webchills $
+ * @version $Id: order.php 731 2015-12-29 19:49:16Z webchills $
  */
 
   class order {
@@ -155,7 +155,7 @@
 
         $subindex = 0;
         $attributes = $db->Execute("select products_options, products_options_values, options_values_price,
-                                           price_prefix,
+                                           price_prefix, products_options_values_id,
                                            product_attribute_is_free
                                     from " . TABLE_ORDERS_PRODUCTS_ATTRIBUTES . "
                                     where orders_id = '" . (int)$order_id . "'
@@ -164,6 +164,7 @@
           while (!$attributes->EOF) {
             $this->products[$index]['attributes'][$subindex] = array('option' => $attributes->fields['products_options'],
                                                                      'value' => $attributes->fields['products_options_values'],
+                                                                     'value_id' => $attributes->fields['products_options_values_id'],
                                                                      'prefix' => $attributes->fields['price_prefix'],
                                                                      'price' => $attributes->fields['options_values_price'],
                                                                      'product_attribute_is_free' =>$attributes->fields['product_attribute_is_free']);

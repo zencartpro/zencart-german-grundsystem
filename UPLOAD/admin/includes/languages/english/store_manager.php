@@ -4,7 +4,7 @@
  * @copyright Copyright 2003-2016 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: store_manager.php 794 2014-02-09 15:24:50Z webchills $
+ * @version $Id: store_manager.php 795 2015-12-29 19:24:50Z webchills $
  */
 
   define('HEADING_TITLE', 'Store Manager');
@@ -20,7 +20,7 @@
   define('ERROR_CONFIGURATION_KEY_NOT_FOUND', '<strong>Error:</strong> No matching Configuration Keys were found ...');
   define('ERROR_CONFIGURATION_KEY_NOT_ENTERED', '<strong>Error:</strong> No Configuration Key or Text was entered to search for ... Search was terminated');
 
-  define('TEXT_INFO_COUNTER_UPDATE', '<strong>Update Hit Counter</strong><br />to to a new value: ');
+  define('TEXT_INFO_COUNTER_UPDATE', '<strong>Update Hit Counter</strong><br />to a new value: ');
   define('TEXT_INFO_PRODUCTS_PRICE_SORTER_UPDATE', '<strong>Update ALL Products Price Sorter</strong><br />to be able to sort by displayed prices: ');
   define('TEXT_INFO_PRODUCTS_VIEWED_UPDATE', '<strong>Reset ALL Products Viewed</strong><br />Reset Product Viewed Counts to 0: ');
   define('TEXT_INFO_PRODUCTS_ORDERED_UPDATE', '<strong>Reset ALL Products Ordered</strong><br />Reset Product Ordered Counts to 0: ');

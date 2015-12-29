@@ -4,7 +4,7 @@
  * @copyright Copyright 2003-2016 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: gv_mail.php 806 2015-12-21 18:28:24Z webchills $
+ * @version $Id: gv_mail.php 807 2015-12-29 19:28:24Z webchills $
  */
 
   require('includes/application_top.php');
@@ -369,7 +369,7 @@ function check_form(form_name) {
               </tr>
                <tr>
                 <td class="main"><?php echo TEXT_TO; ?></td>
-                <td><?php echo zen_draw_input_field('email_to', '', 'size="50"'); ?><?php echo '&nbsp;&nbsp;' . TEXT_SINGLE_EMAIL; ?></td>
+                <td><?php echo zen_draw_input_field('email_to', '', 'size="50"', false, 'email'); ?><?php echo '&nbsp;&nbsp;' . TEXT_SINGLE_EMAIL; ?></td>
               </tr>
               <tr>
                 <td colspan="2"><?php echo zen_draw_separator('pixel_trans.gif', '1', '10'); ?></td>

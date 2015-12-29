@@ -5,7 +5,7 @@
  * @package classes
  * @copyright Copyright 2003-2016 Zen Cart Development Team
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: order.php 855 2015-12-21 20:13:25Z webchills $
+ * @version $Id: order.php 856 2015-12-29 19:13:25Z webchills $
  */
 /**
  * order class
@@ -678,7 +678,7 @@ class order extends base {
 
     $insert_id = $db->Insert_ID();
 
-    $this->notify('NOTIFY_ORDER_DURING_CREATE_ADDED_ORDER_HEADER', array_merge(array('orders_id' => $insert_id, 'shipping_weight' => $_SESSION['cart']->weight), $sql_data_array));
+    $this->notify('NOTIFY_ORDER_DURING_CREATE_ADDED_ORDER_HEADER', array_merge(array('orders_id' => $insert_id, 'shipping_weight' => $_SESSION['cart']->weight), $sql_data_array), $insert_id);
 
     for ($i=0, $n=sizeof($zf_ot_modules); $i<$n; $i++) {
       $sql_data_array = array('orders_id' => $insert_id,
@@ -689,8 +689,8 @@ class order extends base {
                               'sort_order' => $zf_ot_modules[$i]['sort_order']);
 
       zen_db_perform(TABLE_ORDERS_TOTAL, $sql_data_array);
-
-      $this->notify('NOTIFY_ORDER_DURING_CREATE_ADDED_ORDERTOTAL_LINE_ITEM', $sql_data_array);
+      $ot_insert_id = $db->insert_ID();
+      $this->notify('NOTIFY_ORDER_DURING_CREATE_ADDED_ORDERTOTAL_LINE_ITEM', $sql_data_array, $ot_insert_id);
     }
 
     $customer_notification = (SEND_EMAILS == 'true') ? '1' : '0';
@@ -701,8 +701,8 @@ class order extends base {
                             'comments' => $this->info['comments']);
 
     zen_db_perform(TABLE_ORDERS_STATUS_HISTORY, $sql_data_array);
-
-    $this->notify('NOTIFY_ORDER_DURING_CREATE_ADDED_ORDER_COMMENT', $sql_data_array);
+    $osh_insert_id = $db->insert_ID();
+    $this->notify('NOTIFY_ORDER_DURING_CREATE_ADDED_ORDER_COMMENT', $sql_data_array, $osh_insert_id);
 
     return $insert_id;
 
@@ -805,7 +805,7 @@ class order extends base {
 
       $order_products_id = $db->Insert_ID();
 
-      $this->notify('NOTIFY_ORDER_DURING_CREATE_ADDED_PRODUCT_LINE_ITEM', array_merge(array('orders_products_id' => $order_products_id), $sql_data_array));
+      $this->notify('NOTIFY_ORDER_DURING_CREATE_ADDED_PRODUCT_LINE_ITEM', array_merge(array('orders_products_id' => $order_products_id), $sql_data_array), $order_products_id);
 
       $this->notify('NOTIFY_ORDER_PROCESSING_CREDIT_ACCOUNT_UPDATE_BEGIN');
       $order_total_modules->update_credit_account($i);//ICW ADDED FOR CREDIT CLASS SYSTEM
@@ -886,10 +886,9 @@ class order extends base {
                                   'products_prid' => $this->products[$i]['id']
                                   );
 
-
           zen_db_perform(TABLE_ORDERS_PRODUCTS_ATTRIBUTES, $sql_data_array);
-
-          $this->notify('NOTIFY_ORDER_DURING_CREATE_ADDED_ATTRIBUTE_LINE_ITEM', $sql_data_array);
+          $opa_insert_id = $db->insert_ID();
+          $this->notify('NOTIFY_ORDER_DURING_CREATE_ADDED_ATTRIBUTE_LINE_ITEM', array_merge(array('orders_products_attributes_id' => $opa_insert_id), $sql_data_array), $opa_insert_id);
 
           if ((DOWNLOAD_ENABLED == 'true') && isset($attributes_values->fields['products_attributes_filename']) && zen_not_null($attributes_values->fields['products_attributes_filename'])) {
             $sql_data_array = array('orders_id' => $zf_insert_id,
@@ -901,8 +900,8 @@ class order extends base {
                                     );
 
             zen_db_perform(TABLE_ORDERS_PRODUCTS_DOWNLOAD, $sql_data_array);
-
-            $this->notify('NOTIFY_ORDER_DURING_CREATE_ADDED_ATTRIBUTE_DOWNLOAD_LINE_ITEM', $sql_data_array);
+            $opd_insert_id = $db->insert_ID();
+            $this->notify('NOTIFY_ORDER_DURING_CREATE_ADDED_ATTRIBUTE_DOWNLOAD_LINE_ITEM', $sql_data_array, $opd_insert_id);
           }
           $this->products_ordered_attributes .= "\n\t" . $attributes_values->fields['products_options_name'] . ' ' . zen_decode_specialchars($this->products[$i]['attributes'][$j]['value']);
         }

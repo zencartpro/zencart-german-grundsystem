@@ -3,7 +3,7 @@
  * @package Installer
  * @copyright Copyright 2003-2016 Zen Cart Development Team
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: tpl_main_page.php 3 2015-12-26 21:49:16Z webchills $
+ * @version $Id: tpl_main_page.php 4 2015-12-29 19:49:16Z webchills $
  */
 ?>
 <body id="<?php echo $body_id; ?>">
@@ -12,6 +12,7 @@
       <div class="row">
         <div class="small-12 columns small-centered hero-unit">
         <div class="logo"></div>
+            <div class="version"><?php echo sprintf(ZC_VERSION_STRING, PROJECT_VERSION_NAME, PROJECT_VERSION_MAJOR . '.' . PROJECT_VERSION_MINOR); ?></div>
         </div>
       </div>
     </div>
