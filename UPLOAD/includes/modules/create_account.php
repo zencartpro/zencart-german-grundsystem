@@ -6,7 +6,7 @@
  * @copyright Copyright 2003-2016 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: create_account.php 733 2015-12-21 21:18:16Z webchills $
+ * @version $Id: create_account.php 734 2016-02-17 21:18:16Z webchills $
  */
 // This should be first line of the script:
 $zco_notifier->notify('NOTIFY_MODULE_START_CREATE_ACCOUNT');
@@ -148,7 +148,7 @@ if (isset($_POST['action']) && ($_POST['action'] == 'process')) {
       $messageStack->add('create_account', ENTRY_EMAIL_ADDRESS_ERROR_EXISTS);
     } else {
       $nick_error = false;
-      $zco_notifier->notify('NOTIFY_NICK_CHECK_FOR_EXISTING_EMAIL', $email_address, $nick_error);
+      $zco_notifier->notify('NOTIFY_NICK_CHECK_FOR_EXISTING_EMAIL', $email_address, $nick_error, $nick);
       if ($nick_error) {
         $error = true;
       }

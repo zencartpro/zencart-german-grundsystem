@@ -4,7 +4,7 @@
  * @copyright Copyright 2003-2016 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: modules.php 789 2015-12-21 18:13:51Z webchills $
+ * @version $Id: modules.php 790 2016-02-17 18:13:51Z webchills $
  */
 
   require('includes/application_top.php');
@@ -70,7 +70,7 @@
     $admname = '{' . preg_replace('/[^\d\w]/', '*', zen_get_admin_name()) . '[' . (int)$_SESSION['admin_id'] . ']}';
     switch ($action) {
       case 'save':
-        if (!$is_ssl_protected && in_array($class, array('paypaldp', 'linkpoint_api', 'authorizenet_aim', 'authorizenet_echeck'))) break;
+        if (!$is_ssl_protected && in_array($class, array('paypaldp', 'authorizenet_aim', 'authorizenet_echeck'))) break;
         while (list($key, $value) = each($_POST['configuration'])) {
           if (is_array( $value ) ) {
             $value = implode( ", ", $value);
@@ -94,7 +94,7 @@
       case 'install':
         $file_extension = substr($PHP_SELF, strrpos($PHP_SELF, '.'));
         $class = basename($_POST['module']);
-        if (!$is_ssl_protected && in_array($class, array('paypaldp', 'linkpoint_api', 'authorizenet_aim', 'authorizenet_echeck'))) break;
+        if (!$is_ssl_protected && in_array($class, array('paypaldp', 'authorizenet_aim', 'authorizenet_echeck'))) break;
         if (file_exists($module_directory . $class . $file_extension)) {
           $configuration_query = 'select configuration_key as cfgkey, configuration_value as cfgvalue
                                   from ' . TABLE_CONFIGURATION;
@@ -199,7 +199,7 @@
     $dir->close();
   }
 
-  $installed_modules = array();
+  $installed_modules = $temp_for_sort = array();
   for ($i=0, $n=sizeof($directory_array); $i<$n; $i++) {
     $file = $directory_array[$i];
     if (file_exists(DIR_FS_CATALOG_LANGUAGES . $_SESSION['language'] . '/modules/' . $module_type . '/' . $file)) {
@@ -208,15 +208,12 @@
       $class = substr($file, 0, strrpos($file, '.'));
       if (class_exists($class)) {
         $module = new $class;
+        // check if module passes the "check()" test (ie: enabled and valid, determined by each module individually)
         if ($module->check() > 0) {
-          if ($module->sort_order > 0) {
-            if (isset($installed_modules[$module->sort_order]) && $installed_modules[$module->sort_order] != '') {
-              $zc_valid = false;
-            }
-            $installed_modules[$module->sort_order] = $file;
-          } else {
-            $installed_modules[] = $file;
-          }
+          // determine sort orders and add to list of installed modules
+          $temp_for_sort[$file] = (int)$module->sort_order . $file; // combine sort-order and filename for uniqueness in determining sort
+          asort($temp_for_sort);
+          $installed_modules = array_flip($temp_for_sort);
         }
         if ((!isset($_GET['module']) || (isset($_GET['module']) && ($_GET['module'] == $class))) && !isset($mInfo)) {
           $module_info = array('code' => $module->code,
@@ -302,9 +299,6 @@
                  values ('Installed Modules', '" . zen_db_input($module_key) . "', '" . zen_db_input(implode(';', $installed_modules)) . "',
                          'This is automatically updated. No need to edit.', '6', '0', now())");
   }
-  if (isset($zc_valid) && $zc_valid == false) {
-    echo '<span class="alert">' . WARNING_MODULES_SORT_ORDER . '</span>';
-  }
 ?>
               <tr>
                 <td colspan="3" class="smallText"><?php echo TEXT_MODULE_DIRECTORY . ' ' . $module_directory; ?></td>
@@ -325,7 +319,7 @@
       $contents[] = array('align' => 'center', 'text' => '<br>' . zen_image_submit('button_remove.gif', IMAGE_DELETE, 'name="removeButton"') . ' <a href="' . zen_href_link(FILENAME_MODULES, 'set=' . $set . ($_GET['module'] != '' ? '&module=' . $_GET['module'] : ''), 'SSL') . '">' . zen_image_button('button_cancel.gif', IMAGE_CANCEL, 'name="cancelButton"') . '</a>');
       break;
     case 'edit':
-      if (!$is_ssl_protected && in_array($_GET['module'], array('paypaldp', 'linkpoint_api', 'authorizenet_aim', 'authorizenet_echeck'))) break;
+      if (!$is_ssl_protected && in_array($_GET['module'], array('paypaldp', 'authorizenet_aim', 'authorizenet_echeck'))) break;
       $keys = '';
       reset($mInfo->keys);
       while (list($key, $value) = each($mInfo->keys)) {
@@ -374,7 +368,7 @@
           $contents[] = array('text' => '<strong>Key: ' . $mInfo->code . '</strong><br />');
         }
         $keys = substr($keys, 0, strrpos($keys, '<br><br>'));
-        if (!(!$is_ssl_protected && in_array($mInfo->code, array('paypaldp', 'linkpoint_api', 'authorizenet_aim', 'authorizenet_echeck')))) {
+        if (!(!$is_ssl_protected && in_array($mInfo->code, array('paypaldp', 'authorizenet_aim', 'authorizenet_echeck')))) {
           $contents[] = array('align' => 'center', 'text' => '<a href="' . zen_href_link(FILENAME_MODULES, 'set=' . $set . (isset($_GET['module']) ? '&module=' . $_GET['module'] : '') . '&action=edit', 'SSL') . '">' . zen_image_button('button_edit.gif', IMAGE_EDIT, 'name="editButton"') . '</a>');
         } else {
           $contents[] = array('align' => 'center', 'text' => TEXT_WARNING_SSL_EDIT);
@@ -383,7 +377,7 @@
         $contents[] = array('text' => '<br>' . $mInfo->description);
         $contents[] = array('text' => '<br>' . $keys);
       } else {
-        if (!(!$is_ssl_protected && in_array($mInfo->code, array('paypaldp', 'linkpoint_api', 'authorizenet_aim', 'authorizenet_echeck')))) {
+        if (!(!$is_ssl_protected && in_array($mInfo->code, array('paypaldp', 'authorizenet_aim', 'authorizenet_echeck')))) {
           $contents[] = array('align' => 'center', 'text' => zen_draw_form('install_module', FILENAME_MODULES, 'set=' . $set . '&action=install') . '<input type="hidden" name="module" value="' . $mInfo->code . '" />' . zen_image_submit('button_module_install.gif', IMAGE_MODULE_INSTALL, 'name="installButton"') . '</form>');
         } else {
           $contents[] = array('align' => 'center', 'text' => TEXT_WARNING_SSL_INSTALL);

@@ -7,7 +7,7 @@
  * @copyright Copyright 2003-2016 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: html_output.php 841 2015-12-21 20:06:58Z webchills $
+ * @version $Id: html_output.php 842 2016-02-17 20:06:58Z webchills $
  */
 
 /*
@@ -502,7 +502,11 @@
  *  Pulls values from a passed array, with the indicated option pre-selected
  */
   function zen_draw_pull_down_menu($name, $values, $default = '', $parameters = '', $required = false) {
-    $field = '<select name="' . zen_output_string($name) . '"';
+    $field = '<select';
+
+    if (!strstr($parameters, 'id=')) $field .= ' id="select-'.zen_output_string($name).'"';
+
+    $field .= ' name="' . zen_output_string($name) . '"';
 
     if (zen_not_null($parameters)) $field .= ' ' . $parameters;
 

@@ -7,7 +7,7 @@
  * @copyright Copyright 2003-2016 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: functions_general.php 798 2015-12-21 20:24:50Z webchills $
+ * @version $Id: functions_general.php 799 2016-02-17 10:24:50Z webchills $
  */
 if (!defined('IS_ADMIN_FLAG')) {
   die('Illegal Access');
@@ -1621,6 +1621,20 @@ if (!defined('IS_ADMIN_FLAG')) {
     $sql = $db->bindVars($sql, ':rcId:', $recordCompanyId, 'integer');
     $sql = $db->bindVars($sql, ':languageId:', $languageId, 'integer');
     $db->execute($sql);
+  }
+  /**
+   * function issetorArray
+   *
+   * returns an array[key] or default value if key does not exist
+   *
+   * @param array $array
+   * @param $key
+   * @param null $default
+   * @return mixed
+   */
+  function issetorArray(array $array, $key, $default = null)
+  {
+    return isset($array[$key]) ? $array[$key] : $default;
   }
   /////////////////////////////////////////////
 ////

@@ -5,7 +5,7 @@
  * @package classes
  * @copyright Copyright 2003-2016 Zen Cart Development Team
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: class.zcPassword.php  2015-01-22 09:54:58Z webchills $
+ * @version $Id: class.zcPassword.php  2016-02-17 09:54:58Z webchills $
 
  */
 /**
@@ -151,7 +151,7 @@ class zcPassword extends base
     $sql = $db->bindVars($sql, ':customersId:', $_SESSION ['customer_id'], 'integer');
     $sql = $db->bindVars($sql, ':password:', $updatedPassword, 'string');
     $db->Execute($sql);
-    return $updatePassword;
+    return $updatedPassword;
   }
   /**
    * Update a not logged in Customer password.

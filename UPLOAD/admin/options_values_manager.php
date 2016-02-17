@@ -4,7 +4,7 @@
  * @copyright Copyright 2003-2016 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: options_values_manager.php 734 2015-12-21 18:49:16Z webchills $
+ * @version $Id: options_values_manager.php 735 2016-02-17 18:49:16Z webchills $
  */
 
   require('includes/application_top.php');
@@ -163,6 +163,7 @@
         }
         $value_id = zen_db_prepare_input($_GET['value_id']);
 
+        $zco_notifier->notify('OPTIONS_VALUES_MANAGER_DELETE_VALUE', array('value_id' => $value_id));
 // remove all attributes from products with value
         $remove_attributes_query = $db->Execute("select products_id, products_attributes_id, options_id, options_values_id from " . TABLE_PRODUCTS_ATTRIBUTES . " where options_values_id ='" . (int)$value_id . "'");
         if ($remove_attributes_query->RecordCount() > 0) {
@@ -459,14 +460,19 @@ die('I SEE match from products_id:' . $copy_from_products_id . ' options_id_from
             $downloads_remove_query = "select products_attributes_id from " . TABLE_PRODUCTS_ATTRIBUTES . " where products_id='" . $current_products_id . "' and options_id='" . $options_id_from . "' and options_values_id='" . $options_values_values_id_from . "'";
             $downloads_remove = $db->Execute($downloads_remove_query);
 
+            $remove_downloads_ids = array();
+            foreach($downloads_remove as $row) {
+              $remove_downloads_ids[] = $row['products_attributes_id'];
+            }
+            $zco_notifier->notify('OPTIONS_VALUES_MANAGER_DELETE_VALUES_OF_OPTIONNAME', array('current_products_id' => $current_products_id, 'remove_ids' => $remove_downloads_ids, 'options_id'=>$options_id_from, 'options_values_id'=>$options_values_values_id_from));
+
             $sql = "delete from " . TABLE_PRODUCTS_ATTRIBUTES . " where products_id='" . $current_products_id . "' and options_id='" . $options_id_from . "' and options_values_id='" . $options_values_values_id_from . "'";
             $delete_selected = $db->Execute($sql);
 
             // delete associated downloads
-            while (!$downloads_remove->EOF) {
+            if (sizeof($remove_downloads_ids)) {
               $db->Execute("delete from " . TABLE_PRODUCTS_ATTRIBUTES_DOWNLOAD . "
-                            where products_attributes_id='" . $downloads_remove->fields['products_attributes_id'] . "'");
-              $downloads_remove->MoveNext();
+                            where products_attributes_id in (" . implode(',', $remove_downloads_ids) . ")");
             }
             // count deleted attribute
             $new_attribute++;

@@ -5,7 +5,7 @@
  * @package templateSystem
  * @copyright Copyright 2003-2016 Zen Cart Development Team
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: zcAjaxPayment.php 2 2015-12-21 19:54:58Z webchills $
+ * @version $Id: zcAjaxPayment.php 3 2016-02-17 19:54:58Z webchills $
  */
 class zcAjaxPayment extends base
 {
@@ -197,16 +197,5 @@ class zcAjaxPayment extends base
         'confirmationHtml' => $confirmationHtml,
         'pageTitle' => META_TAG_TITLE
     ));
-  }
-
-  /**
-   * Helper method to test that javascript is enabled, and therefore Ajax can indeed be used.
-   * Implicitly sets some prerequisites in place for smooth processing when the actual prepareConfirmation() method is run later.
-   */
-  public function setNoscriptCookie()
-  {
-    unset($_SESSION['jscript_enabled']);
-    $_SESSION['jscript_enabled'] = true;
-    return (array('data'=>$_SESSION['jscript_enabled']));
   }
 }

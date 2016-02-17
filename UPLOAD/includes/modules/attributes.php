@@ -96,6 +96,9 @@ $sql = "select count(*) as total
                 $tmp_attributes_image = '';
                 $tmp_attributes_image_row = 0;
                 $show_attributes_qty_prices_icon = 'false';
+                $i=0;
+
+                $zco_notifier->notify('NOTIFY_ATTRIBUTES_MODULE_START_OPTION', $products_options_names->fields);
                 while (!$products_options->EOF) {
                   // reset
                   $products_options_display_price='';
@@ -104,6 +107,7 @@ $sql = "select count(*) as total
 
                   $products_options_array[] = array('id' => $products_options->fields['products_options_values_id'],
                   'text' => $products_options->fields['products_options_values_name']);
+                  $zco_notifier->notify('NOTIFY_ATTRIBUTES_MODULE_START_OPTIONS_LOOP', $i++, $products_options->fields);
 
                   if (((CUSTOMERS_APPROVAL == '2' and $_SESSION['customer_id'] == '') or (STORE_STATUS == '1')) or ((CUSTOMERS_APPROVAL_AUTHORIZATION == '1' or CUSTOMERS_APPROVAL_AUTHORIZATION == '2') and $_SESSION['customers_authorization'] == '') or (CUSTOMERS_APPROVAL == '2' and $_SESSION['customers_authorization'] == '2') or (CUSTOMERS_APPROVAL_AUTHORIZATION == '2' and $_SESSION['customers_authorization'] != 0) ) {
 
@@ -467,6 +471,7 @@ $sql = "select count(*) as total
                     $tmp_html .= $products_options_details;
                   }
 
+                  $zco_notifier->notify('NOTIFY_ATTRIBUTES_MODULE_FORMAT_VALUE', $products_options->fields);
 
                   // collect attribute image if it exists and to be drawn in table below
                   if ($products_options_names->fields['products_options_images_style'] == '0' or ($products_options_names->fields['products_options_type'] == PRODUCTS_OPTIONS_TYPE_FILE or $products_options_names->fields['products_options_type'] == PRODUCTS_OPTIONS_TYPE_TEXT or $products_options_names->fields['products_options_type'] == '0') ) {
@@ -574,7 +579,9 @@ $sql = "select count(*) as total
                   $options_comment[] = $products_options_names->fields['products_options_comment'];
                   $options_comment_position[] = ($products_options_names->fields['products_options_comment_position'] == '1' ? '1' : '0');
                   break;
-                  default:
+
+                  // previously this was default:
+                  case ($products_options_names->fields['products_options_type'] == PRODUCTS_OPTIONS_TYPE_SELECT):
                   // normal dropdown menu display
                   if (isset($_SESSION['cart']->contents[$prod_id]['attributes'][$products_options_names->fields['products_options_id']])) {
                     $selected_attribute = $_SESSION['cart']->contents[$prod_id]['attributes'][$products_options_names->fields['products_options_id']];
@@ -604,11 +611,16 @@ $sql = "select count(*) as total
                   $options_comment[] = $products_options_names->fields['products_options_comment'];
                   $options_comment_position[] = ($products_options_names->fields['products_options_comment_position'] == '1' ? '1' : '0');
                   break;
+
+                  default:
+                  $zco_notifier->notify('NOTIFY_ATTRIBUTES_MODULE_DEFAULT_SWITCH', $products_options_names->fields, $options_name, $options_menu, $options_comment, $options_comment_position, $options_html_id);
+                  break;
                 }
-                $options_wrapper_id[] = 'wAttrib-' . $products_options_names->fields['products_options_id'];//gjh42
 
                 // attributes images table
                 $options_attributes_image[] = trim($tmp_attributes_image) . "\n";
+
+                $zco_notifier->notify('NOTIFY_ATTRIBUTES_MODULE_OPTION_BUILT', $products_options_names->fields, $options_name, $options_menu, $options_comment, $options_comment_position, $options_html_id, $options_attributes_image);
                 $products_options_names->MoveNext();
               }
               // manage filename uploads

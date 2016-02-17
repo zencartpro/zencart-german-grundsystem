@@ -4,7 +4,7 @@
  * @copyright Copyright 2003-2016 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: ezpages.php 787 2015-12-21 18:40:51Z webchills $
+ * @version $Id: ezpages.php 788 2016-02-17 18:40:51Z webchills $
  */
 
 // Sets the status of a page
@@ -49,15 +49,6 @@
         $_SESSION['ez_sort_order'] = $_GET['reset_ez_sort_order'];
         $action='';
         zen_redirect(zen_href_link(FILENAME_EZPAGES_ADMIN, 'page=' . $_GET['page'] . ($_GET['ezID'] != '' ? '&ezID=' . $_GET['ezID'] : '')));
-        break;
-      case 'setflag':
-        if ( ($_GET['flag'] == '0') || ($_GET['flag'] == '1') ) {
-          zen_set_ezpage_status(zen_db_prepare_input($_GET['ezID']), zen_db_prepare_input($_GET['flag']));
-          $messageStack->add(SUCCESS_PAGE_STATUS_UPDATED, 'success');
-        } else {
-          $messageStack->add(ERROR_UNKNOWN_STATUS_FLAG, 'error');
-        }
-        zen_redirect(zen_href_link(FILENAME_EZPAGES_ADMIN, 'page=' . $_GET['page'] . '&ezID=' . $_GET['ezID']));
         break;
       case 'page_open_new_window':
         zen_set_ezpage_status(zen_db_prepare_input($_GET['ezID']), zen_db_prepare_input($_GET['current']), 'page_open_new_window');

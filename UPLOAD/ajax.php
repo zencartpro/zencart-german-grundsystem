@@ -9,6 +9,9 @@
  * @version GIT: $Id: Author: Ian Wilson   Modified in v1.6.0 $
  */
 require ('includes/application_top.php');
+header('Access-Control-Allow-Origin: *');
+header('Access-Control-Allow-Methods: GET');
+header("Access-Control-Allow-Headers: X-Requested-With");
 if (!function_exists('utf8_encode_recurse')) {
     function utf8_encode_recurse($mixed_value) {
         if (strtolower(CHARSET) == 'utf-8') {
