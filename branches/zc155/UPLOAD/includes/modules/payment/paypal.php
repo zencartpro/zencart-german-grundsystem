@@ -471,14 +471,7 @@ class paypal extends base {
       ipn_debug_email('PDT NOTICE :: paypal table updated: ' . print_r($sql_data_array, true));
     }
   }
-  /**
-   * Used to display error message details
-   *
-   * @return boolean
-    */
-  function output_error() {
-    return false;
-  }
+
   /**
    * Check to see whether module is installed
    *

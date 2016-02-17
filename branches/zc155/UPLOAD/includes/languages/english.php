@@ -4,7 +4,7 @@
  * @copyright Copyright 2003-2016 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: english.php 882 2015-12-22 18:33:32Z webchills $
+ * @version $Id: english.php 883 2016-02-17 18:33:32Z webchills $
  */
 
 // FOLLOWING WERE moved to meta_tags.php
@@ -145,7 +145,7 @@ define('HTML_PARAMS','dir="ltr" lang="en"');
   define('BOX_INFORMATION_ZAHLUNGSARTEN', 'Payment Methods');
   define('BOX_INFORMATION_IMPRESSUM', 'Imprint');
   define('BOX_INFORMATION_CONTACT', 'Contact Us');
-  define('BOX_BBINDEX', 'Forum');
+
   define('BOX_INFORMATION_UNSUBSCRIBE', 'Newsletter Unsubscribe');
 
   define('BOX_INFORMATION_SITE_MAP', 'Site Map');
@@ -279,10 +279,10 @@ define('HTML_PARAMS','dir="ltr" lang="en"');
   define('PREVNEXT_TITLE_PAGE_NO', 'Page %d');
   define('PREVNEXT_TITLE_PREV_SET_OF_NO_PAGE', 'Previous Set of %d Pages');
   define('PREVNEXT_TITLE_NEXT_SET_OF_NO_PAGE', 'Next Set of %d Pages');
-  define('PREVNEXT_BUTTON_FIRST', '&lt;&lt;FIRST');
-  define('PREVNEXT_BUTTON_PREV', '[&lt;&lt;&nbsp;Prev]');
-  define('PREVNEXT_BUTTON_NEXT', '[Next&nbsp;&gt;&gt;]');
-  define('PREVNEXT_BUTTON_LAST', 'LAST&gt;&gt;');
+  define('PREVNEXT_BUTTON_FIRST', '&laquo;FIRST');
+  define('PREVNEXT_BUTTON_PREV', '[&laquo;&nbsp;Prev]');
+  define('PREVNEXT_BUTTON_NEXT', '[Next&nbsp;&raquo;]');
+  define('PREVNEXT_BUTTON_LAST', 'LAST&raquo;');
 
   define('TEXT_BASE_PRICE','Starting at: ');
 

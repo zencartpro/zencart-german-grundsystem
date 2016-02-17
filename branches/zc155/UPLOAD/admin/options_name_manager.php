@@ -4,7 +4,7 @@
  * @copyright Copyright 2003-2016 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: options_name_manager.php 734 2015-12-21 18:49:16Z webchills $
+ * @version $Id: options_name_manager.php 735 2016-02-17 18:49:16Z webchills $
  */
 
   require('includes/application_top.php');
@@ -206,6 +206,7 @@
         $remove_option_values = $db->Execute("select products_options_id, products_options_values_id from " . TABLE_PRODUCTS_OPTIONS_VALUES_TO_PRODUCTS_OPTIONS . " where products_options_id='" . (int)$option_id . "'");
 
         while (!$remove_option_values->EOF) {
+          $zco_notifier->notify('OPTIONS_NAME_MANAGER_DELETE_OPTION', array('option_id' => $option_id, 'options_values_id' => (int)$remove_option_values->fields['products_options_values_id']));
           $db->Execute("delete from " . TABLE_PRODUCTS_OPTIONS_VALUES . " where products_options_values_id='" . (int)$remove_option_values->fields['products_options_values_id'] . "' and products_options_values_id !=0");
           $remove_option_values->MoveNext();
         }
@@ -289,6 +290,7 @@
 // change to delete
 // should add download delete
                 $db->Execute("delete from " . TABLE_PRODUCTS_ATTRIBUTES . " where products_id='" . (int)$all_update_products->fields['products_id'] . "' and options_id='" . (int)$_POST['options_id'] . "'");
+                $zco_notifier->notify('OPTIONS_NAME_MANAGER_UPDATE_OPTIONS_VALUES_DELETE', array('products_id' => $all_update_products->fields['products_id'], 'options_id' => $all_options_values->fields['products_options_id'], 'options_values_id' => $all_options_values->fields['products_options_values_id']));
               } else {
                 // skip this option_name does not exist
               }

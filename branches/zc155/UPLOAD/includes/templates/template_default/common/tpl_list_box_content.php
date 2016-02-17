@@ -8,7 +8,7 @@
  * @copyright Copyright 2003-2016 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: tpl_list_box_content.php 729 2011-08-09 15:49:16Z hugo13 $
+ * @version $Id: tpl_list_box_content.php 730 2016-02-17 13:49:16Z webchills $
  */
 
 //print_r($list_box_contents);
@@ -16,7 +16,7 @@
   $cell_title = (!isset($cell_title) || empty($cell_title)) ? 'list' : $cell_title;
 
 ?>
-<table width="100%" border="1" cellspacing="0" cellpadding="0">
+<table class="listBoxContentTable">
 <?php
   for($row=0; $row<sizeof($list_box_contents); $row++) {
     $params = "";

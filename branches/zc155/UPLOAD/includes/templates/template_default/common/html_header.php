@@ -8,8 +8,14 @@
  * @copyright Copyright 2003-2016 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: html_header.php 853 2015-12-21 21:10:39Z webchills $
+ * @version $Id: html_header.php 854 2016-02-17 13:10:39Z webchills $
  */
+
+$zco_notifier->notify('NOTIFY_HTML_HEAD_START', $current_page_base, $template_dir);
+
+// Prevent clickjacking risks by setting X-Frame-Options:SAMEORIGIN
+header('X-Frame-Options:SAMEORIGIN');
+
 /**
  * load the module for generating page meta-tags
  */
@@ -27,11 +33,12 @@ require(DIR_WS_MODULES . zen_get_module_directory('meta_tags.php'));
 <meta name="description" content="<?php echo META_TAG_DESCRIPTION; ?>" />
 <meta name="language" content="<?php echo META_TAG_LANGUAGE; ?>" />
 <meta http-equiv="imagetoolbar" content="no" />
-<meta name="author" content="The Zen Cart&reg; Team and others" />
+<meta name="author" content="<?php echo STORE_NAME ?>" />
 <meta name="generator" content="Zen-Cart 1.5.5 - deutsche Version, http://www.zen-cart-pro.at" />
 <?php if (defined('ROBOTS_PAGES_TO_SKIP') && in_array($current_page_base,explode(",",constant('ROBOTS_PAGES_TO_SKIP'))) || $current_page_base=='down_for_maintenance' || $robotsNoIndex === true) { ?>
 <meta name="robots" content="noindex, nofollow" />
 <?php } ?>
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=yes"/>
 <?php if (defined('FAVICON')) { ?>
 <link rel="icon" href="<?php echo FAVICON; ?>" type="image/x-icon" />
 <link rel="shortcut icon" href="<?php echo FAVICON; ?>" type="image/x-icon" />
@@ -46,6 +53,18 @@ require(DIR_WS_MODULES . zen_get_module_directory('meta_tags.php'));
 <?php } ?>
 <script>window.jQuery || document.write(unescape('%3Cscript type="text/javascript" src="//code.jquery.com/jquery-1.11.3.min.js"%3E%3C/script%3E'));</script>
 <script>window.jQuery || document.write(unescape('%3Cscript type="text/javascript" src="<?php echo $template->get_template_dir('.js',DIR_WS_TEMPLATE, $current_page_base,'jscript'); ?>/jquery.min.js"%3E%3C/script%3E'));</script>
+<?php
+  // BOF hreflang for multilingual sites
+  if (!isset($lng) || (isset($lng) && !is_object($lng))) {
+    $lng = new language;
+  }
+  reset($lng->catalog_languages);
+  while (list($key, $value) = each($lng->catalog_languages)) {
+    if ($value['id'] == $_SESSION['languages_id']) continue;
+    echo '<link rel="alternate" href="' . ($this_is_home_page ? zen_href_link(FILENAME_DEFAULT, 'language=' . $key, $request_type) : $canonicalLink . '&amp;language=' . $key) . '" hreflang="' . $key . '" />' . "\n";
+  }
+  // EOF hreflang for multilingual sites
+?>
 
 <?php
 /**

@@ -4,7 +4,7 @@
  * @copyright Copyright 2003-2016 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: attributes_controller.php 735 2015-12-21 11:49:16Z webchills $
+ * @version $Id: attributes_controller.php 736 2016-02-17 09:49:16Z webchills $
  */
   require('includes/application_top.php');
   // troubleshooting/debug of option name/value IDs:
@@ -18,8 +18,12 @@
   }
   $chk_option_values = $db->Execute("select * from " . TABLE_PRODUCTS_OPTIONS_VALUES . " where language_id='" . (int)$_SESSION['languages_id'] . "' and products_options_values_id != " . (int)PRODUCTS_OPTIONS_VALUES_TEXT_ID . " limit 1");
   if ($chk_option_values->RecordCount() < 1) {
-    $messageStack->add_session(ERROR_DEFINE_OPTION_VALUES, 'caution');
-    zen_redirect(zen_href_link(FILENAME_OPTIONS_VALUES_MANAGER));
+    foreach ($chk_option_names as $chk_option_name) {
+      if (!zen_option_name_base_expects_no_values($chk_option_name->fields['products_options_id'])) {
+        $messageStack->add_session(ERROR_DEFINE_OPTION_VALUES, 'caution');
+        zen_redirect(zen_href_link(FILENAME_OPTIONS_VALUES_MANAGER));
+      }
+    }
   }
   $chk_products = $db->Execute("select * from " . TABLE_PRODUCTS . " limit 1");
   if ($chk_products->RecordCount() < 1) {

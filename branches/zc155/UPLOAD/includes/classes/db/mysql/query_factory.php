@@ -8,7 +8,7 @@
  * @copyright Portions Copyright 2003 osCommerce
  * @copyright Portions adapted from http://www.data-diggers.com/
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: query_factory.php 733 2015-12-21 20:13:16Z webchills $
+ * @version $Id: query_factory.php 734 2016-02-17 09:13:16Z webchills $
  */
 if (!defined('IS_ADMIN_FLAG')) {
   die('Illegal Access');
@@ -440,6 +440,7 @@ class queryFactory extends base {
         return (int)$value;
       break;
       case 'string':
+        if (preg_match('/null/i', $value)) return 'null';
         if (isset($typeArray[1])) {
           $regexp = $typeArray[1];
         }
@@ -452,6 +453,7 @@ class queryFactory extends base {
         return '\'' . $this->prepare_input($value) . '\'';
       break;
       case 'date':
+        if (preg_match('/null/i', $value)) return 'null';
         return '\'' . $this->prepare_input($value) . '\'';
       break;
       case 'enum':

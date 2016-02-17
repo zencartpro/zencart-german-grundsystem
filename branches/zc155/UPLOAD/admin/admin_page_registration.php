@@ -4,7 +4,7 @@
  * @copyright Copyright 2003-2016 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: admin_page_registration.php 730 2012-11-06 09:49:16Z webchills $
+ * @version $Id: admin_page_registration.php 731 2016-02-17 09:49:16Z webchills $
  */
 
 require('includes/application_top.php');
@@ -151,7 +151,7 @@ foreach ($menu_titles as $id => $title) {
     </div>
     <div>
       <label for="menuKey"><?php echo TEXT_MENU_KEY ?></label>
-      <?php echo zen_draw_pull_down_menu('menu_key', $menu_options, $menu_key) ?>
+      <?php echo zen_draw_pull_down_menu('menu_key', $menu_options, $menu_key, ' id="menuKey"');?>
     </div>
     <div>
       <label for="displayOnMenu"><?php echo TEXT_DISPLAY_ON_MENU ?></label>

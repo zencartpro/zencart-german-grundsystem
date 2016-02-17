@@ -14,7 +14,7 @@
  * @copyright Copyright 2003-2016 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: tpl_footer.php 729 2011-08-09 15:49:16Z hugo13 $
+ * @version $Id: tpl_footer.php 730 2016-02-17 13:49:16Z webchills $
  */
 require(DIR_WS_MODULES . zen_get_module_directory('footer.php'));
 ?>
@@ -65,3 +65,6 @@ if (SHOW_FOOTER_IP == '1') {
 <?php
 } // flag_disable_footer
 ?>
+<?php if (false || (isset($showValidatorLink) && $showValidatorLink == true)) { ?>
+<a href="https://validator.w3.org/check?uri=<?php echo urlencode('http' . ($request_type == 'SSL' ? 's' : '') . '://' . $_SERVER['SERVER_NAME'] . $_SERVER['REQUEST_URI'] . (strstr($_SERVER['REQUEST_URI'], '?') ? '&' : '?') . zen_session_name() . '=' . zen_session_id()); ?>" target="_blank">VALIDATOR</a>
+<?php } ?>
