@@ -5,8 +5,8 @@
  * @package functions
  * @copyright Copyright 2003-2016 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
- * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: Modified in v1.5.5 $
+ * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
+ * @version $Id: apassword_funcs.php 8 2016-02-28 16:59:53Z webchills $
  */
 
 require_once (DIR_FS_ROOT . '/includes/classes/class.zcPassword.php');

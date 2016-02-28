@@ -3,8 +3,8 @@
  * ajaxAdminSetup.php
  * @package Installer
  * @copyright Copyright 2003-2016 Zen Cart Development Team
- * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id:
+ * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
+ * @version $Id: ajaxAdminSetup.php 2 2016-02-28 16:59:53Z webchills $
  */
 define('IS_ADMIN_FLAG', false);
 if (!defined('__DIR__')) define('__DIR__', dirname(__FILE__));
@@ -29,6 +29,10 @@ if ($adminDir == 'admin' && (!defined('DEVELOPER_MODE') || DEVELOPER_MODE == fal
 {
   $adminNewDir =  $word1 . '-' . $word2 . '-' . $word3;
   $result = @rename(DIR_FS_ROOT . $adminDir, DIR_FS_ROOT . $adminNewDir);
+  if ($result === false) {
+    $adminNewDir = $adminDir;
+  } else {
+    $adminDir = $adminNewDir;
+  }
 }
-
 echo json_encode(array('changedDir'=>(int)$result, 'adminNewDir'=>$adminNewDir, 'adminDir'=>$adminDir));
