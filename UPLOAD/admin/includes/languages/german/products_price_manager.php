@@ -4,7 +4,7 @@
  * @copyright Copyright 2003-2016 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: products_price_manager.php 643 2010-09-23 22:54:04Z maleborg $
+ * @version $Id: products_price_manager.php 6443 2016-02-28 15:54:04Z webchills $
  */
 
 
@@ -22,6 +22,8 @@ define('TEXT_PRODUCT_INFO', 'Artikelinfo:');
 define('TEXT_PRODUCTS_PRICE_INFO', 'Artikelpreis Info:');
 define('TEXT_PRODUCTS_MODEL','Artikelnummer:');
 define('TEXT_PRICE', 'Preis');
+define('TEXT_PRICE_NET', 'Preis (exkl. Steuer)');
+define('TEXT_PRICE_GROSS', 'Preis (inkl. Steuer)');
 define('TEXT_PRODUCT_AVAILABLE_DATE', 'Verfügbar ab:');
 define('TEXT_PRODUCTS_STATUS', 'Artikelstatus:');
 define('TEXT_PRODUCT_AVAILABLE', 'Lagernd');
@@ -52,6 +54,8 @@ define('TEXT_FEATURED_DISABLED', '<strong>HINWEIS: "Empfohlene Artikel" Info ist
 define('TEXT_FEATURED_CONFIRM_DELETE', 'Bitte bestätigen Sie, dass Sie bei diesem Artikel den Status "Empfohlener Artikel" entfernen wollen');
 define('TEXT_SPECIALS_PRODUCT', 'Artikel:');
 define('TEXT_SPECIALS_SPECIAL_PRICE', 'Sonderpreis:');
+define('TEXT_SPECIALS_SPECIAL_PRICE_NET', 'Sonderpreis: (exkl. Steuer)');
+define('TEXT_SPECIALS_SPECIAL_PRICE_GROSS', 'Sonderpreis: (inkl. Steuer)');
 define('TEXT_SPECIALS_EXPIRES_DATE', 'Ablaufdatum:');
 define('TEXT_SPECIALS_AVAILABLE_DATE', 'Verfügbar ab:');
 define('TEXT_SPECIALS_PRICE_TIP', '<b>Spezieller Hinweis:</b><ul><li>Sie können eine prozentuale Preisreduktion im Feld für Sonderpreise angeben, zum Beispiel: <b>20%</b></li><li>Wenn Sie einen neuen Preis angeben, muss die Dezimalstelle durch einen \'.\' (Dezimalpunkt) getrennt werden, Beispiel: <b>49.99</b></li><li>Wenn es kein Ablaufdatum geben soll, lassen Sie das Feld für das Ablaufdatum leer</li></ul>');

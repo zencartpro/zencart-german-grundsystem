@@ -7,7 +7,7 @@
  * @copyright Copyright 2003-2016 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: functions_lookups.php 767 2016-02-17 10:23:42Z webchills $
+ * @version $Id: functions_lookups.php 768 2016-02-28 16:23:42Z webchills $
  */
 
 
@@ -280,6 +280,7 @@
     
     return $option_name_no_value;
   }
+/*
  *  Check if product has attributes values
  */
   function zen_has_product_attributes_values($products_id) {

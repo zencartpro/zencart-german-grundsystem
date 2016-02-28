@@ -54,6 +54,8 @@ $('#whosonline').css({ 'display': 'none', 'visibility': 'hidden' });
 $('#orderhistory').css({ 'display': 'none', 'visibility': 'hidden' });
 $('#manufacturerinfo').css({ 'display': 'none', 'visibility': 'hidden' });
 $('#productnotifications').css({ 'display': 'none', 'visibility': 'hidden' });
+$('#currencies').css({ 'display': 'none', 'visibility': 'hidden' });
+$('#languages').css({ 'display': 'none', 'visibility': 'hidden' });
 $('#shoppingcart').css({ 'display': 'none', 'visibility': 'hidden' });
 
 
@@ -119,7 +121,7 @@ $('.rightBoxContainer').css('width', '');
 $('#mainWrapper').css('margin', 'auto');
 
 <?php } ?>
-$('a[href=#top]').click(function(){
+$('a[href="#top"]').click(function(){
 $('html, body').animate({scrollTop:0}, 'slow');
 return false;
 });
