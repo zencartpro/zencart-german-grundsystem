@@ -4,7 +4,7 @@
  * @package Installer
  * @copyright Copyright 2003-2016 Zen Cart Development Team
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: class.zcDatabaseInstaller.php 825 2015-12-26 21:59:53Z webchills $
+ * @version $Id: class.zcDatabaseInstaller.php 4 2016-02-28 21:59:53Z webchills $
  *
  */
 /**
@@ -157,10 +157,10 @@ class zcDatabaseInstaller
 //    $this->writeUpgradeExceptions($this->line, '', $this->sqlFile);
 //    logDetails($sql, $this->sqlFile);
     $result = $this->db->execute($sql);
-    if (!$result)
+    if (!$result || $result->link->errno != 0)
     {
-      //echo $this->db->errorText;
-      $this->writeUpgradeExceptions($this->line, $this->db->error_text, $this->sqlFile);
+      $this->writeUpgradeExceptions($this->line, $this->db->error_number . ': ' . $this->db->error_text);
+      error_log("MySQL error " . $this->db->error_number . " encountered during zc_install:\n" . $this->db->error_text . "\n" . $this->line . "\n---------------\n\n");
     }
   }
   public function parserDropTableIfExists ()
@@ -280,7 +280,7 @@ class zcDatabaseInstaller
       }
     }
   }
-  public function writeUpgradeExceptions($line, $message, $sqlFile)
+  public function writeUpgradeExceptions($line, $message, $sqlFile = '')
   {
     logDetails($line . '  ' . $message . '  ' . $sqlFile, 'upgradeException');
     $this->upgradeExceptions[] = $message;

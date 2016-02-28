@@ -4,11 +4,13 @@
  * @copyright Copyright 2003-2016 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: header_php.php 846 2015-12-21 21:51:25Z webchills $
+ * @version $Id: header_php.php 847 2016-02-28 21:51:25Z webchills $
  */
 
 $systemChecker = new systemChecker();
 $dbVersion = $systemChecker->findCurrentDbVersion();
+logDetails($dbVersion, 'Version detected in database_upgrade/header_php.php');
+
 $versionArray = array();
 $versionArray[] = '1.2.6';
 $versionArray[] = '1.2.7';

@@ -3,8 +3,8 @@
  * ajaxTestSystemSetup.php
  * @package Installer
  * @copyright Copyright 2003-2016 Zen Cart Development Team
- * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id:
+ * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
+ * @version $Id: ajaxTestSystemSetup.php 1 2016-02-28 21:59:53Z webchills $
  */
 define('IS_ADMIN_FLAG', false);
 if (!defined('__DIR__')) define('__DIR__', dirname(__FILE__));

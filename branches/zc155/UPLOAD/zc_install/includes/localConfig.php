@@ -2,8 +2,8 @@
 /**
  * @package install
  * @copyright Copyright 2003-2016 Zen Cart Development Team
- * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version GIT: $Id: Author: Ian Wilson  New in v1.6.0 $
+  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
+ * @version $Id: localConfig.php 2 2016-02-28 16:59:53Z webchills $
  *
  */
 

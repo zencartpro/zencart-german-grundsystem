@@ -2,9 +2,8 @@
 /**
  * @package Installer
  * @copyright Copyright 2003-2016 Zen Cart Development Team
- * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id:
- */
+ * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
+ * @version $Id: completion_default.php 2 2016-02-28 21:59:53Z webchills $ */
 ?>
 <?php if ($isUpgrade) { ?>
 <div class="alert-box success">
