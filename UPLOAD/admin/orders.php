@@ -4,7 +4,7 @@
  * @copyright Copyright 2003-2016 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: orders.php 793 2016-02-17 19:13:51Z webchills $
+ * @version $Id: orders.php 794 2016-02-28 19:13:51Z webchills $
  */
 
   require('includes/application_top.php');
@@ -447,6 +447,8 @@ function couponpopupWindow(url) {
 //        echo $module->admin_notification($oID);
       }
     }
+
+
     $prev_button = $next_button = '<input type="button" class="orderprevnext button ordersall" value="' . BUTTON_TO_LIST . '" onclick="window.location.href=\'' . zen_href_link(FILENAME_ORDERS) . '\'">';
 
     $result = $db->Execute("SELECT orders_id FROM " . TABLE_ORDERS . " WHERE orders_id < '" . $oID . "' ORDER BY orders_id DESC LIMIT 1");
@@ -458,12 +460,15 @@ function couponpopupWindow(url) {
     if ($result->RecordCount()) {
       $next_button = '<input type="button" class="orderprevnext button next" value="' . $result->fields['orders_id'] . ' &raquo;" onclick="window.location.href=\'' . zen_href_link(FILENAME_ORDERS, 'oID=' . $result->fields['orders_id'] . '&action=edit') . '\'">';
     }
+
 ?>
       <tr>
-        <td width="100%"><table border="0" width="100%" cellspacing="0" cellpadding="0">
+        <td width="100%" class="noprint"><table border="0" width="100%" cellspacing="0" cellpadding="0">
           <tr>
             <td class="pageHeading"><?php echo HEADING_TITLE; ?></td>
             <td class="pageHeading" align="right"><?php echo zen_draw_separator('pixel_trans.gif', 1, HEADING_IMAGE_HEIGHT); ?></td>
+
+
             <td class="main" valign="middle">&nbsp;</td>
             <td align="center">
               <table border="0" cellspacing="3" cellpadding="0">
@@ -480,6 +485,7 @@ function couponpopupWindow(url) {
                 </tr>
               </table>
             </td>
+
             <td class="pageHeading" align="right"><?php echo '<a href="javascript:history.back()">' . zen_image_button('button_back.gif', IMAGE_BACK) . '</a>'; ?></td>
           </tr>
         </table></td>
@@ -1011,32 +1017,33 @@ if (($_GET['page'] == '' or $_GET['page'] <= 1) and $_GET['oID'] != '') {
           $contents[] = array('align' => 'center', 'text' => $goto_gv);
         }
 
-// indicate if comments exist
-      $orders_history_query = $db->Execute("select orders_status_id, date_added, customer_notified, comments from " . TABLE_ORDERS_STATUS_HISTORY . " where orders_id = '" . $oInfo->orders_id . "' and comments !='" . "'" );
-      if ($orders_history_query->RecordCount() > 0) {
-        $contents[] = array('align' => 'left', 'text' => '<br />' . TABLE_HEADING_COMMENTS);
-      }
+        // indicate if comments exist
+        $orders_history_query = $db->Execute("select orders_status_id, date_added, customer_notified, comments from " . TABLE_ORDERS_STATUS_HISTORY . " where orders_id = '" . $oInfo->orders_id . "' and comments !='" . "'" );
 
-      $contents[] = array('text' => '<br />' . zen_image(DIR_WS_IMAGES . 'pixel_black.gif','','100%','3'));
-      $order = new order($oInfo->orders_id);
-      $contents[] = array('text' => TABLE_HEADING_PRODUCTS . ': ' . sizeof($order->products) );
-      for ($i=0; $i<sizeof($order->products); $i++) {
-        $contents[] = array('text' => $order->products[$i]['qty'] . '&nbsp;x&nbsp;' . $order->products[$i]['name']);
+        if ($orders_history_query->RecordCount() > 0) {
+          $contents[] = array('align' => 'left', 'text' => '<br />' . TABLE_HEADING_COMMENTS);
+        }
 
-        if (sizeof($order->products[$i]['attributes']) > 0) {
-          for ($j=0; $j<sizeof($order->products[$i]['attributes']); $j++) {
-            $contents[] = array('text' => '&nbsp;<i> - ' . $order->products[$i]['attributes'][$j]['option'] . ': ' . nl2br(zen_output_string_protected($order->products[$i]['attributes'][$j]['value'])) . '</i></nobr>' );
+        $contents[] = array('text' => '<br />' . zen_image(DIR_WS_IMAGES . 'pixel_black.gif','','100%','3'));
+        $order = new order($oInfo->orders_id);
+        $contents[] = array('text' => TABLE_HEADING_PRODUCTS . ': ' . sizeof($order->products) );
+        for ($i=0; $i<sizeof($order->products); $i++) {
+          $contents[] = array('text' => $order->products[$i]['qty'] . '&nbsp;x&nbsp;' . $order->products[$i]['name']);
+
+          if (sizeof($order->products[$i]['attributes']) > 0) {
+            for ($j=0; $j<sizeof($order->products[$i]['attributes']); $j++) {
+              $contents[] = array('text' => '&nbsp;<i> - ' . $order->products[$i]['attributes'][$j]['option'] . ': ' . nl2br(zen_output_string_protected($order->products[$i]['attributes'][$j]['value'])) . '</i></nobr>' );
+            }
+          }
+          if ($i > MAX_DISPLAY_RESULTS_ORDERS_DETAILS_LISTING and MAX_DISPLAY_RESULTS_ORDERS_DETAILS_LISTING != 0) {
+            $contents[] = array('align' => 'left', 'text' => TEXT_MORE);
+            break;
           }
         }
-        if ($i > MAX_DISPLAY_RESULTS_ORDERS_DETAILS_LISTING and MAX_DISPLAY_RESULTS_ORDERS_DETAILS_LISTING != 0) {
-          $contents[] = array('align' => 'left', 'text' => TEXT_MORE);
-          break;
-        }
-      }
 
-      if (sizeof($order->products) > 0) {
-        $contents[] = array('align' => 'center', 'text' => '<a href="' . zen_href_link(FILENAME_ORDERS, zen_get_all_get_params(array('oID', 'action')) . 'oID=' . $oInfo->orders_id . '&action=edit', 'NONSSL') . '">' . zen_image_button('button_edit.gif', IMAGE_EDIT) . '</a>');
-      }
+        if (sizeof($order->products) > 0) {
+          $contents[] = array('align' => 'center', 'text' => '<a href="' . zen_href_link(FILENAME_ORDERS, zen_get_all_get_params(array('oID', 'action')) . 'oID=' . $oInfo->orders_id . '&action=edit', 'NONSSL') . '">' . zen_image_button('button_edit.gif', IMAGE_EDIT) . '</a>');
+        }
       }
       break;
   }

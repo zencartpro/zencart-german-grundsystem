@@ -4,7 +4,7 @@
  * @copyright Copyright 2003-2016 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: index.php 818 2015-12-21 18:46:12Z webchills $
+ * @version $Id: index.php 819 2016-02-28 18:46:12Z webchills $
  */
   $version_check_index=true;
   require('includes/application_top.php');
@@ -26,6 +26,7 @@
     require('index_dashboard.php');
   }
 ?>
+<footer class="homeFooter">
 <!-- The following copyright announcement is in compliance
 to section 2c of the GNU General Public License, and
 thus can not be removed, or can only be modified
@@ -38,4 +39,4 @@ following copyright announcement. //-->
 </div>
 </body>
 </html>
-<?php require('includes/application_bottom.php'); ?>
+<?php require('includes/application_bottom.php');

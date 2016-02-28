@@ -4,7 +4,7 @@
  * @copyright Copyright 2003-2016 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: html_output.php 766 2015-12-21 19:07:42Z webchills $
+ * @version $Id: html_output.php 767 2016-02-28 19:07:42Z webchills $
  */
 
 ////
@@ -57,6 +57,11 @@
   }
 
   function zen_catalog_href_link($page = '', $parameters = '', $connection = 'NONSSL') {
+    global $zco_notifier;
+    $link = null;
+    $zco_notifier->notify('NOTIFY_SEFU_INTERCEPT_ADMCATHREF', array(), $link, $page, $parameters, $connection);
+    if($link !== null) return $link;
+
     if ($connection == 'NONSSL') {
       $link = HTTP_CATALOG_SERVER . DIR_WS_CATALOG;
     } elseif ($connection == 'SSL') {
@@ -226,8 +231,12 @@
 
 ////
 // Output a form password field
-  function zen_draw_password_field($name, $value = '', $required = false) {
-    $field = zen_draw_input_field($name, $value, 'maxlength="40"', $required, 'password', false);
+  function zen_draw_password_field($name, $value = '', $required = false, $parameters = '',$autocomplete = false) {
+    $parameters .= ' maxlength="40"';
+    if($autocomplete == false){
+      $parameters .= ' autocomplete="off"';
+    }
+    $field = zen_draw_input_field($name, $value, $parameters, $required, 'password', false);
 
     return $field;
   }
@@ -345,4 +354,9 @@
       return zen_draw_hidden_field(zen_session_name(), zen_session_id());
     }
   }
-?>
+////
+// output label for input fields
+  function zen_draw_label($text, $for, $parameters = ''){
+    $label = '<label for="' . $for . '" ' . $parameters . '>' . $text . '</label>';
+    return $label;
+  }

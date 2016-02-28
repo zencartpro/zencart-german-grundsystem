@@ -4,7 +4,7 @@
  * @copyright Copyright 2003-2016 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: english.php 880 2015-12-21 19:33:32Z webchills $
+ * @version $Id: english.php 881 2016-02-28 19:33:32Z webchills $
  */
 if (!defined('IS_ADMIN_FLAG'))
 {
@@ -87,6 +87,8 @@ define('FEMALE', 'Female');
 define('TEXT_CHECK_ALL', 'Check All');
 define('TEXT_UNCHECK_ALL', 'Uncheck All');
 define('NONE', 'None');
+
+define('TEXT_UNKNOWN', 'Unknown');
 
 // configuration box text
 define('BOX_HEADING_CONFIGURATION', 'Configuration');
@@ -209,7 +211,7 @@ define('BOX_COUPON_ADMIN','Coupon Admin');
 define('BOX_COUPON_RESTRICT','Coupon Restrictions');
 
 // admin access box text
-define('BOX_HEADING_ADMIN_ACCESS', 'Admin Access Management');
+define('BOX_HEADING_ADMIN_ACCESS', 'Admins');
 define('BOX_ADMIN_ACCESS_USERS',  'Admin Users');
 define('BOX_ADMIN_ACCESS_PROFILES', 'Admin Profiles');
 define('BOX_ADMIN_ACCESS_PAGE_REGISTRATION', 'Admin Page Registration');
@@ -374,6 +376,8 @@ define('IMAGE_REMOVE_FEATURED','Remove Featured Product Info');
 define('IMAGE_INSTALL_SPECIAL', 'Add Special Price Info');
 define('IMAGE_INSTALL_FEATURED', 'Add Featured Product Info');
 
+define('TEXT_VERSION_CHECK_BUTTON', 'Check for New Version');
+define('TEXT_BUTTON_RESET_ACTIVITY_LOG', 'View Activity Log');
 define('ICON_PRODUCTS_PRICE_MANAGER','Products Price Manager');
 define('ICON_COPY_TO', 'Copy to');
 define('ICON_CROSS', 'False');
@@ -435,6 +439,7 @@ define('ERROR_NO_DEFAULT_CURRENCY_DEFINED', 'Error: There is currently no defaul
 
 define('TEXT_NONE', '--none--');
 define('TEXT_TOP', 'Top');
+define('PLEASE_SELECT', 'Please select ...');
 
 define('ERROR_DESTINATION_DOES_NOT_EXIST', 'Error: Destination does not exist %s');
 define('ERROR_DESTINATION_NOT_WRITEABLE', 'Error: Destination not writeable %s');
@@ -448,11 +453,17 @@ define('WARNING_DATABASE_VERSION_OUT_OF_DATE','Your database appears to need pat
 define('WARN_DATABASE_VERSION_PROBLEM','true'); //set to false to turn off warnings about database version mismatches
 define('WARNING_ADMIN_DOWN_FOR_MAINTENANCE', '<strong>WARNING:</strong> Site is currently set to Down for Maintenance ...<br />NOTE: You cannot test most Payment and Shipping Modules in Maintenance mode');
 define('WARNING_BACKUP_CFG_FILES_TO_DELETE', 'WARNING: These files should be deleted to prevent security vulnerability: ');
-define('WARNING_INSTALL_DIRECTORY_EXISTS', 'SECURITY WARNING: Installation directory exists at: ' . DIR_FS_CATALOG . 'zc_install. Please remove this directory for security reasons.');
-define('WARNING_CONFIG_FILE_WRITEABLE', 'Warning: Your configuration file: %sincludes/configure.php. This is a potential security risk - please set the right user permissions on this file (read-only, CHMOD 644 or 444 are typical).  <a href="http://tutorials.zen-cart.com/index.php?article=90" target="_blank">See this FAQ</a>');
+define('WARNING_INSTALL_DIRECTORY_EXISTS', 'SECURITY WARNING: Installation directory exists at: %s. Please remove this directory for security reasons.');
+define('WARNING_CONFIG_FILE_WRITEABLE', 'Warning: Your configuration file: %s is writeable. This is a potential security risk - please set the right user permissions on this file (read-only, CHMOD 644 or 444 are typical). You may need to use your webhost control panel/file-manager to change the permissions effectively. Contact your webhost for assistance. <a href="http://tutorials.zen-cart.com/index.php?article=90" target="_blank">See this FAQ</a>');
 define('WARNING_COULD_NOT_LOCATE_LANG_FILE', 'WARNING: Could not locate language file: ');
 define('ERROR_MODULE_REMOVAL_PROHIBITED', 'ERROR: Module removal prohibited: ');
 define('WARNING_REVIEW_ROGUE_ACTIVITY', 'ALERT: Please review for possible XSS activity:');
+
+define('ERROR_FILE_NOT_REMOVEABLE', 'Error: Could not remove the file specified. You may have to use FTP to remove the file, due to a server-permissions configuration limitation.');
+define('WARNING_SESSION_AUTO_START', 'Warning: session.auto_start is enabled - please disable this PHP feature in php.ini and restart the web server.');
+define('WARNING_DOWNLOAD_DIRECTORY_NON_EXISTENT', 'Warning: The downloadable products directory does not exist: ' . DIR_FS_DOWNLOAD . '. Downloadable products will not work until this directory is valid.');
+define('WARNING_SQL_CACHE_DIRECTORY_NON_EXISTENT', 'Warning: The SQL cache directory does not exist: ' . DIR_FS_SQL_CACHE . '. SQL caching will not work until this directory is created.');
+define('WARNING_SQL_CACHE_DIRECTORY_NOT_WRITEABLE', 'Warning: I am not able to write to the SQL cache directory: ' . DIR_FS_SQL_CACHE . '. SQL caching will not work until the right user permissions are set.');
 
 define('_JANUARY', 'January');
 define('_FEBRUARY', 'February');
@@ -479,7 +490,7 @@ define('TEXT_VALID_CATEGORIES_LIST', 'Categories List');
 define('TEXT_VALID_CATEGORIES_ID', 'Category ID');
 define('TEXT_VALID_CATEGORIES_NAME', 'Category Name');
 
-define('DEFINE_LANGUAGE','Define Language:');
+define('DEFINE_LANGUAGE','Choose Language:');
 
 define('BOX_ENTRY_COUNTER_DATE','Hit Counter Started:');
 define('BOX_ENTRY_COUNTER','Hit Counter:');
@@ -552,8 +563,8 @@ define('NOT_INSTALLED_TEXT','Not Installed');
   define('ERROR_ADMIN_DEMO','Admin Demo is Active ... the feature(s) you are trying to perform have been disabled');
 
 // Version Check notices
-  define('TEXT_VERSION_CHECK_NEW_VER','New Version Available v');
-  define('TEXT_VERSION_CHECK_NEW_PATCH','New PATCH Available: v');
+  define('TEXT_VERSION_CHECK_NEW_VER','<span class="alertVersionNew">New Version Available:</span> v');
+  define('TEXT_VERSION_CHECK_NEW_PATCH','<span class="alertVersionNew">New PATCH Available:</span> v');
   define('TEXT_VERSION_CHECK_PATCH','patch');
   define('TEXT_VERSION_CHECK_DOWNLOAD','Download Here');
   define('TEXT_VERSION_CHECK_CURRENT','Your version of Zen Cart&reg; appears to be current.');
