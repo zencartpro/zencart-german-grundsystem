@@ -4,7 +4,7 @@
  * @copyright Copyright 2003-2016 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce<br />
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: users.php 732 2015-12-29 19:49:16Z webchills $
+ * @version $Id: users.php 733 2016-02-28 19:49:16Z webchills $
  */
 
 require('includes/application_top.php');
@@ -262,10 +262,11 @@ $userList = zen_get_users();
 </div>
 <!-- body_eof //-->
 
+<div class="bottom">
 <!-- footer //-->
 <?php require(DIR_WS_INCLUDES . 'footer.php'); ?>
 <!-- footer_eof //-->
-<br>
+</div>
 </body>
 </html>
 <?php require(DIR_WS_INCLUDES . 'application_bottom.php'); ?>

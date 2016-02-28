@@ -4,11 +4,11 @@
  * @copyright Copyright 2003-2016 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: server_info.php 731 2016-02-17 09:49:16Z webchills $
+ * @version $Id: server_info.php 732 2016-02-28 19:49:16Z webchills $
  */
 
   require('includes/application_top.php');
-  $version_check_sysinfo=true;
+  $version_check_sysinfo = true;
 
   $system = zen_get_system_information();
 
@@ -65,7 +65,7 @@
 <style>
 .pageHeading {font-size: 2em;}
 .serverInfo{max-width: 800px; margin-left: auto; margin-right: auto; font-size: 1.1em;}
-.infocell {float:left; width: 380px;}
+.infocell {float:left; width: 380px;margin-right:10px;}
 .sysinfo {max-width:700px; margin: auto;border: 2px solid black;padding:1.5em;margin-top:2em;}
 .clearBoth{clear:both}
 
