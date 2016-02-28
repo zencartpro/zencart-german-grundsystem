@@ -4,7 +4,7 @@
  * @copyright Copyright 2003-2016 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: category_product_listing.php 736 2014-07-17 11:30:16Z webchills $
+ * @version $Id: category_product_listing.php 737 2016-02-28 19:30:16Z webchills $
  */
 if (!defined('IS_ADMIN_FLAG')) {
   die('Illegal Access');
@@ -32,7 +32,7 @@ if (!isset($_SESSION['display_categories_dropdown'])) {
     if (isset($_GET['search']) && zen_not_null($_GET['search'])) {
       echo '<a href="' . zen_href_link(FILENAME_CATEGORIES) . '">' . zen_image_button('button_reset.gif', IMAGE_RESET) . '</a>&nbsp;&nbsp;';
     }
-    echo HEADING_TITLE_SEARCH_DETAIL . ' ' . zen_draw_input_field('search') . zen_hide_session_id();
+    echo HEADING_TITLE_SEARCH_DETAIL . ' ' . zen_draw_input_field('search', '', ($action == '' ? 'autofocus="autofocus"' : '')) . zen_hide_session_id();
     if (isset($_GET['search']) && zen_not_null($_GET['search'])) {
       $keywords = zen_db_input(zen_db_prepare_input($_GET['search']));
       echo '<br />' . TEXT_INFO_SEARCH_DETAIL_FILTER . zen_output_string_protected($_GET['search']);
@@ -69,7 +69,6 @@ if (!isset($_SESSION['display_categories_dropdown'])) {
 <?php if ($action == '') { ?>
                 <td class="dataTableHeadingContent" width="20" align="right"><?php echo TABLE_HEADING_ID; ?></td>
                 <td class="dataTableHeadingContent"><?php echo TABLE_HEADING_CATEGORIES_PRODUCTS; ?></td>
-               
                 <td class="dataTableHeadingContent" align="left"><?php echo TABLE_HEADING_MODEL; ?></td>
                 <td class="dataTableHeadingContent" align="right"><?php echo TABLE_HEADING_PRICE; ?></td>
                 <td class="dataTableHeadingContent" align="right">&nbsp;</td>

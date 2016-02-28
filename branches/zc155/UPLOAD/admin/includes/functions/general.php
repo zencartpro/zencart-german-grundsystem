@@ -4,7 +4,7 @@
  * @copyright Copyright 2003-2016 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: general.php 891 2015-12-21 19:07:33Z webchills $
+ * @version $Id: general.php 892 2016-02-28 19:07:33Z webchills $
  */
 
 ////
@@ -975,7 +975,7 @@
 // Function to read in text area in admin
  function zen_cfg_textarea_small($text, $key = '') {
     $name = (($key) ? 'configuration[' . $key . ']' : 'configuration_value');
-    return zen_draw_textarea_field($name, false, 35, 1, htmlspecialchars($text, ENT_COMPAT, CHARSET, FALSE), 'class="noEditor"');
+    return zen_draw_textarea_field($name, false, 35, 1, htmlspecialchars($text, ENT_COMPAT, CHARSET, FALSE), 'class="noEditor" autofocus');
   }
 
 
@@ -2134,6 +2134,41 @@ while (!$chk_sale_categories_all->EOF) {
     }
   }
 
+
+/*
+ *  Check if option name is not expected to have an option value (ie. text field, or File upload field)
+ */
+  function zen_option_name_base_expects_no_values($option_name_id) {
+    global $db, $zco_notifier;
+    $option_name_no_value = true;
+    if (!is_array($option_name_id)) {
+      $option_name_id = array($option_name_id);
+    }
+    $sql = "SELECT products_options_type FROM " . TABLE_PRODUCTS_OPTIONS . " WHERE products_options_id :option_name_id:";
+    if (sizeof($option_name_id) > 1 ) {
+      $sql2 = 'in (';
+      foreach($option_name_id as $option_id) {
+        $sql2 .= ':option_id:,';
+        $sql2 = $db->bindVars($sql2, ':option_id:', $option_id, 'integer');
+      }
+      $sql2 = rtrim($sql2, ','); // Need to remove the final comma off of the above.
+      $sql2 = ')';
+    } else {
+      $sql2 = ' = :option_id:';
+      $sql2 = $db->bindVars($sql2, ':option_id:', $option_name_id[0], 'integer');
+    }
+    $sql = $db->bindVars($sql, ':option_name_id:', $sql2, 'noquotestring');
+    $sql_result = $db->Execute($sql);
+    foreach($sql_result as $opt_type) {
+      $test_var = true; // Set to false in observer if the name is not supposed to have a value associated
+      $zco_notifier->notify('FUNCTIONS_LOOKUPS_OPTION_NAME_NO_VALUES_OPT_TYPE', $opt_type, $test_var);
+      if ($test_var && $opt_type['products_options_type'] != PRODUCTS_OPTIONS_TYPE_TEXT && $opt_type['products_options_type'] != PRODUCTS_OPTIONS_TYPE_FILE) {
+        $option_name_no_value = false;
+        break;
+      }
+    }
+    return $option_name_no_value;
+  }
 function zen_copy_products_attributes($products_id_from, $products_id_to) {
   global $db;
   global $messageStack;
@@ -3753,3 +3788,35 @@ function get_logs_data($maxToList = 'count') {
   $logs = zen_sort_array($logs, 'unixtime', SORT_DESC);
   return $logs;
 }
+
+/**
+ * function to override PHP's is_writable() which can occasionally be unreliable due to O/S and F/S differences
+ * attempts to open the specified file for writing. Returns true if successful, false if not.
+ * if a directory is specified, uses PHP's is_writable() anyway
+ *
+ * @var string
+ * @return boolean
+ */
+  function is__writeable($filepath, $make_unwritable = true) {
+    if (is_dir($filepath)) return is_writable($filepath);
+    $fp = @fopen($filepath, 'a');
+    if ($fp) {
+      @fclose($fp);
+      if ($make_unwritable) set_unwritable($filepath);
+      $fp = @fopen($filepath, 'a');
+      if ($fp) {
+        @fclose($fp);
+        return true;
+      }
+    }
+    return false;
+  }
+/**
+ * attempts to make the specified file read-only
+ *
+ * @var string
+ * @return boolean
+ */
+  function set_unwritable($filepath) {
+    return @chmod($filepath, 0444);
+  }

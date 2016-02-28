@@ -4,7 +4,7 @@
  * @copyright Copyright 2003-2016 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: update_product.php 733 2015-01-22 08:49:16Z webchills $
+ * @version $Id: update_product.php 734 2016-02-28 17:49:16Z webchills $
  */
   if (!defined('IS_ADMIN_FLAG')) {
     die('Illegal Access');
@@ -37,8 +37,8 @@
                             'products_virtual' => zen_db_prepare_input((int)$_POST['products_virtual']),
                             'products_tax_class_id' => zen_db_prepare_input((int)$_POST['products_tax_class_id']),
                             'manufacturers_id' => $manufacturers_id,
-                            'products_quantity_order_min' => zen_db_prepare_input($_POST['products_quantity_order_min']),
-                            'products_quantity_order_units' => zen_db_prepare_input($_POST['products_quantity_order_units']),
+                            'products_quantity_order_min' => zen_db_prepare_input(($_POST['products_quantity_order_min'] == 0 ? 1 : $_POST['products_quantity_order_min'])),
+                            'products_quantity_order_units' => zen_db_prepare_input(($_POST['products_quantity_order_units'] == 0 ? 1 : $_POST['products_quantity_order_units']) ),
                             'products_priced_by_attribute' => zen_db_prepare_input((int)$_POST['products_priced_by_attribute']),
                             'product_is_free' => zen_db_prepare_input((int)$_POST['product_is_free']),
                             'product_is_call' => zen_db_prepare_input((int)$_POST['product_is_call']),
@@ -112,7 +112,7 @@
       $language_id = $languages[$i]['id'];
 
       $sql_data_array = array('products_name' => zen_db_prepare_input($_POST['products_name'][$language_id]),
-							  'products_merkmale' => zen_db_prepare_input($_POST['products_merkmale'][$language_id]),
+                              'products_merkmale' => zen_db_prepare_input($_POST['products_merkmale'][$language_id]),
                               'products_description' => zen_db_prepare_input($_POST['products_description'][$language_id]),
                               'products_url' => zen_db_prepare_input($_POST['products_url'][$language_id]));
 
