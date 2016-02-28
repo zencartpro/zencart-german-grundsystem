@@ -4,7 +4,7 @@
  * @copyright Copyright 2003-2016 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: html_output.php 767 2016-02-28 19:07:42Z webchills $
+ * @version $Id: html_output.php 768 2016-02-28 19:07:42Z webchills $
  */
 
 ////
@@ -110,6 +110,11 @@
 // Outputs a button in the selected language
   function zen_image_submit($image, $alt = '', $parameters = '') {
     global $language;
+//-bof-css_admin_buttons-lat9-1/3
+    if (ADMIN_USE_CSS_BUTTONS == 'true') {
+      return zen_admin_css_buttons($image, $alt, 'submit', $parameters);
+    }
+//-eof-css_admin_buttons-lat9-1/3
 
     $image_submit = '<input type="image" src="' . zen_output_string(DIR_WS_LANGUAGES . $_SESSION['language'] . '/images/buttons/' . $image) . '" border="0" alt="' . zen_output_string($alt) . '"';
 
@@ -138,9 +143,52 @@
 // Output a function button in the selected language
   function zen_image_button($image, $alt = '', $params = '') {
     global $language;
+//-bof-css_admin_buttons-lat9-2/3
+    if (ADMIN_USE_CSS_BUTTONS == 'true') {
+      return zen_admin_css_buttons($image, $alt, 'button', $params);
+    }
+//-eof-css_admin_buttons-lat9-2/3    
 
     return zen_image(DIR_WS_LANGUAGES . $_SESSION['language'] . '/images/buttons/' . $image, $alt, '', '', $params);
   }
+  
+//-bof-css_admin_buttons-lat9-3/3
+  // -----
+  // Currently supports the conversion of *only* buttons with a .gif file extension!  Three types of output are created:
+  //
+  // submit .... Creates a submit-type input button
+  // button .... Creates an inner <span> for a simple link-based button
+  //
+  function zen_admin_css_buttons($image, $text, $type, $parameters = '') {
+    $css_button = '';
+    $button_name = basename($image, '.gif');
+    $parameters = (empty($parameters)) ? '' : (' ' . $parameters);
+
+      // -----
+      // For submit-type buttons, need to see if a "name" was passed in the parameters and, if so, need to emulate an
+      // <input type="image" /> return value by adding _x to the name parameter (thanks to paulm for providing the fix 
+      // for Zen Cart v1.3.6!).  If the parameters include a "value", remove it so that the value is the text provided.
+      //
+    if ($type == 'submit') {
+      if ($parameters != '') {
+        if (preg_match('/name="([a-zA-Z0-9\-_]+)"/', $parameters, $matches)) {
+          $parameters = str_replace('name="' . $matches[1], 'name="' . $matches[1] . '_x', $parameters);
+        }
+        if (preg_match('/(value="[a-zA-Z0=9\-_]+")/', $parameters, $matches)) {
+          $parameters = str_replace($matches[1], '', $parameters);
+        }
+      }
+      $css_button = "<input class=\"cssButton $button_name\" type=\"submit\" value=\"$text\"$parameters />";
+
+    } elseif ($type == 'button') {
+      $css_button = "<span class=\"cssButton $button_name\"$parameters>$text</span>";
+
+    }
+
+    return $css_button;
+    
+  }
+//-eof-css_admin_buttons-lat9-3/3
 
 ////
 // javascript to dynamically update the states/provinces list when the country is changed
