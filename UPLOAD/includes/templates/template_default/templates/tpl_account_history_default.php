@@ -9,7 +9,7 @@
  * @copyright Copyright 2003-2016 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: tpl_account_history_default.php 729 2011-08-09 15:49:16Z hugo13 $
+ * @version $Id: tpl_account_history_default.php 730 2016-02-29 12:49:16Z webchills $
  */
 ?>
 <div class="centerColumn" id="accountHistoryDefault">
@@ -32,7 +32,7 @@
 <?php
     }
 ?>
-<div class="navSplitPagesLinks forward"><?php echo TEXT_RESULT_PAGE . ' ' . $history_split->display_links(MAX_DISPLAY_PAGE_LINKS, zen_get_all_get_params(array('page', 'info', 'x', 'y', 'main_page'))); ?></div>
+<div class="navSplitPagesLinks forward"><?php echo TEXT_RESULT_PAGE . $history_split->display_links($max_display_page_links, zen_get_all_get_params(array('page', 'info', 'x', 'y', 'main_page')), $paginateAsUL); ?></div>
 <div class="navSplitPagesResult"><?php echo $history_split->display_count(TEXT_DISPLAY_NUMBER_OF_ORDERS); ?></div>
 <?php
   } else {

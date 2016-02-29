@@ -9,7 +9,7 @@
  * @copyright Copyright 2003-2016 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: tpl_account_default.php 730 2013-03-01 11:49:16Z webchills $
+ * @version $Id: tpl_account_default.php 731 2016-02-29 12:49:16Z webchills $
  */
 ?>
 
@@ -23,8 +23,8 @@
   ?>
 <p class="forward"><?php echo '<a href="' . zen_href_link(FILENAME_ACCOUNT_HISTORY, '', 'SSL') . '">' . OVERVIEW_SHOW_ALL_ORDERS . '</a>'; ?></p>
 <br class="clearBoth" />
-<table width="100%" border="0" cellpadding="0" cellspacing="0" id="prevOrders">
-<caption><h2><?php echo OVERVIEW_PREVIOUS_ORDERS; ?></h2></caption>
+<h2 id="previous-orders"><?php echo OVERVIEW_PREVIOUS_ORDERS; ?></h2>
+<table id="prevOrders">
     <tr class="tableHeading">
     <th scope="col"><?php echo TABLE_HEADING_DATE; ?></th>
     <th scope="col"><?php echo TABLE_HEADING_ORDER_NUMBER; ?></th>
@@ -37,12 +37,12 @@
   foreach($ordersArray as $orders) {
 ?>
   <tr>
-    <td width="70px"><?php echo zen_date_short($orders['date_purchased']); ?></td>
-    <td width="30px"><?php echo TEXT_NUMBER_SYMBOL . $orders['orders_id']; ?></td>
-    <td><address><?php echo zen_output_string_protected($orders['order_name']) . '<br />' . $orders['order_country']; ?></address></td>
-    <td width="70px"><?php echo $orders['orders_status_name']; ?></td>
-    <td width="70px" align="right"><?php echo $orders['order_total']; ?></td>
-    <td align="right"><?php echo '<a href="' . zen_href_link(FILENAME_ACCOUNT_HISTORY_INFO, 'order_id=' . $orders['orders_id'], 'SSL') . '"> ' . zen_image_button(BUTTON_IMAGE_VIEW_SMALL, BUTTON_VIEW_SMALL_ALT) . '</a>'; ?></td>
+    <td class="accountOrderDate"><?php echo zen_date_short($orders['date_purchased']); ?></td>
+    <td class="accountOrderId"><?php echo TEXT_NUMBER_SYMBOL . $orders['orders_id']; ?></td>
+    <td class="accountAddress"><address><?php echo zen_output_string_protected($orders['order_name']) . '<br />' . $orders['order_country']; ?></address></td>
+    <td class="accountOrderStatus"><?php echo $orders['orders_status_name']; ?></td>
+    <td class="accountOrderTotal alignRight"><?php echo $orders['order_total']; ?></td>
+    <td class="accountOrderViewButton alignRight"><?php echo '<a href="' . zen_href_link(FILENAME_ACCOUNT_HISTORY_INFO, 'order_id=' . $orders['orders_id'], 'SSL') . '"> ' . zen_image_button(BUTTON_IMAGE_VIEW_SMALL, BUTTON_VIEW_SMALL_ALT) . '</a>'; ?></td>
   </tr>
 
 <?php

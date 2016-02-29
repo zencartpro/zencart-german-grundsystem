@@ -9,12 +9,12 @@
  * @copyright Copyright 2003-2016 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: tpl_checkout_payment_default.php 763 2011-08-29 13:23:42Z hugo13 $
+ * @version $Id: tpl_checkout_payment_default.php 764 2016-02-13 13:23:42Z webchills $
  */
 ?>
 <?php echo $payment_modules->javascript_validation(); ?>
 <div class="centerColumn" id="checkoutPayment">
-<?php echo zen_draw_form('checkout_payment', zen_href_link(FILENAME_CHECKOUT_CONFIRMATION, '', 'SSL'), 'post', ($flagOnSubmit ? 'onsubmit="return check_form();"' : '')); ?>
+<?php echo zen_draw_form('checkout_payment', zen_href_link(FILENAME_CHECKOUT_CONFIRMATION, '', 'SSL'), 'post'); ?>
 <?php echo zen_draw_hidden_field('action', 'submit'); ?>
 
 <h1 id="checkoutPaymentHeading"><?php echo HEADING_TITLE; ?></h1>
@@ -97,7 +97,7 @@
 <?php // ** BEGIN PAYPAL EXPRESS CHECKOUT **
       if (!$payment_modules->in_special_checkout()) {
       // ** END PAYPAL EXPRESS CHECKOUT ** ?>
-<fieldset>
+<fieldset class="payment">
 <legend><?php echo TABLE_HEADING_PAYMENT_METHOD; ?></legend>
 
 <?php
@@ -203,7 +203,7 @@
 <?php echo zen_draw_textarea_field('comments', '45', '3'); ?>
 </fieldset>
 
-<div class="buttonRow forward"><?php echo zen_image_submit(BUTTON_IMAGE_CONTINUE_CHECKOUT, BUTTON_CONTINUE_ALT, 'onclick="submitFunction('.zen_user_has_gv_account($_SESSION['customer_id']).','.$order->info['total'].')"'); ?></div>
+<div class="buttonRow forward" id="paymentSubmit"><?php echo zen_image_submit(BUTTON_IMAGE_CONTINUE_CHECKOUT, BUTTON_CONTINUE_ALT, 'onclick="submitFunction('.zen_user_has_gv_account($_SESSION['customer_id']).','.$order->info['total'].')"'); ?></div>
 <div class="buttonRow back"><?php echo TITLE_CONTINUE_CHECKOUT_PROCEDURE . '<br />' . TEXT_CONTINUE_CHECKOUT_PROCEDURE; ?></div>
 
 </form>

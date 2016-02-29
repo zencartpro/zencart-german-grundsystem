@@ -9,7 +9,7 @@
  * @copyright Copyright 2003-2016 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: tpl_address_book_process_default.php 729 2011-08-09 15:49:16Z hugo13 $
+ * @version $Id: tpl_address_book_process_default.php 730 2016-02-29 12:49:16Z webchills $
  */
 ?>
 <div class="centerColumn" id="addressBookProcessDefault">
@@ -50,7 +50,7 @@
 <?php
     if (isset($_GET['edit']) && is_numeric($_GET['edit'])) {
 ?>
-<div class="buttonRow forward"><?php echo zen_draw_hidden_field('action', 'update') . zen_draw_hidden_field('edit', $_GET['edit']) . zen_image_submit(BUTTON_IMAGE_UPDATE, BUTTON_UPDATE_ALT); ?></div>
+<div class="buttonRow forward"><?php echo zen_draw_hidden_field('action', 'update') . zen_draw_hidden_field('edit', (int)$_GET['edit']) . zen_image_submit(BUTTON_IMAGE_UPDATE, BUTTON_UPDATE_ALT); ?></div>
 <div class="buttonRow back"><?php echo '<a href="' . zen_href_link(FILENAME_ADDRESS_BOOK, '', 'SSL') . '">' . zen_image_button(BUTTON_IMAGE_BACK, BUTTON_BACK_ALT) . '</a>'; ?></div>
     
 <?php

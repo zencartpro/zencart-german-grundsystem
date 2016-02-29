@@ -8,7 +8,7 @@
  * @copyright Copyright 2003-2016 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: tpl_page_not_found_default.php 747 2014-02-09 15:14:36Z webchills $
+ * @version $Id: tpl_page_not_found_default.php 748 2016-02-29 13:14:36Z webchills $
  */
 ?>
 <div class="centerColumn" id="pageNotFound">
@@ -24,7 +24,7 @@
 </div>
 <?php } ?>
 
-    <div><?php echo $zen_SiteMapTree->buildTree(); ?>
+    <div id="siteMapList"><?php echo $zen_SiteMapTree->buildTree(); ?>
      <ul>
 <?php if (SHOW_ACCOUNT_LINKS_ON_SITE_MAP=='Yes') { ?>
        <li><?php echo '<a href="' . zen_href_link(FILENAME_ACCOUNT, '', 'SSL') . '">' . PAGE_ACCOUNT . '</a>'; ?>
