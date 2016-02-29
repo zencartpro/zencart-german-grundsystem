@@ -52,6 +52,7 @@ if (isset($_GET['old']) && $_GET['old'] == '1') {
 }
 
 echo 'Connecting to UPS (port 80)...<br>';
+doCurlTest('http://www.ups.com/using/services/rave/qcostcgi.cgi');
 dofsockTest('www.ups.com', 80);
 
 echo 'Connecting to UPSXML (SSL) (wwwcie.ups.com) ...<br>';
@@ -74,15 +75,24 @@ echo 'Connecting to PayPal IPN (port 443) Sandbox ...<br>';
 dofsockTest('www.sandbox.paypal.com', 443);
 doCurlTest('https://www.sandbox.paypal.com/cgi-bin/webscr');
 
-// echo 'Connecting to PayPal IPN (port 443) Sandbox ...<br>';
-// dofsockTest('ipnpb.paypal.com', 443);
-// doCurlTest('https://ipnpb.paypal.com');
+//echo 'Connecting to PayPal IPN Postback ...<br>';
+//dofsockTest('ipnpb.paypal.com', 443);
+//doCurlTest('https://ipnpb.paypal.com');
+//
+//echo 'Connecting to PayPal IPN Postback (Sandbox)...<br>';
+//dofsockTest('ipnpb.sandbox.paypal.com', 443);
+//doCurlTest('https://ipnpb.sandbox.paypal.com');
 
 echo 'Connecting to PayPal Express/Pro Server ...<br>';
 doCurlTest('https://api-3t.paypal.com/nvp');
 
 echo 'Connecting to PayPal Express/Pro Sandbox ...<br>';
 doCurlTest('https://api-3t.sandbox.paypal.com/nvp');
+
+if (time() < mktime(0, 0, 0, 3, 1, 2016)) {
+  echo 'Connecting to PayPal SECURITY ENDPOINT 2016 Sandbox ...<br>';
+  doCurlTest('https://test-api-3t.sandbox.paypal.com/nvp');
+}
 
 echo 'Connecting to PayPal Payflowpro Server ...<br>';
 doCurlTest('https://payflowpro.paypal.com/transaction');
@@ -99,8 +109,11 @@ doCurlTest('https://test.authorize.net/gateway/transact.dll');
 echo 'Connecting to First Data GGe4 server (SSL)...<br>';
 doCurlTest('https://checkout.globalgatewaye4.firstdata.com/payment');
 
-echo 'Connecting to LinkPointAPI server (port 1129)...<br>';
-doCurlTest('https://secure.linkpt.net/LSGSXML:1129');
+echo 'Connecting to Payeezy Processing Server...<br>';
+doCurlTest('https://api.payeezy.com/v1/transactions');
+
+echo 'Connecting to Payeezy Sandbox Server...<br>';
+doCurlTest('https://api-cert.payeezy.com/v1/transactions');
 
 ?>
 

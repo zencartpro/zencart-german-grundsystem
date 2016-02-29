@@ -6,7 +6,7 @@
  * @copyright Copyright 2003-2016 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: new_products.php 730 2016-02-17 15:49:16Z webchills $
+ * @version $Id: new_products.php 731 2016-02-29 15:49:16Z webchills $
  */
 if (!defined('IS_ADMIN_FLAG')) {
   die('Illegal Access');
@@ -102,7 +102,7 @@ if (GOOGLE_ANALYTICS_ENABLED == "Enabled") {
 // * Please merge these files carefully making sure that $geeOnClick is added to all links
 // * and $geeImpression is added before the div close in your template files, rest can and should be ignored.
 // * The following is just an example.
-    $list_box_contents[$row][$col] = array('params' => 'class="centerBoxContentsNew"' . ' ',
+    $list_box_contents[$row][$col] = array('params' => 'class="centerBoxContentsNew centeredContent back"' . ' ' . 'style="width:' . $col_width . '%;"',
 					   'text' => (($new_products->fields['products_image'] == '' and PRODUCTS_IMAGE_NO_IMAGE_STATUS == 0) ? '' : '<div class="product_title"><a href="' . zen_href_link(zen_get_info_page($new_products->fields['products_id']), 'cPath=' . $productsInCategory[$new_products->fields['products_id']] . '&products_id=' . $new_products->fields['products_id']) . '"' . $geeOnClick . '>' . $new_products->fields['products_name'] . '</a></div>' . '<div class="box_image"><a href="' . zen_href_link(zen_get_info_page($new_products->fields['products_id']), 'cPath=' . $productsInCategory[$new_products->fields['products_id']] . '&products_id=' . $new_products->fields['products_id']) . '"' . $geeOnClick . '>' . zen_image(DIR_WS_IMAGES . $new_products->fields['products_image'], $new_products->fields['products_name'], IMAGE_PRODUCT_NEW_WIDTH, IMAGE_PRODUCT_NEW_HEIGHT) . '</a></div>') .'<div class="price">'.$products_price.'</div>'.'<div class="product_detail"><a href="'. zen_href_link(zen_get_info_page($new_products->fields['products_id']), 'cPath=' . $productsInCategory[$new_products->fields['products_id']] . '&products_id=' . $new_products->fields['products_id']) . '"' . $geeOnClick . '>' .zen_image_button(BUTTON_IMAGE_GOTO_PROD_DETAILS , BUTTON_GOTO_PROD_DETAILS_ALT).'</a>'
 
                          . $geeImpression
