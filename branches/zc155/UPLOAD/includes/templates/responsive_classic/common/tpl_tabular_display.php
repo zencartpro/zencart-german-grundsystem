@@ -11,6 +11,8 @@
  * @version GIT: $Id: picaflor-azul Modified in v1.5.5 $
  */
 
+$zco_notifier->notify('NOTIFY_TPL_TABULAR_DISPLAY_START', $current_page_base, $list_box_contents);
+
 //print_r($list_box_contents);
   $cell_scope = (!isset($cell_scope) || empty($cell_scope)) ? 'col' : $cell_scope;
   $cell_title = (!isset($cell_title) || empty($cell_title)) ? 'list' : $cell_title;
@@ -45,3 +47,5 @@
   }
 ?> 
 </div>
+<?php
+$zco_notifier->notify('NOTIFY_TPL_TABULAR_DISPLAY_END', $current_page_base, $list_box_contents);

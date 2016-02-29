@@ -68,7 +68,7 @@ define('CHARSET', 'utf-8');
 
 // header text in includes/header.php
 define('HEADER_TITLE_TOP', 'Admin Startseite');
-define('HEADER_TITLE_SUPPORT_SITE', 'Support');
+define('HEADER_TITLE_SUPPORT_SITE', 'Supportforum');
 define('HEADER_TITLE_ONLINE_CATALOG', 'Shop Startseite');
 define('HEADER_TITLE_VERSION', 'Version');
 define('HEADER_TITLE_ACCOUNT', 'Account');
@@ -91,6 +91,7 @@ define('TEXT_CHECK_ALL', 'Alle wählen');
 define('TEXT_UNCHECK_ALL', 'Alle abwählen');
 define('NONE', 'Kein');
 
+define('TEXT_UNKNOWN', 'Unbekannt');
 // configuration box text
 define('BOX_HEADING_CONFIGURATION', 'Konfiguration');
 define('BOX_CONFIGURATION_MY_STORE', 'Mein Shop');
@@ -113,7 +114,7 @@ define('BOX_CONFIGURATION_PRODUCT_INFO', 'Artikeldetails');
 define('BOX_CONFIGURATION_LAYOUT_SETTINGS', 'Layouteinstellungen');
 define('BOX_CONFIGURATION_WEBSITE_MAINTENANCE', 'Shopwartung');
 define('BOX_CONFIGURATION_NEW_LISTING', 'Liste - Neue Artikel');
-define('BOX_CONFIGURATION_FEATURED_LISTING', 'Liste - Empfohle Artikel');
+define('BOX_CONFIGURATION_FEATURED_LISTING', 'Liste - Empfohlene Artikel');
 define('BOX_CONFIGURATION_ALL_LISTING', 'Liste - Alle Artikel');
 define('BOX_CONFIGURATION_INDEX_LISTING', 'Liste - Artikelindex');
 define('BOX_CONFIGURATION_DEFINE_PAGE_STATUS', 'Eigene Seiten');
@@ -148,7 +149,7 @@ define('BOX_CUSTOMERS_ORDERS', 'Bestellungen');
 define('BOX_CUSTOMERS_GROUP_PRICING', 'Gruppenpreise');
 define('BOX_CUSTOMERS_PAYPAL', 'PayPal IPN');
 define('BOX_CUSTOMERS_INVOICE', 'Rechnung');
-define('BOX_CUSTOMERS_PACKING_SLIP', 'Packliste');
+define('BOX_CUSTOMERS_PACKING_SLIP', 'Lieferschein');
 
 // taxes box text
 define('BOX_HEADING_LOCATION_AND_TAXES', 'Länder & Steuern');
@@ -204,7 +205,7 @@ define('BOX_LOCALIZATION_LANGUAGES', 'Sprachen');
 define('BOX_LOCALIZATION_ORDERS_STATUS', 'Bestellstatus');
 
 // gift vouchers box text
-define('BOX_HEADING_GV_ADMIN', TEXT_GV_NAMES . ' & Aktionskupons');
+define('BOX_HEADING_GV_ADMIN', TEXT_GV_NAME . ' & Aktionskupons');
 define('BOX_GV_ADMIN_QUEUE', TEXT_GV_NAMES . ' Warteschleife');
 define('BOX_GV_ADMIN_MAIL', TEXT_GV_NAME . ' senden ');
 define('BOX_GV_ADMIN_SENT', 'Bereits gesendet ');
@@ -212,8 +213,8 @@ define('BOX_COUPON_ADMIN', 'Aktionskupon Admin');
 define('BOX_COUPON_RESTRICT','Aktionskupon Einschränkungen');
 
 // admin access box text
-define('BOX_HEADING_ADMIN_ACCESS', 'Admin Benutzerrechte');
-define('BOX_ADMIN_ACCESS_USERS',  'Admin Benutzer');
+define('BOX_HEADING_ADMIN_ACCESS', 'Administratoren');
+define('BOX_ADMIN_ACCESS_USERS',  'Admin User');
 define('BOX_ADMIN_ACCESS_PROFILES', 'Admin Profile');
 define('BOX_ADMIN_ACCESS_PAGE_REGISTRATION', 'Admin Seiten Registrierung');
 define('BOX_ADMIN_ACCESS_LOGS', 'Admin Aktivitäten Logs');
@@ -251,6 +252,7 @@ define('JS_COUNTRY', '* Das \'Land\' muss ausgewählt sein.\n');
 define('JS_TELEPHONE', '* Die \'Telefonnummer\' muss aus mindestens  ' . ENTRY_TELEPHONE_MIN_LENGTH . ' Zeichen bestehen.\n');
 define('JS_PASSWORD', '* Das \'Passwort\' muss aus mindestens  ' . ENTRY_PASSWORD_MIN_LENGTH . ' Zeichen bestehen.\n');
 define('JS_ORDER_DOES_NOT_EXIST', 'Diese Bestellnummer %s existiert nicht!');
+define('TEXT_NO_ORDER_HISTORY', 'eine Bestellhistorie verfügbar');
 
 define('CATEGORY_PERSONAL', 'Persönlich');
 define('CATEGORY_ADDRESS', 'Anschrift');
@@ -343,7 +345,7 @@ define('IMAGE_OPTION_NAMES', 'Attributnamen');
 define('IMAGE_OPTION_VALUES', 'Optionswerte');
 define('IMAGE_ORDERS', 'Bestellungen');
 define('IMAGE_ORDERS_INVOICE', 'Rechnung');
-define('IMAGE_ORDERS_PACKINGSLIP', 'Packliste');
+define('IMAGE_ORDERS_PACKINGSLIP', 'Lieferschein');
 define('IMAGE_PERMISSIONS', 'Edit Permissions');
 define('IMAGE_PREVIEW', 'Bewertungen');
 define('IMAGE_RESTORE', 'Wiederherstellen');
@@ -376,6 +378,8 @@ define('IMAGE_REMOVE_FEATURED', 'Info für empfohlene Artikel entfernen');
 define('IMAGE_INSTALL_SPECIAL', 'Info für Preisermäßigung hinzufügen');
 define('IMAGE_INSTALL_FEATURED', 'Info für empfohlene Artikel hinzufügen');
 
+define('TEXT_VERSION_CHECK_BUTTON', 'auf neue Version prüfen');
+define('TEXT_BUTTON_RESET_ACTIVITY_LOG', 'Aktivitäten Log anzeigen');
 define('ICON_PRODUCTS_PRICE_MANAGER', 'Artikelpreis Manager');
 define('ICON_COPY_TO', 'Kopieren nach');
 define('ICON_CROSS', 'Falsch');
@@ -433,12 +437,11 @@ define('TEXT_FIELD_REQUIRED', '<span class="Feld">* benötigt</span>');
 
 define('ERROR_NO_DEFAULT_CURRENCY_DEFINED', 'FEHLER: Es wurde keine Standardwährung definiert. Sie können diese im Admin Menü unter Lokalisation->Währungen definieren.');
 
-define('TEXT_CACHE_CATEGORIES', 'Kategorien');
-define('TEXT_CACHE_MANUFACTURERS', 'Hersteller');
-define('TEXT_CACHE_ALSO_PURCHASED', 'Verkaufsförderung / Empfohlene Artikel');
+
 
 define('TEXT_NONE', '--kein--');
 define('TEXT_TOP', 'Top');
+define('PLEASE_SELECT', 'Bitte wählen ...');
 
 define('ERROR_DESTINATION_DOES_NOT_EXIST', 'FEHLER: Zielverzeichnis %s existiert nicht');
 define('ERROR_DESTINATION_NOT_WRITEABLE', 'FEHLER: Zielverzeichnis %s ist schreibgeschützt');
@@ -458,6 +461,11 @@ define('WARNING_COULD_NOT_LOCATE_LANG_FILE', 'WARNUNG: Die Sprachdatei konnte ni
 define('ERROR_MODULE_REMOVAL_PROHIBITED', 'FEHLER: Diese Modul kann nicht entfernt werden: ');
 define('WARNING_REVIEW_ROGUE_ACTIVITY', 'ALARM: Bitte anschauen für mögliche XSS Aktivitäten:');
 
+define('ERROR_FILE_NOT_REMOVEABLE', 'Error: Could not remove the file specified. You may have to use FTP to remove the file, due to a server-permissions configuration limitation.');
+define('WARNING_SESSION_AUTO_START', 'Warning: session.auto_start is enabled - please disable this PHP feature in php.ini and restart the web server.');
+define('WARNING_DOWNLOAD_DIRECTORY_NON_EXISTENT', 'Warning: The downloadable products directory does not exist: ' . DIR_FS_DOWNLOAD . '. Downloadable products will not work until this directory is valid.');
+define('WARNING_SQL_CACHE_DIRECTORY_NON_EXISTENT', 'Warning: The SQL cache directory does not exist: ' . DIR_FS_SQL_CACHE . '. SQL caching will not work until this directory is created.');
+define('WARNING_SQL_CACHE_DIRECTORY_NOT_WRITEABLE', 'Warning: I am not able to write to the SQL cache directory: ' . DIR_FS_SQL_CACHE . '. SQL caching will not work until the right user permissions are set.');
 define('_JANUARY', 'Januar');
 define('_FEBRUARY', 'Februar');
 define('_MARCH', 'März');
