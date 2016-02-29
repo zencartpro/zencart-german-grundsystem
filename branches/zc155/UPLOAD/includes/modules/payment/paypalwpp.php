@@ -6,7 +6,7 @@
  * @copyright Copyright 2003-2016 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: paypalwpp.php 849 2015-12-21 20:12:14Z webchills $
+ * @version $Id: paypalwpp.php 850 2016-02-29 15:12:14Z webchills $
  */
 /**
  * load the communications layer code
@@ -1602,7 +1602,7 @@ if (false) { // disabled until clarification is received about coupons in PayPal
     // PayPal has acknowledged that they have a bug which prevents Account-Optional from working in InContext mode, so we have to use 'Mark' for InContext to work as of Dec 2015:
     if ($this->use_incontext_checkout && $options['SOLUTIONTYPE'] == 'Sole') $options['SOLUTIONTYPE'] = 'Mark';
 
-    $options['LANDINGPAGE'] = 'Billing';  // "Billing" or "Login" selects the style of landing page on PayPal site during checkout
+    $options['LANDINGPAGE'] = 'Billing';  // "Billing" or "Login" selects the style of landing page on PayPal site during checkout (ie: which "section" is expanded when arriving there)
     //$options['USERSELECTEDFUNDINGSOURCE'] = 'Finance';  // 'Finance' is for PayPal BillMeLater.  Requires LANDINGPAGE=Billing.
 
     // Set the return URL if they click "Submit" on PayPal site
