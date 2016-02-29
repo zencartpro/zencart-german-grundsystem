@@ -6,7 +6,7 @@
  * @copyright Copyright 2003-2016 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: tpl_modules_downloads.php 729 2011-08-09 15:49:16Z hugo13 $
+ * @version $Id: tpl_modules_downloads.php 730 2016-02-29 13:49:16Z webchills $
  */
 /**
  * require the downloads module
@@ -19,12 +19,12 @@
   if ($downloads->RecordCount() > 0) {
 ?>
 
-<table border="0" width="100%" cellspacing="0" cellpadding="0" id="downloads">
-<caption><h4><?php echo HEADING_DOWNLOAD; ?></h4></caption>
+<h4 id="headingDownloads"><?php echo HEADING_DOWNLOAD; ?></h4>
+<table id="downloads">
   <tr class="tableHeading">
       <th scope="col" id="dlFileNameHeading"><?php echo TABLE_HEADING_PRODUCT_NAME; ?></th>
       <th scope="col" id="dlByteSize"><?php echo TABLE_HEADING_BYTE_SIZE; ?></th>
-      <th scope="col" id="dlButtonHeading"><?php echo TABLE_HEADING_DOWNLOAD_FILENAME; ?></th>
+      <th scope="col" id="dlFilenameHeading"><?php echo TABLE_HEADING_DOWNLOAD_FILENAME; ?></th>
       <th scope="col" id="dlDateHeading"><?php echo TABLE_HEADING_DOWNLOAD_DATE; ?></th>
       <th scope="col" id="dlCountHeading"><?php echo TABLE_HEADING_DOWNLOAD_COUNT; ?></th>
       <th scope="col" id="dlButtonHeading">&nbsp;</th>

@@ -8,8 +8,9 @@
  * @copyright Copyright 2003-2016 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: tpl_columnar_display.php 729 2011-08-09 15:49:16Z hugo13 $
+ * @version $Id: tpl_columnar_display.php 730 2016-02-29 12:49:16Z webchills $
  */
+$zco_notifier->notify('NOTIFY_TPL_COLUMNAR_DISPLAY_START', $current_page_base, $list_box_contents, $title);
 
 ?>
 <?php
@@ -41,4 +42,5 @@ if (is_array($list_box_contents) > 0 ) {
 <?php
   }
 }
-?> 
+
+$zco_notifier->notify('NOTIFY_TPL_COLUMNAR_DISPLAY_END', $current_page_base, $list_box_contents, $title);

@@ -9,7 +9,7 @@
  * @copyright Copyright 2003-2016 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: tpl_account_password_default.php 730 2014-07-05 10:49:16Z hugo13 $
+ * @version $Id: tpl_account_password_default.php 731 2016-02-29 12:49:16Z webchills $
  */
 ?>
 <div class="centerColumn" id="accountPassword">
@@ -23,15 +23,15 @@
 <?php if ($messageStack->size('account_password') > 0) echo $messageStack->output('account_password'); ?>
 
 <label class="inputLabel" for="password-current"><?php echo ENTRY_PASSWORD_CURRENT; ?></label>
-<?php echo zen_draw_password_field('password_current','','id="password-current" autocomplete="off"') . (zen_not_null(ENTRY_PASSWORD_CURRENT_TEXT) ? '<span class="alert">' . ENTRY_PASSWORD_CURRENT_TEXT . '</span>': ''); ?>
+<?php echo zen_draw_password_field('password_current','','id="password-current" autocomplete="off" placeholder="' . ENTRY_PASSWORD_CURRENT_TEXT . '" required'); ?>
 <br class="clearBoth" />
 
 <label class="inputLabel" for="password-new"><?php echo ENTRY_PASSWORD_NEW; ?></label>
-<?php echo zen_draw_password_field('password_new','','id="password-new" autocomplete="off"') . (zen_not_null(ENTRY_PASSWORD_NEW_TEXT) ? '<span class="alert">' . ENTRY_PASSWORD_NEW_TEXT . '</span>': ''); ?>
+<?php echo zen_draw_password_field('password_new','','id="password-new" autocomplete="off" placeholder="' . ENTRY_PASSWORD_NEW_TEXT . '" required'); ?>
 <br class="clearBoth" />
 
 <label class="inputLabel" for="password-confirm"><?php echo ENTRY_PASSWORD_CONFIRMATION; ?></label>
-<?php echo zen_draw_password_field('password_confirmation','','id="password-confirm" autocomplete="off"') . (zen_not_null(ENTRY_PASSWORD_CONFIRMATION_TEXT) ? '<span class="alert">' . ENTRY_PASSWORD_CONFIRMATION_TEXT . '</span>': ''); ?>
+<?php echo zen_draw_password_field('password_confirmation','','id="password-confirm" autocomplete="off" placeholder="' . ENTRY_PASSWORD_CONFIRMATION_TEXT . '" required'); ?>
 <br class="clearBoth" />
 </fieldset>
 

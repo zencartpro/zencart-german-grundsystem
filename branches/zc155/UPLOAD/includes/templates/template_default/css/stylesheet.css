@@ -5,7 +5,7 @@
  * @copyright Copyright 2003-2016 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: stylesheet.css 838 2015-02-17 13:33:58Z webchills $
+ * @version $Id: stylesheet.css 839 2016-02-28 13:33:58Z webchills $
  */
 
 body {
@@ -460,7 +460,7 @@ HR {
 
 .categoryIcon {}
 
-#cartImage {
+.cartImage {
 	margin: 0.5em 1em;
 	}
 
@@ -687,3 +687,10 @@ table{border:none;padding:0;margin:0; border-spacing:0;border-collapse:collapse;
 #quantityDiscountsDetails td {border: 1px solid black;}
 .products-listing .productsAllListing, .productsNewListing, .productsFeaturedListing {width: 100%;}
 .tableBorder1 td {border: 1px solid black;}
+/*bof placeholders*/
+::-moz-placeholder, :-moz-placeholder {
+   text-align: right;
+   color: #D01;
+   opacity:  1;
+}
+::-webkit-input-placeholder, :-ms-input-placeholder, :placeholder-shown { color: #D01; text-align: right; }

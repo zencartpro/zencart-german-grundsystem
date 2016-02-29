@@ -9,7 +9,7 @@
  * @copyright Copyright 2003-2016 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: tpl_page_default.php 730 2014-02-09 15:12:16Z webchills $
+ * @version $Id: tpl_page_default.php 731 2016-02-29 15:12:16Z webchills $
  */
 ?>
 <div class="centerColumn" id="ezPageDefault">
@@ -33,7 +33,7 @@
 <div id="navEZPagesTOCWrapper">
 <h2 id="ezPagesTOCHeading"><?php echo TEXT_EZ_PAGES_TABLE_CONTEXT; ?></h2>
 <div id="navEZPagesTOC">
-<ul>
+<ul class="list">
 <?php foreach($toc_links as $link) {
 // could be used to change classes on current link and toc (table of contents) links
       if ($link['pages_id'] == $_GET['id']) { ?>

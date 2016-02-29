@@ -9,7 +9,7 @@
  * @copyright Copyright 2003-2016 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: tpl_advanced_search_result_default.php 730 2014-02-09 15:11:16Z webchills $
+ * @version $Id: tpl_advanced_search_result_default.php 731 2016-02-29 15:11:16Z webchills $
  */
 ?>
 <div class="centerColumn" id="advSearchResultsDefault">
@@ -23,9 +23,7 @@
 ?>
 <?php echo $form; ?>
 <?php
-  echo zen_hide_session_id();
-
-/* Re-Get all GET'ed variables */
+/* Redisplay all $_GET variables, except currency */
   echo zen_post_all_get_params('currency');
 
   require(DIR_WS_MODULES . zen_get_module_directory(FILENAME_PRODUCT_LISTING_ALPHA_SORTER));

@@ -9,7 +9,7 @@
  * @copyright Copyright 2003-2016 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: tpl_account_history_info_default.php 729 2011-08-09 15:49:16Z hugo13 $
+ * @version $Id: tpl_account_history_info_default.php 730 2016-02-29 12:49:16Z webchills $
  */
 ?>
 <div class="centerColumn" id="accountHistInfo">
@@ -17,8 +17,8 @@
 <div class="forward"><?php echo HEADING_ORDER_DATE . ' ' . zen_date_long($order->info['date_purchased']); ?></div>
 <br class="clearBoth" />
 
-<table border="0" width="100%" cellspacing="0" cellpadding="0" summary="Itemized listing of previous order, includes number ordered, items and prices">
-<caption><h2 id="orderHistoryDetailedOrder"><?php echo HEADING_TITLE . ORDER_HEADING_DIVIDER . sprintf(HEADING_ORDER_NUMBER, $_GET['order_id']); ?></h2></caption>
+<h2 id="orderHistoryDetailedOrder"><?php echo HEADING_TITLE . ORDER_HEADING_DIVIDER . sprintf(HEADING_ORDER_NUMBER, $_GET['order_id']); ?></h2>
+<table id="orderHistoryHeading">
     <tr class="tableHeading">
         <th scope="col" id="myAccountQuantity"><?php echo HEADING_QUANTITY; ?></th>
         <th scope="col" id="myAccountProducts"><?php echo HEADING_PRODUCTS; ?></th>
@@ -39,7 +39,7 @@
         <td class="accountProductDisplay"><?php echo  $order->products[$i]['name'];
 
     if ( (isset($order->products[$i]['attributes'])) && (sizeof($order->products[$i]['attributes']) > 0) ) {
-      echo '<ul id="orderAttribsList">';
+      echo '<ul class="orderAttribsList">';
       for ($j=0, $n2=sizeof($order->products[$i]['attributes']); $j<$n2; $j++) {
         echo '<li>' . $order->products[$i]['attributes'][$j]['option'] . TEXT_OPTION_DIVIDER . nl2br(zen_output_string_protected($order->products[$i]['attributes'][$j]['value'])) . '</li>';
       }
@@ -95,8 +95,8 @@
 if (sizeof($statusArray)) {
 ?>
 
-<table border="0" width="100%" cellspacing="0" cellpadding="0" id="myAccountOrdersStatus" summary="Table contains the date, order status and any comments regarding the order">
-<caption><h2 id="orderHistoryStatus"><?php echo HEADING_ORDER_HISTORY; ?></h2></caption>
+<h2 id="orderHistoryStatus"><?php echo HEADING_ORDER_HISTORY; ?></h2>
+<table id="myAccountOrdersStatus">
     <tr class="tableHeading">
         <th scope="col" id="myAccountStatusDate"><?php echo TABLE_HEADING_STATUS_DATE; ?></th>
         <th scope="col" id="myAccountStatus"><?php echo TABLE_HEADING_STATUS_ORDER_STATUS; ?></th>

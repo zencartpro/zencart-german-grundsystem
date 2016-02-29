@@ -8,8 +8,9 @@
  * @copyright Copyright 2003-2016 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: tpl_tabular_display.php 730 2016-02-17 13:49:16Z webchills $
+ * @version $Id: tpl_tabular_display.php 731 2016-02-29 12:49:16Z webchills $
  */
+$zco_notifier->notify('NOTIFY_TPL_TABULAR_DISPLAY_START', $current_page_base, $list_box_contents);
 
 //print_r($list_box_contents);
   $cell_scope = (!isset($cell_scope) || empty($cell_scope)) ? 'col' : $cell_scope;
@@ -43,3 +44,5 @@
   }
 ?> 
 </table>
+<?php
+$zco_notifier->notify('NOTIFY_TPL_TABULAR_DISPLAY_END', $current_page_base, $list_box_contents);

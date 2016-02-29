@@ -8,7 +8,7 @@
  * @copyright Copyright 2003-2016 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: tpl_modules_attributes.php 730 2013-04-02 18:06:16Z webchills $
+ * @version $Id: tpl_modules_attributes.php 731 2016-02-29 13:06:16Z webchills $
  */
 ?>
 <div id="productAttributes">
@@ -19,7 +19,6 @@
 <?php
     for($i=0;$i<sizeof($options_name);$i++) {
 ?>
-<div class="wrapperAttribsOptions" id="<?php echo $options_wrapper_id[$i];//gjh42 ?>">
 <?php
   if ($options_comment[$i] != '' and $options_comment_position[$i] == '0') {
 ?>
@@ -28,7 +27,7 @@
   }
 ?>
 
-<div class="attribsOptions">
+<div class="wrapperAttribsOptions" id="<?php echo $options_html_id[$i]; ?>">
 <h4 class="optionName back"><?php echo $options_name[$i]; ?></h4>
 <div class="back"><?php echo "\n" . $options_menu[$i]; ?></div>
 <br class="clearBoth" />
@@ -38,7 +37,7 @@
 <?php if ($options_comment[$i] != '' and $options_comment_position[$i] == '1') { ?>
     <div class="ProductInfoComments"><?php echo $options_comment[$i]; ?></div>
 <?php } ?>
-</div>
+
 
 <?php
 if ($options_attributes_image[$i] != '') {
