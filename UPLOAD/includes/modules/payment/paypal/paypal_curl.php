@@ -5,11 +5,11 @@
  * @package paymentMethod
  * @copyright Copyright 2003-2016 Zen Cart Development Team
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: paypal_curl.php 804 2015-01-22 10:47:36Z webchills $
+ * @version $Id: paypal_curl.php 805 2016-02-29 15:47:36Z webchills $
  */
 
 /**
- * PayPal NVP (v61) and Payflow Pro (v4 HTTP API) implementation via cURL.
+ * PayPal NVP (v124.0) and Payflow Pro (v4 HTTP API) implementation via cURL.
  */
 class paypal_curl extends base {
 
@@ -130,16 +130,16 @@ class paypal_curl extends base {
                                            'RETURNURL' => $returnUrl,
                                            'CANCELURL' => $cancelUrl));
     } elseif ($this->_mode == 'nvp') {
-      if (!isset($values['PAYMENTACTION']) || ($this->checkHasApiCredentials() === FALSE)) $values['PAYMENTACTION'] = ($this->_trxtype == 'S' || ($this->checkHasApiCredentials() === FALSE) ? 'Sale' : 'Authorization');
+      if (!isset($values['PAYMENTREQUEST_0_PAYMENTACTION']) || ($this->checkHasApiCredentials() === FALSE)) $values['PAYMENTREQUEST_0_PAYMENTACTION'] = ($this->_trxtype == 'S' || ($this->checkHasApiCredentials() === FALSE) ? 'Sale' : 'Authorization');
       $values['RETURNURL'] = urlencode($returnUrl);
       $values['CANCELURL'] = urlencode($cancelUrl);
     }
 
     // convert country code key to proper key name for paypal 2.0 (needed when sending express checkout via payflow gateway, due to PayPal field naming inconsistency)
     if ($this->_mode == 'payflow') {
-      if (!isset($values['SHIPTOCOUNTRY']) && isset($values['SHIPTOCOUNTRYCODE'])) {
-        $values['SHIPTOCOUNTRY'] = $values['SHIPTOCOUNTRYCODE'];
-        unset($values['SHIPTOCOUNTRYCODE']);
+      if (!isset($values['SHIPTOCOUNTRY']) && isset($values['PAYMENTREQUEST_0_SHIPTOCOUNTRYCODE'])) {
+        $values['SHIPTOCOUNTRY'] = $values['PAYMENTREQUEST_0_SHIPTOCOUNTRYCODE'];
+        unset($values['PAYMENTREQUEST_0_SHIPTOCOUNTRYCODE']);
       }
       //if (isset($values['AMT'])) unset($values['AMT']);
     }
@@ -150,9 +150,6 @@ class paypal_curl extends base {
     if (defined('MODULE_PAYMENT_PAYPAL_CART_BORDER_COLOR')) $values['CARTBORDERCOLOR'] = MODULE_PAYMENT_PAYPAL_CART_BORDER_COLOR;
     if (defined('MODULE_PAYMENT_PAYPALWPP_HEADER_IMAGE')) $values['HDRIMG'] = urlencode(MODULE_PAYMENT_PAYPALWPP_HEADER_IMAGE);
     if (defined('MODULE_PAYMENT_PAYPALWPP_PAGECOLOR'))    $values['PAYFLOWCOLOR'] = MODULE_PAYMENT_PAYPALWPP_PAGECOLOR;
-// The following are deprecated since July 2013:
-//     if (defined('MODULE_PAYMENT_PAYPALWPP_HEADER_BORDER_COLOR')) $values['HDRBORDERCOLOR'] = MODULE_PAYMENT_PAYPALWPP_HEADER_BORDER_COLOR;
-//     if (defined('MODULE_PAYMENT_PAYPALWPP_HEADER_BACK_COLOR')) $values['HDRBACKCOLOR'] = MODULE_PAYMENT_PAYPALWPP_HEADER_BACK_COLOR;
 
     if (PAYPAL_DEV_MODE == 'true') $this->log('SetExpressCheckout - breakpoint 1 - [' . print_r($values, true) .']');
     $this->values = $values;
@@ -192,7 +189,7 @@ class paypal_curl extends base {
       $values['TRXTYPE'] = $this->_trxtype;
       $values['NOTIFYURL'] = zen_href_link('ipn_main_handler.php', '', 'SSL',false,false,true);
     } elseif ($this->_mode == 'nvp') {
-      if (!isset($values['PAYMENTACTION']) || $this->checkHasApiCredentials() === FALSE) $values['PAYMENTACTION'] = ($this->_trxtype == 'S' || ($this->checkHasApiCredentials() === FALSE) ? 'Sale' : 'Authorization');
+      if (!isset($values['PAYMENTREQUEST_0_PAYMENTACTION']) || $this->checkHasApiCredentials() === FALSE) $values['PAYMENTREQUEST_0_PAYMENTACTION'] = ($this->_trxtype == 'S' || ($this->checkHasApiCredentials() === FALSE) ? 'Sale' : 'Authorization');
       $values['NOTIFYURL'] = urlencode(zen_href_link('ipn_main_handler.php', '', 'SSL',false,false,true));
     }
     $this->values = $values;
@@ -207,7 +204,7 @@ class paypal_curl extends base {
    *
    * Requires Website Payments Pro or Payflow Pro as merchant gateway.
    *
-   * PAYMENTACTION = Authorization (auth/capt) or Sale (final)
+   * PAYMENTREQUEST_0_PAYMENTACTION = Authorization (auth/capt) or Sale (final)
    */
   function DoDirectPayment($cc, $cvv2 = '', $exp, $fname = null, $lname = null, $cc_type, $options = array(), $nvp = array() ) {
     $values = $options;
@@ -231,7 +228,7 @@ class paypal_curl extends base {
       }
       $values['CREDITCARDTYPE'] = ($cc_type == 'American Express') ? 'Amex' : $cc_type;
       $values['NOTIFYURL'] = urlencode(zen_href_link('ipn_main_handler.php', '', 'SSL',false,false,true));
-      if (!isset($values['PAYMENTACTION'])) $values['PAYMENTACTION'] = ($this->_trxtype == 'S' ? 'Sale' : 'Authorization');
+      if (!isset($values['PAYMENTREQUEST_0_PAYMENTACTION'])) $values['PAYMENTREQUEST_0_PAYMENTACTION'] = ($this->_trxtype == 'S' ? 'Sale' : 'Authorization');
 
       if (isset($values['COUNTRY'])) unset ($values['COUNTRY']);
       if (isset($values['COMMENT1'])) unset ($values['COMMENT1']);
@@ -420,8 +417,9 @@ class paypal_curl extends base {
     }
     // convert currency code to proper key name for nvp
     if ($this->_mode == 'nvp') {
-      if (!isset($values['CURRENCYCODE']) && isset($values['CURRENCY'])) {
-        $values['CURRENCYCODE'] = $values['CURRENCY'];
+      $variableName = ($operation == 'setExpressCheckout' || $operation == 'doExpressCheckoutPayment') ? 'PAYMENTREQUEST_0_CURRENCYCODE' : 'CURRENCYCODE';
+      if (!isset($values[$variableName]) && isset($values['CURRENCY'])) {
+        $values[$variableName] = $values['CURRENCY'];
         unset($values['CURRENCY']);
       }
     }
@@ -439,7 +437,7 @@ class paypal_curl extends base {
     } elseif ($this->_mode == 'nvp') {
       $headers[] = 'X-VPS-VIT-Integration-Product: PHP::Zen Cart(R) - PayPal/NVP';
     }
-    $headers[] = 'X-VPS-VIT-Integration-Version: 1.5.4';
+    $headers[] = 'X-VPS-VIT-Integration-Version: 1.5.5';
     $this->lastHeaders = $headers;
 
     $ch = curl_init();
@@ -541,15 +539,17 @@ class paypal_curl extends base {
       $value = str_replace('"', '', $value);
       // if the value contains a & or = symbol, handle it differently
       if (($this->_mode == 'payflow') && (strpos($value, '&') !== false || strpos($value, '=') !== false)) {
+        $name = str_replace('PAYMENTREQUEST_0_', '', $name);  // For Payflow, remove NVP v63.0+ extras from name
         $string[] = $name . '[' . strlen($value) . ']=' . $value;
         if (PAYPAL_DEV_MODE == 'true') $this->log('_buildNameValueList - datacheck - adding braces and string count to: ' . $value . ' (' . $name . ')');
       } else {
-        if ($this->_mode == 'nvp' && ((strstr($name, 'SHIPTO') || strstr($name, 'L_NAME')) && (strpos($value, '&') !== false || strpos($value, '=') !== false))) $value = urlencode($value);
+        if ($this->_mode == 'nvp' && ((strstr($name, 'SHIPTO') || strstr($name, 'L_NAME') || strstr($name, 'L_PAYMENTREQUEST_0_NAME') || strstr($name, '_DESC')) && (strpos($value, '&') !== false || strpos($value, '=') !== false))) $value = urlencode($value);
         $string[] = $name . '=' . $value;
       }
     }
 
     $this->lastParamList = implode('&', $string);
+    $this->notify('NOTIFY_PAYPAL_CURL_BUILDNAMEVALUELIST', $string);
     return $this->lastParamList;
   }
 
