@@ -1,0 +1,39 @@
+﻿Admin Login als Kunde (Encrypted Master Password) 2.7 für Zen Cart 1.5.5 deutsch
+
+Diese Erweiterung bietet die Möglichkeit in jeden beliebigen Kundenaccount einzuloggen.
+Im Gegensatz zu früheren Versionen wird dazu das Passwort des Administrators verwendet, das verschlüsselt in der Datenbank gespeichert wird.
+Sinnvoll dann, wenn ein Kunde Probleme meldet und man genau nachvollziehen will, was der Kunde sieht.
+Ebenso sinnvoll für Shops, die telefonische Bestellungen annehmen und so gleich die Bestellung für einen Kunden durchführen können.
+
+Dieses Modul ist ausschließlich für Zen Cart 1.5.5 deutsch geeignet und kann in anderen Zen Cart Versionen NICHT verwendet werden!
+Ebensowenig können ältere Versionen dieses Moduls in 1.5.5 verwendet werden!
+Falls Sie von einer älteren Zen Cart Version als 1.5.3 auf Zen Cart 1.5.5 updaten und dieses Modul bereits im Einsatz haben, entfernen Sie es vorher komplett!
+
+Installation:
+
+1.
+Die Datei install.sql im Ordner SQL mit einem Texteditor öffen und den Inhalt kopieren
+
+2.
+Zen Cart Administration öffnen und unter Tools > SQL Patches installieren den Inhalt ins Feld hineinkopieren und absenden.
+Dadurch werden zwei neu Einstellungsmöglichkeiten in die Konfiguration unter Mein Shop geschrieben.
+
+3.
+Neue Dateien des Moduls einspielen:
+Im Ordner NEUE DATEIEN dieses Downloads den Ordner DEINADMIN auf den Namen Ihres admin Verzeichnisses umbenennen.
+Dann die Ordner/Dateien in der vorgegebenen Struktur ins Zen Cart Verzeichnis hochladen.
+Dadurch werden keine bestehenden Dateien überschrieben
+
+4.
+Geänderte Dateien des Moduls aus dem Ordner GEAENDERTE DATEIEN einspielen:
+Dieses Modul ändert nur eine einzige bestehende Datei:
+DEINADMIN/customers.php
+Sollten Sie bereits einmal Änderungen an dieser Datei vorgenommen haben (z.B. durch den Einbau anderer Erweiterungen), dann laden Sie diese Datei keinesfalls einfach so hoch.
+Stattdessen vergleichen Sie sie mit der entsprechenden Datei in Ihrem Shop und nehmen die Änderungen manuell per WinMerge oder BeyondCompare vor.
+Dann spielen Sie die geänderte Datei ein.
+
+5.
+In der Zen Cart Administration ist nun unter Konfiguration > Mein Shop die Möglichkeit vorhanden, das Admin Login als Kunde auf bestimmte Admins einzuschränken. Diese Einstellungen müssen in der Regel nicht geändert werden und können auf 1 gelassen werden.
+
+6.
+Unter Kunden > Kunden ist nun beim Markieren eine Kunden der neue Button Login als Kunde vorhanden. Mit diesem öffnet sich die Loginseite im Frontend des Shops. Emailadresse des Kunden ist bereits ausgefüllt. Als Passwort das des Zen Cart Admins eingeben.
