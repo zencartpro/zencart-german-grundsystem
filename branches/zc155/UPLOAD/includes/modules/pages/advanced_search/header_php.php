@@ -6,7 +6,7 @@
  * @copyright Copyright 2003-2016 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: header_php.php 729 2011-08-09 15:49:16Z hugo13 $
+ * @version $Id: header_php.php 730 2016-03-02 21:49:16Z webchills $
  */
   require(DIR_WS_MODULES . zen_get_module_directory('require_languages.php'));
   $breadcrumb->add(NAVBAR_TITLE_1);
@@ -14,7 +14,7 @@
 //test:
 //&keyword=die+hard&categories_id=10&inc_subcat=1&manufacturers_id=4&pfrom=1&pto=50&dfrom=01%2F01%2F2003&dto=12%2F20%2F2005
 
-  $sData['keyword'] =  stripslashes(isset($_GET['keyword']) ? zen_output_string_protected($_GET['keyword']) : zen_output_string_protected(KEYWORD_FORMAT_STRING));
+  $sData['keyword'] =  stripslashes(isset($_GET['keyword']) ? zen_output_string_protected($_GET['keyword']) : '');
   $sData['search_in_description'] = (isset($_GET['search_in_description']) ? zen_output_string((int)$_GET['search_in_description']) : 1);
   $sData['categories_id'] = (isset($_GET['categories_id'])    ? zen_output_string((int)$_GET['categories_id']) : 0);
   $sData['inc_subcat'] = (isset($_GET['inc_subcat'])       ? zen_output_string((int)$_GET['inc_subcat']) : 1);
