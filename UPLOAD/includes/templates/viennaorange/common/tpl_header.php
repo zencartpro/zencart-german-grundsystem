@@ -6,7 +6,7 @@
 * @copyright Copyright 2003-2016 Zen Cart Development Team
 * @copyright Portions Copyright 2003 osCommerce
 * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
-* @version $Id: tpl_header.php 12 2013-08-20 09:33:58Z webchills $
+* @version $Id: tpl_header.php 13 2016-03-01 12:33:58Z webchills $
 */
 ?>
 
@@ -16,14 +16,11 @@
     echo $messageStack->output('header');
   }
   if (isset($_GET['error_message']) && zen_not_null($_GET['error_message'])) {
-  echo htmlspecialchars(urldecode($_GET['error_message']));
+    echo zen_output_string_protected(urldecode($_GET['error_message']));
   }
   if (isset($_GET['info_message']) && zen_not_null($_GET['info_message'])) {
-   echo htmlspecialchars($_GET['info_message']);
-} else {
-
-}
-
+   echo zen_output_string_protected($_GET['info_message']);
+  }
 ?>
 
 
