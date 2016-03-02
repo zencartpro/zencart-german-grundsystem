@@ -6,10 +6,10 @@
  * @copyright Copyright 2003-2016 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: jscript_main.php 730 2015-01-22 09:49:16Z webchills $
+ * @version $Id: jscript_main.php 731 2016-03-02 21:49:16Z webchills $
  */
 ?>
-<script language="javascript" type="text/javascript"><!--
+<script type="text/javascript"><!--
 var selected;
 var submitter = null;
 
@@ -35,13 +35,19 @@ function methodSelect(theMethod) {
     document.getElementById(theMethod).checked = 'checked';
   }
 }
-function collectsCardDataOnsite(paymentValue)
+
+    function doesCollectsCardDataOnsite(paymentValue)
+    {
+        if ($('#'+paymentValue+'_collects_onsite').val()) {
+            if($('#pmt-'+paymentValue).is(':checked')) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+function doCollectsCardDataOnsite()
 {
- zcJS.ajax({
-  url: "ajax.php?act=ajaxPayment&method=doesCollectsCardDataOnsite",
-  data: {paymentValue: paymentValue}
-}).done(function( response ) {
-  if (response.data == true) {
    var str = $('form[name="checkout_payment"]').serializeArray();
 
    zcJS.ajax({
@@ -52,13 +58,7 @@ function collectsCardDataOnsite(paymentValue)
    $('#navBreadCrumb').html(response.breadCrumbHtml);
    $('#checkoutPayment').before(response.confirmationHtml);
    $(document).attr('title', response.pageTitle);
-
-   });
-  } else {
-   $('form[name="checkout_payment"]')[0].submit();
-}
-});
-return false;
+ });
 }
 
     $(document).ready(function(){

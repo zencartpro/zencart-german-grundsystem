@@ -6,7 +6,7 @@
  * @copyright Copyright 2003-2016 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: header_php.php 731 2014-02-09 14:29:16Z webchills $
+ * @version $Id: header_php.php 732 2016-02-03 21:29:16Z webchills $
  */
 // This should be first line of the script:
 $zco_notifier->notify('NOTIFY_HEADER_START_CONTACT_US');
@@ -19,14 +19,14 @@ if (isset($_GET['action']) && ($_GET['action'] == 'send')) {
   $email_address = zen_db_prepare_input($_POST['email']);
   $enquiry = zen_db_prepare_input(strip_tags($_POST['enquiry']));
   $antiSpam = isset($_POST['should_be_empty']) ? zen_db_prepare_input($_POST['should_be_empty']) : '';
-  $zco_notifier->notify('NOTIFY_CONTACT_US_CAPTCHA_CHECK');
+  $zco_notifier->notify('NOTIFY_CONTACT_US_CAPTCHA_CHECK', $_POST);
 
   $zc_validate_email = zen_validate_email($email_address);
 
   if ($zc_validate_email and !empty($enquiry) and !empty($name) && $error == FALSE) {
     // if anti-spam is not triggered, prepare and send email:
    if ($antiSpam != '') {
-      $zco_notifier->notify('NOTIFY_SPAM_DETECTED_USING_CONTACT_US');
+      $zco_notifier->notify('NOTIFY_SPAM_DETECTED_USING_CONTACT_US', $_POST);
    } elseif ($antiSpam == '') {
 
     // auto complete when logged in
@@ -43,6 +43,7 @@ if (isset($_GET['action']) && ($_GET['action'] == 'send')) {
       $customer_email = NOT_LOGGED_IN_TEXT;
       $customer_name = NOT_LOGGED_IN_TEXT;
     }
+    $zco_notifier->notify('NOTIFY_CONTACT_US_ACTION', (isset($_SESSION['customer_id']) ? $_SESSION['customer_id'] : 0), $customer_email, $customer_name, $email_address, $name, $enquiry);
 
     // use contact us dropdown if defined
     if (CONTACT_US_LIST !=''){

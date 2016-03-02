@@ -6,7 +6,7 @@
  * @copyright Copyright 2003-2016 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: header_php.php 731 2015-01-22 09:49:16Z webchills $
+ * @version $Id: header_php.php 732 2016-03-02 21:49:16Z webchills $
  */
 
 // This should be first line of the script:
@@ -52,15 +52,11 @@ if (isset($_SESSION['cart']->cartID) && $_SESSION['cartID']) {
 if ( (STOCK_CHECK == 'true') && (STOCK_ALLOW_CHECKOUT != 'true') ) {
   $products = $_SESSION['cart']->get_products();
   for ($i=0, $n=sizeof($products); $i<$n; $i++) {
-    if (zen_check_stock($products[$i]['id'], $products[$i]['quantity'])) {
+    $qtyAvailable = zen_get_products_stock($products[$i]['id']);
+    // compare against product inventory, and against mixed=YES
+    if ($qtyAvailable - $products[$i]['quantity'] < 0 || $qtyAvailable - $_SESSION['cart']->in_cart_mixed($products[$i]['id']) < 0) {
       zen_redirect(zen_href_link(FILENAME_SHOPPING_CART));
       break;
-    } else {
-// extra check on stock for mixed YES
-      if ( zen_get_products_stock($products[$i]['id']) - $_SESSION['cart']->in_cart_mixed($products[$i]['id']) < 0) {
-        zen_redirect(zen_href_link(FILENAME_SHOPPING_CART));
-        break;
-      }
     }
   }
 }

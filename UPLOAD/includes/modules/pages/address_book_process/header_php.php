@@ -6,7 +6,7 @@
  * @copyright Copyright 2003-2016 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: header_php.php 729 2011-08-09 15:49:16Z hugo13 $
+ * @version $Id: header_php.php 730 2016-03-02 21:49:16Z webchills $
  */
 // This should be first line of the script:
 $zco_notifier->notify('NOTIFY_HEADER_START_ADDRESS_BOOK_PROCESS');
@@ -197,6 +197,7 @@ if (isset($_POST['action']) && (($_POST['action'] == 'process') || ($_POST['acti
       // re-register session variables
       if ( (isset($_POST['primary']) && ($_POST['primary'] == 'on')) || ($_GET['edit'] == $_SESSION['customer_default_address_id']) ) {
         $_SESSION['customer_first_name'] = $firstname;
+        $_SESSION['customer_last_name'] = $lastname;
         $_SESSION['customer_country_id'] = $country;
         $_SESSION['customer_zone_id'] = (($zone_id > 0) ? (int)$zone_id : '0');
         $_SESSION['customer_default_address_id'] = (int)$_GET['edit'];
@@ -223,6 +224,7 @@ if (isset($_POST['action']) && (($_POST['action'] == 'process') || ($_POST['acti
       // register session variables
       if (isset($_POST['primary']) && ($_POST['primary'] == 'on')) {
         $_SESSION['customer_first_name'] = $firstname;
+        $_SESSION['customer_last_name'] = $lastname;
         $_SESSION['customer_country_id'] = $country;
         $_SESSION['customer_zone_id'] = (($zone_id > 0) ? (int)$zone_id : '0');
         //if (isset($_POST['primary']) && ($_POST['primary'] == 'on'))
