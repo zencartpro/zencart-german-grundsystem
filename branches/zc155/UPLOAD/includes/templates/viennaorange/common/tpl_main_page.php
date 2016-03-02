@@ -8,8 +8,16 @@
 * @copyright Portions Copyright 2012 webchills.at
 * @copyright Portions Copyright 2003 osCommerce
 * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
-* @version $Id: tpl_main_page.php 847 2014-08-07 13:10:39Z webchills $
+* @version $Id: tpl_main_page.php 848 2016-03-01 13:10:39Z webchills $
 */
+/** bof DESIGNER TESTING ONLY: */
+// $messageStack->add('header', 'this is a sample error message', 'error');
+// $messageStack->add('header', 'this is a sample caution message', 'caution');
+// $messageStack->add('header', 'this is a sample success message', 'success');
+// $messageStack->add('main', 'this is a sample error message', 'error');
+// $messageStack->add('main', 'this is a sample caution message', 'caution');
+// $messageStack->add('main', 'this is a sample success message', 'success');
+/** eof DESIGNER TESTING ONLY */
 
 // the following IF statement can be duplicated/modified as needed to set additional flags
   if (in_array($current_page_base,explode(",",'list_pages_to_skip_all_right_sideboxes_on_here,separated_by_commas,and_no_spaces')) ) {
@@ -148,5 +156,8 @@ if (!isset($flag_disable_right) || !$flag_disable_right) {
 if (GOOGLE_ANALYTICS_TRACKING_TYPE != "Asynchronous") {
 	require(DIR_WS_TEMPLATE . 'google_analytics/google_analytics.php');
 }
+?>
+<?php /* add any end-of-page code via an observer class */
+  $zco_notifier->notify('NOTIFY_FOOTER_END', $current_page);
 ?>
 </body>

@@ -16,7 +16,7 @@
 * @copyright Portions 2003-2012 webchills.at
 * @copyright Portions Copyright 2003 osCommerce
 * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
-* @version $Id: tpl_footer.php 846 2012-02-26 12:10:39Z webchills $
+* @version $Id: tpl_footer.php 847 2016-03-02 12:10:39Z webchills $
 */
 require(DIR_WS_MODULES . zen_get_module_directory('footer.php'));
 ?>
@@ -71,3 +71,6 @@ if (!isset($flag_disable_footer) || !$flag_disable_footer) {
 <?php
 } // flag_disable_footer
 ?>
+<?php if (false || (isset($showValidatorLink) && $showValidatorLink == true)) { ?>
+<a href="https://validator.w3.org/check?uri=<?php echo urlencode('http' . ($request_type == 'SSL' ? 's' : '') . '://' . $_SERVER['SERVER_NAME'] . $_SERVER['REQUEST_URI'] . (strstr($_SERVER['REQUEST_URI'], '?') ? '&' : '?') . zen_session_name() . '=' . zen_session_id()); ?>" target="_blank">VALIDATOR</a>
+<?php } ?>
