@@ -1,15 +1,16 @@
 /**
  * @package admin
- * @ignore
- * @access private
  * @copyright Copyright 2003-2016 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: stylesheet.css 841 2016-02-28 19:33:58Z webchills $
+ * @version $Id: stylesheet.css 842 2016-03-03 21:33:58Z webchills $
  */
-@import url("//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css");
+@import url("css/bootstrap.min.css");
+/* @import url("//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"); */
 @import url("stylesheet_admin_css_buttons.css");
 @import url("menu.css");
+@import url("css/font-awesome.min.css");
+/* @import url("//maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css"); */
 
 a {
     color: #0000ff;
@@ -23,7 +24,7 @@ body table {
   padding: 1px 3px;
   border-collapse: initial;
 }
-body {padding: 0 3px;}
+body {padding: 0 4px;}
 
 td,th {padding: 1px;}
 .main table td {
@@ -643,6 +644,9 @@ img[alt="Cancel"], img[alt="Reset"]{
 .right {
   text-align: right;
 }
+.center {
+  text-align: center;
+}
 
 /* bof Footer */
 footer, #footer {
@@ -702,17 +706,7 @@ input.submit {
   background-color:#fee8b9;  /* Submit button background color */
   border: 1px solid #638263;  /* Submit button border color */
 }
-input.orderprevnext {
-  background-color:#fee8b9;  /* Submit button background color */
-  border: 1px solid #638263;  /* Submit button border color */
-  font-size: 13px;
-  font-weight: bold;
-  display: inline-block;
-  margin: 0;
-  padding: 3px 8px;
-  color: #404040;  /* Text color for submit buttons */
-}
-input.orderprevnext:hover, input.submit:hover {
+input.submit:hover {
   background-color:#ffdc9c;  /* Hover color for the submit buttons */
   border: 1px solid #638263;  /* Submit button border color */
   cursor: pointer;

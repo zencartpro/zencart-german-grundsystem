@@ -1,4 +1,4 @@
-$Id: spiders.txt 731 2014-07-05 09:49:16Z webchills $
+$Id: spiders.txt 732 2016-03-03 21:49:16Z webchills $
 bot
 robot
 crawl
@@ -299,6 +299,7 @@ netscoop
 newscan-online
 nextgensearchbot
 ng-search
+nodeping
 northstar
 noyona
 npbot

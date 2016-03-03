@@ -4,7 +4,7 @@
  * @copyright Copyright 2003-2016 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: english.php 881 2016-02-28 19:33:32Z webchills $
+ * @version $Id: english.php 882 2016-03-03 21:33:32Z webchills $
  */
 if (!defined('IS_ADMIN_FLAG'))
 {

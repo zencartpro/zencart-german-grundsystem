@@ -4,7 +4,7 @@
  * @copyright Copyright 2003-2016 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: attributes_controller.php 736 2016-02-17 09:49:16Z webchills $
+ * @version $Id: attributes_controller.php 737 2016-03-03 21:49:16Z webchills $
  */
   require('includes/application_top.php');
   // troubleshooting/debug of option name/value IDs:
@@ -314,9 +314,8 @@
               $attributes_image_name = $current_image_name;
             }
 
-            $db->Execute("insert into " . TABLE_PRODUCTS_ATTRIBUTES . " (products_attributes_id, products_id, options_id, options_values_id, options_values_price, price_prefix, products_options_sort_order, product_attribute_is_free, products_attributes_weight, products_attributes_weight_prefix, attributes_display_only, attributes_default, attributes_discounted, attributes_image, attributes_price_base_included, attributes_price_onetime, attributes_price_factor, attributes_price_factor_offset, attributes_price_factor_onetime, attributes_price_factor_onetime_offset, attributes_qty_prices, attributes_qty_prices_onetime, attributes_price_words, attributes_price_words_free, attributes_price_letters, attributes_price_letters_free, attributes_required)
-                          values (0,
-                                  '" . (int)$products_id . "',
+            $db->Execute("insert into " . TABLE_PRODUCTS_ATTRIBUTES . " (products_id, options_id, options_values_id, options_values_price, price_prefix, products_options_sort_order, product_attribute_is_free, products_attributes_weight, products_attributes_weight_prefix, attributes_display_only, attributes_default, attributes_discounted, attributes_image, attributes_price_base_included, attributes_price_onetime, attributes_price_factor, attributes_price_factor_offset, attributes_price_factor_onetime, attributes_price_factor_onetime_offset, attributes_qty_prices, attributes_qty_prices_onetime, attributes_price_words, attributes_price_words_free, attributes_price_letters, attributes_price_letters_free, attributes_required)
+                          values ('" . (int)$products_id . "',
                                   '" . (int)$options_id . "',
                                   '" . (int)$values_id . "',
                                   '" . (float)zen_db_input($value_price) . "',
@@ -516,12 +515,13 @@ if ($_POST['image_delete'] == 1) {
         {
           $attribute_id = zen_db_prepare_input($_POST['delete_attribute_id']);
 
+          $zco_notifier->notify('NOTIFY_ATTRIBUTE_CONTROLLER_DELETE_ATTRIBUTE', array('attribute_id' => $attribute_id), $attribute_id);
           $db->Execute("delete from " . TABLE_PRODUCTS_ATTRIBUTES . "
-                      where products_attributes_id = '" . (int)$attribute_id . "'");
+                        where products_attributes_id = " . (int)$attribute_id);
 
 // added for DOWNLOAD_ENABLED. Always try to remove attributes, even if downloads are no longer enabled
           $db->Execute("delete from " . TABLE_PRODUCTS_ATTRIBUTES_DOWNLOAD . "
-                      where products_attributes_id = '" . (int)$attribute_id . "'");
+                        where products_attributes_id = " . (int)$attribute_id);
 
         // reset products_price_sorter for searches etc.
           zen_update_products_price_sorter($products_filter);
@@ -531,6 +531,8 @@ if ($_POST['image_delete'] == 1) {
         break;
 // delete all attributes
       case 'delete_all_attributes':
+        $zco_notifier->notify('NOTIFY_ATTRIBUTE_CONTROLLER_DELETE_ALL', array('pID' => $_POST['products_filter']));
+
         zen_delete_products_attributes($_POST['products_filter']);
         $messageStack->add_session(SUCCESS_ATTRIBUTES_DELETED . ' ID#' . $products_filter, 'success');
         $action='';
@@ -543,6 +545,7 @@ if ($_POST['image_delete'] == 1) {
         break;
 
       case 'delete_option_name_values':
+        $zco_notifier->notify('NOTIFY_ATTRIBUTE_CONTROLLER_DELETE_OPTION_NAME_VALUES', array('pID' => $_POST['products_filter'], 'options_id' => $_POST['products_options_id_all']));
         $delete_attributes_options_id = $db->Execute("select * from " . TABLE_PRODUCTS_ATTRIBUTES . " where products_id='" . $_POST['products_filter'] . "' and options_id='" . $_POST['products_options_id_all'] . "'");
         while (!$delete_attributes_options_id->EOF) {
 // remove any attached downloads
@@ -1125,9 +1128,6 @@ if ($action == '') {
   $per_page = (defined('MAX_ROW_LISTS_ATTRIBUTES_CONTROLLER') && (int)MAX_ROW_LISTS_ATTRIBUTES_CONTROLLER > 3) ? (int)MAX_ROW_LISTS_ATTRIBUTES_CONTROLLER : 40;
   $attributes = "select pa.*
   from (" . TABLE_PRODUCTS_ATTRIBUTES . " pa
-  left join " . TABLE_PRODUCTS_DESCRIPTION . " pd
-  on pa.products_id = pd.products_id
-  and pd.language_id = '" . (int)$_SESSION['languages_id'] . "'
   left join " . TABLE_PRODUCTS_OPTIONS . " po
   on pa.options_id = po.products_options_id
   and po.language_id = '" . (int)$_SESSION['languages_id'] . "'" . ")
@@ -2069,7 +2069,6 @@ $off_overwrite = false;
 <!-- eof_adding -->
 
 <!-- products_attributes_eof //-->
-  </tr>
 </table>
 <!-- body_text_eof //-->
 <!-- footer //-->

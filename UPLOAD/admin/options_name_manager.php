@@ -4,7 +4,7 @@
  * @copyright Copyright 2003-2016 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: options_name_manager.php 735 2016-02-17 18:49:16Z webchills $
+ * @version $Id: options_name_manager.php 736 2016-03-03 21:49:16Z webchills $
  */
 
   require('includes/application_top.php');
@@ -325,7 +325,7 @@
             $db->Execute($sql);
             $copy_from_values->MoveNext();
             if ($copy_from_values->fields['products_options_values_id'] != $current_id or $copy_from_values->EOF) {
-              $sql = "insert into " . TABLE_PRODUCTS_OPTIONS_VALUES_TO_PRODUCTS_OPTIONS . " (products_options_values_to_products_options_id, products_options_id, products_options_values_id) values (0, '" . (int)$options_id_to . "', '" . (int)$next_id . "')";
+              $sql = "insert into " . TABLE_PRODUCTS_OPTIONS_VALUES_TO_PRODUCTS_OPTIONS . " (products_options_id, products_options_values_id) values ('" . (int)$options_id_to . "', '" . (int)$next_id . "')";
               $db->Execute($sql);
               $next_id++;
             }

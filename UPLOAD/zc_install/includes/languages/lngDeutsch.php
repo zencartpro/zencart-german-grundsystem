@@ -40,6 +40,7 @@ define('TEXT_SYSTEM_SETUP_ERROR_CATALOG_PHYSICAL_PATH', 'Es scheint ein Problem 
 
 
 define('TEXT_PAGE_HEADING_DATABASE', 'Datenbank Setup');
+define('TEXT_DATABASE_HEADER_MAIN', 'HINWEIS: You must create your MySQL database and corresponding Database user, and grant permissions to that user, before proceeding on this page. Click the left-column titles below for help with understanding each component.');
 define('TEXT_DATABASE_SETUP_SETTINGS', 'Grundeinstellungen');
 define('TEXT_DATABASE_SETUP_DB_HOST', 'Datenbank Host: ');
 define('TEXT_DATABASE_SETUP_DB_USER', 'Datenbank User: ');
@@ -138,6 +139,9 @@ define('TEXT_NAVBAR_ADMIN_SETUP', 'Admin Setup');
 define('TEXT_NAVBAR_COMPLETION', 'Fertig');
 define('TEXT_NAVBAR_PAYMENT_PROVIDERS', 'Zahlungsanbieter');
 
+define('TEXT_ERROR_PROBLEMS_WRITING_CONFIGUREPHP_FILES', 'There were problems preparing and storing the configure.php files. YOUR INSTALL DID NOT COMPLETE PROPERLY.<br>Additional technical details may be found in your /logs/ folder.');
+define('TEXT_ERROR_COULD_NOT_READ_CFGFILE_TEMPLATE', 'Could not read the master config file layout: %s. Please ensure the file exists and is readable.');
+define('TEXT_ERROR_COULD_NOT_WRITE_CONFIGFILE', 'Could not write the generated config file: %s. Please ensure the file exists and is writable.');
 define('TEXT_ERROR_STORE_CONFIGURE', "Frontend Konfigurationsdatei /includes/configure.php existiert nicht, ist nicht lesbar oder ist nicht beschreibbar");
 define('TEXT_ERROR_ADMIN_CONFIGURE', "Admin Konfigurationsdatei /admin/includes/configure.php existiert nicht, ist nicht lesbar oder ist nicht beschreibbar");
 define('TEXT_ERROR_PHP_VERSION', str_replace(array("\n", "\r"), '', 'Falsche PHP Version.
@@ -223,6 +227,8 @@ define('TEXT_HELP_TITLE_DBPASSWORD', 'Datenbank Passwort');
 define('TEXT_HELP_CONTENT_DBPASSWORD', "Wie lautet das Passwort für diesen Datenbankuser? als Sie die Datenbank angelegt haben, wurde auch ein Passwort erstellt. Sie finden es in der Regel in der Administrationsoberfläche Ihres Providers.");
 define('TEXT_HELP_TITLE_DBNAME', 'Datenbank Name');
 define('TEXT_HELP_CONTENT_DBNAME', "What is the name of the database used to hold the data? An example database name is 'zencart' or 'myaccount_zencart'.");
+define('TEXT_HELP_TITLE_DBNAME', 'Database Name');
+define('TEXT_HELP_CONTENT_DBNAME', "What is the name of the database used to hold the data? An example database name is 'zencart' or 'myaccount_zencart'.<br>NOTE: You must create this database BEFORE you can proceed with Zen Cart&reg; installation here.<br>You can create your MySQL database using your hosting company's control panel.");
 define('TEXT_HELP_TITLE_DEMODATA', TEXT_DATABASE_SETUP_LOAD_DEMO);
 define('TEXT_HELP_CONTENT_DEMODATA', "If you choose to load Demo Data, we will install a base set of products and categories, with sales and specials and attributes and more. These are useful for you to play around and see how various combinations can be set up and how they can look on your storefront.<br><br>You can certainly delete the demo products (by hand) later, or once you've toyed with the samples, you can re-run this install and choose to not install the demo data, and thus have a fully clean site for setting up your own new store.");
 define('TEXT_HELP_TITLE_DBCHARSET', 'Datenbank Character Set');
