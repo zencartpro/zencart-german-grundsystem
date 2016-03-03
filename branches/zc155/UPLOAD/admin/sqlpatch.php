@@ -4,7 +4,7 @@
  * @copyright Copyright 2003-2016 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: sqlpatch.php 796 2015-12-21 19:24:50Z webchills $
+ * @version $Id: sqlpatch.php 797 2016-03-03 21:24:50Z webchills $
  */
 
   require('includes/application_top.php');
@@ -625,7 +625,7 @@ if ($_GET['debug']=='ON') echo $line . '<br />';
   function zen_write_to_upgrade_exceptions_table($line, $reason, $sql_file) {
     global $db;
     zen_create_exceptions_table();
-    $sql="INSERT INTO " . DB_PREFIX . TABLE_UPGRADE_EXCEPTIONS . " VALUES (0,:file:, :reason:, now(), :line:)";
+    $sql="INSERT INTO " . DB_PREFIX . TABLE_UPGRADE_EXCEPTIONS . " (sql_file, reason, errordate, sqlstatement) VALUES (:file:, :reason:, now(), :line:)";
     $sql = $db->bindVars($sql, ':file:', $sql_file, 'string');
     $sql = $db->bindVars($sql, ':reason:', $reason, 'string');
     $sql = $db->bindVars($sql, ':line:', $line, 'string');

@@ -4,13 +4,17 @@
  * @copyright Copyright 2003-2016 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: orders.php 630 2015-12-22 17:05:14Z webchills $
+ * @version $Id: orders.php 631 2016-03-03 21:05:14Z webchills $
  */
 
 define('HEADING_TITLE', 'Bestellungen');
+define('HEADING_TITLE_DETAILS', 'Bestell Details');
 define('HEADING_TITLE_SEARCH', 'Bestell ID:');
 define('HEADING_TITLE_STATUS', 'Status:');
-define('HEADING_TITLE_SEARCH_DETAIL_ORDERS_PRODUCTS', 'Suche nach Artikelname oder <strong>ID:XX</strong> or Artikelnummer ');
+define('HEADING_TITLE_SEARCH_DETAIL_ORDERS_PRODUCTS', 'Artikelname oder ID:XX oder Artikelnummer ');
+define('HEADING_TITLE_SEARCH_ALL','Suche: ');
+define('HEADING_TITLE_SEARCH_PRODUCTS','Artikelsuche: ');
+define('TEXT_RESET_FILTER', 'Suchfilter entfernen');
 define('TEXT_INFO_SEARCH_DETAIL_FILTER_ORDERS_PRODUCTS', 'Suchfilter: ');
 define('TABLE_HEADING_PAYMENT_METHOD', 'Zahlungsart<br />Versandart');
 define('TABLE_HEADING_ORDERS_ID', 'ID');
@@ -38,11 +42,12 @@ define('TABLE_HEADING_CUSTOMER_NOTIFIED', 'Der Kunde wurde benachrichtigt');
 define('TABLE_HEADING_DATE_ADDED', 'Erstellt am');
 
 define('ENTRY_CUSTOMER', 'Kunde:');
+define('ENTRY_CUSTOMER_ADDRESS', 'Kundenadresse:<br><i class="fa fa-2x fa-user"></i>');
 define('ENTRY_SOLD_TO', 'Verkauft an:');
 define('ENTRY_DELIVERY_TO', 'Geliefert an:');
 define('ENTRY_SHIP_TO', 'Versendet an:');
-define('ENTRY_SHIPPING_ADDRESS', 'Versandadresse:');
-define('ENTRY_BILLING_ADDRESS', 'Rechnungsadresse:');
+define('ENTRY_SHIPPING_ADDRESS', 'Versandadresse:<br><i class="fa fa-2x fa-truck"></i>');
+define('ENTRY_BILLING_ADDRESS', 'Rechnungsadresse:<br><i class="fa fa-2x fa-credit-card"></i>');
 define('ENTRY_PAYMENT_METHOD', 'Zahlungsart:');
 define('ENTRY_CREDIT_CARD_TYPE', 'Kreditkarte:');
 define('ENTRY_CREDIT_CARD_OWNER', 'Karteninhaber:');
@@ -70,7 +75,6 @@ define('TEXT_PAID', 'Bezahlt');
 define('TEXT_UNPAID', 'Unbezahlt');
 
 define('TEXT_ALL_ORDERS', 'Alle Bestellungen');
-define('TEXT_NO_ORDER_HISTORY', 'keine Bestellstatistik verfügbar');
 
 define('EMAIL_SEPARATOR', '------------------------------------------------------');
 define('EMAIL_TEXT_SUBJECT', 'Bestellstatus aktualisiert');
@@ -121,4 +125,9 @@ define('TEXT_INFO_EXPIRED_COUNT', 'Ablaufzähler:<br />');
 define('TABLE_HEADING_CUSTOMER_COMMENTS', 'Kunden<br />Kommentare');
 define('TEXT_COMMENTS_YES', 'Kundenkommentare - JA');
 define('TEXT_COMMENTS_NO', 'Kundenkommentare - NEIN');
-define('TEXT_CUSTOMER_LOOKUP', 'Kunden ansehen');
+define('TEXT_CUSTOMER_LOOKUP', '<i class="fa fa-search"></i> Kunden ansehen');
+
+define('TEXT_INVALID_ORDER_STATUS', '<span class="alert">(Ungültiger Bestellstatus)</span>');
+
+define('BUTTON_TO_LIST', 'Liste der Bestellungen');
+define('SELECT_ORDER_LIST', 'Gehe zu Bestellung:');

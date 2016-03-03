@@ -4,7 +4,7 @@
  * @package Installer
  * @copyright Copyright 2003-2016 Zen Cart Development Team
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: class.zcDatabaseInstaller.php 4 2016-02-28 21:59:53Z webchills $
+ * @version $Id: class.zcDatabaseInstaller.php 5 2016-03-03 21:59:53Z webchills $
  *
  */
 /**
@@ -285,7 +285,7 @@ class zcDatabaseInstaller
     logDetails($line . '  ' . $message . '  ' . $sqlFile, 'upgradeException');
     $this->upgradeExceptions[] = $message;
     $this->createExceptionsTable();
-    $sql="INSERT INTO " . $this->dbPrefix . TABLE_UPGRADE_EXCEPTIONS . " VALUES (0,:file:, :reason:, now(), :line:)";
+    $sql="INSERT INTO " . $this->dbPrefix . TABLE_UPGRADE_EXCEPTIONS . " (sql_file, reason, errordate, sqlstatement) VALUES (:file:, :reason:, now(), :line:)";
     $sql = $this->db->bindVars($sql, ':file:', $sqlFile, 'string');
     $sql = $this->db->bindVars($sql, ':reason:', $message, 'string');
     $sql = $this->db->bindVars($sql, ':line:', $line, 'string');

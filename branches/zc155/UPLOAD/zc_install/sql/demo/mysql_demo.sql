@@ -1,6 +1,6 @@
 # MySQL file for Zen Cart Demo Products load
 #
-# $Id: mysql_demo.sql 647 2015-12-26 22:03:04Z webchills $
+# $Id: mysql_demo.sql 648 2016-03-03 20:03:04Z webchills $
 #
 
 # Configuration Settings:
@@ -262,8 +262,8 @@ INSERT INTO manufacturers_info (manufacturers_id, languages_id, manufacturers_ur
 # Dumping data for table `media_clips`
 #
 
-INSERT INTO media_clips (clip_id, media_id, clip_type, clip_filename, date_added, last_modified) VALUES (1, 1, 1, 'thehunter.mp3', '2004-06-01 20:57:43', '0000-00-00 00:00:00'),
-(6, 2, 1, 'thehunter.mp3', '2015-07-13 00:45:09', '0000-00-00 00:00:00');
+INSERT INTO media_clips (clip_id, media_id, clip_type, clip_filename, date_added, last_modified) VALUES (1, 1, 1, 'thehunter.mp3', '2004-06-01 20:57:43', '2004-06-01 20:57:43'),
+(6, 2, 1, 'thehunter.mp3', '2015-07-13 00:45:09', '2015-07-13 00:45:09');
 
 #
 # Dumping data for table `media_manager`
@@ -310,7 +310,8 @@ INSERT INTO product_types_to_category (product_type_id, category_id) VALUES (3, 
 # Dumping data for table `products`
 #
 
-INSERT INTO products (products_id, products_type, products_quantity, products_model, products_image, products_price, products_virtual, products_date_added, products_last_modified, products_date_available, products_weight, products_status, products_tax_class_id, manufacturers_id, products_ordered, products_quantity_order_min, products_quantity_order_units, products_priced_by_attribute, product_is_free, product_is_call, products_quantity_mixed, product_is_always_free_shipping, products_qty_box_status, products_quantity_order_max, products_sort_order, products_discount_type, products_discount_type_from, products_price_sorter, master_categories_id, products_mixed_discount_quantity) VALUES (1, 1, '31', 'MG200MMS', 'matrox/mg200mms.gif', '299.9900', 0, '2003-11-03 12:32:17', '2015-10-07 23:57:34', NULL, '23.00', 1, 1, 1, '1', '1', '1', 0, 0, 0, 0, 0, 1, '0', 0, 0, 0, '299.9900', 4, 1),
+INSERT INTO products (products_id, products_type, products_quantity, products_model, products_image, products_price, products_virtual, products_date_added, products_last_modified, products_date_available, products_weight, products_status, products_tax_class_id, manufacturers_id, products_ordered, products_quantity_order_min, products_quantity_order_units, products_priced_by_attribute, product_is_free, product_is_call, products_quantity_mixed, product_is_always_free_shipping, products_qty_box_status, products_quantity_order_max, products_sort_order, products_discount_type, products_discount_type_from, products_price_sorter, master_categories_id, products_mixed_discount_quantity) VALUES 
+(1, 1, '31', 'MG200MMS', 'matrox/mg200mms.gif', '299.9900', 0, '2003-11-03 12:32:17', '2015-10-07 23:57:34', NULL, '23.00', 1, 1, 1, '1', '1', '1', 0, 0, 0, 0, 0, 1, '0', 0, 0, 0, '299.9900', 4, 1),
 (2, 1, '31', 'MG400-32MB', 'matrox/mg400-32mb.gif', '499.9900', 0, '2015-12-15 12:32:17', NULL, NULL, '23.00', 1, 1, 1, '1', '1', '1', 0, 0, 0, 0, 0, 1, '0', 0, 0, 0, '499.9900', 4, 1),
 (3, 1, '500', 'MSIMPRO', 'microsoft/msimpro.gif', '49.9900', 0, '2015-12-15 12:32:17', NULL, NULL, '7.00', 1, 1, 2, '1', '1', '1', 0, 0, 0, 0, 0, 1, '0', 0, 0, 0, '39.9900', 9, 1),
 (4, 1, '12', 'DVD-RPMK', 'dvd/replacement_killers.gif', '42.0000', 0, '2015-12-15 12:32:17', NULL, NULL, '23.00', 1, 1, 3, '1', '1', '1', 0, 0, 0, 0, 0, 1, '0', 0, 0, 0, '42.0000', 10, 1),
