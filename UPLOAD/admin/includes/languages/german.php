@@ -4,7 +4,7 @@
  * @copyright Copyright 2003-2016 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: german.php 652 2015-12-22 17:54:04Z webchills $
+ * @version $Id: german.php 653 2016-03-04 20:54:04Z webchills $
  */
 if (!defined('IS_ADMIN_FLAG'))
 {
@@ -346,8 +346,8 @@ define('IMAGE_OPTION_VALUES', 'Optionswerte');
 define('IMAGE_ORDERS', 'Bestellungen');
 define('IMAGE_ORDERS_INVOICE', 'Rechnung');
 define('IMAGE_ORDERS_PACKINGSLIP', 'Lieferschein');
-define('IMAGE_PERMISSIONS', 'Edit Permissions');
-define('IMAGE_PREVIEW', 'Bewertungen');
+define('IMAGE_PERMISSIONS', 'Berechtigungen bearbeiten');
+define('IMAGE_PREVIEW', 'Vorschau');
 define('IMAGE_RESTORE', 'Wiederherstellen');
 define('IMAGE_RESET', 'Zurücksetzen');
 define('IMAGE_RESET_PWD', 'Passwort zurücksetzen');
@@ -461,11 +461,11 @@ define('WARNING_COULD_NOT_LOCATE_LANG_FILE', 'WARNUNG: Die Sprachdatei konnte ni
 define('ERROR_MODULE_REMOVAL_PROHIBITED', 'FEHLER: Diese Modul kann nicht entfernt werden: ');
 define('WARNING_REVIEW_ROGUE_ACTIVITY', 'ALARM: Bitte anschauen für mögliche XSS Aktivitäten:');
 
-define('ERROR_FILE_NOT_REMOVEABLE', 'Error: Could not remove the file specified. You may have to use FTP to remove the file, due to a server-permissions configuration limitation.');
-define('WARNING_SESSION_AUTO_START', 'Warning: session.auto_start is enabled - please disable this PHP feature in php.ini and restart the web server.');
-define('WARNING_DOWNLOAD_DIRECTORY_NON_EXISTENT', 'Warning: The downloadable products directory does not exist: ' . DIR_FS_DOWNLOAD . '. Downloadable products will not work until this directory is valid.');
-define('WARNING_SQL_CACHE_DIRECTORY_NON_EXISTENT', 'Warning: The SQL cache directory does not exist: ' . DIR_FS_SQL_CACHE . '. SQL caching will not work until this directory is created.');
-define('WARNING_SQL_CACHE_DIRECTORY_NOT_WRITEABLE', 'Warning: I am not able to write to the SQL cache directory: ' . DIR_FS_SQL_CACHE . '. SQL caching will not work until the right user permissions are set.');
+define('ERROR_FILE_NOT_REMOVEABLE', 'FEHLER: Die angegebene Datei konnte nicht gelöscht werden. Sie müssen diese Datei manuell per FTP löschen.');
+define('WARNING_SESSION_AUTO_START', 'WARNUNG: session.auto_start ist aktiviert - bitte deaktivieren Sie diese PHP Einstellung in der php.ini und starten den Webserver neu.');
+define('WARNING_DOWNLOAD_DIRECTORY_NON_EXISTENT', 'WARNUNG: Das Verzeichnis für Downloaddateien existiert nicht: ' . DIR_FS_DOWNLOAD . '. Downloadartikel werden nicht funktionieren, solange dieses Verzeichnis nicht vorhanden ist.');
+define('WARNING_SQL_CACHE_DIRECTORY_NON_EXISTENT', 'WARNUNG: Das Verzeichnis für SQL Caching existiert nicht:: ' . DIR_FS_SQL_CACHE . '. SQL Caching wird nicht funktionieren, solange dieses Verzeichnis nicht vorhanden ist.');
+define('WARNING_SQL_CACHE_DIRECTORY_NOT_WRITEABLE', 'WARNUNG: In das Verzeichnis für SQL Caching kann nicht geschrieben werden: ' . DIR_FS_SQL_CACHE . '. Ändern Sie die Schreibrechte dieses Ordners, sonst wird das Caching nicht funktionieren.');
 define('_JANUARY', 'Januar');
 define('_FEBRUARY', 'Februar');
 define('_MARCH', 'März');
