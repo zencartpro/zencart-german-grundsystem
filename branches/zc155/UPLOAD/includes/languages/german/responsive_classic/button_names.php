@@ -4,7 +4,7 @@
  * @copyright Copyright 2003-2016 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: button_names.php 2 2015-12-23 21:49:16Z webchills $
+ * @version $Id: button_names.php 3 2016-03-04 21:49:16Z webchills $
  */
 
 
@@ -80,12 +80,12 @@ define('BUTTON_LOGIN_ALT', 'Anmelden');
 define('BUTTON_NEXT_ALT', 'Nächster');
 define('BUTTON_PREVIOUS_ALT', 'Vorheriger');
 define('BUTTON_REDEEM_ALT', 'Einlösen');
-define('BUTTON_RETURN_TO_PROD_LIST_ALT', 'Zurück zur Artikelliste');
-define('BUTTON_REVIEWS_ALT', 'Zu den Bewertungen');
+define('BUTTON_RETURN_TO_PROD_LIST_ALT', 'Artikelliste');
+define('BUTTON_REVIEWS_ALT', 'Bewertungen');
 define('BUTTON_SEARCH_ALT', 'Suche');
 define('BUTTON_SEND_ALT', 'Jetzt senden');
-define('BUTTON_SEND_ANOTHER_ALT', 'Einen weiteren Gutschein versenden');
-define('BUTTON_SEND_A_GIFT_CERT_ALT', 'Einen Gutschein senden');
+define('BUTTON_SEND_ANOTHER_ALT', 'Gutschein versenden');
+define('BUTTON_SEND_A_GIFT_CERT_ALT', 'Gutschein senden');
 define('BUTTON_SHIPPING_ESTIMATOR_ALT', 'Voraussichtliche Versandkosten');
 define('BUTTON_SOLD_OUT_ALT', 'Ausverkauft');
 define('BUTTON_SOLD_OUT_SMALL_ALT', 'Ausverkauft');

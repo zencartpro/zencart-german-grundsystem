@@ -6,7 +6,7 @@
  * @copyright Copyright 2003-2016 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: tpl_modules_shipping_estimator.php 730 2016-02-29 13:49:16Z webchills $
+ * @version $Id: tpl_modules_shipping_estimator.php 731 2016-03-04 23:49:16Z webchills $
  */
 ?>
 <div id="shippingEstimatorContent">
@@ -53,14 +53,14 @@
 <br class="clearBoth" />
 
 <a name="view"></a>
-<label class="inputLabel" for="stateZone" id="zoneLabel"><?php echo ENTRY_STATE; ?></label>
+<!--<label class="inputLabel" for="stateZone" id="zoneLabel"><?php echo ENTRY_STATE; ?></label>
 <?php echo zen_draw_pull_down_menu('zone_id', zen_prepare_country_zones_pull_down($selected_country), $state_zone_id, 'id="stateZone"');?>
 <br class="clearBoth" id="stBreak" />
 <label class="inputLabel" for="state" id="stateLabel"><?php echo $state_field_label; ?></label>
-<?php echo zen_draw_input_field('state', $selectedState, zen_set_field_length(TABLE_ADDRESS_BOOK, 'entry_state', '40') . ' id="state"') .'&nbsp;<span class="alert" id="stText">&nbsp;</span>'; ?>
+<?php echo zen_draw_input_field('state', $selectedState, zen_set_field_length(TABLE_ADDRESS_BOOK, 'entry_state', '40') . ' id="state"') .'&nbsp;<span class="alert" id="stText">&nbsp;</span>'; ?>-->
 <br class="clearBoth" />
 
-<?php
+<!--<?php
         if(CART_SHIPPING_METHOD_ZIP_REQUIRED == "true"){
 ?>
 <label class="inputLabel"><?php echo ENTRY_POST_CODE; ?></label>
@@ -68,7 +68,7 @@
 <br class="clearBoth" />
 <?php
         }
-?>
+?>-->
 <div class="buttonRow forward"><?php echo  zen_image_submit(BUTTON_IMAGE_UPDATE, BUTTON_UPDATE_ALT); ?></div>
 <br class="clearBoth" />
 <?php
