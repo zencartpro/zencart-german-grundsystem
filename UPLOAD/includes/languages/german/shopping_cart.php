@@ -5,13 +5,13 @@
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
  
- * @version $Id: shopping_cart.php 627 2010-08-30 15:05:14Z webchills $
+ * @version $Id: shopping_cart.php 628 2016-03-04 23:05:14Z webchills $
  */
 
 define('NAVBAR_TITLE','Warenkorb');
 define('HEADING_TITLE','Ihr Warenkorbinhalt');
 define('HEADING_TITLE_EMPTY', 'Ihr Warenkorb');
-define('TEXT_INFORMATION', 'Hier können Sie einige Informationen für Ihre Kunden anzeigen. (definiert in includes/languages/german/shopping_cart.php)');
+define('TEXT_INFORMATION', '');
 define('TABLE_HEADING_REMOVE','Entfernen');
 define('TABLE_HEADING_QUANTITY','Stk.');
 define('TABLE_HEADING_MODEL','Artikelnummer');

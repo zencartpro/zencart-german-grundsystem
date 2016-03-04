@@ -5,7 +5,7 @@
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
  
- * @version $Id: icon_names.php 2 2015-12-23 21:49:16Z webchills $
+ * @version $Id: icon_names.php 3 2016-03-04 22:49:16Z webchills $
  */
 
 // define the icon images used in the project
@@ -21,5 +21,5 @@ define('ICON_ERROR_ALT', 'Fehler');
 define('ICON_SUCCESS_ALT', 'Erfolgreich');
 define('ICON_WARNING_ALT', 'Warnung');
 define('ICON_TRASH_ALT', 'Löschen');
-define('ICON_UPDATE_ALT', 'Warenkorb aktualisieren');
-define('ICON_TINYCART_ALT', 'Artikel in Warenkorb legen');
+define('ICON_UPDATE_ALT', 'Aktualisieren');
+define('ICON_TINYCART_ALT', 'in den Warenkorb');
