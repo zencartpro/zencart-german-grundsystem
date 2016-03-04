@@ -4,7 +4,7 @@
  * @copyright Copyright 2003-2016 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: admin_page_registration.php 731 2016-02-17 09:49:16Z webchills $
+ * @version $Id: admin_page_registration.php 732 2016-03-04 21:49:16Z webchills $
  */
 
 require('includes/application_top.php');
@@ -168,10 +168,11 @@ foreach ($menu_titles as $id => $title) {
 </div>
 <!-- body_eof //-->
 
+<div class="bottom">
 <!-- footer //-->
 <?php require(DIR_WS_INCLUDES . 'footer.php'); ?>
 <!-- footer_eof //-->
-<br>
+</div>
 </body>
 </html>
 <?php require(DIR_WS_INCLUDES . 'application_bottom.php'); ?>

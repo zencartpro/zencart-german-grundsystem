@@ -6,7 +6,7 @@
  * @copyright Copyright 2003-2016 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: init_canonical.php 732 2016-02-17 11:49:16Z webchills $
+ * @version $Id: init_canonical.php 733 2016-03-04 22:49:16Z webchills $
  */
 if (!defined('IS_ADMIN_FLAG')) {
   die('Illegal Access');
@@ -22,7 +22,6 @@ $excludeParams = array('zenid', 'action', 'main_page', 'currency', 'typefilter',
                        'products_tax_class_id', 'set_session_login');
 // the following are listed one-per-line to allow for easy commenting-out in case a merchant wants to bypass these exclusions for canonical URL building
 $excludeParams[] = 'disp_order';
-//$excludeParams[] = 'page';
 $excludeParams[] = 'sort';
 $excludeParams[] = 'alpha_filter_id';
 $excludeParams[] = 'filter_id';
@@ -82,6 +81,7 @@ switch (true) {
     break;
 /**
  * home page
+ * this translates index.php?main_page=index to just index.php (or whatever zen_href_link is doing)
  */
   case ($this_is_home_page):
     $canonicalLink = preg_replace('/(index.php)(\?)(main_page=)(' . FILENAME_DEFAULT . ')$/', '', zen_href_link(FILENAME_DEFAULT, '', 'NONSSL', false));

@@ -4,7 +4,7 @@
  * @copyright Copyright 2003-2016 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: coupon_admin.php 789 2016-02-17 18:56:51Z webchills $
+ * @version $Id: coupon_admin.php 790 2016-03-04 21:56:51Z webchills $
  */
   require('includes/application_top.php');
   require(DIR_WS_CLASSES . 'currencies.php');
@@ -772,10 +772,9 @@ $customer = $db->Execute("select customers_firstname, customers_lastname
      <tr>
         <td align="left"><?php echo zen_image_submit('button_confirm.gif',COUPON_BUTTON_CONFIRM, (isset($_GET['status']) ? '&status=' . $_GET['status'] : '') . (isset($_GET['page']) ? '&page=' . $_GET['page'] : '')); ?></td>
         <td align="left"><?php echo zen_image_submit('button_cancel.gif',COUPON_BUTTON_CANCEL, 'name=back'); ?></td>
-      </td>
       </tr>
 
-      </td></table></form>
+      </td></table></form></td>
       </tr>
 
       </table></td>

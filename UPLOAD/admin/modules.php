@@ -138,19 +138,17 @@
 <link rel="stylesheet" type="text/css" href="includes/cssjsmenuhover.css" media="all" id="hoverJS">
 <script language="javascript" src="includes/menu.js"></script>
 <script language="javascript" src="includes/general.js"></script>
-<script type="text/javascript">
-  <!--
-  function init()
-  {
-    cssjsmenu('navbar');
-    if (document.getElementById)
-    {
-      var kill = document.getElementById('hoverJS');
-      kill.disabled = true;
-    }
-  }
-  // -->
-</script>
+    <script type="text/javascript">
+        <!--
+        function init() {
+            cssjsmenu('navbar');
+            if (document.getElementById) {
+                var kill = document.getElementById('hoverJS');
+                kill.disabled = true;
+            }
+        }
+        // -->
+    </script>
 </head>
 <body onLoad="init()">
 <!-- header //-->
@@ -158,33 +156,31 @@
 <!-- header_eof //-->
 
 <!-- body //-->
-<table border="0" width="100%" cellspacing="2" cellpadding="2">
-  <tr>
-<!-- body_text //-->
-    <td width="100%" valign="top"><table border="0" width="100%" cellspacing="0" cellpadding="2">
-      <tr>
-        <td width="100%"><table border="0" width="100%" cellspacing="0" cellpadding="0">
-          <tr>
-            <td class="pageHeading"><?php echo HEADING_TITLE; ?></td>
-            <td class="pageHeading" align="right"><?php echo zen_draw_separator('pixel_trans.gif', HEADING_IMAGE_WIDTH, HEADING_IMAGE_HEIGHT); ?></td>
-          </tr>
-        </table></td>
-      </tr>
-      <tr>
-        <td><table border="0" width="100%" cellspacing="0" cellpadding="0">
-          <tr>
-            <td valign="top"><table border="0" width="100%" cellspacing="0" cellpadding="2">
-              <tr class="dataTableHeadingRow">
-                <td class="dataTableHeadingContent"><?php echo TABLE_HEADING_MODULES; ?></td>
-                <td class="dataTableHeadingContent">&nbsp;</td>
-                <td class="dataTableHeadingContent" align="right"><?php echo TABLE_HEADING_SORT_ORDER; ?></td>
-<?php
-  if ($set == 'payment') {
-?>
-                <td class="dataTableHeadingContent" align="center" width="100"><?php echo TABLE_HEADING_ORDERS_STATUS; ?></td>
-<?php } ?>
-                <td class="dataTableHeadingContent" align="right"><?php echo TABLE_HEADING_ACTION; ?>&nbsp;</td>
-              </tr>
+<div class="container-fluid">
+    <!-- body_text //-->
+
+    <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-6">
+            <span class="pageHeading"><?php echo HEADING_TITLE; ?></span>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-9 col-lg-9 configurationColumnLeft">
+            <table border="0" width="100%" cellspacing="0" cellpadding="2">
+                <tr class="dataTableHeadingRow">
+                    <td class="dataTableHeadingContent"><?php echo TABLE_HEADING_MODULES; ?></td>
+                    <td class="dataTableHeadingContent">&nbsp;</td>
+                    <td class="dataTableHeadingContent"
+                        align="right"><?php echo TABLE_HEADING_SORT_ORDER; ?></td>
+                    <?php
+                    if ($set == 'payment') {
+                        ?>
+                        <td class="dataTableHeadingContent" align="center"
+                            width="100"><?php echo TABLE_HEADING_ORDERS_STATUS; ?></td>
+                    <?php } ?>
+                    <td class="dataTableHeadingContent"
+                        align="right"><?php echo TABLE_HEADING_ACTION; ?>&nbsp;</td>
+                </tr>
 <?php
   $directory_array = array();
   if ($dir = @dir($module_directory)) {
@@ -271,9 +267,16 @@
   if ($set == 'payment') {
     $orders_status_name = $db->Execute("select orders_status_id, orders_status_name from " . TABLE_ORDERS_STATUS . " where orders_status_id='" . (int)$module->order_status . "' and language_id='" . (int)$_SESSION['languages_id'] . "'");
 ?>
-                <td class="dataTableContent" align="left">&nbsp;&nbsp;&nbsp;<?php echo (is_numeric($module->sort_order) ? (($orders_status_name->fields['orders_status_id'] < 1) ? TEXT_DEFAULT : $orders_status_name->fields['orders_status_name']) : ''); ?>&nbsp;&nbsp;&nbsp;</td>
-<?php } ?>
-                <td class="dataTableContent" align="right"><?php if (isset($mInfo) && is_object($mInfo) && ($class == $mInfo->code) ) { echo zen_image(DIR_WS_IMAGES . 'icon_arrow_right.gif'); } else { echo '<a href="' . zen_href_link(FILENAME_MODULES, 'set=' . $set . '&module=' . $class, 'SSL') . '">' . zen_image(DIR_WS_IMAGES . 'icon_info.gif', IMAGE_ICON_INFO) . '</a>'; } ?>&nbsp;</td>
+                                <td class="dataTableContent" align="left">
+                                    &nbsp;&nbsp;&nbsp;<?php echo(is_numeric($module->sort_order) ? (($orders_status_name->fields['orders_status_id'] < 1) ? TEXT_DEFAULT : $orders_status_name->fields['orders_status_name']) : ''); ?>
+                                    &nbsp;&nbsp;&nbsp;</td>
+                            <?php } ?>
+                            <td class="dataTableContent"
+                                align="right"><?php if (isset($mInfo) && is_object($mInfo) && ($class == $mInfo->code)) {
+                                    echo zen_image(DIR_WS_IMAGES . 'icon_arrow_right.gif');
+                                } else {
+                                    echo '<a href="' . zen_href_link(FILENAME_MODULES, 'set=' . $set . '&module=' . $class, 'SSL') . '">' . zen_image(DIR_WS_IMAGES . 'icon_info.gif', IMAGE_ICON_INFO) . '</a>';
+                                } ?>&nbsp;</td>
               </tr>
 <?php
       }
@@ -301,9 +304,10 @@
   }
 ?>
               <tr>
-                <td colspan="3" class="smallText"><?php echo TEXT_MODULE_DIRECTORY . ' ' . $module_directory; ?></td>
-              </tr>
-            </table></td>
+                    <td colspan="3"
+                        class="smallText"><?php echo TEXT_MODULE_DIRECTORY . ' ' . $module_directory; ?></td>
+                </tr>
+            </table>
 <?php
   $heading = array();
   $contents = array();
@@ -386,20 +390,19 @@
       }
       break;
   }
-  if ( (zen_not_null($heading)) && (zen_not_null($contents)) ) {
-    echo '            <td width="25%" valign="top">' . "\n";
-    $box = new box;
-    echo $box->infoBox($heading, $contents);
-    echo '            </td>' . "\n";
-  }
-?>
-          </tr>
-        </table></td>
-      </tr>
-    </table></td>
-<!-- body_text_eof //-->
-  </tr>
-</table>
+            ?>
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3 configurationColumnRight">
+            <?php
+            if ((zen_not_null($heading)) && (zen_not_null($contents))) {
+                $box = new box;
+                echo $box->infoBox($heading, $contents);
+            }
+            ?>
+        </div>
+    </div>
+    <!-- body_text_eof //-->
+</div>
 <!-- body_eof //-->
 <!-- footer //-->
 <?php require(DIR_WS_INCLUDES . 'footer.php'); ?>

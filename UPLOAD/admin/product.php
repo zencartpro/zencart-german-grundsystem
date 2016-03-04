@@ -4,7 +4,7 @@
  * @copyright Copyright 2003-2016 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: product.php 786 2015-12-21 18:13:51Z webchills $
+ * @version $Id: product.php 787 2016-03-04 22:13:51Z webchills $
  */
 
   require('includes/application_top.php');
@@ -12,6 +12,8 @@
   require(DIR_WS_MODULES . 'prod_cat_header_code.php');
 
   $action = (isset($_GET['action']) ? $_GET['action'] : '');
+
+  $zco_notifier->notify('NOTIFY_BEGIN_ADMIN_PRODUCTS', $action);
 
   if (zen_not_null($action)) {
     switch ($action) {

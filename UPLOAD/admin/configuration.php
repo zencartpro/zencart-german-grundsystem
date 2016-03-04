@@ -4,7 +4,7 @@
  * @copyright Copyright 2003-2016 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: configuration.php 788 2016-02-17 18:13:51Z webchills $
+ * @version $Id: configuration.php 789 2016-03-04 21:13:51Z webchills $
  */
 function getConfigLanguage($cKey){
      global $db;
@@ -49,7 +49,8 @@ function getConfigLanguage($cKey){
         if ( (WARN_BEFORE_DOWN_FOR_MAINTENANCE == 'true') && (DOWN_FOR_MAINTENANCE == 'true') ) {
         $db->Execute("update " . TABLE_CONFIGURATION . "
                       set configuration_value = 'false', last_modified = '" . NOW . "'
-                      where configuration_key = 'WARN_BEFORE_DOWN_FOR_MAINTENANCE'"); }
+                      where configuration_key = 'WARN_BEFORE_DOWN_FOR_MAINTENANCE'");
+            }
 
         zen_redirect(zen_href_link(FILENAME_CONFIGURATION, 'gID=' . $_GET['gID'] . '&cID=' . (int)$cID));
         break;
@@ -90,66 +91,61 @@ if ($gID == 7) {
 <script language="javascript" src="includes/general.js"></script>
 <script type="text/javascript">
   <!--
-  function init()
-  {
-    cssjsmenu('navbar');
-    if (document.getElementById)
-    {
-      var kill = document.getElementById('hoverJS');
-      kill.disabled = true;
-    }
-  }
-  // -->
-</script>
-</head>
-<body marginwidth="0" marginheight="0" topmargin="0" bottommargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFFF" onLoad="init()">
-<!-- header //-->
-<?php require(DIR_WS_INCLUDES . 'header.php'); ?>
-<!-- header_eof //-->
+            function init() {
+                cssjsmenu('navbar');
+                if (document.getElementById) {
+                    var kill = document.getElementById('hoverJS');
+                    kill.disabled = true;
+                }
+            }
+            // -->
+        </script>
+    </head>
+    <body marginwidth="0" marginheight="0" topmargin="0" bottommargin="0" leftmargin="0" rightmargin="0"
+          bgcolor="#FFFFFF" onLoad="init()">
+    <!-- header //-->
+    <?php require(DIR_WS_INCLUDES . 'header.php'); ?>
+    <!-- header_eof //-->
 
-<!-- body //-->
-<table border="0" width="100%" cellspacing="2" cellpadding="2">
-  <tr>
-<!-- body_text //-->
-    <td width="100%" valign="top"><table border="0" width="100%" cellspacing="0" cellpadding="2">
-      <tr>
-        <td><table border="0" width="100%" cellspacing="0" cellpadding="0">
-          <tr>
-            <td class="pageHeading"><?php echo $cfg_group->fields['configuration_group_title']; ?></td>
-            <td class="pageHeading" align="right"><?php echo zen_draw_separator('pixel_trans.gif', HEADING_IMAGE_WIDTH, HEADING_IMAGE_HEIGHT); ?></td>
-          </tr>
-        </table></td>
-      </tr>
-      <tr>
-        <td><table border="0" width="100%" cellspacing="0" cellpadding="0">
-          <tr>
-            <td valign="top"><table border="0" width="100%" cellspacing="0" cellpadding="2">
-              <tr class="dataTableHeadingRow">
-                <td class="dataTableHeadingContent" width="55%"><?php echo TABLE_HEADING_CONFIGURATION_TITLE; ?></td>
-                <td class="dataTableHeadingContent"><?php echo TABLE_HEADING_CONFIGURATION_VALUE; ?></td>
-                <td class="dataTableHeadingContent" align="right"><?php echo TABLE_HEADING_ACTION; ?>&nbsp;</td>
-              </tr>
-<?php
-  $configuration = $db->Execute("select configuration_id, configuration_title, configuration_value, configuration_key,
+    <!-- body //-->
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-6">
+                <span class="pageHeading"><?php echo $cfg_group->fields['configuration_group_title']; ?></span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-9 col-lg-9 configurationColumnLeft">
+
+                <table border="0" width="100%" cellspacing="0" cellpadding="2">
+                    <tr class="dataTableHeadingRow">
+                        <td class="dataTableHeadingContent"
+                            width="55%"><?php echo TABLE_HEADING_CONFIGURATION_TITLE; ?></td>
+                        <td class="dataTableHeadingContent"><?php echo TABLE_HEADING_CONFIGURATION_VALUE; ?></td>
+                        <td class="dataTableHeadingContent"
+                            align="right"><?php echo TABLE_HEADING_ACTION; ?>&nbsp;</td>
+                    </tr>
+                    <?php
+                    $configuration = $db->Execute("select configuration_id, configuration_title, configuration_value, configuration_key,
                                         use_function from " . TABLE_CONFIGURATION . "
                                         where configuration_group_id = '" . (int)$gID . "'
                                         order by sort_order");
-  while (!$configuration->EOF) {
-    if (zen_not_null($configuration->fields['use_function'])) {
-      $use_function = $configuration->fields['use_function'];
-      if (preg_match('/->/', $use_function)) {
-        $class_method = explode('->', $use_function);
-        if (!is_object(${$class_method[0]})) {
-          include(DIR_WS_CLASSES . $class_method[0] . '.php');
-          ${$class_method[0]} = new $class_method[0]();
-        }
-        $cfgValue = zen_call_function($class_method[1], $configuration->fields['configuration_value'], ${$class_method[0]});
-      } else {
-        $cfgValue = zen_call_function($use_function, $configuration->fields['configuration_value']);
-      }
-    } else {
-      $cfgValue = $configuration->fields['configuration_value'];
-    }
+                    while (!$configuration->EOF) {
+                        if (zen_not_null($configuration->fields['use_function'])) {
+                            $use_function = $configuration->fields['use_function'];
+                            if (preg_match('/->/', $use_function)) {
+                                $class_method = explode('->', $use_function);
+                                if (!is_object(${$class_method[0]})) {
+                                    include(DIR_WS_CLASSES . $class_method[0] . '.php');
+                                    ${$class_method[0]} = new $class_method[0]();
+                                }
+                                $cfgValue = zen_call_function($class_method[1], $configuration->fields['configuration_value'], ${$class_method[0]});
+                            } else {
+                                $cfgValue = zen_call_function($use_function, $configuration->fields['configuration_value']);
+                            }
+                        } else {
+                            $cfgValue = $configuration->fields['configuration_value'];
+                        }
 
     /* r.l. multilanguage */
     $configLang = getConfigLanguage($configuration -> fields);
@@ -184,17 +180,26 @@ if ($gID == 7) {
     }
 ?>
 <td class="dataTableContent"><?php echo $configLang['configuration_title']; ?></td>
-                <td class="dataTableContent"><?php echo htmlspecialchars($cfgValue, ENT_COMPAT, CHARSET, TRUE); ?></td>
-                <td class="dataTableContent" align="right"><?php if ( (isset($cInfo) && is_object($cInfo)) && ($configuration->fields['configuration_id'] == $cInfo->configuration_id) ) { echo zen_image(DIR_WS_IMAGES . 'icon_arrow_right.gif', ''); } else { echo '<a href="' . zen_href_link(FILENAME_CONFIGURATION, 'gID=' . $_GET['gID'] . '&cID=' . $configuration->fields['configuration_id']) . '" name="link_' . $configuration->fields['configuration_key'] . '">' . zen_image(DIR_WS_IMAGES . 'icon_info.gif', IMAGE_ICON_INFO) . '</a>'; } ?>&nbsp;</td>
-              </tr>
-<?php
-    $configuration->MoveNext();
-  }
-?>
-            </table></td>
-<?php
-  $heading = array();
-  $contents = array();
+                        <td class="dataTableContent"><?php echo htmlspecialchars($cfgValue, ENT_COMPAT, CHARSET, TRUE); ?></td>
+                        <td class="dataTableContent"
+                            align="right"><?php if ((isset($cInfo) && is_object($cInfo)) && ($configuration->fields['configuration_id'] == $cInfo->configuration_id)) {
+                                echo zen_image(DIR_WS_IMAGES . 'icon_arrow_right.gif', '');
+                            } else {
+                                echo '<a href="' . zen_href_link(FILENAME_CONFIGURATION, 'gID=' . $_GET['gID'] . '&cID=' . $configuration->fields['configuration_id']) . '" name="link_' . $configuration->fields['configuration_key'] . '">' . zen_image(DIR_WS_IMAGES . 'icon_info.gif', IMAGE_ICON_INFO) . '</a>';
+                            } ?>&nbsp;</td>
+                        </tr>
+                        <?php
+                        $configuration->MoveNext();
+                    }
+                    ?>
+                </table>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3 configurationColumnRight">
+                <?php
+                $heading = array();
+                $contents = array();
+
+                // Translation for contents
     if (defined('CFGTITLE_' . $cInfo->configuration_key)) {
       $cInfo->configuration_title = constant('CFGTITLE_' . $cInfo->configuration_key);
     }
@@ -209,7 +214,7 @@ if ($gID == 7) {
       if ($cInfo->set_function) {
         eval('$value_field = ' . $cInfo->set_function . '"' . htmlspecialchars($cInfo->configuration_value, ENT_COMPAT, CHARSET, TRUE) . '");');
       } else {
-        $value_field = zen_draw_input_field('configuration_value', htmlspecialchars($cInfo->configuration_value, ENT_COMPAT, CHARSET, TRUE), 'size="60"');
+                            $value_field = zen_draw_input_field('configuration_value', htmlspecialchars($cInfo->configuration_value, ENT_COMPAT, CHARSET, TRUE), 'size="60" class="cfgInput" autofocus');
       }
 
       $contents = array('form' => zen_draw_form('configuration', FILENAME_CONFIGURATION, 'gID=' . $_GET['gID'] . '&cID=' . $cInfo->configuration_id . '&action=save'));
@@ -235,22 +240,15 @@ if ($gID == 7) {
       break;
   }
 
-  if ( (zen_not_null($heading)) && (zen_not_null($contents)) ) {
-    echo '            <td width="25%" valign="top">' . "\n";
+                if ((zen_not_null($heading)) && (zen_not_null($contents))) {
+                    $box = new box;
+                    echo $box->infoBox($heading, $contents);
+                }
+                ?>
+            </div>
+        </div>
+    </div>
 
-    $box = new box;
-    echo $box->infoBox($heading, $contents);
-
-    echo '            </td>' . "\n";
-  }
-?>
-          </tr>
-        </table></td>
-      </tr>
-    </table></td>
-<!-- body_text_eof //-->
-  </tr>
-</table>
 <!-- body_eof //-->
 
 <!-- footer //-->
