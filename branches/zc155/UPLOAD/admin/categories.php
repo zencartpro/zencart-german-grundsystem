@@ -4,7 +4,7 @@
  * @copyright Copyright 2003-2016 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: categories.php 789 2015-12-21 18:13:51Z webchills $
+ * @version $Id: categories.php 790 2016-03-04 21:13:51Z webchills $
  */
   require('includes/application_top.php');
 
@@ -14,6 +14,7 @@
   if (isset($_GET['page'])) $_GET['page'] = (int)$_GET['page'];
   if (isset($_GET['product_type'])) $_GET['product_type'] = (int)$_GET['product_type'];
   if (isset($_GET['cID'])) $_GET['cID'] = (int)$_GET['cID'];
+  $zco_notifier->notify('NOTIFY_BEGIN_ADMIN_CATEGORIES', $action);
 
   if (!isset($_SESSION['categories_products_sort_order'])) {
     $_SESSION['categories_products_sort_order'] = CATEGORIES_PRODUCTS_SORT_ORDER;
@@ -986,15 +987,10 @@ function init()
 <?php
 // Split Page
 if ($products_query_numrows > 0) {
-  if (empty($pInfo->products_id)) {
-    $pInfo->products_id= $pID;
-  }
 ?>
             <td class="smallText" align="center"><?php echo $products_split->display_count($products_query_numrows, MAX_DISPLAY_RESULTS_CATEGORIES, $_GET['page'], TEXT_DISPLAY_NUMBER_OF_PRODUCTS) . '<br>' . $products_split->display_links($products_query_numrows, MAX_DISPLAY_RESULTS_CATEGORIES, MAX_DISPLAY_PAGE_LINKS, $_GET['page'], zen_get_all_get_params(array('page', 'info', 'x', 'y', 'pID')) ); ?></td>
-
 <?php
 }
-// Split Page
 ?>
           </tr>
         </table></td>
