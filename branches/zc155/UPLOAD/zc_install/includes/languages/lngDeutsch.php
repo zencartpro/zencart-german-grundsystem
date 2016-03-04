@@ -4,7 +4,7 @@
  * @package Installer
  * @copyright Copyright 2003-2016 Zen Cart Development Team
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: lngDeutsch.php 5 2015-12-29 19:49:16Z webchills $
+ * @version $Id: lngDeutsch.php 6 2016-03-04 21:49:16Z webchills $
  */
 /**
  * defining language components for the page
@@ -18,7 +18,7 @@ define('TEXT_INDEX_WARN_ERRORS', 'Einige andere Probleme');
 define('TEXT_HEADER_MAIN', 'TIP: Die blauen Überschriften Links sind anclickbar und liefern Infos zur Bedeutung des jeweiligen Feldes.');
 define('TEXT_INDEX_HEADER_MAIN', 'TIP: Für einige Fehlermeldungen oder Warnmeldungen unten sind genauere Infos durch Anclicken der Fehlermeldung/Warnmeldung verfügbar.');
 define('TEXT_INSTALLER_CHOOSE_LANGUAGE', 'Sprache wählen');
-define('TEXT_HELP_CONTENT_CHOOSE_LANG', 'Zen Cart&reg; is multi-lingual, supporting as many languages as there are language packs available. Simply install the necessary language pack and your entire store can operate in multiple languages, including this installer.');
+define('TEXT_HELP_CONTENT_CHOOSE_LANG', 'Zen Cart ist multilingual und unterstützt soviele Sprachen wie Sprachpakete verfügbar sind. Installieren Sie die jeweiligen Sprachpakete und betreiben Sie den kompletten Shop in mehreren Sprachen. Deutsch und Englisch sind im Grundpaket bereits enthalten.');
 
 define('TEXT_PAGE_HEADING_SYSTEM_SETUP', 'System Setup');
 define('TEXT_SYSTEM_SETUP_ADMIN_SETTINGS', 'Admin Einstellungen');
@@ -40,7 +40,7 @@ define('TEXT_SYSTEM_SETUP_ERROR_CATALOG_PHYSICAL_PATH', 'Es scheint ein Problem 
 
 
 define('TEXT_PAGE_HEADING_DATABASE', 'Datenbank Setup');
-define('TEXT_DATABASE_HEADER_MAIN', 'HINWEIS: You must create your MySQL database and corresponding Database user, and grant permissions to that user, before proceeding on this page. Click the left-column titles below for help with understanding each component.');
+define('TEXT_DATABASE_HEADER_MAIN', 'HINWEIS: Stellen Sie sicher, dass Sie bereits eine Datenbank angelegt haben. Dieses Installationsprogramm legt keine Datenbank an! Es befüllt lediglich eine bereits bestehende Datenbank, deren Zugangsdaten Sie hier angeben. Hilfetexte zu den einzelnen Überschriften links erhalten Sie durch Anclicken der jeweiligen Titel.');
 define('TEXT_DATABASE_SETUP_SETTINGS', 'Grundeinstellungen');
 define('TEXT_DATABASE_SETUP_DB_HOST', 'Datenbank Host: ');
 define('TEXT_DATABASE_SETUP_DB_USER', 'Datenbank User: ');
@@ -53,8 +53,8 @@ define('TEXT_DATABASE_SETUP_ADVANCED_SETTINGS', 'Erweiterte Einstellungen');
 define('TEXT_DATABASE_SETUP_DB_CHARSET', 'Datenbank Character Set: ');
 define('TEXT_DATABASE_SETUP_DB_PREFIX', 'Datenbank Präfix: ');
 define('TEXT_DATABASE_SETUP_SQL_CACHE_METHOD', 'SQL Caching Methode: ');
-define('TEXT_DATABASE_SETUP_JSCRIPT_SQL_ERRORS1', '<p>Some errors occurred when running the SQL install file');
-define('TEXT_DATABASE_SETUP_JSCRIPT_SQL_ERRORS2', '<br>Please see error logs for more details<p>');
+define('TEXT_DATABASE_SETUP_JSCRIPT_SQL_ERRORS1', '<p>Beim Ausführen des SQL Installers sind einige Fehler aufgetreten');
+define('TEXT_DATABASE_SETUP_JSCRIPT_SQL_ERRORS2', '<br>Details dazu finden Sie im Error Log.<p>');
 define('TEXT_DATABASE_SETUP_CHARSET_OPTION_UTF8', 'UTF8 (UNBEDINGT SO LASSEN!)');
 define('TEXT_DATABASE_SETUP_CHARSET_OPTION_LATIN1', 'Latin1');
 define('TEXT_DATABASE_SETUP_CACHE_TYPE_OPTION_NONE', 'kein SQL Caching');
@@ -83,7 +83,7 @@ define('TEXT_ADMIN_SETUP_USER_EMAIL', 'Admin Superuser Emailadresse: ');
 define('TEXT_EXAMPLE_EMAIL', 'z.B: peter@meinshop.de');
 define('TEXT_ADMIN_SETUP_USER_EMAIL_REPEAT', '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Email wiederholen: ');
 define('TEXT_ADMIN_SETUP_USER_PASSWORD', 'Admin Passwort: ');
-define('TEXT_ADMIN_SETUP_USER_PASSWORD_HELP', '<strong>NOTIEREN SIE SICH DIESES PASSWORT JETZT!!</strong>: Unterhalb ist ihr temporäres Einstiegspasswort für Ihren Admin User. Sie benötigen es zum Einloggen in den Adminbereich, daher NOTIEREN SIE SICH DIESES PASSWORT JETZT. Sie müssen das Passwort dann nach dem ersten Login ändern.');
+define('TEXT_ADMIN_SETUP_USER_PASSWORD_HELP', '<strong>NOTIEREN SIE SICH DIESES PASSWORT JETZT!!</strong>: Unterhalb ist Passwort für Ihren Admin User. Sie benötigen es zum Einloggen in den Adminbereich, daher NOTIEREN SIE SICH DIESES PASSWORT JETZT. Sie können das Passwort dann nach dem ersten Login auf eines Ihrer Wahl ändern.');
 define('TEXT_ADMIN_SETUP_ADMIN_DIRECTORY', 'Admin Verzeichnis: ');
 define('TEXT_ADMIN_SETUP_ADMIN_DIRECTORY_HELP_DEFAULT', 'Wir konnten Ihr Admin Verzeichnis nicht automatisch umbenennen. Sie müssen es selbst umbenennen bevor Sie in den Adminbereich einloggen können.');
 define('TEXT_ADMIN_SETUP_ADMIN_DIRECTORY_HELP_NOT_ADMIN_CHANGED', 'Wir haben Ihr Adminverzeichnis nicht umbenannt, da es offensichtlich bereits umbenannt wurde.');
