@@ -83,8 +83,8 @@
 <link rel="stylesheet" type="text/css" href="includes/cssjsmenuhover.css" media="all" id="hoverJS">
 <link rel="stylesheet" type="text/css" href="includes/javascript/spiffyCal/spiffyCal_v2_1.css">
 <script language="JavaScript" src="includes/javascript/spiffyCal/spiffyCal_v2_1.js"></script>
-<script language="javascript" src="includes/menu.js"></script>
-<script language="javascript" src="includes/general.js"></script>
+<script type="text/javascript" src="includes/menu.js"></script>
+<script type="text/javascript" src="includes/general.js"></script>
 <script type="text/javascript">
 <!--
   function init()
@@ -134,7 +134,7 @@ border-width:3px;
 <body onload="init()">
 <div id="spiffycalendar" class="text"></div>
 <?php require(DIR_WS_INCLUDES . 'header.php'); ?>
-<script language="javascript">
+<script >
 <!--
 var StartDate = new ctlSpiffyCalendarBox("StartDate", "search", "start_date", "btnDate1","<?php echo (($_GET['start_date'] == '') ? '' : $_GET['start_date']); ?>",scBTNMODE_CUSTOMBLUE);
 var EndDate = new ctlSpiffyCalendarBox("EndDate", "search", "end_date", "btnDate2","<?php echo (($_GET['end_date'] == '') ? '' : $_GET['end_date']); ?>",scBTNMODE_CUSTOMBLUE);
@@ -323,13 +323,13 @@ var EndDate = new ctlSpiffyCalendarBox("EndDate", "search", "end_date", "btnDate
               <tr>
                 <td class="smallText" align="left">
                   <?php echo HEADING_START_DATE . '<br>'; ?>
-                  <script language="javascript">StartDate.writeControl(); StartDate.dateFormat="<?php echo DATE_FORMAT_SPIFFYCAL; ?>";</script>
+                  <script >StartDate.writeControl(); StartDate.dateFormat="<?php echo DATE_FORMAT_SPIFFYCAL; ?>";</script>
                 </td>
               </tr>
               <tr>
                 <td class="smallText" align="left">
                   <?php echo HEADING_END_DATE . '<br>'; ?>
-                  <script language="javascript">EndDate.writeControl(); EndDate.dateFormat="<?php echo DATE_FORMAT_SPIFFYCAL; ?>";</script>
+                  <script >EndDate.writeControl(); EndDate.dateFormat="<?php echo DATE_FORMAT_SPIFFYCAL; ?>";</script>
                 </td>
               </tr>
             </table></td>
@@ -521,13 +521,13 @@ if ($isForDisplay) {
 
   if ($action == 'resend_confirm') {
 ?>
-<script language="javascript">
+<script >
   confirmation()
 </script>
 <?php
   } else if ($action == 'delete_confirm') {
 ?>
-<script language="javascript">
+<script >
   del_confirmation()
 </script>
 <?php

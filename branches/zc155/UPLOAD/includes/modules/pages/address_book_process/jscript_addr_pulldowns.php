@@ -11,7 +11,7 @@
  * @version $Id: jscript_addr_pulldowns.php 729 2011-08-09 15:49:16Z hugo13 $
  */
 ?>
-<script language="javascript" type="text/javascript"><!--
+<script type="text/javascript"><!--
 
 function update_zone(theForm) {
   // if there is no zone_id field to update, or if it is hidden from display, then exit performing no updates

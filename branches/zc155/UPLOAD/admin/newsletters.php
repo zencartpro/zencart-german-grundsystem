@@ -90,8 +90,8 @@
 <title><?php echo TITLE; ?></title>
 <link rel="stylesheet" type="text/css" href="includes/stylesheet.css">
 <link rel="stylesheet" type="text/css" href="includes/cssjsmenuhover.css" media="all" id="hoverJS">
-<script language="javascript" src="includes/menu.js"></script>
-<script language="javascript" src="includes/general.js"></script>
+<script type="text/javascript" src="includes/menu.js"></script>
+<script type="text/javascript" src="includes/general.js"></script>
 <script type="text/javascript">
   <!--
   function init()
@@ -105,7 +105,7 @@
   }
   // -->
 </script>
-<script language="javascript" type="text/javascript"><!--
+<script type="text/javascript"><!--
 var form = "";
 var submitted = false;
 var error = false;

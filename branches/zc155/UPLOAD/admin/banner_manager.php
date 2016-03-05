@@ -225,9 +225,9 @@
 <title><?php echo TITLE; ?></title>
 <link rel="stylesheet" type="text/css" href="includes/stylesheet.css">
 <link rel="stylesheet" type="text/css" href="includes/cssjsmenuhover.css" media="all" id="hoverJS">
-<script language="javascript" src="includes/menu.js"></script>
-<script language="javascript" src="includes/general.js"></script>
-<script language="javascript"><!--
+<script type="text/javascript" src="includes/menu.js"></script>
+<script type="text/javascript" src="includes/general.js"></script>
+<script ><!--
 function popupImageWindow(url) {
   window.open(url,'popupImageWindow','toolbar=no,location=no,directories=no,status=no,menubar=no,scrollbars=no,resizable=yes,copyhistory=no,width=100,height=100,screenX=150,screenY=150,top=150,left=150')
 }
@@ -343,7 +343,7 @@ function popupImageWindow(url) {
 ?>
 <link rel="stylesheet" type="text/css" href="includes/javascript/spiffyCal/spiffyCal_v2_1.css">
 <script language="JavaScript" src="includes/javascript/spiffyCal/spiffyCal_v2_1.js"></script>
-<script language="javascript">
+<script >
   var dateExpires = new ctlSpiffyCalendarBox("dateExpires", "new_banner", "expires_date","btnDate1","<?php echo zen_date_short($bInfo->expires_date); ?>",scBTNMODE_CUSTOMBLUE);
   var dateScheduled = new ctlSpiffyCalendarBox("dateScheduled", "new_banner", "date_scheduled","btnDate2","<?php echo zen_date_short($bInfo->date_scheduled); ?>",scBTNMODE_CUSTOMBLUE);
 </script>
@@ -421,14 +421,14 @@ function popupImageWindow(url) {
           </tr>
           <tr>
             <td class="main"><?php echo TEXT_BANNERS_SCHEDULED_AT; ?></td>
-            <td valign="top" class="main"><script language="javascript">dateScheduled.writeControl();dateScheduled.dateFormat="<?php echo DATE_FORMAT_SPIFFYCAL; ?>";</script></td>
+            <td valign="top" class="main"><script >dateScheduled.writeControl();dateScheduled.dateFormat="<?php echo DATE_FORMAT_SPIFFYCAL; ?>";</script></td>
           </tr>
           <tr>
             <td colspan="2"><?php echo zen_draw_separator('pixel_trans.gif', '1', '10'); ?></td>
           </tr>
           <tr>
             <td valign="top" class="main"><?php echo TEXT_BANNERS_EXPIRES_ON; ?></td>
-            <td class="main"><script language="javascript">dateExpires.writeControl();dateExpires.dateFormat="<?php echo DATE_FORMAT_SPIFFYCAL; ?>";</script><?php echo TEXT_BANNERS_OR_AT . '<br>' . zen_draw_input_field('expires_impressions', $bInfo->expires_impressions, 'maxlength="7" size="7"') . ' ' . TEXT_BANNERS_IMPRESSIONS; ?></td>
+            <td class="main"><script >dateExpires.writeControl();dateExpires.dateFormat="<?php echo DATE_FORMAT_SPIFFYCAL; ?>";</script><?php echo TEXT_BANNERS_OR_AT . '<br>' . zen_draw_input_field('expires_impressions', $bInfo->expires_impressions, 'maxlength="7" size="7"') . ' ' . TEXT_BANNERS_IMPRESSIONS; ?></td>
           </tr>
         </table></td>
       </tr>

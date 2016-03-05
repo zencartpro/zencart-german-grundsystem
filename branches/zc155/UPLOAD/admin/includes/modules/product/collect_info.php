@@ -177,10 +177,10 @@ if (!defined('IS_ADMIN_FLAG')) {
 ?>
 <link rel="stylesheet" type="text/css" href="includes/javascript/spiffyCal/spiffyCal_v2_1.css">
 <script language="JavaScript" src="includes/javascript/spiffyCal/spiffyCal_v2_1.js"></script>
-<script language="javascript"><!--
+<script ><!--
   var dateAvailable = new ctlSpiffyCalendarBox("dateAvailable", "new_product", "products_date_available","btnDate1","<?php echo $pInfo->products_date_available; ?>",scBTNMODE_CUSTOMBLUE);
 //--></script>
-<script language="javascript"><!--
+<script ><!--
 var tax_rates = new Array();
 <?php
     for ($i=0, $n=sizeof($tax_class_array); $i<$n; $i++) {
@@ -292,7 +292,7 @@ echo zen_draw_hidden_field('products_price_sorter', $pInfo->products_price_sorte
           </tr>
           <tr>
             <td class="main"><?php echo TEXT_PRODUCTS_DATE_AVAILABLE; ?><br /><small>(YYYY-MM-DD)</small></td>
-            <td class="main"><?php echo zen_draw_separator('pixel_trans.gif', '24', '15') . '&nbsp;'; ?><script language="javascript">dateAvailable.writeControl(); dateAvailable.dateFormat="yyyy-MM-dd";</script></td>
+            <td class="main"><?php echo zen_draw_separator('pixel_trans.gif', '24', '15') . '&nbsp;'; ?><script >dateAvailable.writeControl(); dateAvailable.dateFormat="yyyy-MM-dd";</script></td>
           </tr>
           <tr>
             <td colspan="2"><?php echo zen_draw_separator('pixel_trans.gif', '1', '10'); ?></td>
@@ -410,7 +410,7 @@ echo zen_draw_hidden_field('products_price_sorter', $pInfo->products_price_sorte
             <td colspan="2"><?php echo zen_draw_separator('pixel_trans.gif', '1', '10'); ?></td>
           </tr>
 
-<script language="javascript"><!--
+<script ><!--
 updateGross();
 //--></script>
 <?php

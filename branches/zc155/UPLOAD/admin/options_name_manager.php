@@ -380,8 +380,8 @@ function translate_type_to_name($opt_type) {
 <title><?php echo TITLE; ?></title>
 <link rel="stylesheet" type="text/css" href="includes/stylesheet.css">
 <link rel="stylesheet" type="text/css" href="includes/cssjsmenuhover.css" media="all" id="hoverJS">
-<script language="javascript" src="includes/menu.js"></script>
-<script language="javascript"><!--
+<script type="text/javascript" src="includes/menu.js"></script>
+<script ><!--
 function go_option() {
   if (document.option_order_by.selected.options[document.option_order_by.selected.selectedIndex].value != "none") {
     location = "<?php echo zen_href_link(FILENAME_OPTIONS_NAME_MANAGER, 'option_page=' . ($_GET['option_page'] ? $_GET['option_page'] : 1)); ?>&option_order_by="+document.option_order_by.selected.options[document.option_order_by.selected.selectedIndex].value;

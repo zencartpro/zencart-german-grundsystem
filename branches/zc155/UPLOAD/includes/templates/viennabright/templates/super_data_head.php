@@ -79,7 +79,7 @@ $products_image_large  = DIR_WS_IMAGES . 'large/' . $products_image_base . IMAGE
 <meta property="fb:admins" content="<?php echo FACEBOOK_OPEN_GRAPH_ADMINID; ?>" />
 <?php } ?>
 <?php if (FACEBOOK_OPEN_GRAPH_STREET_ADDRESS != '') { ?>
-<!--<meta property="og:street-address" itemprop="street-address" content="<?php /*echo FACEBOOK_OPEN_GRAPH_STREET_ADDRESS;*/ ?>" />-->
+<meta property="og:street-address" content="<?php echo FACEBOOK_OPEN_GRAPH_STREET_ADDRESS; ?>" />
 <?php } ?>
 <?php if (FACEBOOK_OPEN_GRAPH_CITY != '') { ?>
 <meta property="og:locality" content="<?php echo FACEBOOK_OPEN_GRAPH_CITY; ?>" />
