@@ -4,12 +4,12 @@
  * @copyright Copyright 2003-2016 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: checkout_process.php 629 2013-08-16 18:05:14Z webchills $
+ * @version $Id: checkout_process.php 630 2016-03-05 10:05:14Z webchills $
  */
 
 define('EMAIL_TEXT_SUBJECT', 'Bestellbestätigung');
-define('EMAIL_TEXT_HEADER', 'Bestellbestätigung von');
-define('EMAIL_TEXT_FROM', ' von '); //added to the EMAIL_TEXT_HEADER, above on text-only emails
+define('EMAIL_TEXT_HEADER', 'Bestellbestätigung ');
+define('EMAIL_TEXT_FROM', ' von ');
 define('EMAIL_THANKS_FOR_SHOPPING', 'Vielen Dank für Ihren Einkauf!');
 define('EMAIL_DETAILS_FOLLOW', 'Im Nachfolgenden sehen Sie die Details Ihrer Bestellung.');
 define('EMAIL_TEXT_ORDER_NUMBER', 'Bestellnummer:');

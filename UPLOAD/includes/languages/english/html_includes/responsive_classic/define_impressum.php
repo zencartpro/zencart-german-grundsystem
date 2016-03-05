@@ -1,1 +1,0 @@
-<<p>Your page text goes here</p>

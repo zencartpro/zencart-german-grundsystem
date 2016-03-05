@@ -1,1 +1,0 @@
-<p>Tragen Sie hier den Text zu Ihrem Impressum ein</p>
