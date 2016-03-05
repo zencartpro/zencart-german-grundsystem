@@ -4,7 +4,7 @@
  * @copyright Copyright 2003-2016 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: customers.php for login as customer 2016-03-02 20:13:51Z webchills $
+ * @version $Id: customers.php for login as customer 2016-03-05 18:13:51Z webchills $
  */
 
   require('includes/application_top.php');
@@ -428,12 +428,12 @@
 <title><?php echo TITLE; ?></title>
 <link rel="stylesheet" type="text/css" href="includes/stylesheet.css">
 <link rel="stylesheet" type="text/css" href="includes/cssjsmenuhover.css" media="all" id="hoverJS">
-<script language="javascript" src="includes/menu.js"></script>
-<script language="javascript" src="includes/general.js"></script>
+<script type="text/javascript" src="includes/menu.js"></script>
+<script type="text/javascript" src="includes/general.js"></script>
 <?php
   if ($action == 'edit' || $action == 'update') {
 ?>
-<script language="javascript"><!--
+<script ><!--
 
 function check_form() {
   var error = 0;
