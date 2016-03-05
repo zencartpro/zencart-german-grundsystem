@@ -94,6 +94,9 @@ if($RI_CJLoader->get('status') && (!isset($Ajax) || !$Ajax->status())){
     }
 }
 //DEBUG: echo '<!-- I SEE cat: ' . $current_category_id . ' || vs cpath: ' . $cPath . ' || page: ' . $current_page . ' || template: ' . $current_template . ' || main = ' . ($this_is_home_page ? 'YES' : 'NO') . ' -->';
+?>
+<?php require($template->get_template_dir('super_data_head.php',DIR_WS_TEMPLATE, $current_page_base,'templates'). '/super_data_head.php'); ?>
+<?php
   $zco_notifier->notify('NOTIFY_HTML_HEAD_END', $current_page_base);
 ?>
 </head>

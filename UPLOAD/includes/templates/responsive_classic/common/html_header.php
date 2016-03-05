@@ -8,7 +8,7 @@
  * @copyright Copyright 2003-2016 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: html_header.php 5 2016-02-28 16:10:39Z webchills $
+ * @version $Id: html_header.php 6 2016-03-05 12:10:39Z webchills $
  */
 $zco_notifier->notify('NOTIFY_HTML_HEAD_START', $current_page_base, $template_dir);
 
@@ -44,6 +44,7 @@ if (!class_exists('Mobile_Detect')) {
   <title><?php echo META_TAG_TITLE; ?></title>
   <meta name="keywords" content="<?php echo META_TAG_KEYWORDS; ?>" />
   <meta name="description" content="<?php echo META_TAG_DESCRIPTION; ?>" />
+  <meta name="language" content="<?php echo META_TAG_LANGUAGE; ?>" />
   <meta name="author" content="<?php echo STORE_NAME ?>" />
   <meta name="generator" content="Zen-Cart 1.5.5 - deutsche Version, http://www.zen-cart-pro.at" />
 <?php if (defined('ROBOTS_PAGES_TO_SKIP') && in_array($current_page_base,explode(",",constant('ROBOTS_PAGES_TO_SKIP'))) || $current_page_base=='down_for_maintenance' || $robotsNoIndex === true) { ?>
@@ -108,7 +109,7 @@ if($RI_CJLoader->get('status') && (!isset($Ajax) || !$Ajax->status())){
 }
 //DEBUG: echo '<!-- I SEE cat: ' . $current_category_id . ' || vs cpath: ' . $cPath . ' || page: ' . $current_page . ' || template: ' . $current_template . ' || main = ' . ($this_is_home_page ? 'YES' : 'NO') . ' -->';
 ?>
-
+<?php require($template->get_template_dir('super_data_head.php',DIR_WS_TEMPLATE, $current_page_base,'templates'). '/super_data_head.php'); ?>
 <?php // ZCAdditions.com, ZCA Responsive Template Default (BOF-addition 2 of 2)
 $responsive_mobile = '<link rel="stylesheet" type="text/css" href="' . $template->get_template_dir('.css',DIR_WS_TEMPLATE, $current_page_base,'css') . '/' . 'responsive_mobile.css' . '" /><link rel="stylesheet" type="text/css" href="' . $template->get_template_dir('.css',DIR_WS_TEMPLATE, $current_page_base,'css') . '/' . 'jquery.mmenu.all.css' . '" />';
 $responsive_tablet = '<link rel="stylesheet" type="text/css" href="' . $template->get_template_dir('.css',DIR_WS_TEMPLATE, $current_page_base,'css') . '/' . 'responsive_tablet.css' . '" /><link rel="stylesheet" type="text/css" href="' . $template->get_template_dir('.css',DIR_WS_TEMPLATE, $current_page_base,'css') . '/' . 'jquery.mmenu.all.css' . '" />';
