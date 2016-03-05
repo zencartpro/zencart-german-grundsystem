@@ -4,7 +4,7 @@
  * @copyright Copyright 2003-2016 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: customers.php 628 2015-12-22 16:05:14Z webchills $
+ * @version $Id: customers.php 629 2016-03-05 09:05:14Z webchills $
  */
 
 define('HEADING_TITLE', 'Kunden');
@@ -44,9 +44,9 @@ define('TEXT_CUST_CONFIRM_PASSWORD', 'Passwort bestätigen:');
 define('ERROR_PWD_TOO_SHORT', 'Fehler: Das Passwort ist kürzer als die minimale Anzahl von Zeichen, die für diesen Shop konfiguriert ist.');
 define('SUCCESS_PASSWORD_UPDATED', 'Passwort aktualisiert.');
 
-define('EMAIL_CUSTOMER_PWD_CHANGE_MESSAGE', 'Your password has been changed by the store administrator. Your new password is: ');
-define('EMAIL_CUSTOMER_PWD_CHANGE_SUBJECT', 'Account password reset');
-define('EMAIL_CUSTOMER_PWD_CHANGE_MESSAGE_FOR_ADMIN', 'You have reset the password for a customer: ' . "\n" . '%s' . "\n\n" . 'Administrator ID: %s');
+define('EMAIL_CUSTOMER_PWD_CHANGE_MESSAGE', 'Ihr Passwort wurde vom Shop Administrator geändert. Ihr neues Passwort lautet: ');
+define('EMAIL_CUSTOMER_PWD_CHANGE_SUBJECT', 'Änderung Ihres Passworts');
+define('EMAIL_CUSTOMER_PWD_CHANGE_MESSAGE_FOR_ADMIN', 'Sie haben das Passwort eines Kunden geändert: ' . "\n" . '%s' . "\n\n" . 'Administrator ID: %s');
 define('CUSTOMERS_AUTHORIZATION', 'Kunden - Autorisierungsstatus');
 define('CUSTOMERS_AUTHORIZATION_0', 'Geprüft');
 define('CUSTOMERS_AUTHORIZATION_1', 'Anstehende Autorisierung - Muss zum Browsen im Shop authorisiert sein');
