@@ -117,8 +117,8 @@ if ($csv == '1') {
         <link rel="stylesheet" type="text/css" href="includes/cssjsmenuhover.css" media="all" id="hoverJS">
         <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
         <script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
-        <script language="javascript" src="includes/menu.js"></script>
-        <script language="javascript" src="includes/general.js"></script>
+        <script type="text/javascript" src="includes/menu.js"></script>
+        <script type="text/javascript" src="includes/general.js"></script>
         <script type="text/javascript">
             <!--
           function init()

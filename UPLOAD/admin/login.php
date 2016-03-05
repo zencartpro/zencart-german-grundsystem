@@ -68,7 +68,7 @@ if ($expired && $message == '') $message = sprintf(ERROR_PASSWORD_EXPIRED . ' ' 
         <link href="includes/stylesheet.css" rel="stylesheet" type="text/css"/>
         <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
         <meta name="robots" content="noindex, nofollow"/>
-        <script language="javascript" type="text/javascript"><!--
+        <script type="text/javascript"><!--
             function animate(f) {
                 var button = document.getElementById("btn_submit");
                 var img = document.getElementById("actionImg");

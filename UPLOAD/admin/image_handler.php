@@ -213,10 +213,10 @@
 <title><?php echo TITLE . ' - '. ICON_IMAGE_HANDLER; ?></title>
 <link rel="stylesheet" type="text/css" href="includes/stylesheet.css">
 <link rel="stylesheet" type="text/css" href="includes/cssjsmenuhover.css" media="all" id="hoverJS">
-<script language="javascript" type="text/javascript" src="includes/menu.js"></script>
-<script language="javascript" type="text/javascript" src="includes/general.js"></script>
+<script  type="text/javascript" src="includes/menu.js"></script>
+<script  type="text/javascript" src="includes/general.js"></script>
 <link rel="stylesheet" type="text/css" href="includes/javascript/spiffyCal/spiffyCal_v2_1.css">
-<script language="javascript" type="text/javascript" src="includes/javascript/spiffyCal/spiffyCal_v2_1.js"></script>
+<script  type="text/javascript" src="includes/javascript/spiffyCal/spiffyCal_v2_1.js"></script>
 
 <script type="text/javascript">
   <!--
@@ -780,7 +780,7 @@ if ($products_filter == '') {
           $contents[] = array('text' => '<strong>'.TEXT_INFO_NAME.': </strong>' . $selected_image_name .'<br />');
           $contents[] = array('text' => '<strong>'.TEXT_INFO_FILE_TYPE.': </strong>' . $selected_image_extension .'<br />');
           $contents[] = array('text' => 
-              '<script language="javascript" type="text/javascript"><!--
+              '<script type="text/javascript"><!--
               document.write(\'<a href="javascript:popupWindow(\\\'' . $selected_image_link . '\\\')">' 
               . zen_image($selected_image_file, addslashes($pInfo->products_name), $width, $height) 
               . '<br />' . TEXT_CLICK_TO_ENLARGE . '<\/a>\');'

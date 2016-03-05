@@ -9,7 +9,7 @@
  * @version $Id: jscript_main.php 729 2011-08-09 15:49:16Z hugo13 $
  */
 ?>
-<script language="javascript" type="text/javascript"><!--
+<script type="text/javascript"><!--
 
 function couponpopupWindow(url) {
   window.open(url,'couponpopupWindow','toolbar=no,location=no,directories=no,status=no,menubar=no,scrollbars=yes,resizable=yes,copyhistory=no,width=450,height=320,screenX=150,screenY=150,top=150,left=150')

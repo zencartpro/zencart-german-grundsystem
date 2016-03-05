@@ -20,7 +20,7 @@
 // $Id: jscript_main.php 729 2011-08-09 15:49:16Z hugo13 $
 //
 ?>
-<script language="javascript" type="text/javascript"><!--
+<script type="text/javascript"><!--
 function rowOverEffect(object) {
   if (object.className == 'moduleRow') object.className = 'moduleRowOver';
 }

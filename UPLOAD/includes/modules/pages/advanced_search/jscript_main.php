@@ -17,11 +17,11 @@
 // | to obtain it through the world-wide-web, please send a note to       |
 // | license@zen-cart.com so we can mail you a copy immediately.          |
 // +----------------------------------------------------------------------+
-// $Id: jscript_main.php 729 2011-08-09 15:49:16Z hugo13 $
+// $Id: jscript_main.php 730 2016-03-05 15:49:16Z webchills $
 //
 ?>
-<script language="javascript" src="includes/general.js" type="text/javascript"></script>
-<script language="javascript" type="text/javascript"><!--
+<script src="includes/general.js" type="text/javascript"></script>
+<script type="text/javascript"><!--
 function check_form() {
   var error_message = "<?php echo JS_ERROR; ?>";
   var error_found = false;

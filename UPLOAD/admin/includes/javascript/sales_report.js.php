@@ -18,7 +18,7 @@
  */
 
 ?>
-<script language="javascript" type="text/javascript"><!--
+<script type="text/javascript"><!--
 ////////////
 // Function    : popupWindow
 // Arguments   : none
