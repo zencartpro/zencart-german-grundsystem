@@ -4,14 +4,14 @@
  * @copyright Copyright 2003-2016 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: eustandardtransfer.php 575 2014-07-17 10:02:14 webchills $
+ * @version $Id: eustandardtransfer.php 576 2016-03-05 20:02:14 webchills $
 */
 
   class eustandardtransfer {
     var $code, $title, $description, $enabled;
 
 // class constructor
-    function eustandardtransfer() {
+    function __construct() {
       global $order;
     
       $this->code = 'eustandardtransfer';
@@ -122,8 +122,6 @@ function check() {
       $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) values ('Allow Bank Transfer Payment', 'MODULE_PAYMENT_EUTRANSFER_STATUS', 'True', 'Do you want to accept bank transfer order payments?', '6', '1', 'zen_cfg_select_option(array(\'True\', \'False\'), ', now());");
       $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) values ('Bank Name', 'MODULE_PAYMENT_EUTRANSFER_BANKNAM', '---', 'Your full bank name', '6', '2', now());");
       $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) values ('Bank Account Name', 'MODULE_PAYMENT_EUTRANSFER_ACCNAM', '---', 'The name associated with the account.', '6', '3', now());");
-      $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) values ('Bank Account No.', 'MODULE_PAYMENT_EUTRANSFER_ACCNUM', '---', 'Your account number.', '6', '4', now());");
-      $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) values ('Bank Code', 'MODULE_PAYMENT_EUTRANSFER_BLZ', '---', 'Your Bank Code', '6', '5', now());");
       $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) values ('Bank Account IBAN', 'MODULE_PAYMENT_EUTRANSFER_ACCIBAN', '---', 'International account id.<br>(ask your bank if you don\'t know it)', '6', '6', now());");
       $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) values ('Bank BIC/SWIFT', 'MODULE_PAYMENT_EUTRANSFER_BANKBIC', '---', 'International bank id.<br>(ask your bank if you don\'t know it)', '6', '7', now());");
       $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) values ('Module Sort order of display.', 'MODULE_PAYMENT_EUTRANSFER_SORT_ORDER', '0', 'Sort order of display. Lowest is displayed first.', '6', '8', now())");
@@ -135,8 +133,6 @@ function check() {
       $db->Execute("insert into " . TABLE_CONFIGURATION_LANGUAGE   . " (configuration_title, configuration_key, configuration_language_id, configuration_description, date_added) values ('Vorauskasse per Banküberweisung anbieten?', 'MODULE_PAYMENT_EUTRANSFER_STATUS', '43', 'Wollen Sie Vorauskasse per Banküberweisung aktivieren?', now())");
       $db->Execute("insert into " . TABLE_CONFIGURATION_LANGUAGE   . " (configuration_title, configuration_key, configuration_language_id, configuration_description, date_added) values ('Bank Name', 'MODULE_PAYMENT_EUTRANSFER_BANKNAM', '43', 'Tragen Sie hier den Namen Ihrer Bank ein', now())");
       $db->Execute("insert into " . TABLE_CONFIGURATION_LANGUAGE   . " (configuration_title, configuration_key, configuration_language_id, configuration_description, date_added) values ('Kontoinhaber', 'MODULE_PAYMENT_EUTRANSFER_ACCNAM', '43', 'Tragen Sie hier den Namen des Kontoinhabers ein.', now())");
-      $db->Execute("insert into " . TABLE_CONFIGURATION_LANGUAGE   . " (configuration_title, configuration_key, configuration_language_id, configuration_description, date_added) values ('Kontonummer', 'MODULE_PAYMENT_EUTRANSFER_ACCNUM', '43', 'Tragen Sie hier Ihre Kontonummer ein.', now())");
-      $db->Execute("insert into " . TABLE_CONFIGURATION_LANGUAGE   . " (configuration_title, configuration_key, configuration_language_id, configuration_description, date_added) values ('Bankleitzahl', 'MODULE_PAYMENT_EUTRANSFER_BLZ', '43', 'Tragen Sie hier die Bankleitzahl ein.', now())");
       $db->Execute("insert into " . TABLE_CONFIGURATION_LANGUAGE   . " (configuration_title, configuration_key, configuration_language_id, configuration_description, date_added) values ('IBAN', 'MODULE_PAYMENT_EUTRANSFER_ACCIBAN', '43', 'Tragen Sie hier Ihre IBAN ein.', now())");
       $db->Execute("insert into " . TABLE_CONFIGURATION_LANGUAGE   . " (configuration_title, configuration_key, configuration_language_id, configuration_description, date_added) values ('BIC/SWIFT', 'MODULE_PAYMENT_EUTRANSFER_BANKBIC', '43', 'Tragen Sie hier Ihren BIC/SWIFT Code ein.', now())");
       $db->Execute("insert into " . TABLE_CONFIGURATION_LANGUAGE   . " (configuration_title, configuration_key, configuration_language_id, configuration_description, date_added) values ('Sortierreihenfolge', 'MODULE_PAYMENT_EUTRANSFER_SORT_ORDER', '43', 'Anzeigereigenfolge für dieses Modul. Der niedrigste Wert wird zuerst angezeigt.', now())");
@@ -153,7 +149,7 @@ function check() {
     }
 	
     function keys() {
-      $keys = array('MODULE_PAYMENT_EUTRANSFER_STATUS', 'MODULE_PAYMENT_EUTRANSFER_BANKNAM', 'MODULE_PAYMENT_EUTRANSFER_ACCNAM', 'MODULE_PAYMENT_EUTRANSFER_ACCNUM', 'MODULE_PAYMENT_EUTRANSFER_BLZ',  'MODULE_PAYMENT_EUTRANSFER_ACCIBAN', 
+      $keys = array('MODULE_PAYMENT_EUTRANSFER_STATUS', 'MODULE_PAYMENT_EUTRANSFER_BANKNAM', 'MODULE_PAYMENT_EUTRANSFER_ACCNAM',  'MODULE_PAYMENT_EUTRANSFER_ACCIBAN', 
 					'MODULE_PAYMENT_EUTRANSFER_BANKBIC', 'MODULE_PAYMENT_EUTRANSFER_SORT_ORDER' , 'MODULE_PAYMENT_EUTRANSFER_ORDER_STATUS_ID' , 'MODULE_PAYMENT_EUTRANSFER_ZONE',
                     'MODULE_PAYMENT_EUTRANSFER_COUNTRIES');
 

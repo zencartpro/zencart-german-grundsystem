@@ -9,7 +9,7 @@
  * @copyright Copyright 2003-2016 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: tpl_checkout_confirmation_default.php 2016-03-05 13:57:16Z webchills $
+ * @version $Id: tpl_checkout_confirmation_default.php 2016-03-05 20:57:16Z webchills $
  */
 ?>
 <div class="centerColumn" id="checkoutConfirmDefault">
@@ -182,13 +182,14 @@
     echo $payment_modules->process_button();
   }
 ?>
+
 <?php
  // zollhinweis für nicht EU
-        $dest_country = $order->delivery['country']['iso_code_2'];
+        $dest_country = isset ($order->delivery['country']['iso_code_2']) ? $order->delivery['country']['iso_code_2'] : 0 ;
         $dest_zone = 0;
         $error = false;
         $countries_table = EU_COUNTRIES_FOR_LAST_STEP; 
-        $country_zones = split("[,]", $countries_table);
+        $country_zones = explode(",", $countries_table);
         if ((!in_array($dest_country, $country_zones))&& ($order->delivery['country']['id'] != '')) {
             $dest_zone = $i;
             echo TEXT_NON_EU_COUNTRIES;
@@ -197,7 +198,7 @@
         }
         ?>
 
-</div>
+
 <?php
   if (DISPLAY_WIDERRUF_DOWNLOADS_ON_CHECKOUT_CONFIRMATION == 'true') {
 ?>
