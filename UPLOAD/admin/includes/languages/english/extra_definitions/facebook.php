@@ -7,7 +7,7 @@
  * @copyright Portions Copyright 2003 osCommerce
  * @copyright Portions Copyright 2014 Numinix
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: facebook.php 2014-03-28 09:34:05 webchills $
+ * @version $Id: facebook.php 2015-03-05 09:34:05 webchills $
  */
 
-define('BOX_CONFIGURATION_FACEBOOK', 'Facebook Support');
+define('BOX_CONFIGURATION_FACEBOOK', 'Facebook / Open Graph / Microdata');
