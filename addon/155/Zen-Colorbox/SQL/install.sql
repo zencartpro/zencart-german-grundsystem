@@ -61,4 +61,4 @@ REPLACE INTO configuration_language (configuration_title, configuration_key, con
 ###################################
 
 INSERT INTO admin_pages (page_key ,language_key ,main_page ,page_params ,menu_key ,display_on_menu ,sort_order)VALUES 
-('configZenColorbox', 'BOX_CONFIGURATION_ZEN_COLORBOX', 'FILENAME_CONFIGURATION', CONCAT('gID=',@gid), 'configuration', 'Y', @gid);
+('configMicrodata', 'BOX_CONFIGURATION_MICRODATA', 'FILENAME_CONFIGURATION', CONCAT('gID=',@gid), 'configuration', 'Y', @gid);

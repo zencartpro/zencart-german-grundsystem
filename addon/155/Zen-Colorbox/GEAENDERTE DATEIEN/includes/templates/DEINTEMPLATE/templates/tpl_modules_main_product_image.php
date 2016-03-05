@@ -3,10 +3,10 @@
  * Module Template
  *
  * @package templateSystem
- * @copyright Copyright 2003-2015 Zen Cart Development Team
+ * @copyright Copyright 2003-2016 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: tpl_modules_main_product_image.php for Zen Colorbox 2015-02-26 09:49:16Z webchills $
+ * @version $Id: tpl_modules_main_product_image.php for Zen Colorbox 2016-03-05 19:49:16Z webchills $
  */
 ?>
 <?php require(DIR_WS_MODULES . zen_get_module_directory(FILENAME_MAIN_PRODUCT_IMAGE)); ?> 
@@ -20,12 +20,12 @@ if (function_exists('zen_colorbox') && ZEN_COLORBOX_STATUS == 'true') {
     $rel = 'colorbox-' . rand(100, 999);
   }
 ?>
-<script language="javascript" type="text/javascript"><!--
+<script type="text/javascript"><!--
 document.write('<?php echo '<a href="' . zen_colorbox($products_image_large, addslashes($products_name), LARGE_IMAGE_WIDTH, LARGE_IMAGE_HEIGHT) . '" rel="' . $rel . '" class="' . "nofollow" . '" title="' . addslashes($products_name) . '">' . zen_image($products_image_medium, addslashes($products_name), MEDIUM_IMAGE_WIDTH, MEDIUM_IMAGE_HEIGHT) . '<br /><span class="imgLink">' . TEXT_CLICK_TO_ENLARGE . '</span></a>'; ?>');
 //--></script>
 <?php } else { ?>
 <?php // eof Zen Colorbox 2012-04-30 niestudio ?>
-<script language="javascript" type="text/javascript"><!--
+<script type="text/javascript"><!--
 document.write('<?php echo '<a href="javascript:popupWindow(\\\'' . zen_href_link(FILENAME_POPUP_IMAGE, 'pID=' . $_GET['products_id']) . '\\\')">' . zen_image(addslashes($products_image_medium), addslashes($products_name), MEDIUM_IMAGE_WIDTH, MEDIUM_IMAGE_HEIGHT) . '<br /><span class="imgLink">' . TEXT_CLICK_TO_ENLARGE . '</span></a>'; ?>');
 //--></script>
 <?php // bof Zen Colorbox 2012-04-30 niestudio ?>
