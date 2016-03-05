@@ -8,7 +8,7 @@
  * @copyright Copyright 2003-2016 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: html_header.php 853 2016-03-02 16:10:39Z webchills $
+ * @version $Id: html_header.php 854 2016-03-05 16:10:39Z webchills $
  */
 $zco_notifier->notify('NOTIFY_HTML_HEAD_START', $current_page_base, $template_dir);
 
@@ -31,7 +31,7 @@ require(DIR_WS_MODULES . zen_get_module_directory('meta_tags.php'));
 <meta name="description" content="<?php echo META_TAG_DESCRIPTION; ?>" />
 <meta name="language" content="<?php echo META_TAG_LANGUAGE; ?>" />
 <meta http-equiv="imagetoolbar" content="no" />
-<meta name="author" content="The Zen Cart&reg; Team and others" />
+<meta name="author" content="<?php echo STORE_NAME ?>" />
 <meta name="generator" content="Zen-Cart 1.5.5 - deutsche Version, http://www.zen-cart-pro.at" />
 <?php if (defined('ROBOTS_PAGES_TO_SKIP') && in_array($current_page_base,explode(",",constant('ROBOTS_PAGES_TO_SKIP'))) || $current_page_base=='down_for_maintenance' || $robotsNoIndex === true) { ?>
 <meta name="robots" content="noindex, nofollow" />
@@ -61,7 +61,7 @@ require(DIR_WS_MODULES . zen_get_module_directory('meta_tags.php'));
 <?php if (RSS_FEED_ENABLED == 'true'){ ?>
 <?php echo rss_feed_link_alternate();?>
 <?php } ?>
-<script type="text/javascript">window.jQuery || document.write(unescape('%3Cscript type="text/javascript" src="//code.jquery.com/jquery-1.11.1.min.js"%3E%3C/script%3E'));</script>
+<script type="text/javascript">window.jQuery || document.write(unescape('%3Cscript type="text/javascript" src="//code.jquery.com/jquery-1.12.0.min.js"%3E%3C/script%3E'));</script>
 <script type="text/javascript">window.jQuery || document.write(unescape('%3Cscript type="text/javascript" src="<?php echo $template->get_template_dir('.js',DIR_WS_TEMPLATE, $current_page_base,'jscript'); ?>/jquery.min.js"%3E%3C/script%3E'));</script>
 <?php
 /**
@@ -91,6 +91,9 @@ if($RI_CJLoader->get('status') && (!isset($Ajax) || !$Ajax->status())){
     }
 }
 //DEBUG: echo '<!-- I SEE cat: ' . $current_category_id . ' || vs cpath: ' . $cPath . ' || page: ' . $current_page . ' || template: ' . $current_template . ' || main = ' . ($this_is_home_page ? 'YES' : 'NO') . ' -->';
+?>
+<?php require($template->get_template_dir('super_data_head.php',DIR_WS_TEMPLATE, $current_page_base,'templates'). '/super_data_head.php'); ?>
+<?php
   $zco_notifier->notify('NOTIFY_HTML_HEAD_END', $current_page_base);
 ?>
 </head>
