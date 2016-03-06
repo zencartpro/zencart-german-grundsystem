@@ -5,7 +5,7 @@
 # * @copyright Copyright 2003-2016 Zen Cart Development Team
 # * @copyright Portions Copyright 2003 osCommerce
 # * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
-# * @version $Id: mysql_zencart.sql 19459 2016-03-05 15:49:16Z webchills $
+# * @version $Id: mysql_zencart.sql 19460 2016-03-06 17:49:16Z webchills $
 #
 
 ############ IMPORTANT INSTRUCTIONS ###############
@@ -1064,6 +1064,7 @@ CREATE TABLE orders (
   order_tax decimal(14,2) default NULL,
   paypal_ipn_id int(11) NOT NULL default '0',
   ip_address varchar(96) NOT NULL default '',
+  order_device varchar(10) NOT NULL default '',
   PRIMARY KEY  (orders_id),
   KEY idx_status_orders_cust_zen (orders_status,orders_id,customers_id),
   KEY idx_date_purchased_zen (date_purchased),

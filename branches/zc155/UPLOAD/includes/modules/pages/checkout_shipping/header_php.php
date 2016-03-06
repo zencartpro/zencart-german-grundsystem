@@ -6,11 +6,27 @@
  * @copyright Copyright 2003-2016 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: header_php.php 732 2016-03-02 21:49:16Z webchills $
+ * @version $Id: header_php.php 733 2016-03-06 21:49:16Z webchills $
  */
 // This should be first line of the script:
   $zco_notifier->notify('NOTIFY_HEADER_START_CHECKOUT_SHIPPING');
   require_once(DIR_WS_CLASSES . 'http_client.php');
+  
+  // check if is mobile or tablet visitor to allow order report mobile, tablet or desktop
+  
+ if (!class_exists('Mobile_Detect')) {
+  include_once(DIR_WS_CLASSES . 'Mobile_Detect.php');
+}
+$detect = new Mobile_Detect;
+$isMobile = $detect->isMobile();
+$isTablet = $detect->isTablet();
+ if ($detect->isMobile()) {
+$_SESSION['mobilevisitor'] = true;
+
+}
+if ($detect->isTablet()) {
+$_SESSION['tabletvisitor'] = true;
+}
 
 // if there is nothing in the customers cart, redirect them to the shopping cart page
   if ($_SESSION['cart']->count_contents() <= 0) {

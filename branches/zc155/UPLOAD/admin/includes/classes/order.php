@@ -4,7 +4,7 @@
  * @copyright Copyright 2003-2016 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: order.php 732 2016-02-28 19:49:16Z webchills $
+ * @version $Id: order.php 733 2016-03-06 19:49:16Z webchills $
  */
 
   class order extends base {
@@ -34,7 +34,7 @@
                                     coupon_code, payment_method, payment_module_code, shipping_method, shipping_module_code,
                                     cc_type, cc_owner, cc_number, cc_expires, currency,
                                     currency_value, date_purchased, orders_status, last_modified,
-                                    order_total, order_tax, ip_address
+                                    order_total, order_tax, ip_address, order_device
                              from " . TABLE_ORDERS . "
                              where orders_id = '" . (int)$order_id . "'");
 
@@ -76,7 +76,8 @@
                           'total' => $order->fields['order_total'],
                           'tax' => $order->fields['order_tax'],
                           'last_modified' => $order->fields['last_modified'],
-                          'ip_address' => $order->fields['ip_address']
+                          'ip_address' => $order->fields['ip_address'],
+                          'order_device' => $order->fields['order_device']
                           );
 
       $this->customer = array('name' => $order->fields['customers_name'],
