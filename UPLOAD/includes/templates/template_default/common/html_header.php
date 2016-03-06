@@ -8,7 +8,7 @@
  * @copyright Copyright 2003-2016 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: html_header.php 855 2016-02-29 12:10:39Z webchills $
+ * @version $Id: html_header.php 856 2016-03-06 12:10:39Z webchills $
  */
 
 $zco_notifier->notify('NOTIFY_HTML_HEAD_START', $current_page_base, $template_dir);
@@ -23,6 +23,14 @@ require(DIR_WS_MODULES . zen_get_module_directory('meta_tags.php'));
 /**
  * output main page HEAD tag and related headers/meta-tags, etc
  */
+?>
+<?php
+if (!class_exists('Mobile_Detect')) {
+  include_once(DIR_WS_CLASSES . 'Mobile_Detect.php');
+}
+  $detect = new Mobile_Detect;
+  $isMobile = $detect->isMobile();
+  $isTablet = $detect->isTablet();
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" <?php echo HTML_PARAMS; ?>>

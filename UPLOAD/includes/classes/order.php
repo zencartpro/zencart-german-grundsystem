@@ -5,7 +5,7 @@
  * @package classes
  * @copyright Copyright 2003-2016 Zen Cart Development Team
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: order.php 857 2016-02-17 09:13:25Z webchills $
+ * @version $Id: order.php 858 2016-03-06 09:13:25Z webchills $
  */
 /**
  * order class
@@ -673,6 +673,13 @@ class order extends base {
                             'ip_address' => $_SESSION['customers_ip_address'] . ' - ' . $_SERVER['REMOTE_ADDR']
                             );
 
+    if ($_SESSION['mobilevisitor'] == true){
+    $sql_data_array[order_device] = Mobile;
+    } else if ($_SESSION['tabletvisitor'] == true){
+    $sql_data_array[order_device] = Tablet;
+    } else {
+    $sql_data_array[order_device] = Desktop;
+    }
 
     zen_db_perform(TABLE_ORDERS, $sql_data_array);
 

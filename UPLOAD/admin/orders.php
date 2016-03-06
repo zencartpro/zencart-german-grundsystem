@@ -4,7 +4,7 @@
  * @copyright Copyright 2003-2016 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: orders.php 795 2016-03-03 21:13:51Z webchills $
+ * @version $Id: orders.php 796 2016-03-06 21:13:51Z webchills $
  */
 
   require('includes/application_top.php');
@@ -572,6 +572,10 @@ function couponpopupWindow(url) {
            <td class="main"><strong><?php echo ENTRY_PAYMENT_METHOD; ?></strong></td>
            <td class="main"><?php echo $order->info['payment_method']; ?></td>
         </tr>
+	 <tr>
+           <td class="main"><strong>Device: </strong></td>
+           <td class="main"><?php echo $order->info['order_device']; ?></td>
+        </tr>
 <?php
     if (zen_not_null($order->info['cc_type']) || zen_not_null($order->info['cc_owner']) || zen_not_null($order->info['cc_number'])) {
 ?>
@@ -829,6 +833,7 @@ function couponpopupWindow(url) {
                 <td class="dataTableHeadingContent" align="center"><?php echo TABLE_HEADING_DATE_PURCHASED; ?></td>
                 <td class="dataTableHeadingContent" align="right"><?php echo TABLE_HEADING_STATUS; ?></td>
                 <td class="dataTableHeadingContent" align="center"><?php echo TABLE_HEADING_CUSTOMER_COMMENTS; ?></td>
+                 <td class="dataTableHeadingContent" align="center">Device</td>
                 <td class="dataTableHeadingContent" align="right"><?php echo TABLE_HEADING_ACTION; ?>&nbsp;</td>
               </tr>
 
@@ -865,7 +870,7 @@ function couponpopupWindow(url) {
 ?>
 <?php
 
-    $orders_query_raw = "select " . $search_distinct . " o.orders_id, o.customers_id, o.customers_name, o.payment_method, o.shipping_method, o.date_purchased, o.last_modified, o.currency, o.currency_value, s.orders_status_name, ot.text as order_total" .
+    $orders_query_raw = "select " . $search_distinct . " o.orders_id, o.customers_id, o.customers_name, o.payment_method, o.shipping_method, o.date_purchased, o.last_modified, o.currency, o.currency_value, o.order_device, s.orders_status_name, ot.text as order_total" .
 $new_fields . "
                           from (" . TABLE_ORDERS . " o " .
                           $new_table . ")
@@ -939,7 +944,17 @@ if (($_GET['page'] == '' or $_GET['page'] <= 1) and $_GET['oID'] != '') {
                 <td class="dataTableContent" align="center"><?php echo zen_datetime_short($orders->fields['date_purchased']); ?></td>
                 <td class="dataTableContent" align="right"><?php echo ($orders->fields['orders_status_name'] != '' ? $orders->fields['orders_status_name'] : TEXT_INVALID_ORDER_STATUS); ?></td>
                 <td class="dataTableContent" align="center"><?php echo (zen_get_orders_comments($orders->fields['orders_id']) == '' ? '' : zen_image(DIR_WS_IMAGES . 'icon_yellow_on.gif', TEXT_COMMENTS_YES, 16, 16)); ?></td>
+<?php if ($orders->fields['order_device'] == 'Mobile') { 
+	 echo '<td class="dataTableContent" align="center"><img src="images/icon-mobile.png" alt="Mobile" title="Mobile"/></td>';
 
+  } else if ($orders->fields['order_device'] == 'Tablet') { 
+  	
+	echo '	<td class="dataTableContent" align="center"><img src="images/icon-tablet.png" alt="Tablet" title="Tablet"/></td>';
+
+  } else {
+  echo '	<td class="dataTableContent" align="center"><img src="images/icon-desktop.png" alt="Desktop" title="Desktop"/></td>';
+  }
+?>
                 <td class="dataTableContent" align="right"><?php echo '<a href="' . zen_href_link(FILENAME_ORDERS, zen_get_all_get_params(array('oID', 'action')) . 'oID=' . $orders->fields['orders_id'] . '&action=edit', 'NONSSL') . '">' . zen_image(DIR_WS_IMAGES . 'icon_edit.gif', ICON_EDIT) . '</a>'; ?><?php if (isset($oInfo) && is_object($oInfo) && ($orders->fields['orders_id'] == $oInfo->orders_id)) { echo zen_image(DIR_WS_IMAGES . 'icon_arrow_right.gif', ''); } else { echo '<a href="' . zen_href_link(FILENAME_ORDERS, zen_get_all_get_params(array('oID')) . 'oID=' . $orders->fields['orders_id'], 'NONSSL') . '">' . zen_image(DIR_WS_IMAGES . 'icon_info.gif', IMAGE_ICON_INFO) . '</a>'; } ?>&nbsp;</td>
               </tr>
 <?php
@@ -999,6 +1014,7 @@ if (($_GET['page'] == '' or $_GET['page'] <= 1) and $_GET['oID'] != '') {
         if (zen_not_null($oInfo->last_modified)) $contents[] = array('text' => TEXT_DATE_ORDER_LAST_MODIFIED . ' ' . zen_date_short($oInfo->last_modified));
         $contents[] = array('text' => '<br />' . TEXT_INFO_PAYMENT_METHOD . ' '  . $oInfo->payment_method);
         $contents[] = array('text' => '<br />' . ENTRY_SHIPPING . ' '  . $oInfo->shipping_method);
+        $contents[] = array('text' => 'Device: ' . $oInfo->order_device);
 
 // check if order has open gv
         $gv_check = $db->Execute("select order_id, unique_id
