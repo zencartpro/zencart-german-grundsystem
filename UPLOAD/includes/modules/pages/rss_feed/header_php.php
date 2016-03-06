@@ -4,10 +4,10 @@
  *
  * @package rss feed
  * @copyright Copyright 2004-2008 Andrew Berezin eCommerce-Service.com
- * @copyright Portions Copyright 2003-2014 Zen Cart Development Team
+ * @copyright Portions Copyright 2003-2016 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: header_php.php, 2014-07-19 08:23:04 webchills $
+ * @version $Id: header_php.php, 2015-03-06 20:23:04 webchills $
  */
 //  @ini_set('display_errors', '1');
 //  error_reporting(E_ALL);
@@ -198,7 +198,18 @@ if(!$rss->rss_feed_cache($_SERVER['QUERY_STRING'], RSS_CACHE_TIME*60)) {
       $rss->rssFeedCacheSet(false);
       $limit = " LIMIT " . MAX_RANDOM_SELECT_SPECIALS;
     case "specials":
-      $specials_product_query = "SELECT DISTINCT p.products_id, pd.products_name, pd.products_description, p.products_image, p.products_date_added, p.products_last_modified, p.products_price, p.products_tax_class_id, s.specials_new_products_price as price, p.products_quantity, p.products_model, p.products_weight, p.manufacturers_id, m.manufacturers_name, r.reviews_rating
+    $sale_categories = $db->Execute("SELECT sale_categories_all FROM " . TABLE_SALEMAKER_SALES . " WHERE sale_status = 1");
+    
+    
+    if ($sale_categories->RecordCount() > 0){
+	$sale_categories_all = '';
+	while(!$sale_categories->EOF) {
+	  	$sale_categories_all .= substr($sale_categories->fields['sale_categories_all'], 0, -1); 
+		  $sale_categories->MoveNext();
+	}
+	$sale_categories_all = substr($sale_categories_all, 1); 
+
+       $specials_product_query = "SELECT DISTINCT p.products_id, pd.products_name, pd.products_description, p.products_image, p.products_date_added, p.products_last_modified, p.products_price, p.products_tax_class_id, s.specials_new_products_price as price, p.products_quantity, p.products_model, p.products_weight, p.manufacturers_id, p.master_categories_id, m.manufacturers_name, r.reviews_rating
                                  FROM " . TABLE_PRODUCTS . " p
                                    LEFT JOIN " . TABLE_PRODUCTS_DESCRIPTION . " pd ON (pd.products_id = p.products_id)
                                    LEFT JOIN " . TABLE_MANUFACTURERS . " m ON (p.manufacturers_id = m.manufacturers_id)
@@ -206,7 +217,20 @@ if(!$rss->rss_feed_cache($_SERVER['QUERY_STRING'], RSS_CACHE_TIME*60)) {
                                    LEFT JOIN " . TABLE_SPECIALS . " s ON (p.products_id = s.products_id)
                                  WHERE p.products_status = 1
                                    AND pd.language_id = " . (int)$_SESSION['languages_id'] . "
-                                   AND s.status = 1 " . $limit;
+                                   AND (s.status = 1 OR (p.master_categories_id IN ($sale_categories_all))) " . $limit;
+
+} else {
+  
+       $specials_product_query = "SELECT DISTINCT p.products_id, pd.products_name, pd.products_description, p.products_image, p.products_date_added, p.products_last_modified, p.products_price, p.products_tax_class_id, s.specials_new_products_price as price, p.products_quantity, p.products_model, p.products_weight, p.manufacturers_id, m.manufacturers_name, r.reviews_rating
+                                 FROM " . TABLE_PRODUCTS . " p
+                                   LEFT JOIN " . TABLE_PRODUCTS_DESCRIPTION . " pd ON (pd.products_id = p.products_id)
+                                   LEFT JOIN " . TABLE_MANUFACTURERS . " m ON (p.manufacturers_id = m.manufacturers_id)
+                                   LEFT JOIN " . TABLE_REVIEWS . " r ON (p.products_id = r.products_id)
+                                   LEFT JOIN " . TABLE_SPECIALS . " s ON (p.products_id = s.products_id)
+                                 WHERE p.products_status = 1
+                                   AND pd.language_id = " . (int)$_SESSION['languages_id'] . "
+                                   AND s.status = 1  " . $limit;
+}
       zen_rss_products($specials_product_query, $random);
       break;
 
