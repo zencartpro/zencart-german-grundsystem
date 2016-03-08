@@ -1,7 +1,7 @@
 ﻿Willkommen bei der deutschen Zen-Cart Version
 Version 1.5.5 BETA
 
-BETA vom 29.02.2016
+BETA vom 08.03.2016
 NUR ZUM TESTEN EINER NEUINSTALLATION IN EINEM TESTSYSTEM - NICHT FÜR LIVESHOPS GEEIGNET
 NICHT FÜR UPDATES GEEIGNET
 
@@ -33,7 +33,7 @@ vereinfachte Installation
 Neue Funktionen (Auszug):
 Passwörter der Kunden via Admin änderbar
 Übersichtlichere Menüs in der Administration
-CSS Buttons in der Administration
+CSS Buttons in der Administration (optional)
 Erweiterte Google Analytics Funktionen (Enhanced E-Commerce)
 Erweiterte Facebook Open Graph und schema.org Mikrodaten Unterstützung
 Erweiterter Lagerbestandsbericht
@@ -44,3 +44,4 @@ Unterstützung der neuesten Paypal Checkout Funktionalitäten (API NVP 124.0)
 Tiny MCE und CKEditor in den neuesten Versionen
 Details der Bestellung erscheinen auf der checkout success Seite
 Automatisches Update der Wechselkurse für Währungen via cron
+Zen Colorbox integriert

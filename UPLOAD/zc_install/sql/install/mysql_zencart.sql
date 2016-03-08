@@ -5,7 +5,7 @@
 # * @copyright Copyright 2003-2016 Zen Cart Development Team
 # * @copyright Portions Copyright 2003 osCommerce
 # * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
-# * @version $Id: mysql_zencart.sql 19460 2016-03-06 17:49:16Z webchills $
+# * @version $Id: mysql_zencart.sql 19461 2016-03-08 21:49:16Z webchills $
 #
 
 ############ IMPORTANT INSTRUCTIONS ###############
@@ -2120,6 +2120,7 @@ VALUES ('configMyStore', 'BOX_CONFIGURATION_MY_STORE', 'FILENAME_CONFIGURATION',
        ('configGoogleAnalytics','BOX_CONFIGURATION_GOOGLEANALYTICS','FILENAME_CONFIGURATION', 'gID=32', 'configuration', 'Y', 32),
        ('configFacebook','BOX_CONFIGURATION_FACEBOOK','FILENAME_CONFIGURATION', 'gID=33', 'configuration', 'Y', 33),
        ('configRSSFeed','BOX_CONFIGURATION_RSSFEED','FILENAME_CONFIGURATION', 'gID=34', 'configuration', 'Y', 34),
+	   ('configZenColorbox','BOX_CONFIGURATION_ZEN_COLORBOX','FILENAME_CONFIGURATION', 'gID=35', 'configuration', 'Y', 35),
        ('categories', 'BOX_CATALOG_CATEGORIES_PRODUCTS', 'FILENAME_CATEGORIES', '', 'catalog', 'Y', 1),
        ('productTypes', 'BOX_CATALOG_PRODUCT_TYPES', 'FILENAME_PRODUCT_TYPES', '', 'catalog', 'Y', 2),
        ('priceManager', 'BOX_CATALOG_PRODUCTS_PRICE_MANAGER', 'FILENAME_PRODUCTS_PRICE_MANAGER', '', 'catalog', 'Y', 3),
@@ -3000,7 +3001,7 @@ INSERT INTO configuration (configuration_title, configuration_key, configuration
 INSERT INTO configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, last_modified, date_added, use_function, set_function) VALUES('Twitter Handle', 'FACEBOOK_OPEN_GRAPH_TWUSER', '', 'Please enter your Twitter Handle like this @prowebs', 33, 29, NOW(), NOW(), NULL, NULL);
 INSERT INTO configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, last_modified, date_added, use_function, set_function) VALUES('Facebook Page', 'FACEBOOK_OPEN_GRAPH_FBPG', '', 'Please enter your full url/link to your facebook page (https://www.facebook.com/xxx)', 33, 30, NOW(), NOW(), NULL, NULL);
 INSERT INTO configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, last_modified, date_added, use_function, set_function) VALUES('Locale', 'FACEBOOK_OPEN_GRAPH_LOCALE', 'German', 'Optional details about the language spoken. Languages may be specified by their common English name. If omitted, the language defaults to English.', 33, 31, NOW(), NOW(), NULL, NULL);
-INSERT INTO configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, last_modified, date_added, use_function, set_function) VALUES('Currency', 'FACEBOOK_OPEN_GRAPH_CUR', '', 'Please enter your currency code such as USD', 33, 32, NOW(), NOW(), NULL, NULL);
+INSERT INTO configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, last_modified, date_added, use_function, set_function) VALUES('Currency', 'FACEBOOK_OPEN_GRAPH_CUR', 'EUR', 'Please enter your currency code such as USD', 33, 32, NOW(), NOW(), NULL, NULL);
 INSERT INTO configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, last_modified, date_added, use_function, set_function) VALUES('Lead Time', 'FACEBOOK_OPEN_GRAPH_DTS', '', 'Please enter the average days until you ship orders such as 2', 33, 33, NOW(), NOW(), NULL, NULL);
 INSERT INTO configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, last_modified, date_added, use_function, set_function) VALUES('Condition', 'FACEBOOK_OPEN_GRAPH_COND', '', 'Please enter your products condition (NewCondition, UsedCondition, RefurbishedCondition, DamagedCondition)', 33, 34, NOW(), NOW(), NULL, NULL);
 INSERT INTO configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, last_modified, date_added, use_function, set_function) VALUES('Payment Type 1', 'FACEBOOK_OPEN_GRAPH_PAY1', '', 'Please enter ONE of the following payment types EXACTLY (ByBankTransferInAdvance, ByInvoice, Cash, CheckInAdvance, COD, DirectDebit, PayPal, PaySwarm, AmericanExpress, DinersClub, Discover, JCB, MasterCard, VISA)', 33, 35, NOW(), NOW(), NULL, NULL);
@@ -3045,6 +3046,28 @@ INSERT INTO configuration (configuration_title, configuration_key, configuration
 INSERT INTO configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, last_modified, date_added, use_function, set_function) VALUES ('Feed Cache', 'RSS_CACHE_TIME', '10', 'Cache Time (in min). If you don\'t want caching, set it to 0. The cache feeds are generated into the cache folder.', 34, 20, NOW(), NOW(), NULL, NULL);
 
 
+#Zen Colorbox Settings
+
+INSERT INTO configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, last_modified, date_added, use_function, set_function) VALUES
+('<b>Zen Colorbox</b>', 'ZEN_COLORBOX_STATUS', 'true', '<br />If true, all product images on the following pages will be displayed within a lightbox:<br /><br />- document_general_info<br />- document_product_info<br />- page (EZ-Pages)<br />- product_free_shipping_info<br />- product_info<br />- product_music_info<br />- product_reviews<br />- product_reviews_info<br />- product_reviews_write<br /><br /><b>Default: true</b>', 35, 100, NOW(), NOW(), NULL, 'zen_cfg_select_option(array(''true'', ''false''), '),
+('Overlay Opacity', 'ZEN_COLORBOX_OVERLAY_OPACITY', '0.6', '<br />Controls the transparency of the overlay.<br /><br /><b>Default: 0.6</b>', 35, 101, NOW(), NOW(), NULL, 'zen_cfg_select_option(array(''0'', ''0.1'', ''0.2'', ''0.3'', ''0.4'', ''0.5'', ''0.6'', ''0.7'', ''0.8'', ''0.9'', ''1''), '),
+('Resize Duration', 'ZEN_COLORBOX_RESIZE_DURATION', '400', '<br />Controls the speed of the image resizing.<br /><br />Note: This value is measured in milliseconds.<br /><br /><b>Default: 400</b><br />', 35, 102, NOW(), NOW(), NULL, NULL),
+('Initial Width', 'ZEN_COLORBOX_INITIAL_WIDTH', '250', '<br />If Enable Resize Animations is set to true, the lightbox will resize its width from this value to the current image width, when first displayed.<br /><br />Note: This value is measured in pixels.<br /><br /><b>Default: 250</b><br />', 35, 103, NOW(), NOW(), NULL, NULL),
+('Initial Height', 'ZEN_COLORBOX_INITIAL_HEIGHT', '250', '<br />If Enable Resize Animations is set to true, the lightbox will resize its height from this value to the current image height, when first displayed.<br /><br />Note: This value is measured in pixels.<br /><br /><b>Default: 250</b><br />', 35, 104, NOW(), NOW(), NULL, NULL),
+('Display Image Counter', 'ZEN_COLORBOX_COUNTER', 'true', '<br />If true, the image counter will be displayed (below the caption of each image) within the lightbox.<br /><br /><b>Default: true</b>', 35, 105, NOW(), NOW(), NULL, 'zen_cfg_select_option(array(''true'', ''false''),'),
+('Close on Overlay Click', 'ZEN_COLORBOX_CLOSE_OVERLAY', 'false', '<br />If true, the lightbox will close when the overlay is clicked.<br /><br /><b>Default: false</b>', 35, 106, NOW(), NOW(), NULL, 'zen_cfg_select_option(array(''true'', ''false''), '),
+('Loop', 'ZEN_COLORBOX_LOOP', 'true', '<br />If true, Images will loop in both directions.<br /><br /><b>Default: true</b>', 35, 107, NOW(), NOW(), NULL, 'zen_cfg_select_option(array(''true'', ''false''), '),
+('<b>Slideshow</b>', 'ZEN_COLORBOX_SLIDESHOW', 'false', '<br />If true, Images will display as a slideshow.<br /><br /><b>Default: false</b>', 35, 200, NOW(), NOW(), NULL, 'zen_cfg_select_option(array(''true'', ''false''), '),
+('&nbsp; Slideshow Auto Start', 'ZEN_COLORBOX_SLIDESHOW_AUTO', 'true', '<br />If true, your slideshow will auto start.<br /><br /><b>Default: true</b>', 35, 201, NOW(), NOW(), NULL, 'zen_cfg_select_option(array(''true'', ''false''), '),
+('&nbsp; Slideshow Speed', 'ZEN_COLORBOX_SLIDESHOW_SPEED', '2500', '<br />Sets the speed of the slideshow <br /><br />Note: This value is measured in milliseconds.<br /><br /><b>Default: 2500</b>', 35, 202, NOW(), NOW(), NULL, NULL),
+('&nbsp; Slideshow Start Text', 'ZEN_COLORBOX_SLIDESHOW_START_TEXT', 'start slideshow', '<br />Link text to start the slideshow.<br /><br /><b>Default: start slideshow</b>', 35, 203, NOW(), NOW(), NULL, NULL),
+('&nbsp; Slideshow Stop Text', 'ZEN_COLORBOX_SLIDESHOW_STOP_TEXT', 'stop slideshow', '<br />Link text to stop the slideshow.<br /><br /><b>Default: stop slideshow</b>', 35, 204, NOW(), NOW(), NULL, NULL),
+('<b>Gallery Mode</b>', 'ZEN_COLORBOX_GALLERY_MODE', 'true', '<br />If true, the lightbox will allow additional images to quickly be displayed using previous and next buttons.<br /><br /><b>Default: true</b>', 35, 300, NOW(), NOW(), NULL, 'zen_cfg_select_option(array(''true'', ''false''),'),
+('&nbsp; Include Main Image in Gallery', 'ZEN_COLORBOX_GALLERY_MAIN_IMAGE', 'true', '<br />If true, the main product image will be included in the lightbox gallery.<br /><br /><b>Default: true</b>', 35, 301, NOW(), NOW(), NULL, 'zen_cfg_select_option(array(''true'', ''false''),'),
+('<b>EZ-Pages Support</b>', 'ZEN_COLORBOX_EZPAGES', 'true', '<br />If true, the lightbox effect will be used for linked images on all EZ-Pages.<br /><br /><b>Default: true</b>', 35, 400, NOW(), NOW(), NULL, 'zen_cfg_select_option(array(''true'', ''false''),'),
+('&nbsp; File Types', 'ZEN_COLORBOX_FILE_TYPES', 'jpg,png,gif', '<br />On EZ-Pages, the lightbox effect will be applied to all images with one of the following file types.<br /><br /><b>Default: jpg,png,gif</b><br />', 35, 401, NOW(), NOW(), NULL, NULL);
+
+
 #Vataddon
 INSERT INTO configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, last_modified, date_added, use_function, set_function) VALUES ('Display Vat Addon', 'DISPLAY_VATADDON_WHERE', 'ALL', 'Do you want to display the text incl. or excl. VAT plus shipping costs near the prices?<br />0=off<br/>ALL=everywhere<br/>product_info=only on products details page<br />', '1', '120', NULL, now(), NULL, 'zen_cfg_select_option(array(\'0\', \'ALL\', \'product_info\'), ');
 
@@ -3081,6 +3104,7 @@ INSERT INTO configuration_group VALUES (31, 'Minify Settings', 'Minify Settings'
 INSERT INTO configuration_group VALUES (32, 'Google Analytics', 'Google Analytics Settings', 32, '1');
 INSERT INTO configuration_group VALUES (33, 'Facebook/Open Graph/Microdata', 'Facebook/Open Graph/Microdata', 33, '1');
 INSERT INTO configuration_group VALUES (34, 'RSS Feed', 'RSS Feed Settings', 34, '1');
+INSERT INTO configuration_group VALUES (35, 'Zen Colorbox', 'Zen Colorbox Settings', 35, '1');
 
 INSERT INTO currencies VALUES (1,'Euro','EUR','&euro;','','.',',','2','1.0000', now());
 INSERT INTO currencies VALUES (2,'US Dollar','USD','$','','.',',','2','1.3735', now());
@@ -3523,8 +3547,8 @@ REPLACE INTO configuration_group (configuration_group_id, language_id, configura
 (31, 43, 'Minify Einstellungen', 'Minify Einstellungen', 31, 1),
 (32, 43, 'Google Analytics Einstellungen', 'Google Analytics Einstellungen', 32, 1),
 (33, 43, 'Facebook/Open Graph/Microdata', 'Facebook/Open Graph/Microdata Einstellungen', 33, 1),
-(34, 43, 'RSS Feed', 'RSS Feed Einstellungen', 34, 1);
-
+(34, 43, 'RSS Feed', 'RSS Feed Einstellungen', 34, 1),
+(35, 43, 'Zen Colorbox', 'Zen Colorbox Einstellungen', 35, 1);
 
 
 INSERT INTO configuration_language (configuration_title, configuration_key, configuration_language_id, configuration_description, last_modified, date_added) VALUES
@@ -4221,7 +4245,7 @@ INSERT INTO configuration_language (configuration_title, configuration_key, conf
 ('Open Graph - Twitter User', 'FACEBOOK_OPEN_GRAPH_TWUSER', 43, 'Tragen Sie Ihren Twitter Usernamen ein mit @ davor.<br/>Bsp: @meintwitteruser.', now(), now()),
 ('Open Graph - Facebook Page', 'FACEBOOK_OPEN_GRAPH_FBPG', 43, 'Tragen Sie die volle URL zu Ihrer Facebook Page ein.<br/>Bsp: https://www.facebook.com/meinonlineshop', now(), now()),
 ('Open Graph - Sprache', 'FACEBOOK_OPEN_GRAPH_LOCALE', 43, 'Tragen Sie Ihre Hauptsprache ein.<br/>Voreinstellung: German', now(), now()),
-('Open Graph - Sprache', 'FACEBOOK_OPEN_GRAPH_CUR', 43, 'Tragen Sie Ihre Währung ein ein.<br/>Voreinstellung: EUR', now(), now()),
+('Open Graph - Währung', 'FACEBOOK_OPEN_GRAPH_CUR', 43, 'Tragen Sie Ihre Währung ein ein.<br/>Voreinstellung: EUR', now(), now()),
 ('Open Graph - Lieferzeit', 'FACEBOOK_OPEN_GRAPH_DTS', 43, 'Tragen Sie Ihre durchschnittliche Lieferzeit in Tagen ein.<br/>Bsp: 2', now(), now()),
 ('Open Graph - Zustand der Artikel', 'FACEBOOK_OPEN_GRAPH_COND', 43, 'Tragen Sie den Zustand Ihrer Artikel ein.<br/>Mögliche Werte: NewCondition, UsedCondition, RefurbishedCondition, DamagedCondition', now(), now()),
 ('Open Graph - Zahlungsart 1', 'FACEBOOK_OPEN_GRAPH_PAY1', 43, 'Geben Sie EINE der folgenden Zahlungsarten EXAKT so ein: (ByBankTransferInAdvance, ByInvoice, Cash, CheckInAdvance, COD, DirectDebit, PayPal, PaySwarm, AmericanExpress, DinersClub, Discover, JCB, MasterCard, VISA)', now(), now()),
@@ -4266,6 +4290,27 @@ INSERT INTO configuration_language (configuration_title, configuration_key, conf
 ('RSS - Füge Jetzt kaufen Button hinzu', 'RSS_PRODUCTS_DESCRIPTION_BUYNOW', 43, 'Soll der Jetzt kaufen Button im Feed erscheinen?', now(), now()),
 ('RSS - Kategorien für Artikel', 'RSS_PRODUCTS_CATEGORIES', 43, 'Wenn ein cPath mit angegeben wird, sollen die Artikel, dann nur aus der Masterkategorie kommen oder aus allen Kategorien? (wichtig bei verlinkten Artikeln)', now(), now()),
 ('RSS - Cache', 'RSS_CACHE_TIME', 43, 'Dauer des Feed Cachings in Minuten (es werden Feed Files im cache Ordner abgelegt). Wenn Sie kein Caching verwenden wollen stellen Sie auf 0', now(), now()),
+
+
+# Adminmenü ID 35 - Zen Colorbox
+
+('<b>Zen Colorbox</b>', 'ZEN_COLORBOX_STATUS', 43, 'Wollen Sie für die Vergrößerung Ihrer Artikelbilder einen Lightboxeffekt nutzen?<br/><br/>Voreinstellung = true<br/>', now(), now()),
+('Overlay Transparenz', 'ZEN_COLORBOX_OVERLAY_OPACITY', 43, 'Gewünschte Transparenz des Overlays<br/><br/>Voreinstellung = 0.6<br/>', now(), now()),
+('Dauer der Bildvergrößerung', 'ZEN_COLORBOX_RESIZE_DURATION', 43, 'Geschwindigkeit in Millisekunden<br/><br/>Voreinstellung = 400<br/>', now(), now()),
+('Anfangs Bildbreite', 'ZEN_COLORBOX_INITIAL_WIDTH',  43, 'Breite des Artikelbildes beim ersten Aufruf<br/><br/>Voreinstellung = 250<br/>', now(), now()),
+('Anfangs Bildhöhe', 'ZEN_COLORBOX_INITIAL_HEIGHT', 43, 'Höhe des Artikelbildes beim ersten Aufruf<br/><br/>Voreinstellung = 250<br/>', now(), now()),
+('Bildzähler anzeigen', 'ZEN_COLORBOX_COUNTER', 43, 'Soll innerhalb der Lightbox eine Anzeige zur Anzahl der Bilder erscheinen?<br/><br/>Voreinstellung = true<br/>', now(), now()),
+('Beim Click aufs Overlay schließen?', 'ZEN_COLORBOX_CLOSE_OVERLAY', 43, 'Soll die Lightbox beim Clicken auf das Overlay geschlossen werden?<br/><br/>Voreinstellung = false<br/>', now(), now()),
+('Loop', 'ZEN_COLORBOX_LOOP', 43, 'Wenn auf true gestellt vergrößern sich die Bilder in beide Richtungen<br/><br/>Voreinstellung = true<br/>', now(), now()),
+('<b>Slideshow</b>', 'ZEN_COLORBOX_SLIDESHOW',  43, 'Sollen die zusätzlichen Artikelbilder in einer Slideshow angezeigt werden?<br/><br/>Voreinstellung = false<br/>', now(), now()),
+('&nbsp; Slideshow Autostart', 'ZEN_COLORBOX_SLIDESHOW_AUTO', 43, 'Slideshow automatisch starten?<br/><br/>Voreinstellung = true<br/>', now(), now()),
+('&nbsp; Slideshow Geschwindigkeit', 'ZEN_COLORBOX_SLIDESHOW_SPEED', 43, 'Geschwindigkeit der Slideshow in Millisekunden<br/><br/>Voreinstellung = 2500<br/>', now(), now()),
+('&nbsp; Slideshow Start Text', 'ZEN_COLORBOX_SLIDESHOW_START_TEXT', 43, 'Text des Links zum Starten der Slideshow<br/><br/>Voreinstellung = start slideshow<br/>', now(), now()),
+('&nbsp; Slideshow Stop Text', 'ZEN_COLORBOX_SLIDESHOW_STOP_TEXT', 43, 'Text des Links zum Stoppen der Slideshow<br/><br/>Voreinstellung = stop slideshow<br/>', now(), now()),
+('<b>Galerie Modus</b>', 'ZEN_COLORBOX_GALLERY_MODE', 43, 'Sollen die zusätzlichen Artikelbilder in einer Galerie zum Durchblättern erscheinen<br/><br/>Voreinstellung = true<br/>', now(), now()),
+('&nbsp; Hauptbild in Galerie aufnehmen?', 'ZEN_COLORBOX_GALLERY_MAIN_IMAGE', 43, 'Soll das Hauptartikelbild Bestandteil der Galerieansicht sein?<br/><br/>Voreinstellung = true<br/>', now(), now()),
+('<b>EZ-Pages Unterstützung</b>', 'ZEN_COLORBOX_EZPAGES', 43, 'Soll der Lightbox Effekt auch auf Bilder in den EZ Pages angewandt werden?<br/><br/>Voreinstellung = true<br/>', now(), now()),
+('&nbsp; Dateitypen', 'ZEN_COLORBOX_FILE_TYPES', 43, 'Auf den EZ-Pages wird der Lightbox Effekt auf alle Bilder mit folgenden Dateitypen angewandt:<br/><br/>Voreinstellung = jpg,png,gif<br/>', now(), now()),
 
 
 # Deutsche Einträge für Versandmodul Versandkostenfrei mit Optionen
