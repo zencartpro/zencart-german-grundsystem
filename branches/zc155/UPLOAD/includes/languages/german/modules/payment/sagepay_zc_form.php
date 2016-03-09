@@ -3,18 +3,18 @@
  * sagepay form
  *
  * @package paymentMethod
- * @copyright Copyright 2003-2015 Zen Cart Development Team
+ * @copyright Copyright 2003-2016 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: Author: Wilt New in v1.5.5 $
+ * @version $Id: Author: zcwilt  Wed Jan 6 18:17:56 2016 +0000 New in v1.5.5 $
  */
 
 if (!defined('IS_ADMIN_FLAG')) {
     die('Illegal Access');
 }
-define('MODULE_PAYMENT_SAGEPAY_ZC_FORM_VNO', '1.0 Alpha');
+
 define('MODULE_PAYMENT_SAGEPAY_ZC_FORM_ADMIN_TEXT_TITLE', 'Sagepay Form');
-define('MODULE_PAYMENT_SAGEPAY_ZC_FORM_ADMIN_TEXT_DESCRIPTION', '<fieldset style="background: #eee; margin-bottom: 1.5em"><legend style="font-size: 1.2em; font-weight: bold">Test Cards Infomation</legend><br />Note : Use these card details on the simulater or test site only!!<br /><br />VISA 4929000000006<br />MASTERCARD 5404000000000001<br />DELTA 4462000000000003<br />SOLO 6334900000000005 Issue 01<br />DOMESTIC MAESTRO 5641820000000005 Issue 01<br />AMEX 374200000000004<br />ELECTRON 4917300000000008<br />JCB 3569990000000009<br />DINERS 36000000000008<br /><br />You will need to supply the following values for<br />CV2, Billing Address and Billing Post Code Numbers.<br /><br />CV2 123<br />Billing Address Numbers 88<br />Billing Post Code Numbers 412<br />These are the only values which will return as Matched.<br /><br />You will also need to enter the<br />3D Secure password as " password " (it is case sensitive)<br />so as the 3D Secure authentication returns<br />Fully Authenticated.');
+define('MODULE_PAYMENT_SAGEPAY_ZC_FORM_ADMIN_TEXT_DESCRIPTION', '<fieldset style="background: #eee; margin-bottom: 1.5em"><legend style="font-size: 1.2em; font-weight: bold">Test Cards Infomation</legend><br />Note : Use these card details on the simulator or test site only!!<br /><br />VISA 4929000000006<br />MASTERCARD 5404000000000001<br />DELTA 4462000000000003<br />SOLO 6334900000000005 Issue 01<br />DOMESTIC MAESTRO 5641820000000005 Issue 01<br />AMEX 374200000000004<br />ELECTRON 4917300000000008<br />JCB 3569990000000009<br />DINERS 36000000000008<br /><br />You will need to supply the following values for<br />CV2, Billing Address and Billing Post Code Numbers.<br /><br />CV2 123<br />Billing Address Numbers 88<br />Billing Post Code Numbers 412<br />These are the only values which will return as Matched.<br /><br />You will also need to enter the<br />3D Secure password as " password " (it is case sensitive)<br />so as the 3D Secure authentication returns<br />Fully Authenticated.');
 define('MODULE_PAYMENT_SAGEPAY_ZC_FORM_CATALOG_TEXT_TITLE', 'Credit/Debit Card (Secured by Sage Pay)');
 
 

@@ -6,7 +6,7 @@
  * @copyright Copyright 2003-2016 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
-  * @version $Id: authorizenet_aim.php 807 2016-02-29 15:47:36Z webchills $
+ * @version $Id: Author: DrByte  Thu Mar 3 22:31:02 2016 -0500 Modified in v1.5.5 $
  */
 /**
  * Authorize.net Payment Module (AIM version)
@@ -547,6 +547,7 @@ class authorizenet_aim extends base {
     $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, use_function, date_added) values ('Set Needed For Review Order Status', 'MODULE_PAYMENT_AUTHORIZENET_AIM_REVIEW_ORDER_STATUS_ID', '1', 'Set the status of orders made with this payment module, BUT are needing to be reviewed for processing', '6', '0', 'zen_cfg_pull_down_order_statuses(', 'zen_get_order_status_name', now())");
     $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) values ('Debug Mode', 'MODULE_PAYMENT_AUTHORIZENET_AIM_DEBUGGING', 'Off', 'Would you like to enable debug mode?  A complete detailed log of failed transactions may be emailed to the store owner.', '6', '0', 'zen_cfg_select_option(array(\'Off\', \'Log File\', \'Log and Email\'), ', now())");
     $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) values ('Currency Supported', 'MODULE_PAYMENT_AUTHORIZENET_AIM_CURRENCY', 'USD', 'Which currency is your Authnet Gateway Account configured to accept?<br>(Purchases in any other currency will be pre-converted to this currency before submission using the exchange rates in your store admin.)', '6', '0', 'zen_cfg_select_option(array(\'USD\', \'CAD\', \'GBP\', \'EUR\', \'AUD\', \'NZD\'), ', now())");
+
   }
   /**
    * Remove the module and all its settings
@@ -741,7 +742,7 @@ class authorizenet_aim extends base {
       $sql = $db->bindVars($sql, ':respText', $db_response_text, 'string');
       $sql = $db->bindVars($sql, ':authType', $response[11], 'string');
       if (trim($this->transaction_id) != '') {
-        $sql = $db->bindVars($sql, ':transID', $this->transaction_id, 'string');
+        $sql = $db->bindVars($sql, ':transID', substr($this->transaction_id, 0, strpos($this->transaction_id, ' ')), 'string');
       } else {
         $sql = $db->bindVars($sql, ':transID', 'NULL', 'passthru');
       }
