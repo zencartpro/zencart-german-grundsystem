@@ -10,7 +10,7 @@
  * @copyright Copyright 2003-2016 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version GIT: $Id: picaflor-azul Modified in v1.5.5 $
+ * @version $Id: picaflor-azul Sat Mar 5 12:24:13 2016 -0500 New in v1.5.5 $
  */
 ?>
 <div class="centerColumn" id="indexCategories">
@@ -27,7 +27,8 @@
  * require the html_define for the index/categories page
  */
   include($define_page);
-?></div>
+?>
+</div>
 <?php } ?>
 
 <?php } else { //show_welcome ?>
@@ -48,7 +49,10 @@ if (PRODUCT_LIST_CATEGORIES_IMAGE_STATUS_TOP == 'true') {
   }
 } // categories_image
 ?>
+<?php
+if ($show_welcome != true) { ?>
 </div>
+<?php } ?>
 
 <?php
 // categories_description
@@ -58,7 +62,10 @@ if (PRODUCT_LIST_CATEGORIES_IMAGE_STATUS_TOP == 'true') {
 
 <?php } // categories_description ?>
 
+<?php
+if ($show_welcome != true) { ?>
 </div>
+<?php } ?>
 
 
 <!-- BOF: Display grid of available sub-categories, if any -->
@@ -110,7 +117,8 @@ while (!$show_display_category->EOF) {
 <?php } ?>
 
 <?php if ($show_display_category->fields['configuration_key'] == 'SHOW_PRODUCT_INFO_CATEGORY_UPCOMING') { ?>
-<?php include(DIR_WS_MODULES . zen_get_module_directory(FILENAME_UPCOMING_PRODUCTS)); ?><?php } ?>
+<?php include(DIR_WS_MODULES . zen_get_module_directory(FILENAME_UPCOMING_PRODUCTS)); ?>
+<?php } ?>
 <?php
   $show_display_category->MoveNext();
 } // !EOF
