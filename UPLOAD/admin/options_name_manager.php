@@ -4,7 +4,7 @@
  * @copyright Copyright 2003-2016 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: options_name_manager.php 736 2016-03-03 21:49:16Z webchills $
+ * @version $Id: options_name_manager.php 737 2016-03-10 20:49:16Z webchills $
  */
 
   require('includes/application_top.php');
@@ -693,7 +693,7 @@ function go_option() {
 <?php
   } else {
 ?>
-                <td align="center" class="smallText">&nbsp;<?php echo '<a href="' . zen_href_link(FILENAME_OPTIONS_NAME_MANAGER, 'action=update_option&option_id=' . $options_values->fields['products_options_id'] . '&option_order_by=' . $option_order_by . '&option_page=' . $_GET['option_page'] . (isset($_GET['value_page']) ? '&value_page=' . $_GET['value_page'] . '&' : '') . (isset($_GET['attribute_page']) ? '&attribute_page=' . $_GET['attribute_page'] : '') ) . '">'; ?><?php echo zen_image_button('button_edit.gif', IMAGE_UPDATE); ?></a>&nbsp;&nbsp;<?php echo '<a href="' . zen_href_link(FILENAME_OPTIONS_NAME_MANAGER, 'action=delete_product_option&option_id=' . $options_values->fields['products_options_id'] . (isset($_GET['option_page']) ? '&option_page=' . $_GET['option_page'] . '&' : '') . '&option_order_by=' . $option_order_by, 'NONSSL') , '">'; ?><?php echo zen_image_button('button_delete.gif', IMAGE_DELETE); ?></a>&nbsp;</td>
+                <td align="center" class="smallText">&nbsp;<?php echo '<a href="' . zen_href_link(FILENAME_OPTIONS_NAME_MANAGER, 'action=update_option&option_id=' . $options_values->fields['products_options_id'] . '&option_order_by=' . $option_order_by . '&option_page=' . $_GET['option_page'] . (isset($_GET['value_page']) ? '&value_page=' . $_GET['value_page'] . '&' : '') . (isset($_GET['attribute_page']) ? '&attribute_page=' . $_GET['attribute_page'] : '') ) . '">'; ?><?php echo zen_image_button('button_edit.gif', IMAGE_EDIT); ?></a>&nbsp;&nbsp;<?php echo '<a href="' . zen_href_link(FILENAME_OPTIONS_NAME_MANAGER, 'action=delete_product_option&option_id=' . $options_values->fields['products_options_id'] . (isset($_GET['option_page']) ? '&option_page=' . $_GET['option_page'] . '&' : '') . '&option_order_by=' . $option_order_by, 'NONSSL') , '">'; ?><?php echo zen_image_button('button_delete.gif', IMAGE_DELETE); ?></a>&nbsp;</td>
 <?php
   }
 ?>

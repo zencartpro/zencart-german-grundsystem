@@ -4347,6 +4347,29 @@ INSERT INTO configuration_language (configuration_title, configuration_key, conf
 ('Nachnahmegebühr für FedEx', 'MODULE_ORDER_TOTAL_COD_FEE_FEDEX', 43, 'FedEx: &lt;Ländercode&gt;:&lt;Nachnahmegebühr&gt;, .... 00 als Ländercode sorgt dafür, dass die Nachnahmegebühr für alle Länder gültig ist. Wenn der Ländercode 00 ist, muss es der letzte Eintrag sein. Wenn kein Eintrag 00:9.99 vorhanden ist, wird die Nachnahmegebühr in fremde Länder nicht berechnet (unmöglich).', now(), now()),
 ('Steuerklasse', 'MODULE_ORDER_TOTAL_COD_TAX_CLASS', 43, 'Welche Steuerklasse soll angewendet werden?', now(), now()),
 
+
+# Deutsche Einträge für Versand Modul perweightunit
+('Versandkosten nach Gewicht aktivieren?', 'MODULE_SHIPPING_PERWEIGHTUNIT_STATUS', 43, 'Möchten Sie Versandkosten nach Gewicht anbieten?<br /><br />Produktmenge * Einheiten (Produktgewicht ) * Kosten pro Einheit', now(), now()),
+('Versandkosten nach Gewicht und Stück', 'MODULE_SHIPPING_PERWEIGHTUNIT_COST', 43, 'Hinweis: Wenn Sie dieses Modul nutzen, kontrollieren Sie die Tara-Einstellungen (Verpackungsgewicht) in <br />Konfiguration-->Versandoptionen und stellen Sie sicher, dass das *Maximales Versandgewicht* hoch genug ist, um den Preis zu bestimmen, zb. 5000.00. Konfigurieren Sie auch die Einstellungen für *Verpackungsgewicht für kleine bis mittlere Pakete: prozentuale Gewichtzunahme* und *Verpackungsgewicht für größere Pakete: prozentuelle Gewichtszunahme*. Diese werden auch zum Preis hinzugefügt.<br /><br />Die Versandkosten werden verwendet, die Versandkosten zu bestimmen, basierend auf: Produktmenge * Einheiten (Produktgewicht ) * Kosten pro Einheit - in einer Bestellung, die diese Versandart verwendet.', now(), now()),
+('Bearbeitungsgebühr', 'MODULE_SHIPPING_PERWEIGHTUNIT_HANDLING', 43, 'Bearbeitungsgebühr für Versandkosten nach Gewicht.', now(), now()),
+('Bearbeitungsgebühr pro Bestellung oder pro Paket', 'MODULE_SHIPPING_PERWEIGHTUNIT_HANDLING_METHOD', 43, 'Wollen Sie die Bearbeitungsgebühr pro Bestellung oder pro Paket verrechnen?', now(), now()),
+('Steuerklasse', 'MODULE_SHIPPING_PERWEIGHTUNIT_TAX_CLASS', 43, 'Folgende Steuerklasse auf die Versandkosten anwenden:', now(), now()),
+('Grundlage der Steuern', 'MODULE_SHIPPING_PERWEIGHTUNIT_TAX_BASIS', 43, 'Möglichkeiten sind:<br />Lieferadresse = Steuern der Versandkosten richten sich nach der Lieferadresse des Kunden<br />Rechnungsadresse = Steuern der Versandkosten richten sich nach der Rechnungsadresse des Kunden<br />Shopadresse = Steuern der Versandkosten richten sich nach der Adresse des Shops', now(), now()),
+('Versandzone', 'MODULE_SHIPPING_PERWEIGHTUNIT_ZONE', 43, 'Für welche Länder soll diese Versandart angeboten werden?<br />Die auswählbaren Versandzonen entsprechen den angelegten Steuerzonen und den dort hinterlegten Ländern.', now(), now()),
+('Sortierreihenfolge', 'MODULE_SHIPPING_PERWEIGHTUNIT_SORT_ORDER', 43, 'Anzeigereigenfolge für dieses Modul. Der niedrigste Wert wird zuerst angezeigt.', now(), now()),
+
+
+# Deutsche Einträge für Versand Modul table
+('Tabellarische Versandkosten aktivieren?', 'MODULE_SHIPPING_TABLE_STATUS', 43, 'Möchten Sie die tabellarische Methode aktivieren?', now(), now()),
+('Versandkostentabelle', 'MODULE_SHIPPING_TABLE_COST', 43, 'Die Versandkosten basieren auf den Gesamtkosten, dem Gewicht oder der Anzahl der Artikel<br/><br/>Beispiel: 25: 8.50,50: 5.50, etc.<br/>Bis zu 25 (Preis, Gewicht oder Anzahl) betragen die Versandkosten 8,50, von dort bis 50 (Preis, Gewicht oder Anzahl) betragen die Versandkosten 5,50, etc.<br/><br/>Sie können auch Prozent nutzen, um prozentuale Versandkosten für den Auftrag zu berechnen.<br/><br/>Beispiel: 25:8.50,35:5%,40:9.50,10000:7%', now(), now()),
+('Berechnungsmethode', 'MODULE_SHIPPING_TABLE_MODE', 43, 'Die Versandkosten basieren auf dem Gesamtgewicht der Artikel (weight), der Auftragssumme (price) oder der Anzahl der bestellten Artikel (item).', now(), now()),
+('Bearbeitungsgebühr', 'MODULE_SHIPPING_TABLE_HANDLING', 43, 'Bearbeitungsgebühr für diese Methode', now(), now()),
+('Bearbeitungsgebühr pro Bestellung oder pro Paket', 'MODULE_SHIPPING_TABLE_HANDLING_METHOD', 43, 'Wollen Sie die Bearbeitungsgebühr pro Bestellung oder pro Paket verrechnen?', now(), now()),
+('Steuerklasse', 'MODULE_SHIPPING_TABLE_HANDLING_METHOD', 43, 'Folgende Steuerklasse auf die Versandkosten anwenden:', now(), now()),
+('Grundlage der Steuern', 'MODULE_SHIPPING_TABLE_TAX_CLASS', 43, 'Möglichkeiten sind:<br />Lieferadresse = Steuern der Versandkosten richten sich nach der Lieferadresse des Kunden<br />Rechnungsadresse = Steuern der Versandkosten richten sich nach der Rechnungsadresse des Kunden<br />Shopadresse = Steuern der Versandkosten richten sich nach der Adresse des Shops', now(), now()),
+('Versandzone', 'MODULE_SHIPPING_TABLE_TAX_BASIS', 43, 'Für welche Länder soll diese Versandart angeboten werden?<br />Die auswählbaren Versandzonen entsprechen den angelegten Steuerzonen und den dort hinterlegten Ländern.', now(), now()),
+('Sortierreihenfolge', 'MODULE_SHIPPING_TABLE_ZONE', 43, 'Anzeigereigenfolge für dieses Modul. Der niedrigste Wert wird zuerst angezeigt.', now(), now()),
+
 # Vataddon
 ('Anzeige incl. Mwst. zzgl. Versandkosten', 'DISPLAY_VATADDON_WHERE', 43, 'Wollen Sie unterhalb der Preise den Zusatz incl. bzw. excl. Mwst. zzgl. Versandkosten anzeigen?<br/>O=Nein, Anzeige komplett deaktiviert<br/>ALL = Anzeige überall im Shop aktiv<br/>product_info = Anzeige nur auf der Artikeldetailseite<br/><br/>Hinweis: Den Text dieser Anzeige können Sie in folgender Datei ändern: includes/languages/german/extra_definitions/rl.vat_info.php', now(), now());
 #####################################################################################################
@@ -4518,6 +4541,6 @@ INSERT INTO product_type_layout_language (configuration_title, configuration_key
 ('PRODUCT FREE SHIPPING Attribut Gewicht Präfix - Standardeinstellung', 'DEFAULT_PRODUCT_FREE_SHIPPING_PRODUCTS_ATTRIBUTES_WEIGHT_PREFIX', 43, 'PRODUCT FREE SHIPPING Attribut Gewicht Präfix<br />Standard Gewicht Präfix<br />Leer, + oder -', now(), now());
 
 REPLACE INTO product_type_layout_language (configuration_title , configuration_key , languages_id, configuration_description)
-VALUES ('LANGUAGE_VERSION 20160305', 'LANGUAGE_VERSION', '43', 'Deutsch');
+VALUES ('LANGUAGE_VERSION 20160310', 'LANGUAGE_VERSION', '43', 'Deutsch');
 ##### End of SQL setup for Zen Cart German.
 

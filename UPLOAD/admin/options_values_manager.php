@@ -4,7 +4,7 @@
  * @copyright Copyright 2003-2016 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: options_values_manager.php 736 2016-03-03 21:49:16Z webchills $
+ * @version $Id: options_values_manager.php 737 2016-03-10 20:49:16Z webchills $
  */
 
   require('includes/application_top.php');
@@ -788,7 +788,7 @@ function go_option() {
   } else {
 ?>
 <!--                <td align="center" class="smallText">&nbsp;<?php echo '<a href="' . zen_href_link(FILENAME_OPTIONS_VALUES_MANAGER, 'action=update_option_value&value_id=' . $values_values->fields['products_options_values_id'] . (isset($_GET['value_page']) ? '&value_page=' . $_GET['value_page'] : ''), 'NONSSL') . '">'; ?><?php echo zen_image_button('button_edit.gif', IMAGE_UPDATE); ?></a>&nbsp;&nbsp;<?php echo '<a href="' . zen_href_link(FILENAME_OPTIONS_VALUES_MANAGER, 'action=delete_option_value&value_id=' . $values_values->fields['products_options_values_id'] . '&option_id=' . $option_id, 'NONSSL') , '">'; ?><?php echo zen_image_button('button_delete.gif', IMAGE_DELETE); ?></a>&nbsp;</td> -->
-                <td align="center" class="smallText">&nbsp;<?php echo '<a href="' . zen_href_link(FILENAME_OPTIONS_VALUES_MANAGER, 'action=update_option_value&value_id=' . $values_values->fields['products_options_values_id'] . (isset($_GET['option_page']) ? '&option_page=' . $_GET['option_page'] . '&' : '') . (isset($_GET['value_page']) ? '&value_page=' . $_GET['value_page'] . '&' : '') . (isset($_GET['attribute_page']) ? '&attribute_page=' . $_GET['attribute_page'] : '') ) . '">'; ?><?php echo zen_image_button('button_edit.gif', IMAGE_UPDATE); ?></a>&nbsp;&nbsp;<?php echo '<a href="' . zen_href_link(FILENAME_OPTIONS_VALUES_MANAGER, 'action=delete_option_value&value_id=' . $values_values->fields['products_options_values_id'] . (isset($_GET['option_page']) ? '&option_page=' . $_GET['option_page'] . '&' : '') . (isset($_GET['value_page']) ? '&value_page=' . $_GET['value_page'] . '&' : '') . (isset($_GET['attribute_page']) ? '&attribute_page=' . $_GET['attribute_page'] : '') ) , '">'; ?><?php echo zen_image_button('button_delete.gif', IMAGE_DELETE); ?></a>&nbsp;</td>
+                <td align="center" class="smallText">&nbsp;<?php echo '<a href="' . zen_href_link(FILENAME_OPTIONS_VALUES_MANAGER, 'action=update_option_value&value_id=' . $values_values->fields['products_options_values_id'] . (isset($_GET['option_page']) ? '&option_page=' . $_GET['option_page'] . '&' : '') . (isset($_GET['value_page']) ? '&value_page=' . $_GET['value_page'] . '&' : '') . (isset($_GET['attribute_page']) ? '&attribute_page=' . $_GET['attribute_page'] : '') ) . '">'; ?><?php echo zen_image_button('button_edit.gif', IMAGE_EDIT); ?></a>&nbsp;&nbsp;<?php echo '<a href="' . zen_href_link(FILENAME_OPTIONS_VALUES_MANAGER, 'action=delete_option_value&value_id=' . $values_values->fields['products_options_values_id'] . (isset($_GET['option_page']) ? '&option_page=' . $_GET['option_page'] . '&' : '') . (isset($_GET['value_page']) ? '&value_page=' . $_GET['value_page'] . '&' : '') . (isset($_GET['attribute_page']) ? '&attribute_page=' . $_GET['attribute_page'] : '') ) , '">'; ?><?php echo zen_image_button('button_delete.gif', IMAGE_DELETE); ?></a>&nbsp;</td>
 <?php
 //    $values_values->MoveNext();
   }
