@@ -1,11 +1,11 @@
 #
-# * Country/Zones Zen Cart SQL Load for MySQL databases
+# * Multilanguage Country/Zones Zen Cart SQL Load for MySQL databases
 # * @package Installer
 # * @access private
 # * @copyright Copyright 2003-2016 Zen Cart Development Team
 # * @copyright Portions Copyright 2003 osCommerce
-# * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
-# * @version GIT: $Id: Author: DrByte  Sat Feb 1 23:58:27 2014 -0500 Modified in v1.5.3 $
+# * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
+# * @version $Id: mysql_utf8.sql 19462 2016-03-11 21:38:16Z webchills $
 #
 # NOTE: UTF8 files need to be saved with encoding format set to UTF8-without-BOM.
 #
@@ -15,252 +15,253 @@
 
 INSERT INTO configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, last_modified, date_added, use_function, set_function) VALUES ('Convert currencies for Text emails', 'CURRENCIES_TRANSLATIONS', '&pound;,£:&euro;,€:&reg;,®:&trade;,™', 'What currency conversions do you need for Text emails?<br />Example = &amp;pound;,&pound;:&amp;euro;,&euro;', 12, 120, NULL, '2003-11-21 00:00:00', NULL, 'zen_cfg_textarea_small(');
 
-INSERT INTO countries (countries_id, countries_name, countries_iso_code_2, countries_iso_code_3, address_format_id) VALUES (240,'Åland Islands','AX','ALA','1');
-INSERT INTO countries (countries_id, countries_name, countries_iso_code_2, countries_iso_code_3, address_format_id) VALUES (1,'Afghanistan','AF','AFG','1');
-INSERT INTO countries (countries_id, countries_name, countries_iso_code_2, countries_iso_code_3, address_format_id) VALUES (2,'Albania','AL','ALB','1');
-INSERT INTO countries (countries_id, countries_name, countries_iso_code_2, countries_iso_code_3, address_format_id) VALUES (3,'Algeria','DZ','DZA','1');
-INSERT INTO countries (countries_id, countries_name, countries_iso_code_2, countries_iso_code_3, address_format_id) VALUES (4,'American Samoa','AS','ASM','1');
-INSERT INTO countries (countries_id, countries_name, countries_iso_code_2, countries_iso_code_3, address_format_id) VALUES (5,'Andorra','AD','AND','1');
-INSERT INTO countries (countries_id, countries_name, countries_iso_code_2, countries_iso_code_3, address_format_id) VALUES (6,'Angola','AO','AGO','1');
-INSERT INTO countries (countries_id, countries_name, countries_iso_code_2, countries_iso_code_3, address_format_id) VALUES (7,'Anguilla','AI','AIA','1');
-INSERT INTO countries (countries_id, countries_name, countries_iso_code_2, countries_iso_code_3, address_format_id) VALUES (8,'Antarctica','AQ','ATA','1');
-INSERT INTO countries (countries_id, countries_name, countries_iso_code_2, countries_iso_code_3, address_format_id) VALUES (9,'Antigua and Barbuda','AG','ATG','1');
-INSERT INTO countries (countries_id, countries_name, countries_iso_code_2, countries_iso_code_3, address_format_id) VALUES (10,'Argentina','AR','ARG','1');
-INSERT INTO countries (countries_id, countries_name, countries_iso_code_2, countries_iso_code_3, address_format_id) VALUES (11,'Armenia','AM','ARM','1');
-INSERT INTO countries (countries_id, countries_name, countries_iso_code_2, countries_iso_code_3, address_format_id) VALUES (12,'Aruba','AW','ABW','1');
-INSERT INTO countries (countries_id, countries_name, countries_iso_code_2, countries_iso_code_3, address_format_id) VALUES (13,'Australia','AU','AUS','7');
-INSERT INTO countries (countries_id, countries_name, countries_iso_code_2, countries_iso_code_3, address_format_id) VALUES (14,'Austria','AT','AUT','5');
-INSERT INTO countries (countries_id, countries_name, countries_iso_code_2, countries_iso_code_3, address_format_id) VALUES (15,'Azerbaijan','AZ','AZE','1');
-INSERT INTO countries (countries_id, countries_name, countries_iso_code_2, countries_iso_code_3, address_format_id) VALUES (16,'Bahamas','BS','BHS','1');
-INSERT INTO countries (countries_id, countries_name, countries_iso_code_2, countries_iso_code_3, address_format_id) VALUES (17,'Bahrain','BH','BHR','1');
-INSERT INTO countries (countries_id, countries_name, countries_iso_code_2, countries_iso_code_3, address_format_id) VALUES (18,'Bangladesh','BD','BGD','1');
-INSERT INTO countries (countries_id, countries_name, countries_iso_code_2, countries_iso_code_3, address_format_id) VALUES (19,'Barbados','BB','BRB','1');
-INSERT INTO countries (countries_id, countries_name, countries_iso_code_2, countries_iso_code_3, address_format_id) VALUES (20,'Belarus','BY','BLR','1');
-INSERT INTO countries (countries_id, countries_name, countries_iso_code_2, countries_iso_code_3, address_format_id) VALUES (21,'Belgium','BE','BEL','5');
-INSERT INTO countries (countries_id, countries_name, countries_iso_code_2, countries_iso_code_3, address_format_id) VALUES (22,'Belize','BZ','BLZ','1');
-INSERT INTO countries (countries_id, countries_name, countries_iso_code_2, countries_iso_code_3, address_format_id) VALUES (23,'Benin','BJ','BEN','1');
-INSERT INTO countries (countries_id, countries_name, countries_iso_code_2, countries_iso_code_3, address_format_id) VALUES (24,'Bermuda','BM','BMU','1');
-INSERT INTO countries (countries_id, countries_name, countries_iso_code_2, countries_iso_code_3, address_format_id) VALUES (25,'Bhutan','BT','BTN','1');
-INSERT INTO countries (countries_id, countries_name, countries_iso_code_2, countries_iso_code_3, address_format_id) VALUES (26,'Bolivia','BO','BOL','1');
-INSERT INTO countries (countries_id, countries_name, countries_iso_code_2, countries_iso_code_3, address_format_id) VALUES (27,'Bosnia and Herzegowina','BA','BIH','1');
-INSERT INTO countries (countries_id, countries_name, countries_iso_code_2, countries_iso_code_3, address_format_id) VALUES (28,'Botswana','BW','BWA','1');
-INSERT INTO countries (countries_id, countries_name, countries_iso_code_2, countries_iso_code_3, address_format_id) VALUES (29,'Bouvet Island','BV','BVT','1');
-INSERT INTO countries (countries_id, countries_name, countries_iso_code_2, countries_iso_code_3, address_format_id) VALUES (30,'Brazil','BR','BRA','1');
-INSERT INTO countries (countries_id, countries_name, countries_iso_code_2, countries_iso_code_3, address_format_id) VALUES (31,'British Indian Ocean Territory','IO','IOT','1');
-INSERT INTO countries (countries_id, countries_name, countries_iso_code_2, countries_iso_code_3, address_format_id) VALUES (32,'Brunei Darussalam','BN','BRN','1');
-INSERT INTO countries (countries_id, countries_name, countries_iso_code_2, countries_iso_code_3, address_format_id) VALUES (33,'Bulgaria','BG','BGR','1');
-INSERT INTO countries (countries_id, countries_name, countries_iso_code_2, countries_iso_code_3, address_format_id) VALUES (34,'Burkina Faso','BF','BFA','1');
-INSERT INTO countries (countries_id, countries_name, countries_iso_code_2, countries_iso_code_3, address_format_id) VALUES (35,'Burundi','BI','BDI','1');
-INSERT INTO countries (countries_id, countries_name, countries_iso_code_2, countries_iso_code_3, address_format_id) VALUES (36,'Cambodia','KH','KHM','1');
-INSERT INTO countries (countries_id, countries_name, countries_iso_code_2, countries_iso_code_3, address_format_id) VALUES (37,'Cameroon','CM','CMR','1');
-INSERT INTO countries (countries_id, countries_name, countries_iso_code_2, countries_iso_code_3, address_format_id) VALUES (38,'Canada','CA','CAN','2');
-INSERT INTO countries (countries_id, countries_name, countries_iso_code_2, countries_iso_code_3, address_format_id) VALUES (39,'Cape Verde','CV','CPV','1');
-INSERT INTO countries (countries_id, countries_name, countries_iso_code_2, countries_iso_code_3, address_format_id) VALUES (40,'Cayman Islands','KY','CYM','1');
-INSERT INTO countries (countries_id, countries_name, countries_iso_code_2, countries_iso_code_3, address_format_id) VALUES (41,'Central African Republic','CF','CAF','1');
-INSERT INTO countries (countries_id, countries_name, countries_iso_code_2, countries_iso_code_3, address_format_id) VALUES (42,'Chad','TD','TCD','1');
-INSERT INTO countries (countries_id, countries_name, countries_iso_code_2, countries_iso_code_3, address_format_id) VALUES (43,'Chile','CL','CHL','1');
-INSERT INTO countries (countries_id, countries_name, countries_iso_code_2, countries_iso_code_3, address_format_id) VALUES (44,'China','CN','CHN','1');
-INSERT INTO countries (countries_id, countries_name, countries_iso_code_2, countries_iso_code_3, address_format_id) VALUES (45,'Christmas Island','CX','CXR','1');
-INSERT INTO countries (countries_id, countries_name, countries_iso_code_2, countries_iso_code_3, address_format_id) VALUES (46,'Cocos (Keeling) Islands','CC','CCK','1');
-INSERT INTO countries (countries_id, countries_name, countries_iso_code_2, countries_iso_code_3, address_format_id) VALUES (47,'Colombia','CO','COL','1');
-INSERT INTO countries (countries_id, countries_name, countries_iso_code_2, countries_iso_code_3, address_format_id) VALUES (48,'Comoros','KM','COM','1');
-INSERT INTO countries (countries_id, countries_name, countries_iso_code_2, countries_iso_code_3, address_format_id) VALUES (49,'Congo','CG','COG','1');
-INSERT INTO countries (countries_id, countries_name, countries_iso_code_2, countries_iso_code_3, address_format_id) VALUES (50,'Cook Islands','CK','COK','1');
-INSERT INTO countries (countries_id, countries_name, countries_iso_code_2, countries_iso_code_3, address_format_id) VALUES (51,'Costa Rica','CR','CRI','1');
-INSERT INTO countries (countries_id, countries_name, countries_iso_code_2, countries_iso_code_3, address_format_id) VALUES (52,"Côte d'Ivoire",'CI','CIV','1');
-INSERT INTO countries (countries_id, countries_name, countries_iso_code_2, countries_iso_code_3, address_format_id) VALUES (53,'Croatia','HR','HRV','1');
-INSERT INTO countries (countries_id, countries_name, countries_iso_code_2, countries_iso_code_3, address_format_id) VALUES (54,'Cuba','CU','CUB','1');
-INSERT INTO countries (countries_id, countries_name, countries_iso_code_2, countries_iso_code_3, address_format_id) VALUES (55,'Cyprus','CY','CYP','1');
-INSERT INTO countries (countries_id, countries_name, countries_iso_code_2, countries_iso_code_3, address_format_id) VALUES (56,'Czech Republic','CZ','CZE','1');
-INSERT INTO countries (countries_id, countries_name, countries_iso_code_2, countries_iso_code_3, address_format_id) VALUES (57,'Denmark','DK','DNK','1');
-INSERT INTO countries (countries_id, countries_name, countries_iso_code_2, countries_iso_code_3, address_format_id) VALUES (58,'Djibouti','DJ','DJI','1');
-INSERT INTO countries (countries_id, countries_name, countries_iso_code_2, countries_iso_code_3, address_format_id) VALUES (59,'Dominica','DM','DMA','1');
-INSERT INTO countries (countries_id, countries_name, countries_iso_code_2, countries_iso_code_3, address_format_id) VALUES (60,'Dominican Republic','DO','DOM','1');
-INSERT INTO countries (countries_id, countries_name, countries_iso_code_2, countries_iso_code_3, address_format_id) VALUES (61,'Timor-Leste','TL','TLS','1');
-INSERT INTO countries (countries_id, countries_name, countries_iso_code_2, countries_iso_code_3, address_format_id) VALUES (62,'Ecuador','EC','ECU','1');
-INSERT INTO countries (countries_id, countries_name, countries_iso_code_2, countries_iso_code_3, address_format_id) VALUES (63,'Egypt','EG','EGY','1');
-INSERT INTO countries (countries_id, countries_name, countries_iso_code_2, countries_iso_code_3, address_format_id) VALUES (64,'El Salvador','SV','SLV','1');
-INSERT INTO countries (countries_id, countries_name, countries_iso_code_2, countries_iso_code_3, address_format_id) VALUES (65,'Equatorial Guinea','GQ','GNQ','1');
-INSERT INTO countries (countries_id, countries_name, countries_iso_code_2, countries_iso_code_3, address_format_id) VALUES (66,'Eritrea','ER','ERI','1');
-INSERT INTO countries (countries_id, countries_name, countries_iso_code_2, countries_iso_code_3, address_format_id) VALUES (67,'Estonia','EE','EST','1');
-INSERT INTO countries (countries_id, countries_name, countries_iso_code_2, countries_iso_code_3, address_format_id) VALUES (68,'Ethiopia','ET','ETH','1');
-INSERT INTO countries (countries_id, countries_name, countries_iso_code_2, countries_iso_code_3, address_format_id) VALUES (69,'Falkland Islands (Malvinas)','FK','FLK','1');
-INSERT INTO countries (countries_id, countries_name, countries_iso_code_2, countries_iso_code_3, address_format_id) VALUES (70,'Faroe Islands','FO','FRO','1');
-INSERT INTO countries (countries_id, countries_name, countries_iso_code_2, countries_iso_code_3, address_format_id) VALUES (71,'Fiji','FJ','FJI','1');
-INSERT INTO countries (countries_id, countries_name, countries_iso_code_2, countries_iso_code_3, address_format_id) VALUES (72,'Finland','FI','FIN','1');
-INSERT INTO countries (countries_id, countries_name, countries_iso_code_2, countries_iso_code_3, address_format_id) VALUES (73,'France','FR','FRA','1');
-INSERT INTO countries (countries_id, countries_name, countries_iso_code_2, countries_iso_code_3, address_format_id) VALUES (75,'French Guiana','GF','GUF','1');
-INSERT INTO countries (countries_id, countries_name, countries_iso_code_2, countries_iso_code_3, address_format_id) VALUES (76,'French Polynesia','PF','PYF','1');
-INSERT INTO countries (countries_id, countries_name, countries_iso_code_2, countries_iso_code_3, address_format_id) VALUES (77,'French Southern Territories','TF','ATF','1');
-INSERT INTO countries (countries_id, countries_name, countries_iso_code_2, countries_iso_code_3, address_format_id) VALUES (78,'Gabon','GA','GAB','1');
-INSERT INTO countries (countries_id, countries_name, countries_iso_code_2, countries_iso_code_3, address_format_id) VALUES (79,'Gambia','GM','GMB','1');
-INSERT INTO countries (countries_id, countries_name, countries_iso_code_2, countries_iso_code_3, address_format_id) VALUES (80,'Georgia','GE','GEO','1');
-INSERT INTO countries (countries_id, countries_name, countries_iso_code_2, countries_iso_code_3, address_format_id) VALUES (81,'Germany','DE','DEU','5');
-INSERT INTO countries (countries_id, countries_name, countries_iso_code_2, countries_iso_code_3, address_format_id) VALUES (82,'Ghana','GH','GHA','1');
-INSERT INTO countries (countries_id, countries_name, countries_iso_code_2, countries_iso_code_3, address_format_id) VALUES (83,'Gibraltar','GI','GIB','1');
-INSERT INTO countries (countries_id, countries_name, countries_iso_code_2, countries_iso_code_3, address_format_id) VALUES (84,'Greece','GR','GRC','1');
-INSERT INTO countries (countries_id, countries_name, countries_iso_code_2, countries_iso_code_3, address_format_id) VALUES (85,'Greenland','GL','GRL','1');
-INSERT INTO countries (countries_id, countries_name, countries_iso_code_2, countries_iso_code_3, address_format_id) VALUES (86,'Grenada','GD','GRD','1');
-INSERT INTO countries (countries_id, countries_name, countries_iso_code_2, countries_iso_code_3, address_format_id) VALUES (87,'Guadeloupe','GP','GLP','1');
-INSERT INTO countries (countries_id, countries_name, countries_iso_code_2, countries_iso_code_3, address_format_id) VALUES (88,'Guam','GU','GUM','1');
-INSERT INTO countries (countries_id, countries_name, countries_iso_code_2, countries_iso_code_3, address_format_id) VALUES (89,'Guatemala','GT','GTM','1');
-INSERT INTO countries (countries_id, countries_name, countries_iso_code_2, countries_iso_code_3, address_format_id) VALUES (90,'Guinea','GN','GIN','1');
-INSERT INTO countries (countries_id, countries_name, countries_iso_code_2, countries_iso_code_3, address_format_id) VALUES (91,'Guinea-bissau','GW','GNB','1');
-INSERT INTO countries (countries_id, countries_name, countries_iso_code_2, countries_iso_code_3, address_format_id) VALUES (92,'Guyana','GY','GUY','1');
-INSERT INTO countries (countries_id, countries_name, countries_iso_code_2, countries_iso_code_3, address_format_id) VALUES (93,'Haiti','HT','HTI','1');
-INSERT INTO countries (countries_id, countries_name, countries_iso_code_2, countries_iso_code_3, address_format_id) VALUES (94,'Heard and Mc Donald Islands','HM','HMD','1');
-INSERT INTO countries (countries_id, countries_name, countries_iso_code_2, countries_iso_code_3, address_format_id) VALUES (95,'Honduras','HN','HND','1');
-INSERT INTO countries (countries_id, countries_name, countries_iso_code_2, countries_iso_code_3, address_format_id) VALUES (96,'Hong Kong','HK','HKG','1');
-INSERT INTO countries (countries_id, countries_name, countries_iso_code_2, countries_iso_code_3, address_format_id) VALUES (97,'Hungary','HU','HUN','1');
-INSERT INTO countries (countries_id, countries_name, countries_iso_code_2, countries_iso_code_3, address_format_id) VALUES (98,'Iceland','IS','ISL','1');
-INSERT INTO countries (countries_id, countries_name, countries_iso_code_2, countries_iso_code_3, address_format_id) VALUES (99,'India','IN','IND','1');
-INSERT INTO countries (countries_id, countries_name, countries_iso_code_2, countries_iso_code_3, address_format_id) VALUES (100,'Indonesia','ID','IDN','1');
-INSERT INTO countries (countries_id, countries_name, countries_iso_code_2, countries_iso_code_3, address_format_id) VALUES (101,'Iran (Islamic Republic of)','IR','IRN','1');
-INSERT INTO countries (countries_id, countries_name, countries_iso_code_2, countries_iso_code_3, address_format_id) VALUES (102,'Iraq','IQ','IRQ','1');
-INSERT INTO countries (countries_id, countries_name, countries_iso_code_2, countries_iso_code_3, address_format_id) VALUES (103,'Ireland','IE','IRL','1');
-INSERT INTO countries (countries_id, countries_name, countries_iso_code_2, countries_iso_code_3, address_format_id) VALUES (104,'Israel','IL','ISR','1');
-INSERT INTO countries (countries_id, countries_name, countries_iso_code_2, countries_iso_code_3, address_format_id) VALUES (105,'Italy','IT','ITA','1');
-INSERT INTO countries (countries_id, countries_name, countries_iso_code_2, countries_iso_code_3, address_format_id) VALUES (106,'Jamaica','JM','JAM','1');
-INSERT INTO countries (countries_id, countries_name, countries_iso_code_2, countries_iso_code_3, address_format_id) VALUES (107,'Japan','JP','JPN','1');
-INSERT INTO countries (countries_id, countries_name, countries_iso_code_2, countries_iso_code_3, address_format_id) VALUES (108,'Jordan','JO','JOR','1');
-INSERT INTO countries (countries_id, countries_name, countries_iso_code_2, countries_iso_code_3, address_format_id) VALUES (109,'Kazakhstan','KZ','KAZ','1');
-INSERT INTO countries (countries_id, countries_name, countries_iso_code_2, countries_iso_code_3, address_format_id) VALUES (110,'Kenya','KE','KEN','1');
-INSERT INTO countries (countries_id, countries_name, countries_iso_code_2, countries_iso_code_3, address_format_id) VALUES (111,'Kiribati','KI','KIR','1');
-INSERT INTO countries (countries_id, countries_name, countries_iso_code_2, countries_iso_code_3, address_format_id) VALUES (112,"Korea, Democratic People's Republic of",'KP','PRK','1');
-INSERT INTO countries (countries_id, countries_name, countries_iso_code_2, countries_iso_code_3, address_format_id) VALUES (113,'Korea, Republic of','KR','KOR','1');
-INSERT INTO countries (countries_id, countries_name, countries_iso_code_2, countries_iso_code_3, address_format_id) VALUES (114,'Kuwait','KW','KWT','1');
-INSERT INTO countries (countries_id, countries_name, countries_iso_code_2, countries_iso_code_3, address_format_id) VALUES (115,'Kyrgyzstan','KG','KGZ','1');
-INSERT INTO countries (countries_id, countries_name, countries_iso_code_2, countries_iso_code_3, address_format_id) VALUES (116,"Lao People's Democratic Republic",'LA','LAO','1');
-INSERT INTO countries (countries_id, countries_name, countries_iso_code_2, countries_iso_code_3, address_format_id) VALUES (117,'Latvia','LV','LVA','1');
-INSERT INTO countries (countries_id, countries_name, countries_iso_code_2, countries_iso_code_3, address_format_id) VALUES (118,'Lebanon','LB','LBN','1');
-INSERT INTO countries (countries_id, countries_name, countries_iso_code_2, countries_iso_code_3, address_format_id) VALUES (119,'Lesotho','LS','LSO','1');
-INSERT INTO countries (countries_id, countries_name, countries_iso_code_2, countries_iso_code_3, address_format_id) VALUES (120,'Liberia','LR','LBR','1');
-INSERT INTO countries (countries_id, countries_name, countries_iso_code_2, countries_iso_code_3, address_format_id) VALUES (121,'Libya','LY','LBY','1');
-INSERT INTO countries (countries_id, countries_name, countries_iso_code_2, countries_iso_code_3, address_format_id) VALUES (122,'Liechtenstein','LI','LIE','1');
-INSERT INTO countries (countries_id, countries_name, countries_iso_code_2, countries_iso_code_3, address_format_id) VALUES (123,'Lithuania','LT','LTU','1');
-INSERT INTO countries (countries_id, countries_name, countries_iso_code_2, countries_iso_code_3, address_format_id) VALUES (124,'Luxembourg','LU','LUX','1');
-INSERT INTO countries (countries_id, countries_name, countries_iso_code_2, countries_iso_code_3, address_format_id) VALUES (125,'Macao','MO','MAC','1');
-INSERT INTO countries (countries_id, countries_name, countries_iso_code_2, countries_iso_code_3, address_format_id) VALUES (126,'Macedonia, The Former Yugoslav Republic of','MK','MKD','1');
-INSERT INTO countries (countries_id, countries_name, countries_iso_code_2, countries_iso_code_3, address_format_id) VALUES (127,'Madagascar','MG','MDG','1');
-INSERT INTO countries (countries_id, countries_name, countries_iso_code_2, countries_iso_code_3, address_format_id) VALUES (128,'Malawi','MW','MWI','1');
-INSERT INTO countries (countries_id, countries_name, countries_iso_code_2, countries_iso_code_3, address_format_id) VALUES (129,'Malaysia','MY','MYS','1');
-INSERT INTO countries (countries_id, countries_name, countries_iso_code_2, countries_iso_code_3, address_format_id) VALUES (130,'Maldives','MV','MDV','1');
-INSERT INTO countries (countries_id, countries_name, countries_iso_code_2, countries_iso_code_3, address_format_id) VALUES (131,'Mali','ML','MLI','1');
-INSERT INTO countries (countries_id, countries_name, countries_iso_code_2, countries_iso_code_3, address_format_id) VALUES (132,'Malta','MT','MLT','1');
-INSERT INTO countries (countries_id, countries_name, countries_iso_code_2, countries_iso_code_3, address_format_id) VALUES (133,'Marshall Islands','MH','MHL','1');
-INSERT INTO countries (countries_id, countries_name, countries_iso_code_2, countries_iso_code_3, address_format_id) VALUES (134,'Martinique','MQ','MTQ','1');
-INSERT INTO countries (countries_id, countries_name, countries_iso_code_2, countries_iso_code_3, address_format_id) VALUES (135,'Mauritania','MR','MRT','1');
-INSERT INTO countries (countries_id, countries_name, countries_iso_code_2, countries_iso_code_3, address_format_id) VALUES (136,'Mauritius','MU','MUS','1');
-INSERT INTO countries (countries_id, countries_name, countries_iso_code_2, countries_iso_code_3, address_format_id) VALUES (137,'Mayotte','YT','MYT','1');
-INSERT INTO countries (countries_id, countries_name, countries_iso_code_2, countries_iso_code_3, address_format_id) VALUES (138,'Mexico','MX','MEX','1');
-INSERT INTO countries (countries_id, countries_name, countries_iso_code_2, countries_iso_code_3, address_format_id) VALUES (139,'Micronesia, Federated States of','FM','FSM','1');
-INSERT INTO countries (countries_id, countries_name, countries_iso_code_2, countries_iso_code_3, address_format_id) VALUES (140,'Moldova','MD','MDA','1');
-INSERT INTO countries (countries_id, countries_name, countries_iso_code_2, countries_iso_code_3, address_format_id) VALUES (141,'Monaco','MC','MCO','1');
-INSERT INTO countries (countries_id, countries_name, countries_iso_code_2, countries_iso_code_3, address_format_id) VALUES (142,'Mongolia','MN','MNG','1');
-INSERT INTO countries (countries_id, countries_name, countries_iso_code_2, countries_iso_code_3, address_format_id) VALUES (143,'Montserrat','MS','MSR','1');
-INSERT INTO countries (countries_id, countries_name, countries_iso_code_2, countries_iso_code_3, address_format_id) VALUES (144,'Morocco','MA','MAR','1');
-INSERT INTO countries (countries_id, countries_name, countries_iso_code_2, countries_iso_code_3, address_format_id) VALUES (145,'Mozambique','MZ','MOZ','1');
-INSERT INTO countries (countries_id, countries_name, countries_iso_code_2, countries_iso_code_3, address_format_id) VALUES (146,'Myanmar','MM','MMR','1');
-INSERT INTO countries (countries_id, countries_name, countries_iso_code_2, countries_iso_code_3, address_format_id) VALUES (147,'Namibia','NA','NAM','1');
-INSERT INTO countries (countries_id, countries_name, countries_iso_code_2, countries_iso_code_3, address_format_id) VALUES (148,'Nauru','NR','NRU','1');
-INSERT INTO countries (countries_id, countries_name, countries_iso_code_2, countries_iso_code_3, address_format_id) VALUES (149,'Nepal','NP','NPL','1');
-INSERT INTO countries (countries_id, countries_name, countries_iso_code_2, countries_iso_code_3, address_format_id) VALUES (150,'Netherlands','NL','NLD','5');
-INSERT INTO countries (countries_id, countries_name, countries_iso_code_2, countries_iso_code_3, address_format_id) VALUES (151,'Bonaire, Sint Eustatius and Saba','BQ','BES','1');
-INSERT INTO countries (countries_id, countries_name, countries_iso_code_2, countries_iso_code_3, address_format_id) VALUES (152,'New Caledonia','NC','NCL','1');
-INSERT INTO countries (countries_id, countries_name, countries_iso_code_2, countries_iso_code_3, address_format_id) VALUES (153,'New Zealand','NZ','NZL','1');
-INSERT INTO countries (countries_id, countries_name, countries_iso_code_2, countries_iso_code_3, address_format_id) VALUES (154,'Nicaragua','NI','NIC','1');
-INSERT INTO countries (countries_id, countries_name, countries_iso_code_2, countries_iso_code_3, address_format_id) VALUES (155,'Niger','NE','NER','1');
-INSERT INTO countries (countries_id, countries_name, countries_iso_code_2, countries_iso_code_3, address_format_id) VALUES (156,'Nigeria','NG','NGA','1');
-INSERT INTO countries (countries_id, countries_name, countries_iso_code_2, countries_iso_code_3, address_format_id) VALUES (157,'Niue','NU','NIU','1');
-INSERT INTO countries (countries_id, countries_name, countries_iso_code_2, countries_iso_code_3, address_format_id) VALUES (158,'Norfolk Island','NF','NFK','1');
-INSERT INTO countries (countries_id, countries_name, countries_iso_code_2, countries_iso_code_3, address_format_id) VALUES (159,'Northern Mariana Islands','MP','MNP','1');
-INSERT INTO countries (countries_id, countries_name, countries_iso_code_2, countries_iso_code_3, address_format_id) VALUES (160,'Norway','NO','NOR','1');
-INSERT INTO countries (countries_id, countries_name, countries_iso_code_2, countries_iso_code_3, address_format_id) VALUES (161,'Oman','OM','OMN','1');
-INSERT INTO countries (countries_id, countries_name, countries_iso_code_2, countries_iso_code_3, address_format_id) VALUES (162,'Pakistan','PK','PAK','1');
-INSERT INTO countries (countries_id, countries_name, countries_iso_code_2, countries_iso_code_3, address_format_id) VALUES (163,'Palau','PW','PLW','1');
-INSERT INTO countries (countries_id, countries_name, countries_iso_code_2, countries_iso_code_3, address_format_id) VALUES (164,'Panama','PA','PAN','1');
-INSERT INTO countries (countries_id, countries_name, countries_iso_code_2, countries_iso_code_3, address_format_id) VALUES (165,'Papua New Guinea','PG','PNG','1');
-INSERT INTO countries (countries_id, countries_name, countries_iso_code_2, countries_iso_code_3, address_format_id) VALUES (166,'Paraguay','PY','PRY','1');
-INSERT INTO countries (countries_id, countries_name, countries_iso_code_2, countries_iso_code_3, address_format_id) VALUES (167,'Peru','PE','PER','1');
-INSERT INTO countries (countries_id, countries_name, countries_iso_code_2, countries_iso_code_3, address_format_id) VALUES (168,'Philippines','PH','PHL','1');
-INSERT INTO countries (countries_id, countries_name, countries_iso_code_2, countries_iso_code_3, address_format_id) VALUES (169,'Pitcairn','PN','PCN','1');
-INSERT INTO countries (countries_id, countries_name, countries_iso_code_2, countries_iso_code_3, address_format_id) VALUES (170,'Poland','PL','POL','1');
-INSERT INTO countries (countries_id, countries_name, countries_iso_code_2, countries_iso_code_3, address_format_id) VALUES (171,'Portugal','PT','PRT','1');
-INSERT INTO countries (countries_id, countries_name, countries_iso_code_2, countries_iso_code_3, address_format_id) VALUES (172,'Puerto Rico','PR','PRI','1');
-INSERT INTO countries (countries_id, countries_name, countries_iso_code_2, countries_iso_code_3, address_format_id) VALUES (173,'Qatar','QA','QAT','1');
-INSERT INTO countries (countries_id, countries_name, countries_iso_code_2, countries_iso_code_3, address_format_id) VALUES (174,'Réunion','RE','REU','1');
-INSERT INTO countries (countries_id, countries_name, countries_iso_code_2, countries_iso_code_3, address_format_id) VALUES (175,'Romania','RO','ROU','1');
-INSERT INTO countries (countries_id, countries_name, countries_iso_code_2, countries_iso_code_3, address_format_id) VALUES (176,'Russian Federation','RU','RUS','1');
-INSERT INTO countries (countries_id, countries_name, countries_iso_code_2, countries_iso_code_3, address_format_id) VALUES (177,'Rwanda','RW','RWA','1');
-INSERT INTO countries (countries_id, countries_name, countries_iso_code_2, countries_iso_code_3, address_format_id) VALUES (178,'Saint Kitts and Nevis','KN','KNA','1');
-INSERT INTO countries (countries_id, countries_name, countries_iso_code_2, countries_iso_code_3, address_format_id) VALUES (179,'Saint Lucia','LC','LCA','1');
-INSERT INTO countries (countries_id, countries_name, countries_iso_code_2, countries_iso_code_3, address_format_id) VALUES (180,'Saint Vincent and the Grenadines','VC','VCT','1');
-INSERT INTO countries (countries_id, countries_name, countries_iso_code_2, countries_iso_code_3, address_format_id) VALUES (181,'Samoa','WS','WSM','1');
-INSERT INTO countries (countries_id, countries_name, countries_iso_code_2, countries_iso_code_3, address_format_id) VALUES (182,'San Marino','SM','SMR','1');
-INSERT INTO countries (countries_id, countries_name, countries_iso_code_2, countries_iso_code_3, address_format_id) VALUES (183,'Sao Tome and Principe','ST','STP','1');
-INSERT INTO countries (countries_id, countries_name, countries_iso_code_2, countries_iso_code_3, address_format_id) VALUES (184,'Saudi Arabia','SA','SAU','1');
-INSERT INTO countries (countries_id, countries_name, countries_iso_code_2, countries_iso_code_3, address_format_id) VALUES (185,'Senegal','SN','SEN','1');
-INSERT INTO countries (countries_id, countries_name, countries_iso_code_2, countries_iso_code_3, address_format_id) VALUES (186,'Seychelles','SC','SYC','1');
-INSERT INTO countries (countries_id, countries_name, countries_iso_code_2, countries_iso_code_3, address_format_id) VALUES (187,'Sierra Leone','SL','SLE','1');
-INSERT INTO countries (countries_id, countries_name, countries_iso_code_2, countries_iso_code_3, address_format_id) VALUES (188,'Singapore','SG','SGP', '4');
-INSERT INTO countries (countries_id, countries_name, countries_iso_code_2, countries_iso_code_3, address_format_id) VALUES (189,'Slovakia (Slovak Republic)','SK','SVK','1');
-INSERT INTO countries (countries_id, countries_name, countries_iso_code_2, countries_iso_code_3, address_format_id) VALUES (190,'Slovenia','SI','SVN','1');
-INSERT INTO countries (countries_id, countries_name, countries_iso_code_2, countries_iso_code_3, address_format_id) VALUES (191,'Solomon Islands','SB','SLB','1');
-INSERT INTO countries (countries_id, countries_name, countries_iso_code_2, countries_iso_code_3, address_format_id) VALUES (192,'Somalia','SO','SOM','1');
-INSERT INTO countries (countries_id, countries_name, countries_iso_code_2, countries_iso_code_3, address_format_id) VALUES (193,'South Africa','ZA','ZAF','1');
-INSERT INTO countries (countries_id, countries_name, countries_iso_code_2, countries_iso_code_3, address_format_id) VALUES (194,'South Georgia and the South Sandwich Islands','GS','SGS','1');
-INSERT INTO countries (countries_id, countries_name, countries_iso_code_2, countries_iso_code_3, address_format_id) VALUES (195,'Spain','ES','ESP','3');
-INSERT INTO countries (countries_id, countries_name, countries_iso_code_2, countries_iso_code_3, address_format_id) VALUES (196,'Sri Lanka','LK','LKA','1');
-INSERT INTO countries (countries_id, countries_name, countries_iso_code_2, countries_iso_code_3, address_format_id) VALUES (197,'St. Helena','SH','SHN','1');
-INSERT INTO countries (countries_id, countries_name, countries_iso_code_2, countries_iso_code_3, address_format_id) VALUES (198,'St. Pierre and Miquelon','PM','SPM','1');
-INSERT INTO countries (countries_id, countries_name, countries_iso_code_2, countries_iso_code_3, address_format_id) VALUES (199,'Sudan','SD','SDN','1');
-INSERT INTO countries (countries_id, countries_name, countries_iso_code_2, countries_iso_code_3, address_format_id) VALUES (200,'Suriname','SR','SUR','1');
-INSERT INTO countries (countries_id, countries_name, countries_iso_code_2, countries_iso_code_3, address_format_id) VALUES (201,'Svalbard and Jan Mayen Islands','SJ','SJM','1');
-INSERT INTO countries (countries_id, countries_name, countries_iso_code_2, countries_iso_code_3, address_format_id) VALUES (202,'Swaziland','SZ','SWZ','1');
-INSERT INTO countries (countries_id, countries_name, countries_iso_code_2, countries_iso_code_3, address_format_id) VALUES (203,'Sweden','SE','SWE','5');
-INSERT INTO countries (countries_id, countries_name, countries_iso_code_2, countries_iso_code_3, address_format_id) VALUES (204,'Switzerland','CH','CHE','1');
-INSERT INTO countries (countries_id, countries_name, countries_iso_code_2, countries_iso_code_3, address_format_id) VALUES (205,'Syrian Arab Republic','SY','SYR','1');
-INSERT INTO countries (countries_id, countries_name, countries_iso_code_2, countries_iso_code_3, address_format_id) VALUES (206,'Taiwan','TW','TWN','1');
-INSERT INTO countries (countries_id, countries_name, countries_iso_code_2, countries_iso_code_3, address_format_id) VALUES (207,'Tajikistan','TJ','TJK','1');
-INSERT INTO countries (countries_id, countries_name, countries_iso_code_2, countries_iso_code_3, address_format_id) VALUES (208,'Tanzania, United Republic of','TZ','TZA','1');
-INSERT INTO countries (countries_id, countries_name, countries_iso_code_2, countries_iso_code_3, address_format_id) VALUES (209,'Thailand','TH','THA','1');
-INSERT INTO countries (countries_id, countries_name, countries_iso_code_2, countries_iso_code_3, address_format_id) VALUES (210,'Togo','TG','TGO','1');
-INSERT INTO countries (countries_id, countries_name, countries_iso_code_2, countries_iso_code_3, address_format_id) VALUES (211,'Tokelau','TK','TKL','1');
-INSERT INTO countries (countries_id, countries_name, countries_iso_code_2, countries_iso_code_3, address_format_id) VALUES (212,'Tonga','TO','TON','1');
-INSERT INTO countries (countries_id, countries_name, countries_iso_code_2, countries_iso_code_3, address_format_id) VALUES (213,'Trinidad and Tobago','TT','TTO','1');
-INSERT INTO countries (countries_id, countries_name, countries_iso_code_2, countries_iso_code_3, address_format_id) VALUES (214,'Tunisia','TN','TUN','1');
-INSERT INTO countries (countries_id, countries_name, countries_iso_code_2, countries_iso_code_3, address_format_id) VALUES (215,'Turkey','TR','TUR','1');
-INSERT INTO countries (countries_id, countries_name, countries_iso_code_2, countries_iso_code_3, address_format_id) VALUES (216,'Turkmenistan','TM','TKM','1');
-INSERT INTO countries (countries_id, countries_name, countries_iso_code_2, countries_iso_code_3, address_format_id) VALUES (217,'Turks and Caicos Islands','TC','TCA','1');
-INSERT INTO countries (countries_id, countries_name, countries_iso_code_2, countries_iso_code_3, address_format_id) VALUES (218,'Tuvalu','TV','TUV','1');
-INSERT INTO countries (countries_id, countries_name, countries_iso_code_2, countries_iso_code_3, address_format_id) VALUES (219,'Uganda','UG','UGA','1');
-INSERT INTO countries (countries_id, countries_name, countries_iso_code_2, countries_iso_code_3, address_format_id) VALUES (220,'Ukraine','UA','UKR','1');
-INSERT INTO countries (countries_id, countries_name, countries_iso_code_2, countries_iso_code_3, address_format_id) VALUES (221,'United Arab Emirates','AE','ARE','1');
-INSERT INTO countries (countries_id, countries_name, countries_iso_code_2, countries_iso_code_3, address_format_id) VALUES (222,'United Kingdom','GB','GBR','6');
-INSERT INTO countries (countries_id, countries_name, countries_iso_code_2, countries_iso_code_3, address_format_id) VALUES (223,'United States','US','USA', '2');
-INSERT INTO countries (countries_id, countries_name, countries_iso_code_2, countries_iso_code_3, address_format_id) VALUES (224,'United States Minor Outlying Islands','UM','UMI','1');
-INSERT INTO countries (countries_id, countries_name, countries_iso_code_2, countries_iso_code_3, address_format_id) VALUES (225,'Uruguay','UY','URY','1');
-INSERT INTO countries (countries_id, countries_name, countries_iso_code_2, countries_iso_code_3, address_format_id) VALUES (226,'Uzbekistan','UZ','UZB','1');
-INSERT INTO countries (countries_id, countries_name, countries_iso_code_2, countries_iso_code_3, address_format_id) VALUES (227,'Vanuatu','VU','VUT','1');
-INSERT INTO countries (countries_id, countries_name, countries_iso_code_2, countries_iso_code_3, address_format_id) VALUES (228,'Vatican City State (Holy See)','VA','VAT','1');
-INSERT INTO countries (countries_id, countries_name, countries_iso_code_2, countries_iso_code_3, address_format_id) VALUES (229,'Venezuela','VE','VEN','1');
-INSERT INTO countries (countries_id, countries_name, countries_iso_code_2, countries_iso_code_3, address_format_id) VALUES (230,'Viet Nam','VN','VNM','1');
-INSERT INTO countries (countries_id, countries_name, countries_iso_code_2, countries_iso_code_3, address_format_id) VALUES (231,'Virgin Islands (British)','VG','VGB','1');
-INSERT INTO countries (countries_id, countries_name, countries_iso_code_2, countries_iso_code_3, address_format_id) VALUES (232,'Virgin Islands (U.S.)','VI','VIR','1');
-INSERT INTO countries (countries_id, countries_name, countries_iso_code_2, countries_iso_code_3, address_format_id) VALUES (233,'Wallis and Futuna Islands','WF','WLF','1');
-INSERT INTO countries (countries_id, countries_name, countries_iso_code_2, countries_iso_code_3, address_format_id) VALUES (234,'Western Sahara','EH','ESH','1');
-INSERT INTO countries (countries_id, countries_name, countries_iso_code_2, countries_iso_code_3, address_format_id) VALUES (235,'Yemen','YE','YEM','1');
-INSERT INTO countries (countries_id, countries_name, countries_iso_code_2, countries_iso_code_3, address_format_id) VALUES (236,'Serbia','RS','SRB','1');
-INSERT INTO countries (countries_id, countries_name, countries_iso_code_2, countries_iso_code_3, address_format_id) VALUES (238,'Zambia','ZM','ZMB','1');
-INSERT INTO countries (countries_id, countries_name, countries_iso_code_2, countries_iso_code_3, address_format_id) VALUES (239,'Zimbabwe','ZW','ZWE','1');
-INSERT INTO countries (countries_id, countries_name, countries_iso_code_2, countries_iso_code_3, address_format_id) VALUES (241,'Palestine, State of','PS','PSE','1');
-INSERT INTO countries (countries_id, countries_name, countries_iso_code_2, countries_iso_code_3, address_format_id) VALUES (242,'Montenegro','ME','MNE','1');
-INSERT INTO countries (countries_id, countries_name, countries_iso_code_2, countries_iso_code_3, address_format_id) VALUES (243,'Guernsey','GG','GGY','1');
-INSERT INTO countries (countries_id, countries_name, countries_iso_code_2, countries_iso_code_3, address_format_id) VALUES (244,'Isle of Man','IM','IMN','1');
-INSERT INTO countries (countries_id, countries_name, countries_iso_code_2, countries_iso_code_3, address_format_id) VALUES (245,'Jersey','JE','JEY','1');
-INSERT INTO countries (countries_id, countries_name, countries_iso_code_2, countries_iso_code_3, address_format_id) VALUES (246,'South Sudan','SS','SSD','1');
-INSERT INTO countries (countries_id, countries_name, countries_iso_code_2, countries_iso_code_3, address_format_id) VALUES (247,'Curaçao','CW','CUW','1');
-INSERT INTO countries (countries_id, countries_name, countries_iso_code_2, countries_iso_code_3, address_format_id) VALUES (248,'Sint Maarten (Dutch part)','SX','SXM','1');
+INSERT INTO countries (countries_id, countries_name, countries_iso_code_2, countries_iso_code_3, address_format_id, status) VALUES 
+(240,'Åland Islands','AX','ALA','1','0'),
+(1,'Afghanistan','AF','AFG','1','0'),
+(2,'Albania','AL','ALB','1','1'),
+(3,'Algeria','DZ','DZA','1','0'),
+(4,'American Samoa','AS','ASM','1','0'),
+(5,'Andorra','AD','AND','1','1'),
+(6,'Angola','AO','AGO','1','0'),
+(7,'Anguilla','AI','AIA','1','0'),
+(8,'Antarctica','AQ','ATA','1','0'),
+(9,'Antigua and Barbuda','AG','ATG','1','0'),
+(10,'Argentina','AR','ARG','1','0'),
+(11,'Armenia','AM','ARM','1','0'),
+(12,'Aruba','AW','ABW','1','0'),
+(13,'Australia','AU','AUS','7','1'),
+(14,'Austria','AT','AUT','5','1'),
+(15,'Azerbaijan','AZ','AZE','1','0'),
+(16,'Bahamas','BS','BHS','1','0'),
+(17,'Bahrain','BH','BHR','1','0'),
+(18,'Bangladesh','BD','BGD','1','0'),
+(19,'Barbados','BB','BRB','1','0'),
+(20,'Belarus','BY','BLR','1','0'),
+(21,'Belgium','BE','BEL','5','1'),
+(22,'Belize','BZ','BLZ','1','0'),
+(23,'Benin','BJ','BEN','1','0'),
+(24,'Bermuda','BM','BMU','1','0'),
+(25,'Bhutan','BT','BTN','1','0'),
+(26,'Bolivia','BO','BOL','1','0'),
+(27,'Bosnia and Herzegowina','BA','BIH','1','0'),
+(28,'Botswana','BW','BWA','1','0'),
+(29,'Bouvet Island','BV','BVT','1','0'),
+(30,'Brazil','BR','BRA','1','0'),
+(31,'British Indian Ocean Territory','IO','IOT','1','0'),
+(32,'Brunei Darussalam','BN','BRN','1','0'),
+(33,'Bulgaria','BG','BGR','1','1'),
+(34,'Burkina Faso','BF','BFA','1','0'),
+(35,'Burundi','BI','BDI','1','0'),
+(36,'Cambodia','KH','KHM','1','0'),
+(37,'Cameroon','CM','CMR','1','0'),
+(38,'Canada','CA','CAN','2','1'),
+(39,'Cape Verde','CV','CPV','1','0'),
+(40,'Cayman Islands','KY','CYM','1','0'),
+(41,'Central African Republic','CF','CAF','1','0'),
+(42,'Chad','TD','TCD','1','0'),
+(43,'Chile','CL','CHL','1','0'),
+(44,'China','CN','CHN','1','0'),
+(45,'Christmas Island','CX','CXR','1','0'),
+(46,'Cocos (Keeling) Islands','CC','CCK','1','0'),
+(47,'Colombia','CO','COL','1','0'),
+(48,'Comoros','KM','COM','1','0'),
+(49,'Congo','CG','COG','1','0'),
+(50,'Cook Islands','CK','COK','1','0'),
+(51,'Costa Rica','CR','CRI','1','0'),
+(52,"Côte d'Ivoire",'CI','CIV','1','0'),
+(53,'Croatia','HR','HRV','1','1'),
+(54,'Cuba','CU','CUB','1','0'),
+(55,'Cyprus','CY','CYP','1','1'),
+(56,'Czech Republic','CZ','CZE','1','1'),
+(57,'Denmark','DK','DNK','1','1'),
+(58,'Djibouti','DJ','DJI','1','0'),
+(59,'Dominica','DM','DMA','1','0'),
+(60,'Dominican Republic','DO','DOM','1','0'),
+(61,'Timor-Leste','TL','TLS','1','0'),
+(62,'Ecuador','EC','ECU','1','0'),
+(63,'Egypt','EG','EGY','1','0'),
+(64,'El Salvador','SV','SLV','1','0'),
+(65,'Equatorial Guinea','GQ','GNQ','1','0'),
+(66,'Eritrea','ER','ERI','1','0'),
+(67,'Estonia','EE','EST','1','1'),
+(68,'Ethiopia','ET','ETH','1','0'),
+(69,'Falkland Islands (Malvinas)','FK','FLK','1','0'),
+(70,'Faroe Islands','FO','FRO','1','0'),
+(71,'Fiji','FJ','FJI','1','0'),
+(72,'Finland','FI','FIN','1','1'),
+(73,'France','FR','FRA','1','1'),
+(75,'French Guiana','GF','GUF','1','0'),
+(76,'French Polynesia','PF','PYF','1','0'),
+(77,'French Southern Territories','TF','ATF','1','0'),
+(78,'Gabon','GA','GAB','1','0'),
+(79,'Gambia','GM','GMB','1','0'),
+(80,'Georgia','GE','GEO','1','0'),
+(81,'Germany','DE','DEU','5','1'),
+(82,'Ghana','GH','GHA','1','0'),
+(83,'Gibraltar','GI','GIB','1','0'),
+(84,'Greece','GR','GRC','1','1'),
+(85,'Greenland','GL','GRL','1','1'),
+(86,'Grenada','GD','GRD','1','0'),
+(87,'Guadeloupe','GP','GLP','1','0'),
+(88,'Guam','GU','GUM','1','0'),
+(89,'Guatemala','GT','GTM','1','0'),
+(90,'Guinea','GN','GIN','1','0'),
+(91,'Guinea-Bissau','GW','GNB','1','0'),
+(92,'Guyana','GY','GUY','1','0'),
+(93,'Haiti','HT','HTI','1','0'),
+(94,'Heard and Mc Donald Islands','HM','HMD','1','0'),
+(95,'Honduras','HN','HND','1','0'),
+(96,'Hong Kong','HK','HKG','1','0'),
+(97,'Hungary','HU','HUN','1','1'),
+(98,'Iceland','IS','ISL','1','1'),
+(99,'India','IN','IND','1','0'),
+(100,'Indonesia','ID','IDN','1','0'),
+(101,'Iran (Islamic Republic of)','IR','IRN','1','0'),
+(102,'Iraq','IQ','IRQ','1','0'),
+(103,'Ireland','IE','IRL','1','1'),
+(104,'Israel','IL','ISR','1','1'),
+(105,'Italy','IT','ITA','1','1'),
+(106,'Jamaica','JM','JAM','1','0'),
+(107,'Japan','JP','JPN','1','0'),
+(108,'Jordan','JO','JOR','1','0'),
+(109,'Kazakhstan','KZ','KAZ','1','0'),
+(110,'Kenya','KE','KEN','1','0'),
+(111,'Kiribati','KI','KIR','1','0'),
+(112,"Korea, Democratic People's Republic of",'KP','PRK','1','0'),
+(113,'Korea, Republic of','KR','KOR','1','0'),
+(114,'Kuwait','KW','KWT','1','0'),
+(115,'Kyrgyzstan','KG','KGZ','1','0'),
+(116,"Lao People's Democratic Republic",'LA','LAO','1','0'),
+(117,'Latvia','LV','LVA','1','1'),
+(118,'Lebanon','LB','LBN','1','0'),
+(119,'Lesotho','LS','LSO','1','0'),
+(120,'Liberia','LR','LBR','1','0'),
+(121,'Libya','LY','LBY','1','0'),
+(122,'Liechtenstein','LI','LIE','1','1'),
+(123,'Lithuania','LT','LTU','1','1'),
+(124,'Luxembourg','LU','LUX','1','1'),
+(125,'Macao','MO','MAC','1','0'),
+(126,'Macedonia, The Former Yugoslav Republic of','MK','MKD','1','1'),
+(127,'Madagascar','MG','MDG','1','0'),
+(128,'Malawi','MW','MWI','1','0'),
+(129,'Malaysia','MY','MYS','1','0'),
+(130,'Maldives','MV','MDV','1','0'),
+(131,'Mali','ML','MLI','1','0'),
+(132,'Malta','MT','MLT','1','1'),
+(133,'Marshall Islands','MH','MHL','1','0'),
+(134,'Martinique','MQ','MTQ','1','0'),
+(135,'Mauritania','MR','MRT','1','0'),
+(136,'Mauritius','MU','MUS','1','0'),
+(137,'Mayotte','YT','MYT','1','0'),
+(138,'Mexico','MX','MEX','1','0'),
+(139,'Micronesia, Federated States of','FM','FSM','1','0'),
+(140,'Moldova','MD','MDA','1','0'),
+(141,'Monaco','MC','MCO','1','1'),
+(142,'Mongolia','MN','MNG','1','0'),
+(143,'Montserrat','MS','MSR','1','0'),
+(144,'Morocco','MA','MAR','1','0'),
+(145,'Mozambique','MZ','MOZ','1','0'),
+(146,'Myanmar','MM','MMR','1','0'),
+(147,'Namibia','NA','NAM','1','0'),
+(148,'Nauru','NR','NRU','1','0'),
+(149,'Nepal','NP','NPL','1','0'),
+(150,'Netherlands','NL','NLD','5','1');
+(151,'Bonaire, Sint Eustatius and Saba','BQ','BES','1','0'),
+(152,'New Caledonia','NC','NCL','1','0'),
+(153,'New Zealand','NZ','NZL','1','0'),
+(154,'Nicaragua','NI','NIC','1','0'),
+(155,'Niger','NE','NER','1','0'),
+(156,'Nigeria','NG','NGA','1','0'),
+(157,'Niue','NU','NIU','1','0'),
+(158,'Norfolk Island','NF','NFK','1','0'),
+(159,'Northern Mariana Islands','MP','MNP','1','0'),
+(160,'Norway','NO','NOR','1','1'),
+(161,'Oman','OM','OMN','1','0'),
+(162,'Pakistan','PK','PAK','1','0'),
+(163,'Palau','PW','PLW','1','0'),
+(164,'Panama','PA','PAN','1','0'),
+(165,'Papua New Guinea','PG','PNG','1','0'),
+(166,'Paraguay','PY','PRY','1','0'),
+(167,'Peru','PE','PER','1','0'),
+(168,'Philippines','PH','PHL','1','0'),
+(169,'Pitcairn','PN','PCN','1','0'),
+(170,'Poland','PL','POL','1','1'),
+(171,'Portugal','PT','PRT','1','1'),
+(172,'Puerto Rico','PR','PRI','1','0'),
+(173,'Qatar','QA','QAT','1','0'),
+(174,'Réunion','RE','REU','1','0'),
+(175,'Romania','RO','ROU','1','1'),
+(176,'Russian Federation','RU','RUS','1','1'),
+(177,'Rwanda','RW','RWA','1','0'),
+(178,'Saint Kitts and Nevis','KN','KNA','1','0'),
+(179,'Saint Lucia','LC','LCA','1','0'),
+(180,'Saint Vincent and the Grenadines','VC','VCT','1','0'),
+(181,'Samoa','WS','WSM','1','0'),
+(182,'San Marino','SM','SMR','1','1'),
+(183,'Sao Tome and Principe','ST','STP','1','0'),
+(184,'Saudi Arabia','SA','SAU','1','0'),
+(185,'Senegal','SN','SEN','1','0'),
+(186,'Seychelles','SC','SYC','1','0'),
+(187,'Sierra Leone','SL','SLE','1','0'),
+(188,'Singapore','SG','SGP', '4','1');
+(189,'Slovakia (Slovak Republic)','SK','SVK','1','1','1'),
+(190,'Slovenia','SI','SVN','1','1'),
+(191,'Solomon Islands','SB','SLB','1','0'),
+(192,'Somalia','SO','SOM','1','0'),
+(193,'South Africa','ZA','ZAF','1','0'),
+(194,'South Georgia and the South Sandwich Islands','GS','SGS','1','0'),
+(195,'Spain','ES','ESP','3','1');
+(196,'Sri Lanka','LK','LKA','1','0'),
+(197,'St. Helena','SH','SHN','1','0'),
+(198,'St. Pierre and Miquelon','PM','SPM','1','0'),
+(199,'Sudan','SD','SDN','1','0'),
+(200,'Suriname','SR','SUR','1','0'),
+(201,'Svalbard and Jan Mayen Islands','SJ','SJM','1','0'),
+(202,'Swaziland','SZ','SWZ','1','0'),
+(203,'Sweden','SE','SWE','5','1');
+(204,'Switzerland','CH','CHE','1','1'),
+(205,'Syrian Arab Republic','SY','SYR','1','0'),
+(206,'Taiwan','TW','TWN','1','0'),
+(207,'Tajikistan','TJ','TJK','1','0'),
+(208,'Tanzania, United Republic of','TZ','TZA','1','0'),
+(209,'Thailand','TH','THA','1','0'),
+(210,'Togo','TG','TGO','1','0'),
+(211,'Tokelau','TK','TKL','1','0'),
+(212,'Tonga','TO','TON','1','0'),
+(213,'Trinidad and Tobago','TT','TTO','1','0'),
+(214,'Tunisia','TN','TUN','1','0'),
+(215,'Turkey','TR','TUR','1','1'),
+(216,'Turkmenistan','TM','TKM','1','0'),
+(217,'Turks and Caicos Islands','TC','TCA','1','0'),
+(218,'Tuvalu','TV','TUV','1','0'),
+(219,'Uganda','UG','UGA','1','0'),
+(220,'Ukraine','UA','UKR','1','1'),
+(221,'United Arab Emirates','AE','ARE','1','0'),
+(222,'United Kingdom','GB','GBR','6','1');
+(223,'United States','US','USA', '2','1');
+(224,'United States Minor Outlying Islands','UM','UMI','1','0'),
+(225,'Uruguay','UY','URY','1','0'),
+(226,'Uzbekistan','UZ','UZB','1','0'),
+(227,'Vanuatu','VU','VUT','1','0'),
+(228,'Vatican City State (Holy See)','VA','VAT','1','0'),
+(229,'Venezuela','VE','VEN','1','0'),
+(230,'Viet Nam','VN','VNM','1','0'),
+(231,'Virgin Islands (British)','VG','VGB','1','0'),
+(232,'Virgin Islands (U.S.)','VI','VIR','1','0'),
+(233,'Wallis and Futuna Islands','WF','WLF','1','0'),
+(234,'Western Sahara','EH','ESH','1','0'),
+(235,'Yemen','YE','YEM','1','0'),
+(236,'Serbia','RS','SRB','1','1'),
+(238,'Zambia','ZM','ZMB','1','0'),
+(239,'Zimbabwe','ZW','ZWE','1','0'),
+(241,'Palestine, State of','PS','PSE','1','0'),
+(242,'Montenegro','ME','MNE','1','1'),
+(243,'Guernsey','GG','GGY','1','1'),
+(244,'Isle of Man','IM','IMN','1','1'),
+(245,'Jersey','JE','JEY','1','0'),
+(246,'South Sudan','SS','SSD','1','0'),
+(247,'Curaçao','CW','CUW','1','0'),
+(248,'Sint Maarten (Dutch part)','SX','SXM','1','0');
 
 
 INSERT INTO countries_name (countries_id, language_id, countries_name) VALUES
@@ -325,7 +326,7 @@ INSERT INTO countries_name (countries_id, language_id, countries_name) VALUES
 (58, 1,  'Djibouti'),
 (59, 1,  'Dominica'),
 (60, 1,  'Dominican Republic'),
-(61, 1,  'Timor-Leste',),
+(61, 1,  'Timor-Leste'),
 (62, 1,  'Ecuador'),
 (63, 1,  'Egypt'),
 (64, 1,  'El Salvador'),
@@ -339,7 +340,7 @@ INSERT INTO countries_name (countries_id, language_id, countries_name) VALUES
 (72, 1,  'Finland'),
 (73, 1,  'France'),
 (75, 1,  'French Guiana'),
-(76, 1,  'French Polynesia'1),
+(76, 1,  'French Polynesia'),
 (77, 1,  'French Southern Territories'),
 (78, 1,  'Gabon'),
 (79, 1,  'Gambia'),
@@ -424,7 +425,7 @@ INSERT INTO countries_name (countries_id, language_id, countries_name) VALUES
 (158, 1, 'Norfolk Island'),
 (159, 1, 'Northern Mariana Islands'),
 (160, 1, 'Norway'),
-(161, 1, 'Oman',),
+(161, 1, 'Oman'),
 (162, 1, 'Pakistan'),
 (163, 1, 'Palau'),
 (164, 1, 'Panama'),
@@ -452,7 +453,7 @@ INSERT INTO countries_name (countries_id, language_id, countries_name) VALUES
 (186, 1, 'Seychelles'),
 (187, 1, 'Sierra Leone'),
 (188, 1, 'Singapore'),
-(189, 1, 'Slovakia (Slovak Republic)',),
+(189, 1, 'Slovakia (Slovak Republic)'),
 (190, 1, 'Slovenia'),
 (191, 1, 'Solomon Islands'),
 (192, 1, 'Somalia'),
@@ -485,7 +486,7 @@ INSERT INTO countries_name (countries_id, language_id, countries_name) VALUES
 (219, 1, 'Uganda'),
 (220, 1, 'Ukraine'),
 (221, 1, 'United Arab Emirates'),
-(222, 1, 'United Kingdom',),
+(222, 1, 'United Kingdom'),
 (223, 1, 'United States'),
 (224, 1, 'United States Minor Outlying Islands'),
 (225, 1, 'Uruguay'),
@@ -510,7 +511,7 @@ INSERT INTO countries_name (countries_id, language_id, countries_name) VALUES
 (245, 1, 'Jersey'),
 (246, 1, 'South Sudan'),
 (247, 1, 'Curaçao'),
-(248, 1, 'Sint Maarten (Dutch part)'),
+(248, 1, 'Sint Maarten'),
 (1, 43, 'Afghanistan'),
 (2, 43,  'Albanien'),
 (3, 43,  'Algerien'),
@@ -571,7 +572,7 @@ INSERT INTO countries_name (countries_id, language_id, countries_name) VALUES
 (58, 43,  'Djibouti'),
 (59, 43,  'Dominica'),
 (60, 43,  'Dominikanische Republik'),
-(61, 43,  'Timor-Leste',),
+(61, 43,  'Timor-Leste'),
 (62, 43,  'Ecuador'),
 (63, 43,  'Ägypten'),
 (64, 43,  'El Salvador'),
@@ -579,13 +580,13 @@ INSERT INTO countries_name (countries_id, language_id, countries_name) VALUES
 (66, 43,  'Eritrea'),
 (67, 43,  'Estland'),
 (68, 43,  'Äthiopien'),
-(69, 43,  'Falkland Inseln (Malvinas)'),
+(69, 43,  'Falkland Inseln'),
 (70, 43,  'Faroer Inseln'),
 (71, 43,  'Fiji'),
 (72, 43,  'Finnland'),
 (73, 43,  'Frankreich'),
 (75, 43,  'French Guiana'),
-(76, 43,  'French Polynesia'1),
+(76, 43,  'French Polynesia'),
 (77, 43,  'French Southern Territories'),
 (78, 43,  'Gabun'),
 (79, 43,  'Gambia'),
@@ -593,8 +594,8 @@ INSERT INTO countries_name (countries_id, language_id, countries_name) VALUES
 (81, 43,  'Deutschland'),
 (82, 43,  'Ghana'),
 (83, 43,  'Gibraltar'),
-(84, 43,  'Greece'),
-(85, 43,  'Griechenland'),
+(84, 43,  'Griechenland'),
+(85, 43,  'Grönland'),
 (86, 43,  'Grenada'),
 (87, 43,  'Guadeloupe'),
 (88, 43,  'Guam'),
@@ -670,7 +671,7 @@ INSERT INTO countries_name (countries_id, language_id, countries_name) VALUES
 (158, 43, 'Norfolk Island'),
 (159, 43, 'Northern Mariana Islands'),
 (160, 43, 'Norwegen'),
-(161, 43, 'Oman',),
+(161, 43, 'Oman'),
 (162, 43, 'Pakistan'),
 (163, 43, 'Palau'),
 (164, 43, 'Panama'),
@@ -698,7 +699,7 @@ INSERT INTO countries_name (countries_id, language_id, countries_name) VALUES
 (186, 43, 'Seychellen'),
 (187, 43, 'Sierra Leone'),
 (188, 43, 'Singapur'),
-(189, 43, 'Slowakei',),
+(189, 43, 'Slowakei'),
 (190, 43, 'Slowenien'),
 (191, 43, 'Solomon Islands'),
 (192, 43, 'Somalia'),
@@ -756,7 +757,7 @@ INSERT INTO countries_name (countries_id, language_id, countries_name) VALUES
 (245, 43, 'Jersey'),
 (246, 43, 'Südsudan'),
 (247, 43, 'Curaçao'),
-(248, 43, 'Sint Maarten (Dutch part)');
+(248, 43, 'Sint Maarten');
 
 
 
