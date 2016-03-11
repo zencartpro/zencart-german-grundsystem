@@ -4,7 +4,7 @@
  * @copyright Copyright 2003-2016 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: zones.php 785 2011-09-20 08:13:51Z webchills $
+ * @version $Id: zones.php 786 2016-03-10 21:13:51Z webchills $
  */
 
   require('includes/application_top.php');
@@ -107,7 +107,13 @@
                       <td class="dataTableHeadingContent" align="right"><?php echo TABLE_HEADING_ACTION; ?>&nbsp;</td>
                     </tr>
                     <?php
-  $zones_query_raw = "select z.zone_id, c.countries_id, c.countries_name, z.zone_name, z.zone_code, z.zone_country_id from " . TABLE_ZONES . " z, " . TABLE_COUNTRIES . " c where z.zone_country_id = c.countries_id order by c.countries_name, z.zone_name";
+// BOF Mehrsprachige Ländernamen 1 of 1
+  $zones_query_raw = "SELECT z.zone_id, c.countries_id, c.countries_name, z.zone_name, z.zone_code, z.zone_country_id
+                      FROM " . TABLE_ZONES . " z, " . TABLE_COUNTRIES_NAME . " c
+                      WHERE z.zone_country_id = c.countries_id
+                      AND language_id = '" . (int)$_SESSION['languages_id'] . "'
+                      ORDER BY c.countries_name, z.zone_name";
+// EOF Mehrsprachige Ländernamen 1 of 1
   $zones_split = new splitPageResults($_GET['page'], MAX_DISPLAY_SEARCH_RESULTS, $zones_query_raw, $zones_query_numrows);
   $zones = $db->Execute($zones_query_raw);
   while (!$zones->EOF) {

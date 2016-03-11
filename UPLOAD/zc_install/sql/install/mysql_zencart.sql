@@ -5,7 +5,7 @@
 # * @copyright Copyright 2003-2016 Zen Cart Development Team
 # * @copyright Portions Copyright 2003 osCommerce
 # * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
-# * @version $Id: mysql_zencart.sql 19461 2016-03-08 21:49:16Z webchills $
+# * @version $Id: mysql_zencart.sql 19462 2016-03-10 21:38:16Z webchills $
 #
 
 ############ IMPORTANT INSTRUCTIONS ###############
@@ -383,6 +383,23 @@ CREATE TABLE countries (
   KEY idx_address_format_id_zen (address_format_id),
   KEY idx_iso_2_zen (countries_iso_code_2),
   KEY idx_iso_3_zen (countries_iso_code_3)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+# --------------------------------------------------------
+
+#
+# Table structure for table 'countries_name'
+#
+
+DROP TABLE IF EXISTS countries_name;
+CREATE TABLE IF NOT EXISTS countries_name (
+  id int(11) NOT NULL AUTO_INCREMENT,
+  countries_id int(11) NOT NULL,
+  language_id int(11) NOT NULL DEFAULT '1',
+  countries_name varchar(64) NOT NULL,
+  PRIMARY KEY (id),
+  UNIQUE countries (countries_id, language_id, countries_name),
+  KEY idx_countries_name_zen (countries_name)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 # --------------------------------------------------------

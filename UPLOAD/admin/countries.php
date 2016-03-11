@@ -4,47 +4,79 @@
  * @copyright Copyright 2003-2016 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: countries.php 788 2015-12-21 18:13:51Z webchills $
+ * @version $Id: countries.php 789 2016-03-10 21:13:51Z webchills $
  */
 
   require('includes/application_top.php');
 
   $action = (isset($_GET['action']) ? $_GET['action'] : '');
 
+// BOF mehrsprachige Ländernamen 1 of 9
+  $languages = zen_get_languages();
+// EOF mehrsprachige Ländernamen 1 of 9
   if (zen_not_null($action)) {
     switch ($action) {
       case 'insert':
-        $countries_name = zen_db_prepare_input($_POST['countries_name']);
+        // BOF mehrsprachige Ländernamen 2 of 9
+        //$countries_name = zen_db_prepare_input($_POST['countries_name']);
+        // EOF mehrsprachige Ländernamen 2 of 9
         $countries_iso_code_2 = strtoupper(zen_db_prepare_input($_POST['countries_iso_code_2']));
         $countries_iso_code_3 = strtoupper(zen_db_prepare_input($_POST['countries_iso_code_3']));
         $address_format_id = zen_db_prepare_input($_POST['address_format_id']);
         $status = $_POST['status'] == 'on' ? 1 : 0;
 
+// BOF mehrsprachige Ländernamen 3 of 9
         $db->Execute("insert into " . TABLE_COUNTRIES . "
-                    (countries_name, countries_iso_code_2, countries_iso_code_3, status, address_format_id)
-                    values ('" . zen_db_input($countries_name) . "',
-                            '" . zen_db_input($countries_iso_code_2) . "',
+                    (countries_iso_code_2, countries_iso_code_3, status, address_format_id)
+                    values ('" . zen_db_input($countries_iso_code_2) . "',
                             '" . zen_db_input($countries_iso_code_3) . "',
                             '" . (int)$status . "',
                             '" . (int)$address_format_id . "')");
+
+        for ($i=0, $n=sizeof($languages); $i<$n; $i++) {
+          $countries_name_array = $_POST['countries_name'];
+          $language_id = $languages[$i]['id'];
+          $sql_data_array = array('countries_name' => zen_db_prepare_input($countries_name_array[$language_id]));
+          $countries_id_lookup = $db->Execute("SELECT countries_id
+                                        FROM " . TABLE_COUNTRIES . "
+                                        WHERE countries_iso_code_2 = '" . zen_db_input($countries_iso_code_2) . "'");
+          $countries_id = $countries_id_lookup->fields['countries_id'];
+          $insert_sql_data = array('countries_id' => $countries_id,
+                                   'language_id' => $language_id);
+
+          $sql_data_array_merged = array_merge($sql_data_array, $insert_sql_data);
+          zen_db_perform(TABLE_COUNTRIES_NAME, $sql_data_array_merged);
+        }
+// EOF mehrsprachige Ländernamen 3 of 9
         zen_record_admin_activity('Country added: ' . $countries_iso_code_3, 'info');
         zen_redirect(zen_href_link(FILENAME_COUNTRIES));
         break;
       case 'save':
         $countries_id = zen_db_prepare_input($_GET['cID']);
-        $countries_name = zen_db_prepare_input($_POST['countries_name']);
+        // BOF mehrsprachige Ländernamen 4 of 9
+        //$countries_name = zen_db_prepare_input($_POST['countries_name']);
+        // EOF mehrsprachige Ländernamen 4 of 9
         $countries_iso_code_2 = strtoupper(zen_db_prepare_input($_POST['countries_iso_code_2']));
         $countries_iso_code_3 = strtoupper(zen_db_prepare_input($_POST['countries_iso_code_3']));
         $address_format_id = zen_db_prepare_input($_POST['address_format_id']);
         $status = $_POST['status'] == 'on' ? 1 : 0;
 
+// BOF mehrsprachige Ländernamen 5 of 9
         $db->Execute("update " . TABLE_COUNTRIES . "
-                      set countries_name = '" . zen_db_input($countries_name) . "',
-                          countries_iso_code_2 = '" . zen_db_input($countries_iso_code_2) . "',
+                      set countries_iso_code_2 = '" . zen_db_input($countries_iso_code_2) . "',
                           countries_iso_code_3 = '" . zen_db_input($countries_iso_code_3) . "',
                           address_format_id = '" . (int)$address_format_id . "',
                           status = " . (int)$status . "
                       where countries_id = '" . (int)$countries_id . "'");
+
+        for ($i=0, $n=sizeof($languages); $i<$n; $i++) {
+          $countries_name_array = $_POST['countries_name'];
+          $language_id = $languages[$i]['id'];
+          $sql_data_array = array('countries_name' => zen_db_prepare_input($countries_name_array[$language_id]));
+
+          zen_db_perform(TABLE_COUNTRIES_NAME, $sql_data_array, 'update', "countries_id = '" . (int)$countries_id . "' AND language_id = '" . (int)$language_id . "'");
+        }
+// EOF mehrsprachige Ländernamen 5 of 9
         zen_record_admin_activity('Country updated: ' . $countries_iso_code_3, 'info');
         zen_redirect(zen_href_link(FILENAME_COUNTRIES, 'page=' . $_GET['page'] . '&cID=' . $countries_id));
         break;
@@ -136,7 +168,13 @@
                 <td class="dataTableHeadingContent" align="right"><?php echo TABLE_HEADING_ACTION; ?>&nbsp;</td>
               </tr>
 <?php
-  $countries_query_raw = "select countries_id, countries_name, countries_iso_code_2, countries_iso_code_3, address_format_id, status from " . TABLE_COUNTRIES . " order by countries_name";
+  // BOF mehrsprachige Ländernamen 6 of 9
+  $countries_query_raw = "SELECT c.countries_id, cn.countries_name, c.countries_iso_code_2, c.countries_iso_code_3, c.address_format_id, status
+                          FROM " . TABLE_COUNTRIES . " c, " . TABLE_COUNTRIES_NAME . " cn
+                          WHERE cn.countries_id = c.countries_id
+                          AND cn.language_id = '" . (int)$_SESSION['languages_id'] . "'
+                          ORDER BY cn.countries_name";
+  // EOF mehrsprachige Ländernamen 6 of 9
   $countries_split = new splitPageResults($_GET['page'], MAX_DISPLAY_SEARCH_RESULTS, $countries_query_raw, $countries_query_numrows);
   $countries = $db->Execute($countries_query_raw);
   while (!$countries->EOF) {
@@ -201,7 +239,12 @@
       $heading[] = array('text' => '<b>' . TEXT_INFO_HEADING_NEW_COUNTRY . '</b>');
       $contents = array('form' => zen_draw_form('countries', FILENAME_COUNTRIES, 'page=' . $_GET['page'] . '&action=insert'));
       $contents[] = array('text' => TEXT_INFO_INSERT_INTRO);
-      $contents[] = array('text' => '<br>' . TEXT_INFO_COUNTRY_NAME . '<br>' . zen_draw_input_field('countries_name'));
+      // BOF mehrsprachige Ländernamen 7 of 9
+      $contents[] = array('text' => '<br>' . TEXT_INFO_COUNTRY_NAME);
+      for ($i=0, $n=sizeof($languages); $i<$n; $i++){
+        $contents[] = array('text' => '<br>' . zen_image(DIR_WS_CATALOG_LANGUAGES . $languages[$i]['directory'] . '/images/' . $languages[$i]['image'], $languages[$i]['name']) . '&nbsp;' . zen_draw_input_field('countries_name[' . $languages[$i]['id'] . ']'));
+      }
+      // EOF mehrsprachige Ländernamen 7of 9
       $contents[] = array('text' => '<br>' . TEXT_INFO_COUNTRY_CODE_2 . '<br>' . zen_draw_input_field('countries_iso_code_2'));
       $contents[] = array('text' => '<br>' . TEXT_INFO_COUNTRY_CODE_3 . '<br>' . zen_draw_input_field('countries_iso_code_3'));
       $contents[] = array('text' => '<br>' . TEXT_INFO_ADDRESS_FORMAT . '<br>' . zen_draw_pull_down_menu('address_format_id', zen_get_address_formats()));
@@ -213,7 +256,12 @@
 
       $contents = array('form' => zen_draw_form('countries', FILENAME_COUNTRIES, 'page=' . $_GET['page'] . '&cID=' . $cInfo->countries_id . '&action=save'));
       $contents[] = array('text' => TEXT_INFO_EDIT_INTRO);
-      $contents[] = array('text' => '<br>' . TEXT_INFO_COUNTRY_NAME . '<br>' . zen_draw_input_field('countries_name', htmlspecialchars($cInfo->countries_name, ENT_COMPAT, CHARSET, TRUE)));
+      // BOF mehrsprachige Ländernamen 8 of 9
+      $contents[] = array('text' => '<br>' . TEXT_INFO_COUNTRY_NAME);
+      for ($i=0, $n=sizeof($languages); $i<$n; $i++){
+        $contents[] = array('text' => '<br>' . zen_image(DIR_WS_CATALOG_LANGUAGES . $languages[$i]['directory'] . '/images/' . $languages[$i]['image'], $languages[$i]['name']) . '&nbsp;' . zen_draw_input_field('countries_name[' . $languages[$i]['id'] . ']', htmlspecialchars(zen_get_country_name($cInfo->countries_id, $languages[$i]['id']), ENT_COMPAT, CHARSET, TRUE)));
+      }
+      // EOF mehrsprachige Ländernamen 8 of 9
       $contents[] = array('text' => '<br>' . TEXT_INFO_COUNTRY_CODE_2 . '<br>' . zen_draw_input_field('countries_iso_code_2', $cInfo->countries_iso_code_2));
       $contents[] = array('text' => '<br>' . TEXT_INFO_COUNTRY_CODE_3 . '<br>' . zen_draw_input_field('countries_iso_code_3', $cInfo->countries_iso_code_3));
       $contents[] = array('text' => '<br>' . TEXT_INFO_ADDRESS_FORMAT . '<br>' . zen_draw_pull_down_menu('address_format_id', zen_get_address_formats(), $cInfo->address_format_id));
@@ -232,7 +280,12 @@
         $heading[] = array('text' => '<b>' . zen_output_string_protected($cInfo->countries_name) . '</b>');
 
         $contents[] = array('align' => 'center', 'text' => '<a href="' . zen_href_link(FILENAME_COUNTRIES, 'page=' . $_GET['page'] . '&cID=' . $cInfo->countries_id . '&action=edit') . '">' . zen_image_button('button_edit.gif', IMAGE_EDIT) . '</a> <a href="' . zen_href_link(FILENAME_COUNTRIES, 'page=' . $_GET['page'] . '&cID=' . $cInfo->countries_id . '&action=delete') . '">' . zen_image_button('button_delete.gif', IMAGE_DELETE) . '</a>');
-        $contents[] = array('text' => '<br>' . TEXT_INFO_COUNTRY_NAME . '<br>' . zen_output_string_protected($cInfo->countries_name));
+        // BOF mehrsprachige Ländernamen 9 of 9
+        $contents[] = array('text' => '<br>' . TEXT_INFO_COUNTRY_NAME);
+        for ($i=0, $n=sizeof($languages); $i<$n; $i++){
+          $contents[] = array('text' => '<br>' . zen_image(DIR_WS_CATALOG_LANGUAGES . $languages[$i]['directory'] . '/images/' . $languages[$i]['image'], $languages[$i]['name']) . '&nbsp;' . zen_output_string_protected(zen_get_country_name($cInfo->countries_id, $languages[$i]['id'])));
+        }
+        // EOF mehrsprachige Ländernamen 9 of 9
         $contents[] = array('text' => '<br>' . TEXT_INFO_COUNTRY_CODE_2 . ' ' . $cInfo->countries_iso_code_2);
         $contents[] = array('text' => '<br>' . TEXT_INFO_COUNTRY_CODE_3 . ' ' . $cInfo->countries_iso_code_3);
         $contents[] = array('text' => '<br>' . TEXT_INFO_ADDRESS_FORMAT . ' ' . $cInfo->address_format_id);

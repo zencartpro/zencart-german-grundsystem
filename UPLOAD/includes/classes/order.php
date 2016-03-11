@@ -5,7 +5,7 @@
  * @package classes
  * @copyright Copyright 2003-2016 Zen Cart Development Team
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: order.php 858 2016-03-06 09:13:25Z webchills $
+ * @version $Id: order.php 859 2016-03-10 21:13:25Z webchills $
  */
 /**
  * order class
@@ -248,44 +248,56 @@ class order extends base {
 
     $this->content_type = $_SESSION['cart']->get_content_type();
 
+// BOF Mehrsprachige Landernamen 1 of XXX
     $customer_address_query = "select c.customers_gender, c.customers_firstname, c.customers_lastname, c.customers_telephone,
                                     c.customers_email_address, ab.entry_company, ab.entry_street_address,
                                     ab.entry_suburb, ab.entry_postcode, ab.entry_city, ab.entry_zone_id,
-                                    z.zone_name, co.countries_id, co.countries_name,
+                                    z.zone_name, co.countries_id, con.countries_name,
                                     co.countries_iso_code_2, co.countries_iso_code_3,
                                     co.address_format_id, ab.entry_state
                                    from (" . TABLE_CUSTOMERS . " c, " . TABLE_ADDRESS_BOOK . " ab )
                                    left join " . TABLE_ZONES . " z on (ab.entry_zone_id = z.zone_id)
                                    left join " . TABLE_COUNTRIES . " co on (ab.entry_country_id = co.countries_id)
+                                   left join " . TABLE_COUNTRIES_NAME . " con on (ab.entry_country_id = con.countries_id)
                                    where c.customers_id = '" . (int)$_SESSION['customer_id'] . "'
                                    and ab.customers_id = '" . (int)$_SESSION['customer_id'] . "'
-                                   and c.customers_default_address_id = ab.address_book_id";
+                                   and c.customers_default_address_id = ab.address_book_id
+                                   and con.language_id = '" . (int)$_SESSION['languages_id'] . "'";
+// EOF Mehrsprachige Landernamen 1 of XXX
 
     $customer_address = $db->Execute($customer_address_query);
 
+// BOF Mehrsprachige Landernamen 2 of XXX
     $shipping_address_query = "select ab.entry_firstname, ab.entry_lastname, ab.entry_company,
                                     ab.entry_street_address, ab.entry_suburb, ab.entry_postcode,
                                     ab.entry_city, ab.entry_zone_id, z.zone_name, ab.entry_country_id,
-                                    c.countries_id, c.countries_name, c.countries_iso_code_2,
+                                    c.countries_id, con.countries_name, c.countries_iso_code_2,
                                     c.countries_iso_code_3, c.address_format_id, ab.entry_state
                                    from " . TABLE_ADDRESS_BOOK . " ab
                                    left join " . TABLE_ZONES . " z on (ab.entry_zone_id = z.zone_id)
                                    left join " . TABLE_COUNTRIES . " c on (ab.entry_country_id = c.countries_id)
+                                   left join " . TABLE_COUNTRIES_NAME . " con on (ab.entry_country_id = con.countries_id)
                                    where ab.customers_id = '" . (int)$_SESSION['customer_id'] . "'
-                                   and ab.address_book_id = '" . (int)$_SESSION['sendto'] . "'";
+                                   and ab.address_book_id = '" . (int)$_SESSION['sendto'] . "'
+                                   and con.language_id = '" . (int)$_SESSION['languages_id'] . "'";
+// EOF Mehrsprachige Landernamen 2 of XXX
 
     $shipping_address = $db->Execute($shipping_address_query);
 
+// BOF Mehrsprachige Landernamen 3 of XXX
     $billing_address_query = "select ab.entry_firstname, ab.entry_lastname, ab.entry_company,
                                    ab.entry_street_address, ab.entry_suburb, ab.entry_postcode,
                                    ab.entry_city, ab.entry_zone_id, z.zone_name, ab.entry_country_id,
-                                   c.countries_id, c.countries_name, c.countries_iso_code_2,
+                                   c.countries_id, con.countries_name, c.countries_iso_code_2,
                                    c.countries_iso_code_3, c.address_format_id, ab.entry_state
                                   from " . TABLE_ADDRESS_BOOK . " ab
                                   left join " . TABLE_ZONES . " z on (ab.entry_zone_id = z.zone_id)
                                   left join " . TABLE_COUNTRIES . " c on (ab.entry_country_id = c.countries_id)
+                                  left join " . TABLE_COUNTRIES_NAME . " con on (ab.entry_country_id = con.countries_id)
                                   where ab.customers_id = '" . (int)$_SESSION['customer_id'] . "'
-                                  and ab.address_book_id = '" . (int)$_SESSION['billto'] . "'";
+                                  and ab.address_book_id = '" . (int)$_SESSION['billto'] . "'
+                                  and con.language_id = '" . (int)$_SESSION['languages_id'] . "'";
+// EOF Mehrsprachige Landernamen 3 of XXX
 
     $billing_address = $db->Execute($billing_address_query);
 
