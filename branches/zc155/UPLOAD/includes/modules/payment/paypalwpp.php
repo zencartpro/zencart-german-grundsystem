@@ -6,7 +6,7 @@
  * @copyright Copyright 2003-2016 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: paypalwpp.php 850 2016-02-29 15:12:14Z webchills $
+ * @version $Id: paypalwpp.php 851 2016-03-10 21:12:14Z webchills $
  */
 /**
  * load the communications layer code
@@ -1910,11 +1910,15 @@ if (false) { // disabled until clarification is received about coupons in PayPal
     $original_default_address_id = $_SESSION['customer_default_address_id'];
 
     // Get the customer's country ID based on name or ISO code
-    $sql = "SELECT countries_id, address_format_id, countries_iso_code_2, countries_iso_code_3
-                FROM " . TABLE_COUNTRIES . "
-                WHERE countries_iso_code_2 = :countryId
-                   OR countries_name = :countryId
+// BOF Mehrsprachige Landernamen 1 of 3
+    $sql = "SELECT c.countries_id, c.address_format_id, c.countries_iso_code_2, c.countries_iso_code_3
+                FROM " . TABLE_COUNTRIES . " c, " . TABLE_COUNTRIES_NAME . " cn
+                WHERE c.countries_iso_code_2 = :countryId
+                   OR cn.countries_name = :countryId
+                AND cn.countries_id = c.countries_id
+                AND cn.language_id = '" . (int)$_SESSION['languages_id'] . "'
                 LIMIT 1";
+// EOF Mehrsprachige Landernamen 1 of 3
     $sql1 = $db->bindVars($sql, ':countryId', $paypal_ec_payer_info['ship_country_name'], 'string');
     $country1 = $db->Execute($sql1);
     $sql2 = $db->bindVars($sql, ':countryId', $paypal_ec_payer_info['ship_country_code'], 'string');
@@ -2400,13 +2404,17 @@ if (false) { // disabled until clarification is received about coupons in PayPal
 
     // first get the zone id's from the 2 digit iso codes
     // country first
-    $sql = "SELECT countries_id, address_format_id
-                FROM " . TABLE_COUNTRIES . "
-                WHERE countries_iso_code_2 = :countryCode:
-                OR countries_name = :countryName:
-                OR countries_iso_code_2 = :countryName:
-                OR countries_name = :countryCode:
+// BOF Mehrsprachige Landernamen 2 of 3
+    $sql = "SELECT c.countries_id, c.address_format_id
+                FROM " . TABLE_COUNTRIES . " c, " . TABLE_COUNTRIES_NAME . " cn
+                WHERE c.countries_iso_code_2 = :countryCode:
+                OR cn.countries_name = :countryName:
+                OR c.countries_iso_code_2 = :countryName:
+                OR cn.countries_name = :countryCode:
+                AND cn.countries_id = c.countries_id
+                AND cn.language_id = '" . (int)$_SESSION['languages_id'] . "'
                 LIMIT 1";
+// EOF Mehrsprachige Landernamen 2 of 3
     $sql = $db->bindVars($sql, ':countryCode:', $address_question_arr['country']['iso_code_2'], 'string');
     $sql = $db->bindVars($sql, ':countryName:', $address_question_arr['country']['title'], 'string');
     $country = $db->Execute($sql);
@@ -2556,13 +2564,17 @@ if (false) { // disabled until clarification is received about coupons in PayPal
 
     // first get the zone id's from the 2 digit iso codes
     // country first
-    $sql = "SELECT countries_id, address_format_id
-                FROM " . TABLE_COUNTRIES . "
-                WHERE countries_iso_code_2 = :countryCode:
-                OR countries_name = :countryName:
-                OR countries_iso_code_2 = :countryName:
-                OR countries_name = :countryCode:
+// BOF Mehrsprachige Landernamen 3 of 3
+    $sql = "SELECT c.countries_id, c.address_format_id
+                FROM " . TABLE_COUNTRIES . " c, " . TABLE_COUNTRIES_NAME . " cn
+                WHERE c.countries_iso_code_2 = :countryCode:
+                OR c.countries_name = :countryName:
+                OR c.countries_iso_code_2 = :countryName:
+                OR cn.countries_name = :countryCode:
+                AND cn.countries_id = c.countries_id
+                AND cn.language_id = '" . (int)$_SESSION['languages_id'] . "'
                 LIMIT 1";
+// EOF Mehrsprachige Landernamen 3 of 3
     $sql = $db->bindVars($sql, ':countryCode:', $address_question_arr['country']['iso_code_2'], 'string');
     $sql = $db->bindVars($sql, ':countryName:', $address_question_arr['country']['title'], 'string');
     $country = $db->Execute($sql);

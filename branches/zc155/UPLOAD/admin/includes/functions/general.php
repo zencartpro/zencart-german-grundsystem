@@ -4,7 +4,7 @@
  * @copyright Copyright 2003-2016 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: general.php 893 2016-03-03 21:07:33Z webchills $
+ * @version $Id: general.php 894 2016-03-10 21:07:33Z webchills $
  */
 
 ////
@@ -381,11 +381,19 @@
   }
 
 
-  function zen_get_country_name($country_id) {
+// BOF Mehrsprachige Landernamen 1 of 2
+  function zen_get_country_name($country_id, $language_id = '') {
     global $db;
-    $country = $db->Execute("select countries_name
-                             from " . TABLE_COUNTRIES . "
-                             where countries_id = '" . (int)$country_id . "'");
+
+    if (!$language_id) {
+      $language_id = $_SESSION['languages_id'];
+    }
+
+    $country = $db->Execute("SELECT countries_name
+                             FROM " . TABLE_COUNTRIES_NAME . "
+                             WHERE countries_id = '" . (int)$country_id . "'
+                             AND language_id = '" . (int)$language_id . "'");
+// EOF Mehrsprachige Landernamen 1 of 2
 
     if ($country->RecordCount() < 1) {
       return $country_id;
@@ -395,11 +403,14 @@
   }
 
 
-  function zen_get_country_name_cfg() {
+// BOF Mehrsprachige Landernamen 2 of 2
+  function zen_get_country_name_cfg($country_id) {
     global $db;
-    $country = $db->Execute("select countries_name
-                             from " . TABLE_COUNTRIES . "
-                             where countries_id = '" . (int)$country_id . "'");
+    $country = $db->Execute("SELECT countries_name
+                             FROM " . TABLE_COUNTRIES_NAME . "
+                             WHERE countries_id = '" . (int)$country_id . "'
+                             AND language_id = '" . (int)$_SESSION['languages_id'] . "'");
+// EOF Mehrsprachige Landernamen 2 of 2
 
     if ($country->RecordCount() < 1) {
       return $country_id;
@@ -825,9 +836,10 @@
       $countries_array[] = array('id' => '',
                                  'text' => $default);
     }
-    $countries = $db->Execute("select countries_id, countries_name
-                               from " . TABLE_COUNTRIES . "
-                               order by countries_name");
+    $countries = $db->Execute("SELECT countries_id, countries_name
+                               FROM " . TABLE_COUNTRIES_NAME . "
+                               WHERE language_id = '" . (int)$_SESSION['languages_id'] . "'
+                               ORDER BY countries_name");
 
     while (!$countries->EOF) {
       $countries_array[] = array('id' => $countries->fields['countries_id'],

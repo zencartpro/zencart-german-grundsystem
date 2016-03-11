@@ -4,7 +4,7 @@
  * @copyright Copyright 2003-2016 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: languages.php 786 2015-12-21 18:13:51Z webchills $
+ * @version $Id: languages.php 787 2016-03-10 21:13:51Z webchills $
  */
 
   require('includes/application_top.php');
@@ -197,6 +197,22 @@
             $coupons->MoveNext();
           }
 
+// BOF Mehrsprachige Ländernamen 1 of 2
+// create additional countries_name records
+          $countries_name = $db->Execute("SELECT c.countries_id, cn.countries_name
+                                      FROM " . TABLE_COUNTRIES . " c
+                                      LEFT JOIN " . TABLE_COUNTRIES_NAME . " cn ON c.countries_id = cn.countries_id
+                                      WHERE cn.language_id = '" . (int)$_SESSION['languages_id'] . "'");
+
+          while (!$countries_name->EOF) {
+            $db->Execute("INSERT INTO " . TABLE_COUNTRIES_NAME . "
+                          (countries_id, language_id, countries_name)
+                          values ('" . (int)$countries_name->fields['countries_id'] . "',
+                                  '" . (int)$insert_id . "',
+                                  '" . zen_db_input($countries_name->fields['countries_name']) . "')");
+            $countries_name->MoveNext();
+          }
+// EOF Mehrsprachige Ländernamen 1 of 2
           zen_redirect(zen_href_link(FILENAME_LANGUAGES, (isset($_GET['page']) ? 'page=' . $_GET['page'] . '&' : '') . 'lID=' . $insert_id));
         }
 
@@ -267,6 +283,9 @@
         $db->Execute("delete from " . TABLE_COUPONS_DESCRIPTION . " where language_id = '" . (int)$lID . "'");
         $db->Execute("delete from " . TABLE_META_TAGS_PRODUCTS_DESCRIPTION . " where language_id = '" . (int)$lID . "'");
         $db->Execute("delete from " . TABLE_METATAGS_CATEGORIES_DESCRIPTION . " where language_id = '" . (int)$lID . "'");
+// BOF Mehrsprachige Ländernamen 2 of 2
+        $db->Execute("delete from " . TABLE_COUNTRIES_NAME . " where language_id = '" . (int)$lID . "'");
+// EOF Mehrsprachige Ländernamen 2 of 2
 
         // if we just deleted our currently-selected language, need to switch to default lang:
         $lng = $db->Execute("select languages_id from " . TABLE_LANGUAGES . " where code = '" . zen_db_input(DEFAULT_LANGUAGE) . "'");

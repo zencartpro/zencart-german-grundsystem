@@ -7,7 +7,7 @@
  * @copyright Copyright 2003-2016 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: functions_lookups.php 768 2016-02-28 16:23:42Z webchills $
+ * @version $Id: functions_lookups.php 769 2016-03-10 21:23:42Z webchills $
  */
 
 
@@ -22,11 +22,15 @@
     $countries_array = array();
     if (zen_not_null($countries_id)) {
       $countries_array['countries_name'] = '';
-      $countries = "select countries_name, countries_iso_code_2, countries_iso_code_3
-                    from " . TABLE_COUNTRIES . "
-                    where countries_id = '" . (int)$countries_id . "'";
-      if ($activeOnly) $countries .= " and status != 0 ";
-      $countries .= " order by countries_name";
+// BOF Mehrsprachige Landernamen 1 of 2
+      $countries = "SELECT con.countries_name, co.countries_iso_code_2, co.countries_iso_code_3
+                    FROM " . TABLE_COUNTRIES . " co, " . TABLE_COUNTRIES_NAME . " con
+                    WHERE co.countries_id = '" . (int)$countries_id . "'
+                    AND con.countries_id = co.countries_id
+                    AND con.language_id = '" . (int)$_SESSION['languages_id'] . "'";
+      if ($activeOnly) $countries .= " AND co.status != 0 ";
+      $countries .= " ORDER BY con.countries_name";
+// EOF Mehrsprachige Landernamen 1 of 2
       $countries_values = $db->Execute($countries);
 
       if ($with_iso_codes == true) {
@@ -41,10 +45,14 @@
         if (!$countries_values->EOF) $countries_array = array('countries_name' => $countries_values->fields['countries_name']);
       }
     } else {
-      $countries = "select countries_id, countries_name
-                    from " . TABLE_COUNTRIES . " ";
-      if ($activeOnly) $countries .= " where status != 0 ";
-      $countries .= " order by countries_name";
+// BOF Mehrsprachige Landernamen 2 of 2
+      $countries = "SELECT co.countries_id, con.countries_name
+                    FROM " . TABLE_COUNTRIES . " co, " . TABLE_COUNTRIES_NAME . " con";
+      if ($activeOnly) $countries .= " WHERE co.status != 0 ";
+      $countries .= " AND con.countries_id = co.countries_id";
+      $countries .= " AND con.language_id = '" . (int)$_SESSION['languages_id'] . "'";
+      $countries .= " ORDER BY con.countries_name";
+// EOF Mehrsprachige Landernamen 2 of 2
       $countries_values = $db->Execute($countries);
       while (!$countries_values->EOF) {
         $countries_array[] = array('countries_id' => $countries_values->fields['countries_id'],
@@ -744,7 +752,9 @@
   function zen_run_normal() {
     $zc_run = false;
     switch (true) {
-      case (strstr(EXCLUDE_ADMIN_IP_FOR_MAINTENANCE, $_SERVER['REMOTE_ADDR'])):
+      // case (strstr(EXCLUDE_ADMIN_IP_FOR_MAINTENANCE, $_SERVER['REMOTE_ADDR'])):
+      // changed see https://www.zen-cart.com/showthread.php?214518-myDEBUG-3-identical-files-yesterday
+      case (!empty ($_SERVER['REMOTE_ADDR']) && strstr(EXCLUDE_ADMIN_IP_FOR_MAINTENANCE, $_SERVER['REMOTE_ADDR'])):
       // down for maintenance not for ADMIN
         $zc_run = true;
         break;

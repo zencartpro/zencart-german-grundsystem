@@ -7,7 +7,7 @@
  * @copyright Copyright 2003-2016 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: database_tables.php 785 2011-09-20 08:13:51Z webchills $
+ * @version $Id: database_tables.php 786 2016-03-10 21:13:51Z webchills $
  * @private
  */
 
@@ -31,6 +31,7 @@ define('TABLE_CONFIGURATION_GROUP', DB_PREFIX . 'configuration_group');
 define('TABLE_COUNTER', DB_PREFIX . 'counter');
 define('TABLE_COUNTER_HISTORY', DB_PREFIX . 'counter_history');
 define('TABLE_COUNTRIES', DB_PREFIX . 'countries');
+define('TABLE_COUNTRIES_NAME', DB_PREFIX . 'countries_name');
 define('TABLE_COUPON_GV_QUEUE', DB_PREFIX . 'coupon_gv_queue');
 define('TABLE_COUPON_GV_CUSTOMER', DB_PREFIX . 'coupon_gv_customer');
 define('TABLE_COUPON_EMAIL_TRACK', DB_PREFIX . 'coupon_email_track');

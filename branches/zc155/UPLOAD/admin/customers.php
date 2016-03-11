@@ -4,7 +4,7 @@
  * @copyright Copyright 2003-2016 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: customers.php 788 2016-02-17 18:13:51Z webchills $
+ * @version $Id: customers.php 789 2016-03-10 21:13:51Z webchills $
  */
 
   require('includes/application_top.php');
@@ -1150,9 +1150,12 @@ if (($_GET['page'] == '' or $_GET['page'] == '1') and $_GET['cID'] != '') {
       }
 
       if ((!isset($_GET['cID']) || (isset($_GET['cID']) && ($_GET['cID'] == $customers->fields['customers_id']))) && !isset($cInfo)) {
-        $country = $db->Execute("select countries_name
-                                 from " . TABLE_COUNTRIES . "
-                                 where countries_id = '" . (int)$customers->fields['entry_country_id'] . "'");
+// BOF Mehrsprachige Ländernamen 1 of 1
+        $country = $db->Execute("SELECT countries_name
+                                 FROM " . TABLE_COUNTRIES_NAME . "
+                                 WHERE countries_id = '" . (int)$customers->fields['entry_country_id'] . "'
+                                 AND language_id = " . (int)$_SESSION['languages_id']);
+// EOF Mehrsprachige Ländernamen 1 of 1
 
         $reviews = $db->Execute("select count(*) as number_of_reviews
                                  from " . TABLE_REVIEWS . " where customers_id = '" . (int)$customers->fields['customers_id'] . "'");

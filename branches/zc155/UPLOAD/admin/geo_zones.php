@@ -4,7 +4,7 @@
  * @copyright Copyright 2003-2016 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: geo_zones.php 786 2015-12-21 18:13:51Z webchills $
+ * @version $Id: geo_zones.php 787 2016-03-10 21:13:51Z webchills $
  */
 
   require('includes/application_top.php');
@@ -210,7 +210,15 @@ function update_zone(theForm) {
 // Split Page
 // reset page when page is unknown
 if ((!isset($_GET['spage']) or $_GET['spage'] == '' or $_GET['spage'] == '1') and $_GET['sID'] != '') {
-  $zones_query_raw = "select a.association_id, a.zone_country_id, c.countries_name, a.zone_id, a.geo_zone_id, a.last_modified, a.date_added, z.zone_name from (" . TABLE_ZONES_TO_GEO_ZONES . " a left join " . TABLE_COUNTRIES . " c on a.zone_country_id = c.countries_id left join " . TABLE_ZONES . " z on a.zone_id = z.zone_id) where a.geo_zone_id = " . (int)$_GET['zID'] . " order by c.countries_name, association_id";
+// BOF Mehrsprachige Ländernamen 1 of 2
+  $zones_query_raw = "SELECT a.association_id, a.zone_country_id, c.countries_name, a.zone_id, a.geo_zone_id, a.last_modified, a.date_added, z.zone_name
+                      FROM (" . TABLE_ZONES_TO_GEO_ZONES . " a
+                      LEFT JOIN " . TABLE_COUNTRIES_NAME . " c ON a.zone_country_id = c.countries_id
+                      LEFT JOIN " . TABLE_ZONES . " z ON a.zone_id = z.zone_id)
+                      WHERE a.geo_zone_id = " . (int)$_GET['zID'] . "
+                      AND c.language_id = '" . (int)$_SESSION['languages_id'] . "'
+                      ORDER BY c.countries_name, association_id";
+// EOF Mehrsprachige Ländernamen 1 of 2
   $check_page = $db->Execute($zones_query_raw);
   $check_count=1;
   if ($check_page->RecordCount() > MAX_DISPLAY_SEARCH_RESULTS) {
@@ -227,7 +235,15 @@ if ((!isset($_GET['spage']) or $_GET['spage'] == '' or $_GET['spage'] == '1') an
   }
 }
     $rows = 0;
-    $zones_query_raw = "select a.association_id, a.zone_country_id, c.countries_name, a.zone_id, a.geo_zone_id, a.last_modified, a.date_added, z.zone_name from (" . TABLE_ZONES_TO_GEO_ZONES . " a left join " . TABLE_COUNTRIES . " c on a.zone_country_id = c.countries_id left join " . TABLE_ZONES . " z on a.zone_id = z.zone_id) where a.geo_zone_id = " . (int)$_GET['zID'] . " order by c.countries_name, association_id";
+// BOF Mehrsprachige Ländernamen 2 of 2
+    $zones_query_raw = "SELECT a.association_id, a.zone_country_id, c.countries_name, a.zone_id, a.geo_zone_id, a.last_modified, a.date_added, z.zone_name
+                        FROM (" . TABLE_ZONES_TO_GEO_ZONES . " a
+                        LEFT JOIN " . TABLE_COUNTRIES_NAME . " c ON a.zone_country_id = c.countries_id
+                        LEFT JOIN " . TABLE_ZONES . " z ON a.zone_id = z.zone_id)
+                        WHERE a.geo_zone_id = " . (int)$_GET['zID'] . "
+                        AND c.language_id = '" . (int)$_SESSION['languages_id'] . "'
+                        ORDER BY c.countries_name, association_id";
+// EOF Mehrsprachige Ländernamen 2 of 2
     $zones_split = new splitPageResults($_GET['spage'], MAX_DISPLAY_SEARCH_RESULTS, $zones_query_raw, $zones_query_numrows);
     $zones = $db->Execute($zones_query_raw);
     while (!$zones->EOF) {
