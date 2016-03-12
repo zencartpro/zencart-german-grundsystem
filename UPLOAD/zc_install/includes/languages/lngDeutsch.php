@@ -4,7 +4,7 @@
  * @package Installer
  * @copyright Copyright 2003-2016 Zen Cart Development Team
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: lngDeutsch.php 6 2016-03-04 21:49:16Z webchills $
+ * @version $Id: lngDeutsch.php 6 2016-03-12 11:49:16Z webchills $
  */
 /**
  * defining language components for the page
@@ -13,8 +13,8 @@ define('META_TAG_TITLE', 'Zen Cart 1.5.5 deutsch - Installationsprogramm');
 define('HTML_PARAMS','dir="ltr" lang="de"');
 define('ZC_VERSION_STRING', '%s v%s');
 define('TEXT_PAGE_HEADING', 'Systemprüfung');
-define('TEXT_INDEX_FATAL_ERRORS', 'Es gibt einige Probleme, die behoben werden müssen bevor wie weitermachen können.');
-define('TEXT_INDEX_WARN_ERRORS', 'Einige andere Probleme');
+define('TEXT_INDEX_FATAL_ERRORS', 'Es gibt einige kritische Probleme, die behoben werden müssen bevor wie weitermachen können.');
+define('TEXT_INDEX_WARN_ERRORS', 'Einige nicht kritische Probleme');
 define('TEXT_HEADER_MAIN', 'TIP: Die blauen Überschriften Links sind anclickbar und liefern Infos zur Bedeutung des jeweiligen Feldes.');
 define('TEXT_INDEX_HEADER_MAIN', 'TIP: Für einige Fehlermeldungen oder Warnmeldungen unten sind genauere Infos durch Anclicken der Fehlermeldung/Warnmeldung verfügbar.');
 define('TEXT_INSTALLER_CHOOSE_LANGUAGE', 'Sprache wählen');
@@ -40,7 +40,7 @@ define('TEXT_SYSTEM_SETUP_ERROR_CATALOG_PHYSICAL_PATH', 'Es scheint ein Problem 
 
 
 define('TEXT_PAGE_HEADING_DATABASE', 'Datenbank Setup');
-define('TEXT_DATABASE_HEADER_MAIN', 'HINWEIS: Stellen Sie sicher, dass Sie bereits eine Datenbank angelegt haben. Dieses Installationsprogramm legt keine Datenbank an! Es befüllt lediglich eine bereits bestehende Datenbank, deren Zugangsdaten Sie hier angeben. Hilfetexte zu den einzelnen Überschriften links erhalten Sie durch Anclicken der jeweiligen Titel.');
+define('TEXT_DATABASE_HEADER_MAIN', 'HINWEIS: Stellen Sie sicher, dass Sie bereits eine Datenbank angelegt haben. Dieses Installationsprogramm legt keine Datenbank an! Es befüllt lediglich eine bereits bestehende Datenbank, deren Zugangsdaten Sie hier angeben.<br/>Hilfetexte zu den einzelnen Überschriften links erhalten Sie durch Anclicken der jeweiligen Titel.');
 define('TEXT_DATABASE_SETUP_SETTINGS', 'Grundeinstellungen');
 define('TEXT_DATABASE_SETUP_DB_HOST', 'Datenbank Host: ');
 define('TEXT_DATABASE_SETUP_DB_USER', 'Datenbank User: ');
@@ -55,7 +55,7 @@ define('TEXT_DATABASE_SETUP_DB_PREFIX', 'Datenbank Präfix: ');
 define('TEXT_DATABASE_SETUP_SQL_CACHE_METHOD', 'SQL Caching Methode: ');
 define('TEXT_DATABASE_SETUP_JSCRIPT_SQL_ERRORS1', '<p>Beim Ausführen des SQL Installers sind einige Fehler aufgetreten');
 define('TEXT_DATABASE_SETUP_JSCRIPT_SQL_ERRORS2', '<br>Details dazu finden Sie im Error Log.<p>');
-define('TEXT_DATABASE_SETUP_CHARSET_OPTION_UTF8', 'UTF8 (UNBEDINGT SO LASSEN!)');
+define('TEXT_DATABASE_SETUP_CHARSET_OPTION_UTF8', 'UTF8 (Wir unterstützen nur utf8!)');
 define('TEXT_DATABASE_SETUP_CHARSET_OPTION_LATIN1', 'Latin1');
 define('TEXT_DATABASE_SETUP_CACHE_TYPE_OPTION_NONE', 'kein SQL Caching');
 define('TEXT_DATABASE_SETUP_CACHE_TYPE_OPTION_DATABASE', 'Datenbank');
@@ -83,7 +83,7 @@ define('TEXT_ADMIN_SETUP_USER_EMAIL', 'Admin Superuser Emailadresse: ');
 define('TEXT_EXAMPLE_EMAIL', 'z.B: peter@meinshop.de');
 define('TEXT_ADMIN_SETUP_USER_EMAIL_REPEAT', '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Email wiederholen: ');
 define('TEXT_ADMIN_SETUP_USER_PASSWORD', 'Admin Passwort: ');
-define('TEXT_ADMIN_SETUP_USER_PASSWORD_HELP', '<strong>NOTIEREN SIE SICH DIESES PASSWORT JETZT!!</strong>: Unterhalb ist Passwort für Ihren Admin User. Sie benötigen es zum Einloggen in den Adminbereich, daher NOTIEREN SIE SICH DIESES PASSWORT JETZT. Sie können das Passwort dann nach dem ersten Login auf eines Ihrer Wahl ändern.');
+define('TEXT_ADMIN_SETUP_USER_PASSWORD_HELP', '<strong>NOTIEREN SIE SICH DIESES PASSWORT JETZT!!</strong>: Unterhalb ist Passwort für Ihren Admin User. Sie benötigen es zum Einloggen in den Adminbereich, daher NOTIEREN SIE SICH DIESES PASSWORT JETZT. Möglicherweise werden Sie beim ersten Login aufgefordert das Passwort zu ändern. Sie können das Passwort auch jederzeit später auf eines Ihrer Wahl ändern.');
 define('TEXT_ADMIN_SETUP_ADMIN_DIRECTORY', 'Admin Verzeichnis: ');
 define('TEXT_ADMIN_SETUP_ADMIN_DIRECTORY_HELP_DEFAULT', 'Wir konnten Ihr Admin Verzeichnis nicht automatisch umbenennen. Sie müssen es selbst umbenennen bevor Sie in den Adminbereich einloggen können.');
 define('TEXT_ADMIN_SETUP_ADMIN_DIRECTORY_HELP_NOT_ADMIN_CHANGED', 'Wir haben Ihr Adminverzeichnis nicht umbenannt, da es offensichtlich bereits umbenannt wurde.');
@@ -139,9 +139,9 @@ define('TEXT_NAVBAR_ADMIN_SETUP', 'Admin Setup');
 define('TEXT_NAVBAR_COMPLETION', 'Fertig');
 define('TEXT_NAVBAR_PAYMENT_PROVIDERS', 'Zahlungsanbieter');
 
-define('TEXT_ERROR_PROBLEMS_WRITING_CONFIGUREPHP_FILES', 'There were problems preparing and storing the configure.php files. YOUR INSTALL DID NOT COMPLETE PROPERLY.<br>Additional technical details may be found in your /logs/ folder.');
-define('TEXT_ERROR_COULD_NOT_READ_CFGFILE_TEMPLATE', 'Could not read the master config file layout: %s. Please ensure the file exists and is readable.');
-define('TEXT_ERROR_COULD_NOT_WRITE_CONFIGFILE', 'Could not write the generated config file: %s. Please ensure the file exists and is writable.');
+define('TEXT_ERROR_PROBLEMS_WRITING_CONFIGUREPHP_FILES', 'Die configure.php konnten nicht vorbereitet und gespeichert werden. IHRE INSTALLATION IST NICHT KORREKT VOLLSTÄNDIG ABGESCHLOSSEN!<br>Details dazu sollten Sie in den Logdateien im Ordner /logs/ finden.');
+define('TEXT_ERROR_COULD_NOT_READ_CFGFILE_TEMPLATE', 'Kann die Vorlage für die Konfigurationsdatei nicht lesen: %s. Stellen Sie sicher, dass diese Datei existiert und lesbar ist.');
+define('TEXT_ERROR_COULD_NOT_WRITE_CONFIGFILE', 'Konnte die CKonfigurationsdatei nicht schreiben: %s. Stellen Sie sicher, dass diese Datei existiert und beschreibbar ist.');
 define('TEXT_ERROR_STORE_CONFIGURE', "Frontend Konfigurationsdatei /includes/configure.php existiert nicht, ist nicht lesbar oder ist nicht beschreibbar");
 define('TEXT_ERROR_ADMIN_CONFIGURE', "Admin Konfigurationsdatei /admin/includes/configure.php existiert nicht, ist nicht lesbar oder ist nicht beschreibbar");
 define('TEXT_ERROR_PHP_VERSION', str_replace(array("\n", "\r"), '', 'Falsche PHP Version.
@@ -167,12 +167,12 @@ define('TEXT_ERROR_SESSION_SUPPORT_USE_TRANS_SID', 'ini setting session.use_tran
 define('TEXT_ERROR_SESSION_SUPPORT_AUTO_START', 'ini setting session.auto_start ist aktiviert');
 define('TEXT_ERROR_DB_CONNECTION', 'Probleme mit der Verbindung zur Datenbank');
 define('TEXT_ERROR_DB_CONNECTION_DEFAULT', 'Möglicherweise Probleme mit der Verbindung zur Datenbank');
-define('TEXT_ERROR_DB_CONNECTION_UPGRADE', 'Probems with database connection based on the entries in your current configure.php');
+define('TEXT_ERROR_DB_CONNECTION_UPGRADE', 'Probleme mit der Datenbankverbindung mit den in Ihrer configure.php eingetragenen Datenbanzugangsdaten');
 define('TEXT_ERROR_SET_TIME_LIMIT', 'max_execution_time setting deaktiviert ');
 define('TEXT_ERROR_GD', 'GD Extension nicht aktiviert');
 define('TEXT_ERROR_ZLIB', 'Zlib Extension nicht aktiviert');
 define('TEXT_ERROR_OPENSSL', 'Openssl Extension nicht aktiviert');
-define('TEXT_ERROR_CURL', 'Problems with the CURL extension');
+define('TEXT_ERROR_CURL', 'Probleme mit der CURL Extension');
 define('TEXT_ERROR_UPLOADS', 'Upload Extension nicht aktiviert');
 define('TEXT_ERROR_XML', 'XML Extension nicht aktiviert');
 define('TEXT_ERROR_GZIP', 'Gzip Extension nicht aktiviert');
@@ -195,11 +195,11 @@ define('TEXT_NAVBAR_FORUM_LINK', 'Forum');
 define('TEXT_NAVBAR_WIKI_LINK', 'FAQ/Tutorials');
 
 define('TEXT_HELP_TITLE_HTACCESSSUPPORT', 'htaccess Unterstützung');
-define('TEXT_HELP_CONTENT_HTACCESSSUPPORT', 'There appears to be a problem with the htaccess support on your server. This may be because you are not using Apache as your Web Server or .htaccess support is disabled or not configured correctly.<br><br>htaccess support is used to provide security for certain files/folders on your server.');
+define('TEXT_HELP_CONTENT_HTACCESSSUPPORT', 'Es scheint ein Problem mit der .htaccess Unterstützung auf Ihrem Server zu geben. Entweder Sie verwenden keinen Apache Webserver oder .htaccess Unterstützung ist deaktiviert oder nicht korrekt konfiguriert.<br><br>htaccess wird unbedingt benötigt, um bestimmte Dateien und Ordner auf Ihrem Server zu schützen.');
 define('TEXT_HELP_TITLE_FOLDERPERMS', 'Ordner Schreibrechte');
-define('TEXT_HELP_CONTENT_FOLDERPERMS', 'The permissions for this folder are not set correctly. This folder needs to be writeable. You can find out more about folder permissions at <a href="http://www.zen-cart.com/content.php?51-how-do-i-set-permissions-on-files-folders" target="_blank">http://www.zen-cart.com/content.php?51-how-do-i-set-permissions-on-files-folders</a>');
-define('TEXT_HELP_TITLE_CONNECTIONDATABASECHECK', 'Initial Database Connection');
-define('TEXT_HELP_CONTENT_CONNECTIONDATABASECHECK', 'We tried to connect to MySQL using a localhost connection. This failure does not necessarily mean MySQL is not working, as some hosts require an IP address or host name for the MySQL database.<br><br>If you are indeed using localhost for your database server, you should check that MySQL is running correctly.');
+define('TEXT_HELP_CONTENT_FOLDERPERMS', 'Die Schreibrechte für diesen Ordner sind nicht korrekt, der Ordner muss beschreibbar sein (chmod 777 oder 666)');
+define('TEXT_HELP_TITLE_CONNECTIONDATABASECHECK', 'Datenbank Verbindung');
+define('TEXT_HELP_CONTENT_CONNECTIONDATABASECHECK', 'Wir haben erfolglos versucht zu MySQL via localhost zu verbinden. Manche Provider erfordern bei der Angabe des Datenbank Hosts statt localhost eine IP Adresse oder andere spezielle Angabe.<br><br>Falls localhost doch für Ihren Datenbankserver korrekt sein sollte, stellen Sie sicher, dass MySQL überhaupt läuft.');
 define('TEXT_HELP_TITLE_CHECKCURL', TEXT_ERROR_CURL);
 define('TEXT_HELP_CONTENT_CHECKCURL', 'CURL is a background process used by (PHP in) your store to connect to external servers and services such as payment and shipping providers to process transactions or get real-time shipping quotes. When we tested CURL functionality on your server we were unable to establish a connection. This could indicate a problem with your webserver configuration. Please contact your hosting company for assistance to enable CURL support on your server.<br><br>If you are a developer running this site on an offline development server then it is unsurprising that CURL cannot connect for this test. CURL is not necessary for development purposes except for testing transactional activity, at which time connecting online will be required.');
 define('TEXT_HELP_TITLE_ADMINSERVERDOMAIN', 'Admin Server Domain');
@@ -247,7 +247,7 @@ define('TEXT_HELP_CONTENT_ADMINEMAIL', "This email address will be used for pass
 define('TEXT_HELP_TITLE_ADMINEMAIL2', 'Emailadresse erneut eintippen');
 define('TEXT_HELP_CONTENT_ADMINEMAIL2', "Please re-enter the email address. This is just to help catch accidental typos!");
 define('TEXT_HELP_TITLE_ADMINPASSWORD', 'Admin Superuser Passwort');
-define('TEXT_HELP_CONTENT_ADMINPASSWORD', "NOTIEREN SIE SICH DIESES PASSWORT!!!!! This is the default password assigned to the admin username you specified above. You may be asked to change it on first login (thus you can personalize it a bit more at that time). You can always manually change it anytime while you're logged into your Admin.<br><br><strong>REMEMBER THIS PASSWORD, because you will need it to log in to your store!</strong>");
+define('TEXT_HELP_CONTENT_ADMINPASSWORD', "NOTIEREN SIE SICH DIESES PASSWORT!!!!! Mit diesem Passwort und em Usernamen, den Sie oben angegeben haben, steigen Sie in Ihren Adminbereich ein. Beim ersten Einstieg werden Sie möglicherweise aufgefordert, das Passwort zu ändern. Sie können es auch jederzeit später in der Administration ändern.<br><br><strong>NOTIEREN SIE SICH DIESES PASSWORT JETZT!</strong>");
 define('TEXT_HELP_TITLE_ADMINDIRECTORY', 'Admin Verzeichnis');
 define('TEXT_HELP_CONTENT_ADMINDIRECTORY', "We try to rename your admin folder for you automatically, to offer a degree of security-by-obscurity. While we understand that this doesn't make it foolproof, it does discourage unauthorized visitors from attacking your site. You may still consider changing the foldername yourself (just rename the folder to whatever you wish it to be, by using your FTP program or your hosting company's File Manager tool in your hosting control panel).");
 
