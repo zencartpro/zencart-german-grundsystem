@@ -3,7 +3,7 @@
  * @package Installer
  * @copyright Copyright 2003-2016 Zen Cart Development Team
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: admin_setup_default.php 3 2016-02-28 21:59:53Z webchills $
+ * @version $Id: admin_setup_default.php 4 2016-03-12 21:59:53Z webchills $
  */
 ?>
 
@@ -36,7 +36,7 @@
       </div>
       <div class="small-9 columns">
         <input type="text" name="admin_user" id="admin_user" value="" tabindex="1" autofocus="autofocus" placeholder="<?php echo TEXT_EXAMPLE_USERNAME; ?>" required autocomplete="off">
-        <small class="error">A unique admin username is required</small>
+        <small class="error">Ein Benutzername für den Adminuser ist erforderlich. A unique admin username is required</small>
       </div>
     </div>
     <div class="row">
@@ -45,7 +45,7 @@
       </div>
       <div class="small-9 columns">
         <input type="text" name="admin_email" id="admin_email" value="" tabindex="2" placeholder="<?php echo TEXT_EXAMPLE_EMAIL; ?>" required pattern="email" autocomplete="off">
-        <small class="error">A valid email address is required</small>
+        <small class="error">Eine gültige Emailadresse ist erforderlich. A valid email address is required</small>
       </div>
     </div>
     <div class="row">
@@ -54,7 +54,7 @@
       </div>
       <div class="small-9 columns">
         <input type="text" name="admin_email2" id="admin_email2" value="" tabindex="3" placeholder="<?php echo TEXT_EXAMPLE_EMAIL; ?>" required pattern="email" data-equalto="admin_email" autocomplete="off">
-        <small class="error">A matching valid email address is required.</small>
+        <small class="error">Die Email muss Ihrer oben angegebenen entsprechen. A matching valid email address is required.</small>
       </div>
     </div>
     <div class="row">
