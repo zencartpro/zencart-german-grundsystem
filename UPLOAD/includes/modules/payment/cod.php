@@ -6,7 +6,7 @@
  * @copyright Copyright 2003-2016 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: cod.php 732 2016-03-13 11:49:16Z webchills $
+ * @version $Id: cod.php 733 2016-03-13 11:49:16Z webchills $
  */
   class cod {
     var $code, $title, $description, $enabled;
@@ -57,6 +57,12 @@
           $this->enabled = false;
         }
       }
+
+// Deaktivieren bei Selbstabholung
+if (preg_match('#(storepickup)#i', $_SESSION['shipping']['id'])) {
+      $this->enabled = false;
+    }
+
 
       // other status checks?
       if ($this->enabled) {
