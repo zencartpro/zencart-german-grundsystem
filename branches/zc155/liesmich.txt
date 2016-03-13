@@ -1,7 +1,7 @@
 ﻿Willkommen bei der deutschen Zen-Cart Version
 Version 1.5.5 BETA
 
-BETA vom 09.03.2016
+BETA vom 13.03.2016
 NUR ZUM TESTEN EINER NEUINSTALLATION IN EINEM TESTSYSTEM - NICHT FÜR LIVESHOPS GEEIGNET
 NICHT FÜR UPDATES GEEIGNET
 
@@ -26,7 +26,8 @@ Und wenn konsequent mit dem SVN gearbeitet wird, muss nicht für jede kleine Än
 Neue Funktionen gegenüber 1.5.4
 
 Generell:
-Unterstützung von PHP 7 und MySQL 5.7
+Unterstützung von PHP 7 
+Verbesserte Unterstützung von MySQL 5.7
 Neues responsives HTML 5 Standardtemplate (classic_responsive)
 vereinfachte Installation
 
@@ -45,3 +46,5 @@ Tiny MCE und CKEditor in den neuesten Versionen
 Details der Bestellung erscheinen auf der checkout success Seite
 Automatisches Update der Wechselkurse für Währungen via cron
 Zen Colorbox integriert
+Zahlungsart Bar bei Abholung integriert
+Mehrsprachige Ländernamen integriert
