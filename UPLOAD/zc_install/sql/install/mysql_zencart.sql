@@ -5,7 +5,7 @@
 # * @copyright Copyright 2003-2016 Zen Cart Development Team
 # * @copyright Portions Copyright 2003 osCommerce
 # * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
-# * @version $Id: mysql_zencart.sql 19464 2016-03-13 09:38:16Z webchills $
+# * @version $Id: mysql_zencart.sql 19465 2016-03-13 11:38:16Z webchills $
 #
 
 ############ IMPORTANT INSTRUCTIONS ###############
@@ -3636,7 +3636,8 @@ INSERT INTO configuration_language (configuration_title, configuration_key, conf
 # Adminmenü ID 3
 ('Adresseinträge im Adressbuch', 'MAX_ADDRESS_BOOK_ENTRIES', 43, 'Wieviele Adresseinträge dürfen Kunden in Ihrem Adressbuch haben?', now(), now()),
 ('Suchresultate pro Seite', 'MAX_DISPLAY_SEARCH_RESULTS', 43, 'Wieviele Artikel sollen maximal in den Suchresultaten pro Seite angezeigt werden?', now(), now()),
-('"Vorherige - Nächste" Navigation: Seitenlinks', 'MAX_DISPLAY_PAGE_LINKS', 43, 'Anzahl der Seitenlinks in der "Vorherige - Nächste" Navigation', now(), now()),
+('"Vorherige - Nächste" Navigation: Seitenlinks (Desktop)', 'MAX_DISPLAY_PAGE_LINKS', 43, 'Anzahl der Seitenlinks in der "Vorherige - Nächste" Navigation', now(), now()),
+('"Vorherige - Nächste" Navigation: Seitenlinks (Mobil)', 'MAX_DISPLAY_PAGE_LINKS_MOBILE', 43, 'Anzahl der Seitenlinks in der "Vorherige - Nächste" Navigation auf Mobilgeräten (voruasgesetzt Ihr Template unterstützt spezielle Einstellungen für Mobilgeräte)', now(), now()),
 ('Anzuzeigende "Sonderangebote"', 'MAX_DISPLAY_SPECIAL_PRODUCTS', 43, 'Wieviele Sonderangebote sollen angezeigt werden?', now(), now()),
 ('Anzuzeigende "Neue Artikel"', 'MAX_DISPLAY_NEW_PRODUCTS', 43, 'Wieviele "Neue Artikel" sollen in den Kategorien angezeigt werden?', now(), now()),
 ('Anzuzeigende "Erwartete Artikel"', 'MAX_DISPLAY_UPCOMING_PRODUCTS', 43, 'Wieviele "erwartete Artikel" sollen angezeigt werden?', now(), now()),
@@ -3950,16 +3951,17 @@ INSERT INTO configuration_language (configuration_title, configuration_key, conf
 ('Max. Anzahl Gutscheine auf Reportseite', 'MAX_DISPLAY_SEARCH_RESULTS_DISCOUNT_COUPONS_REPORTS', 43, 'Max. Anzahl Gutscheine auf Reportseite', now(), now()),
 
 # Adminmenü ID 17
-('VISA', 'CC_ENABLED_VISA', 43, 'Wollen Sie Zahlungen mit VISA Kreditkarten akzeptieren (0= nein 1= ja)', now(), now()),
-('MasterCard', 'CC_ENABLED_MC', 43, 'Wollen Sie Zahlungen mit MasterCard Kreditkarten akzeptieren (0= nein 1= ja)', now(), now()),
-('AmericanExpress', 'CC_ENABLED_AMEX', 43, 'Wollen Sie Zahlungen mit AmericanExpress Kreditkarten akzeptieren (0= nein 1= ja)', now(), now()),
-('Diners Club', 'CC_ENABLED_DINERS_CLUB', 43, 'Wollen Sie Zahlungen mit Diners Club Kreditkarten akzeptieren (0= nein 1= ja)', now(), now()),
-('Discover Card', 'CC_ENABLED_DISCOVER', 43, 'Wollen Sie Zahlungen mit Discover Card Kreditkarten akzeptieren (0= nein 1= ja)', now(), now()),
-('JCB', 'CC_ENABLED_JCB', 43, 'Wollen Sie Zahlungen mit JCB Kreditkarten akzeptieren (0= nein 1= ja)', now(), now()),
-('AUSTRALIAN BANKCARD', 'CC_ENABLED_AUSTRALIAN_BANKCARD', 43, 'Wollen Sie Zahlungen mit AUSTRALIAN BANKCARD Kreditkarten akzeptieren (0= nein 1= ja)', now(), now()),
-('SOLO', 'CC_ENABLED_SOLO', 43, 'Wollen Sie Zahlungen mit SOLO Kreditkarten akzeptieren (0= nein 1= ja)', now(), now()),
-('Switch', 'CC_ENABLED_SWITCH', 43, 'Wollen Sie Zahlungen mit Switch Kreditkarten akzeptieren (0= nein 1= ja)', now(), now()),
-('Maestro', 'CC_ENABLED_MAESTRO', 43, 'Wollen Sie Zahlungen mit Maestro Kreditkarten akzeptieren (0= nein 1= ja)', now(), now()),
+('VISA', 'CC_ENABLED_VISA', 43, 'Akzeptieren Sie Zahlungen mit VISA Kreditkarten (0= nein 1= ja)', now(), now()),
+('MasterCard', 'CC_ENABLED_MC', 43, 'Akzeptieren Sie Zahlungen mit MasterCard Kreditkarten (0= nein 1= ja)', now(), now()),
+('AmericanExpress', 'CC_ENABLED_AMEX', 43, 'Akzeptieren Sie Zahlungen mit AmericanExpress Kreditkarten (0= nein 1= ja)', now(), now()),
+('Diners Club', 'CC_ENABLED_DINERS_CLUB', 43, 'Akzeptieren Sie Zahlungen mit Diners Club Kreditkarten (0= nein 1= ja)', now(), now()),
+('Discover Card', 'CC_ENABLED_DISCOVER', 43, 'Akzeptieren Sie Zahlungen mit Discover Card Kreditkarten  (0= nein 1= ja)', now(), now()),
+('JCB', 'CC_ENABLED_JCB', 43, 'Akzeptieren Sie Zahlungen mit JCB Kreditkarten  (0= nein 1= ja)', now(), now()),
+('AUSTRALIAN BANKCARD', 'CC_ENABLED_AUSTRALIAN_BANKCARD', 43, 'Akzeptieren Sie Zahlungen mit AUSTRALIAN BANKCARD Kreditkarten (0= nein 1= ja)', now(), now()),
+('SOLO', 'CC_ENABLED_SOLO', 43, 'Akzeptieren Sie Zahlungen mit SOLO Kreditkarten (0= nein 1= ja)', now(), now()),
+('Switch', 'CC_ENABLED_SWITCH', 43, 'Akzeptieren Sie Zahlungen mit Switch Kreditkarten  (0= nein 1= ja)', now(), now()),
+('Maestro', 'CC_ENABLED_MAESTRO', 43, 'Akzeptieren Sie Zahlungen mit Maestro Kreditkarten (0= nein 1= ja)', now(), now()),
+('Debit', 'CC_ENABLED_DEIBT', 43, 'Akzeptieren Sie Zahlungen mit Debit Kreditkarten (0= nein 1= ja)', now(), now()),
 ('Akzeptierte Kreditkarten in der Seite für Bezahlung anzeigen', 'SHOW_ACCEPTED_CREDIT_CARDS', 43, 'Sollen die akzeptierten Kreditkarten in der Seite für die Bezahlung angezeigt werden?<br />0= nicht anzeigen<br />1= als Text anzeigen<br />2= als Bild anzeigen<br /><br />HINWEIS: Die Bilder und Texte müssen sowohl in der Datenbank als auch in den Sprachfiles für die jeweilige Kreditkarte definiert sein.', now(), now()),
 
 # Adminmenü ID 6 - Wird nicht angezeigt, dient meist für die Module
