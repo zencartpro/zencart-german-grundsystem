@@ -37,11 +37,10 @@
 <?php require(DIR_WS_INCLUDES . 'header.php'); ?>
 <div id="additionalpages">
 <h1>Entwicklerteam der deutschen Zen Cart Version</h1>
-<b>hugo13</b><br/>
-<a href="http://edv.langheiter.com" target="_blank">http://edv.langheiter.com</a>
+<b>hugo13</b>
 <br/><br/>
 <b>webchills</b><br/>
-<a href="http://www.webchills.at" target="_blank">http://www.webchills.at</a>
+<a href="https://www.webchills.at" target="_blank">www.webchills.at</a>
 <br/><br/>
 <b>MaleBorg</b>
 <br/><br/>
