@@ -4,7 +4,7 @@
  * @copyright Copyright 2003-2016 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: init_general_funcs.php 733 2016-02-28 19:49:16Z webchills $
+ * @version $Id: init_general_funcs.php 734 2016-03-13 10:49:16Z webchills $
  */
 if (!defined('IS_ADMIN_FLAG')) {
   die('Illegal Access');
@@ -59,7 +59,7 @@ $e = (substr(HTTP_SERVER, 0, 5) == 'https') ? '1' : '0';
 if (SSLPWSTATUSCHECK == '') {
   $sql = "UPDATE " . TABLE_CONFIGURATION . " set configuration_value = '".$e.':'.$e."', last_modified = now() where configuration_key = 'SSLPWSTATUSCHECK'";
   $db->Execute($sql);
-  die('One-time auto-configuration completed. Please refresh the page.');
+  die('Einmalige Auto-Konfiguration erfolgreich. Bitte aktualisieren Sie diese Seite.');
 }
 list($a, $c) = explode(':', SSLPWSTATUSCHECK); $a = (int)$a; $c = (int)$c;
 if ($a == 0) {

@@ -4,7 +4,7 @@
  * @copyright Copyright 2003-2016 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: index.php 2015-12-22 12:11:04Z webchills $
+ * @version $Id: index.php 2016-03-12 10:11:04Z webchills $
  */
 
 define('HEADING_TITLE', 'Bitte wählen Sie...');
@@ -80,7 +80,7 @@ define('TEXT_STORE_NAME', 'Name Ihres Shops');
 define('TEXT_STORE_OWNER', 'Shopinhaber');
 define('TEXT_STORE_OWNER_EMAIL', 'Emailadresse des Shopinhabers');
 define('TEXT_STORE_COUNTRY', 'Land des Shops');
-define('TEXT_STORE_ZONE', 'Bundeland des Shops');
+define('TEXT_STORE_ZONE', 'Bundesland des Shops');
 define('TEXT_STORE_ADDRESS', 'Adresse des Shops');
-define('HEADING_TITLE_WIZARD', 'Erstinstallationsassistent');
+define('HEADING_TITLE_WIZARD', 'Erstkonfigurationsassistent');
 define('TEXT_STORE_DETAILS', 'Bitte geben Sie hier grundlegende Details zu Ihrem Shop an. Alle Felder sind Pflichtfelder.');
