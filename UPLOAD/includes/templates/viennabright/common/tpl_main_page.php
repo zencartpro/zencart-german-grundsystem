@@ -8,7 +8,7 @@
 * @copyright Portions Copyright 2012 webchills.at
 * @copyright Portions Copyright 2003 osCommerce
 * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
-* @version $Id: tpl_main_page.php 849 2016-03-02 12:10:39Z webchills $
+* @version $Id: tpl_main_page.php 850 2016-03-21 21:10:39Z webchills $
 */
 /** bof DESIGNER TESTING ONLY: */
 // $messageStack->add('header', 'this is a sample error message', 'error');
@@ -153,10 +153,27 @@ if (!isset($flag_disable_right) || !$flag_disable_right) {
 <!--eof- banner #6 display -->
 </div>
 <?php
-if (GOOGLE_ANALYTICS_ENABLED == "Enabled") {
-  require(DIR_WS_TEMPLATE . 'google_analytics/google_analytics.php');
+/**                                                                                                                                                                                                       
+* load the loader JS files
+*/
+if(!empty($RC_loader_files)){
+  foreach($RC_loader_files['jscript'] as $file)
+    if($file['include']) {
+      include($file['src']);
+    } else if(!$RI_CJLoader->get('minify_js') || $file['external']) {
+      echo '<script type="text/javascript" src="'.$file['src'].'"></script>'."\n";
+    } else {
+      echo '<script type="text/javascript" src="extras/min/?f='.$file['src'].'&'.$RI_CJLoader->get('minify_time').'"></script>'."\n";
+    }
 }
-?><?php /* add any end-of-page code via an observer class */
+//DEBUG: echo '';
+?>
+<?php 
+if (GOOGLE_ANALYTICS_TRACKING_TYPE != "Asynchronous") {
+	require(DIR_WS_TEMPLATE . 'google_analytics/google_analytics.php');
+}
+?>
+<?php /* add any end-of-page code via an observer class */
   $zco_notifier->notify('NOTIFY_FOOTER_END', $current_page);
 ?>
 

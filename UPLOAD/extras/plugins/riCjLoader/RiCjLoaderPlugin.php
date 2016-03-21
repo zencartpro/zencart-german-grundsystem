@@ -14,6 +14,7 @@ class RiCjLoaderPlugin
 {
 	protected $jscript = array();
 	protected $css = array();
+        protected $meta = array();
 	protected $template;
 	protected $page_directory = '';
 	protected $current_page_base = '';
@@ -368,6 +369,11 @@ class RiCjLoaderPlugin
 	    */
 			$files = $this->findAssets('.php', 'jscript', '/^jscript_/', -200);
 			$this->addAssets($files, 'jscript');
+            /**
+            * include content from all site-wide meta_*.php files from includes/templates/YOURTEMPLATE/meta, alphabetically.
+            */
+            $files = $this->findAssets('.php', 'meta', '/^meta/', -200);
+            $this->addAssets($files, 'meta');            
 		}
 
 		/**
@@ -465,9 +471,11 @@ class RiCjLoaderPlugin
 	{
 		$css_files = $this->loadFiles($this->css);
 		$js_files = $this->loadFiles($this->jscript);
+                $meta_files = $this->loadFiles($this->meta);
 
 		$files['jscript'] = $this->getFiles($js_files, $this->get('minify_js'));
 		$files['css'] = $this->getFiles($css_files, $this->get('minify_css'));
+                $files['meta'] = $this->getFiles($meta_files, false);
 		return $files;
 	}
 

@@ -8,7 +8,7 @@
  * @copyright Copyright 2003-2016 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: html_header.php 6 2016-03-05 12:10:39Z webchills $
+ * @version $Id: html_header.php 7 2016-03-21 20:10:39Z webchills $
  */
 $zco_notifier->notify('NOTIFY_HTML_HEAD_START', $current_page_base, $template_dir);
 
@@ -24,7 +24,6 @@ require(DIR_WS_MODULES . zen_get_module_directory('meta_tags.php'));
 ?>
 <?php
 
-// ZCAdditions.com, ZCA Responsive Template Default (BOF-addition 1 of 2)
 if (!class_exists('Mobile_Detect')) {
   include_once(DIR_WS_CLASSES . 'Mobile_Detect.php');
 }
@@ -32,7 +31,6 @@ if (!class_exists('Mobile_Detect')) {
   $isMobile = $detect->isMobile();
   $isTablet = $detect->isTablet();
   if (!isset($layoutType)) $layoutType = ($isMobile ? ($isTablet ? 'tablet' : 'mobile') : 'default');
-// ZCAdditions.com, ZCA Responsive Template Default (BOF-addition 1 of 2)
 
   $paginateAsUL = true;
 
@@ -84,33 +82,33 @@ if (!class_exists('Mobile_Detect')) {
 /**
 * load the loader files
 */
-
+$RC_loader_files = array();
 if($RI_CJLoader->get('status') && (!isset($Ajax) || !$Ajax->status())){
-	$RI_CJLoader->autoloadLoaders();
-	$RI_CJLoader->loadCssJsFiles();
-	$files = $RI_CJLoader->header();
-	foreach($files['css'] as $file)
-		if($file['include']) {
-      include($file['src']);
-    } else if (!$RI_CJLoader->get('minify_css') || $file['external']) {
-      echo "<link rel=\"stylesheet\" type=\"text/css\" href='{$file['src']}' />\n";
-    } else {
-      echo "<link rel=\"stylesheet\" type=\"text/css\" href=\"extras/min/?f={$file['src']}&amp;".$RI_CJLoader->get('minify_time')."\" />\n";
+    $RI_CJLoader->autoloadLoaders();
+    $RI_CJLoader->loadCssJsFiles();
+    $RC_loader_files = $RI_CJLoader->header();
+
+    foreach($RC_loader_files['meta'] as $file) {
+        include($file['src']);
+        echo "\n";
     }
-		
-	foreach($files['jscript'] as $file)
-		if($file['include']) {
-      include($file['src']);
-    } else if(!$RI_CJLoader->get('minify_js') || $file['external']) {
-      echo "<script type='text/javascript' src='{$file['src']}'></script>\n";
-    } else {
-      echo "<script type=\"text/javascript\" src=\"extras/min/?f={$file['src']}&amp;".$RI_CJLoader->get('minify_time')."\"></script>\n";
-    }
+
+    foreach($RC_loader_files['css'] as $file){
+        if($file['include']) {
+            include($file['src']);
+        } else if (!$RI_CJLoader->get('minify_css') || $file['external']) {
+            
+            echo '<link rel="stylesheet" type="text/css" href="'.$file['src'] .'" />'."\n";
+        } else {
+            
+            echo '<link rel="stylesheet" type="text/css" href="extras/min/?f='.$file['src'].'&amp;'.$RI_CJLoader->get('minify_time').'" />'."\n";
+        }
+    } 
 }
 //DEBUG: echo '<!-- I SEE cat: ' . $current_category_id . ' || vs cpath: ' . $cPath . ' || page: ' . $current_page . ' || template: ' . $current_template . ' || main = ' . ($this_is_home_page ? 'YES' : 'NO') . ' -->';
 ?>
 <?php require($template->get_template_dir('super_data_head.php',DIR_WS_TEMPLATE, $current_page_base,'templates'). '/super_data_head.php'); ?>
-<?php // ZCAdditions.com, ZCA Responsive Template Default (BOF-addition 2 of 2)
+<?php 
 $responsive_mobile = '<link rel="stylesheet" type="text/css" href="' . $template->get_template_dir('.css',DIR_WS_TEMPLATE, $current_page_base,'css') . '/' . 'responsive_mobile.css' . '" /><link rel="stylesheet" type="text/css" href="' . $template->get_template_dir('.css',DIR_WS_TEMPLATE, $current_page_base,'css') . '/' . 'jquery.mmenu.all.css' . '" />';
 $responsive_tablet = '<link rel="stylesheet" type="text/css" href="' . $template->get_template_dir('.css',DIR_WS_TEMPLATE, $current_page_base,'css') . '/' . 'responsive_tablet.css' . '" /><link rel="stylesheet" type="text/css" href="' . $template->get_template_dir('.css',DIR_WS_TEMPLATE, $current_page_base,'css') . '/' . 'jquery.mmenu.all.css' . '" />';
 $responsive_default = '<link rel="stylesheet" type="text/css" href="' . $template->get_template_dir('.css',DIR_WS_TEMPLATE, $current_page_base,'css') . '/' . 'responsive_default.css' . '" />';
@@ -132,7 +130,6 @@ if (in_array($current_page_base,explode(",",'popup_image,popup_image_additional'
 ?>
   <script type="text/javascript">document.documentElement.className = 'no-fouc';</script>
   <link rel="stylesheet" type="text/css" href="//maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" />
-<?php // ZCAdditions.com, ZCA Responsive Template Default (EOF-addition 2 of 2) ?>
 <?php
   $zco_notifier->notify('NOTIFY_HTML_HEAD_END', $current_page_base);
 ?>
