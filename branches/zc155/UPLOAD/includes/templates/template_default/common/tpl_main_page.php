@@ -193,6 +193,22 @@ if (!isset($flag_disable_right) || !$flag_disable_right) {
   }
 ?>
 <!--eof- banner #6 display -->
+<?php
+/**                                                                                                                                                                                                       
+* load the loader JS files
+*/
+if(!empty($RC_loader_files)){
+  foreach($RC_loader_files['jscript'] as $file)
+    if($file['include']) {
+      include($file['src']);
+    } else if(!$RI_CJLoader->get('minify_js') || $file['external']) {
+      echo '<script type="text/javascript" src="'.$file['src'].'"></script>'."\n";
+    } else {
+      echo '<script type="text/javascript" src="extras/min/?f='.$file['src'].'&'.$RI_CJLoader->get('minify_time').'"></script>'."\n";
+    }
+}
+//DEBUG: echo '';
+?>
 <?php 
 if (GOOGLE_ANALYTICS_TRACKING_TYPE != "Asynchronous") {
 	require(DIR_WS_TEMPLATE . 'google_analytics/google_analytics.php');

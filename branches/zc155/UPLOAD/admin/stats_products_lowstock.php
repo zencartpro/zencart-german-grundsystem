@@ -4,7 +4,7 @@
  * @copyright Copyright 2003-2016 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: stats_products_lowstock.php 731 2016-02-17 08:39:51Z webchills $
+ * @version $Id: stats_products_lowstock.php 732 2016-03-14 20:39:51Z webchills $
  */
 
 require('includes/application_top.php');
@@ -38,7 +38,7 @@ if ($mfg != ''){
     $where_array[] = " manufacturers_id = '".$mfg."' ";
 }
 if(count($where_array) > 0){
-    $db_category_where = " WHERE ".explode(" AND ", $where_array);
+    $db_category_where = " WHERE ".implode(" AND ", $where_array);
 }
 else{
     $db_category_where = '';

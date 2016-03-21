@@ -34,8 +34,8 @@
  * @package templateSystem
  * @copyright Copyright 2003-2016 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
- * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version GIT: $Id: rbarbour zcadditions.com Modified in v1.5.5 $
+ * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
+ * @version $Id: tpl_main_page.php 3 2016-03-21 20:49:16Z webchills $
  */
 
 /** bof DESIGNER TESTING ONLY: */
@@ -261,7 +261,27 @@ if  ($detect->isMobile() && !$detect->isTablet() || $_SESSION['layoutType'] == '
   //
 }
 ?>
-
+<?php
+/**                                                                                                                                                                                                       
+* load the loader JS files
+*/
+if(!empty($RC_loader_files)){
+  foreach($RC_loader_files['jscript'] as $file)
+    if($file['include']) {
+      include($file['src']);
+    } else if(!$RI_CJLoader->get('minify_js') || $file['external']) {
+      echo '<script type="text/javascript" src="'.$file['src'].'"></script>'."\n";
+    } else {
+      echo '<script type="text/javascript" src="extras/min/?f='.$file['src'].'&'.$RI_CJLoader->get('minify_time').'"></script>'."\n";
+    }
+}
+//DEBUG: echo '';
+?>
+<?php 
+if (GOOGLE_ANALYTICS_TRACKING_TYPE != "Asynchronous") {
+	require(DIR_WS_TEMPLATE . 'google_analytics/google_analytics.php');
+}
+?>
 <?php /* add any end-of-page code via an observer class */
   $zco_notifier->notify('NOTIFY_FOOTER_END', $current_page);
 ?>
