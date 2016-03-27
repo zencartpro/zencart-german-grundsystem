@@ -4,7 +4,7 @@
  * @copyright Copyright 2003-2016 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: message_stack.php 730 2015-12-21 19:49:16Z webchills $
+ * @version $Id: message_stack.php 731 2016-03-27 18:49:16Z webchills $
  */
 if (!defined('IS_ADMIN_FLAG')) {
   die('Illegal Access');
@@ -36,15 +36,17 @@ if (!defined('IS_ADMIN_FLAG')) {
 
     function add($message, $type = 'error') {
       if ($type == 'error') {
-        $this->errors[] = array('params' => 'class="messageStackError"', 'text' => zen_image(DIR_WS_ICONS . 'error.gif', ICON_ERROR) . '&nbsp;' . $message);
+        $this->errors[] = array('params' => 'class="messageStackAlert alert alert-danger" role="alert"', 'text' => '<i class="fa fa-2x fa-exclamation-circle"></i> ' . $message);
       } elseif ($type == 'warning') {
-        $this->errors[] = array('params' => 'class="messageStackWarning"', 'text' => zen_image(DIR_WS_ICONS . 'warning.gif', ICON_WARNING) . '&nbsp;' . $message);
+        $this->errors[] = array('params' => 'class="messageStackAlert alert alert-warning" role="alert"', 'text' => '<i class="fa fa-2x fa-question-circle"></i> ' . $message);
+      } elseif ($type == 'info') {
+        $this->errors[] = array('params' => 'class="messageStackAlert alert alert-info" role="alert"', 'text' => '<i class="fa fa-2x fa-info-circle"></i> ' . $message);
       } elseif ($type == 'success') {
-        $this->errors[] = array('params' => 'class="messageStackSuccess"', 'text' => zen_image(DIR_WS_ICONS . 'success.gif', ICON_SUCCESS) . '&nbsp;' . $message);
+        $this->errors[] = array('params' => 'class="messageStackAlert alert alert-success" role="alert"', 'text' => '<i class="fa fa-2x fa-check-circle"></i> ' . $message);
       } elseif ($type == 'caution') {
-        $this->errors[] = array('params' => 'class="messageStackCaution"', 'text' => zen_image(DIR_WS_ICONS . 'warning.gif', ICON_WARNING) . '&nbsp;' . $message);
+        $this->errors[] = array('params' => 'class="messageStackAlert alert alert-warning" role="alert"', 'text' => '<i class="fa fa-2x fa-hand-stop-o"></i> ' . $message);
       } else {
-        $this->errors[] = array('params' => 'class="messageStackError"', 'text' => $message);
+        $this->errors[] = array('params' => 'class="messageStackAlert alert alert-danger" role="alert"', 'text' => $message);
       }
 
 

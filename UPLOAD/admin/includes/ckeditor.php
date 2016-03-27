@@ -4,7 +4,7 @@
  * @copyright Copyright 2010 Kuroi Web Design
  * @copyright Portions Copyright 2003-2016 Zen Cart Development Team
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: ckeditor.php 281 2016-03-08 20:09:32Z webchills $
+ * @version $Id: ckeditor.php 282 2016-03-27 19:09:32Z webchills $
  */
 if (!defined('IS_ADMIN_FLAG')) {
   die('Illegal Access');
@@ -23,7 +23,7 @@ foreach ($var as $key)
 $(document).ready(function() {
   <?php echo $jsLanguageLookupArray ?>
   $('textarea').each(function()	{
-    if ($(this).attr('name') != 'message' && $(this).attr('class') != 'noEditor')
+    if ($(this).attr('class') == 'editorHook' || ($(this).attr('name') != 'message' && $(this).attr('class') != 'noEditor'))
     {
       index = $(this).attr('name').match(/\d+/);
       if (index == null) index = <?php echo $_SESSION['languages_id'] ?>;

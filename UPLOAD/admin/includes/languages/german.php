@@ -4,7 +4,7 @@
  * @copyright Copyright 2003-2016 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: german.php 654 2016-03-05 10:54:04Z webchills $
+ * @version $Id: german.php 655 2016-03-27 19:54:04Z webchills $
  */
 if (!defined('IS_ADMIN_FLAG'))
 {
@@ -205,7 +205,7 @@ define('BOX_LOCALIZATION_LANGUAGES', 'Sprachen');
 define('BOX_LOCALIZATION_ORDERS_STATUS', 'Bestellstatus');
 
 // gift vouchers box text
-define('BOX_HEADING_GV_ADMIN', TEXT_GV_NAME . ' & Aktionskupons');
+define('BOX_HEADING_GV_ADMIN', 'Ermäßigungen');
 define('BOX_GV_ADMIN_QUEUE', TEXT_GV_NAMES . ' Warteschleife');
 define('BOX_GV_ADMIN_MAIL', TEXT_GV_NAME . ' senden ');
 define('BOX_GV_ADMIN_SENT', 'Bereits gesendet ');

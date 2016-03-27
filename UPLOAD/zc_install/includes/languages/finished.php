@@ -2,10 +2,10 @@
 /**
  * @package Installer
  * @access private
- * @copyright Copyright 2003-2011 Zen Cart Development Team
+ * @copyright Copyright 2003-2016 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: finished.php 19537 2011-09-20 17:14:44Z drbyte $
+ * @version $Id: finished.php 19538 2016-03-26 18:14:44Z webchills $
  */
 /**
  * defining language components for the page

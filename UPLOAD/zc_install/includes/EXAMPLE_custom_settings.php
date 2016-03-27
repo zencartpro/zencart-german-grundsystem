@@ -3,8 +3,8 @@
  * Custom Settings used by the CLI version of zc_install
  *
  * @package installer
- * @copyright Copyright 2003-2013 Zen Cart Development Team
- * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
+ * @copyright Copyright 2003-2016 Zen Cart Development Team
+ * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
  */
 $zc_settings = array();
 

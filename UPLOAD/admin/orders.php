@@ -4,7 +4,7 @@
  * @copyright Copyright 2003-2016 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: orders.php 796 2016-03-06 21:13:51Z webchills $
+ * @version $Id: orders.php 797 2016-03-27 18:13:51Z webchills $
  */
 
   require('includes/application_top.php');
@@ -372,11 +372,9 @@ function couponpopupWindow(url) {
 </head>
 <body onLoad="init()">
 <!-- header //-->
-<div class="header-area">
 <?php
   require(DIR_WS_INCLUDES . 'header.php');
 ?>
-</div>
 <!-- header_eof //-->
 
 <!-- body //-->
@@ -390,12 +388,12 @@ function couponpopupWindow(url) {
 <?php if ($action == '') { ?>
 <!-- search -->
   <tr>
-    <td width="100%" class="noprint"><table border="0" width="100%" cellspacing="0" cellpadding="0">
+    <td width="100%"><table border="0" width="100%" cellspacing="0" cellpadding="0">
       <tr>
-        <td class="row">
+        <td class="row noprint">
           <div class="form-inline">
             <div class="form-group col-xs-4 col-sm-3 col-md-3 col-lg-3">
-              <?php echo zen_draw_form('search', FILENAME_ORDERS, 'class="form-control', 'get', '', true); ?>
+              <?php echo zen_draw_form('search', FILENAME_ORDERS, '', 'get', '', true); ?>
                 <label for="allSearch" class="sr-only"><?php echo HEADING_TITLE_SEARCH_ALL; ?></label>
                 <div class="input-group">
                   <?php
@@ -411,7 +409,7 @@ function couponpopupWindow(url) {
               <?php echo '</form>'; ?>
             </div>
             <div class="form-group col-xs-6 col-sm-3 col-md-3 col-lg-3">
-              <?php echo zen_draw_form('search_orders_products', FILENAME_ORDERS, 'class="form-control', 'get', '', true); ?>
+              <?php echo zen_draw_form('search_orders_products', FILENAME_ORDERS, '', 'get', '', true); ?>
                 <label for="productSearch" class="sr-only"><?php echo HEADING_TITLE_SEARCH_DETAIL_ORDERS_PRODUCTS; ?></label>
                 <div class="input-group">
                   <?php
@@ -428,7 +426,7 @@ function couponpopupWindow(url) {
               <?php echo '</form>'; ?>
             </div>
             <div class="form-group col-xs-4 col-sm-3 col-md-3 col-lg-3">
-              <?php echo zen_draw_form('orders', FILENAME_ORDERS, 'class="form-control', 'get', '', true);
+              <?php echo zen_draw_form('orders', FILENAME_ORDERS, '', 'get', '', true);
               ?>
                 <label for="orderSearch" class="sr-only"><?php echo HEADING_TITLE_SEARCH; ?></label>
                 <?php
@@ -438,7 +436,7 @@ function couponpopupWindow(url) {
               ?>
             </div>
             <div class="form-group col-xs-4 col-sm-3 col-md-3 col-lg-3">
-              <?php echo zen_draw_form('status', FILENAME_ORDERS, 'class="form-control"', 'get', '', true);
+              <?php echo zen_draw_form('status', FILENAME_ORDERS, '', 'get', '', true);
                 echo '<label for="selectstatus" class="sr-only">' . HEADING_TITLE_STATUS . '</label> ' . zen_draw_pull_down_menu('status', array_merge(array(array('id' => '', 'text' => TEXT_ALL_ORDERS)), $orders_statuses), (int)$_GET['status'], 'class="form-control" onChange="this.form.submit();" id="selectstatus"');
                 echo '</form>';
               ?>
@@ -955,7 +953,7 @@ if (($_GET['page'] == '' or $_GET['page'] <= 1) and $_GET['oID'] != '') {
   echo '	<td class="dataTableContent" align="center"><img src="images/icon-desktop.png" alt="Desktop" title="Desktop"/></td>';
   }
 ?>
-                <td class="dataTableContent" align="right"><?php echo '<a href="' . zen_href_link(FILENAME_ORDERS, zen_get_all_get_params(array('oID', 'action')) . 'oID=' . $orders->fields['orders_id'] . '&action=edit', 'NONSSL') . '">' . zen_image(DIR_WS_IMAGES . 'icon_edit.gif', ICON_EDIT) . '</a>'; ?><?php if (isset($oInfo) && is_object($oInfo) && ($orders->fields['orders_id'] == $oInfo->orders_id)) { echo zen_image(DIR_WS_IMAGES . 'icon_arrow_right.gif', ''); } else { echo '<a href="' . zen_href_link(FILENAME_ORDERS, zen_get_all_get_params(array('oID')) . 'oID=' . $orders->fields['orders_id'], 'NONSSL') . '">' . zen_image(DIR_WS_IMAGES . 'icon_info.gif', IMAGE_ICON_INFO) . '</a>'; } ?>&nbsp;</td>
+                <td class="dataTableContent noprint" align="right"><?php echo '<a href="' . zen_href_link(FILENAME_ORDERS, zen_get_all_get_params(array('oID', 'action')) . 'oID=' . $orders->fields['orders_id'] . '&action=edit', 'NONSSL') . '">' . zen_image(DIR_WS_IMAGES . 'icon_edit.gif', ICON_EDIT) . '</a>'; ?><?php if (isset($oInfo) && is_object($oInfo) && ($orders->fields['orders_id'] == $oInfo->orders_id)) { echo zen_image(DIR_WS_IMAGES . 'icon_arrow_right.gif', ''); } else { echo '<a href="' . zen_href_link(FILENAME_ORDERS, zen_get_all_get_params(array('oID')) . 'oID=' . $orders->fields['orders_id'], 'NONSSL') . '">' . zen_image(DIR_WS_IMAGES . 'icon_info.gif', IMAGE_ICON_INFO) . '</a>'; } ?>&nbsp;</td>
               </tr>
 <?php
       $orders->MoveNext();
@@ -1059,7 +1057,7 @@ if (($_GET['page'] == '' or $_GET['page'] <= 1) and $_GET['oID'] != '') {
   $zco_notifier->notify('NOTIFY_ADMIN_ORDERS_MENU_BUTTONS_END', (isset($oInfo) ? $oInfo : array()), $contents);
 
   if ( (zen_not_null($heading)) && (zen_not_null($contents)) ) {
-    echo '            <td width="25%" valign="top">' . "\n";
+    echo '            <td class="noprint" width="25%" valign="top">' . "\n";
 
     $box = new box;
     echo $box->infoBox($heading, $contents);

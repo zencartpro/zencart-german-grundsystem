@@ -4,7 +4,7 @@
  * @copyright Copyright 2003-2016 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: salemaker.php 786 2015-01-22 08:34:51Z webchills $
+ * @version $Id: salemaker.php 787 2016-03-27 18:34:51Z webchills $
  */
 //
 define('AUTOCHECK', 'False');
@@ -294,7 +294,7 @@ function SetCategories() {
       $sInfo = new objectInfo(array());
     }
 ?>
-<script >
+<script type="text/javascript">
 var StartDate = new ctlSpiffyCalendarBox("StartDate", "sale_form", "start", "btnDate1","<?php echo (($sInfo->sale_date_start == '0001-01-01') ? '' : zen_date_short($sInfo->sale_date_start)); ?>",scBTNMODE_CUSTOMBLUE);
 var EndDate = new ctlSpiffyCalendarBox("EndDate", "sale_form", "end", "btnDate2","<?php echo (($sInfo->sale_date_end == '0001-01-01') ? '' : zen_date_short($sInfo->sale_date_end)); ?>",scBTNMODE_CUSTOMBLUE);
 </script>
@@ -326,11 +326,11 @@ var EndDate = new ctlSpiffyCalendarBox("EndDate", "sale_form", "end", "btnDate2"
           </tr>
           <tr>
             <td class="main"><?php echo TEXT_SALEMAKER_DATE_START; ?>&nbsp;</td>
-            <td class="main"><script >StartDate.writeControl(); StartDate.dateFormat="<?php echo DATE_FORMAT_SPIFFYCAL; ?>";</script></td>
+            <td class="main"><script type="text/javascript">StartDate.writeControl(); StartDate.dateFormat="<?php echo DATE_FORMAT_SPIFFYCAL; ?>";</script></td>
           </tr>
           <tr>
             <td class="main"><?php echo TEXT_SALEMAKER_DATE_END; ?>&nbsp;</td>
-            <td class="main"><script >EndDate.writeControl(); EndDate.dateFormat="<?php echo DATE_FORMAT_SPIFFYCAL; ?>";</script></td>
+            <td class="main"><script type="text/javascript">EndDate.writeControl(); EndDate.dateFormat="<?php echo DATE_FORMAT_SPIFFYCAL; ?>";</script></td>
           </tr>
         </table>
       </tr>

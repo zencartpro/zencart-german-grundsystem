@@ -4,7 +4,7 @@
  * @copyright Copyright 2003-2016 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: header_navigation.php 730 2016-02-28 17:49:16Z webchills $
+ * @version $Id: header_navigation.php 731 2016-03-27 19:49:16Z webchills $
  */
 
 if (!defined('IS_ADMIN_FLAG')) die('Illegal Access');
@@ -26,7 +26,7 @@ $menuTitles = zen_get_menu_titles();
     <ul class="nav navbar-nav">
           <?php foreach (zen_get_admin_menu_for_user() as $menuKey => $pages) { ?>
             <li class="dropdown">
-              <a href="<?php echo zen_href_link(FILENAME_ALT_NAV) ?>" class="dropdown-toggle" data-toggle="dropdown" ><?php echo $menuTitles[$menuKey] ?><b class="caret"></b></a>
+              <a href="<?php echo zen_href_link(FILENAME_ALT_NAV) ?>" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"><?php echo $menuTitles[$menuKey] ?><b class="caret"></b></a>
               <ul class="dropdown-menu">
                 <?php foreach ($pages as $page) { ?>
                   <li><a href="<?php echo zen_href_link($page['file'], $page['params']) ?>"><?php echo $page['name'] ?></a></li>

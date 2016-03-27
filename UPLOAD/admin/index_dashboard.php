@@ -4,7 +4,7 @@
  * @copyright Copyright 2003-2016 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: New in v1.5.5 $
+ * @version $Id: index_dashboard.php 2 2016-03-27 18:49:16Z webchills $
  */
 $customers = $db->Execute("select count(*) as count from " . TABLE_CUSTOMERS);
 
@@ -36,6 +36,7 @@ $salemaker_act = $db->Execute("select count(*) as count from " . TABLE_SALEMAKER
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=<?php echo CHARSET; ?>">
     <title><?php echo TITLE; ?></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
     <meta name="robots" content="noindex, nofollow" />
     <link href="includes/stylesheet.css" rel="stylesheet" type="text/css" />
     <link rel="stylesheet" type="text/css" href="includes/cssjsmenuhover.css" media="all" id="hoverJS" />

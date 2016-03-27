@@ -3,7 +3,7 @@
  * @package Installer
  * @copyright Copyright 2003-2016 Zen Cart Development Team
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: header_php.php 3 2015-12-26 21:49:16Z webchills $
+ * @version $Id: header_php.php 4 2016-03-27 18:49:16Z webchills $
  */
 
 $otherConfigErrors = FALSE;
@@ -28,7 +28,8 @@ if (isset($_POST['updateConfigure'])) {
         $storeConfigureFileReader = new zcConfigureFileReader(DIR_FS_ROOT .'includes/configure.php');
         $adminConfigureFileReader = new zcConfigureFileReader(DIR_FS_ROOT . $selectedAdminDir . '/includes/configure.php');
         $configureInputs = $storeConfigureFileReader->getStoreInputsFromLegacy();
-        $configureInputs['http_server_admin'] = trim($adminConfigureFileReader->getRawDefine('HTTPS_SERVER'), "'");
+        $configureInputs['enable_ssl_admin'] = trim($adminConfigureFileReader->getRawDefine('ENABLE_SSL_ADMIN'), "'");
+        $configureInputs['http_server_admin'] = trim($adminConfigureFileReader->getRawDefine( ($configureInputs['enable_ssl_admin'] == 'true' ? 'HTTPS_SERVER' : 'HTTP_SERVER') ), "'");
         $configureInputs['adminDir'] = $selectedAdminDir;
         $storeConfigureFileWriter = new zcConfigureFileWriter($configureInputs);
     }

@@ -4,7 +4,7 @@
  * @copyright Copyright 2003-2016 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: index_setup_wizrad.php 10 2016-03-12 10:13:51Z webchills $
+ * @version $Id: index_setup_wizard.php 11 2016-03-27 18:13:51Z webchills $
  */
 
 if (isset($_GET['action']) && $_GET['action'] == 'update') {
@@ -81,6 +81,7 @@ $zone_string = zen_draw_pull_down_menu('zone_id', zen_get_country_zones($store_c
     <meta name="robots" content="noindex, nofollow" />
     <script language="JavaScript" src="includes/menu.js" type="text/JavaScript"></script>
     <link href="includes/stylesheet.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="includes/cssjsmenuhover.css" media="all" id="hoverJS" />
     <link rel="stylesheet" type="text/css" href="includes/admin_access.css" />
     <script type="text/javascript">
         <!--
