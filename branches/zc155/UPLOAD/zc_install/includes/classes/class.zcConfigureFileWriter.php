@@ -4,7 +4,7 @@
  * @package Installer
  * @copyright Copyright 2003-2016 Zen Cart Development Team
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: class.zcConfigureFileWriter.php 2 2016-02-28 21:59:53Z webchills $
+ * @version $Id: class.zcConfigureFileWriter.php 3 2016-03-27 18:59:53Z webchills $
  */
 /**
  *
@@ -23,7 +23,7 @@ class zcConfigureFileWriter
     $replaceVars['DATE_NOW'] = date('D M d Y H:i:s');
     $replaceVars['CATALOG_HTTP_SERVER'] = trim($inputs['http_server_catalog'], '/ ');
     $replaceVars['CATALOG_HTTPS_SERVER'] = trim($inputs['https_server_catalog'], '/ ');
-    $replaceVars['ENABLE_SSL_CATALOG'] = isset($inputs['enable_ssl_catalog']) ? 'true' : 'false' ;
+    $replaceVars['ENABLE_SSL_CATALOG'] = $inputs['enable_ssl_catalog'];
     $replaceVars['DIR_WS_CATALOG'] = preg_replace('~//~', '/', '/' . trim($inputs['dir_ws_http_catalog'], ' /\\') . '/');
     $replaceVars['DIR_WS_HTTPS_CATALOG'] = preg_replace('~//~', '/', '/' . trim($inputs['dir_ws_https_catalog'], ' /\\') . '/');
     $replaceVars['DIR_FS_CATALOG'] = rtrim($inputs['physical_path'], ' /\\') . '/';

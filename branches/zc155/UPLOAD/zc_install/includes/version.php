@@ -8,9 +8,9 @@
  * THIS FILE SHOULD NEVER BE EDITED MANUALLY !!!!!!!!
  *
  * @package general
- * @copyright Copyright 2003-2015 Zen Cart Development Team
+ * @copyright Copyright 2003-2016 Zen Cart Development Team
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: version.php 843 2015-12-25 21:33:58Z webchills $
+ * @version $Id: version.php 844 2016-03-27 18:33:58Z webchills $
  * @private
  */
 

@@ -4,7 +4,7 @@
  * @copyright Copyright 2003-2016 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: popup_iamge.php 729 2014-02-08 15:49:16Z webchills $
+ * @version $Id: popup_iamge.php 730 2016-03-27 18:49:16Z webchills $
  */
 
   require('includes/application_top.php');
@@ -34,7 +34,7 @@
 <html <?php echo HTML_PARAMS; ?>>
 <head>
 <title><?php echo $page_title; ?></title>
-<script ><!--
+<script type="text/javascript"><!--
 var i=0;
 
 function resize() {

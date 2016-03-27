@@ -5,7 +5,7 @@
 # * @copyright Copyright 2003-2016 Zen Cart Development Team
 # * @copyright Portions Copyright 2003 osCommerce
 # * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
-# * @version $Id: mysql_utf8.sql 19462 2016-03-11 21:38:16Z webchills $
+# * @version $Id: mysql_utf8.sql 19463 2016-03-27 20:38:16Z webchills $
 #
 # NOTE: UTF8 files need to be saved with encoding format set to UTF8-without-BOM.
 #
@@ -165,7 +165,7 @@ INSERT INTO countries (countries_id, countries_name, countries_iso_code_2, count
 (147,'Namibia','NA','NAM','1','0'),
 (148,'Nauru','NR','NRU','1','0'),
 (149,'Nepal','NP','NPL','1','0'),
-(150,'Netherlands','NL','NLD','5','1');
+(150,'Netherlands','NL','NLD','5','1'),
 (151,'Bonaire, Sint Eustatius and Saba','BQ','BES','1','0'),
 (152,'New Caledonia','NC','NCL','1','0'),
 (153,'New Zealand','NZ','NZL','1','0'),
@@ -203,14 +203,14 @@ INSERT INTO countries (countries_id, countries_name, countries_iso_code_2, count
 (185,'Senegal','SN','SEN','1','0'),
 (186,'Seychelles','SC','SYC','1','0'),
 (187,'Sierra Leone','SL','SLE','1','0'),
-(188,'Singapore','SG','SGP', '4','1');
+(188,'Singapore','SG','SGP', '4','1'),
 (189,'Slovakia (Slovak Republic)','SK','SVK','1','1','1'),
 (190,'Slovenia','SI','SVN','1','1'),
 (191,'Solomon Islands','SB','SLB','1','0'),
 (192,'Somalia','SO','SOM','1','0'),
 (193,'South Africa','ZA','ZAF','1','0'),
 (194,'South Georgia and the South Sandwich Islands','GS','SGS','1','0'),
-(195,'Spain','ES','ESP','3','1');
+(195,'Spain','ES','ESP','3','1'),
 (196,'Sri Lanka','LK','LKA','1','0'),
 (197,'St. Helena','SH','SHN','1','0'),
 (198,'St. Pierre and Miquelon','PM','SPM','1','0'),
@@ -218,7 +218,7 @@ INSERT INTO countries (countries_id, countries_name, countries_iso_code_2, count
 (200,'Suriname','SR','SUR','1','0'),
 (201,'Svalbard and Jan Mayen Islands','SJ','SJM','1','0'),
 (202,'Swaziland','SZ','SWZ','1','0'),
-(203,'Sweden','SE','SWE','5','1');
+(203,'Sweden','SE','SWE','5','1'),
 (204,'Switzerland','CH','CHE','1','1'),
 (205,'Syrian Arab Republic','SY','SYR','1','0'),
 (206,'Taiwan','TW','TWN','1','0'),
@@ -237,8 +237,8 @@ INSERT INTO countries (countries_id, countries_name, countries_iso_code_2, count
 (219,'Uganda','UG','UGA','1','0'),
 (220,'Ukraine','UA','UKR','1','1'),
 (221,'United Arab Emirates','AE','ARE','1','0'),
-(222,'United Kingdom','GB','GBR','6','1');
-(223,'United States','US','USA', '2','1');
+(222,'United Kingdom','GB','GBR','6','1'),
+(223,'United States','US','USA', '2','1'),
 (224,'United States Minor Outlying Islands','UM','UMI','1','0'),
 (225,'Uruguay','UY','URY','1','0'),
 (226,'Uzbekistan','UZ','UZB','1','0'),
@@ -261,7 +261,7 @@ INSERT INTO countries (countries_id, countries_name, countries_iso_code_2, count
 (245,'Jersey','JE','JEY','1','0'),
 (246,'South Sudan','SS','SSD','1','0'),
 (247,'Curaçao','CW','CUW','1','0'),
-(248,'Sint Maarten (Dutch part)','SX','SXM','1','0');
+(248,'Sint Maarten','SX','SXM','1','0');
 
 
 INSERT INTO countries_name (countries_id, language_id, countries_name) VALUES

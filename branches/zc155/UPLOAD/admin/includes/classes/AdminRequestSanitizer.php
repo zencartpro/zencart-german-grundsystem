@@ -3,8 +3,8 @@
  * @package admin
  * @copyright Copyright 2003-2016 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
- * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id:New in v1.5.5 $
+ * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
+ * @version $Id: AdminRequestSanitizer.php 2 2016-03-27 18:49:16Z webchills $
  */
 
 /**
@@ -142,7 +142,7 @@ class AdminRequestSanitizer extends base
      */
     private function filterFileDirRegex()
     {
-        $filedirRegex = '~[^0-9a-z\.!@#\$%^&\()`_+\-' . preg_quote(DIRECTORY_SEPARATOR) . '\~]~i';
+        $filedirRegex = '~[^0-9a-z' . preg_quote('.!@#$%^& ()`_+-~/' . '\\', '~') . ']~i';
         $saniList = $this->adminSanitizationConfig['FILE_DIR_REGEX'];
         foreach ($saniList as $key) {
             if (isset($_POST[$key])) {

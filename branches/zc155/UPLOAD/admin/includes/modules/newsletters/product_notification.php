@@ -4,7 +4,7 @@
  * @copyright Copyright 2003-2016 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: product_notification.php 729 2011-08-09 15:49:16Z hugo13 $
+ * @version $Id: product_notification.php 730 2016-03-27 18:49:16Z webchills $
  */
 if (!defined('IS_ADMIN_FLAG')) {
   die('Illegal Access');
@@ -12,7 +12,7 @@ if (!defined('IS_ADMIN_FLAG')) {
   class product_notification {
     var $show_choose_audience, $title, $content, $content_html;
 
-    function product_notification($title, $content, $content_html, $queryname='') {
+    function __construct($title, $content, $content_html, $queryname='') {
       $this->show_choose_audience = true;
       $this->title = $title;
       $this->content = $content;
@@ -36,7 +36,7 @@ if (!defined('IS_ADMIN_FLAG')) {
         $products->MoveNext();
       }
 
-$choose_audience_string = '<script ><!--
+$choose_audience_string = '<script type="text/javascript"><!--
 function mover(move) {
   if (move == \'remove\') {
     for (x=0; x<(document.notifications.products.length); x++) {
@@ -80,11 +80,11 @@ function selectAll(FormName, SelectBox) {
 }
 //--></script>';
 
-      $global_button = '<script ><!--' . "\n" .
+      $global_button = '<script type="text/javascript"><!--' . "\n" .
                        'document.write(\'<input type="button" value="' . BUTTON_GLOBAL . '" style="width: 8em;" onclick="document.location=\\\'' . zen_href_link(FILENAME_NEWSLETTERS, 'page=' . $_GET['page'] . '&nID=' . $_GET['nID'] . '&action=confirm&global=true') . '\\\'">\');' . "\n" .
                        '//--></script><noscript><a href="' . zen_href_link(FILENAME_NEWSLETTERS, 'page=' . $_GET['page'] . '&nID=' . $_GET['nID'] . '&action=confirm&global=true') . '">[ ' . BUTTON_GLOBAL . ' ]</a></noscript>';
 
-      $cancel_button = '<script ><!--' . "\n" .
+      $cancel_button = '<script type="text/javascript"><!--' . "\n" .
                        'document.write(\'<input type="button" value="' . BUTTON_CANCEL . '" style="width: 8em;" onclick="document.location=\\\'' . zen_href_link(FILENAME_NEWSLETTERS, 'page=' . $_GET['page'] . '&nID=' . $_GET['nID']) . '\\\'">\');' . "\n" .
                        '//--></script><noscript><a href="' . zen_href_link(FILENAME_NEWSLETTERS, 'page=' . $_GET['page'] . '&nID=' . $_GET['nID']) . '">[ ' . BUTTON_CANCEL . ' ]</a></noscript>';
 

@@ -6,7 +6,7 @@
  * @copyright Copyright 2003-2016 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: split_page_results.php 732 2016-02-17 09:15:16Z webchills $
+ * @version $Id: split_page_results.php 733 2016-03-27 19:15:16Z webchills $
  */
 if (!defined('IS_ADMIN_FLAG')) {
   die('Illegal Access');
@@ -14,7 +14,7 @@ if (!defined('IS_ADMIN_FLAG')) {
 /**
  * Split Page Result Class
  *
- * An sql paging class, that allows for sql reslt to be shown over a number of pages using  simple navigation system
+ * An sql paging class, that allows for sql result to be shown over a number of pages using simple navigation system
  * Overhaul scheduled for subsequent release
  *
  * @package classes

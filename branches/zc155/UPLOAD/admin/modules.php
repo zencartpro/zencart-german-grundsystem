@@ -4,7 +4,7 @@
  * @copyright Copyright 2003-2016 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: modules.php 790 2016-02-17 18:13:51Z webchills $
+ * @version $Id: modules.php 791 2016-03-27 18:13:51Z webchills $
  */
 
   require('includes/application_top.php');
@@ -206,8 +206,8 @@
         $module = new $class;
         // check if module passes the "check()" test (ie: enabled and valid, determined by each module individually)
         if ($module->check() > 0) {
-          // determine sort orders and add to list of installed modules
-          $temp_for_sort[$file] = (int)$module->sort_order . $file; // combine sort-order and filename for uniqueness in determining sort
+                                // determine sort orders (using up to 6 digits, then filename) and add to list of installed modules
+                                $temp_for_sort[$file] = str_pad((int)$module->sort_order, 6, "0", STR_PAD_LEFT) . $file;
           asort($temp_for_sort);
           $installed_modules = array_flip($temp_for_sort);
         }

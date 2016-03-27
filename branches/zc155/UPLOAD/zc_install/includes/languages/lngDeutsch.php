@@ -4,7 +4,7 @@
  * @package Installer
  * @copyright Copyright 2003-2016 Zen Cart Development Team
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: lngDeutsch.php 6 2016-03-12 11:49:16Z webchills $
+ * @version $Id: lngDeutsch.php 7 2016-03-27 19:49:16Z webchills $
  */
 /**
  * defining language components for the page
@@ -260,7 +260,18 @@ define('TEXT_ERROR_NEW_VERSION_AVAILABLE', '<a href="http://www.zen-cart-pro.at/
 
 define('TEXT_DB_VERSION_NOT_FOUND', 'Es wurde keine Zen Cart Datenbank für %s gefunden!');
 
-
+define('REASON_TABLE_ALREADY_EXISTS','Cannot create table %s because it already exists');
+define('REASON_TABLE_DOESNT_EXIST','Cannot drop table %s because it does not exist.');
+define('REASON_TABLE_NOT_FOUND','Cannot execute because table %s does not exist.');
+define('REASON_CONFIG_KEY_ALREADY_EXISTS','Cannot insert configuration_key "%s" because it already exists');
+define('REASON_COLUMN_ALREADY_EXISTS','Cannot ADD column %s because it already exists.');
+define('REASON_COLUMN_DOESNT_EXIST_TO_DROP','Cannot DROP column %s because it does not exist.');
+define('REASON_COLUMN_DOESNT_EXIST_TO_CHANGE','Cannot CHANGE column %s because it does not exist.');
+define('REASON_PRODUCT_TYPE_LAYOUT_KEY_ALREADY_EXISTS','Cannot insert prod-type-layout configuration_key "%s" because it already exists');
+define('REASON_INDEX_DOESNT_EXIST_TO_DROP','Cannot drop index %s on table %s because it does not exist.');
+define('REASON_PRIMARY_KEY_DOESNT_EXIST_TO_DROP','Cannot drop primary key on table %s because it does not exist.');
+define('REASON_INDEX_ALREADY_EXISTS','Cannot add index %s to table %s because it already exists.');
+define('REASON_PRIMARY_KEY_ALREADY_EXISTS','Cannot add primary key to table %s because a primary key already exists.');
 define('TEXT_HELP_TITLE_AGREETOTERMS', 'Lizenzbedingungen akzeptieren');
 define('TEXT_HELP_CONTENT_AGREETOTERMS', "<h2>The GNU General Public License (GPL)</h2>
 <p><b>Eine deutsche Übersetzung der GNU General Public License finden Sie online auf:<br/><a href=\"http://www.gnu.de/documents/gpl-2.0.de.html\" target=\"_blank\">www.gnu.de/documents/gpl-2.0.de.html</b></p>
@@ -548,12 +559,13 @@ YOU OR THIRD PARTIES OR A FAILURE OF THE PROGRAM TO OPERATE WITH ANY OTHER
 PROGRAMS), EVEN IF SUCH HOLDER OR OTHER PARTY HAS BEEN ADVISED OF THE
 POSSIBILITY OF SUCH DAMAGES.</p>
 
-         <p>END OF TERMS AND CONDITIONS</p>
+         <p><strong>END OF TERMS AND CONDITIONS</strong></p>
 
 
 
-
-
+<br>
+<br>
+<br>
 
 
 

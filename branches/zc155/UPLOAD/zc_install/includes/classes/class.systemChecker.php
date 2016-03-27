@@ -4,7 +4,7 @@
  * @package Installer
  * @copyright Copyright 2003-2016 Zen Cart Development Team
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: class.systemChecker.php 2 2016-03-04 21:59:53Z webchills $
+ * @version $Id: class.systemChecker.php 3 2016-03-27 18:59:53Z webchills $
  *
  */
 /**
@@ -573,8 +573,8 @@ class systemChecker
         CURLOPT_FOLLOWLOCATION => false,    // follow redirects
         CURLOPT_ENCODING       => "",       // handle all encodings
         CURLOPT_AUTOREFERER    => true,     // set referer on redirect
-        CURLOPT_CONNECTTIMEOUT => 120,      // timeout on connect
-        CURLOPT_TIMEOUT        => 120,      // timeout on response
+        CURLOPT_CONNECTTIMEOUT => 3,        // timeout on connect
+        CURLOPT_TIMEOUT        => 3,        // timeout on response
         CURLOPT_MAXREDIRS      => 10,       // stop after 10 redirects
     );
 

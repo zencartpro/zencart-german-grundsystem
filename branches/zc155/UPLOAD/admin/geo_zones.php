@@ -4,7 +4,7 @@
  * @copyright Copyright 2003-2016 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: geo_zones.php 787 2016-03-10 21:13:51Z webchills $
+ * @version $Id: geo_zones.php 788 2016-03-27 18:13:51Z webchills $
  */
 
   require('includes/application_top.php');
@@ -133,7 +133,7 @@
 <?php
   if (isset($_GET['zID']) && (($saction == 'edit') || ($saction == 'new'))) {
 ?>
-<script ><!--
+<script type="text/javascript"><!--
 function resetZoneSelected(theForm) {
   if (theForm.state.value != '') {
     theForm.zone_id.selectedIndex = '0';

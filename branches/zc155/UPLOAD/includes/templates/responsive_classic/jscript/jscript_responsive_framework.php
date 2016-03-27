@@ -134,6 +134,7 @@ return false;
 $('.centeredContent').matchHeight();
 $('.specialsListBoxContents').matchHeight();
 $('.centerBoxContentsAlsoPurch').matchHeight();
+$('.categoryListBoxContents').matchHeight();
 
 $('.no-fouc').removeClass('no-fouc');
 });

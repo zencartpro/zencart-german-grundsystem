@@ -4,7 +4,7 @@
  * @copyright Copyright 2003-2016 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: collect_info_metatags.php 794 2016-02-28 19:24:50Z webchills $
+ * @version $Id: collect_info_metatags.php 795 2016-03-27 18:24:50Z webchills $
  */
 if (!defined('IS_ADMIN_FLAG')) {
   die('Illegal Access');
@@ -50,9 +50,9 @@ if (!defined('IS_ADMIN_FLAG')) {
                               and mtpd.language_id = '" . (int)$_SESSION['languages_id'] . "'");
     }
 
-      $pInfo->objectInfo($product->fields);
+      $pInfo->updateObjectInfo($product->fields);
     } elseif (zen_not_null($_POST)) {
-      $pInfo->objectInfo($_POST);
+      $pInfo->updateObjectInfo($_POST);
       $metatags_title = $_POST['metatags_title'];
       $metatags_keywords = $_POST['metatags_keywords'];
       $metatags_description = $_POST['metatags_description'];
