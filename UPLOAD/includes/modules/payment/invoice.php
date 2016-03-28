@@ -3,7 +3,7 @@
  * @copyright Copyright 2003-2016 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: invoice.php 2016-03-13 11:03:14 webchills $
+ * @version $Id: invoice.php 2016-03-28 09:03:14 webchills $
 */
 
   class invoice {
@@ -151,4 +151,3 @@
 	  
     }
   }
-?>

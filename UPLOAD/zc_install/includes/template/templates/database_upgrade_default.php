@@ -3,7 +3,7 @@
  * @package Installer
  * @copyright Copyright 2003-2016 Zen Cart Development Team
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: database_upgrade_defult.php 1 2016-02-28 21:59:53Z webchills $
+ * @version $Id: database_upgrade_default.php 2 2016-03-28 13:59:53Z webchills $
  */
 ?>
 <?php require(DIR_FS_INSTALL . DIR_WS_INSTALL_TEMPLATE . 'partials/partial_modal_admin_validation_errors.php'); ?>
@@ -33,7 +33,7 @@
        <div id="label-version-<?php echo str_replace('.', '_', $newArray[$key]); ?>" class="checkbox-wrapper">
           <label for="version-<?php echo str_replace('.', '_', $newArray[$key]); ?>">
           <input type="checkbox" name="version-<?php echo str_replace('.', '_', $newArray[$key]); ?>" id="version-<?php echo str_replace('.', '_', $newArray[$key]); ?>" checked="CHECKED">
-          <?php echo $from . ' to  ' . $to;  ?></label>
+          <?php echo $from . ' auf  ' . $to;  ?></label>
       </div>
     <?php } ?>
     </div>

@@ -4,7 +4,7 @@
  * @copyright Copyright 2003-2016 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: german.php 655 2016-03-27 19:54:04Z webchills $
+ * @version $Id: german.php 656 2016-03-28 13:54:04Z webchills $
  */
 if (!defined('IS_ADMIN_FLAG'))
 {
@@ -713,15 +713,15 @@ define('TEXT_FREE_SHIPPING_PREVIEW','Achtung: Virtueller Artikel - Versandkosten
 define('TEXT_FREE_SHIPPING_EDIT','Achtung: Virtueller Artikel - Versandkostenfrei &amp; keine Versandadresse notwendig!<br />Das Versandarten Modul "Immer versandkostenfrei" muss installiert sein wenn alle Artikel einer Bestellung versandkostenfrei sind');
 
 // admin activity log warnings
-define('WARNING_ADMIN_ACTIVITY_LOG_DATE', 'Achtung: Die Admin Protokolltabelle hat Einträge die älter sind als 2 Monate und sollte deshalb geleert werden ... ');
-define('WARNING_ADMIN_ACTIVITY_LOG_RECORDS', 'Achtung: Die Admin Protokolltabelle hat über 50000 Einträge und sollte deshalb geleert werden ... ');
+define('WARNING_ADMIN_ACTIVITY_LOG_DATE', 'Achtung: Die Admin Protokolltabelle hat Einträge die älter sind als 2 Monate und sollte deshalb archiviert werden ... ');
+define('WARNING_ADMIN_ACTIVITY_LOG_RECORDS', 'Achtung: Die Admin Protokolltabelle hat über 50000 Einträge und sollte deshalb archiviert werden ... ');
 define('TEXT_ACTIVITY_LOG_ACCESSED', 'Admin Activity Log aufgerufen. Ausgabeformat: %s. Filter: %s. %s');
 define('TEXT_ERROR_FAILED_ADMIN_LOGIN_FOR_USER', 'Admin Login fehlgeschlagen: ');
 define('TEXT_ERROR_ATTEMPTED_TO_LOG_IN_TO_LOCKED_ACCOUNT', 'Es wurde versucht mit einem gesperrten Account einzuloggen:');
 define('TEXT_ERROR_ATTEMPTED_ADMIN_LOGIN_WITHOUT_CSRF_TOKEN', 'Es wurde versucht ohne CSRF Token einzuloggen.');
 define('TEXT_ERROR_ATTEMPTED_ADMIN_LOGIN_WITHOUT_USERNAME', 'Es wurde versucht ohne Username einzuloggen.');
 define('TEXT_ERROR_INCORRECT_PASSWORD_DURING_RESET_FOR_USER', 'Falsches Passwort beim Versuch ein neues Passwort zu setzen für: ');
-define('RESET_ADMIN_ACTIVITY_LOG', 'Wählen Sie Tools -> Shopmanager und leeren die Admin-Protokolltabelle');
+define('RESET_ADMIN_ACTIVITY_LOG', 'Sie können im Menü Administratoren > Admin Aktivitäten Logs die Admin Aktivitäten einsehen und archivieren falls Sie auf diesen Bereich der Shopadministration Zugriff haben.');
 
 define('CATEGORY_HAS_SUBCATEGORIES', 'Achtung: Kategorie besitzt Unterkategorien<br />Artikel können nicht hinzugefügt werden');
 
