@@ -4,7 +4,7 @@
  * @package Installer
  * @copyright Copyright 2003-2016 Zen Cart Development Team
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: lngDeutsch.php 7 2016-03-27 19:49:16Z webchills $
+ * @version $Id: lngDeutsch.php 7 2016-03-28 13:49:16Z webchills $
  */
 /**
  * defining language components for the page
@@ -112,7 +112,7 @@ define('TEXT_DATABASE_UPGRADE_LEGEND_UPGRADE_STEPS', 'Bitte bestätigen Sie Ihre
 define('TEXT_DATABASE_UPGRADE_ADMIN_CREDENTIALS', 'Admin Zugangsdaten (SuperUser)');
 define('TEXT_VALIDATION_ADMIN_CREDENTIALS', 'Um das Update zu autorisieren, müssen Sie Benutzernamen und Passwort eines Super Admins Ihres Zen Cart Shops angeben.');
 define('TEXT_HELP_TITLE_UPGRADEADMINNAME', TEXT_DATABASE_UPGRADE_ADMIN_CREDENTIALS);
-define('TEXT_HELP_CONTENT_UPGRADEADMINNAME', 'Um das Update zu autorisieren, müssen Sie Benutzernamen und Passwort eines Super Admins Ihres Zen Cart Shops angeben.<br>Das sind Benutzername und Passwort, die Sie normalerweise verwenden, um in Ihre Shop Administration einzuloggen.<br>(Es ist NICHT Ihr FTP Passwort oder MySQL Passwort oder das Passwort für die Administration bei Ihrem Provider! Nur Sie oder ein andere Shhop Administrator kennen dieses Passwort.)<br>Falls Sie aus Ihrer Shopadministration ausgeperrt sind, Ihr Passwort nicht mehr kennen und nicht in den Adminbereich einloggen können, dann können Sie ein neues Passwort direkt in der Datenbank setzen so wie in folgendem FAQ Beitrag beschrieben: <a href="https://www.zen-cart-pro.at/forum/threads/9866-Ich-habe-mein-Passwort-f%C3%BCr-den-Adminbereich-vergessen-Was-tun" target="_blank">Ich habe mein Passwort für den Adminbereich vergessen. Was tun?</a>.');
+define('TEXT_HELP_CONTENT_UPGRADEADMINNAME', 'Um das Update zu autorisieren, müssen Sie Benutzernamen und Passwort eines Super Admins Ihres Zen Cart Shops angeben.<br>Das sind Benutzername und Passwort, die Sie normalerweise verwenden, um in Ihre Shop Administration einzuloggen.<br>(Es ist NICHT Ihr FTP Passwort oder MySQL Passwort oder das Passwort für die Administration bei Ihrem Provider!)<br/>Nur Sie oder ein anderer Shop Administrator kennen dieses Passwort.<br>Falls Sie aus Ihrer Shopadministration ausgeperrt sind, Ihr Passwort nicht mehr kennen und nicht in den Adminbereich einloggen können, dann können Sie ein neues Passwort direkt in der Datenbank setzen so wie in folgendem FAQ Beitrag beschrieben:<br/><a href="https://www.zen-cart-pro.at/forum/threads/9866-Ich-habe-mein-Passwort-f%C3%BCr-den-Adminbereich-vergessen-Was-tun" target="_blank">Ich habe mein Passwort für den Adminbereich vergessen. Was tun?</a>.');
 define('TEXT_DATABASE_UPGRADE_ADMIN_USER', 'Username');
 define('TEXT_DATABASE_UPGRADE_ADMIN_PASSWORD', 'Passwort');
 define('TEXT_HELP_TITLE_UPGRADEADMINPWD', 'Admin Passwort für das Update');
@@ -180,8 +180,8 @@ define('TEXT_ERROR_EXTENSION_NOT_LOADED', '%s Extension scheint nicht geladen zu
 define('TEXT_ERROR_FUNCTION_DOES_NOT_EXIST', 'PHP Funktion %s existiert nicht');
 define('TEXT_ERROR_CURL_LIVE_TEST', 'CURL Test fehlgeschlagen');
 define('TEXT_ERROR_HTTPS', 'TIP: Sie sollten für Ihren Shop unbedingt SSL nutzen. Falls Sie bereits ein SSL Zertifikat aktiv haben, dann rufen Sie dieses Installationsprogramm gleich über https:// auf');
-define('TEXT_ERROR_SUCCESS_EXISTING_CONFIGURE', 'Es wurde eine bestehende configure.php Datei einer früheren Zen Cart Version gefunden. Wir werden versuchen, Ihre Datenbankstruktur zu aktualisieren, falls Sie unten "Update" wählen.');
-define('TEXT_ERROR_SUCCESS_EXISTING_CONFIGURE_NO_UPDATE', 'Es wurde eine bestehende configure.php Datei gefunden. Ihre Datenbank scheint allerdings aktuell zu sein. Das deutet darauf hin, dass wir uns hier in Ihrem Liveshop befinden. Wenn Sie mit der Installation fortfahren WERDEN ALLE INHALTE IHRER DATENBANK GELÖSCHT! Wollen Sie wirklich neu installieren?');
+define('TEXT_ERROR_SUCCESS_EXISTING_CONFIGURE', '<b>UPDATEMODUS VERFÜGBAR!<br/>Es wurde eine bestehende configure.php Datei einer früheren Zen Cart Version gefunden.<br/>Wir werden versuchen, Ihre Datenbankstruktur zu aktualisieren, falls Sie unten "Update" wählen.</b>');
+define('TEXT_ERROR_SUCCESS_EXISTING_CONFIGURE_NO_UPDATE', '<b>Es wurde eine bestehende configure.php Datei gefunden. Ihre Datenbank scheint allerdings aktuell zu sein. Das deutet darauf hin, dass wir uns hier in Ihrem Liveshop befinden.<br/> Wenn Sie mit der Installation fortfahren WERDEN ALLE INHALTE IHRER DATENBANK GELÖSCHT! Wollen Sie wirklich neu installieren?</b>');
 define('TEXT_ERROR_MULTIPLE_ADMINS_NONE_SELECTED', 'Es scheinen mehrere Adminverzeichnisse zu existieren. Entweder entfernen Sie alte Adminverzeichnisse und clicken Aktualisieren oder wählen Sie unten das korrekte Admin Verzeichnis aus und clicken Aktualisieren.');
 define('TEXT_ERROR_MULTIPLE_ADMINS_SELECTED', 'Es scheinen mehrere Admin Verzeichnisse zu existieren. Falls das ausgewählte Verzeichnis unten falsch ist, wählen Sie bitte ein anderes aus und klicken Aktualisieren.');
 define('TEXT_ERROR_SUCCESS_NO_ERRORS', 'Es wurden keine Fehler oder Warnungen für Ihre Sysmkonfiguration erkannt. Sie können die Installation fortsetzen.');

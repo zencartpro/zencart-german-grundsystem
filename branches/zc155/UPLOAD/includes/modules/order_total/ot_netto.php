@@ -6,13 +6,13 @@
  * @copyright Copyright 2003-2016 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: ot_netto.php 731 2012-02-21 18:49:16Z webchills $
+ * @version $Id: ot_netto.php 732 2016-03-28 09:49:16Z webchills $
  */
 
   class ot_netto {
     var $title, $output;
 
-    function ot_netto() {
+    function __construct() {
       $this->code = 'ot_netto';
       $this->title = MODULE_ORDER_TOTAL_NETTO_TITLE;
       $this->description = MODULE_ORDER_TOTAL_NETTO_DESCRIPTION;
@@ -71,4 +71,3 @@
       $db->Execute("delete from " . TABLE_CONFIGURATION_LANGUAGE . " where configuration_key in ('" . implode("', '", $this->keys()) . "')");
     }
   }
-?>
