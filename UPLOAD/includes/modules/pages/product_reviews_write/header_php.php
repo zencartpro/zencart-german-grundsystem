@@ -6,7 +6,7 @@
  * @copyright Copyright 2003-2016 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: header_php.php 844 2014-02-09 15:04:50Z webchills $
+ * @version $Id: header_php.php 845 2016-03-29 20:04:50Z webchills $
  */
 /**
  * Header code file for product reviews "write" page
@@ -15,6 +15,11 @@
 
 // This should be first line of the script:
 $zco_notifier->notify('NOTIFY_HEADER_START_PRODUCT_REVIEWS_WRITE');
+
+// MailBeez autologin
+if (file_exists(DIR_FS_CATALOG . 'mailhive/mailbeez/review_advanced/includes/autologin.php')) {
+    include_once(DIR_FS_CATALOG . 'mailhive/mailbeez/review_advanced/includes/autologin.php');
+}
 
 if (!$_SESSION['customer_id']) {
   $_SESSION['navigation']->set_snapshot();
@@ -115,8 +120,18 @@ if (isset($_GET['action']) && ($_GET['action'] == 'process')) {
     }
     // end send email
    }
+    // MailBeez autologoff
+    if (file_exists(DIR_FS_CATALOG . 'mailhive/mailbeez/review_advanced/includes/autologoff.php')) {
+       include_once(DIR_FS_CATALOG . 'mailhive/mailbeez/review_advanced/includes/autologoff.php');
+    }
+
     zen_redirect(zen_href_link(FILENAME_PRODUCT_REVIEWS, zen_get_all_get_params(array('action'))));
   }
+}
+
+// MailBeez autologoff
+if (file_exists(DIR_FS_CATALOG . 'mailhive/mailbeez/review_advanced/includes/autologoff.php')) {
+   include_once(DIR_FS_CATALOG . 'mailhive/mailbeez/review_advanced/includes/autologoff.php');
 }
 
 $products_price = zen_get_products_display_price($product_info->fields['products_id']);

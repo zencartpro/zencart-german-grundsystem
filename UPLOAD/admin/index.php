@@ -4,7 +4,7 @@
  * @copyright Copyright 2003-2016 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: index.php 820 2016-03-04 22:46:12Z webchills $
+ * @version $Id: index.php 821 2016-03-29 20:46:12Z webchills $
  */
   $version_check_index=true;
   require('includes/application_top.php');
@@ -25,6 +25,12 @@
   } else {
     require('index_dashboard.php');
   }
+?>
+<?php
+// BOF: Mailbeez Customer Insight
+define('MH_DIR_FS_CATALOG', (substr(DIR_FS_CATALOG, -1) != '/') ? DIR_FS_CATALOG . '/' : DIR_FS_CATALOG);
+@include(MH_DIR_FS_CATALOG . '/mailhive/configbeez/config_customer_insight/includes/admin_footer_include.php');
+// EOF: Mailbeez Customer Insight
 ?>
 <footer class="homeFooter">
 <!-- The following copyright announcement is in compliance
