@@ -183,4 +183,4 @@ if (!isset($_SESSION['customers_ip_address'])) {
 
 
 // MailBeez Click and Order tracker
-require(DIR_FS_CATALOG . 'mailhive/includes/clicktracker.php');
+// require(DIR_FS_CATALOG . 'mailhive/includes/clicktracker.php');
