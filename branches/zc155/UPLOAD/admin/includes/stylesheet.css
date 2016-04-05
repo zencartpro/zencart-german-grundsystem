@@ -3,7 +3,7 @@
  * @copyright Copyright 2003-2016 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: stylesheet.css 843 2016-03-27 19:33:58Z webchills $
+ * @version $Id: stylesheet.css 844 2016-04-05 19:33:58Z webchills $
  */
 @import url("css/bootstrap.min.css");
 /* @import url("//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"); */
@@ -656,7 +656,7 @@ footer, #footer {
     padding-bottom: 1em;
 }
 footer, #footer, footer a, #footer a {
-    font-size: 0.9em;
+    font-size: 9px;
 }
 /*
 footer.homeFooter, .bottom footer {

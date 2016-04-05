@@ -4,7 +4,7 @@
  * @copyright Copyright 2003-2016 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: english.php 883 2016-03-27 19:01:32Z webchills $
+ * @version $Id: english.php 884 2016-04-05 19:01:32Z webchills $
  */
 if (!defined('IS_ADMIN_FLAG'))
 {
@@ -16,7 +16,8 @@ define('HEADER_ALT_TEXT', 'Admin Powered by Zen-Cart 1.5.5 - German version');
 define('HEADER_LOGO_WIDTH', '200px');
 define('HEADER_LOGO_HEIGHT', '70px');
 define('HEADER_LOGO_IMAGE', 'logo.gif');
-
+define('TEXT_PASSWORD_LAST_CHANGE', 'Password changed on:&nbsp;');
+define('TEXT_LAST_LOGIN_INFO', 'Last login date [IP]:&nbsp;');
 // look in your $PATH_LOCALE/locale directory for available locales..
 $locales = array('en_US', 'en_US.utf8', 'en', 'English_United States.1252');
 @setlocale(LC_TIME, $locales);
