@@ -5,7 +5,7 @@
 # * @copyright Copyright 2003-2016 Zen Cart Development Team
 # * @copyright Portions Copyright 2003 osCommerce
 # * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
-# * @version $Id: mysql_utf8.sql 19463 2016-03-27 20:38:16Z webchills $
+# * @version $Id: mysql_utf8.sql 19464 2016-04-05 20:38:16Z webchills $
 #
 # NOTE: UTF8 files need to be saved with encoding format set to UTF8-without-BOM.
 #
@@ -16,7 +16,6 @@
 INSERT INTO configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, last_modified, date_added, use_function, set_function) VALUES ('Convert currencies for Text emails', 'CURRENCIES_TRANSLATIONS', '&pound;,£:&euro;,€:&reg;,®:&trade;,™', 'What currency conversions do you need for Text emails?<br />Example = &amp;pound;,&pound;:&amp;euro;,&euro;', 12, 120, NULL, '2003-11-21 00:00:00', NULL, 'zen_cfg_textarea_small(');
 
 INSERT INTO countries (countries_id, countries_name, countries_iso_code_2, countries_iso_code_3, address_format_id, status) VALUES 
-(240,'Åland Islands','AX','ALA','1','0'),
 (1,'Afghanistan','AF','AFG','1','0'),
 (2,'Albania','AL','ALB','1','1'),
 (3,'Algeria','DZ','DZA','1','0'),
@@ -204,7 +203,7 @@ INSERT INTO countries (countries_id, countries_name, countries_iso_code_2, count
 (186,'Seychelles','SC','SYC','1','0'),
 (187,'Sierra Leone','SL','SLE','1','0'),
 (188,'Singapore','SG','SGP', '4','1'),
-(189,'Slovakia (Slovak Republic)','SK','SVK','1','1','1'),
+(189,'Slovakia (Slovak Republic)','SK','SVK','1','1'),
 (190,'Slovenia','SI','SVN','1','1'),
 (191,'Solomon Islands','SB','SLB','1','0'),
 (192,'Somalia','SO','SOM','1','0'),
@@ -254,6 +253,7 @@ INSERT INTO countries (countries_id, countries_name, countries_iso_code_2, count
 (236,'Serbia','RS','SRB','1','1'),
 (238,'Zambia','ZM','ZMB','1','0'),
 (239,'Zimbabwe','ZW','ZWE','1','0'),
+(240,'Åland Islands','AX','ALA','1','0'),
 (241,'Palestine, State of','PS','PSE','1','0'),
 (242,'Montenegro','ME','MNE','1','1'),
 (243,'Guernsey','GG','GGY','1','1'),
