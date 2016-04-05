@@ -4,7 +4,7 @@
  * @copyright Copyright 2003-2016 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: admin_access.php 840 2016-02-28 17:03:21Z webchills $
+ * @version $Id: admin_access.php 841 2016-04-05 18:03:21Z webchills $
  */
 
 /**
@@ -243,7 +243,8 @@ function zen_update_user($name, $email, $id, $profile)
 function zen_read_user($name)
 {
   global $db;
-  $sql = "select admin_id, admin_name, admin_email, admin_pass, pwd_last_change_date, reset_token, failed_logins, lockout_expires, admin_profile from " . TABLE_ADMIN . " where admin_name = :adminname:  LIMIT 1";
+ 
+  $sql = "select admin_id, admin_name, admin_email, admin_pass, pwd_last_change_date, reset_token, failed_logins, lockout_expires, admin_profile, last_login_date, last_login_ip from " . TABLE_ADMIN . " where admin_name = :adminname:  LIMIT 1";
   $sql = $db->bindVars($sql, ':adminname:', $name, 'string');
   $result = $db->Execute($sql);
   if ($result->EOF || $result->RecordCount() < 1) return FALSE;
@@ -270,6 +271,8 @@ function zen_get_admin_name($id = '')
 function zen_validate_user_login($admin_name, $admin_pass)
 {
   global $db;
+  unset ($_SESSION['last_login_date']);
+  unset ($_SESSION['last_login_ip']);
   $camefrom = isset($_GET['camefrom']) ? $_GET['camefrom'] : FILENAME_DEFAULT;
   $error = $expired = false;
   $message = $redirect = '';
@@ -406,6 +409,8 @@ function zen_validate_user_login($admin_name, $admin_pass)
   if ($error == false)
   {
     unset($_SESSION['login_attempt']);
+    $_SESSION['last_login_date'] = $result['last_login_date'];
+    $_SESSION['last_login_ip'] = $result['last_login_ip'];
     $sql = "UPDATE " . TABLE_ADMIN . " SET failed_logins = 0, lockout_expires = 0, last_login_date = now(), last_login_ip = :ip: WHERE admin_name = :adminname: ";
     $sql = $db->bindVars($sql, ':adminname:', $admin_name, 'string');
     $sql = $db->bindVars($sql, ':ip:', $_SERVER['REMOTE_ADDR'], 'string');

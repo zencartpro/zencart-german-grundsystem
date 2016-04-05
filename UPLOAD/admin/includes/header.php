@@ -4,7 +4,7 @@
  * @copyright Copyright 2003-2016 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: header.php 792 2016-03-27 19:13:51Z webchills $
+ * @version $Id: header.php 793 2016-04-06 19:13:51Z webchills $
  */
 if (!defined('IS_ADMIN_FLAG')) {
     die('Illegal Access');
@@ -170,14 +170,18 @@ if (SHOW_GV_QUEUE == true) {
     </div>
     <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
         <?php
+        $adminInfo = zen_read_user(zen_get_admin_name($_SESSION['admin_id']));
         echo((strtoupper(substr(PHP_OS, 0, 3)) == 'WIN') ? iconv('ISO-8859-1', 'UTF-8', strftime(ADMIN_NAV_DATE_TIME_FORMAT, time())) : strftime(ADMIN_NAV_DATE_TIME_FORMAT, time())); //windows does not "do" UTF-8...so a manual conversion is necessary
         echo '&nbsp;' . date("O", time()) . ' GMT';  // time zone
-        echo '&nbsp;[' . $_SERVER['REMOTE_ADDR'] . ']'; // current admin user's IP address
-        echo '<br />';
+        echo '&nbsp;[' . $_SERVER['REMOTE_ADDR'] . ']&nbsp;&nbsp;'; // current admin user's IP address
+        
         echo version_compare(PHP_VERSION, '5.3.0', 'lt') ? php_uname('n') : gethostname(); //what server am I working on? // NOTE: gethostbyname only available since PHP 5.3.0
         echo ' - ' . date_default_timezone_get(); //what is the PHP timezone set to?
         $loc = setlocale(LC_TIME, 0);
         if ($loc !== FALSE) echo ' - ' . $loc; //what is the locale in use?
+        echo '<br />';
+        echo TEXT_PASSWORD_LAST_CHANGE . $adminInfo['pwd_last_change_date'];
+        echo '&nbsp;&nbsp;&nbsp;' . TEXT_LAST_LOGIN_INFO . $_SESSION['last_login_date'] . ' [' . $_SESSION['last_login_ip'] . ']';
         ?>
     </div>
     <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 noprint">
