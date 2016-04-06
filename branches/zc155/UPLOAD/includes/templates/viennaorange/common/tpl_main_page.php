@@ -1,14 +1,43 @@
 <?php
 /**
-* Common Template
-* 
-* @package templateSystem
+ * Common Template - tpl_main_page.php
+ *
+ * Governs the overall layout of an entire page<br />
+ * Normally consisting of a header, left side column. center column. right side column and footer<br />
+ * For customizing, this file can be copied to /templates/your_template_dir/pagename<br />
+ * example: to override the privacy page<br />
+ * - make a directory /templates/my_template/privacy<br />
+ * - copy /templates/templates_defaults/common/tpl_main_page.php to /templates/my_template/privacy/tpl_main_page.php<br />
+ * <br />
+ * to override the global settings and turn off columns un-comment the lines below for the correct column to turn off<br />
+ * to turn off the header and/or footer uncomment the lines below<br />
+ * Note: header can be disabled in the tpl_header.php<br />
+ * Note: footer can be disabled in the tpl_footer.php<br />
+ * <br />
+ * $flag_disable_header = true;<br />
+ * $flag_disable_left = true;<br />
+ * $flag_disable_right = true;<br />
+ * $flag_disable_footer = true;<br />
+ * <br />
+ * // example to not display right column on main page when Always Show Categories is OFF<br />
+ * <br />
+ * if ($current_page_base == 'index' and $cPath == '') {<br />
+ *  $flag_disable_right = true;<br />
+ * }<br />
+ * <br />
+ * example to not display right column on main page when Always Show Categories is ON and set to categories_id 3<br />
+ * <br />
+ * if ($current_page_base == 'index' and $cPath == '' or $cPath == '3') {<br />
+ *  $flag_disable_right = true;<br />
+ * }<br />
+ *
+ * @package templateSystem
 * @copyright Portions Copyright 2009-2010 12leaves.com
 * @copyright Copyright 2003-2016 Zen Cart Development Team
 * @copyright Portions Copyright 2012 webchills.at
 * @copyright Portions Copyright 2003 osCommerce
 * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
-* @version $Id: tpl_main_page.php 849 2016-03-21 21:10:39Z webchills $
+* @version $Id: tpl_main_page.php 850 2016-04-06 13:10:39Z webchills $
 */
 /** bof DESIGNER TESTING ONLY: */
 // $messageStack->add('header', 'this is a sample error message', 'error');

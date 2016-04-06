@@ -4,16 +4,16 @@
  * @copyright Copyright 2003-2016 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: jscript_framework.php 2015-01-28 16:10:39Z webchills $
+ * @version $Id: jscript_framework.php 4 2016-02-17 13:10:39Z webchills $
  */
 ?>
-<script type="text/javascript">
+<script type="text/javascript"><!--//<![CDATA[
 if (typeof zcJS == "undefined" || !zcJS) {
   window.zcJS = { name: 'zcJS', version: '0.1.0.0' };
 };
 
 zcJS.ajax = function (options) {
-  options.url = options.url.replace("&amp;", unescape("&amp;"));
+  options.url = options.url.replace("&amp;", "&");
   var deferred = $.Deferred(function (d) {
       var securityToken = '<?php echo $_SESSION['securityToken']; ?>';
       var defaults = {
@@ -65,12 +65,10 @@ zcJS.ajax = function (options) {
          }
        break;
        default:
-        if (jqXHR.status === 200 * contentType.toLowerCase().indexOf("text/html") >= 0) {
+        if (jqXHR.status === 200 && contentType.toLowerCase().indexOf("text/html") >= 0) {
          document.open();
          document.write(responseHtml);
          document.close();
-         } else {
-           alert('An unknown response '+response+': :'+contentType+': :'+errorThrown+' was received while processing an ajax call. The action you requested could not be completed.');
          }
      }
    });
@@ -123,23 +121,4 @@ zcJS.timer = function (options) {
     }
   };
 };
-<?php if (isset($_SESSION['jscript_enabled'])) { ?>
-<?php unset($_SESSION['jscript_enabled']); ?>
-<?php } ?>
-<?php if (PADSS_AJAX_CHECKOUT=='1' && in_array($current_page, array(FILENAME_CHECKOUT_CONFIRMATION,FILENAME_CHECKOUT_PAYMENT,FILENAME_CHECKOUT_SHIPPING,FILENAME_SHOPPING_CART, FILENAME_LOGIN))) { ?>
-zcJS.ajax({
-    url: "ajax.php?act=ajaxPayment&method=setNoscriptCookie",
-    data: {test: '1'},
-    async: false
-  }).done(function( response ) {
-
-  });
-<?php } ?>
-</script>
-<?php if (PADSS_AJAX_CHECKOUT=='1' && ($current_page == FILENAME_CHECKOUT_CONFIRMATION || $current_page == FILENAME_CHECKOUT_PAYMENT || $current_page == FILENAME_CHECKOUT_SHIPPING) && !isset($_SESSION['jscript_enabled'])) { ?>
-<?php if ($payment_modules->doesCollectsCardDataOnsite == true) { ?>
-<noscript>
-<meta http-equiv="refresh" content="0;url=<?php echo zen_href_link(FILENAME_SHOPPING_CART, 'jscript=no');?>">
-</noscript>
-<?php }?>
-<?php }?>
+//]] --></script>

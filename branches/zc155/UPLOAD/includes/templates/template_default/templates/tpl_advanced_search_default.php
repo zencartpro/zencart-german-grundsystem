@@ -9,7 +9,7 @@
  * @copyright Copyright 2003-2016 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: tpl_advanced_search_default.php 729 2011-08-09 15:49:16Z hugo13 $
+ * @version $Id: tpl_advanced_search_default.php 730 2016-04-06 12:37:16Z webchills $
  */
 ?>
 <div class="centerColumn" id="advSearchDefault">
@@ -25,7 +25,9 @@
 <legend><?php echo HEADING_SEARCH_CRITERIA; ?></legend>
 <div class="forward"><?php echo '<a href="javascript:popupWindow(\'' . zen_href_link(FILENAME_POPUP_SEARCH_HELP) . '\')">' . TEXT_SEARCH_HELP_LINK . '</a>'; ?></div>
 <br class="clearBoth" />
-    <div class="centeredContent"><?php echo zen_draw_input_field('keyword', $sData['keyword'], 'onfocus="RemoveFormatString(this, \'' . KEYWORD_FORMAT_STRING . '\')"'); ?>&nbsp;&nbsp;&nbsp;<?php echo zen_draw_checkbox_field('search_in_description', '1', $sData['search_in_description'], 'id="search-in-description"'); ?><label class="checkboxLabel" for="search-in-description"><?php echo TEXT_SEARCH_IN_DESCRIPTION; ?></label></div>
+    <div class="centeredContent"><?php echo zen_draw_input_field('keyword', $sData['keyword'], 'placeholder="' . KEYWORD_FORMAT_STRING . '" autofocus onfocus="RemoveFormatString(this, \'' . KEYWORD_FORMAT_STRING . '\')"'); ?>
+        &nbsp;&nbsp;&nbsp;<?php echo zen_draw_checkbox_field('search_in_description', '1', $sData['search_in_description'], 'id="search-in-description"'); ?>
+        <label class="checkboxLabel" for="search-in-description"><?php echo TEXT_SEARCH_IN_DESCRIPTION; ?></label></div>
 <br class="clearBoth" />
 </fieldset>
 
@@ -38,7 +40,7 @@
 
 <fieldset class="floatingBox forward">
     <legend><?php echo ENTRY_MANUFACTURERS; ?></legend>
-    <?php echo zen_draw_pull_down_menu('manufacturers_id', zen_get_manufacturers(array(array('id' => '', 'text' => TEXT_ALL_MANUFACTURERS)), PRODUCTS_MANUFACTURERS_STATUS), $sData['manufacturers_id']); ?>
+    <?php echo zen_draw_pull_down_menu('manufacturers_id', zen_get_manufacturers(array(array('id' => '', 'text' => TEXT_ALL_MANUFACTURERS)), PRODUCTS_MANUFACTURERS_STATUS), $sData['manufacturers_id'], 'id="searchMfgId"'); ?>
 <br class="clearBoth" />
 </fieldset>
 <br class="clearBoth" />
@@ -59,11 +61,11 @@
 <legend><?php echo ENTRY_DATE_RANGE; ?></legend>
 <fieldset class="floatLeft">
     <legend><?php echo ENTRY_DATE_FROM; ?></legend>
-    <?php echo zen_draw_input_field('dfrom', $sData['dfrom'], 'onfocus="RemoveFormatString(this, \'' . DOB_FORMAT_STRING . '\')"'); ?>
+    <?php echo zen_draw_input_field('dfrom', $sData['dfrom'], 'placeholder="' . DOB_FORMAT_STRING . '" onfocus="RemoveFormatString(this, \'' . DOB_FORMAT_STRING . '\')"'); ?>
 </fieldset>
 <fieldset class="floatLeft">
     <legend><?php echo ENTRY_DATE_TO; ?></legend>
-    <?php echo zen_draw_input_field('dto', $sData['dto'], 'onfocus="RemoveFormatString(this, \'' . DOB_FORMAT_STRING . '\')"'); ?>
+    <?php echo zen_draw_input_field('dto', $sData['dto'], 'placeholder="' . DOB_FORMAT_STRING . '" onfocus="RemoveFormatString(this, \'' . DOB_FORMAT_STRING . '\')"'); ?>
 </fieldset>
 </fieldset>
 <br class="clearBoth" />
