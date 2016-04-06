@@ -6,7 +6,7 @@
  * @copyright Copyright 2003-2016 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: tpl_modules_shipping_estimator.php 731 2016-03-04 23:49:16Z webchills $
+ * @version $Id: tpl_modules_shipping_estimator.php 732 2016-04-06 12:49:16Z webchills $
  */
 ?>
 <div id="shippingEstimatorContent">

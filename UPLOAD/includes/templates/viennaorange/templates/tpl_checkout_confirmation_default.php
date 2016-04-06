@@ -9,7 +9,7 @@
  * @copyright Copyright 2003-2016 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: tpl_checkout_confirmation_default.php 2016-03-05 20:10:16Z webchills $
+ * @version $Id: tpl_checkout_confirmation_default.php 2016-04-06 13:10:16Z webchills $
  */
 ?>
 <div class="centerColumn" id="checkoutConfirmDefault">
@@ -106,9 +106,9 @@
 <?php  } //endif flagAnyOutOfStock ?>
 
 
-      <table border="0" width="100%" cellspacing="0" cellpadding="0" id="cartContentsDisplay">
+      <table id="cartContentsDisplay">
         <tr class="cartTableHeading">
-        <th scope="col" id="ccQuantityHeading" width="30"><?php echo TABLE_HEADING_QUANTITY; ?></th>
+        <th scope="col" id="ccQuantityHeading"><?php echo TABLE_HEADING_QUANTITY; ?></th>
         <th scope="col" id="ccProductsHeading"><?php echo TABLE_HEADING_PRODUCTS; ?></th>
         
         <th scope="col" id="ccProductsHeading"><?php echo TABLE_HEADING_PRODUCTIMAGE; ?></th>
@@ -122,7 +122,7 @@
   }
 ?>
 
- <th scope="col" id="ccSinglePriceHeading" width="60"><?php echo TABLE_HEADING_SINGLEPRICE; ?></th>
+ <th scope="col" id="ccSinglePriceHeading"><?php echo TABLE_HEADING_SINGLEPRICE; ?></th>
 
           <th scope="col" id="ccTotalHeading"><?php echo TABLE_HEADING_TOTAL; ?></th>
         </tr>

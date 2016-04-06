@@ -1,12 +1,20 @@
 <?php
 /**
-* Common Template
-* 
+ * Common Template - tpl_header.php
+ *
+ * this file can be copied to /templates/your_template_dir/pagename<br />
+ * example: to override the privacy page<br />
+ * make a directory /templates/my_template/privacy<br />
+ * copy /templates/templates_defaults/common/tpl_footer.php to /templates/my_template/privacy/tpl_header.php<br />
+ * to override the global settings and turn off the footer un-comment the following line:<br />
+ * <br />
+ * $flag_disable_header = true;<br />
+ *
 * @package templateSystem
 * @copyright Copyright 2003-2016 Zen Cart Development Team
 * @copyright Portions Copyright 2003 osCommerce
 * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
-* @version $Id: tpl_header.php 13 2016-03-01 12:33:58Z webchills $
+* @version $Id: tpl_header.php 14 2016-04-06 12:33:58Z webchills $
 */
 ?>
 
