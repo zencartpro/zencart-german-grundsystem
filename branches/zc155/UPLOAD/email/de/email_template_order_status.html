@@ -11,6 +11,9 @@ $EMAIL_COMMON_CSS
 </head>
 
 <body id="order_status">
+<table width="600" border="0" align="center" cellpadding="0" cellspacing="0">
+<tr>
+<td>
 <div class="holder">
 
   <!-- Header Section -->
@@ -19,7 +22,7 @@ $EMAIL_COMMON_CSS
     $EXTRA_HEADER_INFO
   </div>
 
-
+<br/>
   <!-- Content Section -->
   <div class="content">
     <div>$EMAIL_CUSTOMER_GREETING $EMAIL_CUSTOMERS_NAME,</div>
@@ -33,19 +36,20 @@ $EMAIL_COMMON_CSS
     <div>$EMAIL_TEXT_STATUS_UPDATED</div>
     <div>$EMAIL_TEXT_STATUS_LABEL</div>
     <div>$EMAIL_TEXT_STATUS_PLEASE_REPLY</div>
-    <div>$EMAIL_STORE_NAME</div>
   </div>
 <br/>
 
   <!-- Footer Section -->
   <div class="footer">
     <div class="copyright">$EMAIL_FOOTER_COPYRIGHT</div>
+    <div class="disclaimer1">$EMAIL_DISCLAIMER</div>
+  <div class="disclaimer2">$EMAIL_SPAM_DISCLAIMER</div>
   </div>
 
 </div>
-<div class="disclaimer">
-  <div class="disclaimer1">$EMAIL_DISCLAIMER</div>
-  <div class="disclaimer2">$EMAIL_SPAM_DISCLAIMER</div>
-</div>
+
+</td>
+</tr>
+</table>
 </body>
 </html>

@@ -11,6 +11,9 @@ $EMAIL_COMMON_CSS
 </head>
 
 <body class="body" id="welcome">
+<table width="600" border="0" align="center" cellpadding="0" cellspacing="0">
+<tr>
+<td>
 <div class="holder">
 
   <!-- Header Section -->
@@ -23,7 +26,9 @@ $EMAIL_COMMON_CSS
   <!-- Content Section -->
   <div class="content">
     <div class="content-line">$EMAIL_GREETING</div>
+    <br/>
     <div class="content-line">$EMAIL_WELCOME</div>
+    <br/>
 <!--The following only get populated if they're enabled! -->
 $COUPON_BLOCK
 $GV_BLOCK
@@ -36,12 +41,14 @@ $GV_BLOCK
   <!-- Footer Section -->
   <div class="footer">
     <div class="copyright">$EMAIL_FOOTER_COPYRIGHT</div>
+    <div class="disclaimer1">$EMAIL_DISCLAIMER</div>
+  <div class="disclaimer2">$EMAIL_SPAM_DISCLAIMER</div>
   </div>
 
-<div class="disclaimer">
-  <div class="disclaimer1">$EMAIL_DISCLAIMER</div>
-  <div class="disclaimer2">$EMAIL_SPAM_DISCLAIMER</div>
-</div>
+
 $EXTRA_INFO
+</td>
+</tr>
+</table>
 </body>
 </html>

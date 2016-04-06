@@ -4,12 +4,12 @@
 * @copyright Copyright 2003-2016 Zen Cart Development Team
 * @copyright Portions Copyright 2003 osCommerce
 * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
-* @version $Id: email_extras.php 733 2016-03-05 15:49:16Z webchills $
+* @version $Id: email_extras.php 734 2016-04-06 20:49:16Z webchills $
 */
 
 define ('EMAIL_LOGO_FILENAME', 'header.jpg');  //-File is present in /email folder
-define ('EMAIL_LOGO_WIDTH', '550');
-define ('EMAIL_LOGO_HEIGHT', '110');
+define ('EMAIL_LOGO_WIDTH', '600');
+define ('EMAIL_LOGO_HEIGHT', '70');
 define ('EMAIL_LOGO_ALT_TITLE_TEXT', '');
 
 // -----

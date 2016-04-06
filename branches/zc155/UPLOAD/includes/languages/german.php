@@ -4,7 +4,7 @@
  * @copyright Copyright 2003-2016 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: german.php 661 2016-03-05 16:45:57Z webchills $
+ * @version $Id: german.php 662 2016-04-06 19:45:57Z webchills $
  */
 
 // FOLLOWING WERE moved to meta_tags.php
@@ -103,6 +103,7 @@ define('CATEGORIES_BOX_HEADING_PRODUCTS_ALL', 'Alle Artikel ...');
 // quick_find box text in sideboxes/quick_find.php
 define('BOX_HEADING_SEARCH', 'Suche');
 define('BOX_SEARCH_ADVANCED_SEARCH', 'Erweiterte Suche');
+define('SEARCH_DEFAULT_TEXT', 'Suchbegriff(e)');
 
 // specials box text in sideboxes/specials.php
 define('BOX_HEADING_SPECIALS', 'Sonderangebote');

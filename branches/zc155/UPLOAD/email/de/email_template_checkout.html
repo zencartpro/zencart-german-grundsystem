@@ -10,6 +10,9 @@ $EMAIL_COMMON_CSS
 </head>
 
 <body id="checkout">
+<table width="600" border="0" align="center" cellpadding="0" cellspacing="0">
+<tr>
+<td>
 <div class="holder">
 
   <!-- Header Section -->
@@ -21,15 +24,16 @@ $EMAIL_COMMON_CSS
   <!-- Content Section -->
   <div class="content">
     <div class="content-line">
-      $EMAIL_TEXT_HEADER $INTRO_STORE_NAME<br /><br/>
+      <div class="subject">$EMAIL_TEXT_HEADER $INTRO_STORE_NAME</div><br />
       $EMAIL_GREETING $EMAIL_FIRST_NAME $EMAIL_LAST_NAME,<br />
       $EMAIL_THANKS_FOR_SHOPPING<br />
       $EMAIL_DETAILS_FOLLOW<br /><br />
 
       $INTRO_ORDER_NUM_TITLE $INTRO_ORDER_NUMBER<br />
       $INTRO_DATE_TITLE $INTRO_DATE_ORDERED<br />
-      <a href="$INTRO_URL_VALUE">$INTRO_URL_TEXT</a>
+      <a href="$INTRO_URL_VALUE">$INTRO_URL_TEXT</a><br/>
   </div>
+  <br/>
   <div class="content-line"><strong>$PRODUCTS_TITLE</strong></div>
     <div class="order-detail-area">$PRODUCTS_DETAIL</div>
   <div class="order-detail-area">$ORDER_TOTALS</div>
@@ -40,7 +44,7 @@ $EMAIL_COMMON_CSS
   <div class="address-block">
   <table border="0" width="100%" cellspacing="0" cellpadding="2">
     <tr>
-    <td class="delivery-block">
+    <td valign="top" width="50%">
       <table border="0" width="100%" cellspacing="0" cellpadding="2">
       <tr>
         <td class="content-line-title"><strong>$ADDRESS_DELIVERY_TITLE</strong></td>
@@ -57,7 +61,7 @@ $EMAIL_COMMON_CSS
       </tr>
       </table>
     </td>
-    <td class="billing-block">
+    <td valign="top" width="50%">
       <table border="0" width="100%" cellspacing="0" cellpadding="2">
       <tr>
         <td class="content-line-title">$ADDRESS_BILLING_TITLE</td>
@@ -80,17 +84,18 @@ $EMAIL_COMMON_CSS
   </table>
  </div>
 </div>
-
+<br/>
   <!-- Footer Section -->
   <div class="footer">
     <div class="copyright">$EMAIL_FOOTER_COPYRIGHT</div>
+    <div class="disclaimer1">$EMAIL_DISCLAIMER</div>
+  <div class="disclaimer2">$EMAIL_SPAM_DISCLAIMER</div>
   </div>
 
 </div>
-<div class="disclaimer">
-  <div class="disclaimer1">$EMAIL_DISCLAIMER</div>
-  <div class="disclaimer2">$EMAIL_SPAM_DISCLAIMER</div>
-</div>
 $EXTRA_INFO
+</td>
+</tr>
+</table>
 </body>
 </html>
