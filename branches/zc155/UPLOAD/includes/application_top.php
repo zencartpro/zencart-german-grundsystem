@@ -10,7 +10,7 @@
  * @copyright Copyright 2003-2016 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: application_top.php 808 2016-03-29 20:28:24Z webchills $
+ * @version $Id: application_top.php 809 2016-04-06 11:07:24Z webchills $
  */
 /**
  * inoculate against hack attempts which waste CPU cycles
@@ -183,4 +183,6 @@ if (!isset($_SESSION['customers_ip_address'])) {
 
 
 // MailBeez Click and Order tracker
-// require(DIR_FS_CATALOG . 'mailhive/includes/clicktracker.php');
+if (file_exists(DIR_FS_CATALOG . 'mailhive/includes/clicktracker.php')) {
+require(DIR_FS_CATALOG . 'mailhive/includes/clicktracker.php');
+}
