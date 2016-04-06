@@ -11,8 +11,9 @@
  *
  * @package templateSystem
  * @copyright Copyright 2003-2015 Zen Cart Development Team
- * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: main_template_vars.php  Modified in v1.5.5 $
+ 
+ * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
+ * @version $Id: main_template_vars 1 2016-04-06 11:33:58Z webchills $
  */
 
   $zco_notifier->notify('NOTIFY_MAIN_TEMPLATE_VARS_START', $template_dir);

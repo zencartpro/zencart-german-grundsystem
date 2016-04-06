@@ -8,8 +8,8 @@
  * @package templateSystem
  * @copyright Copyright 2003-2015 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
- * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version GIT: $Id: picaflor-azul Modified in v1.5.5 $
+ * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
+ * @version $Id: tpl_ajax_checkout_confirmation_default.php 2 2016-04-06 11:33:58Z webchills $
  */
 ?>
 <div class="centerColumn" id="checkoutConfirmDefault">
