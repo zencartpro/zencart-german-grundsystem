@@ -11,6 +11,9 @@ $EMAIL_COMMON_CSS
 </head>
 
 <body id="contact_us">
+<table width="600" border="0" align="center" cellpadding="0" cellspacing="0">
+<tr>
+<td>
 <div class="holder">
 
   <!-- Header Section -->
@@ -22,7 +25,8 @@ $EMAIL_COMMON_CSS
 
   <!-- Content Section -->
   <div class="content">
-    <div>$CONTACT_US_OFFICE_FROM<hr /></div>
+    <div class="subject">$CONTACT_US_OFFICE_FROM</div>
+    <br/>
     <div>$EMAIL_MESSAGE_HTML</div>
   </div>
 
@@ -30,13 +34,15 @@ $EMAIL_COMMON_CSS
   <!-- Footer Section -->
   <div class="footer">
     <div class="copyright">$EMAIL_FOOTER_COPYRIGHT</div>
+     <div class="disclaimer1">$EMAIL_DISCLAIMER</div>
+  <div class="disclaimer2">$EMAIL_SPAM_DISCLAIMER</div>
   </div>
 
 </div>
-<div class="disclaimer">
-  <div class="disclaimer1">$EMAIL_DISCLAIMER</div>
-  <div class="disclaimer2">$EMAIL_SPAM_DISCLAIMER</div>
-</div>
+
 $EXTRA_INFO
+</td>
+</tr>
+</table>
 </body>
 </html>

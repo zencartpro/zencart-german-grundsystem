@@ -8,8 +8,8 @@
 */
 
 define ('EMAIL_LOGO_FILENAME', 'header.jpg');  //-File is present in /email folder
-define ('EMAIL_LOGO_WIDTH', '550');
-define ('EMAIL_LOGO_HEIGHT', '110');
+define ('EMAIL_LOGO_WIDTH', '600');
+define ('EMAIL_LOGO_HEIGHT', '70');
 define ('EMAIL_LOGO_ALT_TITLE_TEXT', '');
 
 // -----

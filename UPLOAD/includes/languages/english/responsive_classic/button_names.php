@@ -4,7 +4,7 @@
  * @copyright Copyright 2003-2016 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: button_names.php 1 2015-12-22 17:49:16Z webchills $
+ * @version $Id: button_names.php 2 2016-04-06 19:49:16Z webchills $
  */
 
 
@@ -100,5 +100,5 @@ define('BUTTON_UPDATE_ALT', 'Update');
 define('BUTTON_VIEW_SMALL_ALT', 'View');
 define('BUTTON_WRITE_REVIEW_ALT', 'Write Review');
 define('BUTTON_READ_REVIEWS_ALT', 'Read the Review');
-define('BUTTON_GOTO_PROD_DETAILS_ALT', 'Go To This Product\'s Details');
+define('BUTTON_GOTO_PROD_DETAILS_ALT', 'Details');
 define('BUTTON_MORE_REVIEWS_ALT', 'Read More Reviews');
