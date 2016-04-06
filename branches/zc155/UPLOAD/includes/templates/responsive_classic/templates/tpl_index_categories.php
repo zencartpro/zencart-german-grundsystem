@@ -9,8 +9,8 @@
  * @package templateSystem
  * @copyright Copyright 2003-2016 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
- * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: picaflor-azul Sat Mar 5 12:24:13 2016 -0500 New in v1.5.5 $
+ * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
+ * @version $Id: tpl_index_categories.php 2 2016-04-06 11:33:58Z webchills $
  */
 ?>
 <div class="centerColumn" id="indexCategories">
@@ -59,7 +59,7 @@ if ($show_welcome != true) { ?>
     if ($current_categories_description != '') {
 ?>
 <div id="categoryDescription" class="catDescContent"><?php echo $current_categories_description;  ?></div>
-
+<br class="clearBoth" />
 <?php } // categories_description ?>
 
 <?php
