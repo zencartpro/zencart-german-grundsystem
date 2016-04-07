@@ -6,7 +6,7 @@
 # * @copyright Copyright 2003-2016 Zen Cart Development Team
 # * @copyright Portions Copyright 2003 osCommerce
 # * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
-# * @version $Id: mysql_upgrade_zencart_155.sql 6 2016-03-28 14:57:59Z webchills $
+# * @version $Id: mysql_upgrade_zencart_155.sql 7 2016-04-07 19:57:59Z webchills $
 #
 
 ############ IMPORTANT INSTRUCTIONS ###############
@@ -781,6 +781,18 @@ INSERT INTO configuration (configuration_title, configuration_key, configuration
 REPLACE INTO configuration_group (configuration_group_id, language_id, configuration_group_title, configuration_group_description, sort_order, visible) VALUES 
 (@configuration_group_id, 1, 'Facebook / Open Graph / Microdata', 'Settings for Facebook, Open Graph and Microdata Support', @configuration_group_id, 1),
 (@configuration_group_id, 43, 'Facebook / Open Graph / Microdata', 'Einstellungen für die Unterstützung von Facebook, Open Graph und Microdata', @configuration_group_id, 1);
+
+### additional entries in Google Analytics ####
+
+SELECT @configuration_group_id:=configuration_group_id
+FROM configuration_group
+WHERE configuration_group_title= 'Google Analytics'
+LIMIT 1;
+
+INSERT INTO configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, last_modified, date_added, use_function, set_function) VALUES
+('Demographics and Interest Reports', 'GOOGLE_ANALYTICS_DIR', 'Disabled', 'Enables / Disables Demographics and Interest Reports<br /><br />', @configuration_group_id, 12, NOW(), NOW(), NULL, 'zen_cfg_select_option(array(''Enabled'', ''Disabled''),'),
+('Google Conversion Label', 'GOOGLE_CONVERSION_LABEL', 'purchase', 'Enter your Google Conversion Label (can be generated in Google Adwords or you can create a custom label for tracking elsewhere)<br /><br />', @configuration_group_id, 13, NOW(), NOW(), NULL, 'zen_cfg_textarea(');
+
 
 ### CSS Buttons in admin ####
 
