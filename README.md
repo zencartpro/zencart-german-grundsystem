@@ -1,5 +1,7 @@
-# zencart-german
-Zen Cart ist eine kostenlose unter der GPL-Lizenz veröffentlichte Open-Source Shopsoftware. Das System wird in den USA entwickelt, die amerikanische Website dazu ist www.zen-cart.com Die deutsche Zen Cart Version ist eine Anpassung der amerikanischen Version an die Bedürfnisse von Onlineshopbetreibern im deutschsprachigen Raum.
+# zencart-german-grundsystem
+Zen Cart ist eine kostenlose unter der GPL-Lizenz veröffentlichte Open-Source Shopsoftware. Das System wird in den USA entwickelt, die amerikanische Website dazu ist www.zen-cart.com Die deutsche Zen Cart Version von www.zen-cart-pro.at ist eine Anpassung der amerikanischen Version an die Bedürfnisse von Onlineshopbetreibern im deutschsprachigen Raum.
+Die deutsche Zen Cart Version wird von einem Team von Entwicklern in Österreich und Deutschland betreut, weiterentwickelt und supportet und steht kostenlos zur Verfügung. Support findet ausschließlich im Supportforum statt.
+Aktuelle Version ist 1.5.4, die Version 1.5.5 ist derzeit im Betatest.
 
 Hauptunterschiede zwischen der deutschen und amerikanischen Version:
 
@@ -17,7 +19,7 @@ Das Verzeichnis für den Minify Cache wurde in den Ordner cache integriert und b
 Einstellungen dazu unter Konfiguration > Minify
 Falls amerikanische Module die Erweiterung CSS/JS Loader mitbringen, dann ist die Installation dieses CSS/JS Loaders in der deutschen Zen Cart Version NICHT erforderlich oder sinnvoll, da sie eben bereits integriert ist!
 
-Google Analytics integriert
+Google Analytics
 Seit Zen Cart 1.5.3 deutsch ist bereits das Modul Google Analytics enthalten, so dass bei Bedarf einfach nur die Google Analytics Account Nummer via Zen Cart Administration eingetragen werden muss, um Google Analytics zu verwenden.
 Es wird der der neue Google Universal Tracking Code unterstützt.
 Einstellungen dazu unter Konfiguration > Google Analytics
