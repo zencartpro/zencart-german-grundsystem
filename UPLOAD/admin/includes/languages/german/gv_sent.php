@@ -4,10 +4,10 @@
  * @copyright Copyright 2003-2016 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: gv_sent.php 628 2015-12-22 16:39:16Z webchills $
+ * @version $Id: gv_sent.php 629 2016-04-09 09:39:16Z webchills $
  */
 
-define('HEADING_TITLE', TEXT_GV_NAMES .' versenden');
+define('HEADING_TITLE', TEXT_GV_NAMES .' versandt');
 define('TABLE_HEADING_SENDERS_NAME', 'Name des Absenders');
 define('TABLE_HEADING_VOUCHER_VALUE', ' Betrag');
 define('TABLE_HEADING_VOUCHER_CODE', ' Eingelöst');
@@ -21,5 +21,5 @@ define('TEXT_INFO_VOUCHER_CODE', TEXT_GV_REDEEM . ':');
 define('TEXT_INFO_EMAIL_ADDRESS', 'E-Mail Adresse:');
 define('TEXT_INFO_DATE_REDEEMED', 'Einlösedatum:');
 define('TEXT_INFO_IP_ADDRESS', 'IP Adresse:');
-define('TEXT_INFO_CUSTOMERS_ID', 'Kunden ID:');
+define('TEXT_INFO_CUSTOMERS_ID', 'Kundennummer:');
 define('TEXT_INFO_NOT_REDEEMED', 'Nicht eingelöst');

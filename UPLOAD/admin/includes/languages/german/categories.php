@@ -4,17 +4,17 @@
  * @copyright Copyright 2003-2016 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: categories.php 627 2010-08-30 15:05:14Z webchills $
+ * @version $Id: categories.php 628 2016-04-09 09:05:14Z webchills $
  */
 
-define('HEADING_TITLE', 'Kategorien & Artikel');
+define('HEADING_TITLE', 'Kategorien / Artikel');
 define('HEADING_TITLE_GOTO', 'Gehe zu:');
 
 define('TABLE_HEADING_ID', 'ID');
 define('TABLE_HEADING_CATEGORIES_PRODUCTS', 'Kategorien & Artikel');
 define('TABLE_HEADING_CATEGORIES_SORT_ORDER', 'Sortierung');
 
-define('TABLE_HEADING_PRICE', 'Preis | Sonderpreis | Abverkauf');
+define('TABLE_HEADING_PRICE', 'Preis/Sonderangebot/Abverkauf');
 define('TABLE_HEADING_QUANTITY', 'Anzahl');
 
 define('TABLE_HEADING_ACTION', 'Aktion');

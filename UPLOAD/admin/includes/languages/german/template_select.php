@@ -4,7 +4,7 @@
  * @copyright Copyright 2003-2016 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: template_select.php 628 2015-12-22 16:39:16Z webchills $
+ * @version $Id: template_select.php 629 2016-04-09 09:39:16Z webchills $
  */
 
 define('HEADING_TITLE','Template Auswahl');
@@ -24,4 +24,4 @@ define('TEXT_INFO_TEMPLATE_DESCRIPTION','Template Beschreibung');
 define('TEXT_INFO_TEMPLATE_INSTALLED','Installierte Templates');
 define('TEXT_INFO_HEADING_NEW_TEMPLATE','Template mit Sprache verknüpfen');
 define('TEXT_INFO_INSERT_INTRO','Bitte wählen Sie unten die Sprache mit der Sie dieses Template verknüpfen wollen');
-define('IMAGE_NEW_TEMPLATE','Es wird eine neue Template Sprachverknüpfung erstellt');
+define('IMAGE_NEW_TEMPLATE','Neue Verknüpfung von Template und Sprache erstellen');

@@ -4,7 +4,7 @@
  * @copyright Copyright 2003-2016 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: gv_mail.php 632 2015-12-22 16:39:16Z webchills $
+ * @version $Id: gv_mail.php 633 2016-04-09 09:39:16Z webchills $
  */
 
 define('HEADING_TITLE', TEXT_GV_NAME . ' an Kunden versenden');
@@ -29,7 +29,7 @@ define('ERROR_GV_AMOUNT', 'Bitte den Wert ohne Symbole angeben. Beispiel: 25.00'
 
 define('TEXT_GV_ANNOUNCE', '<font color="#0000ff">Wir freuen uns, Ihnen einen ' . TEXT_GV_NAME . ' schenken zu können.</font>');
 define('TEXT_GV_WORTH', 'Der ' . TEXT_GV_NAME . ' hat einen Wert von ');
-define('TEXT_TO_REDEEM', 'Um den ' . TEXT_GV_NAME . ', einlösen zu können, klicken Sie bitte auf nachstehenden Link.');
+define('TEXT_TO_REDEEM', 'Um den ' . TEXT_GV_NAME . ', einzulösen, klicken Sie bitte auf nachstehenden Link.');
 define('TEXT_WHICH_IS', ' notieren Sie sich hierfür bitte diese Gutscheinnummer: ');
 define('TEXT_IN_CASE', ' Klicken Sie nun auf den nachstehenden Link: ');
 define('TEXT_OR_VISIT', 'Alternativ dazu können Sie uns auf ');
