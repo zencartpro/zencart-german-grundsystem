@@ -3,7 +3,7 @@
  * @package admin
  * @copyright Copyright 2003-2016 Zen Cart Development Team
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: init_admin_auth.php 801 2015-01-22 08:47:36Z webchills $
+ * @version $Id: init_admin_auth.php 802 2016-04-09 11:47:36Z webchills $
  */
 
 if (!defined('IS_ADMIN_FLAG')) die('Illegal Access');
@@ -46,7 +46,7 @@ if (basename($_SERVER['SCRIPT_FILENAME']) != FILENAME_ALERT_PAGE . '.php')
       }
     }
 
-    if (!in_array($page, array(FILENAME_DEFAULT,FILENAME_ADMIN_ACCOUNT,FILENAME_LOGOFF,FILENAME_ALERT_PAGE,FILENAME_PASSWORD_FORGOTTEN,FILENAME_DENIED,FILENAME_ALT_NAV)) &&
+    if (!in_array($page, array(FILENAME_DEFAULT,FILENAME_ADMIN_ACCOUNT,FILENAME_LOGOFF,FILENAME_ALERT_PAGE,FILENAME_PASSWORD_FORGOTTEN,FILENAME_DENIED,FILENAME_ALT_NAV,FILENAME_KEEPALIVE)) &&
         !zen_is_superuser())
     {
       if (check_page($page, $_GET) == FALSE)

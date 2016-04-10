@@ -4,7 +4,7 @@
  * @copyright Copyright 2003-2016 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: english.php 884 2016-04-05 19:01:32Z webchills $
+ * @version $Id: english.php 885 2016-04-09 11:01:32Z webchills $
  */
 if (!defined('IS_ADMIN_FLAG'))
 {
@@ -755,3 +755,19 @@ define('WARNING_PRIMARY_SERVER_FAILED', 'Warning: The primary exchange rate serv
 // Additional Localisation - Languages - Phone Country Code
 define('TEXT_INFO_LANGUAGE_ID', 'Enter telephone country access code without leading 0<br />(english must be 1, german must be 43):');
 define('TEXT_INFO_LANGUAGE_CODE', 'Code:<br />(en = englisch, de = german)');
+
+// keepalive
+define('TEXT_KEEPALIVE_BUTTON_YES', 'Yes, Keep Working');
+define('TEXT_KEEPALIVE_BUTTON_NO', 'No, Logoff');
+define('TEXT_KEEPALIVE_WARNING_PREFIX', 'Warning: %s seconds until log out | ');
+define('TEXT_KEEPALIVE_EXPIRED_PREFIX', '!!Expired Session');
+define('TEXT_KEEPALIVE_SESSION_EXPIRED_HEADER', 'Your session has expired');
+define('TEXT_KEEPALIVE_SESSION_EXPIRED_MESSAGE', '<p class="ui-state-error-text"><span class="ui-icon ui-icon-alert" style="float:left; margin:0 7px 50px 0;"></span>Sorry, you have been logged out due to inactivity.</p><p>Any unsaved work was lost. If you were composing content which you wish to save, click Close and copy that content to your clipboard. Then refresh the page to login again.</p><p>To continue, please login again.</p>');
+define('TEXT_KEEPALIVE_SERVER_UNREACHABLE_HEADER', 'Problem connecting to the server');
+define('TEXT_KEEPALIVE_SERVER_UNREACHABLE_MESSAGE', '<p><span class="ui-icon ui-icon-alert" style="float:left; margin:0 7px 50px 0;"></span>We are unable to connect to the server. Possible causes:<ul><li>Server is down</li><li>You have been logged out due to inactivity</li><li>Problems with your internet connection</li></ul>Your work may be lost. Please review your work and perhaps copy information to your clipboard if you had any work in progress which you do not wish to lose.</p>');
+define('TEXT_KEEPALIVE_SERVER_UNREACHABLE_MESSAGE1', 'We are unable to connect to the server. Your work may be lost. Please review your work and perhaps copy information to your clipboard if you had any work in progress which you do not wish to lose.');
+define('TEXT_KEEPALIVE_BUTTON_CLOSE', 'Close');
+define('TEXT_KEEPALIVE_BUTTON_LOGIN', 'Login');
+define('TEXT_KEEPALIVE_MESSAGE_YOU_WILL_LOG_OFF', 'You will be logged off in ');
+define('TEXT_KEEPALIVE_MESSAGE_MINUTES', 'minutes');
+define('TEXT_KEEPALIVE_MESSAGE_ASK_CONTINUE', 'Do you want to continue your session?');

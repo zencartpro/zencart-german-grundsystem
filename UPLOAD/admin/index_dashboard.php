@@ -4,7 +4,7 @@
  * @copyright Copyright 2003-2016 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: index_dashboard.php 2 2016-03-27 18:49:16Z webchills $
+ * @version $Id: index_dashboard.php 3 2016-04-09 10:49:16Z webchills $
  */
 $customers = $db->Execute("select count(*) as count from " . TABLE_CUSTOMERS);
 
@@ -71,7 +71,7 @@ $salemaker_act = $db->Execute("select count(*) as count from " . TABLE_SALEMAKER
         }
         echo '<div class="row"><span class="left">' . BOX_ENTRY_CUSTOMERS . '</span><span class="rigth"> ' . $customers->fields['count'] . '</span></div>';
         echo '<div class="row"><span class="left">' . BOX_ENTRY_PRODUCTS . ' </span><span class="rigth">' . $products->fields['count'] . '</span></div>';
-        echo '<div class="row"><span class="left">' . BOX_ENTRY_PRODUCTS_OFF . ' </span><span class="rigth">' . $products_off->fields['count'] . '</span></div>';
+        echo '<div class="row"><span class="left"><a href="' . zen_href_link(FILENAME_STATS_DISABLED_STOCK, 'SSL') . '">' . BOX_ENTRY_PRODUCTS_OFF . '</a></span><span class="rigth">' . $products_off->fields['count'] . '</span></div>';
         echo '<div class="row"><span class="left">' . BOX_ENTRY_REVIEWS . '</span><span class="rigth">' . $reviews->fields['count']. '</span></div>';
         if (REVIEWS_APPROVAL=='1') {
             echo '<div class="row"><span class="left"><a href="' . zen_href_link(FILENAME_REVIEWS, 'status=1', 'NONSSL') . '">' . BOX_ENTRY_REVIEWS_PENDING . '</a></span><span class="rigth">' . $reviews_pending->fields['count']. '</span></div>';

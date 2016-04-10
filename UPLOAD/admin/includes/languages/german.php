@@ -4,7 +4,7 @@
  * @copyright Copyright 2003-2016 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: german.php 657 2016-04-05 19:54:04Z webchills $
+ * @version $Id: german.php 658 2016-04-09 11:54:04Z webchills $
  */
 if (!defined('IS_ADMIN_FLAG'))
 {
@@ -754,3 +754,19 @@ define('WARNING_PRIMARY_SERVER_FAILED', 'Warning: The primary exchange rate serv
 // Additional Localisation - Languages - Phone Country Code
 define('TEXT_INFO_LANGUAGE_ID', 'Geben Sie den Telefon Ländercode OHNE 0 ein<br />(english MUSS 1 sein, deutsch MUSS 43 sein):');
 define('TEXT_INFO_LANGUAGE_CODE', 'Code:<br />(en = englisch, de = deutsch)');
+
+// keepalive
+define('TEXT_KEEPALIVE_BUTTON_YES', 'Ja, Weiterarbeiten');
+define('TEXT_KEEPALIVE_BUTTON_NO', 'Nein, Ausloggen');
+define('TEXT_KEEPALIVE_WARNING_PREFIX', 'Warnung: %s Sekunden bis zum automatischen Logout | ');
+define('TEXT_KEEPALIVE_EXPIRED_PREFIX', '!!Session abgelaufen');
+define('TEXT_KEEPALIVE_SESSION_EXPIRED_HEADER', 'Ihre Session ist abgelaufen');
+define('TEXT_KEEPALIVE_SESSION_EXPIRED_MESSAGE', '<p class="ui-state-error-text"><span class="ui-icon ui-icon-alert" style="float:left; margin:0 7px 50px 0;"></span>Sorry, Sie wurden wegen langer Inaktivität ausgeloggt.</p><p>Alle nicht gespeicherten Änderungen sind verloren. Falls Sie gerade Inhalte erstellt haben, die Sie speichern wollen, kopieren Sie Ihren Inhalt in die Zwischenablage. Dann loggen Sie wieder ein und speichern Ihre Inhalte erneut.</p>');
+define('TEXT_KEEPALIVE_SERVER_UNREACHABLE_HEADER', 'Wir konnten nicht mit dem Server verbinden');
+define('TEXT_KEEPALIVE_SERVER_UNREACHABLE_MESSAGE', '<p><span class="ui-icon ui-icon-alert" style="float:left; margin:0 7px 50px 0;"></span>Wir konnten nicht mit dem Server verbinden. Mögliche Ursachen:<ul><li>Server ist down</li><li>Sie wurden wegen Inaktivität ausgeloggt</li><li>Probleme mit Ihrer Internet Verbindung</li></ul>Ihre Arbeit könnte verloren sein. Bitte kopieren Sie sicherheitshalber Ihre Arbeit in die Zwischenablage, falls Sie irgendwelche Eingaben vorbereitet haben die Sie nicht verlieren wollen.</p>');
+define('TEXT_KEEPALIVE_SERVER_UNREACHABLE_MESSAGE1', 'Wir konnten nicht mit dem Server verbinden. Ihre Arbeit könnte verloren sein. Bitte kopieren Sie sicherheitshalber Ihre Arbeit in die Zwischenablage, falls Sie irgendwelche Eingaben vorbereitet haben die Sie nicht verlieren wollen.');
+define('TEXT_KEEPALIVE_BUTTON_CLOSE', 'Schließen');
+define('TEXT_KEEPALIVE_BUTTON_LOGIN', 'Login');
+define('TEXT_KEEPALIVE_MESSAGE_YOU_WILL_LOG_OFF', 'Sie werden ausgeloggt in ');
+define('TEXT_KEEPALIVE_MESSAGE_MINUTES', 'Minuten');
+define('TEXT_KEEPALIVE_MESSAGE_ASK_CONTINUE', 'Wollen Sie weiterarbeiten?');

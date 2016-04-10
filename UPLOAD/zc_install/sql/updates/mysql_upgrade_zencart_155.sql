@@ -6,7 +6,7 @@
 # * @copyright Copyright 2003-2016 Zen Cart Development Team
 # * @copyright Portions Copyright 2003 osCommerce
 # * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
-# * @version $Id: mysql_upgrade_zencart_155.sql 7 2016-04-07 19:57:59Z webchills $
+# * @version $Id: mysql_upgrade_zencart_155.sql 8 2016-04-09 10:57:59Z webchills $
 #
 
 ############ IMPORTANT INSTRUCTIONS ###############
@@ -731,7 +731,7 @@ REPLACE INTO configuration_language (configuration_title, configuration_key, con
 # Register for Admin Access Control
 ###################################
 
-INSERT INTO admin_pages (page_key ,language_key ,main_page ,page_params ,menu_key ,display_on_menu ,sort_order)VALUES 
+INSERT INTO admin_pages (page_key ,language_key ,main_page ,page_params ,menu_key ,display_on_menu ,sort_order) VALUES 
 ('configZenColorbox', 'BOX_CONFIGURATION_ZEN_COLORBOX', 'FILENAME_CONFIGURATION', CONCAT('gID=',@gid), 'configuration', 'Y', @gid);
 
 
@@ -799,6 +799,11 @@ INSERT INTO configuration (configuration_title, configuration_key, configuration
 INSERT INTO configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added, use_function, set_function) VALUES 
 ('Use CSS Buttons (Admin)?', 'ADMIN_USE_CSS_BUTTONS', 'true', 'Use CSS buttons instead of GIF images in admin?', '19', '148', now(), NULL, 'zen_cfg_select_option(array(\'true\', \'false\'),');
 
+
+### Neuer Report Deaktivierte Artikel ###
+
+INSERT INTO admin_pages (page_key, language_key, main_page, page_params, menu_key, display_on_menu, sort_order) VALUES
+('stats_disabled_stock', 'BOX_REPORTS_DISABLED_STOCK', 'FILENAME_STATS_DISABLED_STOCK', '', 'reports', 'Y', 7);
 
 ### make sure that we use the latest translations for German configuration ###
 
