@@ -53,7 +53,7 @@ Die Artikel in den Artikellisten können nun wahlweise in Spalten oder Reihen an
 Willkommen bei der deutschen Zen-Cart Version
 Version 1.5.5 BETA
 
-BETA vom 06.04.2016
+BETA vom 14.04.2016
 NUR ZUM TESTEN IN EINEM TESTSYSTEM - NOCH NICHT FÜR LIVESHOPS GEEIGNET
 
 Feedback bitte im Betatest Forum posten:
