@@ -3,10 +3,10 @@
  * super_data_body.php
  *
  * @package facebook open graph forked for super data
- * @copyright Copyright 2003-2006 Zen Cart Development Team
+ * @copyright Copyright 2003-2016 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
- * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: super_data_body.php 2 2015-02-03 01:19:41Z prowebs $
+ * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
+ * @version $Id: super_data_body.php 3 2016-05-01 21:32:41Z webchills $
  */
 if (FACEBOOK_OPEN_GRAPH_STATUS == 'true') { ?>
 <script type="application/ld+json">
@@ -114,7 +114,7 @@ $products_image_large  = DIR_WS_IMAGES . 'large/' . $products_image_base . IMAGE
     $sql = "select p.products_id, pd.products_name,
                   pd.products_description, p.products_model,
                   p.products_quantity, p.products_image,
-                  p.products_price, p.manufacturers_id, p.products_quantity
+                  p.products_price, p.manufacturers_id, p.products_quantity, p.products_tax_class_id
            from   " . TABLE_PRODUCTS . " p, " . TABLE_PRODUCTS_DESCRIPTION . " pd
            where  p.products_status = '1'
            and    p.products_id = '" . (int)$_GET['products_id'] . "'
@@ -141,7 +141,7 @@ $products_quantity = $product_info->fields['products_quantity'];
    "offers": {
     "@type" : "Offer",
     "availability" : "<?php if ($products_quantity > 0) { ?>http://schema.org/InStock<?php } ?><?php if ($products_quantity == 0) { ?>http://schema.org/OutOfStock<?php }?>",
-    "price" : "<?php echo $specials_new_products_price = (round(zen_get_products_actual_price($product_info_metatags->fields['products_id']),2)); ?>",
+    "price" : "<?php echo $specials_new_products_price = (round(zen_add_tax(zen_get_products_actual_price($product_info_metatags->fields['products_id']),zen_get_tax_rate($product_info_metatags->fields['products_tax_class_id'])),2)); ?>",
     "priceCurrency" : "<?php if (FACEBOOK_OPEN_GRAPH_CUR != '') { ?><?php echo FACEBOOK_OPEN_GRAPH_CUR; ?><?php } ?>",
     "seller" : "<?php echo STORE_NAME; ?>",
     "itemCondition" : "http://schema.org/<?php if (FACEBOOK_OPEN_GRAPH_COND != '') { ?><?php echo FACEBOOK_OPEN_GRAPH_COND; ?><?php }?>",
