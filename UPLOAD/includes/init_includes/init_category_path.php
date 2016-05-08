@@ -7,7 +7,7 @@
  * @copyright Copyright 2003-2016 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: init_category_path.php 729 2011-08-09 15:49:16Z hugo13 $
+ * @version $Id: init_category_path.php 730 2016-05-08 09:49:16Z webchills $
  */
 if (!defined('IS_ADMIN_FLAG')) {
   die('Illegal Access');
@@ -18,7 +18,7 @@ if (isset($_GET['cPath'])) {
 } elseif (isset($_GET['products_id']) && !zen_check_url_get_terms()) {
   $cPath = zen_get_product_path($_GET['products_id']);
 } else {
-  if (SHOW_CATEGORIES_ALWAYS == '1' && !zen_check_url_get_terms()) {
+  if ($current_page == 'index' && SHOW_CATEGORIES_ALWAYS == '1' && !zen_check_url_get_terms()) {
     $show_welcome = true;
     $cPath = (defined('CATEGORIES_START_MAIN') ? CATEGORIES_START_MAIN : '');
   } else {

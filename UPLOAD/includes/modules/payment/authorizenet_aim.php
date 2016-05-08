@@ -6,7 +6,7 @@
  * @copyright Copyright 2003-2016 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: authorizenet_aim.php 805 2016-03-27 19:47:36Z webchills $
+ * @version $Id: authorizenet_aim.php 806 2016-05-08 09:47:36Z webchills $
  */
 /**
  * Authorize.net Payment Module (AIM version)
@@ -131,7 +131,7 @@ class authorizenet_aim extends base {
     global $order, $db;
     if (IS_ADMIN_FLAG === false) {
       // if store is not running in SSL, cannot offer credit card module, for PCI reasons
-      if (MODULE_PAYMENT_AUTHORIZENET_AIM_TESTMODE == 'Prduction' && (!defined('ENABLE_SSL') || ENABLE_SSL != 'true')) $this->enabled = FALSE;
+      if (MODULE_PAYMENT_AUTHORIZENET_AIM_TESTMODE == 'Production' && (!defined('ENABLE_SSL') || ENABLE_SSL != 'true')) $this->enabled = FALSE;
     }
     // check other reasons for the module to be deactivated:
     if ($this->enabled && (int)MODULE_PAYMENT_AUTHORIZENET_AIM_ZONE > 0 && isset($order->billing['country']['id'])) {

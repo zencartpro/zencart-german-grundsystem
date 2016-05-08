@@ -6,7 +6,7 @@
 # * @copyright Copyright 2003-2016 Zen Cart Development Team
 # * @copyright Portions Copyright 2003 osCommerce
 # * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
-# * @version $Id: mysql_upgrade_zencart_155.sql 8 2016-04-09 10:57:59Z webchills $
+# * @version $Id: mysql_upgrade_zencart_155.sql 9 2016-05-08 10:57:59Z webchills $
 #
 
 ############ IMPORTANT INSTRUCTIONS ###############
@@ -81,6 +81,7 @@ ALTER TABLE admin MODIFY prev_pass1 VARCHAR( 255 ) NOT NULL DEFAULT '';
 ALTER TABLE admin MODIFY prev_pass2 VARCHAR( 255 ) NOT NULL DEFAULT '';
 ALTER TABLE admin MODIFY prev_pass3 VARCHAR( 255 ) NOT NULL DEFAULT '';
 ALTER TABLE admin MODIFY reset_token VARCHAR( 255 ) NOT NULL DEFAULT '';
+UPDATE customers SET customers_dob='0001-01-01' where customers_dob < '0001-01-01';
 ALTER TABLE customers MODIFY customers_password VARCHAR( 255 ) NOT NULL DEFAULT '';
 ALTER TABLE sessions MODIFY sesskey varchar(255) NOT NULL default '';
 ALTER TABLE whos_online MODIFY session_id varchar(255) NOT NULL default '';

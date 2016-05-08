@@ -4,7 +4,7 @@
  * @copyright Copyright 2003-2016 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: general.php 894 2016-03-10 21:07:33Z webchills $
+ * @version $Id: general.php 895 2016-05-08 09:07:33Z webchills $
  */
 
 ////
@@ -449,7 +449,7 @@
         return false;
       }
     } else {
-      if (($value != '') && (strtolower($value) != 'null') && (strlen(trim($value)) > 0)) {
+      if ($value != '' && $value != 'NULL' && strlen(trim($value)) > 0) {
         return true;
       } else {
         return false;
@@ -3287,9 +3287,9 @@ function zen_copy_products_attributes($products_id_from, $products_id_to) {
  * the value of the configuration_key is then returned
  * NOTE: keys are looked up first in the product_type_layout table and if not found looked up in the configuration table.
  */
-    function zen_get_show_product_switch($lookup, $field, $suffix= 'SHOW_', $prefix= '_INFO', $field_prefix= '_', $field_suffix='') {
+    function zen_get_show_product_switch($lookup, $field, $prefix= 'SHOW_', $suffix= '_INFO', $field_prefix= '_', $field_suffix='') {
       global $db;
-      $zv_key = zen_get_show_product_switch_name($lookup, $field, $suffix, $prefix, $field_prefix, $field_suffix);
+      $zv_key = zen_get_show_product_switch_name($lookup, $field, $prefix, $suffix, $field_prefix, $field_suffix);
       $sql = "select configuration_key, configuration_value from " . TABLE_PRODUCT_TYPE_LAYOUT . " where configuration_key='" . zen_db_input($zv_key) . "'";
       $zv_key_value = $db->Execute($sql);
 //echo 'I CAN SEE - look ' . $lookup . ' - field ' . $field . ' - key ' . $zv_key . ' value ' . $zv_key_value->fields['configuration_value'] .'<br>';
@@ -3310,7 +3310,7 @@ function zen_copy_products_attributes($products_id_from, $products_id_to) {
 /**
  * return switch name
  */
-    function zen_get_show_product_switch_name($lookup, $field, $suffix= 'SHOW_', $prefix= '_INFO', $field_prefix= '_', $field_suffix='') {
+    function zen_get_show_product_switch_name($lookup, $field, $prefix= 'SHOW_', $suffix= '_INFO', $field_prefix= '_', $field_suffix='') {
       global $db;
       $type_lookup = 0;
       $type_handler = '';
@@ -3321,7 +3321,7 @@ function zen_copy_products_attributes($products_id_from, $products_id_to) {
       $sql = "select type_handler from " . TABLE_PRODUCT_TYPES . " where type_id = '" . (int)$type_lookup . "'";
       $result = $db->Execute($sql);
       if (!$result->EOF) $type_handler = $result->fields['type_handler'];
-      $zv_key = strtoupper($suffix . $type_handler . $prefix . $field_prefix . $field . $field_suffix);
+      $zv_key = strtoupper($prefix . $type_handler . $suffix . $field_prefix . $field . $field_suffix);
 
       return $zv_key;
     }
@@ -3462,6 +3462,9 @@ function zen_copy_products_attributes($products_id_from, $products_id_to) {
  * replacement for fmod to manage values < 1
  */
   function fmod_round($x, $y) {
+    if ($y == 0) {
+      return 0;
+    }
     $x = strval($x);
     $y = strval($y);
     $zc_round = ($x*1000)/($y*1000);
