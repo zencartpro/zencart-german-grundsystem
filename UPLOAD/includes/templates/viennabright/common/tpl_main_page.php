@@ -37,7 +37,7 @@
 * @copyright Portions Copyright 2012 webchills.at
 * @copyright Portions Copyright 2003 osCommerce
 * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
-* @version $Id: tpl_main_page.php 851 2016-04-06 13:10:39Z webchills $
+* @version $Id: tpl_main_page.php 852 2016-05-08 13:10:39Z webchills $
 */
 /** bof DESIGNER TESTING ONLY: */
 // $messageStack->add('header', 'this is a sample error message', 'error');
@@ -198,7 +198,7 @@ if(!empty($RC_loader_files)){
 //DEBUG: echo '';
 ?>
 <?php 
-if (GOOGLE_ANALYTICS_TRACKING_TYPE != "Asynchronous") {
+if ((GOOGLE_ANALYTICS_ENABLED == "Enabled") && (GOOGLE_ANALYTICS_TRACKING_TYPE != "Asynchronous")) {
 	require(DIR_WS_TEMPLATE . 'google_analytics/google_analytics.php');
 }
 ?>

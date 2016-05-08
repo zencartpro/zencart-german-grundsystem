@@ -35,7 +35,7 @@
  * @copyright Copyright 2003-2016 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: tpl_main_page.php 3 2016-03-21 20:49:16Z webchills $
+ * @version $Id: tpl_main_page.php 4 2016-05-08 19:49:16Z webchills $
  */
 
 /** bof DESIGNER TESTING ONLY: */
@@ -278,7 +278,7 @@ if(!empty($RC_loader_files)){
 //DEBUG: echo '';
 ?>
 <?php 
-if (GOOGLE_ANALYTICS_TRACKING_TYPE != "Asynchronous") {
+if ((GOOGLE_ANALYTICS_ENABLED == "Enabled") && (GOOGLE_ANALYTICS_TRACKING_TYPE != "Asynchronous")) {
 	require(DIR_WS_TEMPLATE . 'google_analytics/google_analytics.php');
 }
 ?>

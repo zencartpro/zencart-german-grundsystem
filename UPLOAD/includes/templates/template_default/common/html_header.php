@@ -8,7 +8,7 @@
  * @copyright Copyright 2003-2016 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: html_header.php 857 2016-03-21 21:10:39Z webchills $
+ * @version $Id: html_header.php 858 2016-05-08 19:10:39Z webchills $
  */
 
 $zco_notifier->notify('NOTIFY_HTML_HEAD_START', $current_page_base, $template_dir);
@@ -58,6 +58,17 @@ if (!class_exists('Mobile_Detect')) {
 <?php } ?>
 <?php if (RSS_FEED_ENABLED == 'true'){ ?>
 <?php echo rss_feed_link_alternate();?>
+<?php } ?>
+<?php if (GOOGLE_ANALYTICS_ENABLED == 'Enabled'){ ?>
+<script type="text/javascript">
+var gaProperty = '<?php echo GOOGLE_ANALYTICS_UACCT; ?>';
+var disableStr = 'ga-disable-' + gaProperty;
+if (document.cookie.indexOf(disableStr + '=true') > -1) { window[disableStr] = true;
+}
+function gaOptout() {
+document.cookie = disableStr + '=true; expires=Thu, 31 Dec 2099 23:59:59 UTC; path=/';
+window[disableStr] = true; }
+</script>
 <?php } ?>
 <script>window.jQuery || document.write(unescape('%3Cscript type="text/javascript" src="//code.jquery.com/jquery-1.11.3.min.js"%3E%3C/script%3E'));</script>
 <script>window.jQuery || document.write(unescape('%3Cscript type="text/javascript" src="<?php echo $template->get_template_dir('.js',DIR_WS_TEMPLATE, $current_page_base,'jscript'); ?>/jquery.min.js"%3E%3C/script%3E'));</script>
