@@ -53,10 +53,19 @@ Die Artikel in den Artikellisten können nun wahlweise in Spalten oder Reihen an
 Willkommen bei der deutschen Zen-Cart Version
 Version 1.5.5 BETA
 
-BETA vom 08.05.2016
+BETA vom 03.06.2016
 NUR ZUM TESTEN IN EINEM TESTSYSTEM - NOCH NICHT FÜR LIVESHOPS GEEIGNET
 
+Um Zen Cart 1.5.5 Beta zu installieren nur die Ordner/Dateien im Ordner UPLOAD hochladen!
+
+Um eine schlankere Installation und ein einfacheres Update zu ermöglichen, wurden die Demodaten ausgelagert.
+Sie befinden sich im Ordner DEMODATEN
+
+Ebenso ausgelagert wurden die Überprüfungstools im Ordner extras.
+Sie befinden sich im Ordner TOOLS.
+
 Feedback bitte im Betatest Forum posten:
+
 https://www.zen-cart-pro.at/forum/forums/101-BETA-Test-Zen-Cart-1-5-5-deutsch
 
 Neue Funktionen gegenüber 1.5.4
@@ -71,7 +80,7 @@ Neue Funktionen (Auszug):
 Passwörter der Kunden via Admin änderbar
 Übersichtlichere Menüs in der Administration
 CSS Buttons in der Administration (optional)
-Erweiterte Google Analytics Funktionen (Enhanced E-Commerce)
+Erweiterte Google Analytics Funktionen (Opt-Out-Cookie integriert)
 Erweiterte Facebook Open Graph und schema.org Mikrodaten Unterstützung
 Erweiterter Lagerbestandsbericht
 Detaillierteres Errorlogging (myDebug Backtrace integriert)
@@ -85,3 +94,4 @@ Zen Colorbox integriert
 Zahlungsart Bar bei Abholung integriert
 Mehrsprachige Ländernamen integriert
 MailBeez integriert
+IT Recht Kanzlei Schnittstelle zur automatischen Aktualisierung der Rechtstexte integriert
