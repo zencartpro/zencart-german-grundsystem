@@ -258,7 +258,7 @@
 <?php if ($output_format != 'print') { ?>
 <link rel="stylesheet" type="text/css" href="includes/cssjsmenuhover.css" media="all" id="hoverJS">
 <link rel="stylesheet" type="text/css" href="includes/javascript/spiffyCal/spiffyCal_v2_1.css">
-<script type="text/javascript""includes/javascript/spiffyCal/spiffyCal_v2_1.js"></script>
+<script type="text/javascript" src="includes/javascript/spiffyCal/spiffyCal_v2_1.js"></script>
 <script type="text/javascript" src="includes/general.js"></script>
 <script type="text/javascript" src="includes/menu.js"></script>
 <script type="text/javascript">
@@ -417,7 +417,7 @@ font-size:9px;
 <body onLoad="init(); populate_search();">
 <div id="spiffycalendar" class="text"></div>
 <?php require(DIR_WS_INCLUDES . 'header.php'); ?>
-<script >
+<script type="text/javascript">
 var StartDate = new ctlSpiffyCalendarBox("StartDate", "search", "start_date", "btnDate1", "<?php echo (($start_date == '') ? '' : $sr->sd); ?>", scBTNMODE_CALBTN);
 var EndDate = new ctlSpiffyCalendarBox("EndDate", "search", "end_date", "btnDate2", "<?php echo (($end_date == '') ? '' : $sr->ed); ?>", scBTNMODE_CALBTN);
 /*
@@ -468,12 +468,12 @@ var scBTNMODE_CALBTN;
               </td>
             </tr>
             <tr>
-              <td class="smallText"><?php echo SEARCH_START_DATE ?><br /><script >
+              <td class="smallText"><?php echo SEARCH_START_DATE ?><br /><script type="text/javascript">
                 StartDate.writeControl(); StartDate.dateFormat="<?php echo DATE_FORMAT_SPIFFYCAL; ?>";</script>
               </td>
             </tr>
             <tr>
-              <td class="smallText"><?php echo SEARCH_END_DATE; ?><br /><script >
+              <td class="smallText"><?php echo SEARCH_END_DATE; ?><br /><script type="text/javascript">
                 EndDate.writeControl(); EndDate.dateFormat="<?php echo DATE_FORMAT_SPIFFYCAL; ?>";</script>
               </td>
             </tr>

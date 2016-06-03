@@ -4,7 +4,7 @@
  * @copyright Copyright 2003-2016 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: whos_online.php 732 2015-12-21 19:49:16Z webchills $
+ * @version $Id: whos_online.php 733 2016-06-03 19:49:16Z webchills $
  */
 
 // Default refresh interval (0=off).  NOTE: Using automated refresh may put you in breach of PCI Compliance
@@ -36,23 +36,23 @@ function zen_check_quantity($which) {
   switch (true) {
     case ($which_query->RecordCount() == 0):
     if ($who_query->fields['time_last_click'] < $xx_mins_ago_long) {
-      return zen_image(DIR_WS_IMAGES . 'icon_status_red_light.gif');
+      return zen_image(DIR_WS_IMAGES . 'icon_cart_status_red_light.gif');
     } else {
-      return zen_image(DIR_WS_IMAGES . 'icon_status_red.gif');
+      return zen_image(DIR_WS_IMAGES . 'icon_cart_status_red.gif');
     }
     break;
     case (strstr($chk_cart_status,'"contents";a:0:')):
     if ($who_query->fields['time_last_click'] < $xx_mins_ago_long) {
-      return zen_image(DIR_WS_IMAGES . 'icon_status_red_light.gif');
+      return zen_image(DIR_WS_IMAGES . 'icon_cart_status_red_light.gif');
     } else {
-      return zen_image(DIR_WS_IMAGES . 'icon_status_red.gif');
+      return zen_image(DIR_WS_IMAGES . 'icon_cart_status_red.gif');
     }
     break;
     case (!strstr($chk_cart_status,'"contents";a:0:')):
     if ($who_query->fields['time_last_click'] < $xx_mins_ago_long) {
-      return zen_image(DIR_WS_IMAGES . 'icon_status_yellow.gif');
+      return zen_image(DIR_WS_IMAGES . 'icon_cart_status_yellow.gif');
     } else {
-      return zen_image(DIR_WS_IMAGES . 'icon_status_green.gif');
+      return zen_image(DIR_WS_IMAGES . 'icon_cart_status_green.gif');
     }
     break;
   }
@@ -219,11 +219,11 @@ function zen_check_minutes($the_time_last_click) {
 </script>
 <style>
 <!-- /* inline CSS Styles */
-.whos-online td {
+.whose-online td {
   color:#444;
   font-family:Helvetica, Arial, sans-serif;
   }
-.whos-online td.infoBoxHeading {
+.whose-online td.infoBoxHeading {
   color:#fff;
   }
 .last-url-link {
@@ -233,12 +233,14 @@ function zen_check_minutes($the_time_last_click) {
   padding:5px;
   }
 .last-url-link a {
-  color:green;
+	color:#C03;
   }
-.dataTableRowBot .last-url-link a {color: #333;}
-.dataTableRowSelectedBot .last-url-link a {color: #333;}
-.dataTableRowBot .last-url-link {background: #f0cbfa;}
-.dataTableRowSelectedBot .last-url-link {background: #f0cbfa;}
+tr.dataTableRowBot {
+	background:#FDE1C4;
+	}
+tr.dataTableRowSelectedBot {
+	background:#F2BF8C;
+	}
 
 #wo-legend {float: left;}
 #wo-filters { float: right; background-color: #599659; color: #fff}
@@ -268,10 +270,10 @@ function zen_check_minutes($the_time_last_click) {
               <?php echo
               '<a href="' . zen_href_link(FILENAME_WHOS_ONLINE . '.php', zen_get_all_get_params()) . '" class="menuBoxContentLink">' . '<strong><u>' . WHOS_ONLINE_REFRESH_LIST_TEXT . '</u></strong>' . '</a>' .
               '<br />' . "\n" . WHOS_ONLINE_LEGEND_TEXT . '&nbsp;' .
-              zen_image(DIR_WS_IMAGES . 'icon_status_green.gif') . '&nbsp;' . WHOS_ONLINE_ACTIVE_TEXT . '&nbsp;&nbsp;' .
-              zen_image(DIR_WS_IMAGES . 'icon_status_yellow.gif') . '&nbsp;' . WHOS_ONLINE_INACTIVE_TEXT . '&nbsp;&nbsp;' .
-              zen_image(DIR_WS_IMAGES . 'icon_status_red.gif') . '&nbsp;' . WHOS_ONLINE_ACTIVE_NO_CART_TEXT . '&nbsp;&nbsp;' .
-              zen_image(DIR_WS_IMAGES . 'icon_status_red_light.gif') . '&nbsp;' . WHOS_ONLINE_INACTIVE_NO_CART_TEXT . '<br />' .
+  zen_image(DIR_WS_IMAGES . 'icon_cart_status_green.gif',NULL,25) . '&nbsp;' . WHOS_ONLINE_ACTIVE_TEXT . '&nbsp;&nbsp;' .
+  zen_image(DIR_WS_IMAGES . 'icon_cart_status_yellow.gif',NULL,25) . '&nbsp;' . WHOS_ONLINE_INACTIVE_TEXT . '&nbsp;&nbsp;' .
+  zen_image(DIR_WS_IMAGES . 'icon_cart_status_red.gif',NULL,25) . '&nbsp;' . WHOS_ONLINE_ACTIVE_NO_CART_TEXT . '&nbsp;&nbsp;' .
+  zen_image(DIR_WS_IMAGES . 'icon_cart_status_red_light.gif',NULL,25) . '&nbsp;' . WHOS_ONLINE_INACTIVE_NO_CART_TEXT . '<br>' .
               WHOS_ONLINE_INACTIVE_LAST_CLICK_TEXT . '&nbsp;' . WHOIS_TIMER_INACTIVE . 's' .'&nbsp;||&nbsp;' . WHOS_ONLINE_INACTIVE_ARRIVAL_TEXT . '&nbsp;' .
               WHOIS_TIMER_DEAD . 's&nbsp;' . WHOS_ONLINE_REMOVED_TEXT;?>
               </div>
@@ -391,13 +393,21 @@ function zen_check_minutes($the_time_last_click) {
                     }
                   ?>
                 </td>
-                <td class="dataTableContentWhois" nowrap="nowrap">
+                
+                <td class="dataTableContentWhois" nowrap="nowrap" style="overflow:visible" rowspan="2" align="center" valign="top">
                   <?php
                     if ($whos_online->fields['customer_id'] != 0) {
-                      echo '<a href="' . zen_href_link(FILENAME_ORDERS, 'cID=' . $whos_online->fields['customer_id'], 'NONSSL') . '">' . '<u>' . $whos_online->fields['full_name'] . '</u></a>';
+                      echo '<a href="' . zen_href_link(FILENAME_ORDERS, 'cID=' . $whos_online->fields['customer_id'], 'NONSSL') . '">' . '<img src="images/usericon_active.gif" border="0" /><br><u>' . $whos_online->fields['full_name'] . '</u></a>';
                     } else {
-                      echo $whos_online->fields['full_name'];
-                    }
+					  switch(trim($whos_online->fields['full_name'])) {
+						  case '&yen;Guest':
+						  		echo '<img src="images/usericon_guest.gif" border="0" /><br>' . $whos_online->fields['full_name'];
+								break;
+						  case '&yen;Spider':
+						  		echo '<img src="images/usericon_spider.gif" border="0" /><br>' . $whos_online->fields['full_name'];
+								break;
+					  }
+					}
                   ?>
                 </td>
                 <td class="dataTableContentWhois" align="left" valign="top"><a href="http://whois.domaintools.com/<?php echo $whos_online->fields['ip_address']; ?>" target="_blank"><?php echo '<u>' . $whos_online->fields['ip_address'] . '</u>'; ?></a></td>
@@ -423,7 +433,7 @@ function zen_check_minutes($the_time_last_click) {
       }
   }
 ?>
-                <td class="dataTableContentWhois" colspan=3 valign="top">&nbsp;&nbsp;<?php echo TIME_PASSED_LAST_CLICKED . '<br />&nbsp;&nbsp;&nbsp;&nbsp;' . zen_check_minutes($whos_online->fields['time_last_click']); ?> ago</td>
+                <td class="dataTableContentWhois" colspan=2 valign="top">&nbsp;&nbsp;<?php echo TIME_PASSED_LAST_CLICKED . '<br />&nbsp;&nbsp;&nbsp;&nbsp;' . zen_check_minutes($whos_online->fields['time_last_click']); ?> ago</td>
                 <td class="dataTableContentWhois" colspan=5 valign="top">
                   <?php
                     echo TEXT_SESSION_ID . zen_output_string_protected($whos_online->fields['session_id']) . '<br />' .
@@ -433,6 +443,8 @@ function zen_check_minutes($the_time_last_click) {
                     $lastURLlink = '<a href="' . zen_output_string_protected($whos_online->fields['last_page_url']) . '" target="_blank">' . '<u>' . zen_output_string_protected($whos_online->fields['last_page_url']) . '</u>' . '</a>';
                     if (preg_match('/^(.*)' . zen_session_name() . '=[a-f,0-9]+[&]*(.*)/i', $whos_online->fields['last_page_url'], $array)) {
                       $lastURLlink = zen_output_string_protected($array[1] . $array[2]);
+                    } else {
+                      $lastURLlink =  "<a href='" . $whos_online->fields['last_page_url'] . "' target=new>" . '<u>' . $whos_online->fields['last_page_url'] . '</u>' . "</a>";
                     }
                     echo '<div class="last-url-link">' . $lastURLlink . '</div>';
                   ?>
@@ -464,7 +476,7 @@ function zen_check_minutes($the_time_last_click) {
   if ($whos_online->RecordCount() >= WHOIS_REPEAT_LEGEND_BOTTOM) {
 ?>
               <tr>
-                <td class="smallText" colspan="8">Legend: <?php echo zen_image(DIR_WS_IMAGES . 'icon_status_green.gif') . " Active cart &nbsp;&nbsp;" . zen_image(DIR_WS_IMAGES . 'icon_status_yellow.gif') . " Inactive cart &nbsp;&nbsp;" . zen_image(DIR_WS_IMAGES . 'icon_status_red.gif') . " Active no cart &nbsp;&nbsp;" .  zen_image(DIR_WS_IMAGES . 'icon_status_red_light.gif') . " Inactive no cart " . "<br />Inactive is Last Click >= " . WHOIS_TIMER_INACTIVE . "s" . " &nbsp; || Inactive since arrival > " . WHOIS_TIMER_DEAD . "s will be removed";?></td>
+                <td class="smallText" colspan="8">Legend: <?php echo zen_image(DIR_WS_IMAGES . 'icon_cart_status_green.gif',NULL,25) . " Active cart &nbsp;&nbsp;" . zen_image(DIR_WS_IMAGES . 'icon_cart_status_yellow.gif',NULL,25) . " Inactive cart &nbsp;&nbsp;" . zen_image(DIR_WS_IMAGES . 'icon_cart_status_red.gif',NULL,25) . " Active no cart &nbsp;&nbsp;" .  zen_image(DIR_WS_IMAGES . 'icon_cart_status_red_light.gif',NULL,25) . " Inactive no cart " . "<br>Inactive is Last Click >= " . WHOIS_TIMER_INACTIVE . "s" . " &nbsp; || Inactive since arrival > " . WHOIS_TIMER_DEAD . "s will be removed";?></td>
               </tr>
 <?php
   }

@@ -4,7 +4,7 @@
  * @copyright Copyright 2003-2016 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: ezpages.php 788 2016-02-17 18:40:51Z webchills $
+ * @version $Id: ezpages.php 789 2016-06-03 19:40:51Z webchills $
  */
 
 // Sets the status of a page
@@ -98,6 +98,7 @@
        	$pages_toc_sort_order = (int)$_POST['toc_sort_order'];
 
        	$toc_chapter = (int)$_POST['toc_chapter'];
+       	$page_key = zen_db_prepare_input($_POST['page_key']);
 
        	$status_header = ($pages_header_sort_order == 0 ? 0 : (int)$_POST['status_header']);
        	$status_sidebox = ($pages_sidebox_sort_order == 0 ? 0 : (int)$_POST['status_sidebox']);
@@ -143,6 +144,7 @@
                                   'footer_sort_order' => $pages_footer_sort_order,
                                   'toc_sort_order' => $pages_toc_sort_order,
                                   'toc_chapter' => $toc_chapter,
+                                  'page_key' => $page_key,
                                   'pages_html_text' => $pages_html_text);
 
           if ($action == 'insert') {
@@ -267,7 +269,8 @@
                         'status_footer' => '',
                         'status_toc' => '',
                         'page_open_new_window' => '',
-                        'page_is_ssl' => ''
+                        'page_is_ssl' => '',
+                        'page_key' => ''
                         );
 
     $ezInfo = new objectInfo($parameters);
@@ -456,6 +459,16 @@
           <tr>
             <td colspan="2"><?php echo zen_draw_separator('pixel_trans.gif', '1', '10'); ?></td>
           </tr>
+          <tr>
+            <td class="main" valign="top"><?php echo TEXT_ALT_PAGE_KEY; ?></td>
+            <td class="main" valign="top"><?php echo zen_draw_input_field('page_key', $ezInfo->page_key, 'size="100"');
+             			   echo '<br />' . TEXT_ALT_PAGE_KEY_EXPLAIN;
+            		?></td>
+          </tr>
+
+          <tr>
+            <td colspan="2"><?php echo zen_draw_separator('pixel_trans.gif', '1', '10'); ?></td>
+          </tr>
 
         </table></td>
       </tr>
@@ -479,6 +492,7 @@
               <tr class="dataTableHeadingRow" width="100%">
                 <td class="dataTableHeadingContent" width="75px" align="center"><?php echo TABLE_HEADING_ID; ?></td>
                 <td class="dataTableHeadingContent"><?php echo TABLE_HEADING_PAGES; ?></td>
+                 <td class="dataTableHeadingContent" align="left"><?php echo TABLE_HEADING_PAGE_KEY; ?></td>
                 <td class="dataTableHeadingContent" align="center"><?php echo TABLE_HEADING_PAGE_OPEN_NEW_WINDOW; ?></td>
                 <td class="dataTableHeadingContent" align="center"><?php echo TABLE_HEADING_PAGE_IS_SSL; ?></td>
                 <td class="dataTableHeadingContent" align="right"><?php echo TABLE_HEADING_STATUS_HEADER; ?></td>
@@ -562,6 +576,7 @@ while (!$pages->EOF) {
 ?>
                 <td class="dataTableContent" width="75px" align="right"><?php echo ($zv_link_method_cnt > 1 ? zen_image(DIR_WS_IMAGES . 'icon_status_red.gif', IMAGE_ICON_STATUS_RED_EZPAGES, 10, 10) : '') . '&nbsp;' . $pages->fields['pages_id']; ?></td>
                 <td class="dataTableContent"><?php echo '&nbsp;' . $pages->fields['pages_title']; ?></td>
+                <td class="dataTableContent" align="left"><?php echo $pages->fields['page_key']; ?></td>
                 <td class="dataTableContent" align="center"><?php echo ($pages->fields['page_open_new_window'] == 1 ? '<a href="' . zen_href_link(FILENAME_EZPAGES_ADMIN, 'action=page_open_new_window&current=' . $pages->fields['page_open_new_window'] . '&ezID=' . $pages->fields['pages_id'] . ($_GET['page'] > 0 ? '&page=' . $_GET['page'] : ''), 'NONSSL') . '">' . zen_image(DIR_WS_IMAGES . 'icon_green_on.gif', IMAGE_ICON_STATUS_ON) . '</a>' : '<a href="' . zen_href_link(FILENAME_EZPAGES_ADMIN, 'action=page_open_new_window&current=' . $pages->fields['page_open_new_window'] . '&ezID=' . $pages->fields['pages_id'] . ($_GET['page'] > 0 ? '&page=' . $_GET['page'] : ''), 'NONSSL') . '">' . zen_image(DIR_WS_IMAGES . 'icon_red_on.gif', IMAGE_ICON_STATUS_OFF) . '</a>'); ?></td>
                 <td class="dataTableContent" align="center"><?php echo ($pages->fields['page_is_ssl'] == 1 ? '<a href="' . zen_href_link(FILENAME_EZPAGES_ADMIN, 'action=page_is_ssl&current=' . $pages->fields['page_is_ssl'] . '&ezID=' . $pages->fields['pages_id'] . ($_GET['page'] > 0 ? '&page=' . $_GET['page'] : ''), 'NONSSL') . '">' . zen_image(DIR_WS_IMAGES . 'icon_green_on.gif', IMAGE_ICON_STATUS_ON) . '</a>' : '<a href="' . zen_href_link(FILENAME_EZPAGES_ADMIN, 'action=page_is_ssl&current=' . $pages->fields['page_is_ssl'] . '&ezID=' . $pages->fields['pages_id'] . ($_GET['page'] > 0 ? '&page=' . $_GET['page'] : ''), 'NONSSL') . '">' . zen_image(DIR_WS_IMAGES . 'icon_red_on.gif', IMAGE_ICON_STATUS_OFF) . '</a>'); ?></td>
                 <td class="dataTableContent" align="right"><?php echo $pages->fields['header_sort_order'] . '&nbsp;' . ($pages->fields['status_header'] == 1 ? '<a href="' . zen_href_link(FILENAME_EZPAGES_ADMIN, 'action=status_header&current=' . $pages->fields['status_header'] . '&ezID=' . $pages->fields['pages_id'] . ($_GET['page'] > 0 ? '&page=' . $_GET['page'] : ''), 'NONSSL') . '">' . zen_image(DIR_WS_IMAGES . 'icon_green_on.gif', IMAGE_ICON_STATUS_ON) . '</a>' : '<a href="' . zen_href_link(FILENAME_EZPAGES_ADMIN, 'action=status_header&current=' . $pages->fields['status_header'] . '&ezID=' . $pages->fields['pages_id'] . ($_GET['page'] > 0 ? '&page=' . $_GET['page'] : ''), 'NONSSL') . '">' . zen_image(DIR_WS_IMAGES . 'icon_red_on.gif', IMAGE_ICON_STATUS_OFF) . '</a>'); ?></td>

@@ -9,7 +9,7 @@
  * @copyright Copyright 2003-2016 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: tpl_modules_products_all_listing.php 731 2016-02-29 13:49:16Z webchills $
+ * @version $Id: tpl_modules_products_all_listing.php 732 2016-05-31 16:49:16Z webchills $
  */
 ?>
 <table class="products-listing productsAllListing">
@@ -22,54 +22,20 @@
   if ($products_all_split->number_of_rows > 0) {
     $products_all = $db->Execute($products_all_split->sql_query);
     $row_counter = 0;
-// BOF Easy Google Analytics module pt1
-    $google_enhanced_ecommerce_product_counter = 0;
     while (!$products_all->EOF) {
-      /* **************************************************
-       * Easy Google Analytics
-       * **************************************************/
-
-      if (GOOGLE_ANALYTICS_ENABLED == "Enabled") {
-        $google_enhanced_ecommerce_product_counter ++;
-        $geeImpression =    "\n\n <!-- Google Enhanced ECommerce -->\n"
-                          . "<script>\n"
-                          . "ga('ec:addImpression', { "
-                          . "'id': '"       . $products_all->fields['products_id']   . "', "
-                          . "'name': '"     . addslashes($products_all->fields['products_name']) . "', "
-                          . "'list': '"     . "All Products Listing" . "', "
-                          . "'position': "  . $google_enhanced_ecommerce_product_counter . ", "
-                          . "});\n"
-                          . "</script>\n";
-
-        $geeOnClick =       " onClick=\"ga('ec:addProduct', { "
-                          . "'id': '"       . $products_all->fields['products_id']   . "', "
-                          . "'name': '"     . htmlspecialchars(addslashes($products_all->fields['products_name'])) . "', "
-                          . "'position': "   . $google_enhanced_ecommerce_product_counter . ", "
-                          . "}); "
-                          . "ga('ec:setAction', 'click', {list: 'All Products Listing'}); "
-                          . "ga('send', 'event', 'UX', 'click', 'All Products Listing'); \"";
-
-      } else {
-        $geeImpression = "";
-        $geeOnClick    = "";
-      }
-
-      /* *****
-       *
-       * *****/
       $row_counter++;
 
       if (PRODUCT_ALL_LIST_IMAGE != '0') {
         if ($products_all->fields['products_image'] == '' and PRODUCTS_IMAGE_NO_IMAGE_STATUS == 0) {
           $display_products_image = str_repeat('<br class="clearBoth" />', substr(PRODUCT_ALL_LIST_IMAGE, 3, 1));
         } else {
-          $display_products_image = '<a href="' . zen_href_link(zen_get_info_page($products_all->fields['products_id']), 'cPath=' . zen_get_generated_category_path_rev($products_all->fields['master_categories_id']) . '&products_id=' . $products_all->fields['products_id']) . '"' . $geeOnClick . '>' . zen_image(DIR_WS_IMAGES . $products_all->fields['products_image'], $products_all->fields['products_name'], IMAGE_PRODUCT_ALL_LISTING_WIDTH, IMAGE_PRODUCT_ALL_LISTING_HEIGHT) . '</a>' . str_repeat('<br class="clearBoth" />', substr(PRODUCT_ALL_LIST_IMAGE, 3, 1));
+          $display_products_image = '<a href="' . zen_href_link(zen_get_info_page($products_all->fields['products_id']), 'cPath=' . zen_get_generated_category_path_rev($products_all->fields['master_categories_id']) . '&products_id=' . $products_all->fields['products_id']) . '">' . zen_image(DIR_WS_IMAGES . $products_all->fields['products_image'], $products_all->fields['products_name'], IMAGE_PRODUCT_ALL_LISTING_WIDTH, IMAGE_PRODUCT_ALL_LISTING_HEIGHT) . '</a>' . str_repeat('<br class="clearBoth" />', substr(PRODUCT_ALL_LIST_IMAGE, 3, 1));
         }
       } else {
         $display_products_image = '';
       }
       if (PRODUCT_ALL_LIST_NAME != '0') {
-        $display_products_name = '<a href="' . zen_href_link(zen_get_info_page($products_all->fields['products_id']), 'cPath=' . zen_get_generated_category_path_rev($products_all->fields['master_categories_id']) . '&products_id=' . $products_all->fields['products_id']) . '"' . $geeOnClick . '><strong>' . $products_all->fields['products_name'] . '</strong></a>' . str_repeat('<br class="clearBoth" />', substr(PRODUCT_ALL_LIST_NAME, 3, 1));
+        $display_products_name = '<a href="' . zen_href_link(zen_get_info_page($products_all->fields['products_id']), 'cPath=' . zen_get_generated_category_path_rev($products_all->fields['master_categories_id']) . '&products_id=' . $products_all->fields['products_id']) . '"><strong>' . $products_all->fields['products_name'] . '</strong></a>' . str_repeat('<br class="clearBoth" />', substr(PRODUCT_ALL_LIST_NAME, 3, 1));
       } else {
         $display_products_name = '';
       }
@@ -120,24 +86,24 @@
 // more info in place of buy now
       if (PRODUCT_ALL_BUY_NOW != '0' and zen_get_products_allow_add_to_cart($products_all->fields['products_id']) == 'Y') {
         if (zen_has_product_attributes($products_all->fields['products_id'])) {
-          $link = '<a href="' . zen_href_link(zen_get_info_page($products_all->fields['products_id']), 'cPath=' . zen_get_generated_category_path_rev($products_all->fields['master_categories_id']) . '&products_id=' . $products_all->fields['products_id']) . '"' . $geeOnClick . '>' . MORE_INFO_TEXT . '</a>';
+          $link = '<a href="' . zen_href_link(zen_get_info_page($products_all->fields['products_id']), 'cPath=' . zen_get_generated_category_path_rev($products_all->fields['master_categories_id']) . '&products_id=' . $products_all->fields['products_id']) . '">' . MORE_INFO_TEXT . '</a>';
         } else {
 //          $link= '<a href="' . zen_href_link(FILENAME_PRODUCTS_ALL, zen_get_all_get_params(array('action')) . 'action=buy_now&products_id=' . $products_all->fields['products_id']) . '">' . zen_image_button(BUTTON_IMAGE_IN_CART, BUTTON_IN_CART_ALT) . '</a>';
           if (PRODUCT_ALL_LISTING_MULTIPLE_ADD_TO_CART > 0 && $products_all->fields['products_qty_box_status'] != 0) {
 //            $how_many++;
             $link = TEXT_PRODUCT_ALL_LISTING_MULTIPLE_ADD_TO_CART . "<input type=\"text\" name=\"products_id[" . $products_all->fields['products_id'] . "]\" value=\"0\" size=\"4\" />";
           } else {
-            $link = '<a href="' . zen_href_link(FILENAME_PRODUCTS_ALL, zen_get_all_get_params(array('action')) . 'action=buy_now&products_id=' . $products_all->fields['products_id']) . '"' . $geeOnClick . '>' . zen_image_button(BUTTON_IMAGE_BUY_NOW, BUTTON_BUY_NOW_ALT) . '</a>&nbsp;';
+            $link = '<a href="' . zen_href_link(FILENAME_PRODUCTS_ALL, zen_get_all_get_params(array('action')) . 'action=buy_now&products_id=' . $products_all->fields['products_id']) . '">' . zen_image_button(BUTTON_IMAGE_BUY_NOW, BUTTON_BUY_NOW_ALT) . '</a>&nbsp;';
           }
         }
 
         $the_button = $link;
-        $products_link = '<a href="' . zen_href_link(zen_get_info_page($products_all->fields['products_id']), 'cPath=' . zen_get_generated_category_path_rev($products_all->fields['master_categories_id']) . '&products_id=' . $products_all->fields['products_id']) . '"' . $geeOnClick . '>' . MORE_INFO_TEXT . '</a>';
+        $products_link = '<a href="' . zen_href_link(zen_get_info_page($products_all->fields['products_id']), 'cPath=' . zen_get_generated_category_path_rev($products_all->fields['master_categories_id']) . '&products_id=' . $products_all->fields['products_id']) . '">' . MORE_INFO_TEXT . '</a>';
         $display_products_button = zen_get_buy_now_button($products_all->fields['products_id'], $the_button, $products_link) . '<br />' . zen_get_products_quantity_min_units_display($products_all->fields['products_id']) . str_repeat('<br class="clearBoth" />', substr(PRODUCT_ALL_BUY_NOW, 3, 1));
       } else {
-        $link = '<a href="' . zen_href_link(zen_get_info_page($products_all->fields['products_id']), 'cPath=' . zen_get_generated_category_path_rev($products_all->fields['master_categories_id']) . '&products_id=' . $products_all->fields['products_id']) . '"' . $geeOnClick . '>' . MORE_INFO_TEXT . '</a>';
+        $link = '<a href="' . zen_href_link(zen_get_info_page($products_all->fields['products_id']), 'cPath=' . zen_get_generated_category_path_rev($products_all->fields['master_categories_id']) . '&products_id=' . $products_all->fields['products_id']) . '">' . MORE_INFO_TEXT . '</a>';
         $the_button = $link;
-        $products_link = '<a href="' . zen_href_link(zen_get_info_page($products_all->fields['products_id']), 'cPath=' . zen_get_generated_category_path_rev($products_all->fields['master_categories_id']) . '&products_id=' . $products_all->fields['products_id']) . '"' . $geeOnClick . '>' . MORE_INFO_TEXT . '</a>';
+        $products_link = '<a href="' . zen_href_link(zen_get_info_page($products_all->fields['products_id']), 'cPath=' . zen_get_generated_category_path_rev($products_all->fields['master_categories_id']) . '&products_id=' . $products_all->fields['products_id']) . '">' . MORE_INFO_TEXT . '</a>';
         $display_products_button = zen_get_buy_now_button($products_all->fields['products_id'], $the_button, $products_link) . '<br />' . zen_get_products_quantity_min_units_display($products_all->fields['products_id']) . str_repeat('<br class="clearBoth" />', substr(PRODUCT_ALL_BUY_NOW, 3, 1));
       }
 
@@ -145,7 +111,7 @@
         $disp_text = zen_get_products_description($products_all->fields['products_id']);
         $disp_text = zen_clean_html($disp_text);
 
-        $display_products_description = stripslashes(zen_trunc_string($disp_text, PRODUCT_ALL_LIST_DESCRIPTION, '<a href="' . zen_href_link(zen_get_info_page($products_all->fields['products_id']), 'cPath=' . zen_get_generated_category_path_rev($products_all->fields['master_categories_id']) . '&products_id=' . $products_all->fields['products_id']) . '"' . $geeOnClick . '> ' . MORE_INFO_TEXT . '</a>'));
+        $display_products_description = stripslashes(zen_trunc_string($disp_text, PRODUCT_ALL_LIST_DESCRIPTION, '<a href="' . zen_href_link(zen_get_info_page($products_all->fields['products_id']), 'cPath=' . zen_get_generated_category_path_rev($products_all->fields['master_categories_id']) . '&products_id=' . $products_all->fields['products_id']) . '"> ' . MORE_INFO_TEXT . '</a>'));
       } else {
         $display_products_description = '';
       }
@@ -222,12 +188,6 @@
                   }
                   $disp_sort_order->MoveNext();
                 }
-// BOF Easy Google Analytics module pt3
-                // *****
-                // Easy Google Analytics
-                // *****
-                echo $geeImpression;
-// EOF Easy Google Analytics module pt3
               ?>
             </td>
           </tr>

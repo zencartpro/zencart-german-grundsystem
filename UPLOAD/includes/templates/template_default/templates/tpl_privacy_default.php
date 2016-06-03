@@ -2,24 +2,35 @@
 /**
  * Page Template
  *
+ * Loaded automatically by index.php?main_page=privacy.<br />
+ * Displays privacy page.
+ *
  * @package templateSystem
  * @copyright Copyright 2003-2016 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: tpl_privacy_default.php 729 2011-08-09 15:49:16Z hugo13 $
+ * @version $Id: tpl_privacy_default.php 730 2016-06-03 19:49:16Z webchills $
  */
 ?>
 <div class="centerColumn" id="privacy">
-<h1 id="privacyDefaultHeading"><?php echo HEADING_TITLE; ?></h1>
+<?php if (IT_RECHT_KANZLEI_STATUS == 'ja') { ?>
+<h1 id="privacyHeading"><?php echo $var_pageDetails->fields['pages_title']; ?></h1>
+<?php } else { ?>
+<h1 id="privacyHeading"><?php echo HEADING_TITLE; ?></h1>
+<?php } ?>
 
 <?php if (DEFINE_PRIVACY_STATUS >= 1 and DEFINE_PRIVACY_STATUS <= 2) { ?>
-<div id="privacyDefaultMainContent" class="content">
+<div id="privacyMainContent" class="content">
+<?php if (IT_RECHT_KANZLEI_STATUS == 'ja') { ?>
+<?php echo $var_pageDetails->fields['pages_html_text']; ?>
+<?php } else { ?>
 <?php
 /**
  * require the html_define for the privacy page
  */
   require($define_page);
 ?>
+<?php } ?>
 </div>
 <?php } ?>
 
