@@ -6,7 +6,7 @@
  * @copyright Copyright 2003-2016 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: header_php.php 733 2016-03-06 21:49:16Z webchills $
+ * @version $Id: header_php.php 734 2016-06-04 17:49:16Z webchills $
  */
 // This should be first line of the script:
   $zco_notifier->notify('NOTIFY_HEADER_START_CHECKOUT_SHIPPING');
@@ -22,10 +22,12 @@ $isMobile = $detect->isMobile();
 $isTablet = $detect->isTablet();
  if ($detect->isMobile()) {
 $_SESSION['mobilevisitor'] = true;
+$_SESSION['tabletvisitor'] = false;
 
 }
 if ($detect->isTablet()) {
 $_SESSION['tabletvisitor'] = true;
+$_SESSION['mobilevisitor'] = false;
 }
 
 // if there is nothing in the customers cart, redirect them to the shopping cart page
