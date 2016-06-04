@@ -4,14 +4,14 @@
  * @copyright Copyright 2003-2016 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: tinymce.php 760 2016-04-06 16:47:09Z webchills $
+ * @version $Id: tinymce.php 761 2016-05-04 08:47:09Z webchills $
  */
 if (!defined('IS_ADMIN_FLAG')) {
   die('Illegal Access');
 }
 
 ?>
-<script type="text/javascript" src="../<?php echo DIR_WS_EDITORS ?>tiny_mce/jquery-1.12.1.min.js"></script>
+<script type="text/javascript" src="../<?php echo DIR_WS_EDITORS ?>tiny_mce/jquery-1.12.4.min.js"></script>
 <script type="text/javascript" src="../<?php echo DIR_WS_EDITORS ?>tiny_mce/jquery.tinymce.min.js"></script>
 <script type="text/javascript" src="../<?php echo DIR_WS_EDITORS ?>tiny_mce/tinymce.min.js"></script>
 <script type="text/javascript">
