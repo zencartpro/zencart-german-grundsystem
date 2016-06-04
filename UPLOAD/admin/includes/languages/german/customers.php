@@ -4,7 +4,7 @@
  * @copyright Copyright 2003-2016 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: customers.php 629 2016-03-05 09:05:14Z webchills $
+ * @version $Id: customers.php 630 2016-06-04 16:05:14Z webchills $
  */
 
 define('HEADING_TITLE', 'Kunden');
@@ -38,7 +38,7 @@ define('TEXT_INFO_GV_AMOUNT', 'Gutschein Guthaben');
 define('ENTRY_NONE', 'Kein');
 define('TABLE_HEADING_COMPANY', 'Firma');
 define('TEXT_INFO_HEADING_RESET_CUSTOMER_PASSWORD', 'Kundenpasswort ändern');
-define('TEXT_PWDRESET_INTRO', 'Um das Passwort dieses Kunden zurückzusetzen, geben Sie ein neues Passwort ein und bestätigen es im Feld darunter. Das neue Psswort muss den im Shop konfigurierten Passwortregeln für Kundenpasswörter entsprechen.');
+define('TEXT_PWDRESET_INTRO', 'Um das Passwort dieses Kunden zurückzusetzen, geben Sie ein neues Passwort ein und bestätigen es im Feld darunter. Das neue Passwort muss den im Shop konfigurierten Passwortregeln für Kundenpasswörter entsprechen.');
 define('TEXT_CUST_NEW_PASSWORD', 'Neues Passwort:');
 define('TEXT_CUST_CONFIRM_PASSWORD', 'Passwort bestätigen:');
 define('ERROR_PWD_TOO_SHORT', 'Fehler: Das Passwort ist kürzer als die minimale Anzahl von Zeichen, die für diesen Shop konfiguriert ist.');

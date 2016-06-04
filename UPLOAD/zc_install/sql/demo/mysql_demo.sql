@@ -1,6 +1,6 @@
 # MySQL file for Zen Cart Demo Products load
 #
-# $Id: mysql_demo.sql 64 2016-03-04 21:03:04Z webchills $
+# $Id: mysql_demo.sql 65 2016-06-04 16:03:04Z webchills $
 #
 
 # Configuration Settings:
@@ -1860,3 +1860,17 @@ INSERT INTO products_options_values (products_options_values_id, language_id, pr
 INSERT INTO products_options_values (products_options_values_id, language_id, products_options_values_name, products_options_values_sort_order) VALUES (66, 43, 'per Yard', 20);
 INSERT INTO products_options_values (products_options_values_id, language_id, products_options_values_name, products_options_values_sort_order) VALUES (67, 43, 'Versandkostenfrei!', 10);
 INSERT INTO products_options_values (products_options_values_id, language_id, products_options_values_name, products_options_values_sort_order) VALUES (68, 43, 'Buch Hardcover', 5);
+INSERT INTO orders (orders_id, customers_id, customers_name, customers_company, customers_street_address, customers_suburb, customers_city, customers_postcode, customers_state, customers_country, customers_telephone, customers_email_address, customers_address_format_id, delivery_name, delivery_company, delivery_street_address, delivery_suburb, delivery_city, delivery_postcode, delivery_state, delivery_country, delivery_address_format_id, billing_name, billing_company, billing_street_address, billing_suburb, billing_city, billing_postcode, billing_state, billing_country, billing_address_format_id, payment_method, payment_module_code, shipping_method, shipping_module_code, coupon_code, cc_type, cc_owner, cc_number, cc_expires, cc_cvv, last_modified, date_purchased, orders_status, orders_date_finished, currency, currency_value, order_total, order_tax, paypal_ipn_id, ip_address, order_device) VALUES
+(1, 1, 'Peter Meier', 'Demofirma', 'Demogasse 17', '', 'Berlin', '10101', 'Berlin', 'Deutschland', '10101', 'root@localhost', 5, 'Peter Meier', 'Demofirma', 'Demogasse 17', '', 'Berlin', '10101', 'Berlin', 'Deutschland', 5, 'Peter Meier', 'Demofirma', 'Demogasse 17', '', 'Berlin', '10101', 'Berlin', 'Deutschland', 5, 'Vorkasse/Banküberweisung', 'eustandardtransfer', 'Versandkosten pro Stück (Standard)', 'item', '', '', '', '', '', NULL, NULL, '2016-06-04 16:37:32', 1, NULL, 'EUR', 1.000000, 332.49, 30.00, 0, '192.168.1.1 - 192.168.1.2', 'Desktop');
+INSERT INTO orders_products (orders_products_id, orders_id, products_id, products_model, products_name, products_price, final_price, products_tax, products_quantity, onetime_charges, products_priced_by_attribute, product_is_free, products_discount_type, products_discount_type_from, products_prid) VALUES
+(1, 1, 1, 'MG200MMS', 'Matrox G200 MMS', 299.9900, 299.9900, 10.0000, 1, 0.0000, 0, 0, 0, 0, '1:edff669e5da95c1d027b04d5412532fa');
+INSERT INTO orders_status_history (orders_status_history_id, orders_id, orders_status_id, date_added, customer_notified, comments) VALUES
+(1, 1, 1, '2016-06-04 16:37:32', 1, 'Bitte schnellstmöglich versenden');
+INSERT INTO orders_total (orders_total_id, orders_id, title, text, value, class, sort_order) VALUES
+(1, 1, 'Zwischensumme:', '&euro;329.99', 329.9890, 'ot_subtotal', 100),
+(2, 1, 'Versandkosten pro Stück (Standard):', '&euro;2.50', 2.5000, 'ot_shipping', 200),
+(3, 1, 'Enthaltene Mwst. 10%:', '&euro;30.00', 29.9990, 'ot_tax', 300),
+(4, 1, 'Endsumme:', '&euro;332.49', 332.4890, 'ot_total', 999);
+INSERT INTO orders_products_attributes (orders_products_attributes_id, orders_id, orders_products_id, products_options, products_options_values, options_values_price, price_prefix, product_attribute_is_free, products_attributes_weight, products_attributes_weight_prefix, attributes_discounted, attributes_price_base_included, attributes_price_onetime, attributes_price_factor, attributes_price_factor_offset, attributes_price_factor_onetime, attributes_price_factor_onetime_offset, attributes_qty_prices, attributes_qty_prices_onetime, attributes_price_words, attributes_price_words_free, attributes_price_letters, attributes_price_letters_free, products_options_id, products_options_values_id, products_prid) VALUES
+(1, 1, 1, 'Model', 'Value', 0.0000, '+', 0, 0, '', 1, 1, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, '', '', 0.0000, 0, 0.0000, 0, 3, 5, '1:edff669e5da95c1d027b04d5412532fa'),
+(2, 1, 1, 'Memory', '4 mb', 0.0000, '', 0, 0, '', 1, 1, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, '', '', 0.0000, 0, 0.0000, 0, 4, 1, '1:edff669e5da95c1d027b04d5412532fa');
