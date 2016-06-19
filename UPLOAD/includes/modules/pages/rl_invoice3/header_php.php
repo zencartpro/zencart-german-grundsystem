@@ -5,7 +5,7 @@
  * @copyright Copyright 2003-2016 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: header_php.php 2016-06-20 10:19:17Z webchills $
+ * @version $Id: header_php.php 2016-06-20 17:19:17Z webchills $
  */
  
 $zco_notifier->notify('NOTIFY_HEADER_START_DOWNLOAD');
@@ -15,6 +15,19 @@ if (!$_SESSION['customer_id']) {
 }
 if ((isset($_GET['order']) && !is_numeric($_GET['order'])) || (isset($_GET['id']) && !is_numeric($_GET['id'])) ) {
   zen_redirect(zen_href_link(FILENAME_TIME_OUT));
+}
+// Check that order_id and customer_id match
+
+$sql = "SELECT customers_id
+                        FROM   " . TABLE_ORDERS . "
+                        WHERE  orders_id = ordersID";
+                        
+$sql = $db->bindVars($sql, 'customersID', $_SESSION['customer_id'], 'integer');
+
+$sql = $db->bindVars($sql, 'ordersID', $_GET['order'], 'integer');
+$securitycheck = $db->Execute($sql);
+if ($securitycheck->fields['customers_id'] != $_SESSION['customer_id']) {
+  zen_redirect(zen_href_link(FILENAME_ACCOUNT_HISTORY, '', 'SSL'));
 }
 require_once(DIR_WS_INCLUDES . 'classes/order.php');
 require_once(DIR_WS_INCLUDES . 'classes/class.rl_invoice3.php');
