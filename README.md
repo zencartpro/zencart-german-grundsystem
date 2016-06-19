@@ -53,7 +53,7 @@ Die Artikel in den Artikellisten können nun wahlweise in Spalten oder Reihen an
 Willkommen bei der deutschen Zen-Cart Version
 Version 1.5.5 BETA
 
-BETA vom 03.06.2016
+BETA vom 19.06.2016
 NUR ZUM TESTEN IN EINEM TESTSYSTEM - NOCH NICHT FÜR LIVESHOPS GEEIGNET
 
 Um Zen Cart 1.5.5 Beta zu installieren nur die Ordner/Dateien im Ordner UPLOAD hochladen!
@@ -95,3 +95,4 @@ Zahlungsart Bar bei Abholung integriert
 Mehrsprachige Ländernamen integriert
 MailBeez integriert
 IT Recht Kanzlei Schnittstelle zur automatischen Aktualisierung der Rechtstexte integriert
+pdf Rechnung integriert
