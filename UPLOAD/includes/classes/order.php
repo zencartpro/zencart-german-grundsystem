@@ -5,7 +5,7 @@
  * @package classes
  * @copyright Copyright 2003-2016 Zen Cart Development Team
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: order.php 859 2016-03-10 21:13:25Z webchills $
+ * @version $Id: order.php for pdf rechnung 3.5 2016-06-20 10:26:25Z webchills $
  */
 /**
  * order class
@@ -245,7 +245,6 @@ class order extends base {
     global $db, $currencies;
 
     $decimals = $currencies->get_decimal_places($_SESSION['currency']);
-
     $this->content_type = $_SESSION['cart']->get_content_type();
 
 
@@ -306,47 +305,50 @@ class order extends base {
 
       // get tax zone info for logged-in visitors
       if (isset($_SESSION['customer_id']) && (int)$_SESSION['customer_id'] > 0) {
-          $taxCountryId = $taxZoneId = -1;
-          $tax_address_query = '';
-          switch (STORE_PRODUCT_TAX_BASIS) {
-              case 'Shipping':
-                  $tax_address_query = "select ab.entry_country_id, ab.entry_zone_id
-                                from " . TABLE_ADDRESS_BOOK . " ab
-                                left join " . TABLE_ZONES . " z on (ab.entry_zone_id = z.zone_id)
-                                where ab.customers_id = '" . (int)$_SESSION['customer_id'] . "'
-                                and ab.address_book_id = '" . (int)($this->content_type == 'virtual' ? $_SESSION['billto'] : $_SESSION['sendto']) . "'";
-                  break;
-              case 'Billing':
-                  $tax_address_query = "select ab.entry_country_id, ab.entry_zone_id
+    $taxCountryId = $taxZoneId = -1;
+
+    $tax_address_query = '';
+    switch (STORE_PRODUCT_TAX_BASIS) {
+      case 'Shipping':
+
+      $tax_address_query = "select ab.entry_country_id, ab.entry_zone_id
+                              from " . TABLE_ADDRESS_BOOK . " ab
+                              left join " . TABLE_ZONES . " z on (ab.entry_zone_id = z.zone_id)
+                              where ab.customers_id = '" . (int)$_SESSION['customer_id'] . "'
+                              and ab.address_book_id = '" . (int)($this->content_type == 'virtual' ? $_SESSION['billto'] : $_SESSION['sendto']) . "'";
+      break;
+      case 'Billing':
+
+      $tax_address_query = "select ab.entry_country_id, ab.entry_zone_id
+                              from " . TABLE_ADDRESS_BOOK . " ab
+                              left join " . TABLE_ZONES . " z on (ab.entry_zone_id = z.zone_id)
+                              where ab.customers_id = '" . (int)$_SESSION['customer_id'] . "'
+                              and ab.address_book_id = '" . (int)$_SESSION['billto'] . "'";
+      break;
+      case 'Store':
+      if ($billing_address->fields['entry_zone_id'] == STORE_ZONE) {
+
+        $tax_address_query = "select ab.entry_country_id, ab.entry_zone_id
                                 from " . TABLE_ADDRESS_BOOK . " ab
                                 left join " . TABLE_ZONES . " z on (ab.entry_zone_id = z.zone_id)
                                 where ab.customers_id = '" . (int)$_SESSION['customer_id'] . "'
                                 and ab.address_book_id = '" . (int)$_SESSION['billto'] . "'";
-                  break;
-              case 'Store':
-                  if ($billing_address->fields['entry_zone_id'] == STORE_ZONE) {
-
-                      $tax_address_query = "select ab.entry_country_id, ab.entry_zone_id
-                                  from " . TABLE_ADDRESS_BOOK . " ab
-                                  left join " . TABLE_ZONES . " z on (ab.entry_zone_id = z.zone_id)
-                                  where ab.customers_id = '" . (int)$_SESSION['customer_id'] . "'
-                                  and ab.address_book_id = '" . (int)$_SESSION['billto'] . "'";
-                  } else {
-                      $tax_address_query = "select ab.entry_country_id, ab.entry_zone_id
-                                  from " . TABLE_ADDRESS_BOOK . " ab
-                                  left join " . TABLE_ZONES . " z on (ab.entry_zone_id = z.zone_id)
-                                  where ab.customers_id = '" . (int)$_SESSION['customer_id'] . "'
-                                  and ab.address_book_id = '" . (int)($this->content_type == 'virtual' ? $_SESSION['billto'] : $_SESSION['sendto']) . "'";
-                  }
-          }
-          if ($tax_address_query != '') {
-              $tax_address = $db->Execute($tax_address_query);
-              if ($tax_address->recordCount() > 0) {
-                  $taxCountryId = $tax_address->fields['entry_country_id'];
-                  $taxZoneId = $tax_address->fields['entry_zone_id'];
-              }
-          }
+      } else {
+        $tax_address_query = "select ab.entry_country_id, ab.entry_zone_id
+                                from " . TABLE_ADDRESS_BOOK . " ab
+                                left join " . TABLE_ZONES . " z on (ab.entry_zone_id = z.zone_id)
+                                where ab.customers_id = '" . (int)$_SESSION['customer_id'] . "'
+                                and ab.address_book_id = '" . (int)($this->content_type == 'virtual' ? $_SESSION['billto'] : $_SESSION['sendto']) . "'";
       }
+    }
+    if ($tax_address_query != '') {
+      $tax_address = $db->Execute($tax_address_query);
+      if ($tax_address->recordCount() > 0) {
+        $taxCountryId = $tax_address->fields['entry_country_id'];
+        $taxZoneId = $tax_address->fields['entry_zone_id'];
+              }
+      }
+    }
 
     $class =& $_SESSION['payment'];
 
@@ -545,41 +547,41 @@ class order extends base {
       $this->notify('NOTIFY_ORDER_CART_EXTERNAL_TAX_HANDLING', array(), $index, $taxCountryId, $taxZoneId);
 
       if ($this->use_external_tax_handler_only == FALSE) {
-        /*********************************************
-         * Calculate taxes for this product
-         *********************************************/
-        $shown_price = (zen_add_tax($this->products[$index]['final_price'] * $this->products[$index]['qty'], $this->products[$index]['tax']))
-        + zen_add_tax($this->products[$index]['onetime_charges'], $this->products[$index]['tax']);
-        $this->info['subtotal'] += $shown_price;
-        $this->notify('NOTIFIY_ORDER_CART_SUBTOTAL_CALCULATE', array('shown_price'=>$shown_price));
-        // find product's tax rate and description
-        $products_tax = $this->products[$index]['tax'];
-        $products_tax_description = $this->products[$index]['tax_description'];
+      /*********************************************
+       * Calculate taxes for this product
+       *********************************************/
+      $shown_price = (zen_add_tax($this->products[$index]['final_price'] * $this->products[$index]['qty'], $this->products[$index]['tax']))
+      + zen_add_tax($this->products[$index]['onetime_charges'], $this->products[$index]['tax']);
+      $this->info['subtotal'] += $shown_price;
+      $this->notify('NOTIFIY_ORDER_CART_SUBTOTAL_CALCULATE', array('shown_price'=>$shown_price));
+      // find product's tax rate and description
+      $products_tax = $this->products[$index]['tax'];
+      $products_tax_description = $this->products[$index]['tax_description'];
 
-        if (DISPLAY_PRICE_WITH_TAX == 'true') {
-          // calculate the amount of tax "inc"luded in price (used if tax-in pricing is enabled)
-          $tax_add = $shown_price - ($shown_price / (($products_tax < 10) ? "1.0" . str_replace('.', '', $products_tax) : "1." . str_replace('.', '', $products_tax)));
-        } else {
-          // calculate the amount of tax for this product (assuming tax is NOT included in the price)
-  //        $tax_add = zen_round(($products_tax / 100) * $shown_price, $currencies->currencies[$this->info['currency']]['decimal_places']);
-          $tax_add = ($products_tax/100) * $shown_price;
-        }
-        $this->info['tax'] += $tax_add;
-        foreach ($taxRates as $taxDescription=>$taxRate)
+      if (DISPLAY_PRICE_WITH_TAX == 'true') {
+        // calculate the amount of tax "inc"luded in price (used if tax-in pricing is enabled)
+        $tax_add = $shown_price - ($shown_price / (($products_tax < 10) ? "1.0" . str_replace('.', '', $products_tax) : "1." . str_replace('.', '', $products_tax)));
+      } else {
+        // calculate the amount of tax for this product (assuming tax is NOT included in the price)
+//        $tax_add = zen_round(($products_tax / 100) * $shown_price, $currencies->currencies[$this->info['currency']]['decimal_places']);
+        $tax_add = ($products_tax/100) * $shown_price;
+      }
+      $this->info['tax'] += $tax_add;
+      foreach ($taxRates as $taxDescription=>$taxRate)
+      {
+        $taxAdd = zen_calculate_tax($this->products[$index]['final_price']*$this->products[$index]['qty'], $taxRate)
+                +  zen_calculate_tax($this->products[$index]['onetime_charges'], $taxRate);
+        if (isset($this->info['tax_groups'][$taxDescription]))
         {
-          $taxAdd = zen_calculate_tax($this->products[$index]['final_price']*$this->products[$index]['qty'], $taxRate)
-                  +  zen_calculate_tax($this->products[$index]['onetime_charges'], $taxRate);
-          if (isset($this->info['tax_groups'][$taxDescription]))
-          {
-            $this->info['tax_groups'][$taxDescription] += $taxAdd;
-          } else
-          {
-            $this->info['tax_groups'][$taxDescription] = $taxAdd;
-          }
+          $this->info['tax_groups'][$taxDescription] += $taxAdd;
+        } else
+        {
+          $this->info['tax_groups'][$taxDescription] = $taxAdd;
         }
-        /*********************************************
-         * END: Calculate taxes for this product
-         *********************************************/
+      }
+      /*********************************************
+       * END: Calculate taxes for this product
+       *********************************************/
     }
       $index++;
     }
@@ -628,7 +630,6 @@ class order extends base {
     if (isset($_SESSION['shipping']['id']) && $_SESSION['shipping']['id'] == 'free_free') {
       $this->info['shipping_module_code'] = $_SESSION['shipping']['id'];
     }
-
     // Sanitize cc-num if present, using maximum 10 chars, with middle chars stripped out with XX
     if (strlen($this->info['cc_number']) > 10) {
       $cEnd = substr($this->info['cc_number'], -4);
@@ -732,6 +733,7 @@ class order extends base {
     global $db, $currencies, $order_total_modules, $order_totals;
 
     // initialized for the email confirmation
+
     $this->products_ordered = '';
     $this->products_ordered_html = '';
     $this->subtotal = 0;
@@ -1120,11 +1122,30 @@ class order extends base {
     //  $html_msg['EMAIL_TEXT_HEADER'] = EMAIL_TEXT_HEADER;
     $html_msg['EXTRA_INFO'] = '';
     $this->notify('NOTIFY_ORDER_INVOICE_CONTENT_READY_TO_SEND', array('zf_insert_id' => $zf_insert_id, 'text_email' => $email_order, 'html_email' => $html_msg), $email_order, $html_msg);
-    zen_mail($this->customer['firstname'] . ' ' . $this->customer['lastname'], $this->customer['email_address'], EMAIL_TEXT_SUBJECT . EMAIL_ORDER_NUMBER_SUBJECT . $zf_insert_id, $email_order, STORE_NAME, EMAIL_FROM, $html_msg, 'checkout', $this->attachArray);
 
+    // BOF pdf Rechnung
+    if(RL_INVOICE3_STATUS=='true'){
+    $this->attachArray = array();
+    if(RL_INVOICE3_SEND_PDF=='1'){
+        if(!(0==$this->info['total'] && RL_INVOICE3_NOT_NULL_INVOICE==0)){     
+            if( (defined('RL_INVOICE3_ORDERSTATUS')) && ($this->info['order_status'] >= RL_INVOICE3_ORDERSTATUS)) {
+                require_once(DIR_WS_INCLUDES . 'classes/class.rl_invoice3.php');
+                
+                $pdfT = new rl_invoice3($zf_insert_id, $paper['orientation'], $paper['unit'], $paper['format']);
+                $pdfT -> createPdfFile(true);
+                $this->attachArray = $pdfT->getPDFAttachments();
+                
+            }
+        }
+    }
+  } 
+  // EOF pdf Rechnung
+    zen_mail($this->customer['firstname'] . ' ' . $this->customer['lastname'], $this->customer['email_address'], EMAIL_TEXT_SUBJECT . EMAIL_ORDER_NUMBER_SUBJECT . $zf_insert_id, $email_order, STORE_NAME, EMAIL_FROM, $html_msg, 'checkout', $this->attachArray);
+   
+    
     // send additional emails
     if (SEND_EXTRA_ORDER_EMAILS_TO != '') {
-      $extra_info = email_collect_extra_info('', '', $this->customer['firstname'] . ' ' . $this->customer['lastname'], $this->customer['email_address'], $this->customer['telephone']);
+      $extra_info=email_collect_extra_info('','', $this->customer['firstname'] . ' ' . $this->customer['lastname'], $this->customer['email_address'], $this->customer['telephone']);
       $html_msg['EXTRA_INFO'] = $extra_info['HTML'];
 
       // include authcode and transaction id in admin-copy of email
@@ -1139,7 +1160,13 @@ class order extends base {
       $this->notify('NOTIFY_ORDER_INVOICE_CONTENT_FOR_ADDITIONAL_EMAILS', $zf_insert_id, $email_order, $html_msg);
       $email_order = $this->extra_header_text . $email_order;
       $html_msg['EMAIL_TEXT_HEADER'] = nl2br($this->extra_header_text) . $html_msg['EMAIL_TEXT_HEADER'];
-
+      // BOF pdf Rechnung
+      if(RL_INVOICE3_STATUS=='true'){
+      if(method_exists($pdfT, "getPDFAttachments")){
+        $this->attachArray = $pdfT->getPDFAttachments('NO');
+      }
+    }
+    // EOF pdf Rechnung
       zen_mail('', SEND_EXTRA_ORDER_EMAILS_TO, SEND_EXTRA_NEW_ORDERS_EMAILS_TO_SUBJECT . ' ' . EMAIL_TEXT_SUBJECT . EMAIL_ORDER_NUMBER_SUBJECT . $zf_insert_id,
       $email_order . $extra_info['TEXT'], STORE_NAME, EMAIL_FROM, $html_msg, 'checkout_extra', $this->attachArray, $this->customer['firstname'] . ' ' . $this->customer['lastname'], $this->customer['email_address']);
     }
@@ -1147,3 +1174,4 @@ class order extends base {
   }
 
 }
+

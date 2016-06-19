@@ -9,7 +9,7 @@
  * @copyright Copyright 2003-2016 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: tpl_account_history_info_default.php 731 2016-05-08 09:49:16Z webchills $
+ * @version $Id: tpl_account_history_info_default.php for pdf rechnung 3.5 2016-06-03 11:22:05Z webchills $
  */
 ?>
 <div class="centerColumn" id="accountHistInfo">
@@ -149,4 +149,26 @@ if (sizeof($statusArray)) {
 <div><?php echo $order->info['payment_method']; ?></div>
 </div>
 <br class="clearBoth" />
-</div>
+// BOF pdf Rechnung
+<?php if(RL_INVOICE3_STATUS=='true') {?>
+<?php
+    require_once(DIR_WS_INCLUDES . 'classes/class.rl_invoice3.php');
+    $pdfT = new rl_invoice3($_GET['order_id'], $paper['orientation'], $paper['unit'], $paper['format']);
+    // use $pdfT->getPDFAttachments('NO') if only the invoice should be shown
+    $a = $pdfT->getPDFAttachments('ALL');
+    $tmp1 = '<div class="rl-invoice3-hlink"><span class="rl-invoice3-hlink-text">'. RL_INVOICE3_INVLINK_TEXT . '</span>';
+    $tmp = '';
+    foreach ($a as $key => $v) {
+        if(isset($v['fn'])){
+            $pa = zen_href_link('rl_invoice3', '', 'SSL') . '&fn=' . $v['fn'] . '&order=' . $_GET['order_id'];
+            $tmp .=  '| <a href="' . $pa . '">'. $v['name'] . '</a>';
+        } else {
+            $tmp .=  '| <a href="' . str_replace(DIR_FS_CATALOG, '', $v['file']) . '">'. $v['name'] . '</a>';
+        }
+    }
+    $tmp .= '</div>';
+    echo $tmp1 . substr($tmp, 1);
+?>
+<?php } ?>
+// EOF pdf Rechnung
+</div> 

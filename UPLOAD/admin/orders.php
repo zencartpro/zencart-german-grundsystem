@@ -4,11 +4,10 @@
  * @copyright Copyright 2003-2016 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: orders.php 797 2016-03-27 18:13:51Z webchills $
+ * @version $Id: orders.php for pdf rechnung 3.5 2016-06-20 15:13:51Z webchills $
  */
 
   require('includes/application_top.php');
-
   // unset variable which is sometimes tainted by bad plugins like magneticOne tools
   if (isset($module)) unset($module);
 
@@ -47,7 +46,7 @@
   }
   if ($oID) {
     $orders = $db->Execute("select orders_id from " . TABLE_ORDERS . "
-                              where orders_id = '" . (int)$oID . "'");
+                            where orders_id = '" . (int)$oID . "'");
     $order_exists = true;
     if ($orders->RecordCount() <= 0) {
       $order_exists = false;
@@ -124,7 +123,23 @@
                                       where orders_id = '" . (int)$oID . "'");
         $customer_gender = $db->Execute("select customers_gender from " . TABLE_CUSTOMERS . "
                                       where customers_id = '" . $check_status->fields['customers_id'] . "'");
-      
+
+        // BOF pdf Rechnung  
+        if(RL_INVOICE3_STATUS=='true'){                                     
+        $rlStat = explode('|', RL_INVOICE3_SEND_ORDERSTATUS_CHANGE);
+        $rl_invoice3_send = in_array($status, $rlStat);
+        if ( ($check_status->fields['orders_status'] != $status  && $status==RL_INVOICE3_ORDERSTATUS)  || ($rl_invoice3_send == true)){
+            require_once (DIR_FS_CATALOG . DIR_WS_INCLUDES . 'classes/class.rl_invoice3.php');     
+            require_once ('../' . DIR_WS_LANGUAGES . $_SESSION['language'] . '/extra_definitions/rl_invoice3.php');
+            $paper = rl_invoice3::getDefault(RL_INVOICE3_PAPER, array('format' => 'A4', 'unit' => 'mm', 'orientation' => 'P'));
+            $pdfT = new rl_invoice3($oID, $paper['orientation'], $paper['unit'], $paper['format']);
+            $pdfT->createPdfFile(true);
+            $attach = $pdfT->getPDFAttachments('ALL');
+        } else {
+            $attach = null;
+        }
+      }
+        // EOF pdf Rechnung
         if ( ($check_status->fields['orders_status'] != $status) || zen_not_null($comments)) {
           $db->Execute("update " . TABLE_ORDERS . "
                         set orders_status = '" . zen_db_input($status) . "', last_modified = now()
@@ -172,8 +187,13 @@
             $html_msg['EMAIL_TEXT_NEW_STATUS'] = $orders_status_array[$status];
             $html_msg['EMAIL_TEXT_STATUS_PLEASE_REPLY'] = str_replace('\n','', EMAIL_TEXT_STATUS_PLEASE_REPLY);
             $html_msg['EMAIL_PAYPAL_TRANSID'] = '';
-
-            zen_mail($check_status->fields['customers_name'], $check_status->fields['customers_email_address'], EMAIL_TEXT_SUBJECT . ' #' . $oID, $message, STORE_NAME, EMAIL_FROM, $html_msg, 'order_status');
+        // BOF pdf Rechnung  
+        if(RL_INVOICE3_STATUS=='true'){  
+            zen_mail($check_status->fields['customers_name'], $check_status->fields['customers_email_address'], EMAIL_TEXT_SUBJECT . ' #' . $oID, $message, STORE_NAME, EMAIL_FROM, $html_msg, 'order_status', $attach);
+          } else {
+          	zen_mail($check_status->fields['customers_name'], $check_status->fields['customers_email_address'], EMAIL_TEXT_SUBJECT . ' #' . $oID, $message, STORE_NAME, EMAIL_FROM, $html_msg, 'order_status');
+          }
+          // EOF pdf Rechnung
             $customer_notified = '1';
 
             // PayPal Trans ID, if any
@@ -184,10 +204,15 @@
               $message .= "\n\n" . ' PayPal Trans ID: ' . $result->fields['txn_id'];
               $html_msg['EMAIL_PAYPAL_TRANSID'] = $result->fields['txn_id'];
             }
-
             //send extra emails
             if (SEND_EXTRA_ORDERS_STATUS_ADMIN_EMAILS_TO_STATUS == '1' and SEND_EXTRA_ORDERS_STATUS_ADMIN_EMAILS_TO != '') {
+            // BOF pdf Rechnung 
+            if(RL_INVOICE3_STATUS=='true'){  
+              zen_mail('', SEND_EXTRA_ORDERS_STATUS_ADMIN_EMAILS_TO, SEND_EXTRA_ORDERS_STATUS_ADMIN_EMAILS_TO_SUBJECT . ' ' . EMAIL_TEXT_SUBJECT . ' #' . $oID, $message, STORE_NAME, EMAIL_FROM, $html_msg, 'order_status_extra', $attach);
+            } else{
               zen_mail('', SEND_EXTRA_ORDERS_STATUS_ADMIN_EMAILS_TO, SEND_EXTRA_ORDERS_STATUS_ADMIN_EMAILS_TO_SUBJECT . ' ' . EMAIL_TEXT_SUBJECT . ' #' . $oID, $message, STORE_NAME, EMAIL_FROM, $html_msg, 'order_status_extra');
+            }
+            // EOF pdf Rechnung 
             }
           } elseif (isset($_POST['notify']) && ($_POST['notify'] == '-1')) {
             // hide comment
@@ -769,7 +794,7 @@ function couponpopupWindow(url) {
         </table></td>
       </form></tr>
       <tr>
-        <td colspan="2" align="right" class="noprint"><?php echo '<a href="' . zen_href_link(FILENAME_ORDERS_INVOICE, 'oID=' . $_GET['oID']) . '" target="_blank">' . zen_image_button('button_invoice.gif', IMAGE_ORDERS_INVOICE) . '</a> <a href="' . zen_href_link(FILENAME_ORDERS_PACKINGSLIP, 'oID=' . $_GET['oID']) . '" target="_blank">' . zen_image_button('button_packingslip.gif', IMAGE_ORDERS_PACKINGSLIP) . '</a> <a href="' . zen_href_link(FILENAME_ORDERS, zen_get_all_get_params(array('action'))) . '">' . zen_image_button('button_orders.gif', IMAGE_ORDERS) . '</a>'; ?></td>
+        <td colspan="2" align="right" class="noprint"><?php echo '<a href="' . zen_href_link(FILENAME_ORDERS_INVOICE, 'oID=' . $_GET['oID']) . '" TARGET="_blank">' . zen_image_button('button_invoice.gif', IMAGE_ORDERS_INVOICE) . '</a> <a href="' . zen_href_link(FILENAME_ORDERS_PACKINGSLIP, 'oID=' . $_GET['oID']) . '" TARGET="_blank">' . zen_image_button('button_packingslip.gif', IMAGE_ORDERS_PACKINGSLIP) . '</a> <a href="' . zen_href_link(FILENAME_ORDERS, zen_get_all_get_params(array('action'))) . '">' . zen_image_button('button_orders.gif', IMAGE_ORDERS) . '</a>'; ?></td>
       </tr>
 <?php
 // check if order has open gv
@@ -889,8 +914,8 @@ $new_fields . "
     } else {
       $orders_query_raw .= (trim($search) != '') ? preg_replace('/ *AND /i', ' WHERE ', $search) : '';
 //echo '<BR><BR>I SEE C: ' . $orders_query_raw . '<BR><BR>';
-    }
 
+    }
     $orders_query_raw .= " order by o.orders_id DESC";
 
 // Split Page
@@ -1005,6 +1030,9 @@ if (($_GET['page'] == '' or $_GET['page'] <= 1) and $_GET['oID'] != '') {
 
         $contents[] = array('align' => 'center', 'text' => '<a href="' . zen_href_link(FILENAME_ORDERS, zen_get_all_get_params(array('oID', 'action')) . 'oID=' . $oInfo->orders_id . '&action=edit', 'NONSSL') . '">' . zen_image_button('button_edit.gif', IMAGE_EDIT) . '</a> <a href="' . zen_href_link(FILENAME_ORDERS, zen_get_all_get_params(array('oID', 'action')) . 'oID=' . $oInfo->orders_id . '&action=delete', 'NONSSL') . '">' . zen_image_button('button_delete.gif', IMAGE_DELETE) . '</a>');
         $contents[] = array('align' => 'center', 'text' => '<a href="' . zen_href_link(FILENAME_ORDERS_INVOICE, 'oID=' . $oInfo->orders_id) . '" TARGET="_blank">' . zen_image_button('button_invoice.gif', IMAGE_ORDERS_INVOICE) . '</a> <a href="' . zen_href_link(FILENAME_ORDERS_PACKINGSLIP, 'oID=' . $oInfo->orders_id) . '" TARGET="_blank">' . zen_image_button('button_packingslip.gif', IMAGE_ORDERS_PACKINGSLIP) . '</a>');
+        // BOF pdf Rechnung
+        $contents[] = array('align' => 'center', 'text' => '<a href="' . zen_href_link(FILENAME_RL_INVOICE3, 'oID=' . $oInfo -> orders_id) . '" TARGET="_blank">' . zen_image_button('button_rl_invoice3.gif', IMAGE_RL_INVOICE) );
+        // EOF pdf Rechnung
         $zco_notifier->notify('NOTIFY_ADMIN_ORDERS_MENU_BUTTONS', $oInfo, $contents);
         $contents[] = array('text' => '<br />' . TEXT_DATE_ORDER_CREATED . ' ' . zen_date_short($oInfo->date_purchased));
         $contents[] = array('text' => '<br />' . $oInfo->customers_email_address);
@@ -1024,33 +1052,32 @@ if (($_GET['page'] == '' or $_GET['page'] <= 1) and $_GET['oID'] != '') {
           $contents[] = array('align' => 'center', 'text' => $goto_gv);
         }
 
-        // indicate if comments exist
-        $orders_history_query = $db->Execute("select orders_status_id, date_added, customer_notified, comments from " . TABLE_ORDERS_STATUS_HISTORY . " where orders_id = '" . $oInfo->orders_id . "' and comments !='" . "'" );
+// indicate if comments exist
+      $orders_history_query = $db->Execute("select orders_status_id, date_added, customer_notified, comments from " . TABLE_ORDERS_STATUS_HISTORY . " where orders_id = '" . $oInfo->orders_id . "' and comments !='" . "'" );
+      if ($orders_history_query->RecordCount() > 0) {
+        $contents[] = array('align' => 'left', 'text' => '<br />' . TABLE_HEADING_COMMENTS);
+      }
 
-        if ($orders_history_query->RecordCount() > 0) {
-          $contents[] = array('align' => 'left', 'text' => '<br />' . TABLE_HEADING_COMMENTS);
-        }
+      $contents[] = array('text' => '<br />' . zen_image(DIR_WS_IMAGES . 'pixel_black.gif','','100%','3'));
+      $order = new order($oInfo->orders_id);
+      $contents[] = array('text' => TABLE_HEADING_PRODUCTS . ': ' . sizeof($order->products) );
+      for ($i=0; $i<sizeof($order->products); $i++) {
+        $contents[] = array('text' => $order->products[$i]['qty'] . '&nbsp;x&nbsp;' . $order->products[$i]['name']);
 
-        $contents[] = array('text' => '<br />' . zen_image(DIR_WS_IMAGES . 'pixel_black.gif','','100%','3'));
-        $order = new order($oInfo->orders_id);
-        $contents[] = array('text' => TABLE_HEADING_PRODUCTS . ': ' . sizeof($order->products) );
-        for ($i=0; $i<sizeof($order->products); $i++) {
-          $contents[] = array('text' => $order->products[$i]['qty'] . '&nbsp;x&nbsp;' . $order->products[$i]['name']);
-
-          if (sizeof($order->products[$i]['attributes']) > 0) {
-            for ($j=0; $j<sizeof($order->products[$i]['attributes']); $j++) {
-              $contents[] = array('text' => '&nbsp;<i> - ' . $order->products[$i]['attributes'][$j]['option'] . ': ' . nl2br(zen_output_string_protected($order->products[$i]['attributes'][$j]['value'])) . '</i></nobr>' );
-            }
-          }
-          if ($i > MAX_DISPLAY_RESULTS_ORDERS_DETAILS_LISTING and MAX_DISPLAY_RESULTS_ORDERS_DETAILS_LISTING != 0) {
-            $contents[] = array('align' => 'left', 'text' => TEXT_MORE);
-            break;
+        if (sizeof($order->products[$i]['attributes']) > 0) {
+          for ($j=0; $j<sizeof($order->products[$i]['attributes']); $j++) {
+            $contents[] = array('text' => '&nbsp;<i> - ' . $order->products[$i]['attributes'][$j]['option'] . ': ' . nl2br(zen_output_string_protected($order->products[$i]['attributes'][$j]['value'])) . '</i></nobr>' );
           }
         }
-
-        if (sizeof($order->products) > 0) {
-          $contents[] = array('align' => 'center', 'text' => '<a href="' . zen_href_link(FILENAME_ORDERS, zen_get_all_get_params(array('oID', 'action')) . 'oID=' . $oInfo->orders_id . '&action=edit', 'NONSSL') . '">' . zen_image_button('button_edit.gif', IMAGE_EDIT) . '</a>');
+        if ($i > MAX_DISPLAY_RESULTS_ORDERS_DETAILS_LISTING and MAX_DISPLAY_RESULTS_ORDERS_DETAILS_LISTING != 0) {
+          $contents[] = array('align' => 'left', 'text' => TEXT_MORE);
+          break;
         }
+      }
+
+      if (sizeof($order->products) > 0) {
+        $contents[] = array('align' => 'center', 'text' => '<a href="' . zen_href_link(FILENAME_ORDERS, zen_get_all_get_params(array('oID', 'action')) . 'oID=' . $oInfo->orders_id . '&action=edit', 'NONSSL') . '">' . zen_image_button('button_edit.gif', IMAGE_EDIT) . '</a>');
+      }
       }
       break;
   }
