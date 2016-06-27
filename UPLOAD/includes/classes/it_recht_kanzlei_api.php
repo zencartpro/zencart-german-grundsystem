@@ -4,7 +4,7 @@
  * @copyright Copyright 2003-2016 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: it_recht_kanzlei_api.php 2016-06-01 11:13:51Z webchills $
+ * @version $Id: it_recht_kanzlei_api.php 2016-06-27 12:50:51Z webchills $
  */
 
 if (!defined('IS_ADMIN_FLAG')) {
@@ -97,8 +97,21 @@ class it_recht_kanzlei {
       }
       // Catch errors - rechtstext_language
       if ($xml->rechtstext_language == '') {
-        $this->return_error('9');
+        $this->return_error('9a');
       }
+      // Catch errors - rechtstext_language not supported
+      
+      $language_code = $xml->rechtstext_language;
+      	 $language_query = $db->Execute("SELECT languages_id, code
+                                       FROM ".TABLE_LANGUAGES." 
+                                      WHERE code = '".$language_code."' 
+                                        
+                                      LIMIT 1");
+                                      
+         if ($language_query->EOF)  { 
+         	
+   $this->return_error('9b');
+}
      
       
       $local_dir_for_pdf_storage = 'includes/pdf/';
@@ -108,13 +121,13 @@ class it_recht_kanzlei {
       
       // Check PDF files required
       $local_rechtstext_pdf_type = array();
-      if (IT_RECHT_KANZLEI_PDF_AGB == 'true') {
+      if (IT_RECHT_KANZLEI_PDF_AGB == 'ja') {
         $local_rechtstext_pdf_type[] = 'agb';
       }
-      if (IT_RECHT_KANZLEI_PDF_DATENSCHUTZ == 'true') {
+      if (IT_RECHT_KANZLEI_PDF_DATENSCHUTZ == 'ja') {
         $local_rechtstext_pdf_type[] = 'datenschutz';
       }
-      if (IT_RECHT_KANZLEI_PDF_WIDERRUF == 'true') {
+      if (IT_RECHT_KANZLEI_PDF_WIDERRUF == 'ja') {
         $local_rechtstext_pdf_type[] = 'widerruf';
       }
 

@@ -4,7 +4,7 @@
  * @copyright Copyright 2003-2016 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: it_recht_kanzlei.php 2016-06-01 09:13:51Z webchills $
+ * @version $Id: it_recht_kanzlei.php 2016-06-27 12:13:51Z webchills $
  */
 
 require('includes/application_top.php');
@@ -24,7 +24,12 @@ if (!is_null($_GET['token']) && $_GET['token'] == 'new') {
 <style>
 #itrk-illu {
     float: right;
-    widt:270px;
+    width:270px;
+}
+#itrkinfo a {
+    font-size:12px;
+    color: #EF7D00;
+    text-decoration:underline;
 }
 </style>
 <script language="javascript" src="includes/menu.js"></script>
@@ -48,6 +53,7 @@ if (!is_null($_GET['token']) && $_GET['token'] == 'new') {
   <?php require(DIR_WS_INCLUDES . 'header.php'); ?>
   <!-- header_eof //-->
   <!-- body //-->
+<div id="itrkinfo">
 <table border="0" width="100%" cellspacing="2" cellpadding="2">
     <tr>
       <!-- body_text //-->
@@ -104,39 +110,54 @@ if (!is_null($_GET['token']) && $_GET['token'] == 'new') {
                    
                  
                     <br/>
-                    Das Zen Cart Schnittstellen-Modul f&uuml;r den e-Commerce in Deutschland aktualisiert automatisch ihre Rechtstexte &ndash; so bleiben Sie 
-                    dauerhaft vor Abmahnungen gesch&uuml;tzt und k&ouml;nnen sich ganz entspannt ihrem operativen Gesch&auml;ft widmen.<br />
+                    <font size="3"><b>AGB-Service für Zen Cart der IT-Recht Kanzlei für mtl. 9,90 Euro - monatlich kündbar</b></font><br />
                     <br />
+                    Abmahnsichere Rechtstexte für Zen Cart der IT-Recht Kanzlei<br/>
+Individuell angepasst & schnell verfügbar<br/>
+Automatische Überwachung & Aktualisierung durch die AGB-Schnittstelle
+                    <br /><br/>
                     
-                    <br />
-                    Das Modul stellt Ihnen die folgenden Rechtstexte zur Verf&uuml;gung:
+                    „Die IT-Recht Kanzlei hat bereits weit über 40.000 gewerbliche Online-Präsenzen abgesichert“
+                    
+                    <br/><br/>
+                    
+                    <a href="http://www.it-recht-kanzlei.de/agb-starterpaket.php" tragte="_blank"><font size="3" color="#EF7D00"><u><strong>Jetzt das Starter-Paket der IT-Recht Kanzlei buchen -></strong/></u></font></a>
+                    <br/><br/>
+                    <b>Warum IT-Recht Kanzlei ?</b>
+                    <br/><br/>
+                    
+                    Mit dem AGB-Service der IT-Recht Kanzlei für Zen Cart erhalten Sie abmahnsichere Rechtstexte die durch die Fachanwälte der Kanzlei ständig überprüft und aktuell gehalten werden. Nach der einmaligen One-Klick-Installation überwacht und aktualisiert die - ohne Zusatzkosten -  im Leistungsumfang enthaltene AGB-Schnittstelle die Rechtstexte automatisch. Egal ob Übertragungsprobleme, beschädigte Seiten oder vielleicht doch einmal ein Serverausfall – falls die IT-Recht Kanzlei bei den Rechtstexten einen Fehler registriert, werden Sie umgehend informiert.
+<br/><br/>
+
+<b>Schutz vor Abmahnungen bei voller Kostenflexibiliät</b><br/>
+Sie können diesen AGB-Service genau so lange nutzen, wie Sie ihn brauchen und bei Bedarf jederzeit monatlich kündigen. Es ist kein Jahres-Abo und keine Mitgliedschaft erforderlich.
+<br/><br/>
+                    <b>Vorteile unseres AGB-Service für Zen Cart</b>
                     <ul>
-                      <li style="list-style-type: circle !important;"><strong>AGB</strong></li>
-                      <li style="list-style-type: circle !important;"><strong>Widerrufsbelehrung</strong></li>
-                      <li style="list-style-type: circle !important;"><strong>Datenschutzerkl&auml;rung</strong></li>
-                      <li style="list-style-type: circle !important;"><strong>Impressum</strong></li>
+                      <li style="list-style-type: circle !important;">Abmahnsichere AGB, Widerrufsbelehrung, Datenschutzerklärung & Impressum</li>
+                      <li style="list-style-type: circle !important;">Mehr als 50 kostenfreie eCommerce Muster & Handlungsanleitungen</li>
+                      <li style="list-style-type: circle !important;">Komfortable Integration in Ihren Zen Cart-Shop über die AGB-Schnittstelle</li>
+                      <li style="list-style-type: circle !important;">Automatische Überwachung und Aktualisierung der Rechtstexte</li>
+                       <li style="list-style-type: circle !important;">Keine Einrichtungsgebühr & keine versteckten Kosten</li>
+                        <li style="list-style-type: circle !important;">Keine Mitgliedschaft erforderlich</li>
+                        <li style="list-style-type: circle !important;">Jederzeit monatlich kündbar</li>
+                        <li style="list-style-type: circle !important;">Auf Wunsch inklusive anwaltlicher Tiefenprüfung Ihrer Zen Cart Präsenz auf rechtliche Fallstricke (z.B. im Bestellablauf & -prozess) im Rahmen unseres Unlimited-Pakets: <a href="http://www.it-recht-kanzlei.de/agb-paket-unlimited.php" target="_blank">http://www.it-recht-kanzlei.de/agb-paket-unlimited.php</a></li>
                     </ul>
                     <br />
-                    Die Einbindung funktioniert ganz einfach: Sie beantworten online ein paar Fragen zu Ihren Unternehmen. Anhand ihrer Angaben werden f&uuml;r 
-                    Ihren Shop optimierte Rechtstexte erstellt und mittels des Schnittstellenmoduls der IT-Recht Kanzlei automatisch an den richtigen Positionen 
-                    dargestellt. Sobald die Rechtslage sich &auml;ndert, aktualisieren die Anw&auml;lte der IT-Recht Kanzlei alle betroffenen Texte; die &Auml;nderungen 
-                    werden dann automatisch in Ihrem Webshop und - falls Sie das Modul pdf Rechnung verwenden - Ihren eMails eingepflegt.<br />Und wie f&uuml;r Anwaltskanzleien &uuml;blich, haftet die IT-Recht Kanzlei 
-                    auch f&uuml;r die Richtigkeit ihrer Texte. So unterst&uuml;tzen wir Sie nicht nur mit dauerhaft aktuellen Texten, sondern auch durch ein minimales 
-                    finanzielles Risiko. Das gibt ihnen die Sicherheit, optimal vor Abmahnungen gesch&uuml;tzt zu sein und sich in Ruhe dem operativen Gesch&auml;ft widmen 
-                    zu k&ouml;nnen.
+                   <b>Selbstverständlich: Anwaltliche Haftung</b>
+                   <br/><br/>
+                   Wie andere Rechtsanwaltskanzleien haften auch wir im Rahmen der gesetzlichen Bestimmungen für die Abmahnsicherheit der Rechtstexte.
                     <br /><br />
-                    Ihre Vorteile auf einen Blick:
-                    <br />
-                    <ul>
-                      <li style="list-style-type: circle !important;"><strong>Anwaltlich erstellte Dokumente f&uuml;r Ihren Webshop</strong></li>
-                      <li style="list-style-type: circle !important;"><strong>St&auml;ndige und automatisierte Aktualisierung f&uuml;r dauerhafte Rechtssicherheit</strong></li>
-                      <li style="list-style-type: circle !important;"><strong>Bequeme Integration durch das Schnittstellen-Modul</strong></li>
-                      <li style="list-style-type: circle !important;"><strong>Selbstverst&auml;ndlich: Haftung f&uuml;r die Richtigkeit der Texte</strong></li>
-                    </ul>
-                    <p align="left">
-                      <br />
-                      <a href="http://www.it-recht-kanzlei.de/Service/agb-online-shop.php?partner_id=zencartde" target="_blank"><font size="3" color="#EF7D00"><u><strong>Jetzt den Update-Service der IT-Recht Kanzlei buchen.</strong></u></font></a> 
-                    </p>
+                 <font size="3"><b>So geht´s</b></font>
+<br/><br/>
+<a href="http://www.it-recht-kanzlei.de/agb-starterpaket.php" target="_blank"><font size="3" color="#EF7D00"><u><strong>Jetzt das Starter-Paket der IT-Recht Kanzlei buchen -></strong></u></font></a> 
+<br/><br/>
+Danach erhalten Sie Ihre Zugangsdaten zu unserem Mandantenportal. Dort können Sie Ihre Rechtstexte komfortabel individualisieren und anschließend einmalig über die AGB-Schnittstelle in Ihren Zen Cart Shop integrieren.
+<br/><br/>
+Bei Fragen zur Integration stehen wir Ihnen natürlich sehr gerne – kostenfrei- zur Seite.
+<br/><br/>
+<b>Support</b><br/>
+Bei Fragen vor und nach Ihrer AGB-Service Anforderung stehen wir Ihnen telefonisch unter der Rufnummer 089-1304 433-0 oder per Mail unter info@it-recht-kanzlei.de zur Verfügung.
                   </td>
                 </tr>
               </table>
@@ -150,6 +171,7 @@ if (!is_null($_GET['token']) && $_GET['token'] == 'new') {
     </td>
     </tr>
   </table>
+</div>
   <!-- body_eof //-->
   <!-- footer //-->
   <?php require(DIR_WS_INCLUDES . 'footer.php'); ?>
