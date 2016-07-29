@@ -4,7 +4,7 @@
  * @copyright Copyright 2003-2016 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: it_recht_kanzlei_api.php 2016-06-27 12:50:51Z webchills $
+ * @version $Id: it_recht_kanzlei_api.php 2016-07-19 16:50:51Z webchills $
  */
 
 if (!defined('IS_ADMIN_FLAG')) {
@@ -97,7 +97,7 @@ class it_recht_kanzlei {
       }
       // Catch errors - rechtstext_language
       if ($xml->rechtstext_language == '') {
-        $this->return_error('9a');
+        $this->return_error('9');
       }
       // Catch errors - rechtstext_language not supported
       
@@ -110,8 +110,10 @@ class it_recht_kanzlei {
                                       
          if ($language_query->EOF)  { 
          	
-   $this->return_error('9b');
+   $this->return_error('9');
 }
+      
+      
      
       
       $local_dir_for_pdf_storage = 'includes/pdf/';

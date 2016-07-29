@@ -6,7 +6,7 @@
  * @copyright Copyright 2003-2016 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: checkout_process.php 730 2015-12-21 21:49:16Z hugo13 $
+ * @version $Id: checkout_process.php 731 2016-07-29 18:49:16Z webchills $
  */
 if (!defined('IS_ADMIN_FLAG')) {
   die('Illegal Access');
@@ -48,12 +48,11 @@ if (!isset($credit_covers)) $credit_covers = FALSE;
 // load selected payment module
 require(DIR_WS_CLASSES . 'payment.php');
 $payment_modules = new payment($_SESSION['payment']);
+require(DIR_WS_CLASSES . 'order.php');
+$order = new order;
 // load the selected shipping module
 require(DIR_WS_CLASSES . 'shipping.php');
 $shipping_modules = new shipping($_SESSION['shipping']);
-
-require(DIR_WS_CLASSES . 'order.php');
-$order = new order;
 
 // prevent 0-entry orders from being generated/spoofed
 if (sizeof($order->products) < 1) {

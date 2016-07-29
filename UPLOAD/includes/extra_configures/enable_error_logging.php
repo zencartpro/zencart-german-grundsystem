@@ -10,10 +10,10 @@
  * @package debug
  * @copyright Copyright 2003-2016 Zen Cart Development Team
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: enable_error_logging.php 771 2016-03-04 22:08:29Z webchills $
+ * @version $Id: enable_error_logging.php 772 2016-07-29 18:08:29Z webchills $
  */
 function zen_debug_error_handler ($errno, $errstr, $errfile, $errline) {
-  if (!(error_reporting() && $errno)) {
+  if (!(error_reporting() & $errno)) {
     return;
   }
   ob_start();

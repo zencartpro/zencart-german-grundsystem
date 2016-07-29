@@ -6,7 +6,7 @@
  * @copyright Copyright 2003-2016 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: jscript_main.php 731 2016-03-02 21:49:16Z webchills $
+ * @version $Id: jscript_main.php 732 2016-07-29 18:49:16Z webchills $
  */
 ?>
 <script type="text/javascript"><!--
@@ -63,11 +63,11 @@ function doCollectsCardDataOnsite()
 
     $(document).ready(function(){
       $('form[name="checkout_payment"]').submit(function() {
-          $('.paymentSubmit').attr('disabled', true);
+          $('#paymentSubmit').attr('disabled', true);
         <?php if ($flagOnSubmit) { ?>
           formPassed = check_form();
           if (formPassed == false) {
-              $('.paymentSubmit').attr('disabled', false);
+              $('#paymentSubmit').attr('disabled', false);
           }
           return formPassed;
         <?php } ?>

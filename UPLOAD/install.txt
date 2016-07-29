@@ -1,7 +1,7 @@
 ﻿Willkommen bei der deutschen Zen-Cart Version
 Version 1.5.5
 
-BETA vom 19.06.2016
+BETA vom 29.07.2016
 NUR ZUM TESTEN IN EINEM TESTSYSTEM - NICHT FÜR LIVESHOPS GEEIGNET
 
 Um Zen Cart zu installieren oder zu aktualisieren müssen Sie nur die Ordner/Dateien im Ordner UPLOAD hochladen!

@@ -4,7 +4,7 @@
  * @copyright Copyright 2003-2016 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: 1_0_0.php 2016-06-27 12:13:51Z webchills $
+ * @version $Id: 1_0_0.php 2016-07-19 16:13:51Z webchills $
  */
  
 $db->Execute(" SELECT @gid:=configuration_group_id
@@ -15,7 +15,7 @@ LIMIT 1;");
 
 $db->Execute("INSERT INTO ".TABLE_CONFIGURATION." (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, last_modified, date_added, use_function, set_function) VALUES
 ('IT Recht Kanzlei - Ist das Modul aktiv?', 'IT_RECHT_KANZLEI_STATUS', 'nein', 'Wollen Sie die Schnittstelle der IT Recht Kanzlei aktivieren?<br/>Bitte erst dann aktivieren, wenn Sie sich mit der Funktionsweise vertraut gemacht haben.', @gid, 1, NULL, NOW(), NULL, 'zen_cfg_select_option(array(''ja'', ''nein''),'),
-('IT Recht Kanzlei - API Token', 'IT_RECHT_KANZLEI_TOKEN', '".md5(time() . rand(0,99999))."', 'Authentifizierungs-Token den Sie der IT-Recht Kanzlei mitteilen.<br/>Diese Token können Sie hier nicht ändern. Falls Sie eine neue Token erstellen wollen, nutzen Sie dazu die entsprechende Option unter Tools > IT Recht Kanzlei.', @gid, 2, NULL, NOW(), NULL, 'zen_cfg_read_only('),
+('IT Recht Kanzlei - API Token', 'IT_RECHT_KANZLEI_TOKEN', '".md5(time() . rand(0,99999))."', 'Authentifizierungs-Token den Sie zur Übertragung im Mandantenportal der IT-Recht Kanzlei angeben.<br/>Diese Token können Sie hier nicht ändern. Falls Sie eine neue Token erstellen wollen, nutzen Sie dazu die entsprechende Option unter Tools > IT Recht Kanzlei.', @gid, 2, NULL, NOW(), NULL, 'zen_cfg_read_only('),
 ('IT Recht Kanzlei - API Version', 'IT_RECHT_KANZLEI_VERSION', '1.0', 'API Version der IT Recht Kanzlei Schnittstelle', @gid, 3, NULL, NOW(), NULL, 'zen_cfg_read_only('),
 ('IT Recht Kanzlei - EZ Page Kennung für Rechtstext AGB', 'IT_RECHT_KANZLEI_PAGE_KEY_AGB', 'itrk-agb', 'Bitte geben Sie die Kennung der EZ Page an, die Sie für die AGB angelegt haben. Die EZ Page wurde bei der Modulinstallation bereits entsprechend angelegt. In diese Seite wird dann der Rechtstext für die AGB automatisch eingefügt.<br/>Voreinstellung: itrk-agb', @gid, 4, NULL, NOW(), NULL, NULL),
 ('IT Recht Kanzlei - EZ Page Kennung für Rechtstext Datenschutzerklärung', 'IT_RECHT_KANZLEI_PAGE_KEY_DATENSCHUTZ', 'itrk-datenschutz', 'Bitte geben Sie die Kennung der EZ Page an, die Sie für die Datenschutzerklärung angelegt haben. Die EZ Page wurde bei der Modulinstallation bereits entsprechend angelegt. In diese Seite wird dann der Rechtstext für die Datenschutzerklärung automatisch eingefügt<br/>Voreinstellung: itrk-datenschutz.', @gid, 5, NULL, NOW(), NULL, NULL),
