@@ -4,7 +4,7 @@
  * @package Installer
  * @copyright Copyright 2003-2016 Zen Cart Development Team
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: lngDeutsch.php 7 2016-03-28 13:49:16Z webchills $
+ * @version $Id: lngDeutsch.php 8 2016-07-29 13:49:16Z webchills $
  */
 /**
  * defining language components for the page
@@ -220,36 +220,34 @@ define('TEXT_HELP_CONTENT_PHYSICALPATH', "This is the actual path (according to 
 
 
 define('TEXT_HELP_TITLE_DBHOST', 'Datenbank Host');
-define('TEXT_HELP_CONTENT_DBHOST', "Wie lautet der Datenbank Host?  Bei den meisten Providern lautet er 'localhost', es kann aber auch eine Domainagabe sein, z.B. 'db1.myserver.com', oder eine IP-Adresse wie z.B. '192.168.0.1'.");
+define('TEXT_HELP_CONTENT_DBHOST', "Wie lautet der Datenbank Host?<br/>Bei den meisten Providern lautet er 'localhost', es kann aber auch eine Domainangabe sein, z.B. 'db1.myserver.com', oder eine IP-Adresse wie z.B. '192.168.0.1'.");
 define('TEXT_HELP_TITLE_DBUSER', 'Datenbank Username');
-define('TEXT_HELP_CONTENT_DBUSER', "Wie lautet der Username für diese Datenbank? An example username is 'myusername_store'.<br>For PCI reasons you should NEVER user 'root' here.");
+define('TEXT_HELP_CONTENT_DBUSER', "Wie lautet der Username für diese Datenbank?<br/>Sie sollten NIEMALS den User root als Datenbankuser verwenden!<br/>Der Username für die Datenbank sollte in der Adminoberfläche Ihres Providers ersichtlich sein.");
 define('TEXT_HELP_TITLE_DBPASSWORD', 'Datenbank Passwort');
-define('TEXT_HELP_CONTENT_DBPASSWORD', "Wie lautet das Passwort für diesen Datenbankuser? als Sie die Datenbank angelegt haben, wurde auch ein Passwort erstellt. Sie finden es in der Regel in der Administrationsoberfläche Ihres Providers.");
+define('TEXT_HELP_CONTENT_DBPASSWORD', "Wie lautet das Passwort für diesen Datenbankuser?<br/>Als Sie die Datenbank angelegt haben, wurde auch ein Passwort erstellt. Sie finden es in der Regel in der Administrationsoberfläche Ihres Providers.");
 define('TEXT_HELP_TITLE_DBNAME', 'Datenbank Name');
-define('TEXT_HELP_CONTENT_DBNAME', "What is the name of the database used to hold the data? An example database name is 'zencart' or 'myaccount_zencart'.");
-define('TEXT_HELP_TITLE_DBNAME', 'Database Name');
-define('TEXT_HELP_CONTENT_DBNAME', "What is the name of the database used to hold the data? An example database name is 'zencart' or 'myaccount_zencart'.<br>NOTE: You must create this database BEFORE you can proceed with Zen Cart&reg; installation here.<br>You can create your MySQL database using your hosting company's control panel.");
+define('TEXT_HELP_CONTENT_DBNAME', "Wie lautet der Name der Datenbank? <br/>Als Sie die Datenbank angelegt haben wurde dieser Name wahrscheinlich automatisch vergeben. zencart ist nur ein Beispiel. Den Namen der Datenbank finden Sie in der Adminoberfläche Ihres Providers.");
 define('TEXT_HELP_TITLE_DEMODATA', TEXT_DATABASE_SETUP_LOAD_DEMO);
-define('TEXT_HELP_CONTENT_DEMODATA', "If you choose to load Demo Data, we will install a base set of products and categories, with sales and specials and attributes and more. These are useful for you to play around and see how various combinations can be set up and how they can look on your storefront.<br><br>You can certainly delete the demo products (by hand) later, or once you've toyed with the samples, you can re-run this install and choose to not install the demo data, and thus have a fully clean site for setting up your own new store.");
+define('TEXT_HELP_CONTENT_DEMODATA', "Die Installation der Demodaten ist nur für einen Testshop sinnvoll.<br/>Es werden Beispielkategorien und Beispielartikel installiert, die sehr nützlich sind, um sich mit der Funktionalität vertraut zu machen.<br><br>Für die Installation Ihres echten Shops kreuzen Sie die Demodaten NICHT an!");
 define('TEXT_HELP_TITLE_DBCHARSET', 'Datenbank Character Set');
 define('TEXT_HELP_CONTENT_DBCHARSET', "Lassen Sie diese Einstellung unbedingt auf UTF8.");
 define('TEXT_HELP_TITLE_DBPREFIX', 'Datenbank Präfix für Tabellennamen');
-define('TEXT_HELP_CONTENT_DBPREFIX', "What is the prefix you would like used for database tables?  Example: 'zen_'  <strong class='alert'>TIP: Leave empty if no prefix is needed.</strong><br />You can use prefixes to allow more than one store to share the same database.");
+define('TEXT_HELP_CONTENT_DBPREFIX', "Wir empfehlen KEIN Präfix zu verwenden und dieses Feld leer zu lassen<br/>Es ist nur dann sinnvoll, wenn Sie in einer Datenbank mehrere unterschiedliche System verwenden wollen, was definitiv für einen Liveshop nicht empfohlen ist<br/>Wenn Sie doch ein Präfix verwenden wollen, dann geben Sie es wie folgt an:<br/>prefix_");
 define('TEXT_HELP_TITLE_SQLCACHEMETHOD', 'SQL Caching Methode');
-define('TEXT_HELP_CONTENT_SQLCACHEMETHOD', "Default setting is 'none'. Alternatives are 'database' or 'file'. If your server is really slow, use 'none'. If your site is moderately busy, use 'database'. If your site is extremely high traffic, use 'file'. ");
+define('TEXT_HELP_CONTENT_SQLCACHEMETHOD', "Voreinstellung 'none' (=kein Caching)<br/>Alternativen sind 'Datenbank' (Datenbankcaching) oder 'Datei' (dateibasiertes Caching). ");
 define('TEXT_HELP_TITLE_SQLCACHEDIRECTORY', 'SQL Cache Directory');
 define('TEXT_HELP_CONTENT_SQLCACHEDIRECTORY', "Enter the directory to use for file-based caching. This is a directory/folder on your webserver, and its permissions must be set to writable so that the webserver (eg Apache) can write files to it.");
 
 define('TEXT_HELP_TITLE_ADMINUSER', 'Admin Superuser Name');
-define('TEXT_HELP_CONTENT_ADMINUSER', "This will be the primary username used to manage your admin access and other admin user accounts. It will have unrestricted privileges.");
+define('TEXT_HELP_CONTENT_ADMINUSER', "Dies ist der Benutzername für Ihren Admin Superuser. Dieser User hat alle Rechte und kann weitere Administratoren hinzufügen.");
 define('TEXT_HELP_TITLE_ADMINEMAIL', 'Admin Superuser Emailadresse');
-define('TEXT_HELP_CONTENT_ADMINEMAIL', "This email address will be used for password recovery in case you forget your password.");
+define('TEXT_HELP_CONTENT_ADMINEMAIL', "Geben Sie hier eine Emailadresse an, auf die Sie Zugriff haben. Sie wird verwendet, falls Sie das Passwort Ihres Adminusers vergessen haben um ein neues Passwort zuzusenden.");
 define('TEXT_HELP_TITLE_ADMINEMAIL2', 'Emailadresse erneut eintippen');
-define('TEXT_HELP_CONTENT_ADMINEMAIL2', "Please re-enter the email address. This is just to help catch accidental typos!");
+define('TEXT_HELP_CONTENT_ADMINEMAIL2', "Bitte geben Sie die Emailadresse erneut ein um Tippfehler zu vermeiden.");
 define('TEXT_HELP_TITLE_ADMINPASSWORD', 'Admin Superuser Passwort');
-define('TEXT_HELP_CONTENT_ADMINPASSWORD', "NOTIEREN SIE SICH DIESES PASSWORT!!!!! Mit diesem Passwort und em Usernamen, den Sie oben angegeben haben, steigen Sie in Ihren Adminbereich ein. Beim ersten Einstieg werden Sie möglicherweise aufgefordert, das Passwort zu ändern. Sie können es auch jederzeit später in der Administration ändern.<br><br><strong>NOTIEREN SIE SICH DIESES PASSWORT JETZT!</strong>");
+define('TEXT_HELP_CONTENT_ADMINPASSWORD', "NOTIEREN SIE SICH DIESES PASSWORT!!!!!<br/>Mit diesem Passwort und dem Usernamen, den Sie oben angegeben haben, steigen Sie in Ihren Adminbereich ein. Beim ersten Einstieg werden Sie möglicherweise aufgefordert, das Passwort zu ändern. Sie können es auch jederzeit später in der Administration ändern.<br><br><strong>NOTIEREN SIE SICH DIESES PASSWORT JETZT!</strong>");
 define('TEXT_HELP_TITLE_ADMINDIRECTORY', 'Admin Verzeichnis');
-define('TEXT_HELP_CONTENT_ADMINDIRECTORY', "We try to rename your admin folder for you automatically, to offer a degree of security-by-obscurity. While we understand that this doesn't make it foolproof, it does discourage unauthorized visitors from attacking your site. You may still consider changing the foldername yourself (just rename the folder to whatever you wish it to be, by using your FTP program or your hosting company's File Manager tool in your hosting control panel).");
+define('TEXT_HELP_CONTENT_ADMINDIRECTORY', "Wir veruchen Ihr Adminverzeichnis automatisch umzubenennen. Es darf nicht weiterhin admin heißen.<br/>Sie können das admin Verzeichnis jederzeit später erneut per FTP umbenennen.");
 
 define('TEXT_VERSION_CHECK_NEW_VER', 'Neue Version verfügbar v');
 define('TEXT_VERSION_CHECK_NEW_PATCH', 'Neuer PATCH verfügbar: v');

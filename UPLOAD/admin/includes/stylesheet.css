@@ -3,7 +3,7 @@
  * @copyright Copyright 2003-2016 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: stylesheet.css 844 2016-04-05 19:33:58Z webchills $
+ * @version $Id: stylesheet.css 845 2016-07-29 19:33:58Z webchills $
  */
 @import url("css/bootstrap.min.css");
 /* @import url("//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"); */
@@ -134,52 +134,7 @@ body {
     clear: both;
 }
 
-body#login {
-    margin-top: 100px;
-    text-align: center;
-}
 
-body#login .button {
-    cursor: pointer;
-    padding: 5px 20px;
-    margin-top: 10px;
-    background: #fff;
-    border: 0px;
-    font-weight: bold;
-    margin: 5px;
-}
-
-body#login .button:hover {
-    color: #fff;
-    background-color: #333;
-}
-
-body#login fieldset {
-    margin: 0 auto;
-    background-color: #05a5cb;
-    padding-bottom: 30px;
-}
-
-.loginLabel {
-    margin-left: 60px;
-    margin-right: 5px;
-    text-align: right;
-    line-height: 1.5;
-}
-
-body#login legend {
-    background: #333;
-    border: 1px solid #333;
-    color: #fff;
-    padding: 0.2em 0.5em;
-}
-
-#login a {
-    float: right;
-    color: #fff;
-    font-size: 1em;
-    margin: 20px;
-}
 
 checkbox, input, radio, select, textarea, file {
     font-size: 11px;

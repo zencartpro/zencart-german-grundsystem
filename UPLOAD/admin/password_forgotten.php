@@ -4,7 +4,7 @@
  * @copyright Copyright 2003-2016 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: password_forgotten.php 732 2016-03-04 22:10:16Z webchills $
+ * @version $Id: password_forgotten.php 733 2016-07-29 22:10:16Z webchills $
  */
 // reset-token is good for only 24 hours:
 define('ADMIN_PWD_TOKEN_DURATION', (24 * 60 * 60) );
@@ -67,7 +67,7 @@ if (isset($_POST['submit'])) {
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=<?php echo CHARSET; ?>">
         <title><?php echo TITLE; ?></title>
-        <link href="includes/stylesheet.css" rel="stylesheet" type="text/css">
+        <link href="includes/login.css" rel="stylesheet" type="text/css">
         <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
         <meta name="robots" content="noindex, nofollow"/>
     </head>

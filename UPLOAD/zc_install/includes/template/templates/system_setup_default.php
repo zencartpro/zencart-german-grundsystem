@@ -3,7 +3,7 @@
  * @package Installer
  * @copyright Copyright 2003-2016 Zen Cart Development Team
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: system_setup_default.php 2 2016-02-28 21:59:53Z webchills $
+ * @version $Id: system_setup_default.php 3 2016-07-29 21:59:53Z webchills $
  */
 require(DIR_FS_INSTALL . DIR_WS_INSTALL_TEMPLATE . 'partials/partial_modal_help.php');
 ?>
@@ -17,7 +17,7 @@ require(DIR_FS_INSTALL . DIR_WS_INSTALL_TEMPLATE . 'partials/partial_modal_help.
   <input type="hidden" name="adminDir" value="<?php echo $adminDir; ?>">
   <input type="hidden" name="db_type" value="<?php echo $db_type; ?>">
   <fieldset>
-    <legend>License</legend>
+    <legend>Lizenzvereinbarung</legend>
     <div class="row">
       <div class="small-3 columns">
         <label class="inline" for="agreeLicense"><a href="#" class="hasHelpText" id="AGREETOTERMS"><?php echo TEXT_SYSTEM_SETUP_AGREE_LICENSE; ?></a></label>

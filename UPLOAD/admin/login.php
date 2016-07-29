@@ -4,7 +4,7 @@
  * @copyright Copyright 2003-2016 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: login.php 733 2016-03-27 18:49:16Z webchills $
+ * @version $Id: login.php 734 2016-07-29 18:49:16Z webchills $
  */
 require ('includes/application_top.php');
 define('ADMIN_SWITCH_SEND_LOGIN_FAILURE_EMAILS', 'Yes'); // Can be set to 'No' if you don't want warning/courtesy emails to be sent after several login failures have occurred
@@ -64,7 +64,7 @@ if ($expired && $message == '') $message = sprintf(ERROR_PASSWORD_EXPIRED . ' ' 
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=<?php echo CHARSET; ?>">
         <title><?php echo TITLE; ?></title>
-        <link href="includes/stylesheet.css" rel="stylesheet" type="text/css"/>
+        <link href="includes/login.css" rel="stylesheet" type="text/css"/>
         <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
         <meta name="robots" content="noindex, nofollow"/>
         <script type="text/javascript"><!--
@@ -113,7 +113,7 @@ if ($expired && $message == '') $message = sprintf(ERROR_PASSWORD_EXPIRED . ' ' 
                     </div>
                     <br class="clearBoth"/>
                     <p class="messageStackError"><?php echo $message; ?></p>
-                    <img id="actionImg" src="images/loading.gif" class="hiddenField"/>
+                    
                     <br/><a href="<?php echo zen_href_link(FILENAME_PASSWORD_FORGOTTEN, '', 'SSL'); ?>"><?php echo TEXT_PASSWORD_FORGOTTEN; ?></a>
                 </fieldset>
                 </form>
