@@ -9,7 +9,7 @@
  * @copyright Copyright 2003-2016 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: tpl_account_history_info_default.php for pdf rechnung 3.5 2016-06-03 11:22:05Z webchills $
+ * @version $Id: tpl_account_history_info_default.php 2016-08-14 09:22:05Z webchills $
  */
 ?>
 <div class="centerColumn" id="accountHistInfo">
@@ -149,7 +149,7 @@ if (sizeof($statusArray)) {
 <div><?php echo $order->info['payment_method']; ?></div>
 </div>
 <br class="clearBoth" />
-// BOF pdf Rechnung
+
 <?php if(RL_INVOICE3_STATUS=='true') {?>
 <?php
     require_once(DIR_WS_INCLUDES . 'classes/class.rl_invoice3.php');
@@ -170,5 +170,5 @@ if (sizeof($statusArray)) {
     echo $tmp1 . substr($tmp, 1);
 ?>
 <?php } ?>
-// EOF pdf Rechnung
+
 </div> 

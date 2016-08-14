@@ -5,7 +5,7 @@
  * @package initSystem
  * @copyright Copyright 2003-2016 Zen Cart Development Team
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: init_sanitize.php 735 2016-05-08 09:49:16Z webchills $
+ * @version $Id: init_sanitize.php 736 2016-08-14 09:49:16Z webchills $
  */
 
 if (!defined('DO_STRICT_SANITIZATION')) {
@@ -211,7 +211,7 @@ $sanitizer->addComplexSanitization($group);
 $group = array('customers_email_address');
 $sanitizer->addSimpleSanitization('SANITIZE_EMAIL', $group);
 
-$group = array('products_description', 'coupon_desc', 'file_contents', 'categories_description', 'message_html', 'banners_html_text', 'pages_html_text', 'comments');
+$group = array('products_description', 'products_taxonomy', 'coupon_desc', 'file_contents', 'categories_description', 'message_html', 'banners_html_text', 'pages_html_text', 'comments');
 $sanitizer->addSimpleSanitization('PRODUCT_DESC_REGEX', $group);
 
 $group = array('products_url');

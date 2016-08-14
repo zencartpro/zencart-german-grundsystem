@@ -1,0 +1,375 @@
+<?php
+/**
+ * @package admin
+ * @copyright Copyright 2003-2016 Zen Cart Development Team
+ * @copyright Portions Copyright 2003 osCommerce
+ * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
+ * @version $Id: adresskorrektur.php 2016-08-01 16:13:51Z webchills $
+ */
+  
+require('includes/application_top.php');
+
+// Use the normal order class instead of the admin one
+include(DIR_FS_CATALOG . DIR_WS_CLASSES . 'order.php');
+
+$oID = zen_db_prepare_input($_GET['oID']);
+  
+
+  $action = (isset($_GET['action']) ? $_GET['action'] : 'edit');
+
+  if (zen_not_null($action)) {
+    
+
+    switch ($action) {
+
+	// Update Order
+	case 'update_order':
+		
+
+		$order_updated = false;
+		$sql_data_array = array(
+			'customers_name' => zen_db_prepare_input($_POST['update_customer_name']),
+			'customers_company' => zen_db_prepare_input($_POST['update_customer_company']),
+			'customers_street_address' => zen_db_prepare_input($_POST['update_customer_street_address']),
+			'customers_suburb' => zen_db_prepare_input($_POST['update_customer_suburb']),
+			'customers_city' => zen_db_prepare_input($_POST['update_customer_city']),
+			'customers_state' => zen_db_prepare_input($_POST['update_customer_state']),
+			'customers_postcode' => zen_db_prepare_input($_POST['update_customer_postcode']),
+			'customers_country' => zen_db_prepare_input($_POST['update_customer_country']),
+			'customers_telephone' => zen_db_prepare_input($_POST['update_customer_telephone']),
+			'customers_email_address' => zen_db_prepare_input($_POST['update_customer_email_address']),
+			
+
+			'billing_name' => zen_db_prepare_input($_POST['update_billing_name']),
+			'billing_company' => zen_db_prepare_input($_POST['update_billing_company']),
+			'billing_street_address' => zen_db_prepare_input($_POST['update_billing_street_address']),
+			'billing_suburb' => zen_db_prepare_input($_POST['update_billing_suburb']),
+			'billing_city' => zen_db_prepare_input($_POST['update_billing_city']),
+			'billing_state' => zen_db_prepare_input($_POST['update_billing_state']),
+			'billing_postcode' => zen_db_prepare_input($_POST['update_billing_postcode']),
+			'billing_country' => zen_db_prepare_input($_POST['update_billing_country']),
+
+			'delivery_name' => zen_db_prepare_input($_POST['update_delivery_name']),
+			'delivery_company' => zen_db_prepare_input($_POST['update_delivery_company']),
+			'delivery_street_address' => zen_db_prepare_input($_POST['update_delivery_street_address']),
+			'delivery_suburb' => zen_db_prepare_input($_POST['update_delivery_suburb']),
+			'delivery_city' => zen_db_prepare_input($_POST['update_delivery_city']),
+			'delivery_state' => zen_db_prepare_input($_POST['update_delivery_state']),
+			'delivery_postcode' => zen_db_prepare_input($_POST['update_delivery_postcode']),
+			'delivery_country' => zen_db_prepare_input($_POST['update_delivery_country'])
+			
+		);
+
+		
+
+		
+
+		zen_db_perform(TABLE_ORDERS, $sql_data_array, 'update', 'orders_id = \'' . (int)$oID . '\'');
+		unset($sql_data_array);
+$order_updated = true;
+	
+		       
+
+		if($order_updated) {
+			$messageStack->add_session(SUCCESS_ORDER_UPDATED, 'success');
+		}
+		else {
+			$messageStack->add_session(WARNING_ORDER_NOT_UPDATED, 'warning');
+		}
+
+        
+
+    zen_redirect(zen_href_link(FILENAME_ADRESSKORREKTUR, zen_get_all_get_params(array('action')) . 'action=edit', 'NONSSL'));
+     break;
+
+   
+    }
+  }
+
+  if (($action == 'edit') && isset($_GET['oID'])) {
+    $orders_query = $db->Execute("select orders_id from " . TABLE_ORDERS . " where orders_id = '" . (int)$oID . "'");
+    $order_exists = true;
+    if (!$orders_query->RecordCount()) {
+      $order_exists = false;
+      $messageStack->add(sprintf(ERROR_ORDER_DOES_NOT_EXIST, $oID), 'error');
+    } else {
+        $order = adresskorrektur_get_order_by_id($oID);
+
+        
+    }
+  }
+
+?>
+<!doctype html public "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html <?php echo HTML_PARAMS; ?>>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=<?php echo CHARSET; ?>">
+<title><?php echo TITLE; ?></title>
+<link rel="stylesheet" type="text/css" href="includes/stylesheet.css">
+<link rel="stylesheet" type="text/css" href="includes/cssjsmenuhover.css" media="all" id="hoverJS">
+<script language="javascript" src="includes/menu.js"></script>
+<script language="javascript" src="includes/general.js"></script>
+<script type="text/javascript">
+  <!--
+  function init()
+  {
+    cssjsmenu('navbar');
+    if (document.getElementById)
+    {
+      var kill = document.getElementById('hoverJS');
+      kill.disabled = true;
+    }
+  }
+  // -->
+</script>
+</head>
+<body onload="init()">
+<!-- header //-->
+<div class="header-area">
+<?php
+	require(DIR_WS_INCLUDES . 'header.php');
+?>
+</div>
+<!-- header_eof //-->
+<?php
+  if (($action == 'edit') && ($order_exists == true)) {
+    
+// BEGIN - Add Super Orders Order Navigation Functionality
+    $get_prev = $db->Execute("SELECT orders_id FROM " . TABLE_ORDERS . " WHERE orders_id < '" . $oID . "' ORDER BY orders_id DESC LIMIT 1");
+
+    if (zen_not_null($get_prev->fields['orders_id'])) {
+      $prev_button = '            <INPUT class="normal_button button" TYPE="BUTTON" VALUE="<<< ' . $get_prev->fields['orders_id'] . '" ONCLICK="window.location.href=\'' . zen_href_link(FILENAME_ORDERS, 'oID=' . $get_prev->fields['orders_id'] . '&action=edit') . '\'">';
+    }
+    else {
+      $prev_button = '            <INPUT class="normal_button button" TYPE="BUTTON" VALUE="' . BUTTON_TO_LIST . '" ONCLICK="window.location.href=\'' . zen_href_link(FILENAME_ORDERS) . '\'">';
+    }
+
+
+    $get_next = $db->Execute("SELECT orders_id FROM " . TABLE_ORDERS . " WHERE orders_id > '" . $oID . "' ORDER BY orders_id ASC LIMIT 1");
+
+    if (zen_not_null($get_next->fields['orders_id'])) {
+      $next_button = '            <INPUT class="normal_button button" TYPE="BUTTON" VALUE="' . $get_next->fields['orders_id'] . ' >>>" ONCLICK="window.location.href=\'' . zen_href_link(FILENAME_ORDERS, 'oID=' . $get_next->fields['orders_id'] . '&action=edit') . '\'">';
+    }
+    else {
+      $next_button = '            <INPUT class="normal_button button" TYPE="BUTTON" VALUE="' . BUTTON_TO_LIST . '" ONCLICK="window.location.href=\'' . zen_href_link(FILENAME_ORDERS) . '\'">';
+  }
+// END - Add Super Orders Order Navigation Functionality
+?>
+<!-- body //-->
+<table border="0" width="100%" cellspacing="2" cellpadding="2">
+  <tr>
+<!-- body_text //-->
+    <td width="100%" valign="top"><table border="0" width="100%" cellspacing="0" cellpadding="2">
+
+  <tr>
+        <td width="100%"><table border="0" width="100%" cellspacing="0" cellpadding="0">
+          <tr>
+<!-- BEGIN - Add Super Orders Order Navigation Functionality -->
+            <td class="pageHeading"> &nbsp; </td>
+            <td class="pageHeading" align="right"><?php echo zen_draw_separator('pixel_trans.gif', 1, HEADING_IMAGE_HEIGHT); ?></td>
+            <td class="main" valign="middle"> &nbsp; </td>
+            <td align="center">
+	    <table border="0" cellspacing="3" cellpadding="0">
+              <tr>
+                <td class="main" align="center" valign="bottom"><?php echo $prev_button; ?></td>
+                <td class="smallText" align="center" valign="bottom"><?php
+                  echo SELECT_ORDER_LIST . '<br />';
+                  echo zen_draw_form('input_oid', FILENAME_ORDERS, '', 'get', '', true);
+                  echo zen_draw_input_field('oID', '', 'size="6"');
+                  echo zen_draw_hidden_field('action', 'edit');
+                  echo '</form>';
+                ?></td>
+                <td class="main" align="center" valign="bottom"><?php echo $next_button; ?></td>
+              </tr>
+            </table>
+	    </td>
+<!-- END - Add Super Orders Order Navigation Functionality -->
+					<td class="pageHeading" align="right"> &nbsp; </td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+
+
+      <tr>
+        <td width="100%"><table border="0" width="100%" cellspacing="0" cellpadding="0">
+          <tr>
+            <td class="pageHeading"><?php echo HEADING_TITLE; ?> #<?php echo $oID; ?></td>
+            <td class="pageHeading" align="right"><?php echo zen_draw_separator('pixel_trans.gif', 1, HEADING_IMAGE_HEIGHT); ?></td>
+            <td class="pageHeading" align="right">
+	    <?php echo '<a href="' . zen_href_link(FILENAME_ORDERS, zen_get_all_get_params(array('action'))) . '">' . zen_image_button('button_back.gif', IMAGE_BACK) . '</a>'; ?>
+	    <?php echo '<a href="' . zen_href_link(FILENAME_ORDERS, zen_get_all_get_params(array('oID', 'action')) . 'oID=' . $oID . '&amp;action=edit', 'NONSSL') . '">' . zen_image_button('button_details.gif', IMAGE_ORDER_DETAILS) . '</a>'; ?>
+	    </td>
+         </tr>
+        </table></td>
+      </tr>
+
+
+<!-- Begin Addresses Block -->
+      <tr>
+      <td><?php echo zen_draw_form('adresskorrektur', FILENAME_ADRESSKORREKTUR, zen_get_all_get_params(array('action')) . 'action=update_order'); ?>
+      <table width="100%" border="0">
+	  <tr>
+	  <td>
+      <table width="100%" border="0">
+ <tr>
+    <td>&nbsp;</td>
+    <td valign="top"><strong><?php echo ENTRY_CUSTOMER; ?></strong></td>
+    <td>&nbsp;</td>
+    <td valign="top"><strong><?php echo ENTRY_BILLING_ADDRESS; ?></strong></td>
+    <td>&nbsp;</td>
+    <td valign="top"><strong><?php echo ENTRY_SHIPPING_ADDRESS; ?></strong></td>
+  </tr>
+ <tr>
+    <td>&nbsp;</td>
+    <td valign="top"><?php echo zen_image(DIR_WS_IMAGES . 'icon_adresskorrektur_kunde.png', ENTRY_CUSTOMER); ?></td>
+    <td>&nbsp;</td>
+    <td valign="top"><?php echo zen_image(DIR_WS_IMAGES . 'icon_adresskorrektur_rechnungsadresse.png', ENTRY_BILLING_ADDRESS); ?></td>
+    <td>&nbsp;</td>
+    <td valign="top"><?php echo zen_image(DIR_WS_IMAGES . 'icon_adresskorrektur_lieferadresse.png', ENTRY_SHIPPING_ADDRESS); ?></td>
+  </tr>
+
+  <tr>
+    <td valign="top"><strong><?php echo ENTRY_CUSTOMER_NAME; ?>:&nbsp;</strong></td>
+    <td valign="top"><input name="update_customer_name" size="45" value="<?php echo zen_html_quotes($order->customer['name']); ?>"></td>
+	<td valign="top"><strong><?php echo ENTRY_CUSTOMER_NAME; ?>:&nbsp;</strong></td>
+    <td valign="top"><input name="update_billing_name" size="45" value="<?php echo zen_html_quotes($order->billing['name']); ?>"></td>
+    <td valign="top"><strong><?php echo ENTRY_CUSTOMER_NAME; ?>:&nbsp;</strong></td>
+    <td valign="top"><input name="update_delivery_name" size="45" value="<?php echo zen_html_quotes($order->delivery['name']); ?>"></td>
+  </tr>
+  <tr>
+    <td valign="top"><strong><?php echo ENTRY_CUSTOMER_COMPANY; ?>:&nbsp;</strong></td>
+    <td valign="top"><input name="update_customer_company" size="45" value="<?php echo zen_html_quotes($order->customer['company']); ?>"></td>
+    <td valign="top"><strong><?php echo ENTRY_CUSTOMER_COMPANY; ?>:&nbsp;</strong></td>
+    <td valign="top"><input name="update_billing_company" size="45" value="<?php echo zen_html_quotes($order->billing['company']); ?>"></td>
+    <td valign="top"><strong><?php echo ENTRY_CUSTOMER_COMPANY; ?>:&nbsp;</strong></td>
+    <td valign="top"><input name="update_delivery_company" size="45" value="<?php echo zen_html_quotes($order->delivery['company']); ?>"></td>
+  </tr>
+  <tr>
+    <td valign="top"><strong><?php echo ENTRY_CUSTOMER_ADDRESS; ?>:&nbsp;</strong></td>
+    <td valign="top"><input name="update_customer_street_address" size="45" value="<?php echo zen_html_quotes($order->customer['street_address']); ?>"></td>
+    <td valign="top"><strong> <?php echo ENTRY_CUSTOMER_ADDRESS; ?>:&nbsp;</strong></td>
+    <td valign="top"><input name="update_billing_street_address" size="45" value="<?php echo zen_html_quotes($order->billing['street_address']); ?>"></td>
+    <td valign="top"><strong> <?php echo ENTRY_CUSTOMER_ADDRESS; ?>:&nbsp;</strong></td>
+    <td valign="top"><input name="update_delivery_street_address" size="45" value="<?php echo zen_html_quotes($order->delivery['street_address']); ?>"></td>
+  </tr>
+  <tr>
+    <td valign="top"><strong><?php echo ENTRY_CUSTOMER_SUBURB; ?>:&nbsp;</strong></td>
+    <td valign="top"><input name="update_customer_suburb" size="45" value="<?php echo zen_html_quotes($order->customer['suburb']); ?>"></td>
+    <td valign="top"><strong> <?php echo ENTRY_CUSTOMER_SUBURB; ?>:&nbsp;</strong></td>
+    <td valign="top"><input name="update_billing_suburb" size="45" value="<?php echo zen_html_quotes($order->billing['suburb']); ?>"></td>
+    <td valign="top"><strong> <?php echo ENTRY_CUSTOMER_SUBURB; ?>:&nbsp;</strong></td>
+    <td valign="top"><input name="update_delivery_suburb" size="45" value="<?php echo zen_html_quotes($order->delivery['suburb']); ?>"></td>
+  </tr>
+  <tr>
+    <td valign="top"><strong><?php echo ENTRY_CUSTOMER_CITY; ?>:&nbsp;</strong></td>
+    <td valign="top"><input name="update_customer_city" size="45" value="<?php echo zen_html_quotes($order->customer['city']); ?>"></td>
+    <td valign="top"><strong><?php echo ENTRY_CUSTOMER_CITY; ?>:&nbsp;</strong></td>
+    <td valign="top"><input name="update_billing_city" size="45" value="<?php echo zen_html_quotes($order->billing['city']); ?>"></td>
+    <td valign="top"><strong><?php echo ENTRY_CUSTOMER_CITY; ?>:&nbsp;</strong></td>
+    <td valign="top"><input name="update_delivery_city" size="45" value="<?php echo zen_html_quotes($order->delivery['city']); ?>"></td>
+  </tr>
+  <tr>
+    <td valign="top"><strong><?php echo ENTRY_CUSTOMER_STATE; ?>:&nbsp;</strong></td>
+    <td valign="top"><input name="update_customer_state" size="45" value="<?php echo zen_html_quotes($order->customer['state']); ?>"></td>
+    <td valign="top"><strong><?php echo ENTRY_CUSTOMER_STATE; ?>:&nbsp;</strong></td>
+    <td valign="top"><input name="update_billing_state" size="45" value="<?php echo zen_html_quotes($order->billing['state']); ?>"></td>
+    <td valign="top"><strong><?php echo ENTRY_CUSTOMER_STATE; ?>:&nbsp;</strong></td>
+    <td valign="top"><input name="update_delivery_state" size="45" value="<?php echo zen_html_quotes($order->delivery['state']); ?>"></td>
+  </tr>
+  <tr>
+    <td valign="top"><strong><?php echo ENTRY_CUSTOMER_POSTCODE; ?>:&nbsp;</strong></td>
+    <td valign="top"><input name="update_customer_postcode" size="45" value="<?php echo zen_html_quotes($order->customer['postcode']); ?>"></td>
+    <td valign="top"><strong><?php echo ENTRY_CUSTOMER_POSTCODE; ?>:&nbsp;</strong></td>
+    <td valign="top"><input name="update_billing_postcode" size="45" value="<?php echo zen_html_quotes($order->billing['postcode']); ?>"></td>
+    <td valign="top"><strong><?php echo ENTRY_CUSTOMER_POSTCODE; ?>:&nbsp;</strong></td>
+    <td valign="top"><input name="update_delivery_postcode" size="45" value="<?php echo zen_html_quotes($order->delivery['postcode']); ?>"></td>
+  </tr>
+  <tr>
+    <td valign="top"><strong><?php echo ENTRY_CUSTOMER_COUNTRY; ?>:&nbsp;</strong></td>
+    <td valign="top">
+			<input name="update_customer_country" size="45" value="<?php echo zen_html_quotes($order->customer['country']); ?>">
+	
+    </td>
+    <td valign="top"><strong><?php echo ENTRY_CUSTOMER_COUNTRY; ?>:&nbsp;</strong></td>
+    <td valign="top">
+			<input name="update_billing_country" size="45" value="<?php echo zen_html_quotes($order->billing['country']); ?>">
+		
+	</td>
+    <td valign="top"><strong><?php echo ENTRY_CUSTOMER_COUNTRY; ?>:&nbsp;</strong></td>
+    <td valign="top">
+			<input name="update_delivery_country" size="45" value="<?php echo zen_html_quotes($order->delivery['country']); ?>">
+		
+  </tr>
+</table>
+</td></tr></table>
+<!-- End Addresses Block -->
+
+      <tr>
+	<td><?php echo zen_draw_separator('pixel_trans.gif', '1', '10'); ?></td>
+      </tr>
+
+<!-- Begin Phone/Email Block -->
+      <tr>
+        <td><table border="0" cellspacing="0" cellpadding="2">
+      		<tr>
+      		  <td class="main"><strong><?php echo ENTRY_TELEPHONE_NUMBER; ?></strong></td>
+      		  <td class="main"><input name='update_customer_telephone' size='35' value='<?php echo zen_html_quotes($order->customer['telephone']); ?>'></td>
+      		</tr>
+      		<tr>
+      		  <td class="main"><strong><?php echo ENTRY_EMAIL_ADDRESS; ?></strong></td>
+      		  <td class="main"><input name='update_customer_email_address' size='35' value='<?php echo zen_html_quotes($order->customer['email_address']); ?>'></td>
+      		</tr>
+      	</table></td>
+      </tr>
+<!-- End Phone/Email Block -->
+
+      <tr>
+	<td><?php echo zen_draw_separator('pixel_trans.gif', '1', '10'); ?></td>
+      </tr>
+
+
+<!-- bof Update Button -->
+      <tr>
+	<td valign="top"><div align="center"><?php echo zen_image_submit('button_update.gif', IMAGE_UPDATE); ?></div></td>
+      </tr>
+<!-- eof Update Button -->
+
+    
+
+
+     
+
+      
+     
+      
+     
+      
+      
+
+
+
+     
+       
+     
+
+      
+  </form>
+
+
+    </table></td>
+<!-- body_text_eof //-->
+  </tr>
+</table>
+<?php } ?>
+<!-- body_eof //-->
+
+<!-- footer //-->
+<?php require(DIR_WS_INCLUDES . 'footer.php'); ?>
+<!-- footer_eof //-->
+<br>
+</body>
+</html>
+<?php
+unset ($_SESSION['customer_id']);
+require(DIR_WS_INCLUDES . 'application_bottom.php');

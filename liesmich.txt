@@ -1,7 +1,7 @@
 ﻿Willkommen bei der deutschen Zen-Cart Version
 Version 1.5.5 BETA
 
-BETA vom 29.07.2016
+BETA vom 14.08.2016
 NUR ZUM TESTEN IN EINEM TESTSYSTEM - NOCH NICHT FÜR LIVESHOPS GEEIGNET
 
 Um Zen Cart 1.5.5 Beta zu installieren nur die Ordner/Dateien im Ordner UPLOAD hochladen!
@@ -27,7 +27,7 @@ Neue Funktionen gegenüber 1.5.4
 Generell:
 Unterstützung von PHP 7 
 Verbesserte Unterstützung von MySQL 5.7
-Neues responsives HTML 5 Standardtemplate (classic_responsive)
+Neues responsives HTML 5 Standardtemplate (responsive_classic)
 vereinfachte Installation
 
 Neue Funktionen (Auszug):
@@ -50,3 +50,4 @@ Mehrsprachige Ländernamen integriert
 MailBeez integriert
 IT Recht Kanzlei Schnittstelle zur automatischen Aktualisierung der Rechtstexte integriert
 pdf Rechnung integriert
+Bei Bestellungen können die Adressdaten korrigiert werden

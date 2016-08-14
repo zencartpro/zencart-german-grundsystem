@@ -6,7 +6,7 @@
  * @copyright Copyright 2003-2016 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: whos_online.php 730 2016-07-29 18:49:16Z webchills $
+ * @version $Id: whos_online.php 731 2016-08-15 09:49:16Z webchills $
  */
 /**
  * zen_update_whos_online
@@ -45,7 +45,12 @@ function zen_update_whos_online() {
   }
   if (substr($uri, -1)=='?') $uri = substr($uri,0,strlen($uri)-1);
   $wo_last_page_url = (zen_not_null($uri) ? substr($uri, 0, 254) : 'Unknown');
-
+  // MailBeez
+  // avoid /mailhive.php?cron_simple=1 in who is online table
+  if (preg_match("/mailhive.php/", $wo_last_page_url)) {
+   return false;
+  }
+  // - MailBeez
   $current_time = time();
   $xx_mins_ago = ($current_time - 900);
 

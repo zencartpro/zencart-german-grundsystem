@@ -806,6 +806,11 @@ INSERT INTO configuration (configuration_title, configuration_key, configuration
 INSERT INTO admin_pages (page_key, language_key, main_page, page_params, menu_key, display_on_menu, sort_order) VALUES
 ('stats_disabled_stock', 'BOX_REPORTS_DISABLED_STOCK', 'FILENAME_STATS_DISABLED_STOCK', '', 'reports', 'Y', 7);
 
+### Adresskorrektur Berechtigung ###
+
+INSERT INTO admin_pages (page_key, language_key, main_page, page_params, menu_key, display_on_menu, sort_order) VALUES
+('adresskorrekturvornehmen', 'DO_ADRESSKORREKTUR', 'FILENAME_ADRESSKORREKTUR', '', 'customers', 'N', 101);
+
 ### make sure that we use the latest translations for German configuration ###
 
 REPLACE INTO configuration_language (configuration_title, configuration_key, configuration_language_id, configuration_description, last_modified, date_added) VALUES
