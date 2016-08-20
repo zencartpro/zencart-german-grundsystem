@@ -6,7 +6,7 @@
  * @copyright Copyright 2003-2016 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: currencies.php 730 2015-12-21 20:49:16Z webchills $
+ * @version $Id: currencies.php 731 2016-08-20 10:49:16Z webchills $
  */
 if (!defined('IS_ADMIN_FLAG')) {
   die('Illegal Access');
@@ -121,6 +121,6 @@ class currencies extends base {
   }
 
   function display_price($products_price, $products_tax, $quantity = 1) {
-    return $this->format(zen_add_tax($products_price, $products_tax) * $quantity);
+    return $this->format(zen_round(zen_add_tax($products_price, $products_tax), 2) * $quantity); 
   }
 }

@@ -6,7 +6,7 @@
  * @copyright Copyright 2003-2016 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: shopping_cart.php 774 2015-12-21 20:08:29Z webchills $
+ * @version $Id: shopping_cart.php 775 2016-08-20 10:08:29Z webchills $
  */
 
 if (!defined('IS_ADMIN_FLAG')) {
@@ -949,7 +949,7 @@ class shoppingCart extends base {
 */
 //echo 'shopping_cart class Price: ' . $productTotal . ' qty: ' . $qty . '<br>';
 
-      $this->total += zen_round(zen_add_tax($productTotal, $products_tax), $decimalPlaces) * $qty;
+      $this->total += zen_round(zen_add_tax($productTotal, $products_tax), 2) * $qty;
       $this->total += zen_round(zen_add_tax($totalOnetimeCharge, $products_tax), $decimalPlaces);
       $this->free_shipping_price += zen_round(zen_add_tax($freeShippingTotal, $products_tax), $decimalPlaces) * $qty;
       if (($product->fields['product_is_always_free_shipping'] == 1) or ($product->fields['products_virtual'] == 1) or (preg_match('/^GIFT/', addslashes($product->fields['products_model'])))) {

@@ -5,7 +5,7 @@
  * @package classes
  * @copyright Copyright 2003-2016 Zen Cart Development Team
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: order.php for pdf rechnung 3.5 2016-06-20 10:26:25Z webchills $
+ * @version $Id: order.php 2016-08-20 10:26:25Z webchills $
  */
 /**
  * order class
@@ -471,7 +471,7 @@ class order extends base {
                                       'tax_groups'=>$taxRates,
                                       'tax_description' => zen_get_tax_description($products[$i]['tax_class_id'], $taxCountryId, $taxZoneId),
                                       'price' => $products[$i]['price'],
-                                      'final_price' => zen_round($products[$i]['price'] + $_SESSION['cart']->attributes_price($products[$i]['id']), $decimals),
+                                      'final_price' => zen_round($products[$i]['price'] + $_SESSION['cart']->attributes_price($products[$i]['id']), 4),
                                       'onetime_charges' => $_SESSION['cart']->attributes_price_onetime_charges($products[$i]['id'], $products[$i]['quantity']),
                                       'weight' => $products[$i]['weight'],
                                       'products_priced_by_attribute' => $products[$i]['products_priced_by_attribute'],
@@ -550,7 +550,7 @@ class order extends base {
       /*********************************************
        * Calculate taxes for this product
        *********************************************/
-      $shown_price = (zen_add_tax($this->products[$index]['final_price'] * $this->products[$index]['qty'], $this->products[$index]['tax']))
+      $shown_price = round((zen_add_tax($this->products[$index]['final_price'], $this->products[$index]['tax'])), 2) * $this->products[$index]['qty']   
       + zen_add_tax($this->products[$index]['onetime_charges'], $this->products[$index]['tax']);
       $this->info['subtotal'] += $shown_price;
       $this->notify('NOTIFIY_ORDER_CART_SUBTOTAL_CALCULATE', array('shown_price'=>$shown_price));
