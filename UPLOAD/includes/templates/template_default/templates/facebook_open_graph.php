@@ -1,4 +1,3 @@
-<?php if (FACEBOOK_OPEN_GRAPH_STATUS == 'true') { ?>
 <meta property="og:title" content="<?php echo META_TAG_TITLE; ?>" />
 <meta property="og:description" content="<?php echo META_TAG_DESCRIPTION; ?>" />
 <meta property="og:site_name" content="<?php echo STORE_NAME; ?>" />
@@ -50,5 +49,4 @@ if ($og_url == '') {
     ?>
     <?php if (FACEBOOK_OPEN_GRAPH_TYPE != '') { ?>
     <meta property="og:type" content="<?php echo FACEBOOK_OPEN_GRAPH_TYPE; ?>" />
-    <?php } ?>
-    <?php } ?>
+    <?php } ?>  
