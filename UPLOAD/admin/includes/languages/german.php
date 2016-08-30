@@ -4,7 +4,7 @@
  * @copyright Copyright 2003-2016 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: german.php 658 2016-04-09 11:54:04Z webchills $
+ * @version $Id: german.php 659 2016-08-30 18:54:04Z webchills $
  */
 if (!defined('IS_ADMIN_FLAG'))
 {
@@ -458,7 +458,7 @@ define('WARN_DATABASE_VERSION_PROBLEM','true'); //set to false to turn off warni
 define('WARNING_ADMIN_DOWN_FOR_MAINTENANCE', '<strong>WARNUNG:</strong> Der Shop ist z.Zt. wegen Wartung geschlossen ...<br />ANMERKUNG: Sie können die meisten Zahlungs- und Versand-Module im Wartungszustand nicht prüfen');
 define('WARNING_BACKUP_CFG_FILES_TO_DELETE', 'WARNUNG: Diese Dateien sollten gelöscht werden, um fremde Zugriffe zu verhindern: ');
 define('WARNING_INSTALL_DIRECTORY_EXISTS', 'WARNUNG: Das Installationsverzeichnis besteht noch: ' . DIR_FS_CATALOG . 'zc_install. Dieses Verzeichnis aus Sicherheitsgründen bitte entfernen.');
-define('WARNING_CONFIG_FILE_WRITEABLE', 'WARNUNG: Ihre Konfigurationsdatei: %sincludes/configure.php. Dies ist ein potenzielles Sicherheitsrisiko - ändern Sie bitte die Zugriffsrechte (Read-only, CHMOD 644 oder 444l).');
+define('WARNING_CONFIG_FILE_WRITEABLE', 'WARNUNG: Ihre Konfigurationsdatei: %s ist beschreibbar. Dies ist ein potentielles Sicherheitsrisiko - ändern Sie bitte die Zugriffsrechte für diese Datei mit Ihrem FTP Programm auf read-only (CHMOD 644 oder 444).');
 define('WARNING_COULD_NOT_LOCATE_LANG_FILE', 'WARNUNG: Die Sprachdatei konnte nicht gefunden werden:');
 define('ERROR_MODULE_REMOVAL_PROHIBITED', 'FEHLER: Diese Modul kann nicht entfernt werden: ');
 define('WARNING_REVIEW_ROGUE_ACTIVITY', 'ALARM: Bitte anschauen für mögliche XSS Aktivitäten:');
@@ -636,6 +636,7 @@ define('PRODUCT_PRICE_DISCOUNT_AMOUNT', '&nbsp;ein');
 // Sale Maker Sale Price
 define('PRODUCT_PRICE_SALE', 'Abverkauf:&nbsp;');
 
+define('TEXT_PRICED_BY_ATTRIBUTES', 'Preis durch Attribute gesteuert');
 // Rich Text / HTML resources
 define('TEXT_HTML_EDITOR_NOT_DEFINED', 'Wenn kein HTML Editor definiert oder JavaScript deaktiviert ist, kann hier der HTML Text manuell eingegeben werden.');
 define('TEXT_WARNING_HTML_DISABLED', '<span class = "main">HINWEIS: Sie verwenden "Nur-TEXT" als E-Mail Versandmethode. Wenn Sie E-Mails als HTML versenden wollen, müssen Sie "Verwende MIME HTML" in den E-Mail Optionen aktivieren</span>');
@@ -717,13 +718,14 @@ define('TEXT_FREE_SHIPPING_EDIT','Achtung: Virtueller Artikel - Versandkostenfre
 // admin activity log warnings
 define('WARNING_ADMIN_ACTIVITY_LOG_DATE', 'Achtung: Die Admin Protokolltabelle hat Einträge die älter sind als 2 Monate und sollte deshalb archiviert werden ... ');
 define('WARNING_ADMIN_ACTIVITY_LOG_RECORDS', 'Achtung: Die Admin Protokolltabelle hat über 50000 Einträge und sollte deshalb archiviert werden ... ');
+define('RESET_ADMIN_ACTIVITY_LOG', 'Sie können im Menü Administratoren > Admin Aktivitäten Logs die Admin Aktivitäten einsehen und archivieren falls Sie auf diesen Bereich der Shopadministration Zugriff haben.');
 define('TEXT_ACTIVITY_LOG_ACCESSED', 'Admin Activity Log aufgerufen. Ausgabeformat: %s. Filter: %s. %s');
 define('TEXT_ERROR_FAILED_ADMIN_LOGIN_FOR_USER', 'Admin Login fehlgeschlagen: ');
 define('TEXT_ERROR_ATTEMPTED_TO_LOG_IN_TO_LOCKED_ACCOUNT', 'Es wurde versucht mit einem gesperrten Account einzuloggen:');
 define('TEXT_ERROR_ATTEMPTED_ADMIN_LOGIN_WITHOUT_CSRF_TOKEN', 'Es wurde versucht ohne CSRF Token einzuloggen.');
 define('TEXT_ERROR_ATTEMPTED_ADMIN_LOGIN_WITHOUT_USERNAME', 'Es wurde versucht ohne Username einzuloggen.');
 define('TEXT_ERROR_INCORRECT_PASSWORD_DURING_RESET_FOR_USER', 'Falsches Passwort beim Versuch ein neues Passwort zu setzen für: ');
-define('RESET_ADMIN_ACTIVITY_LOG', 'Sie können im Menü Administratoren > Admin Aktivitäten Logs die Admin Aktivitäten einsehen und archivieren falls Sie auf diesen Bereich der Shopadministration Zugriff haben.');
+
 
 define('CATEGORY_HAS_SUBCATEGORIES', 'Achtung: Kategorie besitzt Unterkategorien<br />Artikel können nicht hinzugefügt werden');
 
