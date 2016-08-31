@@ -1,26 +1,17 @@
 ﻿Willkommen bei der deutschen Zen-Cart Version
-Version 1.5.5 BETA
+Version 1.5.5
+vom 01.09.2016
 
-BETA vom 30.08.2016
-NUR ZUM TESTEN IN EINEM TESTSYSTEM - NOCH NICHT FÜR LIVESHOPS GEEIGNET
+Eine umfangreiche deutschsprachige Dokumentation und Installationsanleitung finden Sie im Ordner ANLEITUNG
+Öffnen Sie die index.html im Ordner ANLEITUNG und lesen Sie vor der Installation unbedingt die komplette Dokumentation.
 
-Um Zen Cart 1.5.5 Beta zu installieren nur die Ordner/Dateien im Ordner UPLOAD hochladen!
+Um Zen Cart 1.5.5 deutsch zu installieren nur die Ordner/Dateien im Ordner UPLOAD hochladen!
 
 Um eine schlankere Installation und ein einfacheres Update zu ermöglichen, wurden die Demodaten ausgelagert.
 Sie befinden sich im Ordner DEMODATEN
 
 Ebenso ausgelagert wurden die Überprüfungstools im Ordner extras.
 Sie befinden sich im Ordner TOOLS.
-
-Feedback bitte im Betatest Forum posten:
-
-https://www.zen-cart-pro.at/forum/forums/101-BETA-Test-Zen-Cart-1-5-5-deutsch
-
-Bitte das SVN verwenden
-
-Es werden laufend Änderungen in unser SVN bei Sourceforge eingecheckt, am besten immer die aktuelle SVN Version verwenden. 
-Die SVN Version ist im Zweifel immer aktueller als dieses Paket! 
-Und wenn konsequent mit dem SVN gearbeitet wird, muss nicht für jede kleine Änderung ein neues zip im Forum bereitgestellt werden.
 
 Neue Funktionen gegenüber 1.5.4
 

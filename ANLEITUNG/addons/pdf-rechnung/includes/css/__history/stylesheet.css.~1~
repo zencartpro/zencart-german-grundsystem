@@ -1,0 +1,299 @@
+/*zen-cart-pro.at docs style*/
+
+body, th, td {
+	font-size: 13px;
+	font-family: Verdana, Helvetica, Arial, sans-serif;
+	background-color: #434343;
+}
+
+body {
+margin:20px;
+	text-align: center;  
+  min-width: 1000px;    
+}
+
+a{
+	color:green;
+}
+
+
+
+#wrapper {
+  text-align: left;    
+  width: 1000px;        
+  margin-left: auto;  
+  margin-right: auto;
+  background:#FFFFFF;
+  
+}
+
+
+
+#footer{
+	background:#EDA93A;
+	padding:6px;
+	font-size:12px;
+	font-weight:bold;
+	border-top:1px solid #434343;
+	color:#434343;
+}
+
+.regularlist li{
+	padding: 5px;
+}
+
+
+.filelist ul{
+	font-size: 8.5pt;
+}
+
+.error {
+	color: #a00000;
+	font-weight: bold;
+}
+.small_info {
+	font-size: 8pt;
+	color: #a0a0a0;
+}
+.small_info a {
+	color: #606060;
+	text-decoration: none;
+	border-bottom: 0px dotted #606060;
+}
+.textcontent {
+	padding: 8px;
+	text-align: left;
+}
+
+#header{
+	margin:0;
+	padding:0;
+	background:#EDA93A;
+}
+
+h1 {
+	font-size:20px;
+	margin:6px;
+	letter-spacing:1px;
+	
+}
+
+h2 {
+	font-size:16px;
+	margin:6px 0;
+	text-transform:uppercase;
+	color:green;
+}
+
+h3 {
+	font-size:14px;
+	margin:6px 0;
+	
+}
+
+td {
+	vertical-align:top;
+}
+
+#save_preset, #presets td, #button_layout td, #format_layout td, #template_layout td, #font_layout td, #icon_layout td, #custombutton_layout td {
+	font-family: Verdana, Helvetica, Arial, sans-serif;
+	font-size: 10pt;
+	background-color: #f0f0f0;
+	padding:15px 10px;
+}
+
+.table_width {
+	width:900px;
+}
+
+#button_layout {
+	width:900px;
+}
+
+#format_layout {
+	width:900px;
+}
+
+#template_layout {
+	width:900px;
+}
+
+#font_layout {
+	width:900px;
+}
+
+#icon_layout {
+	width:900px;
+}
+
+#custombutton_layout {
+	width:900px;
+}
+
+#button_templates {
+	width:95%;
+}
+
+#presets {
+	float:left;
+}
+
+.clearBoth {
+	clear: both;
+}
+#save_preset {
+	width:875px;
+}
+#preview {
+	margin:10px 0;
+}
+#preview td, #presets td, #button_templates td {
+	vertical-align:middle;
+}
+#preview td, #button_templates td {
+	padding:8px 8px;
+	background-color: #f0f0f0;
+}
+.last_row {
+	background-color:red;
+}
+#button_layout .last_row {
+	background-color:white;
+}
+form, input {
+	margin:0;
+	vertical-align:middle;
+}
+caption {
+	text-align:left;
+	font-weight:bold;
+	margin-top:5px;
+}
+
+
+#slidetabsmenu {
+float:left;
+width:1000px;
+font-size:90%;
+line-height:normal;
+border-bottom: 1px solid #434343;
+
+}
+* html #slidetabsmenu{
+margin-bottom: 0em;
+}
+
+#slidetabsmenu ul{
+list-style-type: none;
+margin:0;
+margin-left: 4px;
+padding:0;
+}
+
+#slidetabsmenu li{
+display:inline;
+margin:0;
+padding:0;
+}
+
+#slidetabsmenu a {
+float:left;
+background:url(../../images/tableft.gif) no-repeat left top;
+background-position:0 -42px;
+margin:0;
+padding:0 0 0 4px;
+text-decoration:none;
+}
+
+#slidetabsmenu a span {
+float:left;
+text-align: center;
+display:block;
+background:url(../../images/tabright.gif) no-repeat right top;
+background-position:100% -42px;
+padding:3px 14px 3px 4px;
+font-weight:bold;
+color:#FFFFFF;
+
+}
+
+
+#slidetabsmenu a span {
+float:none;
+}
+
+
+#slidetabsmenu a:hover span {
+color: green;
+}
+
+#slidetabsmenu a.current{
+background-position:0 -0px;
+}
+
+#slidetabsmenu a.current span {
+background-position:100% -0px;
+text-align: center;
+color: green;
+}
+
+#slidetabsmenu a:hover {
+background-position:0% -0px;
+}
+
+#slidetabsmenu a:hover span {
+background-position:100% -0px;
+text-align: center;
+}
+
+.tabcontent{
+border-bottom: 0px solid;
+background: #FFFFFF;
+color: #434343;
+display:none;
+width: 1000px;
+}
+
+fieldset {
+	background: #E6E0CE;
+	padding: 0.5em 0.5em 0.5em 0.5em;
+	margin: 0 0 1em 0;
+	border: 0px solid #ccc;
+}
+
+legend {
+	font-family : arial, helvetica, sans-serif;
+	font-weight: bold;
+	font-size: 1.4em;
+	color: #1240b0;
+}
+
+blockquote {
+	font-family: georgia, times, serif;
+	font-style: italic;
+	background-color: #ccc;
+}
+
+hr { 
+	border: 20px;
+	color: #777;
+	background-color: #777;
+	height: 2px;
+	margin-top: 0.7em;
+	margin-bottom: 0.7em;
+}
+
+code {
+background:#E6E0CE; 
+font-size:110%;
+margin:.5em 2em;
+padding: .5em; 
+font-family:"Courier New", Courier, monospace; 
+display:block;
+}
+
+#warning{
+	text-align:center;
+	color:red;
+	
+}

@@ -39,13 +39,15 @@
 <h1>Entwicklerteam der deutschen Zen Cart Version</h1>
 <b>hugo13</b>
 <br/><br/>
-<b>webchills</b><br/>
-<a href="https://www.webchills.at" target="_blank">www.webchills.at</a>
+<b>webchills</b>
 <br/><br/>
 <b>MaleBorg</b>
 <br/><br/>
 Follow us on Twitter:<br/>
-<a href="http://www.twitter.com/zencartpro" target="_blank">www.twitter.com/zencartpro</a>
+<a href="https://www.twitter.com/zencartpro" target="_blank">www.twitter.com/zencartpro</a>
+<br/><br/>
+Source Code auf GitHub:<br/>
+<a href="https://github.com/zencartpro" target="_blank">github.com/zencartpro</a>
 <br><br><br>
 </div>
 <?php require(DIR_WS_INCLUDES . 'footer.php'); ?>

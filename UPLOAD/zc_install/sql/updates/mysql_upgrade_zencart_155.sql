@@ -6,7 +6,7 @@
 # * @copyright Copyright 2003-2016 Zen Cart Development Team
 # * @copyright Portions Copyright 2003 osCommerce
 # * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
-# * @version $Id: mysql_upgrade_zencart_155.sql 10 2016-08-30 18:03:59Z webchills $
+# * @version $Id: mysql_upgrade_zencart_155.sql 11 2016-08-31 18:03:59Z webchills $
 #
 
 ############ IMPORTANT INSTRUCTIONS ###############
@@ -797,11 +797,10 @@ REPLACE INTO configuration_group (configuration_group_id, language_id, configura
 (@configuration_group_id, 43, 'Facebook / Open Graph / Microdata', 'Einstellungen für die Unterstützung von Facebook, Open Graph und Microdata', @configuration_group_id, 1);
 
 
+### CSS Buttons im Admin ####
 
-### CSS Buttons in admin ####
-
-INSERT INTO configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added, use_function, set_function) VALUES 
-('Use CSS Buttons (Admin)?', 'ADMIN_USE_CSS_BUTTONS', 'true', 'Use CSS buttons instead of GIF images in admin?', '19', '148', now(), NULL, 'zen_cfg_select_option(array(\'true\', \'false\'),');
+INSERT IGNORE INTO configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, last_modified, use_function, set_function, date_added) VALUES
+('Use CSS Buttons (Admin)?', 'ADMIN_USE_CSS_BUTTONS', 'true', 'Use CSS buttons instead of GIF images in admin?', 19, 148, NOW(), NULL, 'zen_cfg_select_option(array(\'true\', \'false\'), ', NOW());
 
 
 ### Neuer Report Deaktivierte Artikel ###

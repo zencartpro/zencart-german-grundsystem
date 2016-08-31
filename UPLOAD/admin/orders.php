@@ -4,7 +4,7 @@
  * @copyright Copyright 2003-2016 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: orders.php 2016-08-14 09:48:51Z webchills $
+ * @version $Id: orders.php 2016-08-31 20:48:51Z webchills $
  */
 
   require('includes/application_top.php');
@@ -406,7 +406,8 @@ function couponpopupWindow(url) {
 <table class="container-fluid" border="0" width="100%" cellspacing="2" cellpadding="2">
 <!-- body_text //-->
   <tr>
-    <td class="pageHeading"><?php echo ($action == 'edit' && $order_exists) ? HEADING_TITLE_DETAILS : HEADING_TITLE; ?></td>
+    <td class="pageHeading"><?php echo ($action == 'edit' && $order_exists) ? HEADING_TITLE_DETAILS : HEADING_TITLE; ?>
+</td>
   </tr>
 
 <?php $order_list_button = '<button type="button" class="btn btn-default" onclick="window.location.href=\'' . zen_href_link(FILENAME_ORDERS) . '\'"><i class="fa fa-th-list" aria-hidden="true"></i> ' . BUTTON_TO_LIST . '</button>'; ?>
@@ -535,7 +536,8 @@ function couponpopupWindow(url) {
           <tr>
             <td valign="top"><table width="100%" border="0" cellspacing="0" cellpadding="2">
               <tr>
-                <td class="main" valign="top"><strong><?php echo ENTRY_CUSTOMER_ADDRESS; ?></strong></td>
+                <td class="main" valign="top"><strong><?php echo ENTRY_CUSTOMER_ADDRESS; ?></strong><br/><br/>
+                  <?php echo '<a href="' . zen_href_link(FILENAME_ADRESSKORREKTUR, zen_get_all_get_params(array('oID', 'action')) . 'oID=' . $orders->fields['orders_id'] . '&action=edit', 'NONSSL') . '">' . zen_image_button('button_adresskorrektur.gif', IMAGE_ADRESSKORREKTUR) . '</a>'; ?></td>
                 <td class="main"><?php echo zen_address_format($order->customer['format_id'], $order->customer, 1, '', '<br />'); ?></td>
               </tr>
               <tr>
