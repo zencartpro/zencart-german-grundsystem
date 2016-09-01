@@ -2,11 +2,43 @@
 Version 1.5.5
 vom 01.09.2016
 
+Eine umfangreiche deutschsprachige Dokumentation und Installationsanleitung finden Sie im Ordner ANLEITUNG
+Öffnen Sie die index.html im Ordner ANLEITUNG und lesen Sie vor der Installation unbedingt die komplette Dokumentation.
 
-Um Zen Cart zu installieren oder zu aktualisieren müssen Sie nur die Ordner/Dateien im Ordner UPLOAD hochladen!
+Um Zen Cart 1.5.5 deutsch zu installieren nur die Ordner/Dateien im Ordner UPLOAD hochladen!
 
 Um eine schlankere Installation und ein einfacheres Update zu ermöglichen, wurden die Demodaten ausgelagert.
 Sie befinden sich im Ordner DEMODATEN
 
 Ebenso ausgelagert wurden die Überprüfungstools im Ordner extras.
 Sie befinden sich im Ordner TOOLS.
+
+Neue Funktionen gegenüber 1.5.4
+
+Generell:
+Unterstützung von PHP 7 
+Verbesserte Unterstützung von MySQL 5.7
+Neues responsives HTML 5 Standardtemplate (responsive_classic)
+vereinfachte Installation
+
+Neue Funktionen (Auszug):
+Passwörter der Kunden via Admin änderbar
+Übersichtlichere Menüs in der Administration
+CSS Buttons in der Administration (optional)
+Erweiterte Google Analytics Funktionen (Opt-Out-Cookie integriert)
+Erweiterte Facebook Open Graph und schema.org Mikrodaten Unterstützung
+Erweiterter Lagerbestandsbericht
+Detaillierteres Errorlogging (myDebug Backtrace integriert)
+Zentrales Styling für die verschiedenen HTML Email Templates
+HTML Email Templates für responsive Darstellung verbessert
+Unterstützung der neuesten Paypal Checkout Funktionalitäten (API NVP 124.0)
+Tiny MCE und CKEditor in den neuesten Versionen
+Details der Bestellung erscheinen auf der checkout success Seite
+Automatisches Update der Wechselkurse für Währungen via cron
+Zen Colorbox integriert
+Zahlungsart Bar bei Abholung integriert
+Mehrsprachige Ländernamen integriert
+MailBeez integriert
+IT Recht Kanzlei Schnittstelle zur automatischen Aktualisierung der Rechtstexte integriert
+pdf Rechnung integriert
+Bei Bestellungen können die Adressdaten korrigiert werden

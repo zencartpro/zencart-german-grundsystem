@@ -1,18 +1,18 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
-<title>Zen Colorbox 2.2 für Zen-Cart 1.5.4 und 1.5.3 deutsch</title>
+<title>Zen Colorbox vorintegriert in zen Cart 1.5.5 deutsch</title>
 <meta http-equiv="pragma" content="no-cache">
 <meta http-equiv="content-type" content="text/html; charset=utf-8">
 <meta http-equiv="content-language" content="de">
-<meta name="description" content="Modul zur Integration der Colorbox in die deutsche Zen-Cart Version">
+<meta name="description" content="Modul zur Bildvergrößerung in zen Cart 1.5.5 deutsch">
 <link rel="stylesheet" type="text/css" href="includes/css/stylesheet.css">  
 <script type="text/javascript" src="includes/jscript/jscript_tabs.js"></script>
 </head>
 <body>
 <div id="wrapper">
 <div id="header"><span class="backtomain"><a href="../../index.html">zurück zur 1.5.5 Dokumentation</a></span>
-<h1>Vorintegrierte Module: Zen Colotbox</h1>
+<h1>Vorintegrierte Module: Zen Colorbox</h1>
 </div>
 
 <div id="slidetabsmenu" style="display: none;">
@@ -42,17 +42,9 @@
   Dieses Modul integriert einen Lightbox Effekt in Zen Cart. Alle großen Artikelbilder (auf der Detailseite) werden beim Anclicken in einer Lightbox angezeigt. Dadurch werden keine Popup Fenster mehr verwendet,  was die Website wesentlich benutzerfreundlicher macht. Die zusätzlichen Artikelbilder werden innerhalb der Lightbox in einer Galerie angezeigt. Optional kann auch eine Slideshow für die zusätzlichen Artikelbilder aktiviert werden.</p>
   <p>Die Vergrößerung kann auch für Bilder auf den EZ-Pages und anderen Inhaltsseiten genutzt werden.</p>
   
-  <p><b>Hinweis:</b><br/>Es macht keinen Sinn die Module Zen Lightbox und Zen Colorbox gemeinsam in einem Shop zu verwenden! Falls Sie bereits das Modul Zen Lightbox im Einsatz haben und auf die Colorbox umsteigen wollen, dann entfernen Sie vorher das Modul Zen Lightbox komplett!</p>
-<h3>Copyright, Lizenz</h3>
-<p>Copyright dieser deutschen Anpassung/Anleitung für Zen-Cart 1.5.4 und 1.5.3 deutsch<br>
-(c) 2015 webchills (<a href="http://www.webchills.at" target="_blank">www.webchills.at</a>)</p>
-<p>Originalversion 2011 by Andrew Berezin:<br>
-  <a href="http://www.zen-cart.com/downloads.php?do=file&id=1322" target="_blank">http://www.zen-cart.com/downloads.php?do=file&id=1322</a><br>
-  Weiterentwickelt von niestudio </p>
-<p> Portions Copyright (c) 2003 osCommerce<br>
-  Portions Copyright     (c) 2003-2015 Zen Cart</p>
-<p>This contribution is subject to version 2.0 of the GPL license available through the world-wide-web at the following url:<br>
-  <a href="http://www.zen-cart-pro.at/license/2_0.txt">http://www.zen-cart-pro.at/license/2_0.txt</a></p>
+  <p><b>Hinweis:</b><br/>
+    Es macht keinen Sinn die Module Zen Lightbox und Zen Colorbox gemeinsam in einem Shop zu verwenden! Falls Sie bereits das Modul Zen Lightbox im Einsatz haben und auf die Colorbox umsteigen wollen, dann entfernen Sie  das Modul Zen Lightbox komplett!</p>
+<h3>&nbsp;</h3>
 </div>
 </div>
 </div>
@@ -65,8 +57,7 @@
 
 <h2>Konfiguration</h2>
 
-<p>5.<br>
-  In der Zen-Cart Administration ist nun unter Konfiguration  ein   zusätzlicher Menüpunkt namens Zen Colorbox vorhanden, wo Sie etliche   Einstellungen zum Verhalten der Lightbox vornehmen können.</p>
+<p>  In der Zen-Cart Administration ist  unter Konfiguration  ein    Menüpunkt namens Zen Colorbox Einstellungenvorhanden, wo Sie etliche   Einstellungen zum Verhalten der Lightbox vornehmen können. Beim Click auf Bearbeiten sind die jeweiligen Einstellungsmöglichkeiten erklärt.</p>
 <h3>Erweiterte Nutzungsmöglichkeiten</h3>
 <p><strong>EZ-Pages</strong></p>
 <p>Standardmäßig ist der Lightbox Effekt für alle Links zu Bildern innerhalb von EZ-Pages bereits aktiv. In der Colorbox-Konfiguration kann  das ausgeschaltet werden.<br>
@@ -75,13 +66,17 @@
 <p> Dann wird das Bild beim Anclicken in einer Lightbox vergrößert. Es muss hier nicht wie bei Zen Lightbox noch ein spezielles rel Kommando mitgegeben werden, einfach zum großen Bild verlinken.</p>
 <p><strong><br>
   Lightbox auf jeder beliebigen Seite</strong></p>
-<p>Die Lightbox-Funktionalität kann leicht auf jede beliebige Seite in Zen-Cart ausgeweitet werden. Dazu muss die Datei <strong>jscript_zen_colorbox.php</strong> im Ordner ZUSATZ dieses Downloads in das entsprechende includes/modules/pages Verzeichnis gelegt werden und Konfiguration > Zen Colorbox Einstellungen > EZ Pages Unterstützung auf true stehen.</p>
-<p>Beispiele:<br>
-  Lightbox-Effekt für Bilder auf der Kontaktseite:<br>
-  Die Datei muss nach <strong>includes/modules/pages/contact_us</strong> kopiert werden.<br>
-  Lightbox-Effekt für Bilder auf der Versandkostenseite:<br>
-  Die Datei muss nach <strong>includes/modules/pages/shippinginfo </strong>kopiert werden</p>
-
+<p>Die Lightbox-Funktionalität kann leicht auf jede beliebige Seite in Zen-Cart ausgeweitet werden. <br>
+  Standardmäßig ist sie nur auf den Artikeldetailseiten, den EZ Pages und den Bewertungsseiten aktiv, damit nicht unnötig Javascripts auch auf anderen Seiten mitgeladen werden</p>
+<p>  In includes/templates/DEINTEMPLATE/auto_loaders/loader_zen_colorbox.php wird das Script nur auf den Seiten geladen, die in Zeile 5 im Array eingetragen sind:</p>
+<p><code>'pages' =&gt; array('document_general_info','document_product_info','page','product_free_shipping_info','product_info',<br/>
+  'product_music_info','product_reviews','product_reviews_write')</code><br>
+  <br>
+  Wenn der Effekt nun auch z.B. auf der Kontaktseite möglich sein soll, dann diese Liste entsprechend erweitern, z.B. mit der Seite 'contact_us' und ändern auf:</p>
+<p><code>'pages' =&gt; array('contact_us','document_general_info','document_product_info','page','product_free_shipping_info',<br>
+    'product_info', 'product_music_info','product_reviews','product_reviews_write')</code><br>
+  <br>
+</p>
 </div>
 </div>
 </div>
@@ -93,10 +88,7 @@
 <div class="tabcontent" id="sc5" style="display: block;">
 <div class="textcontent">
 <div class="regularlist">
-<h2>Download &amp; Support</h2>
-<p>Download des Moduls:</p>
-<p><a href="https://www.zen-cart-pro.at/forum/vbdownloads.php" target="_blank">www.zen-cart-pro.at/forum/vbdownloads.php</a></p>
-
+<h2>Support</h2>
 <p>Supportforum zum Modul:</p>
 <p><a href="https://www.zen-cart-pro.at/forum/forums/109-Zen-Colorbox" target="_blank">www.zen-cart-pro.at/forum/forums/109-Zen-Colorbox</a></p>
 </div>
@@ -118,6 +110,7 @@
 <input type="image" src="https://www.paypalobjects.com/de_DE/AT/i/btn/btn_donateCC_LG.gif" border="0" name="submit" alt="Jetzt einfach, schnell und sicher online bezahlen – mit PayPal.">
 <img alt="" border="0" src="https://www.paypalobjects.com/de_DE/i/scr/pixel.gif" width="1" height="1">
 </form>
+<br/><br/>
 <p>Du bist Entwickler und willst helfen, die deutsche Zen Cart Version noch besser zu machen?<br>
   Beteilige Dich auf Github:<br>
   <a href="https://github.com/zencartpro" target="_blank"><strong>https://github.com/zencartpro</strong></a></p>
@@ -127,9 +120,8 @@
 </div>
 <!--End sc6-->
 </div>
-<div id="footer">
-Ein Modul von <a href="http://www.zen-cart-pro.at" target="_blank">www.zen-cart-pro.at</a> - Die deutsche Zen-Cart Version
-</div>
+<div id="footer">Copyright © 2004-2016 <a href="http://www.zen-cart-pro.at" target="_blank">www.zen-cart-pro.at</a> - Die deutsche Zen Cart Version <br>
+  the art of e-commerce - übersetzt, angepasst und erweitert zur Verwendung im deutschsprachigen Raum</div>
 </div>
 <!--end tabcontainer-->
 <script type="text/javascript">document.getElementById('sc1').style.display = 'none';</script>
