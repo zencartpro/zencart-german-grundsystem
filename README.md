@@ -2,7 +2,7 @@
 Zen Cart ist eine kostenlose unter der GPL-Lizenz veröffentlichte Open-Source Shopsoftware. Das System wird in den USA entwickelt, die amerikanische Website dazu ist www.zen-cart.com Die deutsche Zen Cart Version von www.zen-cart-pro.at ist eine Anpassung der amerikanischen Version an die Bedürfnisse von Onlineshopbetreibern im deutschsprachigen Raum.
 Die deutsche Zen Cart Version wird von einem Team von Entwicklern in Österreich und Deutschland betreut, weiterentwickelt und supportet und steht kostenlos zur Verfügung. Support findet ausschließlich im Supportforum statt.
 
-Willkommen bei der deutschen Zen Cart Version 1.5.5
+**Willkommen bei der deutschen Zen Cart Version 1.5.5**
 
 Die deutsche Zen Cart Version steht Ihnen kostenfrei im Rahmen der GNU General Public License zur Verfügung.
 Sie können diese Software kostenfrei benutzen, Änderungen vornehmen, etc.
@@ -11,30 +11,30 @@ Eine ausführliche Dokumentation und Installationsanleitung befindet sich im Ord
 
 Dieses Programm wird in der Hoffnung vertrieben, dass es nützlich ist, allerdings OHNE IRGENDWELCHE GARANTIEN; ohne die Garantie der MARKTGÄNGIGKEIT oder der EIGNUNG ZU EINEM BESTIMMTEN ZWECK und wird vertrieben unter der GNU General Public License
 
-Hauptunterschiede zwischen der deutschen und amerikanischen Version:
+**Hauptunterschiede zwischen der deutschen und amerikanischen Version:**
 
-Die amerikanische Version ist im Administrationsbereich immer monolingual englisch. Daran ändert auch die etwaige Installation eines deutschen Sprachpakets nichts. Die meisten Konfigurationseinstellungen werden immer auf englisch sein, da sie in der Datenbank hinterlegt sind. Die deutsche Zen Cart Version bietet einen multilingualen Adminbereich. Dadurch sind auch die in der Datenbank hinterlegten Konfigurationseinstellungen und -beschreibungen auf deutsch. Sie könnten auch in jeder anderen Sprache genutzt werden. Diese Funktionalität steht natürlich auch für später installierte Erweiterungen zur Verfügung. Die im Downloadbereich von zen-cart-pro.at angebotenen Module berücksichtigen diese Multilanguagefähigkeit und sind alle für die deutsche Zen Cart Version ausgelegt.
-Die amerikanische Zen Cart Version berücksichtigt viele rechtliche Erfordernisse nicht, denen ein Onlineshop im deutschsprachigen Raum unterworfen ist. Daher wurde die deutsche Zen Cart Version auf die Anforderungen, die an Onlineshops in Deutschland, Österreich und der Schweiz gestellt werden, angepasst. Die Anforderungen der sogenannten "Buttonlösung" und viele andere Vorgaben werden erfüllt.
-Die Installation ist schlanker und enthält keine unnötigen Dateien mehr, da die Bilder und Medien der Demodaten nicht mehr automatisch mitinstalliert werden, sondern nur bei Bedarf hochgeladen werden können
-Die amerikanische Version enthält keinerlei HTML Editor mehr, in der deutschen Version ist der CKEditor bereits integriert und löst das veraltete HTML Area ab. Alternativ ist auch der Tiny MCE Editor integriert.
-Weitere Bugfixes und Verbesserungen, die von den Amerikanern nicht übernommen wurden
-Zahlreiche häufig genutze Erweiterungen sind in der deutschen Zen Cart Version bereits vorinstalliert. Details dazu im Tab Erweiterungen.
-Weitere für die deutsche Zen Cart Version angepasste Erweiterungen stehen in unserem Downloadbereich zur Verfügung.
+* Die amerikanische Version ist im Administrationsbereich immer monolingual englisch. Daran ändert auch die etwaige Installation eines deutschen Sprachpakets nichts. Die meisten Konfigurationseinstellungen werden immer auf englisch sein, da sie in der Datenbank hinterlegt sind. Die deutsche Zen Cart Version bietet einen multilingualen Adminbereich. Dadurch sind auch die in der Datenbank hinterlegten Konfigurationseinstellungen und -beschreibungen auf deutsch. Sie könnten auch in jeder anderen Sprache genutzt werden. Diese Funktionalität steht natürlich auch für später installierte Erweiterungen zur Verfügung. Die im Downloadbereich von zen-cart-pro.at angebotenen Module berücksichtigen diese Multilanguagefähigkeit und sind alle für die deutsche Zen Cart Version ausgelegt.
+* Die amerikanische Zen Cart Version berücksichtigt viele rechtliche Erfordernisse nicht, denen ein Onlineshop im deutschsprachigen Raum unterworfen ist. Daher wurde die deutsche Zen Cart Version auf die Anforderungen, die an Onlineshops in Deutschland, Österreich und der Schweiz gestellt werden, angepasst. Die Anforderungen der sogenannten "Buttonlösung" und viele andere Vorgaben werden erfüllt.
+* Die Installation ist schlanker und enthält keine unnötigen Dateien mehr, da die Bilder und Medien der Demodaten nicht mehr automatisch mitinstalliert werden, sondern nur bei Bedarf hochgeladen werden können
+* Die amerikanische Version enthält keinerlei HTML Editor mehr, in der deutschen Version ist der CKEditor bereits integriert und löst das veraltete HTML Area ab. Alternativ ist auch der Tiny MCE Editor integriert.
+* Weitere Bugfixes und Verbesserungen, die von den Amerikanern nicht übernommen wurden
+* Zahlreiche häufig genutze Erweiterungen sind in der deutschen Zen Cart Version bereits vorinstalliert. Details dazu im Tab Erweiterungen in der Doku.
+* Weitere für die deutsche Zen Cart Version angepasste Erweiterungen stehen in unserem Downloadbereich auf www.zen-cart-pro.at zur Verfügung.
 
-SYSTEMVORAUSSETZUNGEN
+**SYSTEMVORAUSSETZUNGEN**
 
 Minimale Anforderungen:
 
-PHP 5.3.7 oder höher, Apache 2.0 oder höher und MySQL 5.1 oder höher
-Apache muss konfiguriert sein mit AllowOverride auf entweder 'All' oder mit zumindestens 'Limit' und 'Indexes' Parameter, vorzugsweise mit ebenfalls 'Options' Parameter.
-PHP muss CURL mit OpenSSL unterstützen (erforderlich z.B. für PayPal Express)
+* PHP 5.3.7 oder höher, Apache 2.0 oder höher und MySQL 5.1 oder höher
+* Apache muss konfiguriert sein mit AllowOverride auf entweder 'All' oder mit zumindestens 'Limit' und 'Indexes' Parameter, vorzugsweise mit ebenfalls 'Options' Parameter.
+* PHP muss CURL mit OpenSSL unterstützen (erforderlich z.B. für PayPal Express)
 
 Empfohlene Serverkonfiguration:
 
-PHP 5.6 oder höher
-Apache 2.2.x oder 2.4.x
-MySQL 5.1 bis 5.7
-und die oben erwähnten Apache/PHP Settings
+* PHP 5.6 oder höher
+* Apache 2.2.x oder 2.4.x
+* MySQL 5.1 bis 5.7
+* und die oben erwähnten Apache/PHP Settings
 
 PHP 7 wird mit dieser Version vollständig unterstützt!
 Bevor Sie Zen Cart mit PHP 7 einsetzen, prüfen Sie aber, ob Zusatzmodule, die Sie verwenden, ebenfalls bereits für PHP 7 angepasst wurden.
@@ -42,86 +42,35 @@ Wenn Sie viele Erweiterungen einsetzen, dann betreiben Sie den Shop zunächst mi
 
 Zen Cart 1.5.5 deutsch funktioniert zwar auch auf einem Windows/IIS server, wir raten aber dringend zu einem Linux/Apache Server.
 
-Neue Funktionen gegenüber 1.5.4
+**Neue Funktionen gegenüber 1.5.4**
 
 Zen Cart 1.5.5 deutsch ermöglicht den Einsatz von Zen Cart unter PHP 7 und bringt neben zahlreichen Bugfixes viele neue Funktionalitäten mit, unter anderem:
 
-Unterstützung von PHP 7
-Verbesserte Unterstützung von MySQL 5.7
-Neues responsives HTML 5 Standardtemplate (responsive_classic)
-vereinfachte Installation
-Passwörter der Kunden via Admin änderbar
-Übersichtlichere Menüs in der Administration / Admin auf Tablets leichter bedienbar
-CSS Buttons in der Administration (optional)
-Erweiterte Google Analytics Funktionen (Opt-Out-Cookie integriert)
-Erweiterte Facebook Open Graph und schema.org Mikrodaten Unterstützung
-Erweiterter Lagerbestandsbericht
-Detaillierteres Errorlogging (myDebug Backtrace integriert)
-Zentrales Styling für die verschiedenen HTML Email Templates
-HTML Email Templates für responsive Darstellung verbessert
-Unterstützung der neuesten Paypal Checkout Funktionalitäten (API NVP 124.0)
-Tiny MCE und CKEditor in den neuesten Versionen
-Mobile Detect in neuester Version, bei Bestellungen im Admin ist ersichtlich, ob die Bestellung per Desktop, Smartphone oder Tablet getätigt wurde
-Details der Bestellung erscheinen auf der checkout success Seite
-Automatisches Update der Wechselkurse für Währungen via cron
-Zen Colorbox ur Vergrößerung der Artikelbilder integriert
-Zahlungsart Bar bei Abholung integriert
-Report für Deaktivierte Artikel integriert
-Mehrsprachige Ländernamen integriert
-MailBeez integriert
-IT Recht Kanzlei Schnittstelle zur automatischen Aktualisierung der Rechtstexte integriert
-pdf Rechnung integriert
-Bei Bestellungen können die Adressdaten korrigiert werden
+* Unterstützung von PHP 7
+* Verbesserte Unterstützung von MySQL 5.7
+* Neues responsives HTML 5 Standardtemplate (responsive_classic)
+* vereinfachte Installation
+* Passwörter der Kunden via Admin änderbar
+* Übersichtlichere Menüs in der Administration / Admin auf Tablets leichter bedienbar
+* CSS Buttons in der Administration (optional)
+* Erweiterte Google Analytics Funktionen (Opt-Out-Cookie integriert)
+* Erweiterte Facebook Open Graph und schema.org Mikrodaten Unterstützung
+* Erweiterter Lagerbestandsbericht
+* Detaillierteres Errorlogging (myDebug Backtrace integriert)
+* Zentrales Styling für die verschiedenen HTML Email Templates
+* HTML Email Templates für responsive Darstellung verbessert
+* Unterstützung der neuesten Paypal Checkout Funktionalitäten (API NVP 124.0)
+* Tiny MCE und CKEditor in den neuesten Versionen
+* Mobile Detect in neuester Version, bei Bestellungen im Admin ist ersichtlich, ob die Bestellung per Desktop, Smartphone oder Tablet getätigt wurde
+* Details der Bestellung erscheinen auf der checkout success Seite
+* Automatisches Update der Wechselkurse für Währungen via cron
+* Zen Colorbox ur Vergrößerung der Artikelbilder integriert
+* Zahlungsart Bar bei Abholung integriert
+* Report für Deaktivierte Artikel integriert
+* Mehrsprachige Ländernamen integriert
+* MailBeez integriert
+* IT Recht Kanzlei Schnittstelle zur automatischen Aktualisierung der Rechtstexte integriert
+* pdf Rechnung integriert
+* Bei Bestellungen können die Adressdaten korrigiert werden
 
-Folgende Neuerungen und Bugfixes wurden aus der amerikanischen 1.5.5a Version übernommen:
-
-All known v1.5.4 bugfixes and security fixes are included in v1.5.5, including tighter control around XSS as well as clickjacking
-Template: The default out-of-the-box template (called "Responsive Classic") is now a mobile-friendly responsive-design theme built for flexibility with tablets, mobile devices, and desktops.
-Template: The core template_default files have been reviewed for HTML5 compliance, and a number of classes and IDs have been added to move older styling to CSS instead. Specific input-types like email/telephone for easier use on mobiles
-Admin: Admin menu improvements to help it fit tablet screens better
-Admin: Added customer-password reset via Admin
-Admin: Products Price Manager: Added display of taxes into prices
-Admin: Improvements to developers-toolkit and whos-online
-SEO: Numerous updates to canonical-url handling
-SEO: Added hreflang markup for better indexing of multilingual sites, and other HTML page-header metatag improvements
-Checkout: Order Details added to Checkout-Success page
-Payment: PayPal Express Checkout has numerous updated compatibilities added, including their latest InContext mobile support
-Payment: Retired obsolete Linkpoint_API payment module
-Core: Added PHP 7.0 compatibility
-Core: Added MySQL 5.7 compatibility
-Core: Improved error-logging for troubleshooting (included @lat9's debug-backtrace mod)
-Core: Improved/simplified code for db query handling, allowing simple foreach() iterations instead of requiring while(!EOF) loops
-Core: Added hooks to allow for 3rd-party-handling of taxes, for plugin support with orders, attributes, and much more
-Core: Fix some rounding errors
-Core: Added cron code for automated currency-updating, and currency sources can be selected from Admin->Config->My Store menu, and plugins can auto-show in this list
-Core: Fixed bug with a race condition causing database errors related to sessions
-Core: Simplified the configure.php file contents significantly by retaining only the most-often-customized components, and added an automatic-converter as part of zc_install's initial inspection
-Email: Integrated @lat9's "common CSS styling" for HTML emails
-Email: Added newer phpMailer integration (better compatibility with more email services), and email-failure errors are logged to /logs/ for easier debugging if problems occur
-Some language-file cleanups
-Improved compatibility for payment/shipping modules and SSL/TLS to work with the 2016 SHA-256 Secure Server initiatives being embraced by modern hosting companies and PCI Compliance
-Rewrote zc_install - fresh new look, will make future internal maintenance easier
-Replaced phpBB integration with generic hooks to allow for various external forums
-Security patches for alerts provided from various security watchdog sites
-Fix several upgrade-related problems caused by zero-dates in the customers table data/history
-Revamp admin sanitization code to work better with various plugins such as Edit Orders, etc
-Admin orders page had some incorrect CSS classes specified
-Admin customers page had some incorrect HTML tags for span and bold markup
-Admin "Support" link restored to navigation menu
-Admin - fix privilege escalation vulnerability
-Fix missing SEARCH_DEFAULT_TEXT, ERROR_GV_CREATE_ACCOUNT and TEXT_PRICED_BY_ATTRIBUTES language defines
-The zc_install test for availability of SSL and .htaccess could fail due to timeouts when offline
-The zc_install "configure.php file update" was not always handling conversion of old SSL URLs properly
-Fix "uninitialized string offset" error in zen_random_name()
-Fix sort-order of shipping/payment modules when sort-orders are multiple digits
-Responsive Classic: Fix alignment/display of State Dropdown element on address pages
-Fix to inability to choose from address-book during checkout, and fix double "continue" buttons on same page
-Order comments flag was showing incorrectly on PayPal EC transactions
-Restore define for DIR_WS_HTTPS_ADMIN for legacy plugin purposes
-Added several .gitignore files in various folders, to help site developers avoid committing unnecessary files to version control
-For language-specific currency overrides, fix the default
-Fix bindvars to honor string entries that contain 'null'
-add safety to fmod_round
-Fix extra breadcrumb that was appearing when always-open-with-category is enabled
-Update BOC currency parsing to cope with their data changes and division-by-zero errors as a result
-Fix a test-mode bug in Authorizenet AIM module
+Alle Neuerungen und Bugfixes aus der amerikanischen 1.5.5a Version wurden ebenfalls übernommen
