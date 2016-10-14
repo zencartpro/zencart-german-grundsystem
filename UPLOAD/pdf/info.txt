@@ -1,0 +1,9 @@
+In diesem Ordner werden die pdf Rechnungen gespeichert
+
+Dieser Ordner benötigt Schreibrechte
+chmod 777
+
+Es ist wesentlich sicherer, diesen Ordner nicht in einem per Web zugänglichen Bereich zu haben, sondern unterhalb des www
+Der Webserver kann dann trotzdem in diesem Ordner schreiben und auch die Kunden können ihre Rechnung in der Kundenhistory downloaden.
+Aber die Rechnungen sind keinesfalls via Browser für andere aufrufbar
+Wenn der Ordner pdf unterhalb des www verschoben wird, dann auch unter Konfiguration > pdf Rechnung den Pfad dazu anpassen

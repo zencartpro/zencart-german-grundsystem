@@ -8,7 +8,7 @@
  * @copyright Copyright 2003-2016 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: html_header.php 10 2016-08-22 19:10:39Z webchills $
+ * @version $Id: html_header.php 11 2016-10-14 09:10:39Z webchills $
  */
 $zco_notifier->notify('NOTIFY_HTML_HEAD_START', $current_page_base, $template_dir);
 
@@ -65,10 +65,11 @@ if (!class_exists('Mobile_Detect')) {
   if (!isset($lng) || (isset($lng) && !is_object($lng))) {
     $lng = new language;
   }
-  reset($lng->catalog_languages);
+reset($lng->catalog_languages);
+if (sizeof($lng->catalog_languages) > 1) {
   while (list($key, $value) = each($lng->catalog_languages)) {
-    if ($value['id'] == $_SESSION['languages_id']) continue;
-    echo '<link rel="alternate" href="' . ($this_is_home_page ? zen_href_link(FILENAME_DEFAULT, 'language=' . $key, $request_type) : $canonicalLink . '&amp;language=' . $key) . '" hreflang="' . $key . '" />' . "\n";
+    echo '<link rel="alternate" href="' . ($this_is_home_page ? zen_href_link(FILENAME_DEFAULT, 'language=' . $key, $request_type) : $canonicalLink . (strpos($canonicalLink, '?') ? '&amp;' : '?') . 'language=' . $key) . '" hreflang="' . $key . '" />' . "\n";
+  }
   }
   // EOF hreflang for multilingual sites
 ?>
