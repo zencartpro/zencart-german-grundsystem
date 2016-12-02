@@ -10,7 +10,7 @@
  * @copyright Copyright 2003-2016 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: autoload_func.php 730 2015-12-21 20:49:16Z webchills $
+ * @version $Id: autoload_func.php 731 2016-11-03 08:25:16Z webchills $
  */
 if (!defined('IS_ADMIN_FLAG')) {
   die('Illegal Access');
@@ -87,7 +87,7 @@ foreach ($autoLoadConfig as $actionPoint => $row) {
         $_SESSION[$objectName]->$methodName();
         $debugOutput .= '$_SESSION[' . $objectName . ']->' . $methodName . '();<br />';
       } else {
-        $$objectName->$methodName();
+        ${$objectName}->$methodName();
         $debugOutput .= '$' . $objectName . '->' . $methodName . '();<br />';
       }
       break;

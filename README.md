@@ -73,4 +73,4 @@ Zen Cart 1.5.5 deutsch ermöglicht den Einsatz von Zen Cart unter PHP 7 und brin
 * pdf Rechnung integriert
 * Bei Bestellungen können die Adressdaten korrigiert werden
 
-Alle Neuerungen und Bugfixes aus der amerikanischen 1.5.5a Version wurden ebenfalls übernommen
+Alle Neuerungen und Bugfixes aus der amerikanischen 1.5.5b Version wurden ebenfalls übernommen

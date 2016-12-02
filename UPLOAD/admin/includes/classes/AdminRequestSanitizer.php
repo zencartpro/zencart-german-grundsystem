@@ -4,7 +4,7 @@
  * @copyright Copyright 2003-2016 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: AdminRequestSanitizer.php 4 2016-05-08 09:49:16Z webchills $
+ * @version $Id: AdminRequestSanitizer.php 5 2016-11-03 08:49:16Z webchills $
  */
 
 /**
@@ -28,7 +28,6 @@ class AdminRequestSanitizer extends base
      * @var
      */
     private $adminSanitizerTypes;
-
     /**
      * @var bool
      */
@@ -575,10 +574,11 @@ class AdminRequestSanitizer extends base
      */
     private function filterStrictSanitizeValues()
     {
+        $this->addParamsToIgnore('STRICT_SANITIZE_VALUES');
         $postToIgnore = $this->getPostKeysAlreadySanitized();
         $getToIgnore = $this->getGetKeysAlreadySanitized();
-        $this->traverseStrictSanitize($_POST, $postToIgnore);
-        $this->traverseStrictSanitize($_GET, $getToIgnore);
+        $this->traverseStrictSanitize($_POST, $postToIgnore, false, 'post');
+        $this->traverseStrictSanitize($_GET, $getToIgnore, false, 'get');
     }
 
     /**
@@ -587,22 +587,54 @@ class AdminRequestSanitizer extends base
      * @param bool|false $inner
      * @return mixed
      */
-    private function traverseStrictSanitize(&$item, $ignore, $inner = false)
+    private function traverseStrictSanitize(&$item, $ignore, $inner, $type)
     {
         foreach ($item as $k => $v) {
             if ($inner || (!$inner && !in_array($k, $ignore))) {
                 if (is_array($v)) {
-                    $item[$k] = $this->traverseStrictSanitize($v, $ignore, true);
+                    $item[$k] = $this->traverseStrictSanitize($v, $ignore, true, $type);
                 } else {
                     $this->debugMessages[] = 'PROCESSING STRICT_SANITIZE_VALUES == ' . $k;
                     $item[$k] = htmlspecialchars($item[$k]);
                 }
             }
             if (!$inner) {
-                $this->postKeysAlreadySanitized[] = $k;
+                if ($type == 'post') {
+                    if (!in_array($k, $this->postKeysAlreadySanitized)) {
+                        $this->postKeysAlreadySanitized[] = $k;
+                    }
+                }
+                if ($type == 'get') {
+                    if (!in_array($k, $this->getKeysAlreadySanitized)) {
+                        $this->getKeysAlreadySanitized[] = $k;
+                    }
+                }
             }
         }
         return $item;
+    }
+
+    /**
+     * @param $group
+     */
+    private function addParamsToIgnore($group)
+    {
+        foreach ($this->requestParameterList as $key => $details) {
+            foreach ($details as $detail) {
+                if ($detail['sanitizerType'] == $group) {
+                    if ($detail['method'] == 'both') {
+                        $this->addKeyAlreadySanitized('post', $key);
+                        $this->addKeyAlreadySanitized('get', $key);
+                    }
+                    if ($detail['method'] == 'get') {
+                        $this->addKeyAlreadySanitized('get', $key);
+                    }
+                    if ($detail['method'] == 'post') {
+                        $this->addKeyAlreadySanitized('post', $key);
+                    }
+                }
+            }
+        }
     }
 
     /**
@@ -623,6 +655,20 @@ class AdminRequestSanitizer extends base
                     unset($_GET[$key]);
                 }
             }
+        }
+    }
+
+    /**
+     * @param $type
+     * @param $key
+     */
+    private function addKeyAlreadySanitized($type, $key)
+    {
+        if ($type == 'post' && !in_array($key, $this->postKeysAlreadySanitized)) {
+            $this->postKeysAlreadySanitized[] = $key;
+        }
+        if ($type == 'get' && !in_array($key, $this->getKeysAlreadySanitized)) {
+            $this->getKeysAlreadySanitized[] = $key;
         }
     }
 

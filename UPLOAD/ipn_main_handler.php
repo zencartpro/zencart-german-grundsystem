@@ -6,7 +6,7 @@
  * @copyright Copyright 2003-2016 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: ipn_main_handler.php 770 2015-12-21 11:08:29Z webchills $
+ * @version $Id: ipn_main_handler.php 771 2016-11-03 08:08:29Z webchills $
  */
 if (!defined('TEXT_RESELECT_SHIPPING')) define('TEXT_RESELECT_SHIPPING', 'You have changed the items in your cart since shipping was last calculated, and costs may have changed. Please verify/re-select your shipping method.');
 
@@ -73,12 +73,12 @@ if (isset($_GET['type']) && $_GET['type'] == 'ec') {
       // We have not gone to PayPal's website yet in order to grab
       // a token at this time.  This will send the customer over to PayPal's
       // website to login and return a token
-      $$paypalwpp_module->ec_step1();
+      ${$paypalwpp_module}->ec_step1();
     } else {
       // This will push on the second step of the paypal ec payment
       // module, as we already have a PayPal express checkout token
       // at this point.
-      $$paypalwpp_module->ec_step2();
+      ${$paypalwpp_module}->ec_step2();
     }
   }
 ?>

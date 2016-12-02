@@ -5,11 +5,11 @@
  * @package initSystem
  * @copyright Copyright 2003-2016 Zen Cart Development Team
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: init_sanitize.php 736 2016-08-14 09:49:16Z webchills $
+ * @version $Id: init_sanitize.php 738 2016-11-03 08:03:16Z webchills $
  */
 
 if (!defined('DO_STRICT_SANITIZATION')) {
-    DEFINE('DO_STRICT_SANITIZATION', true);
+    DEFINE('DO_STRICT_SANITIZATION', false);
 }
 
 if (!defined('DO_DEBUG_SANITIZATION')) {
@@ -182,7 +182,6 @@ $sanitizer->addSimpleSanitization('FILE_DIR_REGEX', $group);
 
 $group = array(
     'handler',
-    'type_name',
     'action',
     'product_attribute_is_free',
     'attributes_default',
@@ -196,7 +195,8 @@ $group = array(
 );
 $sanitizer->addSimpleSanitization('ALPHANUM_DASH_UNDERSCORE', $group);
 
-$group = array('title', 'coupon_name', 'banners_title', 'coupon_code', 'group_name', 'geo_zone_name', 'geo_zone_description',
+$group = array('pages_title', 'page_params', 'music_genre_name', 'artists_name', 'record_company_name', 'countries_name', 'name', 'type_name', 'manufacturers_name',
+               'title', 'coupon_name', 'banners_title', 'coupon_code', 'group_name', 'geo_zone_name', 'geo_zone_description',
                'tax_class_description', 'tax_class_title', 'tax_description', 'entry_company', 'customers_firstname',
                'customers_lastname', 'entry_street_address', 'entry_suburb', 'entry_city', 'entry_state', 'customers_referral',
                'symbol_left', 'symbol_right');
@@ -220,7 +220,7 @@ $sanitizer->addSimpleSanitization('PRODUCT_URL_REGEX', $group);
 $group = array('coupon_min_order');
 $sanitizer->addSimpleSanitization('CURRENCY_VALUE_REGEX', $group);
 
-$group = array('products_name', 'orders_status_name', 'configuration');
+$group = array('categories_name', 'products_name', 'orders_status_name', 'configuration');
 $sanitizer->addSimpleSanitization('PRODUCT_NAME_DEEP_REGEX', $group);
 
 $group = array('configuration_value', 'configuration_key', 'search', 'query_string');
@@ -229,4 +229,6 @@ $sanitizer->addSimpleSanitization('STRICT_SANITIZE_VALUES', $group);
 $group = array();
 $sanitizer->addSimpleSanitization('STRICT_SANITIZE_KEYS', $group);
 
+$group = array('products_name' => array('sanitizerType' => 'WORDS_AND_SYMBOLS_REGEX', 'method' => 'post', 'pages' => array('reviews')));
+$sanitizer->addComplexSanitization($group);
 $sanitizer->runSanitizers();

@@ -6,7 +6,7 @@
  * @copyright Copyright 2003-2016 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: cc_validation.php 730 2015-12-21 19:49:16Z webchills $
+ * @version $Id: cc_validation.php 731 2016-11-03 08:49:16Z webchills $
  */
 if (!defined('IS_ADMIN_FLAG')) {
   die('Illegal Access');
@@ -31,8 +31,8 @@ class cc_validation extends base {
       $this->cc_type = "Maestro"; // SWITCH is now Maestro
     } elseif (preg_match('/^4[0-9]{12}([0-9]{3})?$/', $this->cc_number) && CC_ENABLED_VISA=='1') {
       $this->cc_type = 'Visa';
-    } elseif (preg_match('/^5[1-5][0-9]{14}$/', $this->cc_number) && CC_ENABLED_MC=='1') {
-      $this->cc_type = 'MasterCard';
+	} elseif (preg_match('/^(5[1-5][0-9]{2}|222[1-9]|22[3-9][0-9]|2[3-6][0-9]{2}|27[01][0-9]|2720)[0-9]{12}$/', $this->cc_number) && CC_ENABLED_MC=='1') {
+      $this->cc_type = 'MasterCard'; // 510000-550000, 222100-272099
     } elseif (preg_match('/^3[47][0-9]{13}$/', $this->cc_number) && CC_ENABLED_AMEX=='1') {
       $this->cc_type = 'American Express';
     } elseif (preg_match('/^3(0[0-5]|[68][0-9])[0-9]{11}$/', $this->cc_number) && CC_ENABLED_DINERS_CLUB=='1') {

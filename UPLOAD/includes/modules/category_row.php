@@ -9,7 +9,7 @@
  * @copyright Copyright 2003-2016 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: category_row.php 729 2011-08-09 15:49:16Z hugo13 $
+ * @version $Id: category_row.php 730 2016-12-02 11:49:16Z webchills $
  */
 if (!defined('IS_ADMIN_FLAG')) {
   die('Illegal Access');
@@ -19,7 +19,7 @@ $num_categories = $categories->RecordCount();
 
 $row = 0;
 $col = 0;
-$list_box_contents = '';
+$list_box_contents = array();
 if ($num_categories > 0) {
   if ($num_categories < MAX_DISPLAY_CATEGORIES_PER_ROW || MAX_DISPLAY_CATEGORIES_PER_ROW == 0) {
     $col_width = floor(100/$num_categories);
@@ -47,4 +47,3 @@ if ($num_categories > 0) {
     $categories->MoveNext();
   }
 }
-?>

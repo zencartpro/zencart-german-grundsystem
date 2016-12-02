@@ -4,7 +4,7 @@
  * @copyright Copyright 2003-2016 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: application_top.php 803 2015-12-21 19:47:36Z webchills $
+ * @version $Id: application_top.php 804 2016-11-03 08:47:36Z webchills $
  */
 /**
  * File contains just application_top code
@@ -49,7 +49,7 @@ if (defined('STRICT_ERROR_REPORTING') && STRICT_ERROR_REPORTING == true) {
 if (version_compare(PHP_VERSION, 5.3, '<') && function_exists('set_magic_quotes_runtime')) set_magic_quotes_runtime(0);
 if (version_compare(PHP_VERSION, 5.4, '<') && @ini_get('magic_quotes_sybase') != 0) @ini_set('magic_quotes_sybase', 0);
 // set php_self in the local scope
-if (!isset($PHP_SELF)) $PHP_SELF = $_SERVER['PHP_SELF'];
+if (!isset($PHP_SELF)) $PHP_SELF = $_SERVER['SCRIPT_NAME'];
 $PHP_SELF = htmlspecialchars($PHP_SELF);
 // Suppress html from error messages
 @ini_set("html_errors","0");

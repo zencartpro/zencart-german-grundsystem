@@ -285,6 +285,7 @@ class RiCjLoaderPlugin
 			if($this_is_home_page)
 				$this->current_page_base = 'index_home';
 			elseif($current_page_base == 'index'){
+				$this->current_page_base = 'index';
 				if(isset($_GET['cPath']))
 					$this->current_page_base = 'index_category';
 				elseif(isset($_GET['manufacturers_id']))

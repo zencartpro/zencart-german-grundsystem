@@ -8,7 +8,7 @@
  * @copyright Copyright 2003-2016 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: additional_images.php 2016-03-08 21:38:06Z webchills $
+ * @version $Id: additional_images.php 2016-12-02 11:38:06Z webchills $
  */
 if (!defined('IS_ADMIN_FLAG')) {
   die('Illegal Access');
@@ -69,7 +69,7 @@ if ($products_image != '' && $flag_show_product_info_additional_images != 0) {
 $zco_notifier->notify('NOTIFY_MODULES_ADDITIONAL_PRODUCT_IMAGES_LIST', NULL, $images_array);
 // Build output based on images found
 $num_images = sizeof($images_array);
-$list_box_contents = '';
+$list_box_contents = array();
 $title = '';
 
 if ($num_images) {

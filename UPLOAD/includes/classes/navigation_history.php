@@ -6,7 +6,7 @@
  * @copyright Copyright 2003-2016 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: navigation_history.php 769 2015-12-21 20:08:29Z webchills $
+ * @version $Id: navigation_history.php 770 2016-11-03 08:08:29Z webchills $
  */
 if (!defined('IS_ADMIN_FLAG')) {
   die('Illegal Access');
@@ -34,7 +34,7 @@ class navigationHistory extends base {
     if (preg_match('|ajax\.php$|', $_SERVER['SCRIPT_NAME']) && $_GET['act'] != '') return;
 
     global $request_type, $cPath;
-    $get_vars = "";
+    $get_vars = array();
 
     if (is_array($_GET)) {
       reset($_GET);

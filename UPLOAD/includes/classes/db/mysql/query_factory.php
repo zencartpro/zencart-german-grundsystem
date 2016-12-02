@@ -8,7 +8,7 @@
  * @copyright Portions Copyright 2003 osCommerce
  * @copyright Portions adapted from http://www.data-diggers.com/
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: query_factory.php 735 2016-05-08 09:13:16Z webchills $
+ * @version $Id: query_factory.php 736 2016-11-03 08:13:16Z webchills $
  */
 if (!defined('IS_ADMIN_FLAG')) {
   die('Illegal Access');
@@ -445,7 +445,7 @@ class queryFactory extends base {
       break;
       case 'stringIgnoreNull':
         return '\'' . $this->prepare_input($value) . '\'';
-      break;
+        break;
       case 'noquotestring':
         return $this->prepare_input($value);
       break;
@@ -468,7 +468,7 @@ class queryFactory extends base {
         }
         return $this->prepare_input($value);
       default:
-      die('var-type undefined: ' . $type . '('.$value.')');
+        trigger_error ("var-type undefined: $type ($value).", E_USER_ERROR);
     }
   }
 /**

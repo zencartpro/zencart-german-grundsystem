@@ -6,15 +6,24 @@
  * @copyright Copyright 2003-2016 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: product_listing.php 3 2016-05-31 16:07:16Z webchills $
+ * @version $Id: product_listing.php 4 2016-11-09 20:07:16Z webchills $
  */
 if (!defined('IS_ADMIN_FLAG')) {
   die('Illegal Access');
 }
+if (!defined('PRODUCT_LISTING_LAYOUT_STYLE')) define('PRODUCT_LISTING_LAYOUT_STYLE','rows');
+if (!defined('PRODUCT_LISTING_COLUMNS_PER_ROW')) define('PRODUCT_LISTING_COLUMNS_PER_ROW',3);
+$row = 0;
+$col = 0;
+$list_box_contents = array();
+$title = '';
+
+$max_results = (PRODUCT_LISTING_LAYOUT_STYLE=='columns' && PRODUCT_LISTING_COLUMNS_PER_ROW>0) ? (PRODUCT_LISTING_COLUMNS_PER_ROW * (int)(MAX_DISPLAY_PRODUCTS_LISTING/PRODUCT_LISTING_COLUMNS_PER_ROW)) : MAX_DISPLAY_PRODUCTS_LISTING;
 $show_submit = zen_run_normal();
 $listing_split = new splitPageResults($listing_sql, MAX_DISPLAY_PRODUCTS_LISTING, 'p.products_id', 'page');
 $zco_notifier->notify('NOTIFY_MODULE_PRODUCT_LISTING_RESULTCOUNT', $listing_split->number_of_rows);
 $how_many = 0;
+if (PRODUCT_LISTING_LAYOUT_STYLE == 'rows') {	
 
 $list_box_contents[0] = array('params' => 'class="productListing-rowheading"');
 
@@ -70,11 +79,23 @@ for ($col=0, $n=sizeof($column_list); $col<$n; $col++) {
                                       'text' => $lc_text );
 }
 
+} 
+$num_products_count = $listing_split->number_of_rows;
 if ($listing_split->number_of_rows > 0) {
   $rows = 0;
+  
+  $column = 0;	
+  if (PRODUCT_LISTING_LAYOUT_STYLE == 'columns') {
+    if ($num_products_count < PRODUCT_LISTING_COLUMNS_PER_ROW || PRODUCT_LISTING_COLUMNS_PER_ROW == 0 ) {
+      $col_width = floor(100/$num_products_count) - 0.5;
+    } else {
+      $col_width = floor(100/PRODUCT_LISTING_COLUMNS_PER_ROW) - 0.5;
+    }
+  }
   $listing = $db->Execute($listing_split->sql_query);
   $extra_row = 0;
   while (!$listing->EOF) {
+    if (PRODUCT_LISTING_LAYOUT_STYLE == 'rows') { 
     $rows++;
 
     if ((($rows-$extra_row)/2) == floor(($rows-$extra_row)/2)) {
@@ -84,6 +105,8 @@ if ($listing_split->number_of_rows > 0) {
     }
 
     $cur_row = sizeof($list_box_contents) - 1;
+    }   
+    $product_contents = array(); 
 
     for ($col=0, $n=sizeof($column_list); $col<$n; $col++) {
       $lc_align = '';
@@ -167,9 +190,12 @@ if ($listing_split->number_of_rows > 0) {
         break;
       }
 
+      $product_contents[] = $lc_text; 
+      if (PRODUCT_LISTING_LAYOUT_STYLE == 'rows') {
       $list_box_contents[$rows][$col] = array('align' => $lc_align,
                                               'params' => 'class="productListing-data"',
                                               'text'  => $lc_text);
+    }
     }
 
     // add description and match alternating colors
@@ -185,6 +211,16 @@ if ($listing_split->number_of_rows > 0) {
     //  $list_box_contents[$rows][] = array('params' => 'class="' . $list_box_description . '" colspan="' . $zc_col_count_description . '"',
     //  'text' => zen_trunc_string(zen_clean_html(stripslashes(zen_get_products_description($listing->fields['products_id'], $_SESSION['languages_id']))), PRODUCT_LIST_DESCRIPTION));
     //}
+    if (PRODUCT_LISTING_LAYOUT_STYLE == 'columns') {
+      $lc_text = implode('<br />', $product_contents);
+      $list_box_contents[$rows][$column] = array('params' => 'class="centerBoxContentsProducts centeredContent back"' . ' ' . 'style="width:' . $col_width . '%;"',
+                                                 'text'  => $lc_text);
+      $column ++;
+      if ($column >= PRODUCT_LISTING_COLUMNS_PER_ROW) {
+        $column = 0;
+        $rows ++;
+      }
+    }
     $listing->MoveNext();
   }
   $error_categories = false;
