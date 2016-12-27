@@ -6,7 +6,7 @@
  * @copyright Copyright 2003-2016 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: shopping_cart.php 776 2016-11-03 08:08:29Z webchills $
+ * @version $Id: shopping_cart.php 777 2016-12-27 09:08:29Z webchills $
  */
 
 if (!defined('IS_ADMIN_FLAG')) {
@@ -1780,14 +1780,6 @@ class shoppingCart extends base {
           $adjust_max= 'true';
         } else {
         if ($add_max != 0) {
-// bof: adjust new quantity to be same as current in stock
-            if (STOCK_ALLOW_CHECKOUT == 'false' && ($new_qty + $cart_qty > $chk_current_qty)) {
-                $adjust_new_qty = 'true';
-                $alter_qty = $chk_current_qty - $cart_qty;
-                $new_qty = ($alter_qty > 0 ? $alter_qty : 0);
-                $messageStack->add_session('shopping_cart', ($this->display_debug_messages ? 'FUNCTION ' . __FUNCTION__ . ': ' : '') . WARNING_PRODUCT_QUANTITY_ADJUSTED . zen_get_products_name($_POST['products_id'][$i]), 'caution');
-            }
-// eof: adjust new quantity to be same as current in stock
           // adjust quantity if needed
         switch (true) {
           case ($new_qty == $current_qty): // no change
@@ -1811,6 +1803,13 @@ class shoppingCart extends base {
           default:
             $adjust_max= 'false';
           }
+          
+// bof: notify about adjustment to new quantity to be same as current in stock or maximum to add
+          if ($adjust_max == 'true') {
+            $messageStack->add_session('shopping_cart', ($this->display_debug_messages ? 'FUNCTION ' . __FUNCTION__ . ': ' : '') . WARNING_PRODUCT_QUANTITY_ADJUSTED . zen_get_products_name($_POST['products_id'][$i]), 'caution');
+          }
+// eof: notify about adjustment to new quantity to be same as current in stock or maximum to add
+          
           $attributes = ($_POST['id'][$_POST['products_id'][$i]]) ? $_POST['id'][$_POST['products_id'][$i]] : '';
           $this->add_cart($_POST['products_id'][$i], $new_qty, $attributes, false);
         } else {

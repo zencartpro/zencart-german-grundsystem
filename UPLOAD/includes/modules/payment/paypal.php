@@ -6,7 +6,7 @@
  * @copyright Copyright 2003-2016 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: paypal.php 798 2015-12-21 20:24:50Z webchills $
+ * @version $Id: paypal.php 799 2016-12-27 09:24:50Z webchills $
  */
 
 define('MODULE_PAYMENT_PAYPAL_TAX_OVERRIDE', 'true');
@@ -267,7 +267,7 @@ class paypal extends base {
                    'item_name' => MODULE_PAYMENT_PAYPAL_PURCHASE_DESCRIPTION_TITLE,
                    'item_number' => MODULE_PAYMENT_PAYPAL_PURCHASE_DESCRIPTION_ITEMNUM,
                    //'num_cart_items' => sizeof($order->products),
-                   'amount' => number_format($this->transaction_amount, $currencies->get_decimal_places($my_currency)),
+                   'amount' => round($this->transaction_amount, $currencies->get_decimal_places($my_currency)),
                    'shipping' => '0.00',
                     );
     if (MODULE_PAYMENT_PAYPAL_TAX_OVERRIDE == 'true') $optionsAggregate['tax'] = '0.00';

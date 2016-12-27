@@ -6,7 +6,7 @@
  * @copyright Copyright 2003-2016 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: functions_taxes.php 730 2016-12-02 11:09:16Z webchills $
+ * @version $Id: functions_taxes.php 731 2016-12-27 09:09:16Z webchills $
  */
 
 ////
@@ -156,7 +156,7 @@
   }
 ////
 // Add tax to a products price based on whether we are displaying tax "in" the price
-  function zen_add_tax($price, $tax) {
+  function zen_add_tax($price, $tax = 0) {
     global $currencies;
 
     if ( (DISPLAY_PRICE_WITH_TAX == 'true') && ($tax > 0) ) {

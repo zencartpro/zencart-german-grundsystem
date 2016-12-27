@@ -4,7 +4,7 @@
  * @copyright Copyright 2003-2016 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: customers.php 790 2016-05-08 09:13:51Z webchills $
+ * @version $Id: customers.php 791 2016-12-27 09:06:51Z webchills $
  */
 
   require('includes/application_top.php');
@@ -400,6 +400,8 @@
 
         $db->Execute("delete from " . TABLE_WHOS_ONLINE . "
                       where customer_id = '" . (int)$customers_id . "'");
+
+    	$db->Execute("delete from " . TABLE_PRODUCTS_NOTIFICATIONS . " where customers_id = " . $customer_id);
 
         zen_record_admin_activity('Customer with customer ID ' . (int)$customers_id . ' deleted.', 'warning');
         zen_redirect(zen_href_link(FILENAME_CUSTOMERS, zen_get_all_get_params(array('cID', 'action')), 'NONSSL'));

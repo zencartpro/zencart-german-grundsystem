@@ -5,7 +5,7 @@
  * @package initSystem
  * @copyright Copyright 2003-2016 Zen Cart Development Team
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: init_sanitize.php 738 2016-11-03 08:03:16Z webchills $
+ * @version $Id: init_sanitize.php 739 2016-12-27 09:03:16Z webchills $
  */
 
 if (!defined('DO_STRICT_SANITIZATION')) {
@@ -205,13 +205,13 @@ $sanitizer->addSimpleSanitization('WORDS_AND_SYMBOLS_REGEX', $group);
 $group = array('metatags_title', 'metatags_keywords', 'metatags_description');
 $sanitizer->addSimpleSanitization('META_TAGS', $group);
 
-$group = array('customers_email_address' => array('sanitizerType' => 'SANITIZE_EMAIL_AUDIENCE', 'method' => 'post', 'pages' => array('mail')));
+$group = array('customers_email_address' => array('sanitizerType' => 'SANITIZE_EMAIL_AUDIENCE', 'method' => 'post', 'pages' => array('coupon_admin', 'gv_mail', 'mail')));
 $sanitizer->addComplexSanitization($group);
 
 $group = array('customers_email_address');
 $sanitizer->addSimpleSanitization('SANITIZE_EMAIL', $group);
 
-$group = array('products_description', 'products_taxonomy', 'coupon_desc', 'file_contents', 'categories_description', 'message_html', 'banners_html_text', 'pages_html_text', 'comments');
+$group = array('products_description', 'products_taxonomy', 'coupon_desc', 'file_contents', 'categories_description', 'message_html', 'banners_html_text', 'pages_html_text', 'comments', 'products_options_comment');
 $sanitizer->addSimpleSanitization('PRODUCT_DESC_REGEX', $group);
 
 $group = array('products_url');

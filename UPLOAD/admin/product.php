@@ -4,7 +4,7 @@
  * @copyright Copyright 2003-2016 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: product.php 787 2016-03-04 22:13:51Z webchills $
+ * @version $Id: product.php 788 2016-12-27 09:13:51Z webchills $
  */
 
   require('includes/application_top.php');
@@ -33,7 +33,6 @@
       } else {
         $delete_linked = 'true';
       }
-      $product_type = zen_get_products_type($_POST['products_id']);
         if (file_exists(DIR_WS_MODULES . $zc_products->get_handler($product_type) . '/delete_product_confirm.php')) {
           require(DIR_WS_MODULES . $zc_products->get_handler($product_type) . '/delete_product_confirm.php');
          } else {

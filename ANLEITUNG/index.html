@@ -59,7 +59,7 @@ Wir danken für Ihre Unterstützung und wünschen Ihnen viel Erfolg und Spaß mi
 <em>Das Team der deutschen Zen Cart Version</em></p>
 <hr />
 <span class="small">
-Die deutsche Zen Cart Version 1.5.5 ist eine Modifikation der amerikanischen Zen Cart Version 1.5.5b von <a href="http://www.zen-cart.com" target="_blank">zen-cart.com</a>.<br/>
+Die deutsche Zen Cart Version 1.5.5 ist eine Modifikation der amerikanischen Zen Cart Version 1.5.5c von <a href="http://www.zen-cart.com" target="_blank">zen-cart.com</a>.<br/>
 <br/>
 Dieses Programm wird in der Hoffnung vertrieben, dass es nützlich ist, allerdings OHNE IRGENDWELCHE GARANTIEN; ohne  die  Garantie der MARKTGÄNGIGKEIT oder der EIGNUNG ZU EINEM BESTIMMTEN ZWECK
 und wird vertrieben unter der GNU General Public License </span>
@@ -143,7 +143,7 @@ Zen Cart 1.5.5 deutsch ermöglicht den Einsatz von Zen Cart unter PHP 7 und brin
 </ul>
 
 <p>
-  Folgende Neuerungen und Bugfixes wurden aus der amerikanischen 1.5.5b Version  übernommen:</p>
+  Folgende Neuerungen und Bugfixes wurden aus der amerikanischen 1.5.5c Version  übernommen:</p>
 <ul>
   <li>All known v1.5.4 bugfixes and security fixes are included in v1.5.5,   including tighter control around XSS as well as clickjacking</li>
   <li>Template: The default out-of-the-box template (called "Responsive   Classic") is now a mobile-friendly responsive-design theme built for   flexibility with tablets, mobile devices, and desktops.</li>
@@ -195,6 +195,15 @@ Zen Cart 1.5.5 deutsch ermöglicht den Einsatz von Zen Cart unter PHP 7 und brin
   <li>Fix extra breadcrumb that was appearing when always-open-with-category is enabled</li>
   <li>Update BOC currency parsing to cope with their data changes and division-by-zero errors as a result</li>
   <li>Fix a test-mode bug in Authorizenet AIM module</li>
+  <li>Fix serious PHPMailer bug (upgraded to 5.2.19)</li>
+  <li>    Fix some variable strict-type rule enforcement issues for better PHP 7 compatibility</li>
+  <li>    Fix sanitizer (admin) overzealous cleaning for Attribute Option Comments</li>
+  <li>    Fixed bug preventing sending Coupon and GV emails to &quot;all customers&quot;</li>
+  <li>    Fixed rarely-triggered bug with product-type overrides for delete/copy logic</li>
+  <li>    Fixed problem where deleting a customer wouldn't delete old product-notification requests associated with that customer</li>
+  <li>    Fixed PayPal Standard to no longer transmit a comma as thousands-separator. (PayPal is being more strict about this in 2017.)</li>
+  <li>    Fixed shopping-basket quantity alert problem where changing quantities didn't always fire if min/mix rules were set</li>
+  <li>    Make null-exception treatment consistent in admin to match catalog</li>
 </ul>
 <h1>Changelog</h1>
 <p>Es gibt gegenüber Zen Cart 1.5.4 deutsch Änderungen in fast allen Dateien, ein detailliertes Changelog würde daher den Rahmen dieser Doku sprengen.<br>

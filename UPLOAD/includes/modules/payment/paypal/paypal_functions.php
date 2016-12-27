@@ -7,7 +7,7 @@
  * @copyright Portions Copyright 2003 osCommerce
  * @copyright Portions Copyright 2004 DevosC.com
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: paypal_functions.php 733 2016-02-29 16:49:16Z webchills $
+ * @version $Id: paypal_functions.php 734 2016-12-27 09:11:16Z webchills $
  */
 
 // Functions for paypal processing
@@ -575,6 +575,12 @@
     $response = curl_exec($ch);
     $commError = curl_error($ch);
     $commErrNo = curl_errno($ch);
+    if ($commErrNo == 35) {
+      curl_setopt($ch, CURLOPT_SSLVERSION, 6);
+      $response = curl_exec($ch);
+      $commError = curl_error($ch);
+      $commErrNo = curl_errno($ch);
+    }
     $commInfo = @curl_getinfo($ch);
     curl_close($ch);
 
@@ -644,7 +650,7 @@
                             'orders_status_id' => (int)$new_status,
                             'date_added' => 'now()',
                             'comments' => 'PayPal status: ' . $_POST['payment_status'] . ' ' . ' @ ' . $_POST['payment_date'] . (($_POST['parent_txn_id'] !='') ? "\n" . ' Parent Trans ID:' . $_POST['parent_txn_id'] : '') . "\n" . ' Trans ID:' . $_POST['txn_id'] . "\n" . ' Amount: ' . $_POST['mc_gross'] . ' ' . $_POST['mc_currency'],
-                            'customer_notified' => false
+                            'customer_notified' => (int)false,
                            );
     zen_db_perform(TABLE_ORDERS_STATUS_HISTORY, $sql_data_array);
     ipn_debug_email('IPN NOTICE :: Update complete.');
@@ -957,18 +963,18 @@
     // tidy up all values so that they comply with proper format (number_format(xxxx,2) for PayPal US use )
     if (!defined('PAYPALWPP_SKIP_LINE_ITEM_DETAIL_FORMATTING') || PAYPALWPP_SKIP_LINE_ITEM_DETAIL_FORMATTING != 'true' || in_array($order->info['currency'], array('JPY', 'NOK', 'HUF', 'TWD'))) {
       if (is_array($optionsST)) foreach ($optionsST as $key=>$value) {
-        $optionsST[$key] = number_format($value, ((int)$currencies->get_decimal_places($restrictedCurrency) == 0 ? 0 : 2));
+        $optionsST[$key] = round($value, ((int)$currencies->get_decimal_places($restrictedCurrency) == 0 ? 0 : 2));
       }
       if (is_array($optionsLI)) foreach ($optionsLI as $key=>$value) {
         if (substr($key, 0, 8) == 'tax_' && ($optionsLI[$key] == '' || $optionsLI[$key] == 0)) {
           unset($optionsLI[$key]);
         } else {
-          if (strstr($key, 'amount')) $optionsLI[$key] = number_format($value, ((int)$currencies->get_decimal_places($restrictedCurrency) == 0 ? 0 : 2));
+          if (strstr($key, 'amount')) $optionsLI[$key] = round($value, ((int)$currencies->get_decimal_places($restrictedCurrency) == 0 ? 0 : 2));
         }
       }
     }
 
-    ipn_logging('getLineItemDetails 8', 'checking subtotals... ' . "\n" . print_r(array_merge(array('calculated total'=>number_format($stAll, ((int)$currencies->get_decimal_places($restrictedCurrency) == 0 ? 0 : 2))), $optionsST), true) . "\n-------------------\ndifference: " . ($stDiff + 0) . '  (abs+rounded: ' . ($stDiffRounded + 0) . ')');
+    ipn_logging('getLineItemDetails 8', 'checking subtotals... ' . "\n" . print_r(array_merge(array('calculated total'=>round($stAll, ((int)$currencies->get_decimal_places($restrictedCurrency) == 0 ? 0 : 2))), $optionsST), true) . "\n-------------------\ndifference: " . ($stDiff + 0) . '  (abs+rounded: ' . ($stDiffRounded + 0) . ')');
 
     if ( $stDiffRounded != 0) {
       ipn_logging('getLineItemDetails 9', 'Subtotals Bad. Skipping line-item/subtotal details');
