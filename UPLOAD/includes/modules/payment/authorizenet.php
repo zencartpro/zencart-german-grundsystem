@@ -6,7 +6,7 @@
  * @copyright Copyright 2003-2016 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
-  * @version $Id: authorizenet.php 805 2016-02-29 15:47:36Z webchills $
+  * @version $Id: authorizenet.php 806 2016-12-28 23:07:36Z webchills $
  */
 /**
  * authorize.net SIM payment method class
@@ -88,7 +88,7 @@ class authorizenet extends base {
 
     if (is_object($order)) $this->update_status();
 
-    $this->form_action_url = 'https://secure.authorize.net/gateway/transact.dll';
+    $this->form_action_url = 'https://secure2.authorize.net/gateway/transact.dll';
     if (MODULE_PAYMENT_AUTHORIZENET_TESTMODE == 'Sandbox') $this->form_action_url = 'https://test.authorize.net/gateway/transact.dll';
 
 //     $this->form_action_url = 'https://www.eprocessingnetwork.com/cgi-bin/an/order.pl';
@@ -652,9 +652,9 @@ class authorizenet extends base {
    */
   function tableCheckup() {
     global $db, $sniffer;
-    $fieldOkay1 = (method_exists($sniffer, 'field_type')) ? $sniffer->field_type(TABLE_AUTHORIZENET, 'transaction_id', 'bigint(20)', true) : -1;
+    $fieldOkay1 = (method_exists($sniffer, 'field_type')) ? $sniffer->field_type(TABLE_AUTHORIZENET, 'transaction_id', 'varchar(32)', true) : -1;
     if ($fieldOkay1 !== true) {
-      $db->Execute("ALTER TABLE " . TABLE_AUTHORIZENET . " CHANGE transaction_id transaction_id bigint(20) default NULL");
+      $db->Execute("ALTER TABLE " . TABLE_AUTHORIZENET . " CHANGE transaction_id transaction_id varchar(32) default NULL");
     }
   }
 }

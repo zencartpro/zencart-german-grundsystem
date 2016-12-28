@@ -10,7 +10,7 @@
  * @package general
  * @copyright Copyright 2003-2016 Zen Cart Development Team
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: version.php 842 2015-12-21 19:54:58Z webchills $
+ * @version $Id: version.php 843 2016-12-28 23:10:58Z webchills $
  * @private
  */
 
