@@ -1,10 +1,10 @@
 <?php
 /**
  * @package admin
- * @copyright Copyright 2003-2016 Zen Cart Development Team
+ * @copyright Copyright 2003-2017 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: customers.php 791 2016-12-27 09:06:51Z webchills $
+ * @version $Id: customers.php 792 2017-01-06 13:06:51Z webchills $
  */
 
   require('includes/application_top.php');
@@ -401,7 +401,7 @@
         $db->Execute("delete from " . TABLE_WHOS_ONLINE . "
                       where customer_id = '" . (int)$customers_id . "'");
 
-    	$db->Execute("delete from " . TABLE_PRODUCTS_NOTIFICATIONS . " where customers_id = " . $customer_id);
+    	$db->Execute("delete from " . TABLE_PRODUCTS_NOTIFICATIONS . " where customers_id = " . $customers_id);
 
         zen_record_admin_activity('Customer with customer ID ' . (int)$customers_id . ' deleted.', 'warning');
         zen_redirect(zen_href_link(FILENAME_CUSTOMERS, zen_get_all_get_params(array('cID', 'action')), 'NONSSL'));
@@ -1153,12 +1153,12 @@ if (($_GET['page'] == '' or $_GET['page'] == '1') and $_GET['cID'] != '') {
       }
 
       if ((!isset($_GET['cID']) || (isset($_GET['cID']) && ($_GET['cID'] == $customers->fields['customers_id']))) && !isset($cInfo)) {
-// BOF Mehrsprachige Ländernamen 1 of 1
+
         $country = $db->Execute("SELECT countries_name
                                  FROM " . TABLE_COUNTRIES_NAME . "
                                  WHERE countries_id = '" . (int)$customers->fields['entry_country_id'] . "'
                                  AND language_id = " . (int)$_SESSION['languages_id']);
-// EOF Mehrsprachige Ländernamen 1 of 1
+
 
         $reviews = $db->Execute("select count(*) as number_of_reviews
                                  from " . TABLE_REVIEWS . " where customers_id = '" . (int)$customers->fields['customers_id'] . "'");
