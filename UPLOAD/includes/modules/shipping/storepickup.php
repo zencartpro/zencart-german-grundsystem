@@ -1,10 +1,10 @@
 <?php
 /**
  * @package shippingMethod
- * @copyright Copyright 2003-2016 Zen Cart Development Team
+ * @copyright Copyright 2003-2017 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: storepickup.php 733 2016-03-06 20:49:16Z webchills $
+ * @version $Id: storepickup.php 734 2017-01-15 14:49:16Z webchills $
  */
 /**
  * Store-Pickup / Will-Call shipping method
@@ -182,12 +182,12 @@ class storepickup extends base {
     $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) values ('Countries', 'MODULE_SHIPPING_STOREPICKUP_COUNTRIES', 'DE', 'Enter the countries for which you want to offer storepickup. Two digit ISO codes, comma separated.', '6', '11', now());");
    // www.zen-cart-pro.at languages_id==43 START
     $db->Execute("insert into " . TABLE_CONFIGURATION_LANGUAGE   . " (configuration_title, configuration_key, configuration_language_id, configuration_description, date_added) values ('Selbstabholung anbieten?', 'MODULE_SHIPPING_STOREPICKUP_STATUS', '43', 'Wollen Sie Selbstabholung aktivieren?', now())");
-    $db->Execute("insert into " . TABLE_CONFIGURATION_LANGUAGE   . " (configuration_title, configuration_key, configuration_language_id, configuration_description, date_added) values ('Kosten für Selbstabholung', 'MODULE_SHIPPING_STOREPICKUP_COST', '43', 'Versandkosten für Selbstabholung', now())");
-    $db->Execute("insert into " . TABLE_CONFIGURATION_LANGUAGE   . " (configuration_title, configuration_key, configuration_language_id, configuration_description, date_added) values ('Steuerklasse', 'MODULE_SHIPPING_STOREPICKUP_TAX_CLASS', '43', 'Falls Sie Versandkosten für Selbstabholung eingetragen haben, welche Steuerklasse soll auf die Versandkosten angewendet werden?', now())");
-    $db->Execute("insert into " . TABLE_CONFIGURATION_LANGUAGE   . " (configuration_title, configuration_key, configuration_language_id, configuration_description, date_added) values ('Basis der Steuern', 'MODULE_SHIPPING_STOREPICKUP_TAX_BASIS', '43', 'Auf welcher Basis soll die Steuer für die Versandkosten berechnet werden? Mögliche Werte sind.<br/>Shipping - basiert auf der Versandadresse des Kunden<br/>Billing - basiert auf der Rechnungsadresse des Kunden<br/>Store - basiert auf der Adresse des Shops wenn Versand- und Rechnungszone in derselben Zone liegen wie der Shop', now())");
-    $db->Execute("insert into " . TABLE_CONFIGURATION_LANGUAGE   . " (configuration_title, configuration_key, configuration_language_id, configuration_description, date_added) values ('Versandzone', 'MODULE_SHIPPING_STOREPICKUP_ZONE', '43', 'Wenn Sie hier eine Zone auswählen, wird Selbstabholung nur in dieser Zone angeboten.', now())");
+    $db->Execute("insert into " . TABLE_CONFIGURATION_LANGUAGE   . " (configuration_title, configuration_key, configuration_language_id, configuration_description, date_added) values ('Kosten fÃ¼r Selbstabholung', 'MODULE_SHIPPING_STOREPICKUP_COST', '43', 'Versandkosten fÃ¼r Selbstabholung', now())");
+    $db->Execute("insert into " . TABLE_CONFIGURATION_LANGUAGE   . " (configuration_title, configuration_key, configuration_language_id, configuration_description, date_added) values ('Steuerklasse', 'MODULE_SHIPPING_STOREPICKUP_TAX_CLASS', '43', 'Falls Sie Versandkosten fÃ¼r Selbstabholung eingetragen haben, welche Steuerklasse soll auf die Versandkosten angewendet werden?', now())");
+    $db->Execute("insert into " . TABLE_CONFIGURATION_LANGUAGE   . " (configuration_title, configuration_key, configuration_language_id, configuration_description, date_added) values ('Basis der Steuern', 'MODULE_SHIPPING_STOREPICKUP_TAX_BASIS', '43', 'Auf welcher Basis soll die Steuer fÃ¼r die Versandkosten berechnet werden? MÃ¶gliche Werte sind.<br/>Shipping - basiert auf der Versandadresse des Kunden<br/>Billing - basiert auf der Rechnungsadresse des Kunden<br/>Store - basiert auf der Adresse des Shops wenn Versand- und Rechnungszone in derselben Zone liegen wie der Shop', now())");
+    $db->Execute("insert into " . TABLE_CONFIGURATION_LANGUAGE   . " (configuration_title, configuration_key, configuration_language_id, configuration_description, date_added) values ('Versandzone', 'MODULE_SHIPPING_STOREPICKUP_ZONE', '43', 'Wenn Sie hier eine Zone auswÃ¤hlen, wird Selbstabholung nur in dieser Zone angeboten.', now())");
     $db->Execute("insert into " . TABLE_CONFIGURATION_LANGUAGE   . " (configuration_title, configuration_key, configuration_language_id, configuration_description, date_added) values ('Sortierreihenfolge', 'MODULE_SHIPPING_STOREPICKUP_SORT_ORDER', '43', 'Anzeigereihenfolge. Niedrigste Werte werden zuerst angezeigt.', now())");
-    $db->Execute("insert into " . TABLE_CONFIGURATION_LANGUAGE   . " (configuration_title, configuration_key, configuration_language_id, configuration_description, date_added) values ('Länder', 'MODULE_SHIPPING_STOREPICKUP_COUNTRIES', '43', 'Geben Sie hier die Länder an, für die Selbstabholung möglich sein soll.<br/>Zweistellige ISO-Codes durch Komma getrennt!', now())");   
+    $db->Execute("insert into " . TABLE_CONFIGURATION_LANGUAGE   . " (configuration_title, configuration_key, configuration_language_id, configuration_description, date_added) values ('LÃ¤nder', 'MODULE_SHIPPING_STOREPICKUP_COUNTRIES', '43', 'Geben Sie hier die LÃ¤nder an, fÃ¼r die Selbstabholung mÃ¶glich sein soll.<br/>Zweistellige ISO-Codes durch Komma getrennt!', now())");   
       // www.zen-cart.at languages_id==43  END
   }
   /**
