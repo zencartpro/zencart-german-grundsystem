@@ -10,7 +10,7 @@
  * @author     Conor Kerr <conor.kerr_zen-cart@dev.ceon.net>
  * @author     Carl Peach <carlvt88 at zen-cart.com/forum>
  * @updated by stellarweb to work with version 1.5.0 02-29-12 
- * @updated by webchills 2012-07-18 
+ * @updated by webchills 2017-01-21 
  * @copyright  Portions Copyright 2003-2012 Zen Cart Development Team
  * @copyright  Portions Copyright 2003 osCommerce
  * @license    http://www.gnu.org/copyleft/gpl.html   GNU Public License V2.0
@@ -455,7 +455,7 @@ var scBTNMODE_CALBTN;
               <td class="smallText" id="td_this_month"><?php echo zen_draw_radio_field('date_preset', 'this_month', false) . sprintf(SEARCH_DATE_THIS_MONTH, date("F \'y") ); ?></td>
             </tr>
             <tr>
-              <td class="smallText" id="td_last_year"><?php echo zen_draw_radio_field('date_preset', 'last_year', false) . sprintf(SEARCH_DATE_LAST_YEAR, date("Y", mktime(0,0,0, date("y")))- 1 ); ?></td>
+              <td class="smallText" id="td_last_year"><?php echo zen_draw_radio_field('date_preset', 'last_year', false) . sprintf(SEARCH_DATE_LAST_YEAR, date("Y", mktime(0,0,0,1,1,date("y")-1))); ?></td>
             </tr>
             <tr>
               <td class="smallText" id="td_YTD"><?php echo zen_draw_radio_field('date_preset', 'YTD', false) . sprintf(SEARCH_DATE_YTD, "Jan 1 to " . date("M. j Y", mktime(0, 0, 0, date("m"), date("d"), date("Y")))); ?></td>
