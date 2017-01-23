@@ -6,9 +6,9 @@
  * View or change Customer Account Information
  *
  * @package templateSystem
- * @copyright Copyright 2003-2016 Zen Cart Development Team
+ * @copyright Copyright 2003-2017 Zen Cart Development Team
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: tpl_account_edit_default.php 731 2016-02-29 12:49:16Z webchills $
+ * @version $Id: tpl_account_edit_default.php 732 2017-01-23 17:49:16Z webchills $
  * @copyright Portions Copyright 2003 osCommerce
  */
 ?>
@@ -48,11 +48,12 @@
 <?php
   }
 ?>
-
 <label class="inputLabel" for="email-address"><?php echo ENTRY_EMAIL_ADDRESS; ?></label>
 <?php echo zen_draw_input_field('email_address', $account->fields['customers_email_address'], 'id="email-address" placeholder="' . ENTRY_EMAIL_ADDRESS_TEXT . '"'. ((int)ENTRY_EMAIL_ADDRESS_MIN_LENGTH > 0 ? ' required' : ''), 'email'); ?>
 <br class="clearBoth" />
-
+<label class="inputLabel" for="email-address-confirm"><?php echo ENTRY_EMAIL_ADDRESS_CONFIRM; ?></label>
+<?php echo zen_draw_input_field('email_address_confirm', $account->fields['customers_email_address'], 'id="email-address-confirm"') . (zen_not_null(ENTRY_EMAIL_ADDRESS_CONFIRM) ? '<span class="alert">' . ENTRY_EMAIL_ADDRESS_TEXT . '</span>': ''); ?>
+<br class="clearBoth" />
 <label class="inputLabel" for="telephone"><?php echo ENTRY_TELEPHONE_NUMBER; ?></label>
 <?php echo zen_draw_input_field('telephone', $account->fields['customers_telephone'], 'id="telephone" placeholder="' . ENTRY_TELEPHONE_NUMBER_TEXT . '"' . ((int)ENTRY_TELEPHONE_MIN_LENGTH > 0 ? ' required' : ''), 'tel'); ?>
 <br class="clearBoth" />
