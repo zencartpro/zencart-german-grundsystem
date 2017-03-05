@@ -1,10 +1,10 @@
 <?php
 /**
  * @package admin
- * @copyright Copyright 2003-2016 Zen Cart Development Team
+ * @copyright Copyright 2003-2017 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: config.core.php 802 2015-12-21 19:47:36Z webchills $
+ * @version $Id: config.core.php 803 2017-03-05 15:47:36Z webchills $
  */
 if (!defined('USE_PCONNECT')) define('USE_PCONNECT', 'false');
 /**
@@ -65,7 +65,7 @@ if (!defined('USE_PCONNECT')) define('USE_PCONNECT', 'false');
                                'loadFile'=>'class.phpmailer.php');
   $autoLoadConfig[0][] = array('autoType'=>'class',
                                'loadFile'=>'upload.php',
-                               'classPath'=>DIR_WS_CLASSES);
+                               'classPath'=>DIR_FS_CATALOG . DIR_WS_CLASSES);
   $autoLoadConfig[0][] = array('autoType'=>'class',
                                'loadFile'=>'class.zcPassword.php');
   $autoLoadConfig[0][] = array('autoType'=>'classInstantiate',

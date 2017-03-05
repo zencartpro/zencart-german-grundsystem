@@ -1,5 +1,5 @@
 #
-# @copyright Copyright 2003-2016 Zen Cart Development Team
+# @copyright Copyright 2003-2017 Zen Cart Development Team
 # @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
 # @version $Id: Author: zcwilt  Wed Sep 23 20:04:38 2015 +0100 Modified in v1.5.5 $
 #
@@ -21,12 +21,23 @@ DirectoryIndex index.php
 
 # prevents inappropriate browsing
 <FilesMatch ".*\..*">
-  Order Allow,Deny
-  Deny from all
+  <IfModule mod_authz_core.c>
+    Require all denied
+  </IfModule>
+  <IfModule !mod_authz_core.c>
+    Order Allow,Deny
+    Deny from all
+  </IfModule>
 </FilesMatch>
+
 <FilesMatch "(^$|^favicon.ico$|.*\.(php|js|css|jpg|gif|png|html)$)">
-  Order Allow,Deny
-  Allow from all
+  <IfModule mod_authz_core.c>
+    Require all granted
+  </IfModule>
+  <IfModule !mod_authz_core.c>
+    Order Allow,Deny
+    Allow from all
+  </IfModule>
 </FilesMatch>
 
 IndexIgnore */*

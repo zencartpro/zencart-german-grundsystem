@@ -1,7 +1,7 @@
 #
-# @copyright Copyright 2003-2013 Zen Cart Development Team
-# @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
-# @version GIT: $Id: Author: DrByte  Fri May 17 14:29:18 2013 -0400 Modified in v1.5.2 $
+# @copyright Copyright 2003-2017 Zen Cart Development Team
+# @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
+# @version $Id: .htaccess 2017-03-05 15:49:16Z webchills $
 #
 # This is used with Apache WebServers
 #
@@ -19,14 +19,24 @@
 
 # deny *everything*
 <FilesMatch ".*">
-  Order Allow,Deny
-  Deny from all
+  <IfModule mod_authz_core.c>
+    Require all denied
+  </IfModule>
+  <IfModule !mod_authz_core.c>
+    Order Allow,Deny
+    Deny from all
+  </IfModule>
 </FilesMatch>
 
 # but now allow just *certain* necessary files:
 <FilesMatch "(?i).*\.(mp3|mp4|swf|avi|mpg|wma|rm|ra|ram|wmv|epub|flv|ogg|m4v|m4a|webm)$" >
-  Order Allow,Deny
-  Allow from all
+  <IfModule mod_authz_core.c>
+    Require all granted
+  </IfModule>
+  <IfModule !mod_authz_core.c>
+    Order Allow,Deny
+    Allow from all
+  </IfModule>
 </FilesMatch>
 
 IndexIgnore */*

@@ -1,10 +1,10 @@
 <?php
 /**
  * @package admin
- * @copyright Copyright 2003-2016 Zen Cart Development Team
+ * @copyright Copyright 2003-2017 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: index_dashboard.php 3 2016-04-09 10:49:16Z webchills $
+ * @version $Id: index_dashboard.php 4 2017-03-05 14:49:16Z webchills $
  */
 $customers = $db->Execute("select count(*) as count from " . TABLE_CUSTOMERS);
 
@@ -62,6 +62,7 @@ $salemaker_act = $db->Execute("select count(*) as count from " . TABLE_SALEMAKER
 <!-- header_eof //-->
 
 <div id="colone" class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
+<?php if (zen_is_superuser() || check_page(FILENAME_ORDERS, array())) { ?>
     <div class="reportBox">
         <div class="header"><?php echo BOX_TITLE_STATISTICS; ?> </div>
         <?php
@@ -87,6 +88,8 @@ $salemaker_act = $db->Execute("select count(*) as count from " . TABLE_SALEMAKER
 
         ?>
     </div>
+ <?php } ?>
+<?php if (zen_is_superuser() || check_page(FILENAME_ORDERS, array())) { ?>
     <div class="reportBox">
         <div class="header"><?php echo BOX_TITLE_ORDERS; ?> </div>
         <?php   $orders_contents = '';
@@ -102,11 +105,13 @@ $salemaker_act = $db->Execute("select count(*) as count from " . TABLE_SALEMAKER
         echo $orders_contents;
         ?>
     </div>
+<?php } ?>
 </div>
 <div id="coltwo" class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
+<?php if (zen_is_superuser() || check_page(FILENAME_CUSTOMERS, array())) { ?>
     <div class="reportBox">
         <div class="header"><?php echo BOX_ENTRY_NEW_CUSTOMERS; ?> </div>
-        <?php  $customers = $db->Execute("select c.customers_id as customers_id, c.customers_firstname as customers_firstname, c.customers_lastname as customers_lastname, c.customers_email_address as customers_email_address, a.customers_info_date_account_created as customers_info_date_account_created, a.customers_info_id from " . TABLE_CUSTOMERS . " c left join " . TABLE_CUSTOMERS_INFO . " a on c.customers_id = a.customers_info_id order by a.customers_info_date_account_created DESC limit 5");
+        <?php  $customers = $db->Execute("select c.customers_id as customers_id, c.customers_firstname as customers_firstname, c.customers_lastname as customers_lastname, c.customers_email_address as customers_email_address, a.customers_info_date_account_created as customers_info_date_account_created, a.customers_info_id from " . TABLE_CUSTOMERS . " c left join " . TABLE_CUSTOMERS_INFO . " a on c.customers_id = a.customers_info_id order by a.customers_info_date_account_created DESC limit 15");
 
         while (!$customers->EOF) {
             $customers->fields['customers_firstname'] = zen_output_string_protected($customers->fields['customers_firstname']);
@@ -118,7 +123,9 @@ $salemaker_act = $db->Execute("select count(*) as count from " . TABLE_SALEMAKER
         }
         ?>
     </div>
+<?php } ?>
 
+<?php if (zen_is_superuser() || check_page(FILENAME_ORDERS, array())) { ?>
     <div class="reportBox">
         <?php
         $counter_query = "select startdate, counter, session_counter from " . TABLE_COUNTER_HISTORY . " order by startdate DESC limit 10";
@@ -136,11 +143,13 @@ $salemaker_act = $db->Execute("select count(*) as count from " . TABLE_SALEMAKER
         ?>
 
     </div>
+<?php } ?>
 </div>
 <div id="colthree" class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
+<?php if (zen_is_superuser() || check_page(FILENAME_ORDERS, array())) { ?>
     <div class="reportBox">
         <div class="header"><?php echo BOX_ENTRY_NEW_ORDERS; ?> </div>
-        <?php  $orders = $db->Execute("select o.orders_id as orders_id, o.customers_name as customers_name, o.customers_id, o.date_purchased as date_purchased, o.currency, o.currency_value, ot.class, ot.text as order_total from " . TABLE_ORDERS . " o left join " . TABLE_ORDERS_TOTAL . " ot on (o.orders_id = ot.orders_id and class = 'ot_total') order by orders_id DESC limit 5");
+        <?php  $orders = $db->Execute("select o.orders_id as orders_id, o.customers_name as customers_name, o.customers_id, o.date_purchased as date_purchased, o.currency, o.currency_value, ot.class, ot.text as order_total from " . TABLE_ORDERS . " o left join " . TABLE_ORDERS_TOTAL . " ot on (o.orders_id = ot.orders_id and class = 'ot_total') order by orders_id DESC limit 25");
 
         while (!$orders->EOF) {
             echo '              <div class="row"><span class="left"><a href="' . zen_href_link(FILENAME_ORDERS, 'oID=' . $orders->fields['orders_id'] . '&origin=' . FILENAME_DEFAULT, 'NONSSL') . '" class="contentlink"> ' . $orders->fields['customers_name'] . '</a></span><span class="center">' . $orders->fields['order_total'] . '</span><span class="rigth">' . "\n";
@@ -150,4 +159,5 @@ $salemaker_act = $db->Execute("select count(*) as count from " . TABLE_SALEMAKER
         }
         ?>
     </div>
+<?php } ?>
 </div>

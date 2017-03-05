@@ -8,7 +8,7 @@
  * @copyright Copyright 2003-2016 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: defined_paths.php 4 2016-03-29 23:26:00 webchills
+ * @version $Id: defined_paths.php 5 2017-03-05 15:26:00 webchills
  */
 function zen_parse_url($url, $element = 'array')
 {
@@ -85,3 +85,4 @@ if (!defined('DIR_CATALOG_LIBRARY')) {
 }
 //catchall for old things that still use it ... but should be rewritten so this can be removed fully.
 if (!defined('DIR_WS_HTTPS_ADMIN')) define('DIR_WS_HTTPS_ADMIN', DIR_WS_ADMIN);
+if (!defined('ENABLE_SSL_ADMIN')) define('ENABLE_SSL_ADMIN', substr(HTTP_SERVER, 0, 6) == 'https:' ? 'true' : 'false');
