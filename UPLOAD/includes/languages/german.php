@@ -1,10 +1,10 @@
 <?php
 /**
  * @package languageDefines
- * @copyright Copyright 2003-2016 Zen Cart Development Team
+ * @copyright Copyright 2003-2017 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: german.php 662 2016-04-06 19:45:57Z webchills $
+ * @version $Id: german.php 663 2017-03-21 19:45:57Z webchills $
  */
 
 // FOLLOWING WERE moved to meta_tags.php
@@ -522,6 +522,7 @@ define('TEXT_LOGIN_FOR_PRICE_BUTTON_REPLACE_SHOWROOM', 'Nur Schauraum');
 define('TEXT_AUTHORIZATION_PENDING_PRICE', 'Preis nicht verfügbar');
 define('TEXT_AUTHORIZATION_PENDING_BUTTON_REPLACE', 'ÜBERPRÜFUNG LÄUFT');
 define('TEXT_LOGIN_TO_SHOP_BUTTON_REPLACE','Im Shop anmelden');
+define('TEXT_AUTHORIZATION_PENDING_CHECKOUT', 'Checkout nicht möglich - Ihr Kundenkonto ist noch nicht freigeschaltet');
 
 // text pricing
 define('TEXT_CHARGES_WORD', 'Kalkulierte Gebühr:');
