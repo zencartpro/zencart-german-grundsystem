@@ -4,11 +4,11 @@
  * Class used for database abstraction to MySQL via mysqli
  *
  * @package classes
- * @copyright Copyright 2003-2016 Zen Cart Development Team
+ * @copyright Copyright 2003-2017 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @copyright Portions adapted from http://www.data-diggers.com/
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: query_factory.php 736 2016-11-03 08:13:16Z webchills $
+ * @version $Id: query_factory.php 737 2017-03-20 21:13:16Z webchills $
  */
 if (!defined('IS_ADMIN_FLAG')) {
   die('Illegal Access');
@@ -154,7 +154,7 @@ class queryFactory extends base {
       echo $this->error_number . ' ' . $this->error_text;
       echo '<br />in:<br />[' . (strstr($this->zf_sql, 'db_cache') ? 'db_cache table' : $this->zf_sql) . ']<br />';
     } else {
-      echo 'WARNING: An Error occurred, please refresh the page and try again.';
+      echo 'FEHLER: Datenbankabfragen oder Datenbankeintrdge schlagen fehl.<br/>Den Grund dafür finden Sie in den Errorlogs.<br/>Gehen Sie so vor wie in den FAQ auf <a href="http://error.zen-cart-pro.at" target="_blank">http://error.zen-cart-pro.at</a> beschrieben.';
     }
     $backtrace_array = debug_backtrace();
     $query_factory_caller = '';

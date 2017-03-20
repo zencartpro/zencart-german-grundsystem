@@ -5,7 +5,7 @@
 # * @copyright Copyright 2003-2017 Zen Cart Development Team
 # * @copyright Portions Copyright 2003 osCommerce
 # * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
-# * @version $Id: mysql_zencart.sql 19468 2017-03-05 15:38:16Z webchills $
+# * @version $Id: mysql_zencart.sql 19469 2017-03-20 15:38:16Z webchills $
 #
 
 ############ IMPORTANT INSTRUCTIONS ###############
@@ -3126,11 +3126,11 @@ INSERT INTO configuration_group VALUES (34, 'RSS Feed', 'RSS Feed Settings', 34,
 INSERT INTO configuration_group VALUES (35, 'Zen Colorbox', 'Zen Colorbox Settings', 35, '1');
 
 INSERT INTO currencies VALUES (1,'Euro','EUR','&euro;','','.',',','2','1.0000', now());
-INSERT INTO currencies VALUES (2,'US Dollar','USD','$','','.',',','2','1.3735', now());
-INSERT INTO currencies VALUES (3,'GB Pound','GBP','&pound;','','.',',','2','0.6726', now());
-INSERT INTO currencies VALUES (4,'Canadian Dollar','CAD','$','','.',',','2','1.1042', now());
-INSERT INTO currencies VALUES (5,'Australian Dollar','AUD','$','','.',',','2','1.1789', now());
-#INSERT INTO currencies VALUES (6,'Japanese Yen','JPY','&yen;','','','','0','95.5927', now());
+INSERT INTO currencies VALUES (2,'US Dollar','USD','$','','.',',','2','1.0749', now());
+INSERT INTO currencies VALUES (3,'GB Pound','GBP','&pound;','','.',',','2','0.8690', now());
+INSERT INTO currencies VALUES (4,'Canadian Dollar','CAD','$','','.',',','2','1.4373', now());
+INSERT INTO currencies VALUES (5,'Australian Dollar','AUD','$','','.',',','2','1.3919', now());
+INSERT INTO currencies VALUES (6,'Schweizer Franken','CHF','CHF','','','','0','1.0741', now());
 
 INSERT INTO google_analytics_languages VALUES (1,'Chinese (simplified) - Chinesisch (einfach)','zh_CN',1);
 INSERT INTO google_analytics_languages VALUES (2,'Chinese (traditional) - Chinesisch (traditionell)','zh_TW',2);
