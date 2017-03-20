@@ -135,7 +135,7 @@ class Cloudloader extends CloudloaderBase
                     && is_writable($this->backupDirectory));
                 break;
             case 'phpVersion':
-                $result = version_compare(PHP_VERSION, "5.2", ">=");
+                $result = version_compare(PHP_VERSION, "5.3", ">=");
                 break;
             case 'safeMode':
                 $result = !ini_get('safe_mode');
