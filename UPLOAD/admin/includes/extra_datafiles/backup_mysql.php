@@ -24,6 +24,6 @@ define('FILENAME_BACKUP_MYSQL', 'backup_mysql');
 
 
 
-// Set this to 'true' if the zip options aren't appearing while doing a backup, and you are certain that gzip support exists on your server
-define('COMPRESS_OVERRIDE','false');
-//define('COMPRESS_OVERRIDE','true');
+// Set this to true if the zip options aren't appearing while doing a backup, and you are certain that gzip support exists on your server
+define('COMPRESS_OVERRIDE',false);
+//define('COMPRESS_OVERRIDE',true);

@@ -17,7 +17,7 @@
 // | to obtain it through the world-wide-web, please send a note to       |
 // | license@zen-cart.com so we can mail you a copy immediately.          |
 // +----------------------------------------------------------------------+
-// $Id: backup_mysql.php 154 2010-06-09 13:57:26Z drbyte $
+// $Id: backup_mysql.php revised 2015-06-25  $
 //
 
   define('OS_DELIM', '');
@@ -62,15 +62,15 @@
 // These can occasionally be overridden in the URL by specifying &tool=/path/to/foo/bar/plus/utilname, depending on server support
 // Do not change them here ... edit the LANGUAGES file instead.
 // the following lines check to be sure that they've been entered correctly in the language file
-  $pathsearch=array(str_replace('mysql','',LOCAL_EXE_MYSQL).'/',str_replace('mysql.exe','',LOCAL_EXE_MYSQL).'/','/usr/bin/','/usr/local/bin/','/usr/local/mysql/bin/','c:/mysql/bin/','d:/mysql/bin/','e:/mysql/bin/', 'c:/apache2triad/mysql/bin/', 'd:/apache2triad/mysql/bin/', 'e:/apache2triad/mysql/bin/', 'c:/server/mysql/bin/', '\'c:/Program Files/MySQL/MySQL Server 5.0/bin/\'', '\'d:\\Program Files\\MySQL\\MySQL Server 5.0\\bin\\\'', '\'c:/Program Files/MySQL/MySQL Server 4.1/bin/\'');
+  $pathsearch=array(str_replace('mysql','',LOCAL_EXE_MYSQL).'/',str_replace('mysql.exe','',LOCAL_EXE_MYSQL).'/','/usr/bin/','/usr/local/bin/','/usr/local/mysql/bin/','c:/mysql/bin/','d:/mysql/bin/','e:/mysql/bin/', 'c:/server/mysql/bin/', '\'c:/Program Files/MySQL/MySQL Server 5.0/bin/\'', '\'d:\\Program Files\\MySQL\\MySQL Server 5.0\\bin\\\'', '\'c:/Program Files/MySQL/MySQL Server 5.1/bin/\'');
   $pathsearch=array_merge($pathsearch,explode(':',$open_basedir));
   $mysql_exe = 'unknown';
   $mysqldump_exe = 'unknown';
   foreach($pathsearch as $path){
-//  	$path = str_replace('\\','/',$path); // convert backslashes
-  	$path = str_replace('//','/',$path); // convert double slashes to singles
+//    $path = str_replace('\\','/',$path); // convert backslashes
+    $path = str_replace('//','/',$path); // convert double slashes to singles
     $path = str_replace("'","",$path); // remove ' marks if any
-  	$path = (substr($path,-1)!='/' && substr($path,-1)!='\\') ? $path . '/' : $path; // add a '/' to the end if missing
+    $path = (substr($path,-1)!='/' && substr($path,-1)!='\\') ? $path . '/' : $path; // add a '/' to the end if missing
 
     if ($mysql_exe == 'unknown') {
       if (@file_exists($path.'mysql'))     $mysql_exe = $path.'mysql';
@@ -85,11 +85,11 @@
   }
 
   if (!$mysqldump_exe){
-  	$messageStack->add_session('WARNING: "mysqldump" binary not found. Backups may not work.<br />Please set full path to MYSQLDUMP binary in langauges/backup_mysql.php','error');
+    $messageStack->add_session('WARNING: "mysqldump" binary not found. Backups may not work.<br />Please set full path to MYSQLDUMP binary in langauges/backup_mysql.php','error');
     $mysqldump_exe = ((@file_exists($mysqldump_exe) ? $mysqldump_exe : 'mysqldump' ) );
   }
   if (!$mysql_exe){
-  	$messageStack->add_session('WARNING: "mysql" binary not found. Restores may not work.<br />Please set full path to MYSQL binary in langauges/backup_mysql.php','error');
+    $messageStack->add_session('WARNING: "mysql" binary not found. Restores may not work.<br />Please set full path to MYSQL binary in langauges/backup_mysql.php','error');
     $mysql_exe =     ((@file_exists($mysql_exe) ? $mysql_exe : 'mysql' ) );
   }
   if ($mysql_exe == 'unknown') {
@@ -149,10 +149,10 @@
 
 
         $resultcodes = @exec(OS_DELIM . $toolfilename . $dump_params . OS_DELIM, $output, $dump_results );
-        @exec("exit(0)"); 
+        @exec("exit(0)");
         if ($dump_results == -1) $messageStack->add_session(FAILURE_BACKUP_FAILED_CHECK_PERMISSIONS . '<br />The command being run is: ' . $toolfilename . str_replace('--password='.DB_SERVER_PASSWORD,'--password=*****', str_replace('2>&1','',$dump_params)), 'error');
         if ($debug=='ON' || (zen_not_null($dump_results) && $dump_results!='0')) $messageStack->add_session('Result code: '.$dump_results, 'caution');
-   
+
         #parse the value that comes back from the script
         if (zen_not_null($resultcodes)) list($strA, $strB) = preg_split ('/[|]/', $resultcodes);
         if ($debug=='ON') $messageStack->add_session("valueA: " . $strA,'error');
@@ -270,7 +270,7 @@
           if ($debug=='ON') $messageStack->add_session('COMMAND: '.OS_DELIM.$toolfilename . ' ' . $load_params.OS_DELIM, 'caution');
 
           $resultcodes=exec(OS_DELIM . $toolfilename . $load_params . OS_DELIM, $output, $load_results );
-          exec("exit(0)"); 
+          exec("exit(0)");
           #parse the value that comes back from the script
           list($strA, $strB) = preg_split ('/[|]/', $resultcodes);
           if ($debug=='ON') $messageStack->add_session("valueA: " . $strA,'error');
@@ -280,7 +280,7 @@
           if ($load_results == '0') {
             // store the last-restore-date, if successful
             $db->Execute("delete from " . TABLE_CONFIGURATION . " where configuration_key = 'DB_LAST_RESTORE'");
-            $db->Execute("insert into " . TABLE_CONFIGURATION . " values ('', 'Last Database Restore', 'DB_LAST_RESTORE', '" . $specified_restore_file . "', 'Last database restore file', '6', '', '', now(), '', '')");
+            $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, date_added) values ('Last Database Restore', 'DB_LAST_RESTORE', '" . $specified_restore_file . "', 'Last database restore file', 6, now())");
             $messageStack->add_session('<a href="' . ((ENABLE_SSL_ADMIN == 'true') ? DIR_WS_HTTPS_ADMIN : DIR_WS_ADMIN) . 'backups/' . $specified_restore_file . '">' . SUCCESS_DATABASE_RESTORED . '</a>', 'success');
             } elseif ($load_results == '127') {
             $messageStack->add_session(FAILURE_DATABASE_NOT_RESTORED_UTIL_NOT_FOUND, 'error');
@@ -349,8 +349,8 @@
 <title><?php echo TITLE; ?></title>
 <link rel="stylesheet" type="text/css" href="includes/stylesheet.css">
 <link rel="stylesheet" type="text/css" href="includes/cssjsmenuhover.css" media="all" id="hoverJS">
-<script type="text/javascript" src="includes/menu.js"></script>
-<script type="text/javascript" src="includes/general.js"></script>
+<script language="javascript" src="includes/menu.js"></script>
+<script language="javascript" src="includes/general.js"></script>
 <script type="text/javascript">
   <!--
   function init()
@@ -381,7 +381,7 @@
             <td class="pageHeading"><?php echo HEADING_TITLE; ?></td>
             <td class="pageHeading" align="right"><?php echo zen_draw_separator('pixel_trans.gif', HEADING_IMAGE_WIDTH, HEADING_IMAGE_HEIGHT); ?></td>
           </tr>
-<?php if (ENABLE_SSL_ADMIN != 'true') {  // display security warning about downloads if not SSL ?>
+<?php if (substr(HTTP_SERVER, 0, 5) != 'https') {  // display security warning about downloads if not SSL ?>
           <tr>
             <td class="main"><?php echo WARNING_NOT_SECURE_FOR_DOWNLOADS; ?></td>
             <td class="main" align="right"><?php echo zen_draw_separator('pixel_trans.gif', HEADING_IMAGE_WIDTH, HEADING_IMAGE_HEIGHT); ?></td>
@@ -405,16 +405,14 @@
     $contents = array();
     while ($file = $dir->read()) {
       if (!is_dir(DIR_FS_BACKUP . $file)) {
-        if ($file != '.empty' && $file != 'empty.txt' && $file != 'index.php' && $file != 'index.htm' && $file != 'index.html') {
+        if (substr($file,0,1) != '.' && !in_array($file, array('empty.txt', 'index.php', 'index.htm', 'index.html'))) {
           $contents[] = $file;
         }
       }
     }
     sort($contents);
-
     for ($i=0, $n=sizeof($contents); $i<$n; $i++) {
       $entry = $contents[$i];
-
       $check = 0;
 
       if ((!isset($_GET['file']) || (isset($_GET['file']) && ($_GET['file'] == $entry))) && !isset($buInfo) && ($action != 'backup') && ($action != 'restorelocal')) {
