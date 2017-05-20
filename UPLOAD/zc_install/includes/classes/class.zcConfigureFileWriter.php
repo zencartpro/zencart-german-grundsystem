@@ -2,9 +2,9 @@
 /**
  * file contains zcConfigureFileWriter class
  * @package Installer
- * @copyright Copyright 2003-2016 Zen Cart Development Team
+ * @copyright Copyright 2003-2017 Zen Cart Development Team
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: class.zcConfigureFileWriter.php 3 2016-03-27 18:59:53Z webchills $
+ * @version $Id: class.zcConfigureFileWriter.php 4 2017-05-20 19:59:53Z webchills $
  */
 /**
  *
@@ -28,8 +28,10 @@ class zcConfigureFileWriter
     $replaceVars['DIR_WS_HTTPS_CATALOG'] = preg_replace('~//~', '/', '/' . trim($inputs['dir_ws_https_catalog'], ' /\\') . '/');
     $replaceVars['DIR_FS_CATALOG'] = rtrim($inputs['physical_path'], ' /\\') . '/';
     $replaceVars['DB_TYPE'] = trim($inputs['db_type']);
+    if ($replaceVars['DB_TYPE'] == '') $replaceVars['DB_TYPE'] = 'mysql';
     $replaceVars['DB_PREFIX'] = trim($inputs['db_prefix']);
     $replaceVars['DB_CHARSET'] = trim($inputs['db_charset']);
+    if ($replaceVars['DB_CHARSET'] == '') $replaceVars['DB_CHARSET'] = 'utf8';
     $replaceVars['DB_SERVER'] = trim($inputs['db_host']);
     $replaceVars['DB_SERVER_USERNAME'] = trim($inputs['db_user']);
     $replaceVars['DB_SERVER_PASSWORD'] = trim($inputs['db_password']);
