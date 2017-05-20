@@ -4,10 +4,10 @@
  * see {@link  http://www.zen-cart.com/wiki/index.php/Developers_API_Tutorials#InitSystem wikitutorials} for more details.
  *
  * @package initSystem
- * @copyright Copyright 2003-2016 Zen Cart Development Team
+ * @copyright Copyright 2003-2017 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: init_sessions.php 732 2016-02-17 10:49:16Z webchills $
+ * @version $Id: init_sessions.php 733 2017-05-20 16:49:16Z webchills $
  */
 if (!defined('IS_ADMIN_FLAG')) {
   die('Illegal Access');
@@ -62,7 +62,7 @@ $_SERVER['REMOTE_ADDR'] = $ipAddress;
  */
 $session_started = false;
 if (SESSION_FORCE_COOKIE_USE == 'True') {
-  zen_setcookie('cookie_test', 'please_accept_for_session', time()+60*60*24*30, '/', (zen_not_null($current_domain) ? $current_domain : ''));
+  setcookie('cookie_test', 'please_accept_for_session', time()+60*60*24*30, $path, (zen_not_null($cookieDomain) ? $domainPrefix . $cookieDomain : ''), $secureFlag);
 
   if (isset($_COOKIE['cookie_test'])) {
     zen_session_start();

@@ -1,13 +1,13 @@
 /**
  *
  * @package templateSystem
- * @copyright Copyright 2003-2016 Zen Cart Development Team
+ * @copyright Copyright 2003-2017 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  
  * @author ZCAdditions.com, ZCA Responsive Template Default
  * @author picaflor-azul.com
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: responsive_tablet.css 3 2016-04-06 11:33:58Z webchills $
+ * @version $Id: responsive_tablet.css 4 2017-05-20 16:33:58Z webchills $
  *
  */
 
@@ -169,7 +169,7 @@ div#shoppingCartDefault tr td:nth-child(5) {display:block;padding-right:20px;wid
 div#shoppingCartDefault tr td:nth-child(6) {display:block;width:20%;padding-right:20px;float:right;clear:both;text-align:right;}
 div#shoppingCartDefault tr th {display:none;}
 #shoppingCartDefault .rowEven{background:#eee;}
-.rowEven, .roeOdd{overflow:hidden;}
+.rowEven, .rowOdd{overflow:hidden;}
 td.cartQuantity br, td.cartQuantityUpdate br{display:none;}
 td.cartQuantity{padding:20px 10px 0 20px;}
 td.cartQuantityUpdate{padding:25px 0 0 0;}

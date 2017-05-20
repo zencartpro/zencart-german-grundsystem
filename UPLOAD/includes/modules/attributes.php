@@ -6,10 +6,10 @@
  * Prepares HTML for input fields with required uniqueness so template can display them as needed and keep collected data in proper fields
  *
  * @package modules
- * @copyright Copyright 2003-2016 Zen Cart Development Team
+ * @copyright Copyright 2003-2017 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: attributes.php 733 2015-12-29 19:07:16Z webchills $
+ * @version $Id: attributes.php 734 2017-05-20 16:07:16Z webchills $
  */
 if (!defined('IS_ADMIN_FLAG')) {
   die('Illegal Access');
@@ -31,7 +31,7 @@ $sql = "select count(*) as total
 
             if ($pr_attr->fields['total'] > 0) {
               if (PRODUCTS_OPTIONS_SORT_ORDER=='0') {
-                $options_order_by= ' order by LPAD(popt.products_options_sort_order,11,"0")';
+                $options_order_by= ' order by LPAD(popt.products_options_sort_order,11,"0"), popt.products_options_name';
               } else {
                 $options_order_by= ' order by popt.products_options_name';
               }

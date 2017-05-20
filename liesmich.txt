@@ -1,11 +1,11 @@
 ﻿Willkommen bei der deutschen Zen-Cart Version
 Version 1.5.5e
-vom 05.03.2017
+vom 20.05.2017
 
 Eine umfangreiche deutschsprachige Dokumentation und Installationsanleitung finden Sie im Ordner ANLEITUNG
 Öffnen Sie die index.html im Ordner ANLEITUNG und lesen Sie vor der Installation unbedingt die komplette Dokumentation.
 
-Um Zen Cart 1.5.5 deutsch zu installieren nur die Ordner/Dateien im Ordner UPLOAD hochladen!
+Um Zen Cart 1.5.5e deutsch zu installieren nur die Ordner/Dateien im Ordner UPLOAD hochladen!
 
 Um eine schlankere Installation und ein einfacheres Update zu ermöglichen, wurden die Demodaten ausgelagert.
 Sie befinden sich im Ordner DEMODATEN

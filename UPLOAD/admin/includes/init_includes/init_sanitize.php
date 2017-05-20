@@ -3,13 +3,13 @@
  * init_sanitize
  *
  * @package initSystem
- * @copyright Copyright 2003-2016 Zen Cart Development Team
+ * @copyright Copyright 2003-2017 Zen Cart Development Team
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: init_sanitize.php 739 2016-12-27 09:03:16Z webchills $
+ * @version $Id: init_sanitize.php 740 2017-05-20 16:03:16Z webchills $
  */
 
 if (!defined('DO_STRICT_SANITIZATION')) {
-    DEFINE('DO_STRICT_SANITIZATION', false);
+    DEFINE('DO_STRICT_SANITIZATION', true);
 }
 
 if (!defined('DO_DEBUG_SANITIZATION')) {
@@ -177,7 +177,7 @@ $group = array(
 );
 $sanitizer->addSimpleSanitization('CONVERT_INT', $group);
 
-$group = array('img_dir', 'products_previous_image', 'products_image_manual', 'products_attributes_filename');
+$group = array('img_dir', 'products_previous_image', 'products_image_manual', 'products_attributes_filename', 'manufacturers_image_manual');
 $sanitizer->addSimpleSanitization('FILE_DIR_REGEX', $group);
 
 $group = array(
@@ -214,7 +214,7 @@ $sanitizer->addSimpleSanitization('SANITIZE_EMAIL', $group);
 $group = array('products_description', 'products_taxonomy', 'coupon_desc', 'file_contents', 'categories_description', 'message_html', 'banners_html_text', 'pages_html_text', 'comments', 'products_options_comment');
 $sanitizer->addSimpleSanitization('PRODUCT_DESC_REGEX', $group);
 
-$group = array('products_url');
+$group = array('products_url', 'manufacturers_url');
 $sanitizer->addSimpleSanitization('PRODUCT_URL_REGEX', $group);
 
 $group = array('coupon_min_order');

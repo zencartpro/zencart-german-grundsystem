@@ -8,7 +8,7 @@
  * @copyright Portions Copyright 2003 osCommerce
  * @copyright Portions adapted from http://www.data-diggers.com/
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: query_factory.php 737 2017-03-20 21:13:16Z webchills $
+ * @version $Id: query_factory.php 739 2017-05-20 16:13:16Z webchills $
  */
 if (!defined('IS_ADMIN_FLAG')) {
   die('Illegal Access');
@@ -154,7 +154,7 @@ class queryFactory extends base {
       echo $this->error_number . ' ' . $this->error_text;
       echo '<br />in:<br />[' . (strstr($this->zf_sql, 'db_cache') ? 'db_cache table' : $this->zf_sql) . ']<br />';
     } else {
-      echo 'FEHLER: Datenbankabfragen oder Datenbankeintrdge schlagen fehl.<br/>Den Grund dafür finden Sie in den Errorlogs.<br/>Gehen Sie so vor wie in den FAQ auf <a href="http://error.zen-cart-pro.at" target="_blank">http://error.zen-cart-pro.at</a> beschrieben.';
+      echo '<span style="color:red;font-size:13px;font-family:Arial,Verdana,sans-serif;">FEHLER:<br/>Datenbankabfragen oder Datenbankeinträge schlagen fehl.<br/><br/>Hinweis für den Shopinhaber:<br/>Den Grund für diesen Fehler finden Sie in den Errorlogs.<br/>Gehen Sie so vor wie in den FAQ auf <a href="http://error.zen-cart-pro.at" target="_blank">http://error.zen-cart-pro.at</a> beschrieben.</span>';
     }
     $backtrace_array = debug_backtrace();
     $query_factory_caller = '';
