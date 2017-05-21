@@ -2,14 +2,14 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>Zen Cart 1.5.5 deutsch - Dokumentation</title>
+<title>Zen Cart 1.5.5e deutsch - Dokumentation</title>
 <link rel="stylesheet" type="text/css" href="includes/css/stylesheet.css">  
 <script type="text/javascript" src="includes/jscript/jscript_tabs.js"></script>
 </head>
 <body>
 <div id="wrapper">
 <div id="header">
-<h1 >Zen Cart 1.5.5 deutsch - Dokumentation</h1>
+<h1 >Zen Cart 1.5.5e deutsch - Dokumentation</h1>
 </div>
 <div id="slidetabsmenu" style="display: none;">
 <ul>
@@ -32,7 +32,7 @@
 <div class="regularlist">
 <h1>Willkommen bei der deutschen Zen Cart Version 1.5.5</h1>
 <p>
-<strong>Version 1.5.5e vom 05.03.2017</strong><br>
+<strong>Version 1.5.5e vom 20.05.2017</strong><br>
 Die deutsche Zen Cart Version steht Ihnen kostenfrei im Rahmen der <a href="https://opensource.org/licenses/GPL-2.0" target="_blank">GNU General Public License</a> zur Verfügung. <br>
 Sie können diese Software kostenfrei benutzen, Änderungen vornehmen, etc. <br />
 <br />
@@ -60,7 +60,7 @@ Wir danken für Ihre Unterstützung und wünschen Ihnen viel Erfolg und Spaß mi
 <em>Das Team der deutschen Zen Cart Version</em></p>
 <hr />
 <span class="small">
-Die deutsche Zen Cart Version 1.5.5 ist eine Modifikation der amerikanischen Zen Cart Version 1.5.5e von <a href="http://www.zen-cart.com" target="_blank">zen-cart.com</a>.<br/>
+Die deutsche Zen Cart Version 1.5.5e ist eine Modifikation der amerikanischen Zen Cart Version 1.5.5e von <a href="http://www.zen-cart.com" target="_blank">zen-cart.com</a>.<br/>
 <br/>
 Dieses Programm wird in der Hoffnung vertrieben, dass es nützlich ist, allerdings OHNE IRGENDWELCHE GARANTIEN; ohne  die  Garantie der MARKTGÄNGIGKEIT oder der EIGNUNG ZU EINEM BESTIMMTEN ZWECK
 und wird vertrieben unter der GNU General Public License </span>
@@ -111,8 +111,97 @@ OSI certified ist ein Zertifikat der Open Source Initiative.
 <div class="tabcontent" id="sc2" style="display: block;">
 <div class="textcontent">
 <div class="regularlist">
+<h1>Änderungen gegenüber älteren 1.5.5 Versionen</h1>
+<ul>
+  <li>  Bei einer Neuinstallation sind nun bereits Steuerzonen für EU und Nicht EU Länder voreingestellt, so dass die Zonen nicht wie bisher manuell angelegt werden müssen.</li>
+  <li>    Bei den Währungen ist nun auch der Schweizer Franken vordefiniert.</li>
+  <li>    Statt "An Error Occured" wird nun eine verständlichere Fehlermeldung bei Fehlern in Datenbankabfragen/Datenbankeinträgen ausgegeben.</li>
+  <li>    Die beiden zentralen Konfigurationsdateien includes/configure.php und admin/includes/configure.php sind nun auf deutsch kommentiert.</li>
+  <li>    Alle Bugs, die seit der ersten 1.5.5 Version im Supportforum gemeldet wurden, sind mit dieser 1.5.5e Version behoben.</li></ul>
+    
+    Da insbesondere der PHPMailer in älteren in ersten 1.5.5 Versionen enthaltenen Versionen Sicherheitslücken aufweist, empfehlen wir allen Usern, die bereits eine ältere 1.5.5 Version verwenden, auf 1.5.5e zu aktualisieren.<br/>
+    Ein entsprechendes spezielles Updatepaket steht im <a href="https://www.zen-cart-pro.at/forum/forums/8-News-und-Ank%C3%BCndigungen">Supportforum</a> zur Verfügung.
+    <br/><br/>
+    Aktualisierte Komponenten:<br/>
+    Update von MailBeez auf Version 3.6.3<br/>
+    Update von PHPMailer auf Version 5.2.23<br/>
+    Update des CKEditors auf Version 4.6.2<br/>
+    Update des TinyMCE Editors auf 4.6.1<br/>
+    Update von Mobile Detect auf 2.8.25<br/><br/>
+    Neben 1.5.5 deutsch spezifischen Bugfixes wurden folgende Änderungen wurden aus der amerikanischen Version 1.5.5e übernommen:<br/><br/>
+    Update gmail support to use TLS per published standards<br/>
+    Fix bug introduced in v1.5.5c related to deleting customers<br/>
+    Add built-in support for new .htaccess rules required for Apache 2.4, so mod_compat doesn't need to be installed<br/>
+    zc_install improvements better handling for upgrades from v138 / v139<br/>
+    zc_install - removed extraneous backticks from upgrade SQL from v154-to-v155<br/>
+    Bridge compatibility for transition to removal of the ENABLE_SSL_ADMIN constant<br/>
+    Consolidate to a single upload class, shared between admin/catalog<br/>
+    Updates to Payeezy and First Data HCO payment modules<br/>
+    Revert null-exception change until further notice<br/>
+    Update Authorize.net storage field type in database to accommodate different values returned by Authnet emulator gateways using these modules<br/>
+    Fix zc_install to prevent DB_CHARSET from being set to blank during upgrades when upgrading v1.3.x configure.php files to new format<br/>
+    Revert null-exception change until further notice<br/>
+    Fix some variable strict-type rule enforcement issues for better PHP 7 compatibility<br/>
+    Fix sanitizer (admin) overzealous cleaning for Attribute Option Comments<br/>
+    Fixed bug preventing sending Coupon and GV emails to "all customers"<br/>
+    Fixed rarely-triggered bug with product-type overrides for delete/copy logic<br/>
+    Fixed problem where deleting a customer wouldn't delete old product-notification requests associated with that customer<br/>
+    Fixed PayPal Standard to no longer transmit a comma as thousands-separator. (PayPal is being more strict about this in 2017.)<br/>
+    Fixed shopping-basket quantity alert problem where changing quantities didn't always fire if min/mix rules were set<br/>
+    Make null-exception treatment consistent in admin to match catalog<br/>
+    Fix Chrome browser javascript incompatibility<br/>
+    Several fixes to the Admin Sanitizer rules, to stop translating special characters to html entities unexpectedly<br/>
+    Fix some HTML markup "strict" errors, and CSS alignments in various admin pages<br/>
+    Relocate shipping-calculation logic in checkout page, to be consistent with other checkout calculations and prevent some shipping rate errors<br/>
+    Template fix to Responsive Classic to change postal-code to no longer be numeric-only<br/>
+    Change authorize.net module to use Akamai servers<br/>
+    Fix Payeezy payment module tokenization problem, and fix sandbox mode problem<br/>
+    Fix some javascript on checkout pages related to form submission<br/>
+    Fix out-of-stock alert inconsistency<br/>
+    Trigger E_USER_ERROR when wrong bindVars rule set<br/>
+    Update gv_faq language file with community contributions<br/>
+    Change use of PHP_SELF to SCRIPT_NAME for consistency and to avoid legacy-related problems<br/>
+    Fix false-positives in error-reporting logic<br/>
+    Fix leftover indirection variables for PHP7 compatibility<br/>
+    Fixes to AJAX handlers: reject fake requests; persist session data more effectively<br/>
+    Change CKEditor trigger to use jQuery CDN instead of Google CDN, for broader global access<br/>
+    Accommodate MasterCard's recent BIN 2 addition<br/>
+    Include responsive-classic template layout-boxes in upgrades, even if not using it, for sake of cloning simplicity<br/>
+    Template fix: fax field was showing even if disabled<br/>
+    Template fix: fix "back" button on address-book edit screens during checkout<br/>
+    Multilanguage: make hreflang tag appear for all languages, instead of only for "other than current" language<br/>
+    Fix admin link to whois resource<br/>
+    Fix checkout_shipping: No method chosen after cart goes from virtual to mixed<br/>
+    Handle mysql strict typing issue with legacy PayPal IPN insert<br/>
+    Fix Free Shipping tax calculation with ot_coupon<br/>
+    Added extra functions to shopping cart for extracting in-cart weight, price, item details for categories<br/>
+    Fix several upgrade-related problems caused by zero-dates in the customers table data/history<br/>
+    Revamp admin sanitization code to work better with various plugins such as Edit Orders, etc<br/>
+    Admin orders page had some incorrect CSS classes specified<br/>
+    Admin customers page had some incorrect HTML tags for span and bold markup<br/>
+    Admin "Support" link restored to navigation menu<br/>
+    Admin - fix privilege escalation vulnerability<br/>
+    Fix missing SEARCH_DEFAULT_TEXT, ERROR_GV_CREATE_ACCOUNT and TEXT_PRICED_BY_ATTRIBUTES language defines<br/>
+    The zc_install test for availability of SSL and .htaccess could fail due to timeouts when offline<br/>
+    The zc_install "configure.php file update" was not always handling conversion of old SSL URLs properly<br/>
+    Fix "uninitialized string offset" error in zen_random_name()<br/>
+    Fix sort-order of shipping/payment modules when sort-orders are multiple digits<br/>
+    Responsive Classic: Fix alignment/display of State Dropdown element on address pages<br/>
+    Fix to inability to choose from address-book during checkout, and fix double "continue" buttons on same page<br/>
+    Order comments flag was showing incorrectly on PayPal EC transactions<br/>
+    Restore define for DIR_WS_HTTPS_ADMIN for legacy plugin purposes<br/>
+    Added several .gitignore files in various folders, to help site developers avoid committing unnecessary files to version control<br/>
+    For language-specific currency overrides, fix the default<br/>
+    Fix bindvars to honor string entries that contain 'null'<br/>
+    add safety to fmod_round<br/>
+    Fix extra breadcrumb that was appearing when always-open-with-category is enabled<br/>
+    Update BOC currency parsing to cope with their data changes and division-by-zero errors as a result<br/>
+    Fix a test-mode bug in Authorizenet AIM module
+    <br/><br/>
+  </li>
+</ul>
 <h1>Neue Funktionen gegenüber 1.5.4</h1>
-Zen Cart 1.5.5 deutsch ermöglicht den Einsatz von Zen Cart unter PHP 7 und bringt neben zahlreichen Bugfixes viele neue Funktionalitäten mit, unter anderem:
+Zen Cart 1.5.5e deutsch ermöglicht den Einsatz von Zen Cart unter PHP 7 und bringt neben zahlreichen Bugfixes viele neue Funktionalitäten mit, unter anderem:
 <ul>
   <li>Unterstützung von PHP 7 </li>
   <li>    Verbesserte Unterstützung von MySQL 5.7</li>
@@ -222,10 +311,10 @@ Zen Cart 1.5.5 deutsch ermöglicht den Einsatz von Zen Cart unter PHP 7 und brin
 <div class="regularlist">
 <h1>NEUINSTALLATION</h1>
 <h2>Einleitung</h2>
-<p>Dieses Dokument ist eine Basisanleitung für die Installation der deutschen Zen Cart Version. Wenn Sie die deutsche Zen Cart Version bereits installiert haben und diese auf 1.5.5 aktualisieren möchten, lesen Sie bitte die <strong><a onClick="expandcontent('sc4', this)" href="javascript:void(0)">Update Anleitung</a></strong>.<br />
+<p>Dieses Dokument ist eine Basisanleitung für die Installation der deutschen Zen Cart Version. Wenn Sie die deutsche Zen Cart Version bereits installiert haben und diese auf 1.5.5e aktualisieren möchten, lesen Sie bitte die <strong><a onClick="expandcontent('sc4', this)" href="javascript:void(0)">Update Anleitung</a></strong>.<br />
 </p>
 <h2>Grundsätzliches  </h2>
-<p>Sie haben bereits ein gepacktes Paket der deutschen Zen Cart Version 1.5.5 herunter geladen.</p>
+<p>Sie haben bereits ein gepacktes Paket der deutschen Zen Cart Version 1.5.5e herunter geladen.</p>
 <p>Bitte fragen Sie sich...</p>
 <h3>1. Habe ich bereits eine Domain und den nötigen Webspace? </h3>
 <p>Falls nicht... sehen Sie sich unsere qualifizierten <a href="https://www.zen-cart-pro.at/forum/vblinklist.php?do=showcat&catid=5" target="_blank">Domain und Webhosting Angebote</a> an. Dort finden Sie zuverlässige Provider, die für die Verwendung der deutschen Zen Cart Version geeignet sind. Wir empfehlen den ausgezeichneten Provider <a href="http://all-inkl.com/?partner=410776">All-Inkl</a>.</p>
@@ -437,11 +526,11 @@ Falls Sie bei der Installation die Demodaten mitinstalliert haben, dann laden Si
 <div class="tabcontent" id="sc4" style="display: block;">
 <div class="textcontent">
 <div class="regularlist">
-<h1>UPDATE auf die Version 1.5.5</h1>
+<h1>UPDATE auf die Version 1.5.5e</h1>
 <div>
 <p>&nbsp;</p>
  <h2>HINWEIS: Bereits INSTALLIERTE ERWEITERUNGEN</h2>
-  In Zen Cart 1.5.5 sind folgende Erweiterungen bereits enthalten, die Sie möglicherweise bereits früher einmal manuell in Ihre Zen Cart Version 1.5.1 und älter eingebaut hatten, und die Konfigurationseinträge vorgenommen haben:<br/>
+  In Zen Cart 1.5.5e sind folgende Erweiterungen bereits enthalten, die Sie möglicherweise bereits früher einmal manuell in Ihre Zen Cart Version 1.5.1 und älter eingebaut hatten, und die Konfigurationseinträge vorgenommen haben:<br/>
 <ul>
   <li>Image Handler</li>
   <li>Google Analytics</li>
@@ -466,13 +555,13 @@ Um eine zuverlässige Installation der neuen Konfigurationseinträge dieser Modu
   <strong>Hinweis für Anwender sehr alter Zen Cart Versionen</strong><br/>
   Das Updateprogramm unterstützt nur Zen Cart Versionen neuer als 1.3.5.<br/>
   Sollten Sie noch eine ältere Zen Cart Version als 1.3.5 im Einsatz haben, laden Sie sich Zen Cart 1.5 herunter und aktualisieren zunächst auf 1.5.<br/>
-  Danach können Sie auf 1.5.5 aktualisieren
+  Danach können Sie auf 1.5.5e aktualisieren
   <br>
   <br>
   <strong>Hinweis für Anwender der amerikanischen Zen Cart Version<br>
   </strong>Da sich die deutsche Zen Cart Version seit der Version 1.5.3 stark von der amerikanischen unterscheidet, unterstützen wir seit Zen Cart 1.5.3 deutsch kein Update mehr von amerikanischer auf deutsche Version! <br/>
   <br/>
-  Bevor Sie ein Update auf 1.5.5 planen, stellen Sie bitte sicher, dass Ihr Server die Systemvoraussetzungen erfüllt: </p>
+  Bevor Sie ein Update auf 1.5.5e planen, stellen Sie bitte sicher, dass Ihr Server die Systemvoraussetzungen erfüllt: </p>
 <p><strong>Minimale Anforderungen:</strong></p>
 <ul>
   <li>PHP 5.3.7 oder höher, Apache 2.0 oder höher und MySQL 5.1 oder höher <br>
@@ -492,14 +581,14 @@ Um eine zuverlässige Installation der neuen Konfigurationseinträge dieser Modu
     Zen Cart 1.5.5 funktioniert zwar auch auf einem Windows/IIS server, <b>wir raten aber dringend zu einem Linux/Apache Server</b>.
     <br/>
     <br/>
-    Falls Sie Ihren Shop mit Modulen erweitert haben, stellen Sie sicher, dass es für die in Ihrem derzeitigen Shop eingesetzen Erweiterungen aktuelle mit Zen Cart 1.5.5 getestete Versionen gibt. In Zen Cart 1.5.5 können nur Zen Cart 1.5.5 kompatible Module und Erweiterungen genutzt werden!
+    Falls Sie Ihren Shop mit Modulen erweitert haben, stellen Sie sicher, dass es für die in Ihrem derzeitigen Shop eingesetzen Erweiterungen aktuelle mit Zen Cart 1.5.5 getestete Versionen gibt. In Zen Cart 1.5.5e können nur Zen Cart 1.5.5e kompatible Module und Erweiterungen genutzt werden!
   
     <br>
     Möglicherweise sind einige Module noch nicht für die Verwendung unter PHP 7 angepasst.
     <br>
     Wenn Sie viele Erweiterungen einsetzen, dann betreiben Sie den Shop zunächst mit PHP 5.6. <br>
 <h2>Einleitung ... </h2>
-<p>Dieses ist eine Anleitung, um eine bestehende Zen Cart Installation auf Zen Cart 1.5.5 zu   aktualisieren. Falls Sie Zen Cart bisher noch nicht installiert haben   sollten, schauen Sie bitte unter Neuinstallation.<br/>
+<p>Dieses ist eine Anleitung, um eine bestehende Zen Cart Installation auf Zen Cart 1.5.5e zu   aktualisieren. Falls Sie Zen Cart bisher noch nicht installiert haben   sollten, schauen Sie bitte unter Neuinstallation.<br/>
   <br/>
   Um Ihre Zen Cart Installation zu aktualisieren brauchen Sie die gleichen Programme,   die Sie für die Erstinstallation und evtl. Anpassungen benutzt haben.   Ein FTP Programm, einen Texteditor für HTML/PHP Code, phpMyAdmin or   Ähnliches um auf Ihre MySQL Datenbank zugreifen zu können, und den   Adminbereich Ihres Webspaces.<br/>
   <br/>
@@ -557,7 +646,7 @@ Um eine zuverlässige Installation der neuen Konfigurationseinträge dieser Modu
 <br/>
 <div>
   <h2><strong>3. Testen</strong></h2>
-  <p>Erstellen Sie eine NEUE Datenbank für die Installation Ihrer neuen Version von Zen Cart 1.5.5 <br/>
+  <p>Erstellen Sie eine NEUE Datenbank für die Installation Ihrer neuen Version von Zen Cart 1.5.5e <br/>
     <br/>
     Stellen Sie sicher, dass Ihre vorhandene Sicherung der Datenbank die   aktuellsten Daten enthält, ansonsten führen Sie jetzt erneut eine   aktuelle Sicherung Ihrer Datenbank durch.<br/>
     Führen Sie nun eine Wiederherstellung der aktuellen Sicherung der   Datenbank, die Sie vorher in Schritt 1 erstellt haben, in Ihrer NEUEN   Datenbank durch. <br/>
@@ -583,7 +672,7 @@ Um eine zuverlässige Installation der neuen Konfigurationseinträge dieser Modu
   <p>Nach dem Click auf Weiter wird das Datenbankupdate durchgeführt, abwarten bis die Erfolgsmeldung erscheint:</p>
   <p><img src="images/155-update-154-auf-155-abgeschlossen.jpg" width="800" height="281"  alt=""/></p>
   <p>Löschen Sie nun das Verzeichnis zc_install und loggen sich dann in die Shopadministration ein.<br>
-    Prüfen Sie nun unter Tools &gt; Serverinfo ob erfolgreich auf Version 1.5.5 aktualisiert wurde
+    Prüfen Sie nun unter Tools &gt; Serverinfo ob erfolgreich auf Version 1.5.5e aktualisiert wurde
   </p>
   <p>    Testen Sie nun Ihre Anpassungen, bearbeiten Sie diese ggf. und vergleichen   Sie Ihre "Testinstallation" mit der Installation Ihrer neuen Version.<br/>
     <br/>
@@ -637,7 +726,7 @@ Andrew Berezin und niestudio für die Module RSS Feed und Colorbox
 <div class="tabcontent" id="sc6" style="display: block;">
 <div class="textcontent">
 <div class="regularlist">
-<h1>WICHTIGE SICHERHEITSEMPFEHLUNGEN FÜR ZEN CART 1.5.5</h1>
+<h1>WICHTIGE SICHERHEITSEMPFEHLUNGEN FÜR ZEN CART 1.5.5e</h1>
 <p>Generell:<br/>
   <br/>
   <strong>Betreiben Sie Ihren Onlineshop NICHT OHNE SSL!</strong><br/>
@@ -941,7 +1030,7 @@ Tipps:
 <div class="textcontent">
 <div class="regularlist">
 <h1>Vorinstallierte Erweiterungen</h1>
-<p>Neben dem Image Handler sind in Zen Cart 1.5.5 zahlreiche häufig genutze Erweiterungen vorinstalliert</p>
+<p>Neben dem Image Handler sind in Zen Cart 1.5.5e zahlreiche häufig genutze Erweiterungen vorinstalliert</p>
 <p><strong>IT Recht Kanzlei Schnittstelle</strong><br>
   Die Rechtstexte für AGB, Impressum, Datenschutz und Widerrufsbelehrung können nun für Kunden der IT Recht Kanzlei automatisch aktualisiert werden.<br>
   <a href="addons/it-recht-kanzlei/index.html"><strong>Ausführliche Infos zur Konfiguration des Moduls IT Recht Kanzlei</strong></a></p>
