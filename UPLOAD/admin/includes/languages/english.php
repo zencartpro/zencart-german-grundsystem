@@ -1,10 +1,10 @@
 <?php
 /**
  * @package admin
- * @copyright Copyright 2003-2016 Zen Cart Development Team
+ * @copyright Copyright 2003-2017 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: english.php 885 2016-04-09 11:01:32Z webchills $
+ * @version $Id: english.php 886 2017-05-23 15:01:32Z webchills $
  */
 if (!defined('IS_ADMIN_FLAG'))
 {
@@ -446,6 +446,7 @@ define('ERROR_DESTINATION_DOES_NOT_EXIST', 'Error: Destination does not exist %s
 define('ERROR_DESTINATION_NOT_WRITEABLE', 'Error: Destination not writeable %s');
 define('ERROR_FILE_NOT_SAVED', 'Error: File upload not saved.');
 define('ERROR_FILETYPE_NOT_ALLOWED', 'Error: File upload type not allowed  %s');
+define('ERROR_FILE_TOO_BIG', 'Warning: File is larger than allowed sizes. See Image configuration settings.');
 define('SUCCESS_FILE_SAVED_SUCCESSFULLY', 'Success: File upload saved successfully %s');
 define('WARNING_NO_FILE_UPLOADED', 'Warning: No file uploaded.');
 define('WARNING_FILE_UPLOADS_DISABLED', 'Warning: File uploads are disabled in the php.ini configuration file.');

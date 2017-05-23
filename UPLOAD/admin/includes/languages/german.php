@@ -1,10 +1,10 @@
 <?php
 /**
  * @package admin
- * @copyright Copyright 2003-2016 Zen Cart Development Team
+ * @copyright Copyright 2003-2017 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: german.php 659 2016-08-30 18:54:04Z webchills $
+ * @version $Id: german.php 660 2017-05-23 15:11:04Z webchills $
  */
 if (!defined('IS_ADMIN_FLAG'))
 {
@@ -449,6 +449,7 @@ define('ERROR_DESTINATION_DOES_NOT_EXIST', 'FEHLER: Zielverzeichnis %s existiert
 define('ERROR_DESTINATION_NOT_WRITEABLE', 'FEHLER: Zielverzeichnis %s ist schreibgeschützt');
 define('ERROR_FILE_NOT_SAVED', 'FEHLER: Dateiupload wurde nicht gespeichert.');
 define('ERROR_FILETYPE_NOT_ALLOWED', 'FEHLER: Dateityp %s ist nicht erlaubt');
+define('ERROR_FILE_TOO_BIG', 'WARNUNG: Die Datei ist größer als die erlaubte Größe. Überprüfen Sie die Konfiguration unter Bildgrößen.');
 define('SUCCESS_FILE_SAVED_SUCCESSFULLY', 'Erfolgreich: Dateiupload %s wurde gespeichert');
 define('WARNING_NO_FILE_UPLOADED', 'WARNUNG: Keine Datei hochgeladen.');
 define('WARNING_FILE_UPLOADS_DISABLED', 'WARNUNG: Die Option "Dateiupload" ist in der php.ini deaktiviert.');
