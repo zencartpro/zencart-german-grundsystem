@@ -3,10 +3,10 @@
  * functions_prices
  *
  * @package functions
- * @copyright Copyright 2003-2016 Zen Cart Development Team
+ * @copyright Copyright 2003-2018 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: functions_prices.php 855 2016-08-20 11:55:24Z webchills $
+ * @version $Id: functions_prices.php 857 2018-04-12 18:55:24Z webchills $
  */
 
 ////
@@ -52,7 +52,7 @@
 //      $product_to_categories = $db->Execute("select categories_id from " . TABLE_PRODUCTS_TO_CATEGORIES . " where products_id = '" . (int)$product_id . "'");
 //      $category = $product_to_categories->fields['categories_id'];
 
-      $product_to_categories = $db->Execute("select master_categories_id from " . TABLE_PRODUCTS . " where products_id = '" . $product_id . "'");
+      $product_to_categories = $db->Execute("select master_categories_id from " . TABLE_PRODUCTS . " where products_id = '" . (int)$product_id . "'");
       $category = $product_to_categories->fields['master_categories_id'];
 
       $sale = $db->Execute("select sale_specials_condition, sale_deduction_value, sale_deduction_type from " . TABLE_SALEMAKER_SALES . " where sale_categories_all like '%," . $category . ",%' and sale_status = '1' and (sale_date_start <= now() or sale_date_start = '0001-01-01') and (sale_date_end >= now() or sale_date_end = '0001-01-01') and (sale_pricerange_from <= '" . $product_price . "' or sale_pricerange_from = '0') and (sale_pricerange_to >= '" . $product_price . "' or sale_pricerange_to = '0')");
@@ -91,20 +91,20 @@
       }
 
       if (!$special_price) {
-        return number_format($sale_product_price, 2, '.', '');
+        return number_format($sale_product_price, 4, '.', '');
       } else {
         switch($sale->fields['sale_specials_condition']){
           case 0:
-            return number_format($sale_product_price, 2, '.', '');
+            return number_format($sale_product_price, 4, '.', '');
             break;
           case 1:
-            return number_format($special_price, 2, '.', '');
+            return number_format($special_price, 4, '.', '');
             break;
           case 2:
-            return number_format($sale_special_price, 2, '.', '');
+            return number_format($sale_special_price, 4, '.', '');
             break;
           default:
-            return number_format($special_price, 2, '.', '');
+            return number_format($special_price, 4, '.', '');
         }
       }
     }

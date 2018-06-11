@@ -3,9 +3,9 @@
  * authorizenet_admin_notification.php admin display component
  *
  * @package paymentMethod
- * @copyright Copyright 2003-2011 Zen Cart Development Team
- * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: authorizenet_admin_notification.php 18695 2011-05-04 05:24:19Z drbyte $
+ * @copyright Copyright 2003-2018 Zen Cart Development Team
+ * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
+ * @version $Id: authorizenet_admin_notification.php 18696 2018-01-02 09:24:19Z webchills $
  */
 
   $outputStartBlock = '';
@@ -16,11 +16,6 @@
   $outputRefund = '';
   $outputEndBlock = '';
   $output = '';
-
-  // strip slashes in case they were added to handle apostrophes:
-  foreach ($aimdata->fields as $key=>$value){
-    $aimdata->fields[$key] = stripslashes($value);
-  }
 
     $outputStartBlock .= '<td><table class="noprint">'."\n";
     $outputStartBlock .= '<tr style="background-color : #bbbbbb; border-style : dotted;">'."\n";

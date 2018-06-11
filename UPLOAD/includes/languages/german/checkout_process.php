@@ -1,10 +1,10 @@
 <?php
 /**
  * @package languageDefines
- * @copyright Copyright 2003-2016 Zen Cart Development Team
+ * @copyright Copyright 2003-2018 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: checkout_process.php 630 2016-03-05 10:05:14Z webchills $
+ * @version $Id: checkout_process.php 631 2018-03-30 07:05:14Z webchills $
  */
 
 define('EMAIL_TEXT_SUBJECT', 'Bestellbestätigung');
@@ -28,6 +28,7 @@ define('EMAIL_SEPARATOR', '-----------------------------------------------------
 define('TEXT_EMAIL_VIA', 'via');
 define('EMAIL_GREETING_MR', 'Sehr geehrter Herr');
 define('EMAIL_GREETING_MS', 'Sehr geehrte Frau');
+define('EMAIL_GREETING_NEUTRAL', 'Sehr geehrte(r)');
 
 // suggest not using # vs No as some spamm protection block emails with these subjects
 define('EMAIL_ORDER_NUMBER_SUBJECT', ' Bestellnummer ');

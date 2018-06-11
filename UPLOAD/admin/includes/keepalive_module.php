@@ -1,11 +1,11 @@
 <?php
 /**
  * @package admin
- * @copyright Copyright 2003-2016 Zen Cart Development Team
+ * @copyright Copyright 2003-2018 Zen Cart Development Team
  * @copyright Portions Copyright (c) 2011 Eric Hynds
  * Adapted from concepts shared at http://www.erichynds.com/jquery/a-new-and-improved-jquery-idle-timeout-plugin/
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: keealive_module.php 2 2016-04-09 11:13:51Z webchills $
+ * @version $Id: keealive_module.php 3 2018-01-02 18:13:51Z webchills $
  */
 
 if (!defined('IS_ADMIN_FLAG')) {
@@ -15,10 +15,10 @@ if (!defined('IS_ADMIN_FLAG')) {
 ?>
 <!--  BOF: Keepalive for Session -->
 <!-- timeout warning alert -->
-<div id="keepalivetimer" title="Your session is about to expire!" style="display: none">
+<div id="keepalivetimer" title="<?php echo TEXT_KEEPALIVE_MESSAGE_SESSION_EXPIRE; ?>" style="display: none">
     <p class="ui-state-error-text">
         <span class="ui-icon ui-icon-alert" style="float:left; margin:0 7px 50px 0;"></span>
-        <?php echo TEXT_KEEPALIVE_MESSAGE_YOU_WILL_LOG_OFF; ?> <span id="keepalivetimer-countdown" style="font-weight:bold"></span> <?php echo TEXT_KEEPALIVE_MESSAGE_MINUTES?>.
+        <?php echo TEXT_KEEPALIVE_MESSAGE_YOU_WILL_LOG_OFF; ?> <span id="keepalivetimer-countdown" style="font-weight:bold"></span> <?php echo TEXT_KEEPALIVE_MESSAGE_MINUTES; ?>.
     </p>
 
     <p><?php echo TEXT_KEEPALIVE_MESSAGE_ASK_CONTINUE;?></p>

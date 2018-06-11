@@ -383,9 +383,7 @@ if ($page == 'manager') {
   <li style="display:inline; padding:2px 5px; <?php echo ($page == 'preview') ? 'background:#CCCCCC;' : ''; ?>">
     <a href="<?php echo zen_href_link(FILENAME_IMAGE_HANDLER, 'page=preview') ?>"><?php echo IH_MENU_PREVIEW; ?></a>
   </li>
-  <li style="display:inline; padding:2px 5px; <?php echo ($page == 'about') ? 'background:#CCCCCC;' : ''; ?>">
-    <a href="<?php echo zen_href_link(FILENAME_IMAGE_HANDLER, 'page=about') ?>"><?php echo IH_MENU_ABOUT; ?></a>
-  </li>
+ 
 </ul>
 
 <div class="adminbox">
@@ -1006,22 +1004,13 @@ if ($page == 'preview') {
 
 
 
-/**
- * ABOUT TABPAGE
- */
 
-if ($page == 'about') {
+
+
 ?>
-<div class="aboutbox">
-	
-<?php echo IH_ABOUT_DOKU; ?>
-
 
 </div>
-</div>
-<?php
-}
-?>
+
 <!-- body_eof //-->
 <!-- footer //-->
 <?php

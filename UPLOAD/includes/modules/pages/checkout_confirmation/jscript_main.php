@@ -3,11 +3,25 @@
  * jscript_main
  *
  * @package page
- * @copyright Copyright 2003-2016 Zen Cart Development Team
+ * @copyright Copyright 2003-2018 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: jscript_main.php 729 2011-08-09 15:49:16Z hugo13 $
+ * @version $Id: jscript_main.php 730 2018-04-01 16:49:16Z webchills $
  */
+?>
+<?php
+  if (DISPLAY_WIDERRUF_DOWNLOADS_ON_CHECKOUT_CONFIRMATION == 'true') {
+?>
+<script type="text/javascript"><!--
+$(document).ready(function(){
+ $('#btn_submit').hide(); 
+ $('#widerruf_downloads').mouseup(function () {
+    $('#btn_submit').toggle();
+ });
+});
+//--></script>
+<?php
+  }
 ?>
 <script type="text/javascript"><!--
 var submitter = null;
@@ -38,5 +52,4 @@ function button_timeout() {
   button.style.cursor="pointer";
   button.disabled = false;
 }
-
 //--></script>

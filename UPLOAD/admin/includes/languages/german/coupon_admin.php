@@ -1,10 +1,10 @@
 <?php
 /**
  * @package admin
- * @copyright Copyright 2003-2016 Zen Cart Development Team
+ * @copyright Copyright 2003-2018 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: coupon_admin.php 631 2010-09-15 22:42:08Z maleborg $
+ * @version $Id: coupon_admin.php 633 2018-04-03 16:02:08Z webchills $
  */
 
 define('TOP_BAR_TITLE','Statistiken');
@@ -80,26 +80,27 @@ define('ERROR_NO_COUPON_NAME','Es wurde kein Name für den Aktionskupon eingetra
 define('ERROR_COUPON_EXISTS','Ein Aktionskupon mit dieser Nummer existiert bereits');
 
 define('COUPON_NAME_HELP','Ein kurzer Name für den Aktionskupon');
-define('COUPON_AMOUNT_HELP','Der Rabattwert für den Aktionskupon ist falsch. Geben Sie entweder eine Zahl oder den entsprechenden Wert in Prozent (z.B. 10%) ein.');
+define('COUPON_AMOUNT_HELP','Geben Sie entweder eine Zahl für einen Fixbetrag oder den entsprechenden Wert in Prozent (z.B. 10%) ein.');
 define('COUPON_CODE_HELP','Sie können einen eigenen Code verwenden oder das Feld leer lassen, um den Code automatisch erstellen zu lassen.');
 define('COUPON_STARTDATE_HELP','Datum, ab dem der Aktionskupon gültig sein wird');
 define('COUPON_FINISHDATE_HELP','Datum, ab dem der Aktionskupon ungültig sein wird');
-define('COUPON_FREE_SHIP_HELP','Dieser Aktionskupon beinhaltet die Versandkosten einer Bestellung. Bemerkung: Diese Einstellung ignoriert den Betrag des Aktionskupons, berücksichtigt jedoch den Mindestbestellwert.');
+define('COUPON_FREE_SHIP_HELP','Dieser Aktionskupon beinhaltet die Versandkosten einer Bestellung. Diese Einstellung ignoriert den Betrag des Aktionskupons, berücksichtigt jedoch den Mindestbestellwert.<br/><b>Achtung: Ein Aktionskupon schreibt entweder die Versandkosten gut oder gibt einen Rabatt. Beides gleichzeitig geht NICHT! Wenn Sie hier also versandkostenfrei ankreuzen, dann darf oben kein Betrag stehen!</b>');
 define('COUPON_DESC_HELP','Eine Beschreibung des Aktionskupons für den Kunden');
 define('COUPON_MIN_ORDER_HELP','Mindestbestellmenge, bevor der Aktionskupon eingelöst werden kann');
-define('COUPON_USES_COUPON_HELP','Zeigt die Häufigkeit, mit der dieser Aktionskupon benutzt werden kann.<br />Bemerkung: Keine Eingabe = unbegrenzt');
-define('COUPON_USES_USER_HELP','Zeigt die Häufigkeit, mit der ein Kunde über diesen Aktionskupon verrechnen darf.<br />Bemerkung: Keine Eingabe = unbegrenzt');
+define('COUPON_USES_COUPON_HELP','Häufigkeit, mit der dieser Aktionskupon benutzt werden kann. Keine Eingabe = unbegrenzt');
+define('COUPON_USES_USER_HELP','Häufigkeit, mit der ein Kunde über diesen Aktionskupon verrechnen darf. Keine Eingabe = unbegrenzt');
 define('COUPON_PRODUCTS_HELP','Eine Textdatei mit den Artikeln (mit Komma getrennten Datenfeldern), die mit diesem Aktionskupon verwendet werden können. Wenn Sie dieses Feld leer lassen, gibt es keine Einschränkungen.');
 define('COUPON_CATEGORIES_HELP','Eine Textdatei mit den Kategorien (mit Komma getrennten Datenfeldern), in denen mit Aktionskupon verrechnet werden kann. Bleibt dieses Feld leer, gibt es keine Einschränkungen.');
 define('COUPON_BUTTON_PREVIEW', 'Vorschau');
 define('COUPON_BUTTON_CONFIRM', 'Bestätigen');
+define('COUPON_BUTTON_CANCEL', 'Abbrechen');
 define('COUPON_BUTTON_BACK', 'Zurück');
 define('COUPON_ACTIVE', 'Status');
 define('COUPON_START_DATE', 'Startdatum');
 define('COUPON_EXPIRE_DATE', 'Ablaufdatum');
 
 define('ERROR_DISCOUNT_COUPON_WELCOME', 'Aktionskupon kann nicht deaktiviert werden, da es sich um den Aktionskupon "Willkommensgeschenk" handelt<br /><br />Verwenden Sie einen anderen Aktionskupon als Willkommensgeschenk, damit dieser gelöscht werden kann.');
-define('SUCCESS_COUPON_DISABLED', 'Erfolgreich! der Aktionskupon wurde deaktiviert ...');
+define('SUCCESS_COUPON_DISABLED', 'Erfolgreich! Der Aktionskupon wurde deaktiviert ...');
 define('TEXT_COUPON_NEW', 'Verwenden Sie folgenden Aktionskuponnummer:');
 define('ERROR_DISCOUNT_COUPON_DUPLICATE', 'ACHTUNG! Doppelter Aktionskupon existiert ... Kopiervorgang abgebrochen für: ');
 define('TEXT_CONFIRM_COPY', 'Wollen Sie diesen Aktionskupon kopieren?');

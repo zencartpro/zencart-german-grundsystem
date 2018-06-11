@@ -3,10 +3,10 @@
  * functions_taxes
  *
  * @package functions
- * @copyright Copyright 2003-2016 Zen Cart Development Team
+ * @copyright Copyright 2003-2018 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: functions_taxes.php 731 2016-12-27 09:09:16Z webchills $
+ * @version $Id: functions_taxes.php 732 2018-01-02 09:43:16Z webchills $
  */
 
 ////
@@ -150,7 +150,7 @@
       }
     } else {
       // no tax at this level, set rate to 0 and description of unknown
-      $rates_array[0] = TEXT_UNKNOWN_TAX_RATE;
+      $rates_array[TEXT_UNKNOWN_TAX_RATE] = 0;
     }
     return $rates_array;
   }

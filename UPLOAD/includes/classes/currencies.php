@@ -3,10 +3,10 @@
  * currencies Class.
  *
  * @package classes
- * @copyright Copyright 2003-2016 Zen Cart Development Team
+ * @copyright Copyright 2003-2018 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: currencies.php 731 2016-08-20 10:49:16Z webchills $
+ * @version $Id: currencies.php 732 2018-04-12 17:49:16Z webchills $
  */
 if (!defined('IS_ADMIN_FLAG')) {
   die('Illegal Access');
@@ -121,6 +121,9 @@ class currencies extends base {
   }
 
   function display_price($products_price, $products_tax, $quantity = 1) {
-    return $this->format(zen_round(zen_add_tax($products_price, $products_tax), 2) * $quantity); 
+//-bof-20140729-lat9-Fix rounding error with tax calculation
+//      return $this->format(zen_add_tax($products_price, $products_tax) * $quantity);
+    return $this->format (zen_add_tax($products_price * $quantity, $products_tax));
+//-eof-20140729-lat9-Fix rounding error ...
   }
 }

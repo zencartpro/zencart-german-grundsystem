@@ -4,10 +4,10 @@
  * General functions used throughout Zen Cart
  *
  * @package functions
- * @copyright Copyright 2003-2016 Zen Cart Development Team
+ * @copyright Copyright 2003-2018 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: functions_general.php 800 2016-05-08 09:24:50Z webchills $
+ * @version $Id: functions_general.php 802 2018-04-12 20:24:50Z webchills $
  */
 if (!defined('IS_ADMIN_FLAG')) {
   die('Illegal Access');
@@ -152,7 +152,8 @@ if (!defined('IS_ADMIN_FLAG')) {
               $get_url .= zen_sanitize_string($key) . '=' . rawurlencode(stripslashes($value)) . '&';
             }
           } else {
-            foreach(array_filter($value) as $arr){
+            foreach (array_filter($value) as $arr){
+              if (is_array($arr)) continue;
               $get_url .= zen_sanitize_string($key) . '[]=' . rawurlencode(stripslashes($arr)) . '&';
             }
           }
@@ -188,7 +189,8 @@ if (!defined('IS_ADMIN_FLAG')) {
               }
             }
           } else {
-            foreach(array_filter($value) as $arr){
+            foreach (array_filter($value) as $arr){
+              if (is_array($arr)) continue;
               if ($hidden) {
                 $fields .= zen_draw_hidden_field($key . '[]', $arr);
               } else {
@@ -214,7 +216,7 @@ if (!defined('IS_ADMIN_FLAG')) {
 ////
 // Wrapper function for round()
   function zen_round($value, $precision) {
-    $value =  round($value *pow(10,$precision),0);
+    $value =  round($value *pow(10,$precision),2);
     $value = $value/pow(10,$precision);
     return $value;
   }
@@ -570,29 +572,23 @@ if (!defined('IS_ADMIN_FLAG')) {
 
 ////
 // Return a product ID with attributes
-  function zen_get_uprid($prid, $params) {
-//print_r($params);
+function zen_get_uprid($prid, $params) 
+{
     $uprid = $prid;
-    if ( (is_array($params)) && (!strstr($prid, ':')) ) {
-      while (list($option, $value) = each($params)) {
-        if (is_array($value)) {
-          while (list($opt, $val) = each($value)) {
-            $uprid = $uprid . '{' . $option . '}' . trim($opt);
-          }
-        } else {
-        //CLR 030714 Add processing around $value. This is needed for text attributes.
-            $uprid = $uprid . '{' . $option . '}' . trim($value);
+    if (is_array($params) && strpos($prid, ':') === false) {
+        foreach ($params as $option => $value) {
+            if (is_array($value)) {
+                foreach ($value as $opt => $val) {
+                    $uprid .= ('{' . $option . '}' . trim($opt));
+                }
+            } else {
+                $uprid .= ('{' . $option . '}' . trim($value));
+            }
         }
-      }      //CLR 030228 Add else stmt to process product ids passed in by other routines.
-      $md_uprid = '';
-
-      $md_uprid = md5($uprid);
-      return $prid . ':' . $md_uprid;
-    } else {
-      return $prid;
+        $uprid = $prid . ':' . md5($uprid);
     }
-  }
-
+    return $uprid;
+}
 
 ////
 // Return a product ID from a product ID with attributes
@@ -952,7 +948,7 @@ if (!defined('IS_ADMIN_FLAG')) {
           case 'now()':
             $query .= 'now(), ';
             break;
-          case 'null':
+          case 'NULL':
             $query .= 'null, ';
             break;
           default:
@@ -968,7 +964,7 @@ if (!defined('IS_ADMIN_FLAG')) {
           case 'now()':
             $query .= $columns . ' = now(), ';
             break;
-          case 'null':
+          case 'NULL':
             $query .= $columns . ' = null, ';
             break;
           default:
@@ -1625,6 +1621,7 @@ if (!defined('IS_ADMIN_FLAG')) {
     $sql = $db->bindVars($sql, ':languageId:', $languageId, 'integer');
     $db->execute($sql);
   }
+
   /**
    * function issetorArray
    *
@@ -1639,6 +1636,7 @@ if (!defined('IS_ADMIN_FLAG')) {
   {
     return isset($array[$key]) ? $array[$key] : $default;
   }
+
   /////////////////////////////////////////////
 ////
 // call additional function files

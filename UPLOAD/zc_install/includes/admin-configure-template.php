@@ -1,10 +1,10 @@
 <?php
 /**
- * @package Configuration Settings
- * @copyright Copyright 2003-2017 Zen Cart Development Team
+ * @package Configuration Settings ADMINBEREICH
+ * @copyright Copyright 2003-2018 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * File Built by %%_INSTALLER_METHOD_%% on %%_DATE_NOW_%%
+ * Datei erstellt von %%_INSTALLER_METHOD_%% am %%_DATE_NOW_%%
  */
 
 
@@ -49,6 +49,7 @@ define('HTTP_SERVER', '%%_HTTP_SERVER_ADMIN_%%');
  /**
  * Geben Sie die Domain für Ihre Frontend URL ein
  * Geben Sie eine separate SSL URL in HTTPS_CATALOG_SERVER an falls Ihre Website SSL unterstützt.
+ * Wenn Sie Ihren Shop komplett mit SSL betreiben (empfohlen!), dann geben Sie hier bei beiden Adressen die SSL URL ein
  */
 define('HTTP_CATALOG_SERVER', '%%_CATALOG_HTTP_SERVER_%%');
 define('HTTPS_CATALOG_SERVER', '%%_CATALOG_HTTPS_SERVER_%%');
@@ -58,7 +59,7 @@ define('HTTPS_CATALOG_SERVER', '%%_CATALOG_HTTPS_SERVER_%%');
  */
  /**
  * Verwenden Sie SSL für Login/Checkout der Kunden im Frontend? Falls ja, 'true'. Falls nein 'false'.
- * EIN LIVESHOP SOLLTE AUF GAR KEINEN FALL OHNE SSL BETRIEBEN WERDEN
+ * EIN LIVESHOP SOLLTE AUF GAR KEINEN FALL OHNE SSL BETRIEBEN WERDEN, daher hier immer auf true stellen
  */
 define('ENABLE_SSL_CATALOG', '%%_ENABLE_SSL_CATALOG_%%');
 
@@ -70,7 +71,7 @@ define('ENABLE_SSL_CATALOG', '%%_ENABLE_SSL_CATALOG_%%');
  /**
  * Diese DIR_WS_xxxx-Werte beziehen sich auf den Namen eines Unterverzeichnisses, in dem sich Ihr Shop befindet
  * Diese Werte werden zu den Werten HTTP_CATALOG_SERVER und HTTPS_CATALOG_SERVER hinzugefügt, um die vollständigen URLs zu Ihrem Shop zu bilden.
- * Sie sollten immer mit einem Schrägstrich beginnen und enden ... d.h: '/' oder '/ordenername/'
+ * Sie sollten immer mit einem Schrägstrich beginnen und enden ... d.h: '/' oder '/ordnername/'
  */
 define('DIR_WS_CATALOG', '%%_DIR_WS_CATALOG_%%');
 define('DIR_WS_HTTPS_CATALOG', '%%_DIR_WS_HTTPS_CATALOG_%%');
@@ -81,7 +82,7 @@ define('DIR_WS_HTTPS_CATALOG', '%%_DIR_WS_HTTPS_CATALOG_%%');
  */
  /**
   * Dies ist der komplette physische Pfad zu den Dateien Ihres Shops. z.B.: /var/www/vhost/accountname/public_html/store/
- * Sollte immer einen Slash / enden.
+ * Sollte immer mit einen Slash / enden.
  */
 
 define('DIR_FS_CATALOG', '%%_DIR_FS_CATALOG_%%');
@@ -95,17 +96,16 @@ define('DIR_FS_CATALOG', '%%_DIR_FS_CATALOG_%%');
 /**
  * The following settings define your database connection.
  * These must be the SAME as you're using in your non-admin copy of configure.php
- *//**
  * Die folgenden Einstellungen definieren Ihre Datenbankverbindung.
  * Sie müssen hier dieselben Datenbankdaten verwenden wie in der configure.php in Ihrem Adminverzeichnis!
  */
-define('DB_TYPE', '%%_DB_TYPE_%%'); // always 'mysql'
-define('DB_PREFIX', '%%_DB_PREFIX_%%'); // prefix for database table names -- preferred to be left empty
-define('DB_CHARSET', '%%_DB_CHARSET_%%'); // 'utf8' or 'latin1' are most common
-define('DB_SERVER', '%%_DB_SERVER_%%');  // address of your db server
-define('DB_SERVER_USERNAME', '%%_DB_SERVER_USERNAME_%%');
-define('DB_SERVER_PASSWORD', '%%_DB_SERVER_PASSWORD_%%');
-define('DB_DATABASE', '%%_DB_DATABASE_%%');
+define('DB_TYPE', '%%_DB_TYPE_%%'); // immer 'mysql'
+define('DB_PREFIX', '%%_DB_PREFIX_%%'); // Prefix für die Datenbanktabellen - sollte leer sein, wir empfehlen KEIN Prefix zu verwenden
+define('DB_CHARSET', '%%_DB_CHARSET_%%'); // immer 'utf8'
+define('DB_SERVER', '%%_DB_SERVER_%%');  // Adresse des Datenbankservers (bei den meisten Providern localhost)
+define('DB_SERVER_USERNAME', '%%_DB_SERVER_USERNAME_%%'); // Benutzername für die Datenbank
+define('DB_SERVER_PASSWORD', '%%_DB_SERVER_PASSWORD_%%'); // Passwort des Datenbankusers
+define('DB_DATABASE', '%%_DB_DATABASE_%%'); // Name der Datenbank
 
 /**
  * This is an advanced setting to determine whether you want to cache SQL queries.
@@ -134,9 +134,9 @@ define('SESSION_STORAGE', '%%_SESSION_STORAGE_%%');
  * Profi User only:
  * Die folgenden Einstellungen sind OPTIONAL und sollten NICHT gesetzt werden, es sei denn, Sie beabsichtigen, ihre normale Verwendung zu ändern. Die meisten Seiten werden diese unberührt lassen.
  * Um sie zu verwenden, entkommentieren und einen entsprechenden Wert eintragen.
- * Sinnvoll kann es sein, den Ordner zu den Logfiles auf eine Ebene unterhalb des Shopverzeichnisses zu legen, so dass dieser nicht per www erreichbar ist, das wäre dann z.B.
+ * Sehr sinnvoll kann es sein, den Ordner zu den Logfiles auf eine Ebene unterhalb des Shopverzeichnisses zu legen, so dass dieser nicht per www erreichbar ist, das wäre dann z.B.
  * define('DIR_FS_LOGS','/var/irgendwas/logs');
  */
-// define('DIR_FS_SQL_CACHE' ...
-// define('DIR_FS_DOWNLOAD' ...
-// define('DIR_FS_LOGS' ...
+// define('DIR_FS_SQL_CACHE','');
+// define('DIR_FS_DOWNLOAD','');
+// define('DIR_FS_LOGS','');

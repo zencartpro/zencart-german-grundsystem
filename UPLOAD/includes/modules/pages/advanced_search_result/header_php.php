@@ -3,10 +3,10 @@
  * Header code file for the Advanced Search Results page
  *
  * @package page
- * @copyright Copyright 2003-2016 Zen Cart Development Team
+ * @copyright Copyright 2003-2018 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: header_php.php 794 2016-03-02 21:24:50Z webchills $
+ * @version $Id: header_php.php 795 2018-01-02 09:24:50Z webchills $
  */
 
 // This should be first line of the script:
@@ -34,6 +34,8 @@ if ( (isset($_GET['keyword']) && (empty($_GET['keyword']) || $_GET['keyword']==H
   $pfrom = '';
   $pto = '';
   $keywords = '';
+  $dfrom_array = array();
+  $dto_array = array();
 
   if (isset($_GET['dfrom'])) {
     $dfrom = (($_GET['dfrom'] == DOB_FORMAT_STRING) ? '' : $_GET['dfrom']);

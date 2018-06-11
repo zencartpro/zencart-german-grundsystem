@@ -1,10 +1,10 @@
 <?php
 /**
  * @package admin
- * @copyright Copyright 2003-2016 Zen Cart Development Team
+ * @copyright Copyright 2003-2018 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: coupon_admin.php 805 2014-02-09 15:28:24Z webchills $
+ * @version $Id: coupon_admin.php 806 2018-04-03 16:28:24Z webchills $
  */
 
 define('TOP_BAR_TITLE', 'Statistics');
@@ -55,7 +55,6 @@ define('ERROR_NO_CUSTOMER_SELECTED', 'Error: No customer has been selected.');
 define('ERROR_NO_SUBJECT', 'Error: No subject has been entered.');
 
 define('COUPON_NAME', 'Coupon Name');
-//define('COUPON_VALUE', 'Coupon Value');
 define('COUPON_AMOUNT', 'Coupon Amount');
 define('COUPON_CODE', 'Coupon Code');
 define('COUPON_STARTDATE', 'Start Date');
@@ -79,7 +78,6 @@ define('ERROR_NO_COUPON_AMOUNT', 'No coupon amount entered');
 define('ERROR_NO_COUPON_NAME', 'No coupon name entered ');
 define('ERROR_COUPON_EXISTS', 'A coupon with that code already exists');
 
-
 define('COUPON_NAME_HELP', 'A short name for the coupon');
 define('COUPON_AMOUNT_HELP', 'The value of the discount for the coupon, either fixed or add a % on the end for a percentage discount.');
 define('COUPON_CODE_HELP', 'You can enter your own code here, or leave blank for an auto generated one.');
@@ -95,15 +93,13 @@ define('COUPON_CATEGORIES_HELP', 'A comma separated list of cpaths that this cou
 define('COUPON_BUTTON_PREVIEW', 'Preview');
 define('COUPON_BUTTON_CONFIRM', 'Confirm');
 define('COUPON_BUTTON_BACK', 'Back');
-
+define('COUPON_BUTTON_CANCEL', 'Cancel');
 define('COUPON_ACTIVE', 'Status');
 define('COUPON_START_DATE', 'Starts');
 define('COUPON_EXPIRE_DATE', 'Expires');
-
 define('ERROR_DISCOUNT_COUPON_WELCOME', 'Discount Coupon CANNOT be deactivated. This Discount Coupon is the Welcome Discount Coupon<br /><br />Change the Welcome Discount Coupon before trying to delete it. See Admin->Configuration->GV Coupons');
 define('SUCCESS_COUPON_DISABLED', 'Success! Discount Coupon was set to Inactive ...');
 define('TEXT_COUPON_NEW', 'Use NEW Discount Coupon Code:');
 define('ERROR_DISCOUNT_COUPON_DUPLICATE', 'WARNING! Duplicate Coupon exists ... Copy cancelled for Coupon Code: ');
 define('TEXT_CONFIRM_COPY', 'Are you sure you want to Copy this Discount Coupon to another Discount Coupon?');
 define('SUCCESS_COUPON_DUPLICATE', 'Success! Discount Coupon was duplicated ...<br /><br />Be sure to check Coupon Name and Dates ...');
-?>

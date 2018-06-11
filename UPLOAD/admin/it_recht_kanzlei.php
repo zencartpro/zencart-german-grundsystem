@@ -1,10 +1,10 @@
 <?php
 /**
  * @package IT Recht Kanzlei
- * @copyright Copyright 2003-2016 Zen Cart Development Team
+ * @copyright Copyright 2003-2018 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: it_recht_kanzlei.php 2016-06-27 12:13:51Z webchills $
+ * @version $Id: it_recht_kanzlei.php 2018-03-30 12:13:51Z webchills $
  */
 
 require('includes/application_top.php');
@@ -121,7 +121,7 @@ Automatische Überwachung & Aktualisierung durch die AGB-Schnittstelle
                     
                     <br/><br/>
                     
-                    <a href="http://www.it-recht-kanzlei.de/agb-starterpaket.php" tragte="_blank"><font size="3" color="#EF7D00"><u><strong>Jetzt das Starter-Paket der IT-Recht Kanzlei buchen -></strong/></u></font></a>
+                    <a href="http://www.it-recht-kanzlei.de/agb-starterpaket.php?partner_id=229" target="_blank"><font size="3" color="#EF7D00"><u><strong>Jetzt das Starter-Paket der IT-Recht Kanzlei buchen -></strong/></u></font></a>
                     <br/><br/>
                     <b>Warum IT-Recht Kanzlei ?</b>
                     <br/><br/>
@@ -150,7 +150,7 @@ Sie können diesen AGB-Service genau so lange nutzen, wie Sie ihn brauchen und b
                     <br /><br />
                  <font size="3"><b>So geht´s</b></font>
 <br/><br/>
-<a href="http://www.it-recht-kanzlei.de/agb-starterpaket.php" target="_blank"><font size="3" color="#EF7D00"><u><strong>Jetzt das Starter-Paket der IT-Recht Kanzlei buchen -></strong></u></font></a> 
+<a href="http://www.it-recht-kanzlei.de/agb-starterpaket.php?partner_id=229" target="_blank"><font size="3" color="#EF7D00"><u><strong>Jetzt das Starter-Paket der IT-Recht Kanzlei buchen -></strong></u></font></a> 
 <br/><br/>
 Danach erhalten Sie Ihre Zugangsdaten zu unserem Mandantenportal. Dort können Sie Ihre Rechtstexte komfortabel individualisieren und anschließend einmalig über die AGB-Schnittstelle in Ihren Zen Cart Shop integrieren.
 <br/><br/>

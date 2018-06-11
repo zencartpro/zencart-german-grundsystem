@@ -3,17 +3,14 @@
  * checkout_confirmation header_php.php
  *
  * @package page
- * @copyright Copyright 2003-2016 Zen Cart Development Team
+ * @copyright Copyright 2003-2018 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: header_php.php 733 2016-03-02 21:29:16Z webchills $
+ * @version $Id: header_php.php 734 2018-04-01 16:29:16Z webchills $
  */
 
 // This should be first line of the script:
 $zco_notifier->notify('NOTIFY_HEADER_START_CHECKOUT_CONFIRMATION');
-if ($_SESSION['widerruf_downloads'] == 'notaccepted'){
- $messageStack->add('checkout_confirmation', ERROR_DOWNLOADS_REVOCATION_NOT_ACCEPTED, 'error');
-}
 
 // if there is nothing in the customers cart, redirect them to the shopping cart page
 if ($_SESSION['cart']->count_contents() <= 0) {
@@ -54,7 +51,7 @@ $_SESSION['comments'] = zen_output_string_protected($_POST['comments']);
 //zen_redirect(zen_href_link(FILENAME_CHECKOUT_PAYMENT, '', 'SSL'));
 
 
-if ((DISPLAY_CONDITIONS_ON_CHECKOUT == 'true') && ($_SESSION['widerruf_downloads'] != 'notaccepted')){ 
+if (DISPLAY_CONDITIONS_ON_CHECKOUT == 'true') { 
   if (!isset($_POST['conditions']) || ($_POST['conditions'] != '1')) {
     $messageStack->add_session('checkout_payment', ERROR_CONDITIONS_NOT_ACCEPTED, 'error');
   }

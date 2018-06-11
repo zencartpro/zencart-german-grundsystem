@@ -2,9 +2,9 @@
 /**
  * file contains systemChecker Class
  * @package Installer
- * @copyright Copyright 2003-2017 Zen Cart Development Team
+ * @copyright Copyright 2003-2018 Zen Cart Development Team
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: class.systemChecker.php 4 2017-05-20 19:59:53Z webchills $
+ * @version $Id: class.systemChecker.php 5 2018-04-01 08:59:53Z webchills $
  *
  */
 /**
@@ -624,9 +624,11 @@ class systemChecker
     if (VERBOSE_SYSTEMCHECKER == 'screen' || VERBOSE_SYSTEMCHECKER === TRUE || VERBOSE_SYSTEMCHECKER == 'TRUE')
     {
       echo $methodName . "<br>";
-      foreach ($methodDetail['parameters'] as $key=>$value)
-      {
-        echo $key . " : " . $value . "<br>";
+      if (is_array($methodDetail['parameters'])) {
+        foreach ($methodDetail['parameters'] as $key=>$value)
+        {
+          echo $key . " : " . $value . "<br>";
+        }
       }
       echo (($result == 1) ? 'PASSED' : 'FAILED') . "<br>";
       echo "------------------<br><br>";

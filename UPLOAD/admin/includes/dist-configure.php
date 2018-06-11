@@ -3,10 +3,10 @@
  * BEISPIELDATEI ADMIN!
  *
  * @package Configuration Settings
- * @copyright Copyright 2003-2017 Zen Cart Development Team
+ * @copyright Copyright 2003-2018 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: dist-configure.php 2017-05-20 19:24:50Z webchills $
+ * @version $Id: dist-configure.php 2018-03-30 13:24:50Z webchills $
  * @private
  */
 
@@ -61,7 +61,7 @@ define('HTTPS_CATALOG_SERVER', 'https://localhost');
  */
  /**
  * Verwenden Sie SSL für Login/Checkout der Kunden im Frontend? Falls ja, 'true'. Falls nein 'false'.
- * EIN LIVESHOP SOLLTE AUF GAR KEINEN FALL OHNE SSL BETRIEBEN WERDEN
+ * EIN LIVESHOP SOLLTE AUF GAR KEINEN FALL OHNE SSL BETRIEBEN WERDEN, daher stellen Sie sicher, dass Sie ein SSL Zertifikat aktiv haben und stellen dann hier immer auf true
  */
 define('ENABLE_SSL_CATALOG', 'true');
 
@@ -73,7 +73,7 @@ define('ENABLE_SSL_CATALOG', 'true');
  /**
  * Diese DIR_WS_xxxx-Werte beziehen sich auf den Namen eines Unterverzeichnisses, in dem sich Ihr Shop befindet
  * Diese Werte werden zu den Werten HTTP_CATALOG_SERVER und HTTPS_CATALOG_SERVER hinzugefügt, um die vollständigen URLs zu Ihrem Shop zu bilden.
- * Sie sollten immer mit einem Schrägstrich beginnen und enden ... d.h: '/' oder '/ordenername/'
+ * Sie sollten immer mit einem Schrägstrich beginnen und enden ... d.h: '/' oder '/ordnername/'
  */
 define('DIR_WS_CATALOG', '/');
 define('DIR_WS_HTTPS_CATALOG', '/');
@@ -97,7 +97,6 @@ define('DIR_FS_CATALOG', '/var/www/vhost/accountname/public_html/store/');
 /**
  * The following settings define your database connection.
  * These must be the SAME as you're using in your non-admin copy of configure.php
- *//**
  * Die folgenden Einstellungen definieren Ihre Datenbankverbindung.
  * Sie müssen hier dieselben Datenbankdaten verwenden wie in der configure.php in Ihrem Adminverzeichnis!
  */
@@ -126,7 +125,7 @@ define('SQL_CACHE_METHOD', 'none');
  * Dieses Setting wird derzeit nicht verwendet und ist für spätere Versionen gedacht
  */
 
-define('SESSION_STORAGE', 'temporary value added by zc_install');
+define('SESSION_STORAGE', '');
 
 /**
  * Advanced use only:
@@ -137,9 +136,9 @@ define('SESSION_STORAGE', 'temporary value added by zc_install');
  * Profi User only:
  * Die folgenden Einstellungen sind OPTIONAL und sollten NICHT gesetzt werden, es sei denn, Sie beabsichtigen, ihre normale Verwendung zu ändern. Die meisten Seiten werden diese unberührt lassen.
  * Um sie zu verwenden, entkommentieren und einen entsprechenden Wert eintragen.
- * Sinnvoll kann es sein, den Ordner zu den Logfiles auf eine Ebene unterhalb des Shopverzeichnisses zu legen, so dass dieser nicht per www erreichbar ist, das wäre dann z.B.
+ * Sehr sinnvoll kann es sein, den Ordner zu den Logfiles auf eine Ebene unterhalb des Shopverzeichnisses zu legen, so dass dieser nicht per www erreichbar ist, das wäre dann z.B.
  * define('DIR_FS_LOGS','/var/irgendwas/logs');
  */
-// define('DIR_FS_SQL_CACHE' ...
-// define('DIR_FS_DOWNLOAD' ...
-// define('DIR_FS_LOGS' ...
+// define('DIR_FS_SQL_CACHE','');
+// define('DIR_FS_DOWNLOAD','');
+// define('DIR_FS_LOGS','');

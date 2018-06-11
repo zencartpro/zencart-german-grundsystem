@@ -3,7 +3,7 @@
     <!-- Cancel button -->
     <div cla ss="form-control-panel" id="formControlPanelCancel">
       {{#cancelButton}}
-      <a href="#" onclick="if (parent.$.fn.ceebox) { parent.$.fn.ceebox.closebox() } else {document.location = 'mailbeez.php'}; return false;" class="btn btn-warning btn-lg pull-right" id="cancelButton">
+      <a href="#" onclick="if (parent.$.fn.ceebox) { parent.$.fn.ceebox.closebox() } else {document.location = '<?php echo $cloudloader->link();?>'}; return false;" class="btn btn-warning btn-lg pull-right" id="cancelButton">
         <i class="fa fa-times-circle"></i>
 
         {{cancelButton}}</a>

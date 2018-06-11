@@ -6,7 +6,7 @@
  * @copyright Copyright (c) 2015 Setasign - Jan Slabon (http://www.setasign.com)
  * @license   http://opensource.org/licenses/mit-license The MIT License
  * @version   1.6.1
- * modified for pdf Rechnung 3.5.0 for Zen Cart 2016-10-11 webchills
+ * modified for pdf Rechnung for Zen Cart 2018-03-30 webchills
  */
 
 if (!class_exists('fpdi_bridge')) {
@@ -849,7 +849,7 @@ public function _dounderline($x, $y, $txt)
                 $out .= chr($cp >> 8);
                 $out .= chr($cp & 0xFF);
               }
-              continue;
+                continue 2;
 
             case 3:
               $cp = (($q[0] ^ 0xE0) << 12) | (($q[1] ^ 0x80) << 6) | ($q[2] ^ 0x80);
@@ -865,7 +865,7 @@ public function _dounderline($x, $y, $txt)
                 $out .= chr($cp >> 8);
                 $out .= chr($cp & 0xFF);
               }
-              continue;
+                continue 2;
 
             case 4:
               $cp = (($q[0] ^ 0xF0) << 18) | (($q[1] ^ 0x80) << 12) | (($q[2] ^ 0x80) << 6) | ($q[3] ^ 0x80);
@@ -888,7 +888,7 @@ public function _dounderline($x, $y, $txt)
                 $out .= chr($s2 >> 8);
                 $out .= chr($s2 & 0xFF);
               }
-              continue;
+                continue 2;
           }
         }
       }
@@ -949,7 +949,7 @@ public function _dounderline($x, $y, $txt)
               else {
                 $out[] = $cp;
               }
-              continue;
+                continue 2;
 
             case 3:
               $cp = (($q[0] ^ 0xE0) << 12) | (($q[1] ^ 0x80) << 6) | ($q[2] ^ 0x80);
@@ -964,7 +964,7 @@ public function _dounderline($x, $y, $txt)
               else {
                 $out[] = $cp;
               }
-              continue;
+                continue 2;
 
             case 4:
               $cp = (($q[0] ^ 0xF0) << 18) | (($q[1] ^ 0x80) << 12) | (($q[2] ^ 0x80) << 6) | ($q[3] ^ 0x80);
@@ -979,7 +979,7 @@ public function _dounderline($x, $y, $txt)
               else {
                 $out[] = $cp;
               }
-              continue;
+                continue 2;
           }
         }
       }

@@ -1,8 +1,8 @@
 #
 # @package Installer
-# @copyright Copyright 2003-2017 Zen Cart Development Team
+# @copyright Copyright 2003-2018 Zen Cart Development Team
 # @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
-# @version $Id: systemChecks.yml 5 2017-03-05 15:59:53Z webchills $
+# @version $Id: systemChecks.yml 8 2018-05-10 08:59:53Z webchills $
 #
 
 systemChecks:
@@ -40,24 +40,24 @@ systemChecks:
       checkPhpVersionMin:
         method: checkPhpVersion
         parameters:
-          version: 5.2.9
+          version: 5.6.1
           versionTest: ge
-          localErrorText: <?php echo sprintf(TEXT_ERROR_PHP_VERSION_MIN, '5.2.9') . PHP_EOL; ?>
+          localErrorText: <?php echo sprintf(TEXT_ERROR_PHP_VERSION_MIN, '5.6.1') . PHP_EOL; ?>
       checkPhpVersionMax:
         method: checkPhpVersion
         parameters:
           version: 7.2.0
           versionTest: lt
-          localErrorText: <?php echo sprintf(TEXT_ERROR_PHP_VERSION_MAX, '7.1.x') . PHP_EOL; ?>
+          localErrorText: <?php echo sprintf(TEXT_ERROR_PHP_VERSION_MAX, '7.2') . PHP_EOL; ?>
   checkPhpVersionRecommendation:
     runLevel: always
     errorLevel: WARN
-    mainErrorText: <?php echo sprintf(TEXT_ERROR_PHP_VERSION_RECOMMENDED, '5.5') . PHP_EOL; ?>
+    mainErrorText: <?php echo sprintf(TEXT_ERROR_PHP_VERSION_RECOMMENDED, '7.1') . PHP_EOL; ?>
     methods:
       checkPhpVersionRecommended:
         method: checkPhpVersion
         parameters:
-          version: 5.5.0
+          version: 7.0.0
           versionTest: ge
   checkZCversion:
     runLevel: always
@@ -225,15 +225,6 @@ systemChecks:
       checkFunctionExists:
         parameters:
           functionName: xml_parser_create
-  checkGzip:
-    runLevel: always
-    errorLevel: WARN
-    mainErrorText: <?php echo TEXT_ERROR_GZIP .PHP_EOL; ?>
-    methods:
-      checkIniGet:
-        parameters:
-          inigetName: output_buffering
-          expectedValue: TRUE
   checkHttpsRequest:
     runLevel: always
     errorLevel: WARN

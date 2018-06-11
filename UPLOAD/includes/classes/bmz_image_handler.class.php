@@ -8,42 +8,44 @@
  * @license http://www.gnu.org/licenses/gpl.txt GNU General Public License V2.0
  * @version $Id: bmz_image_handler.class.php,v 2.0 Rev 8 2010-05-31 23:46:5 DerManoMann Exp $
  * modified by yellow1912 (rubikintegration.com)
- * Last modified by DerManoMann 2010-05-31 23:40:21
+ * Modified by DerManoMann 2010-05-31 23:40:21
+ * Last Modified by lat9: 2017-07-17, correcting class constructor name, applying PSR-2 formatting.
  */
 
-require_once('bmz_gif_info.class.php');
 
-class ih_image{
 
-	/**
-   * $orig is the original image source passed to the constructor
-   * $src = is the reference to an actual physical image
-	 * $local is the cached image reference
-	 */
-  var $orig = null;
-	var $src = null;
-  var $local = null;
-	var $filename;
-	var $extension;
-	var $width;
-	var $height;
-	var $sizetype;
-	var $canvas;
-	var $zoom;
-	var $watermark;
-  var $force_canvas;
+class ih_image
+{
+    /**
+    * $orig is the original image source passed to the constructor
+    * $src = is the reference to an actual physical image
+    * $local is the cached image reference
+    */
+    var $orig = null;
+    var $src = null;
+    var $local = null;
+    var $filename;
+    var $extension;
+    var $width;
+    var $height;
+    var $sizetype;
+    var $canvas;
+    var $zoom;
+    var $watermark;
+    var $force_canvas;
 
-/**
- * ih_image class constructor
- * @author Tim Kroeger (tim@breakmyzencart.com)
- * @version 1.99
- * @param string $src Image source (e.g. - images/productimage.jpg)
- * @param string $width The image's width
- * @param string $height The image's height
- */
+    /**
+     * ih_image class constructor
+     * @author Tim Kroeger (tim@breakmyzencart.com)
+     * @version 1.99
+     * @param string $src Image source (e.g. - images/productimage.jpg)
+     * @param string $width The image's width
+     * @param string $height The image's height
+     */
 
-	function ih_image($src, $width, $height){
-		global $ihConf;
+    public function __construct($src, $width, $height)
+    {
+        global $ihConf;
 		
     
     $this->orig = $src;
@@ -73,7 +75,8 @@ class ih_image{
 		$this->initialize_overlays($this->sizetype);
 	} # end class constructor
 
-  function file_not_found() {
+    public function file_not_found() 
+    {
     global $ihConf;
     // try to find file by using different file extensions if initial
     // source doesn't succeed
@@ -112,40 +115,45 @@ class ih_image{
     return true;
   }
   
-  function is_real() {
-    // return true if the source images are really present and medium
-    // or large are not just a descendant from the default image.
-    // small default images always return true.
+    public function is_real() 
+    {
+        // return true if the source images are really present and medium
+        // or large are not just a descendant from the default image.
+        // small default images always return true.
+
+        // strip file extensions, they don't matter
+        $orig = substr($this->orig, 0, strrpos($this->orig, '.'));
+        $src = substr($this->src, 0, strrpos($this->src, '.'));
+        return ($orig == $src);
+    }
+
+    public function determine_image_sizetype() 
+    {
+        global $ihConf;
+        
+        if (strstr($this->src, $ihConf['large']['suffix'])) {
+            $this->sizetype = 'large';
+        } elseif (strstr($this->src, $ihConf['medium']['suffix'])) {
+            $this->sizetype = 'medium';
+        } elseif ((intval($this->width) == intval($ihConf['small']['width'])) && (intval($this->height) == intval($ihConf['small']['height']))) {
+            $this->sizetype = 'small';
+        } else {
+            $this->sizetype = 'generic';
+        }
+    }
+
+    public function strip_sizetype_suffix($src) 
+    {
+        global $ihConf;
+        $src = preg_replace('/' . $ihConf['large']['suffix'] . '\./', '.', $src);
+        $src = preg_replace('/' . $ihConf['medium']['suffix'] . '\./', '.', $src);
+        $src = str_replace($ihConf['medium']['prefix'] . '/', '/', $src);
+        $src = str_replace($ihConf['large']['prefix'] . '/', '/', $src);
+        return $src;
+    }
     
-    // strip file extensions, they don't matter
-    $orig = substr($this->orig, 0, strrpos($this->orig, '.'));
-    $src = substr($this->src, 0, strrpos($this->src, '.'));
-    return ($orig == $src);
-  }
-
-	function determine_image_sizetype() {
-		global $ihConf;
-		
-		if (strstr($this->src, $ihConf['large']['suffix'])) {
-			$this->sizetype = 'large';
-		} elseif (strstr($this->src, $ihConf['medium']['suffix'])) {
-			$this->sizetype = 'medium';
-		} elseif ((intval($this->width) == intval($ihConf['small']['width'])) && (intval($this->height) == intval($ihConf['small']['height']))) {
-			$this->sizetype = 'small';
-		} else
-		$this->sizetype = 'generic';
-	}
-
-	function strip_sizetype_suffix($src) {
-    global $ihConf;
-		$src = preg_replace('/' . $ihConf['large']['suffix'] . '\./', '.', $src);
-		$src = preg_replace('/' . $ihConf['medium']['suffix'] . '\./', '.', $src);
-		$src = str_replace($ihConf['medium']['prefix'] . '/', '/', $src);
-		$src = str_replace($ihConf['large']['prefix'] . '/', '/', $src);
-    return $src;
-	}
-	
-	function initialize_overlays($sizetype) {
+    public function initialize_overlays($sizetype) 
+    {
 		global $ihConf;
 		
 		switch ($sizetype) {
@@ -186,7 +194,8 @@ class ih_image{
 		}
 	}
 	
-	function get_local() {
+    public function get_local() 
+    {
 		if ($this->local) return $this->local;
 		// check if image handler is available and if we should resize at all
 		if ($this->resizing_allowed()) {
@@ -197,7 +206,8 @@ class ih_image{
 		return $this->local;
 	}
 
-  function resizing_allowed() {
+    public function resizing_allowed() 
+    {
     global $bmzConf;
     global $ihConf;
     // only resize if resizing is turned on
@@ -216,7 +226,8 @@ class ih_image{
     return $allowed;
   }
 
-	function get_resized_image($width, $height, $override_sizetype = '', $filetype = '') {
+    public function get_resized_image($width, $height, $override_sizetype = '', $filetype = '') 
+    {
 		global $ihConf;
 
 		$sizetype = ($override_sizetype == '') ? $this->sizetype : $override_sizetype;
@@ -256,9 +267,33 @@ class ih_image{
 		// override filetype?
 		$file_extension = ($filetype == '') ? $file_extension : $filetype;
 		
-		// Do we need to resize, watermark, zoom or convert to another filetype?
-		if ($resize || ($this->watermark['file'] != '') || ($this->zoom['file'] != '') || ($file_extension != $this->extension)){
-			$local = getCacheName($this->src . $this->watermark['file'] . $this->zoom['file'] . $quality . $background . $ihConf['watermark']['gravity'] . $ihConf['zoom']['gravity'], '.image.' . $newwidth . 'x' . $newheight . $file_extension);
+        // Do we need to resize, watermark, zoom or convert to another filetype?
+        if ($resize || ($this->watermark['file'] != '') || ($this->zoom['file'] != '') || ($file_extension != $this->extension)) {
+            if (IH_CACHE_NAMING == 'Hashed') {
+                $local = getCacheName($this->src . $this->watermark['file'] . $this->zoom['file'] . $quality . $background . $ihConf['watermark']['gravity'] . $ihConf['zoom']['gravity'], '.image.' . $newwidth . 'x' . $newheight . $file_extension);
+            } else {
+                // use pathinfo to get full path of an image
+                $image_path = pathinfo($this->src);
+                // get image name from path
+                $image_basename = $image_path['basename'];
+                // now let's clean it up for those who don't know image files SHOULD be named
+                $image_basename = str_replace(' ', '-', $image_basename); // Replaces all spaces with hyphens
+                $image_basename = preg_replace('/[^A-Za-z0-9\-_]/', '', $image_basename); // Removes special chars, keeps hyphen and underscore
+                $image_basename = preg_replace('/-+/', '-', $image_basename); // Replaces multiple hyphens with single one
+                
+                // get last directory from path
+                $image_dirname = basename($image_path['dirname']);
+                // now let's clean up the directory name just like we did with image name (this should be a function, I know, I know...)
+                $image_dirname = str_replace(' ', '-', $image_dirname); // Replaces all spaces with hyphens
+                $image_dirname = preg_replace('/[^A-Za-z0-9\-_]/', '', $image_dirname); // Removes special chars, keeps hyphen and underscore
+                $image_dirname = preg_replace('/-+/', '-', $image_dirname); // Replaces multiple hyphens with single one
+                
+                // if last directory is images (meaning image is stored in main images folder), do nothing, else append directory name
+                $image_dirname == rtrim(DIR_WS_IMAGES, '/') ? $image_dir = '' : $image_dir = ($image_dirname .'-');
+                
+                // and now do the magic and create cached image name with the above parameters
+                $local = getCacheName(strtolower($image_dir.$image_basename), '.image.' . $newwidth . 'x' . $newheight . $file_extension);
+            }
 			//echo $local . '<br />';	
 			$mtime = @filemtime($local); // 0 if not exists
 			if ( (($mtime > @filemtime($this->filename)) && ($mtime > @filemtime($this->watermark['file'])) && ($mtime > @filemtime($this->zoom['file'])) ) ||
@@ -271,10 +306,11 @@ class ih_image{
 		return $this->src;
 	}
 	
-	/**
-	 * Calculate desired image size as set in admin->configuration->images.
-	 */
-	function calculate_size($pref_width, $pref_height = '') {
+    /**
+     * Calculate desired image size as set in admin->configuration->images.
+     */
+    public function calculate_size($pref_width, $pref_height = '') 
+    {
 		list($width, $height) = @getimagesize($this->filename);
 		// default: nothing happens (preferred dimension = actual dimension)
 		$newwidth = $width;
@@ -332,7 +368,8 @@ class ih_image{
 		return array($newwidth, $newheight, $resize);
 	}
 	
-	function resize_imageIM($file_ext, $dest_name, $bg, $quality = 85) {
+    public function resize_imageIM($file_ext, $dest_name, $bg, $quality = 85) 
+    {
     global $ihConf;
     global $messageStack;
     //echo 'im_convert: ' . $ihConf['im_convert'] . '<br />';
@@ -385,7 +422,8 @@ class ih_image{
 		return false;
 	}
 
-  function alphablend($background, $overlay, $threshold = -1) {
+    public function alphablend($background, $overlay, $threshold = -1) 
+    {
     /* -------------------------------------------------------------------- */
     /*      Simple cases we want to handle fast.                            */
     /* -------------------------------------------------------------------- */
@@ -415,7 +453,8 @@ class ih_image{
     return array('alpha'=>$alpha, 'red'=>$red, 'green'=>$green, 'blue'=>$blue);
   }
 
-  function imagemergealpha($background, $overlay, $startwidth, $startheight, $newwidth, $newheight, $threshold = '', $background_override = '', $debug = false) {
+    public function imagemergealpha($background, $overlay, $startwidth, $startheight, $newwidth, $newheight, $threshold = '', $background_override = '', $debug = false) 
+    {
     global $ihConf;
 
     //restore the transparency
@@ -450,7 +489,8 @@ class ih_image{
   }
 
 
-  function resize_imageGD($file_ext, $dest_name, $bg, $quality = 85) {
+    public function resize_imageGD($file_ext, $dest_name, $bg, $quality = 85) 
+    {
     global $ihConf;
     global $messageStack;
   
@@ -598,7 +638,8 @@ class ih_image{
     return $this->save_imageGD($file_ext, $newimg, $dest_name, $quality);
   }
 
-	function calculate_gravity($canvaswidth, $canvasheight, $overlaywidth, $overlayheight, $gravity) {
+    public function calculate_gravity($canvaswidth, $canvasheight, $overlaywidth, $overlayheight, $gravity) 
+    {
 	      // Calculate overlay position from gravity setting. Center as default.
 	      $startheight = (($canvasheight - $overlayheight)/2);
 	      $startwidth = (($canvaswidth - $overlaywidth)/2);
@@ -615,7 +656,8 @@ class ih_image{
 	      return array($startwidth, $startheight);
 	}
 	
-	function load_imageGD($src_name) {
+    public function load_imageGD($src_name) 
+    {
 		// create an image of the given filetype
 		$file_ext = substr($src_name, strrpos($src_name, '.'));
 		switch (strtolower($file_ext)) {
@@ -636,7 +678,8 @@ class ih_image{
 		return $image;
 	}
 	
-	function save_imageGD($file_ext, $image, $dest_name, $quality = 75) {
+    public function save_imageGD($file_ext, $image, $dest_name, $quality = 75) 
+    {
 		global $ihConf;
 		
 		switch (strtolower($file_ext)) {
@@ -661,21 +704,23 @@ class ih_image{
 		return $ok;
 	}
 	
-	function get_background_rgb($bg) {
-		$bg = trim(str_replace('transparent', '', $bg));
-		list($red, $green, $blue)= preg_split('/[, :]/', $bg);
-		if (preg_match('/[0-9]+/', $red.$green.$blue)) {
-			$red = min(intval($red), 255);
-			$green = min(intval($green), 255);
-			$blue = min(intval($blue), 255);
-			$color = array('r'=>$red, 'g'=>$green, 'b'=>$blue);
-			return $color;
-		} else {
-			return false; 
-		}
-	}
-		
-	function get_additional_parameters($alt, $width, $height, $parameters) {
+    public function get_background_rgb($bg) 
+    {
+        $bg = trim(str_replace('transparent', '', $bg));
+        list($red, $green, $blue)= preg_split('/[, :]/', $bg);
+        if (preg_match('/[0-9]+/', $red.$green.$blue)) {
+            $red = min(intval($red), 255);
+            $green = min(intval($green), 255);
+            $blue = min(intval($blue), 255);
+            $color = array('r'=>$red, 'g'=>$green, 'b'=>$blue);
+            return $color;
+        } else {
+            return false; 
+        }
+    }
+        
+    public function get_additional_parameters($alt, $width, $height, $parameters) 
+    {
 		global $ihConf;
     if ($this->sizetype == 'small') {
       if ($ihConf[$this->sizetype]['zoom']) {

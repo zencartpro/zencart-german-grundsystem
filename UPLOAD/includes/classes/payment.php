@@ -3,10 +3,10 @@
  * Payment Class.
  *
  * @package classes
- * @copyright Copyright 2003-2016 Zen Cart Development Team
+ * @copyright Copyright 2003-2018 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: payment.php 735 2016-11-03 08:21:16Z webchills $
+ * @version $Id: payment.php 736 2018-01-02 09:21:16Z webchills $
  */
 if (!defined('IS_ADMIN_FLAG')) {
   die('Illegal Access');
@@ -155,7 +155,7 @@ class payment extends base {
        $js =  $js .'    alert(error_message);' . "\n";
        $js =  $js . '    return false;' . "\n";
        $js =  $js .'  } else {' . "\n";
-       $js =  $js .' var result = true '  . "\n";
+       $js =  $js .' var result = true; '  . "\n";
        if ($this->doesCollectsCardDataOnsite == true && PADSS_AJAX_CHECKOUT == '1') {
          $js .= '      result = !(doesCollectsCardDataOnsite(payment_value));' . "\n";
        }

@@ -2,9 +2,9 @@
 /**
  * file contains zcDatabaseInstaller Class
  * @package Installer
- * @copyright Copyright 2003-2017 Zen Cart Development Team
+ * @copyright Copyright 2003-2018 Zen Cart Development Team
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: class.zcDatabaseInstaller.php 2017-03-05 15:59:53Z webchills $
+ * @version $Id: class.zcDatabaseInstaller.php 2018-04-01 15:59:53Z webchills $
  *
  */
 /**
@@ -442,6 +442,7 @@ class zcDatabaseInstaller
   }
   public function tableColumnExists($table, $column)
   {
+    if (!defined('DB_DATABASE')) define('DB_DATABASE', $this->dbName);
     $check = $this->db->Execute(
       'SHOW COLUMNS FROM `' . DB_DATABASE . '`.`' . $this->db->prepare_input($table) . '` ' .
       'WHERE `Field` = \'' . $this->db->prepare_input($column) . '\''
@@ -450,6 +451,7 @@ class zcDatabaseInstaller
   }
   public function tableIndexExists($table, $index)
   {
+    if (!defined('DB_DATABASE')) define('DB_DATABASE', $this->dbName);
     $check = $this->db->Execute(
       'SHOW INDEX FROM `' . DB_DATABASE . '`.`' . $this->db->prepare_input($table) . '` ' .
       'WHERE `Key_name` = \'' . $this->db->prepare_input($index) . '\''

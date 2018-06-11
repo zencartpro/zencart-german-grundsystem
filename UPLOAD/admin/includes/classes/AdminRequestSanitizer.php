@@ -1,10 +1,10 @@
 <?php
 /**
  * @package admin
- * @copyright Copyright 2003-2016 Zen Cart Development Team
+ * @copyright Copyright 2003-2018 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: AdminRequestSanitizer.php 5 2016-11-03 08:49:16Z webchills $
+ * @version $Id: AdminRequestSanitizer.php 6 2018-01-02 08:43:16Z webchills $
  */
 
 /**
@@ -192,28 +192,28 @@ class AdminRequestSanitizer extends base
     }
 
     /**
-     * @param $paramaterName
+     * @param $parameterName
      * @param $parameterDefinition
      */
-    private function runSpecificSanitizer($paramaterName, $parameterDefinition)
+    private function runSpecificSanitizer($parameterName, $parameterDefinition)
     {
         if ($this->adminSanitizerTypes[$parameterDefinition['sanitizerType']]['type'] === 'builtin') {
-            $this->processBuiltIn($parameterDefinition['sanitizerType'], $paramaterName, $parameterDefinition);
+            $this->processBuiltIn($parameterDefinition['sanitizerType'], $parameterName, $parameterDefinition);
         }
         if ($this->adminSanitizerTypes[$parameterDefinition['sanitizerType']]['type'] === 'custom') {
-            $this->processCustom($parameterDefinition['sanitizerType'], $paramaterName, $parameterDefinition);
+            $this->processCustom($parameterDefinition['sanitizerType'], $parameterName, $parameterDefinition);
         }
     }
 
     /**
-     * @param $parameterDefinitions
+     * @param array $parameterDefinitions
      * @return bool
      */
     private function findSanitizerFromContext($parameterDefinitions)
     {
         foreach ($parameterDefinitions as $parameterDefinition) {
             $result = false;
-            if (count($parameterDefinition['pages'])) {
+            if (!empty($parameterDefinition['pages'])) {
                 if (in_array($this->currentPage, $parameterDefinition['pages'])) {
                     $result = $parameterDefinition;
                     break;
@@ -232,7 +232,7 @@ class AdminRequestSanitizer extends base
     {
         foreach ($parameterDefinitions as $parameterDefinition) {
             $result = false;
-            if (count($parameterDefinition['pages'])) {
+            if (!empty($parameterDefinition['pages'])) {
                 continue;
             }
             if ($this->parameterExistsForMethod($parameterName, $parameterDefinition)) {

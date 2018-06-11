@@ -3,9 +3,9 @@
  * File contains just the base class
  *
  * @package classes
- * @copyright Copyright 2003-2016 Zen Cart Development Team
+ * @copyright Copyright 2003-2018 Zen Cart Development Team
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: class.base.php 732 2014-07-05 09:11:16Z webchills $
+ * @version $Id: class.base.php 733 2018-01-02 09:11:16Z webchills $
  */
 /**
  * abstract class base
@@ -134,6 +134,9 @@ class base {
     {
       $rawName[0] = strtoupper($rawName[0]);
     }
-    return preg_replace_callback('/[_-]([0-9,a-z])/', create_function('$matches', 'return strtoupper($matches[1]);'), $rawName);
+    if (version_compare(PHP_VERSION, '5.3.0', '<')) {
+      return preg_replace_callback('/[_-]([0-9,a-z])/', create_function('$matches', 'return strtoupper($matches[1]);'), $rawName);
+    }
+    return preg_replace_callback('/[_-]([0-9,a-z])/', function($matches) {return strtoupper($matches[1]);}, $rawName);
   }
 }

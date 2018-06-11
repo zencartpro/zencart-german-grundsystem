@@ -4,7 +4,7 @@
  * @copyright Copyright 2003-2016 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: functions_prices.php 732 2016-08-20 11:49:16Z webchills $
+ * @version $Id: functions_prices.php 733 2018-04-12 11:49:16Z webchills $
  */
 ////
 //get specials price or sale price
@@ -88,20 +88,20 @@
       }
 
       if (!$special_price) {
-        return number_format($sale_product_price, 2, '.', '');
+        return number_format($sale_product_price, 4, '.', '');
       } else {
         switch($sale->fields['sale_specials_condition']){
           case 0:
-            return number_format($sale_product_price, 2, '.', '');
+            return number_format($sale_product_price, 4, '.', '');
             break;
           case 1:
-            return number_format($special_price, 2, '.', '');
+            return number_format($special_price, 4, '.', '');
             break;
           case 2:
-            return number_format($sale_special_price, 2, '.', '');
+            return number_format($sale_special_price, 4, '.', '');
             break;
           default:
-            return number_format($special_price, 2, '.', '');
+            return number_format($special_price, 4, '.', '');
         }
       }
     }

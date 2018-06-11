@@ -3,10 +3,10 @@
  * Admin Activity Log Viewer/Archiver
  *
  * @package admin
- * @copyright Copyright 2003-2016 Zen Cart Development Team
+ * @copyright Copyright 2003-2018 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: admin_activity.php 788 2015-12-21 11:13:51Z webchills $
+ * @version $Id: admin_activity.php 789 2018-01-02 08:13:51Z webchills $
  *
  * @TODO: prettify so on-screen output is more friendly, perhaps adding pagination support etc (using existing "s" and "p" params)
  * @TODO: prettify by hiding postdata until requested, either with hidden layers or other means
@@ -30,6 +30,7 @@ $save_to_file_checked = (isset($_POST['savetofile']) && zen_not_null($_POST['sav
 $post_format = (isset($_POST['format']) && zen_not_null($_POST['format']) ? $_POST['format'] : 1);
 $format = $available_export_formats[$post_format]['format'];
 $file = (isset($_POST['filename']) ? preg_replace('/[^\w\.-]/', '', $_POST['filename']) : 'admin_activity_archive_' . date('Y-m-d_H-i-s') . '.csv');
+if (!preg_match('/.*\.(csv|txt|html?|xml)$/', $file)) $file .= '.txt';
 $filter_options = array();
 $filter_options[0] = array('id' => '0', 'text' => TEXT_EXPORTFILTER0, 'filter' => 'all');
 $filter_options[1] = array('id' => '1', 'text' => TEXT_EXPORTFILTER1, 'filter' => 'info');

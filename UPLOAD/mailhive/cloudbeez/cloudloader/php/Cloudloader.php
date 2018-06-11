@@ -281,9 +281,11 @@ class Cloudloader extends CloudloaderBase
 
             case 'backupZip':
 
-                $exclude_dirs = array('common/templates_c', 'cloudbeez', 'cloudbeez/cloudloader/work', 'cloudbeez/cloudloader/temp', 'cloudbeez/backup');
+                $exclude_dirs = array('images/cache', 'common/templates_c', 'cloudbeez');
                 $backup_dir = '../' . MH_ROOT_PATH;
-                $result = $this->backup($backup_dir, $this->backupDirectory, $this->backup_file, $exclude_dirs);
+                $this->cleanLegacyImageCache($this->deployDirectory . 'images/cache');
+                $this->cleanBackups($this->backupDirectory);
+                $result = $this->backup($backup_dir, $this->backupDirectory, $this->backup_file, $exclude_files, $exclude_dirs);
                 $this->deleteSessionVar('mailbeez_installer_backup_location');
 
                 if (!$result) {
@@ -590,7 +592,7 @@ class Cloudloader extends CloudloaderBase
 
     }
 
-    private function requestServerData($uri = null, $params = array(), $auth_mode = 'private')
+    private function requestServerData($uri = null, $params = null, $auth_mode = 'private')
     {
         $result = null;
         $error = null;
@@ -632,7 +634,7 @@ class Cloudloader extends CloudloaderBase
         return $_result;
     }
 
-    private function requestServerFile($fileCode, $expectedHash, $uri = null, $params = array(), $auth_mode = 'private')
+    private function requestServerFile($fileCode, $expectedHash, $uri = null, $params = null, $auth_mode = 'private')
     {
         $result = null;
         $error = null;
@@ -688,8 +690,12 @@ class Cloudloader extends CloudloaderBase
         return true;
     }
 
-    private function prepareServerRequest($uri, $params = array(), $auth_mode = 'private')
+    private function prepareServerRequest($uri, $params = null, $auth_mode = 'private')
     {
+
+        if (!is_array($params)) {
+            $params = array();
+        }
 
         $params['p'] = urlencode(base64_encode(serialize(array('domain' => $_SERVER['SERVER_NAME'],
             'p' => MH_PLATFORM,
@@ -857,6 +863,8 @@ class Cloudloader extends CloudloaderBase
 
         $content = str_replace('mailhive/', MH_ROOT_PATH, $content);
 
+        $content = str_replace('mailbeez.php?', $this->link(''), $content);
+
         return $content;
     }
 
@@ -872,15 +880,38 @@ class Cloudloader extends CloudloaderBase
 
     function readSessionVar($name)
     {
-        $value = @file_get_contents($this->tempDirectory . '/var_' . $name . '.txt');
-        $_SESSION[$name] = $value;
-        return $value;
+        if (file_exists($this->tempDirectory . '/var_' . $name . '.txt')) {
+            $value = @file_get_contents($this->tempDirectory . '/var_' . $name . '.txt');
+            $_SESSION[$name] = $value;
+            return $value;
+        } else {
+            return false;
+        }
     }
 
     function deleteSessionVar($name)
     {
-        @unlink($this->tempDirectory . '/var_' . $name . '.txt');
+        if (file_exists($this->tempDirectory . '/var_' . $name . '.txt')) {
+            @unlink($this->tempDirectory . '/var_' . $name . '.txt');
+        }
     }
 
+
+    function link($uri = '')
+    {
+        if (SESSION_FORCE_COOKIE_USE == 'False' && function_exists('xtc_href_link')) {
+            $link = xtc_href_link('mailbeez.php', '', $connection = 'NONSSL', $add_session_id = true);
+            if (stristr($link, '?')) {
+                $link .= '&' . $uri;
+            } else {
+                $link .= '?' . $uri;
+            }
+            return $link;
+        } else {
+
+            return 'mailbeez.php?' . $uri;
+        }
+
+    }
 
 }

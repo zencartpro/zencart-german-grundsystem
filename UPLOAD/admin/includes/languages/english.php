@@ -1,10 +1,10 @@
 <?php
 /**
  * @package admin
- * @copyright Copyright 2003-2017 Zen Cart Development Team
+ * @copyright Copyright 2003-2018 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: english.php 886 2017-05-23 15:01:32Z webchills $
+ * @version $Id: english.php 886 2018-01-02 18:55:32Z webchills $
  */
 if (!defined('IS_ADMIN_FLAG'))
 {
@@ -570,6 +570,7 @@ define('NOT_INSTALLED_TEXT','Not Installed');
   define('TEXT_VERSION_CHECK_PATCH','patch');
   define('TEXT_VERSION_CHECK_DOWNLOAD','Download Here');
   define('TEXT_VERSION_CHECK_CURRENT','Your version of Zen Cart&reg; appears to be current.');
+  define('ERROR_CONTACTING_PROJECT_VERSION_SERVER','Error: Could not contact Project Version Server');
 
 // downloads manager
 define('TEXT_DISPLAY_NUMBER_OF_PRODUCTS_DOWNLOADS_MANAGER', 'Displaying <b>%d</b> to <b>%d</b> (of <b>%d</b> downloads)');
@@ -772,3 +773,4 @@ define('TEXT_KEEPALIVE_BUTTON_LOGIN', 'Login');
 define('TEXT_KEEPALIVE_MESSAGE_YOU_WILL_LOG_OFF', 'You will be logged off in ');
 define('TEXT_KEEPALIVE_MESSAGE_MINUTES', 'minutes');
 define('TEXT_KEEPALIVE_MESSAGE_ASK_CONTINUE', 'Do you want to continue your session?');
+define('TEXT_KEEPALIVE_MESSAGE_SESSION_EXPIRE', 'Your session is about to expire!');

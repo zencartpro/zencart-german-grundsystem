@@ -3,10 +3,10 @@
  * paypalwpp.php payment module class for PayPal Express Checkout payment method
  *
  * @package paymentMethod
- * @copyright Copyright 2003-2016 Zen Cart Development Team
+ * @copyright Copyright 2003-2018 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: paypalwpp.php 853 2016-03-29 23:12:14Z webchills $
+ * @version $Id: paypalwpp.php 855 2018-04-12 17:12:14Z webchills $
  */
 /**
  * load the communications layer code
@@ -284,6 +284,8 @@ class paypalwpp extends base {
   function process_button() {
     // When hitting the checkout-confirm button, we are going into markflow mode
     $_SESSION['paypal_ec_markflow'] = 1;
+    
+    
 
     // if we have a token, we want to avoid incontext checkout, so we return no special markup
     if (isset($_SESSION['paypal_ec_token']) && !empty($_SESSION['paypal_ec_token'])) {
@@ -316,6 +318,8 @@ class paypalwpp extends base {
     $optionsNVP = array();
 
     $options = $this->getLineItemDetails($this->selectCurrency($order->info['currency']));
+    
+    
 
     // Allow delayed payments such as eCheck? (can only use InstantPayment if Action is Sale)
     if (MODULE_PAYMENT_PAYPALWPP_TRANSACTION_MODE != 'Auth Only' && MODULE_PAYMENT_PAYPALWPP_TRANSACTION_MODE != 'Sale' && $options['PAYMENTACTION'] == 'Sale' && defined('MODULE_PAYMENT_PAYPALEC_ALLOWEDPAYMENT') && MODULE_PAYMENT_PAYPALEC_ALLOWEDPAYMENT == 'Instant Only') $options['ALLOWEDPAYMENTMETHOD'] = 'InstantPaymentOnly';
@@ -387,7 +391,7 @@ class paypalwpp extends base {
       $order_amount = $this->calc_order_amount($order->info['total'], $options['PAYMENTREQUEST_0_CURRENCYCODE'], FALSE);
 
       if (isset($options['PAYMENTREQUEST_0_DESC']) && $options['PAYMENTREQUEST_0_DESC'] == '') unset($options['PAYMENTREQUEST_0_DESC']);
-      if (!isset($options['PAYMENTREQUEST_0_AMT'])) $options['PAYMENTREQUEST_0_AMT'] = number_format($order_amount, 2, '.', '');
+      if (!isset($options['PAYMENTREQUEST_0_AMT'])) $options['PAYMENTREQUEST_0_AMT'] = round($order_amount, 2);
 
 
 if (false) { // disabled until clarification is received about coupons in PayPal Wallet
@@ -409,7 +413,7 @@ if (false) { // disabled until clarification is received about coupons in PayPal
 }
 
       // debug output
-      $this->zcLog('before_process - EC-4', 'info being submitted:' . "\n" . $_SESSION['paypal_ec_token'] . ' ' . $_SESSION['paypal_ec_payer_id'] . ' ' . number_format($order_amount, 2) .  "\n" . print_r($options, true));
+      $this->zcLog('before_process - EC-4', 'info being submitted:' . "\n" . $_SESSION['paypal_ec_token'] . ' ' . $_SESSION['paypal_ec_payer_id'] . ' ' . round($order_amount, 2) .  "\n" . print_r($options, true));
 
       $this->notify('NOTIFY_PAYPALWPP_BEFORE_DOEXPRESSCHECKOUT');
 
@@ -427,6 +431,7 @@ if (false) { // disabled until clarification is received about coupons in PayPal
       }
 
       // SUCCESS
+      
       $this->payment_type = MODULE_PAYMENT_PAYPALWPP_EC_TEXT_TYPE;
       $this->responsedata = $response;
       if ($response['PAYMENTINFO_0_PAYMENTTYPE'] != '') $this->payment_type .=  ' (' . urldecode($response['PAYMENTINFO_0_PAYMENTTYPE']) . ')';
@@ -709,7 +714,7 @@ if (false) { // disabled until clarification is received about coupons in PayPal
         $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) values ('PayPal Merchant ID', 'MODULE_PAYMENT_PAYPALWPP_MERCHANTID', '', 'Enter your PayPal Merchant ID here. This is used for the more user-friendly In-Context checkout mode. You can obtain this value by going to your PayPal account, clicking on Profile and navigating to the My Business Info section; You will find your Merchant Account ID on that screen. A typical merchantID looks like FDEFDEFDEFDE11.', '6', '25', now())");
       }
       if (!defined('MODULE_PAYMENT_PAYPALWPP_CHECKOUTSTYLE')) {
-        $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) values ('Use InContext Checkout?', 'MODULE_PAYMENT_PAYPALWPP_CHECKOUTSTYLE', 'InContext', 'PayPal now offers a newer friendlier InContext (in-page) checkout mode (Requires that you enter your MerchantID in the Merchant ID Setting below). Or you can use the older checkout style which offers Pay Without Account by default but on a full-page-redirect.', '6', '25', 'zen_cfg_select_option(array(\'InContext\', \'Old\'), ', now())");
+        $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) values ('Use InContext Checkout?', 'MODULE_PAYMENT_PAYPALWPP_CHECKOUTSTYLE', 'InContext', 'PayPal now offers a newer friendlier InContext (in-page) checkout mode (Requires that you enter your MerchantID in the Merchant ID Setting above). Or you can use the older checkout style which offers Pay Without Account by default but with a full-page-redirect.', '6', '25', 'zen_cfg_select_option(array(\'InContext\', \'Old\'), ', now())");
       }
     }
     $keys_list = array('MODULE_PAYMENT_PAYPALWPP_STATUS', 'MODULE_PAYMENT_PAYPALWPP_SORT_ORDER', 'MODULE_PAYMENT_PAYPALWPP_ZONE', 'MODULE_PAYMENT_PAYPALWPP_ECS_BUTTON', 'MODULE_PAYMENT_PAYPALWPP_ORDER_STATUS_ID', 'MODULE_PAYMENT_PAYPALWPP_ORDER_PENDING_STATUS_ID', 'MODULE_PAYMENT_PAYPALWPP_REFUNDED_STATUS_ID', 'MODULE_PAYMENT_PAYPALWPP_CONFIRMED_ADDRESS', 'MODULE_PAYMENT_PAYPALWPP_AUTOSELECT_CHEAPEST_SHIPPING', 'MODULE_PAYMENT_PAYPALWPP_SKIP_PAYMENT_PAGE', 'MODULE_PAYMENT_PAYPALWPP_NEW_ACCT_NOTIFY', 'MODULE_PAYMENT_PAYPALWPP_TRANSACTION_MODE', 'MODULE_PAYMENT_PAYPALWPP_CURRENCY', 'MODULE_PAYMENT_PAYPALWPP_BRANDNAME', 'MODULE_PAYMENT_PAYPALEC_ALLOWEDPAYMENT', 'MODULE_PAYMENT_PAYPALWPP_PAGE_STYLE', 'MODULE_PAYMENT_PAYPALWPP_APIUSERNAME', 'MODULE_PAYMENT_PAYPALWPP_APIPASSWORD', 'MODULE_PAYMENT_PAYPALWPP_APISIGNATURE', 'MODULE_PAYMENT_PAYPALWPP_MERCHANTID', 'MODULE_PAYMENT_PAYPALWPP_MODULE_MODE', 'MODULE_PAYMENT_PAYPALWPP_CHECKOUTSTYLE', 'MODULE_PAYMENT_PAYPALWPP_SERVER', 'MODULE_PAYMENT_PAYPALWPP_DEBUGGING');
@@ -1159,7 +1164,7 @@ if (false) { // disabled until clarification is received about coupons in PayPal
       $amount = (int)$amount;
       $applyFormatting = FALSE;
     }
-    return ($applyFormatting ? number_format($amount, $currencies->get_decimal_places($paypalCurrency)) : $amount);
+    return ($applyFormatting ? round($amount, $currencies->get_decimal_places($paypalCurrency)) : $amount);
   }
   /**
    * Set the state field depending on what PayPal requires for that country.
@@ -1503,21 +1508,21 @@ if (false) { // disabled until clarification is received about coupons in PayPal
     if (isset($optionsST['PAYMENTREQUEST_0_HANDLINGAMT']) && $optionsST['PAYMENTREQUEST_0_HANDLINGAMT'] == 0) unset($optionsST['PAYMENTREQUEST_0_HANDLINGAMT']);
     if (isset($optionsST['PAYMENTREQUEST_0_INSURANCEAMT']) && $optionsST['PAYMENTREQUEST_0_INSURANCEAMT'] == 0) unset($optionsST['PAYMENTREQUEST_0_INSURANCEAMT']);
 
-    // tidy up all values so that they comply with proper format (number_format(xxxx,2) for PayPal US use )
+    // tidy up all values so that they comply with proper format (rounded to 2 decimals for PayPal US use )
     if (!defined('PAYPALWPP_SKIP_LINE_ITEM_DETAIL_FORMATTING') || PAYPALWPP_SKIP_LINE_ITEM_DETAIL_FORMATTING != 'true' || in_array($order->info['currency'], array('JPY', 'NOK', 'HUF', 'TWD'))) {
       if (is_array($optionsST)) foreach ($optionsST as $key=>$value) {
-        $optionsST[$key] = number_format($value, ((int)$currencies->get_decimal_places($restrictedCurrency) == 0 ? 0 : 2));
+        $optionsST[$key] = round($value, ((int)$currencies->get_decimal_places($restrictedCurrency) == 0 ? 0 : 2));
       }
       if (is_array($optionsLI)) foreach ($optionsLI as $key=>$value) {
         if (substr($key, -6) == 'TAXAMT' && ($optionsLI[$key] == '' || $optionsLI[$key] == 0)) {
           unset($optionsLI[$key]);
         } else {
-          if (strstr($key, 'AMT')) $optionsLI[$key] = number_format($value, ((int)$currencies->get_decimal_places($restrictedCurrency) == 0 ? 0 : 2));
+          if (strstr($key, 'AMT')) $optionsLI[$key] = round($value, ((int)$currencies->get_decimal_places($restrictedCurrency) == 0 ? 0 : 2));
         }
       }
     }
 
-    $this->zcLog('getLineItemDetails 8', 'checking subtotals... ' . "\n" . print_r(array_merge(array('calculated total'=>number_format($stAll, ((int)$currencies->get_decimal_places($restrictedCurrency) == 0 ? 0 : 2))), $optionsST), true) . "\n-------------------\ndifference: " . ($stDiff + 0) . '  (abs+rounded: ' . ($stDiffRounded + 0) . ')');
+    $this->zcLog('getLineItemDetails 8', 'checking subtotals... ' . "\n" . print_r(array_merge(array('calculated total'=>round($stAll, ((int)$currencies->get_decimal_places($restrictedCurrency) == 0 ? 0 : 2))), $optionsST), true) . "\n-------------------\ndifference: " . ($stDiff + 0) . '  (abs+rounded: ' . ($stDiffRounded + 0) . ')');
 
     if ( $stDiffRounded != 0) {
       $this->zcLog('getLineItemDetails 9', 'Subtotals Bad. Skipping line-item/subtotal details');
@@ -1549,7 +1554,9 @@ if (false) { // disabled until clarification is received about coupons in PayPal
 
     // init new order object
     require(DIR_WS_CLASSES . 'order.php');
-    $order = new order;
+    //-bof-20151015-lat9-Force order to be calculated in the precision dictated by the selected currency  *** 1 of 1 ***
+    $order = new order ('', $this->selectCurrency ());
+//-bof-20151015-lat9-Force order to be calculated in the precision dictated by the selected currency  *** 1 of 1 ***
 
     // load the selected shipping module so that shipping taxes can be assessed
     require(DIR_WS_CLASSES . 'shipping.php');
@@ -1670,7 +1677,7 @@ if (false) { // disabled until clarification is received about coupons in PayPal
       }
     }
 
-    if (!isset($options['PAYMENTREQUEST_0_AMT'])) $options['PAYMENTREQUEST_0_AMT'] = number_format($order_amount, 2);
+    if (!isset($options['PAYMENTREQUEST_0_AMT'])) $options['PAYMENTREQUEST_0_AMT'] = round($order_amount, 2);
 
     $this->zcLog('ec_step1 - 2 -submit', print_r(array_merge($options, array('RETURNURL' => $return_url, 'CANCELURL' => $cancel_url)), true));
 

@@ -1,10 +1,10 @@
 <?php
 /**
  * @package admin
- * @copyright Copyright 2003-2016 Zen Cart Development Team
+ * @copyright Copyright 2003-2018 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: whos_online.php 733 2016-06-03 19:49:16Z webchills $
+ * @version $Id: whos_online.php 734 2018-04-03 16:49:16Z webchills $
  */
 
 // Default refresh interval (0=off).  NOTE: Using automated refresh may put you in breach of PCI Compliance
@@ -243,9 +243,9 @@ tr.dataTableRowSelectedBot {
 	}
 
 #wo-legend {float: left;}
-#wo-filters { float: right; background-color: #599659; color: #fff}
-#wo-filters .optionClick { display: inline-block; color: #fff; border: 1px solid #fff; font-weight: bold; padding: 1px; margin: 2px 1px;}
-#wo-filters .chosen {background-color: #003D00;}
+#wo-filters { float: right; background-color: #D7D6CC; color: #000000}
+#wo-filters .optionClick { display: inline-block; color: #000000; border: 1px solid #000000; font-weight: bold; padding: 1px; margin: 2px 1px;}
+#wo-filters .chosen {background-color: #666666; color:#FFFFFF;}
 -->
 </style>
 </head>

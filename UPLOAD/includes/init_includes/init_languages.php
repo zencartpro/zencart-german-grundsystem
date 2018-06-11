@@ -4,11 +4,11 @@
  * see {@link  http://www.zen-cart.com/wiki/index.php/Developers_API_Tutorials#InitSystem wikitutorials} for more details.
  *
  * @package initSystem
- * @copyright Copyright 2003-2016 Zen Cart Development Team
+ * @copyright Copyright 2003-2018 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @todo ICW(SECURITY) is it worth having a sanitizer for $_GET['language'] ?
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: init_languages.php 729 2011-08-09 15:49:16Z hugo13 $
+ * @version $Id: init_languages.php 730 2018-01-02 09:49:16Z webchills $
  */
 if (!defined('IS_ADMIN_FLAG')) {
   die('Illegal Access');
@@ -20,6 +20,7 @@ if (!isset($_SESSION['language']) || isset($_GET['language'])) {
   } else {
     if (LANGUAGE_DEFAULT_SELECTOR=='Browser') {
       $lng->get_browser_language();
+      if (!zen_not_null($lng->language['id'])) $lng->set_language(DEFAULT_LANGUAGE);
     } else {
       $lng->set_language(DEFAULT_LANGUAGE);
     }

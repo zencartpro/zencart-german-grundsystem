@@ -179,7 +179,7 @@ $inc_content_common = $cloudloader->getContent('mailbeez_core_common/' . $inst_l
                         <p> &nbsp; </p>
 
                         <p>
-                            <a class="btn btn-primary btn-lg" href="mailbeez.php?cloudloader_mode=install_core">
+                            <a class="btn btn-primary btn-lg" href="<?php echo $cloudloader->link('cloudloader_mode=install_core')?>">
                                 Installation starten
                                 <i class="fa fa-arrow-circle-o-right"></i>
 

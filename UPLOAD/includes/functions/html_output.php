@@ -4,10 +4,10 @@
  * HTML-generating functions used throughout the core
  *
  * @package functions
- * @copyright Copyright 2003-2016 Zen Cart Development Team
+ * @copyright Copyright 2003-2018 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: html_output.php 843 2016-03-04 22:06:58Z webchills $
+ * @version $Id: html_output.php 844 2018-01-02 09:06:58Z webchills $
  */
 
 /*
@@ -319,7 +319,7 @@
     // (pure css hovers on non link elements do work work in every browser)
     $css_button_js =  'onmouseover="this.className=\''. $mouse_over_class . '\'" onmouseout="this.className=\'' . $mouse_out_class . '\'"';
 
-    if (CSS_BUTTON_POPUPS_IS_ARRAY == 'true') {
+    if (defined('CSS_BUTTON_POPUPS_IS_ARRAY') && CSS_BUTTON_POPUPS_IS_ARRAY == 'true') {
       $popuptext = (!empty($css_button_text[$button_name])) ? $css_button_text[$button_name] : ($button_name . CSSBUTTONS_CATALOG_POPUPS_SHOW_BUTTON_NAMES_TEXT);
       $tooltip = ' title="' . $popuptext . '"';
     } else {

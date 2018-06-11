@@ -6,7 +6,7 @@
  * Displays listing of New Products
  *
  * @package templateSystem
- * @copyright Copyright 2003-2016 Zen Cart Development Team
+ * @copyright Copyright 2003-2018 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
  * @version $Id: tpl_modules_products_new_listing.php 732 2016-05-31 16:49:16Z webchills $
@@ -38,7 +38,7 @@
       } else {
         $display_products_name = '';
       }
-// EOF Easy Google Analytics module pt1
+
 
       if (PRODUCT_NEW_LIST_MODEL != '0' and zen_get_show_product_switch($products_new->fields['products_id'], 'model')) {
         $display_products_model = TEXT_PRODUCTS_MODEL . $products_new->fields['products_model'] . str_repeat('<br class="clearBoth" />', substr(PRODUCT_NEW_LIST_MODEL, 3, 1));
@@ -81,7 +81,7 @@
         $display_products_price = '';
       }
 
-// BOF Easy Google Analytics module pt2
+
 // more info in place of buy now
       if (PRODUCT_NEW_BUY_NOW != '0' and zen_get_products_allow_add_to_cart($products_new->fields['products_id']) == 'Y') {
         if (zen_has_product_attributes($products_new->fields['products_id'])) {
@@ -114,7 +114,7 @@
       } else {
         $display_products_description = '';
       }
-// EOF Easy Google Analytics module pt2
+
 
 ?>
           <tr>

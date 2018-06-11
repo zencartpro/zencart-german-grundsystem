@@ -1,10 +1,10 @@
 <?php
 /**
  * @package languageDefines
- * @copyright Copyright 2003-2017 Zen Cart Development Team
+ * @copyright Copyright 2003-2018 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: german.php 663 2017-03-21 19:45:57Z webchills $
+ * @version $Id: german.php 664 2018-03-09 16:45:57Z webchills $
  */
 
 // FOLLOWING WERE moved to meta_tags.php
@@ -360,7 +360,7 @@ define('TABLE_HEADING_CREDIT_PAYMENT', 'Guthaben verfügbar');
 define('TEXT_INVALID_REDEEM_COUPON', 'Ungültiger Aktionscode');
 define('TEXT_INVALID_REDEEM_COUPON_MINIMUM', 'Der Mindestbestellwert für diesen Aktionskupon liegt bei %s');
 define('TEXT_INVALID_STARTDATE_COUPON', 'Dieser Aktionskupon ist zurzeit nicht verfügbar');
-define('TEXT_INVALID_FINISDATE_COUPON', 'Dieser Aktionskupon ist abgelaufen');
+define('TEXT_INVALID_FINISHDATE_COUPON', 'Dieser Aktionskupon ist abgelaufen');
 define('TEXT_INVALID_USES_COUPON', 'Dieser Aktionskupon kann nur');
 define('TIMES', 'mal eingelöst werden');
 define('TIME', 'mal eingelöst werden.');
@@ -476,13 +476,15 @@ define('ERROR_QUANTITY_CHANGED_FROM', ', wurde geändert von: ');
 define('ERROR_QUANTITY_CHANGED_TO', ' in ');
 
 // Downloads Controller
-define('DOWNLOADS_CONTROLLER_ON_HOLD_MSG', 'Bemerkung: Downloads werden erst nach Bestätigung des Zahlungseingangs freigeschaltet.');
+define('DOWNLOADS_CONTROLLER_ON_HOLD_MSG', 'Hinweis: Downloads werden erst nach Bestätigung des Zahlungseingangs freigeschaltet.');
 define('TEXT_FILESIZE_BYTES', ' bytes');
 define('TEXT_FILESIZE_MEGS', ' MB');
 
 // shopping cart errors
-define('ERROR_PRODUCT', 'Artikel:');
+define('ERROR_PRODUCT', '<br/>Der Artikel: ');
 define('ERROR_PRODUCT_STATUS_SHOPPING_CART','<br />Leider ist dieses Produkt derzeit nicht in unserem Warenbestand.<br />Das Produkt wurde aus dem Warenkorb entfernt.');
+define('ERROR_PRODUCT_ATTRIBUTES','<br />Der Artikel: ');
+define('ERROR_PRODUCT_STATUS_SHOPPING_CART_ATTRIBUTES','<br />Es tut uns leid, aber die gewählten Optionen für diesen Artikel haben sich geändert und stehen derzeit in unserem Sortiment nicht mehr zur Verfügung.<br />Dieser Artikel wurde aus Ihrem Warenkorb entfernt.');
 define('ERROR_PRODUCT_QUANTITY_MIN', '... minimale Stückzahl unterschritten -');
 define('ERROR_PRODUCT_QUANTITY_UNITS', '... ungültige Stückzahl -');
 define('ERROR_PRODUCT_OPTION_SELECTION', '... ungültige Attributmerkmale gewählt -');
@@ -533,7 +535,7 @@ define('TEXT_PER_LETTER', '<br />Preis pro Buchstabe: ');
 define('TEXT_LETTERS_FREE', ' Buchstabe(n) frei ');
 define('TEXT_ONETIME_CHARGES', '*einmalige Gebühr = ');
 define('TEXT_ONETIME_CHARGES_EMAIL', "\t" . '*einmalige Gebühr = ');
-define('TEXT_ONETIME_CHARGES_BASKET', "-&nbsp;einmalige Gebühren");
+
 define('TEXT_ATTRIBUTES_QTY_PRICES_HELP', 'Option für Mengenrabatte');
 define('TABLE_ATTRIBUTES_QTY_PRICE_QTY', 'STK');
 define('TABLE_ATTRIBUTES_QTY_PRICE_PRICE', 'PREIS');

@@ -1,10 +1,10 @@
 <?php
 /**
  * @package admin
- * @copyright Copyright 2003-2016 Zen Cart Development Team
+ * @copyright Copyright 2003-2018 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: orders.php 733 2016-03-03 21:49:16Z webchills $
+ * @version $Id: orders.php 734 2018-03-30 07:49:16Z webchills $
  */
 
 define('HEADING_TITLE', 'Orders');
@@ -80,6 +80,7 @@ define('EMAIL_SEPARATOR', '-----------------------------------------------------
 define('EMAIL_TEXT_SUBJECT', 'Order Update');
 define('EMAIL_TEXT_ORDER_CUSTOMER_GENDER_MALE', 'Dear Mr ');
 define('EMAIL_TEXT_ORDER_CUSTOMER_GENDER_FEMALE', 'Dear Mrs ');
+define('EMAIL_TEXT_ORDER_CUSTOMER_NEUTRAL', 'Dear ');
 define('EMAIL_TEXT_UPDATEINFO', 'We inform you about your order status at ');
 define('EMAIL_TEXT_ORDER_NUMBER', 'Order Number:');
 define('EMAIL_TEXT_INVOICE_URL', 'Detailed Invoice:');

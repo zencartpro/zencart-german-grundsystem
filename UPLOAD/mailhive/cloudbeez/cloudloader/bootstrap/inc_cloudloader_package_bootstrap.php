@@ -26,7 +26,7 @@ $inc_content_common = $cloudloader->getContent('mailbeez_core_common/' . $inst_l
 // todo
 // test
 
-$install_url = 'mailbeez.php?cloudloader_mode=install_package'
+$install_url = $cloudloader->link('cloudloader_mode=install_package');
 
 
 

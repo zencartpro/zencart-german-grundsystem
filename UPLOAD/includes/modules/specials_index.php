@@ -3,10 +3,10 @@
  * specials_index module
  *
  * @package modules
- * @copyright Copyright 2003-2016 Zen Cart Development Team
+ * @copyright Copyright 2003-2018 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: specials_index.php 732 2016-05-31 16:07:16Z webchills $
+ * @version $Id: specials_index.php 733 2018-04-04 16:07:16Z webchills $
  */
 if (!defined('IS_ADMIN_FLAG')) {
   die('Illegal Access');
@@ -87,4 +87,3 @@ if ($num_products_count > 0) {
     $zc_show_specials = true;
   }
 }
-?>

@@ -3,10 +3,10 @@
  * ot_gv order-total module
  *
  * @package orderTotal
- * @copyright Copyright 2003-2016 Zen Cart Development Team
+ * @copyright Copyright 2003-2018 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: ot_gv.php 732 2015-12-21 20:49:16Z webchills $
+ * @version $Id: ot_gv.php 733 2018-01-02 09:49:16Z webchills $
  */
 /**
  * Enter description here...
@@ -43,7 +43,7 @@ class ot_gv {
     $this->calculate_tax = MODULE_ORDER_TOTAL_GV_CALC_TAX;
     $this->credit_tax = MODULE_ORDER_TOTAL_GV_CREDIT_TAX;
     $this->tax_class  = MODULE_ORDER_TOTAL_GV_TAX_CLASS;
-    $this->show_redeem_box = MODULE_ORDER_TOTAL_GV_REDEEM_BOX;
+    // $this->show_redeem_box = MODULE_ORDER_TOTAL_GV_REDEEM_BOX;
     $this->credit_class = true;
     if (!zen_not_null(ltrim($_SESSION['cot_gv'], ' 0')) || $_SESSION['cot_gv'] == '0') $_SESSION['cot_gv'] = '0.00';
     if (IS_ADMIN_FLAG !== true) {
@@ -356,7 +356,7 @@ class ot_gv {
    */
   function user_has_gv_account($c_id) {
     global $db;
-    $gv_result = $db->Execute("select amount from " . TABLE_COUPON_GV_CUSTOMER . " where customer_id = '" . (int)$c_id . "'");
+    $gv_result = $db->ExecuteNoCache("select amount from " . TABLE_COUPON_GV_CUSTOMER . " where customer_id = '" . (int)$c_id . "'");
     if ($gv_result->RecordCount() > 0) {
       return $gv_result->fields['amount'];
     }

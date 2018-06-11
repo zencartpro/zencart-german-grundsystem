@@ -1,5 +1,6 @@
 <?php
 /**
+ * mod Image Handler 5
  * bmz_io_conf.php
  * filesystem access configuration
  *
@@ -7,7 +8,7 @@
  * @copyright Copyright 2005-2006
  * @license http://www.gnu.org/licenses/gpl.txt GNU General Public License V2.0
  * @version $Id: bmz_io_conf.php,v 2.0 Rev 8 2010-05-31 23:46:5 DerManoMann Exp $
- * Last modified by webchills 2014-03-21 13:46:50 
+ * Last modified by webchills 2018-01-02 18:46:50 
  */
  
 $bmzConf = array();

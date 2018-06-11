@@ -3,10 +3,10 @@
  * Page Template - Featured Products listing
  *
  * @package templateSystem
- * @copyright Copyright 2003-2016 Zen Cart Development Team
+ * @copyright Copyright 2003-2018 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: tpl_featured_products_default.php 2 2016-04-06 11:33:58Z webchills $
+ * @version $Id: tpl_featured_products_default.php 3 2018-01-02 17:33:58Z webchills $
  */
 ?>
 <div class="centerColumn" id="featuredDefault">
@@ -31,7 +31,7 @@ if (PRODUCT_FEATURED_LISTING_MULTIPLE_ADD_TO_CART > 0 and $show_submit == true a
 
 <?php
     if ($show_top_submit_button == true or $show_bottom_submit_button == true) {
-      echo zen_draw_form('multiple_products_cart_quantity', zen_href_link(FILENAME_FEATURED_PRODUCTS, zen_get_all_get_params(array('action')) . 'action=multiple_products_add_product'), 'post', 'enctype="multipart/form-data"');
+      echo zen_draw_form('multiple_products_cart_quantity', zen_href_link(FILENAME_FEATURED_PRODUCTS, zen_get_all_get_params(array('action')) . 'action=multiple_products_add_product', 'SSL'), 'post', 'enctype="multipart/form-data"');
   }
 }
 ?>
@@ -54,12 +54,12 @@ if (PRODUCT_FEATURED_LISTING_MULTIPLE_ADD_TO_CART > 0 and $show_submit == true a
 
 
 <?php
-// only show button when there is something to submit
   if ($show_top_submit_button == true) {
+// only show when there is something to submit
 ?>
 <?php
       if (PREV_NEXT_BAR_LOCATION == '2') {
-	echo '<div class="prod-list-wrap group">';
+  echo '<div class="prod-list-wrap group">';
       }
 ?>
 <div class="button-top forward"><?php echo zen_image_submit(BUTTON_IMAGE_ADD_PRODUCTS_TO_CART, BUTTON_ADD_PRODUCTS_TO_CART_ALT, 'id="submit1" name="submit1"'); ?></div>

@@ -1,10 +1,10 @@
 <?php
 /**
  * @package admin
- * @copyright Copyright 2003-2017 Zen Cart Development Team
+ * @copyright Copyright 2003-2018 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: german.php 660 2017-05-23 15:11:04Z webchills $
+ * @version $Id: german.php 661 2018-01-06 13:54:04Z webchills $
  */
 if (!defined('IS_ADMIN_FLAG'))
 {
@@ -221,7 +221,7 @@ define('BOX_ADMIN_ACCESS_PROFILES', 'Admin Profile');
 define('BOX_ADMIN_ACCESS_PAGE_REGISTRATION', 'Admin Seiten Registrierung');
 define('BOX_ADMIN_ACCESS_LOGS', 'Admin Aktivitäten Logs');
 
-define('IMAGE_RELEASE', TEXT_GV_NAME . ' einlösen');
+define('IMAGE_RELEASE', TEXT_GV_NAME . ' freigeben');
 
 // javascript messages
 define('JS_ERROR', 'Achtung! Es ist ein Fehler aufgetreten.!\nBitte ändern Sie folgendes:\n\n');
@@ -449,7 +449,6 @@ define('ERROR_DESTINATION_DOES_NOT_EXIST', 'FEHLER: Zielverzeichnis %s existiert
 define('ERROR_DESTINATION_NOT_WRITEABLE', 'FEHLER: Zielverzeichnis %s ist schreibgeschützt');
 define('ERROR_FILE_NOT_SAVED', 'FEHLER: Dateiupload wurde nicht gespeichert.');
 define('ERROR_FILETYPE_NOT_ALLOWED', 'FEHLER: Dateityp %s ist nicht erlaubt');
-define('ERROR_FILE_TOO_BIG', 'WARNUNG: Die Datei ist größer als die erlaubte Größe. Überprüfen Sie die Konfiguration unter Bildgrößen.');
 define('SUCCESS_FILE_SAVED_SUCCESSFULLY', 'Erfolgreich: Dateiupload %s wurde gespeichert');
 define('WARNING_NO_FILE_UPLOADED', 'WARNUNG: Keine Datei hochgeladen.');
 define('WARNING_FILE_UPLOADS_DISABLED', 'WARNUNG: Die Option "Dateiupload" ist in der php.ini deaktiviert.');
@@ -567,11 +566,12 @@ define('ADMIN_DEMO_ACTIVE_EXCLUSION', 'Sie befinden sich im Admin "Demo" Modus. 
 define('ERROR_ADMIN_DEMO', 'Sie befinden sich im Admin "Demo" Modus ... diese Option(en) ist deaktiviert und kann nicht ausgeführt werden');
 
 // Version Check notices
-define('TEXT_VERSION_CHECK_NEW_VER', 'Eine neue Version ist verfügbar: v');
-define('TEXT_VERSION_CHECK_NEW_PATCH', 'Ein neuer PATCH ist verfügbar: v');
+define('TEXT_VERSION_CHECK_NEW_VER', '<span class="alertVersionNew">Eine neue Version ist verfügbar:</span> v');
+define('TEXT_VERSION_CHECK_NEW_PATCH', '<span class="alertVersionNew">Ein neuer PATCH ist verfügbar:</span> v');
 define('TEXT_VERSION_CHECK_PATCH', 'Patch');
 define('TEXT_VERSION_CHECK_DOWNLOAD', 'Hier herunterladen');
 define('TEXT_VERSION_CHECK_CURRENT', 'Sie verwenden die aktuellste Version von Zen Cart deutsch');
+define('ERROR_CONTACTING_PROJECT_VERSION_SERVER','Fehler: Konnte nicht mit dem Versionsserver verbinden');
 
 // downloads manager
 define('TEXT_DISPLAY_NUMBER_OF_PRODUCTS_DOWNLOADS_MANAGER', 'Zeige <b>%d</b> bis <b>%d</b> (von <b>%d</b> Downloads)');
@@ -773,3 +773,4 @@ define('TEXT_KEEPALIVE_BUTTON_LOGIN', 'Login');
 define('TEXT_KEEPALIVE_MESSAGE_YOU_WILL_LOG_OFF', 'Sie werden ausgeloggt in ');
 define('TEXT_KEEPALIVE_MESSAGE_MINUTES', 'Minuten');
 define('TEXT_KEEPALIVE_MESSAGE_ASK_CONTINUE', 'Wollen Sie weiterarbeiten?');
+define('TEXT_KEEPALIVE_MESSAGE_SESSION_EXPIRE', 'Ihre Session wird in Kürze ablaufen!');

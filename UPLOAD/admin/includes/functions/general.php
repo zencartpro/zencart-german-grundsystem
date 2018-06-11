@@ -1,10 +1,10 @@
 <?php
 /**
  * @package admin
- * @copyright Copyright 2003-2016 Zen Cart Development Team
+ * @copyright Copyright 2003-2018 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: general.php 895 2016-05-08 09:07:33Z webchills $
+ * @version $Id: general.php 898 2018-05-04 09:23:33Z webchills $
  */
 
 ////
@@ -621,23 +621,29 @@
     }
   }
 
-  function zen_get_uprid($prid, $params) {
+function zen_get_uprid($prid, $params)
+{
     $uprid = $prid;
-    if ( (is_array($params)) && (!strstr($prid, '{')) ) {
-      while (list($option, $value) = each($params)) {
-        $uprid = $uprid . '{' . $option . '}' . $value;
-      }
+    if (is_array($params) && strpos($prid, ':') === false) {
+        foreach ($params as $option => $value) {
+            if (is_array($value)) {
+                foreach ($value as $opt => $val) {
+                    $uprid .= ('{' . $option . '}' . trim($opt));
+                }
+            } else {
+                $uprid .= ('{' . $option . '}' . trim($value));
+            }
+        }
+        $uprid = $prid . ':' . md5($uprid);
     }
-
     return $uprid;
-  }
+}
 
-
-  function zen_get_prid($uprid) {
-    $pieces = explode('{', $uprid);
-
+function zen_get_prid($uprid)
+{
+    $pieces = explode(':', $uprid);
     return $pieces[0];
-  }
+}
 
 
   function zen_get_languages() {
@@ -1113,8 +1119,8 @@
   }
 
 ////
-// Retreive server information
-  function zen_get_system_information() {
+// Collect server information
+  function zen_get_system_information($privacy = false) {
     global $db;
 
     // determine database size stats
@@ -1153,7 +1159,6 @@
     $uptime = (DISPLAY_SERVER_UPTIME == 'true') ? 'Unsupported' : 'Disabled/Unavailable';
 
     // check to see if "exec()" is disabled in PHP -- if not, get additional info via command line
-    $php_disabled_functions = '';
     $exec_disabled = false;
     $php_disabled_functions = @ini_get("disable_functions");
     if ($php_disabled_functions != '') {
@@ -1173,7 +1178,10 @@
       }
     }
 
-    return array('date' => zen_datetime_short(date('Y-m-d H:i:s')),
+    $timezone = date_default_timezone_get();
+
+    $systemInfo = array('date' => zen_datetime_short(date('Y-m-d H:i:s')),
+                 'timezone' => $timezone,
                  'system' => $system,
                  'kernel' => $kernel,
                  'host' => $host,
@@ -1197,7 +1205,13 @@
                  'mysql_slow_query_log_status' => $mysql_slow_query_log_status,
                  'mysql_slow_query_log_file' => $mysql_slow_query_log_file,
                  );
-  }
+
+    if ($privacy) {
+        unset ($systemInfo['mysql_slow_query_log_file']);
+    }
+
+    return $systemInfo;
+}
 
   function zen_generate_category_path($id, $from = 'category', $categories_array = '', $index = 0) {
     global $db;
@@ -1578,6 +1592,8 @@ while (!$chk_sale_categories_all->EOF) {
 
     $db->Execute("delete from " . TABLE_COUPON_GV_QUEUE . "
                   where order_id = '" . (int)$order_id . "' and release_flag = 'N'");
+    $db->Execute("delete from " . TABLE_PAYPAL . "
+                  where order_id = '" . (int)$order_id . "'");
 
     zen_record_admin_activity('Deleted order ' . (int)$order_id . ' from database via admin console.', 'warning');
   }
@@ -1731,7 +1747,7 @@ while (!$chk_sale_categories_all->EOF) {
   }
 
   function zen_round($value, $precision) {
-    $value =  round($value *pow(10,$precision),0);
+    $value =  round($value *pow(10,$precision),2);
     $value = $value/pow(10,$precision);
     return $value;
   }
@@ -1967,6 +1983,7 @@ while (!$chk_sale_categories_all->EOF) {
     }
     return ($good_result == 1) ? $prefix . $id1 : ''; // blank means couldn't generate a unique code (typically because the max length was encountered before being able to generate unique)
   }
+
 /**
  * Update the Customers GV account
  */
@@ -2181,6 +2198,8 @@ while (!$chk_sale_categories_all->EOF) {
     }
     return $option_name_no_value;
   }
+
+
 function zen_copy_products_attributes($products_id_from, $products_id_to) {
   global $db;
   global $messageStack;

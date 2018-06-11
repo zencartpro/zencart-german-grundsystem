@@ -10,8 +10,8 @@
  * @author     Frank Koehl (PM: BlindSide)
  * @author     Conor Kerr <conor.kerr_zen-cart@dev.ceon.net>
  * @author     Carl Peach <carlvt88 at zen-cart.com/forum>
- * @updated by stellarweb to work with version 1.5.0 02-29-12 
- * @copyright  Portions Copyright 2003-2006 Zen Cart Development Team
+ * @updated by webchills to work with PHP 7 - 2018-03-30 
+ * @copyright  Portions Copyright 2003-2018 Zen Cart Development Team
  * @copyright  Portions Copyright 2003 osCommerce
  * @license    http://www.gnu.org/copyleft/gpl.html   GNU Public License V2.0
  *  
@@ -39,7 +39,7 @@
     var $payment_method, $payment_method_omit, $current_status, $manufacturer, $detail_level, $output_format;
     var $timeframe, $timeframe_id, $current_date, $product_filter;
 
-    function sales_report($timeframe, $sd, $ed, $date_target, $date_status, $payment_method, $payment_method_omit, $current_status, $manufacturer, $detail_level, $output_format, $order_total_validation) {
+    function __construct($timeframe, $sd, $ed, $date_target, $date_status, $payment_method, $payment_method_omit, $current_status, $manufacturer, $detail_level, $output_format, $order_total_validation) {
       global $db;
 
       // place passed variables into class variables

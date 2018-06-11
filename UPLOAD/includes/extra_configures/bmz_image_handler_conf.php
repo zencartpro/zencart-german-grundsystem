@@ -1,5 +1,6 @@
 <?php
 /**
+ * mod Image Handler 5
  * bmz_image_handler_conf.php
  * additional configuration entries for image handler
  *
@@ -7,9 +8,9 @@
  * @copyright Copyright 2005-2006
  * @license http://www.gnu.org/licenses/gpl.txt GNU General Public License V2.0
  * @version $Id: bmz_image_handler_conf.php,v 2.0 Rev 8 2010-05-31 23:46:5 DerManoMann Exp $
- * Last modified by DerManoMann 2010-05-31 23:46:50 
+ * Last modified by webchills 2018-01-02 18:46:50 
  */
-
+$ihConf = array();
 $ihConf['noresize_key']         = 'noresize';         //files which contain this string will not be resized
 $ihConf['noresize_dirs']        = array('noresize', 'banners'); //images in directories with these names within the images directory will not be resized.
 $ihConf['trans_threshold']      = '90%';              //this is where semitransparent pixels blend to transparent when rendering gifs with ImageMagick

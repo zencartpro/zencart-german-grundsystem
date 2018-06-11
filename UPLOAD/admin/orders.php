@@ -1,10 +1,10 @@
 <?php
 /**
  * @package admin
- * @copyright Copyright 2003-2016 Zen Cart Development Team
+ * @copyright Copyright 2003-2018 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: orders.php 2016-11-03 08:13:51Z webchills $
+ * @version $Id: orders.php 2018-04-25 08:13:51Z webchills $
  */
 
   require('includes/application_top.php');
@@ -157,8 +157,10 @@
             
       if ($customer_gender->fields['customers_gender'] == 'm') {
         $email_greeting = EMAIL_TEXT_ORDER_CUSTOMER_GENDER_MALE;
-      } else {
+      } else if ($customer_gender->fields['customers_gender'] == 'f') { 
         $email_greeting = EMAIL_TEXT_ORDER_CUSTOMER_GENDER_FEMALE;
+      } else {
+        $email_greeting = EMAIL_TEXT_ORDER_CUSTOMER_NEUTRAL;      
       }
     
             $message =
@@ -173,8 +175,10 @@
             EMAIL_TEXT_STATUS_PLEASE_REPLY;
             if ($customer_gender->fields['customers_gender'] == 'm') {
             $html_msg['EMAIL_CUSTOMER_GREETING']    = EMAIL_TEXT_ORDER_CUSTOMER_GENDER_MALE;
-            } else {
+            } else if ($customer_gender->fields['customers_gender'] == 'f') {
             $html_msg['EMAIL_CUSTOMER_GREETING']    = EMAIL_TEXT_ORDER_CUSTOMER_GENDER_FEMALE;
+            } else {
+            $html_msg['EMAIL_CUSTOMER_GREETING']    = EMAIL_TEXT_ORDER_CUSTOMER_NEUTRAL;            
             }
             $html_msg['EMAIL_TEXT_UPDATEINFO']    = EMAIL_TEXT_UPDATEINFO;
             $html_msg['EMAIL_CUSTOMERS_NAME']    = $check_status->fields['customers_name'];
@@ -550,16 +554,7 @@ function couponpopupWindow(url) {
                 <td class="main"><strong><?php echo ENTRY_EMAIL_ADDRESS; ?></strong></td>
                 <td class="main"><?php echo '<a href="mailto:' . $order->customer['email_address'] . '">' . $order->customer['email_address'] . '</a>'; ?></td>
               </tr>
-              <tr>
-                <td class="main"><strong><?php echo TEXT_INFO_IP_ADDRESS; ?></strong></td>
-                <?php if ($order->info['ip_address'] != '') {
-                  $lookup_ip = substr($order->info['ip_address'], 0, strpos($order->info['ip_address'], ' '));
-                ?>
-                <td class="main"><a href="http://www.dnsstuff.com/tools#whois|type=ipv4&&value=<?php echo $lookup_ip; ?>"  target="_blank"><?php echo $order->info['ip_address']; ?></a></td>
-                <?php } else { ?>
-                <td class="main"><?php echo TEXT_UNKNOWN; ?></td>
-                <?php } ?>
-              </tr>
+             
               <tr>
                 <td class="main"><strong><?php echo ENTRY_CUSTOMER; ?></strong></td>
                 <td class="main"><?php echo '<a href="' . zen_href_link(FILENAME_CUSTOMERS, 'search=' . $order->customer['email_address'], 'SSL') . '" . >' . TEXT_CUSTOMER_LOOKUP . '</a>'; ?></td>
@@ -885,12 +880,12 @@ function couponpopupWindow(url) {
   if (isset($_GET['search']) && zen_not_null($_GET['search'])) {
     $search_distinct = ' ';
     $keywords = zen_db_input(zen_db_prepare_input($_GET['search']));
-    $search = " and (o.customers_city like '%" . $keywords . "%' or o.customers_postcode like '%" . $keywords . "%' or o.date_purchased like '%" . $keywords . "%' or o.billing_name like '%" . $keywords . "%' or o.billing_company like '%" . $keywords . "%' or o.billing_street_address like '%" . $keywords . "%' or o.delivery_city like '%" . $keywords . "%' or o.delivery_postcode like '%" . $keywords . "%' or o.delivery_name like '%" . $keywords . "%' or o.delivery_company like '%" . $keywords . "%' or o.delivery_street_address like '%" . $keywords . "%' or o.billing_city like '%" . $keywords . "%' or o.billing_postcode like '%" . $keywords . "%' or o.customers_email_address like '%" . $keywords . "%' or o.customers_name like '%" . $keywords . "%' or o.customers_company like '%" . $keywords . "%' or o.customers_street_address  like '%" . $keywords . "%' or o.customers_telephone like '%" . $keywords . "%' or o.ip_address  like '%" . $keywords . "%')";
+    $search = " and (o.customers_city like '%" . $keywords . "%' or o.customers_postcode like '%" . $keywords . "%' or o.date_purchased like '%" . $keywords . "%' or o.billing_name like '%" . $keywords . "%' or o.billing_company like '%" . $keywords . "%' or o.billing_street_address like '%" . $keywords . "%' or o.delivery_city like '%" . $keywords . "%' or o.delivery_postcode like '%" . $keywords . "%' or o.delivery_name like '%" . $keywords . "%' or o.delivery_company like '%" . $keywords . "%' or o.delivery_street_address like '%" . $keywords . "%' or o.billing_city like '%" . $keywords . "%' or o.billing_postcode like '%" . $keywords . "%' or o.customers_email_address like '%" . $keywords . "%' or o.customers_name like '%" . $keywords . "%' or o.customers_company like '%" . $keywords . "%' or o.customers_street_address  like '%" . $keywords . "%' or o.customers_telephone like '%" . $keywords . "%')";
     $new_table = '';
 //    $new_fields = ", o.customers_company, o.customers_email_address, o.customers_street_address, o.delivery_company, o.delivery_name, o.delivery_street_address, o.billing_company, o.billing_name, o.billing_street_address, o.payment_module_code, o.shipping_module_code, o.ip_address ";
   }
 } // eof: search orders or orders_products
-    $new_fields = ", o.customers_company, o.customers_email_address, o.customers_street_address, o.delivery_company, o.delivery_name, o.delivery_street_address, o.billing_company, o.billing_name, o.billing_street_address, o.payment_module_code, o.shipping_module_code, o.ip_address ";
+    $new_fields = ", o.customers_company, o.customers_email_address, o.customers_street_address, o.delivery_company, o.delivery_name, o.delivery_street_address, o.billing_company, o.billing_name, o.billing_street_address, o.payment_module_code, o.shipping_module_code ";
 ?>
 <?php
 
@@ -1035,8 +1030,7 @@ if (($_GET['page'] == '' or $_GET['page'] <= 1) and $_GET['oID'] != '') {
         $contents[] = array('align' => 'center', 'text' => '<a href="' . zen_href_link(FILENAME_RL_INVOICE3, 'oID=' . $oInfo -> orders_id) . '" TARGET="_blank">' . zen_image_button('button_rl_invoice3.gif', IMAGE_RL_INVOICE) );
 	      $zco_notifier->notify('NOTIFY_ADMIN_ORDERS_MENU_BUTTONS', $oInfo, $contents);
         $contents[] = array('text' => '<br />' . TEXT_DATE_ORDER_CREATED . ' ' . zen_date_short($oInfo->date_purchased));
-        $contents[] = array('text' => '<br />' . $oInfo->customers_email_address);
-        $contents[] = array('text' => TEXT_INFO_IP_ADDRESS . ' ' . $oInfo->ip_address);
+        $contents[] = array('text' => '<br />' . $oInfo->customers_email_address);        
         if (zen_not_null($oInfo->last_modified)) $contents[] = array('text' => TEXT_DATE_ORDER_LAST_MODIFIED . ' ' . zen_date_short($oInfo->last_modified));
         $contents[] = array('text' => '<br />' . TEXT_INFO_PAYMENT_METHOD . ' '  . $oInfo->payment_method);
         $contents[] = array('text' => '<br />' . ENTRY_SHIPPING . ' '  . $oInfo->shipping_method);

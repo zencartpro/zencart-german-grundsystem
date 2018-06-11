@@ -1,10 +1,10 @@
 <?php
 /**
  * @package admin
- * @copyright Copyright 2003-2016 Zen Cart Development Team
+ * @copyright Copyright 2003-2018 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: record_company.php 787 2015-12-21 19:13:51Z webchills $
+ * @version $Id: record_company.php 788 2018-01-02 08:13:51Z webchills $
  */
 
   require('includes/application_top.php');
@@ -107,7 +107,7 @@
 
         if (isset($_POST['delete_products']) && ($_POST['delete_products'] == 'on')) {
           $products = $db->Execute("select products_id
-                                    from " . TABLE_PRODUCTS_MUSIC_EXTRA . "
+                                    from " . TABLE_PRODUCT_MUSIC_EXTRA . "
                                     where record_company_id = '" . (int)$record_company_id . "'");
 
           while (!$products->EOF) {

@@ -1,10 +1,10 @@
 <?php
 /**
  * @package admin
- * @copyright Copyright 2003-2016 Zen Cart Development Team
+ * @copyright Copyright 2003-2018 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: phplot.php 729 2014-02-08 15:49:16Z webchills $
+ * @version $Id: phplot.php 730 2018-03-30 11:49:16Z webchills $
  */
 
 /*
@@ -168,7 +168,7 @@ class PHPlot{
 //BEGIN CODE
 //////////////////////////////////////////////////////
   //Constructor: Setup Img pointer, Colors and Size of Image
-  function PHPlot($which_width=600,$which_height=400,$which_output_file="",$which_input_file="") {
+  function __construct($which_width=600, $which_height=400, $which_output_file="", $which_input_file="") {
 
     $this->SetRGBArray('2');
     $this->background_done = 0; //Set to 1 after background image first drawn

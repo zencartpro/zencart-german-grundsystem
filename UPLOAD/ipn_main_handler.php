@@ -3,10 +3,10 @@
  * ipn_main_handler.php callback handler for PayPal IPN notifications
  *
  * @package paymentMethod
- * @copyright Copyright 2003-2016 Zen Cart Development Team
+ * @copyright Copyright 2003-2018 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: ipn_main_handler.php 771 2016-11-03 08:08:29Z webchills $
+ * @version $Id: ipn_main_handler.php 772 2018-01-02 08:37:29Z webchills $
  */
 if (!defined('TEXT_RESELECT_SHIPPING')) define('TEXT_RESELECT_SHIPPING', 'You have changed the items in your cart since shipping was last calculated, and costs may have changed. Please verify/re-select your shipping method.');
 
@@ -104,7 +104,7 @@ Processing...
    * detect type of transaction
    */
   $isECtransaction = ((isset($_POST['txn_type']) && $_POST['txn_type']=='express_checkout') || (isset($_POST['custom']) && in_array(substr($_POST['custom'], 0, 3), array('EC-', 'DP-', 'WPP')))); /*|| $_POST['txn_type']=='cart'*/
-  $isDPtransaction = (isset($_POST['custom']) && in_array(substr($_POST['custom'], 0, 3), array('DP-', 'WPP')));
+  $isDPtransaction = (isset($_POST['custom']) && in_array(substr($_POST['custom'], 0, 3), array('DP-', 'WPP', 'PF-')));
   /**
    * set paypal-specific application_top parameters
    */
@@ -180,6 +180,11 @@ Processing...
   $parentLookup = $txn_type;
 
   ipn_debug_email('Breakpoint: 4 - ' . 'Details:  txn_type=' . $txn_type . '    ordersID = '. $ordersID . '  IPN_id=' . $paypalipnID . "\n\n" . '   Relevant data from POST:' . "\n     " . 'txn_type = ' . $txn_type . "\n     " . 'parent_txn_id = ' . ($_POST['parent_txn_id'] =='' ? 'None' : $_POST['parent_txn_id']) . "\n     " . 'txn_id = ' . $_POST['txn_id']);
+  // ignore auth_status == 'Expired'
+  if ($_POST['auth_status'] === 'Expired' && $_POST['txn_type'] === 'web_accept') {
+    ipn_debug_email('NOTICE :: IPN Processing Aborted -- we do not need to do anything with an "Expired" auth notification.');
+    die();
+  }
 
   if (!$isECtransaction && !isset($_POST['parent_txn_id']) && $txn_type != 'cleared-echeck') {
     if (defined('MODULE_PAYMENT_PAYPAL_PDTTOKEN') && MODULE_PAYMENT_PAYPAL_PDTTOKEN != '') {
@@ -389,6 +394,7 @@ Processing...
         }
         $_SESSION['order_summary']['products_ordered_ids'] = implode('|', array_keys($products_array));
         $_SESSION['order_summary']['products_ordered_models'] = implode('|', array_values($products_array));
+
         $zco_notifier->notify('NOTIFY_CHECKOUT_PROCESS_HANDLE_AFFILIATES', 'paypalipn');
         $_SESSION['cart']->reset(true);
         ipn_debug_email('Breakpoint: 5n - emptying cart');

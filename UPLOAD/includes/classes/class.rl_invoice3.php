@@ -2,10 +2,10 @@
 /**
  * @package pdf Rechnung
  * @copyright Copyright 2005-2012 langheiter.com 
- * @copyright Copyright 2003-2016 Zen Cart Development Team
+ * @copyright Copyright 2003-2018 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: class.rl_invoice3.php 2016-06-19 07:19:17Z webchills $
+ * @version $Id: class.rl_invoice3.php 2018-03-30 11:19:17Z webchills $
  */
  
 define('FPDF_FONTPATH', DIR_FS_CATALOG . DIR_WS_INCLUDES . 'pdf/font/');
@@ -16,7 +16,7 @@ function ExtractNumberX($number) {
 class rl_invoice3 extends fpdi {
     var $widths;
     var $aligns;
-    function rl_invoice3($oID, $orientation, $unit, $format) {
+    function __construct($oID, $orientation, $unit, $format) {
         global $db;
         $this->db = $db;
         $this->oID = $oID;

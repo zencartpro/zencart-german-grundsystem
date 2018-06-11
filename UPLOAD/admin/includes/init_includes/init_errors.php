@@ -1,10 +1,10 @@
 <?php
 /**
  * @package admin
- * @copyright Copyright 2003-2016 Zen Cart Development Team
+ * @copyright Copyright 2003-2018 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: init_errors.php 733 2016-03-27 18:52:16Z webchills $
+ * @version $Id: init_errors.php 734 2018-01-02 08:52:16Z webchills $
  */
 if (!defined('IS_ADMIN_FLAG')) {
   die('Illegal Access');
@@ -199,7 +199,7 @@ if (WARN_DATABASE_VERSION_PROBLEM != 'false') {
       if (!empty($chk_admin_log->fields['access_date'])) {
         $show_admin_activity_log_link = true;
         $_SESSION['reset_admin_activity_log'] = true;
-        $messageStack->add(WARNING_ADMIN_ACTIVITY_LOG_DATE . date('m-d-Y', strtotime($chk_admin_log->fields['access_date'])), 'caution');
+        $messageStack->add(WARNING_ADMIN_ACTIVITY_LOG_DATE . date(DATE_FORMAT, strtotime($chk_admin_log->fields['access_date'])), 'caution');
       }
     }
   }

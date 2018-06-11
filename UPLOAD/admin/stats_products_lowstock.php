@@ -1,10 +1,10 @@
 <?php
 /**
  * @package admin
- * @copyright Copyright 2003-2016 Zen Cart Development Team
+ * @copyright Copyright 2003-2018 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: stats_products_lowstock.php 732 2016-03-14 20:39:51Z webchills $
+ * @version $Id: stats_products_lowstock.php 733 2018-02-09 10:39:51Z webchills $
  */
 
 require('includes/application_top.php');
@@ -79,7 +79,7 @@ switch ($sort) {
 }
 
 $lang_id = $_SESSION['languages_id'] != '' ? intval($_SESSION['languages_id']) : 1;
-$products_query_raw = "select p.products_id, products_quantity, pd.products_name, p.products_model, p.products_price, (products_quantity * p.products_price) as total, categories_name, p.products_quantity_order_min, m.manufacturers_name from " . TABLE_PRODUCTS . " p left join " . TABLE_PRODUCTS_DESCRIPTION . " pd using(products_id) LEFT JOIN " . TABLE_CATEGORIES_DESCRIPTION . " cd ON(cd.categories_id = p.master_categories_id AND cd.language_id = '" . $lang_id . "') left join " . TABLE_MANUFACTURERS . " m using(manufacturers_id) " . $db_category_where . " group by p.products_id order by " . $sort . " " . $dir;
+$products_query_raw = "select p.products_id, products_quantity, pd.products_name, p.products_model, p.products_price, (products_quantity * p.products_price) as total, categories_name, p.products_quantity_order_min, m.manufacturers_name from " . TABLE_PRODUCTS . " p left join " . TABLE_PRODUCTS_DESCRIPTION . " pd ON(p.products_id = pd.products_id AND pd.language_id = '" . $lang_id . "') LEFT JOIN " . TABLE_CATEGORIES_DESCRIPTION . " cd ON(cd.categories_id = p.master_categories_id AND cd.language_id = '" . $lang_id . "') left join " . TABLE_MANUFACTURERS . " m using(manufacturers_id) " . $db_category_where . " group by p.products_id order by " . $sort . " " . $dir;
 if ($csv == '1') {
     $current_inventory = $db->Execute($products_query_raw);
     while (!$current_inventory->EOF) {

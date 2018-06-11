@@ -3,10 +3,10 @@
  * Module Template for responsive mobile support
  *
  * @package templateSystem
- * @copyright Copyright 2003-2016 Zen Cart Development Team
+ * @copyright Copyright 2003-2018 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: tpl_modules_mobile_menu.php 2 2016-04-06 11:33:58Z webchills $
+ * @version $Id: tpl_modules_mobile_menu.php 3 2018-03-30 09:33:58Z webchills $
  */
 ?>
 
@@ -85,7 +85,8 @@ echo $menulist;
 <?php } ?>
 
     <li><span><?php echo BOX_HEADING_INFORMATION; ?></span>
-      <ul>
+      <ul>      	
+     	
 <?php if (DEFINE_SHIPPINGINFO_STATUS <= 1) { ?>
         <li><a href="<?php echo zen_href_link(FILENAME_SHIPPING); ?>"><?php echo BOX_INFORMATION_SHIPPING; ?></a></li>
 <?php } ?>
@@ -94,6 +95,18 @@ echo $menulist;
 <?php } ?>
 <?php if (DEFINE_CONDITIONS_STATUS <= 1) { ?>
         <li><a href="<?php echo zen_href_link(FILENAME_CONDITIONS); ?>"><?php echo BOX_INFORMATION_CONDITIONS; ?></a></li>
+<?php } ?>
+<?php if (DEFINE_WIDERRUFSRECHT_STATUS <= 1) { ?>
+        <li><a href="<?php echo zen_href_link(FILENAME_WIDERRUFSRECHT); ?>"><?php echo BOX_INFORMATION_WIDERRUFSRECHT; ?></a></li>
+<?php } ?>
+<?php if (DEFINE_ZAHLUNGSARTEN_STATUS <= 1) { ?>
+        <li><a href="<?php echo zen_href_link(FILENAME_ZAHLUNGSARTEN); ?>"><?php echo BOX_INFORMATION_ZAHLUNGSARTEN; ?></a></li>
+<?php } ?>
+<?php if (DEFINE_IMPRESSUM_STATUS <= 1) { ?>
+        <li><a href="<?php echo zen_href_link(FILENAME_IMPRESSUM); ?>"><?php echo BOX_INFORMATION_IMPRESSUM; ?></a></li>
+<?php } ?>
+<?php if (DEFINE_CONTACT_US_STATUS <= 1) { ?>
+        <li><a href="<?php echo zen_href_link(FILENAME_CONTACT_US); ?>"><?php echo BOX_INFORMATION_CONTACT_US; ?></a></li>
 <?php } ?>
 <?php if (!empty($external_bb_url) && !empty($external_bb_text)) { // forum/bb link ?>
         <li><a href="<?php echo external_bb_url; ?>" target="_blank"><?php echo external_bb_text; ?></a></li>

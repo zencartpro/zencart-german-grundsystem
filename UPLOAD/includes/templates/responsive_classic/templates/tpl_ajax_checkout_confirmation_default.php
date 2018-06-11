@@ -6,10 +6,10 @@
  * Displays final checkout details, cart, payment and shipping info details.
  *
  * @package templateSystem
- * @copyright Copyright 2003-2015 Zen Cart Development Team
+ * @copyright Copyright 2003-2018 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: tpl_ajax_checkout_confirmation_default.php 2 2016-04-06 11:33:58Z webchills $
+ * @version $Id: tpl_ajax_checkout_confirmation_default.php 3 2018-01-02 17:33:58Z webchills $
  */
 ?>
 <div class="centerColumn" id="checkoutConfirmDefault">
@@ -202,6 +202,15 @@ $(document).ready(function () {
        }
      }
    }
+?>
+<?php
+// Add shipping-module "extra" variables so they get transported to the checkout_process page.
+if (isset ($_SESSION['shipping']['extras']) && is_array ($_SESSION['shipping']['extras'])) {
+    list ($module, $method) = explode ('_', $_SESSION['shipping']['id']);
+    foreach ($_SESSION['shipping']['extras'] as $varname => $value) {
+        echo zen_draw_hidden_field ($module . '_' . $varname, $value) . PHP_EOL;
+    }
+}
 ?>
 <div class="buttonRow forward confirm-order"><?php echo zen_image_submit(BUTTON_IMAGE_CONFIRM_ORDER, BUTTON_CONFIRM_ORDER_ALT, 'name="btn_submit" id="btn_submit"') ;?></div>
 </form>

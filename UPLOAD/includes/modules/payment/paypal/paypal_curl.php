@@ -3,9 +3,9 @@
  * paypal_curl.php communications class for PayPal Express Checkout / Website Payments Pro / Payflow Pro payment methods
  *
  * @package paymentMethod
- * @copyright Copyright 2003-2017 Zen Cart Development Team
+ * @copyright Copyright 2003-2018 Zen Cart Development Team
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: paypal_curl.php 806 2017-03-05 15:17:36Z webchills $
+ * @version $Id: paypal_curl.php 807 2018-04-01 07:59:36Z webchills $
  */
 
 /**
@@ -251,14 +251,14 @@ class paypal_curl extends base {
       $values['ORIGID'] = $txnID;
       $values['TENDER'] = 'C';
       $values['TRXTYPE'] = 'C';
-      $values['AMT'] = number_format((float)$amount, 2);
+      $values['AMT'] = round((float)$amount, 2);
       if ($note != '') $values['COMMENT2'] = $note;
     } elseif ($this->_mode == 'nvp') {
       $values['TRANSACTIONID'] = $txnID;
       if ($amount != 'Full' && (float)$amount > 0) {
         $values['REFUNDTYPE'] = 'Partial';
         $values['CURRENCYCODE'] = $curCode;
-        $values['AMT'] = number_format((float)$amount, 2);
+        $values['AMT'] = round((float)$amount, 2);
       } else {
         $values['REFUNDTYPE'] = 'Full';
       }
@@ -291,7 +291,7 @@ class paypal_curl extends base {
    */
   function DoAuthorization($txnID, $amount = 0, $currency = 'USD', $entity = 'Order') {
     $values['TRANSACTIONID'] = $txnID;
-    $values['AMT'] = number_format($amount, 2, '.', ',');
+    $values['AMT'] = round((float)$amount, 2);
     $values['TRANSACTIONENTITY'] = $entity;
     $values['CURRENCYCODE'] = $currency;
     return $this->_request($values, 'DoAuthorization');
@@ -304,7 +304,7 @@ class paypal_curl extends base {
    */
   function DoReauthorization($txnID, $amount = 0, $currency = 'USD') {
     $values['AUTHORIZATIONID'] = $txnID;
-    $values['AMT'] = number_format($amount, 2, '.', ',');
+    $values['AMT'] = round((float)$amount, 2);
     $values['CURRENCYCODE'] = $currency;
     return $this->_request($values, 'DoReauthorization');
   }
@@ -325,7 +325,7 @@ class paypal_curl extends base {
     } elseif ($this->_mode == 'nvp') {
       $values['AUTHORIZATIONID'] = $txnID;
       $values['COMPLETETYPE'] = $captureType;
-      $values['AMT'] = number_format((float)$amount, 2);
+      $values['AMT'] = round((float)$amount, 2);
       $values['CURRENCYCODE'] = $currency;
       if ($invNum != '') $values['INVNUM'] = $invNum;
       if ($note != '') $values['NOTE'] = $note;

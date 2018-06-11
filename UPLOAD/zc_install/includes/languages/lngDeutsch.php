@@ -2,9 +2,9 @@
 /**
  * Main German language file for installer
  * @package Installer
- * @copyright Copyright 2003-2016 Zen Cart Development Team
+ * @copyright Copyright 2003-2018 Zen Cart Development Team
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: lngDeutsch.php 8 2016-07-29 13:49:16Z webchills $
+ * @version $Id: lngDeutsch.php 12 2018-05-10 08:49:16Z webchills $
  */
 /**
  * defining language components for the page
@@ -145,11 +145,10 @@ define('TEXT_ERROR_COULD_NOT_WRITE_CONFIGFILE', 'Konnte die CKonfigurationsdatei
 define('TEXT_ERROR_STORE_CONFIGURE', "Frontend Konfigurationsdatei /includes/configure.php existiert nicht, ist nicht lesbar oder ist nicht beschreibbar");
 define('TEXT_ERROR_ADMIN_CONFIGURE', "Admin Konfigurationsdatei /admin/includes/configure.php existiert nicht, ist nicht lesbar oder ist nicht beschreibbar");
 define('TEXT_ERROR_PHP_VERSION', str_replace(array("\n", "\r"), '', 'Falsche PHP Version.
-<p>Ihre verwendete PHP Version (' . PHP_VERSION . ') ist zu alt. Die deutsche Zen Cart Version 1.5.5 kann damit NICHT verwendet werden.</p>
-<p>Diese Version von Zen Cart deutsch ist kompatibel mit PHP Versionen von 5.2.9 bis 7.0.<br>
-Besuchen Sie unsere <a href="www.zen-cart-pro.at">www.zen-cart-pro.at</a> Website für die neueste deutsche Zen Cart Version</p>
+<p>Ihre verwendete PHP Version (' . PHP_VERSION . ') ist ungeeignet. Die deutsche Zen Cart Version 1.5.5 kann damit NICHT verwendet werden.</p>
+<p>Diese Version von Zen Cart deutsch ist kompatibel mit PHP Versionen von 5.6.x bis 7.1.x</p>
 '));
-define('TEXT_ERROR_PHP_VERSION_RECOMMENDED', 'Für maximale Sicherheit und Kompatibilität sollten Sie mindestens PHP %s oder höher verwenden. Wir können mit der Installation trotzdem weitermachen, weisen aber darauf hin, dass Sie in Ihrem eigenen Interesse keine solch veraltete PHP Version verwenden sollten.');
+define('TEXT_ERROR_PHP_VERSION_RECOMMENDED', '<b>Ihre verwendete PHP Version (' . PHP_VERSION . ') ist veraltet.</b><br/>Für maximale Sicherheit und Kompatibilität sollten Sie mindestens PHP 7.0.x verwenden.<br/>Diese Version von Zen Cart deutsch ist kompatibel mit PHP Versionen von 5.6.x bis 7.1.x<br/>Wir können mit der Installation trotzdem weitermachen, weisen aber darauf hin, dass Sie in Ihrem eigenen Interesse keine solch veraltete PHP Version verwenden sollten. Viele Provider werden PHP 5.6 Ende 2018 abschalten!');
 define('TEXT_ERROR_PHP_VERSION_MIN', 'Die PHP Version sollte höher sein als %s');
 define('TEXT_ERROR_PHP_VERSION_MAX', 'Die PHP Version sollte niedriger sein als %s');
 define('TEXT_ERROR_MYSQL_SUPPORT', 'Probleme mit Ihrer MySQL (mysqli) Unterstützung');
@@ -184,7 +183,7 @@ define('TEXT_ERROR_SUCCESS_EXISTING_CONFIGURE', '<b>UPDATEMODUS VERFÜGBAR!<br/>
 define('TEXT_ERROR_SUCCESS_EXISTING_CONFIGURE_NO_UPDATE', '<b>Es wurde eine bestehende configure.php Datei gefunden. Ihre Datenbank scheint allerdings aktuell zu sein. Das deutet darauf hin, dass wir uns hier in Ihrem Liveshop befinden.<br/> Wenn Sie mit der Installation fortfahren WERDEN ALLE INHALTE IHRER DATENBANK GELÖSCHT! Wollen Sie wirklich neu installieren?</b>');
 define('TEXT_ERROR_MULTIPLE_ADMINS_NONE_SELECTED', 'Es scheinen mehrere Adminverzeichnisse zu existieren. Entweder entfernen Sie alte Adminverzeichnisse und clicken Aktualisieren oder wählen Sie unten das korrekte Admin Verzeichnis aus und clicken Aktualisieren.');
 define('TEXT_ERROR_MULTIPLE_ADMINS_SELECTED', 'Es scheinen mehrere Admin Verzeichnisse zu existieren. Falls das ausgewählte Verzeichnis unten falsch ist, wählen Sie bitte ein anderes aus und klicken Aktualisieren.');
-define('TEXT_ERROR_SUCCESS_NO_ERRORS', 'Es wurden keine Fehler oder Warnungen für Ihre Sysmkonfiguration erkannt. Sie können die Installation fortsetzen.');
+define('TEXT_ERROR_SUCCESS_NO_ERRORS', 'Es wurden keine Fehler oder Warnungen für Ihre Systemkonfiguration erkannt. Sie können die Installation fortsetzen.');
 
 define('TEXT_FORM_VALIDATION_REQUIRED', 'Erforderlich');
 define('TEXT_FORM_VALIDATION_AGREE_LICENSE', 'Sie müssen die Lizenzbedingungen akzeptieren');
@@ -201,21 +200,21 @@ define('TEXT_HELP_CONTENT_FOLDERPERMS', 'Die Schreibrechte für diesen Ordner si
 define('TEXT_HELP_TITLE_CONNECTIONDATABASECHECK', 'Datenbank Verbindung');
 define('TEXT_HELP_CONTENT_CONNECTIONDATABASECHECK', 'Wir haben erfolglos versucht zu MySQL via localhost zu verbinden. Manche Provider erfordern bei der Angabe des Datenbank Hosts statt localhost eine IP Adresse oder andere spezielle Angabe.<br><br>Falls localhost doch für Ihren Datenbankserver korrekt sein sollte, stellen Sie sicher, dass MySQL überhaupt läuft.');
 define('TEXT_HELP_TITLE_CHECKCURL', TEXT_ERROR_CURL);
-define('TEXT_HELP_CONTENT_CHECKCURL', 'CURL is a background process used by (PHP in) your store to connect to external servers and services such as payment and shipping providers to process transactions or get real-time shipping quotes. When we tested CURL functionality on your server we were unable to establish a connection. This could indicate a problem with your webserver configuration. Please contact your hosting company for assistance to enable CURL support on your server.<br><br>If you are a developer running this site on an offline development server then it is unsurprising that CURL cannot connect for this test. CURL is not necessary for development purposes except for testing transactional activity, at which time connecting online will be required.');
+define('TEXT_HELP_CONTENT_CHECKCURL', 'CURL ist ein Hintergrundprozess, der von PHP in Ihrem Shop verwendet wird, um sich mit externen Servern und Diensten wie Zahlungs- und Versandanbietern zu verbinden, um Transaktionen zu verarbeiten oder Echtzeit-Versandanfragen zu erhalten. Als wir die CURL-Funktionalität auf Ihrem Server getestet haben, konnten wir keine Verbindung herstellen. Dies könnte auf ein Problem mit Ihrer Webserverkonfiguration hinweisen. Wenden Sie sich an Ihren Hosting-Anbieter, um Unterstützung für die Aktivierung von CURL auf Ihrem Server zu erhalten.<br><br>Wenn Sie als Entwickler diese Site auf einem Offlineentwicklungsserver ausführen, ist es nicht verwunderlich, dass CURL für diesen Test keine Verbindung herstellen kann. CURL ist nicht für Entwicklungszwecke erforderlich, außer für das Testen der Transaktionsaktivität. Zu diesem Zeitpunkt ist die Online-Verbindung erforderlich.');
 define('TEXT_HELP_TITLE_ADMINSERVERDOMAIN', 'Admin Server Domain');
-define('TEXT_HELP_CONTENT_ADMINSERVERDOMAIN', "Enter the domain name for accessing your Admin area. It is strongly recommended to use HTTPS (SSL) for this address. Consult your hosting company about enabling SSL on your site.");
+define('TEXT_HELP_CONTENT_ADMINSERVERDOMAIN', "Geben Sie hier die URL der Domain für Ihren Adminbereich an. Sie sollten unbedingt ein SSL Zertifikat haben und für diese Adresse immer https verwenden.");
 define('TEXT_HELP_TITLE_ENABLESSLCATALOG', 'SSL für das Shop Frontend aktivieren?');
-define('TEXT_HELP_CONTENT_ENABLESSLCATALOG', "Check this box if you have an SSL certificate on your hosting account and you want Zen Cart&reg; to use it when displaying sensitive pages such as Login, My Account, Checkout, etc.");
+define('TEXT_HELP_CONTENT_ENABLESSLCATALOG', "Kreuzen Sie diese Box an, wenn Sie ein SSL Zertifikat haben und der Shop per https erreichbar sein soll.");
 define('TEXT_HELP_TITLE_HTTPSERVERCATALOG', 'Shop Frontend HTTP Domain');
-define('TEXT_HELP_CONTENT_HTTPSERVERCATALOG', "Enter the domain-part of the URL for your store. eg: http://www.example.com");
+define('TEXT_HELP_CONTENT_HTTPSERVERCATALOG', "Geben Sie die Domain zu Ihrem Shop an, z.B. http://www.meinshop.de<br/>Wenn Sie ein SSL Zertifikat aktiv haben und den Shop durchgehend per https betreiben wollen (empfohlen), dann geben Sie auch hier die Adresse mit https an, also z.B. https://www.meinshop.de");
 define('TEXT_HELP_TITLE_HTTPURLCATALOG', 'Shop Frontend HTTP URL');
-define('TEXT_HELP_CONTENT_HTTPURLCATALOG', "Enter the entire URL for your store.  eg: http://www.example.com/zencart/");
-define('TEXT_HELP_TITLE_HTTPSSERVERCATALOG', 'Shop Frontend HTTPS Domain');
-define('TEXT_HELP_CONTENT_HTTPSSERVERCATALOG', "If you have checked the box above to enable use of SSL during checkout, you must enter here the domain-part of the https URL to your store.<br>This is typically something like:<br>https://www.example.com<br>https://www.hostingcompany.com/~username<br>https://www.hostingcompany.com/~username/subdomain.com");
+define('TEXT_HELP_CONTENT_HTTPURLCATALOG', "Geben Sie die vollständige Adresse zu Ihrem Shop an. Wenn der Shop z.B. im Unterverzeichnis shop liegt  http://www.meinshop.de/shop/<br/><br/>Wenn Sie ein SSL Zertifikat aktiv haben und den Shop durchgehend per https betreiben wollen (empfohlen), dann geben Sie auch hier die Adresse mit https an, also z.B. https://www.meinshop.de/shop");
+define('TEXT_HELP_TITLE_HTTPSSERVERCATALOG', 'Shop Frontend HTTPS URL');
+define('TEXT_HELP_CONTENT_HTTPSSERVERCATALOG', "Wenn Sie oben SSL aktivieren angekreuzt haben, dann geben Sie hier die SSL Domain an, z.B. https://www.meinshop.de");
 define('TEXT_HELP_TITLE_HTTPSURLCATALOG', 'Shop Frontend HTTPS URL');
-define('TEXT_HELP_CONTENT_HTTPSURLCATALOG', "Enter the https URL to your store. This is typically the same as the HTTPS Domain, followed by the foldername in which your store's files are kept. eg: https://www.example.com/zencart");
+define('TEXT_HELP_CONTENT_HTTPSURLCATALOG', "Geben Sie die vollständige https Adresse zu Ihrem Shop an. Wenn der Shop z.B. im Unterverzeichnis shop liegt https://www.meinshop.de/shop/");
 define('TEXT_HELP_TITLE_PHYSICALPATH', 'Shop Frontend Physischer Pfad');
-define('TEXT_HELP_CONTENT_PHYSICALPATH', "This is the actual path (according to your server's filesystem) where your Zen Cart&reg; files are located. Common examples look like '/users/home/public_html/zencart'.");
+define('TEXT_HELP_CONTENT_PHYSICALPATH', "Dies ist die vollständige Pfadangabe zum Shopverzeichnis auf Ihrem Server, wurde automatisch ausgelesen und sollte korrekt sein.");
 
 
 
@@ -232,11 +231,11 @@ define('TEXT_HELP_CONTENT_DEMODATA', "Die Installation der Demodaten ist nur fü
 define('TEXT_HELP_TITLE_DBCHARSET', 'Datenbank Character Set');
 define('TEXT_HELP_CONTENT_DBCHARSET', "Lassen Sie diese Einstellung unbedingt auf UTF8.");
 define('TEXT_HELP_TITLE_DBPREFIX', 'Datenbank Präfix für Tabellennamen');
-define('TEXT_HELP_CONTENT_DBPREFIX', "Wir empfehlen KEIN Präfix zu verwenden und dieses Feld leer zu lassen<br/>Es ist nur dann sinnvoll, wenn Sie in einer Datenbank mehrere unterschiedliche System verwenden wollen, was definitiv für einen Liveshop nicht empfohlen ist<br/>Wenn Sie doch ein Präfix verwenden wollen, dann geben Sie es wie folgt an:<br/>prefix_");
+define('TEXT_HELP_CONTENT_DBPREFIX', "Wir empfehlen KEIN Präfix zu verwenden und dieses Feld leer zu lassen<br/>Es ist nur dann sinnvoll, wenn Sie in einer Datenbank mehrere unterschiedliche Systeme verwenden wollen, was definitiv für einen Liveshop nicht empfohlen ist<br/>Wenn Sie doch ein Präfix verwenden wollen, dann geben Sie es wie folgt an:<br/>prefix_");
 define('TEXT_HELP_TITLE_SQLCACHEMETHOD', 'SQL Caching Methode');
 define('TEXT_HELP_CONTENT_SQLCACHEMETHOD', "Voreinstellung 'none' (=kein Caching)<br/>Alternativen sind 'Datenbank' (Datenbankcaching) oder 'Datei' (dateibasiertes Caching). ");
 define('TEXT_HELP_TITLE_SQLCACHEDIRECTORY', 'SQL Cache Directory');
-define('TEXT_HELP_CONTENT_SQLCACHEDIRECTORY', "Enter the directory to use for file-based caching. This is a directory/folder on your webserver, and its permissions must be set to writable so that the webserver (eg Apache) can write files to it.");
+define('TEXT_HELP_CONTENT_SQLCACHEDIRECTORY', "Geben Sie das Verzeichnis ein, das für das dateibasierte Caching verwendet werden soll. Dies ist ein Verzeichnis / Ordner auf Ihrem Webserver und seine Berechtigungen müssen auf schreibbar gesetzt sein, damit der Webserver (Apache) Dateien darauf schreiben kann.");
 
 define('TEXT_HELP_TITLE_ADMINUSER', 'Admin Superuser Name');
 define('TEXT_HELP_CONTENT_ADMINUSER', "Dies ist der Benutzername für Ihren Admin Superuser. Dieser User hat alle Rechte und kann weitere Administratoren hinzufügen.");
@@ -258,13 +257,13 @@ define('TEXT_ERROR_NEW_VERSION_AVAILABLE', '<a href="http://www.zen-cart-pro.at/
 
 define('TEXT_DB_VERSION_NOT_FOUND', 'Es wurde keine Zen Cart Datenbank für %s gefunden!');
 
-define('REASON_TABLE_ALREADY_EXISTS','Cannot create table %s because it already exists');
-define('REASON_TABLE_DOESNT_EXIST','Cannot drop table %s because it does not exist.');
-define('REASON_TABLE_NOT_FOUND','Cannot execute because table %s does not exist.');
-define('REASON_CONFIG_KEY_ALREADY_EXISTS','Cannot insert configuration_key "%s" because it already exists');
-define('REASON_COLUMN_ALREADY_EXISTS','Cannot ADD column %s because it already exists.');
-define('REASON_COLUMN_DOESNT_EXIST_TO_DROP','Cannot DROP column %s because it does not exist.');
-define('REASON_COLUMN_DOESNT_EXIST_TO_CHANGE','Cannot CHANGE column %s because it does not exist.');
+define('REASON_TABLE_ALREADY_EXISTS','Tabelle %s kann nicht angelegt werden, da sie bereits existiert');
+define('REASON_TABLE_DOESNT_EXIST','Tabelle %s kann nicht gelöscht werden, da sie nicht existiert.');
+define('REASON_TABLE_NOT_FOUND','Ausführung nicht möglich, da Tabelle %s nicht existiert.');
+define('REASON_CONFIG_KEY_ALREADY_EXISTS','Kann configuration_key "%s" nicht einfügen, da er bereits existiert');
+define('REASON_COLUMN_ALREADY_EXISTS','Kann Spalte %s nicht ninzufügen, da sie bereits existiert.');
+define('REASON_COLUMN_DOESNT_EXIST_TO_DROP','Kann Spalte %s nicht löschen, da sie nicht existiert.');
+define('REASON_COLUMN_DOESNT_EXIST_TO_CHANGE','Kann Spalte %s nicht ändern, da sie nicht existiert.');
 define('REASON_PRODUCT_TYPE_LAYOUT_KEY_ALREADY_EXISTS','Cannot insert prod-type-layout configuration_key "%s" because it already exists');
 define('REASON_INDEX_DOESNT_EXIST_TO_DROP','Cannot drop index %s on table %s because it does not exist.');
 define('REASON_PRIMARY_KEY_DOESNT_EXIST_TO_DROP','Cannot drop primary key on table %s because it does not exist.');

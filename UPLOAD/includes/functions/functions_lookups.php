@@ -4,10 +4,10 @@
  * Lookup Functions for various core activities related to countries, prices, products, product types, etc
  *
  * @package functions
- * @copyright Copyright 2003-2016 Zen Cart Development Team
+ * @copyright Copyright 2003-2018 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: functions_lookups.php 770 2016-05-08 09:23:42Z webchills $
+ * @version $Id: functions_lookups.php 771 2018-01-02 09:41:42Z webchills $
  */
 
 
@@ -265,7 +265,7 @@
         $sql2 = $db->bindVars($sql2, ':option_id:', $option_id, 'integer');
       }
       $sql2 = rtrim($sql2, ','); // Need to remove the final comma off of the above.
-      $sql2 = ')';
+      $sql2 .= ')';
     } else {
       $sql2 = ' = :option_id:';
       $sql2 = $db->bindVars($sql2, ':option_id:', $option_name_id[0], 'integer');
@@ -288,6 +288,7 @@
     
     return $option_name_no_value;
   }
+
 /*
  *  Check if product has attributes values
  */

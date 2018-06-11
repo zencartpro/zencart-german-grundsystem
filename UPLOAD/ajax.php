@@ -3,10 +3,10 @@
  * ajax front controller
  *
  * @package core
- * @copyright Copyright 2003-2016 Zen Cart Development Team
+ * @copyright Copyright 2003-2018 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: ajax.php 26 2016-11-03 08:26:29Z webchills $
+ * @version $Id: ajax.php 27 2018-01-02 08:36:29Z webchills $
  */
 // Abort if the request was not an AJAX call
 if (!isset($_SERVER['HTTP_X_REQUESTED_WITH']) || strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) != 'xmlhttprequest') {
@@ -14,6 +14,9 @@ if (!isset($_SERVER['HTTP_X_REQUESTED_WITH']) || strtolower($_SERVER['HTTP_X_REQ
     exit();
 }
 require('includes/application_top.php');
+// deny ajax requests from spiders
+if (isset($spider_flag) && $spider_flag === true) ajaxAbort();
+
 header('Access-Control-Allow-Origin: *');
 header('Access-Control-Allow-Methods: GET');
 header("Access-Control-Allow-Headers: X-Requested-With");

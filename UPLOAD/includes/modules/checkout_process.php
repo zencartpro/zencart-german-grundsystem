@@ -3,10 +3,10 @@
  * module to process a completed checkout
  *
  * @package procedureCheckout
- * @copyright Copyright 2003-2016 Zen Cart Development Team
+ * @copyright Copyright 2003-2018 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: checkout_process.php 731 2016-07-29 18:49:16Z webchills $
+ * @version $Id: checkout_process.php 732 2018-01-02 17:49:16Z webchills $
  */
 if (!defined('IS_ADMIN_FLAG')) {
   die('Illegal Access');
@@ -32,10 +32,11 @@ if (!strstr($_SERVER['HTTP_REFERER'], FILENAME_CHECKOUT_CONFIRMATION)) {
 }
 
 // BEGIN CC SLAM PREVENTION
+$slamming_threshold = 3;
 if (!isset($_SESSION['payment_attempt'])) $_SESSION['payment_attempt'] = 0;
 $_SESSION['payment_attempt']++;
-$zco_notifier->notify('NOTIFY_CHECKOUT_SLAMMING_ALERT');
-if ($_SESSION['payment_attempt'] > 3) {
+$zco_notifier->notify('NOTIFY_CHECKOUT_SLAMMING_ALERT', $_SESSION['payment_attempt'], $slamming_threshold);
+if ($_SESSION['payment_attempt'] > $slamming_threshold) {
   $zco_notifier->notify('NOTIFY_CHECKOUT_SLAMMING_LOCKOUT');
   $_SESSION['cart']->reset(TRUE);
   zen_session_destroy();

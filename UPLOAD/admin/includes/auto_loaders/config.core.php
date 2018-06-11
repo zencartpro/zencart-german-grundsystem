@@ -1,10 +1,10 @@
 <?php
 /**
  * @package admin
- * @copyright Copyright 2003-2017 Zen Cart Development Team
+ * @copyright Copyright 2003-2018 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: config.core.php 803 2017-03-05 15:47:36Z webchills $
+ * @version $Id: config.core.php 805 2018-03-30 08:47:36Z webchills $
  */
 if (!defined('USE_PCONNECT')) define('USE_PCONNECT', 'false');
 /**

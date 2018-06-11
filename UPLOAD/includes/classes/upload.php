@@ -3,10 +3,10 @@
  * upload Class.
  *
  * @package classes
- * @copyright Copyright 2003-2017 Zen Cart Development Team
+ * @copyright Copyright 2003-2018 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: upload.php 732 2017-05-23 15:07:16Z webchills $
+ * @version $Id: upload.php 732 2018-01-02 09:49:16Z webchills $
  */
 if (!defined('IS_ADMIN_FLAG')) {
   die('Illegal Access');
@@ -45,13 +45,13 @@ class upload extends base
             } else {
                 // self destruct
                 foreach ($this as $key => $val) {
-          $this->$key = null;
-        }
+                    $this->$key = null;
+                }
 
-        return false;
-      }
+                return false;
+            }
+        }
     }
-  }
 
     /**
      * @param string $key  - differentiates between different files uploaded
@@ -82,10 +82,10 @@ class upload extends base
                 'size'     => (isset($GLOBALS[$this->file . '_size']) ? $GLOBALS[$this->file . '_size'] : ''),
                 'tmp_name' => (isset($GLOBALS[$this->file]) ? $GLOBALS[$this->file] : ''),
             );
-    }
-    if (!zen_not_null($file['tmp_name'])) return false;
-    //if ($file['tmp_name'] == 'none') return false;
-    //if (!is_uploaded_file($file['tmp_name'])) return false;
+        }
+        if (!zen_not_null($file['tmp_name'])) return false;
+        //if ($file['tmp_name'] == 'none') return false;
+        //if (!is_uploaded_file($file['tmp_name'])) return false;
 
 // not working at this time to test for server limit error
         if (!is_uploaded_file($file['tmp_name'])) {
@@ -101,7 +101,7 @@ class upload extends base
                 return false;
             }
             if (substr($file['name'], -9) == '.htaccess' || (sizeof($this->extensions) > 0 && !in_array(strtolower(substr($file['name'], strrpos($file['name'], '.') + 1)), $this->extensions))) {
-                $this->message_stack(ERROR_FILETYPE_NOT_ALLOWED . ' ' . UPLOAD_FILENAME_EXTENSIONS, 'error');
+                $this->message_stack(ERROR_FILETYPE_NOT_ALLOWED . ' .' . implode(', .', $this->extensions), 'error');
 
                 return false;
             }
@@ -201,10 +201,10 @@ class upload extends base
             if (is_array($extensions)) {
                 $this->extensions = $extensions;
             } else {
-                $this->extensions = [$extensions];
+                $this->extensions = array($extensions);
             }
         } else {
-            $this->extensions = [];
+            $this->extensions = array();
         }
     }
 

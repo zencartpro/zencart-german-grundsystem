@@ -14,7 +14,6 @@
  */
 
 
-
 require_once 'pclzip.lib.php';
 
 // issues
@@ -363,7 +362,7 @@ class CloudloaderBase
 
 
             if (sizeof($this->write_test_failed_file) > 0) {
-                throw new Exception(sprintf(MAILBEEZ_INSTALL_ERROR_FILE_NOT_WRITEABLE, sizeof($this->write_test_failed_file), implode('<li>', array_slice($this->write_test_failed_file, 0, 10)) ));
+                throw new Exception(sprintf(MAILBEEZ_INSTALL_ERROR_FILE_NOT_WRITEABLE, sizeof($this->write_test_failed_file), implode('<li>', array_slice($this->write_test_failed_file, 0, 10))));
                 return false;
             }
 
@@ -376,7 +375,7 @@ class CloudloaderBase
     }
 
 
-    function backup($backup_source_folder, $backup_directory, $backup_file, $exclude_dirs)
+    function backup($backup_source_folder, $backup_directory, $backup_file, $exclude_files, $exclude_dirs)
     {
 
         $this->debug_output("Backing up: $backup_source_folder\n");
@@ -393,7 +392,7 @@ class CloudloaderBase
 //        throw new Exception("Backup parameters $backup_source_folder, $backup_filename, $exclude_files, $exclude_dirs\n");
 //print_r($exclude_dirs);
         $this->debug_output("Backup parameters $backup_source_folder, $backup_filename, " . print_r($exclude_dirs, true) . "\n");
-        $res = $this->Zip($backup_source_folder, $backup_filename, '', $exclude_dirs);
+        $res = $this->Zip($backup_source_folder, $backup_filename, $exclude_files, $exclude_dirs);
 //exit();
 
         if ($res === TRUE) {
@@ -428,9 +427,7 @@ class CloudloaderBase
             $v_remove = substr($v_dir, 2);
         }
 
-
         $v_list = $archive->create($v_dir, PCLZIP_OPT_REMOVE_PATH, $v_remove, PCLZIP_CB_PRE_ADD, 'ZipPreAddCallBack');
-//        $v_list = $archive->create($v_dir, PCLZIP_OPT_REMOVE_PATH, $v_remove);
         if ($v_list == 0) {
             die("Error : " . $archive->errorInfo(true));
         }
@@ -451,6 +448,72 @@ class CloudloaderBase
         }
     }
 
+
+    function cleanBackups($backup_dir, $days = 14)
+    {
+        if (file_exists($backup_dir)) {
+            foreach (new DirectoryIterator($backup_dir) as $fileInfo) {
+                if ($fileInfo->isDot()) {
+                    continue;
+                }
+                if ($fileInfo->isFile() && time() - $fileInfo->getCTime() >= (int)$days * 24 * 60 * 60) {
+                    unlink($fileInfo->getRealPath());
+                }
+            }
+        }
+
+    }
+
+    function cleanLegacyImageCache($cache_dir)
+    {
+        $this->debug_output("cleaning Legacy Image Cache $cache_dir");
+
+        $allDropped = true;
+        $dir = opendir($cache_dir);
+
+        if (!$dir) {
+            closedir($dir);
+            return false;
+        }
+
+        while (false !== ($file = readdir($dir))) {
+            if ($file == '.' || $file == '..' || $file == '.htaccess' || $file == 'index.html') {
+                $this->debug_output("...  $file skipped");
+                continue;
+            }
+
+            $fullName = $cache_dir . '/' . $file;
+
+            if (is_dir($fullName)) {
+                // Directories are recursively crawled
+                if ($this->cleanLegacyImageCache($fullName)) {
+                    $this->drop($fullName);
+                } else {
+                    $allDropped = false;
+                }
+            } else {
+                $this->drop($fullName);
+            }
+        }
+
+        closedir($dir);
+
+        return $allDropped;
+    }
+
+
+    /**
+     * Drops a file or an empty directory.
+     */
+    public function drop($file)
+    {
+        if (is_dir($file)) {
+            rmdir($file);
+        } else {
+            unlink($file);
+        }
+    }
+
 }
 
 function ZipPreAddCallBack($p_event, &$p_header)
@@ -463,6 +526,18 @@ function ZipPreAddCallBack($p_event, &$p_header)
     $GLOBALS['exclude_dir_array'];
 
     $path = pathinfo($p_header['stored_filename'], PATHINFO_DIRNAME);
+
+
+    if (in_array($p_header['stored_filename'], $GLOBALS['exclude_files_array'])) {
+        return 0;
+    }
+
+    foreach ($GLOBALS['exclude_dir_array'] as $k => $exclude_dir) {
+        if (stristr($path, $exclude_dir)) {
+            return 0;
+        }
+    }
+
     if (in_array($path, $GLOBALS['exclude_dir_array'])) {
 //        debug_output('<br>exclude directory:' . $path . "<hr>");
 //        echo '<br>exclude directory:' . $path . "<hr>";

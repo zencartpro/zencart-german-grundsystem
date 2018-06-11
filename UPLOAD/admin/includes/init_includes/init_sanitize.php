@@ -3,9 +3,9 @@
  * init_sanitize
  *
  * @package initSystem
- * @copyright Copyright 2003-2017 Zen Cart Development Team
+ * @copyright Copyright 2003-2018 Zen Cart Development Team
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: init_sanitize.php 740 2017-05-20 16:03:16Z webchills $
+ * @version $Id: init_sanitize.php 741 2018-01-02 08:03:16Z webchills $
  */
 
 if (!defined('DO_STRICT_SANITIZATION')) {
@@ -173,7 +173,7 @@ $group = array(
     'padID',
     'coupon_uses_coupon',
     'coupon_uses_user',
-    'coupon_zone_restriction'
+    'coupon_zone_restriction',
 );
 $sanitizer->addSimpleSanitization('CONVERT_INT', $group);
 
@@ -196,10 +196,11 @@ $group = array(
 $sanitizer->addSimpleSanitization('ALPHANUM_DASH_UNDERSCORE', $group);
 
 $group = array('pages_title', 'page_params', 'music_genre_name', 'artists_name', 'record_company_name', 'countries_name', 'name', 'type_name', 'manufacturers_name',
-               'title', 'coupon_name', 'banners_title', 'coupon_code', 'group_name', 'geo_zone_name', 'geo_zone_description',
+               'title', 'coupon_name', 'banners_title', 'coupon_code',
+               'group_name', 'geo_zone_name', 'geo_zone_description',
                'tax_class_description', 'tax_class_title', 'tax_description', 'entry_company', 'customers_firstname',
                'customers_lastname', 'entry_street_address', 'entry_suburb', 'entry_city', 'entry_state', 'customers_referral',
-               'symbol_left', 'symbol_right');
+               'symbol_left', 'symbol_right', 'products_model', 'alt_url');
 $sanitizer->addSimpleSanitization('WORDS_AND_SYMBOLS_REGEX', $group);
 
 $group = array('metatags_title', 'metatags_keywords', 'metatags_description');

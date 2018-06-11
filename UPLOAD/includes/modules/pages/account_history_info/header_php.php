@@ -3,10 +3,10 @@
  * Header code file for the Account History Information/Details page (which displays details for a single specific order)
  *
  * @package page
- * @copyright Copyright 2003-2016 Zen Cart Development Team
+ * @copyright Copyright 2003-2018 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: header_php.php 729 2011-08-09 15:49:16Z hugo13 $
+ * @version $Id: header_php.php 730 2018-01-02 09:49:16Z webchills $
  */
 // This should be first line of the script:
 $zco_notifier->notify('NOTIFY_HEADER_START_ACCOUNT_HISTORY_INFO');
@@ -42,13 +42,14 @@ $statuses_query = "SELECT os.orders_status_name, osh.date_added, osh.comments
 $statuses_query = $db->bindVars($statuses_query, ':ordersID', $_GET['order_id'], 'integer');
 $statuses_query = $db->bindVars($statuses_query, ':languagesID', $_SESSION['languages_id'], 'integer');
 $statuses = $db->Execute($statuses_query);
+$statusArray = array();
 
 while (!$statuses->EOF) {
-
-  $statusArray[] = array('date_added'=>$statuses->fields['date_added'],
-  'orders_status_name'=>$statuses->fields['orders_status_name'],
-  'comments'=>$statuses->fields['comments']);
-
+  $statusArray[] = array(
+      'date_added'=>$statuses->fields['date_added'],
+      'orders_status_name'=>$statuses->fields['orders_status_name'],
+      'comments'=>$statuses->fields['comments'],
+      );
   $statuses->MoveNext();
 }
 

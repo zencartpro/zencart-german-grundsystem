@@ -3,9 +3,9 @@
  * File contains the order-processing class ("order")
  *
  * @package classes
- * @copyright Copyright 2003-2016 Zen Cart Development Team
+ * @copyright Copyright 2003-2018 Zen Cart Development Team
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: order.php 2016-08-20 10:26:25Z webchills $
+ * @version $Id: order.php 2018-04-25 08:26:25Z webchills $
  */
 /**
  * order class
@@ -21,7 +21,10 @@ class order extends base {
   var $info, $totals, $products, $customer, $delivery, $content_type, $email_low_stock, $products_ordered_attributes,
   $products_ordered, $products_ordered_email, $attachArray;
 
-  function __construct($order_id = '') {
+ //-bof-20151015-lat9-Enable cart->order processing to be cognizant of the order's currency  *** 1 of 3 ***
+  function __construct($order_id = '', $override_currency = false) {
+    $this->currency = ($override_currency === false) ? $_SESSION['currency'] : $override_currency;
+//-eof-20151015-lat9-Enable cart->order processing to be cognizant of the order's currency  *** 1 of 3 ***
     $this->info = array();
     $this->totals = array();
     $this->products = array();
@@ -55,7 +58,7 @@ class order extends base {
                          billing_state, billing_country, billing_address_format_id,
                          payment_method, payment_module_code, shipping_method, shipping_module_code,
                          coupon_code, cc_type, cc_owner, cc_number, cc_expires, currency, currency_value,
-                         date_purchased, orders_status, last_modified, order_total, order_tax, ip_address
+                         date_purchased, orders_status, last_modified, order_total, order_tax
                         from " . TABLE_ORDERS . "
                         where orders_id = '" . (int)$order_id . "'";
 
@@ -123,8 +126,7 @@ class order extends base {
                         'orders_status' => $order_status->fields['orders_status_name'],
                         'last_modified' => $order->fields['last_modified'],
                         'total' => $order->fields['order_total'],
-                        'tax' => $order->fields['order_tax'],
-                        'ip_address' => $order->fields['ip_address']
+                        'tax' => $order->fields['order_tax']                        
                         );
 
     $this->customer = array('id' => $order->fields['customers_id'],
@@ -244,7 +246,7 @@ class order extends base {
   function cart() {
     global $db, $currencies;
 
-    $decimals = $currencies->get_decimal_places($_SESSION['currency']);
+    $decimals = $currencies->get_decimal_places(/*$_SESSION['currency']*/ $this->currency);  //-20151015-lat9-Enable cart->order processing to be cognizant of the order's currency  *** 2 of 3 ***
     $this->content_type = $_SESSION['cart']->get_content_type();
 
 
@@ -362,9 +364,11 @@ class order extends base {
 
     }
 
-    $this->info = array('order_status' => DEFAULT_ORDERS_STATUS_ID,
-                        'currency' => $_SESSION['currency'],
-                        'currency_value' => $currencies->currencies[$_SESSION['currency']]['value'],
+     $this->info = array('order_status' => DEFAULT_ORDERS_STATUS_ID,
+//-bof-20151015-lat9-Enable cart->order processing to be cognizant of the order's currency  *** 3 of 3 ***
+                        'currency' => /*$_SESSION['currency']*/ $this->currency,  
+                        'currency_value' => $currencies->currencies[/*$_SESSION['currency']*/ $this->currency]['value'],
+//-bof-20151015-lat9-Enable cart->order processing to be cognizant of the order's currency  *** 3 of 3 ***
                         'payment_method' => $GLOBALS[$class]->title,
                         'payment_module_code' => $GLOBALS[$class]->code,
                         'coupon_code' => $coupon_code->fields['coupon_code'],
@@ -375,14 +379,16 @@ class order extends base {
     //                          'cc_cvv' => (isset($GLOBALS['cc_cvv']) ? $GLOBALS['cc_cvv'] : ''),
                         'shipping_method' => (isset($_SESSION['shipping']['title'])) ? $_SESSION['shipping']['title'] : '',
                         'shipping_module_code' => (isset($_SESSION['shipping']['id']) && strpos($_SESSION['shipping']['id'], '_') > 0 ? $_SESSION['shipping']['id'] : $_SESSION['shipping']),
-                        'shipping_cost' => isset($_SESSION['shipping']['cost']) ? $_SESSION['shipping']['cost'] : 0,
+//-bof-20151015-lat9-Correct rounding error, using precision dictated by selected currency  *** 1 of 4 ***
+                        'shipping_cost' => $currencies->value (isset($_SESSION['shipping']['cost']) ? $_SESSION['shipping']['cost'] : 0, false, $this->currency),
+//-eof-20151015-lat9-Correct rounding error, using precision dictated by selected currency  *** 1 of 4 ***
                         'subtotal' => 0,
                         'shipping_tax' => 0,
                         'tax' => 0,
                         'total' => 0,
                         'tax_groups' => array(),
-                        'comments' => (isset($_SESSION['comments']) ? $_SESSION['comments'] : ''),
-                        'ip_address' => $_SESSION['customers_ip_address'] . ' - ' . $_SERVER['REMOTE_ADDR']
+                        'comments' => (isset($_SESSION['comments']) ? $_SESSION['comments'] : '')
+                        
                         );
 
     //print_r($GLOBALS[$class]);
@@ -471,7 +477,7 @@ class order extends base {
                                       'tax_groups'=>$taxRates,
                                       'tax_description' => zen_get_tax_description($products[$i]['tax_class_id'], $taxCountryId, $taxZoneId),
                                       'price' => $products[$i]['price'],
-                                      'final_price' => zen_round($products[$i]['price'] + $_SESSION['cart']->attributes_price($products[$i]['id']), 4),
+                                      'final_price' => $products[$i]['price'] + $_SESSION['cart']->attributes_price($products[$i]['id']),
                                       'onetime_charges' => $_SESSION['cart']->attributes_price_onetime_charges($products[$i]['id'], $products[$i]['quantity']),
                                       'weight' => $products[$i]['weight'],
                                       'products_priced_by_attribute' => $products[$i]['products_priced_by_attribute'],
@@ -547,15 +553,18 @@ class order extends base {
       $this->notify('NOTIFY_ORDER_CART_EXTERNAL_TAX_HANDLING', array(), $index, $taxCountryId, $taxZoneId);
 
       if ($this->use_external_tax_handler_only == FALSE) {
-      /*********************************************
+           /*********************************************
        * Calculate taxes for this product
        *********************************************/
-      $shown_price = round((zen_add_tax($this->products[$index]['final_price'], $this->products[$index]['tax'])), 2) * $this->products[$index]['qty']   
-      + zen_add_tax($this->products[$index]['onetime_charges'], $this->products[$index]['tax']);
+//-bof-20151015-lat9-Correct rounding error, using precision dictated by selected currency  *** 2 of 4 ***
+      $shown_price = $currencies->value (zen_add_tax($this->products[$index]['final_price'] * $this->products[$index]['qty'], $this->products[$index]['tax']), false, $this->currency)
+      + $currencies->value (zen_add_tax($this->products[$index]['onetime_charges'], $this->products[$index]['tax']), false, $this->currency);
+//-eof-20151015-lat9-Correct rounding error, using precision dictated by selected currency  *** 2 of 4 ***
       $this->info['subtotal'] += $shown_price;
       $this->notify('NOTIFIY_ORDER_CART_SUBTOTAL_CALCULATE', array('shown_price'=>$shown_price));
       // find product's tax rate and description
       $products_tax = $this->products[$index]['tax'];
+
       $products_tax_description = $this->products[$index]['tax_description'];
 
       if (DISPLAY_PRICE_WITH_TAX == 'true') {
@@ -566,11 +575,16 @@ class order extends base {
 //        $tax_add = zen_round(($products_tax / 100) * $shown_price, $currencies->currencies[$this->info['currency']]['decimal_places']);
         $tax_add = ($products_tax/100) * $shown_price;
       }
+//-bof-20151015-lat9-Correct rounding error, using precision dictated by selected currency  *** 3 of 4 ***
+      $tax_add = $currencies->value ($tax_add, false, $this->currency);
+//-eof-20151015-lat9-Correct rounding error, using precision dictated by selected currency  *** 3 of 4 ***
       $this->info['tax'] += $tax_add;
       foreach ($taxRates as $taxDescription=>$taxRate)
       {
-        $taxAdd = zen_calculate_tax($this->products[$index]['final_price']*$this->products[$index]['qty'], $taxRate)
-                +  zen_calculate_tax($this->products[$index]['onetime_charges'], $taxRate);
+//-bof-20151015-lat9-Correct rounding error, using precision dictated by selected currency  *** 4 of 4 ***
+        $taxAdd = $currencies->value (zen_calculate_tax($this->products[$index]['final_price']*$this->products[$index]['qty'], $taxRate), false, $this->currency)
+                +  $currencies->value (zen_calculate_tax($this->products[$index]['onetime_charges'], $taxRate), false, $this->currency);
+//-eof-20151015-lat9-Correct rounding error, using precision dictated by selected currency  *** 4 of 4 ***
         if (isset($this->info['tax_groups'][$taxDescription]))
         {
           $this->info['tax_groups'][$taxDescription] += $taxAdd;
@@ -682,8 +696,7 @@ class order extends base {
                             'order_total' => $this->info['total'],
                             'order_tax' => $this->info['tax'],
                             'currency' => $this->info['currency'],
-                            'currency_value' => $this->info['currency_value'],
-                            'ip_address' => $_SESSION['customers_ip_address'] . ' - ' . $_SERVER['REMOTE_ADDR']
+                            'currency_value' => $this->info['currency_value']                           
                             );
 
     if ($_SESSION['mobilevisitor'] == true){
@@ -1003,8 +1016,10 @@ class order extends base {
     $email_order = EMAIL_TEXT_HEADER . EMAIL_TEXT_FROM . STORE_NAME . "\n\n" ;
 	   if ($this->customer['gender'] == "m") {
       $email_order .= EMAIL_GREETING_MR .' ' ;
-     } else {
+     } else if ($this->customer['gender'] == "f"){
       $email_order .= EMAIL_GREETING_MS .' ' ;
+      } else {
+      $email_order .= EMAIL_GREETING_NEUTRAL .' ' ;    
       }
     $email_order .= $this->customer['firstname'] . ' ' . $this->customer['lastname'] . "\n\n" .
     EMAIL_THANKS_FOR_SHOPPING . "\n" . EMAIL_DETAILS_FOLLOW . "\n" .
@@ -1033,8 +1048,10 @@ class order extends base {
      $email_order = EMAIL_TEXT_HEADER . EMAIL_TEXT_FROM . STORE_NAME . "\n\n" ;
 	   if ($this->customer['gender'] == "m") {
       $email_order .= EMAIL_GREETING_MR .' ' ;
-     } else {
+     } else if ($this->customer['gender'] == "f"){
       $email_order .= EMAIL_GREETING_MS .' ' ;
+      } else {
+      $email_order .= EMAIL_GREETING_NEUTRAL .' ' ;    
       }
     $email_order .= $this->customer['firstname'] . ' ' . $this->customer['lastname'] . "\n\n" .
       EMAIL_THANKS_FOR_SHOPPING . "\n" . EMAIL_DETAILS_FOLLOW . "\n" .
@@ -1113,10 +1130,12 @@ class order extends base {
     while (strstr($email_order, '&nbsp;')) $email_order = str_replace('&nbsp;', ' ', $email_order);
 
     if ($this->customer['gender'] == "m") {
-		$html_msg['EMAIL_GREETING'] = EMAIL_GREETING_MR;
-	} else {
-		$html_msg['EMAIL_GREETING'] = EMAIL_GREETING_MS;
-	}
+     $html_msg['EMAIL_GREETING'] = EMAIL_GREETING_MR;
+     } else if ($this->customer['gender'] == "f"){
+      $html_msg['EMAIL_GREETING'] = EMAIL_GREETING_MS;
+      } else {
+      $html_msg['EMAIL_GREETING'] = EMAIL_GREETING_NEUTRAL;    
+      }
     $html_msg['EMAIL_FIRST_NAME'] = $this->customer['firstname'];
     $html_msg['EMAIL_LAST_NAME'] = $this->customer['lastname'];
     //  $html_msg['EMAIL_TEXT_HEADER'] = EMAIL_TEXT_HEADER;

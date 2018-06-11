@@ -1,10 +1,10 @@
 <?php
 /**
  * @package admin
- * @copyright Copyright 2003-2016 Zen Cart Development Team
+ * @copyright Copyright 2003-2018 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: header.php 793 2016-04-06 19:13:51Z webchills $
+ * @version $Id: header.php 795 2018-03-30 08:13:51Z webchills $
  */
 if (!defined('IS_ADMIN_FLAG')) {
     die('Illegal Access');
@@ -27,8 +27,7 @@ if ((basename($PHP_SELF) != FILENAME_DEFINE_LANGUAGE . '.php') and (basename($PH
             if (file_exists($test_file) and file_exists($test_directory)) {
                 $count++;
                 $languages_array[] = array('id' => $languages[$i]['code'],
-                    'text' => $languages[$i]['name']);
-//        if ($languages[$i]['directory'] == $language) {
+                                           'text' => $languages[$i]['name']);
                 if ($languages[$i]['directory'] == $_SESSION['language']) {
                     $languages_selected = $languages[$i]['code'];
                 }
@@ -111,6 +110,7 @@ if ((SHOW_VERSION_UPDATE_IN_HEADER == 'true' && $version_from_ini != 'off' && ($
     $url .= (strpos($url, '?') > 5 ? '&' : '?') . 'vcheck=yes';
     if ($zv_db_patch_ok == true || $version_check_sysinfo == true) $new_version = '<a href="' . $url . '">' . '<input type="button" class="btn btn-link" value="' . TEXT_VERSION_CHECK_BUTTON . '"/></a>';
 }
+/////////////////
 
 // check GV release queue and alert store owner
 if (SHOW_GV_QUEUE == true) {
@@ -123,7 +123,7 @@ if (SHOW_GV_QUEUE == true) {
 }
 ?>
 <!-- All HEADER_ definitions in the columns below are defined in includes/languages/english.php //-->
-<div class="row">
+  <div class="row">
     <div class="col-xs-8 col-sm-3" id="adminHeaderLogo">
         <?php echo '<a href="' . zen_href_link(FILENAME_DEFAULT) . '">' . zen_image(DIR_WS_IMAGES . HEADER_LOGO_IMAGE, HEADER_ALT_TEXT, HEADER_LOGO_WIDTH, HEADER_LOGO_HEIGHT) . '</a>'; ?>
     </div>
@@ -153,8 +153,9 @@ if (SHOW_GV_QUEUE == true) {
     <div class="col-xs-6 col-sm-3 col-sm-pull-3 noprint adminHeaderAlerts">
         <?php if ($new_gv_queue_cnt > 0) echo $goto_gv . '<br />' . sprintf(TEXT_SHOW_GV_QUEUE, $new_gv_queue_cnt); ?>
     </div>
-</div>
-<div class="row headerBar">
+
+  </div>
+  <div class="row headerBar">
     <div class="col-xs-12 col-sm-12 col-md-2 col-lg-2">
         <?php
         if (!$hide_languages) {
@@ -194,9 +195,12 @@ if (SHOW_GV_QUEUE == true) {
             <li><a href="<?php echo zen_href_link(FILENAME_LOGOFF, '', 'NONSSL'); ?>" class="headerLink"><?php echo HEADER_TITLE_LOGOFF; ?></a></li>
         </ul>
     </div>
-</div>
-<?php if (file_exists(DIR_WS_INCLUDES . 'keepalive_module.php')) require(DIR_WS_INCLUDES . 'keepalive_module.php'); ?>
+  </div>
 <?php require(DIR_WS_INCLUDES . 'header_navigation.php'); ?>
 
-<script src="includes/javascript/jquery-1.12.4.min.js"></script>
+<script>window.jQuery || document.write('<script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"><\/script>');</script>
+<script>window.jQuery || document.write('<script src="includes/javascript/jquery-1.12.4.min.js"><\/script>');</script>
+
+<!--<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>-->
 <script src="includes/javascript/bootstrap.min.js"></script>
+<?php if (file_exists(DIR_WS_INCLUDES . 'keepalive_module.php')) require(DIR_WS_INCLUDES . 'keepalive_module.php'); ?>

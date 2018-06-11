@@ -1,10 +1,10 @@
 <?php
 /**
  * @package admin
- * @copyright Copyright 2003-2016 Zen Cart Development Team
+ * @copyright Copyright 2003-2018 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: products_price_manager.php 733 2016-03-27 18:49:16Z webchills $
+ * @version $Id: products_price_manager.php 734 2018-04-01 07:49:16Z webchills $
  */
 
   require('includes/application_top.php');
@@ -621,22 +621,30 @@ function updateSpecialsGross() {
   var taxRate = getTaxRate();
   var grossSpecialsValue = document.forms["new_prices"].specials_price.value;
 
-  if (taxRate > 0) {
-    grossSpecialsValue = grossSpecialsValue * ((taxRate / 100) + 1);
-  }
+  if (/^\d+(\.\d+)?%$/.test(grossSpecialsValue)) {
+    document.forms["new_prices"].specials_price_gross.value = grossSpecialsValue.slice(0, grossSpecialsValue.length - 1) + "%";
+  } else {
+    if (taxRate > 0) {
+      grossSpecialsValue = grossSpecialsValue * ((taxRate / 100) + 1);
+    }
 
-  document.forms["new_prices"].specials_price_gross.value = doRound(grossSpecialsValue, 4);
+    document.forms["new_prices"].specials_price_gross.value = doRound(grossSpecialsValue, 4);
+  }
 }
 
 function updateSpecialsNet() {
   var taxRate = getTaxRate();
   var netSpecialsValue = document.forms["new_prices"].specials_price_gross.value;
 
-  if (taxRate > 0) {
-    netSpecialsValue = netSpecialsValue / ((taxRate / 100) + 1);
-  }
+  if (/^\d+(\.\d+)?%$/.test(netSpecialsValue)) {
+    document.forms["new_prices"].specials_price.value = netSpecialsValue.slice(0, netSpecialsValue.length - 1) + "%";
+  } else {
+    if (taxRate > 0) {
+      netSpecialsValue = netSpecialsValue / ((taxRate / 100) + 1);
+    }
 
-  document.forms["new_prices"].specials_price.value = doRound(netSpecialsValue, 4);
+    document.forms["new_prices"].specials_price.value = doRound(netSpecialsValue, 4);
+  }
 }
 //--></script>
 <?php } ?>
