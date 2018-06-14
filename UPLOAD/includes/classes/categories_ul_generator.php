@@ -2,10 +2,10 @@
 /**
 
  * @package classes
- * @copyright Copyright 2003-2016 Zen Cart Development Team
+ * @copyright Copyright 2003-2018 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: categories_ul_generator.php 2016-12-02 11:13:16Z webchills $
+ * @version $Id: categories_ul_generator.php 2018-06-14 15:13:16Z webchills $
  */
 
 
@@ -43,7 +43,7 @@ class zen_categories_ul_generator {
     
     function buildBranch($parent_id, $level = 0, $submenu=true, $parent_link='')
     {
-        $result = sprintf($this->parent_group_start_string, ($submenu==true) ? ' class="level'. ($level+1) . '"' : '' );
+        $result = sprintf($this->parent_group_start_string, ($submenu==true) ? ' class="level'. ((float)$level+1) . '"' : '' ); 
         
         if (($this->data[$parent_id])) {
             foreach($this->data[$parent_id] as $category_id => $category) {
@@ -58,7 +58,7 @@ class zen_categories_ul_generator {
                 $result .= '</a>';
 				  
                 if (($this->data[$category_id]) && (($this->max_level == '0') || ($this->max_level > $level+1))) {
-                    $result .= $this->buildBranch($category_id, $level+1, $submenu, $category_link . '_');
+                    $result .= $this->buildBranch($category_id, ((float)$level+1), $submenu, $category_link . '_');
                 }
                 $result .= $this->child_end_string;
             }

@@ -3,10 +3,10 @@
  * Zen Colorbox
  *
  * @author niestudio (daniel [dot] niestudio [at] gmail [dot] com)
- * @copyright Copyright 2003-2005 Zen Cart Development Team
+ * @copyright Copyright 2003-2018 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: zen_colorbox.php 2012-14-30 niestudio $
+ * @version $Id: zen_colorbox.php 2018-06-13 webchills $
  */
 
 function zen_colorbox($src, $alt = '', $width = '', $height = '', $parameters = '') {
@@ -32,8 +32,16 @@ function zen_colorbox($src, $alt = '', $width = '', $height = '', $parameters = 
     list($src, $alt, $width, $height, $parameters) = $newimg; 
   }
 
+  $basepath = "";
+  $realBase = realpath($basepath);
+  $userpath = $basepath . $src;
+  $realUserPath = realpath($userpath);
+
+  if ($realUserPath === false || strpos($realUserPath, $realBase) !== 0) {
+      $src = ''; // This is chosen as compared to say a missing image file as a security related action.  Basically in a working, secure system there should be no reason that this is ever executed.
+  }
+
   $image = zen_output_string($src);
 
   return $image;
 }
-?>

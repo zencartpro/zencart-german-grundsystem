@@ -4,15 +4,15 @@
  * @package Installer
  * @copyright Copyright 2003-2018 Zen Cart Development Team
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: lngDeutsch.php 12 2018-05-10 08:49:16Z webchills $
+ * @version $Id: lngDeutsch.php 13 2018-06-12 12:49:16Z webchills $
  */
 /**
  * defining language components for the page
  */
-define('META_TAG_TITLE', 'Zen Cart 1.5.5 deutsch - Installationsprogramm');
+define('META_TAG_TITLE', 'Zen Cart 1.5.5f deutsch - Installationsprogramm');
 define('HTML_PARAMS','dir="ltr" lang="de"');
 define('ZC_VERSION_STRING', '%s v%s');
-define('TEXT_PAGE_HEADING', 'Systemprüfung');
+define('TEXT_PAGE_HEADING_INDEX', 'Systemprüfung');
 define('TEXT_INDEX_FATAL_ERRORS', 'Es gibt einige kritische Probleme, die behoben werden müssen bevor wie weitermachen können.');
 define('TEXT_INDEX_WARN_ERRORS', 'Einige nicht kritische Probleme');
 define('TEXT_HEADER_MAIN', 'TIP: Die blauen Überschriften Links sind anclickbar und liefern Infos zur Bedeutung des jeweiligen Feldes.');

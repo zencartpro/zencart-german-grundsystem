@@ -1,6 +1,6 @@
 <?php
 /**
- * mod Image Handler 5
+ * mod Image Handler 5.1
  * bmz_io_conf.php
  * filesystem access configuration
  *
