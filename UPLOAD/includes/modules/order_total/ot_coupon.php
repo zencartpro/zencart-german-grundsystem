@@ -213,8 +213,11 @@ class ot_coupon {
         if (!$foundvalid) {
           $this->clear_posts();
         }
+        if (!$foundvalid) {
+          $messageStack->add_session('redemptions', TEXT_INVALID_COUPON_PRODUCT, 'caution');
+         zen_redirect(zen_href_link(FILENAME_CHECKOUT_PAYMENT, '', 'SSL', true, false));
+        }
 
-        if (!$foundvalid) zen_redirect(zen_href_link(FILENAME_CHECKOUT_PAYMENT, 'credit_class_error_code=' . $this->code . '&credit_class_error=' . urlencode(TEXT_INVALID_COUPON_PRODUCT . ' ' . $dc_check), 'SSL',true, false));
         // JTD - end of handling coupon product restrictions
 
         $date_query=$db->Execute("select coupon_start_date from " . TABLE_COUPONS . "

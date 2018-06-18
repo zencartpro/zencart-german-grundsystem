@@ -1,15 +1,12 @@
 <?php
 /**
- * mod Image Handler 5.1
- * gif_info.php
- * gif-info class for transparency stuff
- *
- * @author  Tim Kroeger (original author)
- * @copyright Copyright 2005-2006
- * @license http://www.gnu.org/licenses/gpl.txt GNU General Public License V2.0
- * @version $Id: ibmz_gif_info.class.php,v 2.0 Rev 8 2010-05-31 23:46:5 DerManoMann Exp $
- * Modified by DerManoMann 2010-05-31 23:46:50 
- * Last Modified by lat9: 2017-07-17, correcting class constructor name, applying PSR-2 formatting.
+ * @package Image Handler
+ * @copyright Copyright 2005-2006 Tim Kroeger (original author)
+ * @copyright Copyright 2018 lat 9 - Vinos de Frutas Tropicales
+ * @copyright Copyright 2003-2018 Zen Cart Development Team
+ * @copyright Portions Copyright 2003 osCommerce
+ * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
+ * @version $Id: bmz_gif_info_class.php 2018-06-15 16:13:51Z webchills $
  */
 
    class gifinfo

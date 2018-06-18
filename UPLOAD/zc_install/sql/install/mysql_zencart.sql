@@ -5,7 +5,7 @@
 # * @copyright Copyright 2003-2018 Zen Cart Development Team
 # * @copyright Portions Copyright 2003 osCommerce
 # * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
-# * @version $Id: mysql_zencart.sql 19475 2018-06-13 08:38:16Z webchills $
+# * @version $Id: mysql_zencart.sql 19477 2018-06-18 16:38:16Z webchills $
 #
 
 ############ IMPORTANT INSTRUCTIONS ###############
@@ -707,6 +707,7 @@ CREATE TABLE ezpages (
   page_open_new_window int(1) NOT NULL default '0',
   page_is_ssl int(1) NOT NULL default '0',
   toc_chapter int(11) NOT NULL default '0',
+  page_key varchar(64) NOT NULL DEFAULT '0',
   PRIMARY KEY  (pages_id),
   KEY idx_lang_id_zen (languages_id),
   KEY idx_ezp_status_header_zen (status_header),
@@ -2060,19 +2061,6 @@ CREATE TABLE zones_to_geo_zones (
   KEY idx_zones_zen (geo_zone_id,zone_country_id,zone_id)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
-
-
-
-
-
-
-
-
-
-
-
-
-
 # default data
 
 INSERT INTO template_select VALUES (1, 'responsive_classic', '0');
@@ -2212,10 +2200,17 @@ VALUES ('configMyStore', 'BOX_CONFIGURATION_MY_STORE', 'FILENAME_CONFIGURATION',
        ('mediaManager', 'BOX_CATALOG_MEDIA_MANAGER', 'FILENAME_MEDIA_MANAGER', '', 'extras', 'Y', 4),
        ('mediaTypes', 'BOX_CATALOG_MEDIA_TYPES', 'FILENAME_MEDIA_TYPES', '', 'extras', 'Y', 5),
        ('adresskorrekturvornehmen', 'DO_ADRESSKORREKTUR', 'FILENAME_ADRESSKORREKTUR', '', 'customers', 'N', 101),
-       ('customers_without_order', 'BOX_CUSTOMERS_WITHOUT_ORDER', 'FILENAME_CUSTOMERS_WITHOUT_ORDER', '', 'customers', 'Y', 30);
+       ('customers_without_order', 'BOX_CUSTOMERS_WITHOUT_ORDER', 'FILENAME_CUSTOMERS_WITHOUT_ORDER', '', 'customers', 'Y', 30),
+       ('dsgvo_kundenexport', 'BOX_DSGVO_KUNDENEXPORT', 'FILENAME_DSGVO_KUNDENEXPORT', '', 'customers', 'Y', 31),
+       ('configITRechtKanzlei', 'BOX_CONFIGURATION_IT_RECHT_KANZLEI', 'FILENAME_CONFIGURATION', 'gID=36', 'configuration', 'Y', 36),
+       ('toolsITRechtKanzlei', 'BOX_TOOLS_IT_RECHT_KANZLEI', 'FILENAME_IT_RECHT_KANZLEI', '', 'tools', 'Y', 100),
+       ('configPDF3', 'BOX_CONFIGURATION_PDF3', 'FILENAME_CONFIGURATION', 'gID=37', 'configuration', 'Y', 36),
+       ('toolsPDF3', 'BOX_TOOLS_PDF3', 'RL_INVOICE3_ADMIN_FILENAME', '', 'tools', 'Y', 37),
+       ('GeneratePDFInvoice', 'GENERATE_RL_INVOICE3', 'FILENAME_RL_INVOICE3', '', 'customers', 'N', 37);
+
 
 # Insert a default profile for managing orders, as a built-in example of profile functionality
-INSERT INTO admin_profiles (profile_name) values ('Order Processing');
+INSERT INTO admin_profiles (profile_name) values ('Bestellbearbeitung');
 SET @profile_id=last_insert_id();
 INSERT INTO admin_pages_to_profiles (profile_id, page_key) VALUES
 (@profile_id, 'customers'),
@@ -2234,7 +2229,7 @@ INSERT INTO admin_pages_to_profiles (profile_id, page_key) VALUES
 (@profile_id, 'gvSent'),
 (@profile_id, 'whosOnline');
 INSERT INTO banners (banners_title, banners_url, banners_image, banners_group, banners_html_text, expires_impressions, expires_date, date_scheduled, date_added, date_status_change, status, banners_open_new_windows, banners_on_ssl, banners_sort_order) VALUES ('Amnesty International', 'http://www.amnesty.at', 'banners/amnesty.gif', 'Wide-Banners', '', 0, NULL, NULL, '2013-09-25 20:59:12', NULL, 1, 1, 1, 0);
-INSERT INTO banners (banners_title, banners_url, banners_image, banners_group, banners_html_text, expires_impressions, expires_date, date_scheduled, date_added, date_status_change, status, banners_open_new_windows, banners_on_ssl, banners_sort_order) VALUES ('Zen Cart - Deutsche Version', 'http://www.zen-cart-pro.at', 'banners/125zen_logo.gif', 'SideBox-Banners', '', 0, NULL, NULL, '2013-09-25 20:59:12', NULL, 1, 1, 1, 0);
+INSERT INTO banners (banners_title, banners_url, banners_image, banners_group, banners_html_text, expires_impressions, expires_date, date_scheduled, date_added, date_status_change, status, banners_open_new_windows, banners_on_ssl, banners_sort_order) VALUES ('Zen Cart - Deutsche Version', 'https://www.zen-cart-pro.at', 'banners/125zen_logo.gif', 'SideBox-Banners', '', 0, NULL, NULL, '2013-09-25 20:59:12', NULL, 1, 1, 1, 0);
 INSERT INTO banners (banners_title, banners_url, banners_image, banners_group, banners_html_text, expires_impressions, expires_date, date_scheduled, date_added, date_status_change, status, banners_open_new_windows, banners_on_ssl, banners_sort_order) VALUES ('Aerzte ohne Grenzen', 'http://www.aerzte-ohne-grenzen.de', 'banners/aerzte-ohne-grenzen.gif', 'SideBox-Banners', '', 0, NULL, NULL, '2013-09-25 20:59:12', NULL, 1, 1, 1, 0);
 INSERT INTO banners (banners_title, banners_url, banners_image, banners_group, banners_html_text, expires_impressions, expires_date, date_scheduled, date_added, date_status_change, status, banners_open_new_windows, banners_on_ssl, banners_sort_order) VALUES ('if you have to think ... you haven''t been Zenned!', 'http://www.zen-cart.com', 'banners/think_anim.gif', 'Wide-Banners', '', 0, NULL, NULL, '2013-01-12 20:53:18', NULL, 1, 1, 1, 0);
 INSERT INTO banners (banners_title, banners_url, banners_image, banners_group, banners_html_text, expires_impressions, expires_date, date_scheduled, date_added, date_status_change, status, banners_open_new_windows, banners_on_ssl, banners_sort_order) VALUES ('Zen Cart the art of e-commerce', 'http://www.zen-cart.com', 'banners/bw_zen_88wide.gif', 'BannersAll', '', 0, NULL, NULL, '2013-05-13 10:54:38', NULL, 1, 1, 1, 10);
@@ -3092,6 +3087,50 @@ INSERT INTO configuration (configuration_title, configuration_key, configuration
 ('<b>EZ-Pages Support</b>', 'ZEN_COLORBOX_EZPAGES', 'true', '<br />If true, the lightbox effect will be used for linked images on all EZ-Pages.<br /><br /><b>Default: true</b>', 35, 400, NOW(), NOW(), NULL, 'zen_cfg_select_option(array(''true'', ''false''),'),
 ('&nbsp; File Types', 'ZEN_COLORBOX_FILE_TYPES', 'jpg,png,gif', '<br />On EZ-Pages, the lightbox effect will be applied to all images with one of the following file types.<br /><br /><b>Default: jpg,png,gif</b><br />', 35, 401, NOW(), NOW(), NULL, NULL);
 
+#IT Recht Kanzlei Settings
+INSERT INTO configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, last_modified, date_added, use_function, set_function) VALUES
+('Version', 'IT_RECHT_KANZLEI_MODUL_VERSION', '1.0.0', 'Installierte Version:', 36, 0, NOW(), NOW(), NULL, 'zen_cfg_read_only('),
+('IT Recht Kanzlei - Ist das Modul aktiv?', 'IT_RECHT_KANZLEI_STATUS', 'nein', 'Wollen Sie die Schnittstelle der IT Recht Kanzlei aktivieren?<br/>Bitte erst dann aktivieren, wenn Sie sich mit der Funktionsweise vertraut gemacht haben.', 36, 1, NOW(), NOW(), NULL, 'zen_cfg_select_option(array(''ja'', ''nein''),'),
+('IT Recht Kanzlei - API Token', 'IT_RECHT_KANZLEI_TOKEN', '".md5(time() . rand(0,99999))."', 'Authentifizierungs-Token den Sie zur Übertragung im Mandantenportal der IT-Recht Kanzlei angeben.<br/>Diese Token können Sie hier nicht ändern. Falls Sie eine neue Token erstellen wollen, nutzen Sie dazu die entsprechende Option unter Tools > IT Recht Kanzlei.', 36, 2, NOW(), NOW(), NULL, 'zen_cfg_read_only('),
+('IT Recht Kanzlei - API Version', 'IT_RECHT_KANZLEI_VERSION', '1.0', 'API Version der IT Recht Kanzlei Schnittstelle', 36, 3, NOW(), NOW(), NULL, 'zen_cfg_read_only('),
+('IT Recht Kanzlei - EZ Page Kennung für Rechtstext AGB', 'IT_RECHT_KANZLEI_PAGE_KEY_AGB', 'itrk-agb', 'Bitte geben Sie die Kennung der EZ Page an, die Sie für die AGB angelegt haben. Die EZ Page wurde bei der Modulinstallation bereits entsprechend angelegt. In diese Seite wird dann der Rechtstext für die AGB automatisch eingefügt.<br/>Voreinstellung: itrk-agb', 36, 4, NOW(), NOW(), NULL, NULL),
+('IT Recht Kanzlei - EZ Page Kennung für Rechtstext Datenschutzerklärung', 'IT_RECHT_KANZLEI_PAGE_KEY_DATENSCHUTZ', 'itrk-datenschutz', 'Bitte geben Sie die Kennung der EZ Page an, die Sie für die Datenschutzerklärung angelegt haben. Die EZ Page wurde bei der Modulinstallation bereits entsprechend angelegt. In diese Seite wird dann der Rechtstext für die Datenschutzerklärung automatisch eingefügt<br/>Voreinstellung: itrk-datenschutz.', 36, 5, NOW(), NOW(), NULL, NULL),
+('IT Recht Kanzlei - EZ Page Kennung für Rechtstext Widerrufsbelehrung', 'IT_RECHT_KANZLEI_PAGE_KEY_WIDERRUF', 'itrk-widerruf', 'Bitte geben Sie die Kennung der EZ Page an, die Sie für die Widerrufsbelehrung angelegt haben. Die EZ Page wurde bei der Modulinstallation bereits entsprechend angelegt. In diese Seite wird dann der Rechtstext für die Widerrufsbelehrung automatisch eingefügt<br/>Voreinstellung: itrk-widerruf.', 36, 6, NOW(), NOW(), NULL, NULL),
+('IT Recht Kanzlei - EZ Page Kennung für Rechtstext Impressum', 'IT_RECHT_KANZLEI_PAGE_KEY_IMPRESSUM', 'itrk-impressum', 'Bitte geben Sie die Kennung der EZ Page an, die Sie für das Impressum angelegt haben. Die EZ Page wurde bei der Modulinstallation bereits entsprechend angelegt. In diese Seite wird dann der Rechtstext für das Impressum automatisch eingefügt.<br/>Voreinstellung: itrk-impressum', 36, 7, NOW(), NOW(), NULL, NULL),
+('IT Recht Kanzlei - AGB auch als pdf abrufen?', 'IT_RECHT_KANZLEI_PDF_AGB', 'ja', 'Sollen die AGB auch als pdf verfügbar sein?', 36, 8, NOW(), NOW(), NULL, 'zen_cfg_select_option(array(''ja'', ''nein''),'),
+('IT Recht Kanzlei - Datenschutzerklärung auch als pdf abrufen?', 'IT_RECHT_KANZLEI_PDF_DATENSCHUTZ', 'ja', 'Soll die Datenschutzerklärung auch als pdf verfügbar sein?', 36, 9, NOW(), NOW(), NULL, 'zen_cfg_select_option(array(''ja'', ''nein''),'),
+('IT Recht Kanzlei - Widerrufsbelehrung auch als pdf abrufen?', 'IT_RECHT_KANZLEI_PDF_WIDERRUF', 'ja', 'Soll die Widerrufsbelehrung auch als pdf verfügbar sein?', 36, 10, NOW(), NOW(), NULL, 'zen_cfg_select_option(array(''ja'', ''nein''),'),
+('IT Recht Kanzlei - Speicherort der pdf Dateien', 'IT_RECHT_KANZLEI_PDF_FILE', 'includes/pdf', 'In welchem Ordner am Server sollen die pdf Dateien gespeichert werden?<br/>Lassen Sie diese Einstellung auf includes/pdf, damit das Modul pdf Rechnung falls installiert auf die pdfs zugreifen kann.', 36, 11, NOW(), NOW(), NULL, NULL);
+
+#pdf Rechnung Settings
+
+INSERT INTO configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, last_modified, date_added, use_function, set_function) VALUES
+('Version', 'RL_INVOICE3_MODUL_VERSION', '3.5.0', 'Version installed:', 37, 0, NOW(), NOW(), NULL, 'zen_cfg_read_only('),
+('pdf Invoice - Status', 'RL_INVOICE3_STATUS', 'false', 'Do you want to activate the pdf invoice plugin?', 37, 1, NOW(), NOW(), NULL, 'zen_cfg_select_option(array(''true'', ''false''), '),
+('pdf Invoice - Date of invoice = Date of order?', 'RL_INVOICE3_ORDERDATE', 'true', 'Should the invoice date be the date of the order or the date of the creation of the invoice?', 37, 2, NOW(), NOW(), NULL, 'zen_cfg_select_option(array(''true'', ''false''), '),
+('pdf Invoice - Customer ID', 'RL_INVOICE3_CUSTOMERID', 'true', 'Do you want to show the customer id on the pdf invoice?', 37, 4, NOW(), NOW(), NULL, 'zen_cfg_select_option(array(''true'', ''false''), '),
+('pdf Invoice - Show shipping address?', 'RL_INVOICE3_SHIPPING_ADDRESS', 'true', 'Do you want to show the shipping address on the pdf invoice?', 37, 5, NOW(), NOW(), NULL, 'zen_cfg_select_option(array(''true'', ''false''), '),
+('pdf Invoice - XY-position of address1 position', 'RL_INVOICE3_ADDRESS1_POS', '89|21', 'XY-position of address; its the margin delta <br />Default: 0|30', 37, 6, NOW(), NOW(), NULL, NULL),
+('pdf Invoice - XY-position of address2 position', 'RL_INVOICE3_ADDRESS2_POS', '1|21', 'XY-position of address; its the margin delta <br />Default: 80|30', 37, 80, NOW(), NOW(), NULL, NULL),
+('pdf Invoice - Border Address1|2', 'RL_INVOICE3_ADDRESS_BORDER', '|', 'border Address1|2: LTRB (Left Top Right Bottom)<br />', 37, 70, NOW(), NOW(), NULL, NULL),
+('pdf Invoice - Width Address1|2', 'RL_INVOICE3_ADDRESS_WIDTH', '80|80', 'width Address1|2: 60|60<br />', 37, 40, NOW(), NOW(), NULL, NULL),
+('pdf Invoice - Deltas', 'RL_INVOICE3_DELTA', '5|8', 'delta address invoice|delta invoice products: 20|20<br />', 37, 50, NOW(), NOW(), NULL, NULL),
+('pdf Invoice - Fonts for invoice|products', 'RL_INVOICE3_FONTS', 'myriadpc|myriadpc', 'fonts for <br />1. invoice in general <br >2. products & total-table<br />', 37, 120, NOW(), NOW(), NULL, NULL),
+('pdf Invoice - Line Height', 'RL_INVOICE3_LINE_HEIGT', '1.25', 'Line Height', 37, 130, NOW(), NOW(), NULL, NULL),
+('pdf Invoice - Line Total Thickness', 'RL_INVOICE3_LINE_THICK', '0.5', 'thickness off total-line', 37, 130, NOW(), NOW(), NULL, NULL),
+('pdf Invoice - Margins', 'RL_INVOICE3_MARGIN', '20|20|20|20', 'defines the margins:<br />top|right|bottom|left<br />(Note: 1inch = 72pt / 2.54cm; 1cm = 28,35pt)<br />', 37, 20, NOW(), NOW(), NULL, NULL),
+('pdf Invoice - Accounting for free product', 'RL_INVOICE3_NOT_NULL_INVOICE', '0', 'Accounting for free product: send e-mail invoice', 37, 130, NOW(), NOW(), NULL, NULL),
+('pdf Invoice - Send by orderstatus greater/equal than ', 'RL_INVOICE3_ORDERSTATUS', '3', 'only send invoice if orders_status greater or equal than', 37, 130, NOW(), NOW(), NULL, NULL),
+('pdf Invoice - Prefix for OrderNo', 'RL_INVOICE3_ORDER_ID_PREFIX', ': 2016', 'prefix for OrderNo<br />', 37, 110, NOW(), NOW(), NULL, NULL),
+('pdf Invoice - Paper Size/Units/Oriantation', 'RL_INVOICE3_PAPER', 'A4|mm|P', '1. papersize = A3|A4|A5|Letter|Legal <br />2. units: pt|mm|cm|inch <br />3. Oriantation: L|P<br />', 37, 10, NOW(), NOW(), NULL, NULL),
+('pdf Invoice - pdf background file', 'RL_INVOICE3_PDF_BACKGROUND', '" . DIR_FS_CATALOG . DIR_WS_INCLUDES . "pdf/rechnung_de.pdf', 'absolute path to pdf background file<br />', 37, 60, NOW(), NOW(), NULL, NULL),
+('pdf Invoice - Filename and path to store the pdf-file', 'RL_INVOICE3_PDF_PATH', '" . DIR_FS_CATALOG . "pdf/|1', 'absolute path to store the pdf-file (!!must be writeable !!)<br />Default: ../pdf/|1<br />', 37, 130, NOW(), NOW(), NULL, NULL),
+('pdf Invoice - Additional attachements', 'RL_INVOICE3_SEND_ATTACH', 'agb_de.pdf|widerruf_de.pdf', 'RL_INVOICE3_SEND_PDF', 37, 130, NOW(), NOW(), NULL, NULL),
+('pdf Invoice - [RE]send order', 'RL_INVOICE3_SEND_ORDERSTATUS_CHANGE', '3|7', '[RE]send invoice, if orderstatus changed to', 37, 130, NOW(), NOW(), NULL, NULL),
+('pdf Invoice - Send pdf invoice with order', 'RL_INVOICE3_SEND_PDF', '0', 'Do you want to send the invoice with an order?', 37, 130, NOW(), NOW(), NULL, NULL),
+('pdf Invoice - Templates for products table & total table', 'RL_INVOICE3_TABLE_TEMPLATE', 'amazon|amazon_templ|total_col_1|total_opt_1', 'templates for products_table & total_table; this is defined in rl_invoice3_def.php<br />', 37, 90, NOW(), NOW(), NULL, NULL),
+('pdf Invoice - PDF-template on first page', 'RL_INVOICE3_TEMPLATE_ONLY_FIRST_PAGE', 'false', 'print pdf-background-template omly on the first page', 37, 160, NOW(), NOW(), NULL, 'zen_cfg_select_option(array(''true'', ''false''), '),
+('pdf Invoice - Delta 2.Page', 'RL_INVOICE3_DELTA_2PAGE', '10', 'Delta 2.Page', 37, 160, NOW(), NOW(), NULL, NULL);
 
 #Vataddon
 INSERT INTO configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, last_modified, date_added, use_function, set_function) VALUES ('Display Vat Addon', 'DISPLAY_VATADDON_WHERE', 'ALL', 'Do you want to display the text incl. or excl. VAT plus shipping costs near the prices?<br />0=off<br/>ALL=everywhere<br/>product_info=only on products details page<br />', '1', '120', NULL, now(), NULL, 'zen_cfg_select_option(array(\'0\', \'ALL\', \'product_info\'), ');
@@ -3130,6 +3169,8 @@ INSERT INTO configuration_group VALUES (32, 'Google Analytics', 'Google Analytic
 INSERT INTO configuration_group VALUES (33, 'Facebook/Open Graph/Microdata', 'Facebook/Open Graph/Microdata', 33, '1');
 INSERT INTO configuration_group VALUES (34, 'RSS Feed', 'RSS Feed Settings', 34, '1');
 INSERT INTO configuration_group VALUES (35, 'Zen Colorbox', 'Zen Colorbox Settings', 35, '1');
+INSERT INTO configuration_group VALUES (36, 'IT Recht Kanzlei', 'IT Recht Kanzlei Settings', 36, '1');
+INSERT INTO configuration_group VALUES (37, 'pdf Invoice', 'pdf Invoice Settings', 37, '1');
 
 INSERT INTO currencies VALUES (1,'Euro','EUR','&euro;','','.',',','2','1.0000', now());
 INSERT INTO currencies VALUES (2,'US Dollar','USD','$','','.',',','2','1.0749', now());
@@ -3137,6 +3178,17 @@ INSERT INTO currencies VALUES (3,'GB Pound','GBP','&pound;','','.',',','2','0.86
 INSERT INTO currencies VALUES (4,'Canadian Dollar','CAD','$','','.',',','2','1.4373', now());
 INSERT INTO currencies VALUES (5,'Australian Dollar','AUD','$','','.',',','2','1.3919', now());
 INSERT INTO currencies VALUES (6,'Schweizer Franken','CHF','CHF','','','','0','1.0741', now());
+
+# Create Default IT-Recht Kanzlei EZ Pages
+INSERT INTO ezpages (languages_id, pages_title, alt_url, alt_url_external, pages_html_text, status_header, status_sidebox, status_footer, status_toc, header_sort_order, sidebox_sort_order, footer_sort_order, toc_sort_order, page_open_new_window, page_is_ssl, toc_chapter, page_key) VALUES
+(43, 'Datenschutzbestimmungen', '', '', '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 'itrk-datenschutz'),
+(43, 'Widerrufsrecht', '', '', '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 'itrk-widerruf'),
+(43, 'Impressum', '', '', '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 'itrk-impressum'),
+(43, 'Allgemeine Geschäftsbedingungen', '', '', '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 'itrk-agb'),
+(1, 'Privacy', '', '', '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 'itrk-datenschutz'),
+(1, 'Revocation Clause', '', '', '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 'itrk-widerruf'),
+(1, 'Imprint', '', '', '', 0, 0, 0, 0, 0, 0, 0, 4, 0, 0, 0, 'itrk-impressum'),
+(1, 'Terms and Conditions', '', '', '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 'itrk-agb');
 
 INSERT INTO google_analytics_languages VALUES (1,'Chinese (simplified) - Chinesisch (einfach)','zh_CN',1);
 INSERT INTO google_analytics_languages VALUES (2,'Chinese (traditional) - Chinesisch (traditionell)','zh_TW',2);
@@ -3245,6 +3297,7 @@ INSERT INTO orders_status VALUES ( '3', '1', 'Delivered');
 INSERT INTO orders_status VALUES ( '4', '1', 'Update');
 INSERT INTO orders_status VALUES ( '5', '1', 'Cancelled');
 INSERT INTO orders_status VALUES ( '6', '1', 'Test Order');
+INSERT INTO orders_status VALUES ( '7', '1', 'Resend Invoice');
 
 INSERT INTO product_types VALUES (1, 'Product - General', 'product', '1', 'Y', '', now(), now());
 INSERT INTO product_types VALUES (2, 'Product - Music', 'product_music', '1', 'Y', '', now(), now());
@@ -3758,6 +3811,7 @@ INSERT INTO orders_status VALUES (3, 43, 'Verschickt');
 INSERT INTO orders_status VALUES (4, 43, 'Information');
 INSERT INTO orders_status VALUES (5, 43, 'Storniert');
 INSERT INTO orders_status VALUES (6, 43, 'Testbestellung');
+INSERT INTO orders_status VALUES (7, 43, 'Rechnung versenden');
 
 ## ZEN-DEUTSCH MENU einfuegen
 INSERT INTO admin_menus (menu_key, language_key, sort_order) 
@@ -3765,8 +3819,8 @@ VALUES ('german1', 'BOX_HEADING_EXTRAS_GERMAN', 50);
 
 INSERT INTO admin_pages (page_key, language_key, main_page, page_params, menu_key, display_on_menu, sort_order) 
 VALUES  ('proponents', 'GERMAN_PROPONENTS', 'FILENAME_GERMAN', '', 'german1', 'Y', 30),
-        ('german10', 'GERMAN_FORUM', 'FILENAME_GERMAN', 'extern=http://www.zen-cart-pro.at/forum', 'german1', 'Y', 10),
-        ('german30', 'GERMAN_FAQ', 'FILENAME_GERMAN', 'extern=http://www.zen-cart-pro.at/forum/forums/72-FAQ-passend-zu-allen-deutschen-Zen-Cart-Versionen', 'german1', 'Y', 20);
+        ('german10', 'GERMAN_FORUM', 'FILENAME_GERMAN', 'extern=https://www.zen-cart-pro.at/forum', 'german1', 'Y', 10),
+        ('german30', 'GERMAN_FAQ', 'FILENAME_GERMAN', 'extern=https://www.zen-cart-pro.at/forum/forums/72-FAQ-passend-zu-allen-deutschen-Zen-Cart-Versionen', 'german1', 'Y', 20);
         
         
 REPLACE INTO configuration_group (configuration_group_id, language_id, configuration_group_title, configuration_group_description, sort_order, visible) VALUES 
@@ -3800,7 +3854,9 @@ REPLACE INTO configuration_group (configuration_group_id, language_id, configura
 (32, 43, 'Google Analytics Einstellungen', 'Google Analytics Einstellungen', 32, 1),
 (33, 43, 'Facebook/Open Graph/Microdata', 'Facebook/Open Graph/Microdata Einstellungen', 33, 1),
 (34, 43, 'RSS Feed', 'RSS Feed Einstellungen', 34, 1),
-(35, 43, 'Zen Colorbox', 'Zen Colorbox Einstellungen', 35, 1);
+(35, 43, 'Zen Colorbox', 'Zen Colorbox Einstellungen', 35, 1),
+(36, 43, 'IT Recht Kanzlei', 'Einstellungen für das IT Recht Kanzlei Modul', 36, 1),
+(37, 43, 'pdf Rechnung', 'Einstellungen für das pdf Rechnung Modul', 37, 1);
 
 
 INSERT INTO configuration_language (configuration_title, configuration_key, configuration_language_id, configuration_description, last_modified, date_added) VALUES
@@ -3929,7 +3985,7 @@ INSERT INTO configuration_language (configuration_title, configuration_key, conf
 ('Warenkorb: Breite der Artikelbilder', 'IMAGE_SHOPPING_CART_WIDTH', 43, 'Standard = 50', now(), now()),
 ('Warenkorb: Höhe der Artikelbilder', 'IMAGE_SHOPPING_CART_HEIGHT', 43, 'Standard = 40', now(), now()),
 ('Kategorie: Bildbreite - Artikeldetails', 'CATEGORY_ICON_IMAGE_WIDTH', 43, 'Breite in Pixel für das Kategoriebild auf der Artikeldetailseite', now(), now()),
-('Kategorie: BildHöhe - Artikeldetails', 'CATEGORY_ICON_IMAGE_HEIGHT', 43, 'Höhe in Pixel für das Kategoriebild auf der Artikeldetailseite', now(), now()),
+('Kategorie: Bildhöhe - Artikeldetails', 'CATEGORY_ICON_IMAGE_HEIGHT', 43, 'Höhe in Pixel für das Kategoriebild auf der Artikeldetailseite', now(), now()),
 ('Bild Kategorie mit Unterkategorien: Bildbreite', 'SUBCATEGORY_IMAGE_TOP_WIDTH', 43, 'Die Breite in Pixel<br />Dieses Bild wird beim Klicken auf eine Kategorie oben angezeigt, wenn diese Unterkategorien enthält', now(), now()),
 ('Bild Kategorie mit Unterkategorien: BildHöhe', 'SUBCATEGORY_IMAGE_TOP_HEIGHT', 43, 'Die Höhe in Pixel<br />Dieses Bild wird beim Klicken auf eine Kategorie oben angezeigt, wenn diese Unterkategorien enthält', now(), now()),
 ('Artikelbeschreibung: Breite der Artikelbilder', 'MEDIUM_IMAGE_WIDTH', 43, 'Die Breite (in Pixel) der Artikelbilder in der Produktbeschreibung', now(), now()),
@@ -4350,8 +4406,8 @@ INSERT INTO configuration_language (configuration_title, configuration_key, conf
 
 # Adminmenü ID 21
 ('Bild anzeigen', 'PRODUCT_NEW_LIST_IMAGE', 43, 'Wollen Sie Artikelbilder in der Liste anzeigen?<br /><br />0= nein<br /><br />1. Zahl = links oder rechts<br />2. und 3. Zahl = Sortierung<br />4. Zahl = Anzahl der Leerzeilen danach<br />', now(), now()),
-('stückzahl anzeigen', 'PRODUCT_NEW_LIST_QUANTITY', 43, 'Wollen Sie die Artikelstückzahlen in der Liste anzeigen?<br /><br />0= nein<br /><br />1. Zahl = links oder rechts<br />2. und 3. Zahl = Sortierung<br />4. Zahl = Anzahl der Leerzeilen danach<br />', now(), now()),
-('"jetzt kaufen" - Button anzeigen', 'PRODUCT_NEW_BUY_NOW', 43, 'Wollen Sie den "jetzt kaufen" - Button in der Liste anzeigen?<br /><br />0= nein<br /><br />1. Zahl = links oder rechts<br />2. und 3. Zahl = Sortierung<br />4. Zahl = Anzahl der Leerzeilen danach<br />', now(), now()),
+('Stückzahl anzeigen', 'PRODUCT_NEW_LIST_QUANTITY', 43, 'Wollen Sie die Artikelstückzahlen in der Liste anzeigen?<br /><br />0= nein<br /><br />1. Zahl = links oder rechts<br />2. und 3. Zahl = Sortierung<br />4. Zahl = Anzahl der Leerzeilen danach<br />', now(), now()),
+('"Jetzt kaufen" - Button anzeigen', 'PRODUCT_NEW_BUY_NOW', 43, 'Wollen Sie den "jetzt kaufen" - Button in der Liste anzeigen?<br /><br />0= nein<br /><br />1. Zahl = links oder rechts<br />2. und 3. Zahl = Sortierung<br />4. Zahl = Anzahl der Leerzeilen danach<br />', now(), now()),
 ('Artikelname anzeigen', 'PRODUCT_NEW_LIST_NAME', 43, 'Wollen Sie den Artikelnamen in der Liste anzeigen?<br /><br />0= nein<br /><br />1. Zahl = links oder rechts<br />2. und 3. Zahl = Sortierung<br />4. Zahl = Anzahl der Leerzeilen danach<br />', now(), now()),
 ('Artikelnummer anzeigen', 'PRODUCT_NEW_LIST_MODEL', 43, 'Wollen Sie die Artikelnummer in der Liste anzeigen?<br /><br />0= nein<br /><br />1. Zahl = links oder rechts<br />2. und 3. Zahl = Sortierung<br />4. Zahl = Anzahl der Leerzeilen danach<br />', now(), now()),
 ('Herstellernamen anzeigen', 'PRODUCT_NEW_LIST_MANUFACTURER', 43, 'Wollen Sie den Herstellernamen in der Liste anzeigen?<br /><br />0= nein<br /><br />1. Zahl = links oder rechts<br />2. und 3. Zahl = Sortierung<br />4. Zahl = Anzahl der Leerzeilen danach<br />', now(), now()),
@@ -4367,7 +4423,7 @@ INSERT INTO configuration_language (configuration_title, configuration_key, conf
 # Adminmenü ID 22
 ('Bild anzeigen', 'PRODUCT_FEATURED_LIST_IMAGE', 43, 'Wollen Sie Artikelbilder in der Liste anzeigen?<br /><br />0= nein<br /><br />1. Zahl = links oder rechts<br />2. und 3. Zahl = Sortierung<br />4. Zahl = Anzahl der Leerzeilen danach<br />', now(), now()),
 ('Stückzahl anzeigen', 'PRODUCT_FEATURED_LIST_QUANTITY', 43, 'Wollen Sie die Artikelstückzahlen in der Liste anzeigen?<br /><br />0= nein<br /><br />1. Zahl = links oder rechts<br />2. und 3. Zahl = Sortierung<br />4. Zahl = Anzahl der Leerzeilen danach<br />', now(), now()),
-('"jetzt kaufen" - Button anzeigen', 'PRODUCT_FEATURED_BUY_NOW', 43, 'Wollen Sie den "jetzt kaufen" - Button in der Liste anzeigen?<br /><br />0= nein<br /><br />1. Zahl = links oder rechts<br />2. und 3. Zahl = Sortierung<br />4. Zahl = Anzahl der Leerzeilen danach<br />', now(), now()),
+('"Jetzt kaufen" - Button anzeigen', 'PRODUCT_FEATURED_BUY_NOW', 43, 'Wollen Sie den "jetzt kaufen" - Button in der Liste anzeigen?<br /><br />0= nein<br /><br />1. Zahl = links oder rechts<br />2. und 3. Zahl = Sortierung<br />4. Zahl = Anzahl der Leerzeilen danach<br />', now(), now()),
 ('Artikelname anzeigen', 'PRODUCT_FEATURED_LIST_NAME', 43, 'Wollen Sie den Artikelnamen in der Liste anzeigen?<br /><br />0= nein<br /><br />1. Zahl = links oder rechts<br />2. und 3. Zahl = Sortierung<br />4. Zahl = Anzahl der Leerzeilen danach<br />', now(), now()),
 ('Artikelnummer anzeigen', 'PRODUCT_FEATURED_LIST_MODEL', 43, 'Wollen Sie die Artikelnummer in der Liste anzeigen?<br /><br />0= nein<br /><br />1. Zahl = links oder rechts<br />2. und 3. Zahl = Sortierung<br />4. Zahl = Anzahl der Leerzeilen danach<br />', now(), now()),
 ('Herstellernamen anzeigen', 'PRODUCT_FEATURED_LIST_MANUFACTURER', 43, 'Wollen Sie den Herstellernamen in der Liste anzeigen?<br /><br />0= nein<br /><br />1. Zahl = links oder rechts<br />2. und 3. Zahl = Sortierung<br />4. Zahl = Anzahl der Leerzeilen danach<br />', now(), now()),
@@ -4381,8 +4437,8 @@ INSERT INTO configuration_language (configuration_title, configuration_key, conf
 
 # Adminmenü ID 23
 ('Bild anzeigen', 'PRODUCT_ALL_LIST_IMAGE', 43, 'Wollen Sie Artikelbilder in der Liste anzeigen?<br /><br />0= nein<br /><br />1. Zahl = links oder rechts<br />2. und 3. Zahl = Sortierung<br />4. Zahl = Anzahl der Leerzeilen danach<br />', now(), now()),
-('stückzahl anzeigen', 'PRODUCT_ALL_LIST_QUANTITY', 43, 'Wollen Sie stückzahlen in der Liste anzeigen?<br /><br />0= nein<br /><br />1. Zahl = links oder rechts<br />2. und 3. Zahl = Sortierung<br />4. Zahl = Anzahl der Leerzeilen danach<br />', now(), now()),
-('"jetzt kaufen" - Button anzeigen', 'PRODUCT_ALL_BUY_NOW', 43, 'Wollen Sie den "jetzt kaufen" - Button in der Liste anzeigen?<br /><br />0= nein<br /><br />1. Zahl = links oder rechts<br />2. und 3. Zahl = Sortierung<br />4. Zahl = Anzahl der Leerzeilen danach<br />', now(), now()),
+('Stückzahl anzeigen', 'PRODUCT_ALL_LIST_QUANTITY', 43, 'Wollen Sie stückzahlen in der Liste anzeigen?<br /><br />0= nein<br /><br />1. Zahl = links oder rechts<br />2. und 3. Zahl = Sortierung<br />4. Zahl = Anzahl der Leerzeilen danach<br />', now(), now()),
+('"Jetzt kaufen" - Button anzeigen', 'PRODUCT_ALL_BUY_NOW', 43, 'Wollen Sie den "jetzt kaufen" - Button in der Liste anzeigen?<br /><br />0= nein<br /><br />1. Zahl = links oder rechts<br />2. und 3. Zahl = Sortierung<br />4. Zahl = Anzahl der Leerzeilen danach<br />', now(), now()),
 ('Artikelname anzeigen', 'PRODUCT_ALL_LIST_NAME', 43, 'Wollen Sie den Artikelname in der Liste anzeigen?<br /><br />0= nein<br /><br />1. Zahl = links oder rechts<br />2. und 3. Zahl = Sortierung<br />4. Zahl = Anzahl der Leerzeilen danach<br />', now(), now()),
 ('Artikelnummer anzeigen', 'PRODUCT_ALL_LIST_MODEL', 43, 'Wollen Sie die Artikelnummer in der Liste anzeigen?<br /><br />0= nein<br /><br />1. Zahl = links oder rechts<br />2. und 3. Zahl = Sortierung<br />4. Zahl = Anzahl der Leerzeilen danach<br />', now(), now()),
 ('Herstellernamen anzeigen', 'PRODUCT_ALL_LIST_MANUFACTURER', 43, 'Wollen Sie den Herstellernamen in der Liste anzeigen?<br /><br />0= nein<br /><br />1. Zahl = links oder rechts<br />2. und 3. Zahl = Sortierung<br />4. Zahl = Anzahl der Leerzeilen danach<br />', now(), now()),
@@ -4549,13 +4605,13 @@ INSERT INTO configuration_language (configuration_title, configuration_key, conf
 
 # Adminmenü ID 35 - Zen Colorbox
 
-('<b>Zen Colorbox</b>', 'ZEN_COLORBOX_STATUS', 43, 'Wollen Sie für die VergröÃŸerung Ihrer Artikelbilder einen Lightboxeffekt nutzen?<br/><br/>Voreinstellung = true<br/>', now(), now()),
+('<b>Zen Colorbox</b>', 'ZEN_COLORBOX_STATUS', 43, 'Wollen Sie für die Vergrösserung Ihrer Artikelbilder einen Lightboxeffekt nutzen?<br/><br/>Voreinstellung = true<br/>', now(), now()),
 ('Overlay Transparenz', 'ZEN_COLORBOX_OVERLAY_OPACITY', 43, 'Gewünschte Transparenz des Overlays<br/><br/>Voreinstellung = 0.6<br/>', now(), now()),
-('Dauer der BildvergröÃŸerung', 'ZEN_COLORBOX_RESIZE_DURATION', 43, 'Geschwindigkeit in Millisekunden<br/><br/>Voreinstellung = 400<br/>', now(), now()),
+('Dauer der Bildvergrösserung', 'ZEN_COLORBOX_RESIZE_DURATION', 43, 'Geschwindigkeit in Millisekunden<br/><br/>Voreinstellung = 400<br/>', now(), now()),
 ('Anfangs Bildbreite', 'ZEN_COLORBOX_INITIAL_WIDTH',  43, 'Breite des Artikelbildes beim ersten Aufruf<br/><br/>Voreinstellung = 250<br/>', now(), now()),
 ('Anfangs Bildhöhe', 'ZEN_COLORBOX_INITIAL_HEIGHT', 43, 'Höhe des Artikelbildes beim ersten Aufruf<br/><br/>Voreinstellung = 250<br/>', now(), now()),
 ('Bildzähler anzeigen', 'ZEN_COLORBOX_COUNTER', 43, 'Soll innerhalb der Lightbox eine Anzeige zur Anzahl der Bilder erscheinen?<br/><br/>Voreinstellung = true<br/>', now(), now()),
-('Beim Click aufs Overlay schlieÃŸen?', 'ZEN_COLORBOX_CLOSE_OVERLAY', 43, 'Soll die Lightbox beim Clicken auf das Overlay geschlossen werden?<br/><br/>Voreinstellung = false<br/>', now(), now()),
+('Beim Click aufs Overlay schliessen?', 'ZEN_COLORBOX_CLOSE_OVERLAY', 43, 'Soll die Lightbox beim Clicken auf das Overlay geschlossen werden?<br/><br/>Voreinstellung = false<br/>', now(), now()),
 ('Loop', 'ZEN_COLORBOX_LOOP', 43, 'Wenn auf true gestellt vergröÃŸern sich die Bilder in beide Richtungen<br/><br/>Voreinstellung = true<br/>', now(), now()),
 ('<b>Slideshow</b>', 'ZEN_COLORBOX_SLIDESHOW',  43, 'Sollen die zusätzlichen Artikelbilder in einer Slideshow angezeigt werden?<br/><br/>Voreinstellung = false<br/>', now(), now()),
 ('&nbsp; Slideshow Autostart', 'ZEN_COLORBOX_SLIDESHOW_AUTO', 43, 'Slideshow automatisch starten?<br/><br/>Voreinstellung = true<br/>', now(), now()),
@@ -4566,6 +4622,51 @@ INSERT INTO configuration_language (configuration_title, configuration_key, conf
 ('&nbsp; Hauptbild in Galerie aufnehmen?', 'ZEN_COLORBOX_GALLERY_MAIN_IMAGE', 43, 'Soll das Hauptartikelbild Bestandteil der Galerieansicht sein?<br/><br/>Voreinstellung = true<br/>', now(), now()),
 ('<b>EZ-Pages Unterstützung</b>', 'ZEN_COLORBOX_EZPAGES', 43, 'Soll der Lightbox Effekt auch auf Bilder in den EZ Pages angewandt werden?<br/><br/>Voreinstellung = true<br/>', now(), now()),
 ('&nbsp; Dateitypen', 'ZEN_COLORBOX_FILE_TYPES', 43, 'Auf den EZ-Pages wird der Lightbox Effekt auf alle Bilder mit folgenden Dateitypen angewandt:<br/><br/>Voreinstellung = jpg,png,gif<br/>', now(), now()),
+
+
+# Adminmenü ID 36 - IT Recht Kanzlei
+
+('Version', 'IT_RECHT_KANZLEI_MODUL_VERSION', 43, 'Installierte Version:', now(), now()),
+('IT Recht Kanzlei - Ist das Modul aktiv?', 'IT_RECHT_KANZLEI_STATUS', 43, 'Wollen Sie die Schnittstelle der IT Recht Kanzlei aktivieren?<br/>Bitte erst dann aktivieren, wenn Sie sich mit der Funktionsweise vertraut gemacht haben.', now(), now()),
+('IT Recht Kanzlei - API Token', 'IT_RECHT_KANZLEI_TOKEN', 43, 'Authentifizierungs-Token den Sie zur Übertragung im Mandantenportal der IT-Recht Kanzlei angeben.<br/>Diese Token können Sie hier nicht ändern. Falls Sie eine neue Token erstellen wollen, nutzen Sie dazu die entsprechende Option unter Tools > IT Recht Kanzlei.', now(), now()),
+('IT Recht Kanzlei - API Version', 'IT_RECHT_KANZLEI_VERSION',  43, 'API Version der IT Recht Kanzlei Schnittstelle', now(), now()),
+('IT Recht Kanzlei - EZ Page Kennung für Rechtstext AGB', 'IT_RECHT_KANZLEI_PAGE_KEY_AGB', 43, 'Bitte geben Sie die Kennung der EZ Page an, die Sie für die AGB angelegt haben. Die EZ Page wurde bei der Modulinstallation bereits entsprechend angelegt. In diese Seite wird dann der Rechtstext für die AGB automatisch eingefügt.<br/>Voreinstellung: itrk-agb', now(), now()),
+('IT Recht Kanzlei - EZ Page Kennung für Rechtstext Datenschutzerklärung', 'IT_RECHT_KANZLEI_PAGE_KEY_DATENSCHUTZ', 43, 'Bitte geben Sie die Kennung der EZ Page an, die Sie für die Datenschutzerklärung angelegt haben. Die EZ Page wurde bei der Modulinstallation bereits entsprechend angelegt. In diese Seite wird dann der Rechtstext für die Datenschutzerklärung automatisch eingefügt<br/>Voreinstellung: itrk-datenschutz.', now(), now()),
+('IT Recht Kanzlei - EZ Page Kennung für Rechtstext Widerrufsbelehrung', 'IT_RECHT_KANZLEI_PAGE_KEY_WIDERRUF', 43, 'Bitte geben Sie die Kennung der EZ Page an, die Sie für die Widerrufsbelehrung angelegt haben. Die EZ Page wurde bei der Modulinstallation bereits entsprechend angelegt. In diese Seite wird dann der Rechtstext für die Widerrufsbelehrung automatisch eingefügt<br/>Voreinstellung: itrk-widerruf.', now(), now()),
+('IT Recht Kanzlei - EZ Page Kennung für Rechtstext Impressum', 'IT_RECHT_KANZLEI_PAGE_KEY_IMPRESSUM', 43, 'Bitte geben Sie die Kennung der EZ Page an, die Sie für das Impressum angelegt haben. Die EZ Page wurde bei der Modulinstallation bereits entsprechend angelegt. In diese Seite wird dann der Rechtstext für das Impressum automatisch eingefügt.<br/>Voreinstellung: itrk-impressum', now(), now()),
+('IT Recht Kanzlei - AGB auch als pdf abrufen?', 'IT_RECHT_KANZLEI_PDF_AGB',  43, 'Sollen die AGB auch als pdf verfügbar sein?', now(), now()),
+('IT Recht Kanzlei - Datenschutzerklärung auch als pdf abrufen?', 'IT_RECHT_KANZLEI_PDF_DATENSCHUTZ', 43, 'Soll die Datenschutzerklärung auch als pdf verfügbar sein?', now(), now()),
+('IT Recht Kanzlei - Widerrufsbelehrung auch als pdf abrufen?', 'IT_RECHT_KANZLEI_PDF_WIDERRUF', 43, 'Soll die Widerrufsbelehrung auch als pdf verfügbar sein?', now(), now()),
+('IT Recht Kanzlei - Speicherort der pdf Dateien', 'IT_RECHT_KANZLEI_PDF_FILE', 43, 'In welchem Ordner am Server sollen die pdf Dateien gespeichert werden?<br/>Lassen Sie diese Einstellung auf includes/pdf, damit das Modul pdf Rechnung falls installiert auf die pdfs zugreifen kann.', now(), now()),
+
+# Adminmenü ID 37 - pdf Rechnung
+
+('Version', 'RL_INVOICE3_MODUL_VERSION', 43, 'Installierte Version:', now(), now()),
+('pdf Rechnung - Status', 'RL_INVOICE3_STATUS', 43, 'Wollen Sie das Modul pdf Rechnung aktivieren?<br/>In der Administration können Sie auch pdf Rechnungen erstellen, wenn Sie hier auf false stellen. Um die Funktionalität des Mitsendens von Rechnung und Anhängen in den Mails zu nutzen, müssen Sie aber hier auf true stellen.<br/>Aktivieren Sie das Modul erst dann, wenn Sie Ihre Rechnungsvorlage und Anhänge wie AGB und Widerruf erstellt haben und sich mit der Funktionalität vertraut gemacht haben.', now(), now()),
+('pdf Rechnung - Rechnungsdatum = Bestelldatum?', 'RL_INVOICE3_ORDERDATE', 43, 'Soll das Rechnungsdatum das Datum der Bestellung sein (true) oder das Datum, an dem die pdf Rechnung erzeugt wird? (false)', now(), now()),
+('pdf Rechnung - Kundennummer auf der Rechnung?', 'RL_INVOICE3_CUSTOMERID', 43, 'Wollen Sie die Kundennummer auf der pdf Rechnung anzeigen?', now(), now()),
+('pdf Rechnung - Lieferadresse anzeigen?', 'RL_INVOICE3_SHIPPING_ADDRESS', 43, 'Wollen Sie die Lieferadresse auf der pdf Rechnung anzeigen?', now(), now()),
+('pdf Rechnung - XY-Position der Adresse1', 'RL_INVOICE3_ADDRESS1_POS', 43, 'XY-Position der Adresse1; es ist das Delta zu den Rändern einzugeben<br />Standard: 89|21', now(), now()),
+('pdf Rechnung - XY-Postion der Adresse2', 'RL_INVOICE3_ADDRESS2_POS', 43, 'XY-Postion der Adresse2; es ist das Delta zu den Rändern einzugeben<br />Standard: 0|21', now(), now()),
+('pdf Rechnung - Rändereinstellungen für Adresse1|2', 'RL_INVOICE3_ADDRESS_BORDER', 43, 'Rändereinstellungen für Adresse1|2<br />LTRB (Left Top Right Bottom)<br />Standard: |<br />Es wird also kein Rahmen um die Adressen angezeigt. Wollen Sie um die Adressen einen vollständigen Rahmen anzeigen, dann ändern Sie auf LTRB|LTRB', now(), now()),
+('pdf Rechnung - Breite von Adressfeld1|2', 'RL_INVOICE3_ADDRESS_WIDTH', 43, '<br />Standard: 80|80', now(), now()),
+('pdf Rechnung - Deltas', 'RL_INVOICE3_DELTA', 43, 'Abstand Adresse:Rechnungsnummer | Abstand Rechnungsnummer:Produktliste<br />Standard: 5|8<br />', now(), now()),
+('pdf Rechnung - Schriftarten für Rechnung und Artikel', 'RL_INVOICE3_FONTS', 43, 'Welche Schriftarten wollen Sie verwenden? <br />1. Für Rechnungstexte <br >2. Für Artikel und Summe<br /><br />Standard: myriadpc|myriadpc<br />(Pfad/und Schriftart für Rechnung|Pfad/und Schriftart für Artikel und Summe<br />', now(), now()),
+('pdf Rechnung - Zeilenhöhe', 'RL_INVOICE3_LINE_HEIGT', 43, 'Zeilenhöhe', now(), now()),
+('pdf Rechnung - Dicke der Striche bei Gesamtsumme', 'RL_INVOICE3_LINE_THICK', 43, 'Wie dick soll der Strich bei der Gesamtsumme sein?', now(), now()),
+('pdf Rechnung - Rändereinstellungen', 'RL_INVOICE3_MARGIN', 43, 'Format: oben|rechts|unten|links<br />(Hinweis: 1inch = 72pt / 2.54cm; 1cm = 28,35pt)<br />Standard: 20|20|20|20<br />', now(), now()),
+('pdf Rechnung - Rechnung bei Gratisprodukt', 'RL_INVOICE3_NOT_NULL_INVOICE', 43, 'Soll die Rechnung auch bei einem Gratisprodukt dem Mail hinzugefügt werden?', now(), now()),
+('pdf Rechnung - Rechnungsversand bei Bestellstatus', 'RL_INVOICE3_ORDERSTATUS', 43, 'Rechnung nur mitschicken, wenn der Bestellstatus grösser/gleich ist [default: 3 == verschickt]', now(), now()),
+('pdf Rechnung - Präfix für Rechnungsnummer in der Rechnung', 'RL_INVOICE3_ORDER_ID_PREFIX', 43, 'Präfix für Rechnungsnummer in der Rechnung<br />Beispiel: : 2016/<br />', now(), now()),
+('pdf Rechnung - Papiergrösse|Einheit|Orientierung', 'RL_INVOICE3_PAPER', 43, '1. Papiergrösse = A3|A4|A5|Letter|Legal <br />2. Einheit: pt|mm|cm|inch <br />3. Orientierung: L|P<br />', now(), now()),
+('pdf Rechnung - PDF Hintergrunddatei', 'RL_INVOICE3_PDF_BACKGROUND', 43, 'PDF Hintergrunddatei<br />Standard: /www/htdocs/xxx/xxx/includes/pdf/rechnung_de.pdf<br />', now(), now()),
+('pdf Rechnung - Speicherort und -name der PDF-Datei', 'RL_INVOICE3_PDF_PATH', 43, '1. Wo sollen PDF-Dateien gespeichert werden (!! muss beschreibbar sein !!)?<br />2. speichern ja|nein (1|0)<br />Standard: /www/htdocs/xxx/xxx/includes/pdf/|1<br />', now(), now()),
+('pdf Rechnung - Anhänge', 'RL_INVOICE3_SEND_ATTACH', 43, 'Welche PDFs sollen noch angehängt werden; bei mehreren Dateien | (pipe) als Trenner verwenden)<br/><br/>Voreinstellung: agb_de.pdf|widerruf_de.pdf', now(), now()),
+('pdf Rechnung - Rechnungsneuversand', 'RL_INVOICE3_SEND_ORDERSTATUS_CHANGE', 43, 'Bei welcher Änderung des Bestellstatus soll die Rechnung [nochmals] versendet werden', now(), now()),
+('pdf Rechnung - Rechnung bei Bestellung', 'RL_INVOICE3_SEND_PDF', 43, 'Soll die Rechnung gleich bei der Bestellung gesendet werden?', now(), now()),
+('pdf Rechnung - Template für Artikel- und Summentabelle', 'RL_INVOICE3_TABLE_TEMPLATE', 43, 'Template für Artikel- und Summentabelle<br />Definition ist in includes/pdf/rl_invoice3_def.php<br />Standard: 30|30|30|60<br />Standard: amazon|amazon_templ|total_col_1|total_opt_1<br />', now(), now()),
+('pdf Rechnung - PDF-Template auf 1.Seite', 'RL_INVOICE3_TEMPLATE_ONLY_FIRST_PAGE', 43, 'PDF-Template nur auf 1.Seite drucken', now(), now()),
+('pdf Rechnung - Abstand 2.Seite', 'RL_INVOICE3_DELTA_2PAGE', 43, 'Zusätzlicher Abstand auf 2. Seite', now(), now()),
 
 
 # Deutsche Einträge für Versandmodul Versandkostenfrei mit Optionen
@@ -4596,7 +4697,7 @@ INSERT INTO configuration_language (configuration_title, configuration_key, conf
 ('Nachnahmegebühr für UPS', 'MODULE_ORDER_TOTAL_COD_FEE_UPS', 43, 'UPS: &lt;Ländercode&gt;:&lt;Nachnahmegebühr&gt;, .... 00 als Ländercode sorgt dafür, dass die Nachnahmegebühr für alle Länder gültig ist. Wenn der Ländercode 00 ist, muss es der letzte Eintrag sein. Wenn kein Eintrag 00:9.99 vorhanden ist, wird die Nachnahmegebühr in fremde Länder nicht berechnet (unmöglich).', now(), now()),
 ('Nachnahmegebühr für USPS', 'MODULE_ORDER_TOTAL_COD_FEE_USPS', 43, 'USPS: &lt;Ländercode&gt;:&lt;Nachnahmegebühr&gt;, .... 00 als Ländercode sorgt dafür, dass die Nachnahmegebühr für alle Länder gültig ist. Wenn der Ländercode 00 ist, muss es der letzte Eintrag sein. Wenn kein Eintrag 00:9.99 vorhanden ist, wird die Nachnahmegebühr in fremde Länder nicht berechnet (unmöglich).', now(), now()),
 ('Nachnahmegebühr für Versandkosten nach Zonen', 'MODULE_ORDER_TOTAL_COD_FEE_ZONES', 43, 'Versandkosten nach Zonen: &lt;Ländercode&gt;:&lt;Nachnahmegebühr&gt;, .... 00 als Ländercode sorgt dafür, dass die Nachnahmegebühr für alle Länder gültig ist. Wenn der Ländercode 00 ist, muss es der letzte Eintrag sein. Wenn kein Eintrag 00:9.99 vorhanden ist, wird die Nachnahmegebühr in fremde Länder nicht berechnet (unmöglich).', now(), now()),
-('Nachnahmegebühr für die Ã–sterreichische Post', 'MODULE_ORDER_TOTAL_COD_FEE_AP', 43, 'Ãƒâ€“sterreichische Post: &lt;Ländercode&gt;:&lt;Nachnahmegebühr&gt;, .... 00 als Ländercode sorgt dafür, dass die Nachnahmegebühr für alle Länder gültig ist. Wenn der Ländercode 00 ist, muss es der letzte Eintrag sein. Wenn kein Eintrag 00:9.99 vorhanden ist, wird die Nachnahmegebühr in fremde Länder nicht berechnet (unmöglich).', now(), now()),
+('Nachnahmegebühr für die Österreichische Post', 'MODULE_ORDER_TOTAL_COD_FEE_AP', 43, 'Österreichische Post: &lt;Ländercode&gt;:&lt;Nachnahmegebühr&gt;, .... 00 als Ländercode sorgt dafür, dass die Nachnahmegebühr für alle Länder gültig ist. Wenn der Ländercode 00 ist, muss es der letzte Eintrag sein. Wenn kein Eintrag 00:9.99 vorhanden ist, wird die Nachnahmegebühr in fremde Länder nicht berechnet (unmöglich).', now(), now()),
 ('Nachnahmegebühr für die deutsche Post', 'MODULE_ORDER_TOTAL_COD_FEE_DP', 43, 'Deutsche Post: &lt;Ländercode&gt;:&lt;Nachnahmegebühr&gt;, .... 00 als Ländercode sorgt dafür, dass die Nachnahmegebühr für alle Länder gültig ist. Wenn der Ländercode 00 ist, muss es der letzte Eintrag sein. Wenn kein Eintrag 00:9.99 vorhanden ist, wird die Nachnahmegebühr in fremde Länder nicht berechnet (unmöglich).', now(), now()),
 ('Nachnahmegebühr für Servicepakke', 'MODULE_ORDER_TOTAL_COD_FEE_SERVICEPAKKE', 43, 'Servicepakke: &lt;Ländercode&gt;:&lt;Nachnahmegebühr&gt;, .... 00 als Ländercode sorgt dafür, dass die Nachnahmegebühr für alle Länder gültig ist. Wenn der Ländercode 00 ist, muss es der letzte Eintrag sein. Wenn kein Eintrag 00:9.99 vorhanden ist, wird die Nachnahmegebühr in fremde Länder nicht berechnet (unmöglich).', now(), now()),
 ('Nachnahmegebühr für FedEx', 'MODULE_ORDER_TOTAL_COD_FEE_FEDEX', 43, 'FedEx: &lt;Ländercode&gt;:&lt;Nachnahmegebühr&gt;, .... 00 als Ländercode sorgt dafür, dass die Nachnahmegebühr für alle Länder gültig ist. Wenn der Ländercode 00 ist, muss es der letzte Eintrag sein. Wenn kein Eintrag 00:9.99 vorhanden ist, wird die Nachnahmegebühr in fremde Länder nicht berechnet (unmöglich).', now(), now()),
@@ -4604,6 +4705,7 @@ INSERT INTO configuration_language (configuration_title, configuration_key, conf
 
 # Vataddon
 ('Anzeige incl. Mwst. zzgl. Versandkosten', 'DISPLAY_VATADDON_WHERE', 43, 'Wollen Sie unterhalb der Preise den Zusatz incl. bzw. excl. Mwst. zzgl. Versandkosten anzeigen?<br/>O=Nein, Anzeige komplett deaktiviert<br/>ALL = Anzeige überall im Shop aktiv<br/>product_info = Anzeige nur auf der Artikeldetailseite<br/><br/>Hinweis: Den Text dieser Anzeige können Sie in folgender Datei ändern: includes/languages/german/extra_definitions/rl.vat_info.php', now(), now());
+
 #####################################################################################################
 UPDATE configuration SET configuration_value = 'de' WHERE configuration_key = 'DEFAULT_LANGUAGE' LIMIT 1 ;
 
@@ -4773,6 +4875,6 @@ INSERT INTO product_type_layout_language (configuration_title, configuration_key
 ('PRODUCT FREE SHIPPING Attribut Gewicht Präfix - Standardeinstellung', 'DEFAULT_PRODUCT_FREE_SHIPPING_PRODUCTS_ATTRIBUTES_WEIGHT_PREFIX', 43, 'PRODUCT FREE SHIPPING Attribut Gewicht Präfix<br />Standard Gewicht Präfix<br />Leer, + oder -', now(), now());
 
 REPLACE INTO product_type_layout_language (configuration_title , configuration_key , languages_id, configuration_description)
-VALUES ('LANGUAGE_VERSION 20180330', 'LANGUAGE_VERSION', '43', 'Deutsch');
+VALUES ('LANGUAGE_VERSION 20180618', 'LANGUAGE_VERSION', '43', 'Deutsch');
 ##### End of SQL setup for Zen Cart German.
 

@@ -1,16 +1,4 @@
 <?php
-/**
- * mod Image Handler
- * Previously /admin/includes/languages/english/extra_definitions/bmz_image_handler.php
- * english language definitions for image handler
- *
- * @author  Tim Kroeger (original author)
- * @copyright Copyright 2005-2006
- * @license http://www.gnu.org/licenses/gpl.txt GNU General Public License V2.0
- * @version $Id: bmz_image_handler.php,v 2.0 Rev 8 2010-05-31 23:46:5 DerManoMann Exp $
- * Last modified by webchills and cjones 2012-03-10 17:46:50 
- * Last modified by lat9 2018-05-29
- */
 define('IH_VERSION_VERSION', 'Version');
 define('IH_VERSION_NOT_FOUND', 'No Image Handler information found.');
 define('IH_REMOVE', 'Uninstall Image Handler.  (Please backup your site and database first)');
@@ -68,11 +56,10 @@ define('TEXT_INFO_DEFAULT_IMAGE_HELP', 'A base image is required. That image is 
 define('TEXT_INFO_CLICK_TO_ADD_MAIN', 'Click to add a new <em>main</em> image for this product');
 define('TEXT_INFO_CLICK_TO_ADD_ADDL', 'Click to add a new <em>additional</em> image for this product');
 define('TEXT_INFO_CONFIRM_DELETE', 'Confirm <em>%s</em> image delete');
-    define('TEXT_MAIN', 'main');
-    define('TEXT_ADDITIONAL', 'additional');
+define('TEXT_MAIN', 'main');
+define('TEXT_ADDITIONAL', 'additional');
 define('TEXT_INFO_CONFIRM_DELETE_SURE', 'Are you sure you want to delete all sizes of this image?');
 define('TEXT_INFO_SELECT_ACTION', 'Select action');
-
 
 define('TEXT_MSG_FILE_NOT_FOUND', 'This file does not exist.');
 define('TEXT_MSG_ERROR_RETRIEVING_IMAGESIZE', 'Could not determine the image size');
@@ -85,9 +72,9 @@ define('TEXT_MSG_DEFAULT_REQUIRED_FOR_RESIZE', 'A default image is required for 
 define('TEXT_MSG_NO_DEFAULT', 'No default image has been specified.');
 define('TEXT_MSG_NO_DEFAULT_ON_NAME_CHANGE', 'You must supply a "base" image when updating the main image and changing its name.');
 define('TEXT_MSG_INVALID_EXTENSION', 'The uploaded "%1$s" image file\'s extension (%2$s) is not supported.  The extension must be one of (%3$s).');
-    define('TEXT_BASE', 'base');
-    define('TEXT_MEDIUM', 'medium');
-    define('TEXT_LARGE', 'large');
+define('TEXT_BASE', 'base');
+define('TEXT_MEDIUM', 'medium');
+define('TEXT_LARGE', 'large');
 define('TEXT_MSG_FILE_EXISTS', 'File exists (%s)! Please change either the base name or suffix.');
 define('TEXT_MSG_INVALID_SQL', "Unable to complete SQL query.");
 define('TEXT_MSG_NOCREATE_IMAGE_DIR', "Unable to create image directory.");
@@ -132,6 +119,5 @@ define('TEXT_LARGE_FILE_IMAGE', 'Large image file (optional)');
 // ih menu
 define('IH_MENU_MANAGER', 'Image Manager');
 define('IH_MENU_ADMIN', 'Admin Tools');
-define('IH_MENU_ABOUT', 'About/Help');
+define('IH_MENU_ABOUT', 'Help');
 define('IH_MENU_PREVIEW', 'Preview');
-

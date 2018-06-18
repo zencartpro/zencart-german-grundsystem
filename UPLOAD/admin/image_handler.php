@@ -1,15 +1,12 @@
 <?php
 /**
- * image_handler.php
- * Image Handler Admin interface
- *
- * @author  Tim Kroeger (original author)
- * @copyright Copyright 2005-2006
- * @license http://www.gnu.org/licenses/gpl.txt GNU General Public License V2.0
- * @version $Id: image_handler.php,v 2.0 Rev 8 2010-05-31 23:46:5 DerManoMann Exp $
- * DerManoMann 2010-05-31 23:46:50 
- * Nigelt74 2012-02-18
- * torvista 2012-04-14  
+ * @package Image Handler
+ * @copyright Copyright 2005-2006 Tim Kroeger (original author)
+ * @copyright Copyright 2018 lat 9 - Vinos de Frutas Tropicales
+ * @copyright Copyright 2003-2018 Zen Cart Development Team
+ * @copyright Portions Copyright 2003 osCommerce
+ * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
+ * @version $Id: image_handler.php 2018-06-15 16:13:51Z webchills $
  */
 
 require 'includes/application_top.php';
@@ -246,7 +243,6 @@ if ($ih_page == 'manager') {
  */
 $ih_admin_actions = array();
 if ($ih_page == 'admin') {
-    $ih_admin_actions['ih_uninstall'] = IH_REMOVE;
     $ih_admin_actions['ih_view_config'] = IH_VIEW_CONFIGURATION;
     $ih_admin_actions['ih_clear_cache'] = IH_CLEAR_CACHE;
 }
@@ -254,14 +250,7 @@ if ($ih_page == 'admin') {
 if (count($ih_admin_actions) > 0) {
     echo '<ul>';
     foreach ($ih_admin_actions as $action_name => $link_name) {
-        if ($action_name == 'ih_uninstall') {
-            // -----
-            // Include the "uninstall" page in the menu only if the admin is currently authorized.
-            //
-            if (zen_is_superuser() || check_page(FILENAME_IMAGE_HANDLER_UNINSTALL, '')) {
-                echo '<li><a href="' . zen_href_link(FILENAME_IMAGE_HANDLER_UNINSTALL) . '">' . $link_name . '</a></li>';
-            }
-        } elseif ($action_name == 'ih_view_config') {
+        if ($action_name == 'ih_view_config') {
             // -----
             // Include the "View Configuration" page in the menu only if the admin is currently authorized.
             //

@@ -1,9 +1,15 @@
 <?php
-// -----
+/**
+ * @package Image Handler
+ * @copyright Copyright 2005-2006 Tim Kroeger (original author)
+ * @copyright Copyright 2018 lat 9 - Vinos de Frutas Tropicales
+ * @copyright Copyright 2003-2018 Zen Cart Development Team
+ * @copyright Portions Copyright 2003 osCommerce
+ * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
+ * @version $Id: FualSlimboxObserver.php 2018-06-15 16:13:51Z webchills $
+ */
 // An observer-class to enable the "Fual Slimbox" plugin to operate with the notification updates in the
 // main_product_image and additional_images processing, provided by "Image Handler" v5.0.0 and later.
-//
-// Copyright (c) 2017-2018 Vinos de Frutas Tropicales
 //
 class FualSlimboxObserver extends base 
 {

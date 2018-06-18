@@ -4,7 +4,7 @@
  * @copyright Copyright 2003-2018 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: german.php 664 2018-03-09 16:45:57Z webchills $
+ * @version $Id: german.php 665 2018-06-14 19:45:57Z webchills $
  */
 
 // FOLLOWING WERE moved to meta_tags.php
@@ -13,7 +13,7 @@
 //define('CUSTOM_KEYWORDS', 'ecommerce, open source, shop, online shopping');
 // END: moved to meta_tags.php
 
-  define('FOOTER_TEXT_BODY', 'Copyright &copy; ' . date('Y') . ' <a href="' . zen_href_link(FILENAME_DEFAULT) . '">' . STORE_NAME . '</a>. Powered by <a href="http://www.zen-cart-pro.at" target="_blank">Zen Cart</a>');
+  define('FOOTER_TEXT_BODY', 'Copyright &copy; ' . date('Y') . ' <a href="' . zen_href_link(FILENAME_DEFAULT) . '">' . STORE_NAME . '</a>. Powered by <a href="https://www.zen-cart-pro.at" target="_blank">Zen Cart</a>');
 
 // look in your $PATH_LOCALE/locale directory for available locales..
 // on RedHat try 'en_US'
@@ -377,7 +377,7 @@ define('TEXT_REMOVE_REDEEM_COUPON_ZONE', 'Der eingegebene Aktionskupon kann mit 
 define('MORE_INFO_TEXT', '... weitere Infos');
 
 // IP Address
-define('TEXT_YOUR_IP_ADDRESS', 'Aus Sicherheitsgründen werden bei jeder Bestellung die IP-Adressen gespeichert.<br />Ihre IP Adresse lautet:');
+define('TEXT_YOUR_IP_ADDRESS', 'Ihre IP Adresse lautet:');
 
 //Generic Address Heading
 define('HEADING_ADDRESS_INFORMATION', 'Adressinformation');

@@ -1,17 +1,12 @@
 <?php
 /**
- * bmz_image_handler.class.php
- * IH2 class for image manipulation
- *
- * @author  Tim Kroeger (original author)
- * @copyright Copyright 2005-2006
- * @license http://www.gnu.org/licenses/gpl.txt GNU General Public License V2.0
- * @version $Id: bmz_image_handler.class.php,v 2.0 Rev 8 2010-05-31 23:46:5 DerManoMann Exp $
- * modified by yellow1912 (rubikintegration.com)
- * Modified by DerManoMann 2010-05-31 23:40:21
- * Modified by lat9: 2017-07-17, correcting class constructor name, applying PSR-2 formatting.
- * Modified by lat9: 2018-05-19, various refinements (see GitHub #106).
- * Modified by lat9: 2018-05-20, Remove handling for mixed-case file extensions from file_not_found method (see GitHub #89)
+ * @package Image Handler
+ * @copyright Copyright 2005-2006 Tim Kroeger (original author)
+ * @copyright Copyright 2018 lat 9 - Vinos de Frutas Tropicales
+ * @copyright Copyright 2003-2018 Zen Cart Development Team
+ * @copyright Portions Copyright 2003 osCommerce
+ * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
+ * @version $Id: bmz_image_handler.class.php 2018-06-15 16:13:51Z webchills $
  */
 
 if (!defined('IH_DEBUG_ADMIN')) {

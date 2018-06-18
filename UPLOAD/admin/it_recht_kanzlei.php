@@ -4,7 +4,7 @@
  * @copyright Copyright 2003-2018 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: it_recht_kanzlei.php 2018-03-30 12:13:51Z webchills $
+ * @version $Id: it_recht_kanzlei.php 2018-06-14 19:13:51Z webchills $
  */
 
 require('includes/application_top.php');
@@ -90,7 +90,7 @@ if (!is_null($_GET['token']) && $_GET['token'] == 'new') {
                 </tr>
                 <tr>
                  
-                 <td colspan="2" style="font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px; padding: 0px 10px 11px 3px; text-align: left">Um Einstellungen zu ändern, verwenden Sie den Menüpunkt Konfiguration > IT Recht Kanzlei<br/><br/>Bitte lesen Sie die Hinweise zur Konfiguration in der diesem Modul beiliegenden Installationsanleitung.</td>
+                 <td colspan="2" style="font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px; padding: 0px 10px 11px 3px; text-align: left">Um Einstellungen zu ändern, verwenden Sie den Menüpunkt Konfiguration > IT Recht Kanzlei<br/><br/>Bitte lesen Sie die Hinweise zur Konfiguration in der <a href="https://www.zen-cart-pro.at/docs/155-deutsch-doku/addons/it-recht-kanzlei/index.html" target="_blank">Onlinedokumentation der deutschen Zen Cart Version</a>.</td>
                 </tr>
                
               </table>
