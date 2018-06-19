@@ -1,16 +1,16 @@
 <?php
 /**
  * @package admin
- * @copyright Copyright 2003-2016 Zen Cart Development Team
+ * @copyright Copyright 2003-2018 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: coupon_restrict.php 729 2011-08-09 15:49:16Z hugo13 $
+ * @version $Id: coupon_restrict.php 730 2018-06-19 10:49:16Z webchills $
  */
   //define('MAX_DISPLAY_RESTRICT_ENTRIES', 10);
   require('includes/application_top.php');
   $restrict_array = array();
-  $restrict_array[] = array('id'=>'Deny', text=>'Deny');
-  $restrict_array[] = array('id'=>'Allow', text=>'Allow');
+  $restrict_array[] = array('id'=>'Deny', text=>'Sperren');
+  $restrict_array[] = array('id'=>'Allow', text=>'Erlauben');
 
   if (isset($_GET['cid'])) $_GET['cid'] = (int)$_GET['cid'];
   if (isset($_GET['info'])) $_GET['info'] = (int)$_GET['info'];
@@ -237,7 +237,7 @@
                     <td class="smallText" align="left"></td>
                     <td class="smallText" align="left"><?php echo zen_draw_pull_down_menu('cPath', zen_get_category_tree(), $current_category_id); ?></td>
                     <td class="smallText" align="left"><?php echo zen_draw_pull_down_menu('restrict_status', $restrict_array, $current_category_id); ?></td>
-                    <td class="smallText" align="left"><input type="submit" name="add" value="Add"></td>
+                    <td class="smallText" align="left"><input type="submit" name="add" value="Hinzufügen"></td>
                     <td class="smallText" align="left">&nbsp;</td>
                     <td class="smallText" align="left">&nbsp;</td>
                   </tr>
