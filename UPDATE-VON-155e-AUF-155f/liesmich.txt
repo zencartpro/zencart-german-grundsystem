@@ -1,0 +1,90 @@
+Updatepaket für Zen Cart 1.5.5e deutsch auf 1.5.5f deutsch
+
+Dieses Paket enthält alle geänderten und neuen Dateien um eine bestehende 1.5.5e Installation einfach auf 1.5.5f aktualisieren zu können.
+Nur geeignet, wenn Sie bereits 1.5.5e deutsch verwenden!
+Für das Update einer älteren deutschen Zen Cart Version, führen Sie bitte ein normales Update mit dem kompletten 1.5.5f Paket durch!
+
+Um Ihren bestehenden 1.5.5e deutsch Shop auf 1.5.5f deutsch zu aktualisieren gehen Sie folgendermaßen vor:
+
+!!! BEVOR SIE BEGINNEN MACHEN SIE EINE KOMPLETTE SICHERUNG IHRER SHOPDATEIEN UND IHRER DATENBANK !!!
+
+
+1)
+
+Im Ordner 1 - GEAENDERTE DATEIEN finden Sie alle Dateien, die in 1.5.5f gegenüber 1.5.5e geändert wurden.
+Benennen Sie den Ordner DEINADMIN auf den Namen Ihres Adminverzeichnisses um.
+Vergleichen Sie nun mit BeyondCompare oder WinMerge alle Dateien in diesem Ordner mit denen Ihrer Shopinstallation am Server.
+Übernehmen Sie alle Änderungen und laden dann die Ordner/Dateien in der vorgegebenen Struktur in Ihr Shopverzeichnis hoch
+
+
+2)
+
+Im Ordner 2 - NEUE DATEIEN befinden sich die kompletten neuen Versionen der CKEditor und TinyMCE Editoren sowie neue Versionen des PHP Mailers und des Mailbeez Installers.
+Ebenso die in 1.5.5f deutsch neu hinzugekommenen Dateien.
+Statt hier mühsame Dateivergleiche durchzuführen, können Sie die bestehenden Pakete einfach komplett mit den neuen ersetzen.
+Benennen Sie den Ordner DEINADMIN auf den Namen Ihres Adminverzeichnisses um.
+Löschen Sie den kompletten Ordner editors vom Server
+Löschen Sie den kompletten Ordner includes/classes/vendors/PHPMailer vom Server
+Laden Sie dann den Inhalt des Ordners 2 - NEUEDATEIEN in der vorgegebenen Struktur ins Shopverzeichnis hoch.
+Dabei werden dann nur im Ordner mailhive ein paar bestehende Dateien überschrieben, das ist ok.
+
+
+3)
+
+Löschen Sie nun unbedingt die folgenden Dateien aus Ihrer Shopinstallation:
+
+DEINADMIN\includes\languages\english\extra_definitions\bmz_image_handler.php
+DEINADMIN\includes\languages\german\extra_definitions\bmz_image_handler.php
+includes\auto_loaders\config.widerruf_downloads.php
+includes\classes\observers\class.widerruf_downloads.php
+
+Nicht mehr in 1.5.5f deutsch enthalten sind die alten Templates viennablood, viennabright und viennaorange
+
+Wenn Sie diese Templates nicht verwenden, löschen Sie folgende Ordner komplett:
+
+includes/templates/viennablood
+includes/templates/viennabright
+includes/templates/viennaorange
+
+Ebenso können Sie die entsprechenden Override Verzeichnisse löschen falls vorhanden:
+
+includes/modules/viennablood
+includes/modules/viennabright
+includes/modules/viennaorange
+includes/modules/sideboxes/viennablood
+includes/modules/sideboxes/viennabright
+includes/modules/sideboxes/viennaorange
+includes/languages/german/viennablood
+includes/languages/german/viennabright
+includes/languages/german/viennaorange
+includes/languages/german/html_includes/viennablood
+includes/languages/german/html_includes/viennabright
+includes/languages/german/html_includes/viennaorange
+includes/languages/english/viennablood
+includes/languages/english/viennabright
+includes/languages/english/viennaorange
+includes/languages/english/html_includes/viennablood
+includes/languages/english/html_includes/viennabright
+includes/languages/english/html_includes/viennaorange
+
+
+4)
+
+In einem letzten Schritt müssen nun noch ein paar kleinere Änderungen in der Datenbank vorgenommen werden, damit neue Menüpunkte sichtbar werden.
+Um DSGVO konform zu sein werden alte in der Tabelle orders gespeicherte IP-Adressen gelöscht.
+Und Image Handler wird auf eine neuere Version aktualisiert.
+
+Um diese Änderungen vorzunehmen gehen Sie nun in den Ordner 4 - DATENBANKAKTUALISIERUNG
+
+Benennen Sie den Ordner DEINADMIN auf den Namen Ihres Adminverzeichnisses um.
+
+Laden Sie die Dateien in der vorgebenen Srruktur ins Shopverzeichnis hoch.
+
+Loggen Sie sich in Ihre Zen Cart Administration ein.
+
+Sie sehen eine grüne Erfolgsmeldung: 
+Aktualisierung auf 1.5.5f deutsch erfolgreich
+
+Bevor Sie nun irgendetwas anclicken oder tun, löschen Sie erst sofort die beiden hochgeladenen Dateien wieder vom Server:
+DEINADMIN/includes/auto_loaders/config.155f_update.php
+DEINADMIN/includes/init_includes/init_155f_update.php
