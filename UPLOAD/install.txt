@@ -1,6 +1,6 @@
 ﻿Willkommen bei der deutschen Zen-Cart Version
 Version 1.5.5f
-vom 20.06.2018
+vom 23.06.2018
 
 Eine umfangreiche deutschsprachige Dokumentation und Installationsanleitung finden Sie im Ordner ANLEITUNG
 Öffnen Sie die index.html im Ordner ANLEITUNG und lesen Sie vor der Installation unbedingt die komplette Dokumentation.

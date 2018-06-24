@@ -4,7 +4,7 @@ Die deutsche Zen Cart Version wird von einem Team von Entwicklern in Österreich
 
 **Willkommen bei der deutschen Zen Cart Version 1.5.5f**
 
-Version 1.5.5f vom 20.06.2018
+Version 1.5.5f vom 23.06.2018
 Die deutsche Zen Cart Version steht Ihnen kostenfrei im Rahmen der GNU General Public License zur Verfügung.
 Sie können diese Software kostenfrei benutzen, Änderungen vornehmen, etc.
 
@@ -15,9 +15,9 @@ Dieses Programm wird in der Hoffnung vertrieben, dass es nützlich ist, allerdin
 **Hauptunterschiede zwischen der deutschen und amerikanischen Version:**
 
 * Die amerikanische Version ist im Administrationsbereich immer monolingual englisch. Daran ändert auch die etwaige Installation eines deutschen Sprachpakets nichts. Die meisten Konfigurationseinstellungen werden immer auf englisch sein, da sie in der Datenbank hinterlegt sind. Die deutsche Zen Cart Version bietet einen multilingualen Adminbereich. Dadurch sind auch die in der Datenbank hinterlegten Konfigurationseinstellungen und -beschreibungen auf deutsch. Sie könnten auch in jeder anderen Sprache genutzt werden. Diese Funktionalität steht natürlich auch für später installierte Erweiterungen zur Verfügung. Die im Downloadbereich von zen-cart-pro.at angebotenen Module berücksichtigen diese Multilanguagefähigkeit und sind alle für die deutsche Zen Cart Version ausgelegt.
-* Die amerikanische Zen Cart Version berücksichtigt viele rechtliche Erfordernisse nicht, denen ein Onlineshop im deutschsprachigen Raum unterworfen ist. Daher wurde die deutsche Zen Cart Version auf die Anforderungen, die an Onlineshops in Deutschland, Österreich und der Schweiz gestellt werden, angepasst. Die Anforderungen der sogenannten "Buttonlösung" und viele andere Vorgaben werden erfüllt.
+* Die amerikanische Zen Cart Version berücksichtigt viele rechtliche Erfordernisse nicht, denen ein Onlineshop im deutschsprachigen Raum unterworfen ist. Daher wurde die deutsche Zen Cart Version auf die Anforderungen, die an Onlineshops in Deutschland, Österreich und der Schweiz gestellt werden, angepasst. Die Anforderungen der sogenannten "Buttonlösung", der Datenschutzgrundverordnung (DSGVO) und viele andere Vorgaben werden erfüllt.
 * Die Installation ist schlanker und enthält keine unnötigen Dateien mehr, da die Bilder und Medien der Demodaten nicht mehr automatisch mitinstalliert werden, sondern nur bei Bedarf hochgeladen werden können
-* Die amerikanische Version enthält keinerlei HTML Editor mehr, in der deutschen Version ist der CKEditor bereits integriert und löst das veraltete HTML Area ab. Alternativ ist auch der Tiny MCE Editor integriert.
+* Die amerikanische Version enthält keinerlei HTML Editor mehr, in der deutschen Version ist der CKEditor bereits integriert. Alternativ ist auch der Tiny MCE Editor integriert.
 * Weitere Bugfixes und Verbesserungen, die von den Amerikanern nicht übernommen wurden
 * Zahlreiche häufig genutze Erweiterungen sind in der deutschen Zen Cart Version bereits vorinstalliert. Details dazu im Tab Erweiterungen in der Doku.
 * Weitere für die deutsche Zen Cart Version angepasste Erweiterungen stehen in unserem Downloadbereich auf www.zen-cart-pro.at zur Verfügung.

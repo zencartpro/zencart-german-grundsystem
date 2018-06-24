@@ -14,13 +14,15 @@
 <div id="slidetabsmenu" style="display: none;">
 <ul>
 <li> <a onClick="expandcontent('sc1', this)" href="javascript:void(0)"><span>Willkommen</span></a></li>
-<li> <a onClick="expandcontent('sc2', this)" href="javascript:void(0)"><span>Neue Funktionen</span></a></li>
+<li> <a onClick="expandcontent('sc2', this)" href="javascript:void(0)"><span>Änderungen</span></a></li>
 <li> <a onClick="expandcontent('sc3', this)" href="javascript:void(0)"><span>Neuinstallation</span></a></li>
 <li> <a onClick="expandcontent('sc4', this)" href="javascript:void(0)"><span>Update</span></a></li>  
-<li> <a onClick="expandcontent('sc5', this)" href="javascript:void(0)"><span>Credits</span></a></li>  
+<li> <a onClick="expandcontent('sc5', this)" href="javascript:void(0)"><span>Update von 1.5.5e</span></a></li>  
 <li> <a onClick="expandcontent('sc6', this)" href="javascript:void(0)"><span>Sicherheit</span></a></li>
 <li> <a onClick="expandcontent('sc7', this)" href="javascript:void(0)"><span>Bildmanagement</span></a></li>
 <li> <a onClick="expandcontent('sc8', this)" href="javascript:void(0)"><span>Erweiterungen</span></a></li>
+<li> <a onClick="expandcontent('sc9', this)" href="javascript:void(0)"><span>Credits</span></a></li>  
+
 </ul>
 </div>
 <br style="clear: both;">
@@ -32,7 +34,7 @@
 <div class="regularlist">
 <h1>Willkommen bei der deutschen Zen Cart Version 1.5.5</h1>
 <p>
-<strong>Version 1.5.5f vom 20.06.2018</strong><br>
+<strong>Version 1.5.5f vom 23.06.2018</strong><br>
 Die deutsche Zen Cart Version steht Ihnen kostenfrei im Rahmen der <a href="https://opensource.org/licenses/GPL-2.0" target="_blank">GNU General Public License</a> zur Verfügung. <br>
 Sie können diese Software kostenfrei benutzen, Änderungen vornehmen, etc. <br />
 <br />
@@ -65,9 +67,9 @@ und wird vertrieben unter der GNU General Public License </span>
 <ul>
 <li>
 Die amerikanische Version ist im Administrationsbereich immer monolingual englisch. Daran ändert auch die etwaige Installation eines deutschen Sprachpakets nichts. Die meisten Konfigurationseinstellungen werden immer auf englisch sein, da sie in der Datenbank hinterlegt sind. Die deutsche Zen Cart Version bietet einen multilingualen Adminbereich. Dadurch sind auch die in der Datenbank hinterlegten Konfigurationseinstellungen und -beschreibungen auf deutsch. Sie könnten auch in jeder anderen Sprache genutzt werden. Diese Funktionalität steht natürlich auch für später installierte Erweiterungen zur Verfügung. Die im Downloadbereich von zen-cart-pro.at angebotenen Module berücksichtigen diese Multilanguagefähigkeit und sind alle für die deutsche Zen Cart Version ausgelegt.</li>
-<li>Die amerikanische Zen Cart Version berücksichtigt viele rechtliche Erfordernisse nicht, denen ein Onlineshop im deutschsprachigen Raum unterworfen ist. Daher wurde die deutsche Zen Cart Version auf die Anforderungen, die an Onlineshops in Deutschland, Österreich und der Schweiz gestellt werden, angepasst. Die Anforderungen der sogenannten &quot;Buttonlösung&quot; und viele andere Vorgaben werden erfüllt.</li>
+<li>Die amerikanische Zen Cart Version berücksichtigt viele rechtliche Erfordernisse nicht, denen ein Onlineshop im deutschsprachigen Raum unterworfen ist. Daher wurde die deutsche Zen Cart Version auf die Anforderungen, die an Onlineshops in Deutschland, Österreich und der Schweiz gestellt werden, angepasst. Die Anforderungen der sogenannten &quot;Buttonlösung&quot;, der Datenschutzgrundverordnung (DSGVO) und viele andere Vorgaben werden erfüllt.</li>
 <li> Die Installation ist schlanker und enthält keine unnötigen Dateien mehr, da die Bilder und Medien der Demodaten nicht mehr automatisch mitinstalliert werden, sondern nur bei Bedarf hochgeladen werden können</li>
-<li>Die amerikanische Version enthält keinerlei HTML Editor mehr, in der deutschen Version ist der CKEditor bereits integriert und löst das veraltete HTML Area ab. Alternativ ist auch der Tiny MCE Editor integriert.</li>
+<li>Die amerikanische Version enthält keinerlei HTML Editor mehr, in der deutschen Version ist der CKEditor bereits integriert. Alternativ ist auch der Tiny MCE Editor integriert.</li>
 <li>Weitere Bugfixes und Verbesserungen, die von den Amerikanern nicht übernommen wurden</li>
 <li>Zahlreiche häufig genutze Erweiterungen sind in der deutschen Zen Cart Version bereits vorinstalliert. Details dazu im Tab Erweiterungen.<br>
   Weitere für die deutsche Zen Cart Version angepasste Erweiterungen stehen in unserem <a href="https://www.zen-cart-pro.at/forum/vbdownloads.php" target="_blank">Downloadbereich</a> zur Verfügung.</li>
@@ -94,7 +96,7 @@ OSI certified ist ein Zertifikat der Open Source Initiative.
   <br>
   Bevor Sie Zen Cart mit PHP 7.0 oder 7.1 einsetzen, prüfen Sie aber, ob Zusatzmodule, die Sie verwenden, ebenfalls bereits für PHP 7.0 oder 7.1 angepasst wurden.<br>
   <br/>
-  Zen Cart 1.5.5f deutsch funktioniert zwar auch auf einem Windows/IIS server, <b>wir raten aber dringend zu einem Linux/Apache Server</b>.</p>
+  Zen Cart 1.5.5f deutsch funktioniert zwar auch auf einem Windows/IIS server, wir raten aber dringend zu einem Linux/Apache Server.</p>
 </div>
 </div>
 </div>
@@ -106,15 +108,20 @@ OSI certified ist ein Zertifikat der Open Source Initiative.
 <div class="regularlist">
 <h1>Änderungen gegenüber 1.5.5e</h1>
 <ul>
-  <li>Alle Erfordernisse der Datenschutzgrundverordnung DSGVO werden erfüllt.</li>
-  <li> Vollständige Unterstützung von PHP 7.1.x</li>
-  <li>    Alle Bugs, die seit der ersten 1.5.5 Version im Supportforum gemeldet wurden, sind mit dieser 1.5.5f Version behoben.</li></ul><br/>
-    Aktualisierte Komponenten:<ul>
+  
+  <li>Vollständige Unterstützung von PHP 7.1.x</li>
+  <li>Alle Erfordernisse der Datenschutzgrundverordnung (DSGVO) werden erfüllt. Bei Bestellungen werden keine IP-Adressen mehr gespeichert. Laut Art. 20 DSGVO haben Kunden das Recht, ihre personenbezogenen Daten, die sie dem Shopbetreiber bereitgestellt haben, in einem strukturierten, gängigen und maschinenlesbaren Format zu erhalten. Wenn Kunden diesbezüglich anfragen, kann über den neuen Menüpunkt Kunden > DSGVO Kundendatensatz Export für jeden Kunden ein aktueller Kundendatensatz erstellt werden, der auch die bisherigen Bestellungen und eventuell abgegebene Produktbewertungen des Kunden enthält. Über einen neuen Menüpunkt lassen sich Kunden, die nie etwas bestellt haben leicht finden, was das Löschen alter Kundenkonten vereinfacht. Das integrierte Google Analytics ist standardmäßig mit Anonymisierung der IP Adresse konfiguriert.</li>
+  <li>Bugs, die seit der ersten 1.5.5 Version im Supportforum gemeldet wurden, sind mit dieser 1.5.5f Version behoben.</li>
     <li>Update von MailBeez auf Version 3.7.6</li>
     <li>Update von PHPMailer auf Version 5.2.26</li>
     <li>Update des CKEditors auf Version 4.9.1</li>
     <li>Update des TinyMCE Editors auf 4.7.13</li>
-    <li>Update von Mobile Detect auf 2.8.32</li></ul><br/>
+    <li>Update von Mobile Detect auf 2.8.32</li>
+    <li>Update des Image Handlers auf Version 5.1.0</li>
+    <li>Update der Zen Colorbox auf Version 2.1.2</li>
+    <li>Die veralteten Templates viennablood, viennabright und viennaorange wurden aus der Installation entfernt</li>
+    </ul>
+    <br/>
     Neben 1.5.5f deutsch spezifischen Bugfixes wurden folgende Änderungen wurden aus der amerikanischen Version 1.5.5f übernommen:<br/><br/>
     Checkout - As a help to people getting PayPal TLS notifications, the CURL Testing tool now reports compatibility with tlstest.paypal.com<br>
     Checkout - PayPal - Australia settings explained better in configuration screen<br>
@@ -148,12 +155,207 @@ OSI certified ist ein Zertifikat der Open Source Initiative.
 </ul>
 
 <h1>Changelog</h1>
-<p>Geänderte Dateien in 1.5.5f gegenüber 1.5.5e</p>
-<p><br>
+<p><strong>Geänderte Dateien in 1.5.5f gegenüber 1.5.5e:</strong></p>
+<p>admin\includes\auto_loaders\config.core.php<br>
+  admin\includes\classes\AdminRequestSanitizer.php<br>
+  admin\includes\classes\order.php<br>
+  admin\includes\classes\phplot.php<br>
+  admin\includes\classes\sales_report.php<br>
+  admin\includes\css\bootstrap.min.css<br>
+  admin\includes\css\font-awesome.min.css<br>
+  admin\includes\extra_configures\bmz_image_handler_conf.php<br>
+  admin\includes\extra_configures\bmz_io_conf.php<br>
+  admin\includes\extra_datafiles\image_handler.php<br>
+  admin\includes\functions\extra_functions\functions_bmz_image_handler.php<br>
+  admin\includes\functions\extra_functions\functions_bmz_io.php<br>
+  admin\includes\functions\functions_prices.php<br>
+  admin\includes\functions\general.php<br>
+  admin\includes\functions\html_output.php<br>
+  admin\includes\functions\localization.php<br>
+  admin\includes\init_includes\init_errors.php<br>
+  admin\includes\init_includes\init_sanitize.php<br>
+  admin\includes\installers\it_recht_kanzlei\1_0_0.php<br>
+  admin\includes\installers\pdf-rechnung\3_5_0.php<br>
+  admin\includes\javascript\bootstrap.min.js<br>
+  admin\includes\languages\english\admin_activity.php<br>
+  admin\includes\languages\english\coupon_admin.php<br>
+  admin\includes\languages\english\orders.php<br>
+  admin\includes\languages\german\coupon_admin.php<br>
+  admin\includes\languages\german\orders.php<br>
+  admin\includes\languages\english.php<br>
+  admin\includes\languages\german.php<br>
+  admin\includes\ckeditor.php<br>
+  admin\includes\header.php<br>
+  admin\includes\ih_manager.php<br>
+  admin\includes\keepalive_module.php<br>
+  admin\includes\tinymce.php<br>
+  admin\admin_activity.php<br>
+  admin\categories.php<br>
+  admin\coupon_admin.php<br>
+  admin\coupon_restrict.php<br>
+  admin\image_handler.php<br>
+  admin\it_recht_kanzlei.php<br>
+  admin\login.php<br>
+  admin\orders.php<br>
+  admin\products_price_manager.php<br>
+  admin\record_company.php<br>
+  admin\stats_products_lowstock.php<br>
+  admin\store_manager.php<br>
+  admin\whos_online.php<br>
+  download\.htaccess<br>
+  extras\plugins\riCjLoader\lib\browser.php<br>
+  includes\classes\db\mysql\query_factory.php<br>
+  includes\classes\zen_colorbox\jquery_colorbox.php<br>
+  includes\classes\zen_colorbox\options.php<br>
+  includes\classes\bmz_gif_info.class.php<br>
+  includes\classes\bmz_image_handler.class.php<br>
+  includes\classes\categories_ul_generator.php<br>
+  includes\classes\class.base.php<br>
+  includes\classes\class.rl_invoice3.php<br>
+  includes\classes\currencies.php<br>
+  includes\classes\message_stack.php<br>
+  includes\classes\Mobile_Detect.php<br>
+  includes\classes\order.php<br>
+  includes\classes\payment.php<br>
+  includes\classes\rss_feed.php<br>
+  includes\classes\shopping_cart.php<br>
+  includes\classes\upload.php<br>
+  includes\extra_configures\bmz_image_handler_conf.php<br>
+  includes\extra_configures\bmz_io_conf.php<br>
+  includes\functions\extra_functions\functions_bmz_image_handler.php<br>
+  includes\functions\extra_functions\functions_bmz_io.php<br>
+  includes\functions\extra_functions\zen_colorbox.php<br>
+  includes\functions\functions_email.php<br>
+  includes\functions\functions_general.php<br>
+  includes\functions\functions_lookups.php<br>
+  includes\functions\functions_prices.php<br>
+  includes\functions\functions_taxes.php<br>
+  includes\functions\html_output.php<br>
+  includes\functions\plugin_support.php<br>
+  includes\init_includes\init_languages.php<br>
+  includes\init_includes\init_sessions.php<br>
+  includes\languages\english\modules\payment\invoice.php<br>
+  includes\languages\english\checkout_payment.php<br>
+  includes\languages\english\checkout_process.php<br>
+  includes\languages\english\password_forgotten.php<br>
+  includes\languages\german\modules\payment\invoice.php<br>
+  includes\languages\german\checkout_process.php<br>
+  includes\languages\german\password_forgotten.php<br>
+  includes\languages\english.php<br>
+  includes\languages\german.php<br>
+  includes\modules\order_total\ot_coupon.php<br>
+  includes\modules\order_total\ot_gv.php<br>
+  includes\modules\pages\account_history_info\header_php.php<br>
+  includes\modules\pages\address_book\header_php.php<br>
+  includes\modules\pages\advanced_search_result\header_php.php<br>
+  includes\modules\pages\checkout_confirmation\header_php.php<br>
+  includes\modules\pages\checkout_confirmation\jscript_main.php<br>
+  includes\modules\pages\shopping_cart\header_php.php<br>
+  includes\modules\payment\authorizenet\authorizenet_admin_notification.php<br>
+  includes\modules\payment\paypal\paypal_curl.php<br>
+  includes\modules\payment\paypal\paypal_functions.php<br>
+  includes\modules\payment\authorizenet.php<br>
+  includes\modules\payment\authorizenet_aim.php<br>
+  includes\modules\payment\authorizenet_echeck.php<br>
+  includes\modules\payment\paypalwpp.php<br>
+  includes\modules\additional_images.php<br>
+  includes\modules\attributes.php<br>
+  includes\modules\checkout_process.php<br>
+  includes\modules\create_account.php<br>
+  includes\modules\main_product_image.php<br>
+  includes\modules\specials_index.php<br>
+  includes\modules\zen_colorbox.php<br>
+  includes\pdf\decoders\ascii85.php<br>
+  includes\pdf\decoders\lzw.php<br>
+  includes\pdf\fpdf_tpl.php<br>
+  includes\templates\classic\css\style_imagehover.css<br>
+  includes\templates\classic\jscript\auto_loaders\zen_colorbox.php<br>
+  includes\templates\classic\jscript\jquery.min.js<br>
+  includes\templates\classic\jscript\jscript_framework.php<br>
+  includes\templates\classic\jscript\jscript_imagehover.js<br>
+  includes\templates\classic\template_info.php<br>
+  includes\templates\responsive_classic\common\html_header.php<br>
+  includes\templates\responsive_classic\common\tpl_header.php<br>
+  includes\templates\responsive_classic\css\responsive_tablet.css<br>
+  includes\templates\responsive_classic\jscript\auto_loaders\zen_colorbox.php<br>
+  includes\templates\responsive_classic\jscript\jquery.colorbox-min.js<br>
+  includes\templates\responsive_classic\jscript\jscript_framework.php<br>
+  includes\templates\responsive_classic\jscript\jscript_imagehover.js<br>
+  includes\templates\responsive_classic\templates\tpl_ajax_checkout_confirmation_default.php<br>
+  includes\templates\responsive_classic\templates\tpl_featured_products_default.php<br>
+  includes\templates\responsive_classic\templates\tpl_modules_mobile_menu.php<br>
+  includes\templates\responsive_classic\templates\tpl_products_all_default.php<br>
+  includes\templates\responsive_classic\templates\tpl_products_new_default.php<br>
+  includes\templates\template_default\common\html_header.php<br>
+  includes\templates\template_default\common\tpl_header.php<br>
+  includes\templates\template_default\css\style_imagehover.css<br>
+  includes\templates\template_default\jscript\auto_loaders\zen_colorbox.php<br>
+  includes\templates\template_default\jscript\jquery.min.js<br>
+  includes\templates\template_default\jscript\jscript_framework.php<br>
+  includes\templates\template_default\jscript\jscript_imagehover.js<br>
+  includes\templates\template_default\templates\tpl_ajax_checkout_confirmation_default.php<br>
+  includes\templates\template_default\templates\tpl_discount_coupon_default.php<br>
+  includes\version.php<br>
+  ajax.php<br>
+  ipn_main_handler.php<br>
   <br>
-  Neue Dateien in 1.5.5f gegenüber 1.5.5e<br>
+  komplette Ordner:<br>
+  editors<br>
+  mailhive<br>
+  includes/classes/vendors/PHPMailer
 </p>
-<p>Entfernte Dateien in 1.5.5f gegenüber 1.5.5e  <a href="https://github.com/zencartpro/zencart-german-grundsystem" target="_blank"></a></p>
+<p><br>
+  <strong>Neue Dateien in 1.5.5f gegenüber 1.5.5e:</strong><br>
+  <br>
+  admin\backups\.htaccess<br>
+  admin\includes\classes\ImageHandlerAdmin.php<br>
+  admin\includes\extra_datafiles\customers_without_order.php<br>
+  admin\includes\extra_datafiles\dsgvo_kundenexport.php<br>
+  admin\includes\extra_datafiles\image_handler_admin_logging.php<br>
+  admin\includes\installers\it_recht_kanzlei\1_0_1.php<br>
+  admin\includes\installers\pdf-rechnung\3_5_1.php<br>
+  admin\includes\languages\english\extra_definitions\customers_without_order.php<br>
+  admin\includes\languages\english\extra_definitions\dsgvo_kundenexport.php<br>
+  admin\includes\languages\english\extra_definitions\image_handler_extra_definitions.php<br>
+  admin\includes\languages\english\images\buttons\button_dsgvoexport.png<br>
+  admin\includes\languages\english\customers_without_order.php<br>
+  admin\includes\languages\english\dsgvo_kundenexport.php<br>
+  admin\includes\languages\english\image_handler.php<br>
+  admin\includes\languages\english\image_handler_about.php<br>
+  admin\includes\languages\english\image_handler_view_config.php<br>
+  admin\includes\languages\german\extra_definitions\customers_without_order.php<br>
+  admin\includes\languages\german\extra_definitions\dsgvo_kundenexport.php<br>
+  admin\includes\languages\german\extra_definitions\image_handler_extra_definitions.php<br>
+  admin\includes\languages\german\images\buttons\button_dsgvoexport.png<br>
+  admin\includes\languages\german\customers_without_order.php<br>
+  admin\includes\languages\german\dsgvo_kundenexport.php<br>
+  admin\includes\languages\german\image_handler.php<br>
+  admin\includes\languages\german\image_handler_about.php<br>
+  admin\includes\languages\german\image_handler_view_config.php<br>
+  admin\customers_without_order.php<br>
+  admin\dsgvo_kundenexport.php<br>
+  admin\image_handler_view_config.php<br>
+  includes\auto_loaders\config.colorbox.php<br>
+  includes\auto_loaders\config.fual_slimbox.php<br>
+  includes\auto_loaders\config.image_handler.php<br>
+  includes\classes\observers\ColorBoxObserver.php<br>
+  includes\classes\observers\FualSlimboxObserver.php<br>
+  includes\classes\observers\ImageHandlerObserver.php<br>
+  includes\classes\zen_colorbox\display_js_link.php<br>
+  includes\classes\zen_colorbox\display_link.php<br>
+  includes\extra_datafiles\image_handler_logging.php<br>
+  includes\languages\english\responsive_classic\header.php<br>
+  includes\languages\german\responsive_classic\header.php<br>
+  includes\templates\classic\css\rss.css<br>
+</p>
+<p><strong>Entfernte Dateien/Ordner in 1.5.5f gegenüber 1.5.5e  </strong></p>
+<p>admin\includes\languages\english\extra_definitions\bmz_image_handler.php<br>
+  admin\includes\languages\german\extra_definitions\bmz_image_handler.php<br>
+  includes\auto_loaders\config.widerruf_downloads.php<br>
+  includes\classes\observers\class.widerruf_downloads.php <br>
+includes/templates/viennablood<br>
+  includes/templates/viennabright<br>
+  includes/templates/viennaorange </p>
 </div>
 </div>
 </div>
@@ -301,7 +503,7 @@ Benennen Sie diese Datei in configure.php um und ändern Sie die Rechte auf 777 
 Suchen Sie nun nach der Datei: <span class="filename">/shop/admin/includes/dist-configure.php</span><br />
 Benennen Sie diese Datei in configure.php um und ändern Sie die Rechte auf 777 (read-write-execute for all)<br/>
 <br/>
-Wenn Sie die beiden configure so bearbeiten mussten, dann wird das Installationsprogramm auf diesem Server sehr wahrscheinlich auch die Ordner admin und zc_install nach der Installation nicht automatisch umbenennen können. Ändern Sie daher gleich auch die Berechtigungen der Ordner admin und zc_install auf 777. <br />
+Wenn Sie die beiden configure so bearbeiten mussten, dann wird das Installationsprogramm auf diesem Server sehr wahrscheinlich auch den Ordner admin nach der Installation nicht automatisch umbenennen können. Ändern Sie daher gleich auch die Berechtigungen der Ordner admin auf 777. <br />
 <br />
 Danach starten Sie die Installation erneut.<br>
   <br>
@@ -312,7 +514,7 @@ Danach starten Sie die Installation erneut.<br>
   Es   werden Beispielkategorien und Beispielartikel installiert, die sehr   nützlich sind, um sich mit der Funktionalität vertraut zu machen.
   <br>
   Für die Installation Ihres echten Shops kreuzen Sie die Demodaten NICHT an!<br>
-  Die erweitereten Einstellungen unten müssen Sie nicht ändern, außer Sie haben bestimmte Gründe dafür.
+  Die erweiterten Einstellungen unten müssen Sie nicht ändern, außer Sie haben bestimmte Gründe dafür.
   <br>
   <br>
   Der Installer befüllt nun die Datenbank und sie geben im nächsten Schritt <strong>Admin Setup</strong> Ihre gewünschten Zugangsdaten für die Shopadministration ein. Das Passwort wird automatisch vergeben, notieren Sie sich das angezeigte Passwort! Sie können es später ändern aber für den Ersteinstieg benötigen Sie das angezeigte Passwort.<br>
@@ -340,7 +542,7 @@ Falls Sie bei der Installation die Demodaten mitinstalliert haben, dann laden Si
 <div>
 <h2>Nach der Installation </h2>
 <p>Wenn Sie die Shopadministration oder Ihren Shop betreten, erhalten Sie möglicherweise eine Sicherheitswarnung bezüglich   der Dateien <em>configure.php</em></p>
-<p>Der Installer setzt die Rechte der configure.php Dateien in der Regel automatisch auf chmod 444 (schreibgeschützt). Sollte das aus irgendeinem Grund fehlgeschlagen sein, werden Sie einen Hinweis bekommen, dass die Konfigurationsdateien beschreibbar sind. Falls dieser Hinweis kommt, gehen Se bitte wie folgt vor:<br />
+<p>Der Installer setzt die Rechte der configure.php Dateien in der Regel automatisch auf chmod 444 (schreibgeschützt). Sollte das aus irgendeinem Grund fehlgeschlagen sein, werden Sie einen Hinweis bekommen, dass die Konfigurationsdateien beschreibbar sind. Falls dieser Hinweis kommt, gehen Sie bitte wie folgt vor:<br />
   <br />
   <br />
   <strong>Die Dateien "configure.php" </strong><br />
@@ -366,7 +568,7 @@ Falls Sie bei der Installation die Demodaten mitinstalliert haben, dann laden Si
     <br />
   Machen Sie sich mit dem  Developers Toolkit vertraut, zu finden im Administrationsbereich unter "Tools". Dieses hilft Ihnen fast jeden Bereich, den sie verändern wollen, zu lokalisieren. </p>
   <p>Haben Sie Ihren Shop wunschgemäß eingerichtet und sind bereit, mit Ihrem Shop online zu gehen, lesen Sie bitte unbedingt ZUERST die Wichtigen Sicherheitsempfehlungen für Zen Cart in dieser Dokumentation um sicher zu gehen, dass Ihr Shop keine Angriffsfläche für Hacker bietet.</p>
-  <p>Wenn Sie Ihr admin Verzeichnis wieder umbenennen wollen (vielleicht ist Ihnen ja noch ein besserer Name eingefallen), dann reicht es, den Ordner DEINADMIN am Server einfach umzubenennen. Ein manuelles anschließendes Editieren der DEINADMIN/includes/configure.php ist seit Zen Cart 1.5 NICHT mehr nötig!</p>
+  <p>Wenn Sie Ihr admin Verzeichnis wieder umbenennen wollen (vielleicht ist Ihnen ja noch ein besserer Name eingefallen), dann reicht es, den Ordner DEINADMIN am Server einfach umzubenennen. Ein manuelles anschließendes Editieren der DEINADMIN/includes/configure.php ist seit Zen Cart 1.5.x NICHT mehr nötig!</p>
 </div>
 <div>
 <h2>Hilfe und Support </h2>
@@ -383,9 +585,10 @@ Falls Sie bei der Installation die Demodaten mitinstalliert haben, dann laden Si
 <div class="regularlist">
 <h1>UPDATE auf die Version 1.5.5f</h1>
 <div>
-<p>&nbsp;</p>
+<p><strong>Diese Anleitung bezieht sich auf ein Update einer deutschen Zen Cart Version älter als 1.5.5e auf 1.5.5f<br>
+  Falls Sie bereits die deutsche Zen Cart Version 1.5.5e einsetzen und auf 1.5.5f aktualisieren wollen, nutzen Sie bitte das spezielle Updatepaket wie unter <a onClick="expandcontent('sc5', this)" href="javascript:void(0)">Update von 1.5.5e</a> beschrieben.</strong></p>
  <h2>HINWEIS: Bereits INSTALLIERTE ERWEITERUNGEN</h2>
-  In Zen Cart 1.5.5f sind folgende Erweiterungen bereits enthalten, die Sie möglicherweise bereits früher einmal manuell in Ihre Zen Cart Version 1.5.1 und älter eingebaut hatten, und die Konfigurationseinträge vorgenommen haben:<br/>
+  In Zen Cart 1.5.5f sind folgende Erweiterungen bereits enthalten, die Sie möglicherweise bereits früher einmal manuell in Ihre alte Zen Cart Version älter eingebaut hatten und für die Sie Konfigurationseinträge vorgenommen haben:<br/>
 <ul>
   <li>Image Handler</li>
   <li>Google Analytics</li>
@@ -393,8 +596,10 @@ Falls Sie bei der Installation die Demodaten mitinstalliert haben, dann laden Si
   <li>RSS Feed</li>
   <li>CSS/JS Loader (Minify)</li>
   <li>Spaltenlayout für Artikelliste</li>
+  <li>pdf Rechnung</li>
+  <li>IT-Recht Kanzlei Schnittstelle</li>
   </ul>
-<p>Sollten Sie eine oder mehrere dieser Erweiterungen verwenden, dann notieren Sie sich VOR dem Update Ihre Konfigurationseinstellungen für diese Module (z.B. Konfiguration &gt; Google Analytics)<br/>
+<p>Sollten Sie eine oder mehrere dieser Erweiterungen verwenden, dann notieren Sie sich VOR dem Update Ihre Konfigurationseinstellungen für diese Module (z.B. Konfiguration &gt; Google Analytics, Konfiguration &gt; pdf Rechnung)<br/>
 Um eine zuverlässige Installation der neuen Konfigurationseinträge dieser Module zu gewährleisten, entfernt das Updateprogramm die alten Konfigurationseinträge dieser Module aus der Datenbank und ersetzt Sie mit den neuen. Nach dem Update können Sie dann Ihre gewünschten Einstellungen wieder vornehmen.</p>
   <h2>HINWEIS: Zahlungs- und Versandmodule </h2>
   Sie müssen Ihre momentan genutzen Zahlungs- und Versandmodule im Rahmen des Upgrades neu installieren:
@@ -477,7 +682,7 @@ Um eine zuverlässige Installation der neuen Konfigurationseinträge dieser Modu
   Wenn die Unterschiede nur in Sprachdateien (Ordner Languages) sind, dann sind diese leicht zu übertragen.<br/>
   Alle anderen Unterschiede der Programmierung/Codes müssen detailiert   aufgeschrieben werden um diese in die neue Version zu übertragen.<br/>
   <br/>
-  HINWEIS: Eigene Modifikationen, Module und Add-Ons, die Sie bisher   installiert haben, enthalten zahlreiche Änderungen in der Programmierung   und können möglicherweise nicht mehr mit der neuen Zen Cart 1.5.5 Version   kompatibel sein.<br/>
+  HINWEIS: Eigene Modifikationen, Module und Add-Ons, die Sie bisher   installiert haben, enthalten zahlreiche Änderungen in der Programmierung   und können möglicherweise nicht mehr mit der neuen Zen Cart 1.5.5f Version   kompatibel sein.<br/>
   <br/>
   Ihre Liste der installierten Module und Add-Ons kann Ihnen helfen, die   Anzahl der gefundenen Unterschiede zu schmälern. Ebenso kann es   vorkommen, dass Sie diese Module und Add-Ons noch einmal herunter laden   müssen, um sich deren Readme- Datei bzw. den Code durchzusehen.   Eventuell müssen Sie die Autoren der Module bezüglich einer   Aktualisierung des Codes kontaktieren. <br/>
   <br/>
@@ -495,7 +700,7 @@ Um eine zuverlässige Installation der neuen Konfigurationseinträge dieser Modu
   <br/>
   Beachten Sie bitte, dass Sie eventuell noch Änderungen Ihres selbst   erstellten Templates durchführen müssen. Vergleichen Sie deshalb bitte   im Bedarfsfall die Dateien Ihres Template Ordners   /includes/templates/MEINTEMPLATE/* mit   /includes/template/template_default/* ... dasselbe gilt auch für Dateien   der Sprachfiles, Sideboxen etc. <br>
   Wenn Sie Ihr bisheriges Template in Zen Cart 1.5.5f weiterverwenden wollen, dann achten Sie auf die zahlreichen Änderungen, die seit 1.5.4 in template_default vorgenommen wurden, um HTML5 Kompatibilität zu erreichen.
-  <br/>
+  Die Templates viennablood, viennabright und viennaorange sind in 1.5.5f nicht mehr enthalten. Falls Sie eines dieser Templates verwenden, können Sie es aber natürlich auch in 1.5.5f weiterverwenden. Vergleichen Sie aber eben unbedingt mit template_default und ergänzen fehlende Ordner und aktualisieren bestehende Templatedateien.<br/>
 </div>
 <br/>
 <div>
@@ -526,7 +731,7 @@ Um eine zuverlässige Installation der neuen Konfigurationseinträge dieser Modu
   <p>Nach dem Click auf Weiter wird das Datenbankupdate durchgeführt, abwarten bis die Erfolgsmeldung erscheint:</p>
   <p><img src="images/155-update-154-auf-155-abgeschlossen.jpg" width="800" height="281"  alt=""/></p>
   <p>Löschen Sie nun das Verzeichnis zc_install und loggen sich dann in die Shopadministration ein.<br>
-    Prüfen Sie nun unter Tools &gt; Serverinfo ob erfolgreich auf Version 1.5.5e aktualisiert wurde
+    Prüfen Sie nun unter Tools &gt; Serverinfo ob erfolgreich auf Version 1.5.5f aktualisiert wurde
   </p>
   <p>    Testen Sie nun Ihre Anpassungen, bearbeiten Sie diese ggf. und vergleichen   Sie Ihre "Testinstallation" mit der Installation Ihrer neuen Version.<br/>
     <br/>
@@ -547,35 +752,78 @@ Um eine zuverlässige Installation der neuen Konfigurationseinträge dieser Modu
 <div class="tabcontent" id="sc5" style="display: block;">
 <div class="textcontent">
 <div class="regularlist">
-<h1>Credits</h1>
-<p>
-Danke an
-<br/><br/>
-Team der amerikanischen Zen Cart Version für den Grundcode<br/>
-<a href="http://www.zen-cart.com" target="_blank">www.zen-cart.com</a><br/><br/>
-Victor Stanciu, Șerban Ghiță, Nick Ilyin für Mobile Detect<br/>
-<a href="http://mobiledetect.net" target="_blank">http://mobiledetect.net</a><br/><br/>
-CKSource für den CKEditor<br/>
-<a href="http://ckeditor.com" target="_blank">http://ckeditor.com</a><br/><br/>
-ephox für den Tiny MCE Editor<br/>
-<a href="https://www.tinymce.com" target="_blank">https://www.tinymce.com</a><br/><br/>
-Numinix für das Modul CSS JS Loader<br/>
-<a href="http://www.numinix.com" target="_blank">http://www.numinix.com</a><br/><br/>
-Zen4All für das Modul Multilanguage Country Names<br/>
-<a href="http://zen4all.nl" target="_blank">http://zen4all.nl</a><br/><br/>
-DivaVocals für das Aktuell halten diverser Zen Cart Erweiterungen<br/>
-<a href="http://overthehillweb.com" target="_blank">http://overthehillweb.com</a><br/><br/>
-PRO Webs für das Modul Super Data (Open Graph / Microdata)<br/>
-<a href="https://pro-webs.net" target="_blank">https://pro-webs.net</a><br/><br/>
-Rainer Langheiter für das Modul pdf Rechnung
-<br/><br/>
-Andrew Berezin und niestudio für die Module RSS Feed und Colorbox
+<h1>Update von 1.5.5e auf 1.5.5f</h1>
+<p>Wenn Sie bereits Zen Cart 1.5.5e deutsch einsetzen und auf 1.5.5f deutsch aktualisieren wollen, dann nutzen Sie bitte das spezielle Updatepaket von 1.5.5e auf 1.5.5f, das im 1.5.5f Download mitgeliefert wird.<br>
+  <br>
+  Im Ordner UPDATE-VON-155e-AUF-155f enthät dieses Paket alle geänderten und neuen Dateien um eine bestehende 1.5.5e Installation einfach auf 1.5.5f aktualisieren zu können.<br>
+  <strong>Nur geeignet, wenn Sie bereits 1.5.5e deutsch verwenden!<br>
+  Für das Update einer älteren deutschen Zen Cart Version, führen Sie bitte ein normales Update mit dem kompletten 1.5.5f Paket durch, so wie unter Update beschrieben!</strong></p>
+<p>Um Ihren bestehenden 1.5.5e deutsch Shop auf 1.5.5f deutsch zu aktualisieren gehen Sie folgendermaßen vor:</p>
+<p><strong>!!! BEVOR SIE BEGINNEN MACHEN SIE EINE KOMPLETTE SICHERUNG IHRER SHOPDATEIEN UND IHRER DATENBANK !!!</strong></p>
+<p>1)<br>
+  Im Ordner 1 - GEAENDERTE DATEIEN finden Sie alle Dateien, die in 1.5.5f gegenüber 1.5.5e geändert wurden.<br>
+  Benennen Sie den Ordner DEINADMIN auf den Namen Ihres Adminverzeichnisses um.<br>
+  Vergleichen Sie nun mit BeyondCompare oder WinMerge alle Dateien in diesem Ordner mit denen Ihrer Shopinstallation am Server.<br>
+  Übernehmen Sie alle Änderungen und laden dann die Ordner/Dateien in der vorgegebenen Struktur in Ihr Shopverzeichnis hoch.<br>
+  Die Templates viennablood, viennabright und viennaorange sind in 1.5.5f nicht mehr enthalten. Falls Sie eines dieser Templates verwenden, können Sie es aber natürlich auch in 1.5.5f weiterverwenden. Vergleichen Sie aber dann unbedingt die Dateien Ihres Templates mit den Dateien in includes/templates/template_default und ergänzen fehlende Ordner und aktualisieren bestehende Templatedateien.</p>
+<p>2)<br>
+  Im Ordner 2 - NEUE DATEIEN befinden sich die kompletten neuen Versionen der CKEditor und TinyMCE Editoren sowie neue Versionen des PHP Mailers und des Mailbeez Installers.<br>
+  Ebenso die in 1.5.5f deutsch neu hinzugekommenen Dateien.<br>
+  Statt hier mühsame Dateivergleiche durchzuführen, können Sie die bestehenden Pakete einfach komplett mit den neuen ersetzen.<br>
+  Benennen Sie den Ordner DEINADMIN auf den Namen Ihres Adminverzeichnisses um.<br>
+  Löschen Sie den kompletten Ordner editors vom Server<br>
+  Löschen Sie den kompletten Ordner includes/classes/vendors/PHPMailer vom Server<br>
+  Laden Sie dann den Inhalt des Ordners 2 - NEUEDATEIEN in der vorgegebenen Struktur ins Shopverzeichnis hoch.<br>
+  Dabei werden dann nur im Ordner mailhive ein paar bestehende Dateien überschrieben, das ist ok.<br>
 </p>
+<p>3)<br>
+  Löschen Sie nun unbedingt die folgenden Dateien aus Ihrer Shopinstallation:</p>
+<p>DEINADMIN\includes\languages\english\extra_definitions\bmz_image_handler.php<br>
+  DEINADMIN\includes\languages\german\extra_definitions\bmz_image_handler.php<br>
+  includes\auto_loaders\config.widerruf_downloads.php<br>
+  includes\classes\observers\class.widerruf_downloads.php</p>
+<p>Nicht mehr in 1.5.5f deutsch enthalten sind die alten Templates viennablood, viennabright und viennaorange</p>
+<p>Wenn Sie diese Templates nicht verwenden, löschen Sie folgende Ordner komplett:</p>
+<p>includes/templates/viennablood<br>
+  includes/templates/viennabright<br>
+  includes/templates/viennaorange</p>
+<p>Ebenso können Sie die entsprechenden Override Verzeichnisse löschen falls vorhanden:</p>
+<p>includes/modules/viennablood<br>
+  includes/modules/viennabright<br>
+  includes/modules/viennaorange<br>
+  includes/modules/sideboxes/viennablood<br>
+  includes/modules/sideboxes/viennabright<br>
+  includes/modules/sideboxes/viennaorange<br>
+  includes/languages/german/viennablood<br>
+  includes/languages/german/viennabright<br>
+  includes/languages/german/viennaorange<br>
+  includes/languages/german/html_includes/viennablood<br>
+  includes/languages/german/html_includes/viennabright<br>
+  includes/languages/german/html_includes/viennaorange<br>
+  includes/languages/english/viennablood<br>
+  includes/languages/english/viennabright<br>
+  includes/languages/english/viennaorange<br>
+  includes/languages/english/html_includes/viennablood<br>
+  includes/languages/english/html_includes/viennabright<br>
+  includes/languages/english/html_includes/viennaorange<br>
+</p>
+<p>4)<br>
+  In einem letzten Schritt müssen nun noch ein paar kleinere Änderungen in der Datenbank vorgenommen werden, damit neue Menüpunkte sichtbar werden.<br>
+  Um DSGVO konform zu sein werden alte in der Tabelle orders gespeicherte IP-Adressen gelöscht.<br>
+   Image Handler wird auf eine neuere Version aktualisiert, Google Analytics wird mit Anonymize IP konfiguriert und es werden einige deutsche Konfigurationsbeschreibungen aktualisiert.</p>
+<p>Um diese Änderungen vorzunehmen gehen Sie nun in den Ordner 4 - DATENBANKAKTUALISIERUNG</p>
+<p>Benennen Sie den Ordner DEINADMIN auf den Namen Ihres Adminverzeichnisses um.</p>
+<p>Laden Sie die Dateien in der vorgebenen Srruktur ins Shopverzeichnis hoch.</p>
+<p>Loggen Sie sich in Ihre Zen Cart Administration ein.</p>
+<p>Sie sehen verschiedene grüne Erfolgsmeldungen und zum Abschluss: <br>
+  Aktualisierung auf 1.5.5f deutsch erfolgreich</p>
+<p>Bevor Sie nun irgendetwas anclicken oder tun, löschen Sie erst sofort die beiden hochgeladenen Dateien wieder vom Server:<br>
+  DEINADMIN/includes/auto_loaders/config.155f_update.php<br>
+  DEINADMIN/includes/init_includes/init_155f_update.php</p>
 </div>
 </div>
 </div>
 <!--End sc5-->
-
 <!--Begin sc6-->
 <div class="tabcontent" id="sc6" style="display: block;">
 <div class="textcontent">
@@ -584,11 +832,19 @@ Andrew Berezin und niestudio für die Module RSS Feed und Colorbox
 <p>Generell:<br/>
   <br/>
   <strong>Betreiben Sie Ihren Onlineshop NICHT OHNE SSL!</strong><br/>
-  Ihre Kunden können erwarten, dass ihre Daten beim Konto erstellen, Login, Daten ändern und im Bestellablauf nicht völlig unverschlüsselt übertragen werden. Empfohlen ist ein &quot;echtes&quot; auf Ihre Domain ausgestelltes SSL Zertifikat, Sie sollten aber mindestens ein von den meisten Providern angebotenes &quot;Shared SSL&quot; verwenden. Nähere Informationen dazu gibt Ihr Provider.<br/>
-  Auch für Ihre Zen Cart Administration ist SSL eine ganz wesentliche Absicherung.<br/>
+  Ihre Kunden können erwarten, dass ihre Daten beim Konto erstellen, Login, Daten ändern und im Bestellablauf nicht völlig unverschlüsselt übertragen werden. Empfohlen ist ein &quot;echtes&quot; auf Ihre Domain ausgestelltes SSL Zertifikat, kein Shared SSL! <br>
+  In Zeiten von Lets Encrypt sollte keine Website mehr ohne SSL betrieben werden.<br/>
+  Auch für Ihre Zen Cart Administration ist SSL eine ganz wesentliche Absicherung.<br>
+  Empfohlen ist, https nicht nur für Login und Checkout zu verwenden, sondern den gesamten Shop durchgehend per https erreichbar zu machen, siehe dazu:<br>
+  <a href="https://www.zen-cart-pro.at/forum/threads/11397-Wie-stelle-ich-Zen-Cart-deutsch-komplett-auf-SSL-um">https://www.zen-cart-pro.at/forum/threads/11397-Wie-stelle-ich-Zen-Cart-deutsch-komplett-auf-SSL-um  </a><br/>
   <br/>
   <strong>Übertragen Sie Daten per FTP nur per <a href="http://en.wikipedia.org/wiki/SSH_File_Transfer_Protocol">SFTP</a> oder <a href="http://en.wikipedia.org/wiki/FTPS">FTPS</a></strong><br/>
-  Per normalem FTP werden die Daten unverschlüsselt übertragen. Sollte Ihr Provider keine SFTP oder FTPS Übertragung unterstützen, stellt sich die Frage, ob der Provider für Ihren Onlineshop wirklich geeignet ist.<br/>
+  Per normalem FTP werden die Daten unverschlüsselt übertragen. Sollte Ihr Provider keine SFTP oder FTPS Übertragung unterstützen, stellt sich die Frage, ob der Provider für Ihren Onlineshop wirklich geeignet ist.<br>
+  <br>
+  <strong>Legen Sie die Ordner pdf und logs auf eine Ebene oberhalb des www</strong><br>
+  Damit Logfiles mit sensiblen Informationen oder pdf Rechnungen keinesfalls überhaupt per 
+  Browser aufrufbar sind, legen Sie die Ordner auf eine Ebene oberhalb des www und geben den Pfad zum logs Ordner in den beiden configure.php entsprechend an. Den Pfad zu den pdf Rechnungen geben Sie in der Konfiguration der pdf Rechnung entsprechend an.<br>
+  Sollte Ihr Provider das Anlegen von Ordner unterhalb des www nicht unterstützen, stellt sich die Frage, ob der Provider für Ihren Onlineshop wirklich geeignet ist.  <br/>
   <br/>
   Nach erfolgreicher Installation des Shops sind folgende Maßnahmen   empfohlen, um die Sicherheit des Shops zu erhöhen. <br/>
   <br/>
@@ -623,7 +879,7 @@ Sollten Sie später einmal Downloads anbieten wollen, müssen Sie diese   Ordner
   <br/>
   Unter Konfiguration &gt; Emailoptionen können Sie einstellen, wie Ihr Shop Emails versenden soll. Standardmäßig ist hier meist PHP eingestellt, damit der Shop direkt einsatzbereit ist.<br/>
   Es ist wesentlich besser, die Emails über einen SMTP Server versenden zu lassen. Zum einen reduziert das die Wahrscheinlichkeit, dass Emails bei Ihren Kunden im Spamordner landen. Zum anderen ist es bei Versand über PHP je nach Serverkonfiguration möglich, dass bei Mails aus dem Adminbereich (z.B. Bestellstatusupdates) der Name Ihres admin Verzeichnisses im Mail auslesbar ist.<br/>
-  Daher stellen Sie um auf smtpauth und geben weiter unten in der Konfiguration den Namen Ihres SMP Servers und eine gültigen Usernamen/Passwort dazu ein.
+  Daher stellen Sie um auf smtpauth und geben weiter unten in der Konfiguration den Namen Ihres SMTP Servers und eine gültigen Usernamen/Passwort dazu ein.
   <br/>
   <br/>
   <br/>
@@ -637,9 +893,9 @@ Sollten Sie später einmal Downloads anbieten wollen, müssen Sie diese   Ordner
 5</strong><strong>. Verwenden Sie sichere Passwörter</strong><br/>
   <br/>
   Das Passwort für Ihren Admin Account sollte mindestens 8 Zeichen lang   sein und am besten aus einer Ziffern-, Buchstaben-Kombination bestehen.   Verwenden Sie auch Groß- und Kleinschreibung. Verwenden Sie keine   "normalen" Wörter, die einen Sinn ergeben.<br/>
-  In Zen Cart 1.5 und höher
+  In Zen Cart 1.5.x und höher
   werden Sie alle 90 Tage automatisch aufgefordert, Ihr Passwort zu änden.<br/>
-  Passwortänderung in Zen Cart 1.5 und höher unter Admin &gt; Admin Benutzerrechte &gt; Admin Benutzer &gt; Reset Password
+  Passwortänderung in Zen Cart 1.5.x und höher unter Admin &gt; Admin Benutzerrechte &gt; Admin Benutzer &gt; Reset Password
   <br/>
   Diese Passwortempfehlungen gelten genauso für Ihren FTP User oder das   Passwort zum Zugang zu phpMyAdmin. Verwenden Sie auch hier sichere   Passwörter!<br/>
   <br/>
@@ -750,8 +1006,7 @@ Sollten Sie später einmal Downloads anbieten wollen, müssen Sie diese   Ordner
   <strong>11. Achten Sie auf Sicherheitswarnungen und Updateankündigungen</strong><br/>
   <br/>
   Im Forum "News und Ankündigungen" veröffentlichen wir Hinweise auf Sicherheitslücken, Patches und neue Zen Cart Versionen.<br/>
-  Schauen Sie regelmäßig vorbei oder lassen Sie sich per Email über Ankündigungen in diesem Forum informieren:<br/>
-  <a href="http://www.zen-cart-pro.at/zcvb/forum/subscription.php?do=addsubscription&f=8" target="_blank">Forum News und Ankündigungen abonnieren</a><br/>
+  Abonnieren Sie den <strong><a href="https://www.zen-cart-pro.net/newsletter/?p=subscribe&id=1" target="_blank">Newsletter der deutschen Zen Cart Version</a></strong><a href="https://www.zen-cart-pro.net/newsletter/?p=subscribe&id=1" target="_blank"></a>, um über Sicherheitslücken, Patches und neue Zen Cart Versionen informiert zu werden.<br/>
   <br/>
   <br/>
   <strong>12. Was Sie regelmäßig tun sollten</strong><br/>
@@ -785,7 +1040,7 @@ Sollten Sie später einmal Downloads anbieten wollen, müssen Sie diese   Ordner
   <li>    Die Bilder werden immer ins Verzeichnis images hochgeladen. Beim Bearbeiten eines Artikels ist dieses Verzeichnis vorausgewählt. Es macht großen Sinn, sich unter dem images Ordner diverse Unterverzeichnisse anzulegen. Das könnten z.B. Unterordner für die verschiedenen Kategorien oder Hersteller sein, je nachdem was im Shop Sinn macht. Es sollten nicht alle Artikelbilder einfach immer in images auf die oberste Ebene hochgeladen werden. Wenn ein Shop viele Artikel hat, dann wird das den Shop verlangsamen, da immer das gesamte images Verzeichnis nach dem Artikelbild durchsucht werden muss. Werden dagegen Unterverzeichnisse verwendet, dann muss immer nur das jeweilige Unterverzeichnis durchsucht werden.</li>
   <li>    Statt kunterbunt Hochformate und Querformate zu mischen, macht es Sinn, quadratische Artikelbilder zu verwenden und falls nötig die Bilder eben z.B. mit weiß horizontal oder vertikal aufzufüllen. Vor allem wenn in den Artikellisten mit mehreren Artikeln pro Zeile gearbeitet wird (columns statt rows) sind quadratische Bilder zu empfehlen. </li>
 </ul>
-<p>Zen Cart 1.5.5f deutsch enthält bereits das Modul Image Handler, hier einige Infos dazu:</p>
+<p>Zen Cart 1.5.5f deutsch enthält bereits das Modul Image Handler in der neuesten Version 5.1.0, hier einige Infos dazu:</p>
 <h2>Image Handler</h2>
 <p>Unter Konfiguration &gt; Bilder können Sie alle Einstellungen zum Verhalten von Image Handler vornehmen.</p>
 <p>Bitte beachten Sie zunächst die generellen Zen-Cart Einstellungen   unter "Kleine Bilder - Höhe", "Artikelliste - Höhe der Artikelbilder",   usw.<br>
@@ -820,7 +1075,7 @@ Wenn Sie Ihre Bilder mit einem Wasserzeichen schützen wollen, können Sie   das
 </ul>
 <p>In dieser Installation sind bereits Beispielwasserzeichen in Form   eines Zen-Cart Logos enthalten. Überschreiben Sie diese Beispieldateien   mit Ihrem eigenen Wasserzeichen. Die Position des Wassezeichen können   Sie ebenfalls unter Konfiguration &gt; Bilder einstellen: IH -   Wasserzeichen - Position. Voreingestellt ist zentriert. </p>
 <h3><strong>GD libraries und Image Magick</strong></h3>
-<p>Um Bilder und ihre Grösse anzupassen, muss zusätzlich zu Image   Handler 4.0   entweder GD libraries (ab Version 2) oder ImageMagick (ab   Version 6)   installiert sein. Um herauszufinden, ob Ihre PHP-Version GD   libraries   anbietet, suchen Sie im Admin unter Tools -&gt; Server Info   nach "GD". Ob   eine ImageMagick-Installation vorhanden ist, erfähren   Sie von Ihrem   Hostinganbieter.<br>
+<p>Um Bilder und ihre Grösse anzupassen, muss zusätzlich zu Image   Handler 5.1.0   entweder GD libraries (ab Version 2) oder ImageMagick (ab   Version 6)   installiert sein. Um herauszufinden, ob Ihre PHP-Version GD   libraries   anbietet, suchen Sie im Admin unter Tools -&gt; Server Info   nach "GD". Ob   eine ImageMagick-Installation vorhanden ist, erfähren   Sie von Ihrem   Hostinganbieter.<br>
   Standardmäßig wird mit GD libraries gearbeitet. Wenn Sie stattdessen   Image Magick verwenden wollen, dann müssen Sie in folgender Datei eine   Änderung vornehmen:<br>
   includes/extra_configures/bmz_image_handler_conf.php</p>
 <p>Hier ist standardmäßig folgender Eintrag:</p>
@@ -902,13 +1157,23 @@ Seit Zen Cart 1.5.3 deutsch generiert Zen Cart  out of the box RSS Feeds<br>
   Das Verzeichnis für den Minify Cache wurde in den Ordner cache integriert und befindet sich  unter cache/minify Der Ordner cache/minify muss vom Webserver beschreibbar sein (chmod 777)<br>
   Einstellungen dazu unter Konfiguration &gt; Minify<br/>
   Falls amerikanische Module die Erweiterung CSS/JS Loader mitbringen, dann ist die Installation dieses CSS/JS Loaders in der deutschen Zen Cart Version NICHT erforderlich oder sinnvoll, da er eben bereits integriert ist!</p>
+  <p><strong>DSGVO Funktionalitäten</strong><br>
+  Unter Kunden stehen seit 1.5.5f zwei neue Menüpunkte zur Verfügung, die den Umgang mit DSGVO-bezogenen Kundenanfragen erleichtern.<br>
+  Mit &quot;Kunden, die nie etwas bestellt haben&quot; können alte Kundenkonten leicht identifiziert und gelöscht werden.<br/>
+  Laut Art. 20 DSGVO haben Kunden das Recht, ihre personenbezogenen Daten, die sie dem Shopbetreiber bereitgestellt haben, in einem strukturierten, gängigen und maschinenlesbaren Format zu erhalten
+Wenn Kunden diesbezüglich anfragen, können Sie über den neuen Menüpunkt &quot;DSGVO Kundendatensatz Export&quot; für jeden Kunden einen aktuellen Kundendatensatz erstellen, der auch die bisherigen Bestellungen und eventuell abgegebene Produktbewertungen des Kunden enthält.
+Generiert wird eine csv Datei mit Trennzeichen Semikolon und Zeichensatz utf-8.</p>
 <p><strong>Google Analytics</strong><br>
   Seit Zen Cart 1.5.3 deutsch ist bereits das Modul Google Analytics enthalten, so dass bei Bedarf einfach nur die Google Analytics Account Nummer via Zen Cart Administration eingetragen werden muss, um Google Analytics zu verwenden.<br>
-  Es wird der der neue Google Universal Tracking Code unterstützt. In Zen Cart 1.5.5 wurden weitere Konfigurationsmöglichkeiten für Google Analytics integriert und es wird nun auch das Google Opt-Out Cookie unterstützt, so dass etwaige Links zum Deaktivieren von Google Analytics in der Datenschutzerklärung auch einen Effekt haben. ohne dass manuell noch irgendwelche Codes eingebaut werden müssen.</p>
+  Es wird der der neue Google Universal Tracking Code unterstützt. In Zen Cart 1.5.5 wurden weitere Konfigurationsmöglichkeiten für Google Analytics integriert und es wird nun auch das Google Opt-Out Cookie unterstützt, so dass etwaige Links zum Deaktivieren von Google Analytics in der Datenschutzerklärung auch einen Effekt haben. ohne dass manuell noch irgendwelche Codes eingebaut werden müssen.<br>
+  Voreingestellt ist, dass Google Analytics mit Anonymize IP arbeitet, so dass Google Analytics vollständig DSGVO-konform genutzt werden kann.
+</p>
 <p><strong>Facebook / Open Graph / Micro Data Funktionen</strong><br>
   In Zen Cart 1.5.5 deutsch wurden die bisherige Facebook Open Graph Unterstützung stark erweitert.
   <br>
-Das Konfigurationsmenü Facebook / Open Graph / Microdata bietet etliche neue Einstellungsmöglichkeiten, um z.B. im Quelltext schema.org Microdaten, Twitter Cards und vieles mehr zu hinterlegen.</p>
+Das Konfigurationsmenü Facebook / Open Graph / Microdata bietet etliche neue Einstellungsmöglichkeiten, um z.B. im Quelltext schema.org Microdaten, Twitter Cards und vieles mehr zu hinterlegen.<br>
+Von einer Aktivierung des Facebook Like Buttons raten wir aus Datenschutzgründen ab!
+</p>
 <p><strong>Mehrsprachige Ländernamen</strong><br>
 Die Namen der Länder sind in älteren Zen Cart Versionen einsprachig in der Tabelle countries hinterlegt.<br>
 Für mehrsprachige Shops ist es sinnvoll den Kunden bei der Registrierung    die Namen der Länder in der jeweiligen Sprache anbieten zu können.<br>
@@ -934,6 +1199,42 @@ Beim Bearbeiten eines Landes stehen damit zusätzliche Eingabefelder    für die
 </div>
 </div>
 <!--End sc8-->
+<!--Begin sc9-->
+<div class="tabcontent" id="sc9" style="display: block;">
+<div class="textcontent">
+<div class="regularlist">
+<h1>Credits</h1>
+<p>
+Danke an
+<br/><br/>
+Team der amerikanischen Zen Cart Version für den Grundcode<br/>
+<a href="http://www.zen-cart.com" target="_blank">www.zen-cart.com</a><br/><br/>
+Victor Stanciu, Șerban Ghiță, Nick Ilyin für Mobile Detect<br/>
+<a href="http://mobiledetect.net" target="_blank">http://mobiledetect.net</a><br/><br/>
+CKSource für den CKEditor<br/>
+<a href="http://ckeditor.com" target="_blank">http://ckeditor.com</a><br/><br/>
+ephox für den Tiny MCE Editor<br/>
+<a href="https://www.tinymce.com" target="_blank">https://www.tinymce.com</a><br/><br/>
+Numinix für das Modul CSS JS Loader<br/>
+<a href="http://www.numinix.com" target="_blank">http://www.numinix.com</a><br/><br/>
+Zen4All für das Modul Multilanguage Country Names<br/>
+<a href="http://zen4all.nl" target="_blank">http://zen4all.nl</a><br/><br/>
+DivaVocals für das Aktuell halten diverser Zen Cart Erweiterungen<br/>
+<a href="http://overthehillweb.com" target="_blank">http://overthehillweb.com</a><br/><br/>
+lat9 für die unermüdliche Weiterentwicklung diverser Zen Cart Erweiterungen<br/>
+<a href="https://vinosdefrutastropicales.com/" target="_blank">vinosdefrutastropicales.com</a><br/><br/>
+PRO Webs für das Modul Super Data (Open Graph / Microdata)<br/>
+<a href="https://pro-webs.net" target="_blank">https://pro-webs.net</a><br/><br/>
+Rainer Langheiter für das Modul pdf Rechnung
+<br/><br/>
+Andrew Berezin und niestudio für die Module RSS Feed und Colorbox
+</p>
+</div>
+</div>
+</div>
+<!--End sc9-->
+
+
 </div>
 <div id="footer">Copyright © 2004-2018 <a href="http://www.zen-cart-pro.at" target="_blank">www.zen-cart-pro.at</a> - Die deutsche Zen Cart Version <br>
   the art of e-commerce - übersetzt, angepasst und erweitert zur Verwendung im deutschsprachigen Raum</div>
@@ -947,6 +1248,7 @@ Beim Bearbeiten eines Landes stehen damit zusätzliche Eingabefelder    für die
 <script type="text/javascript">document.getElementById('sc6').style.display = 'none';</script>
 <script type="text/javascript">document.getElementById('sc7').style.display = 'none';</script>
 <script type="text/javascript">document.getElementById('sc8').style.display = 'none';</script>
+<script type="text/javascript">document.getElementById('sc9').style.display = 'none';</script>
 <script type="text/javascript">ShowTabs()</script>
 <script type="text/javascript">
 // We only show the tab links if JavaScript is available/active.

@@ -1,7 +1,18 @@
 #
-# @copyright Copyright 2003-2018 Zen Cart Development Team
+# @copyright Copyright 2003-2017 Zen Cart Development Team
 # @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
-# @version $Id: $Id: .htaccess with woff, eot and ttf allowed 2018-06-11 17:40:51Z webchills $
+# @version $Id: .htaccess 2017-03-05 15:49:16Z webchills $
+#
+
+
+AuthType Basic
+AuthName "No access"
+AuthUserFile .htnopasswd
+AuthGroupFile /dev/null
+#Require valid-user
+
+
+###############################
 #
 # This is used with Apache WebServers
 #
@@ -29,7 +40,7 @@
 </FilesMatch>
 
 # but now allow just *certain* necessary files:
-<FilesMatch "(?i).*\.(js|css|jpg|gif|png|html?|xml|woff|eot|ttf)$">
+<FilesMatch "(?i).*\.(zip|gzip|pdf|mp3|swf|wma|wmv|wav|epub|ogg|webm|m4v|m4a)$">
   <IfModule mod_authz_core.c>
     Require all granted
   </IfModule>
@@ -38,6 +49,16 @@
     Allow from all
   </IfModule>
 </FilesMatch>
+
+<IfModule mod_headers.c>
+  <FilesMatch "(?i).*\.(zip|pdf|mp3|swf|wma|wmv|wav|epub|ogg|m4v|m4a)$">
+    # tell all downloads to automatically be treated as "save as" instead of launching in an application directly
+    # ALERT: ForceType requires Apache2 or later. If using older version of Apache, it will need mod_mime installed. Or just comment out the ForceType line below
+    # (to disable, just comment the next 2 lines by adding a '#' at the beginning of each):
+    ForceType application/octet-stream
+    Header set Content-Disposition attachment
+  </FilesMatch>
+</IfModule>
 
 IndexIgnore */*
 

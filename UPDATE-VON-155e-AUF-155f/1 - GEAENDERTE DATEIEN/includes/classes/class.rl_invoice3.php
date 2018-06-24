@@ -5,7 +5,7 @@
  * @copyright Copyright 2003-2018 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: class.rl_invoice3.php 2018-03-30 11:19:17Z webchills $
+ * @version $Id: class.rl_invoice3.php 2018-06-21 22:19:17Z webchills $
  */
  
 define('FPDF_FONTPATH', DIR_FS_CATALOG . DIR_WS_INCLUDES . 'pdf/font/');
@@ -507,7 +507,7 @@ function CheckPageBreak($h) {
         $tmp = $this->getPDFFileName();
         if (file_exists($tmp)) {
             $ft = str_replace($this->pdfPath['path'], '', $tmp);
-            $attachArray[] = array('file' => $this->getPDFFileName(), 'mime_type' => 'pdf', 'name' => RL_INVOICE3_INVLINK, 'fn' => $ft);
+            $attachArray[] = array('file' => $this->getPDFFileName(), 'mime_type' => 'application/pdf', 'name' => RL_INVOICE3_INVLINK, 'fn' => $ft);
         }
         if ($param == 'ALL') {
             if (isset($this->t1Opt['attachLang'][$_SESSION['languages_id']])){
@@ -519,12 +519,12 @@ function CheckPageBreak($h) {
             }
             foreach($attachements as $value) {
                 if (file_exists($value)) {
-                    $attachArray[] = array('file' => $value, 'mime_type' => 'pdf', 'name' => basename($value));
+                    $attachArray[] = array('file' => $value, 'mime_type' => 'application/pdf', 'name' => basename($value));
                     continue;
                 }
                 $file = DIR_FS_CATALOG . DIR_WS_INCLUDES . 'pdf/' . $value;
                 if (file_exists($file)) {
-                    $attachArray[] = array('file' => $file, 'mime_type' => 'pdf', 'name' => $value);
+                    $attachArray[] = array('file' => $file, 'mime_type' => 'application/pdf', 'name' => $value);
                 }
             }
             

@@ -3,12 +3,13 @@
  * Zen Colorbox
  *
  * @author niestudio (daniel [dot] niestudio [at] gmail [dot] com)
- * @copyright Copyright 2003-2005 Zen Cart Development Team
+ * @copyright Copyright 2003-2018 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
- * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: options.php 2012-04-30 niestudio $
+ * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
+ * @version $Id: display_js_link.php 2018-06-23 webchills $
  */
 ?>
+<script type="text/javascript">
   jQuery(function($) {
   // Link Information
   var displayLink = $('<?php echo $anchor; ?>');
@@ -44,3 +45,4 @@
     });
   }
 });
+</script>
