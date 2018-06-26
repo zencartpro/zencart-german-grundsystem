@@ -21,7 +21,7 @@ define('MAILBEEZ_INSTALL_SYSTEM_CONFIRM', 'Einverstanden & Weiter');
 define('MAILBEEZ_INSTALL_CANCEL', 'Abbrechen');
 
 define('MAILBEEZ_INSTALL_SYSTEM_CHECK_PHP', 'PHP Version 5.3 oder h&ouml;her erforderlich');
-define('MAILBEEZ_INSTALL_SYSTEM_CHECK_SAFEMODE', 'Safe mode PHP setting muss deaktiviert sein');
+define('MAILBEEZ_INSTALL_SYSTEM_CHECK_SAFEMODE', 'Safe mode PHP Setting muss deaktiviert sein');
 define('MAILBEEZ_INSTALL_SYSTEM_CHECK_CURL', 'cURL PHP Extension ist erforderlich');
 define('MAILBEEZ_INSTALL_SYSTEM_CHECK_TEST_CONNECTION', 'Test Verbindung zum CloudBeez-Server aufbauen');
 define('MAILBEEZ_INSTALL_SYSTEM_CHECK_TEST_CONNECTION_SPEED', 'Pr&uuml;fe Verbindungs-Geschwindigkeit');

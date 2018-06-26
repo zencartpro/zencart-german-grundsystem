@@ -6,7 +6,7 @@
  * @copyright Copyright 2003-2018 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: bmz_image_handler.class.php 2018-06-15 16:13:51Z webchills $
+ * @version $Id: bmz_image_handler.class.php 2018-06-25 21:13:51Z webchills $
  */
 
 if (!defined('IH_DEBUG_ADMIN')) {
@@ -43,7 +43,8 @@ class ih_image
     /**
      * ih_image class constructor
      * @author Tim Kroeger (tim@breakmyzencart.com)
-     * @version 1.99
+     * @author Cindy Merkin (lat9)
+     * @version 5.1.0
      * @param string $src Image source (e.g. - images/productimage.jpg)
      * @param string $width The image's width
      * @param string $height The image's height
@@ -348,7 +349,11 @@ class ih_image
             if (($local_mtime > $file_mtime || $local_mtime > $watermark_mtime || $local_mtime > $zoom_mtime) ||
                 $this->resize_imageIM($file_extension, $local, $background, $quality) ||
                 $this->resize_imageGD($file_extension, $local, $background, $quality) ) {
-                $return_file = str_replace($ihConf['dir']['docroot'], '', $local);
+                if (strpos($local, $ihConf['dir']['docroot']) !== 0) {
+                    $return_file = $local;
+                } else {
+                    $return_file = substr($local, strlen($ihConf['dir']['docroot']));
+                }
                 $this->ihLog("... returning $return_file");
                 return $return_file;
             }
