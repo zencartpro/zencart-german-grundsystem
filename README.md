@@ -4,7 +4,7 @@ Die deutsche Zen Cart Version wird von einem Team von Entwicklern in Österreich
 
 **Willkommen bei der deutschen Zen Cart Version 1.5.5f**
 
-Version 1.5.5f vom 23.06.2018
+Version 1.5.5f vom 01.07.2018
 Die deutsche Zen Cart Version steht Ihnen kostenfrei im Rahmen der GNU General Public License zur Verfügung.
 Sie können diese Software kostenfrei benutzen, Änderungen vornehmen, etc.
 

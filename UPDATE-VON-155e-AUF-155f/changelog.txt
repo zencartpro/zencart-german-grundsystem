@@ -122,6 +122,7 @@ admin\coupon_restrict.php
 admin\image_handler.php
 admin\it_recht_kanzlei.php
 admin\login.php
+admin\newsletters.php
 admin\orders.php
 admin\products_price_manager.php
 admin\record_company.php

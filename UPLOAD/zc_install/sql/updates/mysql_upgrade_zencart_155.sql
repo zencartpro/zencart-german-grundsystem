@@ -6,7 +6,7 @@
 # * @copyright Copyright 2003-2018 Zen Cart Development Team
 # * @copyright Portions Copyright 2003 osCommerce
 # * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
-# * @version $Id: mysql_upgrade_zencart_155.sql 17 2018-06-19 18:36:59Z webchills $
+# * @version $Id: mysql_upgrade_zencart_155.sql 18 2018-07-01 07:36:59Z webchills $
 #
 
 ############ IMPORTANT INSTRUCTIONS ###############
@@ -32,7 +32,7 @@
 #####################################################
 
 # Set store to Down-For-Maintenance mode.  Must reset manually via admin after upgrade is done.
-#UPDATE configuration set configuration_value = 'true' where configuration_key = 'DOWN_FOR_MAINTENANCE';
+UPDATE configuration set configuration_value = 'true' where configuration_key = 'DOWN_FOR_MAINTENANCE';
 
 # Clear out active customer sessions
 TRUNCATE TABLE whos_online;

@@ -34,7 +34,7 @@
 <div class="regularlist">
 <h1>Willkommen bei der deutschen Zen Cart Version 1.5.5</h1>
 <p>
-<strong>Version 1.5.5f vom 23.06.2018</strong><br>
+<strong>Version 1.5.5f vom 01.07.2018</strong><br>
 Die deutsche Zen Cart Version steht Ihnen kostenfrei im Rahmen der <a href="https://opensource.org/licenses/GPL-2.0" target="_blank">GNU General Public License</a> zur Verfügung. <br>
 Sie können diese Software kostenfrei benutzen, Änderungen vornehmen, etc. <br />
 <br />
@@ -196,6 +196,7 @@ OSI certified ist ein Zertifikat der Open Source Initiative.
   admin\image_handler.php<br>
   admin\it_recht_kanzlei.php<br>
   admin\login.php<br>
+  admin\newsletters.php<br>
   admin\orders.php<br>
   admin\products_price_manager.php<br>
   admin\record_company.php<br>
@@ -661,32 +662,34 @@ Um eine zuverlässige Installation der neuen Konfigurationseinträge dieser Modu
 </p>
 <div>
   <h2>1. Vorbereitung</h2>
-  Entpacken Sie alle Dateien der neuen Version von Zen Cart, laden Sie diese auf Ihren Webserver in ein "demo" Verzeichnis und installieren Sie die neue Version - mit den Demodaten - in eine eigene Datenbank. <br/>
-  Diese Installation soll als Referenz dienen und Sie können sich mit den   neuen Funktionen vertraut machen. Diese Installation können Sie nach der   Konvertierung wieder löschen. <br/>
-  <br/>
-  Studieren Sie die neuen Funktionen, die dokumentierten Änderungen der   Template Struktur und ebenso die Datei "changelog.txt". Verwenden Sie   die Demodateien im Demoshop als Beispielvorlage und lesen alle   Supportdokumente dieser neuen Version.<br/>
-  <br/>
-  Erstellen Sie eine komplette Sicherung Ihrer Datenbank (SQL Dateidump). Speichern Sie diese Datei auf Ihrem PC.<br/>
-  <br/>
-  Erstellen Sie eine komplette Sicherung Ihres Webordners via FTP auf   Ihrem PC und packen Sie diese dann zusätzlich in eine ZIP Datei.<br/>
-  Heben Sie die Sicherung auf Ihrem PC gut auf - sie wird in den weiteren   Schritten der Aktualisierung noch benötigt. Eventuell benennen Sie   diesen Sicherungsordner in "\zen_backup" um. <br/>
-  <br/>
-  Lassen Sie uns nun die Unterschiede und notwendigen Anpassungen zwischen   Ihrer Installation und den originalen Zen Cart™ Dateien herausfinden. <br/>
-  <br/>
-  Entpacken Sie eine Kopie Ihrer <em>ursprünglich installierten</em> bzw. aktualisierten Zen Cart™ Version (z.B. v1.5.1 oder auch v1.5.4) in ein eigenes Arbeitsverzeichnis (z.B. "\zen_orig").<br/>
-  <br/>
-  Machen Sie sich zur späteren Verwendung eine Liste Ihrer installierten Module und Add-Ons.<br/>
-  <br/>
-  Vergleichen Sie nun mit einem Programm wie z.B. <a href="http://www.scootersoftware.com" target="_blank">Beyond Compare</a>, <a href="http://winmerge.sf.net" target="_blank">WinMerge</a> o.ä. Ihre "originalen" Zen Cart Dateien des Ordners "\zen_orig" mit den Dateien Ihres Sicherungsordners "\zen_backup".<br/>
-  Schreiben Sie alle Dateien die "unterschiedlich" sind auf. Doppelklicken   Sie in WinMerge auf jede Datei und notieren sich die die jeweiligen   Unterschiede.<br/>
-  Wenn die Unterschiede nur in Sprachdateien (Ordner Languages) sind, dann sind diese leicht zu übertragen.<br/>
-  Alle anderen Unterschiede der Programmierung/Codes müssen detailiert   aufgeschrieben werden um diese in die neue Version zu übertragen.<br/>
-  <br/>
-  HINWEIS: Eigene Modifikationen, Module und Add-Ons, die Sie bisher   installiert haben, enthalten zahlreiche Änderungen in der Programmierung   und können möglicherweise nicht mehr mit der neuen Zen Cart 1.5.5f Version   kompatibel sein.<br/>
-  <br/>
-  Ihre Liste der installierten Module und Add-Ons kann Ihnen helfen, die   Anzahl der gefundenen Unterschiede zu schmälern. Ebenso kann es   vorkommen, dass Sie diese Module und Add-Ons noch einmal herunter laden   müssen, um sich deren Readme- Datei bzw. den Code durchzusehen.   Eventuell müssen Sie die Autoren der Module bezüglich einer   Aktualisierung des Codes kontaktieren. <br/>
-  <br/>
-  Evtl. wollen Sie an diesem Punkt einige der Änderungen direkt (gemäß der   Zen Cart Template Override Struktur) in die neue Version einbauen.   Hilfe hierzu erhalten Sie auf <a href="http://www.zen-cart-pro.at">www.zen-cart-pro.at</a> in den FAQ's/Tutorials und im Forum. <br/>
+  <p>Entpacken Sie alle Dateien der neuen Version von Zen Cart, laden Sie diese auf Ihren Webserver in ein "demo" Verzeichnis und installieren Sie die neue Version - mit den Demodaten - in eine eigene Datenbank. <br/>
+    Diese Installation soll als Referenz dienen und Sie können sich mit den   neuen Funktionen vertraut machen. Diese Installation können Sie nach der   Konvertierung wieder löschen. <br/>
+    <br/>
+    Studieren Sie die neuen Funktionen, die dokumentierten Änderungen der   Template Struktur und ebenso die Datei "changelog.txt". Verwenden Sie   die Demodateien im Demoshop als Beispielvorlage und lesen alle   Supportdokumente dieser neuen Version.<br/>
+    <br/>
+    Erstellen Sie eine komplette Sicherung Ihrer Datenbank (SQL Dateidump). Speichern Sie diese Datei auf Ihrem PC.<br/>
+    <br/>
+    Erstellen Sie eine komplette Sicherung Ihres Webordners via FTP auf   Ihrem PC und packen Sie diese dann zusätzlich in eine ZIP Datei.<br/>
+    Heben Sie die Sicherung auf Ihrem PC gut auf - sie wird in den weiteren   Schritten der Aktualisierung noch benötigt. Eventuell benennen Sie   diesen Sicherungsordner in "\zen_backup" um. <br/>
+    <br/>
+    Lassen Sie uns nun die Unterschiede und notwendigen Anpassungen zwischen   Ihrer Installation und den originalen Zen Cart™ Dateien herausfinden. <br/>
+    <br/>
+    Entpacken Sie eine Kopie Ihrer <em>ursprünglich installierten</em> bzw. aktualisierten Zen Cart™ Version (z.B. v1.5.1 oder auch v1.5.4) in ein eigenes Arbeitsverzeichnis (z.B. "\zen_orig").<br/>
+    <br/>
+    Machen Sie sich zur späteren Verwendung eine Liste Ihrer installierten Module und Add-Ons.<br/>
+    <br/>
+    Vergleichen Sie nun mit einem Programm wie z.B. <a href="http://www.scootersoftware.com" target="_blank">Beyond Compare</a>, <a href="http://winmerge.sf.net" target="_blank">WinMerge</a> o.ä. Ihre "originalen" Zen Cart Dateien des Ordners "\zen_orig" mit den Dateien Ihres Sicherungsordners "\zen_backup".<br/>
+    Schreiben Sie alle Dateien die "unterschiedlich" sind auf. Doppelklicken   Sie in WinMerge auf jede Datei und notieren sich die die jeweiligen   Unterschiede.<br/>
+    Wenn die Unterschiede nur in Sprachdateien (Ordner Languages) sind, dann sind diese leicht zu übertragen.<br/>
+    Alle anderen Unterschiede der Programmierung/Codes müssen detailiert   aufgeschrieben werden um diese in die neue Version zu übertragen.<br/>
+    <br/>
+    HINWEIS: Eigene Modifikationen, Module und Add-Ons, die Sie bisher   installiert haben, enthalten zahlreiche Änderungen in der Programmierung   und können möglicherweise nicht mehr mit der neuen Zen Cart 1.5.5f Version   kompatibel sein.</p>
+  <p>HINWEIS: Die Templates viennablood, viennabright und viennaorange sind in 1.5.5f nicht mehr enthalten. Falls Sie eines dieser Templates verwenden, können Sie es aber natürlich auch in 1.5.5f weiterverwenden. Vergleichen Sie aber dann unbedingt die Dateien Ihres Templates mit den Dateien in includes/templates/template_default und ergänzen fehlende Ordner und aktualisieren bestehende Templatedateien.<br/>
+    <br/>
+    Ihre Liste der installierten Module und Add-Ons kann Ihnen helfen, die   Anzahl der gefundenen Unterschiede zu schmälern. Ebenso kann es   vorkommen, dass Sie diese Module und Add-Ons noch einmal herunter laden   müssen, um sich deren Readme- Datei bzw. den Code durchzusehen.   Eventuell müssen Sie die Autoren der Module bezüglich einer   Aktualisierung des Codes kontaktieren. <br/>
+    <br/>
+    Evtl. wollen Sie an diesem Punkt einige der Änderungen direkt (gemäß der   Zen Cart Template Override Struktur) in die neue Version einbauen.   Hilfe hierzu erhalten Sie auf <a href="http://www.zen-cart-pro.at">www.zen-cart-pro.at</a> in den FAQ's/Tutorials und im Forum. <br/>
+  </p>
 </div>
 <br/>
 <div>
@@ -764,6 +767,9 @@ Um eine zuverlässige Installation der neuen Konfigurationseinträge dieser Modu
   Im Ordner 1 - GEAENDERTE DATEIEN finden Sie alle Dateien, die in 1.5.5f gegenüber 1.5.5e geändert wurden.<br>
   Benennen Sie den Ordner DEINADMIN auf den Namen Ihres Adminverzeichnisses um.<br>
   Vergleichen Sie nun mit BeyondCompare oder WinMerge alle Dateien in diesem Ordner mit denen Ihrer Shopinstallation am Server.<br>
+  Wichtig:<br>
+  Möglicherweise nutzen Sie für einige oder alle Dateien in includes/modules oder includes/languages in Ihrem Shop das Override System und haben diese Dateien in includes/modules/DEINTEMPLATE oder includes/languages/german/DEINTEMPLATE (DEINTEMPLATE steht für den Namen des in Ihrem Shop aktiven Templates).<br>
+  Sollten sich die Dateien dort befinden, dann vergleichen Sie die geänderten Dateien in includes/modules und includes/languages natürlich mit denen in den entsprechenden Override Verzeichnissen!  <br>
   Übernehmen Sie alle Änderungen und laden dann die Ordner/Dateien in der vorgegebenen Struktur in Ihr Shopverzeichnis hoch.<br>
   Die Templates viennablood, viennabright und viennaorange sind in 1.5.5f nicht mehr enthalten. Falls Sie eines dieser Templates verwenden, können Sie es aber natürlich auch in 1.5.5f weiterverwenden. Vergleichen Sie aber dann unbedingt die Dateien Ihres Templates mit den Dateien in includes/templates/template_default und ergänzen fehlende Ordner und aktualisieren bestehende Templatedateien.</p>
 <p>2)<br>

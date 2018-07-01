@@ -5,7 +5,7 @@
 # * @copyright Copyright 2003-2018 Zen Cart Development Team
 # * @copyright Portions Copyright 2003 osCommerce
 # * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
-# * @version $Id: mysql_zencart.sql 19480 2018-06-23 19:38:16Z webchills $
+# * @version $Id: mysql_zencart.sql 19481 2018-07-01 07:38:16Z webchills $
 #
 
 ############ IMPORTANT INSTRUCTIONS ###############
@@ -3114,7 +3114,7 @@ INSERT INTO configuration (configuration_title, configuration_key, configuration
 ('pdf Invoice - Margins', 'RL_INVOICE3_MARGIN', '20|20|20|20', 'defines the margins:<br />top|right|bottom|left<br />(Note: 1inch = 72pt / 2.54cm; 1cm = 28,35pt)<br />', 37, 20, NOW(), NOW(), NULL, NULL),
 ('pdf Invoice - Accounting for free product', 'RL_INVOICE3_NOT_NULL_INVOICE', '0', 'Accounting for free product: send e-mail invoice', 37, 130, NOW(), NOW(), NULL, NULL),
 ('pdf Invoice - Send by orderstatus greater/equal than ', 'RL_INVOICE3_ORDERSTATUS', '3', 'only send invoice if orders_status greater or equal than', 37, 130, NOW(), NOW(), NULL, NULL),
-('pdf Invoice - Prefix for OrderNo', 'RL_INVOICE3_ORDER_ID_PREFIX', ': 2016', 'prefix for OrderNo<br />', 37, 110, NOW(), NOW(), NULL, NULL),
+('pdf Invoice - Prefix for OrderNo', 'RL_INVOICE3_ORDER_ID_PREFIX', ': 2018', 'prefix for OrderNo<br />', 37, 110, NOW(), NOW(), NULL, NULL),
 ('pdf Invoice - Paper Size/Units/Oriantation', 'RL_INVOICE3_PAPER', 'A4|mm|P', '1. papersize = A3|A4|A5|Letter|Legal <br />2. units: pt|mm|cm|inch <br />3. Oriantation: L|P<br />', 37, 10, NOW(), NOW(), NULL, NULL),
 ('pdf Invoice - pdf background file', 'RL_INVOICE3_PDF_BACKGROUND', '" . DIR_FS_CATALOG . DIR_WS_INCLUDES . "pdf/rechnung_de.pdf', 'absolute path to pdf background file<br />', 37, 60, NOW(), NOW(), NULL, NULL),
 ('pdf Invoice - Filename and path to store the pdf-file', 'RL_INVOICE3_PDF_PATH', '" . DIR_FS_CATALOG . "pdf/|1', 'absolute path to store the pdf-file (!!must be writeable !!)<br />Default: ../pdf/|1<br />', 37, 130, NOW(), NOW(), NULL, NULL),

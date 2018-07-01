@@ -14,8 +14,13 @@ Um Ihren bestehenden 1.5.5e deutsch Shop auf 1.5.5f deutsch zu aktualisieren geh
 Im Ordner 1 - GEAENDERTE DATEIEN finden Sie alle Dateien, die in 1.5.5f gegenüber 1.5.5e geändert wurden.
 Benennen Sie den Ordner DEINADMIN auf den Namen Ihres Adminverzeichnisses um.
 Vergleichen Sie nun mit BeyondCompare oder WinMerge alle Dateien in diesem Ordner mit denen Ihrer Shopinstallation am Server.
-Übernehmen Sie alle Änderungen und laden dann die Ordner/Dateien in der vorgegebenen Struktur in Ihr Shopverzeichnis hoch
-
+Wichtig:
+Möglicherweise nutzen Sie für einige oder alle Dateien in includes/modules oder includes/languages in Ihrem Shop das Override System und haben diese Dateien in includes/modules/DEINTEMPLATE oder includes/languages/german/DEINTEMPLATE (DEINTEMPLATE steht für den Namen des in Ihrem Shop aktiven Templates).
+Sollten sich die Dateien dort befinden, dann vergleichen Sie die geänderten Dateien in includes/modules und includes/languages natürlich mit denen in den entsprechenden Override Verzeichnissen! 
+Übernehmen Sie alle Änderungen und laden dann die Ordner/Dateien in der vorgegebenen Struktur in Ihr Shopverzeichnis hoch.
+Die Templates viennablood, viennabright und viennaorange sind in 1.5.5f nicht mehr enthalten. 
+Falls Sie eines dieser Templates verwenden, können Sie es aber natürlich auch in 1.5.5f weiterverwenden. 
+Vergleichen Sie aber dann unbedingt die Dateien Ihres Templates mit den Dateien in includes/templates/template_default und ergänzen fehlende Ordner und aktualisieren bestehende Templatedateien.
 
 2)
 

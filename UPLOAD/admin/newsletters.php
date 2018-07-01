@@ -1,10 +1,10 @@
 <?php
 /**
  * @package admin
- * @copyright Copyright 2003-2016 Zen Cart Development Team
+ * @copyright Copyright 2003-2018 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: newsletters.php 786 2015-12-21 18:13:51Z webchills $
+ * @version $Id: newsletters.php 787 2018-07-01 08:13:51Z webchills $
  */
 
   require('includes/application_top.php');
@@ -168,7 +168,7 @@ check_select('audience_selected','',"<?php echo ERROR_PLEASE_SELECT_AUDIENCE; ?>
       <tr>
         <td width="100%"><table border="0" width="100%" cellspacing="0" cellpadding="0">
           <tr>
-            <td class="pageHeading"><?php echo HEADING_TITLE; ?></td>
+            <td class="pageHeading"><?php echo HEADING_TITLE; ?><br/><span style="color:red; font-size:11px;">Hinweis: Ein Versand von Newslettern über Zen Cart wird NICHT empfohlen!<br/>Er ist nicht DSGVO-konform, da die Empfänger nie via Double-Optin zugestimmt haben.<br/>Verwenden Sie stattdessen echte Newslettersysteme und importieren Ihre Newsletterempfänger in diese Systeme oder koppeln Sie diese Systeme direkt mit Ihrem Zen Cart Shop.</span></td>
             <td class="pageHeading" align="right"><?php echo zen_draw_separator('pixel_trans.gif', HEADING_IMAGE_WIDTH, HEADING_IMAGE_HEIGHT); ?></td>
 <?php
       if (!in_array($action, array('send','confirm','confirm_send', ''))) {
