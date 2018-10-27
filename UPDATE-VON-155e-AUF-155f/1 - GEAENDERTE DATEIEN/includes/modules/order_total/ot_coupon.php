@@ -6,7 +6,7 @@
  * @copyright Copyright 2003-2018 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: ot_coupon.php 734 2018-01-02 09:49:16Z webchills $
+ * @version $Id: ot_coupon.php 735 2018-10-27 19:18:16Z webchills $
  */
 /**
  * Order Total class  to handle discount coupons
@@ -186,14 +186,6 @@ class ot_coupon {
         }
         $order_total = $this->get_order_total($coupon_result->fields['coupon_id']);
 
-// left for total order amount vs qualified order amount just switch the commented lines
-//        if ($order_total['totalFull'] < $coupon_result->fields['coupon_minimum_order']) {
-        if ($coupon_result->fields['coupon_minimum_order'] > 0 && strval($order_total['orderTotal']) < $coupon_result->fields['coupon_minimum_order']) {
-
-          $messageStack->add_session('redemptions', sprintf(TEXT_INVALID_REDEEM_COUPON_MINIMUM, $currencies->format($coupon_result->fields['coupon_minimum_order'])),'caution');
-          $this->clear_posts();
-          zen_redirect(zen_href_link(FILENAME_CHECKOUT_PAYMENT, '', 'SSL',true, false));
-        }
 
         // JTD - handle coupon product restrictions
         // look through the items in the cart to see if this coupon is valid for any item in the cart
@@ -212,11 +204,23 @@ class ot_coupon {
 
         if (!$foundvalid) {
           $this->clear_posts();
-        }
+        }      
+             
+        
         if (!$foundvalid) {
           $messageStack->add_session('redemptions', TEXT_INVALID_COUPON_PRODUCT, 'caution');
+         
          zen_redirect(zen_href_link(FILENAME_CHECKOUT_PAYMENT, '', 'SSL', true, false));
         }
+        
+        // left for total order amount vs qualified order amount just switch the commented lines
+        // if ($order_total['totalFull'] < $coupon_result->fields['coupon_minimum_order']) {
+        if ($coupon_result->fields['coupon_minimum_order'] > 0 && strval($order_total['orderTotal']) < $coupon_result->fields['coupon_minimum_order']) {
+
+          $messageStack->add_session('redemptions', sprintf(TEXT_INVALID_REDEEM_COUPON_MINIMUM, $currencies->format($coupon_result->fields['coupon_minimum_order'])),'caution');
+          $this->clear_posts();
+          zen_redirect(zen_href_link(FILENAME_CHECKOUT_PAYMENT, '', 'SSL',true, false));
+        }           
 
         // JTD - end of handling coupon product restrictions
 

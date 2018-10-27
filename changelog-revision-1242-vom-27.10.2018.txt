@@ -1,0 +1,16 @@
+Revision vom 27.10.2018 korrigiert ein paar kleinere Fehler, die in Revision 1240 vom 01.07. enthalten waren
+
+Betroffene Dateien:
+
+In den Dateien für eine Neuinstallation:
+
+includes/languages/english/timeout.php
+includes/languages/german/modules/payment/paypalwpp.php
+includes/modules/pages/advanced_search_result/header_php.php
+includes/templates/template_default/sideboxes/tpl_reviews_random.php
+
+
+Im Updatepaket von 155e auf 155f:
+
+Tippfehler im Ordnernamen includes/templates/responsive_classic (responsice_classic statt responsive_classic)
+Sprachdatei DEINADMIN/includes/languages/german/coupon_admin.php hatte englischen statt deutschen Inhalt

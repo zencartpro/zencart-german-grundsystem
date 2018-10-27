@@ -119,6 +119,7 @@ admin\admin_activity.php
 admin\categories.php
 admin\coupon_admin.php
 admin\coupon_restrict.php
+admin\email_archive_manager.php
 admin\image_handler.php
 admin\it_recht_kanzlei.php
 admin\login.php
@@ -228,4 +229,4 @@ ipn_main_handler.php
 
 Die TinyMCE und CK Editoren wurden mit neuen Versionen ersetzt, daher sind im Ordner editors fast alle Dateien geändert.
 Diesen Ordner bei einem Update von Server löschen und den entsprechenden neuen aus 1.5.5f hochladen
-Im Mailbeezz Installer sind ebenfalls einige Dateien geändert, hier bei einem Update den entsprechenden neuen mailhive Ordner hochladen
+Im Mailbeez Installer sind ebenfalls einige Dateien geändert, hier bei einem Update den entsprechenden neuen mailhive Ordner hochladen

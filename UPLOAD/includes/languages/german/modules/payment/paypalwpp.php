@@ -1,10 +1,10 @@
 <?php
 /**
  * @package languageDefines
- * @copyright Copyright 2003-2016 Zen Cart Development Team
+ * @copyright Copyright 2003-2018 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: paypalwpp.php 708 2013-03-01 11:34:24Z webchills $
+ * @version $Id: paypalwpp.php 709 2018-10-27 10:34:24Z webchills $
  */
 
 define('MODULE_PAYMENT_PAYPALWPP_TEXT_ADMIN_TITLE_EC', 'PayPal Express');
@@ -47,6 +47,7 @@ define('MODULE_PAYMENT_PAYPALWPP_TEXT_EMAIL_ERROR_SUBJECT', 'ALARM: PayPal Expre
 define('MODULE_PAYMENT_PAYPALWPP_TEXT_ADDR_ERROR', 'Die angegebene Adresse scheint ungültig zu sein oder stimmt nicht mit der bei Paypal hinterlegten überein. Bitte wählen Sie eine andere Adresse und versuchen Sie es erneut.');
 define('MODULE_PAYMENT_PAYPALWPP_TEXT_CONFIRMEDADDR_ERROR', 'Die ausgewählte Adresse bei Paypal ist keine bestätigte Adresse. Bitte wählen Sie eine Andere aus und versuchen Sie es erneut.');
 define('MODULE_PAYMENT_PAYPALWPP_TEXT_INSUFFICIENT_FUNDS_ERROR', 'PayPal konnte diese Transaktion nicht erfolgreich durchführen. Bitte wählen Sie eine andere Zahlungsart oder überprüfen Sie Ihre Zahlungsoptionen in Ihrem PayPal Account bevor Sie fortfahren.');
+define('MODULE_PAYMENT_PAYPALWPP_TEXT_PAYPAL_DECLINED', 'Entschuldigung. PayPal hat die Transaktion abgelehnt und uns mitgeteilt, dass Sie sich für weitere Informationen an den PayPal-Kundendienst wenden sollen. Um Ihren Einkauf abzuschließen, wählen Sie bitte eine alternative Zahlungsmethode.');
 define('MODULE_PAYMENT_PAYPALWPP_TEXT_ERROR', 'Es trat ein Fehler während der Verarbeitung Ihrer Kreditkarten Informationen auf. Bitte versuchen Sie es erneut oder nehmen Sie mit uns Kontakt auf.');
 define('MODULE_PAYMENT_PAYPALWPP_TEXT_BAD_CARD', 'Es tut uns leid, aber die angebene Kreditkarte akzeptieren wir nicht. Bitte wählen sie eine andere oder nehmen Sie mit uns Kontakt auf.');
 define('MODULE_PAYMENT_PAYPALWPP_TEXT_BAD_LOGIN', 'Es gab ein Problem bei der Überprüfung Ihres Paypal Accounts, bitte versuchen Sie es erneut.');
@@ -94,11 +95,10 @@ define('MODULE_PAYMENT_PAYPALEC_MARK_BUTTON_IMG', 'https://www.paypal.com/de_DE/
 define('MODULE_PAYMENT_PAYPALEC_MARK_BUTTON_TXT', 'Einkaufen mit PayPal');
 
 ////////////////////////////////////////
-// Styling of the PayPal Payment Page. Uncomment to customize.  Otherwise, simply create a Custom Page Style at PayPal and mark it as Primary or name it in your Zen Cart PayPal WPP settings.
+// Styling of the PayPal Payment Page. Uncomment to customize.
+// A BETTER WAY, HOWEVER, is to simply create a Custom Page Style at PayPal and mark it as Primary or name it in your Zen Cart PayPal EC settings.
   //define('MODULE_PAYMENT_PAYPALWPP_HEADER_IMAGE', '');  // this should be an HTTPS URL to the image file
   //define('MODULE_PAYMENT_PAYPALWPP_PAGECOLOR', '');  // 6-digit hex value
-  //define('MODULE_PAYMENT_PAYPALWPP_HEADER_BORDER_COLOR', '');  // 6-digit hex value
-  //define('MODULE_PAYMENT_PAYPALWPP_HEADER_BACK_COLOR', ''); // 6-digit hex value
  ////// Styling of pseudo cart contents display section
   //define('MODULE_PAYMENT_PAYPAL_LOGO_IMAGE', ''); // https path to your customized logo
   //define('MODULE_PAYMENT_PAYPAL_CART_BORDER_COLOR', ''); // 6-digit hex value
@@ -151,7 +151,6 @@ define('MODULE_PAYMENT_PAYPAL_ENTRY_AUTH_PARTIAL_TEXT', 'Wollen Sie einen Teil d
 define('MODULE_PAYMENT_PAYPAL_ENTRY_AUTH_BUTTON_TEXT_PARTIAL', 'Autorisieren');
 define('MODULE_PAYMENT_PAYPAL_ENTRY_AUTH_SUFFIX', '');
 define('MODULE_PAYMENT_PAYPAL_ENTRY_REFUND_TEXT_COMMENTS', '<strong>Hinweis für den Kunden:</strong>');
-define('MODULE_PAYMENT_PAYPAL_ENTRY_REFUND_DEFAULT_MESSAGE', 'Rückerstattet vom Shopinhaber.');
 define('MODULE_PAYMENT_PAYPAL_ENTRY_CAPTURE_TITLE', '<strong>Autorisationen Abfangen</strong>');
 define('MODULE_PAYMENT_PAYPAL_ENTRY_CAPTURE_FULL', 'Wenn Sie alle oder einen Teil der ausstehenden Autorisationen für diesen Auftrag abfangen wollen, dann geben sie bitte den gewünschten Betrag ein. Bitte machen Sie auch einen Haken in die Bestätigung Checkbox, bevor Sie auf den Button Abfangen klicken..<br />');
 define('MODULE_PAYMENT_PAYPAL_ENTRY_CAPTURE_BUTTON_TEXT_FULL', 'Abfangen');

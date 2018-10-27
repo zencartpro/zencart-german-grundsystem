@@ -8,7 +8,7 @@
  * @copyright Copyright 2003-2018 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: functions_email.php 737 2018-01-02 09:22:16Z webchills $
+ * @version $Id: functions_email.php 738 2018-10-27 18:22:16Z webchills $
  */
 
 /**
@@ -402,7 +402,7 @@
     $from_email_name = zen_db_prepare_input($from_email_name);
     $from_email_address = zen_db_prepare_input($from_email_address);
     $email_subject = zen_db_prepare_input($email_subject);
-    $email_html = (EMAIL_USE_HTML=='true') ? zen_db_prepare_input($email_html) : zen_db_prepare_input('HTML disabled in admin');
+    $email_html = (EMAIL_USE_HTML=='true') ? zen_db_prepare_input_html_safe($email_html) : zen_db_prepare_input('HTML disabled in admin');
     $email_text = zen_db_prepare_input($email_text);
     $module = zen_db_prepare_input($module);
     $error_msgs = zen_db_prepare_input($error_msgs);
@@ -781,4 +781,17 @@
                                where customers_id = '" . (int)$customers_id . "'");
     if ($customers_values->EOF) return '';
     return $customers_values->fields['customers_email_address'];
+  }
+  function zen_db_prepare_input_html_safe($string) {
+    if (is_string($string)) {
+      return trim(stripslashes($string));
+    } elseif (is_array($string)) {
+      reset($string);
+      while (list($key, $value) = each($string)) {
+        $string[$key] = zen_db_prepare_input($value);
+      }
+      return $string;
+    } else {
+      return $string;
+    }
   }

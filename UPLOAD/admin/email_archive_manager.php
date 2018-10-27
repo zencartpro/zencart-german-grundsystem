@@ -1,22 +1,11 @@
 <?php
-/*
-//////////////////////////////////////////////////////////
-//  EMAIL ARCHIVE SEARCH                                //
-//  Version 1.5                                         //
-//                                                      //
-//  By Frank Koehl  (PM: BlindSide)                     //
-//  Support by DrByte                                   //
-//  Delete button by That Software Guy                  //
-//                                                      //
-//  Powered by Zen Cart (www.zen-cart.com)              //
-//  Portions Copyright (c) 2010 The Zen Cart Team       //
-//                                                      //
-//  Released under the GNU General Public License       //
-//  available at www.zen-cart.com/license/2_0.txt       //
-//  or see "license.txt" in the downloaded zip          //
-//////////////////////////////////////////////////////////
-*/
-
+/**
+ * @package admin
+ * @copyright Copyright 2003-2018 Zen Cart Development Team
+ * @copyright Portions Copyright 2003 osCommerce
+ * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
+ * @version $Id: email_archive_manager.php 2018-10-27 18:49:16Z webchills $
+ */
   require('includes/application_top.php');
 
   $action = (isset($_GET['action']) ? $_GET['action'] : '');
@@ -134,7 +123,7 @@ border-width:3px;
 <body onload="init()">
 <div id="spiffycalendar" class="text"></div>
 <?php require(DIR_WS_INCLUDES . 'header.php'); ?>
-<script >
+<script type="text/javascript">
 <!--
 var StartDate = new ctlSpiffyCalendarBox("StartDate", "search", "start_date", "btnDate1","<?php echo (($_GET['start_date'] == '') ? '' : $_GET['start_date']); ?>",scBTNMODE_CUSTOMBLUE);
 var EndDate = new ctlSpiffyCalendarBox("EndDate", "search", "end_date", "btnDate2","<?php echo (($_GET['end_date'] == '') ? '' : $_GET['end_date']); ?>",scBTNMODE_CUSTOMBLUE);
@@ -210,12 +199,12 @@ var EndDate = new ctlSpiffyCalendarBox("EndDate", "search", "end_date", "btnDate
       <tr>
         <td><table border="0" cellspacing="0" cellpadding="2">
           <tr>
-            <td class="main"><b><?php echo TEXT_EMAIL_TO; ?></b></td>
-            <td class="main"><?php echo $this_email->fields['email_to_name'] . ' [' . $this_email->fields['email_to_address'] . ']'; ?></td>
-          </tr>
-          <tr>
             <td class="main"><b><?php echo TEXT_EMAIL_FROM; ?></b></td>
             <td class="main"><?php echo $this_email->fields['email_from_name'] . ' [' . $this_email->fields['email_from_address'] . ']'; ?></td>
+          </tr>
+          <tr>
+            <td class="main"><b><?php echo TEXT_EMAIL_TO; ?></b></td>
+            <td class="main"><?php echo $this_email->fields['email_to_name'] . ' [' . $this_email->fields['email_to_address'] . ']'; ?></td>
           </tr>
           <tr>
             <td class="main"><b><?php echo TEXT_EMAIL_DATE_SENT; ?></b></td>
@@ -323,13 +312,13 @@ var EndDate = new ctlSpiffyCalendarBox("EndDate", "search", "end_date", "btnDate
               <tr>
                 <td class="smallText" align="left">
                   <?php echo HEADING_START_DATE . '<br>'; ?>
-                  <script >StartDate.writeControl(); StartDate.dateFormat="<?php echo DATE_FORMAT_SPIFFYCAL; ?>";</script>
+                  <script type="text/javascript">StartDate.writeControl(); StartDate.dateFormat="<?php echo DATE_FORMAT_SPIFFYCAL; ?>";</script>
                 </td>
               </tr>
               <tr>
                 <td class="smallText" align="left">
                   <?php echo HEADING_END_DATE . '<br>'; ?>
-                  <script >EndDate.writeControl(); EndDate.dateFormat="<?php echo DATE_FORMAT_SPIFFYCAL; ?>";</script>
+                  <script type="text/javascript">EndDate.writeControl(); EndDate.dateFormat="<?php echo DATE_FORMAT_SPIFFYCAL; ?>";</script>
                 </td>
               </tr>
             </table></td>
@@ -432,7 +421,8 @@ var EndDate = new ctlSpiffyCalendarBox("EndDate", "search", "end_date", "btnDate
             <td class="dataTableContent" align="left"><?php echo zen_datetime_short($email_archive->fields['date_sent']); ?></td>
             <td class="dataTableContent" align="left"><?php echo $email_archive->fields['email_to_name']; ?></td>
             <td class="dataTableContent" align="left"><?php echo $email_archive->fields['email_to_address']; ?></td>
-            <td class="dataTableContent" align="left"><?php echo substr($email_archive->fields['email_subject'], 0, SUBJECT_SIZE_LIMIT) . MESSAGE_LIMIT_BREAK; ?></td>
+            <td class="dataTableContent" align="left"><?php echo substr($email_archive->fields['email_subject'], 0, SUBJECT_SIZE_LIMIT);?>
+            <?php if (strlen($email_archive->fields['email_subject']) > SUBJECT_SIZE_LIMIT) echo MESSAGE_LIMIT_BREAK; ?></td>
             <td class="dataTableContent" align="right"><?php
               if (isset($archive) && is_object($archive) && ($email_archive->fields['archive_id'] == $archive->archive_id) && $isForDisplay) {
                 echo zen_image(DIR_WS_IMAGES . 'icon_arrow_right.gif', '');
@@ -483,8 +473,9 @@ var EndDate = new ctlSpiffyCalendarBox("EndDate", "search", "end_date", "btnDate
     }
     $contents[] = array('text' => '<br>' . zen_draw_separator());
     $contents[] = array('text' => '<br><b>' . TEXT_EMAIL_MODULE . '</b>'. $archive->module);
-    $contents[] = array('text' => '<br><b>' . TEXT_EMAIL_TO . '</b>'. $archive->email_to_name . ' [' . $archive->email_to_address . ']');
     $contents[] = array('text' => '<b>' . TEXT_EMAIL_FROM . '</b>' . $archive->email_from_name . ' [' . $archive->email_from_address . ']');
+    $contents[] = array('text' => '<br><b>' . TEXT_EMAIL_TO . '</b>'. $archive->email_to_name . ' [' . $archive->email_to_address . ']');
+    
     $contents[] = array('text' => '<b>' . TEXT_EMAIL_DATE_SENT . '</b>' . $archive->date_sent);
     $contents[] = array('text' => '<b>' . TEXT_EMAIL_SUBJECT . '</b>' . $archive->email_subject);
     $contents[] = array('text' => '<br><b>' . TEXT_EMAIL_EXCERPT . '</b>');
@@ -521,13 +512,13 @@ if ($isForDisplay) {
 
   if ($action == 'resend_confirm') {
 ?>
-<script >
+<script type="text/javascript">
   confirmation()
 </script>
 <?php
   } else if ($action == 'delete_confirm') {
 ?>
-<script >
+<script type="text/javascript">
   del_confirmation()
 </script>
 <?php
