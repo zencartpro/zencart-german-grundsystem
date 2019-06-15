@@ -3,10 +3,10 @@
  * site_map.php
  *
  * @package general
- * @copyright Copyright 2003-2016 Zen Cart Development Team
+ * @copyright Copyright 2003-2019 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: site_map.php 730 2015-12-21 20:49:16Z webchills $
+ * @version $Id: site_map.php 731 2019-04-12 11:49:16Z webchills $
  */
 if (!defined('IS_ADMIN_FLAG')) {
   die('Illegal Access');
@@ -31,8 +31,8 @@ if (!defined('IS_ADMIN_FLAG')) {
        $spacer_string = '',
        $spacer_multiplier = 1;
 
-   function __construct($load_from_database = true) {
-     global $languages_id, $db;
+   function __construct() {
+     global $db;
      $this->data = array();
      $categories_query = "select c.categories_id, cd.categories_name, c.parent_id
                       from " . TABLE_CATEGORIES . " c, " . TABLE_CATEGORIES_DESCRIPTION . " cd

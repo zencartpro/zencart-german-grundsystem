@@ -6,11 +6,14 @@
  * Displays shopping-cart contents
  *
  * @package templateSystem
- * @copyright Copyright 2003-2016 Zen Cart Development Team
+ * @copyright Copyright 2003-2019 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: tpl_shopping_cart_default.php 2 2016-04-06 11:33:58Z webchills $
+ * @version $Id: tpl_shopping_cart_default.php 3 2019-06-15 17:33:58Z webchills $
  */
+?>
+<?php 
+  if (!isset($display_as_mobile)) $display_as_mobile = ($detect->isMobile() && !$detect->isTablet() || $_SESSION['layoutType'] == 'mobile' or $detect->isTablet() || $_SESSION['layoutType'] == 'tablet'); 
 ?>
 <div class="centerColumn" id="shoppingCartDefault">
 <?php
@@ -20,7 +23,7 @@
 <?php
   if ($_SESSION['cart']->count_contents() > 0) {
 ?>
-<div class="forward"><?php echo TEXT_VISITORS_CART; ?></div>
+<div class="forward"><?php echo TEXT_CART_HELP; ?></div>
 <?php
   }
 ?>
@@ -93,7 +96,6 @@
   if (isset($product['attributes']) && is_array($product['attributes'])) {
   echo '<div class="cartAttribsList">';
   echo '<ul>';
-    reset($product['attributes']);
     foreach ($product['attributes'] as $option => $value) {
 ?>
 
@@ -125,8 +127,8 @@
   }  ?>
 
 
-       <td class="cartUnitDisplay"><?php if ( $detect->isMobile() && !$detect->isTablet() || $_SESSION['layoutType'] == 'mobile' or $detect->isTablet() || $_SESSION['layoutType'] == 'tablet' ) {echo '<b class="hide">' . TABLE_HEADING_PRICE . '&#58;&nbsp;&nbsp;</b>'; } ?><?php echo $product['productsPriceEach']; ?></td>
-       <td class="cartTotalDisplay"><?php if ( $detect->isMobile() && !$detect->isTablet() || $_SESSION['layoutType'] == 'mobile' or $detect->isTablet() || $_SESSION['layoutType'] == 'tablet' ) {echo '<b class="hide">' . TABLE_HEADING_TOTAL . '&#58;&nbsp;&nbsp;</b>'; } ?><?php echo $product['productsPrice']; ?></td>
+       <td class="cartUnitDisplay"><?php if ($display_as_mobile) { echo '<b class="hide">' . TABLE_HEADING_PRICE . '&#58;&nbsp;&nbsp;</b>'; } ?><?php echo $product['productsPriceEach']; ?></td>
+       <td class="cartTotalDisplay"><?php if ($display_as_mobile) { echo '<b class="hide">' . TABLE_HEADING_TOTAL . '&#58;&nbsp;&nbsp;</b>'; } ?><?php echo $product['productsPrice']; ?></td>
        <td class="cartRemoveItemDisplay">
 <?php
   if ($product['buttonDelete']) {

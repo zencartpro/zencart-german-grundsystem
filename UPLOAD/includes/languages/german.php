@@ -1,10 +1,11 @@
 <?php
 /**
+ * Zen Cart German Specific
  * @package languageDefines
- * @copyright Copyright 2003-2018 Zen Cart Development Team
+ * @copyright Copyright 2003-2019 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: german.php 665 2018-06-14 19:45:57Z webchills $
+ * @version $Id: german.php 666 2019-05-09 10:45:57Z webchills $
  */
 
 // FOLLOWING WERE moved to meta_tags.php
@@ -103,7 +104,7 @@ define('CATEGORIES_BOX_HEADING_PRODUCTS_ALL', 'Alle Artikel ...');
 // quick_find box text in sideboxes/quick_find.php
 define('BOX_HEADING_SEARCH', 'Suche');
 define('BOX_SEARCH_ADVANCED_SEARCH', 'Erweiterte Suche');
-define('SEARCH_DEFAULT_TEXT', 'Suchbegriff(e)');
+
 
 // specials box text in sideboxes/specials.php
 define('BOX_HEADING_SPECIALS', 'Sonderangebote');
@@ -152,7 +153,7 @@ define('BOX_INFORMATION_WIDERRUFSRECHT', 'Widerrufsrecht');
 define('BOX_INFORMATION_ZAHLUNGSARTEN', 'Zahlungsarten');
 define('BOX_INFORMATION_IMPRESSUM', 'Impressum');
 define('BOX_INFORMATION_CONTACT', 'Kontakt');
-define('BOX_BBINDEX', 'Forum');
+
 define('BOX_INFORMATION_UNSUBSCRIBE', 'Newsletter abbestellen');
 
 define('BOX_INFORMATION_SITE_MAP', 'Site Map');
@@ -313,12 +314,10 @@ define('TEXT_UNKNOWN_TAX_RATE', 'Unbekannter Steuersatz');
 
 define('TEXT_REQUIRED', '<span class="errorText">benötigt</span>');
 
-  $warn_path = (isset($_SERVER['SCRIPT_FILENAME']) ? @dirname($_SERVER['SCRIPT_FILENAME']) : '.....');
-define('WARNING_INSTALL_DIRECTORY_EXISTS', 'WARNUNG: Das Installationsverzeichnis existiert noch: ' . dirname($_SERVER['SCRIPT_FILENAME']) . '/zc_install. Bitte entfernen Sie zu Ihrer Sicherheit dieses Verzeichnis.');
-define('WARNING_CONFIG_FILE_WRITEABLE', 'WARNUNG: In die Konfigurationsdatei kann geschrieben werden: ' . dirname($_SERVER['SCRIPT_FILENAME']) . '/includes/configure.php. Dies stellt ein potenzielles Sicherheitsrisiko dar - bitte ändern Sie die Schreibrechte für diese Datei.');
-  unset($warn_path);
-define('WARNING_SESSION_DIRECTORY_NON_EXISTENT', 'WARNUNG: Das Verzeichnis zum Speichern der Sitzungen (Sessions) existiert nicht: ' . zen_session_save_path() . '. Bitte erstellen Sie dieses Verzeichnis, damit Sitzungen (Sessions)gespeichert werden können.');
-define('WARNING_SESSION_DIRECTORY_NOT_WRITEABLE', 'WARNUNG: In das Verzeichnis zum Speichern von Sitzungen (Sessions) kann nicht geschrieben werden: ' . zen_session_save_path() . '. Bitte ändern Sie die Schreibrechte dieses Verzeichnisses.');
+
+define('WARNING_INSTALL_DIRECTORY_EXISTS', 'WARNUNG: Das Installationsverzeichnis existiert noch hier: %s. Bitte entfernen Sie zu Ihrer Sicherheit dieses Verzeichnis.');
+define('WARNING_CONFIG_FILE_WRITEABLE', 'WARNUNG: In die Konfigurationsdatei kann geschrieben werden: %s. Dies stellt ein potenzielles Sicherheitsrisiko dar - bitte ändern Sie die Schreibrechte für diese Datei auf chmod 444.');
+define('ERROR_FILE_NOT_REMOVEABLE', 'Error: Could not remove the file specified. You may have to use FTP to remove the file, due to a server-permissions configuration limitation.');
 define('WARNING_SESSION_AUTO_START', 'WARNUNG: session.auto_start ist aktiviert - bitte deaktivieren Sie dieses Feature in der php.ini und starten Sie Ihren Webserver neu.');
 define('WARNING_DOWNLOAD_DIRECTORY_NON_EXISTENT', 'WARNUNG: Das Verzeichnis für Downloadartikel existiert nicht: ' . DIR_FS_DOWNLOAD . '. Downloadartikel funktionieren nicht, solange dieses Verzeichnis nicht erstellt wurde.');
 define('WARNING_SQL_CACHE_DIRECTORY_NON_EXISTENT', 'WARNUNG: Das SQL-Cache Verzeichnis existiert nicht: ' . DIR_FS_SQL_CACHE . '. SQL Abfragen können nicht zwischengespeichert werden, solange dieses Verzeichnis nicht erstellt wurde.');
@@ -639,68 +638,11 @@ define('TEXT_PRODUCTS_LISTING_ALPHA_SORTER_NAMES', 'Artikelname, beginnend mit..
 define('TEXT_PRODUCTS_LISTING_ALPHA_SORTER_NAMES_RESET', '-- Zurücksetzen --');
 
 ///////////////////////////////////////////////////////////
-// include email extras
-  if (file_exists(DIR_WS_LANGUAGES . $_SESSION['language'] . '/' . $template_dir . '/' . FILENAME_EMAIL_EXTRAS)) {
-    $template_dir_select = $template_dir . '/';
-  } else {
-    $template_dir_select = '';
-  }
-  require_once(DIR_WS_LANGUAGES . $_SESSION['language'] . '/' . $template_dir_select . FILENAME_EMAIL_EXTRAS);
 
-// include template specific header defines
-  if (file_exists(DIR_WS_LANGUAGES . $_SESSION['language'] . '/' . $template_dir . '/' . FILENAME_HEADER)) {
-    $template_dir_select = $template_dir . '/';
-  } else {
-    $template_dir_select = '';
+  $file_list = array(FILENAME_EMAIL_EXTRAS, FILENAME_HEADER, FILENAME_BUTTON_NAMES, FILENAME_ICON_NAMES, FILENAME_OTHER_IMAGES_NAMES, FILENAME_CREDIT_CARDS, FILENAME_WHOS_ONLINE, FILENAME_META_TAGS); 
+  foreach ($file_list as $file) { 
+    $file = str_replace(".php","",$file); 
+    require_once(zen_get_file_directory(DIR_FS_CATALOG . DIR_WS_LANGUAGES . $_SESSION['language'] . '/', $file . '.php', 'false'));
   }
-  require_once(DIR_WS_LANGUAGES . $_SESSION['language'] . '/' . $template_dir_select . FILENAME_HEADER);
-
-// include template specific button name defines
-  if (file_exists(DIR_WS_LANGUAGES . $_SESSION['language'] . '/' . $template_dir . '/' . FILENAME_BUTTON_NAMES)) {
-    $template_dir_select = $template_dir . '/';
-  } else {
-    $template_dir_select = '';
-  }
-  require_once(DIR_WS_LANGUAGES . $_SESSION['language'] . '/' . $template_dir_select . FILENAME_BUTTON_NAMES);
-
-// include template specific icon name defines
-  if (file_exists(DIR_WS_LANGUAGES . $_SESSION['language'] . '/' . $template_dir . '/' . FILENAME_ICON_NAMES)) {
-    $template_dir_select = $template_dir . '/';
-  } else {
-    $template_dir_select = '';
-  }
-  require_once(DIR_WS_LANGUAGES . $_SESSION['language'] . '/' . $template_dir_select . FILENAME_ICON_NAMES);
-
-// include template specific other image name defines
-  if (file_exists(DIR_WS_LANGUAGES . $_SESSION['language'] . '/' . $template_dir . '/' . FILENAME_OTHER_IMAGES_NAMES)) {
-    $template_dir_select = $template_dir . '/';
-  } else {
-    $template_dir_select = '';
-  }
-  require_once(DIR_WS_LANGUAGES . $_SESSION['language'] . '/' . $template_dir_select . FILENAME_OTHER_IMAGES_NAMES);
-
-// credit cards
-  if (file_exists(DIR_WS_LANGUAGES . $_SESSION['language'] . '/' . $template_dir . '/' . FILENAME_CREDIT_CARDS)) {
-    $template_dir_select = $template_dir . '/';
-  } else {
-    $template_dir_select = '';
-  }
-  require_once(DIR_WS_LANGUAGES . $_SESSION['language'] . '/' . $template_dir_select. FILENAME_CREDIT_CARDS);
-
-// include template specific whos_online sidebox defines
-  if (file_exists(DIR_WS_LANGUAGES . $_SESSION['language'] . '/' . $template_dir . '/' . FILENAME_WHOS_ONLINE . '.php')) {
-    $template_dir_select = $template_dir . '/';
-  } else {
-    $template_dir_select = '';
-  }
-  require_once(DIR_WS_LANGUAGES . $_SESSION['language'] . '/' . $template_dir_select . FILENAME_WHOS_ONLINE . '.php');
-
-// include template specific meta tags defines
-  if (file_exists(DIR_WS_LANGUAGES . $_SESSION['language'] . '/' . $template_dir . '/meta_tags.php')) {
-    $template_dir_select = $template_dir . '/';
-  } else {
-    $template_dir_select = '';
-  }
-  require_once(DIR_WS_LANGUAGES . $_SESSION['language'] . '/' . $template_dir_select . 'meta_tags.php');
 
 // END OF EXTERNAL LANGUAGE LINKS

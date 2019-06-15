@@ -3,10 +3,10 @@
  * functions_categories.php
  *
  * @package functions
- * @copyright Copyright 2003-2018 Zen Cart Development Team
+ * @copyright Copyright 2003-2019 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: functions_categories.php 730 2018-11-20 18:49:16Z webchills $
+ * @version $Id: functions_categories.php 731 2019-04-12 11:49:16Z webchills $
  */
 
 ////
@@ -481,9 +481,11 @@
   function zen_get_categories_products_list($categories_id, $include_deactivated = false, $include_child = true, $parent_category = '0', $display_limit = '') {
     global $db;
     global $categories_products_id_list;
+
     if (!isset($categories_products_id_list) || !is_array($categories_products_id_list)) {
       $categories_products_id_list = array();
     }
+
     $childCatID = str_replace('_', '', substr($categories_id, strrpos($categories_id, '_')));
 
     $current_cPath = ($parent_category != '0' ? $parent_category . '_' : '') . $categories_id;

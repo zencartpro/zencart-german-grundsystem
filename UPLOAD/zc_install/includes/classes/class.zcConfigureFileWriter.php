@@ -2,14 +2,12 @@
 /**
  * file contains zcConfigureFileWriter class
  * @package Installer
- * @copyright Copyright 2003-2017 Zen Cart Development Team
+ * @copyright Copyright 2003-2019 Zen Cart Development Team
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: class.zcConfigureFileWriter.php 4 2017-05-20 19:59:53Z webchills $
+ * @version $Id: class.zcConfigureFileWriter.php 5 2019-04-14 11:59:53Z webchills $
  */
 /**
- *
  * zcConfigureFileWriter class
- *
  */
 class zcConfigureFileWriter
 {
@@ -31,7 +29,8 @@ class zcConfigureFileWriter
     if ($replaceVars['DB_TYPE'] == '') $replaceVars['DB_TYPE'] = 'mysql';
     $replaceVars['DB_PREFIX'] = trim($inputs['db_prefix']);
     $replaceVars['DB_CHARSET'] = trim($inputs['db_charset']);
-    if ($replaceVars['DB_CHARSET'] == '') $replaceVars['DB_CHARSET'] = 'utf8';
+    if ($replaceVars['DB_CHARSET'] == '') $replaceVars['DB_CHARSET'] = 'utf8mb4';
+
     $replaceVars['DB_SERVER'] = trim($inputs['db_host']);
     $replaceVars['DB_SERVER_USERNAME'] = trim($inputs['db_user']);
     $replaceVars['DB_SERVER_PASSWORD'] = trim($inputs['db_password']);
@@ -51,11 +50,15 @@ class zcConfigureFileWriter
   {
     $tplFile = DIR_FS_INSTALL . 'includes/catalog-configure-template.php';
     $outputFile = rtrim($this->inputs['physical_path'], '/') . '/includes/configure.php';
+    $outputFileLocal = rtrim($this->inputs['physical_path'], '/') . '/includes/local/configure.php';
+    if (file_exists($outputFileLocal)) $outputFile = $outputFileLocal;
     $result1 = $this->transformConfigureTplFile($tplFile, $outputFile);
     if ((int)$result1 == 0) logDetails('catalogConfig size: ' . (int)$result1 . ' (will be greater than 0 if file was written correctly)', 'store configure.php');
 
     $tplFile = DIR_FS_INSTALL . 'includes/admin-configure-template.php';
     $outputFile = rtrim($this->inputs['physical_path'], '/') . '/'. $adminDir . '/includes/configure.php';
+    $outputFileLocal = rtrim($this->inputs['physical_path'], '/') . '/'. $adminDir . '/includes/local/configure.php';
+    if (file_exists($outputFileLocal)) $outputFile = $outputFileLocal;
     $result2 = $this->transformConfigureTplFile($tplFile, $outputFile);
     if ((int)$result2 == 0) logDetails('adminConfig size: ' . (int)$result2 . ' (will be greater than 0 if file was written correctly)', 'admin configure.php');
 

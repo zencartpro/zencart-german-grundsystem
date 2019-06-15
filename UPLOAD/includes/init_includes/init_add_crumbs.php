@@ -4,10 +4,10 @@
  * see {@link  http://www.zen-cart.com/wiki/index.php/Developers_API_Tutorials#InitSystem wikitutorials} for more details.
  *
  * @package initSystem
- * @copyright Copyright 2003-2016 Zen Cart Development Team
+ * @copyright Copyright 2003-2019 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: init_add_crumbs.php 729 2011-08-09 15:49:16Z hugo13 $
+ * @version $Id: init_add_crumbs.php 7309 2019-04-12 11:49:16Z webchills $
  */
 if (!defined('IS_ADMIN_FLAG')) {
   die('Illegal Access');
@@ -26,7 +26,6 @@ if (isset($cPath_array) && isset($cPath)) {
                            and language_id = '" . (int)$_SESSION['languages_id'] . "'";
 
     $categories = $db->Execute($categories_query);
-//echo 'I SEE ' . (int)$cPath_array[$i] . '<br>';
     if ($categories->RecordCount() > 0) {
       $breadcrumb->add($categories->fields['categories_name'], zen_href_link(FILENAME_DEFAULT, 'cPath=' . implode('_', array_slice($cPath_array, 0, ($i+1)))));
     } elseif(SHOW_CATEGORIES_ALWAYS == 0) {

@@ -1,10 +1,10 @@
 <?php
 /**
  * @package admin
- * @copyright Copyright 2003-2016 Zen Cart Development Team
+ * @copyright Copyright 2003-2019 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: attributes_controller.php 627 2010-08-30 15:05:14Z webchills $
+ * @version $Id: attributes_controller.php 628 2019-06-15 16:05:14Z webchills $
  */
 
 define('HEADING_TITLE', 'Kategorien: ');
@@ -169,4 +169,9 @@ define('TEXT_INFO_PRODUCTS_OPTION_NAME', '<strong>Attributname: </strong>');
 define('TEXT_INFO_PRODUCTS_OPTION_ID', '<strong>ID#</strong>');
 define('SUCCESS_ATTRIBUTES_DELETED_OPTION_NAME_VALUES', 'ALLE Attributmerkmale für Attributnamen wurden gelöscht: ');
 
-
+  define('BUTTON_ADDITITONAL_ACTIONS', 'Additional Actions');
+  define('TEXT_UPDATE_DEFAULTE_SORT_ORDER', 'Update sort order to default');
+  define('TEXT_DELETE_ALL_OPTIONS_FROM_PRODUCT', 'Delete all options from product');
+  define('TEXT_COPY_ALL_OPTIONS_TO_PRODUCT', 'Copy options to another product');
+  define('TEXT_COPY_ALL_OPTIONS_TO_CATEGORY', 'Copy options to a whole category');
+  define('TEXT_SAVE_PRODUCT_FIRST', 'Please save the new product first. You need a product_id before you can add attributes');

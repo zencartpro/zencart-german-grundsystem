@@ -3,14 +3,15 @@
  * paypal_curl.php communications class for PayPal Express Checkout / Website Payments Pro / Payflow Pro payment methods
  *
  * @package paymentMethod
- * @copyright Copyright 2003-2018 Zen Cart Development Team
+ * @copyright Copyright 2003-2019 Zen Cart Development Team
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: paypal_curl.php 807 2018-04-01 07:59:36Z webchills $
+ * @version $Id: paypal_curl.php 809 2019-04-14 17:59:36Z webchills $
  */
 
 /**
  * PayPal NVP (v124.0) and Payflow Pro (v4 HTTP API) implementation via cURL.
  */
+if (!defined('PAYPAL_DEV_MODE')) define('PAYPAL_DEV_MODE', 'false'); 
 class paypal_curl extends base {
 
   /**
@@ -55,7 +56,7 @@ class paypal_curl extends base {
                             CURLOPT_TIMEOUT => 45,
                             CURLOPT_CONNECTTIMEOUT => 10,
                             CURLOPT_FOLLOWLOCATION => FALSE,
-                          //CURLOPT_SSL_VERIFYPEER => FALSE, // Leave this line commented out! This should never be set to FALSE on a live site!
+                          //CURLOPT_SSL_VERIFYPEER => FALSE, // Leave this line commented out! This should never be set to FALSE on a live site! Left here ONLY in case needed for offline dev testing
                           //CURLOPT_CAINFO => '/local/path/to/cacert.pem', // for offline testing, this file can be obtained from http://curl.haxx.se/docs/caextract.html ... should never be used in production!
                             CURLOPT_FORBID_REUSE => TRUE,
                             CURLOPT_FRESH_CONNECT => TRUE,
@@ -107,6 +108,9 @@ class paypal_curl extends base {
       $this->setParam($name, $value);
     }
     $this->notify('NOTIFY_PAYPAL_CURL_CONSTRUCT', $params);
+    if ($this->_mode == 'TESTCOMMUNICATIONS') {
+      $this->testResults = $this->_request(array(), 'testCommunications');
+    }
     if (!@is_writable($this->_logDir)) $this->_logDir = DIR_FS_CATALOG . $this->_logDir;
     if (!@is_writable($this->_logDir)) $this->_logDir = DIR_FS_LOGS;
     if (!@is_writable($this->_logDir)) $this->_logDir = DIR_FS_SQL_CACHE;
@@ -437,7 +441,7 @@ class paypal_curl extends base {
     } elseif ($this->_mode == 'nvp') {
       $headers[] = 'X-VPS-VIT-Integration-Product: PHP::Zen Cart(R) - PayPal/NVP';
     }
-    $headers[] = 'X-VPS-VIT-Integration-Version: 1.5.5';
+    $headers[] = 'X-VPS-VIT-Integration-Version: 1.5.6';
     $this->lastHeaders = $headers;
 
     $ch = curl_init();
@@ -459,6 +463,7 @@ class paypal_curl extends base {
       $commError = curl_error($ch);
       $commErrNo = curl_errno($ch);
     }
+
     $commInfo = @curl_getinfo($ch);
     curl_close($ch);
 
@@ -469,6 +474,10 @@ class paypal_curl extends base {
 
     // do debug/logging
     if ((!in_array($operation, array('GetTransactionDetails','TransactionSearch'))) || (in_array($operation, array('GetTransactionDetails','TransactionSearch')) && !strstr($response, '&ACK=Success')) ) $this->_logTransaction($operation, $this->_getElapsed($start), $response, $errors . ($commErrNo != 0 ? "\n" . print_r($commInfo, true) : ''));
+
+    if ($operation == 'testCommunications') {
+      return ($commInfo['http_code'] == 200) ? TRUE : str_replace("\n", '', $errors);
+    }
 
     if ($response) {
       return $this->_parseNameValueList($response);
@@ -515,7 +524,8 @@ class paypal_curl extends base {
 
     // Adjustments if Micropayments account profile details have been set
     if (defined('MODULE_PAYMENT_PAYPALWPP_MICROPAY_THRESHOLD') && MODULE_PAYMENT_PAYPALWPP_MICROPAY_THRESHOLD != ''
-        && (($pairs['AMT'] > 0 && $pairs['AMT'] < strval(MODULE_PAYMENT_PAYPALWPP_MICROPAY_THRESHOLD) )
+        && ((($pairs['AMT'] > 0 && $pairs['AMT'] < strval(MODULE_PAYMENT_PAYPALWPP_MICROPAY_THRESHOLD) )
+                || ($pairs['PAYMENTREQUEST_0_AMT'] > 0 && $pairs['PAYMENTREQUEST_0_AMT'] < strval(MODULE_PAYMENT_PAYPALWPP_MICROPAY_THRESHOLD)))
            || ($pairs['METHOD'] == 'GetExpressCheckoutDetails' && isset($_SESSION['using_micropayments']) && $_SESSION['using_micropayments'] == TRUE))
         && defined('MODULE_PAYMENT_PAYPALWPP_MICROPAY_APIUSERNAME') && MODULE_PAYMENT_PAYPALWPP_MICROPAY_APIUSERNAME != ''
         && defined('MODULE_PAYMENT_PAYPALWPP_MICROPAY_APIPASSWORD') && MODULE_PAYMENT_PAYPALWPP_MICROPAY_APIPASSWORD != ''

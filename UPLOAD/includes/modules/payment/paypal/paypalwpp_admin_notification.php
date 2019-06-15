@@ -3,11 +3,11 @@
  * paypalwpp_admin_notification.php admin display component
  *
  * @package paymentMethod
- * @copyright Copyright 2003-2016 Zen Cart Development Team
+ * @copyright Copyright 2003-2019 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @copyright Portions Copyright 2004 DevosC.com
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: paypalwpp_admin_notification.php 733 2016-02-29 16:49:16Z webchills $
+ * @version $Id: paypalwpp_admin_notification.php 735 2019-03-14 20:49:16Z webchills $
  */
   if (!defined('TEXT_MAXIMUM_CHARACTERS_ALLOWED')) define('TEXT_MAXIMUM_CHARACTERS_ALLOWED', ' chars allowed');
 
@@ -190,7 +190,7 @@ function characterCount(field, count, maxchars) {
     $outputPayPal .= '<tr><td class="main">'."\n";
     $outputPayPal .= MODULE_PAYMENT_PAYPAL_ENTRY_ADDRESS_COUNTRY."\n";
     $outputPayPal .= '</td><td class="main">'."\n";
-    $outputPayPal .= urldecode($response['SHIPTOCOUNTRY']) ."\n";
+    $outputPayPal .= urldecode($response['SHIPTOCOUNTRYCODE']) ."\n";
     $outputPayPal .= '</td></tr>'."\n";
 
     $outputPayPal .= '</table></td>'."\n";
@@ -440,3 +440,4 @@ function characterCount(field, count, maxchars) {
   $output .= $outputEndBlock;
   $output .= $outputEndBlock;
   $output .= '<!-- EOF: pp admin transaction processing tools -->';
+

@@ -1,10 +1,10 @@
 <?php
 /**
  * @package admin
- * @copyright Copyright 2003-2016 Zen Cart Development Team
+ * @copyright Copyright 2003-2019 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: gv_mail.php 807 2015-12-29 19:28:24Z webchills $
+ * @version $Id: gv_mail.php 809 2019-06-15 16:28:24Z webchills $
  */
 
   require('includes/application_top.php');
@@ -12,16 +12,16 @@
   require(DIR_WS_CLASSES . 'currencies.php');
   $currencies = new currencies();
 
-  $_POST['amount'] = preg_replace('/[^0-9.%]/', '', $_POST['amount']);
+  $_POST['amount'] = !empty($_POST['amount']) ? preg_replace('/[^0-9.%]/', '', $_POST['amount']) : 0;
   $_POST['amount'] = abs($_POST['amount']);
 
-  if ($_GET['action'] == 'set_editor') {
+  if (!empty($_GET['action']) && $_GET['action'] == 'set_editor') {
     // Reset will be done by init_html_editor.php. Now we simply redirect to refresh page properly.
     $action='';
     zen_redirect(zen_href_link(FILENAME_GV_MAIL));
   }
 
-  if ( ($_GET['action'] == 'send_email_to_user') && ($_POST['customers_email_address'] || $_POST['email_to']) && (!$_POST['back_x']) ) {
+  if (!empty($_GET['action']) &&  ($_GET['action'] == 'send_email_to_user') && (!empty($_POST['customers_email_address']) || !empty($_POST['email_to'])) && (empty($_POST['back_x'])) ) {
     $audience_select = get_audience_sql_query($_POST['customers_email_address'], 'email');
     $mail = $db->Execute($audience_select['query_string']);
     $mail_sent_to = $audience_select['query_name'];
@@ -144,18 +144,18 @@
     zen_redirect(zen_href_link(FILENAME_GV_MAIL, 'mail_sent_to=' . urlencode($mail_sent_to) . '&recip_count='. $recip_count ));
   }
 
-  if ( ($_GET['action'] == 'preview') && (!$_POST['customers_email_address']) && (!$_POST['email_to']) ) {
+  if ( !empty($_GET['action']) && $_GET['action'] == 'preview' && empty($_POST['customers_email_address']) && empty($_POST['email_to']) ) {
     $messageStack->add(ERROR_NO_CUSTOMER_SELECTED, 'error');
   }
 
-  if ( ($_GET['action'] == 'preview') && (!$_POST['subject']) ) {
+  if ( !empty($_GET['action']) && $_GET['action'] == 'preview' && empty($_POST['subject']) ) {
     $messageStack->add(ERROR_NO_SUBJECT, 'error');
   }
-  if ( ($_GET['action'] == 'preview') && ($_POST['amount'] <= 0) ) {
+  if ( !empty($_GET['action']) && $_GET['action'] == 'preview' && (empty($_POST['amount']) || $_POST['amount'] <= 0) ) {
     $messageStack->add(ERROR_NO_AMOUNT_SELECTED, 'error');
   }
 
-  if ($_GET['mail_sent_to']) {
+  if (!empty($_GET['mail_sent_to']) && $_GET['mail_sent_to']) {
     $messageStack->add(sprintf(NOTICE_EMAIL_SENT_TO, $_GET['mail_sent_to']. '(' . $_GET['recip_count'] . ')'), 'success');
   }
 ?>
@@ -166,7 +166,7 @@
 <title><?php echo TITLE; ?></title>
 <link rel="stylesheet" type="text/css" href="includes/stylesheet.css">
 <link rel="stylesheet" type="text/css" href="includes/cssjsmenuhover.css" media="all" id="hoverJS">
-<script type="text/javascript" src="includes/menu.js"></script>
+<script language="javascript" src="includes/menu.js"></script>
 <script type="text/javascript">
   <!--
   function init()
@@ -180,7 +180,7 @@
   }
   // -->
 </script>
-<script type="text/javascript"><!--
+<script language="javascript" type="text/javascript"><!--
 var form = "";
 var submitted = false;
 var error = false;
@@ -284,7 +284,7 @@ function check_form(form_name) {
       <tr>
         <td><table border="0" width="100%" cellspacing="0" cellpadding="2">
 <?php
-  if ( ($_GET['action'] == 'preview') && ($_POST['customers_email_address'] || $_POST['email_to']) ) {
+  if ( !empty($_GET['action']) && $_GET['action'] == 'preview' && (!empty($_POST['customers_email_address']) || !empty($_POST['email_to'])) ) {
   $audience_select = get_audience_sql_query($_POST['customers_email_address']);
     $mail_sent_to = $audience_select['query_name'];
         if ($_POST['email_to']) {
@@ -333,8 +333,7 @@ function check_form(form_name) {
                 <td>
 <?php
 /* Re-Post all POST'ed variables */
-    reset($_POST);
-    while (list($key, $value) = each($_POST)) {
+    foreach($_POST as $key => $value) {
       if (!is_array($_POST[$key])) {
         echo zen_draw_hidden_field($key, htmlspecialchars(stripslashes($value), ENT_COMPAT, CHARSET, TRUE));
       }
@@ -362,7 +361,7 @@ function check_form(form_name) {
 ?>
               <tr>
                 <td class="main"><?php echo TEXT_CUSTOMER; ?></td>
-                <td><?php echo zen_draw_pull_down_menu('customers_email_address', $customers, $_GET['customer']);?></td>
+                <td><?php echo zen_draw_pull_down_menu('customers_email_address', $customers, (!empty($_GET['customer']) ? (int)$_GET['customer'] : 0));?></td>
               </tr>
               <tr>
                 <td colspan="2"><?php echo zen_draw_separator('pixel_trans.gif', '1', '10'); ?></td>
@@ -398,12 +397,12 @@ function check_form(form_name) {
 <?php if (EMAIL_USE_HTML == 'true') {?>
               <tr>
                 <td valign="top" class="main"><?php echo TEXT_RICH_TEXT_MESSAGE; ?></td>
-                <td><?php echo zen_draw_textarea_field('message_html', 'soft', '100%', '20', htmlspecialchars(($_POST['message_html']=='') ? TEXT_GV_ANNOUNCE : stripslashes($_POST['message_html']), ENT_COMPAT, CHARSET, TRUE), 'id="message_html" class="editorHook"'); ?></td>
+                <td><?php echo zen_draw_textarea_field('message_html', 'soft', '100%', '20', htmlspecialchars(empty($_POST['message_html']) ? TEXT_GV_ANNOUNCE : stripslashes($_POST['message_html']), ENT_COMPAT, CHARSET, TRUE), 'id="message_html" class="editorHook"'); ?></td>
               </tr>
 <?php } ?>
               <tr>
                 <td valign="top" class="main"><?php echo TEXT_MESSAGE; ?></td>
-                <td><?php echo zen_draw_textarea_field('message', 'soft', '60', '15', htmlspecialchars(($_POST['message']=='') ? strip_tags(TEXT_GV_ANNOUNCE) : stripslashes($_POST['message']), ENT_COMPAT, CHARSET, TRUE), 'class="noEditor"'); ?></td>
+                <td><?php echo zen_draw_textarea_field('message', 'soft', '60', '15', htmlspecialchars(empty($_POST['message']) ? strip_tags(TEXT_GV_ANNOUNCE) : stripslashes($_POST['message']), ENT_COMPAT, CHARSET, TRUE), 'class="noEditor"'); ?></td>
               </tr>
               <tr>
                 <td colspan="2"><?php echo zen_draw_separator('pixel_trans.gif', '1', '10'); ?></td>

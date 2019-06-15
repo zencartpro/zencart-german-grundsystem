@@ -1,17 +1,15 @@
 <?php
 /**
  * @package initSystem
- * @copyright Copyright 2003-2013 Zen Cart Development Team
+ * @copyright Copyright 2003-2019 Zen Cart Development Team
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: set_time_zone.php 2 2014-07-05 09:49:16Z webchills $
+ * @version $Id: set_time_zone.php 3 2019-04-12 11:49:16Z webchills $
  */
 /*
  * Set time zone
 */
-if (version_compare(PHP_VERSION, 5.3, '>='))
-{
   // put your timezone here. Refer to http://www.php.net/manual/en/timezones.php
-  $TZ = '';  // eg: 'Europe/Vienna'
+  $TZ = '';  // eg: 'Europe/Oslo'
 
 
 
@@ -28,4 +26,3 @@ if (version_compare(PHP_VERSION, 5.3, '>='))
     putenv('TZ=' . $TZ);
     @date_default_timezone_set($TZ);
   }
-}

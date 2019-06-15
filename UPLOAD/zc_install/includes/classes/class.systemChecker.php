@@ -4,7 +4,7 @@
  * @package Installer
  * @copyright Copyright 2003-2018 Zen Cart Development Team
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: class.systemChecker.php 5 2018-04-01 08:59:53Z webchills $
+ * @version $Id: class.systemChecker.php 6 2018-04-14 11:59:53Z webchills $
  *
  */
 /**
@@ -20,6 +20,10 @@ class systemChecker
     $res = sfYaml::load(DIR_FS_INSTALL . 'includes/systemChecks.yml');
     $this->systemChecks = $res['systemChecks'];
     $this->extraRunLevels = array();
+
+    if (file_exists(DIR_FS_ROOT . 'includes/local/configure.php')) {
+        $this->extraRunLevels[] = 'localdev';
+    }
 
     if ($selectedAdminDir == 'UNSPECIFIED' || $selectedAdminDir == '' || !file_exists(DIR_FS_ROOT . $selectedAdminDir))
     {
@@ -107,7 +111,7 @@ class systemChecker
     if ($this->getServerConfig()->fileLoaded())
     {
 
-      // if the new var added in v160 is present, then this deems the file to be already updated
+      // if the new define added in v155 is present, then this deems the file to be already updated
       $sessionStorage = $this->getServerConfig()->getDefine('SESSION_STORAGE');
       if (isset($sessionStorage))
       {
@@ -144,8 +148,11 @@ class systemChecker
   public function getServerConfig()
   {
     if(!isset($this->serverConfig)) {
-      $this->serverConfig = new zcConfigureFileReader(DIR_FS_ROOT . 'includes/configure.php');
-  }
+      $configFile = DIR_FS_ROOT . 'includes/configure.php';
+      $configFileLocal = DIR_FS_ROOT . 'includes/local/configure.php';
+      if (file_exists($configFileLocal)) $configFile = $configFileLocal;
+      $this->serverConfig = new zcConfigureFileReader($configFile);
+    }
     return $this->serverConfig;
   }
   public function findCurrentDbVersion()
@@ -245,9 +252,9 @@ class systemChecker
     $retVal = FALSE;
     $sql = "select configuration_title from " . $dbPrefix . "configuration where configuration_key = '" . $parameters['fieldName'] . "'";
     $result = $db->execute($sql);
-    if ($result)
+    if ($result && isset($result->fields['configuration_title']))
     {
-      $retVal  = ($result->fields['configuration_title'] == $parameters['expectedResult']) ? TRUE : FALSE;
+      $retVal = ($result->fields['configuration_title'] == $parameters['expectedResult']) ? TRUE : FALSE;
     }
     return $retVal;
   }
@@ -256,11 +263,15 @@ class systemChecker
     $retVal = FALSE;
     $sql = "select configuration_description from " . $dbPrefix . "configuration where configuration_key = '" . $parameters['fieldName'] . "'";
     $result = $db->execute($sql);
-    if ($result)
+    if ($result && isset($result->fields['configuration_description']))
     {
-      $retVal  = ($result->fields['configuration_description'] == $parameters['expectedResult']) ? TRUE : FALSE;
+      $retVal = ($result->fields['configuration_description'] == $parameters['expectedResult']) ? TRUE : FALSE;
     }
     return $retVal;
+  }
+  public function checkFileExists($filepath)
+  {
+    return file_exists($filepath);
   }
   public function checkWriteableDir($parameters)
   {

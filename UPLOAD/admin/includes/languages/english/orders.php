@@ -1,10 +1,11 @@
 <?php
 /**
+ * Zen Cart German Specific
  * @package admin
- * @copyright Copyright 2003-2018 Zen Cart Development Team
+ * @copyright Copyright 2003-2019 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: orders.php 734 2018-03-30 07:49:16Z webchills $
+ * @version $Id: orders.php 736 2019-04-15 09:49:16Z webchills $
  */
 
 define('HEADING_TITLE', 'Orders');
@@ -37,6 +38,7 @@ define('TABLE_HEADING_PRICE_EXCLUDING_TAX', 'Price (excl)');
 define('TABLE_HEADING_PRICE_INCLUDING_TAX', 'Price (incl)');
 define('TABLE_HEADING_TOTAL_EXCLUDING_TAX', 'Total (excl)');
 define('TABLE_HEADING_TOTAL_INCLUDING_TAX', 'Total (incl)');
+define('TABLE_HEADING_UPDATED_BY', 'Updated By');
 
 define('TABLE_HEADING_CUSTOMER_NOTIFIED', 'Customer Notified');
 define('TABLE_HEADING_DATE_ADDED', 'Date Added');
@@ -126,9 +128,14 @@ define('TEXT_INFO_EXPIRED_COUNT', 'Expired Count:<br />');
 define('TABLE_HEADING_CUSTOMER_COMMENTS', 'Customer<br />Comments');
 define('TEXT_COMMENTS_YES', 'Customer Comments - YES');
 define('TEXT_COMMENTS_NO', 'Customer Comments - NO');
+
 define('TEXT_CUSTOMER_LOOKUP', '<i class="fa fa-search"></i> Lookup Customer');
 
 define('TEXT_INVALID_ORDER_STATUS', '<span class="alert">(Invalid Order Status)</span>');
 
 define('BUTTON_TO_LIST', 'Order List');
 define('SELECT_ORDER_LIST', 'Jump to Order:');
+
+define('TEXT_MAP_CUSTOMER_ADDRESS', 'Map Customer Address');
+define('TEXT_MAP_SHIPPING_ADDRESS', 'Map Shipping Address');
+define('TEXT_MAP_BILLING_ADDRESS', 'Map Billing Address');

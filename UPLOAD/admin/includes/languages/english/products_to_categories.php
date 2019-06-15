@@ -1,10 +1,10 @@
 <?php
 /**
  * @package admin
- * @copyright Copyright 2003-2016 Zen Cart Development Team
+ * @copyright Copyright 2003-2019 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: products_to_categories.php 729 2011-08-09 15:49:16Z hugo13 $
+ * @version $Id: products_to_categories.php 730 2019-04-13 15:49:16Z webchills $
  */
 
 define('HEADING_TITLE','Products to Multiple Categories Link Manager ...');
@@ -93,3 +93,5 @@ define('BUTTON_RESET_CATEGORY_MASTER', 'Reset Master Categories ID');
 
 define('WARNING_RESET_ALL_PRODUCTS_TO_CATEGORY_FROM_MASTER', 'WARNING: Invalid Category selected ...');
 define('SUCCESS_RESET_ALL_PRODUCTS_TO_CATEGORY_FROM_MASTER', 'Successful update of all Products to new Master Categories ID for Category: ');
+
+define('TEXT_CATEGORIES_NAME', 'Categories Name');

@@ -1,10 +1,10 @@
 <?php
 /**
  * @package shippingMethod
- * @copyright Copyright 2003-2016 Zen Cart Development Team
+ * @copyright Copyright 2003-2019 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: freeoptions.php 730 2015-12-21 21:49:16Z webchills $
+ * @version $Id: freeoptions.php 732 2019-04-14 17:49:16Z webchills $
  */
 
   class freeoptions extends base {
@@ -18,7 +18,9 @@
       $this->code = 'freeoptions';
       $this->title = MODULE_SHIPPING_FREEOPTIONS_TEXT_TITLE;
       $this->description = MODULE_SHIPPING_FREEOPTIONS_TEXT_DESCRIPTION;
-      $this->sort_order = MODULE_SHIPPING_FREEOPTIONS_SORT_ORDER;
+      $this->sort_order = defined('MODULE_SHIPPING_FREEOPTIONS_SORT_ORDER') ? MODULE_SHIPPING_FREEOPTIONS_SORT_ORDER : null;
+      if (null === $this->sort_order) return false;
+
       $this->icon = '';
       $this->tax_class = MODULE_SHIPPING_FREEOPTIONS_TAX_CLASS;
       $this->tax_basis = MODULE_SHIPPING_FREEOPTIONS_TAX_BASIS;
@@ -164,13 +166,6 @@
         }
       }
 
-/*
-echo 'I see count: ' . $_SESSION['cart']->count_contents() . ' free count: ' . $_SESSION['cart']->free_shipping_items() . '<br>' .
-'I see weight: ' . $_SESSION['cart']->show_weight() . '<br>' .
-'I see total: ' . $_SESSION['cart']->show_total() . ' free price: ' . $_SESSION['cart']->free_shipping_prices() . '<br>' .
-'Final check ' . ($this->ck_freeoptions_total ? 'T: YES ' : 'T: NO ') . ($this->ck_freeoptions_weight ? 'W: YES ' : 'W: NO ') . ($this->ck_freeoptions_items ? 'I: YES ' : 'I: NO ') . '<br>';
-*/
-
 // final check for display of Free Options
       if ($this->ck_freeoptions_total or $this->ck_freeoptions_weight or $this->ck_freeoptions_items) {
         $this->enabled = true;
@@ -240,4 +235,3 @@ See: freeshipper<br /><br />Do you want to offer per freeoptions rate shipping?'
       return array('MODULE_SHIPPING_FREEOPTIONS_STATUS', 'MODULE_SHIPPING_FREEOPTIONS_COST', 'MODULE_SHIPPING_FREEOPTIONS_HANDLING', 'MODULE_SHIPPING_FREEOPTIONS_TOTAL_MIN', 'MODULE_SHIPPING_FREEOPTIONS_TOTAL_MAX', 'MODULE_SHIPPING_FREEOPTIONS_WEIGHT_MIN', 'MODULE_SHIPPING_FREEOPTIONS_WEIGHT_MAX', 'MODULE_SHIPPING_FREEOPTIONS_ITEMS_MIN', 'MODULE_SHIPPING_FREEOPTIONS_ITEMS_MAX', 'MODULE_SHIPPING_FREEOPTIONS_TAX_CLASS', 'MODULE_SHIPPING_FREEOPTIONS_TAX_BASIS', 'MODULE_SHIPPING_FREEOPTIONS_ZONE', 'MODULE_SHIPPING_FREEOPTIONS_SORT_ORDER');
     }
   }
-?>

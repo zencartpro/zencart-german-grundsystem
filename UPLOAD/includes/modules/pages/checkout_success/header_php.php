@@ -3,17 +3,17 @@
  * checkout_success header_php.php
  *
  * @package page
- * @copyright Copyright 2003-2016 Zen Cart Development Team
+ * @copyright Copyright 2003-2019 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: header_php.php 765 2016-02-29 21:23:42Z webchills $
+ * @version $Id: header_php.php 767 2019-06-15 21:23:42Z webchills $
  */
 
 // This should be first line of the script:
 $zco_notifier->notify('NOTIFY_HEADER_START_CHECKOUT_SUCCESS');
 
 // if the customer is not logged on, redirect them to the shopping cart page
-if (!$_SESSION['customer_id']) {
+if (!zen_is_logged_in()) {
   zen_redirect(zen_href_link(FILENAME_TIME_OUT));
 }
 
@@ -160,8 +160,7 @@ submit_form();
 </script>' . "\n" . '</head>';
   echo '<body style="text-align: center; min-width: 600px;">' . "\n" . '<div style="text-align: center;  width: 600px;  margin-left: auto;  margin-right: auto; margin-top:20%;"><p>This page will automatically redirect you back to ' . STORE_NAME . ' for your order confirmation details.<br />If you are not redirected within 5 seconds, please click the button below to continue.</p>';
   echo "\n" . '<form action="' . zen_href_link(FILENAME_CHECKOUT_SUCCESS, zen_get_all_get_params(array('action')), 'SSL', false) . '" method="post" name="formpost" />' . "\n";
-  reset($_POST);
-  while (list($key, $value) = each($_POST)) {
+  foreach($_POST as $key => $value) {
     if (!is_array($_POST[$key])) {
       echo zen_draw_hidden_field($key, htmlspecialchars(stripslashes($value), ENT_COMPAT, CHARSET, TRUE)) . "\n";
     }

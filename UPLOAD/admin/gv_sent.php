@@ -1,10 +1,10 @@
 <?php
 /**
  * @package admin
- * @copyright Copyright 2003-2016 Zen Cart Development Team
+ * @copyright Copyright 2003-2019 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: gv_sent.php 729 2014-02-08 15:49:16Z webchills $
+ * @version $Id: gv_sent.php 731 2019-06-15 16:49:16Z webchills $
  */
 
 
@@ -21,7 +21,7 @@
 <title><?php echo TITLE; ?></title>
 <link rel="stylesheet" type="text/css" href="includes/stylesheet.css">
 <link rel="stylesheet" type="text/css" href="includes/cssjsmenuhover.css" media="all" id="hoverJS">
-<script type="text/javascript" src="includes/menu.js"></script>
+<script language="javascript" src="includes/menu.js"></script>
 <script type="text/javascript">
   <!--
   function init()
@@ -109,6 +109,7 @@
   $heading = array();
   $contents = array();
 
+  if (isset($gInfo)) {
   $heading[] = array('text' => '[' . $gInfo->coupon_id . '] ' . ' ' . $currencies->format($gInfo->coupon_amount));
   $redeem = $db->Execute("select * from " . TABLE_COUPON_REDEEM_TRACK . "
                           where coupon_id = '" . $gInfo->coupon_id . "'");
@@ -134,6 +135,7 @@
     echo $box->infoBox($heading, $contents);
 
     echo '            </td>' . "\n";
+  }
   }
 ?>
           </tr>

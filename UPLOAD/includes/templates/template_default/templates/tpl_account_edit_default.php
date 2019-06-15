@@ -6,10 +6,10 @@
  * View or change Customer Account Information
  *
  * @package templateSystem
- * @copyright Copyright 2003-2017 Zen Cart Development Team
- * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: tpl_account_edit_default.php 732 2017-01-23 17:49:16Z webchills $
+ * @copyright Copyright 2003-2019 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
+ * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
+ * @version $Id: tpl_account_edit_default.php 733 2019-04-12 17:49:16Z webchills $ 
  */
 ?>
 <div class="centerColumn" id="accountEditDefault">
@@ -58,9 +58,15 @@
 <?php echo zen_draw_input_field('telephone', $account->fields['customers_telephone'], 'id="telephone" placeholder="' . ENTRY_TELEPHONE_NUMBER_TEXT . '"' . ((int)ENTRY_TELEPHONE_MIN_LENGTH > 0 ? ' required' : ''), 'tel'); ?>
 <br class="clearBoth" />
 
+<?php
+if (ACCOUNT_FAX_NUMBER == 'true' ) {
+?>
 <label class="inputLabel" for="fax"><?php echo ENTRY_FAX_NUMBER; ?></label>
 <?php echo zen_draw_input_field('fax', $account->fields['customers_fax'], 'id="fax" placeholder="' . ENTRY_FAX_NUMBER_TEXT . '"', 'tel'); ?>
 <br class="clearBoth" />
+<?php 
+  }
+?>
 
 <?php
   if (CUSTOMERS_REFERRAL_STATUS == 2 and $customers_referral == '') {

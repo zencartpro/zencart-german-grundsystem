@@ -4,11 +4,10 @@
  * see {@link  http://www.zen-cart.com/wiki/index.php/Developers_API_Tutorials#InitSystem wikitutorials} for more details.
  *
  * @package initSystem
- * @copyright Copyright 2003-2018 Zen Cart Development Team
+ * @copyright Copyright 2003-2019 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
- * @todo ICW(SECURITY) is it worth having a sanitizer for $_GET['language'] ?
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: init_languages.php 730 2018-01-02 09:49:16Z webchills $
+ * @version $Id: init_languages.php 731 2019-04-12 11:49:16Z webchills $
  */
 if (!defined('IS_ADMIN_FLAG')) {
   die('Illegal Access');
@@ -17,6 +16,7 @@ if (!isset($_SESSION['language']) || isset($_GET['language'])) {
   $lng = new language();
   if (isset($_GET['language']) && zen_not_null($_GET['language'])) {
     $lng->set_language($_GET['language']);
+    $zco_notifier->notify('NOTIFY_LANGUAGE_CHANGE_REQUESTED_BY_VISITOR', $_GET['language'], $lng);
   } else {
     if (LANGUAGE_DEFAULT_SELECTOR=='Browser') {
       $lng->get_browser_language();
@@ -29,4 +29,3 @@ if (!isset($_SESSION['language']) || isset($_GET['language'])) {
   $_SESSION['languages_id'] = (zen_not_null($lng->language['id']) ? $lng->language['id'] : 1);
   $_SESSION['languages_code'] = (zen_not_null($lng->language['code']) ? $lng->language['code'] : 'en');
 }
-?>

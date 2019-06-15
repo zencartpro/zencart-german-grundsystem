@@ -1,12 +1,13 @@
 <?php
 /**
  * @package Admin Access Management
- * @copyright Copyright 2003-2016 Zen Cart Development Team
+ * @copyright Copyright 2003-2019 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: admin_access.php 841 2016-04-05 18:03:21Z webchills $
+ * @version $Id: admin_access.php 842 2019-04-12 08:03:21Z webchills $
  */
 
+if (!defined('ADMIN_PASSWORD_MIN_LENGTH')) define('ADMIN_PASSWORD_MIN_LENGTH', 7);
 /**
  * This function checks whether the currently logged on user has permission to access
  * the page passed as parameter $page, with GET $params . The function returns boolean
@@ -95,7 +96,7 @@ function zen_get_users($limit = '')
 
 function zen_delete_user($id)
 {
-  global $db;
+  global $db, $messageStack;
   $result = $db->Execute("select count(admin_id) as count from " . TABLE_ADMIN . " where admin_id != '" . (int)$id . "'");
   if ($result->fields['count'] < 1) {
     $messageStack->add(ERROR_CANNOT_DELETE_LAST_ADMIN, 'error');
@@ -108,7 +109,9 @@ function zen_delete_user($id)
     $db->Execute($sql);
     $admname = '{' . preg_replace('/[^\d\w._-]/', '*', zen_get_admin_name()) . ' [id: ' . (int)$_SESSION['admin_id'] . ']}';
     zen_record_admin_activity(sprintf(TEXT_EMAIL_MESSAGE_ADMIN_USER_DELETED, $delname, $admname), 'warning');
-    zen_mail(STORE_OWNER_EMAIL_ADDRESS, STORE_OWNER_EMAIL_ADDRESS, TEXT_EMAIL_SUBJECT_ADMIN_USER_DELETED, sprintf(TEXT_EMAIL_MESSAGE_ADMIN_USER_DELETED, $delname, $admname), STORE_NAME, EMAIL_FROM, array(), 'admin_settings_changed');
+    $email_text = sprintf(TEXT_EMAIL_MESSAGE_ADMIN_USER_DELETED, $delname, $admname); 
+    $block = array('EMAIL_MESSAGE_HTML' => $email_text); 
+    zen_mail(STORE_OWNER_EMAIL_ADDRESS, STORE_OWNER_EMAIL_ADDRESS, TEXT_EMAIL_SUBJECT_ADMIN_USER_DELETED, $email_text, STORE_NAME, EMAIL_FROM, $block, 'admin_settings_changed');
   }
 }
 
@@ -173,7 +176,9 @@ function zen_insert_user($name, $email, $password, $confirm, $profile)
     $newname = preg_replace('/[^\d\w._-]/', '*', $name);
     $admname = '{' . preg_replace('/[^\d\w._-]/', '*', zen_get_admin_name()) . ' [id: ' . (int)$_SESSION['admin_id'] . ']}';
     zen_record_admin_activity(sprintf(TEXT_EMAIL_MESSAGE_ADMIN_USER_ADDED, $newname, $admname), 'warning');
-    zen_mail(STORE_OWNER_EMAIL_ADDRESS, STORE_OWNER_EMAIL_ADDRESS, TEXT_EMAIL_SUBJECT_ADMIN_USER_ADDED, sprintf(TEXT_EMAIL_MESSAGE_ADMIN_USER_ADDED, $newname, $admname), STORE_NAME, EMAIL_FROM, array(), 'admin_settings_changed');
+    $email_text = sprintf(TEXT_EMAIL_MESSAGE_ADMIN_USER_ADDED, $newname, $admname); 
+    $block = array('EMAIL_MESSAGE_HTML' => $email_text); 
+    zen_mail(STORE_OWNER_EMAIL_ADDRESS, STORE_OWNER_EMAIL_ADDRESS, TEXT_EMAIL_SUBJECT_ADMIN_USER_ADDED, $email_text, STORE_NAME, EMAIL_FROM, $block, 'admin_settings_changed');
   }
   return $errors;
 }
@@ -243,8 +248,7 @@ function zen_update_user($name, $email, $id, $profile)
 function zen_read_user($name)
 {
   global $db;
- 
-  $sql = "select admin_id, admin_name, admin_email, admin_pass, pwd_last_change_date, reset_token, failed_logins, lockout_expires, admin_profile, last_login_date, last_login_ip from " . TABLE_ADMIN . " where admin_name = :adminname:  LIMIT 1";
+  $sql = "select admin_id, admin_name, admin_email, admin_pass, pwd_last_change_date, reset_token, failed_logins, lockout_expires, admin_profile from " . TABLE_ADMIN . " where admin_name = :adminname:  LIMIT 1";
   $sql = $db->bindVars($sql, ':adminname:', $name, 'string');
   $result = $db->Execute($sql);
   if ($result->EOF || $result->RecordCount() < 1) return FALSE;
@@ -917,4 +921,11 @@ function zen_deregister_admin_pages($pages)
     $db->Execute($sql);
     zen_record_admin_activity('Deleted admin pages for page keys: ' . print_r($pages, true), 'warning');
   }
+}
+function zen_updated_by_admin($admin_id = '') 
+{
+    if ($admin_id === '') {
+        $admin_id = $_SESSION['admin_id'];
+    }
+    return zen_get_admin_name($admin_id) . " [$admin_id]";
 }

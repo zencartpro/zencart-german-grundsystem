@@ -1,5 +1,6 @@
 <?php
 /**
+ * Zen Cart German Specific
  * @package languageDefines
  * @copyright Copyright 2003-2018 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce

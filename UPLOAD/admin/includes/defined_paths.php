@@ -5,10 +5,10 @@
  * -- ADMIN version --
  *
  * @package initSystem
- * @copyright Copyright 2003-2016 Zen Cart Development Team
+ * @copyright Copyright 2003-2019 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: defined_paths.php 5 2017-03-05 15:26:00 webchills
+ * @version $Id: defined_paths.php 6 2019-04-12 08:26:00 webchills
  */
 function zen_parse_url($url, $element = 'array')
 {
@@ -47,8 +47,6 @@ if (!defined('ENABLE_SSL_CATALOG')) define('ENABLE_SSL_CATALOG', strpos(HTTPS_CA
 if (!defined('DIR_FS_CATALOG')) define('DIR_FS_CATALOG', realpath(DIR_FS_ADMIN . '/../') . '/');
 
 
-
-
 // now define all the admin constants
 if (!defined('HTTPS_SERVER')) define('HTTPS_SERVER', HTTP_SERVER);
 
@@ -73,6 +71,7 @@ if (!defined('DIR_FS_CATALOG_TEMPLATES')) define('DIR_FS_CATALOG_TEMPLATES', DIR
 if (!defined('DIR_FS_BACKUP')) define('DIR_FS_BACKUP', DIR_FS_ADMIN . 'backups/');
 if (!defined('DIR_FS_EMAIL_TEMPLATES')) define('DIR_FS_EMAIL_TEMPLATES', DIR_FS_CATALOG . 'email/');
 if (!defined('SQL_CACHE_METHOD')) define('SQL_CACHE_METHOD', 'none');
+if (!defined('DIR_WS_EDITORS')) define('DIR_WS_EDITORS', 'editors/');
 
 if (!defined('DIR_FS_SQL_CACHE')) define('DIR_FS_SQL_CACHE', DIR_FS_CATALOG . 'cache'); // trailing slash omitted
 if (!defined('DIR_FS_LOGS')) define('DIR_FS_LOGS', DIR_FS_CATALOG . 'logs'); // trailing slash omitted
@@ -83,6 +82,7 @@ if (!defined('SESSION_STORAGE')) define('SESSION_STORAGE', 'db');
 if (!defined('DIR_CATALOG_LIBRARY')) {
     define('DIR_CATALOG_LIBRARY', DIR_FS_CATALOG . DIR_WS_INCLUDES . 'library/');
 }
+
 //catchall for old things that still use it ... but should be rewritten so this can be removed fully.
 if (!defined('DIR_WS_HTTPS_ADMIN')) define('DIR_WS_HTTPS_ADMIN', DIR_WS_ADMIN);
 if (!defined('ENABLE_SSL_ADMIN')) define('ENABLE_SSL_ADMIN', substr(HTTP_SERVER, 0, 6) == 'https:' ? 'true' : 'false');

@@ -1,10 +1,10 @@
 <?php
 /**
  * @package admin
- * @copyright Copyright 2003-2016 Zen Cart Development Team
+ * @copyright Copyright 2003-2019 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: server_info.php 730 2015-12-22 16:49:16Z webchills $
+ * @version $Id: server_info.php 731 2019-04-12 20:49:16Z webchills $
  */
 
 define('HEADING_TITLE', 'Server Information');
@@ -25,6 +25,7 @@ define('TITLE_PHP_MEMORY_LIMIT', 'PHP Memory Limit:');
 define('TITLE_PHP_FILE_UPLOADS', 'PHP File Uploads:');
 define('TITLE_PHP_UPLOAD_MAX', 'Upload Max Size:');
 define('TITLE_PHP_POST_MAX_SIZE', 'POST Max Size:');
+define('TITLE_DATABASE_ENGINE','Database Engine: ');
 define('PROJECT_DATABASE_LABEL','Database Patch Level: ');
 define('TITLE_MYSQL_STRICT_MODE', '(in Strict mode)');
 define('TITLE_DATABASE_MYSQL_MODE', 'MySQL Mode:');

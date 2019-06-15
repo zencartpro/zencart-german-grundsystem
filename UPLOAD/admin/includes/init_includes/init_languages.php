@@ -1,10 +1,11 @@
 <?php
 /**
+ * Zen Cart German Specific
  * @package admin
- * @copyright Copyright 2003-2016 Zen Cart Development Team
+ * @copyright Copyright 2003-2019 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: init_languages.php 730 2012-11-06 08:49:16Z webchills $
+ * @version $Id: init_languages.php 732 2019-06-15 16:49:16Z webchills $
  */
 if (!defined('IS_ADMIN_FLAG')) {
   die('Illegal Access');
@@ -17,9 +18,14 @@ if (!defined('IS_ADMIN_FLAG')) {
 
     if (isset($_GET['language']) && zen_not_null($_GET['language'])) {
       $lng->set_language($_GET['language']);
+      $zco_notifier->notify('NOTIFY_LANGUAGE_CHANGE_REQUESTED_BY_ADMIN_VISITOR', $_GET['language'], $lng);
     } else {
       $lng->get_browser_language();
       $lng->set_language(DEFAULT_LANGUAGE);
+    }
+
+    if (!is_file(DIR_WS_LANGUAGES . $lng->language['directory'] . '.php')) {
+      $lng->set_language('de');
     }
 
     $_SESSION['language'] = (zen_not_null($lng->language['directory']) ? $lng->language['directory'] : 'english');
@@ -32,9 +38,8 @@ if (!defined('IS_ADMIN_FLAG')) {
   $template_dir = $template_query->fields['template_dir'];
 
 // include the language translations
-  require(DIR_WS_LANGUAGES . $_SESSION['language'] . '.php');
   $current_page = basename($PHP_SELF);
-  if (file_exists(DIR_WS_LANGUAGES . $_SESSION['language'] . '/' . $current_page)) {
+  if (is_file(DIR_WS_LANGUAGES . $_SESSION['language'] . '/' . $current_page)) {
     include(DIR_WS_LANGUAGES . $_SESSION['language'] . '/' . $current_page);
   }
 
@@ -46,3 +51,4 @@ if (!defined('IS_ADMIN_FLAG')) {
     }
     $za_dir->close();
   }
+  require(DIR_WS_LANGUAGES . $_SESSION['language'] . '.php');

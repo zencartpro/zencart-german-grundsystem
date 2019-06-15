@@ -6,10 +6,10 @@
  * Once the data is prepared, it calls the standard tpl_list_box_content template for display.
  *
  * @package page
- * @copyright Copyright 2003-2016 Zen Cart Development Team
+ * @copyright Copyright 2003-2019 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: category_row.php 730 2016-12-02 11:49:16Z webchills $
+ * @version $Id: category_row.php 731 2019-06-15 17:49:16Z webchills $
  */
 if (!defined('IS_ADMIN_FLAG')) {
   die('Illegal Access');
@@ -28,7 +28,7 @@ if ($num_categories > 0) {
   }
 
   while (!$categories->EOF) {
-    if (!$categories->fields['categories_image']) !$categories->fields['categories_image'] = 'pixel_trans.gif';
+    if (!$categories->fields['categories_image']) $categories->fields['categories_image'] = 'pixel_trans.gif';
     $cPath_new = zen_get_path($categories->fields['categories_id']);
 
     // strip out 0_ from top level cats

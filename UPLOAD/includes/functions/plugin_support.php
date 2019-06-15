@@ -3,14 +3,23 @@
  * plugin_support.php
  *
  * @package functions
- * @copyright Copyright 2003-2018 Zen Cart Development Team
+ * @copyright Copyright 2003-2019 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: plugin_support.php 3 2018-04-01 09:06:58Z webchills $
+ * @version $Id: plugin_support.php 4 2019-04-12 11:06:58Z webchills $
  */
 /**
  * Functions to support plugin usage
  */
+
+/*
+ * Developers in offline environments may want to change the ENABLE_VERSION_CHECKING default
+ */
+if (!defined('ENABLE_PLUGIN_VERSION_CHECKING')) define('ENABLE_PLUGIN_VERSION_CHECKING', true);
+/*
+ * If plugin-checking is failing but you want to debug it further, you could change the value of the LOG_VERSIONCHECK_FAILURES constant:
+ */
+if (!defined('LOG_PLUGIN_VERSIONCHECK_FAILURES')) define('LOG_PLUGIN_VERSIONCHECK_FAILURES', false);
 
 /*
  * Check for updated version of a plugin
@@ -31,25 +40,31 @@
  */
 function plugin_version_check_for_updates($plugin_file_id = 0, $version_string_to_compare = '', $strict_zc_version_compare = false)
 {
-    // for v1.5.6 and newer
+    // for v1.5.5f and newer
 
     if ($plugin_file_id === 0) return false;
 
+    if (false === ENABLE_PLUGIN_VERSION_CHECKING) return false;
+
+    $new_version_available = false;
     $versionServer = new VersionServer();
     $data = json_decode($versionServer->getPluginVersion($plugin_file_id), true);
 
     if (null === $data || isset($data['error'])) {
-        trigger_error('CURL error checking plugin versions: ' . $data['error']);
+        if (!empty(LOG_PLUGIN_VERSIONCHECK_FAILURES)) error_log('CURL error checking plugin versions: ' . print_r($data['error'], true));
         return false;
     }
 
     if (!is_array($data)) $data = json_decode($data, true);
 
     if (strcmp($data[0]['latest_plugin_version'], $version_string_to_compare) > 0) $new_version_available = true;
-    // check whether present ZC version is compatible with the latest available plugin version
-    $zc_version = PROJECT_VERSION_MAJOR . '.' . preg_replace('/[^0-9.]/', '', PROJECT_VERSION_MINOR);
-    if ($strict_zc_version_compare) $zc_version = PROJECT_VERSION_MAJOR . '.' . PROJECT_VERSION_MINOR;
-    if (!in_array('v' . $zc_version, $data[0]['zcversions'], false)) $new_version_available = false;
-    return ($new_version_available) ? $data[0] : false;
-}
 
+    // check whether present ZC version is compatible with the latest available plugin version
+    if (!defined('PLUGIN_VERSION_CHECK_MATCHING_OVERRIDE') || empty(PLUGIN_VERSION_CHECK_MATCHING_OVERRIDE)) {
+        $zc_version = PROJECT_VERSION_MAJOR . '.' . preg_replace('/[^0-9.]/', '', PROJECT_VERSION_MINOR);
+        if ($strict_zc_version_compare) $zc_version = PROJECT_VERSION_MAJOR . '.' . PROJECT_VERSION_MINOR;
+        if (!in_array('v' . $zc_version, $data[0]['zcversions'], false)) $new_version_available = false;
+    }
+
+    return $new_version_available ? $data[0] : false;
+}

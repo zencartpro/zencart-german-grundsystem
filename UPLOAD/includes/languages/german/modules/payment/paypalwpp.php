@@ -1,10 +1,10 @@
 <?php
 /**
  * @package languageDefines
- * @copyright Copyright 2003-2018 Zen Cart Development Team
+ * @copyright Copyright 2003-2019 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: paypalwpp.php 709 2018-10-27 10:34:24Z webchills $
+ * @version $Id: paypalwpp.php 711 2019-03-16 20:34:24Z webchills $
  */
 
 define('MODULE_PAYMENT_PAYPALWPP_TEXT_ADMIN_TITLE_EC', 'PayPal Express');
@@ -14,11 +14,12 @@ define('MODULE_PAYMENT_PAYPALWPP_TEXT_ADMIN_TITLE_PF_EC', 'PayPal Payflow Pro - 
 define('MODULE_PAYMENT_PAYPALWPP_TEXT_ADMIN_TITLE_PF_GATEWAY', 'PayPal Express via Payflow Pro');
 
 if (IS_ADMIN_FLAG === true) {
-  define('MODULE_PAYMENT_PAYPALWPP_TEXT_ADMIN_DESCRIPTION', '<strong>PayPal Express Checkout</strong>%s<br />' . (substr(MODULE_PAYMENT_PAYPALWPP_MODULE_MODE,0,7) == 'Payflow' ? '<a href="https://manager.paypal.com/loginPage.do?partner=ZenCart" target="_blank">Verwalten Sie Ihren PayPal Account.</a>' : '<a href="http://www.zen-cart.com/partners/paypal" target="_blank">Verwalten Sie Ihren PayPal Account.</a>') . '<br /><br /><font color="green">Konfiguration Anleitung:</font><br /><span class="alert">1. </span><a href="http://www.zen-cart.com/partners/paypal" target="_blank">Erstellen Sie einen PayPal Account.</a><br />' . 
+    if (!defined('MODULE_PAYMENT_PAYPALWPP_MODULE_MODE')) define('MODULE_PAYMENT_PAYPALWPP_MODULE_MODE', 'undefined');
+  define('MODULE_PAYMENT_PAYPALWPP_TEXT_ADMIN_DESCRIPTION', '<strong>PayPal Express Checkout</strong>%s<br/><br/><img src="images/checkout-logo-large-de.png" alt="PayPal Express"/><br/><br />Dieses Modul ist eine <b>NVP/SOAP API-Integration</b>.<br/>Infos zum Erstellen der API Zugangsdaten (<b>API Berechtigung mit Signatur</b>) finden Sie <a href="https://www.paypal.com/at/smarthelp/article/wie-fordere-ich-eine-api-berechtigung-mit-signatur-oder-zertifikat-an-faq3196" target=":blank">hier</a>.<br/><br/>' . (substr(MODULE_PAYMENT_PAYPALWPP_MODULE_MODE,0,7) == 'Payflow' ? '<a href="https://manager.paypal.com/loginPage.do?partner=ZenCart" target="_blank">Verwalten Sie Ihren PayPal Account.</a>' : '<a href="https://www.paypal.com/de/webapps/mpp/merchant" target="_blank">Verwalten Sie Ihren PayPal Account.</a>') . '<br /><br /><font color="green">Konfiguration Anleitung:</font><br /><span class="alert">1. </span><a href="https://www.paypal.com/de/webapps/mpp/merchant" target="_blank">Erstellen Sie einen PayPal Account.</a><br />' . 
   (defined('MODULE_PAYMENT_PAYPALWPP_STATUS') ? '' : '... und drücken auf den Button "Installieren" um PayPal Express Checkout zu aktivieren.</br>') . 
-  (MODULE_PAYMENT_PAYPALWPP_MODULE_MODE == 'PayPal' && (!defined('MODULE_PAYMENT_PAYPALWPP_APISIGNATURE') || MODULE_PAYMENT_PAYPALWPP_APISIGNATURE == '') ? '<span class="alert">2. </span><strong>API Credentials</strong> Diese Modul benutzt die <strong>API Signatur</strong> Option -- Bitte geben Sie in die utnren Felder Ihren Benutzernamen, Passwort und die Signature ein.' : (substr(MODULE_PAYMENT_PAYPALWPP_MODULE_MODE,0,7) == 'Payflow' && (!defined('MODULE_PAYMENT_PAYPALWPP_PFUSER') || MODULE_PAYMENT_PAYPALWPP_PFUSER == '') ? '<span class="alert">2. </span><strong>PAYFLOW Credentials</strong> Dieses Modul benötigt Ihre <strong>PAYFLOW Partner Daten</strong>. Bitte geben Sie diese in die Felder unten ein. Diese Daten werden für den reibungslosen Transaktionsablauf benötigt..' : '<span class="alert">2. </span>Bitte stellen Sie sicher, das Sie notwendigen Daten für diese Modul eingegeben haben.') ) . 
-  (MODULE_PAYMENT_PAYPALWPP_MODULE_MODE == 'PayPal' ? '<br /><span class="alert">3. </span>Aktivieren Sie in Ihrem Paypal Account <strong>Sofortige Zehlungsbenachrichtung</strong>:<br />unter Mein Profil wählen Sie <em>Sofortige Zahlungsbenachrichtung Einstellungen</em><ul style="margin-top: 0.5;"><li>und machen einen Haken in das dazugehörige Kästchen</li><li>Falls nicht bereicht eine URL angegeben ist, geben Sie bitte folgende URL ein:<br />'.str_replace('index.php?main_page=index','ipn_main_handler.php',zen_catalog_href_link(FILENAME_DEFAULT, '', 'SSL')) . '</li></ul>' : '') . 
-  '<font color="green"><hr /><strong>Voraussetzungen:</strong></font><br /><hr />*<strong>CURL</strong> wird für die Kommunikation mit dem Gateway genutzt und muss deshlb zwingend auf Ihrem Webspace vorhanden und aktiviert sein. (Falls Sie einen CURL Proxy verwenden, konfigurieren Sie diesen bitte unter Konfiguration -> Mein Shop)<br /><hr />');
+  (MODULE_PAYMENT_PAYPALWPP_MODULE_MODE == 'PayPal' && (!defined('MODULE_PAYMENT_PAYPALWPP_APISIGNATURE') || MODULE_PAYMENT_PAYPALWPP_APISIGNATURE == '') ? '<span class="alert">2. </span><strong>API Zugangsdaten fehlen!</strong> Dieses Modul benutzt die <strong>API Signatur</strong> Option -- Bitte geben Sie in die unteren Felder Ihren Benutzernamen, Passwort und die Signatur ein.' : (substr(MODULE_PAYMENT_PAYPALWPP_MODULE_MODE,0,7) == 'Payflow' && (!defined('MODULE_PAYMENT_PAYPALWPP_PFUSER') || MODULE_PAYMENT_PAYPALWPP_PFUSER == '') ? '<span class="alert">2. </span><strong>PAYFLOW Credentials</strong> Dieses Modul benötigt Ihre <strong>PAYFLOW Partner Daten</strong>. Bitte geben Sie diese in die Felder unten ein. Diese Daten werden für den reibungslosen Transaktionsablauf benötigt..' : '<span class="alert">2. </span>Bitte stellen Sie sicher, dass Sie die notwendigen Daten für dieses Modul eingegeben haben.') ) . 
+  (MODULE_PAYMENT_PAYPALWPP_MODULE_MODE == 'PayPal' ? '<br /><span class="alert">3. </span>Aktivieren Sie in Ihrem Paypal Account <strong>Sofortige Zehlungsbenachrichtung</strong>:<br />unter Mein Profil wählen Sie <em>Sofortige Zahlungsbenachrichtung Einstellungen</em><ul style="margin-top: 0.5;"><li>und machen einen Haken in das dazugehörige Kästchen</li><li>Falls nicht bereits eine URL angegeben ist, geben Sie bitte folgende URL ein:<br />'.str_replace('index.php?main_page=index','ipn_main_handler.php',zen_catalog_href_link(FILENAME_DEFAULT, '', 'SSL')) . '</li></ul>' : '') . 
+  '<hr/><font color="green"><strong>Voraussetzungen:</strong></font><br />*<strong>CURL</strong> wird für die Kommunikation mit dem Gateway genutzt und muss deshlb zwingend auf Ihrem Webspace vorhanden und aktiviert sein. Falls Sie einen CURL Proxy verwenden (NICHT empfohlen!), konfigurieren Sie diesen bitte unter Konfiguration -> Mein Shop<hr />');
 }
 
 define('MODULE_PAYMENT_PAYPALWPP_TEXT_DESCRIPTION', '<strong>PayPal</strong>');
@@ -28,7 +29,7 @@ define('MODULE_PAYMENT_PAYPALWPP_TEXT_EC_HEADER', 'Schneller, sicherer Checkout 
 define('MODULE_PAYMENT_PAYPALWPP_EC_TEXT_TYPE', 'PayPal Express Checkout');
 define('MODULE_PAYMENT_PAYPALWPP_DP_TEXT_TYPE', 'PayPal Direct Payment');
 define('MODULE_PAYMENT_PAYPALWPP_PF_TEXT_TYPE', 'Kreditkarte');  //(used for payflow transactions)
-define('MODULE_PAYMENT_PAYPALWPP_ERROR_HEADING', 'Es war uns leider nicht möglich Ihre Kreditkarten zu verarbeiten');
+define('MODULE_PAYMENT_PAYPALWPP_ERROR_HEADING', 'Es war uns leider nicht möglich Ihre Kreditkarte zu verarbeiten');
 define('MODULE_PAYMENT_PAYPALWPP_TEXT_CARD_ERROR', 'Die angegebenen Kreditkarten Informationen enthalten einen Fehler, Bitte prüfen Sie ihre Angaben und versuchen Sie es erneut.');
 define('MODULE_PAYMENT_PAYPALWPP_TEXT_CREDIT_CARD_FIRSTNAME', 'Kreditkarteninhaber Vorname:');
 define('MODULE_PAYMENT_PAYPALWPP_TEXT_CREDIT_CARD_LASTNAME', 'Kreditkarteninhaber Nachname');
@@ -86,13 +87,15 @@ define('MODULE_PAYMENT_PAYPALWPP_TEXT_GEN_API_ERROR', 'Es gab einen Fehler bei d
 define('MODULE_PAYMENT_PAYPALWPP_TEXT_INVALID_ZONE_ERROR', 'Es tut uns leid, aber zur Zeit ist es uns nicht möglich, die Zahlungsart Paypal für ihre geographische Region zu benutzen. Bitte wählen Sie eine andere Zahlungsart.');
 define('MODULE_PAYMENT_PAYPALWPP_TEXT_ORDER_ALREADY_PLACED_ERROR', 'Sie scheinen Ihre Bestellung zweimal abgesandt zu haben. Bitte überprüfen Sie unter Mein Konto die Details zu Ihrer Bestellung. Falls Ihre Bestellung dort nicht aufscheint, aber via PayPal bezahlt wurde, kontaktieren Sie uns bitte, damit wir das mit Ihnen klären können.');
 
-define('MODULE_PAYMENT_PAYPALWPP_MARK_BUTTON_TXT', 'Einkaufen mit PayPal');
+
 define('MODULE_PAYMENT_PAYPALWPP_TEXT_BUTTON_ALTTEXT', 'Klicken Sie hier um mit PayPal Express Checkout zu zahlen');
 // EC buttons -- Do not change these values:
-define('MODULE_PAYMENT_PAYPALWPP_EC_BUTTON_IMG', 'https://www.paypal.com/de_DE/i/btn/btn_xpressCheckout.gif');
-define('MODULE_PAYMENT_PAYPALWPP_EC_BUTTON_SM_IMG', 'https://www.paypal.com/de_DE/i/btn/btn_xpressCheckoutsm.gif');
-define('MODULE_PAYMENT_PAYPALEC_MARK_BUTTON_IMG', 'https://www.paypal.com/de_DE/i/logo/PayPal_mark_37x23.gif');
+define('MODULE_PAYMENT_PAYPALWPP_EC_BUTTON_IMG', 'https://www.paypalobjects.com/webstatic/de_DE/i/de-btn-expresscheckout.gif');
+define('MODULE_PAYMENT_PAYPALWPP_EC_BUTTON_IMG_MOBILE', 'https://www.paypalobjects.com/webstatic/de_DE/i/de-btn-expresscheckout.gif');
+define('MODULE_PAYMENT_PAYPALWPP_EC_BUTTON_SM_IMG', 'https://www.paypalobjects.com/webstatic/de_DE/i/de-btn-expresscheckout.gif');
+define('MODULE_PAYMENT_PAYPALEC_MARK_BUTTON_IMG', 'https://www.paypalobjects.com/webstatic/de_DE/i/de-pp-logo-100px.png');
 define('MODULE_PAYMENT_PAYPALEC_MARK_BUTTON_TXT', 'Einkaufen mit PayPal');
+define('MODULE_PAYMENT_PAYPALWPP_MARK_BUTTON_TXT', '');
 
 ////////////////////////////////////////
 // Styling of the PayPal Payment Page. Uncomment to customize.
@@ -112,7 +115,7 @@ define('MODULE_PAYMENT_PAYPAL_ENTRY_BUSINESS_NAME', 'Firmenname:');
 define('MODULE_PAYMENT_PAYPAL_ENTRY_ADDRESS_NAME', 'Adressen Name:');
 define('MODULE_PAYMENT_PAYPAL_ENTRY_ADDRESS_STREET', 'Strasse:');
 define('MODULE_PAYMENT_PAYPAL_ENTRY_ADDRESS_CITY', 'Stadt:');
-define('MODULE_PAYMENT_PAYPAL_ENTRY_ADDRESS_STATE', 'Bundesland:');
+define('MODULE_PAYMENT_PAYPAL_ENTRY_ADDRESS_STATE', 'Bundesland/PLZ:');
 define('MODULE_PAYMENT_PAYPAL_ENTRY_ADDRESS_ZIP', 'Postleitzahl:');
 define('MODULE_PAYMENT_PAYPAL_ENTRY_ADDRESS_COUNTRY', 'Land:');
 define('MODULE_PAYMENT_PAYPAL_ENTRY_EMAIL_ADDRESS', 'E-Mail:');
@@ -151,6 +154,7 @@ define('MODULE_PAYMENT_PAYPAL_ENTRY_AUTH_PARTIAL_TEXT', 'Wollen Sie einen Teil d
 define('MODULE_PAYMENT_PAYPAL_ENTRY_AUTH_BUTTON_TEXT_PARTIAL', 'Autorisieren');
 define('MODULE_PAYMENT_PAYPAL_ENTRY_AUTH_SUFFIX', '');
 define('MODULE_PAYMENT_PAYPAL_ENTRY_REFUND_TEXT_COMMENTS', '<strong>Hinweis für den Kunden:</strong>');
+define('MODULE_PAYMENT_PAYPAL_ENTRY_REFUND_DEFAULT_MESSAGE', 'Rückerstattet vom Shopinhaber.');
 define('MODULE_PAYMENT_PAYPAL_ENTRY_CAPTURE_TITLE', '<strong>Autorisationen Abfangen</strong>');
 define('MODULE_PAYMENT_PAYPAL_ENTRY_CAPTURE_FULL', 'Wenn Sie alle oder einen Teil der ausstehenden Autorisationen für diesen Auftrag abfangen wollen, dann geben sie bitte den gewünschten Betrag ein. Bitte machen Sie auch einen Haken in die Bestätigung Checkbox, bevor Sie auf den Button Abfangen klicken..<br />');
 define('MODULE_PAYMENT_PAYPAL_ENTRY_CAPTURE_BUTTON_TEXT_FULL', 'Abfangen');
@@ -173,7 +177,7 @@ define('MODULE_PAYMENT_PAYPAL_ENTRY_AVSZIP', 'AVS ZIP match:');
 define('MODULE_PAYMENT_PAYPAL_ENTRY_CVV2MATCH', 'CVV2 match:');
 define('MODULE_PAYMENT_PAYPAL_ENTRY_DAYSTOSETTLE', 'Days to Settle:');
 // this text is used to announce the username/password when the module creates the customer account and emails data to them:
-define('EMAIL_EC_ACCOUNT_INFORMATION', 'Mit folgenden Kundendaten können Sie ihren Einkauf erneut aufrufen:');
+define('EMAIL_EC_ACCOUNT_INFORMATION', 'Bei Ihrem Checkout mit PayPal Express wurde automatisch ein Kundenkonto in unserem Shop angelegt, damit Sie wieder einloggen und den Status Ihrer Bestellung prüfen können. Mit folgenden Zugangsdaten können Sie in Ihr Kundenkonto einloggen:');
 define('MODULES_PAYMENT_PAYPALWPP_LINEITEM_TEXT_ONETIME_CHARGES_PREFIX', 'Einmalgebühren bezogen auf ');
 define('MODULES_PAYMENT_PAYPALWPP_LINEITEM_TEXT_SURCHARGES_SHORT', 'Aufpreise');
 define('MODULES_PAYMENT_PAYPALWPP_LINEITEM_TEXT_SURCHARGES_LONG', 'Bearbeitungsgebühren und andere Gebühren');
@@ -181,5 +185,6 @@ define('MODULES_PAYMENT_PAYPALWPP_LINEITEM_TEXT_DISCOUNTS_SHORT', 'Rabatte');
 define('MODULES_PAYMENT_PAYPALWPP_LINEITEM_TEXT_DISCOUNTS_LONG', 'Angewandte Rabatte, Discounts, Gutscheincodes, Geschenkgutscheine, etc');
 define('MODULE_PAYMENT_PAYPALDP_TEXT_EMAIL_FMF_SUBJECT', 'Zahlung in Betrugsprüfung Status: ');
 define('MODULE_PAYMENT_PAYPALDP_TEXT_EMAIL_FMF_INTRO', 'This is an automated notification to advise you that PayPal flagged the payment for a new order as Requiring Payment Review by their Fraud team. Normally the review is completed within 36 hours. It is STRONGLY ADVISED that you DO NOT SHIP the order until payment review is completed. You can see the latest review status of the order by logging into your PayPal account and reviewing recent transactions.');
-  define('MODULES_PAYMENT_PAYPALWPP_TEXT_BLANK_ADDRESS', 'PROBLEM: Sorry. PayPal hat unerwarteter Weise eine leer Adresse zurückgegeben. <br />Um Ihre Bestellung abzuschließen, geben Sie bitte Ihre Adresse an, in dem Sie den Konto Erstellen Button anclicken und ein Kundenkonto in unserem Shop anlegen. Dann gehen Sie bitte wieder zur Kasse und wählen erneut PayPal als Zahlungsart aus. Sorry für die Unannehmlichkeiten. Wenn Sie Schwierigkeiten mit der Bestellung haben, nutzen Sie bitte das Kontaktformular und schildern uns, was nicht funktioniert. Wir helfen Ihnen dann gerne weiter.');
+  define('MODULES_PAYMENT_PAYPALWPP_TEXT_BLANK_ADDRESS', 'PROBLEM: Sorry. PayPal hat unerwarteter Weise eine leere Adresse zurückgegeben. <br />Um Ihre Bestellung abzuschließen, geben Sie bitte Ihre Adresse an, in dem Sie den Konto Erstellen Button anclicken und ein Kundenkonto in unserem Shop anlegen. Dann gehen Sie bitte wieder zur Kasse und wählen erneut PayPal als Zahlungsart aus. Sorry für die Unannehmlichkeiten. Wenn Sie Schwierigkeiten mit der Bestellung haben, nutzen Sie bitte das Kontaktformular und schildern uns, was nicht funktioniert. Wir helfen Ihnen dann gerne weiter.');
   define('MODULES_PAYMENT_PAYPALWPP_AGGREGATE_CART_CONTENTS', 'Alle Artikel in Ihrem Warenkorb (Details finden Sie im Shop unter Mein Konto und in Ihrer Bestellbestätigung)');
+define('MODULES_PAYMENT_PAYPALWPP_MESSAGE_STACK_CHECKOUT_SHIPPING', 'Sie zahlen mit PayPal und verwenden eine bei PayPal hinterlegte Lieferadresse.<br/>Wir möchten sicherstellen, dass diese Lieferadresse korrekt ist, daher haben wir Sie wieder auf diese Seite geleitet.<br/>Bitte prüfen Sie die Lieferanschrift und ändern Sie sie, falls das nötig sein sollte.');

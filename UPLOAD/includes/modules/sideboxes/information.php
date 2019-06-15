@@ -1,12 +1,13 @@
 <?php
 /**
+ * Zen Cart German Specific
  * information sidebox - displays list of general info links, as defined in this file
  *
  * @package templateSystem
- * @copyright Copyright 2003-2016 Zen Cart Development Team
+ * @copyright Copyright 2003-2019 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: information.php 733 2015-12-22 09:08:16Z webchills $
+ * @version $Id: information.php 734 2019-04-12 12:08:16Z webchills $
  */
 
   unset($information);
@@ -44,11 +45,11 @@
   }
 
   // only show GV FAQ when installed
-  if (MODULE_ORDER_TOTAL_GV_STATUS == 'true') {
+  if (defined('MODULE_ORDER_TOTAL_GV_STATUS') && MODULE_ORDER_TOTAL_GV_STATUS == 'true') {
     $information[] = '<a href="' . zen_href_link(FILENAME_GV_FAQ) . '">' . BOX_INFORMATION_GV . '</a>';
   }
   // only show Discount Coupon FAQ when installed
-  if (DEFINE_DISCOUNT_COUPON_STATUS <= 1 && MODULE_ORDER_TOTAL_COUPON_STATUS == 'true') {
+  if (DEFINE_DISCOUNT_COUPON_STATUS <= 1 && defined('MODULE_ORDER_TOTAL_COUPON_STATUS') && MODULE_ORDER_TOTAL_COUPON_STATUS == 'true') {
     $information[] = '<a href="' . zen_href_link(FILENAME_DISCOUNT_COUPON) . '">' . BOX_INFORMATION_DISCOUNT_COUPONS . '</a>';
   }
 

@@ -1,10 +1,10 @@
 <?php
 /**
  * @package Installer
- * @copyright Copyright 2003-2018 Zen Cart Development Team
+ * @copyright Copyright 2003-2019 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: header_php.php 848 2018-06-18 19:51:25Z webchills $
+ * @version $Id: header_php.php 849 2019-04-12 13:51:25Z webchills $
  */
 
 $systemChecker = new systemChecker();
@@ -26,11 +26,15 @@ $versionArray[] = '1.5.2';
 $versionArray[] = '1.5.3';
 $versionArray[] = '1.5.4';
 $versionArray[] = '1.5.5';
+$versionArray[] = '1.5.6';
 
 //print_r($versionArray);
 $key = array_search($dbVersion, $versionArray);
 $newArray = array_slice($versionArray, $key + 1);
 //print_r($newArray);
+
+
+
 
 // add current IP to the view-in-maintenance-mode list
 $systemChecker->updateAdminIpList();

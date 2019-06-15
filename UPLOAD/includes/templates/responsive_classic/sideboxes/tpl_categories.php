@@ -3,15 +3,15 @@
  * Side Box Template
  *
  * @package templateSystem
- * @copyright Copyright 2003-2016 Zen Cart Development Team
+ * @copyright Copyright 2003-2019 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: tpl_categories.php 2 2016-04-06 11:33:58Z webchills $
+ * @version $Id: tpl_categories.php 3 2019-04-12 18:33:58Z webchills $
  */
   $content = "";
-  
+
   $content .= '<div id="' . str_replace('_', '-', $box_id . 'Content') . '" class="sideBoxContent"><ul class="list-links">' . "\n";
-  for ($i=0;$i<sizeof($box_categories_array);$i++) {
+  for ($i=0, $j=sizeof($box_categories_array); $i<$j; $i++) {
     switch(true) {
 // to make a specific category stand out define a new class in the stylesheet example: A.category-holiday
 // uncomment the select below and set the cPath=3 to the cPath= your_categories_id

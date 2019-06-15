@@ -1,14 +1,19 @@
 <?php
 /**
+ * Zen Cart German Specific
  * @package admin
- * @copyright Copyright 2003-2018 Zen Cart Development Team
+ * @copyright Copyright 2003-2019 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: header.php 795 2018-03-30 08:13:51Z webchills $
+ * @version $Id: header.php 798 2019-06-15 16:13:51Z webchills $
  */
 if (!defined('IS_ADMIN_FLAG')) {
     die('Illegal Access');
 }
+
+// pull in any necessary JS for the page
+require(DIR_WS_INCLUDES . 'javascript_loader.php');
+
 
 $version_check_requested = (isset($_GET['vcheck']) && $_GET['vcheck'] != '') ? true : false;
 
@@ -76,44 +81,63 @@ if (file_exists(DIR_FS_ADMIN . 'includes/local/skip_version_check.ini')) {
         if (substr(trim($line), 0, 46) == 'display_update_link_on_index_and_sysinfo_page=') $version_ini_index_sysinfo = trim(strtolower(str_replace('display_update_link_only_on_sysinfo_page=', '', $line)));
     }
 }
+
+$doVersionCheck = false;
+$versionCheckError = false;
+
 // ignore version check if not enabled or if not on main page or sysinfo page
 if ((SHOW_VERSION_UPDATE_IN_HEADER == 'true' && $version_from_ini != 'off' && ($version_check_sysinfo == true || $version_check_index == true) && $zv_db_patch_ok == true) || $version_check_requested == true) {
+    $doVersionCheck = true;
+    $versionServer = new VersionServer();
+    $newinfo = $versionServer->getProjectVersion();
     $new_version = TEXT_VERSION_CHECK_CURRENT; //set to "current" by default
-    $lines = @file(NEW_VERSION_CHECKUP_URL . '?v='.PROJECT_VERSION_MAJOR.'.'.PROJECT_VERSION_MINOR.'&p='.PHP_VERSION.'&a='.$_SERVER['SERVER_SOFTWARE'].'&r='.urlencode(HTTP_SERVER));
-    //check for major/minor version info
-    if ((trim($lines[0]) > PROJECT_VERSION_MAJOR) || (trim($lines[0]) == PROJECT_VERSION_MAJOR && trim($lines[1]) > PROJECT_VERSION_MINOR)) {
-        $new_version = TEXT_VERSION_CHECK_NEW_VER . trim($lines[0]) . '.' . trim($lines[1]) . ' :: ' . $lines[2];
+    if (isset($newinfo['error'])) {
+        $isCurrent = true;
+        $versionCheckError = true;
+    } else {
+        $isCurrent = $versionServer->isProjectCurrent($newinfo);
     }
-    //check for patch version info
-    // first confirm that we're at latest major/minor -- otherwise no need to check patches:
-    if (trim($lines[0]) == PROJECT_VERSION_MAJOR && trim($lines[1]) == PROJECT_VERSION_MINOR) {
-        //check to see if either patch needs to be applied
-        if (trim($lines[3]) > intval(PROJECT_VERSION_PATCH1) || trim($lines[4]) > intval(PROJECT_VERSION_PATCH2)) {
-            // reset update message, since we WILL be advising of an available upgrade
-            if ($new_version == TEXT_VERSION_CHECK_CURRENT) $new_version = '';
-            //check for patch #1
-            if (trim($lines[3]) > intval(PROJECT_VERSION_PATCH1)) {
-//          if ($new_version != '') $new_version .= '<br />';
-                $new_version .= (($new_version != '') ? '<br />' : '') . '<span class="alert">' . TEXT_VERSION_CHECK_NEW_PATCH . trim($lines[0]) . '.' . trim($lines[1]) . ' - ' . TEXT_VERSION_CHECK_PATCH . ': [' . trim($lines[3]) . '] :: ' . $lines[5] . '</span>';
-            }
-            if (trim($lines[4]) > intval(PROJECT_VERSION_PATCH2)) {
-//          if ($new_version != '') $new_version .= '<br />';
-                $new_version .= (($new_version != '') ? '<br />' : '') . '<span class="alert">' . TEXT_VERSION_CHECK_NEW_PATCH . trim($lines[0]) . '.' . trim($lines[1]) . ' - ' . TEXT_VERSION_CHECK_PATCH . ': [' . trim($lines[4]) . '] :: ' . $lines[5] . '</span>';
-            }
-        }
+
+    $hasPatches = 0;
+
+    if (!$isCurrent) {
+        $new_version = TEXT_VERSION_CHECK_NEW_VER . trim($newinfo['versionMajor']) . '.' . trim($newinfo['versionMinor']) . ' :: ' . $newinfo['versionDetail'];
     }
+    if ($isCurrent) {
+        $hasPatches = $versionServer->hasProjectPatches($newinfo);
+    }
+
+    if ($isCurrent && $hasPatches && $new_version == TEXT_VERSION_CHECK_CURRENT) {
+        $new_version = '';
+    }
+
+    if ($isCurrent && $hasPatches != 2 && $hasPatches) {
+        $new_version .= (($new_version != '') ? '<br />' : '') . '<span class="alert">' . TEXT_VERSION_CHECK_NEW_PATCH . trim($newinfo['versionMajor']) . '.' . trim($newinfo['versionMinor']) . ' - ' . TEXT_VERSION_CHECK_PATCH . ': [' . trim($newinfo['versionPatch1']) . '] :: ' . $newinfo['versionPatchDetail'] . '</span>';
+    }
+
+    if ($isCurrent && $hasPatches > 1) {
+        $new_version .= (($new_version != '') ? '<br />' : '') . '<span class="alert">' . TEXT_VERSION_CHECK_NEW_PATCH . trim($newinfo['versionMajor']) . '.' . trim($newinfo['versionMinor']) . ' - ' . TEXT_VERSION_CHECK_PATCH . ': [' . trim($newinfo['versionPatch2']) . '] :: ' . $newinfo['versionPatchDetail'] . '</span>';
+    }
+
     // display download link
-    if ($new_version != '' && $new_version != TEXT_VERSION_CHECK_CURRENT) $new_version .= '<br /><a href="' . $lines[6] . '" target="_blank"><input type="button" class="btn btn-success" value="' . TEXT_VERSION_CHECK_DOWNLOAD . '"/></a>';
-} else {
+    if ($new_version != '' && $new_version != TEXT_VERSION_CHECK_CURRENT) $new_version .= '<br /><a href="' . $newinfo['versionDownloadURI'] . '" target="_blank"><input type="button" class="btn btn-success" value="' . TEXT_VERSION_CHECK_DOWNLOAD . '"/></a>';
+}
+
+if (!$doVersionCheck || $versionCheckError) {
+    $new_version = '';
+    if ($versionCheckError) {
+        $new_version = ERROR_CONTACTING_PROJECT_VERSION_SERVER . '<br>';
+    }
     // display the "check for updated version" button.  The button link should be the current page and all params
     $url = zen_href_link(basename($PHP_SELF), zen_get_all_get_params(array('vcheck'), 'SSL'));
     $url .= (strpos($url, '?') > 5 ? '&' : '?') . 'vcheck=yes';
-    if ($zv_db_patch_ok == true || $version_check_sysinfo == true) $new_version = '<a href="' . $url . '">' . '<input type="button" class="btn btn-link" value="' . TEXT_VERSION_CHECK_BUTTON . '"/></a>';
+    if ($zv_db_patch_ok == true || $version_check_sysinfo == true) $new_version .= '<a href="' . $url . '" role="button" class="btn btn-link">' . TEXT_VERSION_CHECK_BUTTON . '</a>';
 }
 /////////////////
 
+
 // check GV release queue and alert store owner
-if (SHOW_GV_QUEUE == true) {
+if (defined('MODULE_ORDER_TOTAL_GV_SHOW_QUEUE_IN_ADMIN') && MODULE_ORDER_TOTAL_GV_SHOW_QUEUE_IN_ADMIN == 'true') {
     $new_gv_queue = $db->Execute("select * from " . TABLE_COUPON_GV_QUEUE . " where release_flag='N'");
     $new_gv_queue_cnt = 0;
     if ($new_gv_queue->RecordCount() > 0) {
@@ -136,7 +160,7 @@ if (SHOW_GV_QUEUE == true) {
     </div>
 
     <div class="hidden-sm hidden-md hidden-lg col-xs-4 noprint adminHeaderAlerts">
-        <a href="<?php echo zen_href_link(FILENAME_ORDERS); ?>"><input type="button" class="btn btn-primary" value="<?php echo BOX_CUSTOMERS_ORDERS; ?>"/></a>
+        <a class="btn btn-primary" role="button" href="<?php echo zen_href_link(FILENAME_ORDERS); ?>"><?php echo BOX_CUSTOMERS_ORDERS; ?></a>
     </div>
 
     <div class="clearfix visible-xs-block"></div>
@@ -144,14 +168,14 @@ if (SHOW_GV_QUEUE == true) {
         <?php
         if (isset($_SESSION['reset_admin_activity_log']) and ($_SESSION['reset_admin_activity_log'] == true and (basename($PHP_SELF) == FILENAME_DEFAULT . '.php'))) {
         ?>
-        <a href="<?php echo zen_href_link(FILENAME_ADMIN_ACTIVITY); ?>"><input type="button" class="btn btn-warning" value="<?php echo TEXT_BUTTON_RESET_ACTIVITY_LOG;?>"/></a><p class="hidden-xs"><br /><?php echo RESET_ADMIN_ACTIVITY_LOG; ?></p>
+        <a class="btn btn-warning" role="button" href="<?php echo zen_href_link(FILENAME_ADMIN_ACTIVITY); ?>"><?php echo TEXT_BUTTON_RESET_ACTIVITY_LOG;?></a><p class="hidden-xs"><br /><?php echo RESET_ADMIN_ACTIVITY_LOG; ?></p>
         <?php
         }
         ?>
     </div>
 
     <div class="col-xs-6 col-sm-3 col-sm-pull-3 noprint adminHeaderAlerts">
-        <?php if ($new_gv_queue_cnt > 0) echo $goto_gv . '<br />' . sprintf(TEXT_SHOW_GV_QUEUE, $new_gv_queue_cnt); ?>
+        <?php if (!empty($new_gv_queue_cnt)) echo $goto_gv . '<br />' . sprintf(TEXT_SHOW_GV_QUEUE, $new_gv_queue_cnt); ?>
     </div>
 
   </div>
@@ -198,9 +222,3 @@ if (SHOW_GV_QUEUE == true) {
   </div>
 <?php require(DIR_WS_INCLUDES . 'header_navigation.php'); ?>
 
-<script>window.jQuery || document.write('<script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"><\/script>');</script>
-<script>window.jQuery || document.write('<script src="includes/javascript/jquery-1.12.4.min.js"><\/script>');</script>
-
-<!--<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>-->
-<script src="includes/javascript/bootstrap.min.js"></script>
-<?php if (file_exists(DIR_WS_INCLUDES . 'keepalive_module.php')) require(DIR_WS_INCLUDES . 'keepalive_module.php'); ?>

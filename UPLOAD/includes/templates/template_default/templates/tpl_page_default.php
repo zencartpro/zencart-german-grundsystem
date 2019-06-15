@@ -2,8 +2,7 @@
 /**
  * Page Template
  *
- * This is the template used for EZ-Pages content display.  It is named "tpl_page_default" instead of ezpage for friendlier 
- * appearance
+ * This is the template used for EZ-Pages content display.  It is named "tpl_page_default" instead of ezpage for friendlier appearance
  *
  * @package templateSystem
  * @copyright Copyright 2003-2016 Zen Cart Development Team

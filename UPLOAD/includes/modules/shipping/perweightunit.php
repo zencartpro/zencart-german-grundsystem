@@ -1,10 +1,11 @@
 <?php
 /**
+ * Zen Cart German Specific
  * @package shippingMethod
- * @copyright Copyright 2003-2016 Zen Cart Development Team
+ * @copyright Copyright 2003-2019 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: perweightunit.php 732 2016-03-12 12:49:16Z webchills $
+ * @version $Id: perweightunit.php 733 2019-04-12 12:49:16Z webchills $
  */
 /**
  * "Per Weight Unit" shipping module, allowing you to offer per-unit-rate shipping options
@@ -52,7 +53,9 @@ class perweightunit extends base {
     $this->code = 'perweightunit';
     $this->title = MODULE_SHIPPING_PERWEIGHTUNIT_TEXT_TITLE;
     $this->description = MODULE_SHIPPING_PERWEIGHTUNIT_TEXT_DESCRIPTION;
-    $this->sort_order = MODULE_SHIPPING_PERWEIGHTUNIT_SORT_ORDER;
+    $this->sort_order = defined('MODULE_SHIPPING_PERWEIGHTUNIT_SORT_ORDER') ? MODULE_SHIPPING_PERWEIGHTUNIT_SORT_ORDER : null;
+    if (null === $this->sort_order) return false;
+
     $this->icon = '';
     $this->tax_class = MODULE_SHIPPING_PERWEIGHTUNIT_TAX_CLASS;
     $this->tax_basis = MODULE_SHIPPING_PERWEIGHTUNIT_TAX_BASIS;
@@ -106,8 +109,8 @@ class perweightunit extends base {
                           'module' => MODULE_SHIPPING_PERWEIGHTUNIT_TEXT_TITLE,
                           'methods' => array(array('id' => $this->code,
                                                    'title' => MODULE_SHIPPING_PERWEIGHTUNIT_TEXT_WAY,
-                                                   'cost' => MODULE_SHIPPING_PERWEIGHTUNIT_COST * ($total_weight_units * $shipping_num_boxes) +
-                                                   (MODULE_SHIPPING_PERWEIGHTUNIT_HANDLING_METHOD == 'Box' ? MODULE_SHIPPING_PERWEIGHTUNIT_HANDLING * $shipping_num_boxes : MODULE_SHIPPING_PERWEIGHTUNIT_HANDLING) ) ));
+                                                   'cost' => (float)MODULE_SHIPPING_PERWEIGHTUNIT_COST * ($total_weight_units * $shipping_num_boxes) +
+                                                   (MODULE_SHIPPING_PERWEIGHTUNIT_HANDLING_METHOD == 'Box' ? (float)MODULE_SHIPPING_PERWEIGHTUNIT_HANDLING * $shipping_num_boxes : (float)MODULE_SHIPPING_PERWEIGHTUNIT_HANDLING) ) ));
 
 
     if ($this->tax_class > 0) {
@@ -140,7 +143,9 @@ class perweightunit extends base {
     $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) values ('Enable Per Weight Unit Shipping', 'MODULE_SHIPPING_PERWEIGHTUNIT_STATUS', 'True', 'Do you want to offer per unit rate shipping?<br /><br />Product Quantity * Units (products_weight) * Cost per Unit', '6', '0', 'zen_cfg_select_option(array(\'True\', \'False\'), ', now())");
     $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) values ('Shipping Cost per Unit', 'MODULE_SHIPPING_PERWEIGHTUNIT_COST', '1', 'NOTE: When using this Shipping Module be sure to check the Tare settings in the Shipping/Packaging and set the Largest Weight high enough to handle the price, such as 5000.00 and the adjust the settings on Small and Large packages which will add to the price as well.<br /><br />The shipping cost will be used to determine shipping charges based on: Product Quantity * Units (products_weight) * Cost per Unit - in an order that uses this shipping method.', '6', '0', now())");
     $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) values ('Handling Fee', 'MODULE_SHIPPING_PERWEIGHTUNIT_HANDLING', '0', 'Handling fee for this shipping method.', '6', '0', now())");
+
     $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) values ('Handling Per Order or Per Box', 'MODULE_SHIPPING_PERWEIGHTUNIT_HANDLING_METHOD', 'Order', 'Do you want to charge Handling Fee Per Order or Per Box?', '6', '0', 'zen_cfg_select_option(array(\'Order\', \'Box\'), ', now())");
+
     $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, use_function, set_function, date_added) values ('Tax Class', 'MODULE_SHIPPING_PERWEIGHTUNIT_TAX_CLASS', '0', 'Use the following tax class on the shipping fee.', '6', '0', 'zen_get_tax_class_title', 'zen_cfg_pull_down_tax_classes(', now())");
     $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) values ('Tax Basis', 'MODULE_SHIPPING_PERWEIGHTUNIT_TAX_BASIS', 'Shipping', 'On what basis is Shipping Tax calculated. Options are<br />Shipping - Based on customers Shipping Address<br />Billing Based on customers Billing address<br />Store - Based on Store address if Billing/Shipping Zone equals Store zone', '6', '0', 'zen_cfg_select_option(array(\'Shipping\', \'Billing\', \'Store\'), ', now())");
     $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, use_function, set_function, date_added) values ('Shipping Zone', 'MODULE_SHIPPING_PERWEIGHTUNIT_ZONE', '0', 'If a zone is selected, only enable this shipping method for that zone.', '6', '0', 'zen_get_zone_class_title', 'zen_cfg_pull_down_zone_classes(', now())");
@@ -175,4 +180,3 @@ class perweightunit extends base {
     return array('MODULE_SHIPPING_PERWEIGHTUNIT_STATUS', 'MODULE_SHIPPING_PERWEIGHTUNIT_COST', 'MODULE_SHIPPING_PERWEIGHTUNIT_HANDLING', 'MODULE_SHIPPING_PERWEIGHTUNIT_HANDLING_METHOD', 'MODULE_SHIPPING_PERWEIGHTUNIT_TAX_CLASS', 'MODULE_SHIPPING_PERWEIGHTUNIT_TAX_BASIS', 'MODULE_SHIPPING_PERWEIGHTUNIT_ZONE', 'MODULE_SHIPPING_PERWEIGHTUNIT_SORT_ORDER');
   }
 }
-?>

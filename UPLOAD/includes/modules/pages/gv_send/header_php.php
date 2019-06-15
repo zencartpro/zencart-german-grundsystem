@@ -6,10 +6,10 @@
  * They can send up to the amount of GV accumlated in their account by way of purchased GV's or GV's sent to them.
  *
  * @package page
- * @copyright Copyright 2003-2016 Zen Cart Development Team
+ * @copyright Copyright 2003-2019 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: header_php.php 731 2016-03-02 21:49:16Z webchills $
+ * @version $Id: header_php.php 733 2019-06-15 21:49:16Z webchills $
  */
 
 // This should be first line of the script:
@@ -19,12 +19,12 @@ if (isset($_POST['message'])) $_POST['message'] = zen_output_string_protected($_
 require_once('includes/classes/http_client.php');
 
 // verify no timeout has occurred on the send or process
-if (!$_SESSION['customer_id'] and ($_GET['action'] == 'send' or $_GET['action'] == 'process')) {
+if (!zen_is_logged_in() && isset($_GET['action']) && ($_GET['action'] == 'send' or $_GET['action'] == 'process')) {
   zen_redirect(zen_href_link(FILENAME_TIME_OUT));
 }
 
 // if the customer is not logged on, redirect them to the login page
-if (!$_SESSION['customer_id']) {
+if (!zen_is_logged_in()) {
   $_SESSION['navigation']->set_snapshot();
   zen_redirect(zen_href_link(FILENAME_LOGIN, '', 'SSL'));
 }
@@ -102,7 +102,6 @@ if ($_GET['action'] == 'process') {
     $_POST['amount'] = preg_replace('/[^0-9.,%]/', '', $_POST['amount']);
 
     $new_amount = $gv_result->fields['amount'] - $currencies->value($_POST['amount'], true, DEFAULT_CURRENCY);
-    //die($currencies->value($_POST['amount'], true, $_SESSION['currency']));
     $new_db_amount = $gv_result->fields['amount'] - $currencies->value($_POST['amount'], true, DEFAULT_CURRENCY);
     if ($new_amount < 0) {
       $error= true;

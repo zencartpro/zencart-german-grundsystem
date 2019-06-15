@@ -1,10 +1,10 @@
 <?php
 /**
 * @package languageDefines
-* @copyright Copyright 2003-2016 Zen Cart Development Team
+* @copyright Copyright 2003-2019 Zen Cart Development Team
 * @copyright Portions Copyright 2003 osCommerce
 * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
-* @version $Id: email_extras.php 630 2016-03-05 10:05:14Z webchills $
+* @version $Id: email_extras.php 631 2019-05-09 09:05:14Z webchills $
 */
 
 define ('EMAIL_LOGO_FILENAME', 'header.jpg');  //-File is present in /email folder
@@ -35,9 +35,13 @@ define('OFFICE_HOST_ADDRESS', '<strong>Hostname:</strong>');
 define('OFFICE_DATE_TIME', '<strong>Datum und Uhrzeit:</strong>');
 if (!defined('OFFICE_IP_TO_HOST_ADDRESS')) define('OFFICE_IP_TO_HOST_ADDRESS', 'Deaktiviert');
 
+define('EMAIL_TEXT_TELEPHONE', 'Telefon: ');
+
 // email disclaimer
 define('EMAIL_DISCLAIMER', '');
 define('EMAIL_SPAM_DISCLAIMER', '-');
+// Define a message you'd like to add to an order confirmation email
+define('EMAIL_ORDER_MESSAGE',''); 
 define('EMAIL_FOOTER_COPYRIGHT','Copyright (c) ' . date('Y') . ' <a href="' . zen_href_link(FILENAME_DEFAULT) . '" target="_blank">' . STORE_NAME . '</a>');
 define('TEXT_UNSUBSCRIBE', "\n\n" . 'Um diesen Newsletter abzubestellen, klicken Sie bitte auf folgenden Link: ' . "\n");
 // email advisory for all emails customer generate -  and GV send
@@ -49,7 +53,7 @@ define('EMAIL_ADVISORY_INCLUDED_WARNING', '<strong>Diese Nachricht ist in allen 
 
 // Admin additional email subjects
 define('SEND_EXTRA_CREATE_ACCOUNT_EMAILS_TO_SUBJECT', '[NEUES KUNDENKONTO]');
-define('SEND_EXTRA_TELL_A_FRIEND_EMAILS_TO_SUBJECT', '[EMPFEHLUNG]');
+
 define('SEND_EXTRA_GV_CUSTOMER_EMAILS_TO_SUBJECT', '[GUTSCHEIN]');
 define('SEND_EXTRA_NEW_ORDERS_EMAILS_TO_SUBJECT', '[NEUE BESTELLUNG]');
 define('SEND_EXTRA_CC_EMAILS_TO_SUBJECT', '[EXTRA KREDITKARTEN BESTELLINFO] #');

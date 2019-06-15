@@ -13,6 +13,7 @@
 
   mailbeez.com: modified for compatibility in zencart - just in case someone already did include these functions
  */
+global $db;
 
 $db_link = $db->link;
 
@@ -140,12 +141,13 @@ if (!function_exists('tep_db_perform')) {
         reset($data);
         if ($action == 'insert') {
             $query = 'insert into ' . $table . ' (';
-            while (list($columns,) = each($data)) {
+            foreach ($data as $columns => $v) {
                 $query .= $columns . ', ';
             }
             $query = substr($query, 0, -2) . ') values (';
             reset($data);
-            while (list(, $value) = each($data)) {
+            foreach ($data as $i => $value) {
+
                 switch ((string)$value) {
                     case 'now()':
                         $query .= 'now(), ';
@@ -161,7 +163,8 @@ if (!function_exists('tep_db_perform')) {
             $query = substr($query, 0, -2) . ')';
         } elseif ($action == 'update') {
             $query = 'update ' . $table . ' set ';
-            while (list($columns, $value) = each($data)) {
+            foreach ($data as $columns => $value) {
+
                 switch ((string)$value) {
                     case 'now()':
                         $query .= $columns . ' = now(), ';
@@ -337,7 +340,7 @@ if (!function_exists('tep_db_prepare_input')) {
             return trim(stripslashes($string));
         } elseif (is_array($string)) {
             reset($string);
-            while (list($key, $value) = each($string)) {
+            foreach ($string as $key => $value) {
                 $string[$key] = tep_db_prepare_input($value);
             }
             return $string;

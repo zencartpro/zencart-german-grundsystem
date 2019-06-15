@@ -2,9 +2,9 @@
 /**
  * file contains zcDatabaseInstaller Class
  * @package Installer
- * @copyright Copyright 2003-2018 Zen Cart Development Team
+ * @copyright Copyright 2003-2019 Zen Cart Development Team
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: class.zcDatabaseInstaller.php 2018-04-01 15:59:53Z webchills $
+ * @version $Id: class.zcDatabaseInstaller.php 2019-04-30 15:59:53Z hugo13 $
  *
  */
 /**
@@ -14,9 +14,12 @@
  */
 class zcDatabaseInstaller
 {
-  public function __construct($options)
+    public $ignoreLine;
+    var $jsonProgressLoggingCount = 0;
+
+    public function __construct($options)
   {
-    $this->func = create_function('$matches', 'return strtoupper($matches[1]);');
+    $this->func = function($matches) {return strtoupper($matches[1]);};
     $dbtypes = array();
     $path = DIR_FS_ROOT . 'includes/classes/db/';
     $dir = dir($path);
@@ -136,6 +139,7 @@ class zcDatabaseInstaller
   private function parseLineContent()
   {
     $this->lineSplit = explode(" ",(substr($this->line,-1)==';') ? substr($this->line,0,strlen($this->line)-1) : $this->line);
+    if (!isset($this->lineSplit[3])) $this->lineSplit[3] = "";
     if (!isset($this->lineSplit[4])) $this->lineSplit[4] = "";
     if (!isset($this->lineSplit[5])) $this->lineSplit[5] = "";
     foreach ($this->basicParseStrings as $parseString)
@@ -190,12 +194,14 @@ class zcDatabaseInstaller
       $this->ignoreLine = TRUE;
       if (strtoupper($this->lineSplit[2].' '.$this->lineSplit[3].' '.$this->lineSplit[4]) != 'IF NOT EXISTS')
       {
-        $this->writeUpgradeExceptions($this->line, sprintf(REASON_TABLE_ALREADY_EXISTS, $table), $this->filename);
+        $this->writeUpgradeExceptions($this->line, sprintf(REASON_TABLE_ALREADY_EXISTS, $table), $this->fileName);
       }
     } else
     {
       $this->line = (strtoupper($this->lineSplit[2].' '.$this->lineSplit[3].' '.$this->lineSplit[4]) == 'IF NOT EXISTS') ? 'CREATE TABLE IF NOT EXISTS ' . $this->dbPrefix . substr($this->line, 27) : 'CREATE TABLE ' . $this->dbPrefix . substr($this->line, 13);
-      $this->collateSuffix = (strtoupper($this->lineSplit[3]) == 'AS' || (isset($this->lineSplit[6]) && strtoupper($this->lineSplit[6]) == 'AS')) ? '' : ' COLLATE ' . $this->dbCharset . '_general_ci';
+      if (! stristr($this->line, ' COLLATE ')) {
+          $this->collateSuffix = (strtoupper($this->lineSplit[3]) == 'AS' || (isset($this->lineSplit[6]) && strtoupper($this->lineSplit[6]) == 'AS')) ? '' : ' COLLATE ' . $this->dbCharset . '_general_ci';
+      }
     }
   }
   public function parserInsertInto()
@@ -290,7 +296,7 @@ class zcDatabaseInstaller
   public function parserAlterTable() {
     if(!$this->tableExists($this->lineSplit[2])) {
       $result = sprintf(REASON_TABLE_NOT_FOUND, $this->lineSplit[2]).' CHECK PREFIXES!';
-      $this->writeUpgradeExceptions($this->line, $result, $this->filename);
+      $this->writeUpgradeExceptions($this->line, $result, $this->fileName);
     }
     else {
       $this->line = 'ALTER TABLE ' . $this->dbPrefix . substr($this->line, 12);
@@ -345,20 +351,31 @@ class zcDatabaseInstaller
   }
   public function parserRenameTable()
   {
-    if (!$this->tableExists($this->lineSplit[2])) 
+    if (!$this->tableExists($this->lineSplit[2]))
     {
-      if (!isset($result)) $result = sprintf(REASON_TABLE_NOT_FOUND, $table).' CHECK PREFIXES!';
+      if (!isset($result)) $result = sprintf(REASON_TABLE_NOT_FOUND, $this->lineSplit[2]).' CHECK PREFIXES!';
       $this->writeUpgradeExceptions($this->line, $result, $this->fileName);
       $this->ignoreLine = true;
     } else {
       if ($this->tableExists($this->lineSplit[4]))
       {
-        if (!isset($result)) $result = sprintf(REASON_TABLE_ALREADY_EXISTS, $table);
+        if (!isset($result)) $result = sprintf(REASON_TABLE_ALREADY_EXISTS, $this->lineSplit[4]);
         $this->writeUpgradeExceptions($this->line, $result, $this->fileName);
         $this->ignoreLine = true;
       } else {
         $this->line = 'RENAME TABLE ' . $this->dbPrefix . $this->lineSplit[2] . ' TO ' . $this->dbPrefix . substr($this->line, (13 + strlen($this->lineSplit[2]) + 4));
       }
+    }
+  }
+  public function parserLeftJoin()
+  {
+    if (!$this->tableExists($this->lineSplit[2]))
+    {
+      if (!isset($result)) $result = sprintf(REASON_TABLE_NOT_FOUND, $this->lineSplit[2]).' CHECK PREFIXES!';
+      $this->writeUpgradeExceptions($this->line, $result, $this->fileName);
+      error_log($result . "\n" . $this->line . "\n---------------\n\n");
+    } else {
+      $this->line = 'LEFT JOIN ' . $this->dbPrefix . substr($this->line, 10);
     }
   }
   public function writeUpgradeExceptions($line, $message, $sqlFile = '')
@@ -379,11 +396,11 @@ class zcDatabaseInstaller
     {
       $result = $this->db->Execute("CREATE TABLE " . $this->dbPrefix . TABLE_UPGRADE_EXCEPTIONS ." (
             upgrade_exception_id smallint(5) NOT NULL auto_increment,
-            sql_file varchar(50) default NULL,
-            reason varchar(200) default NULL,
-            errordate datetime default '0001-01-01 00:00:00',
+            sql_file varchar(128) default NULL,
+            reason text default NULL,
+            errordate datetime default NULL,
             sqlstatement text, PRIMARY KEY  (upgrade_exception_id)
-          )");
+          ) ENGINE=MyISAM");
     return $result;
     }
   }
@@ -460,7 +477,7 @@ class zcDatabaseInstaller
   }
   public function updateConfigKeys()
   {
-    $sql = "update ". $this->dbPrefix ."configuration set configuration_value='". preg_replace('~/cache$~', '/logs', $this->sqlCacheDir) ."/page_parse_time.log' where configuration_key = 'STORE_PAGE_PARSE_TIME_LOG'";
+    $sql = "update ". $this->dbPrefix ."configuration set configuration_value='". DIR_FS_ROOT . "logs/page_parse_time.log' where configuration_key = 'STORE_PAGE_PARSE_TIME_LOG'";
     $this->db->Execute($sql);
     if (isset($_POST['http_server_catalog']) && $_POST['http_server_catalog'] != '') {
       $email_stub = preg_replace('~.*\/\/(www.)*~', 'YOUR_EMAIL@', $_POST['http_server_catalog']);

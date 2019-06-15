@@ -1,10 +1,10 @@
 <?php
 /**
  * @package languageDefines
- * @copyright Copyright 2003-2016 Zen Cart Development Team
+ * @copyright Copyright 2003-2019 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: button_names.php 2 2016-04-06 19:49:16Z webchills $
+ * @version $Id: button_names.php 3 2019-06-15 14:49:16Z webchills $
  */
 
 
@@ -22,6 +22,7 @@ define('BUTTON_IMAGE_CHANGE_ADDRESS', 'button_change_address.gif');
 define('BUTTON_IMAGE_CHECKOUT', 'button_checkout.gif');
 define('BUTTON_IMAGE_CONFIRM_SEND', 'button_confirm_send.gif');
 define('BUTTON_IMAGE_CONFIRM_ORDER', 'button_confirm_order.gif');
+define('BUTTON_IMAGE_CONTACT_US', 'button_contact_us.gif');
 define('BUTTON_IMAGE_CONTINUE', 'button_continue.gif');
 define('BUTTON_IMAGE_CONTINUE_SHOPPING', 'button_continue_shopping.gif');
 define('BUTTON_IMAGE_DELETE', 'button_delete.gif');
@@ -30,6 +31,8 @@ define('BUTTON_IMAGE_DOWNLOAD', 'button_download.gif');
 define('BUTTON_IMAGE_EDIT_SMALL', 'small_edit.gif');
 define('BUTTON_IMAGE_IN_CART', 'button_in_cart.gif');
 define('BUTTON_IMAGE_LOGIN', 'button_login.gif');
+define('BUTTON_IMAGE_MY_ACCOUNT', 'button_my_account.gif');
+define('BUTTON_IMAGE_MY_ORDERS', 'button_my_orders.gif');
 define('BUTTON_IMAGE_NEXT', 'button_next.gif');
 define('BUTTON_IMAGE_PREVIOUS', 'button_prev.gif');
 define('BUTTON_IMAGE_REDEEM', 'button_redeem.gif');
@@ -47,19 +50,14 @@ define('BUTTON_IMAGE_UNSUBSCRIBE', 'button_unsubscribe.gif');
 define('BUTTON_IMAGE_UPDATE', 'button_update.gif');
 define('BUTTON_IMAGE_VIEW_SMALL', 'button_view.gif');
 define('BUTTON_IMAGE_WRITE_REVIEW', 'button_write_review.gif');
-
 define('BUTTON_IMAGE_READ_REVIEWS', 'button_read_reviews.gif');
 define('BUTTON_IMAGE_GOTO_PROD_DETAILS', 'button_goto_prod_details.gif');
 define('BUTTON_IMAGE_MORE_REVIEWS', 'button_more_reviews.gif');
 define('BUTTON_IMAGE_CONTINUE_CHECKOUT', 'button_continue_checkout.gif');
-//define('PREVNEXT_BUTTON_NEXT', '[Next&nbsp;&gt;&gt;]');
-//define('PREVNEXT_BUTTON_LAST', 'LAST&gt;&gt;');
-
-
 define('BUTTON_IMAGE_CREATE_ACCOUNT', 'button_create_account.gif');
 define('BUTTON_IMAGE_LOG_OFF', 'button_logoff.gif');
 /*
- * ALT tags used for buttons
+ * ALT text is used as Button Text, or for the ALT tag on image-buttons
  */
 
 define('BUTTON_CREATE_ACCOUNT_ALT', 'Sign Up');
@@ -74,6 +72,7 @@ define('BUTTON_CHANGE_ADDRESS_ALT', 'Change Address');
 define('BUTTON_CHECKOUT_ALT', 'Checkout');
 define('BUTTON_CONFIRM_SEND_ALT', 'Send Gift Certificate');
 define('BUTTON_CONFIRM_ORDER_ALT', 'Confirm Order');
+define('BUTTON_CONTACT_US_TEXT', 'Contact Us');
 define('BUTTON_CONTINUE_ALT', 'Continue');
 define('BUTTON_CONTINUE_SHOPPING_ALT', 'Continue Shopping');
 define('BUTTON_DELETE_ALT', 'Delete');
@@ -82,6 +81,9 @@ define('BUTTON_DOWNLOAD_ALT', 'Download Now');
 define('BUTTON_EDIT_SMALL_ALT', 'Edit');
 define('BUTTON_IN_CART_ALT', 'Add to Cart');
 define('BUTTON_LOGIN_ALT', 'Sign In');
+define('BUTTON_LOOKUP_ALT', 'Lookup');
+define('BUTTON_MY_ACCOUNT_TEXT', 'My Account');
+define('BUTTON_MY_ORDERS_TEXT', 'My Orders');
 define('BUTTON_NEXT_ALT', 'Next');
 define('BUTTON_PREVIOUS_ALT', 'Previous');
 define('BUTTON_REDEEM_ALT', 'Redeem');
@@ -102,3 +104,4 @@ define('BUTTON_WRITE_REVIEW_ALT', 'Write Review');
 define('BUTTON_READ_REVIEWS_ALT', 'Read the Review');
 define('BUTTON_GOTO_PROD_DETAILS_ALT', 'Details');
 define('BUTTON_MORE_REVIEWS_ALT', 'Read More Reviews');
+define('BUTTON_VIEW_ALL_ALT', 'View All');

@@ -5,14 +5,15 @@
  * This file is used for generating tabular output where needed, based on the supplied array of table-cell contents.
  *
  * @package templateSystem
- * @copyright Copyright 2003-2015 Zen Cart Development Team
+ * @copyright Copyright 2003-2019 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: tpl_columnar_display.php 2 2016-04-06 11:33:58Z webchills $
+ * @version $Id: tpl_columnar_display.php 3 2019-04-12 18:33:58Z webchills $
 
  */
 
 $zco_notifier->notify('NOTIFY_TPL_COLUMNAR_DISPLAY_START', $current_page_base, $list_box_contents, $title);
+
 ?>
 <?php
   if ($title) {
@@ -23,13 +24,13 @@ $zco_notifier->notify('NOTIFY_TPL_COLUMNAR_DISPLAY_START', $current_page_base, $
 ?>
 <?php
 if (is_array($list_box_contents) > 0 ) {
- for($row=0;$row<sizeof($list_box_contents);$row++) {
+ for($row=0, $j=sizeof($list_box_contents);$row<$j; $row++) {
     $params = "";
     //if (isset($list_box_contents[$row]['params'])) $params .= ' ' . $list_box_contents[$row]['params'];
 ?>
 
 <?php
-    for($col=0;$col<sizeof($list_box_contents[$row]);$col++) {
+    for($col=0, $n=sizeof($list_box_contents[$row]); $col<$n; $col++) {
       $r_params = "";
       if (isset($list_box_contents[$row][$col]['params'])) $r_params .= ' ' . (string)$list_box_contents[$row][$col]['params'];
      if (isset($list_box_contents[$row][$col]['text'])) {

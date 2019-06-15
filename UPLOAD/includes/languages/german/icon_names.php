@@ -1,11 +1,11 @@
 <?php
 /**
  * @package languageDefines
- * @copyright Copyright 2003-2016 Zen Cart Development Team
+ * @copyright Copyright 2003-2019 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
  
- * @version $Id: icon_names.php 628 2012-03-07 17:05:14Z webchills $
+ * @version $Id: icon_names.php 629 2019-05-09 09:05:14Z webchills $
  */
 
 // define the icon images used in the project
@@ -21,5 +21,5 @@ define('ICON_ERROR_ALT', 'Fehler');
 define('ICON_SUCCESS_ALT', 'Erfolgreich');
 define('ICON_WARNING_ALT', 'Warnung');
 define('ICON_TRASH_ALT', 'Löschen');
-define('ICON_UPDATE_ALT', 'Warenkorb aktualisieren');
+define('ICON_UPDATE_ALT', 'Aktualisieren');
 define('ICON_TINYCART_ALT', 'Artikel in Warenkorb legen');

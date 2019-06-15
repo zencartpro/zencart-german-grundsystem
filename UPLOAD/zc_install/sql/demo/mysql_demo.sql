@@ -1,6 +1,6 @@
 # MySQL file for Zen Cart Demo Products load
-#
-# $Id: mysql_demo.sql 67 2018-06-18 17:03:04Z webchills $
+# Zen Cart German Specific
+# $Id: mysql_demo.sql 68 2019-04-16 09:03:04Z webchills $
 #
 
 # Configuration Settings:
@@ -1820,7 +1820,7 @@ INSERT INTO products_options_values (products_options_values_id, language_id, pr
 INSERT INTO products_options_values (products_options_values_id, language_id, products_options_values_name, products_options_values_sort_order) VALUES (67, 43, 'Versandkostenfrei!', 10);
 INSERT INTO products_options_values (products_options_values_id, language_id, products_options_values_name, products_options_values_sort_order) VALUES (68, 43, 'Buch Hardcover', 5);
 INSERT INTO orders (orders_id, customers_id, customers_name, customers_company, customers_street_address, customers_suburb, customers_city, customers_postcode, customers_state, customers_country, customers_telephone, customers_email_address, customers_address_format_id, delivery_name, delivery_company, delivery_street_address, delivery_suburb, delivery_city, delivery_postcode, delivery_state, delivery_country, delivery_address_format_id, billing_name, billing_company, billing_street_address, billing_suburb, billing_city, billing_postcode, billing_state, billing_country, billing_address_format_id, payment_method, payment_module_code, shipping_method, shipping_module_code, coupon_code, cc_type, cc_owner, cc_number, cc_expires, cc_cvv, last_modified, date_purchased, orders_status, orders_date_finished, currency, currency_value, order_total, order_tax, paypal_ipn_id, ip_address, order_device) VALUES
-(1, 1, 'Peter Meier', 'Demofirma', 'Demogasse 17', '', 'Berlin', '10101', 'Berlin', 'Deutschland', '012345678', 'demo@zencartdemo.at', 5, 'Peter Meier', 'Demofirma', 'Demogasse 17', '', 'Berlin', '10101', 'Berlin', 'Deutschland', 5, 'Peter Meier', 'Demofirma', 'Demogasse 17', '', 'Berlin', '10101', 'Berlin', 'Deutschland', 5, 'Vorkasse/Banküberweisung', 'eustandardtransfer', 'Versandkosten pro Stück (Standard)', 'item', '', '', '', '', '', NULL, NULL, '2018-04-02 16:37:32', 1, NULL, 'EUR', 1.000000, 332.49, 30.00, 0, '192.168.1.1 - 192.168.1.2', 'Desktop');
+(1, 1, 'Peter Meier', 'Demofirma', 'Demogasse 17', '', 'Berlin', '10101', 'Berlin', 'Deutschland', '012345678', 'demo@zencartdemo.at', 5, 'Peter Meier', 'Demofirma', 'Demogasse 17', '', 'Berlin', '10101', 'Berlin', 'Deutschland', 5, 'Peter Meier', 'Demofirma', 'Demogasse 17', '', 'Berlin', '10101', 'Berlin', 'Deutschland', 5, 'Vorkasse/Banküberweisung', 'eustandardtransfer', 'Versandkosten pro Stück (Standard)', 'item', '', '', '', '', '', NULL, NULL, '2019-04-15 16:37:32', 1, NULL, 'EUR', 1.000000, 332.49, 30.00, 0, '192.168.1.1 - 192.168.1.2', 'Desktop');
 INSERT INTO orders_products (orders_products_id, orders_id, products_id, products_model, products_name, products_price, final_price, products_tax, products_quantity, onetime_charges, products_priced_by_attribute, product_is_free, products_discount_type, products_discount_type_from, products_prid) VALUES
 (1, 1, 1, 'MG200MMS', 'Matrox G200 MMS', 299.9900, 299.9900, 10.0000, 1, 0.0000, 0, 0, 0, 0, '1:edff669e5da95c1d027b04d5412532fa');
 INSERT INTO orders_status_history (orders_status_history_id, orders_id, orders_status_id, date_added, customer_notified, comments) VALUES

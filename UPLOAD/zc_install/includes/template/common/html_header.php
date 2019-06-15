@@ -1,10 +1,10 @@
 <?php
 /**
  * @package Installer
- * @copyright Copyright 2003-2018 Zen Cart Development Team
+ * @copyright Copyright 2003-2019 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: html_header.php 4 2018-04-01 08:49:16Z webchills $
+ * @version $Id: html_header.php 5 2019-04-12 17:49:16Z webchills $
  */
 ?>
 <!DOCTYPE html >
@@ -15,7 +15,7 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title><?php echo META_TAG_TITLE; ?></title>
-
+<!-- <base href="<?php echo str_replace(DIR_FS_ROOT, '', DIR_FS_INSTALL); ?>"> -->
 <meta name="robots" content="noindex, nofollow" />
 <link rel="icon" href="favicon.ico" type="image/x-icon" />
 <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />

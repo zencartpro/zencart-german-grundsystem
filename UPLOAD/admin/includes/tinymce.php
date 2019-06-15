@@ -1,10 +1,10 @@
 <?php
 /**
  * @package admin
- * @copyright Copyright 2003-2018 Zen Cart Development Team
+ * @copyright Copyright 2003-2019 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: tinymce.php 762 2018-06-11 17:32:09Z webchills $
+ * @version $Id: tinymce.php 763 2019-04-14 20:32:09Z webchills $
  */
 if (!defined('IS_ADMIN_FLAG')) {
   die('Illegal Access');
@@ -27,20 +27,20 @@ $(document).ready(function() {
     {
       index = $(this).attr('name').match(/\d+/);
       if (index == null) index = <?php echo $_SESSION['languages_id'] ?>;
-tinymce.init(
-  {
-    language : lang[index],
-    selector: '.editorHook',
-    theme: 'modern',
+      tinymce.init(
+        {
+          language : lang[index],
+          selector: '.editorHook',
+          
     entity_encoding : 'raw',
-    browser_spellcheck: true,
+          browser_spellcheck: true,
     plugins : 'advlist,autolink,lists,link,image,charmap,print,preview,hr,anchor,pagebreak,searchreplace,wordcount,visualblocks,visualchars,code,fullscreen,insertdatetime,media,nonbreaking,save,table,contextmenu,directionality,emoticons,template,paste,textcolor',
    
 
     toolbar1: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image",
     toolbar2: "print preview media | forecolor backcolor emoticons",
     image_advtab: true
-});
+        });
     }
   });
 });

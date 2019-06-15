@@ -1,10 +1,10 @@
 <?php
 /**
  * @package admin
- * @copyright Copyright 2003-2016 Zen Cart Development Team
+ * @copyright Copyright 2003-2019 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: layout_controller.php 730 2015-12-22 15:49:16Z webchills $
+ * @version $Id: layout_controller.php 732 2019-06-15 16:49:16Z webchills $
  */
 
 define('HEADING_TITLE', 'Column Boxes');
@@ -43,8 +43,9 @@ define('HEADING_TITLE_LAYOUT_TEMPLATE', 'Site Template Layout');
 
 define('TABLE_HEADING_LAYOUT_TITLE', 'Title');
 define('TABLE_HEADING_LAYOUT_VALUE', 'Value');
-define('TABLE_HEADING_ACTION', 'Action');
 
+define('TABLE_HEADING_BOXES_PATH', 'Boxes Path: ');
+define('TEXT_WARNING_NEW_BOXES_FOUND', 'WARNING: New boxes found: ');
 
 define('TEXT_MODULE_DIRECTORY', 'Site Layout Directory:');
 define('TEXT_INFO_DATE_ADDED', 'Date Added:');

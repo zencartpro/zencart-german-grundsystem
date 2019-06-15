@@ -1,12 +1,13 @@
 <?php
 /**
+ * Zen Cart German Specific
  * jscript_main
  *
  * @package page
- * @copyright Copyright 2003-2018 Zen Cart Development Team
+ * @copyright Copyright 2003-2019 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: jscript_main.php 730 2018-04-01 16:49:16Z webchills $
+ * @version $Id: jscript_main.php 731 2019-06-15 21:49:16Z webchills $
  */
 ?>
 <?php
@@ -49,7 +50,7 @@ function submitonce()
 }
 function button_timeout() {
   var button = document.getElementById("btn_submit");
-  button.style.cursor="pointer";
-  button.disabled = false;
+  button.style.cursor="wait";
+  button.disabled = true;
 }
 //--></script>

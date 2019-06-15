@@ -1,14 +1,15 @@
 <?php
 /**
+ * Zen Cart German Specific
  * @package languageDefines
- * @copyright Copyright 2003-2016 Zen Cart Development Team
+ * @copyright Copyright 2003-2019 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: meta_tags.php 842 2015-12-21 21:33:58Z webchills $
+ * @version $Id: meta_tags.php 843 2019-04-13 18:33:58Z webchills $
  */
 
 // page title
-define('TITLE', 'Zen Cart 1.5.5');
+define('TITLE', 'Zen Cart 1.5.6');
 
 // Site Tagline
 define('SITE_TAGLINE', 'German version');

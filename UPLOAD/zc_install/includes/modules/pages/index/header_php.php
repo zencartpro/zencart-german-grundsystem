@@ -1,15 +1,21 @@
 <?php
 /**
  * @package Installer
- * @copyright Copyright 2003-2016 Zen Cart Development Team
+ * @copyright Copyright 2003-2019 Zen Cart Development Team
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: header_php.php 4 2016-03-27 18:49:16Z webchills $
+ * @version $Id: header_php.php 5 2019-04-12 17:49:16Z webchills $
  */
 
 $otherConfigErrors = FALSE;
 $hasUpgradeErrors = FALSE;
 $selectedAdminDir = '';
+
 $adminDirectoryList = systemChecker::getAdminDirectoryList();
+if (empty($adminDirectoryList)) {
+    // This should never happen, and zc_install does NOT require it to be named "admin", however the message here says
+    // to rename it to "admin" for simplicity of giving instructions and directing the reader to go fix the missing dir problem.
+    die('ERROR: unable to locate your admin directory. For simplicity, please be sure it exists and rename it to "admin" before proceeding.');
+}
 $selectedAdminDir = $adminDirectoryList[0];
 $hasMultipleAdmins = FALSE;
 if (count($adminDirectoryList) > 1)
@@ -25,8 +31,16 @@ if (isset($_POST['updateConfigure'])) {
     require_once (DIR_FS_INSTALL . 'includes/classes/class.zcConfigureFileReader.php');
     require_once (DIR_FS_INSTALL . 'includes/classes/class.zcConfigureFileWriter.php');
     if ($_POST['btnsubmit'] != TEXT_REFRESH) {
-        $storeConfigureFileReader = new zcConfigureFileReader(DIR_FS_ROOT .'includes/configure.php');
-        $adminConfigureFileReader = new zcConfigureFileReader(DIR_FS_ROOT . $selectedAdminDir . '/includes/configure.php');
+        $configFile = DIR_FS_ROOT . 'includes/configure.php';
+        $configFileLocal = DIR_FS_ROOT . 'includes/local/configure.php';
+        if (file_exists($configFileLocal)) $configFile = $configFileLocal;
+        $storeConfigureFileReader = new zcConfigureFileReader($configFile);
+
+        $admConfigFile = DIR_FS_ROOT . $selectedAdminDir . '/includes/configure.php';
+        $admConfigFileLocal = DIR_FS_ROOT . $selectedAdminDir . '/includes/local/configure.php';
+        if (file_exists($admConfigFileLocal)) $admConfigFile = $admConfigFileLocal;
+        $adminConfigureFileReader = new zcConfigureFileReader($admConfigFile);
+
         $configureInputs = $storeConfigureFileReader->getStoreInputsFromLegacy();
         $configureInputs['enable_ssl_admin'] = trim($adminConfigureFileReader->getRawDefine('ENABLE_SSL_ADMIN'), "'");
         $configureInputs['http_server_admin'] = trim($adminConfigureFileReader->getRawDefine( ($configureInputs['enable_ssl_admin'] == 'true' ? 'HTTPS_SERVER' : 'HTTP_SERVER') ), "'");
@@ -39,10 +53,7 @@ $currentDbVersion = EXPECTED_DATABASE_VERSION_MAJOR . '.' . EXPECTED_DATABASE_VE
 $isCurrentDb = ($dbVersion == $currentDbVersion) ? TRUE : FALSE;
 $hasSaneConfigFile = $systemChecker->hasSaneConfigFile();
 $hasUpdatedConfigFile = $systemChecker->hasUpdatedConfigFile();
-// echo var_dump($dbVersion);
-// echo var_dump($isCurrentDb);
-// echo var_dump($hasSaneConfigFile);
-// echo var_dump($hasUpdatedConfigFile);
+
 
 if ($hasSaneConfigFile && $hasUpdatedConfigFile)
 {
@@ -51,6 +62,7 @@ if ($hasSaneConfigFile && $hasUpdatedConfigFile)
 $errorList = $systemChecker->runTests();
 list($hasFatalErrors, $listFatalErrors) = $systemChecker->getErrorList();
 list($hasWarnErrors, $listWarnErrors) = $systemChecker->getErrorList('WARN');
+list($hasLocalAlerts, $listLocalAlerts) = $systemChecker->getErrorList('ALERT');
 if (isset($listFatalErrors[0]['methods']))
 {
   $res = key($listFatalErrors[0]['methods']);

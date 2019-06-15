@@ -1,13 +1,14 @@
 <?php
 /**
+ * Zen Cart German Specific
  * database_tables.php
  * Defines the database table names used in the project
  *
  * @package initSystem
- * @copyright Copyright 2003-2016 Zen Cart Development Team
+ * @copyright Copyright 2003-2019 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: database_tables.php 786 2016-03-10 21:13:51Z webchills $
+ * @version $Id: database_tables.php 787 2019-04-12 18:13:51Z webchills $
  * @private
  */
 
@@ -15,6 +16,7 @@ if (!defined('DB_PREFIX')) define('DB_PREFIX', '');
 define('TABLE_ADDRESS_BOOK', DB_PREFIX . 'address_book');
 define('TABLE_ADDRESS_FORMAT', DB_PREFIX . 'address_format');
 define('TABLE_ADMIN', DB_PREFIX . 'admin');
+define('TABLE_ADMIN_NOTIFICATIONS', DB_PREFIX . 'admin_notifications');
 define('TABLE_ADMIN_ACTIVITY_LOG', DB_PREFIX . 'admin_activity_log');
 define('TABLE_ADMIN_MENUS', DB_PREFIX . 'admin_menus');
 define('TABLE_ADMIN_PAGES', DB_PREFIX . 'admin_pages');
@@ -47,6 +49,7 @@ define('TABLE_CUSTOMERS_INFO', DB_PREFIX . 'customers_info');
 define('TABLE_DB_CACHE', DB_PREFIX . 'db_cache');
 define('TABLE_EMAIL_ARCHIVE', DB_PREFIX . 'email_archive');
 define('TABLE_EZPAGES', DB_PREFIX . 'ezpages');
+define('TABLE_EZPAGES_CONTENT', DB_PREFIX . 'ezpages_content');
 define('TABLE_FEATURED', DB_PREFIX . 'featured');
 define('TABLE_FILES_UPLOADED', DB_PREFIX . 'files_uploaded');
 define('TABLE_GROUP_PRICING', DB_PREFIX . 'group_pricing');

@@ -1,5 +1,6 @@
 <?php
 /**
+ * Zen Cart German Specific
  * page_not_found header_php.php 
  *
  * @package page

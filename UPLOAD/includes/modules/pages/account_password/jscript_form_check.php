@@ -3,10 +3,10 @@
  * jscript_form_check
  *
  * @package page
- * @copyright Copyright 2003-2016 Zen Cart Development Team
+ * @copyright Copyright 2003-2019 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: jscript_form_check.php 729 2011-08-09 15:49:16Z hugo13 $
+ * @version $Id: jscript_form_check.php 730 2019-04-12 11:49:16Z webchills $
  */
 ?>
 <script type="text/javascript"><!--
@@ -153,7 +153,7 @@ function check_form(form_name) {
   check_input("city", <?php echo (int)ENTRY_CITY_MIN_LENGTH; ?>, "<?php echo ENTRY_CITY_ERROR; ?>");
 <?php } ?>
 <?php if (ACCOUNT_STATE == 'true') { ?>
-  check_state(<?php echo (int)ENTRY_STATE_MIN_LENGTH . ', "' . ENTRY_STATE_ERROR . '", "' . ENTRY_STATE_ERROR_SELECT; ?>");
+  check_state(<?php echo (int)ENTRY_STATE_MIN_LENGTH . ', "' . ENTRY_STATE_ERROR . '", "' . ENTRY_STATE_ERROR_SELECT . '"'; ?>);
 <?php } ?>
 
   check_select("country", "", "<?php echo ENTRY_COUNTRY_ERROR; ?>");

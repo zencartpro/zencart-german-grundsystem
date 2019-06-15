@@ -7,7 +7,7 @@
  * @version $Id: checkout_payment.php 731 2018-01-02 17:49:16Z webchills $
  */
 
-define('NAVBAR_TITLE_1', 'Checkout - Step 1');
+define('NAVBAR_TITLE_1', 'Checkout - Step 2');
 define('NAVBAR_TITLE_2', 'Payment Method - Step 2');
 
 define('HEADING_TITLE', 'Step 2 of 3 - Payment Information');

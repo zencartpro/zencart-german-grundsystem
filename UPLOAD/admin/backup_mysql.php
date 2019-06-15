@@ -1,24 +1,12 @@
 <?php
-//
-// +----------------------------------------------------------------------+
-// |zen-cart Open Source E-commerce                                       |
-// +----------------------------------------------------------------------+
-// | Copyright (c) 2003 The zen-cart developers                           |
-// |                                                                      |
-// | http://www.zen-cart.com/index.php                                    |
-// |                                                                      |
-// | Portions Copyright (c) 2003 osCommerce                               |
-// +----------------------------------------------------------------------+
-// | This source file is subject to version 2.0 of the GPL license,       |
-// | that is bundled with this package in the file LICENSE, and is        |
-// | available through the world-wide-web at the following url:           |
-// | http://www.zen-cart.com/license/2_0.txt.                             |
-// | If you did not receive a copy of the zen-cart license and are unable |
-// | to obtain it through the world-wide-web, please send a note to       |
-// | license@zen-cart.com so we can mail you a copy immediately.          |
-// +----------------------------------------------------------------------+
-// $Id: backup_mysql.php revised 2015-06-25  $
-//
+/**
+ * @package admin
+ * @copyright Copyright 2003-2019 Zen Cart Development Team
+ * @copyright Portions Copyright 2003 osCommerce
+ * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
+ * @version $Id: backup_mysql.php 2019-04-13 15:04:51Z webchills $
+ */
+
 
   define('OS_DELIM', '');
 
@@ -122,7 +110,7 @@
 
         $dump_params .= ' "--host=' . DB_SERVER . '"';
         $dump_params .= ' "--user=' . DB_SERVER_USERNAME . '"';
-        $dump_params .= ' "--password=' . DB_SERVER_PASSWORD . '"';
+        $dump_params .= ' "--password=' . escapeshellcmd(DB_SERVER_PASSWORD) . '"';
         $dump_params .= ' --opt';   //"optimized" -- turns on all "fast" and optimized export methods
         $dump_params .= ' --complete-insert';  // undo optimization slightly and do "complete inserts"--lists all column names for benefit of restore of diff systems
         if ($skip_locks_requested) {
@@ -255,7 +243,7 @@
         $load_params  = ' "--database=' . DB_DATABASE . '"';
         $load_params .= ' "--host=' . DB_SERVER . '"';
         $load_params .= ' "--user=' . DB_SERVER_USERNAME . '"';
-        $load_params .= ((DB_SERVER_PASSWORD =='') ? '' : ' "--password=' . DB_SERVER_PASSWORD . '"');
+        $load_params .= ((DB_SERVER_PASSWORD =='') ? '' : ' "--password=' . escapeshellcmd(DB_SERVER_PASSWORD) . '"');
         $load_params .= ' ' . DB_DATABASE; // this needs to be the 2nd-last parameter
         $load_params .= ' < "' . $restore_from . '"'; // this needs to be the LAST parameter
         $load_params .= " 2>&1";
@@ -436,8 +424,8 @@
         $onclick_link = 'file=' . $entry;
       }
 ?>
-<!--                 <td class="dataTableContent" onclick="document.location.href='<?php echo zen_href_link(FILENAME_BACKUP_MYSQL, $onclick_link); ?>'"><?php echo '<a href="' . zen_href_link(FILENAME_BACKUP_MYSQL, 'action=download&file=' . $entry) . '">' . zen_image(DIR_WS_ICONS . 'file_download.gif', ICON_FILE_DOWNLOAD) . '</a>&nbsp;' . $entry; ?></td> -->
-                <td class="dataTableContent" onClick="document.location.href='<?php echo zen_href_link(FILENAME_BACKUP_MYSQL, $onclick_link); ?>'"><?php echo '<a href="' . ((ENABLE_SSL_ADMIN == 'true') ? DIR_WS_HTTPS_ADMIN : DIR_WS_ADMIN) . 'backups/' . $entry . '">' . zen_image(DIR_WS_ICONS . 'file_download.gif', ICON_FILE_DOWNLOAD) . '</a>&nbsp;' . $entry; ?></td>
+<!--                 <td class="dataTableContent" onclick="document.location.href='<?php echo zen_href_link(FILENAME_BACKUP_MYSQL, $onclick_link); ?>'"><?php echo '<a href="' . zen_href_link(FILENAME_BACKUP_MYSQL, 'action=download&file=' . $entry) . '" class="btn btn-primary" role="button">' . ICON_FILE_DOWNLOAD . '</a>&nbsp;' . $entry; ?></td> -->
+                <td class="dataTableContent" onClick="document.location.href='<?php echo zen_href_link(FILENAME_BACKUP_MYSQL, $onclick_link); ?>'"><?php echo '<a href="' . ((ENABLE_SSL_ADMIN == 'true') ? DIR_WS_HTTPS_ADMIN : DIR_WS_ADMIN) . 'backups/' . $entry . '" class="btn btn-primary" role="button">' . ICON_FILE_DOWNLOAD . '</a>&nbsp;' . $entry; ?></td>
                 <td class="dataTableContent" align="center" onClick="document.location.href='<?php echo zen_href_link(FILENAME_BACKUP_MYSQL, $onclick_link); ?>'"><?php echo date(PHP_DATE_TIME_FORMAT, filemtime(DIR_FS_BACKUP . $entry)); ?></td>
                 <td class="dataTableContent" align="right" onClick="document.location.href='<?php echo zen_href_link(FILENAME_BACKUP_MYSQL, $onclick_link); ?>'"><?php echo number_format(filesize(DIR_FS_BACKUP . $entry)); ?> bytes</td>
                 <td class="dataTableContent" align="right"><?php if (isset($buInfo) && is_object($buInfo) && ($entry == $buInfo->file)) { echo zen_image(DIR_WS_IMAGES . 'icon_arrow_right.gif', ''); } else { echo '<a href="' . zen_href_link(FILENAME_BACKUP_MYSQL, 'file=' . $entry) . '">' . zen_image(DIR_WS_IMAGES . 'icon_info.gif', IMAGE_ICON_INFO) . '</a>'; } ?>&nbsp;</td>
@@ -453,12 +441,12 @@
                 <td class="smallText" colspan="3"><?php echo TEXT_BACKUP_DIRECTORY . ' ' . DIR_FS_BACKUP; ?></td>
                 <td align="right" class="smallText">
                     <?php if ( ($action != 'backup') && (isset($dir)) && !ini_get('safe_mode') && $dir_ok == true ) {
-                             echo '<a href="' . zen_href_link(FILENAME_BACKUP_MYSQL, 'action=backup'.(($debug=='ON')?'&debug=ON':'')) . (($tables_to_export!='')?'&tables='.str_replace(' ',',',$tables_to_export):'') . '">' .
-                                   zen_image_button('button_backup.gif', IMAGE_BACKUP) . '</a>&nbsp;&nbsp;';
+                             echo '<a href="' . zen_href_link(FILENAME_BACKUP_MYSQL, 'action=backup'.(($debug=='ON')?'&debug=ON':'')) . (($tables_to_export!='')?'&tables='.str_replace(' ',',',$tables_to_export):'') . '" class="btn btn-primary" role="button">' .
+                                   IMAGE_BACKUP . '</a>&nbsp;&nbsp;';
                           }
                           if ( ($action != 'restorelocal') && isset($dir) ) {
-                             echo '<a href="' . zen_href_link(FILENAME_BACKUP_MYSQL, 'action=restorelocal'.(($debug=='ON')?'&debug=ON':'')) . '">' .
-                                   zen_image_button('button_restore.gif', IMAGE_RESTORE) . '</a>';
+                             echo '<a href="' . zen_href_link(FILENAME_BACKUP_MYSQL, 'action=restorelocal'.(($debug=='ON')?'&debug=ON':'')) . '" class="btn btn-warning" role="button">' .
+                                   IMAGE_RESTORE. '</a>';
                           } ?>
                 </td>
               </tr>

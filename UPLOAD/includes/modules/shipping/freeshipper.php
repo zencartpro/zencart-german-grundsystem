@@ -1,11 +1,12 @@
 <?php
 /**
  * @package shippingMethod
- * @copyright Copyright 2003-2016 Zen Cart Development Team
+ * @copyright Copyright 2003-2019 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
+ * @version $Id: freeshipper.php 731 2019-04-12 12:49:16Z webchills $
  */
-// $Id: freeshipper.php 730 2015-12-21 21:49:16Z webchills $
+
 //
   class freeshipper {
     var $code, $title, $description, $icon, $enabled;
@@ -17,7 +18,9 @@
       $this->code = 'freeshipper';
       $this->title = MODULE_SHIPPING_FREESHIPPER_TEXT_TITLE;
       $this->description = MODULE_SHIPPING_FREESHIPPER_TEXT_DESCRIPTION;
-      $this->sort_order = MODULE_SHIPPING_FREESHIPPER_SORT_ORDER;
+      $this->sort_order = defined('MODULE_SHIPPING_FREESHIPPER_SORT_ORDER') ? MODULE_SHIPPING_FREESHIPPER_SORT_ORDER : null;
+      if (null === $this->sort_order) return false;
+
       $this->icon = '';
       $this->tax_class = MODULE_SHIPPING_FREESHIPPER_TAX_CLASS;
 
@@ -94,4 +97,3 @@
       return array('MODULE_SHIPPING_FREESHIPPER_STATUS', 'MODULE_SHIPPING_FREESHIPPER_COST', 'MODULE_SHIPPING_FREESHIPPER_HANDLING', 'MODULE_SHIPPING_FREESHIPPER_TAX_CLASS', 'MODULE_SHIPPING_FREESHIPPER_ZONE', 'MODULE_SHIPPING_FREESHIPPER_SORT_ORDER');
     }
   }
-?>

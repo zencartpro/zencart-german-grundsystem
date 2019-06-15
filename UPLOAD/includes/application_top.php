@@ -1,5 +1,6 @@
 <?php
 /**
+ * Zen Cart German Specific
  * application_top.php Common actions carried out at the start of each page invocation.
  *
  * Initializes common classes & methods. Controlled by an array which describes
@@ -7,10 +8,10 @@
  * see {@link  http://www.zen-cart.com/wiki/index.php/Developers_API_Tutorials#InitSystem wikitutorials} for more details.
  *
  * @package initSystem
- * @copyright Copyright 2003-2016 Zen Cart Development Team
+ * @copyright Copyright 2003-2019 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: application_top.php 809 2016-04-06 11:07:24Z webchills $
+ * @version $Id: application_top.php 811 2019-06-15 16:23:24Z webchills $
  */
 /**
  * inoculate against hack attempts which waste CPU cycles
@@ -81,9 +82,9 @@ define('DEBUG_AUTOLOAD', false);
  * Note STRICT_ERROR_REPORTING should never be set to true on a production site. <br />
  * It is mainly there to show php warnings during testing/bug fixing phases.<br />
  */
-if (defined('STRICT_ERROR_REPORTING') && STRICT_ERROR_REPORTING == true) {
+if (DEBUG_AUTOLOAD || (defined('STRICT_ERROR_REPORTING') && STRICT_ERROR_REPORTING == true)) {
   @ini_set('display_errors', TRUE);
-  error_reporting(version_compare(PHP_VERSION, 5.3, '>=') ? E_ALL & ~E_DEPRECATED & ~E_NOTICE : version_compare(PHP_VERSION, 5.4, '>=') ? E_ALL & ~E_DEPRECATED & ~E_NOTICE & ~E_STRICT : E_ALL & ~E_NOTICE);
+  error_reporting(version_compare(PHP_VERSION, 5.3, '>=') ? E_ALL & ~E_DEPRECATED & ~E_NOTICE : (version_compare(PHP_VERSION, 5.4, '>=') ? E_ALL & ~E_DEPRECATED & ~E_NOTICE & ~E_STRICT : E_ALL & ~E_NOTICE));
 } else {
   error_reporting(0);
 }

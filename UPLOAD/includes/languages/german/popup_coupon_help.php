@@ -1,10 +1,10 @@
 <?php
 /**
  * @package languageDefines
- * @copyright Copyright 2003-2016 Zen Cart Development Team
+ * @copyright Copyright 2003-2019 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: popup_coupon_help.php 294 2015-12-23 19:28:14Z webchills $
+ * @version $Id: popup_coupon_help.php 295 2019-05-09 09:28:14Z webchills $
  */
 
 define('HEADING_COUPON_HELP','Aktionskupon Hilfe');
@@ -27,6 +27,7 @@ define('TEXT_DENIED', ' (nicht erlaubt)');
 define('TEXT_NO_CAT_TOP_ONLY_DENY', '<p>Dieser Aktionskupon ist nur für bestimmte Artikel gültig.');
 define('TEXT_NO_CAT_RESTRICTIONS', '<p>Dieser Aktionskupon ist für alle Kategorien gültig.</p>');
 define('TEXT_NO_PROD_RESTRICTIONS', '<p>Dieser Aktionskupon ist für alle Artikel gültig.</p>');
+define('TEXT_NO_PROD_SALES', '<p>Dieser Aktionskupon ist nicht für Sonderangebote gültig.</p>');
 
 // gift certificates cannot be purchased with Discount Coupons
 define('TEXT_COUPON_GV_RESTRICTION','Aktionskupons können nicht zum Kauf von ' . TEXT_GV_NAMES . ' verwendet werden.');

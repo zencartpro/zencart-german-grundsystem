@@ -1,9 +1,10 @@
 <?php
 /**
  * @package plugins
- * @copyright Copyright 2003-2016 Zen Cart Development Team
- * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: Author: DrByte  Fri Oct 9 15:32:07 2015 -0400 Modified in v1.5.5 $
+ * @copyright Copyright 2003-2019 Zen Cart Development Team
+ * @copyright Portions Copyright 2003 osCommerce
+ * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
+ * @version $Id: class.admin.zcObserverLogEventListener.php 2 2019-04-12 08:11:36Z webchills $
  *
  * Designed for ZC >= v1.5.4
  *
@@ -142,7 +143,7 @@ class zcObserverLogEventListener extends base {
         'ip_address'      => substr($_SERVER['REMOTE_ADDR'],0,45),
         'postdata'        => $postdata,
         'flagged'         => $flagged,
-        'attention'       => ($notes === false ? '' : $notes),
+        'attention'       => ($notes === false ? '' : substr($notes,0,zen_field_length(TABLE_ADMIN_ACTIVITY_LOG, 'attention'))),
         'severity'        => strtolower($levels[$severity]),  // converts int to corresponding string
     );
 

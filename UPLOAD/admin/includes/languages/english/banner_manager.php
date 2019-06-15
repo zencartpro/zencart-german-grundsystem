@@ -1,10 +1,10 @@
 <?php
 /**
  * @package admin
- * @copyright Copyright 2003-2016 Zen Cart Development Team
+ * @copyright Copyright 2003-2019 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: banner_manager.php 805 2015-12-22 15:49:16Z webchills $
+ * @version $Id: banner_manager.php 806 2019-04-13 15:49:16Z webchills $
  */
 
 define('HEADING_TITLE', 'Banner Manager');
@@ -53,9 +53,8 @@ define('TEXT_BANNERS_EXPIRES_AT_DATE', 'Expires At: <b>%s</b>');
 define('TEXT_BANNERS_EXPIRES_AT_IMPRESSIONS', 'Expires At: <b>%s</b> impressions');
 define('TEXT_BANNERS_STATUS_CHANGE', 'Status Change: %s');
 
-define('TEXT_BANNERS_DATA', 'D<br>A<br>T<br>A');
 define('TEXT_BANNERS_LAST_3_DAYS', 'Last 3 Days');
-define('TEXT_BANNERS_BANNER_VIEWS', 'Banner Views');
+define('TEXT_BANNERS_BANNER_VIEWS', 'Banner Impressions');
 define('TEXT_BANNERS_BANNER_CLICKS', 'Banner Clicks');
 
 define('TEXT_INFO_DELETE_INTRO', 'Are you sure you want to delete this banner?');
@@ -75,8 +74,6 @@ define('ERROR_IMAGE_IS_NOT_WRITEABLE', 'Error: Image can not be removed.');
 define('ERROR_UNKNOWN_STATUS_FLAG', 'Error: Unknown status flag.');
 define('ERROR_BANNER_IMAGE_REQUIRED', 'Error: Banner image required.');
 
-define('ERROR_GRAPHS_DIRECTORY_DOES_NOT_EXIST', 'Error: Graphs directory does not exist. Please create a graphs directory example: <strong>' . DIR_WS_ADMIN . 'images/graphs</strong>');
-define('ERROR_GRAPHS_DIRECTORY_NOT_WRITEABLE', 'Error: Graphs directory is not writeable. This is located at: <strong>' . DIR_WS_ADMIN . 'images/graphs</strong>');
 
 define('TEXT_LEGEND_BANNER_ON_SSL', 'Show SSL');
 define('TEXT_LEGEND_BANNER_OPEN_NEW_WINDOWS', 'New Window');

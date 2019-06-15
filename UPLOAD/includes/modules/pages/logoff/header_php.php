@@ -3,10 +3,10 @@
  * logoff header_php.php 
  *
  * @package page
- * @copyright Copyright 2003-2016 Zen Cart Development Team
+ * @copyright Copyright 2003-2019 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: header_php.php 729 2011-08-09 15:49:16Z hugo13 $
+ * @version $Id: header_php.php 730 2019-06-15 21:49:16Z webchills $
  */
 
 // This should be first line of the script:
@@ -25,7 +25,7 @@ $breadcrumb->add(NAVBAR_TITLE);
   * If so, kill the session, and redirect back to the logoff page
   * This will cause the header logic to see that the customer_id is gone, and thus not display another logoff link
   */
-if (!empty($_SESSION['customer_id']) || !empty($_SESSION['customer_guest_id'])) {
+if (zen_is_logged_in() || !empty($_SESSION['customer_guest_id'])) {
   zen_session_destroy();
   zen_redirect(zen_href_link(FILENAME_LOGOFF, $logoff_lang));
 }

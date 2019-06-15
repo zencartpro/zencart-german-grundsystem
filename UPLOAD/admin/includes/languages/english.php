@@ -1,19 +1,22 @@
 <?php
 /**
+ * Zen Cart German Specific
  * @package admin
- * @copyright Copyright 2003-2018 Zen Cart Development Team
+ * @copyright Copyright 2003-2019 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: english.php 886 2018-01-02 18:55:32Z webchills $
+ * @version $Id: english.php 889 2019-05-07 20:55:32Z webchills $
  */
 if (!defined('IS_ADMIN_FLAG'))
 {
   die('Illegal Access');
 }
 
+define('CONNECTION_TYPE_UNKNOWN', '\'%s\' is not a valid connection type for generating URLs' . PHP_EOL . '%s' . PHP_EOL);
+
 // added defines for header alt and text
-define('HEADER_ALT_TEXT', 'Admin Powered by Zen-Cart 1.5.5 - German version');
-define('HEADER_LOGO_WIDTH', '200px');
+define('HEADER_ALT_TEXT', 'Admin Powered by Zen-Cart 1.5.6 - German version');
+define('HEADER_LOGO_WIDTH', '240px');
 define('HEADER_LOGO_HEIGHT', '70px');
 define('HEADER_LOGO_IMAGE', 'logo.gif');
 define('TEXT_PASSWORD_LAST_CHANGE', 'Password changed on:&nbsp;');
@@ -26,7 +29,9 @@ define('DATE_FORMAT_LONG', '%A %d %B, %Y'); // this is used for strftime()
 define('DATE_FORMAT', 'm/d/Y'); // this is used for date()
 define('PHP_DATE_TIME_FORMAT', 'm/d/Y H:i:s'); // this is used for date()
 define('DATE_TIME_FORMAT', DATE_FORMAT_SHORT . ' %H:%M:%S');
+// for now both defines are needed until Spiffy is completely removed.
 define('DATE_FORMAT_SPIFFYCAL', 'MM/dd/yyyy');  //Use only 'dd', 'MM' and 'yyyy' here in any order
+define('DATE_FORMAT_DATE_PICKER', 'yy-mm-dd');  //Use only 'dd', 'mm' and 'yy' here in any order
 define('ADMIN_NAV_DATE_TIME_FORMAT', '%A %d %b %Y %X'); // this is used for strftime()
 ////
 // Return date in raw format
@@ -40,17 +45,18 @@ function zen_date_raw($date, $reverse = false) {
   }
 }
 
-// removed for meta tags
-// page title
-//define('TITLE', 'Zen Cart');
+// // include template specific meta tags defines
+//   if (file_exists(DIR_FS_CATALOG_LANGUAGES . $_SESSION['language'] . '/' . $template_dir . '/meta_tags.php')) {
+//     $template_dir_select = $template_dir . '/';
+//   } else {
+//     $template_dir_select = '';
+//   }
+//   require(DIR_FS_CATALOG_LANGUAGES . $_SESSION['language'] . '/' . $template_dir_select . 'meta_tags.php');
 
-// include template specific meta tags defines
-  if (file_exists(DIR_FS_CATALOG_LANGUAGES . $_SESSION['language'] . '/' . $template_dir . '/meta_tags.php')) {
-    $template_dir_select = $template_dir . '/';
-  } else {
-    $template_dir_select = '';
-  }
-  require(DIR_FS_CATALOG_LANGUAGES . $_SESSION['language'] . '/' . $template_dir_select . 'meta_tags.php');
+// used for prefix to browser tabs in admin pages
+define('TEXT_ADMIN_TAB_PREFIX', 'Admin ');
+// if you have multiple stores and want the Store Name to be part of the admin title (ie: for browser tabs), swap this line with the one above
+//define('TEXT_ADMIN_TAB_PREFIX', 'Admin ' . STORE_NAME);
 
 // meta tags
 define('ICON_METATAGS_ON', 'Meta Tags Defined');
@@ -73,9 +79,10 @@ define('HEADER_TITLE_ACCOUNT', 'Account');
 define('HEADER_TITLE_LOGOFF', 'Logoff');
 //define('HEADER_TITLE_ADMINISTRATION', 'Administration');
 
-// Define the name of your Gift Certificate as Gift Voucher, Gift Certificate, Zen Cart Dollars, etc. here for use through out the shop
-  define('TEXT_GV_NAME','Gift Certificate');
-  define('TEXT_GV_NAMES','Gift Certificates');
+// TEXT_GV_NAME, TEXT_GV_NAMES moved to gv_name.php
+if (!defined('TEXT_GV_NAME')) {
+  require DIR_WS_LANGUAGES . $_SESSION['language'] . '/' . 'gv_name.php'; 
+}
   define('TEXT_DISCOUNT_COUPON', 'Discount Coupon');
 
 // used for redeem code, redemption code, or redemption id
@@ -140,6 +147,7 @@ define('BOX_CATALOG_SALEMAKER', 'SaleMaker');
 define('BOX_CATALOG_PRODUCTS_PRICE_MANAGER', 'Products Price Manager');
 define('BOX_CATALOG_PRODUCT', 'Product');
 define('BOX_CATALOG_PRODUCTS_TO_CATEGORIES', 'Products to Categories');
+define('BOX_CATALOG_CATEGORY', 'Category');
 
 // customers box text
 define('BOX_HEADING_CUSTOMERS', 'Customers');
@@ -236,19 +244,21 @@ define('JS_PRODUCTS_IMAGE', '* The new product needs an image value\n');
 
 define('JS_SPECIALS_PRODUCTS_PRICE', '* A new price for this product needs to be set\n');
 
-define('JS_GENDER', '* The \'Gender\' value must be chosen.\n');
-define('JS_FIRST_NAME', '* The \'First Name\' entry must have at least ' . ENTRY_FIRST_NAME_MIN_LENGTH . ' characters.\n');
-define('JS_LAST_NAME', '* The \'Last Name\' entry must have at least ' . ENTRY_LAST_NAME_MIN_LENGTH . ' characters.\n');
-define('JS_DOB', '* The \'Date of Birth\' entry must be in the format: xx/xx/xxxx (month/date/year).\n');
-define('JS_EMAIL_ADDRESS', '* The \'E-Mail Address\' entry must have at least ' . ENTRY_EMAIL_ADDRESS_MIN_LENGTH . ' characters.\n');
-define('JS_ADDRESS', '* The \'Street Address\' entry must have at least ' . ENTRY_STREET_ADDRESS_MIN_LENGTH . ' characters.\n');
-define('JS_POST_CODE', '* The \'Post Code\' entry must have at least ' . ENTRY_POSTCODE_MIN_LENGTH . ' characters.\n');
-define('JS_CITY', '* The \'City\' entry must have at least ' . ENTRY_CITY_MIN_LENGTH . ' characters.\n');
-define('JS_STATE', '* The \'State\' entry must be selected.\n');
+define('JS_GENDER', '* The Gender value must be chosen.\n');
+define('JS_FIRST_NAME', '* The First Name entry must have at least ' . ENTRY_FIRST_NAME_MIN_LENGTH . ' characters.\n');
+define('JS_LAST_NAME', '* The Last Name entry must have at least ' . ENTRY_LAST_NAME_MIN_LENGTH . ' characters.\n');
+define('JS_DOB', '* The Date of Birth entry must be in the format: xx/xx/xxxx (month/date/year).\n');
+define('JS_EMAIL_ADDRESS', '* The E-Mail Address entry must have at least ' . ENTRY_EMAIL_ADDRESS_MIN_LENGTH . ' characters.\n');
+define('JS_ADDRESS', '* The Street Address entry must have at least ' . ENTRY_STREET_ADDRESS_MIN_LENGTH . ' characters.\n');
+define('JS_POST_CODE', '* The Post Code entry must have at least ' . ENTRY_POSTCODE_MIN_LENGTH . ' characters.\n');
+define('JS_CITY', '* The City entry must have at least ' . ENTRY_CITY_MIN_LENGTH . ' characters.\n');
+define('JS_STATE', '* The State entry must be selected.\n');
 define('JS_STATE_SELECT', '-- Select Above --');
-define('JS_ZONE', '* The \'State\' entry must be selected from the list for this country.');
-define('JS_COUNTRY', '* The \'Country\' value must be chosen.\n');
-define('JS_TELEPHONE', '* The \'Telephone Number\' entry must have at least ' . ENTRY_TELEPHONE_MIN_LENGTH . ' characters.\n');
+define('JS_ZONE', '* The State entry must be selected from the list for this country.');
+define('JS_COUNTRY', '* The Country value must be chosen.\n');
+define('JS_TELEPHONE', '* The Telephone Number entry must have at least ' . ENTRY_TELEPHONE_MIN_LENGTH . ' characters.\n');
+
+define('JS_ERROR_SUBMITTED', 'This form has already been submitted. Please press OK and wait for this process to be completed.');
 
 define('JS_ORDER_DOES_NOT_EXIST', 'Order Number %s does not exist!');
 define('TEXT_NO_ORDER_HISTORY', 'No Order History Available');
@@ -379,6 +389,7 @@ define('IMAGE_INSTALL_FEATURED', 'Add Featured Product Info');
 
 define('TEXT_VERSION_CHECK_BUTTON', 'Check for New Version');
 define('TEXT_BUTTON_RESET_ACTIVITY_LOG', 'View Activity Log');
+
 define('ICON_PRODUCTS_PRICE_MANAGER','Products Price Manager');
 define('ICON_COPY_TO', 'Copy to');
 define('ICON_CROSS', 'False');
@@ -428,9 +439,17 @@ define('TEXT_DISPLAY_NUMBER_OF_TAX_ZONES', 'Displaying <b>%d</b> to <b>%d</b> (o
 define('TEXT_DISPLAY_NUMBER_OF_TAX_RATES', 'Displaying <b>%d</b> to <b>%d</b> (of <b>%d</b> tax rates)');
 define('TEXT_DISPLAY_NUMBER_OF_ZONES', 'Displaying <b>%d</b> to <b>%d</b> (of <b>%d</b> zones)');
 
-define('PREVNEXT_BUTTON_PREV', '&lt;&lt;');
-define('PREVNEXT_BUTTON_NEXT', '&gt;&gt;');
-
+define('PREVNEXT_TITLE_FIRST_PAGE', 'First Page');
+define('PREVNEXT_TITLE_PREVIOUS_PAGE', 'Previous Page');
+define('PREVNEXT_TITLE_NEXT_PAGE', 'Next Page');
+define('PREVNEXT_TITLE_LAST_PAGE', 'Last Page');
+define('PREVNEXT_TITLE_PAGE_NO', 'Page %d');
+define('PREVNEXT_TITLE_PREV_SET_OF_NO_PAGE', 'Previous Set of %d Pages');
+define('PREVNEXT_TITLE_NEXT_SET_OF_NO_PAGE', 'Next Set of %d Pages');
+define('PREVNEXT_BUTTON_FIRST', '&laquo;FIRST');
+define('PREVNEXT_BUTTON_PREV', '[&laquo;&nbsp;Prev]');
+define('PREVNEXT_BUTTON_NEXT', '[Next&nbsp;&raquo;]');
+define('PREVNEXT_BUTTON_LAST', 'LAST&raquo;');
 
 define('TEXT_DEFAULT', 'default');
 define('TEXT_SET_DEFAULT', 'Set as default');
@@ -466,6 +485,7 @@ define('WARNING_SESSION_AUTO_START', 'Warning: session.auto_start is enabled - p
 define('WARNING_DOWNLOAD_DIRECTORY_NON_EXISTENT', 'Warning: The downloadable products directory does not exist: ' . DIR_FS_DOWNLOAD . '. Downloadable products will not work until this directory is valid.');
 define('WARNING_SQL_CACHE_DIRECTORY_NON_EXISTENT', 'Warning: The SQL cache directory does not exist: ' . DIR_FS_SQL_CACHE . '. SQL caching will not work until this directory is created.');
 define('WARNING_SQL_CACHE_DIRECTORY_NOT_WRITEABLE', 'Warning: I am not able to write to the SQL cache directory: ' . DIR_FS_SQL_CACHE . '. SQL caching will not work until the right user permissions are set.');
+define('ERROR_UNABLE_TO_DISPLAY_SERVER_INFORMATION', 'Sorry, your PHP configuration cannot be displayed because your hosting company has specified that [phpinfo] should be disabled as part of [disable_functions] in php.ini settings.');
 
 define('_JANUARY', 'January');
 define('_FEBRUARY', 'February');
@@ -519,7 +539,6 @@ define('NOT_INSTALLED_TEXT','Not Installed');
   define('BOX_TOOLS_LAYOUT_CONTROLLER','Layout Boxes Controller');
 
 // check GV release queue and alert store owner
-  define('SHOW_GV_QUEUE',true);
   define('TEXT_SHOW_GV_QUEUE','%s waiting approval ');
   define('IMAGE_GIFT_QUEUE', TEXT_GV_NAME . ' Queue');
   define('IMAGE_ORDER','Order');
@@ -587,7 +606,7 @@ define('TEXT_LEGEND', 'LEGEND: ');
 define('TEXT_LEGEND_STATUS_OFF', 'Status OFF ');
 define('TEXT_LEGEND_STATUS_ON', 'Status ON ');
 
-define('TEXT_INFO_MASTER_CATEGORIES_ID', '<strong>NOTE: Master Category is used for pricing purposes where the<br />product category affects the pricing on linked products, example: Sales</strong>');
+define('TEXT_INFO_MASTER_CATEGORIES_ID', '<strong>NOTE: Master Category is used for pricing purposes where the product category affects the pricing on linked products, example: Sales</strong>');
 define('TEXT_YES', 'Yes');
 define('TEXT_NO', 'No');
 define('TEXT_CANCEL', 'Cancel');
@@ -758,19 +777,14 @@ define('WARNING_PRIMARY_SERVER_FAILED', 'Warning: The primary exchange rate serv
 define('TEXT_INFO_LANGUAGE_ID', 'Enter telephone country access code without leading 0<br />(english must be 1, german must be 43):');
 define('TEXT_INFO_LANGUAGE_CODE', 'Code:<br />(en = englisch, de = german)');
 
-// keepalive
-define('TEXT_KEEPALIVE_BUTTON_YES', 'Yes, Keep Working');
-define('TEXT_KEEPALIVE_BUTTON_NO', 'No, Logoff');
-define('TEXT_KEEPALIVE_WARNING_PREFIX', 'Warning: %s seconds until log out | ');
-define('TEXT_KEEPALIVE_EXPIRED_PREFIX', '!!Expired Session');
-define('TEXT_KEEPALIVE_SESSION_EXPIRED_HEADER', 'Your session has expired');
-define('TEXT_KEEPALIVE_SESSION_EXPIRED_MESSAGE', '<p class="ui-state-error-text"><span class="ui-icon ui-icon-alert" style="float:left; margin:0 7px 50px 0;"></span>Sorry, you have been logged out due to inactivity.</p><p>Any unsaved work was lost. If you were composing content which you wish to save, click Close and copy that content to your clipboard. Then refresh the page to login again.</p><p>To continue, please login again.</p>');
-define('TEXT_KEEPALIVE_SERVER_UNREACHABLE_HEADER', 'Problem connecting to the server');
-define('TEXT_KEEPALIVE_SERVER_UNREACHABLE_MESSAGE', '<p><span class="ui-icon ui-icon-alert" style="float:left; margin:0 7px 50px 0;"></span>We are unable to connect to the server. Possible causes:<ul><li>Server is down</li><li>You have been logged out due to inactivity</li><li>Problems with your internet connection</li></ul>Your work may be lost. Please review your work and perhaps copy information to your clipboard if you had any work in progress which you do not wish to lose.</p>');
-define('TEXT_KEEPALIVE_SERVER_UNREACHABLE_MESSAGE1', 'We are unable to connect to the server. Your work may be lost. Please review your work and perhaps copy information to your clipboard if you had any work in progress which you do not wish to lose.');
-define('TEXT_KEEPALIVE_BUTTON_CLOSE', 'Close');
-define('TEXT_KEEPALIVE_BUTTON_LOGIN', 'Login');
-define('TEXT_KEEPALIVE_MESSAGE_YOU_WILL_LOG_OFF', 'You will be logged off in ');
-define('TEXT_KEEPALIVE_MESSAGE_MINUTES', 'minutes');
-define('TEXT_KEEPALIVE_MESSAGE_ASK_CONTINUE', 'Do you want to continue your session?');
-define('TEXT_KEEPALIVE_MESSAGE_SESSION_EXPIRE', 'Your session is about to expire!');
+// Keep Alive Module
+define('TEXT_TIMEOUT_WARNING', '**WARNING**');
+define('TEXT_TIMEOUT_TIME_REMAINING', ' Time remaining:');
+define('TEXT_TIMEOUT_SECONDS', 'seconds!');
+define('TEXT_TIMEOUT_ARE_YOU_STILL_THERE', 'Are you still there?');
+define('TEXT_TIMEOUT_WILL_LOGOUT_SOON', 'You have been inactive, and will soon be logged out automatically.');
+define('TEXT_TIMEOUT_STAY_LOGGED_IN', 'Continue Longer');
+define('TEXT_TIMEOUT_LOGOUT_NOW', 'Logout Now');
+define('TEXT_TIMEOUT_TIMED_OUT_TITLE', 'Logged Out.');
+define('TEXT_TIMEOUT_LOGIN_AGAIN', 'Login Again');
+define('TEXT_TIMEOUT_TIMED_OUT_MESSAGE', 'Your session has timed out. You were inactive, so we logged you out automatically.');

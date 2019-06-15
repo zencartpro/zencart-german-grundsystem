@@ -3,10 +3,10 @@
  * order_history sidebox - if enabled, shows customers' most recent orders
  *
  * @package templateSystem
- * @copyright Copyright 2003-2016 Zen Cart Development Team
+ * @copyright Copyright 2003-2019 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: order_history.php 730 2015-12-22 09:49:16Z webchills $
+ * @version $Id: order_history.php 731 2019-04-12 12:49:16Z webchills $
  */
 
   if (isset($_SESSION['customer_id']) && (int)$_SESSION['customer_id'] != 0) {
@@ -31,7 +31,7 @@
       }
       $product_ids = substr($product_ids, 0, -1);
       $rows=0;
-      $customer_orders_string = '<table border="0" width="100%" cellspacing="0" cellpadding="1">';
+
       $products_history_query = "select products_id, products_name
                          from " . TABLE_PRODUCTS_DESCRIPTION . "
                          where products_id in (" . $product_ids . ")
@@ -46,7 +46,6 @@
         $customer_orders[$rows]['name'] = $products_history->fields['products_name'];
         $products_history->MoveNext();
       }
-      $customer_orders_string .= '</table>';
 
       require($template->get_template_dir('tpl_order_history.php',DIR_WS_TEMPLATE, $current_page_base,'sideboxes'). '/tpl_order_history.php');
       $title =  BOX_HEADING_CUSTOMER_ORDERS;
@@ -54,4 +53,3 @@
       require($template->get_template_dir($column_box_default, DIR_WS_TEMPLATE, $current_page_base,'common') . '/' . $column_box_default);
     }
   }
-?>

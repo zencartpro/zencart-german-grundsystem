@@ -6,10 +6,10 @@
  * Displays results of advanced search
  *
  * @package templateSystem
- * @copyright Copyright 2003-2016 Zen Cart Development Team
+ * @copyright Copyright 2003-2019 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: tpl_advanced_search_result_default.php 731 2016-02-29 15:11:16Z webchills $
+ * @version $Id: tpl_advanced_search_result_default.php 732 2019-04-12 17:11:16Z webchills $
  */
 ?>
 <div class="centerColumn" id="advSearchResultsDefault">
@@ -18,8 +18,8 @@
 
 <?php
   if ($do_filter_list || PRODUCT_LIST_ALPHA_SORTER == 'true') {
-//  $form = zen_draw_form('filter', zen_href_link(FILENAME_ADVANCED_SEARCH_RESULT), 'get') . '<label class="inputLabel">' .TEXT_SHOW . '</label>';
   $form = zen_draw_form('filter', zen_href_link(FILENAME_ADVANCED_SEARCH_RESULT), 'get');
+    //$form .= '<label class="inputLabel">' .TEXT_SHOW . '</label>';
 ?>
 <?php echo $form; ?>
 <?php

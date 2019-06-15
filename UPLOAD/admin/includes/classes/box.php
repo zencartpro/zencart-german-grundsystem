@@ -1,10 +1,10 @@
 <?php
 /**
  * @package admin
- * @copyright Copyright 2003-2016 Zen Cart Development Team
+ * @copyright Copyright 2003-2019 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: box.php 731 2015-12-21 19:49:16Z webchills $
+ * @version $Id: box.php 732 2019-04-12 08:49:16Z webchills $
  */
 if (!defined('IS_ADMIN_FLAG')) {
   die('Illegal Access');
@@ -31,28 +31,12 @@ if (!defined('IS_ADMIN_FLAG')) {
     }
 
     function infoBox($heading, $contents) {
-      $this->table_row_parameters = 'class="infoBoxHeading"';
-      $this->table_data_parameters = 'class="infoBoxHeading"';
+      $this->table_row_parameters = 'infoBoxHeading';
+      $this->table_data_parameters = 'infoBoxHeading';
       $this->heading = $this->tableBlock($heading);
 
       $this->table_row_parameters = '';
-      $this->table_data_parameters = 'class="infoBoxContent"';
-      $this->contents = $this->tableBlock($contents);
-
-      return $this->heading . $this->contents;
-    }
-
-    function menuBox($heading, $contents) {
-      $this->table_data_parameters = 'class="menuBoxHeading"';
-      if (isset($heading[0]['link'])) {
-        $this->table_data_parameters .= ' onmouseover="this.style.cursor=\'hand\'" onclick="document.location.href=\'' . $heading[0]['link'] . '\'"';
-        $heading[0]['text'] = '&nbsp;<a href="' . $heading[0]['link'] . '" class="menuBoxHeadingLink">' . $heading[0]['text'] . '</a>&nbsp;';
-      } else {
-        $heading[0]['text'] = '&nbsp;' . $heading[0]['text'] . '&nbsp;';
-      }
-      $this->heading = $this->tableBlock($heading);
-
-      $this->table_data_parameters = 'class="menuBoxContent"';
+      $this->table_data_parameters = 'infoBoxContent';
       $this->contents = $this->tableBlock($contents);
 
       return $this->heading . $this->contents;

@@ -1,10 +1,10 @@
 <?php
 /**
  * @package Installer
- * @copyright Copyright 2003-2016 Zen Cart Development Team
+ * @copyright Copyright 2003-2019 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: cli_controller.php 1 2015-12-26 21:59:53Z webchills $
+ * @version $Id: cli_controller.php 2 2019-04-12 17:59:53Z webchills $
  */
 
 if (!file_exists(DIR_FS_INSTALL . 'includes/custom_settings.php')) {
@@ -56,11 +56,13 @@ if (count($adminDirectoryList) > 1)
 // do auto-detections
 list($adminDir, $documentRoot, $adminServer, $catalogHttpServer, $catalogHttpUrl, $catalogHttpsServer, $catalogHttpsUrl, $dir_ws_http_catalog, $dir_ws_https_catalog) = getDetectedURIs();
 $db_type = 'mysql';
-$db_charset = 'utf8';
+$db_charset = 'utf8mb4';
 $db_prefix = '';
 $sql_cache_method = 'none'; // 'file', 'database'
 $db_host = isset($zc_settings['db_host']) ? $zc_settings['db_host'] : 'localhost';
 $db_name = isset($zc_settings['db_name']) ? $zc_settings['db_name'] : 'zencart';
+$db_user = isset($zc_settings['db_user']) ? $zc_settings['db_user'] : '';
+$db_password= isset($zc_settings['db_password']) ? $zc_settings['db_password'] : '';
 
 require (DIR_FS_INSTALL . 'includes/classes/class.zcDatabaseInstaller.php');
 

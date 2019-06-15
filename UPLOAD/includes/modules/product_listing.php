@@ -1,12 +1,13 @@
 <?php
 /**
+ * Zen Cart German Specific
  * product_listing module
  *
  * @package modules
- * @copyright Copyright 2003-2016 Zen Cart Development Team
+ * @copyright Copyright 2003-2019 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: product_listing.php 821 2016-02-17 19:04:33Z webchills $
+ * @version $Id: product_listing.php 823 2019-06-15 21:04:33Z webchills $
  */
 if (!defined('IS_ADMIN_FLAG')) {
   die('Illegal Access');
@@ -163,8 +164,19 @@ if ($listing_split->number_of_rows > 0) {
             }
           }
         }
+        $zco_notifier->notify('NOTIFY_MODULES_PRODUCT_LISTING_PRODUCTS_BUTTON', array(), $listing->fields, $lc_button);
         $the_button = $lc_button;
-        $products_link = '<a href="' . zen_href_link(zen_get_info_page($listing->fields['products_id']), 'cPath=' . ( ($_GET['manufacturers_id'] > 0 and $_GET['filter_id']) > 0 ? zen_get_generated_category_path_rev($_GET['filter_id']) : $_GET['cPath'] > 0 ? zen_get_generated_category_path_rev($_GET['cPath']) : zen_get_generated_category_path_rev($listing->fields['master_categories_id'])) . '&products_id=' . $listing->fields['products_id']) . '">' . MORE_INFO_TEXT . '</a>';
+        $products_link = '<a href="' . 
+                    zen_href_link(zen_get_info_page($listing->fields['products_id']),
+                      'cPath=' . 
+                      ( 
+                        ($_GET['manufacturers_id'] > 0 and $_GET['filter_id']) > 0 ? 
+                        zen_get_generated_category_path_rev($_GET['filter_id']) : 
+                            ($_GET['cPath'] > 0 ? 
+                                                zen_get_generated_category_path_rev($_GET['cPath']) : 
+                                                zen_get_generated_category_path_rev($listing->fields['master_categories_id']))
+                      ) . '&products_id=' . $listing->fields['products_id']
+                    ) . '">' . MORE_INFO_TEXT . '</a>';
         $lc_text .= '<br />' . zen_get_buy_now_button($listing->fields['products_id'], $the_button, $products_link) . '<br />' . zen_get_products_quantity_min_units_display($listing->fields['products_id']);
         $lc_text .= '<br />' . (zen_get_show_product_switch($listing->fields['products_id'], 'ALWAYS_FREE_SHIPPING_IMAGE_SWITCH') ? (zen_get_product_is_always_free_shipping($listing->fields['products_id']) ? TEXT_PRODUCT_FREE_SHIPPING_ICON . '<br />' : '') : '');
 
@@ -246,7 +258,7 @@ if (($how_many > 0 and $show_submit == true and $listing_split->number_of_rows >
   $show_bottom_submit_button = false;
 }
 
-
+$zco_notifier->notify('NOTIFY_PRODUCT_LISTING_END', $current_page_base, $list_box_contents, $listing_split, $show_top_submit_button, $show_bottom_submit_button, $show_submit, $how_many);
 
   if ($how_many > 0 && PRODUCT_LISTING_MULTIPLE_ADD_TO_CART != 0 and $show_submit == true and $listing_split->number_of_rows > 0) {
   // bof: multiple products

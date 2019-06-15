@@ -3,9 +3,9 @@
  * paypal EC button display template
  *
  * @package paymentMethod
- * @copyright Copyright 2003-2016 Zen Cart Development Team
+ * @copyright Copyright 2003-2019 Zen Cart Development Team
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: tpl_ec_button.php 18697 2016-02-29 16:35:20Z webchills $
+ * @version $Id: tpl_ec_button.php 18700 2019-03-19 09:35:20Z webchills $
  */
 
 $paypalec_enabled = (defined('MODULE_PAYMENT_PAYPALWPP_STATUS') && MODULE_PAYMENT_PAYPALWPP_STATUS == 'True');
@@ -56,12 +56,19 @@ if ($paypalec_enabled) {
     unset($_SESSION['paypal_ec_token']);
     unset($_SESSION['paypal_ec_payer_id']);
     unset($_SESSION['paypal_ec_payer_info']);
+    unset($_SESSION['paypal_ec_markflow']);
 
     include zen_get_file_directory(DIR_FS_CATALOG . DIR_WS_LANGUAGES . $_SESSION['language'] . '/modules/payment/','paypalwpp.php', 'false');
 ?>
+<?php if ( $detect->isMobile() && !$detect->isTablet() || $_SESSION['layoutType'] == 'mobile' ) { ?>
 <div id="PPECbutton" class="buttonRow">
-  <a href="<?php echo zen_href_link('ipn_main_handler.php', 'type=ec', 'SSL', true, true, true); ?>"><img src="<?php echo MODULE_PAYMENT_PAYPALWPP_EC_BUTTON_IMG ?>" alt="<?php echo MODULE_PAYMENT_PAYPALWPP_TEXT_BUTTON_ALTTEXT; ?>" id="ecButton"></a>
+<a href="<?php echo zen_href_link('ipn_main_handler.php', 'type=ec', 'SSL', true, true, true); ?>"><img src="<?php echo MODULE_PAYMENT_PAYPALWPP_EC_BUTTON_IMG_MOBILE ?>" alt="<?php echo MODULE_PAYMENT_PAYPALWPP_TEXT_BUTTON_ALTTEXT; ?>" id="ecButton"></a>
 </div>
+<?php } else { ?>
+<div id="PPECbutton" class="buttonRow">
+<a href="<?php echo zen_href_link('ipn_main_handler.php', 'type=ec', 'SSL', true, true, true); ?>"><img src="<?php echo MODULE_PAYMENT_PAYPALWPP_EC_BUTTON_IMG ?>" alt="<?php echo MODULE_PAYMENT_PAYPALWPP_TEXT_BUTTON_ALTTEXT; ?>" id="ecButton"></a>
+</div>
+<?php } ?>
 <?php
 }
 ?>

@@ -1,10 +1,10 @@
 <?php
 /**
  * @package admin
- * @copyright Copyright 2003-2016 Zen Cart Development Team
+ * @copyright Copyright 2003-2019 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: footer.php 796 2016-03-29 20:24:50Z webchills $
+ * @version $Id: footer.php 797 2019-04-13 09:24:50Z webchills $
  */
 
 // check and display zen cart version and history version in footer
@@ -29,3 +29,5 @@ define('MH_DIR_FS_CATALOG', (substr(DIR_FS_CATALOG, -1) != '/') ? DIR_FS_CATALOG
     <?php echo '<a href="' . zen_href_link(FILENAME_SERVER_INFO) . '">' . $current_sinfo . '</a>'; ?>
   </div>
 </footer>
+<?php
+$zco_notifier->notify('NOTIFY_ADMIN_FOOTER_END');

@@ -1,13 +1,14 @@
 <?php
 /**
+ * Zen Cart German Specific
  * customer authorisation based on DOWN_FOR_MAINTENANCE and CUSTOMERS_APPROVAL_AUTHORIZATION settings
  * see {@link  http://www.zen-cart.com/wiki/index.php/Developers_API_Tutorials#InitSystem wikitutorials} for more details.
  *
  * @package initSystem
- * @copyright Copyright 2003-2016 Zen Cart Development Team
+ * @copyright Copyright 2003-2019 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: init_customer_auth.php 868 2015-12-21 20:34:40Z webchills $
+ * @version $Id: init_customer_auth.php 869 2019-04-12 11:34:40Z webchills $
  */
 if (!defined('IS_ADMIN_FLAG')) {
   die('Illegal Access');
@@ -47,7 +48,7 @@ if (DOWN_FOR_MAINTENANCE == 'true') {
 /**
  * recheck customer status for authorization
  */
-if ((int)$_SESSION['customer_id'] > 0) {
+if (isset($_SESSION['customer_id']) && (int)$_SESSION['customer_id'] > 0) {
   $check_customer_query = "select customers_id, customers_authorization
                              from " . TABLE_CUSTOMERS . "
                              where customers_id = " . (int)$_SESSION['customer_id'];
@@ -174,7 +175,7 @@ switch (true) {
   }
   */
   break;
-  case ((CUSTOMERS_APPROVAL_AUTHORIZATION == '1' and $_SESSION['customers_authorization'] != '0') || (int)$_SESSION['customers_authorization'] == 1):
+  case (isset($_SESSION['customers_authorization']) && ((CUSTOMERS_APPROVAL_AUTHORIZATION == '1' && $_SESSION['customers_authorization'] != '0') || (int)$_SESSION['customers_authorization'] == 1)):
   /**
    * customer is pending approval
    * customer must be logged in to browse

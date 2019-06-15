@@ -1,20 +1,22 @@
 <?php
 /**
+ * Zen Cart German Specific
  * Main German language file for installer
  * @package Installer
- * @copyright Copyright 2003-2018 Zen Cart Development Team
+ * @copyright Copyright 2003-20198 Zen Cart Development Team
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: lngDeutsch.php 13 2018-06-12 12:49:16Z webchills $
+ * @version $Id: lngDeutsch.php 15 2019-04-15 11:49:16Z webchills $
  */
 /**
  * defining language components for the page
  */
-define('META_TAG_TITLE', 'Zen Cart 1.5.5f deutsch - Installationsprogramm');
+define('META_TAG_TITLE', 'Zen Cart 1.5.6 deutsch - Installationsprogramm');
 define('HTML_PARAMS','dir="ltr" lang="de"');
 define('ZC_VERSION_STRING', '%s v%s');
 define('TEXT_PAGE_HEADING_INDEX', 'Systemprüfung');
 define('TEXT_INDEX_FATAL_ERRORS', 'Es gibt einige kritische Probleme, die behoben werden müssen bevor wie weitermachen können.');
-define('TEXT_INDEX_WARN_ERRORS', 'Einige nicht kritische Probleme');
+define('TEXT_INDEX_WARN_ERRORS', 'Einige andere Probleme');
+define('TEXT_INDEX_WARN_ERRORS_ALT', 'Einige Probleme:');
 define('TEXT_HEADER_MAIN', 'TIP: Die blauen Überschriften Links sind anclickbar und liefern Infos zur Bedeutung des jeweiligen Feldes.');
 define('TEXT_INDEX_HEADER_MAIN', 'TIP: Für einige Fehlermeldungen oder Warnmeldungen unten sind genauere Infos durch Anclicken der Fehlermeldung/Warnmeldung verfügbar.');
 define('TEXT_INSTALLER_CHOOSE_LANGUAGE', 'Sprache wählen');
@@ -55,8 +57,9 @@ define('TEXT_DATABASE_SETUP_DB_PREFIX', 'Datenbank Präfix: ');
 define('TEXT_DATABASE_SETUP_SQL_CACHE_METHOD', 'SQL Caching Methode: ');
 define('TEXT_DATABASE_SETUP_JSCRIPT_SQL_ERRORS1', '<p>Beim Ausführen des SQL Installers sind einige Fehler aufgetreten');
 define('TEXT_DATABASE_SETUP_JSCRIPT_SQL_ERRORS2', '<br>Details dazu finden Sie im Error Log.<p>');
-define('TEXT_DATABASE_SETUP_CHARSET_OPTION_UTF8', 'UTF8 (Wir unterstützen nur utf8!)');
-define('TEXT_DATABASE_SETUP_CHARSET_OPTION_LATIN1', 'Latin1');
+define('TEXT_DATABASE_SETUP_CHARSET_OPTION_UTF8MB4', 'utf8mb4 (Voreinstellung)');
+define('TEXT_DATABASE_SETUP_CHARSET_OPTION_UTF8', 'utf8 (älteres Format)');
+define('TEXT_DATABASE_SETUP_CHARSET_OPTION_LATIN1', 'latin1 (Uraltformatt)');
 define('TEXT_DATABASE_SETUP_CACHE_TYPE_OPTION_NONE', 'kein SQL Caching');
 define('TEXT_DATABASE_SETUP_CACHE_TYPE_OPTION_DATABASE', 'Datenbank');
 define('TEXT_DATABASE_SETUP_CACHE_TYPE_OPTION_FILE', 'Datei');
@@ -100,7 +103,8 @@ define('TEXT_COMPLETION_INSTALL_COMPLETE', 'Die Installation ist jetzt abgeschlo
 define('TEXT_COMPLETION_INSTALL_LINKS_BELOW', 'Sie können nun Ihr Shop Frontend und Ihren Adminbereich mit folgenden Links erreichen:');
 define('TEXT_COMPLETION_UPGRADE_COMPLETE', 'Herzlichen Glückwunsch, Ihr Update ist nun abgeschlossen.');
 define('TEXT_COMPLETION_ADMIN_DIRECTORY_WARNING', 'Wir konnten Ihr Admin Verzeichnis nicht automatisch umbenennen. Sie müssen es selbt umbenennen bevor Sie in den Adminbereich einloggen können.');
-define('TEXT_COMPLETION_INSTALLATION_DIRECTORY_WARNING', 'Sie müssen nun das Verzeichnis zc_install unbedingt löschen, um zu verhindern, dass jemand den Shop neu installiert und all Ihre Daten zerstört. Solange Sie dieses Verzeichnis nicht gelöscht haben, werden Sie nicht in den Adminbereich einloggen können.');
+define('TEXT_COMPLETION_INSTALLATION_DIRECTORY_WARNING', "Bitte löschen Sie das zc_install Verzeichnis jetzt");
+define('TEXT_COMPLETION_INSTALLATION_DIRECTORY_EXPLANATION', 'Sie müssen nun das Verzeichnis zc_install unbedingt löschen, um zu verhindern, dass jemand den Shop neu installiert und all Ihre Daten zerstört. Solange Sie dieses Verzeichnis nicht gelöscht haben, werden Sie nicht in den Adminbereich einloggen können.');
 
 define('TEXT_COMPLETION_CATALOG_LINK_TEXT', 'Ihr Shop Frontend');
 define('TEXT_COMPLETION_ADMIN_LINK_TEXT', 'Ihr Shop Adminbereich');
@@ -139,16 +143,19 @@ define('TEXT_NAVBAR_ADMIN_SETUP', 'Admin Setup');
 define('TEXT_NAVBAR_COMPLETION', 'Fertig');
 define('TEXT_NAVBAR_PAYMENT_PROVIDERS', 'Zahlungsanbieter');
 
+define('TEXT_INDEX_ALERTS', 'Alerts');
+define('TEXT_FOUND_LOCAL_STORE_CONFIGURE', 'NOTE: /includes/LOCAL/configure.php found, and will be used');
+define('TEXT_FOUND_LOCAL_ADMIN_CONFIGURE', 'NOTE: /admin/includes/LOCAL/configure.php found, and will be used');
 define('TEXT_ERROR_PROBLEMS_WRITING_CONFIGUREPHP_FILES', 'Die configure.php konnten nicht vorbereitet und gespeichert werden. IHRE INSTALLATION IST NICHT KORREKT VOLLSTÄNDIG ABGESCHLOSSEN!<br>Details dazu sollten Sie in den Logdateien im Ordner /logs/ finden.');
 define('TEXT_ERROR_COULD_NOT_READ_CFGFILE_TEMPLATE', 'Kann die Vorlage für die Konfigurationsdatei nicht lesen: %s. Stellen Sie sicher, dass diese Datei existiert und lesbar ist.');
 define('TEXT_ERROR_COULD_NOT_WRITE_CONFIGFILE', 'Konnte die CKonfigurationsdatei nicht schreiben: %s. Stellen Sie sicher, dass diese Datei existiert und beschreibbar ist.');
 define('TEXT_ERROR_STORE_CONFIGURE', "Frontend Konfigurationsdatei /includes/configure.php existiert nicht, ist nicht lesbar oder ist nicht beschreibbar");
 define('TEXT_ERROR_ADMIN_CONFIGURE', "Admin Konfigurationsdatei /admin/includes/configure.php existiert nicht, ist nicht lesbar oder ist nicht beschreibbar");
 define('TEXT_ERROR_PHP_VERSION', str_replace(array("\n", "\r"), '', 'Falsche PHP Version.
-<p>Ihre verwendete PHP Version (' . PHP_VERSION . ') ist ungeeignet. Die deutsche Zen Cart Version 1.5.5 kann damit NICHT verwendet werden.</p>
-<p>Diese Version von Zen Cart deutsch ist kompatibel mit PHP Versionen von 5.6.x bis 7.1.x</p>
+<p>Ihre verwendete PHP Version (' . PHP_VERSION . ') ist ungeeignet. Die deutsche Zen Cart Version 1.5.6 kann damit NICHT verwendet werden.</p>
+<p>Diese Version von Zen Cart deutsch ist kompatibel mit PHP Versionen von 5.6.x bis 7.3.x</p>
 '));
-define('TEXT_ERROR_PHP_VERSION_RECOMMENDED', '<b>Ihre verwendete PHP Version (' . PHP_VERSION . ') ist veraltet.</b><br/>Für maximale Sicherheit und Kompatibilität sollten Sie mindestens PHP 7.0.x verwenden.<br/>Diese Version von Zen Cart deutsch ist kompatibel mit PHP Versionen von 5.6.x bis 7.1.x<br/>Wir können mit der Installation trotzdem weitermachen, weisen aber darauf hin, dass Sie in Ihrem eigenen Interesse keine solch veraltete PHP Version verwenden sollten. Viele Provider werden PHP 5.6 Ende 2018 abschalten!');
+define('TEXT_ERROR_PHP_VERSION_RECOMMENDED', '<b>Ihre verwendete PHP Version (' . PHP_VERSION . ') ist veraltet.</b><br/>Für maximale Sicherheit und Kompatibilität sollten Sie mindestens PHP 7.2.x verwenden.<br/>Diese Version von Zen Cart deutsch ist kompatibel mit PHP Versionen von 5.6.x bis 7.3.x<br/>Wir können mit der Installation trotzdem weitermachen, weisen aber darauf hin, dass Sie in Ihrem eigenen Interesse keine solch veraltete PHP Version verwenden sollten.');
 define('TEXT_ERROR_PHP_VERSION_MIN', 'Die PHP Version sollte höher sein als %s');
 define('TEXT_ERROR_PHP_VERSION_MAX', 'Die PHP Version sollte niedriger sein als %s');
 define('TEXT_ERROR_MYSQL_SUPPORT', 'Probleme mit Ihrer MySQL (mysqli) Unterstützung');
@@ -160,7 +167,8 @@ define('TEXT_ERROR_MEDIA_FOLDER', '/media/ Verzeichnis ist nicht beschreibbar');
 define('TEXT_ERROR_PUB_FOLDER', DIR_FS_DOWNLOAD_PUBLIC . ' Verzeichnis ist nicht beschreibbar');
 
 define('TEXT_ERROR_CONFIGURE_REQUIRES_UPDATE', 'Ihre configure.php Datei stammt aus einer alten Zen Cart Version und muss aktualisiert werden, bevor wir weitermachen.');
-define('TEXT_ERROR_HTACCESS_SUPPORT', 'Probleme mit .htaccess Unterstützung');
+
+define('TEXT_ERROR_HTACCESS_SUPPORT', 'Support for ".htaccess" files is not enabled.<br>[ <i><b>NOTE:</b> If you are using Nginx, continue to the <u>END</u> of this Installation Wizard for information on resolving this issue.<i> ]');
 define('TEXT_ERROR_SESSION_SUPPORT', 'Probleme mit session Unterstützung');
 define('TEXT_ERROR_SESSION_SUPPORT_USE_TRANS_SID', 'ini setting session.use_trans_sid ist aktiviert');
 define('TEXT_ERROR_SESSION_SUPPORT_AUTO_START', 'ini setting session.auto_start ist aktiviert');
@@ -194,7 +202,31 @@ define('TEXT_NAVBAR_FORUM_LINK', 'Forum');
 define('TEXT_NAVBAR_WIKI_LINK', 'FAQ/Tutorials');
 
 define('TEXT_HELP_TITLE_HTACCESSSUPPORT', 'htaccess Unterstützung');
-define('TEXT_HELP_CONTENT_HTACCESSSUPPORT', 'Es scheint ein Problem mit der .htaccess Unterstützung auf Ihrem Server zu geben. Entweder Sie verwenden keinen Apache Webserver oder .htaccess Unterstützung ist deaktiviert oder nicht korrekt konfiguriert.<br><br>htaccess wird unbedingt benötigt, um bestimmte Dateien und Ordner auf Ihrem Server zu schützen.');
+define('TEXT_HELP_CONTENT_HTACCESSSUPPORT', 'There appears to be a problem with support for ".htaccess" files.<br>Sensitive files and folders on your site, that should normally be blocked by security rules in the built-in ".htaccess" files that come with Zen Cart, are currently accessible.
+	<br><br>
+	Possible causes: 
+	<ul style="list-style-type:square">
+		<li>
+			You may not be using Apache as your Web Server (".htaccess" files are unique to the Apache Web Server), or,
+		</li>
+		<li>
+			Support for ".htaccess" is disabled or misconfigured, or,
+		</li>
+		<li>
+			The ".htaccess" files that come with Zen Cart have not been uploaded to your site.
+			<br>
+			<strong>
+				<i>Files starting with ".", such as ".htaccess" files, are usually treated as "hidden" files and your FTP program may have failed to upload these if you have turned off the display and/or transfer of such hidden files in its settings.</i>
+			</strong>
+		</li>
+	</ul>
+	<br>
+	You may proceed with installing despite this situation, but please be advised that your site will be less secure than it ought to be (If using the Apache Web Server).
+	<br><br>
+	If you are using the Nginx Web Server, please proceed with installing and secure your installation using the equivalent Nginx directives provided under "<strong>Important Security Information for Nginx</strong>" in the "Setup Finished" section of this installation wizard.
+	<br><br>
+	If you do not know which Web Server is in use, please proceed on the assumption that it is the Apache Web Server and request assistance with enabling ".htaccess" support from your web hosting provider.
+	<br><br>');
 define('TEXT_HELP_TITLE_FOLDERPERMS', 'Ordner Schreibrechte');
 define('TEXT_HELP_CONTENT_FOLDERPERMS', 'Die Schreibrechte für diesen Ordner sind nicht korrekt, der Ordner muss beschreibbar sein (chmod 777 oder 666)');
 define('TEXT_HELP_TITLE_CONNECTIONDATABASECHECK', 'Datenbank Verbindung');
@@ -269,6 +301,104 @@ define('REASON_INDEX_DOESNT_EXIST_TO_DROP','Cannot drop index %s on table %s bec
 define('REASON_PRIMARY_KEY_DOESNT_EXIST_TO_DROP','Cannot drop primary key on table %s because it does not exist.');
 define('REASON_INDEX_ALREADY_EXISTS','Cannot add index %s to table %s because it already exists.');
 define('REASON_PRIMARY_KEY_ALREADY_EXISTS','Cannot add primary key to table %s because a primary key already exists.');
+
+
+define('TEXT_COMPLETION_NGINX_TEXT', "<u>Wichtige Sicherheitsinformation für Nginx</u>");
+define('TEXT_HELP_TITLE_NGINXCONF', "Zen Cart auf Nginx Webservern absichern");
+define('TEXT_HELP_CONTENT_NGINXCONF', "<div>
+	<p>
+		Your Zen Cart installation comes with security measures in a format native to the Apache Webserver.
+		<br>
+		See below to implement a similar set of measures for the Nginx Webserver. 
+	</p>
+	<hr>
+	<ul style='list-style-type:square'>
+		<li>
+			Go to your <strong>'zc_install/includes/nginx_conf'</strong> folder and open the following files using a text editor such as notepad or textedit:
+			<ul style='list-style-type:circle'>
+				<li>
+					zencart_ngx_http.conf
+				</li>
+				<li>
+					zencart_ngx_server.conf
+				</li>
+			</ul>
+		</li>
+		<li>
+			Add the contents of <strong>'zencart_ngx_http.conf'</strong> under the <strong>'http'</strong> section of your Nginx configuration file.
+			<ul style='list-style-type:circle'>
+				<li>
+					Edit the caching durations in the <strong>'map'</strong> block to suit as required
+				</li>
+			</ul>
+		</li>
+		<li>
+			Add the contents of <strong>'zencart_ngx_server.conf'</strong> to the relevant <strong>'server'</strong> block for Zen Cart in your Nginx configuration file.
+			<ul style='list-style-type:circle'>
+				<li>
+					The directives may be used for SSL and/or Non SSL server blocks.
+				</li>
+				<li>
+					The directives should be placed at the beginning of the server block before any other location blocks.
+					<ul style='list-style-type:none'>
+						<li>
+							- The order in which the directives appear is important.
+						</li>
+						<li>
+							- Do not change this order without fully understanding the directives and implications.
+						</li>
+					</ul>
+			</ul>
+		</li>
+		<li>
+			It is especially critical that these directives appear before any generic php handling location blocks such as ...
+			<br>
+<pre>
+	<code>location ~ \.php { <strong>Nginx PHP Handling Directives;</strong> }</code>
+</pre>
+			... or any other location blocks that might be processed before these are.
+		</li>
+		<li>
+			Instead, edit the <strong>'zencart_php_handler'</strong> location block to match your Nginx PHP Handling Directives.
+			<ul style='list-style-type:circle'>
+				<li>
+					Simply duplicate the contents of your existing PHP handling location block.
+					<ul style='list-style-type:none'>
+						<li>
+							- That is, copy and paste in the equivalent Nginx PHP Handling Directives.
+						</li>
+						<li>
+							- If you do not have an existing PHP handling location block, please refer to available guides such as from <a href='https://www.nginx.com/resources/wiki/start/topics/examples/phpfcgi/' target='_blank'><u>The Nginx Website</u></a>.  
+						</li>
+					</ul>
+				</li>
+			</ul>
+		</li>
+		<li>
+			If using plugins for 'Pretty URLs', insert the relevant directives into the specified block.
+		</li>
+		<li>
+			Reload Nginx.
+			<ul style='list-style-type:circle'>
+				<li>
+					Do this before closing this dialog box.
+				</li>
+				<li>
+					Remember to delete the <strong>'zc_install'</strong> folder when done.
+					<ul style='list-style-type:none'>
+						<li>
+							- Including the <strong>'zc_install/includes/nginx_conf'</strong> folder and its contents.
+						</li>
+					</ul>
+				</li>
+			</ul>
+		</li>
+	<ol>
+</div>
+<div class='alert-box alert'>
+	<strong>IMPORTANT:</strong> These location blocks should be <strong>BEFORE</strong> any other location blocks in your Nginx configuration server block for Zen Cart.
+</div>
+<hr>");
 define('TEXT_HELP_TITLE_AGREETOTERMS', 'Lizenzbedingungen akzeptieren');
 define('TEXT_HELP_CONTENT_AGREETOTERMS', "<h2>The GNU General Public License (GPL)</h2>
 <p><b>Eine deutsche Übersetzung der GNU General Public License finden Sie online auf:<br/><a href=\"http://www.gnu.de/documents/gpl-2.0.de.html\" target=\"_blank\">www.gnu.de/documents/gpl-2.0.de.html</b></p>
@@ -556,80 +686,4 @@ YOU OR THIRD PARTIES OR A FAILURE OF THE PROGRAM TO OPERATE WITH ANY OTHER
 PROGRAMS), EVEN IF SUCH HOLDER OR OTHER PARTY HAS BEEN ADVISED OF THE
 POSSIBILITY OF SUCH DAMAGES.</p>
 
-         <p><strong>END OF TERMS AND CONDITIONS</strong></p>
-
-
-
-<br>
-<br>
-<br>
-
-
-
-<!-- START OF 'HOW TO APPLY' SECTION -->
-<p>
-<strong> How to Apply These Terms to Your New Programs</strong></p>
-
-<p>  If you develop a new program, and you want it to be of the greatest
-possible use to the public, the best way to achieve this is to make it
-free software which everyone can redistribute and change under these terms.</p>
-
- <p> To do so, attach the following notices to the program.  It is safest
-to attach them to the start of each source file to most effectively
-convey the exclusion of warranty; and each file should have at least
-the \"copyright\" line and a pointer to where the full notice is found.</p>
-
-
-<blockquote>
-    <p>one line to give the program's name and a brief idea of what it does.<br>
-    Copyright (C) <year>  <name of author></p>
-
-    <p>This program is free software; you can redistribute it and/or modify
-    it under the terms of the GNU General Public License as published by
-    the Free Software Foundation; either version 2 of the License, or
-    (at your option) any later version.</p>
-
-  <p>  This program is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU General Public License for more details.</p>
-
-    <p>You should have received a copy of the GNU General Public License
-    along with this program; if not, write to the Free Software
-    Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA</p>
-</blockquote>
-<p>
-Also add information on how to contact you by electronic and paper mail.</p>
-
-<p>If the program is interactive, make it output a short notice like this
-when it starts in an interactive mode:</p>
-
-<blockquote>
-   <p> Gnomovision version 69, Copyright (C) year name of author
-    Gnomovision comes with ABSOLUTELY NO WARRANTY; for details type `show w'.
-    This is free software, and you are welcome to redistribute it
-    under certain conditions; type `show c' for details.</p>
-</blockquote>
-
-<p>The hypothetical commands `show w' and `show c' should show the appropriate
-parts of the General Public License.  Of course, the commands you use may
-be called something other than `show w' and `show c'; they could even be
-mouse-clicks or menu items--whatever suits your program.</p>
-<p>
-You should also get your employer (if you work as a programmer) or your
-school, if any, to sign a \"copyright disclaimer\" for the program, if
-necessary.  Here is a sample; alter the names:</p>
-
-<blockquote>
-  <p>Yoyodyne, Inc., hereby disclaims all copyright interest <br>in the program
-  `Gnomovision' (which makes passes at compilers)<br>written by James Hacker.</p>
-
-  <p>signature of Ty Coon, 1 April 1989<br>
-  Ty Coon, President of Vice</p>
-  </blockquote>
-
-<p>This General Public License does not permit incorporating your program into
-proprietary programs.  If your program is a subroutine library, you may
-consider it more useful to permit linking proprietary applications with the
-library.  If this is what you want to do, use the GNU Library General
-Public License instead of this License.</p>");
+         <p><strong>END OF TERMS AND CONDITIONS</strong></p>");

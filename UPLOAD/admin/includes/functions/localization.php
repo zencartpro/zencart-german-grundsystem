@@ -1,10 +1,10 @@
 <?php
 /**
  * @package admin
- * @copyright Copyright 2003-2018 Zen Cart Development Team
+ * @copyright Copyright 2003-2019 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: localization.php 733 2018-01-02 08:49:16Z webchills $
+ * @version $Id: localization.php 734 2019-04-12 08:49:16Z webchills $
  */
 /**
  * Dependencies:
@@ -101,8 +101,8 @@ function quote_ecb_currency($currencyCode = '', $base = DEFAULT_CURRENCY)
   $line = '';
   foreach ($XMLContent as $line) {
     if (preg_match("/currency='([[:alpha:]]+)'/", $line, $reg)) {
-      if (preg_match("/rate='([[:graph:]]+)'/", $line, $rate)) {
-        $currencyArray[$reg[1]] = (float)$rate[1];
+      if (preg_match("/rate='([[:graph:]]+)'/", $line, $rateVal)) {
+        $currencyArray[$reg[1]] = (float)$rateVal[1];
       }
     }
   }

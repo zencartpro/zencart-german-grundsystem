@@ -3,10 +3,10 @@
  * messageStack Class.
  *
  * @package classes
- * @copyright Copyright 2003-2018 Zen Cart Development Team
+ * @copyright Copyright 2003-2019 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: message_stack.php 731 2018-01-02 09:49:16Z webchills $
+ * @version $Id: message_stack.php 733 2019-06-15 17:49:16Z webchills $
  */
 if (!defined('IS_ADMIN_FLAG')) {
   die('Illegal Access');
@@ -59,7 +59,7 @@ class messageStack extends base {
 
   function add_session($class, $message, $type = 'error') {
 
-    if (!$_SESSION['messageToStack']) {
+    if (empty($_SESSION['messageToStack'])) {
       $messageToStack = array();
     } else {
       $messageToStack = $_SESSION['messageToStack'];
@@ -78,6 +78,7 @@ class messageStack extends base {
     global $template, $current_page_base;
 
     $_SESSION['messageToStack'] = '';
+
     $output = array();
     for ($i=0, $n=sizeof($this->messages); $i<$n; $i++) {
       if ($this->messages[$i]['class'] == $class) {

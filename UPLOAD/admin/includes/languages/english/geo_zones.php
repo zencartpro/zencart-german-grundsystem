@@ -1,10 +1,10 @@
 <?php
 /**
  * @package admin
- * @copyright Copyright 2003-2016 Zen Cart Development Team
+ * @copyright Copyright 2003-2019 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: geo_zones.php 729 2011-08-09 15:49:16Z hugo13 $
+ * @version $Id: geo_zones.php 730 2019-04-13 15:49:16Z webchills $
  */
 
 define('HEADING_TITLE', 'Zone Definitions - Taxes, Payment and Shipping');
@@ -46,9 +46,8 @@ define('TEXT_INFO_ZONE_DESCRIPTION', 'Description:');
 define('TEXT_INFO_COUNTRY', 'Country:');
 define('TEXT_INFO_COUNTRY_ZONE', 'Zone:');
 define('TYPE_BELOW', 'All Zones');
-define('PLEASE_SELECT', 'All Zones');
+define('TEXT_ALL_ZONES', 'All Zones');
 define('TEXT_ALL_COUNTRIES', 'All Countries');
 
 define('TEXT_INFO_NUMBER_TAX_RATES','Number of Tax Rates:');
 define('ERROR_TAX_RATE_EXISTS','WARNING: Tax Rate(s) are defined for this zone. Please delete the Tax Rate(s) before removing this zone');
-?>

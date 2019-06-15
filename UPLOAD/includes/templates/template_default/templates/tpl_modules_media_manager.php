@@ -3,10 +3,10 @@
  * Module Template
  *
  * @package templateSystem
- * @copyright Copyright 2003-2016 Zen Cart Development Team
+ * @copyright Copyright 2003-2019 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: tpl_modules_media_manager.php 729 2011-08-09 15:49:16Z hugo13 $
+ * @version $Id: tpl_modules_media_manager.php 730 2019-04-12 18:49:16Z webchills $
  */
 /**
  * require module to aggregate media clips to an array
@@ -19,13 +19,13 @@
 <h2 id="mediaManagerHeading"><?php echo TEXT_PRODUCT_COLLECTIONS; ?></h2>
 
 <?php
-  while (list($za_media_key, $za_media) = each($za_media_manager)) {
+  foreach($za_media_manager as $za_media_key => $za_media) {
 ?>
 <div class="rowWrapper">
       <div class="mediaTitle"><?php echo $za_media['text']; ?></div>
 <?php
     $zv_counter1 = 0;
-    while(list($za_clip_key, $za_clip) = each($za_media_manager[$za_media_key]['clips'])) {
+    foreach($za_media_manager[$za_media_key]['clips'] as $za_clip_key => $za_clip) {
 ?>
       <div class="mediaTypeLink"><a href="<?php echo zen_href_link(DIR_WS_MEDIA  . $za_clip['clip_filename'], '', 'NONSSL', false, true, true); ?>" target="_blank"><?php echo '<span class="mediaClipFilename">' . $za_clip['clip_filename'] . '</span>' . (!empty($za_clip['clip_type']) ? '<span class="mediaClipType"> (' . $za_clip['clip_type'] . ')</span>' : ''); ?></a></div>
 
@@ -34,6 +34,5 @@
 ?>
     </div>
 <?php
+   }
   }
-  }
-?>

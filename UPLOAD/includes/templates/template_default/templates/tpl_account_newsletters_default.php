@@ -6,16 +6,17 @@
  * Subscribe/Unsubscribe from General Newsletter
  *
  * @package templateSystem
- * @copyright Copyright 2003-2016 Zen Cart Development Team
+ * @copyright Copyright 2003-2019 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: tpl_account_newsletters_default.php 729 2011-08-09 15:49:16Z hugo13 $
+ * @version $Id: tpl_account_newsletters_default.php 730 2019-04-12 17:49:16Z webchills $
  */
 ?>
 <div class="centerColumn" id="acctNewslettersDefault">
 <?php echo zen_draw_form('account_newsletter', zen_href_link(FILENAME_ACCOUNT_NEWSLETTERS, '', 'SSL')) . zen_draw_hidden_field('action', 'process'); ?>
 
 <h1 id="acctNewslettersDefaultHeading"><?php echo HEADING_TITLE; ?></h1>
+<?php if ($messageStack->size('newsletter') > 0) echo $messageStack->output('newsletter'); ?>
 
 <fieldset>
 <legend><?php echo MY_NEWSLETTERS_GENERAL_NEWSLETTER; ?></legend>

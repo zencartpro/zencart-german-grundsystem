@@ -1,19 +1,22 @@
 <?php
 /**
+ * Zen Cart German Specific
  * @package admin
- * @copyright Copyright 2003-2018 Zen Cart Development Team
+ * @copyright Copyright 2003-2019 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: german.php 661 2018-01-06 13:54:04Z webchills $
+ * @version $Id: german.php 663 2019-04-15 08:16:04Z webchills $
  */
 if (!defined('IS_ADMIN_FLAG'))
 {
   die('Illegal Access');
 }
 
+define('CONNECTION_TYPE_UNKNOWN', '\'%s\' ist kein gültiger Verbindungstyp zum Erzeugen von URLs' . PHP_EOL . '%s' . PHP_EOL);
+
 // added defines for header alt and text
-define('HEADER_ALT_TEXT', 'Admin powered by Zen-Cart 1.5.5 - deutsche Version');
-define('HEADER_LOGO_WIDTH', '200px');
+define('HEADER_ALT_TEXT', 'Admin powered by Zen-Cart 1.5.6 - deutsche Version');
+define('HEADER_LOGO_WIDTH', '240px');
 define('HEADER_LOGO_HEIGHT', '70px');
 define('HEADER_LOGO_IMAGE', 'logo.gif');
 define('TEXT_PASSWORD_LAST_CHANGE', 'Passwort zuletzt geändert:&nbsp;');
@@ -27,7 +30,9 @@ define('DATE_FORMAT_LONG', '%A, %d. %B %Y'); // this is used for strftime()
 define('DATE_FORMAT', 'd.m.Y'); // this is used for date()
 define('PHP_DATE_TIME_FORMAT', 'd.m.Y H:i:s'); // this is used for date()
 define('DATE_TIME_FORMAT', DATE_FORMAT_SHORT . ' %H:%M:%S');
+// for now both defines are needed until Spiffy is completely removed.
 define('DATE_FORMAT_SPIFFYCAL', 'dd.MM.yyyy'); //Use only 'dd', 'MM' and 'yyyy' here in any order
+define('DATE_FORMAT_DATE_PICKER', 'yy-mm-dd');  //Use only 'dd', 'mm' and 'yy' here in any order
 define('ADMIN_NAV_DATE_TIME_FORMAT', '%A %d %b %Y %X'); // this is used for strftime()
 
 ////
@@ -44,18 +49,19 @@ function zen_date_raw($date, $reverse = false){
         }
     }
 
-// removed for meta tags
-// page title
-//define('TITLE', 'Zen Cart');
 
-// include template specific meta tags defines
-  if (file_exists(DIR_FS_CATALOG_LANGUAGES . $_SESSION['language'] . '/' . $template_dir . '/meta_tags.php')) {
-    $template_dir_select = $template_dir . '/';
-  } else {
-    $template_dir_select = '';
-  }
-  require(DIR_FS_CATALOG_LANGUAGES . $_SESSION['language'] . '/' . $template_dir_select . 'meta_tags.php');
+// // include template specific meta tags defines
+//   if (file_exists(DIR_FS_CATALOG_LANGUAGES . $_SESSION['language'] . '/' . $template_dir . '/meta_tags.php')) {
+//     $template_dir_select = $template_dir . '/';
+//   } else {
+//     $template_dir_select = '';
+//   }
+//   require(DIR_FS_CATALOG_LANGUAGES . $_SESSION['language'] . '/' . $template_dir_select . 'meta_tags.php');
 
+// used for prefix to browser tabs in admin pages
+define('TEXT_ADMIN_TAB_PREFIX', 'Admin ');
+// if you have multiple stores and want the Store Name to be part of the admin title (ie: for browser tabs), swap this line with the one above
+//define('TEXT_ADMIN_TAB_PREFIX', 'Admin ' . STORE_NAME);
 // meta tags
 define('ICON_METATAGS_ON', 'Meta Tags definiert');
 define('ICON_METATAGS_OFF', 'Meta Tags nicht definiert');
@@ -143,6 +149,7 @@ define('BOX_CATALOG_SALEMAKER', 'Abverkaufsmanager');
 define('BOX_CATALOG_PRODUCTS_PRICE_MANAGER', 'Artikelpreis Manager');
 define('BOX_CATALOG_PRODUCT', 'Artikel');
 define('BOX_CATALOG_PRODUCTS_TO_CATEGORIES', 'Artikel in Kategorien');
+define('BOX_CATALOG_CATEGORY', 'Category');
 
 // customers box text
 define('BOX_HEADING_CUSTOMERS', 'Kunden');
@@ -253,6 +260,7 @@ define('JS_ZONE', '* Das \'Bundesland\' muss ausgewählt sein.');
 define('JS_COUNTRY', '* Das \'Land\' muss ausgewählt sein.\n');
 define('JS_TELEPHONE', '* Die \'Telefonnummer\' muss aus mindestens  ' . ENTRY_TELEPHONE_MIN_LENGTH . ' Zeichen bestehen.\n');
 define('JS_PASSWORD', '* Das \'Passwort\' muss aus mindestens  ' . ENTRY_PASSWORD_MIN_LENGTH . ' Zeichen bestehen.\n');
+define('JS_ERROR_SUBMITTED', 'This form has already been submitted. Please press OK and wait for this process to be completed.');
 define('JS_ORDER_DOES_NOT_EXIST', 'Diese Bestellnummer %s existiert nicht!');
 define('TEXT_NO_ORDER_HISTORY', 'eine Bestellhistorie verfügbar');
 
@@ -429,9 +437,17 @@ define('TEXT_DISPLAY_NUMBER_OF_TAX_ZONES', 'Zeige <b>%d</b> bis <b>%d</b> (von <
 define('TEXT_DISPLAY_NUMBER_OF_TAX_RATES', 'Zeige <b>%d</b> bis <b>%d</b> (von <b>%d</b> Steuersätze)');
 define('TEXT_DISPLAY_NUMBER_OF_ZONES', 'Zeige <b>%d</b> bis <b>%d</b> (von <b>%d</b> Zonen)');
 
-define('PREVNEXT_BUTTON_PREV', '&lt;&lt;');
-define('PREVNEXT_BUTTON_NEXT', '&gt;&gt;');
-
+define('PREVNEXT_TITLE_FIRST_PAGE', 'First Page');
+define('PREVNEXT_TITLE_PREVIOUS_PAGE', 'Previous Page');
+define('PREVNEXT_TITLE_NEXT_PAGE', 'Next Page');
+define('PREVNEXT_TITLE_LAST_PAGE', 'Last Page');
+define('PREVNEXT_TITLE_PAGE_NO', 'Page %d');
+define('PREVNEXT_TITLE_PREV_SET_OF_NO_PAGE', 'Previous Set of %d Pages');
+define('PREVNEXT_TITLE_NEXT_SET_OF_NO_PAGE', 'Next Set of %d Pages');
+define('PREVNEXT_BUTTON_FIRST', '&laquo;FIRST');
+define('PREVNEXT_BUTTON_PREV', '[&laquo;&nbsp;Prev]');
+define('PREVNEXT_BUTTON_NEXT', '[Next&nbsp;&raquo;]');
+define('PREVNEXT_BUTTON_LAST', 'LAST&raquo;');
 
 define('TEXT_DEFAULT', 'Standard');
 define('TEXT_SET_DEFAULT', 'Als Standard definieren');
@@ -449,6 +465,7 @@ define('ERROR_DESTINATION_DOES_NOT_EXIST', 'FEHLER: Zielverzeichnis %s existiert
 define('ERROR_DESTINATION_NOT_WRITEABLE', 'FEHLER: Zielverzeichnis %s ist schreibgeschützt');
 define('ERROR_FILE_NOT_SAVED', 'FEHLER: Dateiupload wurde nicht gespeichert.');
 define('ERROR_FILETYPE_NOT_ALLOWED', 'FEHLER: Dateityp %s ist nicht erlaubt');
+define('ERROR_FILE_TOO_BIG', 'Warning: File is larger than allowed sizes. See Image configuration settings.');
 define('SUCCESS_FILE_SAVED_SUCCESSFULLY', 'Erfolgreich: Dateiupload %s wurde gespeichert');
 define('WARNING_NO_FILE_UPLOADED', 'WARNUNG: Keine Datei hochgeladen.');
 define('WARNING_FILE_UPLOADS_DISABLED', 'WARNUNG: Die Option "Dateiupload" ist in der php.ini deaktiviert.');
@@ -468,6 +485,7 @@ define('WARNING_SESSION_AUTO_START', 'WARNUNG: session.auto_start ist aktiviert 
 define('WARNING_DOWNLOAD_DIRECTORY_NON_EXISTENT', 'WARNUNG: Das Verzeichnis für Downloaddateien existiert nicht: ' . DIR_FS_DOWNLOAD . '. Downloadartikel werden nicht funktionieren, solange dieses Verzeichnis nicht vorhanden ist.');
 define('WARNING_SQL_CACHE_DIRECTORY_NON_EXISTENT', 'WARNUNG: Das Verzeichnis für SQL Caching existiert nicht:: ' . DIR_FS_SQL_CACHE . '. SQL Caching wird nicht funktionieren, solange dieses Verzeichnis nicht vorhanden ist.');
 define('WARNING_SQL_CACHE_DIRECTORY_NOT_WRITEABLE', 'WARNUNG: In das Verzeichnis für SQL Caching kann nicht geschrieben werden: ' . DIR_FS_SQL_CACHE . '. Ändern Sie die Schreibrechte dieses Ordners, sonst wird das Caching nicht funktionieren.');
+define('ERROR_UNABLE_TO_DISPLAY_SERVER_INFORMATION', 'Sorry, your PHP configuration cannot be displayed because your hosting company has specified that [phpinfo] should be disabled as part of [disable_functions] in php.ini settings.');
 define('_JANUARY', 'Januar');
 define('_FEBRUARY', 'Februar');
 define('_MARCH', 'März');
@@ -758,19 +776,14 @@ define('WARNING_PRIMARY_SERVER_FAILED', 'Warning: The primary exchange rate serv
 define('TEXT_INFO_LANGUAGE_ID', 'Geben Sie den Telefon Ländercode OHNE 0 ein<br />(english MUSS 1 sein, deutsch MUSS 43 sein):');
 define('TEXT_INFO_LANGUAGE_CODE', 'Code:<br />(en = englisch, de = deutsch)');
 
-// keepalive
-define('TEXT_KEEPALIVE_BUTTON_YES', 'Ja, Weiterarbeiten');
-define('TEXT_KEEPALIVE_BUTTON_NO', 'Nein, Ausloggen');
-define('TEXT_KEEPALIVE_WARNING_PREFIX', 'Warnung: %s Sekunden bis zum automatischen Logout | ');
-define('TEXT_KEEPALIVE_EXPIRED_PREFIX', '!!Session abgelaufen');
-define('TEXT_KEEPALIVE_SESSION_EXPIRED_HEADER', 'Ihre Session ist abgelaufen');
-define('TEXT_KEEPALIVE_SESSION_EXPIRED_MESSAGE', '<p class="ui-state-error-text"><span class="ui-icon ui-icon-alert" style="float:left; margin:0 7px 50px 0;"></span>Sorry, Sie wurden wegen langer Inaktivität ausgeloggt.</p><p>Alle nicht gespeicherten Änderungen sind verloren. Falls Sie gerade Inhalte erstellt haben, die Sie speichern wollen, kopieren Sie Ihren Inhalt in die Zwischenablage. Dann loggen Sie wieder ein und speichern Ihre Inhalte erneut.</p>');
-define('TEXT_KEEPALIVE_SERVER_UNREACHABLE_HEADER', 'Wir konnten nicht mit dem Server verbinden');
-define('TEXT_KEEPALIVE_SERVER_UNREACHABLE_MESSAGE', '<p><span class="ui-icon ui-icon-alert" style="float:left; margin:0 7px 50px 0;"></span>Wir konnten nicht mit dem Server verbinden. Mögliche Ursachen:<ul><li>Server ist down</li><li>Sie wurden wegen Inaktivität ausgeloggt</li><li>Probleme mit Ihrer Internet Verbindung</li></ul>Ihre Arbeit könnte verloren sein. Bitte kopieren Sie sicherheitshalber Ihre Arbeit in die Zwischenablage, falls Sie irgendwelche Eingaben vorbereitet haben die Sie nicht verlieren wollen.</p>');
-define('TEXT_KEEPALIVE_SERVER_UNREACHABLE_MESSAGE1', 'Wir konnten nicht mit dem Server verbinden. Ihre Arbeit könnte verloren sein. Bitte kopieren Sie sicherheitshalber Ihre Arbeit in die Zwischenablage, falls Sie irgendwelche Eingaben vorbereitet haben die Sie nicht verlieren wollen.');
-define('TEXT_KEEPALIVE_BUTTON_CLOSE', 'Schließen');
-define('TEXT_KEEPALIVE_BUTTON_LOGIN', 'Login');
-define('TEXT_KEEPALIVE_MESSAGE_YOU_WILL_LOG_OFF', 'Sie werden ausgeloggt in ');
-define('TEXT_KEEPALIVE_MESSAGE_MINUTES', 'Minuten');
-define('TEXT_KEEPALIVE_MESSAGE_ASK_CONTINUE', 'Wollen Sie weiterarbeiten?');
-define('TEXT_KEEPALIVE_MESSAGE_SESSION_EXPIRE', 'Ihre Session wird in Kürze ablaufen!');
+// Keepalive Module
+define('TEXT_TIMEOUT_WARNING', '**WARNUNG**');
+define('TEXT_TIMEOUT_TIME_REMAINING', ' verbleibende Zeit:');
+define('TEXT_TIMEOUT_SECONDS', 'Sekunden!');
+define('TEXT_TIMEOUT_ARE_YOU_STILL_THERE', 'Sind Sie noch da?');
+define('TEXT_TIMEOUT_WILL_LOGOUT_SOON', 'Sie waren inaktiv und werden demnächst automatisch ausgeloggt.');
+define('TEXT_TIMEOUT_STAY_LOGGED_IN', 'Weiterarbeiten');
+define('TEXT_TIMEOUT_LOGOUT_NOW', 'Jetzt abmelden');
+define('TEXT_TIMEOUT_TIMED_OUT_TITLE', 'Abgemeldet.');
+define('TEXT_TIMEOUT_LOGIN_AGAIN', 'Wieder anmelden');
+define('TEXT_TIMEOUT_TIMED_OUT_MESSAGE', 'Ihre Session ist abgelaufen. Sie waren inaktiv, daher wurden Sie automatisch ausgeloggt.');

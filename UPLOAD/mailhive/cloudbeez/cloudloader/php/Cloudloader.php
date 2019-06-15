@@ -881,7 +881,7 @@ class Cloudloader extends CloudloaderBase
     function readSessionVar($name)
     {
         if (file_exists($this->tempDirectory . '/var_' . $name . '.txt')) {
-            $value = @file_get_contents($this->tempDirectory . '/var_' . $name . '.txt');
+            $value = file_get_contents($this->tempDirectory . '/var_' . $name . '.txt');
             $_SESSION[$name] = $value;
             return $value;
         } else {

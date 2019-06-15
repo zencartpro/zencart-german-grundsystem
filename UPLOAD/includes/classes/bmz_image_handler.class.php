@@ -2,11 +2,11 @@
 /**
  * @package Image Handler
  * @copyright Copyright 2005-2006 Tim Kroeger (original author)
- * @copyright Copyright 2018 lat 9 - Vinos de Frutas Tropicales
- * @copyright Copyright 2003-2018 Zen Cart Development Team
+ * @copyright Copyright 2018-2019 lat 9 - Vinos de Frutas Tropicales
+ * @copyright Copyright 2003-2019 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: bmz_image_handler.class.php 2018-06-25 21:13:51Z webchills $
+ * @version $Id: bmz_image_handler.class.php 2019-06-15 15:13:51Z webchills $
  */
 
 if (!defined('IH_DEBUG_ADMIN')) {
@@ -44,7 +44,7 @@ class ih_image
      * ih_image class constructor
      * @author Tim Kroeger (tim@breakmyzencart.com)
      * @author Cindy Merkin (lat9)
-     * @version 5.1.0
+     * @version 5.1.3
      * @param string $src Image source (e.g. - images/productimage.jpg)
      * @param string $width The image's width
      * @param string $height The image's height
@@ -60,6 +60,7 @@ class ih_image
         $this->width = (int)$width;
         $this->height = (int)$height;
         $this->zoom = array();
+        $this->watermark = array();
         
         // -----
         // Initially, **assume** that the requested file exists.  If not, this flag will be set to
@@ -95,9 +96,12 @@ class ih_image
         $this->extension = '.' . pathinfo($this->src, PATHINFO_EXTENSION);
 
         $backtrace = debug_backtrace(DEBUG_BACKTRACE_IGNORE_ARGS, 1);
-        $caller = str_replace(DIR_FS_CATALOG, '', $backtrace[0]['file']);
+        $caller = $backtrace[0]['file'];
+        if (strlen(DIR_FS_CATALOG) > 1) {
+            $caller = str_replace(DIR_FS_CATALOG, '', $backtrace[0]['file']);
+        }
         $line_num = $backtrace[0]['line'];
-        $this->ihLog("__constructor for {$this->filename}, called by $caller at line number $line_num", true);
+        $this->ihLog("__constructor for {$this->filename}, called by $caller at line number $line_num" . var_export($backtrace, true), true);
 
         list($newwidth, $newheight, $resize) = $this->calculate_size($this->width, $this->height);
         // set canvas dimensions
@@ -194,19 +198,25 @@ class ih_image
     {
         global $ihConf;
         
+        // -----
+        // Adding here, since the variable appears to be "left-over" from the medium/large image-zoom
+        // feature provided by IH-2/3 versions.  Initializing it here to stop PHP Notices from being
+        // issued, but I'm not sure what the setting is supposed to do!
+        //
+        $ihConf['zoom']['gravity'] = 'Center';
         $image_base_path = $ihConf['dir']['docroot'] . $ihConf['dir']['images'];
         switch ($sizetype) {
             case 'large':
-                $this->watermark['file'] = ($ihConf['large']['watermark']) ? $image_base_path . 'large/watermark' . $ihConf['large']['suffix'] . '.png' : '';
-                $this->zoom['file'] = (isset($ihConf['large']['zoom']) && $ihConf['large']['zoom']) ? $image_base_path . 'large/zoom' . $ihConf['large']['suffix'] . '.png' : '';
+                $this->watermark['file'] = (!empty($ihConf['large']['watermark'])) ? $image_base_path . 'large/watermark' . $ihConf['large']['suffix'] . '.png' : '';
+                $this->zoom['file'] = '';
                 break;
             case 'medium':
-                $this->watermark['file'] = ($ihConf['medium']['watermark']) ? $image_base_path . 'medium/watermark' . $ihConf['medium']['suffix'] . '.png': '';
-                $this->zoom['file'] = (isset($ihConf['large']['zoom']) && $ihConf['medium']['zoom']) ? $image_base_path . 'medium/zoom' . $ihConf['medium']['suffix'] . '.png' : '';
+                $this->watermark['file'] = (!empty($ihConf['medium']['watermark'])) ? $image_base_path . 'medium/watermark' . $ihConf['medium']['suffix'] . '.png': '';
+                $this->zoom['file'] = '';
                 break;
             case 'small':
                 $this->watermark['file'] = ($ihConf['small']['watermark']) ? $image_base_path . 'watermark.png' : '';
-                $this->zoom['file'] = (isset($ihConf['large']['zoom']) && $ihConf['small']['zoom']) ? $image_base_path . 'zoom.png' : '';
+                $this->zoom['file'] = (!empty($ihConf['small']['zoom'])) ? $image_base_path . 'zoom.png' : '';
                 break;
             default:
                 $this->watermark['file'] = '';
@@ -319,7 +329,7 @@ class ih_image
         // Do we need to resize, watermark, zoom or convert to another filetype?
         if ($this->file_exists && ($resize || $this->watermark['file'] != '' || $this->zoom['file'] != '' || $file_extension != $this->extension)) {
             if (IH_CACHE_NAMING == 'Hashed') {
-                $local = $this->getCacheName($this->src . $this->watermark['file'] . $this->zoom['file'] . $quality . $background . $ihConf['watermark']['gravity'] . $ihConf['zoom']['gravity'], '.image.' . $newwidth . 'x' . $newheight . $file_extension);
+                $local = $this->getCacheName($this->src . $this->watermark['file'] . $this->zoom['file'] . $quality . $background . $ihConf['watermark']['gravity'], '.image.' . $newwidth . 'x' . $newheight . $file_extension);
             } else {
                 // use pathinfo to get full path of an image
                 $image_path = pathinfo($this->src);
@@ -342,11 +352,11 @@ class ih_image
             }
             
             //echo $local . '<br />';    
-            $local_mtime = $this->fileModifiedTime($local); // (bool)false if not exists
+            $local_mtime = $this->fileModifiedTime($local); // 0 if not exists
             $file_mtime = $this->fileModifiedTime($this->filename);
             $watermark_mtime = $this->fileModifiedTime($this->watermark['file']);
             $zoom_mtime = $this->fileModifiedTime($this->zoom['file']);
-            if (($local_mtime > $file_mtime || $local_mtime > $watermark_mtime || $local_mtime > $zoom_mtime) ||
+            if (($local_mtime > $file_mtime && $local_mtime > $watermark_mtime && $local_mtime > $zoom_mtime) ||
                 $this->resize_imageIM($file_extension, $local, $background, $quality) ||
                 $this->resize_imageGD($file_extension, $local, $background, $quality) ) {
                 if (strpos($local, $ihConf['dir']['docroot']) !== 0) {
@@ -365,7 +375,8 @@ class ih_image
     
     protected function fileModifiedTime($filename)
     {
-        return (is_file($filename)) ? filemtime($filename) : false;
+        clearstatcache();
+        return (is_file($filename)) ? filemtime($filename) : 0;
     }
   
     protected function sanitizeImageNames($name)
@@ -794,25 +805,25 @@ class ih_image
                 if (!function_exists("imagecreatefromgif")) {
                     return false;
                 }
-                $image = imagecreatefromgif($src_name);
+                $image = @imagecreatefromgif($src_name);
                 break;
             case '.png':
                 if (!function_exists("imagecreatefrompng")) {
                     return false;
                 }
-                $image = imagecreatefrompng($src_name);
+                $image = @imagecreatefrompng($src_name);
                 break;
             case '.jpg':
             case '.jpeg':
                 if (!function_exists("imagecreatefromjpeg")) {
                     return false;
                 }
-                $image = imagecreatefromjpeg($src_name);
+                $image = @imagecreatefromjpeg($src_name);
                 break;
         }
         if ($image === false) {
             $php_error_msg = error_get_last();
-            $this->ihLog("load_imageGD($src_name), failure loading the image: " . $php_error_msg['message']);
+            $this->ihLog("load_imageGD($src_name), failure loading the image; check image validity");
         }
         return $image;
     }
@@ -906,9 +917,16 @@ class ih_image
                     $zoom_sizetype = 'large';
                 }
                 // additional zoom functionality
-                $products_image_directory = substr($src, strlen($ihConf['dir']['images']), strrpos($src, '/') - strlen($ihConf['dir']['images']) + 1);
-                $products_image_filename = substr($src, strrpos($src, '/') + 1, strlen ($src) - (strrpos ($src, '/') + 1) - strlen ($this->extension));  
-                $products_image_zoom = $ihConf['dir']['images'] . $zoom_sizetype . '/' . $products_image_directory . $products_image_filename . $ihConf[$zoom_sizetype]['suffix'] . $this->extension;
+                $pathinfo = pathinfo($src);
+                $base_image_directory = $ihConf['dir']['images'];
+                $base_imagedir_len = strlen($base_image_directory);
+                $products_image_directory = (strpos($pathinfo['dirname'], $base_image_directory) === 0) ? substr($pathinfo['dirname'], $base_imagedir_len) : $pathinfo['dirname'];
+                $products_image_directory .= DIRECTORY_SEPARATOR;
+                $products_image_filename = $pathinfo['filename'];
+                
+                $this->ihLog("get_additional_parameters($alt, $width, $height, $parameters), base_dir = '$base_image_directory', zoom_sizetype = '$zoom_sizetype', product_dir = '$products_image_directory'" . var_export($pathinfo, true));
+                $products_image_zoom = $base_image_directory . $zoom_sizetype . '/' . $products_image_directory . $products_image_filename . $ihConf[$zoom_sizetype]['suffix'] . $this->extension;
+                
                 $ih_zoom_image = new ih_image($products_image_zoom, $ihConf[$zoom_sizetype]['width'], $ihConf[$zoom_sizetype]['height']);
                 $products_image_zoom = $ih_zoom_image->get_local();
                 list($zoomwidth, $zoomheight) = @getimagesize($ihConf['dir']['docroot'] . $products_image_zoom);

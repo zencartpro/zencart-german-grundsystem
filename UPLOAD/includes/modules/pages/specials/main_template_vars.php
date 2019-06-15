@@ -1,11 +1,12 @@
 <?php
 /**
+ * Zen Cart German Specific
  * Specials
  * @package page
- * @copyright Copyright 2003-2016 Zen Cart Development Team
+ * @copyright Copyright 2003-2019 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: main_template_vars.php 730 2016-03-06 20:49:16Z webchills $
+ * @version $Id: main_template_vars.php 731 2019-04-12 12:49:16Z webchills $
  */
 
 if (MAX_DISPLAY_SPECIAL_PRODUCTS > 0 ) {
@@ -52,6 +53,9 @@ if ($sale_categories->RecordCount() > 0){
 }
 
   $specials_query_raw = $db->bindVars($specials_query_raw, ':languagesID', $_SESSION['languages_id'], 'integer');
+  
+  $zco_notifier->notify('NOTIFY_SPECIALS_MAIN_TEMPLATE_VARS_SQL_STRING', array(), $specials_query_raw);
+  
   $specials_split = new splitPageResults($specials_query_raw, MAX_DISPLAY_SPECIAL_PRODUCTS);
   $specials = $db->Execute($specials_split->sql_query);
   $row = 0;
@@ -81,6 +85,9 @@ if ($sale_categories->RecordCount() > 0){
       }
       $specials->MoveNext();
     }
+    
+    $zco_notifier->notify('NOTIFY_SPECIALS_MAIN_TEMPLATE_VARS_END', array(), $list_box_contents);
+    
     require($template->get_template_dir('tpl_specials_default.php',DIR_WS_TEMPLATE, $current_page_base,'templates'). '/tpl_specials_default.php');
   }
 }

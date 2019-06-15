@@ -3,10 +3,10 @@
  * checkout_confirmation header_php.php
  *
  * @package page
- * @copyright Copyright 2003-2018 Zen Cart Development Team
+ * @copyright Copyright 2003-2019 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: header_php.php 734 2018-04-01 16:29:16Z webchills $
+ * @version $Id: header_php.php 735 2019-06-15 21:29:16Z webchills $
  */
 
 // This should be first line of the script:
@@ -18,7 +18,7 @@ if ($_SESSION['cart']->count_contents() <= 0) {
 }
 
 // if the customer is not logged on, redirect them to the login page
-  if (!$_SESSION['customer_id']) {
+  if (!zen_is_logged_in()) {
     $_SESSION['navigation']->set_snapshot(array('mode' => 'SSL', 'page' => FILENAME_CHECKOUT_PAYMENT));
     zen_redirect(zen_href_link(FILENAME_LOGIN, '', 'SSL'));
   } else {
@@ -45,13 +45,14 @@ if (isset($_SESSION['shipping']['id']) && $_SESSION['shipping']['id'] == 'free_f
 }
 
 if (isset($_POST['payment'])) $_SESSION['payment'] = $_POST['payment'];
+
 $_SESSION['comments'] = zen_output_string_protected($_POST['comments']);
 
 //'checkout_payment_discounts'
 //zen_redirect(zen_href_link(FILENAME_CHECKOUT_PAYMENT, '', 'SSL'));
 
 
-if (DISPLAY_CONDITIONS_ON_CHECKOUT == 'true') { 
+if (DISPLAY_CONDITIONS_ON_CHECKOUT == 'true') {
   if (!isset($_POST['conditions']) || ($_POST['conditions'] != '1')) {
     $messageStack->add_session('checkout_payment', ERROR_CONDITIONS_NOT_ACCEPTED, 'error');
   }
@@ -97,8 +98,6 @@ if (is_array($payment_modules->modules)) {
 if ($messageStack->size('checkout_payment') > 0) {
   zen_redirect(zen_href_link(FILENAME_CHECKOUT_PAYMENT, '', 'SSL'));
 }
-//echo $messageStack->size('checkout_payment');
-//die('here');
 
 // Stock Check
 $flagAnyOutOfStock = false;
@@ -116,7 +115,7 @@ if (STOCK_CHECK == 'true') {
 }
 
 // update customers_referral with $_SESSION['gv_id']
-if ($_SESSION['cc_id']) {
+if (!empty($_SESSION['cc_id'])) {
   $discount_coupon_query = "SELECT coupon_code
                             FROM " . TABLE_COUPONS . "
                             WHERE coupon_id = :couponID";

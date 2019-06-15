@@ -1,10 +1,11 @@
 <?php
 /**
+ * Zen Cart German Specific
  * @package shippingMethod
- * @copyright Copyright 2003-2016 Zen Cart Development Team
+ * @copyright Copyright 2003-2019 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: zones.php 732 2015-12-21 21:49:16Z webchills $
+ * @version $Id: zones.php 733 2019-04-12 12:49:16Z webchills $
  */
 /*
 
@@ -100,7 +101,9 @@
       $this->code = 'zones';
       $this->title = MODULE_SHIPPING_ZONES_TEXT_TITLE;
       $this->description = MODULE_SHIPPING_ZONES_TEXT_DESCRIPTION;
-      $this->sort_order = MODULE_SHIPPING_ZONES_SORT_ORDER;
+      $this->sort_order = defined('MODULE_SHIPPING_ZONES_SORT_ORDER') ? MODULE_SHIPPING_ZONES_SORT_ORDER : null;
+      if (null === $this->sort_order) return false;
+
       $this->icon = '';
       $this->tax_class = MODULE_SHIPPING_ZONES_TAX_CLASS;
       $this->tax_basis = MODULE_SHIPPING_ZONES_TAX_BASIS;
@@ -146,6 +149,8 @@
       $dest_country = $order->delivery['country']['iso_code_2'];
       $dest_zone = 0;
       $error = false;
+      $shipping_method = '';
+      $shipping_cost = 0;
 
     $order_total_amount = $_SESSION['cart']->show_total() - $_SESSION['cart']->free_shipping_prices() ;
 
@@ -343,4 +348,3 @@
       return $keys;
     }
   }
-?>

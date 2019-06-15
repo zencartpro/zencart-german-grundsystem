@@ -17,16 +17,14 @@
 // | to obtain it through the world-wide-web, please send a note to       |
 // | license@zen-cart.com so we can mail you a copy immediately.          |
 // +----------------------------------------------------------------------+
-// $Id: jscript_main.php 729 2011-08-09 15:49:16Z hugo13 $
+// $Id: jscript_main.php 730 2019-04-09 11:49:16Z webchills $
 //
 ?>
-<script type="text/javascript""includes/general.js" type="text/javascript"></script>
+<script src="includes/general.js" type="text/javascript"></script>
 <script type="text/javascript"><!--
 function popupWindow(url) {
   window.open(url,'popupWindow','toolbar=no,location=no,directories=no,status=no,menubar=no,scrollbars=yes,resizable=yes,copyhistory=no,width=550,height=550,screenX=150,screenY=100,top=100,left=150')
 }
-//--></script>
-<script type="text/javascript"><!--
 function session_win() {
   window.open("<?php echo zen_href_link(FILENAME_INFO_SHOPPING_CART); ?>","info_shopping_cart","height=460,width=430,toolbar=no,statusbar=no,scrollbars=yes").focus();
 }

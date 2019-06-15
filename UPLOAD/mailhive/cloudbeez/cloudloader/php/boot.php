@@ -12,7 +12,6 @@
   [http://www.gnu.org/licenses/gpl-2.0.html]
 
  */
-    
 
 
 header("Expires: Mon, 26 Jul 1997 05:00:00 GMT");
@@ -81,7 +80,7 @@ if (!function_exists('json_encode')) {
 define('PATH_INSTALL', str_replace("\\", "/", realpath(dirname(__FILE__) . "/../../")));
 $url = (defined('CLOUDLOADER_URL')) ? CLOUDLOADER_URL : 'http://cloudbeez.com';
 
-define('CLOUDBEEZ_MAILBEEZ_INSTALLER_VERSION', '3.76');
+define('CLOUDBEEZ_MAILBEEZ_INSTALLER_VERSION', '4.0');
 define('CLOUDBEEZ_GATEWAY_PUBLIC', $url . '/api/public/v1'); // api/public/v1
 define('CLOUDBEEZ_GATEWAY_PRIVATE', $url . '/api/private/v1'); // api/private/v1
 //define('CLOUDBEEZ_CONNECTION_SPEED_TEST_URL', CLOUDLOADER_URL . '/speedtest_file.zip');
@@ -98,7 +97,11 @@ if (!defined('MH_PLATFORM')) {
 
 
 $install_lang = $_SESSION['language'];
-if (!@include($base_path . 'cloudloader/languages/' . $install_lang . '.php')) {
+
+
+if (file_exists($base_path . 'cloudloader/languages/' . $install_lang . '.php')) {
+    include($base_path . 'cloudloader/languages/' . $install_lang . '.php');
+} else {
     $install_lang = 'english';
     include($base_path . 'cloudloader/languages/' . $install_lang . '.php');
 }

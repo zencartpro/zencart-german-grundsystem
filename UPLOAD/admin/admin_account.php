@@ -1,17 +1,16 @@
 <?php
 /**
  * @package admin
- * @copyright Copyright 2003-2016 Zen Cart Development Team
+ * @copyright Copyright 2003-2019 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: admin_account.php 733 2016-05-08 09:25:16Z webchills $
+ * @version $Id: admin_account.php 734 2019-04-13 10:25:16Z webchills $
  */
 
 require('includes/application_top.php');
 if (file_exists(DIR_WS_LANGUAGES . $_SESSION['language'] . '/' . 'users.php')) {
   include(DIR_WS_LANGUAGES . $_SESSION['language'] . '/' . 'users.php');
 }
-
 // Check if session has timed out
 if (!isset($_SESSION['admin_id'])) zen_redirect(zen_href_link(FILENAME_LOGIN, '', 'SSL'));
 $user = $_SESSION['admin_id'];
@@ -89,8 +88,8 @@ $userDetails = $userList[0];
 <link rel="stylesheet" type="text/css" href="includes/stylesheet.css">
 <link rel="stylesheet" type="text/css" href="includes/cssjsmenuhover.css" media="all" id="hoverJS">
 <link rel="stylesheet" type="text/css" href="includes/admin_access.css" />
-<script type="text/javascript" src="includes/menu.js"></script>
-<script type="text/javascript" src="includes/general.js"></script>
+<script language="javascript" src="includes/menu.js"></script>
+<script language="javascript" src="includes/general.js"></script>
 <script type="text/javascript">
   <!--
   function init()

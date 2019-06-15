@@ -4,10 +4,10 @@
  * see {@link  http://www.zen-cart.com/wiki/index.php/Developers_API_Tutorials#InitSystem wikitutorials} for more details.
  *
  * @package initSystem
- * @copyright Copyright 2003-2018 Zen Cart Development Team
+ * @copyright Copyright 2003-2019 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: init_sessions.php 734 2018-01-02 09:49:16Z webchills $
+ * @version $Id: init_sessions.php 736 2019-06-15 17:49:16Z webchills $
  */
 if (!defined('IS_ADMIN_FLAG')) {
   die('Illegal Access');
@@ -69,7 +69,10 @@ if (SESSION_FORCE_COOKIE_USE == 'True') {
     $session_started = true;
   }
 } elseif (SESSION_BLOCK_SPIDERS == 'True') {
-  $user_agent = strtolower($_SERVER['HTTP_USER_AGENT']);
+  $user_agent = '';
+  if (isset($_SERVER['HTTP_USER_AGENT'])) {
+    $user_agent = strtolower($_SERVER['HTTP_USER_AGENT']);
+  }
   $spider_flag = false;
   if (zen_not_null($user_agent)) {
     $spiders = file(DIR_WS_INCLUDES . 'spiders.txt');
@@ -114,7 +117,7 @@ if (!isset($_SESSION['customers_host_address'])) {
  */
 if ( ($request_type == 'SSL') && (SESSION_CHECK_SSL_SESSION_ID == 'True') && (ENABLE_SSL == 'true') && ($session_started == true) ) {
   $ssl_session_id = $_SERVER['SSL_SESSION_ID'];
-  if (!$_SESSION['SSL_SESSION_ID']) {
+  if (empty($_SESSION['SSL_SESSION_ID'])) {
     $_SESSION['SSL_SESSION_ID'] = $ssl_session_id;
   }
   if ($_SESSION['SSL_SESSION_ID'] != $ssl_session_id) {
@@ -127,7 +130,7 @@ if ( ($request_type == 'SSL') && (SESSION_CHECK_SSL_SESSION_ID == 'True') && (EN
  */
 if (SESSION_CHECK_USER_AGENT == 'True') {
   $http_user_agent = $_SERVER['HTTP_USER_AGENT'];
-  if (!$_SESSION['SESSION_USER_AGENT']) {
+  if (empty($_SESSION['SESSION_USER_AGENT'])) {
     $_SESSION['SESSION_USER_AGENT'] = $http_user_agent;
   }
   if ($_SESSION['SESSION_USER_AGENT'] != $http_user_agent) {
@@ -140,7 +143,7 @@ if (SESSION_CHECK_USER_AGENT == 'True') {
  */
 if (SESSION_CHECK_IP_ADDRESS == 'True') {
   $ip_address = zen_get_ip_address();
-  if (!$_SESSION['SESSION_IP_ADDRESS']) {
+  if (empty($_SESSION['SESSION_IP_ADDRESS'])) {
     $_SESSION['SESSION_IP_ADDRESS'] = $ip_address;
   }
   if ($_SESSION['SESSION_IP_ADDRESS'] != $ip_address) {

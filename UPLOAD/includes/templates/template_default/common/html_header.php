@@ -1,14 +1,15 @@
 <?php
 /**
+ * Zen Cart German Specific
  * Common Template
  *
  * outputs the html header. i,e, everything that comes before the \</head\> tag <br />
  *
  * @package templateSystem
- * @copyright Copyright 2003-2018 Zen Cart Development Team
+ * @copyright Copyright 2003-2019 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: html_header.php 863 2018-04-01 08:10:39Z webchills $
+ * @version $Id: html_header.php 865 2019-06-15 17:10:39Z webchills $
  */
 
 $zco_notifier->notify('NOTIFY_HTML_HEAD_START', $current_page_base, $template_dir);
@@ -42,11 +43,13 @@ if (!class_exists('Mobile_Detect')) {
 <meta name="language" content="<?php echo META_TAG_LANGUAGE; ?>" />
 <meta http-equiv="imagetoolbar" content="no" />
 <meta name="author" content="<?php echo STORE_NAME ?>" />
-<meta name="generator" content="Zen-Cart 1.5.5 - deutsche Version, http://www.zen-cart-pro.at" />
+<meta name="generator" content="Zen-Cart 1.5.6 - deutsche Version, http://www.zen-cart-pro.at" />
 <?php if (defined('ROBOTS_PAGES_TO_SKIP') && in_array($current_page_base,explode(",",constant('ROBOTS_PAGES_TO_SKIP'))) || $current_page_base=='down_for_maintenance' || $robotsNoIndex === true) { ?>
 <meta name="robots" content="noindex, nofollow" />
 <?php } ?>
+
 <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=yes"/>
+
 <?php if (defined('FAVICON')) { ?>
 <link rel="icon" href="<?php echo FAVICON; ?>" type="image/x-icon" />
 <link rel="shortcut icon" href="<?php echo FAVICON; ?>" type="image/x-icon" />
@@ -54,15 +57,15 @@ if (!class_exists('Mobile_Detect')) {
 
 <base href="<?php echo (($request_type == 'SSL') ? HTTPS_SERVER . DIR_WS_HTTPS_CATALOG : HTTP_SERVER . DIR_WS_CATALOG ); ?>" />
 <?php if (isset($canonicalLink) && $canonicalLink != '') { ?>
-  <link rel="canonical" href="<?php echo $canonicalLink; ?>" />
+<link rel="canonical" href="<?php echo $canonicalLink; ?>" />
 <?php } ?>
 <?php
 // BOF hreflang for multilingual sites
 if (!isset($lng) || (isset($lng) && !is_object($lng))) {
   $lng = new language;
 }
-if (sizeof($lng->catalog_languages) > 1) {
-    foreach($lng->catalog_languages as $key=>$value) {
+if (count($lng->catalog_languages) > 1) {
+  foreach($lng->catalog_languages as $key => $value) {
     echo '<link rel="alternate" href="' . ($this_is_home_page ? zen_href_link(FILENAME_DEFAULT, 'language=' . $key, $request_type, false) : $canonicalLink . (strpos($canonicalLink, '?') ? '&amp;' : '?') . 'language=' . $key) . '" hreflang="' . $key . '" />' . "\n";
   }
 }
@@ -85,7 +88,7 @@ window[disableStr] = true; }
 <?php if (FACEBOOK_OPEN_GRAPH_STATUS == 'true') { ?>
 <?php require($template->get_template_dir('facebook_open_graph.php',DIR_WS_TEMPLATE, $current_page_base,'templates'). '/facebook_open_graph.php'); ?>
 <?php } ?>
-<script type="text/javascript">window.jQuery || document.write(unescape('%3Cscript type="text/javascript" src="//code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"%3E%3C/script%3E'));</script>
+<script type="text/javascript">window.jQuery || document.write(unescape('%3Cscript type="text/javascript" src="https://code.jquery.com/jquery-3.4.0.min.js" integrity="sha256-BJeo0qm959uMBGb65z40ejJYGSgR7REI4+CW1fNKwOg=" crossorigin="anonymous"%3E%3C/script%3E'));</script>
 <script type="text/javascript">window.jQuery || document.write(unescape('%3Cscript type="text/javascript" src="<?php echo $template->get_template_dir('.js',DIR_WS_TEMPLATE, $current_page_base,'jscript'); ?>/jquery.min.js"%3E%3C/script%3E'));</script>
 
 <?php

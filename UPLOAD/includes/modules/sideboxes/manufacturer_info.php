@@ -29,4 +29,3 @@
       require($template->get_template_dir($column_box_default, DIR_WS_TEMPLATE, $current_page_base,'common') . '/' . $column_box_default);
     }
   }
-?>

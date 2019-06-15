@@ -1,10 +1,10 @@
 <?php
 /**
  * @package admin
- * @copyright Copyright 2003-2016 Zen Cart Development Team
+ * @copyright Copyright 2003-2019 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: coupon_restrict.php 729 2011-08-09 15:49:16Z hugo13 $
+ * @version $Id: coupon_restrict.php 730 2019-04-13 15:49:16Z webchills $
  */
 
 define('HEADING_TITLE', 'Discount Coupons Product/Category Restrictions');
@@ -35,3 +35,16 @@ define('TEXT_MANUFACTURER', 'Manufacturer: ');
 define('TEXT_CATEGORY', 'Category: ');
 define('ERROR_DISCOUNT_COUPON_DEFINED_CATEGORY', 'Category Not Completed');
 define('ERROR_DISCOUNT_COUPON_DEFINED_PRODUCT', 'Product Not Completed');
+define('HEADER_MANUFACTURER_NAME', '<br> -- OR -- <br>' . 'Manufacturer: ');
+define('TEXT_ALL_MANUFACTURERS_ADD', 'Add All Manufacturer Products');
+define('TEXT_ALL_MANUFACTURERS_REMOVE', 'Remove All Manufacturer Products');
+
+define('HEADER_PRODUCT_STATUS', 'Status');
+define('HEADER_PRODUCT_MODEL', 'Model');
+
+define('ERROR_RESET_CATEGORY_MANUFACTURER', 'Category and Manufacturer filters reset. Use filters individually.');
+
+define('TEXT_PULLDOWN_ALLOW', 'Allow');
+define('TEXT_PULLDOWN_DENY', 'Deny');
+define('TEXT_SUBMIT_CATEGORY_ADD', 'Add');
+define('TEXT_SUBMIT_PRODUCT_UPDATE', 'Update');

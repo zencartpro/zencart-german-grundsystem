@@ -25,7 +25,6 @@ define('OTHER_IMAGE_REVIEWS_RATING_STARS_FOUR', 'stars_4_small.png');
 define('OTHER_IMAGE_REVIEWS_RATING_STARS_THREE', 'stars_3_small.png');
 define('OTHER_IMAGE_REVIEWS_RATING_STARS_TWO', 'stars_2_small.png');
 define('OTHER_IMAGE_REVIEWS_RATING_STARS_ONE', 'stars_1_small.png');
-//define('OTHER_IMAGE_', '');
 
 /*
  * ALT tags for other images
@@ -43,4 +42,3 @@ define('OTHER_REVIEWS_RATING_STARS_FOUR_ALT', 'Four Stars');
 define('OTHER_REVIEWS_RATING_STARS_THREE_ALT', 'Three Stars');
 define('OTHER_REVIEWS_RATING_STARS_TWO_ALT', 'Two Stars');
 define('OTHER_REVIEWS_RATING_STARS_ONE_ALT', 'One Star');
-//define('OTHER_xxx_ALT', '');

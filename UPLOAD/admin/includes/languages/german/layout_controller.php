@@ -1,10 +1,10 @@
 <?php
 /**
  * @package admin
- * @copyright Copyright 2003-2016 Zen Cart Development Team
+ * @copyright Copyright 2003-2019 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: layout_controller.php 575 2015-12-22 16:39:16Z webchills $
+ * @version $Id: layout_controller.php 576 2019-04-13 09:39:16Z webchills $
  */
 
 define('HEADING_TITLE','Tabellenspalten');
@@ -36,8 +36,6 @@ define('TEXT_INFO_DELETE_MISSING_LAYOUT_BOX_NOTE','HINWEIS: Dieser Vorgang lösc
 define('TEXT_INFO_RESET_TEMPLATE_SORT_ORDER','Setze die Sortierung aller Boxen für dieses Template auf die STANDARDWERTE zurück:');
 define('TEXT_INFO_RESET_TEMPLATE_SORT_ORDER_NOTE','Dieser Vorgang löscht keine dieser Boxen. Es wird nur die aktuellen Sortierung zurückgesetzt');
 define('TEXT_INFO_BOX_DETAILS','Boxdetails:');
-define('TEXT_INFO_SET_AS_DEFAULT','Die Boxdetails als Defaultwert speichern ');
-define('SUCCESS_BOX_SET_DEFAULTS','Die Boxdetails wurden gespeichert: ');
 
 ////////////////
 
@@ -46,6 +44,8 @@ define('HEADING_TITLE_LAYOUT_TEMPLATE','Seitenlayout Vorlage (Template)');
 define('TABLE_HEADING_LAYOUT_TITLE','Titel');
 define('TABLE_HEADING_LAYOUT_VALUE','Wert');
 
+define('TABLE_HEADING_BOXES_PATH', 'Sideboxen Pfad: ');
+define('TEXT_WARNING_NEW_BOXES_FOUND', 'WARNUNG: Neue Sideboxen gefunden: ');
 define('TEXT_MODULE_DIRECTORY','Verzeichnis des Seitenlayouts:');
 define('TEXT_INFO_DATE_ADDED','Erstellt am:');
 define('TEXT_INFO_LAST_MODIFIED','Letzte Änderung:');

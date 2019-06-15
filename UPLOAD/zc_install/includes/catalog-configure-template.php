@@ -66,7 +66,7 @@ define('DIR_FS_CATALOG', '%%_DIR_FS_CATALOG_%%');
  */
 define('DB_TYPE', '%%_DB_TYPE_%%'); // immer 'mysql'
 define('DB_PREFIX', '%%_DB_PREFIX_%%'); // Prefix für die Datenbanktabellen - sollte leer sein, wir empfehlen KEIN Prefix zu verwenden
-define('DB_CHARSET', '%%_DB_CHARSET_%%'); // immer 'utf8'
+define('DB_CHARSET', '%%_DB_CHARSET_%%'); // 'utf8mb4' oder das ältere 'utf8'
 define('DB_SERVER', '%%_DB_SERVER_%%');  // Adresse des Datenbankservers (bei den meisten Providern localhost)
 define('DB_SERVER_USERNAME', '%%_DB_SERVER_USERNAME_%%'); // Benutzername für die Datenbank
 define('DB_SERVER_PASSWORD', '%%_DB_SERVER_PASSWORD_%%'); // Passwort des Datenbankusers

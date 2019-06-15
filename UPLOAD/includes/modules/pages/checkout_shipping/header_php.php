@@ -1,18 +1,19 @@
 <?php
 /**
+ * Zen Cart German Specific
  * Checkout Shipping Page
  *
  * @package page
- * @copyright Copyright 2003-2016 Zen Cart Development Team
+ * @copyright Copyright 2003-2019 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: header_php.php 734 2016-06-04 17:49:16Z webchills $
+ * @version $Id: header_php.php 736 2019-06-15 21:49:16Z webchills $
  */
 // This should be first line of the script:
   $zco_notifier->notify('NOTIFY_HEADER_START_CHECKOUT_SHIPPING');
   require_once(DIR_WS_CLASSES . 'http_client.php');
   
-  // check if is mobile or tablet visitor to allow order report mobile, tablet or desktop
+// check if is mobile or tablet visitor to allow order report mobile, tablet or desktop
   
  if (!class_exists('Mobile_Detect')) {
   include_once(DIR_WS_CLASSES . 'Mobile_Detect.php');
@@ -36,7 +37,7 @@ $_SESSION['mobilevisitor'] = false;
   }
 
 // if the customer is not logged on, redirect them to the login page
-  if (!isset($_SESSION['customer_id']) || !$_SESSION['customer_id']) {
+  if (!zen_is_logged_in()) {
     $_SESSION['navigation']->set_snapshot();
     zen_redirect(zen_href_link(FILENAME_LOGIN, '', 'SSL'));
   } else {
@@ -69,7 +70,7 @@ $_SESSION['mobilevisitor'] = false;
     }
 
 // if no shipping destination address was selected, use the customers own address as default
-  if (!$_SESSION['sendto']) {
+  if (empty($_SESSION['sendto'])) {
     $_SESSION['sendto'] = $_SESSION['customer_default_address_id'];
   } else {
 // verify the selected shipping address
@@ -159,7 +160,7 @@ if (isset($_SESSION['cart']->cartID)) {
     if (zen_not_null($_POST['comments'])) {
       $_SESSION['comments'] = zen_output_string_protected($_POST['comments']);
     }
-    $comments = $_SESSION['comments'];
+    $comments = isset($_SESSION['comments']) ? $_SESSION['comments'] : '';
     $quote = array();
 
     if ( (zen_count_shipping_modules() > 0) || ($free_shipping == true) ) {
@@ -217,24 +218,24 @@ if (isset($_SESSION['cart']->cartID)) {
       }
     }
     $checkval = $_SESSION['shipping']['id'];
-    if (!in_array($checkval, $checklist) && $_SESSION['shipping']['id'] != 'free_free') {
+    if (!in_array($checkval, $checklist)) {
       $messageStack->add('checkout_shipping', ERROR_PLEASE_RESELECT_SHIPPING_METHOD, 'error');
+      unset($_SESSION['shipping']); // Prepare $_SESSION to determine lowest available price/force a default selection mc12345678 2018-04-03
     }
   }
 
-// if no shipping method has been selected, automatically select the cheapest method.
+// If no shipping method has been selected, automatically select the cheapest method.
 // If the module's status was changed when none were available, to save on implementing
 // a javascript force-selection method, also automatically select the cheapest shipping
 // method if more than one module is now enabled
   if ((!isset($_SESSION['shipping']) || (!isset($_SESSION['shipping']['id']) || $_SESSION['shipping']['id'] == '') && zen_count_shipping_modules() >= 1)) $_SESSION['shipping'] = $shipping_modules->cheapest();
-
 
   // Should address-edit button be offered?
   $displayAddressEdit = (MAX_ADDRESS_BOOK_ENTRIES >= 2);
 
   // if shipping-edit button should be overridden, do so
   $editShippingButtonLink = zen_href_link(FILENAME_CHECKOUT_SHIPPING_ADDRESS, '', 'SSL');
-  if (isset($_SESSION['payment']) && method_exists(${$_SESSION['payment']}, 'alterShippingEditButton')) {
+  if (isset($_SESSION['payment']) && isset(${$_SESSION['payment']}) && method_exists(${$_SESSION['payment']}, 'alterShippingEditButton')) {
     $theLink = ${$_SESSION['payment']}->alterShippingEditButton();
     if ($theLink) {
       $editShippingButtonLink = $theLink;

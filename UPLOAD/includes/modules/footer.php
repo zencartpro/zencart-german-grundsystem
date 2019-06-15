@@ -1,5 +1,6 @@
 <?php
 /**
+ * Zen Cart German Specific
  * footer code - calculates information for display, and calls the template file for footer-rendering
  *
  * @package templateStructure

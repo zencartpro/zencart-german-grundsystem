@@ -3,15 +3,15 @@
  * Header code file for the Account Password page
  *
  * @package page
- * @copyright Copyright 2003-2016 Zen Cart Development Team
+ * @copyright Copyright 2003-2019 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: header_php.php 731 2016-03-02 21:49:16Z webchills $
+ * @version $Id: header_php.php 732 2019-06-15 20:49:16Z webchills $
  */
 // This should be first line of the script:
 $zco_notifier->notify('NOTIFY_HEADER_START_ACCOUNT_PASSWORD');
 
-if (!$_SESSION['customer_id']) {
+if (!zen_is_logged_in()) {
   $_SESSION['navigation']->set_snapshot();
   zen_redirect(zen_href_link(FILENAME_LOGIN, '', 'SSL'));
 }

@@ -6,10 +6,10 @@
  * Displays listing of Featured Products
  *
  * @package templateSystem
- * @copyright Copyright 2003-2016 Zen Cart Development Team
+ * @copyright Copyright 2003-2019 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: tpl_modules_products_featured_listing.php 732 2016-05-31 16:13:16Z webchills $
+ * @version $Id: tpl_modules_products_featured_listing.php 733 2019-04-12 18:13:16Z webchills $
  */
 ?>
 <table class="products-listing productsFeaturedListing">
@@ -40,7 +40,7 @@
       } else {
         $display_products_name = '';
       }
-// EOF Easy Google Analytics module pt1
+
 
       if (PRODUCT_FEATURED_LIST_MODEL != '0' and zen_get_show_product_switch($featured_products->fields['products_id'], 'model')) {
         $display_products_model = TEXT_PRODUCTS_MODEL . $featured_products->fields['products_model'] . str_repeat('<br class="clearBoth" />', substr(PRODUCT_FEATURED_LIST_MODEL, 3, 1));
@@ -83,7 +83,7 @@
         $display_products_price = '';
       }
 
-// BOF Easy Google Analytics module pt2
+
 // more info in place of buy now
       if (PRODUCT_FEATURED_BUY_NOW != '0' and zen_get_products_allow_add_to_cart($featured_products->fields['products_id']) == 'Y') {
         if (zen_has_product_attributes($featured_products->fields['products_id'])) {
@@ -116,7 +116,7 @@
       } else {
         $display_products_description = '';
       }
-// EOF Easy Google Analytics module pt2
+
 
 ?>
           <tr>

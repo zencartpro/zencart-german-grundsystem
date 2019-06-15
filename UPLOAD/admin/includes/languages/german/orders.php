@@ -1,10 +1,11 @@
 <?php
 /**
+ * Zen Cart German Specific
  * @package admin
  * @copyright Copyright 2003-2018 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: orders.php 633 2018-03-30 07:05:14Z webchills $
+ * @version $Id: orders.php 634 2018-04-15 09:05:14Z webchills $
  */
 
 define('HEADING_TITLE', 'Bestellungen');
@@ -37,8 +38,9 @@ define('TABLE_HEADING_PRICE_EXCLUDING_TAX', 'Preis (exkl. MwSt.)');
 define('TABLE_HEADING_PRICE_INCLUDING_TAX', 'Preis (inkl. MwSt.)');
 define('TABLE_HEADING_TOTAL_EXCLUDING_TAX', 'Summe (exkl. MwSt.)');
 define('TABLE_HEADING_TOTAL_INCLUDING_TAX', 'Summe (inkl. MwSt.)');
+define('TABLE_HEADING_UPDATED_BY', 'aktualisiert von');
 
-define('TABLE_HEADING_CUSTOMER_NOTIFIED', 'Der Kunde wurde benachrichtigt');
+define('TABLE_HEADING_CUSTOMER_NOTIFIED', 'Kunde wurde benachrichtigt');
 define('TABLE_HEADING_DATE_ADDED', 'Erstellt am');
 
 define('ENTRY_CUSTOMER', 'Kunde:');
@@ -132,3 +134,6 @@ define('TEXT_INVALID_ORDER_STATUS', '<span class="alert">(Ungültiger Bestellsta
 
 define('BUTTON_TO_LIST', 'Liste der Bestellungen');
 define('SELECT_ORDER_LIST', 'Gehe zu Bestellung:');
+define('TEXT_MAP_CUSTOMER_ADDRESS', 'Karte Kundenadresse');
+define('TEXT_MAP_SHIPPING_ADDRESS', 'Karte Lieferadresse');
+define('TEXT_MAP_BILLING_ADDRESS', 'Karte Rechnungsadresse');

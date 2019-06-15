@@ -29,8 +29,9 @@ define('TEXT_DELETE_INTRO', 'Sind Sie sicher, dass Sie diesen Kunden löschen wo
 define('TEXT_DELETE_REVIEWS', 'Lösche %s Bewertung(en)');
 define('TEXT_INFO_HEADING_DELETE_CUSTOMER', 'Lösche Kunde');
 define('TYPE_BELOW', 'Geben Sie unten ein');
-define('PLEASE_SELECT', 'Wählen Sie');
+define('PLEASE_SELECT_ONE', 'Select One');
 define('TEXT_INFO_NUMBER_OF_ORDERS', 'Anzahl der Bestellungen:');
+define('TEXT_INFO_LIFETIME_VALUE', 'Customer Lifetime Value:');
 define('TEXT_INFO_LAST_ORDER', 'Letzte Bestellung:');
 define('TEXT_INFO_ORDERS_TOTAL', 'Summe:');
 define('CUSTOMERS_REFERRAL', 'Kundenverweis (Referal)<br />Erster Aktionskupon');
@@ -60,4 +61,5 @@ define('EMAIL_CUSTOMER_STATUS_CHANGE_SUBJECT', 'Kundenstatus ist aktualisiert');
 define('ADDRESS_BOOK_TITLE', 'Adressbucheinträge');
 define('PRIMARY_ADDRESS', '(Standard Adresse)');
 define('TEXT_MAXIMUM_ENTRIES', '<span class="coming"><strong>Anmerkung:</strong></span> Es sind maximal %s Adressbucheinträge erlaubt.');
-define('TEXT_INFO_ADDRESS_BOOK_COUNT', ' | 1 von  ');
+define('TEXT_INFO_ADDRESS_BOOK_COUNT', ' | <a href="%s">%s Einträgen</a>');
+define('TEXT_INFO_ADDRESS_BOOK_COUNT_SINGLE', '');

@@ -11,10 +11,10 @@
  * $flag_disable_header = true;<br />
  *
  * @package templateSystem
- * @copyright Copyright 2003-2018 Zen Cart Development Team
+ * @copyright Copyright 2003-2019 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: tpl_header.php 732 2018-01-02 17:49:16Z webchills $
+ * @version $Id: tpl_header.php 733 2019-04-14 18:49:16Z webchills $
  */
 ?>
 
@@ -43,7 +43,9 @@ if (!isset($flag_disable_header) || !$flag_disable_header) {
 <div id="navMain">
     <ul class="back">
     <li><?php echo '<a href="' . HTTP_SERVER . DIR_WS_CATALOG . '">'; ?><?php echo HEADER_TITLE_CATALOG; ?></a></li>
-<?php if ($_SESSION['customer_id']) { ?>
+<?php
+    if (zen_is_logged_in() && !zen_in_guest_checkout()) {
+?>
     <li><a href="<?php echo zen_href_link(FILENAME_LOGOFF, '', 'SSL'); ?>"><?php echo HEADER_TITLE_LOGOFF; ?></a></li>
     <li><a href="<?php echo zen_href_link(FILENAME_ACCOUNT, '', 'SSL'); ?>"><?php echo HEADER_TITLE_MY_ACCOUNT; ?></a></li>
 <?php

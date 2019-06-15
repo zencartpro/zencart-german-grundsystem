@@ -1,10 +1,10 @@
 <?php
 /**
  * @package admin
- * @copyright Copyright 2003-2016 Zen Cart Development Team
+ * @copyright Copyright 2003-2019 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: split_page_results.php 730 2015-12-21 19:49:16Z webchills $
+ * @version $Id: split_page_results.php 731 2019-04-12 08:49:16Z webchills $
  */
 
 class splitPageResults
@@ -92,7 +92,7 @@ class splitPageResults
         if ($parameters != '') {
           if (substr($parameters, -1) == '&') $parameters = substr($parameters, 0, -1);
           $pairs = explode('&', $parameters);
-          while (list(, $pair) = each($pairs)) {
+          foreach($pairs as $pair) {
             list($key,$value) = explode('=', $pair);
             $display_links .= zen_draw_hidden_field(rawurldecode($key), rawurldecode($value));
           }

@@ -3,10 +3,10 @@
  * banner functions
  *
  * @package functions
- * @copyright Copyright 2003-2016 Zen Cart Development Team
+ * @copyright Copyright 2003-2019 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: banner.php 730 2015-12-21 19:49:16Z webchills $
+ * @version $Id: banner.php 731 2019-04-12 11:49:16Z webchills $
  */
 
   /**
@@ -220,7 +220,7 @@
 
 /**
  * Update banner click statistics
- * @param unknown $banner_id
+ * @param int $banner_id
  */
   function zen_update_banner_click_count($banner_id) {
     global $db;
@@ -236,6 +236,7 @@
     global $db;
     $selected_banners = explode(':', $selected_banners);
     $size = sizeof($selected_banners);
+    $new_banner_search = '';
     if ($size == 1) {
       $new_banner_search = " banners_group = '" . $db->prepare_input($selected_banners[0]) . "'";
     } else {

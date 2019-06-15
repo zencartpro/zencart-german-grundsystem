@@ -2,11 +2,11 @@
 /**
  * @package Image Handler
  * @copyright Copyright 2005-2006 Tim Kroeger (original author)
- * @copyright Copyright 2018 lat 9 - Vinos de Frutas Tropicales
- * @copyright Copyright 2003-2018 Zen Cart Development Team
+ * @copyright Copyright 2018-2019 lat 9 - Vinos de Frutas Tropicales
+ * @copyright Copyright 2003-2019 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: FualSlimboxObserver.php 2018-06-15 16:13:51Z webchills $
+ * @version $Id: FualSlimboxObserver.php 2019-04-12 22:13:51Z webchills $
  */
 // An observer-class to enable the "Fual Slimbox" plugin to operate with the notification updates in the
 // main_product_image and additional_images processing, provided by "Image Handler" v5.0.0 and later.
@@ -46,6 +46,18 @@ class FualSlimboxObserver extends base
                     $rel = (!defined('ZEN_LIGHTBOX_GALLERY_MODE') || ZEN_LIGHTBOX_GALLERY_MODE == 'true') ? 'lightbox[gallery]' : 'lightbox';
                     $products_name = addslashes($p1['products_name']);
                     $products_image_large = $p1['products_image_large'];
+                    
+                    // -----
+                    // The constants LARGE_IMAGE_WIDTH/HEIGHT are supplied by neither Zen Cart nor Image Handler -- they're a
+                    // LightBox 'legacy', I believe.  In any case, need to deal with the condition where those constants
+                    // haven't been defined previously, using the IH defaults as fall-back values.
+                    //
+                    if (!defined('LARGE_IMAGE_WIDTH')) {
+                        define('LARGE_IMAGE_WIDTH', (defined('LARGE_IMAGE_MAX_WIDTH')) ? LARGE_IMAGE_MAX_WIDTH : 750);
+                    }
+                    if (!defined('LARGE_IMAGE_HEIGHT')) {
+                        define('LARGE_IMAGE_HEIGHT', (defined('LARGE_IMAGE_MAX_HEIGHT')) ? LARGE_IMAGE_MAX_HEIGHT : 550);
+                    }
                     
                     $image_link = zen_lightbox($products_image_large, $products_name, LARGE_IMAGE_WIDTH, LARGE_IMAGE_HEIGHT);
                     $large_image_link = '<a href="' . $image_link . '" rel="' . $rel . '" title="' . $products_name . '">' . $thumb_slashes . '<br />' . TEXT_CLICK_TO_ENLARGE . '</a>';

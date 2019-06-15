@@ -6,10 +6,10 @@
  * Displays shopping-cart contents
  *
  * @package templateSystem
- * @copyright Copyright 2003-2016 Zen Cart Development Team
+ * @copyright Copyright 2003-2019 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: tpl_shopping_cart_default.php 730 2016-02-29 13:49:16Z webchills $
+ * @version $Id: tpl_shopping_cart_default.php 731 2019-04-12 18:49:16Z webchills $
  */
 ?>
 <div class="centerColumn" id="shoppingCartDefault">
@@ -20,7 +20,7 @@
 <?php
   if ($_SESSION['cart']->count_contents() > 0) {
 ?>
-<div class="forward"><?php echo TEXT_VISITORS_CART; ?></div>
+<div class="forward"><?php echo TEXT_CART_HELP; ?></div>
 <?php
   }
 ?>
@@ -89,9 +89,8 @@
 <?php
   echo $product['attributeHiddenField'];
   if (isset($product['attributes']) && is_array($product['attributes'])) {
-  echo '<div class="cartAttribsList">';
-  echo '<ul>';
-    reset($product['attributes']);
+    echo '<div class="cartAttribsList">';
+    echo '<ul>';
     foreach ($product['attributes'] as $option => $value) {
 ?>
 

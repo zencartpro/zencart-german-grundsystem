@@ -522,31 +522,38 @@ function ZipPreAddCallBack($p_event, &$p_header)
 
 //    print_r($p_header);
 //    print_r($GLOBALS['exclude_dir_array'] );
-    $GLOBALS['exclude_files_array'];
-    $GLOBALS['exclude_dir_array'];
+//    $GLOBALS['exclude_files_array'];
+//    $GLOBALS['exclude_dir_array'];
 
     $path = pathinfo($p_header['stored_filename'], PATHINFO_DIRNAME);
 
+    if (is_array($GLOBALS['exclude_files_array']) && is_array($GLOBALS['exclude_files_array'])) {
 
-    if (in_array($p_header['stored_filename'], $GLOBALS['exclude_files_array'])) {
-        return 0;
-    }
-
-    foreach ($GLOBALS['exclude_dir_array'] as $k => $exclude_dir) {
-        if (stristr($path, $exclude_dir)) {
+        if (in_array($p_header['stored_filename'], $GLOBALS['exclude_files_array'])) {
             return 0;
         }
     }
 
-    if (in_array($path, $GLOBALS['exclude_dir_array'])) {
+    if (is_array($GLOBALS['exclude_dir_array'])) {
+
+        foreach ($GLOBALS['exclude_dir_array'] as $k => $exclude_dir) {
+            if (stristr($path, $exclude_dir)) {
+                return 0;
+            }
+        }
+
+        if (in_array($path, $GLOBALS['exclude_dir_array'])) {
 //        debug_output('<br>exclude directory:' . $path . "<hr>");
 //        echo '<br>exclude directory:' . $path . "<hr>";
-        return 0;
+            return 0;
+        }
     }
 
-    if (in_array($p_header['stored_filename'], $GLOBALS['exclude_files_array'])) {
+    if (is_array($GLOBALS['exclude_files_array'])) {
+        if (in_array($p_header['stored_filename'], $GLOBALS['exclude_files_array'])) {
 //        debug_output('<br>exclude file:' . $p_header['stored_filename'] . "<hr>");
-        return 0;
+            return 0;
+        }
     } else {
         return 1;
     }

@@ -1,5 +1,6 @@
 <?php
 /**
+ * Zen Cart German Specific
  * create_account header_php.php
  *
  * @package modules

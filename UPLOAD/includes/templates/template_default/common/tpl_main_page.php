@@ -1,5 +1,6 @@
 <?php
 /**
+ * Zen Cart German Specific
  * Common Template - tpl_main_page.php
  *
  * Governs the overall layout of an entire page<br />

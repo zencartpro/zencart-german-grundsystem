@@ -17,7 +17,10 @@
 // thanks to octobercms.com
 
 $install_lang = $_SESSION['language'];
-if (!@include('cloudloader/languages/' . $install_lang . '.php')) {
+
+if (file_exists('cloudloader/languages/' . $install_lang . '.php')) {
+    include('cloudloader/languages/' . $install_lang . '.php');
+} else {
     $install_lang = 'english';
     include('cloudloader/languages/' . $install_lang . '.php');
 }
@@ -112,6 +115,7 @@ if ($_GET['cloudloader_mode'] == 'update_core') {
 <?php foreach ($partialList as $step => $file): ?>
     <script type="text/template" data-partial="<?php echo (is_numeric($step)) ? $file : $step; ?>">
         <?php
+
         if (file_exists('cloudloader/languages/' . $install_lang . '/partials/' . $file . '.htm')) {
             include('cloudloader/languages/' . $install_lang . '/partials/' . $file . '.htm');
         } else {
@@ -133,7 +137,7 @@ if ($_GET['cloudloader_mode'] == 'update_core') {
     ?>
     window.session_name = '<?php echo xtc_session_name(); ?>';
     window.session_value = '<?php echo xtc_session_id(); ?>';
-    <?php } 
+    <?php }Â 
     ?>
 
 </script>

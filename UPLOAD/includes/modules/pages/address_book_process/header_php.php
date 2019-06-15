@@ -3,15 +3,15 @@
  * Header code file for the Address Book Process page
  *
  * @package page
- * @copyright Copyright 2003-2016 Zen Cart Development Team
+ * @copyright Copyright 2003-2019 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: header_php.php 731 2016-05-08 09:49:16Z webchills $
+ * @version $Id: header_php.php 734 2019-06-15 21:49:16Z webchills $
  */
 // This should be first line of the script:
 $zco_notifier->notify('NOTIFY_HEADER_START_ADDRESS_BOOK_PROCESS');
 
-if (!$_SESSION['customer_id']) {
+if (!zen_is_logged_in()) {
   $_SESSION['navigation']->set_snapshot();
   zen_redirect(zen_href_link(FILENAME_LOGIN, '', 'SSL'));
 }
@@ -76,7 +76,6 @@ if (isset($_POST['action']) && (($_POST['action'] == 'process') || ($_POST['acti
     }
   }
   $country = zen_db_prepare_input($_POST['zone_country_id']);
-  //echo ' I SEE: country=' . $country . '&nbsp;&nbsp;&nbsp;state=' . $state . '&nbsp;&nbsp;&nbsp;zone_id=' . $zone_id;
 
   if (ACCOUNT_GENDER == 'true') {
     if ( ($gender != 'm') && ($gender != 'f') ) {
@@ -164,6 +163,12 @@ if (isset($_POST['action']) && (($_POST['action'] == 'process') || ($_POST['acti
     $error = true;
     $messageStack->add('addressbook', ENTRY_COUNTRY_ERROR);
   }
+
+  // -----
+  // Give an observer the opportunity to check the data submitted and identify
+  // an additional error.
+  //
+  $zco_notifier->notify('NOTIFY_ADDRESS_BOOK_PROCESS_VALIDATION', array(), $error);
 
   if ($error == false) {
     $sql_data_array= array(array('fieldName'=>'entry_firstname', 'value'=>$firstname, 'type'=>'stringIgnoreNull'),

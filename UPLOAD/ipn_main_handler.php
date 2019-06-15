@@ -3,10 +3,10 @@
  * ipn_main_handler.php callback handler for PayPal IPN notifications
  *
  * @package paymentMethod
- * @copyright Copyright 2003-2018 Zen Cart Development Team
+ * @copyright Copyright 2003-2019 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: ipn_main_handler.php 772 2018-01-02 08:37:29Z webchills $
+ * @version $Id: ipn_main_handler.php 773 2019-03-11 15:37:29Z webchills $
  */
 if (!defined('TEXT_RESELECT_SHIPPING')) define('TEXT_RESELECT_SHIPPING', 'You have changed the items in your cart since shipping was last calculated, and costs may have changed. Please verify/re-select your shipping method.');
 
@@ -104,7 +104,7 @@ Processing...
    * detect type of transaction
    */
   $isECtransaction = ((isset($_POST['txn_type']) && $_POST['txn_type']=='express_checkout') || (isset($_POST['custom']) && in_array(substr($_POST['custom'], 0, 3), array('EC-', 'DP-', 'WPP')))); /*|| $_POST['txn_type']=='cart'*/
-  $isDPtransaction = (isset($_POST['custom']) && in_array(substr($_POST['custom'], 0, 3), array('DP-', 'WPP', 'PF-')));
+  $isDPtransaction = (isset($_POST['custom']) && in_array(substr($_POST['custom'], 0, 3), array('DP-', 'WPP')));
   /**
    * set paypal-specific application_top parameters
    */
@@ -126,7 +126,7 @@ Processing...
     @ini_set('log_errors_max_len', 0);
     @ini_set('display_errors', 0); // do not output errors to screen/browser/client (only to log file)
     @ini_set('error_log', DIR_FS_CATALOG . $debug_logfile_path);
-    error_reporting(version_compare(PHP_VERSION, 5.3, '>=') ? E_ALL & ~E_DEPRECATED & ~E_NOTICE : version_compare(PHP_VERSION, 5.4, '>=') ? E_ALL & ~E_DEPRECATED & ~E_NOTICE & ~E_STRICT : E_ALL & ~E_NOTICE);
+    error_reporting(E_ALL & ~E_DEPRECATED & ~E_NOTICE & ~E_STRICT);
   }
 
   ipn_debug_email('Breakpoint: Flag Status:' . "\nisECtransaction = " . (int)$isECtransaction . "\nisDPtransaction = " . (int)$isDPtransaction);
@@ -180,11 +180,6 @@ Processing...
   $parentLookup = $txn_type;
 
   ipn_debug_email('Breakpoint: 4 - ' . 'Details:  txn_type=' . $txn_type . '    ordersID = '. $ordersID . '  IPN_id=' . $paypalipnID . "\n\n" . '   Relevant data from POST:' . "\n     " . 'txn_type = ' . $txn_type . "\n     " . 'parent_txn_id = ' . ($_POST['parent_txn_id'] =='' ? 'None' : $_POST['parent_txn_id']) . "\n     " . 'txn_id = ' . $_POST['txn_id']);
-  // ignore auth_status == 'Expired'
-  if ($_POST['auth_status'] === 'Expired' && $_POST['txn_type'] === 'web_accept') {
-    ipn_debug_email('NOTICE :: IPN Processing Aborted -- we do not need to do anything with an "Expired" auth notification.');
-    die();
-  }
 
   if (!$isECtransaction && !isset($_POST['parent_txn_id']) && $txn_type != 'cleared-echeck') {
     if (defined('MODULE_PAYMENT_PAYPAL_PDTTOKEN') && MODULE_PAYMENT_PAYPAL_PDTTOKEN != '') {
@@ -354,12 +349,12 @@ Processing...
           zen_db_perform(TABLE_ORDERS_STATUS_HISTORY, $sql_data_array);
         }
         ipn_debug_email('Breakpoint: 5k - OSH update done');
-        $order->create_add_products($insert_id, 2);
+        $order->create_add_products($insert_id);
         ipn_debug_email('Breakpoint: 5L - adding products');
         $_SESSION['order_number_created'] = $insert_id;
         $GLOBALS[$_SESSION['payment']]->transaction_id = $_POST['txn_id'];
         $zco_notifier->notify('NOTIFY_CHECKOUT_PROCESS_AFTER_ORDER_CREATE_ADD_PRODUCTS');
-        $order->send_order_email($insert_id, 2);
+        $order->send_order_confirmation_email($insert_id);
         ipn_debug_email('Breakpoint: 5m - emailing customer');
         $zco_notifier->notify('NOTIFY_CHECKOUT_PROCESS_AFTER_SEND_ORDER_EMAIL');
 
@@ -471,10 +466,18 @@ Processing...
           break;
       }
       // update order status history with new information
-      ipn_debug_email('IPN NOTICE :: Set new status ' . $new_status . " for order ID = " .  $ordersID . ($_POST['pending_reason'] != '' ? '.   Reason_code = ' . $_POST['pending_reason'] : '') );
       if ((int)$new_status == 0) $new_status = 1;
+      
       if (in_array($_POST['payment_status'], array('Refunded', 'Reversed', 'Denied', 'Failed'))
            || substr($txn_type,0,8) == 'cleared-' || $txn_type=='echeck-cleared' || $txn_type == 'express-checkout-cleared') {
+        $sql = "select orders_status from " . TABLE_ORDERS . "
+                 where orders_id = :ordersID:";
+        $sql = $db->bindVars($sql, ':ordersID:', $ordersID, 'integer');
+        $old_status = $db->Execute($sql);
+        if ($new_status < $oldstatus->fields['orders_status'] && (substr($txn_type, 0, 8) == 'cleared-' || $txn_type=='echeck-cleared' || $txn_type == 'express-checkout-cleared')) {
+          $new_status = $old_status->fields['orders_status'];
+        }
+        ipn_debug_email('IPN NOTICE :: Set new status ' . $new_status . " for order ID = " .  $ordersID . ($_POST['pending_reason'] != '' ? '.   Reason_code = ' . $_POST['pending_reason'] : '') );
         ipn_update_orders_status_and_history($ordersID, $new_status, $txn_type);
         $zco_notifier->notify('NOTIFY_PAYPALIPN_STATUS_HISTORY_UPDATE', array($ordersID, $new_status, $txn_type));
       }

@@ -3,9 +3,9 @@
  * iterates thru media collections/clips
  *
  * @package productTypes
- * @copyright Copyright 2003-2016 Zen Cart Development Team
+ * @copyright Copyright 2003-2019 Zen Cart Development Team
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: media_manager.php 729 2011-08-09 15:49:16Z hugo13 $
+ * @version $Id: media_manager.php 730 2019-04-12 12:49:16Z webchills $
  */
 if (!defined('IS_ADMIN_FLAG')) {
   die('Illegal Access');
@@ -66,4 +66,4 @@ if ($zq_collections->RecordCount() > 0) {
     $zq_collections->MoveNext();
   }
 }
-$zv_product_has_media = (sizeof($za_media_manager)) > 0 ? TRUE : FALSE;
+$zv_product_has_media = (count($za_media_manager) > 0);

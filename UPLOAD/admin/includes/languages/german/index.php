@@ -1,15 +1,16 @@
 <?php
 /**
  * @package admin
- * @copyright Copyright 2003-2016 Zen Cart Development Team
+ * @copyright Copyright 2003-2019 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: index.php 2016-03-12 10:11:04Z webchills $
+ * @version $Id: index.php 2019-04-13 18:11:04Z webchills $
  */
 
 define('HEADING_TITLE', 'Bitte wählen Sie...');
 define('BOX_TITLE_ORDERS', 'Bestellungen');
 define('BOX_TITLE_STATISTICS', 'Statistiken');
+define('BOX_TITLE_FEATURES_SALES', 'Sonderangebote / Empfohlen / Abverkäufe');
 define('BOX_ENTRY_SUPPORT_SITE', 'Supportseite');
 define('BOX_ENTRY_SUPPORT_FORUMS', 'Support-Forum');
 define('BOX_ENTRY_MAILING_LISTS', 'Mailingliste');
@@ -26,7 +27,31 @@ define('TOOLS_BACKUP', 'Sicherung');
 define('TOOLS_BANNERS', 'Werbebanner');
 define('TOOLS_FILES', 'Dateien');
 
-// statistics
+define('WO_GRAPH_TITLE', 'Wer ist online:');
+define('WO_GRAPH_MORE', 'mehr...');
+define('WO_GRAPH_REGISTERED', 'User:');
+define('WO_GRAPH_GUEST', 'Gast:');
+define('WO_GRAPH_SPIDER', 'Spider:');
+define('WO_GRAPH_TOTAL', 'Gesamt:');
+define('WHOS_ONLINE_ACTIVE_TEXT', 'Aktiver Warenkorb');
+define('WHOS_ONLINE_INACTIVE_TEXT', 'Inaktiver Warenkorb');
+define('WHOS_ONLINE_ACTIVE_NO_CART_TEXT', 'Aktiv, leerer Warenkorb');
+define('WHOS_ONLINE_INACTIVE_NO_CART_TEXT', 'Inaktiv, leerer Warenkorb');
+
+define('DASHBOARD_DAY', 'Tag');
+define('DASHBOARD_SESSIONS', 'Sessions');
+define('DASHBOARD_TOTAL', 'Gesamt');
+define('DASHBOARD_MONTH', 'Monat');
+define('DASHBOARD_SALES', 'Verkäufe');
+define('DASHBOARD_DOLLARS', 'Euro');
+
+define('TEXT_COUNTER_HISTORY_TITLE', 'Besucherhistorie - letzte 14 Tage');
+
+define('TEXT_MONTHLY_SALES_TITLE', 'Monatliche Verkäufe (ohne Versandkosten)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;');
+define('TEXT_CLICK_FOR_COMPLETE_DETAILS', 'Klicken Sie hier für Details...');
+
+define('TEXT_SALES_TODAY', 'Verkäufe <strong>Heute</strong> (%s) &nbsp;<strong>$%d</strong>');
+define('TEXT_SALES_YESTERDAY', '<strong>Gestern</strong> (%s) &nbsp;<strong>$%d</strong>');
 define('REPORTS_PRODUCTS', 'Artikel');
 define('REPORTS_ORDERS', 'Bestellungen');
 define('BOX_ENTRY_CUSTOMERS', 'Kunden:');
@@ -49,7 +74,7 @@ define('TOTAL', 'Gesamt');
 
 // DASHBOARD - HOME PAGE OF ADMIN - CUSTOMERS section
 define('BOX_TITLE_CUSTOMERS', 'Kunden');
-define('BOX_ENTRY_CUSTOMERS_NORMAL', '- Full Accounts :');
+define('BOX_ENTRY_CUSTOMERS_NORMAL', '- Volle Accounts :');
 define('BOX_ENTRY_CUSTOMERS_TOTAL', 'Total Customer Accounts :');
 define('BOX_ENTRY_CUSTOMERS_TOTAL_DISTINCT', 'Total Distinct Customers :');
 
@@ -70,8 +95,8 @@ define('TEXT_WARNING_SUPERUSER_REQUIRED', 'Only a Superuser can complete the ini
 define('TEXT_HEADING_SETUP_WIZARD', 'Initial Setup Wizard');
 
 define('TEXT_FORM_LEGEND_REQUIRED_SETUP', 'Required Setup Information');
-define('TEXT_FORM_LABEL_STORE_NAME', 'Store Name');
-define('TEXT_FORM_LABEL_STORE_OWNER', 'Store Owner');
+define('TEXT_FORM_LABEL_STORE_NAME', 'Name des Shops');
+define('TEXT_FORM_LABEL_STORE_OWNER', 'Shopinhaber');
 define('TEXT_FORM_LABEL_STORE_OWNER_EMAIL', 'Store Owner Email');
 define('TEXT_FORM_LABEL_STORE_COUNTRY', 'Store Country');
 define('TEXT_FORM_LABEL_STORE_ZONE', 'Store Zone');

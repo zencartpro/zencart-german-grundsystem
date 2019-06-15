@@ -1,10 +1,10 @@
 <?php
 /**
  * @package admin
- * @copyright Copyright 2003-2018 Zen Cart Development Team
+ * @copyright Copyright 2003-2019 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: store_manager.php 733 2018-01-02 08:41:16Z webchills $
+ * @version $Id: store_manager.php 734 2019-04-12 09:41:16Z webchills $
  */
 
   require('includes/application_top.php');
@@ -214,8 +214,8 @@
 <title><?php echo TITLE; ?></title>
 <link rel="stylesheet" type="text/css" href="includes/stylesheet.css">
 <link rel="stylesheet" type="text/css" href="includes/cssjsmenuhover.css" media="all" id="hoverJS">
-<script type="text/javascript" src="includes/menu.js"></script>
-<script type="text/javascript" src="includes/general.js"></script>
+<script language="javascript" src="includes/menu.js"></script>
+<script language="javascript" src="includes/general.js"></script>
 <script type="text/javascript">
   <!--
   function init()

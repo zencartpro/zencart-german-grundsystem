@@ -3,10 +3,10 @@
  *  product_info main_template_vars.php
  *
  * @package productTypes
- * @copyright Copyright 2003-2016 Zen Cart Development Team
+ * @copyright Copyright 2003-2019 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: main_template_vars.php 800 2012-11-06 15:47:36Z webchills $
+ * @version $Id: main_template_vars.php 801 2019-04-12 12:47:36Z webchills $
  */
 /*
  * Extracts and constructs the data to be used in the product-type template tpl_TYPEHANDLER_info_display.php
@@ -14,8 +14,6 @@
 
   // This should be first line of the script:
   $zco_notifier->notify('NOTIFY_MAIN_TEMPLATE_VARS_START_PRODUCT_INFO');
-
-  $module_show_categories = PRODUCT_INFO_CATEGORIES;
 
   $sql = "select count(*) as total
           from " . TABLE_PRODUCTS . " p, " .
@@ -111,6 +109,7 @@
 
   $products_qty_box_status = $product_info->fields['products_qty_box_status'];
   $products_quantity_order_max = $product_info->fields['products_quantity_order_max'];
+  $products_get_buy_now_qty = zen_get_buy_now_qty($_GET['products_id']);
 
   $products_base_price = $currencies->display_price(zen_get_products_base_price((int)$_GET['products_id']),
                       zen_get_tax_rate($product_info->fields['products_tax_class_id']));

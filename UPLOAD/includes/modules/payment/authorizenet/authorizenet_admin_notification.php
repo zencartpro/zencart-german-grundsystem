@@ -3,9 +3,9 @@
  * authorizenet_admin_notification.php admin display component
  *
  * @package paymentMethod
- * @copyright Copyright 2003-2018 Zen Cart Development Team
+ * @copyright Copyright 2003-2019 Zen Cart Development Team
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: authorizenet_admin_notification.php 18696 2018-01-02 09:24:19Z webchills $
+ * @version $Id: authorizenet_admin_notification.php 18697 2019-04-12 12:24:19Z webchills $
  */
 
   $outputStartBlock = '';
@@ -17,10 +17,10 @@
   $outputEndBlock = '';
   $output = '';
 
-    $outputStartBlock .= '<td><table class="noprint">'."\n";
+    $outputStartBlock .= '<table class="noprint">'."\n";
     $outputStartBlock .= '<tr style="background-color : #bbbbbb; border-style : dotted;">'."\n";
     $outputEndBlock .= '</tr>'."\n";
-    $outputEndBlock .='</table></td>'."\n";
+    $outputEndBlock .='</table>'."\n";
 
 
   if (method_exists($this, '_doRefund')) {

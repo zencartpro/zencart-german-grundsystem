@@ -3,9 +3,9 @@
  * autoloader array for paypal
  *
  * @package initSystem
- * @copyright Copyright 2003-2016 Zen Cart Development Team
+ * @copyright Copyright 2003-2019 Zen Cart Development Team
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: paypal_ipn.core.php 730 2015-12-21 19:49:16Z webchills $
+ * @version $Id: paypal_ipn.core.php 731 2019-04-12 09:49:16Z webchills $
  */
 if (!defined('IS_ADMIN_FLAG')) {
  die('Illegal Access');
@@ -22,8 +22,6 @@ if (!defined('IS_ADMIN_FLAG')) {
                                'objectName'=>'zco_notifier');
   $autoLoadConfig[0][] = array('autoType'=>'class',
                                 'loadFile'=> 'class.phpmailer.php');
-  $autoLoadConfig[0][] = array('autoType'=>'class',
-                                'loadFile'=> 'class.smtp.php');
   $autoLoadConfig[0][] = array('autoType'=>'class',
                                 'loadFile'=>'template_func.php');
   $autoLoadConfig[0][] = array('autoType'=>'class',

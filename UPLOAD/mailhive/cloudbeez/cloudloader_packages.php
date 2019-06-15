@@ -16,7 +16,10 @@
 
 
 $install_lang = $_SESSION['language'];
-if (!@include('cloudloader/languages/' . $install_lang . '.php')) {
+
+if (file_exists('cloudloader/languages/' . $install_lang . '.php')) {
+    include('cloudloader/languages/' . $install_lang . '.php');
+} else {
     $install_lang = 'english';
     include('cloudloader/languages/' . $install_lang . '.php');
 }
@@ -108,7 +111,10 @@ if ($_GET['cloudloader_mode'] == 'update_core' || $_GET['cloudloader_mode'] == '
 <?php foreach ($partialList as $step => $file): ?>
     <script type="text/template" data-partial="<?php echo (is_numeric($step)) ? $file : $step; ?>">
         <?php
-        if (!@include('cloudloader/languages/' . $install_lang . '/partials/' . $file . '.htm')) {
+
+        if (file_exists('cloudloader/languages/' . $install_lang . '/partials/' . $file . '.htm')) {
+            include('cloudloader/languages/' . $install_lang . '/partials/' . $file . '.htm');
+        } else {
             include('cloudloader/languages/english/partials/' . $file . '.htm');
         }
         ?>
@@ -118,27 +124,29 @@ if ($_GET['cloudloader_mode'] == 'update_core' || $_GET['cloudloader_mode'] == '
 <!-- Scripts -->
 <script>
     window.cloudloader_mode = '<?php echo $_GET['cloudloader_mode'] ?>';
-    window.securityToken = '<?php echo (isset($_SESSION['securityToken']) ? $_SESSION['securityToken'] : '-1') ?>';
-    window.securityToken_name = '<?php echo (isset($_SESSION['CSRFName']) ? $_SESSION['CSRFName'] : 'none') ?>';
-    window.securityToken_value = '<?php echo (isset($_SESSION['CSRFToken']) ? $_SESSION['CSRFToken'] : '-1') ?>';
+    window.securityToken = '<?php echo(isset($_SESSION['securityToken']) ? $_SESSION['securityToken'] : '-1') ?>';
+    window.securityToken_name = '<?php echo(isset($_SESSION['CSRFName']) ? $_SESSION['CSRFName'] : 'none') ?>';
+    window.securityToken_value = '<?php echo(isset($_SESSION['CSRFToken']) ? $_SESSION['CSRFToken'] : '-1') ?>';
+
     <?php
     if (SESSION_FORCE_COOKIE_USE == 'False' && function_exists('xtc_href_link')) {
     ?>
     window.session_name = '<?php echo xtc_session_name(); ?>';
     window.session_value = '<?php echo xtc_session_id(); ?>';
-    <?php } 
+    <?php }Â 
     ?>
+
 </script>
 <script
-    src="<?php echo $base_path; ?>cloudloader/js/vendor.js?ver=<?php echo CLOUDBEEZ_MAILBEEZ_INSTALLER_VERSION; ?>"></script>
+        src="<?php echo $base_path; ?>cloudloader/js/vendor.js?ver=<?php echo CLOUDBEEZ_MAILBEEZ_INSTALLER_VERSION; ?>"></script>
 <script
-    src="<?php echo $base_path; ?>cloudloader/js/app.js?ver=<?php echo CLOUDBEEZ_MAILBEEZ_INSTALLER_VERSION; ?>"></script>
+        src="<?php echo $base_path; ?>cloudloader/js/app.js?ver=<?php echo CLOUDBEEZ_MAILBEEZ_INSTALLER_VERSION; ?>"></script>
 <script
-    src="<?php echo $base_path; ?>cloudloader/js/check.js?ver=<?php echo CLOUDBEEZ_MAILBEEZ_INSTALLER_VERSION; ?>"></script>
+        src="<?php echo $base_path; ?>cloudloader/js/check.js?ver=<?php echo CLOUDBEEZ_MAILBEEZ_INSTALLER_VERSION; ?>"></script>
 <script
-    src="<?php echo $base_path; ?>cloudloader/js/progress.js?ver=<?php echo CLOUDBEEZ_MAILBEEZ_INSTALLER_VERSION; ?>"></script>
+        src="<?php echo $base_path; ?>cloudloader/js/progress.js?ver=<?php echo CLOUDBEEZ_MAILBEEZ_INSTALLER_VERSION; ?>"></script>
 <script
-    src="<?php echo $base_path; ?>cloudloader/js/complete.js?ver=<?php echo CLOUDBEEZ_MAILBEEZ_INSTALLER_VERSION; ?>"></script>
+        src="<?php echo $base_path; ?>cloudloader/js/complete.js?ver=<?php echo CLOUDBEEZ_MAILBEEZ_INSTALLER_VERSION; ?>"></script>
 
 <!-- Bespoke Properties -->
 <script>

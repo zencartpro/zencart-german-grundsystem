@@ -3,17 +3,14 @@
  * index main_template_vars.php
  *
  * @package page
- * @copyright Copyright 2003-2016 Zen Cart Development Team
+ * @copyright Copyright 2003-2019 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: main_template_vars.php 731 2016-03-02 21:49:16Z webchills $
+ * @version $Id: main_template_vars.php 732 2019-04-12 11:49:16Z webchills $
  */
 
 // This should be first line of the script:
 $zco_notifier->notify('NOTIFY_HEADER_START_INDEX_MAIN_TEMPLATE_VARS');
-
-//die($category_depth);
-//die($_GET['music_genre_id']);
 
 // release manufacturers_id when nothing is there so a blank filter is not setup.
 // this will result in the home page, if used
@@ -147,7 +144,6 @@ if ($category_depth == 'nested')
   'PRODUCT_LIST_BUY_NOW' => PRODUCT_LIST_BUY_NOW);
   */
   asort($define_list);
-  reset($define_list);
   $column_list = array();
   foreach ($define_list as $key => $value)
   {

@@ -6,10 +6,10 @@
  * Displays product-listing when a particular category/subcategory is selected for browsing
  *
  * @package templateSystem
- * @copyright Copyright 2003-2016 Zen Cart Development Team
+ * @copyright Copyright 2003-2019 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: tpl_index_product_list.php 2 2016-04-06 11:33:58Z webchills $
+ * @version $Id: tpl_index_product_list.php 3 2019-06-15 17:33:58Z webchills $
  */
 ?>
 <div class="centerColumn" id="indexProductList">
@@ -56,7 +56,7 @@ if (PRODUCT_LIST_CATEGORIES_IMAGE_STATUS == 'true') {
 ?>
 <?php
   // draw cPath if known
-  if (!$getoption_set) {
+  if (empty($getoption_set)) {
     echo zen_draw_hidden_field('cPath', $cPath);
   } else {
     // draw manufacturers_id
@@ -73,7 +73,7 @@ if (PRODUCT_LIST_CATEGORIES_IMAGE_STATUS == 'true') {
   if (isset($_GET['typefilter']) && $_GET['typefilter'] != '') echo zen_draw_hidden_field('typefilter', $_GET['typefilter']);
 
   // draw manufacturers_id if not already done earlier
-  if ($get_option_variable != 'manufacturers_id' && isset($_GET['manufacturers_id']) && $_GET['manufacturers_id'] > 0) {
+  if (!(isset($get_option_variable) && $get_option_variable == 'manufacturers_id') && !empty($_GET['manufacturers_id'])) {
     echo zen_draw_hidden_field('manufacturers_id', $_GET['manufacturers_id']);
   }
 

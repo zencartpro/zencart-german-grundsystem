@@ -114,14 +114,15 @@ if (function_exists('zen_redirect')) {
 
     define('MH_PLATFORM_TRUELOADED', preg_match('/Trueloaded/', PROJECT_VERSION));
 
+    /*
     // WP Online Store
     if (defined('WPOLS_PLUGINS_DIR')) {
         define('MH_PLATFORM_OSC_WPOS', PROJECT_VERSION);
         define('MH_FORM_METHOD', 'post');
         define('MH_PAGE_NAME', 'pages');
 
-        $post = MAILBEEZ_MAILHIVE_WPOLS_PAGE_ID;
-        if (MH_CONTEXT == 'STORE') {
+        $post = mh_cfg('MAILBEEZ_MAILHIVE_WPOLS_PAGE_ID');
+        if (mh_cfg('MH_CONTEXT') == 'STORE') {
             $GLOBALS['post'] = &get_post($post);
         } else {
             if (strtolower($_SERVER["REQUEST_METHOD"]) == 'post') {
@@ -129,6 +130,7 @@ if (function_exists('zen_redirect')) {
             }
         }
     }
+    */
 }
 
 mh_define('MH_PLATFORM_OSC', false);

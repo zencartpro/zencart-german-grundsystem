@@ -3,10 +3,10 @@
  * Module Template
  *
  * @package templateSystem
- * @copyright Copyright 2003-2016 Zen Cart Development Team
+ * @copyright Copyright 2003-2019 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: tpl_modules_upcoming_products.php 730 2016-02-29 13:49:16Z webchills $
+ * @version $Id: tpl_modules_upcoming_products.php 731 2019-04-12 18:49:16Z webchills $
  */
 ?>
 <!-- bof: upcoming_products -->
@@ -19,7 +19,7 @@
     <th scope="col" id="upDateHeading"><?php echo TABLE_HEADING_DATE_EXPECTED; ?></th>
   </tr>
 <?php
-    for($i=0, $row=0; $i < sizeof($expectedItems); $i++, $row++) {
+    for($i=0, $row=0, $n=sizeof($expectedItems); $i<$n; $i++, $row++) {
       $rowClass = (($row / 2) == floor($row / 2)) ? "rowEven" : "rowOdd";
       echo '  <tr class="' . $rowClass . '">' . "\n";
       echo '    <td ><a href="' . zen_href_link(zen_get_info_page($expectedItems[$i]['products_id']), 'cPath=' . $productsInCategory[$expectedItems[$i]['products_id']] . '&products_id=' . $expectedItems[$i]['products_id']) . '">' . $expectedItems[$i]['products_name'] . '</a></td>' . "\n";

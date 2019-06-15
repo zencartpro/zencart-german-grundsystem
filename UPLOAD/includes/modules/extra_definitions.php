@@ -4,10 +4,10 @@
  * see  {@link  http://www.zen-cart.com/wiki/index.php/Developers_API_Tutorials#InitSystem wikitutorials} for more details.
  *
  * @package initSystem
- * @copyright Copyright 2003-2016 Zen Cart Development Team
+ * @copyright Copyright 2003-2019 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: extra_definitions.php 730 2012-11-06 15:29:16Z hugo13 $
+ * @version $Id: extra_definitions.php 731 2019-06-15 17:29:16Z webchills $
  */
 // must be called appropriately
 if (!defined('IS_ADMIN_FLAG')) {
@@ -66,11 +66,9 @@ for ($i = 0, $n = sizeof($directory_array); $i < $n; $i++) {
   $file_cnt++;
   $file = $directory_array[$i];
 
-  //      echo 'LOADING: ' . $ws_languages_extra_definitions_directory_template . $file . ' ' . $file_cnt . '<br />';
   if (file_exists($ws_languages_extra_definitions_directory_template . $file)) {
     include($ws_languages_extra_definitions_directory_template . $file);
   } else {
     include($ws_languages_extra_definitions_directory . $file);
-    //      echo 'LOADING: ' . $ws_languages_extra_definitions_directory . $file . ' ' . $file_cnt . '<br />';
   }
 }

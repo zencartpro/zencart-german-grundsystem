@@ -1,9 +1,9 @@
 <?php
 /**
  * @package admin
- * @copyright Copyright 2003-2016 Zen Cart Development Team
+ * @copyright Copyright 2003-2019 Zen Cart Development Team
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: products_price_manager.php 730 2016-02-28 15:49:16Z webchills $
+ * @version $Id: products_price_manager.php 732 2019-05-07 21:49:16Z webchills $
  */
 
 define('HEADING_TITLE', 'Products Price Manager');
@@ -26,8 +26,8 @@ define('TEXT_PRICE_NET', 'Price (Net)');
 define('TEXT_PRICE_GROSS', 'Price (Gross)');
 define('TEXT_PRODUCT_AVAILABLE_DATE', 'Available Date:');
 define('TEXT_PRODUCTS_STATUS', 'Products Status:');
-define('TEXT_PRODUCT_AVAILABLE', 'In Stock');
-define('TEXT_PRODUCT_NOT_AVAILABLE', 'Out of Stock');
+define('TEXT_PRODUCT_AVAILABLE', 'Enabled');
+define('TEXT_PRODUCT_NOT_AVAILABLE', 'Disabled');
 
 define('TEXT_PRODUCT_INFO_NONE', 'Please select a Product from above ...');
   define('TEXT_PRODUCT_IS_FREE','Product is Free:');
@@ -135,3 +135,4 @@ define('PRODUCT_WARNING_UPDATE_CANCEL', 'Changes were Cancelled and not saved ..
 define('TEXT_INFO_EDIT_CAUTION', '<strong>Click to begin Editing ...</strong>');
 define('TEXT_INFO_PREVIEW_ONLY', 'Preview Only ... Current Price Status ... Preview Only');
 define('TEXT_INFO_UPDATE_REMINDER', '<strong>Edit Product Information then Update to save</strong>');
+define('BUTTON_ADDITITONAL_ACTIONS', 'Additional Actions');

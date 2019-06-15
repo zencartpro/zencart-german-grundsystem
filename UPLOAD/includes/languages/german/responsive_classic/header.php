@@ -19,7 +19,7 @@ define('HEADER_TITLE_LOGOFF','Abmelden');
 define('HEADER_TITLE_LOGIN','Anmelden');
 
 // added defines for header alt and text
-define('HEADER_ALT_TEXT', 'Powered by Zen Cart 1.5.5 - deutsche Version');
+define('HEADER_ALT_TEXT', 'Powered by Zen Cart 1.5.6 - deutsche Version');
 define('HEADER_SALES_TEXT', '');
 define('HEADER_LOGO_WIDTH', '257px');
 define('HEADER_LOGO_HEIGHT', '68px');

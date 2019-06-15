@@ -1,105 +1,97 @@
-<?php
-/**
- * @package admin
- * @copyright Copyright 2003-2018 Zen Cart Development Team
- * @copyright Portions Copyright (c) 2011 Eric Hynds
- * Adapted from concepts shared at http://www.erichynds.com/jquery/a-new-and-improved-jquery-idle-timeout-plugin/
- * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: keealive_module.php 3 2018-01-02 18:13:51Z webchills $
- */
+<?php 
+// ADMIN KEEPALIVE_MODULE v2.0
+// Admin session timeout warning alerter
+// Prompts to extend login session after 2/3 of the allowed session time has expired without mouse activity or form submission.
 
-if (!defined('IS_ADMIN_FLAG')) {
-  die('Illegal Access');
-}
+if (!defined('TEXT_TIMEOUT_WARNING')) define('TEXT_TIMEOUT_WARNING', '**WARNING**');
+if (!defined('TEXT_TIMEOUT_TIME_REMAINING')) define('TEXT_TIMEOUT_TIME_REMAINING', ' Time remaining:');
+if (!defined('TEXT_TIMEOUT_SECONDS')) define('TEXT_TIMEOUT_SECONDS', 'seconds!');
+if (!defined('TEXT_TIMEOUT_ARE_YOU_STILL_THERE')) define('TEXT_TIMEOUT_ARE_YOU_STILL_THERE', 'Are you still there?');
+if (!defined('TEXT_TIMEOUT_WILL_LOGOUT_SOON')) define('TEXT_TIMEOUT_WILL_LOGOUT_SOON', 'You have been inactive, and will soon be logged out automatically.');
+if (!defined('TEXT_TIMEOUT_STAY_LOGGED_IN')) define('TEXT_TIMEOUT_STAY_LOGGED_IN', 'Continue Longer');
+if (!defined('TEXT_TIMEOUT_LOGOUT_NOW')) define('TEXT_TIMEOUT_LOGOUT_NOW', 'Logout Now');
+if (!defined('TEXT_TIMEOUT_TIMED_OUT_TITLE')) define('TEXT_TIMEOUT_TIMED_OUT_TITLE', 'Logged Out.');
+if (!defined('TEXT_TIMEOUT_LOGIN_AGAIN')) define('TEXT_TIMEOUT_LOGIN_AGAIN', 'Login Again');
+if (!defined('TEXT_TIMEOUT_TIMED_OUT_MESSAGE')) define('TEXT_TIMEOUT_TIMED_OUT_MESSAGE', 'Your session has timed out. You were inactive, so we logged you out automatically.');
 
+// Read default timeout value from the site's configuration:
+$timeoutAfter = ini_get('session.gc_maxlifetime');
+if ((int)$timeoutAfter < 30) $timeoutAfter = 1440;
+$camefrom = basename($PHP_SELF) . (empty($params = zen_get_all_get_params()) ? '' : '?' . trim($params, '&'));
 ?>
-<!--  BOF: Keepalive for Session -->
-<!-- timeout warning alert -->
-<div id="keepalivetimer" title="<?php echo TEXT_KEEPALIVE_MESSAGE_SESSION_EXPIRE; ?>" style="display: none">
-    <p class="ui-state-error-text">
-        <span class="ui-icon ui-icon-alert" style="float:left; margin:0 7px 50px 0;"></span>
-        <?php echo TEXT_KEEPALIVE_MESSAGE_YOU_WILL_LOG_OFF; ?> <span id="keepalivetimer-countdown" style="font-weight:bold"></span> <?php echo TEXT_KEEPALIVE_MESSAGE_MINUTES; ?>.
-    </p>
 
-    <p><?php echo TEXT_KEEPALIVE_MESSAGE_ASK_CONTINUE;?></p>
-</div>
-<link href="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.1/themes/base/jquery-ui.css" type="text/css" rel="stylesheet" />
-<script type="text/javascript">
-  if (typeof jQuery == "undefined") {//no jquery yet
-    document.write('<scr'+'ipt type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js">');
-    document.write('</scr' + 'ipt>');
-  }
-</script>
-<script type="text/javascript">
-  if (!jQuery.ui) {
-    document.write('<scr'+'ipt type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jqueryui/1/jquery-ui.min.js">');
-    document.write('</scr' + 'ipt>');
-  }
-</script>
-<script src="includes/javascript/jquery.idletimer.js<?php echo '?t='.time();?>" type="text/javascript"></script>
-<script src="includes/javascript/jquery.idletimeout.js<?php echo '?t='.time();?>" type="text/javascript"></script>
-<style type="text/css">
-  a.ui-dialog-titlebar-close {display:none;}
-  .ui-widget-overlay { background: green; opacity: .40;filter:Alpha(Opacity=40); }
-</style>
-<script type="text/javascript">
-//setup the dialog
-$("#keepalivetimer").dialog({
-  autoOpen: false,
-  modal: true,
-  width: 430,
-  height: 250,
-  closeOnEscape: false,
-  draggable: false,
-  resizable: false,
-  position: "top",
-  buttons: {
-    '<?php echo TEXT_KEEPALIVE_BUTTON_YES;?>': function(){
-      $(this).dialog('close');
+<link rel="stylesheet" type="text/css" href="includes/css/jAlert.css">
+<script src="includes/javascript/jAlert.min.js"></script>
+<script src="includes/javascript/jTimeout.min.js"></script>
+<script title="jTimeout-Init">
+$(function(){
+   $.jTimeout(
+    {
+    'flashTitleSpeed': 500, //how quickly to switch between the original title, and the warning text
+    'flashingTitleText': '<?php echo addslashes(TEXT_TIMEOUT_WARNING); ?>', //what to show in the tab/title bar when about to timeout, or after timing out
+    'timeoutAfter': <?php echo (int)$timeoutAfter; ?>, //passed from server side. 1440 is generally the default timeout in PHP
+    'extendOnMouseMove': true, //Whether or not to extend the session when the mouse is moved
+    'mouseDebounce': 120, //How many seconds between extending the session when the mouse is moved (instead of extending a billion times within 5 seconds)
+    'extendUrl': 'keepalive.php', //URL to request in order to extend the session.
+    'logoutUrl': 'logoff.php', //URL to request in order to force a logout after the timeout.
+    'loginUrl': '<?php echo $camefrom; ?>', //URL to send a customer to when they want to log back in
+    'secondsPrior': <?php echo (int)$timeoutAfter/3; ?>, //how many seconds before timing out to run the next callback (onPriorCallback)
+    'onPriorCallback': function(timeout, seconds){
+        $.jAlert({
+            'id': 'jTimeoutAlert',
+            'title': '<?php echo addslashes(TEXT_TIMEOUT_ARE_YOU_STILL_THERE); ?>',
+            'content': '<b><?php echo addslashes(TEXT_TIMEOUT_WILL_LOGOUT_SOON); ?> <?php echo addslashes(TEXT_TIMEOUT_TIME_REMAINING); ?> <span class="jTimeout_Countdown">' + seconds + '</span> <?php echo addslashes(TEXT_TIMEOUT_SECONDS); ?></b>',
+            'theme': 'red',
+            'closeBtn': false,
+            'onOpen': function (alert) {
+                timeout.startPriorCountdown(alert.find('.jTimeout_Countdown'));
+            },
+            'btns': [
+                {
+                    'text': '<?php echo addslashes(TEXT_TIMEOUT_STAY_LOGGED_IN); ?>',
+                    'theme': 'green',
+                    'onClick': function (e, btn) {
+                        e.preventDefault();
+                        timeout.options.onClickExtend(timeout);
+                        btn.parents('.jAlert').closeAlert();
+                        return false;
+                    }
+                },
+                {
+                    'text': '<?php echo addslashes(TEXT_TIMEOUT_LOGOUT_NOW); ?>',
+                    'theme': 'black',
+                    'onClick': function (e, btn) {
+                        e.preventDefault();
+                        window.location.href = timeout.options.logoutUrl;
+                        return false;
+                    }
+                }
+            ]
+        });
     },
-    '<?php echo TEXT_KEEPALIVE_BUTTON_NO;?>': function(){
-      $.idleTimeout.options.onLogoffClick.call(this);
+    'onTimeout': function(timeout){
+        /* Alert User */
+        $.jAlert({
+            'id': 'jTimedoutAlert',
+            'title': '<?php echo addslashes(TEXT_TIMEOUT_TIMED_OUT_TITLE); ?>',
+            'content': '<b><?php echo addslashes(TEXT_TIMEOUT_TIMED_OUT_MESSAGE); ?></b>',
+            'theme': 'red',
+            'btns': {
+                'text': '<?php echo addslashes(TEXT_TIMEOUT_LOGIN_AGAIN); ?>',
+                'href': timeout.options.loginUrl,
+                'theme': 'blue',
+                'closeAlert': false
+            },
+            'closeOnClick': false,
+            'closeBtn': false,
+            'closeOnEsc': false
+        });
+        /* Force logout */
+        $.get(timeout.options.logoutUrl);
     }
   }
-});
-
-// start the idle timer monitor
-var $countdown = $("#keepalivetimer-countdown");
-$.idleTimeout('#keepalivetimer', 'div.ui-dialog-buttonpane button:first', {
-  idleAfter: 600, // 600 user is considered idle after 10 minutes of no movement in this browser window/tab
-  warningLength: <?php echo SESSION_TIMEOUT_ADMIN-70; ?>, // countdown timer width remaining session time minus polling time (last keepalive call) + 10secs buffer
-  pollingInterval: 60, //60  check for server connection every minute; if it fails or user is logged out, keepalive scripts will abort
-  keepAliveURL: 'keepalive.php', serverResponseEquals: 'OK',
-  titleMessage: '<?php echo TEXT_KEEPALIVE_WARNING_PREFIX;?>',
-  onTimeout: function(){
-    document.title = '<?php echo TEXT_KEEPALIVE_EXPIRED_PREFIX;?>';
-    $(this).html('<?php echo TEXT_KEEPALIVE_SESSION_EXPIRED_MESSAGE;?>');
-    $(this).dialog("option", "title", '<?php echo TEXT_KEEPALIVE_SESSION_EXPIRED_HEADER;?>');
-    $(this).dialog("option", "minWidth", "450");
-    $(this).dialog("option", "buttons", {'<?php echo TEXT_KEEPALIVE_BUTTON_CLOSE;?>': function(){$(this).dialog('close');},'<?php echo TEXT_KEEPALIVE_BUTTON_LOGIN;?>': function(){window.location.reload();}});
-    //$(this).dialog("option", "buttons", {'<?php echo TEXT_KEEPALIVE_BUTTON_LOGIN;?>': function(){window.location.reload();}    });
-  },
-  onAbort: function(){
-    // TODO: another modal dialog would be more friendly
-    alert('<?php echo TEXT_KEEPALIVE_SERVER_UNREACHABLE_MESSAGE1;?>');
-  },
-  onIdle: function(){
-    $(this).dialog("open");
-  },
-  onLogoffClick: function(){
-    window.location = "logoff.php";
-  },
-  onCountdown: function(counter){
-    var sec = counter % 60;
-    var min = Math.floor(counter/60);
-    if (sec < 0) {
-      sec = 59;
-      min = min - 1;
-    }
-    if (sec<=9) { sec = "0" + sec; }
-    var time = (min<=9 ? "0" + min : min) + ":" + sec;
-    $countdown.html(time);
-  }
+);
+   
+//   $.jTimeout.reset(); //will reset the timer to timeoutAfter above
 });
 </script>
-<!--  EOF: Keepalive for Session -->

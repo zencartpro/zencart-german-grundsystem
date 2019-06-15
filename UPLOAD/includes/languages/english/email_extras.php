@@ -1,10 +1,11 @@
 <?php
 /**
+* Zen Cart German Specific
 * @package languageDefines
-* @copyright Copyright 2003-2016 Zen Cart Development Team
+* @copyright Copyright 2003-2019 Zen Cart Development Team
 * @copyright Portions Copyright 2003 osCommerce
 * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
-* @version $Id: email_extras.php 808 2016-03-05 10:28:24Z webchills $
+* @version $Id: email_extras.php 809 2019-05-09 10:28:24Z webchills $
 */
 
 define ('EMAIL_LOGO_FILENAME', 'header.jpg');  //-File is present in /email folder
@@ -35,9 +36,14 @@ define('OFFICE_HOST_ADDRESS','<strong>Host Address:</strong>');
 define('OFFICE_DATE_TIME','<strong>Date and Time:</strong>');
 if (!defined('OFFICE_IP_TO_HOST_ADDRESS')) define('OFFICE_IP_TO_HOST_ADDRESS', 'OFF');
 
+define('EMAIL_TEXT_TELEPHONE', 'Telephone: ');
+
 // email disclaimer
 define('EMAIL_DISCLAIMER', '');
 define('EMAIL_SPAM_DISCLAIMER', '-');
+// Define a message you'd like to add to an order confirmation email
+define('EMAIL_ORDER_MESSAGE',''); 
+
 define('EMAIL_FOOTER_COPYRIGHT','Copyright (c) ' . date('Y') . ' <a href="' . zen_href_link(FILENAME_DEFAULT) . '" target="_blank">' . STORE_NAME . '</a>');
 define('TEXT_UNSUBSCRIBE', "\n\nTo unsubscribe from future newsletter and promotional mailings, simply click on the following link: \n");
 

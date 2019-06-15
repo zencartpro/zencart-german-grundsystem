@@ -1,5 +1,6 @@
 <?php
 /**
+ * Zen Cart German Specific
  * Conditions Page
  * 
  * @package page

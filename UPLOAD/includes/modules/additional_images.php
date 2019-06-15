@@ -1,5 +1,6 @@
 <?php
 /**
+ * Zen Cart German Specific
  * additional_images module
  *
  * Prepares list of additional product images to be displayed in template
@@ -11,7 +12,7 @@
  * @version $Id: additional_images.php 2018-06-12 09:38:06Z webchills $
  */
 if (!defined('IS_ADMIN_FLAG')) {
-  die('Illegal Access');
+    die('Illegal Access');
 }
 $GLOBALS['zco_notifier']->notify('NOTIFY_MODULES_ADDITIONAL_PRODUCT_IMAGES_START');
 
