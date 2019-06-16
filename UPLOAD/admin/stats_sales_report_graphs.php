@@ -5,7 +5,7 @@
  * @author inspired from sales_report_graphs.php,v 0.01 2002/11/27 19:02:22 cwi Exp  Released under the GNU General Public License $
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: stats_sales_report_graphs.php 2 2019-04-14 09:21:51Z webchills $
+ * @version $Id: stats_sales_report_graphs.php 3 2019-06-16 08:21:51Z webchills $
  */
 
 require 'includes/application_top.php';
@@ -184,7 +184,7 @@ for ($i = 0; $i < $report->size; $i++) {
     <!-- header_eof //-->
     <!-- body //-->
     <div class="container-fluid">
-      <h1><?php echo $report_desc . ' ' . HEADING_TITLE; ?></h1>
+      <h1><?php echo HEADING_TITLE . ' - ' .  $report_desc ;?></h1>
       <!-- body_text //-->
       <table class="table">
         <tr>

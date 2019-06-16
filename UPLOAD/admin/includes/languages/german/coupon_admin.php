@@ -1,10 +1,10 @@
 <?php
 /**
  * @package admin
- * @copyright Copyright 2003-2018 Zen Cart Development Team
+ * @copyright Copyright 2003-2019 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: coupon_admin.php 633 2018-04-03 16:02:08Z webchills $
+ * @version $Id: coupon_admin.php 634 2019-06-16 07:18:08Z webchills $
  */
 
 define('TOP_BAR_TITLE','Statistiken');
@@ -101,14 +101,15 @@ define('COUPON_FINISHDATE_HELP','Datum, ab dem der Aktionskupon ungültig sein w
 define('COUPON_FREE_SHIP_HELP','Dieser Aktionskupon beinhaltet die Versandkosten einer Bestellung. Diese Einstellung ignoriert den Betrag des Aktionskupons, berücksichtigt jedoch den Mindestbestellwert.<br/><b>Achtung: Ein Aktionskupon schreibt entweder die Versandkosten gut oder gibt einen Rabatt. Beides gleichzeitig geht NICHT! Wenn Sie hier also versandkostenfrei ankreuzen, dann darf oben kein Betrag stehen!</b>');
 define('COUPON_DESC_HELP','Eine Beschreibung des Aktionskupons für den Kunden');
 define('COUPON_MIN_ORDER_HELP','Mindestbestellmenge, bevor der Aktionskupon eingelöst werden kann');
-define('COUPON_TOTAL_HELP', 'If you specify a Coupon Minimum Order for this Discount Coupon, do you want the Minimum amount to be based on Allowed Products according to Coupon Restriction Rules or the Full Order Total, when determining if the Coupon Minimum Order has been met?<br />NOTE: Full Order Total means at least 1 of the Qualifying Restricted Products must be in the cart for the Discount Coupon to work.');
+define('COUPON_TOTAL_HELP', 'Wenn Sie eine Mindestbestellmenge für diesen Aktionskupon angeben, möchten Sie dann, dass der Mindestbetrag auf zulässigen Produkten gemäß den Kuponbeschränkungsregeln oder der Gesamtzahl der Bestellungen basiert, wenn Sie feststellen, dass die Kupon-Mindestbestellmenge erreicht wurde?<br/>HINWEIS: Alle Artikel bedeutet, dass mindestens einer der qualifizierten eingeschränkten Artikel im Warenkorb sein muss, damit der Rabattcoupon funktioniert.');
+define('COUPON_SALE_HELP', 'Wenn Sie <i>NICHT erlaubt</i> wählen, werden Artikel im Sonderangebot oder Abverkauf nicht ermäßigt oder für dien Mindestbestellwert herangezogen.');
 define('COUPON_USES_COUPON_HELP','Häufigkeit, mit der dieser Aktionskupon benutzt werden kann. Keine Eingabe = unbegrenzt');
 define('COUPON_USES_USER_HELP','Häufigkeit, mit der ein Kunde über diesen Aktionskupon verrechnen darf. Keine Eingabe = unbegrenzt');
 define('COUPON_PRODUCTS_HELP','Eine Textdatei mit den Artikeln (mit Komma getrennten Datenfeldern), die mit diesem Aktionskupon verwendet werden können. Wenn Sie dieses Feld leer lassen, gibt es keine Einschränkungen.');
 define('COUPON_CATEGORIES_HELP','Eine Textdatei mit den Kategorien (mit Komma getrennten Datenfeldern), in denen mit Aktionskupon verrechnet werden kann. Bleibt dieses Feld leer, gibt es keine Einschränkungen.');
 define('COUPON_BUTTON_PREVIEW', 'Vorschau');
 define('COUPON_BUTTON_CONFIRM', 'Bestätigen');
-define('COUPON_BUTTON_CANCEL', 'Abbrechen');
+define('COUPON_BUTTON_BACK', 'Zurück');
 
 define('COUPON_ACTIVE', 'Status');
 define('COUPON_START_DATE', 'Startdatum');
@@ -120,7 +121,7 @@ define('TEXT_COUPON_NEW', 'Verwenden Sie folgenden Aktionskuponnummer:');
 define('ERROR_DISCOUNT_COUPON_DUPLICATE', 'ACHTUNG! Doppelter Aktionskupon existiert ... Kopiervorgang abgebrochen für: ');
 define('TEXT_CONFIRM_COPY', 'Wollen Sie diesen Aktionskupon kopieren?');
 define('SUCCESS_COUPON_DUPLICATE', 'Aktionskupon erfolgreich kopiert ...<br /><br />Bitte Name und Datum überprüfen ...');
-define('WARNING_COUPON_DUPLICATE', 'Warning! No Discount Coupons were made! Number of Discount Coupons to create was not defined ... ');
+define('WARNING_COUPON_DUPLICATE', 'Warnung! Keine Aktionskupons angelegt! Die Anzahl der anzulegenden Kupons wurde nicht festgelegt ... ');
 
 define('TEXT_COUPON_COPY_INFO', 'Copy for multiple duplicates');
 define('TEXT_COUPON_COPY_DUPLICATE', 'Create Multiple Coupons with Base Coupon Code of: ');
@@ -129,24 +130,24 @@ define('TEXT_COUPON_COPY_DUPLICATE_CNT', 'How many duplicate Discount Coupons do
 define('TEXT_CONFIRM_DELETE_DUPLICATE', 'Delete all matching Discount Coupons based on the Base coupon code<br />Example: <strong>%s</strong> would delete all Discount Coupons codes starting with: <strong>%s</strong>');
 define('TEXT_COUPON_DELETE_DUPLICATE', 'Delete all Discount Coupons matching base code: ');
 
-define('TEXT_DISCOUNT_COUPON_EMAIL', 'Email Discount Coupon');
-define('TEXT_DISCOUNT_COUPON_CONFIRM_DELETE', 'Confirm Delete Discount Coupon');
-define('TEXT_DISCOUNT_COUPON_CONFIRM_RESTORE', 'Confirm Restore Discount Coupon');
+define('TEXT_DISCOUNT_COUPON_EMAIL', 'Email Aktionskupon');
+define('TEXT_DISCOUNT_COUPON_CONFIRM_DELETE', 'Löschen bestätigen');
+define('TEXT_DISCOUNT_COUPON_CONFIRM_RESTORE', 'Wiederherstellen bestätigen');
 
-define('TEXT_DISCOUNT_COUPON_EDIT', 'Edit Discount Coupon');
-define('TEXT_DISCOUNT_COUPON_DELETE', 'Delete Discount Coupon');
-define('TEXT_DISCOUNT_COUPON_RESTORE', 'Restore Discount Coupon');
-define('TEXT_DISCOUNT_COUPON_RESTRICT', 'Restrict Discount Coupon');
-define('TEXT_DISCOUNT_COUPON_REPORT', 'Discount Coupon Report');
-define('TEXT_DISCOUNT_COUPON_COPY', 'Copy Discount Coupon');
+define('TEXT_DISCOUNT_COUPON_EDIT', 'Aktionskupon bearbeiten');
+define('TEXT_DISCOUNT_COUPON_DELETE', 'Aktionskupon löschen');
+define('TEXT_DISCOUNT_COUPON_RESTORE', 'Aktionskupon wieder herstellen');
+define('TEXT_DISCOUNT_COUPON_RESTRICT', 'Aktionskupon einschränken');
+define('TEXT_DISCOUNT_COUPON_REPORT', 'Aktionskupon Report');
+define('TEXT_DISCOUNT_COUPON_COPY', 'Aktionskupon kopieren');
 define('TEXT_DISCOUNT_COUPON_COPY_MULTIPLE', 'Copy to Multiple Discount Coupons');
 define('TEXT_DISCOUNT_COUPON_DELETE_MULTIPLE', 'Delete Multiple Discount Coupons');
 define('TEXT_DISCOUNT_COUPON_REPORT_MULTIPLE', 'Multiple Discount Coupons Report');
 define('TEXT_DISCOUNT_COUPON_DOWNLOAD', 'Download Multiple Coupon Codes');
-define('REDEEM_ORDER_ID', 'Order #');
-define('SUCCESS_COUPON_REACTIVATE', 'Successful Reactivate');
-define('TEXT_CONFIRM_REACTIVATE', 'Are you sure you want to restore this Coupon?<br />NOTE: Restore does not affect Start/Expiration Dates.<br />Restore does not affect limits on use per coupon/use per customer if already redeemed.');
+define('REDEEM_ORDER_ID', 'Bestellnummer');
+define('SUCCESS_COUPON_REACTIVATE', 'Reaktivierung erfolgreich');
+define('TEXT_CONFIRM_REACTIVATE', 'Wollen Sie diesen Aktionskupon wirklich wiederherstellen?<br />HINWEIS: Eine Wiederherstellung betrifft nicht das Start/Ablauf Datum.<br />Eien Wiederherstellung betrifft nicht Einschränkungen für die Zahl der Verwendungen per Kupon oder Kunde, falls der Kupon bereits eingelöst wurde.');
 
-define('SUCCESS_COUPON_FOUND', 'Discount Coupon found!');
-define('ERROR_COUPON_NOT_FOUND', 'Discount Coupon not found!');
-define('ERROR_NO_COUPON_CODE', 'Discount Coupon coupon code not entered!');
+define('SUCCESS_COUPON_FOUND', 'Aktionskupon gefunden!');
+define('ERROR_COUPON_NOT_FOUND', 'Aktionskupon nicht gefunden!');
+define('ERROR_NO_COUPON_CODE', 'Aktionskupon Code nicht eingegeben!');

@@ -1,15 +1,15 @@
 <?php
 /**
  * @package admin
- * @copyright Copyright 2003-2018 Zen Cart Development Team
- * @author inspired from sales_report_graphs.php,v 0.01 2002/11/27 19:02:22 cwi Exp  Released under the GNU General Public License $
- * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: Drbyte Mon Aug 7 23:27:01 2017 -0400 New in v1.5.6 $
+ * @copyright Copyright 2003-2019 Zen Cart Development Team
+ * @copyright Portions Copyright 2003 osCommerce
+ * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
+ * @version $Id: stats_sales_report_graphs.php 2 2019-06-16 08:15:08Z webchills $
  */
 
 define('FILTER_STATUS', '<b>Filter by Order Status</b>');
 define('FILTER_VALUE', '<b>Filter On/Off</b>');
-define('HEADING_TITLE', 'Sales Reports');
+define('HEADING_TITLE', 'Sales Reports ');
 define('TODAY_TO_DATE', 'Daily Totals');
 define('WEEK_TO_DATE', 'Weekly Totals');
 define('MONTH_TO_DATE', 'Monthly Totals');

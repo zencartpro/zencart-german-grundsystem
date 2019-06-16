@@ -1,35 +1,35 @@
 <?php
 /**
  * @package admin
- * @copyright Copyright 2003-2018 Zen Cart Development Team
- * @author inspired from sales_report_graphs.php,v 0.01 2002/11/27 19:02:22 cwi Exp  Released under the GNU General Public License $
- * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: Drbyte Mon Aug 7 23:27:01 2017 -0400 New in v1.5.6 $
+ * @copyright Copyright 2003-2019 Zen Cart Development Team
+ * @copyright Portions Copyright 2003 osCommerce
+ * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
+ * @version $Id: stats_sales_report_graphs.php 1 2019-06-16 07:15608Z webchills $
  */
 
-define('FILTER_STATUS', '<b>Filter by Order Status</b>');
-define('FILTER_VALUE', '<b>Filter On/Off</b>');
-define('HEADING_TITLE', 'Sales Reports');
-define('TODAY_TO_DATE', 'Daily Totals');
-define('WEEK_TO_DATE', 'Weekly Totals');
-define('MONTH_TO_DATE', 'Monthly Totals');
-define('AVERAGE_ORDER', 'Average order amount');
+define('FILTER_STATUS', '<b>Filter nach Bestellstatus</b>');
+define('FILTER_VALUE', '<b>Filter An/Aus</b>');
+define('HEADING_TITLE', 'Verkaufsbericht ');
+define('TODAY_TO_DATE', 'Gesamtsummen täglich');
+define('WEEK_TO_DATE', 'Gesamtsummen wöchentlich');
+define('MONTH_TO_DATE', 'Gesamtsummen monatlich');
+define('AVERAGE_ORDER', 'Durchschnittlicher Bestellwert');
 
-define('CHART_TOTAL_SALES', 'Total Sales');
-define('CHART_AVERAGE_SALE_AMOUNT', 'Average Sale Amount');
+define('CHART_TOTAL_SALES', 'Verkäufe gesamt');
+define('CHART_AVERAGE_SALE_AMOUNT', 'Durchschnittlicher Bestellwert');
 
-define('TEXT_PREVIOUS_LINK', '&lt;&lt;&nbsp;Previous');
-define('TEXT_NEXT_LINK', 'Next&nbsp;&gt;&gt;');
+define('TEXT_PREVIOUS_LINK', '&lt;&lt;&nbsp;Vorherige');
+define('TEXT_NEXT_LINK', 'Nächste&nbsp;&gt;&gt;');
 
-define('REPORT_TEXT_ORDERS', 'Orders');
-define('REPORT_TEXT_CONVERSION_PER_ORDER', 'Conversion per Order');
+define('REPORT_TEXT_ORDERS', 'Bestellungen');
+define('REPORT_TEXT_CONVERSION_PER_ORDER', 'Conversion pro Bestellung');
 define('REPORT_TEXT_CONVERSION', 'Conversion');
-define('REPORT_TEXT_VARIANCE', 'Variance');
-define('REPORT_TEXT_HOURLY', 'Hourly');
-define('REPORT_TEXT_DAILY', 'Daily');
-define('REPORT_TEXT_WEEKLY', 'Weekly');
-define('REPORT_TEXT_MONTHLY', 'Monthly');
-define('REPORT_TEXT_YEARLY', 'Yearly');
+define('REPORT_TEXT_VARIANCE', 'Varianz');
+define('REPORT_TEXT_HOURLY', 'nach Stunde');
+define('REPORT_TEXT_DAILY', 'nach Tag');
+define('REPORT_TEXT_WEEKLY', 'nach Woche');
+define('REPORT_TEXT_MONTHLY', 'nach Monat');
+define('REPORT_TEXT_YEARLY', 'nach Jahr');
 
-define('YEARLY_TOTAL', 'Yearly Total');
-define('CHART_TEXT_AVERAGE', 'Average');
+define('YEARLY_TOTAL', 'Gesamtsumme Jahr');
+define('CHART_TEXT_AVERAGE', 'Durchschnitt');

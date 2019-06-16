@@ -1,12 +1,13 @@
 <?php
 /**
+ * Zen Cart German Specific
  * general functions
  *
  * @package functions
- * @copyright Copyright 2003-2018 Zen Cart Development Team
+ * @copyright Copyright 2003-2019 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: general.php 792 2019-04-14 11:56:51Z webchills $
+ * @version $Id: general.php 793 2019-06-15 07:56:51Z webchills $
  */
 
 if (!defined('TABLE_UPGRADE_EXCEPTIONS')) define('TABLE_UPGRADE_EXCEPTIONS','upgrade_exceptions');
@@ -195,8 +196,8 @@ function zen_get_select_options($optionList, $setDefault)
     $httpServer = zen_parse_url($url, 'host', true);
     $adminServer = ($request_type == 'SSL') ? 'https://' : 'http://';
     $adminServer .= $httpServer;
-    $catalogHttpServer = 'http://' . $httpServer;
-    $catalogHttpUrl = 'http://' . $httpServer . '/' . zen_parse_url($url, 'path', true);
+    $catalogHttpServer = 'https://' . $httpServer;
+    $catalogHttpUrl = 'https://' . $httpServer . '/' . zen_parse_url($url, 'path', true);
     $catalogHttpsServer = 'https://' . $httpServer;
     $catalogHttpsUrl = 'https://' . $httpServer . '/' . zen_parse_url($url, 'path', true);
     $dir_ws_http_catalog = str_replace($catalogHttpServer, '', $catalogHttpUrl) .'/';
