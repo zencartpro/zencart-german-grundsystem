@@ -1,10 +1,10 @@
 <?php
 /**
  * @package admin
- * @copyright Copyright 2003-2016 Zen Cart Development Team
+ * @copyright Copyright 2003-2019 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: ezpages.php 628 2015-12-22 16:39:16Z webchills $
+ * @version $Id: ezpages.php 629 2019-06-16 21:39:16Z webchills $
  */
  
 define('HEADING_TITLE', 'EZ-Pages');
@@ -30,8 +30,12 @@ define('TABLE_HEADING_STATUS_SIDEBOX', 'Sidebox:');
 define('TABLE_HEADING_STATUS_FOOTER', 'Fusszeile:');
 define('TABLE_HEADING_STATUS_TOC', 'Inhaltsverzeichnis:');
 define('TABLE_HEADING_CHAPTER', 'Kapitel:');
+define('TABLE_HEADING_VISIBLE', 'Sichtbar:');
 define('TABLE_HEADING_PAGE_OPEN_NEW_WINDOW', 'Öffne neues Fenster:');
 define('TABLE_HEADING_PAGE_IS_SSL', 'Seite ist SSL:');
+define('TABLE_HEADING_PAGE_IS_VISIBLE', 'Seite ist sichtbar:');
+define('TABLE_HEADING_PAGE_IS_VISIBLE_EXPLANATION', ' Seite wird angezeigt, selbst wenn nicht in Header, Footer oder Sidebox<br>
+(Falls alle Einstellungen für Sichtbar, Header, Footer und Sidebox auf AUS sind, dann bekommen Besucher, die diese Seite aufrufen, eine Seite nicht gefunden Meldung.)');
 define('TEXT_DISPLAY_NUMBER_OF_PAGES', 'Zeige <b>%d</b> bis <b>%d</b> (von <b>%d</b> Seiten)');
 define('IMAGE_NEW_PAGE', 'Neue Seite');
 define('TEXT_INFO_PAGE_IMAGE', 'Bild');

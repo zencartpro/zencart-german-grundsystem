@@ -1,12 +1,12 @@
 #
 # * This SQL script upgrades the core Zen Cart database structure from v1.5.5 to v1.5.6
-# *
+# * Zen Cart German Specific
 # * @package Installer
 # * @access private
 # * @copyright Copyright 2003-2019 Zen Cart Development Team
 # * @copyright Portions Copyright 2003 osCommerce
 # * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
-# * @version $Id: mysql_upgrade_zencart_156.sql 2 2019-06-16 18:36:59Z webchills $
+# * @version $Id: mysql_upgrade_zencart_156.sql 3 2019-06-16 21:22:59Z webchills $
 
 #
 
@@ -195,7 +195,7 @@ INSERT IGNORE INTO ezpages_content (pages_id, languages_id, pages_title, pages_h
 SELECT e.pages_id, l.languages_id, e.pages_title, e.pages_html_text
 FROM ezpages e
 LEFT JOIN languages l ON 1;
-ALTER TABLE ezpages DROP languages_id, DROP pages_title, DROP pages_html_text;
+ALTER TABLE ezpages DROP pages_title, DROP pages_html_text;
 ALTER TABLE ezpages ADD status_visible int(1) NOT NULL default '0';
 ## support for utf8mb4 index limitations in MySQL 5.5-5.6
 ALTER TABLE admin_menus MODIFY menu_key VARCHAR(191) NOT NULL DEFAULT '';
