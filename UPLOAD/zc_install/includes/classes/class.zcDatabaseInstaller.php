@@ -4,7 +4,7 @@
  * @package Installer
  * @copyright Copyright 2003-2019 Zen Cart Development Team
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: class.zcDatabaseInstaller.php 2019-04-30 15:59:53Z hugo13 $
+ * @version $Id: class.zcDatabaseInstaller.php 2019-06-15 18:59:53Z webchills $
  *
  */
 /**
@@ -35,7 +35,7 @@ class zcDatabaseInstaller
     $this->dbPassword = $options['db_password'];
     $this->dbName = $options['db_name'];
     $this->dbPrefix = $options['db_prefix'];
-    $this->dbCharset = trim($options['db_charset']) == '' ? 'utf8' : $options['db_charset'];
+    $this->dbCharset = trim($options['db_charset']) == '' ? 'utf8mb4' : $options['db_charset'];
     $this->dbType = in_array($options['db_type'], $dbtypes) ? $options['db_type'] : 'mysql';
     $this->dieOnErrors = isset($options['dieOnErrors']) ? (bool)$options['dieOnErrors'] : FALSE;
     $this->errors = array();
@@ -66,6 +66,12 @@ class zcDatabaseInstaller
     $options = array('dbCharset'=>$this->dbCharset);
     $result = $this->db->Connect($this->dbHost, $this->dbUser, $this->dbPassword, $this->dbName, 'false', $this->dieOnErrors, $options);
     return $result;
+  }
+
+  public function runZeroDateSql($options = null)
+  {
+      $file = DIR_FS_INSTALL . 'sql/install/zero_dates_cleanup.sql';
+      return $this->parseSqlFile($file, $options);
   }
   public function parseSqlFile($fileName, $options = NULL)
   {

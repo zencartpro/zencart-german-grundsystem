@@ -10,13 +10,13 @@
  * @package general
  * @copyright Copyright 2003-2019 Zen Cart Development Team
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: version.php 849 2019-04-12 17:33:58Z webchills $
+ * @version $Id: version.php 850 2019-06-15 17:33:58Z webchills $
  * @private
  */
 
 define('PROJECT_VERSION_NAME', 'Zen Cart');
 define('PROJECT_VERSION_MAJOR', '1');
-define('PROJECT_VERSION_MINOR', '5.6');
+define('PROJECT_VERSION_MINOR', '5.6b');
 define('PROJECT_VERSION_PATCH1', '');
 define('PROJECT_VERSION_PATCH2', '');
 define('PROJECT_VERSION_PATCH1_SOURCE', '');

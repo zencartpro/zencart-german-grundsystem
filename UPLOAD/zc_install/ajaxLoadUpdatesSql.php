@@ -4,7 +4,7 @@
  * @package Installer
  * @copyright Copyright 2003-2019 Zen Cart Development Team
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: ajaxLoadUpdatesSql.php 2 2019-04-12 13:59:53Z webchills $
+ * @version $Id: ajaxLoadUpdatesSql.php 3 2019-06-16 18:59:53Z webchills $
  */
 define('IS_ADMIN_FLAG', false);
 define('DIR_FS_INSTALL', __DIR__ . '/');
@@ -52,6 +52,7 @@ if (!$error)
   $options = $systemChecker->getDbConfigOptions();
   $dbInstaller = new zcDatabaseInstaller($options);
   $result = $dbInstaller->getConnection();
+  $errDates = $dbInstaller->runZeroDateSql($options);
   $errorUpg = $dbInstaller->parseSqlFile($file);
 }
 echo json_encode(array('error'=>$error, 'version'=>$_POST['version'], 'errorList'=>$errorList));

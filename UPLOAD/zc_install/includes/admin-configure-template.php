@@ -1,5 +1,6 @@
 <?php
 /**
+ * Zen Cart German Specific
  * @package Configuration Settings ADMINBEREICH
  * @copyright Copyright 2003-2018 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
@@ -97,7 +98,7 @@ define('DIR_FS_CATALOG', '%%_DIR_FS_CATALOG_%%');
  * The following settings define your database connection.
  * These must be the SAME as you're using in your non-admin copy of configure.php
  * Die folgenden Einstellungen definieren Ihre Datenbankverbindung.
- * Sie müssen hier dieselben Datenbankdaten verwenden wie in der configure.php in Ihrem Adminverzeichnis!
+ * Sie müssen hier dieselben Datenbankdaten verwenden wie in der configure.php in Ihrem Frontendverzeichnis!
  */
 define('DB_TYPE', '%%_DB_TYPE_%%'); // immer 'mysql'
 define('DB_PREFIX', '%%_DB_PREFIX_%%'); // Prefix für die Datenbanktabellen - sollte leer sein, wir empfehlen KEIN Prefix zu verwenden

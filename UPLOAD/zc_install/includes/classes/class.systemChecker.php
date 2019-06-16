@@ -5,12 +5,9 @@
  * @copyright Copyright 2003-2018 Zen Cart Development Team
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
  * @version $Id: class.systemChecker.php 6 2018-04-14 11:59:53Z webchills $
- *
  */
 /**
- *
  * systemChecker Class
- *
  */
 class systemChecker
 {
