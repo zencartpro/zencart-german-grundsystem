@@ -49,7 +49,13 @@ Follow us on Twitter:<br/>
 Source Code auf GitHub:<br/>
 <a href="https://github.com/zencartpro" target="_blank">github.com/zencartpro</a>
 <br><br><br>
-</div>
+<h1>Unterstützen</h1>
+<p>Die deutsche Zen Cart Version steht Ihnen kostenfrei im Rahmen der <a href="https://opensource.org/licenses/GPL-2.0" target="_blank">GNU General Public License</a> zur Verfügung. <br>
+Sie können diese Software kostenfrei benutzen, Änderungen vornehmen, etc. <br />
+<br />
+Da wir Ihnen diese Software kostenfrei zur Verfügung stellen, freuen wir uns über Spenden. <br>
+Diese Spenden helfen uns, die Kosten für die Wartung, Upgrades, Updates, den kostenlosen Support und die stetige Weiterentwicklung dieser Software für Ihren Online-Shop zu decken. </p>
+<p><a href="https://donorbox.org/spende-fur-die-weiterentwicklung-der-deutschen-zen-cart-version" target="_blank"><img src="https://www.zen-cart-pro.at/zencartpro-donation-white.png" alt="Spende für die Weiterentwicklung der deutschen Zen Cart Version" title="Spende für die Weiterentwicklung der deutschen Zen Cart Version"></a></p>
 <?php require(DIR_WS_INCLUDES . 'footer.php'); ?>
 <!-- footer_eof //-->
 <br>

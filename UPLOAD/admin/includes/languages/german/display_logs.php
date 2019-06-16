@@ -1,12 +1,12 @@
 <?php
 /**
  * @package admin
- * @copyright Copyright 2003-2016 Zen Cart Development Team
+ * @copyright Copyright 2003-2019 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: display_logs.php 730 2015-12-22 15:49:16Z webchills $
+ * @version $Id: display_logs.php 732 2019-06-16 17:49:16Z webchills $
  */
-define('HEADING_TITLE', 'Error Logfiles anzeigen');
+define('HEADING_TITLE', 'Logfiles anzeigen');
 define('TABLE_HEADING_FILENAME', 'Dateiname');
 define('TABLE_HEADING_MODIFIED', 'geändert am');
 define('TABLE_HEADING_FILESIZE', 'Dateigröße (bytes)');
@@ -17,11 +17,30 @@ define('DELETE_SELECTED_ALT', 'Alle ausgewählten Dateien löschen');
 define('BUTTON_DELETE_ALL', 'button_delete_all.gif');
 define('DELETE_ALL_ALT', 'Lösche alle Dateien der aktuellen Ansicht');
 define('ICON_INFO_VIEW', 'Inhalt dieser Datei anzeigen');
+define('DISPLAY_DEBUG_LOGS_ONLY', 'Nur Debug Logs anzeigen?');
+define('LOG_SORT_ASC', 'aufsteigend');
+define('LOG_SORT_DESC', 'absteigend');
 define('TEXT_HEADING_INFO', 'Inhalt der Datei');
+// -----
+// Sort-order descriptions, used in the instructions' display.
+//
 define('TEXT_MOST_RECENT', 'neueste');
 define('TEXT_OLDEST', 'ältestes');
+define('TEXT_SMALLEST', 'smallest');
+define('TEXT_LARGEST', 'largest');
+// -----
+// The TEXT_INSTRUCTIONS string is passed into sprintf to produce the instructions given on the plugin's main display,
+// using the following variables:
+//
+// %1$u ... The maximum size of a fully-displayed file.
+// %2$s ... Contains a descriptive string identifying the current sort order
+// %3$u ... The number of log files currently being displayed.
+// %4$u ... The number of log files currently present in the log-related directories.
+// %5$s ... The "included" prefixes for the log-files displayed.
+// %6$s ... The "excluded" prefixes for the log-files displayed.
+//
 $imageName = zen_image(DIR_WS_IMAGES . 'icon_info.gif', ICON_INFO_VIEW);
-define('TEXT_INSTRUCTIONS', '<br /><br />Die Dateien können entweder in aufsteigender oder absteigender Reihenfolge nach dem letzten Änderungsdatum sortiert werden, indem Sie auf den <em>' . TABLE_HEADING_MODIFIED . '</em> Link klicken. Klicken Sie auf das ' . $imageName . ' Infosymbol, um den Inhalt der jeweiligen Datei anzuzeigen.  Es werden nur die ersten %u bytes der Datei ausgelesen; falls das Logfilesehr gross ist, wird seine Dateigröße <span class="bigfile">rot</span> hervorgehoben.<br /><br />Anklicken des Buttons <strong>Alle löschen</strong> löscht alle Logfiles der aktuellen Ansicht. Anklicken des Buttons <strong>Ausgewählte löschen</strong> löscht nur die angekreuzten Logfiles.<br /><br />Derzeitige Ansicht: %s %u von %u Logfiles.<br />');
+define('TEXT_INSTRUCTIONS', '<br /><br />Die Dateien können entweder in aufsteigender oder absteigender Reihenfolge nach dem letzten Änderungsdatum sortiert werden, indem Sie auf den <em>' . TABLE_HEADING_MODIFIED . '</em> Link klicken. Klicken Sie auf das ' . $imageName . ' Infosymbol, um den Inhalt der jeweiligen Datei anzuzeigen.  Es werden nur die ersten %u bytes der Datei ausgelesen; falls das Logfilesehr gross ist, wird seine Dateigröße <span class="bigfile">rot</span> hervorgehoben.<br /><br />Anklicken des Buttons <strong>Alle löschen</strong> löscht alle Logfiles der aktuellen Ansicht. Anklicken des Buttons <strong>Ausgewählte löschen</strong> löscht nur die angekreuzten Logfiles.<br /><br />Einstellungen zur Logfileanzeige auf dieser Seite können Sie unter Konfiguration > Protokollierung vornehmen.<br/><br/>Derzeitige Ansicht: %s %u von %u Logfiles.<br />');
 define('JS_MESSAGE_DELETE_ALL_CONFIRM', 'Wollen Sie diese \'+n+\' Dateien wirklich löschen?');
 define('JS_MESSAGE_DELETE_SELECTED_CONFIRM', 'Wollen Sie die ausgewählten Dateien wirklich löschen?');
 define('WARNING_NOT_SECURE','<span class="errorText">HINWEIS: Sie haben SSL nicht aktiviert. Der Inhalt der Logfiles, die Sie über diese Seite anzeigen wird nicht verschlüsselt übertragen, das stellt ein Sicherheitsrisiko dar!</span>');

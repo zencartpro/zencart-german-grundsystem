@@ -4,7 +4,7 @@
  * @copyright Copyright 2003-2019 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: newsletters.php 789 2019-06-15 16:13:51Z webchills $
+ * @version $Id: newsletters.php 789 2019-06-16 08:13:51Z webchills $
  */
 require('includes/application_top.php');
 
@@ -156,6 +156,9 @@ if (zen_not_null($action)) {
       <!-- body //-->
 
       <h1 class="pageHeading"><?php echo HEADING_TITLE; ?></h1>
+      <br/>
+      <span style="color:red; font-size:12px;">Hinweis: Ein Versand von Newslettern über Zen Cart wird NICHT empfohlen!<br/>Er ist nicht DSGVO-konform, da die Empfänger nie via Double-Optin zugestimmt haben.<br/>Verwenden Sie stattdessen echte Newslettersysteme und importieren Ihre Newsletterempfänger in diese Systeme oder koppeln Sie diese Systeme direkt mit Ihrem Zen Cart Shop.</span>
+      <br/>
       <div class="row">
         <div class="col-sm-offset-6 col-sm-6">
             <?php if ($action == 'new') { ?>
