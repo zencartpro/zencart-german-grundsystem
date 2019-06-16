@@ -1,16 +1,17 @@
 <?php
 /**
  * @package admin
- * @copyright Copyright 2003-2016 Zen Cart Development Team
+ * @copyright Copyright 2003-2019 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: gv_sent.php 629 2016-04-09 09:39:16Z webchills $
+ * @version $Id: gv_sent.php 630 2019-06-16 17:39:16Z webchills $
  */
 
+require 'gv_name.php';
 define('HEADING_TITLE', TEXT_GV_NAMES .' versandt');
 define('TABLE_HEADING_SENDERS_NAME', 'Name des Absenders');
-define('TABLE_HEADING_VOUCHER_VALUE', ' Betrag');
-define('TABLE_HEADING_VOUCHER_CODE', ' Eingelöst');
+define('TABLE_HEADING_VOUCHER_VALUE', TEXT_GV_NAME . ' Value');
+define('TABLE_HEADING_VOUCHER_CODE', TEXT_GV_REDEEM);
 define('TABLE_HEADING_DATE_SENT', 'Gesendet am');
 define('TEXT_HEADING_DATE_REDEEMED', 'Einlösedatum');
 define('TABLE_HEADING_ACTION', 'Aktion');

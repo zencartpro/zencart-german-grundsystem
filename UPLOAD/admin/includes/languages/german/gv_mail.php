@@ -1,12 +1,13 @@
 <?php
 /**
  * @package admin
- * @copyright Copyright 2003-2016 Zen Cart Development Team
+ * @copyright Copyright 2003-2019 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: gv_mail.php 633 2016-04-09 09:39:16Z webchills $
+ * @version $Id: gv_mail.php 634 2019-06-16 17:39:16Z webchills $
  */
 
+require 'gv_name.php';
 define('HEADING_TITLE', TEXT_GV_NAME . ' an Kunden versenden');
 
 define('TEXT_CUSTOMER', 'Kunde:');
@@ -16,7 +17,7 @@ define('TEXT_TO', 'E-Mail an:');
 define('TEXT_AMOUNT', 'Betrag');
 define('TEXT_MESSAGE', 'Nur-Text <br />Nachricht:');
 define('TEXT_RICH_TEXT_MESSAGE', 'Rich-Text <br />Nachricht:');
-define('TEXT_SINGLE_EMAIL', '<span class="smallText">Verwenden Sie dieses Feld, um eine einzelne E-Mail zu senden</span>');
+define('TEXT_SINGLE_EMAIL', '<span class="smallText">Verwenden Sie dieses Feld, um eine einzelne E-Mail zu senden, ansonsten verwenden Sie das Drodown oben</span>');
 define('TEXT_SELECT_CUSTOMER', 'Kunde wählen');
 define('TEXT_ALL_CUSTOMERS', 'Alle Kunden');
 define('TEXT_NEWSLETTER_CUSTOMERS', 'An alle Newsletter Abonnementen');
