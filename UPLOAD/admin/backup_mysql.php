@@ -4,7 +4,7 @@
  * @copyright Copyright 2003-2019 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: backup_mysql.php 2019-04-13 15:04:51Z webchills $
+ * @version $Id: backup_mysql.php 2019-06-17 11:04:51Z webchills $
  */
 
 
@@ -424,8 +424,8 @@
         $onclick_link = 'file=' . $entry;
       }
 ?>
-<!--                 <td class="dataTableContent" onclick="document.location.href='<?php echo zen_href_link(FILENAME_BACKUP_MYSQL, $onclick_link); ?>'"><?php echo '<a href="' . zen_href_link(FILENAME_BACKUP_MYSQL, 'action=download&file=' . $entry) . '" class="btn btn-primary" role="button">' . ICON_FILE_DOWNLOAD . '</a>&nbsp;' . $entry; ?></td> -->
-                <td class="dataTableContent" onClick="document.location.href='<?php echo zen_href_link(FILENAME_BACKUP_MYSQL, $onclick_link); ?>'"><?php echo '<a href="' . ((ENABLE_SSL_ADMIN == 'true') ? DIR_WS_HTTPS_ADMIN : DIR_WS_ADMIN) . 'backups/' . $entry . '" class="btn btn-primary" role="button">' . ICON_FILE_DOWNLOAD . '</a>&nbsp;' . $entry; ?></td>
+<!--                 <td class="dataTableContent" onclick="document.location.href='<?php echo zen_href_link(FILENAME_BACKUP_MYSQL, $onclick_link); ?>'"><?php echo '<a href="' . zen_href_link(FILENAME_BACKUP_MYSQL, 'action=download&file=' . $entry) . '">' . zen_image(DIR_WS_ICONS . 'file_download.gif', ICON_FILE_DOWNLOAD) . '</a>&nbsp;' . $entry; ?></td> -->
+                <td class="dataTableContent" onClick="document.location.href='<?php echo zen_href_link(FILENAME_BACKUP_MYSQL, $onclick_link); ?>'"><?php echo '<a href="' . ((ENABLE_SSL_ADMIN == 'true') ? DIR_WS_HTTPS_ADMIN : DIR_WS_ADMIN) . 'backups/' . $entry . '">' . zen_image(DIR_WS_ICONS . 'file_download.gif', ICON_FILE_DOWNLOAD) . '</a>&nbsp;' . $entry; ?></td>
                 <td class="dataTableContent" align="center" onClick="document.location.href='<?php echo zen_href_link(FILENAME_BACKUP_MYSQL, $onclick_link); ?>'"><?php echo date(PHP_DATE_TIME_FORMAT, filemtime(DIR_FS_BACKUP . $entry)); ?></td>
                 <td class="dataTableContent" align="right" onClick="document.location.href='<?php echo zen_href_link(FILENAME_BACKUP_MYSQL, $onclick_link); ?>'"><?php echo number_format(filesize(DIR_FS_BACKUP . $entry)); ?> bytes</td>
                 <td class="dataTableContent" align="right"><?php if (isset($buInfo) && is_object($buInfo) && ($entry == $buInfo->file)) { echo zen_image(DIR_WS_IMAGES . 'icon_arrow_right.gif', ''); } else { echo '<a href="' . zen_href_link(FILENAME_BACKUP_MYSQL, 'file=' . $entry) . '">' . zen_image(DIR_WS_IMAGES . 'icon_info.gif', IMAGE_ICON_INFO) . '</a>'; } ?>&nbsp;</td>
@@ -441,12 +441,12 @@
                 <td class="smallText" colspan="3"><?php echo TEXT_BACKUP_DIRECTORY . ' ' . DIR_FS_BACKUP; ?></td>
                 <td align="right" class="smallText">
                     <?php if ( ($action != 'backup') && (isset($dir)) && !ini_get('safe_mode') && $dir_ok == true ) {
-                             echo '<a href="' . zen_href_link(FILENAME_BACKUP_MYSQL, 'action=backup'.(($debug=='ON')?'&debug=ON':'')) . (($tables_to_export!='')?'&tables='.str_replace(' ',',',$tables_to_export):'') . '" class="btn btn-primary" role="button">' .
-                                   IMAGE_BACKUP . '</a>&nbsp;&nbsp;';
+                             echo '<a href="' . zen_href_link(FILENAME_BACKUP_MYSQL, 'action=backup'.(($debug=='ON')?'&debug=ON':'')) . (($tables_to_export!='')?'&tables='.str_replace(' ',',',$tables_to_export):'') . '">' .
+                                   zen_image_button('button_backup.gif', IMAGE_BACKUP) . '</a>&nbsp;&nbsp;';
                           }
                           if ( ($action != 'restorelocal') && isset($dir) ) {
-                             echo '<a href="' . zen_href_link(FILENAME_BACKUP_MYSQL, 'action=restorelocal'.(($debug=='ON')?'&debug=ON':'')) . '" class="btn btn-warning" role="button">' .
-                                   IMAGE_RESTORE. '</a>';
+                             echo '<a href="' . zen_href_link(FILENAME_BACKUP_MYSQL, 'action=restorelocal'.(($debug=='ON')?'&debug=ON':'')) . '">' .
+                                   zen_image_button('button_restore.gif', IMAGE_RESTORE) . '</a>';
                           } ?>
                 </td>
               </tr>
@@ -503,7 +503,7 @@
       $contents[] = array('align' => 'center', 'text' => '<br />' . zen_image_submit('button_restore.gif', IMAGE_RESTORE) . '&nbsp;<a href="' . zen_href_link(FILENAME_BACKUP_MYSQL,(($debug=='ON')?'debug=ON':'')) . '">' . zen_image_button('button_cancel.gif', IMAGE_CANCEL) . '</a>');
       break;
     case 'delete':
-      if ($dir_ok == false) continue;
+      if ($dir_ok == false) break;       
       $heading[] = array('text' => '<strong>' . $buInfo->date . '</strong>');
 
       $contents = array('form' => zen_draw_form('delete', FILENAME_BACKUP_MYSQL, 'file=' . $buInfo->file . '&action=deleteconfirm'));
