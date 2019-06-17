@@ -1,5 +1,6 @@
 <?php
 /**
+ * Zen Cart German Specific
  * @package languageDefines
  * @copyright Copyright 2003-2018 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
@@ -28,3 +29,4 @@ define('HEADER_LOGO_IMAGE','logo.gif');
 // header Search Button/Box Search Button
 define('HEADER_SEARCH_BUTTON','Suchen');
 define('HEADER_SEARCH_DEFAULT_TEXT', 'Suchbegriff');
+define('SEARCH_DEFAULT_TEXT', 'Suchen');
