@@ -6,7 +6,7 @@
 # * @copyright Copyright 2003-2019 Zen Cart Development Team
 # * @copyright Portions Copyright 2003 osCommerce
 # * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
-# * @version $Id: mysql_zencart.sql 19487 2019-06-16 09:38:16Z webchills $
+# * @version $Id: mysql_zencart.sql 19488 2019-06-17 15:38:16Z webchills $
 #
 
 ############ IMPORTANT INSTRUCTIONS ###############
@@ -4354,6 +4354,8 @@ INSERT INTO configuration_language (configuration_title, configuration_key, conf
 ('Steuerklasse für Gutscheine', 'MODULE_ORDER_TOTAL_GV_TAX_CLASS', 43, 'Folgende Steuerklasse wird bei Gutscheinen und im Kreditguthaben verwendet:', now(), now()),
 ('Kreditguthaben inklusive Steuern', 'MODULE_ORDER_TOTAL_GV_CREDIT_TAX', 43, 'Sollen die Steuern bei bestellten Gutscheinen im Kreditguthaben inkludiert werden?', now(), now()),
 ('Bestellstatus', 'MODULE_ORDER_TOTAL_GV_ORDER_STATUS_ID', 43, 'Legt den Bestellstatus fest, wenn der komplette Auftrag mit einem Gutschein vollständig bezahlt wurde.', now(), now()),
+('Gutschein Warteschlange im Header der Administration?', 'MODULE_ORDER_TOTAL_GV_SHOW_QUEUE_IN_ADMIN', 43, 'Wollen Sie den Button für die Gutschein-Warteschlange auf allen Seiten der Shopadministration anzeigen?<br>(Wird automatisch ausgeblendet, wenn sich nichts in der Warteschlange befindet, und wird auf derSeite \'Bestellungen\' immer angezeigt, unabhängig von dieser Einstellung.', now(), now()),
+('Geschenkgutscheine als Sonderangebot möglich?', 'MODULE_ORDER_TOTAL_GV_SPECIAL', 43, 'Soll es möglich sein, dass Geschenkgutscheine als Sonderangebote eingestellt werden können?', now(), now()),
 
 ('Dieses Modul ist installiert', 'MODULE_ORDER_TOTAL_LOWORDERFEE_STATUS', 43, '', now(), now()),
 ('Sortierung', 'MODULE_ORDER_TOTAL_LOWORDERFEE_SORT_ORDER', 43, 'Sortierung der Anzeige', now(), now()),

@@ -1,25 +1,14 @@
 <?php
-//
-// +----------------------------------------------------------------------+
-// |zen-cart Open Source E-commerce                                       |
-// +----------------------------------------------------------------------+
-// | Copyright (c) 2003 The zen-cart developers                           |
-// |                                                                      |
-// | http://www.zen-cart.com/index.php                                    |
-// |                                                                      |
-// | Portions Copyright (c) 2003 osCommerce                               |
-// +----------------------------------------------------------------------+
-// | This source file is subject to version 2.0 of the GPL license,       |
-// | that is bundled with this package in the file LICENSE, and is        |
-// | available through the world-wide-web at the following url:           |
-// | http://www.zen-cart.com/license/2_0.txt.                             |
-// | If you did not receive a copy of the zen-cart license and are unable |
-// | to obtain it through the world-wide-web, please send a note to       |
-// | license@zen-cart.com so we can mail you a copy immediately.          |
-// +----------------------------------------------------------------------+
-//  $Id: email_export.php   2005-04-15  drbyte $
+/**
+ * Zen Cart German Specific
+ * @package admin
+ * @copyright Copyright 2003-2019 Zen Cart Development Team
+ * @copyright Portions Copyright 2003 osCommerce
+ * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
+ * @version $Id: email_export.php 2019-06-17 11:19:17Z webchills $
+ */
 
-  require('includes/application_top.php');
+require('includes/application_top.php');
 
 
 // change destination here for path when using "save to file on server"
@@ -40,6 +29,7 @@ if (!defined('DIR_FS_EMAIL_EXPORT')) define('DIR_FS_EMAIL_EXPORT',DIR_FS_CATALOG
   $post_format = (isset($_POST['format']) && zen_not_null($_POST['format']) ? $_POST['format'] : 1 );
   $format = $available_export_formats[$post_format]['text'];
   $file = (isset($_POST['filename']) ? $_POST['filename'] : 'email_addresses.txt');
+  if (!preg_match('/.*\.(csv|txt|html?|xml)$/', $file)) $file .= '.txt';
 
   if ($action != '') {
     switch ($action) {
@@ -115,6 +105,8 @@ if (!defined('DIR_FS_EMAIL_EXPORT')) define('DIR_FS_EMAIL_EXPORT',DIR_FS_CATALOG
             $exporter_output .=  $FIELDSTART . "customers_lastname".$FIELDEND;
             $exporter_output .=  $FIELDSEPARATOR;
             $exporter_output .=  $FIELDSTART . "company_name".$FIELDEND;
+            $exporter_output .=  $FIELDSEPARATOR;
+            $exporter_output .=  $FIELDSTART . "customers_telephone".$FIELDEND;
             $exporter_output .=  $LINEBREAK;
           }
           // headers - XML
@@ -138,6 +130,8 @@ if (!defined('DIR_FS_EMAIL_EXPORT')) define('DIR_FS_EMAIL_EXPORT',DIR_FS_CATALOG
             $exporter_output .=  "    <firstname>" . $audience->fields['customers_firstname'] . "</firstname>\n";
             $exporter_output .=  "    <lastname>" .$audience->fields['customers_lastname'] . "</lastname>\n";
             $exporter_output .=  "    <email_address>" . $audience->fields['customers_email_address'] . "</email_address>\n";
+            $exporter_output .=  "    <company>" .$audience->fields['entry_company'] . "</company>\n";
+            $exporter_output .=  "    <telephone>" .$audience->fields['customers_telephone'] . "</telephone>\n";
             $exporter_output .=  "  </contact>\n";
           } else {  // output non-XML data-format
             $exporter_output .=  $LINESTART;
@@ -148,6 +142,8 @@ if (!defined('DIR_FS_EMAIL_EXPORT')) define('DIR_FS_EMAIL_EXPORT',DIR_FS_CATALOG
             $exporter_output .=  $FIELDSTART . $audience->fields['customers_lastname'] . $FIELDEND;
             $exporter_output .=  $FIELDSEPARATOR;
             $exporter_output .=  $FIELDSTART . $audience->fields['entry_company'] . $FIELDEND;
+            $exporter_output .=  $FIELDSEPARATOR;
+            $exporter_output .=  $FIELDSTART . $audience->fields['customers_telephone'] . $FIELDEND;
             $exporter_output .=  $LINEBREAK;
           }
 
@@ -217,96 +213,61 @@ if (!defined('DIR_FS_EMAIL_EXPORT')) define('DIR_FS_EMAIL_EXPORT',DIR_FS_CATALOG
   }  //endif $action
 
 ?>
-<!doctype html public "-//W3C//DTD HTML 4.01 Transitional//EN">
+<!doctype html>
 <html <?php echo HTML_PARAMS; ?>>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=<?php echo CHARSET; ?>">
-<title><?php echo TITLE; ?></title>
-<link rel="stylesheet" type="text/css" href="includes/stylesheet.css">
-<link rel="stylesheet" type="text/css" href="includes/cssjsmenuhover.css" media="all" id="hoverJS">
-<script type="text/javascript" src="includes/menu.js"></script>
-<script type="text/javascript" src="includes/general.js"></script>
-<script type="text/javascript">
-  <!--
-  function init()
-  {
-    cssjsmenu('navbar');
-    if (document.getElementById)
-    {
-      var kill = document.getElementById('hoverJS');
-      kill.disabled = true;
-    }
-  }
-  // -->
-</script>
-</head>
-<body onload="init()">
-<!-- header //-->
-<?php require(DIR_WS_INCLUDES . 'header.php'); ?>
-<!-- header_eof //-->
+  <head>
+    <meta charset="<?php echo CHARSET; ?>">
+    <title><?php echo TITLE; ?></title>
+    <link rel="stylesheet" href="includes/stylesheet.css">
+    <link rel="stylesheet" href="includes/cssjsmenuhover.css" media="all" id="hoverJS">
+    <script src="includes/menu.js"></script>
+    <script src="includes/general.js"></script>
 
-<!-- body //-->
-<table border="0" width="100%" cellspacing="2" cellpadding="2">
-  <tr>
-<!-- body_text //-->
-    <td width="100%" valign="top"><table border="0" width="100%" cellspacing="0" cellpadding="0">
-      <tr>
-        <td width="100%"><table border="0" width="100%" cellspacing="0" cellpadding="0">
-          <tr>
-            <td class="pageHeading"><?php echo HEADING_TITLE; ?></td>
-            <td class="pageHeading" align="right"><?php echo zen_draw_separator('pixel_trans.gif', HEADING_IMAGE_WIDTH, HEADING_IMAGE_HEIGHT); ?></td>
-          </tr>
-        </table></td>
-      </tr>
-      <tr>
-        <td><?php echo zen_draw_separator('pixel_trans.gif', '1', '10'); ?></td>
-      </tr>
-      <tr><?php echo zen_draw_form('export', FILENAME_EMAIL_EXPORT, 'action=save','post');//, 'onsubmit="return check_form(export);"'); ?>
-        <td align="center">
-          <table border="0" cellspacing="0" cellpadding="2">
-          <tr>
-            <td class="main"><?php echo TEXT_EMAIL_EXPORT_FORMAT; ?><br />
-<?php echo zen_draw_pull_down_menu('format', $available_export_formats, $format); ?></td>
-          </tr>
-          <tr>
-            <td colspan="2"><?php echo zen_draw_separator('pixel_trans.gif', '1', '10'); ?></td>
-          </tr>
-          <tr>
-            <td class="main"><?php echo TEXT_PLEASE_SELECT_AUDIENCE; ?><br />
-<?php echo zen_draw_pull_down_menu('audience_selected', get_audiences_list('newsletters'), $query_name)?></td>
-          </tr>
-          <tr>
-            <td colspan="2"><?php echo zen_draw_separator('pixel_trans.gif', '1', '10'); ?></td>
-          </tr>
-          <tr>
-            <td class="main"><?php echo TEXT_EMAIL_EXPORT_FILENAME; ?><br />
-<?php echo zen_draw_input_field('filename', $file); ?></td>
-          </tr>
-          <tr>
-            <td colspan="2"><?php echo zen_draw_separator('pixel_trans.gif', '1', '10'); ?></td>
-          </tr>
-          <tr>
-            <td class="main"><?php echo TEXT_EMAIL_EXPORT_SAVETOFILE; ?><br />
+    <script>
+      function init() {
+          cssjsmenu('navbar');
+          if (document.getElementById) {
+              var kill = document.getElementById('hoverJS');
+              kill.disabled = true;
+          }
+      }
+    </script>
+    
+  </head>
+<body onLoad="init()" >
+      <!-- header //-->
+      <?php require(DIR_WS_INCLUDES . 'header.php'); ?>
+      <!-- header_eof //-->
+      <div class="container-fluid">
+        <!-- body //-->
+        <h1 class="pageHeading"><?php echo HEADING_TITLE; ?></h1>
+ <div class="row"><?php echo TEXT_INSTRUCTIONS; ?>
+ 	<br/><br/><?php echo zen_draw_form('export', FILENAME_EMAIL_EXPORT, 'action=save','post');//, 'onsubmit="return check_form(export);"'); ?>
+        <?php echo TEXT_EMAIL_EXPORT_FORMAT; ?><br />
+<?php echo zen_draw_pull_down_menu('format', $available_export_formats, $format); ?>
+<br/><br/>
+<?php echo TEXT_PLEASE_SELECT_AUDIENCE; ?><br />
+<?php echo zen_draw_pull_down_menu('audience_selected', get_audiences_list('newsletters'), $query_name)?>
+<br/><br/>
+<?php echo TEXT_EMAIL_EXPORT_FILENAME; ?><br />
+<?php echo zen_draw_input_field('filename', htmlspecialchars($file, ENT_COMPAT, CHARSET, TRUE), ' size="60"'); ?>
+<br/><br/>
+<?php echo TEXT_EMAIL_EXPORT_SAVETOFILE; ?><br />
 <?php echo zen_draw_checkbox_field('savetofile', '1', $save_to_file_checked);
-      echo TEXT_EMAIL_EXPORT_DEST . ' ' .DIR_FS_EMAIL_EXPORT; ?></td>
-          </tr>
-          <tr>
-            <td class="main" align="right"><?php echo zen_image_submit('button_save.gif', IMAGE_SAVE) . '&nbsp;&nbsp;<a href="' . zen_href_link(FILENAME_DEFAULT) . '">' . zen_image_button('button_cancel.gif', IMAGE_CANCEL) . '</a>'; ?></td>
-          </tr>
-          <tr>
-            <td class="main" colspan="2"><?php echo TEXT_INSTRUCTIONS; ?></td>
-          </tr>
-      </table></td>
+      echo TEXT_EMAIL_EXPORT_DEST . ' ' .DIR_FS_EMAIL_EXPORT; ?>
+    </div>
+    <br/><br/>
+    <div class="row">
+           <div class="form-group">
+          <div class="col-sm-12 text-left"><button type="submit" class="btn btn-primary"><?php echo IMAGE_EXPORT; ?></button> <a href="<?php echo zen_href_link(FILENAME_EMAIL_EXPORT) ?>" class="btn btn-default" role="button"><?php echo IMAGE_CANCEL; ?></a></div>
+        </div>
+          
     </form>
-<!-- body_text_eof //-->
-  </tr>
-</table>
-<!-- body_eof //-->
-
-<!-- footer //-->
-<?php require(DIR_WS_INCLUDES . 'footer.php'); ?>
-<!-- footer_eof //-->
-<br />
-</body>
-</html>
-<?php require(DIR_WS_INCLUDES . 'application_bottom.php'); ?>
+ <!-- body_text_eof //-->
+      </div>
+      <!-- body_eof //-->
+      <!-- footer //-->
+  <?php require(DIR_WS_INCLUDES . 'footer.php'); ?>
+      <!-- footer_eof //-->
+    </body>
+  </html>
