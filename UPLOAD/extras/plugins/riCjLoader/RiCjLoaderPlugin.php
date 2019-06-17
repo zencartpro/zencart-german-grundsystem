@@ -5,7 +5,7 @@
  * @author yellow1912 (RubikIntegration.com)
  * @author John William Robeson, Jr <johnny@localmomentum.net>
  * @license http://www.gnu.org/licenses/old-licenses/gpl-2.0.html GNU Public License V2.0
- *
+ * modified for Zen Cart German PHP 7.3 2019-06-17 webchills
  * NOTES:
  * All .php files can be manipulated by PHP when they're called, and are copied in-full to the browser page
  */
@@ -14,7 +14,7 @@ class RiCjLoaderPlugin
 {
 	protected $jscript = array();
 	protected $css = array();
-        protected $meta = array();
+  protected $meta = array();
 	protected $template;
 	protected $page_directory = '';
 	protected $current_page_base = '';
@@ -138,10 +138,11 @@ class RiCjLoaderPlugin
 	 */
 	function processLibs () 
 	{   
-	    if (count($this->libs) == 0) return;
+	 if (($this->libs) && count($this->libs) == 0) return;	    
 	    
 		$css_files = $jscript_files = array();
 		$load_order = -99999; // we set the libs to load first
+		if(is_array($this->libs)){
 		foreach ($this->libs as $lib => $options)
 		{
 			// attempt to load the config file
@@ -200,7 +201,8 @@ class RiCjLoaderPlugin
 							}	
 						}
 				}
-			}			
+			}	
+		}		
 		}
 		
 		if (!empty($css_files)) $this->addLoaderAssets($css_files, 'css');
