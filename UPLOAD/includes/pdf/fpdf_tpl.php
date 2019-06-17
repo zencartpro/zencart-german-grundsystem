@@ -6,7 +6,7 @@
  * @copyright Copyright (c) 2015 Setasign - Jan Slabon (http://www.setasign.com)
  * @license   http://opensource.org/licenses/mit-license The MIT License
  * @version   1.6.1
- * modified for pdf Rechnung for Zen Cart 2018-03-30 webchills
+ * modified for pdf Rechnung for Zen Cart 2019-06-17 webchills
  */
 
 if (!class_exists('fpdi_bridge')) {
@@ -780,7 +780,7 @@ public function _dounderline($x, $y, $txt)
 
    public function _putinfo()
     {
-        $this->_out('/Producer '.$this->_textstring('UFPDF '. UFPDF_VERSION));
+        $this->_out('/Producer '.$this->_textstring('UFPDF '. 'UFPDF_VERSION'));
         if(!empty($this->title))
             $this->_out('/Title '.$this->_textstring($this->title));
         if(!empty($this->subject))

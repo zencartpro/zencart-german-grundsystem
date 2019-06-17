@@ -2,10 +2,10 @@
 /**
  * @package pdf Rechnung
  * @copyright Copyright 2005-2012 langheiter.com 
- * @copyright Copyright 2003-2018 Zen Cart Development Team
+ * @copyright Copyright 2003-2019 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: class.rl_invoice3.php 2018-06-21 22:19:17Z webchills $
+ * @version $Id: class.rl_invoice3.php 2019-06-17 08:19:17Z webchills $
  */
  
 define('FPDF_FONTPATH', DIR_FS_CATALOG . DIR_WS_INCLUDES . 'pdf/font/');
@@ -62,7 +62,7 @@ class rl_invoice3 extends fpdi {
         }
         $this->pdfPath = $this->getDefault(RL_INVOICE3_PDF_PATH, array('path' => DIR_FS_CATALOG . 'pdf/', 'save' => '1'));
         $this->delta = $this->getDefault(RL_INVOICE3_DELTA, array('addrInvoice' => '20', 'invoiceProducts' => '30'));
-        $this->debug = $this->getDefault(RL_INVOICE3_DEBUG, array('debug' => 0));
+        $this->debug = $this->getDefault('RL_INVOICE3_DEBUG', array('debug' => 0));
         $this->lineHeight = $this->getDefault(RL_INVOICE3_LINE_HEIGT, '1.25');
         $this->lineThick = $this->getDefault(RL_INVOICE3_LINE_THICK, '0.5');
         $this->delta2page = $this->getDefault(RL_INVOICE3_DELTA_2PAGE, '10');
@@ -304,7 +304,7 @@ function CheckPageBreak($h) {
         $this->pdf->SetFont($this->fonts2['general'], '', $this->t1Opt['fontSizeInvoiceNumber']); 
             
         $this->pdf->SetY($this->delta['addrInvoice'] + $this->pdf->GetY());
-        $dat = str_replace('@DATE@', strftime(DATE_FORMAT_SHORT), RL_INVOICE3_CITY);
+        $dat = str_replace('@DATE@', strftime(DATE_FORMAT_SHORT), 'RL_INVOICE3_CITY');
         $tmp = ENTRY_ORDER_ID . sprintf("%s%05d", RL_INVOICE3_ORDER_ID_PREFIX, $this->oID);
         $this->pdf->Cell($this->maxWidth, $hoehe, $tmp, '', 1, 'L');
         if(RL_INVOICE3_ORDERDATE=='true'){

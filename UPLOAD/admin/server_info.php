@@ -1,10 +1,11 @@
 <?php
 /**
+ * Zen Cart German Specific
  * @package admin
  * @copyright Copyright 2003-2019 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: server_info.php 733 2019-04-12 09:49:16Z webchills $
+ * @version $Id: server_info.php 734 2019-06-17 07:49:16Z webchills $
  */
 
   require('includes/application_top.php');
@@ -14,8 +15,7 @@
 
 // the following is for display later
   $sinfo =  '<div class="sysinfo wrapper">' .
-         '  <div class="center"><a href="http://www.zen-cart.com"><img border="0" src="images/small_zen_logo.gif" alt=" Zen Cart " /></a></div>' .
-         '  <div class="center"><h2> ' . PROJECT_VERSION_NAME . ' ' . PROJECT_VERSION_MAJOR . '.' . PROJECT_VERSION_MINOR . '</h2>' .
+            '  <div class="center"><h2> ' . PROJECT_VERSION_NAME . ' ' . PROJECT_VERSION_MAJOR . '.' . PROJECT_VERSION_MINOR . '</h2>' .
                ((PROJECT_VERSION_PATCH1 =='') ? '' : '<h3>Patch: ' . PROJECT_VERSION_PATCH1 . '::' . PROJECT_VERSION_PATCH1_SOURCE . '</h3>') .
                ((PROJECT_VERSION_PATCH2 =='') ? '' : '<h3>Patch: ' . PROJECT_VERSION_PATCH2 . '::' . PROJECT_VERSION_PATCH2_SOURCE . '</h3>') .
          '     <h2> ' . PROJECT_DATABASE_LABEL . ' ' . PROJECT_DB_VERSION_MAJOR . '.' . PROJECT_DB_VERSION_MINOR . '</h2>' .
