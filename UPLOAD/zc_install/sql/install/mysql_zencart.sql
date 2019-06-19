@@ -6,7 +6,7 @@
 # * @copyright Copyright 2003-2019 Zen Cart Development Team
 # * @copyright Portions Copyright 2003 osCommerce
 # * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
-# * @version $Id: mysql_zencart.sql 19488 2019-06-17 15:38:16Z webchills $
+# * @version $Id: mysql_zencart.sql 19489 2019-06-19 15:38:16Z webchills $
 #
 
 ############ IMPORTANT INSTRUCTIONS ###############
@@ -3241,16 +3241,27 @@ INSERT INTO currencies VALUES (4,'Canadian Dollar','CAD','$','','.',',','2','1.4
 INSERT INTO currencies VALUES (5,'Australian Dollar','AUD','$','','.',',','2','1.3919', now());
 INSERT INTO currencies VALUES (6,'Schweizer Franken','CHF','CHF','','','','0','1.0741', now());
 
-# Create Default IT-Recht Kanzlei EZ Pages
-INSERT INTO ezpages (languages_id, pages_title, alt_url, alt_url_external, pages_html_text, status_header, status_sidebox, status_footer, status_toc, header_sort_order, sidebox_sort_order, footer_sort_order, toc_sort_order, page_open_new_window, page_is_ssl, toc_chapter, page_key) VALUES
-(43, 'Datenschutzbestimmungen', '', '', '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 'itrk-datenschutz'),
-(43, 'Widerrufsrecht', '', '', '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 'itrk-widerruf'),
-(43, 'Impressum', '', '', '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 'itrk-impressum'),
-(43, 'Allgemeine Geschäftsbedingungen', '', '', '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 'itrk-agb'),
-(1, 'Privacy', '', '', '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 'itrk-datenschutz'),
-(1, 'Revocation Clause', '', '', '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 'itrk-widerruf'),
-(1, 'Imprint', '', '', '', 0, 0, 0, 0, 0, 0, 0, 4, 0, 0, 0, 'itrk-impressum'),
-(1, 'Terms and Conditions', '', '', '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 'itrk-agb');
+# Create Default IT-Recht Kanzlei EZ Pages - we use the old structure and reserve the first 8 pages for these special pages
+INSERT INTO ezpages (pages_id, languages_id, pages_title, alt_url, alt_url_external, pages_html_text, status_header, status_sidebox, status_footer, status_toc, header_sort_order, sidebox_sort_order, footer_sort_order, toc_sort_order, page_open_new_window, page_is_ssl, toc_chapter, page_key) VALUES
+(1, 43, 'Datenschutzbestimmungen', '', '', '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 'itrk-datenschutz'),
+(2, 43, 'Widerrufsrecht', '', '', '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 'itrk-widerruf'),
+(3, 43, 'Impressum', '', '', '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 'itrk-impressum'),
+(4, 43, 'Allgemeine Geschäftsbedingungen', '', '', '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 'itrk-agb'),
+(5, 1, 'Privacy', '', '', '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 'itrk-datenschutz'),
+(6, 1, 'Revocation Clause', '', '', '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 'itrk-widerruf'),
+(7 ,1, 'Imprint', '', '', '', 0, 0, 0, 0, 0, 0, 0, 4, 0, 0, 0, 'itrk-impressum'),
+(8, 1, 'Terms and Conditions', '', '', '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 'itrk-agb');
+
+# Create Default IT-Recht Kanzlei EZ Content Pages - we use the old structure and reserve the first 8 pages for these special pages
+INSERT INTO ezpages_content (pages_id, languages_id, pages_title, pages_html_text) VALUES 
+(1, 43, 'Datenschutzbestimmungen', ''),
+(2, 43, 'Widerrufsrecht', ''),
+(3, 43, 'Impressum', ''),
+(4, 43, 'Allgemeine Geschäftsbedingungen', ''),
+(5, 43, 'Privacy', ''),
+(6, 43, 'Revocation Clause', ''),
+(7, 43, 'Imprint', ''),
+(8, 43, 'Terms and Conditions', '');
 
 INSERT INTO google_analytics_languages VALUES (1,'Chinese (simplified) - Chinesisch (einfach)','zh_CN',1);
 INSERT INTO google_analytics_languages VALUES (2,'Chinese (traditional) - Chinesisch (traditionell)','zh_TW',2);
@@ -4803,17 +4814,34 @@ UPDATE configuration SET configuration_value = 'de' WHERE configuration_key = 'D
 
 ###########################################################################################################
 
+DROP TABLE IF EXISTS configuration_language;
+CREATE TABLE configuration_language (
+  configuration_id int(11) NOT NULL auto_increment,
+  configuration_title text NOT NULL,
+  configuration_key varchar(191) NOT NULL DEFAULT '',
+  configuration_language_id int(11) NOT NULL DEFAULT 1,
+  configuration_description text NOT NULL,
+  last_modified datetime default NULL,
+  date_added datetime NOT NULL default '0001-01-01 00:00:00',
+  PRIMARY KEY  (configuration_id),
+  UNIQUE KEY config_lang (configuration_key,configuration_language_id),
+  KEY configuration_language_id (configuration_language_id)
+) ENGINE=MyISAM;
+
+
 CREATE TABLE IF NOT EXISTS product_type_layout_language (
   configuration_id int(11) NOT NULL auto_increment,
   configuration_title text NOT NULL,
-  configuration_key varchar(255) NOT NULL default '',
+  configuration_key varchar(191) NOT NULL default '',
   languages_id int(11) NOT NULL default '1',
   configuration_description text NOT NULL,
   last_modified datetime default NULL,
   date_added datetime NOT NULL default '0001-01-01 00:00:00',
   PRIMARY KEY  (configuration_id),
-  UNIQUE KEY config_lang (configuration_key(150),languages_id) USING BTREE
-) ENGINE=MyISAM AUTO_INCREMENT=144 ;
+  UNIQUE KEY config_lang (configuration_key, languages_id),
+  KEY languages_id (languages_id)
+) ENGINE=MyISAM ;
+
 #
 # Daten für Tabelle product_type_layout_language
 #

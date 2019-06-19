@@ -1,6 +1,6 @@
 # MySQL file for Zen Cart Demo Products load
 # Zen Cart German Specific
-# $Id: mysql_demo.sql 68 2019-04-16 09:03:04Z webchills $
+# $Id: mysql_demo.sql 69 2019-06-19 16:03:04Z webchills $
 #
 
 # Configuration Settings:
@@ -17,66 +17,66 @@ INSERT INTO address_book (address_book_id, customers_id, entry_gender, entry_com
 #
 
 INSERT INTO categories (categories_id, categories_image, parent_id, sort_order, date_added, last_modified, categories_status) VALUES
-(1, 'categories/category_hardware.gif', 0, 1, '2018-04-02 03:18:19', '2018-04-02 00:32:17', 1),
-(2, 'categories/category_software.gif', 0, 2, '2018-04-02 03:18:19', '2018-04-02 21:14:57', 1),
-(3, 'categories/category_dvd_movies.gif', 0, 3, '2018-04-02 03:18:19', '2018-04-02 00:22:39', 1),
-(4, 'categories/subcategory_graphic_cards.gif', 1, 0, '2018-04-02 03:18:19', NULL, 1),
-(5, 'categories/subcategory_printers.gif', 1, 0, '2018-04-02 03:18:19', NULL, 1),
-(6, 'categories/subcategory_monitors.gif', 1, 0, '2018-04-02 03:18:19', NULL, 1),
-(7, 'categories/subcategory_speakers.gif', 1, 0, '2018-04-02 03:18:19', NULL, 1),
-(8, 'categories/subcategory_keyboards.gif', 1, 0, '2018-04-02 03:18:19', NULL, 1),
-(9, 'categories/subcategory_mice.gif', 1, 0, '2018-04-02 03:18:19', '2018-04-02 00:34:10', 1),
-(10, 'categories/subcategory_action.gif', 3, 0, '2018-04-02 03:18:19', '2018-04-02 00:39:17', 1),
-(11, 'categories/subcategory_science_fiction.gif', 3, 0, '2018-04-02 03:18:19', NULL, 1),
-(12, 'categories/subcategory_comedy.gif', 3, 0, '2018-04-02 03:18:19', NULL, 1),
-(13, 'categories/subcategory_cartoons.gif', 3, 0, '2018-04-02 03:18:19', '2018-04-02 00:23:13', 1),
-(14, 'categories/subcategory_thriller.gif', 3, 0, '2018-04-02 03:18:19', NULL, 1),
-(15, 'categories/subcategory_drama.gif', 3, 0, '2018-04-02 03:18:19', NULL, 1),
-(16, 'categories/subcategory_memory.gif', 1, 0, '2018-04-02 03:18:19', NULL, 1),
-(17, 'categories/subcategory_cdrom_drives.gif', 1, 0, '2018-04-02 03:18:19', NULL, 1),
-(18, 'categories/subcategory_simulation.gif', 2, 0, '2018-04-02 03:18:19', NULL, 1),
-(19, 'categories/subcategory_action_games.gif', 2, 0, '2018-04-02 03:18:19', NULL, 1),
-(20, 'categories/subcategory_strategy.gif', 2, 0, '2018-04-02 03:18:19', NULL, 1),
-(21, 'categories/gv_25.gif', 0, 4, '2018-04-02 03:18:19', '2018-04-02 00:26:06', 1),
-(22, 'categories/box_of_color.gif', 0, 5, '2018-04-02 03:18:19', '2018-04-02 00:28:43', 1),
-(23, 'waybkgnd.gif', 0, 500, '2018-04-02 02:26:19', '2018-04-02 23:21:35', 1),
-(24, 'categories/category_free.gif', 0, 600, '2018-04-02 11:48:46', '2018-04-02 19:13:45', 1),
-(25, 'sample_image.gif', 0, 515, '2018-04-02 02:39:17', '2004-01-24 01:49:12', 1),
-(27, 'sample_image.gif', 49, 10, '2018-04-02 14:13:08', '2018-04-02 16:16:23', 1),
-(28, 'sample_image.gif', 0, 510, '2018-04-02 17:13:47', '2018-04-02 23:54:23', 1),
-(31, 'sample_image.gif', 48, 30, '2018-04-02 23:16:46', '2018-04-02 01:48:29', 1),
-(32, 'sample_image.gif', 48, 40, '2018-04-02 01:34:56', '2018-04-02 01:48:36', 1),
-(33, 'categories/subcategory.gif', 0, 700, '2018-04-02 02:08:31', '2004-05-20 10:35:31', 1),
-(34, 'categories/subcategory.gif', 33, 10, '2018-04-02 02:08:50', '2004-05-20 10:35:57', 1),
-(35, 'categories/subcategory.gif', 33, 20, '2018-04-02 02:09:01', '2018-04-02 00:07:33', 1),
-(36, 'categories/subcategory.gif', 33, 30, '2018-04-02 02:09:12', '2018-04-02 00:07:41', 1),
-(37, 'categories/subcategory.gif', 35, 10, '2018-04-02 02:09:28', '2018-04-02 00:22:39', 1),
-(38, 'categories/subcategory.gif', 35, 20, '2018-04-02 02:09:39', '2018-04-02 00:22:46', 1),
-(39, 'categories/subcategory.gif', 35, 30, '2018-04-02 02:09:49', '2018-04-02 00:22:53', 1),
-(40, 'categories/subcategory.gif', 34, 10, '2018-04-02 02:17:27', '2004-05-20 10:36:19', 1),
-(41, 'categories/subcategory.gif', 36, 10, '2018-04-02 02:21:02', '2018-04-02 00:23:04', 1),
-(42, 'categories/subcategory.gif', 36, 30, '2018-04-02 02:21:14', '2018-04-02 00:23:18', 1),
-(43, 'categories/subcategory.gif', 34, 20, '2018-04-02 02:21:29', '2018-04-02 00:21:37', 1),
-(44, 'categories/subcategory.gif', 36, 20, '2018-04-02 02:21:47', '2018-04-02 00:23:11', 1),
-(45, 'sample_image.gif', 48, 10, '2018-04-02 23:54:56', '2018-04-02 01:48:22', 1),
-(46, 'sample_image.gif', 50, 10, '2018-04-02 00:01:48', '2018-04-02 01:39:56', 1),
-(47, 'sample_image.gif', 48, 20, '2018-04-02 03:09:57', '2018-04-02 01:48:05', 1),
-(48, 'sample_image.gif', 0, 1000, '2018-04-02 02:24:07', '2018-04-02 02:44:26', 1),
-(49, 'sample_image.gif', 0, 1100, '2018-04-02 02:27:31', '2018-04-02 02:44:34', 1),
-(50, 'sample_image.gif', 0, 1200, '2018-04-02 02:28:18', '2018-04-02 02:47:19', 1),
-(51, 'sample_image.gif', 50, 20, '2018-04-02 02:33:55', '2018-04-02 01:40:05', 1),
-(52, 'sample_image.gif', 49, 20, '2018-04-02 16:09:35', '2018-04-02 16:16:33', 1),
-(53, 'categories/subcategory.gif', 0, 1500, '2018-04-02 23:07:41', NULL, 1),
-(54, 'categories/subcategory.gif', 0, 1510, '2018-04-02 12:02:35', '2015-06-20 11:45:20', 1),
-(55, 'categories/subcategory.gif', 54, 0, '2018-04-02 01:48:47', '2015-06-20 11:45:51', 1),
-(56, 'categories/subcategory.gif', 54, 0, '2018-04-02 01:49:16', '2018-04-02 01:53:14', 1),
-(57, 'categories/subcategory.gif', 54, 0, '2018-04-02 01:29:13', NULL, 1),
-(58, 'categories/subcategory.gif', 54, 110, '2018-04-02 12:35:02', '2018-04-02 10:46:13', 1),
-(60, 'categories/subcategory.gif', 54, 0, '2018-04-02 23:45:21', NULL, 1),
-(61, 'categories/subcategory.gif', 54, 100, '2018-04-02 10:13:46', '2018-04-02 10:46:02', 1),
-(62, 'sample_image.gif', 0, 1520, '2018-04-02 03:18:19', '2015-06-22 21:14:57', 1),
-(63, 'categories/subcategory.gif', 0, 1530, '2018-04-02 03:18:19', '2018-04-02 17:45:24', 1),
-(64, 'categories/subcategory.gif', 0, 1550, '2018-04-02 15:22:27', NULL, 1);
+(1, 'categories/category_hardware.gif', 0, 1, '2019-06-18 03:18:19', '2019-06-18 00:32:17', 1),
+(2, 'categories/category_software.gif', 0, 2, '2019-06-18 03:18:19', '2019-06-18 21:14:57', 1),
+(3, 'categories/category_dvd_movies.gif', 0, 3, '2019-06-18 03:18:19', '2019-06-18 00:22:39', 1),
+(4, 'categories/subcategory_graphic_cards.gif', 1, 0, '2019-06-18 03:18:19', NULL, 1),
+(5, 'categories/subcategory_printers.gif', 1, 0, '2019-06-18 03:18:19', NULL, 1),
+(6, 'categories/subcategory_monitors.gif', 1, 0, '2019-06-18 03:18:19', NULL, 1),
+(7, 'categories/subcategory_speakers.gif', 1, 0, '2019-06-18 03:18:19', NULL, 1),
+(8, 'categories/subcategory_keyboards.gif', 1, 0, '2019-06-18 03:18:19', NULL, 1),
+(9, 'categories/subcategory_mice.gif', 1, 0, '2019-06-18 03:18:19', '2019-06-18 00:34:10', 1),
+(10, 'categories/subcategory_action.gif', 3, 0, '2019-06-18 03:18:19', '2019-06-18 00:39:17', 1),
+(11, 'categories/subcategory_science_fiction.gif', 3, 0, '2019-06-18 03:18:19', NULL, 1),
+(12, 'categories/subcategory_comedy.gif', 3, 0, '2019-06-18 03:18:19', NULL, 1),
+(13, 'categories/subcategory_cartoons.gif', 3, 0, '2019-06-18 03:18:19', '2019-06-18 00:23:13', 1),
+(14, 'categories/subcategory_thriller.gif', 3, 0, '2019-06-18 03:18:19', NULL, 1),
+(15, 'categories/subcategory_drama.gif', 3, 0, '2019-06-18 03:18:19', NULL, 1),
+(16, 'categories/subcategory_memory.gif', 1, 0, '2019-06-18 03:18:19', NULL, 1),
+(17, 'categories/subcategory_cdrom_drives.gif', 1, 0, '2019-06-18 03:18:19', NULL, 1),
+(18, 'categories/subcategory_simulation.gif', 2, 0, '2019-06-18 03:18:19', NULL, 1),
+(19, 'categories/subcategory_action_games.gif', 2, 0, '2019-06-18 03:18:19', NULL, 1),
+(20, 'categories/subcategory_strategy.gif', 2, 0, '2019-06-18 03:18:19', NULL, 1),
+(21, 'categories/gv_25.gif', 0, 4, '2019-06-18 03:18:19', '2019-06-18 00:26:06', 1),
+(22, 'categories/box_of_color.gif', 0, 5, '2019-06-18 03:18:19', '2019-06-18 00:28:43', 1),
+(23, 'waybkgnd.gif', 0, 500, '2019-06-18 02:26:19', '2019-06-18 23:21:35', 1),
+(24, 'categories/category_free.gif', 0, 600, '2019-06-18 11:48:46', '2019-06-18 19:13:45', 1),
+(25, 'sample_image.gif', 0, 515, '2019-06-18 02:39:17', '2004-01-24 01:49:12', 1),
+(27, 'sample_image.gif', 49, 10, '2019-06-18 14:13:08', '2019-06-18 16:16:23', 1),
+(28, 'sample_image.gif', 0, 510, '2019-06-18 17:13:47', '2019-06-18 23:54:23', 1),
+(31, 'sample_image.gif', 48, 30, '2019-06-18 23:16:46', '2019-06-18 01:48:29', 1),
+(32, 'sample_image.gif', 48, 40, '2019-06-18 01:34:56', '2019-06-18 01:48:36', 1),
+(33, 'categories/subcategory.gif', 0, 700, '2019-06-18 02:08:31', '2004-05-20 10:35:31', 1),
+(34, 'categories/subcategory.gif', 33, 10, '2019-06-18 02:08:50', '2004-05-20 10:35:57', 1),
+(35, 'categories/subcategory.gif', 33, 20, '2019-06-18 02:09:01', '2019-06-18 00:07:33', 1),
+(36, 'categories/subcategory.gif', 33, 30, '2019-06-18 02:09:12', '2019-06-18 00:07:41', 1),
+(37, 'categories/subcategory.gif', 35, 10, '2019-06-18 02:09:28', '2019-06-18 00:22:39', 1),
+(38, 'categories/subcategory.gif', 35, 20, '2019-06-18 02:09:39', '2019-06-18 00:22:46', 1),
+(39, 'categories/subcategory.gif', 35, 30, '2019-06-18 02:09:49', '2019-06-18 00:22:53', 1),
+(40, 'categories/subcategory.gif', 34, 10, '2019-06-18 02:17:27', '2004-05-20 10:36:19', 1),
+(41, 'categories/subcategory.gif', 36, 10, '2019-06-18 02:21:02', '2019-06-18 00:23:04', 1),
+(42, 'categories/subcategory.gif', 36, 30, '2019-06-18 02:21:14', '2019-06-18 00:23:18', 1),
+(43, 'categories/subcategory.gif', 34, 20, '2019-06-18 02:21:29', '2019-06-18 00:21:37', 1),
+(44, 'categories/subcategory.gif', 36, 20, '2019-06-18 02:21:47', '2019-06-18 00:23:11', 1),
+(45, 'sample_image.gif', 48, 10, '2019-06-18 23:54:56', '2019-06-18 01:48:22', 1),
+(46, 'sample_image.gif', 50, 10, '2019-06-18 00:01:48', '2019-06-18 01:39:56', 1),
+(47, 'sample_image.gif', 48, 20, '2019-06-18 03:09:57', '2019-06-18 01:48:05', 1),
+(48, 'sample_image.gif', 0, 1000, '2019-06-18 02:24:07', '2019-06-18 02:44:26', 1),
+(49, 'sample_image.gif', 0, 1100, '2019-06-18 02:27:31', '2019-06-18 02:44:34', 1),
+(50, 'sample_image.gif', 0, 1200, '2019-06-18 02:28:18', '2019-06-18 02:47:19', 1),
+(51, 'sample_image.gif', 50, 20, '2019-06-18 02:33:55', '2019-06-18 01:40:05', 1),
+(52, 'sample_image.gif', 49, 20, '2019-06-18 16:09:35', '2019-06-18 16:16:33', 1),
+(53, 'categories/subcategory.gif', 0, 1500, '2019-06-18 23:07:41', NULL, 1),
+(54, 'categories/subcategory.gif', 0, 1510, '2019-06-18 12:02:35', '2015-06-20 11:45:20', 1),
+(55, 'categories/subcategory.gif', 54, 0, '2019-06-18 01:48:47', '2015-06-20 11:45:51', 1),
+(56, 'categories/subcategory.gif', 54, 0, '2019-06-18 01:49:16', '2019-06-18 01:53:14', 1),
+(57, 'categories/subcategory.gif', 54, 0, '2019-06-18 01:29:13', NULL, 1),
+(58, 'categories/subcategory.gif', 54, 110, '2019-06-18 12:35:02', '2019-06-18 10:46:13', 1),
+(60, 'categories/subcategory.gif', 54, 0, '2019-06-18 23:45:21', NULL, 1),
+(61, 'categories/subcategory.gif', 54, 100, '2019-06-18 10:13:46', '2019-06-18 10:46:02', 1),
+(62, 'sample_image.gif', 0, 1520, '2019-06-18 03:18:19', '2015-06-22 21:14:57', 1),
+(63, 'categories/subcategory.gif', 0, 1530, '2019-06-18 03:18:19', '2019-06-18 17:45:24', 1),
+(64, 'categories/subcategory.gif', 0, 1550, '2019-06-18 15:22:27', NULL, 1);
 
 #
 # Dumping data for table `categories_description`
@@ -156,74 +156,93 @@ INSERT INTO customers (customers_gender, customers_firstname, customers_lastname
 #
 
 INSERT INTO customers_info (customers_info_id, customers_info_date_of_last_logon, customers_info_number_of_logons, customers_info_date_account_created, customers_info_date_account_last_modified, global_product_notifications) VALUES
-(1, '2018-04-02 09:00:00', 0, '2018-04-01 01:35:28', '2018-04-01 01:35:28', 0);
+(1, '2019-06-18 09:00:00', 0, '2019-06-18 01:35:28', '2019-06-18 01:35:28', 0);
 
 #
 # Dumping data for table ezpages
 #
+# We start with page id 9 as 1 to 8 are reserved for IT Recht Kanzlei pages
 
-INSERT INTO ezpages (languages_id, pages_title, alt_url, alt_url_external, pages_html_text, status_header, status_sidebox, status_footer, status_toc, header_sort_order, sidebox_sort_order, footer_sort_order, toc_sort_order, page_open_new_window, page_is_ssl, toc_chapter) VALUES
-(1, 'EZPages', '', '', 'This is the main page listed under the Link EZPages in the Header<br /><br />\r\n\r\n<strong>See: What is EZPages? Link for detailed use of EZPages</strong><br /><br />\r\n\r\nThis Link could show in the Header, Footer or Sidebox or a combination of all three locations.<br /><br />\r\n\r\nThe Chapter and TOC settings are for using this Page in combination with other Pages.<br /><br />\r\n\r\nThe other Pages can be shown either *only* with this Link in the Chapter and TOC or as their own Link in the Header, Footer or Sidebox, depending on how you would like them to appear on your site.<br /><br />\r\n\r\nThere is no true "Master" Link, other than the Links you actually have configured to display. But any Link in a Chapter can be displayed in any of the 3 locations for the Header, Footer or Sidebox or not at all, where it only appears together with the other Links in the Chapter.', 1, 0, 0, 1, 10, 0, 0, 10, 0, 0, 10),
-(43, 'Eine neue Seite', '', '', 'Das ist eine Seite, die als Kapitel 10 über die Kapitelnummer verwendet wird. Die Sortierung erfolgt über die TOC (TableOfContent) Sortierung.<br /><br />\r\n\r\nEs gibt keinen Link für diese Seite im Kopf- und Fu&szlig;bereich und der Sidebox.<br /><br />\r\n\r\nDiese Seite wird nur in der Indexseite angezeigt.<br /><br />\r\n\r\nDies ist ein einfacher Weg, wenn Sie viele Seiten verwenden aber nur eine Seite verlinken und als &quot;Sprungbrett&quot; für die anderen Seiten verwenden wollen.<br /><br />', 0, 0, 0, 1, 0, 0, 0, 30, 0, 0, 10),
-(43, 'Eine weitere Seite', '', '', 'Eine weitere Seite aus dem Kapitel 10<br /><br />\r\n\r\nDie Nummerierung der Kapitel kann auf verschiedenste Arten erfolgen. Durch eine Nummerierung wie z.B. 10, 20, 30, etc. können Sie sp&auml;ter noch Seiten zwischen bestehenden Seiten einfügen.<br /><br />\r\n\r\nSie können unlimitiert Seitennummern oder Links vergeben und können Seiten in Kapitel zusammenfassen.<br /><br />\r\n\r\nDie Anzeige der &quot;Vorherige / N/auml;chste&quot; Navigation und die TOC Sortierung kann ein- oder ausgeschaltet werden.', 0, 0, 0, 1, 0, 0, 0, 40, 0, 0, 10),
-(43, 'Mein Link', '', '', 'Das ist eine einzelne Seite, die als Link in der Sidebox angezeigt wird.<br /><br />\r\n\r\nKeine weiteren Links oder Kapitel wurden mit dieser Seite verknüpft.<br /><br />\r\n\r\nSollten Sie sp&auml;ter einmal diese Seite erweitern wollen, können Sie einfach Kapitel und TOC Einstellungen hinzufügen und eine Gruppe bilden.<br /><br />\r\n\r\nBedenken Sie bitte, dass die &quot;Vorherige / N&auml;chste&quot; Navigation und TOC Einstellung automatisch deaktiviert ist, wenn kein Kapitel exisiert. In einem Kapitel müssen mindestens 2 Links oder Seiten in der Gruppe sein, bevor es als Kapitel dargestellt werden kann.', 0, 1, 0, 0, 0, 10, 0, 0, 0, 0, 0),
-(43, 'Irgend etwas', '', '', 'The title or link names can be anything that you would like to use.<br /><br />\r\n\r\nYou decide on the content and the link name relative to that content.<br /><br />\r\n\r\nThen, define where you want the link to show: Header, Footer or Sidebox or as a combination of these three locations.<br /><br />\r\n\r\nThe content of the page can be anything you like. Be sure that your content is valid in regard to table and stylesheet rules.<br /><br />\r\n\r\nYou can even set up the links to go to Secure or Non-Secure pages as well as open in the same or a new window.<br /><br />\r\n\r\nLinks can also be setup to use internal or external links vs the HTML Content. See: examples below in the Link URL settings.', 0, 1, 0, 0, 0, 20, 0, 0, 0, 0, 0),
-(43, 'Verteilt', '', '', 'This link is a "shared" link between the Header, Footer and Sidebox.<br /><br />\r\n\r\nThe number on the order was set to 50 on all of the settings just for the sake of an easier notation on entering it.<br /><br />\r\n\r\nThe order can be the same or different for the three locations.<br /><br />\r\n\r\nIf you wanted to really get creative, you could also have this as part of a Chapter not related to the link order.<br /><br />', 1, 1, 1, 0, 50, 50, 50, 0, 0, 0, 0),
-(43, 'Mein Konto', 'index.php?main_page=account', '', '', 0, 0, 1, 0, 0, 0, 10, 0, 0, 1, 0),
-(43, 'Sitemap', 'index.php?main_page=site_map', '', '', 0, 1, 1, 0, 0, 40, 20, 0, 0, 0, 0),
-(43, 'Zen Cart', '', 'https://www.zen-cart-pro.at', '', 1, 0, 0, 0, 60, 0, 0, 0, 1, 0, 0),
-(43, 'Geschenkgutscheine', 'index.php?main_page=index&cPath=21', '', '', 0, 1, 0, 0, 0, 60, 0, 0, 0, 0, 0),
-(43, 'Action DVDs', 'index.php?main_page=index&cPath=3_10', '', '', 0, 0, 1, 0, 0, 0, 60, 0, 0, 0, 0),
-(43, 'Google', '', 'http://www.google.at', '', 0, 1, 0, 0, 0, 70, 0, 0, 1, 0, 0),
-(43, 'Was ist EZ-Pages?', '', '', '<table cellspacing="4" cellpadding="4" border="3" align="center" style="width: 80%;"><tbody><tr><td><span style="font-style: italic;">\r\n<span style="font-weight: bold;">Note: This EZ-Page has been written with the help of the HTMLarea Editor.<br /> <br />This means that this EZ-page will not validate correctly based on how HTMLarea or other editors renders the code.</span></span></td></tr></tbody></table><br /><br /><span style="font-weight: bold; color: rgb(255, 0, 0);">Summary</span><br /><br /><span style="font-weight: bold;">EZ-Pages</span> is a fast, easy way of creating links and additional pages.<br /><br />The additional Pages can be for:<br /><ul><li>New Pages</li><li>Internal Links</li><li>External Links</li><li>Secure or Non-Secure pages</li><li>Same or New Window</li></ul>In Addition, there is the ability to create &quot;related&quot; links in the format of a Chapter (group) and its TOC (related pages/links).<br /><br /><span style="font-weight: bold; color: rgb(255, 0, 0);">Link Naming</span><br /><br />Links are named by the Page Title. All Links need a Page Title in order to function.<br /><br />If you forget to add a Page Title, then you will not be able to add the Link.<br /><br />If you do not assign an Order for the Header, Sidebox or Footer, then the Link will not display even if you have a Page Title.<br /><br /><span style="font-weight: bold;"><span style="color: rgb(255, 0, 0);">Link Placement</span><br /><br /></span>While you have the option of adding Additional Links to the Header, Footer and Sidebox with EZ-Pages, you are not limited to these three Link locations. Links can be in one or more locations simply by enabling the Order for the Location(s) where the Link should appear..<br /><br />The Link Location Status for the Header, Footer and Sidebox is controlled simply by setting these to Yes or No for each setting. Then, set the Order in which the Link should appear for each location.<br /><br />This means that if you were to set Header to Yes 30 and Sidebox to Yes 50 then the link would appear in both the Header and Sidebox in the Order of your Links.<br /><br />The Order numbering method is up to you. Numbering using 10, 20, 30, etc. will allow you to sort the Links and add additional Links later.<br /><br />Note: a 0 value for the Order will disable the Link from displaying.<br /><br /><span style="font-weight: bold;"><span style="color: rgb(255, 0, 0);">Open in New Window and Secure Pages</span><br /></span><br />With EZ-Pages, each Link can take you to the same, main window for your shop; or, you can have the Link open a brand new New Window. In addition, there is an option for making the Link open as a Secure Page or a Non-Secure Page.<br /><br /><span style="font-weight: bold; color: rgb(255, 0, 0);">Chapter and TOC</span><br style="font-weight: bold; color: rgb(255, 0, 0);" /><br />The Chapter and TOC, or Table of Contents, are a unique method of building Multiple Links that interact together.<br /><br />While these Links still follow the rules of the Header, Footer and Sidebox placement, the difference is that only one of the Links, the Main Link, needs to be displayed anywhere on the site.<br /><br />If you had, for example, 5 related Links, you could add the first Link as the Main Link by setting its location to the Header, Footer or Sidebox and set its Order, as usual.<br /><br />Next, you need to assign a Chapter or Group number to the Link. This Chapter holds the related Links together.<br /><br />Then, set the TOC or Table of Contents setting. This is a secondary Sort Order for within the Chapter.<br /><br />Again, you can display any of the Links within a Chapter, as well as making any of these Links the Main Link. Whether the Links all show, or just one or more of the Links show, the Chapter is the key to grouping these Links together in the TOC or Previous/Next. <br /><br /><span style="font-weight: bold; font-style: italic;">NOTE: While all Links within a Chapter will display together, you can have the different Links display in the Header, Footer or Sidebox on their own. Or, you can have the additional Links only display when the Main Link or one of the Additional Links within the Chapter has been opened.</span><br style="font-weight: bold; font-style: italic;" /><br />The versitility of EZ-Pages will make adding new Links and Pages extreamly easy for the beginner as well as the advance user.<br /><br />While this page was made in HTMLarea editor, any HTML editor could be used.<br /><br />However, becareful ... HTML editors will often add the opening and closing tags for the  and  to the file you are working on.<br /><br />These are already added to the pages via EZ-Pages.<br /><br /><span style="color: rgb(255, 0, 0); font-weight: bold;">External Link URL</span><br /><br />External Link URLs are links to outside pages not within your shop. These can be to any valid URL such as:<br /><br />http://www.sashbox.net<br /><br />You need to include the full URL path to any External Link URL. You may also mark these to open in a New Window or the Same Window.<br /><br /><span style="color: rgb(255, 0, 0); font-weight: bold;">Internal Link URL</span><br /><br />Internal Link URLs are links to internal pages within your shop. These can be to any valid URL, but should be written as relative links such as:<br /><br />index.php?main_page=index&amp;cPath=21<br /><br />The above Link would take you to the Category for categories_id 21<br /><br />While these links can be the Full URL to an Internal Link, it is best to write as a Relative Link so that if you change domains, are work on a temporary domain or an IP Address, the Link will remain valid if moved to another domain, IP Address, etc.<br /><br />Internal Links can also open in a New Window or the Same Window or be for Secure or Non-Secure Pages.<br /><br /><span style="font-weight: bold; color: rgb(255, 0, 0);">EZ-Pages Additional Pages vs Internal Links vs External Links</span><br /><br />The Type of Link that you create is based on an order of precidence, where HTML Content will superceed both the Internal Link and the External Link values.<br /><br />The External Link URL will superceed the Internal Link URL.<br /><br />If you try to set a combination of HTML Content, Internal Link and/or External Link, the Link will be flagged in the listing with a read icon to alert you to your mistake.<br /><br /><span style="font-weight: bold; color: rgb(255, 0, 0);">WARNING ...</span><br /><br />When using Editors such as HTMLarea, if you hit enter in the HTML Content area <br /> will be added. These will be detected as &quot;content&quot; and will override any Internal Link URL or External Link URL.<br /><br /><span style="font-weight: bold; color: rgb(255, 0, 0);">Admin Only Display</span><br /><br />Sometimes, when working on EZ-Pages, you will want to be able to work on a Live Site and see the results of your work, but not allow the Customers to see this until you are done.<br /><br />There are 3 settings in the Configuration ... EZ-Pages Settings for the Header, Footer and Sidebox  Status:<br /><ul><li>OFF</li><li>ON</li><li>Admin Only</li></ul>The Admin Only setting is controlled by the IP Address(es) set in the Website Maintenance.<br /><br />This can be very handy when needing to work on a Live Site but not wanting customers to see the work in progress.<br /><br />', 0, 0, 0, 1, 0, 0, 0, 20, 0, 0, 10),
-(43, 'Preise und Versand', '', '', '<span style="font-weight: bold;">Preise\r\n\r\n</span><br />Alle Preise verstehen sich als Endpreise (inkl. Mwst.) und beziehen sich, wenn nicht anders angegeben, auf 1 Stück zzgl. Versandkosten.\r\n\r\n<br /><br /><span style="font-weight: bold;">Versand\r\n\r\nInnerhalb Deutschlands:</span>\r\n\r\n<br />Versandkostenpauschale von 4,50 &euro;.\r\n\r\n<br /><span style="font-weight: bold;">Sendungen in andere europ&auml;ische L&auml;nder:</span>\r\n\r\nVersandkostenpauschale von 7,50 &euro;.', 1, 1, 1, 1, 10, 10, 10, 10, 0, 0, 0),
-(43, 'Informationsseite', '', '', '<p><font face="verdana,arial,helvetica,sans-serif"><strong>EZ-Pages</strong></font><font face="verdana,arial,helvetica,sans-serif">Diesen Inhalt bearbeiten bzw. erstellen:</font><ul><li><font face="verdana,arial,helvetica,sans-serif">Gehen Sie hierfür in den Adminbereich unter <em>Tools-&gt;EZ-Pages</em></font></li><li><font face="verdana,arial,helvetica,sans-serif">In der &Uuml;bersicht sehen Sie verschiedene Seiten, unter Anderem auch diese Seite namens &quot;Informationsseite&quot;</font></li><li><font face="verdana,arial,helvetica,sans-serif">Klicken Sie auf &quot;bearbeiten&quot; (ein grünes, rundes Symbol mit einem &quot;e&quot; in der Mitte)</font></li><li><font face="verdana,arial,helvetica,sans-serif">Der Inhalt wird als reiner HTML Text eingegeben - Sie können diesen vorher mit einem HTML-Editor Ihrer Wahl erstellen und den Quelltext in das Feld &quot;HTML Inhalt&quot; kopieren</font></li><li><font face="verdana,arial,helvetica,sans-serif">Speichern Sie Ihre &Auml;nderung (Der Inhalt  wird  in der <strong>Datenbank</strong> gespeichert) </font></li></ul><p><font face="verdana,arial,helvetica,sans-serif"><strong>Benutzer<br /></strong></font><font face="verdana,arial,helvetica,sans-serif">Bitte beachten Sie, dass nur Angestellte der FIRMA AG mit einem gültigen Konto Zugang zum FIRMA Werbemittelshop haben. Wenn Sie Angestellte(r) der FIRMA AG sind, und kein Konto haben, müssen Sie sich bitte einmalig registrieren.<br /><br /></font><font face="verdana,arial,helvetica,sans-serif"><strong>Anmeldung</strong><br /></font><font face="verdana,arial,helvetica,sans-serif">Für die Anmeldung, müssen Sie Ihre E-Mail Adresse und das von Ihnen gew&auml;hlte Kennwort eingeben. Für die erstmalige Benutzung des FIRMA Webemittelshops füllen Sie bitte einmalig die mit rotem Stern markierten Pflilchtfleder aus. W&auml;hlen Sie eine oder mehrere Kostenstellen. Maximal sind jedoch 3 Kostenstellen pro Anwender zugelassen Best&auml;tigen Sie Ihre Daten in dem Sie den &quot;Information übermitteln&quot; Knopf drücken. Um den Berechtigungsprozess abzuschlie&szlig;en muss Ihr(e) Kostenstellen-erantwortliche(r) Ihr Konto freigeben. Somit ist gew&auml;hrleistet, dass von keine(r)m anderen FIRMA Mitarbeiter(in) unter einer ihm/ihr nicht zugewiesenen Kostenstelle eine Bestellung durchführen kann. Nach einer erfolgreichen Berechtigung erreichen Sie unsere FIRMA Verkaufsmaterialseite, die aktuell verfügbare Produkte anzeigt.<br /><br /></font><font face="verdana,arial,helvetica,sans-serif">Sollte Ihre Kostenstelle nicht aufgelistet sein, wenden Sie sich bitte an </font><a href="mailto:advertising@FIRMA-AG.com"><font face="verdana,arial,helvetica,sans-serif">advertising@FIRMA-AG.com</font></a><font face="verdana,arial,helvetica,sans-serif">.</font></p><p><font face="verdana,arial,helvetica,sans-serif"><strong>Produkte aussuchen</strong> </font></p><p><font face="verdana,arial,helvetica,sans-serif">Wir haben eine umfangreiche Sammlung von Produkten in unserem Sortiment. Um </font><font face="verdana,arial,helvetica,sans-serif">Ihnen zu helfen Ihre Suche zu vereinfachen, sind diese in 3 Kategorien eingeteilt:</font></p><ol><li><font face="verdana,arial,helvetica,sans-serif">Produktinformation<br />Diese beinhalten neue Prospekte, CD´s, DVD´s in den einzelnen Sprachen aufgeteilt nach den verschiedenen Kundensegmente.<br /></font></li><li><font face="verdana,arial,helvetica,sans-serif">Werbemittel<br />Diese beinhalten  Bücher, CD´s Bürowerbeartikel, Kleidung, Werkzeuge usw.<br /></font></li><li><font face="verdana,arial,helvetica,sans-serif">Restposten<br />Diese beinhalten Werbeartikel in kleiner Stückzahl, </font></li></ol><p align="justify"><font face="verdana,arial,helvetica,sans-serif"><font face="verdana,arial,helvetica,sans-serif">W&auml;hlen Sie eine Kategorie aus, so werden die Untergruppen</font> angezeigt. Klicken Sie auf eines der beschrifteten Bilder so werden Sie zu den darin befindlichen Produkten geführt. </fon
-t></p><p align="justify"><font face="verdana,arial,helvetica,sans-serif">Diverse Restmengen der Mutationen wie Veitscher, Radex oder Didier können per   E-Mail über </font><a href="mailto:advertising@FIRMA-AG.com"><font face="verdana,arial,helvetica,sans-serif">advertising@FIRMA-AG.com</font></a><font face="verdana,arial,helvetica,sans-serif"> direkt bestellt werden. </font></p><p><font face="verdana,arial,helvetica,sans-serif"><strong>Produkte bestellen<br /></strong></font><font face="verdana,arial,helvetica,sans-serif">Jedes Produkt ist mit einem Bild versehen, welches in der Regel vergrö&szlig;ert werden kann.<br /><br /></font><font face="verdana,arial,helvetica,sans-serif">Die ausgew&auml;hlten Produkte können Sie bestellen indem Sie in dem kleinen K&auml;stchen ADD: Ihre gewünschte Menge eintragen. Danach drücken sie den Knopf „Markierte Artikel in den Warenkorb“ </font></p><p align="justify"><font face="verdana,arial,helvetica,sans-serif">Sie sehen nun links oben Ihren Warenkorb. Der von Ihnen zuletzt bestellte Artikel wird rot geschrieben. Sie können nun den Warenkorb aktualisieren wenn Sie die Menge &auml;ndern wolle, diesen löschen, weiter einkaufen, oder die Bestellung abschlie&szlig;en.</font></p><p><font face="verdana,arial,helvetica,sans-serif"><strong>Warenkorb aktualisieren<br /></strong><br />Sie &auml;ndern die Menge und drücken nochmalig auf den Knopf „Warenkorb aktualisieren. Es &auml;ndert sich die Menge in Ihrem Warenkorb-Fenster links oben.</font></p><ul><li><font face="verdana,arial,helvetica,sans-serif">Löschen<br />Sie drücken den Knopf „Löschen“ des ausgew&auml;hlten Artikels. Ihr Warenkorb wird sofort aktualisiert angezeigt. <br /></font></li><li><font face="verdana,arial,helvetica,sans-serif">Weiter einkaufen<br />Sie drücken den Knopf „Weiter einkaufen“ und können im Auswahlfenster „Kategorien“ links unter dem Warenkorb-Fenster Ihre Bestellung fortsetzen.<br /></font></li><li><font face="verdana,arial,helvetica,sans-serif">Bestellen<br />Klicken Sie auf den Knopf „Bestellen“. Sie werden weitergeleitet zu den Schritten 1-3 Versandart.</font></li></ul><p align="justify"><font face="verdana,arial,helvetica,sans-serif">Der 1. Schritt beinhaltet die Lieferanschrift. Diese kann von Ihnen individuell ge&auml;ndert werden. Alle Felder mit rot markiertem Sternchen sind Pflichtfelder und somit unbedingt auszufüllen. Danach drücken sie den Knopf „Weiter“ Im Feld Lieferanschrift wird Ihre neu eingegebene Lieferanschrift angezeigt. </font></p><p align="justify"><font face="verdana,arial,helvetica,sans-serif">Sie haben noch die Möglichkeit eine Anmerkung oder einen Hinweis in dem dafür zur Verfügung gestellten Feld hineinzuschreiben. Danach klicken Sie auf den Knopf „Weiter“</font></p><p align="justify"><font face="verdana,arial,helvetica,sans-serif">Der 2. Schritt beinhaltet die Zahlungsart. Zu sehen ist der gesamte Warenwert Ihrer Bestellung. Ist das Einkaufslimit von 100,- &euro; Mindestbestellwert unterschritten, so müssen sie noch etwas bestellen. Das Bestelllimit dient zur Optimierung von Versandkosten. Maximal dürfen Sie jedoch  einen Warenwert von 1000,- &euro; nicht überschreiten.</font></p><p align="justify"><font face="verdana,arial,helvetica,sans-serif">Die Rechnungsanschrift ist die der Kostenstelle zugeordnete und dient dazu die Versandkosten auf die jeweiligen Kostenstellen weiterzuverrechnen.</font></p><p align="justify"><font face="verdana,arial,helvetica,sans-serif">Bei Schritt 3 der entgültigen Best&auml;tigung können nochmals alle oben genannten Punkte ge&auml;ndert oder bearbeitet werden. Wenn alle Punkte in Ordnung sind drücken Sie auf den Knopf „Bestellung best&auml;tigen“ </font></p><p align="justify"><font face="verdana,arial,helvetica,sans-serif">Kurze Zeit sp&auml;ter erhalten Sie ein Best&auml;tigungs- E-Mail Ihrer Bestellung. </font></p><p align="justify"><font face="verdana,arial,helvetica,sans-serif"><strong>Lieferung verfolgen<br /></strong>Nach erfo
-lgreicher Anmeldung mit Ihrer E-Mail Adresse und Ihrem Passwort befinden Sie sich auf der Startseite. Dort klicken Sie auf den Knopf „Mein Konto“</font></p><p align="justify"><font face="verdana,arial,helvetica,sans-serif">Alle Ihre Bestellungen können hier verfolgt werden. Der Status der Lieferung kann hier überprüft werden. Weiters haben sie die Möglichkeit Ihre Kontoinformationen, Ihr Adressbuch oder ihr Passwort zu &auml;ndern. </font></p><p align="justify"><font face="verdana,arial,helvetica,sans-serif"><strong>Abmelden<br /></strong></font><font face="verdana,arial,helvetica,sans-serif">Zum Verlassen des Webshops drücken Sie den Knopf „abmelden“Wir wünschen Ihnen viel Spass bei Ihren Bestellungen. </font></p><p><font face="verdana,arial,helvetica,sans-serif"></font></p>', 0, 1, 0, 1, -10, -10, -10, -10, 0, 0, 0),
-(43, 'Zen-Cart', 'http://www.zen-cart-pro.at', '', '', 0, 1, 0, 1, 999, 999, 999, 999, 0, 0, 0),
-(43, 'SiteMap', 'index.php?main_page=site_map', '', '', 1, 1, 1, 1, 50, 50, 50, 50, 0, 0, 0),
-(43, 'Schreiben Sie uns', 'index.php?main_page=contact_us', '', '', 1, 1, 1, 1, 44, 44, 44, 44, 0, 0, 0),
-(43, 'Aktionskupons', 'index.php?main_page=discount_coupon', '', '', 0, 1, 0, 1, 70, 70, 70, 70, 0, 0, 0),
-(43, 'Newsletter abbestellen', 'index.php?main_page=unsubscribe', '', '', 0, 1, 0, 1, 80, 80, 80, 80, 0, 0, 0),
-(43, 'Geschenkgutschein FAQ', 'index.php?main_page=gv_faq', '', '', 0, 1, 0, 1, 60, 60, 60, 60, 0, 0, 0);
+INSERT INTO ezpages (pages_id, alt_url, alt_url_external, status_header, status_sidebox, status_footer, status_toc, header_sort_order, sidebox_sort_order, footer_sort_order, toc_sort_order, page_open_new_window, page_is_ssl, toc_chapter)
+VALUES (9, '', '', 1, 0, 0, 1, 10, 0, 0, 10, 0, 0, 10),
+(10, '', '', 0, 0, 0, 1, 0, 0, 0, 30, 0, 0, 10),
+(11, '', '', 0, 1, 0, 0, 0, 10, 0, 0, 0, 0, 0),
+(12, '', '', 0, 1, 0, 0, 0, 20, 0, 0, 0, 0, 0),
+(13, '', '', 1, 1, 1, 0, 50, 50, 50, 0, 0, 0, 0),
+(14, 'index.php?main_page=account', '', 0, 0, 1, 0, 0, 0, 10, 0, 0, 1, 0),
+(15, 'index.php?main_page=site_map', '', 0, 1, 1, 0, 0, 40, 20, 0, 0, 0, 0),
+(16, '', 'https://www.zen-cart-pro.at', 1, 0, 0, 0, 60, 0, 0, 0, 1, 0, 0),
+(17, 'index.php?main_page=index&cPath=21', '', 0, 1, 0, 0, 0, 60, 0, 0, 0, 0, 0),
+(18, 'index.php?main_page=index&cPath=3_10', '', 0, 0, 1, 0, 0, 0, 60, 0, 0, 0, 0),
+(19, '', 'https://www.google.com', 0, 1, 0, 0, 0, 70, 0, 0, 1, 0, 0),
+(20, '', '', 0, 0, 0, 1, 0, 0, 0, 20, 0, 0, 10);
 
+#
+# Dumping data for table ezpages_content
+#
+
+INSERT INTO ezpages_content (pages_id, languages_id, pages_title, pages_html_text)
+VALUES (9, 1, 'EZPages', 'This is the main page listed under the Link EZPages in the Header<br /><br />\r\n\r\n<strong>See: What is EZPages? Link for detailed use of EZPages</strong><br /><br />\r\n\r\nThis Link could show in the Header, Footer or Sidebox or a combination of all three locations.<br /><br />\r\n\r\nThe Chapter and TOC settings are for using this Page in combination with other Pages.<br /><br />\r\n\r\nThe other Pages can be shown either *only* with this Link in the Chapter and TOC or as their own Link in the Header, Footer or Sidebox, depending on how you would like them to appear on your site.<br /><br />\r\n\r\nThere is no true "Master" Link, other than the Links you actually have configured to display. But any Link in a Chapter can be displayed in any of the 3 locations for the Header, Footer or Sidebox or not at all, where it only appears together with the other Links in the Chapter.'),
+(10, 1, 'A New Page', 'This is another page that is linked to the Chapter 10 via the Chapter number used and is sorted based on the TOC Order.<br /><br />\r\n\r\nThere is not a link to this page via the Header, Footer nor the Sidebox.<br /><br />\r\n\r\nThis page is only seen if the "main" link is selected and then it will show in the TOC listing.<br /><br />\r\n\r\nThis is a handy way to have numerous links that are related but only show one main link to get to them all.<br /><br />'),
+(11, 1, 'Another New Page', 'This is yet another new page or link that is part of Chapter 10<br /><br />\r\n\r\nThe numbering of the Chapters can be done in any manner. But, by number in increments such as 10, 20, 30, etc. you can later insert pages, or links, as needed within the existing pages.<br /><br />\r\n\r\nThere is no limit to the number of pages, or links, that can be grouped together using the Chapter.<br /><br />\r\n\r\nThe display of the Previous/Next and TOC listing is a setting that can be turned on or off.'),
+(12, 1, 'My Link', 'This is a single page link that will be shown in the Sidebox.<br /><br />\r\n\r\nThere are no additional pages or links associated with this page as there is no Chapter.<br /><br />\r\n\r\nLater, if you want to expand on this link you can add a Chapter and TOC settings and build a group.<br /><br />\r\n\r\nNotice that the Previous/Next and TOC automatically disable when there isn''t a Chapter. Even with a Chapter, there must be more than one (1) related link or page in the group before these will display.'),
+(13, 1, 'Anything', 'The title or link names can be anything that you would like to use.<br /><br />\r\n\r\nYou decide on the content and the link name relative to that content.<br /><br />\r\n\r\nThen, define where you want the link to show: Header, Footer or Sidebox or as a combination of these three locations.<br /><br />\r\n\r\nThe content of the page can be anything you like. Be sure that your content is valid in regard to table and stylesheet rules.<br /><br />\r\n\r\nYou can even set up the links to go to Secure or Non-Secure pages as well as open in the same or a new window.<br /><br />\r\n\r\nLinks can also be setup to use internal or external links vs the HTML Content. See: examples below in the Link URL settings.'),
+(14, 1, 'My Account', ''),
+(15, 1, 'Site Map', ''),
+(16, 1, 'Zen Cart', ''),
+(17, 1, 'Gift Certificates', ''),
+(18, 1, 'Action DVDs', ''),
+(19, 1, 'Google', ''),
+(20, 1, 'What is EZ-Pages?', '<span style="font-weight: bold; color: rgb(255, 0, 0);">Summary</span><br /><br /><span style="font-weight: bold;">EZ-Pages</span> is a fast, easy way of creating links and additional pages.<br /><br />The additional Pages can be for:<br /><ul><li>New Pages</li><li>Internal Links</li><li>External Links</li><li>Secure or Non-Secure pages</li><li>Same or New Window</li></ul>In Addition, there is the ability to create &quot;related&quot; links in the format of a Chapter (group) and its TOC (related pages/links).<br /><br /><span style="font-weight: bold; color: rgb(255, 0, 0);">Link Naming</span><br /><br />Links are named by the Page Title. All Links need a Page Title in order to function.<br /><br />If you forget to add a Page Title, then you will not be able to add the Link.<br /><br />If you do not assign an Order for the Header, Sidebox or Footer, then the Link will not display even if you have a Page Title.<br /><br /><span style="font-weight: bold;"><span style="color: rgb(255, 0, 0);">Link Placement</span><br /><br /></span>While you have the option of adding Additional Links to the Header, Footer and Sidebox with EZ-Pages, you are not limited to these three Link locations. Links can be in one or more locations simply by enabling the Order for the Location(s) where the Link should appear..<br /><br />The Link Location Status for the Header, Footer and Sidebox is controlled simply by setting these to Yes or No for each setting. Then, set the Order in which the Link should appear for each location.<br /><br />This means that if you were to set Header to Yes 30 and Sidebox to Yes 50 then the link would appear in both the Header and Sidebox in the Order of your Links.<br /><br />The Order numbering method is up to you. Numbering using 10, 20, 30, etc. will allow you to sort the Links and add additional Links later.<br /><br />Note: a 0 value for the Order will disable the Link from displaying.<br /><br /><span style="font-weight: bold;"><span style="color: rgb(255, 0, 0);">Open in New Window and Secure Pages</span><br /></span><br />With EZ-Pages, each Link can take you to the same, main window for your shop; or, you can have the Link open a brand new New Window. In addition, there is an option for making the Link open as a Secure Page or a Non-Secure Page.<br /><br /><span style="font-weight: bold; color: rgb(255, 0, 0);">Chapter and TOC</span><br style="font-weight: bold; color: rgb(255, 0, 0);" /><br />The Chapter and TOC, or Table of Contents, are a unique method of building Multiple Links that interact together.<br /><br />While these Links still follow the rules of the Header, Footer and Sidebox placement, the difference is that only one of the Links, the Main Link, needs to be displayed anywhere on the site.<br /><br />If you had, for example, 5 related Links, you could add the first Link as the Main Link by setting its location to the Header, Footer or Sidebox and set its Order, as usual.<br /><br />Next, you need to assign a Chapter or Group number to the Link. This Chapter holds the related Links together.<br /><br />Then, set the TOC or Table of Contents setting. This is a secondary Sort Order for within the Chapter.<br /><br />Again, you can display any of the Links within a Chapter, as well as making any of these Links the Main Link. Whether the Links all show, or just one or more of the Links show, the Chapter is the key to grouping these Links together in the TOC or Previous/Next. <br /><br /><span style="font-weight: bold; font-style: italic;">NOTE: While all Links within a Chapter will display together, you can have the different Links display in the Header, Footer or Sidebox on their own. Or, you can have the additional Links only display when the Main Link or one of the Additional Links within the Chapter has been opened.</span><br style="font-weight: bold; font-style: italic;" /><br />The versitility of EZ-Pages will make adding new Links and Pages extreamly easy for the beginner as well as the advance user.<br /><br />NOTE: Browser-based HTML editors will sometimes add the opening and closing tags for the &lt;html&gt;, &lt;head&gt; and &lt;body&gt; to the file you are working on.<br /><br />These are already added to the pages via EZ-Pages.<br /><br /><span style="color: rgb(255, 0, 0); font-weight: bold;">External Link URL</span><br /><br />External Link URLs are links to outside pages not within your shop. These can be to any valid URL such as:<br /><br />http://www.sashbox.net<br /><br />You need to include the full URL path to any External Link URL. You may also mark these to open in a New Window or the Same Window.<br /><br /><span style="color: rgb(255, 0, 0); font-weight: bold;">Internal Link URL</span><br /><br />Internal Link URLs are links to internal pages within your shop. These can be to any valid URL, but should be written as relative links such as:<br /><br />index.php?main_page=index&amp;cPath=21<br /><br />The above Link would take you to the Category for categories_id 21<br /><br />While these links can be the Full URL to an Internal Link, it is best to write as a Relative Link so that if you change domains, are work on a temporary domain or an IP Address, the Link will remain valid if moved to another domain, IP Address, etc.<br /><br />Internal Links can also open in a New Window or the Same Window or be for Secure or Non-Secure Pages.<br /><br /><span style="font-weight: bold; color: rgb(255, 0, 0);">EZ-Pages Additional Pages vs Internal Links vs External Links</span><br /><br />The Type of Link that you create is based on an order of precidence, where HTML Content will superceed both the Internal Link and the External Link values.<br /><br />The External Link URL will superceed the Internal Link URL.<br /><br />If you try to set a combination of HTML Content, Internal Link and/or External Link, the Link will be flagged in the listing with a read icon to alert you to your mistake.<br /><br /><span style="font-weight: bold; color: rgb(255, 0, 0);">WARNING ...</span><br /><br />When using Editors such as TinyMCE or CKEditor, if you press enter in the HTML Content area <br /> will be added. These will be detected as &quot;content&quot; and will override any Internal Link URL or External Link URL.<br /><br /><span style="font-weight: bold; color: rgb(255, 0, 0);">Admin Only Display</span><br /><br />Sometimes, when working on EZ-Pages, you will want to be able to work on a Live Site and see the results of your work, but not allow the Customers to see this until you are done.<br /><br />There are 3 settings in the Configuration ... EZ-Pages Settings for the Header, Footer and Sidebox  Status:<br /><ul><li>OFF</li><li>ON</li><li>Admin Only</li></ul>The Admin Only setting is controlled by the IP Address(es) set in the Website Maintenance.<br /><br />This can be very handy when needing to work on a Live Site but not wanting customers to see the work in progress.<br /><br />'),
+(9, 43, 'EZPages', 'This is the main page listed under the Link EZPages in the Header<br /><br />\r\n\r\n<strong>See: What is EZPages? Link for detailed use of EZPages</strong><br /><br />\r\n\r\nThis Link could show in the Header, Footer or Sidebox or a combination of all three locations.<br /><br />\r\n\r\nThe Chapter and TOC settings are for using this Page in combination with other Pages.<br /><br />\r\n\r\nThe other Pages can be shown either *only* with this Link in the Chapter and TOC or as their own Link in the Header, Footer or Sidebox, depending on how you would like them to appear on your site.<br /><br />\r\n\r\nThere is no true "Master" Link, other than the Links you actually have configured to display. But any Link in a Chapter can be displayed in any of the 3 locations for the Header, Footer or Sidebox or not at all, where it only appears together with the other Links in the Chapter.'),
+(10, 43, 'A New Page', 'This is another page that is linked to the Chapter 10 via the Chapter number used and is sorted based on the TOC Order.<br /><br />\r\n\r\nThere is not a link to this page via the Header, Footer nor the Sidebox.<br /><br />\r\n\r\nThis page is only seen if the "main" link is selected and then it will show in the TOC listing.<br /><br />\r\n\r\nThis is a handy way to have numerous links that are related but only show one main link to get to them all.<br /><br />'),
+(11, 43, 'Another New Page', 'This is yet another new page or link that is part of Chapter 10<br /><br />\r\n\r\nThe numbering of the Chapters can be done in any manner. But, by number in increments such as 10, 20, 30, etc. you can later insert pages, or links, as needed within the existing pages.<br /><br />\r\n\r\nThere is no limit to the number of pages, or links, that can be grouped together using the Chapter.<br /><br />\r\n\r\nThe display of the Previous/Next and TOC listing is a setting that can be turned on or off.'),
+(12, 43, 'My Link', 'This is a single page link that will be shown in the Sidebox.<br /><br />\r\n\r\nThere are no additional pages or links associated with this page as there is no Chapter.<br /><br />\r\n\r\nLater, if you want to expand on this link you can add a Chapter and TOC settings and build a group.<br /><br />\r\n\r\nNotice that the Previous/Next and TOC automatically disable when there isn''t a Chapter. Even with a Chapter, there must be more than one (1) related link or page in the group before these will display.'),
+(13, 43, 'Anything', 'The title or link names can be anything that you would like to use.<br /><br />\r\n\r\nYou decide on the content and the link name relative to that content.<br /><br />\r\n\r\nThen, define where you want the link to show: Header, Footer or Sidebox or as a combination of these three locations.<br /><br />\r\n\r\nThe content of the page can be anything you like. Be sure that your content is valid in regard to table and stylesheet rules.<br /><br />\r\n\r\nYou can even set up the links to go to Secure or Non-Secure pages as well as open in the same or a new window.<br /><br />\r\n\r\nLinks can also be setup to use internal or external links vs the HTML Content. See: examples below in the Link URL settings.'),
+(14, 43, 'Mein Konto', ''),
+(15, 43, 'Site Map', ''),
+(16, 43, 'Zen Cart', ''),
+(17, 43, 'Geschenkgutscheine', ''),
+(18, 43, 'Action DVDs', ''),
+(19, 43, 'Google', ''),
+(20, 43, 'Was sind EZ-Pages?', '<span style="font-weight: bold; color: rgb(255, 0, 0);">Summary</span><br /><br /><span style="font-weight: bold;">EZ-Pages</span> is a fast, easy way of creating links and additional pages.<br /><br />The additional Pages can be for:<br /><ul><li>New Pages</li><li>Internal Links</li><li>External Links</li><li>Secure or Non-Secure pages</li><li>Same or New Window</li></ul>In Addition, there is the ability to create &quot;related&quot; links in the format of a Chapter (group) and its TOC (related pages/links).<br /><br /><span style="font-weight: bold; color: rgb(255, 0, 0);">Link Naming</span><br /><br />Links are named by the Page Title. All Links need a Page Title in order to function.<br /><br />If you forget to add a Page Title, then you will not be able to add the Link.<br /><br />If you do not assign an Order for the Header, Sidebox or Footer, then the Link will not display even if you have a Page Title.<br /><br /><span style="font-weight: bold;"><span style="color: rgb(255, 0, 0);">Link Placement</span><br /><br /></span>While you have the option of adding Additional Links to the Header, Footer and Sidebox with EZ-Pages, you are not limited to these three Link locations. Links can be in one or more locations simply by enabling the Order for the Location(s) where the Link should appear..<br /><br />The Link Location Status for the Header, Footer and Sidebox is controlled simply by setting these to Yes or No for each setting. Then, set the Order in which the Link should appear for each location.<br /><br />This means that if you were to set Header to Yes 30 and Sidebox to Yes 50 then the link would appear in both the Header and Sidebox in the Order of your Links.<br /><br />The Order numbering method is up to you. Numbering using 10, 20, 30, etc. will allow you to sort the Links and add additional Links later.<br /><br />Note: a 0 value for the Order will disable the Link from displaying.<br /><br /><span style="font-weight: bold;"><span style="color: rgb(255, 0, 0);">Open in New Window and Secure Pages</span><br /></span><br />With EZ-Pages, each Link can take you to the same, main window for your shop; or, you can have the Link open a brand new New Window. In addition, there is an option for making the Link open as a Secure Page or a Non-Secure Page.<br /><br /><span style="font-weight: bold; color: rgb(255, 0, 0);">Chapter and TOC</span><br style="font-weight: bold; color: rgb(255, 0, 0);" /><br />The Chapter and TOC, or Table of Contents, are a unique method of building Multiple Links that interact together.<br /><br />While these Links still follow the rules of the Header, Footer and Sidebox placement, the difference is that only one of the Links, the Main Link, needs to be displayed anywhere on the site.<br /><br />If you had, for example, 5 related Links, you could add the first Link as the Main Link by setting its location to the Header, Footer or Sidebox and set its Order, as usual.<br /><br />Next, you need to assign a Chapter or Group number to the Link. This Chapter holds the related Links together.<br /><br />Then, set the TOC or Table of Contents setting. This is a secondary Sort Order for within the Chapter.<br /><br />Again, you can display any of the Links within a Chapter, as well as making any of these Links the Main Link. Whether the Links all show, or just one or more of the Links show, the Chapter is the key to grouping these Links together in the TOC or Previous/Next. <br /><br /><span style="font-weight: bold; font-style: italic;">NOTE: While all Links within a Chapter will display together, you can have the different Links display in the Header, Footer or Sidebox on their own. Or, you can have the additional Links only display when the Main Link or one of the Additional Links within the Chapter has been opened.</span><br style="font-weight: bold; font-style: italic;" /><br />The versitility of EZ-Pages will make adding new Links and Pages extreamly easy for the beginner as well as the advance user.<br /><br />NOTE: Browser-based HTML editors will sometimes add the opening and closing tags for the &lt;html&gt;, &lt;head&gt; and &lt;body&gt; to the file you are working on.<br /><br />These are already added to the pages via EZ-Pages.<br /><br /><span style="color: rgb(255, 0, 0); font-weight: bold;">External Link URL</span><br /><br />External Link URLs are links to outside pages not within your shop. These can be to any valid URL such as:<br /><br />http://www.sashbox.net<br /><br />You need to include the full URL path to any External Link URL. You may also mark these to open in a New Window or the Same Window.<br /><br /><span style="color: rgb(255, 0, 0); font-weight: bold;">Internal Link URL</span><br /><br />Internal Link URLs are links to internal pages within your shop. These can be to any valid URL, but should be written as relative links such as:<br /><br />index.php?main_page=index&amp;cPath=21<br /><br />The above Link would take you to the Category for categories_id 21<br /><br />While these links can be the Full URL to an Internal Link, it is best to write as a Relative Link so that if you change domains, are work on a temporary domain or an IP Address, the Link will remain valid if moved to another domain, IP Address, etc.<br /><br />Internal Links can also open in a New Window or the Same Window or be for Secure or Non-Secure Pages.<br /><br /><span style="font-weight: bold; color: rgb(255, 0, 0);">EZ-Pages Additional Pages vs Internal Links vs External Links</span><br /><br />The Type of Link that you create is based on an order of precidence, where HTML Content will superceed both the Internal Link and the External Link values.<br /><br />The External Link URL will superceed the Internal Link URL.<br /><br />If you try to set a combination of HTML Content, Internal Link and/or External Link, the Link will be flagged in the listing with a read icon to alert you to your mistake.<br /><br /><span style="font-weight: bold; color: rgb(255, 0, 0);">WARNING ...</span><br /><br />When using Editors such as TinyMCE or CKEditor, if you press enter in the HTML Content area <br /> will be added. These will be detected as &quot;content&quot; and will override any Internal Link URL or External Link URL.<br /><br /><span style="font-weight: bold; color: rgb(255, 0, 0);">Admin Only Display</span><br /><br />Sometimes, when working on EZ-Pages, you will want to be able to work on a Live Site and see the results of your work, but not allow the Customers to see this until you are done.<br /><br />There are 3 settings in the Configuration ... EZ-Pages Settings for the Header, Footer and Sidebox  Status:<br /><ul><li>OFF</li><li>ON</li><li>Admin Only</li></ul>The Admin Only setting is controlled by the IP Address(es) set in the Website Maintenance.<br /><br />This can be very handy when needing to work on a Live Site but not wanting customers to see the work in progress.<br /><br />');
 
 #
 # Dumping data for table `featured`
 #
 
 INSERT INTO featured (featured_id, products_id, featured_date_added, featured_last_modified, expires_date, date_status_change, status, featured_date_available) VALUES 
-(1, 34, '2018-04-02 16:34:31', '2018-04-02 16:34:31', '0001-01-01', '2018-04-02 16:34:31', 1, '0001-01-01'),
-(2, 8, '2018-04-02 17:04:54', '2018-04-02 22:31:52', '2018-04-02', '2018-04-02 22:50:50', 0, '2018-04-02'),
-(3, 12, '2018-04-02 17:10:49', '2018-04-02 17:10:49', '0001-01-01', '2018-04-02 17:10:49', 1, '0001-01-01'),
-(4, 27, '2018-04-02 22:30:53', NULL, '0001-01-01', NULL, 1, '0001-01-01'),
-(5, 26, '2018-04-02 22:31:24', NULL, '0001-01-01', NULL, 1, '0001-01-01'),
-(6, 40, '2018-04-02 22:50:33', NULL, '0001-01-01', NULL, 1, '0001-01-01'),
-(7, 171, '2018-04-02 15:47:22', NULL, '0001-01-01', NULL, 1, '0001-01-01'),
-(8, 172, '2018-04-02 15:47:29', NULL, '0001-01-01', NULL, 1, '0001-01-01'),
-(9, 168, '2018-04-02 15:47:37', NULL, '0001-01-01', NULL, 1, '0001-01-01'),
-(10, 169, '2018-04-02 15:47:45', NULL, '0001-01-01', NULL, 1, '0001-01-01');
+(1, 34, '2019-06-18 16:34:31', '2019-06-18 16:34:31', '0001-01-01', '2019-06-18 16:34:31', 1, '0001-01-01'),
+(2, 8, '2019-06-18 17:04:54', '2019-06-18 22:31:52', '2019-06-18', '2019-06-18 22:50:50', 0, '2019-06-18'),
+(3, 12, '2019-06-18 17:10:49', '2019-06-18 17:10:49', '0001-01-01', '2019-06-18 17:10:49', 1, '0001-01-01'),
+(4, 27, '2019-06-18 22:30:53', NULL, '0001-01-01', NULL, 1, '0001-01-01'),
+(5, 26, '2019-06-18 22:31:24', NULL, '0001-01-01', NULL, 1, '0001-01-01'),
+(6, 40, '2019-06-18 22:50:33', NULL, '0001-01-01', NULL, 1, '0001-01-01'),
+(7, 171, '2019-06-18 15:47:22', NULL, '0001-01-01', NULL, 1, '0001-01-01'),
+(8, 172, '2019-06-18 15:47:29', NULL, '0001-01-01', NULL, 1, '0001-01-01'),
+(9, 168, '2019-06-18 15:47:37', NULL, '0001-01-01', NULL, 1, '0001-01-01'),
+(10, 169, '2019-06-18 15:47:45', NULL, '0001-01-01', NULL, 1, '0001-01-01');
 
 #
 # Dumping data for table `group_pricing`
 #
 
 INSERT INTO group_pricing (group_id, group_name, group_percentage, last_modified, date_added) VALUES
-(1, 'Gruppe 10', '10.00', NULL, '2018-04-02 00:21:04');
+(1, 'Gruppe 10', '10.00', NULL, '2019-06-18 00:21:04');
 
 #
 # Dumping data for table `manufacturers`
 #
 
-INSERT INTO manufacturers (manufacturers_id, manufacturers_name, manufacturers_image, date_added, last_modified) VALUES (1, 'Matrox', 'manufacturers/manufacturer_matrox.gif', '2018-04-02 03:18:19', NULL),
-(2, 'Microsoft', 'manufacturers/manufacturer_microsoft.gif', '2018-04-02 03:18:19', NULL),
-(3, 'Warner', 'manufacturers/manufacturer_warner.gif', '2018-04-02 03:18:19', NULL),
-(4, 'Fox', 'manufacturers/manufacturer_fox.gif', '2018-04-02 03:18:19', NULL),
-(5, 'Logitech', 'manufacturers/manufacturer_logitech.gif', '2018-04-02 03:18:19', NULL),
-(6, 'Canon', 'manufacturers/manufacturer_canon.gif', '2018-04-02 03:18:19', NULL),
-(7, 'Sierra', 'manufacturers/manufacturer_sierra.gif', '2018-04-02 03:18:19', NULL),
-(8, 'GT Interactive', 'manufacturers/manufacturer_gt_interactive.gif', '2018-04-02 03:18:19', NULL),
-(9, 'Hewlett Packard', 'manufacturers/manufacturer_hewlett_packard.gif', '2018-04-02 03:18:19', NULL);
+INSERT INTO manufacturers (manufacturers_id, manufacturers_name, manufacturers_image, date_added, last_modified) VALUES (1, 'Matrox', 'manufacturers/manufacturer_matrox.gif', '2019-06-18 03:18:19', NULL),
+(2, 'Microsoft', 'manufacturers/manufacturer_microsoft.gif', '2019-06-18 03:18:19', NULL),
+(3, 'Warner', 'manufacturers/manufacturer_warner.gif', '2019-06-18 03:18:19', NULL),
+(4, 'Fox', 'manufacturers/manufacturer_fox.gif', '2019-06-18 03:18:19', NULL),
+(5, 'Logitech', 'manufacturers/manufacturer_logitech.gif', '2019-06-18 03:18:19', NULL),
+(6, 'Canon', 'manufacturers/manufacturer_canon.gif', '2019-06-18 03:18:19', NULL),
+(7, 'Sierra', 'manufacturers/manufacturer_sierra.gif', '2019-06-18 03:18:19', NULL),
+(8, 'GT Interactive', 'manufacturers/manufacturer_gt_interactive.gif', '2019-06-18 03:18:19', NULL),
+(9, 'Hewlett Packard', 'manufacturers/manufacturer_hewlett_packard.gif', '2019-06-18 03:18:19', NULL);
 
 #
 # Dumping data for table `manufacturers_info`
@@ -243,15 +262,15 @@ INSERT INTO manufacturers_info (manufacturers_id, languages_id, manufacturers_ur
 # Dumping data for table `media_clips`
 #
 
-INSERT INTO media_clips (clip_id, media_id, clip_type, clip_filename, date_added, last_modified) VALUES (1, 1, 1, 'thehunter.mp3', '2018-04-02 20:57:43', '2018-04-02 20:57:43'),
-(6, 2, 1, 'thehunter.mp3', '2015-07-13 00:45:09', '2015-07-13 00:45:09');
+INSERT INTO media_clips (clip_id, media_id, clip_type, clip_filename, date_added, last_modified) VALUES (1, 1, 1, 'thehunter.mp3', '2019-06-18 20:57:43', '2019-06-18 20:57:43'),
+(6, 2, 1, 'thehunter.mp3', '2019-06-18 00:45:09', '2019-06-18 00:45:09');
 
 #
 # Dumping data for table `media_manager`
 #
 
-INSERT INTO media_manager (media_id, media_name, last_modified, date_added) VALUES (1, 'Russ Tippins - The Hunter', '2018-04-02 20:57:43', '2018-04-02 20:42:53'),
-(2, 'Help!', '2015-07-13 01:01:14', '2018-04-02 17:57:45');
+INSERT INTO media_manager (media_id, media_name, last_modified, date_added) VALUES (1, 'Russ Tippins - The Hunter', '2019-06-18 20:57:43', '2019-06-18 20:42:53'),
+(2, 'Help!', '2019-06-18 01:01:14', '2019-06-18 17:57:45');
 
 #
 # Dumping data for table `media_to_products`
@@ -270,8 +289,8 @@ INSERT INTO media_to_products (media_id, product_id) VALUES (1, 166),
 # Dumping data for table `music_genre`
 #
 
-INSERT INTO music_genre (music_genre_id, music_genre_name, date_added, last_modified) VALUES (1, 'Rock', '2018-04-02 20:53:26', NULL),
-(2, 'Jazz', '2015-05-01 20:53:45', NULL);
+INSERT INTO music_genre (music_genre_id, music_genre_name, date_added, last_modified) VALUES (1, 'Rock', '2019-06-18 20:53:26', NULL),
+(2, 'Jazz', '2019-06-18 20:53:45', NULL);
 
 #
 # Dumping data for table `product_music_extra`
@@ -292,131 +311,144 @@ INSERT INTO product_types_to_category (product_type_id, category_id) VALUES (3, 
 #
 
 INSERT INTO products (products_id, products_type, products_quantity, products_model, products_image, products_price, products_virtual, products_date_added, products_last_modified, products_date_available, products_weight, products_status, products_tax_class_id, manufacturers_id, products_ordered, products_quantity_order_min, products_quantity_order_units, products_priced_by_attribute, product_is_free, product_is_call, products_quantity_mixed, product_is_always_free_shipping, products_qty_box_status, products_quantity_order_max, products_sort_order, products_discount_type, products_discount_type_from, products_price_sorter, master_categories_id, products_mixed_discount_quantity) VALUES 
-(1, 1, '31', 'MG200MMS', 'matrox/mg200mms.gif', '299.9900', 0, '2018-04-02 12:32:17', '2018-04-02 23:57:34', NULL, '23.00', 1, 1, 1, '1', '1', '1', 0, 0, 0, 0, 0, 1, '0', 0, 0, 0, '299.9900', 4, 1),
-(2, 1, '31', 'MG400-32MB', 'matrox/mg400-32mb.gif', '499.9900', 0, '2018-04-02 12:32:17', NULL, NULL, '23.00', 1, 1, 1, '1', '1', '1', 0, 0, 0, 0, 0, 1, '0', 0, 0, 0, '499.9900', 4, 1),
-(3, 1, '500', 'MSIMPRO', 'microsoft/msimpro.gif', '49.9900', 0, '2018-04-02 12:32:17', NULL, NULL, '7.00', 1, 1, 2, '1', '1', '1', 0, 0, 0, 0, 0, 1, '0', 0, 0, 0, '39.9900', 9, 1),
-(4, 1, '12', 'DVD-RPMK', 'dvd/replacement_killers.gif', '42.0000', 0, '2018-04-02 12:32:17', NULL, NULL, '23.00', 1, 1, 3, '1', '1', '1', 0, 0, 0, 0, 0, 1, '0', 0, 0, 0, '42.0000', 10, 1),
-(5, 1, '15', 'DVD-BLDRNDC', 'dvd/blade_runner.gif', '35.9900', 0, '2018-04-02 12:32:17', '2018-04-02 00:44:28', NULL, '7.00', 1, 1, 3, '2', '1', '1', 0, 0, 0, 0, 0, 1, '0', 0, 0, 0, '30.0000', 11, 1),
-(6, 1, '8', 'DVD-MATR', 'dvd/the_matrix.gif', '39.9900', 0, '2018-04-02 12:32:17', '2018-04-02 00:48:28', NULL, '7.00', 1, 1, 3, '2', '1', '1', 0, 0, 0, 0, 0, 1, '0', 0, 0, 0, '30.0000', 10, 1),
-(7, 1, '500', 'DVD-YGEM', 'dvd/youve_got_mail.gif', '34.9900', 0, '2018-04-02 12:32:17', '2018-04-02 14:53:17', NULL, '7.00', 1, 1, 3, '5', '1', '1', 0, 0, 0, 0, 0, 1, '0', 0, 0, 0, '34.9900', 12, 1),
-(8, 1, '499', 'DVD-ABUG', 'dvd/a_bugs_life.gif', '35.9900', 0, '2018-04-02 12:32:17', '2018-04-02 14:52:54', NULL, '7.00', 1, 1, 3, '6', '1', '1', 0, 0, 0, 0, 0, 1, '0', 10, 1, 1, '35.9900', 13, 1),
-(9, 1, '10', 'DVD-UNSG', 'dvd/under_siege.gif', '29.9900', 0, '2018-04-02 12:32:17', '2018-04-02 13:35:27', NULL, '7.00', 1, 1, 3, '0', '1', '1', 0, 0, 0, 0, 0, 1, '0', 0, 0, 0, '29.9900', 10, 1),
-(10, 1, '9', 'DVD-UNSG2', 'dvd/under_siege2.gif', '29.9900', 0, '2018-04-02 12:32:17', NULL, NULL, '7.00', 1, 1, 3, '1', '1', '1', 0, 0, 0, 0, 0, 1, '0', 0, 0, 0, '29.9900', 10, 1),
-(11, 1, '10', 'DVD-FDBL', 'dvd/fire_down_below.gif', '29.9900', 0, '2018-04-02 12:32:17', '2018-04-02 00:43:40', NULL, '7.00', 1, 1, 3, '0', '1', '1', 0, 0, 0, 0, 0, 1, '0', 0, 0, 0, '29.9900', 10, 1),
-(12, 1, '9', 'DVD-DHWV', 'dvd/die_hard_3.gif', '39.9900', 0, '2018-04-02 12:32:17', '2018-04-02 00:34:33', NULL, '7.00', 1, 1, 4, '6', '1', '1', 0, 0, 0, 0, 0, 1, '0', 0, 0, 0, '39.9900', 10, 1),
-(13, 1, '10', 'DVD-LTWP', 'dvd/lethal_weapon.gif', '34.9900', 0, '2018-04-02 12:32:17', '2018-04-02 00:07:35', NULL, '7.00', 1, 1, 3, '0', '1', '1', 0, 0, 0, 0, 0, 1, '0', 0, 0, 0, '34.9900', 10, 1),
-(14, 1, '9', 'DVD-REDC', 'dvd/red_corner.gif', '32.0000', 0, '2018-04-02 12:32:17', '2018-04-02 00:47:39', NULL, '7.00', 1, 1, 3, '1', '1', '1', 0, 0, 0, 0, 0, 1, '0', 0, 0, 0, '32.0000', 15, 1),
-(15, 1, '9', 'DVD-FRAN', 'dvd/frantic.gif', '35.0000', 0, '2018-04-02 12:32:17', '2018-04-02 00:43:55', NULL, '7.00', 1, 1, 3, '1', '1', '1', 0, 0, 0, 0, 0, 1, '0', 0, 0, 0, '35.0000', 14, 1),
-(16, 1, '9', 'DVD-CUFI', 'dvd/courage_under_fire.gif', '38.9900', 0, '2018-04-02 12:32:17', '2018-04-02 00:42:57', '2007-02-21 00:00:00', '7.00', 1, 1, 4, '1', '1', '1', 0, 0, 0, 0, 0, 1, '0', 0, 0, 0, '29.9900', 15, 1),
-(17, 1, '10', 'DVD-SPEED', 'dvd/speed.gif', '39.9900', 0, '2018-04-02 12:32:17', '2018-04-02 00:47:51', NULL, '7.00', 1, 1, 4, '0', '1', '1', 0, 0, 0, 0, 0, 1, '0', 0, 0, 0, '39.9900', 10, 1),
-(18, 1, '10', 'DVD-SPEED2', 'dvd/speed_2.gif', '42.0000', 0, '2018-04-02 12:32:17', NULL, NULL, '7.00', 1, 1, 4, '0', '1', '1', 0, 0, 0, 0, 0, 1, '0', 0, 0, 0, '42.0000', 10, 1),
-(19, 1, '10', 'DVD-TSAB', 'dvd/theres_something_about_mary.gif', '49.9900', 0, '2018-04-02 12:32:17', '2018-04-02 00:49:00', NULL, '7.00', 1, 1, 4, '0', '1', '1', 0, 0, 0, 0, 0, 1, '0', 0, 0, 0, '49.9900', 12, 1),
-(20, 1, '8', 'DVD-BELOVED', 'dvd/beloved.gif', '54.9900', 0, '2018-04-02 12:32:17', '2018-04-02 00:42:34', NULL, '7.00', 1, 1, 3, '2', '1', '1', 0, 0, 0, 0, 0, 1, '0', 0, 0, 0, '54.9900', 15, 1),
-(21, 1, '16', 'PC-SWAT3', 'sierra/swat_3.gif', '79.9900', 0, '2018-04-02 12:32:17', '2018-04-02 14:51:00', NULL, '7.00', 1, 1, 7, '0', '1', '1', 0, 0, 0, 0, 0, 1, '0', 0, 0, 0, '79.9900', 18, 1),
-(22, 1, '13', 'PC-UNTM', 'gt_interactive/unreal_tournament.gif', '89.9900', 0, '2018-04-02 12:32:17', '2018-04-02 00:49:29', NULL, '7.00', 1, 1, 8, '9', '1', '1', 0, 0, 0, 0, 0, 1, '0', 0, 0, 0, '89.9900', 19, 1),
-(23, 1, '16', 'PC-TWOF', 'gt_interactive/wheel_of_time.gif', '99.9900', 0, '2018-04-02 12:32:17', '2018-04-02 00:48:50', NULL, '10.00', 1, 1, 8, '0', '1', '1', 0, 0, 0, 0, 0, 1, '0', 0, 0, 0, '99.9900', 20, 1),
-(24, 1, '16', 'PC-DISC', 'gt_interactive/disciples.gif', '90.0000', 0, '2018-04-02 12:32:17', '2018-04-02 00:43:24', NULL, '8.00', 1, 1, 8, '1', '1', '1', 0, 0, 0, 0, 0, 1, '0', 0, 0, 0, '90.0000', 20, 1),
-(25, 1, '16', 'MSINTKB', 'microsoft/intkeyboardps2.gif', '69.9900', 0, '2018-04-02 12:32:17', '2018-04-02 03:02:41', NULL, '8.00', 1, 1, 2, '0', '1', '1', 0, 0, 0, 0, 0, 1, '0', 0, 0, 0, '69.9900', 8, 1),
-(26, 1, '9', 'MSIMEXP', 'microsoft/imexplorer.gif', '64.9500', 0, '2018-04-02 12:32:17', '2018-04-02 01:47:47', NULL, '8.00', 1, 1, 2, '17', '1', '1', 0, 0, 0, 0, 0, 1, '0', 0, 0, 0, '64.9500', 9, 1),
-(27, 1, '7', 'HPLJ1100XI', 'hewlett_packard/lj1100xi.gif', '499.9900', 0, '2018-04-02 12:32:17', '2018-04-02 00:45:03', NULL, '45.00', 1, 1, 9, '1', '1', '1', 0, 0, 0, 0, 0, 1, '0', 0, 0, 0, '499.9900', 5, 1),
-(28, 1, '999', 'GIFT005', 'gift_certificates/gv_5.gif', '5.0000', 1, '2018-04-02 12:32:17', '2015-05-10 02:57:18', NULL, '0.00', 1, 0, 0, '1', '1', '1', 0, 0, 0, 0, 0, 1, '0', 0, 0, 0, '5.0000', 21, 1),
-(29, 1, '985', 'GIFT 010', 'gift_certificates/gv_10.gif', '10.0000', 1, '2018-04-02 12:32:17', '2018-04-02 14:51:36', NULL, '0.00', 1, 0, 0, '15', '1', '1', 0, 0, 0, 0, 0, 1, '0', 0, 0, 0, '10.0000', 21, 1),
-(30, 1, '992', 'GIFT025', 'gift_certificates/gv_25.gif', '25.0000', 1, '2018-04-02 12:32:17', NULL, NULL, '0.00', 1, 0, 0, '8', '1', '1', 0, 0, 0, 0, 0, 1, '0', 0, 0, 0, '25.0000', 21, 1),
-(31, 1, '997', 'GIFT050', 'gift_certificates/gv_50.gif', '50.0000', 1, '2018-04-02 12:32:17', NULL, NULL, '0.00', 1, 0, 0, '4', '1', '1', 0, 0, 0, 0, 0, 1, '0', 0, 0, 0, '50.0000', 21, 1),
-(32, 1, '995', 'GIFT100', 'gift_certificates/gv_100.gif', '100.0000', 1, '2018-04-02 12:32:17', NULL, NULL, '0.00', 1, 0, 0, '5', '1', '1', 0, 0, 0, 0, 0, 1, '0', 0, 0, 0, '100.0000', 21, 1),
-(34, 1, '796', 'DVD-ABUG', 'dvd/a_bugs_life.gif', '35.9900', 0, '2018-04-02 22:03:45', '2015-05-01 14:16:01', '2005-02-21 00:00:00', '7.00', 1, 1, 3, '5', '1', '1', 0, 0, 0, 0, 0, 1, '0', 0, 0, 0, '35.9900', 22, 1),
-(36, 1, '700', 'HPLJ1100XI', 'hewlett_packard/lj1100xi.gif', '0.0000', 0, '2018-04-02 14:29:11', '2018-04-02 01:51:12', NULL, '45.00', 1, 1, 9, '0', '1', '1', 1, 0, 0, 0, 0, 1, '0', 0, 0, 0, '449.1000', 25, 1),
-(100, 1, '700', 'HPLJ1100XI', 'hewlett_packard/lj1100xi.gif', '0.0000', 0, '2018-04-02 14:06:13', '2018-04-02 14:06:50', NULL, '45.00', 1, 1, 9, '0', '1', '1', 1, 0, 0, 0, 0, 1, '0', 0, 0, 0, '336.8250', 25, 1),
-(39, 1, '997', 'TESTFREE', 'free.gif', '100.0000', 0, '2018-04-02 16:33:13', '2018-04-02 02:29:16', NULL, '1.00', 1, 1, 0, '3', '1', '1', 0, 1, 0, 1, 0, 1, '0', 0, 0, 0, '0.0000', 24, 1),
-(40, 1, '999', 'TESTCALL', 'call_for_price.jpg', '100.0000', 0, '2018-04-02 17:42:15', '2018-04-02 13:08:08', '2007-02-21 00:00:00', '1.00', 1, 1, 0, '0', '1', '1', 0, 0, 1, 1, 0, 1, '0', 0, 0, 0, '100.0000', 24, 1),
-(41, 1, '999', 'TESTCALL', 'call_for_price.jpg', '100.0000', 0, '2018-04-02 19:13:35', '2004-09-27 13:33:33', NULL, '1.00', 1, 1, 0, '0', '1', '1', 0, 0, 1, 1, 0, 1, '0', 0, 0, 0, '81.0000', 28, 0),
-(42, 1, '998', 'TESTFREE', 'free.gif', '100.0000', 0, '2018-04-02 19:14:16', '2018-04-02 19:15:00', NULL, '1.00', 1, 1, 0, '1', '1', '1', 0, 1, 0, 1, 0, 1, '0', 0, 0, 0, '0.0000', 28, 1),
-(43, 1, '999', 'TESTFREEATTRIB', 'free.gif', '100.0000', 0, '2018-04-02 20:44:06', '2018-04-02 16:23:29', NULL, '0.00', 1, 1, 0, '0', '1', '1', 0, 1, 0, 1, 0, 1, '0', 0, 0, 0, '0.0000', 24, 1),
-(44, 1, '999', 'TESTMINUNITSNOMIX', 'sample_image.gif', '100.0000', 0, '2018-04-02 21:38:59', '2015-05-22 13:15:41', NULL, '1.00', 1, 1, 0, '0', '4', '2', 0, 0, 0, 0, 0, 1, '0', 0, 0, 0, '90.0000', 22, 1),
-(46, 1, '981', 'TESTMINUNITSMIX', 'sample_image.gif', '100.0000', 0, '2018-04-02 21:53:07', '2018-04-02 02:00:50', NULL, '1.00', 1, 1, 0, '18', '4', '2', 0, 0, 0, 1, 0, 1, '0', 0, 0, 0, '90.0000', 22, 1),
-(47, 1, '9996', 'GIFT', 'gift_certificates/gv.gif', '0.0000', 1, '2018-04-02 22:56:57', '2004-09-29 20:11:51', NULL, '0.00', 1, 0, 0, '4', '1', '1', 1, 0, 0, 1, 0, 1, '0', 0, 0, 0, '5.0000', 21, 1),
-(48, 1, '9990', 'TEST1', '1_small.jpg', '39.0000', 0, '2018-04-02 02:27:47', '2018-04-02 02:56:37', NULL, '1.00', 1, 1, 0, '10', '1', '1', 0, 0, 0, 1, 0, 1, '0', 0, 0, 0, '39.0000', 23, 1),
-(49, 1, '900', 'TEST2', '2_small.jpg', '20.0000', 0, '2018-04-02 02:28:42', '2018-04-02 23:00:27', NULL, '0.50', 1, 1, 0, '0', '1', '1', 0, 0, 0, 1, 0, 1, '0', 0, 0, 0, '20.0000', 23, 1),
-(50, 1, '1000', 'TEST3', '3_small.jpg', '75.0000', 0, '2018-04-02 02:29:37', '2018-04-02 23:01:04', NULL, '1.50', 1, 1, 0, '0', '1', '1', 0, 0, 0, 1, 0, 1, '0', 0, 0, 0, '75.0000', 23, 1),
-(51, 1, '998', 'Free1', 'b_g_grid.gif', '25.0000', 0, '2018-04-02 11:51:05', '2018-04-02 17:03:32', NULL, '10.00', 1, 1, 0, '2', '1', '1', 0, 1, 0, 1, 1, 1, '0', 0, 0, 0, '0.0000', 24, 1),
-(52, 1, '997', 'Free2', 'b_p_grid.gif', '0.0000', 1, '2018-04-02 12:24:58', '2018-04-02 17:01:18', NULL, '2.00', 1, 1, 0, '2', '1', '1', 0, 1, 0, 1, 0, 1, '0', 0, 0, 0, '0.0000', 24, 1),
-(53, 1, '991', 'MINUNITSMIX', 'b_c_grid.gif', '25.0000', 0, '2018-04-02 23:26:44', '2018-04-02 02:22:35', NULL, '1.00', 1, 1, 0, '6', '6', '3', 0, 0, 0, 1, 0, 1, '0', 0, 0, 0, '20.0000', 23, 1),
-(54, 1, '991', 'MINUNITSNOMIX', 'waybkgnd.gif', '25.0000', 0, '2018-04-02 23:19:13', '2018-04-02 02:23:08', NULL, '1.00', 1, 1, 0, '0', '6', '3', 0, 0, 0, 0, 0, 1, '0', 0, 0, 0, '25.0000', 23, 1),
-(55, 1, '991', 'MINUNITSMIXSALE', 'b_b_grid.gif', '25.0000', 0, '2018-04-02 11:11:46', '2018-04-02 02:26:28', NULL, '1.00', 1, 1, 0, '0', '6', '3', 0, 0, 0, 1, 0, 1, '0', 0, 0, 0, '22.5000', 28, 1),
-(56, 1, '991', 'MINUNITSNOMIXSALE', 'b_w_grid.gif', '25.0000', 0, '2018-04-02 11:13:08', '2018-04-02 02:26:49', NULL, '1.00', 1, 1, 0, '0', '6', '3', 0, 0, 0, 0, 0, 1, '0', 0, 0, 0, '22.5000', 28, 1),
-(57, 1, '998', 'TESTFREEALL', 'free.gif', '0.0000', 0, '2018-04-02 11:36:09', '2018-04-02 16:55:19', NULL, '1.00', 1, 1, 0, '1', '1', '1', 0, 1, 0, 1, 1, 1, '0', 0, 0, 0, '0.0000', 24, 1),
-(59, 1, '700', 'HPLJ1100XI', 'hewlett_packard/lj1100xi.gif', '0.0000', 0, '2018-04-02 14:36:57', '2018-04-02 14:37:05', NULL, '45.00', 1, 1, 9, '0', '1', '1', 1, 0, 0, 0, 0, 1, '0', 0, 0, 0, '300.0000', 23, 1),
-(60, 1, '699', 'HPLJ1100XI', 'hewlett_packard/lj1100xi.gif', '499.7500', 0, '2018-04-02 01:34:55', '2018-04-02 01:41:37', NULL, '45.00', 1, 1, 9, '1', '1', '1', 0, 0, 0, 0, 0, 1, '0', 0, 0, 0, '449.7750', 28, 1),
-(61, 1, '699', 'HPLJ1100XI', 'hewlett_packard/lj1100xi.gif', '499.7500', 0, '2018-04-02 01:44:09', '2018-04-02 01:45:45', NULL, '45.00', 1, 1, 9, '1', '1', '1', 0, 0, 0, 0, 0, 1, '0', 0, 0, 0, '449.7750', 28, 1),
-(101, 1, '1000', 'Test120-90off-10', 'test_demo.jpg', '0.0000', 0, '2018-04-02 14:11:32', '2018-04-02 14:17:09', NULL, '1.00', 1, 1, 0, '0', '1', '1', 1, 0, 0, 1, 0, 1, '0', 0, 0, 0, '72.0000', 47, 1),
-(109, 1, '1000', 'HIDEQTYBOX', '1_small.jpg', '75.0000', 0, '2018-04-02 22:01:20', '2015-05-22 11:21:12', NULL, '1.00', 1, 1, 0, '0', '1', '1', 0, 0, 0, 1, 0, 1, '1', 0, 0, 0, '75.0000', 23, 1),
-(78, 1, '1000', 'Test25-10AttrAll', 'test_demo.jpg', '0.0000', 0, '2018-04-02 01:09:46', '2018-04-02 01:30:12', NULL, '0.00', 1, 1, 0, '0', '1', '1', 1, 0, 0, 1, 0, 1, '0', 0, 0, 0, '101.2500', 25, 1),
-(79, 1, '1000', 'Test25-AttrAll', 'test_demo.jpg', '0.0000', 0, '2018-04-02 01:28:52', '2018-04-02 01:33:55', NULL, '1.00', 1, 1, 0, '0', '1', '1', 1, 0, 0, 1, 0, 1, '0', 0, 0, 0, '150.0000', 23, 1),
-(74, 1, '700', 'HPLJ1100XI', 'hewlett_packard/lj1100xi.gif', '0.0000', 0, '2018-04-02 15:34:49', '2018-04-02 15:35:17', NULL, '45.00', 1, 1, 9, '0', '1', '1', 1, 0, 0, 0, 0, 1, '0', 0, 0, 0, '399.2000', 23, 1),
-(76, 1, '1000', 'Test25-10', 'test_demo.jpg', '100.0000', 0, '2018-04-02 23:08:33', NULL, NULL, '0.00', 1, 1, 0, '0', '1', '1', 0, 0, 0, 1, 0, 1, '0', 0, 0, 0, '67.5000', 28, 1),
-(80, 1, '1000', 'Test25', 'test_demo.jpg', '100.0000', 0, '2018-04-02 01:31:06', '2018-04-02 13:35:47', NULL, '1.00', 1, 1, 0, '0', '1', '1', 0, 0, 0, 1, 0, 1, '0', 0, 0, 0, '100.0000', 23, 1),
-(84, 1, '999', 'Test120', 'test_demo.jpg', '120.0000', 0, '2018-04-02 15:05:10', '2018-04-02 15:27:39', NULL, '1.00', 1, 1, 0, '1', '1', '1', 0, 0, 0, 1, 0, 1, '0', 0, 0, 0, '120.0000', 23, 1),
-(82, 1, '1000', 'Test120-5', 'test_demo.jpg', '120.0000', 0, '2018-04-02 14:50:38', '2018-04-02 17:09:03', NULL, '1.00', 1, 1, 0, '0', '1', '1', 0, 0, 0, 1, 0, 1, '0', 0, 0, 0, '115.0000', 27, 1),
-(83, 1, '1000', 'Test120-90-5', 'test_demo.jpg', '120.0000', 0, '2018-04-02 15:01:53', '2018-04-02 10:02:11', NULL, '1.00', 1, 1, 0, '0', '1', '1', 0, 0, 0, 1, 0, 1, '0', 0, 0, 0, '85.0000', 27, 1),
-(85, 1, '1000', 'Test90', 'test_demo.jpg', '120.0000', 0, '2018-04-02 15:19:00', '2018-04-02 10:00:35', NULL, '1.00', 1, 1, 0, '0', '1', '1', 0, 0, 0, 1, 0, 1, '0', 0, 0, 0, '90.0000', 23, 1),
-(88, 1, '1000', 'Test120-90-10-Skip', 'test_demo.jpg', '120.0000', 0, '2018-04-02 00:14:31', '2018-04-02 09:58:08', NULL, '1.00', 1, 1, 0, '0', '1', '1', 0, 0, 0, 1, 0, 1, '0', 0, 0, 0, '90.0000', 31, 1),
-(89, 1, '1000', 'Test120-90-10-Skip', 'test_demo.jpg', '120.0000', 0, '2018-04-02 00:41:40', '2018-04-02 09:57:42', NULL, '1.00', 1, 1, 0, '0', '1', '1', 0, 0, 0, 1, 0, 1, '0', 0, 0, 0, '108.0000', 31, 1),
-(95, 1, '1000', 'Test120-25-New100-Skip', 'test_demo.jpg', '120.0000', 0, '2018-04-02 02:35:44', '2018-04-02 02:37:27', NULL, '1.00', 1, 1, 0, '0', '1', '1', 0, 0, 0, 1, 0, 1, '0', 0, 0, 0, '90.0000', 51, 1),
-(90, 1, '999', 'Test120-90-10', 'test_demo.jpg', '120.0000', 0, '2018-04-02 23:55:18', '2018-04-02 00:08:58', NULL, '1.00', 1, 1, 0, '1', '1', '1', 0, 0, 0, 1, 0, 1, '0', 0, 0, 0, '81.0000', 45, 1),
-(92, 1, '1000', 'Test120-90off-10', 'test_demo.jpg', '120.0000', 0, '2018-04-02 23:58:54', '2018-04-02 00:09:28', NULL, '1.00', 1, 1, 0, '0', '1', '1', 0, 0, 0, 1, 0, 1, '0', 0, 0, 0, '108.0000', 45, 1),
-(93, 1, '1000', 'Test120-New100', 'test_demo.jpg', '120.0000', 0, '2018-04-02 00:02:32', '2018-04-02 00:04:25', NULL, '1.00', 1, 1, 0, '0', '1', '1', 0, 0, 0, 1, 0, 1, '0', 0, 0, 0, '100.0000', 46, 1),
-(94, 1, '1000', 'Test120-25-New100', 'test_demo.jpg', '120.0000', 0, '2018-04-02 00:04:31', '2018-04-02 00:07:08', NULL, '1.00', 1, 1, 0, '0', '1', '1', 0, 0, 0, 1, 0, 1, '0', 0, 0, 0, '100.0000', 46, 1),
-(96, 1, '1000', 'Test120-New100-Off-Skip', 'test_demo.jpg', '120.0000', 0, '2018-04-02 02:36:52', '2018-04-02 02:37:29', NULL, '1.00', 1, 1, 0, '0', '1', '1', 0, 0, 0, 1, 0, 1, '0', 0, 0, 0, '100.0000', 51, 1),
-(97, 1, '1000', 'Test120-90-10-Price', 'test_demo.jpg', '120.0000', 0, '2018-04-02 11:26:34', '2018-04-02 11:27:24', NULL, '1.00', 1, 1, 0, '0', '1', '1', 0, 0, 0, 1, 0, 1, '0', 0, 0, 0, '108.0000', 32, 1),
-(98, 1, '1000', 'Test120-90off-10-Price', 'test_demo.jpg', '120.0000', 0, '2018-04-02 11:28:16', '2018-04-02 11:29:57', NULL, '1.00', 1, 1, 0, '0', '1', '1', 0, 0, 0, 1, 0, 1, '0', 0, 0, 0, '108.0000', 32, 1),
-(99, 1, '997', 'FreeShipping', 'small_00.jpg', '25.0000', 0, '2018-04-02 13:27:30', '2018-04-02 01:48:48', NULL, '5.00', 1, 1, 0, '3', '1', '1', 0, 0, 0, 1, 1, 1, '0', 0, 0, 0, '25.0000', 23, 1),
-(104, 1, '1000', 'HIDEQTY', '1_small.jpg', '75.0000', 0, '2018-04-02 03:02:51', '2015-05-22 11:21:36', NULL, '1.00', 1, 1, 0, '0', '1', '1', 0, 0, 0, 1, 0, 0, '0', 0, 0, 0, '75.0000', 23, 1),
-(105, 1, '999', 'MAXSAMPLE-1', 'waybkgnd.gif', '50.0000', 0, '2018-04-02 14:10:59', '2018-04-02 14:36:00', NULL, '1.00', 1, 1, 0, '1', '1', '1', 0, 0, 0, 1, 0, 1, '1', 0, 0, 0, '50.0000', 22, 1),
-(106, 1, '1000', 'MAXSAMPLE-3', 'waybkgnd.gif', '50.0000', 0, '2018-04-02 14:36:08', '2018-04-02 15:32:56', NULL, '1.00', 1, 1, 0, '0', '1', '1', 0, 0, 0, 1, 0, 1, '3', 0, 0, 0, '50.0000', 22, 1),
-(107, 1, '995', 'FreeShippingNoWeight', 'small_00.jpg', '25.0000', 0, '2018-04-02 01:41:22', '2018-04-02 02:01:54', NULL, '0.00', 1, 1, 0, '0', '1', '1', 0, 0, 0, 1, 0, 1, '0', 0, 0, 0, '25.0000', 23, 1),
-(108, 1, '0', 'SoldOut', 'small_00.jpg', '25.0000', 0, '2018-04-02 01:53:20', NULL, NULL, '3.00', 1, 1, 0, '0', '1', '1', 0, 0, 0, 1, 0, 1, '0', 0, 0, 0, '25.0000', 23, 1),
-(110, 1, '1000', 'Test120-5SKIP', 'test_demo.jpg', '120.0000', 0, '2018-04-02 16:09:52', '2018-04-02 16:15:25', NULL, '1.00', 1, 1, 0, '0', '1', '1', 0, 0, 0, 1, 0, 1, '0', 0, 0, 0, '115.0000', 52, 1),
-(111, 1, '1000', 'Test120-90-5SKIP', 'test_demo.jpg', '120.0000', 0, '2018-04-02 16:10:12', '2018-04-02 16:15:27', NULL, '1.00', 1, 1, 0, '0', '1', '1', 0, 0, 0, 1, 0, 1, '0', 0, 0, 0, '90.0000', 52, 1),
-(112, 1, '998', 'Test2', '', '25.0000', 0, '2018-04-02 02:24:57', '2018-04-02 02:25:44', NULL, '1.00', 1, 1, 0, '2', '1', '1', 0, 0, 0, 1, 0, 1, '0', 2, 0, 0, '25.0000', 53, 1),
-(113, 1, '994', 'Test4', '', '25.0000', 0, '2018-04-02 02:25:03', '2018-04-02 02:25:35', NULL, '1.00', 1, 1, 0, '6', '1', '1', 0, 0, 0, 1, 0, 1, '0', 4, 0, 0, '25.0000', 53, 1),
-(114, 1, '998', 'Test5', '', '25.0000', 0, '2018-04-02 02:25:53', '2018-04-02 02:26:15', NULL, '1.00', 1, 1, 0, '2', '1', '1', 0, 0, 0, 1, 0, 1, '0', 5, 0, 0, '25.0000', 53, 1),
-(115, 1, '999', 'Test1', '', '25.0000', 0, '2018-04-02 02:26:23', '2018-04-02 21:50:19', NULL, '1.00', 1, 1, 0, '1', '1', '1', 0, 0, 0, 1, 0, 1, '0', 1, 0, 0, '25.0000', 53, 1),
-(116, 1, '997', 'Test8', '', '25.0000', 0, '2018-04-02 02:26:54', '2018-04-02 02:27:18', NULL, '1.00', 1, 1, 0, '3', '1', '1', 0, 0, 0, 1, 0, 1, '0', 8, 0, 0, '25.0000', 53, 1),
-(117, 1, '995', 'Test3', '', '25.0000', 0, '2018-04-02 02:27:24', '2015-11-03 12:20:14', NULL, '1.00', 1, 1, 0, '5', '1', '1', 0, 0, 0, 1, 0, 1, '0', 3, 0, 0, '25.0000', 53, 1),
-(118, 1, '999', 'Test10', '', '25.0000', 0, '2018-04-02 02:27:52', '2018-04-02 02:28:14', NULL, '1.00', 1, 1, 0, '1', '1', '1', 0, 0, 0, 1, 0, 1, '0', 10, 0, 0, '25.0000', 53, 1),
-(119, 1, '1000', 'Test6', '', '25.0000', 0, '2018-04-02 02:28:22', '2015-11-06 18:26:25', NULL, '1.00', 1, 1, 0, '0', '1', '1', 0, 0, 0, 1, 0, 1, '0', 6, 0, 0, '25.0000', 53, 1),
-(120, 1, '1000', 'Test7', '', '25.0000', 0, '2018-04-02 02:29:03', '2018-04-02 02:29:23', NULL, '1.00', 1, 1, 0, '0', '1', '1', 0, 0, 0, 1, 0, 1, '0', 7, 0, 0, '25.0000', 53, 1),
-(121, 1, '999', 'Test12', '', '25.0000', 0, '2018-04-02 02:29:36', '2018-04-02 13:02:47', NULL, '1.00', 1, 1, 0, '1', '1', '1', 0, 0, 0, 1, 0, 1, '0', 12, 0, 0, '25.0000', 53, 1),
-(122, 1, '998', 'Test9', '', '25.0000', 0, '2018-04-02 02:30:12', '2018-04-02 02:30:32', NULL, '1.00', 1, 1, 0, '2', '1', '1', 0, 0, 0, 1, 0, 1, '0', 9, 0, 0, '25.0000', 53, 1),
-(123, 1, '999', 'Test11', '', '25.0000', 0, '2018-04-02 02:30:41', '2018-04-02 02:31:04', NULL, '1.00', 1, 1, 0, '1', '1', '1', 0, 0, 0, 1, 0, 1, '0', 11, 0, 0, '25.0000', 53, 1),
-(130, 1, '1000', 'Special', '2_small.jpg', '15.0000', 0, '2018-04-02 02:19:53', '2015-11-06 00:05:34', NULL, '2.00', 1, 1, 0, '0', '1', '1', 0, 0, 0, 1, 0, 1, '0', 0, 1, 1, '10.0000', 55, 1),
-(127, 1, '1000', 'Normal', 'small_00.jpg', '15.0000', 0, '2018-04-02 01:51:35', '2018-04-02 14:23:29', NULL, '2.00', 1, 1, 0, '0', '1', '1', 0, 0, 0, 1, 0, 1, '0', 0, 1, 0, '15.0000', 55, 1),
-(131, 1, '1000', 'PERWORDREQ', '', '0.0000', 0, '2018-04-02 01:31:28', '2018-04-02 21:30:23', NULL, '1.00', 1, 1, 0, '0', '1', '1', 1, 0, 0, 1, 0, 1, '0', 0, 0, 0, '5.0000', 57, 1),
-(132, 1, '997', 'GolfClub', '9_small.jpg', '0.0000', 0, '2018-04-02 12:36:12', '2018-04-02 18:04:36', NULL, '1.00', 1, 1, 0, '3', '1', '1', 1, 0, 0, 1, 0, 1, '0', 0, 0, 0, '13.0050', 58, 1),
-(133, 1, '1000', 'DOWNLOAD2', '2_small.jpg', '49.9900', 0, '2018-04-02 23:51:33', '2018-04-02 00:06:58', NULL, '0.00', 1, 1, 0, '2', '1', '1', 0, 0, 0, 1, 0, 1, '0', 0, 0, 0, '49.9900', 60, 1),
-(134, 1, '1000', 'PERLETTERREQ', '', '0.0000', 0, '2018-04-02 21:23:58', '2018-04-02 21:29:50', NULL, '1.00', 1, 1, 0, '0', '1', '1', 1, 0, 0, 1, 0, 1, '0', 0, 0, 0, '5.0000', 57, 1),
-(154, 1, '10000', 'ROPE', '9_small.jpg', '1.0000', 0, '2018-04-02 21:08:08', '2018-04-02 17:18:46', NULL, '0.00', 1, 1, 0, '0', '10', '1', 0, 0, 0, 1, 0, 1, '0', 0, 0, 0, '0.9000', 58, 0),
-(155, 1, '1000', 'PRICEFACTOR', 'sample_image.gif', '10.0000', 0, '2018-04-02 23:03:10', '2018-04-02 17:21:04', NULL, '1.00', 1, 1, 0, '0', '1', '1', 0, 0, 0, 1, 0, 1, '0', 0, 0, 0, '10.0000', 56, 1),
-(156, 1, '1000', 'PRICEFACTOROFF', 'sample_image.gif', '10.0000', 0, '2018-04-02 23:05:24', '2018-04-02 23:10:12', NULL, '1.00', 1, 1, 0, '0', '1', '1', 0, 0, 0, 1, 0, 1, '0', 0, 0, 0, '10.0000', 56, 1),
-(157, 1, '1000', 'PRICEFACTOROFFATTR', 'sample_image.gif', '10.0000', 0, '2018-04-02 23:10:18', '2018-04-02 23:13:48', NULL, '1.00', 1, 1, 0, '0', '1', '1', 1, 0, 0, 1, 0, 1, '0', 0, 0, 0, '10.0000', 56, 1),
-(158, 1, '1000', 'ONETIME', 'b_b_grid.gif', '45.0000', 0, '2018-04-02 23:22:08', NULL, NULL, '1.00', 1, 1, 0, '0', '1', '1', 0, 0, 0, 1, 0, 1, '0', 0, 0, 0, '45.0000', 56, 1),
-(159, 1, '10000', 'ATTQTYPRICE', 'b_c_grid.gif', '25.0000', 0, '2018-04-02 23:29:31', '2018-04-02 23:49:56', NULL, '1.00', 1, 1, 0, '0', '1', '1', 0, 0, 0, 1, 0, 1, '0', 0, 0, 0, '25.0000', 56, 1),
-(160, 1, '997', 'GolfClub', '9_small.jpg', '0.0000', 0, '2018-04-02 10:14:35', '2018-04-02 10:15:16', NULL, '1.00', 1, 1, 0, '0', '1', '1', 1, 0, 0, 1, 0, 1, '0', 0, 0, 0, '14.4500', 61, 1),
-(165, 1, '10000', 'ROPE', '9_small.jpg', '1.0000', 0, '2018-04-02 10:42:50', '2018-04-02 17:18:12', NULL, '0.00', 1, 1, 0, '0', '10', '1', 0, 0, 0, 1, 0, 1, '0', 0, 0, 0, '1.0000', 61, 0),
-(166, 2, '10000', 'RTBHUNTER', 'sooty.jpg', '4.9900', 0, '2018-04-02 10:42:50', '2018-04-02 10:43:00', NULL, '3.00', 1, 1, 0, '0', '1', '1', 0, 0, 0, 1, 0, 1, '0', 0, 0, 0, '3.0000', 62, 1),
-(167, 3, '0', '', '', '0.0000', 0, '2018-04-02 10:42:50', '2018-04-02 00:39:10', NULL, '0.00', 1, 0, 0, '0', '1', '1', 0, 0, 0, 0, 0, 0, '0', 0, 0, 0, '0.0000', 63, 1),
-(168, 1, '1000', 'PGT', 'samples/1_small.jpg', '3.9500', 0, '2018-04-02 15:25:32', '2018-04-02 16:26:08', NULL, '1.00', 1, 1, 0, '0', '1', '1', 0, 0, 0, 1, 0, 1, '0', 10, 0, 0, '3.9500', 64, 1),
-(169, 2, '1000', 'PMT', 'samples/2_small.jpg', '3.9500', 0, '2018-04-02 15:27:50', '2018-04-02 16:29:01', NULL, '1.00', 1, 1, NULL, '0', '1', '1', 0, 0, 0, 1, 0, 1, '0', 20, 0, 0, '3.9500', 64, 1),
-(170, 3, '0', '', 'samples/3_small.jpg', '0.0000', 0, '2018-04-02 15:29:23', '2004-09-27 23:11:25', NULL, '0.00', 1, 0, 0, '0', '1', '1', 0, 0, 0, 0, 0, 0, '0', 30, 0, 0, '0.0000', 64, 1),
-(171, 4, '1000', 'DPT', 'samples/4_small.jpg', '3.9500', 0, '2018-04-02 15:32:40', '2018-04-02 17:46:49', NULL, '0.00', 1, 1, 0, '0', '1', '1', 0, 0, 0, 1, 0, 1, '0', 40, 0, 0, '3.9500', 64, 1),
-(172, 5, '1000', 'PFS', 'samples/5_small.jpg', '3.9500', 0, '2018-04-02 15:39:18', '2018-04-02 23:08:43', NULL, '5.00', 1, 0, 0, '0', '1', '1', 0, 0, 0, 1, 1, 1, '0', 50, 0, 0, '3.9500', 64, 1),
-(173, 1, '1000', 'Book', 'b_g_grid.gif', '0.0000', 0, '2018-04-02 23:54:34', '2015-12-26 02:50:59', NULL, '0.00', 1, 1, 0, '0', '1', '1', 1, 0, 0, 1, 0, 1, '0', 0, 0, 0, '52.5000', 61, 1),
-(174, 1, '999', 'TESTCALL', 'call_for_price.jpg', '0.0000', 0, '2018-04-02 13:25:44', '2018-04-02 13:28:54', '2007-02-21 00:00:00', '1.00', 1, 1, 0, '0', '1', '1', 0, 0, 1, 1, 0, 1, '0', 0, 0, 0, '0.0000', 24, 0),
-(175, 1, '1000', 'Normal', '1_small.jpg', '60.0000', 0, '2018-04-02 23:32:52', '2018-04-02 17:13:20', NULL, '2.00', 1, 1, 0, '0', '1', '1', 0, 0, 0, 0, 0, 1, '0', 0, 1, 0, '60.0000', 55, 1),
-(176, 1, '1000', 'Normal', 'small_00.jpg', '100.0000', 0, '2018-04-02 16:45:25', '2018-04-02 16:47:22', NULL, '2.00', 1, 1, 0, '0', '1', '1', 0, 0, 0, 1, 0, 1, '0', 0, 1, 0, '100.0000', 55, 1),
-(177, 1, '1000', 'Special', '2_small.jpg', '100.0000', 0, '2018-04-02 16:47:45', '2018-04-02 00:05:48', NULL, '2.00', 1, 1, 0, '0', '1', '1', 0, 0, 0, 1, 0, 1, '0', 0, 1, 1, '75.0000', 55, 1),
-(179, 1, '1000', 'DOWNLOAD1', '1_small.jpg', '39.0000', 0, '2018-04-02 00:08:33', '2018-04-02 00:18:51', NULL, '0.00', 1, 1, 0, '0', '1', '1', 0, 0, 0, 1, 0, 1, '0', 0, 0, 0, '39.0000', 60, 1),
-(178, 1, '1000', 'Normal', '1_small.jpg', '60.0000', 0, '2018-04-02 16:54:52', '2018-04-02 17:15:02', NULL, '2.00', 1, 1, 0, '0', '1', '1', 0, 0, 0, 0, 0, 1, '0', 0, 1, 0, '50.0000', 55, 1);
+(1, 1, '31', 'MG200MMS', 'matrox/mg200mms.gif', '299.9900', 0, '2019-06-18 12:32:17', '2019-06-18 23:57:34', NULL, '23.00', 1, 1, 1, '1', '1', '1', 0, 0, 0, 0, 0, 1, '0', 0, 0, 0, '299.9900', 4, 1),
+(2, 1, '31', 'MG400-32MB', 'matrox/mg400-32mb.gif', '499.9900', 0, '2019-06-18 12:32:17', NULL, NULL, '23.00', 1, 1, 1, '1', '1', '1', 0, 0, 0, 0, 0, 1, '0', 0, 0, 0, '499.9900', 4, 1),
+(3, 1, '500', 'MSIMPRO', 'microsoft/msimpro.gif', '49.9900', 0, '2019-06-18 12:32:17', NULL, NULL, '7.00', 1, 1, 2, '1', '1', '1', 0, 0, 0, 0, 0, 1, '0', 0, 0, 0, '39.9900', 9, 1),
+(4, 1, '12', 'DVD-RPMK', 'dvd/replacement_killers.gif', '42.0000', 0, '2019-06-18 12:32:17', NULL, NULL, '23.00', 1, 1, 3, '1', '1', '1', 0, 0, 0, 0, 0, 1, '0', 0, 0, 0, '42.0000', 10, 1),
+(5, 1, '15', 'DVD-BLDRNDC', 'dvd/blade_runner.gif', '35.9900', 0, '2019-06-18 12:32:17', '2019-06-18 00:44:28', NULL, '7.00', 1, 1, 3, '2', '1', '1', 0, 0, 0, 0, 0, 1, '0', 0, 0, 0, '30.0000', 11, 1),
+(6, 1, '8', 'DVD-MATR', 'dvd/the_matrix.gif', '39.9900', 0, '2019-06-18 12:32:17', '2019-06-18 00:48:28', NULL, '7.00', 1, 1, 3, '2', '1', '1', 0, 0, 0, 0, 0, 1, '0', 0, 0, 0, '30.0000', 10, 1),
+(7, 1, '500', 'DVD-YGEM', 'dvd/youve_got_mail.gif', '34.9900', 0, '2019-06-18 12:32:17', '2019-06-18 14:53:17', NULL, '7.00', 1, 1, 3, '5', '1', '1', 0, 0, 0, 0, 0, 1, '0', 0, 0, 0, '34.9900', 12, 1),
+(8, 1, '499', 'DVD-ABUG', 'dvd/a_bugs_life.gif', '35.9900', 0, '2019-06-18 12:32:17', '2019-06-18 14:52:54', NULL, '7.00', 1, 1, 3, '6', '1', '1', 0, 0, 0, 0, 0, 1, '0', 10, 1, 1, '35.9900', 13, 1),
+(9, 1, '10', 'DVD-UNSG', 'dvd/under_siege.gif', '29.9900', 0, '2019-06-18 12:32:17', '2019-06-18 13:35:27', NULL, '7.00', 1, 1, 3, '0', '1', '1', 0, 0, 0, 0, 0, 1, '0', 0, 0, 0, '29.9900', 10, 1),
+(10, 1, '9', 'DVD-UNSG2', 'dvd/under_siege2.gif', '29.9900', 0, '2019-06-18 12:32:17', NULL, NULL, '7.00', 1, 1, 3, '1', '1', '1', 0, 0, 0, 0, 0, 1, '0', 0, 0, 0, '29.9900', 10, 1),
+(11, 1, '10', 'DVD-FDBL', 'dvd/fire_down_below.gif', '29.9900', 0, '2019-06-18 12:32:17', '2019-06-18 00:43:40', NULL, '7.00', 1, 1, 3, '0', '1', '1', 0, 0, 0, 0, 0, 1, '0', 0, 0, 0, '29.9900', 10, 1),
+(12, 1, '9', 'DVD-DHWV', 'dvd/die_hard_3.gif', '39.9900', 0, '2019-06-18 12:32:17', '2019-06-18 00:34:33', NULL, '7.00', 1, 1, 4, '6', '1', '1', 0, 0, 0, 0, 0, 1, '0', 0, 0, 0, '39.9900', 10, 1),
+(13, 1, '10', 'DVD-LTWP', 'dvd/lethal_weapon.gif', '34.9900', 0, '2019-06-18 12:32:17', '2019-06-18 00:07:35', NULL, '7.00', 1, 1, 3, '0', '1', '1', 0, 0, 0, 0, 0, 1, '0', 0, 0, 0, '34.9900', 10, 1),
+(14, 1, '9', 'DVD-REDC', 'dvd/red_corner.gif', '32.0000', 0, '2019-06-18 12:32:17', '2019-06-18 00:47:39', NULL, '7.00', 1, 1, 3, '1', '1', '1', 0, 0, 0, 0, 0, 1, '0', 0, 0, 0, '32.0000', 15, 1),
+(15, 1, '9', 'DVD-FRAN', 'dvd/frantic.gif', '35.0000', 0, '2019-06-18 12:32:17', '2019-06-18 00:43:55', NULL, '7.00', 1, 1, 3, '1', '1', '1', 0, 0, 0, 0, 0, 1, '0', 0, 0, 0, '35.0000', 14, 1),
+(16, 1, '9', 'DVD-CUFI', 'dvd/courage_under_fire.gif', '38.9900', 0, '2019-06-18 12:32:17', '2019-06-18 00:42:57', '2007-02-21 00:00:00', '7.00', 1, 1, 4, '1', '1', '1', 0, 0, 0, 0, 0, 1, '0', 0, 0, 0, '29.9900', 15, 1),
+(17, 1, '10', 'DVD-SPEED', 'dvd/speed.gif', '39.9900', 0, '2019-06-18 12:32:17', '2019-06-18 00:47:51', NULL, '7.00', 1, 1, 4, '0', '1', '1', 0, 0, 0, 0, 0, 1, '0', 0, 0, 0, '39.9900', 10, 1),
+(18, 1, '10', 'DVD-SPEED2', 'dvd/speed_2.gif', '42.0000', 0, '2019-06-18 12:32:17', NULL, NULL, '7.00', 1, 1, 4, '0', '1', '1', 0, 0, 0, 0, 0, 1, '0', 0, 0, 0, '42.0000', 10, 1),
+(19, 1, '10', 'DVD-TSAB', 'dvd/theres_something_about_mary.gif', '49.9900', 0, '2019-06-18 12:32:17', '2019-06-18 00:49:00', NULL, '7.00', 1, 1, 4, '0', '1', '1', 0, 0, 0, 0, 0, 1, '0', 0, 0, 0, '49.9900', 12, 1),
+(20, 1, '8', 'DVD-BELOVED', 'dvd/beloved.gif', '54.9900', 0, '2019-06-18 12:32:17', '2019-06-18 00:42:34', NULL, '7.00', 1, 1, 3, '2', '1', '1', 0, 0, 0, 0, 0, 1, '0', 0, 0, 0, '54.9900', 15, 1),
+(21, 1, '16', 'PC-SWAT3', 'sierra/swat_3.gif', '79.9900', 0, '2019-06-18 12:32:17', '2019-06-18 14:51:00', NULL, '7.00', 1, 1, 7, '0', '1', '1', 0, 0, 0, 0, 0, 1, '0', 0, 0, 0, '79.9900', 18, 1),
+(22, 1, '13', 'PC-UNTM', 'gt_interactive/unreal_tournament.gif', '89.9900', 0, '2019-06-18 12:32:17', '2019-06-18 00:49:29', NULL, '7.00', 1, 1, 8, '9', '1', '1', 0, 0, 0, 0, 0, 1, '0', 0, 0, 0, '89.9900', 19, 1),
+(23, 1, '16', 'PC-TWOF', 'gt_interactive/wheel_of_time.gif', '99.9900', 0, '2019-06-18 12:32:17', '2019-06-18 00:48:50', NULL, '10.00', 1, 1, 8, '0', '1', '1', 0, 0, 0, 0, 0, 1, '0', 0, 0, 0, '99.9900', 20, 1),
+(24, 1, '16', 'PC-DISC', 'gt_interactive/disciples.gif', '90.0000', 0, '2019-06-18 12:32:17', '2019-06-18 00:43:24', NULL, '8.00', 1, 1, 8, '1', '1', '1', 0, 0, 0, 0, 0, 1, '0', 0, 0, 0, '90.0000', 20, 1),
+(25, 1, '16', 'MSINTKB', 'microsoft/intkeyboardps2.gif', '69.9900', 0, '2019-06-18 12:32:17', '2019-06-18 03:02:41', NULL, '8.00', 1, 1, 2, '0', '1', '1', 0, 0, 0, 0, 0, 1, '0', 0, 0, 0, '69.9900', 8, 1),
+(26, 1, '9', 'MSIMEXP', 'microsoft/imexplorer.gif', '64.9500', 0, '2019-06-18 12:32:17', '2019-06-18 01:47:47', NULL, '8.00', 1, 1, 2, '17', '1', '1', 0, 0, 0, 0, 0, 1, '0', 0, 0, 0, '64.9500', 9, 1),
+(27, 1, '7', 'HPLJ1100XI', 'hewlett_packard/lj1100xi.gif', '499.9900', 0, '2019-06-18 12:32:17', '2019-06-18 00:45:03', NULL, '45.00', 1, 1, 9, '1', '1', '1', 0, 0, 0, 0, 0, 1, '0', 0, 0, 0, '499.9900', 5, 1),
+(28, 1, '999', 'GIFT005', 'gift_certificates/gv_5.gif', '5.0000', 1, '2019-06-18 12:32:17', '2019-06-18 02:57:18', NULL, '0.00', 1, 0, 0, '1', '1', '1', 0, 0, 0, 0, 0, 1, '0', 0, 0, 0, '5.0000', 21, 1),
+(29, 1, '985', 'GIFT 010', 'gift_certificates/gv_10.gif', '10.0000', 1, '2019-06-18 12:32:17', '2019-06-18 14:51:36', NULL, '0.00', 1, 0, 0, '15', '1', '1', 0, 0, 0, 0, 0, 1, '0', 0, 0, 0, '10.0000', 21, 1),
+(30, 1, '992', 'GIFT025', 'gift_certificates/gv_25.gif', '25.0000', 1, '2019-06-18 12:32:17', NULL, NULL, '0.00', 1, 0, 0, '8', '1', '1', 0, 0, 0, 0, 0, 1, '0', 0, 0, 0, '25.0000', 21, 1),
+(31, 1, '997', 'GIFT050', 'gift_certificates/gv_50.gif', '50.0000', 1, '2019-06-18 12:32:17', NULL, NULL, '0.00', 1, 0, 0, '4', '1', '1', 0, 0, 0, 0, 0, 1, '0', 0, 0, 0, '50.0000', 21, 1),
+(32, 1, '995', 'GIFT100', 'gift_certificates/gv_100.gif', '100.0000', 1, '2019-06-18 12:32:17', NULL, NULL, '0.00', 1, 0, 0, '5', '1', '1', 0, 0, 0, 0, 0, 1, '0', 0, 0, 0, '100.0000', 21, 1),
+(34, 1, '796', 'DVD-ABUG', 'dvd/a_bugs_life.gif', '35.9900', 0, '2019-06-18 22:03:45', '2019-06-18 14:16:01', '2005-02-21 00:00:00', '7.00', 1, 1, 3, '5', '1', '1', 0, 0, 0, 0, 0, 1, '0', 0, 0, 0, '35.9900', 22, 1),
+(36, 1, '700', 'HPLJ1100XI', 'hewlett_packard/lj1100xi.gif', '0.0000', 0, '2019-06-18 14:29:11', '2019-06-18 01:51:12', NULL, '45.00', 1, 1, 9, '0', '1', '1', 1, 0, 0, 0, 0, 1, '0', 0, 0, 0, '449.1000', 25, 1),
+(100, 1, '700', 'HPLJ1100XI', 'hewlett_packard/lj1100xi.gif', '0.0000', 0, '2019-06-18 14:06:13', '2019-06-18 14:06:50', NULL, '45.00', 1, 1, 9, '0', '1', '1', 1, 0, 0, 0, 0, 1, '0', 0, 0, 0, '336.8250', 25, 1),
+(39, 1, '997', 'TESTFREE', 'free.gif', '100.0000', 0, '2019-06-18 16:33:13', '2019-06-18 02:29:16', NULL, '1.00', 1, 1, 0, '3', '1', '1', 0, 1, 0, 1, 0, 1, '0', 0, 0, 0, '0.0000', 24, 1),
+(40, 1, '999', 'TESTCALL', 'call_for_price.jpg', '100.0000', 0, '2019-06-18 17:42:15', '2019-06-18 13:08:08', '2007-02-21 00:00:00', '1.00', 1, 1, 0, '0', '1', '1', 0, 0, 1, 1, 0, 1, '0', 0, 0, 0, '100.0000', 24, 1),
+(41, 1, '999', 'TESTCALL', 'call_for_price.jpg', '100.0000', 0, '2019-06-18 19:13:35', '2004-09-27 13:33:33', NULL, '1.00', 1, 1, 0, '0', '1', '1', 0, 0, 1, 1, 0, 1, '0', 0, 0, 0, '81.0000', 28, 0),
+(42, 1, '998', 'TESTFREE', 'free.gif', '100.0000', 0, '2019-06-18 19:14:16', '2019-06-18 19:15:00', NULL, '1.00', 1, 1, 0, '1', '1', '1', 0, 1, 0, 1, 0, 1, '0', 0, 0, 0, '0.0000', 28, 1),
+(43, 1, '999', 'TESTFREEATTRIB', 'free.gif', '100.0000', 0, '2019-06-18 20:44:06', '2019-06-18 16:23:29', NULL, '0.00', 1, 1, 0, '0', '1', '1', 0, 1, 0, 1, 0, 1, '0', 0, 0, 0, '0.0000', 24, 1),
+(44, 1, '999', 'TESTMINUNITSNOMIX', 'sample_image.gif', '100.0000', 0, '2019-06-18 21:38:59', '2015-05-22 13:15:41', NULL, '1.00', 1, 1, 0, '0', '4', '2', 0, 0, 0, 0, 0, 1, '0', 0, 0, 0, '90.0000', 22, 1),
+(46, 1, '981', 'TESTMINUNITSMIX', 'sample_image.gif', '100.0000', 0, '2019-06-18 21:53:07', '2019-06-18 02:00:50', NULL, '1.00', 1, 1, 0, '18', '4', '2', 0, 0, 0, 1, 0, 1, '0', 0, 0, 0, '90.0000', 22, 1),
+(47, 1, '9996', 'GIFT', 'gift_certificates/gv.gif', '0.0000', 1, '2019-06-18 22:56:57', '2004-09-29 20:11:51', NULL, '0.00', 1, 0, 0, '4', '1', '1', 1, 0, 0, 1, 0, 1, '0', 0, 0, 0, '5.0000', 21, 1),
+(48, 1, '9990', 'TEST1', '1_small.jpg', '39.0000', 0, '2019-06-18 02:27:47', '2019-06-18 02:56:37', NULL, '1.00', 1, 1, 0, '10', '1', '1', 0, 0, 0, 1, 0, 1, '0', 0, 0, 0, '39.0000', 23, 1),
+(49, 1, '900', 'TEST2', '2_small.jpg', '20.0000', 0, '2019-06-18 02:28:42', '2019-06-18 23:00:27', NULL, '0.50', 1, 1, 0, '0', '1', '1', 0, 0, 0, 1, 0, 1, '0', 0, 0, 0, '20.0000', 23, 1),
+(50, 1, '1000', 'TEST3', '3_small.jpg', '75.0000', 0, '2019-06-18 02:29:37', '2019-06-18 23:01:04', NULL, '1.50', 1, 1, 0, '0', '1', '1', 0, 0, 0, 1, 0, 1, '0', 0, 0, 0, '75.0000', 23, 1),
+(51, 1, '998', 'Free1', 'b_g_grid.gif', '25.0000', 0, '2019-06-18 11:51:05', '2019-06-18 17:03:32', NULL, '10.00', 1, 1, 0, '2', '1', '1', 0, 1, 0, 1, 1, 1, '0', 0, 0, 0, '0.0000', 24, 1),
+(52, 1, '997', 'Free2', 'b_p_grid.gif', '0.0000', 1, '2019-06-18 12:24:58', '2019-06-18 17:01:18', NULL, '2.00', 1, 1, 0, '2', '1', '1', 0, 1, 0, 1, 0, 1, '0', 0, 0, 0, '0.0000', 24, 1),
+(53, 1, '991', 'MINUNITSMIX', 'b_c_grid.gif', '25.0000', 0, '2019-06-18 23:26:44', '2019-06-18 02:22:35', NULL, '1.00', 1, 1, 0, '6', '6', '3', 0, 0, 0, 1, 0, 1, '0', 0, 0, 0, '20.0000', 23, 1),
+(54, 1, '991', 'MINUNITSNOMIX', 'waybkgnd.gif', '25.0000', 0, '2019-06-18 23:19:13', '2019-06-18 02:23:08', NULL, '1.00', 1, 1, 0, '0', '6', '3', 0, 0, 0, 0, 0, 1, '0', 0, 0, 0, '25.0000', 23, 1),
+(55, 1, '991', 'MINUNITSMIXSALE', 'b_b_grid.gif', '25.0000', 0, '2019-06-18 11:11:46', '2019-06-18 02:26:28', NULL, '1.00', 1, 1, 0, '0', '6', '3', 0, 0, 0, 1, 0, 1, '0', 0, 0, 0, '22.5000', 28, 1),
+(56, 1, '991', 'MINUNITSNOMIXSALE', 'b_w_grid.gif', '25.0000', 0, '2019-06-18 11:13:08', '2019-06-18 02:26:49', NULL, '1.00', 1, 1, 0, '0', '6', '3', 0, 0, 0, 0, 0, 1, '0', 0, 0, 0, '22.5000', 28, 1),
+(57, 1, '998', 'TESTFREEALL', 'free.gif', '0.0000', 0, '2019-06-18 11:36:09', '2019-06-18 16:55:19', NULL, '1.00', 1, 1, 0, '1', '1', '1', 0, 1, 0, 1, 1, 1, '0', 0, 0, 0, '0.0000', 24, 1),
+(59, 1, '700', 'HPLJ1100XI', 'hewlett_packard/lj1100xi.gif', '0.0000', 0, '2019-06-18 14:36:57', '2019-06-18 14:37:05', NULL, '45.00', 1, 1, 9, '0', '1', '1', 1, 0, 0, 0, 0, 1, '0', 0, 0, 0, '300.0000', 23, 1),
+(60, 1, '699', 'HPLJ1100XI', 'hewlett_packard/lj1100xi.gif', '499.7500', 0, '2019-06-18 01:34:55', '2019-06-18 01:41:37', NULL, '45.00', 1, 1, 9, '1', '1', '1', 0, 0, 0, 0, 0, 1, '0', 0, 0, 0, '449.7750', 28, 1),
+(61, 1, '699', 'HPLJ1100XI', 'hewlett_packard/lj1100xi.gif', '499.7500', 0, '2019-06-18 01:44:09', '2019-06-18 01:45:45', NULL, '45.00', 1, 1, 9, '1', '1', '1', 0, 0, 0, 0, 0, 1, '0', 0, 0, 0, '449.7750', 28, 1),
+(101, 1, '1000', 'Test120-90off-10', 'test_demo.jpg', '0.0000', 0, '2019-06-18 14:11:32', '2019-06-18 14:17:09', NULL, '1.00', 1, 1, 0, '0', '1', '1', 1, 0, 0, 1, 0, 1, '0', 0, 0, 0, '72.0000', 47, 1),
+(109, 1, '1000', 'HIDEQTYBOX', '1_small.jpg', '75.0000', 0, '2019-06-18 22:01:20', '2015-05-22 11:21:12', NULL, '1.00', 1, 1, 0, '0', '1', '1', 0, 0, 0, 1, 0, 1, '1', 0, 0, 0, '75.0000', 23, 1),
+(78, 1, '1000', 'Test25-10AttrAll', 'test_demo.jpg', '0.0000', 0, '2019-06-18 01:09:46', '2019-06-18 01:30:12', NULL, '0.00', 1, 1, 0, '0', '1', '1', 1, 0, 0, 1, 0, 1, '0', 0, 0, 0, '101.2500', 25, 1),
+(79, 1, '1000', 'Test25-AttrAll', 'test_demo.jpg', '0.0000', 0, '2019-06-18 01:28:52', '2019-06-18 01:33:55', NULL, '1.00', 1, 1, 0, '0', '1', '1', 1, 0, 0, 1, 0, 1, '0', 0, 0, 0, '150.0000', 23, 1),
+(74, 1, '700', 'HPLJ1100XI', 'hewlett_packard/lj1100xi.gif', '0.0000', 0, '2019-06-18 15:34:49', '2019-06-18 15:35:17', NULL, '45.00', 1, 1, 9, '0', '1', '1', 1, 0, 0, 0, 0, 1, '0', 0, 0, 0, '399.2000', 23, 1),
+(76, 1, '1000', 'Test25-10', 'test_demo.jpg', '100.0000', 0, '2019-06-18 23:08:33', NULL, NULL, '0.00', 1, 1, 0, '0', '1', '1', 0, 0, 0, 1, 0, 1, '0', 0, 0, 0, '67.5000', 28, 1),
+(80, 1, '1000', 'Test25', 'test_demo.jpg', '100.0000', 0, '2019-06-18 01:31:06', '2019-06-18 13:35:47', NULL, '1.00', 1, 1, 0, '0', '1', '1', 0, 0, 0, 1, 0, 1, '0', 0, 0, 0, '100.0000', 23, 1),
+(84, 1, '999', 'Test120', 'test_demo.jpg', '120.0000', 0, '2019-06-18 15:05:10', '2019-06-18 15:27:39', NULL, '1.00', 1, 1, 0, '1', '1', '1', 0, 0, 0, 1, 0, 1, '0', 0, 0, 0, '120.0000', 23, 1),
+(82, 1, '1000', 'Test120-5', 'test_demo.jpg', '120.0000', 0, '2019-06-18 14:50:38', '2019-06-18 17:09:03', NULL, '1.00', 1, 1, 0, '0', '1', '1', 0, 0, 0, 1, 0, 1, '0', 0, 0, 0, '115.0000', 27, 1),
+(83, 1, '1000', 'Test120-90-5', 'test_demo.jpg', '120.0000', 0, '2019-06-18 15:01:53', '2019-06-18 10:02:11', NULL, '1.00', 1, 1, 0, '0', '1', '1', 0, 0, 0, 1, 0, 1, '0', 0, 0, 0, '85.0000', 27, 1),
+(85, 1, '1000', 'Test90', 'test_demo.jpg', '120.0000', 0, '2019-06-18 15:19:00', '2019-06-18 10:00:35', NULL, '1.00', 1, 1, 0, '0', '1', '1', 0, 0, 0, 1, 0, 1, '0', 0, 0, 0, '90.0000', 23, 1),
+(88, 1, '1000', 'Test120-90-10-Skip', 'test_demo.jpg', '120.0000', 0, '2019-06-18 00:14:31', '2019-06-18 09:58:08', NULL, '1.00', 1, 1, 0, '0', '1', '1', 0, 0, 0, 1, 0, 1, '0', 0, 0, 0, '90.0000', 31, 1),
+(89, 1, '1000', 'Test120-90-10-Skip', 'test_demo.jpg', '120.0000', 0, '2019-06-18 00:41:40', '2019-06-18 09:57:42', NULL, '1.00', 1, 1, 0, '0', '1', '1', 0, 0, 0, 1, 0, 1, '0', 0, 0, 0, '108.0000', 31, 1),
+(95, 1, '1000', 'Test120-25-New100-Skip', 'test_demo.jpg', '120.0000', 0, '2019-06-18 02:35:44', '2019-06-18 02:37:27', NULL, '1.00', 1, 1, 0, '0', '1', '1', 0, 0, 0, 1, 0, 1, '0', 0, 0, 0, '90.0000', 51, 1),
+(90, 1, '999', 'Test120-90-10', 'test_demo.jpg', '120.0000', 0, '2019-06-18 23:55:18', '2019-06-18 00:08:58', NULL, '1.00', 1, 1, 0, '1', '1', '1', 0, 0, 0, 1, 0, 1, '0', 0, 0, 0, '81.0000', 45, 1),
+(92, 1, '1000', 'Test120-90off-10', 'test_demo.jpg', '120.0000', 0, '2019-06-18 23:58:54', '2019-06-18 00:09:28', NULL, '1.00', 1, 1, 0, '0', '1', '1', 0, 0, 0, 1, 0, 1, '0', 0, 0, 0, '108.0000', 45, 1),
+(93, 1, '1000', 'Test120-New100', 'test_demo.jpg', '120.0000', 0, '2019-06-18 00:02:32', '2019-06-18 00:04:25', NULL, '1.00', 1, 1, 0, '0', '1', '1', 0, 0, 0, 1, 0, 1, '0', 0, 0, 0, '100.0000', 46, 1),
+(94, 1, '1000', 'Test120-25-New100', 'test_demo.jpg', '120.0000', 0, '2019-06-18 00:04:31', '2019-06-18 00:07:08', NULL, '1.00', 1, 1, 0, '0', '1', '1', 0, 0, 0, 1, 0, 1, '0', 0, 0, 0, '100.0000', 46, 1),
+(96, 1, '1000', 'Test120-New100-Off-Skip', 'test_demo.jpg', '120.0000', 0, '2019-06-18 02:36:52', '2019-06-18 02:37:29', NULL, '1.00', 1, 1, 0, '0', '1', '1', 0, 0, 0, 1, 0, 1, '0', 0, 0, 0, '100.0000', 51, 1),
+(97, 1, '1000', 'Test120-90-10-Price', 'test_demo.jpg', '120.0000', 0, '2019-06-18 11:26:34', '2019-06-18 11:27:24', NULL, '1.00', 1, 1, 0, '0', '1', '1', 0, 0, 0, 1, 0, 1, '0', 0, 0, 0, '108.0000', 32, 1),
+(98, 1, '1000', 'Test120-90off-10-Price', 'test_demo.jpg', '120.0000', 0, '2019-06-18 11:28:16', '2019-06-18 11:29:57', NULL, '1.00', 1, 1, 0, '0', '1', '1', 0, 0, 0, 1, 0, 1, '0', 0, 0, 0, '108.0000', 32, 1),
+(99, 1, '997', 'FreeShipping', 'small_00.jpg', '25.0000', 0, '2019-06-18 13:27:30', '2019-06-18 01:48:48', NULL, '5.00', 1, 1, 0, '3', '1', '1', 0, 0, 0, 1, 1, 1, '0', 0, 0, 0, '25.0000', 23, 1),
+(104, 1, '1000', 'HIDEQTY', '1_small.jpg', '75.0000', 0, '2019-06-18 03:02:51', '2015-05-22 11:21:36', NULL, '1.00', 1, 1, 0, '0', '1', '1', 0, 0, 0, 1, 0, 0, '0', 0, 0, 0, '75.0000', 23, 1),
+(105, 1, '999', 'MAXSAMPLE-1', 'waybkgnd.gif', '50.0000', 0, '2019-06-18 14:10:59', '2019-06-18 14:36:00', NULL, '1.00', 1, 1, 0, '1', '1', '1', 0, 0, 0, 1, 0, 1, '1', 0, 0, 0, '50.0000', 22, 1),
+(106, 1, '1000', 'MAXSAMPLE-3', 'waybkgnd.gif', '50.0000', 0, '2019-06-18 14:36:08', '2019-06-18 15:32:56', NULL, '1.00', 1, 1, 0, '0', '1', '1', 0, 0, 0, 1, 0, 1, '3', 0, 0, 0, '50.0000', 22, 1),
+(107, 1, '995', 'FreeShippingNoWeight', 'small_00.jpg', '25.0000', 0, '2019-06-18 01:41:22', '2019-06-18 02:01:54', NULL, '0.00', 1, 1, 0, '0', '1', '1', 0, 0, 0, 1, 0, 1, '0', 0, 0, 0, '25.0000', 23, 1),
+(108, 1, '0', 'SoldOut', 'small_00.jpg', '25.0000', 0, '2019-06-18 01:53:20', NULL, NULL, '3.00', 1, 1, 0, '0', '1', '1', 0, 0, 0, 1, 0, 1, '0', 0, 0, 0, '25.0000', 23, 1),
+(110, 1, '1000', 'Test120-5SKIP', 'test_demo.jpg', '120.0000', 0, '2019-06-18 16:09:52', '2019-06-18 16:15:25', NULL, '1.00', 1, 1, 0, '0', '1', '1', 0, 0, 0, 1, 0, 1, '0', 0, 0, 0, '115.0000', 52, 1),
+(111, 1, '1000', 'Test120-90-5SKIP', 'test_demo.jpg', '120.0000', 0, '2019-06-18 16:10:12', '2019-06-18 16:15:27', NULL, '1.00', 1, 1, 0, '0', '1', '1', 0, 0, 0, 1, 0, 1, '0', 0, 0, 0, '90.0000', 52, 1),
+(112, 1, '998', 'Test2', '', '25.0000', 0, '2019-06-18 02:24:57', '2019-06-18 02:25:44', NULL, '1.00', 1, 1, 0, '2', '1', '1', 0, 0, 0, 1, 0, 1, '0', 2, 0, 0, '25.0000', 53, 1),
+(113, 1, '994', 'Test4', '', '25.0000', 0, '2019-06-18 02:25:03', '2019-06-18 02:25:35', NULL, '1.00', 1, 1, 0, '6', '1', '1', 0, 0, 0, 1, 0, 1, '0', 4, 0, 0, '25.0000', 53, 1),
+(114, 1, '998', 'Test5', '', '25.0000', 0, '2019-06-18 02:25:53', '2019-06-18 02:26:15', NULL, '1.00', 1, 1, 0, '2', '1', '1', 0, 0, 0, 1, 0, 1, '0', 5, 0, 0, '25.0000', 53, 1),
+(115, 1, '999', 'Test1', '', '25.0000', 0, '2019-06-18 02:26:23', '2019-06-18 21:50:19', NULL, '1.00', 1, 1, 0, '1', '1', '1', 0, 0, 0, 1, 0, 1, '0', 1, 0, 0, '25.0000', 53, 1),
+(116, 1, '997', 'Test8', '', '25.0000', 0, '2019-06-18 02:26:54', '2019-06-18 02:27:18', NULL, '1.00', 1, 1, 0, '3', '1', '1', 0, 0, 0, 1, 0, 1, '0', 8, 0, 0, '25.0000', 53, 1),
+(117, 1, '995', 'Test3', '', '25.0000', 0, '2019-06-18 02:27:24', '2019-06-18 12:20:14', NULL, '1.00', 1, 1, 0, '5', '1', '1', 0, 0, 0, 1, 0, 1, '0', 3, 0, 0, '25.0000', 53, 1),
+(118, 1, '999', 'Test10', '', '25.0000', 0, '2019-06-18 02:27:52', '2019-06-18 02:28:14', NULL, '1.00', 1, 1, 0, '1', '1', '1', 0, 0, 0, 1, 0, 1, '0', 10, 0, 0, '25.0000', 53, 1),
+(119, 1, '1000', 'Test6', '', '25.0000', 0, '2019-06-18 02:28:22', '2019-06-18 18:26:25', NULL, '1.00', 1, 1, 0, '0', '1', '1', 0, 0, 0, 1, 0, 1, '0', 6, 0, 0, '25.0000', 53, 1),
+(120, 1, '1000', 'Test7', '', '25.0000', 0, '2019-06-18 02:29:03', '2019-06-18 02:29:23', NULL, '1.00', 1, 1, 0, '0', '1', '1', 0, 0, 0, 1, 0, 1, '0', 7, 0, 0, '25.0000', 53, 1),
+(121, 1, '999', 'Test12', '', '25.0000', 0, '2019-06-18 02:29:36', '2019-06-18 13:02:47', NULL, '1.00', 1, 1, 0, '1', '1', '1', 0, 0, 0, 1, 0, 1, '0', 12, 0, 0, '25.0000', 53, 1),
+(122, 1, '998', 'Test9', '', '25.0000', 0, '2019-06-18 02:30:12', '2019-06-18 02:30:32', NULL, '1.00', 1, 1, 0, '2', '1', '1', 0, 0, 0, 1, 0, 1, '0', 9, 0, 0, '25.0000', 53, 1),
+(123, 1, '999', 'Test11', '', '25.0000', 0, '2019-06-18 02:30:41', '2019-06-18 02:31:04', NULL, '1.00', 1, 1, 0, '1', '1', '1', 0, 0, 0, 1, 0, 1, '0', 11, 0, 0, '25.0000', 53, 1),
+(130, 1, '1000', 'Special', '2_small.jpg', '15.0000', 0, '2019-06-18 02:19:53', '2019-06-18 00:05:34', NULL, '2.00', 1, 1, 0, '0', '1', '1', 0, 0, 0, 1, 0, 1, '0', 0, 1, 1, '10.0000', 55, 1),
+(127, 1, '1000', 'Normal', 'small_00.jpg', '15.0000', 0, '2019-06-18 01:51:35', '2019-06-18 14:23:29', NULL, '2.00', 1, 1, 0, '0', '1', '1', 0, 0, 0, 1, 0, 1, '0', 0, 1, 0, '15.0000', 55, 1),
+(131, 1, '1000', 'PERWORDREQ', '', '0.0000', 0, '2019-06-18 01:31:28', '2019-06-18 21:30:23', NULL, '1.00', 1, 1, 0, '0', '1', '1', 1, 0, 0, 1, 0, 1, '0', 0, 0, 0, '5.0000', 57, 1),
+(132, 1, '997', 'GolfClub', '9_small.jpg', '0.0000', 0, '2019-06-18 12:36:12', '2019-06-18 18:04:36', NULL, '1.00', 1, 1, 0, '3', '1', '1', 1, 0, 0, 1, 0, 1, '0', 0, 0, 0, '13.0050', 58, 1),
+(133, 1, '1000', 'DOWNLOAD2', '2_small.jpg', '49.9900', 0, '2019-06-18 23:51:33', '2019-06-18 00:06:58', NULL, '0.00', 1, 1, 0, '2', '1', '1', 0, 0, 0, 1, 0, 1, '0', 0, 0, 0, '49.9900', 60, 1),
+(134, 1, '1000', 'PERLETTERREQ', '', '0.0000', 0, '2019-06-18 21:23:58', '2019-06-18 21:29:50', NULL, '1.00', 1, 1, 0, '0', '1', '1', 1, 0, 0, 1, 0, 1, '0', 0, 0, 0, '5.0000', 57, 1),
+(154, 1, '10000', 'ROPE', '9_small.jpg', '1.0000', 0, '2019-06-18 21:08:08', '2019-06-18 17:18:46', NULL, '0.00', 1, 1, 0, '0', '10', '1', 0, 0, 0, 1, 0, 1, '0', 0, 0, 0, '0.9000', 58, 0),
+(155, 1, '1000', 'PRICEFACTOR', 'sample_image.gif', '10.0000', 0, '2019-06-18 23:03:10', '2019-06-18 17:21:04', NULL, '1.00', 1, 1, 0, '0', '1', '1', 0, 0, 0, 1, 0, 1, '0', 0, 0, 0, '10.0000', 56, 1),
+(156, 1, '1000', 'PRICEFACTOROFF', 'sample_image.gif', '10.0000', 0, '2019-06-18 23:05:24', '2019-06-18 23:10:12', NULL, '1.00', 1, 1, 0, '0', '1', '1', 0, 0, 0, 1, 0, 1, '0', 0, 0, 0, '10.0000', 56, 1),
+(157, 1, '1000', 'PRICEFACTOROFFATTR', 'sample_image.gif', '10.0000', 0, '2019-06-18 23:10:18', '2019-06-18 23:13:48', NULL, '1.00', 1, 1, 0, '0', '1', '1', 1, 0, 0, 1, 0, 1, '0', 0, 0, 0, '10.0000', 56, 1),
+(158, 1, '1000', 'ONETIME', 'b_b_grid.gif', '45.0000', 0, '2019-06-18 23:22:08', NULL, NULL, '1.00', 1, 1, 0, '0', '1', '1', 0, 0, 0, 1, 0, 1, '0', 0, 0, 0, '45.0000', 56, 1),
+(159, 1, '10000', 'ATTQTYPRICE', 'b_c_grid.gif', '25.0000', 0, '2019-06-18 23:29:31', '2019-06-18 23:49:56', NULL, '1.00', 1, 1, 0, '0', '1', '1', 0, 0, 0, 1, 0, 1, '0', 0, 0, 0, '25.0000', 56, 1),
+(160, 1, '997', 'GolfClub', '9_small.jpg', '0.0000', 0, '2019-06-18 10:14:35', '2019-06-18 10:15:16', NULL, '1.00', 1, 1, 0, '0', '1', '1', 1, 0, 0, 1, 0, 1, '0', 0, 0, 0, '14.4500', 61, 1),
+(165, 1, '10000', 'ROPE', '9_small.jpg', '1.0000', 0, '2019-06-18 10:42:50', '2019-06-18 17:18:12', NULL, '0.00', 1, 1, 0, '0', '10', '1', 0, 0, 0, 1, 0, 1, '0', 0, 0, 0, '1.0000', 61, 0),
+(166, 2, '10000', 'RTBHUNTER', 'sooty.jpg', '4.9900', 0, '2019-06-18 10:42:50', '2019-06-18 10:43:00', NULL, '3.00', 1, 1, 0, '0', '1', '1', 0, 0, 0, 1, 0, 1, '0', 0, 0, 0, '3.0000', 62, 1),
+(167, 3, '0', '', '', '0.0000', 0, '2019-06-18 10:42:50', '2019-06-18 00:39:10', NULL, '0.00', 1, 0, 0, '0', '1', '1', 0, 0, 0, 0, 0, 0, '0', 0, 0, 0, '0.0000', 63, 1),
+(168, 1, '1000', 'PGT', 'samples/1_small.jpg', '3.9500', 0, '2019-06-18 15:25:32', '2019-06-18 16:26:08', NULL, '1.00', 1, 1, 0, '0', '1', '1', 0, 0, 0, 1, 0, 1, '0', 10, 0, 0, '3.9500', 64, 1),
+(169, 2, '1000', 'PMT', 'samples/2_small.jpg', '3.9500', 0, '2019-06-18 15:27:50', '2019-06-18 16:29:01', NULL, '1.00', 1, 1, NULL, '0', '1', '1', 0, 0, 0, 1, 0, 1, '0', 20, 0, 0, '3.9500', 64, 1),
+(170, 3, '0', '', 'samples/3_small.jpg', '0.0000', 0, '2019-06-18 15:29:23', '2004-09-27 23:11:25', NULL, '0.00', 1, 0, 0, '0', '1', '1', 0, 0, 0, 0, 0, 0, '0', 30, 0, 0, '0.0000', 64, 1),
+(171, 4, '1000', 'DPT', 'samples/4_small.jpg', '3.9500', 0, '2019-06-18 15:32:40', '2019-06-18 17:46:49', NULL, '0.00', 1, 1, 0, '0', '1', '1', 0, 0, 0, 1, 0, 1, '0', 40, 0, 0, '3.9500', 64, 1),
+(172, 5, '1000', 'PFS', 'samples/5_small.jpg', '3.9500', 0, '2019-06-18 15:39:18', '2019-06-18 23:08:43', NULL, '5.00', 1, 0, 0, '0', '1', '1', 0, 0, 0, 1, 1, 1, '0', 50, 0, 0, '3.9500', 64, 1),
+(173, 1, '1000', 'Book', 'b_g_grid.gif', '0.0000', 0, '2019-06-18 23:54:34', '2015-12-26 02:50:59', NULL, '0.00', 1, 1, 0, '0', '1', '1', 1, 0, 0, 1, 0, 1, '0', 0, 0, 0, '52.5000', 61, 1),
+(174, 1, '999', 'TESTCALL', 'call_for_price.jpg', '0.0000', 0, '2019-06-18 13:25:44', '2019-06-18 13:28:54', '2007-02-21 00:00:00', '1.00', 1, 1, 0, '0', '1', '1', 0, 0, 1, 1, 0, 1, '0', 0, 0, 0, '0.0000', 24, 0),
+(175, 1, '1000', 'Normal', '1_small.jpg', '60.0000', 0, '2019-06-18 23:32:52', '2019-06-18 17:13:20', NULL, '2.00', 1, 1, 0, '0', '1', '1', 0, 0, 0, 0, 0, 1, '0', 0, 1, 0, '60.0000', 55, 1),
+(176, 1, '1000', 'Normal', 'small_00.jpg', '100.0000', 0, '2019-06-18 16:45:25', '2019-06-18 16:47:22', NULL, '2.00', 1, 1, 0, '0', '1', '1', 0, 0, 0, 1, 0, 1, '0', 0, 1, 0, '100.0000', 55, 1),
+(177, 1, '1000', 'Special', '2_small.jpg', '100.0000', 0, '2019-06-18 16:47:45', '2019-06-18 00:05:48', NULL, '2.00', 1, 1, 0, '0', '1', '1', 0, 0, 0, 1, 0, 1, '0', 0, 1, 1, '75.0000', 55, 1),
+(179, 1, '1000', 'DOWNLOAD1', '1_small.jpg', '39.0000', 0, '2019-06-18 00:08:33', '2019-06-18 00:18:51', NULL, '0.00', 1, 1, 0, '0', '1', '1', 0, 0, 0, 1, 0, 1, '0', 0, 0, 0, '39.0000', 60, 1),
+(178, 1, '1000', 'Normal', '1_small.jpg', '60.0000', 0, '2019-06-18 16:54:52', '2019-06-18 17:15:02', NULL, '2.00', 1, 1, 0, '0', '1', '1', 0, 0, 0, 0, 0, 1, '0', 0, 1, 0, '50.0000', 55, 1);
+#New Products
+UPDATE products SET products_date_added = NOW() WHERE products_id = 168 or products_id = 169 or products_id = 170;
+UPDATE products SET products_date_added = NOW() - INTERVAL 7 DAY WHERE products_id = 171 or products_id = 172 or products_id = 166 or products_id = 133;
+UPDATE products SET products_date_added = NOW() - INTERVAL 20 DAY WHERE products_id = 126 or products_id = 47 or products_id = 34;
+UPDATE products SET products_date_added = NOW() - INTERVAL 50 DAY WHERE products_id = 134 or products_id = 131 or products_id = 160;
+UPDATE products SET products_date_added = NOW() - INTERVAL 70 DAY WHERE products_id = 57 or products_id = 174;
+UPDATE products SET products_date_added = NOW() - INTERVAL 100 DAY WHERE products_id = 6 or products_id = 19;
+
+#Upcoming Products
+UPDATE products SET products_date_available = NOW() + INTERVAL 12 DAY WHERE products_id = 16;
+UPDATE products SET products_date_available = NOW() + INTERVAL 17 DAY WHERE products_id = 174;
+UPDATE products SET products_date_available = NOW() + INTERVAL 27 DAY WHERE products_id = 40;
+UPDATE products SET products_date_available = NOW() + INTERVAL 33 DAY WHERE products_id = 34;
 
 #
 # Dumping data for table `products_attributes`
@@ -1148,8 +1180,8 @@ INSERT INTO products_options (products_options_id, language_id, products_options
 (6, 1, 'Media Type', 60, 0, 32, '', 32, 5, 0),
 (17, 1, 'Documentation', 45, 0, 32, NULL, 32, 5, 0),
 (16, 1, 'Irons', 800, 3, 32, '', 32, 5, 0),
-(7, 1, 'Logo Back', 310, 4, 32, '', 32, 5, 0),
-(8, 1, 'Logo Front', 300, 4, 32, 'You may upload your own image file(s)', 32, 5, 0),
+(7, 1, 'Logo Back', 310, 4, 64, '', 32, 5, 0),
+(8, 1, 'Logo Front', 300, 4, 64, 'You may upload your own image file(s)', 32, 5, 0),
 (9, 1, 'Line 2', 410, 1, 64, '', 40, 5, 0),
 (10, 1, 'Line 1', 400, 1, 64, 'Enter your text up to 64 characters, punctuation and spaces', 40, 5, 0),
 (11, 1, 'Line 3', 420, 1, 64, '', 40, 5, 0),
@@ -1461,19 +1493,19 @@ INSERT INTO products_to_categories (products_id, categories_id) VALUES (1, 4),
 # Dumping data for table `record_artists`
 #
 
-INSERT INTO record_artists (artists_id, artists_name, artists_image, date_added, last_modified) VALUES (1, 'The Russ Tippins Band', 'sooty.jpg', '2018-04-02 20:53:00', NULL);
+INSERT INTO record_artists (artists_id, artists_name, artists_image, date_added, last_modified) VALUES (1, 'The Russ Tippins Band', 'sooty.jpg', '2019-06-18 20:53:00', NULL);
 
 #
 # Dumping data for table `record_artists_info`
 #
 
-INSERT INTO record_artists_info (artists_id, languages_id, artists_url, url_clicked, date_last_click) VALUES (1, 1, 'russtippinsband.users.btopenworld.com/', 0, NULL);
+INSERT INTO record_artists_info (artists_id, languages_id, artists_url, url_clicked, date_last_click) VALUES (1, 1, 'www.russtippins.com/', 0, NULL);
 
 #
 # Dumping data for table `record_company`
 #
 
-INSERT INTO record_company (record_company_id, record_company_name, record_company_image, date_added, last_modified) VALUES (1, 'HMV Group', NULL, '2018-04-02 14:11:52', NULL);
+INSERT INTO record_company (record_company_id, record_company_name, record_company_image, date_added, last_modified) VALUES (1, 'HMV Group', NULL, '2019-06-18 14:11:52', NULL);
 
 #
 # Dumping data for table `record_company_info`
@@ -1485,7 +1517,7 @@ INSERT INTO record_company_info (record_company_id, languages_id, record_company
 # Dumping data for table `reviews`
 #
 
-INSERT INTO reviews (reviews_id, products_id, customers_id, customers_name, reviews_rating, date_added, last_modified, reviews_read, status) VALUES (1, 19, 0, 'Bill Smith', 5, '2018-04-02 03:18:19', '0001-01-01 00:00:00', 11, 1);
+INSERT INTO reviews (reviews_id, products_id, customers_id, customers_name, reviews_rating, date_added, last_modified, reviews_read, status) VALUES (1, 19, 0, 'Bill Smith', 5, '2019-06-18 03:18:19', '0001-01-01 00:00:00', 11, 1);
 
 #
 # Dumping data for table `reviews_description`
@@ -1497,48 +1529,48 @@ INSERT INTO reviews_description (reviews_id, languages_id, reviews_text) VALUES 
 # Dumping data for table `salemaker_sales`
 #
 
-INSERT INTO salemaker_sales (sale_id, sale_status, sale_name, sale_deduction_value, sale_deduction_type, sale_pricerange_from, sale_pricerange_to, sale_specials_condition, sale_categories_selected, sale_categories_all, sale_date_start, sale_date_end, sale_date_added, sale_date_last_modified, sale_date_status_change) VALUES (1, 1, 'Minus 10% Sale', '10.0000', 1, '1.0000', '1000.0000', 2, '25,28,45,47,58', ',25,28,45,47,58,', '2018-04-02', '2007-02-21', '2018-04-02', '2012-05-18', '2018-04-02'),
-(3, 0, 'Mice 20%', '20.0000', 1, '1.0000', '1000.0000', 2, '9', ',9,', '2018-04-02', '2012-04-21', '2018-04-02', '2018-04-02', '2012-04-25'),
-(6, 1, '$5.00 off', '5.0000', 0, '0.0000', '0.0000', 2, '27', ',27,', '0001-01-01', '0001-01-01', '2018-04-02', '2018-04-02', '2018-04-02'),
-(7, 1, '10% Skip Specials', '10.0000', 1, '0.0000', '0.0000', 1, '31', ',31,', '0001-01-01', '0001-01-01', '2018-04-02', '2012-05-18', '2018-04-02'),
-(8, 1, '10% Apply to Price', '10.0000', 1, '0.0000', '0.0000', 0, '32', ',32,', '0001-01-01', '0001-01-01', '2018-04-02', '2012-05-18', '2018-04-02'),
-(9, 1, 'New Price $100', '100.0000', 2, '0.0000', '0.0000', 2, '46', ',46,', '0001-01-01', '0001-01-01', '2018-04-02', '2018-04-02', '2018-04-02'),
-(10, 1, 'New Price $100 Skip Special', '100.0000', 2, '0.0000', '0.0000', 1, '51', ',51,', '0001-01-01', '0001-01-01', '2018-04-02', '2018-04-02', '2018-04-02'),
-(11, 1, '$5.00 off Skip Specials', '5.0000', 0, '0.0000', '0.0000', 1, '52', ',52,', '0001-01-01', '0001-01-01', '2018-04-02', '2018-04-02', '2018-04-02');
+INSERT INTO salemaker_sales (sale_id, sale_status, sale_name, sale_deduction_value, sale_deduction_type, sale_pricerange_from, sale_pricerange_to, sale_specials_condition, sale_categories_selected, sale_categories_all, sale_date_start, sale_date_end, sale_date_added, sale_date_last_modified, sale_date_status_change) VALUES (1, 1, 'Minus 10% Sale', '10.0000', 1, '1.0000', '1000.0000', 2, '25,28,45,47,58', ',25,28,45,47,58,', '2019-06-18', '2007-02-21', '2019-06-18', '2012-05-18', '2019-06-18'),
+(3, 0, 'Mice 20%', '20.0000', 1, '1.0000', '1000.0000', 2, '9', ',9,', '2019-06-18', '2012-04-21', '2019-06-18', '2019-06-18', '2012-04-25'),
+(6, 1, '$5.00 off', '5.0000', 0, '0.0000', '0.0000', 2, '27', ',27,', '0001-01-01', '0001-01-01', '2019-06-18', '2019-06-18', '2019-06-18'),
+(7, 1, '10% Skip Specials', '10.0000', 1, '0.0000', '0.0000', 1, '31', ',31,', '0001-01-01', '0001-01-01', '2019-06-18', '2012-05-18', '2019-06-18'),
+(8, 1, '10% Apply to Price', '10.0000', 1, '0.0000', '0.0000', 0, '32', ',32,', '0001-01-01', '0001-01-01', '2019-06-18', '2012-05-18', '2019-06-18'),
+(9, 1, 'New Price $100', '100.0000', 2, '0.0000', '0.0000', 2, '46', ',46,', '0001-01-01', '0001-01-01', '2019-06-18', '2019-06-18', '2019-06-18'),
+(10, 1, 'New Price $100 Skip Special', '100.0000', 2, '0.0000', '0.0000', 1, '51', ',51,', '0001-01-01', '0001-01-01', '2019-06-18', '2019-06-18', '2019-06-18'),
+(11, 1, '$5.00 off Skip Specials', '5.0000', 0, '0.0000', '0.0000', 1, '52', ',52,', '0001-01-01', '0001-01-01', '2019-06-18', '2019-06-18', '2019-06-18');
 
 #
 # Dumping data for table `specials`
 #
 
-INSERT INTO specials (specials_id, products_id, specials_new_products_price, specials_date_added, specials_last_modified, expires_date, date_status_change, status, specials_date_available) VALUES (1, 3, '39.9900', '2018-04-02 03:18:19', '0001-01-01 00:00:00', '0001-01-01', '0001-01-01 00:00:00', 1, '0001-01-01'),
-(2, 5, '30.0000', '2018-04-02 03:18:19', '0001-01-01 00:00:00', '0001-01-01', '0001-01-01 00:00:00', 1, '0001-01-01'),
-(3, 6, '30.0000', '2018-04-02 03:18:19', '0001-01-01 00:00:00', '0001-01-01', '0001-01-01 00:00:00', 1, '0001-01-01'),
-(4, 16, '29.9900', '2018-04-02 03:18:19', '0001-01-01 00:00:00', '0001-01-01', '0001-01-01 00:00:00', 1, '0001-01-01'),
-(5, 41, '90.0000', '2018-04-02 19:15:47', '2012-09-27 13:33:33', '2007-02-21', '0001-01-01 00:00:00', 1, '0001-01-01'),
-(6, 42, '95.0000', '2018-04-02 19:15:57', '2018-04-02 13:07:27', '0001-01-01', '0001-01-01 00:00:00', 1, '0001-01-01'),
-(7, 44, '90.0000', '2018-04-02 21:54:50', NULL, '0001-01-01', '0001-01-01 00:00:00', 1, '0001-01-01'),
-(8, 46, '90.0000', '2018-04-02 21:55:01', NULL, '0001-01-01', '0001-01-01 00:00:00', 1, '0001-01-01'),
-(9, 53, '20.0000', '2018-04-02 23:59:03', NULL, '0001-01-01', '0001-01-01 00:00:00', 1, '0001-01-01'),
-(10, 39, '75.0000', '2018-04-02 02:03:59', '2012-02-21 00:36:40', '0001-01-01', '0001-01-01 00:00:00', 1, '0001-01-01'),
-(40, 100, '374.2500', '2018-04-02 14:07:31', NULL, '0001-01-01', '0001-01-01 00:00:00', 1, '0001-01-01'),
-(42, 111, '90.0000', '2018-04-02 16:14:19', NULL, '0001-01-01', '0001-01-01 00:00:00', 1, '0001-01-01'),
-(14, 74, '399.2000', '2018-04-02 15:35:30', '2018-04-02 17:38:43', '0001-01-01', '0001-01-01 00:00:00', 1, '0001-01-01'),
-(29, 78, '112.5000', '2018-04-02 01:12:14', NULL, '0001-01-01', '0001-01-01 00:00:00', 1, '0001-01-01'),
-(27, 59, '300.0000', '2018-04-02 01:51:50', NULL, '0001-01-01', '0001-01-01 00:00:00', 1, '0001-01-01'),
-(28, 76, '75.0000', '2018-04-02 23:09:36', NULL, '0001-01-01', '0001-01-01 00:00:00', 1, '0001-01-01'),
-(32, 85, '90.0000', '2018-04-02 15:19:59', '2018-04-02 09:59:59', '0001-01-01', '0001-01-01 00:00:00', 1, '0001-01-01'),
-(31, 83, '90.0000', '2018-04-02 15:03:07', '2018-04-02 10:02:25', '0001-01-01', '0001-01-01 00:00:00', 1, '0001-01-01'),
-(34, 88, '90.0000', '2018-04-02 00:16:22', '2018-04-02 09:59:30', '0001-01-01', '0001-01-01 00:00:00', 1, '0001-01-01'),
-(35, 90, '90.0000', '2018-04-02 23:57:20', NULL, '0001-01-01', '0001-01-01 00:00:00', 1, '0001-01-01'),
-(36, 94, '90.0000', '2018-04-02 00:07:34', NULL, '0001-01-01', '0001-01-01 00:00:00', 1, '0001-01-01'),
-(39, 97, '90.0000', '2018-04-02 11:29:03', NULL, '0001-01-01', '0001-01-01 00:00:00', 1, '0001-01-01'),
-(38, 95, '90.0000', '2018-04-02 02:39:58', NULL, '0001-01-01', '0001-01-01 00:00:00', 1, '0001-01-01'),
+INSERT INTO specials (specials_id, products_id, specials_new_products_price, specials_date_added, specials_last_modified, expires_date, date_status_change, status, specials_date_available) VALUES (1, 3, '39.9900', '2019-06-18 03:18:19', '0001-01-01 00:00:00', '0001-01-01', '0001-01-01 00:00:00', 1, '0001-01-01'),
+(2, 5, '30.0000', '2019-06-18 03:18:19', '0001-01-01 00:00:00', '0001-01-01', '0001-01-01 00:00:00', 1, '0001-01-01'),
+(3, 6, '30.0000', '2019-06-18 03:18:19', '0001-01-01 00:00:00', '0001-01-01', '0001-01-01 00:00:00', 1, '0001-01-01'),
+(4, 16, '29.9900', '2019-06-18 03:18:19', '0001-01-01 00:00:00', '0001-01-01', '0001-01-01 00:00:00', 1, '0001-01-01'),
+(5, 41, '90.0000', '2019-06-18 19:15:47', '2012-09-27 13:33:33', '2007-02-21', '0001-01-01 00:00:00', 1, '0001-01-01'),
+(6, 42, '95.0000', '2019-06-18 19:15:57', '2019-06-18 13:07:27', '0001-01-01', '0001-01-01 00:00:00', 1, '0001-01-01'),
+(7, 44, '90.0000', '2019-06-18 21:54:50', NULL, '0001-01-01', '0001-01-01 00:00:00', 1, '0001-01-01'),
+(8, 46, '90.0000', '2019-06-18 21:55:01', NULL, '0001-01-01', '0001-01-01 00:00:00', 1, '0001-01-01'),
+(9, 53, '20.0000', '2019-06-18 23:59:03', NULL, '0001-01-01', '0001-01-01 00:00:00', 1, '0001-01-01'),
+(10, 39, '75.0000', '2019-06-18 02:03:59', '2012-02-21 00:36:40', '0001-01-01', '0001-01-01 00:00:00', 1, '0001-01-01'),
+(40, 100, '374.2500', '2019-06-18 14:07:31', NULL, '0001-01-01', '0001-01-01 00:00:00', 1, '0001-01-01'),
+(42, 111, '90.0000', '2019-06-18 16:14:19', NULL, '0001-01-01', '0001-01-01 00:00:00', 1, '0001-01-01'),
+(14, 74, '399.2000', '2019-06-18 15:35:30', '2019-06-18 17:38:43', '0001-01-01', '0001-01-01 00:00:00', 1, '0001-01-01'),
+(29, 78, '112.5000', '2019-06-18 01:12:14', NULL, '0001-01-01', '0001-01-01 00:00:00', 1, '0001-01-01'),
+(27, 59, '300.0000', '2019-06-18 01:51:50', NULL, '0001-01-01', '0001-01-01 00:00:00', 1, '0001-01-01'),
+(28, 76, '75.0000', '2019-06-18 23:09:36', NULL, '0001-01-01', '0001-01-01 00:00:00', 1, '0001-01-01'),
+(32, 85, '90.0000', '2019-06-18 15:19:59', '2019-06-18 09:59:59', '0001-01-01', '0001-01-01 00:00:00', 1, '0001-01-01'),
+(31, 83, '90.0000', '2019-06-18 15:03:07', '2019-06-18 10:02:25', '0001-01-01', '0001-01-01 00:00:00', 1, '0001-01-01'),
+(34, 88, '90.0000', '2019-06-18 00:16:22', '2019-06-18 09:59:30', '0001-01-01', '0001-01-01 00:00:00', 1, '0001-01-01'),
+(35, 90, '90.0000', '2019-06-18 23:57:20', NULL, '0001-01-01', '0001-01-01 00:00:00', 1, '0001-01-01'),
+(36, 94, '90.0000', '2019-06-18 00:07:34', NULL, '0001-01-01', '0001-01-01 00:00:00', 1, '0001-01-01'),
+(39, 97, '90.0000', '2019-06-18 11:29:03', NULL, '0001-01-01', '0001-01-01 00:00:00', 1, '0001-01-01'),
+(38, 95, '90.0000', '2019-06-18 02:39:58', NULL, '0001-01-01', '0001-01-01 00:00:00', 1, '0001-01-01'),
 (44, 130, '10.0000', '2012-04-28 02:46:44', NULL, '0001-01-01', NULL, 1, '0001-01-01'),
 (45, 173, '47.5000', '2012-09-24 23:57:05', NULL, '2012-09-28', '2012-09-28 18:48:42', 0, '0001-01-01'),
-(46, 166, '3.0000', '2018-04-02 20:24:53', NULL, '0001-01-01', NULL, 1, '0001-01-01'),
-(47, 177, '75.0000', '2018-04-02 16:49:33', NULL, '0001-01-01', NULL, 1, '0001-01-01'),
-(48, 178, '50.0000', '2018-04-02 16:56:46', NULL, '0001-01-01', NULL, 1, '0001-01-01'),
-(50, 40, '75.0000', '2018-04-02 14:07:31', NULL, '0001-01-01', '0001-01-01 00:00:00', 1, '0001-01-01');
+(46, 166, '3.0000', '2019-06-18 20:24:53', NULL, '0001-01-01', NULL, 1, '0001-01-01'),
+(47, 177, '75.0000', '2019-06-18 16:49:33', NULL, '0001-01-01', NULL, 1, '0001-01-01'),
+(48, 178, '50.0000', '2019-06-18 16:56:46', NULL, '0001-01-01', NULL, 1, '0001-01-01'),
+(50, 40, '75.0000', '2019-06-18 14:07:31', NULL, '0001-01-01', '0001-01-01 00:00:00', 1, '0001-01-01');
 ############ GERMAN DEMO
 INSERT INTO categories_description (categories_id, language_id, categories_name, categories_description) VALUES (1, 43, 'Hardware', 'Wir bieten verschiedenste Hardware von Druckern, über Grafikkarten bis in zu Mäusen und Tastaturen.');
 INSERT INTO categories_description (categories_id, language_id, categories_name, categories_description) VALUES (2, 43, 'Software', 'Wählen Sie aus einer spannenden Liste von Softwaretiteln.');
@@ -1824,7 +1856,7 @@ INSERT INTO orders (orders_id, customers_id, customers_name, customers_company, 
 INSERT INTO orders_products (orders_products_id, orders_id, products_id, products_model, products_name, products_price, final_price, products_tax, products_quantity, onetime_charges, products_priced_by_attribute, product_is_free, products_discount_type, products_discount_type_from, products_prid) VALUES
 (1, 1, 1, 'MG200MMS', 'Matrox G200 MMS', 299.9900, 299.9900, 10.0000, 1, 0.0000, 0, 0, 0, 0, '1:edff669e5da95c1d027b04d5412532fa');
 INSERT INTO orders_status_history (orders_status_history_id, orders_id, orders_status_id, date_added, customer_notified, comments) VALUES
-(1, 1, 1, '2018-04-02 16:37:32', 1, 'Bitte schnellstmöglich versenden');
+(1, 1, 1, '2019-06-18 16:37:32', 1, 'Bitte schnellstmöglich versenden');
 INSERT INTO orders_total (orders_total_id, orders_id, title, text, value, class, sort_order) VALUES
 (1, 1, 'Zwischensumme:', '&euro;329.99', 329.9890, 'ot_subtotal', 100),
 (2, 1, 'Versandkosten pro Stück (Standard):', '&euro;2.50', 2.5000, 'ot_shipping', 200),
