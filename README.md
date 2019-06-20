@@ -3,11 +3,21 @@ Zen Cart 1.5.6 - deutsche Version
 
 1.5.6b BETA - Juni 2019
 
-Neu gegenüber 1.5.5f
+Systemvoraussetzungen:
+* Linux Server mit Apache 2.2 oder 2.4
+* PHP 7.0.x bis 7.3.x
+* MySQL 5.1 bis 5.7 oder or MariaDB 10.1 bis 10.3
+
+Empfohlene Konfiguration:
+* Apache 2.4
+* PHP 7.3.x
+* MySQL 5.7
+
+Neu in 1.5.6
 * Vollständige Unterstützung von PHP 7.2 und 7.3.
 * Neues Layout für die Shopadministration mit verbesserter Unterstützung für kleinere Bildschirme
-* Adminbereich zu 90% HTML5 mit Bootstrap Buttons statt graphischen Buttons
 * Neuer graphischer Verkaufsbericht unter Administration > Statistiken
+* EZ Pages sind nun multilingual
 * Bestellbestätigungsemail enthält falls angegeben die Telefonnummer des Kunden für die Zustellung
 * Admin-Seiten zeigen nun ihren Namen im Browser-Tabs an
 * Zahlreiche neue Notifier zur einfacheren Integration von Modulen
@@ -26,3 +36,4 @@ Neu gegenüber 1.5.5f
 * Update Mailbeez auf 4.0.0
 * Update Mobile Detect auf 2.8.3.3
 * Update PHP Mailer auf 6.0.6
+* Update Image Handler auf 5.1.3
