@@ -261,7 +261,7 @@ define('TEXT_HELP_CONTENT_DBNAME', "Wie lautet der Name der Datenbank? <br/>Als 
 define('TEXT_HELP_TITLE_DEMODATA', TEXT_DATABASE_SETUP_LOAD_DEMO);
 define('TEXT_HELP_CONTENT_DEMODATA', "Die Installation der Demodaten ist nur für einen Testshop sinnvoll.<br/>Es werden Beispielkategorien und Beispielartikel installiert, die sehr nützlich sind, um sich mit der Funktionalität vertraut zu machen.<br><br>Für die Installation Ihres echten Shops kreuzen Sie die Demodaten NICHT an!");
 define('TEXT_HELP_TITLE_DBCHARSET', 'Datenbank Character Set');
-define('TEXT_HELP_CONTENT_DBCHARSET', "Lassen Sie diese Einstellung unbedingt auf UTF8.");
+define('TEXT_HELP_CONTENT_DBCHARSET', "Zen Cart Versionen bis 1.5.5f haben nur utf-8 unterstützt. Für diese Version 1.5.6 empfehlen wir utf8mb4. Dies ist auch als Voreinstellung gesetzt.<br/>Legen Sie Ihre Datenbank daher vorher am besten mit folgenden Einstellungen an:<br/>Character Set: utf8mb4 und Kollation: utf8mb4_unicode_ci<br/>und lassen Sie dann hier die Voreinstellung.");
 define('TEXT_HELP_TITLE_DBPREFIX', 'Datenbank Präfix für Tabellennamen');
 define('TEXT_HELP_CONTENT_DBPREFIX', "Wir empfehlen KEIN Präfix zu verwenden und dieses Feld leer zu lassen<br/>Es ist nur dann sinnvoll, wenn Sie in einer Datenbank mehrere unterschiedliche Systeme verwenden wollen, was definitiv für einen Liveshop nicht empfohlen ist<br/>Wenn Sie doch ein Präfix verwenden wollen, dann geben Sie es wie folgt an:<br/>prefix_");
 define('TEXT_HELP_TITLE_SQLCACHEMETHOD', 'SQL Caching Methode');
