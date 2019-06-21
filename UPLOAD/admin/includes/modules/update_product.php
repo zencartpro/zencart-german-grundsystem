@@ -6,7 +6,7 @@
  * @copyright Copyright 2003-2019 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: update_product.php 736 2019-06-15 16:49:16Z webchills $
+ * @version $Id: update_product.php 737 2019-06-21 20:49:16Z webchills $
  */
 if (!defined('IS_ADMIN_FLAG')) {
   die('Illegal Access');
@@ -16,7 +16,7 @@ if (isset($_GET['pID'])) {
 }
 if (isset($_POST['edit']) && $_POST['edit'] == 'edit') {
   $action = 'new_product';
-} elseif ((isset($_POST['products_model']) ? $_POST['products_model'] : '') . (isset($_POST['products_url']) ? implode('', $_POST['products_url']) : '') . (isset($_POST['products_name']) ? implode('', $_POST['products_name']) : '') . (isset($_POST['products_description']) ? implode('', $_POST['products_description']) : '') != '') {
+} elseif ((isset($_POST['products_model']) ? $_POST['products_model'] : '') . (isset($_POST['products_url']) ? implode('', $_POST['products_url']) : '') . (isset($_POST['products_name']) ? implode('', $_POST['products_name']) : '') . (isset($_POST['products_merkmale']) ? implode('', $_POST['products_merkmale']) : '') . (isset($_POST['products_description']) ? implode('', $_POST['products_description']) : '') != '') {
   $products_date_available = zen_db_prepare_input($_POST['products_date_available']);
   $products_date_available = (date('Y-m-d') < $products_date_available) ? $products_date_available : 'null';
 
@@ -102,6 +102,7 @@ if (isset($_POST['edit']) && $_POST['edit'] == 'edit') {
 
     $sql_data_array = array(
       'products_name' => zen_db_prepare_input($_POST['products_name'][$language_id]),
+      'products_merkmale' => zen_db_prepare_input($_POST['products_merkmale'][$language_id]),
       'products_description' => zen_db_prepare_input($_POST['products_description'][$language_id]),
       'products_url' => zen_db_prepare_input($_POST['products_url'][$language_id]));
 

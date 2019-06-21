@@ -1,11 +1,11 @@
 <?php
-
 /**
+ * Zen Cart German Specific
  * @package admin
- * @copyright Copyright 2003-2018 Zen Cart Development Team
+ * @copyright Copyright 2003-2019 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
- * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: Drbyte Mon Nov 12 20:38:09 2018 -0500 New in v1.5.6 $
+ * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
+ * @version $Id: copy_product_confirm.php 3 2019-06-21 21:11:16Z webchills $
  */
 if (!defined('IS_ADMIN_FLAG')) {
   die('Illegal Access');
@@ -99,14 +99,15 @@ if (isset($_POST['products_id']) && isset($_POST['categories_id'])) {
 
     $dup_products_id = $db->Insert_ID();
 
-    $descriptions = $db->Execute("SELECT language_id, products_name, products_description, products_url
+    $descriptions = $db->Execute("SELECT language_id, products_name, products_merkmale, products_description, products_url
                                   FROM " . TABLE_PRODUCTS_DESCRIPTION . "
                                   WHERE products_id = " . (int)$products_id);
     foreach ($descriptions as $description) {
-      $db->Execute("INSERT INTO " . TABLE_PRODUCTS_DESCRIPTION . " (products_id, language_id, products_name, products_description, products_url, products_viewed)
+      $db->Execute("INSERT INTO " . TABLE_PRODUCTS_DESCRIPTION . " (products_id, language_id, products_name, products_merkmale, products_description, products_url, products_viewed)
                     VALUES ('" . (int)$dup_products_id . "',
                             '" . (int)$description['language_id'] . "',
                             '" . zen_db_input($description['products_name']) . "',
+			                      '" . zen_db_input($description['products_merkmale']) . "',
                             '" . zen_db_input($description['products_description']) . "',
                             '" . zen_db_input($description['products_url']) . "',
                             '0')");

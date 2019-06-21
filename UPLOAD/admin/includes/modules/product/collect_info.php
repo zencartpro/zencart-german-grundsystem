@@ -5,7 +5,7 @@
  * @copyright Copyright 2003-2019 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: collect_info.php 799 2019-04-14 18:24:50Z webchills $
+ * @version $Id: collect_info.php 800 2019-06-21 20:53:50Z webchills $
  */
 if (!defined('IS_ADMIN_FLAG')) {
   die('Illegal Access');
@@ -256,6 +256,24 @@ for ($i = 0, $n = sizeof($tax_class_array); $i < $n; $i++) {
               <?php echo zen_image(DIR_WS_CATALOG_LANGUAGES . $languages[$i]['directory'] . '/images/' . $languages[$i]['image'], $languages[$i]['name']); ?>
           </span>
           <?php echo zen_draw_input_field('products_name[' . $languages[$i]['id'] . ']', htmlspecialchars(isset($products_name[$languages[$i]['id']]) ? stripslashes($products_name[$languages[$i]['id']]) : zen_get_products_name($pInfo->products_id, $languages[$i]['id']), ENT_COMPAT, CHARSET, TRUE), zen_set_field_length(TABLE_PRODUCTS_DESCRIPTION, 'products_name') . ' class="form-control"'); ?>
+        </div>
+        <br>
+        <?php
+      }
+      ?>
+    </div>
+  </div>
+  <div class="form-group">
+      <?php echo zen_draw_label(TEXT_PRODUCTS_MERKMALE, 'products_merkmale', 'class="col-sm-3 control-label"'); ?>
+    <div class="col-sm-9 col-md-6">
+        <?php
+        for ($i = 0, $n = sizeof($languages); $i < $n; $i++) {
+          ?>
+        <div class="input-group">
+          <span class="input-group-addon">
+              <?php echo zen_image(DIR_WS_CATALOG_LANGUAGES . $languages[$i]['directory'] . '/images/' . $languages[$i]['image'], $languages[$i]['name']); ?>
+          </span>
+          <?php echo zen_draw_input_field('products_merkmale[' . $languages[$i]['id'] . ']', htmlspecialchars(isset($products_merkmale[$languages[$i]['id']]) ? stripslashes($products_merkmale[$languages[$i]['id']]) : zen_get_products_merkmale($pInfo->products_id, $languages[$i]['id']), ENT_COMPAT, CHARSET, TRUE), zen_set_field_length(TABLE_PRODUCTS_DESCRIPTION, 'products_merkmale') . ' class="form-control"'); ?>
         </div>
         <br>
         <?php

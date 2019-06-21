@@ -49,6 +49,5 @@ Dies ist eine BETA Version.
   https://www.zen-cart-pro.at/forum/forums/153-BETA-TEST-Zen-Cart-1-5-6-deutsch
 
 Bekannte Fehler/noch nicht implementiert
-* Merkmale für Buttonlösung fehlen bei der Artikelbearbeitung
 * Neue EZ Pages Funktionalität noch nicht komplett
-* Demodaten noch nicht komplett
+* EZ Pages in den Demodaten noch nicht komplett
