@@ -5,10 +5,10 @@
  * Allows entry of new addresses during checkout stages
  *
  * @package templateSystem
- * @copyright Copyright 2003-2016 Zen Cart Development Team
+ * @copyright Copyright 2003-2019 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: tpl_modules_checkout_new_address.php 730 2016-02-29 13:49:16Z webchills $
+ * @version $Id: tpl_modules_checkout_new_address.php 731 2019-06-21 15:31:16Z webchills $
  */
 ?>
 <div class="centerColumnModule" id="checkoutNewAddress">
@@ -95,7 +95,7 @@
 <br class="clearBoth" />
 
 <label class="inputLabel" for="country"><?php echo ENTRY_COUNTRY; ?></label>
-<?php echo zen_get_country_list('zone_country_id', $selected_country, 'id="country" placeholder="' . ENTRY_COUNTRY_TEXT . '"' . ($flag_show_pulldown_states == true ? 'onchange="update_zone(this.form);"' : '')); ?>
+<?php echo zen_get_country_list('zone_country_id', $selected_country, 'id="country" placeholder="' . ENTRY_COUNTRY_TEXT . '"' . ($flag_show_pulldown_states == true ? ' onchange="update_zone(this.form);"' : '')); ?>
 <br class="clearBoth" />
 </fieldset>
 </div>

@@ -6,7 +6,7 @@
  * @copyright Copyright 2003-2019 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: shipping.php 735 2019-04-14 17:13:16Z webchills $
+ * @version $Id: shipping.php 736 2019-06-21 15:39:16Z webchills $
  */
 if (!defined('IS_ADMIN_FLAG')) {
   die('Illegal Access');
@@ -21,7 +21,7 @@ class shipping extends base {
   var $modules;
 
   // class constructor
-  function __construct($module = '') {
+  function __construct($module = null) {
     global $PHP_SELF, $messageStack;
 
     if (defined('MODULE_SHIPPING_INSTALLED') && zen_not_null(MODULE_SHIPPING_INSTALLED)) {

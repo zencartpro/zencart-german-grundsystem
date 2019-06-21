@@ -4,7 +4,7 @@
  * @copyright Copyright 2003-2019 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: record_company.php 789 2019-04-12 09:13:51Z webchills $
+ * @version $Id: record_company.php 790 2019-06-21 15:13:51Z webchills $
  */
 require('includes/application_top.php');
 
@@ -113,7 +113,7 @@ if (zen_not_null($action)) {
         }
       } else {
         $db->Execute("UPDATE " . TABLE_PRODUCT_MUSIC_EXTRA . "
-                      SET record_company_id = ''
+                      SET record_company_id = '0'
                       WHERE record_company_id = " . (int)$record_company_id);
       }
 

@@ -4,7 +4,7 @@
  * @copyright Copyright 2003-2019 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: record_artists.php 788 2019-04-12 09:13:51Z webchills $
+ * @version $Id: record_artists.php 789 2019-06-21 15:34:51Z webchills $
  */
 require('includes/application_top.php');
 
@@ -112,7 +112,7 @@ if (zen_not_null($action)) {
         }
       } else {
         $db->Execute("UPDATE " . TABLE_PRODUCT_MUSIC_EXTRA . "
-                      SET artists_id = ''
+                      SET artists_id = '0'
                       WHERE artists_id = " . (int)$artists_id);
       }
 
