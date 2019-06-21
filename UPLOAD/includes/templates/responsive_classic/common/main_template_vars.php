@@ -1,5 +1,6 @@
 <?php
 /**
+ * Zen Cart German Specific
  * Common Template main_template_vars handler
  *
  * Normally a page will automatically load its own template based on the page name.<br />
@@ -13,24 +14,12 @@
  * @copyright Copyright 2003-2019 Zen Cart Development Team
  
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: main_template_vars 3 2019-06-15 17:33:58Z webchills $
+ * @version $Id: main_template_vars 5 2019-06-21 17:59:58Z webchills $
  */
 
   $zco_notifier->notify('NOTIFY_MAIN_TEMPLATE_VARS_START', $template_dir);
 
-/**
- * set some variables used by templates
- */
-  if (!isset($layoutType)) $layoutType = 'legacy';
-  if (!isset($max_display_page_links)) $max_display_page_links = ($layoutType == 'mobile' ? MAX_DISPLAY_PAGE_LINKS_MOBILE : MAX_DISPLAY_PAGE_LINKS);
-  if (!isset($paginateAsUL)) $paginateAsUL = $layoutType == 'mobile' || (isset($isMobile) && $isMobile) || (isset($isTablet) && $isTablet);
-  if (!isset($flag_disable_left)) {
-    $flag_disable_left = false;
-  }
-  if (!isset($flag_disable_right)) {
-    $flag_disable_right = false;
-  }
-  $display_as_mobile = ($detect->isMobile() && !$detect->isTablet() || $_SESSION['layoutType'] == 'mobile' or  $detect->isTablet() || $_SESSION['layoutType'] == 'tablet'); 
+  
 
 /**
  * load page-specific main_template_vars if present, or jump directly to template file

@@ -1,5 +1,6 @@
 <?php
 /**
+ * Zen Cart German Specific
  * Common Template
  *
  * outputs the html header. i,e, everything that comes before the \</head\> tag <br />
@@ -8,7 +9,7 @@
  * @copyright Copyright 2003-2019 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: html_header.php 15 2019-06-15 18:10:39Z webchills $
+ * @version $Id: html_header.php 16 2019-06-21 17:55:39Z webchills $
  */
 $zco_notifier->notify('NOTIFY_HTML_HEAD_START', $current_page_base, $template_dir);
 
@@ -31,8 +32,17 @@ if (!class_exists('Mobile_Detect')) {
   $isMobile = $detect->isMobile();
   $isTablet = $detect->isTablet();
   if (!isset($layoutType)) $layoutType = ($isMobile ? ($isTablet ? 'tablet' : 'mobile') : 'default');
+  if (!isset($layoutType)) $layoutType = 'legacy';
+  if (!isset($max_display_page_links)) $max_display_page_links = ($layoutType == 'mobile' ? MAX_DISPLAY_PAGE_LINKS_MOBILE : MAX_DISPLAY_PAGE_LINKS);
+  if (!isset($paginateAsUL)) $paginateAsUL = $layoutType == 'mobile' || (isset($isMobile) && $isMobile) || (isset($isTablet) && $isTablet);
+  if (!isset($flag_disable_left)) {
+    $flag_disable_left = false;
+  }
+  if (!isset($flag_disable_right)) {
+    $flag_disable_right = false;
+  }
+  $display_as_mobile = ($detect->isMobile() && !$detect->isTablet() || $_SESSION['layoutType'] == 'mobile' or  $detect->isTablet() || $_SESSION['layoutType'] == 'tablet'); 
 
-  $paginateAsUL = true;
 
 ?>
 <!DOCTYPE html>
