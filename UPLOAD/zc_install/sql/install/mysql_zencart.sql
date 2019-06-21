@@ -6,7 +6,7 @@
 # * @copyright Copyright 2003-2019 Zen Cart Development Team
 # * @copyright Portions Copyright 2003 osCommerce
 # * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
-# * @version $Id: mysql_zencart.sql 19490 2019-06-20 19:38:16Z webchills $
+# * @version $Id: mysql_zencart.sql 19491 2019-06-21 22:38:16Z webchills $
 #
 
 ############ IMPORTANT INSTRUCTIONS ###############
@@ -4813,20 +4813,6 @@ UPDATE configuration SET configuration_value = 'de' WHERE configuration_key = 'D
 
 
 ###########################################################################################################
-
-DROP TABLE IF EXISTS configuration_language;
-CREATE TABLE configuration_language (
-  configuration_id int(11) NOT NULL auto_increment,
-  configuration_title text NOT NULL,
-  configuration_key varchar(191) NOT NULL DEFAULT '',
-  configuration_language_id int(11) NOT NULL DEFAULT 1,
-  configuration_description text NOT NULL,
-  last_modified datetime default NULL,
-  date_added datetime NOT NULL default '0001-01-01 00:00:00',
-  PRIMARY KEY  (configuration_id),
-  UNIQUE KEY config_lang (configuration_key,configuration_language_id),
-  KEY configuration_language_id (configuration_language_id)
-) ENGINE=MyISAM;
 
 
 CREATE TABLE IF NOT EXISTS product_type_layout_language (
