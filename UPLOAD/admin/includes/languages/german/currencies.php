@@ -1,10 +1,10 @@
 <?php
 /**
  * @package admin
- * @copyright Copyright 2003-2016 Zen Cart Development Team
+ * @copyright Copyright 2003-2019 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: currencies.php 628 2015-12-22 16:05:14Z webchills $
+ * @version $Id: currencies.php 629 2019-06-22 09:05:14Z webchills $
  */
 
 define('HEADING_TITLE','Währungen');
@@ -31,7 +31,7 @@ define('TEXT_INFO_DELETE_INTRO','Wollen Sie diese Währung wirklich löschen?');
 define('TEXT_INFO_HEADING_NEW_CURRENCY','Neue Währung');
 define('TEXT_INFO_HEADING_EDIT_CURRENCY','Währung bearbeiten');
 define('TEXT_INFO_HEADING_DELETE_CURRENCY','Währung löschen');
-define('TEXT_INFO_SET_AS_DEFAULT',TEXT_SET_DEFAULT . '(Ein manuelles Update der Währungskurse ist notwendig)');
+define('TEXT_INFO_SET_AS_DEFAULT','Als Standard setzen (Ein manuelles Update der Währungskurse ist notwendig)');
 
 
 define('ERROR_REMOVE_DEFAULT_CURRENCY','FEHLER: Die Standardwährung kann nicht gelöscht werden. Legen Sie eine andere Währung als Standard fest und versuchen Sie es noch einmal.');
