@@ -1,9 +1,9 @@
 <?php
 /**
-* @copyright Copyright 2003-2016 Zen Cart Development Team
+* @copyright Copyright 2003-2019 Zen Cart Development Team
 * @copyright Portions Copyright 2003 osCommerce
 * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
-* $Id: bar.php 2016-03-13 11:17:20Z webchills $
+* $Id: bar.php 2019-06-22 09:17:20Z webchills $
 */
 
   class bar {
@@ -15,16 +15,13 @@
       $this->code = 'bar';
       $this->title = MODULE_PAYMENT_BAR_TEXT_TITLE;
       $this->description = MODULE_PAYMENT_BAR_TEXT_DESCRIPTION;
-      $this->sort_order = MODULE_PAYMENT_BAR_SORT_ORDER;
-      $this->enabled = ((MODULE_PAYMENT_BAR_STATUS == 'True') ? true : false);
+      $this->sort_order = defined('MODULE_PAYMENT_BAR_SORT_ORDER') ? MODULE_PAYMENT_BAR_SORT_ORDER : null;
+      $this->enabled = (defined('MODULE_PAYMENT_BAR_STATUS') && MODULE_PAYMENT_BAR_STATUS == 'True');     
+
+      if (null === $this->sort_order) return false;
 
       if ((int)MODULE_PAYMENT_BAR_ORDER_STATUS_ID > 0) {
         $this->order_status = MODULE_PAYMENT_BAR_ORDER_STATUS_ID;
-        $payment='bar';
-      } else {
-        if ($payment=='bar') {
-          $payment='';
-        }
       }
 
       if (is_object($order)) $this->update_status();
