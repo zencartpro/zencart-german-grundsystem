@@ -6,7 +6,7 @@
 # * @copyright Copyright 2003-2019 Zen Cart Development Team
 # * @copyright Portions Copyright 2003 osCommerce
 # * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
-# * @version $Id: mysql_zencart.sql 19491 2019-06-21 22:38:16Z webchills $
+# * @version $Id: mysql_zencart.sql 19492 2019-06-22 13:40:16Z webchills $
 #
 
 ############ IMPORTANT INSTRUCTIONS ###############
@@ -2109,20 +2109,6 @@ CREATE TABLE zones_to_geo_zones (
   PRIMARY KEY  (association_id),
   KEY idx_zones_zen (geo_zone_id,zone_country_id,zone_id)
 ) ENGINE=MyISAM;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 # default data
 
@@ -4814,8 +4800,8 @@ UPDATE configuration SET configuration_value = 'de' WHERE configuration_key = 'D
 
 ###########################################################################################################
 
-
-CREATE TABLE IF NOT EXISTS product_type_layout_language (
+DROP TABLE IF EXISTS product_type_layout_language;
+CREATE TABLE product_type_layout_language (
   configuration_id int(11) NOT NULL auto_increment,
   configuration_title text NOT NULL,
   configuration_key varchar(191) NOT NULL default '',
