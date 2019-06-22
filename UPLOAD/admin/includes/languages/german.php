@@ -5,7 +5,7 @@
  * @copyright Copyright 2003-2019 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: german.php 663 2019-04-15 08:16:04Z webchills $
+ * @version $Id: german.php 664 2019-06-22 14:50:04Z webchills $
  */
 if (!defined('IS_ADMIN_FLAG'))
 {
@@ -109,8 +109,8 @@ define('BOX_CONFIGURATION_IMAGES', 'Bilder');
 define('BOX_CONFIGURATION_CUSTOMER_DETAILS', 'Kundendetails');
 define('BOX_CONFIGURATION_SHIPPING_PACKAGING', 'Versandoptionen');
 define('BOX_CONFIGURATION_PRODUCT_LISTING', 'Artikelliste');
-define('BOX_CONFIGURATION_STOCK', 'Lagerverwaltung');
-define('BOX_CONFIGURATION_LOGGING', 'Protokollierung');
+define('BOX_CONFIGURATION_STOCK', 'Lagerverwaltung und Warenkorb');
+define('BOX_CONFIGURATION_LOGGING', 'Protokollierung/Logfiles');
 define('BOX_CONFIGURATION_EMAIL_OPTIONS', 'E-Mail Optionen');
 define('BOX_CONFIGURATION_ATTRIBUTE_OPTIONS', 'Attributeinstellungen');
 define('BOX_CONFIGURATION_GZIP_COMPRESSION', 'GZip Kompression');
