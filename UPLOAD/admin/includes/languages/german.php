@@ -102,7 +102,7 @@ define('NONE', 'Kein');
 define('TEXT_UNKNOWN', 'Unbekannt');
 // configuration box text
 define('BOX_HEADING_CONFIGURATION', 'Konfiguration');
-define('BOX_CONFIGURATION_MY_STORE', 'Mein Shop');
+define('BOX_CONFIGURATION_MY_STORE', 'Mein Shop - Grundeinstellungen');
 define('BOX_CONFIGURATION_MINIMUM_VALUES', 'Minimale Werte');
 define('BOX_CONFIGURATION_MAXIMUM_VALUES', 'Maximale Werte');
 define('BOX_CONFIGURATION_IMAGES', 'Bilder');
@@ -118,14 +118,14 @@ define('BOX_CONFIGURATION_SESSIONS', 'Sitzungen/Sessions');
 define('BOX_CONFIGURATION_REGULATIONS', 'AGB & Datenschutz');
 define('BOX_CONFIGURATION_GV_COUPONS', 'Gutscheine & Aktionskupons');
 define('BOX_CONFIGURATION_CREDIT_CARDS', 'Kreditkarten');
-define('BOX_CONFIGURATION_PRODUCT_INFO', 'Artikeldetails');
+define('BOX_CONFIGURATION_PRODUCT_INFO', 'Artikeldetailseite');
 define('BOX_CONFIGURATION_LAYOUT_SETTINGS', 'Layouteinstellungen');
 define('BOX_CONFIGURATION_WEBSITE_MAINTENANCE', 'Shopwartung');
 define('BOX_CONFIGURATION_NEW_LISTING', 'Liste - Neue Artikel');
 define('BOX_CONFIGURATION_FEATURED_LISTING', 'Liste - Empfohlene Artikel');
 define('BOX_CONFIGURATION_ALL_LISTING', 'Liste - Alle Artikel');
 define('BOX_CONFIGURATION_INDEX_LISTING', 'Liste - Artikelindex');
-define('BOX_CONFIGURATION_DEFINE_PAGE_STATUS', 'Eigene Seiten');
+define('BOX_CONFIGURATION_DEFINE_PAGE_STATUS', 'Define Pages Einstellungen');
 define('BOX_CONFIGURATION_EZPAGES_SETTINGS', 'EZ-Pages Einstellungen');
 
 // modules box text
