@@ -4,7 +4,7 @@
  * @copyright Copyright 2003-2019 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: index.php 735 2019-05-07 20:49:16Z webchills $
+ * @version $Id: index.php 736 2019-06-22 20:40:16Z webchills $
  */
 
 define('HEADING_TITLE', 'Choose an action..');
@@ -56,8 +56,8 @@ define('TEXT_COUNTER_HISTORY_TITLE', 'Visitor History - Last 14 days');
 define('TEXT_MONTHLY_SALES_TITLE', 'Monthly Sales (excludes shipping)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;');
 define('TEXT_CLICK_FOR_COMPLETE_DETAILS', 'Click here for complete details...');
 
-define('TEXT_SALES_TODAY', 'Sales <strong>Today</strong> (%s) &nbsp;<strong>$%s</strong>');
-define('TEXT_SALES_YESTERDAY', '<strong>Yesterday</strong> (%s) &nbsp;<strong>$%s</strong>');
+define('TEXT_SALES_TODAY', 'Sales <strong>Today</strong> (%s) &nbsp;<strong>%s €</strong>');
+define('TEXT_SALES_YESTERDAY', '<strong>Yesterday</strong> (%s) &nbsp;<strong>%s €</strong>');
 define('REPORTS_PRODUCTS', 'Products');
 define('REPORTS_ORDERS', 'Orders');
 
