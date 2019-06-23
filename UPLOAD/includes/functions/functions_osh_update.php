@@ -6,7 +6,7 @@
  * @copyright Copyright 2003-2019 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: functions_osh_update.php 3 2019-06-23 16:41:42Z webchills $
+ * @version $Id: functions_osh_update.php 4 2019-06-23 17:47:42Z webchills $
  */
 if (!defined('IS_ADMIN_FLAG')) {
     exit('Invalid Access');
@@ -61,6 +61,22 @@ function zen_update_orders_history($orders_id, $message = '', $updated_by = null
          WHERE customers_id = '" . $osh_info->fields['customers_id'] . "'"
          );
     
+    // BOF pdf Rechnung  
+        if(RL_INVOICE3_STATUS=='true'){                                     
+        $rlStat = explode('|', RL_INVOICE3_SEND_ORDERSTATUS_CHANGE);
+        $rl_invoice3_send = in_array($orders_new_status, $rlStat);
+        if ( ($osh_info->fields['orders_status'] != $orders_new_status  && $orders_new_status==RL_INVOICE3_ORDERSTATUS)  || ($rl_invoice3_send == true)){
+            require_once (DIR_FS_CATALOG . DIR_WS_INCLUDES . 'classes/class.rl_invoice3.php');     
+            require_once ('../' . DIR_WS_LANGUAGES . $_SESSION['language'] . '/extra_definitions/rl_invoice3.php');
+            $paper = rl_invoice3::getDefault(RL_INVOICE3_PAPER, array('format' => 'A4', 'unit' => 'mm', 'orientation' => 'P'));
+            $pdfT = new rl_invoice3($orders_id, $paper['orientation'], $paper['unit'], $paper['format']);
+            $pdfT->createPdfFile(true);
+            $attach = $pdfT->getPDFAttachments('ALL');
+        } else {
+            $attach = null;
+        }
+      }
+        // EOF pdf Rechnung
     
     if ($osh_info->EOF) {
         $osh_id = -2; 
@@ -121,8 +137,21 @@ function zen_update_orders_history($orders_id, $message = '', $updated_by = null
                 }
                 
                 //send emails
-                $email_text =
-                    STORE_NAME . ' ' . OSH_EMAIL_TEXT_ORDER_NUMBER . ' ' . $orders_id . "\n\n" .
+                
+                
+                if ($customer_gender->fields['customers_gender'] == 'm') {
+        $email_greeting = EMAIL_TEXT_ORDER_CUSTOMER_GENDER_MALE;
+      } else if ($customer_gender->fields['customers_gender'] == 'f') { 
+        $email_greeting = EMAIL_TEXT_ORDER_CUSTOMER_GENDER_FEMALE;
+      } else {
+        $email_greeting = EMAIL_TEXT_ORDER_CUSTOMER_NEUTRAL;      
+      }
+    
+         $email_text =
+                $email_greeting .
+                $osh_info->fields['customers_name']. "\n\n" .
+                OSH_EMAIL_TEXT_UPDATEINFO . STORE_NAME . "\n\n" .
+                OSH_EMAIL_TEXT_ORDER_NUMBER . ' ' . $orders_id . "\n\n" .
                     OSH_EMAIL_TEXT_INVOICE_URL . ' ' . zen_catalog_href_link(FILENAME_CATALOG_ACCOUNT_HISTORY_INFO, "order_id=$orders_id", 'SSL') . "\n\n" .
                     OSH_EMAIL_TEXT_DATE_ORDERED . ' ' . zen_date_long($osh_info->fields['date_purchased']) . "\n\n" .
                     strip_tags($email_message) .
@@ -138,8 +167,8 @@ function zen_update_orders_history($orders_id, $message = '', $updated_by = null
             }
             $html_msg['EMAIL_TEXT_UPDATEINFO']    = OSH_EMAIL_TEXT_UPDATEINFO;
             $html_msg['EMAIL_CUSTOMERS_NAME']    = $osh_info->fields['customers_name'];
-            $html_msg['EMAIL_TEXT_ORDER_NUMBER'] = OSH_EMAIL_TEXT_ORDER_NUMBER . ' ' . $oID;
-            $html_msg['EMAIL_TEXT_INVOICE_URL']  = '<a href="' . zen_catalog_href_link(FILENAME_CATALOG_ACCOUNT_HISTORY_INFO, 'order_id=' . $oID, 'SSL') .'">'.str_replace(':','',OSH_EMAIL_TEXT_INVOICE_URL).'</a>';
+            $html_msg['EMAIL_TEXT_ORDER_NUMBER'] = OSH_EMAIL_TEXT_ORDER_NUMBER . ' ' . $orders_id;
+            $html_msg['EMAIL_TEXT_INVOICE_URL']  = '<a href="' . zen_catalog_href_link(FILENAME_CATALOG_ACCOUNT_HISTORY_INFO, 'order_id=' . $orders_id, 'SSL') .'">'.str_replace(':','',OSH_EMAIL_TEXT_INVOICE_URL).'</a>';
             $html_msg['EMAIL_TEXT_DATE_ORDERED'] = OSH_EMAIL_TEXT_DATE_ORDERED . ' ' . zen_date_long($osh_info->fields['date_purchased']);
             $html_msg['EMAIL_TEXT_STATUS_COMMENTS'] = nl2br($email_message);
             $html_msg['EMAIL_TEXT_STATUS_UPDATED'] = str_replace("\n", '', $status_text);
