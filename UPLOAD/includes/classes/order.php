@@ -6,7 +6,7 @@
  * @package classes
  * @copyright Copyright 2003-2019 Zen Cart Development Team
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: order.php 2019-06-15 17:09:25Z webchills $
+ * @version $Id: order.php 2019-06-23 19:58:25Z webchills $
  */
 /**
  * order class
@@ -705,11 +705,11 @@ class order extends base {
                             );
 
     if ($_SESSION['mobilevisitor'] == true){
-    $sql_data_array[order_device] = Mobile;
+    $sql_data_array['order_device'] = 'Mobile';
     } else if ($_SESSION['tabletvisitor'] == true){
-    $sql_data_array[order_device] = Tablet;
+    $sql_data_array['order_device'] = 'Tablet';
     } else {
-    $sql_data_array[order_device] = Desktop;
+    $sql_data_array['order_device'] = 'Desktop';
     }
 
     zen_db_perform(TABLE_ORDERS, $sql_data_array);

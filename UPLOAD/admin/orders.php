@@ -5,7 +5,7 @@
  * @copyright Copyright 2003-2019 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: orders.php 2019-06-23 16:13:51Z webchills $
+ * @version $Id: orders.php 2019-06-23 20:31:51Z webchills $
  */
 require('includes/application_top.php');
 
@@ -897,7 +897,7 @@ if (zen_not_null($action) && $order_exists == true) {
                   } // eof: search orders or orders_products
                   $new_fields .= ", o.customers_company, o.customers_email_address, o.customers_street_address, o.delivery_company, o.delivery_name, o.delivery_street_address, o.billing_company, o.billing_name, o.billing_street_address, o.payment_module_code, o.shipping_module_code ";
 
-                  $orders_query_raw = "select " . $search_distinct . " o.orders_id, o.customers_id, o.customers_name, o.payment_method, o.shipping_method, o.date_purchased, o.last_modified, o.currency, o.currency_value, s.orders_status_name, ot.text as order_total" .
+                  $orders_query_raw = "select " . $search_distinct . " o.orders_id, o.customers_id, o.customers_name, o.payment_method, o.shipping_method, o.date_purchased, o.last_modified, o.currency, o.currency_value, o.order_device, s.orders_status_name, ot.text as order_total" .
                       $new_fields . "
                           from (" . TABLE_ORDERS . " o " .
                       $new_table . ")
