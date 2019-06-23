@@ -51,3 +51,4 @@ Dies ist eine BETA Version.
 Bekannte Fehler/noch nicht implementiert
 * Neue EZ Pages Funktionalität noch nicht komplett
 * EZ Pages in den Demodaten noch nicht komplett
+* pdf Rechnung wird bei Bestellstatusupdate nicht mitgemailt

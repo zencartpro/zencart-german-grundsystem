@@ -1,15 +1,21 @@
 <?php
 /**
+ * Zen Cart German Specific
  * Constants used by the zen_update_orders_history function.
  *
  * @package admin
  * @copyright Copyright 2003-2018 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
- * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: lat9 Mon Oct 22 13:19:39 2018 -0400 New in v1.5.6 $
+ * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
+ * @version $Id: orders_status_updates_admin.php 2 2019-06-23 16:05:14Z webchills $
  */
 define('OSH_EMAIL_SEPARATOR', '------------------------------------------------------');
 define('OSH_EMAIL_TEXT_SUBJECT', 'Order Update');
+define('OSH_EMAIL_TEXT_ORDER_CUSTOMER_GENDER_MALE', 'Dear Mr. ');
+define('OSH_EMAIL_TEXT_ORDER_CUSTOMER_GENDER_FEMALE', 'Dear Mrs. ');
+define('OSH_EMAIL_TEXT_ORDER_CUSTOMER_NEUTRAL', 'Dear ');
+define('OSH_EMAIL_TEXT_UPDATEINFO', 'We inform you about your order status at ');
+
 define('OSH_EMAIL_TEXT_ORDER_NUMBER', 'Order Number:');
 define('OSH_EMAIL_TEXT_INVOICE_URL', 'Detailed Invoice:');
 define('OSH_EMAIL_TEXT_DATE_ORDERED', 'Date Ordered:');

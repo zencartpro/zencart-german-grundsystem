@@ -6,7 +6,7 @@
  * @copyright Copyright 2003-2019 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: functions_osh_update.php 2 2019-06-15 17:41:42Z webchills $
+ * @version $Id: functions_osh_update.php 3 2019-06-23 16:41:42Z webchills $
  */
 if (!defined('IS_ADMIN_FLAG')) {
     exit('Invalid Access');
@@ -50,11 +50,18 @@ function zen_update_orders_history($orders_id, $message = '', $updated_by = null
     $send_extra_emails_to = (string)$send_extra_emails_to;
     
     $osh_info = $GLOBALS['db']->Execute(
-        "SELECT customers_name, customers_email_address, orders_status, date_purchased 
+        "SELECT customers_id, customers_name, customers_email_address, orders_status, date_purchased 
            FROM " . TABLE_ORDERS . " 
           WHERE orders_id = $orders_id
           LIMIT 1" 
-    );
+    );    
+     
+    $customer_gender = $GLOBALS['db']->Execute(
+        "SELECT customers_gender from " . TABLE_CUSTOMERS . "
+         WHERE customers_id = '" . $osh_info->fields['customers_id'] . "'"
+         );
+    
+    
     if ($osh_info->EOF) {
         $osh_id = -2; 
     } else {
@@ -121,25 +128,40 @@ function zen_update_orders_history($orders_id, $message = '', $updated_by = null
                     strip_tags($email_message) .
                     $status_text . $status_value_text .
                     OSH_EMAIL_TEXT_STATUS_PLEASE_REPLY;
-           
-                $html_msg['EMAIL_CUSTOMERS_NAME']    = $osh_info->fields['customers_name'];
-                $html_msg['EMAIL_TEXT_ORDER_NUMBER'] = OSH_EMAIL_TEXT_ORDER_NUMBER . ' ' . $orders_id;
-                $html_msg['EMAIL_TEXT_INVOICE_URL']  = '<a href="' . zen_catalog_href_link(FILENAME_CATALOG_ACCOUNT_HISTORY_INFO, "order_id=$orders_id", 'SSL') .'">' . str_replace(':', '', OSH_EMAIL_TEXT_INVOICE_URL) . '</a>';
-                $html_msg['EMAIL_TEXT_DATE_ORDERED'] = OSH_EMAIL_TEXT_DATE_ORDERED . ' ' . zen_date_long($osh_info->fields['date_purchased']);
-                $html_msg['EMAIL_TEXT_STATUS_COMMENTS'] = nl2br($email_message);
-                $html_msg['EMAIL_TEXT_STATUS_UPDATED'] = str_replace("\n", '', $status_text);
-                $html_msg['EMAIL_TEXT_STATUS_LABEL'] = str_replace("\n", '', $status_value_text);
-                $html_msg['EMAIL_TEXT_NEW_STATUS'] = $new_orders_status_name;
-                $html_msg['EMAIL_TEXT_STATUS_PLEASE_REPLY'] = str_replace("\n", '', OSH_EMAIL_TEXT_STATUS_PLEASE_REPLY);
-                $html_msg['EMAIL_PAYPAL_TRANSID'] = '';
+                          
+            if ($customer_gender->fields['customers_gender'] == 'm') {
+            $html_msg['EMAIL_CUSTOMER_GREETING']    = OSH_EMAIL_TEXT_ORDER_CUSTOMER_GENDER_MALE;
+            } else if ($customer_gender->fields['customers_gender'] == 'f') {
+            $html_msg['EMAIL_CUSTOMER_GREETING']    = OSH_EMAIL_TEXT_ORDER_CUSTOMER_GENDER_FEMALE;
+            } else {
+            $html_msg['EMAIL_CUSTOMER_GREETING']    = OSH_EMAIL_TEXT_ORDER_CUSTOMER_NEUTRAL;            
+            }
+            $html_msg['EMAIL_TEXT_UPDATEINFO']    = OSH_EMAIL_TEXT_UPDATEINFO;
+            $html_msg['EMAIL_CUSTOMERS_NAME']    = $osh_info->fields['customers_name'];
+            $html_msg['EMAIL_TEXT_ORDER_NUMBER'] = OSH_EMAIL_TEXT_ORDER_NUMBER . ' ' . $oID;
+            $html_msg['EMAIL_TEXT_INVOICE_URL']  = '<a href="' . zen_catalog_href_link(FILENAME_CATALOG_ACCOUNT_HISTORY_INFO, 'order_id=' . $oID, 'SSL') .'">'.str_replace(':','',OSH_EMAIL_TEXT_INVOICE_URL).'</a>';
+            $html_msg['EMAIL_TEXT_DATE_ORDERED'] = OSH_EMAIL_TEXT_DATE_ORDERED . ' ' . zen_date_long($osh_info->fields['date_purchased']);
+            $html_msg['EMAIL_TEXT_STATUS_COMMENTS'] = nl2br($email_message);
+            $html_msg['EMAIL_TEXT_STATUS_UPDATED'] = str_replace("\n", '', $status_text);
+            $html_msg['EMAIL_TEXT_STATUS_LABEL'] = str_replace("\n", '', $status_value_text);
+            $html_msg['EMAIL_TEXT_NEW_STATUS'] = $new_orders_status_name;
+            $html_msg['EMAIL_TEXT_STATUS_PLEASE_REPLY'] = str_replace('\n','', OSH_EMAIL_TEXT_STATUS_PLEASE_REPLY);
+            $html_msg['EMAIL_PAYPAL_TRANSID'] = '';
+                
                 
                 if (empty($email_subject)) {
                     $email_subject = OSH_EMAIL_TEXT_SUBJECT . ' #' . $orders_id;
                 }
 
                 if ($notify_customer == 1) { 
-                    zen_mail($osh_info->fields['customers_name'], $osh_info->fields['customers_email_address'], $email_subject, $email_text, STORE_NAME, EMAIL_FROM, $html_msg, 'order_status');
-                } 
+                	// BOF pdf Rechnung 
+                	if(RL_INVOICE3_STATUS=='true'){ 
+                    zen_mail($osh_info->fields['customers_name'], $osh_info->fields['customers_email_address'], $email_subject, $email_text, STORE_NAME, EMAIL_FROM, $html_msg, 'order_status', $attach);
+                } else {
+                	zen_mail($osh_info->fields['customers_name'], $osh_info->fields['customers_email_address'], $email_subject, $email_text, STORE_NAME, EMAIL_FROM, $html_msg, 'order_status');
+                // BOF pdf Rechnung 
+                }
+              }
 
                 // PayPal Trans ID, if any
                 $result = $GLOBALS['db']->Execute(
@@ -158,9 +180,19 @@ function zen_update_orders_history($orders_id, $message = '', $updated_by = null
                     $send_xtra_emails_to = (string)SEND_EXTRA_ORDERS_STATUS_ADMIN_EMAILS_TO;
                 }
                 if (!empty($send_extra_emails_to)) {
-                    zen_mail('', $send_extra_emails_to, SEND_EXTRA_ORDERS_STATUS_ADMIN_EMAILS_TO_SUBJECT . ' ' . $email_subject, $email_text, STORE_NAME, EMAIL_FROM, $html_msg, 'order_status_extra');
+                	// BOF pdf Rechnung 
+                  if(RL_INVOICE3_STATUS=='true'){ 
+                    zen_mail('', $send_extra_emails_to, SEND_EXTRA_ORDERS_STATUS_ADMIN_EMAILS_TO_SUBJECT . ' ' . $email_subject, $email_text, STORE_NAME, EMAIL_FROM, $html_msg, 'order_status_extra', $attach);
+                } else {
+                	 zen_mail('', $send_extra_emails_to, SEND_EXTRA_ORDERS_STATUS_ADMIN_EMAILS_TO_SUBJECT . ' ' . $email_subject, $email_text, STORE_NAME, EMAIL_FROM, $html_msg, 'order_status_extra');
+                
                 }
+                // EOF pdf Rechnung 
             }
+            
+          }
+            
+            
     
             if (empty($updated_by)) {
                 if (IS_ADMIN_FLAG === true && isset($_SESSION['admin_id'])) {

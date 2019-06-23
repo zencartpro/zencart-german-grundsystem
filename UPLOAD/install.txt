@@ -24,6 +24,6 @@ Empfohlene Konfiguration:
 * Datenbank mit Character Set: utf8mb4 und Kollation: utf8mb4_unicode_ci 
 
 Bekannte Fehler/noch nicht implementiert
-* Merkmale für Buttonlösung fehlen bei der Artikelbearbeitung
 * Neue EZ Pages Funktionalität noch nicht komplett
-* Demodaten noch nicht komplett
+* EZ Pages in den Demodaten noch nicht komplett
+* pdf Rechnung wird bei Bestellstatusupdate nicht mitgemailt
