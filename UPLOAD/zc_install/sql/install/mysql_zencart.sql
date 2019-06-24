@@ -6,7 +6,7 @@
 # * @copyright Copyright 2003-2019 Zen Cart Development Team
 # * @copyright Portions Copyright 2003 osCommerce
 # * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
-# * @version $Id: mysql_zencart.sql 19497 2019-06-24 09:06:16Z webchills $
+# * @version $Id: mysql_zencart.sql 19499 2019-06-24 17:43:16Z webchills $
 #
 
 ############ IMPORTANT INSTRUCTIONS ###############
@@ -3268,14 +3268,14 @@ INSERT INTO currencies VALUES (6,'Schweizer Franken','CHF','CHF','','','','0','1
 
 # Create Default IT-Recht Kanzlei EZ Pages - we reserve the first 8 pages for these special pages
 INSERT INTO ezpages (pages_id, alt_url, alt_url_external, status_header, status_sidebox, status_footer, status_toc, header_sort_order, sidebox_sort_order, footer_sort_order, toc_sort_order, page_open_new_window, page_is_ssl, toc_chapter, page_key) VALUES
-(1, '', '', '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 'itrk-datenschutz'),
-(2, '', '', '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 'itrk-widerruf'),
-(3, '', '', '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 'itrk-impressum'),
-(4, '', '', '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 'itrk-agb'),
-(5, '', '', '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 'itrk-datenschutz'),
-(6, '', '', '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 'itrk-widerruf'),
-(7  '', '', '', 0, 0, 0, 0, 0, 0, 0, 4, 0, 0, 0, 'itrk-impressum'),
-(8, '', '', '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 'itrk-agb');
+(1, '', '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 'itrk-datenschutz'),
+(2, '', '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 'itrk-widerruf'),
+(3, '', '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 'itrk-impressum'),
+(4, '', '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 'itrk-agb'),
+(5, '', '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 'itrk-datenschutz'),
+(6, '', '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 'itrk-widerruf'),
+(7, '', '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 'itrk-impressum'),
+(8, '', '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 'itrk-agb');
 
 # Create Default IT-Recht Kanzlei EZ Content Pages - we reserve the first 8 pages for these special pages
 INSERT INTO ezpages_content (pages_id, languages_id, pages_title, pages_html_text) VALUES 
