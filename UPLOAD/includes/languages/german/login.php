@@ -1,11 +1,12 @@
 <?php
 /**
+ * Zen Cart German Specific
  * @package languageDefines
- * @copyright Copyright 2003-2016 Zen Cart Development Team
+ * @copyright Copyright 2003-2019 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
  
- * @version $Id: login.php 628 2011-11-28 15:05:14Z webchills $
+ * @version $Id: login.php 629 2019-06-24 19:05:14Z webchills $
  */
 
 define('NAVBAR_TITLE','Anmelden');
@@ -24,7 +25,7 @@ define('HEADING_RETURNING_CUSTOMER_SPLIT', 'Stammkunden ');
 
 define('TEXT_RETURNING_CUSTOMER_SPLIT', 'Zum Fortfahren, bitte anmelden');
 
-define('TEXT_PASSWORD_FORGOTTEN','Haben Sie Ihr Passwort vergessen?');
+define('TEXT_PASSWORD_FORGOTTEN','Passwort vergessen?');
 
 define('TEXT_LOGIN_ERROR','Achtung! E-Mail Adresse oder Passwort wurden nicht gefunden.');
 define('TEXT_VISITORS_CART','<strong class="note">Hinweis:</strong> Der Inhalt Ihres aktuellen Besucher Warenkorbs wird nach Ihrer Anmeldung bzw. Registrierung in Ihren Kunden Warenkorb übernommen. <a href="javascript:session_win();">[Hilfe]</a>');
@@ -34,3 +35,5 @@ define('TEXT_PRIVACY_CONDITIONS_DESCRIPTION','Bitte bestätigen Sie unsere Daten
 define('TEXT_PRIVACY_CONDITIONS_CONFIRM','Ich habe die Datenschutzbestimmungen gelesen und akzeptiert.');
 define('ERROR_SECURITY_ERROR', 'Es gab einen Sicherheitsfehler, als Sie versucht haben sich anzumelden.');
 define('TEXT_LOGIN_BANNED', 'FEHLER: Zugriff verweigert.');
+define('HEADING_PAYPAL_CUSTOMER_SPLIT', 'Login und Bezahlen mit PayPal');
+define('TEXT_PAYPAL_CUSTOMER_SPLIT', 'Express Checkout mit PayPal: Bei der Anmeldung mit PayPal über den PayPal Express Button werden Ihre bei PayPal hinterlegten Kontaktdaten für ein Kundenkonto in unserem Onlineshop genutzt. Sie müssen Ihre Daten nicht eintippen und wickeln die Zahlung über PayPal ab.');

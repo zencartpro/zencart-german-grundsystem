@@ -1,5 +1,6 @@
 <?php
 /**
+ * Zen Cart German Specific
  * Page Template
  *
  * Loaded automatically by index.php?main_page=shopping_cart.<br />
@@ -9,7 +10,7 @@
  * @copyright Copyright 2003-2019 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: tpl_shopping_cart_default.php 3 2019-06-15 17:33:58Z webchills $
+ * @version $Id: tpl_shopping_cart_default.php 4 2019-06-24 19:33:58Z webchills $
  */
 ?>
 <?php 
@@ -29,7 +30,17 @@
 ?>
 
 <h1 id="cartDefaultHeading"><?php echo HEADING_TITLE; ?></h1>
-
+<!-- ** BEGIN PAYPAL EXPRESS CHECKOUT for not logged in visitors only! ** -->
+<?php if (!$_SESSION['customer_id']) { ?>	
+<div class="buttonRow forward">
+<?php  // the tpl_ec_button template only displays EC option if cart contents >0 and value >0
+if (defined('MODULE_PAYMENT_PAYPALWPP_STATUS') && MODULE_PAYMENT_PAYPALWPP_STATUS == 'True') {
+  include(DIR_FS_CATALOG . DIR_WS_MODULES . 'payment/paypal/tpl_ec_button.php');
+}
+?>
+</div>
+<?php }?>
+<!-- ** END PAYPAL EXPRESS CHECKOUT ** -->
 <?php if ($messageStack->size('shopping_cart') > 0) echo $messageStack->output('shopping_cart'); ?>
 
 <?php echo zen_draw_form('cart_quantity', zen_href_link(FILENAME_SHOPPING_CART, 'action=update_product', $request_type), 'post', 'id="shoppingCartForm"'); ?>
@@ -179,13 +190,7 @@
     }
 ?>
 
-<!-- ** BEGIN PAYPAL EXPRESS CHECKOUT ** -->
-<?php  // the tpl_ec_button template only displays EC option if cart contents >0 and value >0
-if (defined('MODULE_PAYMENT_PAYPALWPP_STATUS') && MODULE_PAYMENT_PAYPALWPP_STATUS == 'True') {
-  include(DIR_FS_CATALOG . DIR_WS_MODULES . 'payment/paypal/tpl_ec_button.php');
-}
-?>
-<!-- ** END PAYPAL EXPRESS CHECKOUT ** -->
+
 
 <?php
       if (SHOW_SHIPPING_ESTIMATOR_BUTTON == '2') {

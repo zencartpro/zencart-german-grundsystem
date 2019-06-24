@@ -3,10 +3,10 @@
  * Page Template
  *
  * @package templateSystem
- * @copyright Copyright 2003-2016 Zen Cart Development Team
+ * @copyright Copyright 2003-2019 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: tpl_login_default.php 731 2016-02-29 13:49:16Z webchills $
+ * @version $Id: tpl_login_default.php 733 2019-06-24 19:49:16Z webchills $
  */
 ?>
 <div class="centerColumn" id="loginDefault">
@@ -20,15 +20,13 @@
 <!--BOF PPEC split login- DO NOT REMOVE-->
 <fieldset class="floatingBox back">
 <legend><?php echo HEADING_NEW_CUSTOMER_SPLIT; ?></legend>
-<?php // ** BEGIN PAYPAL EXPRESS CHECKOUT ** ?>
-<?php if ($ec_button_enabled) { ?>
-<div class="information"><?php echo TEXT_NEW_CUSTOMER_INTRODUCTION_SPLIT; ?></div>
 
-  <div class="center"><?php require(DIR_FS_CATALOG . DIR_WS_MODULES . 'payment/paypal/tpl_ec_button.php'); ?></div>
-<hr />
-<?php echo TEXT_NEW_CUSTOMER_POST_INTRODUCTION_DIVIDER; ?>
-<?php } ?>
-<?php // ** END PAYPAL EXPRESS CHECKOUT ** ?>
+
+
+
+  
+
+
 <div class="information"><?php echo TEXT_NEW_CUSTOMER_POST_INTRODUCTION_SPLIT; ?></div>
 
 <?php echo zen_draw_form('create', zen_href_link(FILENAME_CREATE_ACCOUNT, (isset($_GET['gv_no']) ? '&gv_no=' . preg_replace('/[^0-9.,%]/', '', $_GET['gv_no']) : ''), 'SSL')); ?>
@@ -54,6 +52,18 @@
 </form>
 </fieldset>
 <br class="clearBoth" />
+<?php
+  if ($_SESSION['cart']->count_contents() > 0) { ?>
+  <br class="clearBoth" />	
+  	<fieldset id="paypallogin">
+<legend><?php echo HEADING_PAYPAL_CUSTOMER_SPLIT; ?></legend>
+<div class="information"><?php echo TEXT_PAYPAL_CUSTOMER_SPLIT; ?></div>
+
+	
+	<div align="right"><?php require(DIR_FS_CATALOG . DIR_WS_MODULES . 'payment/paypal/tpl_ec_button.php'); ?></div>
+
+</fieldset>
+<?php } ?>
 <!--EOF PPEC split login- DO NOT REMOVE-->
 <?php } else { ?>
 <!--BOF normal login-->

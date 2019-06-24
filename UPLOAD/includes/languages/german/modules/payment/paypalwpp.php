@@ -4,7 +4,7 @@
  * @copyright Copyright 2003-2019 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: paypalwpp.php 711 2019-03-16 20:34:24Z webchills $
+ * @version $Id: paypalwpp.php 713 2019-06-24 19:34:24Z webchills $
  */
 
 define('MODULE_PAYMENT_PAYPALWPP_TEXT_ADMIN_TITLE_EC', 'PayPal Express');
@@ -183,8 +183,8 @@ define('MODULES_PAYMENT_PAYPALWPP_LINEITEM_TEXT_SURCHARGES_SHORT', 'Aufpreise');
 define('MODULES_PAYMENT_PAYPALWPP_LINEITEM_TEXT_SURCHARGES_LONG', 'Bearbeitungsgebühren und andere Gebühren');
 define('MODULES_PAYMENT_PAYPALWPP_LINEITEM_TEXT_DISCOUNTS_SHORT', 'Rabatte');
 define('MODULES_PAYMENT_PAYPALWPP_LINEITEM_TEXT_DISCOUNTS_LONG', 'Angewandte Rabatte, Discounts, Gutscheincodes, Geschenkgutscheine, etc');
-define('MODULE_PAYMENT_PAYPALDP_TEXT_EMAIL_FMF_SUBJECT', 'Zahlung in Betrugsprüfung Status: ');
-define('MODULE_PAYMENT_PAYPALDP_TEXT_EMAIL_FMF_INTRO', 'This is an automated notification to advise you that PayPal flagged the payment for a new order as Requiring Payment Review by their Fraud team. Normally the review is completed within 36 hours. It is STRONGLY ADVISED that you DO NOT SHIP the order until payment review is completed. You can see the latest review status of the order by logging into your PayPal account and reviewing recent transactions.');
+define('MODULES_PAYMENT_PAYPALDP_TEXT_EMAIL_FMF_SUBJECT', 'Zahlung in Betrugsprüfung Status: ');
+define('MODULES_PAYMENT_PAYPALDP_TEXT_EMAIL_FMF_INTRO', 'This is an automated notification to advise you that PayPal flagged the payment for a new order as Requiring Payment Review by their Fraud team. Normally the review is completed within 36 hours. It is STRONGLY ADVISED that you DO NOT SHIP the order until payment review is completed. You can see the latest review status of the order by logging into your PayPal account and reviewing recent transactions.');
   define('MODULES_PAYMENT_PAYPALWPP_TEXT_BLANK_ADDRESS', 'PROBLEM: Sorry. PayPal hat unerwarteter Weise eine leere Adresse zurückgegeben. <br />Um Ihre Bestellung abzuschließen, geben Sie bitte Ihre Adresse an, in dem Sie den Konto Erstellen Button anclicken und ein Kundenkonto in unserem Shop anlegen. Dann gehen Sie bitte wieder zur Kasse und wählen erneut PayPal als Zahlungsart aus. Sorry für die Unannehmlichkeiten. Wenn Sie Schwierigkeiten mit der Bestellung haben, nutzen Sie bitte das Kontaktformular und schildern uns, was nicht funktioniert. Wir helfen Ihnen dann gerne weiter.');
   define('MODULES_PAYMENT_PAYPALWPP_AGGREGATE_CART_CONTENTS', 'Alle Artikel in Ihrem Warenkorb (Details finden Sie im Shop unter Mein Konto und in Ihrer Bestellbestätigung)');
-define('MODULES_PAYMENT_PAYPALWPP_MESSAGE_STACK_CHECKOUT_SHIPPING', 'Sie zahlen mit PayPal und verwenden eine bei PayPal hinterlegte Lieferadresse.<br/>Wir möchten sicherstellen, dass diese Lieferadresse korrekt ist, daher haben wir Sie wieder auf diese Seite geleitet.<br/>Bitte prüfen Sie die Lieferanschrift und ändern Sie sie, falls das nötig sein sollte.');
+define('MODULES_PAYMENT_PAYPALWPP_MESSAGE_STACK_CHECKOUT_SHIPPING', 'Sie zahlen mit PayPal und verwenden eine bei PayPal hinterlegte Lieferadresse.<br/>Wir möchten sicherstellen, dass diese Lieferadresse korrekt ist, daher haben wir Sie wieder auf diese Seite geleitet.<br/>Bitte prüfen Sie die Lieferanschrift und ändern Sie sie falls das nötig sein sollte.');
