@@ -1,30 +1,24 @@
 <?php
 /**
- * rss_feed.php
- *
+ * Zen Cart German Spefific
  * @package rss feed
  * @copyright Copyright 2004-2008 Andrew Berezin eCommerce-Service.com
- * @copyright Portions Copyright 2003-2018 Zen Cart Development Team
+ * @copyright Portions Copyright 2003-2019 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
- * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: rss_feed.php 2018-03-30 11:27:14 webchills $
+ * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
+ * @version $Id: rss_feed.php 2019-06-24 16:54:14 webchills $
  */
-// <a href="http://feedvalidator.org/check.cgi?url=..."><img src="valid-rss.png" alt="[Valid RSS]" title="Validate my RSS feed" /></a>
 
 class rss_feed extends base {
   var $xmlns = array();
   var $encoding = "UTF-8";
   var $content_type = "text/xml";
   var $version = "2.0";
-
   var $addAtomSelfLink = true;
-
   var $stylesheets = array();
-
   var $title = "";
   var $link = "";
   var $description = "";
-
   var $language = false;
   var $copyright = false;
   var $managingEditor = false;
@@ -40,20 +34,15 @@ class rss_feed extends base {
   var $textInput = false;
   var $skipHours = false;
   var $skipDays = false;
-
   var $xElements = array();
-
   var $item = array();
   var $description_out = true;
   var $description_out_max = 0;
-
   var $rssFeedContent = false;
   var $rssFeedTimeCreated = false;
-
   var $rssFeedCacheFlag = true;
   var $rssFeedCacheFileName = false;
   var $rssFeedCacheFrom = false;
-
 
   function __construct($xmlns = array()) {
     $this->rss_feed_xmlns($xmlns);
@@ -191,7 +180,7 @@ class rss_feed extends base {
         $feedContent .= '<?xml-stylesheet type="text/css" href="' . $stylesheet . '" media="screen"?'.'>' . "\n";
       }
     }
-    if (sizeof($this->xmlns) > 0) {
+    if (count($this->xmlns) > 0) {
       $xmlns = "\n" . implode("\n", $this->xmlns);
     } else {
       $xmlns = "";
@@ -257,21 +246,21 @@ class rss_feed extends base {
               '      <link>' . $this->_clear_url($this->textInput['link']) . '</link>' . "\n" .
               '    </textInput>' . "\n";
     }
-    if (is_array($this->skipHours) && sizeof($this->skipHours) > 0) {
+    if (is_array($this->skipHours) && count($this->skipHours) > 0) {
       $feedContent .= '    <skipHours>' . "\n";
       foreach ($this->skipHours as $hour) {
         $feedContent .= '      <hour>' . $hour . '</hour>' . "\n";
       }
       $feedContent .= '    </skipHours>' . "\n";
     }
-    if (is_array($this->skipDays) && sizeof($this->skipDays) > 0) {
+    if (is_array($this->skipDays) && count($this->skipDays) > 0) {
       $feedContent .= '    <skipDays>' . "\n";
       foreach ($this->skipHours as $day) {
         $feedContent .= '      <day>' . $day . '</day>' . "\n";
       }
       $feedContent .= '    </skipDays>' . "\n";
     }
-    if (is_array($this->xElements) && sizeof($this->xElements) > 0) {
+    if (is_array($this->xElements) && count($this->xElements) > 0) {
       foreach($this->xElements as $xtag => $xval) {
         $xtagE = $xtag;
         if(is_array($xval)) {
@@ -284,7 +273,7 @@ class rss_feed extends base {
       }
     }
 
-    for($i=0,$n=sizeof($this->item['title']);$i<$n;$i++) {
+    for($i=0, $n=count($this->item['title']); $i<$n; $i++) {
       $feedContent .= '    <item>' . "\n" .
               '      <title>' . $this->_clear_string($this->item['title'][$i]) . '</title>' . "\n" .
               '      <link>' . $this->_clear_url($this->item['link'][$i]) . '</link>' . "\n";
@@ -401,11 +390,11 @@ class rss_feed extends base {
     $in[] = '@&(trade|#129);@i'; $out[] = '(tm)';
     $in[] = '@&(lt|#60);@i'; $out[] = '<';
     $in[] = '@&(gt|#62);@i'; $out[] = '>';
-    $in[] = '@&(laquo);@i'; $out[] = '«';
-    $in[] = '@&(raquo);@i'; $out[] = '»';
-    $in[] = '@&(deg);@i'; $out[] = '°';
-    $in[] = '@&(mdash);@i'; $out[] = '—';
-    $in[] = '@&(reg);@i'; $out[] = '®';
+    $in[] = '@&(laquo);@i'; $out[] = 'ï¿½';
+    $in[] = '@&(raquo);@i'; $out[] = 'ï¿½';
+    $in[] = '@&(deg);@i'; $out[] = 'ï¿½';
+    $in[] = '@&(mdash);@i'; $out[] = 'ï¿½';
+    $in[] = '@&(reg);@i'; $out[] = 'ï¿½';
     $str = preg_replace($in, $out, $str);
 
     $s = strpos($str, '<!--');
@@ -427,7 +416,7 @@ class rss_feed extends base {
         $st_in[] = '@<br>@i'; $st_out[] = "\n";
         $st_in[] = '@<br />@i'; $st_out[] = "\n";
         $st_in[] = '@<br/>@i'; $st_out[] = "\n";
-        $st_in[] = '@<li>@i'; $st_out[] = "\n•".chr(160);
+        $st_in[] = '@<li>@i'; $st_out[] = "\nï¿½".chr(160);
         $st_in[] = '@<h\d>@i'; $st_out[] = "\n\n";
         $st_in[] = '@</h\d>@i'; $st_out[] = "\n\n";
         $st_in[] = '@</p>@i'; $st_out[] = "\n";

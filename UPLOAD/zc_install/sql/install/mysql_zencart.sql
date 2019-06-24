@@ -6,7 +6,7 @@
 # * @copyright Copyright 2003-2019 Zen Cart Development Team
 # * @copyright Portions Copyright 2003 osCommerce
 # * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
-# * @version $Id: mysql_zencart.sql 19496 2019-06-22 20:17:16Z webchills $
+# * @version $Id: mysql_zencart.sql 19497 2019-06-24 09:06:16Z webchills $
 #
 
 ############ IMPORTANT INSTRUCTIONS ###############
@@ -728,18 +728,14 @@ CREATE TABLE email_archive (
 
 #
 # Table structure for table 'ezpages'
-# Wir erhalten die 1.5.5 Struktur dieser Tabelle, um mit der IT Recht Kanzlei Funktionalität kompatibel zu bleiben
-# Die neue Struktur wird nur für die normalen EZ Pages verwendet
+# Neue Struktur für multilanguage EZ Pages seit 1.5.6, page_key bleibt für IT Recht Kanzlei erhalten
 #
 
 DROP TABLE IF EXISTS ezpages;
 CREATE TABLE ezpages (
   pages_id int(11) NOT NULL auto_increment,
-  languages_id int(11) NOT NULL default '1',
-  pages_title varchar(64) NOT NULL default '',
   alt_url varchar(255) NOT NULL default '',
   alt_url_external varchar(255) NOT NULL default '',
-  pages_html_text mediumtext,
   status_header int(1) NOT NULL default '1',
   status_sidebox int(1) NOT NULL default '1',
   status_footer int(1) NOT NULL default '1',
@@ -764,6 +760,7 @@ CREATE TABLE ezpages (
 
 #
 # Table structure for table 'ezpages_content'
+# Neue Tabelle seit 1.5.6
 #
 
 DROP TABLE IF EXISTS ezpages_content;
@@ -3268,27 +3265,28 @@ INSERT INTO currencies VALUES (4,'Canadian Dollar','CAD','$','','.',',','2','1.4
 INSERT INTO currencies VALUES (5,'Australian Dollar','AUD','$','','.',',','2','1.3919', now());
 INSERT INTO currencies VALUES (6,'Schweizer Franken','CHF','CHF','','','','0','1.0741', now());
 
-# Create Default IT-Recht Kanzlei EZ Pages - we use the old structure and reserve the first 8 pages for these special pages
-INSERT INTO ezpages (pages_id, languages_id, pages_title, alt_url, alt_url_external, pages_html_text, status_header, status_sidebox, status_footer, status_toc, header_sort_order, sidebox_sort_order, footer_sort_order, toc_sort_order, page_open_new_window, page_is_ssl, toc_chapter, page_key) VALUES
-(1, 43, 'Datenschutzbestimmungen', '', '', '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 'itrk-datenschutz'),
-(2, 43, 'Widerrufsrecht', '', '', '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 'itrk-widerruf'),
-(3, 43, 'Impressum', '', '', '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 'itrk-impressum'),
-(4, 43, 'Allgemeine Geschäftsbedingungen', '', '', '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 'itrk-agb'),
-(5, 1, 'Privacy', '', '', '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 'itrk-datenschutz'),
-(6, 1, 'Revocation Clause', '', '', '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 'itrk-widerruf'),
-(7 ,1, 'Imprint', '', '', '', 0, 0, 0, 0, 0, 0, 0, 4, 0, 0, 0, 'itrk-impressum'),
-(8, 1, 'Terms and Conditions', '', '', '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 'itrk-agb');
 
-# Create Default IT-Recht Kanzlei EZ Content Pages - we use the old structure and reserve the first 8 pages for these special pages
+# Create Default IT-Recht Kanzlei EZ Pages - we reserve the first 8 pages for these special pages
+INSERT INTO ezpages (pages_id, alt_url, alt_url_external, status_header, status_sidebox, status_footer, status_toc, header_sort_order, sidebox_sort_order, footer_sort_order, toc_sort_order, page_open_new_window, page_is_ssl, toc_chapter, page_key) VALUES
+(1, '', '', '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 'itrk-datenschutz'),
+(2, '', '', '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 'itrk-widerruf'),
+(3, '', '', '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 'itrk-impressum'),
+(4, '', '', '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 'itrk-agb'),
+(5, '', '', '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 'itrk-datenschutz'),
+(6, '', '', '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 'itrk-widerruf'),
+(7  '', '', '', 0, 0, 0, 0, 0, 0, 0, 4, 0, 0, 0, 'itrk-impressum'),
+(8, '', '', '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 'itrk-agb');
+
+# Create Default IT-Recht Kanzlei EZ Content Pages - we reserve the first 8 pages for these special pages
 INSERT INTO ezpages_content (pages_id, languages_id, pages_title, pages_html_text) VALUES 
 (1, 43, 'Datenschutzbestimmungen', ''),
 (2, 43, 'Widerrufsrecht', ''),
 (3, 43, 'Impressum', ''),
 (4, 43, 'Allgemeine Geschäftsbedingungen', ''),
-(5, 43, 'Privacy', ''),
-(6, 43, 'Revocation Clause', ''),
-(7, 43, 'Imprint', ''),
-(8, 43, 'Terms and Conditions', '');
+(5, 1, 'Privacy', ''),
+(6, 1, 'Revocation Clause', ''),
+(7, 1, 'Imprint', ''),
+(8, 1, 'Terms and Conditions', '');
 
 INSERT INTO google_analytics_languages VALUES (1,'Chinese (simplified) - Chinesisch (einfach)','zh_CN',1);
 INSERT INTO google_analytics_languages VALUES (2,'Chinese (traditional) - Chinesisch (traditionell)','zh_TW',2);
