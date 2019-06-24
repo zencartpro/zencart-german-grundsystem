@@ -3,7 +3,7 @@
  * @copyright Copyright 2003-2019 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: invoice.php 2019-06-22 10:02:14 webchills $
+ * @version $Id: invoice.php 2019-06-24 20:19:14 webchills $
 */
 
   class invoice {
@@ -16,7 +16,7 @@
       $this->title = MODULE_PAYMENT_INVOICE_TEXT_TITLE;
       $this->description = MODULE_PAYMENT_INVOICE_TEXT_DESCRIPTION;
       $this->sort_order = defined('MODULE_PAYMENT_INVOICE_SORT_ORDER') ? MODULE_PAYMENT_INVOICE_SORT_ORDER : null;
-      $this->enabled = (defined('MODULE_PAYMENT_INVOICE_STATUS') && MODULE_PAYMENT_INVOICE_STATUS == 'True');      
+      $this->enabled = (defined('MODULE_PAYMENT_INVOICE_STATUS') && MODULE_PAYMENT_INVOICE_STATUS == 'True'); 
 
       if (null === $this->sort_order) return false;
 
@@ -110,12 +110,8 @@
     
     
     function install() {
-	    global $db, $messageStack;
-      if (defined('MODULE_PAYMENT_INVOICE_STATUS')) {
-        $messageStack->add_session('Invoice module already installed.', 'error');
-        zen_redirect(zen_href_link(FILENAME_MODULES, 'set=payment&module=invoice', 'SSL'));
-        return 'failed';
-      }
+	    global $db;
+      
       $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) values ('Payment by invoice', 'MODULE_PAYMENT_INVOICE_STATUS', 'True', 'Do you want to enable payment by invoice?', '6', '0', 'zen_cfg_select_option(array(\'True\', \'False\'), ', now());");
       $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) values ('Bank Name:', 'MODULE_PAYMENT_INVOICE_BANKNAM', '---', 'Your full bank name', '6', '1', now());");
       $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) values ('Account Holder:', 'MODULE_PAYMENT_INVOICE_ACCNAM', '---', 'The name associated with the account.', '6', '1', now());");
@@ -131,8 +127,7 @@
       $db->Execute("insert into " . TABLE_CONFIGURATION_LANGUAGE   . " (configuration_title, configuration_key, configuration_language_id, configuration_description, date_added) values ('Zahlung auf Rechnung anbieten?', 'MODULE_PAYMENT_INVOICE_STATUS', '43', 'Wollen Sie Zahlung auf Rechnung aktivieren?', now())");
       $db->Execute("insert into " . TABLE_CONFIGURATION_LANGUAGE   . " (configuration_title, configuration_key, configuration_language_id, configuration_description, date_added) values ('Bank Name', 'MODULE_PAYMENT_INVOICE_BANKNAM', '43', 'Tragen Sie hier den Namen Ihrer Bank ein', now())");
       $db->Execute("insert into " . TABLE_CONFIGURATION_LANGUAGE   . " (configuration_title, configuration_key, configuration_language_id, configuration_description, date_added) values ('Kontoinhaber', 'MODULE_PAYMENT_INVOICE_ACCNAM', '43', 'Tragen Sie hier den Namen des Kontoinhabers ein.', now())");
-
-      
+     
       $db->Execute("insert into " . TABLE_CONFIGURATION_LANGUAGE   . " (configuration_title, configuration_key, configuration_language_id, configuration_description, date_added) values ('IBAN', 'MODULE_PAYMENT_INVOICE_ACCIBAN', '43', 'Tragen Sie hier Ihre IBAN ein.', now())");
       $db->Execute("insert into " . TABLE_CONFIGURATION_LANGUAGE   . " (configuration_title, configuration_key, configuration_language_id, configuration_description, date_added) values ('BIC/SWIFT', 'MODULE_PAYMENT_INVOICE_BANKBIC', '43', 'Tragen Sie hier Ihren BIC/SWIFT Code ein.', now())");
       $db->Execute("insert into " . TABLE_CONFIGURATION_LANGUAGE   . " (configuration_title, configuration_key, configuration_language_id, configuration_description, date_added) values ('Sortierreihenfolge', 'MODULE_PAYMENT_INVOICE_SORT_ORDER', '43', 'Anzeigereigenfolge für dieses Modul. Der niedrigste Wert wird zuerst angezeigt.', now())");
