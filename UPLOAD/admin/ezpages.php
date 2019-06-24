@@ -5,14 +5,10 @@
  * @copyright Copyright 2003-2019 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: ezpages.php 792 2019-06-16 21:40:51Z webchills $
+ * @version $Id: ezpages.php 799 2019-06-24 18:01:51Z webchills $
  */
 require('includes/application_top.php');
-    if(isset($_SESSION['languages_id'])){
-        $rl_language = $_SESSION['languages_id'];
-    } else {
-        $rl_language=1;
-    }
+   
 
 if (!isset($_SESSION['ez_sort_order'])) {
   $_SESSION['ez_sort_order'] = 0;
@@ -137,7 +133,7 @@ if (zen_not_null($action)) {
         $sql_data_array = array(
           'page_open_new_window' => $page_open_new_window,
           'page_is_ssl' => $page_is_ssl,
-          'languages_id' => $rl_language,
+         
           'alt_url' => $alt_url,
           'alt_url_external' => $alt_url_external,
           'status_header' => $status_header,

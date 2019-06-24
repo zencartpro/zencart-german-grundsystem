@@ -1,6 +1,5 @@
 ﻿Willkommen bei der deutschen Zen-Cart Version
 Version 1.5.6 BETA
-vom 20.06.2019
 
 Um Zen Cart 1.5.6 BETA deutsch zu installieren nur die Ordner/Dateien im Ordner UPLOAD hochladen!
 
@@ -24,5 +23,4 @@ Empfohlene Konfiguration:
 * Datenbank mit Character Set: utf8mb4 und Kollation: utf8mb4_unicode_ci 
 
 Bekannte Fehler/noch nicht implementiert
-* Neue EZ Pages Funktionalität noch nicht komplett
-* EZ Pages in den Demodaten noch nicht komplett
+* IT Recht Kanzlei Funktionalität noch nicht auf die neue EZ Pages Struktur angepasst

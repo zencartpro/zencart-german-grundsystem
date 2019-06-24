@@ -49,5 +49,4 @@ Dies ist eine BETA Version.
   https://www.zen-cart-pro.at/forum/forums/153-BETA-TEST-Zen-Cart-1-5-6-deutsch
 
 Bekannte Fehler/noch nicht implementiert
-* Neue EZ Pages Funktionalität noch nicht komplett
-* EZ Pages in den Demodaten noch nicht komplett
+* IT Recht Kanzlei Funktionalität noch nicht auf die neue EZ Pages Struktur angepasst
