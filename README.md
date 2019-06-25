@@ -20,6 +20,7 @@ Neu in 1.5.6
 * Neues Layout für die Shopadministration mit verbesserter Unterstützung für kleinere Bildschirme
 * Neuer graphischer Verkaufsbericht unter Administration > Statistiken
 * EZ Pages sind nun multilingual
+* Zahlungsart Sofortüberweisung vorintegriert
 * Bestellbestätigungsemail enthält falls angegeben die Telefonnummer des Kunden für die Zustellung
 * Admin-Seiten zeigen nun ihren Namen im Browser-Tabs an
 * Zahlreiche neue Notifier zur einfacheren Integration von Modulen
