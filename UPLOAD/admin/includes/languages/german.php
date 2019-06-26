@@ -5,7 +5,7 @@
  * @copyright Copyright 2003-2019 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: german.php 664 2019-06-22 14:50:04Z webchills $
+ * @version $Id: german.php 665 2019-06-26 07:37:04Z webchills $
  */
 if (!defined('IS_ADMIN_FLAG'))
 {
@@ -691,7 +691,7 @@ define('TABLE_HEADING_NO', 'Nein');
 define('TEXT_PRODUCTS_IMAGE_MANUAL', '<br /><strong>Oder wählen Sie ein bestehendes Bild vom Server, Dateiname:</strong>');
 define('TEXT_IMAGES_OVERWRITE', 'Bestehendes Bild überschreiben? Verwenden Sie "Nein" bei manuell eingegebenem Namen');
 define('TEXT_IMAGE_OVERWRITE_WARNING', 'WARNUNG: DATEINAME wurde aktualisiert aber nicht überschrieben ');
-define('TEXT_IMAGES_DELETE', 'Bild löschen?<br />Bild wurde nicht vom Server entfernt:');
+define('TEXT_IMAGES_DELETE', 'Bild löschen?<br />(Bilddatei wird dabei nicht vom Server entfernt)');
 define('TEXT_IMAGE_CURRENT', 'Bild Name: ');
 
 define('ERROR_DEFINE_OPTION_NAMES', 'WARNUNG: Es wurde kein Attributname definiert');
