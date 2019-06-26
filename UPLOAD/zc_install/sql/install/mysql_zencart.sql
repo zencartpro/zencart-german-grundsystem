@@ -6,7 +6,7 @@
 # * @copyright Copyright 2003-2019 Zen Cart Development Team
 # * @copyright Portions Copyright 2003 osCommerce
 # * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
-# * @version $Id: mysql_zencart.sql 19500 2019-06-24 20:15:16Z webchills $
+# * @version $Id: mysql_zencart.sql 19502 2019-06-26 12:01:16Z webchills $
 #
 
 ############ IMPORTANT INSTRUCTIONS ###############
@@ -3258,12 +3258,14 @@ INSERT INTO configuration_group (configuration_group_id, language_id, configurat
 (36, 1,  'IT Recht Kanzlei', 'IT Recht Kanzlei Settings', 36, '1'),
 (37, 1,  'pdf Invoice', 'pdf Invoice Settings', 37, '1');
 
-INSERT INTO currencies VALUES (1,'Euro','EUR','&euro;','','.',',','2','1.0000', now());
-INSERT INTO currencies VALUES (2,'US Dollar','USD','$','','.',',','2','1.0749', now());
-INSERT INTO currencies VALUES (3,'GB Pound','GBP','&pound;','','.',',','2','0.8690', now());
-INSERT INTO currencies VALUES (4,'Canadian Dollar','CAD','$','','.',',','2','1.4373', now());
-INSERT INTO currencies VALUES (5,'Australian Dollar','AUD','$','','.',',','2','1.3919', now());
-INSERT INTO currencies VALUES (6,'Schweizer Franken','CHF','CHF','','','','0','1.0741', now());
+# Set currencies
+
+INSERT INTO currencies VALUES (1,'Euro', 'EUR', '', ' €', ',', '', '2', '1.000000', now());
+INSERT INTO currencies VALUES (2,'US Dollar','USD','',' $','.',',','2','1.195740', now());
+INSERT INTO currencies VALUES (3,'GB Pound','GBP','',' £','.',',','2','0.939593', now());
+INSERT INTO currencies VALUES (4,'Canadian Dollar','CAD','',' $','.',',','2','1.575105', now());
+INSERT INTO currencies VALUES (5,'Australian Dollar','AUD','',' $','.',',','2','1.715805', now());
+INSERT INTO currencies VALUES (6,'Schweizer Franken','CHF','',' CHF','','','0','1.000000', now());
 
 
 # Create Default IT-Recht Kanzlei EZ Pages - we reserve the first 8 pages for these special pages
@@ -4284,7 +4286,7 @@ INSERT INTO configuration_language (configuration_title, configuration_key, conf
 ('SMTP E-Mail - Mailbox Passwort', 'EMAIL_SMTPAUTH_PASSWORD', 43, 'Passwort für SMTP Authentifizierung', now(), now()),
 ('SMTP E-Mail - Mailserver Name', 'EMAIL_SMTPAUTH_MAIL_SERVER', 43, 'SMTP Mailserver für Authentifizierung z.B. smtp.domain.com', now(), now()),
 ('SMTP E-Mail - Mailserver Port', 'EMAIL_SMTPAUTH_MAIL_SERVER_PORT', 43, 'SMTP Mailserver Port', now(), now()),
-('Währungssymbole für Text-Emails', 'CURRENCIES_TRANSLATIONS', 43, 'Welche Währungssymbole sollen für Text-Emails konvertiert werden?<br />Default = &pound;,CB#:&euro;,C"b B,:&reg;,CB.:&trade;,C"b B"', now(), now()),
+('Währungssymbole für Text-Emails', 'CURRENCIES_TRANSLATIONS', 43, 'Welche Währungssymbole sollen für Text-Emails konvertiert werden?<br />Am besten lassen Sie die folgende Voreinstellung völlig unverändert:<br/>&amp;pound; = £, &amp;euro; = €, &amp;reg; = ® , &amp;trade; = ™', now(), now()),
 ('E-Mail Zeilenvorschub', 'EMAIL_LINEFEED', 43, 'Legen Sie hier die Zeichen fest, die Sie zur Trennung des E-Mail Headers verwenden wollen.', now(), now()),
 ('E-Mail als MIME HTML versenden', 'EMAIL_USE_HTML', 43, 'Wollen Sie e-Mails im HTML Format versenden falls der Empänger in seinen Einstellungen HTML statt Text angekreuzt hat?<br/>HINWEIS: Dies ist der generelle Hauptschalter. Wenn Sie hier auf false stellen, dann wird der Shop keinerlei HTML Emails versenden.', now(), now()),
 ('E-Mail durch DNS-Server verifizieren', 'ENTRY_EMAIL_ADDRESS_CHECK', 43, 'Soll die Gültigkeit von e-Mails durch DNS-Server verifiziert werden?', now(), now()),
@@ -4964,5 +4966,5 @@ INSERT INTO product_type_layout_language (configuration_title, configuration_key
 ('PRODUCT FREE SHIPPING Attribut Gewicht Präfix - Standardeinstellung', 'DEFAULT_PRODUCT_FREE_SHIPPING_PRODUCTS_ATTRIBUTES_WEIGHT_PREFIX', 43, 'PRODUCT FREE SHIPPING Attribut Gewicht Präfix<br />Standard Gewicht Präfix<br />Leer, + oder -', now(), now());
 
 REPLACE INTO product_type_layout_language (configuration_title , configuration_key , languages_id, configuration_description, last_modified, date_added)
-VALUES ('20190622', 'LANGUAGE_VERSION', '43', 'Datum der deutschen Übersetzungen', now(), now());
+VALUES ('20190626', 'LANGUAGE_VERSION', '43', 'Datum der deutschen Übersetzungen', now(), now());
 ##### End of SQL setup for Zen Cart German.
