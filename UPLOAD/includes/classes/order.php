@@ -6,7 +6,7 @@
  * @package classes
  * @copyright Copyright 2003-2019 Zen Cart Development Team
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: order.php 2019-06-23 19:58:25Z webchills $
+ * @version $Id: order.php 2019-06-26 12:20:25Z webchills $
  */
 /**
  * order class
@@ -136,7 +136,8 @@ class order extends base {
                         'orders_status' => $order->fields['orders_status'],
                         'total' => $order->fields['order_total'],
                         'tax' => $order->fields['order_tax'],                        
-                        'last_modified' => $order->fields['last_modified']
+                        'last_modified' => $order->fields['last_modified'],
+                        'order_device' => $order->fields['order_device']
                         );
 
     $this->customer = array('id' => $order->fields['customers_id'],
