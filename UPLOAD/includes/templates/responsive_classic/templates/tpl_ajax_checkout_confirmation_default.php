@@ -6,15 +6,16 @@
  * Displays final checkout details, cart, payment and shipping info details.
  *
  * @package templateSystem
- * @copyright Copyright 2003-2018 Zen Cart Development Team
+ * @copyright Copyright 2003-2019 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: tpl_ajax_checkout_confirmation_default.php 3 2018-01-02 17:33:58Z webchills $
+ * @version $Id: tpl_ajax_checkout_confirmation_default.php 4 2019-06-26 08:33:58Z webchills $
  */
 ?>
 <div class="centerColumn" id="checkoutConfirmDefault">
 
 <h1 id="checkoutConfirmDefaultHeading"><?php echo HEADING_TITLE; ?></h1>
+<div id="conditionslaststep"><?php echo TEXT_ZUSATZ_SCHRITT3; ?><br/><?php echo TEXT_CONDITIONS_ACCEPTED_IN_LAST_STEP; ?></div>
 
 <?php if ($messageStack->size('redemptions') > 0) echo $messageStack->output('redemptions'); ?>
 <?php if ($messageStack->size('checkout_confirmation') > 0) echo $messageStack->output('checkout_confirmation'); ?>
@@ -109,6 +110,7 @@
         <tr class="cartTableHeading">
         <th scope="col" id="ccQuantityHeading"><?php echo TABLE_HEADING_QUANTITY; ?></th>
         <th scope="col" id="ccProductsHeading"><?php echo TABLE_HEADING_PRODUCTS; ?></th>
+        <th scope="col" id="ccProductsHeading"><?php echo TABLE_HEADING_PRODUCTIMAGE; ?></th>
 <?php
   // If there are tax groups, display the tax columns for price breakdown
   if (sizeof($order->info['tax_groups']) > 1) {
@@ -117,6 +119,7 @@
 <?php
   }
 ?>
+ <th scope="col" id="ccSinglePriceHeading" width="60"><?php echo TABLE_HEADING_SINGLEPRICE; ?></th>
           <th scope="col" id="ccTotalHeading"><?php echo TABLE_HEADING_TOTAL; ?></th>
         </tr>
 <?php // now loop thru all products to display quantity and price ?>
@@ -124,6 +127,7 @@
         <tr class="<?php echo $order->products[$i]['rowClass']; ?>">
           <td  class="cartQuantity"><?php echo $order->products[$i]['qty']; ?>&nbsp;x</td>
           <td class="cartProductDisplay"><?php echo $order->products[$i]['name']; ?>
+          	<br/><?php echo $order->products[$i]['merkmale']; ?>
           <?php  echo $stock_check[$i]; ?>
 
 <?php // if there are attributes, loop thru them and display one per line
@@ -137,7 +141,10 @@
       echo '</ul>';
     } // endif attribute-info
 ?>
-        </td>
+          </td>
+        <td class="cartProductImg">
+<?php echo zen_image(DIR_WS_IMAGES . $order->products[$i]['image'], $order->products[$i]['name'], IMAGE_SHOPPING_CART_WIDTH, IMAGE_SHOPPING_CART_HEIGHT);?>
+ </td>
 
 <?php // display tax info if exists ?>
 <?php if (sizeof($order->info['tax_groups']) > 1)  { ?>
@@ -145,6 +152,11 @@
           <?php echo zen_display_tax_value($order->products[$i]['tax']); ?>%</td>
 <?php    }  // endif tax info display  ?>
         <td class="cartTotalDisplay">
+          <?php echo $currencies->display_price($order->products[$i]['final_price'], $order->products[$i]['tax'], 1);?>
+         
+ </td>
+
+        <td class="cartTotalDisplay" valign="top">
           <?php echo $currencies->display_price($order->products[$i]['final_price'], $order->products[$i]['tax'], $order->products[$i]['qty']);
           if ($order->products[$i]['onetime_charges'] != 0 ) echo '<br /> ' . $currencies->display_price($order->products[$i]['onetime_charges'], $order->products[$i]['tax'], 1);
 ?>
@@ -212,8 +224,36 @@ if (isset ($_SESSION['shipping']['extras']) && is_array ($_SESSION['shipping']['
     }
 }
 ?>
+<?php
+ // zollhinweis für nicht EU
+        $dest_country = isset ($order->delivery['country']['iso_code_2']) ? $order->delivery['country']['iso_code_2'] : 0 ;
+        $dest_zone = 0;
+        $error = false;
+        $countries_table = EU_COUNTRIES_FOR_LAST_STEP; 
+        $country_zones = explode(",", $countries_table);
+        if ((!in_array($dest_country, $country_zones))&& ($order->delivery['country']['id'] != '')) {
+            $dest_zone = $i;
+            echo TEXT_NON_EU_COUNTRIES;
+        } else {
+            // do nothing
+        }
+        ?>
+
+
+<?php
+  if (DISPLAY_WIDERRUF_DOWNLOADS_ON_CHECKOUT_CONFIRMATION == 'true') {
+?>
+<fieldset>
+<legend><?php echo HEADING_WIDERRUF_DOWNLOADS; ?></legend>
+<?php echo  zen_draw_checkbox_field('widerruf_downloads', '1', false, 'id="widerruf_downloads"');?>
+<label class="checkboxLabel" for="widerruf_downloads"><?php echo TEXT_WIDERRUF_DOWNLOADS_CONFIRM; ?></label>
+</fieldset>
+<?php
+  }
+?>
 <div class="buttonRow forward confirm-order"><?php echo zen_image_submit(BUTTON_IMAGE_CONFIRM_ORDER, BUTTON_CONFIRM_ORDER_ALT, 'name="btn_submit" id="btn_submit"') ;?></div>
+
 </form>
-<div class="buttonRow back"><?php echo TITLE_CONTINUE_CHECKOUT_PROCEDURE . '<br />' . TEXT_CONTINUE_CHECKOUT_PROCEDURE; ?></div>
+
 
 </div>
