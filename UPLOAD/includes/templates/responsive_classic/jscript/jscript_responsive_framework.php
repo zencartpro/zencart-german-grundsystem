@@ -3,7 +3,7 @@
  * @package templateSystem
  * @copyright Copyright 2003-2019 Zen Cart Development Team
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: jscript_responsive_framework 3 2019-04-12 18:33:58Z webchills $
+ * @version $Id: jscript_responsive_framework 4 2019-06-27 08:15:58Z webchills $
  */
 ?>
 
@@ -57,7 +57,8 @@ $('#productnotifications').css({ 'display': 'none', 'visibility': 'hidden' });
 $('#currencies').css({ 'display': 'none', 'visibility': 'hidden' });
 $('#languages').css({ 'display': 'none', 'visibility': 'hidden' });
 $('#shoppingcart').css({ 'display': 'none', 'visibility': 'hidden' });
-
+$('#loginbox').css({ 'display': 'none', 'visibility': 'hidden' });
+$('#blanksidebox').css({ 'display': 'none', 'visibility': 'hidden' });
 
 $('input#email-address').clone().attr('type','email').insertAfter('input#email-address').prev().remove();
 $('input#searchHeader').clone().attr('type','search').insertAfter('input#searchHeader').prev().remove();

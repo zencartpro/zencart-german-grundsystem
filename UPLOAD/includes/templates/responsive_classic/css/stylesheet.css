@@ -2,10 +2,10 @@
  * Main CSS Stylesheet
  *
  * @package templateSystem
- * @copyright Copyright 2003-2016 Zen Cart Development Team
+ * @copyright Copyright 2003-2019 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: stylesheet.css 7 2016-03-29 23:33:58Z webchills $
+ * @version $Id: stylesheet.css 8 2019-06-27 08:18:58Z webchills $
  */
 
 /*bof basic elements*/
@@ -72,7 +72,7 @@ fieldset div, fieldset .buttonRow.forward{margin-right:20px;}
 option{font-size:110%;}
 LABEL, h4.optionName {line-height:1.5em;padding:0.2em;}
 LABEL.checkboxLabel, LABEL.radioButtonLabel {margin:0.5em 0.3em;}
-LABEL.inputLabel {width:11em;float:left;}
+LABEL.inputLabel {width:12em;float:left;}
 LABEL.inputLabelPayment {width:15em;float:left;}
 LABEL.selectLabel, LABEL.switchedLabel, LABEL.uploadsLabel {width:12em;float:left;}
 LABEL#textAreaReviews {font-weight:normal;margin:1em 0;}
@@ -485,5 +485,13 @@ table{border:none;padding:0;margin:0; border-spacing:0;border-collapse:collapse;
 
 .taxAddon a{
 	font-size:10px;
+}
+
+#loginSideBoxInputEmail{
+	width:95%;
+}
+
+#loginSideBoxInputPass{
+	width:95%
 }
 
