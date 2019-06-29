@@ -49,6 +49,3 @@ Dies ist eine BETA Version.
   https://www.zen-cart-pro.at/docs/155-deutsch-doku/
 * Fehler als Issues in Github melden oder im Suportforum im Thread Zen Cart 1.5.6 deutsch Betatest:
   https://www.zen-cart-pro.at/forum/forums/153-BETA-TEST-Zen-Cart-1-5-6-deutsch
-
-Bekannte Fehler/noch nicht implementiert
-* IT Recht Kanzlei Funktionalität noch nicht auf die neue EZ Pages Struktur angepasst

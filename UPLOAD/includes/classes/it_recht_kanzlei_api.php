@@ -1,10 +1,10 @@
 <?php
 /**
  * @package IT Recht Kanzlei
- * @copyright Copyright 2003-2016 Zen Cart Development Team
+ * @copyright Copyright 2003-2019 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: it_recht_kanzlei_api.php 2016-07-19 16:50:51Z webchills $
+ * @version $Id: it_recht_kanzlei_api.php 2019-06-29 17:00:51Z webchills $
  */
 
 if (!defined('IS_ADMIN_FLAG')) {
@@ -232,11 +232,13 @@ class it_recht_kanzlei {
                                       
        
                                       
-        $check_query = $db->Execute("SELECT pages_html_text, page_key, languages_id
-                                       FROM ".TABLE_EZPAGES." 
-                                      WHERE page_key = '".$page_key."' 
-                                        AND languages_id = '".$itrk_lang."'
-                                      LIMIT 1");
+        $check_query = $db->Execute("SELECT ec.pages_html_text, e.page_key, ec.languages_id
+                                       FROM ".TABLE_EZPAGES." e,
+                                            " . TABLE_EZPAGES_CONTENT . " ec
+                                      WHERE e.pages_id = ec.pages_id
+                                      AND e.page_key = '".$page_key."' 
+                                      AND ec.languages_id = '".$itrk_lang."'
+                                      LIMIT 1");    
                                       
         
         if ($check_query->fields['pages_html_text']  == $this->charset_decode_utf_8($xml->rechtstext_html.$pdf_file_text)) {
@@ -245,10 +247,14 @@ class it_recht_kanzlei {
           $sql_data_array = array('pages_html_text' => $this->charset_decode_utf_8($xml->rechtstext_html.$pdf_file_text));
           zen_db_perform(TABLE_EZPAGES, $sql_data_array, 'update', "page_key = '".$page_key."' AND languages_id = '".$itrk_lang."'");
           if (mysqli_affected_rows($db->link) < 1) {
-            $check_content_query = $db->Execute("SELECT pages_html_text, page_key, languages_id
-                                                   FROM ".TABLE_EZPAGES." 
-                                                  WHERE page_key = '".$page_key."' 
-                                                    AND languages_id = '".$itrk_lang."'");
+           
+          $check_content_query = $db->Execute("SELECT ec.pages_html_text, e.page_key, ec.languages_id
+                                       FROM ".TABLE_EZPAGES." e,
+                                            " . TABLE_EZPAGES_CONTENT . " ec
+                                      WHERE e.pages_id = ec.pages_id
+                                      AND e.page_key = '".$page_key."' 
+                                      AND ec.languages_id = '".$itrk_lang."'
+                                      LIMIT 1");    
             
             if ($check_content_query->fields['pages_html_text']  != $sql_data_array['pages_html_text']) {
               $this->return_error('99');

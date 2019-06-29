@@ -4,17 +4,23 @@
  * Conditions Page
  * 
  * @package page
- * @copyright Copyright 2003-2016 Zen Cart Development Team
+ * @copyright Copyright 2003-2019 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: header_php.php 730 2016-06-03 19:49:16Z webchills $
+ * @version $Id: header_php.php 731 2019-06-29 16:49:16Z webchills $
  */
 
 if (IT_RECHT_KANZLEI_STATUS == 'ja') { 
 // This should be first line of the script:
 $zco_notifier->notify('NOTIFY_HEADER_START_EZPAGE');
 
-$sql = "select * from " . TABLE_EZPAGES . " where languages_id= '" . (int)$_SESSION['languages_id'] . "' and page_key = '" . IT_RECHT_KANZLEI_PAGE_KEY_AGB . "'";
+$sql = "SELECT e.*, ec.*
+        FROM  " . TABLE_EZPAGES . " e,
+              " . TABLE_EZPAGES_CONTENT . " ec
+        WHERE e.pages_id = ec.pages_id
+        AND ec.languages_id = '" . (int)$_SESSION['languages_id'] . "'
+        and e.page_key = '" . IT_RECHT_KANZLEI_PAGE_KEY_AGB . "'";
+
 $var_pageDetails = $db->Execute($sql);
 // redirect to home page if page not found (or deactivated/deleted):
 if ($var_pageDetails->EOF) {

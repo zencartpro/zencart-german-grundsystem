@@ -21,6 +21,3 @@ Empfohlene Konfiguration:
 * PHP 7.3.x
 * MySQL 5.7
 * Datenbank mit Character Set: utf8mb4 und Kollation: utf8mb4_unicode_ci 
-
-Bekannte Fehler/noch nicht implementiert
-* IT Recht Kanzlei Funktionalität noch nicht auf die neue EZ Pages Struktur angepasst
