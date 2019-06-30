@@ -6,7 +6,7 @@
 # * @copyright Copyright 2003-2019 Zen Cart Development Team
 # * @copyright Portions Copyright 2003 osCommerce
 # * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
-# * @version $Id: mysql_zencart.sql 19502 2019-06-26 12:01:16Z webchills $
+# * @version $Id: mysql_zencart.sql 19503 2019-06-30 08:48:16Z webchills $
 #
 
 ############ IMPORTANT INSTRUCTIONS ###############
@@ -3268,27 +3268,24 @@ INSERT INTO currencies VALUES (5,'Australian Dollar','AUD','',' $','.',',','2','
 INSERT INTO currencies VALUES (6,'Schweizer Franken','CHF','',' CHF','','','0','1.000000', now());
 
 
-# Create Default IT-Recht Kanzlei EZ Pages - we reserve the first 8 pages for these special pages
+# Create Default IT-Recht Kanzlei EZ Pages - we reserve the first 4 pages for these special pages
 INSERT INTO ezpages (pages_id, alt_url, alt_url_external, status_header, status_sidebox, status_footer, status_toc, header_sort_order, sidebox_sort_order, footer_sort_order, toc_sort_order, page_open_new_window, page_is_ssl, toc_chapter, page_key) VALUES
 (1, '', '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 'itrk-datenschutz'),
 (2, '', '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 'itrk-widerruf'),
 (3, '', '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 'itrk-impressum'),
-(4, '', '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 'itrk-agb'),
-(5, '', '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 'itrk-datenschutz'),
-(6, '', '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 'itrk-widerruf'),
-(7, '', '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 'itrk-impressum'),
-(8, '', '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 'itrk-agb');
+(4, '', '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 'itrk-agb');
 
-# Create Default IT-Recht Kanzlei EZ Content Pages - we reserve the first 8 pages for these special pages
+
+# Create Default IT-Recht Kanzlei EZ Content Pages - we reserve the first 4 pages for these special pages
 INSERT INTO ezpages_content (pages_id, languages_id, pages_title, pages_html_text) VALUES 
 (1, 43, 'Datenschutzbestimmungen', ''),
 (2, 43, 'Widerrufsrecht', ''),
 (3, 43, 'Impressum', ''),
 (4, 43, 'Allgemeine Geschäftsbedingungen', ''),
-(5, 1, 'Privacy', ''),
-(6, 1, 'Revocation Clause', ''),
-(7, 1, 'Imprint', ''),
-(8, 1, 'Terms and Conditions', '');
+(1, 1, 'Privacy', ''),
+(2, 1, 'Revocation Clause', ''),
+(3, 1, 'Imprint', ''),
+(4, 1, 'Terms and Conditions', '');
 
 INSERT INTO google_analytics_languages VALUES (1,'Chinese (simplified) - Chinesisch (einfach)','zh_CN',1);
 INSERT INTO google_analytics_languages VALUES (2,'Chinese (traditional) - Chinesisch (traditionell)','zh_TW',2);

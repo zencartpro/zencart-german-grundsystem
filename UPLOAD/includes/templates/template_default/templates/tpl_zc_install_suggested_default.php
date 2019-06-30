@@ -7,8 +7,8 @@
  *
  * @package templateSystem
  * @copyright Copyright 2003-2019 Zen Cart Development Team
- * @license https://www.zen-cart.com/license/2_0.txt GNU Public License v2.0
- * @version $Id: DrByte 2019 Jan 04 Modified in v1.5.6a $
+ * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
+ * @version $Id: tpl_zc_install_suggested_default.php 806 2019-06-30 09:28:24Z webchills $
  */
 $relPath = (file_exists('includes/templates/template_default/images/logo.gif')) ? '' : '../';
 $instPath = (file_exists('zc_install/index.php')) ? 'zc_install/index.php' : (file_exists('../zc_install/index.php') ? '../zc_install/index.php' : '');
@@ -17,13 +17,13 @@ $docsPath = (file_exists('docs/index.html')) ? 'docs/index.html' : (file_exists(
 <!DOCTYPE html>
 <html <?php echo HTML_PARAMS; ?>>
   <head>
-    <title>System Setup Required</title>
+    <title>Zen Cart muss erst installiert oder richtig konfiguriert werden</title>
     <meta content="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="keywords" content="">
     <meta name="description" content="">
     <meta name="authors" content="The Zen Cart&reg; Team and others">
-    <meta name="generator" content="shopping cart program by Zen Cart&reg;, http://www.zen-cart.com">
+    <meta name="generator" content="Zen-Cart deutsche Version, http://www.zen-cart-pro.at" />
     <meta name="robots" content="noindex, nofollow">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <style type="text/css">
@@ -216,114 +216,82 @@ $docsPath = (file_exists('docs/index.html')) ? 'docs/index.html' : (file_exists(
 
   <body>
   <div class="container">
-    <img src="<?php echo $relPath; ?>includes/templates/template_default/images/logo.gif" alt="Zen Cart&reg;" title=" Zen Cart&reg; " width="192" height="68" border="0" class="h-img"/> 
-    <h1>Welcome to Zen Cart<sup>&reg;</sup></h1>
+    <img src="<?php echo $relPath; ?>includes/templates/template_default/images/logo.gif" alt="Zen Cart&reg;" title=" Zen Cart&reg; " width="240" height="70" border="0" class="h-img"/> 
+    <h1>Die deutsche Zen Cart Version muss erst installiert oder richtig konfiguriert werden</h1>
     <div>
-      <h2>You are seeing this page for one or more reasons</h2>
+      <h2>Sie bekommen diese Seite aus einem der folgenden Gründe angezeigt:</h2>
       <ol>
-        <li>
-          This is <strong>your first time</strong> using Zen Cart<sup>&reg;</sup> and you have not yet completed the normal installation procedures.
-          <br>
-          If this is the case for you,
+        
+<li>Sie benutzen <strong>Zen Cart zum ersten Mal</strong> und haben noch keine Installation durchgeführt.<br />
+Sollte das der Fall sein, dann
           <?php if ($instPath) { ?>
-            <a href="<?php echo $instPath; ?>">CLICK HERE</a> to begin installation.
+            <a href="<?php echo $instPath; ?>">CLICKEN SIE HIER</a> um die Installation zu starten.
           <?php } else { ?>
-            you will need to upload the "zc_install" folder using your FTP program, and then run <a href="<?php echo $instPath; ?>">zc_install/index.php</a> via your browser (or reload this page to see a link to it).
+            dann laden Sie das Verzeichnis "zc_install" mit Ihrem FTP Programm in Ihr Shopverzeichnis hoch und rufen dann <a href="<?php echo $instPath; ?>">zc_install/index.php</a> in Ihrem Browser auf (oder laden Sie diese Seite erneut, um einen Link dahin angezeigt zu bekommen).
           <?php } ?>
-          <br><br>
-        </li>
+<br /><br />
+</li>
         <li>
-          This is <strong>not your first time</strong> using Zen Cart<sup>&reg;</sup> and you have previously completed the normal installation procedures.
+          Es ist <strong>nicht das erstemal</strong> dass Sie Zen Cart verwenden und Sie haben kürzlich die Installation bereits abgeschlossen.
           <br>
-          If this is the case for you, then...
+          Sollte das der Fall sein, dann kann es folgende Gründe geben:
           <br>
           <ul style='list-style-type:square'>
             <li>
-              Your <tt><strong>/includes/configure.php</strong></tt> and/or <tt><strong>/admin/includes/configure.php</strong></tt> files contain invalid <em>path information</em> and/or invalid <em>database-connection information</em>.
+              Ihre zentralen Konfigurationsdateien <tt><strong>/includes/configure.php</strong></tt> und/oder <tt><strong>/admin/includes/configure.php</strong></tt> Dateien enthalten ungültige <em>Pfadangaben</em> und/oder ungültige <em>Angaben zur Datenbankverbindung</em>.
             <br>
             </li>
             <li>
-              If you recently edited your configure.php files for any reason, or perhaps moved your site to a different folder or different server, then you will need to review and update all your settings to the correct values for your server.
+              Sollten Sie kürzlich Ihre configure.php Dateien aus irgendwelchen Gründen geändert haben, oder Ihren Shop in ein anderes Verzeichnis/anderen Server verschoben haben, dann müssen Sie die entsprechenden Angaben in den beiden Dateien anpassen.
               <br>
             </li>
             <li>
-              Additionally, if the permissions have been changed on your configure.php files, then perhaps they are too low for the files to be read.
+              Oder, falls Sie die Lese- und Schreibrechte (chmod) für Ihre configure.php-Dateien geändert haben, dann sind sie vielleicht zu niedrig gesetzt für das Lesen der Dateien. 
               <br>
             </li>
             <li>
-              Or the configure.php files could be missing altogether.
+              Oder die configure.php Dateien fehlen aus irgendeinem Grund komplett.
               <br>
             </li>
             <li>
-              Or your web hosting provider has recently changed the server's PHP configuration (or upgraded its version) then they may have broken things as well.
+              Oder Ihr Webhosting-Provider hat kürzlich die PHP-Konfiguration des Servers geändert (oder die PHP-Version aktualisiert), das könnte ebenfalls solche Effekte haben. 
               <br>
             </li>
             <li>
-              See the <a href="http://tutorials.zen-cart.com" target="_blank">Online FAQ and Tutorials</a> area on the Zen Cart<sup>&reg;</sup> website for assistance.
+              Weitere Informationen erhalten Sie im <a href="https://www.zen-cart-pro.at/forum" target="_blank">deutschsprachigen Supportforum</a>
             </li>
           </ul>
         </li>
         <?php if (isset($problemString) && $problemString != '') { ?>
           <br>
           <li>
-            Additional <strong>*IMPORTANT*</strong> Details: <span class="errorDetails"><?php echo $problemString; ?></span>
+            Zusätzliche <strong>*WICHTIGE*</strong> Hinweise: <span class="errorDetails"><?php echo $problemString; ?></span>
           </li>
         <?php } ?>
       </ol>
     </div>
     <div>
-      <h2>To begin installation:</h2>
+      <h2>Um die Installation zu starten:</h2>
       <ol>
           <?php if ($docsPath) { ?>
           <li>
-            Installation Documentation can be read by <a href="<?php echo $docsPath; ?>">CLICKING HERE</a>
+            Lesen Sie vorab die <a href="https://www.zen-cart-pro.at/docs/156-deutsch-doku/" target="_blank">INSTALLATIONSANLEITUNG</a>
           </li>
         <?php } else { ?>
           <li>
-            Installation documentation is normally found in the /docs folder of the Zen Cart&reg; distribution files/zip. You can also find documentation in the <a href="http://tutorials.zen-cart.com" target="_blank">Online FAQs</a>.
+           Die Installationsanleitung finden Sie online <a href="https://www.zen-cart-pro.at/docs/156-deutsch-doku/" target="_blank">hier</a> und auch im Ordner ANLEITUNG in der zip Datei des Zen Cart Downloads.
           </li>
         <?php } ?>
         <?php if ($instPath) { ?>
           <li>
-            Navigate to <a href="<?php echo $instPath; ?>">zc_install/index.php</a> with your web browser.
+            Rufen Sie <a href="<?php echo $instPath; ?>">zc_install/index.php</a> in Ihrem Browser auf.
           </li>
         <?php } else { ?>
-          <li>
-            You will need to upload the "zc_install" folder using your FTP program, and then run <a href="<?php echo $instPath; ?>">zc_install/index.php</a> via your browser (or reload this page to see a link to it).
-          </li>
+<li>Sie müssen das Verzeichnis "zc_install" per FTP in Ihr Shopverzeichnis hochladen und dann <a href="<?php echo $instPath; ?>">zc_install/index.php</a> via Ihrem Browser aufrufen (oder laden Sie diese Seite erneut, um einen Link dahin angezeigt zu bekommen).</li>
         <?php } ?>
-        <li>
-          Please refer to the <a href="http://tutorials.zen-cart.com" target="_blank">Online FAQ and Tutorials</a> area on the Zen Cart<sup>&reg;</sup> website if you run into difficulties.
-        </li>
+<li>Das <a href="https://www.zen-cart-pro.at/forum/forum.php" target="_blank">deutschsprachige Supportforum</a> steht Ihnen bei Problemen ebenfalls zur Verfügung.</li>
       </ol>
     </div>
-    <section id="footerBlock">
-      <div class="appInfo">
-        <p>
-          Zen Cart&reg; is derived from: Copyright 2003 osCommerce
-          <br><br>
-          This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
-          <br>
-          without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE
-          <br>
-          and is redistributable under Version 2 of the GNU General Public License.
-        <p>
-        <p>
-          <img src="./docs/osi-certified-120x100.png" alt="O S I Certified">
-          <br>
-          This software is OSI Certified Open Source Software.
-          <br>
-          OSI Certified is a certification mark of the Open Source Initiative.
-        <p>
-        <p class="zenData">
-          Copyright 2003 - 2018 Zen Ventures, LLC
-          <br><br>
-          Zen Cart&reg; 
-          <br>
-          <a href="https://www.zen-cart.com" target="_blank">www.zen-cart.com</a>
-        </p>
-      </div>
-    </section> <!-- End footerBlock //-->
   </div>
   </body>
 </html>
