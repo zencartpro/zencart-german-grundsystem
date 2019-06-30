@@ -4,7 +4,7 @@
  * @copyright Copyright 2003-2019 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: admin_access.php 842 2019-04-12 08:03:21Z webchills $
+ * @version $Id: admin_access.php 843 2019-06-30 10:17:21Z webchills $
  */
 
 if (!defined('ADMIN_PASSWORD_MIN_LENGTH')) define('ADMIN_PASSWORD_MIN_LENGTH', 7);
@@ -248,7 +248,7 @@ function zen_update_user($name, $email, $id, $profile)
 function zen_read_user($name)
 {
   global $db;
-  $sql = "select admin_id, admin_name, admin_email, admin_pass, pwd_last_change_date, reset_token, failed_logins, lockout_expires, admin_profile from " . TABLE_ADMIN . " where admin_name = :adminname:  LIMIT 1";
+  $sql = "select admin_id, admin_name, admin_email, admin_pass, pwd_last_change_date, reset_token, failed_logins, lockout_expires, admin_profile, last_login_date, last_login_ip from " . TABLE_ADMIN . " where admin_name = :adminname:  LIMIT 1";
   $sql = $db->bindVars($sql, ':adminname:', $name, 'string');
   $result = $db->Execute($sql);
   if ($result->EOF || $result->RecordCount() < 1) return FALSE;
