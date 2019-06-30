@@ -5,7 +5,7 @@
  * @copyright Copyright 2003-2019 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: general.php 892 2019-06-15 16:23:33Z webchills $
+ * @version $Id: general.php 893 2019-06-30 10:02:33Z webchills $
  */
 
 ////
@@ -1678,8 +1678,9 @@ while (!$chk_sale_categories_all->EOF) {
  * Calculates Tax rounding the result
  */
   function zen_calculate_tax($price, $tax) {
-    return $price * $tax / 100;
-  }
+    return (float)$price * (int)$tax / 100;
+  }  
+  
 
 /**
  * Returns the tax rate for a zone / class

@@ -1,10 +1,10 @@
 <?php
 /**
  * @package admin
- * @copyright Copyright 2003-2016 Zen Cart Development Team
+ * @copyright Copyright 2003-2019 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: products_price_manager.php 6443 2016-02-28 15:54:04Z webchills $
+ * @version $Id: products_price_manager.php 6444 2019-06-30 10:06:04Z webchills $
  */
 
 
@@ -26,8 +26,8 @@ define('TEXT_PRICE_NET', 'Preis (exkl. Steuer)');
 define('TEXT_PRICE_GROSS', 'Preis (inkl. Steuer)');
 define('TEXT_PRODUCT_AVAILABLE_DATE', 'Verfügbar ab:');
 define('TEXT_PRODUCTS_STATUS', 'Artikelstatus:');
-define('TEXT_PRODUCT_AVAILABLE', 'Lagernd');
-define('TEXT_PRODUCT_NOT_AVAILABLE', 'Nicht lagernd');
+define('TEXT_PRODUCT_AVAILABLE', 'Aktiv');
+define('TEXT_PRODUCT_NOT_AVAILABLE', 'Nicht aktiv');
 define('TEXT_PRODUCT_INFO_NONE', 'Bitte wählen Sie einen Artikel ...');
 define('TEXT_PRODUCT_IS_FREE','Artikel ist kostenlos:');
 define('TEXT_PRODUCTS_IS_FREE_EDIT','<br />*Artikel markiert als KOSTENLOS');
@@ -118,3 +118,4 @@ define('PRODUCT_WARNING_UPDATE_CANCEL', 'Die Änderungen wurden nicht gespeicher
 define('TEXT_INFO_EDIT_CAUTION', '<strong>Klicken Sie hier, um mit der Bearbeitung zu beginnen ...</strong>');
 define('TEXT_INFO_PREVIEW_ONLY', 'NUR Vorschau ... aktuelle Preiseinstellungen ... NUR Vorschau');
 define('TEXT_INFO_UPDATE_REMINDER', '<strong>Bearbeiten Sie die Artikelinformationen und klicken Sie zum Speichern anschließend auf Aktualisieren</strong>');
+define('BUTTON_ADDITITONAL_ACTIONS', 'Weitere Aktionen');
