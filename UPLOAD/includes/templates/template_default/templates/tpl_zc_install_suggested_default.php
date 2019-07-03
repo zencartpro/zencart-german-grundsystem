@@ -8,7 +8,7 @@
  * @package templateSystem
  * @copyright Copyright 2003-2019 Zen Cart Development Team
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: tpl_zc_install_suggested_default.php 806 2019-06-30 09:28:24Z webchills $
+ * @version $Id: tpl_zc_install_suggested_default.php 807 2019-07-03 17:42:24Z webchills $
  */
 $relPath = (file_exists('includes/templates/template_default/images/logo.gif')) ? '' : '../';
 $instPath = (file_exists('zc_install/index.php')) ? 'zc_install/index.php' : (file_exists('../zc_install/index.php') ? '../zc_install/index.php' : '');
@@ -19,11 +19,12 @@ $docsPath = (file_exists('docs/index.html')) ? 'docs/index.html' : (file_exists(
   <head>
     <title>Zen Cart muss erst installiert oder richtig konfiguriert werden</title>
     <meta content="utf-8">
+    <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="keywords" content="">
     <meta name="description" content="">
     <meta name="authors" content="The Zen Cart&reg; Team and others">
-    <meta name="generator" content="Zen-Cart deutsche Version, http://www.zen-cart-pro.at" />
+    <meta name="generator" content="Zen-Cart deutsche Version, https://www.zen-cart-pro.at" />
     <meta name="robots" content="noindex, nofollow">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <style type="text/css">
@@ -289,7 +290,7 @@ Sollte das der Fall sein, dann
         <?php } else { ?>
 <li>Sie müssen das Verzeichnis "zc_install" per FTP in Ihr Shopverzeichnis hochladen und dann <a href="<?php echo $instPath; ?>">zc_install/index.php</a> via Ihrem Browser aufrufen (oder laden Sie diese Seite erneut, um einen Link dahin angezeigt zu bekommen).</li>
         <?php } ?>
-<li>Das <a href="https://www.zen-cart-pro.at/forum/forum.php" target="_blank">deutschsprachige Supportforum</a> steht Ihnen bei Problemen ebenfalls zur Verfügung.</li>
+<li>Das <a href="https://www.zen-cart-pro.at/forum/" target="_blank">deutschsprachige Supportforum</a> steht Ihnen bei Problemen ebenfalls zur Verfügung.</li>
       </ol>
     </div>
   </div>
