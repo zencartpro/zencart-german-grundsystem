@@ -8,7 +8,7 @@
  * @copyright Copyright 2003-2019 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: tpl_modules_checkout_new_address.php 731 2019-06-21 15:31:16Z webchills $
+ * @version $Id: tpl_modules_checkout_new_address.php 732 2019-07-03 22:31:16Z webchills $
  */
 ?>
 <div class="centerColumnModule" id="checkoutNewAddress">
@@ -39,7 +39,7 @@
   if (ACCOUNT_COMPANY == 'true') {
 ?>
 <label class="inputLabel" for="company"><?php echo ENTRY_COMPANY; ?></label>
-<?php echo zen_draw_input_field('company', '', zen_set_field_length(TABLE_ADDRESS_BOOK, 'entry_company', '40') . ' id="company" placeholder="' . ENTRY_COMPANY_TEXT . '"' . (ACCOUNT_COMPANY == 'true' && (int)ENTRY_COMPANY_MIN_LENGTH != 0 ? ' required' : '')); ?>
+<?php echo zen_draw_input_field('company', '', zen_set_field_length(TABLE_ADDRESS_BOOK, 'entry_company', '40') . ' id="company" autocomplete="new-password" placeholder="' . ENTRY_COMPANY_TEXT . '"' . (ACCOUNT_COMPANY == 'true' && (int)ENTRY_COMPANY_MIN_LENGTH != 0 ? ' required' : '')); ?>
 <br class="clearBoth" />
 <?php
   }

@@ -9,7 +9,7 @@
  * @copyright Copyright 2003-2019 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: tpl_modules_create_account.php 841 2019-04-12 18:33:58Z webchills $
+ * @version $Id: tpl_modules_create_account.php 842 2019-07-03 22:33:58Z webchills $
  */
 ?>
 
@@ -36,7 +36,7 @@
 <fieldset>
 <legend><?php echo CATEGORY_COMPANY; ?></legend>
 <label class="inputLabel" for="company"><?php echo ENTRY_COMPANY; ?></label>
-<?php echo zen_draw_input_field('company', '', zen_set_field_length(TABLE_ADDRESS_BOOK, 'entry_company', '40') . ' id="company" placeholder="' . ENTRY_COMPANY_TEXT . '"'. (ACCOUNT_COMPANY == 'true' && (int)ENTRY_COMPANY_MIN_LENGTH != 0 ? ' required' : '')); ?>
+<?php echo zen_draw_input_field('company', '', zen_set_field_length(TABLE_ADDRESS_BOOK, 'entry_company', '40') . ' id="company" autocomplete="new-password" placeholder="' . ENTRY_COMPANY_TEXT . '"'. (ACCOUNT_COMPANY == 'true' && (int)ENTRY_COMPANY_MIN_LENGTH != 0 ? ' required' : '')); ?>
 </fieldset>
 <?php
   }
