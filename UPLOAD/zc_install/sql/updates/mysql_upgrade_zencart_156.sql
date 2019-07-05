@@ -6,7 +6,7 @@
 # * @copyright Copyright 2003-2019 Zen Cart Development Team
 # * @copyright Portions Copyright 2003 osCommerce
 # * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
-# * @version $Id: mysql_upgrade_zencart_156.sql 5 2019-06-22 20:16:59Z webchills $
+# * @version $Id: mysql_upgrade_zencart_156.sql 6 2019-07-05 21:47:59Z webchills $
 
 #
 
@@ -174,6 +174,10 @@ WHERE page_key = 'categories';
 #NEXT_X_ROWS_AS_ONE_COMMAND:2
 INSERT INTO admin_pages (page_key, language_key, main_page, page_params, menu_key, display_on_menu, sort_order)
 VALUES ('categoriesProductListing', 'BOX_CATALOG_CATEGORIES_PRODUCTS', 'FILENAME_CATEGORY_PRODUCT_LISTING', '', 'catalog', 'Y', 1);
+
+#Customer Uploads in Customer Menu
+INSERT IGNORE INTO admin_pages (page_key, language_key, main_page, page_params, menu_key, display_on_menu, sort_order) VALUES
+('uploads', 'BOX_CUSTOMERS_UPLOADS', 'FILENAME_UPLOADS', '', 'customers', 'Y', 32); 
 
 DELETE FROM admin_pages WHERE page_key = 'linkpointReview';
 

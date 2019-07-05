@@ -6,7 +6,7 @@
 # * @copyright Copyright 2003-2019 Zen Cart Development Team
 # * @copyright Portions Copyright 2003 osCommerce
 # * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
-# * @version $Id: mysql_zencart.sql 19503 2019-06-30 08:48:16Z webchills $
+# * @version $Id: mysql_zencart.sql 19504 2019-07-05 21:44:16Z webchills $
 #
 
 ############ IMPORTANT INSTRUCTIONS ###############
@@ -2293,6 +2293,7 @@ VALUES ('configMyStore', 'BOX_CONFIGURATION_MY_STORE', 'FILENAME_CONFIGURATION',
        ('adresskorrekturvornehmen', 'DO_ADRESSKORREKTUR', 'FILENAME_ADRESSKORREKTUR', '', 'customers', 'N', 101),
        ('customers_without_order', 'BOX_CUSTOMERS_WITHOUT_ORDER', 'FILENAME_CUSTOMERS_WITHOUT_ORDER', '', 'customers', 'Y', 30),
        ('dsgvo_kundenexport', 'BOX_DSGVO_KUNDENEXPORT', 'FILENAME_DSGVO_KUNDENEXPORT', '', 'customers', 'Y', 31),
+       ('uploads', 'BOX_CUSTOMERS_UPLOADS', 'FILENAME_UPLOADS', '', 'customers', 'Y', 32),       
        ('configITRechtKanzlei', 'BOX_CONFIGURATION_IT_RECHT_KANZLEI', 'FILENAME_CONFIGURATION', 'gID=36', 'configuration', 'Y', 36),
        ('toolsITRechtKanzlei', 'BOX_TOOLS_IT_RECHT_KANZLEI', 'FILENAME_IT_RECHT_KANZLEI', '', 'tools', 'Y', 100),
        ('configPDF3', 'BOX_CONFIGURATION_PDF3', 'FILENAME_CONFIGURATION', 'gID=37', 'configuration', 'Y', 37),
