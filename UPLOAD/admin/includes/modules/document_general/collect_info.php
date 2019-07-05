@@ -4,7 +4,7 @@
  * @copyright Copyright 2003-2019 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: collect_info.php 797 2019-06-15 16:24:50Z webchills $
+ * @version $Id: collect_info.php 798 2019-07-05 19:24:50Z webchills $
  */
 if (!defined('IS_ADMIN_FLAG')) {
   die('Illegal Access');
@@ -18,13 +18,13 @@ $parameters = array(
   'products_model' => '',
   'products_image' => '',
   'products_price' => '0.0000',
-  'products_virtual' => DEFAULT_DOCUMENT_GENERAL_PRODUCTS_VIRTUAL,
+  'products_virtual' => DEFAULT_PRODUCT_PRODUCTS_VIRTUAL,
   'products_weight' => '0',
   'products_date_added' => '',
   'products_last_modified' => '',
   'products_date_available' => '',
   'products_status' => '1',
-  'products_tax_class_id' => DEFAULT_DOCUMENT_GENERAL_TAX_CLASS_ID,
+  'products_tax_class_id' => DEFAULT_PRODUCT_TAX_CLASS_ID,
   'manufacturers_id' => '',
   'products_quantity_order_min' => '1',
   'products_quantity_order_units' => '1',
@@ -32,7 +32,7 @@ $parameters = array(
   'product_is_free' => '0',
   'product_is_call' => '0',
   'products_quantity_mixed' => '1',
-  'product_is_always_free_shipping' => DEFAULT_DOCUMENT_GENERAL_PRODUCTS_IS_ALWAYS_FREE_SHIPPING,
+  'product_is_always_free_shipping' => DEFAULT_PRODUCT_PRODUCTS_IS_ALWAYS_FREE_SHIPPING,
   'products_qty_box_status' => PRODUCTS_QTY_BOX_STATUS,
   'products_quantity_order_max' => '0',
   'products_sort_order' => '0',
