@@ -1,7 +1,7 @@
 # zencart-156-de
 Zen Cart 1.5.6 - deutsche Version
 
-1.5.6b BETA - Juni 2019
+1.5.6b BETA - Juli 2019
 
 Systemvoraussetzungen:
 * Linux Server mit Apache 2.4 oder 2.2
@@ -22,6 +22,7 @@ Neu in 1.5.6
 * EZ Pages sind nun multilingual
 * Zahlungsart Sofortüberweisung vorintegriert
 * Zahlungsart Kreditkarte via Braintree vorintegriert
+* Anzeige der von Kunden hochgeladenen Dateien vorintegriert
 * Bestellbestätigungsemail enthält falls angegeben die Telefonnummer des Kunden für die Zustellung
 * Admin-Seiten zeigen nun ihren Namen im Browser-Tabs an
 * Zahlreiche neue Notifier zur einfacheren Integration von Modulen
@@ -41,6 +42,7 @@ Neu in 1.5.6
 * Update Mobile Detect auf 2.8.3.3
 * Update PHP Mailer auf 6.0.6
 * Update Image Handler auf 5.1.3
+* Update Sales Report auf 3.3.0
 
 Dies ist eine BETA Version.
 * Ausschließlich in einem Testsystem installieren.

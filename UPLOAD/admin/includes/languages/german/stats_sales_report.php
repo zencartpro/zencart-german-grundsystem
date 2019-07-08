@@ -1,7 +1,7 @@
 <?php
 
 /**
- * SALES REPORT 3.1
+ * SALES REPORT 3.3.0
  *
  * The language file contains all the text that appears on the report. The first set of
  * configuration defines actually impact the report's output and behavior.
@@ -9,57 +9,19 @@
  * @author     Frank Koehl (PM: BlindSide)
  * @author     Conor Kerr <conor.kerr_zen-cart@dev.ceon.net>
  * @updated by stellarweb to work with version 1.5.0 02-29-12 
- * @translation by webchills 2012-07-18
- * @copyright  Portions Copyright 2003-2012 Zen Cart Development Team
+ * @updated by lat9 for continued operation under zc155/zc156, 20190622
+ * @copyright  Portions Copyright 2003-2019 Zen Cart Development Team
  * @copyright  Portions Copyright 2003 osCommerce
  * @license    http://www.gnu.org/copyleft/gpl.html   GNU Public License V2.0
+ * @translation by webchills 2019-07-08
  */
 
-
-/*
-** CONFIGURATION DEFINES
-*/
 //////////////////////////////////////////////////////////
-// Grundeinstellungen Bericht
-// Diese Einstellungen werden im Bericht genutzt wenn
-// der Report frisch ausgeführt wird oder
-// der Reporteinstellungen zurücksetzen Button gedrückt wird
-//
-// Falls Sie keine Voreinstellungen wünschen, lassen Sie bitte
-// die entsprechenden Felder frei
-//
-// Gültige Einträge finden Sie hinter jeder Zeile,
-// die Einträge in den eckigen Klammer sind die Standardwerte
-// WICHTIG: Bitte benutzen Sie nur die angegebenen Einträge, andere werden zu Fehlfunktionen führen!
-// Gleich gilt für das Datumsformat, es muss in einem englischen Format erfolgen!
-// Default settings are in brackets [].
-//
-define('DEFAULT_DATE_SEARCH_TYPE', 'preset'); // ['preset'], 'custom' (cannot be empty if next 3 options are set!)
-define('DEFAULT_DATE_PRESET', 'YTD'); // ['yesterday'], 'today', 'this_month', 'last_month', 'last_year', 'YTD', 'custom'
-define('DEFAULT_START_DATE', ''); // (date in mm-dd-yyyy format)
-define('DEFAULT_END_DATE', ''); // (date in mm-dd-yyyy format)
-
-define('DEFAULT_DATE_TARGET', 'purchased'); // ['purchased'], 'status'
-define('DEFAULT_DATE_STATUS', ''); // (status number) [lowest status number]
-define('DEFAULT_PAYMENT_METHOD', ''); // [any entry in `orders.payment_module_code` field]
-define('DEFAULT_CURRENT_STATUS', ''); // [status number]
-define('DEFAULT_MANUFACTURER', ''); // manufacturers_id from Admin > Catalog > Manufacturers ("mID=##" in the URL)
-
-define('DEFAULT_TIMEFRAME', 'year'); // ['day'], 'week', 'month', 'year'
-define('DEFAULT_TIMEFRAME_SORT', ''); // ['asc'], 'desc'
-define('DEFAULT_DETAIL_LEVEL', 'order'); // ['timeframe'], 'product', 'order', 'matrix'
-
-// order line items: 'oID', 'last_name', 'num_products', 'goods', 'shipping', 'discount', 'gc_sold', 'gc_used', 'grand'
-// product line items: 'pID', 'name', 'manufacturer', 'model', 'base_price', 'quantity', 'onetime_charges', 'grand'
-define('DEFAULT_LI_SORT_A', 'model');
-define('DEFAULT_LI_SORT_ORDER_A', ''); // 'asc', 'desc'
-define('DEFAULT_LI_SORT_B', 'name');
-define('DEFAULT_LI_SORT_ORDER_B', ''); // 'asc', 'desc'
-
-define('DEFAULT_OUTPUT_FORMAT', 'display'); // ['display'], 'print', 'csv'
-define('DEFAULT_AUTO_PRINT', ''); // 'true', ['false']
-define('DEFAULT_CSV_HEADER', ''); // 'true', ['false']
-
+// DISPLAY EMPTY TIMEFRAME LINES
+// Setting this define to true will disable displaying
+// a timeframe line if that timeframe is empty.  By
+// default, an empty timeframe displays the value of the
+// define TEXT_NO_DATA.
 
 //////////////////////////////////////////////////////////
 // Zeige leere Zeiträume an
@@ -129,17 +91,9 @@ define('NUM_DECIMAL_PLACES', 2);
 //////////////////////////////////////////////////////////
 // Einstellung Anzeigeformat Zeitraum
 //
-// Diese Einstellung kontrolliert das Format der Datumsangaben
-// im Bericht.
+// Note:  Other constants moved to the main processing file for v3.2.1.
 //
-// Alle Formatierungsmöglichkeiten sind unter
-// http://us2.php.net/date zu finden
-//
-define('TIME_DISPLAY_DAY', 'd.m.Y'); // Format für tägliche Auswertung
-define('TIME_DISPLAY_WEEK', 'd.m.Y'); // Format für wöchentliche Auswertung
-define('TIME_DISPLAY_MONTH', 'd.m.Y'); // Format für monatliche Auswertung
-define('TIME_DISPLAY_YEAR', 'd.m.Y'); // Format für jährliche Auswertung
-define('DATE_SPACER', ' -<br/>');
+define('DATE_SPACER', ' bis<br />&nbsp;&nbsp;&nbsp;');
 
 
 //////////////////////////////////////////////////////////
@@ -192,8 +146,9 @@ define('SEARCH_END_DATE', 'Enddatum (inklusive)');
 define('SEARCH_DATE_FORMAT', 'mm/dd/yyyy');
 define('SEARCH_DATE_TARGET', 'Berücksichtige dabei...');
 define('SEARCH_PAYMENT_METHOD', 'Zahlungsart');
-define ('SEARCH_PAYMENT_METHOD_TO_OMIT','Folgende Zahlungsart weglassen');
+define ('SEARCH_PAYMENT_METHOD_OMIT','Folgende Zahlungsart weglassen');
 define('SEARCH_CURRENT_STATUS', 'Derzeitiger Bestellstatus');
+define('SEARCH_EXCLUDED_STATUS', 'Ausgeschlossener Bestellstatus');
 define('SEARCH_SPECIFIC_CUSTOMERS', 'Nur bestimmte Kundennummern aufnehmen (IDs mit Komma getrennt)');
 define('SEARCH_SPECIFIC_PRODUCTS', 'Nur bestimmte Artikel IDs aufnehmen (IDs mit Komma getrennt)');
 define('SEARCH_MANUFACTURER', 'Hersteller');
@@ -203,7 +158,6 @@ define('SEARCH_SORT_PRODUCT', 'Sortiere Artikel nach...');
 define('SEARCH_SORT_ORDER', 'Sortiere Bestellungen nach...');
 define('SEARCH_SORT_THEN', 'Anschließend sortieren nach...');
 define('BUTTON_SEARCH', 'Bericht anzeigen!');
-define('BUTTON_LOAD_DEFAULTS', 'Berichteinstellungen zurücksetzen');
 define('BUTTON_DEFAULT_SEARCH', 'Schnellsuche');
 define('SEARCH_WAIT_TEXT', 'Bericht wird erstellt....Bitte warten...');
 
@@ -233,7 +187,7 @@ define('SELECT_LAST_NAME', 'Nachname des Kunden');
 define('CHECKBOX_AUTO_PRINT', 'Bericht automatisch ausdrucken');
 define('CHECKBOX_CSV_HEADER', 'Spaltenüberschriften in die erste Zeile');
 define('CHECKBOX_NEW_WINDOW', 'Öffne den Bericht in einem neuen Fenster');
-
+define('CHECKBOX_VALIDATE_TOTALS', ' Spalte für die Prüfung der Gesamtsummen ausgeben');
 
 // Report Column Headings
 // Timeframe
@@ -260,9 +214,11 @@ define('TABLE_HEADING_ORDER_TOTAL_VALIDATION', 'Gesamtsumme gültig');
 // Product Line Items
 define('TABLE_HEADING_PRODUCT_ID', 'Prod ID');
 define('TABLE_HEADING_PRODUCT_NAME', 'Artikelname');
+define('TABLE_HEADING_PRODUCT_ATTRIBUTES', 'Attribute');
 define('TABLE_HEADING_MANUFACTURER', 'Hersteller');
 define('TABLE_HEADING_MODEL', 'Artikelnummer');
 define('TABLE_HEADING_BASE_PRICE', 'Einzelpreis');
+define('TABLE_HEADING_FINAL_PRICE', 'Endpreis');
 define('TABLE_HEADING_QUANTITY', 'Menge');
 define('TABLE_HEADING_ONETIME_CHARGES', 'einmalige Gebühren');
 define('TABLE_HEADING_PRODUCT_TOTAL', 'Artikel Summe');
@@ -314,13 +270,14 @@ define('PRINT_DETAIL_LEVEL', 'Anzeige: ');
 // javascript pop-up alert window
 define('ALERT_JS_HIGHLIGHT', '#FF40CF');
 define('ALERT_MSG_START', "Es gibt einen oder mehr Fehler mit Ihren Suchparametern:");
-define('ALERT_DATE_INVALID', "> Ein eingebenes Datum ist nicht gültig");
-define('ALERT_DATE_MISSING', "> Sie müssen entweder eine der Voreinstellungen wählen oder einen Zeitraum angeben (Startdatum & Enddatum)");
+define('ALERT_DATE_INVALID_LENGTH', "> Ein eingebenes Datum ist nicht gültig");
+define('ALERT_DATE_INVALID', "> Sie müssen entweder eine der Voreinstellungen wählen oder einen Zeitraum angeben (Startdatum & Enddatum)");
 define('ALERT_CSV_CONFLICT', "> Die CSV Ausgabe ist nicht verfügbar für die " . SELECT_DETAIL_MATRIX . " Anzeige");
 define('ALERT_MSG_FINISH', "Bitte beheben Sie den Fehler und generieren Sie den Bericht neu.");
 
 // Other text defines
 define('ERROR_MISSING_REQ_INFO', 'FEHLER: Benötigte Felder sind leer');
+define('ERROR_CSV_CONFLICT', 'CSV output is not available for <em>' . SELECT_DETAIL_MATRIX . '</em> display; please re-select the report options.');
 define('ALT_TEXT_SORT_ASC', 'Neusortieren in aufsteigender Reihenfolge');
 define('ALT_TEXT_SORT_DESC', 'Neusortieren in absteigender Reihenfolge');
 define('TEXT_REPORT_TIMESTAMP', 'Report Time: ');
@@ -333,3 +290,6 @@ define('TEXT_SAME_ONE', '| --');
 define('TEXT_PRINT_FORMAT', 'Zeige den Report im druckerfreundlichen Format an');
 define('TEXT_PRINT_FORMAT_TITLE', 'TIPP: Klicken Sie auf \'' . PAGE_HEADING . '\' um zur Anzeige zurückzukehren');
 define('TEXT_NO_DATA', '-- Keine Aufträge im angegebenen Zeitraum --');
+// Buttons
+define('BUTTON_TIMEFRAME_PRESET', 'Voreinstellung wählen');
+define('BUTTON_TIMEFRAME_CUSTOM', 'Benutzerdefiniert wählen');

@@ -1,7 +1,7 @@
 <?php
 
 /**
- * SALES REPORT 3.1
+ * SALES REPORT 3.3.0
  *
  * The language file contains all the text that appears on the report. The first set of
  * configuration defines actually impact the report's output and behavior.
@@ -9,50 +9,11 @@
  * @author     Frank Koehl (PM: BlindSide)
  * @author     Conor Kerr <conor.kerr_zen-cart@dev.ceon.net>
  * @updated by stellarweb to work with version 1.5.0 02-29-12 
+ * @updated by lat9 for continued operation under zc155/zc156, 20190622
  * @copyright  Portions Copyright 2003-2006 Zen Cart Development Team
  * @copyright  Portions Copyright 2003 osCommerce
  * @license    http://www.gnu.org/copyleft/gpl.html   GNU Public License V2.0
  */
-
-
-/*
-** CONFIGURATION DEFINES
-*/
-//////////////////////////////////////////////////////////
-// DEFAULT SEARCH OPTIONS
-// These values are loaded into the report when (a) the
-// report is laoded fresh, or (b) when the defaults button
-// is pressed.  If you prefer to have no option set for a
-// given entry, you may leave its define empty. Valid
-// entries are in the comments following each define.
-// Default settings are in brackets [].
-//
-define('DEFAULT_DATE_SEARCH_TYPE', 'preset'); // ['preset'], 'custom' (cannot be empty if next 3 options are set!)
-define('DEFAULT_DATE_PRESET', 'YTD'); // ['yesterday'], 'today', 'this_month', 'last_month', 'last_year', 'YTD', 'custom'
-define('DEFAULT_START_DATE', ''); // (date in mm-dd-yyyy format)
-define('DEFAULT_END_DATE', ''); // (date in mm-dd-yyyy format)
-
-define('DEFAULT_DATE_TARGET', 'purchased'); // ['purchased'], 'status'
-define('DEFAULT_DATE_STATUS', ''); // (status number) [lowest status number]
-define('DEFAULT_PAYMENT_METHOD', ''); // [any entry in `orders.payment_module_code` field]
-define('DEFAULT_CURRENT_STATUS', ''); // [status number]
-define('DEFAULT_MANUFACTURER', ''); // manufacturers_id from Admin > Catalog > Manufacturers ("mID=##" in the URL)
-
-define('DEFAULT_TIMEFRAME', 'year'); // ['day'], 'week', 'month', 'year'
-define('DEFAULT_TIMEFRAME_SORT', ''); // ['asc'], 'desc'
-define('DEFAULT_DETAIL_LEVEL', 'order'); // ['timeframe'], 'product', 'order', 'matrix'
-
-// order line items: 'oID', 'last_name', 'num_products', 'goods', 'shipping', 'discount', 'gc_sold', 'gc_used', 'grand'
-// product line items: 'pID', 'name', 'manufacturer', 'model', 'base_price', 'quantity', 'onetime_charges', 'grand'
-define('DEFAULT_LI_SORT_A', 'model');
-define('DEFAULT_LI_SORT_ORDER_A', ''); // 'asc', 'desc'
-define('DEFAULT_LI_SORT_B', 'name');
-define('DEFAULT_LI_SORT_ORDER_B', ''); // 'asc', 'desc'
-
-define('DEFAULT_OUTPUT_FORMAT', 'display'); // ['display'], 'print', 'csv'
-define('DEFAULT_AUTO_PRINT', ''); // 'true', ['false']
-define('DEFAULT_CSV_HEADER', ''); // 'true', ['false']
-
 
 //////////////////////////////////////////////////////////
 // DISPLAY EMPTY TIMEFRAME LINES
@@ -120,28 +81,9 @@ define('NUM_DECIMAL_PLACES', 2);
 
 //////////////////////////////////////////////////////////
 // TIMEFRAME DATE DISPLAY
-// These control the display format of the start and end
-// dates of each timeframe line.  Each define corresponds
-// to the timeframe of its namesake.  See the PHP manual
-// entry on the date() function for a table on the accepted
-// formatting characters: http://us2.php.net/date
+// Note:  Other constants moved to the main processing file for v3.2.1.
 //
-if (strtolower(DATE_FORMAT) == 'm/d/y') {
-  // Use US date format (m/d/Y)
-  define('TIME_DISPLAY_DAY', 'n-j-Y');
-  define('TIME_DISPLAY_WEEK', 'n-j-Y');
-  define('TIME_DISPLAY_MONTH', 'n-j-Y');
-  define('TIME_DISPLAY_YEAR', 'n-j-Y');
-  define('DATE_SPACER', ' thru<br/>&nbsp;&nbsp;&nbsp;');
-} else if (strtolower(DATE_FORMAT) == 'd/m/y') {
-  // Use UK date format (d/m/Y)
-  define('TIME_DISPLAY_DAY', 'jS-M-y');
-  define('TIME_DISPLAY_WEEK', 'jS-M-y');
-  define('TIME_DISPLAY_MONTH', 'jS-M-y');
-  define('TIME_DISPLAY_YEAR', 'jS-M-y');
-  define('DATE_SPACER', ' to<br/>&nbsp;&nbsp;&nbsp;');
-}
-
+define('DATE_SPACER', ' to<br />&nbsp;&nbsp;&nbsp;');
 
 //////////////////////////////////////////////////////////
 // EXCLUDE SPECIFIED PRODUCTS
@@ -196,8 +138,9 @@ define('SEARCH_END_DATE', 'End Date (inclusive)');
 define('SEARCH_DATE_FORMAT', 'mm/dd/yyyy');
 define('SEARCH_DATE_TARGET', 'Search date of...');
 define('SEARCH_PAYMENT_METHOD', 'Payment Method');
-define('SEARCH_PAYMENT_METHOD_TO_OMIT','Payment Method To Omit');
+define('SEARCH_PAYMENT_METHOD_OMIT', 'Payment Method To Omit');
 define('SEARCH_CURRENT_STATUS', 'Current Order Status');
+define('SEARCH_EXCLUDED_STATUS', 'Order Status to Omit');
 define('SEARCH_SPECIFIC_CUSTOMERS', 'Only include specific Customer IDs (comma separated list)');
 define('SEARCH_SPECIFIC_PRODUCTS', 'Only include specific Product IDs (comma separated list)');
 define('SEARCH_MANUFACTURER', 'Product Manufacturer');
@@ -207,7 +150,6 @@ define('SEARCH_SORT_PRODUCT', 'Sort products by...');
 define('SEARCH_SORT_ORDER', 'Sort orders by...');
 define('SEARCH_SORT_THEN', 'Then sort by...');
 define('BUTTON_SEARCH', 'Show me the money!');
-define('BUTTON_LOAD_DEFAULTS', 'Report Defaults');
 define('BUTTON_DEFAULT_SEARCH', 'Quick Search');
 define('SEARCH_WAIT_TEXT', 'Processing, please wait...');
 
@@ -237,7 +179,7 @@ define('SELECT_LAST_NAME', 'Cust. Last Name');
 define('CHECKBOX_AUTO_PRINT', 'Print report automatically');
 define('CHECKBOX_CSV_HEADER', 'Column titles in first row');
 define('CHECKBOX_NEW_WINDOW', 'Open results in new window');
-
+define('CHECKBOX_VALIDATE_TOTALS', ' Output Order Total Validation Column');
 
 // Report Column Headings
 // Timeframe
@@ -264,9 +206,11 @@ define('TABLE_HEADING_ORDER_TOTAL_VALIDATION', 'OT Valid');
 // Product Line Items
 define('TABLE_HEADING_PRODUCT_ID', 'Prod ID');
 define('TABLE_HEADING_PRODUCT_NAME', 'Product Name');
+define('TABLE_HEADING_PRODUCT_ATTRIBUTES', 'Attributes');
 define('TABLE_HEADING_MANUFACTURER', 'Manufacturer');
 define('TABLE_HEADING_MODEL', 'Model No.');
 define('TABLE_HEADING_BASE_PRICE', 'Base Price');
+define('TABLE_HEADING_FINAL_PRICE', 'Final Price');
 define('TABLE_HEADING_QUANTITY', 'Qty.');
 define('TABLE_HEADING_ONETIME_CHARGES', '1-time Fees');
 define('TABLE_HEADING_PRODUCT_TOTAL', 'Product Total');
@@ -317,14 +261,15 @@ define('PRINT_DETAIL_LEVEL', 'Displaying ');
 
 // javascript pop-up alert window
 define('ALERT_JS_HIGHLIGHT', '#FF40CF');
-define('ALERT_MSG_START', "There are one or more errors with your search parameters:");
-define('ALERT_DATE_INVALID', "> One of the dates you entered is not valid");
-define('ALERT_DATE_MISSING', "> You must choose a preset date, or define a date range");
-define('ALERT_CSV_CONFLICT', "> CSV output is not available for " . SELECT_DETAIL_MATRIX . " display");
-define('ALERT_MSG_FINISH', "Please correct the issue(s) and resubmit your search.");
+define('ALERT_MSG_START', 'There are one or more errors with your selections:');
+define('ALERT_DATE_INVALID_LENGTH', '> Dates must be 10 characters in length: ');
+define('ALERT_DATE_INVALID', '> This is not a valid date: ');
+define('ALERT_CSV_CONFLICT', '> CSV output is not available for ' . SELECT_DETAIL_MATRIX . ' display.');
+define('ALERT_MSG_FINISH', 'Please correct the issue(s) and resubmit your search.');
 
 // Other text defines
 define('ERROR_MISSING_REQ_INFO', 'Error: Required fields are empty');
+define('ERROR_CSV_CONFLICT', 'CSV output is not available for <em>' . SELECT_DETAIL_MATRIX . '</em> display; please re-select the report options.');
 define('ALT_TEXT_SORT_ASC', 'Re-sort in ASCENDING order');
 define('ALT_TEXT_SORT_DESC', 'Re-sort in DESCENDING order');
 define('TEXT_REPORT_TIMESTAMP', 'Report Time: ');
@@ -337,3 +282,7 @@ define('TEXT_SAME_ONE', '| --');
 define('TEXT_PRINT_FORMAT', 'display report in print format');
 define('TEXT_PRINT_FORMAT_TITLE', 'TIP: click \'' . PAGE_HEADING . '\' to return to display view');
 define('TEXT_NO_DATA', '-- NO ORDERS IN TIMEFRAME --');
+
+// Buttons
+define('BUTTON_TIMEFRAME_PRESET', 'Choose Preset');
+define('BUTTON_TIMEFRAME_CUSTOM', 'Choose Custom');
