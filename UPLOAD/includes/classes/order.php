@@ -6,7 +6,7 @@
  * @package classes
  * @copyright Copyright 2003-2019 Zen Cart Development Team
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: order.php 2019-06-26 12:20:25Z webchills $
+ * @version $Id: order.php 2019-07-11 08:28:25Z webchills $
  */
 /**
  * order class
@@ -83,9 +83,9 @@ class order extends base {
                 where coupon_code ='" . $order->fields['coupon_code'] . "'";
         $coupon_link = $db->Execute($coupon_link_query);
         if (IS_ADMIN_FLAG === true) {
-                $zc_coupon_link = '<a href="javascript:couponpopupWindow(\'' . zen_href_link(FILENAME_POPUP_COUPON_HELP, 'cID=' . $coupon_link->fields['coupon_id']) . '\')">';
-        } else {
-          $zc_coupon_link = $coupon_link->fields['coupon_id'];
+          $zc_coupon_link = '<a href="javascript:couponpopupWindow(\'' . zen_catalog_href_link(FILENAME_POPUP_COUPON_HELP, 'cID=' . $coupon_link->fields['coupon_id']) . '\')">';
+        } else { 
+          $zc_coupon_link = '<a href="javascript:couponpopupWindow(\'' . zen_href_link(FILENAME_POPUP_COUPON_HELP, 'cID=' . $coupon_link->fields['coupon_id']) . '\')">';
         }
       }
       $this->totals[] = array('title' => ($totals->fields['class'] == 'ot_coupon' ? $zc_coupon_link . $totals->fields['title'] . '</a>' : $totals->fields['title']),
@@ -650,6 +650,7 @@ class order extends base {
     if (isset($_SESSION['shipping']['id']) && $_SESSION['shipping']['id'] == 'free_free') {
       $this->info['shipping_module_code'] = $_SESSION['shipping']['id'];
     }
+
     // Sanitize cc-num if present, using maximum 10 chars, with middle chars stripped out with XX
     if (isset($this->info['cc_number']) && strlen($this->info['cc_number']) > 10) {
       $cEnd = substr($this->info['cc_number'], -4);
@@ -1043,6 +1044,7 @@ class order extends base {
     EMAIL_TEXT_ORDER_NUMBER . ' ' . $zf_insert_id . "\n" .
     EMAIL_TEXT_DATE_ORDERED . ' ' . strftime(DATE_FORMAT_LONG) . "\n" .
     EMAIL_TEXT_INVOICE_URL . ' ' . zen_href_link(FILENAME_ACCOUNT_HISTORY_INFO, 'order_id=' . $zf_insert_id, 'SSL', false) . "\n\n";
+
     $html_msg['EMAIL_TEXT_HEADER']     = EMAIL_TEXT_HEADER;
     $html_msg['EMAIL_TEXT_FROM']       = EMAIL_TEXT_FROM;
     $html_msg['INTRO_STORE_NAME']      = STORE_NAME;
@@ -1054,7 +1056,6 @@ class order extends base {
     $html_msg['INTRO_DATE_ORDERED']    = strftime(DATE_FORMAT_LONG);
     $html_msg['INTRO_URL_TEXT']        = EMAIL_TEXT_INVOICE_URL_CLICK;
     $html_msg['INTRO_URL_VALUE']       = zen_href_link(FILENAME_ACCOUNT_HISTORY_INFO, 'order_id=' . $zf_insert_id, 'SSL', false);
-
     $html_msg['EMAIL_CUSTOMER_PHONE']  = $this->customer['telephone'];
     $html_msg['EMAIL_ORDER_DATE']      = date(ORDER_EMAIL_DATE_FORMAT);
     $html_msg['EMAIL_TEXT_TELEPHONE']  = EMAIL_TEXT_TELEPHONE;
@@ -1192,7 +1193,7 @@ class order extends base {
   } 
   // EOF pdf Rechnung
     zen_mail($this->customer['firstname'] . ' ' . $this->customer['lastname'], $this->customer['email_address'], EMAIL_TEXT_SUBJECT . EMAIL_ORDER_NUMBER_SUBJECT . $zf_insert_id, $email_order, STORE_NAME, EMAIL_FROM, $html_msg, 'checkout', $this->attachArray);
-   
+
     
     // send additional emails
     if (SEND_EXTRA_ORDER_EMAILS_TO != '') {
