@@ -6,12 +6,12 @@
  * @copyright Copyright 2003-2018 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: functions_bmz_image_handler.php 2018-06-15 16:13:51Z webchills $
+ * @version $Id: functions_bmz_image_handler.php 2019-07-13 14:13:51Z webchills $
  */
 
 require_once DIR_FS_CATALOG . DIR_WS_CLASSES . 'bmz_image_handler.class.php';
 
-$ihConf['version']              = 'v' . IH_VERSION;
+$ihConf['version']              = 'v' . (defined('IH_VERSION') ? IH_VERSION : '?.?.?');
 
 $ihConf['dir']['docroot']       = DIR_FS_CATALOG;
 $ihConf['dir']['images']        = DIR_WS_IMAGES;

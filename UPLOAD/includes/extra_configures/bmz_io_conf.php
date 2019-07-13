@@ -1,12 +1,13 @@
 <?php
 /**
  * @package Image Handler
+ * Zen Cart German Specific
  * @copyright Copyright 2005-2006 Tim Kroeger (original author)
  * @copyright Copyright 2018 lat 9 - Vinos de Frutas Tropicales
  * @copyright Copyright 2003-2018 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: bmz_io_conf.php 2018-06-15 16:13:51Z webchills $
+ * @version $Id: bmz_io_conf.php 2019-07-13 14:13:51Z webchills $
  */
  
 $bmzConf = array();

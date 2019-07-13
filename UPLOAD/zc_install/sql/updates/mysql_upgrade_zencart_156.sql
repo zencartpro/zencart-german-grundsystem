@@ -6,7 +6,7 @@
 # * @copyright Copyright 2003-2019 Zen Cart Development Team
 # * @copyright Portions Copyright 2003 osCommerce
 # * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
-# * @version $Id: mysql_upgrade_zencart_156.sql 6 2019-07-05 21:47:59Z webchills $
+# * @version $Id: mysql_upgrade_zencart_156.sql 7 2019-07-13 14:47:59Z webchills $
 
 #
 
@@ -66,6 +66,9 @@ ALTER TABLE admin_pages MODIFY page_params VARCHAR(255) NOT NULL DEFAULT '';
 ALTER TABLE admin_profiles MODIFY profile_name VARCHAR(255) NOT NULL DEFAULT '';
 ALTER TABLE countries ADD status tinyint(1) DEFAULT 1;
 # end of repeats from v152
+
+# update Image Handler Version to 5.1.4
+UPDATE configuration SET configuration_value = '5.1.4' WHERE configuration_key = 'IH_VERSION';
 
 # handle old dates
 UPDATE configuration SET date_added='0001-01-01' where date_added < '0001-01-01';

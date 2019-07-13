@@ -41,7 +41,7 @@ Neu in 1.5.6
 * Update Mailbeez auf 4.0.0
 * Update Mobile Detect auf 2.8.3.3
 * Update PHP Mailer auf 6.0.6
-* Update Image Handler auf 5.1.3
+* Update Image Handler auf 5.1.4
 * Update Sales Report auf 3.3.0
 
 Dies ist eine BETA Version.

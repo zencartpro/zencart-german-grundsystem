@@ -2,11 +2,11 @@
 /**
  * @package Image Handler
  * @copyright Copyright 2005-2006 Tim Kroeger (original author)
- * @copyright Copyright 2018 lat 9 - Vinos de Frutas Tropicales
- * @copyright Copyright 2003-2018 Zen Cart Development Team
+ * @copyright Copyright 2018-2019 lat 9 - Vinos de Frutas Tropicales
+ * @copyright Copyright 2003-2019 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: ih_manager.php 2018-06-25 21:13:51Z webchills $
+ * @version $Id: ih_manager.php 2019-07-13 14:13:51Z webchills $
  */
 
 if ($action == 'new_cat') {
@@ -214,6 +214,12 @@ if ($action == 'save') {
             $new_main_image = true;
             if (!empty($_POST['imgBase'])) {
                 $data['imgBase'] = $_POST['imgBase'];
+                if (!empty($uploaded_default_extension)) {
+                    $data['imgExtension'] = $uploaded_default_extension;
+                } else {
+                    $messageStack->add(TEXT_MSG_NO_FILE_UPLOADED, 'error');
+                    $data_ok = false;
+                }
             } else {
                 if (empty($_FILES['default_image']['name'])) {
                     $messageStack->add(TEXT_MSG_AUTO_BASE_ERROR, 'error');
@@ -300,6 +306,10 @@ if ($action == 'save') {
     }
 
     // -----
+    // If the data supplied appears OK, perform a couple of pre-processing checks.
+    //
+    if ($data_ok) {
+        // -----
     // Correct some "nasty" characters in the image's name.
     //
     if (strpos($data['imgBase'], '+') !== false) {
@@ -307,10 +317,6 @@ if ($action == 'save') {
         $messageStack->add(TEXT_MSG_AUTO_REPLACE . $data['imgBase'], 'warning');
     }
     
-    // -----
-    // If the data supplied appears OK, perform a couple of pre-processing checks.
-    //
-    if ($data_ok) {
         // -----
         // If the image's base-directory doesn't currently end in either a / or \, append a / to that value.
         //
@@ -451,7 +457,7 @@ if ($action == 'quick_delete') {
 // Delete a specified product image.
 //
 if ($action == 'delete') {
-    if (!empty($_POST['imgSuffix']) || $_POST['delete_from_db_only'] != 'Y') {
+    if (!empty($_POST['imgSuffix']) || empty($_POST['delete_from_db_only'])) {
         $base_name = $products_image_directory . $_POST['imgName'];
         $image_ext = $_POST['imgExtension'];
 

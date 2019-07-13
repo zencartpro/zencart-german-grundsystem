@@ -1,12 +1,13 @@
 <?php
 /**
  * @package Image Handler
+ * Zen Cart German Specific
  * @copyright Copyright 2005-2006 Tim Kroeger (original author)
  * @copyright Copyright 2018-2019 lat 9 - Vinos de Frutas Tropicales
  * @copyright Copyright 2003-2019 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: image_handler.php 2019-06-15 14:13:51Z webchills $
+ * @version $Id: image_handler.php 2019-07-13 14:13:51Z webchills $
  */
 require 'includes/application_top.php';
 
@@ -300,25 +301,18 @@ if ($ih_page == 'manager') {
         echo ($display_priced_by_attributes ? '<span class="alert">' . TEXT_PRICED_BY_ATTRIBUTES . '</span>' . '<br />' : '');
         echo zen_get_products_display_price($products_filter) . '<br /><br />';
         echo zen_get_products_quantity_min_units_display($products_filter, $include_break = true);
-        $not_for_cart = $db->Execute(
-            "SELECT p.products_id 
-               FROM " . TABLE_PRODUCTS . " p 
-                    LEFT JOIN " . TABLE_PRODUCT_TYPES . " pt 
-                        ON p.products_type= pt.type_id 
-              WHERE pt.allow_add_to_cart = 'N'"
-        );
     }
 ?>
             </td>
 <?php
     if ($products_filter != '') { //prevent creation of empty Select 
 ?>
-            <td class="ih-center"><?php echo zen_draw_products_pull_down('products_filter', 'size="5"', $not_for_cart->fields, true, $products_filter, true, true); ?></td>
+            <td class="ih-center"><?php echo zen_draw_products_pull_down('products_filter', 'size="5"', '', true, $products_filter, true, true); ?></td>
             <td id="ih-p-buttons" class="ih-center ih-vtop">
 <?php 
         echo zen_image_submit('button_display.gif', IMAGE_DISPLAY) . '<br />';
         
-        $edit_product_link = zen_href_link(FILENAME_CATEGORIES, "action=new_product&amp;cPath=$current_category_id&amp;pID=$products_filter&amp;product_type=" . zen_get_products_type($products_filter));
+        $edit_product_link = zen_href_link(FILENAME_PRODUCT, "action=new_product&amp;cPath=$current_category_id&amp;pID=$products_filter&amp;product_type=" . zen_get_products_type($products_filter));
         echo '<a href="' . $edit_product_link . '">' . zen_image_button('button_edit_product.gif', IMAGE_EDIT_PRODUCT) . '</a><br />';
         
         $attribute_controller_link = zen_href_link(FILENAME_ATTRIBUTES_CONTROLLER, "products_filter=$products_filter&amp;current_category_id=$current_category_id");
@@ -338,7 +332,7 @@ if ($ih_page == 'manager') {
     <div class="managerbox">
 <!-- Start Photo Display -->
 <?php
-    if (empty($products_filter)) {
+    if (empty($products_filter) || !isset($product)) {
 ?>
         <h2><?php echo IH_HEADING_TITLE_PRODUCT_SELECT; ?></h2>
 <?php 
@@ -407,6 +401,8 @@ if ($ih_page == 'manager') {
             $action = 'layout_info';
         }
 
+        $selected_image_name = '';
+        $selected_image_extension = '';
         $selected_image_file = '';
         $selected_image_suffix = '';
         for ($i = 0, $main_image = true; $i < $count; $i++, $main_image = false) {
@@ -658,8 +654,8 @@ if ($ih_page == 'manager') {
                             $dir_info[] = array('id' => $file . '/', 'text' => $file);
                         }
                     }
-                    $contents[] = array('
-                        text' => '<br /><strong>' . TEXT_INFO_BASE_DIR . '</strong><br />' . TEXT_INFO_NEW_DIR
+                    $contents[] = array(
+                        'text' => '<br /><strong>' . TEXT_INFO_BASE_DIR . '</strong><br />' . TEXT_INFO_NEW_DIR
                     );
                     $contents[] = array(
                         'text' => '<strong>' . TEXT_INFO_IMAGE_DIR . '</strong>' . zen_draw_pull_down_menu('imgBaseDir', $dir_info, "")
