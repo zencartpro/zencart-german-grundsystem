@@ -5,9 +5,9 @@
  * Displays page-not-found message and site-map (if configured)
  *
  * @package templateSystem
- * @copyright Copyright 2003-2016 Zen Cart Development Team
+ * @copyright Copyright 2003-2019 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
- * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
+ * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
  * @version $Id: tpl_page_not_found_default.php 748 2016-02-29 13:14:36Z webchills $
  */
 ?>

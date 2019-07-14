@@ -3,7 +3,7 @@
  * @package Installer
  * @copyright Copyright 2003-2019 Zen Cart Development Team
 
- * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
+ * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
  * @version $Id: index_default.php 6 2019-04-14 11:59:53Z webchills $
  */
 require(DIR_FS_INSTALL . DIR_WS_INSTALL_TEMPLATE . 'partials/partial_modal_help.php');

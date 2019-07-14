@@ -3,8 +3,8 @@
  * config.zca_layout.php
  *
  * @package initSystem
- * @copyright Copyright 2003-2016 Zen Cart Development Team
- * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
+ * @copyright Copyright 2003-2019 Zen Cart Development Team
+ * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
  * @author ZCAdditions.com, ZCA Responsive Template Default
  */
 	

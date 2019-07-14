@@ -7,7 +7,7 @@
  *
  * @package templateSystem
  * @copyright Copyright 2003-2019 Zen Cart Development Team
- * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
+ * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
  * @version $Id: tpl_zc_install_suggested_default.php 807 2019-07-03 17:42:24Z webchills $
  */
 $relPath = (file_exists('includes/templates/template_default/images/logo.gif')) ? '' : '../';

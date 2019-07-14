@@ -1,12 +1,12 @@
 <?php
 /**
  * @package languageDefines
- * @copyright Copyright 2003-2016 Zen Cart Development Team
+ * @copyright Copyright 2003-2019 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @copyright Originally Programmed By: Christopher Bradley (www.wizardsandwars.com) for OsCommerce
  * @copyright Modified by Jim Keebaugh for OsCommerce
  * @copyright Adapted for Zen Cart
- * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
+ * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
  * @version $Id: unsubscribe.php 729 2011-08-09 15:49:16Z hugo13 $
  */
 

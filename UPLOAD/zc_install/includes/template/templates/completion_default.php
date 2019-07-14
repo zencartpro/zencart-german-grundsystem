@@ -2,7 +2,7 @@
 /**
  * @package Installer
  * @copyright Copyright 2003-2019 Zen Cart Development Team
- * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
+ * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
  * @version $Id: completion_default.php 4 2019-06-16 18:59:53Z webchills $ */
 ?>
 <?php require(DIR_FS_INSTALL . DIR_WS_INSTALL_TEMPLATE . 'partials/partial_modal_help.php'); ?>

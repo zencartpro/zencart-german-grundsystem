@@ -5,9 +5,9 @@
  * It pulls data from all the related tables which collectively store the info related only to this product type.
  *
  * @package productTypes
- * @copyright Copyright 2003-2016 Zen Cart Development Team
+ * @copyright Copyright 2003-2019 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
- * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
+ * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
  * @version $Id: main_template_vars_product_type.php 730 2014-07-05 10:49:16Z webchills $
  */
 /*

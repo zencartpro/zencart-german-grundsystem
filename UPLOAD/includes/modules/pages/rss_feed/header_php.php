@@ -4,9 +4,9 @@
  *
  * @package rss feed
  * @copyright Copyright 2004-2008 Andrew Berezin eCommerce-Service.com
- * @copyright Portions Copyright 2003-2016 Zen Cart Development Team
+ * @copyright Portions Copyright 2003-2019 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
- * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
+ * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
  * @version $Id: header_php.php, 2015-03-06 20:23:04 webchills $
  */
 //  @ini_set('display_errors', '1');

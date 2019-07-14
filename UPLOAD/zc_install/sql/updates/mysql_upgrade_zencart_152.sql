@@ -3,9 +3,9 @@
 # *
 # * @package Installer
 # * @access private
-# * @copyright Copyright 2003-2016 Zen Cart Development Team
+# * @copyright Copyright 2003-2019 Zen Cart Development Team
 # * @copyright Portions Copyright 2003 osCommerce
-# * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
+# * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
 # * @version $Id: mysql_upgrade_zencart_152.sql 2 2016-03-28 09:02:57Z webchills $
 #
 

@@ -1,9 +1,9 @@
 <?php
 /**
  * @package htmleditors
- * @copyright Copyright 2003-2016 Zen Cart Development Team
- * @copyright Portions Copyright 2003-2014 Zen Cart Development Team
- * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
+ * @copyright Copyright 2003-2019 Zen Cart Development Team
+ * @copyright Portions Copyright 2003-2019 Zen Cart Development Team
+ * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
  * @version $Id: init_html_editor.php 755 2012-11-18 20:47:09Z webchills $
  */
 if (!defined('DIR_WS_EDITORS')) define('DIR_WS_EDITORS', 'editors/');

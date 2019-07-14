@@ -3,7 +3,7 @@
  * ajaxLoadMainSql.php
  * @package Installer
  * @copyright Copyright 2003-2019 Zen Cart Development Team
- * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
+ * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
  * @version $Id: ajaxLoadMainSql.php 2 2019-04-12 12:59:53Z webchills $
  */
 define('IS_ADMIN_FLAG', false);

@@ -4,9 +4,9 @@
  * footer code - calculates information for display, and calls the template file for footer-rendering
  *
  * @package templateStructure
- * @copyright Copyright 2003-2016 Zen Cart Development Team
+ * @copyright Copyright 2003-2019 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
- * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
+ * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
  * @version $Id: footer.php 730 2016-08-14 09:49:16Z webchills $
  */
 if (!defined('IS_ADMIN_FLAG')) {

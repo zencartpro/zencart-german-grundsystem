@@ -5,7 +5,7 @@
  *
  * @package initSystem
  * @copyright Copyright 2003-2019 Zen Cart Development Team
- * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
+ * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
  * @version $Id: rbarbour zcadditions.com Tue May 8 00:42:18 2018 -0400 Modified in v1.5.6 $
  */
  

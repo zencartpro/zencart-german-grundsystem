@@ -2,8 +2,8 @@
 /**
  *
  * @package statistics
- * @copyright Copyright 2003-2016 Zen Cart Development Team
- * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
+ * @copyright Copyright 2003-2019 Zen Cart Development Team
+ * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
  * @version GIT: $Id: Author: DrByte  Tue Aug 28 14:21:34 2012 -0400 New in v1.5.1 $
  */
 /**

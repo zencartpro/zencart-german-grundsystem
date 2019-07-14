@@ -3,9 +3,9 @@
  * shopping_cart sidebox - displays contents of customer's shopping cart.  Also shows GV balance, if any.
  *
  * @package templateSystem
- * @copyright Copyright 2003-2016 Zen Cart Development Team
+ * @copyright Copyright 2003-2019 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
- * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
+ * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
  * @version $Id: shopping_cart.php 729 2011-08-09 15:49:16Z hugo13 $
  */
 

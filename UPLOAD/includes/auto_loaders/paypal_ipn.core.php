@@ -4,7 +4,7 @@
  *
  * @package initSystem
  * @copyright Copyright 2003-2019 Zen Cart Development Team
- * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
+ * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
  * @version $Id: paypal_ipn.core.php 731 2019-04-12 09:49:16Z webchills $
  */
 if (!defined('IS_ADMIN_FLAG')) {
