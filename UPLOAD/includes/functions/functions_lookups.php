@@ -8,7 +8,7 @@
  * @copyright Copyright 2003-2019 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: functions_lookups.php 773 2019-04-14 13:41:42Z webchills $
+ * @version $Id: functions_lookups.php 774 2019-07-20 09:15:42Z webchills $
  */
 
 /**
@@ -336,6 +336,7 @@
     if ($value_to_return !== '') {
         return $value_to_return;
     }
+    
     $attributes_query = "select count(options_values_price) as total
                          from " . TABLE_PRODUCTS_ATTRIBUTES . "
                          where products_id = " . (int)$products_id . "
@@ -691,6 +692,10 @@ function zen_get_configuration_key_value($lookup)
 
     $sql = "select p.products_image from " . TABLE_PRODUCTS . " p  where products_id='" . (int)$product_id . "'";
     $look_up = $db->Execute($sql);
+
+    if ($look_up->EOF) {
+      return false;
+    }
 
     return zen_image(DIR_WS_IMAGES . $look_up->fields['products_image'], zen_get_products_name($product_id), $width, $height);
   }

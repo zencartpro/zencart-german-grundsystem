@@ -3,7 +3,7 @@
  * @package plugins
  * @copyright Copyright 2003-2019 Zen Cart Development Team
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: Drbyte Mon Nov 12 20:38:09 2018 -0500 New in v1.5.6 $
+ * @version $Id: auto.downloads_via_redirect.php 2 2019-07-20 webchills $
  */
 
 /**
@@ -44,7 +44,7 @@ class zcObserverDownloadsViaRedirect extends base {
     if (DOWNLOAD_BY_REDIRECT != 'true') return false;
 
     $this->pubFolder = DIR_FS_DOWNLOAD_PUBLIC;
-    $this->wsPubFolder = DIR_WS_DOWNLOAD_PUBLIC;
+    $this->wsPubFolder = HTTP_SERVER . DIR_WS_DOWNLOAD_PUBLIC;
 
     // attach listener
     $this->attach($this, array('NOTIFY_DOWNLOAD_READY_TO_REDIRECT'));

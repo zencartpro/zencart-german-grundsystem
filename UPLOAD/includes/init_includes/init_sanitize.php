@@ -7,7 +7,7 @@
  * @copyright Copyright 2003-2019 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: init_sanitize.php 734 2019-04-12 11:29:16Z webchills $
+ * @version $Id: init_sanitize.php 735 2019-07-20 09:22:16Z webchills $
  * @todo move the array process to security class
  */
 
@@ -129,7 +129,7 @@
 /**
  * validate products_id for search engines and bookmarks, etc.
  */
-  if (isset($_GET['products_id']) && isset($_SESSION['check_valid']) &&  $_SESSION['check_valid'] != 'false') {
+  if (isset($_GET['products_id']) && (!isset($_SESSION['check_valid']) || $_SESSION['check_valid'] != 'false')) {
     $check_valid = zen_products_id_valid($_GET['products_id']);
     if (!$check_valid) {
       $_GET['main_page'] = zen_get_info_page($_GET['products_id']);
@@ -139,9 +139,9 @@
       $_SESSION['check_valid'] = 'false';
       zen_redirect(zen_href_link($_GET['main_page'], 'products_id=' . $_GET['products_id']));
     }
-  } else {
-    $_SESSION['check_valid'] = 'true';
   }
+ 
+  $_SESSION['check_valid'] = 'true';
 /**
  * We do some checks here to ensure $_GET['main_page'] has a sane value
  */

@@ -4,7 +4,7 @@
  * @copyright Copyright 2003-2019 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: discount_coupon.php 697 2015-12-23 19:05:14Z webchills $
+ * @version $Id: discount_coupon.php 698 2019-07-20 10:05:14Z webchills $
  */
 
 define('NAVBAR_TITLE', 'Aktionskupon');
@@ -28,6 +28,7 @@ define('TEXT_DENY', 'nein');
 define('TEXT_NO_CAT_TOP_ONLY_DENY', '<p>Dieser Aktionskupon ist nur für bestimmte Artikel gültig.');
 define('TEXT_NO_CAT_RESTRICTIONS', '<p>Aktionskupon ist für alle Kategorien gültig.</p>');
 define('TEXT_NO_PROD_RESTRICTIONS', '<p>Aktionskupon ist für alle Artikel gültig.</p>');
+define('TEXT_NO_PROD_SALES', '<p>Dieser Aktionskupon ist nicht gültig für Artikel im Sonderangebot.</p>');
 define('TEXT_CAT_ALLOWED', ' (Gültig für diese Kategorie)');
 define('TEXT_CAT_DENIED', ' (Nicht gültig für diese Kategorie)');
 define('TEXT_PROD_ALLOWED', ' (Gültig für diesen Artikel)');

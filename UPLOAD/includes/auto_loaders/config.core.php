@@ -6,7 +6,7 @@
  * @package initSystem
  * @copyright Copyright 2003-2019 Zen Cart Development Team
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: config.core.php 735 2019-04-14 17:49:16Z webchills $
+ * @version $Id: config.core.php 736 2019-07-20 09:07:16Z webchills $
  */
 if (!defined('IS_ADMIN_FLAG')) {
  die('Illegal Access');
@@ -166,9 +166,16 @@ if (!defined('USE_PCONNECT')) define('USE_PCONNECT', 'false');
                                 'className'=>'currencies',
                                 'objectName'=>'currencies');
 /**
- * Breakpoint 100.
+ * Breakpoint 96.
  *
  * require('includes/init_includes/init_sanitize.php');
+ *
+ */
+$autoLoadConfig[96][] = array('autoType'=>'init_script',
+                              'loadFile'=> 'init_sanitize.php');
+/**
+ * Breakpoint 100.
+ *
  * if(!$_SESSION['navigaton']) $_SESSION['navigation'] = new navigationHistory();
  * $template = new template_func();
  *
@@ -176,8 +183,6 @@ if (!defined('USE_PCONNECT')) define('USE_PCONNECT', 'false');
   $autoLoadConfig[100][] = array('autoType'=>'classInstantiate',
                                  'className'=>'template_func',
                                  'objectName'=>'template');
-  $autoLoadConfig[100][] = array('autoType'=>'init_script',
-                                 'loadFile'=> 'init_sanitize.php');
   $autoLoadConfig[100][] = array('autoType'=>'classInstantiate',
                                 'className'=>'navigationHistory',
                                 'objectName'=>'navigation',

@@ -5,7 +5,7 @@
  * @copyright Copyright 2003-2019 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: Drbyte Sat May 19 07:36:05 2018 -0400 New in v1.5.6 $
+ * @version $Id: copy_product.php 2 2019-07-19 webchills $
  */
 if (!defined('IS_ADMIN_FLAG')) {
   die('Illegal Access');
@@ -18,9 +18,12 @@ $copy_attributes_include_downloads = '1';
 $copy_attributes_include_filename = '1';
 
 $heading[] = array('text' => '<h4>' . TEXT_INFO_HEADING_COPY_TO . '</h4>');
-// WebMakers.com Added: Split Page
 if (empty($pInfo->products_id)) {
-  $pInfo->products_id = $pID;
+  if (!is_object($pInfo)) {
+    $pInfo = new objectInfo(array('products_id' => $pID)); 
+  } else {
+    $pInfo->products_id = $pID;
+  }
 }
 
 $contents = array('form' => zen_draw_form('copy_product', FILENAME_CATEGORY_PRODUCT_LISTING, 'action=copy_product_confirm&cPath=' . $cPath . (isset($_GET['page']) ? '&page=' . $_GET['page'] : ''), 'post', 'class="form-horizontal"') . zen_draw_hidden_field('products_id', $pInfo->products_id));

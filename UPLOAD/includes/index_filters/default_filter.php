@@ -1,4 +1,5 @@
 <?php
+
 /**
  * default_filter.php  for index filters
  *
@@ -10,7 +11,7 @@
  * @copyright Portions Copyright 2003 osCommerce
  * @todo Need to add/fine-tune ability to override or insert entry-points on a per-product-type basis
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: default_filter.php 732 2019-06-15 17:49:16Z webchills $
+ * @version $Id: default_filter.php 733 2019-07-20 09:17:16Z webchills $
  */
 if (!defined('IS_ADMIN_FLAG')) {
   die('Illegal Access');
@@ -19,10 +20,10 @@ if (isset($_GET['sort']) && strlen($_GET['sort']) > 3) {
   $_GET['sort'] = substr($_GET['sort'], 0, 3);
 }
 if (isset($_GET['alpha_filter_id']) && (int)$_GET['alpha_filter_id'] > 0) {
-    $alpha_sort = " and pd.products_name LIKE '" . chr((int)$_GET['alpha_filter_id']) . "%' ";
-  } else {
-    $alpha_sort = '';
-  }
+  $alpha_sort = " AND pd.products_name LIKE '" . chr((int)$_GET['alpha_filter_id']) . "%' ";
+} else {
+  $alpha_sort = '';
+}
 if (!isset($select_column_list)) {
   $select_column_list = '';
 }
@@ -36,7 +37,9 @@ if (isset($_GET['manufacturers_id']) && $_GET['manufacturers_id'] != '') {
   $and = " AND m.manufacturers_id = " . (int)$_GET['manufacturers_id'] . " ";
   if (isset($_GET['filter_id']) && zen_not_null($_GET['filter_id'])) {
 // We are asked to show only a specific category
-    $and .= "AND p2c.categories_id = " . (int)$_GET['filter_id'] . " ";
+    $and .= " AND p2c.categories_id = " . (int)$_GET['filter_id'] . " ";
+  } else {
+    $and .= ' AND p2c.categories_id = p.master_categories_id ';
   }
 } else {
   // show the products in a given category

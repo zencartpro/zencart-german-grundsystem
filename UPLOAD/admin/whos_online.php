@@ -5,7 +5,7 @@
  * @copyright Copyright 2003-2019 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: whos_online.php 737 2019-06-17 14:49:16Z webchills $
+ * @version $Id: whos_online.php 738 2019-07-20 08:49:16Z webchills $
  *
  * ALERT: This file requires PHP 5.4 or newer because it uses the short-array syntax.
  * 
@@ -529,8 +529,8 @@ $listingURL = FILENAME_WHOS_ONLINE . '.php?' . zen_get_all_get_params(['q', 't',
                 $backup = $_SESSION;
                 if (false === session_decode($session_data_field[$key])) {
                     $_SESSION = $backup;
-                    unset ($backup);
                 }
+                unset($backup);
               }
 
               if (isset($_SESSION['cart']) && is_object($_SESSION['cart'])) {

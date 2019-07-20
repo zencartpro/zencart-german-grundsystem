@@ -7,7 +7,7 @@
  * @copyright Copyright 2003-2019 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: jscript_main.php 731 2019-06-15 21:49:16Z webchills $
+ * @version $Id: jscript_main.php 732 2019-07-20 09:31:16Z webchills $
  */
 ?>
 <?php
@@ -40,17 +40,4 @@ function submitFunction($gv,$total) {
    }
 }
 
-function submitonce()
-{
-  var button = document.getElementById("btn_submit");
-  button.style.cursor="wait";
-  button.disabled = true;
-  setTimeout('button_timeout()', 4000);
-  return false;
-}
-function button_timeout() {
-  var button = document.getElementById("btn_submit");
-  button.style.cursor="wait";
-  button.disabled = true;
-}
 //--></script>

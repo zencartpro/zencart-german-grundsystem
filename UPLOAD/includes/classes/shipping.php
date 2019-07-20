@@ -6,7 +6,7 @@
  * @copyright Copyright 2003-2019 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: shipping.php 736 2019-06-21 15:39:16Z webchills $
+ * @version $Id: shipping.php 737 2019-07-20 09:39:16Z webchills $
  */
 if (!defined('IS_ADMIN_FLAG')) {
   die('Illegal Access');
@@ -23,7 +23,6 @@ class shipping extends base {
   // class constructor
   function __construct($module = null) {
     global $PHP_SELF, $messageStack;
-
     if (defined('MODULE_SHIPPING_INSTALLED') && zen_not_null(MODULE_SHIPPING_INSTALLED)) {
       $this->modules = explode(';', MODULE_SHIPPING_INSTALLED);
 
@@ -167,6 +166,7 @@ class shipping extends base {
         if (FALSE == $GLOBALS[$include_quotes[$i]]->enabled) continue;
         $save_shipping_weight = $shipping_weight;
         $quotes = $GLOBALS[$include_quotes[$i]]->quote($method);
+        if (!isset($quotes['tax'])) $quotes['tax'] = 0; 
         $shipping_weight = $save_shipping_weight;
         if (is_array($quotes)) $quotes_array[] = $quotes;
       }

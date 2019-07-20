@@ -3,9 +3,9 @@
  * Zen Cart German Specific
  * Main German language file for installer
  * @package Installer
- * @copyright Copyright 2003-20198 Zen Cart Development Team
+ * @copyright Copyright 2003-2019 Zen Cart Development Team
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: lngDeutsch.php 15 2019-04-15 11:49:16Z webchills $
+ * @version $Id: lngDeutsch.php 16 2019-07-20 10:07:16Z webchills $
  */
 /**
  * defining language components for the page
@@ -296,11 +296,13 @@ define('REASON_CONFIG_KEY_ALREADY_EXISTS','Kann configuration_key "%s" nicht ein
 define('REASON_COLUMN_ALREADY_EXISTS','Kann Spalte %s nicht ninzufügen, da sie bereits existiert.');
 define('REASON_COLUMN_DOESNT_EXIST_TO_DROP','Kann Spalte %s nicht löschen, da sie nicht existiert.');
 define('REASON_COLUMN_DOESNT_EXIST_TO_CHANGE','Kann Spalte %s nicht ändern, da sie nicht existiert.');
-define('REASON_PRODUCT_TYPE_LAYOUT_KEY_ALREADY_EXISTS','Cannot insert prod-type-layout configuration_key "%s" because it already exists');
-define('REASON_INDEX_DOESNT_EXIST_TO_DROP','Cannot drop index %s on table %s because it does not exist.');
-define('REASON_PRIMARY_KEY_DOESNT_EXIST_TO_DROP','Cannot drop primary key on table %s because it does not exist.');
-define('REASON_INDEX_ALREADY_EXISTS','Cannot add index %s to table %s because it already exists.');
-define('REASON_PRIMARY_KEY_ALREADY_EXISTS','Cannot add primary key to table %s because a primary key already exists.');
+define('REASON_PRODUCT_TYPE_LAYOUT_KEY_ALREADY_EXISTS','Kann prod-type-layout configuration_key "%s" nicht hinzufügen, da er bereits existiert');
+define('REASON_INDEX_DOESNT_EXIST_TO_DROP','Kann index %s nicht aus der Tabelle %s entfernen, da er nicht existiert.');
+define('REASON_PRIMARY_KEY_DOESNT_EXIST_TO_DROP','Kann primary key nicht aus der Tabelle %s entfernen, da er nicht existiert.');
+define('REASON_INDEX_ALREADY_EXISTS','Kann index %s nicht zur Tabelle %s hinzufügen, da er bereits existiert');
+define('REASON_PRIMARY_KEY_ALREADY_EXISTS','Kann primary key nicht zur Tabelle %s hinzufügen, da bereits ein primary key existiert.');
+define('REASON_CONFIG_GROUP_KEY_ALREADY_EXISTS','Kann configuration_group_key "%s" nicht einfügen, da er bereits existiert');
+define('REASON_CONFIG_GROUP_ID_ALREADY_EXISTS','Kann configuration_group_id "%s" nicht einfügen, da sie bereits existiert');
 
 
 define('TEXT_COMPLETION_NGINX_TEXT', "<u>Wichtige Sicherheitsinformation für Nginx</u>");

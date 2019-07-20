@@ -4,7 +4,7 @@
  * @copyright Copyright 2003-2019 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: configuration_checks.php 2 2019-06-21 15:40:16Z webchills $
+ * @version $Id: configuration_checks.php 3 2019-07-20 09:00:16Z webchills $
  */
  
   /**
@@ -38,7 +38,7 @@
      $result = filter_var($variable, $id, $options); 
      if ($result === false) { 
         $messageStack->add_session($error_msg, 'error');
-        zen_redirect(zen_href_link(FILENAME_CONFIGURATION, 'gID=' . $_GET['gID'] . '&cID=' . (int)$cID));
+        zen_redirect(zen_href_link(FILENAME_CONFIGURATION, 'gID=' . $_GET['gID'] . '&cID=' . (int)$_GET['cID'] . '&action=edit'));
      }
      return; 
   }

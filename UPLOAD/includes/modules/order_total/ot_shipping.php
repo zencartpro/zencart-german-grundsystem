@@ -6,7 +6,7 @@
  * @copyright Copyright 2003-2019 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: ot_shipping.php 733 2019-04-14 17:49:16Z webchills $
+ * @version $Id: ot_shipping.php 734 2019-07-20 09:49:16Z webchills $
  */
 
   class ot_shipping {
@@ -86,6 +86,9 @@
           $shipping_tax_amount = zen_calculate_tax($order->info['shipping_cost'], $shipping_tax);
           $order->info['shipping_tax'] += $shipping_tax_amount;
           $order->info['tax'] += $shipping_tax_amount;
+          if (!isset($order->info['tax_groups'][$shipping_tax_description])) {
+              $order->info['tax_groups'][$shipping_tax_description] = 0;
+          }
           $order->info['tax_groups']["$shipping_tax_description"] += zen_calculate_tax($order->info['shipping_cost'], $shipping_tax);
           $order->info['total'] += zen_calculate_tax($order->info['shipping_cost'], $shipping_tax);
           $_SESSION['shipping_tax_description'] =  $shipping_tax_description;

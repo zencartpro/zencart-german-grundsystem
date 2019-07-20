@@ -1,10 +1,11 @@
 <?php
 /**
  * Main English language file for installer
+ * Zen Cart German Specific
  * @package Installer
  * @copyright Copyright 2003-2019 Zen Cart Development Team
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: lngEnglish.php 6 2019-04-12 19:49:16Z webchills $
+ * @version $Id: lngEnglish.php 7 2019-07-20 09:49:16Z webchills $
  */
 /**
  * defining language components for the page
@@ -98,15 +99,15 @@ define('TEXT_ADMIN_SETUP_NEWSLETTER_OPTIN', 'Opt In: ');
 
 define('TEXT_PAGE_HEADING_COMPLETION', 'Setup Finished');
 define('TEXT_COMPLETION_HEADER_MAIN', '');
-define('TEXT_COMPLETION_INSTALL_COMPLETE', 'Installation completed.');
-define('TEXT_COMPLETION_INSTALL_LINKS_BELOW', 'You can now access your store front and admin backend using the links below.');
+define('TEXT_COMPLETION_INSTALL_COMPLETE', 'One more thing!');
+define('TEXT_COMPLETION_INSTALL_LINKS_BELOW', 'The links to access your storefront and admin dashboard are shown below:');
 define('TEXT_COMPLETION_UPGRADE_COMPLETE', 'Congratulations, your upgrade is now complete.');
 define('TEXT_COMPLETION_ADMIN_DIRECTORY_WARNING', 'Your admin directory could not be renamed automatically, you will need to rename your admin directory before accessing it');
 define('TEXT_COMPLETION_INSTALLATION_DIRECTORY_WARNING', "Please delete the 'zc_install' folder now");
 define('TEXT_COMPLETION_INSTALLATION_DIRECTORY_EXPLANATION', "To prevent unauthorized persons from overwriting your installation, administering your installation will be disabled until the folder has been deleted.");
 
-define('TEXT_COMPLETION_CATALOG_LINK_TEXT', 'Your Store Front');
-define('TEXT_COMPLETION_ADMIN_LINK_TEXT', 'Your Admin Backend');
+define('TEXT_COMPLETION_CATALOG_LINK_TEXT', 'Your Storefront');
+define('TEXT_COMPLETION_ADMIN_LINK_TEXT', 'Your Admin Dashboard');
 
 define('TEXT_PAGE_HEADING_DATABASE_UPGRADE', 'Database Upgrade');
 define('TEXT_DATABASE_UPGRADE_HEADER_MAIN', '');
@@ -174,7 +175,7 @@ define('TEXT_ERROR_SESSION_SUPPORT_USE_TRANS_SID', 'ini setting session.use_tran
 define('TEXT_ERROR_SESSION_SUPPORT_AUTO_START', 'ini setting session.auto_start is enabled');
 define('TEXT_ERROR_DB_CONNECTION', 'Problems with Database Connection');
 define('TEXT_ERROR_DB_CONNECTION_DEFAULT', 'Possible problems with database connection');
-define('TEXT_ERROR_DB_CONNECTION_UPGRADE', 'Probems with database connection based on the entries in your current configure.php');
+define('TEXT_ERROR_DB_CONNECTION_UPGRADE', 'Problems with database connection based on the entries in your current configure.php');
 define('TEXT_ERROR_SET_TIME_LIMIT', 'max_execution_time setting disabled ');
 define('TEXT_ERROR_GD', 'GD Extension not enabled');
 define('TEXT_ERROR_ZLIB', 'Zlib Extension not enabled');
@@ -301,6 +302,10 @@ define('REASON_INDEX_DOESNT_EXIST_TO_DROP','Cannot drop index %s on table %s bec
 define('REASON_PRIMARY_KEY_DOESNT_EXIST_TO_DROP','Cannot drop primary key on table %s because it does not exist.');
 define('REASON_INDEX_ALREADY_EXISTS','Cannot add index %s to table %s because it already exists.');
 define('REASON_PRIMARY_KEY_ALREADY_EXISTS','Cannot add primary key to table %s because a primary key already exists.');
+define('REASON_CONFIG_GROUP_KEY_ALREADY_EXISTS','Cannot insert configuration_group_key "%s" because it already exists');
+define('REASON_CONFIG_GROUP_ID_ALREADY_EXISTS','Cannot insert configuration_group_id "%s" because it already exists');
+
+
 define('TEXT_COMPLETION_NGINX_TEXT', "<u>Important Security Information for Nginx</u>");
 define('TEXT_HELP_TITLE_NGINXCONF', "Securing Zen Cart on Nginx Web Servers");
 define('TEXT_HELP_CONTENT_NGINXCONF', "<div>

@@ -6,7 +6,7 @@
  * @copyright Copyright 2003-2019 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: column_single.php 729 2011-08-09 15:49:16Z hugo13 $
+ * @version $Id: column_single.php 730 2019-07-20 09:49:16Z webchills $
  */
 if (!defined('IS_ADMIN_FLAG')) {
   die('Illegal Access');
@@ -23,9 +23,9 @@ while (!$column_single_display->EOF and $box_cnt < 100) {
 <?php
 //$column_box_spacer = 'column_box_spacer_single';
 if (defined('BOX_WIDTH_SINGLE')) {
-  $column_width = BOX_WIDTH_SINGLE;
+  $column_width = (int)BOX_WIDTH_SINGLE;
 } else {
-  $column_width = BOX_WIDTH_LEFT;
+  $column_width = (int)BOX_WIDTH_LEFT;
 }
 if ( file_exists(DIR_WS_MODULES . 'sideboxes/' . $template_dir . '/' . $column_single_display->fields['layout_box_name']) ) {
   $box_id = zen_get_box_id($column_single_display->fields['layout_box_name']);

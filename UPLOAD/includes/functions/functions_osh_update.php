@@ -1,12 +1,12 @@
 <?php
 /**
  * functions_osh_update
- *
+ * Zen Cart German Specific
  * @package functions
  * @copyright Copyright 2003-2019 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: functions_osh_update.php 4 2019-06-23 17:47:42Z webchills $
+ * @version $Id: functions_osh_update.php 5 2019-07-20 09:16:42Z webchills $
  */
 if (!defined('IS_ADMIN_FLAG')) {
     exit('Invalid Access');

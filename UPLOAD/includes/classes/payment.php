@@ -6,7 +6,7 @@
  * @copyright Copyright 2003-2019 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: payment.php 739 2019-06-24 19:43:16Z webchills $
+ * @version $Id: payment.php 740 2019-07-20 09:11:16Z webchills $
  */
 if (!defined('IS_ADMIN_FLAG')) {
   die('Illegal Access');
@@ -108,6 +108,7 @@ class payment extends base {
   section. This should be looked into again post 2.2.
   */
   function update_status() {
+    if (empty($this->selected_module)) return; 
     if (is_array($this->modules)) {
       if (is_object($GLOBALS[$this->selected_module])) {
         if (method_exists($GLOBALS[$this->selected_module], 'update_status')) {
@@ -200,6 +201,7 @@ class payment extends base {
 
   function pre_confirmation_check() {
     global $credit_covers, $payment_modules;
+    if (empty($this->selected_module)) return; 
     if (is_array($this->modules)) {
       if (is_object($GLOBALS[$this->selected_module]) && ($GLOBALS[$this->selected_module]->enabled) ) {
         if ($credit_covers) {
@@ -214,15 +216,13 @@ class payment extends base {
   }
 
   function confirmation() {
-    if (is_array($this->modules)) {
-      if (is_object($GLOBALS[$this->selected_module]) && ($GLOBALS[$this->selected_module]->enabled) ) {
-        $confirmation = $GLOBALS[$this->selected_module]->confirmation();
-        if (!is_array($confirmation)) $confirmation = array('title' => '');
-        if (!(isset($confirmation['fields']) && is_array($confirmation['fields']))) $confirmation['fields'] = array();
-        if (!isset($confirmation['title'])) $confirmation['title'] = '';
-        return $confirmation;
-      }
-    }
+    $default = array('title' => '', 'fields' => array());
+    if (!is_array($this->modules)) return $default;
+    if (!is_object($GLOBALS[$this->selected_module])) return $default;
+    if (!$GLOBALS[$this->selected_module]->enabled) return $default;
+    $confirmation = $GLOBALS[$this->selected_module]->confirmation();
+    if (!is_array($confirmation)) return $default;
+    return array_merge($default, $confirmation);
   }
 
   function process_button_ajax() {
@@ -290,13 +290,13 @@ class payment extends base {
     }
     return array(false, '');
   }
-  function process_form_params() {
-    if (is_array($this->modules)) {
-      if (is_object($GLOBALS[$this->selected_module]) && ($GLOBALS[$this->selected_module]->enabled) ) {
-        if (method_exists($GLOBALS[$this->selected_module], 'process_form_params')) {
-          return $GLOBALS[$this->selected_module]->process_form_params();
-        }
-      }
-    }
+
+  function clear_payment()
+  {
+    if (!is_array($this->modules)) return;
+    if (!is_object($GLOBALS[$this->selected_module])) return;
+    if (!$GLOBALS[$this->selected_module]->enabled) return;
+    if (!method_exists($GLOBALS[$this->selected_module], 'clear_payment')) return;
+    $GLOBALS[$this->selected_module]->clear_payment();
   }
 }

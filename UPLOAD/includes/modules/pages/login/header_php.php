@@ -6,7 +6,7 @@
  * @copyright Copyright 2003-2019 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: header_php.php 733 2019-04-14 17:49:16Z webchills $
+ * @version $Id: header_php.php 734 2019-07-20 09:49:16Z webchills $
  */
 
 // This should be first line of the script:
@@ -27,8 +27,8 @@ include(DIR_WS_MODULES . zen_get_module_directory(FILENAME_CREATE_ACCOUNT));
 
 $error = false;
 if (isset($_GET['action']) && ($_GET['action'] == 'process')) {
-  $email_address = zen_db_prepare_input(isset($_POST['email_address']) ? $_POST['email_address'] : '');
-  $password = zen_db_prepare_input(isset($_POST['password']) ? $_POST['password'] : '');
+  $email_address = zen_db_prepare_input(isset($_POST['email_address']) ? trim($_POST['email_address']) : '');
+  $password = zen_db_prepare_input(isset($_POST['password']) ? trim($_POST['password']) : '');
   $loginAuthorized = false;
 
   /* Privacy-policy-read does not need to be checked during "login"

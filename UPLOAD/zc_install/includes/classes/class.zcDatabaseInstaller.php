@@ -4,7 +4,7 @@
  * @package Installer
  * @copyright Copyright 2003-2019 Zen Cart Development Team
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: class.zcDatabaseInstaller.php 2019-06-15 18:59:53Z webchills $
+ * @version $Id: class.zcDatabaseInstaller.php 5 2019-07-20 09:59:53Z webchills $
  *
  */
 /**
@@ -418,10 +418,10 @@ class zcDatabaseInstaller
     $title  =  $values[3];
     $sql = "select configuration_group_title from " . $this->dbPrefix . "configuration_group where configuration_group_title='".$title."'";
     $result = $this->db->Execute($sql);
-    if ($result->RecordCount() >0 ) return sprintf(REASON_CONFIGURATION_GROUP_KEY_ALREADY_EXISTS,$title);
+    if ($result->RecordCount() >0 ) return sprintf(REASON_CONFIG_GROUP_KEY_ALREADY_EXISTS,$title);
     $sql = "select configuration_group_title from " . $this->dbPrefix . "configuration_group where configuration_group_id='".$id."'";
     $result = $this->db->Execute($sql);
-    if ($result->RecordCount() >0 ) return sprintf(REASON_CONFIGURATION_GROUP_ID_ALREADY_EXISTS,$id);
+    if ($result->RecordCount() >0 ) return sprintf(REASON_CONFIG_GROUP_ID_ALREADY_EXISTS,$id);
     return FALSE;
   }
   public function checkProductTypeLayoutKey($line)

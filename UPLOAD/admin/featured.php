@@ -4,7 +4,7 @@
  * @copyright Copyright 2003-2019 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- *  $Id: featured.php 733 2019-06-15 16:01:16Z webchills $
+ *  $Id: featured.php 734 2019-07-20 08:49:16Z webchills $
  */
 require('includes/application_top.php');
 
@@ -358,7 +358,7 @@ if (zen_not_null($action)) {
                       if (isset($fInfo) && is_object($fInfo) && ($featured_line['featured_id'] == $fInfo->featured_id)) {
                         echo '                  <tr id="defaultSelected" class="dataTableRowSelected"  onclick="document.location.href=\'' . zen_href_link(FILENAME_FEATURED, 'page=' . $_GET['page'] . '&fID=' . $fInfo->featured_id . '&action=edit' . (isset($_GET['search']) ? '&search=' . $_GET['search'] : '')) . '\'" role="button">' . "\n";
                       } else {
-                        echo '                  <tr class="dataTableRow"" onclick="document.location.href=\'' . zen_href_link(FILENAME_FEATURED, 'page=' . $_GET['page'] . '&fID=' . $featured_line['featured_id'] . '&action=edit' . (isset($_GET['search']) ? '&search=' . $_GET['search'] : '')) . '\'" role="button">' . "\n";
+                        echo '                  <tr class="dataTableRow" onclick="document.location.href=\'' . zen_href_link(FILENAME_FEATURED, 'page=' . $_GET['page'] . '&fID=' . $featured_line['featured_id'] . '&action=edit' . (isset($_GET['search']) ? '&search=' . $_GET['search'] : '')) . '\'" role="button">' . "\n";
                       }
                       ?>
                   <td  class="dataTableContent text-right"><?php echo $featured_line['products_id']; ?></td>

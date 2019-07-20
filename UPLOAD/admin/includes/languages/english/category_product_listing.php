@@ -4,7 +4,7 @@
  * @copyright Copyright 2003-2019 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: category_product_listing.php 2 2019-05-07 20:30:16Z webchills $
+ * @version $Id: category_product_listing.php 3 2019-07-20 09:02:16Z webchills $
  */
 define('HEADING_TITLE', 'Categories / Products');
 define('HEADING_TITLE_GOTO', 'Go To:');
@@ -37,8 +37,13 @@ define('TEXT_INFO_HEADING_COPY_TO', 'Copy To');
 define('TEXT_INFO_COPY_TO_INTRO', 'Please choose a new category you wish to copy this product to');
 define('TEXT_INFO_CURRENT_PRODUCT', 'Current Product: ');
 define('TEXT_HOW_TO_COPY', 'Copy Method:');
-define('TEXT_COPY_AS_LINK', 'Link product');
-define('TEXT_COPY_AS_DUPLICATE', 'Duplicate product');
+define('TEXT_COPY_AS_LINK','Link this product into another category as selected above');
+define('TEXT_COPY_AS_DUPLICATE','Create a Duplicate product in the category selected above');
+define('TEXT_COPY_METATAGS','Copy Metatags to Duplicate?');
+define('TEXT_COPY_LINKED_CATEGORIES','Copy Linked Categories to Duplicate?');
+define('TEXT_COPY_AS_DUPLICATE_METATAGS', 'Metatags for Language ID#%u copied from Product ID#%u to duplicate Product ID#%u');
+define('TEXT_COPY_AS_DUPLICATE_CATEGORIES', 'Linked Category ID#%u copied from Product ID#%u to duplicate Product ID#%u');
+define('TEXT_COPY_AS_DUPLICATE_DISCOUNTS', 'Discounts copied from Product ID#%u to duplicate Product ID#%u');
 define('TEXT_INFO_HEADING_ATTRIBUTE_FEATURES', 'Attributes Changes for Products ID# ');
 define('TEXT_PRODUCTS_ATTRIBUTES_INFO', 'Attribute Features For:');
 define('TEXT_PRODUCT_ATTRIBUTES_DOWNLOADS', 'Downloads: ');
@@ -82,3 +87,4 @@ define('TEXT_SUBCATEGORIES_STATUS_NOCHANGE', 'Unchanged');
 
 define('WARNING_PRODUCTS_IN_TOP_INFO', 'WARNING: You have Products in the Top Level Category. This will cause pricing to not work properly in the Catalog. Products found: ');
 
+define('TEXT_COPY_MEDIA_MANAGER', 'Copy media?');

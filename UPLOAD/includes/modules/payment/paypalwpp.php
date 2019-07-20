@@ -1,12 +1,12 @@
 <?php
 /**
  * paypalwpp.php payment module class for PayPal Express Checkout payment method
- *
+ * Zen Cart German Specific
  * @package paymentMethod
  * @copyright Copyright 2003-2019 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: paypalwpp.php 863 2019-06-24 19:12:14Z webchills $
+ * @version $Id: paypalwpp.php 864 2019-07-20 09:36:14Z webchills $
  */
 /**
  * load the communications layer code
@@ -169,7 +169,7 @@ class paypalwpp extends base {
     $this->zone = (int)MODULE_PAYMENT_PAYPALWPP_ZONE;
     if (is_object($order)) $this->update_status();
 
-    if (PROJECT_VERSION_MAJOR != '1' && substr(PROJECT_VERSION_MINOR, 0, 3) != '5.5') $this->enabled = false;
+    if (PROJECT_VERSION_MAJOR != '1' && substr(PROJECT_VERSION_MINOR, 0, 3) != '5.6') $this->enabled = false;
 
     $this->cards = array();
     // if operating in markflow mode, start EC process when submitting order
@@ -273,12 +273,6 @@ class paypalwpp extends base {
   function confirmation() {
     $confirmation = array('title' => '', 'fields' => array());
     return $confirmation;
-  }
-  
-  function process_form_params() {
-    
-      return false;
-
   }
   /**
    * Prepare the hidden fields comprising the parameters for the Submit button on the checkout confirmation page
@@ -581,8 +575,11 @@ if (false) { // disabled until clarification is received about coupons in PayPal
     // $this->zcLog("_GetTransactionDetails($oID):", print_r($response, true));
 
     $error = $this->_errorHandler($response, 'GetTransactionDetails', 10007);
-
-    return ($error === false) ? $response : $error;
+    if ($error === false) {
+      return false;
+    } else {
+      return $response;
+    }
   }
   /**
    * Used to read details of existing transactions.  FOR FUTURE USE.
@@ -607,8 +604,11 @@ if (false) { // disabled until clarification is received about coupons in PayPal
     //$this->zcLog("_TransactionSearch($startDate, $oID, $criteria):", print_r($response, true));
 
     $error = $this->_errorHandler($response, 'TransactionSearch');
-
-    return ($error === false) ? $response : $error;
+    if ($error === false) {
+      return false;
+    } else {
+      return $response;
+    }
   }
   /**
    * Evaluate installation status of this module. Returns true if the status key is found.
@@ -619,6 +619,8 @@ if (false) { // disabled until clarification is received about coupons in PayPal
       $check_query = $db->Execute("select configuration_value from " . TABLE_CONFIGURATION . " where configuration_key = 'MODULE_PAYMENT_PAYPALWPP_STATUS'");
       $this->_check = !$check_query->EOF;
     }
+
+    if ($this->_check) $this->keys(); // install any missing keys
     return $this->_check;
   }
   /**
@@ -729,7 +731,7 @@ if (false) { // disabled until clarification is received about coupons in PayPal
     // cannot remove EC if DP installed:
     if (defined('MODULE_PAYMENT_PAYPALDP_STATUS')) {
       // this language text is hard-coded in english since Website Payments Pro is not yet available in any countries that speak any other language at this time.
-      $messageStack->add_session('<strong>Sorry, you must remove PayPal Payments Pro (paypaldp) first.</strong> PayPal Payments Pro (Website Payments Pro) requires that you offer Express Checkout to your customers.<br /><a href="' . zen_href_link(FILENAME_MODULES . '?set=payment&module=paypaldp', '', 'SSL') . '">Click here to edit or remove your PayPal Payments Pro module.</a>' , 'error');
+      $messageStack->add_session('<strong>Sorry, you must remove PayPal Payments Pro (paypaldp) first.</strong> PayPal Payments Pro (Website Payments Pro) requires that you offer Express Checkout to your customers.<br /><a href="' . zen_href_link('modules.php?set=payment&module=paypaldp', '', 'NONSSL') . '">Click here to edit or remove your PayPal Payments Pro module.</a>' , 'error');
       zen_redirect(zen_href_link(FILENAME_MODULES, 'set=payment&module=paypalwpp', 'NONSSL'));
       return 'failed';
     }
@@ -791,11 +793,7 @@ if (false) { // disabled until clarification is received about coupons in PayPal
   /**
    * Initialize the PayPal/PayflowPro object for communication to the processing gateways
    */
-  function paypal_init($testmode = 'normal') {
-    if ($testmode == 'testcomm') {
-      $doPayPal = new paypal_curl(array('mode' => 'TESTCOMMUNICATIONS'));
-      return $doPayPal;
-    }
+  function paypal_init() {
     if (!defined('MODULE_PAYMENT_PAYPALWPP_STATUS') || !defined('MODULE_PAYMENT_PAYPALWPP_SERVER')) {
       $doPayPal = new paypal_curl(array('mode' => 'NOTCONFIGURED'));
       return $doPayPal;
@@ -838,26 +836,6 @@ if (false) { // disabled until clarification is received about coupons in PayPal
 
     return $doPayPal;
   }
-
-  /**
-   * Test whether the module is able to communicate with the gateway
-   * @return multitype:string
-   */
-  function testCommunications() {
-    $retVal = array();
-    $doPayPal = $this->paypal_init('testcomm');
-    $result = $doPayPal->testResults;
-//   die('result=<pre>'.var_export($result, true));
-    if ($result === TRUE) {
-      $retVal['type'] = 'success';
-      $retVal['text'] = 'Communications Test Successful: ' . $this->code . ' (' . $doPayPal->_endpoints[$doPayPal->_server] . ')';
-    } else {
-      $retVal['type'] = 'error';
-      $retVal['text'] = 'Communications Test FAILED: ' . $this->code . ': ' . ' (' . $doPayPal->_endpoints[$doPayPal->_server] . ')' . ' - ' . $result;
-    }
-    return $retVal;
-  }
-
   /**
    * Determine which PayPal URL to direct the customer's browser to when needed
    */
@@ -1051,14 +1029,14 @@ if (false) { // disabled until clarification is received about coupons in PayPal
         $sql_data_array = array('orders_id' => (int)$oID,
                                 'orders_status_id' => (int)$new_order_status,
                                 'date_added' => 'now()',
-                                'comments' => 'FUNDS COLLECTED. Trans ID: ' . urldecode($response['TRANSACTIONID']) . $response['PNREF']. "\n" . ' Amount: ' . urldecode($response['AMT']) . ' ' . $currency . "\n" . 'Time: ' . urldecode($response['ORDERTIME']) . "\n" . (isset($response['RECEIPTID']) ? 'Receipt ID: ' . urldecode($response['RECEIPTID']) : 'Auth Code: ' . (isset($response['AUTHCODE']) && $response['AUTHCODE'] != '' ? $response['AUTHCODE'] : $response['CORRELATIONID'])) . (isset($response['PPREF']) ? "\nPPRef: " . $response['PPREF'] : '') . "\n" . $captureNote,
+                                'comments' => 'FUNDS CAPTURED. Trans ID: ' . urldecode($response['TRANSACTIONID']) . $response['PNREF']. "\n" . ' Amount: ' . urldecode($response['AMT']) . ' ' . $currency . "\n" . 'Time: ' . urldecode($response['ORDERTIME']) . "\n" . 'Auth Code: ' . (!empty($response['AUTHCODE']) ? $response['AUTHCODE'] : $response['CORRELATIONID']) . (isset($response['PPREF']) ? "\nPPRef: " . $response['PPREF'] : '') . "\n" . $captureNote,
                                 'customer_notified' => 0
                              );
         zen_db_perform(TABLE_ORDERS_STATUS_HISTORY, $sql_data_array);
         $db->Execute("update " . TABLE_ORDERS  . "
                       set orders_status = '" . (int)$new_order_status . "'
                       where orders_id = '" . (int)$oID . "'");
-        $messageStack->add_session(sprintf(MODULE_PAYMENT_PAYPALWPP_TEXT_CAPT_INITIATED, urldecode($response['AMT']), urldecode($response['RECEIPTID'] . (isset($response['AUTHCODE']) && $response['AUTHCODE'] != '' ? $response['AUTHCODE'] : $response['CORRELATIONID']) ). $response['PNREF']), 'success');
+        $messageStack->add_session(sprintf(MODULE_PAYMENT_PAYPALWPP_TEXT_CAPT_INITIATED, urldecode($response['AMT']), urldecode(!empty($response['AUTHCODE']) ? $response['AUTHCODE'] : $response['CORRELATIONID']). $response['PNREF']), 'success');
         return true;
       }
     }
@@ -1574,9 +1552,7 @@ if (false) { // disabled until clarification is received about coupons in PayPal
 
     // init new order object
     require(DIR_WS_CLASSES . 'order.php');
-    //-bof-20151015-lat9-Force order to be calculated in the precision dictated by the selected currency  *** 1 of 1 ***
-    $order = new order ('', $this->selectCurrency ());
-//-bof-20151015-lat9-Force order to be calculated in the precision dictated by the selected currency  *** 1 of 1 ***
+    $order = new order;
 
     // load the selected shipping module so that shipping taxes can be assessed
     require(DIR_WS_CLASSES . 'shipping.php');
@@ -2044,7 +2020,7 @@ if (false) { // disabled until clarification is received about coupons in PayPal
 
       // set the session value for express checkout temp
       $_SESSION['paypal_ec_temp'] = false;
-      
+
       // -----
       // Allow an observer to override the default address-creation processing.
       //
@@ -2807,7 +2783,7 @@ if (false) { // disabled until clarification is received about coupons in PayPal
     // debug
     $this->_doDebug('PayPal test Log - terminateEC-A', "goto page: " . $goto_page . "\nerror_msg: " . $error_msg . "\n\nSession data: " . print_r($_SESSION, true));
 
-   if ($kill_sess_vars) {
+    if ($kill_sess_vars) {
       if (!empty($_SESSION['paypal_ec_temp'])) {
         $this->ec_delete_user($_SESSION['customer_id']);
       }
@@ -3071,7 +3047,6 @@ if (false) { // disabled until clarification is received about coupons in PayPal
         }
         break;
     }
-    return false;
   }
 
   function tableCheckup() {

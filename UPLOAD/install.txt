@@ -1,7 +1,7 @@
 ﻿Willkommen bei der deutschen Zen-Cart Version
-Version 1.5.6 BETA
+Version 1.5.6c BETA
 
-Um Zen Cart 1.5.6 BETA deutsch zu installieren nur die Ordner/Dateien im Ordner UPLOAD hochladen!
+Um Zen Cart 1.5.6c BETA deutsch zu installieren nur die Ordner/Dateien im Ordner UPLOAD hochladen!
 
 Dies ist eine BETA Version.
 * Ausschließlich in einem Testsystem installieren.

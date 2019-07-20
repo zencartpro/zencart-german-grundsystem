@@ -1,10 +1,11 @@
 <?php
 /**
  * @package Admin Access Management
+ * Zen Cart German Specific
  * @copyright Copyright 2003-2019 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: admin_access.php 843 2019-06-30 10:17:21Z webchills $
+ * @version $Id: admin_access.php 844 2019-07-20 08:59:21Z webchills $
  */
 
 if (!defined('ADMIN_PASSWORD_MIN_LENGTH')) define('ADMIN_PASSWORD_MIN_LENGTH', 7);
@@ -476,7 +477,7 @@ function zen_check_for_password_problems($password, $adminID = 0)
  * @param string $adminID
  */
 function zen_check_for_expired_pwd ($adminID) {
-  if (PADSS_PWD_EXPIRY_ENFORCED == 0) return;
+  if (PADSS_PWD_EXPIRY_ENFORCED == 0) return 0;
   global $db;
   $sql = "SELECT admin_id FROM " . TABLE_ADMIN . "
           WHERE admin_id = :adminID:
@@ -922,6 +923,7 @@ function zen_deregister_admin_pages($pages)
     zen_record_admin_activity('Deleted admin pages for page keys: ' . print_r($pages, true), 'warning');
   }
 }
+
 function zen_updated_by_admin($admin_id = '') 
 {
     if ($admin_id === '') {

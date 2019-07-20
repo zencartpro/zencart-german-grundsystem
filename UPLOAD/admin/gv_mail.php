@@ -4,7 +4,7 @@
  * @copyright Copyright 2003-2019 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: gv_mail.php 809 2019-06-15 16:28:24Z webchills $
+ * @version $Id: gv_mail.php 810 2019-07-20 08:28:24Z webchills $
  */
 
   require('includes/application_top.php');
@@ -44,7 +44,7 @@
 
     while (!$mail->EOF) {
 
-      $id1 = create_coupon_code($mail->fields['customers_email_address']);
+      $id1 = zen_create_coupon_code($mail->fields['customers_email_address']);
       $insert_query = $db->Execute("insert into " . TABLE_COUPONS . "
                                     (coupon_code, coupon_type, coupon_amount, date_created)
                                     values ('" . zen_db_input($id1) . "', 'G', '" . zen_db_input($_POST['amount']) . "', now())");
@@ -94,7 +94,7 @@
     }
 
     if ($_POST['email_to']) {
-      $id1 = create_coupon_code($_POST['email_to']);
+      $id1 = zen_create_coupon_code($_POST['email_to']);
       $message = zen_db_prepare_input($_POST['message']);
       $message .= "\n\n" . TEXT_GV_WORTH  . $currencies->format($_POST['amount']) . "\n\n";
       $message .= TEXT_TO_REDEEM;

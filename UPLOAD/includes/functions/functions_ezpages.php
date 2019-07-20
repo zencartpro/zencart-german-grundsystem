@@ -6,7 +6,7 @@
  * @copyright Copyright 2003-2019 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: functions_ezpages.php 730 2019-04-12 11:11:16Z webchills $
+ * @version $Id: functions_ezpages.php 731 2019-07-20 09:11:16Z webchills $
  */
 
 
@@ -21,7 +21,7 @@
     $ez_pages_name = 'Click Here';
 
     if ($ez_pages_chapter == 0) {
-      $page_query = $db->Execute("select * from " . TABLE_EZPAGES . " where pages_id='" . (int)$ez_pages_id . "' limit 1");
+      $page_query = $db->Execute("SELECT * FROM " . TABLE_EZPAGES . " e, " . TABLE_EZPAGES_CONTENT . " ec WHERE e.pages_id = ec.pages_id AND ec.languages_id = " . (int)$_SESSION['languages_id'] . " AND e.pages_id='" . (int)$ez_pages_id . "' limit 1");
 
       $ez_pages_id = $page_query->fields['pages_id'];
       $ez_pages_name = $page_query->fields['pages_title'];

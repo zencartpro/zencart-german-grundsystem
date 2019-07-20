@@ -6,7 +6,7 @@
  * @copyright Copyright 2003-2019 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: header_php.php 732 2016-03-02 21:29:16Z webchills $
+ * @version $Id: header_php.php 733 2019-07-20 09:29:16Z webchills $
  */
 
 // This should be first line of the script:
@@ -26,12 +26,13 @@ if (isset($_GET['action']) && ($_GET['action'] == 'process')) {
     exit(0);
   }
   // BEGIN SLAM PREVENTION
-  if ($_POST['email_address'] != '')
+  if (!empty($_POST['email_address']))
   {
     if (! isset($_SESSION['login_attempt'])) $_SESSION['login_attempt'] = 0;
     $_SESSION['login_attempt'] ++;
   } // END SLAM PREVENTION
-  $email_address = zen_db_prepare_input($_POST['email_address']);
+
+  $email_address = zen_db_prepare_input(trim($_POST['email_address']));
 
   $check_customer_query = "SELECT customers_firstname, customers_lastname, customers_password, customers_id
                            FROM " . TABLE_CUSTOMERS . "
@@ -57,15 +58,19 @@ if (isset($_GET['action']) && ($_GET['action'] == 'process')) {
 
     $html_msg['EMAIL_CUSTOMERS_NAME'] = $check_customer->fields['customers_firstname'] . ' ' . $check_customer->fields['customers_lastname'];
     $html_msg['EMAIL_MESSAGE_HTML'] = sprintf(EMAIL_PASSWORD_REMINDER_BODY, $new_password);
+
     // send the email
     zen_mail($check_customer->fields['customers_firstname'] . ' ' . $check_customer->fields['customers_lastname'], $email_address, EMAIL_PASSWORD_REMINDER_SUBJECT, sprintf(EMAIL_PASSWORD_REMINDER_BODY, $new_password), STORE_NAME, EMAIL_FROM, $html_msg,'password_forgotten');
+
     // handle 3rd-party integrations
     $zco_notifier->notify('NOTIFY_PASSWORD_FORGOTTEN_CHANGED', $email_address, $check_customer->fields['customers_id'], $new_password);
+
   } else {
     $zco_notifier->notify('NOTIFY_PASSWORD_FORGOTTEN_NOT_FOUND', $email_address);
   }
 
     $messageStack->add_session('login', SUCCESS_PASSWORD_SENT, 'success');
+
     zen_redirect(zen_href_link(FILENAME_LOGIN, '', 'SSL'));
 }
 

@@ -6,7 +6,7 @@
  * @copyright Copyright 2003-2019 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: header_php.php 734 2019-06-15 21:29:16Z webchills $
+ * @version $Id: header_php.php 735 2019-07-20 09:32:16Z webchills $
  */
 
 // This should be first line of the script:
@@ -22,6 +22,8 @@ if (isset($_GET['action']) && ($_GET['action'] == 'send')) {
     $email_address = zen_db_prepare_input($_POST['email']);
     $enquiry = zen_db_prepare_input(strip_tags($_POST['enquiry']));
     $antiSpam = isset($_POST['should_be_empty']) ? zen_db_prepare_input($_POST['should_be_empty']) : '';
+    if (!empty($_POST['contactname']) && preg_match('~https?://?~', $_POST['contactname'])) $antiSpam = 'spam';
+
     $zco_notifier->notify('NOTIFY_CONTACT_US_CAPTCHA_CHECK', $_POST);
 
     $zc_validate_email = zen_validate_email($email_address);

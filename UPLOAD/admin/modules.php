@@ -5,7 +5,7 @@
  * @copyright Copyright 2003-2019 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: modules.php 794 2019-06-15 16:13:51Z webchills $
+ * @version $Id: modules.php 795 2019-07-20 08:53:51Z webchills $
  */
 function getConfigLanguage($cKey){
      global $db;
@@ -93,6 +93,7 @@ if (zen_not_null($action)) {
   $admname = '{' . preg_replace('/[^\w]/', '*', zen_get_admin_name()) . '[' . (int)$_SESSION['admin_id'] . ']}';
   switch ($action) {
     case 'save':
+      $class = basename($_GET['module']);
       if (!$is_ssl_protected && in_array($class, array('paypaldp', 'authorizenet_aim', 'authorizenet_echeck'))) {
         break;
       }

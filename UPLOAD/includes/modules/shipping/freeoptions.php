@@ -4,7 +4,7 @@
  * @copyright Copyright 2003-2019 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: freeoptions.php 732 2019-04-14 17:49:16Z webchills $
+ * @version $Id: freeoptions.php 733 2019-07-20 09:49:16Z webchills $
  */
 
   class freeoptions extends base {
@@ -178,7 +178,7 @@
                               'module' => MODULE_SHIPPING_FREEOPTIONS_TEXT_TITLE,
                               'methods' => array(array('id' => $this->code,
                                                        'title' => MODULE_SHIPPING_FREEOPTIONS_TEXT_WAY,
-                                                       'cost'  => MODULE_SHIPPING_FREEOPTIONS_COST + MODULE_SHIPPING_FREEOPTIONS_HANDLING)));
+                                                       'cost'  => (float)MODULE_SHIPPING_FREEOPTIONS_COST + (float)MODULE_SHIPPING_FREEOPTIONS_HANDLING)));
 
         if ($this->tax_class > 0) {
           $this->quotes['tax'] = zen_get_tax_rate($this->tax_class, $order->delivery['country']['id'], $order->delivery['zone_id']);

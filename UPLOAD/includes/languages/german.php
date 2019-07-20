@@ -5,7 +5,7 @@
  * @copyright Copyright 2003-2019 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: german.php 666 2019-05-09 10:45:57Z webchills $
+ * @version $Id: german.php 667 2019-07-20 10:21:57Z webchills $
  */
 
 // FOLLOWING WERE moved to meta_tags.php
@@ -477,7 +477,9 @@ define('ERROR_QUANTITY_CHANGED_TO', ' in ');
 // Downloads Controller
 define('DOWNLOADS_CONTROLLER_ON_HOLD_MSG', 'Hinweis: Downloads werden erst nach Bestätigung des Zahlungseingangs freigeschaltet.');
 define('TEXT_FILESIZE_BYTES', ' bytes');
+define('TEXT_FILESIZE_KBS', ' KB');
 define('TEXT_FILESIZE_MEGS', ' MB');
+define('TEXT_FILESIZE_UNKNOWN', 'Unbekannt');
 
 // shopping cart errors
 define('ERROR_PRODUCT', '<br/>Der Artikel: ');
@@ -494,6 +496,8 @@ define('ERROR_PRODUCT_QUANTITY_UNITS_SHOPPING_CART', '... ungültige Stückzahl 
 define('ERROR_PRODUCT_QUANTITY_MAX_SHOPPING_CART', '... maximale Stückzahl überschritten -');
 define('WARNING_SHOPPING_CART_COMBINED', 'Achtung: Ihr aktueller Warenkorb wurde mit dem Warenkorb Ihres letzten Besuchs zusammengelegt. Bitte überprüfen Sie den Inhalt Ihres Warenkorbs, bevor Sie ihre Bestellung abschließen.');
 define('WARNING_PRODUCT_QUANTITY_ADJUSTED', 'Die Menge wurde automatisch auf den verfügbaren Lagerbestand angepasst. ');
+define('OUT_OF_STOCK_CANT_CHECKOUT', 'Mit ' . STOCK_MARK_PRODUCT_OUT_OF_STOCK . ' gekennzeichnete Artikel sind derzeit nicht in ausreichender Menge lagernd.<br />Bitte ändern Sie die Menge bei den mit (' . STOCK_MARK_PRODUCT_OUT_OF_STOCK . ') gekennzeichneten Artikeln. Danke.');
+define('OUT_OF_STOCK_CAN_CHECKOUT', 'Mit ' . STOCK_MARK_PRODUCT_OUT_OF_STOCK . ' gekennzeichnete Artikel sind nicht lagernd.<br />Diese Artikel werden nachgeliefert.');
 
 // error on checkout when $_SESSION['customers_id' does not exist in customers table
 define('ERROR_CUSTOMERS_ID_INVALID', 'Die Kundeninformation konnte nicht verifiziert werden!<br />Bitte melden Sie sich an oder erstellen Sie Ihr Kundenkonto erneut ...');

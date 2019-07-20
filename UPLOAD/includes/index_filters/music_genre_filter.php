@@ -1,4 +1,5 @@
 <?php
+
 /**
  * music_genre_filter.php  for index filters
  *
@@ -10,7 +11,7 @@
  * @copyright Portions Copyright 2003 osCommerce
  * @todo Need to add/fine-tune ability to override or insert entry-points on a per-product-type basis
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: music_genre_filter.php 732 2019-06-15 17:49:16Z webchills $
+ * @version $Id: music_genre_filter.php 733 2019-07-20 09:18:16Z webchills $
  */
 if (!defined('IS_ADMIN_FLAG')) {
   die('Illegal Access');
@@ -37,6 +38,8 @@ if (isset($_GET['music_genre_id'])) {
   if (isset($_GET['filter_id']) && zen_not_null($_GET['filter_id'])) {
 // We are asked to show only a specific category
     $and .= " AND p2c.categories_id = " . (int)$_GET['filter_id'] . " ";
+  } else {
+    $and .= ' AND p2c.categories_id = p.master_categories_id ';
   }
 } else {
   // We show them all
