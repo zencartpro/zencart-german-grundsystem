@@ -1,12 +1,12 @@
 <?php
 /**
  * Page Template
- *
+ * Zen Cart German Specific
  * @package templateSystem
  * @copyright Copyright 2003-2019 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: tpl_login_default.php 733 2019-06-24 19:49:16Z webchills $
+ * @version $Id: tpl_login_default.php 734 2019-07-20 17:49:16Z webchills $
  */
 ?>
 <div class="centerColumn" id="loginDefault">
@@ -52,8 +52,9 @@
 </form>
 </fieldset>
 <br class="clearBoth" />
-<?php
-  if ($_SESSION['cart']->count_contents() > 0) { ?>
+
+<?php if ($_SESSION['cart']->count_contents() > 0) { ?>
+<?php if ($ec_button_enabled) { ?>	
   <br class="clearBoth" />	
   	<fieldset id="paypallogin">
 <legend><?php echo HEADING_PAYPAL_CUSTOMER_SPLIT; ?></legend>

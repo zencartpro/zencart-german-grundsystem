@@ -5,7 +5,7 @@
  * @copyright Copyright 2003-2019 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: orders.php 2019-06-23 20:31:51Z webchills $
+ * @version $Id: orders.php 2019-07-30 17:31:51Z webchills $
  */
 require('includes/application_top.php');
 
@@ -474,8 +474,7 @@ if (zen_not_null($action) && $order_exists == true) {
               </tr>
               <tr>
                 <td>&nbsp;</td>
-                <td class="noprint"><a href="https://maps.google.com/maps/search/?api=1&amp;query=<?php echo urlencode($order->customer['street_address'] . ',' . $order->customer['city'] . ',' .  $order->customer['state'] . ',' . $order->customer['postcode']); ?>" target="map"><i class="fa fa-map">&nbsp;</i> <u><?php echo TEXT_MAP_CUSTOMER_ADDRESS; ?></u></a>
-		</td>
+                <td class="noprint"><a href="https://maps.google.com/maps/search/?api=1&amp;query=<?php echo urlencode($order->customer['street_address'] . ',' . $order->customer['city'] . ',' .  $order->customer['state'] . ',' . $order->customer['postcode']); ?>" target="map"><i class="fa fa-map">&nbsp;</i> <u><?php echo TEXT_MAP_CUSTOMER_ADDRESS; ?></u></a></td>
               </tr>
               <tr>
                 <td colspan="2"><?php echo zen_draw_separator('pixel_trans.gif', '1', '5'); ?></td>
@@ -971,14 +970,14 @@ if (zen_not_null($action) && $order_exists == true) {
                 <td class="dataTableContent text-right"><?php echo ($orders->fields['orders_status_name'] != '' ? $orders->fields['orders_status_name'] : TEXT_INVALID_ORDER_STATUS); ?></td>
                 <td class="dataTableContent text-center"><?php echo (zen_get_orders_comments($orders->fields['orders_id']) == '' ? '' : zen_image(DIR_WS_IMAGES . 'icon_yellow_on.gif', TEXT_COMMENTS_YES, 16, 16)); ?></td>
 <?php if ($orders->fields['order_device'] == 'Mobile') { 
-	 echo '<td class="dataTableContent" align="center"><img src="images/icon-mobile.png" alt="Mobile" title="Mobile"/></td>';
+	 echo '<td class="dataTableContent text-center"><img src="images/icon-mobile.png" alt="Mobile" title="Mobile"/></td>';
 
   } else if ($orders->fields['order_device'] == 'Tablet') { 
   	
-	echo '	<td class="dataTableContent" align="center"><img src="images/icon-tablet.png" alt="Tablet" title="Tablet"/></td>';
+	echo '	<td class="dataTableContent text-center"><img src="images/icon-tablet.png" alt="Tablet" title="Tablet"/></td>';
 
   } else {
-  echo '	<td class="dataTableContent" align="center"><img src="images/icon-desktop.png" alt="Desktop" title="Desktop"/></td>';
+  echo '	<td class="dataTableContent text-center"><img src="images/icon-desktop.png" alt="Desktop" title="Desktop"/></td>';
   }
 ?>
                
@@ -1068,8 +1067,8 @@ if (zen_not_null($action) && $order_exists == true) {
 
                     $contents[] = array('align' => 'text-center', 'text' => '<a href="' . zen_href_link(FILENAME_ORDERS, zen_get_all_get_params(array('oID', 'action')) . 'oID=' . $oInfo->orders_id . '&action=edit', 'NONSSL') . '" class="btn btn-primary" role="button">' . IMAGE_EDIT . '</a> <a href="' . zen_href_link(FILENAME_ORDERS, zen_get_all_get_params(array('oID', 'action')) . 'oID=' . $oInfo->orders_id . '&action=delete', 'NONSSL') . '" class="btn btn-warning" role="button">' . IMAGE_DELETE . '</a>');
                     $contents[] = array('align' => 'text-center', 'text' => '<a href="' . zen_href_link(FILENAME_ORDERS_INVOICE, 'oID=' . $oInfo->orders_id) . '" target="_blank" class="btn btn-info" role="button">' . IMAGE_ORDERS_INVOICE . '</a> <a href="' . zen_href_link(FILENAME_ORDERS_PACKINGSLIP, 'oID=' . $oInfo->orders_id) . '" target="_blank" class="btn btn-info" role="button">' . IMAGE_ORDERS_PACKINGSLIP . '</a>');
-        $contents[] = array('align' => 'text-center', 'text' => '<a href="' . zen_href_link(FILENAME_ADRESSKORREKTUR, zen_get_all_get_params(array('oID', 'action')) . 'oID=' . $oInfo->orders_id . '&action=edit', 'NONSSL') . '" class="btn btn-primary" role="button">' . IMAGE_ADRESSKORREKTUR  . '</a>');
-        $contents[] = array('align' => 'text-center', 'text' => '<a href="' . zen_href_link(FILENAME_RL_INVOICE3, 'oID=' . $oInfo -> orders_id) . '" TARGET="_blank" class="btn btn-info" role="button">' . IMAGE_RL_INVOICE  . '</a>');
+                    $contents[] = array('align' => 'text-center', 'text' => '<a href="' . zen_href_link(FILENAME_ADRESSKORREKTUR, zen_get_all_get_params(array('oID', 'action')) . 'oID=' . $oInfo->orders_id . '&action=edit', 'NONSSL') . '" class="btn btn-primary" role="button">' . IMAGE_ADRESSKORREKTUR  . '</a>');
+                    $contents[] = array('align' => 'text-center', 'text' => '<a href="' . zen_href_link(FILENAME_RL_INVOICE3, 'oID=' . $oInfo -> orders_id) . '" TARGET="_blank" class="btn btn-info" role="button">' . IMAGE_RL_INVOICE  . '</a>');
                     $zco_notifier->notify('NOTIFY_ADMIN_ORDERS_MENU_BUTTONS', $oInfo, $contents);
                     $contents[] = array('text' => '<br>' . TEXT_DATE_ORDER_CREATED . ' ' . zen_date_short($oInfo->date_purchased));
                     $contents[] = array('text' => '<br>' . $oInfo->customers_email_address);
@@ -1078,7 +1077,7 @@ if (zen_not_null($action) && $order_exists == true) {
                     }
                     $contents[] = array('text' => '<br>' . TEXT_INFO_PAYMENT_METHOD . ' ' . $oInfo->payment_method);
                     $contents[] = array('text' => '<br>' . ENTRY_SHIPPING . ' ' . $oInfo->shipping_method);
-        $contents[] = array('text' => 'Device: ' . $oInfo->order_device);
+                    $contents[] = array('text' => 'Device: ' . $oInfo->order_device);
 
 // check if order has open gv
                     $gv_check = $db->Execute("SELECT order_id, unique_id

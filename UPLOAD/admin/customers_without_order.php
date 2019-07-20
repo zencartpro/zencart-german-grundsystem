@@ -4,7 +4,7 @@
  * @copyright Copyright 2003-2019 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: customers_without_order.php 5 2019-06-15 15:43:51Z webchills $
+ * @version $Id: customers_without_order.php 6 2019-07-30 17:20:51Z webchills $
  */
 require('includes/application_top.php');
 
@@ -671,7 +671,7 @@ if (zen_not_null($action)) {
                       echo $cInfo->customers_dob . ((empty($customers_dob) || $customers_dob <= '0001-01-01' || $customers_dob == '0001-01-01 00:00:00') ? 'N/A' : zen_draw_hidden_field('customers_dob'));
                     }
                   } else {
-                    echo zen_draw_input_field('customers_dob', ((empty($customers_dob) || $customers_dob <= '0001-01-01' || $customers_dob == '0001-01-01 00:00:00') ? '' : zen_date_short($cInfo->customers_dob)), 'maxlength="10" class="form-control"', true);
+                    echo zen_draw_input_field('customers_dob', ((empty($cInfo->customers_dob) || $cInfo->customers_dob <= '0001-01-01' || $cInfo->customers_dob == '0001-01-01 00:00:00') ? '' : zen_date_short($cInfo->customers_dob)), 'maxlength="10" class="form-control"', true);
                   }
                   ?>
               </div>
@@ -1338,7 +1338,7 @@ if (zen_not_null($action)) {
                       <?php echo zen_image(DIR_WS_IMAGES . 'icon_red_off.gif', IMAGE_ICON_STATUS_OFF); ?>
                       <?php
                     } else {
-                      echo zen_draw_form('setstatus', FILENAME_CUSTOMERS_WITHOUT_ORDER, 'action=status&cID=' . $customer['customers_id'] . (isset($_GET['page']) ? '&page=' . $_GET['page'] : '') . (isset($_GET['search']) ? '&search=' . $_GET['search'] : ''));
+                      echo zen_draw_form('setstatus_' . (int)$customer['customers_id'], FILENAME_CUSTOMERS_WITHOUT_ORDER, 'action=status&cID=' . $customer['customers_id'] . (isset($_GET['page']) ? '&page=' . $_GET['page'] : '') . (isset($_GET['search']) ? '&search=' . $_GET['search'] : ''));
                       ?>
                       <?php if ($customer['customers_authorization'] == 0) { ?>
                       <input type="image" src="<?php echo DIR_WS_IMAGES ?>icon_green_on.gif" title="<?php echo IMAGE_ICON_STATUS_ON; ?>" />
