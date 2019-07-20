@@ -5,7 +5,7 @@
  * @author yellow1912 (RubikIntegration.com)
  * @author John William Robeson, Jr <johnny@localmomentum.net>
  * @license http://www.gnu.org/licenses/old-licenses/gpl-2.0.html GNU Public License V2.0
- * modified for Zen Cart German PHP 7.3 2019-06-17 webchills
+ * modified for Zen Cart German PHP 7.3 2019-07-20 webchills
  * NOTES:
  * All .php files can be manipulated by PHP when they're called, and are copied in-full to the browser page
  */
@@ -65,8 +65,10 @@ class RiCjLoaderPlugin
 	function autoloadLoaders(){	
 		if($this->get('loaders') == '*')
 		{
-			$directory_array = $this->template->get_template_part(DIR_WS_TEMPLATE.'auto_loaders', '/^loader_/', '.php');
-			while(list ($key, $value) = each($directory_array)) {
+			$directory_array = $this->template->get_template_part(DIR_WS_TEMPLATE.'auto_loaders', '/^loader_/', '.php');	
+			
+			foreach ($directory_array as $key => $value) { 			
+			
 			/**
 			* include content from all site-wide loader_*.php files from includes/templates/YOURTEMPLATE/jscript/auto_loaders, alphabetically.
 			*/
