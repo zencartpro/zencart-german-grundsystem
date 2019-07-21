@@ -6,7 +6,7 @@
  * @copyright Copyright 2003-2019 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: header_php.php 733 2018-04-12 18:05:16Z webchills $
+ * @version $Id: header_php.php 734 2019-07-21 14:05:16Z webchills $
  */
 
 // This should be first line of the script:
@@ -179,4 +179,3 @@ for ($i=0, $n=sizeof($products); $i<$n; $i++) {
 
 // This should be last line of the script:
 $zco_notifier->notify('NOTIFY_HEADER_END_SHOPPING_CART');
-?>

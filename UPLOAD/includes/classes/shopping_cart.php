@@ -1,12 +1,12 @@
 <?php
 /**
  * Class for managing the Shopping Cart
- *
+ * Zen Cart German Specific
  * @package classes
  * @copyright Copyright 2003-2019 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: shopping_cart.php 783 2019-07-20 09:13:29Z webchills $
+ * @version $Id: shopping_cart.php 784 2019-07-21 14:31:29Z webchills $
  */
 
 if (!defined('IS_ADMIN_FLAG')) {
@@ -1377,6 +1377,7 @@ class shoppingCart extends base {
         $products_array[] = array('id' => $products_id,
                                   'category' => $products->fields['master_categories_id'],
                                   'name' => $products->fields['products_name'],
+                                  'merkmale' => $products->fields['products_merkmale'],
                                   'model' => $products->fields['products_model'],
                                   'image' => $products->fields['products_image'],
                                   'price' => ($products->fields['product_is_free'] =='1' ? 0 : $products_price),
