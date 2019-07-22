@@ -3,7 +3,7 @@
  * @package plugins
  * @copyright Copyright 2003-2019 Zen Cart Development Team
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: Drbyte Sat Dec 23 12:42:13 2017 -0500 New in v1.5.6 $
+ * @version $Id: auto.downloads_via_aws.php 1 2019-07-22 08:25:51Z webchills $
  */
 
 /**
