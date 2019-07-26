@@ -4,7 +4,7 @@
  * @copyright Copyright 2003-2019 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: it_recht_kanzlei.php 2018-06-14 19:13:51Z webchills $
+ * @version $Id: it_recht_kanzlei.php 2 2019-07-26 16:22:51Z webchills $
  */
 
 require('includes/application_top.php');
@@ -14,45 +14,46 @@ if (!is_null($_GET['token']) && $_GET['token'] == 'new') {
 	zen_redirect(zen_href_link(FILENAME_IT_RECHT_KANZLEI));
 }
 ?>
-<!doctype html public "-//W3C//DTD HTML 4.01 Transitional//EN">
+<!doctype html>
 <html <?php echo HTML_PARAMS; ?>>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=<?php echo CHARSET; ?>">
-<title><?php echo TITLE; ?></title>
-<link rel="stylesheet" type="text/css" href="includes/stylesheet.css">
-<link rel="stylesheet" type="text/css" href="includes/cssjsmenuhover.css" media="all" id="hoverJS">
-<style>
-#itrk-illu {
+  <head>
+    <meta charset="<?php echo CHARSET; ?>">
+    <title><?php echo TITLE; ?></title>
+    <link rel="stylesheet" href="includes/stylesheet.css">
+    <link rel="stylesheet" href="includes/cssjsmenuhover.css" media="all" id="hoverJS">
+    <style>
+    #itrk-illu {
     float: right;
     width:270px;
-}
-#itrkinfo a {
+    }
+    #itrkinfo a {
     font-size:12px;
     color: #EF7D00;
     text-decoration:underline;
 }
 </style>
-<script language="javascript" src="includes/menu.js"></script>
-<script language="javascript" src="includes/general.js"></script>
-<script type="text/javascript">
-  <!--
-  function init()
-  {
-    cssjsmenu('navbar');
-    if (document.getElementById)
-    {
-      var kill = document.getElementById('hoverJS');
-      kill.disabled = true;
-    }
-  }
-  // -->
-</script>
+    <script src="includes/menu.js"></script>
+    <script src="includes/general.js"></script>
+
+    <script>
+      function init() {
+          cssjsmenu('navbar');
+          if (document.getElementById) {
+              var kill = document.getElementById('hoverJS');
+              kill.disabled = true;
+          }
+      }
+    </script>
+    
   </head>
-<body onload="init()">
-  <!-- header //-->
-  <?php require(DIR_WS_INCLUDES . 'header.php'); ?>
-  <!-- header_eof //-->
-  <!-- body //-->
+
+<body onLoad="init()" >
+      <!-- header //-->
+      <?php require(DIR_WS_INCLUDES . 'header.php'); ?>
+      <!-- header_eof //-->
+      <div class="container-fluid">
+        <!-- body //-->
+        
 <div id="itrkinfo">
 <table border="0" width="100%" cellspacing="2" cellpadding="2">
     <tr>
@@ -90,7 +91,7 @@ if (!is_null($_GET['token']) && $_GET['token'] == 'new') {
                 </tr>
                 <tr>
                  
-                 <td colspan="2" style="font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px; padding: 0px 10px 11px 3px; text-align: left">Um Einstellungen zu ändern, verwenden Sie den Menüpunkt Konfiguration > IT Recht Kanzlei<br/><br/>Bitte lesen Sie die Hinweise zur Konfiguration in der <a href="https://www.zen-cart-pro.at/docs/155-deutsch-doku/addons/it-recht-kanzlei/index.html" target="_blank">Onlinedokumentation der deutschen Zen Cart Version</a>.</td>
+                 <td colspan="2" style="font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px; padding: 0px 10px 11px 3px; text-align: left">Um Einstellungen zu ändern, verwenden Sie den Menüpunkt Konfiguration > IT Recht Kanzlei<br/><br/>Bitte lesen Sie die Hinweise zur Konfiguration in der <a href="https://www.zen-cart-pro.at/docs/156-deutsch-doku/addons/it-recht-kanzlei/index.html" target="_blank">Onlinedokumentation der deutschen Zen Cart Version</a>.</td>
                 </tr>
                
               </table>
@@ -167,16 +168,13 @@ Bei Fragen vor und nach Ihrer AGB-Service Anforderung stehen wir Ihnen telefonis
       </td>
       </tr>
 <!-- body_text_eof //-->
-    </table>
-    </td>
-    </tr>
-  </table>
+    </table>   
 </div>
-  <!-- body_eof //-->
-  <!-- footer //-->
+  <!-- body_text_eof //-->
+      </div>
+      <!-- body_eof //-->
+      <!-- footer //-->
   <?php require(DIR_WS_INCLUDES . 'footer.php'); ?>
-  <!-- footer_eof //-->
-  <br />
-</body>
-</html>
-<?php require(DIR_WS_INCLUDES . 'application_bottom.php'); ?>
+      <!-- footer_eof //-->
+    </body>
+  </html>

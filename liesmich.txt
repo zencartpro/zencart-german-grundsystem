@@ -22,6 +22,7 @@ Neu in 1.5.6
 * EZ Pages sind nun multilingual
 * Zahlungsart Sofortüberweisung vorintegriert
 * Zahlungsart Kreditkarte via Braintree vorintegriert
+* Shopvote vorintegriert
 * Anzeige der von Kunden hochgeladenen Dateien vorintegriert
 * Bestellbestätigungsemail enthält falls angegeben die Telefonnummer des Kunden für die Zustellung
 * Admin-Seiten zeigen nun ihren Namen im Browser-Tabs an

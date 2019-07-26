@@ -6,7 +6,7 @@
 # * @copyright Copyright 2003-2019 Zen Cart Development Team
 # * @copyright Portions Copyright 2003 osCommerce
 # * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
-# * @version $Id: mysql_zencart.sql 19506 2019-07-20 09:46:16Z webchills $
+# * @version $Id: mysql_zencart.sql 19507 2019-07-26 16:16:16Z webchills $
 #
 
 ############ IMPORTANT INSTRUCTIONS ###############
@@ -2152,19 +2152,6 @@ CREATE TABLE zones_to_geo_zones (
 ) ENGINE=MyISAM;
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
 # default data
 
 INSERT INTO template_select (template_id, template_dir, template_language) VALUES (1, 'responsive_classic', '0');
@@ -2312,7 +2299,9 @@ VALUES ('configMyStore', 'BOX_CONFIGURATION_MY_STORE', 'FILENAME_CONFIGURATION',
        ('toolsITRechtKanzlei', 'BOX_TOOLS_IT_RECHT_KANZLEI', 'FILENAME_IT_RECHT_KANZLEI', '', 'tools', 'Y', 100),
        ('configPDF3', 'BOX_CONFIGURATION_PDF3', 'FILENAME_CONFIGURATION', 'gID=37', 'configuration', 'Y', 37),
        ('toolsPDF3', 'BOX_TOOLS_PDF3', 'RL_INVOICE3_ADMIN_FILENAME', '', 'tools', 'Y', 37),
-       ('GeneratePDFInvoice', 'GENERATE_RL_INVOICE3', 'FILENAME_RL_INVOICE3', '', 'customers', 'N', 37);
+       ('GeneratePDFInvoice', 'GENERATE_RL_INVOICE3', 'FILENAME_RL_INVOICE3', '', 'customers', 'N', 37),
+       ('configShopvote', 'BOX_CONFIGURATION_SHOPVOTE', 'FILENAME_CONFIGURATION', 'gID=38', 'configuration', 'Y', 38),
+       ('toolsShopvote', 'BOX_TOOLS_SHOPVOTE', 'FILENAME_SHOPVOTE', '', 'tools', 'Y', 101);
 
 
 # Insert a default profile for managing orders, as a built-in example of profile functionality
@@ -3221,7 +3210,7 @@ INSERT INTO configuration (configuration_title, configuration_key, configuration
 ('pdf Invoice - Margins', 'RL_INVOICE3_MARGIN', '20|20|20|20', 'defines the margins:<br />top|right|bottom|left<br />(Note: 1inch = 72pt / 2.54cm; 1cm = 28,35pt)<br />', 37, 20, NOW(), NOW(), NULL, NULL),
 ('pdf Invoice - Accounting for free product', 'RL_INVOICE3_NOT_NULL_INVOICE', '0', 'Accounting for free product: send e-mail invoice', 37, 130, NOW(), NOW(), NULL, NULL),
 ('pdf Invoice - Send by orderstatus greater/equal than ', 'RL_INVOICE3_ORDERSTATUS', '3', 'only send invoice if orders_status greater or equal than', 37, 130, NOW(), NOW(), NULL, NULL),
-('pdf Invoice - Prefix for OrderNo', 'RL_INVOICE3_ORDER_ID_PREFIX', ': 2018', 'prefix for OrderNo<br />', 37, 110, NOW(), NOW(), NULL, NULL),
+('pdf Invoice - Prefix for OrderNo', 'RL_INVOICE3_ORDER_ID_PREFIX', ': 2019', 'prefix for OrderNo<br />', 37, 110, NOW(), NOW(), NULL, NULL),
 ('pdf Invoice - Paper Size/Units/Oriantation', 'RL_INVOICE3_PAPER', 'A4|mm|P', '1. papersize = A3|A4|A5|Letter|Legal <br />2. units: pt|mm|cm|inch <br />3. Oriantation: L|P<br />', 37, 10, NOW(), NOW(), NULL, NULL),
 ('pdf Invoice - pdf background file', 'RL_INVOICE3_PDF_BACKGROUND', '" . DIR_FS_CATALOG . DIR_WS_INCLUDES . "pdf/rechnung_de.pdf', 'absolute path to pdf background file<br />', 37, 60, NOW(), NOW(), NULL, NULL),
 ('pdf Invoice - Filename and path to store the pdf-file', 'RL_INVOICE3_PDF_PATH', '" . DIR_FS_CATALOG . "pdf/|1', 'absolute path to store the pdf-file (!!must be writeable !!)<br />Default: ../pdf/|1<br />', 37, 130, NOW(), NOW(), NULL, NULL),
@@ -3231,6 +3220,14 @@ INSERT INTO configuration (configuration_title, configuration_key, configuration
 ('pdf Invoice - Templates for products table & total table', 'RL_INVOICE3_TABLE_TEMPLATE', 'amazon|amazon_templ|total_col_1|total_opt_1', 'templates for products_table & total_table; this is defined in rl_invoice3_def.php<br />', 37, 90, NOW(), NOW(), NULL, NULL),
 ('pdf Invoice - PDF-template on first page', 'RL_INVOICE3_TEMPLATE_ONLY_FIRST_PAGE', 'false', 'print pdf-background-template omly on the first page', 37, 160, NOW(), NOW(), NULL, 'zen_cfg_select_option(array(''true'', ''false''), '),
 ('pdf Invoice - Delta 2.Page', 'RL_INVOICE3_DELTA_2PAGE', '10', 'Delta 2.Page', 37, 160, NOW(), NOW(), NULL, NULL);
+
+#Shopvote Settings
+INSERT INTO configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, last_modified, date_added, use_function, set_function, val_function) VALUES
+('Shopvote - Version', 'SHOPVOTE_MODUL_VERSION', '1.1.0', 'Version installed:', 38, 0, NOW(), NOW(), NULL, 'zen_cfg_read_only(', NULL),
+('Shopvote - Ist das Modul aktiv?', 'SHOPVOTE_STATUS', 'nein', 'Wollen Sie das Shopvote Siegel und die Easy Reviews Bewertungsanfragen aktivieren?<br/>Bitte erst dann aktivieren, wenn Sie Zugriff auf die entsprechenden Javascript Snippets in Ihrer Shopvote Administration bekommen und die Einstellungen unten komplett vorgenommen haben.', 38, 1, NOW(), NOW(), NULL, 'zen_cfg_select_option(array(''ja'', ''nein''),', NULL),
+('Shopvote - Shop ID', 'SHOPVOTE_SHOP_ID', '', 'Tragen Sie hier Ihre Shopvote Shop ID ein', 38, 2, NOW(), NOW(), NULL, NULL, NULL),
+('Shopvote - Easy Reviews Token', 'SHOPVOTE_EASY_REVIEWS_TOKEN', '', 'Tragen Sie hier Ihre Shopvote Token für Easy Reviews ein', 38, 3, NOW(), NOW(), NULL, NULL, NULL),
+('Shopvote - Badge Typ', 'SHOPVOTE_BADGE_TYPE', '2', 'Wählen Sie die Art des Shopvote Siegels aus, das am unteren rechten Bildschirmrand angezeigt werden soll.<br/>Zur Verfügung stehen hier die Badge Typen, die automatisch die Funktion Rating Stars (falls bei Shopvote gebucht) unterstützen, so dass Sie dafür keinerlei Code integrieren müssen.<br/>Eine Vorschau der verschiedenen Badges finden Sie unter Grafiken & Siegel in Ihrer Shopvote Administration.<br/>Für die Nutzung der All Votes Grafik müssen Sie bei Shopvote freigeschaltet sein.<br/><br />1 = Vote Badge I (klein ohne Siegel)<br/>2 = Vote Badge III (groß)<br/>3 = Vote Badge II (klein)<br/>4 = All Votes Grafik I<br /><br/>', 38, 4, NOW(), NOW(), NULL, 'zen_cfg_select_option(array(''1'', ''2'', ''3'', ''4''), ', NULL);
 
 #Vataddon
 INSERT INTO configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, last_modified, date_added, use_function, set_function) VALUES ('Display Vat Addon', 'DISPLAY_VATADDON_WHERE', 'ALL', 'Do you want to display the text incl. or excl. VAT plus shipping costs near the prices?<br />0=off<br/>ALL=everywhere<br/>product_info=only on products details page<br />', '1', '120', NULL, now(), NULL, 'zen_cfg_select_option(array(\'0\', \'ALL\', \'product_info\'), ');
@@ -3271,7 +3268,8 @@ INSERT INTO configuration_group (configuration_group_id, language_id, configurat
 (34, 1,  'RSS Feed', 'RSS Feed Settings', 34, '1'),
 (35, 1,  'Zen Colorbox', 'Zen Colorbox Settings', 35, '1'),
 (36, 1,  'IT Recht Kanzlei', 'IT Recht Kanzlei Settings', 36, '1'),
-(37, 1,  'pdf Invoice', 'pdf Invoice Settings', 37, '1');
+(37, 1,  'pdf Invoice', 'pdf Invoice Settings', 37, '1'),
+(38, 1,  'Shopvote', 'Shopvote Settings', 38, '1');
 
 # Set currencies
 
@@ -3977,7 +3975,8 @@ REPLACE INTO configuration_group (configuration_group_id, language_id, configura
 (34, 43, 'RSS Feed', 'RSS Feed Einstellungen', 34, 1),
 (35, 43, 'Zen Colorbox', 'Zen Colorbox Einstellungen', 35, 1),
 (36, 43, 'IT Recht Kanzlei', 'Einstellungen für das IT Recht Kanzlei Modul', 36, 1),
-(37, 43, 'pdf Rechnung', 'Einstellungen für das pdf Rechnung Modul', 37, 1);
+(37, 43, 'pdf Rechnung', 'Einstellungen für das pdf Rechnung Modul', 37, 1),
+(38, 43, 'Shopvote', 'Einstellungen für das Shopvote Modul', 37, 1);
 
 
 INSERT INTO configuration_language (configuration_title, configuration_key, configuration_language_id, configuration_description, last_modified, date_added) VALUES
@@ -4774,7 +4773,7 @@ INSERT INTO configuration_language (configuration_title, configuration_key, conf
 ('pdf Rechnung - Rändereinstellungen', 'RL_INVOICE3_MARGIN', 43, 'Format: oben|rechts|unten|links<br />(Hinweis: 1inch = 72pt / 2.54cm; 1cm = 28,35pt)<br />Standard: 20|20|20|20<br />', now(), now()),
 ('pdf Rechnung - Rechnung bei Gratisprodukt', 'RL_INVOICE3_NOT_NULL_INVOICE', 43, 'Soll die Rechnung auch bei einem Gratisprodukt dem Mail hinzugefügt werden?', now(), now()),
 ('pdf Rechnung - Rechnungsversand bei Bestellstatus', 'RL_INVOICE3_ORDERSTATUS', 43, 'Rechnung nur mitschicken, wenn der Bestellstatus grösser/gleich ist [default: 3 == verschickt]', now(), now()),
-('pdf Rechnung - Präfix für Rechnungsnummer in der Rechnung', 'RL_INVOICE3_ORDER_ID_PREFIX', 43, 'Präfix für Rechnungsnummer in der Rechnung<br />Beispiel: : 2016/<br />', now(), now()),
+('pdf Rechnung - Präfix für Rechnungsnummer in der Rechnung', 'RL_INVOICE3_ORDER_ID_PREFIX', 43, 'Präfix für Rechnungsnummer in der Rechnung<br />Beispiel: : 2019/<br />', now(), now()),
 ('pdf Rechnung - Papiergrösse|Einheit|Orientierung', 'RL_INVOICE3_PAPER', 43, '1. Papiergrösse = A3|A4|A5|Letter|Legal <br />2. Einheit: pt|mm|cm|inch <br />3. Orientierung: L|P<br />', now(), now()),
 ('pdf Rechnung - PDF Hintergrunddatei', 'RL_INVOICE3_PDF_BACKGROUND', 43, 'PDF Hintergrunddatei<br />Standard: /www/htdocs/xxx/xxx/includes/pdf/rechnung_de.pdf<br />', now(), now()),
 ('pdf Rechnung - Speicherort und -name der PDF-Datei', 'RL_INVOICE3_PDF_PATH', 43, '1. Wo sollen PDF-Dateien gespeichert werden (!! muss beschreibbar sein !!)?<br />2. speichern ja|nein (1|0)<br />Standard: /www/htdocs/xxx/xxx/includes/pdf/|1<br />', now(), now()),
@@ -4784,6 +4783,13 @@ INSERT INTO configuration_language (configuration_title, configuration_key, conf
 ('pdf Rechnung - Template für Artikel- und Summentabelle', 'RL_INVOICE3_TABLE_TEMPLATE', 43, 'Template für Artikel- und Summentabelle<br />Definition ist in includes/pdf/rl_invoice3_def.php<br />Standard: 30|30|30|60<br />Standard: amazon|amazon_templ|total_col_1|total_opt_1<br />', now(), now()),
 ('pdf Rechnung - PDF-Template auf 1.Seite', 'RL_INVOICE3_TEMPLATE_ONLY_FIRST_PAGE', 43, 'PDF-Template nur auf 1.Seite drucken', now(), now()),
 ('pdf Rechnung - Abstand 2.Seite', 'RL_INVOICE3_DELTA_2PAGE', 43, 'Zusätzlicher Abstand auf 2. Seite', now(), now()),
+
+# Adminmenü ID 38 - Shopvote
+('Shopvote - Version', 'SHOPVOTE_MODUL_VERSION', 43, 'Installierte Version:', now(), now()),
+('Shopvote - Ist das Modul aktiv?', 'SHOPVOTE_STATUS', 43, 'Wollen Sie das Shopvote Siegel und die Easy Reviews Bewertungsanfragen aktivieren?<br/>Bitte erst dann aktivieren, wenn Sie Zugriff auf die entsprechenden Javascript Snippets in Ihrer Shopvote Administration bekommen und die Einstellungen unten komplett vorgenommen haben.', now(), now()),
+('Shopvote - Shop ID', 'SHOPVOTE_SHOP_ID', 'Tragen Sie hier Ihre Shopvote Shop ID ein', 43, 'Installierte Version:', now(), now()),
+('Shopvote - Easy Reviews Token', 'SHOPVOTE_EASY_REVIEWS_TOKEN', 43, 'Tragen Sie hier Ihre Shopvote Token für Easy Reviews ein', now(), now()),
+('Shopvote - Badge Typ', 'SHOPVOTE_BADGE_TYPE', 43, 'Wählen Sie die Art des Shopvote Siegels aus, das am unteren rechten Bildschirmrand angezeigt werden soll.<br/>Zur Verfügung stehen hier die Badge Typen, die automatisch die Funktion Rating Stars (falls bei Shopvote gebucht) unterstützen, so dass Sie dafür keinerlei Code integrieren müssen.<br/>Eine Vorschau der verschiedenen Badges finden Sie unter Grafiken & Siegel in Ihrer Shopvote Administration.<br/>Für die Nutzung der All Votes Grafik müssen Sie bei Shopvote freigeschaltet sein.<br/><br />1 = Vote Badge I (klein, ohne Siegel)<br/>2 = Vote Badge III (groß)<br/>3 = Vote Badge II (klein)<br/>4 = All Votes Grafik I<br /><br/>', now(), now()),
 
 # Deutsche Einträge für Versandmodul Versandkostenfrei mit Optionen
 ('Versandkostenfrei mit Optionen aktivieren', 'MODULE_SHIPPING_FREEOPTIONS_STATUS', 43, 'Wollen Sie "Versandkostenfrei mit Optionen" aktivieren?', now(), now()),

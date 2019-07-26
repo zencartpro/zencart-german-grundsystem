@@ -35,7 +35,7 @@
  * @copyright Copyright 2003-2019 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: tpl_main_page.php 5 2019-04-12 18:49:16Z webchills $
+ * @version $Id: tpl_main_page.php 6 2019-07-26 16:49:16Z webchills $
  */
 
 /** bof DESIGNER TESTING ONLY: */
@@ -283,6 +283,11 @@ if(!empty($RC_loader_files)){
 <?php 
 if ((GOOGLE_ANALYTICS_ENABLED == "Enabled") && (GOOGLE_ANALYTICS_TRACKING_TYPE != "Asynchronous")) {
 	require(DIR_WS_TEMPLATE . 'google_analytics/google_analytics.php');
+}
+?>
+<?php 
+if (SHOPVOTE_STATUS == "ja")  {
+	require(DIR_WS_TEMPLATE . 'shopvote/shopvote_badge_and_reviews.php');
 }
 ?>
 <?php /* add any end-of-page code via an observer class */
