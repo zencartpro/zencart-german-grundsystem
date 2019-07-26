@@ -38,7 +38,7 @@ Neu in 1.5.6
 * In der Tabelle Orders werden bei einer Bestellung mehr Details als bisher gespeichert (Gesamtgewicht, usw.)
 * Das Datei-Uploading gibt nun detaillierteres Feedback über Fehler im Zusammenhang mit ungültigen Dateitypen.
 * Update TinyMCE auf 5.03
-* Update CKEditor auf 4.11.4
+* Update CKEditor auf 4.12.1
 * Update Mailbeez auf 4.0.0
 * Update Mobile Detect auf 2.8.3.3
 * Update PHP Mailer auf 6.0.6
