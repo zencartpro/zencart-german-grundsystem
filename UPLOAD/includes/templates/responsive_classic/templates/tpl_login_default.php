@@ -6,7 +6,7 @@
  * @copyright Copyright 2003-2019 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: tpl_login_default.php 734 2019-07-20 17:27:16Z webchills $
+ * @version $Id: tpl_login_default.php 735 2019-07-26 10:27:16Z webchills $
  */
 ?>
 <div class="centerColumn" id="loginDefault">
@@ -20,12 +20,6 @@
 <!--BOF PPEC split login- DO NOT REMOVE-->
 <fieldset class="floatingBox back">
 <legend><?php echo HEADING_NEW_CUSTOMER_SPLIT; ?></legend>
-
-
-
-
-  
-
 
 <div class="information"><?php echo TEXT_NEW_CUSTOMER_POST_INTRODUCTION_SPLIT; ?></div>
 
@@ -59,11 +53,10 @@
   	<fieldset id="paypallogin">
 <legend><?php echo HEADING_PAYPAL_CUSTOMER_SPLIT; ?></legend>
 <div class="information"><?php echo TEXT_PAYPAL_CUSTOMER_SPLIT; ?></div>
-
-	
-	<div align="right"><?php require(DIR_FS_CATALOG . DIR_WS_MODULES . 'payment/paypal/tpl_ec_button.php'); ?></div>
+<div align="right"><?php require(DIR_FS_CATALOG . DIR_WS_MODULES . 'payment/paypal/tpl_ec_button.php'); ?></div>
 
 </fieldset>
+<?php } ?>
 <?php } ?>
 <!--EOF PPEC split login- DO NOT REMOVE-->
 <?php } else { ?>
