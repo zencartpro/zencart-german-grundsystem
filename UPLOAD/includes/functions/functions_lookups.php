@@ -8,7 +8,7 @@
  * @copyright Copyright 2003-2019 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: functions_lookups.php 774 2019-07-20 09:15:42Z webchills $
+ * @version $Id: functions_lookups.php 775 2019-07-27 08:15:42Z webchills $
  */
 
 /**
@@ -22,7 +22,7 @@
     $countries_array = array();
     if (zen_not_null($countries_id)) {
       $countries_array['countries_name'] = '';
-// BOF Mehrsprachige Landernamen 1 of 2
+
       $countries = "SELECT con.countries_name, co.countries_iso_code_2, co.countries_iso_code_3
                     FROM " . TABLE_COUNTRIES . " co, " . TABLE_COUNTRIES_NAME . " con
                     WHERE co.countries_id = '" . (int)$countries_id . "'
@@ -30,7 +30,7 @@
                     AND con.language_id = '" . (int)$_SESSION['languages_id'] . "'";
       if ($activeOnly) $countries .= " AND co.status != 0 ";
       $countries .= " ORDER BY con.countries_name";
-// EOF Mehrsprachige Landernamen 1 of 2
+
       $countries_values = $db->Execute($countries);
 
       if ($with_iso_codes == true) {
@@ -45,14 +45,14 @@
         if (!$countries_values->EOF) $countries_array = array('countries_name' => $countries_values->fields['countries_name']);
       }
     } else {
-// BOF Mehrsprachige Landernamen 2 of 2
+
       $countries = "SELECT co.countries_id, con.countries_name
                     FROM " . TABLE_COUNTRIES . " co, " . TABLE_COUNTRIES_NAME . " con";
       if ($activeOnly) $countries .= " WHERE co.status != 0 ";
       $countries .= " AND con.countries_id = co.countries_id";
       $countries .= " AND con.language_id = '" . (int)$_SESSION['languages_id'] . "'";
       $countries .= " ORDER BY con.countries_name";
-// EOF Mehrsprachige Landernamen 2 of 2
+
       $countries_values = $db->Execute($countries);
       while (!$countries_values->EOF) {
         $countries_array[] = array('countries_id' => $countries_values->fields['countries_id'],
@@ -223,7 +223,7 @@
 /*
  * List manufacturers (returned in an array)
  */
-  function zen_get_manufacturers($manufacturers_array = '', $have_products = false) {
+  function zen_get_manufacturers($manufacturers_array = array(), $have_products = false) {
     global $db;
     if (!is_array($manufacturers_array)) $manufacturers_array = array();
 

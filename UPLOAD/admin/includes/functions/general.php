@@ -5,7 +5,7 @@
  * @copyright Copyright 2003-2019 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: general.php 893 2019-06-30 10:02:33Z webchills $
+ * @version $Id: general.php 894 2019-07-27 08:02:33Z webchills $
  */
 
 ////
@@ -230,7 +230,7 @@
   }
 
 
-  function zen_get_category_tree($parent_id = '0', $spacing = '', $exclude = '', $category_tree_array = '', $include_itself = false, $category_has_products = false, $limit = false) {
+  function zen_get_category_tree($parent_id = '0', $spacing = '', $exclude = '', $category_tree_array = array(), $include_itself = false, $category_has_products = false, $limit = false) {
     global $db;
 
     if ($limit) {
@@ -1122,7 +1122,7 @@ function zen_get_prid($uprid)
     return $systemInfo;
 }
 
-  function zen_generate_category_path($id, $from = 'category', $categories_array = '', $index = 0) {
+  function zen_generate_category_path($id, $from = 'category', $categories_array = array(), $index = 0) {
     global $db;
 
     if (!is_array($categories_array)) $categories_array = array();
@@ -1678,7 +1678,7 @@ while (!$chk_sale_categories_all->EOF) {
  * Calculates Tax rounding the result
  */
   function zen_calculate_tax($price, $tax) {
-    return (float)$price * (int)$tax / 100;
+    return $price * $tax / 100;
   }  
   
 
@@ -2861,7 +2861,7 @@ function zen_limit_image_filename($filename, $table_name, $field_name, $extensio
   }
 
 ////
-  function zen_get_categories($categories_array = '', $parent_id = '0', $indent = '') {
+  function zen_get_categories($categories_array = array(), $parent_id = '0', $indent = '') {
     global $db;
 
     if (!is_array($categories_array)) $categories_array = array();

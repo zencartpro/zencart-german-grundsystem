@@ -6,7 +6,7 @@
  * @copyright Copyright 2003-2019 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: functions_categories.php 731 2019-04-12 11:49:16Z webchills $
+ * @version $Id: functions_categories.php 732 2019-07-27 08:49:16Z webchills $
  */
 
 ////
@@ -112,7 +112,7 @@
   }
 
 ////
-  function zen_get_categories($categories_array = '', $parent_id = '0', $indent = '', $status_setting = '') {
+  function zen_get_categories($categories_array = array(), $parent_id = '0', $indent = '', $status_setting = '') {
     global $db;
 
     if (!is_array($categories_array)) $categories_array = array();
@@ -519,7 +519,7 @@
   }
 
 //// bof: manage master_categories_id vs cPath
-  function zen_generate_category_path($id, $from = 'category', $categories_array = '', $index = 0) {
+  function zen_generate_category_path($id, $from = 'category', $categories_array = array(), $index = 0) {
     global $db;
 
     if (!is_array($categories_array)) $categories_array = array();
