@@ -20,6 +20,7 @@ Neu in 1.5.6
 * Neues Layout für die Shopadministration mit verbesserter Unterstützung für kleinere Bildschirme
 * Neuer graphischer Verkaufsbericht unter Administration > Statistiken
 * EZ Pages sind nun multilingual
+* Meta Tags für Herstellerseiten möglich
 * Zahlungsart Sofortüberweisung vorintegriert
 * Zahlungsart Kreditkarte via Braintree vorintegriert
 * Shopvote vorintegriert
