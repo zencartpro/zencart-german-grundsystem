@@ -1,12 +1,12 @@
 <?php
 /**
  * meta_tags module
- *
+ * Zen Cart German Specific
  * @package modules
  * @copyright Copyright 2003-2019 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: meta_tags.php 732 2019-04-12 12:49:16Z webchills $
+ * @version $Id: meta_tags.php 733 2019-07-27 11:19:16Z webchills $
  */
 $meta_tags_over_ride = false;
 $metatag_page_name = $current_page_base;
@@ -69,7 +69,6 @@ switch ($metatag_page_name) {
   define('META_TAG_DESCRIPTION', '');
   define('META_TAG_KEYWORDS', '');
   break;
-
   case 'password_forgotten':
   define('META_TAG_TITLE', NAVBAR_TITLE_2 . PRIMARY_SECTION . TITLE . TAGLINE);
   define('META_TAG_DESCRIPTION', TITLE . PRIMARY_SECTION . NAVBAR_TITLE_2 . SECONDARY_SECTION . KEYWORDS);
@@ -144,16 +143,32 @@ switch ($metatag_page_name) {
       }
     } else {
       if (isset($_GET['manufacturers_id'])) {
+
+        $manufacturer_metatag = $db->Execute("SELECT * FROM " . TABLE_MANUFACTURERS_META . " WHERE manufacturers_id = " . (int)$_GET['manufacturers_id'] . " AND language_id = " . (int)$_SESSION['languages_id'] . " LIMIT 1");
+        if (!$manufacturer_metatag->EOF) {
+          if (zen_not_null (zen_clean_html ($manufacturer_metatag->fields['metatags_title']))) {
+            define('META_TAG_TITLE', str_replace('"','', zen_clean_html ($manufacturer_metatag->fields['metatags_title'])));
+            
+          }
+          if (zen_not_null (zen_clean_html ($manufacturer_metatag->fields['metatags_description']))) {
+            define('META_TAG_DESCRIPTION', str_replace('"','', zen_clean_html ($manufacturer_metatag->fields['metatags_description'])));
+            
+          }
+          if (zen_not_null (zen_clean_html ($manufacturer_metatag->fields['metatags_keywords']))) {
+            define('META_TAG_KEYWORDS', str_replace('"','', zen_clean_html ($manufacturer_metatag->fields['metatags_keywords'])));
+            
+          }
+        }
         $sql = "select manufacturers_name from " . TABLE_MANUFACTURERS . " where manufacturers_id = '" . (int)$_GET['manufacturers_id'] . "'";
         $manufacturer_metatags = $db->Execute($sql);
         if ($manufacturer_metatags->EOF) {
-          define('META_TAG_TITLE', TITLE . TAGLINE);
-          define('META_TAG_DESCRIPTION', TITLE . PRIMARY_SECTION . str_replace(array("'",'"'),'',strip_tags(HEADING_TITLE)) . SECONDARY_SECTION . KEYWORDS);
-          define('META_TAG_KEYWORDS', KEYWORDS . METATAGS_DIVIDER . str_replace(array("'",'"'),'',strip_tags(HEADING_TITLE)));
+          if (!defined ('META_TAG_TITLE')) define('META_TAG_TITLE', TITLE . TAGLINE);
+          if (!defined ('META_TAG_DESCRIPTION')) define('META_TAG_DESCRIPTION', TITLE . PRIMARY_SECTION . str_replace(array("'",'"'),'',strip_tags(HEADING_TITLE)) . SECONDARY_SECTION . KEYWORDS);
+          if (!defined ('META_TAG_KEYWORDS')) define('META_TAG_KEYWORDS', KEYWORDS . METATAGS_DIVIDER . str_replace(array("'",'"'),'',strip_tags(HEADING_TITLE)));
         } else {
-          define('META_TAG_TITLE', str_replace('"','', $manufacturer_metatags->fields['manufacturers_name'] . PRIMARY_SECTION . TITLE . TAGLINE));
-          define('META_TAG_DESCRIPTION', str_replace('"','',TITLE . PRIMARY_SECTION . $manufacturer_metatags->fields['manufacturers_name'] . SECONDARY_SECTION . KEYWORDS));
-          define('META_TAG_KEYWORDS', str_replace('"','', $manufacturer_metatags->fields['manufacturers_name'] . METATAGS_DIVIDER . KEYWORDS));
+          if (!defined ('META_TAG_TITLE')) define('META_TAG_TITLE', str_replace('"','', $manufacturer_metatags->fields['manufacturers_name'] . PRIMARY_SECTION . TITLE . TAGLINE));
+          if (!defined ('META_TAG_DESCRIPTION')) define('META_TAG_DESCRIPTION', str_replace('"','',TITLE . PRIMARY_SECTION . $manufacturer_metatags->fields['manufacturers_name'] . SECONDARY_SECTION . KEYWORDS));
+          if (!defined ('META_TAG_KEYWORDS')) define('META_TAG_KEYWORDS', str_replace('"','', $manufacturer_metatags->fields['manufacturers_name'] . METATAGS_DIVIDER . KEYWORDS));
         }
       } else {
         // nothing custom main page

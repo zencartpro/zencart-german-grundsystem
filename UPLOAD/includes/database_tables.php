@@ -8,7 +8,7 @@
  * @copyright Copyright 2003-2019 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: database_tables.php 787 2019-04-12 18:13:51Z webchills $
+ * @version $Id: database_tables.php 788 2019-07-27 11:13:51Z webchills $
  * @private
  */
 
@@ -25,6 +25,7 @@ define('TABLE_ADMIN_PROFILES', DB_PREFIX . 'admin_profiles');
 define('TABLE_AUTHORIZENET', DB_PREFIX . 'authorizenet');
 define('TABLE_BANNERS', DB_PREFIX . 'banners');
 define('TABLE_BANNERS_HISTORY', DB_PREFIX . 'banners_history');
+define('TABLE_BRAINTREE', DB_PREFIX . 'braintree');
 define('TABLE_CATEGORIES', DB_PREFIX . 'categories');
 define('TABLE_CATEGORIES_DESCRIPTION', DB_PREFIX . 'categories_description');
 define('TABLE_CONFIGURATION', DB_PREFIX . 'configuration');
@@ -58,6 +59,7 @@ define('TABLE_LANGUAGES', DB_PREFIX . 'languages');
 define('TABLE_LAYOUT_BOXES', DB_PREFIX . 'layout_boxes');
 define('TABLE_MANUFACTURERS', DB_PREFIX . 'manufacturers');
 define('TABLE_MANUFACTURERS_INFO', DB_PREFIX . 'manufacturers_info');
+define('TABLE_MANUFACTURERS_META', DB_PREFIX . 'meta_tags_manufacturers_description');
 define('TABLE_META_TAGS_PRODUCTS_DESCRIPTION', DB_PREFIX . 'meta_tags_products_description');
 define('TABLE_METATAGS_CATEGORIES_DESCRIPTION', DB_PREFIX . 'meta_tags_categories_description');
 define('TABLE_NEWSLETTERS', DB_PREFIX . 'newsletters');

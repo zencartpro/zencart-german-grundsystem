@@ -1,10 +1,11 @@
 <?php
 /**
  * @package admin
+ * Zen Cart German Specific
  * @copyright Copyright 2003-2019 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: manufacturers.php 788 2019-04-14 10:13:51Z webchills $
+ * @version $Id: manufacturers.php 789 2019-07-27 11:15:51Z webchills $
  */
 require('includes/application_top.php');
 
@@ -108,6 +109,9 @@ if (zen_not_null($action)) {
                     WHERE manufacturers_id = " . (int)$manufacturers_id);
       $db->Execute("DELETE FROM " . TABLE_MANUFACTURERS_INFO . "
                     WHERE manufacturers_id = " . (int)$manufacturers_id);
+      $db->Execute ("DELETE FROM " . TABLE_MANUFACTURERS_META . " 
+                    WHERE manufacturers_id = " . (int)$manufacturers_id);
+
 
       if (isset($_POST['delete_products']) && ($_POST['delete_products'] == 'on')) {
         $products = $db->Execute("SELECT products_id
@@ -124,8 +128,40 @@ if (zen_not_null($action)) {
       }
 
       zen_redirect(zen_href_link(FILENAME_MANUFACTURERS, 'page=' . $_GET['page']));
+      
       break;
-  }
+  
+
+      case 'update_manufacturer_meta_tags': 
+        $manufacturers_id = (int)$_POST['manufacturer_id'];
+        $languages = zen_get_languages();
+        for ($i=0, $n=sizeof($languages); $i<$n; $i++) {
+          $language_id = (int)$languages[$i]['id'];
+          $metatags_title = zen_db_prepare_input($_POST['metatags_title'][$language_id]);
+          $metatags_keywords = zen_db_prepare_input($_POST['metatags_keywords'][$language_id]);
+          $metatags_description = zen_db_prepare_input($_POST['metatags_description'][$language_id]);
+          if ( zen_not_null ($metatags_title) || zen_not_null ($metatags_keywords) || zen_not_null ($metatags_description) ) {
+            $sql_data_array = array('metatags_title' => $metatags_title,
+                                    'metatags_keywords' => $metatags_keywords,
+                                    'metatags_description' => $metatags_description);
+            $check = $db->Execute("SELECT * FROM " . TABLE_MANUFACTURERS_META . " WHERE manufacturers_id = $manufacturers_id AND language_id = $language_id LIMIT 1");
+            if ($check->EOF) {
+              $sql_data_array['manufacturers_id'] = $manufacturers_id;
+              $sql_data_array['language_id'] = $language_id;
+              zen_db_perform (TABLE_MANUFACTURERS_META, $sql_data_array);
+              
+            } else {
+              zen_db_perform (TABLE_MANUFACTURERS_META, $sql_data_array, 'update', "manufacturers_id = $manufacturers_id AND language_id = $language_id LIMIT 1");
+              
+            }
+          } else {
+            $db->Execute ("DELETE FROM " . TABLE_MANUFACTURERS_META . " WHERE manufacturers_id = $manufacturers_id AND language_id = $language_id LIMIT 1");
+            
+          }
+        }
+        zen_redirect (zen_href_link (FILENAME_MANUFACTURERS, (isset($_GET['page']) ? 'page=' . $_GET['page'] . '&' : '') . 'mID=' . $manufacturers_id));
+      break;
+ } 
 }
 ?>
 <!doctype html>
@@ -210,6 +246,19 @@ if (zen_not_null($action)) {
                   <?php echo '<a href="' . zen_href_link(FILENAME_MANUFACTURERS, 'page=' . $_GET['page'] . '&mID=' . $manufacturer['manufacturers_id'] . '&action=edit') . '">' . zen_image(DIR_WS_IMAGES . 'icon_edit.gif', ICON_EDIT) . '</a>'; ?>
                   <?php echo '<a href="' . zen_href_link(FILENAME_MANUFACTURERS, 'page=' . $_GET['page'] . '&mID=' . $manufacturer['manufacturers_id'] . '&action=delete') . '">' . zen_image(DIR_WS_IMAGES . 'icon_delete.gif', ICON_DELETE) . '</a>'; ?>
                   <?php
+
+    if (zen_get_manufacturer_metatags_keywords ($manufacturers->fields['manufacturers_id'], $_SESSION['languages_id']) != '' || zen_get_manufacturer_metatags_description ($manufacturers->fields['manufacturers_id'], $_SESSION['languages_id']) != '' || zen_get_manufacturer_metatags_title ($manufacturers->fields['manufacturers_id'], $_SESSION['languages_id']) != '') {
+      $metatags_icon = zen_image(DIR_WS_IMAGES . 'icon_edit_metatags_on.gif', ICON_METATAGS_ON);
+      
+    } else {
+      $metatags_icon = zen_image(DIR_WS_IMAGES . 'icon_edit_metatags_off.gif', ICON_METATAGS_OFF);
+      
+    }
+    echo '<a href="' . zen_href_link(FILENAME_MANUFACTURERS, 'page=' . $_GET['page'] . '&mID=' . $manufacturers->fields['manufacturers_id'] . '&action=edit_manufacturer_meta_tags') . '">' . $metatags_icon . '</a>';
+
+?>
+
+				  <?php
                   if (isset($mInfo) && is_object($mInfo) && ($manufacturer['manufacturers_id'] == $mInfo->manufacturers_id)) {
                     echo zen_image(DIR_WS_IMAGES . 'icon_arrow_right.gif', '');
                   } else {
@@ -229,6 +278,40 @@ if (zen_not_null($action)) {
             $contents = array();
 
             switch ($action) {
+
+    case 'edit_manufacturer_meta_tags': {
+      $manufacturers_id = (int)zen_db_prepare_input($_GET['mID']);
+      $heading[] = array('text' => '<strong>' . TEXT_INFO_HEADING_EDIT_MANUFACTURER_META_TAGS . '</strong>');
+      $contents = array('form' => zen_draw_form('manufacturers', FILENAME_MANUFACTURERS, 'action=update_manufacturer_meta_tags&mID=' . $manufacturers_id, 'post', 'enctype="multipart/form-data"') . zen_draw_hidden_field('manufacturer_id', $manufacturers_id ));
+      $contents[] = array('text' => TEXT_EDIT_MANUFACTURER_META_TAGS_INTRO . ' - <strong>' . $manufacturers_id  . ' ' . $mInfo->manufacturers_name . '</strong>');
+
+      $languages = zen_get_languages();
+
+      $manufacturer_inputs_string_metatags_title = '';
+      for ($i = 0, $n = sizeof($languages); $i < $n; $i++) {    
+        $manufacturer_inputs_string_metatags_title .= '<br />' . zen_image(DIR_WS_CATALOG_LANGUAGES . $languages[$i]['directory'] . '/images/' . $languages[$i]['image'], $languages[$i]['name']) . '&nbsp;' . zen_draw_input_field('metatags_title[' . $languages[$i]['id'] . ']', zen_get_manufacturer_metatags_title($manufacturers_id , $languages[$i]['id']), zen_set_field_length(TABLE_MANUFACTURERS_META, 'metatags_title'));
+        
+      }
+      $contents[] = array('text' => '<br />' . TEXT_EDIT_MANUFACTURER_META_TAGS_TITLE . $manufacturer_inputs_string_metatags_title);
+
+      $manufacturer_inputs_string_metatags_keywords = '';
+      for ($i = 0, $n = sizeof($languages); $i < $n; $i++) {
+        $manufacturer_inputs_string_metatags_keywords .= '<br />' . zen_image(DIR_WS_CATALOG_LANGUAGES . $languages[$i]['directory'] . '/images/' . $languages[$i]['image'], $languages[$i]['name']) . '&nbsp;';
+        $manufacturer_inputs_string_metatags_keywords .= zen_draw_textarea_field('metatags_keywords[' . $languages[$i]['id'] . ']', 'soft', '100%', '20', zen_get_manufacturer_metatags_keywords($manufacturers_id , $languages[$i]['id']));
+      }
+      $contents[] = array('text' => '<br />' . TEXT_EDIT_MANUFACTURER_META_TAGS_KEYWORDS . $manufacturer_inputs_string_metatags_keywords);
+
+      $manufacturer_inputs_string_metatags_description = '';
+      for ($i = 0, $n = sizeof($languages); $i < $n; $i++) {
+        $manufacturer_inputs_string_metatags_description .= '<br />' . zen_image(DIR_WS_CATALOG_LANGUAGES . $languages[$i]['directory'] . '/images/' . $languages[$i]['image'], $languages[$i]['name']) . '&nbsp;' ;
+        $manufacturer_inputs_string_metatags_description .= zen_draw_textarea_field('metatags_description[' . $languages[$i]['id'] . ']', 'soft', '100%', '20', zen_get_manufacturer_metatags_description($manufacturers_id , $languages[$i]['id']));
+      }
+      $contents[] = array('text' => '<br />' . TEXT_EDIT_MANUFACTURERS_META_TAGS_DESCRIPTION.$manufacturer_inputs_string_metatags_description);
+
+      $contents[] = array('align' => 'center', 'text' => '<br />' . zen_image_submit('button_save.gif', IMAGE_SAVE) . ' <a href="' . zen_href_link(FILENAME_MANUFACTURERS, '&mID=' . $manufacturers_id ) . '">' . zen_image_button('button_cancel.gif', IMAGE_CANCEL) . '</a>');
+      break;
+    }
+
               case 'new':
                 $heading[] = array('text' => '<h4>' . TEXT_HEADING_NEW_MANUFACTURER . '</h4>');
 
