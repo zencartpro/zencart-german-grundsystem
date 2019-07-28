@@ -5,7 +5,7 @@
  * @copyright Copyright 2003-2019 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: german.php 665 2019-06-26 07:37:04Z webchills $
+ * @version $Id: german.php 666 2019-07-28 17:37:04Z webchills $
  */
 if (!defined('IS_ADMIN_FLAG'))
 {
@@ -437,25 +437,23 @@ define('TEXT_DISPLAY_NUMBER_OF_TAX_ZONES', 'Zeige <b>%d</b> bis <b>%d</b> (von <
 define('TEXT_DISPLAY_NUMBER_OF_TAX_RATES', 'Zeige <b>%d</b> bis <b>%d</b> (von <b>%d</b> Steuersätze)');
 define('TEXT_DISPLAY_NUMBER_OF_ZONES', 'Zeige <b>%d</b> bis <b>%d</b> (von <b>%d</b> Zonen)');
 
-define('PREVNEXT_TITLE_FIRST_PAGE', 'First Page');
-define('PREVNEXT_TITLE_PREVIOUS_PAGE', 'Previous Page');
-define('PREVNEXT_TITLE_NEXT_PAGE', 'Next Page');
-define('PREVNEXT_TITLE_LAST_PAGE', 'Last Page');
-define('PREVNEXT_TITLE_PAGE_NO', 'Page %d');
-define('PREVNEXT_TITLE_PREV_SET_OF_NO_PAGE', 'Previous Set of %d Pages');
-define('PREVNEXT_TITLE_NEXT_SET_OF_NO_PAGE', 'Next Set of %d Pages');
-define('PREVNEXT_BUTTON_FIRST', '&laquo;FIRST');
-define('PREVNEXT_BUTTON_PREV', '[&laquo;&nbsp;Prev]');
-define('PREVNEXT_BUTTON_NEXT', '[Next&nbsp;&raquo;]');
-define('PREVNEXT_BUTTON_LAST', 'LAST&raquo;');
+define('PREVNEXT_TITLE_FIRST_PAGE', 'Erste Seite');
+define('PREVNEXT_TITLE_PREVIOUS_PAGE', 'Vorherige Seite');
+define('PREVNEXT_TITLE_NEXT_PAGE', 'Nächste Seite');
+define('PREVNEXT_TITLE_LAST_PAGE', 'Letzte Seite');
+define('PREVNEXT_TITLE_PAGE_NO', 'Seite %d');
+define('PREVNEXT_TITLE_PREV_SET_OF_NO_PAGE', 'Vorherige von %d Seiten');
+define('PREVNEXT_TITLE_NEXT_SET_OF_NO_PAGE', 'Nächste von %d Seiten');
+define('PREVNEXT_BUTTON_FIRST', '&laquo;ERSTE');
+define('PREVNEXT_BUTTON_PREV', '[&laquo;&nbsp;Vorherige]');
+define('PREVNEXT_BUTTON_NEXT', '[Nächste&nbsp;&raquo;]');
+define('PREVNEXT_BUTTON_LAST', 'LETZTE&raquo;');
 
 define('TEXT_DEFAULT', 'Standard');
 define('TEXT_SET_DEFAULT', 'Als Standard definieren');
 define('TEXT_FIELD_REQUIRED', '<span class="Feld">* benötigt</span>');
 
 define('ERROR_NO_DEFAULT_CURRENCY_DEFINED', 'FEHLER: Es wurde keine Standardwährung definiert. Sie können diese im Admin Menü unter Lokalisation->Währungen definieren.');
-
-
 
 define('TEXT_NONE', '--kein--');
 define('TEXT_TOP', 'Top');
@@ -465,7 +463,7 @@ define('ERROR_DESTINATION_DOES_NOT_EXIST', 'FEHLER: Zielverzeichnis %s existiert
 define('ERROR_DESTINATION_NOT_WRITEABLE', 'FEHLER: Zielverzeichnis %s ist schreibgeschützt');
 define('ERROR_FILE_NOT_SAVED', 'FEHLER: Dateiupload wurde nicht gespeichert.');
 define('ERROR_FILETYPE_NOT_ALLOWED', 'FEHLER: Dateityp %s ist nicht erlaubt');
-define('ERROR_FILE_TOO_BIG', 'Warning: File is larger than allowed sizes. See Image configuration settings.');
+define('ERROR_FILE_TOO_BIG', 'Warnung: Die Datei ist größer als die zulässigen Größe. Siehe Bildkonfigurationseinstellungen.');
 define('SUCCESS_FILE_SAVED_SUCCESSFULLY', 'Erfolgreich: Dateiupload %s wurde gespeichert');
 define('WARNING_NO_FILE_UPLOADED', 'WARNUNG: Keine Datei hochgeladen.');
 define('WARNING_FILE_UPLOADS_DISABLED', 'WARNUNG: Die Option "Dateiupload" ist in der php.ini deaktiviert.');
@@ -485,7 +483,7 @@ define('WARNING_SESSION_AUTO_START', 'WARNUNG: session.auto_start ist aktiviert 
 define('WARNING_DOWNLOAD_DIRECTORY_NON_EXISTENT', 'WARNUNG: Das Verzeichnis für Downloaddateien existiert nicht: ' . DIR_FS_DOWNLOAD . '. Downloadartikel werden nicht funktionieren, solange dieses Verzeichnis nicht vorhanden ist.');
 define('WARNING_SQL_CACHE_DIRECTORY_NON_EXISTENT', 'WARNUNG: Das Verzeichnis für SQL Caching existiert nicht:: ' . DIR_FS_SQL_CACHE . '. SQL Caching wird nicht funktionieren, solange dieses Verzeichnis nicht vorhanden ist.');
 define('WARNING_SQL_CACHE_DIRECTORY_NOT_WRITEABLE', 'WARNUNG: In das Verzeichnis für SQL Caching kann nicht geschrieben werden: ' . DIR_FS_SQL_CACHE . '. Ändern Sie die Schreibrechte dieses Ordners, sonst wird das Caching nicht funktionieren.');
-define('ERROR_UNABLE_TO_DISPLAY_SERVER_INFORMATION', 'Sorry, your PHP configuration cannot be displayed because your hosting company has specified that [phpinfo] should be disabled as part of [disable_functions] in php.ini settings.');
+define('ERROR_UNABLE_TO_DISPLAY_SERVER_INFORMATION', 'Leider kann Ihre PHP-Konfiguration nicht angezeigt werden, da Ihr Provider festgelegt hat, dass [phpinfo] als Teil von [disable_functions] in den php.ini-Einstellungen deaktiviert werden soll.');
 define('_JANUARY', 'Januar');
 define('_FEBRUARY', 'Februar');
 define('_MARCH', 'März');
@@ -571,7 +569,7 @@ define('TEXT_PRODUCTS_MIX_ON', '*Gemischte Optionen');
 // search filters
 define('TEXT_INFO_SEARCH_DETAIL_FILTER', 'Suchfilter: ');
 define('HEADING_TITLE_SEARCH_DETAIL', 'Suchen: ');
-define('HEADING_TITLE_SEARCH_DETAIL_REPORTS', 'Suche nach Artikel(n) - Getrennt durch Kommas');
+define('HEADING_TITLE_SEARCH_DETAIL_REPORTS', 'Suche nach Artikel(n) - Getrennt durch Kommata');
 define('HEADING_TITLE_SEARCH_DETAIL_REPORTS_NAME_MODEL', 'Suche nach Artikelname/-nummer');
 
 define('PREV_NEXT_PRODUCT', 'Artikel: ');
@@ -588,7 +586,7 @@ define('TEXT_VERSION_CHECK_NEW_VER', '<span class="alertVersionNew">Eine neue Ve
 define('TEXT_VERSION_CHECK_NEW_PATCH', '<span class="alertVersionNew">Ein neuer PATCH ist verfügbar:</span> v');
 define('TEXT_VERSION_CHECK_PATCH', 'Patch');
 define('TEXT_VERSION_CHECK_DOWNLOAD', 'Hier herunterladen');
-define('TEXT_VERSION_CHECK_CURRENT', 'Sie verwenden die aktuellste Version von Zen Cart deutsch');
+define('TEXT_VERSION_CHECK_CURRENT', 'Sie verwenden die neueste Version von Zen Cart deutsch');
 define('ERROR_CONTACTING_PROJECT_VERSION_SERVER','Fehler: Konnte nicht mit dem Versionsserver verbinden');
 
 // downloads manager
@@ -745,7 +743,6 @@ define('TEXT_ERROR_ATTEMPTED_ADMIN_LOGIN_WITHOUT_CSRF_TOKEN', 'Es wurde versucht
 define('TEXT_ERROR_ATTEMPTED_ADMIN_LOGIN_WITHOUT_USERNAME', 'Es wurde versucht ohne Username einzuloggen.');
 define('TEXT_ERROR_INCORRECT_PASSWORD_DURING_RESET_FOR_USER', 'Falsches Passwort beim Versuch ein neues Passwort zu setzen für: ');
 
-
 define('CATEGORY_HAS_SUBCATEGORIES', 'Achtung: Kategorie besitzt Unterkategorien<br />Artikel können nicht hinzugefügt werden');
 
 define('WARNING_WELCOME_DISCOUNT_COUPON_EXPIRES_IN', 'Warnung! Der Aktionskupon "Willkommensgeschenk" läuft in %s Tagen ab.');
@@ -764,9 +761,9 @@ define('BOX_HEADING_PRODUCT_TYPES', 'Artikeltypen');
 
 define('ERROR_DATABASE_MAINTENANCE_NEEDED', '<a href="http://www.zen-cart-pro.at/forum" target="_blank">FEHLER 0071: Es scheint ein Problem mit der Datenbank zu geben. Ausführung von Datenbankwartungsfunktionen ist erforderlich.</a>');
 // moved from currencies file:
-define('TEXT_INFO_CURRENCY_UPDATED', 'The exchange rate for %s (%s) was updated successfully to %s via %s.');
-define('ERROR_CURRENCY_INVALID', 'Error: The exchange rate for %s (%s) was not updated via %s. Is it a valid currency code?');
-define('WARNING_PRIMARY_SERVER_FAILED', 'Warning: The primary exchange rate server (%s) failed for %s (%s) - trying the secondary exchange rate server.');
+define('TEXT_INFO_CURRENCY_UPDATED', 'Der Wechselkurs für %s (%s) wurde erfolgreich auf %s aktualisiert via  %s.');
+define('ERROR_CURRENCY_INVALID', 'Fehler: Der Wechselkurs für %s (%s) wurde nicht aktualisiert via %s. Ist der Währungscode wirklich korrekt?');
+define('WARNING_PRIMARY_SERVER_FAILED', 'Warnung: Der primäre Wechselkursserver (%s) ist für %s (%s) fehlgeschlagen - versuche sekundären Wechselkursserver.');
 ///////////////////////////////////////////////////////////
 // include additional files:
   require(DIR_WS_LANGUAGES . $_SESSION['language'] . '/' . FILENAME_EMAIL_EXTRAS);
