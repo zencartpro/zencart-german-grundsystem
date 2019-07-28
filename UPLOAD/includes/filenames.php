@@ -8,7 +8,7 @@
  * @copyright Copyright 2003-2019 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: filenames.php 809 2019-06-15 14:28:24Z webchills $
+ * @version $Id: filenames.php 810 2019-07-28 08:28:24Z webchills $
  */
 /**
  * define project filenames
@@ -82,6 +82,7 @@ define('FILENAME_DOWNLOAD_TIME_OUT','download_time_out');
 define('FILENAME_DOWNLOADS_MANAGER','downloads_manager');
 define('FILENAME_EZPAGES', 'page');
 define('FILENAME_EZPAGES_ADMIN', 'ezpages');
+define('FILENAME_FINDDUPMODELS', 'finddupmodels');
 define('FILENAME_GEO_ZONES', 'geo_zones');
 define('FILENAME_GROUP_PRICING', 'group_pricing');
 define('FILENAME_GV_FAQ', 'gv_faq');

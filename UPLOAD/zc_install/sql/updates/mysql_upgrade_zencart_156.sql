@@ -6,7 +6,7 @@
 # * @copyright Copyright 2003-2019 Zen Cart Development Team
 # * @copyright Portions Copyright 2003 osCommerce
 # * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
-# * @version $Id: mysql_upgrade_zencart_156.sql 9 2019-07-27 16:25:59Z webchills $
+# * @version $Id: mysql_upgrade_zencart_156.sql 10 2019-07-28 09:25:59Z webchills $
 
 #
 
@@ -196,13 +196,8 @@ INSERT INTO configuration (configuration_title, configuration_key, configuration
 ('Shopvote - Easy Reviews Token', 'SHOPVOTE_EASY_REVIEWS_TOKEN', '', 'Tragen Sie hier Ihre Shopvote Token für Easy Reviews ein', @gid, 3, NOW(), NOW(), NULL, NULL, NULL),
 ('Shopvote - Badge Typ', 'SHOPVOTE_BADGE_TYPE', '2', 'Wählen Sie die Art des Shopvote Siegels aus, das am unteren rechten Bildschirmrand angezeigt werden soll.<br/>Zur Verfügung stehen hier die Badge Typen, die automatisch die Funktion Rating Stars (falls bei Shopvote gebucht) unterstützen, so dass Sie dafür keinerlei Code integrieren müssen.<br/>Eine Vorschau der verschiedenen Badges finden Sie unter Grafiken & Siegel in Ihrer Shopvote Administration.<br/>Für die Nutzung der All Votes Grafik müssen Sie bei Shopvote freigeschaltet sein.<br/><br />1 = Vote Badge I (klein ohne Siegel)<br/>2 = Vote Badge III (groß)<br/>3 = Vote Badge II (klein)<br/>4 = All Votes Grafik I<br /><br/>', @gid, 4, NOW(), NOW(), NULL, 'zen_cfg_select_option(array(''1'', ''2'', ''3'', ''4''), ', NULL);
 
-##############################
-# Add values for German admin
-##############################
-
 INSERT INTO configuration_group (configuration_group_id, language_id, configuration_group_title, configuration_group_description, sort_order, visible ) VALUES 
 (@gid, 43, 'Shopvote', 'Einstellungen für das Shopvote Modul', '1', '1');
-
 
 REPLACE INTO configuration_language (configuration_title, configuration_key, configuration_language_id, configuration_description, last_modified, date_added) VALUES
 ('Shopvote - Version', 'SHOPVOTE_MODUL_VERSION', 43, 'Installierte Version:', now(), now()),
@@ -210,10 +205,6 @@ REPLACE INTO configuration_language (configuration_title, configuration_key, con
 ('Shopvote - Shop ID', 'SHOPVOTE_SHOP_ID', 43, 'Tragen Sie hier Ihre Shopvote Shop ID ein', now(), now()),
 ('Shopvote - Easy Reviews Token', 'SHOPVOTE_EASY_REVIEWS_TOKEN', 43, 'Tragen Sie hier Ihre Shopvote Token für Easy Reviews ein', now(), now()),
 ('Shopvote - Badge Typ', 'SHOPVOTE_BADGE_TYPE', 43, 'Wählen Sie die Art des Shopvote Siegels aus, das am unteren rechten Bildschirmrand angezeigt werden soll.<br/>Zur Verfügung stehen hier die Badge Typen, die automatisch die Funktion Rating Stars (falls bei Shopvote gebucht) unterstützen, so dass Sie dafür keinerlei Code integrieren müssen.<br/>Eine Vorschau der verschiedenen Badges finden Sie unter Grafiken & Siegel in Ihrer Shopvote Administration.<br/>Für die Nutzung der All Votes Grafik müssen Sie bei Shopvote freigeschaltet sein.<br/><br />1 = Vote Badge I (klein, ohne Siegel)<br/>2 = Vote Badge III (groß)<br/>3 = Vote Badge II (klein)<br/>4 = All Votes Grafik I<br /><br/>', now(), now());
-
-###################################
-# Register for Admin Access Control
-###################################
 
 INSERT INTO admin_pages (page_key ,language_key ,main_page ,page_params ,menu_key ,display_on_menu ,sort_order) VALUES 
 ('configShopvote', 'BOX_CONFIGURATION_SHOPVOTE', 'FILENAME_CONFIGURATION', CONCAT('gID=',@gid), 'configuration', 'Y', @gid);
@@ -229,6 +220,10 @@ INSERT IGNORE INTO admin_pages (page_key, language_key, main_page, page_params, 
 #Shopvote in Tools Menu
 INSERT IGNORE INTO admin_pages (page_key, language_key, main_page, page_params, menu_key, display_on_menu, sort_order) VALUES
 ('toolsShopvote', 'BOX_TOOLS_SHOPVOTE', 'FILENAME_SHOPVOTE', '', 'tools', 'Y', 101);
+
+#Find duplicate models in Tools Menu
+INSERT IGNORE INTO admin_pages (page_key, language_key, main_page, page_params, menu_key, display_on_menu, sort_order) VALUES
+('findDuplicates', 'BOX_TOOLS_FINDDUPMODELS','FILENAME_FINDDUPMODELS', '', 'tools', 'Y', 102);
 
 DELETE FROM admin_pages WHERE page_key = 'linkpointReview';
 

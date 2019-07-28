@@ -6,7 +6,7 @@
 # * @copyright Copyright 2003-2019 Zen Cart Development Team
 # * @copyright Portions Copyright 2003 osCommerce
 # * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
-# * @version $Id: mysql_zencart.sql 19510 2019-07-27 12:52:16Z webchills $
+# * @version $Id: mysql_zencart.sql 19511 2019-07-28 09:02:16Z webchills $
 #
 
 ############ IMPORTANT INSTRUCTIONS ###############
@@ -2317,7 +2317,8 @@ VALUES ('configMyStore', 'BOX_CONFIGURATION_MY_STORE', 'FILENAME_CONFIGURATION',
        ('toolsPDF3', 'BOX_TOOLS_PDF3', 'RL_INVOICE3_ADMIN_FILENAME', '', 'tools', 'Y', 37),
        ('GeneratePDFInvoice', 'GENERATE_RL_INVOICE3', 'FILENAME_RL_INVOICE3', '', 'customers', 'N', 37),
        ('configShopvote', 'BOX_CONFIGURATION_SHOPVOTE', 'FILENAME_CONFIGURATION', 'gID=38', 'configuration', 'Y', 38),
-       ('toolsShopvote', 'BOX_TOOLS_SHOPVOTE', 'FILENAME_SHOPVOTE', '', 'tools', 'Y', 101);
+       ('toolsShopvote', 'BOX_TOOLS_SHOPVOTE', 'FILENAME_SHOPVOTE', '', 'tools', 'Y', 101),
+       ('findDuplicates', 'BOX_TOOLS_FINDDUPMODELS','FILENAME_FINDDUPMODELS', '', 'tools', 'Y', 102);
 
 
 # Insert a default profile for managing orders, as a built-in example of profile functionality
