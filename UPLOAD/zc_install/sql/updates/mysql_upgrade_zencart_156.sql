@@ -6,7 +6,7 @@
 # * @copyright Copyright 2003-2019 Zen Cart Development Team
 # * @copyright Portions Copyright 2003 osCommerce
 # * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
-# * @version $Id: mysql_upgrade_zencart_156.sql 10 2019-07-28 09:25:59Z webchills $
+# * @version $Id: mysql_upgrade_zencart_156.sql 11 2019-07-29 09:41:59Z webchills $
 
 #
 
@@ -33,7 +33,7 @@
 #####################################################
 
 # Set store to Down-For-Maintenance mode.  Must reset manually via admin after upgrade is done.
-#UPDATE configuration set configuration_value = 'true' where configuration_key = 'DOWN_FOR_MAINTENANCE';
+UPDATE configuration set configuration_value = 'true' where configuration_key = 'DOWN_FOR_MAINTENANCE';
 
 # Clear out active customer sessions
 TRUNCATE TABLE whos_online;
@@ -67,8 +67,34 @@ ALTER TABLE admin_profiles MODIFY profile_name VARCHAR(255) NOT NULL DEFAULT '';
 ALTER TABLE countries ADD status tinyint(1) DEFAULT 1;
 # end of repeats from v152
 
+# Do 1.5.5f database changes for 1.5.5 stores which did never update to 1.5.5f
+
+# DSGVO Kundenexport in Customers Menu
+INSERT IGNORE INTO admin_pages (page_key, language_key, main_page, page_params, menu_key, display_on_menu, sort_order) VALUES
+('dsgvo_kundenexport', 'BOX_DSGVO_KUNDENEXPORT', 'FILENAME_DSGVO_KUNDENEXPORT', '', 'customers', 'Y', 40);
+
+# Kunden, die nie etwas bestellt haben in Customers Menu
+INSERT IGNORE INTO admin_pages (page_key, language_key, main_page, page_params, menu_key, display_on_menu, sort_order) VALUES
+('customers_without_order', 'BOX_CUSTOMERS_WITHOUT_ORDER', 'FILENAME_CUSTOMERS_WITHOUT_ORDER', '', 'customers', 'Y', 30);
+
+# Image Handler von 4.4 to 5.1.0 aktualisieren
+
+DELETE FROM configuration WHERE configuration_key = 'IH_VERSION';
+INSERT INTO configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, last_modified, date_added, use_function, set_function) VALUES ('Image Handler Version', 'IH_VERSION', '5.1.0', 'This is used by image handler to check if the database is up to date with uploaded image handler files.', 0, 100, NULL, now(), NULL, 'zen_cfg_textarea_small(');
+INSERT IGNORE INTO configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, last_modified, date_added, use_function, set_function) VALUES ('IH small images background', 'SMALL_IMAGE_BACKGROUND', '255:255:255', 'If converted from an uploaded image with transparent areas, these areas become the specified color. Set to -transparent- to keep transparency', 4, 82, NULL, now(), NULL, 'zen_cfg_textarea_small(');
+INSERT IGNORE INTO configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, last_modified, date_added, use_function, set_function) VALUES ('IH small images compression quality', 'SMALL_IMAGE_QUALITY', '85', 'Specify the desired image quality for small jpg images, decimal values ranging from 0 to 100. Higher is better quality and takes more space. Default is 85 which is ok unless you have very specific needs.', 4, 88, NULL, now(), NULL, 'zen_cfg_textarea_small(');
+INSERT IGNORE INTO configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added, use_function, set_function) VALUES ('IH Cache File-naming Convention', 'IH_CACHE_NAMING', 'Readable', 'Choose the method that <em>Image Handler</em> uses to name the resized images in the <code>cache/images</code> directory.<br /><br />The <em>Hashed</em> method was used by Image Handler versions prior to 4.3.4 and uses an &quot;MD5&quot; hash to produce the filenames.  It can be &quot;difficult&quot; to visually identify the original file using this method.  If you are upgrading Image Handler from a version prior to 4.3.4 <em>and</em> you have hard-coded links in product (or other) definitions to those images, <b>do not change</b> this setting from <em>Hashed</em>.<br /><br />Image Handler v4.3.4 (unreleased) introduced the concept of a <em>Readable</em> name for those resized images.  This is a good choice for new installations of <em>IH</em> or for upgraded installations that do not have hard-coded image links.', 4, 1006, now(), NULL, 'zen_cfg_select_option(array(\'Hashed\', \'Readable\'),');
+INSERT IGNORE INTO configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, last_modified, date_added, use_function, set_function) VALUES ('IH small images background', 'SMALL_IMAGE_BACKGROUND', '255:255:255', 'If converted from an uploaded image with transparent areas, these areas become the specified color. Set to -transparent- to keep transparency', 4, 82, NULL, now(), NULL, 'zen_cfg_textarea_small(');
+
 # update Image Handler Version to 5.1.4
 UPDATE configuration SET configuration_value = '5.1.4' WHERE configuration_key = 'IH_VERSION';
+
+# Google Analytics DSGVO konform
+UPDATE configuration SET configuration_value = 'ga(\'set\', \'anonymizeIp\', true);' WHERE configuration_key = 'GOOGLE_ANALYTICS_CUSTOM_CODE' LIMIT 1;
+UPDATE configuration SET configuration_value = 'Enable' WHERE configuration_key = 'GOOGLE_ANALYTICS_CUSTOM_CODE_ENABLED' LIMIT 1;
+
+# Gespeicherte IP Adressen löschen
+UPDATE orders SET ip_address = '' WHERE ip_address != '';
 
 # handle old dates
 UPDATE configuration SET date_added='0001-01-01' where date_added < '0001-01-01';
@@ -642,7 +668,7 @@ REPLACE INTO configuration_language (configuration_title, configuration_key, con
 ('SMTP E-Mail - Mailbox Passwort', 'EMAIL_SMTPAUTH_PASSWORD', 43, 'Passwort für SMTP Authentifizierung', now(), now()),
 ('SMTP E-Mail - Mailserver Name', 'EMAIL_SMTPAUTH_MAIL_SERVER', 43, 'SMTP Mailserver für Authentifizierung z.B. smtp.domain.com', now(), now()),
 ('SMTP E-Mail - Mailserver Port', 'EMAIL_SMTPAUTH_MAIL_SERVER_PORT', 43, 'SMTP Mailserver Port', now(), now()),
-('Währungssymbole für Text-Emails', 'CURRENCIES_TRANSLATIONS', 43, 'Welche Währungssymbole sollen für Text-Emails konvertiert werden?<br />Default = &pound;,CB#:&euro;,C"b B,:&reg;,CB.:&trade;,C"b B"', now(), now()),
+('Währungssymbole für Text-Emails', 'CURRENCIES_TRANSLATIONS', 43, 'Welche Währungssymbole sollen für Text-Emails konvertiert werden?<br />Am besten lassen Sie die folgende Voreinstellung völlig unverändert:<br/>&amp;pound; = £, &amp;euro; = €, &amp;reg; = ® , &amp;trade; = ™', now(), now()),
 ('E-Mail Zeilenvorschub', 'EMAIL_LINEFEED', 43, 'Legen Sie hier die Zeichen fest, die Sie zur Trennung des E-Mail Headers verwenden wollen.', now(), now()),
 ('E-Mail als MIME HTML versenden', 'EMAIL_USE_HTML', 43, 'Wollen Sie e-Mails im HTML Format versenden falls der Empänger in seinen Einstellungen HTML statt Text angekreuzt hat?<br/>HINWEIS: Dies ist der generelle Hauptschalter. Wenn Sie hier auf false stellen, dann wird der Shop keinerlei HTML Emails versenden.', now(), now()),
 ('E-Mail durch DNS-Server verifizieren', 'ENTRY_EMAIL_ADDRESS_CHECK', 43, 'Soll die Gültigkeit von e-Mails durch DNS-Server verifiziert werden?', now(), now()),
@@ -852,7 +878,7 @@ REPLACE INTO configuration_language (configuration_title, configuration_key, con
 ('Kategorie-Tabs Menü EIN/AUS', 'CATEGORIES_TABS_STATUS', 43, 'Kategorie-Tabs<br />Zeigt die Toplevel Kategorien unterhalb des Banners an. <br />0= Kategorie Tabs AUS<br />1= Kategorie Tabs EIN', now(), now()),
 ('Sitemap - Link für "Mein Konto" inkludieren', 'SHOW_ACCOUNT_LINKS_ON_SITE_MAP', 43, 'Soll der Link für "Mein Konto" in der Sitemap inkludiert werden?<br /><br />Standard: false', now(), now()),
 ('Überspringe Kategorien mit einem Artikel', 'SKIP_SINGLE_PRODUCT_CATEGORIES', 43, 'Überspringe Kategorien mit einem Artikel<br />Wenn true dann wird bei Klick auf die Kategorie gleich direkt die Artikelansicht angezeigt.<br />Standard: True', now(), now()),
-('Anmeldeseite geteilt anzeigen', 'USE_SPLIT_LOGIN_MODE', 43, 'Die Anmeldeseite kann in zwei Varianten angezeigt werden: Geteilt oder vertikal.<br />Die geteilte Variante zeigt neben der Felder für die Anmeldung einen Text und einen "Neues Konto erstellen" Button, der auf die Seite zur <em>Kontoerstellung</em> weiterleitet. In der vertikalen Variante werden alle Felder zur Kontoerstellung unterhalb der Felder für die Anmeldung angezeigt.<br />Standard: False', now(), now()),
+('Anmeldeseite geteilt anzeigen', 'USE_SPLIT_LOGIN_MODE', 43, 'Die Anmeldeseite kann in zwei Varianten angezeigt werden: Geteilt oder vertikal.<br />Die geteilte Variante zeigt neben der Felder für die Anmeldung einen Text und einen "Neues Konto erstellen" Button, der auf die Seite zur <em>Kontoerstellung</em> weiterleitet. In der vertikalen Variante werden alle Felder zur Kontoerstellung unterhalb der Felder für die Anmeldung angezeigt.<br />Für die Verwendung von Paypal Express Checkout sollte diese Einstellung immer auf True bleiben!<br/>Voreinstellung: True', now(), now()),
 ('CSS Schaltflächen im Frontend', 'IMAGE_USE_CSS_BUTTONS', 43, 'CSS Schaltflächen im Frontend<br />CSS Schaltflächen anstelle von Bildbuttons im Shop verwenden (GIF/JPG)?<br />CSS Schaltflächen-Stile müssen in den Stylesheets definiert werden.', now(), now()),
 ('CSS Schaltflächen im Admin', 'ADMIN_USE_CSS_BUTTONS', 43, 'CSS Schaltflächen im Admin<br />CSS Schaltflächen anstelle von Bildbuttons in der Shopadministration verwenden?', now(), now()),
 
@@ -1118,7 +1144,7 @@ REPLACE INTO configuration_language (configuration_title, configuration_key, con
 ('pdf Rechnung - Rändereinstellungen', 'RL_INVOICE3_MARGIN', 43, 'Format: oben|rechts|unten|links<br />(Hinweis: 1inch = 72pt / 2.54cm; 1cm = 28,35pt)<br />Standard: 20|20|20|20<br />', now(), now()),
 ('pdf Rechnung - Rechnung bei Gratisprodukt', 'RL_INVOICE3_NOT_NULL_INVOICE', 43, 'Soll die Rechnung auch bei einem Gratisprodukt dem Mail hinzugefügt werden?', now(), now()),
 ('pdf Rechnung - Rechnungsversand bei Bestellstatus', 'RL_INVOICE3_ORDERSTATUS', 43, 'Rechnung nur mitschicken, wenn der Bestellstatus grösser/gleich ist [default: 3 == verschickt]', now(), now()),
-('pdf Rechnung - Präfix für Rechnungsnummer in der Rechnung', 'RL_INVOICE3_ORDER_ID_PREFIX', 43, 'Präfix für Rechnungsnummer in der Rechnung<br />Beispiel: : 2016/<br />', now(), now()),
+('pdf Rechnung - Präfix für Rechnungsnummer in der Rechnung', 'RL_INVOICE3_ORDER_ID_PREFIX', 43, 'Präfix für Rechnungsnummer in der Rechnung<br />Beispiel: : 2019/<br />', now(), now()),
 ('pdf Rechnung - Papiergrösse|Einheit|Orientierung', 'RL_INVOICE3_PAPER', 43, '1. Papiergrösse = A3|A4|A5|Letter|Legal <br />2. Einheit: pt|mm|cm|inch <br />3. Orientierung: L|P<br />', now(), now()),
 ('pdf Rechnung - PDF Hintergrunddatei', 'RL_INVOICE3_PDF_BACKGROUND', 43, 'PDF Hintergrunddatei<br />Standard: /www/htdocs/xxx/xxx/includes/pdf/rechnung_de.pdf<br />', now(), now()),
 ('pdf Rechnung - Speicherort und -name der PDF-Datei', 'RL_INVOICE3_PDF_PATH', 43, '1. Wo sollen PDF-Dateien gespeichert werden (!! muss beschreibbar sein !!)?<br />2. speichern ja|nein (1|0)<br />Standard: /www/htdocs/xxx/xxx/includes/pdf/|1<br />', now(), now()),
@@ -1128,6 +1154,13 @@ REPLACE INTO configuration_language (configuration_title, configuration_key, con
 ('pdf Rechnung - Template für Artikel- und Summentabelle', 'RL_INVOICE3_TABLE_TEMPLATE', 43, 'Template für Artikel- und Summentabelle<br />Definition ist in includes/pdf/rl_invoice3_def.php<br />Standard: 30|30|30|60<br />Standard: amazon|amazon_templ|total_col_1|total_opt_1<br />', now(), now()),
 ('pdf Rechnung - PDF-Template auf 1.Seite', 'RL_INVOICE3_TEMPLATE_ONLY_FIRST_PAGE', 43, 'PDF-Template nur auf 1.Seite drucken', now(), now()),
 ('pdf Rechnung - Abstand 2.Seite', 'RL_INVOICE3_DELTA_2PAGE', 43, 'Zusätzlicher Abstand auf 2. Seite', now(), now()),
+
+# Adminmenü ID 38 - Shopvote
+('Shopvote - Version', 'SHOPVOTE_MODUL_VERSION', 43, 'Installierte Version:', now(), now()),
+('Shopvote - Ist das Modul aktiv?', 'SHOPVOTE_STATUS', 43, 'Wollen Sie das Shopvote Siegel und die Easy Reviews Bewertungsanfragen aktivieren?<br/>Bitte erst dann aktivieren, wenn Sie Zugriff auf die entsprechenden Javascript Snippets in Ihrer Shopvote Administration bekommen und die Einstellungen unten komplett vorgenommen haben.', now(), now()),
+('Shopvote - Shop ID', 'SHOPVOTE_SHOP_ID', 43, 'Tragen Sie hier Ihre Shopvote Shop ID ein', now(), now()),
+('Shopvote - Easy Reviews Token', 'SHOPVOTE_EASY_REVIEWS_TOKEN', 43, 'Tragen Sie hier Ihre Shopvote Token für Easy Reviews ein', now(), now()),
+('Shopvote - Badge Typ', 'SHOPVOTE_BADGE_TYPE', 43, 'Wählen Sie die Art des Shopvote Siegels aus, das am unteren rechten Bildschirmrand angezeigt werden soll.<br/>Zur Verfügung stehen hier die Badge Typen, die automatisch die Funktion Rating Stars (falls bei Shopvote gebucht) unterstützen, so dass Sie dafür keinerlei Code integrieren müssen.<br/>Eine Vorschau der verschiedenen Badges finden Sie unter Grafiken & Siegel in Ihrer Shopvote Administration.<br/>Für die Nutzung der All Votes Grafik müssen Sie bei Shopvote freigeschaltet sein.<br/><br />1 = Vote Badge I (klein, ohne Siegel)<br/>2 = Vote Badge III (groß)<br/>3 = Vote Badge II (klein)<br/>4 = All Votes Grafik I<br /><br/>', now(), now()),
 
 # Deutsche Einträge für Versandmodul Versandkostenfrei mit Optionen
 ('Versandkostenfrei mit Optionen aktivieren', 'MODULE_SHIPPING_FREEOPTIONS_STATUS', 43, 'Wollen Sie "Versandkostenfrei mit Optionen" aktivieren?', now(), now()),
@@ -1166,8 +1199,163 @@ REPLACE INTO configuration_language (configuration_title, configuration_key, con
 # Vataddon
 ('Anzeige incl. Mwst. zzgl. Versandkosten', 'DISPLAY_VATADDON_WHERE', 43, 'Wollen Sie unterhalb der Preise den Zusatz incl. bzw. excl. Mwst. zzgl. Versandkosten anzeigen?<br/>O=Nein, Anzeige komplett deaktiviert<br/>ALL = Anzeige überall im Shop aktiv<br/>product_info = Anzeige nur auf der Artikeldetailseite<br/><br/>Hinweis: Den Text dieser Anzeige können Sie in folgender Datei ändern: includes/languages/german/extra_definitions/rl.vat_info.php', now(), now());
 
+
+
+#############
+
+### Make sure that we use the latest and greatest German translations in product_type_layout_language
+
+#############
+
+REPLACE INTO product_type_layout_language (configuration_title, configuration_key, languages_id, configuration_description, last_modified, date_added) VALUES
+('Artikelnummer anzeigen', 'SHOW_PRODUCT_INFO_MODEL', 43, 'Soll die Artikelnummer auf der Produktinfoseite angezeigt werden?<br/> 0= AUS 1= AN', now(), now()),
+('Gewicht anzeigen', 'SHOW_PRODUCT_INFO_WEIGHT', 43, 'Soll das Gewicht auf der Produktinfoseite angezeigt werden<br/> 0= AUS 1= AN', now(), now()),
+('Attribut Gewicht anzeigen', 'SHOW_PRODUCT_INFO_WEIGHT_ATTRIBUTES', 43, 'Soll das Attribut Gewicht auf der Produktinfoseite angezeigt werden?<br/> 0= AUS 1= AN', now(), now()),
+('Hersteller anzeigen', 'SHOW_PRODUCT_INFO_MANUFACTURER', 43, 'Soll der Hersteller auf der Produktinfoseite angezeigt werden?<br/> 0= AUS 1= AN', now(), now()),
+('Menge im Warenkorb anzeigen', 'SHOW_PRODUCT_INFO_IN_CART_QTY', 43, 'Soll die bereits im Warenkorb vorhandene Menge diese Artikels auf der Produktinfoseite angezeigt werden?<br/> 0= AUS 1= AN', now(), now()),
+('Lagermenge anzeigen', 'SHOW_PRODUCT_INFO_QUANTITY', 43, 'Soll die aktuelle Lagermenge auf der Produktinfoseite angezeigt werden<br/> 0= AUS 1= AN', now(), now()),
+('Anzahl der Artikelbewertungen anzeigen', 'SHOW_PRODUCT_INFO_REVIEWS_COUNT', 43, 'Soll die Anzehl der Artikelbewertungen auf der Produktinfoseite angezeigt werden?<br/> 0= AUS 1= AN', now(), now()),
+('Button "Artikel bewerten" anzeigen', 'SHOW_PRODUCT_INFO_REVIEWS', 43, 'Soll der Button "Artikel bewerten" auf der Produktinfoseite angezeigt werden?<br/> 0= AUS 1= AN', now(), now()),
+('"Verfügbar am" anzeigen', 'SHOW_PRODUCT_INFO_DATE_AVAILABLE', 43, 'Soll auf der Produktinfoseite "Verfügbar am" angezeigt werden?<br/> 0= AUS 1= AN', now(), now()),
+('"Hinzugefügt am" anzeigen', 'SHOW_PRODUCT_INFO_DATE_ADDED', 43, 'Soll auf der Produktinfoseite "Hinzugefügt am" angezeigt werden?<br/> 0= AUS 1= AN', now(), now()),
+('Artikel URL anzeigen', 'SHOW_PRODUCT_INFO_URL', 43, 'Soll die Artikel URL auf der Produktinfoseite angezeigt werden? 0= AUS 1= AN', now(), now()),
+('Zusätzliche Artikelbilder anzeigen', 'SHOW_PRODUCT_INFO_ADDITIONAL_IMAGES', 43, 'Sollen auf der Produktinfoseite zusätzliche Artikelbilder angezeigt werden?<br/> 0= AUS 1= AN', now(), now()),
+('Preis "ab.." anzeigen', 'SHOW_PRODUCT_INFO_STARTING_AT', 43, 'Soll bei Produkten mit Attributen die Preisanzeige mit "ab" beginnen?<br/> 0= AUS 1= AN', now(), now()),
+('Bild "Versandkostenfreie Lieferung" anzeigen', 'SHOW_PRODUCT_INFO_ALWAYS_FREE_SHIPPING_IMAGE_SWITCH', 43, 'Soll das Bild bzw. der Text für "Versandkostenfreie Lieferung" im Shop angezeigt werden?', now(), now()),
+('Artikelpreis Steuerklasse - Standardeinstellung', 'DEFAULT_PRODUCT_TAX_CLASS_ID', 43, 'Welche Steuerklasse soll jeder neu angelegte Artikel haben<br/>Bitte geben Sie die ID der Steuerklasse ein.', now(), now()),
+('Artikel ist virtuell - Standardeinstellung', 'DEFAULT_PRODUCT_PRODUCTS_VIRTUAL', 43, 'Soll jeder neu angelegte Artikel ein virtueller sein?', now(), now()),
+('Artikel "immer versandkostenfrei" - Standardeinstellung', 'DEFAULT_PRODUCT_PRODUCTS_IS_ALWAYS_FREE_SHIPPING', 43, 'Welche Einstellung soll beim Anlegen eines neuen Artikels standardmässig aktiviert werden?<br />JA, Immer versandkostenfrei AN<br />NEIN, Immer versandkostenfrei AUS<br />Spezial, Artikel/Download benötigt Versand', now(), now()),
+
+('Artikelnummer anzeigen', 'SHOW_PRODUCT_MUSIC_INFO_MODEL', 43, 'Soll die Artikelnummer auf der Produktinfoseite angezeigt werden?<br/> 0= AUS 1= AN', now(), now()),
+('Gewicht anzeigen', 'SHOW_PRODUCT_MUSIC_INFO_WEIGHT', 43, 'Soll das Gewicht auf der Produktinfoseite angezeigt werden<br/> 0= AUS 1= AN', now(), now()),
+('Attribut Gewicht anzeigen', 'SHOW_PRODUCT_MUSIC_INFO_WEIGHT_ATTRIBUTES', 43, 'Soll das Attribut Gewicht auf der Produktinfoseite angezeigt werden?<br/> 0= AUS 1= AN', now(), now()),
+('Künstler anzeigen', 'SHOW_PRODUCT_MUSIC_INFO_ARTIST', 43, 'Soll der Künstler auf der Produktinfoseite angezeigt werden?<br/> 0= AUS 1= AN', now(), now()),
+('Musik Genre anzeigen', 'SHOW_PRODUCT_MUSIC_INFO_GENRE', 43, 'Soll das Musik Genre auf der Produktinfoseite angezeigt werden?<br/> 0= AUS 1= AN', now(), now()),
+('Record Label anzeigen', 'SHOW_PRODUCT_MUSIC_INFO_RECORD_COMPANY', 43, 'Soll das Record Label auf der Produktinfoseite angezeigt werden?<br/> 0= AUS 1= AN', now(), now()),
+('Menge im Warenkorb anzeigen', 'SHOW_PRODUCT_MUSIC_INFO_IN_CART_QTY', 43, 'Soll die bereits im Warenkorb vorhandene Menge diese Artikels auf der Produktinfoseite angezeigt werden?<br/> 0= AUS 1= AN', now(), now()),
+('Lagermenge anzeigen', 'SHOW_PRODUCT_MUSIC_INFO_QUANTITY', 43, 'Soll die aktuelle Lagermenge auf der Produktinfoseite angezeigt werden<br/> 0= AUS 1= AN', now(), now()),
+('Anzahl der Artikelbewertungen anzeigen', 'SHOW_PRODUCT_MUSIC_INFO_REVIEWS_COUNT', 43, 'Soll die Anzehl der Artikelbewertungen auf der Produktinfoseite angezeigt werden?<br/> 0= AUS 1= AN', now(), now()),
+('Button "Artikel bewerten" anzeigen', 'SHOW_PRODUCT_MUSIC_INFO_REVIEWS', 43, 'Soll der Button "Artikel bewerten" auf der Produktinfoseite angezeigt werden?<br/> 0= AUS 1= AN', now(), now()),
+('"Verfügbar am" anzeigen', 'SHOW_PRODUCT_MUSIC_INFO_DATE_AVAILABLE', 43, 'Soll auf der Produktinfoseite "Verfügbar am" angezeigt werden?<br/> 0= AUS 1= AN', now(), now()),
+('"Hinzugefügt am" anzeigen', 'SHOW_PRODUCT_MUSIC_INFO_DATE_ADDED', 43, 'Soll auf der Produktinfoseite "Hinzugefügt am" angezeigt werden?<br/> 0= AUS 1= AN', now(), now()),
+('Preis "ab.." anzeigen', 'SHOW_PRODUCT_MUSIC_INFO_STARTING_AT', 43, 'Soll bei Produkten mit Attributen die Preisanzeige mit "ab" beginnen?<br/> 0= AUS 1= AN', now(), now()),
+('Zusätzliche Artikelbilder anzeigen', 'SHOW_PRODUCT_MUSIC_INFO_ADDITIONAL_IMAGES', 43, 'Sollen auf der Produktinfoseite zusätzliche Artikelbilder angezeigt werden?<br/> 0= AUS 1= AN', now(), now()),
+('Bild "Versandkostenfreie Lieferung" anzeigen', 'SHOW_PRODUCT_MUSIC_INFO_ALWAYS_FREE_SHIPPING_IMAGE_SWITCH', 43, 'Soll das Bild bzw. der Text für "Versandkostenfreie Lieferung" im Shop angezeigt werden?', now(), now()),
+('Artikelpreis Steuerklasse - Standardeinstellung', 'DEFAULT_PRODUCT_MUSIC_TAX_CLASS_ID', 43, 'Welche Steuerklasse soll jeder neu angelegte Artikel haben<br/>Bitte geben Sie die ID der Steuerklasse ein.', now(), now()),
+('Artikel ist virtuell - Standardeinstellung', 'DEFAULT_PRODUCT_MUSIC_PRODUCTS_VIRTUAL', 43, 'Soll jeder neu angelegte Artikel ein virtueller sein?', now(), now()),
+('Artikel "immer versandkostenfrei" - Standardeinstellung', 'DEFAULT_PRODUCT_MUSIC_PRODUCTS_IS_ALWAYS_FREE_SHIPPING', 43, 'Welche Einstellung soll beim Anlegen eines neuen Artikels standardmässig aktiviert werden?<br />JA, Immer versandkostenfrei AN<br />NEIN, Immer versandkostenfrei AUS<br />Spezial, Artikel/Download benötigt Versand', now(), now()),
+
+('Anzahl der Artikelbewertungen anzeigen', 'SHOW_DOCUMENT_GENERAL_INFO_REVIEWS_COUNT', 43, 'Soll die Anzahl der Artikelbewertungen auf der Produktinfoseite angezeigt werden?<br/> 0= AUS 1= AN', now(), now()),
+('Button "Artikel bewerten" anzeigen', 'SHOW_DOCUMENT_PRODUCT_INFO_REVIEWS', 43, 'Soll der Button "Artikel bewerten" auf der Produktinfoseite angezeigt werden?<br/> 0= AUS 1= AN', now(), now()),
+('"Verfügbar am" anzeigen', 'SHOW_DOCUMENT_GENERAL_INFO_DATE_AVAILABLE', 43, 'Soll auf der Produktinfoseite "Verfügbar am" angezeigt werden?<br/> 0= AUS 1= AN', now(), now()),
+('"Hinzugefügt am" anzeigen', 'SHOW_DOCUMENT_GENERAL_INFO_DATE_ADDED', 43, 'Soll auf der Produktinfoseite "Hinzugefügt am" angezeigt werden?<br/> 0= AUS 1= AN', now(), now()),
+('Artikel URL anzeigen', 'SHOW_DOCUMENT_GENERAL_INFO_URL', 43, 'Soll die Artikel URL auf der Produktinfoseite angezeigt werden? 0= AUS 1= AN', now(), now()),
+('Zusätzliche Artikelbilder anzeigen', 'SHOW_DOCUMENT_GENERAL_INFO_ADDITIONAL_IMAGES', 43, 'Sollen auf der Produktinfoseite zusätzliche Artikelbilder angezeigt werden?<br/> 0= AUS 1= AN', now(), now()),
+('Artikelnummer anzeigen', 'SHOW_DOCUMENT_PRODUCT_INFO_MODEL', 43, 'Soll die Artikelnummer auf der Produktinfoseite angezeigt werden?<br/> 0= AUS 1= AN', now(), now()),
+('Gewicht anzeigen', 'SHOW_DOCUMENT_PRODUCT_INFO_WEIGHT', 43, 'Soll das Gewicht auf der Produktinfoseite angezeigt werden<br/> 0= AUS 1= AN', now(), now()),
+('Attribut Gewicht anzeigen', 'SHOW_DOCUMENT_PRODUCT_INFO_WEIGHT_ATTRIBUTES', 43, 'Soll das Attribut Gewicht auf der Produktinfoseite angezeigt werden?<br/> 0= AUS 1= AN', now(), now()),
+('Hersteller anzeigen', 'SHOW_DOCUMENT_PRODUCT_INFO_MANUFACTURER', 43, 'Soll der Hersteller auf der Produktinfoseite angezeigt werden?<br/> 0= AUS 1= AN', now(), now()),
+('Menge im Warenkorb anzeigen', 'SHOW_DOCUMENT_PRODUCT_INFO_IN_CART_QTY', 43, 'Soll die bereits im Warenkorb vorhandene Menge diese Artikels auf der Produktinfoseite angezeigt werden?<br/> 0= AUS 1= AN', now(), now()),
+('Lagermenge anzeigen', 'SHOW_DOCUMENT_PRODUCT_INFO_QUANTITY', 43, 'Soll die aktuelle Lagermenge auf der Produktinfoseite angezeigt werden<br/> 0= AUS 1= AN', now(), now()),
+('Anzahl der Artikelbewertungen anzeigen', 'SHOW_DOCUMENT_PRODUCT_INFO_REVIEWS_COUNT', 43, 'Soll die Anzehl der Artikelbewertungen auf der Produktinfoseite angezeigt werden?<br/> 0= AUS 1= AN', now(), now()),
+('"Verfügbar am" anzeigen', 'SHOW_DOCUMENT_PRODUCT_INFO_DATE_AVAILABLE', 43, 'Soll auf der Produktinfoseite "Verfügbar am" angezeigt werden?<br/> 0= AUS 1= AN', now(), now()),
+('"Hinzugefügt am" anzeigen', 'SHOW_DOCUMENT_PRODUCT_INFO_DATE_ADDED', 43, 'Soll auf der Produktinfoseite "Hinzugefügt am" angezeigt werden?<br/> 0= AUS 1= AN', now(), now()),
+('Artikel URL anzeigen', 'SHOW_DOCUMENT_PRODUCT_INFO_URL', 43, 'Soll die Artikel URL auf der Produktinfoseite angezeigt werden? 0= AUS 1= AN', now(), now()),
+('Zusätzliche Artikelbilder anzeigen', 'SHOW_DOCUMENT_PRODUCT_INFO_ADDITIONAL_IMAGES', 43, 'Sollen auf der Produktinfoseite zusätzliche Artikelbilder angezeigt werden?<br/> 0= AUS 1= AN', now(), now()),
+('Preis "ab.." anzeigen', 'SHOW_DOCUMENT_PRODUCT_INFO_STARTING_AT', 43, 'Soll bei Produkten mit Attributen die Preisanzeige mit "ab" beginnen?<br/> 0= AUS 1= AN', now(), now()),
+('Bild "Versandkostenfreie Lieferung" anzeigen', 'SHOW_DOCUMENT_PRODUCT_INFO_ALWAYS_FREE_SHIPPING_IMAGE_SWITCH', 43, 'Soll das Bild bzw. der Text für "Versandkostenfreie Lieferung" im Shop angezeigt werden?', now(), now()),
+('Artikelpreis Steuerklasse - Standardeinstellung', 'DEFAULT_DOCUMENT_PRODUCT_TAX_CLASS_ID', 43, 'Welche Steuerklasse soll jeder neu angelegte Artikel haben<br/>Bitte geben Sie die ID der Steuerklasse ein.', now(), now()),
+('Artikel ist virtuell - Standardeinstellung', 'DEFAULT_DOCUMENT_PRODUCT_PRODUCTS_VIRTUAL', 43, 'Soll jeder neu angelegte Artikel ein virtueller sein?', now(), now()),
+('Artikel "immer versandkostenfrei" - Standardeinstellung', 'DEFAULT_DOCUMENT_PRODUCT_PRODUCTS_IS_ALWAYS_FREE_SHIPPING', 43, 'Welche Einstellung soll beim Anlegen eines neuen Artikels standardmässig aktiviert werden?<br />JA, Immer versandkostenfrei AN<br />NEIN, Immer versandkostenfrei AUS<br />Spezial, Artikel/Download benötigt Versand', now(), now()),
+
+('Artikelnummer anzeigen', 'SHOW_PRODUCT_FREE_SHIPPING_INFO_MODEL', 43, 'Soll die Artikelnummer auf der Produktinfoseite angezeigt werden?<br/> 0= AUS 1= AN', now(), now()),
+('Gewicht anzeigen', 'SHOW_PRODUCT_FREE_SHIPPING_INFO_WEIGHT', 43, 'Soll das Gewicht auf der Produktinfoseite angezeigt werden<br/> 0= AUS 1= AN', now(), now()),
+('Attribut Gewicht anzeigen', 'SHOW_PRODUCT_FREE_SHIPPING_INFO_WEIGHT_ATTRIBUTES', 43, 'Soll das Attribut Gewicht auf der Produktinfoseite angezeigt werden?<br/> 0= AUS 1= AN', now(), now()),
+('Hersteller anzeigen', 'SHOW_PRODUCT_FREE_SHIPPING_INFO_MANUFACTURER', 43, 'Soll der Hersteller auf der Produktinfoseite angezeigt werden?<br/> 0= AUS 1= AN', now(), now()),
+('Menge im Warenkorb anzeigen', 'SHOW_PRODUCT_FREE_SHIPPING_INFO_IN_CART_QTY', 43, 'Soll die bereits im Warenkorb vorhandene Menge diese Artikels auf der Produktinfoseite angezeigt werden?<br/> 0= AUS 1= AN', now(), now()),
+('Lagermenge anzeigen', 'SHOW_PRODUCT_FREE_SHIPPING_INFO_QUANTITY', 43, 'Soll die aktuelle Lagermenge auf der Produktinfoseite angezeigt werden<br/> 0= AUS 1= AN', now(), now()),
+('Anzahl der Artikelbewertungen anzeigen', 'SHOW_PRODUCT_FREE_SHIPPING_INFO_REVIEWS_COUNT', 43, 'Soll die Anzehl der Artikelbewertungen auf der Produktinfoseite angezeigt werden?<br/> 0= AUS 1= AN', now(), now()),
+('Button "Artikel bewerten" anzeigen', 'SHOW_PRODUCT_FREE_SHIPPING_INFO_REVIEWS', 43, 'Soll der Button "Artikel bewerten" auf der Produktinfoseite angezeigt werden?<br/> 0= AUS 1= AN', now(), now()),
+('"Verfügbar am" anzeigen', 'SHOW_PRODUCT_FREE_SHIPPING_INFO_DATE_AVAILABLE', 43, 'Soll auf der Produktinfoseite "Verfügbar am" angezeigt werden?<br/> 0= AUS 1= AN', now(), now()),
+('"Hinzugefügt am" anzeigen', 'SHOW_PRODUCT_FREE_SHIPPING_INFO_DATE_ADDED', 43, 'Soll auf der Produktinfoseite "Hinzugefügt am" angezeigt werden?<br/> 0= AUS 1= AN', now(), now()),
+('Artikel URL anzeigen', 'SHOW_PRODUCT_FREE_SHIPPING_INFO_URL', 43, 'Soll die Artikel URL auf der Produktinfoseite angezeigt werden? 0= AUS 1= AN', now(), now()),
+('Zusätzliche Artikelbilder anzeigen', 'SHOW_PRODUCT_FREE_SHIPPING_INFO_ADDITIONAL_IMAGES', 43, 'Sollen auf der Produktinfoseite zusätzliche Artikelbilder angezeigt werden?<br/> 0= AUS 1= AN', now(), now()),
+('Preis "ab.." anzeigen', 'SHOW_PRODUCT_FREE_SHIPPING_INFO_STARTING_AT', 43, 'Soll bei Produkten mit Attributen die Preisanzeige mit "ab" beginnen?<br/> 0= AUS 1= AN', now(), now()),
+('Bild "Versandkostenfreie Lieferung" anzeigen', 'SHOW_PRODUCT_FREE_SHIPPING_INFO_ALWAYS_FREE_SHIPPING_IMAGE_SWITCH', 43, 'Soll das Bild bzw. der Text für "Versandkostenfreie Lieferung" im Shop angezeigt werden?', now(), now()),
+('Artikelpreis Steuerklasse - Standardeinstellung', 'DEFAULT_PRODUCT_FREE_SHIPPING_TAX_CLASS_ID', 43, 'Welche Steuerklasse soll jeder neu angelegte Artikel haben<br/>Bitte geben Sie die ID der Steuerklasse ein.', now(), now()),
+('Artikel ist virtuell - Standardeinstellung', 'DEFAULT_PRODUCT_FREE_SHIPPING_PRODUCTS_VIRTUAL', 43, 'Soll jeder neu angelegte Artikel ein virtueller sein?', now(), now()),
+('Artikel "immer versandkostenfrei" - Standardeinstellung', 'DEFAULT_PRODUCT_FREE_SHIPPING_PRODUCTS_IS_ALWAYS_FREE_SHIPPING', 43, 'Welche Einstellung soll beim Anlegen eines neuen Artikels standardmässig aktiviert werden?<br />JA, Immer versandkostenfrei AN<br />NEIN, Immer versandkostenfrei AUS<br />Spezial, Artikel/Download benötigt Versand', now(), now()),
+
+('Metatag Titel Standardeinstellung - Produkt Titel', 'SHOW_PRODUCT_INFO_METATAGS_TITLE_STATUS', 43, 'Soll der Produkt Titel im Metatag Titel angezeigt werden<br/>0= AUS 1= AN', now(), now()),
+('Metatag Titel Standardeinstellung - Artikelname', 'SHOW_PRODUCT_INFO_METATAGS_PRODUCTS_NAME_STATUS', 43, 'Soll der Artikelname im Metatag Titel angezeigt werden<br/>0= AUS 1= AN', now(), now()),
+('Metatag Titel Standardeinstellung - Artikelnummer', 'SHOW_PRODUCT_INFO_METATAGS_MODEL_STATUS', 43, 'Soll die Artikelnummer im Metatag Titel angezeigt werden<br/>0= AUS 1= AN', now(), now()),
+('Metatag Titel Standardeinstellung - Artikelpreis', 'SHOW_PRODUCT_INFO_METATAGS_PRICE_STATUS', 43, 'Soll der Artikelpreis im Metatag Titel angezeigt werden<br/>0= AUS 1= AN', now(), now()),
+('Metatag Titel Standardeinstellung - Artikel Tagline', 'SHOW_PRODUCT_INFO_METATAGS_TITLE_TAGLINE_STATUS', 43, 'Soll die Artikel Tagline im Metatag Titel angezeigt werden<br/>0= AUS 1= AN', now(), now()),
+('Metatag Titel Standardeinstellung - Produkt Titel', 'SHOW_PRODUCT_MUSIC_INFO_METATAGS_TITLE_STATUS', 43, 'Soll der Produkt Titel im Metatag Titel angezeigt werden<br/>0= AUS 1= AN', now(), now()),
+('Metatag Titel Standardeinstellung - Artikelname', 'SHOW_PRODUCT_MUSIC_INFO_METATAGS_PRODUCTS_NAME_STATUS', 43, 'Soll der Artikelname im Metatag Titel angezeigt werden<br/>0= AUS 1= AN', now(), now()),
+('Metatag Titel Standardeinstellung - Artikelnummer', 'SHOW_PRODUCT_MUSIC_INFO_METATAGS_MODEL_STATUS', 43, 'Soll die Artikelnummer im Metatag Titel angezeigt werden<br/>0= AUS 1= AN', now(), now()),
+('Metatag Titel Standardeinstellung - Artikelpreis', 'SHOW_PRODUCT_MUSIC_INFO_METATAGS_PRICE_STATUS', 43, 'Soll der Artikelpreis im Metatag Titel angezeigt werden<br/>0= AUS 1= AN', now(), now()),
+('Metatag Titel Standardeinstellung - Artikel Tagline', 'SHOW_PRODUCT_MUSIC_INFO_METATAGS_TITLE_TAGLINE_STATUS', 43, 'Soll die Artikel Tagline im Metatag Titel angezeigt werden<br/>0= AUS 1= AN', now(), now()),
+('Metatag Titel Standardeinstellung - Dokument Titel', 'SHOW_DOCUMENT_GENERAL_INFO_METATAGS_TITLE_STATUS', 43, 'Soll der Dokument Titel im Metatag Titel angezeigt werden<br/>0= AUS 1= AN', now(), now()),
+('Metatag Titel Standardeinstellung - Dokumentname', 'SHOW_DOCUMENT_GENERAL_INFO_METATAGS_PRODUCTS_NAME_STATUS', 43, 'Soll der Dokumentname im Metatag Titel angezeigt werden<br/>0= AUS 1= AN', now(), now()),
+('Metatag Titel Standardeinstellung - Dokument Tagline', 'SHOW_DOCUMENT_GENERAL_INFO_METATAGS_TITLE_TAGLINE_STATUS', 43, 'Soll die Dokument Tagline im Metatag Titel angezeigt werden<br/>0= AUS 1= AN', now(), now()),
+('Metatag Titel Standardeinstellung - Dokument Titel', 'SHOW_DOCUMENT_PRODUCT_INFO_METATAGS_TITLE_STATUS', 43, 'Soll der Dokument Titel im Metatag Titel angezeigt werden<br/>0= AUS 1= AN', now(), now()),
+('Metatag Titel Standardeinstellung - Dokumentname', 'SHOW_DOCUMENT_PRODUCT_INFO_METATAGS_PRODUCTS_NAME_STATUS', 43, 'Soll der Dokumentname im Metatag Titel angezeigt werden<br/>0= AUS 1= AN', now(), now()),
+('Metatag Titel Standardeinstellung - Dokumentnummer', 'SHOW_DOCUMENT_PRODUCT_INFO_METATAGS_MODEL_STATUS', 43, 'Soll die Dokumentnummer im Metatag Titel angezeigt werden<br/>0= AUS 1= AN', now(), now()),
+('Metatag Titel Standardeinstellung - Dokumentpreis', 'SHOW_DOCUMENT_PRODUCT_INFO_METATAGS_PRICE_STATUS', 43, 'Soll der Dokumentpreis im Metatag Titel angezeigt werden<br/>0= AUS 1= AN', now(), now()),
+('Metatag Titel Standardeinstellung - Dokument Tagline', 'SHOW_DOCUMENT_PRODUCT_INFO_METATAGS_TITLE_TAGLINE_STATUS', 43, 'Soll die Dokument Tagline im Metatag Titel angezeigt werden<br/>0= AUS 1= AN', now(), now()),
+('Metatag Titel Standardeinstellung - Produkt Titel', 'SHOW_PRODUCT_FREE_SHIPPING_INFO_METATAGS_TITLE_STATUS', 43, 'Soll der Produkt Titel im Metatag Titel angezeigt werden<br/>0= AUS 1= AN', now(), now()),
+('Metatag Titel Standardeinstellung - Artikelname', 'SHOW_PRODUCT_FREE_SHIPPING_INFO_METATAGS_PRODUCTS_NAME_STATUS', 43, 'Soll der Artikelname im Metatag Titel angezeigt werden<br/>0= AUS 1= AN', now(), now()),
+('Metatag Titel Standardeinstellung - Artikelnummer', 'SHOW_PRODUCT_FREE_SHIPPING_INFO_METATAGS_MODEL_STATUS', 43, 'Soll die Artikelnummer im Metatag Titel angezeigt werden<br/>0= AUS 1= AN', now(), now()),
+('Metatag Titel Standardeinstellung - Artikelpreis', 'SHOW_PRODUCT_FREE_SHIPPING_INFO_METATAGS_PRICE_STATUS', 43, 'Soll der Artikelpreis im Metatag Titel angezeigt werden<br/>0= AUS 1= AN', now(), now()),
+('Metatag Titel Standardeinstellung - Artikel Tagline', 'SHOW_PRODUCT_FREE_SHIPPING_INFO_METATAGS_TITLE_TAGLINE_STATUS', 43, 'Soll die Artikel Tagline im Metatag Titel angezeigt werden<br/>0= AUS 1= AN', now(), now()),
+
+('PRODUCT Attribut wird nur zur Darstellung benötigt - Standardeinstellung', 'DEFAULT_PRODUCT_ATTRIBUTES_DISPLAY_ONLY', 43, 'PRODUCT Attribut wird nur zur Anzeige benötigt<br />0= NEIN 1= JA', now(), now()),
+('PRODUCT Attribut ist kostenlos - Standardeinstellung', 'DEFAULT_PRODUCT_ATTRIBUTE_IS_FREE', 43, 'PRODUCT Attribut ist kostenlos<br />Attribut ist kostenlos, wenn der Artikel kostenlos ist.<br />0= NEIN 1= JA', now(), now()),
+('PRODUCT Attribut ist standardmässig markiert - Standardeinstellung', 'DEFAULT_PRODUCT_ATTRIBUTES_DEFAULT', 43, 'PRODUCT Attribut ist standardmässig markiert<br />0= NEIN 1= JA', now(), now()),
+('PRODUCT Attribut ist preisreduziert - Standardeinstellung', 'DEFAULT_PRODUCT_ATTRIBUTES_DISCOUNTED', 43, 'PRODUCT Attribut ist preisreduziert<br />Angewendete Rabatte des Artikels (Sonderpreis/Abverkauf) werden auch für die Attribute verwendet<br />0= NEIN 1= JA', now(), now()),
+('PRODUCT Attribut ist inkludiert im Basispreis - Standardeinstellung', 'DEFAULT_PRODUCT_ATTRIBUTES_PRICE_BASE_INCLUDED', 43, 'PRODUCT Attribut ist inkludiert im Basispreis<br />Inkludiert im Basispreis bei "Preis per Attribut"<br />0= NEIN 1= JA', now(), now()),
+('PRODUCT Attribut wird benötigt - Standardeinstellung', 'DEFAULT_PRODUCT_ATTRIBUTES_REQUIRED', 43, 'PRODUCT Attribut wird benötigt<br />Attribut wird für Text benötigt<br />0= NEIN 1= JA', now(), now()),
+('PRODUCT Attribut Preis Präfix - Standardeinstellung', 'DEFAULT_PRODUCT_PRICE_PREFIX', 43, 'PRODUCT Attribut Preis Präfix<br />Standard Preis Präfix<br />Leer, + oder -', now(), now()),
+('PRODUCT Attribut Gewicht Präfix - Standardeinstellung', 'DEFAULT_PRODUCT_PRODUCTS_ATTRIBUTES_WEIGHT_PREFIX', 43, 'PRODUCT Attribut Gewicht Präfix<br />Standard Gewicht Präfix<br />Leer, + oder -', now(), now()),
+
+('MUSIC Attribut wird nur zur Darstellung benötigt - Standardeinstellung', 'DEFAULT_PRODUCT_MUSIC_ATTRIBUTES_DISPLAY_ONLY', 43, 'MUSIC Attribut wird nur zur Anzeige benötigt<br />0= NEIN 1= JA', now(), now()),
+('MUSIC Attribut ist kostenlos - Standardeinstellung', 'DEFAULT_PRODUCT_MUSIC_ATTRIBUTE_IS_FREE', 43, 'MUSIC Attribut ist kostenlos<br />Attribut ist kostenlos, wenn der Artikel kostenlos ist.<br />0= NEIN 1= JA', now(), now()),
+('MUSIC Attribut ist standardmässig markiert - Standardeinstellung', 'DEFAULT_PRODUCT_MUSIC_ATTRIBUTES_DEFAULT', 43, 'MUSIC Attribut ist standardmässig markiert<br />0= NEIN 1= JA', now(), now()),
+('MUSIC Attribut ist preisreduziert - Standardeinstellung', 'DEFAULT_PRODUCT_MUSIC_ATTRIBUTES_DISCOUNTED', 43, 'MUSIC Attribut ist preisreduziert<br />Angewendete Rabatte des Artikels (Sonderpreis/Abverkauf) werden auch für die Attribute verwendet<br />0= NEIN 1= JA', now(), now()),
+('MUSIC Attribut ist inkludiert im Basispreis - Standardeinstellung', 'DEFAULT_PRODUCT_MUSIC_ATTRIBUTES_PRICE_BASE_INCLUDED', 43, 'MUSIC Attribut ist inkludiert im Basispreis<br />Inkludiert im Basispreis bei "Preis per Attribut"<br />0= NEIN 1= JA', now(), now()),
+('MUSIC Attribut wird benötigt - Standardeinstellung', 'DEFAULT_PRODUCT_MUSIC_ATTRIBUTES_REQUIRED', 43, 'MUSIC Attribut wird benötigt<br />Attribut wird für Text benötigt<br />0= NEIN 1= JA', now(), now()),
+('MUSIC Attribut Preis Präfix - Standardeinstellung', 'DEFAULT_PRODUCT_MUSIC_PRICE_PREFIX', 43, 'MUSIC Attribut Preis Präfix<br />Standard Preis Präfix<br />Leer, + oder -', now(), now()),
+('MUSIC Attribut Gewicht Präfix - Standardeinstellung', 'DEFAULT_PRODUCT_MUSIC_PRODUCTS_ATTRIBUTES_WEIGHT_PREFIX', 43, 'MUSIC Attribut Gewicht Präfix<br />Standard Gewicht Präfix<br />Leer, + oder -', now(), now()),
+
+('DOCUMENT GENERAL Attribut wird nur zur Darstellung benötigt - Standardeinstellung', 'DEFAULT_DOCUMENT_GENERAL_ATTRIBUTES_DISPLAY_ONLY', 43, 'DOCUMENT GENERAL Attribut wird nur zur Anzeige benötigt<br />0= NEIN 1= JA', now(), now()),
+('DOCUMENT GENERAL Attribut ist kostenlos - Standardeinstellung', 'DEFAULT_DOCUMENT_GENERAL_ATTRIBUTE_IS_FREE', 43, 'DOCUMENT GENERAL Attribut ist kostenlos<br />Attribut ist kostenlos, wenn der Artikel kostenlos ist.<br />0= NEIN 1= JA', now(), now()),
+('DOCUMENT GENERAL Attribut ist standardmässig markiert - Standardeinstellung', 'DEFAULT_DOCUMENT_GENERAL_ATTRIBUTES_DEFAULT', 43, 'DOCUMENT GENERAL Attribut ist standardmässig markiert<br />0= NEIN 1= JA', now(), now()),
+('DOCUMENT GENERAL Attribut ist preisreduziert - Standardeinstellung', 'DEFAULT_DOCUMENT_GENERAL_ATTRIBUTES_DISCOUNTED', 43, 'DOCUMENT GENERAL Attribut ist preisreduziert<br />Angewendete Rabatte des Artikels (Sonderpreis/Abverkauf) werden auch für die Attribute verwendet<br />0= NEIN 1= JA', now(), now()),
+('DOCUMENT GENERAL Attribut ist inkludiert im Basispreis - Standardeinstellung', 'DEFAULT_DOCUMENT_GENERAL_ATTRIBUTES_PRICE_BASE_INCLUDED', 43, 'DOCUMENT GENERAL Attribut ist inkludiert im Basispreis<br />Inkludiert im Basispreis bei "Preis per Attribut"<br />0= NEIN 1= JA', now(), now()),
+('DOCUMENT GENERAL Attribut wird benötigt - Standardeinstellung', 'DEFAULT_DOCUMENT_GENERAL_ATTRIBUTES_REQUIRED', 43, 'DOCUMENT GENERAL Attribut wird benötigt<br />Attribut wird für Text benötigt<br />0= NEIN 1= JA', now(), now()),
+('DOCUMENT GENERAL Attribut Preis Präfix - Standardeinstellung', 'DEFAULT_DOCUMENT_GENERAL_PRICE_PREFIX', 43, 'DOCUMENT GENERAL Attribut Preis Präfix<br />Standard Preis Präfix<br />Leer, + oder -', now(), now()),
+('DOCUMENT GENERAL Attribut Gewicht Präfix - Standardeinstellung', 'DEFAULT_DOCUMENT_GENERAL_PRODUCTS_ATTRIBUTES_WEIGHT_PREFIX', 43, 'DOCUMENT GENERAL Attribut Gewicht Präfix<br />Standard Gewicht Präfix<br />Leer, + oder -', now(), now()),
+('DOCUMENT PRODUCT Attribut wird nur zur Darstellung benötigt - Standardeinstellung', 'DEFAULT_DOCUMENT_PRODUCT_ATTRIBUTES_DISPLAY_ONLY', 43, 'DOCUMENT PRODUCT Attribut wird nur zur Anzeige benötigt<br />0= NEIN 1= JA', now(), now()),
+('DOCUMENT PRODUCT Attribut ist kostenlos - Standardeinstellung', 'DEFAULT_DOCUMENT_PRODUCT_ATTRIBUTE_IS_FREE', 43, 'DOCUMENT PRODUCT Attribut ist kostenlos<br />Attribut ist kostenlos, wenn der Artikel kostenlos ist.<br />0= NEIN 1= JA', now(), now()),
+('DOCUMENT PRODUCT Attribut ist standardmässig markiert - Standardeinstellung', 'DEFAULT_DOCUMENT_PRODUCT_ATTRIBUTES_DEFAULT', 43, 'DOCUMENT PRODUCT Attribut ist standardmässig markiert<br />0= NEIN 1= JA', now(), now()),
+('DOCUMENT PRODUCT Attribut ist preisreduziert - Standardeinstellung', 'DEFAULT_DOCUMENT_PRODUCT_ATTRIBUTES_DISCOUNTED', 43, 'DOCUMENT PRODUCT Attribut ist preisreduziert<br />Angewendete Rabatte des Artikels (Sonderpreis/Abverkauf) werden auch für die Attribute verwendet<br />0= NEIN 1= JA', now(), now()),
+('DOCUMENT PRODUCT Attribut ist inkludiert im Basispreis - Standardeinstellung', 'DEFAULT_DOCUMENT_PRODUCT_ATTRIBUTES_PRICE_BASE_INCLUDED', 43, 'DOCUMENT PRODUCT Attribut ist inkludiert im Basispreis<br />Inkludiert im Basispreis bei "Preis per Attribut"<br />0= NEIN 1= JA', now(), now()),
+('DOCUMENT PRODUCT Attribut wird benötigt - Standardeinstellung', 'DEFAULT_DOCUMENT_PRODUCT_ATTRIBUTES_REQUIRED', 43, 'DOCUMENT PRODUCT Attribut wird benötigt<br />Attribut wird für Text benötigt<br />0= NEIN 1= JA', now(), now()),
+('DOCUMENT PRODUCT Attribut Preis Präfix - Standardeinstellung', 'DEFAULT_DOCUMENT_PRODUCT_PRICE_PREFIX', 43, 'DOCUMENT PRODUCT Attribut Preis Präfix<br />Standard Preis Präfix<br />Leer, + oder -', now(), now()),
+('DOCUMENT PRODUCT Attribut Gewicht Präfix - Standardeinstellung', 'DEFAULT_DOCUMENT_PRODUCT_PRODUCTS_ATTRIBUTES_WEIGHT_PREFIX', 43, 'DOCUMENT PRODUCT Attribut Gewicht Präfix<br />Standard Gewicht Präfix<br />Leer, + oder -', now(), now()),
+
+('PRODUCT FREE SHIPPING Attribut wird nur zur Darstellung benötigt - Standardeinstellung', 'DEFAULT_PRODUCT_FREE_SHIPPING_ATTRIBUTES_DISPLAY_ONLY', 43, 'PRODUCT FREE SHIPPING Attribut wird nur zur Anzeige benötigt<br />0= NEIN 1= JA', now(), now()),
+('PRODUCT FREE SHIPPING Attribut ist kostenlos - Standardeinstellung', 'DEFAULT_PRODUCT_FREE_SHIPPING_ATTRIBUTE_IS_FREE', 43, 'PRODUCT FREE SHIPPING Attribut ist kostenlos<br />Attribut ist kostenlos, wenn der Artikel kostenlos ist.<br />0= NEIN 1= JA', now(), now()),
+('PRODUCT FREE SHIPPING Attribut ist standardmässig markiert - Standardeinstellung', 'DEFAULT_PRODUCT_FREE_SHIPPING_ATTRIBUTES_DEFAULT', 43, 'PRODUCT FREE SHIPPING Attribut ist standardmässig markiert<br />0= NEIN 1= JA', now(), now()),
+('PRODUCT FREE SHIPPING Attribut ist preisreduziert - Standardeinstellung', 'DEFAULT_PRODUCT_FREE_SHIPPING_ATTRIBUTES_DISCOUNTED', 43, 'PRODUCT FREE SHIPPING Attribut ist preisreduziert<br />Angewendete Rabatte des Artikels (Sonderpreis/Abverkauf) werden auch für die Attribute verwendet<br />0= NEIN 1= JA', now(), now()),
+('PRODUCT FREE SHIPPING Attribut ist inkludiert im Basispreis - Standardeinstellung', 'DEFAULT_PRODUCT_FREE_SHIPPING_ATTRIBUTES_PRICE_BASE_INCLUDED', 43, 'PRODUCT FREE SHIPPING Attribut ist inkludiert im Basispreis<br />Inkludiert im Basispreis bei "Preis per Attribut"<br />0= NEIN 1= JA', now(), now()),
+('PRODUCT FREE SHIPPING Attribut wird benötigt - Standardeinstellung', 'DEFAULT_PRODUCT_FREE_SHIPPING_ATTRIBUTES_REQUIRED', 43, 'PRODUCT FREE SHIPPING Attribut wird benötigt<br />Attribut wird für Text benötigt<br />0= NEIN 1= JA', now(), now()),
+('PRODUCT FREE SHIPPING Attribut Preis Präfix - Standardeinstellung', 'DEFAULT_PRODUCT_FREE_SHIPPING_PRICE_PREFIX', 43, 'PRODUCT FREE SHIPPING Attribut Preis Präfix<br />Standard Preis Präfix<br />Leer, + oder -', now(), now()),
+('PRODUCT FREE SHIPPING Attribut Gewicht Präfix - Standardeinstellung', 'DEFAULT_PRODUCT_FREE_SHIPPING_PRODUCTS_ATTRIBUTES_WEIGHT_PREFIX', 43, 'PRODUCT FREE SHIPPING Attribut Gewicht Präfix<br />Standard Gewicht Präfix<br />Leer, + oder -', now(), now());
+
 REPLACE INTO product_type_layout_language (configuration_title , configuration_key , languages_id, configuration_description, last_modified, date_added)
-VALUES ('20190622', 'LANGUAGE_VERSION', '43', 'Datum der deutschen Übersetzungen', now(), now());
+VALUES ('20190729', 'LANGUAGE_VERSION', '43', 'Datum der deutschen Übersetzungen', now(), now());
 
 #### VERSION UPDATE STATEMENTS
 ## THE FOLLOWING 2 SECTIONS SHOULD BE THE "LAST" ITEMS IN THE FILE, so that if the upgrade fails prematurely, the version info is not updated.
