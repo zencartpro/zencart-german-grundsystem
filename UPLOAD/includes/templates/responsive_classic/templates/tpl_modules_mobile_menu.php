@@ -7,7 +7,7 @@
  * @copyright Copyright 2003-2019 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: tpl_modules_mobile_menu.php 5 2019-06-15 17:33:58Z webchills $
+ * @version $Id: tpl_modules_mobile_menu.php 6 2019-08-04 18:33:58Z webchills $
  */
 ?>
 
@@ -134,24 +134,24 @@ echo $menulist;
         <li><a href="<?php echo zen_href_link(FILENAME_PAGE_4); ?>"><?php echo BOX_INFORMATION_PAGE_4; ?></a></li>
 <?php } ?>
       </ul>
-    </li>
-
-    <li><span><?php echo BOX_HEADING_EZPAGES; ?></span>
-      <ul>
+    </li>       
 <?php
   include(DIR_WS_MODULES . zen_get_module_directory('ezpages_bar_header.php'));
   if (!empty($var_linksList)) {
+?>
+    <li><span><?php echo BOX_HEADING_EZPAGES; ?></span>
+      <ul>
+<?php
     for ($i=1, $n=sizeof($var_linksList); $i<=$n; $i++) {
       echo '<li><a href="' . $var_linksList[$i]['link'] . '">' . $var_linksList[$i]['name'] . '</a></li>' . "\n";
     }
-  }
 ?>
       </ul>
     </li>
-
-
+<?php
+  }
+?> 
     <li id="menu-search"><?php require(DIR_WS_MODULES . 'sideboxes/search_header.php'); ?></li>
-
   </ul>
 </nav>
 
