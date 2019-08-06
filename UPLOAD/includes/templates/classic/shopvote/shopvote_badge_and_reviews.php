@@ -5,7 +5,7 @@
  * @copyright Copyright 2003-2019 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: shopvote_badge_and_reviews.php 2019-07-26 16:01:51Z webchills $
+ * @version $Id: shopvote_badge_and_reviews.php 2019-08-06 07:39:51Z webchills $
  */
 if ($_SESSION['language']=='german') {
 $SHOPVOTE_LANG = 'DE';
@@ -27,9 +27,14 @@ $SHOPVOTE_LANG = 'EN';
 <script>
 var myShopID = <?php echo SHOPVOTE_SHOP_ID;?>;
 var myBadgetType = <?php echo SHOPVOTE_BADGE_TYPE;?>;
+var mySpaceX  = <?php echo SHOPVOTE_SPACE_X;?>;
+var mySpaceY = <?php echo SHOPVOTE_SPACE_Y;?>;
+var myAlignH = '<?php echo SHOPVOTE_ALIGN_H;?>';
+var myAlignV = '<?php echo SHOPVOTE_ALIGN_V;?>';
+var myDisplayWidth = <?php echo SHOPVOTE_DISPLAY_WIDTH;?>;
 var myLanguage = '<?php echo $SHOPVOTE_LANG;?>';
 var mySrc = ('https:' === document.location.protocol ? 'https' : 'http');
-createBadget(myShopID, myBadgetType, mySrc);
+createBadget(myShopID, myBadgetType, mySrc, mySpaceX, mySpaceY, myAlignH, myAlignV, myDisplayWidth);
 </script>
 <?php } else { ?>
 <script src="https://widgets.shopvote.de/js/votebadge.min.js"></script>
