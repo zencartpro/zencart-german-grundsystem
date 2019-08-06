@@ -4,7 +4,7 @@
  * @copyright Copyright 2003-2019 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: product_info.php 730 2015-05-02 09:49:16Z webchills $
+ * @version $Id: product_info.php 731 2019-08-06 14:04:16Z webchills $
  */
 
 define('TEXT_PRODUCT_NOT_FOUND', 'Sorry, the product was not found.');
@@ -18,6 +18,7 @@ define('TEXT_PRODUCT_MANUFACTURER', 'Manufactured by: ');
 define('TEXT_PRODUCT_WEIGHT', 'Shipping Weight: ');
 define('TEXT_PRODUCT_QUANTITY', ' Units in Stock');
 define('TEXT_PRODUCT_MODEL', 'Model: ');
+define('TEXT_XSELL_PRODUCTS', 'Related Products'); 
 
 // previous next product
 define('PREV_NEXT_PRODUCT', 'Product ');

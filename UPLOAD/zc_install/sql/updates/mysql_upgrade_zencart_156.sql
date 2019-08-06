@@ -6,7 +6,7 @@
 # * @copyright Copyright 2003-2019 Zen Cart Development Team
 # * @copyright Portions Copyright 2003 osCommerce
 # * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
-# * @version $Id: mysql_upgrade_zencart_156.sql 12 2019-08-06 09:01:59Z webchills $
+# * @version $Id: mysql_upgrade_zencart_156.sql 13 2019-08-06 15:53:59Z webchills $
 
 #
 
@@ -245,6 +245,54 @@ REPLACE INTO configuration_language (configuration_title, configuration_key, con
 
 INSERT INTO admin_pages (page_key ,language_key ,main_page ,page_params ,menu_key ,display_on_menu ,sort_order) VALUES 
 ('configShopvote', 'BOX_CONFIGURATION_SHOPVOTE', 'FILENAME_CONFIGURATION', CONCAT('gID=',@gid), 'configuration', 'Y', @gid);
+
+
+#DELETE OLD CROSS SELL MODULE ENTRIES
+
+DELETE FROM admin_pages WHERE page_key='configCrossSell';
+DELETE FROM admin_pages WHERE page_key='catalogCrossSell';
+DELETE FROM admin_pages WHERE page_key='catalogCrossSellAdvanced';
+DELETE FROM configuration WHERE configuration_key = 'MIN_DISPLAY_XSELL';
+DELETE FROM configuration WHERE configuration_key = 'MAX_DISPLAY_XSELL';
+DELETE FROM configuration WHERE configuration_key = 'SHOW_PRODUCT_INFO_COLUMNS_XSELL_PRODUCTS';
+DELETE FROM configuration WHERE configuration_key = 'XSELL_DISPLAY_PRICE';
+DELETE FROM configuration WHERE configuration_key = 'XSELL_VERSION';
+DELETE FROM configuration_language WHERE configuration_key = 'MIN_DISPLAY_XSELL';
+DELETE FROM configuration_language WHERE configuration_key = 'MAX_DISPLAY_XSELL';
+DELETE FROM configuration_language WHERE configuration_key = 'SHOW_PRODUCT_INFO_COLUMNS_XSELL_PRODUCTS';
+DELETE FROM configuration_language WHERE configuration_key = 'XSELL_DISPLAY_PRICE';
+DELETE FROM configuration_language WHERE configuration_key = 'XSELL_VERSION';
+DELETE FROM configuration_group WHERE configuration_group_title = 'Cross Sell Advanced';
+
+#INSTALL NEW CROSS SELL CONFIGURATION
+
+INSERT INTO configuration_group (configuration_group_title, configuration_group_description, sort_order, visible )  VALUES 
+('Cross Sell Advanced', 'Settings for Cross Sell Advanced', '1', '1');
+SET @gid=last_insert_id();
+UPDATE configuration_group SET sort_order = last_insert_id() WHERE configuration_group_id = last_insert_id();
+
+INSERT INTO configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, last_modified, date_added, use_function, set_function) VALUES 
+('Display Cross-Sell Products - Minimal', 'MIN_DISPLAY_XSELL', 1, 'This is the minimum number of configured Cross-Sell products required in order to cause the Cross Sell information to be displayed.<br />Default: 1', @gid, 1, now() ,now(),NULL,NULL),
+('Display Cross-Sell Products - Maximal', 'MAX_DISPLAY_XSELL', 6, 'This is the maximum number of configured Cross-Sell products to be displayed.<br />Default: 6', @gid, 2, now(), now(),NULL,NULL),
+('Cross-Sell Products Columns per Row', 'SHOW_PRODUCT_INFO_COLUMNS_XSELL_PRODUCTS', 3, 'Cross-Sell Products Columns to display per Row<br />0= off or set the sort order.<br />Default: 3', @gid, 3, now(), now(),NULL, 'zen_cfg_select_option(array(0, 1, 2, 3, 4), '),
+('Cross-Sell - Display prices?', 'XSELL_DISPLAY_PRICE', 'false', 'Cross-Sell -- Do you want to display the product prices too?<br />Default: false', @gid, 4, now(), now(),NULL, 'zen_cfg_select_option(array(\'true\',\'false\'), '),
+('Cross-Sell - Version', 'XSELL_VERSION', '1.5.0', 'Cross Sell Advanced Version', @gid, 0, now(), now(), NULL, 'zen_cfg_read_only(');
+
+INSERT INTO configuration_group (configuration_group_id, language_id, configuration_group_title, configuration_group_description, sort_order, visible ) VALUES 
+(@gid, 43, 'Cross Sell Advanced', 'Einstellungen für Cross Sells', '1', '1');
+
+REPLACE INTO configuration_language (configuration_title, configuration_key, configuration_description, configuration_language_id) VALUES
+('Minimale Anzeige Cross-Sell Artikel', 'MIN_DISPLAY_XSELL', 'Anzahl der Cross Sell Artikel, die mindestens für den jeweiligen Artikel angelegt sein müssen, damit die Cross Sell Info erscheint.<br />Standardwert: 1', 43),
+('Maximale Anzeige Cross-Sell Artikel', 'MAX_DISPLAY_XSELL', 'Anzahl der Cross Sell Artikel, die höchstens für den jeweiligen Artikel angezeigt werden sollen.<br />Standardwert: 6', 43),
+('Cross-Sell Artikel pro Reihe', 'SHOW_PRODUCT_INFO_COLUMNS_XSELL_PRODUCTS', 'Wieviele Cross-Sell Artikel sollen in einer Reihe angezeigt werden<br />0= aus, 1-4 für die jeweilige Anzahl.<br />Standardwert: 3', 43),
+('Cross-Sell - Preis anzeigen?', 'XSELL_DISPLAY_PRICE', 'Soll der Preis für die Cross Sell Artikel angezeigt werden?<br />Standardwert: false', 43),
+('Cross-Sell Advanced Version', 'XSELL_VERSION', 'Aktuell installierte Version dieses Moduls', 43);
+
+INSERT IGNORE INTO admin_pages (page_key,language_key,main_page,page_params,menu_key,display_on_menu,sort_order)
+VALUES 
+('configCrossSell','BOX_CONFIGURATION_XSELL','FILENAME_CONFIGURATION',CONCAT('gID=',@gid),'configuration','Y',@gid),
+('catalogCrossSell','BOX_CATALOG_XSELL','FILENAME_XSELL','','catalog','Y',100),
+('catalogCrossSellAdvanced','BOX_CATALOG_XSELL_ADVANCED','FILENAME_XSELL_ADVANCED','','catalog','Y',101);
 
 #NEXT_X_ROWS_AS_ONE_COMMAND:2
 INSERT INTO admin_pages (page_key, language_key, main_page, page_params, menu_key, display_on_menu, sort_order)
@@ -1172,6 +1220,18 @@ REPLACE INTO configuration_language (configuration_title, configuration_key, con
 ('Shopvote - Shop ID', 'SHOPVOTE_SHOP_ID', 43, 'Tragen Sie hier Ihre Shopvote Shop ID ein', now(), now()),
 ('Shopvote - Easy Reviews Token', 'SHOPVOTE_EASY_REVIEWS_TOKEN', 43, 'Tragen Sie hier Ihre Shopvote Token für Easy Reviews ein', now(), now()),
 ('Shopvote - Badge Typ', 'SHOPVOTE_BADGE_TYPE', 43, 'Wählen Sie die Art des Shopvote Siegels aus, das am unteren rechten Bildschirmrand angezeigt werden soll.<br/>Zur Verfügung stehen hier die Badge Typen, die automatisch die Funktion Rating Stars (falls bei Shopvote gebucht) unterstützen, so dass Sie dafür keinerlei Code integrieren müssen.<br/>Eine Vorschau der verschiedenen Badges finden Sie unter Grafiken & Siegel in Ihrer Shopvote Administration.<br/>Für die Nutzung der All Votes Grafik müssen Sie bei Shopvote freigeschaltet sein.<br/><br />1 = Vote Badge I (klein, ohne Siegel)<br/>2 = Vote Badge III (groß)<br/>3 = Vote Badge II (klein)<br/>4 = All Votes Grafik I<br /><br/>', now(), now()),
+('Shopvote - Vote Badge I - Abstand links/rechts', 'SHOPVOTE_SPACE_X', 43, 'Nur relevant für die Badget Grafik Vote Badge I (klein, ohne Siegel)<br/>Abstand in Pixeln vom rechten/linken Bildschirmrand<br/>darf nicht kleiner als 2 sein', now(), now()),
+('Shopvote - Vote Badge I - Abstand oben/unten', 'SHOPVOTE_SPACE_Y', 43, 'Nur relevant für die Badget Grafik Vote Badge I (klein, ohne Siegel)<br/>Abstand in Pixeln vom oberen/unteren Bildschirmrand<br/>darf nicht kleiner als 5 sein', now(), now()),
+('Shopvote - Vote Badge I - links oder rechts', 'SHOPVOTE_ALIGN_H', 43, 'Nur relevant für die Badget Grafik Vote Badge I (klein, ohne Siegel)<br/>horizontale Ausrichtung links oder rechts<br/>left = links, right = rechts', now(), now()),
+('Shopvote - Vote Badge I - oben oder unten', 'SHOPVOTE_ALIGN_V', 43, 'Nur relevant für die Badget Grafik Vote Badge I (klein, ohne Siegel)<br/>vertikale Ausrichtung oben oder unten<br/>top = oben, bottom = unten', now(), now()),
+('Shopvote - Vote Badge I - auf kleineren Display ausblenden', 'SHOPVOTE_DISPLAY_WIDTH', 43, 'Nur relevant für die Badget Grafik Vote Badge I (klein, ohne Siegel)<br/>Display-Breite in Pixeln, bis zu der die Badget-Grafik ausgeblendet wird<br/>Voreinstellung: 480<br/>Dadurch wird die Grafik auf kleineren Smartphones nicht angezeigt und kann Ihre Seite nicht überlagern.', now(), now()),
+
+# Adminmenü ID 39 - Cross Sell
+('Minimale Anzeige Cross-Sell Artikel', 'MIN_DISPLAY_XSELL', 43, 'Anzahl der Cross Sell Artikel, die mindestens für den jeweiligen Artikel angelegt sein müssen, damit die Cross Sell Info erscheint.<br />Standardwert: 1', now(), now()),
+('Maximale Anzeige Cross-Sell Artikel', 'MAX_DISPLAY_XSELL', 43, 'Anzahl der Cross Sell Artikel, die höchstens für den jeweiligen Artikel angezeigt werden sollen.<br />Standardwert: 6', now(), now()),
+('Cross-Sell Artikel pro Reihe', 'SHOW_PRODUCT_INFO_COLUMNS_XSELL_PRODUCTS', 43, 'Wieviele Cross-Sell Artikel sollen in einer Reihe angezeigt werden<br />0= aus, 1-4 für die jeweilige Anzahl.<br />Standardwert: 3', now(), now()),
+('Cross-Sell - Preis anzeigen?', 'XSELL_DISPLAY_PRICE', 43, 'Soll der Preis für die Cross Sell Artikel angezeigt werden?<br />Standardwert: false', now(), now()),
+('Cross-Sell Advanced Version', 'XSELL_VERSION', 43, 'Aktuell installierte Version dieses Moduls', now(), now()),
 
 # Deutsche Einträge für Versandmodul Versandkostenfrei mit Optionen
 ('Versandkostenfrei mit Optionen aktivieren', 'MODULE_SHIPPING_FREEOPTIONS_STATUS', 43, 'Wollen Sie "Versandkostenfrei mit Optionen" aktivieren?', now(), now()),

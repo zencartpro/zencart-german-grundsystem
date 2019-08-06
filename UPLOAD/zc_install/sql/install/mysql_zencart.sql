@@ -6,7 +6,7 @@
 # * @copyright Copyright 2003-2019 Zen Cart Development Team
 # * @copyright Portions Copyright 2003 osCommerce
 # * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
-# * @version $Id: mysql_zencart.sql 19512 2019-08-06 08:57:16Z webchills $
+# * @version $Id: mysql_zencart.sql 19513 2019-08-06 15:38:16Z webchills $
 #
 
 ############ IMPORTANT INSTRUCTIONS ###############
@@ -1822,6 +1822,24 @@ CREATE TABLE products_to_categories (
   KEY idx_cat_prod_id_zen (categories_id,products_id)
 ) ENGINE=MyISAM;
 
+
+# --------------------------------------------------------
+
+#
+# Table structure for table 'products_xsell'
+#
+
+DROP TABLE IF EXISTS products_xsell;
+CREATE TABLE products_xsell (
+  ID int(10) NOT NULL auto_increment,
+  products_id int(10) unsigned NOT NULL default '1',
+  xsell_id int(10) unsigned NOT NULL default '1',
+  sort_order int(10) unsigned NOT NULL default '1',
+  PRIMARY KEY  (ID), 
+  KEY idx_products_id_xsell (products_id)
+) ENGINE=MyISAM;
+
+
 # --------------------------------------------------------
 
 #
@@ -2318,7 +2336,10 @@ VALUES ('configMyStore', 'BOX_CONFIGURATION_MY_STORE', 'FILENAME_CONFIGURATION',
        ('GeneratePDFInvoice', 'GENERATE_RL_INVOICE3', 'FILENAME_RL_INVOICE3', '', 'customers', 'N', 37),
        ('configShopvote', 'BOX_CONFIGURATION_SHOPVOTE', 'FILENAME_CONFIGURATION', 'gID=38', 'configuration', 'Y', 38),
        ('toolsShopvote', 'BOX_TOOLS_SHOPVOTE', 'FILENAME_SHOPVOTE', '', 'tools', 'Y', 101),
-       ('findDuplicates', 'BOX_TOOLS_FINDDUPMODELS','FILENAME_FINDDUPMODELS', '', 'tools', 'Y', 102);
+       ('findDuplicates', 'BOX_TOOLS_FINDDUPMODELS','FILENAME_FINDDUPMODELS', '', 'tools', 'Y', 102),
+       ('configCrossSell','BOX_CONFIGURATION_XSELL','FILENAME_CONFIGURATION', 'gID=39', 'configuration','Y',39),
+       ('catalogCrossSell','BOX_CATALOG_XSELL','FILENAME_XSELL','','catalog','Y',100),
+       ('catalogCrossSellAdvanced','BOX_CATALOG_XSELL_ADVANCED','FILENAME_XSELL_ADVANCED','','catalog','Y',101);
 
 
 # Insert a default profile for managing orders, as a built-in example of profile functionality
@@ -3251,6 +3272,15 @@ INSERT INTO configuration (configuration_title, configuration_key, configuration
 ('Shopvote - Vote Badge I - oben oder unten', 'SHOPVOTE_ALIGN_V', 'bottom', 'Nur relevant für die Badget Grafik Vote Badge I (klein, ohne Siegel)<br/>vertikale Ausrichtung oben oder unten<br/>top = oben, bottom = unten', 38, 8, NOW(), NOW(), NULL, 'zen_cfg_select_option(array(''bottom'', ''top''),', NULL),
 ('Shopvote - Vote Badge I - auf kleineren Display ausblenden', 'SHOPVOTE_DISPLAY_WIDTH', '480', 'Nur relevant für die Badget Grafik Vote Badge I (klein, ohne Siegel)<br/>Display-Breite in Pixeln, bis zu der die Badget-Grafik ausgeblendet wird<br/>Voreinstellung: 480<br/>Dadurch wird die Grafik auf kleineren Smartphones nicht angezeigt und kann Ihre Seite nicht überlagern.', 38, 9, NOW(), NOW(), NULL, NULL, NULL);
 
+#Cross Sell Settings
+INSERT INTO configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, last_modified, date_added, use_function, set_function) VALUES 
+('Display Cross-Sell Products - Minimal', 'MIN_DISPLAY_XSELL', 1, 'This is the minimum number of configured Cross-Sell products required in order to cause the Cross Sell information to be displayed.<br />Default: 1', 39, 1, now() ,now(),NULL,NULL),
+('Display Cross-Sell Products - Maximal', 'MAX_DISPLAY_XSELL', 6, 'This is the maximum number of configured Cross-Sell products to be displayed.<br />Default: 6', 39, 2, now(), now(),NULL,NULL),
+('Cross-Sell Products Columns per Row', 'SHOW_PRODUCT_INFO_COLUMNS_XSELL_PRODUCTS', 3, 'Cross-Sell Products Columns to display per Row<br />0= off or set the sort order.<br />Default: 3', 39, 3, now(), now(),NULL, 'zen_cfg_select_option(array(0, 1, 2, 3, 4), '),
+('Cross-Sell - Display prices?', 'XSELL_DISPLAY_PRICE', 'false', 'Cross-Sell -- Do you want to display the product prices too?<br />Default: false', 39, 4, now(), now(),NULL, 'zen_cfg_select_option(array(\'true\',\'false\'), '),
+('Cross-Sell - Version', 'XSELL_VERSION', '1.5.0', 'Cross Sell Advanced Version', 39, 0, now(), now(), NULL, 'zen_cfg_read_only(');
+
+
 #Vataddon
 INSERT INTO configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, last_modified, date_added, use_function, set_function) VALUES ('Display Vat Addon', 'DISPLAY_VATADDON_WHERE', 'ALL', 'Do you want to display the text incl. or excl. VAT plus shipping costs near the prices?<br />0=off<br/>ALL=everywhere<br/>product_info=only on products details page<br />', '1', '120', NULL, now(), NULL, 'zen_cfg_select_option(array(\'0\', \'ALL\', \'product_info\'), ');
 
@@ -3291,7 +3321,8 @@ INSERT INTO configuration_group (configuration_group_id, language_id, configurat
 (35, 1,  'Zen Colorbox', 'Zen Colorbox Settings', 35, '1'),
 (36, 1,  'IT Recht Kanzlei', 'IT Recht Kanzlei Settings', 36, '1'),
 (37, 1,  'pdf Invoice', 'pdf Invoice Settings', 37, '1'),
-(38, 1,  'Shopvote', 'Shopvote Settings', 38, '1');
+(38, 1,  'Shopvote', 'Shopvote Settings', 38, '1'),
+(39, 1,  'Cross Sell Advanced', 'Cross Sell Settings', 39, '1');
 
 # Set currencies
 
@@ -3971,7 +4002,7 @@ REPLACE INTO configuration_group (configuration_group_id, language_id, configura
 (4, 43, 'Bilder', 'Einstellungen der Bildparameter', 4, 1),
 (5, 43, 'Kundendetails', 'Konfiguration der Kundenkonten', 5, 1),
 (6, 43, 'Moduloptionen', 'Vom Konfigurationsmenü versteckt', 6, 0),
-(7, 43, 'Versandoptionen', 'Im Shop verügbare Versandoptionen', 7, 1),
+(7, 43, 'Versandoptionen', 'Im Shop verfügbare Versandoptionen', 7, 1),
 (8, 43, 'Artikelliste', 'Konfiguration der Artikelliste', 8, 1),
 (9, 43, 'Lagerverwaltung und Warenkorb', 'Konfigurationen der Lagerverwaltung', 9, 1),
 (10, 43, 'Protokollierung', 'Konfiguration der Protokollierung', 10, 1),
@@ -3998,7 +4029,8 @@ REPLACE INTO configuration_group (configuration_group_id, language_id, configura
 (35, 43, 'Zen Colorbox', 'Zen Colorbox Einstellungen', 35, 1),
 (36, 43, 'IT Recht Kanzlei', 'Einstellungen für das IT Recht Kanzlei Modul', 36, 1),
 (37, 43, 'pdf Rechnung', 'Einstellungen für das pdf Rechnung Modul', 37, 1),
-(38, 43, 'Shopvote', 'Einstellungen für das Shopvote Modul', 37, 1);
+(38, 43, 'Shopvote', 'Einstellungen für das Shopvote Modul', 38, 1),
+(39, 43, 'Cross Sell Advanced', 'Einstellungen für Cross Sells', 39, 1);
 
 
 INSERT INTO configuration_language (configuration_title, configuration_key, configuration_language_id, configuration_description, last_modified, date_added) VALUES
@@ -4812,6 +4844,18 @@ INSERT INTO configuration_language (configuration_title, configuration_key, conf
 ('Shopvote - Shop ID', 'SHOPVOTE_SHOP_ID', 43, 'Tragen Sie hier Ihre Shopvote Shop ID ein', now(), now()),
 ('Shopvote - Easy Reviews Token', 'SHOPVOTE_EASY_REVIEWS_TOKEN', 43, 'Tragen Sie hier Ihre Shopvote Token für Easy Reviews ein', now(), now()),
 ('Shopvote - Badge Typ', 'SHOPVOTE_BADGE_TYPE', 43, 'Wählen Sie die Art des Shopvote Siegels aus, das am unteren rechten Bildschirmrand angezeigt werden soll.<br/>Zur Verfügung stehen hier die Badge Typen, die automatisch die Funktion Rating Stars (falls bei Shopvote gebucht) unterstützen, so dass Sie dafür keinerlei Code integrieren müssen.<br/>Eine Vorschau der verschiedenen Badges finden Sie unter Grafiken & Siegel in Ihrer Shopvote Administration.<br/>Für die Nutzung der All Votes Grafik müssen Sie bei Shopvote freigeschaltet sein.<br/><br />1 = Vote Badge I (klein, ohne Siegel)<br/>2 = Vote Badge III (groß)<br/>3 = Vote Badge II (klein)<br/>4 = All Votes Grafik I<br /><br/>', now(), now()),
+('Shopvote - Vote Badge I - Abstand links/rechts', 'SHOPVOTE_SPACE_X', 43, 'Nur relevant für die Badget Grafik Vote Badge I (klein, ohne Siegel)<br/>Abstand in Pixeln vom rechten/linken Bildschirmrand<br/>darf nicht kleiner als 2 sein', now(), now()),
+('Shopvote - Vote Badge I - Abstand oben/unten', 'SHOPVOTE_SPACE_Y', 43, 'Nur relevant für die Badget Grafik Vote Badge I (klein, ohne Siegel)<br/>Abstand in Pixeln vom oberen/unteren Bildschirmrand<br/>darf nicht kleiner als 5 sein', now(), now()),
+('Shopvote - Vote Badge I - links oder rechts', 'SHOPVOTE_ALIGN_H', 43, 'Nur relevant für die Badget Grafik Vote Badge I (klein, ohne Siegel)<br/>horizontale Ausrichtung links oder rechts<br/>left = links, right = rechts', now(), now()),
+('Shopvote - Vote Badge I - oben oder unten', 'SHOPVOTE_ALIGN_V', 43, 'Nur relevant für die Badget Grafik Vote Badge I (klein, ohne Siegel)<br/>vertikale Ausrichtung oben oder unten<br/>top = oben, bottom = unten', now(), now()),
+('Shopvote - Vote Badge I - auf kleineren Display ausblenden', 'SHOPVOTE_DISPLAY_WIDTH', 43, 'Nur relevant für die Badget Grafik Vote Badge I (klein, ohne Siegel)<br/>Display-Breite in Pixeln, bis zu der die Badget-Grafik ausgeblendet wird<br/>Voreinstellung: 480<br/>Dadurch wird die Grafik auf kleineren Smartphones nicht angezeigt und kann Ihre Seite nicht überlagern.', now(), now()),
+
+# Adminmenü ID 39 - Cross Sell
+('Minimale Anzeige Cross-Sell Artikel', 'MIN_DISPLAY_XSELL', 43, 'Anzahl der Cross Sell Artikel, die mindestens für den jeweiligen Artikel angelegt sein müssen, damit die Cross Sell Info erscheint.<br />Standardwert: 1', now(), now()),
+('Maximale Anzeige Cross-Sell Artikel', 'MAX_DISPLAY_XSELL', 43, 'Anzahl der Cross Sell Artikel, die höchstens für den jeweiligen Artikel angezeigt werden sollen.<br />Standardwert: 6', now(), now()),
+('Cross-Sell Artikel pro Reihe', 'SHOW_PRODUCT_INFO_COLUMNS_XSELL_PRODUCTS', 43, 'Wieviele Cross-Sell Artikel sollen in einer Reihe angezeigt werden<br />0= aus, 1-4 für die jeweilige Anzahl.<br />Standardwert: 3', now(), now()),
+('Cross-Sell - Preis anzeigen?', 'XSELL_DISPLAY_PRICE', 43, 'Soll der Preis für die Cross Sell Artikel angezeigt werden?<br />Standardwert: false', now(), now()),
+('Cross-Sell Advanced Version', 'XSELL_VERSION', 43, 'Aktuell installierte Version dieses Moduls', now(), now()),
 
 # Deutsche Einträge für Versandmodul Versandkostenfrei mit Optionen
 ('Versandkostenfrei mit Optionen aktivieren', 'MODULE_SHIPPING_FREEOPTIONS_STATUS', 43, 'Wollen Sie "Versandkostenfrei mit Optionen" aktivieren?', now(), now()),

@@ -8,7 +8,7 @@
  * @copyright Copyright 2003-2019 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: database_tables.php 788 2019-07-27 11:13:51Z webchills $
+ * @version $Id: database_tables.php 789 2019-08-06 10:13:51Z webchills $
  * @private
  */
 
@@ -90,6 +90,7 @@ define('TABLE_PRODUCTS_OPTIONS_VALUES', DB_PREFIX . 'products_options_values');
 define('TABLE_PRODUCTS_OPTIONS_VALUES_TO_PRODUCTS_OPTIONS', DB_PREFIX . 'products_options_values_to_products_options');
 define('TABLE_PRODUCTS_OPTIONS_TYPES', DB_PREFIX . 'products_options_types');
 define('TABLE_PRODUCTS_TO_CATEGORIES', DB_PREFIX . 'products_to_categories');
+define('TABLE_PRODUCTS_XSELL', DB_PREFIX . 'products_xsell');
 define('TABLE_PROJECT_VERSION', DB_PREFIX . 'project_version');
 define('TABLE_PROJECT_VERSION_HISTORY', DB_PREFIX . 'project_version_history');
 define('TABLE_QUERY_BUILDER', DB_PREFIX . 'query_builder');

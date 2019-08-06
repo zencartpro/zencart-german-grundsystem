@@ -1,7 +1,7 @@
 <?php
 /**
  * Page Template
- *
+ * Zen Cart German Specific
  * Loaded automatically by index.php?main_page=document_product_info.<br />
  * Displays template according to "document-product" product-type needs
  *
@@ -9,7 +9,7 @@
  * @copyright Copyright 2003-2019 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: tpl_document_product_info_display.php 2 2016-04-06 11:33:58Z webchills $
+ * @version $Id: tpl_document_product_info_display.php 3 2019-08-06 14:33:58Z webchills $
  */
 ?>
 <div class="centerColumn" id="docProductDisplay">
@@ -229,7 +229,9 @@ if (CUSTOMERS_APPROVAL == 3 and TEXT_LOGIN_FOR_PRICE_BUTTON_REPLACE_SHOWROOM == 
   }
 ?>
 <!--eof Product URL -->
-
+<!--bof cross sell module-->
+<?php require($template->get_template_dir('tpl_modules_xsell_products.php', DIR_WS_TEMPLATE, $current_page_base,'templates'). '/' . 'tpl_modules_xsell_products.php'); ?> 
+<!--eof cross sell module-->
 <!--bof also purchased products module-->
 <?php require($template->get_template_dir('tpl_modules_also_purchased_products.php', DIR_WS_TEMPLATE, $current_page_base,'templates'). '/' . 'tpl_modules_also_purchased_products.php');?>
 <!--eof also purchased products module-->

@@ -1,0 +1,22 @@
+<?php
+define('CROSS_SELL_SUCCESS', 'Cross Sell Items Updated For Cross Sell Product #'.$_GET['add_related_product_ID']);
+define('SORT_CROSS_SELL_SUCCESS', 'Sort Order Updated For Cross Sell Product #'.$_GET['add_related_product_ID']);
+define('HEADING_TITLE', 'Cross-Sell (X-Sell) Admin');
+define('TABLE_HEADING_PRODUCT_ID', 'Product Id');
+define('TABLE_HEADING_PRODUCT_MODEL', 'Product Model');
+define('TABLE_HEADING_PRODUCT_NAME', 'Product Name');
+define('TABLE_HEADING_CURRENT_SELLS', 'Current Cross-Sells');
+define('TABLE_HEADING_UPDATE_SELLS', 'Update Cross-Sells');
+define('TABLE_HEADING_PRODUCT_IMAGE', 'Product Image');
+define('TABLE_HEADING_PRODUCT_PRICE', 'Product Price');
+define('TABLE_HEADING_CROSS_SELL_THIS', 'Cross-Sell This?');
+define('TEXT_EDIT_SELLS', 'Edit');
+define('TEXT_SORT', 'Prioritize');
+define('TEXT_SETTING_SELLS', 'Setting Cross-Sells For');
+define('TEXT_PRODUCT_ID', 'Product Id');
+define('TEXT_MODEL', 'Model');
+define('TABLE_HEADING_PRODUCT_SORT', 'Sort Order');
+define('TEXT_NO_IMAGE', 'No Image');
+define('TEXT_CROSS_SELL', 'Cross-Sell');
+define('TEXT_NO_CROSS_SELLS_DEFINED', 'No Cross-Sells defined');
+define('TEXT_XSELL_INFO', 'Here you can add Cross Sells and edit the sort order of existing Cross Sells.<br/>If you have many articles, then use the <a href="xsell_advanced.php"><u>Advanced Cross Sell Administration</u></a>, with which you can create multiple Cross Sells at once by entering their model numbers.');

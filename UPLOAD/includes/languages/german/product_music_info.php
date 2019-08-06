@@ -1,11 +1,11 @@
 <?php
 /**
  * @package languageDefines
+ * Zen Cart German Specific
  * @copyright Copyright 2003-2019 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
- * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- 
- * @version $Id: product_music_info.php 627 2010-08-30 15:05:14Z webchills $
+ * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0 
+ * @version $Id: product_music_info.php 628 2019-08-06 14:05:14Z webchills $
  */
 
 define('TEXT_PRODUCT_NOT_FOUND', 'Entschuldigen Sie bitte, aber der gewünschte Artikel konnte nicht gefunden werden.');
@@ -23,8 +23,7 @@ define('TEXT_PRODUCT_WEIGHT', 'Versandgewicht: ');
 define('TEXT_PRODUCT_QUANTITY', ' Einheiten auf Lager');
 define('TEXT_PRODUCT_MODEL', 'Artikelnummer: ');
 define('TEXT_PRODUCT_COLLECTIONS', 'Medienkollektion: ');
-
-
+define('TEXT_XSELL_PRODUCTS', 'Zu diesem Artikel empfehlen wir...');
 
 // previous next product
 define('PREV_NEXT_PRODUCT', 'Artikel ');

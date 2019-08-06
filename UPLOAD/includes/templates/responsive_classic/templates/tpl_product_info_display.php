@@ -9,7 +9,7 @@
  * @copyright Copyright 2003-2019 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: tpl_product_info_display.php 5 2016-03-05 20:47:36Z webchills $
+ * @version $Id: tpl_product_info_display.php 6 2019-08-06 13:47:36Z webchills $
  */
 
 //require(DIR_WS_MODULES . '/debug_blocks/product_info_prices.php');
@@ -236,11 +236,12 @@ if (CUSTOMERS_APPROVAL == 3 and TEXT_LOGIN_FOR_PRICE_BUTTON_REPLACE_SHOWROOM == 
   }
 ?>
 <!--eof Product URL -->
-
+<!--bof cross sell module-->
+<?php require($template->get_template_dir('tpl_modules_xsell_products.php', DIR_WS_TEMPLATE, $current_page_base,'templates'). '/' . 'tpl_modules_xsell_products.php'); ?> 
+<!--eof cross sell module-->
 <!--bof also purchased products module-->
 <?php require($template->get_template_dir('tpl_modules_also_purchased_products.php', DIR_WS_TEMPLATE, $current_page_base,'templates'). '/' . 'tpl_modules_also_purchased_products.php');?>
 <!--eof also purchased products module-->
-
 <!--bof Form close-->
 </form>
 <!--bof Form close-->

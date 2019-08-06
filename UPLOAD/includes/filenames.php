@@ -8,7 +8,7 @@
  * @copyright Copyright 2003-2019 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: filenames.php 810 2019-07-28 08:28:24Z webchills $
+ * @version $Id: filenames.php 810 2019-08-06 15:50:24Z webchills $
  */
 /**
  * define project filenames
@@ -177,6 +177,8 @@ define('FILENAME_WIDERRUFSRECHT', 'widerrufsrecht');
 define('FILENAME_DEFINE_WIDERRUFSRECHT', 'define_widerrufsrecht');
 define('FILENAME_ZAHLUNGSARTEN', 'zahlungsarten');
 define('FILENAME_DEFINE_ZAHLUNGSARTEN', 'define_zahlungsarten');
+define('FILENAME_XSELL', 'xsell');
+define('FILENAME_XSELL_ADVANCED', 'xsell_advanced');
 define('FILENAME_ZONES', 'zones');
 define('FILENAME_WHOS_ONLINE', 'whos_online');
 
@@ -200,4 +202,4 @@ define('FILENAME_PRODUCT_LISTING', 'product_listing.php');
 define('FILENAME_PRODUCTS_DISCOUNT_PRICES','products_discount_prices.php');
 define('FILENAME_SPECIALS_INDEX', 'specials_index.php');
 define('FILENAME_UPCOMING_PRODUCTS', 'upcoming_products.php');
-
+define('FILENAME_XSELL_PRODUCTS', 'xsell_products.php');
