@@ -6,7 +6,7 @@
 # * @copyright Copyright 2003-2019 Zen Cart Development Team
 # * @copyright Portions Copyright 2003 osCommerce
 # * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
-# * @version $Id: mysql_upgrade_zencart_156.sql 13 2019-08-06 15:53:59Z webchills $
+# * @version $Id: mysql_upgrade_zencart_156.sql 14 2019-08-06 16:13:59Z webchills $
 
 #
 
@@ -293,6 +293,15 @@ VALUES
 ('configCrossSell','BOX_CONFIGURATION_XSELL','FILENAME_CONFIGURATION',CONCAT('gID=',@gid),'configuration','Y',@gid),
 ('catalogCrossSell','BOX_CATALOG_XSELL','FILENAME_XSELL','','catalog','Y',100),
 ('catalogCrossSellAdvanced','BOX_CATALOG_XSELL_ADVANCED','FILENAME_XSELL_ADVANCED','','catalog','Y',101);
+
+CREATE TABLE IF NOT EXISTS products_xsell (
+  ID int(10) NOT NULL auto_increment,
+  products_id int(10) unsigned NOT NULL default '1',
+  xsell_id int(10) unsigned NOT NULL default '1',
+  sort_order int(10) unsigned NOT NULL default '1',
+  PRIMARY KEY  (ID), 
+  KEY idx_products_id_xsell (products_id)
+) ENGINE=MyISAM;
 
 #NEXT_X_ROWS_AS_ONE_COMMAND:2
 INSERT INTO admin_pages (page_key, language_key, main_page, page_params, menu_key, display_on_menu, sort_order)
