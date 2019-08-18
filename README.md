@@ -44,7 +44,7 @@ Neu in 1.5.6
 * Update CKEditor auf 4.12.1
 * Update Mailbeez auf 4.0.0
 * Update Mobile Detect auf 2.8.3.3
-* Update PHP Mailer auf 6.0.6
+* Update PHP Mailer auf 6.0.7
 * Update Image Handler auf 5.1.4
 * Update Sales Report auf 3.3.0
 
