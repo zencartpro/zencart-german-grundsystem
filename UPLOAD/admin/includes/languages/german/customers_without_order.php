@@ -4,7 +4,7 @@
  * @copyright Copyright 2003-2019 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: customers_without_order.php 2 2019-04-13 14:05:14Z webchills $
+ * @version $Id: customers_without_order.php 3 2019-08-18 16:33:14Z webchills $
  */
 
 define('HEADING_TITLE', 'Kunden, die nie etwas bestellt haben');
@@ -16,7 +16,7 @@ define('TABLE_HEADING_ACCOUNT_CREATED', 'Konto erstellt am');
 define('TABLE_HEADING_LOGIN', 'Letzte Anmeldung');
 define('TABLE_HEADING_ACTION', 'Aktion');
 define('TABLE_HEADING_PRICING_GROUP', 'Preisgruppe');
-define('TABLE_HEADING_AUTHORIZATION_APPROVAL', 'Authorisiert');
+define('TABLE_HEADING_AUTHORIZATION_APPROVAL', 'Autorisiert');
 define('TABLE_HEADING_GV_AMOUNT', 'Gutschein Guthaben');
 
 define('TEXT_DATE_ACCOUNT_CREATED', 'Konto erstellt am:');
@@ -31,7 +31,7 @@ define('TEXT_INFO_HEADING_DELETE_CUSTOMER', 'Lösche Kunde');
 define('TYPE_BELOW', 'Geben Sie unten ein');
 define('PLEASE_SELECT_ONE', 'SAuswählen');
 define('TEXT_INFO_NUMBER_OF_ORDERS', 'Anzahl der Bestellungen:');
-define('TEXT_INFO_LIFETIME_VALUE', 'Customer Lifetime Value:');
+define('TEXT_INFO_LIFETIME_VALUE', 'Gesamtbestellwert:');
 define('TEXT_INFO_LAST_ORDER', 'Letzte Bestellung:');
 define('TEXT_INFO_ORDERS_TOTAL', 'Summe:');
 define('CUSTOMERS_REFERRAL', 'Kundenverweis (Referal)<br />Erster Aktionskupon');
