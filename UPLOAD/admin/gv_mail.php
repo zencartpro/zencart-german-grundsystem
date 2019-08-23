@@ -4,7 +4,7 @@
  * @copyright Copyright 2003-2019 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: gv_mail.php 810 2019-07-20 08:28:24Z webchills $
+ * @version $Id: gv_mail.php 811 2019-08-23 11:28:24Z webchills $
  */
 
   require('includes/application_top.php');
@@ -29,12 +29,6 @@
       $mail_sent_to = $_POST['email_to'];
     }
 
-    // demo active test
-    if (zen_admin_demo()) {
-      $_GET['action']= '';
-      $messageStack->add_session(ERROR_ADMIN_DEMO, 'caution');
-      zen_redirect(zen_href_link(FILENAME_GV_MAIL, 'mail_sent_to=' . urlencode($mail_sent_to)));
-    }
     $from = zen_db_prepare_input($_POST['from']);
     $subject = zen_db_prepare_input($_POST['subject']);
     $recip_count=0;
@@ -166,9 +160,8 @@
 <title><?php echo TITLE; ?></title>
 <link rel="stylesheet" type="text/css" href="includes/stylesheet.css">
 <link rel="stylesheet" type="text/css" href="includes/cssjsmenuhover.css" media="all" id="hoverJS">
-<script language="javascript" src="includes/menu.js"></script>
+<script type="text/javascript" src="includes/menu.js"></script>
 <script type="text/javascript">
-  <!--
   function init()
   {
     cssjsmenu('navbar');
@@ -178,9 +171,8 @@
       kill.disabled = true;
     }
   }
-  // -->
 </script>
-<script language="javascript" type="text/javascript"><!--
+<script type="text/javascript">
 var form = "";
 var submitted = false;
 var error = false;
@@ -251,7 +243,7 @@ function check_form(form_name) {
     return true;
   }
 }
-//--></script>
+</script>
 <?php if ($editor_handler != '') include ($editor_handler); ?>
 </head>
 <body onLoad="init()">
@@ -361,7 +353,7 @@ function check_form(form_name) {
 ?>
               <tr>
                 <td class="main"><?php echo TEXT_CUSTOMER; ?></td>
-                <td><?php echo zen_draw_pull_down_menu('customers_email_address', $customers, (!empty($_GET['customer']) ? (int)$_GET['customer'] : 0));?></td>
+                <td><?php echo zen_draw_pull_down_menu('customers_email_address', $customers, (!empty($_GET['customer']) ? $_GET['customer'] : ''));?></td>
               </tr>
               <tr>
                 <td colspan="2"><?php echo zen_draw_separator('pixel_trans.gif', '1', '10'); ?></td>
