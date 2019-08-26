@@ -6,7 +6,7 @@
 # * @copyright Copyright 2003-2019 Zen Cart Development Team
 # * @copyright Portions Copyright 2003 osCommerce
 # * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
-# * @version $Id: mysql_upgrade_zencart_156.sql 14 2019-08-06 16:13:59Z webchills $
+# * @version $Id: mysql_upgrade_zencart_156.sql 15 2019-08-26 16:13:59Z webchills $
 
 #
 
@@ -612,7 +612,7 @@ REPLACE INTO configuration_language (configuration_title, configuration_key, con
 ('Installierte Zahlungsmodule', 'MODULE_PAYMENT_INSTALLED', 43, 'Eine Liste der installierten Zahlungsmodule, durch Semikolon getrennt. Die Liste wird automatisch aktualisiert und muss nicht editiert werden. (Beispiel: cc.php;cod.php;paypal.php)', now(), now()),
 ('Installierte Bestellmodule', 'MODULE_ORDER_TOTAL_INSTALLED', 43, 'Eine Liste der installierten Bestellmodule, durch Semikolon getrennt. Die Liste wird automatisch aktualisiert und muss nicht editiert werden. (Beispiel: ot_subtotal.php;ot_tax.php;ot_shipping.php;ot_total.php)', now(), now()),
 ('Installierte Versandmodule', 'MODULE_SHIPPING_INSTALLED', 43, 'Eine Liste der installierten Versandmodule, durch Semikolon getrennt. Die Liste wird automatisch aktualisiert und muss nicht editiert werden. (Beispiel: ups.php;flat.php;item.php)', now(), now()),
-('Versandkostenfreie Lieferung aktivieren', 'MODULE_SHIPPING_FREESHIPPER_STATUS', 43, 'Bieten Sie einen versandkostenfreien Versand an?', now(), now()),
+('Versandkostenfreie Lieferung aktivieren', 'MODULE_SHIPPING_FREESHIPPER_STATUS', 43, 'Bieten Sie einen versandkostenfreien Versand an?<br/><br/><b>Hinweis:<br/>Lassen Sie dieses Versandmodul IMMER aktiv!</b><br/>Es wird für bestimmte Funktionalitäten benötigt und aktiviert sich nur, falls ein Artikel wirklich versandkostenfrei ist. Es bedeutet NICHT, dass der Kunde einfach einen Gratisversand auswählen kann!<br/><b>Nicht deinstallieren und auch nicht deaktivieren!</b>', now(), now()),
 ('Versandkosten', 'MODULE_SHIPPING_FREESHIPPER_COST', 43, 'Welche Versandkosten fallen an?', now(), now()),
 ('Bearbeitungsgebühr', 'MODULE_SHIPPING_FREESHIPPER_HANDLING', 43, 'BearbeitungsGebühr für diese Versandart:', now(), now()),
 ('Steuerklasse', 'MODULE_SHIPPING_FREESHIPPER_TAX_CLASS', 43, 'Welche Steuerklasse soll bei dieser Versandart angewendet werden?', now(), now()),
@@ -625,7 +625,7 @@ REPLACE INTO configuration_language (configuration_title, configuration_key, con
 ('Basis der Steuern', 'MODULE_SHIPPING_ITEM_TAX_BASIS', 43, 'Auf welcher Basis sollen Steuern berechnet werden? Mögliche Optionen:<br />Versand (Shipping) - auf Basis der Versandadresse des Kunden<br />Rechnung (Billing) - auf Basis der Rechnungsadresse des Kunden<br />Shop (Store) - auf Basis der Shopadresse, wenn die Rechnungs-/Versandadresse des Kunden innerhalb der Zone der Shopadresse liegt', now(), now()),
 ('Versandzone', 'MODULE_SHIPPING_ITEM_ZONE', 43, 'für welche Länder soll diese Versandart angeboten werden?<br/>Die auswählbaren Versandzonen entsprechen den angelegten Steuerzonen und den dort hinterlegten Ländern.', now(), now()),
 ('Sortierung', 'MODULE_SHIPPING_ITEM_SORT_ORDER', 43, 'Bestimmt die Sortierung der angezeigten Versandarten.', now(), now()),
-('Zahlungsart "Gratis" aktivieren', 'MODULE_PAYMENT_FREECHARGER_STATUS', 43, 'Wollen Sie die Zahlungsart "Gratis" anbieten?', now(), now()),
+('Zahlungsart "Gratis" aktivieren', 'MODULE_PAYMENT_FREECHARGER_STATUS', 43, 'Wollen Sie die Zahlungsart "Gratis" anbieten?<br/><br/><b>Hinweis: Lassen Sie dieses Zahlungsmodul IMMER aktiv!<br/>Es wird für bestimmte Funktionalitäten benötigt und aktiviert sich nur, wenn der Gesamtbetrag wirklich 0 ist. Es bedeutet nicht, dass dem Kunden diese Zahlungsart zur Auswahl angeboten wird!<br/><br/><b>Nicht deinstallieren und auch nicht deaktivieren!', now(), now()),
 ('Sortierung', 'MODULE_PAYMENT_FREECHARGER_SORT_ORDER', 43, 'Bestimmt die Sortierung der angezeigten Zahlungsarten.', now(), now()),
 ('Zahlungszone', 'MODULE_PAYMENT_FREECHARGER_ZONE', 43, 'für welche Länder soll diese Zahlungsart angeboten werden?<br/>Die auswählbaren Zahlungszonen entsprechen den angelegten Steuerzonen und den dort hinterlegten Ländern.', now(), now()),
 ('Bestellstatus', 'MODULE_PAYMENT_FREECHARGER_ORDER_STATUS_ID', 43, 'Legt den Bestellstatus für diese Zahlungsart fest.', now(), now()),
@@ -731,7 +731,7 @@ REPLACE INTO configuration_language (configuration_title, configuration_key, con
 
 
 # Adminmenü ID 12 - Email Optionen
-('E-Mail Transportmethode', 'EMAIL_TRANSPORT', 43, 'Legt fest, ob dieser Server eine lokale Verbindung zu ''sendmail'' oder einen SMTP - Server über TCP/IP Verbindung verwendet.<br />HINWEIS: für Server, die unter Windows oder MacOS betrieben werden, sollten Sie die Einstellung ''SMTP'' verwenden.', now(), now()),
+('E-Mail Transportmethode', 'EMAIL_TRANSPORT', 43, 'Definiert die Methode für das Senden von Emails.<br /><br/><strong>PHP</strong> ist voreingestellt, damit Sie den Mailversand gleich ohne weitere Einstellungen testen können. Diese Versandart sollte auf jedem Server funktionieren.<br/><b>Im Livebetrieb sollten Sie aber die Versandart PHP KEINESFALLS verwenden!</b><br/><br /><strong>SMTPAUTH</strong> sollte im Livebetrieb verwendet werden, da es den sicheren Versand von authentifizierten E-Mails über einen SMTP Server ermöglicht. Wenn Sie auf diese Methode umschalten, dann müssen Sie weiter unten auch Ihre SMTPAUTH-Einstellungen in den entsprechenden Feldern konfigurieren. <br /><br /><strong>Gmail</strong> wird für das Senden von E-Mails über den Mail-Service von Google verwendet und erfordert weiter unten Einstellungen aus Ihrem gmail-Konto.<br /><br /><strong>sendmail</strong> ist für Linux/Unix-Hosts, die das sendmail-Programm auf dem Server verwenden<br /><br/><strong>"sendmail-f"</strong> ist nur für Server, die die Verwendung des Parameters -f benötigen, um sendmail zu verwenden. Dies ist eine Sicherheitseinstellung, die häufig verwendet wird, um Spoofing zu verhindern. Verursacht Fehler, wenn Ihr Host-Mailserver nicht für die Verwendung konfiguriert ist.<br /><br /><b>VERWENDEN SIE IM LIVEBETRIEB IMMER SMTPAUTH oder falls Sie Gmail nutzen Gmail.</b>', now(), now()),
 ('SMTP E-Mail - Mailbox Benutzer', 'EMAIL_SMTPAUTH_MAILBOX', 43, 'Wenn Sie für den Versand von E-Mails SMTP Authentifizierung verwenden müssen, dann geben Sie hier den Namen Ihres SMTP Benutzerkontos ein z.B. ich@domain.com ', now(), now()),
 ('SMTP E-Mail - Mailbox Passwort', 'EMAIL_SMTPAUTH_PASSWORD', 43, 'Passwort für SMTP Authentifizierung', now(), now()),
 ('SMTP E-Mail - Mailserver Name', 'EMAIL_SMTPAUTH_MAIL_SERVER', 43, 'SMTP Mailserver für Authentifizierung z.B. smtp.domain.com', now(), now()),
