@@ -1,52 +1,21 @@
-# zencart-156-de
-Zen Cart 1.5.6 - deutsche Version
+Hinweis:
+Freigegebene getestete Versionen für den Einsatz in Livesystemen ausschließlich unter Releases herunterladen:
+https://github.com/zencartpro/zencart-german-grundsystem/releases
 
-1.5.6c - September 2019
+Zen Cart ist eine kostenlose unter der GPL-Lizenz veröffentlichte Open-Source Shopsoftware. Das System wird in den USA entwickelt, die amerikanische Website dazu ist www.zen-cart.com.
 
-Systemvoraussetzungen:
-* Linux Server mit Apache 2.4 oder 2.2
-* PHP 7.0.x bis 7.3.x
-* MySQL 5.1 bis 5.7 oder or MariaDB 10.1 bis 10.3
+Die amerikanische Zen Cart Version berücksichtigt viele rechtliche Erfordernisse nicht, denen ein Onlineshop im deutschsprachigen Raum unterworfen ist. Daher wurde die deutsche Zen-Cart Version nicht nur bloß ins Deutsche übersetzt, sondern auch funktional auf die Anforderungen, die an Onlineshops in Deutschland, Österreich und der Schweiz gestellt werden, angepasst. Zusätzlich bietet die deutsche Zen Cart Version einen vollständig multilingualen Adminbereich und hat zahlreiche häufig verwendete Erweiterungen bereits vorinstalliert.
 
-Empfohlene Konfiguration:
-* Apache 2.4
-* PHP 7.3.x
-* MySQL 5.7
-* Datenbank mit Character Set: utf8mb4 und Kollation: utf8mb4_unicode_ci 
+Das Projekt wird von einem Team von Entwicklern in Österreich und Deutschland betreut und weiterentwickelt.
 
-Neu in 1.5.6
-* Vollständige Unterstützung von PHP 7.2 und 7.3.
-* Unterstützung von utf8mb4 Datenbank Character Set (neue Defaulteinstellung, bisher utf8)
-* Neues Layout für die Shopadministration mit verbesserter Unterstützung für kleinere Bildschirme
-* Neuer graphischer Verkaufsbericht unter Administration > Statistiken
-* EZ Pages sind nun multilingual
-* Meta Tags für Herstellerseiten möglich
-* Zahlungsart Sofortüberweisung vorintegriert
-* Zahlungsart Kreditkarte via Braintree vorintegriert
-* Shopvote vorintegriert
-* Cross Sell vorintegriert
-* Doppelte und fehlende Artikelnummern finden vorintegriert
-* Anzeige der von Kunden hochgeladenen Dateien vorintegriert
-* Bestellbestätigungsemail enthält falls angegeben die Telefonnummer des Kunden für die Zustellung
-* Admin-Seiten zeigen nun ihren Namen im Browser-Tabs an
-* Zahlreiche neue Notifier zur einfacheren Integration von Modulen
-* Die Anzeige der Geschenkgutscheinwarteschlange kann in den Einstellungen des Geschenkgutscheinmoduls ein- und ausgeschaltet werden.
-* Erweiterte Anzeige von Debug Logfiles in der Shopadministration
-* Zahlreiche neue Funktionen bei den Aktionskupons: Suchen, Exportieren, Reaktivieren, Duplikate löschen, bestehende Aktionskupons klonen
-* Aktionskupons können nun auf den Betrag einer Bestellung oder eines bestimmten Produkts beschränkt werden.
-* Aktionskupons können nun auf Kunden mit einer bestimmten Anzahl von bisherigen Bestellungen beschränkt werden.
-* Aktionskupons können nun auf Produkte beschränkt werden, die nicht im Sonderangebot sind.
-* Einschränkungen für Aktionskupons können nun über den Herstellerfilter in großen Mengen hinzugefügt werden.
-* Statistiken und Exportmöglichkeit für die Verwendung von Aktionskupons
-* In der Tabelle Orders werden bei einer Bestellung mehr Details als bisher gespeichert (Gesamtgewicht, usw.)
-* Das Datei-Uploading gibt nun detaillierteres Feedback über Fehler im Zusammenhang mit ungültigen Dateitypen.
-* Update TinyMCE auf 5.0.13
-* Update CKEditor auf 4.12.1
-* Update Mailbeez auf 4.0.0
-* Update Mobile Detect auf 2.8.3.3
-* Update PHP Mailer auf 6.0.7
-* Update Image Handler auf 5.1.4
-* Update Sales Report auf 3.3.0
+Die deutsche Zen Cart Version ist eine Modifikation der amerikanischen Zen Cart Version.
 
-Installationsanleitung in der umfangreichen Onlinedokumentation auf:
-https://www.zen-cart-pro.at/documentation.html
+Hauptunterschiede zwischen der deutschen und amerikanischen Version:
+
+* Die amerikanische Version ist im Administrationsbereich immer monolingual englisch. Daran ändert auch die etwaige Installation eines deutschen Sprachpakets nichts. Die meisten Konfigurationseinstellungen werden immer auf englisch sein, da sie in der Datenbank hinterlegt sind. Die deutsche Zen Cart Version bietet einen multilingualen Adminbereich. Dadurch sind auch die in der Datenbank hinterlegten Konfigurationseinstellungen und -beschreibungen auf deutsch. Sie könnten auch in jeder anderen Sprache genutzt werden. Diese Funktionalität steht natürlich auch für später installierte Erweiterungen zur Verfügung. Die im Downloadbereich von zen-cart-pro.at angebotenen Module berücksichtigen diese Multilanguagefähigkeit und sind alle für die deutsche Zen Cart Version ausgelegt.
+* Die amerikanische Zen Cart Version berücksichtigt viele rechtliche Erfordernisse nicht, denen ein Onlineshop im deutschsprachigen Raum unterworfen ist. Daher wurde die deutsche Zen Cart Version auf die Anforderungen, die an Onlineshops in Deutschland, Österreich und der Schweiz gestellt werden, angepasst. Die Anforderungen der sogenannten "Buttonlösung", der Datenschutzgrundverordnung (DSGVO) und viele andere Vorgaben werden erfüllt.
+* Die Installation ist schlanker und enthält keine unnötigen Dateien mehr, da die Bilder und Medien der Demodaten nicht mehr automatisch mitinstalliert werden, sondern nur bei Bedarf hochgeladen werden können
+* Die amerikanische Version enthält keinerlei HTML Editor mehr, in der deutschen Version ist der CKEditor bereits integriert. Alternativ ist auch der Tiny MCE Editor integriert.
+* Weitere Bugfixes und Verbesserungen, die von den Amerikanern nicht übernommen wurden
+* Die amerikanische Version ist extrem abgespeckt und stellt weiterführende Funktionalitäten durch zusätzliche Module bereit, die erst mühsam manuell installiert werden müssen. Zahlreiche häufig genutze Erweiterungen sind in der deutschen Zen Cart Version bereits vorinstalliert.
+* Weitere für die deutsche Zen Cart Version angepasste Erweiterungen stehen in unserem Downloadbereich zur Verfügung.
