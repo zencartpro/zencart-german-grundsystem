@@ -1,6 +1,9 @@
+# zencart-156-de
+
 Zen Cart deutsch
-the art of e-commerce
+
 Open Source Onlineshop System
+
 übersetzt, angepasst und erweitert zur Verwendung im deutschsprachigen Raum
 
 Hinweis:
