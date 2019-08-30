@@ -1,6 +1,4 @@
-# zencart-156-de
-
-Zen Cart deutsch
+# Zen Cart deutsch
 
 Open Source Onlineshop System
 
