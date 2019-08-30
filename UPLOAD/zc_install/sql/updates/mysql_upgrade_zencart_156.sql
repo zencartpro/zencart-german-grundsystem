@@ -6,7 +6,7 @@
 # * @copyright Copyright 2003-2019 Zen Cart Development Team
 # * @copyright Portions Copyright 2003 osCommerce
 # * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
-# * @version $Id: mysql_upgrade_zencart_156.sql 15 2019-08-26 16:13:59Z webchills $
+# * @version $Id: mysql_upgrade_zencart_156.sql 16 2019-08-30 10:13:59Z webchills $
 
 #
 
@@ -1435,7 +1435,7 @@ REPLACE INTO product_type_layout_language (configuration_title, configuration_ke
 ('PRODUCT FREE SHIPPING Attribut Gewicht Präfix - Standardeinstellung', 'DEFAULT_PRODUCT_FREE_SHIPPING_PRODUCTS_ATTRIBUTES_WEIGHT_PREFIX', 43, 'PRODUCT FREE SHIPPING Attribut Gewicht Präfix<br />Standard Gewicht Präfix<br />Leer, + oder -', now(), now());
 
 REPLACE INTO product_type_layout_language (configuration_title , configuration_key , languages_id, configuration_description, last_modified, date_added)
-VALUES ('20190729', 'LANGUAGE_VERSION', '43', 'Datum der deutschen Übersetzungen', now(), now());
+VALUES ('20190830', 'LANGUAGE_VERSION', '43', 'Datum der deutschen Übersetzungen', now(), now());
 
 #### VERSION UPDATE STATEMENTS
 ## THE FOLLOWING 2 SECTIONS SHOULD BE THE "LAST" ITEMS IN THE FILE, so that if the upgrade fails prematurely, the version info is not updated.

@@ -1,7 +1,7 @@
 # zencart-156-de
 Zen Cart 1.5.6 - deutsche Version
 
-1.5.6c BETA - August 2019
+1.5.6c - September 2019
 
 Systemvoraussetzungen:
 * Linux Server mit Apache 2.4 oder 2.2
@@ -48,10 +48,5 @@ Neu in 1.5.6
 * Update Image Handler auf 5.1.4
 * Update Sales Report auf 3.3.0
 
-Dies ist eine BETA Version.
-* Ausschließlich in einem Testsystem installieren.
-* Keinesfalls einen Liveshop darauf aktualisieren.
-* Dokumentation noch nicht aktualisiert, Installation gegenüber 1.5.5f unverändert, Installatiosanleitung in der 1.5.5f Dokumentation:
-  https://www.zen-cart-pro.at/docs/155-deutsch-doku/
-* Fehler als Issues in Github melden oder im Suportforum im Thread Zen Cart 1.5.6 deutsch Betatest:
-  https://www.zen-cart-pro.at/forum/forums/153-BETA-TEST-Zen-Cart-1-5-6-deutsch
+Installationsanleitung in der umfangreichen Onlinedokumentation auf:
+https://www.zen-cart-pro.at/documentation.html
