@@ -5,7 +5,7 @@
  * @package Installer
  * @copyright Copyright 2003-2019 Zen Cart Development Team
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: lngDeutsch.php 16 2019-07-20 10:07:16Z webchills $
+ * @version $Id: lngDeutsch.php 17 2019-08-30 17:52:16Z webchills $
  */
 /**
  * defining language components for the page
@@ -202,30 +202,30 @@ define('TEXT_NAVBAR_FORUM_LINK', 'Forum');
 define('TEXT_NAVBAR_WIKI_LINK', 'FAQ/Tutorials');
 
 define('TEXT_HELP_TITLE_HTACCESSSUPPORT', 'htaccess Unterstützung');
-define('TEXT_HELP_CONTENT_HTACCESSSUPPORT', 'There appears to be a problem with support for ".htaccess" files.<br>Sensitive files and folders on your site, that should normally be blocked by security rules in the built-in ".htaccess" files that come with Zen Cart, are currently accessible.
+define('TEXT_HELP_CONTENT_HTACCESSSUPPORT', 'Es scheint ein Problem mit der Unterstützung für ".htaccess"-Dateien zu geben.<br>Sensible Dateien und Ordner auf Ihrer Website, die normalerweise durch Sicherheitsregeln in dene integrierten ".htaccess"-Dateien, die mit Zen Cart geliefert werden, blockiert werden, sind derzeit zugänglich.
 	<br><br>
-	Possible causes: 
+	Mögliche Gründe: 
 	<ul style="list-style-type:square">
 		<li>
-			You may not be using Apache as your Web Server (".htaccess" files are unique to the Apache Web Server), or,
+			Sie verwenden keinen Apache Webserver (".htaccess" Dateien sind eine Eighenheit von Apache Webservern), oder,
 		</li>
 		<li>
-			Support for ".htaccess" is disabled or misconfigured, or,
+			Unterstützung für ".htaccess" ist deaktiviert oder falsch konfiguriert, oder,
 		</li>
 		<li>
-			The ".htaccess" files that come with Zen Cart have not been uploaded to your site.
+			Die ".htaccess" Dateien, die in en Cart enthalten sind, wurden nicht hochgeladen.
 			<br>
 			<strong>
-				<i>Files starting with ".", such as ".htaccess" files, are usually treated as "hidden" files and your FTP program may have failed to upload these if you have turned off the display and/or transfer of such hidden files in its settings.</i>
+				<i>Dateien, die mit "." beginnen, so wie eben ".htaccess" Dateien, werden üblicherweise als "versteckte" Dateien behandelt und Ihr FTP-Programm hat diese möglicherweise nicht hochgeladen, da Sie die Anzeige und/oder Übertragung solcher versteckter Dateien in den Einstellungen deaktiviert haben.</i>
 			</strong>
 		</li>
 	</ul>
 	<br>
-	You may proceed with installing despite this situation, but please be advised that your site will be less secure than it ought to be (If using the Apache Web Server).
+	Sie können die Installation trotz dieser Situation fortsetzen, aber bitte beachten Sie, dass Ihre Website weniger sicher ist, als sie sein sollte (bei Verwendung des Apache Web Server).
 	<br><br>
-	If you are using the Nginx Web Server, please proceed with installing and secure your installation using the equivalent Nginx directives provided under "<strong>Important Security Information for Nginx</strong>" in the "Setup Finished" section of this installation wizard.
+	Falls Sie den Nginx Web Server verwenden, fahren Sie bitte mit der Installation und Absicherung Ihrer Installation mit den entsprechenden Nginx-Richtlinien fort, die unter "<strong>Wichtige Sicherheitsinformationen für Nginx</strong>" im Abschnitt "Installation abgeschlossen" dieses Installationsassistenten aufgeführt sind.
 	<br><br>
-	If you do not know which Web Server is in use, please proceed on the assumption that it is the Apache Web Server and request assistance with enabling ".htaccess" support from your web hosting provider.
+	Wenn Sie nicht wissen, welcher Webserver verwendet wird, gehen Sie bitte davon aus, dass es sich um den Apache Web Server handelt und bitten Sie Ihren Webhosting-Provider um Hilfe bei der Aktivierung des ".htaccess"-Supports.
 	<br><br>');
 define('TEXT_HELP_TITLE_FOLDERPERMS', 'Ordner Schreibrechte');
 define('TEXT_HELP_CONTENT_FOLDERPERMS', 'Die Schreibrechte für diesen Ordner sind nicht korrekt, der Ordner muss beschreibbar sein (chmod 777 oder 666)');
@@ -309,14 +309,14 @@ define('TEXT_COMPLETION_NGINX_TEXT', "<u>Wichtige Sicherheitsinformation für Ng
 define('TEXT_HELP_TITLE_NGINXCONF', "Zen Cart auf Nginx Webservern absichern");
 define('TEXT_HELP_CONTENT_NGINXCONF', "<div>
 	<p>
-		Your Zen Cart installation comes with security measures in a format native to the Apache Webserver.
+		Ihre Zen Cart Installation enthält Sicherheitsmaßnahmen, die für einen Apache Webserver geeignet sind.
 		<br>
-		See below to implement a similar set of measures for the Nginx Webserver. 
+		Falls Sie keinen Apache sondern einen Nginx Webserver verwenden, nehmen Sie folgende Dinge vor, um die Sicherheitsmaßnahmen für Ihren Nginx Webserver zu übernehmen. 
 	</p>
 	<hr>
 	<ul style='list-style-type:square'>
 		<li>
-			Go to your <strong>'zc_install/includes/nginx_conf'</strong> folder and open the following files using a text editor such as notepad or textedit:
+			Gehen Sie zu Ihrem Ordner <strong>'zc_install/includes/nginx_conf'</strong> und öffnen Sie die folgenden Dateien mit einem Texteditor wie UltraEdit oder Notepad++:
 			<ul style='list-style-type:circle'>
 				<li>
 					zencart_ngx_http.conf
@@ -327,69 +327,69 @@ define('TEXT_HELP_CONTENT_NGINXCONF', "<div>
 			</ul>
 		</li>
 		<li>
-			Add the contents of <strong>'zencart_ngx_http.conf'</strong> under the <strong>'http'</strong> section of your Nginx configuration file.
+			 Fügen Sie den Inhalt von <strong>'zencart_ngx_http.conf'</strong> unter dem Abschnitt <strong>'http'</strong> in Ihrer Nginx-Konfigurationsdatei hinzu.
 			<ul style='list-style-type:circle'>
 				<li>
-					Edit the caching durations in the <strong>'map'</strong> block to suit as required
+					Bearbeiten Sie die Cache-Dauer im Block <strong>'map'</strong> nach Bedarf.
 				</li>
 			</ul>
 		</li>
 		<li>
-			Add the contents of <strong>'zencart_ngx_server.conf'</strong> to the relevant <strong>'server'</strong> block for Zen Cart in your Nginx configuration file.
+			Fügen Sie den Inhalt von <strong>'zencart_ngx_server.conf'</strong> dem entsprechenden <strong>'server'</strong> Block für Zen Cart in Ihrer Nginx Konfigurationsdatei hinzu.
 			<ul style='list-style-type:circle'>
 				<li>
-					The directives may be used for SSL and/or Non SSL server blocks.
+					 Die Richtlinien können für SSL- und/oder Non-SSL-Serverblöcke verwendet werden.
 				</li>
 				<li>
-					The directives should be placed at the beginning of the server block before any other location blocks.
+					Die Anweisungen sollten am Anfang des Serverblocks vor allen anderen Standortblöcken stehen.
 					<ul style='list-style-type:none'>
 						<li>
-							- The order in which the directives appear is important.
+							- Die Reihenfolge, in der die Richtlinien erscheinen, ist wichtig.
 						</li>
 						<li>
-							- Do not change this order without fully understanding the directives and implications.
+							- Ändern Sie diese Reihenfolge nicht, ohne die Richtlinien und Auswirkungen vollständig zu verstehen.
 						</li>
 					</ul>
 			</ul>
 		</li>
 		<li>
-			It is especially critical that these directives appear before any generic php handling location blocks such as ...
+			Es ist besonders wichtig, dass diese Direktiven vor allen allgemeinen php-Verarbeitungsplatzblöcken erscheinen wie ...
 			<br>
 <pre>
 	<code>location ~ \.php { <strong>Nginx PHP Handling Directives;</strong> }</code>
 </pre>
-			... or any other location blocks that might be processed before these are.
+			... oder allen anderen Standortblöcke, die vor diesen verarbeitet werden könnten.
 		</li>
 		<li>
-			Instead, edit the <strong>'zencart_php_handler'</strong> location block to match your Nginx PHP Handling Directives.
+			Bearbeiten Sie stattdessen den Standortblock <strong>'zencart_php_handler'</strong> so, dass er Ihren Nginx PHP-Handhabungsanweisungen entspricht.
 			<ul style='list-style-type:circle'>
 				<li>
-					Simply duplicate the contents of your existing PHP handling location block.
+					Duplizieren Sie einfach den Inhalt Ihres bestehenden PHP-Verarbeitungsplatzblocks.
 					<ul style='list-style-type:none'>
 						<li>
-							- That is, copy and paste in the equivalent Nginx PHP Handling Directives.
+							- Das heißt, kopieren und einfügen in die entsprechenden Nginx PHP-Handhabungsanweisungen.
 						</li>
 						<li>
-							- If you do not have an existing PHP handling location block, please refer to available guides such as from <a href='https://www.nginx.com/resources/wiki/start/topics/examples/phpfcgi/' target='_blank'><u>The Nginx Website</u></a>.  
+							- Wenn Sie keinen vorhandenen PHP-Verarbeitungsplatzblock haben, lesen Sie bitte die verfügbaren Anleitungen, z.B. von der Nginx-Website.  
 						</li>
 					</ul>
 				</li>
 			</ul>
 		</li>
 		<li>
-			If using plugins for 'Pretty URLs', insert the relevant directives into the specified block.
+			 Wenn Sie Plugins für'Pretty URLs' verwenden, fügen Sie die entsprechenden Anweisungen in den angegebenen Block ein.
 		</li>
 		<li>
-			Reload Nginx.
+			Nginx neu laden.
 			<ul style='list-style-type:circle'>
 				<li>
-					Do this before closing this dialog box.
+					Führen Sie all dies aus, bevor Sie dieses Dialogfenster schließen.
 				</li>
 				<li>
-					Remember to delete the <strong>'zc_install'</strong> folder when done.
+					Denken Sie daran, den Ordner <strong>'zc_install'</strong> zu löschen, wenn Sie fertig sind.
 					<ul style='list-style-type:none'>
 						<li>
-							- Including the <strong>'zc_install/includes/nginx_conf'</strong> folder and its contents.
+							- einschlißlich des <strong>'zc_install/includes/nginx_conf'</strong> Ordners und dessen Inhalten.
 						</li>
 					</ul>
 				</li>
@@ -398,7 +398,7 @@ define('TEXT_HELP_CONTENT_NGINXCONF', "<div>
 	<ol>
 </div>
 <div class='alert-box alert'>
-	<strong>IMPORTANT:</strong> These location blocks should be <strong>BEFORE</strong> any other location blocks in your Nginx configuration server block for Zen Cart.
+	<strong>WICHTIG:</strong> Diese Standortblöcke sollten <strong>VOR</strong> allen anderen Standortblöcke in Ihrem Nginx Configuration Server Block für Zen Cart sein.
 </div>
 <hr>");
 define('TEXT_HELP_TITLE_AGREETOTERMS', 'Lizenzbedingungen akzeptieren');
