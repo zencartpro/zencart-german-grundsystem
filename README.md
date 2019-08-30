@@ -1,3 +1,8 @@
+Zen Cart deutsch
+the art of e-commerce
+Open Source Onlineshop System
+übersetzt, angepasst und erweitert zur Verwendung im deutschsprachigen Raum
+
 Hinweis:
 Freigegebene getestete Versionen für den Einsatz in Livesystemen ausschließlich unter Releases herunterladen:
 https://github.com/zencartpro/zencart-german-grundsystem/releases
