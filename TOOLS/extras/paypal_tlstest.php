@@ -7,9 +7,9 @@
  *   i=1 -- to show certificate details
  *
  * @package utilities
- * @copyright Copyright 2003-2016 Zen Cart Development Team
- * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: Author: DrByte  Wed Mar 16 16:12:21 2016 -0500  New in v1.5.5 $
+ * @copyright Copyright 2003-2019 Zen Cart Development Team
+ * @copyright Portions Copyright 2003 osCommerce
+ * @version $Id: paypal_tlstest.php 2019-08-30 17:08:29Z webchills $
  */
 // don't show error messages to browser
 ini_set('display_errors', 0);
