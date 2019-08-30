@@ -23,5 +23,5 @@ Hauptunterschiede zwischen der deutschen und amerikanischen Version:
 * Die Installation ist schlanker und enthält keine unnötigen Dateien mehr, da die Bilder und Medien der Demodaten nicht mehr automatisch mitinstalliert werden, sondern nur bei Bedarf hochgeladen werden können
 * Die amerikanische Version enthält keinerlei HTML Editor mehr, in der deutschen Version ist der CKEditor bereits integriert. Alternativ ist auch der Tiny MCE Editor integriert.
 * Weitere Bugfixes und Verbesserungen, die von den Amerikanern nicht übernommen wurden
-* Die amerikanische Version ist extrem abgespeckt und stellt weiterführende Funktionalitäten durch zusätzliche Module bereit, die erst mühsam manuell installiert werden müssen. Zahlreiche häufig genutze Erweiterungen sind in der deutschen Zen Cart Version bereits vorinstalliert.
+* Die amerikanische Version ist extrem abgespeckt und stellt weiterführende Funktionalitäten durch zusätzliche Module bereit, die erst mühsam manuell installiert werden müssen. Zahlreiche häufig genutze Erweiterungen und eigene Entwicklungen sind in der deutschen Zen Cart Version bereits vorinstalliert.
 * Weitere für die deutsche Zen Cart Version angepasste Erweiterungen stehen in unserem Downloadbereich zur Verfügung.
