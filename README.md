@@ -25,3 +25,6 @@ Hauptunterschiede zwischen der deutschen und amerikanischen Version:
 * Weitere Bugfixes und Verbesserungen, die von den Amerikanern nicht übernommen wurden
 * Die amerikanische Version ist extrem abgespeckt und stellt weiterführende Funktionalitäten durch zusätzliche Module bereit, die erst mühsam manuell installiert werden müssen. Zahlreiche häufig genutze Erweiterungen und eigene Entwicklungen sind in der deutschen Zen Cart Version bereits vorinstalliert.
 * Weitere für die deutsche Zen Cart Version angepasste Erweiterungen stehen in unserem Downloadbereich zur Verfügung.
+
+Installationsanleitung in der umfangreichen Onlinedokumentation auf:
+https://www.zen-cart-pro.at/documentation.html
