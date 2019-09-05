@@ -6,7 +6,7 @@
 # * @copyright Copyright 2003-2019 Zen Cart Development Team
 # * @copyright Portions Copyright 2003 osCommerce
 # * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
-# * @version $Id: mysql_upgrade_zencart_156.sql 16 2019-08-30 10:13:59Z webchills $
+# * @version $Id: mysql_upgrade_zencart_156.sql 17 2019-09-05 22:59:59Z webchills $
 
 #
 
@@ -215,17 +215,17 @@ INSERT INTO configuration_group (configuration_group_title, configuration_group_
 SET @gid=last_insert_id();
 UPDATE configuration_group SET sort_order = last_insert_id() WHERE configuration_group_id = last_insert_id();
 
-INSERT INTO configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, last_modified, date_added, use_function, set_function, val_function) VALUES
-('Shopvote - Version', 'SHOPVOTE_MODUL_VERSION', '1.1.0', 'Version installed:', @gid, 0, NOW(), NOW(), NULL, 'zen_cfg_read_only(', NULL),
-('Shopvote - Ist das Modul aktiv?', 'SHOPVOTE_STATUS', 'nein', 'Wollen Sie das Shopvote Siegel und die Easy Reviews Bewertungsanfragen aktivieren?<br/>Bitte erst dann aktivieren, wenn Sie Zugriff auf die entsprechenden Javascript Snippets in Ihrer Shopvote Administration bekommen und die Einstellungen unten komplett vorgenommen haben.', @gid, 1, NOW(), NOW(), NULL, 'zen_cfg_select_option(array(''ja'', ''nein''),', NULL),
-('Shopvote - Shop ID', 'SHOPVOTE_SHOP_ID', '', 'Tragen Sie hier Ihre Shopvote Shop ID ein', @gid, 2, NOW(), NOW(), NULL, NULL, NULL),
-('Shopvote - Easy Reviews Token', 'SHOPVOTE_EASY_REVIEWS_TOKEN', '', 'Tragen Sie hier Ihre Shopvote Token für Easy Reviews ein', @gid, 3, NOW(), NOW(), NULL, NULL, NULL),
-('Shopvote - Badge Typ', 'SHOPVOTE_BADGE_TYPE', '2', 'Wählen Sie die Art des Shopvote Siegels aus, das am unteren rechten Bildschirmrand angezeigt werden soll.<br/>Zur Verfügung stehen hier die Badge Typen, die automatisch die Funktion Rating Stars (falls bei Shopvote gebucht) unterstützen, so dass Sie dafür keinerlei Code integrieren müssen.<br/>Eine Vorschau der verschiedenen Badges finden Sie unter Grafiken & Siegel in Ihrer Shopvote Administration.<br/>Für die Nutzung der All Votes Grafik müssen Sie bei Shopvote freigeschaltet sein.<br/><br />1 = Vote Badge I (klein ohne Siegel)<br/>2 = Vote Badge III (groß)<br/>3 = Vote Badge II (klein)<br/>4 = All Votes Grafik I<br /><br/>', @gid, 4, NOW(), NOW(), NULL, 'zen_cfg_select_option(array(''1'', ''2'', ''3'', ''4''), ', NULL),
-('Shopvote - Vote Badge I - Abstand links/rechts', 'SHOPVOTE_SPACE_X', '2', 'Nur relevant für die Badget Grafik Vote Badge I (klein, ohne Siegel)<br/>Abstand in Pixeln vom rechten/linken Bildschirmrand<br/>darf nicht kleiner als 2 sein', @gid, 5, NOW(), NOW(), NULL, NULL, NULL),
-('Shopvote - Vote Badge I - Abstand oben/unten', 'SHOPVOTE_SPACE_Y', '5', 'Nur relevant für die Badget Grafik Vote Badge I (klein, ohne Siegel)<br/>Abstand in Pixeln vom oberen/unteren Bildschirmrand<br/>darf nicht kleiner als 5 sein', @gid, 6, NOW(), NOW(), NULL, NULL, NULL),
-('Shopvote - Vote Badge I - links oder rechts', 'SHOPVOTE_ALIGN_H', 'right', 'Nur relevant für die Badget Grafik Vote Badge I (klein, ohne Siegel)<br/>horizontale Ausrichtung links oder rechts<br/>left = links, right = rechts', @gid, 7, NOW(), NOW(), NULL, 'zen_cfg_select_option(array(''right'', ''left''),', NULL),
-('Shopvote - Vote Badge I - oben oder unten', 'SHOPVOTE_ALIGN_V', 'bottom', 'Nur relevant für die Badget Grafik Vote Badge I (klein, ohne Siegel)<br/>vertikale Ausrichtung oben oder unten<br/>top = oben, bottom = unten', @gid, 8, NOW(), NOW(), NULL, 'zen_cfg_select_option(array(''bottom'', ''top''),', NULL),
-('Shopvote - Vote Badge I - auf kleineren Display ausblenden', 'SHOPVOTE_DISPLAY_WIDTH', '480', 'Nur relevant für die Badget Grafik Vote Badge I (klein, ohne Siegel)<br/>Display-Breite in Pixeln, bis zu der die Badget-Grafik ausgeblendet wird<br/>Voreinstellung: 480<br/>Dadurch wird die Grafik auf kleineren Smartphones nicht angezeigt und kann Ihre Seite nicht überlagern.', @gid, 9, NOW(), NOW(), NULL, NULL, NULL);
+INSERT IGNORE INTO configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, last_modified, date_added, use_function, set_function) VALUES
+('Shopvote - Version', 'SHOPVOTE_MODUL_VERSION', '1.1.0', 'Version installed:', @gid, 0, NOW(), NOW(), NULL, 'zen_cfg_read_only('),
+('Shopvote - Ist das Modul aktiv?', 'SHOPVOTE_STATUS', 'nein', 'Wollen Sie das Shopvote Siegel und die Easy Reviews Bewertungsanfragen aktivieren?<br/>Bitte erst dann aktivieren, wenn Sie Zugriff auf die entsprechenden Javascript Snippets in Ihrer Shopvote Administration bekommen und die Einstellungen unten komplett vorgenommen haben.', @gid, 1, NOW(), NOW(), NULL, 'zen_cfg_select_option(array(''ja'', ''nein''),'),
+('Shopvote - Shop ID', 'SHOPVOTE_SHOP_ID', '', 'Tragen Sie hier Ihre Shopvote Shop ID ein', @gid, 2, NOW(), NOW(), NULL, NULL),
+('Shopvote - Easy Reviews Token', 'SHOPVOTE_EASY_REVIEWS_TOKEN', '', 'Tragen Sie hier Ihre Shopvote Token für Easy Reviews ein', @gid, 3, NOW(), NOW(), NULL, NULL),
+('Shopvote - Badge Typ', 'SHOPVOTE_BADGE_TYPE', '2', 'Wählen Sie die Art des Shopvote Siegels aus, das am unteren rechten Bildschirmrand angezeigt werden soll.<br/>Zur Verfügung stehen hier die Badge Typen, die automatisch die Funktion Rating Stars (falls bei Shopvote gebucht) unterstützen, so dass Sie dafür keinerlei Code integrieren müssen.<br/>Eine Vorschau der verschiedenen Badges finden Sie unter Grafiken & Siegel in Ihrer Shopvote Administration.<br/>Für die Nutzung der All Votes Grafik müssen Sie bei Shopvote freigeschaltet sein.<br/><br />1 = Vote Badge I (klein ohne Siegel)<br/>2 = Vote Badge III (groß)<br/>3 = Vote Badge II (klein)<br/>4 = All Votes Grafik I<br /><br/>', @gid, 4, NOW(), NOW(), NULL, 'zen_cfg_select_option(array(''1'', ''2'', ''3'', ''4''), '),
+('Shopvote - Vote Badge I - Abstand links/rechts', 'SHOPVOTE_SPACE_X', '2', 'Nur relevant für die Badget Grafik Vote Badge I (klein, ohne Siegel)<br/>Abstand in Pixeln vom rechten/linken Bildschirmrand<br/>darf nicht kleiner als 2 sein', @gid, 5, NOW(), NOW(), NULL, NULL),
+('Shopvote - Vote Badge I - Abstand oben/unten', 'SHOPVOTE_SPACE_Y', '5', 'Nur relevant für die Badget Grafik Vote Badge I (klein, ohne Siegel)<br/>Abstand in Pixeln vom oberen/unteren Bildschirmrand<br/>darf nicht kleiner als 5 sein', @gid, 6, NOW(), NOW(), NULL, NULL),
+('Shopvote - Vote Badge I - links oder rechts', 'SHOPVOTE_ALIGN_H', 'right', 'Nur relevant für die Badget Grafik Vote Badge I (klein, ohne Siegel)<br/>horizontale Ausrichtung links oder rechts<br/>left = links, right = rechts', @gid, 7, NOW(), NOW(), NULL, 'zen_cfg_select_option(array(''right'', ''left''),'),
+('Shopvote - Vote Badge I - oben oder unten', 'SHOPVOTE_ALIGN_V', 'bottom', 'Nur relevant für die Badget Grafik Vote Badge I (klein, ohne Siegel)<br/>vertikale Ausrichtung oben oder unten<br/>top = oben, bottom = unten', @gid, 8, NOW(), NOW(), NULL, 'zen_cfg_select_option(array(''bottom'', ''top''),'),
+('Shopvote - Vote Badge I - auf kleineren Display ausblenden', 'SHOPVOTE_DISPLAY_WIDTH', '480', 'Nur relevant für die Badget Grafik Vote Badge I (klein, ohne Siegel)<br/>Display-Breite in Pixeln, bis zu der die Badget-Grafik ausgeblendet wird<br/>Voreinstellung: 480<br/>Dadurch wird die Grafik auf kleineren Smartphones nicht angezeigt und kann Ihre Seite nicht überlagern.', @gid, 9, NOW(), NOW(), NULL, NULL);
 
 
 INSERT INTO configuration_group (configuration_group_id, language_id, configuration_group_title, configuration_group_description, sort_order, visible ) VALUES 
@@ -271,7 +271,7 @@ INSERT INTO configuration_group (configuration_group_title, configuration_group_
 SET @gid=last_insert_id();
 UPDATE configuration_group SET sort_order = last_insert_id() WHERE configuration_group_id = last_insert_id();
 
-INSERT INTO configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, last_modified, date_added, use_function, set_function) VALUES 
+INSERT IGNORE INTO configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, last_modified, date_added, use_function, set_function) VALUES 
 ('Display Cross-Sell Products - Minimal', 'MIN_DISPLAY_XSELL', 1, 'This is the minimum number of configured Cross-Sell products required in order to cause the Cross Sell information to be displayed.<br />Default: 1', @gid, 1, now() ,now(),NULL,NULL),
 ('Display Cross-Sell Products - Maximal', 'MAX_DISPLAY_XSELL', 6, 'This is the maximum number of configured Cross-Sell products to be displayed.<br />Default: 6', @gid, 2, now(), now(),NULL,NULL),
 ('Cross-Sell Products Columns per Row', 'SHOW_PRODUCT_INFO_COLUMNS_XSELL_PRODUCTS', 3, 'Cross-Sell Products Columns to display per Row<br />0= off or set the sort order.<br />Default: 3', @gid, 3, now(), now(),NULL, 'zen_cfg_select_option(array(0, 1, 2, 3, 4), '),
@@ -394,7 +394,7 @@ FROM configuration_group
 WHERE configuration_group_title= 'Logging'
 LIMIT 1;
 
-INSERT INTO configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added, use_function, set_function ) VALUES 
+INSERT IGNORE INTO configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added, use_function, set_function ) VALUES 
 ('Display Logs: Version', 'DISPLAY_LOGS_VERSION', '2.1.1', 'Current plugin version.', @configuration_group_id, 100, now(), NULL, 'trim('),
 ('Display Logs: Display Maximum', 'DISPLAY_LOGS_MAX_DISPLAY', '20', 'Identify the maximum number of logs to display.  (Default: <b>20</b>)', @configuration_group_id, 100, now(), NULL, NULL),
 ('Display Logs: Maximum File Size', 'DISPLAY_LOGS_MAX_FILE_SIZE', '80000', 'Identify the maximum size of any file to display.  (Default: <b>80000</b>)', @configuration_group_id, 101, now(), NULL, NULL),
@@ -411,6 +411,8 @@ ALTER TABLE paypal MODIFY payment_fee decimal(15,4) default NULL;
 ALTER TABLE paypal MODIFY settle_amount decimal(15,4) default NULL;
 ALTER TABLE paypal MODIFY exchange_rate decimal(15,4) default NULL;
 ALTER TABLE currencies MODIFY value decimal(14,6) default NULL;
+# Updates
+ALTER TABLE configuration ADD val_function text default NULL AFTER set_function;
 
 #############
 
