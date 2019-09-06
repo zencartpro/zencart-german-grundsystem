@@ -1,7 +1,7 @@
 <?php
 
 /**
- * SALES REPORT 3.3.0
+ * SALES REPORT 3.3.1
  *
  * This is where everything starts and ends. This file builds the HTML display, calls the class file
  * to build the data, then displays that data for the user.
@@ -178,7 +178,7 @@ $product_sorts_array = array(
 
 // the sheer number of options for date range requires some extra checking...
 $date_preset = (!empty($_GET['date_preset'])) ? $_GET['date_preset'] : 'YTD';
-$date_custom = '0';
+$date_custom = (isset($_GET['date_custom']) && $_GET['date_custom'] == '1') ? '1' : '0';
 $today_timestamp = strtotime('today midnight');
 switch ($date_preset) {
     case 'today':
@@ -201,26 +201,19 @@ switch ($date_preset) {
         $start_date = date(DATE_FORMAT, strtotime('last year January 1st', $today_timestamp));
         $end_date = date(DATE_FORMAT, strtotime('last year December 31st', $today_timestamp));
         break;
-
-    // -----
-    // Either an initial entry to the report (default to YTD), the YTD preset was selected or
-    // a custom date-range was selected.
-    //
     default:
-        if (empty($_GET['date_custom'])) {
-            $_GET['date_preset'] = 'YTD';
-            $start_date = date(DATE_FORMAT, strtotime('first day of January this year', $today_timestamp));
-            $end_date = date(DATE_FORMAT, $today_timestamp);
-        } else {
-            $date_custom = '1';
-            
-            // defaults to beginning of the month when not set
-            $start_date = (isset($_GET['start_date'])) ? $_GET['start_date'] : date(DATE_FORMAT, strtotime('first day of this month', $today_timestamp));
-
-            // defaults to start date when not set (only have to enter a single day just once)
-            $end_date = (isset($_GET['end_date'])) ? $_GET['end_date'] : $start_date;
-        }
+        $_GET['date_preset'] = 'YTD';
+        $start_date = date(DATE_FORMAT, strtotime('first day of January this year', $today_timestamp));
+        $end_date = date(DATE_FORMAT, $today_timestamp);
         break;
+}
+
+if ($date_custom == '1') {
+    // defaults to beginning of the month when not set
+    $start_date = (isset($_GET['start_date'])) ? $_GET['start_date'] : date(DATE_FORMAT, strtotime('first day of this month', $today_timestamp));
+
+    // defaults to start date when not set (only have to enter a single day just once)
+    $end_date = (isset($_GET['end_date'])) ? $_GET['end_date'] : $start_date;
 }
 
 $date_target = (isset($_GET['date_target']) && in_array($_GET['date_target'], array('purchased', 'status'))) ? $_GET['date_target'] : 'purchased';
@@ -957,7 +950,7 @@ if ($output_format == 'print' || $output_format == 'display') {
         }
 
         // display order line items, if necessary
-        if ($sr->detail_level == 'order' && is_array($timeframe['orders']) ) {
+        if ($sr->detail_level == 'order' && isset($timeframe['orders']) && is_array($timeframe['orders']) ) {
             // sort the orders according to requested sort options
             $dataset1 = $dataset2 = array();
             foreach ($timeframe['orders'] as $oID => $o_data) {

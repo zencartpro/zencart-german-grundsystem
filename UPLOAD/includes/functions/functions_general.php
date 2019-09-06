@@ -7,7 +7,7 @@
  * @copyright Copyright 2003-2019 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: functions_general.php 803 2019-04-12 11:24:50Z webchills $
+ * @version $Id: functions_general.php 804 2019-09-06 08:24:50Z webchills $
  */
 /**
  * Stop from parsing any further PHP code
@@ -561,7 +561,7 @@
  */
   function zen_get_uprid($prid, $params) {
     $uprid = $prid;
-    if ( !is_array($params) || strstr($prid, ':')) return $prid;
+    if ( !is_array($params) || empty($params) || strstr($prid, ':')) return $prid;
 
     foreach($params as $option => $value) {
       if (is_array($value)) {
