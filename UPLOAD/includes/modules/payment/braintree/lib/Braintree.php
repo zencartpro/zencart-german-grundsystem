@@ -6,9 +6,9 @@
 
 require_once(__DIR__ . DIRECTORY_SEPARATOR . 'autoload.php');
 
-if (version_compare(PHP_VERSION, '7.2.0', '<')) {
-    throw new Braintree_Exception('PHP version >= 7.2.0 required');
-}
+//if (version_compare(PHP_VERSION, '7.2.0', '<')) {
+//    throw new Braintree_Exception('PHP version >= 7.2.0 required');
+//}
 
 class Braintree {
     public static function requireDependencies() {
