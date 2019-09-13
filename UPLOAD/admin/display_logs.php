@@ -5,7 +5,7 @@
  * @copyright Copyright 2003-2019 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: display_logs.php 1 2019-06-16 09:13:51Z webchills $
+ * @version $Id: display_logs.php 2 2019-09-13 19:59:51Z webchills $
  */
 
 // -----
@@ -42,7 +42,7 @@ require 'includes/application_top.php';
 // to be either included or excluded, wrap that value with parenthese to make preg_match "happy".
 //
 if (isset($_GET['debug_only'])) {
-    $files_to_match = 'myDEBUG-(adm-)?[0-9]+-[0-9]+';
+    $files_to_match = 'myDEBUG-(adm-)?[0-9]+-[0-9]+(-[0-9]+)?';
     $files_to_exclude = '';
 } else {
     $files_to_match = str_replace(' ', '', DISPLAY_LOGS_INCLUDED_FILES);

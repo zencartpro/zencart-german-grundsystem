@@ -6,7 +6,7 @@
 # * @copyright Copyright 2003-2019 Zen Cart Development Team
 # * @copyright Portions Copyright 2003 osCommerce
 # * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
-# * @version $Id: mysql_zencart.sql 19516 2019-08-30 18:17:16Z webchills $
+# * @version $Id: mysql_zencart.sql 19517 2019-09-13 20:02:16Z webchills $
 #
 
 ############ IMPORTANT INSTRUCTIONS ###############
@@ -2707,10 +2707,10 @@ INSERT INTO configuration (configuration_title, configuration_key, configuration
 INSERT INTO configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) VALUES ('Log Database Queries', 'STORE_DB_TRANSACTIONS', 'false', 'Record the database queries to files in the system /logs/ folder. USE WITH CAUTION. This can seriously degrade your site performance and blow out your disk space storage quotas.<br><strong>Enabling this makes your site NON-COMPLIANT with PCI DSS rules, thus invalidating any certification.</strong>', '10', '5', 'zen_cfg_select_option(array(\'true\', \'false\'), ', now());
 ### New in 1.5.6 - Display Logs Options
 INSERT INTO configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added, use_function, set_function ) VALUES 
-('Display Logs: Version', 'DISPLAY_LOGS_VERSION', '2.1.1', 'Current plugin version.', 10, 100, now(), NULL, 'trim('),
+('Display Logs: Version', 'DISPLAY_LOGS_VERSION', '2.1.2', 'Current plugin version.', 10, 100, now(), NULL, 'trim('),
 ('Display Logs: Display Maximum', 'DISPLAY_LOGS_MAX_DISPLAY', '20', 'Identify the maximum number of logs to display.  (Default: <b>20</b>)', 10, 100, now(), NULL, NULL),
 ('Display Logs: Maximum File Size', 'DISPLAY_LOGS_MAX_FILE_SIZE', '80000', 'Identify the maximum size of any file to display.  (Default: <b>80000</b>)', 10, 101, now(), NULL, NULL),
-('Display Logs: Included File Prefixes', 'DISPLAY_LOGS_INCLUDED_FILES', 'myDEBUG-|AIM_Debug_|SIM_Debug_|FirstData_Debug_|Linkpoint_Debug_|Paypal|paypal|ipn_|zcInstall|notifier|usps|SHIP_usps', 'Identify the log-file <em>prefixes</em> to include in the display, separated by the pipe character (|).  Any intervening spaces are removed by the processing code.', 10, 102, now(), NULL, NULL),
+('Display Logs: Included File Prefixes', 'DISPLAY_LOGS_INCLUDED_FILES', 'myDEBUG-|Paypal|paypal|ipn_|zcInstall|notifier', 'Identify the log-file <em>prefixes</em> to include in the display, separated by the pipe character (|).  Any intervening spaces are removed by the processing code.', 10, 102, now(), NULL, NULL),
 ('Display Logs: Excluded File Prefixes', 'DISPLAY_LOGS_EXCLUDED_FILES', '', 'Identify the log-file prefixes to <em>exclude</em> from the display, separated by the pipe character (|). Any intervening spaces are removed by the processing code.', 10, 103, now(), NULL, NULL),
 ('Display Logs: Show notice in Header', 'DISPLAY_LOGS_SHOW_IN_HEADER', 'true', 'If error logs are detected in the logs folder a notice in the header of the store administration will appear telling you that errors exist.<br/>If you do not wnat this notice to appear set to false.', 10, 104, now(), NULL, 'zen_cfg_select_option(array(\'true\', \'false\'), ');
 
