@@ -7,7 +7,7 @@ if(GOOGLE_ANALYTICS_ENABLED == "Enabled"){
     <script type="text/javascript"><!--//
 
     <?php
-    if( GADIR == 'Enabled' ){ ?>
+    if( GOOGLE_ANALYTICS_DIR == 'Enabled' ){ ?>
         var gaJsHost = (("https:" == document.location.protocol) ? "https://" : "http://");
         document.write(unescape("%3Cscript src='" + gaJsHost + "stats.g.doubleclick.net/dc.js' type='text/javascript'%3E%3C/script%3E"));
     <?php }    else { ?>
@@ -45,7 +45,7 @@ if(GOOGLE_ANALYTICS_ENABLED == "Enabled"){
                         (function() {
                             var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
                             <?php
-                            if( GADIR == 'Enabled' ){ ?>
+                            if( GOOGLE_ANALYTICS_DIR == 'Enabled' ){ ?>
                                 ga.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'stats.g.doubleclick.net/dc.js';
                             <?php }    else { ?>
                                 ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
@@ -73,7 +73,7 @@ if(GOOGLE_ANALYTICS_ENABLED == "Enabled"){
             ?>
             ga('create', '<?php echo GOOGLE_ANALYTICS_UACCT ?>', 'auto');
             <?php
-            if( GADIR == 'Enabled' ){ ?>
+            if( GOOGLE_ANALYTICS_DIR == 'Enabled' ){ ?>
     			ga('require', 'displayfeatures');
 			<?php }	?>
 			ga('send', 'pageview');
@@ -198,7 +198,7 @@ if(GOOGLE_ANALYTICS_ENABLED == "Enabled"){
 		(function() {
 			var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
 			<?php
-			if( GADIR == 'Enabled' ){ ?>
+			if( GOOGLE_ANALYTICS_DIR == 'Enabled' ){ ?>
 				ga.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'stats.g.doubleclick.net/dc.js';
 			<?php }	else { ?>
 				ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';

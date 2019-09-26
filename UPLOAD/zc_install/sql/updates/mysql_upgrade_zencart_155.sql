@@ -6,7 +6,7 @@
 # * @copyright Copyright 2003-2019 Zen Cart Development Team
 # * @copyright Portions Copyright 2003 osCommerce
 # * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
-# * @version $Id: mysql_upgrade_zencart_155.sql 19 2019-06-21 15:36:59Z webchills $
+# * @version $Id: mysql_upgrade_zencart_155.sql 20 2019-09-26 08:15:59Z webchills $
 #
 
 ############ IMPORTANT INSTRUCTIONS ###############
@@ -745,7 +745,7 @@ WHERE configuration_group_title= 'Google Analytics'
 LIMIT 1;
 
 INSERT IGNORE INTO configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, last_modified, use_function, set_function, date_added) VALUES
-('Demographics and Interest Reports', 'GOOGLE_ANALYTICS_DIR', 'Disabled', 'Enables / Disables Demographics and Interest Reports<br /><br />', @configuration_group_id, 12, NOW(), NULL, 'zen_cfg_select_option(array(\'asc\', \'desc\'), ', NOW()),
+('Demographics and Interest Reports', 'GOOGLE_ANALYTICS_DIR', 'Disabled', 'Enables / Disables Demographics and Interest Reports<br /><br />', @configuration_group_id, 12, NOW(), NULL, 'zen_cfg_select_option(array(\'Enabled\', \'Disabled\'), ', NOW()),
 ('Google Conversion Label', 'GOOGLE_CONVERSION_LABEL', 'purchase', 'Enter your Google Conversion Label (can be generated in Google Adwords or you can create a custom label for tracking elsewhere)<br /><br />', @configuration_group_id, 13, NOW(), NULL, 'zen_cfg_textarea(', NOW());
 
 
