@@ -1,27 +1,14 @@
 <?php
-// +----------------------------------------------------------------------+
-// |zen-cart Open Source E-commerce                                       |
-// +----------------------------------------------------------------------+
-// | Portions Copyright (c) 2003 osCommerce                               |
-// | Portions Copyright (c) 2004 zen-cart								  |
-// | Portions Copyright (c) 2005-2006 Andrew Berezin					  |
-// | Portions Copyright (c) 2006 Dayne Larsen							  |
-// | Portions Copyright (c) 2007-2010 Eric Leuenberger					  |
-// +----------------------------------------------------------------------+
-// | This source file is subject to version 2.0 of the GPL license,       |
-// | that is bundled with this package in the file LICENSE, and is        |
-// | available through the world-wide-web at the following url:           |
-// | http://www.zen-cart.com/license/2_0.txt.                             |
-// | If you did not receive a copy of the zen-cart license and are unable |
-// | to obtain it through the world-wide-web, please send a note to       |
-// | license@zen-cart.com so we can mail you a copy immediately.          |
-// +----------------------------------------------------------------------+
-// | file: google_analytics.php, 2010/12/02							  	  |
-// | Adds Google Analytics Capability to Zen Cart						  |
-// | Version Information:  v1.2.4 2010.12.02							  |
-// | Author: Eric Leuenberger - http://www.TheEcommerceExpert.com	      |
-// +----------------------------------------------------------------------+
-//
+/**
+* @package Google Analytics
+* @copyright Copyright 2003-2019 Zen Cart Development Team
+* @copyright Portions Copyright (c) 2005-2006 Andrew Berezin					  |
+* @copyrightPortions Copyright (c) 2006 Dayne Larsen							  |
+* @copyrightPortions Copyright (c) 2007-2017 Eric Leuenberger	
+* @copyright Portions Copyright 2003 osCommerce
+* @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
+* @version $Id: google_analytics.php 2019-09-26 09:15:58Z webchills $
+*/
 
 if (GOOGLE_ANALYTICS_ENABLED == "Enabled") {
 
@@ -89,7 +76,7 @@ if (GOOGLE_ANALYTICS_ENABLED == "Enabled") {
 
             echo ("<script><!--\n\n");
 
-            $geeProducts   = $db->Execute("select products_id, final_price, customers_basket_quantity from " . TABLE_CUSTOMERS_BASKET . " where customers_id = '" . $_SESSION[customer_id] . "'");
+            $geeProducts   = $db->Execute("select products_id, final_price, customers_id, customers_basket_quantity from " . TABLE_CUSTOMERS_BASKET . " where customers_id = '" . $_SESSION['customer_id'] . "'");
 
             while(!$geeProducts->EOF) {
 
@@ -167,7 +154,7 @@ if (GOOGLE_ANALYTICS_ENABLED == "Enabled") {
 
             echo ("<script><!--\n\n");
 
-            $geeProducts   = $db->Execute("select products_id, final_price, customers_basket_quantity from " . TABLE_CUSTOMERS_BASKET . " where customers_id = '" . $_SESSION[customer_id] . "'");
+            $geeProducts   = $db->Execute("select products_id, final_price, customers_id, customers_basket_quantity from " . TABLE_CUSTOMERS_BASKET . " where customers_id = '" . $_SESSION['customer_id'] . "'");
 
             while(!$geeProducts->EOF) {
 
@@ -244,7 +231,7 @@ if (GOOGLE_ANALYTICS_ENABLED == "Enabled") {
 
             echo ("<script><!--\n\n");
 
-            $geeProducts   = $db->Execute("select products_id, final_price, customers_basket_quantity from " . TABLE_CUSTOMERS_BASKET . " where customers_id = '" . $_SESSION[customer_id] . "'");
+            $geeProducts   = $db->Execute("select products_id, final_price, customers_id, customers_basket_quantity from " . TABLE_CUSTOMERS_BASKET . " where customers_id = '" . $_SESSION['customer_id'] . "'");
 
             while(!$geeProducts->EOF) {
 
