@@ -9,7 +9,7 @@
  * @copyright Copyright 2003-2019 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: tpl_checkout_shipping_address_default.php 731 2016-05-08 09:49:16Z webchills $
+ * @version $Id: tpl_checkout_shipping_address_default.php 732 2019-09-27 09:19:16Z webchills $
  */
 ?>
 <div class="centerColumn" id="checkoutShipAddressDefault">
@@ -53,6 +53,7 @@
 ?>
 </fieldset>
 <div class="buttonRow forward"><?php echo zen_draw_hidden_field('action', 'submit') . zen_image_submit(BUTTON_IMAGE_CONTINUE, BUTTON_CONTINUE_ALT); ?></div>
+</form>
 <?php
      }
   }
@@ -61,7 +62,6 @@
 
 <div class="buttonRow back"><?php echo TITLE_CONTINUE_CHECKOUT_PROCEDURE . '<br />' . TEXT_CONTINUE_CHECKOUT_PROCEDURE; ?></div>
 
-</form>
 <?php
   if ($process == true) {
 ?>
