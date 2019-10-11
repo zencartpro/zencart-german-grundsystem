@@ -9,7 +9,7 @@
  * @copyright Portions Copyright 2003-2019 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: xsell_products.php 1 2019-08-06 13:54:51 webchills $
+ * @version $Id: xsell_products.php 2 2019-10-11 08:30:51 webchills $
  */
 
 // in case admin switches aren't added properly, assume default settings:
@@ -20,7 +20,7 @@ if (!defined('SHOW_PRODUCT_INFO_COLUMNS_XSELL_PRODUCTS')) define('SHOW_PRODUCT_I
 
 // collect information on available cross-sell products for the current product-id
 if (isset($_GET['products_id']) && SHOW_PRODUCT_INFO_COLUMNS_XSELL_PRODUCTS > 0 ) {
-  $xsell_query_sql = "select distinct p.products_id, p.products_image, pd.products_name
+  $xsell_query_sql = "select distinct p.products_id, p.products_image, pd.products_name, xp.sort_order
                                  from " . TABLE_PRODUCTS_XSELL . " xp, " . TABLE_PRODUCTS . " p, " . TABLE_PRODUCTS_DESCRIPTION . " pd
                                  where xp.products_id = '" . $_GET['products_id'] . "'
                                   and xp.xsell_id = p.products_id
