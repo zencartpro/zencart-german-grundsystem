@@ -4,7 +4,7 @@
  * @copyright Copyright 2003-2019 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: products_to_categories.php 627 2010-08-30 15:05:14Z webchills $
+ * @version $Id: products_to_categories.php 2019-10-15 11:37:14Z webchills $
  */
 
 define('HEADING_TITLE', 'Artikel in mehreren Kategorien anzeigen - Link Manager ...');
@@ -79,3 +79,5 @@ define('TEXT_INFO_RESET_ALL_PRODUCTS_TO_CATEGORY_FROM_MASTER', 'Rücksetzen der 
 define('BUTTON_RESET_CATEGORY_MASTER', 'Hauptkategorie-ID zurücksetzen');
 define('WARNING_RESET_ALL_PRODUCTS_TO_CATEGORY_FROM_MASTER', 'WARNUNG: Unzulässige Kategorie ausgewählt ...');
 define('SUCCESS_RESET_ALL_PRODUCTS_TO_CATEGORY_FROM_MASTER', 'Erfolgreiche Aktualisierung der Hauptkategorie-ID für alle Artikel der Kategorie: ');
+
+define('TEXT_CATEGORIES_NAME', 'Kategorie Name');
