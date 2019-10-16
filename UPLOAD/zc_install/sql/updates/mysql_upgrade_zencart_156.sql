@@ -6,7 +6,7 @@
 # * @copyright Copyright 2003-2019 Zen Cart Development Team
 # * @copyright Portions Copyright 2003 osCommerce
 # * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
-# * @version $Id: mysql_upgrade_zencart_156.sql 18 2019-09-13 20:03:59Z webchills $
+# * @version $Id: mysql_upgrade_zencart_156.sql 19 2019-10-16 09:03:59Z webchills $
 
 #
 
@@ -329,7 +329,7 @@ CREATE TABLE IF NOT EXISTS ezpages_content (
   pages_id int(11) NOT NULL DEFAULT '0',
   languages_id int(11) NOT NULL DEFAULT '1',
   pages_title varchar(64) NOT NULL DEFAULT '',
-  pages_html_text text NOT NULL,
+  pages_html_text mediumtext NOT NULL,
   UNIQUE KEY ez_pages (pages_id, languages_id),
   KEY idx_lang_id_zen (languages_id)
 ) ENGINE=MyISAM;
