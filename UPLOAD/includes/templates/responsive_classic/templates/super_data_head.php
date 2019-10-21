@@ -6,7 +6,7 @@
  * @copyright Copyright 2003-2019 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: super_data_body.php 3 2016-05-01 21:32:41Z webchills $
+ * @version $Id: super_data_head.php 4 2019-10-21 09:32:41Z webchills $
  */
 if (FACEBOOK_OPEN_GRAPH_STATUS == 'true') { ?>
 <script type="application/ld+json">
@@ -55,12 +55,10 @@ if (FACEBOOK_OPEN_GRAPH_STATUS == 'true') { ?>
 $products_image_base = preg_replace('/'.$products_image_extension . '$/', '', $products_image);
 $products_image_medium = DIR_WS_IMAGES . 'medium/' . $products_image_base . IMAGE_SUFFIX_MEDIUM . $products_image_extension;
 $products_image_large  = DIR_WS_IMAGES . 'large/' . $products_image_base . IMAGE_SUFFIX_LARGE .  $products_image_extension;
-    
   } elseif (isset($_GET['cPath'])) {
     $fb_cPath_array = explode('_', $_GET['cPath']);
     $fb_cPath_size = sizeof($fb_cPath_array);
     $fb_categories_id = $fb_cPath_array[$fb_cPath_size - 1]; 
-    
   }
   if ($fb_image == '' && FACEBOOK_OPEN_GRAPH_DEFAULT_IMAGE != '') { // if no products image, use the default image if enabled
    $fb_image = FACEBOOK_OPEN_GRAPH_DEFAULT_IMAGE;
@@ -131,19 +129,79 @@ $products_quantity = $product_info->fields['products_quantity'];
 {
   "@context": "http://schema.org",
    "@type": "Product",
+    "name": "<?php echo $products_name; ?>",
+    "image": "<?php echo $fb_image; ?>",
+    "description": "<?php echo META_TAG_DESCRIPTION; ?>",
+    "sku": "<?php echo $products_id; ?>",
+    "mpn": "<?php echo $products_model; ?>",                   
     "brand": "<?php echo $manufacturers_name; ?>",
-    "mpn": "<?php echo $products_model; ?>",
     "productID": "<?php echo $products_id; ?>",
     "url": "<?php echo $canonicalLink; ?>",
-    "name": "<?php echo $products_name; ?>",
-    "description": "<?php echo META_TAG_DESCRIPTION; ?>",
-    "image": "<?php echo $fb_image; ?>",
+    "category" : "<?php echo $categories->fields['categories_name']; ?>",
+<?php 
+    if ($current_page_base == 'product_info' && isset($_GET['products_id'])) {
+        $reviewQuery = "SELECT r.reviews_id, r.customers_name, r.reviews_rating, r.date_added, r.status, rd.reviews_text
+                FROM " . TABLE_REVIEWS . " r
+                LEFT JOIN " . TABLE_REVIEWS_DESCRIPTION . " rd ON rd.reviews_id = r.reviews_id
+                WHERE products_id = " . (int)$_GET['products_id'] . "
+                AND status = 1
+                AND languages_id= " . $_SESSION['languages_id'] . "
+                ORDER BY reviews_rating DESC";
+        $review = $db->Execute($reviewQuery);
+        while (!$review->EOF) {
+            $reviewArray[] = array(
+                'reviewId' => $review->fields['reviews_id'],
+                'customerName' => $review->fields['customers_name'],
+                'reviewRating' => $review->fields['reviews_rating'],
+                'dateAdded' => $review->fields['date_added'],
+                'reviewText' => $review->fields['reviews_text']
+            );
+            $review->MoveNext();
+        }
+        $ratingSum = 0;
+        $ratingValue = 0;
+        $reviewCount = 0;
+        if (isset($reviewArray) && is_array($reviewArray)) {
+            $reviewCount = sizeof($reviewArray);
+            foreach ($reviewArray as $row) {
+                $ratingSum += $row['reviewRating'];
+            }
+            $ratingValue = round($ratingSum / $reviewCount, 1);
+        }
+    }
+    if ( $reviewCount > 0 ) { ?>
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": "<?php echo $ratingValue; //average rating based on all reviews ?>",
+    "reviewCount": "<?php echo $reviewCount; ?>"
+  },
+    "review" : [
+  <?php for ($i = 0, $n = sizeof($reviewArray); $i<$n; $i ++) { ?>
+  {
+    "@type" : "Review",
+    "author" : {
+      "@type" : "Person",
+      "name" : <?php echo json_encode(strtok($reviewArray[$i]['customerName']," ")); //steve to use only the forename, encoded, does NOT need enclosing quotation marks ?>
+    },
+    "reviewBody" : <?php echo json_encode($reviewArray[$i]['reviewText']); //steve added json_encode to catch quotation marks and pesky accents etc., does NOT need enclosing quotation marks ?>,
+    "datePublished" : "<?php echo substr($reviewArray[$i]['dateAdded'], 0, 10); ?>",
+    "reviewRating" : {
+      "@type" : "Rating",
+      "ratingValue" : "<?php echo $reviewArray[$i]['reviewRating']; //steve bug: was fixed at $ratingValue ?>"
+      }
+    }<?php if ($i+1 != $n) { ?>,<?php } ?>
+  <?php } ?>
+  ],
+<?php } ?>
    "offers": {
     "@type" : "Offer",
+    "url": "<?php echo $canonicalLink; ?>",
     "availability" : "<?php if ($products_quantity > 0) { ?>http://schema.org/InStock<?php } ?><?php if ($products_quantity == 0) { ?>http://schema.org/OutOfStock<?php }?>",
     "price" : "<?php echo $specials_new_products_price = (round(zen_add_tax(zen_get_products_actual_price($product_info_metatags->fields['products_id']),zen_get_tax_rate($product_info_metatags->fields['products_tax_class_id'])),2)); ?>",
+    "priceValidUntil": "<?php echo date("Y-m-d",strtotime("tomorrow"));?>",
     "priceCurrency" : "<?php if (FACEBOOK_OPEN_GRAPH_CUR != '') { ?><?php echo FACEBOOK_OPEN_GRAPH_CUR; ?><?php } ?>",
     "seller" : "<?php echo STORE_NAME; ?>",
+    "offeredBy" : "<?php echo FACEBOOK_OPEN_GRAPH_LEG; ?>",
     "itemCondition" : "http://schema.org/<?php if (FACEBOOK_OPEN_GRAPH_COND != '') { ?><?php echo FACEBOOK_OPEN_GRAPH_COND; ?><?php }?>",
     "inventoryLevel" : "<?php echo $products_quantity; ?>",    
     "deliveryLeadTime" : "<?php if (FACEBOOK_OPEN_GRAPH_DTS != '') { ?><?php echo FACEBOOK_OPEN_GRAPH_DTS; ?><?php }?>",

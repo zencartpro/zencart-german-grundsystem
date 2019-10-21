@@ -6,7 +6,7 @@
  * @copyright Copyright 2003-2019 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: breadcrumb.php 730 2015-12-21 20:05:16Z webchills $
+ * @version $Id: breadcrumb.php 731 2019-10-21 09:21:16Z webchills $
  */
 if (!defined('IS_ADMIN_FLAG')) {
   die('Illegal Access');
@@ -51,10 +51,11 @@ class breadcrumb extends base {
       }
       if (isset($this->_trail[$i]['link']) && zen_not_null($this->_trail[$i]['link']) && !$skip_link ) {
         // this line simply sets the "Home" link to be the domain/url, not main_page=index?blahblah:
+        // adding the breadcrumb identifier for Rich Snippets
         if ($this->_trail[$i]['title'] == HEADER_TITLE_CATALOG) {
-          $trail_string .= '  <a href="' . HTTP_SERVER . DIR_WS_CATALOG . '">' . $this->_trail[$i]['title'] . '</a>';
+          $trail_string .= '  <span vocab="http://schema.org/" typeof="BreadcrumbList"><span property="itemListElement" typeof="ListItem"><a href="' . HTTP_SERVER . DIR_WS_CATALOG . '">' . $this->_trail[$i]['title'] . '</a></span></span>';
         } else {
-          $trail_string .= '  <a href="' . $this->_trail[$i]['link'] . '">' . $this->_trail[$i]['title'] . '</a>';
+          $trail_string .= '  <span property="itemListElement" typeof="ListItem"><a property="item" typeof="WebPage" href="' . $this->_trail[$i]['link'] . '"><span property="name">' . $this->_trail[$i]['title'] . '</span></a></span>';
         }
       } else {
         $trail_string .= $this->_trail[$i]['title'];
