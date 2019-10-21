@@ -6,7 +6,7 @@
  * @copyright Portions Copyright 2003-2019 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: rss_feed.php 2019-07-03 20:11:14 webchills $
+ * @version $Id: rss_feed.php 2019-10-21 07:57:14 webchills $
  */
 
 class rss_feed extends base {
@@ -272,7 +272,9 @@ class rss_feed extends base {
         }
       }
     }
-    if (is_array($this->item)) {
+    
+    if (is_array($this->item) && count($this->item) > 0) {
+    
     for($i=0, $n=count($this->item['title']); $i<$n; $i++) {
       $feedContent .= '    <item>' . "\n" .
               '      <title>' . $this->_clear_string($this->item['title'][$i]) . '</title>' . "\n" .
@@ -322,8 +324,9 @@ class rss_feed extends base {
         }
       }
       $feedContent .= '    </item>' . "\n";
-    }
+    
   }
+}
     $feedContent .= '  </channel>' . "\n" .
             '</rss>' . "\n";
     return $feedContent;
