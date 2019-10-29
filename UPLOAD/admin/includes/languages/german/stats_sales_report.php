@@ -1,7 +1,7 @@
 <?php
 
 /**
- * SALES REPORT 3.3.0
+ * SALES REPORT 3.3.2
  *
  * The language file contains all the text that appears on the report. The first set of
  * configuration defines actually impact the report's output and behavior.

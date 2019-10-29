@@ -1,6 +1,6 @@
 <?php
 /**
- * SALES REPORT 3.1
+ * SALES REPORT 3.3.2
  *
  * @author     Frank Koehl (PM: BlindSide)
  * @author     Conor Kerr <conor.kerr_zen-cart@dev.ceon.net>
@@ -12,6 +12,13 @@
 */
 if (!defined('IS_ADMIN_FLAG')) {
     die('Illegal Access');
+}
+
+// -----
+// Bail if an admin isn't logged in, e.g. if a currency-cron is running.
+//
+if (empty($_SESSION['admin_id'])) {
+    return;
 }
 
 // -----

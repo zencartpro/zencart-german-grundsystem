@@ -1,7 +1,7 @@
 <?php
 
 /**
- * SALES REPORT 3.3.1
+ * SALES REPORT 3.3.2
  *
  * This is where everything starts and ends. This file builds the HTML display, calls the class file
  * to build the data, then displays that data for the user.

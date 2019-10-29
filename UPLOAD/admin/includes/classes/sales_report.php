@@ -1,6 +1,6 @@
 <?php
 /**
- * SALES REPORT 3.3.1
+ * SALES REPORT 3.3.2
  *
  * The class file acts as the engine in the sales report.  All the data displayed is gathered and
  * calculated in here. The logic tree provides a brief summary of the main functions at work every
@@ -1039,6 +1039,14 @@ class sales_report
                     break;
 
                 case 'product':
+                    // -----
+                    // Depending on the filter choices selected, there might not be products purchased
+                    // within a given timeframe.
+                    //
+                    if (empty($timeframe['products'])) {
+                        break;
+                    }
+                    
                     // sort the products according to requested sort options
                     $dataset1 = $dataset2 = array();
                     foreach ($timeframe['products'] as $pID => $p_data) {
