@@ -4,7 +4,7 @@
  * @copyright Copyright 2003-2019 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: coupon_admin.php 634 2019-06-17 17:18:08Z webchills $
+ * @version $Id: coupon_admin.php 635 2019-10-21 20:18:08Z webchills $
  */
 
 define('TOP_BAR_TITLE','Statistiken');
@@ -69,7 +69,7 @@ define('COUPON_TOTAL', 'Kupon Minimum berechnet von: ');
 define('TEXT_COUPON_TOTAL_PRODUCTS', 'erlaubte Artikel');
 define('TEXT_COUPON_TOTAL_PRODUCTS_BASED', '<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(basiert auf dem Gesamtwert der erlaubten Artikel gemäß der Einschränkungsregeln)');
 define('TEXT_COUPON_TOTAL_ORDER', 'Alle Artikel');
-define('TEXT_COUPON_TOTAL_ORDER_BASED', '<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(basiiert auf dem Gesamtwert aller Artikel, unabhängig von geltenden Einschränkungsregeln)');
+define('TEXT_COUPON_TOTAL_ORDER_BASED', '<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(basiert auf dem Gesamtwert aller Artikel, unabhängig von geltenden Einschränkungsregeln)');
 define('COUPON_USES_COUPON','Benutzung pro Aktionskupon');
 define('COUPON_USES_USER','Benutzung pro Kunde');
 define('COUPON_PRODUCTS','Gültige Artikelliste');
@@ -84,7 +84,7 @@ define('TEXT_COUPON_ZONE_RESTRICTION', 'Die Aktionskupon Gültigkeitszone ist op
 define('COUPON_ORDER_LIMIT', 'Bisherige Bestellungen des Kunden weniger als: ');
 define('COUPON_ORDER_LIMIT_HELP', 'Der Kunde muss bisherige Bestellungen weniger als haben, leer lassen für unlimitiert');
 
-define('COUPON_IS_VALID_FOR_SALES', 'Kupon gültig fü Verkäufe:');
+define('COUPON_IS_VALID_FOR_SALES', 'Kupon gültig für Sonderangebote?');
 define('TEXT_COUPON_IS_VALID_FOR_SALES', 'Kupon IST erlaubt für Sonderangebote');
 define('TEXT_COUPON_IS_VALID_FOR_SALES_EMAIL', 'Kupon ist erlaubt für Sonderangebote');
 define('TEXT_NO_COUPON_IS_VALID_FOR_SALES', 'Kupon IST NICHT erlaubt für Sonderangebote');
