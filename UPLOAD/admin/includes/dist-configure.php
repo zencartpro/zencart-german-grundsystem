@@ -6,20 +6,20 @@
  * @copyright Copyright 2003-2019 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: dist-configure.php 2018-03-30 13:24:50Z webchills $
+ * @version $Id: dist-configure.php 2019-10-31 22:00:50Z webchills $
  * @private
  */
 
 /*************** NOTE: This file is VERY similar to, but DIFFERENT from the "store" version of configure.php. ***********/
 /***************       The 2 files should be kept separate and not used to overwrite each other.              ***********/
-/*************** HINWEIS: Diese Datei ist sehr ähnlich, aber unterschiedlich von der "frontend" Version von configure.php ***********/
-/***************          Die 2 Dateien sollten getrennt gehalten und nicht verwendet werden, um einander zu überschreiben.***********/
+/*************** HINWEIS: Diese Datei ist sehr Ã¤hnlich, aber unterschiedlich von der "frontend" Version von configure.php ***********/
+/***************          Die 2 Dateien sollten getrennt gehalten und nicht verwendet werden, um einander zu Ã¼berschreiben.***********/
 
 /**
  * Enter the domain for your Admin URL. If you have SSL, enter the correct https address in the HTTP_SERVER setting, instead of just an http address.
  */
   /**
- * Geben Sie die Domain für Ihre Admin-URL ein. Wenn Sie SSL haben, geben Sie die korrekte https-Adresse in der HTTP_SERVER-Einstellung ein, anstatt nur eine HTTP-Adresse.
+ * Geben Sie die Domain fÃ¼r Ihre Admin-URL ein. Wenn Sie SSL haben, geben Sie die korrekte https-Adresse in der HTTP_SERVER-Einstellung ein, anstatt nur eine HTTP-Adresse.
  */
 
 define('HTTP_SERVER', 'https://localhost');
@@ -35,13 +35,13 @@ define('HTTP_SERVER', 'https://localhost');
  */
  /**
  * Hinweis zu HTTPS_SERVER:
- * Es gibt seit Zen Cart 1.5.5 kein HTTPS_SERVER setting für den admin mehr. Stattdessen tragen Sie einfach Ihre SSL URL bei HTTP_SERVER oben ein.
+ * Es gibt seit Zen Cart 1.5.5 kein HTTPS_SERVER setting fÃ¼r den admin mehr. Stattdessen tragen Sie einfach Ihre SSL URL bei HTTP_SERVER oben ein.
  */
 
 /**
  * Hinweis zu DIR_WS_ADMIN
- * Der Wert für DIR_WS_ADMIN wird automatisch erknnt und muss nicht angegeben werden
- * Im sehr unwahrscheinlichen Fall, dass das Adminverzeichnis nicht korrekt erkannt wird, könnten Sie eine eigene DIR_WS_ADMIN Definition eintragen.
+ * Der Wert fÃ¼r DIR_WS_ADMIN wird automatisch erknnt und muss nicht angegeben werden
+ * Im sehr unwahrscheinlichen Fall, dass das Adminverzeichnis nicht korrekt erkannt wird, kÃ¶nnten Sie eine eigene DIR_WS_ADMIN Definition eintragen.
  */
 
 /**
@@ -49,8 +49,9 @@ define('HTTP_SERVER', 'https://localhost');
  * Enter a separate SSL URL in HTTPS_CATALOG_SERVER if your store supports SSL.
  */
   /**
- * Geben Sie die Domain für Ihre Frontend URL ein
- * Geben Sie eine separate SSL URL in HTTPS_CATALOG_SERVER an falls Ihre Website SSL unterstützt.
+ * Geben Sie die Domain fÃ¼r Ihre Frontend URL ein
+ * Geben Sie eine separate SSL URL in HTTPS_CATALOG_SERVER an falls Ihre Website SSL unterstÃ¼tzt.
+ * Wenn Sie Ihren Shop komplett mit SSL betreiben (empfohlen!), dann geben Sie hier bei beiden Adressen die SSL URL ein
  */
 
 define('HTTP_CATALOG_SERVER', 'http://localhost');
@@ -60,7 +61,7 @@ define('HTTPS_CATALOG_SERVER', 'https://localhost');
  * Do you use SSL for your customers login/checkout on the storefront? If so, enter 'true'. Else 'false'.
  */
  /**
- * Verwenden Sie SSL für Login/Checkout der Kunden im Frontend? Falls ja, 'true'. Falls nein 'false'.
+ * Verwenden Sie SSL fÃ¼r Login/Checkout der Kunden im Frontend? Falls ja, 'true'. Falls nein 'false'.
  * EIN LIVESHOP SOLLTE AUF GAR KEINEN FALL OHNE SSL BETRIEBEN WERDEN, daher stellen Sie sicher, dass Sie ein SSL Zertifikat aktiv haben und stellen dann hier immer auf true
  */
 define('ENABLE_SSL_CATALOG', 'true');
@@ -72,8 +73,8 @@ define('ENABLE_SSL_CATALOG', 'true');
  */
  /**
  * Diese DIR_WS_xxxx-Werte beziehen sich auf den Namen eines Unterverzeichnisses, in dem sich Ihr Shop befindet
- * Diese Werte werden zu den Werten HTTP_CATALOG_SERVER und HTTPS_CATALOG_SERVER hinzugefügt, um die vollständigen URLs zu Ihrem Shop zu bilden.
- * Sie sollten immer mit einem Schrägstrich beginnen und enden ... d.h: '/' oder '/ordnername/'
+ * Diese Werte werden zu den Werten HTTP_CATALOG_SERVER und HTTPS_CATALOG_SERVER hinzugefÃ¼gt, um die vollstÃ¤ndigen URLs zu Ihrem Shop zu bilden.
+ * Sie sollten immer mit einem SchrÃ¤gstrich beginnen und enden ... d.h: '/' oder '/ordnername/'
  */
 define('DIR_WS_CATALOG', '/');
 define('DIR_WS_HTTPS_CATALOG', '/');
@@ -98,14 +99,14 @@ define('DIR_FS_CATALOG', '/var/www/vhost/accountname/public_html/store/');
  * The following settings define your database connection.
  * These must be the SAME as you're using in your non-admin copy of configure.php
  * Die folgenden Einstellungen definieren Ihre Datenbankverbindung.
- * Sie müssen hier dieselben Datenbankdaten verwenden wie in der configure.php in Ihrem Adminverzeichnis!
+ * Sie mÃ¼ssen hier dieselben Datenbankdaten verwenden wie in der configure.php in Ihrem Frontendverzeichnis!
  */
 define('DB_TYPE', 'mysql'); // immer 'mysql'
-define('DB_PREFIX', ''); // Prefix für die Datenbanktabellen, am besten KEIN Prefix verwenden
-define('DB_CHARSET', 'utf8'); // immer 'utf8'
-define('DB_SERVER', 'localhost');  // Adresse des Datenbankservers
-define('DB_SERVER_USERNAME', ''); // Datenbankusername
-define('DB_SERVER_PASSWORD', ''); // Datenbankpasswort
+define('DB_PREFIX', ''); // Prefix fÃ¼r die Datenbanktabellen - sollte leer sein, wir empfehlen KEIN Prefix zu verwenden
+define('DB_CHARSET', 'utf8mb4'); // 'utf8mb4' oder das Ã¤ltere 'utf8'
+define('DB_SERVER', 'localhost');  // Adresse des Datenbankservers (bei den meisten Providern localhost)
+define('DB_SERVER_USERNAME', ''); // Benutzername fÃ¼r die Datenbank
+define('DB_SERVER_PASSWORD', ''); // Passwort des Datenbankusers
 define('DB_DATABASE', ''); // Name der Datenbank
 
 /**
@@ -113,7 +114,7 @@ define('DB_DATABASE', ''); // Name der Datenbank
  * Options are 'none' (which is the default) and 'file' and 'database'.
  */
  /**
- * Dies ist eine erweiterte Einstellung, um festzustellen, ob Sie SQL-Abfragen zwischenspeichern möchten
+ * Dies ist eine erweiterte Einstellung, um festzustellen, ob Sie SQL-Abfragen zwischenspeichern mÃ¶chten
  * Optionen sind 'none' (empfohlene Voreinstellung) oder 'file' oder 'database'.
  */
 define('SQL_CACHE_METHOD', 'none');
@@ -122,7 +123,7 @@ define('SQL_CACHE_METHOD', 'none');
  * Reserved for future use
  */
   /**
- * Dieses Setting wird derzeit nicht verwendet und ist für spätere Versionen gedacht
+ * Dieses Setting wird derzeit nicht verwendet und ist fÃ¼r spÃ¤tere Versionen gedacht
  */
 
 define('SESSION_STORAGE', '');
@@ -134,9 +135,9 @@ define('SESSION_STORAGE', '');
  */
  /**
  * Profi User only:
- * Die folgenden Einstellungen sind OPTIONAL und sollten NICHT gesetzt werden, es sei denn, Sie beabsichtigen, ihre normale Verwendung zu ändern. Die meisten Seiten werden diese unberührt lassen.
+ * Die folgenden Einstellungen sind OPTIONAL und sollten NICHT gesetzt werden, es sei denn, Sie beabsichtigen, ihre normale Verwendung zu Ã¤ndern. Die meisten Seiten werden diese unberÃ¼hrt lassen.
  * Um sie zu verwenden, entkommentieren und einen entsprechenden Wert eintragen.
- * Sehr sinnvoll kann es sein, den Ordner zu den Logfiles auf eine Ebene unterhalb des Shopverzeichnisses zu legen, so dass dieser nicht per www erreichbar ist, das wäre dann z.B.
+ * Sehr sinnvoll kann es sein, den Ordner zu den Logfiles auf eine Ebene unterhalb des Shopverzeichnisses zu legen, so dass dieser nicht per www erreichbar ist, das wÃ¤re dann z.B.
  * define('DIR_FS_LOGS','/var/irgendwas/logs');
  */
 // define('DIR_FS_SQL_CACHE','');

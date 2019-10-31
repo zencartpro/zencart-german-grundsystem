@@ -6,14 +6,14 @@
  * @copyright Copyright 2003-2019 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: dist-configure.php 2018-03-30 12:49:16Z webchills $
+ * @version $Id: dist-configure.php 2019-10-31 21:49:16Z webchills $
  * @private
  */
 
 /*************** NOTE: This file is VERY similar to, but DIFFERENT from the "admin" version of configure.php. ***********/
 /***************       The 2 files should be kept separate and not used to overwrite each other.              ***********/
-/*************** HINWEIS: Diese Datei ist sehr ähnlich, aber unterschiedlich von der "admin" Version von configure.php ***********/
-/***************          Die 2 Dateien sollten getrennt gehalten und nicht verwendet werden, um einander zu überschreiben.***********/
+/*************** HINWEIS: Diese Datei ist sehr Ã¤hnlich, aber unterschiedlich von der "admin" Version von configure.php ***********/
+/***************          Die 2 Dateien sollten getrennt gehalten und nicht verwendet werden, um einander zu Ã¼berschreiben.***********/
 
 /**
  * Enter the domain for your store
@@ -21,9 +21,10 @@
  * HTTPS_SERVER is your Secure/SSL webserver: eg-https://www.yourdomain.com
  */
   /**
- * Geben Sie die Domain für Ihren Shop an
+ * Geben Sie die Domain fÃ¼r Ihren Shop an
  * HTTP_SERVER ist die Hauptadresse zu Ihrem Shop: z.B. http://www.meinshop.de
  * HTTPS_SERVER ist die SSL Adresse zu Ihrem Shop z.B. https://www.meinshop.de
+ * Um Ihren Shop komplett mit SSL zu betreiben (empfohlen!), tragen Sie bei beiden Adressen die SSL Adresse Ihres Shops ein
  */
 
 define('HTTP_SERVER', 'http://localhost');
@@ -33,7 +34,7 @@ define('HTTPS_SERVER', 'https://localhost');
  *  If you want to tell Zen Cart to use your HTTPS URL on sensitive pages like login and checkout, set this to 'true'. Otherwise 'false'. (Keep the quotes)
  */
  /**
- *  Wenn Sie Zen Cart mitteilen möchten, dass Sie Ihre HTTPS URL auf sensiblen Seiten wie Login und Checkout verwenden, setzen Sie hier auf 'true'. Ansonsten 'false'.
+ *  Wenn Sie Zen Cart mitteilen mÃ¶chten, dass Sie Ihre HTTPS URL auf sensiblen Seiten wie Login und Checkout verwenden, setzen Sie hier auf 'true'. Ansonsten 'false'.
  *  Ein Onlineshop sollte NIE ohne SSL betrieben werden, daher stellen Sie sicher, dass Sie ein SSL Zertifikat aktiv haben und stellen dann hier immer auf 'true'.  
  */
 define('ENABLE_SSL', 'true');
@@ -45,8 +46,8 @@ define('ENABLE_SSL', 'true');
  */
  /**
  * Diese DIR_WS_xxxx-Werte beziehen sich auf den Namen eines Unterverzeichnisses, in dem sich Ihr Shop befindet
- * Diese Werte werden zu den Werten HTTP_CATALOG_SERVER und HTTPS_CATALOG_SERVER hinzugefügt, um die vollständigen URLs zu Ihrem Shop zu bilden.
- * Sie sollten immer mit einem Schrägstrich beginnen und enden ... d.h: '/' oder '/ordnername/'
+ * Diese Werte werden zu den Werten HTTP_CATALOG_SERVER und HTTPS_CATALOG_SERVER hinzugefÃ¼gt, um die vollstÃ¤ndigen URLs zu Ihrem Shop zu bilden.
+ * Sie sollten immer mit einem SchrÃ¤gstrich beginnen und enden ... d.h: '/' oder '/ordnername/'
  */
 define('DIR_WS_CATALOG', '/');
 define('DIR_WS_HTTPS_CATALOG', '/');
@@ -66,14 +67,14 @@ define('DIR_FS_CATALOG', '/var/www/vhost/accountname/public_html/store/');
  * The following settings define your database connection.
  * These must be the SAME as you're using in your non-admin copy of configure.php
  * Die folgenden Einstellungen definieren Ihre Datenbankverbindung.
- * Sie müssen hier dieselben Datenbankdaten verwenden wie in der configure.php in Ihrem Adminverzeichnis!
+ * Sie mÃ¼ssen hier dieselben Datenbankdaten verwenden wie in der configure.php in Ihrem Adminverzeichnis!
  */
 define('DB_TYPE', 'mysql'); // immer 'mysql'
-define('DB_PREFIX', ''); // Prefix für die Datenbaktabellen, am besten KEIN Prefix verwenden!
-define('DB_CHARSET', 'utf8'); // immer 'utf8'
-define('DB_SERVER', 'localhost');  // Adresse des Datenbankservers
-define('DB_SERVER_USERNAME', ''); // Datenbankusername
-define('DB_SERVER_PASSWORD', ''); // Datenbankpasswort
+define('DB_PREFIX', ''); // Prefix fÃ¼r die Datenbanktabellen - sollte leer sein, wir empfehlen KEIN Prefix zu verwenden
+define('DB_CHARSET', 'utf8mb4'); // 'utf8mb4' oder das Ã¤ltere 'utf8'
+define('DB_SERVER', 'localhost');  // Adresse des Datenbankservers (bei den meisten Providern localhost)
+define('DB_SERVER_USERNAME', ''); // Benutzername fÃ¼r die Datenbank
+define('DB_SERVER_PASSWORD', ''); // Passwort des Datenbankusers
 define('DB_DATABASE', ''); // Name der Datenbank
 
 /**
@@ -81,7 +82,7 @@ define('DB_DATABASE', ''); // Name der Datenbank
  * Options are 'none' (which is the default) and 'file' and 'database'.
  */
  /**
- * Dies ist eine erweiterte Einstellung, um festzustellen, ob Sie SQL-Abfragen zwischenspeichern möchten
+ * Dies ist eine erweiterte Einstellung, um festzustellen, ob Sie SQL-Abfragen zwischenspeichern mÃ¶chten
  * Optionen sind 'none' (empfohlene Voreinstellung) oder 'file' oder 'database'.
  */
 define('SQL_CACHE_METHOD', 'none');
@@ -90,7 +91,7 @@ define('SQL_CACHE_METHOD', 'none');
  * Reserved for future use
  */
   /**
- * Dieses Setting wird derzeit nicht verwendet und ist für spätere Versionen gedacht
+ * Dieses Setting wird derzeit nicht verwendet und ist fÃ¼r spÃ¤tere Versionen gedacht
  */
 
 define('SESSION_STORAGE', '');
@@ -102,9 +103,9 @@ define('SESSION_STORAGE', '');
  */
  /**
  * Profi User only:
- * Die folgenden Einstellungen sind OPTIONAL und sollten NICHT gesetzt werden, es sei denn, Sie beabsichtigen, ihre normale Verwendung zu ändern. Die meisten Seiten werden diese unberührt lassen.
+ * Die folgenden Einstellungen sind OPTIONAL und sollten NICHT gesetzt werden, es sei denn, Sie beabsichtigen, ihre normale Verwendung zu Ã¤ndern. Die meisten Seiten werden diese unberÃ¼hrt lassen.
  * Um sie zu verwenden, entkommentieren und einen entsprechenden Wert eintragen.
- * Sehr sinnvoll kann es sein, den Ordner zu den Logfiles auf eine Ebene unterhalb des Shopverzeichnisses zu legen, so dass dieser nicht per www erreichbar ist, das wäre dann z.B.
+ * Sehr sinnvoll kann es sein, den Ordner zu den Logfiles auf eine Ebene unterhalb des Shopverzeichnisses zu legen, so dass dieser nicht per www erreichbar ist, das wÃ¤re dann z.B.
  * define('DIR_FS_LOGS','/var/irgendwas/logs');
  */
 // define('DIR_FS_SQL_CACHE','');
