@@ -4,7 +4,7 @@
  * @copyright Copyright 2003-2019 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: geo_zones.php 627 2010-08-30 15:05:14Z webchills $
+ * @version $Id: geo_zones.php 628 2019-10-31 22:15:14Z webchills $
  */
 
 define('HEADING_TITLE','Zonendefinitionen - Steuern, Zahlungsarten und Versandarten');
@@ -46,7 +46,7 @@ define('TEXT_INFO_ZONE_DESCRIPTION','Beschreibung:');
 define('TEXT_INFO_COUNTRY','Land:');
 define('TEXT_INFO_COUNTRY_ZONE','Bundesland/Steuerzone:');
 define('TYPE_BELOW','Alle Zonen/Bundesländer');
-define('PLEASE_SELECT','Alle Zonen/Bundesländer');
+define('TEXT_ALL_ZONES','Alle Zonen/Bundesländer');
 define('TEXT_ALL_COUNTRIES','Alle Länder');
 
 define('TEXT_INFO_NUMBER_TAX_RATES','Anzahl der Steuersätze:');

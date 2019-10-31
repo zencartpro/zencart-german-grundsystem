@@ -4,7 +4,7 @@
  * @copyright Copyright 2003-2019 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: geo_zones.php 792 2019-07-20 08:50:51Z webchills $
+ * @version $Id: geo_zones.php 793 2019-10-31 22:20:51Z webchills $
  */
 require('includes/application_top.php');
 
@@ -191,12 +191,13 @@ if (zen_not_null($action)) {
               </thead>
               <tbody>
                   <?php
-                  $zones_query_raw = "select a.association_id, a.zone_country_id, c.countries_name, a.zone_id, a.geo_zone_id, a.last_modified, a.date_added, z.zone_name
-                                      from (" . TABLE_ZONES_TO_GEO_ZONES . " a
-                                        left join " . TABLE_COUNTRIES . " c on a.zone_country_id = c.countries_id
-                                        left join " . TABLE_ZONES . " z on a.zone_id = z.zone_id)
-                                      where a.geo_zone_id = " . (int)$_GET['zID'] . "
-                                      order by c.countries_name, association_id";
+  $zones_query_raw = "SELECT a.association_id, a.zone_country_id, c.countries_name, a.zone_id, a.geo_zone_id, a.last_modified, a.date_added, z.zone_name
+                      FROM (" . TABLE_ZONES_TO_GEO_ZONES . " a
+                      LEFT JOIN " . TABLE_COUNTRIES_NAME . " c ON a.zone_country_id = c.countries_id
+                      LEFT JOIN " . TABLE_ZONES . " z ON a.zone_id = z.zone_id)
+                      WHERE a.geo_zone_id = " . (int)$_GET['zID'] . "
+                      AND c.language_id = '" . (int)$_SESSION['languages_id'] . "'
+                      ORDER BY c.countries_name, association_id";
 // Split Page
 // reset page when page is unknown
                   if ((!isset($_GET['spage']) or $_GET['spage'] == '' or $_GET['spage'] == '1') && !empty($_GET['sID'])) {
@@ -215,6 +216,13 @@ if (zen_not_null($action)) {
                     }
                   }
                   $rows = 0;
+    $zones_query_raw = "SELECT a.association_id, a.zone_country_id, c.countries_name, a.zone_id, a.geo_zone_id, a.last_modified, a.date_added, z.zone_name
+                        FROM (" . TABLE_ZONES_TO_GEO_ZONES . " a
+                        LEFT JOIN " . TABLE_COUNTRIES_NAME . " c ON a.zone_country_id = c.countries_id
+                        LEFT JOIN " . TABLE_ZONES . " z ON a.zone_id = z.zone_id)
+                        WHERE a.geo_zone_id = " . (int)$_GET['zID'] . "
+                        AND c.language_id = '" . (int)$_SESSION['languages_id'] . "'
+                        ORDER BY c.countries_name, association_id";
                   $zones_split = new splitPageResults($_GET['spage'], MAX_DISPLAY_SEARCH_RESULTS, $zones_query_raw, $zones_query_numrows);
                   $zones = $db->Execute($zones_query_raw);
                   foreach ($zones as $zone) {

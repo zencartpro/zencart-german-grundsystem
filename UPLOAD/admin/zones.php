@@ -4,7 +4,7 @@
  * @copyright Copyright 2003-2019 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: zones.php 787 2019-04-12 09:13:51Z webchills $
+ * @version $Id: zones.php 788 2019-30-31 22:22:51Z webchills $
  */
 require('includes/application_top.php');
 
@@ -89,11 +89,11 @@ if (zen_not_null($action)) {
             </thead>
             <tbody>
                 <?php
-                $zones_query_raw = "select z.zone_id, c.countries_id, c.countries_name, z.zone_name, z.zone_code, z.zone_country_id
-                                    from " . TABLE_ZONES . " z,
-                                         " . TABLE_COUNTRIES . " c
-                                    where z.zone_country_id = c.countries_id
-                                    order by c.countries_name, z.zone_name";
+  $zones_query_raw = "SELECT z.zone_id, c.countries_id, c.countries_name, z.zone_name, z.zone_code, z.zone_country_id
+                      FROM " . TABLE_ZONES . " z, " . TABLE_COUNTRIES_NAME . " c
+                      WHERE z.zone_country_id = c.countries_id
+                      AND language_id = '" . (int)$_SESSION['languages_id'] . "'
+                      ORDER BY c.countries_name, z.zone_name";
                 $zones_split = new splitPageResults($_GET['page'], MAX_DISPLAY_SEARCH_RESULTS, $zones_query_raw, $zones_query_numrows);
                 $zones = $db->Execute($zones_query_raw);
                 foreach ($zones as $zone) {
