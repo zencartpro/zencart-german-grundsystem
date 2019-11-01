@@ -6,7 +6,7 @@
  * @copyright Copyright 2003-2019 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: bmz_image_handler.class.php 2019-07-13 14:13:51Z webchills $
+ * @version $Id: bmz_image_handler.class.php 2019-11-01 08:13:51Z webchills $
  */
 
 if (!defined('IH_DEBUG_ADMIN')) {
@@ -44,7 +44,7 @@ class ih_image
      * ih_image class constructor
      * @author Tim Kroeger (tim@breakmyzencart.com)
      * @author Cindy Merkin (lat9)
-     * @version 5.1.4
+     * @version 5.1.5
      * @param string $src Image source (e.g. - images/productimage.jpg)
      * @param string $width The image's width
      * @param string $height The image's height
@@ -931,13 +931,16 @@ class ih_image
                 // additional zoom functionality
                 $pathinfo = pathinfo($src);
                 $base_image_directory = $ihConf['dir']['images'];
+                if (in_array(substr($base_image_directory, -1), array('/', '\\'))) {
+                    $base_image_directory = substr($base_image_directory, 0, -1);
+                }
                 $base_imagedir_len = strlen($base_image_directory);
                 $products_image_directory = (strpos($pathinfo['dirname'], $base_image_directory) === 0) ? substr($pathinfo['dirname'], $base_imagedir_len) : $pathinfo['dirname'];
                 $products_image_directory .= DIRECTORY_SEPARATOR;
                 $products_image_filename = $pathinfo['filename'];
                 
                 $this->ihLog("get_additional_parameters($alt, $width, $height, $parameters), base_dir = '$base_image_directory', zoom_sizetype = '$zoom_sizetype', product_dir = '$products_image_directory'" . var_export($pathinfo, true));
-                $products_image_zoom = $base_image_directory . $zoom_sizetype . '/' . $products_image_directory . $products_image_filename . $ihConf[$zoom_sizetype]['suffix'] . $this->extension;
+                $products_image_zoom = $ihConf['dir']['images'] . $zoom_sizetype . '/' . $products_image_directory . $products_image_filename . $ihConf[$zoom_sizetype]['suffix'] . $this->extension;
                 
                 $ih_zoom_image = new ih_image($products_image_zoom, $ihConf[$zoom_sizetype]['width'], $ihConf[$zoom_sizetype]['height']);
                 $products_image_zoom = $ih_zoom_image->get_local();

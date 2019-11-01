@@ -7,7 +7,7 @@
  * @copyright Copyright 2003-2019 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: image_handler.php 2019-07-13 14:13:51Z webchills $
+ * @version $Id: image_handler.php 2019-11-01 08:13:51Z webchills $
  */
 require 'includes/application_top.php';
 
@@ -92,11 +92,10 @@ if ($action == 'ih_clear_cache') {
     }
 }
 ?>
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<!--doctype changed to stop quirks mode -->
+<!doctype html>
 <html <?php echo HTML_PARAMS; ?>>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=<?php echo CHARSET; ?>">
+<meta charset="<?php echo CHARSET; ?>">
 <title><?php echo TITLE . ' - '. ICON_IMAGE_HANDLER; ?></title>
 <link rel="stylesheet" type="text/css" href="includes/stylesheet.css">
 <link rel="stylesheet" type="text/css" href="includes/cssjsmenuhover.css" media="all" id="hoverJS">
@@ -120,7 +119,7 @@ h4 {font-size: 120%}
 h5 {font-size: 100%}
 h1 a, h2 a, h3 a, h4 a, h5 a { font-weight: bold;  letter-spacing: 0.1em;  word-spacing: 0.2em;}
 
-input[type="text"], input[type="submit"], input[type="file"], select {border: 1px solid #CCCCCC; background-color: #FFFFFF;}
+input[type="text"], input[type="submit"], input[type="file"], select {border: 1px solid #CCCCCC;}
 
 .managerbox .dataTableRow:hover { background-color: #dcdcdc; }
 
@@ -135,7 +134,6 @@ input[type="text"], input[type="submit"], input[type="file"], select {border: 1p
 #ih-p-info td { padding: 5px; border: 1px solid #444; }
 #ih-p-info td:first-child { font-weight: bold; }
 
-#ih-new-button { margin: 0.5em; }
 
 .ih-center { text-align: center; }
 .ih-right { text-align: right; }
@@ -159,12 +157,12 @@ div.managerbox {clear: both;}
 .preview-check {border: 1px solid #000000; background:url(images/checkpattern.gif);}
 -->
 </style>
-<script type="text/javascript" src="includes/menu.js"></script>
-<script type="text/javascript" src="includes/general.js"></script>
+<script src="includes/menu.js"></script>
+<script src="includes/general.js"></script>
 <link rel="stylesheet" type="text/css" href="includes/javascript/spiffyCal/spiffyCal_v2_1.css">
-<script type="text/javascript" src="includes/javascript/spiffyCal/spiffyCal_v2_1.js"></script>
+<script src="includes/javascript/spiffyCal/spiffyCal_v2_1.js"></script>
 
-<script type="text/javascript">
+<script>
   <!--
   function init()
   {
@@ -205,17 +203,14 @@ if (defined('IH_VERSION')) {
 <?php
 if ($ih_page == 'manager') {
     // SEARCH DIALOG BOX
-
-    echo '<div id="ih-search">' . zen_draw_form('search', FILENAME_CATEGORIES, '', 'get');
-    // show reset search
-    if (isset($_GET['search']) && zen_not_null($_GET['search'])) {
-        echo '<a href="' . zen_href_link(FILENAME_CATEGORIES) . '">' . zen_image_button('button_reset.gif', IMAGE_RESET) . '</a>&nbsp;&nbsp;';
-    }
+    //-----
+    // The category/product listing page changed in zc156, detect the current Zen Cart
+    // version to determine the page to which the search results are destined.
+    //
+    $zen_cart_version = PROJECT_VERSION_MAJOR . '.' . PROJECT_VERSION_MINOR;
+    $search_target_page = ($zen_cart_version > '1.5.6') ? FILENAME_CATEGORY_PRODUCT_LISTING : FILENAME_CATEGORIES;
+    echo '<div id="ih-search">' . zen_draw_form('search', $search_target_page, '', 'get');
     echo HEADING_TITLE_SEARCH_DETAIL . ' ' . zen_draw_input_field('search');
-    if (isset($_GET['search']) && zen_not_null($_GET['search'])) {
-        $keywords = zen_db_input(zen_db_prepare_input($_GET['search']));
-        echo '<br/ >' . TEXT_INFO_SEARCH_DETAIL_FILTER . $keywords;
-    }
     echo '</form></div>';
 }
 ?>
@@ -310,13 +305,13 @@ if ($ih_page == 'manager') {
             <td class="ih-center"><?php echo zen_draw_products_pull_down('products_filter', 'size="5"', '', true, $products_filter, true, true); ?></td>
             <td id="ih-p-buttons" class="ih-center ih-vtop">
 <?php 
-        echo zen_image_submit('button_display.gif', IMAGE_DISPLAY) . '<br />';
-        
+        echo '<input type="submit" class="btn btn-primary" value="'. IMAGE_DISPLAY .'" />&nbsp;';
+	
         $edit_product_link = zen_href_link(FILENAME_PRODUCT, "action=new_product&amp;cPath=$current_category_id&amp;pID=$products_filter&amp;product_type=" . zen_get_products_type($products_filter));
-        echo '<a href="' . $edit_product_link . '">' . zen_image_button('button_edit_product.gif', IMAGE_EDIT_PRODUCT) . '</a><br />';
+        echo '<a href="' . $edit_product_link . '" class="btn btn-info">' . IMAGE_EDIT_PRODUCT . '</a>&nbsp;';
         
         $attribute_controller_link = zen_href_link(FILENAME_ATTRIBUTES_CONTROLLER, "products_filter=$products_filter&amp;current_category_id=$current_category_id");
-        echo '<a href="' . $attribute_controller_link . '">' . zen_image_button('button_edit_attribs.gif', IMAGE_EDIT_ATTRIBUTES) . '</a>'
+        echo '<a href="' . $attribute_controller_link . '" class="btn btn-warning">' . IMAGE_EDIT_ATTRIBUTES . '</a>'
 ?>
             </td>
 <?php
@@ -502,7 +497,7 @@ if ($ih_page == 'manager') {
                 $the_image = zen_image(DIR_WS_CATALOG . $preview_image, addslashes($pInfo->products_name), $width, $height);
                 $delete_link = '';
                 if (is_file($image_file_medium_full)) {
-                    $delete_link = '<br /><a href="' . $ih_admin->imageHandlerHrefLink($image_file_medium, $products_filter, 'quick_delete') . '">' . zen_image_button('button_delete.gif', IMAGE_DELETE) . '</a>';
+                    $delete_link = '<br /><a href="' . $ih_admin->imageHandlerHrefLink($image_file_medium, $products_filter, 'quick_delete') . '" class="btn btn-danger">' .  IMAGE_DELETE . '</a>';
                 }
 ?>
                     <td class="dataTableContent ih-center ih-vtop"><?php echo $the_image . '<br />' . $text_medium_size . $delete_link; ?></td>
@@ -519,7 +514,7 @@ if ($ih_page == 'manager') {
                 $delete_link = '<br />';
                 $delete_link .= zen_draw_form("quick_del_$i", FILENAME_IMAGE_HANDLER, zen_get_all_get_params(array('action')) . '&amp;action=quick_delete');
                 $delete_link .= zen_draw_hidden_field('qdFile', $image_file_large);
-                $delete_link .= zen_image_submit('button_delete.gif', IMAGE_DELETE);
+                $delete_link .= '<input type="submit" class="btn btn-danger" value ="' . IMAGE_DELETE . '" />';
                 $delete_link .= '</form>';
             }
 ?>
@@ -538,10 +533,9 @@ if ($ih_page == 'manager') {
         } // for each photo loop
         
         $new_link = $ih_admin->imageHandlerHrefLink('', $products_filter, 'layout_new');
-        $new_button = zen_image_button('button_new_file.gif', IH_IMAGE_NEW_FILE, 'id="ih-new-button"');
 ?>
                 <tr class="dataTableRow">
-                    <td colspan="7" class="ih-right"><a href="<?php echo $new_link; ?>"><?php echo $new_button; ?></a></td>
+                    <td colspan="7" class="ih-right"><a href="<?php echo $new_link; ?>" class="btn btn-info"><?php echo IH_IMAGE_NEW_FILE; ?></a></td>
                 </tr>
             </table></td>
 <!-- END Photo list table -->
@@ -593,13 +587,12 @@ if ($ih_page == 'manager') {
                 // 3) Current image is an image with a **different** extension as the main, show Delete only
                 //
                 $edit_button = '';
-                $new_button = '';
                 $delete_link = $ih_admin->imageHandlerHrefLink($selected_image_name, $products_filter, 'layout_delete', $selected_parms);
-                $delete_button = '<a href="' . $delete_link . '">' . zen_image_button('button_delete.gif', IMAGE_DELETE) . '</a> &nbsp;';
+                $delete_button = '<a href="' . $delete_link . '" class="btn btn-danger">' . IMAGE_DELETE . '</a> &nbsp;';
                 
                 if ($products_image_extension == $selected_image_extension) {
                     $edit_link = $ih_admin->imageHandlerHrefLink($selected_image_name, $products_filter, 'layout_edit', $selected_parms);
-                    $edit_button = '<a href="' . $edit_link . '">' . zen_image_button('button_edit.gif', IH_IMAGE_EDIT) . '</a> &nbsp; ';
+                    $edit_button = '<a href="' . $edit_link . '" class="btn btn-warning">' . IH_IMAGE_EDIT . '</a> &nbsp; ';
                 }
                 $contents[] = array(
                     'align' => 'center', 
@@ -619,7 +612,7 @@ if ($ih_page == 'manager') {
                 );
 
             case 'layout_new':
-                if (!isset($editing)) {
+                if (empty($editing)) {
                     $editing = false;
                     $hidden_vars = zen_draw_hidden_field('saveType', ($no_images) ? 'new_main' : 'new_addl');
                     $heading[] = array(
@@ -730,10 +723,10 @@ if ($ih_page == 'manager') {
                 } else {
                     $cancel_button_link = $ih_admin->imageHandlerHrefLink($selected_image_name, $products_filter, 'layout_info');
                 }
-                $cancel_button = '<a href="' . $cancel_button_link . '">' . zen_image_button('button_cancel.gif', IMAGE_CANCEL) . '</a>';
+                $cancel_button = '<a href="' . $cancel_button_link . '" class="btn btn-warning">' . IMAGE_CANCEL . '</a>';
                 $contents[] = array(
                     'align' => 'center', 
-                    'text' => '<br />' . $cancel_button . '&nbsp;' . zen_image_submit('button_save.gif', IMAGE_SAVE) . $hidden_vars
+                    'text' => '<br />' . $cancel_button . '&nbsp;' . '<input type="submit" class="btn btn-primary" value="' . IMAGE_SAVE . '" />' . $hidden_vars
                 );
                 break;
                 
@@ -768,10 +761,10 @@ if ($ih_page == 'manager') {
                 }
 
                 $cancel_button_link = $ih_admin->imageHandlerHrefLink($selected_image_name, $products_filter, 'layout_info');
-                $cancel_button = '<a href="' . $cancel_button_link . '">' . zen_image_button('button_cancel.gif', IMAGE_CANCEL) . '</a>';
+                $cancel_button = '<a href="' . $cancel_button_link . '" class="btn btn-warning">' . IMAGE_CANCEL . '</a>';
                 $contents[] = array(
                     'align' => 'center', 
-                    'text' => '<br />' . $cancel_button . '&nbsp;' . zen_image_submit('button_delete.gif', IMAGE_DELETE)
+                    'text' => '<br />' . $cancel_button . '&nbsp;' . '<input type="submit" class="btn btn-danger" value ="' . IMAGE_DELETE . '" />'
                 );
                 break;
             

@@ -9,7 +9,7 @@
  * @copyright Copyright 2003-2019 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: additional_images.php 2018-06-12 09:38:06Z webchills $
+ * @version $Id: additional_images.php 2019-11-01 09:38:06Z webchills $
  */
 if (!defined('IS_ADMIN_FLAG')) {
     die('Illegal Access');
@@ -153,6 +153,7 @@ if ($num_images > 0) {
                 'products_name' => $products_name,
                 'products_image_large' => $products_image_large,
                 'thumb_slashes' => $thumb_slashes,
+                'large_link' => $large_link,
                 'index' => $i
             ),
             $script_link,

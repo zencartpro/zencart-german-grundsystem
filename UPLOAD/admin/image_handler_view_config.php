@@ -6,7 +6,7 @@
  * @copyright Copyright 2003-2019 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: image_handler_view_config.php 2018-06-15 16:13:51Z webchills $
+ * @version $Id: image_handler_view_config.php 2019-11-01 08:13:51Z webchills $
  */
 require 'includes/application_top.php';
 
@@ -38,9 +38,9 @@ tr.ih-error td:last-child { color: red; font-weight: bold; }
 tr span { font-size: smaller; }
 -->
 </style>
-<script type="text/javascript" src="includes/menu.js"></script>
-<script type="text/javascript" src="includes/general.js"></script>
-<script type="text/javascript">
+<script src="includes/menu.js"></script>
+<script src="includes/general.js"></script>
+<script>
 <!--
 function init()
 {
