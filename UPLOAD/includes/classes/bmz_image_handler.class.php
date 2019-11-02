@@ -6,7 +6,7 @@
  * @copyright Copyright 2003-2019 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: bmz_image_handler.class.php 2019-11-01 08:13:51Z webchills $
+ * @version $Id: bmz_image_handler.class.php 2019-11-02 14:13:51Z webchills $
  */
 
 if (!defined('IH_DEBUG_ADMIN')) {
@@ -44,7 +44,7 @@ class ih_image
      * ih_image class constructor
      * @author Tim Kroeger (tim@breakmyzencart.com)
      * @author Cindy Merkin (lat9)
-     * @version 5.1.5
+     * @version 5.1.6
      * @param string $src Image source (e.g. - images/productimage.jpg)
      * @param string $width The image's width
      * @param string $height The image's height
