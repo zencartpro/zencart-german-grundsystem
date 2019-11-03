@@ -5,7 +5,7 @@
  * @copyright Copyright 2003-2019 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: storepickup.php 736 2019-06-25 07:49:16Z webchills $
+ * @version $Id: storepickup.php 737 2019-11-03 07:49:16Z webchills $
  */
 /**
  * Store-Pickup / Will-Call shipping method
@@ -57,7 +57,7 @@ class storepickup extends base {
     $this->icon = ''; // add image filename here; must be uploaded to the /images/ subdirectory
     $this->tax_class = MODULE_SHIPPING_STOREPICKUP_TAX_CLASS;
     $this->tax_basis = MODULE_SHIPPING_STOREPICKUP_TAX_BASIS;
-    $this->enabled = (MODULE_SHIPPING_STOREPICKUP_STATUS == 'True');
+    $this->enabled = ((MODULE_SHIPPING_STOREPICKUP_STATUS == 'True') ? true : false);
     $this->update_status();
   }
   /**
@@ -91,9 +91,19 @@ class storepickup extends base {
     }
 
     // other status checks?
-    if ($this->enabled) {
-      // other checks here
-    }
+        // check country
+        $dest_country = isset ($order->delivery['country']['iso_code_2']) ? $order->delivery['country']['iso_code_2'] : 0 ;
+        $dest_zone = 0;
+        $error = false;
+        $countries_table = MODULE_SHIPPING_STOREPICKUP_COUNTRIES; 
+        $country_zones = explode(",", $countries_table);
+        if (in_array($dest_country, $country_zones)) {
+            $dest_zone = $i;
+            $this->enabled = true;
+        } else {
+            $this->enabled = false;
+        }
+
   }
   /**
    * Obtain quote from shipping system/calculations
