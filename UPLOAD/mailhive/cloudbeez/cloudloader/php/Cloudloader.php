@@ -713,7 +713,7 @@ class Cloudloader extends CloudloaderBase
 
         $url = (($auth_mode == 'public') ? CLOUDBEEZ_GATEWAY_PUBLIC : CLOUDBEEZ_GATEWAY_PRIVATE) . '/' . $uri;
 
-        $this->log('Server request: %s', $uri);
+        $this->log('Server request (prepare): %s', $uri);
 
 
         // workaround for CURLOPT_FOLLOWLOCATION -> open_basedir conflict
