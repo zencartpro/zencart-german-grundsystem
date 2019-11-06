@@ -1,5 +1,5 @@
 ﻿Willkommen bei der deutschen Zen-Cart Version
-Version 1.5.6d vom 01.11.2019
+Version 1.5.6d vom 07.11.2019
 
 Installationsanleitung in der umfangreichen Onlinedokumentation auf:
 https://www.zen-cart-pro.at/documentation.html
