@@ -20,6 +20,7 @@ Empfohlene Konfiguration:
 * Update CKEditor auf 4.13.0
 * Update Tiny MCE Editor auf 5.1.1
 * Update Mobile Detect auf 2.8.34
+* Update PHP Mailer auf 6.1.1
 * Update Image Handler auf 5.1.6
 * Update Logfileanzeige auf 2.1.2
 * Update Sales Report auf 3.3.2

@@ -24,7 +24,7 @@ includes\classes\vendors\PHPMailer\language\phpmailer.lang-af.php
 
 
 ----------------------------------------------------------------------------------------
-Geänderte Dateien in 1.5.6d (158)
+Geänderte Dateien in 1.5.6d (159)
 ----------------------------------------------------------------------------------------
 
 admin\includes\classes\sales_report.php
@@ -33,6 +33,7 @@ admin\includes\languages\english\image_handler.php
 admin\includes\languages\english\image_handler_about.php
 admin\includes\languages\english\stats_sales_report.php
 admin\includes\languages\german\coupon_admin.php
+admin\includes\languages\german\customers.php
 admin\includes\languages\german\geo_zones.php
 admin\includes\languages\german\image_handler.php
 admin\includes\languages\german\image_handler_about.php
