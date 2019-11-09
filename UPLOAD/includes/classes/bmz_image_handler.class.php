@@ -6,9 +6,9 @@
  * @copyright Copyright 2003-2019 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: bmz_image_handler.class.php 2019-11-02 14:13:51Z webchills $
+ * @version $Id: bmz_image_handler.class.php 2019-11-09 19:52:51Z webchills $
  */
-
+ 
 if (!defined('IH_DEBUG_ADMIN')) {
     define('IH_DEBUG_ADMIN', 'false');
 }
@@ -173,9 +173,9 @@ class ih_image
     {
         global $ihConf;
         
-        if (strpos($this->src, $ihConf['large']['suffix']) !== false) {
+        if (!empty($ihConf['large']['suffix']) && strpos($this->src, $ihConf['large']['suffix']) !== false) {
             $this->sizetype = 'large';
-        } elseif (strpos($this->src, $ihConf['medium']['suffix']) !== false) {
+        } elseif (!empty($ihConf['medium']['suffix']) && strpos($this->src, $ihConf['medium']['suffix']) !== false) {
             $this->sizetype = 'medium';
         } elseif (((int)$this->width) == ((int)$ihConf['small']['width']) && (((int)$this->height) == ((int)$ihConf['small']['height']))) {
             $this->sizetype = 'small';
@@ -272,7 +272,8 @@ class ih_image
         // $ihConf['dir']['docroot']!
         //
         $allowed = false;
-        if ($ihConf['resize'] && strpos($this->src, $ihConf['noresize_key']) === false && (strpos($this->src, $ihConf['dir']['images']) === 0 || strpos(DIR_FS_CATALOG . $this->src, $bmzConf['cachedir']) === 0)) {
+        if ($ihConf['resize'] && !empty($ihConf['noresize_key']) && strpos($this->src, $ihConf['noresize_key']) === false && 
+             (strpos($this->src, $ihConf['dir']['images']) === 0 || strpos(DIR_FS_CATALOG . $this->src, $bmzConf['cachedir']) === 0)) {
             $allowed = true;
             foreach ($ihConf['noresize_dirs'] as $noresize_dir) {
                 if (strpos($this->src, $ihConf['dir']['images'] . $noresize_dir . '/') === 0) {
@@ -894,7 +895,7 @@ class ih_image
             $red = min((int)$red, 255);
             $green = min((int)$green, 255);
             $blue = min((int)$blue, 255);
-            $color = array('r'=>$red, 'g'=>$green, 'b'=>$blue);
+            $color = array('r' => $red, 'g' => $green, 'b' => $blue);
         }
         return $color;
     }
