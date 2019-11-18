@@ -11,7 +11,7 @@
  * @copyright Portions Copyright 2003 osCommerce
  * portions Copyright (c) 2003 Edwin Bekaert (edwin@ednique.com)
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: shipping_estimator.php 808 2019-06-15 21:28:24Z webchills $
+ * @version $Id: shipping_estimator.php 809 2019-11-18 20:28:24Z webchills $
  */
 if (!defined('IS_ADMIN_FLAG')) {
   die('Illegal Access');
@@ -50,7 +50,7 @@ if ($_SESSION['cart']->count_contents() > 0) {
 
   $sendto = 0;
 
-  if (!empty($_SESSION['customer_id'])) {
+  if (zen_is_logged_in() && !zen_in_guest_checkout()) {
     // user is logged in
     if (isset($_POST['address_id'])){
       // user changed address
@@ -219,7 +219,7 @@ if ($_SESSION['cart']->count_contents() > 0) {
   } else {
     $show_in = FILENAME_SHOPPING_CART;
   }
-  if (!empty($_SESSION['customer_id'])) {
+  if (zen_is_logged_in() && !zen_in_guest_checkout()) {
     $addresses = $db->execute("select address_book_id, entry_city as city, entry_postcode as postcode, entry_state as state, entry_zone_id as zone_id, entry_country_id as country_id from " . TABLE_ADDRESS_BOOK . " where customers_id = '" . (int)$_SESSION['customer_id'] . "'");
     // only display addresses if more than 1
     if ($addresses->RecordCount() > 1){
