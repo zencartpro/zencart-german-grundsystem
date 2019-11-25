@@ -6,7 +6,7 @@
  * @copyright Copyright 2003-2019 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: shopping_cart.php 784 2019-07-21 14:31:29Z webchills $
+ * @version $Id: shopping_cart.php 785 2019-11-25 19:53:29Z webchills $
  */
 
 if (!defined('IS_ADMIN_FLAG')) {
@@ -1216,7 +1216,7 @@ class shoppingCart extends base {
 
     $products_array = array();
     foreach($this->contents as $products_id => $data) {
-      $products_query = "select p.products_id, p.master_categories_id, p.products_status, pd.products_name, p.products_model, p.products_image,
+      $products_query = "select p.products_id, p.master_categories_id, p.products_status, pd.products_name, pd.products_merkmale, p.products_model, p.products_image,
                                   p.products_price, p.products_weight, p.products_tax_class_id,
                                   p.products_quantity_order_min, p.products_quantity_order_units, p.products_quantity_order_max,
                                   p.product_is_free, p.products_priced_by_attribute,
