@@ -6,7 +6,7 @@
  * @copyright Copyright 2003-2019 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: ot_coupon.php 738 2019-06-15 17:18:16Z webchills $
+ * @version $Id: ot_coupon.php 739 2019-11-26 15:18:16Z webchills $
  */
 /**
  * Order Total class  to handle discount coupons
@@ -528,8 +528,8 @@ class ot_coupon {
               return $od_amount;
               break;
             case 'P': // percentage
-//              $od_amount['total'] = zen_round($orderTotalDetails['orderTotal']*($coupon->fields['coupon_amount']/100), $currencyDecimalPlaces);
-              $od_amount['total'] = zen_round($coupon_total*($coupon->fields['coupon_amount']/100), $currencyDecimalPlaces);
+              $od_amount['total'] = zen_round($orderTotalDetails['orderTotal']*($coupon->fields['coupon_amount']/100), $currencyDecimalPlaces);
+//              $od_amount['total'] = zen_round($coupon_total*($coupon->fields['coupon_amount']/100), $currencyDecimalPlaces);
               $od_amount['type'] = $coupon->fields['coupon_type'];
 //              $ratio = $od_amount['total']/$orderTotalDetails['orderTotal'];
               $ratio = $od_amount['total']/$coupon_total;
