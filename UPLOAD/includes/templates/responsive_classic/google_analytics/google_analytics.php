@@ -7,7 +7,7 @@
 * @copyrightPortions Copyright (c) 2007-2017 Eric Leuenberger	
 * @copyright Portions Copyright 2003 osCommerce
 * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
-* @version $Id: google_analytics.php 2019-09-26 09:15:58Z webchills $
+* @version $Id: google_analytics.php 2019-12-23 21:27:58Z webchills $
 */
 
 if (GOOGLE_ANALYTICS_ENABLED == "Enabled") {
@@ -76,7 +76,7 @@ if (GOOGLE_ANALYTICS_ENABLED == "Enabled") {
 
             echo ("<script><!--\n\n");
 
-            $geeProducts   = $db->Execute("select products_id, final_price, customers_id, customers_basket_quantity from " . TABLE_CUSTOMERS_BASKET . " where customers_id = '" . $_SESSION['customer_id'] . "'");
+            $geeProducts   = $db->Execute("select products_id, customers_id, customers_basket_quantity from " . TABLE_CUSTOMERS_BASKET . " where customers_id = '" . $_SESSION['customer_id'] . "'");
 
             while(!$geeProducts->EOF) {
 
@@ -154,7 +154,7 @@ if (GOOGLE_ANALYTICS_ENABLED == "Enabled") {
 
             echo ("<script><!--\n\n");
 
-            $geeProducts   = $db->Execute("select products_id, final_price, customers_id, customers_basket_quantity from " . TABLE_CUSTOMERS_BASKET . " where customers_id = '" . $_SESSION['customer_id'] . "'");
+            $geeProducts   = $db->Execute("select products_id, customers_id, customers_basket_quantity from " . TABLE_CUSTOMERS_BASKET . " where customers_id = '" . $_SESSION['customer_id'] . "'");
 
             while(!$geeProducts->EOF) {
 
@@ -231,7 +231,7 @@ if (GOOGLE_ANALYTICS_ENABLED == "Enabled") {
 
             echo ("<script><!--\n\n");
 
-            $geeProducts   = $db->Execute("select products_id, final_price, customers_id, customers_basket_quantity from " . TABLE_CUSTOMERS_BASKET . " where customers_id = '" . $_SESSION['customer_id'] . "'");
+            $geeProducts   = $db->Execute("select products_id, customers_id, customers_basket_quantity from " . TABLE_CUSTOMERS_BASKET . " where customers_id = '" . $_SESSION['customer_id'] . "'");
 
             while(!$geeProducts->EOF) {
 
