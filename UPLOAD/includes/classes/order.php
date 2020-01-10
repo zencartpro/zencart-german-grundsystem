@@ -4,9 +4,9 @@
  * File contains the order-processing class ("order")
  *
  * @package classes
- * @copyright Copyright 2003-2019 Zen Cart Development Team
+ * @copyright Copyright 2003-2020 Zen Cart Development Team
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: order.php 2019-10-31 21:02:25Z webchills $
+ * @version $Id: order.php 2020-01-10 14:02:25Z webchills $
  */
 /**
  * order class
@@ -580,10 +580,15 @@ class order extends base {
         /*********************************************
          * Calculate taxes for this product
          *********************************************/
+		if (DISPLAY_PRICE_WITH_TAX == 'true') {
         $shown_price = (zen_add_tax($this->products[$index]['final_price'], $this->products[$index]['tax']))
         + zen_add_tax($this->products[$index]['onetime_charges'], $this->products[$index]['tax']);        
         $this->info['subtotal'] += $currencies->value($shown_price)* $this->products[$index]['qty'];
-
+		} else {
+		$shown_price = (zen_add_tax($this->products[$index]['final_price'] * $this->products[$index]['qty'], $this->products[$index]['tax']))
+        + zen_add_tax($this->products[$index]['onetime_charges'], $this->products[$index]['tax']);
+        $this->info['subtotal'] += $shown_price;
+		}
         $this->notify('NOTIFIY_ORDER_CART_SUBTOTAL_CALCULATE', array('shown_price'=>$shown_price));
         // find product's tax rate and description
         $products_tax = $this->products[$index]['tax'];
