@@ -6,7 +6,7 @@
  * @package classes
  * @copyright Copyright 2003-2020 Zen Cart Development Team
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: order.php 2020-01-10 14:02:25Z webchills $
+ * @version $Id: order.php 2020-01-16 08:55:25Z webchills $
  */
 /**
  * order class
@@ -443,7 +443,27 @@ class order extends base {
                               'email_address' => $customer_address->fields['customers_email_address']);
     }
 
-    if ($shipping_address->RecordCount() > 0) {
+    if ($this->content_type == 'virtual') {
+      $this->delivery = array(
+        'firstname' => '',
+        'lastname' => '',
+        'company' => '',
+        'street_address' => '',
+        'suburb' => '',
+        'city' => '',
+        'postcode' => '',
+        'state' => '',
+        'zone_id' => 0,
+        'country' => array(
+            'id' => 0, 
+            'title' => '', 
+            'iso_code_2' => '', 
+            'iso_code_3' => ''
+        ),
+        'country_id' => 0,
+        'format_id' => 0
+      );
+    } elseif ($shipping_address->RecordCount() > 0) {
       $this->delivery = array('firstname' => $shipping_address->fields['entry_firstname'],
                               'lastname' => $shipping_address->fields['entry_lastname'],
                               'company' => $shipping_address->fields['entry_company'],
