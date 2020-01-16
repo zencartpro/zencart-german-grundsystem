@@ -2,11 +2,11 @@
 /**
  * @package Image Handler
  * @copyright Copyright 2005-2006 Tim Kroeger (original author)
- * @copyright Copyright 2018-2019 lat 9 - Vinos de Frutas Tropicales
- * @copyright Copyright 2003-2019 Zen Cart Development Team
+ * @copyright Copyright 2018-2020 lat 9 - Vinos de Frutas Tropicales
+ * @copyright Copyright 2003-2020 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: bmz_image_handler.class.php 2019-11-09 19:52:51Z webchills $
+ * @version $Id: bmz_image_handler.class.php 2020-01-16 10:52:51Z webchills $
  */
  
 if (!defined('IH_DEBUG_ADMIN')) {
@@ -44,7 +44,7 @@ class ih_image
      * ih_image class constructor
      * @author Tim Kroeger (tim@breakmyzencart.com)
      * @author Cindy Merkin (lat9)
-     * @version 5.1.6
+     * @version 5.1.8
      * @param string $src Image source (e.g. - images/productimage.jpg)
      * @param string $width The image's width
      * @param string $height The image's height
@@ -406,7 +406,7 @@ class ih_image
     protected function getCacheName($data, $ext='') 
     {
         $md5  = (IH_CACHE_NAMING == 'Hashed') ? md5($data) : $data;
-        $file = $GLOBALS['bmzConf']['cachedir'] . '/' . $md5{0} . '/' . $md5 . $ext;
+        $file = $GLOBALS['bmzConf']['cachedir'] . '/' . substr($md5, 0, 1) . '/' . $md5 . $ext;
         io_makeFileDir($file);
         $this->ihLog("getCacheName($data, $ext), returning $file.");
         return $file;
