@@ -3,10 +3,10 @@
  * Password Forgotten
  *
  * @package page
- * @copyright Copyright 2003-2019 Zen Cart Development Team
+ * @copyright Copyright 2003-2020 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: header_php.php 733 2019-07-20 09:29:16Z webchills $
+ * @version $Id: header_php.php 734 2020-01-17 10:51:16Z webchills $
  */
 
 // This should be first line of the script:
@@ -20,14 +20,12 @@ $_SESSION['navigation']->remove_current_page();
 
 if (isset($_GET['action']) && ($_GET['action'] == 'process')) {
 // Slam prevention:
-  if ($_SESSION['login_attempt'] > 9)
-  {
+  if (isset($_SESSION['login_attempt']) && $_SESSION['login_attempt'] > 9) {
     header('HTTP/1.1 406 Not Acceptable');
     exit(0);
   }
   // BEGIN SLAM PREVENTION
-  if (!empty($_POST['email_address']))
-  {
+  if (!empty($_POST['email_address'])) {
     if (! isset($_SESSION['login_attempt'])) $_SESSION['login_attempt'] = 0;
     $_SESSION['login_attempt'] ++;
   } // END SLAM PREVENTION

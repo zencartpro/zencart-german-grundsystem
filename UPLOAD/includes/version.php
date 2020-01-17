@@ -8,15 +8,15 @@
  * THIS FILE SHOULD NEVER BE EDITED MANUALLY !!!!!!!!
  *
  * @package general
- * @copyright Copyright 2003-2019 Zen Cart Development Team
+ * @copyright Copyright 2003-2020 Zen Cart Development Team
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: version.php 850 2019-11-01 09:10:58Z webchills $
+ * @version $Id: version.php 851 2020-01-16 10:50:58Z webchills $
  * @private
  */
 
 define('PROJECT_VERSION_NAME', 'Zen Cart');
 define('PROJECT_VERSION_MAJOR', '1');
-define('PROJECT_VERSION_MINOR', '5.6d');
+define('PROJECT_VERSION_MINOR', '5.6e');
 define('PROJECT_VERSION_PATCH1', '');
 define('PROJECT_VERSION_PATCH2', '');
 define('PROJECT_VERSION_PATCH1_SOURCE', '');

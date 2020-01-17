@@ -7,7 +7,7 @@
  * @copyright Copyright 2003-2019 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: whos_online.php 732 2019-04-12 11:49:16Z webchills $
+ * @version $Id: whos_online.php 733 2020-01-17 09:49:16Z webchills $
  */
 /**
  * zen_update_whos_online
@@ -15,7 +15,7 @@
 function zen_update_whos_online() {
   global $db;
 
-  if (isset($_SESSION['customer_id']) && $_SESSION['customer_id']) {
+  if (zen_is_logged_in() && !zen_in_guest_checkout()) {
     $wo_customer_id = $_SESSION['customer_id'];
 
     $customer_query = "select customers_firstname, customers_lastname

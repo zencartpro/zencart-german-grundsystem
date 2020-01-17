@@ -3,16 +3,16 @@
  * payer_auth_auth page
  *
  * @package paymentMethod
- * @copyright Copyright 2003-2019 Zen Cart Development Team
+ * @copyright Copyright 2003-2020 Zen Cart Development Team
  * @copyright Portions Copyright 2005 CardinalCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: header_php.php 729 2011-08-09 15:49:16Z hugo13 $
+ * @version $Id: header_php.php 730 2020-01-17 10:49:16Z webchills $
  */
-  if (!isset($_SESSION['customer_id']) || (int)$_SESSION['customer_id'] < 1) {
+  if (!zen_is_logged_in()) {
     die(WARNING_SESSION_TIMEOUT);
   }
 // load all enabled modules
-  if (!isset($_SESSION['payment']) || $_SESSION['payment'] == '') zen_redirect(zen_href_link(FILENAME_CHECKOUT_PAYMENT, '', 'SSL', true, false));
+  if (empty($_SESSION['payment'])) zen_redirect(zen_href_link(FILENAME_CHECKOUT_PAYMENT, '', 'SSL', true, false));
   require(DIR_WS_CLASSES . 'payment.php');
   $payment_modules = new payment($_SESSION['payment']);
   $payment_module = $_SESSION['payment'];

@@ -3,10 +3,10 @@
  * Header code file for the Advanced Search Results page
  *
  * @package page
- * @copyright Copyright 2003-2019 Zen Cart Development Team
+ * @copyright Copyright 2003-2020 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: header_php.php 799 2019-06-15 21:24:50Z webchills $
+ * @version $Id: header_php.php 800 2020-01-17 10:24:50Z webchills $
  */
 
 // This should be first line of the script:
@@ -24,9 +24,17 @@ require(zen_get_index_filters_directory($typefilter . '_filter.php'));
 $error = false;
 $missing_one_input = false;
 
-$_GET['keyword'] = trim($_GET['keyword']);
+$_GET['keyword'] = isset($_GET['keyword']) ? trim($_GET['keyword']) : '';
 
-if ( (isset($_GET['keyword']) && (empty($_GET['keyword']) || $_GET['keyword']==HEADER_SEARCH_DEFAULT_TEXT || $_GET['keyword'] == KEYWORD_FORMAT_STRING ) ) &&
+// -----
+// Give an observer the chance to indicate that there's another element to the search
+// that **is** provided, enabling the search to continue.
+//
+$search_additional_clause = false;
+$zco_notifier->notify('NOTIFY_ADVANCED_SEARCH_RESULTS_ADDL_CLAUSE', array(), $search_additional_clause);
+
+if ($search_additional_clause === false && 
+(empty($_GET['keyword']) || $_GET['keyword'] == HEADER_SEARCH_DEFAULT_TEXT || $_GET['keyword'] == KEYWORD_FORMAT_STRING) &&
 (isset($_GET['dfrom']) && (empty($_GET['dfrom']) || ($_GET['dfrom'] == DOB_FORMAT_STRING))) &&
 (isset($_GET['dto']) && (empty($_GET['dto']) || ($_GET['dto'] == DOB_FORMAT_STRING))) &&
 (isset($_GET['pfrom']) && !is_numeric($_GET['pfrom'])) &&
@@ -477,6 +485,11 @@ $result = new splitPageResults($listing_sql, MAX_DISPLAY_PRODUCTS_LISTING, 'p.pr
 if ($result->number_of_rows == 0) {
   $messageStack->add_session('search', TEXT_NO_PRODUCTS, 'caution');
   zen_redirect(zen_href_link(FILENAME_ADVANCED_SEARCH, zen_get_all_get_params('action')));
+}
+// if only one product found in search results, go directly to the product page, instead of displaying a link to just one item:
+if ($result->number_of_rows == 1 && SKIP_SINGLE_PRODUCT_CATEGORIES == 'True') {
+  $result = $db->Execute($listing_sql);
+  zen_redirect(zen_href_link(zen_get_info_page($result->fields['products_id']), 'cPath=' . zen_get_product_path($result->fields['products_id']) . '&products_id=' . $result->fields['products_id']));
 }
 // This should be last line of the script:
 $zco_notifier->notify('NOTIFY_HEADER_END_ADVANCED_SEARCH_RESULTS', $keywords);

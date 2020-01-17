@@ -1,10 +1,10 @@
 <?php
 /**
  * @package languageDefines
- * @copyright Copyright 2003-2019 Zen Cart Development Team
+ * @copyright Copyright 2003-2020 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: advanced_search_result.php 293 2015-12-22 17:49:16Z MaleBorg $
+ * @version $Id: advanced_search_result.php 294 2020-01-16 15:49:16Z webchills $
  */
 
 define('NAVBAR_TITLE_1', 'Erweiterte Suche');
@@ -45,9 +45,9 @@ define('TABLE_HEADING_BUY_NOW', 'Jetzt kaufen');
 define('TEXT_NO_PRODUCTS', 'Es wurden keine Artikel gefunden, die Ihren Suchkriterien entsprechen.');
 
 define('ERROR_AT_LEAST_ONE_INPUT', 'Es muss mindestens eine Auswahl getroffen werden.');
-define('ERROR_INVALID_FROM_DATE', 'Unzulässiger Eintrag "Vom Datum"');
+define('ERROR_INVALID_FROM_DATE', 'Unzulässiger Eintrag "vom Datum"');
 define('ERROR_INVALID_TO_DATE', 'Unzulässiger Eintrag "bis Datum"');
-define('ERROR_TO_DATE_LESS_THAN_FROM_DATE', '"bis Datum" muss später als Eintrag "Vom Datum" sein.');
+define('ERROR_TO_DATE_LESS_THAN_FROM_DATE', '"bis Datum" muss später als "vom Datum" sein.');
 define('ERROR_PRICE_FROM_MUST_BE_NUM', '"Preis von" muss eine Zahl sein.');
 define('ERROR_PRICE_TO_MUST_BE_NUM', '"Preis bis" muss eine Zahl sein.');
 define('ERROR_PRICE_TO_LESS_THAN_PRICE_FROM', '"Preis bis" muss größer sein als "Preis von".');

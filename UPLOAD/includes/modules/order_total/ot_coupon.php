@@ -3,10 +3,10 @@
  * ot_coupon order-total module
  *
  * @package orderTotal
- * @copyright Copyright 2003-2019 Zen Cart Development Team
+ * @copyright Copyright 2003-2020 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: ot_coupon.php 739 2019-11-26 15:18:16Z webchills $
+ * @version $Id: ot_coupon.php 740 2020-01-17 09:18:16Z webchills $
  */
 /**
  * Order Total class  to handle discount coupons
@@ -137,13 +137,15 @@ class ot_coupon {
    */
   function credit_selection() {
     global $discount_coupon, $request_type;
-    if (!isset($discount_coupon->fields['coupon_code'])) {
-      $discount_coupon->fields['coupon_code'] = '';
+
+    $coupon_code = '';
+    if (isset($discount_coupon->fields['coupon_code'])) {
+      $coupon_code = $discount_coupon->fields['coupon_code'];
     }
     // note the placement of the redeem code can be moved within the array on the instructions or the title
     $selection = array('id' => $this->code,
                        'module' => $this->title,
-                       'redeem_instructions' => MODULE_ORDER_TOTAL_COUPON_REDEEM_INSTRUCTIONS . ($discount_coupon->fields['coupon_code'] != '' ? MODULE_ORDER_TOTAL_COUPON_REMOVE_INSTRUCTIONS : '') . ($discount_coupon->fields['coupon_code'] != '' ? '<p>' . MODULE_ORDER_TOTAL_COUPON_TEXT_CURRENT_CODE . '<a href="javascript:couponpopupWindow(\'' . zen_href_link(FILENAME_POPUP_COUPON_HELP, 'cID=' . $_SESSION['cc_id'], $request_type) . '\')">' . $discount_coupon->fields['coupon_code'] . '</a></p><br />' : ''),
+                       'redeem_instructions' => MODULE_ORDER_TOTAL_COUPON_REDEEM_INSTRUCTIONS . ($coupon_code != '' ? MODULE_ORDER_TOTAL_COUPON_REMOVE_INSTRUCTIONS : '') . ($coupon_code != '' ? '<p>' . MODULE_ORDER_TOTAL_COUPON_TEXT_CURRENT_CODE . '<a href="javascript:couponpopupWindow(\'' . zen_href_link(FILENAME_POPUP_COUPON_HELP, 'cID=' . $_SESSION['cc_id'], $request_type) . '\')">' . $coupon_code . '</a></p><br />' : ''),
                        'fields' => array(array('title' => MODULE_ORDER_TOTAL_COUPON_TEXT_ENTER_CODE,
                                                'field' => zen_draw_input_field('dc_redeem_code', '', 'id="disc-' . $this->code . '" onkeyup="submitFunction(0,0)"'),
                                                'tag' => 'disc-'.$this->code

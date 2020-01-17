@@ -3,10 +3,10 @@
  * breadcrumb Class.
  *
  * @package classes
- * @copyright Copyright 2003-2019 Zen Cart Development Team
+ * @copyright Copyright 2003-2020 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: breadcrumb.php 732 2019-11-06 20:34:16Z webchills $
+ * @version $Id: breadcrumb.php 733 2020-01-17 08:55:16Z webchills $
  */
 if (!defined('IS_ADMIN_FLAG')) {
   die('Illegal Access');
@@ -57,7 +57,9 @@ class breadcrumb extends base {
           $trail_string .= '  <a href="' . $this->_trail[$i]['link'] . '">' . $this->_trail[$i]['title'] . '</a>';
         }
       } else {
-        $trail_string .= $this->_trail[$i]['title'];
+        if (isset($this->_trail[$i]['title'])) {
+          $trail_string .= $this->_trail[$i]['title'];
+        }
       }
 
       if (($i+1) < $n) $trail_string .= $separator;

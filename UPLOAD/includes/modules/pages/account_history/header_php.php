@@ -3,10 +3,10 @@
  * Header code file for the Account History page
  *
  * @package page
- * @copyright Copyright 2003-2019 Zen Cart Development Team
+ * @copyright Copyright 2003-2020 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: header_php.php 730 2019-06-15 20:49:16Z webchills $
+ * @version $Id: header_php.php 731 2020-01-17 10:18:16Z webchills $
  */
 // This should be first line of the script:
 $zco_notifier->notify('NOTIFY_HEADER_START_ACCOUNT_HISTORY');
@@ -30,7 +30,9 @@ if ($orders_total > 0) {
                         WHERE      o.customers_id = :customersID
                         AND        o.orders_id = ot.orders_id
                         AND        ot.class = 'ot_total'
-                        AND        o.orders_status = s.orders_status_id
+                        AND    s.orders_status_id = 
+                          (SELECT orders_status_id FROM " . TABLE_ORDERS_STATUS_HISTORY . " osh 
+                           WHERE osh.orders_id = o.orders_id AND osh.customer_notified >= 0 ORDER BY osh.date_added DESC LIMIT 1)
                         AND        s.language_id = :languagesID
                         ORDER BY   orders_id DESC";
 

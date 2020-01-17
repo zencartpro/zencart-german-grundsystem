@@ -3,10 +3,10 @@
  * GV redeem
  *
  * @package page
- * @copyright Copyright 2003-2019 Zen Cart Development Team
+ * @copyright Copyright 2003-2020 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: header_php.php 731 2019-06-15 21:49:16Z webchills $
+ * @version $Id: header_php.php 732 2020-01-15 21:49:16Z webchills $
  */
 $zco_notifier->notify('NOTIFY_HEADER_START_GV_REDEEM');
 
@@ -14,7 +14,7 @@ require(DIR_WS_MODULES . zen_get_module_directory('require_languages.php'));
 $_GET['gv_no'] = zen_sanitize_string(trim($_GET['gv_no']));
 
 // if the customer is not logged on, redirect them to the login page
-if (!zen_is_logged_in()) {
+if (!zen_is_logged_in() || zen_in_guest_checkout()) {
   $_SESSION['navigation']->set_snapshot();
   $messageStack->add_session('login', ERROR_GV_CREATE_ACCOUNT, 'error');
   zen_redirect(zen_href_link(FILENAME_LOGIN, (isset($_GET['gv_no']) ? 'gv_no=' . preg_replace('/[^0-9.,%]/', '', $_GET['gv_no']) : '' ), 'SSL'));
@@ -50,7 +50,7 @@ if (isset($_GET['gv_no'])) {
 } else {
   zen_redirect(zen_href_link(FILENAME_DEFAULT));
 }
-if ((!$error) && ($_SESSION['customer_id'])) {
+if (!$error) {
   // Update redeem status
   $gv_query = "INSERT INTO  " . TABLE_COUPON_REDEEM_TRACK . "(coupon_id, customer_id, redeem_date, redeem_ip)
                VALUES (:couponID, :customersID, now(), :remoteADDR)";

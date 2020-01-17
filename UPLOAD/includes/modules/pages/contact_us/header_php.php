@@ -3,10 +3,10 @@
  * Contact Us Page
  *
  * @package page
- * @copyright Copyright 2003-2019 Zen Cart Development Team
+ * @copyright Copyright 2003-2020 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: header_php.php 735 2019-07-20 09:32:16Z webchills $
+ * @version $Id: header_php.php 736 2020-01-17 10:32:16Z webchills $
  */
 
 // This should be first line of the script:
@@ -35,7 +35,7 @@ if (isset($_GET['action']) && ($_GET['action'] == 'send')) {
         } elseif ($antiSpam == '') {
 
             // auto complete when logged in
-            if ($_SESSION['customer_id']) {
+            if (zen_is_logged_in() && !zen_in_guest_checkout()) {
                 $sql = "SELECT customers_id, customers_firstname, customers_lastname, customers_password, customers_email_address, customers_default_address_id
                       FROM " . TABLE_CUSTOMERS . "
                       WHERE customers_id = :customersID";

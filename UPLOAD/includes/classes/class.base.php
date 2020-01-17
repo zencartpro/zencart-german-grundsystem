@@ -3,9 +3,9 @@
  * File contains just the base class
  *
  * @package classes
- * @copyright Copyright 2003-2019 Zen Cart Development Team
+ * @copyright Copyright 2003-2020 Zen Cart Development Team
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: class.base.php 734 2019-04-12 10:11:16Z webchills $
+ * @version $Id: class.base.php 735 2020-01-17 08:11:16Z webchills $
  */
 /**
  * abstract class base
@@ -74,7 +74,7 @@ class base {
         }
       }
       global $this_is_home_page, $PHP_SELF;
-      $main_page = (isset($this_is_home_page) && $this_is_home_page) ? 'index-home' : (IS_ADMIN_FLAG) ? basename($PHP_SELF) : (isset($_GET['main_page'])) ? $_GET['main_page'] : '';
+      $main_page = (isset($this_is_home_page) && $this_is_home_page) ? 'index-home' : ((IS_ADMIN_FLAG) ? basename($PHP_SELF) : (isset($_GET['main_page']) ? $_GET['main_page'] : ''));
       $output = '';
       if (count($paramArray)) {
         $output = ', ';
