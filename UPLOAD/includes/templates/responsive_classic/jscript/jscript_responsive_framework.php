@@ -1,13 +1,13 @@
 <?php
 /**
  * @package templateSystem
- * @copyright Copyright 2003-2019 Zen Cart Development Team
+ * @copyright Copyright 2003-2020 Zen Cart Development Team
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: jscript_responsive_framework 4 2019-06-27 08:15:58Z webchills $
+ * @version $Id: jscript_responsive_framework 5 2020-01-17 15:15:58Z webchills $
  */
 ?>
 
-<script type="text/javascript"><!--//
+<script type="text/javascript">
 
 (function($) {
 $(document).ready(function() {
@@ -143,4 +143,4 @@ $('.no-fouc').removeClass('no-fouc');
 
 }) (jQuery);
 
-//--></script>
+</script>

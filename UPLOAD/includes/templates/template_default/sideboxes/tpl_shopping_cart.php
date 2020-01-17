@@ -3,10 +3,10 @@
  * Side Box Template
  *
  * @package templateSystem
- * @copyright Copyright 2003-2019 Zen Cart Development Team
+ * @copyright Copyright 2003-2020 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: tpl_shopping_cart.php 729 2011-08-09 15:49:16Z hugo13 $
+ * @version $Id: tpl_shopping_cart.php 730 2020-01-17 15:49:16Z webchills $
  */
   $content ="";
 
@@ -48,7 +48,7 @@
     $content .= '<br class="clearBoth" />';
   }
 
-  if (isset($_SESSION['customer_id'])) {
+  if (zen_is_logged_in() && !zen_in_guest_checkout()) {
     $gv_query = "select amount
                  from " . TABLE_COUPON_GV_CUSTOMER . "
                  where customer_id = '" . $_SESSION['customer_id'] . "'";
@@ -60,4 +60,3 @@
     }
   }
   $content .= '</div>';
-?>
