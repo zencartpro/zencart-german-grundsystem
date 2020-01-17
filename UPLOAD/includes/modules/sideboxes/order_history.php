@@ -3,13 +3,13 @@
  * order_history sidebox - if enabled, shows customers' most recent orders
  *
  * @package templateSystem
- * @copyright Copyright 2003-2019 Zen Cart Development Team
+ * @copyright Copyright 2003-2020 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: order_history.php 731 2019-04-12 12:49:16Z webchills $
+ * @version $Id: order_history.php 732 2020-01-17 14:49:16Z webchills $
  */
 
-  if (isset($_SESSION['customer_id']) && (int)$_SESSION['customer_id'] != 0) {
+  if (zen_is_logged_in() && !zen_in_guest_checkout()) {
 // retrieve the last x products purchased
   $orders_history_query = "select distinct op.products_id, o.date_purchased
                    from " . TABLE_ORDERS . " o, " . TABLE_ORDERS_PRODUCTS . " op, " . TABLE_PRODUCTS . " p
