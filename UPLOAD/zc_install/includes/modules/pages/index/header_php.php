@@ -1,9 +1,9 @@
 <?php
 /**
  * @package Installer
- * @copyright Copyright 2003-2019 Zen Cart Development Team
+ * @copyright Copyright 2003-2020 Zen Cart Development Team
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: header_php.php 5 2019-04-12 17:49:16Z webchills $
+ * @version $Id: header_php.php 6 2020-01-17 16:49:16Z webchills $
  */
 
 $otherConfigErrors = FALSE;
@@ -52,10 +52,11 @@ $dbVersion = $systemChecker->findCurrentDbVersion();
 $currentDbVersion = EXPECTED_DATABASE_VERSION_MAJOR . '.' . EXPECTED_DATABASE_VERSION_MINOR;
 $isCurrentDb = ($dbVersion == $currentDbVersion) ? TRUE : FALSE;
 $hasSaneConfigFile = $systemChecker->hasSaneConfigFile();
+$hasTables = $systemChecker->hasTables();
 $hasUpdatedConfigFile = $systemChecker->hasUpdatedConfigFile();
 
 
-if ($hasSaneConfigFile && $hasUpdatedConfigFile)
+if ($hasTables && $hasSaneConfigFile && $hasUpdatedConfigFile)
 {
   $systemChecker->addRunLevel('upgradeDb');
 }

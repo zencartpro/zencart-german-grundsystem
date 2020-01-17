@@ -1,6 +1,6 @@
 #
 # * This SQL script upgrades the core Zen Cart database structure from v1.5.2 to v1.5.3
-# *
+# * Zen Cart German Specific
 # * @package Installer
 # * @access private
 # * @copyright Copyright 2003-2019 Zen Cart Development Team

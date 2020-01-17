@@ -2,9 +2,9 @@
 /**
  * file contains zcConfigureFileWriter class
  * @package Installer
- * @copyright Copyright 2003-2019 Zen Cart Development Team
+ * @copyright Copyright 2003-2020 Zen Cart Development Team
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: class.zcConfigureFileWriter.php 5 2019-04-14 11:59:53Z webchills $
+ * @version $Id: class.zcConfigureFileWriter.php 6 2020-01-17 16:59:53Z webchills $
  */
 /**
  * zcConfigureFileWriter class
@@ -21,13 +21,16 @@ class zcConfigureFileWriter
     $replaceVars['DATE_NOW'] = date('D M d Y H:i:s');
     $replaceVars['CATALOG_HTTP_SERVER'] = trim($inputs['http_server_catalog'], '/ ');
     $replaceVars['CATALOG_HTTPS_SERVER'] = trim($inputs['https_server_catalog'], '/ ');
-    $replaceVars['ENABLE_SSL_CATALOG'] = $inputs['enable_ssl_catalog'];
+    $replaceVars['ENABLE_SSL_CATALOG'] = !empty($inputs['enable_ssl_catalog']) ? $inputs['enable_ssl_catalog'] : 'false';
     $replaceVars['DIR_WS_CATALOG'] = preg_replace('~//~', '/', '/' . trim($inputs['dir_ws_http_catalog'], ' /\\') . '/');
     $replaceVars['DIR_WS_HTTPS_CATALOG'] = preg_replace('~//~', '/', '/' . trim($inputs['dir_ws_https_catalog'], ' /\\') . '/');
     $replaceVars['DIR_FS_CATALOG'] = rtrim($inputs['physical_path'], ' /\\') . '/';
+
     $replaceVars['DB_TYPE'] = trim($inputs['db_type']);
     if ($replaceVars['DB_TYPE'] == '') $replaceVars['DB_TYPE'] = 'mysql';
+
     $replaceVars['DB_PREFIX'] = trim($inputs['db_prefix']);
+
     $replaceVars['DB_CHARSET'] = trim($inputs['db_charset']);
     if ($replaceVars['DB_CHARSET'] == '') $replaceVars['DB_CHARSET'] = 'utf8mb4';
 
@@ -52,6 +55,7 @@ class zcConfigureFileWriter
     $outputFile = rtrim($this->inputs['physical_path'], '/') . '/includes/configure.php';
     $outputFileLocal = rtrim($this->inputs['physical_path'], '/') . '/includes/local/configure.php';
     if (file_exists($outputFileLocal)) $outputFile = $outputFileLocal;
+
     $result1 = $this->transformConfigureTplFile($tplFile, $outputFile);
     if ((int)$result1 == 0) logDetails('catalogConfig size: ' . (int)$result1 . ' (will be greater than 0 if file was written correctly)', 'store configure.php');
 
@@ -59,6 +63,7 @@ class zcConfigureFileWriter
     $outputFile = rtrim($this->inputs['physical_path'], '/') . '/'. $adminDir . '/includes/configure.php';
     $outputFileLocal = rtrim($this->inputs['physical_path'], '/') . '/'. $adminDir . '/includes/local/configure.php';
     if (file_exists($outputFileLocal)) $outputFile = $outputFileLocal;
+
     $result2 = $this->transformConfigureTplFile($tplFile, $outputFile);
     if ((int)$result2 == 0) logDetails('adminConfig size: ' . (int)$result2 . ' (will be greater than 0 if file was written correctly)', 'admin configure.php');
 

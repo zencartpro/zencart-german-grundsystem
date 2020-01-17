@@ -2,10 +2,10 @@
 /**
  * @package Installer
  * @access private
- * @copyright Copyright 2003-2019 Zen Cart Development Team
+ * @copyright Copyright 2003-2020 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: inspect.php 19538 2016-03-26 18:14:44Z webchills $
+ * @version $Id: inspect.php 19539 2020-01-17 16:14:44Z webchills $
  */
 /**
  * defining language components for the page
@@ -72,8 +72,6 @@
   define('LABEL_CURL_SSL','CURL SSL Capability');
   define('LABEL_CURL_NONSSL_PROXY','CURL NON-SSL Capability via Proxy');
   define('LABEL_CURL_SSL_PROXY','CURL SSL Capability via Proxy');
-  define('LABEL_PHP_MAG_QT_RUN','PHP magic_quotes_runtime setting');
-  define('LABEL_PHP_MAG_QT_SYBASE','PHP magic_quotes_sybase setting');
   define('LABEL_PHP_EXT_GD','PHP GD Support');
   define('LABEL_GD_VER','GD Version');
   define('LABEL_PHP_EXT_OPENSSL','PHP OpenSSL Support');

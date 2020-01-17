@@ -1,9 +1,9 @@
 <?php
 /**
  * @package Installer
- * @copyright Copyright 2003-2019 Zen Cart Development Team
+ * @copyright Copyright 2003-2020 Zen Cart Development Team
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: database_default.php 2 2016-02-28 21:59:53Z webchills $ 
+ * @version $Id: database_default.php 3 2020-01-17 16:59:53Z webchills $ 
  */
 ?>
 <?php require(DIR_FS_INSTALL . DIR_WS_INSTALL_TEMPLATE . 'partials/partial_modal_progress_bar.php'); ?>
@@ -76,14 +76,6 @@
     <legend><?php echo TEXT_DATABASE_SETUP_ADVANCED_SETTINGS; ?></legend>
     <div class="row">
       <div class="small-3 columns">
-        <label class="inline" for="db_charset"><a href="#" class="hasHelpText" id="DBCHARSET"><?php echo TEXT_DATABASE_SETUP_DB_CHARSET; ?></a></label>
-      </div>
-      <div class="small-9 columns">
-        <select name="db_charset" id="db_charset" tabindex="6" ><?php echo $dbCharsetOptions; ?></select>
-      </div>
-    </div>
-    <div class="row">
-      <div class="small-3 columns">
         <label class="inline" for="db_prefix"><a href="#" class="hasHelpText" id="DBPREFIX"><?php echo TEXT_DATABASE_SETUP_DB_PREFIX; ?></a></label>
       </div>
       <div class="small-9 columns">
@@ -141,7 +133,7 @@ function ajaxTestDBConnection(form) {
           success: function(data) {
             if (data.error == true)
             {
-              var html = "<?php echo TEXT_DATABASE_SETUP_JSCRIPT_SQL_ERRORS1; ?>" + data.file + "<?php echo TEXT_DATABASE_SETUP_JSCRIPT_SQL_ERRORS2; ?>";
+              var html = "<p><?php echo TEXT_DATABASE_SETUP_JSCRIPT_SQL_ERRORS1; ?>" + data.file + "<?php echo TEXT_DATABASE_SETUP_JSCRIPT_SQL_ERRORS2; ?></p>";
               $("#install-errors-content").html(html);
               $("#install-errors").foundation('reveal', 'open');
             } else

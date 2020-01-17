@@ -1,9 +1,9 @@
 <?php
 /**
  * @package Installer
- * @copyright Copyright 2003-2019 Zen Cart Development Team
+ * @copyright Copyright 2003-2020 Zen Cart Development Team
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: header_php.php 4 2019-04-12 13:49:16Z webchills $
+ * @version $Id: header_php.php 5 2020-01-17 16:49:16Z webchills $
  */
 
   require (DIR_FS_INSTALL . 'includes/classes/class.zcDatabaseInstaller.php');
@@ -37,7 +37,7 @@
     $dbInstaller = new zcDatabaseInstaller($options);
     $result = $dbInstaller->getConnection();
     $extendedOptions = array();
-    $error = $dbInstaller->doCompletion($options);
+    $dbInstaller->doCompletion($options);
   }
 
   // Update Nginx Conf Template
