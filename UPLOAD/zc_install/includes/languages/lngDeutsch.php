@@ -1,16 +1,17 @@
 <?php
 /**
- * Zen Cart German Specific
  * Main German language file for installer
+ * Zen Cart German Specific
+ 
  * @package Installer
- * @copyright Copyright 2003-2019 Zen Cart Development Team
+ * @copyright Copyright 2003-2020 Zen Cart Development Team
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: lngDeutsch.php 17 2019-08-30 17:52:16Z webchills $
+ * @version $Id: lngDeutsch.php 18 2020-01-18 12:52:16Z webchills $
  */
 /**
  * defining language components for the page
  */
-define('META_TAG_TITLE', 'Zen Cart 1.5.6 deutsch - Installationsprogramm');
+define('META_TAG_TITLE', 'Zen Cart 1.5.6e deutsch - Installationsprogramm');
 define('HTML_PARAMS','dir="ltr" lang="de"');
 define('ZC_VERSION_STRING', '%s v%s');
 define('TEXT_PAGE_HEADING_INDEX', 'Systemprüfung');
@@ -40,7 +41,6 @@ define('TEXT_SYSTEM_SETUP_ERROR_DIALOG_TITLE', 'Es gibt einige Probleme');
 define('TEXT_SYSTEM_SETUP_ERROR_DIALOG_CONTINUE', 'Trotzdem weitermachen');
 define('TEXT_SYSTEM_SETUP_ERROR_CATALOG_PHYSICAL_PATH', 'Es scheint ein Problem zu geben mit dem ' . TEXT_SYSTEM_SETUP_CATALOG_PHYSICAL_PATH);
 
-
 define('TEXT_PAGE_HEADING_DATABASE', 'Datenbank Setup');
 define('TEXT_DATABASE_HEADER_MAIN', 'HINWEIS: Stellen Sie sicher, dass Sie bereits eine Datenbank angelegt haben. Dieses Installationsprogramm legt keine Datenbank an! Es befüllt lediglich eine bereits bestehende Datenbank, deren Zugangsdaten Sie hier angeben.<br/>Hilfetexte zu den einzelnen Überschriften links erhalten Sie durch Anclicken der jeweiligen Titel.');
 define('TEXT_DATABASE_SETUP_SETTINGS', 'Grundeinstellungen');
@@ -63,7 +63,7 @@ define('TEXT_DATABASE_SETUP_CHARSET_OPTION_LATIN1', 'latin1 (Uraltformatt)');
 define('TEXT_DATABASE_SETUP_CACHE_TYPE_OPTION_NONE', 'kein SQL Caching');
 define('TEXT_DATABASE_SETUP_CACHE_TYPE_OPTION_DATABASE', 'Datenbank');
 define('TEXT_DATABASE_SETUP_CACHE_TYPE_OPTION_FILE', 'Datei');
-define('TEXT_EXAMPLE_DB_HOST', "normalerweise 'localhost'");
+define('TEXT_EXAMPLE_DB_HOST', 'normalerweise "localhost"');
 define('TEXT_EXAMPLE_DB_USER', 'Geben Sie Ihren MySQL Benutzernamen ein');
 define('TEXT_EXAMPLE_DB_PWD', 'Geben Sie das Passwort für diesen MySQL Benutzernaemn ein');
 define('TEXT_EXAMPLE_DB_PREFIX', 'am besten leer lassen');
@@ -94,8 +94,6 @@ define('TEXT_ADMIN_SETUP_ADMIN_DIRECTORY_HELP_CHANGED', 'Wir haben das Verzeichn
 define('TEXT_ADMIN_SETUP_NEWSLETTER_SETTINGS', 'Newsletter');
 define('TEXT_ADMIN_SETUP_NEWSLETTER_EMAIL', 'Newsletter Email: ');
 define('TEXT_ADMIN_SETUP_NEWSLETTER_OPTIN', 'Newsletter bestellen: ');
-//define('TEXT_MAIN_ADMIN_SETUP', '');
-
 
 define('TEXT_PAGE_HEADING_COMPLETION', 'Setup abgeschlossen');
 define('TEXT_COMPLETION_HEADER_MAIN', '');
@@ -103,7 +101,7 @@ define('TEXT_COMPLETION_INSTALL_COMPLETE', 'Die Installation ist jetzt abgeschlo
 define('TEXT_COMPLETION_INSTALL_LINKS_BELOW', 'Sie können nun Ihr Shop Frontend und Ihren Adminbereich mit folgenden Links erreichen:');
 define('TEXT_COMPLETION_UPGRADE_COMPLETE', 'Herzlichen Glückwunsch, Ihr Update ist nun abgeschlossen.');
 define('TEXT_COMPLETION_ADMIN_DIRECTORY_WARNING', 'Wir konnten Ihr Admin Verzeichnis nicht automatisch umbenennen. Sie müssen es selbt umbenennen bevor Sie in den Adminbereich einloggen können.');
-define('TEXT_COMPLETION_INSTALLATION_DIRECTORY_WARNING', "Bitte löschen Sie das zc_install Verzeichnis jetzt");
+define('TEXT_COMPLETION_INSTALLATION_DIRECTORY_WARNING', 'Bitte löschen Sie das zc_install Verzeichnis jetzt');
 define('TEXT_COMPLETION_INSTALLATION_DIRECTORY_EXPLANATION', 'Sie müssen nun das Verzeichnis zc_install unbedingt löschen, um zu verhindern, dass jemand den Shop neu installiert und all Ihre Daten zerstört. Solange Sie dieses Verzeichnis nicht gelöscht haben, werden Sie nicht in den Adminbereich einloggen können.');
 
 define('TEXT_COMPLETION_CATALOG_LINK_TEXT', 'Ihr Shop Frontend');
@@ -144,15 +142,15 @@ define('TEXT_NAVBAR_COMPLETION', 'Fertig');
 define('TEXT_NAVBAR_PAYMENT_PROVIDERS', 'Zahlungsanbieter');
 
 define('TEXT_INDEX_ALERTS', 'Alerts');
-define('TEXT_FOUND_LOCAL_STORE_CONFIGURE', 'NOTE: /includes/LOCAL/configure.php found, and will be used');
-define('TEXT_FOUND_LOCAL_ADMIN_CONFIGURE', 'NOTE: /admin/includes/LOCAL/configure.php found, and will be used');
+define('TEXT_FOUND_LOCAL_STORE_CONFIGURE', 'HINWEIS: /includes/LOCAL/configure.php gefunden, wir werden diese Datei verwenden');
+define('TEXT_FOUND_LOCAL_ADMIN_CONFIGURE', 'HINWEIS: /admin/includes/LOCAL/configure.php gefunden, wir werden diese Datei verwenden');
 define('TEXT_ERROR_PROBLEMS_WRITING_CONFIGUREPHP_FILES', 'Die configure.php konnten nicht vorbereitet und gespeichert werden. IHRE INSTALLATION IST NICHT KORREKT VOLLSTÄNDIG ABGESCHLOSSEN!<br>Details dazu sollten Sie in den Logdateien im Ordner /logs/ finden.');
 define('TEXT_ERROR_COULD_NOT_READ_CFGFILE_TEMPLATE', 'Kann die Vorlage für die Konfigurationsdatei nicht lesen: %s. Stellen Sie sicher, dass diese Datei existiert und lesbar ist.');
-define('TEXT_ERROR_COULD_NOT_WRITE_CONFIGFILE', 'Konnte die CKonfigurationsdatei nicht schreiben: %s. Stellen Sie sicher, dass diese Datei existiert und beschreibbar ist.');
-define('TEXT_ERROR_STORE_CONFIGURE', "Frontend Konfigurationsdatei /includes/configure.php existiert nicht, ist nicht lesbar oder ist nicht beschreibbar");
-define('TEXT_ERROR_ADMIN_CONFIGURE', "Admin Konfigurationsdatei /admin/includes/configure.php existiert nicht, ist nicht lesbar oder ist nicht beschreibbar");
+define('TEXT_ERROR_COULD_NOT_WRITE_CONFIGFILE', 'Konnte die Konfigurationsdatei nicht schreiben: %s. Stellen Sie sicher, dass diese Datei existiert und beschreibbar ist.');
+define('TEXT_ERROR_STORE_CONFIGURE', 'Frontend Konfigurationsdatei /includes/configure.php existiert nicht, ist nicht lesbar oder ist nicht beschreibbar');
+define('TEXT_ERROR_ADMIN_CONFIGURE', 'Admin Konfigurationsdatei /admin/includes/configure.php existiert nicht, ist nicht lesbar oder ist nicht beschreibbar');
 define('TEXT_ERROR_PHP_VERSION', str_replace(array("\n", "\r"), '', 'Falsche PHP Version.
-<p>Ihre verwendete PHP Version (' . PHP_VERSION . ') ist ungeeignet. Die deutsche Zen Cart Version 1.5.6 kann damit NICHT verwendet werden.</p>
+<p>Ihre verwendete PHP Version (' . PHP_VERSION . ') ist ungeeignet. Die deutsche Zen Cart Version 1.5.6e kann damit NICHT verwendet werden.</p>
 <p>Diese Version von Zen Cart deutsch ist kompatibel mit PHP Versionen von 5.6.x bis 7.3.x</p>
 '));
 define('TEXT_ERROR_PHP_VERSION_RECOMMENDED', '<b>Ihre verwendete PHP Version (' . PHP_VERSION . ') ist veraltet.</b><br/>Für maximale Sicherheit und Kompatibilität sollten Sie mindestens PHP 7.2.x verwenden.<br/>Diese Version von Zen Cart deutsch ist kompatibel mit PHP Versionen von 5.6.x bis 7.3.x<br/>Wir können mit der Installation trotzdem weitermachen, weisen aber darauf hin, dass Sie in Ihrem eigenen Interesse keine solch veraltete PHP Version verwenden sollten.');
@@ -168,7 +166,7 @@ define('TEXT_ERROR_PUB_FOLDER', DIR_FS_DOWNLOAD_PUBLIC . ' Verzeichnis ist nicht
 
 define('TEXT_ERROR_CONFIGURE_REQUIRES_UPDATE', 'Ihre configure.php Datei stammt aus einer alten Zen Cart Version und muss aktualisiert werden, bevor wir weitermachen.');
 
-define('TEXT_ERROR_HTACCESS_SUPPORT', 'Support for ".htaccess" files is not enabled.<br>[ <i><b>NOTE:</b> If you are using Nginx, continue to the <u>END</u> of this Installation Wizard for information on resolving this issue.<i> ]');
+define('TEXT_ERROR_HTACCESS_SUPPORT', 'Unterstützung für ".htaccess" Dateien ist nicht aktiviert.<br>[ <i><b>HINWEIS:</b> Falls Sie Nginx verwenden, finden Sie am <u>ENDE</u> dieses Installationsassistenten Informationen zur Verwendung von .htaccess Dateien in Nginx.<i> ]');
 define('TEXT_ERROR_SESSION_SUPPORT', 'Probleme mit session Unterstützung');
 define('TEXT_ERROR_SESSION_SUPPORT_USE_TRANS_SID', 'ini setting session.use_trans_sid ist aktiviert');
 define('TEXT_ERROR_SESSION_SUPPORT_AUTO_START', 'ini setting session.auto_start ist aktiviert');
@@ -261,7 +259,7 @@ define('TEXT_HELP_CONTENT_DBNAME', "Wie lautet der Name der Datenbank? <br/>Als 
 define('TEXT_HELP_TITLE_DEMODATA', TEXT_DATABASE_SETUP_LOAD_DEMO);
 define('TEXT_HELP_CONTENT_DEMODATA', "Die Installation der Demodaten ist nur für einen Testshop sinnvoll.<br/>Es werden Beispielkategorien und Beispielartikel installiert, die sehr nützlich sind, um sich mit der Funktionalität vertraut zu machen.<br><br>Für die Installation Ihres echten Shops kreuzen Sie die Demodaten NICHT an!");
 define('TEXT_HELP_TITLE_DBCHARSET', 'Datenbank Character Set');
-define('TEXT_HELP_CONTENT_DBCHARSET', "Zen Cart Versionen bis 1.5.5f haben nur utf-8 unterstützt. Für diese Version 1.5.6 empfehlen wir utf8mb4. Dies ist auch als Voreinstellung gesetzt.<br/>Legen Sie Ihre Datenbank daher vorher am besten mit folgenden Einstellungen an:<br/>Character Set: utf8mb4 und Kollation: utf8mb4_unicode_ci<br/>und lassen Sie dann hier die Voreinstellung.");
+define('TEXT_HELP_CONTENT_DBCHARSET', "Zen Cart Versionen bis 1.5.5f haben nur utf-8 unterstützt. Für diese Version 1.5.6e empfehlen wir utf8mb4. Dies ist auch als Voreinstellung gesetzt.<br/>Legen Sie Ihre Datenbank daher vorher am besten mit folgenden Einstellungen an:<br/>Character Set: utf8mb4 und Kollation: utf8mb4_general_ci<br/>und lassen Sie dann hier die Voreinstellung.");
 define('TEXT_HELP_TITLE_DBPREFIX', 'Datenbank Präfix für Tabellennamen');
 define('TEXT_HELP_CONTENT_DBPREFIX', "Wir empfehlen KEIN Präfix zu verwenden und dieses Feld leer zu lassen<br/>Es ist nur dann sinnvoll, wenn Sie in einer Datenbank mehrere unterschiedliche Systeme verwenden wollen, was definitiv für einen Liveshop nicht empfohlen ist<br/>Wenn Sie doch ein Präfix verwenden wollen, dann geben Sie es wie folgt an:<br/>prefix_");
 define('TEXT_HELP_TITLE_SQLCACHEMETHOD', 'SQL Caching Methode');
@@ -307,17 +305,17 @@ define('REASON_CONFIG_GROUP_ID_ALREADY_EXISTS','Kann configuration_group_id "%s"
 
 define('TEXT_COMPLETION_NGINX_TEXT', "<u>Wichtige Sicherheitsinformation für Nginx</u>");
 define('TEXT_HELP_TITLE_NGINXCONF', "Zen Cart auf Nginx Webservern absichern");
-define('TEXT_HELP_CONTENT_NGINXCONF', "<div>
+define('TEXT_HELP_CONTENT_NGINXCONF', '<div>
 	<p>
 		Ihre Zen Cart Installation enthält Sicherheitsmaßnahmen, die für einen Apache Webserver geeignet sind.
 		<br>
 		Falls Sie keinen Apache sondern einen Nginx Webserver verwenden, nehmen Sie folgende Dinge vor, um die Sicherheitsmaßnahmen für Ihren Nginx Webserver zu übernehmen. 
 	</p>
 	<hr>
-	<ul style='list-style-type:square'>
+	<ul style="list-style-type:square">
 		<li>
-			Gehen Sie zu Ihrem Ordner <strong>'zc_install/includes/nginx_conf'</strong> und öffnen Sie die folgenden Dateien mit einem Texteditor wie UltraEdit oder Notepad++:
-			<ul style='list-style-type:circle'>
+			Gehen Sie zu Ihrem Ordner <strong>"zc_install/includes/nginx_conf"</strong> und öffnen Sie die folgenden Dateien mit einem Texteditor wie UltraEdit oder Notepad++:
+			<ul style="list-style-type:circle">
 				<li>
 					zencart_ngx_http.conf
 				</li>
@@ -327,22 +325,22 @@ define('TEXT_HELP_CONTENT_NGINXCONF', "<div>
 			</ul>
 		</li>
 		<li>
-			 Fügen Sie den Inhalt von <strong>'zencart_ngx_http.conf'</strong> unter dem Abschnitt <strong>'http'</strong> in Ihrer Nginx-Konfigurationsdatei hinzu.
-			<ul style='list-style-type:circle'>
+			 Fügen Sie den Inhalt von <strong>"zencart_ngx_http.conf"</strong> unter dem Abschnitt <strong>"http"</strong> in Ihrer Nginx-Konfigurationsdatei hinzu.
+			<ul style="list-style-type:circle">
 				<li>
-					Bearbeiten Sie die Cache-Dauer im Block <strong>'map'</strong> nach Bedarf.
+					Bearbeiten Sie die Cache-Dauer im Block <strong>"map"</strong> nach Bedarf.
 				</li>
 			</ul>
 		</li>
 		<li>
-			Fügen Sie den Inhalt von <strong>'zencart_ngx_server.conf'</strong> dem entsprechenden <strong>'server'</strong> Block für Zen Cart in Ihrer Nginx Konfigurationsdatei hinzu.
-			<ul style='list-style-type:circle'>
+			Fügen Sie den Inhalt von <strong>"zencart_ngx_server.conf"</strong> dem entsprechenden <strong>"server"</strong> Block für Zen Cart in Ihrer Nginx Konfigurationsdatei hinzu.
+			<ul style="list-style-type:circle">
 				<li>
 					 Die Richtlinien können für SSL- und/oder Non-SSL-Serverblöcke verwendet werden.
 				</li>
 				<li>
 					Die Anweisungen sollten am Anfang des Serverblocks vor allen anderen Standortblöcken stehen.
-					<ul style='list-style-type:none'>
+					<ul style="list-style-type:none">
 						<li>
 							- Die Reihenfolge, in der die Richtlinien erscheinen, ist wichtig.
 						</li>
@@ -361,11 +359,11 @@ define('TEXT_HELP_CONTENT_NGINXCONF', "<div>
 			... oder allen anderen Standortblöcke, die vor diesen verarbeitet werden könnten.
 		</li>
 		<li>
-			Bearbeiten Sie stattdessen den Standortblock <strong>'zencart_php_handler'</strong> so, dass er Ihren Nginx PHP-Handhabungsanweisungen entspricht.
-			<ul style='list-style-type:circle'>
+			Bearbeiten Sie stattdessen den Standortblock <strong>"zencart_php_handler"</strong> so, dass er Ihren Nginx PHP-Handhabungsanweisungen entspricht.
+			<ul style="list-style-type:circle">
 				<li>
 					Duplizieren Sie einfach den Inhalt Ihres bestehenden PHP-Verarbeitungsplatzblocks.
-					<ul style='list-style-type:none'>
+					<ul style="list-style-type:none">
 						<li>
 							- Das heißt, kopieren und einfügen in die entsprechenden Nginx PHP-Handhabungsanweisungen.
 						</li>
@@ -377,19 +375,19 @@ define('TEXT_HELP_CONTENT_NGINXCONF', "<div>
 			</ul>
 		</li>
 		<li>
-			 Wenn Sie Plugins für'Pretty URLs' verwenden, fügen Sie die entsprechenden Anweisungen in den angegebenen Block ein.
+			 Wenn Sie Plugins für "Pretty URLs" verwenden, fügen Sie die entsprechenden Anweisungen in den angegebenen Block ein.
 		</li>
 		<li>
 			Nginx neu laden.
-			<ul style='list-style-type:circle'>
+			<ul style="list-style-type:circle">
 				<li>
 					Führen Sie all dies aus, bevor Sie dieses Dialogfenster schließen.
 				</li>
 				<li>
-					Denken Sie daran, den Ordner <strong>'zc_install'</strong> zu löschen, wenn Sie fertig sind.
-					<ul style='list-style-type:none'>
+					Denken Sie daran, den Ordner <strong>"zc_install"</strong> zu löschen, wenn Sie fertig sind.
+					<ul style="list-style-type:none">
 						<li>
-							- einschlißlich des <strong>'zc_install/includes/nginx_conf'</strong> Ordners und dessen Inhalten.
+							- einschlißlich des <strong>"zc_install/includes/nginx_conf"</strong> Ordners und dessen Inhalten.
 						</li>
 					</ul>
 				</li>
@@ -397,12 +395,12 @@ define('TEXT_HELP_CONTENT_NGINXCONF', "<div>
 		</li>
 	<ol>
 </div>
-<div class='alert-box alert'>
+<div class="alert-box alert">
 	<strong>WICHTIG:</strong> Diese Standortblöcke sollten <strong>VOR</strong> allen anderen Standortblöcke in Ihrem Nginx Configuration Server Block für Zen Cart sein.
 </div>
-<hr>");
+<hr>');
 define('TEXT_HELP_TITLE_AGREETOTERMS', 'Lizenzbedingungen akzeptieren');
-define('TEXT_HELP_CONTENT_AGREETOTERMS', "<h2>The GNU General Public License (GPL)</h2>
+define('TEXT_HELP_CONTENT_AGREETOTERMS', '<h2>The GNU General Public License (GPL)</h2>
 <p><b>Eine deutsche Übersetzung der GNU General Public License finden Sie online auf:<br/><a href=\"http://www.gnu.de/documents/gpl-2.0.de.html\" target=\"_blank\">www.gnu.de/documents/gpl-2.0.de.html</b></p>
 <h3>Version 2, June 1991</h3>
 
@@ -421,7 +419,7 @@ freedom to share and change it.  By contrast, the GNU General Public
 License is intended to guarantee your freedom to share and change free
 software--to make sure the software is free for all its users.  This
 General Public License applies to most of the Free Software
-Foundation's software and to any other program whose authors commit to
+Foundation\'s software and to any other program whose authors commit to
 using it.  (Some other Free Software Foundation software is covered by
 the GNU Library General Public License instead.)  You can apply it to
 your programs, too.</p>
@@ -449,18 +447,18 @@ rights.</p>
 (2) offer you this license which gives you legal permission to copy,
 distribute and/or modify the software.</p>
 
-  <p>Also, for each author's protection and ours, we want to make certain
+  <p>Also, for each author\'s protection and ours, we want to make certain
 that everyone understands that there is no warranty for this free
 software.  If the software is modified by someone else and passed on, we
 want its recipients to know that what they have is not the original, so
 that any problems introduced by others will not reflect on the original
-authors' reputations.</p>
+authors\' reputations.</p>
 
   <p>Finally, any free program is threatened constantly by software
 patents.  We wish to avoid the danger that redistributors of a free
 program will individually obtain patent licenses, in effect making the
 program proprietary.  To prevent this, we have made it clear that any
-patent must be licensed for everyone's free use or not licensed at all.</p>
+patent must be licensed for everyone\'s free use or not licensed at all.</p>
 
   <p>The precise terms and conditions for copying, distribution and
 modification follow.</p>
@@ -469,13 +467,13 @@ modification follow.</p>
 
   <p><strong>0</strong>. This License applies to any program or other work which contains
 a notice placed by the copyright holder saying it may be distributed
-under the terms of this General Public License.  The \"Program\", below,
-refers to any such program or work, and a \"work based on the Program\"
+under the terms of this General Public License.  The "Program", below,
+refers to any such program or work, and a "work based on the Program"
 means either the Program or any derivative work under copyright law:
 that is to say, a work containing the Program or a portion of it,
 either verbatim or with modifications and/or translated into another
 language.  (Hereinafter, translation is included without limitation in
-the term \"modification\".)  Each licensee is addressed as \"you\".</p>
+the term "modification".)  Each licensee is addressed as "you".</p>
 
 <p>Activities other than copying, distribution and modification are not
 covered by this License; they are outside its scope.  The act of
@@ -484,7 +482,7 @@ is covered only if its contents constitute a work based on the
 Program (independent of having been made by running the Program).
 Whether that is true depends on what the Program does.</p>
 
-  <p><strong>1</strong>. You may copy and distribute verbatim copies of the Program's
+  <p><strong>1</strong>. You may copy and distribute verbatim copies of the Program\'s
 source code as you receive it, in any medium, provided that you
 conspicuously and appropriately publish on each copy an appropriate
 copyright notice and disclaimer of warranty; keep intact all the
@@ -600,7 +598,7 @@ the Program or works based on it.</p>
 Program), the recipient automatically receives a license from the
 original licensor to copy, distribute or modify the Program subject to
 these terms and conditions.  You may not impose any further
-restrictions on the recipients' exercise of the rights granted herein.
+restrictions on the recipients\' exercise of the rights granted herein.
 You are not responsible for enforcing compliance by third parties to
 this License.</p>
 
@@ -651,8 +649,8 @@ be similar in spirit to the present version, but may differ in detail to
 address new problems or concerns.</p>
 
 <p>Each version is given a distinguishing version number.  If the Program
-specifies a version number of this License which applies to it and \"any
-later version\", you have the option of following the terms and conditions
+specifies a version number of this License which applies to it and "any
+later version", you have the option of following the terms and conditions
 either of that version or of any later version published by the Free
 Software Foundation.  If the Program does not specify a version number of
 this License, you may choose any version ever published by the Free Software
@@ -671,7 +669,7 @@ of promoting the sharing and reuse of software generally.</p>
   <p><strong>11</strong>. BECAUSE THE PROGRAM IS LICENSED FREE OF CHARGE, THERE IS NO WARRANTY
 FOR THE PROGRAM, TO THE EXTENT PERMITTED BY APPLICABLE LAW.  EXCEPT WHEN
 OTHERWISE STATED IN WRITING THE COPYRIGHT HOLDERS AND/OR OTHER PARTIES
-PROVIDE THE PROGRAM \"AS IS\" WITHOUT WARRANTY OF ANY KIND, EITHER EXPRESSED
+PROVIDE THE PROGRAM "AS IS" WITHOUT WARRANTY OF ANY KIND, EITHER EXPRESSED
 OR IMPLIED, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF
 MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.  THE ENTIRE RISK AS
 TO THE QUALITY AND PERFORMANCE OF THE PROGRAM IS WITH YOU.  SHOULD THE
@@ -687,5 +685,4 @@ TO LOSS OF DATA OR DATA BEING RENDERED INACCURATE OR LOSSES SUSTAINED BY
 YOU OR THIRD PARTIES OR A FAILURE OF THE PROGRAM TO OPERATE WITH ANY OTHER
 PROGRAMS), EVEN IF SUCH HOLDER OR OTHER PARTY HAS BEEN ADVISED OF THE
 POSSIBILITY OF SUCH DAMAGES.</p>
-
-         <p><strong>END OF TERMS AND CONDITIONS</strong></p>");
+<p><strong>END OF TERMS AND CONDITIONS</strong></p>');

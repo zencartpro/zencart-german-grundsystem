@@ -6,7 +6,7 @@
 # * @copyright Copyright 2003-2020 Zen Cart Development Team
 # * @copyright Portions Copyright 2003 osCommerce
 # * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
-# * @version $Id: mysql_zencart.sql 19520 2020-01-17 08:02:16Z webchills $
+# * @version $Id: mysql_zencart.sql 19521 2020-01-18 12:47:16Z webchills $
 #
 
 ############ IMPORTANT INSTRUCTIONS ###############
@@ -137,7 +137,7 @@ CREATE TABLE admin_activity_log (
   page_parameters text,
   ip_address varchar(45) NOT NULL default '',
   flagged tinyint NOT NULL default '0',
-  attention varchar(255) NOT NULL default '',
+  attention MEDIUMTEXT,
   gzpost mediumblob,
   logmessage mediumtext NOT NULL,
   severity varchar(9) NOT NULL default 'info',
@@ -337,7 +337,6 @@ CREATE TABLE configuration (
   KEY idx_key_value_zen (configuration_key,configuration_value(10)),
   KEY idx_cfg_grp_id_zen (configuration_group_id)
 ) ENGINE=MyISAM;
-
 
 # --------------------------------------------------------
 
@@ -1261,13 +1260,14 @@ CREATE TABLE orders_products_download (
 
 #
 # Table structure for table 'orders_status'
-#
+# Neu seit 1.5.6e: sort_order
 
 DROP TABLE IF EXISTS orders_status;
 CREATE TABLE orders_status (
-  orders_status_id int(11) NOT NULL default '0',
-  language_id int(11) NOT NULL default '1',
+  orders_status_id int(11) NOT NULL default 0,
+  language_id int(11) NOT NULL default 1,
   orders_status_name varchar(32) NOT NULL default '',
+  sort_order int(11) NOT NULL default 0,
   PRIMARY KEY  (orders_status_id,language_id),
   KEY idx_orders_status_name_zen (orders_status_name)
 ) ENGINE=MyISAM;
@@ -2186,6 +2186,19 @@ CREATE TABLE zones_to_geo_zones (
 ) ENGINE=MyISAM;
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
 # default data
 
 INSERT INTO template_select (template_id, template_dir, template_language) VALUES (1, 'responsive_classic', '0');
@@ -2268,7 +2281,7 @@ VALUES ('configMyStore', 'BOX_CONFIGURATION_MY_STORE', 'FILENAME_CONFIGURATION',
        ('salemaker', 'BOX_CATALOG_SALEMAKER', 'FILENAME_SALEMAKER', '', 'catalog', 'Y', 14),
        ('productsExpected', 'BOX_CATALOG_PRODUCTS_EXPECTED', 'FILENAME_PRODUCTS_EXPECTED', '', 'catalog', 'Y', 15),
        ('product', 'BOX_CATALOG_PRODUCT', 'FILENAME_PRODUCT', '', 'catalog', 'N', 16),
-       ('productsToCategories', 'BOX_CATALOG_PRODUCTS_TO_CATEGORIES', 'FILENAME_PRODUCTS_TO_CATEGORIES', '', 'catalog', 'N', 17),
+       ('productsToCategories', 'BOX_CATALOG_PRODUCTS_TO_CATEGORIES', 'FILENAME_PRODUCTS_TO_CATEGORIES', '', 'catalog', 'Y', 17),
        ('payment', 'BOX_MODULES_PAYMENT', 'FILENAME_MODULES', 'set=payment', 'modules', 'Y', 1),
        ('shipping', 'BOX_MODULES_SHIPPING', 'FILENAME_MODULES', 'set=shipping', 'modules', 'Y', 2),
        ('orderTotal', 'BOX_MODULES_ORDER_TOTAL', 'FILENAME_MODULES', 'set=ordertotal', 'modules', 'Y', 3),
@@ -2347,6 +2360,7 @@ INSERT INTO admin_profiles (profile_name) values ('Bestellbearbeitung');
 SET @profile_id=last_insert_id();
 INSERT INTO admin_pages_to_profiles (profile_id, page_key) VALUES
 (@profile_id, 'customers'),
+(@profile_id, 'mail'),
 (@profile_id, 'orders'),
 (@profile_id, 'invoice'),
 (@profile_id, 'packingslip'),
@@ -3300,7 +3314,7 @@ INSERT INTO configuration_group (configuration_group_id, language_id, configurat
 (9, 1,  'Stock', 'Stock configuration options', '9', '1'),
 (10, 1,  'Logging', 'Logging configuration options', '10', '1'),
 (11, 1,  'Regulations', 'Regulation options', '16', '1'),
-(12, 1,  'E-Mail Options', 'General settings for E-Mail transport and HTML E-Mails', '12', '1'),
+(12, 1,  'Email', 'Email-related settings', '12', '1'),
 (13, 1,  'Attribute Settings', 'Configure products attributes settings', '13', '1'),
 (14, 1,  'GZip Compression', 'GZip compression options', '14', '1'),
 (15, 1,  'Sessions', 'Session options', '15', '1'),
@@ -3480,13 +3494,13 @@ INSERT INTO layout_boxes (layout_template, layout_box_name, layout_box_status, l
 INSERT INTO layout_boxes (layout_template, layout_box_name, layout_box_status, layout_box_location, layout_box_sort_order, layout_box_sort_order_single, layout_box_status_single) VALUES ('responsive_classic', 'whats_new.php', 1, 0, 20, 0, 0);
 INSERT INTO layout_boxes (layout_template, layout_box_name, layout_box_status, layout_box_location, layout_box_sort_order, layout_box_sort_order_single, layout_box_status_single) VALUES ('responsive_classic', 'whos_online.php', 1, 1, 200, 200, 1);
 
-INSERT INTO orders_status VALUES ( '1', '1', 'Pending');
-INSERT INTO orders_status VALUES ( '2', '1', 'Processing');
-INSERT INTO orders_status VALUES ( '3', '1', 'Delivered');
-INSERT INTO orders_status VALUES ( '4', '1', 'Update');
-INSERT INTO orders_status VALUES ( '5', '1', 'Cancelled');
-INSERT INTO orders_status VALUES ( '6', '1', 'Test Order');
-INSERT INTO orders_status VALUES ( '7', '1', 'Resend Invoice');
+INSERT INTO orders_status VALUES ( '1', '1', 'Pending', 0);
+INSERT INTO orders_status VALUES ( '2', '1', 'Processing', 10);
+INSERT INTO orders_status VALUES ( '3', '1', 'Delivered', 20);
+INSERT INTO orders_status VALUES ( '4', '1', 'Update', 30);
+INSERT INTO orders_status VALUES ( '5', '1', 'Cancelled', 40);
+INSERT INTO orders_status VALUES ( '6', '1', 'Test Order', 50);
+INSERT INTO orders_status VALUES ( '7', '1', 'Resend Invoice', 60);
 
 INSERT INTO product_types VALUES (1, 'Product - General', 'product', '1', 'Y', '', now(), now());
 INSERT INTO product_types VALUES (2, 'Product - Music', 'product_music', '1', 'Y', '', now(), now());
@@ -3978,13 +3992,13 @@ INSERT INTO project_version_history (project_version_id, project_version_key, pr
 # German Version Special Definitions
 #
 
-INSERT INTO orders_status VALUES (1, 43, 'warten auf Zahlung');
-INSERT INTO orders_status VALUES (2, 43, 'Zahlung erhalten - in Arbeit');
-INSERT INTO orders_status VALUES (3, 43, 'Verschickt');
-INSERT INTO orders_status VALUES (4, 43, 'Information');
-INSERT INTO orders_status VALUES (5, 43, 'Storniert');
-INSERT INTO orders_status VALUES (6, 43, 'Testbestellung');
-INSERT INTO orders_status VALUES (7, 43, 'Rechnung versenden');
+INSERT INTO orders_status (orders_status_id, language_id, orders_status_name, sort_order) VALUES (1, 43, 'warten auf Zahlung', 0);
+INSERT INTO orders_status (orders_status_id, language_id, orders_status_name, sort_order) VALUES (2, 43, 'Zahlung erhalten - in Arbeit', 10);
+INSERT INTO orders_status (orders_status_id, language_id, orders_status_name, sort_order) VALUES (3, 43, 'Verschickt', 20);
+INSERT INTO orders_status (orders_status_id, language_id, orders_status_name, sort_order) VALUES (4, 43, 'Information', 30);
+INSERT INTO orders_status (orders_status_id, language_id, orders_status_name, sort_order) VALUES (5, 43, 'Storniert', 40);
+INSERT INTO orders_status (orders_status_id, language_id, orders_status_name, sort_order) VALUES (6, 43, 'Testbestellung', 50);
+INSERT INTO orders_status (orders_status_id, language_id, orders_status_name, sort_order) VALUES (7, 43, 'Rechnung versenden', 60);
 
 ## ZEN-DEUTSCH MENU einfuegen
 INSERT INTO admin_menus (menu_key, language_key, sort_order) 
