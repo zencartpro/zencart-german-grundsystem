@@ -4,7 +4,7 @@
  * @copyright Copyright 2003-2020 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: banner_manager.php 629 2020-01-18 10:05:14Z webchills $
+ * @version $Id: banner_manager.php 630 2020-01-18 17:05:14Z webchills $
  */
 
 define('HEADING_TITLE', 'Banner Manager');
@@ -36,7 +36,7 @@ define('TEXT_BANNERS_IMPRESSIONS', 'Einblendungen automatisch deaktiviert.');
 define('TEXT_BANNERS_SCHEDULED_AT', 'Geplant für:');
 define('TEXT_BANNERS_BANNER_NOTE', '<b>Banner Hinweis:</b><ul><li>Benutzen Sie entweder ein Bild oder einen HTML Text ,aber nicht beides.</li><li>HTML Text hat eine höhere Priorität als ein Bild</li></ul>');
 define('TEXT_BANNERS_INSERT_NOTE', '<b>Bildhinweis:</b><ul><li>Sie müssen Schreibrechte auf das Uploadverzeichnis haben!</li><li>Wenn Sie kein Bild auf den Server laden wollen, lassen Sie das Eingabefeld "Speichern unter" leer (z.B. wenn Sie ein lokales Bild (serverseitig) verwenden.</li><li>Im Eingabefeld "Speichern unter" muss ein bereits existierendes Verzeichnis und ein abschließender "Slash" eingetragen werden (z.B. banners/).</li></ul>');
-define('TEXT_BANNERS_EXPIRCY_NOTE', '<b>"Banner wird angezeigt bis" Hinweis:</b><ul><li>Nur eines der beiden Felder sollte ausgefüllt werden werden</li><li>Wenn der Banner zeitlich nicht automatisch enden soll, lassen Sie diese Felder leer</li></ul>');
+define('TEXT_BANNERS_EXPIRY_NOTE', '<b>"Banner wird angezeigt bis" Hinweis:</b><ul><li>Nur eines der beiden Felder sollte ausgefüllt werden werden</li><li>Wenn der Banner zeitlich nicht automatisch enden soll, lassen Sie diese Felder leer</li></ul>');
 define('TEXT_BANNERS_SCHEDULE_NOTE', '<b>Zeitplan Hinweis:</b><ul><li>Wenn ein Zeitplan erstellt wurde, wird der Banner mit diesem Datum aktiviert.</li><li>Alle geplanten Banner sind bis zum erstellten Zeitplan als inaktiv markiert. Danach werden sie automatisch aktiviert</li></ul>');
 define('TEXT_BANNERS_STATUS', 'Bannerstatus:');
 define('TEXT_BANNERS_ACTIVE', 'Aktiv');

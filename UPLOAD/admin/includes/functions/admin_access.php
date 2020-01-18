@@ -5,7 +5,7 @@
  * @copyright Copyright 2003-2020 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: admin_access.php 845 2020-01-17 17:59:21Z webchills $
+ * @version $Id: admin_access.php 846 2020-01-18 16:12:21Z webchills $
  */
 
 if (!defined('ADMIN_PASSWORD_MIN_LENGTH')) define('ADMIN_PASSWORD_MIN_LENGTH', 7);
@@ -58,6 +58,13 @@ function check_page($page, $params) {
     }
   }
   return $retVal;
+}
+
+function check_related_page($page, $params) {
+   if ($page == FILENAME_BANNER_STATISTICS) {
+      return check_page(FILENAME_BANNER_MANAGER, $params);
+   }
+   return false;
 }
 
 function zen_is_superuser()
@@ -343,9 +350,6 @@ function zen_validate_user_login($admin_name, $admin_pass)
         }
       }
     }
-    if (password_needs_rehash($token, PASSWORD_DEFAULT)) {
-      $token = zcPassword::getInstance(PHP_VERSION)->updateNotLoggedInAdminPassword($admin_pass, $admin_name);
-    }
     // BEGIN 2-factor authentication
     if ($error == FALSE && defined('ZC_ADMIN_TWO_FACTOR_AUTHENTICATION_SERVICE') && ZC_ADMIN_TWO_FACTOR_AUTHENTICATION_SERVICE != '')
     {
@@ -399,7 +403,7 @@ function zen_validate_user_login($admin_name, $admin_pass)
     }
   } // END LOGIN SLAM PREVENTION
   // deal with expireds for SSL change
-  if ($error == FALSE && $result['pwd_last_change_date']  == '1990-01-01 14:02:22')
+  if (PADSS_PWD_EXPIRY_ENFORCED == 1 && $error == FALSE && $result['pwd_last_change_date']  == '1990-01-01 14:02:22')
   {
     $expired = true;
     $error = true;
@@ -413,6 +417,9 @@ function zen_validate_user_login($admin_name, $admin_pass)
   }
   if ($error == false)
   {
+    if (password_needs_rehash($token, PASSWORD_DEFAULT)) {
+      $token = zcPassword::getInstance(PHP_VERSION)->updateNotLoggedInAdminPassword($admin_pass, $admin_name);
+    }
     unset($_SESSION['login_attempt']);
     $_SESSION['last_login_date'] = $result['last_login_date'];
     $_SESSION['last_login_ip'] = $result['last_login_ip'];

@@ -1,10 +1,10 @@
 <?php
 /**
  * @package admin
- * @copyright Copyright 2003-2019 Zen Cart Development Team
+ * @copyright Copyright 2003-2020 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: init_errors.php 735 2019-04-12 08:52:16Z webchills $
+ * @version $Id: init_errors.php 736 2020-01-18 16:52:16Z webchills $
  */
 if (!defined('IS_ADMIN_FLAG')) {
   die('Illegal Access');
@@ -24,14 +24,6 @@ if (!defined('IS_ADMIN_FLAG')) {
     $messageStack->add(WARNING_FILE_UPLOADS_DISABLED, 'warning');
   }
 
-// set demo message
-  if (zen_get_configuration_key_value('ADMIN_DEMO')=='1') {
-    if (zen_admin_demo()) {
-      $messageStack->add(ADMIN_DEMO_ACTIVE, 'warning');
-    } else {
-      $messageStack->add(ADMIN_DEMO_ACTIVE_EXCLUSION, 'warning');
-    }
-  }
 
   // check if email subsystem has been disabled
   if (SEND_EMAILS != 'true') {
