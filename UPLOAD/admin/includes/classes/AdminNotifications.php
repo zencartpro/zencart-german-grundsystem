@@ -1,10 +1,10 @@
 <?php
 /**
  * @package admin
- * @copyright Copyright 2003-2019 Zen Cart Development Team
+ * @copyright Copyright 2003-2020 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: Drbyte Thu Dec 6 14:42:02 2018 -0500 New in v1.5.6 $
+ * @version $Id: AdminNotifications.php 2020-01-17 17:01:00 webchills $
  */
 
 class AdminNotifications
@@ -31,6 +31,10 @@ class AdminNotifications
         }
 
         $notificationList = $this->getNotificationInfo();
+        if (empty($notificationList)) {
+            return [];
+        }
+
         $this->pruneSavedState($notificationList);
         $savedState = $this->getSavedState($adminId);
         $result = [];

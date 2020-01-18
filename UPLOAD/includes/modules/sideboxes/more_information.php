@@ -3,15 +3,14 @@
  * more_information sidebox - displays list of links to additional pages on the site.  Must separately build those pages' content.
  *
  * @package templateSystem
- * @copyright Copyright 2003-2019 Zen Cart Development Team
+ * @copyright Copyright 2003-2020 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: more_information.php 729 2011-08-09 15:49:16Z hugo13 $
+ * @version $Id: more_information.php 730 2020-01-17 14:49:16Z webchills $
  */
 
-// test if box should display
-
-  unset($more_information);
+// initialize
+$more_information = array();
 
 // test if links should display
   if (DEFINE_PAGE_2_STATUS <= 1) {
@@ -37,4 +36,3 @@
     $title_link = false;
     require($template->get_template_dir($column_box_default, DIR_WS_TEMPLATE, $current_page_base,'common') . '/' . $column_box_default);
   }
-?>

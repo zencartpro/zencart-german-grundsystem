@@ -1,16 +1,15 @@
 <?php
 /**
- * @package admin
- * @copyright Copyright 2003-2019 Zen Cart Development Team
- * @copyright Portions Copyright 2003 osCommerce
+ * @package templateSystem
+ * @copyright Copyright 2003-2020 Zen Cart Development Team
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: jscript_framework.php 5 2018-01-02 17:10:39Z webchills $
+ * @version $Id: jscript_framework.php 6 2020-01-17 15:49:39Z webchills $
  */
 ?>
-<script type="text/javascript"><!--//<![CDATA[
+<script>
 if (typeof zcJS == "undefined" || !zcJS) {
   window.zcJS = { name: 'zcJS', version: '0.1.0.0' };
-};
+}
 
 zcJS.ajax = function (options) {
   options.url = options.url.replace("&amp;", unescape("&amp;"));
@@ -131,4 +130,4 @@ zcJS.timer = function (options) {
   };
 };
 
-//]] --></script>
+</script>

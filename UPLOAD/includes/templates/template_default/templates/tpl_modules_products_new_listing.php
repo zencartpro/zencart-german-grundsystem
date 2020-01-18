@@ -6,10 +6,10 @@
  * Displays listing of New Products
  *
  * @package templateSystem
- * @copyright Copyright 2003-2019 Zen Cart Development Team
+ * @copyright Copyright 2003-2020 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: tpl_modules_products_new_listing.php 732 2016-05-31 16:49:16Z webchills $
+ * @version $Id: tpl_modules_products_new_listing.php 733 2020-01-17 16:49:16Z webchills $
  */
 ?>
 <table class="products-listing productsNewListing">
@@ -39,9 +39,8 @@
         $display_products_name = '';
       }
 
-
       if (PRODUCT_NEW_LIST_MODEL != '0' and zen_get_show_product_switch($products_new->fields['products_id'], 'model')) {
-        $display_products_model = TEXT_PRODUCTS_MODEL . $products_new->fields['products_model'] . str_repeat('<br class="clearBoth" />', substr(PRODUCT_NEW_LIST_MODEL, 3, 1));
+        $display_products_model = TEXT_PRODUCT_MODEL . $products_new->fields['products_model'] . str_repeat('<br class="clearBoth" />', substr(PRODUCT_NEW_LIST_MODEL, 3, 1));
       } else {
         $display_products_model = '';
       }
@@ -81,7 +80,6 @@
         $display_products_price = '';
       }
 
-
 // more info in place of buy now
       if (PRODUCT_NEW_BUY_NOW != '0' and zen_get_products_allow_add_to_cart($products_new->fields['products_id']) == 'Y') {
         if (zen_has_product_attributes($products_new->fields['products_id'])) {
@@ -114,7 +112,6 @@
       } else {
         $display_products_description = '';
       }
-
 
 ?>
           <tr>

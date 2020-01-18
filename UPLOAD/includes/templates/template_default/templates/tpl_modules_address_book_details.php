@@ -1,7 +1,7 @@
 <?php
 /**
  * Module Template
- *
+ * Zen Cart German Specific
  * Displays address-book details/selection
  *
  * @package templateSystem

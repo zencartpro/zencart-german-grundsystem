@@ -1,10 +1,10 @@
 <?php
 /**
  * @package admin
- * @copyright Copyright 2003-2019 Zen Cart Development Team
+ * @copyright Copyright 2003-2020 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: currencies.php 788 2019-04-12 09:13:51Z webchills $
+ * @version $Id: currencies.php 789 2020-01-17 19:13:51Z webchills $
  */
 require('includes/application_top.php');
 
@@ -91,12 +91,6 @@ if (zen_not_null($action)) {
       zen_redirect(zen_href_link(FILENAME_CURRENCIES, 'page=' . $_GET['page'] . '&cID=' . $_GET['cID']));
       break;
     case 'delete':
-      // demo active test
-      if (zen_admin_demo()) {
-        $_GET['action'] = '';
-        $messageStack->add_session(ERROR_ADMIN_DEMO, 'caution');
-        zen_redirect(zen_href_link(FILENAME_CURRENCIES, 'page=' . $_GET['page'] . '&cID=' . $_GET['cID']));
-      }
       $currencies_id = zen_db_prepare_input($_GET['cID']);
 
       $currency = $db->Execute("SELECT code

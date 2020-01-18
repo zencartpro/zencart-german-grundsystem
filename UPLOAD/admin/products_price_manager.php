@@ -1,10 +1,10 @@
 <?php
 /**
  * @package admin
- * @copyright Copyright 2003-2019 Zen Cart Development Team
+ * @copyright Copyright 2003-2020 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: products_price_manager.php 736 2019-04-14 10:49:16Z webchills $
+ * @version $Id: products_price_manager.php 737 2020-01-18 09:49:16Z webchills $
  */
 require('includes/application_top.php');
 
@@ -43,7 +43,7 @@ if ($action == 'new_cat') {
 }
 
 // set categories and products if not set
-if ($products_filter == '' && $current_category_id != '') {
+if ($products_filter == '' && !empty($current_category_id)) {
   $sql = $db->bindVars($sql, ':category_id', $current_category_id, 'integer');
   $new_product_query = $db->Execute($sql);
   $products_filter = (!$new_product_query->EOF) ? $new_product_query->fields['products_id'] : '';
@@ -51,7 +51,7 @@ if ($products_filter == '' && $current_category_id != '') {
     zen_redirect(zen_href_link(FILENAME_PRODUCTS_PRICE_MANAGER, 'products_filter=' . $products_filter . '&current_category_id=' . $current_category_id));
   }
 } else {
-  if ($products_filter == '' && $current_category_id == '') {
+  if ($products_filter == '' && empty($current_category_id)) {
     $reset_categories_id = zen_get_category_tree('', '', '0', '', '', true);
     $current_category_id = $reset_categories_id[0]['id'];
     $sql = $db->bindVars($sql, ':category_id', $current_category_id, 'integer');
@@ -88,7 +88,7 @@ if ($action == 'add_discount_qty_id') {
                                 WHERE products_id = " . (int)$products_filter . "
                                 ORDER BY discount_id DESC LIMIT 1");
   $add_cnt = 1;
-  $add_id = $add_id_query->fields['discount_id'];
+  $add_id = ($add_id_query->EOF) ? 0 : (int)$add_id_query->fields['discount_id'];
   while ($add_cnt <= DISCOUNT_QTY_ADD) {
     $db->Execute("INSERT INTO " . TABLE_PRODUCTS_DISCOUNT_QUANTITY . " (discount_id, products_id)
                   VALUES (" . ($add_id + $add_cnt) . ", " . (int)$products_filter . ")");
@@ -245,8 +245,8 @@ if (zen_not_null($action)) {
     <title><?php echo TITLE; ?></title>
     <link rel="stylesheet" type="text/css" href="includes/stylesheet.css">
     <link rel="stylesheet" type="text/css" href="includes/cssjsmenuhover.css" media="all" id="hoverJS">
-    <script language="javascript" src="includes/menu.js"></script>
-    <script language="javascript" src="includes/general.js"></script>
+    <script src="includes/menu.js"></script>
+    <script src="includes/general.js"></script>
     <link rel="stylesheet" type="text/css" href="includes/javascript/spiffyCal/spiffyCal_v2_1.css">
     <script src="includes/javascript/spiffyCal/spiffyCal_v2_1.js"></script>
 
@@ -273,7 +273,7 @@ if (zen_not_null($action)) {
             <?php if ($products_filter != '') {?>
             <div class="dropdown">
             <button class="btn btn-default dropdown-toggle" type="button" id="menu1" data-toggle="dropdown">
-                <?php echo BUTTON_ADDITITONAL_ACTIONS; ?>
+                <?php echo BUTTON_ADDITIONAL_ACTIONS; ?>
               <span class="caret"></span>
             </button>
             <ul class="dropdown-menu" role="menu" aria-labelledby="menu1">
@@ -309,11 +309,7 @@ if (zen_not_null($action)) {
       if ($action != 'edit_update') {
         ?>
         <div class="row">
-          <div class="table-responsive">
-            <table class="table">
-                <?php require(DIR_WS_MODULES . FILENAME_PREV_NEXT_DISPLAY); ?>
-            </table>
-          </div>
+           <?php require(DIR_WS_MODULES . FILENAME_PREV_NEXT_DISPLAY); ?>
         </div>
         <div class="row">
             <?php echo zen_draw_form('set_products_filter', FILENAME_PRODUCTS_PRICE_MANAGER, 'action=set_products_filter', 'post', 'class="form-horizontal"'); ?>
@@ -366,7 +362,7 @@ if (zen_not_null($action)) {
       if ($products_filter == '') {
         ?>
         <div class="row">
-          <h2 class="text-center"><?php echo HEADING_TITLE_PRODUCT_SELECT; ?></h2>
+          <h3 class="text-center"><?php echo HEADING_TITLE_PRODUCT_SELECT; ?></h3>
         </div>
       <?php } ?>
 

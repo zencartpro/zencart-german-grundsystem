@@ -1,10 +1,10 @@
 <?php
 /**
  * @package admin
- * @copyright Copyright 2003-2019 Zen Cart Development Team
+ * @copyright Copyright 2003-2020 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: stats_products_viewed.php 732 2019-04-14 10:44:51Z webchills $
+ * @version $Id: stats_products_viewed.php 733 2020-01-18 09:44:51Z webchills $
  */
 //
 require('includes/application_top.php');
@@ -38,7 +38,7 @@ require('includes/application_top.php');
       <table class="table table-hover">
         <thead>
           <tr class="dataTableHeadingRow">
-            <th class="dataTableHeadingContent"><?php echo TABLE_HEADING_NUMBER; ?></th>
+            <th class="dataTableHeadingContent right"><?php echo TABLE_HEADING_NUMBER; ?></th>
             <th class="dataTableHeadingContent"><?php echo TABLE_HEADING_PRODUCTS; ?></th>
             <th class="dataTableHeadingContent text-center"><?php echo TABLE_HEADING_VIEWED; ?></th>
           </tr>

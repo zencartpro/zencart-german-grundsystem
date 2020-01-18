@@ -1,10 +1,10 @@
 <?php
 /**
  * @package admin
- * @copyright Copyright 2003-2019 Zen Cart Development Team
+ * @copyright Copyright 2003-2020 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: salemaker.php 790 2019-04-14 10:21:51Z webchills $
+ * @version $Id: salemaker.php 791 2020-01-18 08:21:51Z webchills $
  */
 //
 define('AUTOCHECK', 'False');
@@ -258,16 +258,13 @@ if (zen_not_null($action)) {
 
       </script>
     </head>
-    <body onload="SetCategories(); SetFocus(); init()">
-      <div id="spiffycalendar" class="text"></div>
-      <?php
-    } else {
-      ?>
-    </head>
-  <body onload="SetFocus(); init()">
-            <?php
-          }
-          ?>
+<?php } ?>
+<?php if ($action == 'new' || $action == 'edit') { ?>
+       <body onload="SetCategories(); SetFocus(); init()">
+       <div id="spiffycalendar" class="text"></div>
+<?php } else { ?>
+       <body onload="SetFocus(); init()">
+<?php } ?>
   <!-- header //-->
   <?php require(DIR_WS_INCLUDES . 'header.php'); ?>
   <!-- header_eof //-->
@@ -456,12 +453,13 @@ if (zen_not_null($action)) {
           <table class="table table-striped table-hover">
             <thead>
               <tr class="dataTableHeadingRow">
-                <th class="dataTableHeadingContent" align="left"><?php echo TABLE_HEADING_SALE_NAME; ?></th>
-                <th class="dataTableHeadingContent" align="center" colspan="2"><?php echo TABLE_HEADING_SALE_DEDUCTION; ?></th>
-                <th class="dataTableHeadingContent" align="center"><?php echo TABLE_HEADING_SALE_DATE_START; ?></th>
-                <th class="dataTableHeadingContent" align="center"><?php echo TABLE_HEADING_SALE_DATE_END; ?></th>
-                <th class="dataTableHeadingContent" align="center"><?php echo TABLE_HEADING_STATUS; ?></th>
-                <th class="dataTableHeadingContent" align="right"><?php echo TABLE_HEADING_ACTION; ?>&nbsp;</th>
+                <th class="dataTableHeadingContent"><?php echo TABLE_HEADING_SALE_NAME; ?></th>
+                <th class="dataTableHeadingContent right"><?php echo TABLE_HEADING_SALE_DEDUCTION; ?></th>
+                <th class="dataTableHeadingContent"></td>
+                <th class="dataTableHeadingContent center"><?php echo TABLE_HEADING_SALE_DATE_START; ?></th>
+                <th class="dataTableHeadingContent center"><?php echo TABLE_HEADING_SALE_DATE_END; ?></th>
+                <th class="dataTableHeadingContent center"><?php echo TABLE_HEADING_STATUS; ?></th>
+                <th class="dataTableHeadingContent right"><?php echo TABLE_HEADING_ACTION; ?>&nbsp;</th>
               </tr>
             </thead>
             <tbody>

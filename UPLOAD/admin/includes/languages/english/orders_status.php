@@ -1,16 +1,20 @@
 <?php
 /**
  * @package admin
- * @copyright Copyright 2003-2019 Zen Cart Development Team
+ * @copyright Copyright 2003-2020 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: orders_status.php 732 2015-12-22 15:49:16Z webchills $
+ * @version $Id: orders_status.php 733 2020-01-17 18:49:16Z webchills $
  */
 
 define('HEADING_TITLE', 'Orders Status');
 
 define('TABLE_HEADING_ORDERS_STATUS', 'Orders Status');
 define('TABLE_HEADING_ACTION', 'Action');
+define('TABLE_HEADING_ORDERS_STATUS_ID', 'Orders Status ID');
+define('TABLE_HEADING_SORT_ORDER', 'Sort Order');
+
+define('TEXT_INFO_SORT_ORDER', 'Sort Order: ');
 
 define('TEXT_INFO_EDIT_INTRO', 'Please make any necessary changes');
 define('TEXT_INFO_ORDERS_STATUS_NAME', 'Orders Status:');

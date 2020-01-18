@@ -1,10 +1,10 @@
 <?php
 /**
  * @package admin
- * @copyright Copyright 2003-2019 Zen Cart Development Team
+ * @copyright Copyright 2003-2020 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: index_dashboard.php 6 2019-04-14 10:49:16Z webchills $
+ * @version $Id: index_dashboard.php 7 2020-01-18 08:49:16Z webchills $
  */
 $number_of_customers = 15;
 $number_of_orders = 25;
@@ -192,7 +192,7 @@ foreach ($whos_online as $session) {
 //              visibleInLegend: true
                   }
               }, // Draw a trendline for data series 0.
-              vAxis: {title: '<?php echo DASHBOARD_DOLLARS; ?>'},
+              vAxis: {title: '<?php echo DEFAULT_CURRENCY; ?>'},
               width: '100%',
               height: '100%',
               backgroundColor: {fill: "#f7f6ef"},
@@ -301,7 +301,7 @@ foreach ($whos_online as $session) {
         <div class="panel-heading header"><?php echo BOX_TITLE_ORDERS; ?> </div>
         <table class="table table-striped table-condensed">
             <?php
-            $orders_status = $db->Execute("select orders_status_name, orders_status_id from " . TABLE_ORDERS_STATUS . " where language_id = " . (int)$_SESSION['languages_id'], false, true, 3600);
+            $orders_status = $db->Execute("SELECT orders_status_name, orders_status_id FROM " . TABLE_ORDERS_STATUS . " WHERE language_id = " . (int)$_SESSION['languages_id'] . " ORDER BY sort_order ASC, orders_status_id ASC", false, true, 3600);
 
             foreach ($orders_status as $row) {
               $orders_pending = $db->Execute("select count(*) as count from " . TABLE_ORDERS . " where orders_status = " . (int)$row['orders_status_id'], false, true, 1800);
@@ -457,7 +457,7 @@ foreach ($whos_online as $session) {
 
       <!--// Counters graph = populated by javascript  //-->
       <div class="panel panel-default reportBox">
-        <div class="panel-heading header"><?php echo TEXT_COUNTER_HISTORY_TITLE; ?></div>
+        <div class="panel-heading header"><?php echo sprintf(TEXT_COUNTER_HISTORY_TITLE, $number_of_visitors_history); ?></div>
         <?php if (count($visit_history)) { ?>
           <div class="panel-body">
             <div id="graph"></div>

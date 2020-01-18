@@ -3,10 +3,10 @@
  * plugin_support.php
  *
  * @package functions
- * @copyright Copyright 2003-2019 Zen Cart Development Team
+ * @copyright Copyright 2003-2020 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: plugin_support.php 4 2019-04-12 11:06:58Z webchills $
+ * @version $Id: plugin_support.php 5 2020-01-17 09:06:58Z webchills $
  */
 /**
  * Functions to support plugin usage
@@ -51,7 +51,7 @@ function plugin_version_check_for_updates($plugin_file_id = 0, $version_string_t
     $data = json_decode($versionServer->getPluginVersion($plugin_file_id), true);
 
     if (null === $data || isset($data['error'])) {
-        if (!empty(LOG_PLUGIN_VERSIONCHECK_FAILURES)) error_log('CURL error checking plugin versions: ' . print_r($data['error'], true));
+        if (LOG_PLUGIN_VERSIONCHECK_FAILURES) error_log('CURL error checking plugin versions: ' . print_r($data['error'], true));
         return false;
     }
 

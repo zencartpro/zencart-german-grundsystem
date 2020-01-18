@@ -1,10 +1,10 @@
 <?php
 /**
  * @package admin
- * @copyright Copyright 2003-2019 Zen Cart Development Team
+ * @copyright Copyright 2003-2020 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- *  $Id: featured.php 734 2019-07-20 08:49:16Z webchills $
+ *  $Id: featured.php 735 2020-01-18 08:49:16Z webchills $
  */
 require('includes/application_top.php');
 
@@ -62,12 +62,6 @@ if (zen_not_null($action)) {
       zen_redirect(zen_href_link(FILENAME_FEATURED, (isset($_GET['page']) && $_GET['page'] > 0 ? 'page=' . $_GET['page'] . '&' : '') . 'fID=' . (int)$featured_id . (isset($_GET['search']) ? '&search=' . $_GET['search'] : '')));
       break;
     case 'deleteconfirm':
-      // demo active test
-      if (zen_admin_demo()) {
-        $_GET['action'] = '';
-        $messageStack->add_session(ERROR_ADMIN_DEMO, 'caution');
-        zen_redirect(zen_href_link(FILENAME_FEATURED, 'page=' . $_GET['page'] . (isset($_GET['search']) ? '&search=' . $_GET['search'] : '')));
-      }
       $featured_id = zen_db_prepare_input($_POST['fID']);
 
       $db->Execute("DELETE FROM " . TABLE_FEATURED . "

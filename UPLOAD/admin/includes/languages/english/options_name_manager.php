@@ -1,10 +1,10 @@
 <?php
 /**
  * @package admin
- * @copyright Copyright 2003-2019 Zen Cart Development Team
+ * @copyright Copyright 2003-2020 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: options_name_manager.php 730 2015-12-22 15:49:16Z webchills $
+ * @version $Id: options_name_manager.php 731 2020-01-17 18:49:16Z webchills $
  */
 
 define('HEADING_TITLE_OPT', 'Product Options');
@@ -53,8 +53,6 @@ define('TABLE_TEXT_MAX_COUNT_SHORT', 'Max:');
   define('TABLE_HEADING_OPT_SORT_ORDER','Sort Order');
   define('TABLE_HEADING_OPT_DEFAULT','Default');
 
-  define('TABLE_HEADING_YES','Yes');
-  define('TABLE_HEADING_NO','No');
 
   define('TABLE_HEADING_OPT_TYPE', 'Option Type'); //CLR 031203 add option type column
   define('TABLE_HEADING_OPTION_VALUE_SIZE','Size');

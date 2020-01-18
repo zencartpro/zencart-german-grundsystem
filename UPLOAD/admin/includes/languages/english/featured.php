@@ -1,16 +1,15 @@
 <?php
 /**
  * @package admin
- * @copyright Copyright 2003-2019 Zen Cart Development Team
+ * @copyright Copyright 2003-2020 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- *  $Id: featured.php 729 2011-08-09 15:49:16Z hugo13 $
+ *  $Id: featured.php 730 2020-01-17 18:49:16Z webchills $
  */
 
 define('HEADING_TITLE', 'Featured Products');
 
 define('TABLE_HEADING_PRODUCTS', 'Products');
-define('TABLE_HEADING_PRODUCTS_MODEL','Model');
 define('TABLE_HEADING_PRODUCTS_PRICE', 'Products Price/Special/Sale');
 define('TABLE_HEADING_PRODUCTS_PERCENTAGE','Percentage');
 define('TABLE_HEADING_AVAILABLE_DATE', 'Available');
@@ -43,4 +42,3 @@ define('TEXT_INFO_HEADING_PRE_ADD_FEATURED', 'Manually add new Featured by Produ
 define('TEXT_INFO_PRE_ADD_INTRO', 'On large databases, you may Manually Add a Featured by the Product ID<br /><br />This is best used when the page takes too long to render and trying to select a Product from the dropdown becomes difficult due to too many Products from which to choose.');
 define('TEXT_PRE_ADD_PRODUCTS_ID', 'Please enter the Product ID to be Pre-Added: ');
 define('TEXT_INFO_MANUAL', 'Product ID to be Manually Added as a Featured');
-?>

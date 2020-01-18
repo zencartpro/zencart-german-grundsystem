@@ -6,10 +6,10 @@
  * Displays listing of All Products
  *
  * @package templateSystem
- * @copyright Copyright 2003-2019 Zen Cart Development Team
+ * @copyright Copyright 2003-2020 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: tpl_modules_products_all_listing.php 733 2019-04-12 18:49:16Z webchills $
+ * @version $Id: tpl_modules_products_all_listing.php 734 2020-01-17 16:49:16Z webchills $
  */
 ?>
 <table class="products-listing productsAllListing">
@@ -40,9 +40,8 @@
         $display_products_name = '';
       }
 
-
       if (PRODUCT_ALL_LIST_MODEL != '0' and zen_get_show_product_switch($products_all->fields['products_id'], 'model')) {
-        $display_products_model = TEXT_PRODUCTS_MODEL . $products_all->fields['products_model'] . str_repeat('<br class="clearBoth" />', substr(PRODUCT_ALL_LIST_MODEL, 3, 1));
+        $display_products_model = TEXT_PRODUCT_MODEL . $products_all->fields['products_model'] . str_repeat('<br class="clearBoth" />', substr(PRODUCT_ALL_LIST_MODEL, 3, 1));
       } else {
         $display_products_model = '';
       }
@@ -81,7 +80,6 @@
       } else {
         $display_products_price = '';
       }
-
 
 // more info in place of buy now
       if (PRODUCT_ALL_BUY_NOW != '0' and zen_get_products_allow_add_to_cart($products_all->fields['products_id']) == 'Y') {

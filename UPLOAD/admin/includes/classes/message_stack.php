@@ -1,10 +1,10 @@
 <?php
 /**
  * @package admin
- * @copyright Copyright 2003-2019 Zen Cart Development Team
+ * @copyright Copyright 2003-2020 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: message_stack.php 732 2019-04-12 08:49:16Z webchills $
+ * @version $Id: message_stack.php 733 2020-01-17 17:49:16Z webchills $
  */
 if (!defined('IS_ADMIN_FLAG')) {
   die('Illegal Access');
@@ -26,12 +26,7 @@ if (!defined('IS_ADMIN_FLAG')) {
 
       $this->errors = array();
 
-      if (isset($_SESSION['messageToStack']) && is_array($_SESSION['messageToStack'])) {
-        for ($i = 0, $n = sizeof($_SESSION['messageToStack']); $i < $n; $i++) {
-          $this->add($_SESSION['messageToStack'][$i]['text'], $_SESSION['messageToStack'][$i]['type']);
-        }
-        $_SESSION['messageToStack'] = '';
-      }
+      $this->add_from_session();
     }
 
     function add($message, $type = 'error') {
@@ -60,6 +55,15 @@ if (!defined('IS_ADMIN_FLAG')) {
       }
 
       $_SESSION['messageToStack'][] = array('text' => $message, 'type' => $type);
+    }
+    
+    function add_from_session() {
+      if (isset($_SESSION['messageToStack']) && is_array($_SESSION['messageToStack'])) {
+        for ($i = 0, $n = sizeof($_SESSION['messageToStack']); $i < $n; $i++) {
+          $this->add($_SESSION['messageToStack'][$i]['text'], $_SESSION['messageToStack'][$i]['type']);
+        }
+        $_SESSION['messageToStack'] = '';
+      }
     }
 
     function reset() {

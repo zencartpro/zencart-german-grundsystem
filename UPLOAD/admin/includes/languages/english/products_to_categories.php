@@ -1,26 +1,26 @@
 <?php
 /**
  * @package admin
- * @copyright Copyright 2003-2019 Zen Cart Development Team
+ * @copyright Copyright 2003-2020 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: products_to_categories.php 730 2019-04-13 15:49:16Z webchills $
+ * @version $Id: products_to_categories.php 731 2020-01-17 18:49:16Z webchills $
  */
 
-define('HEADING_TITLE','Products to Multiple Categories Link Manager ...');
+define('HEADING_TITLE','Products to Multiple Categories Link Manager');
 define('HEADING_TITLE2','Categories / Products');
 
 define('TEXT_INFO_PRODUCTS_TO_CATEGORIES_AVAILABLE', 'Categories with Products that are Available for Linking ...');
 
 define('TABLE_HEADING_PRODUCTS_ID', 'Prod ID');
 define('TABLE_HEADING_PRODUCT', 'Product Name');
-define('TABLE_HEADING_MODEL', 'Model');
+
 define('TABLE_HEADING_ACTION', 'Action');
 
-define('TEXT_INFO_HEADING_EDIT_PRODUCTS_TO_CATEGORIES', 'EDITING PRODUCT TO CATEGORIES INFORMATION');
+define('TEXT_INFO_HEADING_EDIT_PRODUCTS_TO_CATEGORIES', 'Edit Product Links');
 define('TEXT_PRODUCTS_ID', 'Product ID# ');
 define('TEXT_PRODUCTS_NAME', 'Product: ');
-define('TEXT_PRODUCTS_MODEL', 'Model: ');
+
 define('TEXT_PRODUCTS_PRICE', 'Price: ');
 define('BUTTON_UPDATE_CATEGORY_LINKS', 'Update Category Links');
 define('BUTTON_NEW_PRODUCTS_TO_CATEGORIES', 'Select Product to Link');

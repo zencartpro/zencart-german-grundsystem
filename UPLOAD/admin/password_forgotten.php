@@ -1,32 +1,26 @@
 <?php
 /**
  * @package admin
- * @copyright Copyright 2003-2019 Zen Cart Development Team
+ * @copyright Copyright 2003-2020 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: password_forgotten.php 735 2019-06-15 16:10:16Z webchills $
+ * @version $Id: password_forgotten.php 736 2020-01-18 09:10:16Z webchills $
  */
 // reset-token is good for only 24 hours:
 define('ADMIN_PWD_TOKEN_DURATION', (24 * 60 * 60));
 
 /////////
 require('includes/application_top.php');
-// demo active test
-if (zen_admin_demo()) {
-    $_GET['action'] = '';
-    $messageStack->add_session(ERROR_ADMIN_DEMO, 'caution');
-    zen_redirect(zen_href_link(FILENAME_DEFAULT));
-}
 if (isset($_POST['login'])) {
     zen_redirect(zen_href_link(FILENAME_LOGIN, '', 'SSL'));
 }
 // Slam prevention:
-if ($_SESSION['login_attempt'] > 9) {
+if (isset($_SESSION['login_attempt']) && $_SESSION['login_attempt'] > 9) {
     header('HTTP/1.1 406 Not Acceptable');
     exit(0);
 }
 $error = false;
-$reset_token = '';
+$resetToken = '';
 $email_message = '';
 if (isset($_POST['submit'])) {
     if (!$_POST['admin_email']) {
@@ -34,14 +28,18 @@ if (isset($_POST['submit'])) {
         $email_message = ERROR_WRONG_EMAIL_NULL;
     }
     $admin_email = zen_db_prepare_input($_POST['admin_email']);
-    $sql = "select admin_id, admin_name, admin_email, admin_pass from " . TABLE_ADMIN . " where admin_email = :admEmail: LIMIT 1";
+    $sql = "SELECT admin_id, admin_name, admin_email, admin_pass, lockout_expires FROM " . TABLE_ADMIN . " WHERE admin_email = :admEmail: LIMIT 1";
     $sql = $db->bindVars($sql, ':admEmail:', $admin_email, 'string');
     $result = $db->Execute($sql);
     if (!($admin_email == $result->fields['admin_email'])) {
         $error = true;
         $email_message = MESSAGE_PASSWORD_SENT;
         $resetToken = 'bad';
+    } else if ($result->fields['lockout_expires'] != 0) {
+        header('HTTP/1.1 406 Not Acceptable');
+        exit(0);
     }
+    
     // BEGIN SLAM PREVENTION
     if ($_POST['admin_email'] != '') {
         if (!isset($_SESSION['login_attempt'])) $_SESSION['login_attempt'] = 0;
@@ -53,7 +51,7 @@ if (isset($_POST['submit'])) {
         $resetToken = (time() + ADMIN_PWD_TOKEN_DURATION) . '}' . zen_encrypt_password($new_password);
         $sql = "update " . TABLE_ADMIN . " set reset_token = :token: where admin_id = :admID: ";
         $sql = $db->bindVars($sql, ':token:', $resetToken, 'string');
-        $sql = $db->bindVars($sql, ':admID:', $result->fields['admin_id'], 'string');
+        $sql = $db->bindVars($sql, ':admID:', $result->fields['admin_id'], 'integer');
         $db->Execute($sql);
         $html_msg['EMAIL_CUSTOMERS_NAME'] = $result->fields['admin_name'];
         $html_msg['EMAIL_MESSAGE_HTML'] = sprintf(TEXT_EMAIL_MESSAGE_PWD_RESET, $_SERVER['REMOTE_ADDR'], $new_password);

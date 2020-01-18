@@ -1,11 +1,11 @@
 <?php
 /**
  * paypal EC button display template
- *
+ * Zen Cart German Specific
  * @package paymentMethod
- * @copyright Copyright 2003-2019 Zen Cart Development Team
+ * @copyright Copyright 2003-2020 Zen Cart Development Team
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: tpl_ec_button.php 18700 2019-03-19 09:35:20Z webchills $
+ * @version $Id: tpl_ec_button.php 18701 2020-01-17 11:35:20Z webchills $
  */
 
 $paypalec_enabled = (defined('MODULE_PAYMENT_PAYPALWPP_STATUS') && MODULE_PAYMENT_PAYPALWPP_STATUS == 'True');
@@ -14,7 +14,7 @@ if ($ecs_off) $paypalec_enabled = FALSE;
 
 if ($paypalec_enabled) {
   // check if logged-in customer's address is in an acceptable zone
-  if ((int)MODULE_PAYMENT_PAYPALWPP_ZONE > 0 && isset($_SESSION['customer_id']) && (int)$_SESSION['customer_id'] > 0) {
+  if ((int)MODULE_PAYMENT_PAYPALWPP_ZONE > 0 && zen_is_logged_in()) {
     $custCountryCheck = (isset($order)) ? $order->billing['country']['id'] : $_SESSION['customer_country_id'];
     $custZoneCheck = (isset($order)) ? $order->billing['zone_id'] : $_SESSION['customer_zone_id'];
     $check_flag = false;

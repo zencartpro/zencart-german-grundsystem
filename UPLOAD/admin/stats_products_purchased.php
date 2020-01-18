@@ -1,10 +1,10 @@
 <?php
-/**
+/*
  * @package admin
- * @copyright Copyright 2003-2019 Zen Cart Development Team
+ * @copyright Copyright 2003-2020 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: stats_products_purchased.php 732 2019-04-13 09:24:16Z webchills $
+ * @version $Id: stats_products_purchased.php 733 2020-01-18 09:24:16Z webchills $
  */
 require('includes/application_top.php');
 
@@ -102,7 +102,7 @@ $products_filter_name_model = (isset($_GET['products_filter_name_model']) ? $_GE
         <table class="table table-hover">
           <thead>
             <tr class="dataTableHeadingRow">
-              <th class="dataTableHeadingContent"><?php echo TABLE_HEADING_CUSTOMERS_ID; ?></th>
+              <th class="dataTableHeadingContent right"><?php echo TABLE_HEADING_CUSTOMERS_ID; ?></th>
               <th class="dataTableHeadingContent"><?php echo TABLE_HEADING_ORDERS_ID; ?></th>
               <th class="dataTableHeadingContent"><?php echo TABLE_HEADING_ORDERS_DATE_PURCHASED; ?></th>
               <th class="dataTableHeadingContent"><?php echo TABLE_HEADING_CUSTOMERS_INFO; ?></th>
@@ -160,7 +160,7 @@ $products_filter_name_model = (isset($_GET['products_filter_name_model']) ? $_GE
         ?>
         <table class="table">
           <tr class="dataTableHeadingRow">
-            <th class="dataTableHeadingContent"><?php echo TABLE_HEADING_NUMBER; ?></th>
+            <th class="dataTableHeadingContent right"><?php echo TABLE_HEADING_NUMBER; ?></th>
             <th class="dataTableHeadingContent"><?php echo TABLE_HEADING_PRODUCTS; ?></th>
             <th class="dataTableHeadingContent text-center"><?php echo TABLE_HEADING_PURCHASED; ?>&nbsp;</th>
           </tr>

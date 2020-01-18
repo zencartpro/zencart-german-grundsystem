@@ -2,9 +2,9 @@
 /**
  * file contains systemChecker Class
  * @package Installer
- * @copyright Copyright 2003-2019 Zen Cart Development Team
+ * @copyright Copyright 2003-2020 Zen Cart Development Team
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: class.systemChecker.php 7 2019-07-20 09:59:53Z webchills $
+ * @version $Id: class.systemChecker.php 8 2020-01-17 16:59:53Z webchills $
  */
 /**
  * systemChecker Class
@@ -86,6 +86,16 @@ class systemChecker
       }
     }
     return array($result, $resultList);
+  }
+
+  public function hasTables()
+  {
+    $result = FALSE;
+    if ($this->hasSaneConfigFile()) { 
+      $parameters = array(array('checkType'=>'fieldSchema', 'tableName'=>'admin', 'fieldName'=>'admin_id', 'fieldCheck'=>'Type', 'expectedResult'=>'INT(11)'));
+      $result = $this->dbVersionChecker($parameters);
+    }
+    return $result; 
   }
   public function hasSaneConfigFile()
   {

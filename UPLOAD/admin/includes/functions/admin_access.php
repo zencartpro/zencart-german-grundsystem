@@ -2,10 +2,10 @@
 /**
  * @package Admin Access Management
  * Zen Cart German Specific
- * @copyright Copyright 2003-2019 Zen Cart Development Team
+ * @copyright Copyright 2003-2020 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: admin_access.php 844 2019-07-20 08:59:21Z webchills $
+ * @version $Id: admin_access.php 845 2020-01-17 17:59:21Z webchills $
  */
 
 if (!defined('ADMIN_PASSWORD_MIN_LENGTH')) define('ADMIN_PASSWORD_MIN_LENGTH', 7);
@@ -112,7 +112,7 @@ function zen_delete_user($id)
     zen_record_admin_activity(sprintf(TEXT_EMAIL_MESSAGE_ADMIN_USER_DELETED, $delname, $admname), 'warning');
     $email_text = sprintf(TEXT_EMAIL_MESSAGE_ADMIN_USER_DELETED, $delname, $admname); 
     $block = array('EMAIL_MESSAGE_HTML' => $email_text); 
-    zen_mail(STORE_OWNER_EMAIL_ADDRESS, STORE_OWNER_EMAIL_ADDRESS, TEXT_EMAIL_SUBJECT_ADMIN_USER_DELETED, $email_text, STORE_NAME, EMAIL_FROM, $block, 'admin_settings_changed');
+    zen_mail(STORE_NAME, STORE_OWNER_EMAIL_ADDRESS, TEXT_EMAIL_SUBJECT_ADMIN_USER_DELETED, $email_text, STORE_NAME, EMAIL_FROM, $block, 'admin_settings_changed');
   }
 }
 
@@ -179,7 +179,7 @@ function zen_insert_user($name, $email, $password, $confirm, $profile)
     zen_record_admin_activity(sprintf(TEXT_EMAIL_MESSAGE_ADMIN_USER_ADDED, $newname, $admname), 'warning');
     $email_text = sprintf(TEXT_EMAIL_MESSAGE_ADMIN_USER_ADDED, $newname, $admname); 
     $block = array('EMAIL_MESSAGE_HTML' => $email_text); 
-    zen_mail(STORE_OWNER_EMAIL_ADDRESS, STORE_OWNER_EMAIL_ADDRESS, TEXT_EMAIL_SUBJECT_ADMIN_USER_ADDED, $email_text, STORE_NAME, EMAIL_FROM, $block, 'admin_settings_changed');
+    zen_mail(STORE_NAME, STORE_OWNER_EMAIL_ADDRESS, TEXT_EMAIL_SUBJECT_ADMIN_USER_ADDED, $email_text, STORE_NAME, EMAIL_FROM, $block, 'admin_settings_changed');
   }
   return $errors;
 }
@@ -236,8 +236,8 @@ function zen_update_user($name, $email, $id, $profile)
     if (isset($changes['email'])) $alertText .= sprintf(TEXT_EMAIL_ALERT_ADM_EMAIL_CHANGED, $oldData['admin_name'], $changes['email']['old'], $changes['email']['new'], $admname) . "\n";
     if (isset($changes['name'])) $alertText .= sprintf(TEXT_EMAIL_ALERT_ADM_NAME_CHANGED, $oldData['admin_name'], $changes['name']['old'], $changes['name']['new'], $admname) . "\n";
     if (isset($changes['profile'])) $alertText .= sprintf(TEXT_EMAIL_ALERT_ADM_PROFILE_CHANGED, $oldData['admin_name'], $changes['profile']['old'], $changes['profile']['new'], $admname) . "\n";
-    if ($alertText != '') zen_mail(STORE_OWNER_EMAIL_ADDRESS, STORE_OWNER_EMAIL_ADDRESS, TEXT_EMAIL_SUBJECT_ADMIN_USER_CHANGED, $alertText, STORE_NAME, EMAIL_FROM, array('EMAIL_MESSAGE_HTML' => $alertText, 'EMAIL_SPAM_DISCLAIMER'=>' ', 'EMAIL_DISCLAIMER' => ' '), 'admin_settings_changed');
-    if ($alertText != '') zen_mail($oldData['admin_email'], $oldData['admin_email'], TEXT_EMAIL_SUBJECT_ADMIN_USER_CHANGED, $alertText, STORE_NAME, EMAIL_FROM, array('EMAIL_MESSAGE_HTML' => $alertText, 'EMAIL_SPAM_DISCLAIMER'=>' ', 'EMAIL_DISCLAIMER' => ' '), 'admin_settings_changed');
+    if ($alertText != '') zen_mail(STORE_NAME, STORE_OWNER_EMAIL_ADDRESS, TEXT_EMAIL_SUBJECT_ADMIN_USER_CHANGED, $alertText, STORE_NAME, EMAIL_FROM, array('EMAIL_MESSAGE_HTML' => $alertText, 'EMAIL_SPAM_DISCLAIMER'=>' ', 'EMAIL_DISCLAIMER' => ' '), 'admin_settings_changed');
+    if ($alertText != '') zen_mail(STORE_NAME, $oldData['admin_email'], TEXT_EMAIL_SUBJECT_ADMIN_USER_CHANGED, $alertText, STORE_NAME, EMAIL_FROM, array('EMAIL_MESSAGE_HTML' => $alertText, 'EMAIL_SPAM_DISCLAIMER'=>' ', 'EMAIL_DISCLAIMER' => ' '), 'admin_settings_changed');
     if ($alertText != '') zen_record_admin_activity(TEXT_EMAIL_SUBJECT_ADMIN_USER_CHANGED . ' ' . $alertText, 'warning');
   }
   return $errors;
@@ -509,7 +509,7 @@ function zen_reset_password($id, $password, $compare)
   {
     $encryptedPassword = password_hash($password, PASSWORD_DEFAULT);
     $sql = "UPDATE " . TABLE_ADMIN . "
-            SET prev_pass3 = prev_pass2, prev_pass2 = prev_pass1, prev_pass1 = admin_pass, admin_pass = :newpwd:, pwd_last_change_date = now()
+            SET prev_pass3 = prev_pass2, prev_pass2 = prev_pass1, prev_pass1 = admin_pass, admin_pass = :newpwd:, failed_logins=0, lockout_expires = 0, pwd_last_change_date = now()
             WHERE admin_id = :adminID:";
     $sql = $db->bindVars($sql, ':adminID:', $id, 'integer');
     $sql = $db->bindVars($sql, ':newpwd:', $encryptedPassword, 'string');
@@ -818,34 +818,35 @@ function zen_insert_pages_into_profile($id, $pages)
 
 function zen_get_admin_menu_for_user()
 {
-  global $db;
-  if (zen_is_superuser())
-  {
-    // get all registered admin pages that should appear in the menu
-    $retVal = zen_get_admin_pages(TRUE);
-  } else
-  {
-    // get only those registered pages allowed by the current user's profile
-    $retVal = array();
-    $sql = "SELECT ap.menu_key, ap.page_key, ap.main_page, ap.page_params, ap.language_key as pageName
-            FROM " . TABLE_ADMIN . " a
-            LEFT JOIN " . TABLE_ADMIN_PAGES_TO_PROFILES . " ap2p ON ap2p.profile_id = a.admin_profile
-            LEFT JOIN " . TABLE_ADMIN_PAGES . " ap ON ap.page_key = ap2p.page_key
-            LEFT JOIN " . TABLE_ADMIN_MENUS . " am ON am.menu_key = ap.menu_key
-            WHERE a.admin_id = :user:
-            AND   ap.display_on_menu = 'Y'
-            ORDER BY am.sort_order, ap.sort_order";
-    $sql = $db->bindVars($sql, ':user:', $_SESSION['admin_id'], 'integer');
-    $result = $db->Execute($sql);
-    while (!$result->EOF)
-    {
-      $retVal[$result->fields['menu_key']][$result->fields['page_key']] = array('name' => constant($result->fields['pageName']),
-                                                                                'file' => constant($result->fields['main_page']),
-                                                                                'params' => $result->fields['page_params']);
-      $result->MoveNext();
+    global $db;
+    if (zen_is_superuser()) {
+        // get all registered admin pages that should appear in the menu
+        $retVal = zen_get_admin_pages(true);
+    } else {
+        // get only those registered pages allowed by the current user's profile
+        $retVal = array();
+        $sql = "SELECT ap.menu_key, ap.page_key, ap.main_page, ap.page_params, ap.language_key as pageName
+                FROM " . TABLE_ADMIN . " a
+                LEFT JOIN " . TABLE_ADMIN_PAGES_TO_PROFILES . " ap2p ON ap2p.profile_id = a.admin_profile
+                LEFT JOIN " . TABLE_ADMIN_PAGES . " ap ON ap.page_key = ap2p.page_key
+                LEFT JOIN " . TABLE_ADMIN_MENUS . " am ON am.menu_key = ap.menu_key
+                WHERE a.admin_id = :user:
+                AND   ap.display_on_menu = 'Y'
+                ORDER BY am.sort_order, ap.sort_order";
+        $sql = $db->bindVars($sql, ':user:', $_SESSION['admin_id'], 'integer');
+        $result = $db->Execute($sql);
+        while (!$result->EOF) {
+            if (defined($result->fields['pageName']) && defined($result->fields['main_page'])) {
+                $retVal[$result->fields['menu_key']][$result->fields['page_key']] = array(
+                    'name' => constant($result->fields['pageName']),
+                    'file' => constant($result->fields['main_page']),
+                    'params' => $result->fields['page_params'],
+                );
+            }
+            $result->MoveNext();
+        }
     }
-  }
-  return $retVal;
+    return $retVal;
 }
 
 function zen_get_menu_titles()

@@ -4,10 +4,10 @@
  * reviews Write
  *
  * @package page
- * @copyright Copyright 2003-2019 Zen Cart Development Team
+ * @copyright Copyright 2003-2020 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: header_php.php 846 2019-06-15 21:04:50Z webchills $
+ * @version $Id: header_php.php 847 2020-01-17 11:44:50Z webchills $
  */
 /**
  * Header code file for product reviews "write" page
@@ -16,6 +16,8 @@
 
 // This should be first line of the script:
 $zco_notifier->notify('NOTIFY_HEADER_START_PRODUCT_REVIEWS_WRITE');
+
+$antiSpamFieldName = isset($_SESSION['antispam_fieldname']) ? $_SESSION['antispam_fieldname'] : 'should_be_empty';
 
 // MailBeez autologin
 if (file_exists(DIR_FS_CATALOG . 'mailhive/mailbeez/review_advanced/includes/autologin.php')) {
@@ -57,7 +59,7 @@ $error = false;
 if (isset($_GET['action']) && ($_GET['action'] == 'process')) {
   $rating = (int)$_POST['rating'];
   $review_text = $_POST['review_text'];
-  $antiSpam = isset($_POST['should_be_empty']) ? zen_db_prepare_input($_POST['should_be_empty']) : '';
+  $antiSpam = !empty($_POST[$antiSpamFieldName]) ? 'spam' : '';
   $zco_notifier->notify('NOTIFY_REVIEWS_WRITE_CAPTCHA_CHECK');
 
   if (strlen($review_text) < REVIEW_TEXT_MIN_LENGTH) {

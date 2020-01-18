@@ -1,10 +1,10 @@
 <?php
 /**
  * @package admin
- * @copyright Copyright 2003-2019 Zen Cart Development Team
+ * @copyright Copyright 2003-2020 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: index.php 736 2019-06-22 20:40:16Z webchills $
+ * @version $Id: index.php 737 2020-01-17 18:40:16Z webchills $
  */
 
 define('HEADING_TITLE', 'Choose an action..');
@@ -49,9 +49,9 @@ define('DASHBOARD_SESSIONS', 'Sessions');
 define('DASHBOARD_TOTAL', 'Total');
 define('DASHBOARD_MONTH', 'Month');
 define('DASHBOARD_SALES', 'Sales');
-define('DASHBOARD_DOLLARS', 'Dollars');
 
-define('TEXT_COUNTER_HISTORY_TITLE', 'Visitor History - Last 14 days');
+
+define('TEXT_COUNTER_HISTORY_TITLE', 'Visitor History - Last %s days');
 
 define('TEXT_MONTHLY_SALES_TITLE', 'Monthly Sales (excludes shipping)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;');
 define('TEXT_CLICK_FOR_COMPLETE_DETAILS', 'Click here for complete details...');

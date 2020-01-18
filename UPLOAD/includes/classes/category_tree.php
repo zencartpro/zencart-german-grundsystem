@@ -3,10 +3,10 @@
  * category_tree Class.
  *
  * @package classes
- * @copyright Copyright 2003-2019 Zen Cart Development Team
+ * @copyright Copyright 2003-2020 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: category_tree.php 731 2019-06-15 16:49:16Z webchills $
+ * @version $Id: category_tree.php 732 2020-01-17 08:56:16Z webchills $
  */
 if (!defined('IS_ADMIN_FLAG')) {
   die('Illegal Access');
@@ -128,7 +128,7 @@ class category_tree extends base {
             $last_id = $rows->fields['categories_id'];
             $rows->MoveNext();
           }
-          if (!empty($value)) {
+          if (!empty($value) && !empty($this->tree[$value]) /* Needed to thwart notice */) {
             $this->tree[$last_id]['next_id'] = $this->tree[$value]['next_id'];
           }
           $this->tree[$value]['next_id'] = $first_id;

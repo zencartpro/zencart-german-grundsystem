@@ -3,10 +3,10 @@
  * Payment Class.
  *
  * @package classes
- * @copyright Copyright 2003-2019 Zen Cart Development Team
+ * @copyright Copyright 2003-2020 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: payment.php 740 2019-07-20 09:11:16Z webchills $
+ * @version $Id: payment.php 741 2020-01-17 08:11:16Z webchills $
  */
 if (!defined('IS_ADMIN_FLAG')) {
   die('Illegal Access');
@@ -121,7 +121,7 @@ class payment extends base {
   function javascript_validation() {
     $js = '';
     if (is_array($this->modules) && sizeof($this->selection()) > 0) {
-      $js = '<script type="text/javascript"><!-- ' . "\n" .
+      $js = '<script type="text/javascript">' . "\n" .
       'function check_form() {' . "\n" .
       '  var error = 0;' . "\n" .
       '  var error_message = "' . JS_ERROR . '";' . "\n" .
@@ -161,7 +161,7 @@ class payment extends base {
        }
        $js =  $js .' if (result == false) doCollectsCardDataOnsite();' . "\n";
        $js =  $js .'    return result;' . "\n";
-       $js =  $js .'  }' . "\n" . '}' . "\n" . '//--></script>' . "\n";
+       $js =  $js .'  }' . "\n" . '}' . "\n" . '</script>' . "\n";
     }
     return $js;
   }

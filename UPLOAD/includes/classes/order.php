@@ -6,7 +6,7 @@
  * @package classes
  * @copyright Copyright 2003-2020 Zen Cart Development Team
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: order.php 2020-01-16 08:55:25Z webchills $
+ * @version $Id: order.php 2020-01-16 20:50:25Z webchills $
  */
 /**
  * order class
@@ -455,10 +455,10 @@ class order extends base {
         'state' => '',
         'zone_id' => 0,
         'country' => array(
-            'id' => 0, 
-            'title' => '', 
-            'iso_code_2' => '', 
-            'iso_code_3' => ''
+        'id' => 0, 
+        'title' => '', 
+        'iso_code_2' => '', 
+        'iso_code_3' => ''
         ),
         'country_id' => 0,
         'format_id' => 0

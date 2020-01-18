@@ -1,10 +1,10 @@
 <?php
 /**
  * @package admin
- * @copyright Copyright 2003-2019 Zen Cart Development Team
+ * @copyright Copyright 2003-2020 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: gv_queue.php 732 2019-07-20 08:49:16Z webchills $
+ * @version $Id: gv_queue.php 733 2020-01-18 08:49:16Z webchills $
  */
 
   require('includes/application_top.php');
@@ -64,6 +64,7 @@
       $message .= TEXT_REDEEM_GV_MESSAGE_FOOTER;
       $message .= "\n-----\n" . sprintf(EMAIL_DISCLAIMER, STORE_OWNER_EMAIL_ADDRESS) . "\n\n";
 
+      $html_msg['EMAIL_SALUTATION'] = EMAIL_SALUTATION;
       $html_msg['EMAIL_FIRST_NAME'] = $mail->fields['customers_firstname'];
       $html_msg['EMAIL_LAST_NAME']  = $mail->fields['customers_lastname'];
       $html_msg['GV_NOTICE_HEADER']  = TEXT_REDEEM_GV_MESSAGE_HEADER;
@@ -202,7 +203,12 @@
       break;
     default:
       if (!isset($gInfo) || !is_object($gInfo)) { 
-        $gInfo = new objectInfo(array());
+        $gInfo = new objectInfo(array(
+                    'unique_id' => 0, 
+                    'date_created' => '0001-01-01 00:00:00', 
+                    'amount' => '0.0000',
+                    )
+                    );
       }
       $heading[] = array('text' => '[' . $gInfo->unique_id . '] ' . zen_datetime_short($gInfo->date_created) . ' ' . $currencies->format($gInfo->amount));
 

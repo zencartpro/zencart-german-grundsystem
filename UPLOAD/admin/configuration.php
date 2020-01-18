@@ -2,10 +2,10 @@
 /**
  * Zen Cart German Specific
  * @package admin
- * @copyright Copyright 2003-2019 Zen Cart Development Team
+ * @copyright Copyright 2003-2020 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: configuration.php 793 2019-06-15 16:13:51Z webchills $
+ * @version $Id: configuration.php 794 2020-01-17 19:13:51Z webchills $
  */
 function getConfigLanguage($cKey){
      global $db;
@@ -31,12 +31,6 @@ if (zen_not_null($action)) {
   switch ($action) {
     case 'save':
       $cID = zen_db_prepare_input($_GET['cID']);
-      // demo active test
-      if (zen_admin_demo()) {
-        $_GET['action'] = '';
-        $messageStack->add_session(ERROR_ADMIN_DEMO, 'caution');
-        zen_redirect(zen_href_link(FILENAME_CONFIGURATION, 'gID=' . $_GET['gID'] . '&cID=' . (int)$cID));
-      }
 
       $configuration_value = zen_db_prepare_input($_POST['configuration_value']);
         // See if there are any configuration checks

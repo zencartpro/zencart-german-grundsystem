@@ -1,14 +1,15 @@
 <?php
 /**
  * @package admin
- * @copyright Copyright 2003-2019 Zen Cart Development Team
+ * @copyright Copyright 2003-2020 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: coupon_admin.php 794 2019-06-15 15:56:51Z webchills $
+ * @version $Id: coupon_admin.php 795 2020-01-17 19:56:51Z webchills $
  */
   require('includes/application_top.php');
   require(DIR_WS_CLASSES . 'currencies.php');
   $currencies = new currencies();
+  $status_array = array();
   if (!empty($_GET['selected_box'])) {
     $_GET['action']='';
     $_GET['old_action']='';
@@ -51,12 +52,6 @@
                                  where coupon_id = '" . $_GET['cid'] . "'
                                  and language_id = '" . (int)$_SESSION['languages_id'] . "'");
 
-    // demo active test
-    if (zen_admin_demo()) {
-      $_GET['action']= '';
-      $messageStack->add_session(ERROR_ADMIN_DEMO, 'caution');
-      zen_redirect(zen_href_link(FILENAME_COUPON_ADMIN, 'mail_sent_to=' . urlencode($mail_sent_to)));
-    }
     $from = zen_db_prepare_input($_POST['from']);
     $subject = zen_db_prepare_input($_POST['subject']);
     $recip_count=0;
@@ -86,6 +81,7 @@
       // disclaimer
       $message .= "\n-----\n" . sprintf(EMAIL_DISCLAIMER, STORE_OWNER_EMAIL_ADDRESS) . "\n\n";
 
+      $html_msg['EMAIL_SALUTATION'] = EMAIL_SALUTATION;
       $html_msg['EMAIL_FIRST_NAME'] = $mail->fields['customers_firstname'];
       $html_msg['EMAIL_LAST_NAME']  = $mail->fields['customers_lastname'];
       $html_msg['EMAIL_MESSAGE_HTML'] = zen_db_prepare_input($_POST['message_html']);
@@ -127,12 +123,6 @@
         zen_redirect(zen_href_link(FILENAME_COUPON_ADMIN));
         break;
     case 'confirmdelete':
-      // demo active test
-      if (zen_admin_demo()) {
-        $_GET['action']= '';
-        $messageStack->add_session(ERROR_ADMIN_DEMO, 'caution');
-        zen_redirect(zen_href_link(FILENAME_COUPON_ADMIN));
-      }
 
 // do not allow change if set to welcome coupon
       if ($_GET['cid'] == NEW_SIGNUP_DISCOUNT_COUPON) {
@@ -148,12 +138,6 @@
       break;
 
     case 'confirmreactivate':
-      // demo active test
-      if (zen_admin_demo()) {
-        $_GET['action']= '';
-        $messageStack->add_session(ERROR_ADMIN_DEMO, 'caution');
-        zen_redirect(zen_href_link(FILENAME_COUPON_ADMIN));
-      }
 
       $db->Execute("update " . TABLE_COUPONS . "
                     set coupon_active = 'Y'
@@ -469,10 +453,9 @@
 <title><?php echo TITLE; ?></title>
 <link rel="stylesheet" type="text/css" href="includes/stylesheet.css">
 <link rel="stylesheet" type="text/css" href="includes/cssjsmenuhover.css" media="all" id="hoverJS">
-<script language="javascript" src="includes/menu.js"></script>
-<script language="javascript" src="includes/general.js"></script>
+<script type="text/javascript" src="includes/menu.js"></script>
+<script type="text/javascript" src="includes/general.js"></script>
 <script type="text/javascript">
-  <!--
   function init()
   {
     cssjsmenu('navbar');
@@ -482,9 +465,8 @@
       kill.disabled = true;
     }
   }
-  // -->
 </script>
-<script language="javascript" type="text/javascript"><!--
+<script type="text/javascript">
 var form = "";
 var submitted = false;
 var error = false;
@@ -542,8 +524,7 @@ function check_form(form_name) {
     submitted = true;
     return true;
   }
-}
-//--></script>
+}</script>
 <?php if ($editor_handler != '') include ($editor_handler); ?>
 </head>
 <body onLoad="init()">

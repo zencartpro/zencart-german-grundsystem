@@ -3,10 +3,10 @@
  * Contact Us Page
  *
  * @package page
- * @copyright Copyright 2003-2019 Zen Cart Development Team
+ * @copyright Copyright 2003-2020 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: header_php.php 735 2019-07-20 09:32:16Z webchills $
+ * @version $Id: header_php.php 736 2020-01-17 10:32:16Z webchills $
  */
 
 // This should be first line of the script:
@@ -16,12 +16,14 @@ require DIR_WS_MODULES . zen_get_module_directory('require_languages.php');
 
 $error = false;
 $enquiry = '';
+$antiSpamFieldName = isset($_SESSION['antispam_fieldname']) ? $_SESSION['antispam_fieldname'] : 'should_be_empty';
 
 if (isset($_GET['action']) && ($_GET['action'] == 'send')) {
     $name = zen_db_prepare_input($_POST['contactname']);
     $email_address = zen_db_prepare_input($_POST['email']);
+    $telephone = zen_db_prepare_input($_POST['telephone']);
     $enquiry = zen_db_prepare_input(strip_tags($_POST['enquiry']));
-    $antiSpam = isset($_POST['should_be_empty']) ? zen_db_prepare_input($_POST['should_be_empty']) : '';
+    $antiSpam = !empty($_POST[$antiSpamFieldName]) ? 'spam' : '';
     if (!empty($_POST['contactname']) && preg_match('~https?://?~', $_POST['contactname'])) $antiSpam = 'spam';
 
     $zco_notifier->notify('NOTIFY_CONTACT_US_CAPTCHA_CHECK', $_POST);
@@ -35,8 +37,8 @@ if (isset($_GET['action']) && ($_GET['action'] == 'send')) {
         } elseif ($antiSpam == '') {
 
             // auto complete when logged in
-            if ($_SESSION['customer_id']) {
-                $sql = "SELECT customers_id, customers_firstname, customers_lastname, customers_password, customers_email_address, customers_default_address_id
+            if (zen_is_logged_in() && !zen_in_guest_checkout()) {
+                $sql = "SELECT customers_id, customers_firstname, customers_lastname, customers_password, customers_email_address, customers_default_address_id, customers_telephone 
                       FROM " . TABLE_CUSTOMERS . "
                       WHERE customers_id = :customersID";
 
@@ -44,12 +46,14 @@ if (isset($_GET['action']) && ($_GET['action'] == 'send')) {
                 $check_customer = $db->Execute($sql);
                 $customer_email = $check_customer->fields['customers_email_address'];
                 $customer_name  = $check_customer->fields['customers_firstname'] . ' ' . $check_customer->fields['customers_lastname'];
+                $customer_telephone = $check_customer->fields['customers_telephone']; 
             } else {
                 $customer_email = NOT_LOGGED_IN_TEXT;
                 $customer_name = NOT_LOGGED_IN_TEXT;
+                $customer_telephone = NOT_LOGGED_IN_TEXT;
             }
 
-            $zco_notifier->notify('NOTIFY_CONTACT_US_ACTION', (isset($_SESSION['customer_id']) ? $_SESSION['customer_id'] : 0), $customer_email, $customer_name, $email_address, $name, $enquiry);
+            $zco_notifier->notify('NOTIFY_CONTACT_US_ACTION', (isset($_SESSION['customer_id']) ? $_SESSION['customer_id'] : 0), $customer_email, $customer_name, $email_address, $name, $enquiry, $telephone);
 
             // declare variable
             $send_to_array = [];
@@ -74,10 +78,12 @@ if (isset($_GET['action']) && ($_GET['action'] == 'send')) {
             }
 
             // Prepare extra-info details
-            $extra_info = email_collect_extra_info($name, $email_address, $customer_name, $customer_email);
+            $extra_info = email_collect_extra_info($name, $email_address, $customer_name, $customer_email, $customer_telephone);
             // Prepare Text-only portion of message
             $text_message = OFFICE_FROM . "\t" . $name . "\n" .
-            OFFICE_EMAIL . "\t" . $email_address . "\n\n" .
+              OFFICE_EMAIL . "\t" . $email_address . "\n";
+            if (!empty($telephone)) $text_message .= OFFICE_LOGIN_PHONE . "\t" . $telephone . "\n"; 
+            $text_message .= "\n" .
             '------------------------------------------------------' . "\n\n" .
             strip_tags($_POST['enquiry']) .  "\n\n" .
             '------------------------------------------------------' . "\n\n" .
@@ -114,7 +120,7 @@ $name = '';
 
 // default email and name if customer is logged in
 if (zen_is_logged_in()) {
-    $sql = "SELECT customers_id, customers_firstname, customers_lastname, customers_password, customers_email_address, customers_default_address_id
+    $sql = "SELECT customers_id, customers_firstname, customers_lastname, customers_password, customers_email_address, customers_default_address_id, customers_telephone 
             FROM " . TABLE_CUSTOMERS . "
             WHERE customers_id = :customersID";
 
@@ -122,6 +128,7 @@ if (zen_is_logged_in()) {
     $check_customer = $db->Execute($sql);
     $email_address = $check_customer->fields['customers_email_address'];
     $name = $check_customer->fields['customers_firstname'] . ' ' . $check_customer->fields['customers_lastname'];
+    $telephone = $check_customer->fields['customers_telephone']; 
 }
 
 $send_to_array = array();

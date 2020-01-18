@@ -6,10 +6,10 @@
  * Displays listing of New Products
  *
  * @package templateSystem
- * @copyright Copyright 2003-2019 Zen Cart Development Team
+ * @copyright Copyright 2003-2020 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: tpl_modules_products_new_listing.php 2 2016-04-06 11:33:58Z webchills $
+ * @version $Id: tpl_modules_products_new_listing.php 3 2020-01-17 15:33:58Z webchills $
 
  */
 ?>
@@ -39,7 +39,7 @@
       }
 
       if (PRODUCT_NEW_LIST_MODEL != '0' and zen_get_show_product_switch($products_new->fields['products_id'], 'model')) {
-        $display_products_model = '<b>' . TEXT_PRODUCTS_MODEL . '</b>' . $products_new->fields['products_model'] . str_repeat('<br />', substr(PRODUCT_NEW_LIST_MODEL, 3, 1));
+        $display_products_model = '<b>' . TEXT_PRODUCT_MODEL . '</b>' . $products_new->fields['products_model'] . str_repeat('<br />', substr(PRODUCT_NEW_LIST_MODEL, 3, 1));
       } else {
         $display_products_model = '';
       }

@@ -1,10 +1,10 @@
 <?php
 /**
  * @package admin
- * @copyright Copyright 2003-2019 Zen Cart Development Team
+ * @copyright Copyright 2003-2020 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: banner_manager.php 791 2019-04-14 10:13:51Z webchills $
+ * @version $Id: banner_manager.php 792 2020-01-17 19:13:51Z webchills $
  */
 require('includes/application_top.php');
 require('includes/functions/functions_graphs.php');
@@ -113,7 +113,7 @@ if (zen_not_null($action)) {
       }
 
       if ($banner_error == false) {
-        $db_image_location = (zen_not_null($banners_image_local)) ? $banners_image_local : $banners_image_target . $banners_image->filename;
+        $db_image_location = (zen_not_null($banners_image_local) || !isset($banners_image)) ? $banners_image_local : $banners_image_target . $banners_image->filename;
         $db_image_location = zen_limit_image_filename($db_image_location, TABLE_BANNERS, 'banners_image');
         $banners_url = zen_limit_image_filename($banners_url, TABLE_BANNERS, 'banners_url');
         $sql_data_array = array(
@@ -403,7 +403,7 @@ if (zen_not_null($action)) {
           </div>
           <div class="form-group">
             <div class="col-sm-offset-3 col-sm-9 col-md-6">
-                <?php echo TEXT_BANNERS_BANNER_NOTE . '<br>' . TEXT_BANNERS_INSERT_NOTE . '<br>' . TEXT_BANNERS_EXPIRCY_NOTE . '<br>' . TEXT_BANNERS_SCHEDULE_NOTE; ?>
+                <?php echo TEXT_BANNERS_BANNER_NOTE . '<br>' . TEXT_BANNERS_INSERT_NOTE . '<br>' . TEXT_BANNERS_EXPIRY_NOTE . '<br>' . TEXT_BANNERS_SCHEDULE_NOTE; ?>
             </div>
           </div>
           <?php echo '</form>'; ?>

@@ -2,9 +2,9 @@
 /**
  * file contains zcDatabaseInstaller Class
  * @package Installer
- * @copyright Copyright 2003-2019 Zen Cart Development Team
+ * @copyright Copyright 2003-2020 Zen Cart Development Team
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: class.zcDatabaseInstaller.php 5 2019-07-20 09:59:53Z webchills $
+ * @version $Id: class.zcDatabaseInstaller.php 6 2020-01-17 16:59:53Z webchills $
  *
  */
 /**
@@ -131,7 +131,6 @@ class zcDatabaseInstaller
 //      echo $this->newLine;
       if ($this->completeLine)
       {
-        if (get_magic_quotes_runtime() > 0) $this->newLine = stripslashes($this->newLine);
         $output = (trim(str_replace(';','',$this->newLine)) != '' && !$this->ignoreLine) ? $this->tryExecute($this->newLine) : '';
         $this->doJsonProgressLoggingUpdate();
         $this->newLine = "";
@@ -483,8 +482,6 @@ class zcDatabaseInstaller
   }
   public function updateConfigKeys()
   {
-    $sql = "update ". $this->dbPrefix ."configuration set configuration_value='". DIR_FS_ROOT . "logs/page_parse_time.log' where configuration_key = 'STORE_PAGE_PARSE_TIME_LOG'";
-    $this->db->Execute($sql);
     if (isset($_POST['http_server_catalog']) && $_POST['http_server_catalog'] != '') {
       $email_stub = preg_replace('~.*\/\/(www.)*~', 'YOUR_EMAIL@', $_POST['http_server_catalog']);
       $sql = "update ". $this->dbPrefix ."configuration set configuration_value=:emailStub: where configuration_key in ('STORE_OWNER_EMAIL_ADDRESS', 'EMAIL_FROM')";

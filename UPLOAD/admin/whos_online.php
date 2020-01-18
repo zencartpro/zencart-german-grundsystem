@@ -2,10 +2,10 @@
 /**
  * Zen Cart German Specific
  * @package admin
- * @copyright Copyright 2003-2019 Zen Cart Development Team
+ * @copyright Copyright 2003-2020 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: whos_online.php 738 2019-07-20 08:49:16Z webchills $
+ * @version $Id: whos_online.php 739 2020-01-18 09:49:16Z webchills $
  *
  * ALERT: This file requires PHP 5.4 or newer because it uses the short-array syntax.
  * 
@@ -29,7 +29,7 @@ function zen_check_quantity($which) {
                              WHERE session_id='" . $which . "'");
 
   // longer than 2 minutes light color
-  $xx_mins_ago_long = (time() - WHOIS_TIMER_INACTIVE);
+  $xx_mins_ago_long = (time() - (int)WHOIS_TIMER_INACTIVE);
 
   $chk_cart_status = base64_decode($which_query->fields['value']);
   switch (true) {
@@ -70,10 +70,10 @@ require DIR_WS_CLASSES . 'currencies.php';
 $currencies = new currencies();
 
 // same time_entry as time_last_click for 600 seconds = 10 minutes assumed to have left immediately
-$xx_mins_ago_dead = (time() - WHOIS_TIMER_DEAD);
+$xx_mins_ago_dead = (time() - (int)WHOIS_TIMER_DEAD);
 
 // remove after how many seconds? default= 1200 = 20 minutes
-$xx_mins_ago = (time() - WHOIS_TIMER_REMOVE);
+$xx_mins_ago = (time() - (int)WHOIS_TIMER_REMOVE);
 
 // remove entries that have expired
 $db->Execute("DELETE FROM " . TABLE_WHOS_ONLINE . "
@@ -262,8 +262,8 @@ $listingURL = FILENAME_WHOS_ONLINE . '.php?' . zen_get_all_get_params(['q', 't',
             zen_image(DIR_WS_IMAGES . 'icon_status_yellow.gif') . '&nbsp;' . WHOS_ONLINE_INACTIVE_TEXT . '&nbsp;&nbsp;' .
             zen_image(DIR_WS_IMAGES . 'icon_status_red.gif') . '&nbsp;' . WHOS_ONLINE_ACTIVE_NO_CART_TEXT . '&nbsp;&nbsp;' .
             zen_image(DIR_WS_IMAGES . 'icon_status_red_light.gif') . '&nbsp;' . WHOS_ONLINE_INACTIVE_NO_CART_TEXT . '<br />' .
-            WHOS_ONLINE_INACTIVE_LAST_CLICK_TEXT . '&nbsp;' . WHOIS_TIMER_INACTIVE . 's' . '&nbsp;||&nbsp;' . WHOS_ONLINE_INACTIVE_ARRIVAL_TEXT . '&nbsp;' .
-            WHOIS_TIMER_DEAD . 's&nbsp;' . WHOS_ONLINE_REMOVED_TEXT;
+            WHOS_ONLINE_INACTIVE_LAST_CLICK_TEXT . '&nbsp;' . (int)WHOIS_TIMER_INACTIVE . 's' . '&nbsp;||&nbsp;' . WHOS_ONLINE_INACTIVE_ARRIVAL_TEXT . '&nbsp;' .
+            (int)WHOIS_TIMER_DEAD . 's&nbsp;' . WHOS_ONLINE_REMOVED_TEXT;
             ?>
         </div>
 
@@ -454,8 +454,8 @@ $listingURL = FILENAME_WHOS_ONLINE . '.php?' . zen_get_all_get_params(['q', 't',
                             . zen_image(DIR_WS_IMAGES . 'icon_status_yellow.gif') . " Inactive cart &nbsp;&nbsp;"
                             . zen_image(DIR_WS_IMAGES . 'icon_status_red.gif') . " Active no cart &nbsp;&nbsp;"
                             . zen_image(DIR_WS_IMAGES . 'icon_status_red_light.gif') . " Inactive no cart "
-                            . "<br />Inactive is Last Click >= " . WHOIS_TIMER_INACTIVE . "s"
-                            . " &nbsp; || Inactive since arrival > " . WHOIS_TIMER_DEAD . "s will be removed";
+                            . "<br />Inactive is Last Click >= " . (int)WHOIS_TIMER_INACTIVE . "s"
+                            . " &nbsp; || Inactive since arrival > " . (int)WHOIS_TIMER_DEAD . "s will be removed";
                         ?>
                     </td>
                   </tr>

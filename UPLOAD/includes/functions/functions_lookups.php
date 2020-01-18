@@ -5,10 +5,10 @@
  * Lookup Functions for various core activities related to countries, prices, products, product types, etc
  *
  * @package functions
- * @copyright Copyright 2003-2019 Zen Cart Development Team
+ * @copyright Copyright 2003-2020 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: functions_lookups.php 775 2019-07-27 08:15:42Z webchills $
+ * @version $Id: functions_lookups.php 776 2020-01-17 09:15:42Z webchills $
  */
 
 /**
@@ -758,6 +758,10 @@ function zen_get_configuration_key_value($lookup)
       $sql = "select products_type from " . TABLE_PRODUCTS . " where products_id='" . $lookup . "'";
       $type_lookup = $db->Execute($sql);
 
+      if ($type_lookup->RecordCount() == 0) {
+        return false;
+      }
+
       $sql = "select type_handler from " . TABLE_PRODUCT_TYPES . " where type_id = '" . $type_lookup->fields['products_type'] . "'";
       $show_key = $db->Execute($sql);
 
@@ -814,11 +818,11 @@ function zen_get_configuration_key_value($lookup)
       // showcase no prices
         $zc_run = false;
         break;
-      case (CUSTOMERS_APPROVAL == '1' and $_SESSION['customer_id'] == ''):
+      case (CUSTOMERS_APPROVAL == '1' && !zen_is_logged_in()):
       // customer must be logged in to browse
         $zc_run = false;
         break;
-      case (CUSTOMERS_APPROVAL == '2' and $_SESSION['customer_id'] == ''):
+      case (CUSTOMERS_APPROVAL == '2' && !zen_is_logged_in()):
       // show room only
       // customer may browse but no prices
         $zc_run = false;
@@ -827,11 +831,11 @@ function zen_get_configuration_key_value($lookup)
       // show room only
         $zc_run = false;
         break;
-      case (CUSTOMERS_APPROVAL_AUTHORIZATION != '0' and $_SESSION['customer_id'] == ''):
+      case (CUSTOMERS_APPROVAL_AUTHORIZATION != '0' && !zen_is_logged_in()):
       // customer must be logged in to browse
         $zc_run = false;
         break;
-      case (CUSTOMERS_APPROVAL_AUTHORIZATION != '0' and $_SESSION['customers_authorization'] > '0'):
+      case (CUSTOMERS_APPROVAL_AUTHORIZATION != '0' && isset($_SESSION['customers_authorization']) && (int)$_SESSION['customers_authorization'] > 0):
       // customer must be logged in to browse
         $zc_run = false;
         break;
@@ -846,13 +850,14 @@ function zen_get_configuration_key_value($lookup)
 /*
  *  Look up whether to show prices, based on customer-authorization levels
  */
-  function zen_check_show_prices() {
-    if (!(CUSTOMERS_APPROVAL == '2' and $_SESSION['customer_id'] == '') and !((CUSTOMERS_APPROVAL_AUTHORIZATION > 0 and CUSTOMERS_APPROVAL_AUTHORIZATION < 3) and ($_SESSION['customers_authorization'] > '0' or $_SESSION['customer_id'] == '')) and STORE_STATUS != 1) {
+function zen_check_show_prices() 
+{
+    if (!(CUSTOMERS_APPROVAL == '2' and !zen_is_logged_in()) and !((CUSTOMERS_APPROVAL_AUTHORIZATION > 0 and CUSTOMERS_APPROVAL_AUTHORIZATION < 3) and ($_SESSION['customers_authorization'] > '0' or !zen_is_logged_in())) and STORE_STATUS != 1) {
       return true;
     } else {
       return false;
     }
-  }
+}
 
 /*
  * Return any field from products or products_description table
@@ -979,8 +984,6 @@ function zen_has_product_attributes_downloads_status($products_id) {
     $upcoming_mask_range = time();
     $upcoming_mask = date('Ymd', $upcoming_mask_range);
 
-// echo 'Now:      '. date('Y-m-d') ."<br />";
-// echo $time_limit . ' Days: '. date('Ymd', $date_range) ."<br />";
     $zc_new_date = date('Ymd', $date_range);
     switch (true) {
     case (SHOW_NEW_PRODUCTS_LIMIT == 0):

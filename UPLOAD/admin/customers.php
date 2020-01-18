@@ -1,15 +1,16 @@
 <?php
 /**
  * @package admin
- * @copyright Copyright 2003-2019 Zen Cart Development Team
+ * @copyright Copyright 2003-2020 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: customers.php 797 2019-07-20 08:45:51Z webchills $
+ * @version $Id: customers.php 798 2020-01-18 08:36:51Z webchills $
  */
 require('includes/application_top.php');
 
 require(DIR_WS_CLASSES . 'currencies.php');
 $currencies = new currencies();
+$group_array = array();
 
 $action = (isset($_GET['action']) ? $_GET['action'] : '');
 $customers_id = isset($_GET['cID']) ? (int)$_GET['cID'] : 0;
@@ -55,8 +56,13 @@ if (zen_not_null($action)) {
     case 'status':
       if (isset($_POST['current']) && is_numeric($_POST['current'])) {
         if ($_POST['current'] == CUSTOMERS_APPROVAL_AUTHORIZATION) {
+          if (CUSTOMERS_APPROVAL_AUTHORIZATION == 1 || CUSTOMERS_APPROVAL_AUTHORIZATION == 2) { 
+            $customers_authorization = 0; 
+          } else {
+            $customers_authorization = 4; 
+          }
           $sql = "UPDATE " . TABLE_CUSTOMERS . "
-                  SET customers_authorization = 0
+                  SET customers_authorization = " . $customers_authorization  . "  
                   WHERE customers_id = " . (int)$customers_id;
           $custinfo = $db->Execute("SELECT customers_email_address, customers_firstname, customers_lastname
                                     FROM " . TABLE_CUSTOMERS . "
@@ -309,11 +315,6 @@ if (zen_not_null($action)) {
       break;
     case 'pwdresetconfirm':
       if ((int)$customers_id > 0 && isset($_POST['newpassword']) && $_POST['newpassword'] != '' && isset($_POST['newpasswordConfirm']) && $_POST['newpasswordConfirm'] != '') {
-        if (zen_admin_demo()) {
-          $_GET['action'] = '';
-          $messageStack->add_session(ERROR_ADMIN_DEMO, 'caution');
-          zen_redirect(zen_href_link(FILENAME_CUSTOMERS, zen_get_all_get_params(array('cID', 'action'))));
-        }
         $password_new = zen_db_prepare_input($_POST['newpassword']);
         $password_confirmation = zen_db_prepare_input($_POST['newpasswordConfirm']);
         $error = FALSE;
@@ -362,12 +363,6 @@ if (zen_not_null($action)) {
       }
       break;
     case 'deleteconfirm':
-      // demo active test
-      if (zen_admin_demo()) {
-        $_GET['action'] = '';
-        $messageStack->add_session(ERROR_ADMIN_DEMO, 'caution');
-        zen_redirect(zen_href_link(FILENAME_CUSTOMERS, zen_get_all_get_params(array('cID', 'action')), 'NONSSL'));
-      }
       $customers_id = zen_db_prepare_input($_POST['cID']);
 
       $zco_notifier->notify('NOTIFIER_ADMIN_ZEN_CUSTOMERS_DELETE_CONFIRM', array('customers_id' => $customers_id));
@@ -1092,7 +1087,7 @@ if (zen_not_null($action)) {
             <table class="table table-hover">
               <thead>
                 <tr class="dataTableHeadingRow">
-                  <th class="dataTableHeadingContent text-center">
+                  <th class="dataTableHeadingContent text-right">
                       <?php echo TABLE_HEADING_ID; ?>
                   </th>
                   <th class="dataTableHeadingContent">
@@ -1328,11 +1323,7 @@ if (zen_not_null($action)) {
                   <td class="dataTableContent text-right"><?php echo $currencies->format($customer['amount']); ?></td>
                 <?php } ?>
                 <td class="dataTableContent text-center">
-                    <?php if ($customer['customers_authorization'] == 4) { ?>
-                      <?php echo zen_image(DIR_WS_IMAGES . 'icon_red_off.gif', IMAGE_ICON_STATUS_OFF); ?>
-                      <?php
-                    } else {
-                      echo zen_draw_form('setstatus_' . (int)$customer['customers_id'], FILENAME_CUSTOMERS, 'action=status&cID=' . $customer['customers_id'] . (isset($_GET['page']) ? '&page=' . $_GET['page'] : '') . (isset($_GET['search']) ? '&search=' . $_GET['search'] : ''));
+                      <?php echo zen_draw_form('setstatus_' . (int)$customer['customers_id'], FILENAME_CUSTOMERS, 'action=status&cID=' . $customer['customers_id'] . (isset($_GET['page']) ? '&page=' . $_GET['page'] : '') . (isset($_GET['search']) ? '&search=' . $_GET['search'] : ''));
                       ?>
                       <?php if ($customer['customers_authorization'] == 0) { ?>
                       <input type="image" src="<?php echo DIR_WS_IMAGES ?>icon_green_on.gif" title="<?php echo IMAGE_ICON_STATUS_ON; ?>" />
@@ -1341,7 +1332,6 @@ if (zen_not_null($action)) {
                     <?php } ?>
                     <?php echo zen_draw_hidden_field('current', $customer['customers_authorization']); ?>
                     <?php echo '</form>'; ?>
-                  <?php } ?>
                 </td>
                 <td class="dataTableContent text-right"><?php
                     if (isset($cInfo) && is_object($cInfo) && ($customer['customers_id'] == $cInfo->customers_id)) {
@@ -1381,8 +1371,9 @@ if (zen_not_null($action)) {
                   $contents[] = array('align' => 'text-center', 'text' => '<br><button type="submit" class="btn btn-warning">' . IMAGE_RESET_PWD . '</button> <a href="' . zen_href_link(FILENAME_CUSTOMERS, zen_get_all_get_params(array('cID', 'action')) . 'cID=' . $cInfo->customers_id) . '" class="btn btn-default" role="button">' . IMAGE_CANCEL . '</a>');
                   break;
                 default:
-                  if (isset($_GET['search']))
+                  if (isset($_GET['search'])) {
                     $_GET['search'] = zen_output_string_protected($_GET['search']);
+                  }
                   if (isset($cInfo) && is_object($cInfo)) {
                     $customers_orders = $db->Execute("SELECT o.orders_id, o.date_purchased, o.order_total, o.currency, o.currency_value,
                                                          cgc.amount
@@ -1394,7 +1385,7 @@ if (zen_not_null($action)) {
                     $heading[] = array('text' => '<h4>' . TABLE_HEADING_ID . $cInfo->customers_id . ' ' . $cInfo->customers_firstname . ' ' . $cInfo->customers_lastname . '</h4>' . '<br>' . $cInfo->customers_email_address);
 
                     $contents[] = array('align' => 'text-center', 'text' => '<a href="' . zen_href_link(FILENAME_CUSTOMERS, zen_get_all_get_params(array('cID', 'action', 'search')) . 'cID=' . $cInfo->customers_id . '&action=edit', 'NONSSL') . '" class="btn btn-primary" role="button">' . IMAGE_EDIT . '</a> <a href="' . zen_href_link(FILENAME_CUSTOMERS, zen_get_all_get_params(array('cID', 'action', 'search')) . 'cID=' . $cInfo->customers_id . '&action=confirm', 'NONSSL') . '" class="btn btn-warning" role="button">' . IMAGE_DELETE . '</a>');
-                    $contents[] = array('align' => 'text-center', 'text' => ($customers_orders->RecordCount() != 0 ? '<a href="' . zen_href_link(FILENAME_ORDERS, 'cID=' . $cInfo->customers_id, 'NONSSL') . '" class="btn btn-default" role="button">' . IMAGE_ORDERS . '</a>' : '') . ' <a href="' . zen_href_link(FILENAME_MAIL, 'origin=customers.php&mode=NONSSL&customer=' . $cInfo->customers_email_address . '&cID=' . $cInfo->customers_id, 'NONSSL') . '" class="btn btn-default" role="button">' . IMAGE_EMAIL . '</a>');
+                    $contents[] = array('align' => 'text-center', 'text' => ($customers_orders->RecordCount() != 0 ? '<a href="' . zen_href_link(FILENAME_ORDERS, 'cID=' . $cInfo->customers_id, 'NONSSL') . '" class="btn btn-default" role="button">' . IMAGE_ORDERS . '</a>' : '') . ' <a href="' . zen_href_link(FILENAME_MAIL, 'origin=customers.php&customer=' . $cInfo->customers_email_address . '&cID=' . $cInfo->customers_id, 'NONSSL') . '" class="btn btn-default" role="button">' . IMAGE_EMAIL . '</a>');
                     $contents[] = array('align' => 'text-center', 'text' => '<a href="' . zen_href_link(FILENAME_CUSTOMERS, zen_get_all_get_params(array('cID', 'action', 'search')) . 'cID=' . $cInfo->customers_id . '&action=pwreset') . '" class="btn btn-warning" role="button">' . IMAGE_RESET_PWD . '</a>');
                     $zco_notifier->notify('NOTIFY_ADMIN_CUSTOMERS_MENU_BUTTONS', $cInfo, $contents);
 
@@ -1410,11 +1401,17 @@ if (zen_not_null($action)) {
                     if ($customers_orders->RecordCount() != 0) {
 
                       $lifetime_value = 0;
+                        $last_order = array(
+                            'date_purchased' => $customers_orders->fields['date_purchased'],
+                            'order_total' => $customers_orders->fields['order_total'], 
+                            'currency' => $customers_orders->fields['currency'], 
+                            'currency_value' => $customers_orders->fields['currency_value'],
+                          );
                       foreach($customers_orders as $result) {
                          $lifetime_value+= ($result['order_total'] * $result['currency_value']);
                       }
                       $contents[] = array('text' => TEXT_INFO_LIFETIME_VALUE. ' ' . $currencies->format($lifetime_value));
-                      $contents[] = array('text' => TEXT_INFO_LAST_ORDER . ' ' . zen_date_short($customers_orders->fields['date_purchased']) . '<br>' . TEXT_INFO_ORDERS_TOTAL . ' ' . $currencies->format($customers_orders->fields['order_total'], true, $customers_orders->fields['currency'], $customers_orders->fields['currency_value']));
+                      $contents[] = array('text' => TEXT_INFO_LAST_ORDER . ' ' . zen_date_short($last_order['date_purchased']) . '<br>' . TEXT_INFO_ORDERS_TOTAL . ' ' . $currencies->format($last_order['order_total'], true, $last_order['currency'], $last_order['currency_value']));
                     }
                     $contents[] = array('text' => '<br>' . TEXT_INFO_COUNTRY . ' ' . $cInfo->countries_name);
                     $contents[] = array('text' => '<br>' . TEXT_INFO_NUMBER_OF_REVIEWS . ' ' . $cInfo->number_of_reviews);
