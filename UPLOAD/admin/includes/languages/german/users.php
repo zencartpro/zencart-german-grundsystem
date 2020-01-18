@@ -1,10 +1,10 @@
 <?php
 /**
  * @package admin
- * @copyright Copyright 2003-2019 Zen Cart Development Team
+ * @copyright Copyright 2003-2020 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: users.php 731 2016-04-09 09:49:16Z webchills $
+ * @version $Id: users.php 732 2020-01-18 10:49:16Z webchills $
  */
 
 define('HEADING_TITLE', 'Admin Benutzer');
@@ -14,7 +14,7 @@ define('IMAGE_ADD_USER', 'Benutzer hinzufügen');
 
 define('TEXT_ID', 'ID');
 define('TEXT_NAME', 'Name');
-define('TEXT_EMAIL', 'E-Mail');
+
 define('TEXT_PROFILE', 'Profil');
 define('TEXT_CHOOSE_PROFILE', 'Profil wählen');
 define('TEXT_PASSWORD', 'Passwort');

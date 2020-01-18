@@ -2,10 +2,10 @@
 /**
  * Zen Cart German Specific
  * @package admin
- * @copyright Copyright 2003-2019 Zen Cart Development Team
+ * @copyright Copyright 2003-2020 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: orders.php 634 2018-04-15 09:05:14Z webchills $
+ * @version $Id: orders.php 635 2020-01-18 10:05:14Z webchills $
  */
 
 define('HEADING_TITLE', 'Bestellungen');
@@ -30,7 +30,7 @@ define('TABLE_HEADING_STATUS', 'Status');
 define('TABLE_HEADING_TYPE', 'Bestelltyp');
 define('TABLE_HEADING_ACTION', 'Aktion');
 define('TABLE_HEADING_QUANTITY', 'Stück');
-define('TABLE_HEADING_PRODUCTS_MODEL', 'Artikelnummer');
+
 define('TABLE_HEADING_PRODUCTS', 'Artikel');
 define('TABLE_HEADING_TAX', 'MwSt.');
 define('TABLE_HEADING_TOTAL', 'Summe');
@@ -109,6 +109,8 @@ define('TEXT_DOWNLOAD_AVAILABLE', 'Verfügbar');
 define('TEXT_DOWNLOAD_EXPIRED', 'Abgelaufen');
 define('TEXT_DOWNLOAD_MISSING', 'Nicht auf dem Server');
 
+define('TEXT_EXTENSION_NOT_UNDERSTOOD', 'Dateierweiterung %s nicht unterstützt'); 
+define('TEXT_FILE_NOT_FOUND', 'Datei nicht gefunden'); 
 define('IMAGE_ICON_STATUS_CURRENT', 'Status - Vorhanden');
 define('IMAGE_ICON_STATUS_EXPIRED', 'Status - Abgelaufen');
 define('IMAGE_ICON_STATUS_MISSING', 'Status - Vermisst');

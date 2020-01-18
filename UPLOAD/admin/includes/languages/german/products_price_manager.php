@@ -1,17 +1,17 @@
 <?php
 /**
  * @package admin
- * @copyright Copyright 2003-2019 Zen Cart Development Team
+ * @copyright Copyright 2003-2020 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: products_price_manager.php 6444 2019-06-30 10:06:04Z webchills $
+ * @version $Id: products_price_manager.php 645 2020-01-18 10:06:04Z webchills $
  */
 
 
 define('HEADING_TITLE', 'Artikelpreismanager');
 define('HEADING_TITLE_PRODUCT_SELECT','Wählen Sie bitte eine Kategorie mit Artikeln aus, um die Preisinformationen anzuzeigen von ...');
 define('TABLE_HEADING_PRODUCTS', 'Artikel');
-define('TABLE_HEADING_PRODUCTS_MODEL','Artikelnummer');
+
 define('TABLE_HEADING_PRODUCTS_PRICE', 'Preis | Sonderpreis | Abverkauf');
 define('TABLE_HEADING_PRODUCTS_PERCENTAGE','Prozentsatz');
 define('TABLE_HEADING_AVAILABLE_DATE', 'Verfügbar ab');
@@ -20,7 +20,7 @@ define('TABLE_HEADING_STATUS', 'Status');
 define('TABLE_HEADING_ACTION', 'Aktion');
 define('TEXT_PRODUCT_INFO', 'Artikelinfo:');
 define('TEXT_PRODUCTS_PRICE_INFO', 'Artikelpreis Info:');
-define('TEXT_PRODUCTS_MODEL','Artikelnummer:');
+
 define('TEXT_PRICE', 'Preis');
 define('TEXT_PRICE_NET', 'Preis (exkl. Steuer)');
 define('TEXT_PRICE_GROSS', 'Preis (inkl. Steuer)');
@@ -78,7 +78,7 @@ define('TEXT_IMAGE_NONEXISTENT', 'Bild existiert nicht');
 define('TEXT_INFO_HEADING_DELETE_FEATURED', 'Empfohlene Artikel löschen');
 define('TEXT_INFO_DELETE_INTRO', 'Sind Sie sicher, dass Sie diesen Status löschen wollen?');
 define('TEXT_ATTRIBUTES_INSERT_INFO', '<strong>Definieren Sie die Einstellungen der Attribute und klicken anschließend auf Einfügen, um die Änderungen wirksam zu machen</strong>');
-define('TEXT_PRICED_BY_ATTRIBUTES', 'Preis durch Attribute festgelegt');
+
 define('TEXT_PRODUCTS_PRICE', 'Artikelpreis: ');
 define('TEXT_SPECIAL_PRICE', 'Sonderpreis: ');
 define('TEXT_SALE_PRICE', 'Abverkaufspreis: ');

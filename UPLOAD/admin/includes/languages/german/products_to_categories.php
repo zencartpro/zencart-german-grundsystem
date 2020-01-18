@@ -1,10 +1,10 @@
 <?php
 /**
  * @package admin
- * @copyright Copyright 2003-2019 Zen Cart Development Team
+ * @copyright Copyright 2003-2020 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: products_to_categories.php 2019-10-15 11:37:14Z webchills $
+ * @version $Id: products_to_categories.php 2020-01-18 10:37:14Z webchills $
  */
 
 define('HEADING_TITLE', 'Artikel in mehreren Kategorien anzeigen - Link Manager ...');
@@ -12,12 +12,12 @@ define('HEADING_TITLE2', 'Kategorien / Artikel');
 define('TEXT_INFO_PRODUCTS_TO_CATEGORIES_AVAILABLE', 'Kategorien mit verlinkbaren Artikeln ...');
 define('TABLE_HEADING_PRODUCTS_ID', 'Artikel ID');
 define('TABLE_HEADING_PRODUCT', 'Artikelname');
-define('TABLE_HEADING_MODEL', 'Bezeichnung');
+
 define('TABLE_HEADING_ACTION', 'Aktion');
 define('TEXT_INFO_HEADING_EDIT_PRODUCTS_TO_CATEGORIES', 'ARTIKEL ZU KATEGORIE INFORMATIONEN EDITIEREN');
 define('TEXT_PRODUCTS_ID', 'Artikel ID ');
 define('TEXT_PRODUCTS_NAME', 'Artikel: ');
-define('TEXT_PRODUCTS_MODEL', 'Artikelnummer: ');
+
 define('TEXT_PRODUCTS_PRICE', 'Preis: ');
 define('BUTTON_UPDATE_CATEGORY_LINKS', 'Kategorie Links aktualisieren');
 define('BUTTON_NEW_PRODUCTS_TO_CATEGORIES', 'Artikel verlinken');

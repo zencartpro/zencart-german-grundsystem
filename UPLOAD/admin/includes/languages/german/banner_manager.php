@@ -1,13 +1,13 @@
 <?php
 /**
  * @package admin
- * @copyright Copyright 2003-2019 Zen Cart Development Team
+ * @copyright Copyright 2003-2020 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: banner_manager.php 628 2013-07-17 08:05:14Z webchills $
+ * @version $Id: banner_manager.php 629 2020-01-18 10:05:14Z webchills $
  */
 
-define('HEADING_TITLE', 'Bannermanager');
+define('HEADING_TITLE', 'Banner Manager');
 
 define('TABLE_HEADING_BANNERS', 'Bannerwerbungen');
 define('TABLE_HEADING_GROUPS', 'Gruppen');
@@ -53,12 +53,12 @@ define('TEXT_BANNERS_EXPIRES_AT_DATE', 'Endet am: <b>%s</b>');
 define('TEXT_BANNERS_EXPIRES_AT_IMPRESSIONS', 'Endet nach: <b>%s</b> Einblendungen');
 define('TEXT_BANNERS_STATUS_CHANGE', 'Status ändern: %s');
 
-define('TEXT_BANNERS_DATA', 'D<br>A<br>T<br>A');
+
 define('TEXT_BANNERS_LAST_3_DAYS', 'Die letzten 3 Tage');
 define('TEXT_BANNERS_BANNER_VIEWS', 'Bannereinblendungen');
 define('TEXT_BANNERS_BANNER_CLICKS', 'Bannerklicks');
 
-define('TEXT_INFO_DELETE_INTRO', 'Sind Sie sicher das Sie diesen Banner löschen wollen?');
+define('TEXT_INFO_DELETE_INTRO', 'Sind Sie sicher dass Sie diesen Banner löschen wollen?');
 define('TEXT_INFO_DELETE_IMAGE', 'Bannerbild löschen');
 
 define('SUCCESS_BANNER_INSERTED', 'Erfolgreich: Der Banner wurde eingefügt.');
@@ -75,8 +75,6 @@ define('ERROR_IMAGE_IS_NOT_WRITEABLE', 'Achtung! Bild kann nicht entfernt werden
 define('ERROR_UNKNOWN_STATUS_FLAG', 'Achtung! Unbekannter Status.');
 define('ERROR_BANNER_IMAGE_REQUIRED', 'FEHLER: Bild für Banner wird benötigt.');
 
-define('ERROR_GRAPHS_DIRECTORY_DOES_NOT_EXIST', 'Achtung! Das Grafikverzeichnis existiert nicht. Bitte erstellen Sie das Verzeichnis \'graphs\'  im Ordner \'images\'.');
-define('ERROR_GRAPHS_DIRECTORY_NOT_WRITEABLE', 'Achtung! Das graphs Verzeichnis ist nicht beschreibbar. Es befindet sich hier: <strong>' . DIR_WS_ADMIN . 'images/graphs</strong>');
 
 define('TEXT_LEGEND_BANNER_ON_SSL', 'SSL anzeigen');
 define('TEXT_LEGEND_BANNER_OPEN_NEW_WINDOWS', 'Neues Fenster');

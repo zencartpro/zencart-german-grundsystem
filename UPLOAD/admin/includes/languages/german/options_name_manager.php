@@ -1,10 +1,10 @@
 <?php
 /**
  * @package admin
- * @copyright Copyright 2003-2019 Zen Cart Development Team
+ * @copyright Copyright 2003-2020 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: option_name_manager.php 628 2015-12-22 16:39:16Z webchills $
+ * @version $Id: option_name_manager.php 629 2020-01-18 10:39:16Z webchills $
  */
 
 define('HEADING_TITLE_OPT', 'Artikeloptionen');
@@ -27,24 +27,24 @@ define('TEXT_OPTION_ID', 'Option ID');
 define('TEXT_OPTION_NAME', 'Attributname');
 define('TABLE_HEADING_OPT_DISCOUNTED','Ermäßigt');
 define('ATTRIBUTE_WARNING_DUPLICATE','Doppeltes Attribut - Attribut wurde nicht hinzugefügt');
-// attributes duplicate warning
+
 define('ATTRIBUTE_WARNING_DUPLICATE_UPDATE','Doppeltes Attribut existiert - Attribut wurde nicht geändert');
-// attributes duplicate warning
+
 define('ATTRIBUTE_WARNING_INVALID_MATCH','Attributoption und Attributmerkmal stimmen NICHT überein - Attribut wurde nicht hinzugefügt');
-// miss matched option and options value
+
 define('ATTRIBUTE_WARNING_INVALID_MATCH_UPDATE','Attributoption und Attributmerkmal stimmen NICHT überein - Attribut wurde nicht geändert');
-// miss matched option and options value
+
 define('ATTRIBUTE_POSSIBLE_OPTIONS_NAME_WARNING_DUPLICATE','Möglicherweise doppelter Attributname hinzugefügt');
-// Options Name Duplicate warning
+
 define('ATTRIBUTE_POSSIBLE_OPTIONS_VALUE_WARNING_DUPLICATE','Möglicherweise doppeltes Attributmerkmal hinzugefügt');
-// Options Value Duplicate warning
+
 
 define('PRODUCTS_ATTRIBUTES_EDITING','BEARBEITE');
-// title
+
 define('PRODUCTS_ATTRIBUTES_DELETE','LÖSCHE');
-// title
+
 define('PRODUCTS_ATTRIBUTES_ADDING','FÜGE NEUE ATTRIBUTE HINZU');
-// title
+
 define('TEXT_DOWNLOADS_DISABLED','HINWEIS: Downloads sind deaktiviert');
 define('TABLE_TEXT_MAX_DAYS_SHORT', 'Tage:');
 define('TABLE_TEXT_MAX_COUNT_SHORT', 'Max:');
@@ -55,10 +55,8 @@ define('TABLE_HEADING_OPT_WEIGHT_PREFIX','Präfix');
 define('TABLE_HEADING_OPT_WEIGHT','Gewicht');
 define('TABLE_HEADING_OPT_SORT_ORDER','Sortierung');
 define('TABLE_HEADING_OPT_DEFAULT','Standard');
-define('TABLE_HEADING_YES','Ja');
-define('TABLE_HEADING_NO','Nein');
 define('TABLE_HEADING_OPT_TYPE', 'Attributtyp');
-//CLR 031203 add option type column
+
 define('TABLE_HEADING_OPTION_VALUE_SIZE','Größe');
 define('TABLE_HEADING_OPTION_VALUE_MAX','Maximal');
 define('TABLE_HEADING_OPTION_VALUE_ROWS','Reihen');

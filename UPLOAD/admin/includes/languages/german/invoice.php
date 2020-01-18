@@ -1,17 +1,17 @@
 <?php
 /**
- * @package admin
- * @copyright Copyright 2003-2019 Zen Cart Development Team
+ * @package languageDefines
+ * @copyright Copyright 2003-2020 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: invoice.php 628 2016-07-30 16:05:14Z webchills $
+ * @version $Id: invoice.php 629 2020-01-18 10:05:14Z webchills $
  */
 
 define('TABLE_HEADING_COMMENTS','Kommentare');
 define('TABLE_HEADING_CUSTOMER_NOTIFIED', 'Kunde benachrichtigt');
 define('TABLE_HEADING_DATE_ADDED', 'Erstellt am');
 define('TABLE_HEADING_STATUS', 'Status');
-define('TABLE_HEADING_PRODUCTS_MODEL','Artikelnummer');
+
 define('TABLE_HEADING_PRODUCTS','Artikel');
 define('TABLE_HEADING_TAX','MwSt.');
 define('TABLE_HEADING_TOTAL','Summe');
@@ -29,4 +29,4 @@ define('ENTRY_SHIPPING','Versandkosten:');
 define('ENTRY_TOTAL','Endsumme:');
 define('ENTRY_DATE_PURCHASED', 'Bestelldatum:');
 define('ENTRY_ORDER_ID', 'Rechnungsnummer: ');
-define('TEXT_INFO_ATTRIBUTE_FREE', '  KOSTENLOS');
+define('TEXT_INFO_ATTRIBUTE_FREE', '&nbsp;-&nbsp;KOSTENLOS');
