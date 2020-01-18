@@ -7,9 +7,9 @@
  *   i=1 -- in conjunction with [d] or [r], will show the detailed curlinfo certificate data from the host being connected to. Helpful for advanced debugging.
  *
  * @package utilities
- * @copyright Copyright 2003-2019 Zen Cart Development Team
+ * @copyright Copyright 2003-2020 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
- * @version $Id: curltester.php 2019-08-30 17:08:29Z webchills $
+ * @version $Id: curltester.php 2020-01-17 08:08:29Z webchills $
  */
 // no caching
 header('Cache-Control: no-cache, no-store, must-revalidate');
@@ -73,6 +73,8 @@ doCurlTest('https://wwwcie.ups.com/ups.app/xml/Rate');
 echo 'Connecting to FedEx (port 80)...<br>';
 dofsockTest('fedex.com', 80);
 
+echo 'Connecting to Canada Post SellOnline HTTP/S ...<br>';
+doCurlTest('https://qa-sellonline.canadapost.ca/sellonline/Rating');
 echo 'Connecting to Canada Post REST API (SSL) ...<br>';
 doCurlTest('https://ct.soa-gw.canadapost.ca/rs/ship/price');
 
@@ -121,12 +123,6 @@ doCurlTest('https://test.authorize.net/gateway/transact.dll');
 
 echo 'Connecting to First Data GGe4 server (SSL)...<br>';
 doCurlTest('https://checkout.globalgatewaye4.firstdata.com/payment');
-
-echo 'Connecting to Payeezy Processing Server...<br>';
-doCurlTest('https://api.payeezy.com/v1/transactions');
-
-echo 'Connecting to Payeezy Sandbox Server...<br>';
-doCurlTest('https://api-cert.payeezy.com/v1/transactions');
 
 echo 'Connecting to Elavon Server...<br>';
 doCurlTest('https://www.myvirtualmerchant.com/VirtualMerchant/process.do');
@@ -194,6 +190,7 @@ function doCurlTest($url = 'http://s3.amazonaws.com/zencart-curltest/endpoint', 
     $errtext = curl_error($ch);
     $errnum = curl_errno($ch);
   }
+
   // check for common certificate errors, and resubmit
   if (in_array($errnum, array(60,61))) {
     echo $errorMessage . $errnum . ': ' . $errtext;
