@@ -6,7 +6,7 @@
 # * @copyright Copyright 2003-2020 Zen Cart Development Team
 # * @copyright Portions Copyright 2003 osCommerce
 # * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
-# * @version $Id: mysql_zencart.sql 19521 2020-01-18 12:47:16Z webchills $
+# * @version $Id: mysql_zencart.sql 19522 2020-01-18 15:47:16Z webchills $
 #
 
 ############ IMPORTANT INSTRUCTIONS ###############
@@ -760,14 +760,14 @@ CREATE TABLE ezpages (
 #
 # Table structure for table 'ezpages_content'
 # Neue Tabelle seit 1.5.6
-#
+# Seit 1.5.6d korrekte Länge für pages_html_text
 
 DROP TABLE IF EXISTS ezpages_content;
 CREATE TABLE ezpages_content (
   pages_id int(11) NOT NULL DEFAULT '0',
   languages_id int(11) NOT NULL DEFAULT '1',
   pages_title varchar(64) NOT NULL DEFAULT '',
-  pages_html_text text,
+  pages_html_text mediumtext NOT NULL,
   UNIQUE KEY idx_ezpages_content (pages_id,languages_id),
   KEY idx_lang_id_zen (languages_id)
 ) ENGINE=MyISAM;

@@ -1,10 +1,10 @@
 <?php
 /**
  * @package admin
- * @copyright Copyright 2003-2019 Zen Cart Development Team
+ * @copyright Copyright 2003-2020 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: categories.php 794 2019-04-14 10:13:51Z webchills $
+ * @version $Id: categories.php 795 2020-01-18 15:30:51Z webchills $
  */
 require('includes/application_top.php');
 $languages = zen_get_languages();
@@ -336,6 +336,36 @@ if (is_dir(DIR_FS_CATALOG_IMAGES)) {
             ?>
           </div>
         </div>
+<?php
+    // -----
+    // Give an observer the chance to supply some additional category-related inputs.  Each
+    // entry in the $extra_category_inputs returned contains:
+    //
+    // array(
+    //    'label' => array(
+    //        'text' => 'The label text',   (required)
+    //        'field_name' => 'The name of the field associated with the label', (required)
+    //        'addl_class' => {Any additional class to be applied to the label} (optional)
+    //        'parms' => {Any additional parameters for the label, e.g. 'style="font-weight: 700;"} (optional)
+    //    ),
+    //    'input' => 'The HTML to be inserted' (required)
+    // )
+    //
+    $extra_category_inputs = array();
+    $zco_notifier->notify('NOTIFY_ADMIN_CATEGORIES_EXTRA_INPUTS', $cInfo, $extra_category_inputs);
+    if (!empty($extra_category_inputs)) {
+        foreach ($extra_category_inputs as $extra_input) {
+            $addl_class = (isset($extra_input['label']['addl_class'])) ? (' ' . $extra_input['label']['addl_class']) : '';
+            $parms = (isset($extra_input['label']['parms'])) ? (' ' . $extra_input['label']['parms']) : '';
+?>
+            <div class="form-group">
+                <?php echo zen_draw_label($extra_input['label']['text'], $extra_input['label']['field_name'], 'class="col-sm-3 control-label' . $addl_class . '"' . $parms); ?>
+                <div class="col-sm-9 col-md-6"><?php echo $extra_input['input']; ?></div>
+            </div>
+<?php
+        }
+    }
+?>
         <div class="form-group">
             <?php echo zen_draw_label(TEXT_CATEGORIES_DESCRIPTION, 'categories_description', 'class="col-sm-3 control-label"'); ?>
           <div class="col-sm-9 col-md-6">
@@ -346,7 +376,7 @@ if (is_dir(DIR_FS_CATALOG_IMAGES)) {
                 <span class="input-group-addon">
                     <?php echo zen_image(DIR_WS_CATALOG_LANGUAGES . $languages[$i]['directory'] . '/images/' . $languages[$i]['image'], $languages[$i]['name']); ?>
                 </span>
-                <?php echo zen_draw_textarea_field('categories_description[' . $languages[$i]['id'] . ']', 'soft', '100%', '20', htmlspecialchars(zen_get_category_description($cInfo->categories_id, $languages[$i]['id']), ENT_COMPAT, CHARSET, TRUE), 'class="editorHook form-control"'); ?>
+                <?php echo zen_draw_textarea_field('categories_description[' . $languages[$i]['id'] . ']', 'soft', '100', '20', htmlspecialchars(zen_get_category_description($cInfo->categories_id, $languages[$i]['id']), ENT_COMPAT, CHARSET, TRUE), 'class="editorHook form-control"'); ?>
               </div>
               <br>
               <?php
@@ -457,16 +487,16 @@ if (is_dir(DIR_FS_CATALOG_IMAGES)) {
           <?php echo TEXT_EDIT_CATEGORIES_META_TAGS_INTRO; ?> - <strong><?php echo $cInfo->categories_id ?> <?php echo $cInfo->categories_name; ?></strong>
         </div>
         <div class="form-group">
-            <?php echo zen_draw_label(TEXT_EDIT_CATEGORIES_META_TAGS_TITLE, 'metatags_title[' . $languages[$i]['id'] . ']', 'class="col-sm-3 control-label"'); ?>
+            <h3><?php echo TEXT_EDIT_CATEGORIES_META_TAGS_TITLE; ?></h3>
           <div class="col-sm-9 col-md-6">
               <?php
               for ($i = 0, $n = sizeof($languages); $i < $n; $i++) {
                 ?>
               <div class="input-group">
                 <span class="input-group-addon">
-                    <?php echo zen_image(DIR_WS_CATALOG_LANGUAGES . $languages[$i]['directory'] . '/images/' . $languages[$i]['image'], $languages[$i]['metatags_title']); ?>
+                    <?php echo zen_draw_label(zen_image(DIR_WS_CATALOG_LANGUAGES . $languages[$i]['directory'] . '/images/' . $languages[$i]['image'], $languages[$i]['name']), 'metatags_title[' . $languages[$i]['id'] . ']'); ?>
                 </span>
-                <?php echo zen_draw_input_field('metatags_title[' . $languages[$i]['id'] . ']', htmlspecialchars(zen_get_category_metatags_title($cInfo->categories_id, $languages[$i]['id']), ENT_COMPAT, CHARSET, TRUE), zen_set_field_length(TABLE_METATAGS_CATEGORIES_DESCRIPTION, 'metatags_title') . ' class="form-control"');
+                <?php echo zen_draw_input_field('metatags_title[' . $languages[$i]['id'] . ']', htmlspecialchars(zen_get_category_metatags_title($cInfo->categories_id, $languages[$i]['id']), ENT_COMPAT, CHARSET, TRUE), zen_set_field_length(TABLE_METATAGS_CATEGORIES_DESCRIPTION, 'metatags_title') . ' class="form-control" id="metatags_title[' . $languages[$i]['id'] . ']"');
                 ?>
               </div>
               <br>
@@ -476,16 +506,16 @@ if (is_dir(DIR_FS_CATALOG_IMAGES)) {
           </div>
         </div>
         <div class="form-group">
-            <?php echo zen_draw_label(TEXT_EDIT_CATEGORIES_META_TAGS_KEYWORDS, 'metatags_keywords[' . $languages[$i]['id'] . ']', 'class="col-sm-3 control-label"'); ?>
+            <h3><?php echo TEXT_EDIT_CATEGORIES_META_TAGS_KEYWORDS; ?></h3>
           <div class="col-sm-9 col-md-6">
               <?php
               for ($i = 0, $n = sizeof($languages); $i < $n; $i++) {
                 ?>
               <div class="input-group">
-                <span class="input-group-addon">
-                    <?php echo zen_image(DIR_WS_CATALOG_LANGUAGES . $languages[$i]['directory'] . '/images/' . $languages[$i]['image'], $languages[$i]['metatags_keywords']); ?>
+                <span class="input-group-addon" style="vertical-align: top">
+                    <?php echo zen_draw_label(zen_image(DIR_WS_CATALOG_LANGUAGES . $languages[$i]['directory'] . '/images/' . $languages[$i]['image'], $languages[$i]['name']), 'metatags_keywords[' . $languages[$i]['id'] . ']'); ?>
                 </span>
-                <?php echo zen_draw_textarea_field('metatags_keywords[' . $languages[$i]['id'] . ']', 'soft', '100%', '20', htmlspecialchars(zen_get_category_metatags_keywords($cInfo->categories_id, $languages[$i]['id']), ENT_COMPAT, CHARSET, TRUE), 'class="form-control noEditor"');
+                <?php echo zen_draw_textarea_field('metatags_keywords[' . $languages[$i]['id'] . ']', 'soft', '100', '10', htmlspecialchars(zen_get_category_metatags_keywords($cInfo->categories_id, $languages[$i]['id']), ENT_COMPAT, CHARSET, TRUE), 'class="form-control noEditor" id="metatags_keywords[' . $languages[$i]['id'] . ']"');
                 ?>
               </div>
               <br>
@@ -495,16 +525,16 @@ if (is_dir(DIR_FS_CATALOG_IMAGES)) {
           </div>
         </div>
         <div class="form-group">
-            <?php echo zen_draw_label(TEXT_EDIT_CATEGORIES_META_TAGS_DESCRIPTION, 'metatags_description[' . $languages[$i]['id'] . ']', 'class="col-sm-3 control-label"'); ?>
+            <h3><?php echo TEXT_EDIT_CATEGORIES_META_TAGS_DESCRIPTION; ?></h3>
           <div class="col-sm-9 col-md-6">
               <?php
               for ($i = 0, $n = sizeof($languages); $i < $n; $i++) {
                 ?>
               <div class="input-group">
                 <span class="input-group-addon">
-                  <?php echo zen_image(DIR_WS_CATALOG_LANGUAGES . $languages[$i]['directory'] . '/images/' . $languages[$i]['image'], $languages[$i]['name']); ?>
+                  <?php echo zen_draw_label(zen_image(DIR_WS_CATALOG_LANGUAGES . $languages[$i]['directory'] . '/images/' . $languages[$i]['image'], $languages[$i]['name']), 'metatags_description[' . $languages[$i]['id'] . ']'); ?>
                 </span>
-                <?php echo zen_draw_textarea_field('metatags_description[' . $languages[$i]['id'] . ']', 'soft', '100%', '20', htmlspecialchars(zen_get_category_metatags_description($cInfo->categories_id, $languages[$i]['id']), ENT_COMPAT, CHARSET, TRUE), 'class="form-control noEditor"');
+                <?php echo zen_draw_textarea_field('metatags_description[' . $languages[$i]['id'] . ']', 'soft', '100', '20', htmlspecialchars(zen_get_category_metatags_description($cInfo->categories_id, $languages[$i]['id']), ENT_COMPAT, CHARSET, TRUE), 'class="form-control noEditor" id="metatags_description[' . $languages[$i]['id'] . ']"');
                 ?>
               </div>
               <br>

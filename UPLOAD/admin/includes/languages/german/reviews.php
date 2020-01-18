@@ -4,11 +4,11 @@
  * @copyright Copyright 2003-2020 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: reviews.php 629 2020-01-18 10:05:14Z webchills $
+ * @version $Id: reviews.php 630 2020-01-18 15:05:14Z webchills $
  */
 
 define('HEADING_TITLE', 'Bewertungen');
-define('TABLE_HEADING_PRODUCTS', 'Artikel');
+define('TABLE_HEADING_PRODUCT', 'Artikel');
 define('TABLE_HEADING_CUSTOMER_NAME', 'Kundenname');
 define('TABLE_HEADING_LANGUAGE', 'Sprache');
 define('TABLE_HEADING_RATING', 'Rating');

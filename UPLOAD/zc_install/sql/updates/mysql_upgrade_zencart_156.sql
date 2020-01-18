@@ -6,7 +6,7 @@
 # * @copyright Copyright 2003-2020 Zen Cart Development Team
 # * @copyright Portions Copyright 2003 osCommerce
 # * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
-# * @version $Id: mysql_upgrade_zencart_156.sql 21 2020-01-16 10:03:59Z webchills $
+# * @version $Id: mysql_upgrade_zencart_156.sql 22 2020-01-18 15:03:59Z webchills $
 
 #
 
@@ -105,6 +105,9 @@ UPDATE configuration SET configuration_description =  'Defines the method for se
 # Updates
 ALTER TABLE products_options MODIFY products_options_comment varchar(256) default NULL;
 ALTER TABLE configuration ADD val_function text default NULL AFTER set_function;
+
+# Add sort_order to orders_status - NEW in 1.5.6e
+ALTER TABLE orders_status ADD sort_order int(11) NOT NULL default 0;
 
 # allow longer image paths
 ALTER TABLE products MODIFY products_image varchar(255) default NULL;
@@ -414,7 +417,8 @@ ALTER TABLE currencies MODIFY value decimal(14,6) default NULL;
 # Updates
 ALTER TABLE configuration ADD val_function text default NULL AFTER set_function;
 
-#############
+
+############
 
 ### Make sure that we use the latest and greatest German translations in configuration_language 
 
