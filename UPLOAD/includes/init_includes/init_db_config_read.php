@@ -5,10 +5,10 @@
  * see {@link  http://www.zen-cart.com/wiki/index.php/Developers_API_Tutorials#InitSystem wikitutorials} for more details.
  *
  * @package initSystem
- * @copyright Copyright 2003-2019 Zen Cart Development Team
+ * @copyright Copyright 2003-2020 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: init_db_config_read.php 733 2019-08-06 07:34:16Z webchills $
+ * @version $Id: init_db_config_read.php 734 2020-01-19 09:34:16Z webchills $
  */
 if (!defined('IS_ADMIN_FLAG')) {
   die('Illegal Access');
@@ -21,8 +21,7 @@ while (!$configuration->EOF) {
   /**
  * dynamic define based on info read from DB
  */
-  if ($configuration->fields['configuration_group_id'] == 2 || 
-    ($configuration->fields['configuration_group_id'] == 3 && $configuration->fields['cfgkey'] != 'UPLOAD_FILENAME_EXTENSIONS')) { 
+  if ($configuration->fields['configuration_group_id'] == 2 || $configuration->fields['configuration_group_id'] == 3) {
     define(strtoupper($configuration->fields['cfgkey']), (int)$configuration->fields['cfgvalue']);
   } else { 
     define(strtoupper($configuration->fields['cfgkey']), $configuration->fields['cfgvalue']);
