@@ -5,7 +5,7 @@
  * @copyright Copyright 2003-2020 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: german.php 667 2020-01-18 11:37:04Z webchills $
+ * @version $Id: german.php 668 2020-01-19 20:21:04Z webchills $
  */
 if (!defined('IS_ADMIN_FLAG'))
 {
@@ -148,8 +148,8 @@ define('BOX_CATALOG_PRODUCTS_EXPECTED', 'Artikel Neuerscheinungen');
 define('BOX_CATALOG_SALEMAKER', 'Abverkaufsmanager');
 define('BOX_CATALOG_PRODUCTS_PRICE_MANAGER', 'Artikelpreis Manager');
 define('BOX_CATALOG_PRODUCT', 'Artikel');
-define('BOX_CATALOG_PRODUCTS_TO_CATEGORIES', 'Artikel in Kategorien');
-define('BOX_CATALOG_CATEGORY', 'Category');
+define('BOX_CATALOG_PRODUCTS_TO_CATEGORIES', 'Artikel in mehrere Kategorien verlinken');
+define('BOX_CATALOG_CATEGORY', 'Kategorie');
 
 // customers box text
 define('BOX_HEADING_CUSTOMERS', 'Kunden');
