@@ -6,7 +6,7 @@
 # * @copyright Copyright 2003-2020 Zen Cart Development Team
 # * @copyright Portions Copyright 2003 osCommerce
 # * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
-# * @version $Id: mysql_upgrade_zencart_156.sql 22 2020-01-18 15:03:59Z webchills $
+# * @version $Id: mysql_upgrade_zencart_156.sql 24 2020-01-19 08:17:59Z webchills $
 
 #
 
@@ -417,6 +417,27 @@ ALTER TABLE currencies MODIFY value decimal(14,6) default NULL;
 # Updates
 ALTER TABLE configuration ADD val_function text default NULL AFTER set_function;
 
+# 1.5.6e UPDATES
+
+# Missed in 1.5.6d upgrade script.  May already be there so use INSERT IGNORE
+INSERT IGNORE INTO configuration (configuration_title, configuration_key, configuration_value, val_function, configuration_description, configuration_group_id, sort_order, date_added) VALUES ('Admin Usernames', 'ADMIN_NAME_MINIMUM_LENGTH', '4', '{"error":"TEXT_MIN_ADMIN_USER_LENGTH","id":"FILTER_VALIDATE_INT","options":{"options":{"min_range":4}}}', 'Minimum length of admin usernames (must be 4 or more)', '2', '18', now());
+
+# delete old configs which are not used anymore in 1.5.6e
+DELETE FROM configuration WHERE configuration_key = 'ADMIN_DEMO';
+DELETE FROM configuration WHERE configuration_key = 'UPLOAD_FILENAME_EXTENSIONS';
+
+# Enable Products to Categories as a menu option
+UPDATE admin_pages SET display_on_menu = 'Y' WHERE page_key = 'productsToCategories';
+
+# Rename 'Email Options' to just 'Email'
+UPDATE configuration_group set configuration_group_title = 'Email', configuration_group_description = 'Email-related settings' where configuration_group_title = 'E-Mail Options';
+
+# Add NOTIFY_CUSTOMER_DEFAULT
+INSERT INTO configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, last_modified, date_added, use_function, set_function) VALUES ('Default for Notify Customer on Order Status Update?', 'NOTIFY_CUSTOMER_DEFAULT', '1', 'Set the default email behavior on status update to Send Email, Do Not Send Email, or Hide Update.', 1, 120, now(), now(), NULL, 'zen_cfg_select_drop_down(array( array(\'id\'=>\'1\', \'text\'=>\'Email\'), array(\'id\'=>\'0\', \'text\'=>\'No Email\'), array(\'id\'=>\'-1\', \'text\'=>\'Hide\')),');
+
+# New setting, enabling product meta-tags to be conditionally included in search result.
+INSERT INTO configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added, set_function) VALUES ('Include meta-tags in product search?', 'ADVANCED_SEARCH_INCLUDE_METATAGS', 'true', 'Should a product\'s meta-tag keywords and meta-tag descriptions be considered in any <code>advanced_search_results</code> displayed?', 1, 18, now(), 'zen_cfg_select_option(array(\'true\', \'false\'),');
+
 
 ############
 
@@ -467,7 +488,8 @@ REPLACE INTO configuration_language (configuration_title, configuration_key, con
 ('PA-DSS Ajax Checkout?', 'PADSS_AJAX_CHECKOUT', 43, 'PA-DSS Compliance erfordert, dass für manche integrierte Zahlungsmodule Ajax zum Laden der Bestellbestätigungsseite verwendet wird. Das wird zwar nur geschehen, falls solche speziellen Zahlungsmodule verwendet werden, dennoch bevorzugen Sie vielleicht den traditionellen Checkout. <strong>Wenn Sie diese Einstellung deaktivieren, dann erfüllt Ihr Shop nicht mehr die PA-DSS Vorgaben.</strong>', now(), now()),
 ('Aktualisierung der Wechselkurse: Primäre Quelle', 'CURRENCY_SERVER_PRIMARY', 43, 'Von welchem Server sollen die Kurse für das Update der Währungen bezogen werden? (Primäre Quelle)<br><br>Weitere Quellen können durch Plugins hinzugefügt werden.', now(), now()),
 ('Aktualisierung der Wechselkurse: Sekundäre Quelle', 'CURRENCY_SERVER_BACKUP', 43, 'Von welchem Server sollen die Kurse für das Update der Währungen bezogen werden? (Sekundäre Quelle falls erster Server nicht erreichbar)<br><br>Weitere Quellen können durch Plugins hinzugefügt werden.', now(), now()),
-
+('Voreinstellung für Kundenbenachrichtigung beim Update einer Bestellung', 'NOTIFY_CUSTOMER_DEFAULT', 43, 'Was soll beim Aktualisieren einer Bestellung bezüglich Kundenbenachrichtigung voreingestellt sein?<br/><br/>1 = Email = Kunde wird über die Aktualisierung per Email informiert<br/><br/>2 = No Email = Es wird bei der Aktualisierung kein Mail an den Kunden geschickt<br/><br/>3 = Hide = Es wird kein Email geschickt und der Eintrag in der Bestellhistorie ist für den Kunden nicht sichtbar', now(), now()),
+('Metatags in der Artikelsuche einbeziehen?', 'ADVANCED_SEARCH_INCLUDE_METATAGS', 43, 'Sollen die für einen Artikel definierten Meta Tag Keywords und Meta Tag Beschreibungen in der Erweiterten Suche miteinbezogen werden?', now(), now()),
 
 # Adminmenü ID 2 - Minimale Werte
 ('Vorname', 'ENTRY_FIRST_NAME_MIN_LENGTH', 43, 'Minimale Zeichenlänge für den Vornamen', now(), now()),
