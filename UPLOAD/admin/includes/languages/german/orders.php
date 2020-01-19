@@ -5,11 +5,11 @@
  * @copyright Copyright 2003-2020 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: orders.php 635 2020-01-18 10:05:14Z webchills $
+ * @version $Id: orders.php 636 2020-01-19 09:05:14Z webchills $
  */
 
 define('HEADING_TITLE', 'Bestellungen');
-define('HEADING_TITLE_DETAILS', 'Bestell Details');
+define('HEADING_TITLE_DETAILS', 'Bestell Details (#%u)'); //-%u wird befüllt mit der gewählten Bestellnummer
 define('HEADING_TITLE_SEARCH', 'Bestell ID:');
 define('HEADING_TITLE_STATUS', 'Status:');
 define('HEADING_TITLE_SEARCH_DETAIL_ORDERS_PRODUCTS', 'Artikelname oder ID:XX oder Artikelnummer ');
@@ -99,6 +99,7 @@ define('WARNING_ORDER_NOT_UPDATED', 'WARNUNG: Keine Änderung festgestellt. Die 
 define('ENTRY_ORDER_ID', 'Rechnungsnummer: ');
 define('TEXT_INFO_ATTRIBUTE_FREE', '&nbsp;-&nbsp;<span class="alert">KOSTENLOS</span>');
 
+define('TEXT_DOWNLOAD','Download'); 
 define('TEXT_DOWNLOAD_TITLE', 'Download Status');
 define('TEXT_DOWNLOAD_STATUS', 'Status');
 define('TEXT_DOWNLOAD_FILENAME', 'Dateiname');
