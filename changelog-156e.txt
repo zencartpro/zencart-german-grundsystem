@@ -3,13 +3,14 @@ Changelog Zen Cart 1.5.6e deutsch gegenüber 1.5.6d deutsch
 
 -----------------------------------------------------------------------------------------
 
-Neue Dateien in 1.5.6e (6)
+Neue Dateien in 1.5.6e (7)
 
 -----------------------------------------------------------------------------------------
 
 admin\includes\classes\configurationValidation.php
 admin\includes\languages\english\configuration_validation.php
 admin\includes\languages\german\configuration_validation.php
+includes\extra_configures\patch_clean_ampersands.php
 includes\functions\database.php
 includes\functions\functions_general_shared.php
 includes\functions\functions_products.php
@@ -17,7 +18,7 @@ includes\functions\functions_products.php
 
 ----------------------------------------------------------------------------------------
 
-Geänderte Dateien in 1.5.6e (380)
+Geänderte Dateien in 1.5.6e (382)
 
 ----------------------------------------------------------------------------------------
 
@@ -43,6 +44,7 @@ admin\includes\init_includes\init_templates.php
 admin\includes\languages\english\extra_definitions\stats_sales_report_graphs.php
 admin\includes\languages\english\attributes_controller.php
 admin\includes\languages\english\banner_manager.php
+admin\includes\languages\english\categories.php
 admin\includes\languages\english\downloads_manager.php
 admin\includes\languages\english\email_extras.php
 admin\includes\languages\english\featured.php
@@ -65,6 +67,7 @@ admin\includes\languages\english\users.php
 admin\includes\languages\german\extra_definitions\stats_sales_report_graphs.php
 admin\includes\languages\german\attributes_controller.php
 admin\includes\languages\german\banner_manager.php
+admin\includes\languages\german\categories.php
 admin\includes\languages\german\index.php
 admin\includes\languages\german\invoice.php
 admin\includes\languages\german\modules.php

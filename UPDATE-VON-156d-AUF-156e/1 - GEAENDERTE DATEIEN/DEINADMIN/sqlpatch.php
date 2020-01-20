@@ -4,7 +4,7 @@
  * @copyright Copyright 2003-2020 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: sqlpatch.php 800 2020-01-18 09:24:50Z webchills $
+ * @version $Id: sqlpatch.php 801 2020-01-20 21:09:50Z webchills $
  */
 require('includes/application_top.php');
 
@@ -287,6 +287,7 @@ function executeSql($lines, $database, $table_prefix = '') {
         if ($debug == true) {
           echo ((!$ignore_line) ? '<br>About to execute.' : 'Ignoring statement. This command WILL NOT be executed.') . '<br>Debug info:<br>$ line=' . $line . '<br>$ complete_line=' . $complete_line . '<br>$ keep_together=' . $keep_together . '<br>SQL=' . $newline . '<br><br>';
         }
+        $output = array();
         if (trim(str_replace(';', '', $newline)) != '' && !$ignore_line) {
           $output = $db->Execute($newline);
         }

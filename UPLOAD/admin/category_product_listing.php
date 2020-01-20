@@ -4,7 +4,7 @@
  * @copyright Copyright 2003-2020 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: category_product_listing.php 6 2020-01-17 19:44:16Z webchills $
+ * @version $Id: category_product_listing.php 7 2020-01-20 21:06:16Z webchills $
  */
 require('includes/application_top.php');
 $languages = zen_get_languages();
@@ -80,20 +80,21 @@ if (zen_not_null($action)) {
                 $db->Execute($sql);
           }
 
-            //set products_status
-            if ($products_status != '') {//only execute if a change was selected
-                $sql = "SELECT products_id
-                    FROM " . TABLE_PRODUCTS_TO_CATEGORIES . "
-                    WHERE categories_id = " . (int)$categories[$i]['id'];
-                $category_products = $db->Execute($sql);
+          //set products_status
+          if ($products_status == '') continue;
+            
+          //only execute if a change was selected
+          $sql = "SELECT products_id
+                  FROM " . TABLE_PRODUCTS_TO_CATEGORIES . "
+                  WHERE categories_id = " . (int)$categories[$i]['id'];
+          $category_products = $db->Execute($sql);
 
-                foreach ($category_products as $category_product) {
-                    $sql = "UPDATE " . TABLE_PRODUCTS . "
-                      SET products_status = " . (int)$products_status . "
-                      WHERE products_id = " . (int)$category_product['products_id'];
-                    $db->Execute($sql);
-                }
-            }
+          foreach ($category_products as $category_product) {
+            $sql = "UPDATE " . TABLE_PRODUCTS . "
+                    SET products_status = " . (int)$products_status . "
+                    WHERE products_id = " . (int)$category_product['products_id'];
+            $db->Execute($sql);
+          }
         }
       }
       zen_redirect(zen_href_link(FILENAME_CATEGORY_PRODUCT_LISTING, 'cPath=' . $_GET['cPath'] . '&cID=' . $_GET['cID'] . (isset($_GET['page']) ? '&page=' . $_GET['page'] : '') . ($search_result ? '&search=' . $_GET['search'] : '')));

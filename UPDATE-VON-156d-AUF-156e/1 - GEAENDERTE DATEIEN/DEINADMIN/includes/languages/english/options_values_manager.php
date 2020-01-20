@@ -4,7 +4,7 @@
  * @copyright Copyright 2003-2020 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: options_values_manager.php 730 2020-01-17 18:49:16Z webchills $
+ * @version $Id: options_values_manager.php 731 2020-01-20 21:49:16Z webchills $
  */
 
 define('HEADING_TITLE_OPT', 'Product Options');
@@ -117,4 +117,6 @@ define('TABLE_TEXT_MAX_COUNT_SHORT', 'Max:');
   define('ERROR_OPTION_VALUES_DELETE_MISMATCH', 'Error: Mismatched Option Name and Option Value selected');
 
   define('SUCCESS_OPTION_VALUES_DELETE', 'Successful: Deletion of: ');
-  
+  define('LABEL_FILTER', 'Select Option Value to filter');
+  define('TEXT_DISPLAY_NUMBER_OF_OPTION_VALUES', 'Displaying <b>%d</b> to <b>%d</b> (of <b>%d</b> Option Values)');
+  define('TEXT_SHOW_ALL', 'Show All');

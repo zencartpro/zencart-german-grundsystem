@@ -4,7 +4,7 @@
  * @copyright Copyright 2003-2020 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: option_name_manager.php 629 2020-01-18 10:39:16Z webchills $
+ * @version $Id: option_name_manager.php 630 2020-01-20 21:58:16Z webchills $
  */
 
 define('HEADING_TITLE_OPT', 'Artikeloptionen');
@@ -117,3 +117,4 @@ define('TEXT_OPTION_ATTRIBUTE_IMAGES_STYLE_2', '2= Elemente, Bilder und Attribut
 define('TEXT_OPTION_ATTRIBUTE_IMAGES_STYLE_3', '3= Attributname unterhalb von Elementen und Bildern');
 define('TEXT_OPTION_ATTRIBUTE_IMAGES_STYLE_4', '4= Elemente unterhalb der Bilder und Attributnamen');
 define('TEXT_OPTION_ATTRIBUTE_IMAGES_STYLE_5', '5= Elemente über den Bildern und Attributnamen');
+define('TEXT_DISPLAY_NUMBER_OF_OPTIONS', 'Zeige <b>%d</b> bis <b>%d</b> (von <b>%d</b> Optionen)');

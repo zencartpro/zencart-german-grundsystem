@@ -4,7 +4,7 @@
  * @copyright Copyright 2003-2020 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: options_values_manager.php 628 2020-01-18 10:05:14Z webchills $
+ * @version $Id: options_values_manager.php 629 2020-01-20 22:00:14Z webchills $
  */
 
 
@@ -113,3 +113,6 @@ define('TEXT_SELECT_DELETE_OPTION_FROM', 'Abzugleichender Optionsname:');
 define('TEXT_SELECT_DELETE_OPTION_VALUES_FROM', 'Abzugleichender Optionswert:');
 define('ERROR_OPTION_VALUES_DELETE_MISMATCH', 'FEHLER: Ausgewählter Optionsname und Optionswert stimmen nicht überein');
 define('SUCCESS_OPTION_VALUES_DELETE', 'Erfolgreich gelöscht: ');
+define('LABEL_FILTER', 'Optionswert zum Filtern wählen');
+define('TEXT_DISPLAY_NUMBER_OF_OPTION_VALUES', 'Zeige <b>%d</b> bis <b>%d</b> (von <b>%d</b> Optionswerten)');
+define('TEXT_SHOW_ALL', 'Zeige alle');

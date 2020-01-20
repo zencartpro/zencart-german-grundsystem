@@ -6,7 +6,7 @@
  * @copyright Copyright 2003-2020 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: header_php.php 768 2020-01-17 10:23:42Z webchills $
+ * @version $Id: header_php.php 769 2020-01-20 21:23:42Z webchills $
  */
 
 // This should be first line of the script:
@@ -95,7 +95,6 @@ $global = $db->Execute($global_query);
 $flag_global_notifications = $global->fields['global_product_notifications'];
 
 if ($flag_global_notifications != '1') {
-  $products_array = array();
   $counter = 0;
   $products_query = "SELECT DISTINCT products_id, products_name
                      FROM " . TABLE_ORDERS_PRODUCTS . "
