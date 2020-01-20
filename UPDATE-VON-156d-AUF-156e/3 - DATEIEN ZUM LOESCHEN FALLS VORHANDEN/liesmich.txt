@@ -1,0 +1,5 @@
+DATEIEN ZUM LÖSCHEN (NICHT MEHR ENTHALTEN UND NICHT MEHR BENÖTIGT)
+
+Löschen Sie nun die folgenden Dateien aus Ihrer Shopinstallation:
+--------------------------------------------------------------------------------------------
+tbd

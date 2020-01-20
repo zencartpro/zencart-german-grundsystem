@@ -1,0 +1,64 @@
+Updatepaket für Zen Cart 1.5.6d deutsch auf 1.5.6e deutsch
+
+Dieses Paket enthält alle geänderten und neuen Dateien um eine bestehende 1.5.6d Installation einfach auf 1.5.6e aktualisieren zu können.
+Nur geeignet, wenn Sie bereits 1.5.6d deutsch verwenden!
+
+Sollten Sie 1.5.6c deutsch verwenden, dann aktualisieren Sie zunächst auf 1.5.6d mit dem speziellen Updatepaket im Ordner UPDATE-VON-156c-AUF-156d
+
+Für das Update einer älteren deutschen Zen Cart Version als 1.5.6c, führen Sie bitte ein normales Update mit dem kompletten 1.5.6e Paket durch!
+
+
+Um Ihren bestehenden 1.5.6d deutsch Shop auf 1.5.6e deutsch zu aktualisieren gehen Sie folgendermaßen vor:
+
+!!! BEVOR SIE BEGINNEN MACHEN SIE EINE KOMPLETTE SICHERUNG IHRER SHOPDATEIEN UND IHRER DATENBANK !!!
+
+Schalten Sie Ihren Shop unter Konfiguration > Shopwartung in den Wartungsmodus und gehen dann in folgenden 4 Schritten vor:
+
+1)
+
+Im Ordner 1 - GEAENDERTE DATEIEN finden Sie alle Dateien, die in 1.5.6e gegenüber 1.5.6d geändert wurden.
+Benennen Sie den Ordner DEINADMIN auf den Namen Ihres Adminverzeichnisses um.
+Vergleichen Sie nun mit BeyondCompare oder WinMerge alle Dateien in diesem Ordner mit denen Ihrer Shopinstallation am Server.
+Wichtig:
+Möglicherweise nutzen Sie für einige oder alle Dateien in includes/modules oder includes/languages in Ihrem Shop das Override System und haben diese Dateien in includes/modules/DEINTEMPLATE oder includes/languages/german/DEINTEMPLATE (DEINTEMPLATE steht für den Namen des in Ihrem Shop aktiven Templates).
+Sollten sich die Dateien dort befinden, dann vergleichen Sie die geänderten Dateien in includes/modules und includes/languages natürlich mit denen in den entsprechenden Override Verzeichnissen! 
+Übernehmen Sie alle Änderungen und laden dann die Ordner/Dateien in der vorgegebenen Struktur in Ihr Shopverzeichnis hoch.
+Die Templates viennablood, viennabright und viennaorange sind in 1.5.6e nicht mehr enthalten. 
+Falls Sie eines dieser Templates verwenden, können Sie es aber natürlich auch in 1.5.6e weiterverwenden. 
+Vergleichen Sie aber dann unbedingt die Dateien Ihres Templates mit den Dateien in includes/templates/template_default und ergänzen fehlende Ordner und aktualisieren bestehende Templatedateien.
+
+2)
+
+Im Ordner 2 - NEUE DATEIEN befinden sich die kompletten neuen Versionen der CKEditor und TinyMCE Editoren und eine neue Version des PHP Mailers
+Statt hier mühsame Dateivergleiche durchzuführen, können Sie die bestehenden Pakete einfach komplett mit den neuen ersetzen.
+Löschen Sie den kompletten Ordner editors vom Server
+Löschen Sie den kompletten Ordner includes/classes/vendors/PHPMailer vom Server
+Laden Sie dann den Inhalt des Ordners 2 - NEUEDATEIEN in der vorgegebenen Struktur ins Shopverzeichnis hoch.
+
+
+3)
+
+Löschen Sie nun die folgenden Dateien aus Ihrer Shopinstallation:
+
+tbd
+
+4)
+
+In einem letzten Schritt müssen nun noch ein paar kleinere Änderungen in der Datenbank vorgenommen werden.
+
+Um diese Änderungen vorzunehmen gehen Sie nun in den Ordner 4 - DATENBANKAKTUALISIERUNG
+
+Benennen Sie den Ordner DEINADMIN auf den Namen Ihres Adminverzeichnisses um.
+
+Laden Sie die Dateien in der vorgebenen Srruktur ins Shopverzeichnis hoch.
+
+Loggen Sie sich in Ihre Zen Cart Administration ein.
+
+Sie sehen oben verschiedene grüne Erfolgsmeldungen und zum Schluss: 
+Aktualisierung auf 1.5.6e deutsch erfolgreich
+
+Bevor Sie nun irgendetwas anclicken oder tun, löschen Sie erst sofort die beiden hochgeladenen Dateien wieder vom Server:
+DEINADMIN/includes/auto_loaders/config.156e_update.php
+DEINADMIN/includes/init_includes/init_156e_update.php
+
+Nun schalten Sie den Wartungsmodus unter Konfiguration > Shopwartung wieder aus.
