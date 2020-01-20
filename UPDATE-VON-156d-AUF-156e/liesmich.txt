@@ -29,7 +29,9 @@ Vergleichen Sie aber dann unbedingt die Dateien Ihres Templates mit den Dateien 
 
 2)
 
-Im Ordner 2 - NEUE DATEIEN befinden sich die kompletten neuen Versionen der CKEditor und TinyMCE Editoren und eine neue Version des PHP Mailers
+Im Ordner 2 - NEUE DATEIEN befinden sich die kompletten neuen Versionen der CKEditor und TinyMCE Editoren und eine neue Version des PHP Mailers.
+Sowie 5 neue Dateien für Adminbereich und Frontend
+Benennen Sie den Ordner DEINADMIN auf den Namen Ihres Adminverzeichnisses um.
 Statt hier mühsame Dateivergleiche durchzuführen, können Sie die bestehenden Pakete einfach komplett mit den neuen ersetzen.
 Löschen Sie den kompletten Ordner editors vom Server
 Löschen Sie den kompletten Ordner includes/classes/vendors/PHPMailer vom Server
