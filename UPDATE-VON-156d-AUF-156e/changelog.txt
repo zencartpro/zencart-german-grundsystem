@@ -8,6 +8,7 @@ Neue Dateien in 1.5.6e (7)
 -----------------------------------------------------------------------------------------
 
 admin\includes\classes\configurationValidation.php
+admin\includes\css\login.css
 admin\includes\languages\english\configuration_validation.php
 admin\includes\languages\german\configuration_validation.php
 includes\extra_configures\patch_clean_ampersands.php
@@ -18,7 +19,7 @@ includes\functions\functions_products.php
 
 ----------------------------------------------------------------------------------------
 
-Geänderte Dateien in 1.5.6e (383)
+Geänderte Dateien in 1.5.6e (384)
 
 ----------------------------------------------------------------------------------------
 
@@ -131,6 +132,7 @@ admin\gv_queue.php
 admin\gv_sent.php
 admin\index_dashboard.php
 admin\invoice.php
+admin\login.php
 admin\mail.php
 admin\manufacturers.php
 admin\media_manager.php
