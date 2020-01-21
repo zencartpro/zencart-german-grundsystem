@@ -18,7 +18,7 @@ includes\functions\functions_products.php
 
 ----------------------------------------------------------------------------------------
 
-Geänderte Dateien in 1.5.6e (382)
+Geänderte Dateien in 1.5.6e (383)
 
 ----------------------------------------------------------------------------------------
 
@@ -249,6 +249,7 @@ includes\functions\functions_gvcoupons.php
 includes\functions\functions_lookups.php
 includes\functions\functions_prices.php
 includes\functions\functions_taxes.php
+includes\functions\html_output.php
 includes\functions\plugin_support.php
 includes\functions\whos_online.php
 includes\init_includes\init_add_crumbs.php
