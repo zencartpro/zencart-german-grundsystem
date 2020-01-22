@@ -6,7 +6,7 @@
  * @copyright Copyright 2003-2020 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: header_php.php 736 2020-01-17 10:32:16Z webchills $
+ * @version $Id: header_php.php 737 2020-01-22 20:32:16Z webchills $
  */
 
 // This should be first line of the script:
@@ -17,6 +17,7 @@ require DIR_WS_MODULES . zen_get_module_directory('require_languages.php');
 $error = false;
 $enquiry = '';
 $antiSpamFieldName = isset($_SESSION['antispam_fieldname']) ? $_SESSION['antispam_fieldname'] : 'should_be_empty';
+$telephone = '';
 
 if (isset($_GET['action']) && ($_GET['action'] == 'send')) {
     $name = zen_db_prepare_input($_POST['contactname']);

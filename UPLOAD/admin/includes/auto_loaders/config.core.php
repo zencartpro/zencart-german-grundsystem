@@ -1,10 +1,10 @@
 <?php
 /**
  * @package admin
- * @copyright Copyright 2003-2019 Zen Cart Development Team
+ * @copyright Copyright 2003-2020 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: config.core.php 807 2019-04-14 09:35:36Z webchills $
+ * @version $Id: config.core.php 808 2020-01-22 20:35:36Z webchills $
  */
 if (!defined('USE_PCONNECT')) define('USE_PCONNECT', 'false');
 /**
@@ -18,7 +18,6 @@ if (!defined('USE_PCONNECT')) define('USE_PCONNECT', 'false');
  * require(DIR_FS_CATALOG . DIR_WS_CLASSES . 'class.notifier.php');
  * $zco_notifier = new notifier();
  * require(DIR_FS_CATALOG . DIR_WS_CLASSES . 'sniffer.php');
- * require(DIR_WS_CLASSES . 'logger.php');
  * require(DIR_FS_CATALOG . DIR_WS_CLASSES . 'shopping_cart.php');
  * require(DIR_FS_CATALOG . DIR_WS_CLASSES . 'products.php');
  * require(DIR_WS_CLASSES . 'table_block.php');
@@ -43,9 +42,6 @@ if (!defined('USE_PCONNECT')) define('USE_PCONNECT', 'false');
                                'objectName'=>'zco_notifier');
   $autoLoadConfig[0][] = array('autoType'=>'class',
                                'loadFile'=>'sniffer.php');
-  $autoLoadConfig[0][] = array('autoType'=>'class',
-                               'loadFile'=>'logger.php',
-                               'classPath'=>DIR_WS_CLASSES);
   $autoLoadConfig[0][] = array('autoType'=>'class',
                                'loadFile'=>'shopping_cart.php',
                                );

@@ -3,10 +3,10 @@
  * meta_tags module
  * Zen Cart German Specific
  * @package modules
- * @copyright Copyright 2003-2019 Zen Cart Development Team
+ * @copyright Copyright 2003-2020 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: meta_tags.php 733 2019-07-27 11:19:16Z webchills $
+ * @version $Id: meta_tags.php 734 2020-01-22 20:41:16Z webchills $
  */
 $meta_tags_over_ride = false;
 $metatag_page_name = $current_page_base;
@@ -180,14 +180,20 @@ switch ($metatag_page_name) {
   // eof: categories meta tags
 
   case 'popup_image':
-  $meta_products_name = str_replace('"','',zen_clean_html($products_values->fields['products_name']));
+  $meta_products_name = '';
+  if (isset($products_values->fields['products_name'])) {
+    $meta_products_name = str_replace('"','',zen_clean_html($products_values->fields['products_name']));
+  }
   define('META_TAG_TITLE', $meta_products_name . PRIMARY_SECTION . TITLE . TAGLINE);
   define('META_TAG_DESCRIPTION', TITLE . PRIMARY_SECTION . $meta_products_name . SECONDARY_SECTION . KEYWORDS);
   define('META_TAG_KEYWORDS', KEYWORDS . METATAGS_DIVIDER . $meta_products_name);
   break;
 
   case 'popup_image_additional':
-  $meta_products_name = str_replace('"','',zen_clean_html($products_values->fields['products_name']));
+  $meta_products_name = '';
+  if (isset($products_values->fields['products_name'])) {
+    $meta_products_name = str_replace('"','',zen_clean_html($products_values->fields['products_name']));
+  }
   define('META_TAG_TITLE', $meta_products_name . PRIMARY_SECTION . TITLE . TAGLINE);
   define('META_TAG_DESCRIPTION', TITLE . PRIMARY_SECTION . $meta_products_name . SECONDARY_SECTION . KEYWORDS);
   define('META_TAG_KEYWORDS', KEYWORDS . METATAGS_DIVIDER . $meta_products_name);
@@ -206,11 +212,9 @@ switch ($metatag_page_name) {
   $review_on = META_TAGS_REVIEW;
   //  case 'product_info':
   case (strstr($_GET['main_page'], 'product_') or strstr($_GET['main_page'], 'document_')):
-  /*
-  $sql = "select p.products_id, pd.products_name, pd.products_description, p.products_model, p.products_price, p.products_tax_class_id, p.product_is_free, p.products_price_sorter,
-  p.metatags_title_status, p.metatags_products_name_status, p.metatags_model_status, p.metatags_price_status, p.metatags_title_tagline_status,
-  mtpd.metatags_title, mtpd.metatags_keywords, mtpd.metatags_description from " . TABLE_PRODUCTS . " p, " . TABLE_PRODUCTS_DESCRIPTION . " pd, " . TABLE_META_TAGS_PRODUCTS_DESCRIPTION . " mtpd where p.products_status = 1 and p.products_id = '" . (int)$_GET['products_id'] . "' and pd.products_id = p.products_id and pd.language_id = '" . (int)$_SESSION['languages_id'] . "' and mtpd.products_id = p.products_id and mtpd.language_id = '" . (int)$_SESSION['languages_id'] . "'";
-  */
+  if (empty($_GET['products_id'])) {
+    $_GET['products_id'] = 0;
+  }
 
   $sql= "select pd.products_name, p.products_model, p.products_price_sorter, p.products_tax_class_id,
                                       p.metatags_title_status, p.metatags_products_name_status, p.metatags_model_status,
