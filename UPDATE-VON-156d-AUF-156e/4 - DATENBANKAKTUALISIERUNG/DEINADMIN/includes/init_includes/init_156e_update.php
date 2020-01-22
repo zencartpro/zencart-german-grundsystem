@@ -4,7 +4,7 @@
 * @copyright Copyright 2003-2020 Zen Cart Development Team
 * @copyright Portions Copyright 2003 osCommerce
 * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
-* @version $Id: init_156e_update.php 2020-01-19 08:32:51Z webchills $
+* @version $Id: init_156e_update.php 2020-01-22 09:32:51Z webchills $
 */
 
 if (!defined('IS_ADMIN_FLAG')) {
@@ -21,7 +21,7 @@ if (isset($_SESSION['admin_id'])) {
 // 
 //
 
-$db->Execute("INSERT IGNORE INTO ".TABLE_CONFIGURATION." (configuration_title, configuration_key, configuration_value, val_function, configuration_description, configuration_group_id, sort_order, date_added) VALUES ('Admin Usernames', 'ADMIN_NAME_MINIMUM_LENGTH', '4', '{"error":"TEXT_MIN_ADMIN_USER_LENGTH","id":"FILTER_VALIDATE_INT","options":{"options":{"min_range":4}}}', 'Minimum length of admin usernames (must be 4 or more)', '2', '18', now());");
+$db->Execute("INSERT IGNORE INTO ".TABLE_CONFIGURATION." (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) VALUES ('Admin Usernames', 'ADMIN_NAME_MINIMUM_LENGTH', '4', 'Minimum length of admin usernames (must be 4 or more)', '2', '18', now());");
 
 
 // -----
@@ -34,12 +34,18 @@ $messageStack->add('Image Handler erfolgreich auf Version 5.1.8 aktualisiert', '
 
 // -----
 // orders_status Tabelle mit sort_order erweitern
-// Feld pages_html_text in Tabelle ezpages_content auf mediumtext setzen
 // 
 //
-$db->Execute("ALTER ".TABLE_ORDERS_STATUS." ADD sort_order int(11) NOT NULL default 0;");
-$db->Execute("ALTER ".TABLE_EZPAGES_CONTENT." MODIFY pages_html_text mediumtext NOT NULL;");
-$messageStack->add('Tabellen orders_status und ezpages_content erfolgreich aktualisiert', 'success');
+
+//check if sort_order column already exists - if not add it
+$sql ="SHOW COLUMNS FROM ".TABLE_ORDERS_STATUS." LIKE 'sort_order'";
+$result = $db->Execute($sql);
+if(!$result->RecordCount())
+{
+$sql = "ALTER TABLE ".TABLE_ORDERS_STATUS." ADD sort_order int(11) NOT NULL default '0'";
+$db->Execute($sql);
+}
+$messageStack->add('Tabelle orders_status erfolgreich aktualisiert', 'success');
 
 // -----
 // Nicht mehr verwendete configs entfernen
