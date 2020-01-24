@@ -3,14 +3,14 @@
  * Main English language file for installer
  * Zen Cart German Specific
  * @package Installer
- * @copyright Copyright 2003-2019 Zen Cart Development Team
+ * @copyright Copyright 2003-2020 Zen Cart Development Team
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: lngEnglish.php 8 2020-01-17 16:49:16Z webchills $
+ * @version $Id: lngEnglish.php 9 2020-01-24 19:26:16Z webchills $
  */
 /**
  * defining language components for the page
  */
-define('META_TAG_TITLE', 'Zen Cart&reg; Installer');
+define('META_TAG_TITLE', 'Zen Cart 1.5.6e German - Installer');
 define('HTML_PARAMS','dir="ltr" lang="en"');
 define('ZC_VERSION_STRING', '%s v%s');
 define('TEXT_PAGE_HEADING_INDEX', 'System Inspection');
@@ -152,10 +152,9 @@ define('TEXT_ERROR_COULD_NOT_WRITE_CONFIGFILE', 'Could not write the generated c
 
 define('TEXT_ERROR_STORE_CONFIGURE', 'Main /includes/configure.php file either does not exist, is not readable or is not writeable');
 define('TEXT_ERROR_ADMIN_CONFIGURE', 'Admin /admin/includes/configure.php file either does not exist, is not readable or is not writeable');
-define('TEXT_ERROR_PHP_VERSION', str_replace(array("\n", "\r"), '', 'Incorrect PHP Version.
-<p>The PHP version you are using (' . PHP_VERSION . ') is not suitable.</p>
-<p>This version of Zen Cart&reg; is compatible with PHP versions 5.6 to 7.3.x, although 7.2.x or higher is recommended.<br>
-Check the <a href="https://www.zen-cart-pro.at">www.zen-cart-pro.at</a> website for the latest version of Zen Cart German.</p>
+define('TEXT_ERROR_PHP_VERSION', str_replace(array("\n", "\r"), '', 'Outdated PHP Version.
+<p>The PHP version you are using (' . PHP_VERSION . ') is outdated and not suitable.</p>
+<p>This version of Zen Cart German is compatible with PHP versions 7.1.x to 7.3.x, although 7.3.x is recommended.</p>
 '));
 define('TEXT_ERROR_PHP_VERSION_RECOMMENDED', 'For maximum security and compatibility you should be using PHP %s or newer. This installer can proceed, but this is just letting you know that your site will not be PCI Compliant when running out-of-date software.');
 define('TEXT_ERROR_PHP_VERSION_MIN', 'PHP Version should be greater than %s');

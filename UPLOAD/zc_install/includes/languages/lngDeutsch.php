@@ -6,7 +6,7 @@
  * @package Installer
  * @copyright Copyright 2003-2020 Zen Cart Development Team
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: lngDeutsch.php 18 2020-01-18 12:52:16Z webchills $
+ * @version $Id: lngDeutsch.php 19 2020-01-24 19:23:16Z webchills $
  */
 /**
  * defining language components for the page
@@ -149,11 +149,11 @@ define('TEXT_ERROR_COULD_NOT_READ_CFGFILE_TEMPLATE', 'Kann die Vorlage für die 
 define('TEXT_ERROR_COULD_NOT_WRITE_CONFIGFILE', 'Konnte die Konfigurationsdatei nicht schreiben: %s. Stellen Sie sicher, dass diese Datei existiert und beschreibbar ist.');
 define('TEXT_ERROR_STORE_CONFIGURE', 'Frontend Konfigurationsdatei /includes/configure.php existiert nicht, ist nicht lesbar oder ist nicht beschreibbar');
 define('TEXT_ERROR_ADMIN_CONFIGURE', 'Admin Konfigurationsdatei /admin/includes/configure.php existiert nicht, ist nicht lesbar oder ist nicht beschreibbar');
-define('TEXT_ERROR_PHP_VERSION', str_replace(array("\n", "\r"), '', 'Falsche PHP Version.
-<p>Ihre verwendete PHP Version (' . PHP_VERSION . ') ist ungeeignet. Die deutsche Zen Cart Version 1.5.6e kann damit NICHT verwendet werden.</p>
-<p>Diese Version von Zen Cart deutsch ist kompatibel mit PHP Versionen von 5.6.x bis 7.3.x</p>
+define('TEXT_ERROR_PHP_VERSION', str_replace(array("\n", "\r"), '', 'Veraltete PHP Version.
+<p>Ihre verwendete PHP Version (' . PHP_VERSION . ') ist veraltet und ungeeignet. Die deutsche Zen Cart Version 1.5.6e kann damit NICHT verwendet werden.</p>
+<p>Diese Version von Zen Cart deutsch ist kompatibel mit PHP Versionen von 7.1.x bis 7.3.x</p>
 '));
-define('TEXT_ERROR_PHP_VERSION_RECOMMENDED', '<b>Ihre verwendete PHP Version (' . PHP_VERSION . ') ist veraltet.</b><br/>Für maximale Sicherheit und Kompatibilität sollten Sie mindestens PHP 7.2.x verwenden.<br/>Diese Version von Zen Cart deutsch ist kompatibel mit PHP Versionen von 5.6.x bis 7.3.x<br/>Wir können mit der Installation trotzdem weitermachen, weisen aber darauf hin, dass Sie in Ihrem eigenen Interesse keine solch veraltete PHP Version verwenden sollten.');
+define('TEXT_ERROR_PHP_VERSION_RECOMMENDED', '<b>Ihre verwendete PHP Version (' . PHP_VERSION . ') ist veraltet.</b><br/>Für maximale Sicherheit und Kompatibilität sollten Sie mindestens PHP 7.3.x verwenden.<br/>Diese Version von Zen Cart deutsch ist kompatibel mit PHP Versionen von 7.1.x bis 7.3.x<br/>Wir können mit der Installation trotzdem weitermachen, weisen aber darauf hin, dass Sie in Ihrem eigenen Interesse keine solch veraltete PHP Version verwenden sollten.');
 define('TEXT_ERROR_PHP_VERSION_MIN', 'Die PHP Version sollte höher sein als %s');
 define('TEXT_ERROR_PHP_VERSION_MAX', 'Die PHP Version sollte niedriger sein als %s');
 define('TEXT_ERROR_MYSQL_SUPPORT', 'Probleme mit Ihrer MySQL (mysqli) Unterstützung');
