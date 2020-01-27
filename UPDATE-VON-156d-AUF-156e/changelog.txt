@@ -3,33 +3,36 @@ Changelog Zen Cart 1.5.6e deutsch gegenüber 1.5.6d deutsch
 
 -----------------------------------------------------------------------------------------
 
-Neue Dateien in 1.5.6e (7)
+Neue Dateien in 1.5.6e (10)
 
 -----------------------------------------------------------------------------------------
 
 admin\includes\classes\configurationValidation.php
 admin\includes\css\login.css
+admin\includes\javascript\jquery-3.4.1.min.js
 admin\includes\languages\english\configuration_validation.php
 admin\includes\languages\german\configuration_validation.php
 includes\extra_configures\patch_clean_ampersands.php
 includes\functions\database.php
 includes\functions\functions_general_shared.php
 includes\functions\functions_products.php
+includes\templates\template_default\templates\tpl_zc_phpupgrade_default.php
 
 
 ----------------------------------------------------------------------------------------
 
-Geänderte Dateien in 1.5.6e (384)
+Geänderte Dateien in 1.5.6e (395)
 
 ----------------------------------------------------------------------------------------
 
+admin\.htaccess
+admin\includes\auto_loaders\config.core.php
 admin\includes\classes\AdminNotifications.php
 admin\includes\classes\AdminRequestSanitizer.php
 admin\includes\classes\class.admin.zcObserverLogEventListener.php
 admin\includes\classes\message_stack.php
 admin\includes\functions\admin_access.php
 admin\includes\functions\configuration_checks.php
-admin\includes\functions\database.php
 admin\includes\functions\general.php
 admin\includes\functions\html_output.php
 admin\includes\functions\languages.php
@@ -110,11 +113,14 @@ admin\includes\modules\products_previous_next.php
 admin\includes\modules\products_previous_next_display.php
 admin\includes\modules\update_product.php
 admin\includes\modules\update_product_meta_tags.php
+admin\includes\application_bottom.php
 admin\includes\banner_tools.css
+admin\includes\ckeditor.php
 admin\includes\footer.php
 admin\includes\header_navigation.php
 admin\includes\javascript_loader.php
 admin\includes\stylesheet.css
+admin\includes\tinymce.php
 admin\admin_account.php
 admin\banner_manager.php
 admin\categories.php
@@ -222,6 +228,7 @@ editors\tiny_mce\skins\ui\oxide-dark\skin.min.css
 editors\tiny_mce\themes\mobile\theme.min.js
 editors\tiny_mce\themes\silver\theme.min.js
 editors\tiny_mce\tinymce.min.js
+includes\classes\db\mysql\query_factory.php
 includes\classes\observers\auto.downloads_via_redirect.php
 includes\classes\vendors\PHPMailer\language\phpmailer.lang-nl.php
 includes\classes\vendors\PHPMailer\src\OAuth.php
@@ -343,11 +350,14 @@ includes\modules\checkout_process.php
 includes\modules\create_account.php
 includes\modules\ezpages_bar_footer.php
 includes\modules\ezpages_bar_header.php
+includes\modules\meta_tags.php
 includes\modules\product_listing_alpha_sorter.php
 includes\modules\products_quantity_discounts.php
 includes\modules\shipping_estimator.php
 includes\templates\classic\google_analytics\google_analytics.php
+includes\templates\responsive_classic\common\html_header.php
 includes\templates\responsive_classic\common\tpl_main_page.php
+includes\templates\responsive_classic\css\stylesheet_colors.css
 includes\templates\responsive_classic\google_analytics\google_analytics.php
 includes\templates\responsive_classic\jscript\jscript_responsive_framework.php
 includes\templates\responsive_classic\templates\tpl_document_general_info_display.php
@@ -363,6 +373,7 @@ includes\templates\responsive_classic\templates\tpl_product_reviews_write_defaul
 includes\templates\template_default\common\main_template_vars.php
 includes\templates\template_default\common\tpl_main_page.php
 includes\templates\template_default\google_analytics\google_analytics.php
+includes\templates\template_default\jscript\jquery.min.js
 includes\templates\template_default\jscript\jscript_framework.php
 includes\templates\template_default\sideboxes\tpl_shopping_cart.php
 includes\templates\template_default\templates\tpl_account_history_info_default.php
@@ -387,6 +398,7 @@ includes\templates\template_default\templates\tpl_product_info_display.php
 includes\templates\template_default\templates\tpl_product_reviews_write_default.php
 includes\templates\template_default\templates\tpl_site_map_default.php
 includes\templates\template_default\templates\tpl_unsubscribe_default.php
+includes\application_top.php
 includes\form_check.js.php
 includes\spiders.txt
 includes\version.php
@@ -401,9 +413,25 @@ zc_install\includes\modules\pages\index\header_php.php
 zc_install\includes\template\templates\database_default.php
 zc_install\includes\template\templates\index_default.php
 zc_install\includes\cli_controller.php
+zc_install\includes\systemChecks.yml
 zc_install\includes\version.php
 zc_install\sql\install\mysql_zencart.sql
 zc_install\sql\updates\mysql_upgrade_zencart_153.sql
 zc_install\sql\updates\mysql_upgrade_zencart_155.sql
 zc_install\sql\updates\mysql_upgrade_zencart_156.sql
 ipn_main_handler.php
+
+
+
+----------------------------------------------------------------------------------------
+
+Nicht mehr enthaltene Dateien in 1.5.6e (5)
+Diese Dateien müssen gelöscht werden
+
+----------------------------------------------------------------------------------------
+
+DEINADMIN\includes\classes\logger.php
+DEINADMIN\includes\functions\database.php
+DEINADMIN\includes\javascript\jquery-1.12.4.min.js
+DEINADMIN\includes\javascript\jquery-3.4.0.min.js
+DEINADMIN\includes\alt-stylesheet.css

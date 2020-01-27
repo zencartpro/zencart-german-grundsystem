@@ -5,7 +5,7 @@ Nur geeignet, wenn Sie bereits 1.5.6d deutsch verwenden!
 
 Sollten Sie 1.5.6c deutsch verwenden, dann aktualisieren Sie zunächst auf 1.5.6d mit dem speziellen Updatepaket im Ordner UPDATE-VON-156c-AUF-156d
 
-Für das Update einer älteren deutschen Zen Cart Version als 1.5.6c, führen Sie bitte ein normales Update mit dem kompletten 1.5.6e Paket durch!
+Für das Update einer älteren deutschen Zen Cart Version als 1.5.6c führen Sie bitte ein normales Update mit dem kompletten 1.5.6e Paket durch!
 
 
 Um Ihren bestehenden 1.5.6d deutsch Shop auf 1.5.6e deutsch zu aktualisieren gehen Sie folgendermaßen vor:
@@ -30,7 +30,7 @@ Vergleichen Sie aber dann unbedingt die Dateien Ihres Templates mit den Dateien 
 2)
 
 Im Ordner 2 - NEUE DATEIEN befinden sich die kompletten neuen Versionen der CKEditor und TinyMCE Editoren und eine neue Version des PHP Mailers.
-Sowie 5 neue Dateien für Adminbereich und Frontend
+Sowie neue Dateien für Adminbereich und Frontend
 Benennen Sie den Ordner DEINADMIN auf den Namen Ihres Adminverzeichnisses um.
 Statt hier mühsame Dateivergleiche durchzuführen, können Sie die bestehenden Pakete einfach komplett mit den neuen ersetzen.
 Löschen Sie den kompletten Ordner editors vom Server
@@ -42,7 +42,12 @@ Laden Sie dann den Inhalt des Ordners 2 - NEUEDATEIEN in der vorgegebenen Strukt
 
 Löschen Sie nun die folgenden Dateien aus Ihrer Shopinstallation:
 
-tbd
+DEINADMIN\includes\classes\logger.php
+DEINADMIN\includes\functions\database.php
+DEINADMIN\includes\javascript\jquery-1.12.4.min.js
+DEINADMIN\includes\javascript\jquery-3.4.0.min.js
+DEINADMIN\includes\alt-stylesheet.css
+
 
 4)
 

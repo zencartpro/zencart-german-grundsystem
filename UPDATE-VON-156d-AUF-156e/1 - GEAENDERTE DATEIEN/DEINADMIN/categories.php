@@ -4,7 +4,7 @@
  * @copyright Copyright 2003-2020 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: categories.php 796 2020-01-20 21:30:51Z webchills $
+ * @version $Id: categories.php 797 2020-01-22 20:30:51Z webchills $
  */
 require('includes/application_top.php');
 $languages = zen_get_languages();
@@ -493,9 +493,7 @@ if (is_dir(DIR_FS_CATALOG_IMAGES)) {
               for ($i = 0, $n = count($languages); $i < $n; $i++) {
                 ?>
               <div class="input-group">
-                <span class="input-group-addon">
-                    <?php echo zen_draw_label(zen_image(DIR_WS_CATALOG_LANGUAGES . $languages[$i]['directory'] . '/images/' . $languages[$i]['image'], $languages[$i]['name']), 'metatags_title[' . $languages[$i]['id'] . ']'); ?>
-                </span>
+                <span class="input-group-addon"><?php echo zen_image(DIR_WS_CATALOG_LANGUAGES . $languages[$i]['directory'] . '/images/' . $languages[$i]['image'], $languages[$i]['name']); ?></span>
                 <?php echo zen_draw_input_field('metatags_title[' . $languages[$i]['id'] . ']', htmlspecialchars(zen_get_category_metatags_title($cInfo->categories_id, $languages[$i]['id']), ENT_COMPAT, CHARSET, TRUE), zen_set_field_length(TABLE_METATAGS_CATEGORIES_DESCRIPTION, 'metatags_title') . ' class="form-control" id="metatags_title[' . $languages[$i]['id'] . ']"');
                 ?>
               </div>
@@ -512,9 +510,7 @@ if (is_dir(DIR_FS_CATALOG_IMAGES)) {
               for ($i = 0, $n = count($languages); $i < $n; $i++) {
                 ?>
               <div class="input-group">
-                <span class="input-group-addon" style="vertical-align: top;">
-                    <?php echo zen_draw_label(zen_image(DIR_WS_CATALOG_LANGUAGES . $languages[$i]['directory'] . '/images/' . $languages[$i]['image'], $languages[$i]['name']), 'metatags_keywords[' . $languages[$i]['id'] . ']'); ?>
-                </span>
+                <span class="input-group-addon" style="vertical-align: top;"><?php echo zen_image(DIR_WS_CATALOG_LANGUAGES . $languages[$i]['directory'] . '/images/' . $languages[$i]['image'], $languages[$i]['name']); ?></span>
                 <?php echo zen_draw_textarea_field('metatags_keywords[' . $languages[$i]['id'] . ']', 'soft', '100', '3', htmlspecialchars(zen_get_category_metatags_keywords($cInfo->categories_id, $languages[$i]['id']), ENT_COMPAT, CHARSET, TRUE), 'class="form-control noEditor" id="metatags_keywords[' . $languages[$i]['id'] . ']"');
                 ?>
               </div>
@@ -531,9 +527,7 @@ if (is_dir(DIR_FS_CATALOG_IMAGES)) {
               for ($i = 0, $n = count($languages); $i < $n; $i++) {
                 ?>
               <div class="input-group">
-                <span class="input-group-addon" style="vertical-align: top">
-                  <?php echo zen_draw_label(zen_image(DIR_WS_CATALOG_LANGUAGES . $languages[$i]['directory'] . '/images/' . $languages[$i]['image'], $languages[$i]['name']), 'metatags_description[' . $languages[$i]['id'] . ']'); ?>
-                </span>
+                <span class="input-group-addon" style="vertical-align: top"><?php echo zen_image(DIR_WS_CATALOG_LANGUAGES . $languages[$i]['directory'] . '/images/' . $languages[$i]['image'], $languages[$i]['name']); ?></span>
                 <?php echo zen_draw_textarea_field('metatags_description[' . $languages[$i]['id'] . ']', 'soft', '100', '7', htmlspecialchars(zen_get_category_metatags_description($cInfo->categories_id, $languages[$i]['id']), ENT_COMPAT, CHARSET, TRUE), 'class="form-control noEditor" id="metatags_description[' . $languages[$i]['id'] . ']"');
                 ?>
               </div>

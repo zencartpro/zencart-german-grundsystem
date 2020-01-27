@@ -1,13 +1,10 @@
 <?php
 /**
- * @package admin/includes/classes
- * configurationValidation.php
- * @copyright Copyright 2003-2019 Zen Cart Development Team
- * @copyright Copyright 2019 mc12345678 @ mc12345678.com
+ * @package admin
+ * @copyright Copyright 2003-2020 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
- * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id:  mc12345678 2019-Apr-08 added in v1.5.6b$
- *
+ * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
+ * @version $Id: configurationValidation.php 1 2020-01-27 19:32:16Z webchills $
  */
 
 if (!defined('IS_ADMIN_FLAG')) {

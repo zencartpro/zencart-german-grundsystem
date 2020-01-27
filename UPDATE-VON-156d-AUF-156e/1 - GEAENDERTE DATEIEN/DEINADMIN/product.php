@@ -4,7 +4,7 @@
  * @copyright Copyright 2003-2020 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: product.php 790 2020-01-17 09:13:51Z webchills $
+ * @version $Id: product.php 791 2020-01-22 20:13:51Z webchills $
  */
 require('includes/application_top.php');
 
@@ -70,6 +70,8 @@ $languages = zen_get_languages();
 <html <?php echo HTML_PARAMS; ?>>
   <head>
     <meta charset="<?php echo CHARSET; ?>">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title><?php echo TITLE; ?></title>
     <link rel="stylesheet" href="includes/stylesheet.css">
     <script src="includes/general.js"></script>

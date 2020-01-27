@@ -1,12 +1,12 @@
 <?php
 /**
  * ot_coupon order-total module
- *
+ * Zen Cart German Specific
  * @package orderTotal
  * @copyright Copyright 2003-2020 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: ot_coupon.php 740 2020-01-17 09:18:16Z webchills $
+ * @version $Id: ot_coupon.php 741 2020-01-23 18:18:16Z webchills $
  */
 /**
  * Order Total class  to handle discount coupons
@@ -173,15 +173,23 @@ class ot_coupon {
        
       $messageStack->add_session('checkout_payment', TEXT_REMOVE_REDEEM_COUPON, 'caution');
     }
-//    print_r($_SESSION);
-    // bof: Discount Coupon zoned always validate coupon for payment address changes
-    // eof: Discount Coupon zoned always validate coupon for payment address changes
+
     if ((isset($_POST['dc_redeem_code']) && $_POST['dc_redeem_code'] != '') || (isset($discount_coupon->fields['coupon_code']) && $discount_coupon->fields['coupon_code'] != '')) {
       // set current Discount Coupon based on current or existing
-      if (isset($_POST['dc_redeem_code']) && $discount_coupon->fields['coupon_code'] == '') {
-        $dc_check = $_POST['dc_redeem_code'];
+      if ($discount_coupon != null) {
+        if (isset($_POST['dc_redeem_code']) && $discount_coupon->fields['coupon_code'] == '') {
+          $dc_check = $_POST['dc_redeem_code'];
+        } else {
+          $dc_check = $discount_coupon->fields['coupon_code'];
+        }
       } else {
-        $dc_check = $discount_coupon->fields['coupon_code'];
+        if (isset($_POST['dc_redeem_code'])) { 
+          $dc_check = $_POST['dc_redeem_code'];
+        } else if ($discount_coupon != null) {
+          $dc_check = $discount_coupon->fields['coupon_code'];
+        } else {
+          $dc_check = "UNKNOWN_COUPON"; 
+        }
       }
 
 
@@ -197,14 +205,14 @@ class ot_coupon {
 
       $coupon_result=$db->Execute($sql);
 
-      if ($coupon_result->fields['coupon_type'] != 'G') {
+      if (!$coupon_result->EOF) {
 
         if ($coupon_result->RecordCount() < 1 ) {
           $messageStack->add_session('redemptions', TEXT_INVALID_REDEEM_COUPON . ' ' . $dc_check,'caution');
           $this->clear_posts();
           zen_redirect(zen_href_link(FILENAME_CHECKOUT_PAYMENT, '', 'SSL',true, false));
         }
-	
+
         $GLOBALS['zco_notifier']->notify(
             'NOTIFY_OT_COUPON_COUPON_INFO', 
             array(
@@ -212,7 +220,7 @@ class ot_coupon {
                 'code' => $dc_check
             )
         );
-	
+
         //$order_total = $this->get_order_total($coupon_result->fields['coupon_id']);
 
         // display all error messages at once
@@ -496,16 +504,9 @@ class ot_coupon {
       }
 //echo 'ot_coupon coupon_total: ' . $coupon->fields['coupon_calc_base'] . '<br>$orderTotalDetails[orderTotal]: ' . $orderTotalDetails['orderTotal'] . '<br>$orderTotalDetails[totalFull]: ' . $orderTotalDetails['totalFull'] . '<br>$coupon_total: ' . $coupon_total . '<br><br>$coupon->fields[coupon_minimum_order]: ' . $coupon->fields['coupon_minimum_order'] . '<br>$coupon_total_minimum: ' . $coupon_total_minimum . '<br>';
 // @@TODO - adjust all Totals to use $coupon_total but strong review for what total applies where for Percentage, Amount, etc.
-//      if ($coupon->RecordCount() > 0 && $orderTotalDetails['totalFull'] != 0) {
       if ($coupon->RecordCount() > 0 && $orderTotalDetails['orderTotal'] != 0 ) {
-// left for total order amount ($orderTotalDetails['totalFull']) vs qualified order amount ($order_total['orderTotal']) just switch the commented lines 3 of 3
-//        if (strval($orderTotalDetails['totalFull']) >= $coupon->fields['coupon_minimum_order']) {
-//        if (strval($orderTotalDetails['orderTotal']) >= $coupon->fields['coupon_minimum_order']) {
 
-//        if (strval($coupon_total) >= $coupon->fields['coupon_minimum_order']) {
-        if (strval($coupon_total_minimum) >= $coupon->fields['coupon_minimum_order']) {
-
-          // calculate quantity when coupon_per_quantity && coupon_type F amount off || O amount off & Free Shipping
+          if (strval($coupon_total_minimum) >= $coupon->fields['coupon_minimum_order']) {
           $coupon_product_count = 1;
           if ($coupon->fields['coupon_product_count'] && ($coupon->fields['coupon_type'] == 'F' || $coupon->fields['coupon_type'] == 'O')) {
             $products = $_SESSION['cart']->get_products();
@@ -595,8 +596,21 @@ class ot_coupon {
           }
         }
       }
-    }
 
+      // -----
+      // Let an observer know that the coupon-related calculations have finished, providing read-only
+      // copies of (a) the base coupon information, (b) the results from 'get_order_total' and this
+      // method's return values.
+      //
+      $GLOBALS['zco_notifier']->notify(
+        'NOTIFY_OT_COUPON_CALCS_FINISHED', 
+        array(
+            'coupon' => $coupon, 
+            'order_totals' => $orderTotalDetails,
+            'od_amount' => $od_amount,
+        )
+      );
+    }
 //    print_r($order->info);
 //    print_r($orderTotalDetails);echo "<br><br>";
 //    echo 'RATIo = '. $ratio;

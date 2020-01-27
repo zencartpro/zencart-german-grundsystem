@@ -1,5 +1,9 @@
-DATEIEN ZUM LÖSCHEN (NICHT MEHR ENTHALTEN UND NICHT MEHR BENÖTIGT)
+DATEIEN ZUM LÖSCHEN (NICHT MEHR IN 1.5.6e ENTHALTEN UND NICHT MEHR BENÖTIGT)
 
 Löschen Sie nun die folgenden Dateien aus Ihrer Shopinstallation:
 --------------------------------------------------------------------------------------------
-DEINADMIN/includes/alt-stylesheet.css
+DEINADMIN\includes\classes\logger.php
+DEINADMIN\includes\functions\database.php
+DEINADMIN\includes\javascript\jquery-1.12.4.min.js
+DEINADMIN\includes\javascript\jquery-3.4.0.min.js
+DEINADMIN\includes\alt-stylesheet.css

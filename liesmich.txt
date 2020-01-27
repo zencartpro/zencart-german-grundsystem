@@ -1,7 +1,7 @@
 # zencart-156-de
 Zen Cart 1.5.6 - deutsche Version
 
-1.5.6e - 27. Januar 2020
+1.5.6e - Februar 2020
 
 Systemvoraussetzungen:
 * Linux Server mit Apache 2.4 oder 2.2
