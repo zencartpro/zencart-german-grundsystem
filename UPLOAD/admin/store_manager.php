@@ -4,7 +4,7 @@
  * @copyright Copyright 2003-2020 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: store_manager.php 735 2020-01-18 09:41:16Z webchills $
+ * @version $Id: store_manager.php 7365 2020-01-29 20:23:16Z webchills $
  */
 
   require('includes/application_top.php');
@@ -138,7 +138,7 @@
 
 // clean out old DEBUG logfiles
     case 'clean_debug_files':
-      foreach(array(DIR_FS_LOGS, DIR_FS_SQL_CACHE, DIR_FS_CATALOG . '/includes/modules/payment/paypal/logs') as $purgeFolder) {
+      foreach(array(DIR_FS_LOGS, DIR_FS_SQL_CACHE, DIR_FS_CATALOG . 'includes/modules/payment/paypal/logs') as $purgeFolder) {
         $purgeFolder = rtrim($purgeFolder, '/');
         $dir = dir($purgeFolder);
         while ($file = $dir->read()) {
