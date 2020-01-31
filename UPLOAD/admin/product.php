@@ -4,7 +4,7 @@
  * @copyright Copyright 2003-2020 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: product.php 791 2020-01-22 20:13:51Z webchills $
+ * @version $Id: product.php 792 2020-01-31 20:07:51Z webchills $
  */
 require('includes/application_top.php');
 
@@ -126,7 +126,7 @@ for ($i = 0, $n = sizeof($tax_class_array); $i < $n; $i++) {
     }
     ?>
   </head>
-  <body onload="init();">
+  <body>
     <!-- header //-->
     <?php require(DIR_WS_INCLUDES . 'header.php'); ?>
     <!-- header_eof //-->
