@@ -21,7 +21,7 @@ includes\templates\template_default\templates\tpl_zc_phpupgrade_default.php
 
 ----------------------------------------------------------------------------------------
 
-Geänderte Dateien in 1.5.6e (395)
+Geänderte Dateien in 1.5.6e (398)
 
 ----------------------------------------------------------------------------------------
 
@@ -248,6 +248,8 @@ includes\classes\payment.php
 includes\classes\shipping.php
 includes\classes\shopping_cart.php
 includes\classes\upload.php
+includes\classes\db\mysql\define_queries.php
+includes\classes\db\mysql\query_factory.php
 includes\functions\audience.php
 includes\functions\banner.php
 includes\functions\functions_categories.php
@@ -345,6 +347,7 @@ includes\modules\sideboxes\more_information.php
 includes\modules\sideboxes\order_history.php
 includes\modules\sideboxes\whos_online.php
 includes\modules\additional_images.php
+includes\modules\also_purchased_products.php
 includes\modules\checkout_new_address.php
 includes\modules\checkout_process.php
 includes\modules\create_account.php

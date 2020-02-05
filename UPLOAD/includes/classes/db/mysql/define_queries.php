@@ -5,9 +5,9 @@
  * can be used to assist with special requirements for other database-abstraction configurations
  *
  * @package classes
- * @copyright Copyright 2003-2019 Zen Cart Development Team
+ * @copyright Copyright 2003-2020 Zen Cart Development Team
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: define_queries.php 731 2016-02-17 19:49:16Z webchills $
+ * @version $Id: define_queries.php 732 2020-02-05 15:23:16Z webchills $
  */
 if (!defined('IS_ADMIN_FLAG')) {
   die('Illegal Access');
@@ -31,5 +31,5 @@ DEFINE('SQL_ALSO_PURCHASED', "SELECT p.products_id, p.products_image, max(o.date
                      AND p.products_status = 1
                      GROUP BY p.products_id, p.products_image
                      ORDER BY date_purchased desc, p.products_id
-                     LIMIT 50");
+                     LIMIT %u");
 DEFINE('SQL_SHOW_SHOPPING_CART_EMPTY',"select configuration_key, configuration_value from " . TABLE_CONFIGURATION . " where configuration_key RLIKE 'SHOW_SHOPPING_CART_EMPTY' and configuration_value > 0 order by configuration_value");
