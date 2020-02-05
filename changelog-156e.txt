@@ -21,7 +21,7 @@ includes\templates\template_default\templates\tpl_zc_phpupgrade_default.php
 
 ----------------------------------------------------------------------------------------
 
-Geänderte Dateien in 1.5.6e (403)
+Geänderte Dateien in 1.5.6e (405)
 
 ----------------------------------------------------------------------------------------
 
@@ -40,6 +40,7 @@ admin\includes\functions\languages.php
 admin\includes\functions\localization.php
 admin\includes\init_includes\init_admin_auth.php
 admin\includes\init_includes\init_cache_key_check.php
+admin\includes\init_includes\init_display_logs.php
 admin\includes\init_includes\init_errors.php
 admin\includes\init_includes\init_file_db_names.php
 admin\includes\init_includes\init_general_funcs.php
@@ -136,6 +137,7 @@ admin\currencies.php
 admin\customers.php
 admin\customers_without_order.php
 admin\denied.php
+admin\display_logs.php
 admin\featured.php
 admin\geo_zones.php
 admin\gv_queue.php

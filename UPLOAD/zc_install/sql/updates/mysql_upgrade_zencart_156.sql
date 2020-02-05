@@ -6,7 +6,7 @@
 # * @copyright Copyright 2003-2020 Zen Cart Development Team
 # * @copyright Portions Copyright 2003 osCommerce
 # * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
-# * @version $Id: mysql_upgrade_zencart_156.sql 24 2020-01-19 08:17:59Z webchills $
+# * @version $Id: mysql_upgrade_zencart_156.sql 25 2020-02-05 20:20:59Z webchills $
 
 #
 
@@ -398,7 +398,7 @@ WHERE configuration_group_title= 'Logging'
 LIMIT 1;
 
 INSERT IGNORE INTO configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added, use_function, set_function ) VALUES 
-('Display Logs: Version', 'DISPLAY_LOGS_VERSION', '2.1.2', 'Current plugin version.', @configuration_group_id, 100, now(), NULL, 'trim('),
+('Display Logs: Version', 'DISPLAY_LOGS_VERSION', '2.2.0', 'Current plugin version.', @configuration_group_id, 100, now(), NULL, 'trim('),
 ('Display Logs: Display Maximum', 'DISPLAY_LOGS_MAX_DISPLAY', '20', 'Identify the maximum number of logs to display.  (Default: <b>20</b>)', @configuration_group_id, 100, now(), NULL, NULL),
 ('Display Logs: Maximum File Size', 'DISPLAY_LOGS_MAX_FILE_SIZE', '80000', 'Identify the maximum size of any file to display.  (Default: <b>80000</b>)', @configuration_group_id, 101, now(), NULL, NULL),
 ('Display Logs: Included File Prefixes', 'DISPLAY_LOGS_INCLUDED_FILES', 'myDEBUG-|Paypal|paypal|ipn_|zcInstall|notifier', 'Identify the log-file <em>prefixes</em> to include in the display, separated by the pipe character (|).  Any intervening spaces are removed by the processing code.', @configuration_group_id, 102, now(), NULL, NULL),

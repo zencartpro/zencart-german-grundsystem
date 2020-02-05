@@ -4,7 +4,7 @@
 * @copyright Copyright 2003-2020 Zen Cart Development Team
 * @copyright Portions Copyright 2003 osCommerce
 * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
-* @version $Id: init_156e_update.php 2020-02-05 19:42:51Z webchills $
+* @version $Id: init_156e_update.php 2020-02-05 20:23:51Z webchills $
 */
 
 if (!defined('IS_ADMIN_FLAG')) {
@@ -29,6 +29,14 @@ $db->Execute("INSERT IGNORE INTO ".TABLE_CONFIGURATION." (configuration_title, c
 // 
 //
 $db->Execute("UPDATE ".TABLE_ADMIN_PAGES." SET display_on_menu = 'Y' WHERE page_key = 'productsToCategories';");
+
+// -----
+// Display Logs Version auf 2.2.0 aktualisieren
+// 
+//
+$db->Execute("UPDATE " . TABLE_CONFIGURATION . " SET configuration_value = '2.2.0' WHERE configuration_key = 'DISPLAY_LOGS_VERSION' LIMIT 1;");
+
+
 // -----
 // Image Handler auf 5.1.8 aktualisieren
 // 
