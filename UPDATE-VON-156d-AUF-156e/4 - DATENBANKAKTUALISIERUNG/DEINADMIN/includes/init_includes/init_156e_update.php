@@ -4,7 +4,7 @@
 * @copyright Copyright 2003-2020 Zen Cart Development Team
 * @copyright Portions Copyright 2003 osCommerce
 * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
-* @version $Id: init_156e_update.php 2020-01-22 09:32:51Z webchills $
+* @version $Id: init_156e_update.php 2020-02-05 19:42:51Z webchills $
 */
 
 if (!defined('IS_ADMIN_FLAG')) {
@@ -24,6 +24,11 @@ if (isset($_SESSION['admin_id'])) {
 $db->Execute("INSERT IGNORE INTO ".TABLE_CONFIGURATION." (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) VALUES ('Admin Usernames', 'ADMIN_NAME_MINIMUM_LENGTH', '4', 'Minimum length of admin usernames (must be 4 or more)', '2', '18', now());");
 
 
+// -----
+// Mehrfachlink Kategorie Manager im Hauptmenue sichtbar schalten
+// 
+//
+$db->Execute("UPDATE ".TABLE_ADMIN_PAGES." SET display_on_menu = 'Y' WHERE page_key = 'productsToCategories';");
 // -----
 // Image Handler auf 5.1.8 aktualisieren
 // 
