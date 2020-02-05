@@ -1,7 +1,7 @@
 <?php
 
 /**
- * SALES REPORT 3.3.2
+ * SALES REPORT 3.3.3
  *
  * The language file contains all the text that appears on the report. The first set of
  * configuration defines actually impact the report's output and behavior.
@@ -10,7 +10,7 @@
  * @author     Conor Kerr <conor.kerr_zen-cart@dev.ceon.net>
  * @updated by stellarweb to work with version 1.5.0 02-29-12 
  * @updated by lat9 for continued operation under zc155/zc156, 20190622
- * @copyright  Portions Copyright 2003-2006 Zen Cart Development Team
+ * @copyright  Portions Copyright 2003-2020 Zen Cart Development Team
  * @copyright  Portions Copyright 2003 osCommerce
  * @license    http://www.gnu.org/copyleft/gpl.html   GNU Public License V2.0
  */

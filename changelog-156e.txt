@@ -21,7 +21,7 @@ includes\templates\template_default\templates\tpl_zc_phpupgrade_default.php
 
 ----------------------------------------------------------------------------------------
 
-Geänderte Dateien in 1.5.6e (398)
+Geänderte Dateien in 1.5.6e (403)
 
 ----------------------------------------------------------------------------------------
 
@@ -31,6 +31,7 @@ admin\includes\classes\AdminNotifications.php
 admin\includes\classes\AdminRequestSanitizer.php
 admin\includes\classes\class.admin.zcObserverLogEventListener.php
 admin\includes\classes\message_stack.php
+admin\includes\classes\sales_report.php
 admin\includes\functions\admin_access.php
 admin\includes\functions\configuration_checks.php
 admin\includes\functions\general.php
@@ -45,6 +46,7 @@ admin\includes\init_includes\init_general_funcs.php
 admin\includes\init_includes\init_languages.php
 admin\includes\init_includes\init_sanitize.php
 admin\includes\init_includes\init_templates.php
+admin\includes\javascript\sales_report.js.php
 admin\includes\languages\english\extra_definitions\stats_sales_report_graphs.php
 admin\includes\languages\english\attributes_controller.php
 admin\includes\languages\english\banner_manager.php
@@ -67,6 +69,7 @@ admin\includes\languages\english\products_to_categories.php
 admin\includes\languages\english\reviews.php
 admin\includes\languages\english\specials.php
 admin\includes\languages\english\stats_products_purchased.php
+admin\includes\languages\english\stats_sales_report.php
 admin\includes\languages\english\users.php
 admin\includes\languages\german\extra_definitions\stats_sales_report_graphs.php
 admin\includes\languages\german\attributes_controller.php
@@ -87,6 +90,7 @@ admin\includes\languages\german\products_to_categories.php
 admin\includes\languages\german\reviews.php
 admin\includes\languages\german\specials.php
 admin\includes\languages\german\stats_products_purchased.php
+admin\includes\languages\german\stats_sales_report.php
 admin\includes\languages\german\users.php
 admin\includes\languages\english.php
 admin\includes\languages\german.php
