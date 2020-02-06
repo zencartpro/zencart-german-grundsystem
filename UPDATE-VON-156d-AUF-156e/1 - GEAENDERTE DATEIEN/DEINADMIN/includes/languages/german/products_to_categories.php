@@ -4,7 +4,7 @@
  * @copyright Copyright 2003-2020 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: products_to_categories.php 2020-01-19 20:37:14Z webchills $
+ * @version $Id: products_to_categories.php 2020-02-06 21:19:14Z webchills $
  */
 
 define('HEADING_TITLE', 'Artikel in mehrere Kategorien verlinken');
@@ -29,7 +29,7 @@ define('HEADER_CATEGORIES_GLOBAL_CHANGES', 'Globale Kategorie Tools');
 
 define('TEXT_INFO_PRODUCTS_TO_CATEGORIES_LINKER_INTRO', 'Dieser Artikel ist derzeit zu den unten ausgewählten Kategorien verlinkt.<br>Um Verlinkungen hinzuzufügen oder wegzunehmen, kreuzen Sie die entsprechenden Checkboxen an oder deselektieren Sie sie und clicken dann auf den ' . BUTTON_UPDATE_CATEGORY_LINKS . ' Button.<br />Weitere Aktionen für Artikel in Kategorien sind verfügbar über die Funktion ' . HEADER_CATEGORIES_GLOBAL_CHANGES . ' unten.');
 
-define('TEXT_INFO_MASTER_CATEGORY_CHANGE','Ein Artikel hat immer eine Hauptkategorie ID (Master Category ID) für die Bepreisung. Sie gibt an in welcher Kategorie sich dieser Artikel grundsätlich befindet. Zusätzlich kann ein Artikel in unbegrenzt viele andere Kategorien verlinkt werden.<br>The Master Category ID can be changed by using this Master Category dropdown, that offers the currently linked categories as possible alternatives.<br>To set the Master Category ID to <strong>any</strong> category, use the "Move" option on the category listing page.');
+define('TEXT_INFO_MASTER_CATEGORY_CHANGE','Ein Artikel hat immer eine Hauptkategorie ID (Master Category ID) für die Bepreisung. Sie gibt an in welcher Kategorie sich dieser Artikel grundsätzlich befindet. Zusätzlich kann ein Artikel in unbegrenzt viele andere Kategorien verlinkt werden.<br>Die Hauptkategorie-ID kann durch Verwendung dieses Hauptkategorie-Dropdown Menüs geändert werden, das die derzeit verknüpften Kategorien als mögliche Alternativen anbietet.<br/>Um die Hauptkategorie-ID auf jede beliebige Kategorie zu setzen, verwenden Sie die Option "Verschieben" (Symbol M = Move) auf der Kategorielistenseite.');
 
 define('TEXT_SET_MASTER_CATEGORIES_ID', '<strong>ACHTUNG:</strong> Sie müssen die Hauptkategorie-ID ändern bevor verlinkte Kategorien verändert werden!');
 
