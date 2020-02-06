@@ -3,11 +3,11 @@
  * @package Image Handler
  * Zen Cart German Specific
  * @copyright Copyright 2005-2006 Tim Kroeger (original author)
- * @copyright Copyright 2018-2019 lat 9 - Vinos de Frutas Tropicales
- * @copyright Copyright 2003-2019 Zen Cart Development Team
+ * @copyright Copyright 2018-2020 lat 9 - Vinos de Frutas Tropicales
+ * @copyright Copyright 2003-2020 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: image_handler.php 2019-11-01 08:13:51Z webchills $
+ * @version $Id: image_handler.php 2020-02-06 17:13:51Z webchills $
  */
 require 'includes/application_top.php';
 
@@ -159,9 +159,6 @@ div.managerbox {clear: both;}
 </style>
 <script src="includes/menu.js"></script>
 <script src="includes/general.js"></script>
-<link rel="stylesheet" type="text/css" href="includes/javascript/spiffyCal/spiffyCal_v2_1.css">
-<script src="includes/javascript/spiffyCal/spiffyCal_v2_1.js"></script>
-
 <script>
   <!--
   function init()
@@ -182,7 +179,6 @@ div.managerbox {clear: both;}
 </script>
 </head>
 <body onload="init();">
-<div id="spiffycalendar" class="text"></div>
 <!-- header //-->
 <?php require(DIR_WS_INCLUDES . 'header.php'); ?>
 <!-- header_eof //-->

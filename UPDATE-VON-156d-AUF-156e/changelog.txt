@@ -142,6 +142,7 @@ admin\featured.php
 admin\geo_zones.php
 admin\gv_queue.php
 admin\gv_sent.php
+admin\image_handler.php
 admin\index_dashboard.php
 admin\invoice.php
 admin\login.php
