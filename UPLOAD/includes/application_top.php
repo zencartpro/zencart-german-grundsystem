@@ -11,7 +11,7 @@
  * @copyright Copyright 2003-2020 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: application_top.php 812 2020-01-22 20:45:24Z webchills $
+ * @version $Id: application_top.php 813 2020-02-08 16:45:24Z webchills $
  */
 /**
  * inoculate against hack attempts which waste CPU cycles
@@ -169,7 +169,15 @@ if (( (!file_exists('includes/configure.php') && !file_exists('includes/local/co
 /**
  * load the autoloader interpreter code.
 */
-require('includes/autoload_func.php');
+require DIR_FS_CATALOG . DIR_WS_CLASSES . 'class.base.php';
+require DIR_FS_CATALOG . DIR_WS_CLASSES . 'query_cache.php';
+$queryCache = new QueryCache();
+require DIR_FS_CATALOG . DIR_WS_CLASSES . 'cache.php';
+$zc_cache = new cache();
+
+require 'includes/init_includes/init_file_db_names.php';
+require 'includes/init_includes/init_database.php';
+require(DIR_FS_CATALOG . 'includes/autoload_func.php');
 /**
  * load the counter code
 **/

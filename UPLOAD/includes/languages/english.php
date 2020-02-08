@@ -2,10 +2,10 @@
 /**
  * Zen Cart German Specific
  * @package languageDefines
- * @copyright Copyright 2003-2019 Zen Cart Development Team
+ * @copyright Copyright 2003-2020 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: english.php 887 2019-06-15 17:33:32Z webchills $
+ * @version $Id: english.php 888 2020-02-08 16:09:32Z webchills $
  */
 
 // FOLLOWING WERE moved to meta_tags.php
@@ -203,7 +203,7 @@ define('HTML_PARAMS','dir="ltr" lang="en"');
   define('ENTRY_DATE_OF_BIRTH_TEXT', '* (eg. 05/21/1970 or 1970-05-21)');
   define('ENTRY_EMAIL_ADDRESS', 'Email Address:');
   define('ENTRY_EMAIL_ADDRESS_ERROR', 'Is your email address correct? It should contain at least ' . ENTRY_EMAIL_ADDRESS_MIN_LENGTH . ' characters. Please try again.');
-  define('ENTRY_EMAIL_ADDRESS_CHECK_ERROR', 'Sorry, my system does not understand your email address. Please try again.');
+  define('ENTRY_EMAIL_ADDRESS_CHECK_ERROR', 'Sorry, our system does not understand your email address. Please try again.');
   define('ENTRY_EMAIL_ADDRESS_ERROR_EXISTS', 'Our system already has a record of that email address - please try logging in with that email address. If you do not use that address any longer you can correct it in the My Account area.');
   define('ENTRY_EMAIL_ADDRESS_TEXT', '*');
   define('ENTRY_EMAIL_ADDRESS_CONFIRM', 'Confirm E-Mail:');
@@ -262,6 +262,7 @@ define('HTML_PARAMS','dir="ltr" lang="en"');
 
   define('FORM_REQUIRED_INFORMATION', '* Required information');
   define('ENTRY_REQUIRED_SYMBOL', '*');
+  define('TEXT_FIELD_REQUIRED', '&nbsp;<span class="alert">*</span>');
 
   // constants for use in zen_prev_next_display function
   define('TEXT_RESULT_PAGE', '');
@@ -456,6 +457,8 @@ define('HTML_PARAMS','dir="ltr" lang="en"');
   define('PRODUCTS_QUANTITY_ADD_ADDITIONAL_LISTING','Add Additional:');
 
   define('PRODUCTS_QUANTITY_MAX_TEXT_LISTING','Max:');
+  define('TEXT_PRODUCT_MODEL', 'Model: ');
+  define('TABLE_HEADING_MODEL', 'Model');
 
   define('TEXT_PRODUCTS_MIX_OFF','*Mixed OFF');
   define('TEXT_PRODUCTS_MIX_ON','*Mixed ON');
@@ -639,12 +642,14 @@ define('HTML_PARAMS','dir="ltr" lang="en"');
   define('TEXT_PRODUCTS_LISTING_ALPHA_SORTER_NAMES', 'Items starting with ...');
   define('TEXT_PRODUCTS_LISTING_ALPHA_SORTER_NAMES_RESET', '-- Reset --');
 
+// Constants shared between multiple pages
+define('TEXT_OPTION_DIVIDER', '&nbsp;-&nbsp;');
 ///////////////////////////////////////////////////////////
 
   $file_list = array(FILENAME_EMAIL_EXTRAS, FILENAME_HEADER, FILENAME_BUTTON_NAMES, FILENAME_ICON_NAMES, FILENAME_OTHER_IMAGES_NAMES, FILENAME_CREDIT_CARDS, FILENAME_WHOS_ONLINE, FILENAME_META_TAGS); 
   foreach ($file_list as $file) { 
     $file = str_replace(".php","",$file); 
-    require_once(zen_get_file_directory(DIR_FS_CATALOG . DIR_WS_LANGUAGES . $_SESSION['language'] . '/', $file . '.php', 'false'));
+    require_once(zen_get_file_directory(DIR_FS_CATALOG . DIR_WS_LANGUAGES . $_SESSION['language'] . "/", $file . '.php', 'false'));
   }
 
 // END OF EXTERNAL LANGUAGE LINKS

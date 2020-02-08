@@ -4,9 +4,9 @@
  * see  {@link  http://www.zen-cart.com/wiki/index.php/Developers_API_Tutorials#InitSystem wikitutorials} for more details.
  *
  * @package initSystem
- * @copyright Copyright 2003-2019 Zen Cart Development Team
+ * @copyright Copyright 2003-2020 Zen Cart Development Team
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: config.core.php 736 2019-07-20 09:07:16Z webchills $
+ * @version $Id: config.core.php 737 2020-02-08 16:35:16Z webchills $
  */
 if (!defined('IS_ADMIN_FLAG')) {
  die('Illegal Access');
@@ -36,8 +36,6 @@ if (!defined('USE_PCONNECT')) define('USE_PCONNECT', 'false');
   $autoLoadConfig[0][] = array('autoType'=>'include',
                                'loadFile'=> DIR_WS_INCLUDES . 'version.php');
   $autoLoadConfig[0][] = array('autoType'=>'class',
-                                'loadFile'=>'class.base.php');
-  $autoLoadConfig[0][] = array('autoType'=>'class',
                                 'loadFile'=>'class.notifier.php');
   $autoLoadConfig[0][] = array('autoType'=>'classInstantiate',
                                 'className'=>'notifier',
@@ -55,8 +53,6 @@ if (!defined('USE_PCONNECT')) define('USE_PCONNECT', 'false');
   $autoLoadConfig[0][] = array('autoType'=>'class',
                                 'loadFile'=>'language.php');
   $autoLoadConfig[0][] = array('autoType'=>'class',
-                                'loadFile'=>'cache.php');
-  $autoLoadConfig[0][] = array('autoType'=>'class',
                                 'loadFile'=>'sniffer.php');
   $autoLoadConfig[0][] = array('autoType'=>'class',
                                 'loadFile'=>'shopping_cart.php');
@@ -69,12 +65,6 @@ if (!defined('USE_PCONNECT')) define('USE_PCONNECT', 'false');
   $autoLoadConfig[0][] = array('autoType'=>'class',
                                 'loadFile'=>'breadcrumb.php');
   $autoLoadConfig[0][] = array('autoType'=>'class',
-                               'loadFile'=>'query_cache.php');
-  $autoLoadConfig[0][] = array('autoType'=>'classInstantiate',
-                               'className'=>'QueryCache',
-                               'objectName'=>'queryCache',
-                               'checkInstantiated'=>true);
-  $autoLoadConfig[0][] = array('autoType'=>'class',
                                'loadFile'=>'class.zcPassword.php');
   $autoLoadConfig[0][] = array('autoType'=>'classInstantiate',
                                'className'=>'zcPassword',
@@ -82,17 +72,6 @@ if (!defined('USE_PCONNECT')) define('USE_PCONNECT', 'false');
 
 
 
-/**
- * Breakpoint 10.
- *
- * require('includes/init_includes/init_file_db_names.php');
- * require('includes/init_includes/init_database.php');
- *
- */
-  $autoLoadConfig[10][] = array('autoType'=>'init_script',
-                                'loadFile'=> 'init_file_db_names.php');
-  $autoLoadConfig[10][] = array('autoType'=>'init_script',
-                                'loadFile'=>'init_database.php');
 /**
  * Breakpoint 30.
  *
