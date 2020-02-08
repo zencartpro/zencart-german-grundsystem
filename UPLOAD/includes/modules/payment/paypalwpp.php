@@ -6,7 +6,7 @@
  * @copyright Copyright 2003-2020 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: paypalwpp.php 867 2020-02-08 10:26:14Z webchills $
+ * @version $Id: paypalwpp.php 868 2020-02-08 17:35:14Z webchills $
  */
 /**
  * load the communications layer code
@@ -453,7 +453,7 @@ if (false) { // disabled until clarification is received about coupons in PayPal
    * When the order returns from the processor, this stores the results in order-status-history and logs data for subsequent use
    */
   function after_process() {
-    global $insert_id, $order;
+    global $insert_id, $db, $order;
     // FMF
     if ($this->fmfResponse != '') {
       $detailedMessage = $insert_id . "\n" . $this->fmfResponse . "\n" . MODULES_PAYMENT_PAYPALDP_TEXT_EMAIL_FMF_INTRO . "\n" . print_r($this->fmfErrors, TRUE);
@@ -461,16 +461,27 @@ if (false) { // disabled until clarification is received about coupons in PayPal
     }
 
     // add a new OSH record for this order's PP details
-    $commentString = "Transaction ID: " . $this->transaction_id .
-                     (isset($this->responsedata['PPREF']) ? "\nPPRef: " . $this->responsedata['PPREF'] : '') .
-                     (isset($this->responsedata['AUTHCODE'])? "\nAuthCode: " . $this->responsedata['AUTHCODE'] : '') .
-                                 "\nPayment Type: " . $this->payment_type .
-                     ($this->payment_time != '' ? ("\nTimestamp: " . $this->payment_time) : '') .
-                                 "\nPayment Status: " . $this->payment_status
-                     (isset($this->responsedata['auth_exp']) ? "\nAuth-Exp: " . $this->responsedata['auth_exp'] : '') .
+    $commentString = "Transaction ID: :transID: " .
+                     (isset($this->responsedata['PPREF']) ? "\nPPRef: " . $this->responsedata['PPREF'] : "") .
+                     (isset($this->responsedata['AUTHCODE'])? "\nAuthCode: " . $this->responsedata['AUTHCODE'] : "") .
+                                 "\nPayment Type: :pmtType: " .
+                     ($this->payment_time != '' ? "\nTimestamp: :pmtTime: " : "") .
+                                 "\nPayment Status: :pmtStatus: " .
+                     (isset($this->responsedata['auth_exp']) ? "\nAuth-Exp: " . $this->responsedata['auth_exp'] : "") .
                      ($this->avs != 'N/A' ? "\nAVS Code: ".$this->avs."\nCVV2 Code: ".$this->cvv2 : '') .
-                     (trim($this->amt) != '' ? ("\nAmount: " . $this->amt) : '');
-    zen_update_orders_history($insert_id, $commentString, null, $order->info['order_status'], 0);
+                     (trim($this->amt) != '' ? "\nAmount: :orderAmt: " : "");
+    $commentString = $db->bindVars($commentString, ':transID:', $this->transaction_id, 'noquotestring');
+    $commentString = $db->bindVars($commentString, ':pmtType:', $this->payment_type, 'noquotestring');
+    $commentString = $db->bindVars($commentString, ':pmtTime:', $this->payment_time, 'noquotestring');
+    $commentString = $db->bindVars($commentString, ':pmtStatus:', $this->payment_status, 'noquotestring');
+    $commentString = $db->bindVars($commentString, ':orderAmt:', $this->amt, 'noquotestring');
+
+    $sql_data_array= array(array('fieldName'=>'orders_id', 'value'=>$insert_id, 'type'=>'integer'),
+                           array('fieldName'=>'orders_status_id', 'value'=>$order->info['order_status'], 'type'=>'integer'),
+                           array('fieldName'=>'date_added', 'value'=>'now()', 'type'=>'noquotestring'),
+                           array('fieldName'=>'customer_notified', 'value'=>0, 'type'=>'integer'),
+                           array('fieldName'=>'comments', 'value'=>$commentString, 'type'=>'string'));
+    $db->perform(TABLE_ORDERS_STATUS_HISTORY, $sql_data_array);
 
     // store the PayPal order meta data -- used for later matching and back-end processing activities
     $paypal_order = array('order_id' => $insert_id,
