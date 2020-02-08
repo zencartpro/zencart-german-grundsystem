@@ -6,7 +6,7 @@
  * @copyright Copyright 2003-2020 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: paypalwpp.php 866 2020-01-17 12:36:14Z webchills $
+ * @version $Id: paypalwpp.php 867 2020-02-08 10:26:14Z webchills $
  */
 /**
  * load the communications layer code
@@ -418,6 +418,7 @@ if (false) { // disabled until clarification is received about coupons in PayPal
       $this->payment_type = MODULE_PAYMENT_PAYPALWPP_EC_TEXT_TYPE;
       $this->responsedata = $response;
       if ($response['PAYMENTINFO_0_PAYMENTTYPE'] != '') $this->payment_type .=  ' (' . urldecode($response['PAYMENTINFO_0_PAYMENTTYPE']) . ')';
+
       $this->transaction_id = trim((isset($response['PNREF']) ? $response['PNREF'] : '') . ' ' . $response['PAYMENTINFO_0_TRANSACTIONID']);
       if (empty($response['PAYMENTINFO_0_PENDINGREASON']) ||
           $response['PAYMENTINFO_0_PENDINGREASON'] == 'none' ||
@@ -654,7 +655,7 @@ if (false) { // disabled until clarification is received about coupons in PayPal
     $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) values ('Allow eCheck?', 'MODULE_PAYMENT_PAYPALEC_ALLOWEDPAYMENT', 'Instant Only', 'Do you want to allow non-instant payments like eCheck/EFT/ELV?', '6', '25', 'zen_cfg_select_option(array(\'Any\', \'Instant Only\'), ', now())");
     $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) values ('Fraud Mgmt Filters - FMF', 'MODULE_PAYMENT_PAYPALWPP_EC_RETURN_FMF_DETAILS', 'No', 'If you have enabled FMF support in your PayPal account and wish to utilize it in your transactions, set this to yes. Otherwise, leave it at No.', '6', '25','zen_cfg_select_option(array(\'No\', \'Yes\'), ', now())");
     $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) values ('API Signature -- Username', 'MODULE_PAYMENT_PAYPALWPP_APIUSERNAME', '', 'The API Username from your PayPal API Signature settings under *API Access*. This value typically looks like an email address and is case-sensitive.', '6', '25', now())");
-    $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added, set_function, use_function) values ('API Signature -- Password', 'MODULE_PAYMENT_PAYPALWPP_APIPASSWORD', '', 'The API Password from your PayPal API Signature settings under *API Access*. This value is a 16-character code and is case-sensitive.', '6', '25', now(), 'zen_cfg_password_input(', 'zen_cfg_password_display')");
+    $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added, set_function, use_function) values ('API Signature -- Password', 'MODULE_PAYMENT_PAYPALWPP_APIPASSWORD', '', 'The API Password from your PayPal API Signature settings under *API Access*. This value is a 16-character code and is case-sensitive.', '6', '25', now(), '', 'zen_cfg_password_display')");
     $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added, set_function, use_function) values ('API Signature -- Signature Code', 'MODULE_PAYMENT_PAYPALWPP_APISIGNATURE', '', 'The API Signature from your PayPal API Signature settings under *API Access*. This value is a 56-character code, and is case-sensitive.', '6', '25', now(), '', 'zen_cfg_password_display')");
     $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) values ('PAYFLOW: User', 'MODULE_PAYMENT_PAYPALWPP_PFUSER', '', 'If you set up one or more additional users on the account, this value is the ID of the user authorized to process transactions. Otherwise it should be the same value as VENDOR. This value is case-sensitive.', '6', '25', now())");
     $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) values ('PAYFLOW: Partner', 'MODULE_PAYMENT_PAYPALWPP_PFPARTNER', 'ZenCart', 'Your Payflow Partner name linked to your Payflow account. This value is case-sensitive.<br />Typical values: <strong>PayPal</strong> or <strong>ZenCart</strong>', '6', '25', now())");
@@ -665,7 +666,7 @@ if (false) { // disabled until clarification is received about coupons in PayPal
     // www.zen-cart-pro.at german admin languages_id==43 START
     $db->Execute("insert into " . TABLE_CONFIGURATION_LANGUAGE   . " (configuration_title, configuration_key, configuration_language_id, configuration_description, date_added) values ('PayPal Express aktivieren?', 'MODULE_PAYMENT_PAYPALWPP_STATUS', '43', 'Wollen Sie Zahlung per PayPal Express aktivieren?', now())");
     $db->Execute("insert into " . TABLE_CONFIGURATION_LANGUAGE   . " (configuration_title, configuration_key, configuration_language_id, configuration_description, date_added) values ('Livebetrieb oder Sandbox?', 'MODULE_PAYMENT_PAYPALWPP_SERVER', '43', '<strong>Live: </strong> für echte Zahlungen im Livebetrieb<br><strong>Sandbox: </strong> für Entwickler und für Tests mit einem PayPal Sandbox Account', now())");
-    $db->Execute("insert into " . TABLE_CONFIGURATION_LANGUAGE   . " (configuration_title, configuration_key, configuration_language_id, configuration_description, date_added) values ('Express Checkout Button aktivieren?', 'MODULE_PAYMENT_PAYPALWPP_ECS_BUTTON', '43', 'Wollen Sie den PayPal Express Button aktivieren?<br/>Der Button erscheint dann auf der Warenkorbseite und der Loginseite, um Ihre Kunden zum Bezahlen mit PayPal einzuladen, ohne zuerst all ihre Adressdaten im Shop angeben zu müssen.<br />Der Kunde kann dann einfach mit seinem PayPal Account einloggen und es wird - falls unten aktiviert - automatisch ein Kundenaccount im Shop mit seinen bei PayPal hinterlegten Daten angelegt.<br/><br/>Die Verwendung des Express Buttons erhöht nachweislich Umsatz und Conversions.<br /><br/>empfohlene Voreinstellung: On ', now())");
+    $db->Execute("insert into " . TABLE_CONFIGURATION_LANGUAGE   . " (configuration_title, configuration_key, configuration_language_id, configuration_description, date_added) values ('Express Checkout Button aktivieren?', 'MODULE_PAYMENT_PAYPALWPP_ECS_BUTTON', '43', 'Wollen Sie den PayPal Express Button aktivieren?<br/>Der Button erscheint dann auf der Warenkorbseite und der Loginseite, um Ihre Kunden zum Bezahlen mit PayPal einzuladen, ohne zuerst all ihre Adressdaten im Shop angeben zu müssen.<br />Der Kunde kann dann einfach mit seinem PayPal Account einloggen und es wird - falls unten aktiviert - automatisch ein Kundenaccount im Shop mit seinen bei PayPal hinterlegten Daten angelegt.<br/><br/>Falls die Telefonnummer des Kunden für Sie sehr wichtig ist, sollten Sie in Ihrem PayPal Konto einstellen, dass PayPal die Telefonnummer des Kunden abfragt.<br/><br/>Die Verwendung des Express Buttons erhöht nachweislich Umsatz und Conversions.<br /><br/>empfohlene Voreinstellung: On ', now())");
     $db->Execute("insert into " . TABLE_CONFIGURATION_LANGUAGE   . " (configuration_title, configuration_key, configuration_language_id, configuration_description, date_added) values ('Bestätigte Adresse bei PayPal erforderlich?', 'MODULE_PAYMENT_PAYPALWPP_CONFIRMED_ADDRESS', '43', 'Möchten Sie, dass Ihre (nicht eingeloggten) Kunden bei der Auswahl ihrer Lieferadresse im Express Checkout bei PayPal eine bestätigte Adresse verwenden müssen?<br/>(Sollte der Kunde bereits im Shop eingeloggt sein, wird diese Einstellung ignoriert.)<br/><br/>empfohlene Voreinstellung: Yes', now())");
     $db->Execute("insert into " . TABLE_CONFIGURATION_LANGUAGE   . " (configuration_title, configuration_key, configuration_language_id, configuration_description, date_added) values ('Günstigste Versandart automatisch auswählen?', 'MODULE_PAYMENT_PAYPALWPP_AUTOSELECT_CHEAPEST_SHIPPING', '43', 'Wenn der Kunde von PayPal zurückkehrt, soll dann automatisch die günstigste Versandart ausgewählt und dadurch die Anzeige der möglichen Versandarten komplett übersprungen werden?<br/>Das macht den Checkout einerseits zwar schneller (mehr *Express*), andererseits kann der Kunde aber dann keine alternative Versandart auswählen.<br/><br/>Sie sollten das nur aktivieren, wenn Sie ohnehin nur eine Versandart haben oder einen Downloadshop betreiben.<br/>Bitte beachten Sie auch, dass damit ein Überprüfen der Lieferadresse im Shop für den Kunden nicht mehr möglich ist, daher sollten Sie diese Einstellung in Ihrem eigenen Interesse unbedingt auf No lassen!<br/><br/>empfohlene Voreinstellung: No', now())");
     $db->Execute("insert into " . TABLE_CONFIGURATION_LANGUAGE   . " (configuration_title, configuration_key, configuration_language_id, configuration_description, date_added) values ('Seite Zahlungsarten im Checkout überspringen?', 'MODULE_PAYMENT_PAYPALWPP_SKIP_PAYMENT_PAGE', '43', 'Wenn der Kunde mit PayPal Express Checkout auscheckt, möchten Sie die Zahlungsseite (Auswahl der Zahlungsart im Checkout) überspringen und die Sache noch mehr *Express* machen? <br /><br/><strong>HINWEIS: Die Zahlungsseite wird unabhängig von dieser Einstellung trotzdem angezeigt, falls Sie Aktionskupons oder Geschenkgutscheine in Ihrem Shop aktiviert haben, denn sonst könnte der Kunde diese Dinge ja nicht einlösen.</strong>.<br/><br/>empfohlene Voreinstellung: Yes', now())");
@@ -2187,15 +2188,7 @@ if (false) { // disabled until clarification is received about coupons in PayPal
         // send Welcome Email if appropriate
         if ($this->new_acct_notify == 'Yes') {
           // require the language file
-          global $language_page_directory, $template_dir;
-          if (!isset($language_page_directory)) $language_page_directory = DIR_WS_LANGUAGES . $_SESSION['language'] . '/';
-          if (file_exists($language_page_directory . $template_dir . '/create_account.php')) {
-            $template_dir_select = $template_dir . '/';
-          } else {
-            $template_dir_select = '';
-          }
-          require($language_page_directory . $template_dir_select . '/create_account.php');
-
+          require(zen_get_file_directory(DIR_FS_CATALOG . DIR_WS_LANGUAGES . $_SESSION['language'] . "/", 'create_account.php', 'false'));
           // set the mail text
           $email_text = sprintf(EMAIL_GREET_NONE, $paypal_ec_payer_info['payer_firstname']) ;
           $email_text .= "\n" . EMAIL_EC_ACCOUNT_INFORMATION . "\n\nEmail: " . $paypal_ec_payer_info['payer_email'] . "\nPassword: " . $password . "\n\n";
@@ -2638,7 +2631,7 @@ if (false) { // disabled until clarification is received about coupons in PayPal
                            array('fieldName'=>'entry_country_id', 'value'=>$country_id, 'type'=>'integer'));
     if ($address_question_arr['company'] != '' && $address_question_arr['company'] != $address_question_arr['name']) array('fieldName'=>'entry_company', 'value'=>$address_question_arr['company'], 'type'=>'string');
     if (!empty($address_question_arr['payer_gender'])) {
-        $sql_data_array[] = array('fieldName'=>'entry_gender', 'value'=>$address_question_arr['payer_gender'], 'type'=>'enum:m|f');
+    $sql_data_array[] = array('fieldName'=>'entry_gender', 'value'=>$address_question_arr['payer_gender'], 'type'=>'enum:m|f');
     }
     $sql_data_array[] = array('fieldName'=>'entry_suburb', 'value'=>$address_question_arr['suburb'], 'type'=>'string');
     if ($zone_id > 0) {
@@ -2851,11 +2844,11 @@ if (false) { // disabled until clarification is received about coupons in PayPal
     $basicError = (!$response || (isset($response['RESULT']) && $response['RESULT'] != 0) || (isset($response['ACK']) && !strstr($response['ACK'], 'Success')) || (!isset($response['RESULT']) && !isset($response['ACK'])));
     $ignoreList = explode(',', str_replace(' ', '', $ignore_codes));
     if (!empty($response['L_ERRORCODE0'])) {
-        foreach($ignoreList as $key=>$value) {
+      foreach($ignoreList as $key=>$value) {
             if ($value != '' && $response['L_ERRORCODE0'] == $value) {
                 $basicError = false;
             }
-        }
+      }
     }
     /** Handle unilateral **/
     if (!empty($response['RESULT']) && $response['RESULT'] == 'Unauthorized: Unilateral') {
@@ -2940,7 +2933,7 @@ if (false) { // disabled until clarification is received about coupons in PayPal
           if ($response['L_ERRORCODE0'] == 10422 || $response['L_ERRORCODE0'] == 10486) {
             header("HTTP/1.1 302 Object Moved");
             zen_redirect($this->ec_redirect_url);
-            die("Funding source problem; please go to Paypal.com (Error " . zen_output_string_protected($response['L_ERRORCODE0']) . ")");
+            die(MODULE_PAYMENT_PAYPALWPP_FUNDING_ERROR . " (Error " . zen_output_string_protected($response['L_ERRORCODE0']) . ")");
           }
 
           // some other error condition

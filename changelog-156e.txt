@@ -21,7 +21,7 @@ includes\templates\template_default\templates\tpl_zc_phpupgrade_default.php
 
 ----------------------------------------------------------------------------------------
 
-Geänderte Dateien in 1.5.6e (405)
+Geänderte Dateien in 1.5.6e (406)
 
 ----------------------------------------------------------------------------------------
 
@@ -282,6 +282,7 @@ includes\languages\german\contact_us.php
 includes\languages\german\create_account.php
 includes\languages\german\gv_send.php
 includes\languages\german.php
+includes\languages\german\modules\paypalwpp.php
 includes\modules\order_total\ot_coupon.php
 includes\modules\order_total\ot_gv.php
 includes\modules\pages\account\header_php.php
