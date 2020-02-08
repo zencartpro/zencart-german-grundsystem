@@ -5,7 +5,7 @@
  * @copyright Copyright 2003-2020 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: german.php 668 2020-01-16 10:52:57Z webchills $
+ * @version $Id: german.php 669 2020-02-08 16:141:57Z webchills $
  */
 
 // FOLLOWING WERE moved to meta_tags.php
@@ -94,9 +94,10 @@ define('BOX_HEADING_MANUFACTURERS', 'Hersteller');
 define('BOX_HEADING_WHATS_NEW', 'Neue Artikel');
 define('CATEGORIES_BOX_HEADING_WHATS_NEW', 'Neue Artikel ...');
 
-define('TEXT_NO_FEATURED_PRODUCTS', 'Weitere empfohlene Artikel erscheinen in Kürze. Bitte besuchen Sie unseren Shop regelmäßig wieder.');
+
 define('BOX_HEADING_FEATURED_PRODUCTS', 'Empfohlene Artikel');
 define('CATEGORIES_BOX_HEADING_FEATURED_PRODUCTS', 'Empfohlene Artikel ...');
+define('TEXT_NO_FEATURED_PRODUCTS', 'Weitere empfohlene Artikel erscheinen in Kürze. Bitte besuchen Sie unseren Shop regelmäßig wieder.');
 
 define('TEXT_NO_ALL_PRODUCTS', 'Weitere Artikel erscheinen in Kürze. Bitte besuchen Sie unseren Shop regelmäßig wieder.');
 define('CATEGORIES_BOX_HEADING_PRODUCTS_ALL', 'Alle Artikel ...');
@@ -270,6 +271,7 @@ define('PASSWORD_HIDDEN', '--VERSTECKT--');
 
 define('FORM_REQUIRED_INFORMATION', '* = Pflichtfeld');
 define('ENTRY_REQUIRED_SYMBOL', '*');
+define('TEXT_FIELD_REQUIRED', '&nbsp;<span class="alert">*</span>');
 
   // constants for use in zen_prev_next_display function
 define('TEXT_RESULT_PAGE', '');
@@ -462,6 +464,8 @@ define('PRODUCTS_QUANTITY_IN_CART_LISTING', 'Im Warenkorb:');
 define('PRODUCTS_QUANTITY_ADD_ADDITIONAL_LISTING', 'Weitere hinzufügen:');
 
 define('PRODUCTS_QUANTITY_MAX_TEXT_LISTING', 'Maximal:');
+define('TEXT_PRODUCT_MODEL', 'Artikelnummer: ');
+define('TABLE_HEADING_MODEL', 'Artikelnummer');
 
 define('TEXT_PRODUCTS_MIX_OFF', '*gemischt: AUS');
 define('TEXT_PRODUCTS_MIX_ON', '*gemischt: EIN');
@@ -641,12 +645,14 @@ define('TEXT_PRODUCTS_LISTING_ALPHA_SORTER', '');
 define('TEXT_PRODUCTS_LISTING_ALPHA_SORTER_NAMES', 'Artikelname, beginnend mit...');
 define('TEXT_PRODUCTS_LISTING_ALPHA_SORTER_NAMES_RESET', '-- Zurücksetzen --');
 
+// Constants shared between multiple pages
+define('TEXT_OPTION_DIVIDER', '&nbsp;-&nbsp;');
 ///////////////////////////////////////////////////////////
 
   $file_list = array(FILENAME_EMAIL_EXTRAS, FILENAME_HEADER, FILENAME_BUTTON_NAMES, FILENAME_ICON_NAMES, FILENAME_OTHER_IMAGES_NAMES, FILENAME_CREDIT_CARDS, FILENAME_WHOS_ONLINE, FILENAME_META_TAGS); 
   foreach ($file_list as $file) { 
     $file = str_replace(".php","",$file); 
-    require_once(zen_get_file_directory(DIR_FS_CATALOG . DIR_WS_LANGUAGES . $_SESSION['language'] . '/', $file . '.php', 'false'));
+    require_once(zen_get_file_directory(DIR_FS_CATALOG . DIR_WS_LANGUAGES . $_SESSION['language'] . "/", $file . '.php', 'false'));
   }
 
 // END OF EXTERNAL LANGUAGE LINKS

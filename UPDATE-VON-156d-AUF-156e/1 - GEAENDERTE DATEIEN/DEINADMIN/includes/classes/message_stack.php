@@ -4,7 +4,7 @@
  * @copyright Copyright 2003-2020 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: message_stack.php 733 2020-01-17 17:49:16Z webchills $
+ * @version $Id: message_stack.php 734 2020-02-08 16:49:16Z webchills $
  */
 if (!defined('IS_ADMIN_FLAG')) {
   die('Illegal Access');
@@ -21,13 +21,7 @@ if (!defined('IS_ADMIN_FLAG')) {
 
   class messageStack extends boxTableBlock {
     var $size = 0;
-
-    function __construct() {
-
-      $this->errors = array();
-
-      $this->add_from_session();
-    }
+    var $errors = array();
 
     function add($message, $type = 'error') {
       if ($type == 'error') {
