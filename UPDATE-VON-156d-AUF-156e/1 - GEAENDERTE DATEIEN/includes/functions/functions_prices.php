@@ -7,7 +7,7 @@
  * @copyright Copyright 2003-2020 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: functions_prices.php 861 2020-01-17 09:33:24Z webchills $
+ * @version $Id: functions_prices.php 862 2020-02-11 20:55:24Z webchills $
  */
 
 ////
@@ -560,7 +560,10 @@
     switch (true) {
       case ($_SESSION['cart']->in_cart_mixed($product_id) == 0 ):
         if ($check_min >= $check_units) {
-          $buy_now_qty = $check_min;
+          // Set the buy now quantity (associated product is not yet in the cart) to the first value satisfying both the minimum and the units.
+          $buy_now_qty = $check_units * ceil($check_min/$check_units);
+          // Uncomment below to set the buy now quantity to the value of the minimum required regardless if it is a multiple of the units.
+          //$buy_now_qty = $check_min;
         } else {
           $buy_now_qty = $check_units;
         }

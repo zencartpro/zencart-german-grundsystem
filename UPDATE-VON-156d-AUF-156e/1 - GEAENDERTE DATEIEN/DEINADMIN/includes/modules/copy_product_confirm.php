@@ -5,12 +5,12 @@
  * @copyright Copyright 2003-2020 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: copy_product_confirm.php 4 2020-01-18 16:11:16Z webchills $
+ * @version $Id: copy_product_confirm.php 5 2020-02-11 20:42:16Z webchills $
  */
 if (!defined('IS_ADMIN_FLAG')) {
   die('Illegal Access');
 }
-if (isset($_POST['products_id']) && isset($_POST['categories_id'])) {
+if (isset($_POST['products_id'], $_POST['categories_id'])) {
     $products_id = (int)$_POST['products_id'];
     $categories_id = (int)$_POST['categories_id'];
 
@@ -117,7 +117,7 @@ if (isset($_POST['products_id']) && isset($_POST['categories_id'])) {
         // Notify that a copy of a "base" product has just been created, enabling an observer to duplicate
         // additional product-related fields.
         //
-        $zco_notifier->notify('NOTIFY_MODULES_COPY_TO_CONFIRM_DUPLICATE', array('products_id' => $products_id, 'dup_products_id' => $dup_products_id));
+        $zco_notifier->notify('NOTIFY_MODULES_COPY_TO_CONFIRM_DUPLICATE', compact('products_id', 'dup_products_id'));
 
 // FIX HERE
 /////////////////////////////////////////////////////////////////////////////////////////////
@@ -195,11 +195,16 @@ if (isset($_POST['products_id']) && isset($_POST['categories_id'])) {
 
         zen_record_admin_activity('Product ' . $products_id . ' duplicated as product ' . $dup_products_id . ' via admin console.', 'info');
 
-        $zco_notifier->notify('NOTIFY_MODULES_COPY_TO_CONFIRM_DUPLICATE', array('products_id' => $products_id, 'dup_products_id' => $dup_products_id));
+        $zco_notifier->notify('NOTIFY_MODULES_COPY_TO_CONFIRM_DUPLICATE', compact('products_id', 'dup_products_id'));
 
         $products_id = $dup_products_id;//reset for further use in price update and final redirect to new linked product or new duplicated product
     }// EOF duplication
   // reset products_price_sorter for searches etc.
   zen_update_products_price_sorter($products_id);
 }
-zen_redirect(zen_href_link(FILENAME_CATEGORY_PRODUCT_LISTING, 'cPath=' . $categories_id . '&pID=' . $products_id . (isset($_GET['page']) ? '&page=' . $_GET['page'] : '')));
+if ($_POST['copy_as'] === 'duplicate' && !empty($_POST['edit_duplicate'])) {
+    zen_redirect(zen_href_link(FILENAME_PRODUCT, 'action=new_product&cPath=' . $categories_id . '&pID=' . $dup_products_id . '&products_type=' . (int)$product->fields['products_type']));
+} else {
+    zen_redirect(zen_href_link(FILENAME_CATEGORY_PRODUCT_LISTING, 'cPath=' . $categories_id . '&pID=' . $products_id . (isset($_GET['page']) ? '&page=' . $_GET['page'] : '')));
+}
+
