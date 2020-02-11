@@ -4,7 +4,7 @@
  * @copyright Copyright 2003-2020 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: products_price_manager.php 737 2020-01-18 09:49:16Z webchills $
+ * @version $Id: products_price_manager.php 738 2020-02-11 07:49:16Z webchills $
  */
 require('includes/application_top.php');
 
@@ -625,12 +625,12 @@ if (zen_not_null($action)) {
 
           <?php echo zen_draw_form('new_prices', FILENAME_PRODUCTS_PRICE_MANAGER, zen_get_all_get_params(array('action', 'info', $_GET['products_filter'])) . 'action=' . 'update', 'post', 'onsubmit="return check_dates_ppm(featured_start,FeaturedStartDate.required, featured_end, FeaturedEndDate.required, product_start, ProductStartDate.required);" class="form-horizontal"'); ?>
           <?php
-          if ($action == 'edit' || $action == 'edit_update') { 
-            $readonly = ''; 
-            $jsreadonly=''; 
+          if ($action == 'edit' || $action == 'edit_update') {
+            $readonly = '';
+            $jsreadonly='';
           } else {
-            $readonly=" readonly"; 
-            $jsreadonly = " disabled"; 
+            $readonly=" readonly";
+            $jsreadonly = " disabled";
           }
           echo zen_draw_hidden_field('products_id', $_GET['products_filter']);
           echo zen_draw_hidden_field('specials_id', isset($sInfo->specials_id) ? $sInfo->specials_id : '');
@@ -708,7 +708,7 @@ if (zen_not_null($action)) {
             <div class="col-sm-9 col-md-6">
               <script>
               <?php if (!empty($readonly)) { ?>
-                ProductStartDate.readonly = true; 
+                ProductStartDate.readonly = true;
               <?php } ?>
                 ProductStartDate.writeControl();
                 ProductStartDate.dateFormat = "<?php echo DATE_FORMAT_SPIFFYCAL; ?>";
@@ -817,7 +817,7 @@ if (zen_not_null($action)) {
               <div class="col-sm-9 col-md-6">
                 <script>
               <?php if (!empty($readonly)) { ?>
-                SpecialStartDate.readonly = true; 
+                SpecialStartDate.readonly = true;
               <?php } ?>
                   SpecialStartDate.writeControl();
                   SpecialStartDate.dateFormat = "<?php echo DATE_FORMAT_SPIFFYCAL; ?>";
@@ -829,7 +829,7 @@ if (zen_not_null($action)) {
               <div class="col-sm-9 col-md-6">
                 <script>
               <?php if (!empty($readonly)) { ?>
-                SpecialEndDate.readonly = true; 
+                SpecialEndDate.readonly = true;
               <?php } ?>
                   SpecialEndDate.writeControl();
                   SpecialEndDate.dateFormat = "<?php echo DATE_FORMAT_SPIFFYCAL; ?>";
@@ -899,7 +899,7 @@ if (zen_not_null($action)) {
               <div class="col-sm-9 col-md-6">
                 <script>
               <?php if (!empty($readonly)) { ?>
-                FeaturedStartDate.readonly = true; 
+                FeaturedStartDate.readonly = true;
               <?php } ?>
                   FeaturedStartDate.writeControl();
                   FeaturedStartDate.dateFormat = "<?php echo DATE_FORMAT_SPIFFYCAL; ?>";
@@ -911,7 +911,7 @@ if (zen_not_null($action)) {
               <div class="col-sm-9 col-md-6">
                 <script>
               <?php if (!empty($readonly)) { ?>
-                FeaturedEndDate.readonly = true; 
+                FeaturedEndDate.readonly = true;
               <?php } ?>
                   FeaturedEndDate.writeControl();
                   FeaturedEndDate.dateFormat = "<?php echo DATE_FORMAT_SPIFFYCAL; ?>";
@@ -965,9 +965,11 @@ if (zen_not_null($action)) {
                 'discount_price' => $discount_qty['discount_price']);
             }
             ?>
+
+          <div class="well" style="color: #31708f;background-color: #d9edf7;border-color: #bce8f1;;padding: 10px 10px 0 0;">
             <div class="col-sm-12"><?php echo TEXT_DISCOUNT_TYPE_INFO; ?></div>
             <div class="form-group">
-                <?php echo zen_draw_label(TEXT_PRODUCTS_MIXED_DISCOUNT_QUANTITY, 'products_mixed_discount_quantity', 'class="control-label col-sm-3"'); ?>
+              <?php echo zen_draw_label(TEXT_PRODUCTS_MIXED_DISCOUNT_QUANTITY, 'products_mixed_discount_quantity', 'class="control-label col-sm-3"'); ?>
               <div class="col-sm-9 col-md-6">
                 <div class="radio-inline">
                   <label><?php echo zen_draw_radio_field('products_mixed_discount_quantity', '1', $pInfo->products_mixed_discount_quantity == 1, '', $jsreadonly) . TEXT_YES; ?></label>
@@ -989,6 +991,7 @@ if (zen_not_null($action)) {
                   <?php echo zen_draw_pull_down_menu('products_discount_type_from', $discount_type_from_array, $pInfo->products_discount_type_from, 'class="form-control"'. $readonly); ?>
               </div>
             </div>
+           </div>
             <div class="table-responsive">
               <table class="table table-bordered">
                 <thead>
@@ -1085,7 +1088,9 @@ if (zen_not_null($action)) {
               </div>
             </div>
           <?php } else { ?>
+            <?php if (empty($discount_name)) { ?> 
             <div class="col-sm-12"><?php echo TEXT_INFO_NO_DISCOUNTS; ?></div>
+            <?php } ?> 
           <?php } ?>
           <div class="row"><?php echo zen_draw_separator('pixel_black.gif', '100%', '2'); ?></div>
           <table class="table">
