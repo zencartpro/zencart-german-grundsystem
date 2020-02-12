@@ -1,7 +1,7 @@
 <?php
 /**
  * Common Template - tpl_main_page.php
- *
+ * Zen Cart German Specific
  * Governs the overall layout of an entire page<br />
  * Normally consisting of a header, left side column. center column. right side column and footer<br />
  * For customizing, this file can be copied to /templates/your_template_dir/pagename<br />
@@ -35,7 +35,7 @@
  * @copyright Copyright 2003-2020 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: tpl_main_page.php 7 2020-01-17 15:49:16Z webchills $
+ * @version $Id: tpl_main_page.php 8 2020-02-12 08:49:16Z webchills $
  */
 
 /** bof DESIGNER TESTING ONLY: */
@@ -144,7 +144,7 @@ if (!$flag_disable_left) {
   <div class="<?php echo 'col' . $center_column_width; ?>">
 
 <!-- bof  breadcrumb -->
-<?php if (DEFINE_BREADCRUMB_STATUS == '1' || (DEFINE_BREADCRUMB_STATUS == '2' && !$this_is_home_page) ) { ?>
+<?php if (!$breadcrumb->isEmpty() && (DEFINE_BREADCRUMB_STATUS == '1' || (DEFINE_BREADCRUMB_STATUS == '2' && !$this_is_home_page))) { ?>
     <div id="navBreadCrumb"><?php echo $breadcrumb->trail(BREAD_CRUMBS_SEPARATOR); ?></div>
 <?php } ?>
 <!-- eof breadcrumb -->
@@ -219,15 +219,6 @@ if (!isset($flag_disable_right) || !$flag_disable_right) {
 ?>
 
 </div>
-<!--bof- parse time display -->
-<?php
-  if (DISPLAY_PAGE_PARSE_TIME == 'true') {
-?>
-<div class="smallText center">Parse Time: <?php echo $parse_time; ?> - Number of Queries: <?php echo $db->queryCount(); ?> - Query Time: <?php echo $db->queryTime(); ?></div>
-<?php
-  }
-?>
-<!--eof- parse time display -->
 <!--bof- banner #6 display -->
 <?php
   if (SHOW_BANNERS_GROUP_SET6 != '' && $banner = zen_banner_exists('dynamic', SHOW_BANNERS_GROUP_SET6)) {
