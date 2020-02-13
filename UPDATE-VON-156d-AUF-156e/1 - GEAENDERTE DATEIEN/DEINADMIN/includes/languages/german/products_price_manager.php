@@ -4,7 +4,7 @@
  * @copyright Copyright 2003-2020 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: products_price_manager.php 645 2020-01-18 10:06:04Z webchills $
+ * @version $Id: products_price_manager.php 646 2020-02-13 21:19:04Z webchills $
  */
 
 
@@ -118,4 +118,4 @@ define('PRODUCT_WARNING_UPDATE_CANCEL', 'Die Änderungen wurden nicht gespeicher
 define('TEXT_INFO_EDIT_CAUTION', '<strong>Klicken Sie hier, um mit der Bearbeitung zu beginnen ...</strong>');
 define('TEXT_INFO_PREVIEW_ONLY', 'NUR Vorschau ... aktuelle Preiseinstellungen ... NUR Vorschau');
 define('TEXT_INFO_UPDATE_REMINDER', '<strong>Bearbeiten Sie die Artikelinformationen und klicken Sie zum Speichern anschließend auf Aktualisieren</strong>');
-define('BUTTON_ADDITITONAL_ACTIONS', 'Weitere Aktionen');
+define('BUTTON_ADDITIONAL_ACTIONS', 'Weitere Aktionen');

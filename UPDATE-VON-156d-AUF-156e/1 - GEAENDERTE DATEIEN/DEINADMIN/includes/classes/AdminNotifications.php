@@ -4,7 +4,7 @@
  * @copyright Copyright 2003-2020 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: AdminNotifications.php 2020-01-17 17:01:00 webchills $
+ * @version $Id: AdminNotifications.php 2020-02-13 21:09:00 webchills $
  */
 
 class AdminNotifications
@@ -20,6 +20,11 @@ class AdminNotifications
         }
 
         if (defined('DISABLE_ADMIN_NOTIFICATIONS_CHECKING') && DISABLE_ADMIN_NOTIFICATIONS_CHECKING === true) {
+            $this->enabled = false;
+        }
+
+        global $sniffer;  
+        if (!$sniffer->table_exists(TABLE_ADMIN_NOTIFICATIONS)) { 
             $this->enabled = false;
         }
     }

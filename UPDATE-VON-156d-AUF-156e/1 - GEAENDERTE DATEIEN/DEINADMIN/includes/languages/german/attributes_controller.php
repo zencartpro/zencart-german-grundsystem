@@ -4,7 +4,7 @@
  * @copyright Copyright 2003-2020 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: attributes_controller.php 630 2020-01-18 10:21:14Z webchills $
+ * @version $Id: attributes_controller.php 631 2020-02-13 21:21:14Z webchills $
  */
 
 define('HEADING_TITLE', 'Attribut Manager: ');
@@ -165,7 +165,7 @@ define('TEXT_INFO_PRODUCTS_OPTION_NAME', '<strong>Attributname: </strong>');
 define('TEXT_INFO_PRODUCTS_OPTION_ID', '<strong>ID#</strong>');
 define('SUCCESS_ATTRIBUTES_DELETED_OPTION_NAME_VALUES', 'ALLE Attributmerkmale für Attributnamen wurden gelöscht: ');
 
-define('BUTTON_ADDITITONAL_ACTIONS', 'Weitere mögliche Aktionen');
+define('BUTTON_ADDITIONAL_ACTIONS', 'Weitere Aktionen');
 define('TEXT_EDIT_OPTION_VALUE', 'Bearbeite Attribut');
 define('TEXT_DELETE_OPTION_VALUE', 'Lösche Attribut');
 define('TEXT_UPDATE_DEFAULTE_SORT_ORDER', 'Sortierreihenfolge auf Standard zurücksetzen');
