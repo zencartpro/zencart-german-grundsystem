@@ -2,10 +2,10 @@
 /**
  * Zen Cart German Specific
  * @package admin
- * @copyright Copyright 2003-2019 Zen Cart Development Team
+ * @copyright Copyright 2003-2020 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: countries.php 791 2019-06-15 15:57:51Z webchills $
+ * @version $Id: countries.php 792 2020-02-14 20:42:51Z webchills $
  */
 
   require('includes/application_top.php');
@@ -81,13 +81,7 @@
         zen_record_admin_activity('Country updated: ' . $countries_iso_code_3, 'info');
         zen_redirect(zen_href_link(FILENAME_COUNTRIES, 'page=' . $_GET['page'] . '&cID=' . $countries_id));
         break;
-      case 'deleteconfirm':
-        // demo active test
-        if (zen_admin_demo()) {
-          $_GET['action']= '';
-          $messageStack->add_session(ERROR_ADMIN_DEMO, 'caution');
-          zen_redirect(zen_href_link(FILENAME_COUNTRIES, 'page=' . $_GET['page']));
-        }
+      case 'deleteconfirm':        
       $countries_id = zen_db_prepare_input($_POST['cID']);
       $sql = "SELECT entry_country_id
               FROM " . TABLE_ADDRESS_BOOK . "

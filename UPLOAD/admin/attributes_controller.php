@@ -573,8 +573,7 @@ if (zen_not_null($action)) {
       zen_redirect(zen_href_link(FILENAME_ATTRIBUTES_CONTROLLER, $_SESSION['page_info'] . '&current_category_id=' . $_POST['current_category_id']));
       break;
     case 'delete_attribute':
-      // demo active test
-      
+            
       if (isset($_POST['delete_attribute_id'])) {
         $attribute_id = zen_db_prepare_input($_POST['delete_attribute_id']);
 
