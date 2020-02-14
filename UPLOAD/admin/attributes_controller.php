@@ -4,7 +4,7 @@
  * @copyright Copyright 2003-2020 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: attributes_controller.php 743 2020-02-13 23:20:16Z webchills $
+ * @version $Id: attributes_controller.php 744 2020-02-14 20:40:16Z webchills $
  */
 require('includes/application_top.php');
 
@@ -574,11 +574,7 @@ if (zen_not_null($action)) {
       break;
     case 'delete_attribute':
       // demo active test
-      if (zen_admin_demo()) {
-        $_GET['action'] = '';
-        $messageStack->add_session(ERROR_ADMIN_DEMO, 'caution');
-        zen_redirect(zen_href_link(FILENAME_ATTRIBUTES_CONTROLLER, $_SESSION['page_info'] . '&current_category_id=' . $_POST['current_category_id']));
-      }
+      
       if (isset($_POST['delete_attribute_id'])) {
         $attribute_id = zen_db_prepare_input($_POST['delete_attribute_id']);
 
