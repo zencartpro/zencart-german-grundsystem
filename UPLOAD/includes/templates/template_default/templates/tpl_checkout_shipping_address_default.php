@@ -6,15 +6,14 @@
  * Allows customer to change the shipping address.
  *
  * @package templateSystem
- * @copyright Copyright 2003-2019 Zen Cart Development Team
+ * @copyright Copyright 2003-2020 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: tpl_checkout_shipping_address_default.php 732 2019-09-27 09:19:16Z webchills $
+ * @version $Id: tpl_checkout_shipping_address_default.php 733 2020-02-15 15:19:16Z webchills $
  */
 ?>
 <div class="centerColumn" id="checkoutShipAddressDefault">
 
-<?php echo zen_draw_form('checkout_address', zen_href_link(FILENAME_CHECKOUT_SHIPPING_ADDRESS, '', 'SSL'), 'post', 'class="group"'); ?>
 <h1 id="checkoutShipAddressDefaultHeading"><?php echo HEADING_TITLE; ?></h1>
 
 <?php if ($messageStack->size('checkout_address') > 0) echo $messageStack->output('checkout_address'); ?>
@@ -31,8 +30,7 @@
 
 <?php
      if ($addresses_count < MAX_ADDRESS_BOOK_ENTRIES) {
-?>
-<?php
+        echo zen_draw_form('checkout_address', zen_href_link(FILENAME_CHECKOUT_SHIPPING_ADDRESS, '', 'SSL'), 'post', 'class="group"'); 
 /**
  * require template to display new address form
  */
