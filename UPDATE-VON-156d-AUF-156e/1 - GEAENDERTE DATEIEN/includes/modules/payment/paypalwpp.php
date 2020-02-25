@@ -6,7 +6,7 @@
  * @copyright Copyright 2003-2020 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: paypalwpp.php 868 2020-02-08 17:35:14Z webchills $
+ * @version $Id: paypalwpp.php 869 2020-02-25 07:56:14Z webchills $
  */
 /**
  * load the communications layer code
@@ -2466,7 +2466,7 @@ if (false) { // disabled until clarification is received about coupons in PayPal
       }
     }
     // debug
-    $this->zcLog('findMatchingAddressBookEntry - 1-stats', 'lookups:' . "\n" . print_r(array_merge($country->fields, array('zone_country_id' => $country_zone_check->fields['zone_id']), $logMsg), true) . "\n" . 'check_zone: ' . $check_zone . "\n" . 'zone:' . $zone_id . "\nSubmittedAddress:".print_r($address_question_arr, TRUE));
+    $this->zcLog('findMatchingAddressBookEntry - 1-stats', 'lookups:' . "\n" . print_r(array_merge($country->fields, array('zone_country_id' => $country_zone_check->fields), $logMsg), true) . "\n" . 'check_zone: ' . $check_zone . "\n" . 'zone:' . $zone_id . "\nSubmittedAddress:".print_r($address_question_arr, TRUE));
 
     // do a match on address, street, street2, city
     $sql = "SELECT address_book_id, entry_street_address, entry_suburb, entry_city, entry_company, entry_firstname, entry_lastname
