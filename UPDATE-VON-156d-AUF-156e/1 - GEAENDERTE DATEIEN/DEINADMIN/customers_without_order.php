@@ -4,7 +4,7 @@
  * @copyright Copyright 2003-2020 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: customers_without_order.php 9 2020-02-25 07:46:51Z webchills $
+ * @version $Id: customers_without_order.php 10 2020-02-26 07:35:51Z webchills $
  */
 require('includes/application_top.php');
 
@@ -1398,7 +1398,7 @@ if (zen_not_null($action)) {
 
                     $heading[] = array('text' => '<h4>' . TABLE_HEADING_ID . $cInfo->customers_id . ' ' . $cInfo->customers_firstname . ' ' . $cInfo->customers_lastname . '</h4>' . '<br>' . $cInfo->customers_email_address);
 
-                    $contents[] = array('align' => 'text-center', 'text' => '<a href="' . zen_href_link(FILENAME_CUSTOMERS_WITHOUT_ORDER, zen_get_all_get_params(array('cID', 'action', 'search')) . 'cID=' . $cInfo->customers_id . '&action=edit', 'NONSSL') . '" class="btn btn-primary" role="button">' . IMAGE_EDIT . '</a> <a href="' . zen_href_link(FILENAME_CUSTOMERS, zen_get_all_get_params(array('cID', 'action', 'search')) . 'cID=' . $cInfo->customers_id . '&action=confirm', 'NONSSL') . '" class="btn btn-warning" role="button">' . IMAGE_DELETE . '</a>');
+                    $contents[] = array('align' => 'text-center', 'text' => '<a href="' . zen_href_link(FILENAME_CUSTOMERS_WITHOUT_ORDER, zen_get_all_get_params(array('cID', 'action', 'search')) . 'cID=' . $cInfo->customers_id . '&action=edit', 'NONSSL') . '" class="btn btn-primary" role="button">' . IMAGE_EDIT . '</a> <a href="' . zen_href_link(FILENAME_CUSTOMERS_WITHOUT_ORDER, zen_get_all_get_params(array('cID', 'action', 'search')) . 'cID=' . $cInfo->customers_id . '&action=confirm', 'NONSSL') . '" class="btn btn-warning" role="button">' . IMAGE_DELETE . '</a>');
                     $contents[] = array('align' => 'text-center', 'text' => ($customers_orders->RecordCount() != 0 ? '<a href="' . zen_href_link(FILENAME_ORDERS, 'cID=' . $cInfo->customers_id, 'NONSSL') . '" class="btn btn-default" role="button">' . IMAGE_ORDERS . '</a>' : '') . ' <a href="' . zen_href_link(FILENAME_MAIL, 'origin=customers.php&mode=NONSSL&customer=' . $cInfo->customers_email_address . '&cID=' . $cInfo->customers_id, 'NONSSL') . '" class="btn btn-default" role="button">' . IMAGE_EMAIL . '</a>');
                     $contents[] = array('align' => 'text-center', 'text' => '<a href="' . zen_href_link(FILENAME_CUSTOMERS_WITHOUT_ORDER, zen_get_all_get_params(array('cID', 'action', 'search')) . 'cID=' . $cInfo->customers_id . '&action=pwreset') . '" class="btn btn-warning" role="button">' . IMAGE_RESET_PWD . '</a>');
                     $zco_notifier->notify('NOTIFY_ADMIN_CUSTOMERS_MENU_BUTTONS', $cInfo, $contents);
