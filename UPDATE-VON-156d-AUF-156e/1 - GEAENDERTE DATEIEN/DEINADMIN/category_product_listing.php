@@ -4,7 +4,7 @@
  * @copyright Copyright 2003-2020 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: category_product_listing.php 8 2020-02-05 15:20:16Z webchills $
+ * @version $Id: category_product_listing.php 9 2020-02-28 09:20:16Z webchills $
  */
 require 'includes/application_top.php';
 $languages = zen_get_languages();
@@ -54,37 +54,36 @@ if (zen_not_null($action)) {
 
         // change the status of categories and products
         zen_set_time_limit(600);
-          if ($_POST['categories_status'] == '1') {//form is coming from an Enabled category which is to be changed to Disabled
-              $category_status = '0';//Disable this category
-              $subcategories_status = isset($_POST['set_subcategories_status']) && $_POST['set_subcategories_status'] == 'set_subcategories_status_off' ? '0' : ''; //Disable subcategories or no change?
-              $products_status = isset($_POST['set_products_status']) && $_POST['set_products_status'] == 'set_products_status_off' ? '0' : ''; //Disable products or no change?
-          } else {//form is coming from a Disabled category which is to be changed to Enabled
-              $category_status = '1';//Enable this category
-              $subcategories_status = isset($_POST['set_subcategories_status']) && $_POST['set_subcategories_status'] == 'set_subcategories_status_on' ? '1' : ''; //also Enable subcategories or no change?
-              $products_status = isset($_POST['set_products_status']) && $_POST['set_products_status'] == 'set_products_status_on' ? '1' : ''; //Disable products or no change?
-          }
+        if ($_POST['categories_status'] == '1') {//form is coming from an Enabled category which is to be changed to Disabled
+          $category_status = '0'; //Disable this category
+          $subcategories_status = isset($_POST['set_subcategories_status']) && $_POST['set_subcategories_status'] == 'set_subcategories_status_off' ? '0' : ''; //Disable subcategories or no change?
+          $products_status = isset($_POST['set_products_status']) && $_POST['set_products_status'] == 'set_products_status_off' ? '0' : ''; //Disable products or no change?
+        } else {//form is coming from a Disabled category which is to be changed to Enabled
+          $category_status = '1'; //Enable this category
+          $subcategories_status = isset($_POST['set_subcategories_status']) && $_POST['set_subcategories_status'] == 'set_subcategories_status_on' ? '1' : ''; //also Enable subcategories or no change?
+          $products_status = isset($_POST['set_products_status']) && $_POST['set_products_status'] == 'set_products_status_on' ? '1' : ''; //Disable products or no change?
+        }
 
         for ($i = 0, $n = sizeof($categories); $i < $n; $i++) {
 
           //set categories_status
-            if ($categories[$i]['id'] == $categories_id) {//always update THIS category
-                $sql = "UPDATE " . TABLE_CATEGORIES . "
+          if ($categories[$i]['id'] == $categories_id) {//always update THIS category
+            $sql = "UPDATE " . TABLE_CATEGORIES . "
                     SET categories_status = " . (int)$category_status . "
                     WHERE categories_id = " . (int)$categories[$i]['id'];
-                $db->Execute($sql);
-
+            $db->Execute($sql);
           } elseif ($subcategories_status != '') {//optionally update subcategories if a change was selected
-                $sql = "UPDATE " . TABLE_CATEGORIES . "
+            $sql = "UPDATE " . TABLE_CATEGORIES . "
                     SET categories_status = " . (int)$subcategories_status . "
                     WHERE categories_id = " . (int)$categories[$i]['id'];
-                $db->Execute($sql);
+            $db->Execute($sql);
           }
 
           //set products_status
           if ($products_status == '') {
             continue;
           }
-            
+
           //only execute if a change was selected
           $sql = "SELECT products_id
                   FROM " . TABLE_PRODUCTS_TO_CATEGORIES . "
@@ -360,8 +359,8 @@ if (is_dir(DIR_FS_CATALOG_IMAGES)) {
     <!-- body //-->
     <div class="container-fluid">
       <h1>
-          <a href="<?php echo zen_catalog_href_link('index', zen_get_path("$current_category_id"), 'NONSSL'); ?>" target="_blank" title="<?php echo BOX_HEADING_CATALOG;?>"><?php echo zen_image(DIR_WS_IMAGES . 'icon_popup.gif', BOX_HEADING_CATALOG) ;?></a>
-          <?php echo HEADING_TITLE; ?>&nbsp;-&nbsp;<?php echo zen_output_generated_category_path($current_category_id); ?>
+        <a href="<?php echo zen_catalog_href_link('index', zen_get_path("$current_category_id"), 'NONSSL'); ?>" target="_blank" title="<?php echo BOX_HEADING_CATALOG; ?>"><?php echo zen_image(DIR_WS_IMAGES . 'icon_popup.gif', BOX_HEADING_CATALOG); ?></a>
+        <?php echo HEADING_TITLE; ?>&nbsp;-&nbsp;<?php echo zen_output_generated_category_path($current_category_id); ?>
       </h1>
       <?php if ($action == '') { ?>
         <div class="row">
@@ -396,13 +395,13 @@ if (is_dir(DIR_FS_CATALOG_IMAGES)) {
                     &nbsp;
                     <div class="fa fa-stack">
                       <i class="fa fa-square fa-stack-2x" style="color: #000"></i>
-                    <i class="fa fa-asterisk fa-stack-1x" aria-hidden="true" style="color: #fff"></i>
-                  </div>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
+                      <i class="fa fa-asterisk fa-stack-1x" aria-hidden="true" style="color: #fff"></i>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
           <div class="col-md-4">
             <?php echo zen_draw_form('set_editor_form', FILENAME_CATEGORY_PRODUCT_LISTING, '', 'get', 'class="form-horizontal"'); ?>
             <div class="form-group">
@@ -425,43 +424,43 @@ if (is_dir(DIR_FS_CATALOG_IMAGES)) {
             $check_categories = zen_has_category_subcategories($current_category_id);
             $check_products = zen_products_in_category_count($current_category_id, true, false, 1);
 
+            $zc_skip_products = false;
+            $zc_skip_categories = false;
+
+            if ($check_products == 0) {
               $zc_skip_products = false;
               $zc_skip_categories = false;
-
-              if ($check_products == 0) {
-                $zc_skip_products = false;
-                $zc_skip_categories = false;
-              }
-              if ($check_categories == true) {
-                $zc_skip_products = true;
-                $zc_skip_categories = false;
-              }
-              if ($check_products > 0) {
-                $zc_skip_products = false;
-                $zc_skip_categories = true;
+            }
+            if ($check_categories == true) {
+              $zc_skip_products = true;
+              $zc_skip_categories = false;
+            }
+            if ($check_products > 0) {
+              $zc_skip_products = false;
+              $zc_skip_categories = true;
             }
 
             if (isset($_GET['search']) && !empty($_GET['search']) && $action != 'edit_category') {
               	$zc_skip_products = false;
             }
 
-              if ($zc_skip_products == true) {
-                // toggle switch for display sort order
-                $categories_products_sort_order_array = array(array('id' => '0', 'text' => TEXT_SORT_CATEGORIES_SORT_ORDER_PRODUCTS_NAME),
-                  array('id' => '1', 'text' => TEXT_SORT_CATEGORIES_NAME)
-                );
-              } else {
-                // toggle switch for display sort order
-                $categories_products_sort_order_array = array(
-                  array('id' => '0', 'text' => TEXT_SORT_PRODUCTS_SORT_ORDER_PRODUCTS_NAME),
-                  array('id' => '1', 'text' => TEXT_SORT_PRODUCTS_NAME),
-                  array('id' => '2', 'text' => TEXT_SORT_PRODUCTS_MODEL),
-                  array('id' => '3', 'text' => TEXT_SORT_PRODUCTS_QUANTITY),
-                  array('id' => '4', 'text' => TEXT_SORT_PRODUCTS_QUANTITY_DESC),
-                  array('id' => '5', 'text' => TEXT_SORT_PRODUCTS_PRICE),
-                  array('id' => '6', 'text' => TEXT_SORT_PRODUCTS_PRICE_DESC)
-                );
-              }
+            if ($zc_skip_products == true) {
+              // toggle switch for display sort order
+              $categories_products_sort_order_array = array(array('id' => '0', 'text' => TEXT_SORT_CATEGORIES_SORT_ORDER_PRODUCTS_NAME),
+                array('id' => '1', 'text' => TEXT_SORT_CATEGORIES_NAME)
+              );
+            } else {
+              // toggle switch for display sort order
+              $categories_products_sort_order_array = array(
+                array('id' => '0', 'text' => TEXT_SORT_PRODUCTS_SORT_ORDER_PRODUCTS_NAME),
+                array('id' => '1', 'text' => TEXT_SORT_PRODUCTS_NAME),
+                array('id' => '2', 'text' => TEXT_SORT_PRODUCTS_MODEL),
+                array('id' => '3', 'text' => TEXT_SORT_PRODUCTS_QUANTITY),
+                array('id' => '4', 'text' => TEXT_SORT_PRODUCTS_QUANTITY_DESC),
+                array('id' => '5', 'text' => TEXT_SORT_PRODUCTS_PRICE),
+                array('id' => '6', 'text' => TEXT_SORT_PRODUCTS_PRICE_DESC)
+              );
+            }
             echo zen_draw_form('set_categories_products_sort_order_form', FILENAME_CATEGORY_PRODUCT_LISTING, '', 'get', 'class="form-horizontal"');
             ?>
             <div class="form-group">
@@ -481,12 +480,13 @@ if (is_dir(DIR_FS_CATALOG_IMAGES)) {
             </div>
             <?php
             echo '</form>';
-          if (!isset($_GET['page'])) {
-            $_GET['page'] = '';
-          }
-          if (isset($_GET['set_display_categories_dropdown'])) {
-            $_SESSION['display_categories_dropdown'] = $_GET['set_display_categories_dropdown'];
-          }
+
+            if (!isset($_GET['page'])) {
+              $_GET['page'] = '';
+            }
+            if (isset($_GET['set_display_categories_dropdown'])) {
+              $_SESSION['display_categories_dropdown'] = $_GET['set_display_categories_dropdown'];
+            }
             if (!isset($_SESSION['display_categories_dropdown'])) {
               $_SESSION['display_categories_dropdown'] = 0;
             }
@@ -555,7 +555,6 @@ if (is_dir(DIR_FS_CATALOG_IMAGES)) {
           }
 
           $categories_count = 0;
-          $rows = 0;
           if (isset($_GET['search'])) {
             $search = zen_db_prepare_input($_GET['search']);
 
@@ -603,8 +602,6 @@ if (is_dir(DIR_FS_CATALOG_IMAGES)) {
             <?php
             foreach ($categories as $category) {
               $categories_count++;
-              $rows++;
-
 // Get parent_id for subcategories if search
               if (isset($_GET['search'])) {
                 $cPath = $category['parent_id'];
@@ -780,8 +777,6 @@ if (is_dir(DIR_FS_CATALOG_IMAGES)) {
 
             foreach ($products as $product) {
               $products_count++;
-              $rows++;
-
 // Get categories_id for product if search
               if (isset($_GET['search'])) {
                 $cPath = $product['categories_id'];

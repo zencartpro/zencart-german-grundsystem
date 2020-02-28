@@ -4,7 +4,7 @@
  * @copyright Copyright 2003-2020 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: stats_products_viewed.php 733 2020-01-18 09:44:51Z webchills $
+ * @version $Id: stats_products_viewed.php 734 2020-02-28 09:44:51Z webchills $
  */
 //
 require('includes/application_top.php');
@@ -45,9 +45,6 @@ require('includes/application_top.php');
         </thead>
         <tbody>
             <?php
-            if (isset($_GET['page']) && ($_GET['page'] > 1))
-              $rows = $_GET['page'] * MAX_DISPLAY_SEARCH_RESULTS_REPORTS - MAX_DISPLAY_SEARCH_RESULTS_REPORTS;
-            $rows = 0;
             $products_query_raw = "SELECT p.products_id, pd.products_name, pd.products_viewed, l.name, p.products_type
                                    FROM " . TABLE_PRODUCTS . " p,
                                         " . TABLE_PRODUCTS_DESCRIPTION . " pd,
@@ -61,11 +58,6 @@ require('includes/application_top.php');
 
 // only show low stock on products that can be added to the cart
               if ($zc_products->get_allow_add_to_cart($product['products_id']) == 'Y') {
-                $rows++;
-
-                if (strlen($rows) < 2) {
-                  $rows = '0' . $rows;
-                }
                 $cPath = zen_get_product_path($product['products_id']);
                 $type_handler = $zc_products->get_admin_handler($product['products_type']);
                 ?>

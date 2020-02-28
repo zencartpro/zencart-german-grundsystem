@@ -4,7 +4,7 @@
  * @copyright Copyright 2003-2020 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: stats_customers.php 732 2020-01-18 09:49:16Z webchills $
+ * @version $Id: stats_customers.php 733 2020-02-28 09:29:16Z webchills $
  */
 require('includes/application_top.php');
 
@@ -49,8 +49,6 @@ $currencies = new currencies();
         </thead>
         <tbody>
             <?php
-            if (isset($_GET['page']) && ($_GET['page'] > 1))
-              $rows = $_GET['page'] * MAX_DISPLAY_SEARCH_RESULTS_REPORTS - MAX_DISPLAY_SEARCH_RESULTS_REPORTS;
             $customers_query_raw = "SELECT c.customers_id, c.customers_firstname, c.customers_lastname,
                                            SUM(op.products_quantity * op.final_price) + SUM(op.onetime_charges) AS ordersum
                                     FROM " . TABLE_CUSTOMERS . " c,
@@ -65,26 +63,15 @@ $currencies = new currencies();
             $customers_query_m = $db->Execute("SELECT customers_id
                                                FROM " . TABLE_ORDERS . "
                                                GROUP BY customers_id");
-
             $customers_query_numrows = $customers_query_m->RecordCount();
-
-            $rows = 0;
             $customers = $db->Execute($customers_query_raw);
-            foreach ($customers as $customer) {
-              $rows++;
-
-              if (strlen($rows) < 2) {
-                $rows = '0' . $rows;
-              }
-              ?>
+            foreach ($customers as $customer) { ?>
             <tr class="dataTableRow" onclick="document.location.href = '<?php echo zen_href_link(FILENAME_CUSTOMERS, 'cID=' . $customer['customers_id'], 'NONSSL'); ?>'">
               <td class="dataTableContent text-right"><?php echo $customer['customers_id']; ?>&nbsp;&nbsp;</td>
               <td class="dataTableContent"><a href="<?php echo zen_href_link(FILENAME_CUSTOMERS, 'cID=' . $customer['customers_id'], 'NONSSL'); ?>"><?php echo $customer['customers_firstname'] . ' ' . $customers->fields['customers_lastname']; ?></a></td>
               <td class="dataTableContent text-right"><?php echo $currencies->format($customer['ordersum']); ?></td>
             </tr>
-            <?php
-          }
-          ?>
+            <?php } ?>
         </tbody>
       </table>
       <table class="table">

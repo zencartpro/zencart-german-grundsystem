@@ -4,7 +4,7 @@
  * @copyright Copyright 2003-2020 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: options_values_manager.php 742 2020-01-20 21:49:16Z webchills $
+ * @version $Id: options_values_manager.php 743 2020-02-28 09:27:16Z webchills $
  */
 require 'includes/application_top.php';
 $languages = zen_get_languages();
@@ -730,7 +730,6 @@ if (zen_not_null($action)) {
             <tbody>
               <?php
               $next_id = 1;
-              $rows = 0;
               $values_values = $db->Execute($values_query_raw);
               foreach ($values_values as $values_value) {
                 $options_name = zen_options_name($values_value['products_options_id']);
@@ -742,7 +741,6 @@ if (zen_not_null($action)) {
 
                 $values_name = $values_value['products_options_values_name'];
                 $products_options_values_sort_order = $values_value['products_options_values_sort_order'];
-                $rows++;
                 ?>
                 <tr>
                   <?php
