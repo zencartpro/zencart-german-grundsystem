@@ -5,14 +5,13 @@
  * @copyright Copyright 2003-2020 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: general.php 898 2020-02-05 15:17:33Z webchills $
+ * @version $Id: general.php 899 2020-02-29 10:37:33Z webchills $
  */
 
 ////
 // Redirect to another page or site
   function zen_redirect($url) {
-
-// clean up URL before executing it
+    // clean up URL before executing it
     $url = preg_replace('/&{2,}/', '&', $url);
     $url = preg_replace('/(&amp;)+/', '&amp;', $url);
     // header locates should not have the &amp; in the address it breaks things
@@ -151,9 +150,9 @@
     $minute = (int)substr($raw_date, 14, 2);
     $second = (int)substr($raw_date, 17, 2);
 
-   $retVal = strftime(DATE_FORMAT_LONG, mktime($hour, $minute, $second, $month, $day, $year));
-  if (stristr(PHP_OS, 'win')) return utf8_encode($retVal);
-  return $retVal;
+    $retVal = strftime(DATE_FORMAT_LONG, mktime($hour, $minute, $second, $month, $day, $year));
+    if (stristr(PHP_OS, 'win')) return utf8_encode($retVal);
+    return $retVal;
   }
 
 
@@ -385,7 +384,6 @@
     }
   }
 
-
   function zen_browser_detect($component) {
 
     return stristr($_SERVER['HTTP_USER_AGENT'], $component);
@@ -474,8 +472,6 @@
       return $default_zone;
     }
   }
-
-
 
   function zen_get_languages() {
     global $db;
@@ -1588,8 +1584,7 @@ while (!$chk_sale_categories_all->EOF) {
  */
   function zen_calculate_tax($price, $tax) {
     return $price * $tax / 100;
-  }  
-  
+  }
 
 /**
  * Returns the tax rate for a zone / class
@@ -1598,6 +1593,7 @@ while (!$chk_sale_categories_all->EOF) {
   function zen_get_tax_rate($class_id, $country_id = -1, $zone_id = -1) {
     global $db;
     global $customer_zone_id, $customer_country_id;
+
     // -----
     // Give an observer a chance to override this function's return.
     //
@@ -1884,21 +1880,21 @@ while (!$chk_sale_categories_all->EOF) {
     $date_selector = '<select name="'. $prefix .'_day">';
     for ($i=1;$i<32;$i++){
       $date_selector .= '<option value="' . $i . '"';
-      if ($i==$day) $date_selector .= 'selected';
+      if ($i==$day) $date_selector .= ' selected';
       $date_selector .= '>' . $i . '</option>';
     }
     $date_selector .= '</select>';
     $date_selector .= '<select name="'. $prefix .'_month">';
     for ($i=1;$i<13;$i++){
       $date_selector .= '<option value="' . $i . '"';
-      if ($i==$month) $date_selector .= 'selected';
+      if ($i==$month) $date_selector .= ' selected';
       $date_selector .= '>' . $month_array[$i] . '</option>';
     }
     $date_selector .= '</select>';
     $date_selector .= '<select name="'. $prefix .'_year">';
     for ($i = date('Y') - 5, $j = date('Y') + 11; $i < $j; $i++) {
       $date_selector .= '<option value="' . $i . '"';
-      if ($i==$year) $date_selector .= 'selected';
+      if ($i==$year) $date_selector .= ' selected';
       $date_selector .= '>' . $i . '</option>';
     }
     $date_selector .= '</select>';
@@ -2143,30 +2139,30 @@ function zen_copy_products_attributes($products_id_from, $products_id_to) {
               attributes_price_words, attributes_price_words_free, attributes_price_letters, attributes_price_letters_free, 
               attributes_required)
               VALUES ('" . (int)$products_id_to . "',
-          '" . $products_copy_from->fields['options_id'] . "',
-          '" . $products_copy_from->fields['options_values_id'] . "',
-          '" . $products_copy_from->fields['options_values_price'] . "',
-          '" . $products_copy_from->fields['price_prefix'] . "',
-          '" . $products_copy_from->fields['products_options_sort_order'] . "',
-          '" . $products_copy_from->fields['product_attribute_is_free'] . "',
-          '" . $products_copy_from->fields['products_attributes_weight'] . "',
-          '" . $products_copy_from->fields['products_attributes_weight_prefix'] . "',
-          '" . $products_copy_from->fields['attributes_display_only'] . "',
-          '" . $products_copy_from->fields['attributes_default'] . "',
-          '" . $products_copy_from->fields['attributes_discounted'] . "',
-          '" . $products_copy_from->fields['attributes_image'] . "',
-          '" . $products_copy_from->fields['attributes_price_base_included'] . "',
-          '" . $products_copy_from->fields['attributes_price_onetime'] . "',
-          '" . $products_copy_from->fields['attributes_price_factor'] . "',
-          '" . $products_copy_from->fields['attributes_price_factor_offset'] . "',
-          '" . $products_copy_from->fields['attributes_price_factor_onetime'] . "',
-          '" . $products_copy_from->fields['attributes_price_factor_onetime_offset'] . "',
-          '" . $products_copy_from->fields['attributes_qty_prices'] . "',
-          '" . $products_copy_from->fields['attributes_qty_prices_onetime'] . "',
-          '" . $products_copy_from->fields['attributes_price_words'] . "',
-          '" . $products_copy_from->fields['attributes_price_words_free'] . "',
-          '" . $products_copy_from->fields['attributes_price_letters'] . "',
-          '" . $products_copy_from->fields['attributes_price_letters_free'] . "',
+              '" . $products_copy_from->fields['options_id'] . "',
+              '" . $products_copy_from->fields['options_values_id'] . "',
+              '" . $products_copy_from->fields['options_values_price'] . "',
+              '" . $products_copy_from->fields['price_prefix'] . "',
+              '" . $products_copy_from->fields['products_options_sort_order'] . "',
+              '" . $products_copy_from->fields['product_attribute_is_free'] . "',
+              '" . $products_copy_from->fields['products_attributes_weight'] . "',
+              '" . $products_copy_from->fields['products_attributes_weight_prefix'] . "',
+              '" . $products_copy_from->fields['attributes_display_only'] . "',
+              '" . $products_copy_from->fields['attributes_default'] . "',
+              '" . $products_copy_from->fields['attributes_discounted'] . "',
+              '" . $products_copy_from->fields['attributes_image'] . "',
+              '" . $products_copy_from->fields['attributes_price_base_included'] . "',
+              '" . $products_copy_from->fields['attributes_price_onetime'] . "',
+              '" . $products_copy_from->fields['attributes_price_factor'] . "',
+              '" . $products_copy_from->fields['attributes_price_factor_offset'] . "',
+              '" . $products_copy_from->fields['attributes_price_factor_onetime'] . "',
+              '" . $products_copy_from->fields['attributes_price_factor_onetime_offset'] . "',
+              '" . $products_copy_from->fields['attributes_qty_prices'] . "',
+              '" . $products_copy_from->fields['attributes_qty_prices_onetime'] . "',
+              '" . $products_copy_from->fields['attributes_price_words'] . "',
+              '" . $products_copy_from->fields['attributes_price_words_free'] . "',
+              '" . $products_copy_from->fields['attributes_price_letters'] . "',
+              '" . $products_copy_from->fields['attributes_price_letters_free'] . "',
               '" . $products_copy_from->fields['attributes_required'] . "')"
           );
           $messageStack->add_session(sprintf(TEXT_ATTRIBUTE_COPY_INSERTING, (int)$products_copy_from->fields['products_attributes_id'], (int)$products_id_from, (int)$products_id_to), 'success');
@@ -2179,29 +2175,29 @@ function zen_copy_products_attributes($products_id_from, $products_id_to) {
 
       // Update attribute - Just attribute settings not ids
       if ($update_attribute == true) {
-          $db->Execute("update " . TABLE_PRODUCTS_ATTRIBUTES . " set
-          options_values_price='" . $products_copy_from->fields['options_values_price'] . "',
-          price_prefix='" . $products_copy_from->fields['price_prefix'] . "',
-          products_options_sort_order='" . $products_copy_from->fields['products_options_sort_order'] . "',
-          product_attribute_is_free='" . $products_copy_from->fields['product_attribute_is_free'] . "',
-          products_attributes_weight='" . $products_copy_from->fields['products_attributes_weight'] . "',
-          products_attributes_weight_prefix='" . $products_copy_from->fields['products_attributes_weight_prefix'] . "',
-          attributes_display_only='" . $products_copy_from->fields['attributes_display_only'] . "',
-          attributes_default='" . $products_copy_from->fields['attributes_default'] . "',
-          attributes_discounted='" . $products_copy_from->fields['attributes_discounted'] . "',
-          attributes_image='" . $products_copy_from->fields['attributes_image'] . "',
-          attributes_price_base_included='" . $products_copy_from->fields['attributes_price_base_included'] . "',
-          attributes_price_onetime='" . $products_copy_from->fields['attributes_price_onetime'] . "',
-          attributes_price_factor='" . $products_copy_from->fields['attributes_price_factor'] . "',
-          attributes_price_factor_offset='" . $products_copy_from->fields['attributes_price_factor_offset'] . "',
-          attributes_price_factor_onetime='" . $products_copy_from->fields['attributes_price_factor_onetime'] . "',
-          attributes_price_factor_onetime_offset='" . $products_copy_from->fields['attributes_price_factor_onetime_offset'] . "',
-          attributes_qty_prices='" . $products_copy_from->fields['attributes_qty_prices'] . "',
-          attributes_qty_prices_onetime='" . $products_copy_from->fields['attributes_qty_prices_onetime'] . "',
-          attributes_price_words='" . $products_copy_from->fields['attributes_price_words'] . "',
-          attributes_price_words_free='" . $products_copy_from->fields['attributes_price_words_free'] . "',
-          attributes_price_letters='" . $products_copy_from->fields['attributes_price_letters'] . "',
-          attributes_price_letters_free='" . $products_copy_from->fields['attributes_price_letters_free'] . "',
+          $db->Execute("UPDATE " . TABLE_PRODUCTS_ATTRIBUTES . " set
+              options_values_price='" . $products_copy_from->fields['options_values_price'] . "',
+              price_prefix='" . $products_copy_from->fields['price_prefix'] . "',
+              products_options_sort_order='" . $products_copy_from->fields['products_options_sort_order'] . "',
+              product_attribute_is_free='" . $products_copy_from->fields['product_attribute_is_free'] . "',
+              products_attributes_weight='" . $products_copy_from->fields['products_attributes_weight'] . "',
+              products_attributes_weight_prefix='" . $products_copy_from->fields['products_attributes_weight_prefix'] . "',
+              attributes_display_only='" . $products_copy_from->fields['attributes_display_only'] . "',
+              attributes_default='" . $products_copy_from->fields['attributes_default'] . "',
+              attributes_discounted='" . $products_copy_from->fields['attributes_discounted'] . "',
+              attributes_image='" . $products_copy_from->fields['attributes_image'] . "',
+              attributes_price_base_included='" . $products_copy_from->fields['attributes_price_base_included'] . "',
+              attributes_price_onetime='" . $products_copy_from->fields['attributes_price_onetime'] . "',
+              attributes_price_factor='" . $products_copy_from->fields['attributes_price_factor'] . "',
+              attributes_price_factor_offset='" . $products_copy_from->fields['attributes_price_factor_offset'] . "',
+              attributes_price_factor_onetime='" . $products_copy_from->fields['attributes_price_factor_onetime'] . "',
+              attributes_price_factor_onetime_offset='" . $products_copy_from->fields['attributes_price_factor_onetime_offset'] . "',
+              attributes_qty_prices='" . $products_copy_from->fields['attributes_qty_prices'] . "',
+              attributes_qty_prices_onetime='" . $products_copy_from->fields['attributes_qty_prices_onetime'] . "',
+              attributes_price_words='" . $products_copy_from->fields['attributes_price_words'] . "',
+              attributes_price_words_free='" . $products_copy_from->fields['attributes_price_words_free'] . "',
+              attributes_price_letters='" . $products_copy_from->fields['attributes_price_letters'] . "',
+              attributes_price_letters_free='" . $products_copy_from->fields['attributes_price_letters_free'] . "',
               attributes_required='" . $products_copy_from->fields['attributes_required'] . "
               WHERE products_id=" . (int)$products_id_to . "
                AND options_id= '" . $products_copy_from->fields['options_id'] . "' 
@@ -2230,6 +2226,7 @@ function zen_copy_products_attributes($products_id_from, $products_id_to) {
 
     return true;
 } // eof: zen_copy_products_attributes
+
 
 
 /**
@@ -2441,8 +2438,6 @@ function zen_copy_products_attributes($products_id_from, $products_id_to) {
 
     return $select_string;
   }
-
-
 
   function zen_has_product_attributes_downloads($products_id, $check_valid=false) {
     global $db;
@@ -2847,7 +2842,7 @@ function zen_get_categories($categories_array = array(), $parent_id = '0', $inde
                                            );
     if ($check_products_category->EOF) return '';
     $the_categories_name= $db->Execute("SELECT categories_name
-                                        FROM " . TABLE_CATEGORIES_DESCRIPTION . " 
+                                        FROM " . TABLE_CATEGORIES_DESCRIPTION . "
                                         WHERE categories_id= " . (int)$check_products_category->fields['master_categories_id'] . "
                                         AND language_id= " . (int)$_SESSION['languages_id']
                                       );

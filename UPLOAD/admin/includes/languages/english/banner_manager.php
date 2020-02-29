@@ -74,7 +74,6 @@ define('ERROR_IMAGE_IS_NOT_WRITEABLE', 'Error: Image can not be removed.');
 define('ERROR_UNKNOWN_STATUS_FLAG', 'Error: Unknown status flag.');
 define('ERROR_BANNER_IMAGE_REQUIRED', 'Error: Banner image required.');
 
-
 define('TEXT_LEGEND_BANNER_ON_SSL', 'Show SSL');
 define('TEXT_LEGEND_BANNER_OPEN_NEW_WINDOWS', 'New Window');
 
