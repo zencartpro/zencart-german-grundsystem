@@ -1,17 +1,15 @@
 <?php
 /**
  * @package languageDefines
- * @copyright Copyright 2003-2019 Zen Cart Development Team
+ * @copyright Copyright 2003-2020 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: ot_gv.php 729 2011-08-09 15:49:16Z hugo13 $
+ * @version $Id: ot_gv.php 730 2020-02-29 20:49:16Z webchills $
  */
 
   define('MODULE_ORDER_TOTAL_GV_TITLE', TEXT_GV_NAMES);
   define('MODULE_ORDER_TOTAL_GV_HEADER', TEXT_GV_NAMES . '/Discount Coupons');
   define('MODULE_ORDER_TOTAL_GV_DESCRIPTION', TEXT_GV_NAMES);
-  define('SHIPPING_NOT_INCLUDED', ' [Shipping not included]');
-  define('TAX_NOT_INCLUDED', ' [Tax not included]');
   define('MODULE_ORDER_TOTAL_GV_USER_PROMPT', 'Apply Amount: ');
   define('MODULE_ORDER_TOTAL_GV_TEXT_ENTER_CODE', TEXT_GV_REDEEM);
   define('TEXT_INVALID_REDEEM_AMOUNT', 'It appears that the amount you have tried to apply and your Gift Certificate balance do not match. Please try again.');

@@ -1,10 +1,10 @@
 <?php
 /**
  * @package languageDefines
- * @copyright Copyright 2003-2019 Zen Cart Development Team
+ * @copyright Copyright 2003-2020 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: checkout_success.php 732 2019-05-09 08:49:16Z webchills $
+ * @version $Id: checkout_success.php 733 2020-02-29 20:49:16Z webchills $
  */
 
 define('NAVBAR_TITLE_1', 'Checkout');
@@ -51,4 +51,3 @@ define('TABLE_HEADING_STATUS_ORDER_STATUS', 'Order Status');
 define('TABLE_HEADING_STATUS_COMMENTS', 'Comments');
 define('QUANTITY_SUFFIX', '&nbsp;ea.  ');
 define('ORDER_HEADING_DIVIDER', '&nbsp;-&nbsp;');
-define('TEXT_OPTION_DIVIDER', '&nbsp;-&nbsp;');

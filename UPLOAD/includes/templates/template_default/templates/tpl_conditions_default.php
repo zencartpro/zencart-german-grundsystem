@@ -1,7 +1,7 @@
 <?php
 /**
  * Page Template
- *
+ * Zen Cart German Specific
  * Loaded automatically by index.php?main_page=conditions.<br />
  * Displays conditions page.
  *

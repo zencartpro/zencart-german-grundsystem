@@ -1,7 +1,7 @@
 <?php
 /**
  * Override Template for common/tpl_main_page.php
- *
+ * Zen Cart German Specific
  * @package templateSystem
  * @copyright Copyright 2005-2006 Tim Kroeger
  * @copyright Portions Copyright 2003-2019 Zen Cart Development Team

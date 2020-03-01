@@ -1,11 +1,11 @@
 <?php
 /**
  * @package languageDefines
- * @copyright Copyright 2003-2019 Zen Cart Development Team
+ * @copyright Copyright 2003-2020 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
  
- * @version $Id: checkout_success.php 628 2016-02-29 15:05:14Z webchills $
+ * @version $Id: checkout_success.php 629 2020-03-01 08:39:14Z webchills $
  */
 
 define('NAVBAR_TITLE_1','Kasse');
@@ -13,7 +13,7 @@ define('NAVBAR_TITLE_2','Erfolgreich - Vielen Dank!');
 
 define('HEADING_TITLE','Vielen Dank! Wir haben Ihre Bestellung erhalten.');
 
-define('TEXT_SUCCESS','Ihre Bestellung wird sofort nach Zahlungseingang versendet, sofern Sie nicht per Nachnahme bestellt haben. Bei Nachnahmebestellungen verlässt die Sendung in der Regel nach 2-3 Werktagen unser Haus.');
+define('TEXT_SUCCESS','');
 define('TEXT_NOTIFY_PRODUCTS','Bitte informieren Sie mich über Updates zu diesem Artikel:');
 define('TEXT_SEE_ORDERS','Sie können Ihre Bestellhistorie unter <a href="' . zen_href_link(FILENAME_ACCOUNT, '', 'SSL') . '">\'Mein Konto\'</a> ansehen.');
 define('TEXT_CONTACT_STORE_OWNER','Sollten Sie Fragen haben, wenden Sie sich bitte an unseren  <a href="' . zen_href_link(FILENAME_CONTACT_US) . '"> Kunden Service</a>.');
@@ -49,4 +49,3 @@ define('TABLE_HEADING_STATUS_ORDER_STATUS', 'Bestellstatus');
 define('TABLE_HEADING_STATUS_COMMENTS', 'Kommentare');
 define('QUANTITY_SUFFIX', '&nbsp;  ');
 define('ORDER_HEADING_DIVIDER', '&nbsp;-&nbsp;');
-define('TEXT_OPTION_DIVIDER', '&nbsp;-&nbsp;');

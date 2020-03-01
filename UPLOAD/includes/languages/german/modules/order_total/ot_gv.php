@@ -1,18 +1,16 @@
 <?php
 /**
  * @package languageDefines
- * @copyright Copyright 2003-2019 Zen Cart Development Team
+ * @copyright Copyright 2003-2020 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
  
- * @version $Id: ot_gv.php 627 2010-08-30 15:05:14Z webchills $
+ * @version $Id: ot_gv.php 628 2020-03-01 08:57:14Z webchills $
  */
 
 define('MODULE_ORDER_TOTAL_GV_TITLE', TEXT_GV_NAMES);
 define('MODULE_ORDER_TOTAL_GV_HEADER', TEXT_GV_NAMES . '/Aktionkupons');
 define('MODULE_ORDER_TOTAL_GV_DESCRIPTION', TEXT_GV_NAMES);
-define('SHIPPING_NOT_INCLUDED', ' [Versandkosten nicht enthalten]');
-define('TAX_NOT_INCLUDED', ' [Steuern nicht enthalten]');
 define('MODULE_ORDER_TOTAL_GV_USER_PROMPT', 'Ausgleich anwenden ->&nbsp;');
 define('MODULE_ORDER_TOTAL_GV_TEXT_ENTER_CODE', TEXT_GV_REDEEM);
 define('TEXT_INVALID_REDEEM_AMOUNT', 'Falscher Betrag für Ausgleich verwendet');

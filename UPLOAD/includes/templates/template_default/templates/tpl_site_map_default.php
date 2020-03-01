@@ -1,7 +1,7 @@
 <?php
 /**
  * Page Template
- *
+ * Zen Cart German Specific
  * Loaded by index.php?main_page=site_map <br />
  * Displays site-map and some hard-coded navigation components
  *

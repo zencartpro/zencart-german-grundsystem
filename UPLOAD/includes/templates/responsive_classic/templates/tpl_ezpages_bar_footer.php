@@ -5,10 +5,10 @@
  * Displays EZ-Pages footer-bar content.<br />
  *
  * @package templateSystem
- * @copyright Copyright 2003-2019 Zen Cart Development Team
+ * @copyright Copyright 2003-2020 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: tpl_ezpages_bar_footer.php 2 2016-04-06 11:33:58Z webchills $
+ * @version $Id: tpl_ezpages_bar_footer.php 3 2020-03-01 09:24:58Z webchills $
  */
 
 /**
@@ -16,7 +16,7 @@
  */
   include(DIR_WS_MODULES . zen_get_module_directory('ezpages_bar_footer.php'));
 ?>
-<?php if (sizeof($var_linksList) >= 1) { ?>
+<?php if (!empty($var_linksList)) { ?>
 <?php for ($i=1, $n=sizeof($var_linksList); $i<=$n; $i++) {  ?>
   <li><a href="<?php echo $var_linksList[$i]['link']; ?>"><?php echo $var_linksList[$i]['name']; ?></a></li>
 <?php } // end FOR loop ?>

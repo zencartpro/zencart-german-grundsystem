@@ -1,7 +1,7 @@
 <?php
 /**
  * Page Template
- *
+ * Zen Cart German Specific
  * This page is auto-displayed if the configure.php file cannot be read properly. 
  * It is intended simply to recommend clicking on the zc_install link to begin installation.
  *

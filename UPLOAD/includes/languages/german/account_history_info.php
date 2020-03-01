@@ -1,16 +1,16 @@
 <?php
 /**
  * @package languageDefines
- * @copyright Copyright 2003-2019 Zen Cart Development Team
+ * @copyright Copyright 2003-2020 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0 
- * @version $Id: account_history_info.php 628 2015-12-22 10:05:14Z webchills $
+ * @version $Id: account_history_info.php 629 2020-03-01 08:35:14Z webchills $
  */
 
 define('NAVBAR_TITLE','Mein Konto');
 define('NAVBAR_TITLE_1','Mein Konto');
 define('NAVBAR_TITLE_2','Bestellverlauf');
-define('NAVBAR_TITLE_3','Bestellung #%s');
+define('NAVBAR_TITLE_3','Bestellnummer %s');
 
 define('HEADING_TITLE','Bestellinformationen');
 
@@ -36,4 +36,3 @@ define('TABLE_HEADING_STATUS_ORDER_STATUS', 'Bestellstatus');
 define('TABLE_HEADING_STATUS_COMMENTS', 'Kommentare');
 define('QUANTITY_SUFFIX', '&nbsp;Stk.  ');
 define('ORDER_HEADING_DIVIDER', '&nbsp;-&nbsp;');
-define('TEXT_OPTION_DIVIDER', '&nbsp;-&nbsp;');

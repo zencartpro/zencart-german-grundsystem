@@ -7,7 +7,7 @@
  * @copyright Copyright 2003-2020 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: create_account.php 739 2020-01-17 14:27:16Z webchills $
+ * @version $Id: create_account.php 740 2020-02-29 21:27:16Z webchills $
  */
 // This should be first line of the script:
 $zco_notifier->notify('NOTIFY_MODULE_START_CREATE_ACCOUNT');
@@ -52,7 +52,7 @@ if (isset($_POST['action']) && ($_POST['action'] == 'process')) {
   }
 
   if (isset($_POST['email_format'])) {
-    $email_format = zen_db_prepare_input($_POST['email_format']);
+    $email_format = in_array($_POST['email_format'], array('HTML', 'TEXT', 'NONE', 'OUT'), true) ? $_POST['email_format'] : 'TEXT';
   }
 
   if (ACCOUNT_COMPANY == 'true') $company = zen_db_prepare_input($_POST['company']);

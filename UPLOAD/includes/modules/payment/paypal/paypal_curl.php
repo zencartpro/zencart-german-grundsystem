@@ -3,9 +3,9 @@
  * paypal_curl.php communications class for PayPal Express Checkout / Website Payments Pro / Payflow Pro payment methods
  *
  * @package paymentMethod
- * @copyright Copyright 2003-2019 Zen Cart Development Team
+ * @copyright Copyright 2003-2020 Zen Cart Development Team
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: paypal_curl.php 809 2019-04-14 17:59:36Z webchills $
+ * @version $Id: paypal_curl.php 810 2020-02-29 21:36:36Z webchills $
  */
 
 /**
@@ -56,7 +56,7 @@ class paypal_curl extends base {
                             CURLOPT_TIMEOUT => 45,
                             CURLOPT_CONNECTTIMEOUT => 10,
                             CURLOPT_FOLLOWLOCATION => FALSE,
-                          //CURLOPT_SSL_VERIFYPEER => FALSE, // Leave this line commented out! This should never be set to FALSE on a live site! Left here ONLY in case needed for offline dev testing
+                          //CURLOPT_SSL_VERIFYPEER => FALSE, // Leave this line commented out! This should never be set to FALSE on a live site!
                           //CURLOPT_CAINFO => '/local/path/to/cacert.pem', // for offline testing, this file can be obtained from http://curl.haxx.se/docs/caextract.html ... should never be used in production!
                             CURLOPT_FORBID_REUSE => TRUE,
                             CURLOPT_FRESH_CONNECT => TRUE,
@@ -108,9 +108,6 @@ class paypal_curl extends base {
       $this->setParam($name, $value);
     }
     $this->notify('NOTIFY_PAYPAL_CURL_CONSTRUCT', $params);
-    if ($this->_mode == 'TESTCOMMUNICATIONS') {
-      $this->testResults = $this->_request(array(), 'testCommunications');
-    }
     if (!@is_writable($this->_logDir)) $this->_logDir = DIR_FS_CATALOG . $this->_logDir;
     if (!@is_writable($this->_logDir)) $this->_logDir = DIR_FS_LOGS;
     if (!@is_writable($this->_logDir)) $this->_logDir = DIR_FS_SQL_CACHE;
@@ -474,10 +471,6 @@ class paypal_curl extends base {
 
     // do debug/logging
     if ((!in_array($operation, array('GetTransactionDetails','TransactionSearch'))) || (in_array($operation, array('GetTransactionDetails','TransactionSearch')) && !strstr($response, '&ACK=Success')) ) $this->_logTransaction($operation, $this->_getElapsed($start), $response, $errors . ($commErrNo != 0 ? "\n" . print_r($commInfo, true) : ''));
-
-    if ($operation == 'testCommunications') {
-      return ($commInfo['http_code'] == 200) ? TRUE : str_replace("\n", '', $errors);
-    }
 
     if ($response) {
       return $this->_parseNameValueList($response);

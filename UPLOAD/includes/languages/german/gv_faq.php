@@ -1,10 +1,10 @@
 <?php
 /**
  * @package languageDefines
- * @copyright Copyright 2003-2019 Zen Cart Development Team
+ * @copyright Copyright 2003-2020 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: gv_faq.php 294 2015-12-23 19:28:14Z webchills $
+ * @version $Id: gv_faq.php 295 2020-03-01 08:28:14Z webchills $
  */
 
 define('NAVBAR_TITLE', TEXT_GV_NAME . ' FAQ');
@@ -16,6 +16,9 @@ define('TEXT_INFORMATION', '<a name="Top"></a>
   <a href="'.zen_href_link(FILENAME_GV_FAQ,'faq_item=4','NONSSL').'">Einlösen von ' . TEXT_GV_NAMES . 'n</a><br />
   <a href="'.zen_href_link(FILENAME_GV_FAQ,'faq_item=5','NONSSL').'">Wenn Probleme auftreten</a><br />
 ');
+if (empty($_GET['faq_item'])) {
+  $_GET['faq_item'] == '0';
+}
 switch ($_GET['faq_item']) {
   case '1':
 define('SUB_HEADING_TITLE','Wie bestelle ich ' . TEXT_GV_NAMES);
@@ -63,7 +66,7 @@ Service, den Sie unter <a href="mailto:' . STORE_OWNER_EMAIL_ADDRESS .'">' . STO
   break;
   default:
 define('SUB_HEADING_TITLE','');
-define('SUB_HEADING_TEXT','Bitte wählen Sie Ihr Thema, zudem Sie Fragen haben.');
+define('SUB_HEADING_TEXT','Bitte wählen Sie Ihr Thema, zu dem Sie Fragen haben.');
 
   }
 

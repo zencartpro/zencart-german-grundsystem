@@ -1,7 +1,7 @@
 <?php
 /**
  * Page Template
- *
+ * Zen Cart German Specific
  * Loaded automatically by index.php?main_page=shopping_cart.<br />
  * Displays shopping-cart contents
  *

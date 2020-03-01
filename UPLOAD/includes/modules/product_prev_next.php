@@ -3,10 +3,10 @@
  *  product_prev_next.php
  *
  * @package productTypes
- * @copyright Copyright 2003-2019 Zen Cart Development Team
+ * @copyright Copyright 2003-2020 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: product_prev_next.php 730 2019-04-12 12:49:16Z webchills $
+ * @version $Id: product_prev_next.php 731 2020-02-29 21:49:16Z webchills $
  */
 if (!defined('IS_ADMIN_FLAG')) {
   die('Illegal Access');
@@ -113,27 +113,19 @@ if (PRODUCT_INFO_PREVIOUS_NEXT != 0) {
   // previous_next button and product image settings
   // include products_image status 0 = off 1= on
   // 0 = button only 1= button and product image 2= product image only
-  $previous_button = zen_image_button(BUTTON_IMAGE_PREVIOUS, BUTTON_PREVIOUS_ALT);
-  $next_item_button = zen_image_button(BUTTON_IMAGE_NEXT, BUTTON_NEXT_ALT);
-  $previous_image = zen_get_products_image($previous, PREVIOUS_NEXT_IMAGE_WIDTH, PREVIOUS_NEXT_IMAGE_HEIGHT);
-  $next_item_image = zen_get_products_image($next_item, PREVIOUS_NEXT_IMAGE_WIDTH, PREVIOUS_NEXT_IMAGE_HEIGHT);
-  if (SHOW_PREVIOUS_NEXT_STATUS == 0) {
-    $previous_image = '';
-    $next_item_image = '';
-  } else {
-    if (SHOW_PREVIOUS_NEXT_IMAGES >= 1) {
-      if (SHOW_PREVIOUS_NEXT_IMAGES == 2) {
-        $previous_button = '';
-        $next_item_button = '';
-      }
-      if ($previous == $next_item) {
-        $previous_image = '';
-        $next_item_image = '';
-      }
-    } else {
-      $previous_image = '';
-      $next_item_image = '';
-    }
+  $previous_button = '';
+  $next_item_button = '';
+  if (SHOW_PREVIOUS_NEXT_STATUS == 0 || SHOW_PREVIOUS_NEXT_IMAGES != 2) {
+    $previous_button = zen_image_button(BUTTON_IMAGE_PREVIOUS, BUTTON_PREVIOUS_ALT);
+    $next_item_button = zen_image_button(BUTTON_IMAGE_NEXT, BUTTON_NEXT_ALT);
+  }
+  $previous_image = '';
+  $next_item_image = '';
+  // identify what constitutes equality and then not that.
+  $prev_not_equal_next = !((empty($previous) && empty($next_item)) || (!empty($previous) && !empty($next_item) && $previous == $next_item));
+  if (SHOW_PREVIOUS_NEXT_STATUS != 0 && SHOW_PREVIOUS_NEXT_IMAGES >= 1 && $prev_not_equal_next) {
+    $previous_image = (!empty($previous) ? zen_get_products_image($previous, PREVIOUS_NEXT_IMAGE_WIDTH, PREVIOUS_NEXT_IMAGE_HEIGHT) : '');
+    $next_item_image = (!empty($next_item) ? zen_get_products_image($next_item, PREVIOUS_NEXT_IMAGE_WIDTH, PREVIOUS_NEXT_IMAGE_HEIGHT) : '');
   }
 }
 // eof: previous next

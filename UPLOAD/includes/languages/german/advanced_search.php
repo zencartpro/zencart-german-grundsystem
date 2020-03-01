@@ -5,7 +5,7 @@
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
  
- * @version $Id: advanced_search.php 628 2020-01-16 10:58:14Z webchills $
+ * @version $Id: advanced_search.php 629 2020-03-01 08:36:14Z webchills $
  */
 
 define('NAVBAR_TITLE_1','Erweiterte Suche');
@@ -33,10 +33,10 @@ define('TEXT_ALL_CATEGORIES','Alle Kategorien');
 define('TEXT_ALL_MANUFACTURERS','Alle Hersteller');
 
 define('TABLE_HEADING_IMAGE', '');
-define('TABLE_HEADING_MODEL','Artikelnummer');
+
 define('TABLE_HEADING_PRODUCTS','Artikelname');
 define('TABLE_HEADING_MANUFACTURER','Hersteller');
-define('TABLE_HEADING_QUANTITY','Anzahl');
+
 define('TABLE_HEADING_PRICE','Preis');
 define('TABLE_HEADING_WEIGHT','Gewicht');
 define('TABLE_HEADING_BUY_NOW','Jetzt kaufen');

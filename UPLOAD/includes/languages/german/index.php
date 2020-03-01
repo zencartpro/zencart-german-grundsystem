@@ -2,11 +2,11 @@
 /**
  * Zen Cart German Specific
  * @package languageDefines
- * @copyright Copyright 2003-2019 Zen Cart Development Team
+ * @copyright Copyright 2003-2020 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
  
- * @version $Id: index.php 627 2010-08-30 15:05:14Z webchills $
+ * @version $Id: index.php 628 2020-03-01 08:05:14Z webchills $
  */
 
 define('TEXT_MAIN','Definieren Sie hier Ihren persönlichen Text. Diesen Text können Sie in <strong>/includes/languages/german/index.php</strong> editieren.');
@@ -32,10 +32,10 @@ if ( ($category_depth == 'products') || (zen_check_url_get_terms()) ) {
   // This section deals with product-listing page contents
 define('HEADING_TITLE','Kategorien');
 define('TABLE_HEADING_IMAGE','Artikelbild');
-define('TABLE_HEADING_MODEL','Artikelnummer');
+
 define('TABLE_HEADING_PRODUCTS','Artikelname');
 define('TABLE_HEADING_MANUFACTURER','Hersteller');
-define('TABLE_HEADING_QUANTITY','Menge');
+
 define('TABLE_HEADING_PRICE','Preis');
 define('TABLE_HEADING_WEIGHT','Gewicht');
 define('TABLE_HEADING_BUY_NOW','Jetzt kaufen');

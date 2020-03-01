@@ -36,7 +36,7 @@
  * @copyright Copyright 2003-2020 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: tpl_main_page.php 734 2020-01-17 15:13:16Z webchills $
+ * @version $Id: tpl_main_page.php 735 2020-03-01 09:13:16Z webchills $
  */
 /** bof DESIGNER TESTING ONLY: */
 // $messageStack->add('header', 'this is a sample error message', 'error');
@@ -174,15 +174,6 @@ if (!isset($flag_disable_right) || !$flag_disable_right) {
 ?>
 
 </div>
-<!--bof- parse time display -->
-<?php
-  if (DISPLAY_PAGE_PARSE_TIME == 'true') {
-?>
-<div class="smallText center">Parse Time: <?php echo $parse_time; ?> - Number of Queries: <?php echo $db->queryCount(); ?> - Query Time: <?php echo $db->queryTime(); ?></div>
-<?php
-  }
-?>
-<!--eof- parse time display -->
 <!--bof- banner #6 display -->
 <?php
   if (SHOW_BANNERS_GROUP_SET6 != '' && $banner = zen_banner_exists('dynamic', SHOW_BANNERS_GROUP_SET6)) {
