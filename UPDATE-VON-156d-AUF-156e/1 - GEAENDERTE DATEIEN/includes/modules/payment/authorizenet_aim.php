@@ -6,7 +6,7 @@
  * @copyright Copyright 2003-2020 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: authorizenet_aim.php 811 2020-01-17 11:07:36Z webchills $
+ * @version $Id: authorizenet_aim.php 812 2020-02-29 21:37:36Z webchills $
  */
 /**
  * Authorize.net Payment Module (AIM version)
@@ -767,7 +767,7 @@ class authorizenet_aim extends base {
    * Used to submit a refund for a given transaction.
    */
   function _doRefund($oID, $amount = 0) {
-    global $db, $messageStack;
+    global $messageStack;
     $new_order_status = (int)MODULE_PAYMENT_AUTHORIZENET_AIM_REFUNDED_ORDER_STATUS_ID;
     if ($new_order_status == 0) $new_order_status = 1;
     $proceedToRefund = true;

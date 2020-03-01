@@ -4,7 +4,7 @@
  * @copyright Copyright 2003-2020 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: advanced_search_result.php 294 2020-01-16 15:49:16Z webchills $
+ * @version $Id: advanced_search_result.php 295 2020-03-01 08:49:16Z webchills $
  */
 
 define('NAVBAR_TITLE_1', 'Erweiterte Suche');
@@ -34,10 +34,8 @@ define('TEXT_SEARCH_HELP', 'Suchbegriffe können mit Hilfe von UND oder ODER ben
 define('TEXT_CLOSE_WINDOW', 'Fenster schließen [x]');
 
 define('TABLE_HEADING_IMAGE', 'Artikelbild');
-define('TABLE_HEADING_MODEL', 'Artikelnummer');
 define('TABLE_HEADING_PRODUCTS', 'Artikelname');
 define('TABLE_HEADING_MANUFACTURER', 'Hersteller');
-define('TABLE_HEADING_QUANTITY', 'Anzahl');
 define('TABLE_HEADING_PRICE', 'Preis');
 define('TABLE_HEADING_WEIGHT', 'Gewicht');
 define('TABLE_HEADING_BUY_NOW', 'Jetzt kaufen');

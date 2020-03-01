@@ -4,7 +4,7 @@
  * @copyright Copyright 2003-2020 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: store_manager.php 7365 2020-01-29 20:23:16Z webchills $
+ * @version $Id: store_manager.php 736 2020-01-29 20:23:16Z webchills $
  */
 
   require('includes/application_top.php');

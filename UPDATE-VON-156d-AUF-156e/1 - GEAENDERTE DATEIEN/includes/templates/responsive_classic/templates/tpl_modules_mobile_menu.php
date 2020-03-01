@@ -7,7 +7,7 @@
  * @copyright Copyright 2003-2020 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: tpl_modules_mobile_menu.php 7 2020-01-17 15:33:58Z webchills $
+ * @version $Id: tpl_modules_mobile_menu.php 8 2020-03-01 09:33:58Z webchills $
  */
 ?>
 
@@ -150,8 +150,9 @@ echo $menulist;
     </li>
 
 
-
-    <li id="menu-search"><?php require(DIR_WS_MODULES . 'sideboxes/search_header.php'); ?></li>
+    <li id="menu-search">
+      <?php require(DIR_WS_MODULES . zen_get_module_sidebox_directory('search_header.php')); ?>
+    </li>
   </ul>
 </nav>
 

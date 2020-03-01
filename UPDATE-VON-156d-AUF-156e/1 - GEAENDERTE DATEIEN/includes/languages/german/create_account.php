@@ -1,10 +1,10 @@
 <?php
 /**
  * @package languageDefines
- * @copyright Copyright 2003-2019 Zen Cart Development Team
+ * @copyright Copyright 2003-2020 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: create_account.php 629 2019-12-13 15:05:14Z webchills $
+ * @version $Id: create_account.php 630 2020-03-01 08:40:14Z webchills $
  */
 
 define('NAVBAR_TITLE', 'Neues Konto erstellen');
@@ -36,13 +36,7 @@ define('EMAIL_GV_LINK', 'Oder lösen Sie den Gutschein mithilfe des folgenden Li
 
 define('EMAIL_GV_LINK_OTHER', 'Einmal angegeben, können Sie den ' . TEXT_GV_NAME . ' verwenden. Oder machen Sie mit dem ' . TEXT_GV_NAME . ' doch anderen eine Freude und schenken Ihn an Ihre Freunde weiter!' . "\n\n");
 
-define('EMAIL_TEXT', 'Sie können ab sofort unsere umfangreichen Dienstleistungen in Anspruch nehmen, die wir für Sie bereit gestellt haben.' . "\n\n" . '
-Einige unserer Highlights:' . "\n\n" . '
-<strong>Ihr permanenter Warenkorb:' . "\n" . '</strong>Artikel, die Sie in Ihren Warenkorb gelegt haben, bleiben so lange darin erhalten,' . "\n" . 'bis Sie diese kaufen oder wieder aus dem Warenkorb entfernen.' . "\n\n" . '
-<strong>Ihr persönliches Adressbuch:</strong>' . "\n" . 'Mit Ihrem persönlichen Adressbuch können Sie Ihre Einkäufe sofort und unkompliziert an eine andere Person senden.' . "\n" . 'Optimal, um z.B. Ihren Freunden ein Geburtstagsgeschenk zu machen!' . "\n\n" . '
-<strong>Ihre persönliche Bestellhistorie:</strong>' . "\n" . 'Betrachten Sie in Ruhe Ihre gesamten Bestellvorgänge, die Sie hier in unseren Shop gemacht haben!' . "\n" . 'Ideal, um z.B. Rechnungskopien auszudrucken, oder um sich einfach einen Überblick zu verschaffen!' . "\n\n" . '
-<strong>Bewertungen:</strong>' . "\n" . 'Teilen Sie uns und anderen Kunden Ihre Erfahrungen mit unseren Dienstleistungen und Artikeln mit!' . "\n\n\n" . '
-');
+define('EMAIL_TEXT', 'Sie haben nun ein Kundenkonto bei '. STORE_NAME . ' und können unter anderem folgende Funktionen nutzen:' . "\n\n<ul>" . '<li><strong>Bestellhistorie:</strong> - Details zu Ihren Bestellungen ansehen.</li>' . "\n\n" . '<li><strong>Permanenter Warenkotb</strong> - Artikel, die Sie in Ihren Warenkorb gelegt haben, bleiben so lange darin erhalten bis sie entfernt oder bestellt werden.</li>' . "\n\n" . '<li><strong>Adressbuch</strong> - Legen Sie zusätzliche Adressen an (z.B. um ein Geschenk zu versenden).</li>' . "\n\n" . '<li><strong>Artikelbewertungen</strong> - Teilen Sie uns und anderen Kunden Ihre Erfahrungen mit unseren Artikeln mit!</li>' . "\n\n</ul>");
 define('EMAIL_CONTACT', 'Sollten Sie einmal Hilfe zu unseren Diensten und Artikeln benötigen, kontaktieren Sie uns unter: <a href="mailto:' . STORE_OWNER_EMAIL_ADDRESS . '">' . STORE_OWNER_EMAIL_ADDRESS . '</a>' . "\n\n\n" . '');
 define('EMAIL_GV_CLOSURE', 'Mit freundlichen Grüßen,' . "\n\n" . STORE_OWNER . "\nShopinhaber\n\n" . '<a href="' . HTTP_SERVER . DIR_WS_CATALOG . '">' . HTTP_SERVER . DIR_WS_CATALOG . "</a>\n\n");
 

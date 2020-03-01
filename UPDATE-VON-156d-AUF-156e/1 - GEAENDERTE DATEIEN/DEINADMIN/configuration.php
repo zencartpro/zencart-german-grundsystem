@@ -5,7 +5,7 @@
  * @copyright Copyright 2003-2020 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: configuration.php 794 2020-01-17 19:13:51Z webchills $
+ * @version $Id: configuration.php 795 2020-03-01 21:44:51Z webchills $
  */
 function getConfigLanguage($cKey){
      global $db;
@@ -182,7 +182,8 @@ if ($gID == 7) {
               <td class="dataTableContent"><?php 
                    $setting = htmlspecialchars($cfgValue, ENT_COMPAT, CHARSET, TRUE); 
                    if (strlen($setting) > 40) { 
-                      echo substr($setting,0, 35) . "..."; 
+
+                      echo htmlspecialchars(substr($cfgValue,0,35), ENT_COMPAT, CHARSET, TRUE) . "..."; 
                    } else { 
                       echo $setting; 
                    }
