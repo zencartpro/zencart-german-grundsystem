@@ -4,7 +4,7 @@
 * @copyright Copyright 2003-2020 Zen Cart Development Team
 * @copyright Portions Copyright 2003 osCommerce
 * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
-* @version $Id: init_156e_update.php 2020-02-05 20:23:51Z webchills $
+* @version $Id: init_156e_update.php 2020-03-02 15:35:51Z webchills $
 */
 
 if (!defined('IS_ADMIN_FLAG')) {
@@ -58,6 +58,9 @@ if(!$result->RecordCount())
 $sql = "ALTER TABLE ".TABLE_ORDERS_STATUS." ADD sort_order int(11) NOT NULL default '0'";
 $db->Execute($sql);
 }
+//add another index to orders_total to speed up the admin orders listing page
+$sql = "ALTER TABLE ".TABLE_ORDERS_STATUS." ADD INDEX idx_oid_class_zen (orders_id, class)";
+$db->Execute($sql);
 $messageStack->add('Tabelle orders_status erfolgreich aktualisiert', 'success');
 
 // -----

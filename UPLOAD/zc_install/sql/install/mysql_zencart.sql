@@ -6,7 +6,7 @@
 # * @copyright Copyright 2003-2020 Zen Cart Development Team
 # * @copyright Portions Copyright 2003 osCommerce
 # * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
-# * @version $Id: mysql_zencart.sql 19524 2020-02-05 20:20:16Z webchills $
+# * @version $Id: mysql_zencart.sql 19525 2020-03-02 15:35:16Z webchills $
 #
 
 ############ IMPORTANT INSTRUCTIONS ###############
@@ -1308,7 +1308,8 @@ CREATE TABLE orders_total (
   sort_order int(11) NOT NULL default '0',
   PRIMARY KEY  (orders_total_id),
   KEY idx_ot_orders_id_zen (orders_id),
-  KEY idx_ot_class_zen (class)
+  KEY idx_ot_class_zen (class),
+  KEY idx_oid_class_zen (orders_id, class)
 ) ENGINE=MyISAM;
 
 # --------------------------------------------------------
