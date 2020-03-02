@@ -1,0 +1,1 @@
+update_zone(document.createAccountForm); document.loginForm.email_address.focus();

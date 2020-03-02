@@ -1,5 +1,5 @@
 ﻿Willkommen bei der deutschen Zen-Cart Version
-Version 1.5.6e vom xx.02.2020
+Version 1.5.6e vom xx.03.2020
 
 Installationsanleitung in der umfangreichen Onlinedokumentation auf:
 https://www.zen-cart-pro.at/documentation.html

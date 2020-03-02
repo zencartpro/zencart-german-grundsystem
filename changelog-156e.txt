@@ -3,7 +3,7 @@ Changelog Zen Cart 1.5.6e deutsch gegenüber 1.5.6d deutsch
 
 -----------------------------------------------------------------------------------------
 
-Neue Dateien in 1.5.6e (10)
+Neue Dateien in 1.5.6e (12)
 
 -----------------------------------------------------------------------------------------
 
@@ -12,6 +12,8 @@ admin\includes\css\login.css
 admin\includes\javascript\jquery-3.4.1.min.js
 admin\includes\languages\english\configuration_validation.php
 admin\includes\languages\german\configuration_validation.php
+admin\includes\application_bootstrap.php
+includes\classes\observers\auto.non_captcha_observer.php
 includes\extra_configures\patch_clean_ampersands.php
 includes\functions\database.php
 includes\functions\functions_general_shared.php
@@ -21,17 +23,18 @@ includes\templates\template_default\templates\tpl_zc_phpupgrade_default.php
 
 ----------------------------------------------------------------------------------------
 
-Geänderte Dateien in 1.5.6e (406)
+Geänderte Dateien in 1.5.6e (491)
 
 ----------------------------------------------------------------------------------------
 
-admin\.htaccess
 admin\includes\auto_loaders\config.core.php
+admin\includes\auto_loaders\currency_cron.core.php
 admin\includes\classes\AdminNotifications.php
 admin\includes\classes\AdminRequestSanitizer.php
 admin\includes\classes\class.admin.zcObserverLogEventListener.php
 admin\includes\classes\message_stack.php
 admin\includes\classes\sales_report.php
+admin\includes\classes\split_page_results_new.php
 admin\includes\functions\admin_access.php
 admin\includes\functions\configuration_checks.php
 admin\includes\functions\general.php
@@ -47,11 +50,12 @@ admin\includes\init_includes\init_general_funcs.php
 admin\includes\init_includes\init_languages.php
 admin\includes\init_includes\init_sanitize.php
 admin\includes\init_includes\init_templates.php
-admin\includes\javascript\sales_report.js.php
+admin\includes\languages\english\extra_definitions\editors_list.php
 admin\includes\languages\english\extra_definitions\stats_sales_report_graphs.php
 admin\includes\languages\english\attributes_controller.php
 admin\includes\languages\english\banner_manager.php
 admin\includes\languages\english\categories.php
+admin\includes\languages\english\category_product_listing.php
 admin\includes\languages\english\downloads_manager.php
 admin\includes\languages\english\email_extras.php
 admin\includes\languages\english\featured.php
@@ -70,12 +74,13 @@ admin\includes\languages\english\products_to_categories.php
 admin\includes\languages\english\reviews.php
 admin\includes\languages\english\specials.php
 admin\includes\languages\english\stats_products_purchased.php
-admin\includes\languages\english\stats_sales_report.php
 admin\includes\languages\english\users.php
 admin\includes\languages\german\extra_definitions\stats_sales_report_graphs.php
+admin\includes\languages\german\admin_activity.php
 admin\includes\languages\german\attributes_controller.php
 admin\includes\languages\german\banner_manager.php
 admin\includes\languages\german\categories.php
+admin\includes\languages\german\category_product_listing.php
 admin\includes\languages\german\index.php
 admin\includes\languages\german\invoice.php
 admin\includes\languages\german\modules.php
@@ -91,7 +96,6 @@ admin\includes\languages\german\products_to_categories.php
 admin\includes\languages\german\reviews.php
 admin\includes\languages\german\specials.php
 admin\includes\languages\german\stats_products_purchased.php
-admin\includes\languages\german\stats_sales_report.php
 admin\includes\languages\german\users.php
 admin\includes\languages\english.php
 admin\includes\languages\german.php
@@ -119,18 +123,21 @@ admin\includes\modules\products_previous_next_display.php
 admin\includes\modules\update_product.php
 admin\includes\modules\update_product_meta_tags.php
 admin\includes\application_bottom.php
+admin\includes\application_top.php
 admin\includes\banner_tools.css
 admin\includes\ckeditor.php
-admin\includes\footer.php
 admin\includes\header_navigation.php
 admin\includes\javascript_loader.php
 admin\includes\stylesheet.css
 admin\includes\tinymce.php
+admin\.htaccess
 admin\admin_account.php
+admin\attributes_controller.php
 admin\banner_manager.php
 admin\categories.php
 admin\category_product_listing.php
 admin\configuration.php
+admin\countries.php
 admin\coupon_admin.php
 admin\coupon_admin_export.php
 admin\currencies.php
@@ -164,12 +171,15 @@ admin\products_price_manager.php
 admin\products_to_categories.php
 admin\record_artists.php
 admin\reviews.php
+admin\rl_invoice3_ajax.php
 admin\salemaker.php
 admin\server_info.php
+admin\specials.php
 admin\sqlpatch.php
 admin\stats_customers.php
 admin\stats_products_purchased.php
 admin\stats_products_viewed.php
+admin\stats_sales_report.php
 admin\stats_sales_report_graphs.php
 admin\store_manager.php
 admin\tax_classes.php
@@ -235,6 +245,10 @@ editors\tiny_mce\skins\ui\oxide-dark\skin.min.css
 editors\tiny_mce\themes\mobile\theme.min.js
 editors\tiny_mce\themes\silver\theme.min.js
 editors\tiny_mce\tinymce.min.js
+includes\auto_loaders\config.core.php
+includes\auto_loaders\paypal_ipn.core.php
+includes\classes\ajax\zcAjaxPayment.php
+includes\classes\db\mysql\define_queries.php
 includes\classes\db\mysql\query_factory.php
 includes\classes\observers\auto.downloads_via_redirect.php
 includes\classes\vendors\PHPMailer\language\phpmailer.lang-nl.php
@@ -255,8 +269,7 @@ includes\classes\payment.php
 includes\classes\shipping.php
 includes\classes\shopping_cart.php
 includes\classes\upload.php
-includes\classes\db\mysql\define_queries.php
-includes\classes\db\mysql\query_factory.php
+includes\extra_configures\enable_error_logging.php
 includes\functions\audience.php
 includes\functions\banner.php
 includes\functions\functions_categories.php
@@ -276,13 +289,57 @@ includes\init_includes\init_db_config_read.php
 includes\init_includes\init_general_funcs.php
 includes\init_includes\init_header.php
 includes\init_includes\init_languages.php
+includes\languages\english\modules\order_total\ot_coupon.php
+includes\languages\english\modules\order_total\ot_gv.php
+includes\languages\english\modules\payment\paypalwpp.php
+includes\languages\english\responsive_classic\index.php
+includes\languages\english\account.php
+includes\languages\english\account_history_info.php
+includes\languages\english\advanced_search.php
+includes\languages\english\advanced_search_result.php
+includes\languages\english\checkout_success.php
+includes\languages\english\contact_us.php
+includes\languages\english\create_account.php
+includes\languages\english\document_general_info.php
+includes\languages\english\document_product_info.php
+includes\languages\english\featured_products.php
+includes\languages\english\gv_faq.php
+includes\languages\english\index.php
+includes\languages\english\product_free_shipping_info.php
+includes\languages\english\product_info.php
+includes\languages\english\product_music_info.php
+includes\languages\english\products_all.php
+includes\languages\english\products_new.php
+includes\languages\english\shopping_cart.php
+includes\languages\english\unsubscribe.php
+includes\languages\german\modules\order_total\ot_coupon.php
+includes\languages\german\modules\order_total\ot_gv.php
+includes\languages\german\modules\payment\paypalwpp.php
+includes\languages\german\modules\payment\sofort_su.php
+includes\languages\german\responsive_classic\index.php
+includes\languages\german\account.php
+includes\languages\german\account_history_info.php
 includes\languages\german\advanced_search.php
 includes\languages\german\advanced_search_result.php
+includes\languages\german\checkout_success.php
 includes\languages\german\contact_us.php
 includes\languages\german\create_account.php
+includes\languages\german\credit_cards.php
+includes\languages\german\document_general_info.php
+includes\languages\german\document_product_info.php
+includes\languages\german\featured_products.php
+includes\languages\german\gv_faq.php
 includes\languages\german\gv_send.php
+includes\languages\german\index.php
+includes\languages\german\product_free_shipping_info.php
+includes\languages\german\product_info.php
+includes\languages\german\product_music_info.php
+includes\languages\german\products_all.php
+includes\languages\german\products_new.php
+includes\languages\german\shopping_cart.php
+includes\languages\german\zahlungsarten.php
+includes\languages\english.php
 includes\languages\german.php
-includes\languages\german\modules\paypalwpp.php
 includes\modules\order_total\ot_coupon.php
 includes\modules\order_total\ot_gv.php
 includes\modules\pages\account\header_php.php
@@ -295,6 +352,7 @@ includes\modules\pages\account_history_info\jscript_main.php
 includes\modules\pages\account_newsletters\jscript_main.php
 includes\modules\pages\account_password\jscript_form_check.php
 includes\modules\pages\address_book\jscript_main.php
+includes\modules\pages\address_book_process\header_php.php
 includes\modules\pages\address_book_process\jscript_addr_pulldowns.php
 includes\modules\pages\address_book_process\jscript_main.php
 includes\modules\pages\advanced_search\jscript_main.php
@@ -309,12 +367,17 @@ includes\modules\pages\create_account\jscript_addr_pulldowns.php
 includes\modules\pages\create_account\jscript_form_check.php
 includes\modules\pages\document_general_info\header_php.php
 includes\modules\pages\document_general_info\jscript_main.php
+includes\modules\pages\document_general_info\main_template_vars.php
+includes\modules\pages\document_product_info\header_php.php
+includes\modules\pages\document_product_info\jscript_main.php
+includes\modules\pages\document_product_info\main_template_vars.php
 includes\modules\pages\gv_faq\header_php.php
 includes\modules\pages\gv_redeem\header_php.php
 includes\modules\pages\gv_send\header_php.php
 includes\modules\pages\login\jscript_addr_pulldowns.php
 includes\modules\pages\login\jscript_form_check.php
 includes\modules\pages\login\jscript_main.php
+includes\modules\pages\login\on_load_main.js
 includes\modules\pages\page\header_php.php
 includes\modules\pages\password_forgotten\header_php.php
 includes\modules\pages\payer_auth_auth\header_php.php
@@ -324,21 +387,26 @@ includes\modules\pages\popup_coupon_help\jscript_main.php
 includes\modules\pages\popup_cvv_help\jscript_main.php
 includes\modules\pages\popup_image\header_php.php
 includes\modules\pages\popup_image\jscript_main.php
+includes\modules\pages\popup_image_additional\header_php.php
 includes\modules\pages\popup_image_additional\jscript_main.php
 includes\modules\pages\popup_search_help\jscript_main.php
 includes\modules\pages\popup_shipping_estimator\jscript_addr_pulldowns.php
 includes\modules\pages\product_free_shipping_info\header_php.php
 includes\modules\pages\product_free_shipping_info\jscript_main.php
+includes\modules\pages\product_free_shipping_info\main_template_vars.php
 includes\modules\pages\product_info\header_php.php
 includes\modules\pages\product_info\jscript_main.php
+includes\modules\pages\product_info\main_template_vars.php
 includes\modules\pages\product_music_info\header_php.php
 includes\modules\pages\product_music_info\jscript_main.php
+includes\modules\pages\product_music_info\main_template_vars.php
 includes\modules\pages\product_reviews\jscript_main.php
 includes\modules\pages\product_reviews_info\jscript_main.php
 includes\modules\pages\product_reviews_write\header_php.php
 includes\modules\pages\product_reviews_write\jscript_main.php
 includes\modules\pages\shopping_cart\header_php.php
 includes\modules\pages\shopping_cart\jscript_main.php
+includes\modules\payment\paypal\paypal_curl.php
 includes\modules\payment\paypal\paypal_functions.php
 includes\modules\payment\paypal\paypalwpp_admin_notification.php
 includes\modules\payment\paypal\tpl_ec_button.php
@@ -356,23 +424,37 @@ includes\modules\sideboxes\order_history.php
 includes\modules\sideboxes\whos_online.php
 includes\modules\additional_images.php
 includes\modules\also_purchased_products.php
+includes\modules\attributes.php
 includes\modules\checkout_new_address.php
 includes\modules\checkout_process.php
+includes\modules\column_left.php
+includes\modules\column_right.php
+includes\modules\column_single.php
 includes\modules\create_account.php
 includes\modules\ezpages_bar_footer.php
 includes\modules\ezpages_bar_header.php
+includes\modules\footer.php
 includes\modules\meta_tags.php
 includes\modules\product_listing_alpha_sorter.php
+includes\modules\product_prev_next.php
 includes\modules\products_quantity_discounts.php
+includes\modules\require_languages.php
 includes\modules\shipping_estimator.php
 includes\templates\classic\google_analytics\google_analytics.php
+includes\templates\classic\jscript\jscript_framework.php
+includes\templates\classic\template_info.php
 includes\templates\responsive_classic\common\html_header.php
 includes\templates\responsive_classic\common\tpl_main_page.php
 includes\templates\responsive_classic\css\stylesheet_colors.css
 includes\templates\responsive_classic\google_analytics\google_analytics.php
 includes\templates\responsive_classic\jscript\jscript_responsive_framework.php
+includes\templates\responsive_classic\templates\tpl_ajax_checkout_confirmation_default.php
+includes\templates\responsive_classic\templates\tpl_checkout_payment_address_default.php
+includes\templates\responsive_classic\templates\tpl_checkout_shipping_address_default.php
 includes\templates\responsive_classic\templates\tpl_document_general_info_display.php
 includes\templates\responsive_classic\templates\tpl_document_product_info_display.php
+includes\templates\responsive_classic\templates\tpl_ezpages_bar_footer.php
+includes\templates\responsive_classic\templates\tpl_ezpages_bar_header.php
 includes\templates\responsive_classic\templates\tpl_modules_mobile_menu.php
 includes\templates\responsive_classic\templates\tpl_modules_products_all_listing.php
 includes\templates\responsive_classic\templates\tpl_modules_products_featured_listing.php
@@ -380,14 +462,19 @@ includes\templates\responsive_classic\templates\tpl_modules_products_new_listing
 includes\templates\responsive_classic\templates\tpl_product_free_shipping_info_display.php
 includes\templates\responsive_classic\templates\tpl_product_info_display.php
 includes\templates\responsive_classic\templates\tpl_product_music_info_display.php
+includes\templates\responsive_classic\templates\tpl_product_reviews_default.php
 includes\templates\responsive_classic\templates\tpl_product_reviews_write_default.php
+includes\templates\responsive_classic\templates\tpl_reviews_default.php
 includes\templates\template_default\common\main_template_vars.php
+includes\templates\template_default\common\tpl_header.php
 includes\templates\template_default\common\tpl_main_page.php
 includes\templates\template_default\google_analytics\google_analytics.php
 includes\templates\template_default\jscript\jquery.min.js
 includes\templates\template_default\jscript\jscript_framework.php
 includes\templates\template_default\sideboxes\tpl_shopping_cart.php
 includes\templates\template_default\templates\tpl_account_history_info_default.php
+includes\templates\template_default\templates\tpl_checkout_payment_address_default.php
+includes\templates\template_default\templates\tpl_checkout_shipping_address_default.php
 includes\templates\template_default\templates\tpl_checkout_shipping_default.php
 includes\templates\template_default\templates\tpl_checkout_success_default.php
 includes\templates\template_default\templates\tpl_contact_us_default.php
@@ -397,16 +484,15 @@ includes\templates\template_default\templates\tpl_discount_coupon_default.php
 includes\templates\template_default\templates\tpl_gv_faq_default.php
 includes\templates\template_default\templates\tpl_gv_send_default.php
 includes\templates\template_default\templates\tpl_login_default.php
-includes\templates\template_default\templates\tpl_modules_address_book_details.php
 includes\templates\template_default\templates\tpl_modules_attributes.php
-includes\templates\template_default\templates\tpl_modules_checkout_new_address.php
 includes\templates\template_default\templates\tpl_modules_create_account.php
 includes\templates\template_default\templates\tpl_modules_products_all_listing.php
 includes\templates\template_default\templates\tpl_modules_products_featured_listing.php
 includes\templates\template_default\templates\tpl_modules_products_new_listing.php
 includes\templates\template_default\templates\tpl_modules_shipping_estimator.php
-includes\templates\template_default\templates\tpl_product_info_display.php
+includes\templates\template_default\templates\tpl_product_reviews_default.php
 includes\templates\template_default\templates\tpl_product_reviews_write_default.php
+includes\templates\template_default\templates\tpl_reviews_default.php
 includes\templates\template_default\templates\tpl_site_map_default.php
 includes\templates\template_default\templates\tpl_unsubscribe_default.php
 includes\application_top.php
@@ -430,19 +516,23 @@ zc_install\sql\install\mysql_zencart.sql
 zc_install\sql\updates\mysql_upgrade_zencart_153.sql
 zc_install\sql\updates\mysql_upgrade_zencart_155.sql
 zc_install\sql\updates\mysql_upgrade_zencart_156.sql
+install.txt
 ipn_main_handler.php
 
 
 
 ----------------------------------------------------------------------------------------
 
-Nicht mehr enthaltene Dateien in 1.5.6e (5)
+Nicht mehr enthaltene Dateien in 1.5.6e (8)
 Diese Dateien müssen gelöscht werden
 
 ----------------------------------------------------------------------------------------
 
-DEINADMIN\includes\classes\logger.php
-DEINADMIN\includes\functions\database.php
-DEINADMIN\includes\javascript\jquery-1.12.4.min.js
-DEINADMIN\includes\javascript\jquery-3.4.0.min.js
-DEINADMIN\includes\alt-stylesheet.css
+admin\includes\auto_loaders\config.adminSanitize.php
+admin\includes\classes\logger.php
+admin\includes\functions\database.php
+admin\includes\javascript\jquery-1.12.4.min.js
+admin\includes\javascript\jquery-3.4.0.min.js
+admin\includes\alt-stylesheet.css
+includes\templates\responsive_classic\templates\tpl_account_history_default.php
+includes\templates\responsive_classic\templates\tpl_login_default.php
