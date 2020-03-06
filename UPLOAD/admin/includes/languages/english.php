@@ -5,7 +5,7 @@
  * @copyright Copyright 2003-2020 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: english.php 890 2020-01-17 18:55:32Z webchills $
+ * @version $Id: english.php 891 2020-03-06 08:48:32Z webchills $
  */
 if (!defined('IS_ADMIN_FLAG'))
 {
@@ -54,7 +54,7 @@ function zen_date_raw($date, $reverse = false) {
 //   require(DIR_FS_CATALOG_LANGUAGES . $_SESSION['language'] . '/' . $template_dir_select . 'meta_tags.php');
 
 // used for prefix to browser tabs in admin pages
-define('TEXT_ADMIN_TAB_PREFIX', 'Admin ');
+define('TEXT_ADMIN_TAB_PREFIX', 'Admin');
 // if you have multiple stores and want the Store Name to be part of the admin title (ie: for browser tabs), swap this line with the one above
 //define('TEXT_ADMIN_TAB_PREFIX', 'Admin ' . STORE_NAME);
 
@@ -71,7 +71,7 @@ define('HTML_PARAMS','dir="ltr" lang="en"');
 define('CHARSET', 'utf-8');
 
 // header text in includes/header.php
-define('HEADER_TITLE_TOP', 'Admin Home');
+define('HEADER_TITLE_TOP', 'Home');
 define('HEADER_TITLE_SUPPORT_SITE', 'Support');
 define('HEADER_TITLE_ONLINE_CATALOG', 'Storefront');
 define('HEADER_TITLE_VERSION', 'Version');
@@ -81,12 +81,9 @@ define('HEADER_TITLE_LOGOFF', 'Logoff');
 
 // TEXT_GV_NAME, TEXT_GV_NAMES moved to gv_name.php
 if (!defined('TEXT_GV_NAME')) {
-  require DIR_WS_LANGUAGES . $_SESSION['language'] . '/' . 'gv_name.php'; 
+  require DIR_WS_LANGUAGES . $_SESSION['language'] . '/' . 'gv_name.php';
 }
   define('TEXT_DISCOUNT_COUPON', 'Discount Coupon');
-
-// used for redeem code, redemption code, or redemption id
-  define('TEXT_GV_REDEEM','Redemption Code');
 
 // text for gender
 define('MALE', 'Male');
@@ -585,7 +582,6 @@ define('NOT_INSTALLED_TEXT','Not Installed');
   define('TEXT_CATEGORIES_STATUS_INFO_OFF', '<span class="alert">*Category is Disabled</span>');
   define('TEXT_PRODUCTS_STATUS_INFO_OFF', '<span class="alert">*Product is Disabled</span>');
 
-
 // Version Check notices
   define('TEXT_VERSION_CHECK_NEW_VER','<span class="alertVersionNew">New Version Available:</span> v');
   define('TEXT_VERSION_CHECK_NEW_PATCH','<span class="alertVersionNew">New PATCH Available:</span> v');
@@ -657,6 +653,7 @@ define('PRODUCTS_QUANTITY_MAX_TEXT_LISTING', 'Max:');
   define('PRODUCT_PRICE_DISCOUNT_AMOUNT','&nbsp;off');
 // Sale Maker Sale Price
   define('PRODUCT_PRICE_SALE','Sale:&nbsp;');
+
 define('TEXT_PRICED_BY_ATTRIBUTES', 'Priced by Attributes');
 
 // Rich Text / HTML resources
@@ -671,7 +668,7 @@ define('ENTRY_EMAIL_TEXT_DISPLAY','TEXT-Only');
 define('ENTRY_EMAIL_NONE_DISPLAY','Never');
 define('ENTRY_EMAIL_OPTOUT_DISPLAY','Opted Out of Newsletters');
 define('ENTRY_NOTHING_TO_SEND','You haven\'t entered any content for your message');
- define('EMAIL_SEND_FAILED','ERROR: Failed sending email to: "%s" <%s> with subject: "%s"');
+define('EMAIL_SEND_FAILED','ERROR: Failed sending email to: "%s" <%s> with subject: "%s"');
 define('EMAIL_SALUTATION', 'Dear');
 
   define('EDITOR_NONE', 'Plain Text');
@@ -715,7 +712,6 @@ define('EMAIL_SALUTATION', 'Dear');
   define('TEXT_INFO_OPTION_NAMES_VALUES_COPIER_STATUS', 'All Global Copy, Add and Delete Features Status is currently OFF');
   define('TEXT_SHOW_OPTION_NAMES_VALUES_COPIER_ON', 'Display Global Features - ON');
   define('TEXT_SHOW_OPTION_NAMES_VALUES_COPIER_OFF', 'Display Global Features - OFF');
-
 // moved from categories and all product type language files
   define('ERROR_CANNOT_LINK_TO_SAME_CATEGORY', 'Error: a linked product cannot be created in the same category.');
   define('ERROR_CATALOG_IMAGE_DIRECTORY_NOT_WRITEABLE', 'Error: Catalog images directory is not writeable: ' . DIR_FS_CATALOG_IMAGES);
@@ -757,6 +753,7 @@ define('EMAIL_SALUTATION', 'Dear');
   define('TEXT_ERROR_ATTEMPTED_ADMIN_LOGIN_WITHOUT_USERNAME', 'Attempted login without username.');
   define('TEXT_ERROR_INCORRECT_PASSWORD_DURING_RESET_FOR_USER', 'Incorrect password while attempting a password reset for: ');
 
+
   define('CATEGORY_HAS_SUBCATEGORIES', 'NOTE: Category has SubCategories<br />Products cannot be added');
 
   define('WARNING_WELCOME_DISCOUNT_COUPON_EXPIRES_IN', 'WARNING! Welcome Email Discount Coupon expires in %s days');
@@ -781,6 +778,9 @@ define('ERROR_DATABASE_MAINTENANCE_NEEDED', '<a href="http://www.zen-cart.com/co
 define('TEXT_INFO_CURRENCY_UPDATED', 'The exchange rate for %s (%s) was updated successfully to %s via %s.');
 define('ERROR_CURRENCY_INVALID', 'Error: The exchange rate for %s (%s) was not updated via %s. Is it a valid currency code?');
 define('WARNING_PRIMARY_SERVER_FAILED', 'Warning: The primary exchange rate server (%s) failed for %s (%s) - trying the secondary exchange rate server.');
+
+// Set to empty string if alpha sorting not desired
+define('MENU_CATEGORIES_TO_SORT_BY_NAME','reports,tools'); 
 
 ///////////////////////////////////////////////////////////
 // include additional files:

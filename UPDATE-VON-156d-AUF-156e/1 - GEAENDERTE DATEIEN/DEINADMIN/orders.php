@@ -5,7 +5,7 @@
  * @copyright Copyright 2003-2020 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: orders.php 2020-01-19 08:53:51Z webchills $
+ * @version $Id: orders.php 2020-03-06 08:43:51Z webchills $
  */
 require('includes/application_top.php');
 
@@ -841,6 +841,7 @@ if (zen_not_null($action) && $order_exists == true) {
           $extra_data = false;
           $zco_notifier->notify('NOTIFY_ADMIN_ORDERS_STATUS_HISTORY_EXTRA_COLUMN_DATA', $orders_history->fields, $extra_data);
           if (is_array($extra_data)) {
+              $first = true; 
               foreach ($extra_data as $data_info) {
                   $align = (isset($data_info['align'])) ? (' text-' . $data_info['align']) : '';
         ?>
@@ -849,7 +850,16 @@ if (zen_not_null($action) && $order_exists == true) {
               }
           }
 ?>
-                    <td><?php echo nl2br(zen_db_output($item['comments'])); ?></td>
+                    <td>
+<?php 
+                        if ($first) { 
+                           echo nl2br(zen_db_output($item['comments'])); 
+                           $first = false; 
+                        } else {
+                           echo nl2br($item['comments']); 
+                        }
+?>
+                    </td>
                     <td class="text-center"><?php echo (!empty($item['updated_by'])) ? $item['updated_by'] : '&nbsp;'; ?></td>
                   </tr>
                   <?php
@@ -1049,7 +1059,7 @@ if (zen_not_null($action) && $order_exists == true) {
                   <td class="dataTableHeadingContent text-center"><?php echo TABLE_HEADING_DATE_PURCHASED; ?></td>
                   <td class="dataTableHeadingContent text-right"><?php echo TABLE_HEADING_STATUS; ?></td>
                   <td class="dataTableHeadingContent text-center"><?php echo TABLE_HEADING_CUSTOMER_COMMENTS; ?></td>
-		  <td class="dataTableHeadingContent text-center">Device</td>
+		          <td class="dataTableHeadingContent text-center">Device</td>
 <?php
   // -----
   // A watching observer can provide an associative array in the form:
@@ -1075,7 +1085,6 @@ if (zen_not_null($action) && $order_exists == true) {
       }
   }
 ?>
-                  
                   <td class="dataTableHeadingContent noprint text-right"><?php echo TABLE_HEADING_ACTION; ?></td>
                 </tr>
               </thead>

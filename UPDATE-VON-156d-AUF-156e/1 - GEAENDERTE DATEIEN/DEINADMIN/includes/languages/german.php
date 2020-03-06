@@ -5,7 +5,7 @@
  * @copyright Copyright 2003-2020 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: german.php 668 2020-01-19 20:21:04Z webchills $
+ * @version $Id: german.php 669 2020-03-06 08:49:04Z webchills $
  */
 if (!defined('IS_ADMIN_FLAG'))
 {
@@ -59,7 +59,7 @@ function zen_date_raw($date, $reverse = false){
 //   require(DIR_FS_CATALOG_LANGUAGES . $_SESSION['language'] . '/' . $template_dir_select . 'meta_tags.php');
 
 // used for prefix to browser tabs in admin pages
-define('TEXT_ADMIN_TAB_PREFIX', 'Admin ');
+define('TEXT_ADMIN_TAB_PREFIX', 'Admin');
 // if you have multiple stores and want the Store Name to be part of the admin title (ie: for browser tabs), swap this line with the one above
 //define('TEXT_ADMIN_TAB_PREFIX', 'Admin ' . STORE_NAME);
 // meta tags
@@ -75,7 +75,7 @@ define('HTML_PARAMS', 'dir="ltr" lang="de"');
 define('CHARSET', 'utf-8');
 
 // header text in includes/header.php
-define('HEADER_TITLE_TOP', 'Admin Startseite');
+define('HEADER_TITLE_TOP', 'Startseite');
 define('HEADER_TITLE_SUPPORT_SITE', 'Supportforum');
 define('HEADER_TITLE_ONLINE_CATALOG', 'Shop Startseite');
 define('HEADER_TITLE_VERSION', 'Version');
@@ -83,13 +83,11 @@ define('HEADER_TITLE_ACCOUNT', 'Account');
 define('HEADER_TITLE_LOGOFF', 'Abmelden');
 //define('HEADER_TITLE_ADMINISTRATION', 'Administration');
 
-// Define the name of your Gift Certificate as Gift Voucher, Gift Certificate, Zen Cart Dollars, etc. here for use through out the shop
-define('TEXT_GV_NAME', 'Gutschein');
-define('TEXT_GV_NAMES', 'Gutscheine');
-define('TEXT_DISCOUNT_COUPON', 'Aktionskupon');
-
-// used for redeem code, redemption code, or redemption id
-define('TEXT_GV_REDEEM', 'Gutscheinnummer');
+// TEXT_GV_NAME, TEXT_GV_NAMES moved to gv_name.php
+if (!defined('TEXT_GV_NAME')) {
+  require DIR_WS_LANGUAGES . $_SESSION['language'] . '/' . 'gv_name.php';
+}
+  define('TEXT_DISCOUNT_COUPON', 'Aktionskupon');
 
 // text for gender
 define('MALE', 'Herr');
@@ -543,7 +541,6 @@ define('TABLE_HEADING_MODEL', 'Artikelnummer');
 define('BOX_TOOLS_LAYOUT_CONTROLLER', 'Boxlayout');
 
 // check GV release queue and alert store owner
-
 define('TEXT_SHOW_GV_QUEUE', '%s wartet auf Freigabe');
 define('IMAGE_GIFT_QUEUE', TEXT_GV_NAME . ' Warteschleife');
 define('IMAGE_ORDER', 'Bestellung');
@@ -777,6 +774,8 @@ define('ERROR_DATABASE_MAINTENANCE_NEEDED', '<a href="http://www.zen-cart-pro.at
 define('TEXT_INFO_CURRENCY_UPDATED', 'Der Wechselkurs für %s (%s) wurde erfolgreich auf %s aktualisiert via  %s.');
 define('ERROR_CURRENCY_INVALID', 'Fehler: Der Wechselkurs für %s (%s) wurde nicht aktualisiert via %s. Ist der Währungscode wirklich korrekt?');
 define('WARNING_PRIMARY_SERVER_FAILED', 'Warnung: Der primäre Wechselkursserver (%s) ist für %s (%s) fehlgeschlagen - versuche sekundären Wechselkursserver.');
+// Set to empty string if alpha sorting not desired
+define('MENU_CATEGORIES_TO_SORT_BY_NAME','reports,tools'); 
 ///////////////////////////////////////////////////////////
 // include additional files:
   require(DIR_WS_LANGUAGES . $_SESSION['language'] . "/" . FILENAME_EMAIL_EXTRAS);

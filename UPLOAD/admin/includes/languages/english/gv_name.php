@@ -3,4 +3,4 @@
 define('TEXT_GV_NAME','Gift Certificate');
 define('TEXT_GV_NAMES','Gift Certificates');
 // used for redeem code, redemption code, or redemption id
-  define('TEXT_GV_REDEEM','Redemption Code');
+define('TEXT_GV_REDEEM','Redemption Code');

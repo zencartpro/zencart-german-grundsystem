@@ -10,7 +10,7 @@
  * @copyright Copyright 2003-2020 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: tpl_account_history_info_default.php 2020-01-17 15:22:05Z webchills $
+ * @version $Id: tpl_account_history_info_default.php 2020-03-06 08:45:05Z webchills $
  */
 ?>
 <div class="centerColumn" id="accountHistInfo">
@@ -107,12 +107,24 @@ if (sizeof($statusArray)) {
         <th scope="col" id="myAccountStatusComments"><?php echo TABLE_HEADING_STATUS_COMMENTS; ?></th>
        </tr>
 <?php
+  $first = true; 
   foreach ($statusArray as $statuses) {
 ?>
     <tr>
         <td><?php echo zen_date_short($statuses['date_added']); ?></td>
         <td><?php echo $statuses['orders_status_name']; ?></td>
-        <td><?php echo (empty($statuses['comments']) ? '&nbsp;' : nl2br(zen_output_string_protected($statuses['comments']))); ?></td>
+        <td>
+<?php 
+    if (!empty($statuses['comments'])) {
+      if ($first) { 
+         echo nl2br(zen_output_string_protected($statuses['comments']));
+         $first = false; 
+      } else {
+         echo nl2br(zen_output_string($statuses['comments']));
+      }
+    }
+?>
+       </td> 
      </tr>
 <?php
   }
