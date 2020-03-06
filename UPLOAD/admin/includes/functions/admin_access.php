@@ -5,7 +5,7 @@
  * @copyright Copyright 2003-2020 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: admin_access.php 846 2020-01-18 16:12:21Z webchills $
+ * @version $Id: admin_access.php 847 2020-03-06 09:02:21Z webchills $
  */
 
 if (!defined('ADMIN_PASSWORD_MIN_LENGTH')) define('ADMIN_PASSWORD_MIN_LENGTH', 7);
@@ -682,6 +682,16 @@ function zen_get_admin_pages($menu_only)
     }
     $result->MoveNext();
   }
+  if ($menu_only) {
+    if (defined('MENU_CATEGORIES_TO_SORT_BY_NAME') && !empty(MENU_CATEGORIES_TO_SORT_BY_NAME)) {
+       $sorted_menus = explode(",", MENU_CATEGORIES_TO_SORT_BY_NAME); 
+       foreach (array_keys($retVal) as $key) {
+         if (in_array($key, $sorted_menus)) {
+           usort($retVal[$key], 'menu_name_sort'); 
+         }
+       }
+    }
+  }
   if (!$menu_only)
   {
     foreach ($productTypes as $pageName => $productType)
@@ -938,4 +948,11 @@ function zen_updated_by_admin($admin_id = '')
         $admin_id = $_SESSION['admin_id'];
     }
     return zen_get_admin_name($admin_id) . " [$admin_id]";
+}
+function menu_name_sort($a, $b) {
+   if ($a['name'] == $b['name'])
+      return 0;
+   if ($a['name'] < $b['name'])
+      return -1;
+   return 1;
 }
