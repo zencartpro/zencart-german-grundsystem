@@ -4,7 +4,7 @@
  * @copyright Copyright 2003-2020 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: category_product_listing.php 9 2020-02-28 09:20:16Z webchills $
+ * @version $Id: category_product_listing.php 10 2020-03-06 09:10:16Z webchills $
  */
 require 'includes/application_top.php';
 $languages = zen_get_languages();
@@ -531,8 +531,8 @@ if (is_dir(DIR_FS_CATALOG_IMAGES)) {
                   <strong><?php echo HEADING_TITLE_GOTO; ?></strong>
                 </div>
               <?php } ?>
-              <?php echo '</form>'; ?>
             </div>
+            <?php echo '</form>'; ?>
           </div>
         </div>
       <?php } ?>
@@ -836,7 +836,7 @@ if (is_dir(DIR_FS_CATALOG_IMAGES)) {
                         </a>
                       <?php } ?>
                       <?php if (zen_has_product_attributes($product['products_id'], 'false')) { ?>
-                        <a href="<?php echo zen_href_link(FILENAME_CATEGORY_PRODUCT_LISTING, 'cPath=' . $cPath . '&pID=' . $product['products_id'] . '&action=attribute_features' . (isset($_GET['page']) ? '&page=' . $_GET['page'] : '')); ?>" class="btn btn-sm btn-default btn-attributes-on" role="button"><strong>A</strong></i></a>
+                        <a href="<?php echo zen_href_link(FILENAME_CATEGORY_PRODUCT_LISTING, 'cPath=' . $cPath . '&pID=' . $product['products_id'] . '&action=attribute_features' . (isset($_GET['page']) ? '&page=' . $_GET['page'] : '')); ?>" class="btn btn-sm btn-default btn-attributes-on" role="button"><strong>A</strong></a>
                       <?php } else { ?>
                         <a href="<?php echo zen_href_link(FILENAME_ATTRIBUTES_CONTROLLER, 'products_filter=' . $product['products_id'] . '&current_category_id=' . $current_category_id); ?>" class="btn btn-sm btn-default btn-attributes-off" role="button"><strong>A</strong></a>
                       <?php } ?>
