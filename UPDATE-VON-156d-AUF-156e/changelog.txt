@@ -23,7 +23,7 @@ includes\templates\template_default\templates\tpl_zc_phpupgrade_default.php
 
 ----------------------------------------------------------------------------------------
 
-Geänderte Dateien in 1.5.6e (491)
+Geänderte Dateien in 1.5.6e (492)
 
 ----------------------------------------------------------------------------------------
 
@@ -263,6 +263,7 @@ includes\classes\bmz_image_handler.class.php
 includes\classes\breadcrumb.php
 includes\classes\category_tree.php
 includes\classes\class.base.php
+includes\classes\it_recht_kanzlei_api.php 
 includes\classes\navigation_history.php
 includes\classes\order.php
 includes\classes\payment.php
