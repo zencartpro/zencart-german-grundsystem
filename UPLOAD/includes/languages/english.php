@@ -5,7 +5,7 @@
  * @copyright Copyright 2003-2020 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: english.php 888 2020-02-08 16:09:32Z webchills $
+ * @version $Id: english.php 889 2020-03-12 07:57:32Z webchills $
  */
 
 // FOLLOWING WERE moved to meta_tags.php
@@ -350,21 +350,24 @@ define('HTML_PARAMS','dir="ltr" lang="en"');
 
   define('TABLE_HEADING_CREDIT_PAYMENT', 'Credits Available');
 
-  define('TEXT_INVALID_REDEEM_COUPON', 'Invalid Coupon Code');
-  define('TEXT_INVALID_REDEEM_COUPON_MINIMUM', 'You must spend at least %s to redeem this coupon');
-  define('TEXT_INVALID_STARTDATE_COUPON', 'This coupon is not available yet');
-  define('TEXT_INVALID_FINISHDATE_COUPON', 'This coupon has expired');
-  define('TEXT_INVALID_USES_COUPON', 'This coupon could only be used ');
-  define('TIMES', ' times.');
-  define('TIME', ' time.');
-  define('TEXT_INVALID_USES_USER_COUPON', 'You have used coupon code: %s the maximum number of times allowed per customer. ');
+//coupon redeem error messages (checkout payment)
+  define('TEXT_COUPON_LINK_TITLE', 'see the Coupon conditions');
+  define('TEXT_INVALID_REDEEM_COUPON', 'Coupon code "%s" is not a valid code.');
+  define('TEXT_INVALID_REDEEM_COUPON_MINIMUM', 'You must spend at least %2$s to redeem Coupon "%1$s".');
+  define('TEXT_INVALID_COUPON_PRODUCT', 'The Coupon "%1$s" is not valid for any product in your shopping cart.');
+  define('TEXT_INVALID_COUPON_ORDER_LIMIT', 'You have exceeded the total number of orders permitted (%2$u), to use the Coupon "%1$s".');
+  define('TEXT_INVALID_STARTDATE_COUPON', 'The Coupon "%1$s" is not valid for use until %2$s.');
+  define('TEXT_INVALID_FINISHDATE_COUPON', 'The Coupon "%1$s" is now not valid (expired %2$s).');
+  define('TEXT_INVALID_USES_COUPON', 'Coupon "%1$s" has already been used the maximum permitted times (%2$u).');
+  define('TEXT_INVALID_USES_USER_COUPON', 'You have used Coupon "%1$s" the maximum number of times allowed per customer (%2$u).');
+  define('TEXT_REMOVE_REDEEM_COUPON_ZONE', 'The Coupon "%s" is not valid for the address you have selected.');
   define('REDEEMED_COUPON', 'a coupon worth ');
   define('REDEEMED_MIN_ORDER', 'on orders over ');
   define('REDEEMED_RESTRICTIONS', ' [Product-Category restrictions apply]');
   define('TEXT_ERROR', 'An error has occurred');
-  define('TEXT_INVALID_COUPON_PRODUCT', 'This coupon code is not valid for any product currently in your cart.');
+
   define('TEXT_VALID_COUPON', 'Congratulations you have redeemed the Discount Coupon');
-  define('TEXT_REMOVE_REDEEM_COUPON_ZONE', 'The coupon code you entered is not valid for the address you have selected.');
+
 
 // more info in place of buy now
   define('MORE_INFO_TEXT','... more info');
@@ -440,7 +443,7 @@ define('HTML_PARAMS','dir="ltr" lang="en"');
 // End iii added
 
   define('TEXT_BEFORE_DOWN_FOR_MAINTENANCE', 'NOTICE: This website is scheduled to be down for maintenance on: ');
-  define('TEXT_ADMIN_DOWN_FOR_MAINTENANCE', 'NOTICE: The website is currently Down For Maintenance to the public');
+  define('TEXT_ADMIN_DOWN_FOR_MAINTENANCE', 'NOTICE: The website is currently down for maintenance to the public');
 
   define('PRODUCTS_PRICE_IS_FREE_TEXT','It\'s Free!');
   define('PRODUCTS_PRICE_IS_CALL_FOR_PRICE_TEXT','Call for Price');

@@ -5,7 +5,7 @@
  * @copyright Copyright 2003-2020 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: german.php 669 2020-02-08 16:141:57Z webchills $
+ * @version $Id: german.php 670 2020-03-12 08:22:57Z webchills $
  */
 
 // FOLLOWING WERE moved to meta_tags.php
@@ -358,21 +358,24 @@ define('PAYMENT_MODULE_GV', 'GS/AK');
 
 define('TABLE_HEADING_CREDIT_PAYMENT', 'Guthaben verfügbar');
 
-define('TEXT_INVALID_REDEEM_COUPON', 'Ungültiger Aktionscode');
-define('TEXT_INVALID_REDEEM_COUPON_MINIMUM', 'Der Mindestbestellwert für diesen Aktionskupon liegt bei %s');
-define('TEXT_INVALID_STARTDATE_COUPON', 'Dieser Aktionskupon ist zurzeit nicht verfügbar');
-define('TEXT_INVALID_FINISHDATE_COUPON', 'Dieser Aktionskupon ist abgelaufen');
-define('TEXT_INVALID_USES_COUPON', 'Dieser Aktionskupon kann nur');
-define('TIMES', 'mal eingelöst werden');
-define('TIME', 'mal eingelöst werden.');
-define('TEXT_INVALID_USES_USER_COUPON', 'Sie haben den Aktionskupon %s benutzt. Dieser Aktionskupon hat die maximale Einlöseanzahl pro Kunde erreicht.');
-define('REDEEMED_COUPON', 'einen Aktionskupon im Wert von ');
-define('REDEEMED_MIN_ORDER', 'bei Bestellungen über ');
-define('REDEEMED_RESTRICTIONS', '[Artikelkategorie Einschränkung angewendet]');
-define('TEXT_ERROR', 'Es ist ein Fehler aufgetreten.');
-define('TEXT_INVALID_COUPON_PRODUCT', 'Dieser Aktionskupon ist für keinen der im Warenkorb befindlichen Artikel gültig');
-define('TEXT_VALID_COUPON', 'Aktionskupon erfolgreich eingelöst');
-define('TEXT_REMOVE_REDEEM_COUPON_ZONE', 'Der eingegebene Aktionskupon kann mit der ausgewählten Adresse nicht eingelöst werden.');
+//coupon redeem error messages (checkout payment)
+define('TEXT_COUPON_LINK_TITLE', 'Bedingungen für diesen Gutscheincode ansehen');
+define('TEXT_INVALID_REDEEM_COUPON', 'Gutscheincode "%s" ist ungültig.');
+define('TEXT_INVALID_REDEEM_COUPON_MINIMUM', 'Der Mindestbestellwert liegt bei %2$s zum Einlösen von Gutscheincode "%1$s".');
+define('TEXT_INVALID_COUPON_PRODUCT', 'Der Gutscheincode "%1$s" ist für die Artikel in Ihrem Warenkorb nicht gültig.');
+define('TEXT_INVALID_COUPON_ORDER_LIMIT', 'Sie haben die maximal erlaubte Anzahl von Bestellungen (%2$u) überschritten, zum Einlösen dieses Gutscheincode "%1$s".');
+define('TEXT_INVALID_STARTDATE_COUPON', 'Der Gutscheincode "%1$s" is nicht gültig für eine Einlösung bis %2$s.');
+define('TEXT_INVALID_FINISHDATE_COUPON', 'Der Gutscheincode "%1$s" ist jetzt nicht gültig (abgelaufen %2$s).');
+define('TEXT_INVALID_USES_COUPON', 'Gutscheincode "%1$s" hat die maximale Einlöseanzahl erreicht (%2$u).');
+define('TEXT_INVALID_USES_USER_COUPON', 'Sie haben mit Gutscheincode "%1$s" bereits die maximale Einlöseanzahl pro Kunde erreicht (%2$u).');
+define('TEXT_REMOVE_REDEEM_COUPON_ZONE', 'Der Gutscheincode "%s" ist für die ausgewählte Adresse nicht gültig.');
+define('REDEEMED_COUPON', 'ein Gutscheincode im Wert von ');
+define('REDEEMED_MIN_ORDER', 'für Bestellungen über ');
+define('REDEEMED_RESTRICTIONS', ' [Einschränkungen für Kategorien/Artikel aktiv]');
+define('TEXT_ERROR', 'Ein Fehler ist aufgetreten');
+
+define('TEXT_VALID_COUPON', 'Gutscheincode erfolgreich eingelöst');
+
 
 // more info in place of buy now
 define('MORE_INFO_TEXT', '... weitere Infos');
@@ -453,8 +456,9 @@ define('TEXT_ADMIN_DOWN_FOR_MAINTENANCE', 'HINWEIS: Unser Shop ist wegen Wartung
 define('PRODUCTS_PRICE_IS_FREE_TEXT', 'Kostenlos!');
 define('PRODUCTS_PRICE_IS_CALL_FOR_PRICE_TEXT', 'Für Preis anfragen');
 define('TEXT_CALL_FOR_PRICE', 'Für Preis anfragen');
-define('TEXT_ERROR_OPTION_FOR', 'Bei der Option für ');
+
 define('TEXT_INVALID_SELECTION',' haben Sie eine ungültige Auswahl getroffen: ');
+define('TEXT_ERROR_OPTION_FOR', 'Bei der Option für ');
 define('TEXT_INVALID_USER_INPUT', 'Benutzereingabe benötigt<br />');
 
 // product_listing
