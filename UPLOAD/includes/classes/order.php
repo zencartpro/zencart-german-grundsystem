@@ -6,7 +6,7 @@
  * @package classes
  * @copyright Copyright 2003-2020 Zen Cart Development Team
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: order.php 2020-01-20 21:15:25Z webchills $
+ * @version $Id: order.php 2020-03-13 19:30:25Z webchills $
  */
 /**
  * order class
@@ -25,8 +25,6 @@
  * $_SESSION['payment']
  * $_SESSION['sendto']
  * $_SESSION['shipping']
- *
- * @package classes
  */
 if (!defined('IS_ADMIN_FLAG')) {
   die('Illegal Access');
@@ -55,7 +53,7 @@ class order extends base {
   function query($order_id) {
     global $db;
 
-    $order_id = zen_db_prepare_input($order_id);
+    $order_id = (int)$order_id;
     $this->queryReturnFlag = NULL;
     $this->notify('NOTIFY_ORDER_BEFORE_QUERY', array(), $order_id);
     if ($this->queryReturnFlag === TRUE) return false;
@@ -159,7 +157,7 @@ class order extends base {
     $index = 0;
     $orders_products_query = "select *
                                   from " . TABLE_ORDERS_PRODUCTS . "
-                                  where orders_id = '" . (int)$order_id . "'
+                                  where orders_id = " . (int)$order_id . "
                                   order by orders_products_id";
 
     $orders_products = $db->Execute($orders_products_query);
@@ -219,7 +217,8 @@ class order extends base {
       $attributes = $db->Execute($attributes_query);
       if ($attributes->RecordCount()) {
         while (!$attributes->EOF) {
-          $this->products[$index]['attributes'][$subindex] = array('option' => $attributes->fields['products_options'],
+          $this->products[$index]['attributes'][$subindex] = array(
+              'option' => $attributes->fields['products_options'],
                                                                    'value' => $attributes->fields['products_options_values'],
                                                                    'option_id' => $attributes->fields['products_options_id'],
                                                                    'value_id' => $attributes->fields['products_options_values_id'],
@@ -358,10 +357,7 @@ class order extends base {
       $coupon_code_query = "select coupon_code
                               from " . TABLE_COUPONS . "
                               where coupon_id = '" . (int)$_SESSION['cc_id'] . "'";
-
       $coupon_code = $db->Execute($coupon_code_query);
-
-
     }
 
     $shipping_module_code = '';
@@ -379,6 +375,7 @@ class order extends base {
             unset($_SESSION['shipping']);
         }
     }
+
     $this->info = array('order_status' => DEFAULT_ORDERS_STATUS_ID,
                         'currency' => $_SESSION['currency'],
                         'currency_value' => $currencies->currencies[$_SESSION['currency']]['value'],
@@ -521,7 +518,6 @@ class order extends base {
                                       'products_quantity_order_max' => (float)$products[$i]['products_quantity_order_max'],
                                       'products_quantity_mixed' => (int)$products[$i]['products_quantity_mixed'],
                                       'products_mixed_discount_quantity' => (int)$products[$i]['products_mixed_discount_quantity'],
-                                      'tax' => zen_get_tax_rate($products[$i]['tax_class_id'], $taxCountryId, $taxZoneId),
                                       );
 
 
@@ -555,19 +551,21 @@ class order extends base {
 
           $attributes = $db->Execute($attributes_query);
 
-          //clr 030714 Determine if attribute is a text attribute and change products array if it is.
-          if ($value == PRODUCTS_OPTIONS_VALUES_TEXT_ID){
+          //clr 030714 Account for text attributes
+          if ($value == PRODUCTS_OPTIONS_VALUES_TEXT_ID) {
             $attr_value = $products[$i]['attributes_values'][$option];
           } else {
             $attr_value = $attributes->fields['products_options_values_name'];
           }
 
-          $this->products[$index]['attributes'][$subindex] = array('option' => $attributes->fields['products_options_name'],
-                                                                   'value' => $attr_value,
-                                                                   'option_id' => $option,
-                                                                   'value_id' => $value,
-                                                                   'prefix' => $attributes->fields['price_prefix'],
-                                                                   'price' => $attributes->fields['options_values_price']);
+          $this->products[$index]['attributes'][$subindex] = array(
+                'option' => $attributes->fields['products_options_name'],
+                'value' => $attr_value,
+                'option_id' => $option,
+                'value_id' => $value,
+                'prefix' => $attributes->fields['price_prefix'],
+                'price' => $attributes->fields['options_values_price'],
+          );
 
           $this->notify('NOTIFY_ORDER_CART_ADD_ATTRIBUTE_LIST', array('index'=>$index, 'subindex'=>$subindex, 'products'=>$products[$i], 'attributes'=>$attributes));
           $subindex++;
@@ -637,7 +635,7 @@ class order extends base {
     }
 
     if (isset($GLOBALS[$class]) && is_object($GLOBALS[$class])) {
-      if ( isset($GLOBALS[$class]->order_status) && is_numeric($GLOBALS[$class]->order_status) && ($GLOBALS[$class]->order_status > 0) ) {
+      if (isset($GLOBALS[$class]->order_status) && is_numeric($GLOBALS[$class]->order_status) && $GLOBALS[$class]->order_status > 0) {
         $this->info['order_status'] = $GLOBALS[$class]->order_status;
       }
     }
@@ -737,7 +735,8 @@ class order extends base {
                               'text' => $zf_ot_modules[$i]['text'],
                               'value' => (is_numeric($zf_ot_modules[$i]['value'])) ? $zf_ot_modules[$i]['value'] : '0',
                               'class' => $zf_ot_modules[$i]['code'],
-                              'sort_order' => $zf_ot_modules[$i]['sort_order']);
+                              'sort_order' => $zf_ot_modules[$i]['sort_order'],
+                             );
 
       zen_db_perform(TABLE_ORDERS_TOTAL, $sql_data_array);
       $ot_insert_id = $db->insert_ID();
@@ -749,7 +748,8 @@ class order extends base {
                             'orders_status_id' => $this->info['order_status'],
                             'date_added' => 'now()',
                             'customer_notified' => $customer_notification,
-                            'comments' => $this->info['comments']);
+                            'comments' => $this->info['comments'],
+                           );
 
     zen_db_perform(TABLE_ORDERS_STATUS_HISTORY, $sql_data_array);
     $osh_insert_id = $db->insert_ID();
@@ -1239,4 +1239,3 @@ class order extends base {
   }
 
 }
-
