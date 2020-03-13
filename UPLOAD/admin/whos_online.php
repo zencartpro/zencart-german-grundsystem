@@ -5,7 +5,7 @@
  * @copyright Copyright 2003-2020 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: whos_online.php 739 2020-01-18 09:49:16Z webchills $
+ * @version $Id: whos_online.php 740 2020-03-13 19:26:16Z webchills $
  *
  * ALERT: This file requires PHP 5.4 or newer because it uses the short-array syntax.
  * 
@@ -335,6 +335,7 @@ $listingURL = FILENAME_WHOS_ONLINE . '.php?' . zen_get_all_get_params(['q', 't',
                   <?php
                   $ip_array = [];
                   $d = 0; // duplicates counter
+                  $info ='';
                   foreach ($whos_online as $item) {
                     $time_online = (time() - $item['time_entry']);
 
