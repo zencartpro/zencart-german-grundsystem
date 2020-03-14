@@ -5,7 +5,7 @@
  * @copyright Copyright 2003-2020 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: english.php 892 2020-03-13 19:45:32Z webchills $
+ * @version $Id: english.php 893 2020-03-14 17:31:32Z webchills $
  */
 if (!defined('IS_ADMIN_FLAG'))
 {
@@ -394,6 +394,7 @@ define('ICON_CROSS', 'False');
 define('ICON_CURRENT_FOLDER', 'Current Folder');
 define('ICON_DELETE', 'Delete');
 define('ICON_EDIT', 'Edit');
+define('ICON_EDIT_METATAGS', 'Edit Meta Tags');
 define('ICON_ERROR', 'Error');
 define('ICON_FILE', 'File');
 define('ICON_FILE_DOWNLOAD', 'Download');
