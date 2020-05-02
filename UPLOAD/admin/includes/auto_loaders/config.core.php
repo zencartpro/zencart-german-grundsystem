@@ -4,7 +4,7 @@
  * @copyright Copyright 2003-2020 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: config.core.php 809 2020-02-08 16:44:36Z webchills $
+ * @version $Id: config.core.php 810 2020-05-02 19:09:36Z webchills $
  */
 if (!defined('USE_PCONNECT')) define('USE_PCONNECT', 'false');
 /**
@@ -33,8 +33,7 @@ if (!defined('USE_PCONNECT')) define('USE_PCONNECT', 'false');
  */
   $autoLoadConfig[0][] = array('autoType'=>'require',
                                'loadFile'=> DIR_FS_CATALOG . DIR_WS_INCLUDES .  'version.php');
-//  $autoLoadConfig[0][] = array('autoType'=>'class',
-//                               'loadFile'=>'class.base.php');
+  
   $autoLoadConfig[0][] = array('autoType'=>'class',
                                'loadFile'=>'class.notifier.php');
   $autoLoadConfig[0][] = array('autoType'=>'classInstantiate',
@@ -86,10 +85,6 @@ if (!defined('USE_PCONNECT')) define('USE_PCONNECT', 'false');
  * require('includes/init_includes/init_database.php');
  *
  */
-//  $autoLoadConfig[10][] = array('autoType'=>'init_script',
-//                                'loadFile'=> 'init_file_db_names.php');
-//  $autoLoadConfig[10][] = array('autoType'=>'init_script',
-//                                'loadFile'=>'init_database.php');
 /**
  * Breakpoint 20.
  *

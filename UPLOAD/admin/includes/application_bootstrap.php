@@ -1,10 +1,11 @@
 <?php
 /**
+ * Zen Cart German Specific
  * @package admin
  * @copyright Copyright 2003-2020 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: application_bootstrap.php 1 2020-02-08 17:02:36Z webchills $
+ * @version $Id: application_bootstrap.php 2 2020-05-02 19:44:36Z webchills $
  */
 
 /**
