@@ -1,15 +1,16 @@
 <?php
 /**
  * @package admin
+ * Zen Cart German Specific
  * @copyright Copyright 2003-2020 Zen Cart Development Team
  * @copyright Portions Copyright 2010 Kuroi Web Design
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: ckeditor.php 289 2020-01-24 18:30:32Z webchills $
+ * @version $Id: ckeditor.php 290 2020-05-02 20:46:32Z webchills $
  */
 if (!defined('IS_ADMIN_FLAG')) {
   die('Illegal Access');
 }
-
+// prepare list of languages supported by this website, so we can tell CKEditor
 $var = zen_get_languages();
 $jsLanguageLookupArray = "var lang = new Array;\n";
 foreach ($var as $key)
@@ -19,22 +20,33 @@ foreach ($var as $key)
 ?>
 <script>window.jQuery || document.write('<script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"><\/script>');</script>
 <script>window.jQuery || document.write('<script src="includes/javascript/jquery-3.4.1.min.js"><\/script>');</script>
-<script type="text/javascript" src="../<?php echo DIR_WS_EDITORS; ?>ckeditor/ckeditor.js"></script>
-<script type="text/javascript">
-$(document).ready(function() {
-  <?php echo $jsLanguageLookupArray ?>
-  $('textarea').each(function() {
-    if ($(this).hasClass('editorHook') || ($(this).attr('name') != 'message' && ! $(this).hasClass('noEditor')))
-    {
-      index = $(this).attr('name').match(/\d+/);
-      if (index == null) index = <?php echo $_SESSION['languages_id'] ?>;
-      CKEDITOR.replace($(this).attr('name'),
-        {
-          coreStyles_underline : { element : 'u' },
-          width : '100%',
-          language: lang[index]
+<script src="https://cdn.ckeditor.com/4.14.0/standard-all/ckeditor.js" title="CKEditorCDN"></script>
+
+<script title="ckEditor-Initialize">
+    jQuery(document).ready(function() {
+        <?php echo $jsLanguageLookupArray ?>
+        // Activate editor on every on-page textarea field that has the editorHook class and does not have the noEditor class
+        // We do this in a loop because we're also detecting multi-language variants of fields
+        jQuery('textarea.editorHook').each(function() {
+            if (! jQuery(this).hasClass('noEditor'))
+            {
+                index = jQuery(this).attr('name').match(/\d+/);
+                if (index == null) index = <?php echo $_SESSION['languages_id'] ?>;
+                CKEDITOR.replace(jQuery(this).attr('name'),
+                    {
+                        customConfig: '/<?php echo DIR_WS_EDITORS . 'ckeditor/config.js'; ?>',
+                        language: lang[index]
+                    });
+            }
         });
-    }
-  });
-});
+    });
 </script>
+
+<php
+// Other options:
+// - Edit your /editors/ckeditor/config.js file to control the toolbar buttons, add additional plugins, control the UI color, etc
+//
+// Advanced:
+// https://ckeditor.com/docs/ckeditor4/latest/features/styles.html#the-stylesheet-parser-plugin
+// - set custom styles in the /editors/ckeditor/styles.js file
+// - import a template-specific stylesheet from catalog-side, using config.contentsCss setting, so dialogs "look like catalog-side" in admin editor
