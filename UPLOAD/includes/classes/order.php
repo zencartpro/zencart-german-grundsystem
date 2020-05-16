@@ -6,7 +6,7 @@
  * @package classes
  * @copyright Copyright 2003-2020 Zen Cart Development Team
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: order.php 2020-03-13 19:30:25Z webchills $
+ * @version $Id: order.php 2020-05-16 07:45:25Z webchills $
  */
 /**
  * order class
@@ -603,9 +603,24 @@ class order extends base {
          * Calculate taxes for this product
          *********************************************/
 		if (DISPLAY_PRICE_WITH_TAX == 'true') {
-        $shown_price = (zen_add_tax($this->products[$index]['final_price'], $this->products[$index]['tax']))
+			
+			// rundungskorrektur 
+        $dest_country = isset ($shipping_address->fields['country']['iso_code_2']) ? $shipping_address->fields['country']['iso_code_2'] : 0 ;
+        $dest_zone = 0;
+        $error = false;
+        $countries_table = EU_COUNTRIES_FOR_LAST_STEP; 
+        $country_zones = explode(",", $countries_table);
+        if ((!in_array($dest_country, $country_zones))&& ($shipping_address->fields['country']['id'] != '')) {
+            $dest_zone = $i;
+            $shown_price = (zen_add_tax($this->products[$index]['final_price'] * $this->products[$index]['qty'], $this->products[$index]['tax']))
+        + zen_add_tax($this->products[$index]['onetime_charges'], $this->products[$index]['tax']);
+        $this->info['subtotal'] += $shown_price;
+        } else {
+          $shown_price = (zen_add_tax($this->products[$index]['final_price'], $this->products[$index]['tax']))
         + zen_add_tax($this->products[$index]['onetime_charges'], $this->products[$index]['tax']);        
         $this->info['subtotal'] += $currencies->value($shown_price)* $this->products[$index]['qty'];
+        }	
+      
 		} else {
 		$shown_price = (zen_add_tax($this->products[$index]['final_price'] * $this->products[$index]['qty'], $this->products[$index]['tax']))
         + zen_add_tax($this->products[$index]['onetime_charges'], $this->products[$index]['tax']);
@@ -617,7 +632,7 @@ class order extends base {
         $products_tax_description = $this->products[$index]['tax_description'];
 
         if (DISPLAY_PRICE_WITH_TAX == 'true') {
-          // calculate the amount of tax "inc"luded in price (used if tax-in pricing is enabled)
+          // calculate the amount of tax included in price (used if tax-in pricing is enabled)
           $tax_add = $shown_price - ($shown_price / (($products_tax < 10) ? "1.0" . str_replace('.', '', $products_tax) : "1." . str_replace('.', '', $products_tax)));
         } else {
           // calculate the amount of tax for this product (assuming tax is NOT included in the price)
