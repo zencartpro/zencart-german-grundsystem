@@ -5,10 +5,10 @@
  * see {@link  http://www.zen-cart.com/wiki/index.php/Developers_API_Tutorials#InitSystem wikitutorials} for more details.
  *
  * @package initSystem
- * @copyright Copyright 2003-2020 Zen Cart Development Team
+ * @copyright Copyright 2003-2019 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: init_customer_auth.php 870 2020-01-17 09:34:40Z webchills $
+ * @version $Id: init_customer_auth.php 869 2019-04-12 11:34:40Z webchills $
  */
 if (!defined('IS_ADMIN_FLAG')) {
   die('Illegal Access');
@@ -16,7 +16,7 @@ if (!defined('IS_ADMIN_FLAG')) {
 /**
  * Check if customer's session contains a valid customer_id. If not, then it could be that the administrator has deleted the customer (managing spam etc) so we'll log them out.
  */
-if (zen_is_logged_in()) {
+if (isset($_SESSION['customer_id'])) {
   $sql = "select customers_id from " . TABLE_CUSTOMERS . " where customers_id = " . (int)$_SESSION['customer_id'];
   $result = $db->Execute($sql);
   if ($result->RecordCount() == 0) {
@@ -48,7 +48,7 @@ if (DOWN_FOR_MAINTENANCE == 'true') {
 /**
  * recheck customer status for authorization
  */
-if (zen_is_logged_in()) {
+if (isset($_SESSION['customer_id']) && (int)$_SESSION['customer_id'] > 0) {
   $check_customer_query = "select customers_id, customers_authorization
                              from " . TABLE_CUSTOMERS . "
                              where customers_id = " . (int)$_SESSION['customer_id'];
@@ -111,7 +111,7 @@ switch (true) {
 /**
  * if not down for maintenance check login status
  */
-  case (CUSTOMERS_APPROVAL == '1' && !zen_is_logged_in()):
+  case (CUSTOMERS_APPROVAL == '1' and (int)$_SESSION['customer_id'] == 0):
   /**
    * customer must be logged in to browse
    */
@@ -123,7 +123,7 @@ switch (true) {
     zen_redirect(zen_href_link(FILENAME_LOGIN, '', 'SSL'));
   }
   break;
-  case (CUSTOMERS_APPROVAL == '2' && !zen_is_logged_in()):
+  case (CUSTOMERS_APPROVAL == '2' and (int)$_SESSION['customer_id'] == 0):
   /**
    * customer may browse but no prices
    */
@@ -149,7 +149,7 @@ switch (true) {
   case (STORE_STATUS != 0):
     break;
 
-  case (CUSTOMERS_APPROVAL_AUTHORIZATION == '1' && !zen_is_logged_in()):
+  case (CUSTOMERS_APPROVAL_AUTHORIZATION == '1' and (int)$_SESSION['customer_id'] == 0):
   /**
    * customer must be logged in to browse
    */
@@ -161,7 +161,7 @@ switch (true) {
     zen_redirect(zen_href_link(FILENAME_LOGIN, '', 'SSL'));
   }
   break;
-  case (CUSTOMERS_APPROVAL_AUTHORIZATION == '2' && !zen_is_logged_in()):
+  case (CUSTOMERS_APPROVAL_AUTHORIZATION == '2' and (int)$_SESSION['customer_id'] == 0):
   /**
    * customer may browse but no prices unless Authorized
    */

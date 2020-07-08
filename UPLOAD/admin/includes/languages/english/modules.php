@@ -1,10 +1,10 @@
 <?php
 /**
  * @package admin
- * @copyright Copyright 2003-2020 Zen Cart Development Team
+ * @copyright Copyright 2003-2019 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: modules.php 733 2020-01-17 18:49:16Z webchills $
+ * @version $Id: modules.php 732 2019-04-13 18:49:16Z webchills $
  */
 
 define('HEADING_TITLE_MODULES_PAYMENT', 'Payment Modules');
@@ -26,4 +26,4 @@ define('TEXT_EMAIL_MESSAGE_ADMIN_MODULE_REMOVED', 'This is an automated email fr
 define('TEXT_DELETE_INTRO', 'Are you sure you want to remove this module?');
 define('TEXT_WARNING_SSL_EDIT', 'ALERT: <a href="http://www.zen-cart.com/content.php?56" target="_blank">For security reasons, Editing of this module is disabled until your Admin is configured for SSL</a>.');
 define('TEXT_WARNING_SSL_INSTALL', 'ALERT: <a href="http://www.zen-cart.com/content.php?56" target="_blank">For security reasons, Installation of this module is disabled until your Admin is configured for SSL</a>.');
-
+define('WARNING_MODULES_MISSING_KEYS', '<span class="alert">Missing keys - Save (write down), Remove, Install and Reconfigure</span>');

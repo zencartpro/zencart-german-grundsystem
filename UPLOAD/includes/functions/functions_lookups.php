@@ -5,10 +5,10 @@
  * Lookup Functions for various core activities related to countries, prices, products, product types, etc
  *
  * @package functions
- * @copyright Copyright 2003-2020 Zen Cart Development Team
+ * @copyright Copyright 2003-2019 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: functions_lookups.php 777 2020-02-08 16:26:42Z webchills $
+ * @version $Id: functions_lookups.php 775 2019-07-27 08:15:42Z webchills $
  */
 
 /**
@@ -279,59 +279,6 @@
     }
   }
 
-/**
- *  Check if specified product has attributes which require selection before adding product to the cart.
- *  This is used by various parts of the code to determine whether to allow for add-to-cart actions
- *  since adding a product without selecting attributes could lead to undesired basket contents.
- *
- *  @param integer $products_id
- *  @return integer
- */
-  function zen_requires_attribute_selection($products_id) {
-    global $db, $zco_notifier;
-
-    $noDoubles = array();
-    $noDoubles[] = PRODUCTS_OPTIONS_TYPE_RADIO;
-    $noDoubles[] = PRODUCTS_OPTIONS_TYPE_SELECT;
-
-    $noSingles = array();
-    $noSingles[] = PRODUCTS_OPTIONS_TYPE_CHECKBOX;
-    $noSingles[] = PRODUCTS_OPTIONS_TYPE_FILE;
-    $noSingles[] = PRODUCTS_OPTIONS_TYPE_TEXT;
-    if (PRODUCTS_OPTIONS_TYPE_READONLY_IGNORED == '0') {
-      $noSingles[] = PRODUCTS_OPTIONS_TYPE_READONLY;
-    }
-
-    $query = "select products_options_id, count(pa.options_values_id) as number_of_choices, po.products_options_type as options_type
-              from " . TABLE_PRODUCTS_ATTRIBUTES . " pa
-              left join " . TABLE_PRODUCTS_OPTIONS . " po on pa.options_id = po.products_options_id
-              where pa.products_id = " . (int)$products_id . "
-              and po.language_id = " . (int)$_SESSION['languages_id'] . "
-              group by products_options_id, options_type";
-
-    $zco_notifier->notify('NOTIFY_FUNCTIONS_LOOKUPS_REQUIRES_ATTRIBUTES_SELECTION', '', $query, $noSingles, $noDoubles);
-
-    $result = $db->Execute($query);
-
-    // if no attributes found, return false
-    if ($result->RecordCount() == 0) return false;
-
-    // loop through the results, auditing for whether each kind of attribute requires "selection" or not
-    // return whether selections must be made, so a more-info button needs to be presented, if true
-    foreach($result as $row => $field) {
-      // if there's more than one for any $noDoubles type, can't add from listing
-      if (in_array($field['options_type'], $noDoubles) && $field['number_of_choices'] > 1) {
-        return true;
-      }
-      // if there's any type from $noSingles, can't add from listing
-      if (in_array($field['options_type'], $noSingles)) {
-        return true;
-      }
-    }
-
-    // return false to indicate that defaults can be automatically added by just using a buy-now button
-    return false;
-  }
 /*
  *  Check if option name is not expected to have an option value (ie. text field, or File upload field)
  */
@@ -811,10 +758,6 @@ function zen_get_configuration_key_value($lookup)
       $sql = "select products_type from " . TABLE_PRODUCTS . " where products_id='" . $lookup . "'";
       $type_lookup = $db->Execute($sql);
 
-      if ($type_lookup->RecordCount() == 0) {
-        return false;
-      }
-
       $sql = "select type_handler from " . TABLE_PRODUCT_TYPES . " where type_id = '" . $type_lookup->fields['products_type'] . "'";
       $show_key = $db->Execute($sql);
 
@@ -871,11 +814,11 @@ function zen_get_configuration_key_value($lookup)
       // showcase no prices
         $zc_run = false;
         break;
-      case (CUSTOMERS_APPROVAL == '1' && !zen_is_logged_in()):
+      case (CUSTOMERS_APPROVAL == '1' and $_SESSION['customer_id'] == ''):
       // customer must be logged in to browse
         $zc_run = false;
         break;
-      case (CUSTOMERS_APPROVAL == '2' && !zen_is_logged_in()):
+      case (CUSTOMERS_APPROVAL == '2' and $_SESSION['customer_id'] == ''):
       // show room only
       // customer may browse but no prices
         $zc_run = false;
@@ -884,11 +827,11 @@ function zen_get_configuration_key_value($lookup)
       // show room only
         $zc_run = false;
         break;
-      case (CUSTOMERS_APPROVAL_AUTHORIZATION != '0' && !zen_is_logged_in()):
+      case (CUSTOMERS_APPROVAL_AUTHORIZATION != '0' and $_SESSION['customer_id'] == ''):
       // customer must be logged in to browse
         $zc_run = false;
         break;
-      case (CUSTOMERS_APPROVAL_AUTHORIZATION != '0' && isset($_SESSION['customers_authorization']) && (int)$_SESSION['customers_authorization'] > 0):
+      case (CUSTOMERS_APPROVAL_AUTHORIZATION != '0' and $_SESSION['customers_authorization'] > '0'):
       // customer must be logged in to browse
         $zc_run = false;
         break;
@@ -903,14 +846,13 @@ function zen_get_configuration_key_value($lookup)
 /*
  *  Look up whether to show prices, based on customer-authorization levels
  */
-function zen_check_show_prices() 
-{
-    if (!(CUSTOMERS_APPROVAL == '2' and !zen_is_logged_in()) and !((CUSTOMERS_APPROVAL_AUTHORIZATION > 0 and CUSTOMERS_APPROVAL_AUTHORIZATION < 3) and ($_SESSION['customers_authorization'] > '0' or !zen_is_logged_in())) and STORE_STATUS != 1) {
+  function zen_check_show_prices() {
+    if (!(CUSTOMERS_APPROVAL == '2' and $_SESSION['customer_id'] == '') and !((CUSTOMERS_APPROVAL_AUTHORIZATION > 0 and CUSTOMERS_APPROVAL_AUTHORIZATION < 3) and ($_SESSION['customers_authorization'] > '0' or $_SESSION['customer_id'] == '')) and STORE_STATUS != 1) {
       return true;
     } else {
       return false;
     }
-}
+  }
 
 /*
  * Return any field from products or products_description table
@@ -1037,6 +979,8 @@ function zen_has_product_attributes_downloads_status($products_id) {
     $upcoming_mask_range = time();
     $upcoming_mask = date('Ymd', $upcoming_mask_range);
 
+// echo 'Now:      '. date('Y-m-d') ."<br />";
+// echo $time_limit . ' Days: '. date('Ymd', $date_range) ."<br />";
     $zc_new_date = date('Ymd', $date_range);
     switch (true) {
     case (SHOW_NEW_PRODUCTS_LIMIT == 0):

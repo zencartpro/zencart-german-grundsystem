@@ -1,10 +1,10 @@
 <?php
 /**
  * @package admin
- * @copyright Copyright 2003-2020 Zen Cart Development Team
+ * @copyright Copyright 2003-2019 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: categories.php 631 2020-01-20 21:56:14Z webchills $
+ * @version $Id: categories.php 630 2019-06-26 07:31:14Z webchills $
  */
 
 define('HEADING_TITLE', 'Kategorie');
@@ -22,7 +22,7 @@ define('ERROR_CANNOT_ADD_PRODUCT_TYPE', 'Der gewählte Artikel kann dieser Kateg
 
 // Metatags
 define('TEXT_INFO_HEADING_EDIT_CATEGORY_META_TAGS', 'Kategorien Meta Tags Definitionen');
-define('TEXT_EDIT_CATEGORIES_META_TAGS_INTRO', 'Definiere individuelle Meta Tags für ID#%1$u - "%2$s"');
+define('TEXT_EDIT_CATEGORIES_META_TAGS_INTRO', 'Definiere Meta Tags');
 define('TEXT_EDIT_CATEGORIES_META_TAGS_TITLE', 'Titel:');
 define('TEXT_EDIT_CATEGORIES_META_TAGS_KEYWORDS', 'Schlüsselwörter:');
 define('TEXT_EDIT_CATEGORIES_META_TAGS_DESCRIPTION', 'Beschreibung');

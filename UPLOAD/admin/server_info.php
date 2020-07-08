@@ -2,10 +2,10 @@
 /**
  * Zen Cart German Specific
  * @package admin
- * @copyright Copyright 2003-2020 Zen Cart Development Team
+ * @copyright Copyright 2003-2019 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: server_info.php 735 2020-01-18 09:49:16Z webchills $
+ * @version $Id: server_info.php 734 2019-06-17 07:49:16Z webchills $
  */
 
   require('includes/application_top.php');
@@ -48,8 +48,9 @@
 <title><?php echo TITLE; ?></title>
 <link rel="stylesheet" type="text/css" href="includes/stylesheet.css">
 <link rel="stylesheet" type="text/css" href="includes/cssjsmenuhover.css" media="all" id="hoverJS">
-<script type="text/javascript" src="includes/menu.js"></script>
+<script language="javascript" src="includes/menu.js"></script>
 <script type="text/javascript">
+  <!--
   function init()
   {
     cssjsmenu('navbar');
@@ -59,8 +60,9 @@
       kill.disabled = true;
     }
   }
+  // -->
 </script>
-<style type="text/css">
+<style>
 .pageHeading {font-size: 2em;}
 .serverInfo{max-width: 800px; margin-left: auto; margin-right: auto; font-size: 1.1em;}
 .infocell {float:left; width: 380px;margin-right:10px;}

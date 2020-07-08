@@ -1,7 +1,7 @@
 <?php
 /**
  * Page Template
- * Zen Cart German Specific
+ *
  * Displays page-not-found message and site-map (if configured)
  *
  * @package templateSystem

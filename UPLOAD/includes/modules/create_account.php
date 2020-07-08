@@ -4,10 +4,10 @@
  * create_account header_php.php
  *
  * @package modules
- * @copyright Copyright 2003-2020 Zen Cart Development Team
+ * @copyright Copyright 2003-2019 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: create_account.php 740 2020-02-29 21:27:16Z webchills $
+ * @version $Id: create_account.php 738 2019-07-20 09:27:16Z webchills $
  */
 // This should be first line of the script:
 $zco_notifier->notify('NOTIFY_MODULE_START_CREATE_ACCOUNT');
@@ -30,14 +30,12 @@ if (!defined('IS_ADMIN_FLAG')) {
   $extra_welcome_text = '';
   $send_welcome_email = true;
 
-  $antiSpamFieldName = isset($_SESSION['antispam_fieldname']) ? $_SESSION['antispam_fieldname'] : 'should_be_empty';
-
 /**
  * Process form contents
  */
 if (isset($_POST['action']) && ($_POST['action'] == 'process')) {
   $process = true;
-  $antiSpam = !empty($_POST[$antiSpamFieldName]) ? 'spam' : '';
+  $antiSpam = isset($_POST['should_be_empty']) ? zen_db_prepare_input($_POST['should_be_empty']) : '';
   if (!empty($_POST['firstname']) && preg_match('~https?://?~', $_POST['firstname'])) $antiSpam = 'spam';
   if (!empty($_POST['lastname']) && preg_match('~https?://?~', $_POST['lastname'])) $antiSpam = 'spam';
 
@@ -52,13 +50,13 @@ if (isset($_POST['action']) && ($_POST['action'] == 'process')) {
   }
 
   if (isset($_POST['email_format'])) {
-    $email_format = in_array($_POST['email_format'], array('HTML', 'TEXT', 'NONE', 'OUT'), true) ? $_POST['email_format'] : 'TEXT';
+    $email_format = zen_db_prepare_input($_POST['email_format']);
   }
 
   if (ACCOUNT_COMPANY == 'true') $company = zen_db_prepare_input($_POST['company']);
   $firstname = zen_db_prepare_input(zen_sanitize_string($_POST['firstname']));
   $lastname = zen_db_prepare_input(zen_sanitize_string($_POST['lastname']));
-  $nick = (isset($_POST['nick']) ? zen_db_prepare_input($_POST['nick']) : '');
+  $nick = zen_db_prepare_input($_POST['nick']);
   if (ACCOUNT_DOB == 'true') $dob = zen_db_prepare_input($_POST['dob']);
   $email_address = zen_db_prepare_input($_POST['email_address']);
   $email_address_confirm = zen_db_prepare_input($_POST['email_address_confirm']);
@@ -78,7 +76,7 @@ if (isset($_POST['action']) && ($_POST['action'] == 'process')) {
   $telephone = zen_db_prepare_input($_POST['telephone']);
   $fax = zen_db_prepare_input($_POST['fax']);
   $customers_authorization = (int)CUSTOMERS_APPROVAL_AUTHORIZATION;
-  $customers_referral = (isset($_POST['customers_referral']) ? zen_db_prepare_input($_POST['customers_referral']) : '');
+  $customers_referral = zen_db_prepare_input($_POST['customers_referral']);
 
   if (ACCOUNT_NEWSLETTER_STATUS == '1' || ACCOUNT_NEWSLETTER_STATUS == '2') {
     $newsletter = 0;

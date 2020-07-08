@@ -3,10 +3,10 @@
  * header code, mainly concerned with adding to messagestack when certain warnings are applicable
  *
  * @package templateStructure
- * @copyright Copyright 2003-2020 Zen Cart Development Team
+ * @copyright Copyright 2003-2019 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: init_header.php 734 2020-01-17 09:49:16Z webchills $
+ * @version $Id: init_header.php 733 2019-04-14 13:49:16Z webchills $
  */
 if (!defined('IS_ADMIN_FLAG')) {
   die('Illegal Access');
@@ -58,7 +58,7 @@ if ( (DOWN_FOR_MAINTENANCE == 'true') && (!strstr(EXCLUDE_ADMIN_IP_FOR_MAINTENAN
  * If a customer is logged in, check to see that the customers' address(es) still contain valid countries.
  * If not, redirect to the address-book page for changes.
  */
-if (zen_is_logged_in() && $_GET['main_page'] != FILENAME_ADDRESS_BOOK_PROCESS && $_GET['main_page'] != FILENAME_LOGOFF) {
+if (!empty($_SESSION['customer_id']) && $_GET['main_page'] != FILENAME_ADDRESS_BOOK_PROCESS && $_GET['main_page'] != FILENAME_LOGOFF) {
   $addresses_query = "SELECT address_book_id, entry_country_id as country_id, entry_firstname as firstname, entry_lastname as lastname
                       FROM   " . TABLE_ADDRESS_BOOK . "
                       WHERE  customers_id = :customersID

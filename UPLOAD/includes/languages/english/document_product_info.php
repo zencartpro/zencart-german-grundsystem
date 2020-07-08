@@ -2,10 +2,10 @@
 /**
  * @package languageDefines
  * Zen Cart German Specific
- * @copyright Copyright 2003-2020 Zen Cart Development Team
+ * @copyright Copyright 2003-2019 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: document_product_info.php 731 2020-02-29 20:49:16Z webchills $
+ * @version $Id: document_product_info.php 730 2019-08-06 14:49:16Z webchills $
  */
 
 define('TEXT_PRODUCT_NOT_FOUND', 'Sorry, the product was not found.');
@@ -18,7 +18,7 @@ define('TEXT_PRODUCT_OPTIONS', 'Please Choose: ');
 define('TEXT_PRODUCT_MANUFACTURER', 'Manufactured by: ');
 define('TEXT_PRODUCT_WEIGHT', 'Shipping Weight: ');
 define('TEXT_PRODUCT_QUANTITY', ' Units in Stock');
-
+define('TEXT_PRODUCT_MODEL', 'Model: ');
 define('TEXT_XSELL_PRODUCTS', 'Related Products'); 
 
 // previous next product

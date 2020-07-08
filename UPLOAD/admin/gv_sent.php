@@ -1,10 +1,10 @@
 <?php
 /**
  * @package admin
- * @copyright Copyright 2003-2020 Zen Cart Development Team
+ * @copyright Copyright 2003-2019 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: gv_sent.php 732 2020-01-18 08:49:16Z webchills $
+ * @version $Id: gv_sent.php 731 2019-06-15 16:49:16Z webchills $
  */
 
 
@@ -21,8 +21,9 @@
 <title><?php echo TITLE; ?></title>
 <link rel="stylesheet" type="text/css" href="includes/stylesheet.css">
 <link rel="stylesheet" type="text/css" href="includes/cssjsmenuhover.css" media="all" id="hoverJS">
-<script type="text/javascript" src="includes/menu.js"></script>
+<script language="javascript" src="includes/menu.js"></script>
 <script type="text/javascript">
+  <!--
   function init()
   {
     cssjsmenu('navbar');
@@ -32,6 +33,7 @@
       kill.disabled = true;
     }
   }
+  // -->
 </script>
 </head>
 <body onload="init()">

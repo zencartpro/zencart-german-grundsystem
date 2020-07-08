@@ -3,10 +3,10 @@
  * Navigation_history Class.
  *
  * @package classes
- * @copyright Copyright 2003-2020 Zen Cart Development Team
+ * @copyright Copyright 2003-2019 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: navigation_history.php 773 2020-01-17 08:59:29Z webchills $
+ * @version $Id: navigation_history.php 772 2019-04-14 17:59:29Z webchills $
  */
 if (!defined('IS_ADMIN_FLAG')) {
   die('Illegal Access');
@@ -95,7 +95,7 @@ class navigationHistory extends base {
   function remove_current_page() {
 
     $last_entry_position = sizeof($this->path) - 1;
-    if (isset($this->path[$last_entry_position]['page']) && $this->path[$last_entry_position]['page'] == $_GET['main_page']) {
+    if ($this->path[$last_entry_position]['page'] == $_GET['main_page']) {
       unset($this->path[$last_entry_position]);
     }
   }

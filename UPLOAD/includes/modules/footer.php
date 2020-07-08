@@ -4,13 +4,20 @@
  * footer code - calculates information for display, and calls the template file for footer-rendering
  *
  * @package templateStructure
- * @copyright Copyright 2003-2020 Zen Cart Development Team
+ * @copyright Copyright 2003-2019 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: footer.php 731 2020-02-29 21:49:16Z webchills $
+ * @version $Id: footer.php 730 2016-08-14 09:49:16Z webchills $
  */
 if (!defined('IS_ADMIN_FLAG')) {
   die('Illegal Access');
+}
+$time_start = explode(' ', PAGE_PARSE_START_TIME);
+$time_end = explode(' ', microtime());
+$parse_time = number_format(($time_end[1] + $time_end[0] - ($time_start[1] + $time_start[0])), 3);
+
+if (STORE_PAGE_PARSE_TIME == 'true') {
+  error_log(strftime(STORE_PARSE_DATE_TIME_FORMAT) . ' - ' . $_SERVER['REQUEST_URI'] . ' (' . $parse_time . 's)' . "\n", 3, STORE_PAGE_PARSE_TIME_LOG);
 }
 // MailBeez
 if (file_exists(DIR_FS_CATALOG . 'mailhive/configbeez/config_cron_simple/includes/cron_simple_inc.php')) {

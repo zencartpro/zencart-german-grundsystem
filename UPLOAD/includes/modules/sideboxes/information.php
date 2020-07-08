@@ -4,14 +4,13 @@
  * information sidebox - displays list of general info links, as defined in this file
  *
  * @package templateSystem
- * @copyright Copyright 2003-2020 Zen Cart Development Team
+ * @copyright Copyright 2003-2019 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: information.php 735 2020-01-17 14:08:16Z webchills $
+ * @version $Id: information.php 734 2019-04-12 12:08:16Z webchills $
  */
 
   unset($information);
-  $information = array();
 
   if (DEFINE_SHIPPINGINFO_STATUS <= 1) {
     $information[] = '<a href="' . zen_href_link(FILENAME_SHIPPING) . '">' . BOX_INFORMATION_SHIPPING . '</a>';

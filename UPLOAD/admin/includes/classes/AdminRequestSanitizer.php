@@ -1,10 +1,10 @@
 <?php
 /**
  * @package admin
- * @copyright Copyright 2003-2020 Zen Cart Development Team
+ * @copyright Copyright 2003-2019 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: AdminRequestSanitizer.php 9 2020-01-17 17:03:16Z webchills $
+ * @version $Id: AdminRequestSanitizer.php 8 2019-04-14 10:43:16Z webchills $
  */
 
 /**
@@ -511,7 +511,7 @@ class AdminRequestSanitizer extends base
             $this->arrayName = $this->setCurrentArrayName($parameterName);
             $this->debugMessages[] = 'PROCESSING PRODUCT_URL_REGEX == ' . $this->arrayName;
             foreach ($_POST[$parameterName] as $pKey => $pValue) {
-                $currentArrayName = $this->setCurrentArrayname($pKey);
+                $currentArrayName = $this->setCurrentArrayname($pKey, $this->arrayName);
                 $newValue = filter_var($_POST[$parameterName][$pKey], FILTER_SANITIZE_URL);
                 if ($newValue === false) {
                     $newValue = preg_replace($urlRegex, '', $_POST[$parameterName][$pKey]);

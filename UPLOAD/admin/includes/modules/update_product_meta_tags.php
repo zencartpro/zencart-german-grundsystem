@@ -1,10 +1,10 @@
 <?php
 /**
  * @package admin
- * @copyright Copyright 2003-2020 Zen Cart Development Team
+ * @copyright Copyright 2003-2019 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: update_product_meta_tags.php 807 2020-01-18 15:28:24Z webchills $
+ * @version $Id: update_product_meta_tags.php 806 2019-06-15 16:28:24Z webchills $
  */
 if (!defined('IS_ADMIN_FLAG')) {
   die('Illegal Access');
@@ -16,14 +16,16 @@ if (isset($_POST['edit']) && $_POST['edit'] == 'edit') {
   if (isset($_GET['pID'])) {
     $products_id = zen_db_prepare_input($_GET['pID']);
   }
+  $products_date_available = zen_db_prepare_input($_POST['products_date_available']);
+  $products_date_available = (date('Y-m-d') < $products_date_available) ? $products_date_available : 'null';
 
-  $sql_data_array = [
+  $sql_data_array = array(
     'metatags_title_status' => (int)$_POST['metatags_title_status'],
     'metatags_products_name_status' => (int)$_POST['metatags_products_name_status'],
     'metatags_model_status' => (int)$_POST['metatags_model_status'],
     'metatags_price_status' => (int)$_POST['metatags_price_status'],
     'metatags_title_tagline_status' => (int)$_POST['metatags_title_tagline_status'],
-  ];
+  );
 
   if ($action == 'new_product_meta_tags') {
     $sql_data_array['products_id'] = (int)$products_id;
@@ -42,20 +44,18 @@ if (isset($_POST['edit']) && $_POST['edit'] == 'edit') {
     $action = 'new_product_meta_tags';
   }
   $languages = zen_get_languages();
-  for ($i = 0, $n = count($languages); $i < $n; $i++) {
+  for ($i = 0, $n = sizeof($languages); $i < $n; $i++) {
     $language_id = $languages[$i]['id'];
 
-    $sql_data_array = [
+    $sql_data_array = array(
       'metatags_title' => zen_db_prepare_input(isset($_POST['metatags_title'][$language_id]) ? $_POST['metatags_title'][$language_id] : ''),
       'metatags_keywords' => zen_db_prepare_input(isset($_POST['metatags_keywords'][$language_id]) ? $_POST['metatags_keywords'][$language_id] : ''),
-      'metatags_description' => zen_db_prepare_input(isset($_POST['metatags_description'][$language_id]) ? $_POST['metatags_description'][$language_id] : '')
-    ];
+      'metatags_description' => zen_db_prepare_input(isset($_POST['metatags_description'][$language_id]) ? $_POST['metatags_description'][$language_id] : ''));
 
     if ($action == 'new_product_meta_tags') {
-      $insert_sql_data = [
+      $insert_sql_data = array(
         'products_id' => (int)$products_id,
-        'language_id' => (int)$language_id
-      ];
+        'language_id' => (int)$language_id);
 
       $sql_data_array = array_merge($sql_data_array, $insert_sql_data);
 

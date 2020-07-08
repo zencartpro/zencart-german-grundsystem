@@ -10,7 +10,7 @@
  * @package general
  * @copyright Copyright 2003-2020 Zen Cart Development Team
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: version.php 851 2020-01-16 10:50:58Z webchills $
+ * @version $Id: version.php 851 2020-07-08 16:10:58Z webchills $
  * @private
  */
 

@@ -3,10 +3,10 @@
  * products_quantity_discounts module
  *
  * @package modules
- * @copyright Copyright 2003-2020 Zen Cart Development Team
+ * @copyright Copyright 2003-2019 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: products_quantity_discounts.php 732 2020-01-17 15:49:16Z webchills $
+ * @version $Id: products_quantity_discounts.php 731 2019-04-12 12:49:16Z webchills $
  */
 if (!defined('IS_ADMIN_FLAG')) {
   die('Illegal Access');
@@ -18,12 +18,12 @@ require(DIR_WS_MODULES . zen_get_module_directory('require_languages.php'));
 $zc_hidden_discounts_on = false;
 $zc_hidden_discounts_text = '';
 switch (true) {
-  case (CUSTOMERS_APPROVAL == '1' and !zen_is_logged_in()):
+  case (CUSTOMERS_APPROVAL == '1' and $_SESSION['customer_id'] == ''):
   // customer must be logged in to browse
   $zc_hidden_discounts_on = true;
   $zc_hidden_discounts_text = 'MUST LOGIN';
   break;
-  case (STORE_STATUS == 1 || CUSTOMERS_APPROVAL == '2' and !zen_is_logged_in()):
+  case (STORE_STATUS == 1 || CUSTOMERS_APPROVAL == '2' and $_SESSION['customer_id'] == ''):
   // customer may browse but no prices
   $zc_hidden_discounts_on = true;
   $zc_hidden_discounts_text = TEXT_LOGIN_FOR_PRICE_PRICE;
@@ -33,7 +33,7 @@ switch (true) {
   $zc_hidden_discounts_on = true;
   $zc_hidden_discounts_text = TEXT_LOGIN_FOR_PRICE_PRICE_SHOWROOM;
   break;
-  case (CUSTOMERS_APPROVAL_AUTHORIZATION != '0' and !zen_is_logged_in()):
+  case (CUSTOMERS_APPROVAL_AUTHORIZATION != '0' and $_SESSION['customer_id'] == ''):
   // customer must be logged in to browse
   $zc_hidden_discounts_on = true;
   $zc_hidden_discounts_text = TEXT_AUTHORIZATION_PENDING_PRICE;
@@ -51,7 +51,7 @@ switch (true) {
 
 // find out the minimum quantity for this product
 $products_min_query = $db->Execute("select products_quantity_order_min from " . TABLE_PRODUCTS . " where products_id='" . (int)$products_id_current . "'");
-$products_quantity_order_min = isset($products_min_query->fields['products_quantity_order_min']) ? $products_min_query->fields['products_quantity_order_min'] : 0;
+$products_quantity_order_min = $products_min_query->fields['products_quantity_order_min'];
 
 // retrieve the list of discount levels for this product
 $products_discounts_query = $db->Execute("select * from " . TABLE_PRODUCTS_DISCOUNT_QUANTITY . " where products_id='" . (int)$products_id_current . "' and discount_qty !=0 " . " order by discount_qty");

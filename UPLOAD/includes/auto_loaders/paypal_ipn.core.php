@@ -3,9 +3,9 @@
  * autoloader array for paypal
  *
  * @package initSystem
- * @copyright Copyright 2003-2020 Zen Cart Development Team
+ * @copyright Copyright 2003-2019 Zen Cart Development Team
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: paypal_ipn.core.php 732 2020-02-29 20:18:16Z webchills $
+ * @version $Id: paypal_ipn.core.php 731 2019-04-12 09:49:16Z webchills $
  */
 if (!defined('IS_ADMIN_FLAG')) {
  die('Illegal Access');
@@ -13,6 +13,8 @@ if (!defined('IS_ADMIN_FLAG')) {
 
   $autoLoadConfig[0][] = array('autoType'=>'include',
                                'loadFile'=> DIR_WS_INCLUDES . 'version.php');
+  $autoLoadConfig[0][] = array('autoType'=>'class',
+                               'loadFile'=>'class.base.php');
   $autoLoadConfig[0][] = array('autoType'=>'class',
                                'loadFile'=>'class.notifier.php');
   $autoLoadConfig[0][] = array('autoType'=>'classInstantiate',
@@ -25,6 +27,8 @@ if (!defined('IS_ADMIN_FLAG')) {
   $autoLoadConfig[0][] = array('autoType'=>'class',
                                 'loadFile'=>'language.php');
   $autoLoadConfig[0][] = array('autoType'=>'class',
+                                'loadFile'=>'cache.php');
+  $autoLoadConfig[0][] = array('autoType'=>'class',
                                 'loadFile'=>'sniffer.php');
   $autoLoadConfig[0][] = array('autoType'=>'class',
                                 'loadFile'=>'shopping_cart.php');
@@ -36,6 +40,17 @@ if (!defined('IS_ADMIN_FLAG')) {
                                 'loadFile'=>'message_stack.php');
   $autoLoadConfig[0][] = array('autoType'=>'class',
                                 'loadFile'=>'breadcrumb.php');
+/**
+ * Breakpoint 10.
+ *
+ * require('includes/init_includes/init_file_db_names.php');
+ * require('includes/init_includes/init_database.php');
+ *
+ */
+  $autoLoadConfig[10][] = array('autoType'=>'init_script',
+                                'loadFile'=> 'init_file_db_names.php');
+  $autoLoadConfig[10][] = array('autoType'=>'init_script',
+                                'loadFile'=>'init_database.php');
 /**
  * Breakpoint 30.
  *

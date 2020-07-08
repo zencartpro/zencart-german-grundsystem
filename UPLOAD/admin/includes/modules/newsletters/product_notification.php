@@ -1,10 +1,10 @@
 <?php
 /**
  * @package admin
- * @copyright Copyright 2003-2020 Zen Cart Development Team
+ * @copyright Copyright 2003-2019 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: product_notification.php 732 2020-01-17 19:02:16Z webchills $
+ * @version $Id: product_notification.php 731 2019-04-15 16:49:16Z webchills $
  */
 if (!defined('IS_ADMIN_FLAG')) {
   die('Illegal Access');
@@ -253,7 +253,6 @@ function selectAll(FormName, SelectBox) {
     $i = 0;
     foreach ($audience as $key => $value) {
       $i++;
-      $html_msg['EMAIL_SALUTATION'] = EMAIL_SALUTATION;
       $html_msg['EMAIL_FIRST_NAME'] = $value['firstname'];
       $html_msg['EMAIL_LAST_NAME'] = $value['lastname'];
       $html_msg['EMAIL_MESSAGE_HTML'] = $this->content_html;

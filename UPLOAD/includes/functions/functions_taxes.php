@@ -3,10 +3,10 @@
  * functions_taxes
  *
  * @package functions
- * @copyright Copyright 2003-2020 Zen Cart Development Team
+ * @copyright Copyright 2003-2019 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: functions_taxes.php 735 2020-01-17 09:43:16Z webchills $
+ * @version $Id: functions_taxes.php 734 2019-07-27 08:43:16Z webchills $
  */
 
 ////
@@ -32,7 +32,7 @@
     }
 
     if ( ($country_id == -1) && ($zone_id == -1) ) {
-      if (zen_is_logged_in()) {
+      if (isset($_SESSION['customer_id'])) {
         $country_id = $_SESSION['customer_country_id'];
         $zone_id = $_SESSION['customer_zone_id'];
       } else {
@@ -96,7 +96,7 @@
     }
     
     if ( ($country_id == -1) && ($zone_id == -1) ) {
-      if (zen_is_logged_in()) {
+      if (isset($_SESSION['customer_id'])) {
         $country_id = $_SESSION['customer_country_id'];
         $zone_id = $_SESSION['customer_zone_id'];
       } else {
@@ -158,7 +158,7 @@
     $rates_array = array();
     
     if ( ($country_id == -1) && ($zone_id == -1) ) {
-      if (zen_is_logged_in()) {
+      if (isset($_SESSION['customer_id'])) {
         $country_id = $_SESSION['customer_country_id'];
         $zone_id = $_SESSION['customer_zone_id'];
       } else {
@@ -359,7 +359,7 @@
     }
     
     if ( ($country_id == -1) && ($zone_id == -1) ) {
-      if (zen_is_logged_in()) {
+      if (isset($_SESSION['customer_id'])) {
         $country_id = $_SESSION['customer_country_id'];
         $zone_id = $_SESSION['customer_zone_id'];
       } else {

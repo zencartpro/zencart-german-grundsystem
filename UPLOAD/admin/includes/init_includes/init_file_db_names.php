@@ -1,10 +1,10 @@
 <?php
 /**
  * @package admin
- * @copyright Copyright 2003-2020 Zen Cart Development Team
+ * @copyright Copyright 2003-2019 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: init_file_db_names.php 733 2020-01-18 16:49:16Z webchills $
+ * @version $Id: init_file_db_names.php 732 2015-12-21 19:49:16Z webchills $
  */
 if (!defined('IS_ADMIN_FLAG')) {
   die('Illegal Access');
@@ -26,7 +26,7 @@ $request_type = (((isset($_SERVER['HTTPS']) && (strtolower($_SERVER['HTTPS']) ==
                  (isset($_SERVER['SERVER_PORT']) && $_SERVER['SERVER_PORT'] == '443')) ? 'SSL' : 'NONSSL';
 
 // set php_self in the local scope
-//  if (!isset($PHP_SELF)) $PHP_SELF = $_SERVER['PHP_SELF'];
+  if (!isset($PHP_SELF)) $PHP_SELF = $_SERVER['PHP_SELF'];
 
 // include the list of project filenames
   require(DIR_FS_CATALOG . DIR_WS_INCLUDES . 'filenames.php');

@@ -4,10 +4,10 @@
  * see {@link  http://www.zen-cart.com/wiki/index.php/Developers_API_Tutorials#InitSystem wikitutorials} for more details.
  *
  * @package initSystem
- * @copyright Copyright 2003-2020 Zen Cart Development Team
+ * @copyright Copyright 2003-2019 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: init_sessions.php 737 2020-03-12 07:49:16Z webchills $
+ * @version $Id: init_sessions.php 736 2019-06-15 17:49:16Z webchills $
  */
 if (!defined('IS_ADMIN_FLAG')) {
   die('Illegal Access');
@@ -106,7 +106,7 @@ unset($spiders);
  * set host_address once per session to reduce load on server
  */
 if (!isset($_SESSION['customers_host_address'])) {
-  if (SESSION_IP_TO_HOST_ADDRESS == 'true' || !defined('OFFICE_IP_TO_HOST_ADDRESS')) {
+  if (SESSION_IP_TO_HOST_ADDRESS == 'true') {
     $_SESSION['customers_host_address']= @gethostbyaddr($_SERVER['REMOTE_ADDR']);
   } else {
     $_SESSION['customers_host_address'] = OFFICE_IP_TO_HOST_ADDRESS;

@@ -2,10 +2,10 @@
 /**
  * @package languageDefines
  * Zen Cart German Specific
- * @copyright Copyright 2003-2020 Zen Cart Development Team
+ * @copyright Copyright 2003-2019 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0 
- * @version $Id: product_music_info.php 629 2020-03-01 08:05:14Z webchills $
+ * @version $Id: product_music_info.php 628 2019-08-06 14:05:14Z webchills $
  */
 
 define('TEXT_PRODUCT_NOT_FOUND', 'Entschuldigen Sie bitte, aber der gewünschte Artikel konnte nicht gefunden werden.');
@@ -21,7 +21,7 @@ define('TEXT_PRODUCT_ARTIST', 'Künstler: ');
 define('TEXT_PRODUCT_MUSIC_GENRE', 'Musik Genre: ');
 define('TEXT_PRODUCT_WEIGHT', 'Versandgewicht: ');
 define('TEXT_PRODUCT_QUANTITY', ' Einheiten auf Lager');
-
+define('TEXT_PRODUCT_MODEL', 'Artikelnummer: ');
 define('TEXT_PRODUCT_COLLECTIONS', 'Medienkollektion: ');
 define('TEXT_XSELL_PRODUCTS', 'Zu diesem Artikel empfehlen wir...');
 

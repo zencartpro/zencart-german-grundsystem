@@ -4,7 +4,7 @@
  * @copyright Copyright 2003-2020 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: attributes_controller.php 744 2020-02-28 09:17:16Z webchills $
+ * @version $Id: attributes_controller.php 743 2020-07-08 20:49:16Z webchills $
  */
 require('includes/application_top.php');
 
@@ -572,8 +572,7 @@ if (zen_not_null($action)) {
 
       zen_redirect(zen_href_link(FILENAME_ATTRIBUTES_CONTROLLER, $_SESSION['page_info'] . '&current_category_id=' . $_POST['current_category_id']));
       break;
-    case 'delete_attribute':
-     
+    case 'delete_attribute':      
       if (isset($_POST['delete_attribute_id'])) {
         $attribute_id = zen_db_prepare_input($_POST['delete_attribute_id']);
 
@@ -817,7 +816,7 @@ function zen_js_option_values_list($selectedName, $fieldName) {
         <div class="col-sm-4">
           <div class="dropdown">
             <button class="btn btn-default dropdown-toggle" type="button" id="menu1" data-toggle="dropdown">
-                <?php echo BUTTON_ADDITIONAL_ACTIONS; ?>
+                <?php echo BUTTON_ADDITITONAL_ACTIONS; ?>
               <span class="caret"></span>
             </button>
             <ul class="dropdown-menu" role="menu" aria-labelledby="menu1">

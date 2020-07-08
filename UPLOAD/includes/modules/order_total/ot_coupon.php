@@ -1,12 +1,12 @@
 <?php
 /**
  * ot_coupon order-total module
- * Zen Cart German Specific
+ *
  * @package orderTotal
- * @copyright Copyright 2003-2020 Zen Cart Development Team
+ * @copyright Copyright 2003-2019 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: ot_coupon.php 744 2020-03-12 07:49:16Z webchills $
+ * @version $Id: ot_coupon.php 738 2019-06-15 17:18:16Z webchills $
  */
 /**
  * Order Total class  to handle discount coupons
@@ -135,35 +135,21 @@ class ot_coupon {
    *
    * @return unknown
    */
-    function credit_selection()
-    {
-        global $discount_coupon, $request_type;
-
-        $couponLink = '';
-        if (isset($discount_coupon->fields['coupon_code']) && isset($_SESSION['cc_id'])) {
-            $coupon_code = $discount_coupon->fields['coupon_code'];
-            $couponLink = '<a href="javascript:couponpopupWindow(\'' . 
-              zen_href_link(FILENAME_POPUP_COUPON_HELP, 'cID=' . $_SESSION['cc_id'], $request_type) .
-              '\')">' . $coupon_code . '</a>';
-        }
-        // note the placement of the redeem code can be moved within the array on the instructions or the title
-        $selection = array(
-            'id' => $this->code,
-            'module' => $this->title,
-            'redeem_instructions' => MODULE_ORDER_TOTAL_COUPON_REDEEM_INSTRUCTIONS .
-                MODULE_ORDER_TOTAL_COUPON_REMOVE_INSTRUCTIONS .
-                '<p>' . MODULE_ORDER_TOTAL_COUPON_TEXT_CURRENT_CODE . $couponLink . '</p><br />',
-            'fields' => array(
-                array(
-                    'title' => MODULE_ORDER_TOTAL_COUPON_TEXT_ENTER_CODE,
-                    'field' => zen_draw_input_field('dc_redeem_code', '', 'id="disc-' . $this->code . '" onkeyup="submitFunction(0,0)"'),
-                    'tag' => 'disc-' . $this->code
-                )
-            )
-        );
-
-        return $selection;
+  function credit_selection() {
+    global $discount_coupon, $request_type;
+    if (!isset($discount_coupon->fields['coupon_code'])) {
+      $discount_coupon->fields['coupon_code'] = '';
     }
+    // note the placement of the redeem code can be moved within the array on the instructions or the title
+    $selection = array('id' => $this->code,
+                       'module' => $this->title,
+                       'redeem_instructions' => MODULE_ORDER_TOTAL_COUPON_REDEEM_INSTRUCTIONS . ($discount_coupon->fields['coupon_code'] != '' ? MODULE_ORDER_TOTAL_COUPON_REMOVE_INSTRUCTIONS : '') . ($discount_coupon->fields['coupon_code'] != '' ? '<p>' . MODULE_ORDER_TOTAL_COUPON_TEXT_CURRENT_CODE . '<a href="javascript:couponpopupWindow(\'' . zen_href_link(FILENAME_POPUP_COUPON_HELP, 'cID=' . $_SESSION['cc_id'], $request_type) . '\')">' . $discount_coupon->fields['coupon_code'] . '</a></p><br />' : ''),
+                       'fields' => array(array('title' => MODULE_ORDER_TOTAL_COUPON_TEXT_ENTER_CODE,
+                                               'field' => zen_draw_input_field('dc_redeem_code', '', 'id="disc-' . $this->code . '" onkeyup="submitFunction(0,0)"'),
+                                               'tag' => 'disc-'.$this->code
+                       )));
+    return $selection;
+  }
   /**
    * Enter description here...
    *
@@ -178,30 +164,22 @@ class ot_coupon {
     if (isset($_POST['dc_redeem_code']) && strtoupper($_POST['dc_redeem_code']) == TEXT_COMMAND_TO_DELETE_CURRENT_COUPON_FROM_ORDER) {
       unset($_POST['dc_redeem_code']);
       unset($_SESSION['cc_id']);
-
+      
       $GLOBALS['zco_notifier']->notify(
           'NOTIFY_OT_COUPON_COUPON_REMOVED'
        );
-
+       
       $messageStack->add_session('checkout_payment', TEXT_REMOVE_REDEEM_COUPON, 'caution');
     }
-
+//    print_r($_SESSION);
+    // bof: Discount Coupon zoned always validate coupon for payment address changes
+    // eof: Discount Coupon zoned always validate coupon for payment address changes
     if ((isset($_POST['dc_redeem_code']) && $_POST['dc_redeem_code'] != '') || (isset($discount_coupon->fields['coupon_code']) && $discount_coupon->fields['coupon_code'] != '')) {
       // set current Discount Coupon based on current or existing
-      if ($discount_coupon != null) {
-        if (isset($_POST['dc_redeem_code']) && $discount_coupon->fields['coupon_code'] == '') {
-          $dc_check = $_POST['dc_redeem_code'];
-        } else {
-          $dc_check = $discount_coupon->fields['coupon_code'];
-        }
+      if (isset($_POST['dc_redeem_code']) && $discount_coupon->fields['coupon_code'] == '') {
+        $dc_check = $_POST['dc_redeem_code'];
       } else {
-        if (isset($_POST['dc_redeem_code'])) {
-          $dc_check = $_POST['dc_redeem_code'];
-        } else if ($discount_coupon != null) {
-          $dc_check = $discount_coupon->fields['coupon_code'];
-        } else {
-          $dc_check = "UNKNOWN_COUPON";
-        }
+        $dc_check = $discount_coupon->fields['coupon_code'];
       }
 
 
@@ -217,28 +195,28 @@ class ot_coupon {
 
       $coupon_result=$db->Execute($sql);
 
-      if (!$coupon_result->EOF) {
+      if ($coupon_result->fields['coupon_type'] != 'G') {
 
         if ($coupon_result->RecordCount() < 1 ) {
-          $messageStack->add_session('redemptions', sprintf(TEXT_INVALID_REDEEM_COUPON, $dc_check),'caution');
+          $messageStack->add_session('redemptions', TEXT_INVALID_REDEEM_COUPON . ' ' . $dc_check,'caution');
           $this->clear_posts();
           zen_redirect(zen_href_link(FILENAME_CHECKOUT_PAYMENT, '', 'SSL',true, false));
         }
-
+	
         $GLOBALS['zco_notifier']->notify(
-            'NOTIFY_OT_COUPON_COUPON_INFO',
+            'NOTIFY_OT_COUPON_COUPON_INFO', 
             array(
-                'coupon_result' => $coupon_result->fields,
+                'coupon_result' => $coupon_result->fields, 
                 'code' => $dc_check
             )
         );
-
+	
         //$order_total = $this->get_order_total($coupon_result->fields['coupon_id']);
 
         // display all error messages at once
         $error_issues = 0;
         $dc_link_count = 0;
-        $dc_link = '<a href="javascript:couponpopupWindow(\'' . zen_href_link(FILENAME_POPUP_COUPON_HELP, 'cID=' . $coupon_result->fields['coupon_id']) . '\')" title="' . TEXT_COUPON_LINK_TITLE . '">' . $dc_check . '</a>';
+        $dc_link = ' <a href="javascript:couponpopupWindow(\'' . zen_href_link(FILENAME_POPUP_COUPON_HELP, 'cID=' . $coupon_result->fields['coupon_id']) . '\')">' . $dc_check . '</a>';
         $orderTotalDetails = $this->get_order_total($coupon_result->fields['coupon_id']);
         if ($coupon_result->fields['coupon_calc_base'] == 0) {
           $coupon_total_minimum = $orderTotalDetails['orderTotal']; // restricted products
@@ -257,7 +235,7 @@ class ot_coupon {
         if (strval($coupon_total) > 0 && strval($coupon_total_minimum) < $coupon_result->fields['coupon_minimum_order'])
         {
           // $order_total['orderTotal'] . ' vs ' . $order_total['totalFull']
-          $messageStack->add_session('redemptions', sprintf(TEXT_INVALID_REDEEM_COUPON_MINIMUM, ($dc_link_count === 0 ? $dc_link : $dc_check), $currencies->format($coupon_result->fields['coupon_minimum_order'])), 'caution');
+          $messageStack->add_session('redemptions', sprintf(TEXT_INVALID_REDEEM_COUPON_MINIMUM, $currencies->format($coupon_result->fields['coupon_minimum_order'])) . ($dc_link_count == 0 ? $dc_link : ''), 'caution');
           $error_issues ++;
           $dc_link_count ++;
 
@@ -272,7 +250,7 @@ class ot_coupon {
 
         if ($foundvalid == true) {
           $foundvalid = false;
-          for ($i=0; $i<count($products); $i++) {
+          for ($i=0; $i<sizeof($products); $i++) {
             if (is_product_valid($products[$i]['id'], $coupon_result->fields['coupon_id'])) {
               $foundvalid = true;
               continue;
@@ -282,7 +260,7 @@ class ot_coupon {
         if ($foundvalid == true) {
           // check if products on special or sale are valid
           $foundvalid = false;
-          for ($i=0, $n=count($products); $i<$n; $i++) {
+          for ($i=0, $n=sizeof($products); $i<$n; $i++) {
             if (is_coupon_valid_for_sales($products[$i]['id'], $coupon_result->fields['coupon_id'])) {
               $foundvalid = true;
               continue;
@@ -294,7 +272,7 @@ class ot_coupon {
         }
 //        if (!$foundvalid) zen_redirect(zen_href_link(FILENAME_CHECKOUT_PAYMENT, 'credit_class_error_code=' . $this->code . '&credit_class_error=' . urlencode(TEXT_INVALID_COUPON_PRODUCT . ' ' . $dc_check), 'SSL',true, false));
         if (!$foundvalid) {
-          $messageStack->add_session('redemptions', sprintf(TEXT_INVALID_COUPON_PRODUCT, ($dc_link_count === 0 ? $dc_link : $dc_check)), 'caution');
+          $messageStack->add_session('redemptions', TEXT_INVALID_COUPON_PRODUCT . ' ' . ($dc_link_count ==0 ? $dc_link : ''), 'caution');
           $error_issues ++;
           $dc_link_count ++;
         }
@@ -304,7 +282,7 @@ class ot_coupon {
           $sql = "SELECT orders_id FROM " . TABLE_ORDERS . " WHERE customers_id = '" . $_SESSION['customer_id'] . "'";
           $chk_customer_orders = $db->Execute($sql);
           if ($chk_customer_orders->RecordCount() > $coupon_result->fields['coupon_order_limit']) {
-            $messageStack->add_session('redemptions', sprintf(TEXT_INVALID_COUPON_ORDER_LIMIT, ($dc_link_count === 0 ? $dc_link : $dc_check), $coupon_result->fields['coupon_order_limit']), 'caution');
+            $messageStack->add_session('redemptions', sprintf(TEXT_INVALID_COUPON_ORDER_LIMIT, $coupon_result->fields['coupon_order_limit']) . ' ' . ($dc_link_count ==0 ? $dc_link : ''), 'caution');
             $error_issues ++;
             $dc_link_count ++;
           }
@@ -313,10 +291,11 @@ class ot_coupon {
         // JTD - end of handling coupon product restrictions
 
         $date_query=$db->Execute("select coupon_start_date from " . TABLE_COUPONS . "
-                                  where coupon_code='" . zen_db_prepare_input($dc_check) . "' LIMIT 1");
+                                  where coupon_start_date <= now() and
+                                  coupon_code='" . zen_db_prepare_input($dc_check) . "'");
 
-        if (date("Y-m-d H:i:s") < $date_query->fields['coupon_start_date']) {
-          $messageStack->add_session('redemptions', sprintf(TEXT_INVALID_STARTDATE_COUPON, ($dc_link_count === 0 ? $dc_link : $dc_check), zen_date_short($date_query->fields['coupon_start_date'])),'caution');
+        if ($date_query->RecordCount() < 1 ) {
+          $messageStack->add_session('redemptions', TEXT_INVALID_STARTDATE_COUPON . ' ' . ($dc_link_count ==0 ? $dc_link : ''),'caution');
           $error_issues ++;
           $dc_link_count ++;
 //          $this->clear_posts();
@@ -324,10 +303,11 @@ class ot_coupon {
         }
 
         $date_query=$db->Execute("select coupon_expire_date from " . TABLE_COUPONS . "
-                                  where coupon_code='" . zen_db_prepare_input($dc_check) . "' LIMIT 1");
+                                  where coupon_expire_date >= now() and
+                                  coupon_code='" . zen_db_prepare_input($dc_check) . "'");
 
-          if (date("Y-m-d H:i:s") >= $date_query->fields['coupon_expire_date']) {
-          $messageStack->add_session('redemptions', sprintf(TEXT_INVALID_FINISHDATE_COUPON, ($dc_link_count === 0 ? $dc_link : $dc_check), zen_date_short($date_query->fields['coupon_expire_date'])),'caution');
+        if ($date_query->RecordCount() < 1 ) {
+          $messageStack->add_session('redemptions', TEXT_INVALID_FINISHDATE_COUPON . ' ' . ($dc_link_count ==0 ? $dc_link : ''),'caution');
           $error_issues ++;
           $dc_link_count ++;
 //          $this->clear_posts();
@@ -340,11 +320,11 @@ class ot_coupon {
         $coupon_count_customer = $db->Execute("select coupon_id from " . TABLE_COUPON_REDEEM_TRACK . "
                                                where coupon_id = '" . $coupon_result->fields['coupon_id']."' and
                                                customer_id = '" . (int)$_SESSION['customer_id'] . "'");
-
+                                               
         $coupon_uses_per_user_exceeded = ($coupon_count_customer->RecordCount() >= $coupon_result->fields['uses_per_user'] && $coupon_result->fields['uses_per_user'] > 0);
         $GLOBALS['zco_notifier']->notify('NOTIFY_OT_COUPON_USES_PER_USER_CHECK', $coupon_result->fields, $coupon_uses_per_user_exceeded);
         if ($coupon_uses_per_user_exceeded) {
-          $messageStack->add_session('redemptions', sprintf(TEXT_INVALID_USES_COUPON , ($dc_link_count === 0 ? $dc_link : $dc_check), $coupon_result->fields['uses_per_coupon']) ,'caution');
+          $messageStack->add_session('redemptions', TEXT_INVALID_USES_COUPON . $coupon_result->fields['uses_per_coupon'] . TIMES . ' ' . ($dc_link_count ==0 ? $dc_link : '') ,'caution');
           $error_issues ++;
           $dc_link_count ++;
 //          $this->clear_posts();
@@ -352,7 +332,7 @@ class ot_coupon {
         }
 
         if ($coupon_count_customer->RecordCount() >= $coupon_result->fields['uses_per_user'] && $coupon_result->fields['uses_per_user'] > 0) {
-          $messageStack->add_session('redemptions', sprintf(TEXT_INVALID_USES_USER_COUPON, ($dc_link_count === 0 ? $dc_link : $dc_check), $coupon_result->fields['uses_per_user']) ,'caution');
+          $messageStack->add_session('redemptions', sprintf(TEXT_INVALID_USES_USER_COUPON, $dc_check) . $coupon_result->fields['uses_per_user'] . ($coupon_result->fields['uses_per_user'] == 1 ? TIME : TIMES) . ' ' . ($dc_link_count ==0 ? $dc_link : '') ,'caution');
           $error_issues ++;
           $dc_link_count ++;
 //          $this->clear_posts();
@@ -448,7 +428,7 @@ class ot_coupon {
           }
           // remove if fails address validation
           if (!$foundvalid) {
-            $messageStack->add_session('redemptions', sprintf(TEXT_REMOVE_REDEEM_COUPON_ZONE , ($dc_link_count === 0 ? $dc_link : $dc_check)), 'caution');
+            $messageStack->add_session('redemptions', TEXT_REMOVE_REDEEM_COUPON_ZONE . ' ' . ($dc_link_count ==0 ? $dc_link : ''), 'caution');
             $dc_link_count ++;
           }
           // display all error messages
@@ -464,7 +444,7 @@ class ot_coupon {
           }
         }
       } else {
-        $messageStack->add_session('redemptions', sprintf(TEXT_INVALID_REDEEM_COUPON, $dc_check),'caution');
+        $messageStack->add_session('redemptions', TEXT_INVALID_REDEEM_COUPON . ' ' . $dc_check,'caution');
         $this->clear_posts();
         zen_redirect(zen_href_link(FILENAME_CHECKOUT_PAYMENT, '', 'SSL',true, false));
       }
@@ -514,14 +494,21 @@ class ot_coupon {
       }
 //echo 'ot_coupon coupon_total: ' . $coupon->fields['coupon_calc_base'] . '<br>$orderTotalDetails[orderTotal]: ' . $orderTotalDetails['orderTotal'] . '<br>$orderTotalDetails[totalFull]: ' . $orderTotalDetails['totalFull'] . '<br>$coupon_total: ' . $coupon_total . '<br><br>$coupon->fields[coupon_minimum_order]: ' . $coupon->fields['coupon_minimum_order'] . '<br>$coupon_total_minimum: ' . $coupon_total_minimum . '<br>';
 // @@TODO - adjust all Totals to use $coupon_total but strong review for what total applies where for Percentage, Amount, etc.
+//      if ($coupon->RecordCount() > 0 && $orderTotalDetails['totalFull'] != 0) {
       if ($coupon->RecordCount() > 0 && $orderTotalDetails['orderTotal'] != 0 ) {
+// left for total order amount ($orderTotalDetails['totalFull']) vs qualified order amount ($order_total['orderTotal']) just switch the commented lines 3 of 3
+//        if (strval($orderTotalDetails['totalFull']) >= $coupon->fields['coupon_minimum_order']) {
+//        if (strval($orderTotalDetails['orderTotal']) >= $coupon->fields['coupon_minimum_order']) {
 
-          if (strval($coupon_total_minimum) >= $coupon->fields['coupon_minimum_order']) {
+//        if (strval($coupon_total) >= $coupon->fields['coupon_minimum_order']) {
+        if (strval($coupon_total_minimum) >= $coupon->fields['coupon_minimum_order']) {
+
+          // calculate quantity when coupon_per_quantity && coupon_type F amount off || O amount off & Free Shipping
           $coupon_product_count = 1;
           if ($coupon->fields['coupon_product_count'] && ($coupon->fields['coupon_type'] == 'F' || $coupon->fields['coupon_type'] == 'O')) {
             $products = $_SESSION['cart']->get_products();
             $coupon_product_count = 0;
-            for ($i=0, $n=count($products); $i<$n; $i++) {
+            for ($i=0, $n=sizeof($products); $i<$n; $i++) {
               if (is_product_valid($products[$i]['id'], $coupon->fields['coupon_id'])) {
                 $coupon_product_count += $_SESSION['cart']->get_quantity($products[$i]['id']);
               }
@@ -541,8 +528,8 @@ class ot_coupon {
               return $od_amount;
               break;
             case 'P': // percentage
-              $od_amount['total'] = zen_round($orderTotalDetails['orderTotal']*($coupon->fields['coupon_amount']/100), $currencyDecimalPlaces);
-//              $od_amount['total'] = zen_round($coupon_total*($coupon->fields['coupon_amount']/100), $currencyDecimalPlaces);
+//              $od_amount['total'] = zen_round($orderTotalDetails['orderTotal']*($coupon->fields['coupon_amount']/100), $currencyDecimalPlaces);
+              $od_amount['total'] = zen_round($coupon_total*($coupon->fields['coupon_amount']/100), $currencyDecimalPlaces);
               $od_amount['type'] = $coupon->fields['coupon_type'];
 //              $ratio = $od_amount['total']/$orderTotalDetails['orderTotal'];
               $ratio = $od_amount['total']/$coupon_total;
@@ -606,21 +593,8 @@ class ot_coupon {
           }
         }
       }
-
-      // -----
-      // Let an observer know that the coupon-related calculations have finished, providing read-only
-      // copies of (a) the base coupon information, (b) the results from 'get_order_total' and this
-      // method's return values.
-      //
-      $GLOBALS['zco_notifier']->notify(
-        'NOTIFY_OT_COUPON_CALCS_FINISHED',
-        array(
-            'coupon' => $coupon,
-            'order_totals' => $orderTotalDetails,
-            'od_amount' => $od_amount,
-        )
-      );
     }
+
 //    print_r($order->info);
 //    print_r($orderTotalDetails);echo "<br><br>";
 //    echo 'RATIo = '. $ratio;
@@ -634,12 +608,12 @@ class ot_coupon {
     $orderTotalTax = $order->info['tax'];
     $orderTotal = $order->info['total'];
     $products = $_SESSION['cart']->get_products();
-    for ($i=0, $n=count($products); $i<$n; $i++) {
+    for ($i=0, $n=sizeof($products); $i<$n; $i++) {
       $is_product_valid = (is_product_valid($products[$i]['id'], $couponCode) && is_coupon_valid_for_sales($products[$i]['id'], $couponCode));
       $GLOBALS['zco_notifier']->notify(
-        'NOTIFY_OT_COUPON_PRODUCT_VALIDITY',
+        'NOTIFY_OT_COUPON_PRODUCT_VALIDITY', 
         array(
-            'is_product_valid' => $is_product_valid,
+            'is_product_valid' => $is_product_valid, 
             'i' => $i
         )
       );
@@ -725,7 +699,7 @@ class ot_coupon {
     global $db;
     $keys = '';
     $keys_array = $this->keys();
-    for ($i=0, $n=count($keys_array); $i<$n; $i++) {
+    for ($i=0, $n=sizeof($keys_array); $i<$n; $i++) {
       $keys .= "'" . $keys_array[$i] . "',";
     }
     $keys = substr($keys, 0, -1);

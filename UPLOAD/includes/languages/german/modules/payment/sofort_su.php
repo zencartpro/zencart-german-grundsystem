@@ -2,7 +2,7 @@
 define('MODULE_PAYMENT_SOFORT_SU_TEXT_TITLE', 'Sofort.');
 define('MODULE_PAYMENT_SOFORT_SU_TEXT_LOGO', '<br /> <img src="https://cdn.klarna.com/1.0/shared/image/generic/badge/de_de/pay_now/descriptive/pink.svg" height="30px" alt="Sofort."/>');
 
-define('MODULE_PAYMENT_SOFORT_SU_DESCRIPTION', 'Einfach und direkt bezahlen mit Sofort Überweisung<br/><br/><img src="images/klarna_sofort.png" alt="Sofort."/><br/><br/><a href="https://www.sofort.com/payment/users/register?SOFUEB" target="_blank"><u>Registrieren Sie sich bei Sofort</u></a>, um diese Zahlungsart anbieten zu können.<br/><br/>Bereits registriert? <a href="https://www.sofort.com/payment/users/login" target="_blank"><u>Klarna Händler Login</u></a>');
+define('MODULE_PAYMENT_SOFORT_SU_DESCRIPTION', 'Einfach und direkt bezahlen mit Sofort Überweisung<br/><br/><img src="images/klarna_sofort.png" alt="Sofort."/><br/><br/><a href="https://www.klarna.com/sofort/business/mit-sofort-verkaufen/" target="_blank"><u>Registrieren Sie sich bei Sofort</u></a>, um diese Zahlungsart anbieten zu können.<br/><br/>Bereits registriert? <a href="https://www.sofort.com/payment/users/login" target="_blank"><u>Klarna Händler Login</u></a>');
 
 define('MODULE_PAYMENT_SOFORT_SU_STATUS_TITLE', 'Sofort. Modul aktivieren');
 define('MODULE_PAYMENT_SOFORT_SU_STATUS_DESC', 'Aktiviert/deaktiviert das komplette Modul');

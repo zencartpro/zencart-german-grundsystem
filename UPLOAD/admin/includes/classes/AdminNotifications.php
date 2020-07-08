@@ -1,10 +1,10 @@
 <?php
 /**
  * @package admin
- * @copyright Copyright 2003-2020 Zen Cart Development Team
+ * @copyright Copyright 2003-2019 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: AdminNotifications.php 2020-02-13 21:09:00 webchills $
+ * @version $Id: Drbyte Thu Dec 6 14:42:02 2018 -0500 New in v1.5.6 $
  */
 
 class AdminNotifications
@@ -22,11 +22,6 @@ class AdminNotifications
         if (defined('DISABLE_ADMIN_NOTIFICATIONS_CHECKING') && DISABLE_ADMIN_NOTIFICATIONS_CHECKING === true) {
             $this->enabled = false;
         }
-
-        global $sniffer;  
-        if (!$sniffer->table_exists(TABLE_ADMIN_NOTIFICATIONS)) { 
-            $this->enabled = false;
-        }
     }
 
     public function getNotifications($target, $adminId)
@@ -36,10 +31,6 @@ class AdminNotifications
         }
 
         $notificationList = $this->getNotificationInfo();
-        if (empty($notificationList)) {
-            return [];
-        }
-
         $this->pruneSavedState($notificationList);
         $savedState = $this->getSavedState($adminId);
         $result = [];

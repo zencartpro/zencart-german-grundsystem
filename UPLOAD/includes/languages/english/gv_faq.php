@@ -1,10 +1,10 @@
 <?php
 /**
  * @package languageDefines
- * @copyright Copyright 2003-2020 Zen Cart Development Team
+ * @copyright Copyright 2003-2019 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: gv_faq.php 732 2020-02-29 20:53:16Z webchills $
+ * @version $Id: gv_faq.php 731 2019-05-09 08:49:16Z webchills $
  */
 
 define('NAVBAR_TITLE', TEXT_GV_NAME . ' FAQ');
@@ -17,9 +17,6 @@ define('TEXT_INFORMATION', '<a name="Top"></a>
   <a href="'.zen_href_link(FILENAME_GV_FAQ,'faq_item=4','NONSSL').'">Redeeming ' . TEXT_GV_NAMES . '</a><br />
   <a href="'.zen_href_link(FILENAME_GV_FAQ,'faq_item=5','NONSSL').'">When problems occur</a><br />
 ');
-if (empty($_GET['faq_item'])) {
-  $_GET['faq_item'] == '0';
-}
 switch ($_GET['faq_item']) {
   case '1':
 define('SUB_HEADING_TITLE','Purchasing ' . TEXT_GV_NAMES);

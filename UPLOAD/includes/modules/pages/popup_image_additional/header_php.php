@@ -1,12 +1,12 @@
 <?php
 /**
  * pop up image additional
- * Zen Cart German Specific
+ *
  * @package page
- * @copyright Copyright 2003-2020 Zen Cart Development Team
+ * @copyright Copyright 2003-2019 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: header_php.php 733 2020-02-29 21:41:16Z webchills $
+ * @version $Id: header_php.php 732 2014-09-11 12:41:16Z webchills $
  */
 // This should be first line of the script:
   $zco_notifier->notify('NOTIFY_HEADER_START_POPUP_IMAGES_ADDITIONAL');
@@ -27,11 +27,8 @@
   $products_values = $db->Execute($products_values_query);
 
 
-  $products_image = '';
-  
-  if (!$products_values->EOF) {
   $products_image = $products_values->fields['products_image'];
-  }
+
   $products_image_extension = substr($products_image, strrpos($products_image, '.'));
 //Begin Image Handler changes 1 of 1
 //the next three lines are commented out for Image Handler 3

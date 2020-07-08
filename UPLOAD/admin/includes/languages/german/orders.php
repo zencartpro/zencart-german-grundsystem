@@ -2,14 +2,14 @@
 /**
  * Zen Cart German Specific
  * @package admin
- * @copyright Copyright 2003-2020 Zen Cart Development Team
+ * @copyright Copyright 2003-2019 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: orders.php 636 2020-01-19 09:05:14Z webchills $
+ * @version $Id: orders.php 634 2018-04-15 09:05:14Z webchills $
  */
 
 define('HEADING_TITLE', 'Bestellungen');
-define('HEADING_TITLE_DETAILS', 'Bestell Details (#%u)'); //-%u wird befüllt mit der gewählten Bestellnummer
+define('HEADING_TITLE_DETAILS', 'Bestell Details');
 define('HEADING_TITLE_SEARCH', 'Bestell ID:');
 define('HEADING_TITLE_STATUS', 'Status:');
 define('HEADING_TITLE_SEARCH_DETAIL_ORDERS_PRODUCTS', 'Artikelname oder ID:XX oder Artikelnummer ');
@@ -30,7 +30,7 @@ define('TABLE_HEADING_STATUS', 'Status');
 define('TABLE_HEADING_TYPE', 'Bestelltyp');
 define('TABLE_HEADING_ACTION', 'Aktion');
 define('TABLE_HEADING_QUANTITY', 'Stück');
-
+define('TABLE_HEADING_PRODUCTS_MODEL', 'Artikelnummer');
 define('TABLE_HEADING_PRODUCTS', 'Artikel');
 define('TABLE_HEADING_TAX', 'MwSt.');
 define('TABLE_HEADING_TOTAL', 'Summe');
@@ -99,7 +99,6 @@ define('WARNING_ORDER_NOT_UPDATED', 'WARNUNG: Keine Änderung festgestellt. Die 
 define('ENTRY_ORDER_ID', 'Rechnungsnummer: ');
 define('TEXT_INFO_ATTRIBUTE_FREE', '&nbsp;-&nbsp;<span class="alert">KOSTENLOS</span>');
 
-define('TEXT_DOWNLOAD','Download'); 
 define('TEXT_DOWNLOAD_TITLE', 'Download Status');
 define('TEXT_DOWNLOAD_STATUS', 'Status');
 define('TEXT_DOWNLOAD_FILENAME', 'Dateiname');
@@ -110,8 +109,6 @@ define('TEXT_DOWNLOAD_AVAILABLE', 'Verfügbar');
 define('TEXT_DOWNLOAD_EXPIRED', 'Abgelaufen');
 define('TEXT_DOWNLOAD_MISSING', 'Nicht auf dem Server');
 
-define('TEXT_EXTENSION_NOT_UNDERSTOOD', 'Dateierweiterung %s nicht unterstützt'); 
-define('TEXT_FILE_NOT_FOUND', 'Datei nicht gefunden'); 
 define('IMAGE_ICON_STATUS_CURRENT', 'Status - Vorhanden');
 define('IMAGE_ICON_STATUS_EXPIRED', 'Status - Abgelaufen');
 define('IMAGE_ICON_STATUS_MISSING', 'Status - Vermisst');

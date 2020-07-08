@@ -7,7 +7,7 @@
  * @copyright Copyright 2003-2020 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: image_handler.php 2020-02-06 17:13:51Z webchills $
+ * @version $Id: image_handler.php 2020-07-08 16:13:51Z webchills $
  */
 require 'includes/application_top.php';
 
@@ -159,6 +159,7 @@ div.managerbox {clear: both;}
 </style>
 <script src="includes/menu.js"></script>
 <script src="includes/general.js"></script>
+
 <script>
   <!--
   function init()
@@ -371,13 +372,13 @@ if ($ih_page == 'manager') {
         <tr>
             <td class="ih-vtop"><table border="0" width="100%" cellspacing="0" cellpadding="2">
                 <tr class="dataTableHeadingRow">
-                    <td class="dataTableHeadingContent"><?php echo TABLE_HEADING_PHOTO_NAME; ?></td>
-                    <td class="dataTableHeadingContent"><?php echo TABLE_HEADING_FILETYPE; ?></td><?php //added nigel ?>
-                    <td class="dataTableHeadingContent ih-center"><?php echo TABLE_HEADING_BASE_SIZE; ?></td>
-                    <td class="dataTableHeadingContent ih-center"><?php echo TABLE_HEADING_SMALL_SIZE; ?></td>
-                    <td class="dataTableHeadingContent ih-center"><?php echo TABLE_HEADING_MEDIUM_SIZE; ?></td>
-                    <td class="dataTableHeadingContent ih-center"><?php echo TABLE_HEADING_LARGE_SIZE; ?></td>
-                    <td class="dataTableHeadingContent ih-right"><?php echo TABLE_HEADING_ACTION; ?>&nbsp;</td>
+                    <th class="dataTableHeadingContent"><?php echo TABLE_HEADING_PHOTO_NAME; ?></th>
+                    <th class="dataTableHeadingContent"><?php echo TABLE_HEADING_FILETYPE; ?></th><?php //added nigel ?>
+                    <th class="dataTableHeadingContent ih-center"><?php echo TABLE_HEADING_BASE_SIZE; ?></th>
+                    <th class="dataTableHeadingContent ih-center"><?php echo TABLE_HEADING_SMALL_SIZE; ?></th>
+                    <th class="dataTableHeadingContent ih-center"><?php echo TABLE_HEADING_MEDIUM_SIZE; ?></th>
+                    <th class="dataTableHeadingContent ih-center"><?php echo TABLE_HEADING_LARGE_SIZE; ?></th>
+                    <th class="dataTableHeadingContent ih-right"><?php echo TABLE_HEADING_ACTION; ?>&nbsp;</th>
                 </tr>
 <?php
         $count = count($products_image_match_array);
@@ -483,7 +484,7 @@ if ($ih_page == 'manager') {
 <?php
             if (!$main_image) {
 ?>
-                    <td class="dataTableContent ih-center">&mdash;</td>
+                    <td class="dataTableContent ih-center"><?php echo TEXT_NOT_NEEDED; ?></td>
 <?php
             } else {
                 $preview_image = $tmp_image_medium_preview->get_resized_image(IMAGE_SHOPPING_CART_WIDTH, IMAGE_SHOPPING_CART_HEIGHT, 'generic');

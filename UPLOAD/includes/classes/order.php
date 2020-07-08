@@ -6,7 +6,7 @@
  * @package classes
  * @copyright Copyright 2003-2020 Zen Cart Development Team
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: order.php 2020-05-16 07:45:25Z webchills $
+ * @version $Id: order.php 2020-07-05 20:37:25Z webchills $
  */
 /**
  * order class
@@ -239,8 +239,7 @@ class order extends base {
       $attributes = $db->Execute($attributes_query);
       if ($attributes->RecordCount()) {
         while (!$attributes->EOF) {
-          $this->products[$index]['attributes'][$subindex] = array(
-              'option' => $attributes->fields['products_options'],
+          $this->products[$index]['attributes'][$subindex] = array('option' => $attributes->fields['products_options'],
                                                                    'value' => $attributes->fields['products_options_values'],
                                                                    'option_id' => $attributes->fields['products_options_id'],
                                                                    'value_id' => $attributes->fields['products_options_values_id'],
@@ -326,7 +325,7 @@ class order extends base {
                                   left join " . TABLE_ZONES . " z on (ab.entry_zone_id = z.zone_id)
                                   left join " . TABLE_COUNTRIES . " c on (ab.entry_country_id = c.countries_id)
                                   left join " . TABLE_COUNTRIES_NAME . " con on (ab.entry_country_id = con.countries_id)
-                                  where ab.customers_id = " . (!empty($_SESSION['customer_id']) ? (int)$_SESSION['customer_id'] : 0) . "                                  
+                                  where ab.customers_id = " . (!empty($_SESSION['customer_id']) ? (int)$_SESSION['customer_id'] : 0) . "
                                   and ab.address_book_id = " . (!empty($_SESSION['billto']) ? (int)$_SESSION['billto'] : 0) . "
                                   and con.language_id = '" . (int)$_SESSION['languages_id'] . "'";
 
@@ -428,7 +427,7 @@ class order extends base {
 
     if ($customer_address->RecordCount() > 0) {
       $this->customer = array('gender' => $customer_address->fields['customers_gender'],
-                               'firstname' => $customer_address->fields['customers_firstname'],
+	                          'firstname' => $customer_address->fields['customers_firstname'],
                               'lastname' => $customer_address->fields['customers_lastname'],
                               'company' => $customer_address->fields['entry_company'],
                               'street_address' => $customer_address->fields['entry_street_address'],
@@ -569,7 +568,7 @@ class order extends base {
           $attributes = $db->Execute($attributes_query);
 
           //clr 030714 Account for text attributes
-          if ($value == PRODUCTS_OPTIONS_VALUES_TEXT_ID) {
+          if ($value == PRODUCTS_OPTIONS_VALUES_TEXT_ID){
             $attr_value = $products[$i]['attributes_values'][$option];
           } else {
             $attr_value = $attributes->fields['products_options_values_name'];
@@ -812,23 +811,23 @@ class order extends base {
       // Stock Update - Joao Correia
       if ($this->doStockDecrement) {
         if (DOWNLOAD_ENABLED == 'true') {
-          $stock_query_raw = "select p.*, pad.products_attributes_filename
+          $stock_query_raw = "select p.products_quantity, pad.products_attributes_filename, p.product_is_always_free_shipping
                               from " . TABLE_PRODUCTS . " p
                               left join " . TABLE_PRODUCTS_ATTRIBUTES . " pa
                                on p.products_id=pa.products_id
                               left join " . TABLE_PRODUCTS_ATTRIBUTES_DOWNLOAD . " pad
                                on pa.products_attributes_id=pad.products_attributes_id
-                              WHERE p.products_id = " . zen_get_prid($this->products[$i]['id']);
+                              WHERE p.products_id = '" . zen_get_prid($this->products[$i]['id']) . "'";
 
           // Will work with only one option for downloadable products
           // otherwise, we have to build the query dynamically with a loop
           if (!empty($this->products[$i]['attributes']) && is_array($this->products[$i]['attributes'])) {
             $products_attributes = $this->products[$i]['attributes'];
-            $stock_query_raw .= " AND pa.options_id = " . $products_attributes[0]['option_id'] . " AND pa.options_values_id = " . $products_attributes[0]['value_id'];
+            $stock_query_raw .= " AND pa.options_id = '" . $products_attributes[0]['option_id'] . "' AND pa.options_values_id = '" . $products_attributes[0]['value_id'] . "'";
           }
-          $stock_values = $db->ExecuteNoCache($stock_query_raw . ' LIMIT 1');
+          $stock_values = $db->Execute($stock_query_raw, false, false, 0, true);
         } else {
-          $stock_values = $db->ExecuteNoCache("select * from " . TABLE_PRODUCTS . " where products_id = " . zen_get_prid($this->products[$i]['id']) . " LIMIT 1");
+          $stock_values = $db->Execute("select * from " . TABLE_PRODUCTS . " where products_id = '" . zen_get_prid($this->products[$i]['id']) . "'", false, false, 0, true);
         }
 
         $this->notify('NOTIFY_ORDER_PROCESSING_STOCK_DECREMENT_BEGIN', $i, $stock_values);
@@ -1164,14 +1163,14 @@ class order extends base {
     if ($this->content_type != 'virtual' && !$storepickup) {
       $email_order .= "\n" . EMAIL_TEXT_DELIVERY_ADDRESS . "\n" .
       EMAIL_SEPARATOR . "\n" .
-      zen_address_label($_SESSION['customer_id'], $_SESSION['sendto'], false, '', "\n") . "\n";
+      zen_address_label($_SESSION['customer_id'], $_SESSION['sendto'], 0, '', "\n") . "\n";
     }
     $email_order .= EMAIL_TEXT_TELEPHONE . $this->customer['telephone'] . "\n\n";
 
     //addresses area: Billing
     $email_order .= "\n" . EMAIL_TEXT_BILLING_ADDRESS . "\n" .
     EMAIL_SEPARATOR . "\n" .
-    zen_address_label($_SESSION['customer_id'], $_SESSION['billto'], false, '', "\n") . "\n\n";
+    zen_address_label($_SESSION['customer_id'], $_SESSION['billto'], 0, '', "\n") . "\n\n";
     $html_msg['ADDRESS_BILLING_TITLE']   = EMAIL_TEXT_BILLING_ADDRESS;
     $html_msg['ADDRESS_BILLING_DETAIL']  = zen_address_label($_SESSION['customer_id'], $_SESSION['billto'], true, '', "<br />");
 
@@ -1218,11 +1217,8 @@ class order extends base {
     $html_msg['EMAIL_LAST_NAME'] = $this->customer['lastname'];
     //  $html_msg['EMAIL_TEXT_HEADER'] = EMAIL_TEXT_HEADER;
     $html_msg['EXTRA_INFO'] = '';
-    // -----
-    // Send customer confirmation email unless observer overrides it.
-    $send_customer_email = true;
-    $this->notify('NOTIFY_ORDER_INVOICE_CONTENT_READY_TO_SEND', array('zf_insert_id' => $zf_insert_id, 'text_email' => $email_order, 'html_email' => $html_msg), $email_order, $html_msg, $send_customer_email);
-    if ($send_customer_email === true) {
+    $this->notify('NOTIFY_ORDER_INVOICE_CONTENT_READY_TO_SEND', array('zf_insert_id' => $zf_insert_id, 'text_email' => $email_order, 'html_email' => $html_msg), $email_order, $html_msg);
+
     // BOF pdf Rechnung
     if(RL_INVOICE3_STATUS=='true'){
     $this->attachArray = array();
@@ -1241,7 +1237,7 @@ class order extends base {
   } 
   // EOF pdf Rechnung
     zen_mail($this->customer['firstname'] . ' ' . $this->customer['lastname'], $this->customer['email_address'], EMAIL_TEXT_SUBJECT . EMAIL_ORDER_NUMBER_SUBJECT . $zf_insert_id, $email_order, STORE_NAME, EMAIL_FROM, $html_msg, 'checkout', $this->attachArray);
-    }
+
     
     // send additional emails
     if (SEND_EXTRA_ORDER_EMAILS_TO != '') {
@@ -1276,3 +1272,4 @@ class order extends base {
   }
 
 }
+

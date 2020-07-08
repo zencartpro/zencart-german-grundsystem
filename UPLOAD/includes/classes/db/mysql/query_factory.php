@@ -5,11 +5,11 @@
  * Class used for database abstraction to MySQL via mysqli
  *
  * @package classes
- * @copyright Copyright 2003-2020 Zen Cart Development Team
+ * @copyright Copyright 2003-2019 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @copyright Portions adapted from http://www.data-diggers.com/
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: query_factory.php 743 2020-01-22 20:13:16Z webchills $
+ * @version $Id: query_factory.php 742 2019-07-28 09:13:16Z webchills $
  */
 if (!defined('IS_ADMIN_FLAG')) {
   die('Illegal Access');
@@ -450,13 +450,13 @@ class queryFactory extends base {
         case 'inConstructInteger':
             $list = explode(',', $value);
             $newList = array_map(function ($value) { return (int) $value; }, $list);
-            $value = implode(',', $newList);
+            $value = implode($newList, ',');
 
             return $value;
         case 'inConstructString':
             $list = explode(',', $value);
             $newList = array_map(function ($value) { return '\'' . $this->prepare_input($value) . '\''; }, $list);
-            $value = implode(',', $newList);
+            $value = implode($newList, ',');
 
             return $value;
       case 'csv':
@@ -703,6 +703,7 @@ class queryFactoryResult implements Countable, Iterator {
       $this->EOF = false;
     } else {
       $this->EOF = true;
+      $this->set_error(mysqli_errno($this->link), mysqli_error($this->link), $this->dieOnErrors);
     }
   }
 }

@@ -1,12 +1,12 @@
 # zencart-156-de
 Zen Cart 1.5.6 - deutsche Version
 
-1.5.6e - März 2020
+1.5.6e - Juli 2020
 
 Systemvoraussetzungen:
 * Linux Server mit Apache 2.4 oder 2.2
-* PHP 7.0.x bis 7.3.x
-* MySQL 5.1 bis 5.7 oder or MariaDB 10.1 bis 10.3
+* PHP 7.1.x bis 7.3.x
+* MySQL 5.1 bis 5.7 oder or MariaDB 10.1 bis 10.4
 
 Empfohlene Konfiguration:
 * Apache 2.4
@@ -16,16 +16,11 @@ Empfohlene Konfiguration:
 
 Änderungen in 1.5.6e
 * Behebung aller Fehler/Bugs, die seit Erscheinen von 1.5.6d auf Github und im Supportforum (Bugreport) gemeldet wurden
-* Codeoptimierungen für PHP 7.3
-* unnötige Funktionen und Sprachdefinitionen entfernt
-* Neu: Telefonnummer im Kontaktformular
-* Neu: Vom Kunden hochgeladene Dateien direkt in der Bestellbearbeitung downloadbar
-* Neu: Überarbeiteter Link Kategorie Manager im Hauptmenü zum Verlinken von Artikel in unterschiedliche Kategorien
-* Neu: Anzeige der Kundenbestellkommentare direkt in der Bestellübersicht
-* Neu: Adminswitch für die Voreinstellung von Email, keine Email, Versteckt für die Kundenbenachrichtigung in der Bestellbearbeitung
-* Neu: Kundensuche findet nun auch mehrere Suchwörter getrennt
-* Update Tiny MCE Editor auf 5.1.5
-* Update PHP Mailer auf 6.1.4
+* Sicherheitspatch
+* Update Sales Report auf 3.3.3
+* Update Tiny MCE Editor auf 5.4.0
+* Update CKEditor auf 4.14.1
+* Update PHP Mailer auf 6.1.6
 * Update Image Handler auf 5.1.8
 
 Änderungen in 1.5.6d

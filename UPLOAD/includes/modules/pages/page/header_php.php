@@ -3,10 +3,10 @@
  * ez_pages ("page") header_php.php
  *
  * @package page
- * @copyright Copyright 2003-2020 Zen Cart Development Team
+ * @copyright Copyright 2003-2019 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: header_php.php 736 2020-01-17 10:50:16Z webchills $
+ * @version $Id: header_php.php 735 2019-06-15 21:03:16Z webchills $
  */
 /*
  * This "page" page is the display component of the ez-pages module
@@ -27,10 +27,6 @@ if ($ezpage_id == 0) {
 $chapter_id = isset($_GET['chapter']) ? (int)$_GET['chapter'] : 0;
 $chapter_link = isset($_GET['chapter']) ? (int)$_GET['chapter'] : 0;
 
-
-if (!$sniffer->table_exists(TABLE_EZPAGES_CONTENT)) {
-  return; // early exit; db not upgraded
-}
 $sql = "SELECT e.*, ec.*
         FROM  " . TABLE_EZPAGES . " e,
               " . TABLE_EZPAGES_CONTENT . " ec

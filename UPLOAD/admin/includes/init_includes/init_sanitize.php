@@ -4,9 +4,9 @@
  * init_sanitize
  *
  * @package initSystem
- * @copyright Copyright 2003-2020 Zen Cart Development Team
+ * @copyright Copyright 2003-2019 Zen Cart Development Team
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: init_sanitize.php 744 2020-01-18 17:03:16Z webchills $
+ * @version $Id: init_sanitize.php 743 2019-06-15 16:03:16Z webchills $
  */
 
 if (!defined('DO_STRICT_SANITIZATION')) {
@@ -210,7 +210,7 @@ $group = array('pages_title', 'page_params', 'music_genre_name', 'artists_name',
                'group_name', 'geo_zone_name', 'geo_zone_description',
                'tax_class_description', 'tax_class_title', 'tax_description', 'entry_company', 'customers_firstname',
                'customers_lastname', 'entry_street_address', 'entry_suburb', 'entry_city', 'entry_state', 'customers_referral',
-               'symbol_left', 'symbol_right', 'products_model', 'alt_url', 'email_to_name');
+               'symbol_left', 'symbol_right', 'products_model', 'alt_url');
 $sanitizer->addSimpleSanitization('WORDS_AND_SYMBOLS_REGEX', $group);
 
 $group = array('metatags_title', 'metatags_keywords', 'metatags_description');
@@ -219,7 +219,7 @@ $sanitizer->addSimpleSanitization('META_TAGS', $group);
 $group = array('customers_email_address' => array('sanitizerType' => 'SANITIZE_EMAIL_AUDIENCE', 'method' => 'post', 'pages' => array('coupon_admin', 'gv_mail', 'mail')));
 $sanitizer->addComplexSanitization($group);
 
-$group = array('customers_email_address', 'email_to');
+$group = array('customers_email_address');
 $sanitizer->addSimpleSanitization('SANITIZE_EMAIL', $group);
 
 $group = array('products_description', 'products_taxonomy', 'coupon_desc', 'file_contents', 'categories_description', 'message_html', 'banners_html_text', 'pages_html_text', 'comments', 'products_options_comment');
@@ -237,25 +237,7 @@ $sanitizer->addSimpleSanitization('CURRENCY_VALUE_REGEX', $group);
 $group = array('categories_name', 'products_name', 'orders_status_name', 'configuration');
 $sanitizer->addSimpleSanitization('PRODUCT_NAME_DEEP_REGEX', $group);
 
-$group = array('configuration_key', 'search', 'query_string');
-
-$checks = new queryFactoryResult($db->link);
-// if current page is configuration, the configuration option does not have a val_function and saving the setting, then sanitize configuration_value to array.
-if (defined('FILENAME_CONFIGURATION')
-      && $_SERVER['SCRIPT_NAME'] == DIR_WS_ADMIN . (!strstr(FILENAME_CONFIGURATION, '.php') ? FILENAME_CONFIGURATION . '.php' : FILENAME_CONFIGURATION)
-      && !empty($_GET['action'])
-      && $_GET['action'] == 'save'
-    ) {
-    $cID = zen_db_prepare_input($_GET['cID']);
-
-    $configuration_value = zen_db_prepare_input($_POST['configuration_value']);
-    // See if there are any configuration checks
-    $checks = $db->Execute("SELECT val_function FROM " . TABLE_CONFIGURATION . " WHERE configuration_id = " . (int)$cID);
-}
-
-if (!(!$checks->EOF && $checks->fields['val_function'] != NULL)) {
-    $group = array_merge($group, array('configuration_value'));
-}
+$group = array('configuration_value', 'configuration_key', 'search', 'query_string');
 $sanitizer->addSimpleSanitization('STRICT_SANITIZE_VALUES', $group);
 
 $group = array('report', 'startDate', 'endDate', 'filter');
@@ -266,18 +248,6 @@ $sanitizer->addComplexSanitization($group);
 
 $group = array('query_string' => array('sanitizerType' => 'NULL_ACTION', 'method' => 'post', 'pages' => array('sqlpatch')));
 $sanitizer->addComplexSanitization($group);
-//  if current page is configuration, the values have a val_function and saving the value, then skip sanitization of configuration_value.
-if (defined('FILENAME_CONFIGURATION')
-      && $_SERVER['SCRIPT_NAME'] == DIR_WS_ADMIN . (!strstr(FILENAME_CONFIGURATION, '.php') ? FILENAME_CONFIGURATION . '.php' : FILENAME_CONFIGURATION)
-      && !empty($_GET['action'])
-      && $_GET['action'] == 'save'
-      && !$checks->EOF
-      && $checks->fields['val_function'] != NULL
-    ) {
-
-    $group = array('configuration_value' => array('sanitizerType' => 'NULL_ACTION', 'method' => 'post'));
-    $sanitizer->addComplexSanitization($group);
-}
 $group = array('configuration_key' => array('sanitizerType' => 'NULL_ACTION', 'method' => 'post', 'pages' => array('developers_tool_kit')));
 $sanitizer->addComplexSanitization($group);
 $sanitizer->runSanitizers();

@@ -4,7 +4,7 @@
  * @copyright Copyright 2003-2020 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: init_errors.php 736 2020-01-18 16:52:16Z webchills $
+ * @version $Id: init_errors.php 736 2020-07-08 20:52:16Z webchills $
  */
 if (!defined('IS_ADMIN_FLAG')) {
   die('Illegal Access');
@@ -23,7 +23,6 @@ if (!defined('IS_ADMIN_FLAG')) {
   if (function_exists('ini_get') && ((bool)ini_get('file_uploads') == false) ) {
     $messageStack->add(WARNING_FILE_UPLOADS_DISABLED, 'warning');
   }
-
 
   // check if email subsystem has been disabled
   if (SEND_EMAILS != 'true') {

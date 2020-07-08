@@ -3,10 +3,10 @@
  * checkout_new_address.php
  *
  * @package modules
- * @copyright Copyright 2003-2020 Zen Cart Development Team
+ * @copyright Copyright 2003-2019 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: checkout_new_address.php 734 2020-01-17 14:49:16Z webchills $
+ * @version $Id: checkout_new_address.php 733 2019-04-14 18:49:16Z webchills $
  */
 // This should be first line of the script:
 $zco_notifier->notify('NOTIFY_MODULE_START_CHECKOUT_NEW_ADDRESS');
@@ -38,7 +38,7 @@ if (isset($_POST['action']) && ($_POST['action'] == 'submit')) {
     $postcode = zen_db_prepare_input($_POST['postcode']);
     $city = zen_db_prepare_input($_POST['city']);
     if (ACCOUNT_STATE == 'true') {
-      $state = (isset($_POST['state'])) ? zen_db_prepare_input($_POST['state']) : '';
+      $state = zen_db_prepare_input($_POST['state']);
       if (isset($_POST['zone_id'])) {
         $zone_id = zen_db_prepare_input($_POST['zone_id']);
       } else {

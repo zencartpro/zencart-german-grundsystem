@@ -1,10 +1,10 @@
 <?php
 /**
  * @package admin
- * @copyright Copyright 2003-2020 Zen Cart Development Team
+ * @copyright Copyright 2003-2019 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: init_templates.php 732 2020-01-18 16:49:16Z webchills $
+ * @version $Id: init_templates.php 731 2019-04-14 10:49:16Z webchills $
  */
 if (!defined('IS_ADMIN_FLAG')) {
   die('Illegal Access');
@@ -43,5 +43,9 @@ $pagename = ucwords($pagename);
 if ($pagename == '') {
   $pagename = STORE_NAME;
 }
-$title = TEXT_ADMIN_TAB_PREFIX . ' ' . $pagename;
+if (strncmp(TEXT_ADMIN_TAB_PREFIX, $pagename, strlen(TEXT_ADMIN_TAB_PREFIX)) == 0) {
+   $title = $pagename;
+} else {
+   $title = TEXT_ADMIN_TAB_PREFIX . ' ' . $pagename;
+}
 define('TITLE', $title);

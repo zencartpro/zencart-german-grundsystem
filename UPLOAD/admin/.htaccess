@@ -1,7 +1,7 @@
 #
-# @copyright Copyright 2003-2020 Zen Cart Development Team
+# @copyright Copyright 2003-2019 Zen Cart Development Team
 # @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
-# @version $Id: .htaccess 19329 2020-01-27 19:53:12 webchills $
+# @version $Id: .htaccess 19328 Modified in v1.6.0 $
 #
 # This is used with Apache WebServers
 #
@@ -41,7 +41,7 @@ DirectoryIndex index.php
 </FilesMatch>
 
 # but now allow just *certain* necessary files:
-<FilesMatch "(?i).*\.(php|js|css|html?|ico|otf|jpe?g|gif|webp|png|swf|flv|xml|xsl|csv|txt)$">
+<FilesMatch "(?i).*\.(php|js|css|html?|ico|otf|jpe?g|gif|webp|png|swf|flv|xml|xsl)$">
   <IfModule mod_authz_core.c>
     Require all granted
   </IfModule>

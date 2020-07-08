@@ -6,7 +6,7 @@
  * @package Installer
  * @copyright Copyright 2003-2020 Zen Cart Development Team
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: lngDeutsch.php 19 2020-01-24 19:23:16Z webchills $
+ * @version $Id: lngDeutsch.php 20 2020-07-05 13:23:16Z webchills $
  */
 /**
  * defining language components for the page

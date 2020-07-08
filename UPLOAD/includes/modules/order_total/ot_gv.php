@@ -3,10 +3,10 @@
  * ot_gv order-total module
  *
  * @package orderTotal
- * @copyright Copyright 2003-2020 Zen Cart Development Team
+ * @copyright Copyright 2003-2019 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: ot_gv.php 736 2020-01-17 10:11:16Z webchills $
+ * @version $Id: ot_gv.php 735 2019-04-14 17:49:16Z webchills $
  */
 /**
  * Enter description here...
@@ -45,6 +45,7 @@ class ot_gv {
     $this->calculate_tax = MODULE_ORDER_TOTAL_GV_CALC_TAX;
     $this->credit_tax = MODULE_ORDER_TOTAL_GV_CREDIT_TAX;
     $this->tax_class  = MODULE_ORDER_TOTAL_GV_TAX_CLASS;
+    // $this->show_redeem_box = MODULE_ORDER_TOTAL_GV_REDEEM_BOX;
     $this->credit_class = true;
     if (!(isset($_SESSION['cot_gv']) && zen_not_null(ltrim($_SESSION['cot_gv'], ' 0'))) || $_SESSION['cot_gv'] == '0') $_SESSION['cot_gv'] = '0.00';
     if (IS_ADMIN_FLAG !== true) {
@@ -112,12 +113,12 @@ class ot_gv {
     if ($_SESSION['cot_gv'] > 0) {
       // if cot_gv value contains any nonvalid characters, throw error
       if (preg_match('/[^0-9\,.]/', trim($_SESSION['cot_gv']))) {
-        $messageStack->add_session('checkout_payment', TEXT_INVALID_REDEEM_AMOUNT, 'error');
+        $messageStack->add_session('checkout_payment', TEXT_INVALID_REDEEM_AMOUNT, error);
         zen_redirect(zen_href_link(FILENAME_CHECKOUT_PAYMENT, '', 'SSL'));
       }
       // if requested redemption amount is greater than value of credits on account, throw error
       if ($_SESSION['cot_gv'] > $currencies->value($this->user_has_gv_account($_SESSION['customer_id']))) {
-        $messageStack->add_session('checkout_payment', TEXT_INVALID_REDEEM_AMOUNT, 'error');
+        $messageStack->add_session('checkout_payment', TEXT_INVALID_REDEEM_AMOUNT, error);
         zen_redirect(zen_href_link(FILENAME_CHECKOUT_PAYMENT, '', 'SSL'));
       }
       $od_amount = $this->calculate_deductions($order_total);
@@ -206,7 +207,7 @@ class ot_gv {
    * Verify that the customer has entered a valid redemption amount, and return the amount that can be applied to this order
    */
   function apply_credit() {
-    global $db, $order;
+    global $db, $order, $messageStack;
     $gv_payment_amount = 0;
     // check for valid redemption amount vs available credit for current customer
     if (!empty($_SESSION['cot_gv'])) {
@@ -231,7 +232,7 @@ class ot_gv {
     // if we have no GV amount selected, set it to 0
     // if requested redemption amount is greater than value of credits on account, throw error
     if ($_SESSION['cot_gv'] > $currencies->value($this->user_has_gv_account($_SESSION['customer_id']))) {
-      $messageStack->add_session('checkout_payment', TEXT_INVALID_REDEEM_AMOUNT . ' - ' . number_format($_SESSION['cot_gv'], 2), 'error');
+      $messageStack->add_session('checkout_payment', TEXT_INVALID_REDEEM_AMOUNT . ' - ' . number_format($_SESSION['cot_gv'], 2), error);
       $_SESSION['cot_gv'] = 0.00;
       zen_redirect(zen_href_link(FILENAME_CHECKOUT_PAYMENT, '', 'SSL'));
     }
@@ -246,12 +247,12 @@ class ot_gv {
         $redeem_query = $db->Execute("select * from " . TABLE_COUPON_REDEEM_TRACK . " where coupon_id = '" . (int)$gv_result->fields['coupon_id'] . "'");
         // if already redeemed, throw error
         if ( ($redeem_query->RecordCount() > 0) && ($gv_result->fields['coupon_type'] == 'G')  ) {
-          $messageStack->add_session('checkout_payment', ERROR_NO_INVALID_REDEEM_GV, 'error');
+          $messageStack->add_session('checkout_payment', ERROR_NO_INVALID_REDEEM_GV, error);
           zen_redirect(zen_href_link(FILENAME_CHECKOUT_PAYMENT, '', 'SSL'));
         }
       } else {
         // if not valid redemption code, throw error
-        $messageStack->add_session('checkout_payment', ERROR_NO_INVALID_REDEEM_GV, 'error');
+        $messageStack->add_session('checkout_payment', ERROR_NO_INVALID_REDEEM_GV, error);
         zen_redirect(zen_href_link(FILENAME_CHECKOUT_PAYMENT, '', 'SSL'));
       }
       // if valid, add redeemed amount to customer's GV balance and mark as redeemed
@@ -279,7 +280,8 @@ class ot_gv {
           // no gv_amount so insert
           $db->Execute("insert into " . TABLE_COUPON_GV_CUSTOMER . " (customer_id, amount) values ('" . (int)$_SESSION['customer_id'] . "', '" . $total_gv_amount . "')");
         }
-        $messageStack->add_session('redemptions',ERROR_REDEEMED_AMOUNT. $currencies->format($gv_amount), 'success');
+        //          zen_redirect(zen_href_link(FILENAME_CHECKOUT_PAYMENT, 'error_message=' . urlencode(ERROR_REDEEMED_AMOUNT. $currencies->format($gv_amount)), 'SSL'));
+        $messageStack->add_session('redemptions',ERROR_REDEEMED_AMOUNT. $currencies->format($gv_amount), 'success' );
         zen_redirect(zen_href_link(FILENAME_CHECKOUT_PAYMENT, '', 'SSL',true, false));
       }
     }
@@ -300,23 +302,30 @@ class ot_gv {
     }
     return zen_round($gv_payment_amount,2);
   }
-
   function calculate_deductions($order_total) {
-    global $db, $order;
+    global $db, $order, $messageStack;
     $od_amount = array();
     $deduction = $this->calculate_credit($this->get_order_total());
     $od_amount['total'] = $deduction;
     switch ($this->calculate_tax) {
       case 'None':
-      $remainder = $order->info['total'] - $od_amount['total'];
-      $tax_deduct = $order->info['tax'] - $remainder;
-      // division by 0
-      if ($order->info['tax'] <= 0) {
-        $ratio_tax = 0;
-      } else {
-        $ratio_tax = $tax_deduct/$order->info['tax'];
-      }
-      $tax_deduct = 0;
+        $remainder = $order->info['total'] - $od_amount['total'];
+        $tax_deduct = $order->info['tax'] - $remainder;
+        // division by 0
+        if ($order->info['tax'] <= 0) {
+          $ratio_tax = 0;
+        } else {
+          $ratio_tax = $tax_deduct/$order->info['tax'];
+        }
+        $tax_deduct = 0;
+/*
+        if ($this->include_tax) {
+          foreach ($order->info['tax_groups'] as $key=>$value) {
+            $od_amount['tax_groups'][$key] = $order->info['tax_groups'][$key] * $ratio_tax;
+            $tax_deduct += $od_amount['tax_groups'][$key];
+          }
+        }
+*/
       $od_amount['tax'] = $tax_deduct;
       break;
       case 'Standard':
@@ -378,6 +387,7 @@ class ot_gv {
     }
     // reduce Order Total less GVs
     $order_total = ($order_total - $chk_gv_amount);
+//echo 'GV chk_gv_amount: ' . $chk_gv_amount . ' $order_total: ' . $order_total . '<br>';
 
     return $order_total;
   }

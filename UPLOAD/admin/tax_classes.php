@@ -1,10 +1,10 @@
 <?php
 /**
  * @package admin
- * @copyright Copyright 2003-2020 Zen Cart Development Team
+ * @copyright Copyright 2003-2019 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: tax_classes.php 788 2020-01-18 09:13:51Z webchills $
+ * @version $Id: tax_classes.php 787 2019-04-12 09:13:51Z webchills $
  */
 require('includes/application_top.php');
 
@@ -65,7 +65,7 @@ if (zen_not_null($action)) {
   }
 }
 ?>
-<!doctype html>
+<!doctype html public>
 <html <?php echo HTML_PARAMS; ?>>
   <head>
     <meta charset="<?php echo CHARSET; ?>">

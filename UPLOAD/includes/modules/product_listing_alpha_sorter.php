@@ -3,10 +3,10 @@
  * product_listing_alpha_sorter module
  *
  * @package modules
- * @copyright Copyright 2003-2020 Zen Cart Development Team
+ * @copyright Copyright 2003-2019 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: product_listing_alpha_sorter.php 731 2020-01-17 15:49:16Z webchills $
+ * @version $Id: product_listing_alpha_sorter.php 730 2019-04-12 12:49:16Z webchills $
  */
 if (!defined('IS_ADMIN_FLAG')) {
   die('Illegal Access');
@@ -14,7 +14,6 @@ if (!defined('IS_ADMIN_FLAG')) {
 
 // build alpha sorter dropdown
   if (PRODUCT_LIST_ALPHA_SORTER == 'true') {
-    $letters_list = array();
     if (empty($_GET['alpha_filter_id'])) {
       $letters_list[] = array('id' => '0', 'text' => TEXT_PRODUCTS_LISTING_ALPHA_SORTER_NAMES);
     } else {

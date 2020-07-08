@@ -1,10 +1,10 @@
 <?php
 /**
  * @package admin
- * @copyright Copyright 2003-2020 Zen Cart Development Team
+ * @copyright Copyright 2003-2019 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: config.core.php 810 2020-05-02 19:09:36Z webchills $
+ * @version $Id: config.core.php 807 2019-04-14 09:35:36Z webchills $
  */
 if (!defined('USE_PCONNECT')) define('USE_PCONNECT', 'false');
 /**
@@ -18,6 +18,7 @@ if (!defined('USE_PCONNECT')) define('USE_PCONNECT', 'false');
  * require(DIR_FS_CATALOG . DIR_WS_CLASSES . 'class.notifier.php');
  * $zco_notifier = new notifier();
  * require(DIR_FS_CATALOG . DIR_WS_CLASSES . 'sniffer.php');
+ * require(DIR_WS_CLASSES . 'logger.php');
  * require(DIR_FS_CATALOG . DIR_WS_CLASSES . 'shopping_cart.php');
  * require(DIR_FS_CATALOG . DIR_WS_CLASSES . 'products.php');
  * require(DIR_WS_CLASSES . 'table_block.php');
@@ -33,7 +34,8 @@ if (!defined('USE_PCONNECT')) define('USE_PCONNECT', 'false');
  */
   $autoLoadConfig[0][] = array('autoType'=>'require',
                                'loadFile'=> DIR_FS_CATALOG . DIR_WS_INCLUDES .  'version.php');
-  
+  $autoLoadConfig[0][] = array('autoType'=>'class',
+                               'loadFile'=>'class.base.php');
   $autoLoadConfig[0][] = array('autoType'=>'class',
                                'loadFile'=>'class.notifier.php');
   $autoLoadConfig[0][] = array('autoType'=>'classInstantiate',
@@ -41,6 +43,9 @@ if (!defined('USE_PCONNECT')) define('USE_PCONNECT', 'false');
                                'objectName'=>'zco_notifier');
   $autoLoadConfig[0][] = array('autoType'=>'class',
                                'loadFile'=>'sniffer.php');
+  $autoLoadConfig[0][] = array('autoType'=>'class',
+                               'loadFile'=>'logger.php',
+                               'classPath'=>DIR_WS_CLASSES);
   $autoLoadConfig[0][] = array('autoType'=>'class',
                                'loadFile'=>'shopping_cart.php',
                                );
@@ -74,9 +79,6 @@ if (!defined('USE_PCONNECT')) define('USE_PCONNECT', 'false');
   $autoLoadConfig[0][] = array('autoType'=>'class',
                                'loadFile'=> 'VersionServer.php',
                                'classPath'=>DIR_WS_CLASSES);
-  $autoLoadConfig[0][] = array('autoType'=>'class',
-                               'loadFile'=> 'configurationValidation.php',
-                               'classPath'=>DIR_WS_CLASSES);
 
 /**
  * Breakpoint 10.
@@ -85,6 +87,10 @@ if (!defined('USE_PCONNECT')) define('USE_PCONNECT', 'false');
  * require('includes/init_includes/init_database.php');
  *
  */
+  $autoLoadConfig[10][] = array('autoType'=>'init_script',
+                                'loadFile'=> 'init_file_db_names.php');
+  $autoLoadConfig[10][] = array('autoType'=>'init_script',
+                                'loadFile'=>'init_database.php');
 /**
  * Breakpoint 20.
  *
@@ -105,15 +111,6 @@ if (!defined('USE_PCONNECT')) define('USE_PCONNECT', 'false');
   $autoLoadConfig[30][] = array('autoType'=>'classInstantiate',
                                 'className'=>'sniffer',
                                 'objectName'=>'sniffer');
-/**
- * Breakpoint 32.
- *
- * $messageStack = new messageStack();
- *
- */
-  $autoLoadConfig[32][] = array('autoType'=>'classInstantiate',
-                                 'className'=>'messageStack',
-                                 'objectName'=>'messageStack');
 /**
  * Breakpoint 35.
  *
@@ -191,12 +188,12 @@ if (!defined('USE_PCONNECT')) define('USE_PCONNECT', 'false');
 /**
  * Breakpoint 100.
  *
- * $messageStack->add_from_session();
+ * $messageStack = new messageStack();
  *
  */
-  $autoLoadConfig[100][] = array('autoType'=>'objectMethod',
-                                 'objectName'=>'messageStack',
-                                 'methodName'=>'add_from_session');
+  $autoLoadConfig[100][] = array('autoType'=>'classInstantiate',
+                                 'className'=>'messageStack',
+                                 'objectName'=>'messageStack');
 /**
  * Breakpoint 120.
  *
@@ -238,15 +235,6 @@ if (!defined('USE_PCONNECT')) define('USE_PCONNECT', 'false');
  */
   $autoLoadConfig[170][] = array('autoType'=>'init_script',
                                  'loadFile'=> 'init_admin_history.php');
-/**
- * Breakpoint 175.
- *
- * require(DIR_WS_CLASSES . 'configurationValidation');
- *
- */
-  $autoLoadConfig[175][] = array('autoType'=>'classInstantiate',
-                                 'className'=>'configurationValidation',
-                                 'objectName'=>'configurationValidation');
 /**
  * Breakpoint 180.
  *

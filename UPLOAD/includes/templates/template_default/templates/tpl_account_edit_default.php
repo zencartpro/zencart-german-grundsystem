@@ -1,7 +1,7 @@
 <?php
 /**
  * Page Template
- * Zen Cart German Specific
+ *
  * Loaded automatically by index.php?main_page=account_edit.<br />
  * View or change Customer Account Information
  *

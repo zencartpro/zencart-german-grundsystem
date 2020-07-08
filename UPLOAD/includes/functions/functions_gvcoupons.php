@@ -4,10 +4,10 @@
  * Functions related to processing Gift Vouchers/Certificates and coupons
  *
  * @package functions
- * @copyright Copyright 2003-2020 Zen Cart Development Team
+ * @copyright Copyright 2003-2019 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: functions_gvcoupons.php 732 2020-01-17 09:49:16Z webchills $
+ * @version $Id: functions_gvcoupons.php 731 2019-04-14 12:49:16Z webchills $
  */
 
 ////
@@ -45,7 +45,7 @@
 
     function zen_user_has_gv_account($c_id) {
       global $db;
-      if (zen_is_logged_in() && !zen_in_guest_checkout()) {
+      if ($_SESSION['customer_id']) {
         $gv_result = $db->Execute("select amount from " . TABLE_COUPON_GV_CUSTOMER . " where customer_id = '" . (int)$c_id . "'");
         if ($gv_result->RecordCount() > 0) {
           if ($gv_result->fields['amount'] > 0) {

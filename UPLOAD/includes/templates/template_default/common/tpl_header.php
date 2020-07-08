@@ -11,10 +11,10 @@
  * $flag_disable_header = true;<br />
  *
  * @package templateSystem
- * @copyright Copyright 2003-2020 Zen Cart Development Team
+ * @copyright Copyright 2003-2019 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: tpl_header.php 734 2020-03-01 09:49:16Z webchills $
+ * @version $Id: tpl_header.php 733 2019-04-14 18:49:16Z webchills $
  */
 ?>
 
@@ -61,9 +61,7 @@ if (!isset($flag_disable_header) || !$flag_disable_header) {
 <?php }?>
 </ul>
 </div>
-<div id="navMainSearch">
-  <?php require(DIR_WS_MODULES . zen_get_module_sidebox_directory('search_header.php')); ?>
-</div>
+<div id="navMainSearch"><?php require(DIR_WS_MODULES . 'sideboxes/search_header.php'); ?></div>
 <br class="clearBoth" />
 </div>
 <!--eof-navigation display-->

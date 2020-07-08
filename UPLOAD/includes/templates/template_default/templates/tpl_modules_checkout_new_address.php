@@ -1,7 +1,7 @@
 <?php
 /**
  * Module Template
- * Zen Cart German Specific
+ *
  * Allows entry of new addresses during checkout stages
  *
  * @package templateSystem

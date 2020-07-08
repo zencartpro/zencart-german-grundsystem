@@ -1,10 +1,10 @@
 <?php
 /**
  * @package admin
- * @copyright Copyright 2003-2020 Zen Cart Development Team
+ * @copyright Copyright 2003-2019 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: options_values_manager.php 629 2020-01-20 22:00:14Z webchills $
+ * @version $Id: options_values_manager.php 627 2010-08-30 15:05:14Z webchills $
  */
 
 
@@ -28,24 +28,24 @@ define('TEXT_OPTION_ID', 'Option ID');
 define('TEXT_OPTION_NAME', 'Attributname');
 define('TABLE_HEADING_OPT_DISCOUNTED', 'Ermäßigt');
 define('ATTRIBUTE_WARNING_DUPLICATE', 'Hinzufügen nicht möglich - Attribut ist bereits vorhanden');
-
+// attributes duplicate warning
 define('ATTRIBUTE_WARNING_DUPLICATE_UPDATE', 'Änderung nicht möglich - Attribut ist bereits vorhanden');
-
+// attributes duplicate warning
 define('ATTRIBUTE_WARNING_INVALID_MATCH', 'Attribut konnte nicht erstellt werden - Attributoption und Attributmerkmal stimmen nicht überein');
-
+// miss matched option and options value
 define('ATTRIBUTE_WARNING_INVALID_MATCH_UPDATE', 'Attribut konnte nicht geändert werden - Attributoption und Attributmerkmal stimmen nicht überein');
-
+// miss matched option and options value
 define('ATTRIBUTE_POSSIBLE_OPTIONS_NAME_WARNING_DUPLICATE', 'Möglicherweise wurde ein doppelter Attributname hinzugefügt');
-
+// Options Name Duplicate warning
 define('ATTRIBUTE_POSSIBLE_OPTIONS_VALUE_WARNING_DUPLICATE', 'Möglicherweise wurde ein doppeltes Attributmerkmal hinzugefügt');
-
+// Options Value Duplicate warning
 
 define('PRODUCTS_ATTRIBUTES_EDITING', 'BEARBEITE');
-
+// title
 define('PRODUCTS_ATTRIBUTES_DELETE', 'LÖSCHE');
-
+// title
 define('PRODUCTS_ATTRIBUTES_ADDING', 'FÜGE NEUES ATTRIBUT HINZU');
-
+// title
 define('TEXT_DOWNLOADS_DISABLED', 'HINWEIS: Downloads sind deaktiviert');
 define('TABLE_TEXT_MAX_DAYS_SHORT', 'Tage:');
 define('TABLE_TEXT_MAX_COUNT_SHORT', 'Maximal:');
@@ -56,9 +56,10 @@ define('TABLE_HEADING_OPT_WEIGHT_PREFIX', 'Präfix');
 define('TABLE_HEADING_OPT_WEIGHT', 'Gewicht');
 define('TABLE_HEADING_OPT_SORT_ORDER', 'Sortierung');
 define('TABLE_HEADING_OPT_DEFAULT', 'Standard');
-
+define('TABLE_HEADING_YES', 'Ja');
+define('TABLE_HEADING_NO', 'Nein');
 define('TABLE_HEADING_OPT_TYPE', 'Optionsart');
-
+//CLR 031203 add option type column
 define('TABLE_HEADING_OPTION_VALUE_SIZE', 'Größe');
 define('TABLE_HEADING_OPTION_VALUE_MAX', 'Maximal');
 define('TABLE_HEADING_OPTION_VALUE_ROWS', 'Reihen');
@@ -113,6 +114,3 @@ define('TEXT_SELECT_DELETE_OPTION_FROM', 'Abzugleichender Optionsname:');
 define('TEXT_SELECT_DELETE_OPTION_VALUES_FROM', 'Abzugleichender Optionswert:');
 define('ERROR_OPTION_VALUES_DELETE_MISMATCH', 'FEHLER: Ausgewählter Optionsname und Optionswert stimmen nicht überein');
 define('SUCCESS_OPTION_VALUES_DELETE', 'Erfolgreich gelöscht: ');
-define('LABEL_FILTER', 'Optionswert zum Filtern wählen');
-define('TEXT_DISPLAY_NUMBER_OF_OPTION_VALUES', 'Zeige <b>%d</b> bis <b>%d</b> (von <b>%d</b> Optionswerten)');
-define('TEXT_SHOW_ALL', 'Zeige alle');

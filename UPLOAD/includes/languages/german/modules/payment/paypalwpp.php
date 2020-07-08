@@ -1,11 +1,10 @@
 <?php
 /**
-* Zen Cart German Specific
 * @package languageDefines
-* @copyright Copyright 2003-2020 Zen Cart Development Team
+* @copyright Copyright 2003-2019 Zen Cart Development Team
 * @copyright Portions Copyright 2003 osCommerce
 * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
-* @version $Id: paypalwpp.php 715 2020-02-08 10:57:24Z webchills $
+* @version $Id: paypalwpp.php 714 2019-10-16 11:57:24Z webchills $
 */
 
 define('MODULE_PAYMENT_PAYPALWPP_TEXT_ADMIN_TITLE_EC', 'PayPal Express');
@@ -51,7 +50,6 @@ define('MODULE_PAYMENT_PAYPALWPP_TEXT_CONFIRMEDADDR_ERROR', 'Die ausgewählte Ad
 define('MODULE_PAYMENT_PAYPALWPP_TEXT_INSUFFICIENT_FUNDS_ERROR', 'PayPal konnte diese Transaktion nicht erfolgreich durchführen. Bitte wählen Sie eine andere Zahlungsart oder überprüfen Sie Ihre Zahlungsoptionen in Ihrem PayPal Account bevor Sie fortfahren.');
 define('MODULE_PAYMENT_PAYPALWPP_TEXT_PAYPAL_DECLINED', 'Entschuldigung. PayPal hat die Transaktion abgelehnt und uns mitgeteilt, dass Sie sich für weitere Informationen an den PayPal-Kundendienst wenden sollen. Um Ihren Einkauf abzuschließen, wählen Sie bitte eine alternative Zahlungsmethode.');
 define('MODULE_PAYMENT_PAYPALWPP_TEXT_ERROR', 'Es trat ein Fehler während der Verarbeitung Ihrer Kreditkarten Informationen auf. Bitte versuchen Sie es erneut oder nehmen Sie mit uns Kontakt auf.');
-define('MODULE_PAYMENT_PAYPALWPP_FUNDING_ERROR','Problem mit der Finanzierungsquelle; bitte gehen Sie zu Paypal.com und zahlen Sie direkt an ' . STORE_OWNER_EMAIL_ADDRESS); 
 define('MODULE_PAYMENT_PAYPALWPP_TEXT_BAD_CARD', 'Es tut uns leid, aber die angebene Kreditkarte akzeptieren wir nicht. Bitte wählen sie eine andere oder nehmen Sie mit uns Kontakt auf.');
 define('MODULE_PAYMENT_PAYPALWPP_TEXT_BAD_LOGIN', 'Es gab ein Problem bei der Überprüfung Ihres Paypal Accounts, bitte versuchen Sie es erneut.');
 define('MODULE_PAYMENT_PAYPALWPP_TEXT_JS_CC_OWNER', '* Der Kreditkarteninhaber sollte mindestens eine Länge von' . CC_OWNER_MIN_LENGTH . ' Zeichen haben.\n');

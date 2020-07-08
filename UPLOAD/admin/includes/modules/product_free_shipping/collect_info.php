@@ -1,10 +1,10 @@
 <?php
 /**
  * @package admin
- * @copyright Copyright 2003-2020 Zen Cart Development Team
+ * @copyright Copyright 2003-2019 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: collect_info.php 798 2020-01-18 16:24:50Z webchills $
+ * @version $Id: collect_info.php 796 2019-04-15 16:24:50Z webchills $
  */
 if (!defined('IS_ADMIN_FLAG')) {
   die('Illegal Access');
@@ -97,11 +97,72 @@ foreach ($manufacturers as $manufacturer) {
   );
 }
 
+$tax_class_array = array(array(
+    'id' => '0',
+    'text' => TEXT_NONE));
+$tax_class = $db->Execute("SELECT tax_class_id, tax_class_title
+                           FROM " . TABLE_TAX_CLASS . "
+                           ORDER BY tax_class_title");
+foreach ($tax_class as $item) {
+  $tax_class_array[] = array(
+    'id' => $item['tax_class_id'],
+    'text' => $item['tax_class_title']);
+}
+
+$languages = zen_get_languages();
+
 // set to out of stock if categories_status is off and new product or existing products_status is off
 if (zen_get_categories_status($current_category_id) == 0 && $pInfo->products_status != 1) {
   $pInfo->products_status = 0;
 }
 ?>
+<script>
+  var tax_rates = new Array();
+<?php
+for ($i = 0, $n = sizeof($tax_class_array); $i < $n; $i++) {
+  if ($tax_class_array[$i]['id'] > 0) {
+    echo 'tax_rates["' . $tax_class_array[$i]['id'] . '"] = ' . zen_get_tax_rate_value($tax_class_array[$i]['id']) . ';' . "\n";
+  }
+}
+?>
+
+  function doRound(x, places) {
+      return Math.round(x * Math.pow(10, places)) / Math.pow(10, places);
+  }
+
+  function getTaxRate() {
+      var selected_value = document.forms["new_product"].products_tax_class_id.selectedIndex;
+      var parameterVal = document.forms["new_product"].products_tax_class_id[selected_value].value;
+
+      if ((parameterVal > 0) && (tax_rates[parameterVal] > 0)) {
+          return tax_rates[parameterVal];
+      } else {
+          return 0;
+      }
+  }
+
+  function updateGross() {
+      var taxRate = getTaxRate();
+      var grossValue = document.forms["new_product"].products_price.value;
+
+      if (taxRate > 0) {
+          grossValue = grossValue * ((taxRate / 100) + 1);
+      }
+
+      document.forms["new_product"].products_price_gross.value = doRound(grossValue, 4);
+  }
+
+  function updateNet() {
+      var taxRate = getTaxRate();
+      var netValue = document.forms["new_product"].products_price_gross.value;
+
+      if (taxRate > 0) {
+          netValue = netValue / ((taxRate / 100) + 1);
+      }
+
+      document.forms["new_product"].products_price.value = doRound(netValue, 4);
+  }
+</script>
 <div class="container-fluid">
     <?php
     echo zen_draw_form('new_product', FILENAME_PRODUCT, 'cPath=' . $current_category_id . (isset($_GET['pID']) ? '&pID=' . $_GET['pID'] : '') . '&action=new_product_preview' . (isset($_GET['page']) ? '&page=' . $_GET['page'] : '') . ( (isset($_GET['search']) && !empty($_GET['search'])) ? '&search=' . $_GET['search'] : '') . ( (isset($_POST['search']) && !empty($_POST['search']) && empty($_GET['search'])) ? '&search=' . $_POST['search'] : ''), 'post', 'enctype="multipart/form-data" class="form-horizontal"');
@@ -111,9 +172,11 @@ if (zen_get_categories_status($current_category_id) == 0 && $pInfo->products_sta
     ?>
   <h3 class="col-sm-11"><?php echo sprintf(TEXT_NEW_PRODUCT, zen_output_generated_category_path($current_category_id)); ?></h3>
   <div class="col-sm-1"><?php echo zen_info_image($cInfo->categories_image, $cInfo->categories_name, HEADING_IMAGE_WIDTH, HEADING_IMAGE_HEIGHT); ?></div>
-    <div class="floatButton text-right">
+  <div>
+    <span class="floatButton text-right">
       <button type="submit" class="btn btn-primary"><?php echo IMAGE_PREVIEW; ?></button>&nbsp;&nbsp;<a href="<?php echo zen_href_link(FILENAME_CATEGORY_PRODUCT_LISTING, 'cPath=' . $current_category_id . (isset($_GET['pID']) ? '&pID=' . $_GET['pID'] : '') . (isset($_GET['page']) ? '&page=' . $_GET['page'] : '') . ( (isset($_GET['search']) && !empty($_GET['search'])) ? '&search=' . $_GET['search'] : '') . ( (isset($_POST['search']) && !empty($_POST['search']) && empty($_GET['search'])) ? '&search=' . $_POST['search'] : '')); ?>" class="btn btn-default" role="button"><?php echo IMAGE_CANCEL; ?></a>
-    </div>
+    </span>
+  </div>
   <div class="form-group">
       <?php
 // show when product is linked
@@ -166,7 +229,7 @@ if (zen_get_categories_status($current_category_id) == 0 && $pInfo->products_sta
     <div class="col-sm-9 col-md-6">
       <div class="date input-group" id="datepicker">
         <span class="input-group-addon datepicker_icon">
-          <i class="fa fa-calendar fa-lg">&nbsp;</i>
+          <i class="fa fa-calendar fa-lg"></i>
         </span>
         <?php echo zen_draw_input_field('products_date_available', $pInfo->products_date_available, 'class="form-control"'); ?>
       </div>
@@ -197,38 +260,6 @@ if (zen_get_categories_status($current_category_id) == 0 && $pInfo->products_sta
       ?>
     </div>
   </div>
-<?php
-    // -----
-    // Give an observer the chance to supply some additional product-related inputs.  Each
-    // entry in the $extra_product_inputs returned contains:
-    //
-    // array(
-    //    'label' => array(
-    //        'text' => 'The label text',   (required)
-    //        'field_name' => 'The name of the field associated with the label', (required)
-    //        'addl_class' => {Any additional class to be applied to the label} (optional)
-    //        'parms' => {Any additional parameters for the label, e.g. 'style="font-weight: 700;"} (optional)
-    //    ),
-    //    'input' => 'The HTML to be inserted' (required)
-    // )
-    //
-    // Note: The product's type can be found in the 'product_type' element of the passed $pInfo object.
-    //
-    $extra_product_inputs = array();
-    $zco_notifier->notify('NOTIFY_ADMIN_PRODUCT_COLLECT_INFO_EXTRA_INPUTS', $pInfo, $extra_product_inputs);
-    if (!empty($extra_product_inputs)) {
-        foreach ($extra_product_inputs as $extra_input) {
-            $addl_class = (isset($extra_input['label']['addl_class'])) ? (' ' . $extra_input['label']['addl_class']) : '';
-            $parms = (isset($extra_input['label']['parms'])) ? (' ' . $extra_input['label']['parms']) : '';
-?>
-            <div class="form-group">
-                <?php echo zen_draw_label($extra_input['label']['text'], $extra_input['label']['field_name'], 'class="col-sm-3 control-label' . $addl_class . '"' . $parms); ?>
-                <div class="col-sm-9 col-md-6"><?php echo $extra_input['input']; ?></div>
-            </div>
-<?php
-        }
-    }
-?>
   <div class="form-group">
       <?php echo zen_draw_label(TEXT_PRODUCT_IS_FREE, 'product_is_free', 'class="col-sm-3 control-label"'); ?>
     <div class="col-sm-9 col-md-6">
@@ -336,7 +367,7 @@ if (zen_get_categories_status($current_category_id) == 0 && $pInfo->products_sta
           <span class="input-group-addon">
               <?php echo zen_image(DIR_WS_CATALOG_LANGUAGES . $languages[$i]['directory'] . '/images/' . $languages[$i]['image'], $languages[$i]['name']); ?>
           </span>
-          <?php echo zen_draw_textarea_field('products_description[' . $languages[$i]['id'] . ']', 'soft', '100', '30', htmlspecialchars((isset($products_description[$languages[$i]['id']])) ? stripslashes($products_description[$languages[$i]['id']]) : zen_get_products_description($pInfo->products_id, $languages[$i]['id']), ENT_COMPAT, CHARSET, TRUE), 'class="editorHook form-control"'); ?>
+          <?php echo zen_draw_textarea_field('products_description[' . $languages[$i]['id'] . ']', 'soft', '100%', '30', htmlspecialchars((isset($products_description[$languages[$i]['id']])) ? stripslashes($products_description[$languages[$i]['id']]) : zen_get_products_description($pInfo->products_id, $languages[$i]['id']), ENT_COMPAT, CHARSET, TRUE), 'class="editorHook form-control"'); ?>
         </div>
         <br>
         <?php

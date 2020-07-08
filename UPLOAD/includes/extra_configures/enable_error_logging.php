@@ -8,9 +8,9 @@
  * Credits to @lat9 for adding backtrace functionality
  *
  * @package debug
- * @copyright Copyright 2003-2020 Zen Cart Development Team
+ * @copyright Copyright 2003-2019 Zen Cart Development Team
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: enable_error_logging.php 774 2020-02-29 20:30:29Z webchills $
+ * @version $Id: enable_error_logging.php 773 2019-04-12 11:08:29Z webchills $
  */
 if (!defined('IS_ADMIN_FLAG')) {
     exit('Invalid Access');
@@ -45,7 +45,11 @@ function zen_debug_error_handler($errno, $errstr, $errfile, $errline)
     }
 
     ob_start();
-    debug_print_backtrace(DEBUG_BACKTRACE_IGNORE_ARGS);
+    if (version_compare(PHP_VERSION, '5.3.6') >= 0) {
+        debug_print_backtrace(DEBUG_BACKTRACE_IGNORE_ARGS);
+    } else {
+        debug_print_backtrace();
+    }
     $backtrace = ob_get_contents();
     ob_end_clean();
     // The following line removes the call to this zen_debug_error_handler function (as it's not relevant)

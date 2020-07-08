@@ -2,10 +2,10 @@
 /**
  * Zen Cart German Specific
  * @package languageDefines
- * @copyright Copyright 2003-2020 Zen Cart Development Team
+ * @copyright Copyright 2003-2019 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: german.php 670 2020-03-12 08:22:57Z webchills $
+ * @version $Id: german.php 667 2019-07-20 10:21:57Z webchills $
  */
 
 // FOLLOWING WERE moved to meta_tags.php
@@ -79,7 +79,7 @@ define('MALE_ADDRESS', 'Herr');
 define('FEMALE_ADDRESS', 'Frau');
 
 // text for date of birth example
-define('DOB_FORMAT_STRING', 'dd.mm.yyyy');
+define('DOB_FORMAT_STRING', 'tt/mm/jjjj');
 
 //text for sidebox heading links
 define('BOX_HEADING_LINKS', ' [mehr]');
@@ -94,10 +94,9 @@ define('BOX_HEADING_MANUFACTURERS', 'Hersteller');
 define('BOX_HEADING_WHATS_NEW', 'Neue Artikel');
 define('CATEGORIES_BOX_HEADING_WHATS_NEW', 'Neue Artikel ...');
 
-
+define('TEXT_NO_FEATURED_PRODUCTS', 'Weitere empfohlene Artikel erscheinen in Kürze. Bitte besuchen Sie unseren Shop regelmäßig wieder.');
 define('BOX_HEADING_FEATURED_PRODUCTS', 'Empfohlene Artikel');
 define('CATEGORIES_BOX_HEADING_FEATURED_PRODUCTS', 'Empfohlene Artikel ...');
-define('TEXT_NO_FEATURED_PRODUCTS', 'Weitere empfohlene Artikel erscheinen in Kürze. Bitte besuchen Sie unseren Shop regelmäßig wieder.');
 
 define('TEXT_NO_ALL_PRODUCTS', 'Weitere Artikel erscheinen in Kürze. Bitte besuchen Sie unseren Shop regelmäßig wieder.');
 define('CATEGORIES_BOX_HEADING_PRODUCTS_ALL', 'Alle Artikel ...');
@@ -271,7 +270,6 @@ define('PASSWORD_HIDDEN', '--VERSTECKT--');
 
 define('FORM_REQUIRED_INFORMATION', '* = Pflichtfeld');
 define('ENTRY_REQUIRED_SYMBOL', '*');
-define('TEXT_FIELD_REQUIRED', '&nbsp;<span class="alert">*</span>');
 
   // constants for use in zen_prev_next_display function
 define('TEXT_RESULT_PAGE', '');
@@ -358,24 +356,21 @@ define('PAYMENT_MODULE_GV', 'GS/AK');
 
 define('TABLE_HEADING_CREDIT_PAYMENT', 'Guthaben verfügbar');
 
-//coupon redeem error messages (checkout payment)
-define('TEXT_COUPON_LINK_TITLE', 'Bedingungen für diesen Gutscheincode ansehen');
-define('TEXT_INVALID_REDEEM_COUPON', 'Gutscheincode "%s" ist ungültig.');
-define('TEXT_INVALID_REDEEM_COUPON_MINIMUM', 'Der Mindestbestellwert liegt bei %2$s zum Einlösen von Gutscheincode "%1$s".');
-define('TEXT_INVALID_COUPON_PRODUCT', 'Der Gutscheincode "%1$s" ist für die Artikel in Ihrem Warenkorb nicht gültig.');
-define('TEXT_INVALID_COUPON_ORDER_LIMIT', 'Sie haben die maximal erlaubte Anzahl von Bestellungen (%2$u) überschritten, zum Einlösen dieses Gutscheincode "%1$s".');
-define('TEXT_INVALID_STARTDATE_COUPON', 'Der Gutscheincode "%1$s" is nicht gültig für eine Einlösung bis %2$s.');
-define('TEXT_INVALID_FINISHDATE_COUPON', 'Der Gutscheincode "%1$s" ist jetzt nicht gültig (abgelaufen %2$s).');
-define('TEXT_INVALID_USES_COUPON', 'Gutscheincode "%1$s" hat die maximale Einlöseanzahl erreicht (%2$u).');
-define('TEXT_INVALID_USES_USER_COUPON', 'Sie haben mit Gutscheincode "%1$s" bereits die maximale Einlöseanzahl pro Kunde erreicht (%2$u).');
-define('TEXT_REMOVE_REDEEM_COUPON_ZONE', 'Der Gutscheincode "%s" ist für die ausgewählte Adresse nicht gültig.');
-define('REDEEMED_COUPON', 'ein Gutscheincode im Wert von ');
-define('REDEEMED_MIN_ORDER', 'für Bestellungen über ');
-define('REDEEMED_RESTRICTIONS', ' [Einschränkungen für Kategorien/Artikel aktiv]');
-define('TEXT_ERROR', 'Ein Fehler ist aufgetreten');
-
-define('TEXT_VALID_COUPON', 'Gutscheincode erfolgreich eingelöst');
-
+define('TEXT_INVALID_REDEEM_COUPON', 'Ungültiger Aktionscode');
+define('TEXT_INVALID_REDEEM_COUPON_MINIMUM', 'Der Mindestbestellwert für diesen Aktionskupon liegt bei %s');
+define('TEXT_INVALID_STARTDATE_COUPON', 'Dieser Aktionskupon ist zurzeit nicht verfügbar');
+define('TEXT_INVALID_FINISHDATE_COUPON', 'Dieser Aktionskupon ist abgelaufen');
+define('TEXT_INVALID_USES_COUPON', 'Dieser Aktionskupon kann nur');
+define('TIMES', 'mal eingelöst werden');
+define('TIME', 'mal eingelöst werden.');
+define('TEXT_INVALID_USES_USER_COUPON', 'Sie haben den Aktionskupon %s benutzt. Dieser Aktionskupon hat die maximale Einlöseanzahl pro Kunde erreicht.');
+define('REDEEMED_COUPON', 'einen Aktionskupon im Wert von ');
+define('REDEEMED_MIN_ORDER', 'bei Bestellungen über ');
+define('REDEEMED_RESTRICTIONS', '[Artikelkategorie Einschränkung angewendet]');
+define('TEXT_ERROR', 'Es ist ein Fehler aufgetreten.');
+define('TEXT_INVALID_COUPON_PRODUCT', 'Dieser Aktionskupon ist für keinen der im Warenkorb befindlichen Artikel gültig');
+define('TEXT_VALID_COUPON', 'Aktionskupon erfolgreich eingelöst');
+define('TEXT_REMOVE_REDEEM_COUPON_ZONE', 'Der eingegebene Aktionskupon kann mit der ausgewählten Adresse nicht eingelöst werden.');
 
 // more info in place of buy now
 define('MORE_INFO_TEXT', '... weitere Infos');
@@ -456,9 +451,8 @@ define('TEXT_ADMIN_DOWN_FOR_MAINTENANCE', 'HINWEIS: Unser Shop ist wegen Wartung
 define('PRODUCTS_PRICE_IS_FREE_TEXT', 'Kostenlos!');
 define('PRODUCTS_PRICE_IS_CALL_FOR_PRICE_TEXT', 'Für Preis anfragen');
 define('TEXT_CALL_FOR_PRICE', 'Für Preis anfragen');
-
-define('TEXT_INVALID_SELECTION',' haben Sie eine ungültige Auswahl getroffen: ');
 define('TEXT_ERROR_OPTION_FOR', 'Bei der Option für ');
+define('TEXT_INVALID_SELECTION',' haben Sie eine ungültige Auswahl getroffen: ');
 define('TEXT_INVALID_USER_INPUT', 'Benutzereingabe benötigt<br />');
 
 // product_listing
@@ -468,8 +462,6 @@ define('PRODUCTS_QUANTITY_IN_CART_LISTING', 'Im Warenkorb:');
 define('PRODUCTS_QUANTITY_ADD_ADDITIONAL_LISTING', 'Weitere hinzufügen:');
 
 define('PRODUCTS_QUANTITY_MAX_TEXT_LISTING', 'Maximal:');
-define('TEXT_PRODUCT_MODEL', 'Artikelnummer: ');
-define('TABLE_HEADING_MODEL', 'Artikelnummer');
 
 define('TEXT_PRODUCTS_MIX_OFF', '*gemischt: AUS');
 define('TEXT_PRODUCTS_MIX_ON', '*gemischt: EIN');
@@ -649,14 +641,12 @@ define('TEXT_PRODUCTS_LISTING_ALPHA_SORTER', '');
 define('TEXT_PRODUCTS_LISTING_ALPHA_SORTER_NAMES', 'Artikelname, beginnend mit...');
 define('TEXT_PRODUCTS_LISTING_ALPHA_SORTER_NAMES_RESET', '-- Zurücksetzen --');
 
-// Constants shared between multiple pages
-define('TEXT_OPTION_DIVIDER', '&nbsp;-&nbsp;');
 ///////////////////////////////////////////////////////////
 
   $file_list = array(FILENAME_EMAIL_EXTRAS, FILENAME_HEADER, FILENAME_BUTTON_NAMES, FILENAME_ICON_NAMES, FILENAME_OTHER_IMAGES_NAMES, FILENAME_CREDIT_CARDS, FILENAME_WHOS_ONLINE, FILENAME_META_TAGS); 
   foreach ($file_list as $file) { 
     $file = str_replace(".php","",$file); 
-    require_once(zen_get_file_directory(DIR_FS_CATALOG . DIR_WS_LANGUAGES . $_SESSION['language'] . "/", $file . '.php', 'false'));
+    require_once(zen_get_file_directory(DIR_FS_CATALOG . DIR_WS_LANGUAGES . $_SESSION['language'] . '/', $file . '.php', 'false'));
   }
 
 // END OF EXTERNAL LANGUAGE LINKS

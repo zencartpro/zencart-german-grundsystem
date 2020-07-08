@@ -1,11 +1,11 @@
 <?php
 /**
  * @package admin
- * @copyright Copyright 2003-2020 Zen Cart Development Team
+ * @copyright Copyright 2003-2019 Zen Cart Development Team
  * @author inspired from sales_report_graphs.php,v 0.01 2002/11/27 19:02:22 cwi Exp  Released under the GNU General Public License $
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: stats_sales_report_graphs.php 4 2020-01-18 09:21:51Z webchills $
+ * @version $Id: stats_sales_report_graphs.php 3 2019-06-16 08:21:51Z webchills $
  */
 
 require 'includes/application_top.php';
@@ -168,6 +168,9 @@ for ($i = 0; $i < $report->size; $i++) {
               'width': 600,
               'height': 450
           };
+<?php
+// echo $scale;
+?>
 
           // Instantiate and draw our chart, passing in some options.
           var chart = new google.visualization.ColumnChart(document.getElementById('chart_div'));
@@ -181,7 +184,7 @@ for ($i = 0; $i < $report->size; $i++) {
     <!-- header_eof //-->
     <!-- body //-->
     <div class="container-fluid">
-      <h1><?php echo $report_desc . ' ' . HEADING_TITLE; ?></h1>
+      <h1><?php echo HEADING_TITLE . ' - ' .  $report_desc ;?></h1>
       <!-- body_text //-->
       <table class="table">
         <tr>
@@ -335,6 +338,7 @@ for ($i = 0; $i < $report->size; $i++) {
       </div>
       <!-- body_text_eof //-->
     </div>
+    <?php //die('<pre>' . print_r($report, true));  ?>
 
     <!-- body_eof //-->
     <!-- footer //-->

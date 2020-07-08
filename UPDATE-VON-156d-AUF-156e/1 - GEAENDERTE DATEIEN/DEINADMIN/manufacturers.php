@@ -5,7 +5,7 @@
  * @copyright Copyright 2003-2020 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: manufacturers.php 790 2020-01-18 08:15:51Z webchills $
+ * @version $Id: manufacturers.php 790 2020-07-08 20:15:51Z webchills $
  */
 require('includes/application_top.php');
 
@@ -85,6 +85,7 @@ if (zen_not_null($action)) {
       zen_redirect(zen_href_link(FILENAME_MANUFACTURERS, (isset($_GET['page']) ? 'page=' . $_GET['page'] . '&' : '') . 'mID=' . $manufacturers_id));
       break;
     case 'deleteconfirm':
+      
       $manufacturers_id = zen_db_prepare_input($_POST['mID']);
 
       if (isset($_POST['delete_image']) && ($_POST['delete_image'] == 'on')) {
@@ -190,7 +191,6 @@ if (zen_not_null($action)) {
           <table class="table table-hover">
             <thead>
               <tr class="dataTableHeadingRow">
-                <th class="dataTableHeadingContent">&nbsp;</th>
                 <th class="dataTableHeadingContent"><?php echo TABLE_HEADING_MANUFACTURERS; ?></th>
                 <th class="dataTableHeadingContent text-right"><?php echo TABLE_HEADING_ACTION; ?>&nbsp;</th>
               </tr>
@@ -236,7 +236,6 @@ if (zen_not_null($action)) {
                     echo '              <tr class="dataTableRow" onclick="document.location.href=\'' . zen_href_link(FILENAME_MANUFACTURERS, 'page=' . $_GET['page'] . '&mID=' . $manufacturer['manufacturers_id'] . '&action=edit') . '\'" role="button">' . "\n";
                   }
                   ?>
-              <td class="dataTableContent"><?php echo $manufacturer['manufacturers_id']; ?></td>
               <td class="dataTableContent"><?php echo $manufacturer['manufacturers_name']; ?></td>
               <td class="dataTableContent" align="right">
                   <?php echo '<a href="' . zen_href_link(FILENAME_MANUFACTURERS, 'page=' . $_GET['page'] . '&mID=' . $manufacturer['manufacturers_id'] . '&action=edit') . '">' . zen_image(DIR_WS_IMAGES . 'icon_edit.gif', ICON_EDIT) . '</a>'; ?>

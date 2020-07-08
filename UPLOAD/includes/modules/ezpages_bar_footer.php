@@ -3,10 +3,10 @@
  * ezpages bar (footer) - used to display links to EZ-Pages content in horizontal format (usually as a footer element)
  *
  * @package templateSystem
- * @copyright Copyright 2003-2020 Zen Cart Development Team
+ * @copyright Copyright 2003-2019 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: ezpages_bar_footer.php 875 2020-01-17 14:58:06Z webchills $
+ * @version $Id: ezpages_bar_footer.php 874 2019-04-14 18:01:06Z webchills $
  */
 if (!defined('IS_ADMIN_FLAG')) {
   die('Illegal Access');
@@ -17,9 +17,6 @@ $var_linksList = array();
 
 // test if bar should display:
 if (EZPAGES_STATUS_FOOTER == '1' || (EZPAGES_STATUS_FOOTER == '2' && (strstr(EXCLUDE_ADMIN_IP_FOR_MAINTENANCE, $_SERVER['REMOTE_ADDR'])))) {
-  if (!$sniffer->table_exists(TABLE_EZPAGES_CONTENT)) {
-    return; // early exit; db not upgraded
-  }
   $pages_query = $db->Execute("SELECT e.pages_id, e.page_open_new_window, e.page_is_ssl, e.alt_url, e.alt_url_external, e.toc_chapter, ec.pages_title
                               FROM  " . TABLE_EZPAGES . " e,
                                     " . TABLE_EZPAGES_CONTENT . " ec

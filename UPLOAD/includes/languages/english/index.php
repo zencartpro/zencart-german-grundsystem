@@ -2,10 +2,10 @@
 /**
  * Zen Cart German Specific
  * @package languageDefines
- * @copyright Copyright 2003-2020 Zen Cart Development Team
+ * @copyright Copyright 2003-2019 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: index.php 795 2020-02-29 20:54:50Z webchills $
+ * @version $Id: index.php 794 2013-08-17 09:24:50Z webchills $
  */
 
 define('TEXT_MAIN','This is the main define statement for the page for english when no template defined file exists. It is located in: <strong>/includes/languages/english/index.php</strong>');
@@ -32,8 +32,10 @@ if ( ($category_depth == 'products') || (zen_check_url_get_terms()) ) {
   // This section deals with product-listing page contents
   define('HEADING_TITLE', 'Available Products');
   define('TABLE_HEADING_IMAGE', 'Product Image');
+  define('TABLE_HEADING_MODEL', 'Model');
   define('TABLE_HEADING_PRODUCTS', 'Product Name');
   define('TABLE_HEADING_MANUFACTURER', 'Manufacturer');
+  define('TABLE_HEADING_QUANTITY', 'Quantity');
   define('TABLE_HEADING_PRICE', 'Price');
   define('TABLE_HEADING_WEIGHT', 'Weight');
   define('TABLE_HEADING_BUY_NOW', 'Buy Now');

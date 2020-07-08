@@ -3,10 +3,10 @@
  * banner functions
  *
  * @package functions
- * @copyright Copyright 2003-2020 Zen Cart Development Team
+ * @copyright Copyright 2003-2019 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: banner.php 732 2020-01-17 09:49:16Z webchills $
+ * @version $Id: banner.php 731 2019-04-12 11:49:16Z webchills $
  */
 
   /**
@@ -19,7 +19,7 @@
     if ($status != 0 && $status != 1) return -1;
     global $db;
     $sql = "update " . TABLE_BANNERS;
-    $sql .= ($status == 1) ? " set status = 1, date_scheduled = NULL" : " set status = 0";
+    $sql .= ($status == '1') ? " set status = 1, date_scheduled = NULL" : " set status = 0";
     $sql .= ", date_status_change = now() where banners_id = '" . (int)$banners_id . "'";
     return $db->Execute($sql);
   }

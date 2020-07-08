@@ -2,10 +2,10 @@
 /**
  * Zen Cart German Specific
  * @package admin
- * @copyright Copyright 2003-2020 Zen Cart Development Team
+ * @copyright Copyright 2003-2019 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: german.php 670 2020-03-14 17:32:04Z webchills $
+ * @version $Id: german.php 666 2019-07-28 17:37:04Z webchills $
  */
 if (!defined('IS_ADMIN_FLAG'))
 {
@@ -59,7 +59,7 @@ function zen_date_raw($date, $reverse = false){
 //   require(DIR_FS_CATALOG_LANGUAGES . $_SESSION['language'] . '/' . $template_dir_select . 'meta_tags.php');
 
 // used for prefix to browser tabs in admin pages
-define('TEXT_ADMIN_TAB_PREFIX', 'Admin');
+define('TEXT_ADMIN_TAB_PREFIX', 'Admin ');
 // if you have multiple stores and want the Store Name to be part of the admin title (ie: for browser tabs), swap this line with the one above
 //define('TEXT_ADMIN_TAB_PREFIX', 'Admin ' . STORE_NAME);
 // meta tags
@@ -75,7 +75,7 @@ define('HTML_PARAMS', 'dir="ltr" lang="de"');
 define('CHARSET', 'utf-8');
 
 // header text in includes/header.php
-define('HEADER_TITLE_TOP', 'Startseite');
+define('HEADER_TITLE_TOP', 'Admin Startseite');
 define('HEADER_TITLE_SUPPORT_SITE', 'Supportforum');
 define('HEADER_TITLE_ONLINE_CATALOG', 'Shop Startseite');
 define('HEADER_TITLE_VERSION', 'Version');
@@ -83,11 +83,13 @@ define('HEADER_TITLE_ACCOUNT', 'Account');
 define('HEADER_TITLE_LOGOFF', 'Abmelden');
 //define('HEADER_TITLE_ADMINISTRATION', 'Administration');
 
-// TEXT_GV_NAME, TEXT_GV_NAMES moved to gv_name.php
-if (!defined('TEXT_GV_NAME')) {
-  require DIR_WS_LANGUAGES . $_SESSION['language'] . '/' . 'gv_name.php';
-}
-  define('TEXT_DISCOUNT_COUPON', 'Aktionskupon');
+// Define the name of your Gift Certificate as Gift Voucher, Gift Certificate, Zen Cart Dollars, etc. here for use through out the shop
+define('TEXT_GV_NAME', 'Gutschein');
+define('TEXT_GV_NAMES', 'Gutscheine');
+define('TEXT_DISCOUNT_COUPON', 'Aktionskupon');
+
+// used for redeem code, redemption code, or redemption id
+define('TEXT_GV_REDEEM', 'Gutscheinnummer');
 
 // text for gender
 define('MALE', 'Herr');
@@ -146,8 +148,8 @@ define('BOX_CATALOG_PRODUCTS_EXPECTED', 'Artikel Neuerscheinungen');
 define('BOX_CATALOG_SALEMAKER', 'Abverkaufsmanager');
 define('BOX_CATALOG_PRODUCTS_PRICE_MANAGER', 'Artikelpreis Manager');
 define('BOX_CATALOG_PRODUCT', 'Artikel');
-define('BOX_CATALOG_PRODUCTS_TO_CATEGORIES', 'Artikel in mehrere Kategorien verlinken');
-define('BOX_CATALOG_CATEGORY', 'Kategorie');
+define('BOX_CATALOG_PRODUCTS_TO_CATEGORIES', 'Artikel in Kategorien');
+define('BOX_CATALOG_CATEGORY', 'Category');
 
 // customers box text
 define('BOX_HEADING_CUSTOMERS', 'Kunden');
@@ -257,10 +259,10 @@ define('JS_STATE_SELECT', '-- Bitte wählen Sie --');
 define('JS_ZONE', '* Das \'Bundesland\' muss ausgewählt sein.');
 define('JS_COUNTRY', '* Das \'Land\' muss ausgewählt sein.\n');
 define('JS_TELEPHONE', '* Die \'Telefonnummer\' muss aus mindestens  ' . ENTRY_TELEPHONE_MIN_LENGTH . ' Zeichen bestehen.\n');
-
+define('JS_PASSWORD', '* Das \'Passwort\' muss aus mindestens  ' . ENTRY_PASSWORD_MIN_LENGTH . ' Zeichen bestehen.\n');
 define('JS_ERROR_SUBMITTED', 'This form has already been submitted. Please press OK and wait for this process to be completed.');
-define('JS_ORDER_DOES_NOT_EXIST', 'Bestellnummer %s existiert nicht!');
-define('TEXT_NO_ORDER_HISTORY', 'keine Bestellhistorie verfügbar');
+define('JS_ORDER_DOES_NOT_EXIST', 'Diese Bestellnummer %s existiert nicht!');
+define('TEXT_NO_ORDER_HISTORY', 'eine Bestellhistorie verfügbar');
 
 define('CATEGORY_PERSONAL', 'Persönlich');
 define('CATEGORY_ADDRESS', 'Anschrift');
@@ -380,7 +382,6 @@ define('IMAGE_PRODUCTS_TO_CATEGORIES', 'Mehrfachkategorie Link Manager');
 define('IMAGE_ICON_STATUS_ON', 'Status - aktiviert');
 define('IMAGE_ICON_STATUS_OFF', 'Status - deaktiviert');
 define('IMAGE_ICON_LINKED', 'Artikel ist verlinkt');
-define('IMAGE_ICON_LINKED_CATEGORY', 'Kategorie enthält verlinkte Artikel');
 
 define('IMAGE_REMOVE_SPECIAL', 'Info für Preisermäßigung entfernen');
 define('IMAGE_REMOVE_FEATURED', 'Info für empfohlene Artikel entfernen');
@@ -395,7 +396,6 @@ define('ICON_CROSS', 'Falsch');
 define('ICON_CURRENT_FOLDER', 'Aktueller Ordner');
 define('ICON_DELETE', 'Löschen');
 define('ICON_EDIT', 'Bearbeiten');
-define('ICON_EDIT_METATAGS', 'Meta Tags bearbeiten');
 define('ICON_ERROR', 'Fehler');
 define('ICON_FILE', 'Datei');
 define('ICON_FILE_DOWNLOAD', 'Download');
@@ -422,7 +422,6 @@ define('TEXT_DISPLAY_NUMBER_OF_FEATURED', 'Zeigen von <b>%d</b> bis <b>%d</b> (v
 define('TEXT_DISPLAY_NUMBER_OF_LANGUAGES', 'Zeige <b>%d</b> bis <b>%d</b> (von <b>%d</b> Sprachen)');
 define('TEXT_DISPLAY_NUMBER_OF_MANUFACTURERS', 'Zeige <b>%d</b> bis <b>%d</b> (von <b>%d</b> Hersteller)');
 define('TEXT_DISPLAY_NUMBER_OF_NEWSLETTERS', 'Zeige <b>%d</b> bis <b>%d</b> (von <b>%d</b> Newsletter)');
-define('TEXT_DISPLAY_NUMBER_OF_OPTIONS', 'Zeige <b>%d</b> bis <b>%d</b> (von <b>%d</b> Optionen)');
 define('TEXT_DISPLAY_NUMBER_OF_ORDERS', 'Zeige <b>%d</b> bis <b>%d</b> (von <b>%d</b> Bestellungen)');
 define('TEXT_DISPLAY_NUMBER_OF_ORDERS_STATUS', 'Zeige <b>%d</b> bis <b>%d</b> (von <b>%d</b> Bestellstatus)');
 define('TEXT_DISPLAY_NUMBER_OF_PRICING_GROUPS', 'Zeige <b>%d</b> bis <b>%d</b> (von <b>%d</b> Preisgruppen)');
@@ -459,7 +458,6 @@ define('ERROR_NO_DEFAULT_CURRENCY_DEFINED', 'FEHLER: Es wurde keine Standardwäh
 define('TEXT_NONE', '--kein--');
 define('TEXT_TOP', 'Top');
 define('PLEASE_SELECT', 'Bitte wählen ...');
-define('TEXT_CUSTOMER','Kunde');
 
 define('ERROR_DESTINATION_DOES_NOT_EXIST', 'FEHLER: Zielverzeichnis %s existiert nicht');
 define('ERROR_DESTINATION_NOT_WRITEABLE', 'FEHLER: Zielverzeichnis %s ist schreibgeschützt');
@@ -481,7 +479,6 @@ define('ERROR_MODULE_REMOVAL_PROHIBITED', 'FEHLER: Diese Modul kann nicht entfer
 define('WARNING_REVIEW_ROGUE_ACTIVITY', 'ALARM: Bitte anschauen für mögliche XSS Aktivitäten:');
 
 define('ERROR_FILE_NOT_REMOVEABLE', 'FEHLER: Die angegebene Datei konnte nicht gelöscht werden. Sie müssen diese Datei manuell per FTP löschen.');
-define('ERROR_DIRECTORY_NOT_REMOVEABLE', 'FEHLER: Das angegebene Verzeichnis konnte nicht gelöscht werden. Sie müssen diesen Ordner manuell per FTP löschen.');
 define('WARNING_SESSION_AUTO_START', 'WARNUNG: session.auto_start ist aktiviert - bitte deaktivieren Sie diese PHP Einstellung in der php.ini und starten den Webserver neu.');
 define('WARNING_DOWNLOAD_DIRECTORY_NON_EXISTENT', 'WARNUNG: Das Verzeichnis für Downloaddateien existiert nicht: ' . DIR_FS_DOWNLOAD . '. Downloadartikel werden nicht funktionieren, solange dieses Verzeichnis nicht vorhanden ist.');
 define('WARNING_SQL_CACHE_DIRECTORY_NON_EXISTENT', 'WARNUNG: Das Verzeichnis für SQL Caching existiert nicht:: ' . DIR_FS_SQL_CACHE . '. SQL Caching wird nicht funktionieren, solange dieses Verzeichnis nicht vorhanden ist.');
@@ -534,14 +531,12 @@ define('BOX_CATALOG_CATEGORIES_ATTRIBUTES_CONTROLLER', 'Attributmanager');
 
 // generic model
 define('TEXT_MODEL', 'Artikelnummer:');
-define('TEXT_PRODUCTS_MODEL', 'Artikelnummer:');
-define('TABLE_HEADING_PRODUCTS_MODEL','Artikelnummer');
-define('TABLE_HEADING_MODEL', 'Artikelnummer');
 
 // column controller
 define('BOX_TOOLS_LAYOUT_CONTROLLER', 'Boxlayout');
 
 // check GV release queue and alert store owner
+define('SHOW_GV_QUEUE', true);
 define('TEXT_SHOW_GV_QUEUE', '%s wartet auf Freigabe');
 define('IMAGE_GIFT_QUEUE', TEXT_GV_NAME . ' Warteschleife');
 define('IMAGE_ORDER', 'Bestellung');
@@ -581,6 +576,10 @@ define('PREV_NEXT_PRODUCT', 'Artikel: ');
 define('TEXT_CATEGORIES_STATUS_INFO_OFF', '<span class="alert">*Die Kategorie ist deaktiviert</span>');
 define('TEXT_PRODUCTS_STATUS_INFO_OFF', '<span class="alert">*Der Artikel ist deaktiviert</span>');
 
+// admin demo
+define('ADMIN_DEMO_ACTIVE', 'Sie befinden sich im Admin "Demo" Modus. Einige Einstellungen sind deaktiviert.');
+define('ADMIN_DEMO_ACTIVE_EXCLUSION', 'Sie befinden sich im Admin "Demo" Modus. Einige Einstellungen sind deaktiviert - <strong>Mitteilung: Admin Einstellungen überschreiben aktiviert</strong>');
+define('ERROR_ADMIN_DEMO', 'Sie befinden sich im Admin "Demo" Modus ... diese Option(en) ist deaktiviert und kann nicht ausgeführt werden');
 
 // Version Check notices
 define('TEXT_VERSION_CHECK_NEW_VER', '<span class="alertVersionNew">Eine neue Version ist verfügbar:</span> v');
@@ -668,7 +667,6 @@ define('ENTRY_EMAIL_NONE_DISPLAY', 'Nie');
 define('ENTRY_EMAIL_OPTOUT_DISPLAY', 'Wünscht keine Newsletter');
 define('ENTRY_NOTHING_TO_SEND', 'Ihre Nachricht hat keinen Inhalt');
 define('EMAIL_SEND_FAILED', 'FEHLER: Senden der E-Mail an: "%s" <%s> mit Betreff: "%s" fehlgeschlagen');
-define('EMAIL_SALUTATION', 'Sehr geehrte(r)');
 
 define('EDITOR_NONE', 'Normaler Text');
 define('TEXT_EDITOR_INFO', 'Interner HTML-Editor');
@@ -691,9 +689,8 @@ define('TABLE_HEADING_NO', 'Nein');
 define('TEXT_PRODUCTS_IMAGE_MANUAL', '<br /><strong>Oder wählen Sie ein bestehendes Bild vom Server, Dateiname:</strong>');
 define('TEXT_IMAGES_OVERWRITE', 'Bestehendes Bild überschreiben? Verwenden Sie "Nein" bei manuell eingegebenem Namen');
 define('TEXT_IMAGE_OVERWRITE_WARNING', 'WARNUNG: DATEINAME wurde aktualisiert aber nicht überschrieben ');
-define('TEXT_IMAGES_DELETE', '<strong>Bild entfernen?</strong>  Hinweis: Entfernt die Verknüpfung Bild/Artikel (Bilddatei wird dabei NICHT vom Server entfernt)');
+define('TEXT_IMAGES_DELETE', 'Bild löschen?<br />(Bilddatei wird dabei nicht vom Server entfernt)');
 define('TEXT_IMAGE_CURRENT', 'Bild Name: ');
-define('TEXT_IMAGE_NONEXISTENT', 'BILD DATEI FEHLT');
 
 define('ERROR_DEFINE_OPTION_NAMES', 'WARNUNG: Es wurde kein Attributname definiert');
 define('ERROR_DEFINE_OPTION_VALUES', 'WARNUNG: Es wurde kein Optionswert definiert');
@@ -723,13 +720,6 @@ define('ERROR_CATEGORY_HAS_PRODUCTS', 'FEHLER: Kategorie enthält Produkte!<br /
 define('SUCCESS_CATEGORY_MOVED', 'Erfolgreich! Kategorie erfolgreich verschoben ...');
 define('ERROR_CANNOT_MOVE_CATEGORY_TO_CATEGORY_SELF', 'FEHLER: Kategorie kann nicht in sich selbst verschoben werden! ID#');
 
-// messages for function zen_copy_products_attributes
-  define('WARNING_ATTRIBUTE_COPY_SAME_ID','Warning: Attribute Copy aborted. Cannot copy from Product ID#%u to Product ID#%u (same ID).');
-  define('WARNING_ATTRIBUTE_COPY_NO_ATTRIBUTES','Warning: Attribute Copy aborted. No Attributes found for source Product ID#%u, "%s".');
-  define('WARNING_ATTRIBUTE_COPY_INVALID_ID','Warning: Attribute Copy to Product ID#%u aborted. Invalid ID');
-  define('TEXT_ATTRIBUTE_COPY_SKIPPING','Skipping Attribute ID#%u for Product ID#%u');
-  define('TEXT_ATTRIBUTE_COPY_INSERTING','Attribute ID#%u copied from Product ID#%u to Product ID#%u');
-  define('TEXT_ATTRIBUTE_COPY_UPDATING', 'Attribute ID#%u updated for Product ID#%u');
 // EZ-PAGES Alerts
 define('TEXT_EZPAGES_STATUS_HEADER_ADMIN', 'Achtung: EZ-PAGES HEADER - Nur für Admin IP aktiviert');
 define('TEXT_EZPAGES_STATUS_FOOTER_ADMIN', 'Achtung: EZ-PAGES FOOTER - Nur für Admin IP aktiviert');
@@ -759,8 +749,6 @@ define('WARNING_WELCOME_DISCOUNT_COUPON_EXPIRES_IN', 'Warnung! Der Aktionskupon 
 
 define('WARNING_ADMIN_FOLDERNAME_VULNERABLE', 'VORSICHT: <a href="http://www.zen-cart-pro.at/zcvb/forum/vbglossar.php?do=showentry&id=6" target="_blank">Sie sollten den Ordner /admin/ in irgendwas weniger auffallendes umbenennen</a>, um ihn vor unbefugten Zugriffen zu schützen.');
 define('WARNING_EMAIL_SYSTEM_DISABLED', 'WARNUNG: Das Emailsystem ist abgeschaltet. Es werden keine Emails vom Shop versendet, bevor Sie das nicht unter Admin->Konfiguration->Email Optionen aktivieren..');
-define('WARNING_EMAIL_SYSTEM_DEVELOPER_OVERRIDE', 'WARNING: The sending of emails has been disabled as developer switch "DEVELOPER_OVERRIDE_EMAIL_STATUS" is set to "false".');
-define('WARNING_EMAIL_SYSTEM_DEVELOPER_EMAIL', 'WARNING: ALL emails will be sent to %s (as defined in "DEVELOPER_OVERRIDE_EMAIL_ADDRESS").');
 define('TEXT_CURRENT_VER_IS', 'Sie benutzen gerade: ');
 define('ERROR_NO_DATA_TO_SAVE', 'FEHLER: Die übertragenen Daten waren leer. IHRE ÄNDERUNGEN WURDEN *NICHT* GESPEICHERT. Sie haben möglicherweise ein Problem mit Ihrem Browser oder Ihrer Internetverbindung.');
 define('TEXT_HIDDEN', 'Versteckt');
@@ -776,11 +764,9 @@ define('ERROR_DATABASE_MAINTENANCE_NEEDED', '<a href="http://www.zen-cart-pro.at
 define('TEXT_INFO_CURRENCY_UPDATED', 'Der Wechselkurs für %s (%s) wurde erfolgreich auf %s aktualisiert via  %s.');
 define('ERROR_CURRENCY_INVALID', 'Fehler: Der Wechselkurs für %s (%s) wurde nicht aktualisiert via %s. Ist der Währungscode wirklich korrekt?');
 define('WARNING_PRIMARY_SERVER_FAILED', 'Warnung: Der primäre Wechselkursserver (%s) ist für %s (%s) fehlgeschlagen - versuche sekundären Wechselkursserver.');
-// Set to empty string if alpha sorting not desired
-define('MENU_CATEGORIES_TO_SORT_BY_NAME','reports,tools'); 
 ///////////////////////////////////////////////////////////
 // include additional files:
-  require(DIR_WS_LANGUAGES . $_SESSION['language'] . "/" . FILENAME_EMAIL_EXTRAS);
+  require(DIR_WS_LANGUAGES . $_SESSION['language'] . '/' . FILENAME_EMAIL_EXTRAS);
   include(zen_get_file_directory(DIR_FS_CATALOG_LANGUAGES . $_SESSION['language'] . '/', FILENAME_OTHER_IMAGES_NAMES, 'false'));
 
 // Additional Localisation - Languages - Phone Country Code

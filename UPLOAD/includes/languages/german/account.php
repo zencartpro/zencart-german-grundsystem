@@ -1,10 +1,10 @@
 <?php
 /**
  * @package languageDefines
- * @copyright Copyright 2003-2020 Zen Cart Development Team
+ * @copyright Copyright 2003-2019 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: account.php 629 2020-03-01 08:33:14Z webchills $
+ * @version $Id: account.php 628 2015-12-22 10:05:14Z webchills $
  */
 
 define('NAVBAR_TITLE','Mein Konto');
@@ -16,6 +16,7 @@ define('TABLE_HEADING_DATE', 'Datum');
 define('TABLE_HEADING_ORDER_NUMBER', 'Nr.');
 define('TABLE_HEADING_SHIPPED_TO', 'Lieferadresse');
 define('TABLE_HEADING_STATUS', 'Status');
+define('TABLE_HEADING_TOTAL', 'Summe');
 define('TABLE_HEADING_VIEW', 'Ansehen');
 define('MY_ACCOUNT_TITLE','Mein Konto');
 define('MY_ACCOUNT_INFORMATION','Meine Kontoinformationen ansehen oder ändern.');

@@ -1,16 +1,16 @@
 <?php
 /**
  * @package admin
- * @copyright Copyright 2003-2020 Zen Cart Development Team
+ * @copyright Copyright 2003-2019 Zen Cart Development Team
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: products_price_manager.php 733 2020-01-17 18:49:16Z webchills $
+ * @version $Id: products_price_manager.php 732 2019-05-07 21:49:16Z webchills $
  */
 
 define('HEADING_TITLE', 'Products Price Manager');
 define('HEADING_TITLE_PRODUCT_SELECT','Please select a Category with Products to display the Pricing Information of ...');
 
 define('TABLE_HEADING_PRODUCTS', 'Products');
-
+define('TABLE_HEADING_PRODUCTS_MODEL','Model');
 define('TABLE_HEADING_PRODUCTS_PRICE', 'Products Price/Special/Sale');
 define('TABLE_HEADING_PRODUCTS_PERCENTAGE','Percentage');
 define('TABLE_HEADING_AVAILABLE_DATE', 'Available');
@@ -20,7 +20,7 @@ define('TABLE_HEADING_ACTION', 'Action');
 
 define('TEXT_PRODUCT_INFO', 'Product Info:');
 define('TEXT_PRODUCTS_PRICE_INFO', 'Product Price Info:');
-
+define('TEXT_PRODUCTS_MODEL','Model:');
 define('TEXT_PRICE', 'Price');
 define('TEXT_PRICE_NET', 'Price (Net)');
 define('TEXT_PRICE_GROSS', 'Price (Gross)');
@@ -39,7 +39,7 @@ define('TEXT_PRODUCT_INFO_NONE', 'Please select a Product from above ...');
   define('TEXT_PRODUCT_NOT_PRICED_BY_ATTRIBUTE','No');
   define('TEXT_PRODUCTS_PRICED_BY_ATTRIBUTES_EDIT','<br />*Display price will include lowest group attributes prices plus price');
   define('TEXT_PRODUCTS_MIXED','Qty Min/Unit Mix:');
-  define('TEXT_PRODUCTS_MIXED_DISCOUNT_QUANTITY', 'Discount Qty Applies<br />to Mixed Attributes');
+  define('TEXT_PRODUCTS_MIXED_DISCOUNT_QUANTITY', 'Discount Qty Applies to Mixed Attributes');
 
   define('TEXT_PRODUCTS_QUANTITY_MIN_RETAIL','Qty Min:');
   define('TEXT_PRODUCTS_QUANTITY_UNITS_RETAIL','Qty Units:');
@@ -85,7 +85,7 @@ define('TEXT_INFO_HEADING_DELETE_FEATURED', 'Delete Featured');
 define('TEXT_INFO_DELETE_INTRO', 'Are you sure you want to delete the featured product?');
 
   define('TEXT_ATTRIBUTES_INSERT_INFO', '<strong>Define the Attribute Settings then press Insert to apply</strong>');
-
+  define('TEXT_PRICED_BY_ATTRIBUTES', 'Priced by Attributes');
   define('TEXT_PRODUCTS_PRICE', 'Products Price: ');
   define('TEXT_SPECIAL_PRICE', 'Special Price: ');
   define('TEXT_SALE_PRICE', 'Sale Price: ');
@@ -109,7 +109,7 @@ define('TEXT_PRODUCTS_DISCOUNT_PRICE_EXTENDED_TAX','Extended<br />Price: &nbsp; 
 define('TEXT_EACH','ea.');
 define('TEXT_EXTENDED','total');
 
-define('TEXT_DISCOUNT_TYPE_INFO', 'Product Discount Info:');
+define('TEXT_DISCOUNT_TYPE_INFO', 'Product Discount Info');
 define('TEXT_DISCOUNT_TYPE','Discount Type:');
 define('TEXT_DISCOUNT_TYPE_FROM', 'Discount Priced from:');
 
@@ -135,4 +135,4 @@ define('PRODUCT_WARNING_UPDATE_CANCEL', 'Changes were Cancelled and not saved ..
 define('TEXT_INFO_EDIT_CAUTION', '<strong>Click to begin Editing ...</strong>');
 define('TEXT_INFO_PREVIEW_ONLY', 'Preview Only ... Current Price Status ... Preview Only');
 define('TEXT_INFO_UPDATE_REMINDER', '<strong>Edit Product Information then Update to save</strong>');
-define('BUTTON_ADDITIONAL_ACTIONS', 'Additional Actions');
+define('BUTTON_ADDITITONAL_ACTIONS', 'Additional Actions');

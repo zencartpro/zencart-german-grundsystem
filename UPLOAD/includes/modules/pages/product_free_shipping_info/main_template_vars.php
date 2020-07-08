@@ -3,10 +3,10 @@
  *  product_free_shipping_info main_template_vars.php
  *
  * @package productTypes
- * @copyright Copyright 2003-2020 Zen Cart Development Team
+ * @copyright Copyright 2003-2019 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: main_template_vars.php 802 2020-02-29 21:47:36Z webchills $
+ * @version $Id: main_template_vars.php 801 2019-04-12 12:47:36Z webchills $
  */
 /*
  * Extracts and constructs the data to be used in the product-type template tpl_TYPEHANDLER_info_display.php
@@ -15,34 +15,57 @@
   // This should be first line of the script:
   $zco_notifier->notify('NOTIFY_MAIN_TEMPLATE_VARS_START_PRODUCT_FREE_SHIPPING_INFO');
 
-  if (!isset($product_info->EOF, $product_info->fields['products_id'], $product_info->fields['products_status']) || $product_info->fields['products_id'] !== (int)$_GET['products_id']) {
-    $product_info = zen_get_product_details($_GET['products_id']);
-  }
+  $sql = "select count(*) as total
+          from " . TABLE_PRODUCTS . " p, " .
+                   TABLE_PRODUCTS_DESCRIPTION . " pd
+          where    p.products_status = '1'
+          and      p.products_id = '" . (int)$_GET['products_id'] . "'
+          and      pd.products_id = p.products_id
+          and      pd.language_id = '" . (int)$_SESSION['languages_id'] . "'";
 
-  $product_not_found = $product_info->EOF;
 
-  if (!defined('PRODUCT_THROWS_200_WHEN_DISABLED') || PRODUCT_THROWS_200_WHEN_DISABLED !== true) {
-    if ($product_info->fields['products_status'] != 1) {
-      $product_not_found = true;
-    }
-  }
+  $res = $db->Execute($sql);
 
-  if ($product_not_found) {
+  if ( $res->fields['total'] < 1 ) {
+
     $tpl_page_body = '/tpl_product_info_noproduct.php';
+
   } else {
 
     $tpl_page_body = '/tpl_product_free_shipping_info_display.php';
 
     $zco_notifier->notify('NOTIFY_PRODUCT_VIEWS_HIT_INCREMENTOR', (int)$_GET['products_id']);
 
+    $sql = "select p.products_id, pd.products_name,
+                  pd.products_description, p.products_model,
+                  p.products_quantity, p.products_image,
+                  pd.products_url, p.products_price,
+                  p.products_tax_class_id, p.products_date_added,
+                  p.products_date_available, p.manufacturers_id, p.products_quantity,
+                  p.products_weight, p.products_priced_by_attribute, p.product_is_free,
+                  p.products_qty_box_status,
+                  p.products_quantity_order_max,
+                  p.products_discount_type, p.products_discount_type_from, p.products_sort_order, p.products_price_sorter
+           from   " . TABLE_PRODUCTS . " p, " . TABLE_PRODUCTS_DESCRIPTION . " pd
+           where  p.products_status = '1'
+           and    p.products_id = '" . (int)$_GET['products_id'] . "'
+           and    pd.products_id = p.products_id
+           and    pd.language_id = '" . (int)$_SESSION['languages_id'] . "'";
+
+    $product_info = $db->Execute($sql);
+
     $products_price_sorter = $product_info->fields['products_price_sorter'];
 
-    $products_price = $currencies->display_price($product_info->fields['products_price'], zen_get_tax_rate($product_info->fields['products_tax_class_id']));
+    $products_price = $currencies->display_price($product_info->fields['products_price'],
+                      zen_get_tax_rate($product_info->fields['products_tax_class_id']));
 
     $manufacturers_name= zen_get_products_manufacturers_name((int)$_GET['products_id']);
 
     if ($new_price = zen_get_products_special_price($product_info->fields['products_id'])) {
-      $specials_price = $currencies->display_price($new_price, zen_get_tax_rate($product_info->fields['products_tax_class_id']));
+
+      $specials_price = $currencies->display_price($new_price,
+                        zen_get_tax_rate($product_info->fields['products_tax_class_id']));
+
     }
 
 // set flag for attributes module usage:

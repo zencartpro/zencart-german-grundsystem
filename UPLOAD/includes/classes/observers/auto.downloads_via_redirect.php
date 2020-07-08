@@ -1,9 +1,9 @@
 <?php
 /**
  * @package plugins
- * @copyright Copyright 2003-2020 Zen Cart Development Team
+ * @copyright Copyright 2003-2019 Zen Cart Development Team
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: auto.downloads_via_redirect.php 3 2020-01-17 08:54:04 webchills $
+ * @version $Id: auto.downloads_via_redirect.php 2 2019-07-20 webchills $
  */
 
 /**
@@ -96,7 +96,7 @@ class zcObserverDownloadsViaRedirect extends base {
     if (defined('DOWNLOADS_SKIP_DOT_PREFIX_ON_REDIRECT') && DOWNLOADS_SKIP_DOT_PREFIX_ON_REDIRECT === TRUE) $dirname = '';
     $length = floor(zen_rand(16,20));
     for ($i = 1; $i <= $length; $i++) {
-      $q = (int)floor(zen_rand(0,25));
+      $q = floor(zen_rand(0,25));
       $dirname .= $letters[$q];
     }
     return $dirname;

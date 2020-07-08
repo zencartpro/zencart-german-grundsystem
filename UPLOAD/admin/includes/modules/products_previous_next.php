@@ -1,10 +1,10 @@
 <?php
 /**
  * @package admin
- * @copyright Copyright 2003-2020 Zen Cart Development Team
+ * @copyright Copyright 2003-2019 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: products_previous_next.php 732 2020-01-18 16:49:16Z webchills $
+ * @version $Id: products_previous_next.php 731 2019-05-15 16:49:16Z webchills $
  */
 if (!defined('IS_ADMIN_FLAG')) {
   die('Illegal Access');
@@ -29,7 +29,7 @@ if (!isset($prev_next_list) || $prev_next_list == '') {
   // sort order
   switch (PRODUCT_INFO_PREVIOUS_NEXT_SORT) {
     case (0):
-      $prev_next_order = ' ORDER BY p.products_id';
+      $prev_next_order = ' ORDER BY LPAD(p.products_id,11,"0")';
       break;
     case (1):
       $prev_next_order = " ORDER BY pd.products_name";
@@ -45,9 +45,6 @@ if (!isset($prev_next_list) || $prev_next_list == '') {
       break;
     case (5):
       $prev_next_order = " ORDER BY pd.products_name, p.products_model";
-      break;
-    case (6):
-      $prev_next_order = " ORDER BY p.products_sort_order";
       break;
     default:
       $prev_next_order = " ORDER BY pd.products_name";

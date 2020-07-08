@@ -1,10 +1,10 @@
 <?php
 /**
  * @package admin
- * @copyright Copyright 2003-2020 Zen Cart Development Team
+ * @copyright Copyright 2003-2019 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: mail.php 793 2020-01-18 08:52:51Z webchills $
+ * @version $Id: mail.php 792 2019-07-20 08:52:51Z webchills $
  */
 require('includes/application_top.php');
 
@@ -27,7 +27,7 @@ if ($action == 'set_editor') {
   zen_redirect(zen_href_link(FILENAME_MAIL));
 }
 
-if (($action == 'send_email_to_user') && isset($_POST['customers_email_address']) && !isset($_POST['back'])) {
+if (($action == 'send_email_to_user') && isset($_POST['customers_email_address']) && !isset($_POST['back_x'])) {
   $audience_select = get_audience_sql_query(zen_db_input($_POST['customers_email_address']), 'email');
   $mail = $db->Execute($audience_select['query_string']);
   $mail_sent_to = $audience_select['query_name'];
@@ -54,7 +54,6 @@ if (($action == 'send_email_to_user') && isset($_POST['customers_email_address']
   //echo'EOF-attachments_list='.$attachment_file.'->'.$attachment_filetype;
   $recip_count = 0;
   foreach ($mail as $item) {
-    $html_msg['EMAIL_SALUTATION'] = EMAIL_SALUTATION;
     $html_msg['EMAIL_FIRST_NAME'] = $item['customers_firstname'];
     $html_msg['EMAIL_LAST_NAME'] = $item['customers_lastname'];
     $rc = zen_mail($item['customers_firstname'] . ' ' . $item['customers_lastname'], $item['customers_email_address'], $subject, $message, STORE_NAME, $from, $html_msg, 'direct_email', array('file' => $attachment_file, 'name' => basename($attachment_file), 'mime_type' => $attachment_filetype));
@@ -263,7 +262,7 @@ if ($action == 'preview') {
           echo zen_draw_hidden_field('attachment_filetype', $attachment_filetype);
           ?>
           <div class="col-sm-6">
-            <button type="submit" name="back" value="back" class="btn btn-default"><?php echo IMAGE_BACK; ?></button>
+            <button type="button" class="btn btn-default" name="back"><?php echo IMAGE_BACK; ?></button>
           </div>
           <div class="col-sm-6 text-right">
             <a href="<?php echo zen_href_link(FILENAME_MAIL, (isset($_GET['cID']) ? 'cID=' . (int)$_GET['cID'] : '') . (isset($_GET['customer']) ? '&customer=' . zen_output_string_protected($_GET['customer']) : '') . (isset($_GET['origin']) ? '&origin=' . zen_output_string_protected($_GET['origin']) : '')); ?>" class="btn btn-default" role="button"><?php echo IMAGE_CANCEL; ?></a> <button type="submit" class="btn btn-primary"><?php echo IMAGE_SEND_EMAIL; ?></button>

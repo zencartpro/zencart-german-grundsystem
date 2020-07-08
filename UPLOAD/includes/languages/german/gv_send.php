@@ -5,7 +5,7 @@
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
  
- * @version $Id: gv_send.php 630 2019-12-13 15:05:14Z webchills $
+ * @version $Id: gv_send.php 629 2012-02-22 09:05:14Z webchills $
  */
 
 define('HEADING_TITLE', 'Geschenkgutschein versenden');
@@ -40,5 +40,5 @@ define('EMAIL_GV_VISIT','oder besuchen Sie');
 define('EMAIL_GV_ENTER','und geben die Gutscheinnummer ein');
 define('EMAIL_GV_FIXED_FOOTER','Sollten Sie Probleme mit dem Einlösen des Geschenkgutscheins über diesen Link haben, können Sie die Gutscheinnummer Ihres Geschenkgutscheins während des Bestellvorgangs eingeben.<br /><br />');
 define('EMAIL_GV_SHOP_FOOTER', 'Vielen Dank!'. "\n" .'
-Mit freundlichen Grüßen' . "\n".'
+Mit freundlichen Grüssen' . "\n".'
 Ihr ' . STORE_NAME . ' Team');

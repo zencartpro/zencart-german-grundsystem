@@ -5,10 +5,10 @@
  * Hooks into phpMailer class for actual email encoding and sending
  *
  * @package functions
- * @copyright Copyright 2003-2020 Zen Cart Development Team
+ * @copyright Copyright 2003-2019 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: functions_email.php 742 2020-01-18 20:22:16Z webchills $
+ * @version $Id: functions_email.php 741 2019-06-15 17:22:16Z webchills $
  */
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
@@ -99,15 +99,13 @@ use PHPMailer\PHPMailer\SMTP;
       }
 
       //define some additional html message blocks available to templates, then build the html portion.
-      if (is_array($block)) { 
       if (!isset($block['EMAIL_TO_NAME']) || $block['EMAIL_TO_NAME'] == '')       $block['EMAIL_TO_NAME'] = $to_name;
       if (!isset($block['EMAIL_TO_ADDRESS']) || $block['EMAIL_TO_ADDRESS'] == '') $block['EMAIL_TO_ADDRESS'] = $to_email_address;
       if (!isset($block['EMAIL_SUBJECT']) || $block['EMAIL_SUBJECT'] == '')       $block['EMAIL_SUBJECT'] = $email_subject;
       if (!isset($block['EMAIL_FROM_NAME']) || $block['EMAIL_FROM_NAME'] == '')   $block['EMAIL_FROM_NAME'] = $from_email_name;
       if (!isset($block['EMAIL_FROM_ADDRESS']) || $block['EMAIL_FROM_ADDRESS'] == '') $block['EMAIL_FROM_ADDRESS'] = $from_email_address;
-      }
       $email_html = (!is_array($block) && substr($block, 0, 6) == '<html>') ? $block : zen_build_html_email_from_template($module, $block);
-      if (!is_array($block) && ($block == '' || $block == 'none')) $email_html = '';
+      if (!is_array($block) && $block == '' || $block == 'none') $email_html = '';
 
       // Build the email based on whether customer has selected HTML or TEXT, and whether we have supplied HTML or TEXT-only components
       // special handling for XML content
@@ -121,7 +119,7 @@ use PHPMailer\PHPMailer\SMTP;
         $email_text = str_replace('@lt@', '<', $email_text);
       }
 
-      if (zen_is_non_transactional_email($module)) {
+      if ($module != 'xml_record') {
         if (defined('EMAIL_DISCLAIMER') && EMAIL_DISCLAIMER != '' && !strstr($email_text, sprintf(EMAIL_DISCLAIMER, STORE_OWNER_EMAIL_ADDRESS)) && $to_email_address != STORE_OWNER_EMAIL_ADDRESS && !defined('EMAIL_DISCLAIMER_NEW_CUSTOMER')) $email_text .= "\n" . sprintf(EMAIL_DISCLAIMER, STORE_OWNER_EMAIL_ADDRESS);
         if (defined('EMAIL_SPAM_DISCLAIMER') && EMAIL_SPAM_DISCLAIMER != '' && !strstr($email_text, EMAIL_SPAM_DISCLAIMER) && $to_email_address != STORE_OWNER_EMAIL_ADDRESS) $email_text .= "\n\n" . EMAIL_SPAM_DISCLAIMER;
       }
@@ -162,7 +160,7 @@ use PHPMailer\PHPMailer\SMTP;
       $sql = $db->bindVars($sql, ':custEmailAddress:', $to_email_address, 'string');
       $result = $db->Execute($sql);
       $customers_email_format = ($result->RecordCount() > 0) ? $result->fields['customers_email_format'] : '';
-      if ($customers_email_format == 'NONE' || $customers_email_format == 'OUT') return false; //if requested no mail, then don't send.
+      if ($customers_email_format == 'NONE' || $customers_email_format == 'OUT') return; //if requested no mail, then don't send.
 //      if ($customers_email_format == 'HTML') $customers_email_format = 'HTML'; // if they opted-in to HTML messages, then send HTML format
 
       // handling admin/"extra"/copy emails:
@@ -319,12 +317,11 @@ use PHPMailer\PHPMailer\SMTP;
         $mail->Body = $text;
       }
 
-      // Treat marketing notices as bulk
-      if (in_array($module, array('newsletters', 'product_notification'))) {
+      // Handle auto-generated admin notices, or newsletters, or contact-us as bulk to avoid autoresponder responses and risk of spam flagging
+      if (in_array($module, array('no_archive', 'admin_settings_changed', 'newsletters', 'product_notification', 'contact_us')) || substr($module, -6) == '_extra') {
         $mail->addCustomHeader('Precedence: bulk');
+        $mail->addCustomHeader('Auto-Submitted: auto-generated');
       }
-
-      $mail->addCustomHeader('Auto-Submitted: auto-generated');
 
       $oldVars = array(); $tmpVars = array('REMOTE_ADDR', 'HTTP_X_FORWARDED_FOR', 'PHP_SELF', $mail->Mailer === 'smtp' ? null : 'SERVER_NAME');
       foreach ($tmpVars as $key) {
@@ -425,22 +422,6 @@ use PHPMailer\PHPMailer\SMTP;
     return $db;
   }
 
-  /**
-   * Transactional emails don't need overly verbose disclaimers, etc
-   * However, the following email types are marketing-related or first-time-interaction with recipient, so should probably have disclaimers
-   * @param string $email_module_name
-   * @return bool
-   */
-  function zen_is_non_transactional_email($email_module_name) {
-      return in_array($email_module_name, array(
-          'newsletters',
-          'product_notification',
-          'direct_email',
-          'coupon',
-          'gv_mail',
-          'welcome',
-      ));
-  }
   //DEFINE EMAIL-ARCHIVABLE-MODULES LIST // this array will likely be used by the email archive log VIEWER module in future
   $emodules_array = array();
   $emodules_array[] = array('id' => 'newsletters', 'text' => 'Newsletters');
@@ -555,9 +536,6 @@ use PHPMailer\PHPMailer\SMTP;
 //  $file_holder = str_replace(array("\r\n", "\n", "\r", "\t"), '', $file_holder);
     $file_holder = str_replace(array("\t"), ' ', $file_holder);
 
-    if (empty($block['EXTRA_INFO']) || empty(trim($block['EXTRA_INFO']))) {
-      $file_holder = preg_replace('/<div class="extra-info">\s?\$EXTRA_INFO\s?<\/div>/', '', $file_holder);
-    }
 
     if (!defined('HTTP_CATALOG_SERVER')) define('HTTP_CATALOG_SERVER', HTTP_SERVER);
     //check for some specifics that need to be included with all messages
@@ -582,8 +560,8 @@ use PHPMailer\PHPMailer\SMTP;
     }
 
     $block['GV_BLOCK'] = '';
-      if ( (isset($block['GV_ANNOUNCE']) && $block['GV_ANNOUNCE'] != '') && (isset($block['GV_REDEEM']) && $block['GV_REDEEM'] != '') ) {
-          $block['GV_BLOCK'] = '<div class="gv-block">' . $block['GV_ANNOUNCE'] . '<br />' . $block['GV_REDEEM'] . '</div>';
+    if (isset($block['GV_WORTH']) && $block['GV_WORTH'] != '' && isset($block['GV_REDEEM']) && $block['GV_REDEEM'] != '' && isset($block['GV_CODE_URL']) && $block['GV_CODE_URL'] != '') {
+      $block['GV_BLOCK'] = '<div class="gv-block">' . $block['GV_WORTH'] . '<br />' . $block['GV_REDEEM'] . $block['GV_CODE_URL'] . '<br />' . $block['GV_LINK_OTHER'] . '</div>';
     }
 
     //prepare the "unsubscribe" link:
@@ -628,7 +606,7 @@ use PHPMailer\PHPMailer\SMTP;
       OFFICE_EMAIL. "\t" . $email_from . "\n" .
       (trim($login) !='' ? OFFICE_LOGIN_NAME . "\t" . $login . "\n"  : '') .
       (trim($login_email) !='' ? OFFICE_LOGIN_EMAIL . "\t" . $login_email . "\n"  : '') .
-      (trim($login_phone) !='' ? OFFICE_LOGIN_PHONE . "\t" . $login_phone . "\n"  : '') .
+      ($login_phone !='' ? OFFICE_LOGIN_PHONE . "\t" . $login_phone . "\n" : '') .
       ($login_fax !='' ? OFFICE_LOGIN_FAX . "\t" . $login_fax . "\n" : '') .
       OFFICE_IP_ADDRESS . "\t" . $_SESSION['customers_ip_address'] . ' - ' . $_SERVER['REMOTE_ADDR'] . "\n" .
       ($email_host_address != '' ? OFFICE_HOST_ADDRESS . "\t" . $email_host_address  . "\n" : '') .

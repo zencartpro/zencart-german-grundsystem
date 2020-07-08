@@ -5,7 +5,7 @@
  * @copyright Copyright 2003-2020 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: display_logs.php 3 2020-02-05 20:13:51Z webchills $
+ * @version $Id: display_logs.php 3 2020-07-08 16:08:51Z webchills $
  */
 
 // -----
@@ -299,7 +299,7 @@ foreach ($logFiles as $curHash => $curFile) {
 ?>
               <tr>
                 <td class="dataTableContent" align="left"><?php echo $curFile['name']; ?></td>
-                <td class="dataTableContent" align="center"><?php echo date(PHP_DATE_TIME_FORMAT, $curFile['mtime']); ?></td>
+                <td class="dataTableContent" align="center"><?php echo date(DATE_FORMAT . ' H:i:s', $curFile['mtime']); ?></td>
                 <td class="dataTableContent<?php echo ($curFile['filesize'] > $max_log_file_size) ? ' bigfile' : ''; ?>" align="center"><?php echo $curFile['filesize']; ?></td>
                 <td class="dataTableContent" align="center"><?php echo zen_draw_checkbox_field('dList[' . $curHash . ']', false, false, '', 'class="cBox"'); ?></td>
                 <td class="dataTableContent" align="right"><?php if ($getFile == $curHash) { echo zen_image(DIR_WS_IMAGES . 'icon_arrow_right.gif', ''); } else { echo '<a href="' . zen_href_link(FILENAME_DISPLAY_LOGS, 'fID=' . $curHash . '&amp;' . zen_get_all_get_params(array('fID'))) . '">' . zen_image(DIR_WS_IMAGES . 'icon_info.gif', ICON_INFO_VIEW) . '</a>'; } ?>&nbsp;</td>

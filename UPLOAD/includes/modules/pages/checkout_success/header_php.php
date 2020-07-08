@@ -3,10 +3,10 @@
  * checkout_success header_php.php
  *
  * @package page
- * @copyright Copyright 2003-2020 Zen Cart Development Team
+ * @copyright Copyright 2003-2019 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: header_php.php 769 2020-01-20 21:23:42Z webchills $
+ * @version $Id: header_php.php 767 2019-06-15 21:23:42Z webchills $
  */
 
 // This should be first line of the script:
@@ -22,7 +22,7 @@ if (!isset($_GET['action']) || (isset($_GET['action']) && $_GET['action'] != 'co
 $notify_string='';
 if (isset($_GET['action']) && ($_GET['action'] == 'update')) {
   $notify_string = 'action=notify&';
-  $notify = isset($_POST['notify']) ? $_POST['notify'] : null;
+  $notify = $_POST['notify'];
 
   if (is_array($notify)) {
     for ($i=0, $n=sizeof($notify); $i<$n; $i++) {
@@ -54,8 +54,9 @@ $orders_id = $orders->fields['orders_id'];
 // Needs reworking in future checkout-rewrite
 $zv_orders_id = (isset($_SESSION['order_number_created']) && $_SESSION['order_number_created'] >= 1) ? $_SESSION['order_number_created'] : $orders_id;
 $_GET['order_id'] = $orders_id = $zv_orders_id;
-$order_summary = !empty($_SESSION['order_summary']) ? $_SESSION['order_summary'] : array();
-unset($_SESSION['order_summary'], $_SESSION['order_number_created']);
+$order_summary = $_SESSION['order_summary'];
+unset($_SESSION['order_summary']);
+unset($_SESSION['order_number_created']);
 
 $additional_payment_messages = '';
 if (isset($_SESSION['payment_method_messages']) && $_SESSION['payment_method_messages'] != '') {
@@ -63,7 +64,6 @@ if (isset($_SESSION['payment_method_messages']) && $_SESSION['payment_method_mes
   unset($_SESSION['payment_method_messages']);
 }
 
-$statusArray = array();
 $statuses_query = "SELECT os.orders_status_name, osh.date_added, osh.comments
                    FROM   " . TABLE_ORDERS_STATUS . " os, " . TABLE_ORDERS_STATUS_HISTORY . " osh
                    WHERE      osh.orders_id = :ordersID
@@ -85,7 +85,6 @@ $order = new order($orders_id);
 
 
 // prepare list of product-notifications for this customer
-$notificationsArray = array();
 $global_query = "SELECT global_product_notifications
                  FROM " . TABLE_CUSTOMERS_INFO . "
                  WHERE customers_info_id = :customersID";
@@ -95,6 +94,7 @@ $global = $db->Execute($global_query);
 $flag_global_notifications = $global->fields['global_product_notifications'];
 
 if ($flag_global_notifications != '1') {
+  $products_array = array();
   $counter = 0;
   $products_query = "SELECT DISTINCT products_id, products_name
                      FROM " . TABLE_ORDERS_PRODUCTS . "
@@ -132,6 +132,7 @@ $define_page = zen_get_file_directory(DIR_WS_LANGUAGES . $_SESSION['language'] .
 } else {
   echo '<html><head>';
   echo '<script type="text/javascript">
+<!--
 theTimer = 0;
 timeOut = 12;
 
@@ -155,6 +156,7 @@ function continueClick()
 }
 
 submit_form();
+//-->
 </script>' . "\n" . '</head>';
   echo '<body style="text-align: center; min-width: 600px;">' . "\n" . '<div style="text-align: center;  width: 600px;  margin-left: auto;  margin-right: auto; margin-top:20%;"><p>This page will automatically redirect you back to ' . STORE_NAME . ' for your order confirmation details.<br />If you are not redirected within 5 seconds, please click the button below to continue.</p>';
   echo "\n" . '<form action="' . zen_href_link(FILENAME_CHECKOUT_SUCCESS, zen_get_all_get_params(array('action')), 'SSL', false) . '" method="post" name="formpost" />' . "\n";

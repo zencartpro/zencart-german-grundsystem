@@ -1,10 +1,10 @@
 <?php
 /**
  * @package admin
- * @copyright Copyright 2003-2020 Zen Cart Development Team
+ * @copyright Copyright 2003-2019 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: configuration_checks.php 4 2020-01-18 16:00:16Z webchills $
+ * @version $Id: configuration_checks.php 3 2019-07-20 09:00:16Z webchills $
  */
  
   /**
@@ -20,22 +20,9 @@
      global $messageStack; 
      $data = json_decode($check_string, true); 
      // check inputs - error should be a defined constant in the language files
-     if (empty($data['error'])) return; 
-     if (!defined($data['error'])) {
+     if (empty($data['error']) || !defined($data['error'])) return;
+     $error_msg = constant($data['error']); 
 
-        switch (true) {
-          case (strpos($data['error'], 'TEXT_MIN_ADMIN') === 0):
-            $error_msg = TEXT_MIN_GENERAL_ADMIN;
-            break;
-          case (strpos($data['error'], 'TEXT_MAX_ADMIN') === 0);
-            $error_msg = TEXT_MAX_GENERAL_ADMIN;
-            break;
-          default:
-            $error_msg = TEXT_DATA_OUT_OF_RANGE;
-        }
-     } else { 
-        $error_msg = constant($data['error']); 
-     }
      if (defined($data['id'])) { 
         $id = constant($data['id']); 
      } else if (is_integer($data['id'])) { 

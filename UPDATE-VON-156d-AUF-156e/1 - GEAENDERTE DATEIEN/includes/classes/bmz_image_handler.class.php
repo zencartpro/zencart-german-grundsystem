@@ -6,9 +6,9 @@
  * @copyright Copyright 2003-2020 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: bmz_image_handler.class.php 2020-01-16 10:52:51Z webchills $
+ * @version $Id: bmz_image_handler.class.php 2020-07-08 14:13:51Z webchills $
  */
- 
+
 if (!defined('IH_DEBUG_ADMIN')) {
     define('IH_DEBUG_ADMIN', 'false');
 }
@@ -895,7 +895,7 @@ class ih_image
             $red = min((int)$red, 255);
             $green = min((int)$green, 255);
             $blue = min((int)$blue, 255);
-            $color = array('r' => $red, 'g' => $green, 'b' => $blue);
+            $color = array('r'=>$red, 'g'=>$green, 'b'=>$blue);
         }
         return $color;
     }

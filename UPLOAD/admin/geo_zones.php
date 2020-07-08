@@ -1,11 +1,10 @@
 <?php
 /**
- * Zen Cart German Specific
  * @package admin
- * @copyright Copyright 2003-2020 Zen Cart Development Team
+ * @copyright Copyright 2003-2019 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: geo_zones.php 795 2020-02-28 09:20:51Z webchills $
+ * @version $Id: geo_zones.php 793 2019-10-31 22:20:51Z webchills $
  */
 require('includes/application_top.php');
 
@@ -216,9 +215,18 @@ if (zen_not_null($action)) {
                       $_GET['spage'] = 1;
                     }
                   }
+                  $rows = 0;
+    $zones_query_raw = "SELECT a.association_id, a.zone_country_id, c.countries_name, a.zone_id, a.geo_zone_id, a.last_modified, a.date_added, z.zone_name
+                        FROM (" . TABLE_ZONES_TO_GEO_ZONES . " a
+                        LEFT JOIN " . TABLE_COUNTRIES_NAME . " c ON a.zone_country_id = c.countries_id
+                        LEFT JOIN " . TABLE_ZONES . " z ON a.zone_id = z.zone_id)
+                        WHERE a.geo_zone_id = " . (int)$_GET['zID'] . "
+                        AND c.language_id = '" . (int)$_SESSION['languages_id'] . "'
+                        ORDER BY c.countries_name, association_id";
                   $zones_split = new splitPageResults($_GET['spage'], MAX_DISPLAY_SEARCH_RESULTS, $zones_query_raw, $zones_query_numrows);
                   $zones = $db->Execute($zones_query_raw);
                   foreach ($zones as $zone) {
+                    $rows++;
                     if ((!isset($_GET['sID']) || (isset($_GET['sID']) && ($_GET['sID'] == $zone['association_id']))) && !isset($sInfo) && (substr($action, 0, 3) != 'new')) {
                       $sInfo = new objectInfo($zone);
                     }
@@ -453,7 +461,7 @@ if (zen_not_null($action)) {
             <?php if ($action == 'list') { ?>
             <table class="table">
               <tr>
-                <td><?php echo $zones_split->display_count($zones_query_numrows, MAX_DISPLAY_SEARCH_RESULTS, $_GET['spage'], TEXT_DISPLAY_NUMBER_OF_TAX_ZONES); ?></td>
+                <td><?php echo $zones_split->display_count($zones_query_numrows, MAX_DISPLAY_SEARCH_RESULTS, $_GET['spage'], TEXT_DISPLAY_NUMBER_OF_COUNTRIES); ?></td>
                 <td class="text-right"><?php echo $zones_split->display_links($zones_query_numrows, MAX_DISPLAY_SEARCH_RESULTS, MAX_DISPLAY_PAGE_LINKS, $_GET['spage'], 'zpage=' . $_GET['zpage'] . '&zID=' . $_GET['zID'] . '&action=list', 'spage'); ?></td>
               </tr>
               <tr>

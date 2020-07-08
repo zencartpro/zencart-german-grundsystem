@@ -1,13 +1,13 @@
 <?php
 /**
  * @package admin
- * @copyright Copyright 2003-2020 Zen Cart Development Team
+ * @copyright Copyright 2003-2019 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: attributes_controller.php 631 2020-02-13 21:21:14Z webchills $
+ * @version $Id: attributes_controller.php 629 2019-06-25 09:21:14Z webchills $
  */
 
-define('HEADING_TITLE', 'Attribut Manager: ');
+define('HEADING_TITLE', 'Kategorien: ');
 
 define('HEADING_TITLE_OPT','Artikelattribute');
 define('HEADING_TITLE_VAL','Attributmerkmale');
@@ -142,13 +142,17 @@ define('TEXT_PRODUCT_IN_CATEGORY_NAME','- in Kategorie:');
 
 define('TEXT_DELETE_ALL_ATTRIBUTES','Sind Sie sicher, dass Sie alle Attribute für ID# löschen wollen?');
 
+define('TEXT_ATTRIBUTE_COPY_SKIPPING','<strong>Überspringe neues Attribut </strong>');
+define('TEXT_ATTRIBUTE_COPY_INSERTING','<strong>Füge neues Attribut ein von</strong>');
+define('TEXT_ATTRIBUTE_COPY_UPDATING','<strong>Aktualisiere vorhandenes Attribut von </strong>');
+
 // preview
 define('TEXT_ATTRIBUTES_PREVIEW','ATTRIBUTE VORSCHAU');
 define('TEXT_ATTRIBUTES_PREVIEW_DISPLAY','VORSCHAU DER ATTRIBUTE ANZEIGEN FÜR ID#');
 define('TEXT_PRODUCT_OPTIONS','<strong>Bitte wählen Sie:</strong>');
 
 define('TEXT_ATTRIBUTES_INSERT_INFO','<strong>Definieren Sie die Attributeinstellungen, anschließend klicken Sie auf "Einfügen" um die Änderungen zu speichern</strong> (es dürfen auch mehrere Attributmerkmale markiert werden)');
-
+define('TEXT_PRICED_BY_ATTRIBUTES','Preis durch Attribute festgelegt');
 define('TEXT_PRODUCTS_PRICE','Artikelpreis:');
 define('TEXT_SPECIAL_PRICE','Sonderpreis:');
 define('TEXT_SALE_PRICE','Abverkaufspreis:');
@@ -156,7 +160,7 @@ define('TEXT_FREE','KOSTENLOS');
 define('TEXT_CALL_FOR_PRICE','Preis bitte anfragen');
 define('TEXT_SAVE_CHANGES', 'ÄNDERUNGEN AKTUALISIEREN UND SPEICHERN:');
 
-
+define('TEXT_INFO_ID', 'ID#');
 define('TEXT_INFO_ALLOW_ADD_TO_CART_NO', 'Nicht zum Warenkorb hinzugefügt');
 
 define('TEXT_DELETE_ATTRIBUTES_OPTION_NAME_VALUES', 'Sollen wirklich ALLE Attributmerkmale des Attributnamens gelöscht werden ...');
@@ -165,12 +169,9 @@ define('TEXT_INFO_PRODUCTS_OPTION_NAME', '<strong>Attributname: </strong>');
 define('TEXT_INFO_PRODUCTS_OPTION_ID', '<strong>ID#</strong>');
 define('SUCCESS_ATTRIBUTES_DELETED_OPTION_NAME_VALUES', 'ALLE Attributmerkmale für Attributnamen wurden gelöscht: ');
 
-define('BUTTON_ADDITIONAL_ACTIONS', 'Weitere Aktionen');
-define('TEXT_EDIT_OPTION_VALUE', 'Bearbeite Attribut');
-define('TEXT_DELETE_OPTION_VALUE', 'Lösche Attribut');
+define('BUTTON_ADDITITONAL_ACTIONS', 'Weitere mögliche Aktionen');
 define('TEXT_UPDATE_DEFAULTE_SORT_ORDER', 'Sortierreihenfolge auf Standard zurücksetzen');
 define('TEXT_DELETE_ALL_OPTIONS_FROM_PRODUCT', 'Alle Attribute von diesem Artikel entfernen');
 define('TEXT_COPY_ALL_OPTIONS_TO_PRODUCT', 'Attribute zu einem anderen Artikel kopieren');
 define('TEXT_COPY_ALL_OPTIONS_TO_CATEGORY', 'Attibute zu einer ganzen Kategorie kopieren');
 define('TEXT_SAVE_PRODUCT_FIRST', 'Bitte speichern Sie erst den neuen Artikel. Es wird eine product_id benötigt, bevor Sie Attribute zuweisen können');
-define('TEXT_DISPLAY_NUMBER_OF_ATTRIBUTES', 'Zeige <b>%d</b> bis <b>%d</b> (von <b>%d</b> Attributen)');

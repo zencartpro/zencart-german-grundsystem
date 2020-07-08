@@ -1,9 +1,9 @@
 <?php
 /**
  * @package admin
- * @copyright Copyright 2003-2020 Zen Cart Development Team
+ * @copyright Copyright 2003-2019 Zen Cart Development Team
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: init_cache_key_check.php 13 2020-03-02 08:49:16Z webchills $
+ * @version $Id: init_cache_key_check.php 11 2015-01-22 08:49:16Z webchills $
  */
 /**
  * System check for valid SESSION_WRITE_DIRECTORY value
@@ -16,7 +16,6 @@ if (!file_exists(SESSION_WRITE_DIRECTORY) || !is_writable(SESSION_WRITE_DIRECTOR
   zen_record_admin_activity('Session directory folder not found. Will attempt to re-detect and update configuration. Old value: ' . SESSION_WRITE_DIRECTORY, 'notice');
   define('DIR_FS_ROOT', realpath(dirname($_SERVER['SCRIPT_FILENAME']) . '/../') . '/');
 
-  $possible_dir = array();
   $possible_dir[] = DIR_FS_SQL_CACHE;
   $possible_dir[] = DIR_FS_CATALOG . 'cache';
   $possible_dir[] = DIR_FS_ROOT . 'cache';
@@ -36,13 +35,6 @@ if (!file_exists(SESSION_WRITE_DIRECTORY) || !is_writable(SESSION_WRITE_DIRECTOR
   }
   if ($selected_dir == '') $selected_dir = DIR_FS_CATALOG . 'cache';
 
-  $sql = "select configuration_key from " . TABLE_CONFIGURATION . "  where configuration_key = 'SESSION_WRITE_DIRECTORY'";
-  $conf_count = $db->Execute($sql);
-
-  if (empty($conf_count->RecordCount())) {
-    $sql = "INSERT INTO " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) VALUES ('Session Directory', 'SESSION_WRITE_DIRECTORY', '/tmp', 'This should point to the folder specified in your DIR_FS_SQL_CACHE setting in your configure.php files.', '15', '1', now())";
-    $db->Execute($sql);
-  }
   $sql = "update " . TABLE_CONFIGURATION . " set configuration_value = '" . $db->prepare_input(trim($selected_dir)) . "' where configuration_key = 'SESSION_WRITE_DIRECTORY'";
   $db->Execute($sql);
   zen_record_admin_activity('Updated SESSION_WRITE_DIRECTORY configuration setting to ' . $selected_dir, 'notice');
@@ -50,7 +42,6 @@ if (!file_exists(SESSION_WRITE_DIRECTORY) || !is_writable(SESSION_WRITE_DIRECTOR
   if (!file_exists($selected_dir) || !is_writable($selected_dir)) {
     die('ALERT: Your cache directory does not exist or is not writable: ' . $selected_dir . ' ... This must be fixed before the page can load correctly.');
   }
-
   zen_redirect(zen_href_link(FILENAME_DEFAULT));
   exit(1);
 }

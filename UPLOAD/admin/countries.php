@@ -5,7 +5,7 @@
  * @copyright Copyright 2003-2020 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: countries.php 792 2020-02-14 20:42:51Z webchills $
+ * @version $Id: countries.php 792 2020-07-08 20:57:51Z webchills $
  */
 
   require('includes/application_top.php');

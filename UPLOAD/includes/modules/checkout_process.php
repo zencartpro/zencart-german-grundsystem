@@ -3,10 +3,10 @@
  * module to process a completed checkout
  *
  * @package procedureCheckout
- * @copyright Copyright 2003-2020 Zen Cart Development Team
+ * @copyright Copyright 2003-2019 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: checkout_process.php 736 2020-01-17 14:23:16Z webchills $
+ * @version $Id: checkout_process.php 735 2019-07-20 09:23:16Z webchills $
  */
 if (!defined('IS_ADMIN_FLAG')) {
   die('Illegal Access');
@@ -16,7 +16,7 @@ $zco_notifier->notify('NOTIFY_CHECKOUT_PROCESS_BEGIN');
 require(DIR_WS_MODULES . zen_get_module_directory('require_languages.php'));
 
 // if the customer is not logged on, redirect them to the time out page
-  if (!zen_is_logged_in()) {
+  if (empty($_SESSION['customer_id'])) {
     zen_redirect(zen_href_link(FILENAME_TIME_OUT));
   } else {
     // validate customer

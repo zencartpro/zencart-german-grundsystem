@@ -1,10 +1,10 @@
 <?php
 /**
  * @package admin
- * @copyright Copyright 2003-2020 Zen Cart Development Team
+ * @copyright Copyright 2003-2019 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: products_price_manager.php 738 2020-02-11 07:49:16Z webchills $
+ * @version $Id: products_price_manager.php 736 2019-04-14 10:49:16Z webchills $
  */
 require('includes/application_top.php');
 
@@ -43,7 +43,7 @@ if ($action == 'new_cat') {
 }
 
 // set categories and products if not set
-if ($products_filter == '' && !empty($current_category_id)) {
+if ($products_filter == '' && $current_category_id != '') {
   $sql = $db->bindVars($sql, ':category_id', $current_category_id, 'integer');
   $new_product_query = $db->Execute($sql);
   $products_filter = (!$new_product_query->EOF) ? $new_product_query->fields['products_id'] : '';
@@ -51,7 +51,7 @@ if ($products_filter == '' && !empty($current_category_id)) {
     zen_redirect(zen_href_link(FILENAME_PRODUCTS_PRICE_MANAGER, 'products_filter=' . $products_filter . '&current_category_id=' . $current_category_id));
   }
 } else {
-  if ($products_filter == '' && empty($current_category_id)) {
+  if ($products_filter == '' && $current_category_id == '') {
     $reset_categories_id = zen_get_category_tree('', '', '0', '', '', true);
     $current_category_id = $reset_categories_id[0]['id'];
     $sql = $db->bindVars($sql, ':category_id', $current_category_id, 'integer');
@@ -88,7 +88,7 @@ if ($action == 'add_discount_qty_id') {
                                 WHERE products_id = " . (int)$products_filter . "
                                 ORDER BY discount_id DESC LIMIT 1");
   $add_cnt = 1;
-  $add_id = ($add_id_query->EOF) ? 0 : (int)$add_id_query->fields['discount_id'];
+  $add_id = $add_id_query->fields['discount_id'];
   while ($add_cnt <= DISCOUNT_QTY_ADD) {
     $db->Execute("INSERT INTO " . TABLE_PRODUCTS_DISCOUNT_QUANTITY . " (discount_id, products_id)
                   VALUES (" . ($add_id + $add_cnt) . ", " . (int)$products_filter . ")");
@@ -245,8 +245,8 @@ if (zen_not_null($action)) {
     <title><?php echo TITLE; ?></title>
     <link rel="stylesheet" type="text/css" href="includes/stylesheet.css">
     <link rel="stylesheet" type="text/css" href="includes/cssjsmenuhover.css" media="all" id="hoverJS">
-    <script src="includes/menu.js"></script>
-    <script src="includes/general.js"></script>
+    <script language="javascript" src="includes/menu.js"></script>
+    <script language="javascript" src="includes/general.js"></script>
     <link rel="stylesheet" type="text/css" href="includes/javascript/spiffyCal/spiffyCal_v2_1.css">
     <script src="includes/javascript/spiffyCal/spiffyCal_v2_1.js"></script>
 
@@ -273,7 +273,7 @@ if (zen_not_null($action)) {
             <?php if ($products_filter != '') {?>
             <div class="dropdown">
             <button class="btn btn-default dropdown-toggle" type="button" id="menu1" data-toggle="dropdown">
-                <?php echo BUTTON_ADDITIONAL_ACTIONS; ?>
+                <?php echo BUTTON_ADDITITONAL_ACTIONS; ?>
               <span class="caret"></span>
             </button>
             <ul class="dropdown-menu" role="menu" aria-labelledby="menu1">
@@ -309,7 +309,11 @@ if (zen_not_null($action)) {
       if ($action != 'edit_update') {
         ?>
         <div class="row">
-           <?php require(DIR_WS_MODULES . FILENAME_PREV_NEXT_DISPLAY); ?>
+          <div class="table-responsive">
+            <table class="table">
+                <?php require(DIR_WS_MODULES . FILENAME_PREV_NEXT_DISPLAY); ?>
+            </table>
+          </div>
         </div>
         <div class="row">
             <?php echo zen_draw_form('set_products_filter', FILENAME_PRODUCTS_PRICE_MANAGER, 'action=set_products_filter', 'post', 'class="form-horizontal"'); ?>
@@ -362,7 +366,7 @@ if (zen_not_null($action)) {
       if ($products_filter == '') {
         ?>
         <div class="row">
-          <h3 class="text-center"><?php echo HEADING_TITLE_PRODUCT_SELECT; ?></h3>
+          <h2 class="text-center"><?php echo HEADING_TITLE_PRODUCT_SELECT; ?></h2>
         </div>
       <?php } ?>
 
@@ -625,12 +629,12 @@ if (zen_not_null($action)) {
 
           <?php echo zen_draw_form('new_prices', FILENAME_PRODUCTS_PRICE_MANAGER, zen_get_all_get_params(array('action', 'info', $_GET['products_filter'])) . 'action=' . 'update', 'post', 'onsubmit="return check_dates_ppm(featured_start,FeaturedStartDate.required, featured_end, FeaturedEndDate.required, product_start, ProductStartDate.required);" class="form-horizontal"'); ?>
           <?php
-          if ($action == 'edit' || $action == 'edit_update') {
-            $readonly = '';
-            $jsreadonly='';
+          if ($action == 'edit' || $action == 'edit_update') { 
+            $readonly = ''; 
+            $jsreadonly=''; 
           } else {
-            $readonly=" readonly";
-            $jsreadonly = " disabled";
+            $readonly=" readonly"; 
+            $jsreadonly = " disabled"; 
           }
           echo zen_draw_hidden_field('products_id', $_GET['products_filter']);
           echo zen_draw_hidden_field('specials_id', isset($sInfo->specials_id) ? $sInfo->specials_id : '');
@@ -708,7 +712,7 @@ if (zen_not_null($action)) {
             <div class="col-sm-9 col-md-6">
               <script>
               <?php if (!empty($readonly)) { ?>
-                ProductStartDate.readonly = true;
+                ProductStartDate.readonly = true; 
               <?php } ?>
                 ProductStartDate.writeControl();
                 ProductStartDate.dateFormat = "<?php echo DATE_FORMAT_SPIFFYCAL; ?>";
@@ -817,7 +821,7 @@ if (zen_not_null($action)) {
               <div class="col-sm-9 col-md-6">
                 <script>
               <?php if (!empty($readonly)) { ?>
-                SpecialStartDate.readonly = true;
+                SpecialStartDate.readonly = true; 
               <?php } ?>
                   SpecialStartDate.writeControl();
                   SpecialStartDate.dateFormat = "<?php echo DATE_FORMAT_SPIFFYCAL; ?>";
@@ -829,7 +833,7 @@ if (zen_not_null($action)) {
               <div class="col-sm-9 col-md-6">
                 <script>
               <?php if (!empty($readonly)) { ?>
-                SpecialEndDate.readonly = true;
+                SpecialEndDate.readonly = true; 
               <?php } ?>
                   SpecialEndDate.writeControl();
                   SpecialEndDate.dateFormat = "<?php echo DATE_FORMAT_SPIFFYCAL; ?>";
@@ -899,7 +903,7 @@ if (zen_not_null($action)) {
               <div class="col-sm-9 col-md-6">
                 <script>
               <?php if (!empty($readonly)) { ?>
-                FeaturedStartDate.readonly = true;
+                FeaturedStartDate.readonly = true; 
               <?php } ?>
                   FeaturedStartDate.writeControl();
                   FeaturedStartDate.dateFormat = "<?php echo DATE_FORMAT_SPIFFYCAL; ?>";
@@ -911,7 +915,7 @@ if (zen_not_null($action)) {
               <div class="col-sm-9 col-md-6">
                 <script>
               <?php if (!empty($readonly)) { ?>
-                FeaturedEndDate.readonly = true;
+                FeaturedEndDate.readonly = true; 
               <?php } ?>
                   FeaturedEndDate.writeControl();
                   FeaturedEndDate.dateFormat = "<?php echo DATE_FORMAT_SPIFFYCAL; ?>";
@@ -965,11 +969,9 @@ if (zen_not_null($action)) {
                 'discount_price' => $discount_qty['discount_price']);
             }
             ?>
-
-          <div class="well" style="color: #31708f;background-color: #d9edf7;border-color: #bce8f1;;padding: 10px 10px 0 0;">
             <div class="col-sm-12"><?php echo TEXT_DISCOUNT_TYPE_INFO; ?></div>
             <div class="form-group">
-              <?php echo zen_draw_label(TEXT_PRODUCTS_MIXED_DISCOUNT_QUANTITY, 'products_mixed_discount_quantity', 'class="control-label col-sm-3"'); ?>
+                <?php echo zen_draw_label(TEXT_PRODUCTS_MIXED_DISCOUNT_QUANTITY, 'products_mixed_discount_quantity', 'class="control-label col-sm-3"'); ?>
               <div class="col-sm-9 col-md-6">
                 <div class="radio-inline">
                   <label><?php echo zen_draw_radio_field('products_mixed_discount_quantity', '1', $pInfo->products_mixed_discount_quantity == 1, '', $jsreadonly) . TEXT_YES; ?></label>
@@ -991,7 +993,6 @@ if (zen_not_null($action)) {
                   <?php echo zen_draw_pull_down_menu('products_discount_type_from', $discount_type_from_array, $pInfo->products_discount_type_from, 'class="form-control"'. $readonly); ?>
               </div>
             </div>
-           </div>
             <div class="table-responsive">
               <table class="table table-bordered">
                 <thead>
@@ -1088,9 +1089,7 @@ if (zen_not_null($action)) {
               </div>
             </div>
           <?php } else { ?>
-            <?php if (empty($discount_name)) { ?> 
             <div class="col-sm-12"><?php echo TEXT_INFO_NO_DISCOUNTS; ?></div>
-            <?php } ?> 
           <?php } ?>
           <div class="row"><?php echo zen_draw_separator('pixel_black.gif', '100%', '2'); ?></div>
           <table class="table">

@@ -1,10 +1,10 @@
 <?php
 /**
  * @package admin
- * @copyright Copyright 2003-2020 Zen Cart Development Team
+ * @copyright Copyright 2003-2019 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: popup_iamge.php 732 2020-01-18 09:49:16Z webchills $
+ * @version $Id: popup_iamge.php 731 2019-04-12 09:49:16Z webchills $
  */
 
   require('includes/application_top.php');
@@ -33,14 +33,14 @@
 <html <?php echo HTML_PARAMS; ?>>
 <head>
 <title><?php echo $page_title; ?></title>
-<script>
+<script language="javascript"><!--
 var i=0;
 
 function resize() {
   if (navigator.appName == 'Netscape') i = 40;
   window.resizeTo(document.images[0].width + 30, document.images[0].height + 60 - i);
 }
-</script>
+//--></script>
 </head>
 <body onload="resize();">
 <?php echo $image_source; ?>

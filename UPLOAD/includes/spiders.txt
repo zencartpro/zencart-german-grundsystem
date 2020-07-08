@@ -1,16 +1,8 @@
-$Id: spiders.txt 734 2020-01-17 08:05:16Z webchills $
+$Id: spiders.txt 733 2019-07-20 09:05:16Z webchills $
 bot
-collect
+robot
 crawl
-fetch
-grab
-libwww
-link
-robo
-search
-seek
 spider
-walk
 abcdatos
 accoona
 acme
@@ -21,8 +13,6 @@ ahoy
 ahrefs
 akula
 alexa
-aliapp
-alibaba
 alkaline
 almaden
 amagit
@@ -42,6 +32,7 @@ arks
 asaha
 ask jeeves
 askquickly
+aspseek
 asterias
 atlocal
 atomz
@@ -51,11 +42,14 @@ auresys
 avantgo
 backrub
 baypup
+bdcindexer
+bdfetch
 big brother
 bing
 bjaaland
 blackwidow
 blaiz
+blank
 blo.
 blog
 bloodhound
@@ -66,7 +60,7 @@ bordermanager
 browsershots
 cassandra
 ccubee
-cf-uc
+cfetch
 changedetection
 charlotte
 check_http
@@ -75,6 +69,7 @@ churl
 cienciaficcion.net
 cireu
 coccoc
+collective
 comagent
 combine
 computingsite robi
@@ -84,9 +79,11 @@ csci
 curl
 cyberspyder
 datanyse
+dataparksearch
 depspid
 digger
 digimarc
+direct hit grabber
 dispatch
 ditto
 dlvr.it
@@ -98,7 +95,9 @@ dtaagent
 duckduck
 easybib
 ebin
+ecollector
 ejupiter
+emailcollector
 emailsiphon
 envolk
 esculapio
@@ -107,15 +106,20 @@ extractor
 facebook
 falcon
 fastbug
+feedfetcher
 feedly
+fetchrover
 filangy
+findlinks
+findlinks
+fish search
 flipboard
 fouineur
-frd-a100
 funnelweb
 gazz
 gcreep
 genie
+getterroboplus
 goldfire server
 golem
 google
@@ -129,7 +133,6 @@ gulliver
 harvest
 header_detector
 helix
-headless
 heritrix
 holmes
 homer
@@ -147,15 +150,19 @@ imagelock
 incywincy
 indexer
 informant
+infoseek
 ingrid
 inktomi slurp
+inktomisearch
 internet shinchakubin
+internetlinkagent
 internetseer
 iron33
+israeli-search
 istarthere
 ivia
 jakarta
-java
+javabee
 jeeves
 jobo
 jumpstation
@@ -165,9 +172,16 @@ kit-fireball
 knowledge
 kretrieve
 kumkie
+labelgrabber
 lachesis
 larbin
-liebaofast
+libwww-mget
+libwww-perl
+link validator
+linkchecker
+linklint-checkonly
+linkscan
+linkwalker
 lockon
 ltx71
 lwp
@@ -177,7 +191,7 @@ mantraagent
 mapoftheinternet
 mediafox
 mediapartners
-mega
+megaindex
 mercator
 merzscope
 metacarta
@@ -186,6 +200,7 @@ mff
 minirank
 miva
 mixnodecache
+mnogosearch
 moget
 msproxy
 muninn
@@ -202,22 +217,27 @@ nestreader
 netcarta
 netcraft
 netmechanic
+netresearchserver
 netscoop
 netseer
 newscan-online
+ng-search
 nodeping
 northstar
 noyona
 nuhk
+nusearch
 nutch
 nymesis
 nzexplorer
+objectssearch
 occam
 ocelli
 omni
 onetszukaj
+online link
 openfind
-oppo
+orb search
 orca
 osis-project
 pack rat
@@ -252,9 +272,13 @@ qseero
 quepasacreep
 qwantify
 rambler
+raven search
 readability
 riddler
 road runner
+robofox
+robopal
+robozilla
 rpt-httpclient
 ruby
 safaribookmarkchecker
@@ -267,11 +291,18 @@ scrape
 scrapy
 screenshot
 scrubby
+search agent
+search.aus-au.com
+searchprocess
+seek.
+seeker
 senrigan
 sensis
 seobility
 seocheck
+seosearch
 seventwentyfour
+shagseeker
 shai'hulud
 shelob
 sherif
@@ -317,6 +348,8 @@ tracker
 tulipchain
 twiceler
 twisted
+udmsearch
+ultraseek
 unwind
 url control
 urlstat
@@ -324,6 +357,7 @@ vagabondo
 valkyrie
 verasys
 vermut
+vision-search
 volcano
 voyager
 walhello appie
@@ -337,10 +371,13 @@ webbandit
 webcatcher
 webcopy
 webcore / roots
+webfetcher
 webfoot
 webimages
 webinator
+webinator-indexer
 weblayers
+weblinker
 weblog
 webminer
 webmirror
@@ -349,14 +386,18 @@ webquest
 webrace
 webreaper
 websauger
+websearch
 websnarf
 web-sniffer
 webstolperer
 webvac
+webwalk
+webwalker
 webwatch
 webzinger
 wesee
 wget
+whatuseek
 whizbang
 whowhere
 wild

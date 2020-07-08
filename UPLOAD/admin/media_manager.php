@@ -4,7 +4,7 @@
  * @copyright Copyright 2003-2020 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: media_manager.php 766 2020-01-17 08:23:42Z webchills $
+ * @version $Id: media_manager.php 766 2020-07-08 20:23:42Z webchills $
  */
 
   require('includes/application_top.php');
@@ -101,6 +101,7 @@
         zen_redirect(zen_href_link(FILENAME_MEDIA_MANAGER, (isset($_GET['page']) ? 'page=' . $_GET['page'] . '&' : '') . ($media_id != '' ? 'mID=' . $media_id : '')));
         break;
       case 'deleteconfirm':
+        
         $media_id = zen_db_prepare_input($_POST['mID']);
 
         $db->Execute("delete from " . TABLE_MEDIA_MANAGER . "
@@ -130,9 +131,10 @@
 <title><?php echo TITLE; ?></title>
 <link rel="stylesheet" type="text/css" href="includes/stylesheet.css">
 <link rel="stylesheet" type="text/css" href="includes/cssjsmenuhover.css" media="all" id="hoverJS">
-<script type="text/javascript" src="includes/menu.js"></script>
-<script type="text/javascript" src="includes/general.js"></script>
+<script language="javascript" src="includes/menu.js"></script>
+<script language="javascript" src="includes/general.js"></script>
 <script type="text/javascript">
+  <!--
   function init()
   {
     cssjsmenu('navbar');
@@ -142,6 +144,7 @@
       kill.disabled = true;
     }
   }
+  // -->
 </script>
 </head>
 <body onLoad="init()">

@@ -1,10 +1,10 @@
 <?php
 /**
  * @package admin
- * @copyright Copyright 2003-2020 Zen Cart Development Team
+ * @copyright Copyright 2003-2019 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: music_genre.php 788 2020-01-18 08:33:51Z webchills $
+ * @version $Id: music_genre.php 787 2019-06-21 15:33:51Z webchills $
  */
 require('includes/application_top.php');
 
@@ -53,7 +53,7 @@ if (zen_not_null($action)) {
         }
       } else {
         $db->Execute("UPDATE " . TABLE_PRODUCT_MUSIC_EXTRA . "
-                      SET music_genre_id = 0 
+                      SET music_genre_id = '0'
                       WHERE music_genre_id = " . (int)$music_genre_id);
       }
 

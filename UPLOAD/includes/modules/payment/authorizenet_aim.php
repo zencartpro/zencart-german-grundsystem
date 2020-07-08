@@ -3,10 +3,10 @@
  * authorize.net AIM payment method class
  *
  * @package paymentMethod
- * @copyright Copyright 2003-2020 Zen Cart Development Team
+ * @copyright Copyright 2003-2019 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: authorizenet_aim.php 812 2020-02-29 21:37:36Z webchills $
+ * @version $Id: authorizenet_aim.php 810 2019-04-14 17:07:36Z webchills $
  */
 /**
  * Authorize.net Payment Module (AIM version)
@@ -480,14 +480,16 @@ class authorizenet_aim extends base {
    * @return boolean
    */
   function after_process() {
-    global $insert_id, $order, $currencies;
-    
-    $comments = 'Credit Card payment.  AUTH: ' . $this->auth_code . ' TransID: ' . $this->transaction_id;
+    global $insert_id, $db, $order, $currencies;
+    $sql = "insert into " . TABLE_ORDERS_STATUS_HISTORY . " (comments, orders_id, orders_status_id, customer_notified, date_added) values (:orderComments, :orderID, :orderStatus, -1, now() )";
+    $currency_comment = '';
     if ($order->info['currency'] != $this->gateway_currency) {
-      $comments .= ' (' . number_format($order->info['total'] * $currencies->get_value($this->gateway_currency), 2) . ' ' . $this->gateway_currency . ')';
+      $currency_comment = ' (' . number_format($order->info['total'] * $currencies->get_value($this->gateway_currency), 2) . ' ' . $this->gateway_currency . ')';
     }
-    zen_update_orders_history($insert_id, $comments, null, $this->order_status, -1);
-
+    $sql = $db->bindVars($sql, ':orderComments', 'Credit Card payment.  AUTH: ' . $this->auth_code . ' TransID: ' . $this->transaction_id . ' ' . $currency_comment, 'string');
+    $sql = $db->bindVars($sql, ':orderID', $insert_id, 'integer');
+    $sql = $db->bindVars($sql, ':orderStatus', $this->order_status, 'integer');
+    $db->Execute($sql);
     return false;
   }
   /**
@@ -767,7 +769,7 @@ class authorizenet_aim extends base {
    * Used to submit a refund for a given transaction.
    */
   function _doRefund($oID, $amount = 0) {
-    global $messageStack;
+    global $db, $messageStack;
     $new_order_status = (int)MODULE_PAYMENT_AUTHORIZENET_AIM_REFUNDED_ORDER_STATUS_ID;
     if ($new_order_status == 0) $new_order_status = 1;
     $proceedToRefund = true;
@@ -813,9 +815,16 @@ class authorizenet_aim extends base {
         $messageStack->add_session($response_alert, 'error');
       } else {
         // Success, so save the results
-        $comments = 'REFUND INITIATED. Trans ID:' . $response[6] . ' ' . $response[4]. "\n" . ' Gross Refund Amt: ' . $response[9] . "\n" . $refundNote;
-        zen_update_orders_history($oID, $comments, null, $new_order_status, 0);
-
+        $sql_data_array = array('orders_id' => $oID,
+                                'orders_status_id' => (int)$new_order_status,
+                                'date_added' => 'now()',
+                                'comments' => 'REFUND INITIATED. Trans ID:' . $response[6] . ' ' . $response[4]. "\n" . ' Gross Refund Amt: ' . $response[9] . "\n" . $refundNote,
+                                'customer_notified' => 0
+                             );
+        zen_db_perform(TABLE_ORDERS_STATUS_HISTORY, $sql_data_array);
+        $db->Execute("update " . TABLE_ORDERS  . "
+                      set orders_status = '" . (int)$new_order_status . "'
+                      where orders_id = '" . (int)$oID . "'");
         $messageStack->add_session(sprintf(MODULE_PAYMENT_AUTHORIZENET_AIM_TEXT_REFUND_INITIATED, $response[9], $response[6]), 'success');
         return true;
       }
@@ -827,7 +836,7 @@ class authorizenet_aim extends base {
    * Used to capture part or all of a given previously-authorized transaction.
    */
   function _doCapt($oID, $amt = 0, $currency = 'USD') {
-    global $messageStack;
+    global $db, $messageStack;
 
     //@TODO: Read current order status and determine best status to set this to
     $new_order_status = (int)MODULE_PAYMENT_AUTHORIZENET_AIM_ORDER_STATUS_ID;
@@ -883,9 +892,16 @@ class authorizenet_aim extends base {
         $messageStack->add_session($response_alert, 'error');
       } else {
         // Success, so save the results
-        $comments = 'FUNDS COLLECTED. Auth Code: ' . $response[4] . "\n" . 'Trans ID: ' . $response[6] . "\n" . ' Amount: ' . ($response[9] == 0.00 ? 'Full Amount' : $response[9]) . "\n" . 'Time: ' . date('Y-m-D h:i:s') . "\n" . $captureNote;
-        zen_update_orders_history($oID, $comments, null, $new_order_status, 0);
-
+        $sql_data_array = array('orders_id' => (int)$oID,
+                                'orders_status_id' => (int)$new_order_status,
+                                'date_added' => 'now()',
+                                'comments' => 'FUNDS COLLECTED. Auth Code: ' . $response[4] . "\n" . 'Trans ID: ' . $response[6] . "\n" . ' Amount: ' . ($response[9] == 0.00 ? 'Full Amount' : $response[9]) . "\n" . 'Time: ' . date('Y-m-D h:i:s') . "\n" . $captureNote,
+                                'customer_notified' => 0
+                             );
+        zen_db_perform(TABLE_ORDERS_STATUS_HISTORY, $sql_data_array);
+        $db->Execute("update " . TABLE_ORDERS  . "
+                      set orders_status = '" . (int)$new_order_status . "'
+                      where orders_id = '" . (int)$oID . "'");
         $messageStack->add_session(sprintf(MODULE_PAYMENT_AUTHORIZENET_AIM_TEXT_CAPT_INITIATED, ($response[9] == 0.00 ? 'Full Amount' : $response[9]), $response[6], $response[4]), 'success');
         return true;
       }
@@ -896,7 +912,7 @@ class authorizenet_aim extends base {
    * Used to void a given previously-authorized transaction.
    */
   function _doVoid($oID, $note = '') {
-    global $messageStack;
+    global $db, $messageStack;
 
     $new_order_status = (int)MODULE_PAYMENT_AUTHORIZENET_AIM_REFUNDED_ORDER_STATUS_ID;
     if ($new_order_status == 0) $new_order_status = 1;
@@ -931,9 +947,16 @@ class authorizenet_aim extends base {
         $messageStack->add_session($response_alert, 'error');
       } else {
         // Success, so save the results
-        $comments = 'VOIDED. Trans ID: ' . $response[6] . ' ' . $response[4] . "\n" . $voidNote;
-        zen_update_orders_history($oID, $comments, null, $new_order_status, 0);
-
+        $sql_data_array = array('orders_id' => (int)$oID,
+                                'orders_status_id' => (int)$new_order_status,
+                                'date_added' => 'now()',
+                                'comments' => 'VOIDED. Trans ID: ' . $response[6] . ' ' . $response[4] . "\n" . $voidNote,
+                                'customer_notified' => 0
+                             );
+        zen_db_perform(TABLE_ORDERS_STATUS_HISTORY, $sql_data_array);
+        $db->Execute("update " . TABLE_ORDERS  . "
+                      set orders_status = '" . (int)$new_order_status . "'
+                      where orders_id = '" . (int)$oID . "'");
         $messageStack->add_session(sprintf(MODULE_PAYMENT_AUTHORIZENET_AIM_TEXT_VOID_INITIATED, $response[6], $response[4]), 'success');
         return true;
       }

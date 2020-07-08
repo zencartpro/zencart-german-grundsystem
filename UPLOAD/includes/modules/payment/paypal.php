@@ -3,10 +3,10 @@
  * paypal.php payment module class for PayPal Payments Standard (IPN) method
  *
  * @package paymentMethod
- * @copyright Copyright 2003-2020 Zen Cart Development Team
+ * @copyright Copyright 2003-2019 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: paypal.php 801 2020-01-17 11:58:50Z webchills $
+ * @version $Id: paypal.php 800 2019-04-12 12:24:50Z webchills $
  */
 
 define('MODULE_PAYMENT_PAYPAL_TAX_OVERRIDE', 'true');
@@ -413,7 +413,7 @@ class paypal extends base {
    * @return boolean
     */
   function after_process() {
-    global $insert_id, $order;
+    global $insert_id, $db, $order;
     if ($_SESSION['paypal_transaction_PDT_passed'] != true) {
       $_SESSION['order_created'] = '';
       unset($_SESSION['paypal_transaction_PDT_passed']);
@@ -421,11 +421,13 @@ class paypal extends base {
     } else {
     // PDT found order to be approved, so add a new OSH record for this order's PP details
       unset($_SESSION['paypal_transaction_PDT_passed']);
-      
-      $comments = 'PayPal status: ' . $this->pdtData['payment_status'] . ' ' . ' @ ' . $this->pdtData['payment_date'] . "\n" . ' Trans ID:' . $this->pdtData['txn_id'] . "\n" . ' Amount: ' . $this->pdtData['mc_gross'] . ' ' . $this->pdtData['mc_currency'] . '.';
-      zen_update_orders_history($insert_id, $comments, null, $this->order_status, 0);
-
-      ipn_debug_email('PDT NOTICE :: Order added: ' . $insert_id . "\n" . $comments);
+      $sql_data_array= array(array('fieldName'=>'orders_id', 'value'=>$insert_id, 'type'=>'integer'),
+                             array('fieldName'=>'orders_status_id', 'value'=>$this->order_status, 'type'=>'integer'),
+                             array('fieldName'=>'date_added', 'value'=>'now()', 'type'=>'noquotestring'),
+                             array('fieldName'=>'customer_notified', 'value'=>0, 'type'=>'integer'),
+                             array('fieldName'=>'comments', 'value'=>'PayPal status: ' . $this->pdtData['payment_status'] . ' ' . ' @ ' . $this->pdtData['payment_date'] . "\n" . ' Trans ID:' . $this->pdtData['txn_id'] . "\n" . ' Amount: ' . $this->pdtData['mc_gross'] . ' ' . $this->pdtData['mc_currency'] . '.', 'type'=>'string'));
+      $db->perform(TABLE_ORDERS_STATUS_HISTORY, $sql_data_array);
+      ipn_debug_email('PDT NOTICE :: Order added: ' . $insert_id . "\n" . 'PayPal status: ' . $this->pdtData['payment_status'] . ' ' . ' @ ' . $this->pdtData['payment_date'] . "\n" . ' Trans ID:' . $this->pdtData['txn_id'] . "\n" . ' Amount: ' . $this->pdtData['mc_gross'] . ' ' . $this->pdtData['mc_currency']);
 
       // store the PayPal order meta data -- used for later matching and back-end processing activities
       $sql_data_array = array('order_id' => $insert_id,

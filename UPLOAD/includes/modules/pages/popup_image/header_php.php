@@ -3,10 +3,10 @@
  * Pop up Image Header
  *
  * @package page
- * @copyright Copyright 2003-2020 Zen Cart Development Team
+ * @copyright Copyright 2003-2019 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: header_php.php 733 2020-01-17 11:18:16Z webchills $
+ * @version $Id: header_php.php 732 2014-09-11 12:40:16Z webchills $
  * Header code file for the product-larger-images popup window
  *
  */
@@ -28,11 +28,6 @@
   $products_values_query = $db->bindVars($products_values_query, ':languagesID', $_SESSION['languages_id'], 'integer');
 
   $products_values = $db->Execute($products_values_query);
-  // Ensure data/variable is available for use downstream.
-  if ($products_values->EOF) {
-    $products_values->fields['products_image'] = '';
-    $products_values->fields['products_name'] = '';
-  }
   $products_image = $products_values->fields['products_image'];
 
   //auto replace with defined missing image

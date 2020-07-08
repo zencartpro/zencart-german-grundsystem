@@ -1,10 +1,10 @@
 <?php
 /**
  * @package admin
- * @copyright Copyright 2003-2020 Zen Cart Development Team
+ * @copyright Copyright 2003-2019 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: localization.php 735 2020-01-17 17:49:16Z webchills $
+ * @version $Id: localization.php 734 2019-04-12 08:49:16Z webchills $
  */
 /**
  * Dependencies:
@@ -87,7 +87,7 @@ function quote_ecb_currency($currencyCode = '', $base = DEFAULT_CURRENCY)
 {
   if ($currencyCode == $base) return 1;
   static $XMLContent = array();
-  $url = 'https://www.ecb.europa.eu/stats/eurofxref/eurofxref-daily.xml';
+  $url = 'http://www.ecb.europa.eu/stats/eurofxref/eurofxref-daily.xml';
   if (empty($XMLContent)) {
     $XMLContent = @file($url);
     if (! is_object($XMLContent) && function_exists('curl_init')) {
@@ -122,7 +122,7 @@ function quote_boc_currency($currencyCode = '', $base = DEFAULT_CURRENCY)
 {
   if ($currencyCode == $base) return 1;
   $requested = $currencyCode;
-  $url = 'https://www.bankofcanada.ca/valet/observations/group/FX_RATES_DAILY/json';
+  $url = 'http://www.bankofcanada.ca/valet/observations/group/FX_RATES_DAILY/json';
   static $BOCdata = array();
   if (empty($BOCdata)) {
     $result = doCurlCurrencyRequest('GET', $url);

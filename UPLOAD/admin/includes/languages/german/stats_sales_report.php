@@ -13,7 +13,7 @@
  * @copyright  Portions Copyright 2003-2020 Zen Cart Development Team
  * @copyright  Portions Copyright 2003 osCommerce
  * @license    http://www.gnu.org/copyleft/gpl.html   GNU Public License V2.0
- * @translation by webchills 2020-02-05
+ * @translation by webchills 2019-07-08
  */
 
 //////////////////////////////////////////////////////////

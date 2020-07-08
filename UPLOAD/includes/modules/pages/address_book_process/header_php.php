@@ -3,10 +3,10 @@
  * Header code file for the Address Book Process page
  *
  * @package page
- * @copyright Copyright 2003-2020 Zen Cart Development Team
+ * @copyright Copyright 2003-2019 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: header_php.php 735 2020-02-29 21:13:16Z webchills $
+ * @version $Id: header_php.php 734 2019-06-15 21:49:16Z webchills $
  */
 // This should be first line of the script:
 $zco_notifier->notify('NOTIFY_HEADER_START_ADDRESS_BOOK_PROCESS');
@@ -305,21 +305,10 @@ if (isset($_GET['edit']) && is_numeric($_GET['edit'])) {
 
   $entry_query = $db->bindVars($entry_query, ':customersID', $_SESSION['customer_id'], 'integer');
   $entry = $db->Execute($entry_query);
-  $entry->fields['entry_gender'] = 'm';
-  $entry->fields['entry_firstname'] = '';
-  $entry->fields['entry_lastname'] = '';
-  $entry->fields['entry_company'] = '';
-  $entry->fields['entry_street_address'] = '';
-  $entry->fields['entry_suburb'] = '';
-  $entry->fields['entry_city'] = '';
-  $entry->fields['entry_state'] = '';
-  $entry->fields['entry_zone_id'] = 0;
-  $entry->fields['entry_postcode'] = '';
 }
 /*
  * Set flags for template use:
  */
-if (!isset($_GET['delete'])) {
   if ($process == false) {
     $selected_country = $entry->fields['entry_country_id'];
   } else {
@@ -329,7 +318,7 @@ if (!isset($_GET['delete'])) {
   $flag_show_pulldown_states = ((($process == true || $entry_state_has_zones == true) && $zone_name == '') || ACCOUNT_STATE_DRAW_INITIAL_DROPDOWN == 'true' || $error_state_input) ? true : false;
   $state = ($flag_show_pulldown_states && $state != FALSE) ? $state : $zone_name;
   $state_field_label = ($flag_show_pulldown_states) ? '' : ENTRY_STATE;
-}
+
 
 
 if (!isset($_GET['delete']) && !isset($_GET['edit'])) {

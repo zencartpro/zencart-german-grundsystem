@@ -1,10 +1,10 @@
 <?php
 /**
  * @package admin
- * @copyright Copyright 2003-2020 Zen Cart Development Team
+ * @copyright Copyright 2003-2019 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: packingslip.php 731 2020-01-17 09:49:16Z webchills $
+ * @version $Id: packingslip.php 730 2019-04-12 09:49:16Z webchills $
 */
 require('includes/application_top.php');
 
@@ -126,11 +126,8 @@ if ($order->billing['street_address'] != $order->delivery['street_address']) {
             for ($i = 0, $n = sizeof($order->products); $i < $n; $i++) {
               ?>
             <tr class="dataTableRow">
-              <td class="dataTableContent text-right">
-                <?php echo $order->products[$i]['qty']; ?>&nbsp;x
-              </td>
-              <td class="dataTableContent">
-                <?php echo $order->products[$i]['name']; ?>
+              <td class="dataTableContent text-right"><?php echo $order->products[$i]['qty']; ?>&nbsp;x</td>
+              <td class="dataTableContent"><?php echo $order->products[$i]['name']; ?>
                   <?php
                   if (isset($order->products[$i]['attributes']) && (sizeof($order->products[$i]['attributes']) > 0)) {
                     ?>
@@ -139,23 +136,19 @@ if ($order->billing['street_address'] != $order->delivery['street_address']) {
                       for ($j = 0, $k = sizeof($order->products[$i]['attributes']); $j < $k; $j++) {
                         ?>
                       <li>
-                        <small>
-                            <i>
-                            <?php echo $order->products[$i]['attributes'][$j]['option'] . ': ' . nl2br(zen_output_string_protected($order->products[$i]['attributes'][$j]['value'])); ?>
-                            </i>
-                        </small>
+                        <small><i>
+                                <?php echo $order->products[$i]['attributes'][$j]['option'] . ': ' . nl2br(zen_output_string_protected($order->products[$i]['attributes'][$j]['value'])); ?>
+                          </i></small>
                       </li>
-                  <?php
+                      <?php
                     }
-                  ?>
+                    ?>
                   </ul>
-                <?php
+                  <?php
                 }
                 ?>
               </td>
-              <td class="dataTableContent">
-                <?php echo $order->products[$i]['model']; ?>
-              </td>
+              <td class="dataTableContent"><?php echo $order->products[$i]['model']; ?></td>
             </tr>
             <?php
           }
@@ -163,7 +156,7 @@ if ($order->billing['street_address'] != $order->delivery['street_address']) {
         </tbody>
       </table>
       <?php if (ORDER_COMMENTS_PACKING_SLIP > 0) { ?>
-        <table class="table table-condensed">
+        <table class="table table-condensed" style="width:25%;">
           <thead>
             <tr>
               <th class="text-center"><strong><?php echo TABLE_HEADING_DATE_ADDED; ?></strong></th>

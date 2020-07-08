@@ -4,10 +4,10 @@
  * Header code file for the customer's Account-Edit page
  *
  * @package page
- * @copyright Copyright 2003-2020 Zen Cart Development Team
+ * @copyright Copyright 2003-2019 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: header_php.php 738 2020-02-29 21:11:16Z webchills $
+ * @version $Id: header_php.php 736 2019-07-20 09:30:16Z webchills $
  */
 // This should be first line of the script:
 $zco_notifier->notify('NOTIFY_HEADER_START_ACCOUNT_EDIT');
@@ -27,8 +27,8 @@ if (isset($_POST['action']) && ($_POST['action'] == 'process')) {
   $email_address = zen_db_prepare_input($_POST['email_address']);
   $email_address_confirm = zen_db_prepare_input($_POST['email_address_confirm']);
   $telephone = zen_db_prepare_input($_POST['telephone']);
-  $fax = isset($_POST['fax']) ? zen_db_prepare_input($_POST['fax']) : '';
-  $email_format = in_array($_POST['email_format'], array('HTML', 'TEXT', 'NONE', 'OUT'), true) ? $_POST['email_format'] : 'TEXT';
+  $fax = zen_db_prepare_input($_POST['fax']);
+  $email_format = zen_db_prepare_input($_POST['email_format']);
 
   if (CUSTOMERS_REFERRAL_STATUS == '2' and $_POST['customers_referral'] != '') $customers_referral = zen_db_prepare_input($_POST['customers_referral']);
 
@@ -110,8 +110,8 @@ if (isset($_POST['action']) && ($_POST['action'] == 'process')) {
   $zco_notifier->notify('NOTIFY_HEADER_ACCOUNT_EDIT_VERIFY_COMPLETE');
 
   if ($error == false) {
-    //update external bb system with submitted email address
-    $zco_notifier->notify('NOTIFY_NICK_UPDATE_EMAIL_ADDRESS', $nick, $email_address);
+    //update external bb system with new email address
+    $zco_notifier->notify('NOTIFY_NICK_UPDATE_EMAIL_ADDRESS', $nick, $db->prepareInput($email_address));
 
     // build array of data to store the requested changes
     $sql_data_array = array(array('fieldName'=>'customers_firstname', 'value'=>$firstname, 'type'=>'stringIgnoreNull'),
