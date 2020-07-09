@@ -7,7 +7,7 @@ Neue Dateien in 1.5.6e (1)
 admin\includes\css\login.css
 
 ----------------------------------------------------------------------------------------
-Geänderte Dateien in 1.5.6e (235)
+Geänderte Dateien in 1.5.6e (236)
 ----------------------------------------------------------------------------------------
 
 admin\includes\classes\class.admin.zcObserverLogEventListener.php
@@ -17,6 +17,7 @@ admin\includes\init_includes\init_errors.php
 admin\includes\languages\english\stats_sales_report.php
 admin\includes\languages\german\stats_sales_report.php
 admin\attributes_controller.php
+admin\category_product_listing.php
 admin\configuration.php
 admin\countries.php
 admin\coupon_admin.php
