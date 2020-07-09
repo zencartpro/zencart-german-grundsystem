@@ -3,10 +3,10 @@
  * BEISPIELDATEI ADMIN!
  *
  * @package Configuration Settings
- * @copyright Copyright 2003-2019 Zen Cart Development Team
+ * @copyright Copyright 2003-2020 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: dist-configure.php 2019-10-31 22:00:50Z webchills $
+ * @version $Id: dist-configure.php 2020-07-09 07:00:50Z webchills $
  * @private
  */
 
