@@ -2,10 +2,10 @@
 /**
  * Zen Cart German Specific
  * @package shippingMethod
- * @copyright Copyright 2003-2019 Zen Cart Development Team
+ * @copyright Copyright 2003-2020 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: storepickup.php 737 2019-11-03 07:49:16Z webchills $
+ * @version $Id: storepickup.php 738 2020-07-09 08:56:16Z webchills $
  */
 /**
  * Store-Pickup / Will-Call shipping method
@@ -68,30 +68,8 @@ class storepickup extends base {
     if (!$this->enabled) return;
     if (IS_ADMIN_FLAG === true) return;
 
-    if (isset($order->delivery) && (int)MODULE_SHIPPING_STOREPICKUP_ZONE > 0 ) {
-      $check_flag = false;
-      $check = $db->Execute("select zone_id from " . TABLE_ZONES_TO_GEO_ZONES . "
-                             where geo_zone_id = '" . MODULE_SHIPPING_STOREPICKUP_ZONE . "'
-                             and zone_country_id = '" . (int)$order->delivery['country']['id'] . "'
-                             order by zone_id");
-      while (!$check->EOF) {
-        if ($check->fields['zone_id'] < 1) {
-          $check_flag = true;
-          break;
-        } elseif ($check->fields['zone_id'] == $order->delivery['zone_id']) {
-          $check_flag = true;
-          break;
-        }
-        $check->MoveNext();
-      }
-
-      if ($check_flag == false) {
-        $this->enabled = false;
-      }
-    }
-
-    // other status checks?
-        // check country
+    
+       // check country
         $dest_country = isset ($order->delivery['country']['iso_code_2']) ? $order->delivery['country']['iso_code_2'] : 0 ;
         $dest_zone = 0;
         $error = false;
@@ -177,7 +155,6 @@ class storepickup extends base {
     $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) values ('Shipping Cost', 'MODULE_SHIPPING_STOREPICKUP_COST', '0.00', 'The shipping cost for all orders using this shipping method.', '6', '0', now())");
     $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, use_function, set_function, date_added) values ('Tax Class', 'MODULE_SHIPPING_STOREPICKUP_TAX_CLASS', '0', 'Use the following tax class on the shipping fee.', '6', '0', 'zen_get_tax_class_title', 'zen_cfg_pull_down_tax_classes(', now())");
     $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) values ('Tax Basis', 'MODULE_SHIPPING_STOREPICKUP_TAX_BASIS', 'Shipping', 'On what basis is Shipping Tax calculated. Options are<br />Shipping - Based on customers Shipping Address<br />Billing Based on customers Billing address<br />Store - Based on Store address if Billing/Shipping Zone equals Store zone', '6', '0', 'zen_cfg_select_option(array(\'Shipping\', \'Billing\'), ', now())");
-    $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, use_function, set_function, date_added) values ('Shipping Zone', 'MODULE_SHIPPING_STOREPICKUP_ZONE', '0', 'If a zone is selected, only enable this shipping method for that zone.', '6', '0', 'zen_get_zone_class_title', 'zen_cfg_pull_down_zone_classes(', now())");
     $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) values ('Sort Order', 'MODULE_SHIPPING_STOREPICKUP_SORT_ORDER', '0', 'Sort order of display.', '6', '0', now())");
     $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) values ('Countries', 'MODULE_SHIPPING_STOREPICKUP_COUNTRIES', 'AT', 'Enter the countries for which you want to offer storepickup. Two digit ISO codes, comma separated.', '6', '11', now());");
    // www.zen-cart-pro.at languages_id==43 START
@@ -186,7 +163,6 @@ class storepickup extends base {
     $db->Execute("insert into " . TABLE_CONFIGURATION_LANGUAGE   . " (configuration_title, configuration_key, configuration_language_id, configuration_description, date_added) values ('Kosten für Selbstabholung', 'MODULE_SHIPPING_STOREPICKUP_COST', '43', 'Versandkosten für Selbstabholung', now())");
     $db->Execute("insert into " . TABLE_CONFIGURATION_LANGUAGE   . " (configuration_title, configuration_key, configuration_language_id, configuration_description, date_added) values ('Steuerklasse', 'MODULE_SHIPPING_STOREPICKUP_TAX_CLASS', '43', 'Falls Sie Versandkosten für Selbstabholung eingetragen haben, welche Steuerklasse soll auf die Versandkosten angewendet werden?', now())");
     $db->Execute("insert into " . TABLE_CONFIGURATION_LANGUAGE   . " (configuration_title, configuration_key, configuration_language_id, configuration_description, date_added) values ('Basis der Steuern', 'MODULE_SHIPPING_STOREPICKUP_TAX_BASIS', '43', 'Auf welcher Basis soll die Steuer für die Versandkosten berechnet werden? Mögliche Werte sind.<br/>Shipping - basiert auf der Versandadresse des Kunden<br/>Billing - basiert auf der Rechnungsadresse des Kunden<br/>Store - basiert auf der Adresse des Shops wenn Versand- und Rechnungszone in derselben Zone liegen wie der Shop', now())");
-    $db->Execute("insert into " . TABLE_CONFIGURATION_LANGUAGE   . " (configuration_title, configuration_key, configuration_language_id, configuration_description, date_added) values ('Versandzone', 'MODULE_SHIPPING_STOREPICKUP_ZONE', '43', 'Wenn Sie hier eine Zone auswählen, wird Selbstabholung nur in dieser Zone angeboten.', now())");
     $db->Execute("insert into " . TABLE_CONFIGURATION_LANGUAGE   . " (configuration_title, configuration_key, configuration_language_id, configuration_description, date_added) values ('Sortierreihenfolge', 'MODULE_SHIPPING_STOREPICKUP_SORT_ORDER', '43', 'Anzeigereihenfolge. Niedrigste Werte werden zuerst angezeigt.', now())");
     $db->Execute("insert into " . TABLE_CONFIGURATION_LANGUAGE   . " (configuration_title, configuration_key, configuration_language_id, configuration_description, date_added) values ('Länder', 'MODULE_SHIPPING_STOREPICKUP_COUNTRIES', '43', 'Geben Sie hier die Länder an, für die Selbstabholung möglich sein soll.<br/>Zweistellige ISO-Codes durch Komma getrennt!', now())");   
       // www.zen-cart.at languages_id==43  END
@@ -207,7 +183,7 @@ class storepickup extends base {
    * @return array
    */
   function keys() {
-    return array('MODULE_SHIPPING_STOREPICKUP_STATUS', 'MODULE_SHIPPING_STOREPICKUP_LOCATIONS_LIST', 'MODULE_SHIPPING_STOREPICKUP_COST', 'MODULE_SHIPPING_STOREPICKUP_TAX_CLASS', 'MODULE_SHIPPING_STOREPICKUP_TAX_BASIS', 'MODULE_SHIPPING_STOREPICKUP_ZONE', 'MODULE_SHIPPING_STOREPICKUP_SORT_ORDER', 'MODULE_SHIPPING_STOREPICKUP_COUNTRIES');
+    return array('MODULE_SHIPPING_STOREPICKUP_STATUS', 'MODULE_SHIPPING_STOREPICKUP_LOCATIONS_LIST', 'MODULE_SHIPPING_STOREPICKUP_COST', 'MODULE_SHIPPING_STOREPICKUP_TAX_CLASS', 'MODULE_SHIPPING_STOREPICKUP_TAX_BASIS', 'MODULE_SHIPPING_STOREPICKUP_SORT_ORDER', 'MODULE_SHIPPING_STOREPICKUP_COUNTRIES');
   }
 }
 
