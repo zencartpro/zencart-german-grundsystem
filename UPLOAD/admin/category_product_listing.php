@@ -1,10 +1,10 @@
 <?php
 /**
  * @package admin
- * @copyright Copyright 2003-2019 Zen Cart Development Team
+ * @copyright Copyright 2003-2020 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: category_product_listing.php 5 2019-07-20 08:44:16Z webchills $
+ * @version $Id: category_product_listing.php 6 2020-07-09 07:44:16Z webchills $
  */
 require('includes/application_top.php');
 $languages = zen_get_languages();
@@ -563,15 +563,15 @@ if (is_dir(DIR_FS_CATALOG_IMAGES)) {
                 <tr>
                   <th class="text-right"><?php echo TABLE_HEADING_ID; ?></th>
                   <th><?php echo TABLE_HEADING_CATEGORIES_PRODUCTS; ?></th>
-                  <th class="hidden-md hidden-sm hidden-xs"><?php echo TABLE_HEADING_MODEL; ?></th>
-                  <th class="text-right hidden-md hidden-sm hidden-xs"><?php echo TABLE_HEADING_PRICE; ?></th>
-                  <th class="text-right hidden-md hidden-sm hidden-xs">&nbsp;</th>
-                  <th class="text-right hidden-md hidden-sm hidden-xs"><?php echo TABLE_HEADING_QUANTITY; ?></th>
-                  <th class="text-right hidden-md hidden-sm hidden-xs"><?php echo TABLE_HEADING_STATUS; ?></th>
+                  <th class="hidden-sm hidden-xs"><?php echo TABLE_HEADING_MODEL; ?></th>
+                  <th class="text-right hidden-sm hidden-xs"><?php echo TABLE_HEADING_PRICE; ?></th>
+                  <th class="text-right hidden-sm hidden-xs">&nbsp;</th>
+                  <th class="text-right hidden-sm hidden-xs"><?php echo TABLE_HEADING_QUANTITY; ?></th>
+                  <th class="text-right hidden-sm hidden-xs"><?php echo TABLE_HEADING_STATUS; ?></th>
                   <?php
                   if ($action == '') {
                     ?>
-                    <th class="text-right hidden-md hidden-sm hidden-xs"><?php echo TABLE_HEADING_CATEGORIES_SORT_ORDER; ?></th>
+                    <th class="text-right hidden-sm hidden-xs"><?php echo TABLE_HEADING_CATEGORIES_SORT_ORDER; ?></th>
                     <th class="text-right"><?php echo TABLE_HEADING_ACTION; ?></th>
                     <?php
                   }
@@ -634,10 +634,10 @@ if (is_dir(DIR_FS_CATALOG_IMAGES)) {
                 <tr onclick="document.location.href = '<?php echo zen_href_link(FILENAME_CATEGORY_PRODUCT_LISTING, zen_get_path($category['categories_id'])); ?>'" role="button">
                   <td class="text-right"><?php echo $category['categories_id']; ?></td>
                   <td><?php echo zen_image(DIR_WS_ICONS . 'folder.gif', ICON_FOLDER); ?>&nbsp;<strong><?php echo $category['categories_name']; ?></strong></td>
-                  <td class="text-center hidden-md hidden-sm hidden-xs">&nbsp;</td>
-                  <td class="text-right hidden-md hidden-sm hidden-xs"><?php echo zen_get_products_sale_discount('', $category['categories_id'], true); ?></td>
-                  <td class="text-center hidden-md hidden-sm hidden-xs">&nbsp;</td>
-                  <td class="text-right hidden-md hidden-sm hidden-xs">
+                  <td class="text-center hidden-sm hidden-xs">&nbsp;</td>
+                  <td class="text-right hidden-sm hidden-xs"><?php echo zen_get_products_sale_discount('', $category['categories_id'], true); ?></td>
+                  <td class="text-center hidden-sm hidden-xs">&nbsp;</td>
+                  <td class="text-right hidden-sm hidden-xs">
                       <?php
                       if (SHOW_COUNTS_ADMIN == 'false') {
                         // don't show counts
@@ -649,7 +649,7 @@ if (is_dir(DIR_FS_CATALOG_IMAGES)) {
                       }
                       ?>
                   </td>
-                  <td class="text-right hidden-md hidden-sm hidden-xs">
+                  <td class="text-right hidden-sm hidden-xs">
                       <?php
                       if (SHOW_CATEGORY_PRODUCTS_LINKED_STATUS == 'true' && zen_get_products_to_categories($category['categories_id'], true, 'products_active') == 'true') {
                         echo zen_image(DIR_WS_IMAGES . 'icon_yellow_on.gif', IMAGE_ICON_LINKED, '', '', 'style="margin:2px;"');
@@ -666,7 +666,7 @@ if (is_dir(DIR_FS_CATALOG_IMAGES)) {
                   <?php
                   if ($action == '') {
                     ?>
-                    <td class="text-right hidden-md hidden-sm hidden-xs"><?php echo $category['sort_order']; ?></td>
+                    <td class="text-right hidden-sm hidden-xs"><?php echo $category['sort_order']; ?></td>
                     <td class="text-right">
                       <a href="<?php echo zen_href_link(FILENAME_CATEGORIES, 'cPath=' . $cPath . '&cID=' . $category['categories_id'] . '&action=edit_category' . ((isset($_GET['search']) && !empty($_GET['search'])) ? '&search=' . $_GET['search'] : '')); ?>" style="text-decoration: none">
                         <div class="fa-stack fa-lg edit">
@@ -839,10 +839,10 @@ if (is_dir(DIR_FS_CATALOG_IMAGES)) {
                 <tr>
                   <td class="text-right"><?php echo $product['products_id']; ?></td>
                   <td><a href="<?php echo zen_catalog_href_link($type_handler . '_info', 'cPath=' . $cPath . '&products_id=' . $product['products_id'] . '&language=' . $_SESSION['languages_code'] . '&product_type=' . $product['products_type']); ?>" target="_blank"><?php echo zen_image(DIR_WS_ICONS . 'preview.gif', ICON_PREVIEW); ?></a>&nbsp;<?php echo $product['products_name']; ?></td>
-                  <td class="hidden-md hidden-sm hidden-xs"><?php echo $product['products_model']; ?></td>
-                  <td colspan="2" class="text-right hidden-md hidden-sm hidden-xs"><?php echo zen_get_products_display_price($product['products_id']); ?></td>
-                  <td class="text-right hidden-md hidden-sm hidden-xs"><?php echo $product['products_quantity']; ?></td>
-                  <td class="text-right hidden-md hidden-sm hidden-xs">
+                  <td class="hidden-sm hidden-xs"><?php echo $product['products_model']; ?></td>
+                  <td colspan="2" class="text-right hidden-sm hidden-xs"><?php echo zen_get_products_display_price($product['products_id']); ?></td>
+                  <td class="text-right hidden-sm hidden-xs"><?php echo $product['products_quantity']; ?></td>
+                  <td class="text-right hidden-sm hidden-xs">
 <?php
                       $additional_icons = '';
                       $zco_notifier->notify('NOTIFY_ADMIN_PROD_LISTING_ADD_ICON', $product, $additional_icons);
@@ -870,7 +870,7 @@ if (is_dir(DIR_FS_CATALOG_IMAGES)) {
                   <?php
                   if ($action == '') {
                     ?>
-                    <td class="text-right hidden-md hidden-sm hidden-xs"><?php echo $product['products_sort_order']; ?></td>
+                    <td class="text-right hidden-sm hidden-xs"><?php echo $product['products_sort_order']; ?></td>
                     <td class="text-right">
                       <a href="<?php echo zen_href_link(FILENAME_PRODUCT, 'cPath=' . $cPath . '&product_type=' . $product['products_type'] . '&pID=' . $product['products_id'] . '&action=new_product' . (isset($_GET['search']) ? '&search=' . $_GET['search'] : '')); ?>" style="text-decoration: none">
                         <div class="fa-stack fa-lg edit">
