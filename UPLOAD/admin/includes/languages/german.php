@@ -5,7 +5,7 @@
  * @copyright Copyright 2003-2020 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: german.php 667 2020-07-10 07:37:04Z webchills $
+ * @version $Id: german.php 668 2020-07-10 08:48:04Z webchills $
  */
 if (!defined('IS_ADMIN_FLAG'))
 {
@@ -148,8 +148,8 @@ define('BOX_CATALOG_PRODUCTS_EXPECTED', 'Artikel Neuerscheinungen');
 define('BOX_CATALOG_SALEMAKER', 'Abverkaufsmanager');
 define('BOX_CATALOG_PRODUCTS_PRICE_MANAGER', 'Artikelpreis Manager');
 define('BOX_CATALOG_PRODUCT', 'Artikel');
-define('BOX_CATALOG_PRODUCTS_TO_CATEGORIES', 'Artikel in Kategorien');
-define('BOX_CATALOG_CATEGORY', 'Category');
+define('BOX_CATALOG_PRODUCTS_TO_CATEGORIES', 'Mehrfach Kategorie Link Manager');
+define('BOX_CATALOG_CATEGORY', 'Kategorie');
 
 // customers box text
 define('BOX_HEADING_CUSTOMERS', 'Kunden');
@@ -260,7 +260,7 @@ define('JS_ZONE', '* Das \'Bundesland\' muss ausgewählt sein.');
 define('JS_COUNTRY', '* Das \'Land\' muss ausgewählt sein.\n');
 define('JS_TELEPHONE', '* Die \'Telefonnummer\' muss aus mindestens  ' . ENTRY_TELEPHONE_MIN_LENGTH . ' Zeichen bestehen.\n');
 define('JS_PASSWORD', '* Das \'Passwort\' muss aus mindestens  ' . ENTRY_PASSWORD_MIN_LENGTH . ' Zeichen bestehen.\n');
-define('JS_ERROR_SUBMITTED', 'This form has already been submitted. Please press OK and wait for this process to be completed.');
+define('JS_ERROR_SUBMITTED', 'Dieses Formular wurde bereits abgesandt. Bitte clicken Sie OK und warten Sie bis der Prozess abgeschlossen ist.');
 define('JS_ORDER_DOES_NOT_EXIST', 'Diese Bestellnummer %s existiert nicht!');
 define('TEXT_NO_ORDER_HISTORY', 'eine Bestellhistorie verfügbar');
 
@@ -402,7 +402,7 @@ define('ICON_FILE', 'Datei');
 define('ICON_FILE_DOWNLOAD', 'Download');
 define('ICON_FOLDER', 'Ordner');
 define('ICON_MOVE', 'Verschieben');
-define('ICON_PERMISSIONS', 'Permissions');
+define('ICON_PERMISSIONS', 'Berechtigungen');
 define('ICON_PREVIOUS_LEVEL', 'Vorherige Ebene');
 define('ICON_PREVIEW', 'Vorschau');
 define('ICON_RESET', 'Zurücksetzen');
@@ -481,7 +481,7 @@ define('ERROR_MODULE_REMOVAL_PROHIBITED', 'FEHLER: Diese Modul kann nicht entfer
 define('WARNING_REVIEW_ROGUE_ACTIVITY', 'ALARM: Bitte anschauen für mögliche XSS Aktivitäten:');
 
 define('ERROR_FILE_NOT_REMOVEABLE', 'FEHLER: Die angegebene Datei konnte nicht gelöscht werden. Sie müssen diese Datei manuell per FTP löschen.');
-define('ERROR_DIRECTORY_NOT_REMOVEABLE', 'Error: Could not remove the directory specified. You may have to use FTP to remove the directory, due to a server-permissions configuration limitation.');
+define('ERROR_DIRECTORY_NOT_REMOVEABLE', 'Fehler: Das angegebene Verzeichnis konnte nicht entfernt werden. Möglicherweise müssen Sie FTP verwenden, um das Verzeichnis aufgrund einer Beschränkung der Server-Zugriffskonfiguration zu entfernen.');
 define('WARNING_SESSION_AUTO_START', 'WARNUNG: session.auto_start ist aktiviert - bitte deaktivieren Sie diese PHP Einstellung in der php.ini und starten den Webserver neu.');
 define('WARNING_DOWNLOAD_DIRECTORY_NON_EXISTENT', 'WARNUNG: Das Verzeichnis für Downloaddateien existiert nicht: ' . DIR_FS_DOWNLOAD . '. Downloadartikel werden nicht funktionieren, solange dieses Verzeichnis nicht vorhanden ist.');
 define('WARNING_SQL_CACHE_DIRECTORY_NON_EXISTENT', 'WARNUNG: Das Verzeichnis für SQL Caching existiert nicht:: ' . DIR_FS_SQL_CACHE . '. SQL Caching wird nicht funktionieren, solange dieses Verzeichnis nicht vorhanden ist.');
