@@ -1,16 +1,15 @@
 <?php
 /**
  * @package admin
- * @copyright Copyright 2003-2019 Zen Cart Development Team
+ * @copyright Copyright 2003-2020 Zen Cart Development Team
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: products_price_manager.php 732 2019-05-07 21:49:16Z webchills $
+ * @version $Id: products_price_manager.php 733 2020-07-10 07:49:16Z webchills $
  */
 
 define('HEADING_TITLE', 'Products Price Manager');
 define('HEADING_TITLE_PRODUCT_SELECT','Please select a Category with Products to display the Pricing Information of ...');
 
 define('TABLE_HEADING_PRODUCTS', 'Products');
-define('TABLE_HEADING_PRODUCTS_MODEL','Model');
 define('TABLE_HEADING_PRODUCTS_PRICE', 'Products Price/Special/Sale');
 define('TABLE_HEADING_PRODUCTS_PERCENTAGE','Percentage');
 define('TABLE_HEADING_AVAILABLE_DATE', 'Available');
@@ -20,7 +19,6 @@ define('TABLE_HEADING_ACTION', 'Action');
 
 define('TEXT_PRODUCT_INFO', 'Product Info:');
 define('TEXT_PRODUCTS_PRICE_INFO', 'Product Price Info:');
-define('TEXT_PRODUCTS_MODEL','Model:');
 define('TEXT_PRICE', 'Price');
 define('TEXT_PRICE_NET', 'Price (Net)');
 define('TEXT_PRICE_GROSS', 'Price (Gross)');

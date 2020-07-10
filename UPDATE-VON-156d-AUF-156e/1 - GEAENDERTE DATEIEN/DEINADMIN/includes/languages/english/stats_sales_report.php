@@ -208,7 +208,6 @@ define('TABLE_HEADING_PRODUCT_ID', 'Prod ID');
 define('TABLE_HEADING_PRODUCT_NAME', 'Product Name');
 define('TABLE_HEADING_PRODUCT_ATTRIBUTES', 'Attributes');
 define('TABLE_HEADING_MANUFACTURER', 'Manufacturer');
-define('TABLE_HEADING_MODEL', 'Model No.');
 define('TABLE_HEADING_BASE_PRICE', 'Base Price');
 define('TABLE_HEADING_FINAL_PRICE', 'Final Price');
 define('TABLE_HEADING_QUANTITY', 'Qty.');

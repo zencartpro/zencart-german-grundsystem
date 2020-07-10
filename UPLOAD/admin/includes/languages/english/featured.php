@@ -1,16 +1,15 @@
 <?php
 /**
  * @package admin
- * @copyright Copyright 2003-2019 Zen Cart Development Team
+ * @copyright Copyright 2003-2020 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- *  $Id: featured.php 729 2011-08-09 15:49:16Z hugo13 $
+ *  $Id: featured.php 730 2020-07-10 07:49:16Z webchills $
  */
 
 define('HEADING_TITLE', 'Featured Products');
 
 define('TABLE_HEADING_PRODUCTS', 'Products');
-define('TABLE_HEADING_PRODUCTS_MODEL','Model');
 define('TABLE_HEADING_PRODUCTS_PRICE', 'Products Price/Special/Sale');
 define('TABLE_HEADING_PRODUCTS_PERCENTAGE','Percentage');
 define('TABLE_HEADING_AVAILABLE_DATE', 'Available');

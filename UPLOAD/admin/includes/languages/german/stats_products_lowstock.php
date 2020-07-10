@@ -1,15 +1,14 @@
 <?php
 /**
  * @package admin
- * @copyright Copyright 2003-2019 Zen Cart Development Team
+ * @copyright Copyright 2003-2020 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: stats_products_lowstock.php 731 2016-02-17 08:49:16Z webchills $
+ * @version $Id: stats_products_lowstock.php 732 2020-07-10 08:49:16Z webchills $
  */
  
 define('HEADING_TITLE', 'Lagerbestandsbericht');
 define('TABLE_HEADING_NUMBER', 'ID#');
-define('TABLE_HEADING_MODEL', 'Artikelnummer');
 define('TABLE_HEADING_PRODUCTS', 'Artikel');
 define('TABLE_HEADING_QUANTITY', 'Menge');
 define('TABLE_HEADING_PRICE', 'Preis');
