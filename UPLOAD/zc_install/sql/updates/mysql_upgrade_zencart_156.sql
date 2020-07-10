@@ -1,12 +1,12 @@
 #
-# * This SQL script upgrades the core Zen Cart database structure from v1.5.5 to v1.5.6
+# * This SQL script upgrades the core Zen Cart database structure from v1.5.5 to v1.5.6e
 # * Zen Cart German Specific
 # * @package Installer
 # * @access private
 # * @copyright Copyright 2003-2020 Zen Cart Development Team
 # * @copyright Portions Copyright 2003 osCommerce
 # * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
-# * @version $Id: mysql_upgrade_zencart_156.sql 27 2020-07-05 13:33:59Z webchills $
+# * @version $Id: mysql_upgrade_zencart_156.sql 28 2020-07-10 09:33:59Z webchills $
 
 #
 
@@ -105,6 +105,9 @@ UPDATE configuration SET configuration_description =  'Defines the method for se
 # Updates
 ALTER TABLE products_options MODIFY products_options_comment varchar(256) default NULL;
 ALTER TABLE configuration ADD val_function text default NULL AFTER set_function;
+
+# Add sort_order to orders_status - NEW in 1.5.6e
+ALTER TABLE orders_status ADD sort_order int(11) NOT NULL default 0;
 
 # Improve speed of admin orders page listing - NEW in 1.5.6e
 ALTER TABLE orders_total ADD INDEX idx_oid_class_zen (orders_id, class);

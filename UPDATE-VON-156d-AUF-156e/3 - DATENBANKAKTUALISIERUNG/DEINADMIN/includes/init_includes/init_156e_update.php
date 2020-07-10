@@ -4,7 +4,7 @@
 * @copyright Copyright 2003-2020 Zen Cart Development Team
 * @copyright Portions Copyright 2003 osCommerce
 * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
-* @version $Id: init_156e_update.php 2020-07-08 20:00:51Z webchills $
+* @version $Id: init_156e_update.php 2020-07-10 09:20:51Z webchills $
 */
 
 if (!defined('IS_ADMIN_FLAG')) {
@@ -31,8 +31,6 @@ $messageStack->add('Image Handler erfolgreich auf Version 5.1.8 aktualisiert', '
 $db->Execute ("UPDATE ".TABLE_CONFIGURATION." SET configuration_value = '2.2.0' WHERE configuration_key = 'DISPLAY_LOGS_VERSION';");
 $messageStack->add('Logfiles Version erfolgreich auf Version 2.2.0 aktualisiert', 'success');
 
-
-
 // -----
 // Missed in 1.5.6d upgrade script.  May already be there so use INSERT IGNORE
 // 
@@ -52,6 +50,19 @@ $db->Execute ("DELETE FROM ".TABLE_CONFIGURATION." WHERE configuration_key = 'AD
 // 
 //
 $db->Execute ("UPDATE ".TABLE_ADMIN_PAGES." SET display_on_menu = 'Y' WHERE page_key = 'productsToCategories';");
+
+// -----
+// add sort order to orders_status
+// 
+//
+$db->Execute ("ALTER ".TABLE_ORDERS_STATUS." ADD sort_order int(11) NOT NULL default 0;");
+
+// -----
+// Improve speed of admin orders page listing
+// 
+//
+$db->Execute ("ALTER ".TABLE_ORDERS_TOTAL." ADD INDEX idx_oid_class_zen (orders_id, class);");
+
 
 $messageStack->add('1.5.6e Datenbankänderungen erfolgreich vorgenommen', 'success');
 

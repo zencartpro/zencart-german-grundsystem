@@ -16,12 +16,17 @@ Empfohlene Konfiguration:
 
 Änderungen in 1.5.6e
 * Behebung aller Fehler/Bugs, die seit Erscheinen von 1.5.6d auf Github und im Supportforum (Bugreport) gemeldet wurden
-* Sicherheitspatch
+* Sicherheitspatch vom 12.03.2020 integriert
+* Überarbeiteter Mehrfach Kategorie Link Manager im Hauptmenü Webshop
+* Ungenutzte Funktionen entfernt, redundante Sprachdefinitionen zentralisiert
+* Bestellstati zeigen in der Administration ihre ID und können sortiert werden
 * Update Sales Report auf 3.3.3
 * Update Tiny MCE Editor auf 5.4.0
 * Update CKEditor auf 4.14.1
 * Update PHP Mailer auf 6.1.6
 * Update Image Handler auf 5.1.8
+* Update jQuery auf 3.4.1
+
 
 Änderungen in 1.5.6d
 * Behebung aller Fehler/Bugs, die seit Erscheinen von 1.5.6c auf Github und im Supportforum (Bugreport) gemeldet wurden

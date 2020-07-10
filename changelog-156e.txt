@@ -1,13 +1,27 @@
 Changelog Zen Cart 1.5.6e deutsch gegenüber 1.5.6d deutsch
 
+Änderungen in 1.5.6e
+* Behebung aller Fehler/Bugs, die seit Erscheinen von 1.5.6d auf Github und im Supportforum (Bugreport) gemeldet wurden
+* Sicherheitspatch vom 12.03.2020 integriert
+* Überarbeiteter Mehrfach Kategorie Link Manager im Hauptmenü Webshop
+* Ungenutzte Funktionen entfernt, redundante Sprachdefinitionen zentralisiert
+* Bestellstati zeigen in der Administration ihre ID und können sortiert werden
+* Update Sales Report auf 3.3.3
+* Update Tiny MCE Editor auf 5.4.0
+* Update CKEditor auf 4.14.1
+* Update PHP Mailer auf 6.1.6
+* Update Image Handler auf 5.1.8
+* Update jQuery auf 3.4.1
+
 -----------------------------------------------------------------------------------------
-Neue Dateien in 1.5.6e (1)
+Neue Dateien in 1.5.6e (2)
 -----------------------------------------------------------------------------------------
 
 admin\includes\css\login.css
+admin\includes\javascript\jquery-3.4.1.min.js
 
 ----------------------------------------------------------------------------------------
-Geänderte Dateien in 1.5.6e (269)
+Geänderte Dateien in 1.5.6e (272)
 ----------------------------------------------------------------------------------------
 
 admin\includes\classes\class.admin.zcObserverLogEventListener.php
@@ -20,6 +34,7 @@ admin\includes\languages\english\featured.php
 admin\includes\languages\english\image_handler.php
 admin\includes\languages\english\invoice.php
 admin\includes\languages\english\orders.php
+admin\includes\languages\english\orders_status.php
 admin\includes\languages\english\packingslip.php
 admin\includes\languages\english\product.php
 admin\includes\languages\english\products_price_manager.php
@@ -34,6 +49,7 @@ admin\includes\languages\german\featured.php
 admin\includes\languages\german\image_handler.php
 admin\includes\languages\german\invoice.php
 admin\includes\languages\german\orders.php
+admin\includes\languages\german\orders_status.php
 admin\includes\languages\german\packingslip.php
 admin\includes\languages\german\product.php
 admin\includes\languages\german\products_price_manager.php
@@ -60,6 +76,7 @@ admin\login.php
 admin\manufacturers.php
 admin\media_manager.php
 admin\options_values_manager.php
+admin\orders_status.php
 admin\password_forgotten.php
 admin\products_to_categories.php
 admin\rl_invoice3_ajax.php
