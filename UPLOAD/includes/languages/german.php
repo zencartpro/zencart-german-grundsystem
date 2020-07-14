@@ -2,10 +2,10 @@
 /**
  * Zen Cart German Specific
  * @package languageDefines
- * @copyright Copyright 2003-2019 Zen Cart Development Team
+ * @copyright Copyright 2003-2020 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: german.php 667 2019-07-20 10:21:57Z webchills $
+ * @version $Id: german.php 668 2020-07-14 17:12:57Z webchills $
  */
 
 // FOLLOWING WERE moved to meta_tags.php
@@ -170,7 +170,7 @@ define('SET_AS_PRIMARY', 'Als Standardadresse verwenden');
 define('NEW_ADDRESS_TITLE', 'Rechnungsadresse');
 
 // javascript messages
-define('JS_ERROR', 'Es sind Fehler aufgetreten.\n\n Bitte ändern Sie folgendes:\n\n');
+define('JS_ERROR', 'Es sind Fehler aufgetreten.\n\n Bitte Pflichtfelder korrekt ausfüllen.\n\n');
 
 define('JS_REVIEW_TEXT', '* Ihre Texteingabe in der Artikelbewertung muss mindestens ' . REVIEW_TEXT_MIN_LENGTH . ' Zeichen haben.');
 define('JS_REVIEW_RATING', '* Bitte wählen Sie ein Rating für diesen Artikel.');

@@ -19,7 +19,7 @@ define('MODULE_PAYMENT_BRAINTREE_TEXT_CREDIT_CARD_NUMBER', 'Kreditkarte Nummer:'
 define('MODULE_PAYMENT_BRAINTREE_TEXT_CREDIT_CARD_EXPIRES', 'Kartenablaufdatum:');
 define('MODULE_PAYMENT_BRAINTREE_TEXT_CREDIT_CARD_ISSUE', 'Kartenausstellungsdatum:');
 define('MODULE_PAYMENT_BRAINTREE_TEXT_CREDIT_CARD_MAESTRO_ISSUENUMBER', 'Maestro Issue No.:');
-define('MODULE_PAYMENT_BRAINTREE_TEXT_CREDIT_CARD_CHECKNUMBER', 'CVV Nummer:');
+define('MODULE_PAYMENT_BRAINTREE_TEXT_CREDIT_CARD_CHECKNUMBER', '<br/>CVV Nummer:');
 define('MODULE_PAYMENT_BRAINTREE_TEXT_CREDIT_CARD_CHECKNUMBER_LOCATION', '(auf der Rückseite der Karte)');
 define('MODULE_PAYMENT_BRAINTREE_TEXT_TRANSACTION_FOR', 'Transaktion für');
 define('MODULE_PAYMENT_BRAINTREE_TEXT_DECLINED', 'Ihre Kreditkarte wurde abgelehnt. Bitte versuchen Sie eine andere Karte oder kontaktieren Sie Ihre Bank für weitere Informationen.');

@@ -3,24 +3,22 @@
  * Payment Class.
  *
  * @package classes
- * @copyright Copyright 2003-2019 Zen Cart Development Team
+ * @copyright Copyright 2003-2020 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: payment.php 740 2019-07-20 09:11:16Z webchills $
+ * @version $Id: payment.php 741 2020-07-14 17:11:16Z webchills $
  */
 if (!defined('IS_ADMIN_FLAG')) {
   die('Illegal Access');
 }
 /**
  * Payment Class.
- * This class interfaces with various payment modules
+ * This class interfaces with payment modules
  *
- * @package classes
  */
 class payment extends base {
   var $modules, $selected_module, $doesCollectsCardDataOnsite;
 
-  // class constructor
   function __construct($module = '') {
     global $PHP_SELF, $language, $credit_covers, $messageStack;
     $this->doesCollectsCardDataOnsite = false;
@@ -59,16 +57,18 @@ class payment extends base {
       }
 
       for ($i=0, $n=sizeof($include_modules); $i<$n; $i++) {
-        //          include(DIR_WS_LANGUAGES . $_SESSION['language'] . '/modules/payment/' . $include_modules[$i]['file']);
         $lang_file = zen_get_file_directory(DIR_WS_LANGUAGES . $_SESSION['language'] . '/modules/payment/', $include_modules[$i]['file'], 'false');
         if (@file_exists($lang_file)) {
           include_once($lang_file);
         } else {
-          if (IS_ADMIN_FLAG === false && is_object($messageStack)) {
-            $messageStack->add('checkout_payment', WARNING_COULD_NOT_LOCATE_LANG_FILE . $lang_file, 'caution');
-          } else {
-            $messageStack->add_session(WARNING_COULD_NOT_LOCATE_LANG_FILE . $lang_file, 'caution');
+          if (is_object($messageStack)) {
+            if (IS_ADMIN_FLAG === false) {
+              $messageStack->add('checkout_payment', WARNING_COULD_NOT_LOCATE_LANG_FILE . $lang_file, 'caution');
+            } else {
+              $messageStack->add_session(WARNING_COULD_NOT_LOCATE_LANG_FILE . $lang_file, 'caution');
+            }
           }
+          continue;
         }
         include_once(DIR_WS_MODULES . 'payment/' . $include_modules[$i]['file']);
 
@@ -119,9 +119,8 @@ class payment extends base {
   }
 
   function javascript_validation() {
-    $js = '';
-    if (is_array($this->modules) && sizeof($this->selection()) > 0) {
-      $js = '<script type="text/javascript"><!-- ' . "\n" .
+    if (!is_array($this->modules) || empty($this->selection())) return '';
+      $js = '<script type="text/javascript">' . "\n" .
       'function check_form() {' . "\n" .
       '  var error = 0;' . "\n" .
       '  var error_message = "' . JS_ERROR . '";' . "\n" .
@@ -161,8 +160,7 @@ class payment extends base {
        }
        $js =  $js .' if (result == false) doCollectsCardDataOnsite();' . "\n";
        $js =  $js .'    return result;' . "\n";
-       $js =  $js .'  }' . "\n" . '}' . "\n" . '//--></script>' . "\n";
-    }
+       $js =  $js .'  }' . "\n" . '}' . "\n" . '</script>' . "\n";
     return $js;
   }
 

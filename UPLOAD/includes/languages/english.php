@@ -2,10 +2,10 @@
 /**
  * Zen Cart German Specific
  * @package languageDefines
- * @copyright Copyright 2003-2019 Zen Cart Development Team
+ * @copyright Copyright 2003-2020 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: english.php 887 2019-06-15 17:33:32Z webchills $
+ * @version $Id: english.php 888 2020-07-14 17:13:32Z webchills $
  */
 
 // FOLLOWING WERE moved to meta_tags.php
@@ -162,7 +162,7 @@ define('HTML_PARAMS','dir="ltr" lang="en"');
   define('NEW_ADDRESS_TITLE', 'Billing Address');
 
 // javascript messages
-  define('JS_ERROR', 'Errors have occurred during the processing of your form.\n\nPlease make the following corrections:\n\n');
+  define('JS_ERROR', 'Errors have occurred during the processing of your form.\n\nPlease fill out all required fields.\n\n');
 
   define('JS_REVIEW_TEXT', '* Please add a few more words to your comments. The review needs to have at least ' . REVIEW_TEXT_MIN_LENGTH . ' characters.');
   define('JS_REVIEW_RATING', '* Please choose a rating for this item.');
