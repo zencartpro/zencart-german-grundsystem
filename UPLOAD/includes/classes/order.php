@@ -414,20 +414,10 @@ class order extends base {
                         
                         );
 
-    //print_r($GLOBALS[$class]);
-    //echo $class;
-    //print_r($GLOBALS);
-    //echo $_SESSION['payment'];
-    /*
-    // this is set above to the module filename it should be set to the module title like Checks/Money Order rather than moneyorder
-    if (isset(${$_SESSION['payment']}) && is_object(${$_SESSION['payment']})) {
-    $this->info['payment_method'] = ${$_SESSION['payment']}->title;
-    }
-    */
 
     if ($customer_address->RecordCount() > 0) {
       $this->customer = array('gender' => $customer_address->fields['customers_gender'],
-	                          'firstname' => $customer_address->fields['customers_firstname'],
+	                       'firstname' => $customer_address->fields['customers_firstname'],
                               'lastname' => $customer_address->fields['customers_lastname'],
                               'company' => $customer_address->fields['entry_company'],
                               'street_address' => $customer_address->fields['entry_street_address'],
