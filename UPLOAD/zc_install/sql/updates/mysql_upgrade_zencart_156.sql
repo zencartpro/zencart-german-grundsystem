@@ -6,7 +6,7 @@
 # * @copyright Copyright 2003-2020 Zen Cart Development Team
 # * @copyright Portions Copyright 2003 osCommerce
 # * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
-# * @version $Id: mysql_upgrade_zencart_156.sql 28 2020-07-10 09:33:59Z webchills $
+# * @version $Id: mysql_upgrade_zencart_156.sql 29 2020-07-17 16:45:59Z webchills $
 
 #
 
@@ -1459,6 +1459,29 @@ REPLACE INTO product_type_layout_language (configuration_title, configuration_ke
 
 REPLACE INTO product_type_layout_language (configuration_title , configuration_key , languages_id, configuration_description, last_modified, date_added)
 VALUES ('20200708', 'LANGUAGE_VERSION', '43', 'Datum der deutschen Übersetzungen', now(), now());
+
+# prevent issues with updates from damaged 1.3.9
+# see https://www.zen-cart-pro.at/forum/threads/11976-Update-von-Version-1-3-9-auf-1-5-5?p=64085&viewfull=1#post64085
+
+DROP TABLE IF EXISTS admin_activity_log;
+CREATE TABLE admin_activity_log (
+  log_id bigint(15) NOT NULL auto_increment,
+  access_date datetime NOT NULL default '0001-01-01 00:00:00',
+  admin_id int(11) NOT NULL default '0',
+  page_accessed varchar(80) NOT NULL default '',
+  page_parameters text,
+  ip_address varchar(45) NOT NULL default '',
+  flagged tinyint NOT NULL default '0',
+  attention MEDIUMTEXT,
+  gzpost mediumblob,
+  logmessage mediumtext NOT NULL,
+  severity varchar(9) NOT NULL default 'info',
+  PRIMARY KEY  (log_id),
+  KEY idx_page_accessed_zen (page_accessed),
+  KEY idx_access_date_zen (access_date),
+  KEY idx_flagged_zen (flagged),
+  KEY idx_ip_zen (ip_address)
+) ENGINE=MyISAM;
 
 #### VERSION UPDATE STATEMENTS
 ## THE FOLLOWING 2 SECTIONS SHOULD BE THE "LAST" ITEMS IN THE FILE, so that if the upgrade fails prematurely, the version info is not updated.

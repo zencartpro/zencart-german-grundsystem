@@ -6,7 +6,7 @@
 # * @copyright Copyright 2003-2019 Zen Cart Development Team
 # * @copyright Portions Copyright 2003 osCommerce
 # * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
-# * @version $Id: mysql_upgrade_zencart_155.sql 20 2019-09-26 08:15:59Z webchills $
+# * @version $Id: mysql_upgrade_zencart_155.sql 22 2020-07-17 20:40:59Z webchills $
 #
 
 ############ IMPORTANT INSTRUCTIONS ###############
@@ -45,7 +45,7 @@ INSERT IGNORE INTO configuration (configuration_title, configuration_key, config
 
 UPDATE countries set countries_name = 'Åland Islands' where countries_iso_code_3 = 'ALA';
 UPDATE countries set countries_name = 'Réunion' where countries_iso_code_3 = 'REU';
-UPDATE countries set countries_name = "Côte d'Ivoire" where countries_iso_code_3 = 'CIV';
+UPDATE countries set countries_name = 'Côte d\'Ivoire' where countries_iso_code_3 = 'CIV';
 UPDATE countries set countries_name = 'Bonaire, Sint Eustatius and Saba', countries_iso_code_2 = 'BQ', countries_iso_code_3 = 'BES' WHERE countries_iso_code_3 = 'ANT';
 INSERT INTO countries (countries_name, countries_iso_code_2, countries_iso_code_3, address_format_id, status) VALUES ('Curaçao','CW','CUW','1','0');
 INSERT INTO countries (countries_name, countries_iso_code_2, countries_iso_code_3, address_format_id, status) VALUES ('Sint Maarten (Dutch part)','SX','SXM','1','0');
@@ -145,7 +145,7 @@ CREATE TABLE IF NOT EXISTS countries_name (
   PRIMARY KEY (id),
   UNIQUE countries (countries_id, language_id, countries_name),
   KEY idx_countries_name_zen (countries_name)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM;
 
 #
 # default content for new table 'countries_name'
@@ -1106,28 +1106,20 @@ INSERT IGNORE INTO admin_pages (page_key, language_key, main_page, page_params, 
 
 #####################################################################################################
 
-# prevent issues with updates from damaged 1.3.9
-# see https://www.zen-cart-pro.at/forum/threads/11976-Update-von-Version-1-3-9-auf-1-5-5?p=64085&viewfull=1#post64085
 
-DROP TABLE IF EXISTS admin_activity_log;
-CREATE TABLE admin_activity_log (
-  log_id bigint(15) NOT NULL auto_increment,
-  access_date datetime NOT NULL default '0001-01-01 00:00:00',
-  admin_id int(11) NOT NULL default '0',
-  page_accessed varchar(80) NOT NULL default '',
-  page_parameters text,
-  ip_address varchar(45) NOT NULL default '',
-  flagged tinyint NOT NULL default '0',
-  attention varchar(255) NOT NULL default '',
-  gzpost mediumblob,
-  logmessage mediumtext NOT NULL,
-  severity varchar(9) NOT NULL default 'info',
-  PRIMARY KEY  (log_id),
-  KEY idx_page_accessed_zen (page_accessed),
-  KEY idx_access_date_zen (access_date),
-  KEY idx_flagged_zen (flagged),
-  KEY idx_ip_zen (ip_address)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+### IT Recht Kanzlei EZ Pages - Neu seit 1.5.5 ###
+
+### page key hinzufügen ###
+
+ALTER TABLE ezpages ADD page_key varchar(64) NOT NULL default 0;
+
+### IT Recht Kanzlei EZ Pages anlegen ###
+
+INSERT IGNORE INTO ezpages (languages_id, pages_title, alt_url, alt_url_external, pages_html_text, status_header, status_sidebox, status_footer, status_toc, header_sort_order, sidebox_sort_order, footer_sort_order, toc_sort_order, page_open_new_window, page_is_ssl, toc_chapter, page_key) VALUES
+(43, 'Datenschutzbestimmungen', '', '', '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 'itrk-datenschutz'),
+(43, 'Widerrufsrecht', '', '', '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 'itrk-widerruf'),
+(43, 'Impressum', '', '', '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 'itrk-impressum'),
+(43, 'Allgemeine Geschäftsbedingungen', '', '', '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 'itrk-agb');
 
 
 #### VERSION UPDATE STATEMENTS
