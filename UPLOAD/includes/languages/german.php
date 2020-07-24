@@ -5,7 +5,7 @@
  * @copyright Copyright 2003-2020 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: german.php 668 2020-07-14 17:12:57Z webchills $
+ * @version $Id: german.php 669 2020-07-24 16:12:57Z webchills $
  */
 
 // FOLLOWING WERE moved to meta_tags.php
@@ -79,7 +79,7 @@ define('MALE_ADDRESS', 'Herr');
 define('FEMALE_ADDRESS', 'Frau');
 
 // text for date of birth example
-define('DOB_FORMAT_STRING', 'tt/mm/jjjj');
+define('DOB_FORMAT_STRING', 'dd.mm.yyyy');
 
 //text for sidebox heading links
 define('BOX_HEADING_LINKS', ' [mehr]');

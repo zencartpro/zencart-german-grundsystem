@@ -3,10 +3,10 @@
  * checkout_payment header_php.php
  *
  * @package page
- * @copyright Copyright 2003-2019 Zen Cart Development Team
+ * @copyright Copyright 2003-2020 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: header_php.php 734 2019-06-15 21:49:16Z webchills $
+ * @version $Id: header_php.php 735 2020-07-24 16:05:16Z webchills $
  */
 
 // This should be first line of the script:
@@ -122,4 +122,3 @@ $breadcrumb->add(NAVBAR_TITLE_2);
 
 // This should be last line of the script:
 $zco_notifier->notify('NOTIFY_HEADER_END_CHECKOUT_PAYMENT');
-?>
