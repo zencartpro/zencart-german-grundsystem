@@ -6,7 +6,7 @@
 # * @copyright Copyright 2003-2020 Zen Cart Development Team
 # * @copyright Portions Copyright 2003 osCommerce
 # * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
-# * @version $Id: mysql_zencart.sql 19529 2020-07-25 08:27:16Z webchills $
+# * @version $Id: mysql_zencart.sql 19530 2020-07-25 09:13:16Z webchills $
 #
 
 ############ IMPORTANT INSTRUCTIONS ###############
@@ -3497,13 +3497,13 @@ INSERT INTO layout_boxes (layout_template, layout_box_name, layout_box_status, l
 INSERT INTO layout_boxes (layout_template, layout_box_name, layout_box_status, layout_box_location, layout_box_sort_order, layout_box_sort_order_single, layout_box_status_single) VALUES ('responsive_classic', 'whats_new.php', 1, 0, 20, 0, 0);
 INSERT INTO layout_boxes (layout_template, layout_box_name, layout_box_status, layout_box_location, layout_box_sort_order, layout_box_sort_order_single, layout_box_status_single) VALUES ('responsive_classic', 'whos_online.php', 1, 1, 200, 200, 1);
 
-INSERT INTO orders_status VALUES ( '1', '1', 'Pending', 0);
-INSERT INTO orders_status VALUES ( '2', '1', 'Processing', 10);
-INSERT INTO orders_status VALUES ( '3', '1', 'Delivered', 20);
-INSERT INTO orders_status VALUES ( '4', '1', 'Update', 30);
-INSERT INTO orders_status VALUES ( '5', '1', 'Cancelled', 40);
-INSERT INTO orders_status VALUES ( '6', '1', 'Test Order', 50);
-INSERT INTO orders_status VALUES ( '7', '1', 'Resend Invoice', 60);
+INSERT INTO orders_status (orders_status_id, language_id, orders_status_name, sort_order) VALUES ( '1', '1', 'Pending', 0);
+INSERT INTO orders_status (orders_status_id, language_id, orders_status_name, sort_order) VALUES ( '2', '1', 'Processing', 10);
+INSERT INTO orders_status (orders_status_id, language_id, orders_status_name, sort_order) VALUES ( '3', '1', 'Delivered', 20);
+INSERT INTO orders_status (orders_status_id, language_id, orders_status_name, sort_order) VALUES ( '4', '1', 'Update', 30);
+INSERT INTO orders_status (orders_status_id, language_id, orders_status_name, sort_order) VALUES ( '5', '1', 'Cancelled', 40);
+INSERT INTO orders_status (orders_status_id, language_id, orders_status_name, sort_order) VALUES ( '6', '1', 'Test Order', 50);
+INSERT INTO orders_status (orders_status_id, language_id, orders_status_name, sort_order) VALUES ( '7', '1', 'Resend Invoice', 60);
 
 INSERT INTO product_types VALUES (1, 'Product - General', 'product', '1', 'Y', '', now(), now());
 INSERT INTO product_types VALUES (2, 'Product - Music', 'product_music', '1', 'Y', '', now(), now());
@@ -3995,13 +3995,13 @@ INSERT INTO project_version_history (project_version_id, project_version_key, pr
 # German Version Special Definitions
 #
 
-INSERT INTO orders_status VALUES (1, 43, 'warten auf Zahlung');
-INSERT INTO orders_status VALUES (2, 43, 'Zahlung erhalten - in Arbeit');
-INSERT INTO orders_status VALUES (3, 43, 'Verschickt');
-INSERT INTO orders_status VALUES (4, 43, 'Information');
-INSERT INTO orders_status VALUES (5, 43, 'Storniert');
-INSERT INTO orders_status VALUES (6, 43, 'Testbestellung');
-INSERT INTO orders_status VALUES (7, 43, 'Rechnung versenden');
+INSERT INTO orders_status (orders_status_id, language_id, orders_status_name, sort_order) VALUES (1, 43, 'warten auf Zahlung', 0);
+INSERT INTO orders_status (orders_status_id, language_id, orders_status_name, sort_order) VALUES (2, 43, 'Zahlung erhalten - in Arbeit', 10);
+INSERT INTO orders_status (orders_status_id, language_id, orders_status_name, sort_order) VALUES (3, 43, 'Verschickt', 20);
+INSERT INTO orders_status (orders_status_id, language_id, orders_status_name, sort_order) VALUES (4, 43, 'Information', 30);
+INSERT INTO orders_status (orders_status_id, language_id, orders_status_name, sort_order) VALUES (5, 43, 'Storniert'. 40);
+INSERT INTO orders_status (orders_status_id, language_id, orders_status_name, sort_order) VALUES (6, 43, 'Testbestellung'. 50);
+INSERT INTO orders_status (orders_status_id, language_id, orders_status_name, sort_order) VALUES (7, 43, 'Rechnung versenden', 60);
 
 ## ZEN-DEUTSCH MENU einfuegen
 INSERT INTO admin_menus (menu_key, language_key, sort_order) 
