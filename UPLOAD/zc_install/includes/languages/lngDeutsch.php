@@ -6,7 +6,7 @@
  * @package Installer
  * @copyright Copyright 2003-2020 Zen Cart Development Team
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: lngDeutsch.php 20 2020-07-05 13:23:16Z webchills $
+ * @version $Id: lngDeutsch.php 21 2020-07-25 19:51:16Z webchills $
  */
 /**
  * defining language components for the page
@@ -109,7 +109,7 @@ define('TEXT_COMPLETION_ADMIN_LINK_TEXT', 'Ihr Shop Adminbereich');
 
 define('TEXT_PAGE_HEADING_DATABASE_UPGRADE', 'Datenbank Update');
 define('TEXT_DATABASE_UPGRADE_HEADER_MAIN', '');
-define('TEXT_DATABASE_UPGRADE_STEPS_DETECTED', 'Die folgende Liste zeigt die verschiedenen Updateschritte, die wir für Ihre Datenbank als nötig erkannt haben.');
+define('TEXT_DATABASE_UPGRADE_STEPS_DETECTED', 'Die folgende Liste zeigt die verschiedenen Updateschritte, die wir für Ihre Datenbank als nötig erkannt haben.<br/>Warten Sie nach dem Clicken auf Bestätigung die Erfolgsmeldung ab, bei grossen Datenbanken mit vielen Bestellungen kann der Updateprozess einige Minuten dauern.');
 define('TEXT_DATABASE_UPGRADE_LEGEND_UPGRADE_STEPS', 'Bitte bestätigen Sie Ihre gewünschten Updateschritte');
 define('TEXT_DATABASE_UPGRADE_ADMIN_CREDENTIALS', 'Admin Zugangsdaten (SuperUser)');
 define('TEXT_VALIDATION_ADMIN_CREDENTIALS', 'Um das Update zu autorisieren, müssen Sie Benutzernamen und Passwort eines Super Admins Ihres Zen Cart Shops angeben.');
