@@ -1,0 +1,43 @@
+.ccinfobraintree{
+	display:none;
+}
+
+#braintree_api-cc-number{
+	width:300px !important;
+	display: table;
+}
+
+#braintree_api-cc-ownerf{
+	width:300px !important;
+	display: table;
+}
+
+#braintree_api-cc-ownerl{
+	width:300px !important;
+	display: table;
+}
+
+#braintree_api-cc-cvv {
+	width:90px !important;
+	display: table;
+	margin-top:20px !important;
+}
+
+#braintree_api-cc-expires-month{
+	width:150px!important;
+	background:#F5F5F7;
+	border:2px solid #CCCCCC;	
+	font-size:13px;
+	min-height:40px;
+	margin-left:0 !important;
+   padding-left:0 !important;
+}
+
+#braintree_api-cc-expires-year{
+	width:110px!important;
+	background:#F5F5F7;
+	border:2px solid #CCCCCC;	
+	font-size:13px;
+	clear:right;
+	min-height:40px;
+}

@@ -20,10 +20,12 @@ Empfohlene Konfiguration:
 * Überarbeiteter Mehrfach Kategorie Link Manager im Hauptmenü Webshop
 * Ungenutzte Funktionen entfernt, redundante Sprachdefinitionen zentralisiert
 * Bestellstati zeigen in der Administration ihre ID und können sortiert werden
+* Bestellkommentare direkt in der Bestellübersicht lesbar
+* Eingabefelder für Braintree Kreditkartenzahlung erscheinen erst bei Auswahl dieser Zahlungsart
 * Update Sales Report auf 3.3.3
-* Update Tiny MCE Editor auf 5.4.0
+* Update Tiny MCE Editor auf 5.4.1
 * Update CKEditor auf 4.14.1
-* Update PHP Mailer auf 6.1.6
+* Update PHP Mailer auf 6.1.7
 * Update Image Handler auf 5.1.8
 * Update jQuery auf 3.4.1
 

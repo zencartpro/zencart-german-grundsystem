@@ -1,8 +1,8 @@
-Updatepaket für Zen Cart 1.5.6d deutsch auf 1.5.6dedeutsch
+Updatepaket für Zen Cart 1.5.6d deutsch auf 1.5.6e deutsch
 
 Dieses Paket enthält alle geänderten und neuen Dateien um eine bestehende 1.5.6d Installation einfach auf 1.5.6e aktualisieren zu können.
 Nur geeignet, wenn Sie bereits 1.5.6d deutsch verwenden!
-Für das Update einer älteren deutschen Zen Cart Version, führen Sie bitte ein normales Update mit dem kompletten 1.5.6e Paket durch!
+Für das Update einer älteren deutschen Zen Cart Version als 1.5.6, führen Sie bitte ein normales Update mit dem kompletten 1.5.6e Paket durch!
 
 Um Ihren bestehenden 1.5.6d deutsch Shop auf 1.5.6e deutsch zu aktualisieren gehen Sie folgendermaßen vor:
 
@@ -31,6 +31,8 @@ Benennen Sie den Ordner DEINADMIN auf den Namen Ihres Adminverzeichnisses um.
 Löschen Sie den kompletten Ordner editors vom Server
 Löschen Sie den kompletten Ordner includes/classes/vendors/PHPMailer vom Server
 Laden Sie dann den Inhalt des Ordners 2 - NEUEDATEIEN in der vorgegebenen Struktur ins Shopverzeichnis hoch.
+Hinweis:
+Falls Sie in Ihrem Template bereits eine eigene Version der Datei checkout_payment.css verwenden (includes/templates/DEINTEMPLATE/css/checkout_payment.css), dann überschreiben Sie die bestehende Datei nicht einfach, sondern fügen die darin enthaltene Definition in Ihr bestehendes Stylesheet checkut_payment.css ein.
 
 
 3)

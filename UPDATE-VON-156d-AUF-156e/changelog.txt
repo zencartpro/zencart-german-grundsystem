@@ -6,28 +6,36 @@ Changelog Zen Cart 1.5.6e deutsch gegenüber 1.5.6d deutsch
 * Überarbeiteter Mehrfach Kategorie Link Manager im Hauptmenü Webshop
 * Ungenutzte Funktionen entfernt, redundante Sprachdefinitionen zentralisiert
 * Bestellstati zeigen in der Administration ihre ID und können sortiert werden
+* Bestellkommentare direkt in der Bestellübersicht lesbar
+* Eingabefelder für Braintree Kreditkartenzahlung erscheinen erst bei Auswahl dieser Zahlungsart
 * Update Sales Report auf 3.3.3
-* Update Tiny MCE Editor auf 5.4.0
+* Update Tiny MCE Editor auf 5.4.1
 * Update CKEditor auf 4.14.1
-* Update PHP Mailer auf 6.1.6
+* Update PHP Mailer auf 6.1.7
 * Update Image Handler auf 5.1.8
 * Update jQuery auf 3.4.1
 
 -----------------------------------------------------------------------------------------
-Neue Dateien in 1.5.6e (2)
+Neue Dateien in 1.5.6e (6)
 -----------------------------------------------------------------------------------------
 
 admin\includes\css\login.css
 admin\includes\javascript\jquery-3.4.1.min.js
+includes\modules\pages\checkout_payment\jscript_braintree.php
+includes\templates\classic\css\checkout_payment.css
+includes\templates\responsive_classic\css\checkout_payment.css
+includes\templates\template_default\css\checkout_payment.css
+
 
 ----------------------------------------------------------------------------------------
-Geänderte Dateien in 1.5.6e (272)
+Geänderte Dateien in 1.5.6e (296)
 ----------------------------------------------------------------------------------------
 
 admin\includes\classes\class.admin.zcObserverLogEventListener.php
 admin\includes\classes\sales_report.php
 admin\includes\functions\general.php
 admin\includes\init_includes\init_errors.php
+admin\includes\installers\it_recht_kanzlei\1_0_1.php
 admin\includes\languages\english\category_product_listing.php
 admin\includes\languages\english\downloads_manager.php
 admin\includes\languages\english\featured.php
@@ -60,7 +68,9 @@ admin\includes\languages\german\stats_products_purchased.php
 admin\includes\languages\german\stats_sales_report.php
 admin\includes\languages\english.php
 admin\includes\languages\german.php
+admin\includes\ckeditor.php
 admin\includes\dist-configure.php
+admin\includes\tinymce.php
 admin\attributes_controller.php
 admin\category_product_listing.php
 admin\configuration.php
@@ -72,10 +82,12 @@ admin\customers_without_order.php
 admin\display_logs.php
 admin\featured.php
 admin\image_handler.php
+admin\index_dashboard.php
 admin\login.php
 admin\manufacturers.php
 admin\media_manager.php
 admin\options_values_manager.php
+admin\orders.php
 admin\orders_status.php
 admin\password_forgotten.php
 admin\products_to_categories.php
@@ -265,14 +277,31 @@ includes\classes\vendors\PHPMailer\VERSION
 includes\classes\bmz_image_handler.class.php
 includes\classes\it_recht_kanzlei_api.php
 includes\classes\order.php
+includes\classes\payment.php
 includes\classes\shopping_cart.php
+includes\functions\functions_customers.php
+includes\functions\functions_lookups.php
+includes\init_includes\init_header.php
+includes\languages\english\modules\payment\braintree_api.php
+includes\languages\english\create_account.php
+includes\languages\german\modules\payment\braintree_api.php
+includes\languages\german\create_account.php
+includes\languages\english.php
+includes\languages\german.php
+includes\modules\pages\checkout_payment\header_php.php
+includes\modules\pages\gv_redeem\header_php.php
+includes\modules\pages\shopping_cart\header_php.php
+includes\modules\payment\paypalwpp.php
 includes\modules\shipping\storepickup.php
 includes\modules\additional_images.php
 includes\modules\shipping_estimator.php
 includes\templates\classic\google_analytics\google_analytics.php
 includes\templates\responsive_classic\common\html_header.php
 includes\templates\responsive_classic\google_analytics\google_analytics.php
+includes\templates\template_default\common\html_header.php
 includes\templates\template_default\google_analytics\google_analytics.php
+includes\templates\template_default\jscript\jquery.min.js
+includes\templates\template_default\templates\tpl_checkout_payment_default.php
 includes\.htaccess
 includes\dist-configure.php
 includes\version.php
@@ -286,6 +315,8 @@ zc_install\includes\modules\pages\completion\header_php.php
 zc_install\includes\modules\pages\index\header_php.php
 zc_install\includes\template\templates\database_default.php
 zc_install\includes\template\templates\index_default.php
+zc_install\includes\admin-configure-template.php
+zc_install\includes\catalog-configure-template.php
 zc_install\includes\cli_controller.php
 zc_install\includes\systemChecks.yml
 zc_install\includes\version.php
