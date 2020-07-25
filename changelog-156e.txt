@@ -28,7 +28,7 @@ includes\templates\template_default\css\checkout_payment.css
 
 
 ----------------------------------------------------------------------------------------
-Geänderte Dateien in 1.5.6e (296)
+Geänderte Dateien in 1.5.6e (297)
 ----------------------------------------------------------------------------------------
 
 admin\includes\classes\class.admin.zcObserverLogEventListener.php
@@ -294,6 +294,7 @@ includes\modules\pages\shopping_cart\header_php.php
 includes\modules\payment\paypalwpp.php
 includes\modules\shipping\storepickup.php
 includes\modules\additional_images.php
+includes\modules\media_manager.php
 includes\modules\shipping_estimator.php
 includes\templates\classic\google_analytics\google_analytics.php
 includes\templates\responsive_classic\common\html_header.php
