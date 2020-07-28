@@ -6,7 +6,7 @@
 # * @copyright Copyright 2003-2020 Zen Cart Development Team
 # * @copyright Portions Copyright 2003 osCommerce
 # * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
-# * @version $Id: mysql_zencart.sql 19530 2020-07-25 09:13:16Z webchills $
+# * @version $Id: mysql_zencart.sql 19531 2020-07-27 09:08:16Z webchills $
 #
 
 ############ IMPORTANT INSTRUCTIONS ###############
@@ -3999,8 +3999,8 @@ INSERT INTO orders_status (orders_status_id, language_id, orders_status_name, so
 INSERT INTO orders_status (orders_status_id, language_id, orders_status_name, sort_order) VALUES (2, 43, 'Zahlung erhalten - in Arbeit', 10);
 INSERT INTO orders_status (orders_status_id, language_id, orders_status_name, sort_order) VALUES (3, 43, 'Verschickt', 20);
 INSERT INTO orders_status (orders_status_id, language_id, orders_status_name, sort_order) VALUES (4, 43, 'Information', 30);
-INSERT INTO orders_status (orders_status_id, language_id, orders_status_name, sort_order) VALUES (5, 43, 'Storniert'. 40);
-INSERT INTO orders_status (orders_status_id, language_id, orders_status_name, sort_order) VALUES (6, 43, 'Testbestellung'. 50);
+INSERT INTO orders_status (orders_status_id, language_id, orders_status_name, sort_order) VALUES (5, 43, 'Storniert', 40);
+INSERT INTO orders_status (orders_status_id, language_id, orders_status_name, sort_order) VALUES (6, 43, 'Testbestellung', 50);
 INSERT INTO orders_status (orders_status_id, language_id, orders_status_name, sort_order) VALUES (7, 43, 'Rechnung versenden', 60);
 
 ## ZEN-DEUTSCH MENU einfuegen
