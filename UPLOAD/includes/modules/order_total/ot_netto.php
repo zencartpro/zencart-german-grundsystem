@@ -3,10 +3,10 @@
  * ot_netto order-total module
  *
  * @package orderTotal
- * @copyright Copyright 2003-2019 Zen Cart Development Team
+ * @copyright Copyright 2003-2020 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: ot_netto.php 733 2019-06-24 21:49:16Z webchills $
+ * @version $Id: ot_netto.php 734 2020-08-25 15:42:16Z webchills $
  */
 
   class ot_netto {
@@ -16,7 +16,7 @@
       $this->code = 'ot_netto';
       $this->title = MODULE_ORDER_TOTAL_NETTO_TITLE;
       $this->description = MODULE_ORDER_TOTAL_NETTO_DESCRIPTION; 
-      $this->enabled = (defined('MODULE_ORDER_TOTAL_NETTO_STATUS') && MODULE_PAYMENT_INVOICE_STATUS == 'True'); 
+      $this->enabled = (defined('MODULE_ORDER_TOTAL_NETTO_STATUS') && MODULE_ORDER_TOTAL_NETTO_STATUS == 'True'); 
       $this->sort_order = defined('MODULE_ORDER_TOTAL_NETTO_SORT_ORDER') ? MODULE_ORDER_TOTAL_NETTO_SORT_ORDER : null;
 
       $this->output = array();
